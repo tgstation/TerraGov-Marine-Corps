@@ -149,7 +149,7 @@
 		if(mob.is_mob_incapacitated(TRUE))
 			return
 		else if(mob.is_mob_restrained(0))
-			mob.next_move_slowdown += 10
+			next_movement = world.time + 20 //to reduce the spam
 			src << "<span class='warning'>You're restrained! You can't move!</span>"
 			return
 		else if(!mob.resist_grab(TRUE))
@@ -166,9 +166,6 @@
 		return O.relaymove(mob, direct)
 
 	if(isturf(mob.loc))
-		if (mob.listed_turf)
-			mob.listed_turf = null
-
 		mob.last_move_intent = world.time + 10
 		switch(mob.m_intent)
 			if(MOVE_INTENT_RUN)
@@ -184,6 +181,9 @@
 			step(mob, pick(cardinal))
 		else
 			. = ..()
+
+			if (mob.listed_turf)
+				mob.listed_turf = null
 
 		moving = 0
 		next_movement = start_move_time + move_delay

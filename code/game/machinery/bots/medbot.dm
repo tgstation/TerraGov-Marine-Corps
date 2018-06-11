@@ -65,6 +65,7 @@
 			botcard.access = J.get_access()
 		else
 			src.botcard.access = src.botcard_access
+	start_processing()
 
 /obj/machinery/bot/medbot/turn_on()
 	. = ..()
@@ -535,5 +536,3 @@
 	user << "<span class='notice'>You add the robot arm to the first aid kit.</span>"
 	user.temp_drop_inv_item(src)
 	cdel(src)
-
-

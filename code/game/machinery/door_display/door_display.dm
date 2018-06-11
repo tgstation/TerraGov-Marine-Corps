@@ -37,6 +37,7 @@
 		if(targets.len == 0)
 			stat |= BROKEN
 		update_icon()
+	start_processing()
 	return
 
 // Display process loop.

@@ -229,14 +229,15 @@ var/global/list/hive_datum = list(new /datum/hive_status(), new /datum/hive_stat
 
 
 
-/mob/living/carbon/Xenomorph/start_pulling(var/atom/movable/AM)
-	if(isobj(AM))
-		return
-	if(isliving(AM))
-		var/mob/living/L = AM
-		if(isSynth(L) && L.stat == DEAD) return
-		if(L.buckled) return //to stop xeno from pulling marines on roller beds.
-	..()
+/mob/living/carbon/Xenomorph/start_pulling(atom/movable/AM, lunge, no_msg)
+	if(!isliving(AM))
+		return FALSE
+	var/mob/living/L = AM
+	if(isSynth(L) && L.stat == DEAD) //no meta hiding synthetic bodies
+		return FALSE
+	if(L.buckled)
+		return FALSE //to stop xeno from pulling marines on roller beds.
+	return ..()
 
 /mob/living/carbon/Xenomorph/pull_response(mob/puller)
 	if(stat != DEAD && has_species(puller,"Human")) // If the Xeno is alive, fight back against a grab/pull
@@ -244,6 +245,8 @@ var/global/list/hive_datum = list(new /datum/hive_status(), new /datum/hive_stat
 		playsound(puller.loc, 'sound/weapons/pierce.ogg', 25, 1)
 		puller.visible_message("<span class='warning'>[puller] tried to pull [src] but instead gets a tail swipe to the head!</span>")
 		puller.stop_pulling()
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/Xenomorph/resist_grab(moving_resist)
 	if(pulledby.grab_level)

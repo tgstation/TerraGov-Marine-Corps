@@ -162,6 +162,7 @@
 	var/immune_to_ssd = 0
 
 	var/turf/listed_turf = null  //the current turf being examined in the stat panel
+	var/listed_turf_change = 0
 
 	var/list/active_genes=list()
 

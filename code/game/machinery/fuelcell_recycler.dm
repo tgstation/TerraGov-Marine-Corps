@@ -18,9 +18,11 @@
 		if(!cell_left)
 			if(user.drop_inv_item_to_loc(I, src))
 				cell_left = I
+				start_processing()
 		else if(!cell_right)
 			if(user.drop_inv_item_to_loc(I, src))
 				cell_right = I
+				start_processing()
 		else
 			user << "<span class='notice'>The recycler is full!</span>"
 			return
@@ -66,6 +68,7 @@
 	if(!cell_left && !cell_right)
 		update_use_power(1)
 		update_icon()
+		stop_processing()
 		return
 	else
 		var/active = FALSE
@@ -81,6 +84,7 @@
 			update_use_power(2)
 		else
 			update_use_power(1)
+			stop_processing()
 
 		update_icon()
 

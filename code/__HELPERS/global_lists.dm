@@ -35,6 +35,7 @@ var/global/list/structure_list = list()				//List of all /obj/structure as they 
 var/global/list/active_areas = list()
 var/global/list/all_areas = list()
 var/global/list/machines = list()
+var/global/list/processing_machines = list()
 var/global/list/turfs = list()
 var/global/list/object_list = list()
 var/global/list/item_list = list()

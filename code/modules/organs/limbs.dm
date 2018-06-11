@@ -351,7 +351,7 @@ This function completely restores a damaged organ to perfect condition.
 /datum/limb/proc/need_process()
 	if(status & LIMB_DESTROYED)	//Missing limb is missing
 		return 0
-	if(!(status & LIMB_ROBOT)) // If it's robotic, that's fine it will have a status.
+	if(status && !(status & LIMB_ROBOT)) // Any status other than destroyed or robotic requires processing
 		return 1
 	if(brute_dam || burn_dam)
 		return 1

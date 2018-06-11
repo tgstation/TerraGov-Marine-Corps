@@ -201,7 +201,7 @@
 /obj/item/device/flashlight/flare
 	name = "flare"
 	desc = "A red USCM issued flare. There are instructions on the side, it reads 'pull cord, make light'."
-	w_class = 2.0
+	w_class = 2
 	brightness_on = 5 //As bright as a flashlight, but more disposable. Doesn't burn forever though
 	icon_state = "flare"
 	item_state = "flare"
@@ -209,7 +209,6 @@
 	raillight_compatible = 0
 	var/fuel = 0
 	var/on_damage = 7
-	var/produce_heat = 1500
 
 /obj/item/device/flashlight/flare/New()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
@@ -229,6 +228,7 @@
 
 /obj/item/device/flashlight/flare/proc/turn_off()
 	on = 0
+	heat_source = 0
 	force = initial(force)
 	damtype = initial(damtype)
 	if(ismob(loc))
@@ -251,6 +251,7 @@
 	if(.)
 		user.visible_message("<span class='notice'>[user] activates the flare.</span>", "<span class='notice'>You pull the cord on the flare, activating it!</span>")
 		force = on_damage
+		heat_source = 1500
 		damtype = "fire"
 		processing_objects += src
 
@@ -260,6 +261,7 @@
 
 		..()
 		on = 1
+		heat_source = 1500
 		update_brightness()
 		force = on_damage
 		damtype = "fire"

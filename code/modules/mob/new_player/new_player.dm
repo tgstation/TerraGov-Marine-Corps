@@ -67,6 +67,9 @@
 		return
 
 	Stat()
+		if (!..())
+			return 0
+
 		if(ticker.hide_mode)
 			stat("Game Mode:", "Secret")
 		else
@@ -82,6 +85,8 @@
 				stat("[player.key]", (player.ready)?("(Playing)"):(null))
 				totalPlayers++
 				if(player.ready)totalPlayersReady++
+
+		return 1
 
 
 	Topic(href, href_list[])

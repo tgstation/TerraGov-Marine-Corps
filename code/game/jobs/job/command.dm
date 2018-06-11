@@ -181,6 +181,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
 	skills_type = /datum/skills/tank_crew
+	idtype = /obj/item/card/id/dogtag
 
 	generate_wearable_equipment()
 		. = list(
@@ -241,9 +242,8 @@ While you are an officer, your authority is limited to your own vehicle, where y
 				WEAR_WAIST = /obj/item/storage/belt/security/MP/full,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/marine/MP,
 				WEAR_EYES = /obj/item/clothing/glasses/sunglasses/sechud,
-				//WEAR_EYES = /obj/item/clothing/glasses/sunglasses/sechud/eyepiece, //still working on this garbagio - josh 2/20/2018
 				WEAR_HEAD = /obj/item/clothing/head/cmberet/red,
-				WEAR_BACK = /obj/item/storage/backpack/security,
+				WEAR_BACK = /obj/item/storage/backpack/satchel/sec,
 				WEAR_R_STORE = /obj/item/storage/pouch/general/medium
 				)
 

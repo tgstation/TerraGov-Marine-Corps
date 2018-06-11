@@ -43,7 +43,7 @@
 //Relocate me somewhere that makes more sense
 /obj/structure/chigusa_sign
 	name = "Chigusa Sign"
-	desc = "A large sign reading 'lazarus landing por-' the rest of it is smeared in blood."
+	desc = "A large sign reading 'lazarus landing pop. 73', there's blood smeared on it."
 	icon = 'icons/obj/landing_signs.dmi'
 	icon_state = "laz_sign"
 	bound_width = 64

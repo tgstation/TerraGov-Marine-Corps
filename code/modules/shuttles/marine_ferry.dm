@@ -417,6 +417,8 @@
 			A.overload_lighting()
 			A.set_broken()
 
+	enter_allowed = 0 //No joining after dropship crash
+
 	var/list/turfs_trg = get_shuttle_turfs(T_trg, info_datums) //Final destination turfs <insert bad jokey reference here>
 
 	target_turf = T_trg

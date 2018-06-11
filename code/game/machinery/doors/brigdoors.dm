@@ -110,6 +110,7 @@
 		if(C.opened && !C.close())	continue
 		C.locked = 1
 		C.icon_state = C.icon_locked
+	start_processing()
 	return 1
 
 
@@ -130,7 +131,7 @@
 		if(C.opened)	continue
 		C.locked = 0
 		C.icon_state = C.icon_closed
-
+	stop_processing()
 	return 1
 
 

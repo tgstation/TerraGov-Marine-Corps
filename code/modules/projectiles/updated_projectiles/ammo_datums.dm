@@ -412,7 +412,7 @@
 	New()
 		..()
 		max_range = config.short_shell_range
-		damage = config.hmed_hit_damage
+		damage = config.high_hit_damage
 		penetration= config.low_armor_penetration
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
@@ -463,6 +463,40 @@
 
 	on_hit_turf(turf/T,obj/item/projectile/P)
 		burst(get_turf(T),P,damage_type)
+
+
+/datum/ammo/bullet/shotgun/flechette
+	name = "shotgun flechette shell"
+	icon_state = "flechette"
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette_spread
+
+	New()
+		..()
+		accuracy_var_low = config.med_proj_variance
+		accuracy_var_high = config.med_proj_variance
+		max_range = config.short_shell_range
+		damage = config.lmed_hit_damage
+		damage_var_low = -config.low_proj_variance
+		damage_var_high = config.low_proj_variance
+		penetration	= config.mlow_armor_penetration
+		bonus_projectiles_amount = config.low_proj_extra
+
+
+
+/datum/ammo/bullet/shotgun/flechette_spread
+	name = "additional flechette"
+	icon_state = "flechette"
+	New()
+		..()
+		accuracy_var_low = config.med_proj_variance
+		accuracy_var_high = config.med_proj_variance
+		max_range = config.short_shell_range
+		damage = config.low_hit_damage
+		damage_var_low = -config.low_proj_variance
+		damage_var_high = config.low_proj_variance
+		penetration	= config.mlow_armor_penetration
+
+
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
@@ -738,6 +772,7 @@
 
 /datum/ammo/rocket/ltb
 	name = "cannon round"
+	icon_state = "ltb"
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
 
 	New()

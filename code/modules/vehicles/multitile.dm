@@ -129,6 +129,9 @@ Vehicles are placed on the map by a spawner or admin verb
 /obj/vehicle/multitile/root/proc/handle_player_entrance(var/mob/M)
 	return
 
+/obj/vehicle/multitile/root/proc/handle_harm_attack(var/mob/M)
+	return
+
 //Vebrs for rotations, set up a macro and get turnin
 /obj/vehicle/multitile/root/verb/clockwise_rotate_multitile()
 	set category = "Object"

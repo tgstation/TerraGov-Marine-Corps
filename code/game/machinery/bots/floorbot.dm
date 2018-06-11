@@ -29,6 +29,7 @@
 /obj/machinery/bot/floorbot/New()
 	..()
 	src.updateicon()
+	start_processing()
 
 /obj/machinery/bot/floorbot/turn_on()
 	. = ..()
@@ -385,7 +386,3 @@
 	else
 		user << "<span class='warning'>You need 10 floortiles for a floorbot.</span>"
 	return
-
-
-
-

@@ -17,6 +17,15 @@
 		floodlist += F
 		F.fswitch = src
 	..()
+	start_processing()
+
+/obj/machinery/hydro_floodlight_switch/process()
+	var/lightpower = 0
+	for(var/obj/machinery/hydro_floodlight/H in floodlist)
+		if(!H.is_lit)
+			continue
+		lightpower += H.power_tick
+	use_power(lightpower)
 
 /obj/machinery/hydro_floodlight_switch/update_icon()
 	if(!ispowered)
@@ -93,11 +102,6 @@
 		icon_state = "floodon"
 	else
 		icon_state = "floodoff"
-
-/obj/machinery/hydro_floodlight/process()
-	if(isnull(fswitch) || damaged ||!is_lit) return 0 //The heck, where's the switch?!
-	if(!fswitch.ispowered || !fswitch.turned_on) return 0
-	fswitch.use_power(power_tick) //Make the switch use up the power, not the floodlight, since they don't have areas
 
 /obj/machinery/hydro_floodlight/attackby(obj/item/W as obj, mob/user as mob)
 	var/obj/item/tool/weldingtool/WT = W

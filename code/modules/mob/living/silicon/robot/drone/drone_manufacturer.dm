@@ -17,6 +17,7 @@
 
 /obj/machinery/drone_fabricator/New()
 	..()
+	start_processing()
 
 /obj/machinery/drone_fabricator/power_change()
 	..()

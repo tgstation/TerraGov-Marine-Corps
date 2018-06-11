@@ -21,6 +21,7 @@ var/global/list/rad_collectors = list()
 /obj/machinery/power/rad_collector/New()
 	..()
 	rad_collectors += src
+	start_processing()
 
 /obj/machinery/power/rad_collector/Dispose()
 	rad_collectors -= src
@@ -152,4 +153,3 @@ var/global/list/rad_collectors = list()
 		flick("ca_deactive", src)
 	update_icon()
 	return
-

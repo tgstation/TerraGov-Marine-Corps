@@ -291,7 +291,7 @@
 
 	New()
 		..()
-		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 24, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 12)
+		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 12)
 
 /obj/item/weapon/gun/rifle/lmg/set_gun_config_values()
 	fire_delay = config.high_fire_delay

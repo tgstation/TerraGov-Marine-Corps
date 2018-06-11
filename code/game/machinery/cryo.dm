@@ -22,6 +22,7 @@
 /obj/machinery/atmospherics/unary/cryo_cell/New()
 	..()
 	initialize_directions = dir
+	start_processing()
 
 /obj/machinery/atmospherics/unary/cryo_cell/initialize()
 	if(node) return

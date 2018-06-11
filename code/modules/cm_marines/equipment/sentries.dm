@@ -305,8 +305,9 @@
 		camera.c_tag = "[name] ([rand(0, 1000)])"
 		spawn(2)
 			stat = 0
-			processing_objects.Add(src)
+			//processing_objects.Add(src)
 		ammo = ammo_list[ammo]
+		start_processing()
 
 	Dispose() //Clear these for safety's sake.
 		if(operator)
@@ -321,7 +322,7 @@
 		if(target)
 			target = null
 		SetLuminosity(0)
-		processing_objects.Remove(src)
+		//processing_objects.Remove(src)
 		. = ..()
 
 /obj/machinery/marine_turret/attack_hand(mob/user as mob)
@@ -1036,7 +1037,8 @@
 		camera.c_tag = "[src.name] ([rand(0,1000)])"
 		spawn(2)
 			stat = 0
-			processing_objects.Add(src)
+			//processing_objects.Add(src)
+			start_processing()
 		ammo = ammo_list[ammo]
 
 /obj/machinery/marine_turret/premade/dumb

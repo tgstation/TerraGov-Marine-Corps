@@ -259,7 +259,7 @@ var/global/list/gear_datums = list()
 /datum/gear/eyepatch
 	display_name = "Eyepatch"
 	path = /obj/item/clothing/glasses/eyepatch
-	cost = 5
+	cost = 2
 	slot = WEAR_EYES
 
 /datum/gear/thugshades

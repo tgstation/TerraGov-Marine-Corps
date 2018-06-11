@@ -131,6 +131,7 @@
 	create_reagents(200)
 	connect()
 	update_icon()
+	start_processing()
 
 /obj/machinery/portable_atmospherics/hydroponics/bullet_act(var/obj/item/projectile/Proj)
 

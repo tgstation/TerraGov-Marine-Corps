@@ -196,6 +196,8 @@
 
 	for(var/turf/T in destination)
 		for(var/obj/O in T)
+			if(istype(O, /obj/effect/landmark))
+				continue
 			cdel(O)
 		cdel(T)
 

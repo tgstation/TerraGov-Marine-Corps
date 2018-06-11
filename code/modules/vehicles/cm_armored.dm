@@ -218,6 +218,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	sleep(20)
 
 	HP.ammo.loc = entrance.loc
+	HP.ammo.update_icon()
 	HP.ammo = A
 	HP.backup_clips.Remove(A)
 
@@ -342,6 +343,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	name = "Armored Vehicle"
 	desc = "Get inside to operate the vehicle."
 
+	luminosity = 7
 	throwpass = 1 //You can lob nades over tanks, and there's some dumb check somewhere that requires this
 
 //If something want to delete this, it's probably either an admin or the shuttle
@@ -375,7 +377,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			H.livingmob_interact(M)
 	else if(istype(A, /obj/structure/fence))
 		var/obj/structure/fence/F = A
-		F.visible_message("<span class='danger'>[root] smashes through [F]</span>")
+		F.visible_message("<span class='danger'>[root] smashes through [F]!</span>")
 		F.health = 0
 		F.healthcheck()
 	else if(istype(A, /turf/closed/wall))
@@ -384,6 +386,14 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		var/obj/vehicle/multitile/root/cm_armored/CA = root
 		CA.take_damage_type(10, "blunt", W)
 		playsound(W, 'sound/effects/metal_crash.ogg', 35)
+	else if(istype(A, /obj/structure/mineral_door/resin))
+		var/obj/structure/mineral_door/resin/R = A
+		R.health = 0
+		R.healthcheck()
+	else if(istype(A, /obj/structure/table))
+		var/obj/structure/table/T = A
+		T.visible_message("<span class='danger'>[root] crushes [T]!</span>")
+		T.destroy(1)
 
 /obj/vehicle/multitile/hitbox/cm_armored/Move(var/atom/A, var/direction)
 
@@ -516,11 +526,22 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //Special case for entering the vehicle without using the verb
 /obj/vehicle/multitile/root/cm_armored/attack_hand(var/mob/user)
 
+	if(user.a_intent == "hurt")
+		handle_harm_attack(user)
+		return
+
 	if(user.loc == entrance.loc)
 		handle_player_entrance(user)
 		return
 
 	. = ..()
+
+/obj/vehicle/multitile/root/cm_armored/Entered(var/atom/movable/A)
+	if(istype(A, /obj))
+		A.forceMove(src.loc)
+		return
+
+	return ..()
 
 //Need to take damage from crushers, probably too little atm
 /obj/vehicle/multitile/root/cm_armored/Bumped(var/atom/A)
@@ -545,6 +566,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	for(var/slot in dmg_distribs)
 		var/ratio = dmg_distribs[slot]
 		acc += ratio //Get total current ratio applications
+	if(acc == 0)
+		return
 	for(var/slot in dmg_distribs)
 		var/ratio = dmg_distribs[slot]
 		dmg_distribs[slot] = ratio/acc //Redistribute according to previous ratios for full damage taking, but ignoring empty slots

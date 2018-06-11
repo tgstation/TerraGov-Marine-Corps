@@ -566,6 +566,29 @@ HARDPOINT MODULES (and their ammo)
 	containername = "tank ammo crate"
 	group = "Hardpoint Modules"
 
+/datum/supply_packs/tank_cupola_ammo
+	name = "M56 Cupola Magazines (x2)"
+	contains = list(
+					/obj/item/ammo_magazine/tank/m56_cupola,
+					/obj/item/ammo_magazine/tank/m56_cupola)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "tank ammo crate"
+	group = "Hardpoint Modules"
+
+/datum/supply_packs/tank_flamer_ammo
+	name = "Flamer Magazines (x5)"
+	contains = list(
+					/obj/item/ammo_magazine/tank/flamer,
+					/obj/item/ammo_magazine/tank/flamer,
+					/obj/item/ammo_magazine/tank/flamer,
+					/obj/item/ammo_magazine/tank/flamer,
+					/obj/item/ammo_magazine/tank/flamer)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "tank ammo crate"
+	group = "Hardpoint Modules"
+
 
 /*******************************************************************************
 ATTACHMENTS
@@ -1532,12 +1555,13 @@ CLOTHING
 	group = "Clothing"
 
 /datum/supply_packs/pouches_medical
-	name = "medical pouches crate (1x firstaid, medical, syringe, medkit)"
+	name = "medical pouches crate (1x firstaid, medical, syringe, medkit, autoinjector)"
 	contains = list(
 					/obj/item/storage/pouch/firstaid,
 					/obj/item/storage/pouch/medical,
 					/obj/item/storage/pouch/syringe,
-					/obj/item/storage/pouch/medkit
+					/obj/item/storage/pouch/medkit,
+					/obj/item/storage/pouch/autoinjector,
 					)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
@@ -1595,6 +1619,7 @@ MEDICAL
 					/obj/item/storage/pill_bottle/kelotane,
 					/obj/item/storage/pill_bottle/tramadol,
 					/obj/item/storage/pill_bottle/quickclot,
+					/obj/item/storage/pill_bottle/peridaxon,
 					/obj/item/storage/box/pillbottles
 					)
 	cost = RO_PRICE_VERY_CHEAP

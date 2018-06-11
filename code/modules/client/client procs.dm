@@ -292,15 +292,22 @@
 		)
 
 /client/Stat()
-	if (!usr)
-		return
+	// We just did a short sleep because of a change, do another to render quickly, but flip the flag back.
+	if (stat_fast_update)
+		stat_fast_update = 0
+		Stat()
+		return 0
 
-	if (mob && mob.listed_turf)
-		statpanel(mob.listed_turf.name, null, mob.listed_turf)
-		for(var/atom/A in mob.listed_turf)
-			if(A.invisibility > mob.see_invisible)
-				continue
-			statpanel(mob.listed_turf.name, null, A)
+	last_statpanel = statpanel
 
-	if (statpanel("Stats"))	// Don't call other stat panels unless we absolutely have to.
-		..()
+	. = ..() // Do our regular Stat stuff
+
+	//statpanel changed? We doin a short sleep
+	if (statpanel != last_statpanel || stat_force_fast_update)
+		stat_fast_update = 1
+		stat_force_fast_update = 0
+		return .
+
+	// Nothing happening, long sleep
+	sleep(32)
+	return .

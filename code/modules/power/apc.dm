@@ -161,7 +161,7 @@
 		update_icon()
 		spawn(5)
 			update()
-
+	start_processing()
 	sleep(0) //Break few ACPs on the colony
 	if(!start_charge && z == 1 && prob(10))
 		set_broken()

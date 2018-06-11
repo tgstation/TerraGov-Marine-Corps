@@ -62,9 +62,9 @@
 	remove_from_all_mob_huds()
 	. = ..()
 
-
 /mob/living/carbon/human/Stat()
-	stat(null, "Operation Time: [worldtime2text()]")
+	if (!..())
+		return 0
 
 	if(EvacuationAuthority)
 		var/eta_status = EvacuationAuthority.get_status_panel_eta()
@@ -88,7 +88,6 @@
 		stat(null, "You are affected by a HOLD order.")
 	if(marskman_aura)
 		stat(null, "You are affected by a FOCUS order.")
-
 
 /mob/living/carbon/human/ex_act(severity)
 	if(!blinded && hud_used)
@@ -164,7 +163,9 @@
 			if("l_arm")
 				update |= temp.take_damage(b_loss * 0.05, f_loss * 0.05, used_weapon = weapon_message)
 	if(update)	UpdateDamageIcon()
-//z
+	return 1
+
+
 /mob/living/carbon/human/attack_animal(mob/living/M as mob)
 	if(M.melee_damage_upper == 0)
 		M.emote("[M.friendly] [src]")
@@ -228,16 +229,19 @@
 	<BR><B>Back:</B> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
 	<BR><B>ID:</B> <A href='?src=\ref[src];item=id'>[(wear_id ? wear_id : "Nothing")]</A>
 	<BR><B>Suit Storage:</B> <A href='?src=\ref[src];item=j_store'>[(s_store ? s_store : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(s_store, /obj/item/tank) && !( internal )) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
-	<BR>[(handcuffed ? text("<A href='?src=\ref[src];item=handcuffs'>Handcuffed</A>") : "<A href='?src=\ref[src];item=handcuffs'>Not Handcuffed</A>")]
-	<BR>[(legcuffed ? text("<A href='?src=\ref[src];item=legcuffs'>Legcuffed</A>") : "")]
-	<BR>[(suit) ? ((suit.hastie) ? " <A href='?src=\ref[src];tie=1'>Remove Accessory</A>" : "") :]
-	<BR>[(internal ? "<A href='?src=\ref[src];internal=1'>Remove Internal</A>" : "")]
+	<BR>
+	[handcuffed ? "<BR><A href='?src=\ref[src];item=handcuffs'>Handcuffed</A>" : ""]
+	[legcuffed ? "<BR><A href='?src=\ref[src];item=legcuffs'>Legcuffed</A>" : ""]
+	[suit && suit.hastie ? "<BR><A href='?src=\ref[src];tie=1'>Remove Accessory</A>" : ""]
+	[internal ? "<BR><A href='?src=\ref[src];internal=1'>Remove Internal</A>" : ""]
+	[istype(wear_id, /obj/item/card/id/dogtag) ? "<BR><A href='?src=\ref[src];item=id'>Retrieve Info Tag</A>" : ""]
 	<BR><A href='?src=\ref[src];splints=1'>Remove Splints</A>
 	<BR><A href='?src=\ref[src];pockets=1'>Empty Pockets</A>
+	<BR>
 	<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>
 	<BR><A href='?src=\ref[user];mach_close=mob[name]'>Close</A>
 	<BR>"}
-	user << browse(dat, "window=mob[name];size=340x540")
+	user << browse(dat, "window=mob[name];size=380x540")
 	onclose(user, "mob[name]")
 	return
 
@@ -361,7 +365,25 @@
 
 
 	if (href_list["item"])
-		if(!usr.is_mob_incapacitated() && in_range(src, usr))
+		if(!usr.is_mob_incapacitated() && Adjacent(usr))
+			if(href_list["item"] == "id")
+				if(istype(wear_id, /obj/item/card/id/dogtag))
+					var/obj/item/card/id/dogtag/DT = wear_id
+					if(!DT.dogtag_taken)
+						if(stat == DEAD)
+							usr << "<span class='notice'>You take [src]'s information tag, leaving the ID tag</span>"
+							DT.dogtag_taken = TRUE
+							DT.icon_state = "dogtag_taken"
+							var/obj/item/dogtag/D = new(loc)
+							D.fallen_names = list(DT.registered_name)
+							D.fallen_assgn = DT.assignment
+							D.fallen_blood_type = DT.blood_type
+							usr.put_in_hands(D)
+						else
+							usr << "<span class='warning'>You can't take a dogtag's information tag while its owner is alive.</span>"
+					else
+						usr << "<span class='warning'>Someone's already taken [src]'s information tag.</span>"
+					return
 			//police skill lets you strip multiple items from someone at once.
 			if(!usr.action_busy || (!usr.mind || !usr.mind.cm_skills || usr.mind.cm_skills.police >= SKILL_POLICE_MP))
 				var/slot = href_list["item"]
@@ -371,7 +393,6 @@
 				else
 					what = usr.get_active_hand()
 					usr.stripPanelEquip(what,src,slot)
-
 
 	if(href_list["pockets"])
 
@@ -488,9 +509,7 @@
 						visible_message("\red <B>[usr] is trying to take off \a [U.hastie] from [src]'s [U]!</B>", null, null, 5)
 						if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 							if(U == w_uniform && U.hastie)
-								U.hastie.on_removed(usr)
-								U.hastie = null
-								update_inv_w_uniform()
+								U.remove_accessory(usr)
 
 	if(href_list["sensor"])
 		if(!usr.action_busy)

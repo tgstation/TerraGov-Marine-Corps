@@ -28,10 +28,7 @@
 
 /obj/effect/particle_effect/smoke/Dispose()
 	if(opacity)
-		opacity = 0
-		if(isturf(loc))
-			var/turf/T = loc
-			T.UpdateAffectingLights()
+		SetOpacity(0)
 	processing_objects.Remove(src)
 	. =..()
 
@@ -43,7 +40,8 @@
 	else if(time_to_live == 1)
 		alpha = 180
 		amount = 0
-		opacity = 0
+		SetOpacity(0)
+
 
 /obj/effect/particle_effect/smoke/Crossed(atom/movable/M)
 	..()

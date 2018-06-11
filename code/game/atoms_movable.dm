@@ -380,3 +380,9 @@
 	for (var/x = 0, x < num_circles, x++)
 		sleep(turn_delay)
 		dir = turn(dir, spin_degree)
+
+
+//called when a mob tries to breathe while inside us.
+/atom/movable/proc/handle_internal_lifeform(mob/lifeform_inside_me)
+	. = return_air()
+

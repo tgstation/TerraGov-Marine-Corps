@@ -532,9 +532,9 @@
 
 /obj/item/weapon/gun/launcher/m81/proc/fire_grenade(atom/target, mob/user)
 	set waitfor = 0
-	for(var/mob/O in viewers(world.view, user))
-		O.show_message(text("<span class='danger'>[] fired a grenade!</span>", user), 1)
-	user << "<span class='warning'>You fire the grenade launcher!</span>"
+	last_fired = world.time
+	user.visible_message("<span class='danger'>[user] fired a grenade!</span>", \
+							"<span class='warning'>You fire the grenade launcher!</span>")
 	var/obj/item/explosive/grenade/F = grenade
 	grenade = null
 	F.loc = user.loc
@@ -584,10 +584,10 @@
 	var/datum/effect_system/smoke_spread/smoke
 
 /obj/item/weapon/gun/launcher/rocket/New()
-		..()
-		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
-		smoke = new()
-		smoke.attach(src)
+	..()
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	smoke = new()
+	smoke.attach(src)
 
 /obj/item/weapon/gun/launcher/rocket/set_gun_config_values()
 	fire_delay = config.high_fire_delay*2

@@ -93,49 +93,49 @@
 				return "[limb_name]"
 
 			if ("right arm")
-				return "[limb_name]"
+				return "r_arm"
 
 			if ("l_arm")
 				return "[limb_name]"
 
 			if ("left arm")
-				return "[limb_name]"
+				return "l_arm"
 
 			if ("r_leg")
 				return "[limb_name]"
 
 			if ("right leg")
-				return "[limb_name]"
+				return "r_leg"
 
 			if ("l_leg")
 				return "[limb_name]"
 
 			if ("left leg")
-				return "[limb_name]"
+				return "l_leg"
 
 			if ("r_hand")
 				return "[limb_name]"
 
 			if ("right hand")
-				return "[limb_name]"
+				return "r_hand"
 
 			if ("l_hand")
 				return "[limb_name]"
 
 			if ("left hand")
-				return "[limb_name]"
+				return "l_hand"
 
 			if ("r_foot")
 				return "[limb_name]"
 
 			if ("right foot")
-				return "[limb_name]"
+				return "r_foot"
 
 			if ("l_foot")
 				return "[limb_name]"
 
 			if ("left foot")
-				return "[limb_name]"
+				return "l_foot"
 			else
 				message_admins("DEBUG: Something called get_limb_icon_name() incorrectly, they use the name [limb_name]")
 				return null

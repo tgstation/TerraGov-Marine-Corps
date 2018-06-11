@@ -48,6 +48,7 @@
 	..()
 	recharge()
 	dispensable_reagents = sortList(dispensable_reagents)
+	start_processing()
 
 
 /obj/machinery/chem_dispenser/ex_act(severity)
@@ -560,9 +561,8 @@
 	anchored = 1
 	icon = 'icons/obj/machines/chemical_machines.dmi'
 	icon_state = "mixer0"
+	layer = BELOW_OBJ_LAYER
 	circuit = /obj/item/circuitboard/computer/pandemic
-	//use_power = 1
-	//idle_power_usage = 20		//defaults make more sense.
 	var/temphtml = ""
 	var/wait = null
 	var/obj/item/reagent_container/glass/beaker = null
@@ -658,7 +658,7 @@
 		src.updateUsrDialog()
 		return
 	else if (href_list["eject"])
-		beaker:loc = src.loc
+		beaker.forceMove(loc)
 		beaker = null
 		icon_state = "mixer0"
 		src.updateUsrDialog()

@@ -142,11 +142,8 @@
 	if (mods["alt"])
 		var/turf/T = get_turf(src)
 		if(T && user.TurfAdjacent(T))
-			if(user.listed_turf == T)
-				user.listed_turf = null
-			else
-				user.listed_turf = T
-				user.client.statpanel = T.name
+			user.listed_turf = T
+			user.listed_turf_change = 1
 		return 1
 	return 0
 

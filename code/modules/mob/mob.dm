@@ -16,6 +16,39 @@
 	prepare_huds()
 	..()
 
+
+/mob/Stat()
+	// Looking at contents of a tile
+	if (listed_turf_change)
+		if (!listed_turf || !listed_turf.contents.len)
+			listed_turf_change = 0
+			return 0
+
+		listed_turf_change = 0
+		statpanel("Tile Contents")
+		client.statpanel = "Tile Contents"
+		stat(listed_turf.contents)
+		client.stat_force_fast_update = 1
+		return 0
+
+	if (client.statpanel == "Tile Contents")
+		if (listed_turf && listed_turf.contents.len && statpanel("Tile Contents"))
+			stat(listed_turf.contents)
+			return 0
+		else
+			statpanel("Stats")
+			if (statpanel("Stats"))			// Was looking at Tile Contents, and switched to Stats. Otherwise looking at a verb panel
+				client.statpanel = "Stats"
+				stat("Operation Time: [worldtime2text()]")
+			client.stat_force_fast_update = 1
+			return 1
+
+	if (statpanel("Stats"))
+		stat("Operation Time: [worldtime2text()]")
+		return 1
+
+	return 0
+
 /mob/proc/prepare_huds()
 	hud_list = new
 	for(var/hud in hud_possible)
@@ -313,9 +346,11 @@ var/list/slot_equipment_priority = list( \
 	show_inv(usr)
 
 
+//attempt to pull/grab something. Returns true upon success.
+/mob/proc/start_pulling(atom/movable/AM, lunge, no_msg)
+	return
 
-/mob/proc/start_pulling(atom/movable/AM)
-
+/mob/living/start_pulling(atom/movable/AM, lunge, no_msg)
 	if ( !AM || !usr || src==AM || !isturf(loc) || !isturf(AM.loc) )	//if there's no person pulling OR the person is pulling themself OR the object being pulled is inside something: abort!
 		return
 
@@ -332,20 +367,11 @@ var/list/slot_equipment_priority = list( \
 		if(pulling_old == AM)
 			return
 
-	if(istype(AM, /obj/item/tool/soap))
-		var/obj/item/tool/soap/S = AM
-		S.pulled_last = src
-
-	if(istype(AM, /obj/item/bananapeel/))
-		var/obj/item/bananapeel/B = AM
-		B.pulled_last = src
-
 	var/mob/M
 	if(ismob(AM))
 		M = AM
-		attack_log += "\[[time_stamp()]\]<font color='green'> Grabbed [M.name] ([M.ckey]) </font>"
-		M.attack_log += "\[[time_stamp()]\]<font color='orange'> Grabbed by [name] ([ckey]) </font>"
-		msg_admin_attack("[key_name(src)] grabbed [key_name(M)]" )
+	else if(istype(AM, /obj))
+		AM.add_fingerprint(src)
 
 	if(AM.pulledby)
 		if(M)
@@ -363,13 +389,13 @@ var/list/slot_equipment_priority = list( \
 	if(M)
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 
-		if (isXenoWarrior(src) && !isXeno(M) && !isYautja(M))
-			grab_level = GRAB_NECK
-			M.drop_held_items()
-			M.Stun(5)
-			visible_message("<span class='xenowarning'>\The [src] grabs [M] by the throat!</span>", \
-			"<span class='xenowarning'>You grab [M] by the throat!</span>")
-		else
+		flick_attack_overlay(M, "grab")
+
+		attack_log += "\[[time_stamp()]\]<font color='green'> Grabbed [M.name] ([M.ckey]) </font>"
+		M.attack_log += "\[[time_stamp()]\]<font color='orange'> Grabbed by [name] ([ckey]) </font>"
+		msg_admin_attack("[key_name(src)] grabbed [key_name(M)]" )
+
+		if(!no_msg)
 			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>", null, null, 5)
 
 		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))
@@ -381,11 +407,12 @@ var/list/slot_equipment_priority = list( \
 	if(M)
 		M.inertia_dir = 0
 
-	AM.pull_response(src)
+	return AM.pull_response(src) //returns true if the response doesn't break the pull
 
-//how a movable atom reacts to being pulled (only used by xenos so far)
+//how a movable atom reacts to being pulled.
+//returns true if the pull isn't severed by the response
 /atom/movable/proc/pull_response(mob/puller)
-	return
+	return TRUE
 
 
 /mob/proc/show_viewers(message)

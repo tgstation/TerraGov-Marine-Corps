@@ -11,10 +11,9 @@ datum/controller/process/machines/doWork()
 	process_powernet()
 
 datum/controller/process/machines/proc/process_machines_process()
-	for(var/obj/machinery/M in machines)
-		if(istype(M) && M.process() != PROCESS_KILL) //Doesn't actually have a process, just remove it.
+	for(var/obj/machinery/M in processing_machines)
+		if(istype(M) && M.process())// != PROCESS_KILL) //Doesn't actually have a process, just remove it.
 			continue
-
 
 
 datum/controller/process/machines/proc/process_machines_power()

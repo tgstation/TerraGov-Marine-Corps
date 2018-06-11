@@ -43,6 +43,7 @@
 	..()
 	add_parts()
 	RefreshParts()
+	start_processing()
 	return
 
 

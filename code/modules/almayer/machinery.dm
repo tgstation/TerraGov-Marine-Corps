@@ -190,6 +190,33 @@
 	bound_width = 64
 	bound_height = 32
 	unacidable = 1
+	var/list/fallen_list
+
+
+
+/obj/structure/prop/almayer/ship_memorial/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/dogtag))
+		var/obj/item/dogtag/D = I
+		if(D.fallen_names)
+			user << "<span class='notice'>You add [D] to [src].</span>"
+			if(!fallen_list)
+				fallen_list = list()
+			fallen_list += D.fallen_names
+			cdel(D)
+		return TRUE
+	else
+		. = ..()
+
+/obj/structure/prop/almayer/ship_memorial/examine(mob/user)
+	..()
+	if(ishuman(user) && fallen_list)
+		var/faltext = ""
+		for(var/i = 1 to fallen_list.len)
+			if(i != fallen_list.len)
+				faltext += "[fallen_list[i]], "
+			else
+				faltext += fallen_list[i]
+		user << "<span class='notice'>To our fallen soldiers:</span> <b>[faltext]</b>."
 
 /obj/structure/prop/almayer/particle_cannon
 	name = "\improper 75cm/140 Mark 74 General Atomics railgun"

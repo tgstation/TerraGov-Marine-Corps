@@ -20,6 +20,8 @@
 	var/automaticmode = 0
 	var/event = 0
 
+	var/obj/machinery/autodoc_console/connected
+
 	//req_access = list(ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY) // limit to doc IDs
 
 	//It uses power
@@ -29,15 +31,17 @@
 
 	var/stored_metal = 500 // starts with 500 metal loaded
 
+/obj/machinery/autodoc/power_change(var/area/master_area = null)
+	..()
+	if(stat & NOPOWER)
+		visible_message("\The [src] engages the safety override, ejecting the occupant.")
+		surgery = 0
+		go_out()
+		return
+
 /obj/machinery/autodoc/process()
-	set background=1
 	updateUsrDialog()
 	if(occupant)
-		if(stat & (NOPOWER|BROKEN))
-			visible_message("\The [src] engages the safety override, ejecting the occupant.")
-			surgery = 0
-			go_out()
-			return
 		if(occupant.stat == DEAD)
 			visible_message("\The [src] speaks: Patient has expired.")
 			surgery = 0
@@ -114,7 +118,7 @@
 	var/surgery_procedure = "" // text of surgery
 	var/unneeded = 0
 
-proc/create_autodoc_surgery(limb_ref, type_of_surgery, surgery_procedure, unneeded=0, organ_ref=null)
+/proc/create_autodoc_surgery(limb_ref, type_of_surgery, surgery_procedure, unneeded=0, organ_ref=null)
 	var/datum/autodoc_surgery/A = new()
 	A.type_of_surgery = type_of_surgery
 	A.surgery_procedure = surgery_procedure
@@ -126,7 +130,7 @@ proc/create_autodoc_surgery(limb_ref, type_of_surgery, surgery_procedure, unneed
 /obj/machinery/autodoc/allow_drop()
 	return 0
 
-proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
+/proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 	if(!ishuman(M))
 		return list()
 	var/surgery_list = list()
@@ -625,6 +629,8 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 		update_use_power(2)
 		occupant = usr
 		icon_state = "autodoc_closed"
+		start_processing()
+		connected.start_processing()
 
 		for(var/obj/O in src)
 			cdel(O)
@@ -637,6 +643,9 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 	surgery_todo_list = list()
 	update_use_power(1)
 	icon_state = "autodoc_open"
+	stop_processing()
+	connected.stop_processing()
+	connected.process() // one last update
 
 /obj/machinery/autodoc/attackby(obj/item/W, mob/living/user)
 	if(!ishuman(user))
@@ -676,6 +685,8 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 			update_use_power(2)
 			occupant = M
 			icon_state = "autodoc_closed"
+			start_processing()
+			connected.start_processing()
 
 			add_fingerprint(user)
 
@@ -693,18 +704,22 @@ proc/generate_autodoc_surgery_list(mob/living/carbon/human/M)
 	use_power = 1
 	idle_power_usage = 40
 
-	New()
-		..()
-		spawn(5)
-			connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
+/obj/machinery/autodoc_console/New()
+	..()
+	spawn(5)
+		connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
+		connected.connected = src
 
-/obj/machinery/autodoc_console/process()
-	if(stat & (NOPOWER|BROKEN))
+/obj/machinery/autodoc_console/power_change(var/area/master_area = null)
+	..()
+	if(stat & NOPOWER)
 		if(icon_state != "sleeperconsole-p")
 			icon_state = "sleeperconsole-p"
 		return
 	if(icon_state != "sleeperconsole")
 		icon_state = "sleeperconsole"
+
+/obj/machinery/autodoc_console/process()
 	updateUsrDialog()
 
 /obj/machinery/autodoc_console/attack_hand(mob/living/user)

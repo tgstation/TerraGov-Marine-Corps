@@ -109,6 +109,10 @@
 		onclose(user, "spaceheater")
 	else
 		on = !on
+		if(on)
+			start_processing()
+		else
+			stop_processing()
 		user.visible_message("\blue [user] switches [on ? "on" : "off"] the [src].","\blue You switch [on ? "on" : "off"] the [src].")
 		update_icon()
 	return
@@ -168,4 +172,5 @@
 
 		else
 			on = 0
+			stop_processing()
 			update_icon()

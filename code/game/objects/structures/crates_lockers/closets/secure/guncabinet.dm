@@ -1,6 +1,6 @@
 /obj/structure/closet/secure_closet/guncabinet
 	name = "gun cabinet"
-	req_access = list(ACCESS_CIVILIAN_LOGISTICS)
+	req_access_txt = "0"
 	icon = 'icons/obj/structures/misc.dmi'
 	icon_state = "base"
 	icon_off ="base"
@@ -51,6 +51,7 @@
 /obj/structure/closet/secure_closet/guncabinet/riot_control
 	name = "riot control equipment closet"
 	req_access = list(ACCESS_MARINE_BRIG)
+	storage_capacity = 55 //lots of stuff to fit in
 
 /obj/structure/closet/secure_closet/guncabinet/riot_control/New()
 	..()

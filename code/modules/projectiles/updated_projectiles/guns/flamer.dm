@@ -126,6 +126,7 @@
 
 /obj/item/weapon/gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
 	set waitfor = 0
+	last_fired = world.time
 	var/burnlevel
 	var/burntime
 	var/fire_color = "red"
@@ -382,6 +383,12 @@
 				new /obj/flamer_fire(T, fire_lvl, burn_lvl, f_color, new_spread_amt)
 
 
+/obj/flamer_fire/Dispose()
+	SetLuminosity(0)
+	processing_objects.Remove(src)
+	. = ..()
+
+
 /obj/flamer_fire/Crossed(mob/living/M) //Only way to get it to reliable do it when you walk into it.
 	if(istype(M))
 		if(ishuman(M))
@@ -406,13 +413,8 @@
 		M << "<span class='danger'>You are burned!</span>"
 		if(isXeno(M)) M.updatehealth()
 
-/obj/flamer_fire/process()
-	var/turf/T = loc
-	firelevel = max(0, firelevel)
-	if(!istype(T)) //Is it a valid turf? Has to be on a floor
-		processing_objects -= src
-		cdel(src)
-		return
+
+/obj/flamer_fire/proc/updateicon()
 	if(burnlevel < 15)
 		color = "#c1c1c1" //make it darker to make show its weaker.
 	switch(firelevel)
@@ -425,11 +427,21 @@
 		if(25 to INFINITY) //Change the icons and luminosity based on the fire's intensity
 			icon_state = "[flame_color]_3"
 			SetLuminosity(6)
-		else
-			SetLuminosity(0)
-			processing_objects.Remove(src)
-			cdel(src)
-			return
+
+
+/obj/flamer_fire/process()
+	var/turf/T = loc
+	firelevel = max(0, firelevel)
+	if(!istype(T)) //Is it a valid turf? Has to be on a floor
+		cdel(src)
+		return
+
+	updateicon()
+
+	if(!firelevel)
+		cdel(src)
+		return
+
 	var/j = 0
 	for(var/i in loc)
 		if(++j >= 11) break
