@@ -2,25 +2,6 @@
 Contains most of the procs that are called when a mob is attacked by something
 */
 
-/mob/living/carbon/human/start_pulling(atom/movable/AM)
-	if(!ishuman(AM))
-		..()
-		return
-	var/mob/living/carbon/human/H = AM
-	if(H.pulledby)
-		if(ishuman(H.pulledby))
-			var/mob/living/carbon/human/PB = H.pulledby
-			if(PB.mind && PB.mind.cm_skills && PB.mind.cm_skills.cqc >= SKILL_CQC_MP && mind && mind.cm_skills && mind.cm_skills.cqc >= PB.mind.cm_skills.cqc)
-				..() // let them take over the grab, allows hand offs to other MPs
-			else
-				src << "<span class='warning'>[PB]'s grip on [H] is too strong!</span>'"
-				return
-		else if(isXeno(H.pulledby))
-			src << "<span class='warning'>[H.pulledby]'s grip on [H] is too strong!</span>'"
-			return
-	else
-		..()
-
 /mob/living/carbon/human/stun_effect_act(var/stun_amount, var/agony_amount, var/def_zone)
 	var/datum/limb/affected = get_limb(check_zone(def_zone))
 	var/siemens_coeff = get_siemens_coefficient_organ(affected)

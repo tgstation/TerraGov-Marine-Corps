@@ -108,7 +108,6 @@
 #define SKILL_CQC_DEFAULT	0
 #define SKILL_CQC_TRAINED	1
 #define SKILL_CQC_MP		2 //no risk of accidental weapon discharge upon disarming (MP)
-#define SKILL_CQC_CMP		3
 #define SKILL_CQC_MASTER	5
 
 
