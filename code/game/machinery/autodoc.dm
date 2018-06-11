@@ -502,6 +502,7 @@
 								if(!surgery) break
 								F.status &= ~LIMB_BLEEDING
 								F.disfigured = 0
+								F.owner.name = F.owner.get_visible_name()
 								F.face_surgery_stage = 0
 
 					if("open")

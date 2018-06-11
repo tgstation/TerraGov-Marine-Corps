@@ -241,7 +241,7 @@
 	ai_camera_list()
 
 /proc/camera_sort(list/L)
-	var/obj/machinery/camera/a
+	/*var/obj/machinery/camera/a
 	var/obj/machinery/camera/b
 
 	for (var/i = L.len, i > 0, i--)
@@ -253,5 +253,26 @@
 					L.Swap(j, j + 1)
 			else
 				if (sorttext(a.c_tag, b.c_tag) < 0)
-					L.Swap(j, j + 1)
-	return L
+					L.Swap(j, j + 1)*/
+	return camera_quicksort(L, 1, L.len)
+
+/proc/camera_quicksort(var/list/A, var/lo, var/hi)
+	var/obj/machinery/camera/camlo = A[lo]
+	var/obj/machinery/camera/camhi = A[hi]
+	if(camlo.c_tag_order < camhi.c_tag_order)
+		var/p = camera_partition(A, lo, hi)
+		camera_quicksort(A, lo, p-1)
+		camera_quicksort(A, p+1, hi)
+
+/proc/camera_partition(var/list/A, var/lo, var/hi)
+	var/obj/machinery/camera/camj
+	var/pivot = A[hi]
+	var/obj/machinery/camera/campivot = pivot
+	var/i = lo - 1
+	for(var/j in lo to (hi - 1))
+		camj = A[j]
+		if(camj.c_tag_order < campivot.c_tag_order)
+			i++
+			A.Swap(i, j)
+	A.Swap(i+1, hi)
+	return i+1

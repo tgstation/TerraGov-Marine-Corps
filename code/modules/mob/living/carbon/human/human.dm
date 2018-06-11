@@ -1129,6 +1129,7 @@
 
 	var/datum/limb/head/h = get_limb("head")
 	h.disfigured = 0
+	name = get_visible_name()
 
 	if(species && !(species.flags & NO_BLOOD))
 		vessel.add_reagent("blood",560-vessel.total_volume)

@@ -121,7 +121,12 @@
 		update_suit_sensors()
 		update_inv_w_uniform()
 	else if(I == head)
+		var/updatename = 0
+		if(head.flags_inv_hide & HIDEFACE)
+			updatename = 1
 		head = null
+		if(updatename)
+			name = get_visible_name()
 		if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
 			update_hair()	//rebuild hair
 		if(I.flags_inv_hide & HIDEEARS)
@@ -170,6 +175,7 @@
 		if(F.stat != DEAD && !F.sterile && !(status_flags & XENO_HOST)) //Huggered but not impregnated, deal damage.
 			visible_message("<span class='danger'>[F] frantically claws at [src]'s face!</span>","<span class='danger'>[F] frantically claws at your face! Auugh!</span>")
 			adjustBruteLossByPart(25,"head")
+	name = get_visible_name() // doing this without a check, still cheaper than doing it every Life() tick -spookydonut
 	if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
 		update_hair()	//rebuild hair
 	if(I.flags_inv_hide & HIDEEARS)
@@ -208,6 +214,8 @@
 			update_inv_back()
 		if(WEAR_FACE)
 			wear_mask = W
+			if(wear_mask.flags_inv_hide & HIDEFACE)
+				name = get_visible_name()
 			if( wear_mask.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
 				update_hair()	//rebuild hair
 			if(wear_mask.flags_inv_hide & HIDEEARS)
@@ -256,6 +264,8 @@
 			update_inv_gloves()
 		if(WEAR_HEAD)
 			head = W
+			if(head.flags_inv_hide & HIDEFACE)
+				name = get_visible_name()
 			if(head.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
 				update_hair()	//rebuild hair
 			if(head.flags_inv_hide & HIDEEARS)

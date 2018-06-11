@@ -477,6 +477,7 @@
 							if(!(H.species && (H.species.flags & NO_PAIN)))
 								H.emote("scream")
 							H.status_flags |= DISFIGURED
+							H.name = H.get_visible_name()
 				else
 					M.take_limb_damage(min(6*toxpwr, volume * toxpwr)) // uses min() and volume to make sure they aren't being sprayed in trace amounts (1 unit != insta rape) -- Doohl
 		else

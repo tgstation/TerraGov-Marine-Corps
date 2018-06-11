@@ -9,23 +9,23 @@
 	if(damage_this_tick > last_dam)
 		force_process = 1
 	last_dam = damage_this_tick
-	if(force_process)
+	/*if(force_process)
 		bad_limbs.Cut()
 		for(var/datum/limb/Ex in limbs)
-			bad_limbs += Ex
+			bad_limbs += Ex*/
 
 	//processing internal organs is pretty cheap, do that first.
 	for(var/datum/internal_organ/I in internal_organs)
 		I.process()
 
-	if(!force_process && !bad_limbs.len)
+	if(!force_process) // && !bad_limbs.len)
 		return
 
-	for(var/datum/limb/E in bad_limbs)
+	for(var/datum/limb/E in limbs)
 		if(!E)
 			continue
 		if(!E.need_process())
-			bad_limbs -= E
+			//bad_limbs -= E
 			continue
 		else
 			E.process()
