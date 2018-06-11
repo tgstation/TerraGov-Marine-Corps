@@ -770,7 +770,6 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(!(surgery_open_stage == 0))
 		return 1
 	var/rval = 0
-	status &= ~LIMB_BLEEDING
 	for(var/datum/wound/W in wounds)
 		if(W.internal) continue
 		rval |= !W.bandaged
