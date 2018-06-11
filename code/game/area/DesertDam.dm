@@ -12,6 +12,63 @@
 /area/desert_dam/interior/lab_northeast
 	name = "\improper "
 	icon_state = "purple"
+/area/desert_dam/interior/lab_northeast/lobby
+	name = "\improper "
+	icon_state = "green"
+/area/desert_dam/interior/lab_northeast/west_hallway
+	name = "\improper "
+	icon_state = "blue"
+/area/desert_dam/interior/lab_northeast/central_hallway
+	name = "\improper "
+	icon_state = "green"
+/area/desert_dam/interior/lab_northeast/east_hallway
+	name = "\improper "
+	icon_state = "yellow"
+/area/desert_dam/interior/lab_northeast/workshop
+	name = "\improper "
+	icon_state = "ass_line"
+/area/desert_dam/interior/lab_northeast/storage
+	name = "\improper "
+	icon_state = "storage"
+/area/desert_dam/interior/lab_northeast/RD_office
+	name = "\improper "
+	icon_state = "yellow"
+/area/desert_dam/interior/lab_northeast/maintenence
+	name = "\improper "
+	icon_state = "maintcentral"
+/area/desert_dam/interior/lab_northeast/containment
+	name = "\improper "
+	icon_state = "purple"
+/area/desert_dam/interior/lab_northeast/RND
+	name = "\improper "
+	icon_state = "purple"
+/area/desert_dam/interior/lab_northeast/biology
+	name = "\improper "
+	icon_state = "purple"
+/area/desert_dam/interior/lab_northeast/surgury
+	name = "\improper "
+	icon_state = "red"
+/area/desert_dam/interior/lab_northeast/excavation
+	name = "\improper "
+	icon_state = "blue"
+/area/desert_dam/interior/lab_northeast/excavation
+	name = "\improper "
+	icon_state = "blue"
+/area/desert_dam/interior/lab_northeast/west_entrance
+	name = "\improper "
+	icon_state = "purple"
+/area/desert_dam/interior/lab_northeast/east_entrance
+	name = "\improper "
+	icon_state = "purple"
+/area/desert_dam/interior/lab_northeast/security_checkpoint
+	name = "\improper "
+	icon_state = "purple"
+/area/desert_dam/interior/lab_northeast/security_office
+	name = "\improper "
+	icon_state = "security"
+/area/desert_dam/interior/lab_northeast/security_armory
+	name = "\improper "
+	icon_state = "armory"
 
 //Dam Interior
 /area/desert_dam/interior/dam_interior/engine_room
@@ -303,6 +360,9 @@
 /area/desert_dam/building/telecommunication
 	name = "\improper"
 	icon_state = "yellow"
+/area/desert_dam/building/telecommunication_platform
+	name = "\improper"
+	icon_state = "red"
 
 //Water Treatment Plant 1
 /area/desert_dam/building/water_treatment_one
