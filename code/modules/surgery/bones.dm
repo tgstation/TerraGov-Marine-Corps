@@ -79,6 +79,7 @@
 		var/datum/limb/head/h = affected
 		h.createwound(BRUISE, 10)
 		h.disfigured = 1
+		h.owner.name = h.owner.get_visible_name()
 		h.update_wounds()
 	else
 		user.visible_message("<span class='warning'>[user]'s hand slips, damaging the bone in [target]'s [affected.display_name] with \the [tool]!</span>" , \

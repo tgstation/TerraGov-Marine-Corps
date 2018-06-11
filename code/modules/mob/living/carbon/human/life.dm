@@ -89,10 +89,13 @@
 
 	//Status updates, death etc.
 	handle_regular_status_updates() //Optimized a bit
+
+	updatehealth()
+
 	update_canmove()
 
 	//Update our name based on whether our face is obscured/disfigured
-	name = get_visible_name()
+	//name = get_visible_name() //moved out to the relevant places to be updated on demand.
 
 	handle_regular_hud_updates()
 

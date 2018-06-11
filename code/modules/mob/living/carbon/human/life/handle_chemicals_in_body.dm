@@ -42,6 +42,6 @@
 
 	else nutrition = 350 //synthetics are never hungry
 
-	updatehealth()
+	//updatehealth() moved to Life()
 
 	return //TODO: DEFERRED

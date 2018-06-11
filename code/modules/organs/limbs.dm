@@ -1156,6 +1156,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		"\red <b>Your face melts off!</b>",	\
 		"\red You hear a sickening sizzle.")
 	disfigured = 1
+	owner.name = owner.get_visible_name()
 
 /datum/limb/head/reset_limb_surgeries()
 	..()

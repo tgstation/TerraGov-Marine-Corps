@@ -731,6 +731,9 @@
 				M.adjustCloneLoss(-2)
 				M.heal_limb_damage(2,1)
 				M.status_flags &= ~DISFIGURED
+				if(ishuman(M))
+					var/mob/living/carbon/human/H = M
+					H.name = H.get_visible_name()
 			if(35 to INFINITY)
 				M.adjustToxLoss(1)
 				M.make_dizzy(5)

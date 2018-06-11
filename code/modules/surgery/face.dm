@@ -127,6 +127,7 @@
 	"<span class='notice'>You cauterize the incision on [target]'s face and neck with \the [tool].</span>")
 	affected.status &= ~LIMB_BLEEDING
 	affected.disfigured = 0
+	affected.owner.name = affected.owner.get_visible_name()
 	affected.face_surgery_stage = 0
 
 /datum/surgery_step/face/cauterize/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/head/affected)
