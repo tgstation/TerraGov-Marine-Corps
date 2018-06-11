@@ -340,7 +340,7 @@ var/global/floorIsLava = 0
 			dat += "<br><br>"
 	dat += "</body></html>"
 	// Using regex to remove the note author for bans done in admin/topic.dm
-	var/regex/remove_author = regex("(?=Banned by).*?(?=\\|)")
+	var/regex/remove_author = new("(?=Banned by).*?(?=\\|)", "g")
 	dat = remove_author.Replace(dat, "Banned ")
 
 	usr << browse(dat, "window=notescopy;size=480x480")
