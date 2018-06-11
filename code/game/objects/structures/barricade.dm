@@ -82,7 +82,7 @@
 				return 0
 		return 1
 
-	if(get_dir(loc, target) == dir)
+	if(get_dir(loc, target) & dir)
 		return 0
 	else
 		return 1
@@ -106,11 +106,10 @@
 	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable objects allow you to universally climb over others
 		return 1
 
-	if(get_dir(loc, target) == dir)
+	if(get_dir(loc, target) & dir)
 		return 0
 	else
 		return 1
-
 
 /obj/structure/barricade/attack_robot(mob/user as mob)
 	return attack_hand(user)

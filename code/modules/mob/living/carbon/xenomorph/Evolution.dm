@@ -55,6 +55,10 @@
 		src << "<span class='warning'>You must be at full plasma to evolve.</span>"
 		return
 
+	if (agility || fortify || crest_defense)
+		src << "<span class='warning'>You cannot evolve while in this stance.</span>"
+		return
+
 	//Debugging that should've been done
 	// world << "[tierA] Tier 1"
 	// world << "[tierB] Tier 2"

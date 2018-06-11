@@ -20,7 +20,7 @@
 /mob/Stat()
 	// Looking at contents of a tile
 	if (listed_turf_change)
-		if (!listed_turf.contents.len)
+		if (!listed_turf || !listed_turf.contents.len)
 			listed_turf_change = 0
 			return 0
 
