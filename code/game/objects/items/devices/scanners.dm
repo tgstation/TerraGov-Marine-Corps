@@ -310,7 +310,7 @@ REAGENT SCANNER
 				advice += "<span class='scanner'>Administer a single dose of bicaridine.</span>\n"
 			if(H.health < 0 && reagents_in_body["inaprovaline"] < 5)
 				advice += "<span class='scanner'>Administer a single dose of inaprovaline.</span>\n"
-			var/shock_number = H.updateshock(1)
+			var/shock_number = H.traumatic_shock
 			if(shock_number > 30 && shock_number < 120 && reagents_in_body["tramadol"] < 3 && !reagents_in_body["paracetamol"])
 				advice += "<span class='scanner'>Administer a single dose of tramadol.</span>\n"
 			if(advice != "")
