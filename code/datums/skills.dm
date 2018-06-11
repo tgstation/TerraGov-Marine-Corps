@@ -189,7 +189,7 @@
 
 /datum/skills/CMP
 	name = "Chief MP"
-	cqc = SKILL_CQC_MP
+	cqc = SKILL_CQC_CMP
 	police = SKILL_POLICE_MP
 	leadership = SKILL_LEAD_TRAINED
 
