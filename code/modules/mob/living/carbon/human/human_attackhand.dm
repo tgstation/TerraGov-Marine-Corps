@@ -120,22 +120,8 @@
 
 
 		if("disarm")
-			if(!is_mob_incapacitated() && mind && mind.cm_skills && mind.cm_skills.cqc >= SKILL_CQC_MP && M.mind && M.mind.cm_skills && mind.cm_skills.cqc > M.mind.cm_skills.cqc)
-				M.attack_log += text("\[[time_stamp()]\] <font color='red'>Tried to disarm cqc skilled human [name] ([ckey])</font>")
-				attack_log += text("\[[time_stamp()]\] <font color='orange'>Had disarm attempted by [M.name] ([M.ckey])</font>")
-				animation_attack_on(M)
-				flick_attack_overlay(M, "disarm")
-				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-				if(prob(50))
-					M.KnockDown(2)
-					visible_message("<span class='warning'>[src] avoids the disarm attempt and leg sweeps [M]!", null, null, 5)
-				else
-					M.Stun(1)
-					visible_message("<span class='warning'>[src] avoids the disarm attempt and shoulder checks [M]!", null, null, 5)
-				return
-
-			M.attack_log += text("\[[time_stamp()]\] <font color='red'>Disarmed [name] ([ckey])</font>")
-			attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been disarmed by [M.name] ([M.ckey])</font>")
+			M.attack_log += text("\[[time_stamp()]\] <font color='red'>Disarmed [src.name] ([src.ckey])</font>")
+			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been disarmed by [M.name] ([M.ckey])</font>")
 
 			M.animation_attack_on(src)
 			M.flick_attack_overlay(src, "disarm")
