@@ -52,7 +52,6 @@
 			backwards = NORTH
 	if(on)
 		operating = 1
-		start_processing()
 		setmove()
 
 /obj/machinery/conveyor/proc/setmove()
@@ -68,12 +67,17 @@
 		operating = 0
 		stop_processing()
 		return
-	if(!operable)
+
+	if(!operable || (stat & NOPOWER))
 		operating = 0
-		stop_processing()
-	if(stat & NOPOWER)
-		operating = 0
-		stop_processing()
+
+	if(operating)
+		if(!machine_processing)
+			start_processing()
+	else
+		if(machine_processing)
+			stop_processing()
+
 	icon_state = "conveyor[operating]"
 
 	// machine process

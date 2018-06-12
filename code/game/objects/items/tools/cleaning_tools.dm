@@ -58,6 +58,7 @@
 	name = "wet floor sign"
 	desc = "Caution! Wet Floor!"
 	icon_state = "caution"
+	icon = 'icons/obj/janitor.dmi'
 	force = 1
 	throwforce = 3
 	throw_speed = 1

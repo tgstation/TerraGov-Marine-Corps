@@ -620,7 +620,7 @@ TUNNEL
 
 /obj/structure/tunnel/examine(mob/user)
 	..()
-	if(!isXeno(user))
+	if(!isXeno(user) && !isobserver(user))
 		return
 
 	if(!other)

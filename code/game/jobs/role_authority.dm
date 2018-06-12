@@ -458,46 +458,50 @@ roles willy nilly.
 
 	return 1
 
-//Find which squad has the least population. If all 4 squads are equal it should just use the first one (alpha)
+//Find which squad has the least population. If all 4 squads are equal it should just use a random one
 /datum/authority/branch/role/proc/get_lowest_squad(mob/living/carbon/human/H)
 	if(!squads.len) //Something went wrong, our squads aren't set up.
 		world << "Warning, something messed up in get_lowest_squad(). No squads set up!"
 		return null
 
-	var/current_count = 0
-	var/datum/squad/lowest = null
 
-	var/datum/squad/pref_squad
+	//we make a list of squad that is randomized so alpha isn't always lowest squad.
+	var/list/squads_copy = squads.Copy()
+	var/list/mixed_squads = list()
+	for(var/i= 1 to squads_copy.len)
+		mixed_squads += pick_n_take(squads_copy)
+
+	var/datum/squad/lowest = pick(squads)
+
 	var/datum/pref_squad_name
 	if(H && H.client && H.client.prefs.preferred_squad && H.client.prefs.preferred_squad != "None")
 		pref_squad_name = H.client.prefs.preferred_squad
 
-	for(var/datum/squad/L in squads) //This is kinda stupid, but whatever. We need a default squad.
-		if(L)
-			if(pref_squad_name)
-				if(L.name != pref_squad_name) continue
-				pref_squad = L //pref squad start as the lowest
-			lowest = L
-			break
+	for(var/datum/squad/L in squads)
+		if(L.usable)
+			if(pref_squad_name && L.name == pref_squad_name)
+				lowest = L
+				break
+
 
 	if(!lowest)
 		world << "Warning! Bug in get_random_squad()!"
 		return null
 
 	var/lowest_count = lowest.count
+	var/current_count = 0
 
-	//Loop through squads.
-	for(var/datum/squad/S in squads)
-		if(!S)
-			world << "Warning: Null squad in get_lowest_squad. Call a coder!"
-			break //null squad somehow, let's just abort
-		current_count = S.count //Grab our current squad's #
-		if(pref_squad && pref_squad != S)
-			current_count += 3 //we make non preferred squads' count artificially higher
-		if(current_count >= lowest_count) //Current squad is bigger or the same as our value. Skip it.
-			continue
-		lowest_count = current_count //We found a winner! This squad is lower than our default. Make it the new default.
-		lowest = S //'Select' this squad.
+	if(!pref_squad_name)
+		//Loop through squads.
+		for(var/datum/squad/S in mixed_squads)
+			if(!S)
+				world << "Warning: Null squad in get_lowest_squad. Call a coder!"
+				break //null squad somehow, let's just abort
+			current_count = S.count //Grab our current squad's #
+			if(current_count >= (lowest_count - 2)) //Current squad count is not much lower than the chosen one. Skip it.
+				continue
+			lowest_count = current_count //We found a winner! This squad is much lower than our default. Make it the new default.
+			lowest = S //'Select' this squad.
 
 	return lowest //Return whichever squad won the competition.
 
@@ -512,6 +516,12 @@ roles willy nilly.
 	if(H.assigned_squad) //Wait, we already have a squad. Get outta here!
 		return
 
+	//we make a list of squad that is randomized so alpha isn't always lowest squad.
+	var/list/squads_copy = squads.Copy()
+	var/list/mixed_squads = list()
+	for(var/i= 1 to squads_copy.len)
+		mixed_squads += pick_n_take(squads_copy)
+
 	//Deal with non-standards first.
 	//Non-standards are distributed regardless of squad population.
 	//If the number of available positions for the job are more than max_whatever, it will break.
@@ -525,8 +535,8 @@ roles willy nilly.
 
 		switch(H.mind.assigned_role)
 			if("Squad Engineer")
-				for(var/datum/squad/S in squads)
-					if(S)
+				for(var/datum/squad/S in mixed_squads)
+					if(S.usable)
 						if(S.num_engineers >= S.max_engineers) continue
 						if(pref_squad_name && S.name == pref_squad_name)
 							S.put_marine_in_squad(H) //fav squad has a spot for us, no more searching needed.
@@ -538,8 +548,8 @@ roles willy nilly.
 							lowest = S
 
 			if("Squad Medic")
-				for(var/datum/squad/S in squads)
-					if(S)
+				for(var/datum/squad/S in mixed_squads)
+					if(S.usable)
 						if(S.num_medics >= S.max_medics) continue
 						if(pref_squad_name && S.name == pref_squad_name)
 							S.put_marine_in_squad(H) //fav squad has a spot for us.
@@ -551,8 +561,8 @@ roles willy nilly.
 							lowest = S
 
 			if("Squad Leader")
-				for(var/datum/squad/S in squads)
-					if(S)
+				for(var/datum/squad/S in mixed_squads)
+					if(S.usable)
 						if(S.num_leaders >= S.max_leaders) continue
 						if(pref_squad_name && S.name == pref_squad_name)
 							S.put_marine_in_squad(H) //fav squad has a spot for us.
@@ -564,8 +574,8 @@ roles willy nilly.
 							lowest = S
 
 			if("Squad Specialist")
-				for(var/datum/squad/S in squads)
-					if(S)
+				for(var/datum/squad/S in mixed_squads)
+					if(S.usable)
 						if(S.num_specialists >= S.max_specialists) continue
 						if(pref_squad_name && S.name == pref_squad_name)
 							S.put_marine_in_squad(H) //fav squad has a spot for us.
@@ -577,8 +587,8 @@ roles willy nilly.
 							lowest = S
 
 			if("Squad Smartgunner")
-				for(var/datum/squad/S in squads)
-					if(S)
+				for(var/datum/squad/S in mixed_squads)
+					if(S.usable)
 						if(S.num_smartgun >= S.max_smartgun) continue
 						if(pref_squad_name && S.name == pref_squad_name)
 							S.put_marine_in_squad(H) //fav squad has a spot for us.

@@ -312,10 +312,10 @@
 		return TRUE
 
 /obj/structure/barricade/get_projectile_hit_chance(obj/item/projectile/P)
-	if(src == P.original)
-		return TRUE
 	if(!density) //barricade is open
 		return FALSE
+	if(src == P.original && !(P.dir & dir)) //if on the defense side, clicking on the barricade doesn't hit the barricade
+		return TRUE
 	if(P.distance_travelled <= 1 || !anchored) //unanchored barricade offers no protection.
 		return FALSE
 	if(P.dir & reverse_direction(dir))
