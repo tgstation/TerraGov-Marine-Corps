@@ -166,6 +166,10 @@
 	if(!start_charge && z == 1 && prob(10))
 		set_broken()
 
+// the very fact that i have to override this screams to me that apcs shouldnt be under machinery - spookydonut
+/obj/machinery/power/apc/power_change()
+	return
+
 /obj/machinery/power/apc/proc/make_terminal()
 	//Create a terminal object at the same position as original turf loc
 	//Wires will attach to this
