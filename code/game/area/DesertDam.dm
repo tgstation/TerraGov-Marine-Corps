@@ -12,6 +12,63 @@
 /area/desert_dam/interior/lab_northeast
 	name = "\improper "
 	icon_state = "purple"
+/area/desert_dam/interior/lab_northeast/lobby
+	name = "\improper "
+	icon_state = "green"
+/area/desert_dam/interior/lab_northeast/west_hallway
+	name = "\improper "
+	icon_state = "blue"
+/area/desert_dam/interior/lab_northeast/central_hallway
+	name = "\improper "
+	icon_state = "green"
+/area/desert_dam/interior/lab_northeast/east_hallway
+	name = "\improper "
+	icon_state = "yellow"
+/area/desert_dam/interior/lab_northeast/workshop
+	name = "\improper "
+	icon_state = "ass_line"
+/area/desert_dam/interior/lab_northeast/storage
+	name = "\improper "
+	icon_state = "storage"
+/area/desert_dam/interior/lab_northeast/RD_office
+	name = "\improper "
+	icon_state = "yellow"
+/area/desert_dam/interior/lab_northeast/maintenence
+	name = "\improper "
+	icon_state = "maintcentral"
+/area/desert_dam/interior/lab_northeast/containment
+	name = "\improper "
+	icon_state = "purple"
+/area/desert_dam/interior/lab_northeast/RND
+	name = "\improper "
+	icon_state = "purple"
+/area/desert_dam/interior/lab_northeast/biology
+	name = "\improper "
+	icon_state = "purple"
+/area/desert_dam/interior/lab_northeast/surgury
+	name = "\improper "
+	icon_state = "red"
+/area/desert_dam/interior/lab_northeast/excavation
+	name = "\improper "
+	icon_state = "blue"
+/area/desert_dam/interior/lab_northeast/excavation
+	name = "\improper "
+	icon_state = "blue"
+/area/desert_dam/interior/lab_northeast/west_entrance
+	name = "\improper "
+	icon_state = "purple"
+/area/desert_dam/interior/lab_northeast/east_entrance
+	name = "\improper "
+	icon_state = "purple"
+/area/desert_dam/interior/lab_northeast/security_checkpoint
+	name = "\improper "
+	icon_state = "purple"
+/area/desert_dam/interior/lab_northeast/security_office
+	name = "\improper "
+	icon_state = "security"
+/area/desert_dam/interior/lab_northeast/security_armory
+	name = "\improper "
+	icon_state = "armory"
 
 //Dam Interior
 /area/desert_dam/interior/dam_interior/engine_room
@@ -93,7 +150,35 @@
 	name = "\improper "
 	icon_state = ""
 
+/area/desert_dam/interior/dam_interior/north_tunnel_entrance
+	name = "\improper "
+	icon_state = "yellow"
+/area/desert_dam/interior/dam_interior/east_tunnel_entrance
+	name = "\improper "
+	icon_state = "yellow"
+/area/desert_dam/interior/dam_interior/south_tunnel_entrance
+	name = "\improper "
+	icon_state = "red"
 
+/area/desert_dam/interior/caves/northern_caves
+	name = "\improper "
+	icon_state = "red"
+/area/desert_dam/interior/caves/east_caves
+	name = "\improper "
+	icon_state = "red"
+
+/area/desert_dam/interior/caves/central_caves
+	name = "\improper "
+	icon_state = "yellow"
+/area/desert_dam/interior/caves/central_caves/entrances/east_tunnel_entrance
+	name = "\improper "
+	icon_state = "red"
+/area/desert_dam/interior/caves/central_caves/entrances/south_tunnel_entrance
+	name = "\improper "
+	icon_state = "red"
+/area/desert_dam/interior/caves/central_caves/entrances/west_tunnel_entrance
+	name = "\improper "
+	icon_state = "red"
 
 //BUILDING
 //areas not under rock
@@ -275,6 +360,9 @@
 /area/desert_dam/building/telecommunication
 	name = "\improper"
 	icon_state = "yellow"
+/area/desert_dam/building/telecommunication_platform
+	name = "\improper"
+	icon_state = "red"
 
 //Water Treatment Plant 1
 /area/desert_dam/building/water_treatment_one
@@ -394,10 +482,10 @@
 //NorthWest Lab Buildings
 /area/desert_dam/building/lab_northwest/robotics
 	name = "\improper"
-	icon_state = "dark128"
+	icon_state = "ass_line"
 /area/desert_dam/building/lab_northwest/robotics_mechbay
 	name = "\improper"
-	icon_state = "dark160"
+	icon_state = "mechbay"
 /area/desert_dam/building/lab_northwest/lobby
 	name = "\improper"
 	icon_state = "yellow"
@@ -418,7 +506,7 @@
 	icon_state = "blue"
 /area/desert_dam/building/lab_northwest/kitchen
 	name = ""
-	icon_state = "dark"
+	icon_state = "kitchen"
 /area/desert_dam/building/lab_northwest/dormitory
 	name = "\improper"
 	icon_state = "red"
@@ -428,6 +516,14 @@
 /area/desert_dam/building/lab_northwest/xenoflora
 	name = "\improper"
 	icon_state = "purple"
+
+/area/desert_dam/building/lab_northeast/checkpoint
+	name = "\improper"
+	icon_state = "red"
+/area/desert_dam/building/lab_northeast/garage
+	name = "\improper"
+	icon_state = "garage"
+
 
 //EXTERIOR
 //under open sky

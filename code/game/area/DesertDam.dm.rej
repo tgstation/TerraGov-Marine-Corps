@@ -1,0 +1,15 @@
+diff a/code/game/area/DesertDam.dm b/code/game/area/DesertDam.dm	(rejected hunks)
+@@ -4,8 +4,11 @@
+ 	icon_state = "cliff_blocked"
+ 
+ 
+-
+-//INTERIOR
++/*
++ *  ----------------
++ * | Interior Areas |
++ *  ----------------
++ */
+ // areas under rock
+ 
+ //NorthEastern Lab Section
