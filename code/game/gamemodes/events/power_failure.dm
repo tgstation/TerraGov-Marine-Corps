@@ -60,3 +60,20 @@
 	sleep(100)
 	if(announce)
 		command_announcement.Announce("Power has been restored. Reason: Unknown.", "Power Systems Nominal", new_sound = 'sound/AI/poweron.ogg')
+
+/proc/power_restore_everything(var/announce = 1)
+
+	for(var/obj/machinery/power/smes/S in machines)
+		S.charge = S.capacity
+		S.output = S.output_level_max
+		S.online = 1
+		S.updateicon()
+		S.power_change()
+
+	for(var/obj/machinery/power/apc/C in machines)
+		if(C.cell)
+			C.cell.charge = C.cell.maxcharge
+
+	sleep(100)
+	if(announce)
+		command_announcement.Announce("Power has been restored. Reason: Unknown.", "Power Systems Nominal", new_sound = 'sound/AI/poweron.ogg')
