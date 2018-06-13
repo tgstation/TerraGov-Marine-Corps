@@ -462,6 +462,13 @@
 	..()
 
 
+/obj/structure/window/framed/proc/drop_window_frame()
+	if(window_frame)
+		var/obj/structure/window_frame/new_window_frame = new window_frame(loc, TRUE)
+		new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
+		new_window_frame.dir = dir
+	cdel(src)
+
 /obj/structure/window/framed/almayer
 	name = "reinforced window"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."

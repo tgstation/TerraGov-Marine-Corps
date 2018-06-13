@@ -16,6 +16,7 @@
 	var/breakouttime = 1200 //Deciseconds = 120s = 2 minutes
 	var/single_use = 0 //determines if handcuffs will be deleted on removal
 	var/cuff_sound = 'sound/weapons/handcuffs.ogg'
+	var/cuff_delay = 40 //how many deciseconds it takes to cuff someone
 
 /obj/item/handcuffs/attack(mob/living/carbon/C, mob/user)
 	if(!istype(C))
@@ -50,7 +51,7 @@
 		feedback_add_details("handcuffs","H")
 
 		user.visible_message("<span class='notice'>[user] tries to put [src] on [H].</span>")
-		if(do_mob(user, H, HUMAN_STRIP_DELAY, BUSY_ICON_HOSTILE, BUSY_ICON_GENERIC))
+		if(do_mob(user, H, cuff_delay, BUSY_ICON_HOSTILE, BUSY_ICON_GENERIC))
 			if(src == user.get_active_hand() && !H.handcuffed && Adjacent(user))
 				if(H.has_limb_for_slot(WEAR_HANDCUFFS))
 					user.drop_inv_item_on_ground(src)
@@ -71,6 +72,7 @@
 	icon_state = "cuff_zip"
 	breakouttime = 600 //Deciseconds = 60s
 	cuff_sound = 'sound/weapons/cablecuff.ogg'
+	cuff_delay = 20
 
 	place_handcuffs(mob/living/carbon/target, mob/user)
 		..()
@@ -145,21 +147,6 @@
 				C.handcuff_update()
 
 
-
-
-
-//COMMENTED BY APOP
-/*/obj/item/handcuffs/xeno
-	name = "hardened resin"
-	desc = "A thick, nasty resin. You could probably resist out of this."
-	breakouttime = 200
-	cuff_sound = 'sound/effects/blobattack.ogg'
-	icon = 'icons/xeno/effects.dmi'
-	icon_state = "sticky2"
-
-	dropped()
-		cdel(src)
-		return*/
 
 
 

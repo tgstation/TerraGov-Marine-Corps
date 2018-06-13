@@ -1031,10 +1031,13 @@
 		if(I.unacidable || istype(I, /obj/machinery/computer) || istype(I, /obj/effect)) //So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
 			src << "<span class='warning'>You cannot dissolve \the [I].</span>" // ^^ Note for obj/effect.. this might check for unwanted stuff. Oh well
 			return
-		if(istype(O, /obj/structure/window_frame/colony/reinforced) && acid_type != /obj/effect/xenomorph/acid/strong)
-			src << "<span class='warning'>This [O.name] is too tough to be melted by your weak acid.</span>"
+		if(istype(O, /obj/structure/window_frame))
+			var/obj/structure/window_frame/WF = O
+			if(WF.reinforced && acid_type != /obj/effect/xenomorph/acid/strong)
+				src << "<span class='warning'>This [O.name] is too tough to be melted by your weak acid.</span>"
 			return
-		if(O.density)
+
+		if(O.density || istype(O, /obj/structure))
 			wait_time = 40 //dense objects are big, so takes longer to melt.
 
 	//TURF CHECK

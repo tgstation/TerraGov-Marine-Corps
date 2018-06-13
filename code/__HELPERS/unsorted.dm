@@ -500,6 +500,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/namecounts = list()
 	for(var/mob/M in mobs)
 		if(isYautja(M)) continue
+		if(iszombie(M))	continue
 		var/name = M.name
 		if (name in names)
 			namecounts[name]++

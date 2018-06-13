@@ -140,8 +140,12 @@
 		else if (istype(acid_t, /obj/structure/girder))
 			var/obj/structure/girder/G = acid_t
 			G.dismantle()
+		else if(istype(acid_t, /obj/structure/window/framed))
+			var/obj/structure/window/framed/WF = acid_t
+			WF.drop_window_frame()
+
 		else
-			if(acid_t.contents) //Hopefully won't auto-delete things inside melted stuff..
+			if(acid_t.contents.len) //Hopefully won't auto-delete things inside melted stuff..
 				for(var/mob/M in acid_t.contents)
 					if(acid_t.loc) M.forceMove(acid_t.loc)
 			cdel(acid_t)

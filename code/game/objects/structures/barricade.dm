@@ -118,7 +118,7 @@
 	return attack_alien(user)
 
 
-/obj/structure/barricade/attackby(obj/item/W as obj, mob/user)
+/obj/structure/barricade/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/zombie_claws))
 		user.visible_message("<span class='danger'>The zombie smashed at the [src.barricade_type] barricade!</span>",
 		"<span class='danger'>You smack the [src.barricade_type] barricade!</span>")
@@ -126,6 +126,11 @@
 			playsound(src, barricade_hitsound, 25, 1)
 		hit_barricade(W)
 		return
+
+	for(var/obj/effect/xenomorph/acid/A in src.loc)
+		if(A.acid_t == src)
+			user << "You can't get near that, it's melting!"
+			return
 
 	if(istype(W, /obj/item/stack/barbed_wire))
 		var/obj/item/stack/barbed_wire/B = W
@@ -207,6 +212,8 @@
 			if(SOUTH) layer = ABOVE_MOB_LAYER
 			if(NORTH) layer = initial(layer) - 0.01
 			else layer = initial(layer)
+		if(!anchored)
+			layer = initial(layer)
 	else
 		if(can_change_dmg_state)
 			icon_state = "[barricade_type]_closed_[damage_state]"
@@ -308,6 +315,10 @@
 
 //Item Attack
 /obj/structure/barricade/snow/attackby(obj/item/W, mob/user)
+	for(var/obj/effect/xenomorph/acid/A in src.loc)
+		if(A.acid_t == src)
+			user << "You can't get near that, it's melting!"
+			return
 	//Removing the barricades
 	if(istype(W, /obj/item/tool/shovel) && user.a_intent != "hurt")
 		var/obj/item/tool/shovel/ET = W
@@ -369,6 +380,10 @@
 	can_wire = 0
 
 /obj/structure/barricade/wooden/attackby(obj/item/W as obj, mob/user as mob)
+	for(var/obj/effect/xenomorph/acid/A in src.loc)
+		if(A.acid_t == src)
+			user << "You can't get near that, it's melting!"
+			return
 	if(istype(W, /obj/item/stack/sheet/wood))
 		var/obj/item/stack/sheet/wood/D = W
 		if(health < maxhealth)
@@ -432,6 +447,11 @@
 			user << "<span class='info'>The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.</span>"
 
 /obj/structure/barricade/metal/attackby(obj/item/W, mob/user)
+
+	for(var/obj/effect/xenomorph/acid/A in src.loc)
+		if(A.acid_t == src)
+			user << "You can't get near that, it's melting!"
+			return
 
 	if(iswelder(W))
 		if(user.action_busy)
@@ -499,6 +519,7 @@
 				"<span class='notice'>You loosen [src]'s anchor bolts.</span>")
 				anchored = FALSE
 				build_state = 0
+				update_icon() //unanchored changes layer
 				return
 		if(0) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to resecure anchor bolts
 			if(iswrench(W))
@@ -517,6 +538,7 @@
 				"<span class='notice'>You secure [src]'s anchor bolts.</span>")
 				build_state = 1
 				anchored = TRUE
+				update_icon() //unanchored changes layer
 				return
 			if(iscrowbar(W))
 				if(user.action_busy)
@@ -595,6 +617,11 @@
 
 /obj/structure/barricade/plasteel/attackby(obj/item/W, mob/user)
 
+	for(var/obj/effect/xenomorph/acid/A in src.loc)
+		if(A.acid_t == src)
+			user << "You can't get near that, it's melting!"
+			return
+
 	if(iswelder(W))
 		if(busy || tool_cooldown > world.time)
 			return
@@ -672,6 +699,7 @@
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				anchored = FALSE
 				build_state = 0
+				update_icon() //unanchored changes layer
 				return
 
 		if(0) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to rescure anchor bolts
@@ -687,6 +715,7 @@
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				anchored = TRUE
 				build_state = 1
+				update_icon() //unanchored changes layer
 				return
 			if(iscrowbar(W))
 				if(busy || tool_cooldown > world.time)
@@ -777,6 +806,12 @@
 
 
 /obj/structure/barricade/sandbags/attackby(obj/item/W, mob/user)
+
+	for(var/obj/effect/xenomorph/acid/A in src.loc)
+		if(A.acid_t == src)
+			user << "You can't get near that, it's melting!"
+			return
+
 	if(istype(W, /obj/item/tool/shovel) && user.a_intent != "hurt")
 		var/obj/item/tool/shovel/ET = W
 		if(!ET.folded)

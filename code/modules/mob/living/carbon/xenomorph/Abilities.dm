@@ -81,7 +81,7 @@
 
 /datum/action/xeno_action/regurgitate/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(!X.check_state() || X.fortify || X.crest_defense)
+	if(!X.check_state())
 		return
 
 	if(!isturf(X.loc))

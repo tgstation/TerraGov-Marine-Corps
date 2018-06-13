@@ -621,6 +621,7 @@
 	name = "floor"
 	icon_state = "floor"
 	icon = 'icons/turf/shuttle.dmi'
+	allow_construction = FALSE
 
 /turf/open/shuttle/dropship
 	name = "floor"

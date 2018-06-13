@@ -60,11 +60,19 @@
 		user <<"<span class='warning'>The baton does not have a power source installed.</span>"
 
 /obj/item/weapon/baton/attack_hand(mob/user)
-	if(!has_user_lock || check_user_auth(user))
+	if(check_user_auth(user))
 		..()
+
+
+/obj/item/weapon/baton/equipped(mob/user, slot)
+	..()
+	check_user_auth(user)
+
 
 //checks if the mob touching the baton has proper access
 /obj/item/weapon/baton/proc/check_user_auth(mob/user)
+	if(!has_user_lock)
+		return TRUE
 	var/mob/living/carbon/human/H = user
 	if(istype(H))
 		var/obj/item/card/id/I = H.wear_id
@@ -78,8 +86,7 @@
 	return TRUE
 
 /obj/item/weapon/baton/pull_response(mob/puller)
-	if(has_user_lock)
-		return check_user_auth(puller)
+	return check_user_auth(puller)
 
 /obj/item/weapon/baton/attackby(obj/item/W, mob/user)
 

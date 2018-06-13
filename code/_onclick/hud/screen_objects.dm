@@ -665,6 +665,7 @@
 	icon_state = "blank"
 	name = "flash"
 	screen_loc = "1,1 to 15,15"
+	mouse_opacity = 0
 	layer = FULLSCREEN_FLASH_LAYER
 
 /obj/screen/damageoverlay
