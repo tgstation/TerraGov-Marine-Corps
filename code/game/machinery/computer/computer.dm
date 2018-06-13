@@ -14,6 +14,7 @@
 	..()
 	if(ticker)
 		initialize()
+	start_processing()
 
 
 /obj/machinery/computer/initialize()

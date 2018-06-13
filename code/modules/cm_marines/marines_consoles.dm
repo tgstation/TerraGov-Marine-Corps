@@ -499,12 +499,12 @@
 	tracked = list()
 	..()
 
-/obj/machinery/computer/crew/attack_ai(mob/user)
+/obj/machinery/computer/crew/attack_ai(mob/living/user)
 	attack_hand(user)
 	ui_interact(user)
 
 
-/obj/machinery/computer/crew/attack_hand(mob/user)
+/obj/machinery/computer/crew/attack_hand(mob/living/user)
 	add_fingerprint(user)
 	if(stat & (BROKEN|NOPOWER))
 		return
@@ -517,7 +517,7 @@
 		icon_state = "crewb"
 	else
 		if(stat & NOPOWER)
-			src.icon_state = "c_unpowered"
+			icon_state = "crew0"
 			stat |= NOPOWER
 		else
 			icon_state = initial(icon_state)
@@ -529,26 +529,26 @@
 	if( href_list["close"] )
 		var/mob/user = usr
 		var/datum/nanoui/ui = nanomanager.get_open_ui(user, src, "main")
-		usr.unset_interaction()
+		user.unset_interaction()
 		ui.close()
 		return 0
 	if(href_list["update"])
-		src.updateDialog()
+		updateDialog()
 		return 1
 
-/obj/machinery/computer/crew/interact(mob/user)
+/obj/machinery/computer/crew/interact(mob/living/user)
 	ui_interact(user)
 
-/obj/machinery/computer/crew/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/computer/crew/ui_interact(mob/living/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 	if(stat & (BROKEN|NOPOWER))
 		return
 	user.set_interaction(src)
-	src.scan()
+	scan()
 
 	var/data[0]
 	var/list/crewmembers = list()
 
-	for(var/obj/item/clothing/under/C in src.tracked)
+	for(var/obj/item/clothing/under/C in tracked)
 
 		var/turf/pos = get_turf(C)
 
