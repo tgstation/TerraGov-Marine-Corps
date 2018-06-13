@@ -104,7 +104,7 @@
 	else
 		if (stat & NOPOWER)
 			spawn(rand(0, 15))
-				src.icon_state = "c_unpowered"
+				src.icon_state = "power0"
 		else
 			icon_state = initial(icon_state)
 
