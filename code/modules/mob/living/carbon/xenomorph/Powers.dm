@@ -77,6 +77,9 @@
 	if (target == loc)
 		return
 
+	if(!target)
+		return
+
 	used_acid_spray = 1
 	use_plasma(150)
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1)

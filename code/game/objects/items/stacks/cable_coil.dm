@@ -319,7 +319,7 @@
 	color = "#a8c1dd"
 
 /obj/item/stack/cable_coil/white
-	color = "#666547"
+	color = "#FFFFFF"
 
 /obj/item/stack/cable_coil/random/New()
 	color = pick(COLOR_RED, COLOR_BLUE, COLOR_GREEN, COLOR_WHITE, COLOR_PINK, COLOR_YELLOW, COLOR_CYAN)
