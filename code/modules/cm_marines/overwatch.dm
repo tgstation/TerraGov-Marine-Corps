@@ -483,18 +483,24 @@
 /obj/machinery/computer/overwatch/proc/send_to_squad(var/txt = "", var/plus_name = 0, var/only_leader = 0)
 	if(txt == "" || !current_squad || !operator) return //Logic
 
-	var/text = sanitize(txt)
+	var/text = copytext(sanitize(txt), 1, MAX_MESSAGE_LEN)
 	var/nametext = ""
 	if(plus_name)
 		nametext = "[usr.name] transmits: "
+		text = "<font size='3'><b>[text]<b></font>"
 
 	for(var/mob/living/carbon/human/M in current_squad.marines_list)
 		if(!M.stat && M.client) //Only living and connected people in our squad
 			if(!only_leader)
+				if(plus_name)
+					M << sound('sound/effects/radiostatic.ogg')
 				M << "\icon[src] <font color='blue'><B>\[Overwatch\]:</b> [nametext][text]</font>"
 			else
 				if(current_squad.squad_leader == M)
+					if(plus_name)
+						M << sound('sound/effects/radiostatic.ogg')
 					M << "\icon[src] <font color='blue'><B>\[SL Overwatch\]:</b> [nametext][text]</font>"
+					return
 
 /obj/machinery/computer/overwatch/proc/handle_bombard()
 	if(!usr) return
@@ -607,7 +613,7 @@
 		send_to_squad("Attention: A new Squad Leader has been set: [H.real_name].")
 		visible_message("\icon[src] <span class='boldnotice'>[H.real_name] is the new Squad Leader of squad '[current_squad]'! Logging to enlistment file.</span>")
 
-	H << "\icon[src] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been promoted to \'[H.mind.assigned_role == "Squad Leader" ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</font>"
+	H << "\icon[src] <font size='3' color='blue'><B>\[Overwatch\]: You've been promoted to \'[H.mind.assigned_role == "Squad Leader" ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</B></font>"
 	usr << "\icon[src] [H.real_name] is [current_squad]'s new leader!"
 	current_squad.squad_leader = H
 	if(H.mind.assigned_role == "Squad Leader")//a real SL

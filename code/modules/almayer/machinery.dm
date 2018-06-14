@@ -209,7 +209,7 @@
 
 /obj/structure/prop/almayer/ship_memorial/examine(mob/user)
 	..()
-	if(ishuman(user) && fallen_list)
+	if((isobserver(user) || ishuman(user)) && fallen_list)
 		var/faltext = ""
 		for(var/i = 1 to fallen_list.len)
 			if(i != fallen_list.len)
