@@ -595,6 +595,8 @@ datum/game_mode/proc/initialize_special_clamps()
 	new_survivor.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(new_survivor), WEAR_R_STORE)
 	new_survivor.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(new_survivor), WEAR_L_STORE)
 
+	new_survivor.name = new_survivor.get_visible_name()
+
 	//Give them some information
 	spawn(4)
 		new_survivor << "<h2>You are a survivor!</h2>"
