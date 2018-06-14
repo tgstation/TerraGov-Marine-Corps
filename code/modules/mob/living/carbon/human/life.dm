@@ -56,7 +56,6 @@
 			//Organs and blood
 			handle_organs()
 			handle_blood()
-			stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
 
 			//Random events (vomiting etc)
 			handle_random_events()
@@ -83,6 +82,8 @@
 	else
 		handle_stasis_bag()
 
+
+	stabilize_body_temperature() //Body temperature adjusts itself (self-regulation) (even when dead)
 
 	//Handle temperature/pressure differences between body and environment
 	handle_environment() //Optimized a good bit.
