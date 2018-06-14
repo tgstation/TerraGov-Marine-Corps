@@ -29,19 +29,22 @@
 	if (!(ndir in cardinal))
 		return
 	var/turf/loc = get_turf(usr)
-	var/area/A = loc.loc
+	var/area/A = get_area(loc)
 	if (!istype(loc, /turf/open/floor))
-		usr << "\red APC cannot be placed on this spot."
+		usr << "<span class='warning'>APC cannot be placed on this spot.</span>"
 		return
 	if (A.requires_power == 0 || istype(A, /area/space))
-		usr << "\red APC cannot be placed in this area."
+		usr << "<span class='warning'>APC cannot be placed in this area.</span>"
 		return
 	if (A.get_apc())
-		usr << "\red This area already has APC."
+		usr << "<span class='warning'>This area already has APC.</span>"
 		return //only one APC per area
+	if (A.always_unpowered)
+		usr << "<span class='warning'>This area is unsuitable for an APC.</span>"
+		return
 	for(var/obj/machinery/power/terminal/T in loc)
 		if (T.master)
-			usr << "\red There is another network terminal here."
+			usr << "<span class='warning'>There is another network terminal here.</span>"
 			return
 		else
 			var/obj/item/stack/cable_coil/C = new /obj/item/stack/cable_coil(loc)
