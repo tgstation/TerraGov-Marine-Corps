@@ -12,6 +12,7 @@
 	var/obj/structure/window/framed/almayer/window_type = /obj/structure/window/framed/almayer
 	var/basestate = "window"
 	var/junction = 0
+	var/reinforced = FALSE
 
 	tiles_with = list(
 		/turf/closed/wall)
@@ -119,6 +120,7 @@
 /obj/structure/window_frame/colony/reinforced
 	icon_state = "col_rwindow0_frame"
 	basestate = "col_rwindow"
+	reinforced = TRUE
 
 /obj/structure/window_frame/chigusa
 	icon_state = "chig_window0_frame"
@@ -135,3 +137,4 @@
 /obj/structure/window_frame/prison/reinforced
 	icon_state = "prison_rwindow0_frame"
 	basestate = "prison_rwindow"
+	reinforced = TRUE

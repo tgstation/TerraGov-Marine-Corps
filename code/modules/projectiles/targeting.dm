@@ -16,9 +16,6 @@
 		stop_aim()
 		usr.visible_message("\blue \The [usr] lowers \the [src]...")
 
-/obj/item/weapon/gun/equipped(var/mob/user, var/slot)
-
-	return ..()
 
 //Removes lock fro mall targets
 /obj/item/weapon/gun/proc/stop_aim()

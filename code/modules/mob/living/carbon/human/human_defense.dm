@@ -166,20 +166,19 @@ Contains most of the procs that are called when a mob is attacked by something
 	apply_damage(I.force, I.damtype, affecting, armor, sharp=weapon_sharp, edge=weapon_edge, used_weapon=I)
 
 	var/bloody = 0
-	if(((I.damtype == BRUTE) || (I.damtype == HALLOSS)) && prob(25 + (I.force * 2)))
-		I.add_blood(src)	//Make the weapon bloody, not the person.
-//		if(user.hand)	user.update_inv_l_hand()	//updates the attacker's overlay for the (now bloodied) weapon
-//		else			user.update_inv_r_hand()	//removed because weapons don't have on-mob blood overlays
-		if(prob(33))
-			bloody = 1
-			var/turf/location = loc
-			if(istype(location, /turf))
-				location.add_blood(src)
-			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
-				if(get_dist(H, src) <= 1) //people with TK won't get smeared with blood
-					H.bloody_body(src)
-					H.bloody_hands(src)
+	if((I.damtype == BRUTE || I.damtype == HALLOSS) && prob(I.force*2 + 25))
+		if(!(affecting.status & LIMB_ROBOT))
+			I.add_blood(src)	//Make the weapon bloody, not the person.
+			if(prob(33))
+				bloody = 1
+				var/turf/location = loc
+				if(istype(location, /turf))
+					location.add_blood(src)
+				if(ishuman(user))
+					var/mob/living/carbon/human/H = user
+					if(get_dist(H, src) <= 1) //people with TK won't get smeared with blood
+						H.bloody_body(src)
+						H.bloody_hands(src)
 
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
@@ -217,17 +216,17 @@ Contains most of the procs that are called when a mob is attacked by something
 	return 1
 
 //this proc handles being hit by a thrown atom
-/mob/living/carbon/human/hitby(atom/movable/AM as mob|obj,var/speed = 5)
+/mob/living/carbon/human/hitby(atom/movable/AM,var/speed = 5)
 	if(istype(AM,/obj/))
 		var/obj/O = AM
 
 		if(in_throw_mode && !get_active_hand() && speed <= 5)	//empty active hand and we're in throw mode
-			if(canmove && !is_mob_restrained())
+			if(!is_mob_incapacitated())
 				if(isturf(O.loc))
-					put_in_active_hand(O)
-					visible_message("<span class='warning'>[src] catches [O]!</span>", null, null, 5)
-					throw_mode_off()
-					return
+					if(put_in_active_hand(O))
+						visible_message("<span class='warning'>[src] catches [O]!</span>", null, null, 5)
+						throw_mode_off()
+						return
 
 		var/dtype = BRUTE
 		if(istype(O,/obj/item/weapon))

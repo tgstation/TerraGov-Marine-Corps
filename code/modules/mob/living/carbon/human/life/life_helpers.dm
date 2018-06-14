@@ -75,6 +75,7 @@
 		var/recovery_amt = min((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), -BODYTEMP_AUTORECOVERY_MINIMUM) //We're dealing with negative numbers
 		bodytemperature += recovery_amt
 
+
 //This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, UPPER_TORSO, LOWER_TORSO, etc. See setup.dm for the full list)
 /mob/living/carbon/human/proc/get_flags_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
 
@@ -101,6 +102,7 @@
 			thermal_protection_flags |= wear_mask.flags_heat_protection
 
 	return thermal_protection_flags
+
 
 /mob/living/carbon/human/proc/get_flags_heat_protection(temperature) //Temperature is the temperature you're being exposed to.
 	var/thermal_protection_flags = get_flags_heat_protection_flags(temperature)
@@ -131,49 +133,40 @@
 
 	return min(1, thermal_protection)
 
+
+
 //See proc/get_flags_heat_protection_flags(temperature) for the description of this proc.
 /mob/living/carbon/human/proc/get_flags_cold_protection_flags(temperature, var/deficit = 0)
 
 	var/thermal_protection_flags = 0
-	//If the temperature is lower than the cold protection, reduce the overall coverage instead of ignoring it completely.
-	var/thermal_deficit = 0
 
 	//Handle normal clothing
 	if(head)
-		if(head.min_cold_protection_temperature)
+		if(head.min_cold_protection_temperature && head.min_cold_protection_temperature <= temperature)
 			thermal_protection_flags |= head.flags_cold_protection
-			if(head.min_cold_protection_temperature > temperature)
-				thermal_deficit += head.min_cold_protection_temperature - temperature
-	if(wear_suit)
-		if(wear_suit.min_cold_protection_temperature)
-			thermal_protection_flags |= wear_suit.flags_cold_protection
-			if(wear_suit.min_cold_protection_temperature > temperature)
-				thermal_deficit += wear_suit.min_cold_protection_temperature - temperature
-	if(w_uniform)
-		if(w_uniform.min_cold_protection_temperature)
-			thermal_protection_flags |= w_uniform.flags_cold_protection
-			if(w_uniform.min_cold_protection_temperature > temperature)
-				thermal_deficit += w_uniform.min_cold_protection_temperature - temperature
-	if(shoes)
-		if(shoes.min_cold_protection_temperature)
-			thermal_protection_flags |= shoes.flags_cold_protection
-			if(shoes.min_cold_protection_temperature > temperature)
-				thermal_deficit += shoes.min_cold_protection_temperature - temperature
-	if(gloves)
-		if(gloves.min_cold_protection_temperature)
-			thermal_protection_flags |= gloves.flags_cold_protection
-			if(gloves.min_cold_protection_temperature > temperature)
-				thermal_deficit += gloves.min_cold_protection_temperature - temperature
-	if(wear_mask)
-		if(wear_mask.min_cold_protection_temperature)
-			thermal_protection_flags |= wear_mask.flags_cold_protection
-			if(wear_mask.min_cold_protection_temperature > temperature)
-				thermal_deficit += wear_mask.min_cold_protection_temperature - temperature
 
-	if(deficit)
-		return thermal_deficit
-	else
-		return thermal_protection_flags
+	if(wear_suit)
+		if(wear_suit.min_cold_protection_temperature && wear_suit.min_cold_protection_temperature <= temperature)
+			thermal_protection_flags |= wear_suit.flags_cold_protection
+
+	if(w_uniform)
+		if(w_uniform.min_cold_protection_temperature && w_uniform.min_cold_protection_temperature <= temperature)
+			thermal_protection_flags |= w_uniform.flags_cold_protection
+
+	if(shoes)
+		if(shoes.min_cold_protection_temperature && shoes.min_cold_protection_temperature <= temperature)
+			thermal_protection_flags |= shoes.flags_cold_protection
+
+	if(gloves)
+		if(gloves.min_cold_protection_temperature && gloves.min_cold_protection_temperature <= temperature)
+			thermal_protection_flags |= gloves.flags_cold_protection
+
+	if(wear_mask)
+		if(wear_mask.min_cold_protection_temperature && wear_mask.min_cold_protection_temperature <= temperature)
+			thermal_protection_flags |= wear_mask.flags_cold_protection
+
+	return thermal_protection_flags
+
 
 /mob/living/carbon/human/proc/get_flags_cold_protection(temperature)
 
@@ -182,7 +175,6 @@
 
 	temperature = max(temperature, 2.7) //There is an occasional bug where the temperature is miscalculated in ares with a small amount of gas on them, so this is necessary to ensure that that bug does not affect this calculation. Space's temperature is 2.7K and most suits that are intended to protect against any cold, protect down to 2.0K.
 	var/thermal_protection_flags = get_flags_cold_protection_flags(temperature)
-	var/thermal_deficit = get_flags_cold_protection_flags(temperature, 1)
 	var/thermal_protection = 0.0
 
 	if(thermal_protection_flags)
@@ -209,10 +201,7 @@
 		if(thermal_protection_flags & HAND_RIGHT)
 			thermal_protection += THERMAL_PROTECTION_HAND_RIGHT
 
-	if(thermal_deficit)
-		return min(1, thermal_protection - (thermal_protection * (thermal_deficit/260)))
-	else
-		return min(1, thermal_protection)
+	return min(1, thermal_protection)
 
 
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)

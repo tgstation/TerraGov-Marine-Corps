@@ -972,6 +972,9 @@ About the new airlock wires panel:
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 				user << "<span class='warning'>You don't seem to know how to deconstruct machines.</span>"
 				return
+			if(width > 1)
+				user << "<span class='warning'>Large doors seem impossible to disassemble.</span>"
+				return
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			user.visible_message("[user] starts removing the electronics from the airlock assembly.", "You start removing electronics from the airlock assembly.")
 			if(do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))
