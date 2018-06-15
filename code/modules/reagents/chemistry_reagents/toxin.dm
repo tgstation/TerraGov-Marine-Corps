@@ -224,17 +224,6 @@
 	color = "#49002E" // rgb: 73, 0, 46
 	toxpwr = 1
 
-	// Clear off wallrot fungi
-	reaction_turf(var/turf/T, var/volume)
-		if(istype(T, /turf/closed/wall))
-			var/turf/closed/wall/W = T
-			if(W.rotting)
-				W.rotting = 0
-				for(var/obj/effect/E in W) if(E.name == "Wallrot") cdel(E)
-
-				for(var/mob/O in viewers(W, null))
-					O.show_message(text("\blue The fungi are completely dissolved by the solution!"), 1)
-
 	reaction_obj(var/obj/O, var/volume)
 		if(istype(O,/obj/effect/alien/weeds/))
 			var/obj/effect/alien/weeds/alien_weeds = O

@@ -258,15 +258,15 @@
 	var/health = 80
 	var/close_delay = 100
 
-	tiles_with = list(/turf/closed/wall/resin, /obj/structure/mineral_door/resin)
+	tiles_with = list(/turf/closed, /obj/structure/mineral_door/resin)
 
-	New()
-		spawn(0)
-			relativewall()
-			relativewall_neighbours()
-			if(!locate(/obj/effect/alien/weeds) in loc)
-				new /obj/effect/alien/weeds(loc)
-		..()
+/obj/structure/mineral_door/resin/New()
+	spawn(0)
+		relativewall()
+		relativewall_neighbours()
+		if(!locate(/obj/effect/alien/weeds) in loc)
+			new /obj/effect/alien/weeds(loc)
+	..()
 
 /obj/structure/mineral_door/resin/attack_paw(mob/user as mob)
 	if(user.a_intent == "hurt")
@@ -339,11 +339,37 @@
 
 /obj/structure/mineral_door/resin/Dispose()
 	relativewall_neighbours()
-	return ..()
+	var/turf/U = loc
+	spawn(0)
+		var/turf/T
+		for(var/i in cardinal)
+			T = get_step(U, i)
+			if(!istype(T)) continue
+			for(var/obj/structure/mineral_door/resin/R in T)
+				R.check_resin_support()
+	. = ..()
 
 /obj/structure/mineral_door/resin/proc/healthcheck()
 	if(src.health <= 0)
 		src.Dismantle(1)
+
+
+//do we still have something next to us to support us?
+/obj/structure/mineral_door/resin/proc/check_resin_support()
+	var/turf/T
+	for(var/i in cardinal)
+		T = get_step(src, i)
+		if(T.density)
+			. = 1
+			break
+		if(locate(/obj/structure/mineral_door/resin) in T)
+			. = 1
+			break
+	if(!.)
+		visible_message("<span class = 'notice'>[src] collapses from the lack of support.</span>")
+		cdel(src)
+
+
 
 /obj/structure/mineral_door/resin/thick
 	name = "thick resin door"
@@ -377,14 +403,14 @@
 	var/on_fire = 0
 	var/hivenumber = XENO_HIVE_NORMAL
 
-	New()
-		..()
-		create_egg_triggers()
-		Grow()
+/obj/effect/alien/egg/New()
+	..()
+	create_egg_triggers()
+	Grow()
 
-	Dispose()
-		. = ..()
-		delete_egg_triggers()
+/obj/effect/alien/egg/Dispose()
+	. = ..()
+	delete_egg_triggers()
 
 /obj/effect/alien/egg/ex_act(severity)
 	Burst(1)//any explosion destroys the egg.

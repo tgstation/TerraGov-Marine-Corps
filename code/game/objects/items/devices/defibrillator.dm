@@ -24,7 +24,7 @@
 		return (FIRELOSS)
 
 /obj/item/device/defibrillator/proc/check_tod(mob/living/carbon/human/M as mob)
-	if(world.time <= M.timeofdeath + M.revive_grace_period)
+	if(!M.undefibbable && world.time <= M.timeofdeath + M.revive_grace_period)
 		return 1
 	else
 		return 0

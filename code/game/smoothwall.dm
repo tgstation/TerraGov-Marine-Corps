@@ -185,6 +185,8 @@
 	else
 		junction = jun_1
 
+
+
 /turf/closed/wall/handle_icon_junction(junction)
 	icon_state = "[walltype][junction]"
 	junctiontype = junction
@@ -212,24 +214,3 @@
 
 
 
-/turf/closed/wall/New()
-	relativewall()
-	relativewall_neighbours()
-	..()
-
-
-//turfs call del() when they're replaced by another turf, so we can't use Dispose() unfortunately.
-/turf/closed/wall/Del()
-	spawn(0)
-		for(var/turf/closed/wall/W in range(src,1))
-			W.relativewall()
-
-	for(var/direction in cardinal)
-		for(var/obj/effect/glowshroom/shroom in get_step(src,direction))
-			if(!shroom.floor) //shrooms drop to the floor
-				shroom.floor = 1
-				shroom.icon_state = "glowshroomf"
-				shroom.pixel_x = 0
-				shroom.pixel_y = 0
-
-	. = ..()
