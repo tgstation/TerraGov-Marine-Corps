@@ -45,6 +45,10 @@
 
 
 /turf/Dispose()
+	if(oldTurf != "")
+		ChangeTurf(text2path(oldTurf), TRUE)
+	else
+		ChangeTurf(/turf/open/floor/plating, TRUE)
 	..()
 	return TA_PURGE_ME_NOW
 
@@ -161,8 +165,8 @@
 			O.hide(intact_tile)
 
 
-//Creates a new turf
-/turf/proc/ChangeTurf(new_turf_path)
+//Creates a new turf. this is called by every code that changes a turf ("spawn atom" verb, cdel, build mode stuff, etc)
+/turf/proc/ChangeTurf(new_turf_path, forget_old_turf)
 	if (!new_turf_path)
 		return
 
@@ -172,7 +176,8 @@
 
 	var/path = "[src.type]"
 	var/turf/W = new new_turf_path( locate(src.x, src.y, src.z) )
-	W.oldTurf = path
+	if(!forget_old_turf)	//e.g. if an admin spawn a new wall on a wall tile, we don't
+		W.oldTurf = path	//want the new wall to change into the old wall when destroyed
 	W.lighting_lumcount += old_lumcount
 	if(old_lumcount != W.lighting_lumcount)
 		W.lighting_changed = 1

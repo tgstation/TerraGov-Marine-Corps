@@ -265,7 +265,7 @@ var/datum/mob_hud/huds = list(
 		var/datum/limb/head = get_limb("head")
 		var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
 		var/revive_enabled = 1
-		if(world.time - timeofdeath > revive_grace_period)
+		if(world.time - timeofdeath > revive_grace_period || undefibbable)
 			revive_enabled = 0
 		else
 			if(suiciding || !head || !head.is_usable() || !heart || heart.is_broken() || !has_brain() || chestburst || (HUSK in mutations) || !mind)
@@ -290,7 +290,7 @@ var/datum/mob_hud/huds = list(
 					holder2_set = 1
 			else
 				holder.icon_state = "huddead"
-				if(!holder2_set || world.time - timeofdeath > revive_grace_period)
+				if(!holder2_set || world.time - timeofdeath > revive_grace_period || undefibbable)
 					holder2.icon_state = "huddead"
 					holder3.icon_state = "huddead"
 					holder2_set = 1

@@ -683,6 +683,9 @@ and you're good to go.
 							else
 								user.apply_damage(projectile_to_fire.damage * 2.5, projectile_to_fire.ammo.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [projectile_to_fire]", sharp = 1)
 								user.apply_damage(100, OXY)
+								if(ishuman(user) && user == M)
+									var/mob/living/carbon/human/HM = user
+									HM.undefibbable = TRUE //can't be defibbed back from self inflicted gunshot to head
 								user.death()
 						user.attack_log += t //Apply the attack log.
 						last_fired = world.time

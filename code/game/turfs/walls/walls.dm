@@ -6,8 +6,6 @@
 	icon = 'icons/turf/walls.dmi'
 	icon_state = "0"
 	opacity = 1
-	var/mineral = "metal"
-	var/rotting = 0
 	var/hull = 0 //1 = Can't be deconstructed by tools or thermite. Used for Sulaco walls
 	var/walltype = "metal"
 	var/junctiontype //when walls smooth with one another, the type of junction each wall is.
@@ -34,7 +32,6 @@
 	var/max_temperature = 1800 //K, walls will take damage if they're next to a fire hotter than this
 
 	var/d_state = 0 //Normal walls are now as difficult to remove as reinforced walls
-	var/d_sleep = 60 //The time in deciseconds it takes for each step of wall deconstruction
 
 	var/obj/effects/acid_hole/acided_hole //the acid hole inside the wall
 
@@ -42,32 +39,40 @@
 
 /turf/closed/wall/New()
 	..()
+	//smooth wall stuff
+	relativewall()
+	relativewall_neighbours()
+
 	for(var/obj/item/explosive/mine/M in src)
 		if(M)
 			visible_message("<span class='warning'>\The [M] is sealed inside the wall as it is built</span>")
 			cdel(M)
 
-/turf/closed/wall/Dispose()
-	if(rotting)
-		for(var/obj/effect/E in src)
-			if(E.name == "Wallrot")
-				cdel(E)
-				break
-	if(acided_hole)
-		cdel(acided_hole)
-		acided_hole = null
-	. = ..()
 
-/turf/closed/wall/ChangeTurf(var/newtype)
-	if(rotting)
-		for(var/obj/effect/E in src)
-			if(E.name == "Wallrot")
-				cdel(E)
-				break
+/turf/closed/wall/ChangeTurf(newtype)
 	if(acided_hole)
 		cdel(acided_hole)
 		acided_hole = null
-	..(newtype)
+
+	. = ..()
+	if(.) //successful turf change
+
+		var/turf/T
+		for(var/i in cardinal)
+			T = get_step(src, i)
+
+			//update junction type of nearby walls
+			if(istype(T, /turf/closed/wall))
+				T.relativewall()
+
+			//nearby glowshrooms updated
+			for(var/obj/effect/glowshroom/shroom in T)
+				if(!shroom.floor) //shrooms drop to the floor
+					shroom.floor = 1
+					shroom.icon_state = "glowshroomf"
+					shroom.pixel_x = 0
+					shroom.pixel_y = 0
+
 
 
 /turf/closed/wall/MouseDrop_T(mob/M, mob/user)
@@ -104,9 +109,6 @@
 			user << "<span class='warning'>It looks moderately damaged.</span>"
 		else
 			user << "<span class='danger'>It looks heavily damaged.</span>"
-
-	if(rotting)
-		user << "<span class='warning'>There is fungus growing on [src].</span>"
 
 	switch(d_state)
 		if(1)
@@ -193,20 +195,20 @@
 /turf/closed/wall/proc/take_damage(dam)
 	if(hull) //Hull is literally invincible
 		return
-	if(dam)
-		damage = max(0, damage + dam)
-	var/cap = damage_cap
-	if(rotting)
-		cap = cap / 10
-	if(damage >= cap)
+	if(!dam)
+		return
+
+	damage = max(0, damage + dam)
+
+	if(damage >= damage_cap)
 		// Xenos used to be able to crawl through the wall, should suggest some structural damage to the girder
 		if (acided_hole)
 			dismantle_wall(1)
 		else
 			dismantle_wall()
-	else if(dam)
+	else
 		update_icon()
-	return
+
 
 /turf/closed/wall/proc/make_girder(destroyed_girder = FALSE)
 	var/obj/structure/girder/G = new /obj/structure/girder(src)
@@ -215,6 +217,7 @@
 
 	if (destroyed_girder)
 		G.dismantle()
+
 
 
 // Devastated and Explode causes the wall to spawn a damaged girder
@@ -237,8 +240,7 @@
 		if(istype(O, /obj/effect/alien/weeds))
 			cdel(O)
 
-	if(oldTurf != "") ChangeTurf(text2path(oldTurf))
-	else ChangeTurf(/turf/open/floor/plating)
+	cdel(src)
 
 /turf/closed/wall/ex_act(severity)
 	if(hull)
@@ -254,8 +256,8 @@
 		if(3)
 			take_damage(rand(0, 250))
 
-/turf/closed/wall/proc/thermitemelt(mob/user as mob)
-	if(mineral == "diamond" || hull)
+/turf/closed/wall/proc/thermitemelt(mob/user)
+	if(hull)
 		return
 	var/obj/effect/overlay/O = new/obj/effect/overlay(src)
 	O.name = "Thermite"
@@ -273,6 +275,7 @@
 	spawn(50)
 		if(O) cdel(O)
 	return
+
 
 //Interactions
 /turf/closed/wall/attack_paw(mob/user as mob)
@@ -294,11 +297,11 @@
 
 /turf/closed/wall/attack_animal(mob/living/M as mob)
 	if(M.wall_smash)
-		if((istype(src, /turf/closed/wall/r_wall) && !rotting) || hull)
+		if((istype(src, /turf/closed/wall/r_wall)) || hull)
 			M << "<span class='warning'>This [name] is far too strong for you to destroy.</span>"
 			return
 		else
-			if((prob(40) || rotting) && !hull)
+			if((prob(40)))
 				M.visible_message("<span class='danger'>[M] smashes through [src].</span>",
 				"<span class='danger'>You smash through the wall.</span>")
 				dismantle_wall(1)
@@ -311,7 +314,7 @@
 
 /turf/closed/wall/attack_hand(mob/user as mob)
 	if(HULK in user.mutations)
-		if((prob(40) || rotting) && !hull)
+		if((prob(40)) && !hull)
 			user.visible_message("<span class='danger'>[user] smashes through [src].</span>",
 			"<span class='danger'>You smash through [src].</span>")
 			usr.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!"))
@@ -323,39 +326,15 @@
 			take_damage(rand(25, 75))
 			return
 
-	if(rotting && !hull)
-		user << "<span class='warning'>[src] crumbles under your touch.</span>"
-		dismantle_wall()
-		return
-
 	add_fingerprint(user)
 
 
 
 /turf/closed/wall/attackby(obj/item/W, mob/user)
 
-	if(!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
+	if(!ishuman(user))
 		user << "<span class='warning'>You don't have the dexterity to do this!</span>"
 		return
-
-	//Get the user's location
-	if(!istype(user.loc, /turf)) return	//Can't do this stuff whilst inside objects and such
-
-	if(rotting)
-		if(W.heat_source >= 3000)
-			if(istype(W, /obj/item/tool/weldingtool))
-				var/obj/item/tool/weldingtool/WT = W
-				WT.remove_fuel(0,user)
-			user << "<span class='notice'>You burn away the fungi with \the [W].</span>"
-			playsound(src, 'sound/items/Welder.ogg', 25, 1)
-			for(var/obj/effect/E in src) if(E.name == "Wallrot")
-				cdel(E)
-			rotting = 0
-			return
-		else if((!is_sharp(W) && W.force >= 10 || W.force >= 20) && !hull)
-			user << "<span class='notice'>\The [src] crumbles away under the force of your [W.name].</span>"
-			dismantle_wall(1)
-			return
 
 	//THERMITE related stuff. Calls src.thermitemelt() which handles melting simulated walls and the relevant effects
 	if(thermite)
@@ -409,7 +388,7 @@
 			user.visible_message("<span class='notice'>[user] starts repairing the damage to [src].</span>",
 			"<span class='notice'>You start repairing the damage to [src].</span>")
 			playsound(src, 'sound/items/Welder.ogg', 25, 1)
-			if(do_after(user, max(5, round(damage / 5)), TRUE, 5, BUSY_ICON_FRIENDLY) && WT && WT.isOn())
+			if(do_after(user, max(5, round(damage / 5)), TRUE, 5, BUSY_ICON_FRIENDLY) && istype(src, /turf/closed/wall) && WT && WT.isOn())
 				user.visible_message("<span class='notice'>[user] finishes repairing the damage to [src].</span>",
 				"<span class='notice'>You finish repairing the damage to [src].</span>")
 				take_damage(-damage)
@@ -417,8 +396,6 @@
 		else
 			user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
 			return
-
-	var/turf/T = user.loc //Get user's location for delay checks
 
 	//DECONSTRUCTION
 	switch(d_state)
@@ -430,10 +407,10 @@
 				user.visible_message("<span class='notice'>[user] begins slicing through the outer plating.</span>",
 				"<span class='notice'>You begin slicing through the outer plating.</span>")
 
-				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall) || !user || !WT || !WT.isOn() || !T)	return
+				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
+					if(!istype(src, /turf/closed/wall) || !WT || !WT.isOn())	return
 
-					if(!d_state && user.loc == T && user.get_active_hand() == WT)
+					if(!d_state)
 						d_state++
 						user.visible_message("<span class='notice'>[user] slices through the outer plating.</span>",
 						"<span class='notice'>You slice through the outer plating.</span>")
@@ -446,10 +423,10 @@
 				"<span class='notice'>You begin removing the support lines.</span>")
 				playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
 
-				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall) || !user || !W || !T) return
+				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
+					if(!istype(src, /turf/closed/wall)) return
 
-					if(d_state == 1 && user.loc == T && user.get_active_hand() == W)
+					if(d_state == 1)
 						d_state++
 						user.visible_message("<span class='notice'>[user] removes the support lines.</span>",
 						"<span class='notice'>You remove the support lines.</span>")
@@ -463,10 +440,10 @@
 				"<span class='notice'>You begin slicing through the metal cover.</span>")
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 
-				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall) || !user || !WT || !WT.isOn() || !T)	return
+				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
+					if(!istype(src, /turf/closed/wall) || !WT || !WT.isOn())	return
 
-					if(d_state == 2 && user.loc == T && user.get_active_hand() == WT)
+					if(d_state == 2)
 						d_state++
 						user.visible_message("<span class='notice'>[user] presses firmly on the cover, dislodging it.</span>",
 						"<span class='notice'>You press firmly on the cover, dislodging it.</span>")
@@ -479,10 +456,10 @@
 				"<span class='notice'>You struggle to pry off the cover.</span>")
 				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 
-				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall) || !user || !W || !T) return
+				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
+					if(!istype(src, /turf/closed/wall)) return
 
-					if(d_state == 3 && user.loc == T && user.get_active_hand() == W)
+					if(d_state == 3)
 						d_state++
 						user.visible_message("<span class='notice'>[user] pries off the cover.</span>",
 						"<span class='notice'>You pry off the cover.</span>")
@@ -495,10 +472,10 @@
 				"<span class='notice'>You start loosening the anchoring bolts securing the support rods.</span>")
 				playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
 
-				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall) || !user || !W || !T) return
+				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
+					if(!istype(src, /turf/closed/wall)) return
 
-					if(d_state == 4 && user.loc == T && user.get_active_hand() == W)
+					if(d_state == 4)
 						d_state++
 						user.visible_message("<span class='notice'>[user] removes the bolts anchoring the support rods.</span>",
 						"<span class='notice'>You remove the bolts anchoring the support rods.</span>")
@@ -511,10 +488,10 @@
 				"<span class='notice'>You begin uncrimping the hydraulic lines.</span>")
 				playsound(src, 'sound/items/Wirecutter.ogg', 25, 1)
 
-				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall) || !user || !W || !T) return
+				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
+					if(!istype(src, /turf/closed/wall)) return
 
-					if(d_state == 5 && user.loc == T && user.get_active_hand() == W)
+					if(d_state == 5)
 						d_state++
 						user.visible_message("<span class='notice'>[user] finishes uncrimping the hydraulic lines.</span>",
 						"<span class='notice'>You finish uncrimping the hydraulic lines.</span>")
@@ -527,10 +504,10 @@
 				"<span class='notice'>You struggle to pry off the inner sheath.</span>")
 				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 
-				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall) || !user || !W || !T) return
+				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
+					if(!istype(src, /turf/closed/wall)) return
 
-					if(d_state == 6 && user.loc == T && user.get_active_hand() == W)
+					if(d_state == 6)
 						d_state++
 						user.visible_message("<span class='notice'>[user] pries off the inner sheath.</span>",
 						"<span class='notice'>You pry off the inner sheath.</span>")
@@ -544,10 +521,10 @@
 				"<span class='notice'>You begin slicing through the final layer.</span>")
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 
-				if(do_after(user, d_sleep, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall) || !user || !WT || !WT.isOn() || !T)	return
+				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
+					if(!istype(src, /turf/closed/wall) || !WT || !WT.isOn())	return
 
-					if(d_state == 7 && user.loc == T && user.get_active_hand() == WT)
+					if(d_state == 7)
 						new /obj/item/stack/rods(src)
 						user.visible_message("<span class='notice'>The support rods drop out as [user] slices through the final layer.</span>",
 						"<span class='notice'>The support rods drop out as you slice through the final layer.</span>")
