@@ -27,9 +27,10 @@
 	if(user in src.stomach_contents)
 		if(user.client)
 			user.client.next_movement = world.time + 20
-		for(var/mob/M in hearers(4, src))
-			if(M.client)
-				M.show_message(text("\red You hear something rumbling inside [src]'s stomach..."), 2)
+		if(prob(30))
+			for(var/mob/M in hearers(4, src))
+				if(M.client)
+					M.show_message("\red You hear something rumbling inside [src]'s stomach...", 2)
 		var/obj/item/I = user.get_active_hand()
 		if(I && I.force)
 			var/d = rand(round(I.force / 4), I.force)
