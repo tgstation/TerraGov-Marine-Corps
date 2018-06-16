@@ -24,6 +24,7 @@ Currently only has the tank hardpoints
 
 	var/next_use = 0
 	var/is_activatable = 0
+	var/max_angle = 180
 
 	var/list/backup_clips = list()
 	var/max_clips = 1 //1 so they can reload their backups and actually reload once
@@ -49,6 +50,9 @@ Currently only has the tank hardpoints
 
 //If our cooldown has elapsed
 /obj/item/hardpoint/proc/is_ready()
+	if(owner.z == 2 || owner.z == 3)
+		usr << "<span class='warning'>Don't fire here, you'll blow a hole in the ship!</span>"
+		return 0
 	return 1
 
 /obj/item/hardpoint/proc/try_add_clip(var/obj/item/ammo_magazine/A, var/mob/user)
@@ -69,9 +73,8 @@ Currently only has the tank hardpoints
 		user << "<span class='warning'>Something interrupted you while reloading [owner].</span>"
 		return 0
 
+	user.temp_drop_inv_item(A, 0)
 	user << "<span class='notice'>You install \the [A] in \the [owner].</span>"
-
-	if(!user.u_equip(A, owner, force = 1)) return 0
 	backup_clips += A
 	return 1
 
@@ -90,6 +93,24 @@ Currently only has the tank hardpoints
 		icon_state_suffix = "1"
 
 	return image(icon = "[disp_icon]_[icon_suffix]", icon_state = "[disp_icon_state]_[icon_state_suffix]", pixel_x = x_offset, pixel_y = y_offset)
+
+/obj/item/hardpoint/proc/firing_arc(var/atom/A)
+	var/turf/T = get_turf(A)
+	var/dx = T.x - owner.x
+	var/dy = T.y - owner.y
+	var/deg = 0
+	switch(owner.dir)
+		if(EAST) deg = 0
+		if(NORTH) deg = -90
+		if(WEST) deg = -180
+		if(SOUTH) deg = -270
+
+	var/nx = dx * cos(deg) - dy * sin(deg)
+	var/ny = dx * sin(deg) + dy * cos(deg)
+	if(nx == 0) return max_angle >= 90
+	var/angle = arctan(ny/nx)
+	if(nx < 0) angle += 180
+	return abs(angle) <= max_angle
 
 //Delineating between slots
 /obj/item/hardpoint/primary
@@ -126,6 +147,7 @@ Currently only has the tank hardpoints
 
 	ammo = new /obj/item/ammo_magazine/tank/ltb_cannon
 	max_clips = 3
+	max_angle = 45
 
 	apply_buff()
 		owner.cooldowns["primary"] = 200
@@ -167,13 +189,14 @@ Currently only has the tank hardpoints
 	disp_icon_state = "ltaaap_minigun"
 
 	ammo = new /obj/item/ammo_magazine/tank/ltaaap_minigun
+	max_angle = 45
 
 	//Miniguns don't use a conventional cooldown
 	//If you fire quickly enough, the cooldown decreases according to chain_delays
 	//If you fire too slowly, you slowly slow back down
 	//Also, different sounds play and it sounds sick, thanks Rahlzel
 	var/chained = 0 //how many quick succession shots we've fired
-	var/list/chain_delays = list(4, 4, 3, 3, 2, 2, 2) //the different cooldowns in deciseconds, sequentially
+	var/list/chain_delays = list(4, 4, 3, 3, 2, 2, 2, 1, 1) //the different cooldowns in deciseconds, sequentially
 
 	//MAIN PROBLEM WITH THIS IMPLEMENTATION OF DELAYS:
 	//If you spin all the way up and then stop firing, your chained shots will only decrease by 1
@@ -186,7 +209,7 @@ Currently only has the tank hardpoints
 
 	apply_buff()
 		owner.cooldowns["primary"] = 2 //will be overridden, please ignore
-		owner.accuracies["primary"] = 0.25
+		owner.accuracies["primary"] = 0.33
 
 	is_ready()
 		if(world.time < next_use)
@@ -214,7 +237,7 @@ Currently only has the tank hardpoints
 			S = 'sound/weapons/tank_minigun_stop.ogg'
 		if(chained <= 0) chained = 1
 
-		next_use = world.time + (chained > chain_delays.len ? 1 : chain_delays[chained]) * owner.misc_ratios["prim_cool"]
+		next_use = world.time + (chained > chain_delays.len ? 0.5 : chain_delays[chained]) * owner.misc_ratios["prim_cool"]
 		if(!prob(owner.accuracies["primary"] * 100 * owner.misc_ratios["prim_acc"]))
 			T = get_step(T, pick(cardinal))
 		var/obj/item/projectile/P = new
@@ -244,6 +267,7 @@ Currently only has the tank hardpoints
 	disp_icon_state = "flamer"
 
 	ammo = new /obj/item/ammo_magazine/tank/flamer
+	max_angle = 90
 
 	apply_buff()
 		owner.cooldowns["secondary"] = 20
@@ -286,6 +310,7 @@ Currently only has the tank hardpoints
 
 	ammo = new /obj/item/ammo_magazine/tank/towlauncher
 	max_clips = 1
+	max_angle = 90
 
 	apply_buff()
 		owner.cooldowns["secondary"] = 150
@@ -327,6 +352,7 @@ Currently only has the tank hardpoints
 
 	ammo = new /obj/item/ammo_magazine/tank/m56_cupola
 	max_clips = 1
+	max_angle = 90
 
 	apply_buff()
 		owner.cooldowns["secondary"] = 5
@@ -369,6 +395,7 @@ Currently only has the tank hardpoints
 
 	ammo = new /obj/item/ammo_magazine/tank/tank_glauncher
 	max_clips = 3
+	max_angle = 90
 
 	apply_buff()
 		owner.cooldowns["secondary"] = 30
@@ -475,13 +502,13 @@ Currently only has the tank hardpoints
 	disp_icon_state = "warray"
 
 	apply_buff()
-		owner.misc_ratios["prim_cool"] = 0.8
-		owner.misc_ratios["secd_cool"] = 0.8
-		owner.misc_ratios["supp_cool"] = 0.8
+		owner.misc_ratios["prim_cool"] = 0.67
+		owner.misc_ratios["secd_cool"] = 0.67
+		owner.misc_ratios["supp_cool"] = 0.67
 
-		owner.misc_ratios["prim_acc"] = 1.25
-		owner.misc_ratios["secd_acc"] = 1.25
-		owner.misc_ratios["supp_acc"] = 1.25
+		owner.misc_ratios["prim_acc"] = 1.67
+		owner.misc_ratios["secd_acc"] = 1.67
+		owner.misc_ratios["supp_acc"] = 1.67
 
 	remove_buff()
 		owner.misc_ratios["prim_cool"] = 1.0
@@ -504,7 +531,7 @@ Currently only has the tank hardpoints
 	disp_icon_state = "odrive_enhancer"
 
 	apply_buff()
-		owner.misc_ratios["move"] = 0.75
+		owner.misc_ratios["move"] = 0.5
 
 	remove_buff()
 		owner.misc_ratios["move"] = 1.0
@@ -515,6 +542,7 @@ Currently only has the tank hardpoints
 
 	health = 250
 	is_activatable = 1
+	var/is_active = 0
 
 	var/view_buff = 12 //This way you can VV for more or less fun
 	var/view_tile_offset = 5
@@ -530,6 +558,13 @@ Currently only has the tank hardpoints
 		var/mob/M = C.gunner
 		if(!M.client) return
 		M.client.view = view_buff
+		if(is_active)
+			M.client.view = 7
+			M.client.pixel_x = 0
+			M.client.pixel_y = 0
+			is_active = 0
+			return
+		is_active = 1
 		switch(C.dir)
 			if(NORTH)
 				M.client.pixel_x = 0
@@ -549,12 +584,16 @@ Currently only has the tank hardpoints
 		if(!C.gunner) return
 		var/mob/M = C.gunner
 		if(!M.client) return
+		is_active = 0
 		M.client.view = 7
 		M.client.pixel_x = 0
 		M.client.pixel_y = 0
 
 	remove_buff()
 		deactivate()
+
+	is_ready()
+		return 1
 
 ///////////////////
 // SUPPORT SLOTS // END
@@ -684,7 +723,7 @@ Currently only has the tank hardpoints
 		return null //Handled in update_icon()
 
 	apply_buff()
-		owner.move_delay = 10
+		owner.move_delay = 7
 
 	remove_buff()
 		owner.move_delay = 30
@@ -699,6 +738,8 @@ Currently only has the tank hardpoints
 ///////////////
 
 //Special ammo magazines for hardpoint modules. Some aren't here since you can use normal magazines on them
+/obj/item/ammo_magazine/tank
+	flags_magazine = 0 //No refilling
 
 /obj/item/ammo_magazine/tank/ltb_cannon
 	name = "LTB Cannon Magazine"
@@ -730,7 +771,7 @@ Currently only has the tank hardpoints
 	caliber = "UT-Napthal Fuel" //correlates to flamer mags
 	icon_state = "flametank_large"
 	w_class = 12
-	default_ammo = /datum/ammo/flamethrower
+	default_ammo = /datum/ammo/flamethrower/tank_flamer
 	max_rounds = 120
 	gun_type = /obj/item/hardpoint/secondary/flamer
 
