@@ -11,6 +11,7 @@
 	possible_transfer_amounts = list(5,10,15,25,30,60)
 	flags_atom = FPRINT|OPENCONTAINER
 	volume = 60
+	attack_speed = 4
 
 	on_reagent_change()
 		update_icon()
