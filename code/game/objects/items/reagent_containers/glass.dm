@@ -151,6 +151,7 @@
 	icon_state = "beaker"
 	item_state = "beaker"
 	matter = list("glass" = 500)
+	attack_speed = 4
 
 /obj/item/reagent_container/glass/beaker/on_reagent_change()
 	update_icon()

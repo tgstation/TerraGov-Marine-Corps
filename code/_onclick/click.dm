@@ -93,14 +93,13 @@
 	next_move = world.time
 	// If standing next to the atom clicked.
 	if (A.Adjacent(src))
-		next_move += 4
 		if (W)
 			if (W.attack_speed)
 				next_move += W.attack_speed
-
 			if (!A.attackby(W, src) && A)
 				W.afterattack(A, src, 1, mods)
 		else
+			next_move += 4
 			UnarmedAttack(A, 1)
 
 		return
