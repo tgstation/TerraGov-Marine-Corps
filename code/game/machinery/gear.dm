@@ -16,7 +16,6 @@
 	use_power = 0
 	opacity = 1
 	layer = ABOVE_MOB_LAYER
-	bound_width = 64
 	var/id
 
 /obj/machinery/elevator_strut/top
