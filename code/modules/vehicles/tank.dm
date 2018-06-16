@@ -316,11 +316,11 @@
 		next_sound_play = world.time + 21
 
 //No one but the driver can turn
-/obj/vehicle/multitile/root/cm_armored/tank/try_rotate(var/deg, var/mob/user)
+/obj/vehicle/multitile/root/cm_armored/tank/try_rotate(var/deg, var/mob/user, var/force = 0)
 
 	if(user != driver) return
 
-	. = ..(deg, user)
+	. = ..(deg, user, force)
 
 	if(. && istype(hardpoints[HDPT_SUPPORT], /obj/item/hardpoint/support/artillery_module) && gunner && gunner.client)
 		var/client/C = gunner.client

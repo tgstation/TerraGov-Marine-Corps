@@ -122,9 +122,9 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	return ..()
 
 //Same thing but for rotations
-/obj/vehicle/multitile/root/cm_armored/try_rotate(var/deg, var/mob/user)
-	if(world.time < next_move) return
-	next_move = world.time + move_delay * misc_ratios["move"] * 3 //3 for a 3 point turn, idk
+/obj/vehicle/multitile/root/cm_armored/try_rotate(var/deg, var/mob/user, var/force = 0)
+	if(world.time < next_move && !force) return
+	next_move = world.time + move_delay * misc_ratios["move"] * (force ? 2 : 3) //3 for a 3 point turn, idk
 	return ..()
 
 /obj/vehicle/multitile/root/cm_armored/proc/can_use_hp(var/mob/M)
@@ -148,11 +148,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	if(!HP.is_ready())
 		return
 
-	if(A.z == 2 || A.z == 3)
-		user << "<span class='warning'>Don't fire here, you'll blow a hole in the ship!</span>"
-		return
-
-	if(dir != get_cardinal_dir2(src, A))
+	if(!HP.firing_arc(A))
 		user << "<span class='warning'>The target is not within your firing arc.</span>"
 		return
 
@@ -217,7 +213,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	sleep(20)
 
-	HP.ammo.loc = entrance.loc
+	HP.ammo.Move(entrance.loc)
 	HP.ammo.update_icon()
 	HP.ammo = A
 	HP.backup_clips.Remove(A)
@@ -365,8 +361,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 				return
 
 		var/mob/living/M = A
-		M.KnockDown(7, 1)
-		M.sleeping = 1e7 //Changed to 0 when the tank leaves the tile
+		M.KnockDown(10, 1)
 		M.apply_damage(7 + rand(0, 5), BRUTE)
 		M.visible_message("<span class='danger'>[src] runs over [M]!</span>", "<span class='danger'>[src] runs you over! Get out of the way!</span>")
 		var/obj/vehicle/multitile/root/cm_armored/CA = root
@@ -394,6 +389,12 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		var/obj/structure/table/T = A
 		T.visible_message("<span class='danger'>[root] crushes [T]!</span>")
 		T.destroy(1)
+	else if(istype(A, /obj/structure/girder))
+		var/obj/structure/girder/G = A
+		G.dismantle()
+		var/obj/vehicle/multitile/root/cm_armored/CA = root
+		CA.take_damage_type(10, "blunt", G)
+		playsound(G, 'sound/effects/metal_crash.ogg', 35)
 
 /obj/vehicle/multitile/hitbox/cm_armored/Move(var/atom/A, var/direction)
 
@@ -537,7 +538,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	. = ..()
 
 /obj/vehicle/multitile/root/cm_armored/Entered(var/atom/movable/A)
-	if(istype(A, /obj))
+	if(istype(A, /obj) && !istype(A, /obj/item/ammo_magazine/tank))
 		A.forceMove(src.loc)
 		return
 
