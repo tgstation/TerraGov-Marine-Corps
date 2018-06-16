@@ -174,12 +174,12 @@ var/global/datum/controller/gameticker/ticker
 		world << "\red <B>The OOC channel has been globally disabled due to round start!</B>"
 		ooc_allowed = !( ooc_allowed )
 
-	var/admins_number = 0
-	for(var/client/C)
-		if(C.holder)
-			admins_number++
-	if(admins_number == 0)
-		send2adminirc("Round has started with no admins online.")
+//	var/admins_number = 0
+//	for(var/client/C)
+//		if(C.holder)
+//			admins_number++
+//	if(admins_number == 0)
+//		send2adminirc("Round has started with no admins online.")
 
 	supply_controller.process() 		//Start the supply shuttle regenerating points -- TLE
 

@@ -1,3 +1,4 @@
+/*
 /proc/send2irc(var/channel, var/msg)
 	if(config.use_irc_bot && config.irc_bot_host)
 		if(config.use_lib_nudge)
@@ -29,3 +30,4 @@
 	send2mainirc("Server starting up on [config.server? "byond://[config.server]" : "byond://[world.address]:[world.port]"]")
 	return 1
 
+*/
