@@ -88,7 +88,7 @@ directive is properly returned.
 
 
 /atom/proc/CheckExit(atom/movable/mover, turf/target)
-	if( !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir) )
+	if(!density || !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir))
 		return 1
 	else
 		return 0

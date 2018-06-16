@@ -78,7 +78,7 @@
 
 	if(O.throwing)
 		if(is_wired && iscarbon(O)) //Leaping mob against barbed wire fails
-			if(get_dir(loc, target) == dir)
+			if(get_dir(loc, target) & dir)
 				return 0
 		return 1
 
@@ -93,7 +93,7 @@
 
 	if(mover && mover.throwing)
 		if(is_wired && iscarbon(mover)) //Leaping mob against barbed wire fails
-			if(get_dir(loc, target) == dir)
+			if(get_dir(loc, target) & dir)
 				return 0
 		return 1
 
