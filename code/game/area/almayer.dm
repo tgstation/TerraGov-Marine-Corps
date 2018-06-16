@@ -7,12 +7,22 @@
 	icon_state = "almayer"
 	ceiling = CEILING_METAL
 
-/area/shuttle/almayer/elevatorhangar/lowerdeck
+/area/shuttle/almayer/elevator_maintenance/upperdeck
+	name = "\improper Maintenance Elevator"
+	icon_state = "shuttle"
+	fake_zlevel = 1
+
+/area/shuttle/almayer/elevator_maintenance/lowerdeck
+	name = "\improper Maintenance Elevator"
+	icon_state = "shuttle"
+	fake_zlevel = 2
+
+/area/shuttle/almayer/elevator_hangar/lowerdeck
 	name = "\improper Hangar Elevator"
 	icon_state = "shuttle"
 	fake_zlevel = 2 // lowerdeck
 
-/area/shuttle/almayer/elevatorhangar/underdeck
+/area/shuttle/almayer/elevator_hangar/underdeck
 	name = "\improper Hangar Elevator"
 	icon_state = "shuttle"
 	fake_zlevel = 3
@@ -26,6 +36,16 @@
 	density = 1
 	req_access = null
 	shuttle_tag = "Hangar"
+
+/obj/machinery/computer/shuttle_control/almayer/maintenance
+	name = "Elevator Console"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "shuttle"
+	unacidable = 1
+	exproof = 1
+	density = 1
+	req_access = null
+	shuttle_tag = "Maintenance"
 
 /area/almayer/command/cic
 	name = "\improper Almayer Combat Information Center"

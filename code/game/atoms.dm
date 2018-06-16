@@ -78,8 +78,20 @@ directive is properly returned.
 	//Called by: Movement.
 	//Inputs: The moving atom (optional), target turf
 	//Outputs: Boolean if can pass.
-	return !density
+	if(density)
+		if( (flags_atom & ON_BORDER) && !(get_dir(loc, target) & dir) )
+			return 1
+		else
+			return 0
+	else
+		return 1
 
+
+/atom/proc/CheckExit(atom/movable/mover, turf/target)
+	if( !(flags_atom & ON_BORDER) || !(get_dir(mover.loc, target) & dir) )
+		return 1
+	else
+		return 0
 
 
 // Convenience proc to see if a container is open for chemistry handling
@@ -100,8 +112,6 @@ directive is properly returned.
 /atom/proc/allow_drop()
 	return 1
 
-/atom/proc/CheckExit()
-	return 1
 
 /atom/proc/HasProximity(atom/movable/AM as mob|obj)
 	return

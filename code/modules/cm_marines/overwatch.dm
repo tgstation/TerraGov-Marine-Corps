@@ -228,7 +228,7 @@
 					dat += "No squad selected!"
 				else
 					dat += "<B>Current Supply Drop Status:</B> "
-					var/cooldown_left = current_squad.supply_cooldown - (world.time + 5000)
+					var/cooldown_left = (current_squad.supply_cooldown + 5000) - world.time
 					if(cooldown_left > 0)
 						dat += "Launch tubes resetting ([round(cooldown_left/10)] seconds)<br>"
 					else
@@ -259,9 +259,11 @@
 					dat += "No squad selected!"
 				else
 					dat += "<B>Current Cannon Status:</B> "
-					var/cooldown_left = current_squad.bomb_cooldown - (world.time + 20000)
+					var/cooldown_left = (almayer_orbital_cannon.last_orbital_firing + 5000) - world.time
 					if(cooldown_left > 0)
-						dat += "Shells Reloading ([round(cooldown_left/10)] seconds)<br>"
+						dat += "Cannon on cooldown ([round(cooldown_left/10)] seconds)<br>"
+					else if(!almayer_orbital_cannon.chambered_tray)
+						dat += "<font color='red'>No ammo chambered in the cannon.</font><br>"
 					else
 						dat += "<font color='green'>Ready!</font><br>"
 					dat += "<B>Beacon Status:</b> "
@@ -430,16 +432,15 @@
 			transfer_squad()
 		if("dropsupply")
 			if(current_squad)
-				if(current_squad.supply_cooldown > (world.time + 5000))
+				if((current_squad.supply_cooldown + 5000) > world.time)
 					usr << "\icon[src] <span class='warning'>Supply drop not yet available!</span>"
 				else
 					handle_supplydrop()
 		if("dropbomb")
-			if(current_squad)
-				if(current_squad.bomb_cooldown > (world.time + 20000))
-					usr << "\icon[src] <span class='warning'>Orbital bombardment not yet available!</span>"
-				else
-					handle_bombard()
+			if((almayer_orbital_cannon.last_orbital_firing + 5000) > world.time)
+				usr << "\icon[src] <span class='warning'>Orbital bombardment not yet available!</span>"
+			else
+				handle_bombard()
 		if("back")
 			state = 0
 		if("use_cam")
@@ -517,6 +518,10 @@
 		usr << "\icon[src] <span class='warning'>No orbital beacon detected!</span>"
 		return
 
+	if(!almayer_orbital_cannon.chambered_tray)
+		usr << "\icon[src] <span class='warning'>The orbital cannon has no ammo chambered.</span>"
+		return
+
 	if(!isturf(current_squad.bbeacon.loc) || current_squad.bbeacon.z != 1)
 		usr << "\icon[src] <span class='warning'>The [current_squad.bbeacon.name] is not transmitting from the ground.</span>"
 		return
@@ -568,7 +573,6 @@
 			message_mods("ALERT: [usr] ([usr.key]) fired an orbital bombardment in [A.name] for squad '[current_squad]' (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)")
 			log_attack("[usr.name] ([usr.ckey]) fired an orbital bombardment in [A.name] for squad '[current_squad]'")
 		busy = 0
-		current_squad.bomb_cooldown = world.time
 		if(current_squad.bbeacon)
 			cdel(current_squad.bbeacon) //Wipe the beacon. It's only good for one use.
 			current_squad.bbeacon = null
@@ -578,10 +582,8 @@
 		if(target && istype(target))
 			target.ceiling_debris_check(5)
 			spawn(2)
-				explosion(target,4,5,6,6,1,0) //massive boom
-				for(var/turf/TU in range(6,target))
-					if(!locate(/obj/flamer_fire) in TU)
-						new/obj/flamer_fire(TU, 10, 40) //super hot flames
+				almayer_orbital_cannon.fire_ob_cannon(target, usr)
+
 
 /obj/machinery/computer/overwatch/proc/change_lead()
 	if(!usr || usr != operator)
