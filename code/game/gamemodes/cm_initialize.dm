@@ -52,6 +52,7 @@ Additional game mode variables.
 	var/xeno_queen_deaths 	= 0 //How many times the alien queen died.
 	var/surv_starting_num 	= 0 //To clamp starting survivors.
 	var/merc_starting_num 	= 0 //PMC clamp.
+	var/marine_starting_num = 0 //number of players not in something special
 	var/pred_current_num 	= 0 //How many are there now?
 	var/pred_maximum_num 	= 4 //How many are possible per round? Does not count elders.
 	var/pred_round_chance 	= 20 //%
@@ -91,10 +92,15 @@ datum/game_mode/proc/initialize_special_clamps()
 	xeno_starting_num = Clamp((ready_players/7), xeno_required_num, INFINITY) //(n, minimum, maximum)
 	surv_starting_num = Clamp((ready_players/25), 0, 8)
 	merc_starting_num = Clamp((ready_players/3), 1, INFINITY)
+	marine_starting_num = ready_players - xeno_starting_num - surv_starting_num - merc_starting_num
 	for(var/datum/squad/sq in RoleAuthority.squads)
 		if(sq)
-			sq.max_engineers = engi_slot_formula(ready_players)
-			sq.max_medics = medic_slot_formula(ready_players)
+			sq.max_engineers = engi_slot_formula(marine_starting_num)
+			sq.max_medics = medic_slot_formula(marine_starting_num)
+
+	for(var/datum/job/J in RoleAuthority.roles_by_name)
+		if(J.scaled)
+			J.set_spawn_positions(marine_starting_num)
 
 
 //===================================================\\

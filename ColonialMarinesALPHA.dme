@@ -284,6 +284,7 @@
 #include "code\game\jobs\departments.dm"
 #include "code\game\jobs\jobs.dm"
 #include "code\game\jobs\role_authority.dm"
+#include "code\game\jobs\slot_scaling.dm"
 #include "code\game\jobs\whitelist.dm"
 #include "code\game\jobs\job\civilians.dm"
 #include "code\game\jobs\job\command.dm"
