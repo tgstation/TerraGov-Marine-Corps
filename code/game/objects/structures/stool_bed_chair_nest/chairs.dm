@@ -251,3 +251,13 @@
 				return
 	else
 		..()
+
+
+
+/obj/structure/bed/chair/ob_chair
+	name = "seat"
+	desc = "A comfortable seat."
+	icon_state = "ob_chair"
+	buildstacktype = null
+	unacidable = 1
+	dir = WEST

@@ -31,7 +31,6 @@
 
 	var/mob/living/carbon/human/overwatch_officer = null //Who's overwatching this squad?
 	var/supply_cooldown = 0 //Cooldown for supply drops
-	var/bomb_cooldown = 0 //Cooldown for orbital bombardment
 	var/primary_objective = null //Text strings
 	var/secondary_objective = null
 	var/obj/item/device/squad_beacon/sbeacon = null
