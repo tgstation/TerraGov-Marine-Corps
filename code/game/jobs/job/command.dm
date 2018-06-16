@@ -101,10 +101,17 @@ Make the USCM proud!"}
 	flag = ROLE_BRIDGE_OFFICER
 	total_positions = 5
 	spawn_positions = 5
+	scaled = 1
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_BRIG, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
 	skills_type = /datum/skills/SO
+
+	set_spawn_positions(var/count)
+		spawn_positions = so_slot_formula(count)
+
+	get_total_positions(var/latejoin = 0)
+		return (latejoin ? so_slot_formula(get_total_marines()) : spawn_positions)
 
 	generate_wearable_equipment()
 		. = list(
@@ -133,10 +140,17 @@ You are in charge of logistics and the overwatch system. You are also in line to
 	flag = ROLE_PILOT_OFFICER
 	total_positions = 4
 	spawn_positions = 4
+	scaled = 1
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PILOT)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
 	skills_type = /datum/skills/pilot
+
+	set_spawn_positions(var/count)
+		spawn_positions = po_slot_formula(count)
+
+	get_total_positions(var/latejoin = 0)
+		return (latejoin ? po_slot_formula(get_total_marines()) : spawn_positions)
 
 	generate_wearable_equipment()
 		. = list(
@@ -219,6 +233,7 @@ While you are an officer, your authority is limited to your own vehicle, where y
 	flag = ROLE_MILITARY_POLICE
 	total_positions = 5
 	spawn_positions = 5
+	scaled = 1
 	selection_color = "#ffdddd"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP)
@@ -226,12 +241,11 @@ While you are an officer, your authority is limited to your own vehicle, where y
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
 	skills_type = /datum/skills/MP
 
-	get_total_positions()
-		var/count = 0
-		var/mob/M
-		for(M in player_list)
-			if(ishuman(M) && M.mind && !M.mind.special_role) count++
-		. = max(4, min(round(count/12), 6))
+	set_spawn_positions(var/count)
+		spawn_positions = mp_slot_formula(count)
+
+	get_total_positions(var/latejoin = 0)
+		return (latejoin ? mp_slot_formula(get_total_marines()) : spawn_positions)
 
 	generate_wearable_equipment()
 		. = list(
