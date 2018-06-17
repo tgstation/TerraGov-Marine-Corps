@@ -142,7 +142,7 @@
 
 	//Praetorian vars
 	var/acid_spray_range = 3
-	var/acid_spray_cooldown = 120
+	var/acid_spray_cooldown = 150
 	var/used_acid_spray = 0
 
 	//Queen vars

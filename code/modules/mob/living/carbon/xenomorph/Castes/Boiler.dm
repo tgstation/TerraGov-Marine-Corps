@@ -185,6 +185,9 @@
 			src << "<span class='warning'>That's far too close!</span>"
 			return
 
+		if(!target)
+			return
+
 		acid_cooldown = 1
 		use_plasma(10)
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1)
@@ -203,6 +206,8 @@
 
 
 /mob/living/carbon/Xenomorph/Boiler/proc/spray_turfs(list/turflist)
+	set waitfor = 0
+
 	if(isnull(turflist))
 		return
 	var/turf/prev_turf
@@ -236,7 +241,7 @@
 				B.health -= rand(20, 30)
 				B.update_health(TRUE)
 				if(prev_turf)
-					if(get_dir(B, prev_turf) == B.dir)
+					if(get_dir(B, prev_turf) & B.dir)
 						break turf_loop
 
 			if(!check_plasma(10))
@@ -252,8 +257,7 @@
 		return
 
 	if(!locate(/obj/effect/xenomorph/spray) in target) //No stacking flames!
-		var/obj/effect/xenomorph/spray/S =  new(target)
-		processing_objects.Add(S)
+		new /obj/effect/xenomorph/spray(target)
 		for(var/mob/living/carbon/M in target)
 			if(ishuman(M) || ismonkey(M))
 				if((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest))

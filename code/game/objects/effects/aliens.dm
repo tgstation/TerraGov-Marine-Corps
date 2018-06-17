@@ -18,11 +18,11 @@
 	opacity = 0
 	anchored = 1
 
-	New() //Self-deletes after creation & animation
-		..()
-		spawn(8)
-			cdel(src)
-			return
+/obj/effect/xenomorph/splatter/New() //Self-deletes after creation & animation
+	..()
+	spawn(8)
+		cdel(src)
+
 
 /obj/effect/xenomorph/splatterblob
 	name = "splatter"
@@ -32,11 +32,11 @@
 	opacity = 0
 	anchored = 1
 
-	New() //Self-deletes after creation & animation
-		..()
-		spawn(40)
-			cdel(src)
-			return
+/obj/effect/xenomorph/splatterblob/New() //Self-deletes after creation & animation
+	..()
+	spawn(40)
+		cdel(src)
+
 
 /obj/effect/xenomorph/spray
 	name = "splatter"
@@ -47,13 +47,15 @@
 	anchored = 1
 	layer = ABOVE_OBJ_LAYER
 	mouse_opacity = 0
+	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
 
-	New() //Self-deletes
-		..()
-		spawn(100 + rand(0, 20))
-			processing_objects.Remove(src)
-			cdel(src)
-			return
+/obj/effect/xenomorph/spray/New() //Self-deletes
+	..()
+	processing_objects.Add(src)
+	spawn(100 + rand(0, 20))
+		processing_objects.Remove(src)
+		cdel(src)
+		return
 
 /obj/effect/xenomorph/spray/Crossed(AM as mob|obj)
 	..()
@@ -62,7 +64,7 @@
 		if(!H.lying)
 			H << "<span class='danger'>Your feet scald and burn! Argh!</span>"
 			H.emote("pain")
-			H.KnockDown(4)
+			H.KnockDown(3)
 			var/datum/limb/affecting = H.get_limb("l_foot")
 			if(istype(affecting) && affecting.take_damage(0, rand(5, 10)))
 				H.UpdateDamageIcon()

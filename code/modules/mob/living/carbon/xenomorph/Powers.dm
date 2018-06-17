@@ -63,7 +63,7 @@
 		src << "<span class='xenowarning'>You must wait to produce enough acid to spray.</span>"
 		return
 
-	if (!check_plasma(150))
+	if (!check_plasma(200))
 		src << "<span class='xenowarning'>You must produce more plasma before doing this.</span>"
 		return
 
@@ -80,8 +80,11 @@
 	if(!target)
 		return
 
+	if(!do_after(src, 12, TRUE, 5, BUSY_ICON_HOSTILE))
+		return
+
 	used_acid_spray = 1
-	use_plasma(150)
+	use_plasma(200)
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1)
 	visible_message("<span class='xenowarning'>\The [src] spews forth a wide cone of acid!</span>", \
 	"<span class='xenowarning'>You spew forth a cone of acid!</span>", null, 5)
@@ -96,28 +99,48 @@
 		src << "<span class='notice'>You have produced enough acid to spray again.</span>"
 
 /mob/living/carbon/Xenomorph/proc/do_acid_spray_cone(var/turf/T)
+	set waitfor = 0
+
 	var/facing = get_cardinal_dir(src, T)
 	dir = facing
 
 	T = loc
 	for (var/i = 0, i < acid_spray_range, i++)
-		T = get_step(T, facing)
+
+		var/turf/next_T = get_step(T, facing)
+
+		for (var/obj/O in T)
+			if(!O.CheckExit(src, next_T))
+				if(istype(O, /obj/structure/barricade))
+					var/obj/structure/barricade/B = O
+					B.health -= rand(20, 30)
+					B.update_health(1)
+				return
+
+		T = next_T
 
 		if (T.density)
 			return
 
 		for (var/obj/O in T)
-			if (O.density)
+			if(!O.CanPass(src, loc))
+				if(istype(O, /obj/structure/barricade))
+					var/obj/structure/barricade/B = O
+					B.health -= rand(20, 30)
+					B.update_health(1)
 				return
 
-		acid_splat_turf(T)
-		do_acid_spray_cone_normal(T, i, facing)
-		sleep(2)
+		var/obj/effect/xenomorph/spray/S = acid_splat_turf(T)
+		do_acid_spray_cone_normal(T, i, facing, S)
+		sleep(3)
 
 // Normal refers to the mathematical normal
-/mob/living/carbon/Xenomorph/proc/do_acid_spray_cone_normal(var/turf/T, var/distance, var/facing)
+/mob/living/carbon/Xenomorph/proc/do_acid_spray_cone_normal(turf/T, distance, facing, obj/effect/xenomorph/spray/source_spray)
 	if (!distance)
 		return
+
+	var/obj/effect/xenomorph/spray/left_S = source_spray
+	var/obj/effect/xenomorph/spray/right_S = source_spray
 
 	var/normal_dir = turn(facing, 90)
 	var/inverse_normal_dir = turn(facing, -90)
@@ -133,35 +156,73 @@
 			return
 
 		if (!normal_density_flag)
-			normal_turf = get_step(normal_turf, normal_dir)
-			normal_density_flag = normal_turf.density
+			var/next_normal_turf = get_step(normal_turf, normal_dir)
 
-			for (var/obj/O in T)
-				if (O.density)
+			for (var/obj/O in normal_turf)
+				if(!O.CheckExit(left_S, next_normal_turf))
+					if(istype(O, /obj/structure/barricade))
+						var/obj/structure/barricade/B = O
+						B.health -= rand(20, 30)
+						B.update_health(1)
 					normal_density_flag = 1
 					break
 
+			normal_turf = next_normal_turf
+
+			if(!normal_density_flag)
+				normal_density_flag = normal_turf.density
+
+			if(!normal_density_flag)
+				for (var/obj/O in normal_turf)
+					if(!O.CanPass(left_S, left_S.loc))
+						if(istype(O, /obj/structure/barricade))
+							var/obj/structure/barricade/B = O
+							B.health -= rand(20, 30)
+							B.update_health(1)
+						normal_density_flag = 1
+						break
+
 			if (!normal_density_flag)
-				acid_splat_turf(normal_turf)
+				left_S = acid_splat_turf(normal_turf)
+
 
 		if (!inverse_normal_density_flag)
-			inverse_normal_turf = get_step(inverse_normal_turf, inverse_normal_dir)
-			inverse_normal_density_flag = inverse_normal_turf.density
 
-			for (var/obj/O in T)
-				if (O.density)
+			var/next_inverse_normal_turf = get_step(inverse_normal_turf, inverse_normal_dir)
+
+			for (var/obj/O in inverse_normal_turf)
+				if(!O.CheckExit(right_S, next_inverse_normal_turf))
+					if(istype(O, /obj/structure/barricade))
+						var/obj/structure/barricade/B = O
+						B.health -= rand(20, 30)
+						B.update_health(1)
 					inverse_normal_density_flag = 1
 					break
 
+			inverse_normal_turf = next_inverse_normal_turf
+
+			if(!inverse_normal_density_flag)
+				inverse_normal_density_flag = inverse_normal_turf.density
+
+			if(!inverse_normal_density_flag)
+				for (var/obj/O in inverse_normal_turf)
+					if(!O.CanPass(right_S, right_S.loc))
+						if(istype(O, /obj/structure/barricade))
+							var/obj/structure/barricade/B = O
+							B.health -= rand(20, 30)
+							B.update_health(1)
+						inverse_normal_density_flag = 1
+						break
+
 			if (!inverse_normal_density_flag)
-				acid_splat_turf(inverse_normal_turf)
+				right_S = acid_splat_turf(inverse_normal_turf)
 
 
 
 /mob/living/carbon/Xenomorph/proc/acid_splat_turf(var/turf/T)
-	if (!locate(/obj/effect/xenomorph/spray) in T)
-		var/obj/effect/xenomorph/spray/S = new(T)
-		processing_objects.Add(S)
+	. = locate(/obj/effect/xenomorph/spray) in T
+	if(!.)
+		. = new /obj/effect/xenomorph/spray(T)
 
 		// This should probably be moved into obj/effect/xenomorph/spray or something
 		for (var/obj/structure/barricade/B in T)
@@ -175,7 +236,7 @@
 			if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
 				continue
 
-			C.adjustFireLoss(rand(20 + 5 * upgrade, 30 + 5 * upgrade))
+			C.adjustFireLoss(rand(20,30) + 5 * upgrade)
 			C << "<span class='xenodanger'>\The [src] showers you in corrosive acid!</span>"
 
 			if (!isYautja(C))
