@@ -6,6 +6,8 @@
 		if(ishuman(M) && M.mind && !M.mind.special_role) count++
 	return count
 
+// https://docs.google.com/spreadsheets/d/1PlnIwKhq-bVWWFPoBrzWYh1mWK04pyBSQUtUMEw3qSw/edit#gid=1290768907
+
 /proc/job_slot_formula(var/marine_count,var/factor,var/c,var/min,var/max)
 	return round(Clamp((marine_count/factor)+c, min, max))
 
@@ -19,10 +21,10 @@
 	return job_slot_formula(playercount,25,2,4,8)
 
 /proc/po_slot_formula(var/playercount)
-	return job_slot_formula(playercount,55,1,2,4)
+	return job_slot_formula(playercount,50,1,2,4)
 
 /proc/so_slot_formula(var/playercount)
-	return job_slot_formula(playercount,60,1,2,5)
+	return job_slot_formula(playercount,65,2,3,5)
 
 /proc/doc_slot_formula(var/playercount)
 	return job_slot_formula(playercount,25,1,3,6)
@@ -34,4 +36,4 @@
 	return job_slot_formula(playercount,60,1,2,4)
 
 /proc/ct_slot_formula(var/playercount)
-	return job_slot_formula(playercount,50,0,1,3)
+	return job_slot_formula(playercount,40,0,1,3)
