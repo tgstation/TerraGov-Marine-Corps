@@ -1149,7 +1149,7 @@
 
 	if(!keep_viruses)
 		for (var/datum/disease/virus in viruses)
-			virus.cure()
+			virus.cure(0)
 
 	undefibbable = FALSE
 	..()

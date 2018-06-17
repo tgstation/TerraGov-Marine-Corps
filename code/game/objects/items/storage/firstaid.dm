@@ -330,3 +330,9 @@
 	name = "\improper Quickclot pill bottle"
 	icon_state = "pill_canister8"
 	pill_type_to_fill = /obj/item/reagent_container/pill/quickclot
+
+/obj/item/storage/pill_bottle/ultrazine
+	name = "\improper Ultrazine pill bottle"
+	icon_state = "pill_canister11"
+	skilllock = 0 //CL can open it
+	pill_type_to_fill = /obj/item/reagent_container/pill/ultrazine

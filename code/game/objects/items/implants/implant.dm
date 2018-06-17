@@ -22,7 +22,7 @@
 	// What does the implant do upon injection?
 	// return 0 if the implant fails (ex. Revhead and loyalty implant.)
 	// return 1 if the implant succeeds (ex. Nonrevhead and loyalty implant.)
-	proc/implanted(mob/source)
+	proc/implanted(mob/source, mob/user)
 		if(istype(source, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = source
 			H.sec_hud_set_implants()

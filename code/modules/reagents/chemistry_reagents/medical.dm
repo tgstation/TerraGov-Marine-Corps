@@ -648,6 +648,8 @@
 		. = ..()
 		if(!.) return
 
+		M.life_move_delay -= 1
+
 		if(prob(1))
 			M.emote(pick("twitch","blink_r","shiver"))
 			if(ishuman(M))
@@ -673,6 +675,62 @@
 				E.damage += 2
 			if(prob(25))
 				M.emote(pick("twitch", "blink_r", "shiver"))
+
+/datum/reagent/ultrazine
+	name = "Ultrazine"
+	id = "ultrazine"
+	description = "A highly-potent, long-lasting combination CNS and muscle stimulant. Extremely addictive."
+	reagent_state = LIQUID
+	color = "#C8A5DC" // rgb: 200, 165, 220
+	custom_metabolism = 0.0167 //5 units will last approximately 10 minutes
+	overdose = 10
+	overdose_critical = 20
+
+/datum/reagent/ultrazine/on_mob_life(mob/living/M)
+	. = ..()
+	if(!.) return
+
+	M.life_move_delay -= 2
+
+	var/has_addiction = 0
+
+	for(var/datum/disease/ultrazine_addiction/D in M.viruses)
+		has_addiction = 1
+
+		if(D.stage < D.max_stages)
+			D.addiction_progression++
+			if(D.addiction_progression > D.progression_threshold)
+				D.addiction_progression = 0
+				D.stage++
+		else
+			D.addiction_progression = min(D.addiction_progression+1, D.progression_threshold) //withdrawal buffer
+
+		break
+
+	if(!has_addiction)
+		M.contract_disease(new /datum/disease/ultrazine_addiction, 1)
+
+	if(prob(2))
+		M.emote(pick("twitch","blink_r","shiver"))
+
+
+/datum/reagent/ultrazine/on_overdose(mob/living/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+		if(E)
+			E.damage += 0.5
+		if(prob(10))
+			M.emote(pick("twitch", "blink_r", "shiver"))
+
+/datum/reagent/ultrazine/on_overdose_critical(mob/living/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
+		if(E)
+			E.damage += 2
+		if(prob(25))
+			M.emote(pick("twitch", "blink_r", "shiver"))
 
 /datum/reagent/cryoxadone
 	name = "Cryoxadone"

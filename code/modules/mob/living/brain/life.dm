@@ -88,6 +88,8 @@
 
 /mob/living/brain/proc/handle_chemicals_in_body()
 
+	life_move_delay = 0
+
 	if(reagents) reagents.metabolize(src)
 
 	confused = max(0, confused - 1)

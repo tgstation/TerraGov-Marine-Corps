@@ -48,7 +48,7 @@
 			hidden = list(0,0)
 			//survive_mob_death = TRUE //even if host dies now, the transformation will occur.
 			H.pale_max = 110
-			H.next_move_slowdown += 1
+			H.next_move_slowdown = max(H.next_move_slowdown, 1)
 			if(goo_message_cooldown < world.time)
 				if (prob(3))
 					affected_mob << "\red You cough up some black fluid..."
@@ -63,7 +63,7 @@
 					goo_message_cooldown = world.time + 100
 					H.vomit_on_floor()
 		if(4)
-			H.next_move_slowdown += 2
+			H.next_move_slowdown = max(H.next_move_slowdown, 2)
 			if(prob(5) || age >= stage_minimum_age-1)
 				if(!zombie_transforming)
 					zombie_transform(H)

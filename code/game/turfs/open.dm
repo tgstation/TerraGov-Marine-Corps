@@ -57,6 +57,13 @@
 
 
 
+/turf/open/examine(mob/user)
+	..()
+	ceiling_desc(user)
+
+
+
+
 /turf/open/river
 	can_bloody = FALSE
 
