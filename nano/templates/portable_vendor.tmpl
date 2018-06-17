@@ -1,0 +1,28 @@
+
+
+
+{{if data.show_points}}
+	<div itemContent>
+		<h3>Points: <span class="white">{{:data.current_points}}/{{:data.max_points}}</span></h3>
+	</div>
+{{/if}}
+
+<div itemLabel>
+	{{for data.displayed_records}}
+		{{if value.prod_color}}
+			<div style="padding-top: 10px ; font-weight: bold ; float: left ; clear : both ; width: 50% ; color: {{:value.prod_color}}">
+				{{:helper.link(value.prod_name, null, {'vend' : value.prod_index}, value.prod_available ? null : 'disabled', null)}}
+			</div>
+		{{else}}
+			<div style="padding-top: 10px ; font-weight: bold ; float: left ; clear : both ; width: 50%">
+				<span class="white">{{:value.prod_name}}</span>
+			</div>
+		{{/if}}
+	
+		{{if value.prod_desc}}
+			<div style="padding-top: 5px ; font-weight: lighter ; clear : both">
+				<span class="white">{{:value.prod_desc}}</span>
+			</div>
+		{{/if}}
+	{{/for}}
+</div>

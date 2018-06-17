@@ -31,8 +31,7 @@
 	if(wear_suit)
 		reducible_tally += wear_suit.slowdown
 
-	if(reagents.has_reagent("hyperzine"))
-		reducible_tally -= 1.5
+	reducible_tally += life_move_delay //hyperzine and ultrazine
 
 	if(shock_stage >= 10 && !isYautja(src))
 		reducible_tally += 3
@@ -44,8 +43,8 @@
 		temporary_slowdown = max(temporary_slowdown - 1, 0)
 		reducible_tally += 2 //Temporary slowdown slows hard
 
-	//Compile reducible tally and send it to total tally. Cannot go faster from the reducible tally!
-	. += max(0, reducible_tally)
+	//Compile reducible tally and send it to total tally. Cannot go more than 1 units faster from the reducible tally!
+	. += max(-1, reducible_tally)
 
 	if(istype(get_active_hand(), /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/G = get_active_hand() //If wielding, it will ALWAYS be on the active hand

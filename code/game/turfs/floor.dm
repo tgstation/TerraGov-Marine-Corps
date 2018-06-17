@@ -45,10 +45,6 @@ var/list/plating_icons = list("plating", "platingdmg1", "platingdmg2", "platingd
 var/list/wood_icons = list("wood", "wood-broken")
 
 
-/turf/open/floor/examine(mob/user)
-	..()
-	ceiling_desc(user)
-
 /turf/open/floor/New()
 	..()
 	if(icon_state in icons_to_ignore_at_floor_init)//So damaged/burned tiles or plating icons aren't saved as the default

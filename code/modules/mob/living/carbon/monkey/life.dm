@@ -340,6 +340,8 @@
 
 	proc/handle_chemicals_in_body()
 
+		life_move_delay = 0
+
 		if(reagents && reagents.reagent_list.len)
 			reagents.metabolize(src)
 
