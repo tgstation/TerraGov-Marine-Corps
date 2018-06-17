@@ -115,7 +115,7 @@
 
 	attack_self(mob/user)
 		if(!isturf(user.loc))
-			user << "You cannot turn the light on while in this [user.loc]" //To prevent some lighting anomalities.
+			user << "You cannot turn the light on while in [user.loc]" //To prevent some lighting anomalities.
 			return
 		on = !on
 		icon_state = "hardhat[on]_pumpkin"

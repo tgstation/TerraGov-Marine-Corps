@@ -227,7 +227,7 @@ var/list/slot_equipment_priority = list( \
 	return
 
 
-/mob/proc/show_inv(mob/user as mob)
+/mob/proc/show_inv(mob/user)
 	user.set_interaction(src)
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
@@ -332,18 +332,16 @@ var/list/slot_equipment_priority = list( \
 	return
 
 
-/mob/MouseDrop(mob/M as mob)
+/mob/MouseDrop(mob/M)
 	..()
 	if(M != usr) return
 	if(usr == src) return
 	if(!Adjacent(usr)) return
-	if(istype(M,/mob/living/silicon/ai)) return
-	//Xenos cannot check inventories by drag-dropping at all.
-	//Comment this out to re-add xeno inventory functionality.
-	if((isXeno(M) || isXeno(src)) && src != M) return
-	if(usr.lying)
+	if(!ishuman(M) && !ismonkey(M)) return
+	if(!ishuman(src) && !ismonkey(src)) return
+	if(M.lying || M.is_mob_incapacitated())
 		return
-	show_inv(usr)
+	show_inv(M)
 
 
 //attempt to pull/grab something. Returns true upon success.

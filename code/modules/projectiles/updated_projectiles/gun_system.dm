@@ -712,7 +712,16 @@ and you're good to go.
 					apply_bullet_effects(projectile_to_fire, user) //We add any damage effects that we need.
 					simulate_recoil(1, user)
 
-					projectile_to_fire.ammo.on_hit_mob(M,projectile_to_fire)
+					if(projectile_to_fire.ammo.bonus_projectiles_amount)
+						var/obj/item/projectile/BP
+						for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
+							BP = rnew(/obj/item/projectile, M.loc)
+							BP.generate_bullet(ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
+							BP.ammo.on_hit_mob(M, BP)
+							M.bullet_act(BP)
+							cdel(BP)
+
+					projectile_to_fire.ammo.on_hit_mob(M, projectile_to_fire)
 					M.bullet_act(projectile_to_fire)
 					last_fired = world.time
 
