@@ -19,7 +19,7 @@
 	//so pipes under walls are hidden
 	if(istype(loc, /turf/closed))
 		level = 1
-	build_network()
+	//build_network()
 
 /obj/machinery/atmospherics/pipe/proc/pipeline_expansion()
 	return null
@@ -72,7 +72,7 @@
 		if(parent)
 			cdel(parent)
 	. = ..()
-	build_network()
+	//build_network()
 
 /obj/machinery/atmospherics/pipe/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(istype(src, /obj/machinery/atmospherics/pipe/tank))
@@ -195,7 +195,8 @@
 	if(!parent) //This should cut back on the overhead calling build_network thousands of times per cycle
 		..()
 	else
-		. = PROCESS_KILL
+		//. = PROCESS_KILL
+		stop_processing()
 
 /obj/machinery/atmospherics/pipe/simple/check_pressure(pressure)
 	return 1
@@ -435,7 +436,8 @@
 	if(!parent)
 		..()
 	else
-		. = PROCESS_KILL
+		//. = PROCESS_KILL
+		stop_processing()
 
 /obj/machinery/atmospherics/pipe/manifold/Dispose()
 	if(node1)
@@ -671,7 +673,8 @@
 	if(!parent)
 		..()
 	else
-		. = PROCESS_KILL
+		//. = PROCESS_KILL
+		stop_processing()
 
 /obj/machinery/atmospherics/pipe/manifold4w/Dispose()
 	if(node1)
@@ -927,7 +930,9 @@
 	if(!parent)
 		..()
 	else
-		. = PROCESS_KILL
+		//. = PROCESS_KILL
+		stop_processing()
+
 /obj/machinery/atmospherics/pipe/cap/Dispose()
 	if(node)
 		node.disconnect(src)
@@ -1044,7 +1049,8 @@
 	if(!parent)
 		..()
 	else
-		. = PROCESS_KILL
+		//. = PROCESS_KILL
+		stop_processing()
 
 /obj/machinery/atmospherics/pipe/tank/Dispose()
 	if(node1)
@@ -1182,7 +1188,8 @@
 /obj/machinery/atmospherics/pipe/vent/process()
 	if(!parent)
 		if(build_killswitch <= 0)
-			. = PROCESS_KILL
+			//. = PROCESS_KILL
+			stop_processing()
 		else
 			build_killswitch--
 		..()

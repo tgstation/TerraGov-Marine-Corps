@@ -135,7 +135,8 @@
 
 /obj/machinery/atmospherics/valve/process()
 	..()
-	. = PROCESS_KILL
+	//. = PROCESS_KILL
+	stop_processing()
 
 	return
 
