@@ -47,6 +47,9 @@
 	if(!connect_to_network()) //Should start with a cable piece underneath, if it doesn't, something's messed up in mapping
 		powernet_connection_failed = 1
 
+/obj/machinery/power/geothermal/power_change()
+	return
+
 /obj/machinery/power/geothermal/process()
 	if(!is_on || buildstate || !anchored) //Default logic checking
 		return 0

@@ -31,6 +31,8 @@
 	connect_to_network() //Should start with a cable piece underneath, if it doesn't, something's messed up in mapping
 	..()
 
+/obj/machinery/power/fusion_engine/power_change()
+	return
 
 /obj/machinery/power/fusion_engine/process()
 	if(!is_on || buildstate || !anchored || !powernet || !fusion_cell) //Default logic checking
