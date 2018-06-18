@@ -122,7 +122,7 @@
 		var/obj/effect/decal/cleanable/blood/xeno/decal = locate(/obj/effect/decal/cleanable/blood/xeno) in T
 
 		if(!decal) //Let's not stack blood, it just makes lagggggs.
-			T.add_blood_floor(src) //Drop some on the ground first.
+			add_splatter_floor(T) //Drop some on the ground first.
 		else
 			if(decal.random_icon_states && length(decal.random_icon_states) > 0) //If there's already one, just randomize it so it changes.
 				decal.icon_state = pick(decal.random_icon_states)

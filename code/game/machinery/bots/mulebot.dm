@@ -802,7 +802,7 @@
 	H.apply_damage(0.5*damage, BRUTE, "l_arm")
 	H.apply_damage(0.5*damage, BRUTE, "r_arm")
 
-	blood_splatter(src,H,1)
+	H.add_splatter_floor(loc, 1)
 	bloodiness += 4
 
 // player on mulebot attempted to move

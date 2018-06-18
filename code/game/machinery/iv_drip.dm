@@ -91,21 +91,21 @@
 
 		if(!(get_dist(src, src.attached) <= 1 && isturf(src.attached.loc)))
 			visible_message("The needle is ripped out of [src.attached], doesn't that hurt?")
-			src.attached:apply_damage(3, BRUTE, pick("r_arm", "l_arm"))
-			src.attached = null
-			src.update_icon()
+			attached.apply_damage(3, BRUTE, pick("r_arm", "l_arm"))
+			attached = null
+			update_icon()
 			stop_processing()
 			return
 
-	if(src.attached && src.beaker)
+	if(attached && beaker)
 		// Give blood
 		if(mode)
-			if(src.beaker.volume > 0)
+			if(beaker.volume > 0)
 				var/transfer_amount = REAGENTS_METABOLISM
 				if(istype(src.beaker, /obj/item/reagent_container/blood))
 					// speed up transfer on blood packs
 					transfer_amount = 4
-				src.beaker.reagents.trans_to(src.attached, transfer_amount)
+				attached.inject_blood(beaker, transfer_amount)
 				update_icon()
 
 		// Take blood
@@ -129,17 +129,11 @@
 				return
 
 			// If the human is losing too much blood, beep.
-			if(T.vessel.get_reagent_amount("blood") < BLOOD_VOLUME_SAFE) if(prob(5))
+			if(T.blood_volume < BLOOD_VOLUME_SAFE) if(prob(5))
 				visible_message("\The [src] beeps loudly.")
 
-			var/datum/reagent/B = T.take_blood(beaker,amount)
-
-			if (B)
-				beaker.reagents.reagent_list |= B
-				beaker.reagents.update_total()
-				beaker.on_reagent_change()
-				beaker.reagents.handle_reactions()
-				update_icon()
+			T.take_blood(beaker,amount)
+			update_icon()
 
 /obj/machinery/iv_drip/attack_hand(mob/user as mob)
 	if(src.beaker)

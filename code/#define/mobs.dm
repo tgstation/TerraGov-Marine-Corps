@@ -413,6 +413,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 
 //Blood levels
+#define BLOOD_VOLUME_MAXIMUM	600
 #define BLOOD_VOLUME_NORMAL		560
 #define BLOOD_VOLUME_SAFE		501
 #define BLOOD_VOLUME_OKAY		336

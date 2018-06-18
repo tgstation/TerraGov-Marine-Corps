@@ -173,12 +173,6 @@ proc/trigger_armed_response_team(var/force = 0)
 		M.g_eyes = hex2num(copytext(new_eyes, 4, 6))
 		M.b_eyes = hex2num(copytext(new_eyes, 6, 8))
 
-	var/new_tone = input("Please select skin tone level: 1-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation")  as text
-
-	if (!new_tone)
-		new_tone = 35
-	M.s_tone = max(min(round(text2num(new_tone)), 220), 1)
-	M.s_tone =  -M.s_tone + 35
 
 	// hair
 	var/list/all_hairs = typesof(/datum/sprite_accessory/hair) - /datum/sprite_accessory/hair
@@ -201,39 +195,7 @@ proc/trigger_armed_response_team(var/force = 0)
 	if(new_fstyle)
 		M.f_style = new_fstyle
 
-	// if new style selected (not cancel)
-/*	if (new_style)
-		M.h_style = new_style
 
-		for(var/x in all_hairs) // loop through all_hairs again. Might be slightly CPU expensive, but not significantly.
-			var/datum/sprite_accessory/hair/H = new x // create new hair datum
-			if(H.name == new_style)
-				M.h_style = H // assign the hair_style variable a new hair datum
-				break
-			else
-				cdel(H) // if hair H not used, delete. BYOND can garbage collect, but better safe than sorry
-
-	// facial hair
-	var/list/all_fhairs = typesof(/datum/sprite_accessory/facial_hair) - /datum/sprite_accessory/facial_hair
-	var/list/fhairs = list()
-
-	for(var/x in all_fhairs)
-		var/datum/sprite_accessory/facial_hair/H = new x
-		fhairs.Add(H.name)
-		cdel(H)
-
-	new_style = input("Please select facial style", "Character Generation")  as null|anything in fhairs
-
-	if(new_style)
-		M.f_style = new_style
-		for(var/x in all_fhairs)
-			var/datum/sprite_accessory/facial_hair/H = new x
-			if(H.name == new_style)
-				M.f_style = H
-				break
-			else
-				cdel(H)
-*/
 	var/new_gender = alert(usr, "Please select gender.", "Character Generation", "Male", "Female")
 	if (new_gender)
 		if(new_gender == "Male")

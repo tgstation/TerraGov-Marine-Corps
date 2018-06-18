@@ -63,7 +63,7 @@
 
 	if(!client && stat == CONSCIOUS)
 
-		if(prob(33) && canmove && isturf(loc) && !pulledby) //won't move if being pulled
+		if(prob(33) && canmove && !buckled && isturf(loc) && !pulledby) //won't move if being pulled
 
 			step(src, pick(cardinal))
 

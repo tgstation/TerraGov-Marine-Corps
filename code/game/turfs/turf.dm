@@ -231,37 +231,6 @@
 
 
 
-//returns 1 if made bloody, returns 0 otherwise
-/turf/add_blood(mob/living/carbon/human/M as mob)
-	if(!can_bloody)
-		return 0
-
-	if (!..())
-		return 0
-
-	for(var/obj/effect/decal/cleanable/blood/B in contents)
-		if(!B.blood_DNA[M.dna.unique_enzymes])
-			B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
-		return 1 //we bloodied the floor
-
-	blood_splatter(src,M.get_blood(M.vessel),1)
-	return 1 //we bloodied the floor
-
-
-// Only adds blood on the floor -- Skie
-/turf/proc/add_blood_floor(mob/living/carbon/M as mob)
-	if(!can_bloody)
-		return 0
-
-	if(istype(M, /mob/living/carbon/monkey))
-		blood_splatter(src,M,1)
-	else if( istype(M, /mob/living/carbon/Xenomorph))
-		var/obj/effect/decal/cleanable/blood/xeno/this = new /obj/effect/decal/cleanable/blood/xeno(src)
-		this.blood_DNA["UNKNOWN BLOOD"] = "X*"
-	else if( istype(M, /mob/living/silicon/robot ))
-		new /obj/effect/decal/cleanable/blood/oil(src)
-
-
 
 
 

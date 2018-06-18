@@ -406,24 +406,6 @@ its easier to just keep the beam vertical.
 		A.fingerprintshidden |= fingerprintshidden.Copy()    //admin	A.fingerprintslast = fingerprintslast
 
 
-//returns 1 if made bloody, returns 0 otherwise
-/atom/proc/add_blood(mob/living/carbon/human/M as mob)
-	if(flags_atom & NOBLOODY) return 0
-	.= 1
-	if (!( istype(M, /mob/living/carbon/human) ))
-		return 0
-	if (!istype(M.dna, /datum/dna))
-		M.dna = new /datum/dna(null)
-		M.dna.real_name = M.real_name
-	M.check_dna()
-	if (!(flags_atom & FPRINT))
-		return 0
-	if(!blood_DNA || !istype(blood_DNA, /list))	//if our list of DNA doesn't exist yet (or isn't a list) initialise it.
-		blood_DNA = list()
-	blood_color = "#A10808"
-	if (M.species)
-		blood_color = M.species.blood_color
-	return
 
 /atom/proc/add_vomit_floor(mob/living/carbon/M, var/toxvomit = 0)
 	return
@@ -434,14 +416,6 @@ its easier to just keep the beam vertical.
 	// Make toxins vomit look different
 	if(toxvomit)
 		this.icon_state = "vomittox_[pick(1,4)]"
-
-
-/atom/proc/clean_blood()
-	src.germ_level = 0
-	if(istype(blood_DNA, /list))
-		cdel(blood_DNA)
-		blood_DNA = null
-		return 1
 
 
 /atom/proc/get_global_map_pos()

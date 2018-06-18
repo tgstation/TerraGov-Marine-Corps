@@ -113,10 +113,7 @@ var/const/INGEST = 2
 	for (var/datum/reagent/current_reagent in src.reagent_list)
 		if (!current_reagent)
 			continue
-		if (current_reagent.id == "blood" && ishuman(target))
-			var/mob/living/carbon/human/H = target
-			H.inject_blood(my_atom, amount)
-			continue
+
 		var/current_reagent_transfer = current_reagent.volume * part
 		if(preserve_data)
 			trans_data = copy_data(current_reagent)
@@ -130,37 +127,11 @@ var/const/INGEST = 2
 	src.handle_reactions()
 	return amount
 
-/datum/reagents/proc/trans_to_ingest(var/obj/target, var/amount=1, var/multiplier=1, var/preserve_data=1)//For items ingested. A delay is added between ingestion and addition of the reagents
+/datum/reagents/proc/trans_to_ingest(var/atom/movable/target, var/amount=1, var/multiplier=1, var/preserve_data=1)//For items ingested. A delay is added between ingestion and addition of the reagents
 	if (!target )
 		return
 	if (!target.reagents || src.total_volume<=0)
 		return
-
-	/*var/datum/reagents/R = target.reagents
-
-	var/obj/item/reagent_container/glass/beaker/noreact/B = new /obj/item/reagent_container/glass/beaker/noreact //temporary holder
-
-	amount = min(min(amount, src.total_volume), R.maximum_volume-R.total_volume)
-	var/part = amount / src.total_volume
-	var/trans_data = null
-	for (var/datum/reagent/current_reagent in src.reagent_list)
-		if (!current_reagent)
-			continue
-		//if (current_reagent.id == "blood" && ishuman(target))
-		//	var/mob/living/carbon/human/H = target
-		//	H.inject_blood(my_atom, amount)
-		//	continue
-		var/current_reagent_transfer = current_reagent.volume * part
-		if(preserve_data)
-			trans_data = current_reagent.data
-
-		B.add_reagent(current_reagent.id, (current_reagent_transfer * multiplier), trans_data, safety = 1)	//safety checks on these so all chemicals are transferred
-		src.remove_reagent(current_reagent.id, current_reagent_transfer, safety = 1)							// to the target container before handling reactions
-
-	src.update_total()
-	B.update_total()
-	B.handle_reactions()
-	src.handle_reactions()*/
 
 	var/obj/item/reagent_container/glass/beaker/noreact/B = new /obj/item/reagent_container/glass/beaker/noreact //temporary holder
 	B.volume = 1000
@@ -173,6 +144,8 @@ var/const/INGEST = 2
 	src.trans_to(B, amount)
 
 	spawn(95)
+		if(target.disposed)
+			return
 		BR.reaction(target, INGEST)
 		spawn(5)
 			BR.trans_to(target, BR.total_volume)
@@ -419,29 +392,28 @@ var/const/INGEST = 2
 			my_atom.on_reagent_change()
 
 			// mix dem viruses
-			if(R.id == "blood" && reagent == "blood")
-				if(R.data && data)
+			if(R.data && data)
 
-					if(R.data["viruses"] || data["viruses"])
+				if(R.data["viruses"] || data["viruses"])
 
-						var/list/mix1 = R.data["viruses"]
-						var/list/mix2 = data["viruses"]
+					var/list/mix1 = R.data["viruses"]
+					var/list/mix2 = data["viruses"]
 
-						// Stop issues with the list changing during mixing.
-						var/list/to_mix = list()
+					// Stop issues with the list changing during mixing.
+					var/list/to_mix = list()
 
-						for(var/datum/disease/advance/AD in mix1)
-							to_mix += AD
-						for(var/datum/disease/advance/AD in mix2)
-							to_mix += AD
+					for(var/datum/disease/advance/AD in mix1)
+						to_mix += AD
+					for(var/datum/disease/advance/AD in mix2)
+						to_mix += AD
 
-						var/datum/disease/advance/AD = Advance_Mix(to_mix)
-						if(AD)
-							var/list/preserve = list(AD)
-							for(var/D in R.data["viruses"])
-								if(!istype(D, /datum/disease/advance))
-									preserve += D
-							R.data["viruses"] = preserve
+					var/datum/disease/advance/AD = Advance_Mix(to_mix)
+					if(AD)
+						var/list/preserve = list(AD)
+						for(var/D in R.data["viruses"])
+							if(!istype(D, /datum/disease/advance))
+								preserve += D
+						R.data["viruses"] = preserve
 
 			if(!safety)
 				handle_reactions()

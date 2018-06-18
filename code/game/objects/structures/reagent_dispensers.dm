@@ -11,52 +11,52 @@
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10,25,50,100)
 
-	attackby(obj/item/W as obj, mob/user as mob)
-		return
+/obj/structure/reagent_dispensers/attackby(obj/item/W as obj, mob/user as mob)
+	return
 
-	New()
-		var/datum/reagents/R = new/datum/reagents(1000)
-		reagents = R
-		R.my_atom = src
-		if (!possible_transfer_amounts)
-			src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
-		..()
+/obj/structure/reagent_dispensers/New()
+	var/datum/reagents/R = new/datum/reagents(1000)
+	reagents = R
+	R.my_atom = src
+	if (!possible_transfer_amounts)
+		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
+	..()
 
-	examine(mob/user)
-		..()
-		if (get_dist(user, src) > 2 && user != loc) return
-		user << "\blue It contains:"
-		if(reagents && reagents.reagent_list.len)
-			for(var/datum/reagent/R in reagents.reagent_list)
-				user << "\blue [R.volume] units of [R.name]"
-		else
-			user << "\blue Nothing."
+/obj/structure/reagent_dispensers/examine(mob/user)
+	..()
+	if (get_dist(user, src) > 2 && user != loc) return
+	user << "\blue It contains:"
+	if(reagents && reagents.reagent_list.len)
+		for(var/datum/reagent/R in reagents.reagent_list)
+			user << "\blue [R.volume] units of [R.name]"
+	else
+		user << "\blue Nothing."
 
-	verb/set_APTFT() //set amount_per_transfer_from_this
-		set name = "Set transfer amount"
-		set category = "Object"
-		set src in view(1)
-		var/N = input("Amount per transfer from this:","[src]") as null|anything in possible_transfer_amounts
-		if (N)
-			amount_per_transfer_from_this = N
+/obj/structure/reagent_dispensers/verb/set_APTFT() //set amount_per_transfer_from_this
+	set name = "Set transfer amount"
+	set category = "Object"
+	set src in view(1)
+	var/N = input("Amount per transfer from this:","[src]") as null|anything in possible_transfer_amounts
+	if (N)
+		amount_per_transfer_from_this = N
 
-	ex_act(severity)
-		switch(severity)
-			if(1.0)
+/obj/structure/reagent_dispensers/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			cdel(src)
+			return
+		if(2.0)
+			if (prob(50))
+				new /obj/effect/particle_effect/water(src.loc)
 				cdel(src)
 				return
-			if(2.0)
-				if (prob(50))
-					new /obj/effect/particle_effect/water(src.loc)
-					cdel(src)
-					return
-			if(3.0)
-				if (prob(5))
-					new /obj/effect/particle_effect/water(src.loc)
-					cdel(src)
-					return
-			else
-		return
+		if(3.0)
+			if (prob(5))
+				new /obj/effect/particle_effect/water(src.loc)
+				cdel(src)
+				return
+		else
+	return
 
 /obj/structure/reagent_dispensers/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
@@ -73,9 +73,12 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "watertank"
 	amount_per_transfer_from_this = 10
-	New()
-		..()
-		reagents.add_reagent("water",1000)
+
+/obj/structure/reagent_dispensers/watertank/New()
+	..()
+	reagents.add_reagent("water",1000)
+
+
 
 /obj/structure/reagent_dispensers/fueltank
 	name = "fueltank"
@@ -87,9 +90,9 @@
 	var/obj/item/device/assembly_holder/rig = null
 	var/exploding = 0
 
-	New()
-		..()
-		reagents.add_reagent("fuel",1000)
+/obj/structure/reagent_dispensers/fueltank/New()
+	..()
+	reagents.add_reagent("fuel",1000)
 
 /obj/structure/reagent_dispensers/fueltank/examine(mob/user)
 	..()
@@ -188,6 +191,8 @@
 /obj/structure/reagent_dispensers/fueltank/flamer_fire_act()
 	explode()
 
+
+
 /obj/structure/reagent_dispensers/peppertank
 	name = "pepper spray refiller"
 	desc = "Refill pepper spray canisters."
@@ -196,9 +201,11 @@
 	anchored = 1
 	density = 0
 	amount_per_transfer_from_this = 45
-	New()
-		..()
-		reagents.add_reagent("condensedcapsaicin", 1000)
+
+/obj/structure/reagent_dispensers/peppertank/New()
+	..()
+	reagents.add_reagent("condensedcapsaicin", 1000)
+
 
 
 /obj/structure/reagent_dispensers/water_cooler
@@ -209,9 +216,10 @@
 	icon_state = "water_cooler"
 	possible_transfer_amounts = null
 	anchored = 1
-	New()
-		..()
-		reagents.add_reagent("water",500)
+
+/obj/structure/reagent_dispensers/water_cooler/New()
+	..()
+	reagents.add_reagent("water",500)
 
 
 /obj/structure/reagent_dispensers/beerkeg
@@ -220,9 +228,11 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "beertankTEMP"
 	amount_per_transfer_from_this = 10
-	New()
-		..()
-		reagents.add_reagent("beer",1000)
+
+/obj/structure/reagent_dispensers/beerkeg/New()
+	..()
+	reagents.add_reagent("beer",1000)
+
 
 /obj/structure/reagent_dispensers/virusfood
 	name = "virus food dispenser"
@@ -233,6 +243,6 @@
 	anchored = 1
 	density = 0
 
-	New()
-		..()
-		reagents.add_reagent("virusfood", 1000)
+/obj/structure/reagent_dispensers/virusfood/New()
+	..()
+	reagents.add_reagent("virusfood", 1000)
