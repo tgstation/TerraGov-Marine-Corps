@@ -78,7 +78,7 @@
 		var/mob/living/carbon/pulled = X.pulling
 		if(!istype(pulled))
 			return
-		if(isXeno(pulled))
+		if(isXeno(pulled) || isSynth(pulled))
 			X << "<span class='warning'>That wouldn't taste very good.</span>"
 			return 0
 		if(pulled.buckled)

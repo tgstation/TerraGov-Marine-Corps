@@ -229,6 +229,8 @@
 
 /mob/living/forceMove(atom/destination)
 	stop_pulling()
+	if(pulledby)
+		pulledby.stop_pulling()
 	if(buckled)
 		buckled.unbuckle()
 	. = ..()

@@ -118,6 +118,13 @@
 		if(src.d1 == 12 || src.d2 == 12)
 			user << "<span class='warning'>You must cut this cable from above.</span>"
 			return
+
+		if(src.d1 == 11 || src.d2 == 11)
+			return
+
+		if(src.d1 == 12 || src.d2 == 12)
+			return
+
 ///// Z-Level Stuff
 
 		if(breaker_box)
@@ -136,23 +143,6 @@
 			O.show_message("<span class='warning'>[user] cuts the cable.</span>", 1)
 		log_admin("[key_name(user)] cut a wire at ([x],[y],[z])")
 		message_admins("[key_name(user)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) cut a wire at ([x],[y],[z]) - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>")
-
-
-///// Z-Level Stuff
-		if(src.d1 == 11 || src.d2 == 11)
-			return
-
-		if(src.d1 == 12 || src.d2 == 12)
-			return
-		/*
-			var/turf/controllerlocation = locate(1, 1, z)
-			for(var/obj/effect/landmark/zcontroller/controller in controllerlocation)
-				if(controller.down)
-					var/turf/below = locate(src.x, src.y, controller.down_target)
-					for(var/obj/structure/cable/c in below)
-						if(c.d1 == 12 || c.d2 == 12)
-							cdel(c)*/
-///// Z-Level Stuff
 
 		cdel(src)
 
