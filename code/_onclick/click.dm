@@ -140,9 +140,14 @@
 
 	if (mods["alt"])
 		var/turf/T = get_turf(src)
-		if(T && user.TurfAdjacent(T))
-			user.listed_turf = T
-			user.listed_turf_change = 1
+		if(T && user.TurfAdjacent(T) && T.contents.len)
+			user.tile_contents = T.contents.Copy()
+
+			var/x
+			for (x in user.tile_contents)
+				if (isobserver(x))
+					user.tile_contents -= x
+			user.tile_contents_change = 1
 		return 1
 	return 0
 
