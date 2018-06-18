@@ -46,13 +46,18 @@ Pipelines + Other Objects -> Pipe network
 		cdel(pipe_vision_img)
 		pipe_vision_img = null
 
+	start_processing()
 	..()
 
 /obj/machinery/atmospherics/Dispose()
 	for(var/mob/living/M in src) //ventcrawling is serious business
 		M.remove_ventcrawl()
 		M.forceMove(loc)
+	stop_processing()
 	. = ..()
+
+/obj/machinery/atmospherics/power_change()
+	return // overriding this for pipes etc, powered stuff overrides this.
 
 /obj/machinery/atmospherics/attackby(atom/A, mob/user as mob)
 	if(istype(A, /obj/item/device/pipe_painter))
@@ -118,8 +123,9 @@ obj/machinery/atmospherics/proc/check_connect_types_construction(obj/machinery/a
 
 	return node.pipe_color
 
-/*/obj/machinery/atmospherics/process()
-	build_network()*/
+/obj/machinery/atmospherics/process()
+	build_network()
+	stop_processing()
 
 /obj/machinery/atmospherics/proc/network_expand(datum/pipe_network/new_network, obj/machinery/atmospherics/pipe/reference)
 	// Check to see if should be added to network. Add self if so and adjust variables appropriately.
