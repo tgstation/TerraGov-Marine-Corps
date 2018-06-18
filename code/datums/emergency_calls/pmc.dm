@@ -21,7 +21,7 @@
 	if(!istype(spawn_loc)) return //Didn't find a useable spawn point.
 
 	var/mob/living/carbon/human/mob = new(spawn_loc)
-	mob.gender = MALE
+	mob.gender = pick(MALE,FEMALE)
 	var/list/first_names_mb = list("Owen","Luka","Nelson","Branson", "Tyson", "Leo", "Bryant", "Kobe", "Rohan", "Riley", "Aidan", "Watase","Egawa", "Hisakawa", "Koide", "Remy", "Martial", "Magnus", "Heiko", "Lennard")
 	var/list/last_names_mb = list("Bates","Shaw","Hansen","Black", "Chambers", "Hall", "Gibson", "Weiss", "Waller", "Burton", "Bakin", "Rohan", "Naomichi", "Yakumo", "Yosai", "Gallagher", "Hiles", "Bourdon", "Strassman", "Palau")
 	var/datum/preferences/A = new()
@@ -37,7 +37,6 @@
 	mob.r_hair = 25
 	mob.g_hair = 25
 	mob.b_hair = 35
-	mob.s_tone = rand(0,35)
 	mob.key = M.key
 	if(mob.client) mob.client.view = world.view
 

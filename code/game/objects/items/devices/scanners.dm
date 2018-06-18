@@ -281,9 +281,10 @@ REAGENT SCANNER
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 		// Show blood level
-		var/blood_volume = 560
-		if(H.vessel)
-			blood_volume = round(H.vessel.get_reagent_amount("blood"))
+		var/blood_volume = BLOOD_VOLUME_NORMAL
+		if(!(H.species.flags & NO_BLOOD))
+			blood_volume = round(H.blood_volume)
+
 			var/blood_percent =  blood_volume / 560
 			var/blood_type = H.dna.b_type
 			blood_percent *= 100

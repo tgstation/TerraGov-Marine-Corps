@@ -53,9 +53,8 @@ var/global/list/randomized_pill_icons
 			M.drop_inv_item_on_ground(src) //icon update
 			if(reagents.total_volume)
 				reagents.trans_to_ingest(M, reagents.total_volume)
-				cdel(src)
-			else
-				cdel(src)
+
+			cdel(src)
 			return 1
 
 		else if(istype(M, /mob/living/carbon/human) )

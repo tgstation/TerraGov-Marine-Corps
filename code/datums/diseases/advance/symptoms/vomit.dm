@@ -84,5 +84,5 @@ Bonus
 		M.apply_damage(3, BRUTE)
 
 	var/turf/pos = get_turf(M)
-	pos.add_blood_floor(M)
+	M.add_splatter_floor(pos)
 	playsound(pos, 'sound/effects/splat.ogg', 25, 1)

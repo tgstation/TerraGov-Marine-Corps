@@ -48,7 +48,13 @@
 	if(fresh && prob(40))
 		fresh--
 		var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
-		blood_splatter(src,B,1)
+		if(B)
+			var/turf/TU = get_turf(src)
+			var/list/L = list()
+			if(B.data["blood_DNA"])
+				L = list(B.data["blood_DNA"] = B.data["blood_type"])
+			TU.add_blood(L, B.color)
+		//blood_splatter(src,B,1)
 
 	health -= rand(0,1)
 	if(health <= 0)
@@ -210,7 +216,12 @@
 
 	user << "\blue You take an experimental bite out of \the [src]."
 	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
-	blood_splatter(src,B,1)
+	if(B)
+		var/turf/TU = get_turf(src)
+		var/list/L = list()
+		if(B.data["blood_DNA"])
+			L = list(B.data["blood_DNA"] = B.data["blood_type"])
+		TU.add_blood(L, B.color)
 
 
 	user.temp_drop_inv_item(src)

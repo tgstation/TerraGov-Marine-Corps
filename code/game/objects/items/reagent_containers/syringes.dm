@@ -102,12 +102,12 @@
 				return
 
 			if(ismob(target))//Blood!
-				if(src.reagents.has_reagent("blood"))
-					user << "\red There is already a blood sample in this syringe"
-					return
-				if(istype(target, /mob/living/carbon))//maybe just add a blood reagent to all mobs. Then you can suck them dry...With hundreds of syringes. Jolly good idea.
+				if(iscarbon(target))//maybe just add a blood reagent to all mobs. Then you can suck them dry...With hundreds of syringes. Jolly good idea.
 					var/amount = src.reagents.maximum_volume - src.reagents.total_volume
 					var/mob/living/carbon/T = target
+					if(T.get_blood_id() && reagents.has_reagent(T.get_blood_id()))
+						user << "\red There is already a blood sample in this syringe"
+						return
 					if(!T.dna)
 						user << "You are unable to locate any blood."
 						return
@@ -115,24 +115,20 @@
 						user << "\red You are unable to locate any blood."
 						return
 
-					var/datum/reagent/B
-					if(istype(T,/mob/living/carbon/human))
+					if(ishuman(T))
 						var/mob/living/carbon/human/H = T
-						if(H.species && H.species.flags & NO_BLOOD)
-							H.reagents.trans_to(src,amount)
+						if(H.species.flags & NO_BLOOD)
+							user << "\red You are unable to locate any blood."
+							return
 						else
-							B = T.take_blood(src,amount)
+							T.take_blood(src,amount)
 					else
-						B = T.take_blood(src,amount)
+						T.take_blood(src,amount)
 
-					if (B)
-						src.reagents.reagent_list += B
-						src.reagents.update_total()
-						src.on_reagent_change()
-						src.reagents.handle_reactions()
-					user << "\blue You take a blood sample from [target]"
-					for(var/mob/O in viewers(4, user))
-						O.show_message("\red [user] takes a blood sample from [target].", 1)
+					on_reagent_change()
+					reagents.handle_reactions()
+					user.visible_message("<span clas='warning'>[user] takes a blood sample from [target].</span>",
+										"<span class='notice'>You take a blood sample from [target].</span>", null, 4)
 
 			else //if not mob
 				if(!target.reagents.total_volume)
@@ -164,60 +160,57 @@
 				user << "\red [target] is full."
 				return
 
-			if(ismob(target) && target != user)
+			if(ismob(target))
+				if(target != user)
 
-				if(istype(target,/mob/living/carbon/human))
+					if(ishuman(target))
 
-					var/mob/living/carbon/human/H = target
-					if(H.wear_suit)
-						if(istype(H.wear_suit,/obj/item/clothing/suit/space))
-							injection_time = 60
-						else if(!H.can_inject(user, 1))
+						var/mob/living/carbon/human/H = target
+						if(H.wear_suit)
+							if(istype(H.wear_suit,/obj/item/clothing/suit/space))
+								injection_time = 60
+							else if(!H.can_inject(user, 1))
+								return
+
+					else if(isliving(target))
+
+						var/mob/living/M = target
+						if(!M.can_inject(user, 1))
 							return
 
-				else if(isliving(target))
+					if(injection_time != 60)
+						user.visible_message("\red <B>[user] is trying to inject [target]!</B>")
+					else
+						user.visible_message("\red <B>[user] begins hunting for an injection port on [target]'s suit!</B>")
 
-					var/mob/living/M = target
-					if(!M.can_inject(user, 1))
-						return
+					if(!do_mob(user, target, injection_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL)) return
 
-				if(injection_time != 60)
-					user.visible_message("\red <B>[user] is trying to inject [target]!</B>")
-				else
-					user.visible_message("\red <B>[user] begins hunting for an injection port on [target]'s suit!</B>")
+					user.visible_message("\red [user] injects [target] with the syringe!")
 
-				if(!do_mob(user, target, injection_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL)) return
+					if(istype(target,/mob/living))
+						var/mob/living/M = target
+						var/list/injected = list()
+						for(var/datum/reagent/R in src.reagents.reagent_list)
+							injected += R.name
+						var/contained = english_list(injected)
+						M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been injected with [src.name] by [user.name] ([user.ckey]). Reagents: [contained]</font>")
+						user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to inject [M.name] ([M.key]). Reagents: [contained]</font>")
+						msg_admin_attack("[user.name] ([user.ckey]) injected [M.name] ([M.key]) with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-				user.visible_message("\red [user] injects [target] with the syringe!")
+				reagents.reaction(target, INGEST)
 
-				if(istype(target,/mob/living))
-					var/mob/living/M = target
-					var/list/injected = list()
-					for(var/datum/reagent/R in src.reagents.reagent_list)
-						injected += R.name
-					var/contained = english_list(injected)
-					M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been injected with [src.name] by [user.name] ([user.ckey]). Reagents: [contained]</font>")
-					user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to inject [M.name] ([M.key]). Reagents: [contained]</font>")
-					msg_admin_attack("[user.name] ([user.ckey]) injected [M.name] ([M.key]) with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-				src.reagents.reaction(target, INGEST)
-			if(ismob(target) && target == user)
-				src.reagents.reaction(target, INGEST)
-			spawn(5)
-				var/datum/reagent/blood/B
-				for(var/datum/reagent/blood/d in src.reagents.reagent_list)
-					B = d
-					break
-				var/trans
-				if(B && istype(target,/mob/living/carbon))
-					var/mob/living/carbon/C = target
-					C.inject_blood(src,5)
-				else
-					trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
-				user << "\blue You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units."
-				if (reagents.total_volume <= 0 && mode==SYRINGE_INJECT)
-					mode = SYRINGE_DRAW
-					update_icon()
+			var/trans = amount_per_transfer_from_this
+			if(iscarbon(target) && locate(/datum/reagent/blood) in reagents.reagent_list)
+				var/mob/living/carbon/C = target
+				C.inject_blood(src, amount_per_transfer_from_this)
+			else
+				trans = reagents.trans_to(target, amount_per_transfer_from_this)
+
+			user << "\blue You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units."
+			if (reagents.total_volume <= 0 && mode==SYRINGE_INJECT)
+				mode = SYRINGE_DRAW
+				update_icon()
 
 
 /obj/item/reagent_container/syringe/update_icon()
@@ -292,7 +285,7 @@
 	src.reagents.trans_to(target, syringestab_amount_transferred)
 	src.desc += " It is broken."
 	src.mode = SYRINGE_BROKEN
-	src.add_blood(target)
+	src.add_mob_blood(target)
 	src.add_fingerprint(usr)
 	src.update_icon()
 

@@ -88,9 +88,5 @@
 /datum/reagent/proc/on_new(var/data)
 	return
 
-	// Called when two reagents of the same are mixing.
-/datum/reagent/proc/on_merge(var/data)
-	return
-
 /datum/reagent/proc/on_update(var/atom/A)
 	return

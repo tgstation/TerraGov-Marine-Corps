@@ -290,10 +290,10 @@
 
 	if(!(user.zone_selected == ("eyes" || "head"))) //////////////hitting anything else other than the eyes
 		if(prob(33))
-			src.add_blood(H)
+			src.add_mob_blood(H)
 			var/turf/location = H.loc
 			if (istype(location, /turf))
-				location.add_blood(H)     ///Plik plik, the sound of blood
+				location.add_mob_blood(H)     ///Plik plik, the sound of blood
 
 		M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been attacked with [src.name] by [user.name] ([user.ckey])</font>")
 		user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] to attack [M.name] ([M.ckey])</font>")
@@ -321,16 +321,16 @@
 	if(istype(M, /mob/living/carbon/human) && ((H.head && (H.head.flags_inventory & COVEREYES) ) || (H.wear_mask && (H.wear_mask.flags_inventory & COVEREYES) ) || (H.glasses && (H.glasses.flags_inventory & COVEREYES) )))
 		M << "\red You get slammed in the face with the tray, against your mask!"
 		if(prob(33))
-			src.add_blood(H)
+			src.add_mob_blood(H)
 			if (H.wear_mask)
-				H.wear_mask.add_blood(H)
+				H.wear_mask.add_mob_blood(H)
 			if (H.head)
-				H.head.add_blood(H)
+				H.head.add_mob_blood(H)
 			if (H.glasses && prob(33))
-				H.glasses.add_blood(H)
+				H.glasses.add_mob_blood(H)
 			var/turf/location = H.loc
 			if (istype(location, /turf))     //Addin' blood! At least on the floor and item :v
-				location.add_blood(H)
+				location.add_mob_blood(H)
 
 		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 25, 1)
@@ -351,10 +351,10 @@
 	else //No eye or head protection, tough luck!
 		M << "\red You get slammed in the face with the tray!"
 		if(prob(33))
-			src.add_blood(M)
+			src.add_mob_blood(M)
 			var/turf/location = H.loc
 			if (istype(location, /turf))
-				location.add_blood(H)
+				location.add_mob_blood(H)
 
 		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 25, 1)

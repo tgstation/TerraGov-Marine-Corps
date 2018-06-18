@@ -32,13 +32,11 @@
 	switch(stage)
 		if(1)
 			survive_mob_death = TRUE //changed because infection rate was REALLY horrible.
-			H.pale_max = 45 //the host become paler.
 			if(goo_message_cooldown < world.time )
 				if(prob(3))
 					affected_mob << "\red You feel really warm..."
 					goo_message_cooldown = world.time + 100
 		if(2)
-			H.pale_max = 75
 			if(goo_message_cooldown < world.time)
 				if (prob(3)) affected_mob << "\red Your throat is really dry..."
 				else if (prob(6)) affected_mob << "\red You feel really warm..."
@@ -47,7 +45,6 @@
 		if(3)
 			hidden = list(0,0)
 			//survive_mob_death = TRUE //even if host dies now, the transformation will occur.
-			H.pale_max = 110
 			H.next_move_slowdown = max(H.next_move_slowdown, 1)
 			if(goo_message_cooldown < world.time)
 				if (prob(3))

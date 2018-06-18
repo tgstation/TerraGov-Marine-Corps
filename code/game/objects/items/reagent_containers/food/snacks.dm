@@ -1525,7 +1525,7 @@
 			surprise.name = "malformed [initial(ook.name)]"
 			surprise.desc = "Looks like \a very deformed [initial(ook.name)], a little small for its kind. It shows no signs of life."
 			surprise.transform *= 0.6
-			surprise.add_blood(M)
+			surprise.add_mob_blood(M)
 			var/mob/living/carbon/human/H = M
 			var/datum/limb/E = H.get_limb("chest")
 			E.fracture()
@@ -1543,7 +1543,7 @@
 			var/mob/living/carbon/monkey/ook = new monkey_type(M.loc)
 			ook.name = "malformed [ook.name]"
 			ook.transform *= 0.6
-			ook.add_blood(M)
+			ook.add_mob_blood(M)
 			M.gib()
 		..()
 

@@ -531,7 +531,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				W.damage = max(0, W.damage - 0.2)
 
 			if(!owner.reagents.get_reagent_amount("quickclot")) //Quickclot stops bleeding, magic!
-				owner.vessel.remove_reagent("blood", wound_update_accuracy * W.damage/40) //line should possibly be moved to handle_blood, so all the bleeding stuff is in one place.
+				owner.blood_volume = max(0, owner.blood_volume - wound_update_accuracy * W.damage/40) //line should possibly be moved to handle_blood, so all the bleeding stuff is in one place.
 				if(prob(1 * wound_update_accuracy))
 					owner.custom_pain("You feel a stabbing pain in your [display_name]!", 1)
 
@@ -962,7 +962,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	implants += W
 	owner.embedded_flag = 1
 	owner.verbs += /mob/proc/yank_out_object
-	W.add_blood(owner)
+	W.add_mob_blood(owner)
 	if(ismob(W.loc))
 		var/mob/living/H = W.loc
 		H.drop_held_item()

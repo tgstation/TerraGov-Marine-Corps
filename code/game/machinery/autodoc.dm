@@ -54,8 +54,6 @@
 			if(filtering)
 				var/filtered = 0
 				for(var/datum/reagent/x in occupant.reagents.reagent_list)
-					if(x.name == "Blood")
-						continue
 					occupant.reagents.remove_reagent(x.id, 3) // same as sleeper, may need reducing
 					filtered += 3
 				if(!filtered)
@@ -65,11 +63,11 @@
 					visible_message("\The [src] whirrs and gurgles as the dialysis module operates.")
 					occupant << "<span class='info'>You feel slightly better.</span>"
 			if(blood_transfer)
-				if(occupant.vessel.get_reagent_amount("blood") < BLOOD_VOLUME_NORMAL)
+				if(occupant.blood_volume < BLOOD_VOLUME_NORMAL)
 					if(blood_pack.reagents.get_reagent_amount("blood") < 4)
-						blood_pack.reagents.add_reagent("blood", 195, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null,"trace_chem"=null))
+						blood_pack.reagents.add_reagent("blood", 195, list("donor"=null,"viruses"=null,"blood_DNA"=null,"blood_type"="O-","resistances"=null))
 						visible_message("\The [src] speaks: Blood reserves depleted, switching to fresh bag.")
-					blood_pack.reagents.trans_to(occupant, 8) // double iv stand rate
+					occupant.inject_blood(blood_pack, 8) // double iv stand rate
 					if(prob(10))
 						visible_message("\The [src] whirrs and gurgles as it tranfuses blood.")
 						occupant << "<span class='info'>You feel slightly less faint.</span>"
@@ -188,13 +186,11 @@
 		surgery_list += create_autodoc_surgery(null,EXTERNAL_SURGERY,"toxin")
 	var/overdoses = 0
 	for(var/datum/reagent/x in M.reagents.reagent_list)
-		if(x.name == "Blood")
-			continue
 		if(istype(x,/datum/reagent/toxin)||M.reagents.get_reagent_amount(x.id) > x.overdose)
 			overdoses++
 	if(overdoses)
 		surgery_list += create_autodoc_surgery(null,EXTERNAL_SURGERY,"dialysis")
-	if(M.vessel.get_reagent_amount("blood") < BLOOD_VOLUME_NORMAL)
+	if(M.blood_volume < BLOOD_VOLUME_NORMAL)
 		surgery_list += create_autodoc_surgery(null,EXTERNAL_SURGERY,"blood")
 	return surgery_list
 

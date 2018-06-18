@@ -18,7 +18,6 @@
 	var/g_eyes = 0
 	var/b_eyes = 0
 
-	var/s_tone = 0	//Skin tone
 	var/ethnicity = "Western"	// Ethnicity
 	var/body_type = "Mesomorphic (Average)" // Body Type
 
@@ -79,7 +78,6 @@
 	var/xylophone = 0 //For the spoooooooky xylophone cooldown
 
 	var/mob/remoteview_target = null
-	var/hand_blood_color
 
 	var/list/flavor_texts = list()
 	var/recently_unbuckled = 0

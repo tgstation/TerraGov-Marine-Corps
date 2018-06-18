@@ -173,12 +173,13 @@ Contains most of the procs that are called when a mob is attacked by something
 				bloody = 1
 				var/turf/location = loc
 				if(istype(location, /turf))
-					location.add_blood(src)
+					location.add_mob_blood(src)
 				if(ishuman(user))
 					var/mob/living/carbon/human/H = user
 					if(get_dist(H, src) <= 1) //people with TK won't get smeared with blood
 						H.bloody_body(src)
 						H.bloody_hands(src)
+
 
 		switch(hit_area)
 			if("head")//Harder to score a stun but if you do it lasts a bit longer
@@ -189,13 +190,13 @@ Contains most of the procs that are called when a mob is attacked by something
 
 				if(bloody)//Apply blood
 					if(wear_mask)
-						wear_mask.add_blood(src)
+						wear_mask.add_mob_blood(src)
 						update_inv_wear_mask(0)
 					if(head)
-						head.add_blood(src)
+						head.add_mob_blood(src)
 						update_inv_head(0)
 					if(glasses && prob(33))
-						glasses.add_blood(src)
+						glasses.add_mob_blood(src)
 						update_inv_glasses(0)
 
 			if("chest")//Easier to score a stun but lasts less time
@@ -304,22 +305,30 @@ Contains most of the procs that are called when a mob is attacked by something
 
 /mob/living/carbon/human/proc/bloody_hands(var/mob/living/source, var/amount = 2)
 	if (gloves)
-		gloves.add_blood(source)
+		gloves.add_mob_blood(source)
 		gloves:transfer_blood = amount
-		gloves:bloody_hands_mob = source
 	else
-		add_blood(source)
+		var/list/blood_dna = source.get_blood_dna_list()
+		if(!blood_dna)
+			return
+		var/b_color = source.get_blood_color()
+
+		transfer_blood_dna(blood_dna)
+		if(b_color)
+			blood_color = b_color
 		bloody_hands = amount
-		bloody_hands_mob = source
+
 	update_inv_gloves()		//updates on-mob overlays for bloody hands and/or bloody gloves
+
 
 /mob/living/carbon/human/proc/bloody_body(var/mob/living/source)
 	if(wear_suit)
-		wear_suit.add_blood(source)
-		update_inv_wear_suit(0)
+		wear_suit.add_mob_blood(source)
+		update_inv_wear_suit()
 	if(w_uniform)
-		w_uniform.add_blood(source)
-		update_inv_w_uniform(0)
+		w_uniform.add_mob_blood(source)
+		update_inv_w_uniform()
+
 
 /mob/living/carbon/human/proc/handle_suit_punctures(var/damtype, var/damage)
 	if(!wear_suit) return

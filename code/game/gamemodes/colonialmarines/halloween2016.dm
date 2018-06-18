@@ -1098,7 +1098,6 @@
 					H.h_style = "Shoulder-length Hair Alt"
 					H.f_style = "5 O'clock Shadow"
 
-					H.s_tone = -45
 				if(3) //Dutch. The most well-armed and powerful of the heroes in terms of offense.
 					H.equip_to_slot_or_del(new /obj/item/clothing/under/gimmick/dutch(H), WEAR_BODY, 1)
 					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), WEAR_FEET, 1)
@@ -1126,7 +1125,7 @@
 					H.r_hair = 153
 					H.g_hair = 102
 					H.b_hair = 51
-					H.s_tone = -10
+
 				if(4) //Robocop. Has great armor and weapon, but otherwise doesn't have a whole lot of equipment. Hard to put down, that's for sure.
 					H.equip_to_slot_or_del(new /obj/item/clothing/under/gimmick/robocop(H), WEAR_BODY, 1)
 					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/gimmick/robocop(H), WEAR_FEET, 1)
@@ -1588,7 +1587,7 @@
 		B.target_turf = pick(range(1, src))
 		B.blood_DNA = new
 		B.blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
-		H.vessel.remove_reagent("blood",rand(25,50))
+		H.blood_volume = max(0, H.blood_volume - rand(25,50))
 		animation_blood_spatter(H)
 	current_bloodcall = world.time
 

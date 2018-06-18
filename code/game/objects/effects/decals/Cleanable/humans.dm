@@ -58,19 +58,8 @@ var/global/list/image/splatter_cache=list()
 	if(perp.shoes && !perp.buckled)//Adding blood to shoes
 		var/obj/item/clothing/shoes/S = perp.shoes
 		if(istype(S))
-			S.blood_color = basecolor
+			S.add_blood(blood_DNA, basecolor)
 			S.track_blood = max(amount,S.track_blood)
-			if(!S.blood_overlay)
-				S.generate_blood_overlay()
-			if(!S.blood_DNA)
-				S.blood_DNA = list()
-				S.blood_overlay.color = basecolor
-				S.overlays += S.blood_overlay
-			if(S.blood_overlay && S.blood_overlay.color != basecolor)
-				S.blood_overlay.color = basecolor
-				S.overlays.Cut()
-				S.overlays += S.blood_overlay
-			S.blood_DNA |= blood_DNA.Copy()
 
 	else if (hasfeet)//Or feet
 		perp.feet_blood_color = basecolor
@@ -100,13 +89,12 @@ var/global/list/image/splatter_cache=list()
 		var/taken = rand(1,amount)
 		amount -= taken
 		user << "<span class='notice'>You get some of \the [src] on your hands.</span>"
-		if (!user.blood_DNA)
-			user.blood_DNA = list()
-		user.blood_DNA |= blood_DNA.Copy()
+
+		user.add_blood(blood_DNA, basecolor)
 		user.bloody_hands += taken
-		user.hand_blood_color = basecolor
-		user.update_inv_gloves(1)
-		user.verbs += /mob/living/carbon/human/proc/bloody_doodle
+		user.update_inv_gloves()
+
+
 
 /obj/effect/decal/cleanable/blood/splatter
         random_icon_states = list("mgibbl1", "mgibbl2", "mgibbl3", "mgibbl4", "mgibbl5")
@@ -120,6 +108,7 @@ var/global/list/image/splatter_cache=list()
         icon_state = "1"
         random_icon_states = list("1","2","3","4","5")
         amount = 0
+        var/drips
 
 /obj/effect/decal/cleanable/blood/writing
 	icon_state = "tracks"
