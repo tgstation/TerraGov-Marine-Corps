@@ -301,6 +301,10 @@
 		Banlist.cd = "/base/[banfolder]"
 		var/key = Banlist["key"]
 		if(alert(usr, "Are you sure you want to unban [key]?", "Confirmation", "Yes", "No") == "Yes")
+			if((Banlist["minutes"] - CMinutes) > 10080)
+				log_admin("[key_name(usr)] removed [key]'s permaban.")
+				ban_unban_log_save("[key_name(usr)] removed [key]'s permaban.")
+				message_admins("\blue [key_name_admin(usr)] removed [key]'s permaban.", 1)
 			if(RemoveBan(banfolder))
 				unbanpanel()
 			else
@@ -309,6 +313,41 @@
 
 	else if(href_list["warn"])
 		usr.client.warn(href_list["warn"])
+
+	else if(href_list["unbanupgradeperma"])
+		if(!check_rights(R_ADMIN)) return
+		UpdateTime()
+		var/reason
+
+		var/banfolder = href_list["unbanupgradeperma"]
+		Banlist.cd = "/base/[banfolder]"
+		var/reason2 = Banlist["reason"]
+
+		var/minutes = Banlist["minutes"]
+
+		var/banned_key = Banlist["key"]
+		Banlist.cd = "/base"
+
+		var/mins = 0
+		if(minutes > CMinutes)
+			mins = minutes - CMinutes
+		if(!mins)	return
+		mins = max(5255990,mins) // 10 years
+		minutes = CMinutes + mins
+		reason = input(usr,"Reason?","reason",reason2) as message|null
+		if(!reason)	return
+
+		log_admin("[key_name(usr)] upgraded [banned_key]'s ban to a permaban. Reason: [sanitize(reason)]")
+		ban_unban_log_save("[key_name(usr)] upgraded [banned_key]'s ban to a permaban. Reason: [sanitize(reason)]")
+		message_admins("\blue [key_name_admin(usr)] upgraded [banned_key]'s ban to a permaban. Reason: [sanitize(reason)]", 1)
+		Banlist.cd = "/base/[banfolder]"
+		Banlist["reason"] << sanitize(reason)
+		Banlist["temp"] << 0
+		Banlist["minutes"] << minutes
+		Banlist["bannedby"] << usr.ckey
+		Banlist.cd = "/base"
+		feedback_inc("ban_upgrade",1)
+		unbanpanel()
 
 	else if(href_list["unbane"])
 		if(!check_rights(R_BAN))	return
