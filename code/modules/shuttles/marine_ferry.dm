@@ -390,6 +390,12 @@
 
 	shake_cameras(turfs_int) //shake for 1.5 seconds before crash, 0.5 after
 
+	for(var/obj/machinery/power/apc/A in machines) //break APCs
+		if(A.z != T_trg.z) continue
+		if(prob(A.crash_break_probability))
+			A.overload_lighting()
+			A.set_broken()
+
 	var/turf/sploded
 	for(var/j=0; j<10; j++)
 		sploded = locate(T_trg.x + rand(-5, 15), T_trg.y + rand(-5, 25), T_trg.z)
@@ -410,12 +416,6 @@
 			M << "\red The floor jolts under your feet!"
 			shake_camera(M, 10, 1)
 			M.KnockDown(3)
-
-	for(var/obj/machinery/power/apc/A in machines) //break APCs
-		if(A.z != T_trg.z) continue
-		if(prob(A.crash_break_probability))
-			A.overload_lighting()
-			A.set_broken()
 
 	enter_allowed = 0 //No joining after dropship crash
 

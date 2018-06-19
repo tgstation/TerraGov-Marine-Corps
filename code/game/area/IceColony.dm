@@ -105,6 +105,7 @@
 /area/ice_colony/exterior/surface/valley/south/excavation
 	name = "\improper Southern Valleys - Excavation Site"
 	icon_state = "valley_south_excv"
+	ceiling = CEILING_UNDERGROUND
 
 /area/ice_colony/exterior/surface/valley/southeast
 	name = "\improper Eastern Valleys"
@@ -161,6 +162,7 @@
 
 /area/ice_colony/exterior/underground/caves/dig
 	icon_state = "mining_living"
+	ceiling = CEILING_DEEP_UNDERGROUND_METAL
 
 
 /*

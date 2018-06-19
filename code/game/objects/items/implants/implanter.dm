@@ -20,7 +20,9 @@
 
 
 /obj/item/implanter/attack(mob/M as mob, mob/user as mob)
-	if (!istype(M, /mob/living/carbon))
+	if (!istype(M, /mob/living/carbon/human) && !istype(M, /mob/living/carbon/monkey))
+		return
+	if(isYautja(M))
 		return
 	if (user && src.imp)
 		user.visible_message("<span class='warning'>[user] is attemping to implant [M].</span>", "<span class='notice'>You're attemping to implant [M].</span>")

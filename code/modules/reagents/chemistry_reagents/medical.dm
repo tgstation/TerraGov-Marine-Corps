@@ -648,7 +648,7 @@
 		. = ..()
 		if(!.) return
 
-		M.life_move_delay -= 1
+		M.life_move_delay -= 0.5
 
 		if(prob(1))
 			M.emote(pick("twitch","blink_r","shiver"))

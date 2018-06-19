@@ -30,7 +30,7 @@
 
 	//withdrawal process
 	if(!has_ultrazine)
-		addiction_progression -= 0.575 //about 20 minutes to get past each stage
+		addiction_progression -= 0.383 //about 30 minutes to get past each stage
 		if(addiction_progression < 0)
 			if(stage == 1)
 				cure(0)
