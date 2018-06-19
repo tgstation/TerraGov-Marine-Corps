@@ -8,8 +8,6 @@
 #define PRESSURE_CHECK_INPUT 2
 #define PRESSURE_CHECK_OUTPUT 4
 
-#undefine
-
 /obj/machinery/atmospherics/binary/dp_vent_pump
 	icon = 'icons/atmos/vent_pump.dmi'
 	icon_state = "map_dp_vent"
