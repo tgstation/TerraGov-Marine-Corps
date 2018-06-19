@@ -197,9 +197,6 @@
 	lastturf = null //Reset this so we can properly continue with momentum.
 	r_TRU
 
-/mob/living/carbon/Xenomorph/Queen/gib()
-	death(1) //Prevents resetting queen death timer.
-
 //Chance of insta limb amputation after a melee attack.
 /mob/living/carbon/Xenomorph/Queen/proc/delimb(var/mob/living/carbon/human/H, var/datum/limb/O)
 	if (prob(20))

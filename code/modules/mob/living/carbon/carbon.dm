@@ -56,7 +56,7 @@
 		L.chest_burst(src)
 
 
-/mob/living/carbon/gib(anim, do_gibs, f_icon)
+/mob/living/carbon/gib()
 	if(legcuffed)
 		drop_inv_item_on_ground(legcuffed)
 
@@ -67,7 +67,7 @@
 		if(ismob(A))
 			visible_message("<span class='danger'>[A] bursts out of [src]!</span>")
 
-	. = ..(anim, do_gibs, f_icon)
+	. = ..()
 
 
 /mob/living/carbon/revive()

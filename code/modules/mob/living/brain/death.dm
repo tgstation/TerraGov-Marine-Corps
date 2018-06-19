@@ -9,4 +9,4 @@
 	if(loc)
 		if(istype(loc,/obj/item/organ/brain))
 			cdel(loc)//Gets rid of the brain item
-	..(null,1)
+	..()

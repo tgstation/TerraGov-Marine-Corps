@@ -724,7 +724,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 		owner.visible_message("<span class='warning'>[owner.name]'s [display_name] flies off in an arc!</span>",
 		"<span class='highdanger'><b>Your [display_name] goes flying off!</b></span>",
-		"<span class='warning'>You hear a terrible sound of ripping tendons and flesh!</span>")
+		"<span class='warning'>You hear a terrible sound of ripping tendons and flesh!</span>", 3)
 
 		if(organ)
 			//Throw organs around

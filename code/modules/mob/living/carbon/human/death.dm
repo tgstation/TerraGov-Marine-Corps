@@ -11,21 +11,43 @@
 			// Override the current limb status
 			E.droplimb()
 
+
+	if(is_a_synth)
+		spawn_gibs()
+		return
+	..()
+
+
+
+
+
+/mob/living/carbon/human/gib_animation()
+	new /obj/effect/overlay/temp/gib_animation(loc, src, species ? species.gibbed_anim : "gibbed-h")
+
+/mob/living/carbon/human/spawn_gibs()
 	if(species)
 		hgibs(loc, viruses, dna, species.flesh_color, species.blood_color)
 	else
 		hgibs(loc, viruses, dna)
 
-	if(is_a_synth)
-		return
-	..(species ? species.gibbed_anim : "gibbed-h")
 
 
-/mob/living/carbon/human/dust()
+/mob/living/carbon/human/spawn_dust_remains()
 	if(species)
-		..(species.dusted_anim, species.remains_type)
+		new species.remains_type(loc)
 	else
-		..()
+		new /obj/effect/decal/cleanable/ash(loc)
+
+
+/mob/living/carbon/human/dust_animation()
+	new /obj/effect/overlay/temp/dust_animation(loc, src, "dust-h")
+
+
+
+
+
+
+
 
 /mob/living/carbon/human/death(gibbed)
 
