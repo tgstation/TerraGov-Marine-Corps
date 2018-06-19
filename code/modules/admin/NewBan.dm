@@ -187,7 +187,6 @@ var/savefile/Banlist
 		var/unban_link = "<A href='?src=[ref];unbanf=[key][id]'>(U)</A><A href='?src=[ref];unbane=[key][id]'>(E)</A>"
 		var/perma_links = ""
 		if(check_rights(R_ADMIN))
-			world << Banlist["minutes"]
 			if((Banlist["minutes"] - CMinutes) > 10080)
 				unban_link = ""
 				perma_links = "<A href='?src=[ref];unbanf=[key][id]'>(L)</A>"
