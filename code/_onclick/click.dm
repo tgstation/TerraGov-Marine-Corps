@@ -143,11 +143,13 @@
 		if(T && user.TurfAdjacent(T) && T.contents.len)
 			user.tile_contents = T.contents.Copy()
 
-			var/x
-			for (x in user.tile_contents)
-				if (isobserver(x))
-					user.tile_contents -= x
-			user.tile_contents_change = 1
+			var/atom/A
+			for (A in user.tile_contents)
+				if (A.invisibility > user.see_invisible)
+					user.tile_contents -= A
+
+			if (user.tile_contents.len)
+				user.tile_contents_change = 1
 		return 1
 	return 0
 
