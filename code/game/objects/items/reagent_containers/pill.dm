@@ -278,7 +278,7 @@ var/global/list/randomized_pill_icons
 		reagents.add_reagent("quickclot", 10)
 
 /obj/item/reagent_container/pill/ultrazine
-	pill_desc = "An Ultrazine pill. A highly-potent, long-lasting combination CNS and muscle stimulant. Extremely addictive."
+	//pill_desc = "An Ultrazine pill. A highly-potent, long-lasting combination CNS and muscle stimulant. Extremely addictive."
 
 /obj/item/reagent_container/pill/ultrazine/New()
 	..()

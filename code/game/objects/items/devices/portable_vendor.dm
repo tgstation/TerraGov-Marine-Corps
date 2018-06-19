@@ -4,7 +4,7 @@
 
 /obj/item/device/portable_vendor
 	name = "\improper Automated Storage Briefcase"
-	desc = "A suitcase-sized automated storage and retreival system. Designed to efficiently store and selectively dispese small items."
+	desc = "A suitcase-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense small items."
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "secure"
 	flags_atom = FPRINT|CONDUCT
@@ -153,7 +153,7 @@
 			if(use_points)
 				points -= cost
 
-			purchase_log += "[usr] ([usr.ckey]) bought [I]."
+			purchase_log += "[usr] ([usr.ckey]) bought [L[1]]."
 
 			playsound(src, "sound/machines/fax.ogg", 5)
 			fabricating = 1
@@ -230,14 +230,14 @@
 
 /obj/item/device/portable_vendor/corporate
 	name = "\improper Weyland-Yutani Automated Storage Briefcase"
-	desc = "A suitcase-sized automated storage and retreival system. Designed to efficiently store and selectively dispese small items. This one has the Weyland-Yutani logo stamped on its side."
+	desc = "A suitcase-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense small items. This one has the Weyland-Yutani logo stamped on its side."
 
 	req_access_txt = "200"
 	req_role = "Corporate Liaison"
 	listed_products = list(
 							list("INCENTIVES", 0, null, null, null),
 							list("Neurostimulator Implant", 30, /obj/item/implanter/neurostim, "white", "Implant which stimulates and regulates nociception and sensorimotor function. Benefits include pain reduction, improved balance, and improved resistance to overstimulation and disoritentation. To encourage compliance, negative stimulus is applied if the implant hears a (non-radio) spoken codephrase. Implant will be degraded by the body's immune system over time, and thus occasionally malfunction. Personal use not recommended."),
-							list("Ultrazine Pills", 20, /obj/item/storage/pill_bottle/ultrazine, "white", "Highly-addictive stimulant. Enhances short-term physical performance. Withdrawal causes extreme discomfort, hallucinations and nausea. Long-term use results in halluciations and heart failure. Conditional distribution secures subject compliance. Not for personal use."),
+							list("Ultrazine Pills", 20, /obj/item/storage/pill_bottle/ultrazine, "white", "Highly-addictive stimulant. Enhances short-term physical performance, particularly running speed. Effects last approximately 10 minutes per pill. More than two pills at a time will result in overdose. Withdrawal causes extreme discomfort, hallucinations and nausea. Long-term use results in halluciations and heart failure. Conditional distribution secures subject compliance. Not for personal use."),
 							list("Cash", 5, /obj/item/spacecash/c1000, "white", "$1000 USD, unmarked bills"),
 							list("Cigars", 5, /obj/item/storage/fancy/cigar, "white", "Case of premium cigars, untampered.")
 							)

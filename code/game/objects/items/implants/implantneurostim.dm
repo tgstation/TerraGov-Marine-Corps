@@ -85,7 +85,7 @@
 
 	implant_age++
 
-	if(prob(min(0.5, implant_age * 0.0003))) //becomes more likely to randomly activate over time
+	if(prob(min(0.5, implant_age * 0.00005))) //becomes more likely to randomly activate over time
 		activate(1)
 
 	else if(world.time - last_activated > 600)
@@ -95,7 +95,6 @@
 			M.AdjustKnockedout(-2)
 			M.AdjustStunned(-2)
 			M.AdjustKnockeddown(-1)
-			M.hallucination = max(0, M.hallucination - 10)
 			M.adjustHalLoss(-5)
 
 
