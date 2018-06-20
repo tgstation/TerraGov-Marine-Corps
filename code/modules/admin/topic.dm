@@ -302,6 +302,7 @@
 		var/key = Banlist["key"]
 		if(alert(usr, "Are you sure you want to unban [key]?", "Confirmation", "Yes", "No") == "Yes")
 			if((Banlist["minutes"] - CMinutes) > 10080)
+				if(!check_rights(R_ADMIN)) return
 				log_admin("[key_name(usr)] removed [key]'s permaban.")
 				ban_unban_log_save("[key_name(usr)] removed [key]'s permaban.")
 				message_admins("\blue [key_name_admin(usr)] removed [key]'s permaban.", 1)
