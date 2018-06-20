@@ -147,6 +147,7 @@
 			beaker = null
 
 	add_fingerprint(usr)
+	attack_hand(usr)
 	return 1 // update UIs attached to this object
 
 /obj/machinery/chem_dispenser/attackby(var/obj/item/reagent_container/B as obj, var/mob/user as mob)
@@ -453,8 +454,9 @@
 		else if(href_list["bottle_sprite"])
 			bottlesprite = href_list["bottle_sprite"]
 
-	src.updateUsrDialog()
-	return
+	//src.updateUsrDialog()
+	attack_hand(usr)
+
 
 /obj/machinery/chem_master/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
