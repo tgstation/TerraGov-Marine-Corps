@@ -766,6 +766,7 @@ datum/game_mode/proc/initialize_special_clamps()
 						/obj/item/ammo_magazine/rifle/lmg = 0,
 						/obj/item/ammo_magazine/shotgun = round(scale * 15),
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
+						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 10),
 						/obj/item/ammo_magazine/sniper = 0,
 						/obj/item/ammo_magazine/sniper/incendiary = 0,
 						/obj/item/ammo_magazine/sniper/flak = 0,

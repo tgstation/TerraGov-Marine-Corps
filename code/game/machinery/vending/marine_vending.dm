@@ -189,6 +189,7 @@
 					/obj/item/ammo_magazine/rifle/lmg = 0,
 					/obj/item/ammo_magazine/shotgun = 5,
 					/obj/item/ammo_magazine/shotgun/buckshot = 5,
+					/obj/item/ammo_magazine/shotgun/flechette = 5,
 					/obj/item/ammo_magazine/sniper = 1,
 					/obj/item/ammo_magazine/sniper/incendiary = 1,
 					/obj/item/ammo_magazine/sniper/flak = 1,
