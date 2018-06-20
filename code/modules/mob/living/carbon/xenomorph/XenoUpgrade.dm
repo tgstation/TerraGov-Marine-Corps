@@ -528,7 +528,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 10
 					tackle_chance = 95
 				if ("Defender")
-					src << "<span class='xenoannounce'>You are a incredibly resiliant, you can control the battle through shear force.</span>"
+					src << "<span class='xenoannounce'>You are a incredibly resilient, you can control the battle through sheer force.</span>"
 					health = 325
 					maxHealth = 325
 					plasma_gain = 8

@@ -166,7 +166,7 @@
 						searchspot = locate(loc.x+searchx, loc.y+searchy, loc.z)
 						for(var/mob/living/carbon/Xenomorph/Larva/L in searchspot)
 							if(!L.ckey || !L.client) // no one home
-								visible_message("<span class='xenodanger'>[L] quickly burries into the ground.</span>")
+								visible_message("<span class='xenodanger'>[L] quickly burrows into the ground.</span>")
 								ticker.mode.stored_larva++
 								round_statistics.total_xenos_created-- // keep stats sane
 								cdel(L)
