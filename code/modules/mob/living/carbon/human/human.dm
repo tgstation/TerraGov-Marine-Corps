@@ -457,10 +457,15 @@
 						else if (istype(belt, /obj/item/tank))
 							internal = belt
 						if (internal)
-							visible_message("[src] is now running on internals.", null, null, 1)
+							visible_message("<span class='notice'>[src] is now running on internals.</span>", null, null, 1)
 							internal.add_fingerprint(usr)
 							if (hud_used. && hud_used.internals)
 								hud_used.internals.icon_state = "internal1"
+
+				// Update strip window
+				if(usr.interactee == src && Adjacent(usr))
+					show_inv(usr)
+
 
 
 	if(href_list["splints"])

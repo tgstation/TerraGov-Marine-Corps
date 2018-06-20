@@ -371,7 +371,7 @@
 
 	var/list/data = list(
 		"vendor_name" = name,
-		"currently_vending_name" = currently_vending ? currently_vending.product_name : null,
+		"currently_vending_name" = currently_vending ? sanitize(currently_vending.product_name) : null,
 		"premium_length" = premium.len,
 		"ewallet" = ewallet ? ewallet.name : null,
 		"ewallet_worth" = ewallet ? ewallet.worth : null,
