@@ -888,7 +888,7 @@
 	if(!proximity || !user) return
 	if(user)
 		var/obj/item/weapon/wristblades/W = user.get_inactive_hand()
-		attack_speed = (istype(W)) ? attack_speed - attack_speed/3 : initial(attack_speed)
+		attack_speed = (istype(W)) ? 4 : initial(attack_speed)
 
 	if (istype(A, /obj/machinery/door/airlock))
 		var/obj/machinery/door/airlock/D = A

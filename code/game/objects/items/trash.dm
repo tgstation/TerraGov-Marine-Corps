@@ -124,3 +124,10 @@
 	name = "\improper USCM Tray"
 	desc = "Finished with its tour of duty"
 	icon_state = "MREtray"
+
+
+/obj/item/trash/uscm_mre
+	name = "\improper crumbled USCM MRE"
+	desc = "It has done its part for the USCM. Have you?"
+	icon = 'icons/obj/items/trash.dmi'
+	icon_state = "mealpackempty"
