@@ -727,9 +727,8 @@ and you're good to go.
 
 					if(!delete_bullet(projectile_to_fire)) cdel(projectile_to_fire)
 					reload_into_chamber(user) //Reload into the chamber if the gun supports it.
-				else
-					click_empty(user) //We want to return here, since they're trying to point blank them, not hit them with the gun.
-				return
+					return
+
 	return ..() //Pistolwhippin'
 
 //----------------------------------------------------------
