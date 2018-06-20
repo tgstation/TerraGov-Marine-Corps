@@ -14,6 +14,8 @@
 	var/y_offset_b = 0
 	var/living_marines_sorting = FALSE
 	var/busy = 0 //The overwatch computer is busy launching an OB/SB, lock controls
+	var/dead_hidden = FALSE //whether or not we show the dead marines in the squad.
+	var/z_hidden = 0 //which z level is ignored when showing marines.
 //	var/console_locked = 0
 
 
@@ -128,8 +130,12 @@
 							H = X
 							mob_name = H.real_name
 							var/area/A = get_area(H)
+							var/turf/M_turf = get_turf(H)
 							if(A)
 								area_name = sanitize(A.name)
+
+							if(z_hidden && z_hidden == M_turf.z)
+								continue
 
 							if(H.mind && H.mind.assigned_role)
 								role = H.mind.assigned_role
@@ -142,7 +148,7 @@
 									dist = "<b>N/A</b>"
 									if(H.mind && H.mind.assigned_role != "Squad Leader")
 										act_sl = " (acting SL)"
-								else if(H.z == SL_z && H.z != 0)
+								else if(M_turf.z == SL_z)
 									dist = "[get_dist(H, current_squad.squad_leader)] ([dir2text_short(get_dir(current_squad.squad_leader, H))])"
 
 							switch(H.stat)
@@ -157,6 +163,8 @@
 									unconscious_text += "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 
 								if(DEAD)
+									if(dead_hidden)
+										continue
 									mob_state = "<font color='red'>DEAD</font>"
 									dead_text += "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 
@@ -172,6 +180,10 @@
 									fteam = " \[[ID.assigned_fireteam]\]"
 
 						else //listed marine was deleted or gibbed, all we have is their name
+							if(dead_hidden)
+								continue
+							if(z_hidden) //gibbed marines are neither on the colony nor on the almayer
+								continue
 							for(var/datum/data/record/t in data_core.general)
 								if(t.fields["name"] == X)
 									role = t.fields["real_rank"]
@@ -221,7 +233,9 @@
 				dat += "<BR><BR>----------------------<br>"
 				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a><br>"
 				dat += "<A href='?src=\ref[src];operation=change_sort'>{Change Sorting Method}</a><br>"
-				dat += "<A href='?src=\ref[src];operation=back'>{Back}</a></body>"
+				dat += "<A href='?src=\ref[src];operation=hide_dead'>{[dead_hidden ? "Show Dead Marines" : "Hide Dead Marines" ]}</a><br>"
+				dat += "<A href='?src=\ref[src];operation=choose_z'>{Change Locations Ignored}</a><br>"
+				dat += "<br><A href='?src=\ref[src];operation=back'>{Back}</a></body>"
 			if(2)
 				dat += "<BR><B>Supply Drop Control</B><BR><BR>"
 				if(!current_squad)
@@ -424,6 +438,24 @@
 				usr << "\icon[src] <span class='notice'>Marines are now sorted by health status.</span>"
 			else
 				usr << "\icon[src] <span class='notice'>Marines are now sorted by rank.</span>"
+		if("hide_dead")
+			dead_hidden = !dead_hidden
+			if(dead_hidden)
+				usr << "\icon[src] <span class='notice'>Dead marines are now not shown.</span>"
+			else
+				usr << "\icon[src] <span class='notice'>Dead marines are now shown again.</span>"
+		if("choose_z")
+			switch(z_hidden)
+				if(0)
+					z_hidden = MAIN_SHIP_Z_LEVEL
+					usr << "\icon[src] <span class='notice'>Marines on the Almayer are now hidden.</span>"
+				if(MAIN_SHIP_Z_LEVEL)
+					z_hidden = 1
+					usr << "\icon[src] <span class='notice'>Marines on the ground are now hidden.</span>"
+				else
+					z_hidden = 0
+					usr << "\icon[src] <span class='notice'>No location is ignored anymore.</span>"
+
 		if("change_lead")
 			change_lead()
 		if("insubordination")
