@@ -639,10 +639,10 @@
 	if(jobban_isbanned(H, "Squad Leader"))
 		usr << "\icon[src] <span class='warning'>[H] is unfit to lead!</span>"
 		return
-	if(current_squad.squad_leader && current_squad.squad_leader.stat != DEAD)
-		send_to_squad("Attention: [current_squad.squad_leader] is demoted. A new Squad Leader has been set: [H.real_name].")
-		visible_message("\icon[src] <span class='boldnotice'>Squad Leader [current_squad.squad_leader] of squad '[current_squad]' has been demoted and replaced by [H.real_name]! Logging to enlistment files.</span>")
-		current_squad.demote_squad_leader()
+	if(current_squad.squad_leader)
+		send_to_squad("Attention: [current_squad.squad_leader] is [current_squad.squad_leader.stat == DEAD ? "stepping down" : "demoted"]. A new Squad Leader has been set: [H.real_name].")
+		visible_message("\icon[src] <span class='boldnotice'>Squad Leader [current_squad.squad_leader] of squad '[current_squad]' has been [current_squad.squad_leader.stat == DEAD ? "replaced" : "demoted and replaced"] by [H.real_name]! Logging to enlistment files.</span>")
+		current_squad.demote_squad_leader(current_squad.squad_leader.stat != DEAD)
 	else
 		send_to_squad("Attention: A new Squad Leader has been set: [H.real_name].")
 		visible_message("\icon[src] <span class='boldnotice'>[H.real_name] is the new Squad Leader of squad '[current_squad]'! Logging to enlistment file.</span>")

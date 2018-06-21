@@ -217,7 +217,14 @@ should be alright.
 
  	//the active attachment is reloadable
 	else if(active_attachable && active_attachable.flags_attach_features & ATTACH_RELOADABLE)
-		active_attachable.reload_attachment(I, user)
+		if(check_inactive_hand(user))
+			if(istype(I,/obj/item/ammo_magazine))
+				var/obj/item/ammo_magazine/MG = I
+				if(istype(src, MG.gun_type))
+					cancel_active_attachment(user)
+					reload(user,MG)
+					return
+			active_attachable.reload_attachment(I, user)
 
 	else if(istype(I,/obj/item/ammo_magazine))
 		if(check_inactive_hand(user)) reload(user,I)
