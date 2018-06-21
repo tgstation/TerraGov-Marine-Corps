@@ -69,3 +69,52 @@
 		A.forceMove(loc)
 
 	round_statistics.total_xeno_deaths++
+
+
+
+
+
+
+
+/mob/living/carbon/Xenomorph/gib()
+
+	var/obj/effect/decal/remains/xeno/remains = new(get_turf(src))
+	remains.icon = icon
+	remains.pixel_x = pixel_x //For 2x2.
+
+	switch(caste) //This will need to be changed later, when we have proper xeno pathing. Might do it on caste or something.
+		if("Boiler")
+			var/mob/living/carbon/Xenomorph/Boiler/B = src
+			visible_message("<span class='danger'>[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!</span>")
+			B.smoke.set_up(2, 0, get_turf(src))
+			B.smoke.start()
+			remains.icon_state = "gibbed-a-corpse"
+		if("Runner")
+			remains.icon_state = "gibbed-a-corpse-runner"
+		if("Bloody Larva","Predalien Larva")
+			remains.icon_state = "larva_gib_corpse"
+		else
+			remains.icon_state = "gibbed-a-corpse"
+
+	check_blood_splash(35, BURN, 65, 2) //Some testing numbers. 35 burn, 65 chance.
+
+	..(1)
+
+
+
+/mob/living/carbon/Xenomorph/gib_animation()
+	var/to_flick = "gibbed-a"
+	switch(caste)
+		if("Runner")
+			to_flick = "gibbed-a-runner"
+		if("Bloody Larva","Predalien Larva")
+			to_flick = "larva_gib"
+	new /obj/effect/overlay/temp/gib_animation/xeno(loc, src, to_flick, icon)
+
+/mob/living/carbon/Xenomorph/spawn_gibs()
+	xgibs(get_turf(src))
+
+
+
+/mob/living/carbon/Xenomorph/dust_animation()
+	new /obj/effect/overlay/temp/dust_animation(loc, src, "dust-a")

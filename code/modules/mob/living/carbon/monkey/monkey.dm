@@ -192,7 +192,7 @@
 		M << "No attacking people at spawn, you jackass."
 		return
 
-	if(M.gloves && istype(M.gloves,/obj/item/clothing/gloves))
+	if(M.gloves)
 		var/obj/item/clothing/gloves/G = M.gloves
 		if(G.cell)
 			if(M.a_intent == "hurt")//Stungloves. Any contact will stun the alien.
