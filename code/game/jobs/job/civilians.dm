@@ -3,6 +3,18 @@
 	department_flag = ROLEGROUP_MARINE_MED_SCIENCE
 	minimal_player_age = 7
 
+/datum/job/civilian/colonist
+	title = "Colonist"
+	comm_title = "CLN"
+	access = list(ACCESS_IFF_MARINE)
+	minimal_access = list(ACCESS_IFF_MARINE)
+
+/datum/job/civilian/passenger
+	title = "Passenger"
+	comm_title = "PAS"
+	access = list(ACCESS_IFF_MARINE)
+	minimal_access = list(ACCESS_IFF_MARINE)
+
 /datum/job/civilian/professor
 	title = "Chief Medical Officer"
 	comm_title = "CMO"

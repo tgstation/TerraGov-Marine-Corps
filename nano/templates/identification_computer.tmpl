@@ -137,7 +137,6 @@
               <tr>
                 <th>Special</th>
                 <td>
-                  {{:helper.link("Captain", '', {'choice' : 'assign', 'assign_target' : 'Captain'}, data.target_rank == 'Captain' ? 'disabled' : null)}}
                   {{:helper.link("Custom", '', {'choice' : 'assign', 'assign_target' : 'Custom'})}}
                 </td>
               </tr>
@@ -157,6 +156,7 @@
                   {{/for}}
                 </td>
               </tr>
+              {{if data.science_jobs}}
               <tr>
                 <th style="color: '#800080';">Science</th>
                 <td>
@@ -165,10 +165,11 @@
                   {{/for}}
                 </td>
               </tr>
+              {{/if}}
               <tr>
-                <th style="color: '#DD0000';">Security</th>
+                <th style="color: '#DD0000';">Marines</th>
                 <td>
-                  {{for data.security_jobs}}
+                  {{for data.marine_jobs}}
                     {{:helper.link(value.display_name, '', {'choice' : 'assign', 'assign_target' : value.job}, data.target_rank == value.job ? 'disabled' : null)}}
                   {{/for}}
                 </td>
@@ -219,7 +220,7 @@
           </div>
           <div class='item' style='width: 100%'>
             {{for data.regions}}
-              <div style='float: left; width: 175px; min-height: 250px'>
+              <div style='float: left; width: 175px; min-height: 50px'>
                 <div class='average'><b>{{:value.name}}</b></div>
                 {{for value.accesses :accessValue:accessKey}}
                   <div class='itemContentWide'>
