@@ -6,109 +6,85 @@
 	if(!client || isnull(client))
 		return 0
 
-	client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson)
+	if(stat != DEAD) //the dead get zero fullscreens
 
-	if(hud_used && hud_used.damageoverlay && hud_used.damageoverlay.overlays)
-		hud_used.damageoverlay.overlays = null
-		hud_used.damageoverlay.overlays = list()
+		update_sight()
 
-	if(stat == UNCONSCIOUS)
-		//Critical damage passage overlay
-		if(health <= config.health_threshold_crit)
-			var/image/I
+		if(stat == UNCONSCIOUS && health <= config.health_threshold_crit)
+			var/severity = 0
 			switch(health)
-				if(-20 to -10)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "passage1")
-				if(-30 to -20)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "passage2")
-				if(-40 to -30)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "passage3")
-				if(-50 to -40)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "passage4")
-				if(-60 to -50)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "passage5")
-				if(-70 to -60)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "passage6")
-				if(-80 to -70)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "passage7")
-				if(-90 to -80)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "passage8")
-				if(-95 to -90)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "passage9")
-				if(-INFINITY to -95)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "passage10")
-			if(hud_used) hud_used.damageoverlay.overlays += I
-	else
-		//Oxygen damage overlay
-		if(oxyloss)
-			var/image/I
-			switch(oxyloss)
-				if(10 to 20)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay1")
-				if(20 to 25)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay2")
-				if(25 to 30)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay3")
-				if(30 to 35)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay4")
-				if(35 to 40)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay5")
-				if(40 to 45)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay6")
-				if(45 to INFINITY)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "oxydamageoverlay7")
-			if(hud_used) hud_used.damageoverlay.overlays += I
-
-		//Fire and Brute damage overlay (BSSR)
-		var/hurtdamage = getBruteLoss() + getFireLoss() + damageoverlaytemp
-		damageoverlaytemp = 0 // We do this so we can detect if someone hits us or not.
-		if(hurtdamage)
-			var/image/I
-			switch(hurtdamage)
-				if(10 to 25)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay1")
-				if(25 to 40)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay2")
-				if(40 to 55)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay3")
-				if(55 to 70)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay4")
-				if(70 to 85)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay5")
-				if(85 to INFINITY)
-					I = image("icon" = 'icons/mob/screen1_full.dmi', "icon_state" = "brutedamageoverlay6")
-			if(hud_used) hud_used.damageoverlay.overlays += I
-
-	if(stat == DEAD)
-		sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_in_dark = 8
-		if(!druggy)
-			see_invisible = SEE_INVISIBLE_LEVEL_TWO
-		if(hud_used && hud_used.healths) hud_used.healths.icon_state = "health7" //DEAD healthmeter
-
-	else
-		sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
-		see_in_dark = species.darksight
-		see_invisible = see_in_dark > 2 ? SEE_INVISIBLE_LEVEL_ONE : SEE_INVISIBLE_LIVING
-		if(dna)
-			switch(dna.mutantrace)
-				if("slime")
-					see_in_dark = 3
-					see_invisible = SEE_INVISIBLE_LEVEL_ONE
-				if("shadow")
-					see_in_dark = 8
-					see_invisible = SEE_INVISIBLE_LEVEL_ONE
-
-		if(XRAY in mutations)
-			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
-			see_in_dark = 8
-			if(!druggy)
-				see_invisible = SEE_INVISIBLE_LEVEL_TWO
-
-		if(glasses)
-			process_glasses(glasses)
+				if(-20 to -10) severity = 1
+				if(-30 to -20) severity = 2
+				if(-40 to -30) severity = 3
+				if(-50 to -40) severity = 4
+				if(-60 to -50) severity = 5
+				if(-70 to -60) severity = 6
+				if(-80 to -70) severity = 7
+				if(-90 to -80) severity = 8
+				if(-95 to -90) severity = 9
+				if(-INFINITY to -95) severity = 10
+			overlay_fullscreen("crit", /obj/screen/fullscreen/crit, severity)
 		else
-			see_invisible = SEE_INVISIBLE_LIVING
+			clear_fullscreen("crit")
+			if(oxyloss)
+				var/severity = 0
+				switch(oxyloss)
+					if(10 to 20) severity = 1
+					if(20 to 25) severity = 2
+					if(25 to 30) severity = 3
+					if(30 to 35) severity = 4
+					if(35 to 40) severity = 5
+					if(40 to 45) severity = 6
+					if(45 to INFINITY) severity = 7
+				overlay_fullscreen("oxy", /obj/screen/fullscreen/oxy, severity)
+			else
+				clear_fullscreen("oxy")
+
+
+			//Fire and Brute damage overlay (BSSR)
+			var/hurtdamage = src.getBruteLoss() + src.getFireLoss() + damageoverlaytemp
+			damageoverlaytemp = 0 // We do this so we can detect if someone hits us or not.
+			if(hurtdamage)
+				var/severity = 0
+				switch(hurtdamage)
+					if(5 to 15) severity = 1
+					if(15 to 30) severity = 2
+					if(30 to 45) severity = 3
+					if(45 to 70) severity = 4
+					if(70 to 85) severity = 5
+					if(85 to INFINITY) severity = 6
+				overlay_fullscreen("brute", /obj/screen/fullscreen/brute, severity)
+			else
+				clear_fullscreen("brute")
+
+
+		if(blinded)
+			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
+		else
+			clear_fullscreen("blind")
+
+		if (disabilities & NEARSIGHTED)
+			if(glasses)
+				var/obj/item/clothing/glasses/G = glasses
+				if(!G.prescription)
+					overlay_fullscreen("nearsighted", /obj/screen/fullscreen/impaired, 1)
+				else
+					clear_fullscreen("nearsighted")
+			else
+				overlay_fullscreen("nearsighted", /obj/screen/fullscreen/impaired, 1)
+		else
+			clear_fullscreen("nearsighted")
+
+		if(eye_blurry)
+			overlay_fullscreen("blurry", /obj/screen/fullscreen/blurry)
+		else
+			clear_fullscreen("blurry")
+
+		if(druggy)
+			overlay_fullscreen("high", /obj/screen/fullscreen/high)
+		else
+			clear_fullscreen("high")
+
 
 		if(hud_used)
 			if(hud_used.locate_leader && hud_used.locate_leader.alpha && prob(25)) //not invisible, 25% to not call it all the time
@@ -197,39 +173,7 @@
 							hud_used.bodytemp_icon.icon_state = "temp-1"
 						else
 							hud_used.bodytemp_icon.icon_state = "temp0"
-			if(hud_used.blind_icon)
-				if(blinded)		hud_used.blind_icon.plane = 0
-				else			hud_used.blind_icon.plane = -80
 
-		if(disabilities & NEARSIGHTED)	//This looks meh but saves a lot of memory by not requiring to add var/prescription to every /obj/item
-			if(glasses)
-				var/obj/item/clothing/glasses/G = glasses
-				if(!G.prescription)
-					client.screen += global_hud.vimpaired
-			else
-				client.screen += global_hud.vimpaired
-
-		if(eye_blurry)			client.screen += global_hud.blurry
-		if(druggy)				client.screen += global_hud.druggy
-
-		var/masked = 0
-
-		if(istype(head, /obj/item/clothing/head/welding) || istype(head, /obj/item/clothing/head/helmet/space/unathi))
-			var/obj/item/clothing/head/welding/O = head
-			if(!O.up && tinted_weldhelh)
-				client.screen += global_hud.darkMask
-				masked = 1
-
-		if(!masked && istype(glasses, /obj/item/clothing/glasses/welding))
-			var/obj/item/clothing/glasses/welding/O = glasses
-			if(!O.up && tinted_weldhelh)
-				client.screen += global_hud.darkMask
-				masked = 1
-
-		if(!masked && istype(wear_mask, /obj/item/clothing/mask/gas))
-			var/obj/item/clothing/mask/gas/G = wear_mask
-			if(G.vision_impair && tinted_weldhelh)
-				client.screen += global_hud.darkMask
 
 		if(interactee)
 			interactee.check_eye(src)

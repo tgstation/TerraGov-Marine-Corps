@@ -15,9 +15,7 @@
 			var/turf/T = get_turf(src)
 			playsound(T, 'sound/effects/phasein.ogg', 25, 1)
 			for(var/mob/living/carbon/human/M in viewers(T, null))
-				if(M.get_eye_protection() <= 0)
-					if(M.hud_used)
-						flick("e_flash", M.hud_used.flash_icon)
+				M.flash_eyes(1, TRUE)
 
 			for(var/i=1, i<=deliveryamt, i++)
 				var/atom/movable/x = new spawner_type

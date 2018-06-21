@@ -91,10 +91,14 @@
 #define BELOW_FULLSCREEN_LAYER 16.9 //blip from motion detector
 #define FULLSCREEN_FLASH_LAYER 16.95 //flashed
 #define FULLSCREEN_LAYER 17 //visual impairment from wearing welding helmet, etc
-#define FULLSCREEN_BLIND_LAYER 17.05 //unconscious
-#define FULLSCREEN_DAMAGE_LAYER 17.1 //red circles when hurt
+#define FULLSCREEN_DAMAGE_LAYER 17.05 //red circles when hurt
+#define FULLSCREEN_BLIND_LAYER 17.1 //unconscious
+#define FULLSCREEN_PAIN_LAYER	17.12 //pain flashes
+#define FULLSCREEN_CRIT_LAYER 17.15 //in critical
 
 #define HUD_LAYER 19
 #define ABOVE_HUD_LAYER 20
 
 #define CINEMATIC_LAYER 21
+
+

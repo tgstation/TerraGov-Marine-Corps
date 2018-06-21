@@ -24,11 +24,6 @@
 
 	var/obj/screen/module_store_icon
 
-	var/obj/screen/blind_icon
-	var/obj/screen/flash_icon
-	var/obj/screen/damageoverlay
-	var/obj/screen/pain_icon
-
 	var/obj/screen/nutrition_icon
 
 	var/obj/screen/use_attachment
@@ -57,7 +52,6 @@
 	var/list/toggleable_inventory = list() //the screen objects which can be hidden
 	var/list/obj/screen/hotkeybuttons = list() //the buttons that can be used via hotkeys
 	var/list/infodisplay = list() //the screen objects that display mob info (health, alien plasma, etc...)
-	var/list/screenoverlays = list() //the screen objects used as whole screen overlays (flash,blind, etc...)
 
 	var/obj/screen/action_button/hide_toggle/hide_actions_toggle
 	var/action_buttons_hidden = 0
@@ -86,10 +80,6 @@
 		for(var/thing in infodisplay)
 			cdel(thing)
 		infodisplay.Cut()
-	if(screenoverlays.len)
-		for(var/thing in screenoverlays)
-			cdel(thing)
-		screenoverlays.Cut()
 
  	cdel(hide_actions_toggle)
 	hide_actions_toggle = null
@@ -103,11 +93,6 @@
 	pred_power_icon = null
 
 	module_store_icon = null
-
-	blind_icon = null
-	flash_icon = null
-	damageoverlay = null
-	pain_icon = null
 
 	nutrition_icon = null
 
@@ -148,15 +133,13 @@
 		return 0
 
 	mymob.client.screen = list()
+	mymob.client.apply_clickcatcher()
 
 	var/display_hud_version = version
 	if(!display_hud_version)	//If 0 or blank, display the next hud version
 		display_hud_version = hud_version + 1
 	if(display_hud_version > HUD_VERSIONS)	//If the requested version number is greater than the available versions, reset back to the first version
 		display_hud_version = 1
-
-	if(screenoverlays.len)
-		mymob.client.screen += screenoverlays
 
 	switch(display_hud_version)
 		if(HUD_STYLE_STANDARD)	//Default HUD
@@ -207,6 +190,7 @@
 	hud_version = display_hud_version
 	persistant_inventory_update()
 	mymob.update_action_buttons(TRUE)
+	mymob.reload_fullscreens()
 
 
 

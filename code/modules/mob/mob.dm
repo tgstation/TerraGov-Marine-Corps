@@ -4,6 +4,7 @@
 	dead_mob_list -= src
 	living_mob_list -= src
 	ghostize()
+	fullscreens = null
 	. = ..()
 	return TA_PURGE_ME_NOW
 
@@ -588,8 +589,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 	return ""
 
 /mob/proc/flash_weak_pain()
-	if(hud_used)
-		flick("weak_pain",hud_used.pain_icon)
+	overlay_fullscreen("pain", /obj/screen/fullscreen/pain, 1)
+	clear_fullscreen("pain")
 
 /mob/proc/get_visible_implants(var/class = 0)
 	var/list/visible_implants = list()

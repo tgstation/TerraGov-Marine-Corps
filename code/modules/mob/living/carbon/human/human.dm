@@ -89,8 +89,7 @@
 		stat(null, "You are affected by a FOCUS order.")
 
 /mob/living/carbon/human/ex_act(severity)
-	if(!blinded && hud_used)
-		flick("flash", hud_used.flash_icon)
+	flash_eyes()
 
 	var/b_loss = null
 	var/f_loss = null
@@ -1433,3 +1432,80 @@
 	else
 		hud_used.locate_leader.dir = get_dir(src,H)
 		hud_used.locate_leader.icon_state = "trackon"
+
+
+
+
+
+
+
+/mob/proc/update_sight()
+	return
+
+/mob/living/carbon/human/update_sight()
+	if(stat == DEAD)
+		sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
+		see_in_dark = 8
+		see_invisible = SEE_INVISIBLE_LEVEL_TWO
+	else
+		sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
+		see_in_dark = species.darksight
+		see_invisible = see_in_dark > 2 ? SEE_INVISIBLE_LEVEL_ONE : SEE_INVISIBLE_LIVING
+		if(dna)
+			switch(dna.mutantrace)
+				if("slime")
+					see_in_dark = 3
+					see_invisible = SEE_INVISIBLE_LEVEL_ONE
+				if("shadow")
+					see_in_dark = 8
+					see_invisible = SEE_INVISIBLE_LEVEL_ONE
+
+		if(XRAY in mutations)
+			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
+			see_in_dark = 8
+			see_invisible = SEE_INVISIBLE_LEVEL_TWO
+
+		if(glasses)
+			process_glasses(glasses)
+		else
+			see_invisible = SEE_INVISIBLE_LIVING
+
+
+
+
+/mob/proc/update_tint()
+
+/mob/living/carbon/human/update_tint()
+	var/is_tinted = FALSE
+
+	if(istype(head, /obj/item/clothing/head/welding))
+		var/obj/item/clothing/head/welding/O = head
+		if(!O.up && tinted_weldhelh)
+			is_tinted = TRUE
+
+	if(glasses && glasses.has_tint && glasses.active && tinted_weldhelh)
+		is_tinted = TRUE
+
+	if(istype(wear_mask, /obj/item/clothing/mask/gas))
+		var/obj/item/clothing/mask/gas/G = wear_mask
+		if(G.vision_impair && tinted_weldhelh)
+			is_tinted = TRUE
+
+	if(is_tinted)
+		overlay_fullscreen("tint", /obj/screen/fullscreen/impaired, 2)
+		return 1
+	else
+		clear_fullscreen("tint", 0)
+		return 0
+
+
+/mob/proc/update_glass_vision(obj/item/clothing/glasses/G)
+	return
+
+/mob/living/carbon/human/update_glass_vision(obj/item/clothing/glasses/G)
+	if(G.fullscreen_vision)
+		if(G == glasses && G.active) //equipped and activated
+			overlay_fullscreen("glasses_vision", G.fullscreen_vision)
+			return 1
+		else //unequipped or deactivated
+			clear_fullscreen("glasses_vision", 0)

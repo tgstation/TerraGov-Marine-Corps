@@ -72,12 +72,9 @@
 	var/flashfail = 0
 
 	if(iscarbon(M))
-		if(M.get_eye_protection() <= 0)
+		flashfail = !M.flash_eyes()
+		if(!flashfail)
 			M.KnockDown(10)
-			if(M.hud_used)
-				flick("e_flash", M.hud_used.flash_icon)
-		else
-			flashfail = 1
 
 	else if(issilicon(M))
 		M.KnockDown(rand(5,10))
@@ -157,9 +154,7 @@
 				for(var/obj/item/device/cloaking_device/S in M)
 					S.active = 0
 					S.icon_state = "shield0"
-		if(!M.get_eye_protection())
-			if(!M.blinded && M.hud_used)
-				flick("flash", M.hud_used.flash_icon)
+		M.flash_eyes()
 
 	return
 
@@ -175,12 +170,9 @@
 			times_used++
 			if(istype(loc, /mob/living/carbon))
 				var/mob/living/carbon/M = loc
-				if(!M.get_eye_protection())
+				if(M.flash_eyes())
 					M.KnockDown(10)
-					if(M.hud_used)
-						flick("e_flash", M.hud_used.flash_icon)
-					for(var/mob/O in viewers(M, null))
-						O.show_message("<span class='disarm'>[M] is blinded by the flash!</span>")
+					M.visible_message("<span class='disarm'>[M] is blinded by the flash!</span>")
 	..()
 
 /obj/item/device/flash/synthetic

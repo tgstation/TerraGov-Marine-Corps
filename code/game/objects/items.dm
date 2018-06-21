@@ -573,7 +573,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	if(user.eye_blind) 												user << "<span class='warning'>You are too blind to see anything.</span>"
 	else if(user.stat || !ishuman(user)) 							user << "<span class='warning'>You are unable to focus through \the [zoom_device].</span>"
-	else if(!zoom && user.client && global_hud.darkMask[1] in user.client.screen) 	user << "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>"
+	else if(!zoom && user.client && user.update_tint()) 			user << "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>"
 	else if(!zoom && user.get_active_hand() != src)					user << "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>"
 	else if(zoom) //If we are zoomed out, reset that parameter.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",

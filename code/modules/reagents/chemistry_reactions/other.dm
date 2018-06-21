@@ -192,20 +192,12 @@
 		for(var/mob/living/carbon/M in viewers(world.view, location))
 			switch(get_dist(M, location))
 				if(0 to 3)
-					if(hasvar(M, "glasses"))
-						if(istype(M:glasses, /obj/item/clothing/glasses/sunglasses))
-							continue
-					if(M.hud_used)
-						flick("e_flash", M.hud_used.flash_icon)
-					M.KnockDown(15)
+					if(M.flash_eyes())
+						M.KnockDown(15)
 
 				if(4 to 5)
-					if(hasvar(M, "glasses"))
-						if(istype(M:glasses, /obj/item/clothing/glasses/sunglasses))
-							continue
-					if(M.hud_used)
-						flick("e_flash", M.hud_used.flash_icon)
-					M.Stun(5)
+					if(M.flash_eyes())
+						M.Stun(5)
 
 
 /datum/chemical_reaction/napalm

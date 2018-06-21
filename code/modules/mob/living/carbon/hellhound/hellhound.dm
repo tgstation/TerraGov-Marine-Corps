@@ -226,8 +226,7 @@
 		updatehealth()
 
 /mob/living/carbon/hellhound/ex_act(severity)
-	if(!blinded && hud_used)
-		flick("flash", hud_used.flash_icon)
+	flash_eyes()
 	switch(severity)
 		if(1)
 			if (stat != DEAD)

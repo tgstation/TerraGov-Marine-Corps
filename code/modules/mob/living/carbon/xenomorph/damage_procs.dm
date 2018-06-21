@@ -1,7 +1,6 @@
 /mob/living/carbon/Xenomorph/ex_act(severity)
 
-	if(!blinded && hud_used)
-		flick("flash", hud_used.flash_icon)
+	flash_eyes()
 
 	var/b_loss = 0
 	var/f_loss = 0

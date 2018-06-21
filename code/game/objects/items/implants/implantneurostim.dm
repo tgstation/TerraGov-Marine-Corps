@@ -55,8 +55,7 @@
 		sleep(5)
 
 		M << "<span class='danger'>Excruciating pain shoots through [part ? "your [part.display_name]" : "you"]!</span>"
-		if(M.hud_used)
-			flick("e_flash", M.hud_used.flash_icon)
+		M.flash_eyes(1, TRUE)
 		M.stunned += 10
 		M.KnockDown(10)
 		M.apply_damage(100, HALLOSS, part)

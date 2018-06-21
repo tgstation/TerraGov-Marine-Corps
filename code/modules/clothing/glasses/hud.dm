@@ -41,9 +41,6 @@
 	hud_type = MOB_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
 
-/obj/item/clothing/glasses/hud/health/New()
-	..()
-	overlay = null  //Stops the overlay.
 
 /obj/item/clothing/glasses/hud/health/attack_self(mob/living/user)
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical >= SKILL_MEDICAL_MEDIC)

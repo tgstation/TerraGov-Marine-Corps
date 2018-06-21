@@ -339,8 +339,7 @@
 
 /mob/living/carbon/Xenomorph/Crusher/ex_act(severity)
 
-	if(!blinded && hud_used)
-		flick("flash", hud_used.flash_icon)
+	flash_eyes()
 
 	if(severity == 1)
 		adjustBruteLoss(rand(200, 300))

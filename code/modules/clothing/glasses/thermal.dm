@@ -11,6 +11,7 @@
 	vision_flags = SEE_MOBS
 	invisa_view = 2
 	eye_protection = -1
+	fullscreen_vision = /obj/screen/fullscreen/thermal
 
 	emp_act(severity)
 		if(istype(src.loc, /mob/living/carbon/human))
@@ -24,9 +25,6 @@
 					M.disabilities &= ~NEARSIGHTED
 		..()
 
-/obj/item/clothing/glasses/thermal/New()
-	..()
-	overlay = global_hud.thermal
 
 /obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
 	name = "Optical Meson Scanner"

@@ -8,10 +8,7 @@
 	item_state = "glasses"
 	origin_tech = "magnets=2"
 	darkness_view = 7
-
-/obj/item/clothing/glasses/night/New()
-	..()
-	overlay = global_hud.nvg
+	fullscreen_vision = /obj/screen/fullscreen/nvg
 
 
 /obj/item/clothing/glasses/night/M4RA
@@ -23,11 +20,9 @@
 	vision_flags = SEE_TURFS
 	darkness_view = 12
 	toggleable = 1
+	fullscreen_vision = null
 	actions_types = list(/datum/action/item_action/toggle)
 
-/obj/item/clothing/glasses/night/M4RA/New()
-	..()
-	overlay = null
 
 /obj/item/clothing/glasses/night/m42_night_goggles
 	name = "\improper M42 scout sight"
@@ -38,11 +33,9 @@
 	vision_flags = SEE_TURFS
 	darkness_view = 12
 	toggleable = 1
+	fullscreen_vision = null
 	actions_types = list(/datum/action/item_action/toggle)
 
-/obj/item/clothing/glasses/night/m42_night_goggles/New()
-	..()
-	overlay = null
 
 /obj/item/clothing/glasses/night/m42_night_goggles/upp
 	name = "\improper Type 9 commando goggles"
@@ -61,6 +54,7 @@
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle)
 	vision_flags = SEE_TURFS
+	fullscreen_vision = /obj/screen/fullscreen/thermal
 
 /obj/item/clothing/glasses/night/m56_goggles/mob_can_equip(mob/user, slot)
 	if(slot == WEAR_EYES)
@@ -73,9 +67,6 @@
 				return 0
 	return ..(user, slot)
 
-/obj/item/clothing/glasses/night/m56_goggles/New()
-	..()
-	overlay = global_hud.thermal
 
 
 /obj/item/clothing/glasses/night/yautja
@@ -86,10 +77,8 @@
 	darkness_view = 5 //Not quite as good as regular NVG.
 	flags_inventory = COVEREYES
 	flags_item = NODROP|DELONDROP
+	fullscreen_vision = null
 
-/obj/item/clothing/glasses/night/yautja/New()
-	..()
-	overlay = null  //Stops the green overlay.
 
 /obj/item/clothing/glasses/night/yautja/Dispose()
 	..()

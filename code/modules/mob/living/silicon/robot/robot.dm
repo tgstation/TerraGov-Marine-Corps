@@ -404,7 +404,7 @@ var/list/robot_verbs_default = list(
 /mob/living/silicon/robot/Stat()
 	if (!..())
 		return 0
-		
+
 	show_cell_power()
 	show_jetpack_pressure()
 	stat(null, text("Lights: [lights_on ? "ON" : "OFF"]"))
@@ -1066,3 +1066,35 @@ var/list/robot_verbs_default = list(
 		use_power(RC.active_usage)
 		return 1
 	return 0
+
+
+
+
+
+
+/mob/living/silicon/robot/update_sight()
+	if (stat == DEAD || XRAY in mutations || sight_mode & BORGXRAY)
+		sight |= SEE_TURFS
+		sight |= SEE_MOBS
+		sight |= SEE_OBJS
+		see_in_dark = 8
+		see_invisible = SEE_INVISIBLE_MINIMUM
+	else if (sight_mode & BORGMESON && sight_mode & BORGTHERM)
+		sight |= SEE_TURFS
+		sight |= SEE_MOBS
+		see_in_dark = 8
+		see_invisible = SEE_INVISIBLE_MINIMUM
+	else if (sight_mode & BORGMESON)
+		sight |= SEE_TURFS
+		see_in_dark = 8
+		see_invisible = SEE_INVISIBLE_MINIMUM
+	else if (sight_mode & BORGTHERM)
+		sight |= SEE_MOBS
+		see_in_dark = 8
+		see_invisible = SEE_INVISIBLE_LEVEL_TWO
+	else if (stat != DEAD)
+		sight &= ~SEE_MOBS
+		sight &= ~SEE_TURFS
+		sight &= ~SEE_OBJS
+		see_in_dark = 8
+		see_invisible = SEE_INVISIBLE_LEVEL_TWO

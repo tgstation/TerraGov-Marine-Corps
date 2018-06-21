@@ -381,3 +381,18 @@
 		attack_icon.icon_state = new_icon
 		attack_icon.pixel_x = new_pix_x
 		attack_icon.pixel_y = new_pix_y
+
+
+
+
+/mob/proc/flash_eyes()
+	return
+
+/mob/living/flash_eyes(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
+	if( bypass_checks || (get_eye_protection() < intensity && !(disabilities & BLIND)) )
+		overlay_fullscreen("flash", type)
+		spawn(25)
+			clear_fullscreen("flash", 25)
+		return 1
+
+

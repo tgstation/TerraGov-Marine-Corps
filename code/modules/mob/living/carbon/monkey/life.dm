@@ -439,88 +439,84 @@
 
 	proc/handle_regular_hud_updates()
 
-		if (stat == 2 || (XRAY in mutations))
-			sight |= SEE_TURFS
-			sight |= SEE_MOBS
-			sight |= SEE_OBJS
-			see_in_dark = 8
-			see_invisible = SEE_INVISIBLE_LEVEL_TWO
-		else if (stat != 2)
-			sight &= ~SEE_TURFS
-			sight &= ~SEE_MOBS
-			sight &= ~SEE_OBJS
-			see_in_dark = 2
-			see_invisible = SEE_INVISIBLE_LIVING
+		update_sight()
 
-		if (hud_used && hud_used.healths)
-			if (stat != 2)
-				switch(health)
-					if(100 to INFINITY)
-						hud_used.healths.icon_state = "health0"
-					if(80 to 100)
-						hud_used.healths.icon_state = "health1"
-					if(60 to 80)
-						hud_used.healths.icon_state = "health2"
-					if(40 to 60)
-						hud_used.healths.icon_state = "health3"
-					if(20 to 40)
-						hud_used.healths.icon_state = "health4"
-					if(0 to 20)
-						hud_used.healths.icon_state = "health5"
-					else
-						hud_used.healths.icon_state = "health6"
-			else
-				hud_used.healths.icon_state = "health7"
-
-
-		if(hud_used && hud_used.pressure_icon)
-			hud_used.pressure_icon.icon_state = "pressure[pressure_alert]"
-
-		if (hud_used && hud_used.toxin_icon)	hud_used.toxin_icon.icon_state = "tox[phoron_alert ? 1 : 0]"
-		if (hud_used && hud_used.oxygen_icon) hud_used.oxygen_icon.icon_state = "oxy[oxygen_alert ? 1 : 0]"
-		if (hud_used && hud_used.fire_icon) hud_used.fire_icon.icon_state = "fire[fire_alert ? 2 : 0]"
-		//NOTE: the alerts dont reset when youre out of danger. dont blame me,
-		//blame the person who coded them. Temporary fix added.
-
-		if(hud_used && hud_used.bodytemp_icon)
-			switch(bodytemperature) //310.055 optimal body temp
-				if(345 to INFINITY)
-					hud_used.bodytemp_icon.icon_state = "temp4"
-				if(335 to 345)
-					hud_used.bodytemp_icon.icon_state = "temp3"
-				if(327 to 335)
-					hud_used.bodytemp_icon.icon_state = "temp2"
-				if(316 to 327)
-					hud_used.bodytemp_icon.icon_state = "temp1"
-				if(300 to 316)
-					hud_used.bodytemp_icon.icon_state = "temp0"
-				if(295 to 300)
-					hud_used.bodytemp_icon.icon_state = "temp-1"
-				if(280 to 295)
-					hud_used.bodytemp_icon.icon_state = "temp-2"
-				if(260 to 280)
-					hud_used.bodytemp_icon.icon_state = "temp-3"
+		if (hud_used)
+			if(hud_used.healths)
+				if (stat != DEAD)
+					switch(health)
+						if(100 to INFINITY)
+							hud_used.healths.icon_state = "health0"
+						if(80 to 100)
+							hud_used.healths.icon_state = "health1"
+						if(60 to 80)
+							hud_used.healths.icon_state = "health2"
+						if(40 to 60)
+							hud_used.healths.icon_state = "health3"
+						if(20 to 40)
+							hud_used.healths.icon_state = "health4"
+						if(0 to 20)
+							hud_used.healths.icon_state = "health5"
+						else
+							hud_used.healths.icon_state = "health6"
 				else
-					hud_used.bodytemp_icon.icon_state = "temp-4"
+					hud_used.healths.icon_state = "health7"
 
-		client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
 
-		if(hud_used && hud_used.blind_icon && stat != DEAD)
+			if(hud_used.pressure_icon)	hud_used.pressure_icon.icon_state = "pressure[pressure_alert]"
+
+			if (hud_used.toxin_icon)	hud_used.toxin_icon.icon_state = "tox[phoron_alert ? 1 : 0]"
+			if (hud_used.oxygen_icon)	hud_used.oxygen_icon.icon_state = "oxy[oxygen_alert ? 1 : 0]"
+			if (hud_used.fire_icon)	hud_used.fire_icon.icon_state = "fire[fire_alert ? 2 : 0]"
+			//NOTE: the alerts dont reset when youre out of danger. dont blame me,
+			//blame the person who coded them. Temporary fix added.
+
+			if(hud_used.bodytemp_icon)
+				switch(bodytemperature) //310.055 optimal body temp
+					if(345 to INFINITY)
+						hud_used.bodytemp_icon.icon_state = "temp4"
+					if(335 to 345)
+						hud_used.bodytemp_icon.icon_state = "temp3"
+					if(327 to 335)
+						hud_used.bodytemp_icon.icon_state = "temp2"
+					if(316 to 327)
+						hud_used.bodytemp_icon.icon_state = "temp1"
+					if(300 to 316)
+						hud_used.bodytemp_icon.icon_state = "temp0"
+					if(295 to 300)
+						hud_used.bodytemp_icon.icon_state = "temp-1"
+					if(280 to 295)
+						hud_used.bodytemp_icon.icon_state = "temp-2"
+					if(260 to 280)
+						hud_used.bodytemp_icon.icon_state = "temp-3"
+					else
+						hud_used.bodytemp_icon.icon_state = "temp-4"
+
+
+
+
+
+		if(stat != DEAD) //the dead get zero fullscreens
 			if(blinded)
-				hud_used.blind_icon.plane = 0
+				overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 			else
-				hud_used.blind_icon.plane = -80
+				clear_fullscreen("blind")
 
-				if(disabilities & NEARSIGHTED)
-					client.screen += global_hud.vimpaired
+				if (disabilities & NEARSIGHTED)
+					overlay_fullscreen("nearsighted", /obj/screen/fullscreen/impaired, 1)
+				else
+					clear_fullscreen("nearsighted")
 
 				if(eye_blurry)
-					client.screen += global_hud.blurry
-
+					overlay_fullscreen("blurry", /obj/screen/fullscreen/blurry)
+				else
+					clear_fullscreen("blurry")
 				if(druggy)
-					client.screen += global_hud.druggy
+					overlay_fullscreen("high", /obj/screen/fullscreen/high)
+				else
+					clear_fullscreen("high")
 
-		if (stat != 2)
+
 			if(interactee)
 				interactee.check_eye(src)
 			else

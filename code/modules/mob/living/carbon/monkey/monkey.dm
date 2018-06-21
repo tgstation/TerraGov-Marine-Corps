@@ -296,8 +296,7 @@
 	..()
 
 /mob/living/carbon/monkey/ex_act(severity)
-	if(!blinded && hud_used)
-		flick("flash", hud_used.flash_icon)
+	flash_eyes()
 
 	switch(severity)
 		if(1.0)
@@ -339,3 +338,21 @@
         message = capitalize(trim_left(message))
 
         ..(message, speaking, verb, alt_name, italics, message_range, used_radios)
+
+
+
+
+
+/mob/living/carbon/monkey/update_sight()
+	if (stat == DEAD || (XRAY in mutations))
+		sight |= SEE_TURFS
+		sight |= SEE_MOBS
+		sight |= SEE_OBJS
+		see_in_dark = 8
+		see_invisible = SEE_INVISIBLE_LEVEL_TWO
+	else if (stat != DEAD)
+		sight &= ~SEE_TURFS
+		sight &= ~SEE_MOBS
+		sight &= ~SEE_OBJS
+		see_in_dark = 2
+		see_invisible = SEE_INVISIBLE_LIVING

@@ -207,8 +207,6 @@
 /mob/living/carbon/human/proc/process_glasses(var/obj/item/clothing/glasses/G)
 	if(G && G.active)
 		see_in_dark += G.darkness_view
-		if(G.overlay)
-			client.screen |= G.overlay
 		if(G.vision_flags)
 			sight |= G.vision_flags
 			if(!druggy)

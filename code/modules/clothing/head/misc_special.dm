@@ -57,6 +57,11 @@
 			anti_hug = 0
 		up = !up
 
+		if(ishuman(loc))
+			var/mob/living/carbon/human/H = loc
+			if(H.head == src)
+				H.update_tint()
+
 		update_clothing_icon()	//so our mob-overlays update
 
 		for(var/X in actions)

@@ -310,8 +310,7 @@
 	icon_state = icon_dead
 
 /mob/living/simple_animal/ex_act(severity)
-	if(!blinded && hud_used)
-		flick("flash", hud_used.flash_icon)
+	flash_eyes()
 	switch (severity)
 		if (1.0)
 			adjustBruteLoss(500)

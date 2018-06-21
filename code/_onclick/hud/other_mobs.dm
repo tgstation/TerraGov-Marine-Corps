@@ -3,11 +3,6 @@
 
 /datum/hud/ai/New(mob/living/silicon/ai/owner)
 	..()
-	blind_icon = new /obj/screen/blind()
-	screenoverlays += blind_icon
-
-	flash_icon = new /obj/screen/flash()
-	screenoverlays += flash_icon
 
 
 /mob/living/silicon/ai/create_hud()
@@ -19,8 +14,6 @@
 
 /datum/hud/brain/New(mob/living/brain/owner, ui_style='icons/mob/screen1_Midnight.dmi')
 	..()
-	blind_icon = new /obj/screen/blind()
-	screenoverlays += blind_icon
 
 /mob/living/brain/create_hud()
 	if(client && !hud_used)
@@ -47,12 +40,6 @@
 
 	healths = new /obj/screen/healths()
 	infodisplay += healths
-
-	blind_icon = new /obj/screen/blind()
-	screenoverlays += blind_icon
-
-	flash_icon = new /obj/screen/flash()
-	screenoverlays += flash_icon
 
 	zone_sel = new /obj/screen/zone_sel()
 	zone_sel.icon = ui_style
