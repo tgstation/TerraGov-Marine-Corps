@@ -1190,8 +1190,8 @@
 								/obj/item/attachable/angledgrip,
 								/obj/item/attachable/gyro,
 								/obj/item/attachable/bipod,
-								/obj/item/attachable/shotgun,
-								/obj/item/attachable/flamer,
+								/obj/item/attachable/attached_gun/shotgun,
+								/obj/item/attachable/attached_gun/flamer,
 								/obj/item/attachable/burstfire_assembly)
 
 			if(41 to 45)//Sentry gun drop. 10%

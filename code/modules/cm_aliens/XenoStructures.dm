@@ -93,7 +93,7 @@
 /obj/effect/alien/resin/attack_paw()
 	return attack_hand()
 
-/obj/effect/alien/resin/attackby(obj/item/W as obj, mob/user as mob)
+/obj/effect/alien/resin/attackby(obj/item/W, mob/user)
 	if(!(W.flags_item & NOBLUDGEON))
 		var/damage = W.force
 		if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
@@ -104,7 +104,7 @@
 		else
 			playsound(loc, "alien_resin_break", 25)
 		healthcheck()
-	return ..(W, user)
+	return ..()
 
 
 
@@ -543,6 +543,10 @@
 				if(GROWING,GROWN) user << "<span class='xenowarning'>This one is occupied with a child.</span>"
 		else user << "<span class='xenowarning'>This child is dead.</span>"
 		return
+
+	if(W.flags_item & NOBLUDGEON)
+		return
+
 	user.animation_attack_on(src)
 	if(W.attack_verb.len)
 		visible_message("<span class='danger'>\The [src] has been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
@@ -562,6 +566,7 @@
 
 	health -= damage
 	healthcheck()
+
 
 /obj/effect/alien/egg/proc/healthcheck()
 	if(health <= 0)

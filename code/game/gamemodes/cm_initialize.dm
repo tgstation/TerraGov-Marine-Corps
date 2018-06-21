@@ -729,9 +729,9 @@ datum/game_mode/proc/initialize_special_clamps()
 					/obj/item/attachable/stock/revolver = round(scale * 5),
 					/obj/item/attachable/stock/smg = round(scale * 5) ,
 
-					/obj/item/attachable/grenade = round(scale * 15),
-					/obj/item/attachable/shotgun = round(scale * 5),
-					/obj/item/attachable/flamer = round(scale * 5)
+					/obj/item/attachable/attached_gun/grenade = round(scale * 15),
+					/obj/item/attachable/attached_gun/shotgun = round(scale * 5),
+					/obj/item/attachable/attached_gun/flamer = round(scale * 5)
 					)
 
 		//Rebuild the vendor's inventory to make our changes apply

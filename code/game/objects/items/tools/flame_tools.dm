@@ -227,7 +227,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	else if(istype(W, /obj/item/device/assembly/igniter))
 		light("<span class='notice'>[user] fiddles with [W], and manages to light their [name].</span>")
 
-	else if(istype(W, /obj/item/attachable/flamer))
+	else if(istype(W, /obj/item/attachable/attached_gun/flamer))
 		light("<span class='notice'>[user] lights their [src] with the [W].</span>")
 
 	else if(istype(W, /obj/item/weapon/gun/flamer))
@@ -239,7 +239,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	else if(istype(W, /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/G = W
-		if(istype(G.under, /obj/item/attachable/flamer))
+		if(istype(G.under, /obj/item/attachable/attached_gun/flamer))
 			light("<span class='notice'>[user] lights their [src] with the underbarrel [G.under].</span>")
 
 	else if(istype(W, /obj/item/tool/surgery/cautery))
@@ -428,7 +428,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	else if(istype(W, /obj/item/device/assembly/igniter))
 		light("<span class='notice'>[user] fiddles with [W], and manages to light their [name] with the power of science.</span>")
 
-	else if(istype(W, /obj/item/attachable/flamer))
+	else if(istype(W, /obj/item/attachable/attached_gun/flamer))
 		light("<span class='notice'>[user] lights their [src] with the [W], bet that would have looked cooler if it was attached to something first!</span>")
 
 	else if(istype(W, /obj/item/weapon/gun/flamer))
@@ -440,7 +440,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	else if(istype(W, /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/G = W
-		if(istype(G.under, /obj/item/attachable/flamer))
+		if(istype(G.under, /obj/item/attachable/attached_gun/flamer))
 			light("<span class='notice'>[user] lights their [src] with the underbarrel [G.under] like a complete badass.</span>")
 
 	else if(istype(W, /obj/item/tool/surgery/cautery))

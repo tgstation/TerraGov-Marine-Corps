@@ -131,17 +131,17 @@ can cause issues with ammo types getting mixed up during the burst.
 	return ready_shotgun_tube()
 
 /obj/item/weapon/gun/shotgun/reload_into_chamber(mob/user)
-	if(active_attachable) make_casing(active_attachable.type_of_casings)
+	if(active_attachable)
+		make_casing(active_attachable.type_of_casings)
 	else
 		make_casing(type_of_casings)
 		in_chamber = null
 
-	if(!active_attachable) //Time to move the tube position.
+		//Time to move the tube position.
 		ready_in_chamber() //We're going to try and reload. If we don't get anything, icon change.
 		if(!current_mag.current_rounds && !in_chamber) //No rounds, nothing chambered.
 			update_icon()
-	else
-		if( !(active_attachable.flags_attach_features & ATTACH_CONTINUOUS) ) active_attachable = null
+
 	return 1
 
 
@@ -214,10 +214,9 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/combat/New()
 	..()
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
-	var/obj/item/attachable/grenade/G = new(src)
+	var/obj/item/attachable/attached_gun/grenade/G = new(src)
 	G.flags_attach_features &= ~ATTACH_REMOVABLE
-	G.icon_state = "" //Gun already has a better one
-	G.attach_icon = ""
+	G.attach_icon = "" //gun already has a better one
 	G.Attach(src)
 	update_attachable(G.slot)
 	if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
@@ -317,7 +316,7 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/double/load_into_chamber()
 	//Trimming down the unnecessary stuff.
 	//This doesn't chamber, creates a bullet on the go.
-	if(active_attachable && (active_attachable.flags_attach_features & ATTACH_PASSIVE) ) active_attachable = null
+
 	if(current_mag.current_rounds > 0)
 		ammo = ammo_list[current_mag.chamber_contents[current_mag.chamber_position]]
 		in_chamber = create_bullet(ammo)
@@ -392,7 +391,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/flamer,
+						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/stock/shotgun)
 
 /obj/item/weapon/gun/shotgun/pump/New()
@@ -447,19 +446,18 @@ can cause issues with ammo types getting mixed up during the burst.
 	playsound(user, pump_sound, 25, 1)
 	recent_pump = world.time
 
-/obj/item/weapon/gun/shotgun/pump
-	reload_into_chamber(mob/user)
-		if(active_attachable) make_casing(active_attachable.type_of_casings)
-		else
-			current_mag.used_casings++ //The shell was fired successfully. Add it to used.
-			in_chamber = null
 
-		if(!active_attachable) //Time to move the tube position.
-			if(!current_mag.current_rounds && !in_chamber) update_icon()//No rounds, nothing chambered.
-		else
-			if( !(active_attachable.flags_attach_features & ATTACH_CONTINUOUS) ) active_attachable = null
+/obj/item/weapon/gun/shotgun/pump/reload_into_chamber(mob/user)
+	if(active_attachable)
+		make_casing(active_attachable.type_of_casings)
+	else
+		current_mag.used_casings++ //The shell was fired successfully. Add it to used.
+		in_chamber = null
+		//Time to move the tube position.
+		if(!current_mag.current_rounds && !in_chamber)
+			update_icon()//No rounds, nothing chambered.
 
-		return 1
+	return 1
 
 
 //-------------------------------------------------------
@@ -479,7 +477,7 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/flamer)
+						/obj/item/attachable/attached_gun/flamer)
 
 
 /obj/item/weapon/gun/shotgun/pump/cmb/New()

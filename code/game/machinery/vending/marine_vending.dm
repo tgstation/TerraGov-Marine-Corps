@@ -547,9 +547,9 @@
 						/obj/item/attachable/stock/revolver = 3,
 						/obj/item/attachable/stock/smg = 3,
 
-						/obj/item/attachable/grenade = 5,
-						/obj/item/attachable/shotgun = 3,
-						/obj/item/attachable/flamer = 3
+						/obj/item/attachable/attached_gun/grenade = 5,
+						/obj/item/attachable/attached_gun/shotgun = 3,
+						/obj/item/attachable/attached_gun/flamer = 3
 					)
 
 /obj/machinery/vending/attachments/New()

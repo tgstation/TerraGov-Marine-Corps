@@ -1108,7 +1108,7 @@
 					H.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/rocket/m57a4(H), WEAR_J_STORE)
 
 					var/obj/item/weapon/gun/rifle/m16/G = new(H)
-					var/obj/item/attachable/grenade/N = new(G)
+					var/obj/item/attachable/attached_gun/grenade/N = new(G)
 					N.Attach(G)
 					G.update_attachable(N.slot)
 
@@ -1313,8 +1313,8 @@
 		/obj/item/attachable/verticalgrip = 3,
 		/obj/item/attachable/gyro = 2,
 		/obj/item/attachable/bipod = 1,
-		/obj/item/attachable/shotgun = 3,
-		/obj/item/attachable/flamer = 3,
+		/obj/item/attachable/attached_gun/shotgun = 3,
+		/obj/item/attachable/attached_gun/flamer = 3,
 		/obj/item/attachable/burstfire_assembly = 1,
 		/obj/item/attachable/stock/rifle = 3,
 		/obj/item/attachable/stock/smg = 3

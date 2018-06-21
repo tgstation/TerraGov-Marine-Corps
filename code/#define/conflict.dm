@@ -38,13 +38,11 @@
 #define GUN_FULL_AUTO_ON		32768
 
 //Gun attachable related flags.
-#define ATTACH_PASSIVE		1
-#define ATTACH_REMOVABLE	2
-#define ATTACH_CONTINUOUS	4
-#define ATTACH_ACTIVATION	8
-#define ATTACH_PROJECTILE	16 //for attachments that fire bullets
-#define ATTACH_RELOADABLE	32
-#define ATTACH_WEAPON		64 //is a weapon that fires stuff
+#define ATTACH_REMOVABLE	1
+#define ATTACH_ACTIVATION	2
+#define ATTACH_PROJECTILE	4 //for attachments that fire bullets
+#define ATTACH_RELOADABLE	8
+#define ATTACH_WEAPON		16 //is a weapon that fires stuff
 
 //Ammo magazine defines, for flags_magazine
 #define AMMUNITION_REFILLABLE	1

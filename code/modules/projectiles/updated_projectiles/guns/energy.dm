@@ -95,7 +95,7 @@
 	verbs -= /obj/item/weapon/gun/verb/field_strip
 	verbs -= /obj/item/weapon/gun/verb/toggle_burst
 	verbs -= /obj/item/weapon/gun/verb/empty_mag
-	verbs -= /obj/item/weapon/gun/verb/activate_attachment
+
 
 
 /obj/item/weapon/gun/energy/plasmarifle/Dispose()
@@ -205,7 +205,7 @@
 	verbs -= /obj/item/weapon/gun/verb/field_strip
 	verbs -= /obj/item/weapon/gun/verb/toggle_burst
 	verbs -= /obj/item/weapon/gun/verb/empty_mag
-	verbs -= /obj/item/weapon/gun/verb/activate_attachment
+
 
 
 /obj/item/weapon/gun/energy/plasmapistol/Dispose()
@@ -297,7 +297,6 @@
 	verbs -= /obj/item/weapon/gun/verb/field_strip
 	verbs -= /obj/item/weapon/gun/verb/toggle_burst
 	verbs -= /obj/item/weapon/gun/verb/empty_mag
-	verbs -= /obj/item/weapon/gun/verb/activate_attachment
 	verbs -= /obj/item/weapon/gun/verb/use_unique_action
 
 /obj/item/weapon/gun/energy/plasma_caster/Dispose()
