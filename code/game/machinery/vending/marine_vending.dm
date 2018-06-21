@@ -333,8 +333,6 @@
 	wrenchable = FALSE
 	products = list(
 					/obj/item/coin/marine/engineer = 1,
-					/obj/item/stack/sheet/metal/half = 1,
-					/obj/item/stack/sheet/plasteel/ten = 1,
 					)
 	contraband = list(/obj/item/cell/super = 1)
 
