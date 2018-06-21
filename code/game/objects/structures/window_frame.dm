@@ -113,6 +113,12 @@
 	basestate = "white_window"
 	window_type = /obj/structure/window/framed/almayer/white
 
+/obj/structure/window_frame/almayer/requisitions/attackby(obj/item/W, mob/living/user)
+	if(istype(W, sheet_type))
+		user << "<span class='warning'>You can't repair this window.</span>"
+		return
+	..()
+
 /obj/structure/window_frame/colony
 	icon_state = "col_window0_frame"
 	basestate = "col_window"
