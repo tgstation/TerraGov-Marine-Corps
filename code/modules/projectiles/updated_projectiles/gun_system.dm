@@ -454,6 +454,7 @@ and you're good to go.
 		else
 			user << "<span class='warning'>[active_attachable] is empty!</span>"
 			user << "<span class='notice'>You disable [active_attachable].</span>"
+			playsound(user, active_attachable.activation_sound, 15, 1)
 			active_attachable.activate_attachment(src, null, TRUE)
 	else
 		return ready_in_chamber()//We're not using the active attachable, we must use the active mag if there is one.
