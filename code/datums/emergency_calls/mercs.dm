@@ -53,7 +53,7 @@
 	mob.g_hair = 25
 	mob.b_hair = 35
 	mob.key = M.key
-	if(mob.client) mob.client.view = world.view
+	if(mob.client) mob.client.change_view(world.view)
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "Mercenary"
 	ticker.mode.traitors += mob.mind

@@ -25,7 +25,7 @@
 	H.age = rand(21,45)
 	H.dna.ready_dna(H)
 	H.key = M.key
-	if(H.client) H.client.view = world.view
+	if(H.client) H.client.change_view(world.view)
 	H.mind.assigned_role = "Colonist"
 	H.mind.special_role = "MODE"
 	ticker.mode.traitors += H.mind

@@ -60,7 +60,7 @@
 	jitteriness = 0
 
 	if(client)
-		client.view = world.view //just so we never get stuck with a large view somehow
+		client.change_view(world.view) //just so we never get stuck with a large view somehow
 
 	hide_fullscreens()
 

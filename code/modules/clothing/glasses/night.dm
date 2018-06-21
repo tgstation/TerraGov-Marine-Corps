@@ -58,14 +58,12 @@
 
 /obj/item/clothing/glasses/night/m56_goggles/mob_can_equip(mob/user, slot)
 	if(slot == WEAR_EYES)
-		if(!ishuman(user)) return ..() //Doesn't matter, just pass it to the main proc
-		var/mob/living/carbon/human/H = user
-		if(istype(H))
-			var/obj/item/smartgun_powerpack/P = H.back
-			if(!P || !istype(P))
+		if(ishuman(user))
+			var/mob/living/carbon/human/H = user
+			if(!istype(H.back, /obj/item/smartgun_powerpack))
 				user << "You must be wearing an M56 Powerpack on your back to wear these."
 				return 0
-	return ..(user, slot)
+	return ..()
 
 
 

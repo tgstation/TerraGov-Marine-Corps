@@ -1213,7 +1213,7 @@
 		return
 
 	horror.key = horror_key
-	if(horror.client) horror.client.view = world.view
+	if(horror.client) horror.client.change_view(world.view)
 	horror.mind.key = horror.key
 
 	world << "<span class='event_announcement'>An otherwordly presence is reaching through the fabric of reality!</span>"

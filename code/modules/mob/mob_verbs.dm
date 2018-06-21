@@ -138,7 +138,7 @@
 		return
 
 	M.key = key
-	if(M.client) M.client.view = world.view
+	if(M.client) M.client.change_view(world.view)
 //	M.Login()	//wat
 	return
 

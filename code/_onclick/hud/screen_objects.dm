@@ -652,30 +652,6 @@
 		icon_state = "pull0"
 
 
-/obj/screen/blind
-	icon = 'icons/mob/screen1_full.dmi'
-	icon_state = "blackimageoverlay"
-	name = " "
-	screen_loc = "1,1"
-	plane = -80
-	layer = FULLSCREEN_BLIND_LAYER
-
-/obj/screen/flash
-	icon = 'icons/mob/screen1.dmi'
-	icon_state = "blank"
-	name = "flash"
-	screen_loc = "1,1 to 15,15"
-	mouse_opacity = 0
-	layer = FULLSCREEN_FLASH_LAYER
-
-/obj/screen/damageoverlay
-	icon = 'icons/mob/screen1_full.dmi'
-	icon_state = "oxydamageoverlay0"
-	name = "dmg"
-	screen_loc = "1,1"
-	mouse_opacity = 0
-	layer = FULLSCREEN_DAMAGE_LAYER
-
 
 /obj/screen/squad_leader_locator
 	icon = 'icons/mob/screen1_Midnight.dmi'

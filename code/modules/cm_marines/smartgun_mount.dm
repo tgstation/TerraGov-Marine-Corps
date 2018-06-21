@@ -555,13 +555,13 @@
 /obj/machinery/m56d_hmg/on_set_interaction(mob/user)
 	flags_atom |= RELAY_CLICK
 	if(zoom)
-		user.client.view = 12
+		user.client.change_view(12)
 	operator = user
 
 /obj/machinery/m56d_hmg/on_unset_interaction(mob/user)
 	flags_atom &= ~RELAY_CLICK
 	if(zoom && user.client)
-		user.client.view = world.view
+		user.client.change_view(world.view)
 	if(operator == user)
 		operator = null
 

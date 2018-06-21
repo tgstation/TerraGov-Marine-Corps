@@ -1088,7 +1088,7 @@
 		else
 			new_xeno.key = T.key
 			if(new_xeno.client)
-				new_xeno.client.view = world.view
+				new_xeno.client.change_view(world.view)
 				new_xeno.client.pixel_x = 0
 				new_xeno.client.pixel_y = 0
 

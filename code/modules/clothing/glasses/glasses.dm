@@ -37,13 +37,13 @@
 			user.update_inv_glasses()
 			user << "You activate the optical matrix on [src]."
 
-		if(has_tint)
-			if(ishuman(loc))
-				var/mob/living/carbon/human/H = loc
-				if(H.glasses == src)
+		if(ishuman(loc))
+			var/mob/living/carbon/human/H = loc
+			if(H.glasses == src)
+				if(has_tint)
 					H.update_tint()
-
-		user.update_glass_vision(src)
+				H.update_sight()
+				H.update_glass_vision(src)
 
 		for(var/X in actions)
 			var/datum/action/A = X
@@ -167,28 +167,26 @@
 	if(usr.canmove && !usr.stat && !usr.is_mob_restrained())
 		if(active)
 			active = 0
-			has_tint = initial(has_tint)
-			flags_inventory |= COVEREYES
-			flags_inv_hide |= HIDEEYES
-			flags_armor_protection |= EYES
-			icon_state = initial(icon_state)
-			eye_protection = initial(eye_protection)
-			usr << "You flip [src] down to protect your eyes."
-		else
-			active = 1
-			has_tint = 1
 			flags_inventory &= ~COVEREYES
 			flags_inv_hide &= ~HIDEEYES
 			flags_armor_protection &= ~EYES
 			icon_state = "[initial(icon_state)]up"
 			eye_protection = 0
 			usr << "You push [src] up out of your face."
+		else
+			active = 1
+			flags_inventory |= COVEREYES
+			flags_inv_hide |= HIDEEYES
+			flags_armor_protection |= EYES
+			icon_state = initial(icon_state)
+			eye_protection = initial(eye_protection)
+			usr << "You flip [src] down to protect your eyes."
 
-		if(has_tint)
-			if(ishuman(loc))
-				var/mob/living/carbon/human/H = loc
-				if(H.glasses == src)
-					H.update_tint()
+
+		if(ishuman(loc))
+			var/mob/living/carbon/human/H = loc
+			if(H.glasses == src)
+				H.update_tint()
 
 		update_clothing_icon()
 

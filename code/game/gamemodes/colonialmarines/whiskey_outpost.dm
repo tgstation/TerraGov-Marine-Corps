@@ -156,7 +156,7 @@
 		H = new(picked)
 
 	H.key = M.key
-	if(H.client) H.client.view = world.view
+	if(H.client) H.client.change_view(world.view)
 
 	if(!H.mind)
 		H.mind = new(H.key)

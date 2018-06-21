@@ -391,8 +391,8 @@
 /mob/living/flash_eyes(intensity = 1, bypass_checks, type = /obj/screen/fullscreen/flash)
 	if( bypass_checks || (get_eye_protection() < intensity && !(disabilities & BLIND)) )
 		overlay_fullscreen("flash", type)
-		spawn(25)
-			clear_fullscreen("flash", 25)
+		spawn(40)
+			clear_fullscreen("flash", 20)
 		return 1
 
 

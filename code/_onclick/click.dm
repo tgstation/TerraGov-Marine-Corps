@@ -275,6 +275,9 @@
 
 
 
+// click catcher stuff
+
+
 /obj/screen/click_catcher
 	icon = 'icons/mob/screen1.dmi'
 	icon_state = "catcher"
@@ -282,6 +285,7 @@
 	plane = -99
 	mouse_opacity = 2
 	screen_loc = "CENTER-7,CENTER-7"
+	flags_atom = NOINTERACT
 
 
 /obj/screen/click_catcher/proc/UpdateGreed(view_size_x = 15, view_size_y = 15)
@@ -301,17 +305,10 @@
 
 
 
-//phil235 debug
-/mob/proc/debug_change_view(new_size)
-	if(client)
-		client.change_view(new_size)
-
-//phil235 replaces all "view = newvalue" with this
 /client/proc/change_view(new_size)
 	view = new_size
 	apply_clickcatcher()
 	mob.reload_fullscreens()
-
 
 /client/proc/create_clickcatcher()
 	if(!void)

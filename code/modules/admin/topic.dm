@@ -1061,7 +1061,7 @@
 
 		var/mob/new_player/NP = new()
 		NP.ckey = M.ckey
-		if(NP.client) NP.client.view = world.view
+		if(NP.client) NP.client.change_view(world.view)
 		cdel(M)
 
 	else if(href_list["tdome1"])
@@ -1253,7 +1253,7 @@
 				M.mind.cm_skills = null //no skill restriction
 			else
 				M.key = H.key
-				if(M.client) M.client.view = world.view
+				if(M.client) M.client.change_view(world.view)
 			if(is_alien_whitelisted(M,"Yautja Elder"))
 				H.real_name = "Elder [M.real_name]"
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), WEAR_JACKET)

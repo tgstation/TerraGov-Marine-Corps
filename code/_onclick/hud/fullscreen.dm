@@ -1,8 +1,4 @@
 
-#define FULLSCREEN_LAYER 18
-#define DAMAGE_LAYER FULLSCREEN_LAYER + 0.1
-#define BLIND_LAYER DAMAGE_LAYER + 0.1
-#define CRIT_LAYER BLIND_LAYER + 0.1
 
 /mob
 	var/list/fullscreens = list()
@@ -14,7 +10,7 @@
 		if(FS.type != type)
 			clear_fullscreen(category, FALSE)
 			return .()
-		else if(!severity || severity == FS.severity)
+		else if((!severity || severity == FS.severity) && (FS.screen_loc != "CENTER-7,CENTER-7" || FS.fs_view == client.view))
 			return null
 	else
 		FS = rnew(type)
@@ -24,6 +20,7 @@
 
 	fullscreens[category] = FS
 	if(client)
+		FS.update_for_view(client.view)
 		client.screen += FS
 	return FS
 
@@ -36,16 +33,12 @@
 	fullscreens -= category
 
 	if(animated)
-		spawn(0)
-			animate(FS, alpha = 0, time = animated)
-			sleep(animated)
-			if(client)
-				client.screen -= FS
-			cdel(FS)
-	else
-		if(client)
-			client.screen -= FS
-		cdel(FS)
+		animate(FS, alpha = 0, time = animated)
+		sleep(animated)
+
+	if(client)
+		client.screen -= FS
+	cdel(FS)
 
 
 /mob/proc/clear_fullscreens()
@@ -61,6 +54,8 @@
 /mob/proc/reload_fullscreens()
 	if(client && stat != DEAD) //dead mob do not see any of the fullscreen overlays that he has.
 		for(var/category in fullscreens)
+			var/obj/screen/fullscreen/FS = fullscreens[category]
+			FS.update_for_view(client.view)
 			client.screen |= fullscreens[category]
 
 
@@ -72,11 +67,19 @@
 	layer = FULLSCREEN_LAYER
 	mouse_opacity = 0
 	var/severity = 0
+	var/fs_view = 7
 
 /obj/screen/fullscreen/Dispose()
 	..()
 	severity = 0
 	return TA_REVIVE_ME
+
+
+/obj/screen/fullscreen/proc/update_for_view(client_view)
+	if (screen_loc == "CENTER-7,CENTER-7" && fs_view != client_view)
+		var/list/actualview = getviewsize(client_view)
+		fs_view = client_view
+		transform = matrix(actualview[1]/15, 0, 0, 0, actualview[2]/15, 0)
 
 
 /obj/screen/fullscreen/brute
@@ -97,11 +100,13 @@
 
 /obj/screen/fullscreen/impaired
 	icon_state = "impairedoverlay"
+	layer = FULLSCREEN_IMPAIRED_LAYER
 
 /obj/screen/fullscreen/blurry
 	icon = 'icons/mob/screen1.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "blurry"
+	layer = FULLSCREEN_BLURRY_LAYER
 
 /obj/screen/fullscreen/flash
 	icon = 'icons/mob/screen1.dmi'
@@ -118,6 +123,7 @@
 	icon = 'icons/mob/screen1.dmi'
 	screen_loc = "WEST,SOUTH to EAST,NORTH"
 	icon_state = "druggy"
+	layer = FULLSCREEN_DRUGGY_LAYER
 
 /obj/screen/fullscreen/nvg
 	icon = 'icons/mob/screen1.dmi'
@@ -139,10 +145,3 @@
 	icon_state = "painoverlay"
 	layer = FULLSCREEN_PAIN_LAYER
 
-
-
-
-#undef FULLSCREEN_LAYER
-#undef BLIND_LAYER
-#undef DAMAGE_LAYER
-#undef CRIT_LAYER

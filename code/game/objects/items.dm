@@ -586,7 +586,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.zoom_cooldown = world.time + 20
 
 		if(user.client)
-			user.client.view = viewsize
+			user.client.change_view(viewsize)
 
 			var/tilesize = 32
 			var/viewoffset = tilesize * tileoffset
@@ -616,6 +616,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	//General reset in case anything goes wrong, the view will always reset to default unless zooming in.
 	if(user.client)
-		user.client.view = world.view
+		user.client.change_view(world.view)
 		user.client.pixel_x = 0
 		user.client.pixel_y = 0
