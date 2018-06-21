@@ -312,7 +312,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		user << "<span class='warning'>That magazine doesn't fit in there!</span>"
 		return
 
-	if(!isnull(current_mag) && current_mag.loc == src)
+	if(current_mag)
 		user << "<span class='warning'>It's still got something loaded.</span>"
 		return
 

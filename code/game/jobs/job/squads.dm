@@ -146,34 +146,53 @@
 
 
 
-/datum/squad/proc/demote_squad_leader()
+/datum/squad/proc/demote_squad_leader(leader_killed)
 	var/mob/living/carbon/human/old_lead = squad_leader
 	squad_leader = null
 	if(old_lead.mind)
-		if(old_lead.mind.cm_skills)
-			old_lead.mind.cm_skills.leadership = SKILL_LEAD_BEGINNER
 		switch(old_lead.mind.assigned_role)
-			if("Squad Specialist") old_lead.mind.role_comm_title = "Sgt"
-			if("Squad Engineer") old_lead.mind.role_comm_title = "Cpl"
-			if("Squad Medic") old_lead.mind.role_comm_title = "Cpl"
-			if("Squad Smartgunner") old_lead.mind.role_comm_title = "LCpl"
-			else old_lead.mind.role_comm_title = "Mar"
+			if("Squad Specialist")
+				old_lead.mind.role_comm_title = "Sgt"
+				if(old_lead.mind.cm_skills)
+					old_lead.mind.cm_skills.leadership = SKILL_LEAD_BEGINNER
+			if("Squad Engineer")
+				old_lead.mind.role_comm_title = "Cpl"
+				if(old_lead.mind.cm_skills)
+					old_lead.mind.cm_skills.leadership = SKILL_LEAD_BEGINNER
+			if("Squad Medic")
+				old_lead.mind.role_comm_title = "Cpl"
+				if(old_lead.mind.cm_skills)
+					old_lead.mind.cm_skills.leadership = SKILL_LEAD_BEGINNER
+			if("Squad Smartgunner")
+				if(old_lead.mind.cm_skills)
+					old_lead.mind.cm_skills.leadership = SKILL_LEAD_BEGINNER
+				old_lead.mind.role_comm_title = "LCpl"
+			if("Squad Leader")
+				if(!leader_killed)
+					if(old_lead.mind.cm_skills)
+						old_lead.mind.cm_skills.leadership = SKILL_LEAD_NOVICE
+					old_lead.mind.role_comm_title = "Mar"
+			else
+				old_lead.mind.role_comm_title = "Mar"
+				if(old_lead.mind.cm_skills)
+					old_lead.mind.cm_skills.leadership = SKILL_LEAD_NOVICE
 
-	if(istype(old_lead.wear_ear, /obj/item/device/radio/headset/almayer/marine))
-		var/obj/item/device/radio/headset/almayer/marine/R = old_lead.wear_ear
-		if(istype(R.keyslot1, /obj/item/device/encryptionkey/squadlead))
-			cdel(R.keyslot1)
-			R.keyslot1 = null
-		else if(istype(R.keyslot2, /obj/item/device/encryptionkey/squadlead))
-			cdel(R.keyslot2)
-			R.keyslot2 = null
-		else if(istype(R.keyslot3, /obj/item/device/encryptionkey/squadlead))
-			cdel(R.keyslot3)
-			R.keyslot3 = null
-		R.recalculateChannels()
-	if(istype(old_lead.wear_id, /obj/item/card/id))
-		var/obj/item/card/id/ID = old_lead.wear_id
-		ID.access -= ACCESS_MARINE_LEADER
+	if(!old_lead.mind || old_lead.mind.assigned_role != "Squad Leader" || !leader_killed)
+		if(istype(old_lead.wear_ear, /obj/item/device/radio/headset/almayer/marine))
+			var/obj/item/device/radio/headset/almayer/marine/R = old_lead.wear_ear
+			if(istype(R.keyslot1, /obj/item/device/encryptionkey/squadlead))
+				cdel(R.keyslot1)
+				R.keyslot1 = null
+			else if(istype(R.keyslot2, /obj/item/device/encryptionkey/squadlead))
+				cdel(R.keyslot2)
+				R.keyslot2 = null
+			else if(istype(R.keyslot3, /obj/item/device/encryptionkey/squadlead))
+				cdel(R.keyslot3)
+				R.keyslot3 = null
+			R.recalculateChannels()
+		if(istype(old_lead.wear_id, /obj/item/card/id))
+			var/obj/item/card/id/ID = old_lead.wear_id
+			ID.access -= ACCESS_MARINE_LEADER
 	old_lead.hud_set_squad()
 	old_lead.update_inv_head() //updating marine helmet leader overlays
 	old_lead.update_inv_wear_suit()
