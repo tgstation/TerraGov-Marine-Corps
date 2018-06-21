@@ -786,10 +786,10 @@ ATTACHMENTS
 					/obj/item/attachable/gyro,
 					/obj/item/attachable/bipod,
 					/obj/item/attachable/bipod,
-					/obj/item/attachable/shotgun,
-					/obj/item/attachable/shotgun,
-					/obj/item/attachable/flamer,
-					/obj/item/attachable/flamer,
+					/obj/item/attachable/attached_gun/shotgun,
+					/obj/item/attachable/attached_gun/shotgun,
+					/obj/item/attachable/attached_gun/flamer,
+					/obj/item/attachable/attached_gun/flamer,
 					/obj/item/attachable/burstfire_assembly,
 					/obj/item/attachable/burstfire_assembly
 					)
@@ -844,10 +844,10 @@ ATTACHMENTS
 /datum/supply_packs/underbarrel_shotgun
 	name = "underbarrel shotgun attachment crate (x4)"
 	contains = list(
-					/obj/item/attachable/shotgun,
-					/obj/item/attachable/shotgun,
-					/obj/item/attachable/shotgun,
-					/obj/item/attachable/shotgun
+					/obj/item/attachable/attached_gun/shotgun,
+					/obj/item/attachable/attached_gun/shotgun,
+					/obj/item/attachable/attached_gun/shotgun,
+					/obj/item/attachable/attached_gun/shotgun
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate
@@ -857,10 +857,10 @@ ATTACHMENTS
 /datum/supply_packs/underbarrel_flamer
 	name = "underbarrel flamer attachment crate (x4)"
 	contains = list(
-					/obj/item/attachable/flamer,
-					/obj/item/attachable/flamer,
-					/obj/item/attachable/flamer,
-					/obj/item/attachable/flamer
+					/obj/item/attachable/attached_gun/flamer,
+					/obj/item/attachable/attached_gun/flamer,
+					/obj/item/attachable/attached_gun/flamer,
+					/obj/item/attachable/attached_gun/flamer
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate

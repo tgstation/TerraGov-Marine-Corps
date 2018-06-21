@@ -163,8 +163,9 @@
 				return in_chamber
 
 	load_into_chamber(mob/user)
-		if(active_attachable) active_attachable = null
-		if(ready_in_chamber()) return in_chamber
+//		if(active_attachable) active_attachable = null
+		if(ready_in_chamber())
+			return in_chamber
 		rotate_cylinder() //If we fail to return to chamber the round, we just move the firing pin some.
 
 	reload_into_chamber(mob/user)

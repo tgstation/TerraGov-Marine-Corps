@@ -5,23 +5,23 @@
 	var/obj/screen/action_button/button = null
 	var/mob/living/owner
 
-	New(Target)
-		target = Target
-		button = new
-		if(target)
-			var/image/IMG = image(target.icon, button, target.icon_state)
-			IMG.pixel_x = 0
-			IMG.pixel_y = 0
-			button.overlays += IMG
-		button.source_action = src
-		button.name = name
+/datum/action/New(Target)
+	target = Target
+	button = new
+	if(target)
+		var/image/IMG = image(target.icon, button, target.icon_state)
+		IMG.pixel_x = 0
+		IMG.pixel_y = 0
+		button.overlays += IMG
+	button.source_action = src
+	button.name = name
 
-	Dispose()
-		if(owner)
-			remove_action(owner)
-		cdel(button)
-		button = null
-		target = null
+/datum/action/Dispose()
+	if(owner)
+		remove_action(owner)
+	cdel(button)
+	button = null
+	target = null
 
 /datum/action/proc/update_button_icon()
 	return
@@ -54,23 +54,27 @@
 
 /datum/action/item_action
 	name = "Use item"
+	var/obj/item/holder_item //the item that has this action in its list of actions. Is not necessarily the target
+							//e.g. gun attachment action: target = attachment, holder = gun.
 
-/datum/action/item_action/New(Target)
+/datum/action/item_action/New(Target, obj/item/holder)
 	..()
-	var/obj/item/I = target
-	I.actions += src
-	name = "Use [I]"
+	if(!holder)
+		holder = target
+	holder_item = holder
+	holder_item.actions += src
+	name = "Use [target]"
 	button.name = name
 
 /datum/action/item_action/Dispose()
-	var/obj/item/I = target
-	I.actions -= src
+	holder_item.actions -= src
+	holder_item = null
 	..()
 
 /datum/action/item_action/action_activate()
 	if(target)
 		var/obj/item/I = target
-		I.ui_action_click(owner)
+		I.ui_action_click(owner, holder_item)
 
 /datum/action/item_action/can_use_action()
 	if(owner && !owner.is_mob_incapacitated() && !owner.lying)
@@ -196,6 +200,8 @@
 
 		if(!button_number)
 			hud_used.hide_actions_toggle.screen_loc = null
+			if(reload_screen)
+				client.screen += hud_used.hide_actions_toggle
 			return
 
 	hud_used.hide_actions_toggle.screen_loc = hud_used.hide_actions_toggle.get_button_screen_loc(button_number+1)

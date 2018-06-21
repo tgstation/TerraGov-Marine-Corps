@@ -14,13 +14,11 @@ All attachment offsets are now in a list, including stocks. Guns that don't take
 ~N
 
 Defined in conflicts.dm of the #defines folder.
-#define ATTACH_PASSIVE		1
-#define ATTACH_REMOVABLE	2
-#define ATTACH_CONTINUOUS	4
-#define ATTACH_ACTIVATION	8
-#define ATTACH_PROJECTILE	16
-#define ATTACH_RELOADABLE	32
-#define ATTACH_WEAPON		64
+#define ATTACH_REMOVABLE	1
+#define ATTACH_ACTIVATION	2
+#define ATTACH_PROJECTILE	4
+#define ATTACH_RELOADABLE	8
+#define ATTACH_WEAPON		16
 */
 
 /obj/item/attachable
@@ -66,41 +64,17 @@ Defined in conflicts.dm of the #defines folder.
 	var/wield_delay_mod	= 0 //How long ADS takes (time before firing)
 	var/movement_acc_penalty_mod = 0 //Modifies accuracy/scatter penalty when firing onehanded while moving.
 
-	/*
-	This is where activation begins. Attachments that activate can be passive (like a scope),
-	or they can be active like a shotgun or grenade launcher. Attachments may be continuous,
-	or they fire so long as you can activate them, or single fire. That is where they deactivate
-	after one pass.
-	*/
 	var/activation_sound = 'sound/machines/click.ogg'
-	var/fire_sound = null //Sound to play when firing it alternately
 
-	//These are bipod specifics, but they function well enough in other scenarios if needed.
-	var/obj/structure/firing_support = null //Used by the bipod/other support to see if the gun can fire better.
-	var/turf/firing_turf = null //I don't really need to make these null, but it helps to differentiate.
-	var/firing_direction //What direction the user must be facing to get the bonus.
-	var/firing_flipped 	= 2 //Default is 2, 0 means the table isn't flipped. 1 means it is. 2 means it's not a table so we don't care.
+	var/flags_attach_features = ATTACH_REMOVABLE
 
-	//Some attachments may be fired. So here are the variables related to that.
-	var/datum/ammo/ammo = null //If it has a default bullet-like ammo.
+	var/bipod_deployed = FALSE //only used by bipod
 	var/current_rounds 	= 0 //How much it has.
 	var/max_rounds 		= 0 //How much ammo it can store
-	var/max_range 		= 0 //Determines # of tiles distance the attachable can fire, if it's not a projectile.
-	var/type_of_casings = null
-	var/attachment_firing_delay = 0 //the delay between shots, for attachments that fires stuff
 
-	var/flags_attach_features = ATTACH_PASSIVE|ATTACH_REMOVABLE
+	var/attachment_action_type
 
 
-	New() //Let's make sure if something needs an ammo type, it spawns with one.
-		..()
-		if(ammo) ammo = ammo_list[ammo]
-
-	Dispose()
-		. = ..()
-		ammo = null
-		firing_support = null
-		firing_turf = null
 
 	attackby(obj/item/I, mob/user)
 		if(flags_attach_features & ATTACH_RELOADABLE)
@@ -170,21 +144,29 @@ Defined in conflicts.dm of the #defines folder.
 		G.muzzle_flash = null
 		G.fire_sound = "gun_silenced"
 
+	if(attachment_action_type)
+		var/datum/action/A = new attachment_action_type(src, G)
+		if(isliving(G.loc))
+			var/mob/living/L = G.loc
+			if(G == L.l_hand || G == L.r_hand)
+				A.give_action(G.loc)
+
+
+
 /obj/item/attachable/proc/Detach(obj/item/weapon/gun/G)
 	if(!istype(G)) return //Guns only
+
+
+	if(flags_attach_features & ATTACH_ACTIVATION)
+		activate_attachment(G, null, TRUE)
 
 	switch(slot) //I am removing checks for the attachment being src.
 		if("rail") 		G.rail = null//If it's being called on by this proc, it has to be that attachment. ~N
 		if("muzzle") 	G.muzzle = null
-		if("under")
-			var/obj/item/attachable/bipod/current_bipod = G.under
-			if(istype(current_bipod))
-				current_bipod.leave_position()
-			G.under = null
+		if("under")		G.under = null
 		if("stock")		G.stock = null
 
 
-	if(G.active_attachable == src) G.active_attachable = null
 
 	G.accuracy_mult		-= accuracy_mod
 	G.accuracy_mult_unwielded -= accuracy_unwielded_mod
@@ -208,13 +190,27 @@ Defined in conflicts.dm of the #defines folder.
 		G.flags_gun_features &= ~GUN_SILENCED
 		G.muzzle_flash = initial(G.muzzle_flash)
 		G.fire_sound = initial(G.fire_sound)
-	if(light_mod)  //Remember to turn the lights off
-		if(G.flags_gun_features & GUN_FLASHLIGHT_ON)
-			var/atom/movable/light_source = ismob(G.loc) ? G.loc : G
-			light_source.SetLuminosity(-light_mod)
-		G.flags_gun_features &= ~GUN_FLASHLIGHT_ON
+
+	for(var/X in G.actions)
+		var/datum/action/DA = X
+		if(DA.target == src)
+			cdel(X)
+			break
 
 	loc = get_turf(G)
+
+
+
+
+/obj/item/attachable/ui_action_click(mob/living/user, obj/item/weapon/gun/G)
+	if(G == user.get_active_hand() || G == user.get_inactive_hand())
+		if(activate_attachment(G, user)) //success
+			playsound(user, activation_sound, 15, 1)
+	else
+		user << "<span class='warning'>[G] must be in our hands to do this.</span>"
+
+
+
 
 /obj/item/attachable/proc/activate_attachment(atom/target, mob/user) //This is for activating stuff like flamethrowers, or switching weapon modes.
 	return
@@ -224,93 +220,6 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/proc/fire_attachment(atom/target,obj/item/weapon/gun/gun, mob/user) //For actually shooting those guns.
 	return
-
-/obj/item/attachable/proc/get_into_position(mob/living/user, obj/structure/support_structure, turf/active_turf, flipped = 2)
-	user << "<span class='notice'>You find a good location to place the bipod near [support_structure]! You can fire your gun steady so long as you remain here.</span>"
-	firing_support = support_structure
-	firing_turf = active_turf
-	firing_direction = user.dir
-	firing_flipped = flipped
-
-/obj/item/attachable/proc/leave_position(mob/living/user)
-	firing_support = null
-	firing_turf = null
-	firing_direction = null
-	firing_flipped = 2
-	if(user) user << "<span class='notice'>You get ready to find another firing position.</span>"
-
-/obj/item/attachable/proc/establish_position(obj/item/weapon/gun, mob/living/user)
-	var/turf/active_turf = get_turf(src)
-	if(!active_turf) return
-
-	//Define our basic structures to type check for later.
-	var/obj/structure/support_structure //Something basic we're going to look for.
-	var/obj/structure/table/support_table //In case it's a table, which complicates matters.
-	var/obj/structure/barricade/support_barricade //In case it's a barricade.
-
-	for(var/obj/Q in active_turf) //We're going to check the turf we're on first.
-		support_structure = Q
-		if(!istype(support_structure)) continue //Not a structure.
-		if(support_structure.throwpass) //Can we throw over it? If so, this is what we want.
-			support_table = Q
-			if(istype(support_table)) //Is it a table?
-				//If it's flipped and we are facing the right direction. Or it's not flipped.
-				if( !support_table.flipped || (support_table.flipped && support_table.dir == user.dir) )
-					get_into_position(user, support_table, active_turf, support_table.flipped)
-					return 1
-				else continue //It's a table flipped, but it's not facing our way.
-			support_barricade = Q
-			//We're on something, its direction doesn't matter unless it's a border structure.
-			if( (!(support_barricade.flags_atom & ON_BORDER) || support_barricade.dir == user.dir))
-				get_into_position(user, support_structure, active_turf)
-				return 1
-
-	//Second part of the proc.
-	var/turf/inactive_turf //We didn't find anything out our turf, so now we look through the adjacent turf.
-	switch(user.dir)
-		if(1) inactive_turf = locate(active_turf.x,active_turf.y+1,active_turf.z)
-		if(2) inactive_turf = locate(active_turf.x,active_turf.y-1,active_turf.z)
-		if(4) inactive_turf = locate(active_turf.x+1,active_turf.y,active_turf.z)
-		if(8) inactive_turf = locate(active_turf.x-1,active_turf.y,active_turf.z)
-
-	if(!inactive_turf) return //We didn't find an adjacent turf somehow.
-	for(var/obj/Q  in inactive_turf)
-		support_structure = Q
-		if(!istype(support_structure)) continue
-		if(support_structure.throwpass) //We have the right kind of structure.
-			support_barricade = Q
-			if(istype(support_barricade)) continue //We don't care about metal barricades.
-			support_table = Q
-			if(istype(support_table)) //If it's a table, we need to determine a few things.
-				if(support_table.flipped) continue //We don't care about flipped tables.
-				else get_into_position(user, support_table, active_turf, support_table.flipped)
-			else //Not a table but still fits the criteria? Okay.
-				get_into_position(user, support_structure, active_turf)
-			return 1
-
-/obj/item/attachable/proc/check_position(obj/item/weapon/gun, mob/living/user)
-	if(firing_turf == user.loc && firing_direction == user.dir) //We're in business.
-		var/obj/structure/table/support_table
-		var/obj/structure/barricade/support_barricade
-		switch(firing_flipped)
-			if(0) //It's a table, and it wasn't flipped when we got into position.
-				support_table = firing_support
-				if(support_table.flipped) //It was flipped.
-					leave_position()
-					return
-			if(1) //has to be either a flipped table or metal barricade.
-				support_table = firing_support
-				support_barricade = firing_support
-				if(istype(support_table)) //It is a table.
-					if(!support_table.flipped || support_table.dir != user.dir) //Either it was flipped or directions don't match.
-						leave_position()
-						return
-				else if(support_barricade.flags_atom & ON_BORDER) //It is a border structure.
-					if(support_barricade.dir != user.dir) //Directions don't match.
-						leave_position()
-						return
-		return 1 //If the no cases are out, we're good to go.
-	leave_position(user) //Looks like we haven't returned yet, so it's time to leave the position.
 
 
 /////////// Muzzle Attachments /////////////////////////////////
@@ -429,7 +338,7 @@ Defined in conflicts.dm of the #defines folder.
 
 	pixel_shift_x = 20
 	pixel_shift_y = 16
-	flags_attach_features = ATTACH_PASSIVE
+	flags_attach_features = NOFLAGS
 
 	New()
 		..()
@@ -441,7 +350,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "sniperbarrel"
 	desc = "A heavy barrel. CANNOT BE REMOVED."
 	slot = "muzzle"
-	flags_attach_features = ATTACH_PASSIVE
+	flags_attach_features = NOFLAGS
 
 	New()
 		..()
@@ -453,7 +362,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "smartbarrel"
 	desc = "A heavy rotating barrel. CANNOT BE REMOVED."
 	slot = "muzzle"
-	flags_attach_features = ATTACH_PASSIVE
+	flags_attach_features = NOFLAGS
 
 
 
@@ -483,16 +392,33 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "flashlight_a"
 	light_mod = 7
 	slot = "rail"
-	flags_attach_features = ATTACH_PASSIVE|ATTACH_REMOVABLE
-	actions_types = list(/datum/action/item_action/toggle)
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
+	attachment_action_type = /datum/action/item_action/toggle
 
-	activate_attachment(obj/item/weapon/gun/target,mob/living/user)
-		if(target)
-			var/flashlight_on = (target.flags_gun_features & GUN_FLASHLIGHT_ON) ? -1 : 1
-			var/atom/movable/light_source =  user ? user : target
-			light_source.SetLuminosity(light_mod * flashlight_on)
-			target.flags_gun_features ^= GUN_FLASHLIGHT_ON
-			target.update_attachable(slot)
+	activate_attachment(obj/item/weapon/gun/G, mob/living/user, turn_off)
+		if(turn_off && !(G.flags_gun_features & GUN_FLASHLIGHT_ON))
+			return
+		var/flashlight_on = (G.flags_gun_features & GUN_FLASHLIGHT_ON) ? -1 : 1
+		var/atom/movable/light_source =  ismob(G.loc) ? G.loc : G
+		light_source.SetLuminosity(light_mod * flashlight_on)
+		G.flags_gun_features ^= GUN_FLASHLIGHT_ON
+
+		if(G.flags_gun_features & GUN_FLASHLIGHT_ON)
+			icon_state = "flashlight-on"
+			attach_icon = "flashlight_a-on"
+		else
+			icon_state = "flashlight"
+			attach_icon = "flashlight_a"
+
+		G.update_attachable(slot)
+
+		for(var/X in G.actions)
+			var/datum/action/A = X
+			A.update_button_icon()
+		return 1
+
+
+
 
 	attackby(obj/item/I, mob/user)
 		if(istype(I,/obj/item/tool/screwdriver))
@@ -550,7 +476,8 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "rail"
 	aim_speed_mod = SLOWDOWN_ADS_SCOPE //Extra slowdown when aiming
 	wield_delay_mod = WIELD_DELAY_FAST
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_PASSIVE
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
+	attachment_action_type = /datum/action/item_action/toggle
 	var/zoom_offset = 11
 	var/zoom_viewsize = 12
 
@@ -563,12 +490,21 @@ Defined in conflicts.dm of the #defines folder.
 		accuracy_unwielded_mod = -config.min_hit_accuracy_mult
 
 
-	activate_attachment(obj/item/weapon/gun/target,mob/living/carbon/user)
-		if(!(target.flags_item & WIELDED))
-			user << "<span class='warning'>You must hold [target] with two hands to use [src].</span>"
+	activate_attachment(obj/item/weapon/gun/G, mob/living/carbon/user, turn_off)
+		if(turn_off)
+			if(G.zoom)
+				G.zoom(user, zoom_offset, zoom_viewsize)
+			return 1
+
+		if(!G.zoom && !(G.flags_item & WIELDED))
+			if(user)
+				user << "<span class='warning'>You must hold [G] with two hands to use [src].</span>"
+			return 0
 		else
-			target.zoom(user, zoom_offset, zoom_viewsize)
+			G.zoom(user, zoom_offset, zoom_viewsize)
 		return 1
+
+
 
 /obj/item/attachable/scope/mini
 	name = "mini rail scope"
@@ -638,7 +574,7 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "slavicstock"
 	pixel_shift_x = 32
 	pixel_shift_y = 13
-	flags_attach_features = ATTACH_PASSIVE
+	flags_attach_features = NOFLAGS
 
 	New()
 		..()
@@ -679,7 +615,7 @@ Defined in conflicts.dm of the #defines folder.
 	name = "\improper M41A marksman stock"
 	icon_state = "m4markstock"
 	attach_icon = "m4markstock"
-	flags_attach_features = ATTACH_PASSIVE
+	flags_attach_features = NOFLAGS
 
 
 /obj/item/attachable/stock/smg
@@ -735,8 +671,49 @@ Defined in conflicts.dm of the #defines folder.
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
 
+/obj/item/attachable/attached_gun
+	attachment_action_type = /datum/action/item_action/toggle
+	//Some attachments may be fired. So here are the variables related to that.
+	var/datum/ammo/ammo = null //If it has a default bullet-like ammo.
+	var/max_range 		= 0 //Determines # of tiles distance the attachable can fire, if it's not a projectile.
+	var/type_of_casings = null
+	var/attachment_firing_delay = 0 //the delay between shots, for attachments that fires stuff
+	var/fire_sound = null //Sound to play when firing it alternately
+
+
+/obj/item/attachable/attached_gun/New() //Let's make sure if something needs an ammo type, it spawns with one.
+	..()
+	if(ammo)
+		ammo = ammo_list[ammo]
+
+
+/obj/item/attachable/attached_gun/Dispose()
+	ammo = null
+	. = ..()
+
+
+
+/obj/item/attachable/attached_gun/activate_attachment(obj/item/weapon/gun/G, mob/living/user, turn_off)
+	if(G.active_attachable == src)
+		if(user)
+			user << "<span class='notice'>You are no longer using [src].</span>"
+		G.active_attachable = null
+		icon_state = initial(icon_state)
+	else if(!turn_off)
+		if(user)
+			user << "<span class='notice'>You are now using [src].</span>"
+		G.active_attachable = src
+		icon_state += "-on"
+
+	for(var/X in G.actions)
+		var/datum/action/A = X
+		A.update_button_icon()
+	return 1
+
+
+
 //The requirement for an attachable being alt fire is AMMO CAPACITY > 0.
-/obj/item/attachable/grenade
+/obj/item/attachable/attached_gun/grenade
 	name = "underslung grenade launcher"
 	desc = "A weapon-mounted, reloadable, one-shot grenade launcher."
 	icon_state = "grenade"
@@ -762,8 +739,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 
-	activate_attachment(atom/target,mob/living/user)
-		user << "<span class='notice'>You are now using [src].</span>"
+
 
 	reload_attachment(obj/item/explosive/grenade/G, mob/user)
 		if(!istype(G))
@@ -790,7 +766,7 @@ Defined in conflicts.dm of the #defines folder.
 		if(current_rounds > 0) prime_grenade(target,gun,user)
 
 
-/obj/item/attachable/grenade/proc/prime_grenade(atom/target,obj/item/weapon/gun/gun,mob/living/user)
+/obj/item/attachable/attached_gun/grenade/proc/prime_grenade(atom/target,obj/item/weapon/gun/gun,mob/living/user)
 	set waitfor = 0
 	var/nade_type = loaded_grenades[1]
 	var/obj/item/explosive/grenade/frag/G = new nade_type (get_turf(gun))
@@ -806,7 +782,7 @@ Defined in conflicts.dm of the #defines folder.
 
 
 //"ammo/flamethrower" is a bullet, but the actual process is handled through fire_attachment, linked through Fire().
-/obj/item/attachable/flamer
+/obj/item/attachable/attached_gun/flamer
 	name = "mini flamethrower"
 	icon_state = "flamethrower"
 	attach_icon = "flamethrower_a"
@@ -827,9 +803,6 @@ Defined in conflicts.dm of the #defines folder.
 		..()
 		if(current_rounds > 0) user << "It has [current_rounds] unit\s of fuel left."
 		else user << "It's empty."
-
-	activate_attachment(atom/target,mob/living/carbon/user)
-		user << "<span class='notice'>You are now using [src].</span>"
 
 	reload_attachment(obj/item/ammo_magazine/flamer_tank/FT, mob/user)
 		if(istype(FT))
@@ -853,7 +826,7 @@ Defined in conflicts.dm of the #defines folder.
 		if(current_rounds) unleash_flame(target, user)
 
 
-/obj/item/attachable/flamer/proc/unleash_flame(atom/target, mob/living/user)
+/obj/item/attachable/attached_gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
 	set waitfor = 0
 	var/list/turf/turfs = getline2(user,target)
 	var/distance = 0
@@ -874,7 +847,7 @@ Defined in conflicts.dm of the #defines folder.
 		sleep(1)
 
 
-/obj/item/attachable/flamer/proc/flame_turf(turf/T, mob/living/user)
+/obj/item/attachable/attached_gun/flamer/proc/flame_turf(turf/T, mob/living/user)
 	if(!istype(T)) return
 
 	if(!locate(/obj/flamer_fire) in T) // No stacking flames!
@@ -906,7 +879,7 @@ Defined in conflicts.dm of the #defines folder.
 		M.adjustFireLoss(rand(20,40))  //fwoom!
 		M << "[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!"
 
-/obj/item/attachable/shotgun
+/obj/item/attachable/attached_gun/shotgun
 	name = "masterkey shotgun"
 	icon_state = "masterkey"
 	attach_icon = "masterkey_a"
@@ -918,7 +891,7 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "under"
 	fire_sound = 'sound/weapons/gun_shotgun.ogg'
 	type_of_casings = "shell"
-	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_CONTINUOUS|ATTACH_PROJECTILE|ATTACH_RELOADABLE|ATTACH_WEAPON
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_PROJECTILE|ATTACH_RELOADABLE|ATTACH_WEAPON
 
 	New()
 		..()
@@ -928,10 +901,6 @@ Defined in conflicts.dm of the #defines folder.
 		..()
 		if(current_rounds > 0) 	user << "It has [current_rounds] shell\s left."
 		else 					user << "It's empty."
-
-	//Because it's got an ammo_type, everything is taken care of when the gun shoots. It more or less just uses the attachment instead.
-	activate_attachment(atom/target,mob/living/carbon/user)
-		user << "<span class='notice'>You are now using [src].</span>"
 
 	reload_attachment(obj/item/ammo_magazine/handful/mag, mob/user)
 		if(istype(mag) && mag.flags_magazine & AMMUNITION_HANDFUL)
@@ -1037,18 +1006,60 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "under"
 	size_mod = 2
 	melee_mod = -10
+	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION
+	attachment_action_type = /datum/action/item_action/toggle
 
-	flags_attach_features = ATTACH_PASSIVE|ATTACH_REMOVABLE|ATTACH_ACTIVATION
 
 	New()
 		..()
 		delay_mod = config.mlow_fire_delay
 
-	activate_attachment(obj/item/weapon/gun/target,mob/living/user)
-		if(firing_support) //Let's see if we can find one.
-			if(!check_position(target,user)) return 1//Our positions didn't match, so we're canceling and notifying the user.
+	activate_attachment(obj/item/weapon/gun/G,mob/living/user, turn_off)
+		if(turn_off)
+			bipod_deployed = FALSE
+			G.aim_slowdown -= SLOWDOWN_ADS_SCOPE
+			G.wield_delay -= WIELD_DELAY_FAST
 		else
-			if(establish_position(target,user)) return 1//We successfully established a position and are backing out.
+			bipod_deployed = !bipod_deployed
+			if(user)
+				if(bipod_deployed)
+					var/obj/support = check_bipod_support(G, user)
+					user << "<span class='notice'>You deploy [src][support ? " on [support]" : ""].</span>"
+					G.aim_slowdown += SLOWDOWN_ADS_SCOPE
+					G.wield_delay += WIELD_DELAY_FAST
+				else
+					user << "<span class='notice'>You retract [src].</span>"
+					G.aim_slowdown -= SLOWDOWN_ADS_SCOPE
+					G.wield_delay -= WIELD_DELAY_FAST
+
+		if(bipod_deployed)
+			icon_state = "bipod-on"
+			attach_icon = "bipod_a-on"
+		else
+			icon_state = "bipod"
+			attach_icon = "bipod_a"
+
+		G.update_attachable(slot)
+
+		for(var/X in G.actions)
+			var/datum/action/A = X
+			A.update_button_icon()
+		return 1
+
+
+
+//when user fires the gun, we check if they have something to support the gun's bipod.
+/obj/item/attachable/proc/check_bipod_support(obj/item/weapon/gun/G, mob/living/user)
+	return 0
+
+/obj/item/attachable/bipod/check_bipod_support(obj/item/weapon/gun/G, mob/living/user)
+	var/turf/T = get_turf(user)
+	for(var/obj/O in T)
+		if(O.throwpass && O.density && O.dir == user.dir && O.flags_atom & ON_BORDER)
+			return O
+	return 0
+
+
 
 
 /obj/item/attachable/burstfire_assembly

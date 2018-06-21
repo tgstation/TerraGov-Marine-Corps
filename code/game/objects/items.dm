@@ -307,7 +307,7 @@ cases. Override_icon_state should be a list.*/
 			A.give_action(user)
 
 //sometimes we only want to grant the item's action if it's equipped in a specific slot.
-obj/item/proc/item_action_slot_check(mob/user, slot)
+/obj/item/proc/item_action_slot_check(mob/user, slot)
 	return TRUE
 
 // The mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
