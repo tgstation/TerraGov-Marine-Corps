@@ -488,6 +488,15 @@
 	unacidable = 1
 	health = 1000000 //Failsafe, shouldn't matter
 
+/obj/structure/window/framed/almayer/requisitions
+	name = "ultra-reinforced window"
+	desc = "An ultra-reinforced window designed to keep requisitions a secure area."
+	not_damageable = 1
+	not_deconstructable = 1
+	unacidable = 1
+	health = 1000000 //Failsafe, shouldn't matter
+	window_frame = /obj/structure/window_frame/almayer/requisitions
+
 /obj/structure/window/framed/almayer/white
 	icon_state = "white_rwindow0"
 	basestate = "white_rwindow"
