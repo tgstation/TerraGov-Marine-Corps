@@ -264,8 +264,8 @@
 //////////////////////////////////////////////////////////////////////
 //Announces the end of the game with all relevant information stated//
 //////////////////////////////////////////////////////////////////////
-/datum/game_mode/colonialmarines_halloween_2016/declare_completion()
-	. = declare_completion_infestation()
+///datum/game_mode/colonialmarines_halloween_2016/declare_completion()
+//	. = declare_completion_round()
 
 ///////////////////////////////////
 //Support items and other doodads//

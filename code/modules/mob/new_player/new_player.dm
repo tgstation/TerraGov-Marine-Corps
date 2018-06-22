@@ -70,8 +70,9 @@
 		if (!..())
 			return 0
 
+		stat("Map:", "[map_tag]")
 		if(ticker.hide_mode)
-			stat("Game Mode:", "Secret")
+			stat("Game Mode:", "Colonial Marines")
 		else
 			if(ticker.hide_mode == 0)
 				stat("Game Mode:", "[master_mode]") // Old setting for showing the game mode

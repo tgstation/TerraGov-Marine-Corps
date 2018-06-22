@@ -86,26 +86,26 @@
 
 /obj/item/map/current_map/New()
 	..()
-	if(!ticker || !ticker.mode)
+	if(!map_tag)
 		cdel(src)
 		return
-	switch(ticker.mode.name)
-		if("LV-624")
+	switch(map_tag)
+		if(MAP_LV_624)
 			name = "\improper Lazarus Landing Map"
 			desc = "A satellite printout of the Lazarus Landing colony on LV-624."
 			html_link = "images/6/6f/LV624.png"
-		if("Ice Colony")
+		if(MAP_ICE_COLONY)
 			name = "\improper Ice Colony map"
 			desc = "A satellite printout of the Ice Colony."
 			html_link = "images/1/18/Map_icecolony.png"
 			color = "cyan"
-		if("Solaris Ridge")
+		if(MAP_BIG_RED)
 			name = "\improper Solaris Ridge Map"
 			desc = "A censored blueprint of the Solaris Ridge facility"
 			html_link = "images/c/c5/Big_Red.png"
 			color = "#e88a10"
 
-		if("Prison Station")
+		if(MAP_PRISON_STATION)
 			name = "\improper Fiorina Orbital Penitentiary Map"
 			desc = "A labelled interior scan of Fiorina Orbital Penitentiary"
 			html_link = "images/4/4c/Map_Prison.png"

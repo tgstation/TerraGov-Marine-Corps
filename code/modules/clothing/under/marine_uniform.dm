@@ -13,8 +13,8 @@
 	rollable_sleeves = TRUE
 
 /obj/item/clothing/under/marine/New(loc,expected_type 		= /obj/item/clothing/under/marine,
-	new_name[] 			= list(/datum/game_mode/ice_colony = "\improper USCM snow uniform"),
-	new_protection[] 	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature),
+	new_name[] 			= list(MAP_ICE_COLONY = "\improper USCM snow uniform"),
+	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature),
 	override_icon_state[] 	= null
 	)
 	select_gamemode_skin(expected_type,override_icon_state,new_name,new_protection)
@@ -30,8 +30,8 @@
 	icon_state = "marine_medic"
 
 /obj/item/clothing/under/marine/medic/New(loc,expected_type 		= type,
-	new_name[] 			= list(/datum/game_mode/ice_colony = "\improper USCM medic snow uniform"),
-	new_protection[] 	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
+	new_name[] 			= list(MAP_ICE_COLONY = "\improper USCM medic snow uniform"),
+	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	..(loc,expected_type, new_name, new_protection)
 
 /obj/item/clothing/under/marine/engineer
@@ -40,8 +40,8 @@
 	icon_state = "marine_engineer"
 
 /obj/item/clothing/under/marine/engineer/New(loc,expected_type 		= type,
-	new_name[] 			= list(/datum/game_mode/ice_colony = "\improper USCM engineer snow uniform"),
-	new_protection[] 	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
+	new_name[] 			= list(MAP_ICE_COLONY = "\improper USCM engineer snow uniform"),
+	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	..(loc,expected_type, new_name, new_protection)
 
 /obj/item/clothing/under/marine/sniper
@@ -49,9 +49,9 @@
 	rollable_sleeves = FALSE
 
 /obj/item/clothing/under/marine/sniper/New(loc,expected_type 		= type,
-	new_name[] 			= list(/datum/game_mode/ice_colony = "\improper USCM sniper snow uniform"),
-	new_protection[] 	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature),
-	override_icon_state[]		= list(/datum/game_mode/ice_colony = "s_marine_sniper")
+	new_name[] 			= list(MAP_ICE_COLONY = "\improper USCM sniper snow uniform"),
+	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature),
+	override_icon_state[]		= list(MAP_ICE_COLONY = "s_marine_sniper")
 	)
 	..(loc,expected_type, override_icon_state, new_name, new_protection)
 
@@ -62,9 +62,9 @@
 
 /*
 /obj/item/clothing/under/marine/tanker/New(loc,expected_type 		= type,
-	new_name[] 			= list(/datum/game_mode/ice_colony = "\improper USCM tanker snow uniform"),
-	new_protection[] 	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature),
-	override_icon_state[]		= list(/datum/game_mode/ice_colony = "s_marine_tanker")
+	new_name[] 			= list(MAP_ICE_COLONY = "\improper USCM tanker snow uniform"),
+	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature),
+	override_icon_state[]		= list(MAP_ICE_COLONY = "s_marine_tanker")
 	)
 	..(loc,expected_type, override_icon_state, new_name, new_protection)
 */

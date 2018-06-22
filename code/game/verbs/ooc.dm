@@ -211,3 +211,9 @@ var/global/normal_ooc_colour = "#002eb8"
 		if (usr.talked ==2)
 			return
 		usr.talked = 0
+
+/client/verb/round_info()
+	set name = "round_info" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
+	set desc = "Information about the current round"
+	set category = "OOC"
+	usr << "The current map is [map_tag]"

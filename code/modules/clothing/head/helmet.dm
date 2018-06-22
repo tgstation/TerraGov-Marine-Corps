@@ -193,8 +193,8 @@
 
 
 /obj/item/clothing/head/helmet/marine/New(loc,expected_type 		= /obj/item/clothing/head/helmet/marine,
-	new_name[] 			= list(/datum/game_mode/ice_colony =  "\improper M10 pattern marine snow helmet"),
-	new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
+	new_name[] 			= list(MAP_ICE_COLONY =  "\improper M10 pattern marine snow helmet"),
+	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	select_gamemode_skin(expected_type,null,new_name,new_protection)
 	..()
 	helmet_overlays = list("damage","band","item") //To make things simple.
@@ -275,16 +275,16 @@
 	name = "\improper M10 technician helmet"
 
 /obj/item/clothing/head/helmet/marine/tech/New(loc,expected_type 		= type,
-	new_name[] 			= list(/datum/game_mode/ice_colony = "\improper M10 technician snow helmet"),
-	new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
+	new_name[] 			= list(MAP_ICE_COLONY = "\improper M10 technician snow helmet"),
+	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	..(loc,expected_type,new_name,new_protection)
 
 /obj/item/clothing/head/helmet/marine/medic
 	name = "\improper M10 medic helmet"
 
 /obj/item/clothing/head/helmet/marine/medic/New(loc,expected_type 		= type,
-	new_name[] 			= list(/datum/game_mode/ice_colony = "\improper M10 medic snow helmet"),
-	new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
+	new_name[] 			= list(MAP_ICE_COLONY = "\improper M10 medic snow helmet"),
+	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	..(loc,expected_type,new_name,new_protection)
 
 
@@ -294,8 +294,8 @@
 	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
 
 /obj/item/clothing/head/helmet/marine/leader/New(loc,expected_type 		= type,
-	new_name[] 			= list(/datum/game_mode/ice_colony = "\improper M11 pattern leader snow helmet"),
-	new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
+	new_name[] 			= list(MAP_ICE_COLONY = "\improper M11 pattern leader snow helmet"),
+	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	..(loc,expected_type,new_name,new_protection)
 
 /obj/item/clothing/head/helmet/marine/specialist
@@ -306,8 +306,8 @@
 	anti_hug = 6
 
 /obj/item/clothing/head/helmet/marine/specialist/New(loc,expected_type 		= type,
-	new_name[] 			= list(/datum/game_mode/ice_colony = "\improper B18 snow helmet"),
-	new_protection[]	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
+	new_name[] 			= list(MAP_ICE_COLONY = "\improper B18 snow helmet"),
+	new_protection[]	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	..(loc,expected_type,new_name,new_protection)
 
 /obj/item/clothing/head/helmet/marine/scout
@@ -496,8 +496,8 @@
 	icon_state = "duragm"
 
 /obj/item/clothing/head/helmet/durag/jungle/New(loc,expected_type 	= type,
-	new_name[] 		= list(/datum/game_mode/ice_colony = "\improper M6 marksman hood"),
-	new_protection[] 	= list(/datum/game_mode/ice_colony = ICE_PLANET_min_cold_protection_temperature))
+	new_name[] 		= list(MAP_ICE_COLONY = "\improper M6 marksman hood"),
+	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	select_gamemode_skin(expected_type,,new_name,new_protection)
 	..()
 	switch(icon_state)
