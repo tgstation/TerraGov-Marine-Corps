@@ -387,6 +387,10 @@
 	else attack_hand(M)
 
 
+//Medevac stretchers. Unbuckle ony
+/obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/Xenomorph/M)
+	unbuckle()
+
 //Smashing lights
 /obj/machinery/light/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(status == 2) //Ignore if broken. Note that we can't use defines here
