@@ -548,9 +548,9 @@
 	used_headbutt = 1
 	use_plasma(10)
 
-	H.apply_damage(20)
-
-	shake_camera(H, 2, 1)
+	if(H.stat != DEAD && (!(H.status_flags & XENO_HOST) || !istype(H.buckled, /obj/structure/bed/nest)) )
+		H.apply_damage(20)
+		shake_camera(H, 2, 1)
 
 	var/facing = get_dir(src, H)
 	var/headbutt_distance = 3
