@@ -447,168 +447,207 @@ datum/game_mode/proc/initialize_special_clamps()
 //Start the Survivor players. This must go post-setup so we already have a body.
 //No need to transfer their mind as they begin as a human.
 /datum/game_mode/proc/transform_survivor(var/datum/mind/ghost)
-	var/mob/living/carbon/human/new_survivor = ghost.current
 
-	new_survivor.loc = pick(surv_spawn)
+	var/list/survivor_types
+	switch(map_tag)
+		if(MAP_PRISON_STATION)
+			survivor_types = list("Scientist","Doctor","Corporate","Security","Prisoner","Prisoner","Prisoner")
+		if(MAP_LV_624,MAP_BIG_RED)
+			survivor_types = list("Assistant","Civilian","Scientist","Doctor","Chef","Botanist","Atmos Tech","Chaplain","Miner","Salesman","Colonial Marshall")
+		if(MAP_ICE_COLONY)
+			survivor_types = list("Scientist","Doctor","Salesman","Security")
+		else
+			survivor_types = list("Assistant","Civilian","Scientist","Doctor","Chef","Botanist","Atmos Tech","Chaplain","Miner","Salesman","Colonial Marshall")
 
-	//Damage them for realism purposes
-	new_survivor.take_limb_damage(rand(0,15), rand(0,15))
+	var/mob/living/carbon/human/H = ghost.current
+
+	H.loc = pick(surv_spawn)
 
 	var/id_assignment = ""
 
-	//Give them proper jobs and stuff here later
-	var/random_job = rand(0,10)
-	switch(random_job)
-		if(0) //assistant
-			id_assignment = "Assistant"
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(new_survivor), WEAR_BACK)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor)
-		if(1) //civilian in pajamas
-			id_assignment = "Civilian"
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(new_survivor), WEAR_BODY)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(new_survivor), WEAR_BACK)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor)
+	//Damage them for realism purposes
+	H.take_limb_damage(rand(0,15), rand(0,15))
 
-		if(2) //Scientist
+//Give them proper jobs and stuff here later
+	var/randjob = pick(survivor_types)
+	switch(randjob)
+		if("Scientist") //Scientist
 			id_assignment = "Scientist"
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(new_survivor), WEAR_JACKET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/tox(new_survivor), WEAR_BACK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), WEAR_BODY)
+			if(map_tag != MAP_ICE_COLONY)
+				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), WEAR_JACKET)
+				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/tox(H), WEAR_BACK)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor/scientist)
-
-		if(3) //Doctor
+		if("Doctor") //Doctor
 			id_assignment = "Doctor"
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(new_survivor), WEAR_JACKET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/storage/belt/medical(new_survivor), WEAR_L_HAND)
-			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/med(new_survivor), WEAR_BACK)
-			new_survivor.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(new_survivor.back), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), WEAR_BODY)
+			if(map_tag != MAP_ICE_COLONY)
+				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), WEAR_JACKET)
+				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
+			H.equip_to_slot_or_del(new /obj/item/storage/belt/medical(H), WEAR_L_HAND)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/med(H), WEAR_BACK)
+			H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(H.back), WEAR_IN_BACK)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor/doctor)
-
-		if(4) //Chef!
-			id_assignment = "Chef"
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(new_survivor), WEAR_JACKET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(new_survivor), WEAR_BACK)
-			new_survivor.equip_to_slot_or_del(new /obj/item/tool/kitchen/rollingpin(new_survivor), WEAR_L_HAND)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor/chef)
-
-		if(5) //Botanist
-			id_assignment = "Botanist"
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(new_survivor), WEAR_JACKET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/tool/hatchet(new_survivor), WEAR_L_HAND)
+		if("Corporate") //Corporate guy
+			id_assignment = "Corporate Liason"
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), WEAR_BACK)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor)
-
-		if(6)//Atmos
+		if("Security") //Security
+			id_assignment = "Security"
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/corp(H), WEAR_BODY)
+			if(map_tag != MAP_ICE_COLONY)
+				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/sec(H), WEAR_BACK)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(H), WEAR_L_HAND)
+			ghost.set_cm_skills(/datum/skills/civilian/survivor/marshall)
+		if("Prisoner") //Prisoner
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(H), WEAR_FEET)
+			ghost.set_cm_skills(/datum/skills/civilian/survivor/prisoner)
+		if("Assistant")
+			id_assignment = "Assistant"
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), WEAR_BACK)
+			ghost.set_cm_skills(/datum/skills/civilian/survivor)
+		if("Civilian")
+			id_assignment = "Civilian"
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), WEAR_BACK)
+			ghost.set_cm_skills(/datum/skills/civilian/survivor)
+		if("Chef")
+			id_assignment = "Chef"
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(H), WEAR_JACKET)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), WEAR_BACK)
+			H.equip_to_slot_or_del(new /obj/item/tool/kitchen/rollingpin(H), WEAR_L_HAND)
+			ghost.set_cm_skills(/datum/skills/civilian/survivor/chef)
+		if("Botanist")
+			id_assignment = "Botanist"
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), WEAR_JACKET)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
+			H.equip_to_slot_or_del(new /obj/item/tool/hatchet(H), WEAR_L_HAND)
+			ghost.set_cm_skills(/datum/skills/civilian/survivor)
+		if("Atmos Tech")
 			id_assignment = "Atmos Tech"
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(new_survivor), WEAR_BODY)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/storage/belt/utility/atmostech(new_survivor), WEAR_L_HAND)
-			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/eng(new_survivor), WEAR_BACK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
+			H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/atmostech(H), WEAR_L_HAND)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/eng(H), WEAR_BACK)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor/atmos)
 
-		if(7) //Chaplain
+		if("Chaplain") //Chaplain
 			id_assignment = "Chaplain"
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(new_survivor), WEAR_BODY)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(new_survivor), WEAR_BACK)
-			new_survivor.equip_to_slot_or_del(new /obj/item/storage/bible/booze(new_survivor.back), WEAR_IN_BACK)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/double/sawn(new_survivor), WEAR_WAIST)
-			new_survivor.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(new_survivor), WEAR_L_HAND)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), WEAR_BACK)
+			H.equip_to_slot_or_del(new /obj/item/storage/bible/booze(H.back), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/double/sawn(H), WEAR_WAIST)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), WEAR_L_HAND)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor)
 
-		if(8) //Miner
+		if("Miner") //Miner
 			id_assignment = "Miner"
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(new_survivor), WEAR_BODY)
-			new_survivor.equip_to_slot_or_del(new /obj/item/tool/pickaxe(new_survivor), WEAR_L_HAND)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(new_survivor), WEAR_BACK)
-			new_survivor.equip_to_slot_or_del(new /obj/item/device/flashlight/lantern(new_survivor.back), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/tool/pickaxe(H), WEAR_L_HAND)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), WEAR_BACK)
+			H.equip_to_slot_or_del(new /obj/item/device/flashlight/lantern(H.back), WEAR_IN_BACK)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor/miner)
-		if(9) //Corporate guy
+		if("Salesman") //Corporate guy
 			id_assignment = "Salesman"
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(new_survivor), WEAR_BODY)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(new_survivor), WEAR_JACKET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/storage/briefcase(new_survivor), WEAR_L_HAND)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(new_survivor), WEAR_WAIST)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), WEAR_BODY)
+			if(map_tag != MAP_ICE_COLONY)
+				H.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(H), WEAR_JACKET)
+				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
+			H.equip_to_slot_or_del(new /obj/item/storage/briefcase(H), WEAR_L_HAND)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(H), WEAR_WAIST)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor)
-
-		if(10) //Colonial Marshal
+		if("Colonial Marshall") //Colonial Marshal
 			id_assignment = "Colonial Marshall"
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/CMB(new_survivor), WEAR_JACKET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/under/CM_uniform(new_survivor), WEAR_BODY)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(new_survivor), WEAR_FEET)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(new_survivor), WEAR_L_HAND)
-			new_survivor.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/sec(new_survivor), WEAR_BACK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/CMB(H), WEAR_JACKET)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/CM_uniform(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), WEAR_FEET)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(H), WEAR_L_HAND)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/sec(H), WEAR_BACK)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor/marshall)
 
-	var/obj/item/card/id/W = new(new_survivor)
-	W.name = "[new_survivor.real_name]'s ID Card ([id_assignment])"
-	W.assignment = id_assignment
-	W.paygrade = "C"
-	W.registered_name = new_survivor.real_name
-	new_survivor.equip_to_slot_or_del(W, WEAR_ID)
+	if(map_tag == MAP_ICE_COLONY)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), WEAR_HEAD)
+		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), WEAR_JACKET)
+		H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), WEAR_FACE)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(H), WEAR_FEET)
+		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), WEAR_HANDS)
 
+	if(id_assignment)
+		var/obj/item/card/id/W = new(H)
+		W.name = "[H.real_name]'s ID Card ([id_assignment])"
+		W.assignment = id_assignment
+		W.paygrade = "C"
+		W.registered_name = H.real_name
+		H.equip_to_slot_or_del(W, WEAR_ID)
 
-	var/random_weap = rand(0,4)
-	switch(random_weap)
-		if(0)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/holdout(new_survivor), WEAR_WAIST)
-		if(1)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/b92fs(new_survivor), WEAR_WAIST)
-		if(2)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/kt42(new_survivor), WEAR_WAIST)
-		if(3)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/uzi(new_survivor), WEAR_WAIST)
-		if(4)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/small(new_survivor), WEAR_WAIST)
+	if(map_tag != MAP_PRISON_STATION)
+		var/random_weap = rand(0,4)
+		switch(random_weap)
+			if(0)
+				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/holdout(H), WEAR_WAIST)
+			if(1)
+				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/b92fs(H), WEAR_WAIST)
+			if(2)
+				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/kt42(H), WEAR_WAIST)
+			if(3)
+				H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/uzi(H), WEAR_WAIST)
+			if(4)
+				H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/small(H), WEAR_WAIST)
 
-
-	var/random_gear = rand(0,20) //WEAR_L_HAND and slot_r/l_store are taken above.
+	var/random_gear = rand(0,20)
 	switch(random_gear)
 		if(0)
-			new_survivor.equip_to_slot_or_del(new /obj/item/device/camera/oldcamera(new_survivor), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/device/camera/oldcamera(H), WEAR_R_HAND)
 		if(1)
-			new_survivor.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(new_survivor), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), WEAR_R_HAND)
 		if(2)
-			new_survivor.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(new_survivor), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), WEAR_R_HAND)
 		if(3)
-			new_survivor.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(new_survivor), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(H), WEAR_R_HAND)
 		if(4)
-			new_survivor.equip_to_slot_or_del(new /obj/item/tool/surgery/surgicaldrill(new_survivor), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/tool/surgery/surgicaldrill(H), WEAR_R_HAND)
 		if(5)
-			new_survivor.equip_to_slot_or_del(new /obj/item/stack/medical/bruise_pack(new_survivor), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/stack/medical/bruise_pack(H), WEAR_R_HAND)
 		if(6)
-			new_survivor.equip_to_slot_or_del(new /obj/item/weapon/butterfly/switchblade(new_survivor), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/weapon/butterfly/switchblade(H), WEAR_R_HAND)
 		if(7)
-			new_survivor.equip_to_slot_or_del(new /obj/item/tool/kitchen/knife(new_survivor), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/tool/kitchen/knife(H), WEAR_R_HAND)
 		if(8)
-			new_survivor.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/lemoncakeslice(new_survivor), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/lemoncakeslice(H), WEAR_R_HAND)
 		if(9)
-			new_survivor.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/dblue(new_survivor), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/dblue(H), WEAR_R_HAND)
 		if(10)
-			new_survivor.equip_to_slot_or_del(new /obj/item/tool/weldingtool/largetank(new_survivor), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/tool/weldingtool/largetank(H), WEAR_R_HAND)
 
-	new_survivor.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(new_survivor), WEAR_R_STORE)
-	new_survivor.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(new_survivor), WEAR_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(H), WEAR_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), WEAR_L_STORE)
 
-	new_survivor.name = new_survivor.get_visible_name()
 
 	//Give them some information
 	spawn(4)
-		new_survivor << "<h2>You are a survivor!</h2>"
-		new_survivor << "\blue You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now."
-		new_survivor << "\blue You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit."
-		new_survivor << "\blue You are NOT aware of the marines or their intentions, and lingering around arrival zones will get you survivor-banned."
+		H << "<h2>You are a survivor!</h2>"
+		switch(map_tag)
+			if(MAP_PRISON_STATION)
+				H << "\blue You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now."
+			if(MAP_ICE_COLONY)
+				H << "\blue You are a survivor of the attack on the ice habitat. You worked or lived on the colony, and managed to avoid the alien attacks.. until now."
+			else
+				H << "\blue You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now."
+		H << "\blue You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit."
+		H << "\blue You are NOT aware of the marines or their intentions, and lingering around arrival zones will get you survivor-banned."
 	return 1
 
 /datum/game_mode/proc/tell_survivor_story()
@@ -874,7 +913,8 @@ datum/game_mode/proc/initialize_special_clamps()
 		M.build_inventory(M.premium, 0, 1)
 
 		var/products2[]
-		if(istype(src, /datum/game_mode/ice_colony)) //Literally, we are in gamemode code
+		//if(istype(src, /datum/game_mode/ice_colony)) //Literally, we are in gamemode code
+		if(map_tag == MAP_ICE_COLONY)
 			products2 = list(
 						/obj/item/clothing/mask/rebreather/scarf = round(scale * 30),
 							)

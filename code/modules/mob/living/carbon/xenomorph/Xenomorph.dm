@@ -94,7 +94,7 @@ var/global/list/hive_datum = list(new /datum/hive_status(), new /datum/hive_stat
 /mob/living/carbon/Xenomorph/New()
 	..()
 	//WO GAMEMODE
-	if(ticker && istype(ticker.mode,/datum/game_mode/whiskey_outpost))
+	if(map_tag == MAP_WHISKEY_OUTPOST)
 		hardcore = 1 //Prevents healing and queen evolution
 	time_of_birth = world.time
 	add_language("Xenomorph") //xenocommon
