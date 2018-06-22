@@ -382,7 +382,8 @@
 			if(!istype(G)) return
 			if(!G.get_active_firearm(usr)) return
 			var/obj/item/attachable/flashlight/F = G.rail
-			if(F) F.activate_attachment(G, user)
+			if(F && F.activate_attachment(G, user))
+				playsound(user, F.activation_sound, 15, 1)
 			return 1
 
 		if("Eject magazine")

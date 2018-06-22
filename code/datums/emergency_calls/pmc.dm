@@ -22,18 +22,22 @@
 
 	var/mob/living/carbon/human/mob = new(spawn_loc)
 	mob.gender = pick(MALE,FEMALE)
-	var/list/first_names_mb = list("Owen","Luka","Nelson","Branson", "Tyson", "Leo", "Bryant", "Kobe", "Rohan", "Riley", "Aidan", "Watase","Egawa", "Hisakawa", "Koide", "Remy", "Martial", "Magnus", "Heiko", "Lennard")
+	var/list/first_names_m = list("Owen","Luka","Nelson","Branson", "Tyson", "Leo", "Bryant", "Kobe", "Rohan", "Riley", "Aidan", "Watase","Egawa", "Hisakawa", "Koide", "Remy", "Martial", "Magnus", "Heiko", "Lennard")
+	var/list/first_names_f = list("Madison","Jessica","Anna","Juliet", "Olivia", "Lea", "Diane", "Kaori", "Beatrice", "Riley", "Amy", "Natsue","Yumi", "Aiko", "Fujiko", "Jennifer", "Ashley", "Mary", "Hitomi", "Lisa")
+
 	var/list/last_names_mb = list("Bates","Shaw","Hansen","Black", "Chambers", "Hall", "Gibson", "Weiss", "Waller", "Burton", "Bakin", "Rohan", "Naomichi", "Yakumo", "Yosai", "Gallagher", "Hiles", "Bourdon", "Strassman", "Palau")
 	var/datum/preferences/A = new()
 	A.randomize_appearance_for(mob)
 
-
-	mob.real_name = "PMC [pick(first_names_mb)] [pick(last_names_mb)]"
+	if(mob.gender == MALE)
+		mob.real_name = "PMC [pick(first_names_m)] [pick(last_names_mb)]"
+		mob.f_style = "5 O'clock Shadow"
+	else
+		mob.real_name = "PMC [pick(first_names_f)] [pick(last_names_mb)]"
 	mob.name = mob.real_name
 	mob.age = rand(25,35)
 	mob.dna.ready_dna(mob)
 	mob.h_style = "Shaved Head"
-	mob.f_style = "5 O'clock Shadow"
 	mob.r_hair = 25
 	mob.g_hair = 25
 	mob.b_hair = 35

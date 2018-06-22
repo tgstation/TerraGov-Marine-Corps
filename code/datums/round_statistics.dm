@@ -26,6 +26,7 @@ var/datum/round_statistics/round_statistics = new()
 	var/warrior_lunges = 0
 	var/warrior_limb_rips = 0
 	var/warrior_agility_toggles = 0
+	var/warrior_grabs = 0
 	var/defender_headbutts = 0
 	var/defender_tail_sweeps = 0
 	var/defender_tail_sweep_hits = 0
