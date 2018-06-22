@@ -151,7 +151,7 @@
 							new_xeno.key = pick(players_with_xeno_pref)
 
 							if(new_xeno.client)
-								new_xeno.client.view = world.view
+								new_xeno.client.change_view(world.view)
 
 							new_xeno << "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>"
 							new_xeno << sound('sound/effects/xeno_newlarva.ogg')

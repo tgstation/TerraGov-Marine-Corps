@@ -352,7 +352,7 @@
 		return
 	zoom_turf = get_turf(src)
 	is_zoomed = 1
-	client.view = viewsize
+	client.change_view(viewsize)
 	var/viewoffset = 32 * tileoffset
 	switch(dir)
 		if(NORTH)
@@ -371,7 +371,7 @@
 /mob/living/carbon/Xenomorph/proc/zoom_out()
 	if(!client)
 		return
-	client.view = world.view
+	client.change_view(world.view)
 	client.pixel_x = 0
 	client.pixel_y = 0
 	is_zoomed = 0

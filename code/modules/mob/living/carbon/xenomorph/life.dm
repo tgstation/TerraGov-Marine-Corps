@@ -287,14 +287,12 @@
 		else
 			hud_used.alien_plasma_display.icon_state = "power_display_empty"
 
-	if(client)
-		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson)
 
-	if(hud_used && hud_used.blind_icon && stat != DEAD)
+	if(stat != DEAD)
 		if(blinded)
-			hud_used.blind_icon.plane = 0
+			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 		else
-			hud_used.blind_icon.plane = -80
+			clear_fullscreen("blind")
 
 	if(!stat && prob(25)) //Only a 25% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
 		queen_locator()

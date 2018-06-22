@@ -11,22 +11,21 @@
 	vision_flags = SEE_MOBS
 	invisa_view = 2
 	eye_protection = -1
+	deactive_state = "goggles_off"
+	fullscreen_vision = /obj/screen/fullscreen/thermal
 
-	emp_act(severity)
-		if(istype(src.loc, /mob/living/carbon/human))
-			var/mob/living/carbon/human/M = src.loc
-			M << "\red The Optical Thermal Scanner overloads and blinds you!"
-			if(M.glasses == src)
-				M.eye_blind = 3
-				M.eye_blurry = 5
-				M.disabilities |= NEARSIGHTED
-				spawn(100)
-					M.disabilities &= ~NEARSIGHTED
-		..()
-
-/obj/item/clothing/glasses/thermal/New()
+/obj/item/clothing/glasses/thermal/emp_act(severity)
+	if(istype(src.loc, /mob/living/carbon/human))
+		var/mob/living/carbon/human/M = src.loc
+		M << "\red The Optical Thermal Scanner overloads and blinds you!"
+		if(M.glasses == src)
+			M.eye_blind = 3
+			M.eye_blurry = 5
+			M.disabilities |= NEARSIGHTED
+			spawn(100)
+				M.disabilities &= ~NEARSIGHTED
 	..()
-	overlay = global_hud.thermal
+
 
 /obj/item/clothing/glasses/thermal/syndi	//These are now a traitor item, concealed as mesons.	-Pete
 	name = "Optical Meson Scanner"
@@ -69,6 +68,7 @@
 	invisa_view = 2
 	flags_inventory = COVEREYES
 	flags_item = NODROP|DELONDROP
+	toggleable = 0
 
 	Dispose()
 		..()

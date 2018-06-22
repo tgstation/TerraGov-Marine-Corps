@@ -91,12 +91,6 @@
 	pull_icon.update_icon(owner)
 	hotkeybuttons += pull_icon
 
-	blind_icon = new /obj/screen/blind()
-	screenoverlays += blind_icon
-
-	flash_icon = new /obj/screen/flash()
-	screenoverlays += flash_icon
-
 	zone_sel = new /obj/screen/zone_sel/alien()
 	zone_sel.update_icon(owner)
 	static_inventory += zone_sel

@@ -51,19 +51,17 @@
 	jitteriness = 0
 
 	if(client)
-		if(hud_used && hud_used.blind_icon)
-			hud_used.blind_icon.plane = 0
-		client.view = world.view //just so we never get stuck with a large view somehow
+		client.change_view(world.view) //just so we never get stuck with a large view somehow
 
-	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
-	see_in_dark = 8
-	see_invisible = SEE_INVISIBLE_LEVEL_TWO
+	hide_fullscreens()
+
+	update_sight()
 
 	drop_r_hand()
 	drop_l_hand()
 
 	if(hud_used && hud_used.healths)
-		hud_used.healths.icon_state = "health6"
+		hud_used.healths.icon_state = "health7"
 
 	timeofdeath = world.time
 	if(mind) mind.store_memory("Time of death: [worldtime2text()]", 0)

@@ -557,13 +557,13 @@ Currently only has the tank hardpoints
 		if(!C.gunner) return
 		var/mob/M = C.gunner
 		if(!M.client) return
-		M.client.view = view_buff
 		if(is_active)
-			M.client.view = 7
+			M.client.change_view(7)
 			M.client.pixel_x = 0
 			M.client.pixel_y = 0
 			is_active = 0
 			return
+		M.client.change_view(view_buff)
 		is_active = 1
 		switch(C.dir)
 			if(NORTH)
@@ -585,7 +585,7 @@ Currently only has the tank hardpoints
 		var/mob/M = C.gunner
 		if(!M.client) return
 		is_active = 0
-		M.client.view = 7
+		M.client.change_view(7)
 		M.client.pixel_x = 0
 		M.client.pixel_y = 0
 

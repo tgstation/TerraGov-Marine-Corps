@@ -89,7 +89,7 @@
 		O.mind.original = O
 	else
 		O.key = key
-		if(O.client) O.client.view = world.view
+		if(O.client) O.client.change_view(world.view)
 
 	var/obj/loc_landmark
 	for(var/obj/effect/landmark/start/sloc in landmarks_list)
@@ -163,7 +163,7 @@
 			O.mind.store_memory("In case you look at this after being borged, the objectives are only here until I find a way to make them not show up for you, as I can't simply delete them without screwing up round-end reporting. --NeoFite")
 	else
 		O.key = key
-		if(O.client) O.client.view = world.view
+		if(O.client) O.client.change_view(world.view)
 
 	O.loc = loc
 	O.job = "Cyborg"
@@ -203,7 +203,7 @@
 
 	new_xeno.a_intent = "hurt"
 	new_xeno.key = key
-	if(new_xeno.client) new_xeno.client.view = world.view
+	if(new_xeno.client) new_xeno.client.change_view(world.view)
 
 	new_xeno << "<B>You are now an alien.</B>"
 	spawn(0)//To prevent the proc from returning null.
@@ -229,7 +229,7 @@
 
 	new_xeno.a_intent = "hurt"
 	new_xeno.key = key
-	if(new_xeno.client) new_xeno.client.view = world.view
+	if(new_xeno.client) new_xeno.client.change_view(world.view)
 
 	new_xeno << "<b>You are an alien!</b>"
 	new_xeno << "<b>Use Say \":a message\" to communicate with other aliens.</b>"
@@ -253,7 +253,7 @@
 	var/mob/living/simple_animal/corgi/new_corgi = new /mob/living/simple_animal/corgi (loc)
 	new_corgi.a_intent = "hurt"
 	new_corgi.key = key
-	if(new_corgi.client) new_corgi.client.view = world.view
+	if(new_corgi.client) new_corgi.client.change_view(world.view)
 
 	new_corgi << "<B>You are now a Corgi. Yap Yap!</B>"
 	spawn(0)//To prevent the proc from returning null.
@@ -286,7 +286,7 @@
 	var/mob/new_mob = new mobpath(src.loc)
 
 	new_mob.key = key
-	if(new_mob.client) new_mob.client.view = world.view
+	if(new_mob.client) new_mob.client.change_view(world.view)
 	new_mob.a_intent = "hurt"
 
 
@@ -307,7 +307,7 @@
 	var/mob/new_mob = new mobpath(src.loc)
 
 	new_mob.key = key
-	if(new_mob.client) new_mob.client.view = world.view
+	if(new_mob.client) new_mob.client.change_view(world.view)
 	new_mob.a_intent = "hurt"
 	new_mob << "You feel more... animalistic"
 

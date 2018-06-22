@@ -133,7 +133,7 @@ Works together with spawning an observer, noted above.
 		if(!can_reenter_corpse)
 			away_timer = 300 //they'll never come back, so we can max out the timer right away.
 		if(ghost.client)
-			ghost.client.view = world.view //reset view range to default
+			ghost.client.change_view(world.view) //reset view range to default
 			ghost.client.pixel_x = 0 //recenters our view
 			ghost.client.pixel_y = 0
 //		if(!ghost.client.holder && !config.antag_hud_allowed)		// For new ghosts we remove the verb from even showing up if it's not allowed.
@@ -213,7 +213,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		usr << "<span class='warning'>Another consciousness is in your body...It is resisting you.</span>"
 		return
 	mind.current.key = key
-	if(mind.current.client) mind.current.client.view = world.view
+	if(mind.current.client) mind.current.client.change_view(world.view)
 	return 1
 
 /mob/dead/observer/verb/toggle_HUDs()
@@ -430,9 +430,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(client)
 		if(client.view != world.view)
-			client.view = world.view
+			client.change_view(world.view)
 		else
-			client.view = 14
+			client.change_view(14)
 
 
 /mob/dead/observer/verb/toggle_darkness()
@@ -657,7 +657,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			Z.ghostize(0) //Make sure previous owner does not get a free respawn.
 			Z.ckey = usr.ckey
 			if(Z.client) //so players don't keep their ghost zoom view.
-				Z.client.view = world.view
+				Z.client.change_view(world.view)
 
 			message_admins("[ckey] has joined as a [Z].")
 			log_admin("[ckey] has joined as a [Z].")
@@ -738,7 +738,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		message_admins("[usr.ckey] has joined as a [L].")
 		log_admin("[usr.ckey] has joined as a [L].")
 		L.ckey = usr.ckey
-		if(L.client) L.client.view = world.view
+		if(L.client) L.client.change_view(world.view)
 
 		if( isobserver(ghostmob) )
 			cdel(ghostmob)

@@ -173,10 +173,8 @@
 	vision_flags = SEE_MOBS
 	darkness_view = 7
 	flags_item = NODROP|DELONDROP
+	fullscreen_vision = /obj/screen/fullscreen/nvg
 
-/obj/item/clothing/glasses/zombie_eyes/New()
-	..()
-	overlay = global_hud.nvg
 
 
 /obj/item/storage/fancy/blackgoo

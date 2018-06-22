@@ -9,10 +9,8 @@
 	actions_types = list(/datum/action/item_action/toggle)
 	origin_tech = "magnets=2;engineering=2"
 	toggleable = 1
+	fullscreen_vision = /obj/screen/fullscreen/meson
 
-/obj/item/clothing/glasses/meson/New()
-	..()
-	overlay = global_hud.meson
 
 /obj/item/clothing/glasses/meson/prescription
 	name = "prescription optical meson scanner"

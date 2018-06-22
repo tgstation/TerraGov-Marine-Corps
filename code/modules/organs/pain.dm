@@ -1,6 +1,6 @@
-mob/proc/flash_pain()
-	if(hud_used)
-		flick("pain", hud_used.pain_icon)
+/mob/proc/flash_pain()
+	overlay_fullscreen("pain", /obj/screen/fullscreen/pain, 2)
+	clear_fullscreen("pain")
 
 mob/var/list/pain_stored = list()
 mob/var/last_pain_message = ""
@@ -101,7 +101,8 @@ mob/living/carbon/human/proc/handle_pain()
 		if(dam > maxdam && (maxdam == 0 || prob(70)) )
 			damaged_organ = E
 			maxdam = dam
-	if(damaged_organ) pain(damaged_organ.display_name, maxdam, 0)
+	if(damaged_organ)
+		pain(damaged_organ.display_name, maxdam, 0)
 
 
 	// Damage to internal organs hurts a lot.

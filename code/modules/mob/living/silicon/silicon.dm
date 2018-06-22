@@ -39,8 +39,8 @@
 		if(2)
 			src.take_limb_damage(10)
 			Stun(rand(1,5))
-	if(hud_used)
-		flick("noise", hud_used.flash_icon)
+	flash_eyes(1, TRUE, type = /obj/screen/fullscreen/flash/noise)
+
 	src << "\red <B>*BZZZT*</B>"
 	src << "\red Warning: Electromagnetic pulse detected."
 	..()
@@ -208,8 +208,7 @@
 	return 1
 
 /mob/living/silicon/ex_act(severity)
-	if(!blinded && hud_used)
-		flick("flash", hud_used.flash_icon)
+	flash_eyes()
 
 	switch(severity)
 		if(1.0)

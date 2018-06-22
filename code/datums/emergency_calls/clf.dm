@@ -49,7 +49,7 @@
 	mob.age = rand(17,45)
 	mob.dna.ready_dna(mob)
 	mob.key = M.key
-	if(mob.client) mob.client.view = world.view
+	if(mob.client) mob.client.change_view(world.view)
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "CLF"
 	ticker.mode.traitors += mob.mind

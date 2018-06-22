@@ -17,11 +17,6 @@
 	locate_leader = new /obj/screen/queen_locator()
 	infodisplay += locate_leader
 
-	blind_icon = new /obj/screen/blind()
-	screenoverlays += blind_icon
-
-	flash_icon = new /obj/screen/flash()
-	screenoverlays += flash_icon
 
 
 /mob/living/carbon/Xenomorph/Larva/create_hud()

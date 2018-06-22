@@ -108,12 +108,6 @@
 	pull_icon.screen_loc = ui_borg_pull
 	static_inventory += pull_icon
 
-	blind_icon = new /obj/screen/blind()
-	screenoverlays += blind_icon
-
-	flash_icon = new /obj/screen/flash()
-	screenoverlays += flash_icon
-
 	zone_sel = new /obj/screen/zone_sel/robot()
 	zone_sel.update_icon(owner)
 	static_inventory += zone_sel
