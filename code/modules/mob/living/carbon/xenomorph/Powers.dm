@@ -83,6 +83,8 @@
 	if(!do_after(src, 12, TRUE, 5, BUSY_ICON_HOSTILE))
 		return
 
+	round_statistics.praetorian_acid_sprays++
+
 	used_acid_spray = 1
 	use_plasma(200)
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1)
@@ -236,6 +238,7 @@
 			if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
 				continue
 
+			round_statistics.praetorian_spray_direct_hits++
 			C.adjustFireLoss(rand(20,30) + 5 * upgrade)
 			C << "<span class='xenodanger'>\The [src] showers you in corrosive acid!</span>"
 
@@ -265,6 +268,7 @@
 
 	var/mob/living/carbon/human/H = A
 	if(H.stat == DEAD) return
+	round_statistics.warrior_flings++
 
 	visible_message("<span class='xenowarning'>\The [src] effortlessly flings [H] to the side!</span>", \
 	"<span class='xenowarning'>You effortlessly fling [H] to the side!</span>")
@@ -314,6 +318,7 @@
 
 	var/mob/living/carbon/human/H = A
 	if(H.stat == DEAD) return
+	round_statistics.warrior_punches++
 	var/datum/limb/L = H.get_limb(check_zone(zone_selected))
 
 	if (!L || (L.status & LIMB_DESTROYED))
@@ -377,6 +382,7 @@
 
 	var/mob/living/carbon/human/H = A
 	if(H.stat == DEAD) return
+	round_statistics.warrior_lunges++
 	visible_message("<span class='xenowarning'>\The [src] lunges towards [H]!</span>", \
 	"<span class='xenowarning'>You lunge at [H]!</span>")
 
@@ -419,7 +425,7 @@
 	if (!L || L.body_part == UPPER_TORSO || L.body_part == LOWER_TORSO || (L.status & LIMB_DESTROYED)) //Only limbs and head.
 		src << "<span class='xenowarning'>You can't rip off that limb.</span>"
 		return 0
-
+	round_statistics.warrior_limb_rips++
 	var/limb_time = rand(40,60)
 
 	if (L.body_part == HEAD)
@@ -476,6 +482,7 @@
 
 	agility = !agility
 
+	round_statistics.warrior_agility_toggles++
 	if (agility)
 		src << "<span class='xenowarning'>You lower yourself to all fours.</span>"
 		speed -= 0.7
@@ -533,6 +540,8 @@
 	if (!Adjacent(H))
 		return
 
+	round_statistics.defender_headbutts++
+
 	visible_message("<span class='xenowarning'>\The [src] rams [H] with it's armored crest!</span>", \
 	"<span class='xenowarning'>You ram [H] with your armored crest!</span>")
 
@@ -584,6 +593,7 @@
 	if (!check_plasma(10))
 		return
 
+	round_statistics.defender_tail_sweeps++
 	visible_message("<span class='xenowarning'>\The [src] sweeps it's tail in a wide circle!</span>", \
 	"<span class='xenowarning'>You sweep your tail in a wide circle!</span>")
 
@@ -595,7 +605,7 @@
 	for (var/mob/living/carbon/human/H in L)
 		step_away(H, src, sweep_range, 2)
 		H.apply_damage(10)
-
+		round_statistics.defender_tail_sweep_hits++
 		shake_camera(H, 2, 1)
 
 		if (prob(50))
@@ -631,12 +641,14 @@
 	used_crest_defense = 1
 
 	if (crest_defense)
+		round_statistics.defender_crest_lowerings++
 		src << "<span class='xenowarning'>You lower your crest.</span>"
 		armor_deflection += 15
 		speed += 0.8	// This is actually a slowdown but speed is dumb
 		do_crest_defense_cooldown()
 		return
 
+	round_statistics.defender_crest_raises++
 	src << "<span class='xenowarning'>You raise your crest.</span>"
 	armor_deflection -= 15
 	speed -= 0.8
@@ -663,6 +675,8 @@
 
 	if (used_fortify)
 		return
+
+	round_statistics.defender_fortifiy_toggles++
 
 	fortify = !fortify
 	used_fortify = 1

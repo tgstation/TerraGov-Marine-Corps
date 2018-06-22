@@ -56,6 +56,8 @@
 	has_screeched = world.time
 	use_plasma(50)
 
+	round_statistics.crusher_stomps++
+
 	playsound(loc, 'sound/effects/bang.ogg', 25, 0)
 	visible_message("<span class='xenodanger'>[src] smashes into the ground!</span>", \
 	"<span class='xenodanger'>You smash into the ground!</span>")
@@ -69,6 +71,7 @@
 				if(M.stat == DEAD)
 					continue
 				if(!(M.status_flags & XENO_HOST) && !istype(M.buckled, /obj/structure/bed/nest))
+					round_statistics.crusher_stomp_victims++
 					M.take_overall_damage(40) //The same as a full charge, but no more than that.
 					M.attack_log += text("\[[time_stamp()]\] <font color='orange'>was xeno stomped by [src] ([ckey])</font>")
 					attack_log += text("\[[time_stamp()]\] <font color='red'>xeno stomped [M.name] ([M.ckey])</font>")

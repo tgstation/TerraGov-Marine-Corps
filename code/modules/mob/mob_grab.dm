@@ -70,7 +70,7 @@
 				msg_admin_attack("[key_name(user)] grabbed the neck of [key_name(victim)]")
 			if(GRAB_AGGRESSIVE)
 				user.visible_message("<span class='warning'>[user] has grabbed [victim] aggressively (now hands)!</span>", null, null, 5)
-
+		victim.update_canmove()
 
 /obj/item/grab/attack(mob/living/M, mob/living/user, def_zone)
 	if(M == user && user.pulling && isXeno(user))
