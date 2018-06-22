@@ -86,6 +86,7 @@
 		use_plasma(10)
 
 		if(!isXeno(L) && !isYautja(L))
+			round_statistics.warrior_grabs++
 			grab_level = GRAB_NECK
 			L.drop_held_items()
 			L.Stun(5)

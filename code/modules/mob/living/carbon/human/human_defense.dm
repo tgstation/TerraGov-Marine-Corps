@@ -168,7 +168,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	var/bloody = 0
 	if((I.damtype == BRUTE || I.damtype == HALLOSS) && prob(I.force*2 + 25))
 		if(!(affecting.status & LIMB_ROBOT))
-			I.add_blood(src)	//Make the weapon bloody, not the person.
+			I.add_mob_blood(src)	//Make the weapon bloody, not the person.
 			if(prob(33))
 				bloody = 1
 				var/turf/location = loc

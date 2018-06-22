@@ -130,7 +130,7 @@ DEFINES in setup.dm, referenced here.
 	else ..()
 
 /obj/item/weapon/gun/throw_at(atom/target, range, speed, thrower)
-	if( harness_check(thrower) ) usr << "<span class='warning'>The [src] clanks on the ground.</span>"
+	if( harness_check(thrower) ) usr << "<span class='warning'>\The [src] clanks on the ground.</span>"
 	else ..()
 
 /*
@@ -595,8 +595,9 @@ should be alright.
 	var/obj/item/attachable/A
 
 	var/usable_attachments[] = list() //Basic list of attachments to compare later.
-	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) )
-		usable_attachments += rail
+// rail attachment use the button to toggle flashlight instead.
+//	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) )
+//		usable_attachments += rail
 	if(under && (under.flags_attach_features & ATTACH_ACTIVATION) )
 		usable_attachments += under
 	if(stock  && (stock.flags_attach_features & ATTACH_ACTIVATION) )
