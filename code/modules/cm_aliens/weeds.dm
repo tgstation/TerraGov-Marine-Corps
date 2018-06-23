@@ -156,6 +156,7 @@
 
 	health -= damage
 	healthcheck()
+	return TRUE //don't call afterattack
 
 /obj/effect/alien/weeds/proc/healthcheck()
 	if(health <= 0)
