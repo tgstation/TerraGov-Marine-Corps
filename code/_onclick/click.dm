@@ -101,7 +101,7 @@
 		if (W)
 			if (W.attack_speed)
 				next_move += W.attack_speed
-			if (!A.attackby(W, src) && A)
+			if (!A.attackby(W, src) && A && !A.disposed)
 				W.afterattack(A, src, 1, mods)
 		else
 			next_move += 4
