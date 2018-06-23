@@ -25,8 +25,8 @@
 			icon_off = "squad_[closet_squad]_off"
 
 	select_gamemode_equipment(gamemode)
-		switch(gamemode)
-			if(/datum/game_mode/ice_colony)
+		switch(map_tag)
+			if(MAP_ICE_COLONY)
 				new /obj/item/clothing/mask/rebreather/scarf(src)
 
 
@@ -345,8 +345,8 @@
 		new /obj/item/clothing/glasses/sunglasses(src)
 
 	select_gamemode_equipment(gamemode)
-		switch(gamemode)
-			if(/datum/game_mode/ice_colony)
+		switch(map_tag)
+			if(MAP_ICE_COLONY)
 				new /obj/item/clothing/mask/rebreather/scarf(src)
 				new /obj/item/clothing/mask/rebreather/scarf(src)
 
@@ -453,8 +453,8 @@
 		new /obj/item/clothing/glasses/hud/health(src)
 
 	select_gamemode_equipment(gamemode)
-		switch(gamemode)
-			if(/datum/game_mode/ice_colony)
+		switch(map_tag)
+			if(MAP_ICE_COLONY)
 				new /obj/item/clothing/suit/storage/snow_suit/doctor(src)
 				new /obj/item/clothing/mask/rebreather/scarf(src)
 

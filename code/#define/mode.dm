@@ -30,6 +30,7 @@
 #define MODE_HAS_FINISHED		8
 #define MODE_FOG_ACTIVATED 		16
 #define MODE_INFECTION			32
+#define MODE_HUMAN_ANTAGS		64
 
 #define BE_ALIEN		1
 #define BE_QUEEN		2

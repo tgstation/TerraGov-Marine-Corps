@@ -5,11 +5,11 @@
 	### The name of the project in DreamMaker
 	"project_name" : "ColonialMarinesALPHA",
 	### The directory where the actual code is that needs to be compiled, including maps
-	"project_base" : "C:/Users/Sam/Desktop/CM branches/Unfucked",
+	"project_base" : ".",
 	### The directory where DD runs out of, i.e. the destination folder when the binaries are copied from the poject base folder
-	"dest_base" : "C:/Users/Sam/Desktop/MapDaemonExecutables",
+	"dest_base" : "tools/MapDaemon",
 	### The directory to save all of the logs
-	"crash_logs" : "C:/Users/Sam/Desktop/MapDaemonExecutables/logs",
+	"crash_logs" : "tools/MapDaemon/logs",
 	### The installation directory of BYOND
 	"byond_base" : "C:/Program Files (x86)/BYOND"
 	},
@@ -17,7 +17,7 @@
 	### The IP address of the server, localhost works, don't know if IPv6 does
 	"url" : "localhost",
 	### The port of the server
-	"port" : "5001"
+	"port" : "59500"
 	},
 "game" : {
 	"maps" : {
