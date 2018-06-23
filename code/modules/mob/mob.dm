@@ -5,7 +5,6 @@
 	living_mob_list -= src
 	ghostize()
 	clear_fullscreens()
-	fullscreens = null
 	. = ..()
 	return TA_PURGE_ME_NOW
 

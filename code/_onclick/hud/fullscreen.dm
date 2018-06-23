@@ -10,7 +10,7 @@
 		if(FS.type != type)
 			clear_fullscreen(category, FALSE)
 			return .()
-		else if((!severity || severity == FS.severity) && (FS.screen_loc != "CENTER-7,CENTER-7" || FS.fs_view == client.view))
+		else if((!severity || severity == FS.severity) && (!client || FS.screen_loc != "CENTER-7,CENTER-7" || FS.fs_view == client.view))
 			return null
 	else
 		FS = rnew(type)

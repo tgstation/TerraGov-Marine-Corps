@@ -321,8 +321,8 @@
 	void.UpdateGreed(actual_view[1],actual_view[2])
 
 /proc/params2turf(scr_loc, turf/origin, client/C)
-	if(!scr_loc)
-		return null
+	if(!scr_loc || !origin)
+		return
 	var/tX = splittext(scr_loc, ",")
 	var/tY = splittext(tX[2], ":")
 	var/tZ = origin.z
