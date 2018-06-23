@@ -35,15 +35,217 @@ This is meant for infestation type game modes for right now (marines vs. aliens,
 of predators), but can be added to include variant game modes (like humans vs. humans).
 */
 
+//===================================================\\
+
+				//PROCESS GAME MODE\\
+
+//===================================================\\
+
+/datum/game_mode/proc/pre_setup_infestation()
+	round_fog = new
+	var/xeno_tunnels[] = new
+	var/monkey_spawns[] = new
+	var/map_items[] = new
+	var/obj/effect/blocker/fog/F
+	for(var/obj/effect/landmark/L in landmarks_list)
+		switch(L.name)
+			if("hunter_primary")
+				cdel(L)
+			if("hunter_secondary")
+				cdel(L)
+			if("crap_item")
+				cdel(L)
+			if("good_item")
+				cdel(L)
+			if("block_hellhound")
+				cdel(L)
+			if("fog blocker")
+				F = new(L.loc)
+				round_fog += F
+				cdel(L)
+			if("xeno tunnel")
+				xeno_tunnels += L.loc
+				cdel(L)
+			if("monkey_spawn")
+				monkey_spawns += L.loc
+				cdel(L)
+			if("map item")
+				map_items += L.loc
+				cdel(L)
+
+	// Spawn gamemode-specific map items
+	for(var/obj/effect/landmark/map_item/MI)
+		var/turf/T = pick(map_items)
+		map_items -= T
+		if(ticker.mode.name == "LV-624") new /obj/item/map/lazarus_landing_map(T)
+		else if(ticker.mode.name == "Ice Colony") new /obj/item/map/ice_colony_map(T)
+		else if(ticker.mode.name == "Solaris Ridge") new /obj/item/map/big_red_map(T)
+		else if(ticker.mode.name == "Prison Station") new /obj/item/map/FOP_map(T)
+		else
+			return
+
+	if(monkey_amount && monkey_types.len)
+		//var/debug_tally = 0
+		for(var/i = monkey_amount, i > 0, i--)
+			var/turf/T = pick(monkey_spawns)
+			monkey_spawns -= T
+			var/monkey_to_spawn = pick(monkey_types)
+			new monkey_to_spawn(T)
+			//debug_tally++
+
+		//message_admins("SPAWNED [debug_tally] MONKEYS") //DO NOT LEAVE THIS UNCOMMENTED, THIS IS DEV INFO ONLY
+
+	if(!round_fog.len) round_fog = null //No blockers?
+	else
+		round_time_fog = rand(-2500,2500)
+		flags_round_type |= MODE_FOG_ACTIVATED
+	var/obj/structure/tunnel/T
+	var/i = 0
+	var/turf/t
+	while(xeno_tunnels.len && i++ < 3)
+		t = pick(xeno_tunnels)
+		xeno_tunnels -= t
+		T = new(t)
+		T.id = "hole[i]"
+
+	r_TRU
+
+//===================================================\\
+
+				//PROCESS GAME MODE\\
+
+//===================================================\\
+
+#define FOG_DELAY_INTERVAL		27000 // 45 minutes
+/datum/game_mode/proc/process_infestation()
+	if(--round_started > 0) r_FAL //Initial countdown, just to be safe, so that everyone has a chance to spawn before we check anything.
+
+	if(!round_finished)
+		for(var/datum/hive_status/hive in hive_datum)
+			if(hive.xeno_queen_timer && --hive.xeno_queen_timer <= 1) xeno_message("The Hive is ready for a new Queen to evolve.", 3, hive.hivenumber)
+
+		// Automated bioscan / Queen Mother message
+		if(world.time > bioscan_current_interval) //If world time is greater than required bioscan time.
+			announce_bioscans() //Announce the results of the bioscan to both sides.
+			bioscan_current_interval += bioscan_ongoing_interval //Add to the interval based on our set interval time.
+
+		if(++round_checkwin >= 5) //Only check win conditions every 5 ticks.
+			if(flags_round_type & MODE_FOG_ACTIVATED && world.time >= (FOG_DELAY_INTERVAL + round_time_lobby + round_time_fog)) disperse_fog()//Some RNG thrown in.
+			check_win()
+			round_checkwin = 0
+
+#undef FOG_DELAY_INTERVAL
+
+//===================================================\\
+
+				  //CHECK VICTORY\\
+
+//===================================================\\
+
+/datum/game_mode/proc/check_win_infestation()
+	var/living_player_list[] = count_humans_and_xenos(EvacuationAuthority.get_affected_zlevels())
+	var/num_humans = living_player_list[1]
+	var/num_xenos = living_player_list[2]
+
+	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED)				round_finished = MODE_GENERIC_DRAW_NUKE //Nuke went off, ending the round.
+	if(EvacuationAuthority.dest_status < NUKE_EXPLOSION_IN_PROGRESS) //If the nuke ISN'T in progress. We do not want to end the round before it detonates.
+		if(!num_humans && num_xenos) //No humans remain alive.
+			if(EvacuationAuthority.evac_status > EVACUATION_STATUS_STANDING_BY) round_finished = MODE_INFESTATION_X_MINOR //Evacuation successfully took place. //TODO Find out if anyone made it on.
+			else																round_finished = MODE_INFESTATION_X_MAJOR //Evacuation did not take place. Everyone died.
+		else if(num_humans && !num_xenos)
+			if(EvacuationAuthority.evac_status > EVACUATION_STATUS_STANDING_BY) round_finished = MODE_INFESTATION_M_MINOR //Evacuation successfully took place.
+			else																round_finished = MODE_INFESTATION_M_MAJOR //Humans destroyed the xenomorphs.
+		else if(!num_humans && !num_xenos)										round_finished = MODE_INFESTATION_DRAW_DEATH //Both were somehow destroyed.
+
 //If the queen is dead after a period of time, this will end the game.
 /datum/game_mode/proc/check_queen_status(queen_time)
-	return
+	set waitfor = 0
+	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
+	hive.xeno_queen_timer = queen_time
+	if(!(flags_round_type & MODE_INFESTATION)) return
+	xeno_queen_deaths += 1
+	var/num_last_deaths = xeno_queen_deaths
+	sleep(QUEEN_DEATH_COUNTDOWN)
+	//We want to make sure that another queen didn't die in the interim.
+
+	if(xeno_queen_deaths == num_last_deaths && !round_finished && !hive.living_xeno_queen ) round_finished = MODE_INFESTATION_M_MINOR
+
+
+/datum/game_mode/proc/check_win_infection()
+	var/living_player_list[] = count_humans_and_xenos(EvacuationAuthority.get_affected_zlevels())
+	var/num_humans = living_player_list[1]
+	var/zed = living_player_list[2]
+//	world << "ZED: [zed]"
+//	world << "Humie: [num_humans]"
+
+	if(num_humans <=0 && zed >= 1)
+		round_finished = MODE_INFECTION_ZOMBIE_WIN
+
 
 //===================================================\\
 
 				//ANNOUNCE COMPLETION\\
 
 //===================================================\\
+
+/datum/game_mode/proc/declare_completion_infestation() //TO DO: Change the file path to something better. This is not only for infestation anymore.
+	//world << "<span class='round_header'>[round_finished]</span>"
+	world << "<span class='round_header'>|Round Complete|</span>"
+	feedback_set_details("round_end_result",round_finished)
+
+
+	if(flags_round_type & MODE_INFESTATION)
+		world << "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [name].</span>"
+		world << "<span class='round_body'>End of Round Grief (EORG) is an IMMEDIATE 3 hour ban with no warnings, see rule #7 for more details.</span>"
+		var/musical_track
+		switch(round_finished)
+			if(MODE_INFESTATION_X_MAJOR) musical_track = pick('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg')
+			if(MODE_INFESTATION_M_MAJOR) musical_track = pick('sound/theme/winning_triumph1.ogg','sound/theme/winning_triumph2.ogg')
+			if(MODE_INFESTATION_X_MINOR) musical_track = pick('sound/theme/neutral_melancholy1.ogg','sound/theme/neutral_melancholy2.ogg')
+			if(MODE_INFESTATION_M_MINOR) musical_track = pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg')
+			if(MODE_INFESTATION_DRAW_DEATH) musical_track = pick('sound/theme/nuclear_detonation1.ogg','sound/theme/nuclear_detonation2.ogg') //This one is unlikely to play.
+		world << musical_track
+	else
+		switch(round_finished)
+			if(MODE_BATTLEFIELD_W_MAJOR)
+				world << "<span class='round_body'>The W-Y PMCs have successfully repelled the USCM assault and completed their objectives!</span>"
+				world << 'sound/misc/good_is_dumb.ogg'
+			if(MODE_BATTLEFIELD_M_MAJOR)
+				world << "<span class='round_body'>The marines have wiped out the PMC garrison and completed their objective! Hooah!</span>"
+				world << 'sound/misc/outstanding_marines.ogg'
+			if(MODE_BATTLEFIELD_W_MINOR)
+				world << "<span class='round_body'>The W-Y PMCs wiped out the marines, but they failed to complete their objective! W-Y won't be happy!</span>"
+				world << 'sound/misc/gone_to_plaid.ogg'
+			if(MODE_BATTLEFIELD_M_MINOR)
+				world << "<span class='round_body'>The marines glassed the W-Y mercs, but they failed to complete their objective! Incompetent baldies!</span>"
+				world << 'sound/misc/apcdestroyed.ogg'
+			if(MODE_BATTLEFIELD_DRAW_STALEMATE)
+				world << "<span class='round_body'>The marines completed their objective, but they failed to destroy the PMCs! W-Y will be coming back!</span>"
+			if(MODE_BATTLEFIELD_DRAW_DEATH)
+				world << "<span class='round_body'>Both the marines and the W-Y PMCs were annihilated! The nightmare continues!</span>"
+				world << 'sound/misc/Rerun.ogg'
+			if(MODE_GENERIC_DRAW_NUKE)
+				world << "<span class='round_body'>The nuclear explosion changed everything.</span>"
+			if(MODE_INFECTION_ZOMBIE_WIN)
+				world << "<span class='round_body'>The zombies have been victorious!</span>"
+
+			else world << "<span class='round_body'>Whoops, something went wrong with declare_completion(), blame the coders!</span>"
+
+	var/dat = ""
+	//if(flags_round_type & MODE_INFESTATION)
+		//var/living_player_list[] = count_humans_and_xenos()
+		//dat = "\nXenomorphs remaining: [living_player_list[2]]. Humans remaining: [living_player_list[1]]."
+	if(round_stats) round_stats << "[round_finished][dat]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal Preds spawned: [predators.len]\nTotal humans spawned: [round_statistics.total_humans_created][log_end]" // Logging to data/logs/round_stats.log
+
+	world << dat
+
+	declare_completion_announce_individual()
+	declare_completion_announce_predators()
+	if(flags_round_type & MODE_INFESTATION)
+		declare_completion_announce_xenomorphs()
+		declare_completion_announce_survivors()
+	declare_completion_announce_medal_awards()
+	return 1
 
 /datum/game_mode/proc/declare_completion_announce_individual()
 	set waitfor = 0

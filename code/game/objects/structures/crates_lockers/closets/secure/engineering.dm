@@ -118,8 +118,8 @@
 		new /obj/item/storage/backpack/industrial(src)
 
 	select_gamemode_equipment(gamemode)
-		switch(map_tag)
-			if(MAP_ICE_COLONY)
+		switch(gamemode)
+			if(/datum/game_mode/ice_colony)
 				new /obj/item/clothing/suit/storage/snow_suit(src)
 				new /obj/item/clothing/mask/rebreather/scarf(src)
 

@@ -49,8 +49,8 @@
 
 /obj/machinery/vending/marine/select_gamemode_equipment(gamemode)
 	var/products2[]
-	switch(map_tag)
-		if(MAP_ICE_COLONY)
+	switch(gamemode)
+		if(/datum/game_mode/ice_colony)
 			products2 = list(
 						/obj/item/clothing/mask/rebreather/scarf = 10,
 							)
@@ -497,14 +497,14 @@
 
 /obj/machinery/vending/marine_leader/select_gamemode_equipment(gamemode)
 	var/products2[]
-	switch(map_tag)
-		if(MAP_ICE_COLONY)
+	switch(gamemode)
+		if(/datum/game_mode/ice_colony)
 			products2 = list( /obj/item/map/ice_colony_map = 3)
-		if(MAP_BIG_RED)
+		if(/datum/game_mode/bigred)
 			products2 = list(/obj/item/map/big_red_map = 3)
-		if(MAP_WHISKEY_OUTPOST)
+		if(/datum/game_mode/whiskey_outpost)
 			products2 = list(/obj/item/map/whiskey_outpost_map = 3)
-		if(MAP_LV_624)
+		else
 			products2 = list(/obj/item/map/lazarus_landing_map = 3)
 	build_inventory(products2)
 

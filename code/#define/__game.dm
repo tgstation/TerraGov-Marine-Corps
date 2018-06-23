@@ -13,12 +13,6 @@
 #define MAIN_AI_SYSTEM "ARES v3.2"
 #define MAIN_SHIP_ESCAPE_POD_NUMBER 11
 
-#define MAP_ICE_COLONY "Ice Colony"
-#define MAP_LV_624 "LV-624"
-#define MAP_BIG_RED "Solaris Ridge"
-#define MAP_PRISON_STATION "Prison Station"
-#define MAP_WHISKEY_OUTPOST "Whiskey Outpost"
-
 /*
 Trash Authority Directives
 Defines for when we need to give commands to the trash authority in how to handle trash.

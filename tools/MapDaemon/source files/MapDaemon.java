@@ -460,18 +460,18 @@ public class MapDaemon {
 			crashedEndProcess("Failed to copy binary files.");
 			return false;
 		}
-		/*
+		
 		boolean gm_success = modifyGamemodeFile(next_map);
 		if(!gm_success) {
 			crashedEndProcess("Failed to modify the gamemode file.");
 			return false;
-		}*/
-
+		}
+		
 		compile_needed = false;
 		
 		return true;
 	}
-	/*
+	
 	private boolean modifyGamemodeFile(String map) {
 		try {
 			System.out.println(dest_base + "\\data\\mode.txt");
@@ -483,7 +483,7 @@ public class MapDaemon {
 			return false;
 		}
 	}
-	*/
+	
 	/*
 	/**
 	 * Process the saved JSON vote info to find the next map to play on.

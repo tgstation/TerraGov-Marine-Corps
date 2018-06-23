@@ -141,19 +141,20 @@ item, and will change the skin to whatever you specify here. You can also
 manually override the icon with a unique skin if wanted, for the outlier
 cases. Override_icon_state should be a list.*/
 /obj/item/proc/select_gamemode_skin(expected_type, list/override_icon_state, override_name, list/override_protection)
-	if(type == expected_type)
+	if(type == expected_type && ticker && ticker.mode)
+		var/game_mode = ticker.mode.type
 		var/new_icon_state
 		var/new_name
 		var/new_protection
-		if(override_icon_state && override_icon_state.len) new_icon_state = override_icon_state[map_tag]
-		if(override_name) new_name = override_name[map_tag]
-		if(override_protection && override_protection.len) new_protection = override_protection[map_tag]
-		switch(map_tag)
-			if(MAP_ICE_COLONY) //Can easily add other states if needed.
+		if(override_icon_state && override_icon_state.len) new_icon_state = override_icon_state[game_mode]
+		if(override_name) new_name = override_name[game_mode]
+		if(override_protection && override_protection.len) new_protection = override_protection[game_mode]
+		switch(ticker.mode.type)
+			if(/datum/game_mode/ice_colony) //Can easily add other states if needed.
 				icon_state = new_icon_state ? new_icon_state : "s_" + icon_state
 				if(new_name) name = new_name
 				if(new_protection) min_cold_protection_temperature = new_protection
-			if(MAP_WHISKEY_OUTPOST) //Can easily add other states if needed.
+			if(/datum/game_mode/whiskey_outpost) //Can easily add other states if needed.
 				icon_state = new_icon_state ? new_icon_state : "d_" + icon_state
 				if(new_name) name = new_name
 				if(new_protection) min_cold_protection_temperature = new_protection

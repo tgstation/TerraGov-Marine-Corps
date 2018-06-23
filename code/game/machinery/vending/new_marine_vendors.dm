@@ -225,8 +225,7 @@
 					var/obj/item/clothing/tie/storage/webbing/W = new()
 					U.hastie = W
 					W.on_attached(U)
-				//if(istype(ticker.mode, /datum/game_mode/ice_colony))//drop a coif with the uniform on ice colony
-				if(map_tag == MAP_ICE_COLONY)
+				if(istype(ticker.mode, /datum/game_mode/ice_colony))//drop a coif with the uniform on ice colony
 					new /obj/item/clothing/mask/rebreather/scarf(loc)
 
 

@@ -870,25 +870,6 @@ var/global/floorIsLava = 0
 	log_admin("[key_name(usr)] toggled respawn to [abandon_allowed ? "On" : "Off"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/datum/admins/proc/end_round()
-	set category = "Server"
-	set desc="Immediately ends the round, be very careful"
-	set name="End Round"
-
-	if(!check_rights(R_SERVER))	return
-	if (ticker)
-		var/confirm = input("Are you sure you want to end the round?", "Are you sure:") in list("Yes", "No")
-		if(confirm != "Yes") return
-		ticker.mode.round_finished = MODE_INFESTATION_DRAW_DEATH
-		log_admin("[key_name(usr)] has made the round end early.")
-		message_admins("\blue [key_name(usr)] has made the round end early.", 1)
-		for(var/client/C in admins)
-			C << "<hr>"
-			C << "<span class='centerbold'>Staff-Only Alert: <EM>[usr.key]</EM> has made the round end early"
-			C << "<hr>"
-
-		return
 /*
 /datum/admins/proc/toggle_aliens()
 	set category = "Server"

@@ -116,7 +116,6 @@ var/list/admin_verbs_server = list(
 	/datum/admins/proc/restart,
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggleaban,
-	/datum/admins/proc/end_round,
 	/client/proc/toggle_log_hrefs,
 	/datum/admins/proc/toggleAI,
 	/client/proc/cmd_admin_delete,		/*delete an instance/object/mob/etc*/
@@ -128,9 +127,7 @@ var/list/admin_verbs_server = list(
 	/client/proc/cancelMapVote,
 	/client/proc/killMapDaemon,
 	/client/proc/editVotableMaps,
-	/client/proc/showVotableMaps,
-	/client/proc/forceMDMapVote,
-	/client/proc/reviveMapDaemon
+	/client/proc/showVotableMaps
 	)
 var/list/admin_verbs_debug = list(
     /client/proc/getruntimelog,                     /*allows us to access runtime logs to somebody*/
@@ -216,7 +213,6 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/restart,
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggleaban,
-	/datum/admins/proc/end_round,
 	/client/proc/toggle_log_hrefs,
 	/client/proc/everyone_random,
 	/datum/admins/proc/toggleAI,

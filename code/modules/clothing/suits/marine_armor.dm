@@ -100,7 +100,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	time_to_equip = 20
 
 /obj/item/clothing/suit/storage/marine/New(loc,expected_type 		= /obj/item/clothing/suit/storage/marine,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper M3 pattern marine snow armor"))
+	new_name[] 			= list(/datum/game_mode/ice_colony = "\improper M3 pattern marine snow armor"))
 	if(type == /obj/item/clothing/suit/storage/marine)
 		var/armor_variation = rand(1,6)
 		switch(armor_variation)
@@ -275,7 +275,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	armor = list(melee = 50, bullet = 60, laser = 45, energy = 40, bomb = 40, bio = 15, rad = 15)
 
 	New(loc,expected_type 	= type,
-		new_name[] 		= list(MAP_ICE_COLONY = "\improper B12 pattern leader snow armor"))
+		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper B12 pattern leader snow armor"))
 		..(loc,expected_type,new_name)
 
 /obj/item/clothing/suit/storage/marine/tanker
@@ -304,7 +304,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	unacidable = 1
 
 	New(loc,expected_type 	= type,
-		new_name[] 		= list(MAP_ICE_COLONY = "\improper B18 defensive snow armor"))
+		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper B18 defensive snow armor"))
 		..(loc,expected_type,new_name)
 
 /obj/item/clothing/suit/storage/marine/specialist/mob_can_equip(mob/M, slot, disable_warning = 0)
@@ -397,7 +397,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	//uniform_restricted = list(/obj/item/clothing/under/marine/sniper) //TODO : This item exists, but isn't implemented yet. Makes sense otherwise
 
 	New(loc,expected_type 	= type,
-		new_name[] 		= list(MAP_ICE_COLONY = "\improper M3 pattern sniper snow armor"))
+		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper M3 pattern sniper snow armor"))
 		..(loc,expected_type,,new_name)
 
 /obj/item/clothing/suit/storage/marine/sniper/jungle
@@ -409,7 +409,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 
 	New(loc,expected_type 	= type,
-		new_name[] 		= list(MAP_ICE_COLONY = "\improper M3 pattern marksman snow armor"))
+		new_name[] 		= list(/datum/game_mode/ice_colony = "\improper M3 pattern marksman snow armor"))
 		..(loc,expected_type,,new_name)
 
 

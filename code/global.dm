@@ -100,7 +100,7 @@ var/game_year = 2186
 
 var/datum/air_tunnel/air_tunnel1/SS13_airtunnel = null
 var/going = 1.0
-var/master_mode = "Colonial Marines"
+var/master_mode = "LV-624"
 var/secret_force_mode = "secret" // if this is anything but "secret", the secret rotation will forceably choose this mode
 
 var/datum/engine_eject/engine_eject_control = null
@@ -141,7 +141,6 @@ var/CHARGELEVEL = 0.0005 // Cap for how fast cells charge, as a percentage-per-t
 var/SupplyElevator
 var/HangarUpperElevator
 var/HangarLowerElevator
-var/global/map_tag
 var/list/wizardstart = list()
 var/list/newplayer_start = list()
 

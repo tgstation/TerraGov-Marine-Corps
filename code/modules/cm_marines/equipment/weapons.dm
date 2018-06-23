@@ -160,9 +160,9 @@
 
 	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
-			if(map_tag)
-				switch(map_tag)
-					if(MAP_ICE_COLONY)
+			if(ticker && ticker.mode)
+				switch(ticker.mode.name)
+					if("Ice Colony")
 						new /obj/item/clothing/head/helmet/marine(src)
 					else
 						new /obj/item/clothing/head/helmet/durag(src)
@@ -194,9 +194,9 @@
 
 	open(var/mob/user as mob)
 		if(!opened)
-			if(map_tag)
-				switch(map_tag)
-					if(MAP_ICE_COLONY)
+			if(ticker && ticker.mode)
+				switch(ticker.mode.name)
+					if("Ice Colony")
 						new /obj/item/clothing/under/marine/sniper(src)
 						new /obj/item/storage/backpack/marine/satchel(src)
 						new /obj/item/bodybag/tarp/snow(src)
@@ -315,9 +315,9 @@
 
 	open(mob/user) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
-			if(map_tag)
-				switch(map_tag)
-					if(MAP_ICE_COLONY)
+			if(ticker && ticker.mode)
+				switch(ticker.mode.name)
+					if("Ice Colony")
 						new /obj/item/clothing/head/helmet/marine(src)
 					else
 						new /obj/item/clothing/head/helmet/durag(src)

@@ -329,7 +329,6 @@ datum/controller/vote
 
 
 var/MapDaemon_UID = -1 //-1 by default so we know when to set it
-var/force_mapdaemon_vote = 0
 
 //Basically, this completely ignores the voting datum etc in favor of editing a simple a simple list, player_votes
 //Upon request by MapDaemon, world/Topic() will it into JSON and send it away, so we do 0 handling in DM
@@ -355,16 +354,6 @@ var/force_mapdaemon_vote = 0
 	src << "<span class='notice'>You have voted for [selection].</span>"
 
 	player_votes[src.ckey] = selection
-
-/client/proc/forceMDMapVote()
-	set name = "Map Vote - Force Initiate"
-	set category = "Server"
-
-	force_mapdaemon_vote = !force_mapdaemon_vote
-	src << "<span class='notice'>The server will [force_mapdaemon_vote ? "now" : "no longer"] tell Mapdaemon to start a vote the next time possible.</span>"
-
-	message_admins("[src] is attempting to force a MapDaemon vote.")
-	log_admin("[src] is attempting to force a MapDaemon vote.")
 
 //Uses an invalid ckey to rig the votes
 //Special case for }}} handled in World/Topic()
@@ -449,23 +438,13 @@ var/kill_map_daemon = 0
 	set category = "Server"
 
 	if(alert("Are you sure you want to kill MapDaemon?",, "Yes", "No") == "No") return
+	if(alert("Are you doubly sure you want to kill MapDaemon? It will be impossible to restart it for the duration of this round. If the round has been delayed it is too late to have any effect.",, "Yes", "No") == "No") return
 
 	kill_map_daemon = 1
 
 	alert("MapDaemon will be killed on next round-end check.")
-	message_admins("[src] just killed MapDaemon. It may be restarted with \"Map Vote - Revive MapDaemon\".")
-	log_admin("[src] just killed MapDaemon. It may be restarted with \"Map Vote - Revive MapDaemon\".")
-
-/client/proc/reviveMapDaemon()
-	set name = "Map Vote - Revive MapDaemon"
-	set category = "Server"
-
-	kill_map_daemon = 0
-
-	message_admins("[src] is attempting to restart MapDaemon.")
-	log_admin("[src] is attempting to restart MapDaemon.")
-
-	run_mapdaemon_batch()
+	message_admins("[src] just killed MapDaemon. It is unrecoverable.")
+	log_admin("[src] just killed MapDaemon. It is unrecoverable.")
 
 //Need to return 1 so that the thing calling hooks wont think that this failed
 /hook/roundstart/proc/launchMapDaemon()

@@ -116,10 +116,3 @@
 
 	return 1
 
-/obj/effect/landmark/map_tag
-	name = "mapping tag"
-
-/obj/effect/landmark/map_tag/New()
-	map_tag = name
-	cdel(src)
-	return
