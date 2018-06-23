@@ -73,6 +73,13 @@
 					shroom.pixel_x = 0
 					shroom.pixel_y = 0
 
+		for(var/obj/O in src) //Eject contents!
+			if(istype(O, /obj/structure/sign/poster))
+				var/obj/structure/sign/poster/P = O
+				P.roll_and_drop(src)
+			if(istype(O, /obj/effect/alien/weeds))
+				cdel(O)
+
 
 
 /turf/closed/wall/MouseDrop_T(mob/M, mob/user)
@@ -232,13 +239,6 @@
 		make_girder(TRUE)
 	else
 		make_girder(FALSE)
-
-	for(var/obj/O in contents) //Eject contents!
-		if(istype(O, /obj/structure/sign/poster))
-			var/obj/structure/sign/poster/P = O
-			P.roll_and_drop(src)
-		if(istype(O, /obj/effect/alien/weeds))
-			cdel(O)
 
 	cdel(src)
 

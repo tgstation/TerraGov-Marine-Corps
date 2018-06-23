@@ -489,7 +489,8 @@
 			if(M.lying && !isXeno(M) && M.stat != DEAD && !(M.status_flags & XENO_HOST && istype(M.buckled, /obj/structure/bed/nest)))
 				visible_message("<span class='danger'>[src] runs [M] over!</span>",
 				"<span class='danger'>You run [M] over!</span>", null, 5)
-				M.take_overall_damage(charge_speed * 40) //Yes, times fourty. Maxes out at a sweet, square 84 damage for 2.1 max speed
+
+				M.take_overall_damage(charge_speed * 10) //Yes, times fourty. Maxes out at a sweet, square 84 damage for 2.1 max speed
 				animation_flash_color(M)
 
 		var/shake_dist = min(round(charge_speed * 5), 8)

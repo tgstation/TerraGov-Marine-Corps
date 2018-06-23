@@ -112,6 +112,7 @@
 			src.set_temperature = min(src.set_temperature+amount, 1000)
 		else
 			src.set_temperature = max(src.set_temperature+amount, 1)
+		temperature = set_temperature
 	if(href_list["setPower"]) //setting power to 0 is redundant anyways
 		var/new_setting = between(0, text2num(href_list["setPower"]), 100)
 		set_power_level(new_setting)
@@ -127,7 +128,7 @@
 		update_icon()
 		return
 
-	cooling = 0
+	cooling = 1
 	update_use_power(1)
 
 	update_icon()
