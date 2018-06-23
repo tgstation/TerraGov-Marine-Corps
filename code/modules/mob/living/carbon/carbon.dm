@@ -380,3 +380,13 @@
 			sleep(2)
 			if(!lying)
 				break
+
+
+
+/mob/living/carbon/on_stored_atom_del(atom/movable/AM)
+	..()
+	if(stomach_contents.len && ismob(AM))
+		for(var/X in stomach_contents)
+			if(AM == X)
+				stomach_contents -= AM
+				break

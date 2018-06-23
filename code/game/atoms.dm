@@ -438,5 +438,10 @@ its easier to just keep the beam vertical.
 	return flags_pass&passflag
 
 //Generalized Fire Proc.
-atom/proc/flamer_fire_act()
+/atom/proc/flamer_fire_act()
+	return
+
+
+//things that object need to do when a movable atom inside it is deleted
+/atom/proc/on_stored_atom_del(atom/movable/AM)
 	return

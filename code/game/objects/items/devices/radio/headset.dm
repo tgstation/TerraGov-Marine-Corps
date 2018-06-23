@@ -219,7 +219,7 @@
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	frequency = PUB_FREQ
-	var/headset_hud_on = 0
+	var/headset_hud_on = 1
 
 
 /obj/item/device/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
@@ -322,7 +322,6 @@
 
 
 /obj/item/device/radio/headset/almayer/marine
-	headset_hud_on = 1
 
 /obj/item/device/radio/headset/almayer/marine/alpha
 	name = "marine alpha radio headset"

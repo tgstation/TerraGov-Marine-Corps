@@ -231,12 +231,12 @@
 	return copy
 
 
-/obj/machinery/photocopier/on_stored_item_del(obj/item/I)
-	if(I == copy)
+/obj/machinery/photocopier/on_stored_atom_del(atom/movable/AM)
+	if(AM == copy)
 		copy = null
-	else if(I == photocopy)
+	else if(AM == photocopy)
 		photocopy = null
-	else if(I == bundle)
+	else if(AM == bundle)
 		bundle = null
 
 /obj/machinery/photocopier/proc/photocopy(obj/item/photo/photocopy)

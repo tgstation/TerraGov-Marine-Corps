@@ -261,16 +261,13 @@
 /mob/living/carbon/Xenomorph/proc/empty_gut()
 	if(stomach_contents.len)
 		for(var/atom/movable/S in stomach_contents)
-			if(S)
-				stomach_contents.Remove(S)
-				S.acid_damage = 0 //Reset the acid damage
-				S.loc = get_turf(src)
+			stomach_contents.Remove(S)
+			S.acid_damage = 0 //Reset the acid damage
+			S.forceMove(get_turf(src))
 
 	if(contents.len) //Get rid of anything that may be stuck inside us as well
 		for(var/atom/movable/A in contents)
-			if(A)
-				contents.Remove(A)
-				A.loc = get_turf(src)
+			A.forceMove(get_turf(src))
 
 /mob/living/carbon/Xenomorph/proc/toggle_nightvision()
 	if(see_invisible == SEE_INVISIBLE_MINIMUM)

@@ -172,3 +172,4 @@
 	regenerate_icons()
 	med_hud_set_status()
 	med_hud_set_health()
+	reload_fullscreens()

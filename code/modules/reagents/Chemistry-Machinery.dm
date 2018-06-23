@@ -62,8 +62,8 @@
 				return
 
 
-/obj/machinery/chem_dispenser/on_stored_item_del(obj/item/I)
-	if(I == beaker)
+/obj/machinery/chem_dispenser/on_stored_atom_del(atom/movable/AM)
+	if(AM == beaker)
 		beaker = null
 
  /**

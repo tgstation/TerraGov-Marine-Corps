@@ -88,9 +88,6 @@
 /obj/item/Dispose()
 	flags_item &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
 	flags_item &= ~NODROP //so the item is properly unequipped if on a mob.
-	if(istype(loc, /atom/movable))
-		var/atom/movable/AM = loc
-		AM.on_stored_item_del(src) //things that object need to do when an item inside it is deleted
 	for(var/X in actions)
 		actions -= X
 		cdel(X)

@@ -2,6 +2,10 @@
 
 	flash_eyes()
 
+	if(severity < 3 && stomach_contents.len)
+		for(var/mob/M in stomach_contents)
+			M.ex_act(severity + 1)
+
 	var/b_loss = 0
 	var/f_loss = 0
 	switch(severity)

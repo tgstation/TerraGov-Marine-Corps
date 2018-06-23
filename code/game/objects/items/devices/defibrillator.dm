@@ -201,6 +201,7 @@
 			H.stat = UNCONSCIOUS
 			H.emote("gasp")
 			H.regenerate_icons()
+			H.reload_fullscreens()
 			H.update_canmove()
 			H.flash_eyes()
 			H.apply_effect(10, EYE_BLUR)

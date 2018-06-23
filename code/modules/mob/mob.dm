@@ -741,5 +741,8 @@ mob/proc/yank_out_object()
 /mob/proc/TurfAdjacent(var/turf/T)
 	return T.AdjacentQuick(src)
 
-/mob/on_stored_item_del(obj/item/I)
-	temp_drop_inv_item(I, TRUE) //unequip before deletion to clear possible item references on the mob.
+/mob/on_stored_atom_del(atom/movable/AM)
+	if(istype(AM, /obj/item))
+		temp_drop_inv_item(AM, TRUE) //unequip before deletion to clear possible item references on the mob.
+
+

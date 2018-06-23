@@ -76,6 +76,7 @@
 			stat = CONSCIOUS
 			lying = 0
 			density = 1
+			reload_fullscreens()
 		return 0
 
 
