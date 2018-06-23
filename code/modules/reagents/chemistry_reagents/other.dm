@@ -5,7 +5,7 @@
 	id = "blood"
 	reagent_state = LIQUID
 	color = "#A10808"
-	data = new/list("blood_DNA"=null,"blood_type"=null,"blood_colour"= "#A10808","viruses"=null,"resistances"=null)
+	data = new/list("blood_DNA"=null,"blood_type"=null,"blood_colour"= "#A10808","viruses"=null,"resistances"=null, "trace_chem"=null)
 
 
 /datum/reagent/blood/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)

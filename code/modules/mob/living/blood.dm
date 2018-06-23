@@ -236,6 +236,12 @@
 
 	var/list/data = get_blood_data()
 
+	var/list/temp_chem = list()
+	for(var/datum/reagent/R in reagents.reagent_list)
+		temp_chem += R.id
+		temp_chem[R.id] = R.volume
+	data["trace_chem"] = list2params(temp_chem)
+
 	O.reagents.add_reagent(b_id, amount, data)
 
 	blood_volume = max(0, blood_volume - amount) // Removes blood if human
