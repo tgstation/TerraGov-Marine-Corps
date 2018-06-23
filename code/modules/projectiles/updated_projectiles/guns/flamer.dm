@@ -406,10 +406,10 @@
 			var/mob/living/carbon/Xenomorph/X = M
 			if(X.fire_immune) 	return
 		M.adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
-		if (prob(firelevel))
+		if (prob(firelevel + 2*M.fire_stacks)) //the more soaked in fire you are, the likelier to be ignited
 			M.IgniteMob()
 
-		//M.adjustFireLoss(rand(10,burnlevel)) //This makes fire stronk.
+		M.adjustFireLoss(round(burnlevel*0.5)) //This makes fire stronk.
 		M << "<span class='danger'>You are burned!</span>"
 		if(isXeno(M)) M.updatehealth()
 
