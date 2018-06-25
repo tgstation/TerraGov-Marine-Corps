@@ -59,8 +59,8 @@
 			if (B.blood_DNA && B.blood_DNA.len)
 				user << "<span class='notice'>Blood detected. Analysing...</span>"
 				spawn(15)
-				for(var/blood in B.blood_DNA)
-					user << "Blood type: \red [B.blood_DNA[blood]] \t \black DNA: \red [blood]"
+					for(var/blood in B.blood_DNA)
+						user << "Blood type: \red [B.blood_DNA[blood]] \t \black DNA: \red [blood]"
 					if(add_data(B))
 						user << "<span class='notice'>Object already in internal memory. Consolidating data...</span>"
 						flick("forensic2",src)
