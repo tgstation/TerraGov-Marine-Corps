@@ -61,9 +61,9 @@
 				spawn(15)
 				for(var/blood in B.blood_DNA)
 					user << "Blood type: \red [B.blood_DNA[blood]] \t \black DNA: \red [blood]"
-				if(add_data(B))
-					user << "<span class='notice'>Object already in internal memory. Consolidating data...</span>"
-					flick("forensic2",src)
+					if(add_data(B))
+						user << "<span class='notice'>Object already in internal memory. Consolidating data...</span>"
+						flick("forensic2",src)
 				return
 	if ((!A.fingerprints || !A.fingerprints.len) && !A.suit_fibers && !A.blood_DNA)
 		user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
