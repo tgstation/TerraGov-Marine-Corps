@@ -9,7 +9,6 @@ var/global/list/image/splatter_cache=list()
 	density = 0
 	anchored = 1
 	layer = TURF_LAYER
-	mouse_opacity = 0 //So that players trying to shoot in close-quarters don't end up smacking the blood stains with their gun.
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "mfloor1"
 	random_icon_states = list("mfloor1", "mfloor2", "mfloor3", "mfloor4", "mfloor5", "mfloor6", "mfloor7")
