@@ -15,7 +15,6 @@
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "ash"
 	anchored = 1
-	mouse_opacity = 1
 
 /obj/effect/decal/cleanable/ash/attack_hand(mob/user as mob)
 	user << "<span class='notice'>[src] sifts through your fingers.</span>"
