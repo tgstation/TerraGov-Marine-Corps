@@ -289,20 +289,23 @@
 			"<span class='notice'>You start welding [src] with [WT].</span>")
 			playsound(loc, 'sound/items/weldingtool_weld.ogg', 25)
 			if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
-				if(!src || !WT.isOn()) return
+				if(!src || !WT.isOn()) return 0
 				playsound(get_turf(src), 'sound/items/Welder2.ogg', 25, 1)
 				if(!welded)
 					user.visible_message("<span class='notice'>[user] welds [src] shut.</span>", \
 					"<span class='notice'>You weld [src] shut.</span>")
 					welded = 1
 					update_icon()
+					return 1
 				else
 					user.visible_message("<span class='notice'>[user] welds [src] open.</span>", \
 					"<span class='notice'>You weld [src] open.</span>")
 					welded = 0
 					update_icon()
+					return 1
 			else
 				user << "<span class='warning'>[W] needs to be on to start this task.</span>"
+				return 0
 		else
 			user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
 			return 1
