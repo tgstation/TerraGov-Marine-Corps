@@ -135,7 +135,7 @@
 		if(istype(acid_t, /turf))
 			if(istype(acid_t, /turf/closed/wall))
 				var/turf/closed/wall/W = acid_t
-				new /obj/effects/acid_hole (W)
+				new /obj/effect/acid_hole (W)
 			else
 				var/turf/T = acid_t
 				T.ChangeTurf(/turf/open/floor/plating)

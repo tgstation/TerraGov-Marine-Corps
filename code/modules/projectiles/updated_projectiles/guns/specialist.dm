@@ -449,6 +449,7 @@
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
+	attachable_allowed = list()
 	var/grenade
 	var/grenade_type_allowed = /obj/item/explosive/grenade
 	var/riot_version
@@ -578,7 +579,8 @@
 	wield_delay = 12
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 	attachable_allowed = list(
-						/obj/item/attachable/magnetic_harness)
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
