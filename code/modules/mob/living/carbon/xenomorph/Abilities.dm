@@ -81,7 +81,7 @@
 
 /datum/action/xeno_action/regurgitate/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(!X.check_state() || X.fortify || X.crest_defense)
+	if(!X.check_state())
 		return
 
 	if(!isturf(X.loc))
@@ -89,11 +89,13 @@
 		return
 
 	if(X.stomach_contents.len)
-		for(var/mob/M in X)
-			if(M in X.stomach_contents)
-				X.stomach_contents.Remove(M)
-				M.forceMove(X.loc)
-				M.acid_damage = 0 //Reset the acid damage
+		for(var/mob/M in X.stomach_contents)
+			X.stomach_contents.Remove(M)
+			M.acid_damage = 0 //Reset the acid damage
+			if(M.loc != X)
+				continue
+			M.forceMove(X.loc)
+
 		X.visible_message("<span class='xenowarning'>\The [X] hurls out the contents of their stomach!</span>", \
 		"<span class='xenowarning'>You hurl out the contents of your stomach!</span>", null, 5)
 	else
@@ -1088,7 +1090,7 @@
 		else
 			new_xeno.key = T.key
 			if(new_xeno.client)
-				new_xeno.client.view = world.view
+				new_xeno.client.change_view(world.view)
 				new_xeno.client.pixel_x = 0
 				new_xeno.client.pixel_y = 0
 

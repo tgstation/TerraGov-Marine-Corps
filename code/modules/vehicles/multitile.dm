@@ -150,7 +150,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	try_rotate(90, M)
 
 //A wrapper for try_move() that rotates
-/obj/vehicle/multitile/root/proc/try_rotate(var/deg, var/mob/user)
+/obj/vehicle/multitile/root/proc/try_rotate(var/deg, var/mob/user, var/force = 0)
 	save_locs()
 	rotate_coords(deg)
 	if(!try_move(linked_objs, null, 1))
@@ -164,14 +164,17 @@ Vehicles are placed on the map by a spawner or admin verb
 //Called when players try to move from inside the vehicle
 //Another wrapper for try_move()
 /obj/vehicle/multitile/root/relaymove(var/mob/user, var/direction)
-
 	if(dir in list(EAST, WEST))
-		if(!(direction in list(EAST,WEST)))
-			return
+		if(direction == SOUTH)
+			return try_rotate( (dir == WEST ? 90 : -90), user, 1)
+		else if(direction == NORTH)
+			return try_rotate( (dir == EAST ? 90 : -90), user, 1)
 
-	if(dir in list(SOUTH, NORTH))
-		if(!(direction in list(SOUTH, NORTH)))
-			return
+	else if(dir in list(SOUTH, NORTH))
+		if(direction == EAST)
+			return try_rotate( (dir == SOUTH ? 90 : -90), user, 1)
+		else if(direction == WEST)
+			return try_rotate( (dir == NORTH ? 90 : -90), user, 1)
 
 	old_dir = dir
 	save_locs()

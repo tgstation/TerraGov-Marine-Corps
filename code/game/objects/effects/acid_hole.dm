@@ -1,13 +1,14 @@
-/obj/effects/acid_hole
+/obj/effect/acid_hole
 	name = "hole"
 	desc = "What could have done this?"
 	icon = 'icons/effects/new_acid.dmi'
 	icon_state = "hole_0"
+	anchored = 1
 	unacidable = TRUE
 	layer = LOWER_ITEM_LAYER
 	var/turf/closed/wall/holed_wall
 
-/obj/effects/acid_hole/New(loc)
+/obj/effect/acid_hole/New(loc)
 	..()
 	if(istype(loc, /turf/closed/wall))
 		var/turf/closed/wall/W = loc
@@ -20,21 +21,21 @@
 			dir = SOUTH
 
 
-/obj/effects/acid_hole/Dispose()
+/obj/effect/acid_hole/Dispose()
 	if(holed_wall)
 		holed_wall.opacity = initial(holed_wall.opacity)
 		holed_wall.acided_hole = null
 		holed_wall = null
 	. = ..()
 
-/obj/effects/acid_hole/ex_act(severity)
+/obj/effect/acid_hole/ex_act(severity)
 	return
 
-/obj/effects/acid_hole/fire_act()
+/obj/effect/acid_hole/fire_act()
 	return
 
 
-/obj/effects/acid_hole/MouseDrop_T(mob/M, mob/user)
+/obj/effect/acid_hole/MouseDrop_T(mob/M, mob/user)
 	if (!holed_wall)
 		return
 
@@ -42,12 +43,12 @@
 		use_wall_hole(user)
 
 
-/obj/effects/acid_hole/attack_alien(mob/living/carbon/Xenomorph/user)
+/obj/effect/acid_hole/attack_alien(mob/living/carbon/Xenomorph/user)
 	if(holed_wall)
 		if(user.mob_size == MOB_SIZE_BIG)
 			expand_hole(user)
 
-/obj/effects/acid_hole/proc/expand_hole(mob/living/carbon/Xenomorph/user)
+/obj/effect/acid_hole/proc/expand_hole(mob/living/carbon/Xenomorph/user)
 	if(user.action_busy || user.lying)
 		return
 
@@ -56,7 +57,7 @@
 		holed_wall.take_damage(rand(2000,3500))
 		user.emote("roar")
 
-/obj/effects/acid_hole/proc/use_wall_hole(mob/user)
+/obj/effect/acid_hole/proc/use_wall_hole(mob/user)
 
 	if(user.mob_size == MOB_SIZE_BIG || user.is_mob_incapacitated() || user.lying || user.buckled || user.anchored)
 		return
@@ -107,7 +108,7 @@
 
 
 //Throwing Shiet
-/obj/effects/acid_hole/attackby(obj/item/W, mob/user)
+/obj/effect/acid_hole/attackby(obj/item/W, mob/user)
 
 	var/mob_dir = get_dir(user, src)
 	var/crawl_dir = dir & mob_dir

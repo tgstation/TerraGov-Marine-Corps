@@ -1,7 +1,10 @@
 /mob/living/carbon/Xenomorph/ex_act(severity)
 
-	if(!blinded && hud_used)
-		flick("flash", hud_used.flash_icon)
+	flash_eyes()
+
+	if(severity < 3 && stomach_contents.len)
+		for(var/mob/M in stomach_contents)
+			M.ex_act(severity + 1)
 
 	var/b_loss = 0
 	var/f_loss = 0
@@ -122,7 +125,7 @@
 		var/obj/effect/decal/cleanable/blood/xeno/decal = locate(/obj/effect/decal/cleanable/blood/xeno) in T
 
 		if(!decal) //Let's not stack blood, it just makes lagggggs.
-			T.add_blood_floor(src) //Drop some on the ground first.
+			add_splatter_floor(T) //Drop some on the ground first.
 		else
 			if(decal.random_icon_states && length(decal.random_icon_states) > 0) //If there's already one, just randomize it so it changes.
 				decal.icon_state = pick(decal.random_icon_states)

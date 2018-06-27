@@ -85,7 +85,7 @@ datum/mind
 		if(active)
 			new_character.key = key		//now transfer the key to link the client to our new body
 			if(new_character.client)
-				new_character.client.view = world.view //reset view range to default.
+				new_character.client.change_view(world.view) //reset view range to default.
 				new_character.client.pixel_x = 0
 				new_character.client.pixel_y = 0
 

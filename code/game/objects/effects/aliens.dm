@@ -18,11 +18,11 @@
 	opacity = 0
 	anchored = 1
 
-	New() //Self-deletes after creation & animation
-		..()
-		spawn(8)
-			cdel(src)
-			return
+/obj/effect/xenomorph/splatter/New() //Self-deletes after creation & animation
+	..()
+	spawn(8)
+		cdel(src)
+
 
 /obj/effect/xenomorph/splatterblob
 	name = "splatter"
@@ -32,11 +32,11 @@
 	opacity = 0
 	anchored = 1
 
-	New() //Self-deletes after creation & animation
-		..()
-		spawn(40)
-			cdel(src)
-			return
+/obj/effect/xenomorph/splatterblob/New() //Self-deletes after creation & animation
+	..()
+	spawn(40)
+		cdel(src)
+
 
 /obj/effect/xenomorph/spray
 	name = "splatter"
@@ -47,13 +47,15 @@
 	anchored = 1
 	layer = ABOVE_OBJ_LAYER
 	mouse_opacity = 0
+	flags_pass = PASSTABLE|PASSMOB|PASSGRILLE
 
-	New() //Self-deletes
-		..()
-		spawn(100 + rand(0, 20))
-			processing_objects.Remove(src)
-			cdel(src)
-			return
+/obj/effect/xenomorph/spray/New() //Self-deletes
+	..()
+	processing_objects.Add(src)
+	spawn(100 + rand(0, 20))
+		processing_objects.Remove(src)
+		cdel(src)
+		return
 
 /obj/effect/xenomorph/spray/Crossed(AM as mob|obj)
 	..()
@@ -62,7 +64,7 @@
 		if(!H.lying)
 			H << "<span class='danger'>Your feet scald and burn! Argh!</span>"
 			H.emote("pain")
-			H.KnockDown(4)
+			H.KnockDown(3)
 			var/datum/limb/affecting = H.get_limb("l_foot")
 			if(istype(affecting) && affecting.take_damage(0, rand(5, 10)))
 				H.UpdateDamageIcon()
@@ -133,15 +135,19 @@
 		if(istype(acid_t, /turf))
 			if(istype(acid_t, /turf/closed/wall))
 				var/turf/closed/wall/W = acid_t
-				new /obj/effects/acid_hole (W)
+				new /obj/effect/acid_hole (W)
 			else
 				var/turf/T = acid_t
 				T.ChangeTurf(/turf/open/floor/plating)
 		else if (istype(acid_t, /obj/structure/girder))
 			var/obj/structure/girder/G = acid_t
 			G.dismantle()
+		else if(istype(acid_t, /obj/structure/window/framed))
+			var/obj/structure/window/framed/WF = acid_t
+			WF.drop_window_frame()
+
 		else
-			if(acid_t.contents) //Hopefully won't auto-delete things inside melted stuff..
+			if(acid_t.contents.len) //Hopefully won't auto-delete things inside melted stuff..
 				for(var/mob/M in acid_t.contents)
 					if(acid_t.loc) M.forceMove(acid_t.loc)
 			cdel(acid_t)

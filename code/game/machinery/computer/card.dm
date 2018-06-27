@@ -2,7 +2,7 @@
 
 /obj/machinery/computer/card
 	name = "Identification Computer"
-	desc = "Terminal for programming Weyland Yutani employee ID card access."
+	desc = "Terminal for programming USCM employee ID card access."
 	icon_state = "id"
 	req_access = list(ACCESS_MARINE_LOGISTICS)
 	circuit = "/obj/item/circuitboard/computer/card"
@@ -104,7 +104,8 @@
 	data["command_jobs"] = format_jobs(ROLES_COMMAND)
 	data["engineering_jobs"] = format_jobs(ROLES_ENGINEERING)
 	data["medical_jobs"] = format_jobs(ROLES_MEDICAL)
-	data["marine_jobs"] = format_jobs(ROLES_MARINES)
+	data["marine_jobs"] = format_jobs(ROLES_UNASSIGNED)
+	data["civilian_jobs"] = format_jobs(list("Colonist","Passenger"))
 //	data["squad_jobs"] = format_jobs(all_squad_positions)
 	data["centcom_jobs"] = format_jobs(get_all_centcom_jobs())
 
@@ -221,6 +222,8 @@
 					modify.access = access
 					modify.assignment = t1
 					modify.rank = t1
+					message_admins("[key_name_admin(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
+					log_admin("[key_name_admin(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
 
 				callHook("reassign_employee", list(modify))
 

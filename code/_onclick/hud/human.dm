@@ -253,18 +253,6 @@
 	unique_action.screen_loc = ui_gun_unique
 	static_inventory += unique_action
 
-	blind_icon = new /obj/screen/blind()
-	screenoverlays += blind_icon
-
-	flash_icon = new /obj/screen/flash()
-	screenoverlays += flash_icon
-
-	damageoverlay = new /obj/screen/damageoverlay()
-	screenoverlays += damageoverlay
-
-	pain_icon = new /obj/screen()
-	screenoverlays += pain_icon
-
 	zone_sel = new /obj/screen/zone_sel()
 	zone_sel.icon = ui_style
 	zone_sel.color = ui_color

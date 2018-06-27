@@ -229,7 +229,6 @@ proc/check_panel(mob/M)
 	var/weapon_name = null
 	var/obj/item/weap = null
 	var/image/currentimage = null
-	var/s_tone
 	var/image/left
 	var/image/right
 	var/image/up

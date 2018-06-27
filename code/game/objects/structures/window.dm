@@ -79,7 +79,7 @@
 	else
 		return 1
 
-/obj/structure/window/CheckExit(atom/movable/O as mob|obj, target as turf)
+/obj/structure/window/CheckExit(atom/movable/O, turf/target)
 	if(istype(O) && O.checkpass(PASSGLASS))
 		return 1
 	if(get_dir(O.loc, target) == dir)
@@ -462,6 +462,13 @@
 	..()
 
 
+/obj/structure/window/framed/proc/drop_window_frame()
+	if(window_frame)
+		var/obj/structure/window_frame/new_window_frame = new window_frame(loc, TRUE)
+		new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
+		new_window_frame.dir = dir
+	cdel(src)
+
 /obj/structure/window/framed/almayer
 	name = "reinforced window"
 	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
@@ -480,6 +487,15 @@
 	not_deconstructable = 1
 	unacidable = 1
 	health = 1000000 //Failsafe, shouldn't matter
+
+/obj/structure/window/framed/almayer/requisitions
+	name = "ultra-reinforced window"
+	desc = "An ultra-reinforced window designed to keep requisitions a secure area."
+	not_damageable = 1
+	not_deconstructable = 1
+	unacidable = 1
+	health = 1000000 //Failsafe, shouldn't matter
+	window_frame = /obj/structure/window_frame/almayer/requisitions
 
 /obj/structure/window/framed/almayer/white
 	icon_state = "white_rwindow0"

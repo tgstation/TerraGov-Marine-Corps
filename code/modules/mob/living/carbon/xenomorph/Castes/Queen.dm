@@ -19,7 +19,7 @@
 	caste = "Queen"
 	name = "Queen"
 	desc = "A huge, looming alien creature. The biggest and the baddest."
-	icon = 'icons/Xeno/2x2_Xenos.dmi'
+	icon = 'icons/Xeno/xenomorph_64x64.dmi'
 	icon_state = "Queen Walking"
 	melee_damage_lower = 30
 	melee_damage_upper = 46
@@ -151,7 +151,7 @@
 							new_xeno.key = pick(players_with_xeno_pref)
 
 							if(new_xeno.client)
-								new_xeno.client.view = world.view
+								new_xeno.client.change_view(world.view)
 
 							new_xeno << "<span class='xenoannounce'>You are a xenomorph larva awakened from slumber!</span>"
 							new_xeno << sound('sound/effects/xeno_newlarva.ogg')
@@ -166,7 +166,7 @@
 						searchspot = locate(loc.x+searchx, loc.y+searchy, loc.z)
 						for(var/mob/living/carbon/Xenomorph/Larva/L in searchspot)
 							if(!L.ckey || !L.client) // no one home
-								visible_message("<span class='xenodanger'>[L] quickly burries into the ground.</span>")
+								visible_message("<span class='xenodanger'>[L] quickly burrows into the ground.</span>")
 								ticker.mode.stored_larva++
 								round_statistics.total_xenos_created-- // keep stats sane
 								cdel(L)
@@ -196,9 +196,6 @@
 
 	lastturf = null //Reset this so we can properly continue with momentum.
 	r_TRU
-
-/mob/living/carbon/Xenomorph/Queen/gib()
-	death(1) //Prevents resetting queen death timer.
 
 //Chance of insta limb amputation after a melee attack.
 /mob/living/carbon/Xenomorph/Queen/proc/delimb(var/mob/living/carbon/human/H, var/datum/limb/O)
@@ -627,3 +624,7 @@
 	if(!target.disposed) //not cdel'd
 		target.hud_set_queen_overwatch()
 	reset_view()
+
+
+/mob/living/carbon/Xenomorph/Queen/gib()
+	death(1) //we need the body to show the queen's name at round end.

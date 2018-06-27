@@ -33,7 +33,6 @@
 		dna.real_name = real_name
 
 	prev_gender = gender // Debug for plural genders
-	make_blood()
 
 
 
@@ -90,8 +89,7 @@
 		stat(null, "You are affected by a FOCUS order.")
 
 /mob/living/carbon/human/ex_act(severity)
-	if(!blinded && hud_used)
-		flick("flash", hud_used.flash_icon)
+	flash_eyes()
 
 	var/b_loss = null
 	var/f_loss = null
@@ -458,10 +456,15 @@
 						else if (istype(belt, /obj/item/tank))
 							internal = belt
 						if (internal)
-							visible_message("[src] is now running on internals.", null, null, 1)
+							visible_message("<span class='notice'>[src] is now running on internals.</span>", null, null, 1)
 							internal.add_fingerprint(usr)
 							if (hud_used. && hud_used.internals)
 								hud_used.internals.icon_state = "internal1"
+
+				// Update strip window
+				if(usr.interactee == src && Adjacent(usr))
+					show_inv(usr)
+
 
 
 	if(href_list["splints"])
@@ -989,12 +992,6 @@
 		g_eyes = hex2num(copytext(new_eyes, 4, 6))
 		b_eyes = hex2num(copytext(new_eyes, 6, 8))
 
-	var/new_tone = input("Please select skin tone level: 1-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation", "[35-s_tone]")  as text
-
-	if (!new_tone)
-		new_tone = 35
-	s_tone = max(min(round(text2num(new_tone)), 220), 1)
-	s_tone =  -s_tone + 35
 
 	// hair
 	var/list/all_hairs = typesof(/datum/sprite_accessory/hair) - /datum/sprite_accessory/hair
@@ -1132,8 +1129,7 @@
 	name = get_visible_name()
 
 	if(species && !(species.flags & NO_BLOOD))
-		vessel.add_reagent("blood",560-vessel.total_volume)
-		fixblood()
+		restore_blood()
 
 	//try to find the brain player in the decapitated head and put them back in control of the human
 	if(!client && !mind) //if another player took control of the human, we don't want to kick them out.
@@ -1149,7 +1145,7 @@
 
 	if(!keep_viruses)
 		for (var/datum/disease/virus in viruses)
-			virus.cure()
+			virus.cure(0)
 
 	undefibbable = FALSE
 	..()
@@ -1165,39 +1161,6 @@
 		src.custom_pain("You feel a stabbing pain in your chest!", 1)
 		L.damage = L.min_bruised_damage
 
-
-
-//returns 1 if made bloody, returns 0 otherwise
-/mob/living/carbon/human/add_blood(mob/living/carbon/human/M as mob)
-	if (!..())
-		return 0
-	//if this blood isn't already in the list, add it
-	if(blood_DNA[M.dna.unique_enzymes])
-		return 0 //already bloodied with this blood. Cannot add more.
-	blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
-	hand_blood_color = blood_color
-	src.update_inv_gloves()	//handles bloody hands overlays and updating
-	verbs += /mob/living/carbon/human/proc/bloody_doodle
-	return 1 //we applied blood to the item
-
-/mob/living/carbon/human/clean_blood(clean_feet)
-	.=..()
-	if(gloves)
-		if(gloves.clean_blood())
-			update_inv_gloves()
-		gloves.germ_level = 0
-	else
-		if(bloody_hands)
-			bloody_hands = 0
-			update_inv_gloves()
-		germ_level = 0
-
-	if(clean_feet && !shoes && istype(feet_blood_DNA, /list) && feet_blood_DNA.len)
-		feet_blood_color = null
-		cdel(feet_blood_DNA)
-		feet_blood_DNA = null
-		update_inv_shoes()
-		return 1
 
 
 /mob/living/carbon/human/get_visible_implants(var/class = 0)
@@ -1329,8 +1292,7 @@
 
 	spawn(0)
 		regenerate_icons()
-		vessel.add_reagent("blood",560-vessel.total_volume)
-		fixblood()
+		restore_blood()
 
 	if(species)
 		return 1
@@ -1387,7 +1349,7 @@
 			src << "<span class='warning'>You ran out of blood to write with!</span>"
 
 		var/obj/effect/decal/cleanable/blood/writing/W = new(T)
-		W.basecolor = (hand_blood_color) ? hand_blood_color : "#A10808"
+		W.basecolor = (blood_color) ? blood_color : "#A10808"
 		W.update_icon()
 		W.message = message
 		W.add_fingerprint(src)
@@ -1451,7 +1413,7 @@
 	T.add_vomit_floor(src)
 
 /mob/living/carbon/human/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
-	if(shoes && !override_noslip && (shoes.flags_inventory & NOSLIPPING))
+	if(shoes && !override_noslip) // && (shoes.flags_inventory & NOSLIPPING)) // no more slipping if you have shoes on. -spookydonut
 		return FALSE
 	. = ..()
 
@@ -1470,3 +1432,80 @@
 	else
 		hud_used.locate_leader.dir = get_dir(src,H)
 		hud_used.locate_leader.icon_state = "trackon"
+
+
+
+
+
+
+
+/mob/proc/update_sight()
+	return
+
+/mob/living/carbon/human/update_sight()
+	if(stat == DEAD)
+		sight |= (SEE_TURFS|SEE_MOBS|SEE_OBJS)
+		see_in_dark = 8
+		see_invisible = SEE_INVISIBLE_LEVEL_TWO
+	else
+		sight &= ~(SEE_TURFS|SEE_MOBS|SEE_OBJS)
+		see_in_dark = species.darksight
+		see_invisible = see_in_dark > 2 ? SEE_INVISIBLE_LEVEL_ONE : SEE_INVISIBLE_LIVING
+		if(dna)
+			switch(dna.mutantrace)
+				if("slime")
+					see_in_dark = 3
+					see_invisible = SEE_INVISIBLE_LEVEL_ONE
+				if("shadow")
+					see_in_dark = 8
+					see_invisible = SEE_INVISIBLE_LEVEL_ONE
+
+		if(XRAY in mutations)
+			sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS
+			see_in_dark = 8
+			see_invisible = SEE_INVISIBLE_LEVEL_TWO
+
+		if(glasses)
+			process_glasses(glasses)
+		else
+			see_invisible = SEE_INVISIBLE_LIVING
+
+
+
+
+/mob/proc/update_tint()
+
+/mob/living/carbon/human/update_tint()
+	var/is_tinted = FALSE
+
+	if(istype(head, /obj/item/clothing/head/welding))
+		var/obj/item/clothing/head/welding/O = head
+		if(!O.up && tinted_weldhelh)
+			is_tinted = TRUE
+
+	if(glasses && glasses.has_tint && glasses.active && tinted_weldhelh)
+		is_tinted = TRUE
+
+	if(istype(wear_mask, /obj/item/clothing/mask/gas))
+		var/obj/item/clothing/mask/gas/G = wear_mask
+		if(G.vision_impair && tinted_weldhelh)
+			is_tinted = TRUE
+
+	if(is_tinted)
+		overlay_fullscreen("tint", /obj/screen/fullscreen/impaired, 2)
+		return 1
+	else
+		clear_fullscreen("tint", 0)
+		return 0
+
+
+/mob/proc/update_glass_vision(obj/item/clothing/glasses/G)
+	return
+
+/mob/living/carbon/human/update_glass_vision(obj/item/clothing/glasses/G)
+	if(G.fullscreen_vision)
+		if(G == glasses && G.active) //equipped and activated
+			overlay_fullscreen("glasses_vision", G.fullscreen_vision)
+			return 1
+		else //unequipped or deactivated
+			clear_fullscreen("glasses_vision", 0)

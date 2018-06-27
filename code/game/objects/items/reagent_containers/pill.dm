@@ -19,12 +19,12 @@ var/global/list/randomized_pill_icons
 	New()
 		..()
 		if(!randomized_pill_icons)
-			var/allowed_numbers = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20)
+			var/allowed_numbers = list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21)
 			randomized_pill_icons = list()
-			for(var/i = 1 to 20)
+			for(var/i = 1 to 21)
 				randomized_pill_icons += "pill[pick_n_take(allowed_numbers)]"
 		if(!icon_state)
-			icon_state = "pill[rand(1,20)]"
+			icon_state = "pill[rand(1,21)]"
 
 
 	examine(mob/user)
@@ -53,9 +53,8 @@ var/global/list/randomized_pill_icons
 			M.drop_inv_item_on_ground(src) //icon update
 			if(reagents.total_volume)
 				reagents.trans_to_ingest(M, reagents.total_volume)
-				cdel(src)
-			else
-				cdel(src)
+
+			cdel(src)
 			return 1
 
 		else if(istype(M, /mob/living/carbon/human) )
@@ -277,3 +276,11 @@ var/global/list/randomized_pill_icons
 		..()
 		icon_state = randomized_pill_icons[20]
 		reagents.add_reagent("quickclot", 10)
+
+/obj/item/reagent_container/pill/ultrazine
+	//pill_desc = "An Ultrazine pill. A highly-potent, long-lasting combination CNS and muscle stimulant. Extremely addictive."
+
+/obj/item/reagent_container/pill/ultrazine/New()
+	..()
+	icon_state = randomized_pill_icons[21]
+	reagents.add_reagent("ultrazine", 5)

@@ -1245,6 +1245,11 @@
 	do_at_max_range(obj/item/projectile/P)
 		drop_flame(get_turf(P))
 
+/datum/ammo/flamethrower/tank_flamer/drop_flame(var/turf/T)
+	if(!istype(T)) return
+	if(locate(/obj/flamer_fire) in T) return
+	new /obj/flamer_fire(T, 20, 20, fire_spread_amount = 2)
+
 /datum/ammo/flare
 	name = "flare"
 	ping = null //no bounce off.

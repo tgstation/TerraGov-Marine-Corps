@@ -16,6 +16,10 @@
 		if(!.) return
 		if(prob(50)) M.heal_limb_damage(1,0)
 		M.nutrition += nutriment_factor	// For hunger and fatness
+		if(iscarbon(M))
+			var/mob/living/carbon/C = M
+			if(C.blood_volume < BLOOD_VOLUME_NORMAL)
+				C.blood_volume += 0.4
 
 
 /datum/reagent/lipozine

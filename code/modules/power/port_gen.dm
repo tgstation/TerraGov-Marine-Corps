@@ -69,6 +69,9 @@ display round(lastgen) and phorontank amount
 /obj/machinery/power/port_gen/proc/handleInactive()
 	return
 
+/obj/machinery/power/port_gen/power_change()
+	return
+
 /obj/machinery/power/port_gen/process()
 	if(active && HasFuel() && !crit_fail && anchored && powernet)
 		add_avail(power_gen * power_output)

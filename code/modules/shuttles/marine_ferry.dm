@@ -381,14 +381,15 @@
 
 	sleep(85)
 
-	for(var/obj/machinery/door/poddoor/shutters/almayer/D in machines)
-		if(D.id == "sd_lockdown")
-			spawn(0)
-				D.open()
-
 	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) r_FAL //If a nuke finished, don't land.
 
 	shake_cameras(turfs_int) //shake for 1.5 seconds before crash, 0.5 after
+
+	for(var/obj/machinery/power/apc/A in machines) //break APCs
+		if(A.z != T_trg.z) continue
+		if(prob(A.crash_break_probability))
+			A.overload_lighting()
+			A.set_broken()
 
 	var/turf/sploded
 	for(var/j=0; j<10; j++)
@@ -396,6 +397,9 @@
 		//Fucking. Kaboom.
 		explosion(sploded, 0, 5, 10, 0)
 		sleep(3)
+
+	for(var/obj/structure/window/framed/almayer/requisitions/R in structure_list)
+		R.shatter_window(1) // break the reqs windows
 
 	explosion(get_turf(HangarLowerElevator), 0, 3, 5, 0)
 	var/datum/shuttle/ferry/hangar/hangarelevator = shuttle_controller.shuttles["Hangar"]
@@ -410,12 +414,6 @@
 			M << "\red The floor jolts under your feet!"
 			shake_camera(M, 10, 1)
 			M.KnockDown(3)
-
-	for(var/obj/machinery/power/apc/A in machines) //break APCs
-		if(A.z != T_trg.z) continue
-		if(prob(A.crash_break_probability))
-			A.overload_lighting()
-			A.set_broken()
 
 	enter_allowed = 0 //No joining after dropship crash
 

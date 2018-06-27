@@ -57,6 +57,13 @@
 
 
 
+/turf/open/examine(mob/user)
+	..()
+	ceiling_desc(user)
+
+
+
+
 /turf/open/river
 	can_bloody = FALSE
 
@@ -621,6 +628,7 @@
 	name = "floor"
 	icon_state = "floor"
 	icon = 'icons/turf/shuttle.dmi'
+	allow_construction = FALSE
 
 /turf/open/shuttle/dropship
 	name = "floor"

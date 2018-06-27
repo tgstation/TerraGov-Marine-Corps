@@ -62,8 +62,8 @@
 				return
 
 
-/obj/machinery/chem_dispenser/on_stored_item_del(obj/item/I)
-	if(I == beaker)
+/obj/machinery/chem_dispenser/on_stored_atom_del(atom/movable/AM)
+	if(AM == beaker)
 		beaker = null
 
  /**
@@ -76,7 +76,7 @@
   *
   * @return nothing
   */
-/obj/machinery/chem_dispenser/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 1)
+/obj/machinery/chem_dispenser/ui_interact(mob/user, ui_key = "main",var/datum/nanoui/ui = null, var/force_open = 0)
 	if(stat & (BROKEN|NOPOWER)) return
 	if(user.stat || user.is_mob_restrained()) return
 
@@ -147,6 +147,7 @@
 			beaker = null
 
 	add_fingerprint(usr)
+	attack_hand(usr)
 	return 1 // update UIs attached to this object
 
 /obj/machinery/chem_dispenser/attackby(var/obj/item/reagent_container/B as obj, var/mob/user as mob)
@@ -318,7 +319,8 @@
 		if (href_list["analyze"])
 			var/dat = ""
 			if(!condi)
-				if(href_list["name"] == "Blood")
+				var/reag_path = text2path(href_list["reag_type"])
+				if(ispath(reag_path, /datum/reagent/blood))
 					var/datum/reagent/blood/G
 					for(var/datum/reagent/F in R.reagent_list)
 						if(F.name == href_list["name"])
@@ -452,8 +454,9 @@
 		else if(href_list["bottle_sprite"])
 			bottlesprite = href_list["bottle_sprite"]
 
-	src.updateUsrDialog()
-	return
+	//src.updateUsrDialog()
+	attack_hand(usr)
+
 
 /obj/machinery/chem_master/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
@@ -493,7 +496,7 @@
 			dat += "Add to buffer:<BR>"
 			for(var/datum/reagent/G in R.reagent_list)
 				dat += "[G.name] , [G.volume] Units - "
-				dat += "<A href='?src=\ref[src];analyze=1;desc=[G.description];name=[G.name]'>(Analyze)</A> "
+				dat += "<A href='?src=\ref[src];analyze=1;desc=[G.description];name=[G.name];reag_type=[G.type]'>(Analyze)</A> "
 				dat += "<A href='?src=\ref[src];add=[G.id];amount=1'>(1)</A> "
 				dat += "<A href='?src=\ref[src];add=[G.id];amount=5'>(5)</A> "
 				dat += "<A href='?src=\ref[src];add=[G.id];amount=10'>(10)</A> "
@@ -504,7 +507,7 @@
 		if(reagents.total_volume)
 			for(var/datum/reagent/N in reagents.reagent_list)
 				dat += "[N.name] , [N.volume] Units - "
-				dat += "<A href='?src=\ref[src];analyze=1;desc=[N.description];name=[N.name]'>(Analyze)</A> "
+				dat += "<A href='?src=\ref[src];analyze=1;desc=[N.description];name=[N.name];reag_type=[N.type]'>(Analyze)</A> "
 				dat += "<A href='?src=\ref[src];remove=[N.id];amount=1'>(1)</A> "
 				dat += "<A href='?src=\ref[src];remove=[N.id];amount=5'>(5)</A> "
 				dat += "<A href='?src=\ref[src];remove=[N.id];amount=10'>(10)</A> "

@@ -51,7 +51,20 @@
 
 	add_fingerprint(user)
 
+
 	//General
+	if(istype(A,/turf)) //Due to making blood invisible to the cursor, we need to make sure it scans it here.
+		var/turf/T = get_turf(A)
+		for(var/obj/effect/decal/cleanable/blood/B in T)
+			if (B.blood_DNA && B.blood_DNA.len)
+				user << "<span class='notice'>Blood detected. Analysing...</span>"
+				spawn(15)
+					for(var/blood in B.blood_DNA)
+						user << "Blood type: \red [B.blood_DNA[blood]] \t \black DNA: \red [blood]"
+					if(add_data(B))
+						user << "<span class='notice'>Object already in internal memory. Consolidating data...</span>"
+						flick("forensic2",src)
+				return
 	if ((!A.fingerprints || !A.fingerprints.len) && !A.suit_fibers && !A.blood_DNA)
 		user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
 		"<span class='warning'>Unable to locate any fingerprints, materials, fibers, or blood on [A]!</span>",\

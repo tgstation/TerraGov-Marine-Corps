@@ -23,7 +23,7 @@
 	flags_inv_hide = HIDETOPHAIR
 
 /obj/item/clothing/head/cmbandana/New()
-	select_gamemode_skin(type, list(/datum/game_mode/ice_colony = "s_band") )
+	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_band") )
 	..()
 
 /obj/item/clothing/head/cmbandana/tan
@@ -47,7 +47,7 @@
 	icon_state = "beret"
 
 /obj/item/clothing/head/cmberet/New()
-	select_gamemode_skin(/obj/item/clothing/head/cmberet, list(/datum/game_mode/ice_colony = "s_beret") )
+	select_gamemode_skin(/obj/item/clothing/head/cmberet, list(MAP_ICE_COLONY = "s_beret"))
 	..()
 
 /obj/item/clothing/head/cmberet/tan
@@ -73,7 +73,7 @@
 	icon_state = "headband"
 
 /obj/item/clothing/head/headband/New()
-	select_gamemode_skin(type, list(/datum/game_mode/ice_colony = "ushanka") )
+	select_gamemode_skin(type, list(MAP_ICE_COLONY = "ushanka") )
 	..()
 	switch(icon_state)
 		if("ushanka") //Weird case, since the item basically transforms into another item.
@@ -236,7 +236,7 @@
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	flags_inventory = BLOCKSHARPOBJ
-	flags_inv_hide = HIDEEARS|HIDETOPHAIR
+	flags_inv_hide = HIDEEARS
 
 /obj/item/clothing/head/uppcap/beret
 	name = "\improper armored UPP beret"
@@ -254,7 +254,7 @@
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	flags_inventory = BLOCKSHARPOBJ
-	flags_inv_hide = HIDEEARS|HIDETOPHAIR
+	flags_inv_hide = HIDEEARS
 
 /obj/item/clothing/head/frelancer/beret
 	name = "\improper armored Freelancer beret"
@@ -284,5 +284,5 @@
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	flags_inventory = BLOCKSHARPOBJ
-	flags_inv_hide = HIDEEARS|HIDETOPHAIR
+	flags_inv_hide = HIDEEARS
 

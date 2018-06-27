@@ -500,6 +500,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	var/list/namecounts = list()
 	for(var/mob/M in mobs)
 		if(isYautja(M)) continue
+		if(iszombie(M))	continue
 		var/name = M.name
 		if (name in names)
 			namecounts[name]++
@@ -537,6 +538,8 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	for(var/mob/new_player/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/living/carbon/monkey/M in sortmob)
+		moblist.Add(M)
+	for(var/mob/living/carbon/hellhound/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/living/simple_animal/M in sortmob)
 		moblist.Add(M)

@@ -56,14 +56,14 @@
 						/obj/item/attachable/burstfire_assembly,
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/stock/rifle,
-						/obj/item/attachable/grenade,
-						/obj/item/attachable/flamer,
-						/obj/item/attachable/shotgun,
+						/obj/item/attachable/attached_gun/grenade,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/scope,
 						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-	starting_attachment_types = list(/obj/item/attachable/grenade)
+	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
 
 /obj/item/weapon/gun/rifle/m41a/New()
 	select_gamemode_skin(/obj/item/weapon/gun/rifle/m41a)
@@ -124,9 +124,9 @@
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,
-						/obj/item/attachable/grenade,
-						/obj/item/attachable/flamer,
-						/obj/item/attachable/shotgun)
+						/obj/item/attachable/attached_gun/grenade,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 
@@ -172,9 +172,9 @@
 						/obj/item/attachable/burstfire_assembly,
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/stock/slavic,
-						/obj/item/attachable/grenade,
-						/obj/item/attachable/flamer,
-						/obj/item/attachable/shotgun,
+						/obj/item/attachable/attached_gun/grenade,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/scope/slavic)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
@@ -238,9 +238,9 @@
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/burstfire_assembly,
-						/obj/item/attachable/grenade,
-						/obj/item/attachable/flamer,
-						/obj/item/attachable/shotgun
+						/obj/item/attachable/attached_gun/grenade,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun
 						)
 
 	flags_gun_features = GUN_CAN_POINTBLANK
@@ -346,7 +346,7 @@
 	desc = " This appears to be a less common variant of the usual Type 71, with an undermounted flamethrower and improved iron sights."
 	New()
 		..()
-		var/obj/item/attachable/flamer/S = new(src)
+		var/obj/item/attachable/attached_gun/flamer/S = new(src)
 		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 		S.flags_attach_features &= ~ATTACH_REMOVABLE
 		S.Attach(src)
@@ -373,18 +373,17 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
 	//supressor
 	var/obj/item/attachable/suppressor/S = new(src)
-	S.icon_state = ""
 	S.attach_icon = ""
 	S.flags_attach_features &= ~ATTACH_REMOVABLE
 	S.Attach(src)
 	update_attachable(S.slot)
 	//scope
 	var/obj/item/attachable/scope/F = new(src)
-	F.icon_state = ""
 	F.attach_icon = ""
 	F.flags_attach_features &= ~ATTACH_REMOVABLE
 	F.Attach(src)
 	update_attachable(F.slot)
+
 
 
 /obj/item/weapon/gun/rifle/type71/carbine/commando/set_gun_config_values()

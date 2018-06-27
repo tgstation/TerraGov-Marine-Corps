@@ -18,7 +18,7 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 	if (..())
 		return 1
 	if (mods["alt"])
-		if(is_type_in_list(A, ventcrawl_machinery) && can_ventcrawl())
+		if(can_ventcrawl() && is_type_in_list(A, ventcrawl_machinery))
 			handle_ventcrawl(A)
 		return 1
 

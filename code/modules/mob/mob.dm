@@ -4,6 +4,7 @@
 	dead_mob_list -= src
 	living_mob_list -= src
 	ghostize()
+	clear_fullscreens()
 	. = ..()
 	return TA_PURGE_ME_NOW
 
@@ -19,29 +20,26 @@
 
 /mob/Stat()
 	// Looking at contents of a tile
-	if (listed_turf_change)
-		if (!listed_turf || !listed_turf.contents.len)
-			listed_turf_change = 0
-			return 0
-
-		listed_turf_change = 0
+	if (tile_contents_change)
+		tile_contents_change = 0
 		statpanel("Tile Contents")
 		client.statpanel = "Tile Contents"
-		stat(listed_turf.contents)
+		stat(tile_contents)
 		client.stat_force_fast_update = 1
 		return 0
 
 	if (client.statpanel == "Tile Contents")
-		if (listed_turf && listed_turf.contents.len && statpanel("Tile Contents"))
-			stat(listed_turf.contents)
+		if (tile_contents.len && statpanel("Tile Contents"))
+			stat(tile_contents)
 			return 0
-		else
-			statpanel("Stats")
-			if (statpanel("Stats"))			// Was looking at Tile Contents, and switched to Stats. Otherwise looking at a verb panel
-				client.statpanel = "Stats"
-				stat("Operation Time: [worldtime2text()]")
-			client.stat_force_fast_update = 1
-			return 1
+
+	if (client.statpanel != "Stats")
+		statpanel("Stats")
+		if (statpanel("Stats"))
+			client.statpanel = "Stats"
+			stat("Operation Time: [worldtime2text()]")
+		client.stat_force_fast_update = 1
+		return 1
 
 	if (statpanel("Stats"))
 		stat("Operation Time: [worldtime2text()]")
@@ -227,7 +225,7 @@ var/list/slot_equipment_priority = list( \
 	return
 
 
-/mob/proc/show_inv(mob/user as mob)
+/mob/proc/show_inv(mob/user)
 	user.set_interaction(src)
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
@@ -332,18 +330,16 @@ var/list/slot_equipment_priority = list( \
 	return
 
 
-/mob/MouseDrop(mob/M as mob)
+/mob/MouseDrop(mob/M)
 	..()
 	if(M != usr) return
 	if(usr == src) return
 	if(!Adjacent(usr)) return
-	if(istype(M,/mob/living/silicon/ai)) return
-	//Xenos cannot check inventories by drag-dropping at all.
-	//Comment this out to re-add xeno inventory functionality.
-	if((isXeno(M) || isXeno(src)) && src != M) return
-	if(usr.lying)
+	if(!ishuman(M) && !ismonkey(M)) return
+	if(!ishuman(src) && !ismonkey(src)) return
+	if(M.lying || M.is_mob_incapacitated())
 		return
-	show_inv(usr)
+	show_inv(M)
 
 
 //attempt to pull/grab something. Returns true upon success.
@@ -373,7 +369,7 @@ var/list/slot_equipment_priority = list( \
 	else if(istype(AM, /obj))
 		AM.add_fingerprint(src)
 
-	if(AM.pulledby)
+	if(AM.pulledby && AM.pulledby.grab_level < GRAB_NECK)
 		if(M)
 			visible_message("<span class='warning'>[src] has broken [AM.pulledby]'s grip on [M]!</span>", null, null, 5)
 		AM.pulledby.stop_pulling()
@@ -540,7 +536,7 @@ note dizziness decrements automatically in the mob's Life() proc.
 //Updates canmove, lying and icons. Could perhaps do with a rename but I can't think of anything to describe it.
 /mob/proc/update_canmove()
 
-	var/laid_down = (stat || knocked_down || knocked_out || !has_legs() || resting || (status_flags & FAKEDEATH))
+	var/laid_down = (stat || knocked_down || knocked_out || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_level >= GRAB_NECK))
 
 	if(laid_down)
 		lying = 1
@@ -593,8 +589,8 @@ note dizziness decrements automatically in the mob's Life() proc.
 	return ""
 
 /mob/proc/flash_weak_pain()
-	if(hud_used)
-		flick("weak_pain",hud_used.pain_icon)
+	overlay_fullscreen("pain", /obj/screen/fullscreen/pain, 1)
+	clear_fullscreen("pain")
 
 /mob/proc/get_visible_implants(var/class = 0)
 	var/list/visible_implants = list()
@@ -744,5 +740,8 @@ mob/proc/yank_out_object()
 /mob/proc/TurfAdjacent(var/turf/T)
 	return T.AdjacentQuick(src)
 
-/mob/on_stored_item_del(obj/item/I)
-	temp_drop_inv_item(I, TRUE) //unequip before deletion to clear possible item references on the mob.
+/mob/on_stored_atom_del(atom/movable/AM)
+	if(istype(AM, /obj/item))
+		temp_drop_inv_item(AM, TRUE) //unequip before deletion to clear possible item references on the mob.
+
+

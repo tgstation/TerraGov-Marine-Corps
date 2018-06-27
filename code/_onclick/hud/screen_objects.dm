@@ -373,7 +373,8 @@
 
 		if("Activate weapon attachment")
 			var/obj/item/weapon/gun/G = user.get_held_item()
-			if(istype(G)) G.activate_attachment()
+			if(istype(G))
+				G.activate_attachment_verb()
 			return 1
 
 		if("Toggle Rail Flashlight")
@@ -381,7 +382,8 @@
 			if(!istype(G)) return
 			if(!G.get_active_firearm(usr)) return
 			var/obj/item/attachable/flashlight/F = G.rail
-			if(F) F.activate_attachment(G, user)
+			if(F && F.activate_attachment(G, user))
+				playsound(user, F.activation_sound, 15, 1)
 			return 1
 
 		if("Eject magazine")
@@ -651,29 +653,6 @@
 	else
 		icon_state = "pull0"
 
-
-/obj/screen/blind
-	icon = 'icons/mob/screen1_full.dmi'
-	icon_state = "blackimageoverlay"
-	name = " "
-	screen_loc = "1,1"
-	plane = -80
-	layer = FULLSCREEN_BLIND_LAYER
-
-/obj/screen/flash
-	icon = 'icons/mob/screen1.dmi'
-	icon_state = "blank"
-	name = "flash"
-	screen_loc = "1,1 to 15,15"
-	layer = FULLSCREEN_FLASH_LAYER
-
-/obj/screen/damageoverlay
-	icon = 'icons/mob/screen1_full.dmi'
-	icon_state = "oxydamageoverlay0"
-	name = "dmg"
-	screen_loc = "1,1"
-	mouse_opacity = 0
-	layer = FULLSCREEN_DAMAGE_LAYER
 
 
 /obj/screen/squad_leader_locator

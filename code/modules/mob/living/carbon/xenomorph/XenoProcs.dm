@@ -261,16 +261,13 @@
 /mob/living/carbon/Xenomorph/proc/empty_gut()
 	if(stomach_contents.len)
 		for(var/atom/movable/S in stomach_contents)
-			if(S)
-				stomach_contents.Remove(S)
-				S.acid_damage = 0 //Reset the acid damage
-				S.loc = get_turf(src)
+			stomach_contents.Remove(S)
+			S.acid_damage = 0 //Reset the acid damage
+			S.forceMove(get_turf(src))
 
 	if(contents.len) //Get rid of anything that may be stuck inside us as well
 		for(var/atom/movable/A in contents)
-			if(A)
-				contents.Remove(A)
-				A.loc = get_turf(src)
+			A.forceMove(get_turf(src))
 
 /mob/living/carbon/Xenomorph/proc/toggle_nightvision()
 	if(see_invisible == SEE_INVISIBLE_MINIMUM)
@@ -352,7 +349,7 @@
 		return
 	zoom_turf = get_turf(src)
 	is_zoomed = 1
-	client.view = viewsize
+	client.change_view(viewsize)
 	var/viewoffset = 32 * tileoffset
 	switch(dir)
 		if(NORTH)
@@ -371,7 +368,7 @@
 /mob/living/carbon/Xenomorph/proc/zoom_out()
 	if(!client)
 		return
-	client.view = world.view
+	client.change_view(world.view)
 	client.pixel_x = 0
 	client.pixel_y = 0
 	is_zoomed = 0
@@ -492,7 +489,8 @@
 			if(M.lying && !isXeno(M) && M.stat != DEAD && !(M.status_flags & XENO_HOST && istype(M.buckled, /obj/structure/bed/nest)))
 				visible_message("<span class='danger'>[src] runs [M] over!</span>",
 				"<span class='danger'>You run [M] over!</span>", null, 5)
-				M.take_overall_damage(charge_speed * 40) //Yes, times fourty. Maxes out at a sweet, square 84 damage for 2.1 max speed
+
+				M.take_overall_damage(charge_speed * 10) //Yes, times fourty. Maxes out at a sweet, square 84 damage for 2.1 max speed
 				animation_flash_color(M)
 
 		var/shake_dist = min(round(charge_speed * 5), 8)

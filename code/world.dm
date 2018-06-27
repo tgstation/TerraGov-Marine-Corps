@@ -193,12 +193,12 @@ var/world_topic_spam_protect_time = world.timeofday
 
 			else if(!ticker.mode) return 0 //Before round start
 
-			else if(ticker.mode.round_finished) return 1
+			else if(ticker.mode.round_finished || force_mapdaemon_vote) return 1
 
 			else return 0 //IDK what would cause this but why not, don't really want runtimes
 
 		else if(MD_UID != MapDaemon_UID)
-			return "ERROR" //kill the imposter, kill it with fire
+			return 2 //kill the imposter, kill it with fire
 
 		else if(command == "mapdaemon_delay_round")
 
@@ -366,10 +366,11 @@ var/world_topic_spam_protect_time = world.timeofday
 		// s += "<a href=\"http://goo.gl/04C5lP\">Wiki</a>|<a href=\"http://goo.gl/hMmIKu\">Rules</a>"
 		if(ticker)
 			if(master_mode)
-				s += "<br>Map: <b>[master_mode]</b>"
+				s += "<br>Map: <b>[map_tag]</b>"
+				s += "<br>Mode: <b>[ticker.mode.name]</b>"
 				s += "<br>Round time: <b>[duration2text()]</b>"
 		else
-			s += "<br>Map: <b>STARTING</b>"
+			s += "<br>Map: <b>[map_tag]</b>"
 		// s += enter_allowed ? "<br>Entering: <b>Enabled</b>" : "<br>Entering: <b>Disabled</b>"
 
 		status = s

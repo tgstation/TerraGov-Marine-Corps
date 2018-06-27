@@ -3,6 +3,18 @@
 	department_flag = ROLEGROUP_MARINE_MED_SCIENCE
 	minimal_player_age = 7
 
+/datum/job/civilian/colonist
+	title = "Colonist"
+	comm_title = "CLN"
+	access = list(ACCESS_IFF_MARINE)
+	minimal_access = list(ACCESS_IFF_MARINE)
+
+/datum/job/civilian/passenger
+	title = "Passenger"
+	comm_title = "PAS"
+	access = list(ACCESS_IFF_MARINE)
+	minimal_access = list(ACCESS_IFF_MARINE)
+
 /datum/job/civilian/professor
 	title = "Chief Medical Officer"
 	comm_title = "CMO"
@@ -54,12 +66,19 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	flag = ROLE_CIVILIAN_DOCTOR
 	total_positions = 6
 	spawn_positions = 6
+	scaled = 1
 	supervisors = "the chief medical officer"
 	selection_color = "#BBFFBB"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_CHEMISTRY)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
 	skills_type = /datum/skills/doctor
+
+	set_spawn_positions(var/count)
+		spawn_positions = doc_slot_formula(count)
+
+	get_total_positions(var/latejoin = 0)
+		return (latejoin ? doc_slot_formula(get_total_marines()) : spawn_positions)
 
 	generate_wearable_equipment(mob/living/carbon/human/H)
 		. = list(
@@ -95,12 +114,19 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	flag = ROLE_CIVILIAN_RESEARCHER
 	total_positions = 2
 	spawn_positions = 2
+	scaled = 1
 	supervisors = "chief medical officer"
 	selection_color = "#BBFFBB"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_MEDBAY, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_CHEMISTRY)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
 	skills_type = /datum/skills/doctor
+
+	set_spawn_positions(var/count)
+		spawn_positions = rsc_slot_formula(count)
+
+	get_total_positions(var/latejoin = 0)
+		return (latejoin ? rsc_slot_formula(get_total_marines()) : spawn_positions)
 
 	generate_wearable_equipment(mob/living/carbon/human/H)
 		. = list(

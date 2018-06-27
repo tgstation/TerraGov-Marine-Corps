@@ -63,7 +63,7 @@
 		src << "<span class='xenowarning'>You must wait to produce enough acid to spray.</span>"
 		return
 
-	if (!check_plasma(150))
+	if (!check_plasma(200))
 		src << "<span class='xenowarning'>You must produce more plasma before doing this.</span>"
 		return
 
@@ -77,8 +77,16 @@
 	if (target == loc)
 		return
 
+	if(!target)
+		return
+
+	if(!do_after(src, 12, TRUE, 5, BUSY_ICON_HOSTILE))
+		return
+
+	round_statistics.praetorian_acid_sprays++
+
 	used_acid_spray = 1
-	use_plasma(150)
+	use_plasma(200)
 	playsound(loc, 'sound/effects/refill.ogg', 25, 1)
 	visible_message("<span class='xenowarning'>\The [src] spews forth a wide cone of acid!</span>", \
 	"<span class='xenowarning'>You spew forth a cone of acid!</span>", null, 5)
@@ -93,28 +101,48 @@
 		src << "<span class='notice'>You have produced enough acid to spray again.</span>"
 
 /mob/living/carbon/Xenomorph/proc/do_acid_spray_cone(var/turf/T)
+	set waitfor = 0
+
 	var/facing = get_cardinal_dir(src, T)
 	dir = facing
 
 	T = loc
 	for (var/i = 0, i < acid_spray_range, i++)
-		T = get_step(T, facing)
+
+		var/turf/next_T = get_step(T, facing)
+
+		for (var/obj/O in T)
+			if(!O.CheckExit(src, next_T))
+				if(istype(O, /obj/structure/barricade))
+					var/obj/structure/barricade/B = O
+					B.health -= rand(20, 30)
+					B.update_health(1)
+				return
+
+		T = next_T
 
 		if (T.density)
 			return
 
 		for (var/obj/O in T)
-			if (O.density)
+			if(!O.CanPass(src, loc))
+				if(istype(O, /obj/structure/barricade))
+					var/obj/structure/barricade/B = O
+					B.health -= rand(20, 30)
+					B.update_health(1)
 				return
 
-		acid_splat_turf(T)
-		do_acid_spray_cone_normal(T, i, facing)
-		sleep(2)
+		var/obj/effect/xenomorph/spray/S = acid_splat_turf(T)
+		do_acid_spray_cone_normal(T, i, facing, S)
+		sleep(3)
 
 // Normal refers to the mathematical normal
-/mob/living/carbon/Xenomorph/proc/do_acid_spray_cone_normal(var/turf/T, var/distance, var/facing)
+/mob/living/carbon/Xenomorph/proc/do_acid_spray_cone_normal(turf/T, distance, facing, obj/effect/xenomorph/spray/source_spray)
 	if (!distance)
 		return
+
+	var/obj/effect/xenomorph/spray/left_S = source_spray
+	var/obj/effect/xenomorph/spray/right_S = source_spray
 
 	var/normal_dir = turn(facing, 90)
 	var/inverse_normal_dir = turn(facing, -90)
@@ -130,35 +158,73 @@
 			return
 
 		if (!normal_density_flag)
-			normal_turf = get_step(normal_turf, normal_dir)
-			normal_density_flag = normal_turf.density
+			var/next_normal_turf = get_step(normal_turf, normal_dir)
 
-			for (var/obj/O in T)
-				if (O.density)
+			for (var/obj/O in normal_turf)
+				if(!O.CheckExit(left_S, next_normal_turf))
+					if(istype(O, /obj/structure/barricade))
+						var/obj/structure/barricade/B = O
+						B.health -= rand(20, 30)
+						B.update_health(1)
 					normal_density_flag = 1
 					break
 
+			normal_turf = next_normal_turf
+
+			if(!normal_density_flag)
+				normal_density_flag = normal_turf.density
+
+			if(!normal_density_flag)
+				for (var/obj/O in normal_turf)
+					if(!O.CanPass(left_S, left_S.loc))
+						if(istype(O, /obj/structure/barricade))
+							var/obj/structure/barricade/B = O
+							B.health -= rand(20, 30)
+							B.update_health(1)
+						normal_density_flag = 1
+						break
+
 			if (!normal_density_flag)
-				acid_splat_turf(normal_turf)
+				left_S = acid_splat_turf(normal_turf)
+
 
 		if (!inverse_normal_density_flag)
-			inverse_normal_turf = get_step(inverse_normal_turf, inverse_normal_dir)
-			inverse_normal_density_flag = inverse_normal_turf.density
 
-			for (var/obj/O in T)
-				if (O.density)
+			var/next_inverse_normal_turf = get_step(inverse_normal_turf, inverse_normal_dir)
+
+			for (var/obj/O in inverse_normal_turf)
+				if(!O.CheckExit(right_S, next_inverse_normal_turf))
+					if(istype(O, /obj/structure/barricade))
+						var/obj/structure/barricade/B = O
+						B.health -= rand(20, 30)
+						B.update_health(1)
 					inverse_normal_density_flag = 1
 					break
 
+			inverse_normal_turf = next_inverse_normal_turf
+
+			if(!inverse_normal_density_flag)
+				inverse_normal_density_flag = inverse_normal_turf.density
+
+			if(!inverse_normal_density_flag)
+				for (var/obj/O in inverse_normal_turf)
+					if(!O.CanPass(right_S, right_S.loc))
+						if(istype(O, /obj/structure/barricade))
+							var/obj/structure/barricade/B = O
+							B.health -= rand(20, 30)
+							B.update_health(1)
+						inverse_normal_density_flag = 1
+						break
+
 			if (!inverse_normal_density_flag)
-				acid_splat_turf(inverse_normal_turf)
+				right_S = acid_splat_turf(inverse_normal_turf)
 
 
 
 /mob/living/carbon/Xenomorph/proc/acid_splat_turf(var/turf/T)
-	if (!locate(/obj/effect/xenomorph/spray) in T)
-		var/obj/effect/xenomorph/spray/S = new(T)
-		processing_objects.Add(S)
+	. = locate(/obj/effect/xenomorph/spray) in T
+	if(!.)
+		. = new /obj/effect/xenomorph/spray(T)
 
 		// This should probably be moved into obj/effect/xenomorph/spray or something
 		for (var/obj/structure/barricade/B in T)
@@ -172,7 +238,8 @@
 			if ((C.status_flags & XENO_HOST) && istype(C.buckled, /obj/structure/bed/nest))
 				continue
 
-			C.adjustFireLoss(rand(20 + 5 * upgrade, 30 + 5 * upgrade))
+			round_statistics.praetorian_spray_direct_hits++
+			C.adjustFireLoss(rand(20,30) + 5 * upgrade)
 			C << "<span class='xenodanger'>\The [src] showers you in corrosive acid!</span>"
 
 			if (!isYautja(C))
@@ -201,6 +268,7 @@
 
 	var/mob/living/carbon/human/H = A
 	if(H.stat == DEAD) return
+	round_statistics.warrior_flings++
 
 	visible_message("<span class='xenowarning'>\The [src] effortlessly flings [H] to the side!</span>", \
 	"<span class='xenowarning'>You effortlessly fling [H] to the side!</span>")
@@ -250,6 +318,7 @@
 
 	var/mob/living/carbon/human/H = A
 	if(H.stat == DEAD) return
+	round_statistics.warrior_punches++
 	var/datum/limb/L = H.get_limb(check_zone(zone_selected))
 
 	if (!L || (L.status & LIMB_DESTROYED))
@@ -313,6 +382,7 @@
 
 	var/mob/living/carbon/human/H = A
 	if(H.stat == DEAD) return
+	round_statistics.warrior_lunges++
 	visible_message("<span class='xenowarning'>\The [src] lunges towards [H]!</span>", \
 	"<span class='xenowarning'>You lunge at [H]!</span>")
 
@@ -355,7 +425,7 @@
 	if (!L || L.body_part == UPPER_TORSO || L.body_part == LOWER_TORSO || (L.status & LIMB_DESTROYED)) //Only limbs and head.
 		src << "<span class='xenowarning'>You can't rip off that limb.</span>"
 		return 0
-
+	round_statistics.warrior_limb_rips++
 	var/limb_time = rand(40,60)
 
 	if (L.body_part == HEAD)
@@ -412,6 +482,7 @@
 
 	agility = !agility
 
+	round_statistics.warrior_agility_toggles++
 	if (agility)
 		src << "<span class='xenowarning'>You lower yourself to all fours.</span>"
 		speed -= 0.7
@@ -469,15 +540,17 @@
 	if (!Adjacent(H))
 		return
 
+	round_statistics.defender_headbutts++
+
 	visible_message("<span class='xenowarning'>\The [src] rams [H] with it's armored crest!</span>", \
 	"<span class='xenowarning'>You ram [H] with your armored crest!</span>")
 
 	used_headbutt = 1
 	use_plasma(10)
 
-	H.apply_damage(20)
-
-	shake_camera(H, 2, 1)
+	if(H.stat != DEAD && (!(H.status_flags & XENO_HOST) || !istype(H.buckled, /obj/structure/bed/nest)) )
+		H.apply_damage(20)
+		shake_camera(H, 2, 1)
 
 	var/facing = get_dir(src, H)
 	var/headbutt_distance = 3
@@ -520,6 +593,7 @@
 	if (!check_plasma(10))
 		return
 
+	round_statistics.defender_tail_sweeps++
 	visible_message("<span class='xenowarning'>\The [src] sweeps it's tail in a wide circle!</span>", \
 	"<span class='xenowarning'>You sweep your tail in a wide circle!</span>")
 
@@ -531,7 +605,7 @@
 	for (var/mob/living/carbon/human/H in L)
 		step_away(H, src, sweep_range, 2)
 		H.apply_damage(10)
-
+		round_statistics.defender_tail_sweep_hits++
 		shake_camera(H, 2, 1)
 
 		if (prob(50))
@@ -567,12 +641,14 @@
 	used_crest_defense = 1
 
 	if (crest_defense)
+		round_statistics.defender_crest_lowerings++
 		src << "<span class='xenowarning'>You lower your crest.</span>"
 		armor_deflection += 15
 		speed += 0.8	// This is actually a slowdown but speed is dumb
 		do_crest_defense_cooldown()
 		return
 
+	round_statistics.defender_crest_raises++
 	src << "<span class='xenowarning'>You raise your crest.</span>"
 	armor_deflection -= 15
 	speed -= 0.8
@@ -599,6 +675,8 @@
 
 	if (used_fortify)
 		return
+
+	round_statistics.defender_fortifiy_toggles++
 
 	fortify = !fortify
 	used_fortify = 1
@@ -1031,10 +1109,13 @@
 		if(I.unacidable || istype(I, /obj/machinery/computer) || istype(I, /obj/effect)) //So the aliens don't destroy energy fields/singularies/other aliens/etc with their acid.
 			src << "<span class='warning'>You cannot dissolve \the [I].</span>" // ^^ Note for obj/effect.. this might check for unwanted stuff. Oh well
 			return
-		if(istype(O, /obj/structure/window_frame/colony/reinforced) && acid_type != /obj/effect/xenomorph/acid/strong)
-			src << "<span class='warning'>This [O.name] is too tough to be melted by your weak acid.</span>"
+		if(istype(O, /obj/structure/window_frame))
+			var/obj/structure/window_frame/WF = O
+			if(WF.reinforced && acid_type != /obj/effect/xenomorph/acid/strong)
+				src << "<span class='warning'>This [O.name] is too tough to be melted by your weak acid.</span>"
 			return
-		if(O.density)
+
+		if(O.density || istype(O, /obj/structure))
 			wait_time = 40 //dense objects are big, so takes longer to melt.
 
 	//TURF CHECK

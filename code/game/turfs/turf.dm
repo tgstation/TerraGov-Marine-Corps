@@ -45,6 +45,10 @@
 
 
 /turf/Dispose()
+	if(oldTurf != "")
+		ChangeTurf(text2path(oldTurf), TRUE)
+	else
+		ChangeTurf(/turf/open/floor/plating, TRUE)
 	..()
 	return TA_PURGE_ME_NOW
 
@@ -161,8 +165,8 @@
 			O.hide(intact_tile)
 
 
-//Creates a new turf
-/turf/proc/ChangeTurf(new_turf_path)
+//Creates a new turf. this is called by every code that changes a turf ("spawn atom" verb, cdel, build mode stuff, etc)
+/turf/proc/ChangeTurf(new_turf_path, forget_old_turf)
 	if (!new_turf_path)
 		return
 
@@ -172,7 +176,8 @@
 
 	var/path = "[src.type]"
 	var/turf/W = new new_turf_path( locate(src.x, src.y, src.z) )
-	W.oldTurf = path
+	if(!forget_old_turf)	//e.g. if an admin spawn a new wall on a wall tile, we don't
+		W.oldTurf = path	//want the new wall to change into the old wall when destroyed
 	W.lighting_lumcount += old_lumcount
 	if(old_lumcount != W.lighting_lumcount)
 		W.lighting_changed = 1
@@ -224,37 +229,6 @@
 		tracks = new typepath(src)
 	tracks.AddTracks(bloodDNA,comingdir,goingdir,bloodcolor)
 
-
-
-//returns 1 if made bloody, returns 0 otherwise
-/turf/add_blood(mob/living/carbon/human/M as mob)
-	if(!can_bloody)
-		return 0
-
-	if (!..())
-		return 0
-
-	for(var/obj/effect/decal/cleanable/blood/B in contents)
-		if(!B.blood_DNA[M.dna.unique_enzymes])
-			B.blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
-		return 1 //we bloodied the floor
-
-	blood_splatter(src,M.get_blood(M.vessel),1)
-	return 1 //we bloodied the floor
-
-
-// Only adds blood on the floor -- Skie
-/turf/proc/add_blood_floor(mob/living/carbon/M as mob)
-	if(!can_bloody)
-		return 0
-
-	if(istype(M, /mob/living/carbon/monkey))
-		blood_splatter(src,M,1)
-	else if( istype(M, /mob/living/carbon/Xenomorph))
-		var/obj/effect/decal/cleanable/blood/xeno/this = new /obj/effect/decal/cleanable/blood/xeno(src)
-		this.blood_DNA["UNKNOWN BLOOD"] = "X*"
-	else if( istype(M, /mob/living/silicon/robot ))
-		new /obj/effect/decal/cleanable/blood/oil(src)
 
 
 

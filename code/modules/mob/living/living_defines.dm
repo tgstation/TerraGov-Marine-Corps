@@ -59,3 +59,5 @@
 
 	var/zoom_cooldown = 0 //Cooldown on using zooming items, to limit spam
 	var/do_bump_delay = 0	// Flag to tell us to delay movement because of being bumped
+
+	var/life_move_delay = 0 //movement delay from chemicals and other stuff processed in life()

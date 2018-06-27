@@ -35,7 +35,7 @@
 	if(!istype(spawn_loc)) return //Didn't find a useable spawn point.
 
 	var/mob/living/carbon/human/mob = new(spawn_loc)
-	mob.gender = pick(80;MALE,20;FEMALE)
+	mob.gender = pick(60;MALE,40;FEMALE)
 	var/datum/preferences/A = new()
 	A.randomize_appearance_for(mob)
 	var/list/first_names_mcol = list("Alan","Jack","Bil","Jonathan","John","Shiro","Gareth","Clark","Sam", "Lionel", "Aaron", "Charlie", "Scott", "Winston", "Aidan", "Ellis", "Mason", "Wesley", "Nicholas", "Calvin", "Nishikawa", "Hiroto", "Chiba", "Ouchi", "Furuse", "Takagi", "Oba", "Kishimoto")
@@ -52,9 +52,8 @@
 	mob.r_hair = 25
 	mob.g_hair = 25
 	mob.b_hair = 35
-	mob.s_tone = rand(0,120)
 	mob.key = M.key
-	if(mob.client) mob.client.view = world.view
+	if(mob.client) mob.client.change_view(world.view)
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "Mercenary"
 	ticker.mode.traitors += mob.mind

@@ -57,6 +57,11 @@
 			anti_hug = 0
 		up = !up
 
+		if(ishuman(loc))
+			var/mob/living/carbon/human/H = loc
+			if(H.head == src)
+				H.update_tint()
+
 		update_clothing_icon()	//so our mob-overlays update
 
 		for(var/X in actions)
@@ -115,7 +120,7 @@
 
 	attack_self(mob/user)
 		if(!isturf(user.loc))
-			user << "You cannot turn the light on while in this [user.loc]" //To prevent some lighting anomalities.
+			user << "You cannot turn the light on while in [user.loc]" //To prevent some lighting anomalities.
 			return
 		on = !on
 		icon_state = "hardhat[on]_pumpkin"

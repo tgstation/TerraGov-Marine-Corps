@@ -1525,7 +1525,7 @@
 			surprise.name = "malformed [initial(ook.name)]"
 			surprise.desc = "Looks like \a very deformed [initial(ook.name)], a little small for its kind. It shows no signs of life."
 			surprise.transform *= 0.6
-			surprise.add_blood(M)
+			surprise.add_mob_blood(M)
 			var/mob/living/carbon/human/H = M
 			var/datum/limb/E = H.get_limb("chest")
 			E.fracture()
@@ -1543,7 +1543,7 @@
 			var/mob/living/carbon/monkey/ook = new monkey_type(M.loc)
 			ook.name = "malformed [ook.name]"
 			ook.transform *= 0.6
-			ook.add_blood(M)
+			ook.add_mob_blood(M)
 			M.gib()
 		..()
 
@@ -3061,44 +3061,3 @@
 			reagents.add_reagent("coco", 1)
 
 
-
-/obj/item/storage/box/MRE
-	name = "\improper USCM MRE"
-	desc = "Meal Ready-to-Eat, property of the US Colonial Marines. Meant to be consumed in the field, and has an expiration that is at least two decades past your combat life expectancy."
-	icon_state = "mealpack"
-	w_class = 2
-	can_hold = list()
-	storage_slots = 4
-	max_w_class = 0
-	foldable = 0
-	var/isopened = 0
-	New()
-		..()
-		pickflavor()
-
-/obj/item/storage/box/MRE/proc/pickflavor()
-	var/variation = rand(1,4)
-	var/i
-	switch(variation)
-		if(1)
-			for(i in list("boneless pork ribs","cracker","biscuit","spiced apples"))
-				new /obj/item/reagent_container/food/snacks/packaged_meal(src, i)
-		if(2)
-			for(i in list("grilled chicken","cheese spread","meatballs","chocolate brownie"))
-				new /obj/item/reagent_container/food/snacks/packaged_meal(src, i)
-		if(3)
-			for(i in list("pizza square","rice onigiri","pretzels","sugar cookie"))
-				new /obj/item/reagent_container/food/snacks/packaged_meal(src, i)
-		if(4)
-			for(i in list("spaghetti chunks","mashed potatoes","peanuts","coco bar"))
-				new /obj/item/reagent_container/food/snacks/packaged_meal(src, i)
-
-/obj/item/storage/box/MRE/update_icon()
-	if(!contents.len)
-		name = "\improper crumbled USCM MRE"
-		desc = "It has done its part for the USCM. Have you?"
-		icon_state = "mealpackempty"
-		storage_slots = 0
-	else if(!isopened)
-		isopened = 1
-		icon_state = "mealpackopened"

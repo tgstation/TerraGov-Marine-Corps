@@ -24,6 +24,8 @@
 	var/donator = 0
 	var/adminhelped = 0
 
+	var/obj/screen/click_catcher/void
+
 		///////////////
 		//SOUND STUFF//
 		///////////////

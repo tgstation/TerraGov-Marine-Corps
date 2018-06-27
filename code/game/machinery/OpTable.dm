@@ -4,6 +4,7 @@
 	icon = 'icons/obj/surgery.dmi'
 	icon_state = "table2-idle"
 	density = 1
+	layer = TABLE_LAYER
 	anchored = 1.0
 	use_power = 1
 	idle_power_usage = 1
@@ -94,13 +95,12 @@
 
 /obj/machinery/optable/proc/take_victim(mob/living/carbon/C, mob/living/carbon/user)
 	if (C == user)
-		user.visible_message("[user] climbs on the operating table.","You climb on the operating table.")
+		user.visible_message("<span class='notice'>[user] climbs on the operating table.","You climb on the operating table.</span>", null, null, 4)
 	else
-		visible_message("\red [C] has been laid on the operating table by [user].")
+		visible_message("<span class='notice'>[C] has been laid on the operating table by [user].</span>", null, 4)
 	C.resting = 1
 	C.forceMove(loc)
-	for(var/obj/O in src)
-		O.loc = loc
+
 	add_fingerprint(user)
 	if(ishuman(C))
 		var/mob/living/carbon/human/H = C
@@ -123,7 +123,7 @@
 /obj/machinery/optable/attackby(obj/item/W, mob/living/user)
 	if (istype(W, /obj/item/grab))
 		var/obj/item/grab/G = W
-		if(victim)
+		if(victim && victim != G.grabbed_thing)
 			user << "<span class='warning'>The table is already occupied!</span>"
 			return
 		var/mob/living/carbon/M

@@ -32,13 +32,11 @@
 	switch(stage)
 		if(1)
 			survive_mob_death = TRUE //changed because infection rate was REALLY horrible.
-			H.pale_max = 45 //the host become paler.
 			if(goo_message_cooldown < world.time )
 				if(prob(3))
 					affected_mob << "\red You feel really warm..."
 					goo_message_cooldown = world.time + 100
 		if(2)
-			H.pale_max = 75
 			if(goo_message_cooldown < world.time)
 				if (prob(3)) affected_mob << "\red Your throat is really dry..."
 				else if (prob(6)) affected_mob << "\red You feel really warm..."
@@ -47,8 +45,7 @@
 		if(3)
 			hidden = list(0,0)
 			//survive_mob_death = TRUE //even if host dies now, the transformation will occur.
-			H.pale_max = 110
-			H.next_move_slowdown += 1
+			H.next_move_slowdown = max(H.next_move_slowdown, 1)
 			if(goo_message_cooldown < world.time)
 				if (prob(3))
 					affected_mob << "\red You cough up some black fluid..."
@@ -63,7 +60,7 @@
 					goo_message_cooldown = world.time + 100
 					H.vomit_on_floor()
 		if(4)
-			H.next_move_slowdown += 2
+			H.next_move_slowdown = max(H.next_move_slowdown, 2)
 			if(prob(5) || age >= stage_minimum_age-1)
 				if(!zombie_transforming)
 					zombie_transform(H)
@@ -176,10 +173,8 @@
 	vision_flags = SEE_MOBS
 	darkness_view = 7
 	flags_item = NODROP|DELONDROP
+	fullscreen_vision = /obj/screen/fullscreen/nvg
 
-/obj/item/clothing/glasses/zombie_eyes/New()
-	..()
-	overlay = global_hud.nvg
 
 
 /obj/item/storage/fancy/blackgoo

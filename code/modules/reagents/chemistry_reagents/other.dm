@@ -1,52 +1,66 @@
 
 
 /datum/reagent/blood
-	data = new/list("donor"=null,"viruses"=null,"species"="Human","blood_DNA"=null,"blood_type"=null,"blood_colour"= "#A10808","resistances"=null,"trace_chem"=null, "antibodies" = null)
 	name = "Blood"
 	id = "blood"
 	reagent_state = LIQUID
-	color = "#C80000" // rgb: 200, 0, 0
+	color = "#A10808"
+	data = new/list("blood_DNA"=null,"blood_type"=null,"blood_colour"= "#A10808","viruses"=null,"resistances"=null, "trace_chem"=null)
 
-	reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
-		if(has_species(M,"Horror")) return
-		var/datum/reagent/blood/self = src
-		src = null
-		if(self.data && self.data["viruses"])
-			for(var/datum/disease/D in self.data["viruses"])
-				//var/datum/disease/virus = new D.type(0, D, 1)
-				// We don't spread.
-				if(D.spread_type == SPECIAL || D.spread_type == NON_CONTAGIOUS) continue
 
-				if(method == TOUCH)
-					M.contract_disease(D)
-				else //injected
-					M.contract_disease(D, 1, 0)
+/datum/reagent/blood/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
+	var/datum/reagent/blood/self = src
+	src = null
+	if(self.data && self.data["viruses"])
+		for(var/datum/disease/D in self.data["viruses"])
+			//var/datum/disease/virus = new D.type(0, D, 1)
+			// We don't spread.
+			if(D.spread_type == SPECIAL || D.spread_type == NON_CONTAGIOUS) continue
 
-	on_merge(var/data)
-		if(data["blood_colour"])
-			color = data["blood_colour"]
-		return ..()
+			if(method == TOUCH)
+				M.contract_disease(D)
+			else //injected
+				M.contract_disease(D, 1, 0)
 
-	on_update(var/atom/A)
-		if(data["blood_colour"])
-			color = data["blood_colour"]
-		return ..()
 
-	reaction_turf(var/turf/T, var/volume)//splash the blood all over the place
-		if(!istype(T)) return
-		var/datum/reagent/blood/self = src
-		src = null
-		if(!(volume >= 3)) return
+/datum/reagent/blood/reaction_turf(var/turf/T, var/volume)//splash the blood all over the place
+	if(!istype(T)) return
+	var/datum/reagent/blood/self = src
+	src = null
+	if(!(volume >= 3)) return
 
-		if(!self.data["donor"] || istype(self.data["donor"], /mob/living/carbon/human))
-			blood_splatter(T,self,1)
-		else if(istype(self.data["donor"], /mob/living/carbon/monkey))
-			var/obj/effect/decal/cleanable/blood/B = blood_splatter(T,self,1)
-			if(B) B.blood_DNA["Non-Human DNA"] = "A+"
-		else if(istype(self.data["donor"], /mob/living/carbon/Xenomorph))
-			var/obj/effect/decal/cleanable/blood/B = blood_splatter(T,self,1)
-			if(B) B.blood_DNA["UNKNOWN DNA STRUCTURE"] = "X*"
-		return
+	var/list/L = list()
+	if(self.data["blood_DNA"])
+		L = list(self.data["blood_DNA"] = self.data["blood_type"])
+
+	T.add_blood(L , self.color)
+
+
+
+/datum/reagent/blood/yaut_blood
+	name = "Green Blood"
+	id = "greenblood"
+	description = "A thick green blood, definitely not human."
+	color = "#20d450"
+
+/datum/reagent/blood/synth_blood
+	name = "Synthetic Blood"
+	id = "whiteblood"
+	color = "#EEEEEE"
+	description = "A synthetic blood-like liquid used by all Synthetics."
+
+/datum/reagent/blood/zomb_blood
+	name = "Grey Blood"
+	id = "greyblood"
+	color = "#333333"
+	description = "A greyish liquid with the same consistency as blood."
+
+/datum/reagent/blood/xeno_blood
+	name = "Acid Blood"
+	id = "xenoblood"
+	color = "#dffc00"
+	description = "A corrosive yellow-ish liquid..."
+
 
 
 /datum/reagent/vaccine
@@ -465,10 +479,11 @@
 	nutriment_factor = 2 * REAGENTS_METABOLISM
 	color = "#899613" // rgb: 137, 150, 19
 
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		M.nutrition += nutriment_factor*REM
+/datum/reagent/virus_food/on_mob_life(mob/living/M)
+	. = ..()
+	if(!.) return
+	M.nutrition += nutriment_factor*REM
+
 
 /datum/reagent/iron
 	name = "Iron"
@@ -479,11 +494,20 @@
 	overdose = REAGENTS_OVERDOSE
 	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
-	on_overdose(mob/living/M)
-		M.apply_damages(1, 0, 1) //Overdose starts getting bad
+/datum/reagent/iron/on_overdose(mob/living/M)
+	M.apply_damages(1, 0, 1) //Overdose starts getting bad
 
-	on_overdose_critical(mob/living/M)
-		M.apply_damages(2, 0, 2) //Overdose starts getting bad
+/datum/reagent/iron/on_overdose_critical(mob/living/M)
+	M.apply_damages(2, 0, 2) //Overdose starts getting bad
+
+/datum/reagent/iron/on_mob_life(mob/living/M)
+	. = ..()
+	if(!.) return
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		if(C.blood_volume < BLOOD_VOLUME_NORMAL)
+			C.blood_volume += 0.8
+
 
 /datum/reagent/gold
 	name = "Gold"

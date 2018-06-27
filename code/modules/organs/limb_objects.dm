@@ -20,20 +20,6 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 	else
 		base = icon('icons/mob/human_races/r_human.dmi')
 
-	/*
-	if(base)
-		//Changing limb's skin tone to match owner
-		if(!H.species || H.species.flags & HAS_SKIN_TONE)
-			if (H.s_tone >= 0)
-				base.Blend(rgb(H.s_tone, H.s_tone, H.s_tone), ICON_ADD)
-			else
-				base.Blend(rgb(-H.s_tone,  -H.s_tone,  -H.s_tone), ICON_SUBTRACT)
-
-	if(base)
-		//Changing limb's skin color to match owner
-		if(!H.species || H.species.flags & HAS_SKIN_COLOR)
-			base.Blend(rgb(H.r_skin, H.g_skin, H.b_skin), ICON_ADD)
-	*/
 
 	icon = base
 	var/datum/ethnicity/E = ethnicities_list[H.ethnicity]

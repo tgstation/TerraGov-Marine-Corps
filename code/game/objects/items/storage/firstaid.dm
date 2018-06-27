@@ -213,10 +213,30 @@
 		for(var/i=1 to max_storage_space)
 			new pill_type_to_fill(src)
 
-/obj/item/storage/pill_bottle/open(mob/user)
-	var/mob/living/carbon/human/H = user
+/obj/item/storage/pill_bottle/attack_self(mob/living/user)
 	if(skilllock && user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
-		H << "<span class='notice'>It must have some kind of ID lock...</span>"
+		user << "<span class='notice'>It must have some kind of ID lock...</span>"
+		return
+	if(user.get_inactive_hand())
+		user << "<span class='warning'>You need an empty hand to take out a pill.</span>"
+		return
+	if(contents.len)
+		var/obj/item/I = contents[1]
+		if(user.put_in_inactive_hand(I))
+			remove_from_storage(I,user)
+			user << "<span class='notice'>You take a pill out of \the [src].</span>"
+			if(iscarbon(user))
+				var/mob/living/carbon/C = user
+				C.swap_hand()
+			return
+	else
+		user << "<span class='warning'>\The [src] is empty.</span>"
+		return
+
+
+/obj/item/storage/pill_bottle/open(mob/user)
+	if(skilllock && user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
+		user << "<span class='notice'>It must have some kind of ID lock...</span>"
 		return
 	..()
 
@@ -310,3 +330,9 @@
 	name = "\improper Quickclot pill bottle"
 	icon_state = "pill_canister8"
 	pill_type_to_fill = /obj/item/reagent_container/pill/quickclot
+
+/obj/item/storage/pill_bottle/ultrazine
+	name = "\improper Ultrazine pill bottle"
+	icon_state = "pill_canister11"
+	skilllock = 0 //CL can open it
+	pill_type_to_fill = /obj/item/reagent_container/pill/ultrazine

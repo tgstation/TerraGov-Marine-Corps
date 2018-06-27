@@ -93,7 +93,7 @@
 /obj/effect/alien/resin/attack_paw()
 	return attack_hand()
 
-/obj/effect/alien/resin/attackby(obj/item/W as obj, mob/user as mob)
+/obj/effect/alien/resin/attackby(obj/item/W, mob/user)
 	if(!(W.flags_item & NOBLUDGEON))
 		var/damage = W.force
 		if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
@@ -104,7 +104,7 @@
 		else
 			playsound(loc, "alien_resin_break", 25)
 		healthcheck()
-	return ..(W, user)
+	return ..()
 
 
 
@@ -258,15 +258,15 @@
 	var/health = 80
 	var/close_delay = 100
 
-	tiles_with = list(/turf/closed/wall/resin, /obj/structure/mineral_door/resin)
+	tiles_with = list(/turf/closed, /obj/structure/mineral_door/resin)
 
-	New()
-		spawn(0)
-			relativewall()
-			relativewall_neighbours()
-			if(!locate(/obj/effect/alien/weeds) in loc)
-				new /obj/effect/alien/weeds(loc)
-		..()
+/obj/structure/mineral_door/resin/New()
+	spawn(0)
+		relativewall()
+		relativewall_neighbours()
+		if(!locate(/obj/effect/alien/weeds) in loc)
+			new /obj/effect/alien/weeds(loc)
+	..()
 
 /obj/structure/mineral_door/resin/attack_paw(mob/user as mob)
 	if(user.a_intent == "hurt")
@@ -339,11 +339,37 @@
 
 /obj/structure/mineral_door/resin/Dispose()
 	relativewall_neighbours()
-	return ..()
+	var/turf/U = loc
+	spawn(0)
+		var/turf/T
+		for(var/i in cardinal)
+			T = get_step(U, i)
+			if(!istype(T)) continue
+			for(var/obj/structure/mineral_door/resin/R in T)
+				R.check_resin_support()
+	. = ..()
 
 /obj/structure/mineral_door/resin/proc/healthcheck()
 	if(src.health <= 0)
 		src.Dismantle(1)
+
+
+//do we still have something next to us to support us?
+/obj/structure/mineral_door/resin/proc/check_resin_support()
+	var/turf/T
+	for(var/i in cardinal)
+		T = get_step(src, i)
+		if(T.density)
+			. = 1
+			break
+		if(locate(/obj/structure/mineral_door/resin) in T)
+			. = 1
+			break
+	if(!.)
+		visible_message("<span class = 'notice'>[src] collapses from the lack of support.</span>")
+		cdel(src)
+
+
 
 /obj/structure/mineral_door/resin/thick
 	name = "thick resin door"
@@ -377,14 +403,14 @@
 	var/on_fire = 0
 	var/hivenumber = XENO_HIVE_NORMAL
 
-	New()
-		..()
-		create_egg_triggers()
-		Grow()
+/obj/effect/alien/egg/New()
+	..()
+	create_egg_triggers()
+	Grow()
 
-	Dispose()
-		. = ..()
-		delete_egg_triggers()
+/obj/effect/alien/egg/Dispose()
+	. = ..()
+	delete_egg_triggers()
 
 /obj/effect/alien/egg/ex_act(severity)
 	Burst(1)//any explosion destroys the egg.
@@ -517,6 +543,10 @@
 				if(GROWING,GROWN) user << "<span class='xenowarning'>This one is occupied with a child.</span>"
 		else user << "<span class='xenowarning'>This child is dead.</span>"
 		return
+
+	if(W.flags_item & NOBLUDGEON)
+		return
+
 	user.animation_attack_on(src)
 	if(W.attack_verb.len)
 		visible_message("<span class='danger'>\The [src] has been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
@@ -536,6 +566,7 @@
 
 	health -= damage
 	healthcheck()
+
 
 /obj/effect/alien/egg/proc/healthcheck()
 	if(health <= 0)
@@ -710,39 +741,3 @@ TUNNEL
 	else
 		M << "<span class='warning'>Your crawling was interrupted!</span>"
 
-//Alien blood effects.
-/obj/effect/decal/cleanable/blood/xeno
-	name = "sizzling blood"
-	desc = "It's yellow and acidic. It looks like... <i>blood?</i>"
-	icon = 'icons/effects/blood.dmi'
-	basecolor = "#dffc00"
-	amount = 0
-
-/obj/effect/decal/cleanable/blood/gibs/xeno
-	name = "steaming gibs"
-	desc = "Gnarly..."
-	icon_state = "xgib1"
-	random_icon_states = list("xgib1", "xgib2", "xgib3", "xgib4", "xgib5", "xgib6")
-	basecolor = "#dffc00"
-	amount = 0
-
-/obj/effect/decal/cleanable/blood/gibs/xeno/update_icon()
-	color = "#FFFFFF"
-
-/obj/effect/decal/cleanable/blood/gibs/xeno/up
-	random_icon_states = list("xgib1", "xgib2", "xgib3", "xgib4", "xgib5", "xgib6","xgibup1","xgibup1","xgibup1")
-
-/obj/effect/decal/cleanable/blood/gibs/xeno/down
-	random_icon_states = list("xgib1", "xgib2", "xgib3", "xgib4", "xgib5", "xgib6","xgibdown1","xgibdown1","xgibdown1")
-
-/obj/effect/decal/cleanable/blood/gibs/xeno/body
-	random_icon_states = list("xgibhead", "xgibtorso")
-
-/obj/effect/decal/cleanable/blood/gibs/xeno/limb
-	random_icon_states = list("xgibleg", "xgibarm")
-
-/obj/effect/decal/cleanable/blood/gibs/xeno/core
-	random_icon_states = list("xgibmid1", "xgibmid2", "xgibmid3")
-
-/obj/effect/decal/cleanable/blood/xtracks
-	basecolor = "#dffc00"

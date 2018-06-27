@@ -182,8 +182,8 @@
 		else
 			. = ..()
 
-			if (mob.listed_turf)
-				mob.listed_turf = null
+			if (mob.tile_contents)
+				mob.tile_contents = list()
 
 		moving = 0
 		next_movement = start_move_time + move_delay

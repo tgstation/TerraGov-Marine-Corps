@@ -49,7 +49,7 @@
 	if(!istype(spawn_loc)) return //Didn't find a useable spawn point.
 
 	var/mob/living/carbon/human/mob = new(spawn_loc)
-	mob.gender = pick(90;MALE,10;FEMALE)
+	mob.gender = pick(60;MALE,40;FEMALE)
 	var/datum/preferences/A = new()
 	A.randomize_appearance_for(mob)
 	var/list/first_names_mr = list("Badai","Mongkeemur","Alexei","Andrei","Artyom","Viktor","Xangai","Ivan","Choban","Oleg", "Dayan", "Taghi", "Batu", "Arik", "Orda", "Ghazan", "Bala", "Gao", "Zhan", "Ren", "Hou", "Serafim", "Luca")
@@ -72,9 +72,8 @@
 	mob.g_eyes = 62
 	mob.b_eyes = 19
 	mob.dna.ready_dna(mob)
-	mob.s_tone = rand(0,40)
 	mob.key = M.key
-	if(mob.client) mob.client.view = world.view
+	if(mob.client) mob.client.change_view(world.view)
 	mob.mind.assigned_role = "MODE"
 	mob.mind.special_role = "UPP"
 	ticker.mode.traitors += mob.mind

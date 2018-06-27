@@ -218,7 +218,7 @@
 	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
 		return 1
 	if(flipped)
-		if(get_dir(loc, target) == dir)
+		if(get_dir(loc, target) & dir)
 			return !density
 		else
 			return 1
@@ -228,7 +228,7 @@
 	if(istype(O) && O.checkpass(PASSTABLE))
 		return 1
 	if(flipped)
-		if(get_dir(loc, target) == dir)
+		if(get_dir(loc, target) & dir)
 			return !density
 		else
 			return 1

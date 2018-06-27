@@ -443,14 +443,16 @@
 
 	var/turf/T = get_turf(src)
 	var/turf/U = get_turf(target)
+
+	if (!istype(T) || !istype(U))
+		return
+
 	var/scatter_chance = 5
 	if(burst_fire) scatter_chance = 10 //Make this sucker more accurate than the actual Sentry, gives it a better role.
 
 	if(prob(scatter_chance) && get_dist(T,U) > 2) //scatter at point blank could make us fire sideways.
 		U = locate(U.x + rand(-1,1),U.y + rand(-1,1),U.z)
 
-	if (!istype(T) || !istype(U))
-		return
 
 	if(load_into_chamber() == 1)
 		if(istype(in_chamber,/obj/item/projectile))
@@ -553,13 +555,13 @@
 /obj/machinery/m56d_hmg/on_set_interaction(mob/user)
 	flags_atom |= RELAY_CLICK
 	if(zoom)
-		user.client.view = 12
+		user.client.change_view(12)
 	operator = user
 
 /obj/machinery/m56d_hmg/on_unset_interaction(mob/user)
 	flags_atom &= ~RELAY_CLICK
 	if(zoom && user.client)
-		user.client.view = world.view
+		user.client.change_view(world.view)
 	if(operator == user)
 		operator = null
 

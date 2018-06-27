@@ -301,6 +301,11 @@
 		Banlist.cd = "/base/[banfolder]"
 		var/key = Banlist["key"]
 		if(alert(usr, "Are you sure you want to unban [key]?", "Confirmation", "Yes", "No") == "Yes")
+			if((Banlist["minutes"] - CMinutes) > 10080)
+				if(!check_rights(R_ADMIN)) return
+				log_admin("[key_name(usr)] removed [key]'s permaban.")
+				ban_unban_log_save("[key_name(usr)] removed [key]'s permaban.")
+				message_admins("\blue [key_name_admin(usr)] removed [key]'s permaban.", 1)
 			if(RemoveBan(banfolder))
 				unbanpanel()
 			else
@@ -309,6 +314,41 @@
 
 	else if(href_list["warn"])
 		usr.client.warn(href_list["warn"])
+
+	else if(href_list["unbanupgradeperma"])
+		if(!check_rights(R_ADMIN)) return
+		UpdateTime()
+		var/reason
+
+		var/banfolder = href_list["unbanupgradeperma"]
+		Banlist.cd = "/base/[banfolder]"
+		var/reason2 = Banlist["reason"]
+
+		var/minutes = Banlist["minutes"]
+
+		var/banned_key = Banlist["key"]
+		Banlist.cd = "/base"
+
+		var/mins = 0
+		if(minutes > CMinutes)
+			mins = minutes - CMinutes
+		if(!mins)	return
+		mins = max(5255990,mins) // 10 years
+		minutes = CMinutes + mins
+		reason = input(usr,"Reason?","reason",reason2) as message|null
+		if(!reason)	return
+
+		log_admin("[key_name(usr)] upgraded [banned_key]'s ban to a permaban. Reason: [sanitize(reason)]")
+		ban_unban_log_save("[key_name(usr)] upgraded [banned_key]'s ban to a permaban. Reason: [sanitize(reason)]")
+		message_admins("\blue [key_name_admin(usr)] upgraded [banned_key]'s ban to a permaban. Reason: [sanitize(reason)]", 1)
+		Banlist.cd = "/base/[banfolder]"
+		Banlist["reason"] << sanitize(reason)
+		Banlist["temp"] << 0
+		Banlist["minutes"] << minutes
+		Banlist["bannedby"] << usr.ckey
+		Banlist.cd = "/base"
+		feedback_inc("ban_upgrade",1)
+		unbanpanel()
 
 	else if(href_list["unbane"])
 		if(!check_rights(R_BAN))	return
@@ -1021,7 +1061,7 @@
 
 		var/mob/new_player/NP = new()
 		NP.ckey = M.ckey
-		if(NP.client) NP.client.view = world.view
+		if(NP.client) NP.client.change_view(world.view)
 		cdel(M)
 
 	else if(href_list["tdome1"])
@@ -1213,7 +1253,7 @@
 				M.mind.cm_skills = null //no skill restriction
 			else
 				M.key = H.key
-				if(M.client) M.client.view = world.view
+				if(M.client) M.client.change_view(world.view)
 			if(is_alien_whitelisted(M,"Yautja Elder"))
 				H.real_name = "Elder [M.real_name]"
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), WEAR_JACKET)
@@ -1495,14 +1535,44 @@
 
 		usr << browse("<HTML><HEAD><TITLE>Liaison Fax Message</TITLE></HEAD><BODY>[info]</BODY></HTML>", "window=Fax Message")
 
-	else if(href_list["CentcommFaxReply"])
-		var/mob/living/carbon/human/H = locate(href_list["CentcommFaxReply"])
+	else if(href_list["USCMFaxReply"])
+		var/mob/living/carbon/human/H = locate(href_list["USCMFaxReply"])
 		var/obj/machinery/faxmachine/fax = locate(href_list["originfax"])
 
-		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from USCM", "") as message|null
-		if(!input)	return
+		var/template_choice = input("Use which template or roll your own?") in list("USCM High Command", "USCM Provost General", "Custom")
+		var/fax_message = ""
+		switch(template_choice)
+			if("Custom")
+				var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from USCM", "") as message|null
+				if(!input)	return
+				fax_message = "[input]"
+			if("USCM High Command", "USCM Provost General")
+				var/subject = input(src.owner, "Enter subject line", "Outgoing message from USCM", "") as message|null
+				if(!subject) return
+				var/addressed_to = ""
+				var/address_option = input("Address it to the sender or custom?") in list("Sender", "Custom")
+				if(address_option == "Sender")
+					addressed_to = "[H.real_name]"
+				else if(address_option == "Custom")
+					addressed_to = input(src.owner, "Enter Addressee Line", "Outgoing message from USCM", "") as message|null
+					if(!addressed_to) return
+				else
+					return
+				var/message_body = input(src.owner, "Enter Message Body, use <p></p> for paragraphs", "Outgoing message from Weyland USCM", "") as message|null
+				if(!message_body) return
+				var/sent_by = input(src.owner, "Enter the name and rank you are sending from.", "Outgoing message from USCM", "") as message|null
+				if(!sent_by) return
+				var/sent_title = "Office of the Provost General"
+				if(template_choice == "USCM High Command")
+					sent_title = "USCM High Command"
 
-		USCMFaxes.Add("<a href='_src_=holder;CentcommFaxView=\ref[input]'>\[view reply at [world.timeofday]\]</a>")
+				fax_message = generate_templated_fax(0,"USCM CENTRAL COMMAND",subject,addressed_to,message_body,sent_by,sent_title,"United States Colonial Marine Corps")
+		usr << browse(fax_message, "window=uscmfaxpreview;size=600x600")
+		var/send_choice = input("Send this fax?") in list("Send", "Cancel")
+		if(send_choice == "Cancel") return
+		fax_contents += fax_message // save a copy
+
+		USCMFaxes.Add("<a href='?_src_=holder;CentcommFaxView=\ref[fax_message]'>\[view reply at [world.timeofday]\]</a>")
 
 		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
 
@@ -1517,7 +1587,7 @@
 					spawn(20)
 						var/obj/item/paper/P = new /obj/item/paper( F.loc )
 						P.name = "USCM High Command - [customname]"
-						P.info = input
+						P.info = fax_message
 						P.update_icon()
 
 						playsound(F.loc, "sound/machines/fax.ogg", 15)
@@ -1532,19 +1602,45 @@
 						P.stamps += "<HR><i>This paper has been stamped by the High Command Quantum Relay.</i>"
 
 				src.owner << "Message reply to transmitted successfully."
-				log_admin("[key_name(src.owner)] replied to a fax message from [key_name(H)]: [input]")
+				log_admin("[key_name(src.owner)] replied to a fax message from [key_name(H)]: [fax_message]")
 				message_admins("[key_name_admin(src.owner)] replied to a fax message from [key_name_admin(H)]", 1)
 				return
 		src.owner << "/red Unable to locate fax!"
 
-	else if(href_list["SolGovFaxReply"])
-		var/mob/living/carbon/human/H = locate(href_list["SolGovFaxReply"])
+	else if(href_list["CLFaxReply"])
+		var/mob/living/carbon/human/H = locate(href_list["CLFaxReply"])
 		var/obj/machinery/faxmachine/fax = locate(href_list["originfax"])
 
-		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Weyland Yutani", "") as message|null
-		if(!input)	return
+		var/template_choice = input("Use the template or roll your own?") in list("Template", "Custom")
+		var/fax_message = ""
+		switch(template_choice)
+			if("Custom")
+				var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from Weyland Yutani", "") as message|null
+				if(!input)	return
+				fax_message = "[input]"
+			if("Template")
+				var/subject = input(src.owner, "Enter subject line", "Outgoing message from Weyland Yutani", "") as message|null
+				if(!subject) return
+				var/addressed_to = ""
+				var/address_option = input("Address it to the sender or custom?") in list("Sender", "Custom")
+				if(address_option == "Sender")
+					addressed_to = "[H.real_name]"
+				else if(address_option == "Custom")
+					addressed_to = input(src.owner, "Enter Addressee Line", "Outgoing message from Weyland Yutani", "") as message|null
+					if(!addressed_to) return
+				else
+					return
+				var/message_body = input(src.owner, "Enter Message Body, use <p></p> for paragraphs", "Outgoing message from Weyland Yutani", "") as message|null
+				if(!message_body) return
+				var/sent_by = input(src.owner, "Enter JUST the name you are sending this from", "Outgoing message from Weyland Yutani", "") as message|null
+				if(!sent_by) return
+				fax_message = generate_templated_fax(1,"WEYLAND-YUTANI CORPORATE AFFAIRS - USS ALMAYER",subject,addressed_to,message_body,sent_by,"Corporate Affairs Director","Weyland-Yutani")
+		usr << browse(fax_message, "window=clfaxpreview;size=600x600")
+		var/send_choice = input("Send this fax?") in list("Send", "Cancel")
+		if(send_choice == "Cancel") return
+		fax_contents += fax_message // save a copy
 
-		CLFaxes.Add("<a href='_src_=holder;CentcommFaxView=\ref[input]'>\[view reply at [world.timeofday]\]</a>") //Add replies so that mods know what the hell is goin on with the RP
+		CLFaxes.Add("<a href='?_src_=holder;CentcommFaxView=\ref[fax_message]'>\[view reply at [world.timeofday]\]</a>") //Add replies so that mods know what the hell is goin on with the RP
 
 		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
 
@@ -1559,7 +1655,7 @@
 					spawn(20)
 						var/obj/item/paper/P = new /obj/item/paper( F.loc )
 						P.name = "Weyland Yutani - [customname]"
-						P.info = input
+						P.info = fax_message
 						P.update_icon()
 
 						playsound(F.loc, "sound/machines/fax.ogg", 15)
@@ -1574,7 +1670,7 @@
 						P.stamps += "<HR><i>This paper has been stamped and encrypted by the Weyland Yutani Quantum Relay (tm).</i>"
 
 				src.owner << "Message reply to transmitted successfully."
-				log_admin("[key_name(src.owner)] replied to a fax message from [key_name(H)]: [input]")
+				log_admin("[key_name(src.owner)] replied to a fax message from [key_name(H)]: [fax_message]")
 				message_admins("[key_name_admin(src.owner)] replied to a fax message from [key_name_admin(H)]", 1)
 				return
 		src.owner << "/red Unable to locate fax!"

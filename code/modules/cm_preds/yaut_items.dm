@@ -285,7 +285,6 @@
 	var/charge = 2000
 	var/charge_max = 2000
 	var/cloaked = 0
-	var/selfdestruct = 0
 	var/blades_active = 0
 	var/caster_active = 0
 	var/exploding = 0
@@ -523,6 +522,7 @@
 	if(!isYautja(M))
 		M << "<span class='warning'>You have no idea how to work these things!</span>"
 		return
+
 	var/obj/item/grab/G = M.get_active_hand()
 	if(istype(G))
 		var/mob/living/carbon/human/comrade = G.grabbed_thing
@@ -530,15 +530,20 @@
 			var/obj/item/clothing/gloves/yautja/bracer = comrade.gloves
 			if(istype(bracer))
 				if(alert("Are you sure you want to send this Yautja into the great hunting grounds?","Explosive Bracers", "Yes", "No") == "Yes")
-					bracer.explodey(comrade)
-					M.visible_message("<span class='warning'>[M] presses a few buttons on [comrade]'s wrist bracer.</span>","<span class='danger'>You activate the timer. May [comrade]'s final hunt be swift.</span>")
+					if(M.get_active_hand() == G && comrade && comrade.gloves == bracer && !bracer.exploding)
+						bracer.explodey(comrade)
+						M.visible_message("<span class='warning'>[M] presses a few buttons on [comrade]'s wrist bracer.</span>","<span class='danger'>You activate the timer. May [comrade]'s final hunt be swift.</span>")
 			else
 				M << "<span class='warning'>Your fallen comrade does not have a bracer. <b>Report this to your elder so that it's fixed.</b></span>"
-		else
-			M << "<span class='info'>You can only activate the bracer of another Yautja, and they must have fallen in the Hunt.</span>"
+			return
+
+	if(M.gloves != src)
 		return
+
 	if(exploding)
 		if(alert("Are you sure you want to stop the countdown?","Bracers", "Yes", "No") == "Yes")
+			if(M.gloves != src)
+				return
 			if(M.stat == DEAD)
 				M << "<span class='warning'>Little too late for that now!</span>"
 				return
@@ -552,6 +557,8 @@
 		M << "<span class='warning'>Strange...something seems to be interfering with your bracer functions...</span>"
 		return
 	if(alert("Detonate the bracers? Are you sure?","Explosive Bracers", "Yes", "No") == "Yes")
+		if(M.gloves != src)
+			return
 		if(M.stat == DEAD)
 			M << "<span class='warning'>Little too late for that now!</span>"
 			return
@@ -881,7 +888,7 @@
 	if(!proximity || !user) return
 	if(user)
 		var/obj/item/weapon/wristblades/W = user.get_inactive_hand()
-		attack_speed = (istype(W)) ? attack_speed - attack_speed/3 : initial(attack_speed)
+		attack_speed = (istype(W)) ? 4 : initial(attack_speed)
 
 	if (istype(A, /obj/machinery/door/airlock))
 		var/obj/machinery/door/airlock/D = A

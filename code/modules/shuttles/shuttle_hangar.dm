@@ -1,8 +1,3 @@
-
-
-
-
-
 /datum/shuttle/ferry/hangar
 	iselevator = 1
 	var/away_location = 1	//the location to hide at while pretending to be in-transit
@@ -203,3 +198,45 @@
 		if(M.id == gear_id)
 			spawn()
 				M.icon_state = "gear"
+
+// Maintenance Elevator
+/datum/shuttle/ferry/hangar/maintenance
+	railing_upper_id = "maintenance_upper_railing"
+	railing_lower_id = "maintenance_lower_railing"
+	gear_id = "maintenance_elevator_strut"
+
+/datum/shuttle/ferry/hangar/maintenance/start_gears(var/direction = 1)
+	var/list/obj/machinery/elevator_strut/top/strut_top = list()
+	var/list/obj/machinery/elevator_strut/bottom/strut_bottom = list()
+
+	for (var/obj/machinery/elevator_strut/top/S in machines)
+		if (S.id == gear_id)
+			strut_top += S
+
+	for (var/obj/machinery/elevator_strut/bottom/S in machines)
+		if (S.id == gear_id)
+			strut_bottom += S
+
+	spawn()
+		for (var/obj/x in strut_top)
+			x.icon_state  = "strut_top_moving"
+		for (var/obj/x in strut_bottom)
+			x.icon_state = "strut_bottom_moving"
+
+/datum/shuttle/ferry/hangar/maintenance/stop_gears()
+	var/list/obj/machinery/elevator_strut/top/strut_top = list()
+	var/list/obj/machinery/elevator_strut/bottom/strut_bottom = list()
+
+	for (var/obj/machinery/elevator_strut/top/S in machines)
+		if (S.id == gear_id)
+			strut_top += S
+
+	for (var/obj/machinery/elevator_strut/bottom/S in machines)
+		if (S.id == gear_id)
+			strut_bottom += S
+
+	spawn()
+		for (var/obj/x in strut_top)
+			x.icon_state  = "strut_top"
+		for (var/obj/x in strut_bottom)
+			x.icon_state = "strut_bottom"

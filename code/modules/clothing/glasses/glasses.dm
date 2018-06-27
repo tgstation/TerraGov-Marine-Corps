@@ -10,11 +10,12 @@
 	var/prescription = 0
 	var/toggleable = 0
 	var/active = 1
-	var/obj/screen/overlay = null
 	flags_inventory = COVEREYES
 	flags_equip_slot = SLOT_EYES
 	flags_armor_protection = EYES
 	var/deactive_state = "degoggles"
+	var/has_tint = FALSE //whether it blocks vision like a welding helmet
+	var/fullscreen_vision
 
 
 /obj/item/clothing/glasses/update_clothing_icon()
@@ -35,6 +36,14 @@
 			icon_state = initial(icon_state)
 			user.update_inv_glasses()
 			user << "You activate the optical matrix on [src]."
+
+		if(ishuman(loc))
+			var/mob/living/carbon/human/H = loc
+			if(H.glasses == src)
+				if(has_tint)
+					H.update_tint()
+				H.update_sight()
+				H.update_glass_vision(src)
 
 		for(var/X in actions)
 			var/datum/action/A = X
@@ -131,9 +140,6 @@
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle)
 
-	New()
-		..()
-		overlay = null  //Stops the overlay.
 
 
 //welding goggles
@@ -147,7 +153,7 @@
 	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEEYES
 	eye_protection = 2
-	var/up = 0
+	has_tint = TRUE
 
 /obj/item/clothing/glasses/welding/attack_self()
 	toggle()
@@ -159,22 +165,28 @@
 	set src in usr
 
 	if(usr.canmove && !usr.stat && !usr.is_mob_restrained())
-		if(src.up)
-			src.up = !src.up
-			flags_inventory |= COVEREYES
-			flags_inv_hide |= HIDEEYES
-			flags_armor_protection |= EYES
-			icon_state = initial(icon_state)
-			eye_protection = initial(eye_protection)
-			usr << "You flip [src] down to protect your eyes."
-		else
-			src.up = !src.up
+		if(active)
+			active = 0
 			flags_inventory &= ~COVEREYES
 			flags_inv_hide &= ~HIDEEYES
 			flags_armor_protection &= ~EYES
 			icon_state = "[initial(icon_state)]up"
 			eye_protection = 0
 			usr << "You push [src] up out of your face."
+		else
+			active = 1
+			flags_inventory |= COVEREYES
+			flags_inv_hide |= HIDEEYES
+			flags_armor_protection |= EYES
+			icon_state = initial(icon_state)
+			eye_protection = initial(eye_protection)
+			usr << "You flip [src] down to protect your eyes."
+
+
+		if(ishuman(loc))
+			var/mob/living/carbon/human/H = loc
+			if(H.glasses == src)
+				H.update_tint()
 
 		update_clothing_icon()
 

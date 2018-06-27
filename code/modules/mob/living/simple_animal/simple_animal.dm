@@ -76,6 +76,7 @@
 			stat = CONSCIOUS
 			lying = 0
 			density = 1
+			reload_fullscreens()
 		return 0
 
 
@@ -196,11 +197,26 @@
 		else
 			..()
 
+
+/mob/living/simple_animal/death()
+	. = ..()
+	if(!.)	return //was already dead
+	icon_state = icon_dead
+
+
 /mob/living/simple_animal/gib()
 	if(meat_amount && meat_type)
 		for(var/i = 0; i < meat_amount; i++)
 			new meat_type(src.loc)
-	..(icon_gib,1)
+	..()
+
+/mob/living/simple_animal/gib_animation()
+	if(icon_gib)
+		new /obj/effect/overlay/temp/gib_animation/animal(loc, src, icon_gib)
+
+
+
+
 
 /mob/living/simple_animal/emote(var/act, var/type, var/message, player_caused)
 	if(act)
@@ -304,14 +320,9 @@
 	stat(null, "Health: [round((health / maxHealth) * 100)]%")
 	return 1
 
-/mob/living/simple_animal/death()
-	. = ..()
-	if(!.)	return //was already dead
-	icon_state = icon_dead
 
 /mob/living/simple_animal/ex_act(severity)
-	if(!blinded && hud_used)
-		flick("flash", hud_used.flash_icon)
+	flash_eyes()
 	switch (severity)
 		if (1.0)
 			adjustBruteLoss(500)

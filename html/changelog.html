@@ -97,6 +97,190 @@ should be listed in the changelog upon commit though. Thanks. -->
 
 <!-- DO NOT REMOVE, MOVE, OR COPY THIS COMMENT! THIS MUST BE THE LAST NON-EMPTY LINE BEFORE THE LOGS #ADDTOCHANGELOGMARKER# -->
 
+<div class='commit sansserif'>
+	<h2 class='date'>June 26 2018</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed attacking vents after welding them shut or open.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>June 25 2018</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixes invisible wet sign.</li>
+		<li class='bugfix'>Fixes conveyor belt not pushing stuff.</li>
+		<li class='bugfix'>Fixes invisible stunned bloody larva sprite.</li>
+		<li class='bugfix'>When a marine on the defensive side of a barricade clicks the barricade when shooting, the projectile will no longer hit the barricade but pass through it since you almost never want to shoot your own barricade.</li>
+		<li class='bugfix'>Observers can now examine the destination of a xeno tunnel.</li>
+		<li class='tweak'>Tweak to squad assignment system. You now always get your prefered squad unless you're playing a special role and the prefered squad has filled all the slots for that role already. Players with no squad preference now get first placed in a squad truly randomly but we then check whether there's no significant imbalance between squads and only switch squad if that is the case.</li>
+		<li class='bugfix'>Fixes zombies appearing in the list when using "Follow Human" verb.</li>
+		<li class='bugfix'>Fixes non MP being able to catch thrown stunbatons without getting zapped.</li>
+		<li class='bugfix'>Fixes marine being able to dismantle barricades with acid on them to save them.</li>
+		<li class='bugfix'>Fixes inconsistency with corrosive acid on plasteel barricade, and framed window vs window frame.</li>
+		<li class='bugfix'>Fixes hitting someone's robotic limb creating a blood splatter.</li>
+		<li class='bugfix'>Fixes most cases of wrong barricade layering due to deconstruction and moves.</li>
+		<li class='bugfix'>Fixes defender not being able to regurgitate when cresting.</li>
+		<li class='bugfix'>Fixes missing sanity checks in predator bracer selfdestruct code.</li>
+		<li class='bugfix'>Marines can no longer break a Warrior's neck grab by grabbing the victim.</li>
+		<li class='tweak'>Tweak akimbo firing maluses to be less harsh and with a bit more randomness.</li>
+		<li class='bugfix'>Fixes taking eye damage when attacking weed with a blowtorch</li>
+		<li class='bugfix'>Fixes building barricades on dropship tiles.</li>
+		<li class='tweak'>Handcuffing with zipcuffs is now slightly faster than with normal handcuffs.</li>
+		<li class='bugfix'>Fixes white cable coil not being white.</li>
+		<li class='bugfix'>Fixes runtimes with M56D, say code, and praetorian acid spray.</li>
+		<li class='bugfix'>Fixes preview icon being borked.</li>
+		<li class='bugfix'>Fixes pilot officer preview icon having wrong belt.</li>
+		<li class='bugfix'>Fixes tank crew not having a preview icon.</li>
+		<li class='bugfix'>Fixes dead human's bodytemp not decreasing after being set on fire (high bodytemp) when wearing cold proof clothing.</li>
+		<li class='tweak'>Made SO's Overwatch message to the squad bigger. </li>
+		<li class='tweak'>Ghosts can now examine the garden memorial to see the list of fallen marines.</li>
+		<li class='bugfix'>Fixes blank name survivors on ice and prison map. </li>
+		<li class='bugfix'>Fixes resin doors still standing even after you remove their support.</li>
+		<li class='bugfix'>Fixes being able to do wall repair stuff on resin walls.</li>
+		<li class='bugfix'>Fixes prison rwall icon_state going black when deconstructing.</li>
+		<li class='bugfix'>Fixes ghost being able to interact with human via the stripping clothes window.</li>
+		<li class='bugfix'>Fixes pointblank buckshot only hitting with 1 projectile</li>
+		<li class='bugfix'>Fixes message spam when moving inside a xeno stomach.</li>
+		<li class='bugfix'>Fixes being able to pass through flipped tables diagonally.</li>
+		<li class='bugfix'>Fixes natural wound healing.</li>
+		<li class='tweak'>Praetorian acid spray ability now takes around a second to be triggered. And increased cooldown. And increased plasma cost.</li>
+		<li class='bugfix'>Fixes issue with Prae acid spray passing through stuff.</li>
+		<li class='bugfix'>Fixes Prae Acid spray not attacking the barricades that blocked it.</li>
+		<li class='bugfix'>Fixes xenos being able to destroy research containment walls with acid spit.</li>
+		<li class='bugfix'>Fixes gender issue with ERT.</li>
+		<li class='bugfix'>Fixes predator blood reverting to red color when transfer to another container.</li>
+		<li class='bugfix'>Fixes predator dropping some red gibs when gibbed.</li>
+		<li class='bugfix'>Fixes sprite issue on the "Business Person".</li>
+		<li class='bugfix'>Fixes the "L" on the hud squad not disappearing if the SL/aSL is dead when the SL is changed.</li>
+		<li class='bugfix'>fix leadership skill reset shouldn't decrease leadership for dead SL.</li>
+		<li class='tweak'>Loading a magazine with attachment activated will deactivate the attachment and load the magazine.</li>
+		<li class='tweak'>Spent casings yields metal when inserted in autolathe.</li>
+		<li class='rscadd'>Added action buttons for activable gun attachments.</li>
+		<li class='bugfix'>Fixes issue where the white triangle button to hide action buttons wasn't showing up.</li>
+		<li class='tweak'>Simplifies the bipod code, and gives the bipod some slowdown to wielding and slowdown when moving while aiming down sight, but only when it is deployed.</li>
+		<li class='bugfix'>Fixes hitting xeno eggs wih grabs.</li>
+		<li class='tweak'>Many visual effects now are updated instantaneously, like when toggling a welding helmet.</li>
+		<li class='tweak'>Players can now click the void</li>
+		<li class='bugfix'>Fixes one of the sec hud and the med hud using wrong sprite</li>
+		<li class='bugfix'>Fixes the pain fulls creen overlay missing its sprite... for 3 years...</li>
+		<li class='bugfix'>Full screen overlays now properly handle changes of view size (zoom).</li>
+		<li class='bugfix'>Fixes 'Load from attachment' showing the rail flashlight as option.</li>
+		<li class='bugfix'>Fixes PMC women having male first names.</li>
+		<li class='bugfix'>Fixes putting attachment on pred guns.</li>
+		<li class='bugfix'>Fixes refresh issue with chem_dispenser window.</li>
+		<li class='tweak'>Buffs the effect of crossing fire.</li>
+		<li class='bugfix'>Fixes queen not appearing at round end if gibbed.</li>
+		<li class='bugfix'>Fixes defender headbutt damaging the dead.</li>
+		<li class='bugfix'>Fixes assembly items not correctly being removed from storage object.</li>
+		<li class='tweak'>Reduces damage from Crusher running over a marine.</li>
+		<li class='tweak'>You can now remove the dialysis beaker from the Sleeper machine even when no patient is inside.</li>
+		<li class='bugfix'>Fixes invisible pill.</li>
+		<li class='tweak'>Adds flechette shells in cargo ammo vendor.</li>
+		<li class='bugfix'>Fixes SD shutters opening upon dropship crash, they should only open when security level is set to Delta (e.g. when selfdestruct is started)</li>
+		<li class='bugfix'>Fixes Forensic Scanning Computer, and all computers in general, ejecting an item and the item is hidden behind the computer's layer.</li>
+		<li class='bugfix'>Fixes weird character in cigarret vending machine window.</li>
+		<li class='bugfix'>Fixes window not refreshing after setting internals on in the strip window.</li>
+		<li class='bugfix'>Fixes refreshing issues with forensic scanning computer, chem dispenser, and chem master.</li>
+		<li class='tweak'>clicking a mob on harm intent with an empty gun now melees the target instead of just doing the click sound.</li>
+		<li class='tweak'>Fixes apc slashing electrocution being able to one-shot runner, by reducing the maximum damage value possible</li>
+		<li class='bugfix'>Fixes attack speed of wristblades.</li>
+		<li class='bugfix'>Fixes uscm mre packs acting weird when empty.</li>
+		<li class='bugfix'>Fixes fire rate of the M92.</li>
+		<li class='tweak'>New options on the overwatch console to hide dead marines and ignore certain z levels (show all, hide almayer, hide colony ground)</li>
+		<li class='bugfix'>Fixes the mass spectrometer's functionality.</li>
+	</ul>
+</div>
+
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>June 22 2018</h2>
+	<h3 class='author'>Spookydonut updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>Gamemodes are now detached from maps, classic gamemode is now "Colonial Marines".</li>
+		<li class='experiment'>The map is shown separately from the gamemode on the server browser and in the lobby.</li>
+		<li class='experiment'>There is a round_info verb that will tell you what the current map is in case you forget, its in the OOC tab.</li>
+		<li class='experiment'>These gamemode changes should no impact on gameplay apart from making other gamemodes easier to code.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>June 23 2018</h2>
+	<h3 class='author'>BMC777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='imageadd'>Added new Queen and Carrier sprites courtesy of Fridge.</li>
+		<li class='imageadd'>Added Nicboone's new invisible Lurker sprite which should be much harder to spot.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>June 20 2018</h2>
+	<h3 class='author'>Okand37 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Due to complaints surfacing over the USS Almayer's "lack of personality" USCM High Command has decided to hire an interior decorator to add "new life" to the ship. Funding for this project has been deducted from the battalion currently stationed aboard the Almayer.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>June 18 2018</h2>
+	<h3 class='author'>BMC777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>No longer able to see spooky ghosts when using Alt+Click to view a tile's contents.</li>
+		<li class='bugfix'>Fixed some issues where the Stat panel took a very long time to refresh after swapping from a verb panel.</li>
+	</ul>
+	<h3 class='author'>Spookydonut updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Disabled slipping of humans wearing shoes. Literally any kind of footwear. Slipping was only used for griefing.</li>
+		<li class='bugfix'>Reverted a performance change to how pipe networks are generated which restores seeing them as a vent crawling xenomorph.</li>
+		<li class='bugfix'>Fixed a bug that caused the health analyzer to not display damaged limbs.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>June 17 2018</h2>
+	<h3 class='author'>RavingManaic updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>The Corporate Liaison now has some goods to offer to favored individuals. Of course, nothing is ever truly free.</li>
+	</ul>
+	<h3 class='author'>Spookydonut updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Enhanced fax system to allow staff to easily reply to faxes, expect more IC fax replies for MP/Command issues especially. Faxes are IC.</li>
+		<li class='bugfix'>Fixed bugs with the fax system, it is now safe to burn faxes after sending them.</li>
+		<li class='tweak'>Tweaked SO/PO/CT to give slightly more slots.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>June 16 2018</h2>
+	<h3 class='author'>MadSnailDisease updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed bug that caused players to be eternally slept when run over by the tank.</li>
+		<li class='rscadd'>Gave all of the hardpoint modules variable firing arcs (not just +- 45 degrees).</li>
+		<li class='rscadd'>You no longer need macros to turn the tank. Hitting a movement key perpendicular to the tank turns you in that direction.</li>
+		<li class='bugfix'>Tanks trample girders now.</li>
+		<li class='bugfix'>The artillery module can reset your view by clicking again as the gunner.</li>
+		<li class='tweak'>Buffed the tank's minigun, flamethrower, overdrive enhancer, and weapons sensor array to make them more competetive with the other options. </li>
+	</ul>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>The Orbital Cannon now exists physically on the Almayer, in the Weapons Room west of the CIC. It now needs to be manually loaded by Maintenance Technicians in order to be fired. You have the choice between three warhead types, HE, Incendiary, and cluster. After loading a warhead you must load solid fuel blocks in the exact amount required by the warhead (values randomized each round). You can check the fuel requirements of each warhead types on the OB console. The Orbital Cannon is still fired from the Overwatch consoles but the cannon needs to be loaded and chambered first. Once the cannon is chambered you cannot unchambered it and are forced to fire it to empty the barrel, so be careful when you load the cannon. The Orbital Cannon cooldown is now linked to the cannon itself rather than each marine squad, this means you can no longer fire one OB for each squad in a quick succession. The cooldown has been reduced accordingly. The overwatch console shows the status of the orbital cannon. Warheads and solid fuel blocks are transported and loaded with a powerloader. The MTs now have access to the Weapons Room west of the CIC. They can access it via the Maintenance hallway in the southern Missile Tubes room, you can also use the ladder that used to be in the lower deck brig, which is now in the brig's maintenance hallway. A new elevator is next to that ladder so powerloaders can be moved between the two decks.</li>
+	</ul>
+	<h3 class='author'>Spookydonut updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>MP, CT, MT, Doctor, Researcher, Pilot and Staff Officer jobslots are now scaled with population. Numbers for it are subject to change based on feedback.</li>
+		<li class='experiment'>Item use delays have been tweaked, for the majority of items this should have no change.</li>
+		<li class='experiment'>Reduced use delay of surgery tools, handfuls of ammo (should make loading shotguns faster), beakers, and reagent bottles.</li>
+		<li class='rscadd'>Clicking a pillbottle in your hand (or pressing z in hotkey mode) will now put a pill in your other hand and swap to it making it very fast to use pills as a medic.</li>
+	</ul>
+</div>
 
 
 <div class='commit sansserif'>

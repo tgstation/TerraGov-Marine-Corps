@@ -49,8 +49,8 @@
 
 /obj/machinery/vending/marine/select_gamemode_equipment(gamemode)
 	var/products2[]
-	switch(gamemode)
-		if(/datum/game_mode/ice_colony)
+	switch(map_tag)
+		if(MAP_ICE_COLONY)
 			products2 = list(
 						/obj/item/clothing/mask/rebreather/scarf = 10,
 							)
@@ -189,6 +189,7 @@
 					/obj/item/ammo_magazine/rifle/lmg = 0,
 					/obj/item/ammo_magazine/shotgun = 5,
 					/obj/item/ammo_magazine/shotgun/buckshot = 5,
+					/obj/item/ammo_magazine/shotgun/flechette = 5,
 					/obj/item/ammo_magazine/sniper = 1,
 					/obj/item/ammo_magazine/sniper/incendiary = 1,
 					/obj/item/ammo_magazine/sniper/flak = 1,
@@ -332,8 +333,6 @@
 	wrenchable = FALSE
 	products = list(
 					/obj/item/coin/marine/engineer = 1,
-					/obj/item/stack/sheet/metal/half = 1,
-					/obj/item/stack/sheet/plasteel/ten = 1,
 					)
 	contraband = list(/obj/item/cell/super = 1)
 
@@ -498,14 +497,14 @@
 
 /obj/machinery/vending/marine_leader/select_gamemode_equipment(gamemode)
 	var/products2[]
-	switch(gamemode)
-		if(/datum/game_mode/ice_colony)
+	switch(map_tag)
+		if(MAP_ICE_COLONY)
 			products2 = list( /obj/item/map/ice_colony_map = 3)
-		if(/datum/game_mode/bigred)
+		if(MAP_BIG_RED)
 			products2 = list(/obj/item/map/big_red_map = 3)
-		if(/datum/game_mode/whiskey_outpost)
+		if(MAP_WHISKEY_OUTPOST)
 			products2 = list(/obj/item/map/whiskey_outpost_map = 3)
-		else
+		if(MAP_LV_624)
 			products2 = list(/obj/item/map/lazarus_landing_map = 3)
 	build_inventory(products2)
 
@@ -546,9 +545,9 @@
 						/obj/item/attachable/stock/revolver = 3,
 						/obj/item/attachable/stock/smg = 3,
 
-						/obj/item/attachable/grenade = 5,
-						/obj/item/attachable/shotgun = 3,
-						/obj/item/attachable/flamer = 3
+						/obj/item/attachable/attached_gun/grenade = 5,
+						/obj/item/attachable/attached_gun/shotgun = 3,
+						/obj/item/attachable/attached_gun/flamer = 3
 					)
 
 /obj/machinery/vending/attachments/New()

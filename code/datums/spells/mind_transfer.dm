@@ -99,7 +99,7 @@ Also, you never added distance checking after target is selected. I've went ahea
 	ghost.mind.transfer_to(caster)
 	caster.key = ghost.key	//have to transfer the key since the mind was not active
 	if(caster.client)
-		caster.client.view = world.view
+		caster.client.change_view(world.view)
 		caster.client.pixel_x = 0
 		caster.client.pixel_y = 0
 

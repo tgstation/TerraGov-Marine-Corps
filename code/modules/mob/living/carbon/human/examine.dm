@@ -147,7 +147,7 @@
 		else
 			msg += "[t_He] [t_has] \icon[gloves] \a [gloves] on [t_his] hands.\n"
 	else if(blood_DNA)
-		msg += "<span class='warning'>[t_He] [t_has] [(hand_blood_color != "#030303") ? "blood" : "oil"]-stained hands!</span>\n"
+		msg += "<span class='warning'>[t_He] [t_has] [(blood_color != "#030303") ? "blood" : "oil"]-stained hands!</span>\n"
 
 	//handcuffed?
 

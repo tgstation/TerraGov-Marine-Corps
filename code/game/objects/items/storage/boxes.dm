@@ -644,3 +644,48 @@
 		new /obj/item/lightstick/red(src)
 		new /obj/item/lightstick/red(src)
 		new /obj/item/lightstick/red(src)
+
+
+
+
+/obj/item/storage/box/MRE
+	name = "\improper USCM MRE"
+	desc = "Meal Ready-to-Eat, property of the US Colonial Marines. Meant to be consumed in the field, and has an expiration that is at least two decades past your combat life expectancy."
+	icon_state = "mealpack"
+	w_class = 2
+	can_hold = list()
+	storage_slots = 4
+	max_w_class = 0
+	foldable = 0
+	var/isopened = 0
+
+/obj/item/storage/box/MRE/New()
+		..()
+		pickflavor()
+
+/obj/item/storage/box/MRE/proc/pickflavor()
+	var/variation = rand(1,4)
+	var/i
+	switch(variation)
+		if(1)
+			for(i in list("boneless pork ribs","cracker","biscuit","spiced apples"))
+				new /obj/item/reagent_container/food/snacks/packaged_meal(src, i)
+		if(2)
+			for(i in list("grilled chicken","cheese spread","meatballs","chocolate brownie"))
+				new /obj/item/reagent_container/food/snacks/packaged_meal(src, i)
+		if(3)
+			for(i in list("pizza square","rice onigiri","pretzels","sugar cookie"))
+				new /obj/item/reagent_container/food/snacks/packaged_meal(src, i)
+		if(4)
+			for(i in list("spaghetti chunks","mashed potatoes","peanuts","coco bar"))
+				new /obj/item/reagent_container/food/snacks/packaged_meal(src, i)
+
+/obj/item/storage/box/MRE/update_icon()
+	if(!contents.len)
+		var/turf/T = get_turf(src)
+		if(T)
+			new /obj/item/trash/uscm_mre(T)
+		cdel(src)
+	else if(!isopened)
+		isopened = 1
+		icon_state = "mealpackopened"

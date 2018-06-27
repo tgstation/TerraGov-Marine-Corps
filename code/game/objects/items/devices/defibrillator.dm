@@ -24,7 +24,7 @@
 		return (FIRELOSS)
 
 /obj/item/device/defibrillator/proc/check_tod(mob/living/carbon/human/M as mob)
-	if(world.time <= M.timeofdeath + M.revive_grace_period)
+	if(!M.undefibbable && world.time <= M.timeofdeath + M.revive_grace_period)
 		return 1
 	else
 		return 0
@@ -201,9 +201,9 @@
 			H.stat = UNCONSCIOUS
 			H.emote("gasp")
 			H.regenerate_icons()
+			H.reload_fullscreens()
 			H.update_canmove()
-			if(H.hud_used)
-				flick("e_flash", H.hud_used.flash_icon)
+			H.flash_eyes()
 			H.apply_effect(10, EYE_BLUR)
 			H.apply_effect(10, PARALYZE)
 			H.update_canmove()

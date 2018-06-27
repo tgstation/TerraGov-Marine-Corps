@@ -204,7 +204,7 @@
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
 	if(icon_state == "title_painting1") // default
-		icon_state = "title_painting[rand(1,3)]"
+		icon_state = "title_painting[rand(1,4)]"
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
@@ -220,6 +220,7 @@
 	name = "mineral wall"
 	desc = "This shouldn't exist"
 	icon_state = ""
+	var/mineral
 	var/last_event = 0
 	var/active = null
 	tiles_with = list(/turf/closed/wall/mineral)
@@ -248,6 +249,10 @@
 	icon_state = "diamond0"
 	walltype = "diamond"
 	mineral = "diamond"
+
+/turf/closed/wall/mineral/diamond/thermitemelt(mob/user)
+	return
+
 
 /turf/closed/wall/mineral/sandstone
 	name = "sandstone wall"
@@ -361,7 +366,6 @@
 	icon = 'icons/Xeno/structures.dmi'
 	icon_state = "resin0"
 	walltype = "resin"
-	mineral = "resin"
 	damage_cap = 200
 	layer = RESIN_STRUCTURE_LAYER
 	tiles_with = list(/turf/closed/wall/resin, /turf/closed/wall/resin/membrane, /obj/structure/mineral_door/resin)
@@ -384,14 +388,12 @@
 	damage_cap = 400
 	icon_state = "thickresin0"
 	walltype = "thickresin"
-	mineral = "thickresin"
 
 /turf/closed/wall/resin/membrane
 	name = "resin membrane"
 	desc = "Weird slime translucent enough to let light pass through."
 	icon_state = "membrane0"
 	walltype = "membrane"
-	mineral = "membrane"
 	damage_cap = 120
 	opacity = 0
 	alpha = 180
@@ -406,7 +408,6 @@
 	damage_cap = 240
 	icon_state = "thickmembrane0"
 	walltype = "thickmembrane"
-	mineral = "thickmembrane"
 	alpha = 210
 
 /turf/closed/wall/resin/bullet_act(var/obj/item/projectile/Proj)
@@ -423,7 +424,7 @@
 			take_damage(rand(140, 300))
 		if(3)
 			take_damage(rand(50, 100))
-	return
+
 
 /turf/closed/wall/resin/hitby(AM as mob|obj)
 	..()
@@ -439,6 +440,7 @@
 	playsound(src, "alien_resin_break", 25)
 	take_damage(max(0, damage_cap - tforce))
 
+
 /turf/closed/wall/resin/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M)) //Larvae can't do shit
 		return 0
@@ -448,6 +450,7 @@
 	playsound(src, "alien_resin_break", 25)
 	take_damage((M.melee_damage_upper + 50)) //Beef up the damage a bit
 
+
 /turf/closed/wall/resin/attack_animal(mob/living/M)
 	M.visible_message("<span class='danger'>[M] tears \the [src]!</span>", \
 	"<span class='danger'>You tear \the [name].</span>")
@@ -455,18 +458,22 @@
 	M.animation_attack_on(src)
 	take_damage(40)
 
+
 /turf/closed/wall/resin/attack_hand(mob/user)
 	user << "<span class='warning'>You scrape ineffectively at \the [src].</span>"
 
+
 /turf/closed/wall/resin/attack_paw(mob/user)
 	return attack_hand(user)
+
 
 /turf/closed/wall/resin/attackby(obj/item/W, mob/living/user)
 	if(!(W.flags_item & NOBLUDGEON))
 		user.animation_attack_on(src)
 		take_damage(W.force)
 		playsound(src, "alien_resin_break", 25)
-	return ..()
+	else
+		return attack_hand(user)
 
 /turf/closed/wall/resin/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
@@ -474,7 +481,22 @@
 	return !density
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)
-	if(oldTurf != "") ChangeTurf(text2path(oldTurf))
-	else ChangeTurf(/turf/open/floor/plating)
+	cdel(src) //ChangeTurf is called by Dispose()
 
 
+
+/turf/closed/wall/resin/ChangeTurf(newtype)
+	. = ..()
+	if(.)
+		var/turf/T
+		for(var/i in cardinal)
+			T = get_step(src, i)
+			if(!istype(T)) continue
+			for(var/obj/structure/mineral_door/resin/R in T)
+				R.check_resin_support()
+
+
+
+
+/turf/closed/wall/resin/can_be_dissolved()
+	return FALSE

@@ -34,6 +34,8 @@
 	if(!hud_used) create_hud()
 	if(hud_used) hud_used.show_hud(hud_used.hud_version)
 
+	reload_fullscreens()
+
 	next_move = 1
 	sight |= SEE_SELF
 	..()

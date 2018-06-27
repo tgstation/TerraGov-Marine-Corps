@@ -289,7 +289,8 @@
 			for(var/datum/data/record/forensic/cur in current_list)
 				P.info += get_printable_data(cur)
 
-	updateUsrDialog()
+	//updateUsrDialog()
+	attack_hand(usr)
 
 /obj/machinery/computer/forensic_scanning/process()
 	if (!..())

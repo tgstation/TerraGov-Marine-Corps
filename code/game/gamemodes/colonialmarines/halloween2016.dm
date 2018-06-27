@@ -264,8 +264,8 @@
 //////////////////////////////////////////////////////////////////////
 //Announces the end of the game with all relevant information stated//
 //////////////////////////////////////////////////////////////////////
-/datum/game_mode/colonialmarines_halloween_2016/declare_completion()
-	. = declare_completion_infestation()
+///datum/game_mode/colonialmarines_halloween_2016/declare_completion()
+//	. = declare_completion_round()
 
 ///////////////////////////////////
 //Support items and other doodads//
@@ -1098,7 +1098,6 @@
 					H.h_style = "Shoulder-length Hair Alt"
 					H.f_style = "5 O'clock Shadow"
 
-					H.s_tone = -45
 				if(3) //Dutch. The most well-armed and powerful of the heroes in terms of offense.
 					H.equip_to_slot_or_del(new /obj/item/clothing/under/gimmick/dutch(H), WEAR_BODY, 1)
 					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), WEAR_FEET, 1)
@@ -1109,7 +1108,7 @@
 					H.equip_to_slot_or_del(new /obj/item/weapon/gun/launcher/rocket/m57a4(H), WEAR_J_STORE)
 
 					var/obj/item/weapon/gun/rifle/m16/G = new(H)
-					var/obj/item/attachable/grenade/N = new(G)
+					var/obj/item/attachable/attached_gun/grenade/N = new(G)
 					N.Attach(G)
 					G.update_attachable(N.slot)
 
@@ -1126,7 +1125,7 @@
 					H.r_hair = 153
 					H.g_hair = 102
 					H.b_hair = 51
-					H.s_tone = -10
+
 				if(4) //Robocop. Has great armor and weapon, but otherwise doesn't have a whole lot of equipment. Hard to put down, that's for sure.
 					H.equip_to_slot_or_del(new /obj/item/clothing/under/gimmick/robocop(H), WEAR_BODY, 1)
 					H.equip_to_slot_or_del(new /obj/item/clothing/shoes/gimmick/robocop(H), WEAR_FEET, 1)
@@ -1214,7 +1213,7 @@
 		return
 
 	horror.key = horror_key
-	if(horror.client) horror.client.view = world.view
+	if(horror.client) horror.client.change_view(world.view)
 	horror.mind.key = horror.key
 
 	world << "<span class='event_announcement'>An otherwordly presence is reaching through the fabric of reality!</span>"
@@ -1314,8 +1313,8 @@
 		/obj/item/attachable/verticalgrip = 3,
 		/obj/item/attachable/gyro = 2,
 		/obj/item/attachable/bipod = 1,
-		/obj/item/attachable/shotgun = 3,
-		/obj/item/attachable/flamer = 3,
+		/obj/item/attachable/attached_gun/shotgun = 3,
+		/obj/item/attachable/attached_gun/flamer = 3,
 		/obj/item/attachable/burstfire_assembly = 1,
 		/obj/item/attachable/stock/rifle = 3,
 		/obj/item/attachable/stock/smg = 3
@@ -1588,7 +1587,7 @@
 		B.target_turf = pick(range(1, src))
 		B.blood_DNA = new
 		B.blood_DNA[H.dna.unique_enzymes] = H.dna.b_type
-		H.vessel.remove_reagent("blood",rand(25,50))
+		H.blood_volume = max(0, H.blood_volume - rand(25,50))
 		animation_blood_spatter(H)
 	current_bloodcall = world.time
 

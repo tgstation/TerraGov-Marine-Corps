@@ -287,14 +287,12 @@
 		else
 			hud_used.alien_plasma_display.icon_state = "power_display_empty"
 
-	if(client)
-		client.screen.Remove(global_hud.blurry, global_hud.druggy, global_hud.vimpaired, global_hud.darkMask, global_hud.nvg, global_hud.thermal, global_hud.meson)
 
-	if(hud_used && hud_used.blind_icon && stat != DEAD)
+	if(stat != DEAD)
 		if(blinded)
-			hud_used.blind_icon.plane = 0
+			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 		else
-			hud_used.blind_icon.plane = -80
+			clear_fullscreen("blind")
 
 	if(!stat && prob(25)) //Only a 25% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
 		queen_locator()
@@ -434,30 +432,6 @@ updatehealth()
 
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
 
-/mob/living/carbon/Xenomorph/gib()
-	var/to_flick = "gibbed-a"
-	var/obj/effect/decal/remains/xeno/remains = new(get_turf(src))
-	remains.icon = icon
-	remains.pixel_x = pixel_x //For 2x2.
-
-	switch(caste) //This will need to be changed later, when we have proper xeno pathing. Might do it on caste or something.
-		if("Boiler")
-			var/mob/living/carbon/Xenomorph/Boiler/B = src
-			visible_message("<span class='danger'>[src] begins to bulge grotesquely, and explodes in a cloud of corrosive gas!</span>")
-			B.smoke.set_up(2, 0, get_turf(src))
-			B.smoke.start()
-			remains.icon_state = "gibbed-a-corpse"
-		if("Runner")
-			to_flick = "gibbed-a-corpse-runner"
-			remains.icon_state = "gibbed-a-corpse-runner"
-		if("Bloody Larva","Predalien Larva")
-			to_flick = "larva_gib"
-			remains.icon_state = "larva_gib_corpse"
-		else remains.icon_state = "gibbed-a-corpse"
-
-	..(to_flick, 0, icon) //We're spawning our own gibs, no need to do the human kind.
-	check_blood_splash(35, BURN, 65, 2) //Some testing numbers. 35 burn, 65 chance.
-	xgibs(get_turf(src))
 
 
 /mob/living/carbon/Xenomorph/proc/queen_locator()

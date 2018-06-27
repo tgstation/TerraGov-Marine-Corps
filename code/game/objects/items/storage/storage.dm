@@ -693,5 +693,6 @@
 	return depth
 
 
-/obj/item/storage/on_stored_item_del(obj/item/I)
-	remove_from_storage(I)
+/obj/item/storage/on_stored_atom_del(atom/movable/AM)
+	if(istype(AM, /obj/item))
+		remove_from_storage(AM)

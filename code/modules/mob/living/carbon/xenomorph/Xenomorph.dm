@@ -94,7 +94,7 @@ var/global/list/hive_datum = list(new /datum/hive_status(), new /datum/hive_stat
 /mob/living/carbon/Xenomorph/New()
 	..()
 	//WO GAMEMODE
-	if(ticker && istype(ticker.mode,/datum/game_mode/whiskey_outpost))
+	if(map_tag == MAP_WHISKEY_OUTPOST)
 		hardcore = 1 //Prevents healing and queen evolution
 	time_of_birth = world.time
 	add_language("Xenomorph") //xenocommon
@@ -279,3 +279,10 @@ var/global/list/hive_datum = list(new /datum/hive_status(), new /datum/hive_stat
 		new /obj/effect/overlay/temp/point(T)
 	visible_message("<b>[src]</b> points to [A]")
 	return 1
+
+
+
+///get_eye_protection()
+///Returns a number between -1 to 2
+/mob/living/carbon/Xenomorph/get_eye_protection()
+	return 2

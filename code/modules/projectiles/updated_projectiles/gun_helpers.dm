@@ -130,7 +130,7 @@ DEFINES in setup.dm, referenced here.
 	else ..()
 
 /obj/item/weapon/gun/throw_at(atom/target, range, speed, thrower)
-	if( harness_check(thrower) ) usr << "<span class='warning'>The [src] clanks on the ground.</span>"
+	if( harness_check(thrower) ) usr << "<span class='warning'>\The [src] clanks on the ground.</span>"
 	else ..()
 
 /*
@@ -217,7 +217,16 @@ should be alright.
 
  	//the active attachment is reloadable
 	else if(active_attachable && active_attachable.flags_attach_features & ATTACH_RELOADABLE)
-		active_attachable.reload_attachment(I, user)
+		if(check_inactive_hand(user))
+			if(istype(I,/obj/item/ammo_magazine))
+				var/obj/item/ammo_magazine/MG = I
+				if(istype(src, MG.gun_type))
+					user << "<span class='notice'>You disable [active_attachable].</span>"
+					playsound(user, active_attachable.activation_sound, 15, 1)
+					active_attachable.activate_attachment(src, null, TRUE)
+					reload(user,MG)
+					return
+			active_attachable.reload_attachment(I, user)
 
 	else if(istype(I,/obj/item/ammo_magazine))
 		if(check_inactive_hand(user)) reload(user,I)
@@ -344,11 +353,7 @@ should be alright.
 	overlays -= I
 	cdel(I)
 	if(A) //Only updates if the attachment exists for that slot.
-		var/item_icon = A.icon_state
-		if(A.attach_icon) item_icon = A.attach_icon
-		if(slot == "rail" && (flags_gun_features & GUN_FLASHLIGHT_ON))
-			item_icon = "[item_icon]-on"
-		I = rnew(/image/reusable, list(A.icon,src, item_icon))
+		I = rnew(/image/reusable, list(A.icon,src, A.attach_icon))
 		I.pixel_x = attachable_offset["[slot]_x"] - A.pixel_shift_x
 		I.pixel_y = attachable_offset["[slot]_y"] - A.pixel_shift_y
 		attachable_overlays[slot] = I
@@ -441,7 +446,11 @@ should be alright.
 		usr << "<span class='warning'>[src] has no removable attachments.</span>"
 		return
 
-	var/obj/item/attachable/A = input("Which attachment to remove?") as null|anything in possible_attachments
+	var/obj/item/attachable/A
+	if(possible_attachments.len == 1)
+		A = possible_attachments[1]
+	else
+		A = input("Which attachment to remove?") as null|anything in possible_attachments
 
 	if(!A)
 		return
@@ -573,7 +582,7 @@ should be alright.
 
 
 
-/obj/item/weapon/gun/verb/activate_attachment()
+/obj/item/weapon/gun/verb/activate_attachment_verb()
 	set category = "Weapons"
 	set name = "Load From Attachment"
 	set desc = "Load from a gun attachment, such as a mounted grenade launcher, shotgun, or flamethrower."
@@ -583,45 +592,41 @@ should be alright.
 	if(!G) return
 	src = G
 
+	var/obj/item/attachable/A
+
 	var/usable_attachments[] = list() //Basic list of attachments to compare later.
-	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) ) usable_attachments += rail
+// rail attachment use the button to toggle flashlight instead.
+//	if(rail && (rail.flags_attach_features & ATTACH_ACTIVATION) )
+//		usable_attachments += rail
 	if(under && (under.flags_attach_features & ATTACH_ACTIVATION) )
-		if(istype(under, /obj/item/attachable/bipod)) //Specific case for bipods. Can be revised later if necessary.
-			if(under.activate_attachment(src,usr)) return
-		else usable_attachments += under
-	if(stock  && (stock.flags_attach_features & ATTACH_ACTIVATION) ) usable_attachments += stock
-	if(muzzle && (muzzle.flags_attach_features & ATTACH_ACTIVATION) ) usable_attachments += muzzle
+		usable_attachments += under
+	if(stock  && (stock.flags_attach_features & ATTACH_ACTIVATION) )
+		usable_attachments += stock
+	if(muzzle && (muzzle.flags_attach_features & ATTACH_ACTIVATION) )
+		usable_attachments += muzzle
 
 	if(!usable_attachments.len) //No usable attachments.
 		usr << "<span class='warning'>[src] does not have any usable attachments!</span>"
 		return
 
 	if(usable_attachments.len == 1) //Activates the only attachment if there is only one.
-		if(active_attachable && !(active_attachable.flags_attach_features & ATTACH_PASSIVE) ) //In case the attach is passive like the flashlight/scope.
-			cancel_active_attachment(usr)
-			return
-		else active_attachable = usable_attachments[1]
+		A = usable_attachments[1]
 	else
-		//If you click on anything but the attachment name, it'll cancel anything active.
-		usable_attachments += active_attachable ? "Cancel Active" : "Cancel"
-		var/obj/item/attachable/activate_this = input("Which attachment to activate?") as null|anything in usable_attachments
-		if(!usr.client || src.loc != usr) return//Dropped or something.
-		if(!activate_this || activate_this == "Cancel" || activate_this == "Cancel Active")
-			if(active_attachable  && !(active_attachable.flags_attach_features & ATTACH_PASSIVE) ) cancel_active_attachment(usr)
+		A = input("Which attachment to activate?") as null|anything in usable_attachments
+		if(!A || A.loc != src)
 			return
+	if(A)
+		A.ui_action_click(usr, src)
 
-		if(activate_this.loc == src) active_attachable = activate_this //If it's still held in the gun.
-	toggle_active_attachment(usr)
 
-/obj/item/weapon/gun/proc/cancel_active_attachment(mob/user)
-	user << "<span class='notice'>You disable [active_attachable].</span>"
-	playsound(user, active_attachable.activation_sound, 15, 1)
-	active_attachable = null
 
-/obj/item/weapon/gun/proc/toggle_active_attachment(mob/user)
-	user << "<span class='notice'>You toggle the [active_attachable.name].</span>"
-	playsound(user, active_attachable.activation_sound, 15, 1)
-	active_attachable.activate_attachment(src,user)
+
+
+obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
+	if(slot != WEAR_L_HAND && slot != WEAR_R_HAND)
+		return FALSE
+	return TRUE
+
 
 //----------------------------------------------------------
 				//				   	   \\

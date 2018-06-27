@@ -184,12 +184,22 @@ var/savefile/Banlist
 			expiry = GetExp(Banlist["minutes"])
 			if(!expiry)		expiry = "Removal Pending"
 		else				expiry = "Permaban"
+		var/unban_link = "<A href='?src=[ref];unbanf=[key][id]'>(U)</A><A href='?src=[ref];unbane=[key][id]'>(E)</A>"
+		var/perma_links = ""
+		if(check_rights(R_ADMIN,0))
+			if((Banlist["minutes"] - CMinutes) > 10080)
+				unban_link = ""
+				perma_links = "<A href='?src=[ref];unbanf=[key][id]'>(L)</A>"
+			else
+				perma_links = "<A href='?src=[ref];unbanupgradeperma=[key][id]'>(P)</A>"
 
-		dat += text("<tr><td><A href='?src=[ref];unbanf=[key][id]'>(U)</A><A href='?src=[ref];unbane=[key][id]'>(E)</A> Key: <B>[key]</B></td><td>ComputerID: <B>[id]</B></td><td>IP: <B>[ip]</B></td><td> [expiry]</td><td>(By: [by])</td><td>(Reason: [reason])</td></tr>")
+		dat += "<tr><td>[unban_link][perma_links] Key: <B>[key]</B></td><td>ComputerID: <B>[id]</B></td><td>IP: <B>[ip]</B></td><td> [expiry]</td><td>(By: [by])</td><td>(Reason: [reason])</td></tr>"
 
 	dat += "</table>"
-	dat = "<HR><B>Bans:</B> <FONT COLOR=blue>(U) = Unban , (E) = Edit Ban</FONT> - <FONT COLOR=green>([count] Bans)</FONT><HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 >[dat]"
-	usr << browse(dat, "window=unbanp;size=875x400")
+	var/dat_header = "<HR><B>Bans:</B> <FONT COLOR=blue>(U) = Unban , (E) = Edit Ban"
+	if(check_rights(R_ADMIN,0))	dat_header += ", (P) = Upgrade to Perma, (L) = Lift Permaban"
+	dat_header += "</FONT> - <FONT COLOR=green>([count] Bans)</FONT><HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 >[dat]"
+	usr << browse(dat_header, "window=unbanp;size=875x400")
 
 //////////////////////////////////// DEBUG ////////////////////////////////////
 

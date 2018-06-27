@@ -1203,7 +1203,6 @@
 			var/obj/item/card/id/W = new(M)
 			W.name = "[M.real_name]'s ID Card"
 			W.icon_state = "centcom"
-			W.item_state = "id_inv"
 			W.access = get_all_accesses()
 			W.access = get_all_centcom_access()
 			W.assignment = "Corporate Representative"

@@ -317,7 +317,7 @@ roles willy nilly.
 	//If they fail the two passes, or no regular roles are available, they become a marine regardless.
 	assign_role(M,roles_for_mode["Squad Marine"])
 
-/datum/authority/branch/role/proc/assign_role(mob/new_player/M, datum/job/J, latejoin)
+/datum/authority/branch/role/proc/assign_role(mob/new_player/M, datum/job/J, latejoin=0)
 	if(ismob(M) && M.mind && istype(J))
 		if(check_role_entry(M, J, latejoin))
 			M.mind.assigned_role 		= J.title
@@ -329,7 +329,7 @@ roles willy nilly.
 			//world << "[J.title]: [J.current_positions] current positions filled." //TODO DEBUG
 			return 1
 
-/datum/authority/branch/role/proc/check_role_entry(mob/new_player/M, datum/job/J, latejoin)
+/datum/authority/branch/role/proc/check_role_entry(mob/new_player/M, datum/job/J, latejoin=0)
 	if(jobban_isbanned(M, J.title)) return //TODO standardize this
 	if(!J.player_old_enough(M.client)) return
 	if(J.flags_startup_parameters & ROLE_WHITELISTED && !(roles_whitelist[M.ckey] & J.flags_whitelist)) return

@@ -1,8 +1,3 @@
-/mob/living/carbon/hellhound/gib()
-	..(null,1)
-
-/mob/living/carbon/hellhound/dust()
-	..("dust-m")
 
 /mob/living/carbon/hellhound/death(gibbed)
 	emote("roar")

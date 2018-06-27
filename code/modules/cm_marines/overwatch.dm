@@ -14,6 +14,8 @@
 	var/y_offset_b = 0
 	var/living_marines_sorting = FALSE
 	var/busy = 0 //The overwatch computer is busy launching an OB/SB, lock controls
+	var/dead_hidden = FALSE //whether or not we show the dead marines in the squad.
+	var/z_hidden = 0 //which z level is ignored when showing marines.
 //	var/console_locked = 0
 
 
@@ -128,8 +130,12 @@
 							H = X
 							mob_name = H.real_name
 							var/area/A = get_area(H)
+							var/turf/M_turf = get_turf(H)
 							if(A)
 								area_name = sanitize(A.name)
+
+							if(z_hidden && z_hidden == M_turf.z)
+								continue
 
 							if(H.mind && H.mind.assigned_role)
 								role = H.mind.assigned_role
@@ -142,7 +148,7 @@
 									dist = "<b>N/A</b>"
 									if(H.mind && H.mind.assigned_role != "Squad Leader")
 										act_sl = " (acting SL)"
-								else if(H.z == SL_z && H.z != 0)
+								else if(M_turf.z == SL_z)
 									dist = "[get_dist(H, current_squad.squad_leader)] ([dir2text_short(get_dir(current_squad.squad_leader, H))])"
 
 							switch(H.stat)
@@ -157,6 +163,8 @@
 									unconscious_text += "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 
 								if(DEAD)
+									if(dead_hidden)
+										continue
 									mob_state = "<font color='red'>DEAD</font>"
 									dead_text += "<tr><td><A href='?src=\ref[src];operation=use_cam;cam_target=\ref[H]'>[mob_name]</a></td><td>[role][act_sl]</td><td>[mob_state]</td><td>[area_name]</td><td>[dist]</td></tr>"
 
@@ -172,6 +180,10 @@
 									fteam = " \[[ID.assigned_fireteam]\]"
 
 						else //listed marine was deleted or gibbed, all we have is their name
+							if(dead_hidden)
+								continue
+							if(z_hidden) //gibbed marines are neither on the colony nor on the almayer
+								continue
 							for(var/datum/data/record/t in data_core.general)
 								if(t.fields["name"] == X)
 									role = t.fields["real_rank"]
@@ -221,14 +233,16 @@
 				dat += "<BR><BR>----------------------<br>"
 				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a><br>"
 				dat += "<A href='?src=\ref[src];operation=change_sort'>{Change Sorting Method}</a><br>"
-				dat += "<A href='?src=\ref[src];operation=back'>{Back}</a></body>"
+				dat += "<A href='?src=\ref[src];operation=hide_dead'>{[dead_hidden ? "Show Dead Marines" : "Hide Dead Marines" ]}</a><br>"
+				dat += "<A href='?src=\ref[src];operation=choose_z'>{Change Locations Ignored}</a><br>"
+				dat += "<br><A href='?src=\ref[src];operation=back'>{Back}</a></body>"
 			if(2)
 				dat += "<BR><B>Supply Drop Control</B><BR><BR>"
 				if(!current_squad)
 					dat += "No squad selected!"
 				else
 					dat += "<B>Current Supply Drop Status:</B> "
-					var/cooldown_left = current_squad.supply_cooldown - (world.time + 5000)
+					var/cooldown_left = (current_squad.supply_cooldown + 5000) - world.time
 					if(cooldown_left > 0)
 						dat += "Launch tubes resetting ([round(cooldown_left/10)] seconds)<br>"
 					else
@@ -259,9 +273,11 @@
 					dat += "No squad selected!"
 				else
 					dat += "<B>Current Cannon Status:</B> "
-					var/cooldown_left = current_squad.bomb_cooldown - (world.time + 20000)
+					var/cooldown_left = (almayer_orbital_cannon.last_orbital_firing + 5000) - world.time
 					if(cooldown_left > 0)
-						dat += "Shells Reloading ([round(cooldown_left/10)] seconds)<br>"
+						dat += "Cannon on cooldown ([round(cooldown_left/10)] seconds)<br>"
+					else if(!almayer_orbital_cannon.chambered_tray)
+						dat += "<font color='red'>No ammo chambered in the cannon.</font><br>"
 					else
 						dat += "<font color='green'>Ready!</font><br>"
 					dat += "<B>Beacon Status:</b> "
@@ -422,6 +438,24 @@
 				usr << "\icon[src] <span class='notice'>Marines are now sorted by health status.</span>"
 			else
 				usr << "\icon[src] <span class='notice'>Marines are now sorted by rank.</span>"
+		if("hide_dead")
+			dead_hidden = !dead_hidden
+			if(dead_hidden)
+				usr << "\icon[src] <span class='notice'>Dead marines are now not shown.</span>"
+			else
+				usr << "\icon[src] <span class='notice'>Dead marines are now shown again.</span>"
+		if("choose_z")
+			switch(z_hidden)
+				if(0)
+					z_hidden = MAIN_SHIP_Z_LEVEL
+					usr << "\icon[src] <span class='notice'>Marines on the Almayer are now hidden.</span>"
+				if(MAIN_SHIP_Z_LEVEL)
+					z_hidden = 1
+					usr << "\icon[src] <span class='notice'>Marines on the ground are now hidden.</span>"
+				else
+					z_hidden = 0
+					usr << "\icon[src] <span class='notice'>No location is ignored anymore.</span>"
+
 		if("change_lead")
 			change_lead()
 		if("insubordination")
@@ -430,16 +464,15 @@
 			transfer_squad()
 		if("dropsupply")
 			if(current_squad)
-				if(current_squad.supply_cooldown > (world.time + 5000))
+				if((current_squad.supply_cooldown + 5000) > world.time)
 					usr << "\icon[src] <span class='warning'>Supply drop not yet available!</span>"
 				else
 					handle_supplydrop()
 		if("dropbomb")
-			if(current_squad)
-				if(current_squad.bomb_cooldown > (world.time + 20000))
-					usr << "\icon[src] <span class='warning'>Orbital bombardment not yet available!</span>"
-				else
-					handle_bombard()
+			if((almayer_orbital_cannon.last_orbital_firing + 5000) > world.time)
+				usr << "\icon[src] <span class='warning'>Orbital bombardment not yet available!</span>"
+			else
+				handle_bombard()
 		if("back")
 			state = 0
 		if("use_cam")
@@ -483,18 +516,24 @@
 /obj/machinery/computer/overwatch/proc/send_to_squad(var/txt = "", var/plus_name = 0, var/only_leader = 0)
 	if(txt == "" || !current_squad || !operator) return //Logic
 
-	var/text = sanitize(txt)
+	var/text = copytext(sanitize(txt), 1, MAX_MESSAGE_LEN)
 	var/nametext = ""
 	if(plus_name)
 		nametext = "[usr.name] transmits: "
+		text = "<font size='3'><b>[text]<b></font>"
 
 	for(var/mob/living/carbon/human/M in current_squad.marines_list)
 		if(!M.stat && M.client) //Only living and connected people in our squad
 			if(!only_leader)
+				if(plus_name)
+					M << sound('sound/effects/radiostatic.ogg')
 				M << "\icon[src] <font color='blue'><B>\[Overwatch\]:</b> [nametext][text]</font>"
 			else
 				if(current_squad.squad_leader == M)
+					if(plus_name)
+						M << sound('sound/effects/radiostatic.ogg')
 					M << "\icon[src] <font color='blue'><B>\[SL Overwatch\]:</b> [nametext][text]</font>"
+					return
 
 /obj/machinery/computer/overwatch/proc/handle_bombard()
 	if(!usr) return
@@ -509,6 +548,10 @@
 
 	if(!current_squad.bbeacon)
 		usr << "\icon[src] <span class='warning'>No orbital beacon detected!</span>"
+		return
+
+	if(!almayer_orbital_cannon.chambered_tray)
+		usr << "\icon[src] <span class='warning'>The orbital cannon has no ammo chambered.</span>"
 		return
 
 	if(!isturf(current_squad.bbeacon.loc) || current_squad.bbeacon.z != 1)
@@ -547,9 +590,9 @@
 	send_to_squad("Calibrating trajectory window.")
 	sleep(20)
 	for(var/mob/living/carbon/H in living_mob_list)
-		if((H.z == MAIN_SHIP_Z_LEVEL) && !stat) //USS Almayer decks.
+		if(H.z == MAIN_SHIP_Z_LEVEL && !H.stat) //USS Almayer decks.
 			H << "<span class='warning'>The deck of the USS Almayer shudders as the orbital cannons open fire on the colony.</span>"
-			if(!H.buckled && H.client)
+			if(H.client)
 				shake_camera(H, 10, 1)
 	visible_message("\icon[src] <span class='boldnotice'>Orbital bombardment for squad '[current_squad]' has fired! Impact imminent!</span>")
 	send_to_squad("WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!")
@@ -562,7 +605,6 @@
 			message_mods("ALERT: [usr] ([usr.key]) fired an orbital bombardment in [A.name] for squad '[current_squad]' (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)")
 			log_attack("[usr.name] ([usr.ckey]) fired an orbital bombardment in [A.name] for squad '[current_squad]'")
 		busy = 0
-		current_squad.bomb_cooldown = world.time
 		if(current_squad.bbeacon)
 			cdel(current_squad.bbeacon) //Wipe the beacon. It's only good for one use.
 			current_squad.bbeacon = null
@@ -572,10 +614,8 @@
 		if(target && istype(target))
 			target.ceiling_debris_check(5)
 			spawn(2)
-				explosion(target,4,5,6,6,1,0) //massive boom
-				for(var/turf/TU in range(6,target))
-					if(!locate(/obj/flamer_fire) in TU)
-						new/obj/flamer_fire(TU, 10, 40) //super hot flames
+				almayer_orbital_cannon.fire_ob_cannon(target, usr)
+
 
 /obj/machinery/computer/overwatch/proc/change_lead()
 	if(!usr || usr != operator)
@@ -599,15 +639,15 @@
 	if(jobban_isbanned(H, "Squad Leader"))
 		usr << "\icon[src] <span class='warning'>[H] is unfit to lead!</span>"
 		return
-	if(current_squad.squad_leader && current_squad.squad_leader.stat != DEAD)
-		send_to_squad("Attention: [current_squad.squad_leader] is demoted. A new Squad Leader has been set: [H.real_name].")
-		visible_message("\icon[src] <span class='boldnotice'>Squad Leader [current_squad.squad_leader] of squad '[current_squad]' has been demoted and replaced by [H.real_name]! Logging to enlistment files.</span>")
-		current_squad.demote_squad_leader()
+	if(current_squad.squad_leader)
+		send_to_squad("Attention: [current_squad.squad_leader] is [current_squad.squad_leader.stat == DEAD ? "stepping down" : "demoted"]. A new Squad Leader has been set: [H.real_name].")
+		visible_message("\icon[src] <span class='boldnotice'>Squad Leader [current_squad.squad_leader] of squad '[current_squad]' has been [current_squad.squad_leader.stat == DEAD ? "replaced" : "demoted and replaced"] by [H.real_name]! Logging to enlistment files.</span>")
+		current_squad.demote_squad_leader(current_squad.squad_leader.stat != DEAD)
 	else
 		send_to_squad("Attention: A new Squad Leader has been set: [H.real_name].")
 		visible_message("\icon[src] <span class='boldnotice'>[H.real_name] is the new Squad Leader of squad '[current_squad]'! Logging to enlistment file.</span>")
 
-	H << "\icon[src] <font size='3' color='blue'><B>\[Overwatch\]:</b> You've been promoted to \'[H.mind.assigned_role == "Squad Leader" ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</font>"
+	H << "\icon[src] <font size='3' color='blue'><B>\[Overwatch\]: You've been promoted to \'[H.mind.assigned_role == "Squad Leader" ? "SQUAD LEADER" : "ACTING SQUAD LEADER"]\' for [current_squad.name]. Your headset has access to the command channel (:v).</B></font>"
 	usr << "\icon[src] [H.real_name] is [current_squad]'s new leader!"
 	current_squad.squad_leader = H
 	if(H.mind.assigned_role == "Squad Leader")//a real SL

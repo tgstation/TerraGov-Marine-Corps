@@ -116,6 +116,7 @@ var/list/admin_verbs_server = list(
 	/datum/admins/proc/restart,
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggleaban,
+	/datum/admins/proc/end_round,
 	/client/proc/toggle_log_hrefs,
 	/datum/admins/proc/toggleAI,
 	/client/proc/cmd_admin_delete,		/*delete an instance/object/mob/etc*/
@@ -127,7 +128,9 @@ var/list/admin_verbs_server = list(
 	/client/proc/cancelMapVote,
 	/client/proc/killMapDaemon,
 	/client/proc/editVotableMaps,
-	/client/proc/showVotableMaps
+	/client/proc/showVotableMaps,
+	/client/proc/forceMDMapVote,
+	/client/proc/reviveMapDaemon
 	)
 var/list/admin_verbs_debug = list(
     /client/proc/getruntimelog,                     /*allows us to access runtime logs to somebody*/
@@ -213,6 +216,7 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/restart,
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggleaban,
+	/datum/admins/proc/end_round,
 	/client/proc/toggle_log_hrefs,
 	/client/proc/everyone_random,
 	/datum/admins/proc/toggleAI,
@@ -387,7 +391,7 @@ var/list/admin_verbs_mentor = list(
 		body.ghostize(1)
 		if(body && !body.key)
 			body.key = "@[key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
-			if(body.client) body.client.view = world.view //reset view range to default.
+			if(body.client) body.client.change_view(world.view) //reset view range to default.
 		feedback_add_details("admin_verb","O") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -737,12 +741,6 @@ var/list/admin_verbs_mentor = list(
 		M.g_skin = hex2num(copytext(new_skin, 4, 6))
 		M.b_skin = hex2num(copytext(new_skin, 6, 8))
 
-	var/new_tone = input("Please select skin tone level: 1-220 (1=albino, 35=caucasian, 150=black, 220='very' black)", "Character Generation")  as text
-
-	if (new_tone)
-		M.s_tone = max(min(round(text2num(new_tone)), 220), 1)
-		M.s_tone =  -M.s_tone + 35
-		M.pale_max = M.s_tone + HUMAN_MAX_PALENESS
 
 	// hair
 	var/new_hstyle = input(usr, "Select a hair style", "Grooming")  as null|anything in hair_styles_list

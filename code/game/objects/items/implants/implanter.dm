@@ -20,24 +20,23 @@
 
 
 /obj/item/implanter/attack(mob/M as mob, mob/user as mob)
-	if (!istype(M, /mob/living/carbon))
+	if (!istype(M, /mob/living/carbon/human) && !istype(M, /mob/living/carbon/monkey))
+		return
+	if(isYautja(M))
 		return
 	if (user && src.imp)
-		for (var/mob/O in viewers(M, null))
-			O.show_message("\red [user] is attemping to implant [M].", 1)
+		user.visible_message("<span class='warning'>[user] is attemping to implant [M].</span>", "<span class='notice'>You're attemping to implant [M].</span>")
 
 		var/turf/T1 = get_turf(M)
 		if (T1 && ((M == user) || do_after(user, 50, TRUE, 5, BUSY_ICON_GENERIC)))
 			if(user && M && (get_turf(M) == T1) && src && src.imp)
-				for (var/mob/O in viewers(M, null))
-					O.show_message("\red [M] has been implanted by [user].", 1)
+				if(src.imp.implanted(M, user))
+					M.visible_message("<span class='warning'>[M] has been implanted by [user].</span>")
 
-				M.attack_log += text("\[[time_stamp()]\] <font color='orange'> Implanted with [src.name] ([src.imp.name])  by [user.name] ([user.ckey])</font>")
-				user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] ([src.imp.name]) to implant [M.name] ([M.ckey])</font>")
-				msg_admin_attack("[user.name] ([user.ckey]) implanted [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+					M.attack_log += text("\[[time_stamp()]\] <font color='orange'> Implanted with [src.name] ([src.imp.name])  by [user.name] ([user.ckey])</font>")
+					user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [src.name] ([src.imp.name]) to implant [M.name] ([M.ckey])</font>")
+					msg_admin_attack("[user.name] ([user.ckey]) implanted [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-				user.show_message("\red You implanted the implant into [M].")
-				if(src.imp.implanted(M))
 					src.imp.loc = M
 					src.imp.imp_in = M
 					src.imp.implanted = 1
@@ -49,8 +48,10 @@
 
 						M.sec_hud_set_implants()
 
-				src.imp = null
-				update()
+					src.imp = null
+					update()
+				else
+					user << "<span class='notice'> You failed to implant [M].</span>"
 
 	return
 

@@ -1,12 +1,6 @@
 
 //Marine jobs. All marines are genericized when they first log in, then it auto assigns them to squads.
 
-proc/medic_slot_formula(var/playercount)
-	return round(Clamp((playercount/60)+1, 2, 4)) // 3rd medic at 120, 4th at 180
-
-proc/engi_slot_formula(var/playercount)
-	return round(Clamp((playercount/70)+1, 2, 3)) // 3rd engi at 140
-
 /datum/job/marine
 	department_flag = ROLEGROUP_MARINE_SQUAD_MARINES
 	supervisors = "the acting squad leader"
@@ -74,11 +68,13 @@ You are also in charge of communicating with command and letting them know about
 		. = ..() + {"\nYou have the equipment and skill to build fortifications, reroute power lines, and bunker down.
 Your squaddies will look to you when it comes to construction in the field of battle."}
 
-	get_total_positions()
-		for(var/datum/squad/sq in RoleAuthority.squads)
-			if(sq)
-				sq.max_engineers = engi_slot_formula(clients.len)
-		return (engi_slot_formula(clients.len)*4)
+	get_total_positions(var/latejoin=0)
+		var/slots = engi_slot_formula(get_total_marines())
+		if(latejoin)
+			for(var/datum/squad/sq in RoleAuthority.squads)
+				if(sq)
+					sq.max_engineers = slots
+		return (slots*4)
 
 /datum/job/marine/engineer/equipped
 	flags_startup_parameters = ROLE_ADD_TO_SQUAD
@@ -104,11 +100,13 @@ Your squaddies will look to you when it comes to construction in the field of ba
 		. = ..() + {"\nYou must tend the wounds of your squad mates and make sure they are healthy and active.
 You may not be a fully-fledged doctor, but you stand between life and death when it matters."}
 
-	get_total_positions()
-		for(var/datum/squad/sq in RoleAuthority.squads)
-			if(sq)
-				sq.max_medics = medic_slot_formula(clients.len)
-		return (medic_slot_formula(clients.len)*4)
+	get_total_positions(var/latejoin=0)
+		var/slots = medic_slot_formula(get_total_marines())
+		if(latejoin)
+			for(var/datum/squad/sq in RoleAuthority.squads)
+				if(sq)
+					sq.max_medics = slots
+		return (slots*4)
 
 /datum/job/marine/medic/equipped
 	flags_startup_parameters = ROLE_ADD_TO_SQUAD

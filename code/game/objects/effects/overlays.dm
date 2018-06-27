@@ -100,7 +100,7 @@
 	. = ..()
 
 /obj/effect/overlay/temp/laser_target/ex_act(severity) //immune to explosions
-		return
+	return
 
 /obj/effect/overlay/temp/laser_target/examine()
 	..()
@@ -137,3 +137,49 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "emppulse"
 	effect_duration = 20
+
+
+
+
+//gib animation
+
+/obj/effect/overlay/temp/gib_animation
+	icon = 'icons/mob/mob.dmi'
+	effect_duration = 14
+
+/obj/effect/overlay/temp/gib_animation/New(Loc, mob/source_mob, gib_icon)
+	pixel_x = source_mob.pixel_x
+	pixel_y = source_mob.pixel_y
+	icon_state = gib_icon
+	..()
+
+/obj/effect/overlay/temp/gib_animation/ex_act(severity)
+	return
+
+
+/obj/effect/overlay/temp/gib_animation/animal
+	icon = 'icons/mob/animal.dmi'
+	effect_duration = 12
+
+
+/obj/effect/overlay/temp/gib_animation/xeno
+	icon = 'icons/Xeno/xenomorph_48x48.dmi'
+	effect_duration = 10
+
+/obj/effect/overlay/temp/gib_animation/xeno/New(Loc, mob/source_mob, gib_icon, new_icon)
+	icon = new_icon
+	..()
+
+
+
+//dust animation
+
+/obj/effect/overlay/temp/dust_animation
+	icon = 'icons/mob/mob.dmi'
+	effect_duration = 12
+
+/obj/effect/overlay/temp/dust_animation/New(Loc, mob/source_mob, gib_icon)
+	pixel_x = source_mob.pixel_x
+	pixel_y = source_mob.pixel_y
+	icon_state = gib_icon
+	..()

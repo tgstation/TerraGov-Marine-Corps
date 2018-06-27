@@ -27,9 +27,10 @@
 	if(user in src.stomach_contents)
 		if(user.client)
 			user.client.next_movement = world.time + 20
-		for(var/mob/M in hearers(4, src))
-			if(M.client)
-				M.show_message(text("\red You hear something rumbling inside [src]'s stomach..."), 2)
+		if(prob(30))
+			for(var/mob/M in hearers(4, src))
+				if(M.client)
+					M.show_message("\red You hear something rumbling inside [src]'s stomach...", 2)
 		var/obj/item/I = user.get_active_hand()
 		if(I && I.force)
 			var/d = rand(round(I.force / 4), I.force)
@@ -55,7 +56,7 @@
 		L.chest_burst(src)
 
 
-/mob/living/carbon/gib(anim, do_gibs, f_icon)
+/mob/living/carbon/gib()
 	if(legcuffed)
 		drop_inv_item_on_ground(legcuffed)
 
@@ -66,7 +67,7 @@
 		if(ismob(A))
 			visible_message("<span class='danger'>[A] bursts out of [src]!</span>")
 
-	. = ..(anim, do_gibs, f_icon)
+	. = ..()
 
 
 /mob/living/carbon/revive()
@@ -378,4 +379,14 @@
 			step(src, slide_dir)
 			sleep(2)
 			if(!lying)
+				break
+
+
+
+/mob/living/carbon/on_stored_atom_del(atom/movable/AM)
+	..()
+	if(stomach_contents.len && ismob(AM))
+		for(var/X in stomach_contents)
+			if(AM == X)
+				stomach_contents -= AM
 				break

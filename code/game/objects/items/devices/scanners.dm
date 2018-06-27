@@ -156,38 +156,45 @@ REAGENT SCANNER
 			if(org.status & LIMB_DESTROYED)
 				dat += "\t\t [capitalize(org.display_name)]: <span class='scannerb'>Missing!</span>\n"
 				continue
-			if(org.burn_dam > 0 || org.brute_dam > 0 || (org.status & (LIMB_BLEEDING | LIMB_NECROTIZED | LIMB_SPLINTED)) || open_incision)
-				var/org_name = "[capitalize(org.display_name)][org.status & LIMB_ROBOT ? " (Cybernetic)" : ""]"
-				var/burn_info = org.burn_dam > 0 ? "<span class='scannerburnb'> [round(org.burn_dam)]</span>" : "<span class='scannerburn'>0</span>"
-				burn_info += "[((burn_treated)?"":"{B}")]"
-				var/brute_info =  org.brute_dam > 0 ? "<span class='scannerb'> [round(org.brute_dam)]</span>" : "<span class='scanner'>0</span>"
-				brute_info += "[(brute_treated && org.brute_dam >= 1?"":"{T}")]"
-				var/fracture_info = ""
-				if((org.status & LIMB_BROKEN) && !(org.status & LIMB_SPLINTED))
-					fracture_info = "{F}"
-				var/infection_info = ""
-				if(org.has_infected_wound())
-					infection_info = "{I}"
-				var/org_bleed = (org.status & LIMB_BLEEDING) ? "<span class='scannerb'>(Bleeding)</span>" : ""
-				var/org_necro = ""
-				if(org.status & LIMB_NECROTIZED)
-					org_necro = "<span class='scannerb'>(Necrotizing)</span>"
-					infection_present = 10
-				var/org_incision = (open_incision?" <span class='scanner'>Open surgical incision</span>":"")
-				var/org_advice = ""
-				switch(org.name)
-					if("head")
-						fracture_info = ""
-						if(org.brute_dam > 40 || M.getBrainLoss() >= 20)
-							org_advice = " Possible Skull Fracture."
-					if("chest")
-						fracture_info = ""
-						if(org.brute_dam > 40 || M.getOxyLoss() > 50)
-							org_advice = " Possible Chest Fracture."
-					if("groin")
-						fracture_info = ""
-						if(org.brute_dam > 40 || M.getToxLoss() > 50)
-							org_advice = " Possible Groin Fracture."
+
+			var/show_limb = (org.burn_dam > 0 || org.brute_dam > 0 || (org.status & (LIMB_BLEEDING | LIMB_NECROTIZED | LIMB_SPLINTED)) || open_incision)
+			var/org_name = "[capitalize(org.display_name)][org.status & LIMB_ROBOT ? " (Cybernetic)" : ""]"
+			var/burn_info = org.burn_dam > 0 ? "<span class='scannerburnb'> [round(org.burn_dam)]</span>" : "<span class='scannerburn'>0</span>"
+			burn_info += "[((burn_treated)?"":"{B}")]"
+			var/brute_info =  org.brute_dam > 0 ? "<span class='scannerb'> [round(org.brute_dam)]</span>" : "<span class='scanner'>0</span>"
+			brute_info += "[(brute_treated && org.brute_dam >= 1?"":"{T}")]"
+			var/fracture_info = ""
+			if((org.status & LIMB_BROKEN) && !(org.status & LIMB_SPLINTED))
+				fracture_info = "{F}"
+				show_limb = 1
+			var/infection_info = ""
+			if(org.has_infected_wound())
+				infection_info = "{I}"
+				show_limb = 1
+			var/org_bleed = (org.status & LIMB_BLEEDING) ? "<span class='scannerb'>(Bleeding)</span>" : ""
+			var/org_necro = ""
+			if(org.status & LIMB_NECROTIZED)
+				org_necro = "<span class='scannerb'>(Necrotizing)</span>"
+				infection_present = 10
+			var/org_incision = (open_incision?" <span class='scanner'>Open surgical incision</span>":"")
+			var/org_advice = ""
+			switch(org.name)
+				if("head")
+					fracture_info = ""
+					if(org.brute_dam > 40 || M.getBrainLoss() >= 20)
+						org_advice = " Possible Skull Fracture."
+						show_limb = 1
+				if("chest")
+					fracture_info = ""
+					if(org.brute_dam > 40 || M.getOxyLoss() > 50)
+						org_advice = " Possible Chest Fracture."
+						show_limb = 1
+				if("groin")
+					fracture_info = ""
+					if(org.brute_dam > 40 || M.getToxLoss() > 50)
+						org_advice = " Possible Groin Fracture."
+						show_limb = 1
+			if(show_limb)
 				dat += "\t\t [org_name]: \t [burn_info] - [brute_info] [fracture_info][infection_info][org_bleed][org_necro][org_incision][org_advice]"
 				if(org.status & LIMB_SPLINTED)
 					dat += "(Splinted)"
@@ -274,9 +281,10 @@ REAGENT SCANNER
 	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 		// Show blood level
-		var/blood_volume = 560
-		if(H.vessel)
-			blood_volume = round(H.vessel.get_reagent_amount("blood"))
+		var/blood_volume = BLOOD_VOLUME_NORMAL
+		if(!(H.species.flags & NO_BLOOD))
+			blood_volume = round(H.blood_volume)
+
 			var/blood_percent =  blood_volume / 560
 			var/blood_type = H.dna.b_type
 			blood_percent *= 100

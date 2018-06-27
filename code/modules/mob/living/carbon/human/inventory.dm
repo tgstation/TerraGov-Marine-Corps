@@ -135,12 +135,15 @@
 			update_inv_wear_mask()
 		if(I.flags_inv_hide & HIDEEYES)
 			update_inv_glasses()
+		update_tint()
 		update_inv_head()
 	else if (I == gloves)
 		gloves = null
 		update_inv_gloves()
 	else if (I == glasses)
 		glasses = null
+		update_tint()
+		update_glass_vision(I)
 		update_inv_glasses()
 	else if (I == wear_ear)
 		wear_ear = null
@@ -170,8 +173,9 @@
 
 
 
-/mob/living/carbon/human/wear_mask_update(obj/item/I)
-	if(istype(I,/obj/item/clothing/mask/facehugger))
+/mob/living/carbon/human/wear_mask_update(obj/item/I, equipping)
+	//equipping arg to differentiate when we equip/unequip a mask
+	if(!equipping && istype(I,/obj/item/clothing/mask/facehugger))
 		var/obj/item/clothing/mask/facehugger/F = I
 		if(F.stat != DEAD && !F.sterile && !(status_flags & XENO_HOST)) //Huggered but not impregnated, deal damage.
 			visible_message("<span class='danger'>[F] frantically claws at [src]'s face!</span>","<span class='danger'>[F] frantically claws at your face! Auugh!</span>")
@@ -183,10 +187,11 @@
 		update_inv_ears()
 	if(I.flags_inv_hide & HIDEEYES)
 		update_inv_glasses()
-	if(internal)
+	if(!equipping && internal)
 		if(hud_used && hud_used.internals)
 			hud_used.internals.icon_state = "internal0"
 		internal = null
+	update_tint()
 	update_inv_wear_mask()
 
 
@@ -200,9 +205,18 @@
 	if(W == l_hand)
 		l_hand = null
 		update_inv_l_hand()
+		//removes item's actions, may be readded once re-equipped to the new slot
+		for(var/X in W.actions)
+			var/datum/action/A = X
+			A.remove_action(src)
+
 	else if(W == r_hand)
 		r_hand = null
 		update_inv_r_hand()
+		//removes item's actions, may be readded once re-equipped to the new slot
+		for(var/X in W.actions)
+			var/datum/action/A = X
+			A.remove_action(src)
 
 	W.screen_loc = null
 	W.loc = src
@@ -215,16 +229,9 @@
 			update_inv_back()
 		if(WEAR_FACE)
 			wear_mask = W
-			if(wear_mask.flags_inv_hide & HIDEFACE)
-				name = get_visible_name()
-			if( wear_mask.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR) )
-				update_hair()	//rebuild hair
-			if(wear_mask.flags_inv_hide & HIDEEARS)
-				update_inv_ears()
-			if(wear_mask.flags_inv_hide & HIDEEYES)
-				update_inv_glasses()
 			W.equipped(src, slot)
 			sec_hud_set_ID()
+			wear_mask_update(W, TRUE)
 			update_inv_wear_mask()
 		if(WEAR_HANDCUFFS)
 			handcuffed = W
@@ -259,6 +266,8 @@
 		if(WEAR_EYES)
 			glasses = W
 			W.equipped(src, slot)
+			update_tint()
+			update_glass_vision(W)
 			update_inv_glasses()
 		if(WEAR_HANDS)
 			gloves = W
@@ -277,6 +286,7 @@
 			if(head.flags_inv_hide & HIDEEYES)
 				update_inv_glasses()
 			W.equipped(src, slot)
+			update_tint()
 			update_inv_head()
 		if(WEAR_FEET)
 			shoes = W

@@ -56,7 +56,6 @@
 			//Organs and blood
 			handle_organs()
 			handle_blood()
-			stabilize_body_temperature() //Body temperature adjusts itself (self-regulation)
 
 			//Random events (vomiting etc)
 			handle_random_events()
@@ -77,12 +76,14 @@
 		else //Dead
 			if(!undefibbable)
 				if(life_tick > 5 && timeofdeath && (timeofdeath < 5 || world.time - timeofdeath > revive_grace_period))	//We are dead beyond revival, or we're junk mobs spawned like the clowns on the clown shuttle
-					med_hud_set_status()
 					undefibbable = TRUE
+					med_hud_set_status()
 
 	else
 		handle_stasis_bag()
 
+
+	stabilize_body_temperature() //Body temperature adjusts itself (self-regulation) (even when dead)
 
 	//Handle temperature/pressure differences between body and environment
 	handle_environment() //Optimized a good bit.

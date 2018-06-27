@@ -23,6 +23,11 @@
 /mob/proc/do_click(atom/A, location, params)
 	// No clicking on atoms with the NOINTERACT flag
 	if ((A.flags_atom & NOINTERACT))
+		if(istype(A, /obj/screen/click_catcher))
+			var/list/mods = params2list(params)
+			var/turf/TU = params2turf(mods["screen-loc"], get_turf(usr.client ? usr.client.eye : usr), usr.client)
+			if(TU)
+				do_click(TU, location, params)
 		return
 
 	if (world.time <= next_click)
@@ -49,7 +54,7 @@
 	var/click_handled = 0
 	// Click handled elsewhere. (These clicks are not affected by the next_move cooldown)
 	click_handled = click(A, mods)
-	click_handled |= A.clicked(src, mods)
+	click_handled |= A.clicked(src, mods, location, params)
 
 	if (click_handled)
 		return
@@ -93,14 +98,13 @@
 	next_move = world.time
 	// If standing next to the atom clicked.
 	if (A.Adjacent(src))
-		next_move += 4
 		if (W)
 			if (W.attack_speed)
 				next_move += W.attack_speed
-
-			if (!A.attackby(W, src) && A)
+			if (!A.attackby(W, src) && A && !A.disposed)
 				W.afterattack(A, src, 1, mods)
 		else
+			next_move += 4
 			UnarmedAttack(A, 1)
 
 		return
@@ -141,9 +145,16 @@
 
 	if (mods["alt"])
 		var/turf/T = get_turf(src)
-		if(T && user.TurfAdjacent(T))
-			user.listed_turf = T
-			user.listed_turf_change = 1
+		if(T && user.TurfAdjacent(T) && T.contents.len)
+			user.tile_contents = T.contents.Copy()
+
+			var/atom/A
+			for (A in user.tile_contents)
+				if (A.invisibility > user.see_invisible)
+					user.tile_contents -= A
+
+			if (user.tile_contents.len)
+				user.tile_contents_change = 1
 		return 1
 	return 0
 
@@ -259,3 +270,80 @@
 	if(buckled)
 		buckled.dir = direction
 		buckled.handle_rotation()
+
+
+
+
+
+// click catcher stuff
+
+
+/obj/screen/click_catcher
+	icon = 'icons/mob/screen1.dmi'
+	icon_state = "catcher"
+	layer = 0
+	plane = -99
+	mouse_opacity = 2
+	screen_loc = "CENTER-7,CENTER-7"
+	flags_atom = NOINTERACT
+
+
+/obj/screen/click_catcher/proc/UpdateGreed(view_size_x = 15, view_size_y = 15)
+	var/icon/newicon = icon('icons/mob/screen1.dmi', "catcher")
+	var/ox = min((33 * 32)/ world.icon_size, view_size_x)
+	var/oy = min((33 * 32)/ world.icon_size, view_size_y)
+	var/px = view_size_x * world.icon_size
+	var/py = view_size_y * world.icon_size
+	var/sx = min(33 * 32, px)
+	var/sy = min(33 * 32, py)
+	newicon.Scale(sx, sy)
+	icon = newicon
+	screen_loc = "CENTER-[(ox-1)*0.5],CENTER-[(oy-1)*0.5]"
+	var/matrix/M = new
+	M.Scale(px/sx, py/sy)
+	transform = M
+
+
+
+/client/proc/change_view(new_size)
+	view = new_size
+	apply_clickcatcher()
+	mob.reload_fullscreens()
+
+/client/proc/create_clickcatcher()
+	if(!void)
+		void = new()
+	screen += void
+
+/client/proc/apply_clickcatcher()
+	create_clickcatcher()
+	var/list/actual_view = getviewsize(view)
+	void.UpdateGreed(actual_view[1],actual_view[2])
+
+/proc/params2turf(scr_loc, turf/origin, client/C)
+	if(!scr_loc || !origin)
+		return
+	var/tX = splittext(scr_loc, ",")
+	var/tY = splittext(tX[2], ":")
+	var/tZ = origin.z
+	tY = tY[1]
+	tX = splittext(tX[1], ":")
+	tX = tX[1]
+	var/list/actual_view = getviewsize(C ? C.view : world.view)
+	tX = Clamp(origin.x + text2num(tX) - round(actual_view[1] / 2) - 1, 1, world.maxx)
+	tY = Clamp(origin.y + text2num(tY) - round(actual_view[2] / 2) - 1, 1, world.maxy)
+	return locate(tX, tY, tZ)
+
+
+/proc/getviewsize(view)
+	var/viewX
+	var/viewY
+	if(isnum(view))
+		var/totalviewrange = 1 + 2 * view
+		viewX = totalviewrange
+		viewY = totalviewrange
+	else
+		var/list/viewrangelist = splittext(view,"x")
+		viewX = text2num(viewrangelist[1])
+		viewY = text2num(viewrangelist[2])
+	return list(viewX, viewY)

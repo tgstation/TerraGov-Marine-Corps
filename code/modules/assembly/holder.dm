@@ -26,8 +26,6 @@
 		special_assembly = null
 	. = ..()
 
-/obj/item/device/assembly_holder/proc/attach(var/obj/item/device/D, var/obj/item/device/D2, var/mob/user)
-	return
 
 /obj/item/device/assembly_holder/proc/attach_special(var/obj/O, var/mob/user)
 	return
@@ -43,13 +41,18 @@
 	return 1
 
 
-/obj/item/device/assembly_holder/attach(var/obj/item/device/D, var/obj/item/device/D2, var/mob/user)
+/obj/item/device/assembly_holder/proc/attach(var/obj/item/device/D, var/obj/item/device/D2, var/mob/user)
 	if((!D)||(!D2))	return 0
 	if((!isassembly(D))||(!isassembly(D2)))	return 0
 	if((D:secured)||(D2:secured))	return 0
 	if(user)
 		user.temp_drop_inv_item(D)
-		user.temp_drop_inv_item(D2)
+		if(D2.loc == user)
+			user.temp_drop_inv_item(D2)
+		else if(istype(D2.loc, /obj/item/storage))
+			var/obj/item/storage/S = D2.loc
+			S.remove_from_storage(D2)
+
 	D:holder = src
 	D2:holder = src
 	D.forceMove(src)

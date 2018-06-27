@@ -4,7 +4,7 @@
 	config_tag = "Infection"
 	required_players = 0 //otherwise... no zambies
 	latejoin_larva_drop = 0
-	flags_round_type = MODE_INFESTATION //Apparently without this, the game mode checker ignores this as a potential legit game mode.
+	flags_round_type = MODE_INFECTION //Apparently without this, the game mode checker ignores this as a potential legit game mode.
 
 	uplink_welcome = "IF YOU SEE THIS, SHIT A BRICK AND AHELP"
 	uplink_uses = 10
@@ -22,6 +22,7 @@
 	return 1
 
 /datum/game_mode/infection/post_setup()
+	initialize_post_marine_gear_list()
 	spawn (rand(waittime_l, waittime_h)) // To reduce extended meta.
 		send_intercept()
 	..()
@@ -34,7 +35,14 @@
 	return 1
 
 /datum/game_mode/infection/check_win()
-	check_win_infection()
+	var/living_player_list[] = count_humans_and_xenos(EvacuationAuthority.get_affected_zlevels())
+	var/num_humans = living_player_list[1]
+	var/zed = living_player_list[2]
+//	world << "ZED: [zed]"
+//	world << "Humie: [num_humans]"
+
+	if(num_humans <=0 && zed >= 1)
+		round_finished = MODE_INFECTION_ZOMBIE_WIN
 
 /datum/game_mode/infection/check_finished()
 	if(round_finished) return 1
@@ -48,8 +56,30 @@
 			round_checkwin = 0
 
 /datum/game_mode/infection/declare_completion()
-	. = declare_completion_infestation()	//This is a generate declare completion check now, we should probably adjust it one day.
+	//world << "<span class='round_header'>[round_finished]</span>"
+	world << "<span class='round_header'>|Round Complete|</span>"
+	feedback_set_details("round_end_result",round_finished)
 
+	world << "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [map_tag].</span>"
+	world << "<span class='round_body'>End of Round Grief (EORG) is an IMMEDIATE 3 hour ban with no warnings, see rule #7 for more details.</span>"
+	var/musical_track = pick('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg')
+	world << musical_track
+	world << "<span class='round_body'>The zombies have been victorious!</span>"
+
+	var/dat = ""
+	//if(flags_round_type & MODE_INFESTATION)
+		//var/living_player_list[] = count_humans_and_xenos()
+		//dat = "\nXenomorphs remaining: [living_player_list[2]]. Humans remaining: [living_player_list[1]]."
+	if(round_stats) round_stats << "[round_finished][dat]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal Preds spawned: [predators.len]\nTotal humans spawned: [round_statistics.total_humans_created][log_end]" // Logging to data/logs/round_stats.log
+
+	world << dat
+
+	declare_completion_announce_individual()
+	declare_completion_announce_predators()
+	declare_completion_announce_xenomorphs()
+	declare_completion_announce_survivors()
+	declare_completion_announce_medal_awards()
+	return 1
 
 
 

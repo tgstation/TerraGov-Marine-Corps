@@ -78,7 +78,7 @@
 	var/obj/item/attachable/rail 	= null
 	var/obj/item/attachable/under 	= null
 	var/obj/item/attachable/stock 	= null
-	var/obj/item/attachable/active_attachable = null //This will link to one of the above four, or remain null.
+	var/obj/item/attachable/attached_gun/active_attachable = null //This will link to one of the above four, or remain null.
 	var/list/starting_attachment_types = null //What attachments this gun starts with THAT CAN BE REMOVED. Important to avoid nuking the attachments on restocking! Added on New()
 
 	var/flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
@@ -312,7 +312,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		user << "<span class='warning'>That magazine doesn't fit in there!</span>"
 		return
 
-	if(!isnull(current_mag) && current_mag.loc == src)
+	if(current_mag)
 		user << "<span class='warning'>It's still got something loaded.</span>"
 		return
 
@@ -442,10 +442,9 @@ and you're good to go.
 */
 /obj/item/weapon/gun/proc/load_into_chamber(mob/user)
 	//The workhorse of the bullet procs.
-	//If it's something like a flashlight, we turn it off. If it's an actual fire and forget one, we need to keep going.
-	if(active_attachable && (active_attachable.flags_attach_features & ATTACH_PASSIVE) ) active_attachable = null
- 	//If we have a round chambered and no attachable, we're good to go.
-	if(in_chamber && !active_attachable) return in_chamber //Already set!
+ 	//If we have a round chambered and no active attachable, we're good to go.
+	if(in_chamber && !active_attachable)
+		return in_chamber //Already set!
 
 	//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
 	if(active_attachable)
@@ -455,8 +454,10 @@ and you're good to go.
 		else
 			user << "<span class='warning'>[active_attachable] is empty!</span>"
 			user << "<span class='notice'>You disable [active_attachable].</span>"
-			active_attachable = null
-	else return ready_in_chamber()//We're not using the active attachable, we must use the active mag if there is one.
+			playsound(user, active_attachable.activation_sound, 15, 1)
+			active_attachable.activate_attachment(src, null, TRUE)
+	else
+		return ready_in_chamber()//We're not using the active attachable, we must use the active mag if there is one.
 
 
 /obj/item/weapon/gun/proc/ready_in_chamber()
@@ -482,7 +483,8 @@ and you're good to go.
 	This should only apply to the masterkey, since it's the only attachment that shoots through Fire()
 	instead of its own thing through fire_attachment(). If any other bullet attachments are added, they would fire here.
 	*/
-	if(active_attachable) make_casing(active_attachable.type_of_casings) // Attachables can drop their own casings.
+	if(active_attachable)
+		make_casing(active_attachable.type_of_casings) // Attachables can drop their own casings.
 	else
 		make_casing(type_of_casings) // Drop a casing if needed.
 		in_chamber = null //If we didn't fire from attachable, let's set this so the next pass doesn't think it still exists.
@@ -494,14 +496,13 @@ and you're good to go.
 				unload(user,1,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
 				playsound(src, empty_sound, 25, 1)
 
-	// Shouldn't be called on, but in case something that uses Fire() is added that is toggled.
-	else if( !(active_attachable.flags_attach_features & ATTACH_CONTINUOUS) ) active_attachable = null // Set it to null for next activation. Again, this isn't really going to happen.
 	return in_chamber //Returns the projectile if it's actually successful.
 
 /obj/item/weapon/gun/proc/delete_bullet(var/obj/item/projectile/projectile_to_fire, var/refund = 0)
 	if(active_attachable) //Attachables don't chamber rounds, so we want to delete it right away.
 		cdel(projectile_to_fire) //Getting rid of it. Attachables only use ammo after the cycle is over.
-		if(refund) active_attachable.current_rounds++ //Refund the bullet.
+		if(refund)
+			active_attachable.current_rounds++ //Refund the bullet.
 		return 1
 
 /obj/item/weapon/gun/proc/clear_jam(var/obj/item/projectile/projectile_to_fire, mob/user as mob) //Guns jamming, great.
@@ -540,7 +541,7 @@ and you're good to go.
 				click_empty(user) //If it's empty, let them know.
 				user << "<span class='warning'>[active_attachable] is empty!</span>"
 				user << "<span class='notice'>You disable [active_attachable].</span>"
-				active_attachable = null //disable the attachment
+				active_attachable.activate_attachment(src, null, TRUE)
 			else
 				active_attachable.fire_attachment(target,src,user) //Fire it.
 				last_fired = world.time
@@ -594,8 +595,8 @@ and you're good to go.
 		var/scatter_chance_mod = 0
 		var/burst_scatter_chance_mod = 0
 		//They decrease scatter chance and increase accuracy a tad. Can also increase damage.
-		if(user && under && under.firing_support) //Let's get to work on the bipod. I'm not really concerned if they are the same person as the previous user. It doesn't matter.
-			if(under.check_position(src, user))
+		if(user && under && under.bipod_deployed) //Let's get to work on the bipod. I'm not really concerned if they are the same person as the previous user. It doesn't matter.
+			if(under.check_bipod_support(src, user))
 				//Passive accuracy and recoil buff, but only when firing in position.
 				projectile_to_fire.accuracy *= config.base_hit_accuracy_mult + config.hmed_hit_accuracy_mult //More accuracy.
 				recoil_comp-- //Less recoil.
@@ -659,7 +660,7 @@ and you're good to go.
 				M.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger.</span>")
 				if(do_after(user, 40, TRUE, 5, BUSY_ICON_HOSTILE))
 					if(active_attachable && !(active_attachable.flags_attach_features & ATTACH_PROJECTILE))
-						active_attachable = null //We're not firing off a nade into our mouth.
+						active_attachable.activate_attachment(src, null, TRUE)//We're not firing off a nade into our mouth.
 					var/obj/item/projectile/projectile_to_fire = load_into_chamber(user)
 					if(projectile_to_fire) //We actually have a projectile, let's move on.
 						user.visible_message("<span class = 'warning'>[user] pulls the trigger!</span>")
@@ -683,6 +684,9 @@ and you're good to go.
 							else
 								user.apply_damage(projectile_to_fire.damage * 2.5, projectile_to_fire.ammo.damage_type, "head", used_weapon = "Point blank shot in the mouth with \a [projectile_to_fire]", sharp = 1)
 								user.apply_damage(100, OXY)
+								if(ishuman(user) && user == M)
+									var/mob/living/carbon/human/HM = user
+									HM.undefibbable = TRUE //can't be defibbed back from self inflicted gunshot to head
 								user.death()
 						user.attack_log += t //Apply the attack log.
 						last_fired = world.time
@@ -701,7 +705,8 @@ and you're good to go.
 			flags_gun_features &= ~GUN_BURST_FIRING
 			//Point blanking simulates firing the bullet proper but without actually firing it.
 			if(able_to_fire(user)) //If you can't fire the gun in the first place, we're just going to hit them with it.
-				if(active_attachable && !(active_attachable.flags_attach_features & ATTACH_PROJECTILE)) active_attachable = null//No way.
+				if(active_attachable && !(active_attachable.flags_attach_features & ATTACH_PROJECTILE))
+					active_attachable.activate_attachment(src, null, TRUE)//No way.
 				var/obj/item/projectile/projectile_to_fire = load_into_chamber(user)
 				if(projectile_to_fire) //We actually have a projectile, let's move on. We're going to simulate the fire cycle.
 					projectile_to_fire.damage *= (config.base_hit_damage_mult+config.low_hit_damage_mult) //Multiply the damage for point blank.
@@ -709,15 +714,23 @@ and you're good to go.
 					apply_bullet_effects(projectile_to_fire, user) //We add any damage effects that we need.
 					simulate_recoil(1, user)
 
-					projectile_to_fire.ammo.on_hit_mob(M,projectile_to_fire)
+					if(projectile_to_fire.ammo.bonus_projectiles_amount)
+						var/obj/item/projectile/BP
+						for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
+							BP = rnew(/obj/item/projectile, M.loc)
+							BP.generate_bullet(ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
+							BP.ammo.on_hit_mob(M, BP)
+							M.bullet_act(BP)
+							cdel(BP)
+
+					projectile_to_fire.ammo.on_hit_mob(M, projectile_to_fire)
 					M.bullet_act(projectile_to_fire)
 					last_fired = world.time
 
 					if(!delete_bullet(projectile_to_fire)) cdel(projectile_to_fire)
 					reload_into_chamber(user) //Reload into the chamber if the gun supports it.
-				else
-					click_empty(user) //We want to return here, since they're trying to point blank them, not hit them with the gun.
-				return
+					return
+
 	return ..() //Pistolwhippin'
 
 //----------------------------------------------------------
@@ -809,11 +822,11 @@ and you're good to go.
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
 		if(gun_skill_category == GUN_SKILL_PISTOLS)
-			gun_accuracy_mult = max(0.1, gun_accuracy_mult - 0.3)
-			gun_scatter += 30
+			gun_accuracy_mult = max(0.1, gun_accuracy_mult - 0.1*rand(1,2))
+			gun_scatter += 10*rand(1,3)
 		else
-			gun_accuracy_mult = max(0.1, gun_accuracy_mult - 0.4)
-			gun_scatter += 50
+			gun_accuracy_mult = max(0.1, gun_accuracy_mult - 0.1*rand(2,4))
+			gun_scatter += 10*rand(3,5)
 
 	// Apply any skill-based bonuses to accuracy
 	if(user && user.mind && user.mind.cm_skills)

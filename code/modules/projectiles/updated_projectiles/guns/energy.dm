@@ -1,6 +1,12 @@
 
 //-------------------------------------------------------
 //ENERGY GUNS/ETC
+
+/obj/item/weapon/gun/energy
+	attachable_allowed = list()
+
+
+
 /obj/item/weapon/gun/energy/taser
 	name = "taser gun"
 	desc = "An advanced stun device capable of firing balls of ionized electricity. Used for nonlethal takedowns."
@@ -17,7 +23,6 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
-	attachable_allowed = list()
 
 /obj/item/weapon/gun/energy/taser/New()
 	..()
@@ -95,7 +100,7 @@
 	verbs -= /obj/item/weapon/gun/verb/field_strip
 	verbs -= /obj/item/weapon/gun/verb/toggle_burst
 	verbs -= /obj/item/weapon/gun/verb/empty_mag
-	verbs -= /obj/item/weapon/gun/verb/activate_attachment
+
 
 
 /obj/item/weapon/gun/energy/plasmarifle/Dispose()
@@ -205,7 +210,7 @@
 	verbs -= /obj/item/weapon/gun/verb/field_strip
 	verbs -= /obj/item/weapon/gun/verb/toggle_burst
 	verbs -= /obj/item/weapon/gun/verb/empty_mag
-	verbs -= /obj/item/weapon/gun/verb/activate_attachment
+
 
 
 /obj/item/weapon/gun/energy/plasmapistol/Dispose()
@@ -297,7 +302,6 @@
 	verbs -= /obj/item/weapon/gun/verb/field_strip
 	verbs -= /obj/item/weapon/gun/verb/toggle_burst
 	verbs -= /obj/item/weapon/gun/verb/empty_mag
-	verbs -= /obj/item/weapon/gun/verb/activate_attachment
 	verbs -= /obj/item/weapon/gun/verb/use_unique_action
 
 /obj/item/weapon/gun/energy/plasma_caster/Dispose()

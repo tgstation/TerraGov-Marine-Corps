@@ -42,10 +42,8 @@
 	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1)
 
 //Checking for protections
-	var/eye_safety = 0
 	var/ear_safety = 0
 	if(iscarbon(M))
-		eye_safety = M.get_eye_protection()
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(istype(H.wear_ear, /obj/item/clothing/ears/earmuffs))
@@ -56,9 +54,7 @@
 				ear_safety += 2
 
 //Flashing everyone
-	if(eye_safety < 1)
-		if(M.hud_used)
-			flick("e_flash", M.hud_used.flash_icon)
+	if(M.flash_eyes())
 		M.Stun(2)
 		M.KnockDown(10)
 

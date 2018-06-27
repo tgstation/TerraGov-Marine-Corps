@@ -33,17 +33,17 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 
 	New()
-		select_gamemode_skin(type, list(/datum/game_mode/ice_colony = "s_m42a") )
+		select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a") )
 		..()
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 		var/obj/item/attachable/scope/S = new(src)
-		S.icon_state = ""
 		S.attach_icon = "" //Let's make it invisible. The sprite already has one.
 		S.flags_attach_features &= ~ATTACH_REMOVABLE
 		S.Attach(src)
 		var/obj/item/attachable/sniperbarrel/Q = new(src)
 		Q.Attach(src)
 		update_attachables()
+		S.icon_state = initial(S.icon_state)
 
 
 /obj/item/weapon/gun/rifle/sniper/M42A/set_gun_config_values()
@@ -263,7 +263,7 @@
 
 
 /obj/item/weapon/gun/smartgun/load_into_chamber(mob/user)
-	if(active_attachable) active_attachable = null
+//	if(active_attachable) active_attachable = null
 	return ready_in_chamber()
 
 /obj/item/weapon/gun/smartgun/reload_into_chamber(mob/user)
@@ -413,6 +413,7 @@
 
 /obj/item/weapon/gun/launcher/m92/proc/fire_grenade(atom/target, mob/user)
 	set waitfor = 0
+	last_fired = world.time
 	for(var/mob/O in viewers(world.view, user))
 		O.show_message(text("<span class='danger'>[] fired a grenade!</span>", user), 1)
 	user << "<span class='warning'>You fire the grenade launcher!</span>"
@@ -448,6 +449,7 @@
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
+	attachable_allowed = list()
 	var/grenade
 	var/grenade_type_allowed = /obj/item/explosive/grenade
 	var/riot_version
@@ -577,7 +579,8 @@
 	wield_delay = 12
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 	attachable_allowed = list(
-						/obj/item/attachable/magnetic_harness)
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/scope/mini)
 
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
@@ -616,7 +619,7 @@
 			return 0
 
 /obj/item/weapon/gun/launcher/rocket/load_into_chamber(mob/user)
-	if(active_attachable) active_attachable = null
+//	if(active_attachable) active_attachable = null
 	return ready_in_chamber()
 
 //No such thing

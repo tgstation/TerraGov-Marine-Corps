@@ -49,3 +49,22 @@
 		use_me = 1 //If it can move, let it emote
 	else							canmove = 0
 	return canmove
+
+
+
+
+
+/mob/living/brain/update_sight()
+	if (stat == DEAD || (XRAY in src.mutations))
+		sight |= SEE_TURFS
+		sight |= SEE_MOBS
+		sight |= SEE_OBJS
+		see_in_dark = 8
+		see_invisible = SEE_INVISIBLE_LEVEL_TWO
+	else if (stat != DEAD)
+		sight &= ~SEE_TURFS
+		sight &= ~SEE_MOBS
+		sight &= ~SEE_OBJS
+		see_in_dark = 2
+		see_invisible = SEE_INVISIBLE_LIVING
+

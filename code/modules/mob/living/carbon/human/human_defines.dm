@@ -18,7 +18,6 @@
 	var/g_eyes = 0
 	var/b_eyes = 0
 
-	var/s_tone = 0	//Skin tone
 	var/ethnicity = "Western"	// Ethnicity
 	var/body_type = "Mesomorphic (Average)" // Body Type
 
@@ -48,9 +47,9 @@
 	//Equipment slots
 	var/obj/item/wear_suit = null
 	var/obj/item/clothing/under/w_uniform = null
-	var/obj/item/shoes = null
+	var/obj/item/clothing/shoes/shoes = null
 	var/obj/item/belt = null
-	var/obj/item/gloves = null
+	var/obj/item/clothing/gloves/gloves = null
 	var/obj/item/clothing/glasses/glasses = null
 	var/obj/item/head = null
 	var/obj/item/wear_ear = null
@@ -79,7 +78,6 @@
 	var/xylophone = 0 //For the spoooooooky xylophone cooldown
 
 	var/mob/remoteview_target = null
-	var/hand_blood_color
 
 	var/list/flavor_texts = list()
 	var/recently_unbuckled = 0

@@ -47,7 +47,7 @@
 		mind.transfer_to(M)
 	else
 		M.key = key
-		if(M.client) M.client.view = world.view
+		if(M.client) M.client.change_view(world.view)
 
 	if(subspecies && istype(M,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M

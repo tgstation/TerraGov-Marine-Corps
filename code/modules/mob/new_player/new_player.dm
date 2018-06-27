@@ -70,8 +70,9 @@
 		if (!..())
 			return 0
 
+		stat("Map:", "[map_tag]")
 		if(ticker.hide_mode)
-			stat("Game Mode:", "Secret")
+			stat("Game Mode:", "Colonial Marines")
 		else
 			if(ticker.hide_mode == 0)
 				stat("Game Mode:", "[master_mode]") // Old setting for showing the game mode
@@ -134,7 +135,7 @@
 	//				if(!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
 	//					observer.verbs -= /mob/dead/observer/verb/toggle_antagHUD        // Poor guys, don't know what they are missing!
 					observer.key = key
-					if(observer.client) observer.client.view = world.view
+					if(observer.client) observer.client.change_view(world.view)
 					cdel(src)
 
 					return 1
@@ -446,7 +447,7 @@
 		new_character.regenerate_icons()
 
 		new_character.key = key		//Manually transfer the key to log them in
-		if(new_character.client) new_character.client.view = world.view
+		if(new_character.client) new_character.client.change_view(world.view)
 
 		return new_character
 

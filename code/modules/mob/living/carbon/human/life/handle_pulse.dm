@@ -13,7 +13,7 @@
 
 	var/temp = PULSE_NORM
 
-	if(round(vessel.get_reagent_amount("blood")) <= BLOOD_VOLUME_BAD) //How much blood do we have
+	if(round(blood_volume) <= BLOOD_VOLUME_BAD) //How much blood do we have
 		temp = PULSE_THREADY	//not enough :(
 
 	if(status_flags & FAKEDEATH)

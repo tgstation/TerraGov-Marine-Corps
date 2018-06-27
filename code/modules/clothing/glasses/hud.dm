@@ -35,15 +35,11 @@
 	name = "\improper HealthMate HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their health status."
 	icon_state = "healthhud"
-	deactive_state = "healthhud"
 	flags_armor_protection = 0
 	toggleable = 1
 	hud_type = MOB_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
 
-/obj/item/clothing/glasses/hud/health/New()
-	..()
-	overlay = null  //Stops the overlay.
 
 /obj/item/clothing/glasses/hud/health/attack_self(mob/living/user)
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical >= SKILL_MEDICAL_MEDIC)
@@ -63,8 +59,10 @@
 	name = "\improper PatrolMate HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
 	icon_state = "securityhud"
+	toggleable = 1
 	flags_armor_protection = 0
 	hud_type = MOB_HUD_SECURITY_ADVANCED
+	actions_types = list(/datum/action/item_action/toggle)
 	var/global/list/jobs[0]
 
 /obj/item/clothing/glasses/hud/security/jensenshades
@@ -74,3 +72,5 @@
 	item_state = "jensenshades"
 	vision_flags = SEE_MOBS
 	invisa_view = 2
+	toggleable = 0
+	actions_types = list()

@@ -1221,3 +1221,60 @@
 				</body>
 			</html>
 			"}
+
+
+
+
+
+
+/obj/item/book/manual/orbital_cannon_manual
+	name = "USCM Orbital Bombardment System Manual"
+	icon_state = "bookEngineering"
+	author = "USCM R&D"
+	title = "USCM Orbital Bombardment System Manual"
+
+	dat = {"<html>
+				<head>
+				<style>
+				h1 {font-size: 21px; margin: 15px 0px 5px;}
+				h2 {font-size: 18px; margin: 15px 0px 5px;}
+				li {margin: 2px 0px 2px 15px;}
+				ul {margin: 5px; padding: 0px;}
+				ol {margin: 5px; padding: 0px 15px;}
+				body {font-size: 13px; font-family: Verdana;}
+				</style>
+				</head>
+				<body>
+
+				<h1>Guide to the USCM Orbital Bombardment System</h1>
+
+				<h2>Step by step instructions:</h2>
+				<ol>
+					<li>Load a warhead in the Orbital Cannon Tray (Powerloader required).</li>
+					<li>Load the required amount of solid fuel in the Orbital Cannon Tray <b>(See Orbital Cannon Console)</b>.</li>
+					<li>Open the Orbital Cannon Console's interface.</li>
+					<li>Load the Tray into the Cannon.</li>
+					<li>Chamber the Tray's content into the cannon barrel. <b>(can't be undone!)</b></li>
+					<li>Staff Officers can now fire the Orbital Cannon from their console.</li>
+					<li>After firing, unload the Tray from the Orbital Cannon.</li>
+					<li>Inspect the Tray to make sure it is empty and operational.</li>
+				</ol>
+
+				<h2>Troubleshooting:</h2>
+
+				<ul>
+					<li>If you've loaded a tray with an incorrect payload, you can still unload the tray's payload as long as it hasn't been chambered.</li>
+					<li>If an incorrect payload is chambered, it can only be removed by firing it.</li>
+					<li>If the Orbital Cannon Console has no power, check the Weapon Control Room's APC.</li>
+					<li>If the Orbital Cannon Console is broken, contact USCM HQ for a replacement.</li>
+					<li>In case of direct damage to the Orbital Cannon itself, do not attempt to use or repair the cannon.</li>
+					<li>In case of hull breach or fire, make sure to remove the Cannon's payload and move it to a safe location.</li>
+					<li>If the Orbital Tray jams, apply lubricant to the  conveyor belt.</li>
+					<li>If a cable of the Orbital Cannon System is severed, contact USCM HQ for a replacement.</li>
+					<li>If Cannon's cable connector breaks, turn off the Orbital Cannon Console and contact USCM HQ for a replacement.</li>
+				</ul>
+
+			</body>
+			</html>
+			"}
+

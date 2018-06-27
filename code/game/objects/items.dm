@@ -10,7 +10,7 @@
 	var/r_speed = 1.0
 	var/force = 0
 	var/damtype = "brute"
-	var/attack_speed = 7  //+3, Adds up to 10.
+	var/attack_speed = 11  //+3, Adds up to 10.  Added an extra 4 removed from /mob/proc/do_click()
 	var/list/attack_verb = list() //Used in attackby() to say how something was attacked "[x] has been [z.attack_verb] by [y] with [z]"
 
 	var/health = null
@@ -88,9 +88,6 @@
 /obj/item/Dispose()
 	flags_item &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
 	flags_item &= ~NODROP //so the item is properly unequipped if on a mob.
-	if(istype(loc, /atom/movable))
-		var/atom/movable/AM = loc
-		AM.on_stored_item_del(src) //things that object need to do when an item inside it is deleted
 	for(var/X in actions)
 		actions -= X
 		cdel(X)
@@ -141,20 +138,19 @@ item, and will change the skin to whatever you specify here. You can also
 manually override the icon with a unique skin if wanted, for the outlier
 cases. Override_icon_state should be a list.*/
 /obj/item/proc/select_gamemode_skin(expected_type, list/override_icon_state, override_name, list/override_protection)
-	if(type == expected_type && ticker && ticker.mode)
-		var/game_mode = ticker.mode.type
+	if(type == expected_type)
 		var/new_icon_state
 		var/new_name
 		var/new_protection
-		if(override_icon_state && override_icon_state.len) new_icon_state = override_icon_state[game_mode]
-		if(override_name) new_name = override_name[game_mode]
-		if(override_protection && override_protection.len) new_protection = override_protection[game_mode]
-		switch(ticker.mode.type)
-			if(/datum/game_mode/ice_colony) //Can easily add other states if needed.
+		if(override_icon_state && override_icon_state.len) new_icon_state = override_icon_state[map_tag]
+		if(override_name) new_name = override_name[map_tag]
+		if(override_protection && override_protection.len) new_protection = override_protection[map_tag]
+		switch(map_tag)
+			if(MAP_ICE_COLONY) //Can easily add other states if needed.
 				icon_state = new_icon_state ? new_icon_state : "s_" + icon_state
 				if(new_name) name = new_name
 				if(new_protection) min_cold_protection_temperature = new_protection
-			if(/datum/game_mode/whiskey_outpost) //Can easily add other states if needed.
+			if(MAP_WHISKEY_OUTPOST) //Can easily add other states if needed.
 				icon_state = new_icon_state ? new_icon_state : "d_" + icon_state
 				if(new_name) name = new_name
 				if(new_protection) min_cold_protection_temperature = new_protection
@@ -307,7 +303,7 @@ cases. Override_icon_state should be a list.*/
 			A.give_action(user)
 
 //sometimes we only want to grant the item's action if it's equipped in a specific slot.
-obj/item/proc/item_action_slot_check(mob/user, slot)
+/obj/item/proc/item_action_slot_check(mob/user, slot)
 	return TRUE
 
 // The mob M is attempting to equip this item into the slot passed through as 'slot'. Return 1 if it can do this and 0 if it can't.
@@ -544,47 +540,6 @@ obj/item/proc/item_action_slot_check(mob/user, slot)
 	return loc
 
 
-/obj/item/clean_blood()
-	. = ..()
-	if(blood_overlay)
-		overlays.Remove(blood_overlay)
-	if(istype(src, /obj/item/clothing/gloves))
-		var/obj/item/clothing/gloves/G = src
-		G.transfer_blood = 0
-
-
-/obj/item/add_blood(mob/living/carbon/human/M as mob)
-	if (!..())
-		return 0
-
-	if(istype(src, /obj/item/weapon/energy))
-		return
-
-	//if we haven't made our blood_overlay already
-	if( !blood_overlay )
-		generate_blood_overlay()
-
-	//apply the blood-splatter overlay if it isn't already in there
-	if(!blood_DNA.len)
-		blood_overlay.color = blood_color
-		overlays += blood_overlay
-
-	//if this blood isn't already in the list, add it
-
-	if(blood_DNA[M.dna.unique_enzymes])
-		return 0 //already bloodied with this blood. Cannot add more.
-	blood_DNA[M.dna.unique_enzymes] = M.dna.b_type
-	return 1 //we applied blood to the item
-
-/obj/item/proc/generate_blood_overlay()
-	if(blood_overlay)
-		return
-
-	var/icon/I = new /icon(icon, icon_state)
-	I.Blend(new /icon('icons/effects/blood.dmi', rgb(255,255,255)),ICON_ADD) //fills the icon_state with white (except where it's transparent)
-	I.Blend(new /icon('icons/effects/blood.dmi', "itemblood"),ICON_MULTIPLY) //adds blood and the remaining white areas become transparant
-	blood_overlay = image(I)
-
 /obj/item/proc/showoff(mob/user)
 	for (var/mob/M in view(user))
 		M.show_message("[user] holds up [src]. <a HREF=?src=\ref[M];lookitem=\ref[src]>Take a closer look.</a>",1)
@@ -614,7 +569,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	if(user.eye_blind) 												user << "<span class='warning'>You are too blind to see anything.</span>"
 	else if(user.stat || !ishuman(user)) 							user << "<span class='warning'>You are unable to focus through \the [zoom_device].</span>"
-	else if(!zoom && user.client && global_hud.darkMask[1] in user.client.screen) 	user << "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>"
+	else if(!zoom && user.client && user.update_tint()) 			user << "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>"
 	else if(!zoom && user.get_active_hand() != src)					user << "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>"
 	else if(zoom) //If we are zoomed out, reset that parameter.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
@@ -627,7 +582,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.zoom_cooldown = world.time + 20
 
 		if(user.client)
-			user.client.view = viewsize
+			user.client.change_view(viewsize)
 
 			var/tilesize = 32
 			var/viewoffset = tilesize * tileoffset
@@ -657,6 +612,6 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 	//General reset in case anything goes wrong, the view will always reset to default unless zooming in.
 	if(user.client)
-		user.client.view = world.view
+		user.client.change_view(world.view)
 		user.client.pixel_x = 0
 		user.client.pixel_y = 0

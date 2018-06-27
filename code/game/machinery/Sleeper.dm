@@ -88,8 +88,8 @@
 					dat += "[connected.available_chemicals[chemical]]: [occupant.reagents.get_reagent_amount(chemical)] units<br>"
 			dat += "<A href='?src=\ref[src];refresh=1'>Refresh Meter Readings</A><BR>"
 			if(connected.beaker)
+				dat += "<HR><A href='?src=\ref[src];removebeaker=1'>Remove Beaker</A><BR>"
 				if(ishuman(occupant))
-					dat += "<HR><A href='?src=\ref[src];removebeaker=1'>Remove Beaker</A><BR>"
 					if(src.connected.filtering)
 						dat += "<A href='?src=\ref[src];togglefilter=1'>Stop Dialysis</A><BR>"
 						dat += "Output Beaker has [connected.beaker.reagents.maximum_volume - connected.beaker.reagents.total_volume] units of free space remaining<BR><HR>"
@@ -191,8 +191,8 @@
 	return 0
 
 
-/obj/machinery/sleeper/on_stored_item_del(obj/item/I)
-	if(I == beaker)
+/obj/machinery/sleeper/on_stored_atom_del(atom/movable/AM)
+	if(AM == beaker)
 		beaker = null
 
 /obj/machinery/sleeper/process()
@@ -202,12 +202,10 @@
 	if(filtering > 0)
 		if(beaker)
 			if(beaker.reagents.total_volume < beaker.reagents.maximum_volume)
-				var/pumped = 0
 				for(var/datum/reagent/x in src.occupant.reagents.reagent_list)
 					src.occupant.reagents.trans_to(beaker, 3)
-					pumped++
-				if (ishuman(src.occupant))
-					src.occupant.vessel.trans_to(beaker, pumped + 1)
+
+
 	src.updateUsrDialog()
 
 

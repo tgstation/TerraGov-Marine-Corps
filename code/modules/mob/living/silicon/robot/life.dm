@@ -143,31 +143,7 @@
 
 /mob/living/silicon/robot/proc/handle_regular_hud_updates()
 
-	if (src.stat == 2 || XRAY in mutations || src.sight_mode & BORGXRAY)
-		src.sight |= SEE_TURFS
-		src.sight |= SEE_MOBS
-		src.sight |= SEE_OBJS
-		src.see_in_dark = 8
-		src.see_invisible = SEE_INVISIBLE_MINIMUM
-	else if (src.sight_mode & BORGMESON && src.sight_mode & BORGTHERM)
-		src.sight |= SEE_TURFS
-		src.sight |= SEE_MOBS
-		src.see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_MINIMUM
-	else if (src.sight_mode & BORGMESON)
-		src.sight |= SEE_TURFS
-		src.see_in_dark = 8
-		see_invisible = SEE_INVISIBLE_MINIMUM
-	else if (src.sight_mode & BORGTHERM)
-		src.sight |= SEE_MOBS
-		src.see_in_dark = 8
-		src.see_invisible = SEE_INVISIBLE_LEVEL_TWO
-	else if (src.stat != 2)
-		src.sight &= ~SEE_MOBS
-		src.sight &= ~SEE_TURFS
-		src.sight &= ~SEE_OBJS
-		src.see_in_dark = 8
-		src.see_invisible = SEE_INVISIBLE_LEVEL_TWO
+	update_sight()
 
 
 	if (hud_used && hud_used.healths)
@@ -256,23 +232,27 @@
 //	if (src.oxygen) src.oxygen.icon_state = "oxy[src.oxygen_alert ? 1 : 0]"
 //	if (src.fire) src.fire.icon_state = "fire[src.fire_alert ? 1 : 0]"
 
-	client.screen.Remove(global_hud.blurry,global_hud.druggy,global_hud.vimpaired)
-
-	if (hud_used && hud_used.blind_icon && stat != DEAD)
+	if(stat != DEAD) //the dead get zero fullscreens
 		if(blinded)
-			hud_used.blind_icon.plane = 0
+			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 		else
-			hud_used.blind_icon.plane = -80
-			if (src.disabilities & NEARSIGHTED)
-				src.client.screen += global_hud.vimpaired
+			clear_fullscreen("blind")
 
-			if (src.eye_blurry)
-				src.client.screen += global_hud.blurry
+			if (disabilities & NEARSIGHTED)
+				overlay_fullscreen("nearsighted", /obj/screen/fullscreen/impaired, 1)
+			else
+				clear_fullscreen("nearsighted")
 
-			if (src.druggy)
-				src.client.screen += global_hud.druggy
+			if(eye_blurry)
+				overlay_fullscreen("blurry", /obj/screen/fullscreen/blurry)
+			else
+				clear_fullscreen("blurry")
+			if(druggy)
+				overlay_fullscreen("high", /obj/screen/fullscreen/high)
+			else
+				clear_fullscreen("high")
 
-	if (src.stat != 2)
+
 		if(interactee)
 			interactee.check_eye(src)
 		else
