@@ -22,6 +22,9 @@
 	name = "grass"
 	icon_state = "heavygrass_1"
 
+//TREE
+/obj/structure/desertdam/decals/tree
+	icon_state = "tree_1"
 //CACTUS
 /obj/structure/desertdam/decals/cactus
 	icon_state = "cactus_1"
