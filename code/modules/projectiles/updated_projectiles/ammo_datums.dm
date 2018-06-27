@@ -561,6 +561,7 @@
 /datum/ammo/bullet/sniper
 	name = "sniper bullet"
 	damage_falloff = 0
+	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_SKIPS_HUMANS
 	accurate_range_min = 10
 	New()
@@ -576,6 +577,7 @@
 	name = "incendiary sniper bullet"
 	accuracy = 0
 	damage_type = BURN
+	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY|AMMO_SNIPER|AMMO_SKIPS_HUMANS
 	New()
 		..()
@@ -587,6 +589,7 @@
 
 /datum/ammo/bullet/sniper/flak
 	name = "flak sniper bullet"
+	iff_signal = ACCESS_IFF_MARINE
 	New()
 		..()
 		accuracy = -config.low_hit_accuracy
@@ -599,8 +602,13 @@
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		burst(get_turf(M),P,damage_type)
 
+/datum/ammo/bullet/sniper/svd
+	name = "crude sniper bullet"
+	iff_signal = null
+
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"
+	iff_signal = ACCESS_IFF_PMC
 	New()
 		..()
 		accuracy = config.max_hit_accuracy
