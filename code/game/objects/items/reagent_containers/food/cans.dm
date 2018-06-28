@@ -1,5 +1,5 @@
 /obj/item/reagent_container/food/drinks/cans
-	var canopened = 0
+	var/canopened = 0
 
 	attack_self(mob/user as mob)
 		if (canopened == 0)

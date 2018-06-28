@@ -593,6 +593,8 @@ datum/game_mode/proc/initialize_special_clamps()
 		W.registered_name = H.real_name
 		H.equip_to_slot_or_del(W, WEAR_ID)
 
+	H.name = H.get_visible_name()
+
 	if(map_tag != MAP_PRISON_STATION)
 		var/random_weap = rand(0,4)
 		switch(random_weap)

@@ -1029,7 +1029,6 @@ Buildable meters
 #undef PIPE_GAS_MIXER
 #undef PIPE_PASSIVE_GATE
 #undef PIPE_VOLUME_PUMP
-#undef PIPE_OUTLET_INJECT
 #undef PIPE_MTVALVE
 #undef PIPE_GAS_FILTER_M
 #undef PIPE_GAS_MIXER_T

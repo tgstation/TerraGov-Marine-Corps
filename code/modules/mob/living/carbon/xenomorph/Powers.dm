@@ -80,7 +80,16 @@
 	if(!target)
 		return
 
+	if(action_busy)
+		return
+
 	if(!do_after(src, 12, TRUE, 5, BUSY_ICON_HOSTILE))
+		return
+
+	if (used_acid_spray)
+		return
+
+	if (!check_plasma(200))
 		return
 
 	round_statistics.praetorian_acid_sprays++

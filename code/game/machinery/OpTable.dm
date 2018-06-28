@@ -5,7 +5,8 @@
 	icon_state = "table2-idle"
 	density = 1
 	layer = TABLE_LAYER
-	anchored = 1.0
+	anchored = 1
+	unacidable = 1
 	use_power = 1
 	idle_power_usage = 1
 	active_power_usage = 5

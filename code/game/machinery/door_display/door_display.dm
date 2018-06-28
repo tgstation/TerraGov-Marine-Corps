@@ -1,8 +1,3 @@
-#define CHARS_PER_LINE 5
-#define FONT_SIZE "4pt"
-#define FONT_COLOR "#09f"
-#define FONT_STYLE "Arial Black"
-
 ///////////////////////////////////////////////////////////////////////////////////////////////
 //  Parent of all door displays.
 //  Description: This is a controls the timer for the brig doors, displays the timer on itself and
@@ -179,7 +174,7 @@
 //Checks to see if there's 1 line or 2, adds text-icons-numbers/letters over display
 // Stolen from status_display
 /obj/machinery/door_display/proc/update_display(var/text)
-	var/new_text = {"<div style="font-size:[FONT_SIZE];color:[FONT_COLOR];font:'[FONT_STYLE]';text-align:center;" valign="top">[text]</div>"}
+	var/new_text = {"<div style="font-size:'5pt'; color:'#09f'; font:'Arial Black'; text-align:center;" valign="top">[text]</div>"}
 	if(maptext != new_text)
 		maptext = new_text
 
@@ -321,9 +316,3 @@
 			D.close()
 
 	return 1
-
-
-#undef FONT_SIZE
-#undef FONT_COLOR
-#undef FONT_STYLE
-#undef CHARS_PER_LINE

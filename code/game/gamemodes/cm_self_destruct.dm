@@ -409,7 +409,6 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 				else user << "<span class='warning'>The control rod is not ready.</span>"
 
 
-#undef SELF_DESTRUCT_ROD_STARTUP_TIME
 #undef SELF_DESTRUCT_MACHINE_INACTIVE
 #undef SELF_DESTRUCT_MACHINE_ACTIVE
 #undef SELF_DESTRUCT_MACHINE_ARMED

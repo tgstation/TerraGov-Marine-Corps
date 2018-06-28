@@ -137,7 +137,6 @@
 #undef X_SUIT_LAYER
 #undef X_L_HAND_LAYER
 #undef X_R_HAND_LAYER
-#undef TARGETED_LAYER
 #undef X_LEGCUFF_LAYER
 #undef X_FIRE_LAYER
 #undef X_TOTAL_LAYERS

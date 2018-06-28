@@ -1,5 +1,6 @@
-/var/const/OPEN = 1
-/var/const/CLOSED = 2
+// Door open and close constants
+/var/const
+	CLOSED = 2
 
 #define FIREDOOR_MAX_PRESSURE_DIFF 25 // kPa
 #define FIREDOOR_MAX_TEMP 50 // °C
@@ -8,7 +9,6 @@
 // Bitflags
 #define FIREDOOR_ALERT_HOT      1
 #define FIREDOOR_ALERT_COLD     2
-// Not used #define FIREDOOR_ALERT_LOWPRESS 4
 
 
 /obj/machinery/door/firedoor
@@ -22,7 +22,10 @@
 	layer = FIREDOOR_OPEN_LAYER
 	open_layer = FIREDOOR_OPEN_LAYER // Just below doors when open
 	closed_layer = FIREDOOR_CLOSED_LAYER // Just above doors when closed
-
+	power_channel = ENVIRON
+	use_power = 1
+	idle_power_usage = 5
+	
 	var/blocked = 0
 	var/lockdown = 0 // When the door has detected a problem, it locks.
 	var/pdiff_alert = 0
@@ -32,10 +35,6 @@
 	var/list/areas_added
 	var/list/users_to_open = new
 	var/next_process_time = 0
-
-	power_channel = ENVIRON
-	use_power = 1
-	idle_power_usage = 5
 
 	var/list/tile_info[4]
 	var/list/dir_alerts[4] // 4 dirs, bitflags

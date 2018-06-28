@@ -497,7 +497,7 @@ cdel(src)
 	*/
 
 /* Commented out since this functionality was moved to /datum/shuttle/ferry/marine/close_doors() and open_doors()
-	if(air_master) //*sigh* if that crazy bug is gonna happen, it may as well happen on landing.
+	if(air_master) // If that crazy bug is gonna happen, it may as well happen on landing.
 		var/turf/T
 		for(i in update_air)
 			T = i
