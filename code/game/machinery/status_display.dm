@@ -1,8 +1,3 @@
-#define FONT_SIZE "5pt"
-#define FONT_COLOR "#09f"
-#define FONT_STYLE "Arial Black"
-#define SCROLL_SPEED 2
-
 // Status display
 // (formerly Countdown timer display)
 
@@ -267,8 +262,6 @@
 		overlays.Cut()
 	overlays += image('icons/obj/status_display.dmi', icon_state=picture_state)
 
-#undef CHARS_PER_LINE
-#undef FOND_SIZE
 #undef FONT_COLOR
 #undef FONT_STYLE
 #undef SCROLL_SPEED

@@ -241,8 +241,8 @@
 	icon_state = "scalpel_laser2_on"
 	damtype = "fire"
 	force = 12.0
-	var active = 0
-	var resetting = 0//For the reset, to prevent macro-spam abuse
+	var/active = 0
+	var/resetting = 0//For the reset, to prevent macro-spam abuse
 
 /obj/item/tool/surgery/WYautopsy/verb/reset()
 	set category = "IC"

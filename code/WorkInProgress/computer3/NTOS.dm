@@ -240,6 +240,3 @@
 		current = null
 		interact()
 		return
-
-#undef MAX_ROWS
-#undef MAX_COLUMNS
