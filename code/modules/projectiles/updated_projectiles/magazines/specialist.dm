@@ -43,7 +43,7 @@
 	desc = "A large caliber magazine for the SVD sniper rifle."
 	caliber = "7.62x54mmR"
 	icon_state = "svd003"
-	default_ammo = /datum/ammo/bullet/sniper
+	default_ammo = /datum/ammo/bullet/sniper/svd
 	max_rounds = 10
 	gun_type = /obj/item/weapon/gun/rifle/sniper/svd
 
