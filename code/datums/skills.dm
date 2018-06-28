@@ -100,7 +100,7 @@
 
 /datum/skills/combat_medic/crafty
 	name = "Crafty Combat Medic"
-	engineer = SKILL_CONSTRUCTION_METAL
+	construction = SKILL_CONSTRUCTION_METAL
 	engineer = SKILL_ENGINEER_METAL
 
 

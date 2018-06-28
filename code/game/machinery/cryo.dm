@@ -43,6 +43,8 @@
 	if(occupant)
 		if(occupant.stat != DEAD)
 			process_occupant()
+		else
+			go_out()
 
 	updateUsrDialog()
 	return 1

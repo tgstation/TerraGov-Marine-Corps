@@ -325,7 +325,7 @@
 
 /obj/item/device/radio/headset/almayer/marine/alpha
 	name = "marine alpha radio headset"
-	desc = "This is used by  alpha squad members.."
+	desc = "This is used by  alpha squad members."
 	icon_state = "sec_headset"
 	frequency = ALPHA_FREQ //default frequency is alpha squad channel, not PUB_FREQ
 
@@ -394,7 +394,7 @@
 
 /obj/item/device/radio/headset/almayer/marine/delta
 	name = "marine delta radio headset"
-	desc = "This is used by delta squad members. Channels are as follows: :d - delta squad."
+	desc = "This is used by delta squad members."
 	icon_state = "com_headset"
 	frequency = DELTA_FREQ
 
