@@ -122,7 +122,7 @@
 		for(var/obj/machinery/door/firedoor/E in src.master.all_doors)
 			if(!E:blocked)
 				if(E.operating)
-					E:nextstate = CLOSED
+					E:nextstate = OPEN
 				else if(!E.density)
 					spawn(0)
 						E.close()

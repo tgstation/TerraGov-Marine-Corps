@@ -13,6 +13,8 @@
 	var/mob/living/buckled_mob
 	var/buckle_lying = FALSE //Is the mob buckled in a lying position
 	var/can_buckle = FALSE
+	
+	var/explosion_resistance = 0
 
 /obj/New()
 	..()
