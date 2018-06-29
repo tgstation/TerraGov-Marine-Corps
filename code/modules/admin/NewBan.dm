@@ -186,7 +186,7 @@ var/savefile/Banlist
 		else				expiry = "Permaban"
 		var/unban_link = "<A href='?src=[ref];unbanf=[key][id]'>(U)</A><A href='?src=[ref];unbane=[key][id]'>(E)</A>"
 		var/perma_links = ""
-		if(check_rights(R_ADMIN,0))
+		if(ishost(usr))
 			if((Banlist["minutes"] - CMinutes) > 10080)
 				unban_link = ""
 				perma_links = "<A href='?src=[ref];unbanf=[key][id]'>(L)</A>"
@@ -197,7 +197,7 @@ var/savefile/Banlist
 
 	dat += "</table>"
 	var/dat_header = "<HR><B>Bans:</B> <FONT COLOR=blue>(U) = Unban , (E) = Edit Ban"
-	if(check_rights(R_ADMIN,0))	dat_header += ", (P) = Upgrade to Perma, (L) = Lift Permaban"
+	if(ishost(usr))	dat_header += ", (P) = Upgrade to Perma, (L) = Lift Permaban"
 	dat_header += "</FONT> - <FONT COLOR=green>([count] Bans)</FONT><HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 >[dat]"
 	usr << browse(dat_header, "window=unbanp;size=875x400")
 
