@@ -189,9 +189,11 @@
 		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
 		var/obj/item/attachable/suppressor/S = new(src)
 		S.attach_icon = ""
+		S.icon_state = ""
 		S.flags_attach_features &= ~ATTACH_REMOVABLE
 		S.Attach(src)
 		update_attachable(S.slot)
+		S.icon_state = initial(S.icon_state)
 
 /obj/item/weapon/gun/pistol/c99/set_gun_config_values()
 	fire_delay = config.high_fire_delay
