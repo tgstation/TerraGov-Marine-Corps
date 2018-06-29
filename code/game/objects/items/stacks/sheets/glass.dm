@@ -145,6 +145,7 @@
 	desc = "Reinforced glass is made out of squares of regular silicate glass layered on a metallic rod matrice. This glass is more resistant to direct impacts, even if it may crack."
 	singular_name = "reinforced glass sheet"
 	icon_state = "sheet-rglass"
+	stack_id = "reinf glass sheet"
 
 	matter = list("metal" = 1875,"glass" = 3750)
 	origin_tech = "materials=2"

@@ -20,7 +20,14 @@
 #define R_SPAWN			8192
 #define R_MOD			16384
 #define R_MENTOR		32768
-#define R_HOST			65535	// 65535 is the highest bit Byond is capable of. Always use == R_HOST and not & R_HOST
+#define R_HOST			65536
+// 512.1430 increases maximum bit flags from 16 to 24, so the following flags should be available for future changes:
+// #define R_PERMISSION	131072	
+// #define R_PERMISSION	262144	
+// #define R_PERMISSION	524288	
+// #define R_PERMISSION	1048576	
+// #define R_PERMISSION	2097152	
+// #define R_PERMISSION	4194304	
 //=================================================
 
 

@@ -371,7 +371,7 @@
 		var/mins = 0
 		if(minutes > CMinutes)
 			mins = minutes - CMinutes
-		mins = input(usr,"How long (in minutes)? \n 720 = 12 hours \n 1440 = 1 day \n 4320 = 3 days \n 10080 = 7 days","Ban time",1440) as num|null
+		mins = input(usr,"How long (in minutes)? \n 1440 = 1 day \n 4320 = 3 days \n 10080 = 7 days","Ban time",1440) as num|null
 		if(!mins)	return
 		mins = min(525599,mins)
 		minutes = CMinutes + mins
@@ -821,7 +821,7 @@
 		var/mob_id = M.computer_id
 		var/mob_ip = M.lastKnownIP
 		var/client/mob_client = M.client
-		var/mins = input(usr,"How long (in minutes)? \n 720 = 12 hours \n 1440 = 1 day \n 4320 = 3 days \n 10080 = 7 days","Ban time",1440) as num|null
+		var/mins = input(usr,"How long (in minutes)? \n 1440 = 1 day \n 4320 = 3 days \n 10080 = 7 days","Ban time",1440) as num|null
 		if(!mins)
 			return
 		if(mins >= 525600) mins = 525599

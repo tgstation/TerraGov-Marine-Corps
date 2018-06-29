@@ -16,7 +16,7 @@ client
 		var/body = ""
 
 		//Sort of a temporary solution for right now.
-		if(istype(D,/datum/admins) && !(usr.client.holder.rights == R_HOST)) //Prevents non-hosts from changing their own permissions.
+		if(istype(D,/datum/admins) && !(ishost(usr))) //Prevents non-hosts from changing their own permissions.
 			usr << "<span class='warning'>You need host permission to access this.</span>"
 			return
 
