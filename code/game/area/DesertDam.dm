@@ -69,6 +69,9 @@
 /area/desert_dam/interior/lab_northeast/security_armory
 	name = "\improper "
 	icon_state = "armory"
+/area/desert_dam/interior/lab_northeast/xenobiology
+	name = "\improper "
+	icon_state = "red"
 
 //Dam Interior
 /area/desert_dam/interior/dam_interior/engine_room
