@@ -30,3 +30,14 @@
 	icon_state = "ice_sign"
 	bound_width = 64
 	bound_height = 64
+
+/obj/structure/dam_sign
+	name = "Chigusa landing sign"
+	desc = "A large sign that reads 'Chigusa mining colony', with half the sign written in japanese.."
+	icon_state = "dam_sign"
+	bound_width = 64
+	density = 1
+
+/obj/structure/dam_sign/damaged
+	desc = "A large sign that reads 'Chigusa mining col-', with the rest being obscured by what looks to be tried blood, and damage."
+	icon_state = "dam_sign"
