@@ -43,7 +43,7 @@
 	return t
 
 /proc/readd_quotes(var/t)
-	var/list/repl_chars = list("&#34;" = "\"")
+	var/list/repl_chars = list("&#34;" = "\"", "&#39;" = "\"")
 	for(var/char in repl_chars)
 		var/index = findtext(t, char)
 		while(index)

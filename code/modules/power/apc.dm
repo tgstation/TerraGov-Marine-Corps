@@ -56,7 +56,7 @@
 /obj/machinery/power/apc
 	name = "area power controller"
 	desc = "A control terminal for the area electrical systems."
-	icon = 'icons/obj/almayer.dmi'
+	icon = 'icons/obj/power.dmi'
 	icon_state = "apc0"
 	anchored = 1
 	use_power = 0
@@ -1308,5 +1308,21 @@
 	area.power_environ = 0
 	area.power_change()
 	. = ..()
+
+
+
+//------Almayer APCs ------//
+
+/obj/machinery/power/apc/almayer
+	cell_type = /obj/item/cell/high
+
+/obj/machinery/power/apc/almayer/hardened
+	name = "hardened area power controller"
+	desc = "A control terminal for the area electrical systems. This one is hardened against sudden power fluctuations caused by electrical grid damage."
+	crash_break_probability = 0
+
+
+
+
 
 #undef APC_UPDATE_ICON_COOLDOWN

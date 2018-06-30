@@ -241,6 +241,16 @@
 	..()
 
 
+
+/obj/item/storage/pill_bottle/can_be_inserted(obj/item/W, stop_messages = 0)
+	. = ..()
+	if(.)
+		if(skilllock && usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
+			usr << "<span class='notice'>You can't open [src], it has some kind of lock.</span>"
+			return 0
+
+
+
 /obj/item/storage/pill_bottle/kelotane
 	name = "\improper Kelotane pill bottle"
 	icon_state = "pill_canister2"

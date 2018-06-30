@@ -277,7 +277,7 @@
 		if("print")
 			if(current)
 				var/obj/item/paper/P = new(loc)
-				P.name = "\improper Forensics Data ([current.fields["name"]])"
+				P.name = "\improper Forensics Data ([readd_quotes(current.fields["name"])])" //readd_quotes to properly show the ' in certain mob names
 				P.icon_state = "paper_words"
 				P.info = "<b>Forensics Database</b> - [worldtime2text(world.time)]<br><br>"
 				P.info += get_printable_data(current)

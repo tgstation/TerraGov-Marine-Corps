@@ -154,7 +154,7 @@
 	var/this_iteration = 0
 	in_flight = 1
 	for(next_turf in path)
-		if(!loc || !in_flight) return
+		if(!loc || disposed || !in_flight) return
 
 		if(distance_travelled >= range)
 			ammo.do_at_max_range(src)

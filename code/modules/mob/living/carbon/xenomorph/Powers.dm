@@ -4,6 +4,9 @@
 
 	if(!T) return
 
+	if(T.layer >= FLY_LAYER)//anything above that shouldn't be pounceable (hud stuff)
+		return
+
 	if(!isturf(loc))
 		src << "<span class='xenowarning'>You can't pounce from here!</span>"
 		return
@@ -309,7 +312,7 @@
 
 /mob/living/carbon/Xenomorph/proc/punch(atom/A)
 
-	if (!A || !istype(A, /mob/living/carbon/human))
+	if (!A || !ishuman(A))
 		return
 
 	if (!check_state() || agility)

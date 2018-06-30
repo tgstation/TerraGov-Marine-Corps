@@ -18,17 +18,20 @@
 	switch(shock_stage)
 		if(10 to 29) src << "<span class='danger'>[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!</span>"
 		if(30 to 39)
-			if(shock_stage == 30) emote("me", 1, "is having trouble keeping their eyes open.")
+			if(shock_stage == 30)
+				emote("me", 1, "is having trouble keeping their eyes open.")
 			if(prob(35))
 				src << "<span class='danger'>[pick("It hurts so much", "You really need some painkillers", "Dear god, the pain")]!</span>"
 			eye_blurry = max(2, eye_blurry)
 			stuttering = max(stuttering, 5)
 		if(40 to 59)
-			if(shock_stage == 40) src << "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
+			if(shock_stage == 40)
+				src << "<span class='danger'>[pick("The pain is excruciating", "Please, just end the pain", "Your whole body is going numb")]!</span>"
 			eye_blurry = max(2, eye_blurry)
 			stuttering = max(stuttering, 5)
 		if(60 to 79)
-			if(shock_stage == 60) emote("me", 1, " is having trouble standing.")
+			if(shock_stage == 60 && !lying)
+				emote("me", 1, " is having trouble standing.")
 			eye_blurry = max(2, eye_blurry)
 			stuttering = max(stuttering, 5)
 			if(prob(2))
