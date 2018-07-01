@@ -38,7 +38,7 @@
 	plasma_max = 700
 	plasma_gain = 30
 	is_intelligent = 1
-	speed = 0.3
+	speed = 0.6
 	upgrade_threshold = 800
 	evolution_allowed = FALSE
 	pixel_x = -16
@@ -75,7 +75,6 @@
 		/datum/action/xeno_action/emit_pheromones,
 		/datum/action/xeno_action/activable/gut,
 		/datum/action/xeno_action/psychic_whisper,
-		/datum/action/xeno_action/ready_charge,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
 		)
