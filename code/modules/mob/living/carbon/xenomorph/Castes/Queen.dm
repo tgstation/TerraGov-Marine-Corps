@@ -52,7 +52,6 @@
 	aura_strength = 2 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 	xeno_explosion_resistance = 3 //some resistance against explosion stuns.
-	is_charging = 1 //Queens start with charging enabled
 	spit_delay = 25
 	spit_types = list(/datum/ammo/xeno/toxin/medium, /datum/ammo/xeno/acid/medium)
 
@@ -175,19 +174,19 @@
 /mob/living/carbon/Xenomorph/Queen/Bump(atom/A, yes)
 	set waitfor = 0
 
-	if(charge_speed < charge_speed_buildup * charge_turfs_to_charge || !is_charging) return ..()
+	//if(charge_speed < charge_speed_buildup * charge_turfs_to_charge || !is_charging) return ..()
 
 	if(stat || !A || !istype(A) || A == src || !yes) r_FAL
 
 	if(now_pushing) r_FAL//Just a plain ol turf, let's return.
 
-	if(dir != charge_dir) //We aren't facing the way we're charging.
+	/*if(dir != charge_dir) //We aren't facing the way we're charging.
 		stop_momentum()
 		return ..()
 
 	if(!handle_collision(A))
 		if(!A.charge_act(src)) //charge_act is depricated and only here to handle cases that have not been refactored as of yet.
-			return ..()
+			return ..()*/
 
 	var/turf/T = get_step(src, dir)
 	if(!T || !get_step_to(src, T)) //If it still exists, try to push it.
@@ -347,7 +346,7 @@
 	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
 	visible_message("<span class='xenohighdanger'>\The [src] emits an ear-splitting guttural roar!</span>")
 	create_shriekwave() //Adds the visual effect. Wom wom wom
-	stop_momentum(charge_dir) //Screech kills a charge
+	//stop_momentum(charge_dir) //Screech kills a charge
 
 	for(var/mob/M in view())
 		if(M && M.client)
@@ -508,7 +507,6 @@
 			/datum/action/xeno_action/emit_pheromones,
 			/datum/action/xeno_action/activable/gut,
 			/datum/action/xeno_action/psychic_whisper,
-			/datum/action/xeno_action/ready_charge,
 			/datum/action/xeno_action/shift_spits,
 			/datum/action/xeno_action/activable/xeno_spit,
 			)
@@ -571,10 +569,10 @@
 			icon_state = "Queen Knocked Down"
 	else
 		if(m_intent == MOVE_INTENT_RUN)
-			if(charge_speed > charge_speed_buildup * charge_turfs_to_charge) //Let it build up a bit so we're not changing icons every single turf
+			/*if(charge_speed > charge_speed_buildup * charge_turfs_to_charge) //Let it build up a bit so we're not changing icons every single turf
 				icon_state = "Queen Charging"
-			else
-				icon_state = "Queen Running"
+			else*/
+			icon_state = "Queen Running"
 		else
 			icon_state = "Queen Walking"
 
