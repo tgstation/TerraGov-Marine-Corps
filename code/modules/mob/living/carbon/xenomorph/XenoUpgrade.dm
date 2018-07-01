@@ -258,7 +258,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 5
 					tacklemax = 7
 					tackle_chance = 85
-					speed = 0.2
+					speed = 0.5
 					aura_strength = 3
 					queen_leader_limit = 2
 
@@ -473,7 +473,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 6
 					tacklemax = 9
 					tackle_chance = 90
-					speed = 0.1
+					speed = 0.4
 					aura_strength = 4
 					queen_leader_limit = 3
 
@@ -686,7 +686,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemin = 7
 					tacklemax = 10
 					tackle_chance = 95
-					speed = 0.0
+					speed = 0.3
 					aura_strength = 5
 					queen_leader_limit = 4
 
