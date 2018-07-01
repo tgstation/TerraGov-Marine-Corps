@@ -12,7 +12,7 @@
 <b>Name:</b> Weyland-Yutani NX-35 Neurostimulator Implant<BR>
 <HR>
 <b>Implant Details:</b><BR>
-<b>Function:</b> Stimulates and regulates sensorimotor function to optimize performance. Benefits include pain reduction, improved balance, and improved resistance to overstimulation and disoritentation.<BR>
+<b>Function:</b> Stimulates and regulates sensorimotor function to optimize performance. Benefits include improved balance, and improved resistance to overstimulation and disoritentation.<BR>
 <b>Special Features:</b> To encourage compliance, negative stimulus is applied if the implant recieves a specified codeprhase.<BR>
 <b>Integrity:</b> Implant will be degraded by the body's immune system and thus occasionally malfunction."}
 	return dat
@@ -54,7 +54,7 @@
 		s.start()
 		sleep(5)
 
-		M << "<span class='danger'>Excruciating pain shoots through [part ? "your [part.display_name]" : "you"]!</span>"
+		M.visible_message("<span class='danger'>[M] convulses in pain!</span>", "<span class='danger'>Excruciating pain shoots through [part ? "your [part.display_name]" : "you"]!</span>")
 		M.flash_eyes(1, TRUE)
 		M.stunned += 10
 		M.KnockDown(10)
@@ -91,10 +91,12 @@
 		if(istype(imp_in, /mob/living/))
 			var/mob/living/M = imp_in
 			M.drowsyness = max(M.drowsyness-5, 0)
+			M.dizziness = max(M.dizziness-5, 0)
+			M.stuttering = max(M.stuttering-5, 0)
+			M.confused = max(M.confused-5, 0)
 			M.AdjustKnockedout(-2)
 			M.AdjustStunned(-2)
 			M.AdjustKnockeddown(-1)
-			M.adjustHalLoss(-5)
 
 
 /obj/item/implant/neurostim/emp_act(severity)
@@ -117,8 +119,7 @@
 
 
 /obj/item/implanter/neurostim
-	name = "implanter-neurostim"
-	desc = "Injects an implant which stimulates and regulates nociception and sensorimotor function. Benefits include pain reduction, improved balance, and improved resistance to overstimulation and disoritentation."
+	name = "implanter"
 
 	New()
 		src.imp = new /obj/item/implant/neurostim(src)

@@ -132,7 +132,7 @@
 	if(!ishuman(M))
 		return list()
 	var/surgery_list = list()
-	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking)
+	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
 
 	for(var/datum/limb/L in M.limbs)
 		if(L)
@@ -224,7 +224,7 @@
 	surgery = 1
 	icon_state = "autodoc_operate"
 
-	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking)
+	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
 
 	for(var/datum/autodoc_surgery/A in surgery_todo_list)
 		if(A.type_of_surgery == EXTERNAL_SURGERY)
@@ -976,7 +976,7 @@
 				updateUsrDialog()
 
 			if(href_list["shrapnel"])
-				var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking)
+				var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
 				for(var/datum/limb/L in connected.occupant.limbs)
 					if(L)
 						if(L.implants.len)

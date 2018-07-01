@@ -240,6 +240,9 @@
 			if(isXenoBoiler(C))
 				river_slowdown = -0.5
 
+		if(C.on_fire)
+			C.ExtinguishMob()
+
 		C.next_move_slowdown += river_slowdown
 
 /turf/open/gm/river/proc/cleanup(var/mob/living/carbon/human/M)
