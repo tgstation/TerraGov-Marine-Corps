@@ -705,6 +705,14 @@
 		else
 			D.addiction_progression = min(D.addiction_progression+1, D.progression_threshold) //withdrawal buffer
 
+			if(prob(1))
+				M.hallucination += 50
+			if(prob(0.5) && ishuman(M))
+				var/mob/living/carbon/human/H = M
+				var/affected_organ = pick("heart","lungs","liver","kidneys")
+				var/datum/internal_organ/I =  H.internal_organs_by_name[affected_organ]
+				I.damage += 5
+
 		break
 
 	if(!has_addiction)
