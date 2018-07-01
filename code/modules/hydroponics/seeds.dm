@@ -39,7 +39,7 @@
 /obj/item/seeds/cutting/update_appearance()
 	..()
 	src.name = "packet of [seed.seed_name] cuttings"
-
+/*
 /obj/item/seeds/random
 	seed_type = null
 
@@ -52,7 +52,7 @@
 	seed_types[seed.name] = seed
 
 	update_seed()
-
+*/
 /obj/item/seeds/poppyseed
 	seed_type = "poppies"
 
