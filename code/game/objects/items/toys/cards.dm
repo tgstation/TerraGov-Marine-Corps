@@ -98,9 +98,15 @@
 	//players -= usr
 
 	var/mob/living/M = input("Who do you wish to deal a card?") as null|anything in players
-	if(!usr || !src || !M) return
+	if(!usr || disposed || !Adjacent(usr) || !M || M.disposed) return
 
-	deal_at(usr, M)
+	if(!cards.len)
+		return
+
+	for(var/mob/living/L in viewers(3))
+		if(L == M)
+			deal_at(usr, M)
+			break
 
 /obj/item/toy/deck/proc/deal_at(mob/user, mob/target)
 	var/obj/item/toy/handcard/H = new(get_step(user, user.dir))
@@ -158,7 +164,8 @@
 			cards += P
 		src.concealed = H.concealed
 		cdel(O)
-		user.put_in_hands(src)
+		if(loc != user)
+			user.put_in_hands(src)
 		update_icon()
 		return
 	..()
@@ -174,9 +181,18 @@
 		to_discard[P.name] = P
 	var/discarding = input("Which card do you wish to put down?") as null|anything in to_discard
 
-	if(!discarding || !to_discard[discarding] || !usr || !src) return
+	if(!discarding || !usr || disposed || loc != usr) return
 
 	var/datum/playingcard/card = to_discard[discarding]
+	if(card.disposed)
+		return
+	var/found = FALSE
+	for(var/datum/playingcard/P in cards)
+		if(P == card)
+			found = TRUE
+			break
+	if(!found)
+		return
 	cdel(to_discard)
 
 	var/obj/item/toy/handcard/H = new(src.loc)
@@ -215,6 +231,8 @@
 
 	overlays.Cut()
 
+	if(!cards.len)
+		return
 
 	if(cards.len == 1)
 		var/datum/playingcard/P = cards[1]

@@ -604,7 +604,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/root/cm_armored/proc/handle_hardpoint_repair(var/obj/item/O, var/mob/user)
 
 	//Need to the what the hell you're doing
-	if(!user.mind || !(!user.mind.cm_skills || user.mind.cm_skills.engineer >= SKILL_ENGINEER_MT))
+	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
 		user << "<span class='warning'>You don't know what to do with [O] on [src].</span>"
 		return
 
@@ -661,7 +661,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	user.visible_message("<span class='notice'>[user] starts repairing the [slot] slot on [src].</span>",
 		"<span class='notice'>You start repairing the [slot] slot on [src].</span>")
 
-	if(!do_after(user, 30*num_delays, numticks = num_delays, show_busy_icon = TRUE))
+	if(!do_after(user, 30*num_delays, TRUE, num_delays, BUSY_ICON_FRIENDLY))
 		user.visible_message("<span class='notice'>[user] stops repairing the [slot] slot on [src].</span>",
 			"<span class='notice'>You stop repairing the [slot] slot on [src].</span>")
 		return
@@ -720,7 +720,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		if(HDPT_ARMOR) num_delays = 10
 		if(HDPT_TREADS) num_delays = 7
 
-	if(!do_after(user, 30*num_delays, numticks = num_delays, show_busy_icon = TRUE))
+	if(!do_after(user, 30*num_delays, TRUE, num_delays, BUSY_ICON_FRIENDLY))
 		user.visible_message("<span class='warning'>[user] stops installing \the [HP] on [src].</span>", "<span class='warning'>You stop installing \the [HP] on [src].</span>")
 		return
 
@@ -758,7 +758,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		if(HDPT_ARMOR) num_delays = 10
 		if(HDPT_TREADS) num_delays = 7
 
-	if(!do_after(user, 30*num_delays, numticks = num_delays, show_busy_icon = TRUE))
+	if(!do_after(user, 30*num_delays, TRUE, num_delays, BUSY_ICON_FRIENDLY))
 		user.visible_message("<span class='warning'>[user] stops removing \the [old] on [src].</span>", "<span class='warning'>You stop removing \the [old] on [src].</span>")
 		return
 

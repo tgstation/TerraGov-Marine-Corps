@@ -191,8 +191,7 @@
 
 /obj/machinery/computer/security/almayer
 	density = 0
-	icon = 'icons/obj/almayer.dmi'
-	icon_state = "security"
+	icon_state = "security_cam"
 
 
 /obj/machinery/computer/security/dropship

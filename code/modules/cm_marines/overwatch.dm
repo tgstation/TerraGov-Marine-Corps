@@ -848,7 +848,7 @@
 
 /obj/machinery/computer/overwatch/almayer
 	density = 0
-	icon = 'icons/obj/almayer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "overwatch"
 
 /obj/structure/supply_drop

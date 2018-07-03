@@ -729,7 +729,7 @@ and you're good to go.
 
 					if(!delete_bullet(projectile_to_fire)) cdel(projectile_to_fire)
 					reload_into_chamber(user) //Reload into the chamber if the gun supports it.
-					return
+					return TRUE
 
 	return ..() //Pistolwhippin'
 

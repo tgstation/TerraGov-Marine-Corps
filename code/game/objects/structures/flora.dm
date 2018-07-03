@@ -32,6 +32,15 @@
 	..()
 	icon_state = "tree_[rand(1, 6)]"
 
+/obj/structure/flora/tree/joshua
+	name = "joshua tree"
+	desc = "A tall tree covered in spiky-like needles, covering it's trunk."
+	icon = 'icons/obj/flora/joshuatree.dmi'
+	icon_state = "joshua_1"
+	pixel_x = 0
+/obj/structure/flora/tree/joshua/New()
+	..()
+	icon_state = "joshua_[rand(1,4)]"
 
 //grass
 /obj/structure/flora/grass
@@ -196,7 +205,52 @@
 	icon_state = "fullgrass_[rand(1, 3)]"
 
 
+//Desert (Desert Dam)
+//*********************//
+// Generic undergrowth //
+//*********************//
+/obj/structure/flora/desert
+	anchored = 1
+	icon = 'icons/obj/flora/dam.dmi'
+	var/icon_tag = null
+	var/variations = null
 
+/obj/structure/flora/desert/New()
+	..()
+	icon_state = "[icon_tag]_[rand(1,variations)]"
+
+//GRASS
+/obj/structure/flora/desert/grass
+	name = "grass"
+	icon_state = "lightgrass_1"
+	icon_tag = "lightgrass"
+	variations = 12
+
+/obj/structure/flora/desert/grass/heavy
+	icon_state = "heavygrass_1"
+	icon_tag = "heavygrass"
+	variations = 16
+
+//BUSHES
+/obj/structure/flora/desert/bush
+	name = "bush"
+	desc = "A small, leafy bush."
+	icon_state = "tree_1"
+	icon_tag = "tree"
+	variations = 4
+
+//CACTUS
+/obj/structure/flora/desert/cactus
+	name = "cactus"
+	desc = "It's a small, spiky cactus."
+	icon_state = "cactus_1"
+	icon_tag = "cactus"
+	variations = 12
+
+/obj/structure/flora/desert/cactus/multiple
+	name = "cacti"
+	icon_state = "cactus_1"
+	icon_tag = "cacti"
 
 
 //Jungle (Whiskey Outpost)
