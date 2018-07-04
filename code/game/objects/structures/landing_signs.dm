@@ -34,10 +34,8 @@
 /obj/structure/dam_sign
 	name = "Chigusa landing sign"
 	desc = "A large sign that reads 'Chigusa mining colony', with half the sign written in japanese.."
-<<<<<<< HEAD
-=======
+
 	icon = 'icons/obj/landing_signs.dmi'
->>>>>>> 0ac0c8e6f538b4e2663a83706cf65d3a1097a4f1
 	icon_state = "dam_sign"
 	bound_width = 64
 	density = 1

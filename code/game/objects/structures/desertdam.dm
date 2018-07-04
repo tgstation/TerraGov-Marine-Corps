@@ -12,7 +12,7 @@
 	name = "loose sand"
 	icon_state = "loosesand_overlay_for_asphalt_1"
 
-<<<<<<< HEAD
+
 //GRASS
 /obj/structure/desertdam/decals/grass
 	icon_state = "heavygrass_1"
@@ -35,8 +35,7 @@
 /obj/structure/desertdam/decals/cactus/cacti
 	name = "cacti"
 	icon_state = "cacti_1"
-=======
->>>>>>> 0ac0c8e6f538b4e2663a83706cf65d3a1097a4f1
+
 //road decal
 /obj/structure/desertdam/decals/road_edge
 	name = "road"
