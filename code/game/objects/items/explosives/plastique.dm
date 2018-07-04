@@ -9,7 +9,11 @@
 	w_class = 2.0
 	origin_tech = "syndicate=2"
 	var/timer = 10
-	var/atom/target = null
+	var/atom/plant_target = null //which atom the plstique explosive is planted on
+
+/obj/item/explosive/plastique/Dispose()
+	plant_target = null
+	. = ..()
 
 /obj/item/explosive/plastique/attack_self(mob/user)
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
@@ -47,9 +51,9 @@
 	"<span class='warning'>You are trying to plant [name] on [target]!</span>")
 	bombers += "[key_name(user)] attached C4 to [target.name]."
 
-	if(do_after(user, 50, TRUE, 5, BUSY_ICON_HOSTILE) && in_range(user, target))
+	if(do_mob(user, target, 50, BUSY_ICON_HOSTILE))
 		user.drop_held_item()
-		target = target
+		plant_target = target
 		loc = null
 		var/location
 		if (isturf(target)) location = target
@@ -67,17 +71,15 @@
 		user.visible_message("<span class='warning'>[user] plants [name] on [target]!</span>",
 		"<span class='warning'>You plant [name] on [target]! Timer counting down from [timer].</span>")
 		spawn(timer*10)
-			if(target)
+			if(plant_target && !plant_target.disposed)
 				explosion(location, -1, -1, 2, 3)
-				target.ex_act(1)
-				if (isobj(target))
-					if (target)
-						cdel(target)
-						target = null
-				if(target && target.loc)
-					target.overlays -= image('icons/obj/items/assemblies.dmi', "plastic-explosive2")
-				if (src)
-					cdel(src)
+				plant_target.ex_act(1)
+				if(plant_target && !plant_target.disposed)
+					if(isobj(plant_target))
+						cdel(plant_target)
+					else
+						plant_target.overlays -= image('icons/obj/items/assemblies.dmi', "plastic-explosive2")
+			cdel(src)
 
 /obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return
