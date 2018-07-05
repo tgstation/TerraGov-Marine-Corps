@@ -799,7 +799,7 @@
 		O.loc = T
 	M.visible_message("<span class='danger'>\The [M] smashes \the [src] apart!</span>", \
 	"<span class='danger'>You smash \the [src] apart!</span>", \
-	"<span class='danger'>You hear splitting wood:!/span>", 5)
+	"<span class='danger'>You hear splitting wood!</span>", 5)
 	cdel(src)
 
 /obj/structure/closet/attack_alien(mob/living/carbon/Xenomorph/M)
