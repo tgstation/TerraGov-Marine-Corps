@@ -12,30 +12,6 @@
 	name = "loose sand"
 	icon_state = "loosesand_overlay_for_asphalt_1"
 
-
-//GRASS
-/obj/structure/desertdam/decals/grass
-	icon_state = "heavygrass_1"
-/obj/structure/desertdam/decals/grass/lightgrass
-	name = "grass"
-	icon_state = "lightgrass_1"
-/obj/structure/desertdam/decals/grass/heavygrass
-	name = "grass"
-	icon_state = "heavygrass_1"
-
-//TREE
-/obj/structure/desertdam/decals/tree
-	icon_state = "tree_1"
-//CACTUS
-/obj/structure/desertdam/decals/cactus
-	icon_state = "cactus_1"
-/obj/structure/desertdam/decals/cactus/cactus
-	name = "cactus"
-	icon_state = "cactus_1"
-/obj/structure/desertdam/decals/cactus/cacti
-	name = "cacti"
-	icon_state = "cacti_1"
-
 //road decal
 /obj/structure/desertdam/decals/road_edge
 	name = "road"

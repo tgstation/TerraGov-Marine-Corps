@@ -324,6 +324,13 @@
 		icon_state = "[walltype][junction]"
 
 
+//Bunker Walls
+
+/turf/closed/wall/r_wall/bunker
+	name = "bunker wall"
+	icon = 'icons/turf/walls/bunker.dmi'
+	icon_state = "bunker0"
+	walltype = "bunker"
 
 //Prison
 
