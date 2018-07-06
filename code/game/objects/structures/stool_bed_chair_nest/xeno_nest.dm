@@ -7,6 +7,7 @@
 	icon_state = "nest"
 	buckling_y = 6
 	buildstacktype = null //can't be disassembled and doesn't drop anything when destroyed
+	unacidable = TRUE
 	var/health = 100
 	var/on_fire = 0
 	var/resisting = 0
@@ -14,9 +15,9 @@
 	var/nest_resist_time = 1200
 	layer = RESIN_STRUCTURE_LAYER
 
-	New()
-		..()
-		if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
+/obj/structure/bed/nest/New()
+	..()
+	if(!locate(/obj/effect/alien/weeds) in loc) new /obj/effect/alien/weeds(loc)
 
 /obj/structure/bed/nest/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/grab))

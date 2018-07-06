@@ -79,7 +79,7 @@
 	use_power = 1
 	idle_power_usage = 20
 
-	icon = 'icons/obj/almayer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "terminal"
 
 /obj/machinery/prop/almayer/computer/ex_act(severity)
@@ -125,7 +125,7 @@
 	use_power = 1
 	idle_power_usage = 20
 
-	icon = 'icons/obj/almayer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "maptable"
 
 //Nonpower using props
@@ -300,29 +300,6 @@
 
 
 
-
-//------APCs ------//
-
-/obj/machinery/power/apc/almayer
-	cell_type = /obj/item/cell/high
-
-/obj/machinery/power/apc/almayer/hardened
-	name = "hardened area power controller"
-	desc = "A control terminal for the area electrical systems. This one is hardened against sudden power fluctuations caused by electrical grid damage."
-	crash_break_probability = 0
-
-//------ Air Alarms -----//
-
-/obj/machinery/alarm/almayer
-	icon = 'icons/obj/almayer.dmi' // I made these really quickly because idk where they have their new air alarm ~Art
-
-	New()
-		..()
-		switch(dir)
-			if(1) pixel_y = 25
-			if(2) pixel_y = -25
-			if(4) pixel_x = 25
-			if(8) pixel_x = -25
 
 
 

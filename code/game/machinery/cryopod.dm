@@ -15,10 +15,11 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 /obj/machinery/computer/cryopod
 	name = "hypersleep bay console"
 	desc = "A large console controlling the ship's hypersleep bay. Most of the options are disabled and locked, although it allows recovery of items from long-term hypersleeping crew."
-	icon = 'icons/obj/almayer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "cellconsole"
 	circuit = "/obj/item/circuitboard/computer/cryopodcontrol"
 	exproof = TRUE
+	unacidable = TRUE
 	var/cryotype = "REQ"
 	var/mode = null
 

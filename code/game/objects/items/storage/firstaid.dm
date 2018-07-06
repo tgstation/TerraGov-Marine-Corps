@@ -241,6 +241,16 @@
 	..()
 
 
+
+/obj/item/storage/pill_bottle/can_be_inserted(obj/item/W, stop_messages = 0)
+	. = ..()
+	if(.)
+		if(skilllock && usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
+			usr << "<span class='notice'>You can't open [src], it has some kind of lock.</span>"
+			return 0
+
+
+
 /obj/item/storage/pill_bottle/kelotane
 	name = "\improper Kelotane pill bottle"
 	icon_state = "pill_canister2"
@@ -331,8 +341,47 @@
 	icon_state = "pill_canister8"
 	pill_type_to_fill = /obj/item/reagent_container/pill/quickclot
 
+
+//Ultrazine
 /obj/item/storage/pill_bottle/ultrazine
-	name = "\improper Ultrazine pill bottle"
+	name = "\improper Pill bottle"
 	icon_state = "pill_canister11"
 	skilllock = 0 //CL can open it
 	pill_type_to_fill = /obj/item/reagent_container/pill/ultrazine
+
+	req_access_txt = "200"
+	var/req_role = "Corporate Liaison"
+
+
+/obj/item/storage/pill_bottle/ultrazine/proc/id_check(mob/user)
+
+	var/mob/living/carbon/human/H = user
+
+	if(!allowed(user))
+		user << "<span class='notice'>It must have some kind of ID lock...</span>"
+		return 0
+
+	var/obj/item/card/id/I = H.wear_id
+	if(!istype(I)) //not wearing an ID
+		H << "<span class='notice'>It must have some kind of ID lock...</span>"
+		return 0
+
+	if(I.registered_name != H.real_name)
+		H << "<span class='warning'>Wrong ID card owner detected.</span>"
+		return 0
+
+	if(req_role && I.rank != req_role)
+		H << "<span class='notice'>It must have some kind of ID lock...</span>"
+		return 0
+
+	return 1
+
+/obj/item/storage/pill_bottle/ultrazine/attack_self(mob/living/user)
+	if(!id_check(user))
+		return
+	..()
+
+/obj/item/storage/pill_bottle/ultrazine/open(mob/user)
+	if(!id_check(user))
+		return
+	..()

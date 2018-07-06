@@ -4,7 +4,7 @@
 /obj/machinery/computer/emails
 	name = "Personal Computer"
 	desc = "A personal computer used to view emails"
-	icon = 'icons/obj/almayer.dmi'
+	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "terminal1"
 	var/screen = 0
 	var/email_type = /datum/fluff_email/almayer //the type of emails this computer will show. e.g. USCM emails for the personal computers on the Almayer

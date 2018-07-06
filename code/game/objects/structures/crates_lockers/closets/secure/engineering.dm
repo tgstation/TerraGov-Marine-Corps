@@ -14,7 +14,6 @@
 		sleep(2)
 		new /obj/item/clothing/tie/storage/webbing(src)
 		new /obj/item/clothing/tie/storage/brown_vest(src)
-		new /obj/item/blueprints(src)
 		new /obj/item/clothing/head/hardhat/white(src)
 		new /obj/item/clothing/head/welding(src)
 		new /obj/item/clothing/gloves/yellow(src)
