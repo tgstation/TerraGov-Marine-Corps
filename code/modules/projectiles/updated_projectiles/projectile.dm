@@ -307,62 +307,40 @@
 	if(layer >= OBJ_LAYER || src == P.original)
 		return TRUE
 
-/obj/structure/janitorialcart/get_projectile_hit_chance(obj/item/projectile/P)
-	if(src == P.original)
-		return TRUE
-
-/obj/structure/barricade/get_projectile_hit_chance(obj/item/projectile/P)
-	if(!density) //barricade is open
-		return FALSE
-	if(src == P.original) //clicking on the barricade itself hits the barricade
-		return TRUE
-	if(!anchored) //unanchored barricade offers no protection.
+/obj/structure/get_projectile_hit_chance(obj/item/projectile/P)
+	if(!density) //structure is passable
 		return FALSE
 
-	var/dist = P.distance_travelled
+	if(src == P.original) //clicking on the structure itself hits the structure
+		return TRUE
 
-	if(P.dir & reverse_direction(dir)) //accounting for directional barricade offset
-		dist--
-	else if ( !(P.dir & dir) )
+	if(!anchored) //unanchored structure offers no protection.
+		return FALSE
+
+	if(!throwpass)
+		return TRUE
+
+	if(P.ammo.flags_ammo_behavior & AMMO_SNIPER) //sniper rounds bypass cover
+		return FALSE
+
+	if(!(flags_atom & ON_BORDER))
+		return FALSE //window frames, unflipped tables
+
+	if(!( P.dir & reverse_direction(dir) || P.dir & dir))
 		return FALSE //no effect if bullet direction is perpendicular to barricade
 
-	if(dist < 1)
+	var/distance = P.distance_travelled - 1
+
+	if(distance < 1)
 		return FALSE
 
-	var/hitchance = min(90, (dist * 15) - (P.accuracy *0.5) + 50)
-	//world << "Distance travelled: [dist]  |  Accuracy: [P.accuracy]  |  Hit chance: [hitchance]"
+	var/coverage = 90 //maximum probability of blocking projectile
+	var/distance_limit = 6 //number of tiles needed to max out block probability
+	var/accuracy_factor = 50 //degree to which accuracy affects probability   (if accuracy is 100, probability is unaffected. Lower accuracies will increase block chance)
+
+	var/hitchance = min(coverage, (coverage * distance/distance_limit) + accuracy_factor * (1 - P.accuracy/100))
+	//world << "Distance travelled: [distance]  |  Accuracy: [P.accuracy]  |  Hit chance: [hitchance]"
 	return prob(hitchance)
-
-/obj/structure/bed/get_projectile_hit_chance(obj/item/projectile/P)
-	if(density && src == P.original)
-		return TRUE
-	else
-		return FALSE
-
-/obj/structure/reagent_dispensers/get_projectile_hit_chance(obj/item/projectile/P)
-	if(density && src == P.original)
-		return TRUE
-	else
-		return FALSE
-
-/obj/structure/table/get_projectile_hit_chance(obj/item/projectile/P)
-	if(flags_atom & ON_BORDER) //flipped table
-		if(src == P.original)
-			return TRUE
-
-		var/dist = P.distance_travelled
-
-		if(P.dir & reverse_direction(dir)) //accounting for directional barricade offset
-			dist--
-		else if ( !(P.dir & dir) )  //no effect if bullet direction is perpendicular to barricade
-			return FALSE
-
-		if(dist < 1)
-			return FALSE
-
-		var/hitchance = min(90, (dist * 15) - (P.accuracy *0.5) + 50)
-		return prob(hitchance)
-
 
 /obj/structure/window/get_projectile_hit_chance(obj/item/projectile/P)
 	if(P.ammo.flags_ammo_behavior & AMMO_ENERGY)

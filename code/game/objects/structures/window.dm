@@ -418,7 +418,8 @@
 	static_frame = 1
 	flags_atom = FPRINT
 	var/window_frame //For perspective windows,so the window frame doesn't magically dissapear
-	var/list/tiles_special = list(/obj/structure/window/framed,
+	var/list/tiles_special = list(/obj/machinery/door/airlock,
+		/obj/structure/window/framed,
 		/obj/structure/girder,
 		/obj/structure/window_frame)
 	tiles_with = list(
