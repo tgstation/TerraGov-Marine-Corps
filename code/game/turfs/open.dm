@@ -338,98 +338,115 @@
 	name = "desert"
 	icon_state = "desert1"
 
+/turf/open/desert/desert_shore
+	name = "shore"
+	icon = 'icons/turf/desert_water.dmi'
+	icon_state = "shore"
 
-//CAVE
+/turf/open/desert/desert_shore/shore_edge
+	icon_state = "shore"
+/turf/open/desert/desert_shore/shore_corner
+	icon = 'icons/turf/desert_water.dmi'
+	icon_state = "shore_c"
+/turf/open/desert/desert_shore/shore_edge_toxic
+	icon = 'icons/turf/desert_water_toxic.dmi'
+	icon_state = "shore"
+/turf/open/desert/desert_shore/shore_corner_toxic
+	icon = 'icons/turf/desert_water_toxic.dmi'
+	icon_state = "shore_c"
+
+//Desert Cave
 /turf/open/desert/cave
 	icon_state = "outer_cave_floor1"
-
 //desert floor to outer cave floor transition
 /turf/open/desert/cave/desert_into_outer_cave_floor
 	name = "cave"
 	icon_state = "outer_cave_transition1"
-
 //outer cave floor
 /turf/open/desert/cave/outer_cave_floor
 	name = "cave"
 	icon_state = "outer_cave_floor1"
-
 //outer to inner cave floor transition
 /turf/open/desert/cave/outer_cave_to_inner_cave
 	name = "cave"
 	icon_state = "outer_cave_to_inner1"
-
 //inner cave floor
 /turf/open/desert/cave/inner_cave_floor
 	name = "cave"
 	icon_state = "inner_cave_1"
+//inner cave floor
+/turf/open/desert/cave/cave_shore
+	name = "cave shore"
+	icon = 'icons/turf/desert_water.dmi'
+	icon_state = "shore_caves"
+/turf/open/desert/cave/cave_shore_toxic
+	name = "cave shore"
+	icon = 'icons/turf/desert_water_toxic.dmi'
+	icon_state = "shore_caves"
 
-//River
+//Desert River Clean
 /turf/open/desert/river
-	icon_state = "shallow_water_clean"
-
-
+	name = "river"
+	icon = 'icons/turf/desert_water.dmi'
+	icon_state = "shallow"
+/turf/open/desert/river/clean
+	icon_state = "deep"
 //shallow water
 /turf/open/desert/river/clean/shallow
-	name = "river"
-	icon_state = "shallow_water_clean"
+	icon_state = "shallow"
 //shallow water transition to deep
 /turf/open/desert/river/clean/shallow_edge
-	name = "river"
-	icon_state = "shallow_to_deep_clean_water1"
+	icon_state = "shallow_edge"
+//shallow water transition to deep corner
+/turf/open/desert/river/clean/shallow_corner
+	icon_state = "shallow_c"
 //deep water
-/turf/open/desert/river/clean/deep_water_clean
+/turf/open/desert/river/clean/deep
 	name = "river"
-	icon_state = "deep_water_clean"
-//shallow water coast
-/turf/open/desert/river/clean/shallow_water_desert_coast
+	icon_state = "deep"
+//shallow water channel plain
+/turf/open/desert/river/clean/channel
 	name = "river"
-	icon_state = "shallow_water_desert_coast1"
-//desert floor waterway
-/turf/open/desert/river/clean/shallow_water_desert_waterway
+	icon_state = "channel"
+//shallow water channel edge
+/turf/open/desert/river/clean/channel_edge
 	name = "river"
-	icon_state = "desert_waterway1"
-//shallow water cave coast
-/turf/open/desert/river/clean/shallow_water_cave_coast
+	icon_state = "channel_edge"
+//shallow water channel corner
+/turf/open/desert/river/clean/channel_three
 	name = "river"
-	icon_state = "shallow_water_cave_coast1"
-//cave floor waterway
-/turf/open/desert/river/clean/shallow_water_cave_waterway
-	name = "river"
-	icon_state = "shallow_water_cave_waterway1"
+	icon_state = "channel_three"
 
-//TOXIC
+//Desert River Toxic
 /turf/open/desert/river/toxic
-	icon_state = "shallow_water_toxic"
-
+	name = "toxic river"
+	icon = 'icons/turf/desert_water_toxic.dmi'
+	icon_state = "shallow"
 //shallow water
-/turf/open/desert/river/toxic/shallow_water_toxic
-	name = "river"
-	icon_state = "shallow_water_toxic"
+/turf/open/desert/river/toxic/shallow
+	icon_state = "shallow"
 //shallow water transition to deep
-/turf/open/desert/river/toxic/shallow_edge_toxic
-	name = "river"
-	icon_state = "shallow_to_deep_toxic_water1"
+/turf/open/desert/river/toxic/shallow_edge
+	icon_state = "shallow_edge"
+//shallow water transition to deep corner
+/turf/open/desert/river/toxic/shallow_corner
+	icon_state = "shallow_c"
 //deep water
-/turf/open/desert/river/toxic/deep_water_toxic
+/turf/open/desert/river/toxic/deep
 	name = "river"
-	icon_state = "deep_water_toxic"
-//shallow water coast
-/turf/open/desert/river/toxic/shallow_water_desert_coast_toxic
+	icon_state = "deep"
+//shallow water channel plain
+/turf/open/desert/river/toxic/channel
 	name = "river"
-	icon_state = "shallow_water_desert_coast_toxic1"
-//desert floor waterway
-/turf/open/desert/river/toxic/shallow_water_desert_waterway_toxic
+	icon_state = "channel"
+//shallow water channel edge
+/turf/open/desert/river/toxic/channel_edge
 	name = "river"
-	icon_state = "desert_waterway_toxic1"
-//shallow water cave coast
-/turf/open/desert/river/toxic/shallow_water_cave_coast_toxic
+	icon_state = "channel_edge"
+//shallow water channel corner
+/turf/open/desert/river/toxic/channel_three
 	name = "river"
-	icon_state = "shallow_water_cave_coast_toxic1"
-//cave floor waterway
-/turf/open/desert/river/toxic/shallow_water_cave_waterway_toxic
-	name = "river"
-	icon_state = "shallow_water_cave_waterway_toxic1"
-
+	icon_state = "channel_three"
 
 
 
