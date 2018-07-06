@@ -29,7 +29,7 @@
 		return
 	if(health <= 0)
 		if(user)
-			user.visible_message("<span class='danger'>[user] smashes through [src][AM ? "with [AM]":""]!</span>")
+			user.visible_message("<span class='danger'>[user] smashes through [src][AM ? " with [AM]":""]!</span>")
 		if(make_shatter_sound)
 			playsound(src, "shatter", 50, 1)
 		shatter_window(create_debris)
