@@ -314,12 +314,24 @@
 /obj/structure/barricade/get_projectile_hit_chance(obj/item/projectile/P)
 	if(!density) //barricade is open
 		return FALSE
-	if(src == P.original && !(P.dir & dir)) //if on the defense side, clicking on the barricade doesn't hit the barricade
+	if(src == P.original) //clicking on the barricade itself hits the barricade
 		return TRUE
-	if(P.distance_travelled <= 1 || !anchored) //unanchored barricade offers no protection.
+	if(!anchored) //unanchored barricade offers no protection.
 		return FALSE
-	if(P.dir & reverse_direction(dir))
-		return prob(95)
+
+	var/dist = P.distance_travelled
+
+	if(P.dir & reverse_direction(dir)) //accounting for directional barricade offset
+		dist--
+	else if ( !(P.dir & dir) )
+		return FALSE //no effect if bullet direction is perpendicular to barricade
+
+	if(dist < 1)
+		return FALSE
+
+	var/hitchance = min(90, (dist * 15) - (P.accuracy *0.5) + 50)
+	//world << "Distance travelled: [dist]  |  Accuracy: [P.accuracy]  |  Hit chance: [hitchance]"
+	return prob(hitchance)
 
 /obj/structure/bed/get_projectile_hit_chance(obj/item/projectile/P)
 	if(density && src == P.original)
@@ -337,10 +349,20 @@
 	if(flags_atom & ON_BORDER) //flipped table
 		if(src == P.original)
 			return TRUE
-		if(P.distance_travelled <= 1)
+
+		var/dist = P.distance_travelled
+
+		if(P.dir & reverse_direction(dir)) //accounting for directional barricade offset
+			dist--
+		else if ( !(P.dir & dir) )  //no effect if bullet direction is perpendicular to barricade
 			return FALSE
-		if(P.dir & reverse_direction(dir))
-			return prob(95)
+
+		if(dist < 1)
+			return FALSE
+
+		var/hitchance = min(90, (dist * 15) - (P.accuracy *0.5) + 50)
+		return prob(hitchance)
+
 
 /obj/structure/window/get_projectile_hit_chance(obj/item/projectile/P)
 	if(P.ammo.flags_ammo_behavior & AMMO_ENERGY)
@@ -349,14 +371,7 @@
 		return TRUE
 
 /obj/machinery/door/poddoor/railing/get_projectile_hit_chance(obj/item/projectile/P)
-	if(!density)
-		return FALSE
-	if(P.distance_travelled <= 1)
-		return FALSE
-	if(P.dir & dir)
-		return prob(10)
-	if(P.dir & reverse_direction(dir))
-		return prob(10)
+	return src == P.original
 
 /obj/effect/alien/egg/get_projectile_hit_chance(obj/item/projectile/P)
 	return src == P.original
