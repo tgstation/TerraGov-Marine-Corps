@@ -16,6 +16,14 @@
 	bound_height = 64
 	bound_width = 64
 
+/obj/structure/prop/dam/truck
+	name = "mining truck"
+	desc = "An old mining truck, seems to be broken down."
+	icon = 'icons/obj/structures/truck.dmi'
+	icon_state = "truck"
+	bound_height = 64
+	bound_width = 64
+
 /obj/structure/prop/dam/torii
 	name = "torii arch"
 	desc = "A traditional japanese archway, made out of wood, and adorned with lanterns."

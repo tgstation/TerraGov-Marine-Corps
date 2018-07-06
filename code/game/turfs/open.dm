@@ -343,6 +343,11 @@
 	icon = 'icons/turf/desert_water.dmi'
 	icon_state = "shore"
 
+/turf/open/desert/desert_shore
+	name = "shore"
+	icon = 'icons/turf/desert_water.dmi'
+	icon_state = "shore"
+
 /turf/open/desert/desert_shore/shore_edge
 	icon_state = "shore"
 /turf/open/desert/desert_shore/shore_corner
@@ -354,6 +359,36 @@
 /turf/open/desert/desert_shore/shore_corner_toxic
 	icon = 'icons/turf/desert_water_toxic.dmi'
 	icon_state = "shore_c"
+
+//Desert Waterway
+/turf/open/desert/waterway
+	icon = 'icons/turf/desert_water.dmi'
+	icon_state = "dock"
+/turf/open/desert/waterway/desert_waterway
+	icon = 'icons/turf/desert_water.dmi'
+	icon_state = "dock"
+/turf/open/desert/waterway/desert_waterway_c
+	icon = 'icons/turf/desert_water.dmi'
+	icon_state = "dock_c"
+/turf/open/desert/waterway/desert_waterway_toxic
+	icon = 'icons/turf/desert_water_toxic.dmi'
+	icon_state = "dock"
+/turf/open/desert/waterway/desert_waterway_c_toxic
+	icon = 'icons/turf/desert_water_toxic.dmi'
+	icon_state = "dock_c"
+/turf/open/desert/waterway/desert_waterway_cave
+	icon = 'icons/turf/desert_water.dmi'
+	icon_state = "dock_caves"
+/turf/open/desert/waterway/desert_waterway_cave_c
+	icon = 'icons/turf/desert_water.dmi'
+	icon_state = "dock_caves_c"
+/turf/open/desert/waterway/desert_waterway_cave__toxic
+	icon = 'icons/turf/desert_water_toxic.dmi'
+	icon_state = "dock_caves"
+/turf/open/desert/waterway/desert_waterway_cave_c_toxic
+	icon = 'icons/turf/desert_water_toxic.dmi'
+	icon_state = "dock_caves_c"
+
 
 //Desert Cave
 /turf/open/desert/cave
@@ -374,7 +409,7 @@
 /turf/open/desert/cave/inner_cave_floor
 	name = "cave"
 	icon_state = "inner_cave_1"
-//inner cave floor
+//inner cave shore
 /turf/open/desert/cave/cave_shore
 	name = "cave shore"
 	icon = 'icons/turf/desert_water.dmi'
