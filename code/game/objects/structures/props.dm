@@ -28,7 +28,7 @@
 	name = "torii arch"
 	desc = "A traditional japanese archway, made out of wood, and adorned with lanterns."
 	icon = 'icons/obj/structures/torii.dmi'
-	icon_state = "shrine_lightoff"
+	icon_state = "torii"
 	density = 0
 	pixel_x = -16
 	layer = MOB_LAYER+0.5
@@ -112,3 +112,13 @@
 		visible_message("[user] quietly goes from lantern to lantern on to torri, lighting the wicks in each one.")
 		Update()
 	return
+
+/obj/structure/prop/dam/gravestone
+	name = "grave marker"
+	desc = "A grave marker, in the traditional japanese style."
+	icon = 'icons/obj/structures/props.dmi'
+	icon_state = "gravestone1"
+
+/obj/structure/prop/dam/gravestone/New()
+	..()
+	icon_state = "gravestone[rand(1,4)]"

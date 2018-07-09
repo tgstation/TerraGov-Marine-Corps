@@ -462,3 +462,26 @@
 	if(broken) return
 	ChangeTurf(/turf/open/floor/plating)
 	broken = TRUE
+
+
+/turf/open/floor/interior
+	icon = 'icons/turf/floors/interior.dmi'
+
+/turf/open/floor/interior/wood
+	name = "wooden floor"
+	icon_state = "oldwood1"
+
+/turf/open/floor/interior/wood/alt
+	icon_state = "oldwood2"
+
+/turf/open/floor/interior/tatami
+	name = "tatami flooring"
+	desc = "A type of flooring often used in traditional japanese-style housing."
+	icon_state = "tatami"
+
+/turf/open/floor/interior/plastic
+	name = "plastic floor"
+	icon_state = "plasticfloor1"
+
+/turf/open/floor/interior/plastic/alt
+	icon_state = "plasticfloor2"
