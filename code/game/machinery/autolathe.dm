@@ -210,10 +210,11 @@
 		show_category = choice
 
 	if(href_list["make"] && autolathe_recipes)
-
+		
 		var/index = text2num(href_list["make"])
 		var/multiplier = text2num(href_list["multiplier"])
 		var/datum/autolathe/recipe/making
+		var/make_loc = get_step(loc, get_dir(src,usr))
 
 		if(index > 0 && index <= autolathe_recipes.len)
 			making = autolathe_recipes[index]
@@ -255,7 +256,7 @@
 		if(!making || !src) return
 
 		//Create the desired item.
-		var/obj/item/I = new making.path(get_step(loc, get_dir(src,usr)))
+		var/obj/item/I = new making.path(make_loc)
 		if(multiplier>1 && istype(I,/obj/item/stack))
 			var/obj/item/stack/S = I
 			S.amount = multiplier
