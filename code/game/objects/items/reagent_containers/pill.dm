@@ -30,7 +30,7 @@ var/global/list/randomized_pill_icons
 	examine(mob/user)
 		..()
 		if(pill_desc)
-			if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_CHEM)
+			if(!isXeno(user) && (!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_CHEM))
 				user << pill_desc
 				user << "This pill contains: [get_reagent_list_text()]"
 			else
