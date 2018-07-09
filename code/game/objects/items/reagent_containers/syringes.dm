@@ -72,7 +72,7 @@
 		if((CLUMSY in user.mutations) && prob(50))
 			target = user
 		var/mob/M = target
-		if(M.stat != DEAD && M.a_intent != "help" && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isYautja(M))) // preds have null skills
+		if(M != user && M.stat != DEAD && M.a_intent != "help" && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isYautja(M))) // preds have null skills
 			user.KnockDown(3)
 			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Used cqc skill to stop [user.name] ([user.ckey]) injecting them.</font>")
 			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Was stopped from injecting [M] ([M.ckey]) by their cqc skill.</font>")
