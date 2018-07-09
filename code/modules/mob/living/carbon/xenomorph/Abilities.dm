@@ -638,6 +638,10 @@
 	if(!X.check_state())
 		return
 
+	if(X.action_busy)
+		X << "<span class='warning'>You should finish up what you're doing before digging.</span>"
+		return
+
 	var/turf/T = X.loc
 	if(!istype(T)) //logic
 		X << "<span class='warning'>You can't do that from there.</span>"
