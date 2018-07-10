@@ -209,7 +209,9 @@
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
 
-
+/turf/closed/wall/indestructible/invisible
+	icon_state = "invisible"
+	mouse_opacity = 0
 
 
 

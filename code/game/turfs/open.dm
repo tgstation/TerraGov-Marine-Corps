@@ -514,7 +514,7 @@
 
 /turf/open/asphalt/cement
 	name = "concrete"
-	icon_state = "cement1"
+	icon_state = "cement5"
 
 
 // Jungle turfs (Whiksey Outpost)

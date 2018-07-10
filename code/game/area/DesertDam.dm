@@ -575,21 +575,29 @@
 //Rivers
 //
 /area/desert_dam/exterior/river/riverside_northwest
-	name = "\improper"
+	name = "\improper northwest riverbed"
 	icon_state = "bluenew"
 /area/desert_dam/exterior/river/riverside_central_north
-	name = "\improper"
+	name = "\improper northern central riverbed"
 	icon_state = "purple"
 /area/desert_dam/exterior/river/riverside_central_south
-	name = "\improper"
+	name = "\improper southern central riverbed"
 	icon_state = "purple"
 /area/desert_dam/exterior/river/riverside_south
-	name = "\improper"
+	name = "\improper southern riverbed"
 	icon_state = "bluenew"
 /area/desert_dam/exterior/river/riverside_east
-	name = "\improper"
+	name = "\improper eastern riverbed"
 	icon_state = "bluenew"
 /area/desert_dam/exterior/river/riverside_northeast
-	name = "\improper"
+	name = "\improper northeastern riverbed"
 	icon_state = "bluenew"
 
+//Areas that are rivers, but will not change because they're before the floodgates
+/area/desert_dam/exterior/river_mouth/southern
+	name = "\improper southern river mouth"
+	icon_state = "purple"
+
+/area/desert_dam/exterior/river_mouth/eastern
+	name = "\improper eastern river mouth"
+	icon_state = "purple"

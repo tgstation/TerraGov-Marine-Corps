@@ -213,4 +213,26 @@
 
 
 
+/turf/open/asphalt/cement/relativewall()
+	var/junction = 0 //flag used for icon_state
+	var/i //iterator
+	var/turf/T //The turf we are checking
+	var/j //second iterator
+	var/k //third iterator (I know, that's a lot, but I'm trying to make this modular, so bear with me)
 
+	for(i in alldirs) //For all cardinal dir turfs
+		T = get_step(src, i)
+		if(!istype(T)) continue
+		for(j in tiles_with) //And for all types that we tile with
+			if(istype(T, j))
+				junction |= i
+				break
+
+			for(k in T)
+				if(istype(k, j))
+					//world << "DEBUG: type is: [j], object is [k]. Checking successful."
+					junction |= i
+					//world << "DEBUG: Junction is: [junction]."
+					break
+
+	handle_icon_junction(junction)
