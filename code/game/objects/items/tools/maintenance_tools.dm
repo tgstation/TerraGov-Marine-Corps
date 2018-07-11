@@ -450,7 +450,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "welderpack"
 	w_class = 4.0
-	var/max_fuel = 350
+	var/max_fuel = 600 //Because the marine backpack can carry 260, and still allows you to take items, there should be a reason to still use this one.
 
 /obj/item/tool/weldpack/New()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills

@@ -147,6 +147,21 @@
 	powerloader = SKILL_POWERLOADER_MASTER
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 
+/datum/skills/early_synthetic
+	name = "Early Synthetic"
+	cqc = SKILL_MELEE_TRAINED
+	engineer = SKILL_ENGINEER_MT
+	construction = SKILL_CONSTRUCTION_MASTER
+	firearms = SKILL_FIREARMS_TRAINED
+	smartgun = SKILL_SMART_TRAINED
+	spec_weapons = SKILL_SPEC_TRAINED
+	medical = SKILL_MEDICAL_DOCTOR
+	surgery = SKILL_SURGERY_TRAINED
+	melee_weapons = SKILL_MELEE_SUPER
+	pilot = SKILL_PILOT_TRAINED
+	police = SKILL_POLICE_MP
+	powerloader = SKILL_POWERLOADER_TRAINED
+	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 
 /datum/skills/commander
 	name = "Commander"

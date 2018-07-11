@@ -119,14 +119,12 @@ WEAPONS
 
 
 /datum/supply_packs/flamethrower
-	name = "M240 Flamethrower crate (M240 x1, regular tank x3)"
+	name = "M240 Flamethrower crate (M240 x3)"
 	contains = list(
 					/obj/item/weapon/gun/flamer,
-					/obj/item/ammo_magazine/flamer_tank,
-					/obj/item/ammo_magazine/flamer_tank,
-					/obj/item/ammo_magazine/flamer_tank
+					/obj/item/weapon/gun/flamer
 					)
-	cost = RO_PRICE_VERY_PRICY
+	cost = RO_PRICE_PRICY
 	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper M240 Incinerator crate"
 	group = "Weapons"
@@ -347,14 +345,6 @@ WEAPONS
 	cost = RO_PRICE_VERY_PRICY
 	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper M402 mortar crate"
-	group = "Weapons"
-
-
-/datum/supply_packs/mortar_ammo
-	name = "M402 mortar ammo crate (x4 HE, x4 INC, x4 FLR, x2 SMK, x2 FSH)"
-	cost = RO_PRICE_PRICY
-	containertype = /obj/structure/closet/crate/mortar_ammo
-	containername = "\improper M402 mortar ammo crate"
 	group = "Weapons"
 
 /*******************************************************************************
@@ -1421,6 +1411,109 @@ AMMO
 	containername = "ammo crate"
 	group = "Ammo"
 
+/datum/supply_packs/napalm
+	name = "UT-Napthal Fuel (x6)"
+	contains = list(
+					/obj/item/ammo_magazine/flamer_tank,
+					/obj/item/ammo_magazine/flamer_tank,
+					/obj/item/ammo_magazine/flamer_tank,
+					/obj/item/ammo_magazine/flamer_tank,
+					)
+	cost = RO_PRICE_NORMAL
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "napthal fuel crate"
+	group = "Ammo"
+
+/datum/supply_packs/mortar_ammo_he
+	name = "M402 mortar ammo crate (x8 HE)"
+	cost = RO_PRICE_PRICY
+	contains = list(
+					/obj/item/mortal_shell/he,
+					/obj/item/mortal_shell/he,
+					/obj/item/mortal_shell/he,
+					/obj/item/mortal_shell/he,
+					/obj/item/mortal_shell/he,
+					/obj/item/mortal_shell/he,
+					/obj/item/mortal_shell/he,
+					/obj/item/mortal_shell/he
+					)
+	containertype = /obj/structure/closet/crate/mortar_ammo
+	containername = "\improper M402 mortar ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/mortar_ammo_incend
+	name = "M402 mortar ammo crate (x6 Incend)"
+	cost = RO_PRICE_PRICY
+	contains = list(
+					/obj/item/mortal_shell/incendiary,
+					/obj/item/mortal_shell/incendiary,
+					/obj/item/mortal_shell/incendiary,
+					/obj/item/mortal_shell/incendiary,
+					/obj/item/mortal_shell/incendiary,
+					/obj/item/mortal_shell/incendiary,
+					/obj/item/mortal_shell/incendiary,
+					/obj/item/mortal_shell/incendiary
+					)
+	containertype = /obj/structure/closet/crate/mortar_ammo
+	containername = "\improper M402 mortar ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/mortar_ammo_flare
+	name = "M402 mortar ammo crate (x10 Flare)"
+	cost = RO_PRICE_NORMAL
+	contains = list(
+					/obj/item/mortal_shell/flare,
+					/obj/item/mortal_shell/flare,
+					/obj/item/mortal_shell/flare,
+					/obj/item/mortal_shell/flare,
+					/obj/item/mortal_shell/flare,
+					/obj/item/mortal_shell/flare,
+					/obj/item/mortal_shell/flare,
+					/obj/item/mortal_shell/flare,
+					/obj/item/mortal_shell/flare,
+					/obj/item/mortal_shell/flare
+					)
+	containertype = /obj/structure/closet/crate/mortar_ammo
+	containername = "\improper M402 mortar ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/mortar_ammo_smoke
+	name = "M402 mortar ammo crate (x10 Smoke)"
+	cost = RO_PRICE_NORMAL
+	contains = list(
+					/obj/item/mortal_shell/smoke,
+					/obj/item/mortal_shell/smoke,
+					/obj/item/mortal_shell/smoke,
+					/obj/item/mortal_shell/smoke,
+					/obj/item/mortal_shell/smoke,
+					/obj/item/mortal_shell/smoke,
+					/obj/item/mortal_shell/smoke,
+					/obj/item/mortal_shell/smoke,
+					/obj/item/mortal_shell/smoke,
+					/obj/item/mortal_shell/smoke
+					)
+	containertype = /obj/structure/closet/crate/mortar_ammo
+	containername = "\improper M402 mortar ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/mortar_ammo_flash
+	name = "M402 mortar ammo crate (x10 Flash)"
+	cost = RO_PRICE_NORMAL
+	contains = list(
+					/obj/item/mortal_shell/flash,
+					/obj/item/mortal_shell/flash,
+					/obj/item/mortal_shell/flash,
+					/obj/item/mortal_shell/flash,
+					/obj/item/mortal_shell/flash,
+					/obj/item/mortal_shell/flash,
+					/obj/item/mortal_shell/flash,
+					/obj/item/mortal_shell/flash,
+					/obj/item/mortal_shell/flash,
+					/obj/item/mortal_shell/flash
+					)
+	containertype = /obj/structure/closet/crate/mortar_ammo
+	containername = "\improper M402 mortar ammo crate"
+	group = "Ammo"
 
 /*******************************************************************************
 ARMOR
