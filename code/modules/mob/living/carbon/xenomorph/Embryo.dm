@@ -203,8 +203,7 @@
 			O = H.internal_organs_by_name[i]
 			H.internal_organs_by_name -= i
 			H.internal_organs -= O
-	victim.adjustToxLoss(300) //This should kill without gibbing da body
-	victim.updatehealth()
+	victim.death() // Certain species were still surviving bursting (predators), DEFINITELY kill them this time.
 	victim.chestburst = 2
 	victim.update_burst()
 
