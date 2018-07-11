@@ -212,8 +212,7 @@
 	return
 
 
-
-/turf/open/asphalt/cement/relativewall()
+turf/open/asphalt/cement/relativewall()
 	var/junction = 0 //flag used for icon_state
 	var/i //iterator
 	var/turf/T //The turf we are checking
