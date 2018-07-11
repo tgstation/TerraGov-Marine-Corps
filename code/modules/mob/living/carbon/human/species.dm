@@ -501,6 +501,40 @@
 	stun_reduction = 5
 
 
+/datum/species/early_synthetic
+	name = "Early Synthetic"
+	name_plural = "Early Synthetics"
+	icobase = 'icons/mob/human_races/r_synthetic.dmi'
+	deform = 'icons/mob/human_races/r_synthetic.dmi'
+	unarmed_type = /datum/unarmed_attack/punch/strong
+	rarity_value = 1.5
+	slowdown = 1.3 //Slower than later synths
+	total_health = 200 //But more durable
+	insulated = 1
+	brute_mod = 0.75
+	burn_mod = 1.1
+
+	cold_level_1 = -1
+	cold_level_2 = -1
+	cold_level_3 = -1
+
+	heat_level_1 = 500
+	heat_level_2 = 1000
+	heat_level_3 = 2000
+
+	body_temperature = 350
+
+	flags = IS_WHITELISTED|NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION
+
+	blood_color = "#EEEEEE"
+
+	has_organ = list(
+		"heart" =    /datum/internal_organ/heart/prosthetic,
+		"brain" =    /datum/internal_organ/brain/prosthetic,
+		)
+
+	knock_down_reduction = 2
+	stun_reduction = 2
 
 /datum/species/zombie
 	name= "Zombie"

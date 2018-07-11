@@ -826,7 +826,8 @@ Note that amputating the affected organ does in fact remove the infection from t
 		"<span class='warning'>You hear a loud cracking sound coming from [owner]!</span>",
 		"<span class='highdanger'>Something feels like it shattered in your [display_name]!</span>",
 		"<span class='warning'>You hear a sickening crack!<span>")
-
+	var/F = pick('sound/effect/bone_break1.ogg','sound/effect/bone_break2.ogg','sound/effect/bone_break3.ogg','sound/effect/bone_break4.ogg','sound/effect/bone_break5.ogg','sound/effect/bone_break6.ogg','sound/effect/bone_break7.ogg')
+	playsound(owner,F, 30, 1)
 	if(owner.species && !(owner.species.flags & NO_PAIN))
 		owner.emote("scream")
 
