@@ -35,8 +35,7 @@
 
 /obj/item/reagent_container/syringe/examine(mob/user)
 	..()
-	if(!isXeno(user) && (!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_CHEM))
-		user << "[src] contains: [get_reagent_list_text()]"
+	display_contents(user)
 
 
 /obj/item/reagent_container/syringe/attack_self(mob/user as mob)
