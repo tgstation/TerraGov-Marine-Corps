@@ -12,6 +12,9 @@
 	active_power_usage = 5
 	var/mob/living/carbon/human/victim = null
 	var/strapped = 0.0
+	can_buckle = TRUE
+	buckle_lying = TRUE
+	var/obj/item/tank/anesthetic/anes_tank
 
 	var/obj/machinery/computer/operating/computer = null
 
@@ -56,13 +59,73 @@
 			visible_message("The monkey hides under the table!")
 	return
 
-/obj/machinery/optable/attack_hand(mob/user as mob)
+/obj/machinery/optable/examine(mob/user)
+	..()
+	if(get_dist(user, src) > 2 && !isobserver(user))
+		return
+	if(anes_tank)
+		user << "<span class='information'>It has an [anes_tank] connected with the gauge showing [round(anes_tank.pressure,0.1)] kPa.</span>"
+
+/obj/machinery/optable/attack_hand(mob/living/user)
 	if (HULK in usr.mutations)
 		usr << text("\blue You destroy the table.")
 		visible_message("\red [usr] destroys the operating table!")
 		src.density = 0
 		cdel(src)
-	return
+		return
+	if(buckled_mob)
+		unbuckle(user)
+		return
+	if(anes_tank)
+		user.put_in_active_hand(anes_tank)
+		user << "<span class='notice'>You remove \the [anes_tank] from \the [src].</span>"
+		anes_tank = null
+
+
+/obj/machinery/optable/buckle_mob(mob/living/carbon/human/H, mob/living/user)
+	if(!istype(H)) return
+	if(H == user) return
+	if(H != victim)
+		user << "<span class='warning'>Lay the patient on the table first!</span>"
+		return
+	if(!anes_tank)
+		user << "<span class='warning'>There is no anesthetic tank connected to the table, load one first.</span>"
+		return
+	H.visible_message("<span class='notice'>[user] begins to connect [H] to the anesthetic system.</span>")
+	if(!do_after(user, 25, FALSE, 5, BUSY_ICON_FRIENDLY))
+		if(H != victim)
+			user << "<span class='warning'>The patient must remain on the table!</span>"
+			return
+	if(!anes_tank)
+		user << "<span class='warning'>There is no anesthetic tank connected to the table, load one first.</span>"
+		return
+	if(H.wear_mask && !H.drop_inv_item_on_ground(H.wear_mask))
+		user << "<span class='danger'>You can't remove their mask!</span>"
+		return
+	var/obj/item/clothing/mask/breath/medical/B = new()
+	if(!H.equip_if_possible(B, WEAR_FACE))
+		user << "<span class='danger'>You can't fit the gas mask over their face!</span>"
+		cdel(B)
+		return
+	H.internal = anes_tank
+	H.visible_message("<span class='notice'>[user] fits the mask over [H]'s face and turns on the anesthetic.</span>'")
+	H << "<span class='information'>You begin to feel sleepy.</span>"
+	H.dir = SOUTH
+	..()
+
+/obj/machinery/optable/unbuckle(mob/living/user)
+	if(!buckled_mob)
+		return
+	if(ishuman(buckled_mob)) // sanity check
+		var/mob/living/carbon/human/H = buckled_mob
+		H.internal = null
+		var/obj/item/M = H.wear_mask
+		H.drop_inv_item_on_ground(M)
+		cdel(M)
+		H.visible_message("<span class='notice'>[user] turns off the anesthetic and removes the mask from [H].</span>")
+		..()
+
+
 
 /obj/machinery/optable/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
@@ -71,13 +134,17 @@
 		return 0
 
 
-/obj/machinery/optable/MouseDrop_T(obj/item/I, mob/user)
+/obj/machinery/optable/MouseDrop_T(atom/A, mob/user)
 
-	if (!istype(I) || user.get_active_hand() != I)
-		return
-	if(user.drop_held_item())
-		if (I.loc != loc)
-			step(I, get_dir(I, src))
+	if(istype(A, /obj/item))
+		var/obj/item/I = A
+		if (!istype(I) || user.get_active_hand() != I)
+			return
+		if(user.drop_held_item())
+			if (I.loc != loc)
+				step(I, get_dir(I, src))
+	else if(ismob(A))
+		..(A, user)
 
 /obj/machinery/optable/proc/check_victim()
 	if(locate(/mob/living/carbon/human, loc))
@@ -122,6 +189,12 @@
 	take_victim(usr,usr)
 
 /obj/machinery/optable/attackby(obj/item/W, mob/living/user)
+	if(istype(W, /obj/item/tank/anesthetic))
+		if(!anes_tank)
+			user.drop_inv_item_to_loc(W, src)
+			anes_tank = W
+			user << "<span class='notice'>You connect \the [anes_tank] to \the [src].</span>"
+			return
 	if (istype(W, /obj/item/grab))
 		var/obj/item/grab/G = W
 		if(victim && victim != G.grabbed_thing)
