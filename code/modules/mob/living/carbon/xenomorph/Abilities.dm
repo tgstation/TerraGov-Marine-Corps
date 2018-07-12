@@ -274,7 +274,7 @@
 	action_icon_state = "tail_sweep"
 	ability_name = "tail sweep"
 
-/datum/action/xeno_action/activable/tail_sweep/action_activate()
+/datum/action/xeno_action/activable/tail_sweep/use_ability()
 	var/mob/living/carbon/Xenomorph/X = owner
 	X.tail_sweep()
 

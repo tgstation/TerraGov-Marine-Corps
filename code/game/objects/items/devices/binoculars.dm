@@ -29,25 +29,44 @@
 	var/laser_cooldown = 0
 	var/cooldown_duration = 200 //20 seconds
 	var/obj/effect/overlay/temp/laser_target/laser
+	var/obj/effect/overlay/temp/laser_coordinate/coord
 	var/target_acquisition_delay = 100 //10 seconds
-
+	var/mode = 0 //Able to be switched between modes, 0 for cas laser, 1 for finding coordinates.
+	var/changable = 1 //If set to 0, you can't toggle the mode between CAS and coordinate finding
 
 /obj/item/device/binoculars/tactical/New()
 	..()
-	overlays += "binoculars_laser"
+	update_icon()
+
+/obj/item/device/binoculars/tactical/examine()
+	..()
+	usr << "<span class='notice'>They are currently set to [mode ? "range finder" : "CAS marking"] mode.</span>"
 
 /obj/item/device/binoculars/tactical/Dispose()
 	if(laser)
 		cdel(laser)
 		laser = null
+	if(coord)
+		cdel(coord)
+		coord = null
 	. = ..()
 
 /obj/item/device/binoculars/tactical/on_unset_interaction(var/mob/user)
 	..()
 
-	if (user && laser)
+	if (user && (laser || coord))
 		if (!zoom)
-			cdel(laser)
+			if(laser)
+				cdel(laser)
+			if(coord)
+				cdel(coord)
+
+/obj/item/device/binoculars/tactical/update_icon()
+	..()
+	if(mode)
+		overlays += "binoculars_range"
+	else
+		overlays += "binoculars_laser"
 
 /obj/item/device/binoculars/tactical/handle_click(var/mob/living/user, var/atom/A, var/list/mods)
 	if (mods["ctrl"])
@@ -55,10 +74,23 @@
 		return 1
 	return 0
 
+/obj/item/device/binoculars/tactical/verb/toggle_mode(var/mob/living/user)
+	set category = "Object"
+	set name = "Toggle Laser Mode"
+	if(!changable)
+		user << "These binoculars only have one mode."
+		return
+
+	if(!zoom)
+		mode = !mode
+		user << "<span class='notice'>You switch [src] to [mode? "range finder" : "CAS marking" ] mode.</span>"
+		update_icon()
+		playsound(usr, 'sound/machines/click.ogg', 15, 1)
+
 /obj/item/device/binoculars/tactical/proc/acquire_target(atom/A, mob/living/carbon/human/user)
 	set waitfor = 0
 
-	if(laser)
+	if(laser || coord)
 		user << "<span class='warning'>You're already targeting something.</span>"
 		return
 
@@ -97,17 +129,28 @@
 	user << "<span class='notice'>INITIATING LASER TARGETING. Stand still.</span>"
 	if(!do_after(user, acquisition_time, TRUE, 5, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
 		return
-	user << "<span class='notice'>TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE.</span>"
-	var/obj/effect/overlay/temp/laser_target/LT = new (TU, laz_name)
-	laser = LT
-	user << "<span class='notice'>SIMPLIFIED COORDINATES OF TARGET. LONGITUDE [laser.x]. LATITUDE [laser.y].</span>"
-	playsound(src, 'sound/effects/binoctarget.ogg', 35)
-	while(laser)
-		if(!do_after(user, 50, TRUE, 5, BUSY_ICON_GENERIC))
-			if(laser)
-				cdel(laser)
-				laser = null
-			break
+	if(mode)
+		var/obj/effect/overlay/temp/laser_coordinate/LT = new (TU, laz_name)
+		coord = LT
+		user << "<span class='notice'>SIMPLIFIED COORDINATES OF TARGET. LONGITUDE [coord.x]. LATITUDE [coord.y].</span>"
+		playsound(src, 'sound/effects/binoctarget.ogg', 35)
+		while(coord)
+			if(!do_after(user, 50, TRUE, 5, BUSY_ICON_GENERIC))
+				if(coord)
+					cdel(coord)
+					coord = null
+				break
+	else
+		user << "<span class='notice'>TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE.</span>"
+		var/obj/effect/overlay/temp/laser_target/LT = new (TU, laz_name)
+		laser = LT
+		playsound(src, 'sound/effects/binoctarget.ogg', 35)
+		while(laser)
+			if(!do_after(user, 50, TRUE, 5, BUSY_ICON_GENERIC))
+				if(laser)
+					cdel(laser)
+					laser = null
+				break
 
 
 /obj/item/device/binoculars/tactical/scout
@@ -115,3 +158,10 @@
 	desc = "A modified version of tactical binoculars with an advanced laser targeting function. Ctrl+Click to target something."
 	cooldown_duration = 80
 	target_acquisition_delay = 30
+
+//For events
+/obj/item/device/binoculars/tactical/range
+	name = "range-finder"
+	desc = "A pair of binoculars designed to find coordinates."
+	changable = 0
+	mode = 1

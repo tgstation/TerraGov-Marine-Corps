@@ -74,6 +74,7 @@
 	var/blood_color = "#A10808" //Red.
 	var/flesh_color = "#FFC896" //Pink.
 	var/base_color      //Used when setting species.
+	var/hair_color      //If the species only has one hair color
 
 	//Used in icon caching.
 	var/race_key = 0
@@ -527,7 +528,7 @@
 	flags = IS_WHITELISTED|NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION
 
 	blood_color = "#EEEEEE"
-
+	hair_color = "#000000"
 	has_organ = list(
 		"heart" =    /datum/internal_organ/heart/prosthetic,
 		"brain" =    /datum/internal_organ/brain/prosthetic,
