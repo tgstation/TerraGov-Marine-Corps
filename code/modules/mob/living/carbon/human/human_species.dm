@@ -31,9 +31,7 @@
 	..(new_loc, "Machine")
 
 /mob/living/carbon/human/synthetic/New(var/new_loc)
-	h_style = "Shaved"
 	..(new_loc, "Synthetic")
 
 /mob/living/carbon/human/synthetic_old/New(var/new_loc)
-	h_style = "Shaved"
 	..(new_loc, "Early Synthetic")

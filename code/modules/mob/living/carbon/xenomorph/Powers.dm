@@ -577,7 +577,7 @@
 		T = temp
 
 	H.throw_at(T, headbutt_distance, 1, src)
-	playsound(H,'sound/weapons/alien_claw_block.ogg', 75, 1)
+	playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 	spawn(headbutt_cooldown)
 		used_headbutt = 0
 		src << "<span class='notice'>You gather enough strength to headbutt again.</span>"
@@ -625,7 +625,7 @@
 			H.KnockDown(2, 1)
 
 		H << "<span class='xenowarning'>You are struck by \the [src]'s tail sweep!</span>"
-		playsound(H,'sound/weapons/alien_claw_block.ogg', 75, 1)
+		playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 	used_tail_sweep = 1
 	use_plasma(10)
 
@@ -706,7 +706,7 @@
 		do_fortify_cooldown()
 		fortify_timer = world.timeofday + 90		// How long we can be fortified
 		process_fortify()
-		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 10, 1)
+		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, 1)
 		return
 
 	fortify_off()
@@ -727,7 +727,7 @@
 	xeno_explosion_resistance--
 	frozen = 0
 	anchored = 0
-	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 10, 1)
+	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, 1)
 	update_canmove()
 	update_icons()
 
