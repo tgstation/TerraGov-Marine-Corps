@@ -79,6 +79,11 @@
 
 /mob/living/carbon/human/proc/get_breath_from_internal()
 	if(internal)
+		if(istype(buckled,/obj/machinery/optable))
+			var/obj/machinery/optable/O = buckled
+			if(O.anes_tank)
+				return O.anes_tank.return_air()
+			return null
 		if(!contents.Find(internal))
 			internal = null
 		if(!wear_mask || !(wear_mask.flags_inventory & ALLOWINTERNALS))

@@ -1288,6 +1288,11 @@
 		g_skin = 0
 		b_skin = 0
 
+	if(species.hair_color)
+		r_hair = hex2num(copytext(species.hair_color, 2, 4))
+		g_hair = hex2num(copytext(species.hair_color, 4, 6))
+		b_hair = hex2num(copytext(species.hair_color, 6, 8))
+
 	species.handle_post_spawn(src)
 
 	spawn(0)
