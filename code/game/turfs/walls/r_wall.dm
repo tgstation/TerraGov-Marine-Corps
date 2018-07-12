@@ -10,6 +10,40 @@
 
 	walltype = "rwall"
 
+//Appearance
+/turf/closed/wall/r_wall/examine(mob/user)
+	//. = ..()
+
+	if (acided_hole)
+		user << "<span class='warning'>There's a hole running through the wall, looks like it could be caused by some type of acid.</span>"
+
+	if(!damage)
+		user << "<span class='notice'>It looks fully intact.</span>"
+	else
+		var/dam = damage / damage_cap
+		if(dam <= 0.3)
+			user << "<span class='warning'>It looks slightly damaged.</span>"
+		else if(dam <= 0.6)
+			user << "<span class='warning'>It looks moderately damaged.</span>"
+		else
+			user << "<span class='danger'>It looks heavily damaged.</span>"
+
+	switch(d_state)
+		if(1)
+			user << "<span class='info'>The outer plating has been sliced open. A screwdriver should remove the support lines.</span>"
+		if(2)
+			user << "<span class='info'>The support lines have been removed. A blowtorch should slice through the metal cover.</span>"
+		if(3)
+			user << "<span class='info'>The metal cover has been sliced through. A crowbar should pry it off.</span>"
+		if(4)
+			user << "<span class='info'>The metal cover has been removed. A wrench will remove the anchor bolts.</span>"
+		if(5)
+			user << "<span class='info'>The anchor bolts have been removed. A blowtorch will take care of the support rods.</span>"
+		if(6)
+			user << "<span class='info'>Support rods are gone. A crowbar will pry off the inner sheath.</span>"
+		if(7)
+			user << "<span class='info'>The inner sheath is gone. A blowtorch should finish off this wall.</span>"
+
 /turf/closed/wall/r_wall/attack_hand(mob/user)
 	if (HULK in user.mutations)
 		if (prob(10))
