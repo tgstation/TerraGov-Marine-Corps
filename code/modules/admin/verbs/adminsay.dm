@@ -38,8 +38,7 @@
 		color = "adminmod"
 
 	var/channel = "MOD:"
-	if(config.mods_are_mentors)
-		channel = "MENTOR:"
+	channel = "[holder.rank]:"
 	for(var/client/C in admins)
 		if((R_ADMIN|R_MOD) & C.holder.rights)
 			C << "<span class='[color]'><span class='prefix'>[channel]</span> <EM>[key_name(src,1)]</EM> (<A HREF='?src=\ref[C.holder];adminplayerobservejump=\ref[mob]'>JMP</A>): <span class='message'>[msg]</span></span>"

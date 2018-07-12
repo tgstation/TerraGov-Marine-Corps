@@ -236,7 +236,9 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 
 	generate_entry_conditions(mob/living/carbon/human/H)
 		. = ..()
-		H.set_species("Synthetic")
+		H.set_species(H.client.prefs.synthetic_type)
+		if(H.client.prefs.synthetic_type == "Early Synthetic")
+			skills_type = /datum/skills/early_synthetic
 		//Most of the code below is copypasted from transform_predator().
 		if(!H.client.prefs) H.client.prefs = new /datum/preferences(H.client) //Let's give them one.
 		//They should have these set, but it's possible they don't have them.
@@ -246,14 +248,12 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 			spawn(9)
 				H << "<span class='warning'>You forgot to set your name in your preferences. Please do so next time.</span>"
 		H.mind.name = H.real_name
-		H.name = H.get_visible_name()
-
 		//update id with new name
 		if(H.wear_id)
 			var/obj/item/card/id/I = H.wear_id
 			I.registered_name = H.real_name
 			I.name = "[I.registered_name]'s ID Card ([I.assignment])"
-
+		H.name = H.get_visible_name()
 
 	generate_entry_message()
 		. = {"You are a Synthetic! You are held to a higher standard and are required to obey not only the Server Rules but Marine Law and Synthetic Rules. Failure to do so may result in your White-list Removal.

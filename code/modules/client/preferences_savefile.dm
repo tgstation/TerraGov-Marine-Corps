@@ -62,6 +62,7 @@
 	S["UI_style_alpha"]		>> UI_style_alpha
 
 	S["synth_name"]			>> synthetic_name
+	S["synth_type"]			>> synthetic_type
 	S["pred_name"]			>> predator_name
 	S["pred_gender"]		>> predator_gender
 	S["pred_age"]			>> predator_age
@@ -81,6 +82,7 @@
 	UI_style_alpha	= sanitize_integer(UI_style_alpha, 0, 255, initial(UI_style_alpha))
 
 	synthetic_name 		= synthetic_name ? sanitize_text(synthetic_name, initial(synthetic_name)) : initial(synthetic_name)
+	synthetic_type		= sanitize_text(synthetic_type, initial(synthetic_type))
 	predator_name 		= predator_name ? sanitize_text(predator_name, initial(predator_name)) : initial(predator_name)
 	predator_gender 	= sanitize_text(predator_gender, initial(predator_gender))
 	predator_age 		= sanitize_integer(predator_age, 100, 10000, initial(predator_age))
@@ -108,6 +110,7 @@
 	S["toggles_sound"]		<< toggles_sound
 
 	S["synth_name"] 		<< synthetic_name
+	S["synth_type"]			<< synthetic_type
 	S["pred_name"] 			<< predator_name
 	S["pred_gender"] 		<< predator_gender
 	S["pred_age"]			<< predator_age

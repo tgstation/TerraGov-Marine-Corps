@@ -199,7 +199,7 @@
 	action_icon_state = "agility_on"
 	ability_name = "toggle agility"
 
-/datum/action/xeno_action/activable/toggle_agility/use_ability()
+/datum/action/xeno_action/activable/toggle_agility/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
 	X.toggle_agility()
 
@@ -227,7 +227,7 @@
 /datum/action/xeno_action/activable/fling
 	name = "Fling"
 	action_icon_state = "fling"
-	ability_name = "fling"
+	ability_name = "Fling"
 
 /datum/action/xeno_action/activable/fling/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
@@ -274,7 +274,7 @@
 	action_icon_state = "tail_sweep"
 	ability_name = "tail sweep"
 
-/datum/action/xeno_action/activable/tail_sweep/use_ability()
+/datum/action/xeno_action/activable/tail_sweep/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
 	X.tail_sweep()
 
@@ -289,7 +289,7 @@
 	action_icon_state = "crest_defense"
 	ability_name = "toggle crest defense"
 
-/datum/action/xeno_action/activable/toggle_crest_defense/use_ability()
+/datum/action/xeno_action/activable/toggle_crest_defense/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
 	X.toggle_crest_defense()
 
@@ -304,7 +304,7 @@
 	action_icon_state = "fortify"	// TODO
 	ability_name = "fortify"
 
-/datum/action/xeno_action/activable/fortify/use_ability()
+/datum/action/xeno_action/activable/fortify/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
 	X.fortify()
 

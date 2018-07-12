@@ -332,27 +332,27 @@
 /obj/structure/closet/crate/mortar_ammo
 
 	name = "\improper M402 mortar ammo crate"
-	desc = "A crate containing eighteen live mortar shells with various payloads. DO NOT DROP. KEEP AWAY FROM FIRE SOURCES."
+	desc = "A crate containing live mortar shells with various payloads. DO NOT DROP. KEEP AWAY FROM FIRE SOURCES."
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "closed_mortar_crate"
 	icon_opened = "open_mortar_crate"
 	icon_closed = "closed_mortar_crate"
 
-	New()
-		..()
-		new /obj/item/mortal_shell/he(src)
-		new /obj/item/mortal_shell/he(src)
-		new /obj/item/mortal_shell/he(src)
-		new /obj/item/mortal_shell/he(src)
-		new /obj/item/mortal_shell/incendiary(src)
-		new /obj/item/mortal_shell/incendiary(src)
-		new /obj/item/mortal_shell/incendiary(src)
-		new /obj/item/mortal_shell/incendiary(src)
-		new /obj/item/mortal_shell/flare(src)
-		new /obj/item/mortal_shell/flare(src)
-		new /obj/item/mortal_shell/flare(src)
-		new /obj/item/mortal_shell/flare(src)
-		new /obj/item/mortal_shell/smoke(src)
-		new /obj/item/mortal_shell/smoke(src)
-		new /obj/item/mortal_shell/flash(src)
-		new /obj/item/mortal_shell/flash(src)
+/obj/structure/closet/crate/mortar_ammo/full/New()
+	..()
+	new /obj/item/mortal_shell/he(src)
+	new /obj/item/mortal_shell/he(src)
+	new /obj/item/mortal_shell/he(src)
+	new /obj/item/mortal_shell/he(src)
+	new /obj/item/mortal_shell/incendiary(src)
+	new /obj/item/mortal_shell/incendiary(src)
+	new /obj/item/mortal_shell/incendiary(src)
+	new /obj/item/mortal_shell/incendiary(src)
+	new /obj/item/mortal_shell/flare(src)
+	new /obj/item/mortal_shell/flare(src)
+	new /obj/item/mortal_shell/flare(src)
+	new /obj/item/mortal_shell/flare(src)
+	new /obj/item/mortal_shell/smoke(src)
+	new /obj/item/mortal_shell/smoke(src)
+	new /obj/item/mortal_shell/flash(src)
+	new /obj/item/mortal_shell/flash(src)

@@ -258,7 +258,7 @@
 			W.registered_name = M.real_name
 			W.paygrade = "E3"
 			M.equip_to_slot_or_del(W, WEAR_ID)
-			M.set_species("Machine")
+			M.set_species("Early Synthetic")
 			if(M.mind)
 				M.mind.role_comm_title = "LCpl"
 				M.mind.assigned_role = "Squad Smartgunner"

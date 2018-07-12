@@ -48,381 +48,376 @@
 	shuttle_tag = "Maintenance"
 
 /area/almayer/command/cic
-	name = "\improper Almayer Combat Information Center"
+	name = "\improper Combat Information Center"
 	icon_state = "cic"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/command/airoom
-	name = "\improper Almayer AI Core"
+	name = "\improper AI Core"
 	icon_state = "airoom"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/command/telecomms
-	name = "\improper Almayer Telecommunications"
+	name = "\improper Telecommunications"
 	icon_state = "tcomms"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/command/self_destruct
-	name = "\improper Almayer Core Room"
+	name = "\improper Self-Destruct Core Room"
 	icon_state = "selfdestruct"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/command/corporateliason
-	name = "\improper Almayer Corporate Liason Office"
+	name = "\improper Corporate Liason Office"
 	icon_state = "corporatespace"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/engineering/upper_engineering
-	name = "\improper Almayer Upper Engineering"
+	name = "\improper Upper Engineering"
 	icon_state = "upperengineering"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/engineering/ce_room
-	name = "\improper Almayer Chief Engineer Office"
+	name = "\improper Chief Engineer Office"
 	icon_state = "ceroom"
 	fake_zlevel = 1 // upperdeck
 
-/area/almayer/engineering/upper_engine_monitoring
-	name = "\improper Almayer Upper Engine Monitoring"
-	icon_state = "uppermonitoring"
-	fake_zlevel = 1 // upperdeck
-
 /area/almayer/engineering/lower_engine_monitoring
-	name = "\improper Almayer Lower Engine Monitoring"
+	name = "\improper Engine Reactor Monitoring"
 	icon_state = "lowermonitoring"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/engineering/lower_engineering
-	name = "\improper Almayer Lower Engineering"
+	name = "\improper Engineering Lower"
 	icon_state = "lowerengineering"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/engineering/engineering_workshop
-	name = "\improper Almayer Engineering Workshop"
+	name = "\improper Engineering Workshop"
 	icon_state = "workshop"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/engineering/engine_core
-	name = "\improper Almayer Core Room"
+	name = "\improper Engine Reactor Core Room"
 	icon_state = "coreroom"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/engineering/starboard_atmos
-	name = "\improper Almayer Starboard Atmospherics"
+	name = "\improper Atmospherics Starboard"
 	icon_state = "starboardatmos"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/engineering/port_atmos
-	name = "\improper Almayer Port Atmospherics"
+	name = "\improper Atmospherics Port"
 	icon_state = "portatmos"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/shipboard/navigation
-	name = "\improper Almayer Astronavigational Deck"
+	name = "\improper Astronavigational Deck"
 	icon_state = "astronavigation"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/shipboard/starboard_missiles
-	name = "\improper Almayer Starboard Missile Tubes"
+	name = "\improper Missile Tubes Starboard"
 	icon_state = "starboardmissile"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/shipboard/port_missiles
-	name = "\improper Almayer Port Missile Tubes"
+	name = "\improper Missile Tubes Port"
 	icon_state = "portmissile"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/shipboard/weapon_room
-	name = "\improper Almayer Weapon Control Room"
+	name = "\improper Weapon Control Room"
 	icon_state = "weaponroom"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/shipboard/starboard_point_defense
-	name = "\improper Almayer Starboard Point Defense"
+	name = "\improper Point Defense Starboard"
 	icon_state = "starboardpd"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/shipboard/port_point_defense
-	name = "\improper Almayer Port Point Defense"
+	name = "\improper Point Defense Port"
 	icon_state = "portpd"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/shipboard/brig
-	name = "\improper Almayer Brig"
+	name = "\improper Brig"
 	icon_state = "brig"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/shipboard/brig_cells
-	name = "\improper Almayer Brig Cells"
+	name = "\improper Brig Cells"
 	icon_state = "brigcells"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/shipboard/chief_mp_office
-	name = "\improper Almayer Chief MP Office"
+	name = "\improper Brig Chief MP Office"
 	icon_state = "chiefmpoffice"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/shipboard/firing_range
-	name = "\improper Almayer Firing Range"
+	name = "\improper Firing Range"
 	icon_state = "firingrange"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/shipboard/sensors
-	name = "\improper Almayer Sensor Room"
+	name = "\improper Sensor Room"
 	icon_state = "sensor"
 
 /area/almayer/hallways/hangar
-	name = "\improper Almayer Hangar"
+	name = "\improper Hangar"
 	icon_state = "hangar"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/hallways/vehiclehangar
-	name = "\improper Almayer Vehicle Storage"
+	name = "\improper Vehicle Storage"
 	icon_state = "exoarmor"
 	fake_zlevel = 3
 
 /area/almayer/living/tankerbunks
-	name = "\improper Almayer Vehicle Crew Bunks"
+	name = "\improper Vehicle Crew Bunks"
 	icon_state = "livingspace"
 	fake_zlevel = 3
 
 /area/almayer/squads/tankdeliveries
-	name = "\improper Almayer Vehicle ASRS"
+	name = "\improper Vehicle ASRS"
 	icon_state = "req"
 	fake_zlevel = 3 // lowerdeck
 
 /area/almayer/hallways/exoarmor
-	name = "\improper Almayer Armor Storage"
+	name = "\improper Vehicle Armor Storage"
 	icon_state = "exoarmor"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/hallways/repair_bay
-	name = "\improper Almayer Repair Bay"
+	name = "\improper Vehicle Repair Bay"
 	icon_state = "dropshiprepair"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/hallways/mission_planner
-	name = "\improper Almayer Dropship Central Computer Room"
+	name = "\improper Dropship Central Computer Room"
 	icon_state = "missionplanner"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/hallways/starboard_umbilical
-	name = "\improper Almayer Starboard Umbilical"
+	name = "\improper Umbilical Starboard"
 	icon_state = "starboardumbilical"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/hallways/port_umbilical
-	name = "\improper Almayer Port Umbilical"
+	name = "\improper Umbilical Port"
 	icon_state = "portumbilical"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/hallways/aft_hallway
-	name = "\improper Almayer Aft Hallway"
+	name = "\improper Hallway Aft"
 	icon_state = "aft"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/hallways/stern_hallway
-	name = "\improper Almayer Stern Hallway"
+	name = "\improper Hallway Stern"
 	icon_state = "stern"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/hallways/port_hallway
-	name = "\improper Almayer Port Hallway"
+	name = "\improper Hallway Port"
 	icon_state = "port"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/hallways/starboard_hallway
-	name = "\improper Almayer Starboard Hallway"
+	name = "\improper Hallway Starboard"
 	icon_state = "starboard"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/hull/under_hull
-	name = "\improper Almayer Under Hull"
+	name = "\improper Hull Under"
 	icon_state = "lowerhull"
 	fake_zlevel = 3
 
 /area/almayer/hull/lower_hull
-	name = "\improper Almayer Lower Hull"
+	name = "\improper Hull Lower"
 	icon_state = "lowerhull"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/hull/upper_hull
-	name = "\improper Almayer Upper Hull"
+	name = "\improper Hull Upper"
 	icon_state = "upperhull"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/living/cryo_cells
-	name = "\improper Almayer Cryo Cells"
+	name = "\improper Cryo Cells"
 	icon_state = "cryo"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/living/briefing
-	name = "\improper Almayer Briefing Area"
+	name = "\improper Briefing Area"
 	icon_state = "briefing"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/living/port_emb
-	name = "\improper Almayer Extended Mission Bunks"
+	name = "\improper Extended Mission Bunks"
 	icon_state = "portemb"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/living/starboard_emb
-	name = "\improper Almayer Extended Mission Bunks"
+	name = "\improper Extended Mission Bunks"
 	icon_state = "starboardemb"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/living/port_garden
-	name = "\improper Almayer Garden"
+	name = "\improper Garden"
 	icon_state = "portemb"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/living/starboard_garden
-	name = "\improper Almayer Garden"
+	name = "\improper Garden"
 	icon_state = "starboardemb"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/living/basketball
-	name = "\improper Almayer Basketball Court"
+	name = "\improper Basketball Court"
 	icon_state = "basketball"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/living/grunt_rnr
-	name = "\improper Almayer Lounge"
+	name = "\improper Lounge"
 	icon_state = "gruntrnr"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/living/officer_rnr
-	name = "\improper Almayer Officer's Lounge"
+	name = "\improper Officer's Lounge"
 	icon_state = "officerrnr"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/living/officer_study
-	name = "\improper Almayer Officer's Study"
+	name = "\improper Officer's Study"
 	icon_state = "officerstudy"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/living/cafeteria_port
-	name = "\improper Almayer Cafeteria"
+	name = "\improper Cafeteria Port"
 	icon_state = "food"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/living/cafeteria_starboard
-	name = "\improper Almayer Cafeteria"
+	name = "\improper Cafeteria Starboard"
 	icon_state = "food"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/living/cafeteria_officer
-	name = "\improper Almayer Officer Cafeteria"
+	name = "\improper Officer Cafeteria"
 	icon_state = "food"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/living/offices
-	name = "\improper Almayer Office Area"
+	name = "\improper Office Area"
 	icon_state = "briefing"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/living/captain_mess
-	name = "\improper Almayer Captain's Mess"
+	name = "\improper Captain's Mess"
 	icon_state = "briefing"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/living/pilotbunks
-	name = "\improper Almayer Pilot's Bunks"
+	name = "\improper Pilot's Bunks"
 	icon_state = "livingspace"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/living/bridgebunks
-	name = "\improper Almayer Staff Officer Bunks"
+	name = "\improper Staff Officer Bunks"
 	icon_state = "livingspace"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/living/commandbunks
-	name = "\improper Almayer Commander's Bunk"
+	name = "\improper Commander's Bunk"
 	icon_state = "livingspace"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/living/numbertwobunks
-	name = "\improper Almayer Executive Officer's Bunk"
+	name = "\improper Executive Officer's Bunk"
 	icon_state = "livingspace"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/living/chapel
-	name = "\improper Almayer Chapel"
+	name = "\improper Chapel"
 	icon_state = "officerrnr"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/medical/lower_medical
-	name = "\improper Almayer Lower Medical"
+	name = "\improper Medical Lower"
 	icon_state = "medical"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/medical/upper_medical
-	name = "\improper Almayer Upper Medical"
+	name = "\improper Medical Upper"
 	icon_state = "medical"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/medical/operating_room_one
-	name = "\improper Almayer Operating Room 1"
+	name = "\improper Medical Operating Room 1"
 	icon_state = "operating"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/medical/operating_room_two
-	name = "\improper Almayer Operating Room 2"
+	name = "\improper Medical Operating Room 2"
 	icon_state = "operating"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/medical/operating_room_three
-	name = "\improper Almayer Operating Room 3"
+	name = "\improper Medical Operating Room 3"
 	icon_state = "operating"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/medical/operating_room_four
-	name = "\improper Almayer Operating Room 4"
+	name = "\improper Medical Operating Room 4"
 	icon_state = "operating"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/medical/medical_science
-	name = "\improper Almayer Medical Science"
+	name = "\improper Medical Research laboratories"
 	icon_state = "science"
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/medical/chemistry
-	name = "\improper Almayer Chemistry"
+	name = "\improper Medical Chemical laboratory"
 	icon_state = "chemistry"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/medical/cryo_tubes
-	name = "\improper Almayer Medical Cryo"
+	name = "\improper Medical Cryogenics Tubes"
 	icon_state = "medical"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/medical/surgery_hallway
-	name = "\improper Almayer Medical Surgery"
+	name = "\improper Medical Surgical Hallway"
 	icon_state = "medical"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/squads/alpha
-	name = "\improper Almayer Alpha Preparation"
+	name = "\improper Squad Alpha Preparation"
 	icon_state = "alpha"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/squads/bravo
-	name = "\improper Almayer Bravo Preparation"
+	name = "\improper Squad Bravo Preparation"
 	icon_state = "bravo"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/squads/charlie
-	name = "\improper Almayer Charlie Preparation"
+	name = "\improper Squad Charlie Preparation"
 	icon_state = "charlie"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/squads/delta
-	name = "\improper Almayer Delta Preparation"
+	name = "\improper Squad Delta Preparation"
 	icon_state = "delta"
 	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/squads/req
-	name = "\improper Almayer Requisitions"
+	name = "\improper Requisitions"
 	icon_state = "req"
 	fake_zlevel = 2 // lowerdeck
 

@@ -44,7 +44,7 @@
 */
 
 /datum/sprite_accessory/hair
-
+	species_allowed = list("Human","Unathi","Tajara","Skrell","Vox","Machine","Synthetic")
 	icon = 'icons/mob/Human_face.dmi'	  // default icon for all hairs
 
 	crew
@@ -56,7 +56,7 @@
 		name = "Bald"
 		icon_state = "bald"
 		gender = MALE
-
+		species_allowed = list("Human","Unathi","Tajara","Skrell","Vox","Machine","Synthetic", "Early Synthetics")
 	short
 		name = "Short Hair"	  // try to capatilize the names please~
 		icon_state = "hair_a" // you do not need to define _s or _l sub-states, game automatically does this for you
@@ -642,7 +642,7 @@
 		name = "Shaved"
 		icon_state = "bald"
 		gender = NEUTER
-		species_allowed = list("Human","Unathi","Tajara","Skrell","Vox","Machine","Synthetic")
+		species_allowed = list("Human","Unathi","Tajara","Skrell","Vox","Machine","Synthetic", "Early Synthetics")
 
 	watson
 		name = "Watson Mustache"
