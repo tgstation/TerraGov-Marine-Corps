@@ -122,3 +122,9 @@
 /obj/structure/prop/dam/gravestone/New()
 	..()
 	icon_state = "gravestone[rand(1,4)]"
+
+/obj/structure/prop/dam/boulder
+	name = "boulder"
+	desc = "A large rock. It's not cooking anything."
+	icon = 'icons/obj/flora/dam.dmi'
+	icon_state = "boulder"
