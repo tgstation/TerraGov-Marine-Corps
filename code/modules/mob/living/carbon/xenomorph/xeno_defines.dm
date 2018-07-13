@@ -11,6 +11,7 @@
 	var/max_grown = 200
 	var/time_of_birth
 	var/plasma_gain = 5
+	var/devour_timer = 0
 
 	var/evolution_allowed = 1 //Are they allowed to evolve (and have their evolution progress group)
 	var/evolution_stored = 0 //How much evolution they have stored
