@@ -57,6 +57,16 @@
 		A.update_button_icon()
 	return 1
 
+/obj/item/device/flashlight/proc/turn_off_light(mob/bearer)
+	if(on)
+		on = 0
+		update_brightness(bearer)
+		for(var/X in actions)
+			var/datum/action/A = X
+			A.update_button_icon()
+		return 1
+	return 0
+
 /obj/item/device/flashlight/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I,/obj/item/tool/screwdriver))
 		if(!raillight_compatible) //No fancy messages, just no

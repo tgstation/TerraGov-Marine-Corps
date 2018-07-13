@@ -52,7 +52,7 @@
 /mob/living/carbon/human/death(gibbed)
 
 	if(stat == DEAD) return
-
+	if(!gibbed) disable_lights()
 	//Handle species-specific deaths.
 	if(species) species.handle_death(src, gibbed)
 

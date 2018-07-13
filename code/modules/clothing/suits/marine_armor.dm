@@ -143,11 +143,17 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	..()
 
 /obj/item/clothing/suit/storage/marine/dropped(mob/user)
-	if(flags_marine_armor & ARMOR_LAMP_ON && src.loc != user)
-		user.SetLuminosity(-brightness_on)
+	if(loc != user)
+		turn_off_light(user)
+	..()
+
+/obj/item/clothing/suit/storage/marine/proc/turn_off_light(mob/wearer)
+	if(flags_marine_armor & ARMOR_LAMP_ON)
+		wearer.SetLuminosity(-brightness_on)
 		SetLuminosity(brightness_on)
 		toggle_armor_light() //turn the light off
-	..()
+		return 1
+	return 0
 
 /obj/item/clothing/suit/storage/marine/Dispose()
 	if(ismob(src.loc))
