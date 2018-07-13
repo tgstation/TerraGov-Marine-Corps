@@ -187,6 +187,43 @@
 //areas not under rock
 // ceiling = CEILING_METAL
 
+//Substations
+/area/desert_dam/building/substation
+	name = "Substation"
+	icon = 'icons/turf/dam_areas.dmi'
+
+/area/desert_dam/building/substation/central
+	name = "\improper Central Substation"
+	icon_state = "central_ss"
+
+/area/desert_dam/building/substation/west
+	name = "\improper Western Substation"
+	icon_state = "western_ss"
+
+/area/desert_dam/building/substation/northeast
+	name = "\improper North-Eastern Substation"
+	icon_state = "northeastern_ss"
+
+/area/desert_dam/building/substation/southeast
+	name = "\improper South-Eastern Substation"
+	icon_state = "southeastern_ss"
+
+//Sub-Substations
+/area/desert_dam/building/substation/west/telecoms
+	name = "\improper Telecommunications Substation"
+	icon_state = "telecoms_ss"
+
+/area/desert_dam/building/substation/west/filtration
+	name = "\improper Western Filtration Substation"
+	icon_state = "filtrationa_ss"
+
+/area/desert_dam/building/substation/northeast/labs
+	name = "\improper North-Eastern Labratory Complex Substation"
+	icon_state = "northlabs_ss"
+
+/area/desert_dam/building/substation/southeast/filtration
+	name = "\improper Eastern Filtration Substation"
+	icon_state = "filtrationb_ss"
 
 //Administration
 /area/desert_dam/building/administration/control_room
