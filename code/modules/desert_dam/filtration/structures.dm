@@ -23,6 +23,14 @@
 	icon = 'icons/obj/filtration/coagulation_arm.dmi'
 	icon_state = "arm"
 
+/obj/structure/filtration/flacculation_arm
+	name = "flacculation arm"
+	desc = "A long metal filtering rod on an axel, made to spin for flacculation."
+	icon = 'icons/obj/filtration/flacculation_arm.dmi'
+	icon_state = "flacculation_arm"
+	bound_y = 32
+	bound_x = 128
+
 /obj/structure/filtration/collector_pipes
 	name = "collection pipes"
 	desc = "A series of pipes collecting water from the river to take it to the plant for filtration."
