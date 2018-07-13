@@ -371,6 +371,35 @@
 /area/desert_dam/building/water_treatment_one
 	name = "\improper"
 	icon_state = "yellow"
+//Water Treatment Plant 1
+/area/desert_dam/building/water_treatment_one/lobby
+	name = "\improper"
+	icon_state = "red"
+/area/desert_dam/building/water_treatment_one/breakroom
+	name = "\improper"
+	icon_state = "green"
+/area/desert_dam/building/water_treatment_one/garage
+	name = "\improper"
+	icon_state = "garage"
+/area/desert_dam/building/water_treatment_one/sedimentation
+	name = "\improper"
+	icon_state = "blue"
+/area/desert_dam/building/water_treatment_one/equipment
+	name = "\improper"
+	icon_state = "red"
+/area/desert_dam/building/water_treatment_one/hallway
+	name = "\improper"
+	icon_state = "purple"
+/area/desert_dam/building/water_treatment_one/control_room
+	name = "\improper"
+	icon_state = "yellow"
+/area/desert_dam/building/water_treatment_one/purification
+	name = "\improper"
+	icon_state = "green"
+/area/desert_dam/building/water_treatment_one/floodgate_control
+	name = "\improper"
+	icon_state = "green"
+
 //Water Treatment Plant 2
 /area/desert_dam/building/water_treatment_two
 	name = "\improper"
