@@ -166,7 +166,7 @@
 				playsound(src, 'sound/items/Wirecutter.ogg', 25, 1)
 
 				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall)) return
+					if(!istype(src, /turf/closed/wall/r_wall)) return
 
 					if(d_state == 5)
 						d_state++

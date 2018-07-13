@@ -119,8 +119,6 @@
 
 		if (acided_hole)
 			user << "<span class='warning'>There's a large hole in the wall that could've been caused by some sort of acid.</span>"
-		if(d_state)
-			show_decon_state(user)
 
 	switch(d_state)
 		if(1)
