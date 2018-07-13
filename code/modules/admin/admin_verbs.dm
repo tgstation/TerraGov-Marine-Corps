@@ -387,6 +387,7 @@ var/list/admin_verbs_mentor = list(
 		src << "<font color='red'>Error: Aghost: Can't admin-ghost whilst in the lobby. Join or Observe first.</font>"
 	else
 		//ghostize
+		log_admin("[key_name(usr)] admin ghosted.")
 		var/mob/body = mob
 		body.ghostize(1)
 		if(body && !body.key)

@@ -285,6 +285,7 @@
 /turf/closed/wall/r_wall/dense
 	icon_state = "iron0"
 	walltype = "iron"
+	hull = 1
 
 /turf/closed/wall/r_wall/unmeltable
 	name = "heavy reinforced wall"

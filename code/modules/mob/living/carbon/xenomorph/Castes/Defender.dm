@@ -25,10 +25,10 @@
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
-		/datum/action/xeno_action/activable/headbutt,
-		/datum/action/xeno_action/activable/tail_sweep,
 		/datum/action/xeno_action/activable/toggle_crest_defense,
-		/datum/action/xeno_action/activable/fortify
+		/datum/action/xeno_action/activable/fortify,
+		/datum/action/xeno_action/activable/headbutt,
+		/datum/action/xeno_action/activable/tail_sweep
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,

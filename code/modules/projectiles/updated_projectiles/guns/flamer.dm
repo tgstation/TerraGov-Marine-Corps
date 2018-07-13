@@ -35,6 +35,10 @@
 	examine(mob/user)
 		..()
 		user << "It's turned [lit? "on" : "off"]."
+		if(current_mag)
+			user << "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!"
+		else
+			user << "There's no tank in [src]!"
 
 /obj/item/weapon/gun/flamer/able_to_fire(mob/user)
 	. = ..()

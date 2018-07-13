@@ -135,6 +135,10 @@ They're all essentially identical when it comes to getting the job done.
 	var/chamber_position = 1 //Where the firing pin is located. We usually move this instead of the contents.
 	var/chamber_closed = 1 //Starts out closed. Depends on firearm.
 
+//Helper proc, to allow us to see a percentage of how full the magazine is.
+/obj/item/ammo_magazine/proc/get_ammo_percent()		// return % charge of cell
+	return 100.0*current_rounds/max_rounds
+
 //----------------------------------------------------------------//
 //Now for handfuls, which follow their own rules and have some special differences from regular boxes.
 
@@ -269,15 +273,16 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/big_ammo_box
 	name = "big ammo box (10x24mm)"
-	desc = "A large ammo box."
+	desc = "A large ammo box. It comes with a leather strap."
 	w_class = 5
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "big_ammo_box"
-	item_state = "table_parts" //sprite looks roughly similar
+	item_state = "big_ammo_box"
+	flags_equip_slot = SLOT_BACK
 	var/base_icon_state = "big_ammo_box"
 	var/default_ammo = /datum/ammo/bullet/rifle
-	var/bullet_amount = 400
-	var/max_bullet_amount = 400
+	var/bullet_amount = 600
+	var/max_bullet_amount = 600
 	var/caliber = "10x24mm"
 
 /obj/item/big_ammo_box/update_icon()
@@ -350,11 +355,15 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	name = "big ammo box (10x24mm AP)"
 	icon_state = "big_ammo_box_ap"
 	base_icon_state = "big_ammo_box_ap"
+	item_state = "big_ammo_box"
 	default_ammo = /datum/ammo/bullet/rifle/ap
+	bullet_amount = 400 //AP is OP
+	max_bullet_amount = 400
 
 /obj/item/big_ammo_box/smg
 	name = "big ammo box (10x20mm)"
 	caliber = "10x20mm"
 	icon_state = "big_ammo_box_m39"
 	base_icon_state = "big_ammo_box_m39"
+	item_state = "big_ammo_box_m39"
 	default_ammo = /datum/ammo/bullet/smg

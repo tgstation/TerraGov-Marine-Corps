@@ -284,7 +284,7 @@
 
 	visible_message("<span class='xenowarning'>\The [src] effortlessly flings [H] to the side!</span>", \
 	"<span class='xenowarning'>You effortlessly fling [H] to the side!</span>")
-
+	playsound(H,'sound/weapons/alien_claw_block.ogg', 75, 1)
 	used_fling = 1
 	use_plasma(10)
 	H.apply_effects(1,2) 	// Stun
@@ -338,7 +338,8 @@
 
 	visible_message("<span class='xenowarning'>\The [src] hits [H] in the [L.display_name] with a devistatingly powerful punch!</span>", \
 	"<span class='xenowarning'>You hit [H] in the [L.display_name] with a devistatingly powerful punch!</span>")
-
+	var/S = pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg')
+	playsound(H,S, 50, 1)
 	used_punch = 1
 	use_plasma(10)
 
@@ -576,7 +577,7 @@
 		T = temp
 
 	H.throw_at(T, headbutt_distance, 1, src)
-
+	playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 	spawn(headbutt_cooldown)
 		used_headbutt = 0
 		src << "<span class='notice'>You gather enough strength to headbutt again.</span>"
@@ -624,7 +625,7 @@
 			H.KnockDown(2, 1)
 
 		H << "<span class='xenowarning'>You are struck by \the [src]'s tail sweep!</span>"
-
+		playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 	used_tail_sweep = 1
 	use_plasma(10)
 
@@ -657,6 +658,7 @@
 		src << "<span class='xenowarning'>You lower your crest.</span>"
 		armor_deflection += 15
 		speed += 0.8	// This is actually a slowdown but speed is dumb
+		update_icons()
 		do_crest_defense_cooldown()
 		return
 
@@ -664,7 +666,7 @@
 	src << "<span class='xenowarning'>You raise your crest.</span>"
 	armor_deflection -= 15
 	speed -= 0.8
-
+	update_icons()
 	do_crest_defense_cooldown()
 
 /mob/living/carbon/Xenomorph/proc/do_crest_defense_cooldown()
@@ -704,6 +706,7 @@
 		do_fortify_cooldown()
 		fortify_timer = world.timeofday + 90		// How long we can be fortified
 		process_fortify()
+		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, 1)
 		return
 
 	fortify_off()
@@ -724,6 +727,7 @@
 	xeno_explosion_resistance--
 	frozen = 0
 	anchored = 0
+	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, 1)
 	update_canmove()
 	update_icons()
 

@@ -503,7 +503,7 @@
 	max_fuel = 500
 
 /obj/item/storage/backpack/marine/engineerpack/flamethrower/attackby(obj/item/W, mob/living/user)
-	if (istype(W, /obj/item/ammo_magazine/flamer_tank/large))
+	if (istype(W, /obj/item/ammo_magazine/flamer_tank))
 		var/obj/item/ammo_magazine/flamer_tank/large/FTL = W
 		if(!FTL.current_rounds && reagents.total_volume)
 			var/fuel_available = reagents.total_volume < FTL.max_rounds ? reagents.total_volume : FTL.max_rounds
@@ -513,7 +513,6 @@
 			FTL.caliber = "UT-Napthal Fuel"
 			user << "<span class='notice'>You refill [FTL] with [lowertext(FTL.caliber)].</span>"
 			FTL.update_icon()
-			return
 	. = ..()
 
 /obj/item/storage/backpack/lightpack

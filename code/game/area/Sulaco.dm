@@ -269,31 +269,31 @@
 	return 1
 
 /area/shuttle/drop1/sulaco
-	name = "\improper Almayer Dropship Alamo"
+	name = "\improper Dropship Alamo"
 	icon_state = "shuttlered"
 
 /area/shuttle/drop1/LV624
-	name = "\improper Almayer Dropship Alamo"
+	name = "\improper Dropship Alamo"
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/Haunted
-	name = "\improper Almayer Dropship Alamo"
+	name = "\improper Dropship Alamo"
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/prison
-	name = "\improper Almayer Dropship Alamo"
+	name = "\improper Dropship Alamo"
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/BigRed
-	name = "\improper Almayer Dropship Alamo"
+	name = "\improper Dropship Alamo"
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/ice_colony
-	name = "\improper Almayer Dropship Alamo"
+	name = "\improper Dropship Alamo"
 	icon_state = "shuttle"
 
 /area/shuttle/drop1/transit
-	name = "\improper Almayer Dropship Alamo Transit"
+	name = "\improper Dropship Alamo Transit"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop1/lz1
@@ -306,31 +306,31 @@
 	return 1
 
 /area/shuttle/drop2/sulaco
-	name = "\improper Almayer Dropship Normandy"
+	name = "\improper Dropship Normandy"
 	icon_state = "shuttle"
 
 /area/shuttle/drop2/LV624
-	name = "\improper Almayer Dropship Normandy"
+	name = "\improper Dropship Normandy"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/Haunted
-	name = "\improper Almayer Dropship Normandy"
+	name = "\improper Dropship Normandy"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/prison
-	name = "\improper Almayer Dropship Normandy"
+	name = "\improper Dropship Normandy"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/BigRed
-	name = "\improper Almayer Dropship Normandy"
+	name = "\improper Dropship Normandy"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/ice_colony
-	name = "\improper Almayer Dropship Normandy"
+	name = "\improper Dropship Normandy"
 	icon_state = "shuttle2"
 
 /area/shuttle/drop2/transit
-	name = "\improper Almayer Dropship Normandy Transit"
+	name = "\improper Dropship Normandy Transit"
 	icon_state = "shuttlered"
 
 /area/shuttle/drop2/lz2

@@ -207,7 +207,7 @@ proc/isYautja(A)
 proc/isSynth(A)
 	if(ishuman(A))
 		var/mob/living/carbon/human/H = A
-		if(H.species.name == "Synthetic")
+		if(H.species.name == "Synthetic" || H.species.name == "Early Synthetic")
 			return 1
 	return 0
 
