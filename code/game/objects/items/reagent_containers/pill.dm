@@ -31,6 +31,7 @@ var/global/list/randomized_pill_icons
 		..()
 		if(pill_desc)
 			display_contents(user)
+
 	attack_self(mob/user as mob)
 		return
 
