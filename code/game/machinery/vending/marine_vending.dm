@@ -321,27 +321,6 @@
 			temp_list -= R.product_path
 			if(!temp_list.len) break
 
-
-
-/obj/machinery/vending/marine_engi
-	name = "\improper ColMarTech Engineer System Vendor"
-	desc = "A marine engineering system vendor"
-	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
-	req_access = list(ACCESS_MARINE_ENGPREP)
-	icon_state = "tool"
-	icon_deny = "tool-deny"
-	wrenchable = FALSE
-	products = list(
-					/obj/item/coin/marine/engineer = 1,
-					)
-	contraband = list(/obj/item/cell/super = 1)
-
-	premium = list(
-					/obj/item/storage/box/sentry = 1,
-					/obj/item/storage/box/m56d_hmg = 1
-					)
-
-
 /obj/machinery/vending/marine_medic
 	name = "\improper ColMarTech Medic Vendor"
 	desc = "A marine medic equipment vendor"
@@ -439,7 +418,36 @@
 			shared_products.Add(new /datum/data/vending_product())
 	..()
 
+/obj/machinery/vending/shared_vending/marine_engi
+	name = "\improper ColMarTech Engineer System Vendor"
+	desc = "A marine engineering system vendor"
+	product_ads = "If it breaks, wrench it!;If it wrenches, weld it!;If it snips, snip it!"
+	req_access = list(ACCESS_MARINE_ENGPREP)
+	icon_state = "tool"
+	icon_deny = "tool-deny"
+	wrenchable = FALSE
+	products = list(
+					/obj/item/coin/marine/engineer = 1,
+					)
+	contraband = list(/obj/item/cell/super = 1)
 
+	premium = list(
+					/obj/item/storage/box/sentry = 1,
+					/obj/item/storage/box/m56d_hmg = 1
+					)
+	shared = list(
+				/obj/structure/closet/crate/mortar_ammo/mortar_kit = 1,
+				)
+	prices = list()
+
+/obj/machinery/vending/shared_vending/marine_engi/New()
+
+	if(shared_products.len == 0)
+		var/i
+
+		for(i in shared)
+			shared_products.Add(new /datum/data/vending_product())
+	..()
 
 /obj/machinery/vending/marine_smartgun
 	name = "\improper ColMarTech Smartgun Vendor"

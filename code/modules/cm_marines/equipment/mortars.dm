@@ -225,7 +225,8 @@
 		user.visible_message("<span class='notice'>[user] deploys [src].",
 		"<span class='notice'>You deploy [src].")
 		playsound(loc, 'sound/weapons/gun_mortar_unpack.ogg', 25, 1)
-		new /obj/structure/mortar(get_turf(user))
+		var/obj/structure/mortar/M = new /obj/structure/mortar(get_turf(user))
+		M.dir = user.dir
 		cdel(src)
 
 /obj/item/mortal_shell
@@ -356,3 +357,23 @@
 	new /obj/item/mortal_shell/smoke(src)
 	new /obj/item/mortal_shell/flash(src)
 	new /obj/item/mortal_shell/flash(src)
+
+/obj/structure/closet/crate/mortar_ammo/mortar_kit
+	name = "\improper M402 mortar kit"
+	desc = "A crate containing a basic set of a mortar and some shells, to get an engineer started."
+
+/obj/structure/closet/crate/mortar_ammo/mortar_kit/New()
+	..()
+	new /obj/item/mortar_kit(src)
+	new /obj/item/mortal_shell/he(src)
+	new /obj/item/mortal_shell/he(src)
+	new /obj/item/mortal_shell/he(src)
+	new /obj/item/mortal_shell/incendiary(src)
+	new /obj/item/mortal_shell/incendiary(src)
+	new /obj/item/mortal_shell/incendiary(src)
+	new /obj/item/mortal_shell/flare(src)
+	new /obj/item/mortal_shell/flare(src)
+	new /obj/item/mortal_shell/smoke(src)
+	new /obj/item/mortal_shell/smoke(src)
+	new /obj/item/device/encryptionkey/engi(src)
+	new /obj/item/device/encryptionkey/engi(src)

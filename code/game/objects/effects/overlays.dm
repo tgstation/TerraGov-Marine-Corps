@@ -67,6 +67,25 @@
 	icon_state = "big_arrow"
 	effect_duration = 40
 
+//Special laser for coordinates, not for CAS
+/obj/effect/overlay/temp/laser_coordinate
+	name = "laser"
+	anchored = TRUE
+	mouse_opacity = 1
+	luminosity = 2
+	icon = 'icons/obj/items/projectiles.dmi'
+	icon_state = "laser_target_coordinate"
+	effect_duration = 600
+	var/obj/item/device/binoculars/tactical/source_binoc
+
+/obj/effect/overlay/temp/laser_coordinate/Dispose()
+	if(source_binoc)
+		source_binoc.laser_cooldown = world.time + source_binoc.cooldown_duration
+		source_binoc.coord = null
+		source_binoc = null
+	SetLuminosity(0)
+	. = ..()
+
 /obj/effect/overlay/temp/laser_target
 	name = "laser"
 	anchored = TRUE
