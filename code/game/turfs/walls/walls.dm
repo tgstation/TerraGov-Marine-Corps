@@ -103,11 +103,11 @@
 /turf/closed/wall/examine(mob/user)
 	. = ..()
 
-	if (acided_hole)
-		user << "<span class='warning'>There's a hole running through the wall, looks like it could be caused by some type of acid.</span>"
-
 	if(!damage)
-		user << "<span class='notice'>It looks fully intact.</span>"
+		if (acided_hole)
+			user << "<span class='warning'>It looks fully intact, except there's a large hole that could've been caused by some sort of acid.</span>"
+		else
+			user << "<span class='notice'>It looks fully intact.</span>"
 	else
 		var/dam = damage / damage_cap
 		if(dam <= 0.3)
@@ -116,6 +116,11 @@
 			user << "<span class='warning'>It looks moderately damaged.</span>"
 		else
 			user << "<span class='danger'>It looks heavily damaged.</span>"
+
+		if (acided_hole)
+			user << "<span class='warning'>There's a large hole in the wall that could've been caused by some sort of acid.</span>"
+		if(d_state)
+			show_decon_state(user)
 
 	switch(d_state)
 		if(1)

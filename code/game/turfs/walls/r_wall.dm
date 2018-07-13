@@ -10,40 +10,6 @@
 
 	walltype = "rwall"
 
-//Appearance
-/turf/closed/wall/r_wall/examine(mob/user)
-	//. = ..()
-
-	if (acided_hole)
-		user << "<span class='warning'>There's a hole running through the wall, looks like it could be caused by some type of acid.</span>"
-
-	if(!damage)
-		user << "<span class='notice'>It looks fully intact.</span>"
-	else
-		var/dam = damage / damage_cap
-		if(dam <= 0.3)
-			user << "<span class='warning'>It looks slightly damaged.</span>"
-		else if(dam <= 0.6)
-			user << "<span class='warning'>It looks moderately damaged.</span>"
-		else
-			user << "<span class='danger'>It looks heavily damaged.</span>"
-
-	switch(d_state)
-		if(1)
-			user << "<span class='info'>The outer plating has been sliced open. A screwdriver should remove the support lines.</span>"
-		if(2)
-			user << "<span class='info'>The support lines have been removed. A blowtorch should slice through the metal cover.</span>"
-		if(3)
-			user << "<span class='info'>The metal cover has been sliced through. A crowbar should pry it off.</span>"
-		if(4)
-			user << "<span class='info'>The metal cover has been removed. A wrench will remove the anchor bolts.</span>"
-		if(5)
-			user << "<span class='info'>The anchor bolts have been removed. A blowtorch will take care of the support rods.</span>"
-		if(6)
-			user << "<span class='info'>Support rods are gone. A crowbar will pry off the inner sheath.</span>"
-		if(7)
-			user << "<span class='info'>The inner sheath is gone. A blowtorch should finish off this wall.</span>"
-
 /turf/closed/wall/r_wall/attack_hand(mob/user)
 	if (HULK in user.mutations)
 		if (prob(10))
@@ -193,38 +159,19 @@
 				return
 
 		if(5)
-			if( istype(W, /obj/item/tool/weldingtool) )
-				var/obj/item/tool/weldingtool/WT = W
-				if( WT.remove_fuel(0,user) )
+			if(istype(W, /obj/item/tool/wirecutters))
 
-					user << "<span class='notice'>You begin slicing through the support rods.</span>"
-					playsound(src, 'sound/items/Welder.ogg', 25, 1)
+				user.visible_message("<span class='notice'>[user] begins uncrimping the hydraulic lines.</span>",
+				"<span class='notice'>You begin uncrimping the hydraulic lines.</span>")
+				playsound(src, 'sound/items/Wirecutter.ogg', 25, 1)
 
-					if(do_after(user, 100, TRUE, 5, BUSY_ICON_BUILD))
-						if(!istype(src, /turf/closed/wall/r_wall) || !WT || !WT.isOn())
-							return
-
-						if(d_state == 5)
-							d_state = 6
-							new /obj/item/stack/rods( src )
-							user << "<span class='notice'>The support rods drop out as you cut them loose from the frame.</span>"
-				else
-					user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
-				return
-
-			if( istype(W, /obj/item/tool/pickaxe/plasmacutter) )
-
-				user << "<span class='notice'>You begin slicing through the support rods.</span>"
-				playsound(src, 'sound/items/Welder.ogg', 25, 1)
-
-				if(do_after(user, 70, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall/r_wall))
-						return
+				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
+					if(!istype(src, /turf/closed/wall)) return
 
 					if(d_state == 5)
-						d_state = 6
-						new /obj/item/stack/rods( src )
-						user << "<span class='notice'>The support rods drop out as you cut them loose from the frame.</span>"
+						d_state++
+						user.visible_message("<span class='notice'>[user] finishes uncrimping the hydraulic lines.</span>",
+						"<span class='notice'>You finish uncrimping the hydraulic lines.</span>")
 				return
 
 		if(6)
