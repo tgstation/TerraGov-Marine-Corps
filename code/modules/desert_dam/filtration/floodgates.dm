@@ -9,8 +9,18 @@
 	icon = 'icons/turf/walls/bunker.dmi'
 	icon_state = "gate_west"
 
-/obj/machinery/console/floodgate
-	name = "floodgate control console"
-	desc = "A console used to control a local floodgate."
+/obj/machinery/console
+	name = "console"
+	desc = "A console."
 	icon = 'icons/obj/filtration/filtration.dmi'
 	icon_state = "console"
+	var/id = null
+
+/obj/machinery/console/toggle
+	icon_state = "toggle"
+
+/obj/machinery/console/status
+	icon_state = "status"
+
+/obj/machinery/console/time
+	icon_state = "time"

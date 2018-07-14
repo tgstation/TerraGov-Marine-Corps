@@ -941,6 +941,7 @@
 #include "code\modules\cm_preds\yaut_items.dm"
 #include "code\modules\cm_preds\yaut_procs.dm"
 #include "code\modules\customitems\item_spawning.dm"
+#include "code\modules\desert_dam\filtration\filtration.dm"
 #include "code\modules\desert_dam\filtration\floodgates.dm"
 #include "code\modules\desert_dam\filtration\structures.dm"
 #include "code\modules\destilery\main.dm"
