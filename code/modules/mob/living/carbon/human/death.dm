@@ -53,6 +53,8 @@
 
 	if(stat == DEAD) return
 	if(!gibbed) disable_lights()
+	if(pulledby)
+		pulledby.stop_pulling()
 	//Handle species-specific deaths.
 	if(species) species.handle_death(src, gibbed)
 
