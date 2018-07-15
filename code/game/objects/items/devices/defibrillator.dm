@@ -88,7 +88,7 @@
 		else
 			defib_heal_amt *= user.mind.cm_skills.medical*0.5 //more healing power when used by a doctor
 
-	if(!ishuman(H))
+	if(!ishuman(H) || isYautja(H))
 		user << "<span class='warning'>You can't defibrilate [H]. You don't even know where to put the paddles!</span>"
 		return
 	if(!ready)

@@ -30,11 +30,7 @@ var/global/list/randomized_pill_icons
 	examine(mob/user)
 		..()
 		if(pill_desc)
-			if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_CHEM)
-				user << pill_desc
-				user << "This pill contains: [get_reagent_list_text()]"
-			else
-				user << "You don't know what's in it."
+			display_contents(user)
 
 	attack_self(mob/user as mob)
 		return

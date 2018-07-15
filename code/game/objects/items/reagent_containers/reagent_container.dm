@@ -25,6 +25,12 @@
 		src.verbs -= /obj/item/reagent_container/verb/set_APTFT //which objects actually uses it?
 	create_reagents(volume)
 
+/obj/item/reagent_container/proc/display_contents(mob/user) // Used on examine for properly skilled people to see contents.
+	if(isXeno()) return
+	if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_CHEM) // If they have no skillset(admin-spawn, etc), or are properly skilled.
+		user << "This [src] contains: [get_reagent_list_text()]"
+	else
+		user << "You don't know what's in it."
 
 //returns a text listing the reagents (and their volume) in the atom. Used by Attack logs for reagents in pills
 /obj/item/reagent_container/proc/get_reagent_list_text()
