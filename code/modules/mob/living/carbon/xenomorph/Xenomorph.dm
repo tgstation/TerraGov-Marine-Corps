@@ -237,13 +237,14 @@ var/global/list/hive_datum = list(new /datum/hive_status(), new /datum/hive_stat
 		return FALSE
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
-	if(ishuman(L) && L.stat == DEAD)
+	/*if(ishuman(L) && L.stat == DEAD)
 		var/mob/living/carbon/human/H = L
 		if(H.status_flags & XENO_HOST)
 			if(world.time > H.timeofdeath + H.revive_grace_period)
 				return FALSE // they ain't gonna burst now
 		else
-			return FALSE // leave the dead alone
+			return FALSE // leave the dead alone*
+	*/ // this is disabled pending the results of the lighting change -spookydonut
 	return ..()
 
 /mob/living/carbon/Xenomorph/pull_response(mob/puller)
