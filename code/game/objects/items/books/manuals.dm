@@ -730,7 +730,7 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src="http://www.colonial-marines.com/wiki/Marine_Law" frameborder="0" id="main_frame"></iframe>
+		<iframe width='100%' height='97%' src="http://cm-ss13.com/wiki/Marine_Law" frameborder="0" id="main_frame"></iframe>
 		</body>
 
 		</html>

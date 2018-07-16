@@ -181,16 +181,16 @@ GUEST_BAN
 #SERVER server.net:port
 
 ## forum address
-FORUMURL http://www.colonial-marines.com/
+FORUMURL https://cm-ss13.com/
 
 ## Wiki address
-WIKIURL http://www.colonial-marines.com/wiki/
+WIKIURL https://cm-ss13/wiki/
 
 ## Rules address
-RULESURL http://colonial-marines.com/viewtopic.php?f=57&t=5094
+RULESURL https://cm-ss13.com/viewtopic.php?f=57&t=5094
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
-BANAPPEALS http://www.colonial-marines.com/viewforum.php?f=76
+BANAPPEALS https://cm-ss13.com/viewforum.php?f=76
 
 ## In-game features
 ## spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard

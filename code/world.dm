@@ -361,8 +361,8 @@ var/world_topic_spam_protect_time = world.timeofday
 	var/s = ""
 
 	if (config && config.server_name)
-		s += "<a href=\"http://goo.gl/ZFLbE8\"><b>[config.server_name] &#8212; [MAIN_SHIP_NAME]</b>"
-		s += "<br><img src=\"http://goo.gl/Irt1qi\"></a>"
+		s += "<a href=\"[config.forumurl]\"><b>[config.server_name] &#8212; [MAIN_SHIP_NAME]</b>"
+		s += "<br><img src=\"[config.forumurl]/byond_hub_logo.jpg\"></a>"
 		// s += "<a href=\"http://goo.gl/04C5lP\">Wiki</a>|<a href=\"http://goo.gl/hMmIKu\">Rules</a>"
 		if(ticker)
 			if(master_mode)

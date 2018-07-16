@@ -143,7 +143,7 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 					multipler -= 0.65
 				Clamp(multipler, 0, 1)
 
-				if(isSynth(M)) multipler = 1
+				if(isSynth(M) || isYautja(M)) multipler = 1
 
 				//calculate step duration
 				var/step_duration = rand(S.min_duration, S.max_duration)

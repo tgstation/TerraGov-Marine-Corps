@@ -159,38 +159,19 @@
 				return
 
 		if(5)
-			if( istype(W, /obj/item/tool/weldingtool) )
-				var/obj/item/tool/weldingtool/WT = W
-				if( WT.remove_fuel(0,user) )
+			if(istype(W, /obj/item/tool/wirecutters))
 
-					user << "<span class='notice'>You begin slicing through the support rods.</span>"
-					playsound(src, 'sound/items/Welder.ogg', 25, 1)
+				user.visible_message("<span class='notice'>[user] begins uncrimping the hydraulic lines.</span>",
+				"<span class='notice'>You begin uncrimping the hydraulic lines.</span>")
+				playsound(src, 'sound/items/Wirecutter.ogg', 25, 1)
 
-					if(do_after(user, 100, TRUE, 5, BUSY_ICON_BUILD))
-						if(!istype(src, /turf/closed/wall/r_wall) || !WT || !WT.isOn())
-							return
-
-						if(d_state == 5)
-							d_state = 6
-							new /obj/item/stack/rods( src )
-							user << "<span class='notice'>The support rods drop out as you cut them loose from the frame.</span>"
-				else
-					user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
-				return
-
-			if( istype(W, /obj/item/tool/pickaxe/plasmacutter) )
-
-				user << "<span class='notice'>You begin slicing through the support rods.</span>"
-				playsound(src, 'sound/items/Welder.ogg', 25, 1)
-
-				if(do_after(user, 70, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall/r_wall))
-						return
+				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
+					if(!istype(src, /turf/closed/wall/r_wall)) return
 
 					if(d_state == 5)
-						d_state = 6
-						new /obj/item/stack/rods( src )
-						user << "<span class='notice'>The support rods drop out as you cut them loose from the frame.</span>"
+						d_state++
+						user.visible_message("<span class='notice'>[user] finishes uncrimping the hydraulic lines.</span>",
+						"<span class='notice'>You finish uncrimping the hydraulic lines.</span>")
 				return
 
 		if(6)
