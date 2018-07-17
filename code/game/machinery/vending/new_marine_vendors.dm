@@ -722,8 +722,8 @@
 							list("Essential Engineer Set", 0, /obj/effect/essentials_set/engi, MARINE_CAN_BUY_ESSENTIALS, "white"),
 
 							list("ENGINEER SUPPLIES", 0, null, null, null),
-							list("Metal x10", 5, /obj/item/stack/sheet/metal/ten, null, "orange"),
-							list("Plasteel x10", 7, /obj/item/stack/sheet/plasteel/ten, null, "orange"),
+							list("Metal x10", 5, /obj/item/stack/sheet/metal/small_stack, null, "orange"),
+							list("Plasteel x10", 7, /obj/item/stack/sheet/plasteel/small_stack, null, "orange"),
 							list("Sandbags x25", 10, /obj/item/stack/sandbags_empty/half, null, "orange"),
 							list("Plastique explosive", 5, /obj/item/explosive/plastique, null, "black"),
 							list("Entrenching tool", 2, /obj/item/tool/shovel/etool, null, "black"),
