@@ -10,9 +10,7 @@ mob/var/next_pain_time = 0
 // amount is a num from 1 to 100
 mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0)
 	if(stat >= DEAD || (world.time < next_pain_time && !force)) return
-	if(reagents.has_reagent("paracetamol")) return
-	if(reagents.has_reagent("tramadol")) return
-	if(reagents.has_reagent("oxycodone")) return
+	if(reagent_pain_modifier < 0) return //any pain reduction
 	if(analgesic) return
 
 	var/msg
@@ -63,8 +61,7 @@ mob/living/carbon/proc/pain(var/partname, var/amount, var/force, var/burning = 0
 mob/living/carbon/human/proc/custom_pain(message, flash_strength)
 	if(stat >= UNCONSCIOUS) return
 	if(species && species.flags & NO_PAIN) return
-	if(reagents.has_reagent("tramadol")) return
-	if(reagents.has_reagent("oxycodone")) return
+	if(reagent_pain_modifier <= PAIN_REDUCTION_HEAVY) return //anything as or more powerful than tramadol
 	if(analgesic) return
 
 	var/msg = "<span class='danger'>[message]</span>"
@@ -79,8 +76,7 @@ mob/living/carbon/human/proc/custom_pain(message, flash_strength)
 mob/living/carbon/human/proc/handle_pain()
 	if(stat >= UNCONSCIOUS) return 	// not when sleeping
 	if(species && species.flags & NO_PAIN) return
-	if(reagents.has_reagent("tramadol")) return
-	if(reagents.has_reagent("oxycodone")) return
+	if(reagent_pain_modifier <= PAIN_REDUCTION_HEAVY) return //anything as or more powerful than tramadol
 	if(analgesic) return
 
 	var/maxdam = 0

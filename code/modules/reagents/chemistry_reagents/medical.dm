@@ -18,7 +18,7 @@
 		. = ..()
 		if(!.) return
 
-		M.reagent_shock_modifier -= 25
+		M.reagent_shock_modifier += PAIN_REDUCTION_LIGHT
 
 		if(alien && alien == IS_VOX)
 			M.adjustToxLoss(REAGENTS_METABOLISM)
@@ -90,7 +90,7 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		M.reagent_pain_modifier -= 50
+		M.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
 
 	on_overdose(mob/living/M)
 		M.hallucination = max(M.hallucination, 2) //Hallucinations and tox damage
@@ -113,7 +113,7 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		M.reagent_pain_modifier -= 80
+		M.reagent_pain_modifier += PAIN_REDUCTION_VERY_HEAVY
 
 	on_overdose(mob/living/M)
 		M.hallucination = max(M.hallucination, 2) //Hallucinations and tox damage
@@ -135,7 +135,7 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		M.reagent_pain_modifier -= 200
+		M.reagent_pain_modifier += PAIN_REDUCTION_FULL
 
 	on_overdose(mob/living/M)
 		M.hallucination = max(M.hallucination, 3) //Hallucinations and tox damage
@@ -455,7 +455,7 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		M.reagent_shock_modifier -= 40
+		M.reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
 		M.drowsyness = max(M.drowsyness-5, 0)
 		M.AdjustKnockedout(-1)
 		M.AdjustStunned(-1)
@@ -484,7 +484,7 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		M.reagent_shock_modifier -= 200
+		M.reagent_shock_modifier += PAIN_REDUCTION_FULL
 		M.drowsyness = max(M.drowsyness-5, 0)
 		M.dizziness = max(M.dizziness-5, 0)
 		M.stuttering = max(M.stuttering-5, 0)
@@ -583,7 +583,7 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
-		M.reagent_shock_modifier -= 10
+		M.reagent_shock_modifier += PAIN_REDUCTION_VERY_LIGHT
 		M.adjustBrainLoss(-3 * REM)
 
 	on_overdose(mob/living/M)
