@@ -64,6 +64,9 @@
 	attack_verb = list("hit", "bludgeoned", "whacked")
 	stack_id = "sandbags"
 
+/obj/item/stack/sandbags/large_stack
+	amount = 25
+
 /obj/item/stack/sandbags/attack_self(mob/living/user)
 	add_fingerprint(user)
 

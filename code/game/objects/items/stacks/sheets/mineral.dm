@@ -138,6 +138,12 @@ obj/item/stack/sheet/mineral/iron/New()
 	..()
 	// recipes = phoron_recipes // Disabled phoron doors
 
+/obj/item/stack/sheet/mineral/phoron/small_stack
+	amount = 10
+
+/obj/item/stack/sheet/mineral/phoron/medium_stack
+	amount = 30
+
 /obj/item/stack/sheet/mineral/plastic
 	name = "Plastic"
 	desc = "Plastic is a synthetic polymer, manufactured from organic and inorganic components into a malleable and light fabric. It can be used for a wide range of objects."
