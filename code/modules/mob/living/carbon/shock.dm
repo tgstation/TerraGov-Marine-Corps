@@ -12,12 +12,10 @@
 	0.7	* getToxLoss() + 		\
 	1.5	* getFireLoss() + 		\
 	1.5	* getBruteLoss() + 		\
-	1.5	* getCloneLoss() + 		\
-	1.5	* halloss
+	1.5	* getCloneLoss()
 
-	if(reagents.has_reagent("alkysine")) 		traumatic_shock -= 10
-	if(reagents.has_reagent("inaprovaline")) 	traumatic_shock -= 25
-	if(reagents.has_reagent("synaptizine")) 	traumatic_shock -= 40
+	traumatic_shock += reagent_shock_modifier
+
 	if(slurring) 								traumatic_shock -= 20
 	if(analgesic) 								traumatic_shock = 0
 
@@ -44,11 +42,10 @@
 		if(M.protection_aura)
 			traumatic_shock -= M.protection_aura * 10
 
-	traumatic_shock = max(0, traumatic_shock)	//reagents below this have the potential to mask damage
+	traumatic_shock = max(0, traumatic_shock)	//stuff below this has the potential to mask damage
+	traumatic_shock += 1.5 * halloss
 
-	if(reagents.has_reagent("paracetamol")) 	traumatic_shock -= 50
-	if(reagents.has_reagent("tramadol")) 		traumatic_shock -= 80
-	if(reagents.has_reagent("oxycodone")) 		traumatic_shock -= 200
+	traumatic_shock += reagent_pain_modifier
 
 	return traumatic_shock
 

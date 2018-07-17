@@ -597,6 +597,8 @@
 		return
 	else
 		triggered = 1
+	if(!from_dir) //air escaping sound effect for original window
+		playsound(src, 'sound/machines/hiss.ogg', 50, 1)
 	for(var/direction in cardinal)
 		if(direction == from_dir) continue //doesn't check backwards
 		for(var/obj/structure/window/framed/prison/reinforced/hull/W in get_step(src,direction) )
@@ -607,7 +609,7 @@
 			P.dir = 2
 		else
 			P.dir = 4
-	spawn(0)
+	spawn(16)
 		P.close()
 
 /obj/structure/window/framed/prison/cell

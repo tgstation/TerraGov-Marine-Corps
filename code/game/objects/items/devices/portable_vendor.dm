@@ -16,7 +16,7 @@
 
 	var/req_role = "" //to be compared with assigned_role to only allow those to use that machine.
 	var/points = 40
-	var/max_points = 100
+	var/max_points = 50
 	var/use_points = TRUE
 	var/fabricating = 0
 	var/broken = 0
@@ -236,8 +236,8 @@
 	req_role = "Corporate Liaison"
 	listed_products = list(
 							list("INCENTIVES", 0, null, null, null),
-							list("Neurostimulator Implant", 30, /obj/item/implanter/neurostim, "white", "Implant which stimulates and regulates sensorimotor function. Benefits include improved balance, and improved resistance to overstimulation and disoritentation. To encourage compliance, negative stimulus is applied if the implant hears a (non-radio) spoken codephrase. Implant will be degraded by the body's immune system over time, and thus occasionally malfunction. Personal use not recommended."),
-							list("Ultrazine Pills", 20, /obj/item/storage/pill_bottle/ultrazine, "white", "Highly-addictive stimulant. Enhances short-term physical performance, particularly running speed. Effects last approximately 10 minutes per pill. More than two pills at a time will result in overdose. Withdrawal causes extreme discomfort, hallucinations and nausea. Long-term use results in halluciations and organ failure. Conditional distribution secures subject compliance. Not for personal use."),
+							list("Neurostimulator Implant", 30, /obj/item/implanter/neurostim, "white", "Implant which regulates nociception and sensory function. Benefits include pain reduction, improved balance, and improved resistance to overstimulation and disoritentation. To encourage compliance, negative stimulus is applied if the implant hears a (non-radio) spoken codephrase. Implant will be degraded by the body's immune system over time, and thus malfunction with gradually increasing frequency. Personal use not recommended."),
+							list("Ultrazine Pills", 20, /obj/item/storage/pill_bottle/ultrazine, "white", "Highly-addictive stimulant. Enhances short-term physical performance, particularly running speed. Effects last approximately 10 minutes per pill. More than two pills at a time will result in overdose. Withdrawal causes extreme discomfort and hallucinations. Long-term use results in halluciations and organ failure. Conditional distribution secures subject compliance. Not for personal use."),
 							list("Cash", 5, /obj/item/spacecash/c1000, "white", "$1000 USD, unmarked bills"),
 							list("Cigars", 5, /obj/item/storage/fancy/cigar, "white", "Case of premium cigars, untampered.")
 							)

@@ -18,6 +18,8 @@
 		. = ..()
 		if(!.) return
 
+		M.reagent_shock_modifier -= 25
+
 		if(alien && alien == IS_VOX)
 			M.adjustToxLoss(REAGENTS_METABOLISM)
 		else
@@ -85,6 +87,11 @@
 	overdose = REAGENTS_OVERDOSE*2
 	overdose_critical = REAGENTS_OVERDOSE_CRITICAL*2
 
+	on_mob_life(mob/living/M)
+		. = ..()
+		if(!.) return
+		M.reagent_pain_modifier -= 50
+
 	on_overdose(mob/living/M)
 		M.hallucination = max(M.hallucination, 2) //Hallucinations and tox damage
 		M.apply_damage(1, TOX)
@@ -103,6 +110,11 @@
 	overdose = REAGENTS_OVERDOSE
 	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
 
+	on_mob_life(mob/living/M)
+		. = ..()
+		if(!.) return
+		M.reagent_pain_modifier -= 80
+
 	on_overdose(mob/living/M)
 		M.hallucination = max(M.hallucination, 2) //Hallucinations and tox damage
 		M.apply_damage(1, TOX)
@@ -119,6 +131,11 @@
 	custom_metabolism = 0.25 // Lasts 10 minutes for 15 units
 	overdose = REAGENTS_OVERDOSE * 0.66
 	overdose_critical = REAGENTS_OVERDOSE_CRITICAL * 0.66
+
+	on_mob_life(mob/living/M)
+		. = ..()
+		if(!.) return
+		M.reagent_pain_modifier -= 200
 
 	on_overdose(mob/living/M)
 		M.hallucination = max(M.hallucination, 3) //Hallucinations and tox damage
@@ -438,6 +455,7 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
+		M.reagent_shock_modifier -= 40
 		M.drowsyness = max(M.drowsyness-5, 0)
 		M.AdjustKnockedout(-1)
 		M.AdjustStunned(-1)
@@ -451,6 +469,30 @@
 
 	on_overdose_critical(mob/living/M)
 		M.apply_damages(1, 1, 3)
+
+/datum/reagent/neuraline //injected by neurostimulator implant
+	name = "Neuraline"
+	id = "neuraline"
+	description = "A chemical cocktail tailored to enhance or dampen specific neural processes."
+	reagent_state = LIQUID
+	color = "#C8A5DC" // rgb: 200, 165, 220
+	custom_metabolism = 0.4
+	overdose = 2
+	overdose_critical = 3
+	scannable = 0
+
+	on_mob_life(mob/living/M)
+		. = ..()
+		if(!.) return
+		M.reagent_shock_modifier -= 200
+		M.drowsyness = max(M.drowsyness-5, 0)
+		M.dizziness = max(M.dizziness-5, 0)
+		M.stuttering = max(M.stuttering-5, 0)
+		M.confused = max(M.confused-5, 0)
+		M.eye_blurry = max(M.eye_blurry-5, 0)
+		M.AdjustKnockedout(-2)
+		M.AdjustStunned(-2)
+		M.AdjustKnockeddown(-1)
 
 /datum/reagent/hyronalin
 	name = "Hyronalin"
@@ -541,6 +583,7 @@
 	on_mob_life(mob/living/M)
 		. = ..()
 		if(!.) return
+		M.reagent_shock_modifier -= 10
 		M.adjustBrainLoss(-3 * REM)
 
 	on_overdose(mob/living/M)
@@ -648,7 +691,7 @@
 		. = ..()
 		if(!.) return
 
-		M.life_move_delay -= 0.5
+		M.reagent_move_delay_modifier -= 0.5
 
 		if(prob(1))
 			M.emote(pick("twitch","blink_r","shiver"))
@@ -690,7 +733,7 @@
 	. = ..()
 	if(!.) return
 
-	M.life_move_delay -= 2
+	M.reagent_move_delay_modifier -= 10
 
 	var/has_addiction = 0
 
@@ -705,13 +748,21 @@
 		else
 			D.addiction_progression = min(D.addiction_progression+1, D.progression_threshold) //withdrawal buffer
 
-			if(prob(1))
-				M.hallucination += 50
-			if(prob(0.5) && ishuman(M))
-				var/mob/living/carbon/human/H = M
-				var/affected_organ = pick("heart","lungs","liver","kidneys")
-				var/datum/internal_organ/I =  H.internal_organs_by_name[affected_organ]
-				I.damage += 5
+		switch(D.stage)
+			if(2)
+				if(prob(1))
+					M.hallucination = max(50, M.hallucination)
+			if(3)
+				if(prob(1))
+					M.hallucination += max(75, M.hallucination)
+			if(4)
+				if(prob(2))
+					M.hallucination += max(75, M.hallucination)
+				if(prob(0.5) && ishuman(M))
+					var/mob/living/carbon/human/H = M
+					var/affected_organ = pick("heart","lungs","liver","kidneys")
+					var/datum/internal_organ/I =  H.internal_organs_by_name[affected_organ]
+					I.damage += 5
 
 		break
 
