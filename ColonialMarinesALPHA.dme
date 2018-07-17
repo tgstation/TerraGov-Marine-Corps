@@ -773,6 +773,7 @@
 #include "code\game\turfs\snow.dm"
 #include "code\game\turfs\space.dm"
 #include "code\game\turfs\turf.dm"
+#include "code\game\turfs\floors\desert.dm"
 #include "code\game\turfs\floors\exterior.dm"
 #include "code\game\turfs\walls\r_wall.dm"
 #include "code\game\turfs\walls\wall_types.dm"

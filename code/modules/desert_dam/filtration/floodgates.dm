@@ -18,6 +18,7 @@
 
 /obj/machinery/console/toggle
 	icon_state = "toggle"
+	var/status = 0 //0 for closed, 1 for open
 
 /obj/machinery/console/status
 	icon_state = "status"

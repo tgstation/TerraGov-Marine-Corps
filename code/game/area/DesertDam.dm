@@ -639,25 +639,56 @@
 	name = "\improper"
 	icon_state = "yellow"
 //Rivers
-//
-/area/desert_dam/exterior/river/riverside_northwest
-	name = "\improper northwest riverbed"
+/area/desert_dam/exterior/river
+	name = "river"
 	icon_state = "bluenew"
+	var/filtered = 0
+	var/list/Next_areas = list()//The next river to update - that is, unless...
+	var/obj/machinery/console/toggle/Floodgate = null //If there's a floodgate at the end of us, this is it's ID
+
+/area/desert_dam/exterior/river/proc/check_filtered()
+	var/turf/open/desert/river/R
+	if(filtered)
+		for(R in src)
+			R.toxic = 0
+	else
+		for(R in src)
+			R.toxic = 1
+	R.update_icon()
+	if(Next_areas)
+		if(Floodgate && Floodgate.status)
+			Next.check_filtered()
+
+
+
+//End of the river areas, no Next
+/area/desert_dam/exterior/river/riverside_northwest
+	name = "\improper Northwest riverbed"
+	icon_state = "bluenew"
+
 /area/desert_dam/exterior/river/riverside_central_north
-	name = "\improper northern central riverbed"
+	name = "\improper Northern central riverbed"
 	icon_state = "purple"
 /area/desert_dam/exterior/river/riverside_central_south
-	name = "\improper southern central riverbed"
+	name = "\improper Southern central riverbed"
 	icon_state = "purple"
+
 /area/desert_dam/exterior/river/riverside_south
-	name = "\improper southern riverbed"
+	name = "\improper Southern riverbed"
 	icon_state = "bluenew"
 /area/desert_dam/exterior/river/riverside_east
-	name = "\improper eastern riverbed"
+	name = "\improper Eastern riverbed"
 	icon_state = "bluenew"
 /area/desert_dam/exterior/river/riverside_northeast
-	name = "\improper northeastern riverbed"
+	name = "\improper Northeastern riverbed"
 	icon_state = "bluenew"
+//The filtration plants - This area isn't for the WHOLE plant, but the areas that have water in them, so the water changes color as well.
+
+/area/desert_dam/exterior/river/filtration_a
+	name = "\improper Filtration Plant A"
+
+/area/desert_dam/exterior/river/filtration_b
+	name = "\improper Filtration Plant B"
 
 //Areas that are rivers, but will not change because they're before the floodgates
 /area/desert_dam/exterior/river_mouth/southern
