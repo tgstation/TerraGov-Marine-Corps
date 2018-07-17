@@ -192,6 +192,10 @@
 /obj/machinery/computer/security/almayer
 	density = 0
 	icon_state = "security_cam"
+	network = list("almayer")
+
+/obj/machinery/computer/security/almayer_network
+	network = list("almayer")
 
 
 /obj/machinery/computer/security/dropship

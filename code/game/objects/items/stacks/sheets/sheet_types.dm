@@ -76,11 +76,14 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
 	origin_tech = "materials=1"
 	stack_id = "metal"
 
-/obj/item/stack/sheet/metal/ten
+/obj/item/stack/sheet/metal/small_stack
 	amount = 10
 
-obj/item/stack/sheet/metal/half
+/obj/item/stack/sheet/metal/medium_stack
 	amount = 25
+
+/obj/item/stack/sheet/metal/large_stack
+	amount = 50
 
 /obj/item/stack/sheet/metal/cyborg
 
@@ -114,8 +117,11 @@ var/global/list/datum/stack_recipe/plasteel_recipes = list ( \
 	return ..()
 
 
-/obj/item/stack/sheet/plasteel/ten
+/obj/item/stack/sheet/plasteel/small_stack
 	amount = 10
+
+/obj/item/stack/sheet/plasteel/medium_stack
+	amount = 30
 
 /*
  * Wood

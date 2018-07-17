@@ -5,15 +5,17 @@
 	recommended_enemies 	= 0 //Leaving this relic code incase we want to do some extra things with it in the future.
 	xeno_bypass_timer 		= 1
 	role_instruction		= 1
-	roles_for_mode = list(/datum/job/marine/standard/equipped, //Added Doctor and XO to the list.
+	roles_for_mode = list(/datum/job/marine/standard/equipped,
 					/datum/job/marine/medic/equipped,
 					/datum/job/marine/engineer/equipped,
 					/datum/job/marine/specialist/equipped,
+					/datum/job/marine/smartgunner/equipped,
 					/datum/job/marine/leader/equipped,
 					/datum/job/civilian/doctor,
-					/datum/job/command/executive,
+					/datum/job/command/commander,
 					/datum/job/logistics/tech/maint,
-					/datum/job/command/police
+					/datum/job/command/police,
+					/datum/job/civilian/synthetic
 					)
 
 	flags_round_type	= MODE_NO_LATEJOIN
@@ -25,7 +27,7 @@
 	var/finished = 0
 	var/has_started_timer = 10 //This is a simple timer so we don't accidently check win conditions right in post-game
 
-	var/spawn_next_wave = 200 //Spawn first batch at ~15 minutes //200
+	var/spawn_next_wave = 1200 //Spawn first batch at ~15 minutes //200
 	var/xeno_wave = 1 //Which wave is it
 	var/spawn_xeno_num = 20 //How many to spawn per wave //First wave is big, cus runners.
 
@@ -109,15 +111,15 @@
 	world << "<span class='round_header'>The current game mode is - WHISKEY OUTPOST!</span>"
 	world << "<span class='round_body'>It is the year 2181 on the planet LV-624, five years before the arrival of the USS Almayer and the 7th 'Falling Falcons' Battalion in the sector</span>"
 	world << "<span class='round_body'>The 3rd 'Dust Raiders' Battalion is charged with establishing a USCM prescence in the Tychon's Rift sector</span>"
-	world << "<span class='round_body'>Whiskey Outpost, one of the Dust Raider bases being established in the sector, has come under attack from unrecognized alien forces</span>"
-	world << "<span class='round_body'>With casualties mounting and supplies running thin, the Dust Raiders at Whiskey outpost must survive for an hour to alert the rest of their battalion in the sector</span>"
+	world << "<span class='round_body'>[map_tag], one of the Dust Raider bases being established in the sector, has come under attack from unrecognized alien forces</span>"
+	world << "<span class='round_body'>With casualties mounting and supplies running thin, the Dust Raiders at [map_tag] must survive for an hour to alert the rest of their battalion in the sector</span>"
 	world << "<span class='round_body'>Hold out for as long as you can.</span>"
 	world << sound('sound/effects/siren.ogg')
 
 	sleep(50)
 	switch(map_locale) //Switching it up.
 		if(0)
-			command_announcement.Announce("This is Captain Hans Naiche, commander of the 3rd Battalion 'Dust Raiders' forces here on LV-624. In our attempts to establish a base on this planet, several of our patrols were wiped out by hostile creatures.  We're setting up a distress call, but we need you to hold Whiskey Outpost in order for our engineers to set up the relay. We're prepping several M402 mortar units to provide fire support. If they overrun your positon, we will be wiped out with no way to call for help. Hold the line or we all die.", "Captain Naich, 3rd Battalion Command, LV-624 Garrison")
+			command_announcement.Announce("This is Captain Hans Naiche, commander of the 3rd Battalion 'Dust Raiders' forces here on [map_tag]. In our attempts to establish a base on this planet, several of our patrols were wiped out by hostile creatures.  We're setting up a distress call, but we need you to hold [map_tag] in order for our engineers to set up the relay. We're prepping several M402 mortar units to provide fire support. If they overrun your positon, we will be wiped out with no way to call for help. Hold the line or we all die.", "Captain Naich, 3rd Battalion Command, [map_tag] Garrison")
 
 /datum/game_mode/whiskey_outpost/proc/spawn_player(var/mob/M)
 	set waitfor = 0 //Doing this before hand.
@@ -169,7 +171,7 @@
 	var/rand_wep = rand(0,10) //Made spawns for everyone, now we can also have weighted things too!
 	var/custom_message = 0 // This is if the role has a special message.
 	switch(H.mind.assigned_role)
-		if("Executive Officer")
+		if("Commander")
 			custom_message = 1
 			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
 			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
@@ -178,11 +180,10 @@
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/commander(H), WEAR_FEET)
 			H.equip_to_slot_or_del(new /obj/item/clothing/head/cmberet/tan(H), WEAR_HEAD)
 			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/techofficer/commander(H), WEAR_HANDS)
-			H.equip_to_slot_or_del(new /obj/item/map/whiskey_outpost_map(H), WEAR_R_HAND)
 			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
+			H.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword/commander(H), WEAR_R_HAND)
 
-
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/heavy(H), WEAR_WAIST)
+			H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/mateba/full(H), WEAR_WAIST)
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(H), WEAR_IN_BACK)
@@ -202,7 +203,7 @@
 				H << "Coordinate your team and prepare defenses."
 				H << "Stay alive!"
 				H << "Hold the outpost for one hour until the distress beacon can be broadcast to the remaining Dust Raiders!"
-				H << "The local population warned you about establishing a base in the jungles of LV-624.."
+				H << "The local population warned you about establishing a base in the jungles of [map_tag]..."
 				H << "________________________"
 			sleep(240) //So they can see it
 			if(H)
@@ -252,6 +253,43 @@
 				H << "Aid your commander, you can use overwatch consoles!"
 				H << "________________________"
 
+		if("Synthetic")
+			custom_message = 1
+			var/obj/item/stack/sheet/metal/MET = new /obj/item/stack/sheet/metal(H)
+			MET.amount = 50
+			var/obj/item/stack/sheet/plasteel/PLAS = new /obj/item/stack/sheet/plasteel(H)
+			PLAS.amount = 50
+			var/obj/item/stack/sheet/plasteel/PLAS2 = new /obj/item/stack/sheet/plasteel(H)
+			PLAS2.amount = 50
+			var/obj/item/stack/sheet/plasteel/PLAS3 = new /obj/item/stack/sheet/plasteel(H)
+			PLAS3.amount = 50
+			var/obj/item/stack/sheet/metal/MET2 = new /obj/item/stack/sheet/metal(H)
+			MET2.amount = 50
+			var/obj/item/stack/sheet/metal/MET3 = new /obj/item/stack/sheet/metal(H)
+			MET3.amount = 50
+			H.equip_to_slot_or_del(PLAS, WEAR_IN_BACK)
+			H.equip_to_slot_or_del(PLAS2, WEAR_IN_BACK)
+			H.equip_to_slot_or_del(PLAS3, WEAR_IN_BACK)
+			H.equip_to_slot_or_del(MET, WEAR_IN_BACK)
+			H.equip_to_slot_or_del(MET2, WEAR_IN_BACK)
+			H.equip_to_slot_or_del(MET3, WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/storage/box/m94(H), WEAR_IN_BACK)
+
+			H.equip_to_slot_or_del(new /obj/item/storage/box/m94(H), WEAR_R_HAND)
+			var/obj/item/card/id/W = new(H)
+			W.name = "[M.real_name]'s ID Card (Outpost Synthetic)"
+			W.access = get_all_accesses()
+			W.assignment = "Outpost Synthetic"
+			W.paygrade = "E6E"
+			W.registered_name = M.real_name
+			H.equip_to_slot_or_del(W, WEAR_ID)
+			sleep(40)
+			if(H)
+				H << "________________________"
+				H << "<span class='boldnotice'>You are a Dust Raiders Synthetic Unit!</span>"
+				H << "Assist the humans as much as possible, only engage in combat if no other option presents itself!"
+				H << "Aid your comrades!"
+				H << "________________________"
 
 		if("Maintenance Tech")
 			custom_message = 1
@@ -270,13 +308,13 @@
 			var/obj/item/stack/sheet/plasteel/PLAS = new /obj/item/stack/sheet/plasteel(H)
 			PLAS.amount = 50
 			var/obj/item/stack/sheet/plasteel/PLAS2 = new /obj/item/stack/sheet/plasteel(H)
-			PLAS.amount = 50
+			PLAS2.amount = 50
 			var/obj/item/stack/sheet/plasteel/PLAS3 = new /obj/item/stack/sheet/plasteel(H)
-			PLAS.amount = 50
+			PLAS3.amount = 50
 			var/obj/item/stack/sheet/metal/MET2 = new /obj/item/stack/sheet/metal(H)
-			MET.amount = 50
+			MET2.amount = 50
 			var/obj/item/stack/sheet/metal/MET3 = new /obj/item/stack/sheet/metal(H)
-			MET.amount = 50
+			MET3.amount = 50
 			H.equip_to_slot_or_del(PLAS, WEAR_IN_BACK)
 			H.equip_to_slot_or_del(PLAS2, WEAR_IN_BACK)
 			H.equip_to_slot_or_del(PLAS3, WEAR_IN_BACK)
@@ -444,14 +482,9 @@
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
 					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-
-		//SQUAD SPECIALIST
-		if("Squad Specialist")
-
+		//SQUAD SMARTGUNNER
+		if("Squad Smartgunner")
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), WEAR_BODY)
-
-			//SPESHUL EQUIPMENT
-			//Webbing
 			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), WEAR_IN_BACK)
 
 			//Backup SMG Weapon
@@ -459,29 +492,19 @@
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
 			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/storage/box/m56_system, WEAR_R_HAND)
 
-			switch(rand_wep) //Scaled based on player feedback (scaled again, found out people want survivability this time.
-				if(0 to 3)//Smartgun
-					H.equip_to_slot_or_del(new /obj/item/storage/box/m56_system(H), WEAR_R_HAND)
-					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), WEAR_HEAD)
+		//SQUAD SPECIALIST
+		if("Squad Specialist")
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), WEAR_IN_BACK)
 
-				if(4 to 6)//Sniper
-					H.equip_to_slot_or_del(new /obj/item/storage/box/m42c_system(H), WEAR_R_HAND)
-
-				if(7)//SADAR
-					H.equip_to_slot_or_del(new /obj/item/storage/box/rocket_system(H), WEAR_R_HAND)
-
-					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), WEAR_HEAD)
-					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
-
-				if(8)//Grenade Launcher
-					H.equip_to_slot_or_del(new /obj/item/storage/box/grenade_system(H), WEAR_R_HAND)
-					H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), WEAR_HEAD)
-					H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
-
-				if(9 to 10)//B18
-					H.equip_to_slot_or_del(new /obj/item/storage/box/heavy_armor(H), WEAR_R_HAND)
-					H.equip_to_slot_or_del(new /obj/item/storage/large_holster/machete/full(H), WEAR_L_HAND)
+			//Backup SMG Weapon
+			H.equip_to_slot_or_del(new /obj/item/storage/large_holster/m39/full(H), WEAR_WAIST)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/spec_kit, WEAR_R_HAND)
 
 		//SQUAD MARINE
 		else
@@ -551,58 +574,59 @@
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
 
 		//Find their squad
-	var/squad = H.assigned_squad.color
-	var/leader = H.assigned_squad.squad_leader == H
+	if(H.assigned_squad)
+		var/squad = H.assigned_squad.color
+		var/leader = H.assigned_squad.squad_leader == H
 
-		//Squad Gloves and radio headsets
-	switch(squad)
-		if(1)//Alpha
+			//Squad Gloves and radio headsets
+		switch(squad)
+			if(1)//Alpha
+					//Radio
+				if(leader)
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/alpha/lead(H), WEAR_EAR)
+				else
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/alpha(H), WEAR_EAR)
+					//Gloves
+				if(H.mind.assigned_role != "Squad Engineer")
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/alpha(H), WEAR_HANDS)
+				else
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
+
+			if(2)//Bravo
+					//Radio
+				if(leader)
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/bravo/lead(H), WEAR_EAR)
+				else
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/bravo(H), WEAR_EAR)
+					//Gloves
+				if(H.mind.assigned_role != "Squad Engineer")
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/bravo(H), WEAR_HANDS)
+				else
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
+
+			if(3)//Charlie
+					//Radio
+				if(leader)
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/charlie/lead(H), WEAR_EAR)
+				else
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/charlie(H), WEAR_EAR)
+					//Gloves
+				if(H.mind.assigned_role != "Squad Engineer")
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/charlie(H), WEAR_HANDS)
+				else
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
+
+			if(4)//Delta
 				//Radio
-			if(leader)
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/alpha/lead(H), WEAR_EAR)
-			else
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/alpha(H), WEAR_EAR)
-				//Gloves
-			if(H.mind.assigned_role != "Squad Engineer")
-				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/alpha(H), WEAR_HANDS)
-			else
-				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
-
-		if(2)//Bravo
-				//Radio
-			if(leader)
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/bravo/lead(H), WEAR_EAR)
-			else
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/bravo(H), WEAR_EAR)
-				//Gloves
-			if(H.mind.assigned_role != "Squad Engineer")
-				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/bravo(H), WEAR_HANDS)
-			else
-				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
-
-		if(3)//Charlie
-				//Radio
-			if(leader)
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/charlie/lead(H), WEAR_EAR)
-			else
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/charlie(H), WEAR_EAR)
-				//Gloves
-			if(H.mind.assigned_role != "Squad Engineer")
-				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/charlie(H), WEAR_HANDS)
-			else
-				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
-
-		if(4)//Delta
-			//Radio
-			if(leader)
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/delta/lead(H), WEAR_EAR)
-			else
-				H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/delta(H), WEAR_EAR)
-				//Gloves
-			if(H.mind.assigned_role != "Squad Engineer")
-				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/delta(H), WEAR_HANDS)
-			else
-				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
+				if(leader)
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/delta/lead(H), WEAR_EAR)
+				else
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/delta(H), WEAR_EAR)
+					//Gloves
+				if(H.mind.assigned_role != "Squad Engineer")
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/delta(H), WEAR_HANDS)
+				else
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
 
 		//Give them some information
 	sleep(40)
@@ -612,7 +636,7 @@
 		H << "Gear up, prepare defenses, work as a team. Protect your doctors and commander!"
 		H << "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!"
 		H << "Hold the outpost for one hour until the signal can be established!"
-		H << "Ensure the Dust Raiders don't lose their foothold on LV-624 so you can alert the main forces."
+		H << "Ensure the Dust Raiders don't lose their foothold on [map_tag] so you can alert the main forces."
 		H << "________________________"
 
 	return 1
@@ -653,16 +677,16 @@
 
 			switch(xeno_wave)
 				if(1)
-					command_announcement.Announce("We're tracking the creatures that wiped out our patrols heading towards your outpost.. Stand-by while we attempt to establish a signal with the USS Alistoun to alert them of these creatures.", "Captain Naich, 3rd Battalion Command, LV-624 Garrison")
+					command_announcement.Announce("We're tracking the creatures that wiped out our patrols heading towards your outpost.. Stand-by while we attempt to establish a signal with the USS Alistoun to alert them of these creatures.", "Captain Naich, 3rd Battalion Command, [map_tag] Garrison")
 				if(8)
-					command_announcement.Announce("Captain Naiche speaking, we've been unsuccessful in establishing offworld communication for the moment. We're prepping our M402 mortars to destroy the inbound xeno force on the main road. Standby for fire support.", "Captain Naich, 3rd Battalion Command, LV-624 Garrison")
+					command_announcement.Announce("Captain Naiche speaking, we've been unsuccessful in establishing offworld communication for the moment. We're prepping our M402 mortars to destroy the inbound xeno force on the main road. Standby for fire support.", "Captain Naich, 3rd Battalion Command, [map_tag] Garrison")
 				if(9)
 					world << sound('sound/voice/alien_queen_command.ogg')
-					command_announcement.Announce("Our garrison forces are reaching seventy percent casualties, we are losing our grip on LV-624. It appears that vanguard of the hostile force is still approaching, and most of the other Dust Raider platoons have been shattered. We're counting on you to keep holding.", "Captain Naich, 3rd Battalion Command, LV-624 Garrison")
+					command_announcement.Announce("Our garrison forces are reaching seventy percent casualties, we are losing our grip on [map_tag]. It appears that vanguard of the hostile force is still approaching, and most of the other Dust Raider platoons have been shattered. We're counting on you to keep holding.", "Captain Naich, 3rd Battalion Command, [map_tag] Garrison")
 				if(12)
 					command_announcement.Announce("This is Captain Naiche, we are picking up large signatures inbound, we'll see what we can do to delay them.", "Captain Naich, 3rd Battalion Command, LV-624")
 				if(14)
-					command_announcement.Announce("This is Captain Naiche, we've established our distress beacon for the USS Alistoun and the remaining Dust Raiders. Hold on for a bit longer while we trasmit our coordinates!", "Captain Naich, 3rd Battalion Command, LV-624 Garrison")
+					command_announcement.Announce("This is Captain Naiche, we've established our distress beacon for the USS Alistoun and the remaining Dust Raiders. Hold on for a bit longer while we trasmit our coordinates!", "Captain Naich, 3rd Battalion Command, [map_tag] Garrison")
 
 
 			//SUPPLY SPAWNER
@@ -686,7 +710,7 @@
 
 			xeno_wave++
 		else
-			wave_ticks_passed -= 20 //Wait 20 ticks and try again
+			wave_ticks_passed -= 200 //Wait 20 ticks and try again
 			wave_times_delayed++
 
 	if(has_started_timer > 0) //Initial countdown, just to be safe, so that everyone has a chance to spawn before we check anything.
@@ -750,7 +774,7 @@
 		if(1)//Mostly weak runners
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Runner)
 			spawn_xeno_num = (humans_alive * 0.5) //Reset
-			spawn_next_wave = 90
+			spawn_next_wave = 600
 			world << sound('sound/effects/siren.ogg') //Mark the first wave
 
 
@@ -790,7 +814,7 @@
 			spawn_xeno_num = 0
 
 		if(8)
-			spawn_next_wave += 220 //Slow down now, strong castes introduced next wave
+			spawn_next_wave += 1000 //Slow down now, strong castes introduced next wave
 			spawn_xeno_num = count_humans()
 
 			spawnxeno -= list(/mob/living/carbon/Xenomorph/Runner,
@@ -798,7 +822,7 @@
 						/mob/living/carbon/Xenomorph/Sentinel)
 
 		if(9)//Ravager and Praetorian Added, Tier II more common, Tier I less common
-			spawn_next_wave -= 220 //Speed it up again. After the period of grace.
+			spawn_next_wave -= 1000 //Speed it up again. After the period of grace.
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Lurker/mature,
 						/mob/living/carbon/Xenomorph/Lurker/mature,
 						/mob/living/carbon/Xenomorph/Spitter/mature,
@@ -809,7 +833,7 @@
 			spawnxeno -= list(/mob/living/carbon/Xenomorph/Sentinel)
 
 		if(10)
-			spawn_next_wave += 110
+			spawn_next_wave += 7000
 			spawn_xeno_num = count_humans()
 
 		if(11)
@@ -885,7 +909,7 @@
 										/mob/living/carbon/Xenomorph/Spitter/ancient)
 
 				if(6)//Runner madness
-					spawn_next_wave += 50//Slow down the next wave
+					spawn_next_wave += 500//Slow down the next wave
 					spawn_this_many = 50//A lot of them
 					tempspawnxeno = list(/mob/living/carbon/Xenomorph/Runner,
 									/mob/living/carbon/Xenomorph/Runner/ancient,
@@ -903,7 +927,7 @@
 									/mob/living/carbon/Xenomorph/Ravager/ancient)
 
 				if(7)//Spitter madness
-					spawn_next_wave += 70//Slow down the next wave
+					spawn_next_wave += 700//Slow down the next wave
 					spawn_this_many =  45//A lot of them
 					tempspawnxeno = list(/mob/living/carbon/Xenomorph/Sentinel/ancient,
 										/mob/living/carbon/Xenomorph/Sentinel/ancient,
@@ -919,7 +943,7 @@
 
 				if(8)//Siege madness
 					spawn_this_many = 10//A lot of them
-					spawn_next_wave += 120//Slow down the next wave
+					spawn_next_wave += 1200//Slow down the next wave
 					tempspawnxeno = list(/mob/living/carbon/Xenomorph/Boiler/ancient,
 									/mob/living/carbon/Xenomorph/Boiler/ancient,
 									/mob/living/carbon/Xenomorph/Crusher/ancient)
@@ -1660,3 +1684,75 @@
 	crate.storage_capacity = 60
 	for(var/path in spawnitems)
 		new path(crate)
+
+/*LANDMARK SPAWNS*/
+
+//Yes, I know that for landmarks you only need the name for it to work. This is for ease of access when spawning in the landmarks for events.
+/obj/effect/landmark/whiskey_outpost
+	icon_state = "x3"
+	invisibility = 0
+
+/obj/effect/landmark/whiskey_outpost/marine_spawn
+	name = "whiskey_outpost_marine"
+
+/obj/effect/landmark/whiskey_outpost/supplydrops
+	name = "whiskey_outpost_supply"
+	icon_state = "x2"
+
+/obj/effect/landmark/whiskey_outpost/xenospawn
+	name = "whiskey_outpost_xeno_1"
+	icon_state = "x"
+
+/obj/effect/landmark/whiskey_outpost/xenospawn/two
+	name = "whiskey_outpost_xeno_2"
+
+/obj/effect/landmark/whiskey_outpost/xenospawn/three
+	name = "whiskey_outpost_xeno_3"
+
+/obj/effect/landmark/whiskey_outpost/xenospawn/four
+	name = "whiskey_outpost_xeno_4"
+
+
+//Landmarks to spawn in more landmarks. Would you like redundancy on your redundancy?
+//But in seriousness, this is for admins to spawn in, so they only need to spawn in 4-8 things, instead of 200+, making the delay for round start much shorter for players.
+/obj/effect/landmark/wo_spawners
+	name = "landmark spawner"
+	var/obj/effect/landmark/Landmark = null //The landmarks we'll spawn in
+	var/range = 3 //The range we'll spawn these in at.
+	invisibility = 0
+
+/obj/effect/landmark/wo_spawners/New()
+	..()
+	var/num
+	for(var/turf/open/O in range(range))
+		new Landmark(O)
+		num ++
+	sleep(5)
+	message_admins("[num] [src]\s were spawned in at [loc.loc.name] ([loc.x],[loc.y],[loc.z]). (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>)")
+	cdel()
+
+/obj/effect/landmark/wo_spawners/marines
+	name = "marine spawner"
+	Landmark = /obj/effect/landmark/whiskey_outpost/marine_spawn
+//Keep in mind that this is for ALL marines; spawn in a few of these around.
+
+/obj/effect/landmark/wo_spawners/supplydrops
+	name = "supply drop location"
+	Landmark = /obj/effect/landmark/whiskey_outpost/supplydrops
+	range = 2
+
+/obj/effect/landmark/wo_spawners/xenospawn
+	name = "xeno location 1 spawn point"
+	Landmark = /obj/effect/landmark/whiskey_outpost/xenospawn
+
+/obj/effect/landmark/wo_spawners/xenospawn2
+	name = "xeno location 2 spawn point"
+	Landmark = /obj/effect/landmark/whiskey_outpost/xenospawn/two
+
+/obj/effect/landmark/wo_spawners/xenospawn3
+	name = "xeno location 3 spawn point"
+	Landmark = /obj/effect/landmark/whiskey_outpost/xenospawn/three
+
+/obj/effect/landmark/wo_spawners/xenospawn4
+	name = "xeno location 4 spawn point"
+	Landmark = /obj/effect/landmark/whiskey_outpost/xenospawn/four
