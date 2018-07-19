@@ -81,8 +81,8 @@
 
 //TODO: GET MAP FOR DESERT DAM
 /obj/item/map/desert_dam
-	name = "\improper Chigusa Dam map"
-	desc = "An orbital scan performed upon the Chigusa Dam colony."
+	name = "\improper Trijent Dam map"
+	desc = "An orbital scan performed upon the Trijent Dam colony."
 	html_link = "images/4/4c/Map_Prison.png"
 	color = "#e88a10"
 
