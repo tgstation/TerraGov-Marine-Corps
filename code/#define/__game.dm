@@ -18,6 +18,7 @@
 #define MAP_BIG_RED "Solaris Ridge"
 #define MAP_PRISON_STATION "Prison Station"
 #define MAP_WHISKEY_OUTPOST "Whiskey Outpost"
+#define MAP_DESERT_DAM "Chigusa Dam"
 
 /*
 Trash Authority Directives

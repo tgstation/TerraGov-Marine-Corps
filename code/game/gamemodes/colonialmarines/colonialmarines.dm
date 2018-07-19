@@ -80,6 +80,7 @@
 			if(MAP_ICE_COLONY) new /obj/item/map/ice_colony_map(T)
 			if(MAP_BIG_RED) new /obj/item/map/big_red_map(T)
 			if(MAP_PRISON_STATION) new /obj/item/map/FOP_map(T)
+			if(MAP_DESERT_DAM) new /obj/item/map/desert_dam(T)
 
 	if(monkey_amount)
 		//var/debug_tally = 0
@@ -136,9 +137,11 @@
 			if(MAP_ICE_COLONY)
 				command_announcement.Announce("An automated distress signal has been received from archaeology site \"Shiva's Snowball\", on border ice world \"Ifrit\". A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
 			if(MAP_BIG_RED)
-				command_announcement.Announce("We've lost contact with the Weyland-Yutani's research facility, [map_tag]. The [MAIN_SHIP_NAME] has been dispatched to assist.", "[MAIN_SHIP_NAME]")
+				command_announcement.Announce("We've lost contact with Weyland-Yutani's research facility, [map_tag]. The [MAIN_SHIP_NAME] has been dispatched to assist.", "[MAIN_SHIP_NAME]")
 			if(MAP_PRISON_STATION)
 				command_announcement.Announce("An automated distress signal has been received from maximum-security prison \"Fiorina Orbital Penitentiary\". A response team from the [MAIN_SHIP_NAME] will be dispatched shortly to investigate.", "[MAIN_SHIP_NAME]")
+			if(MAP_DESERT_DAM)
+				command_announcement.Announce("We've lost contact with Chigusa's extra-solar colony, [map_tag]. The [MAIN_SHIP_NAME] has been dispatched to assist.", "[MAIN_SHIP_NAME]")
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////

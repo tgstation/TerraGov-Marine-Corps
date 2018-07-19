@@ -1707,7 +1707,7 @@
 "GQ" = (/turf/open/floor{dir = 10; icon_state = "warning"},/area/shuttle/drop1/lz1)
 "GR" = (/turf/open/floor{icon_state = "warningcorner"; dir = 1},/area/shuttle/drop1/lz1)
 "GS" = (/obj/machinery/colony_floodlight,/turf/open/gm/grass,/area/shuttle/drop1/lz1)
-"GT" = (/obj/structure/lazarus_sign,/turf/open/gm/grass,/area/shuttle/drop1/lz1)
+"GT" = (/obj/structure/landing_sign/lazarus_sign,/turf/open/gm/grass,/area/shuttle/drop1/lz1)
 "GU" = (/obj/effect/landmark{name = "crap_item"},/turf/open/floor/plating,/area/shuttle/drop1/LV624{name = "\improper Almayer Dropship 1"})
 "GV" = (/obj/structure/flora/ausbushes/sunnybush,/turf/open/gm/river,/area/lv624/ground/jungle4)
 "GW" = (/turf/closed/wall,/area/lv624/lazarus/main_hall)

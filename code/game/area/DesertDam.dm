@@ -655,9 +655,9 @@
 		for(R in src)
 			R.toxic = 1
 	R.update_icon()
-	if(Next_areas)
-		if(Floodgate && Floodgate.status)
-			Next.check_filtered()
+	if(Next_areas && !(src in Next_areas)) //Shouldn't ever happen but just to be safe
+		for(var/area/desert_dam/exterior/river/A in Next_areas)
+			A.check_filtered()
 
 
 
