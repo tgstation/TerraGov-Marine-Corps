@@ -186,12 +186,13 @@ var/savefile/Banlist
 		else				expiry = "Permaban"
 		var/unban_link = "<A href='?src=[ref];unbanf=[key][id]'>(U)</A><A href='?src=[ref];unbane=[key][id]'>(E)</A>"
 		var/perma_links = ""
-		if(ishost(usr))
-			if((Banlist["minutes"] - CMinutes) > 10080)
-				unban_link = ""
-				perma_links = "<A href='?src=[ref];unbanf=[key][id]'>(L)</A>"
-			else
-				perma_links = "<A href='?src=[ref];unbanupgradeperma=[key][id]'>(P)</A>"
+		if(!Banlist["temp"])
+			unban_link = ""
+			perma_links = "<A href='?src=[ref];unbanf=[key][id]'>(L)</A>"
+		else
+			perma_links = "<A href='?src=[ref];unbanupgradeperma=[key][id]'>(P)</A>"
+		if(!ishost(usr))
+			perma_links = ""
 
 		dat += "<tr><td>[unban_link][perma_links] Key: <B>[key]</B></td><td>ComputerID: <B>[id]</B></td><td>IP: <B>[ip]</B></td><td> [expiry]</td><td>(By: [by])</td><td>(Reason: [reason])</td></tr>"
 

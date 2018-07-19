@@ -409,3 +409,49 @@
 			new /obj/item/clothing/gloves/marine/specialist(src)
 			new /obj/item/clothing/suit/storage/marine/specialist(src)
 			new /obj/item/clothing/head/helmet/marine/specialist(src)
+
+
+/obj/item/spec_kit //For events/WO, allowing the user to choose a specalist kit
+	name = "specialist kit"
+	desc = "A paper box. Open it and get a specialist kit."
+	icon = 'icons/obj/items/storage/storage.dmi'
+	icon_state = "deliverycrate"
+
+/obj/item/spec_kit/attack_self(mob/user as mob)
+	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED)
+		user << "<span class='notice'>This box is not for you, give it to a specialist!</span>"
+		return
+	var/choice = input(user, "Please pick a specalist kit!","Selection") in list("Pyro","Grenadier","Sniper","Scout","Demo")
+	var/obj/item/storage/box/spec/S = null
+	switch(choice)
+		if("Pyro")
+			S = /obj/item/storage/box/spec/pyro
+		if("Grenadier")
+			S = /obj/item/storage/box/spec/heavy_grenadier
+		if("Sniper")
+			S = /obj/item/storage/box/spec/sniper
+		if("Scout")
+			S = /obj/item/storage/box/spec/scout
+		if("Demo")
+			S = /obj/item/storage/box/spec/demolitionist
+	new S(loc)
+	user.put_in_hands(S)
+	cdel()
+
+/obj/item/spec_kit/attack_self(mob/user)
+	var/selection = input(user, "Pick your equipment", "Specialist Kit Selection") as null|anything in list("Pyro","Grenadier","Sniper","Scout","Demo")
+	if(!selection)
+		return
+	var/turf/T = get_turf(loc)
+	switch(selection)
+		if("Pyro")
+			new /obj/item/storage/box/spec/pyro (T)
+		if("Grenadier")
+			new /obj/item/storage/box/spec/heavy_grenadier (T)
+		if("Sniper")
+			new /obj/item/storage/box/spec/sniper (T)
+		if("Scout")
+			new /obj/item/storage/box/spec/scout (T)
+		if("Demo")
+			new /obj/item/storage/box/spec/demolitionist (T)
+	cdel(src)

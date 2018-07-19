@@ -262,7 +262,7 @@ While you are an officer, your authority is limited to your own vehicle, where y
 				)
 
 	generate_entry_message(mob/living/carbon/human/H)
-		. = {"You are held by a higher standard and are required to obey not only the server rules but the <a href='http://www.colonial-marines.com/wiki/Marine_Law'>Marine Law</a>.
+		. = {"You are held by a higher standard and are required to obey not only the server rules but the <a href='http://cm-ss13.com/wiki/Marine_Law'>Marine Law</a>.
 Failure to do so may result in a job ban or server ban.
 Your primary job is to maintain peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
 In addition, you are tasked with the security of high-ranking personnel, including the command staff. Keep them safe!"}
@@ -294,7 +294,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 				)
 
 	generate_entry_message(mob/living/carbon/human/H)
-		. = {"You are held by a higher standard and are required to obey not only the server rules but the <a href='http://www.colonial-marines.com/wiki/Marine_Law'>Marine Law</a>.
+		. = {"You are held by a higher standard and are required to obey not only the server rules but the <a href='http://cm-ss13.com/wiki/Marine_Law'>Marine Law</a>.
 Failure to do so may result in a job ban or server ban.
 You lead the Military Police, ensure your officers maintain peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
 In addition, you are tasked with the security of high-ranking personnel, including the command staff. Keep them safe!"}
