@@ -74,9 +74,6 @@
 		return 1
 	return 0
 
-/obj/item/device/binoculars/tactical/attack_self(mob/user as mob)
-	toggle_mode(user)
-
 /obj/item/device/binoculars/tactical/verb/toggle_mode()
 	set category = "Object"
 	set name = "Toggle Laser Mode"
