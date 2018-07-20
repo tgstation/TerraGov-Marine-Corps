@@ -379,22 +379,22 @@
 	desc = "A donut pastry, which is a common snack on Earth. Goes great with coffee."
 	icon_state = "donut1"
 	filling_color = "#D9C386"
-	var/overlay_state = "box-donut1"
+	var/overlay_state = "donut"
 
 /obj/item/reagent_container/food/snacks/donut/normal
 	name = "donut"
-	desc = "A chocolate donut. Rare on the frontier, so take care of it."
+	desc = "A donut. Rare on the frontier, so take care of it."
 	icon_state = "donut1"
 	New()
 		..()
 		reagents.add_reagent("nutriment", 3)
-		reagents.add_reagent("coco", 1)
 		src.bitesize = 3
-		if(prob(30))
-			src.icon_state = "donut2"
-			src.overlay_state = "box-donut2"
-			src.name = "chocolate donut"
-			reagents.add_reagent("coco", 2)
+		if(prob(40))
+			icon_state = "donut2"
+			overlay_state = "fdonut"
+			name = "frosted donut"
+			desc = "A pink frosted donut. Even more rare on the frontier."
+			reagents.add_reagent("sprinkles", 2)
 
 /obj/item/reagent_container/food/snacks/donut/chaos
 	name = "Chaos Donut"
@@ -757,7 +757,7 @@
 /obj/item/reagent_container/food/snacks/human/burger
 	name = "-burger"
 	desc = "A bloody burger."
-	icon_state = "hburger"
+	icon_state = "hamburger"
 	New()
 		..()
 		reagents.add_reagent("nutriment", 6)
@@ -766,10 +766,11 @@
 /obj/item/reagent_container/food/snacks/cheeseburger
 	name = "cheeseburger"
 	desc = "The cheese adds a good flavor."
-	icon_state = "cheeseburger"
+	icon_state = "hamburger"
 	New()
 		..()
-		reagents.add_reagent("nutriment", 2)
+		reagents.add_reagent("nutriment", 6)
+		bitesize = 2
 
 /obj/item/reagent_container/food/snacks/monkeyburger
 	name = "burger"
@@ -3012,7 +3013,59 @@
 		..()
 		reagents.add_reagent("nutriment", 3)
 
+//Wrapped candy bars
 
+/obj/item/reagent_container/food/snacks/wrapped
+	package = 1
+	bitesize = 3
+	var/obj/item/trash/wrapper = null //Why this and not trash? Because it pulls the wrapper off when you unwrap it as a trash item.
+
+/obj/item/reagent_container/food/snacks/wrapped/attack_self(mob/user as mob)
+	if (package)
+		user << "<span class='notice'>You pull open the package of [src]!</span>"
+		playsound(loc,'sound/effects/pageturn2.ogg', 15, 1)
+
+		new wrapper (user.loc)
+		icon_state = "[initial(icon_state)]-o"
+		package = 0
+
+
+/obj/item/reagent_container/food/snacks/wrapped/booniebars
+	name = "Boonie Bars"
+	desc = "Two delicious bars of minty chocolate. <i>\"Sometimes things are just... out of reach.\"</i>"
+	icon_state = "boonie"
+	bitesize = 1 //Two bars
+	wrapper = /obj/item/trash/boonie
+
+	New()
+		..()
+		reagents.add_reagent("nutriment", 4)
+		reagents.add_reagent("coco", 4)
+
+/obj/item/reagent_container/food/snacks/wrapped/chunk
+	name = "CHUNK box"
+	desc = "A bar of \"The <b>CHUNK</b>\" brand chocolate. <i>\"The densest chocolate permitted to exist according to federal law. We are legally required to ask you not to use this blunt object for anything other than nutrition.\"</i>"
+	icon_state = "chunk"
+	force = 10 //LEGAL LIMIT OF CHOCOLATE
+	bitesize = 2
+	wrapper = /obj/item/trash/chunk
+
+	New()
+		..()
+		reagents.add_reagent("nutriment", 5)
+		reagents.add_reagent("coco", 10)
+
+/obj/item/reagent_container/food/snacks/wrapped/barcardine
+	name = "Barcardine Bars"
+	desc = "A bar of chocolate, it smells like the medical bay. <i>\"Chocolate always helps the pain go away.\"</i>"
+	icon_state = "barcardine"
+	wrapper = /obj/item/trash/barcardine
+
+	New()
+		..()
+		reagents.add_reagent("nutriment", 3)
+		reagents.add_reagent("coco", 1)
+		reagents.add_reagent("tramadol", 1) //May be powergamed but it's a single unit.
 //MREs
 
 /obj/item/reagent_container/food/snacks/packaged_meal
@@ -3042,19 +3095,19 @@
 	flavor = newflavor
 
 	switch(newflavor)
-		if("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti chunks")
+		if("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti chunks", "chicken tender")
 			icon_state = "entree"
 			reagents.add_reagent("nutriment", 5)
 			reagents.add_reagent("sodiumchloride", 1)
-		if("cracker", "cheese spread", "rice onigiri", "mashed potatoes")
+		if("cracker", "cheese spread", "rice onigiri", "mashed potatoes", "risotto")
 			icon_state = "side"
 			reagents.add_reagent("nutriment", 3)
 			reagents.add_reagent("sodiumchloride", 1)
-		if("biscuit", "meatballs", "pretzels", "peanuts")
+		if("biscuit", "meatballs", "pretzels", "peanuts", "sushi")
 			icon_state = "snack"
 			reagents.add_reagent("nutriment", 2)
 			reagents.add_reagent("sodiumchloride", 1)
-		if("spiced apples", "chocolate brownie", "sugar cookie", "coco bar")
+		if("spiced apples", "chocolate brownie", "sugar cookie", "coco bar", "flan", "honey flan")
 			icon_state = "dessert"
 			reagents.add_reagent("nutriment", 1)
 			reagents.add_reagent("sugar", 1)

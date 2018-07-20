@@ -81,11 +81,14 @@
 	product_slogans = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!;Eat a Weyland-Yutani brand packaged hamburger.;Eat a Weyland-Yutani brand packaged hot dog.;Eat a Weyland-Yutani brand packaged burrito.;"
 	product_ads = "Kepler Crisps! Try a snack that's out of this world!;Eat an EAT!"
 	icon_state = "snack"
-	products = list(/obj/item/reagent_container/food/snacks/kepler_crisps = 12,
-					/obj/item/reagent_container/food/snacks/eat_bar = 12,
+	products = list(/obj/item/reagent_container/food/snacks/packaged_burger = 12,
+					/obj/item/reagent_container/food/snacks/packaged_burrito = 12,
 					/obj/item/reagent_container/food/snacks/packaged_hdogs =12,
-					/obj/item/reagent_container/food/snacks/packaged_burger = 12,
-					/obj/item/reagent_container/food/snacks/packaged_burrito = 12)
+					/obj/item/reagent_container/food/snacks/kepler_crisps = 12,
+					/obj/item/reagent_container/food/snacks/eat_bar = 12,
+					/obj/item/reagent_container/food/snacks/wrapped/booniebars = 6,
+					/obj/item/reagent_container/food/snacks/wrapped/chunk = 6,
+					/obj/item/reagent_container/food/snacks/wrapped/barcardine = 6)
 
 	prices = list()
 

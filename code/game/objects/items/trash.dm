@@ -125,6 +125,20 @@
 	desc = "Finished with its tour of duty"
 	icon_state = "MREtray"
 
+/obj/item/trash/boonie
+	name = "boonie bar wrapper"
+	desc = "A minty green wrapper. Reminds you of another terrible decision involving minty green, but you can't remember what..."
+	icon_state = "boonie_trash"
+
+/obj/item/trash/chunk
+	name = "chunk bar box"
+	desc = "An empty box from a chunk bar. Significantly less heavy."
+	icon_state = "chunk_trash"
+
+/obj/item/trash/barcardine
+	name = "barcardine bar wrapper"
+	desc = "An empty wrapper from a barcardine bar. You notice the inside has several medical labels. You're not sure if you care or not about that."
+	icon_state = "barcardine_trash"
 
 /obj/item/trash/uscm_mre
 	name = "\improper crumbled USCM MRE"
