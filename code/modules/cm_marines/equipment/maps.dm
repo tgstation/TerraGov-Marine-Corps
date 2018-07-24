@@ -79,12 +79,6 @@
 	html_link = "images/4/4c/Map_Prison.png"
 	color = "#e88a10"
 
-//TODO: GET MAP FOR DESERT DAM
-/obj/item/map/desert_dam
-	name = "\improper Trijent Dam map"
-	desc = "An orbital scan performed upon the Trijent Dam colony."
-	html_link = "images/4/4c/Map_Prison.png"
-	color = "#e88a10"
 
 
 //used by marine equipment machines to spawn the correct map.
@@ -116,8 +110,6 @@
 			desc = "A labelled interior scan of Fiorina Orbital Penitentiary"
 			html_link = "images/4/4c/Map_Prison.png"
 			color = "#e88a10"
-		if(MAP_DESERT_DAM)
-			//TODO: GET MAP MADE OF DD
 		else
 			cdel(src)
 

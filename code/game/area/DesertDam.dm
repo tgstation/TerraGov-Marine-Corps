@@ -187,43 +187,6 @@
 //areas not under rock
 // ceiling = CEILING_METAL
 
-//Substations
-/area/desert_dam/building/substation
-	name = "Substation"
-	icon = 'icons/turf/dam_areas.dmi'
-
-/area/desert_dam/building/substation/central
-	name = "\improper Central Substation"
-	icon_state = "central_ss"
-
-/area/desert_dam/building/substation/west
-	name = "\improper Western Substation"
-	icon_state = "western_ss"
-
-/area/desert_dam/building/substation/northeast
-	name = "\improper North-Eastern Substation"
-	icon_state = "northeastern_ss"
-
-/area/desert_dam/building/substation/southeast
-	name = "\improper South-Eastern Substation"
-	icon_state = "southeastern_ss"
-
-//Sub-Substations
-/area/desert_dam/building/substation/west/telecoms
-	name = "\improper Telecommunications Substation"
-	icon_state = "telecoms_ss"
-
-/area/desert_dam/building/substation/west/filtration
-	name = "\improper Western Filtration Substation"
-	icon_state = "filtrationa_ss"
-
-/area/desert_dam/building/substation/northeast/labs
-	name = "\improper North-Eastern Labratory Complex Substation"
-	icon_state = "northlabs_ss"
-
-/area/desert_dam/building/substation/southeast/filtration
-	name = "\improper Eastern Filtration Substation"
-	icon_state = "filtrationb_ss"
 
 //Administration
 /area/desert_dam/building/administration/control_room
@@ -408,35 +371,6 @@
 /area/desert_dam/building/water_treatment_one
 	name = "\improper"
 	icon_state = "yellow"
-//Water Treatment Plant 1
-/area/desert_dam/building/water_treatment_one/lobby
-	name = "\improper"
-	icon_state = "red"
-/area/desert_dam/building/water_treatment_one/breakroom
-	name = "\improper"
-	icon_state = "green"
-/area/desert_dam/building/water_treatment_one/garage
-	name = "\improper"
-	icon_state = "garage"
-/area/desert_dam/building/water_treatment_one/sedimentation
-	name = "\improper"
-	icon_state = "blue"
-/area/desert_dam/building/water_treatment_one/equipment
-	name = "\improper"
-	icon_state = "red"
-/area/desert_dam/building/water_treatment_one/hallway
-	name = "\improper"
-	icon_state = "purple"
-/area/desert_dam/building/water_treatment_one/control_room
-	name = "\improper"
-	icon_state = "yellow"
-/area/desert_dam/building/water_treatment_one/purification
-	name = "\improper"
-	icon_state = "green"
-/area/desert_dam/building/water_treatment_one/floodgate_control
-	name = "\improper"
-	icon_state = "green"
-
 //Water Treatment Plant 2
 /area/desert_dam/building/water_treatment_two
 	name = "\improper"
@@ -639,62 +573,23 @@
 	name = "\improper"
 	icon_state = "yellow"
 //Rivers
-/area/desert_dam/exterior/river
-	name = "river"
-	icon_state = "bluenew"
-	var/filtered = 0
-	var/list/Next_areas = list()//The next river to update - that is, unless...
-	var/obj/machinery/console/toggle/Floodgate = null //If there's a floodgate at the end of us, this is it's ID
-
-/area/desert_dam/exterior/river/proc/check_filtered()
-	var/turf/open/desert/river/R
-	if(filtered)
-		for(R in src)
-			R.toxic = 0
-	else
-		for(R in src)
-			R.toxic = 1
-	R.update_icon()
-	if(Next_areas && !(src in Next_areas)) //Shouldn't ever happen but just to be safe
-		for(var/area/desert_dam/exterior/river/A in Next_areas)
-			A.check_filtered()
-
-
-
-//End of the river areas, no Next
+//
 /area/desert_dam/exterior/river/riverside_northwest
-	name = "\improper Northwest riverbed"
+	name = "\improper"
 	icon_state = "bluenew"
-
 /area/desert_dam/exterior/river/riverside_central_north
-	name = "\improper Northern central riverbed"
+	name = "\improper"
 	icon_state = "purple"
 /area/desert_dam/exterior/river/riverside_central_south
-	name = "\improper Southern central riverbed"
+	name = "\improper"
 	icon_state = "purple"
-
 /area/desert_dam/exterior/river/riverside_south
-	name = "\improper Southern riverbed"
+	name = "\improper"
 	icon_state = "bluenew"
 /area/desert_dam/exterior/river/riverside_east
-	name = "\improper Eastern riverbed"
+	name = "\improper"
 	icon_state = "bluenew"
 /area/desert_dam/exterior/river/riverside_northeast
-	name = "\improper Northeastern riverbed"
+	name = "\improper"
 	icon_state = "bluenew"
-//The filtration plants - This area isn't for the WHOLE plant, but the areas that have water in them, so the water changes color as well.
 
-/area/desert_dam/exterior/river/filtration_a
-	name = "\improper Filtration Plant A"
-
-/area/desert_dam/exterior/river/filtration_b
-	name = "\improper Filtration Plant B"
-
-//Areas that are rivers, but will not change because they're before the floodgates
-/area/desert_dam/exterior/river_mouth/southern
-	name = "\improper southern river mouth"
-	icon_state = "purple"
-
-/area/desert_dam/exterior/river_mouth/eastern
-	name = "\improper eastern river mouth"
-	icon_state = "purple"

@@ -1,6 +1,0 @@
-
-its the chigusa reactor for the main ship, its been rigged to provide power to the shipyard [am spriting the 'rigged' bits now]
-
-It works by taking tankers of compressed protobacteria, which are connected to retractor vents, and bringing them to filtration gas chambers, which are telescoped from the floor and turned on to pump [animated] the filtered protobacteria into an advanced connectorvent [which compresses and distributes it to biomerge chamber.  Inside the chamber, the computer may pump the gas, and begin bioluminesant charges to create small warp generations, which generate massive power, and in theory, could propel ships faster than known USCM and Company standards.
-
-however, beware, if the equipment isnt maintained, damaged, or installed incorrectly, i will release the fumes from the biomerge chamber and filtration gas chambers, which, when ingested, is toxic, or could lead to illness

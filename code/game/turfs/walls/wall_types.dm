@@ -209,9 +209,7 @@
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
 
-/turf/closed/wall/indestructible/invisible
-	icon_state = "invisible"
-	mouse_opacity = 0
+
 
 
 
@@ -323,12 +321,7 @@
 	icon_state = "[type]vault"
 
 
-//Hangar walls
-/turf/closed/wall/hangar
-	name = "hangar wall"
-	icon = 'icons/turf/walls/hangar.dmi'
-	icon_state = "hangar0"
-	walltype = "hangar"
+
 
 //Prison wall
 

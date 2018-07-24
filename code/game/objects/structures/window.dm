@@ -547,42 +547,6 @@
 	window_frame = /obj/structure/window_frame/chigusa
 
 
-//Desert Dam Windows
-
-/obj/structure/window/framed/hangar
-	name = "window"
-	icon_state = "hngr_window0"
-	basestate = "hngr_window"
-	desc = "A glass window inside a wall frame."
-	health = 40
-	window_frame = /obj/structure/window_frame/hangar
-
-/obj/structure/window/framed/hangar/reinforced
-	name = "reinforced window"
-	icon_state = "hngr_rwindow0"
-	basestate = "hngr_rwindow"
-	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
-	health = 100
-	reinf = 1
-	window_frame = /obj/structure/window_frame/hangar/reinforced
-
-/obj/structure/window/framed/bunker
-	name = "window"
-	icon_state = "hngr_window0"
-	basestate = "hngr_window"
-	desc = "A glass window inside a wall frame."
-	health = 40
-	window_frame = /obj/structure/window_frame/bunker
-
-/obj/structure/window/framed/bunker/reinforced
-	name = "reinforced window"
-	icon_state = "bnkr_rwindow0"
-	basestate = "bnkr_rwindow"
-	desc = "A glass window with a special rod matrice inside a wall frame. It looks rather strong. Might take a few good hits to shatter it."
-	health = 100
-	reinf = 1
-	window_frame = /obj/structure/window_frame/bunker/reinforced
-
 
 /obj/structure/window/framed/wood
 	name = "window"
