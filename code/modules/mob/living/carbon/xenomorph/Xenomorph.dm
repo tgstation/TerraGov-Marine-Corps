@@ -115,6 +115,7 @@ var/global/list/hive_datum = list(new /datum/hive_status(), new /datum/hive_stat
 	R.my_atom = src
 	gender = NEUTER
 
+	living_xeno_list += src
 	round_statistics.total_xenos_created++
 
 	if(adjust_size_x != 1)
@@ -213,6 +214,8 @@ var/global/list/hive_datum = list(new /datum/hive_status(), new /datum/hive_stat
 /mob/living/carbon/Xenomorph/Dispose()
 	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
 	if(is_zoomed) zoom_out()
+
+	living_xeno_list -= src
 
 	if(hivenumber && hivenumber <= hive_datum.len)
 		var/datum/hive_status/hive = hive_datum[hivenumber]

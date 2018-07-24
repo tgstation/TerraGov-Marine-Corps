@@ -4,6 +4,8 @@
 	. = ..(gibbed,msg)
 	if(!.) return //If they're already dead, it will return.
 
+	living_xeno_list -= src
+
 	if(is_zoomed)
 		zoom_out()
 
@@ -30,6 +32,15 @@
 					XQ.set_queen_overwatch(XQ.observed_xeno, TRUE)
 				if(XQ.ovipositor)
 					XQ.dismount_ovipositor(TRUE)
+
+				if(hivenumber == XENO_HIVE_NORMAL)
+					if(ticker.mode.stored_larva)
+						ticker.mode.stored_larva = round(ticker.mode.stored_larva * ((upgrade+1)/6.0)) // 83/66/50/33 for ancient/elite emp/elite queen/queen
+						var/turf/larva_spawn
+						while(ticker.mode.stored_larva > 0) // stil some left
+							larva_spawn = pick(xeno_spawn)
+							new /mob/living/carbon/Xenomorph/Larva(larva_spawn)
+							ticker.mode.stored_larva--
 
 				if(hive.living_xeno_queen == src)
 					xeno_message("<span class='xenoannounce'>A sudden tremor ripples through the hive... the Queen has been slain! Vengeance!</span>",3, hivenumber)
