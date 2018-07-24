@@ -4,7 +4,7 @@
 //Machines
 //The one that works safely.
 /obj/machinery/power/smes/batteryrack
-	name = "Substation PSU"//"power cell rack PSU"
+	name = "power cell rack PSU"
 	desc = "A rack of power cells working as a PSU."
 	charge = 0 //you dont really want to make a potato PSU which already is overloaded
 	online = 0
