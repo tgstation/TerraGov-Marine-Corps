@@ -14,9 +14,9 @@
 #define PROCESS_DEFAULT_TICK_ALLOWANCE		25	// 25% of one tick
 
 
-//#define UPDATE_QUEUE_DEBUG
+#define UPDATE_QUEUE_DEBUG
 // If btime.dll is available, do this shit
-#define PRECISE_TIMER_AVAILABLE
+//#define PRECISE_TIMER_AVAILABLE
 
 #ifdef PRECISE_TIMER_AVAILABLE
 var/global/__btime__lastTimeOfHour = 0

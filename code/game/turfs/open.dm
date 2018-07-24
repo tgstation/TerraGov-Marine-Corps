@@ -313,136 +313,6 @@
 	icon_state = "seadeep"
 	can_bloody = FALSE
 
-
-
-
-//Desert Map
-
-/turf/open/desertdam //Basic groundmap turf parent
-	name = "desert dirt"
-	icon = 'icons/turf/desertdam_map.dmi'
-	icon_state = "desert1"
-	is_groundmap_turf = TRUE
-
-/turf/open/desert/dam/ex_act(severity) //Should make it indestructable
-	return
-
-/turf/open/desertdam/fire_act(exposed_temperature, exposed_volume)
-	return
-
-/turf/open/desertdam/attackby() //This should fix everything else. No cables, etc
-	return
-
-//desert floor
-/turf/open/desertdam/desert
-	name = "desert"
-	icon_state = "desert1"
-
-
-//asphalt road
-/turf/open/desertdam/asphault
-	name = "asphault"
-	icon_state = "sunbleached_asphalt1"
-
-
-
-//CAVE
-/turf/open/desertdam/cave
-	icon_state = "outer_cave_floor1"
-
-//desert floor to outer cave floor transition
-/turf/open/desertdam/cave/desert_into_outer_cave_floor
-	name = "cave"
-	icon_state = "outer_cave_transition1"
-
-//outer cave floor
-/turf/open/desertdam/cave/outer_cave_floor
-	name = "cave"
-	icon_state = "outer_cave_floor1"
-
-//outer to inner cave floor transition
-/turf/open/desertdam/cave/outer_cave_to_inner_cave
-	name = "cave"
-	icon_state = "outer_cave_to_inner1"
-
-//inner cave floor
-/turf/open/desertdam/cave/inner_cave_floor
-	name = "cave"
-	icon_state = "inner_cave_1"
-
-//River
-/turf/open/desertdam/river
-	icon_state = "shallow_water_clean"
-
-
-//shallow water
-/turf/open/desertdam/river/clean/shallow
-	name = "river"
-	icon_state = "shallow_water_clean"
-//shallow water transition to deep
-/turf/open/desertdam/river/clean/shallow_edge
-	name = "river"
-	icon_state = "shallow_to_deep_clean_water1"
-//deep water
-/turf/open/desertdam/river/clean/deep_water_clean
-	name = "river"
-	icon_state = "deep_water_clean"
-//shallow water coast
-/turf/open/desertdam/river/clean/shallow_water_desert_coast
-	name = "river"
-	icon_state = "shallow_water_desert_coast1"
-//desert floor waterway
-/turf/open/desertdam/river/clean/shallow_water_desert_waterway
-	name = "river"
-	icon_state = "desert_waterway1"
-//shallow water cave coast
-/turf/open/desertdam/river/clean/shallow_water_cave_coast
-	name = "river"
-	icon_state = "shallow_water_cave_coast1"
-//cave floor waterway
-/turf/open/desertdam/river/clean/shallow_water_cave_waterway
-	name = "river"
-	icon_state = "shallow_water_cave_waterway1"
-
-//TOXIC
-/turf/open/desertdam/river/toxic
-	icon_state = "shallow_water_toxic"
-
-//shallow water
-/turf/open/desertdam/river/toxic/shallow_water_toxic
-	name = "river"
-	icon_state = "shallow_water_toxic"
-//shallow water transition to deep
-/turf/open/desertdam/river/toxic/shallow_edge_toxic
-	name = "river"
-	icon_state = "shallow_to_deep_toxic_water1"
-//deep water
-/turf/open/desertdam/river/toxic/deep_water_toxic
-	name = "river"
-	icon_state = "deep_water_toxic"
-//shallow water coast
-/turf/open/desertdam/river/toxic/shallow_water_desert_coast_toxic
-	name = "river"
-	icon_state = "shallow_water_desert_coast_toxic1"
-//desert floor waterway
-/turf/open/desertdam/river/toxic/shallow_water_desert_waterway_toxic
-	name = "river"
-	icon_state = "desert_waterway_toxic1"
-//shallow water cave coast
-/turf/open/desertdam/river/toxic/shallow_water_cave_coast_toxic
-	name = "river"
-	icon_state = "shallow_water_cave_coast_toxic1"
-//cave floor waterway
-/turf/open/desertdam/river/toxic/shallow_water_cave_waterway_toxic
-	name = "river"
-	icon_state = "shallow_water_cave_waterway_toxic1"
-
-
-
-
-
-
-
 //Ice Colony grounds
 
 //Ice Floor
@@ -465,9 +335,11 @@
 /turf/open/asphalt
 	name = "asphalt"
 	icon = 'icons/turf/asphalt.dmi'
-	icon_state = "asphalt"
+	icon_state = "sunbleached_asphalt"
 
-
+/turf/open/asphalt/cement
+	name = "concrete"
+	icon_state = "cement5"
 
 
 // Jungle turfs (Whiksey Outpost)
