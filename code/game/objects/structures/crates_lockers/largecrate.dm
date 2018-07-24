@@ -194,8 +194,7 @@
 					/obj/item/weapon/gun/rifle/m41a = /obj/item/ammo_magazine/rifle,
 					/obj/item/weapon/gun/shotgun/pump = /obj/item/ammo_magazine/shotgun,
 					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39,
-					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39,
-					/obj/item/weapon/gun/rifle/lmg = /obj/item/ammo_magazine/rifle/lmg
+					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39
 				)
 
 /obj/structure/largecrate/guns/New()

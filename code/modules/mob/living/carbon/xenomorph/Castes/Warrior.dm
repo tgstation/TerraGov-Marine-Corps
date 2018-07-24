@@ -70,20 +70,22 @@
 		return FALSE
 	var/mob/living/L = AM
 
-	if (used_lunge && !lunge)
-		src << "<span class='xenowarning'>You must gather your strength before neckgrabbing again.</span>"
-		return FALSE
+	if(!isXeno(AM))
+		if (used_lunge && !lunge)
+			src << "<span class='xenowarning'>You must gather your strength before neckgrabbing again.</span>"
+			return FALSE
 
-	if (!check_plasma(10))
-		return FALSE
+		if (!check_plasma(10))
+			return FALSE
 
-	if(!lunge)
-		used_lunge = 1
+		if(!lunge)
+			used_lunge = 1
 
 	. = ..(AM, lunge, TRUE) //no_msg = true because we don't want to show the defaul pull message
 
 	if(.) //successful pull
-		use_plasma(10)
+		if(!isXeno(AM))
+			use_plasma(10)
 
 		if(!isXeno(L) && !isYautja(L))
 			round_statistics.warrior_grabs++
@@ -93,13 +95,13 @@
 			visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
 			"<span class='xenowarning'>You grab [L] by the throat!</span>")
 
-		if(!lunge)
-			spawn(lunge_cooldown)
-				used_lunge = 0
-				src << "<span class='notice'>You get ready to lunge again.</span>"
-				for(var/X in actions)
-					var/datum/action/act = X
-					act.update_button_icon()
+	if(!lunge && !isXeno(AM))
+		spawn(lunge_cooldown)
+			used_lunge = 0
+			src << "<span class='notice'>You get ready to lunge again.</span>"
+			for(var/X in actions)
+				var/datum/action/act = X
+				act.update_button_icon()
 
 /mob/living/carbon/Xenomorph/Warrior/hitby(atom/movable/AM as mob|obj,var/speed = 5)
 	if(ishuman(AM))
