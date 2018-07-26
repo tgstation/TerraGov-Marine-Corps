@@ -121,12 +121,7 @@
 				usr << "<span class='warning'>Access denied.</span>"
 				return
 
-			var/idx=text2num(href_list["vend"])
-
-			var/list/L = listed_products[idx]
 			var/mob/living/carbon/human/H = usr
-			var/cost = L[2]
-
 			var/obj/item/card/id/I = H.wear_id
 			if(!istype(I)) //not wearing an ID
 				H << "<span class='warning'>Access denied. No ID card detected</span>"
@@ -139,6 +134,11 @@
 			if(req_role && I.rank != req_role)
 				H << "<span class='warning'>This device isn't for you.</span>"
 				return
+
+			var/idx=text2num(href_list["vend"])
+
+			var/list/L = listed_products[idx]
+			var/cost = L[2]
 
 			if(use_points && points < cost)
 				H << "<span class='warning'>Not enough points.</span>"
