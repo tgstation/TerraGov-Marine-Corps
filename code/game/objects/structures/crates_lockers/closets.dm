@@ -126,7 +126,7 @@
 		stored_units += mob_size
 	return stored_units
 
-/obj/structure/closet/proc/toggle(mob/user)
+/obj/structure/closet/proc/toggle(mob/living/user)
 	user.next_move = world.time + 5
 	if(!(src.opened ? src.close() : src.open()))
 		user << "<span class='notice'>It won't budge!</span>"
@@ -166,7 +166,7 @@
 
 	return 1
 
-/obj/structure/closet/attack_animal(mob/living/user as mob)
+/obj/structure/closet/attack_animal(mob/living/user)
 	if(user.wall_smash)
 		visible_message("\red [user] destroys the [src]. ")
 		for(var/atom/movable/A as mob|obj in src)
@@ -257,13 +257,13 @@
 
 
 /obj/structure/closet/attack_paw(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/structure/closet/attack_hand(mob/living/user)
 	if(opened && isXeno(user))
 		return // stop xeno closing things
-	src.add_fingerprint(user)
-	src.toggle(user)
+	add_fingerprint(user)
+	toggle(user)
 
 // tk grab then use on self
 /obj/structure/closet/attack_self_tk(mob/user as mob)
