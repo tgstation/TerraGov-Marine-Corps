@@ -23,11 +23,10 @@
 		viewers(user) << "<span class='danger'>[user] is putting the live paddles on \his chest! It looks like \he's trying to commit suicide.</span>"
 		return (FIRELOSS)
 
-/obj/item/device/defibrillator/proc/check_tod(mob/living/carbon/human/M as mob)
-	if(!M.undefibbable && world.time <= M.timeofdeath + M.revive_grace_period)
+/mob/living/carbon/human/proc/check_tod()
+	if(!undefibbable && world.time <= timeofdeath + revive_grace_period)
 		return 1
-	else
-		return 0
+	return 0
 
 /obj/item/device/defibrillator/New()
 	sparks.set_up(5, 0, src)
@@ -69,6 +68,22 @@
 	update_icon()
 	add_fingerprint(user)
 
+/mob/living/carbon/human/proc/get_ghost()
+	if(mind && !client) //Let's call up the correct ghost! Also, bodies with clients only, thank you.
+		for(var/mob/dead/observer/G in player_list)
+			if(G.mind == mind)
+				var/mob/dead/observer/ghost = G
+				if(ghost && ghost.client && ghost.can_reenter_corpse)
+					return ghost
+	return 0
+
+/mob/living/carbon/human/proc/is_revivable()
+	var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
+
+	if(!get_limb("head") || !heart || heart.is_broken() || !has_brain() || chestburst || (HUSK in mutations))
+		return 0
+	return 1
+
 /obj/item/device/defibrillator/attack(mob/living/carbon/human/H, mob/living/carbon/human/user)
 
 	if(defib_cooldown > world.time) //Both for pulling the paddles out (2 seconds) and shocking (1 second)
@@ -101,10 +116,7 @@
 		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Vital signs detected. Aborting.</span>")
 		return
 
-	var/datum/limb/head = H.get_limb("head")
-	var/datum/internal_organ/heart/heart = H.internal_organs_by_name["heart"]
-
-	if(!head || !heart || heart.is_broken() || !H.has_brain() || H.chestburst || (HUSK in H.mutations))
+	if(!H.is_revivable())
 		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Patient's general condition does not allow reviving.</span>")
 		return
 
@@ -112,22 +124,16 @@
 		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring.</span>")
 		return
 
-	if((!check_tod(H) && !(H.species.flags & IS_SYNTHETIC)) || H.suiciding) //synthetic species have no expiration date
+	if((!H.check_tod() && !isSynth(H)) || H.suiciding) //synthetic species have no expiration date
 		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Patient is braindead.</span>")
 		return
 
-	var/hasghost = 0
-	if(H.mind && !H.client) //Let's call up the correct ghost! Also, bodies with clients only, thank you.
-		for(var/mob/dead/observer/G in player_list)
-			if(G.mind == H.mind)
-				var/mob/dead/observer/ghost = G
-				if(ghost && ghost.client && ghost.can_reenter_corpse)
-					ghost << 'sound/effects/adminhelp_new.ogg'
-					ghost << "<span class='interface'><font size=3><span class='bold'>Someone is trying to revive your body. Return to it if you want to be resurrected!</span> \
-						(Verbs -> Ghost -> Re-enter corpse, or <a href='?src=\ref[ghost];reentercorpse=1'>click here!</a>)</font></span>"
-					hasghost = 1
-					break
-	if(!hasghost && !H.client)
+	var/mob/dead/observer/G = H.get_ghost()
+	if(istype(G))
+		G << 'sound/effects/adminhelp_new.ogg'
+		G << "<span class='interface'><font size=3><span class='bold'>Someone is trying to revive your body. Return to it if you want to be resurrected!</span> \
+		(Verbs -> Ghost -> Re-enter corpse, or <a href='?src=\ref[G];reentercorpse=1'>click here!</a>)</font></span>"
+	else if(!H.client)
 		//We couldn't find a suitable ghost, this means the person is not returning
 		user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Patient has a DNR.</span>")
 		return
@@ -152,14 +158,15 @@
 			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed: Paddles registering >100,000 ohms, Possible cause: Suit or Armor interferring.</span>")
 			return
 
+		var/datum/internal_organ/heart/heart = H.internal_organs_by_name["heart"]
 		if(heart && prob(25))
 			heart.damage += 5 //Allow the defibrilator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
-		if(!head || !heart || heart.is_broken() || !H.has_brain() || H.chestburst || (HUSK in H.mutations))
+		if(!H.is_revivable())
 			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Patient's general condition does not allow reviving.</span>")
 			return
 
-		if((!check_tod(H) && !(H.species.flags & IS_SYNTHETIC)) || H.suiciding) //synthetic species have no expiration date
+		if((!H.check_tod() && !isSynth(H)) || H.suiciding) //synthetic species have no expiration date
 			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Patient's brain has decayed too much.</span>")
 			return
 
@@ -167,15 +174,10 @@
 			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: No soul detected, Attempting to revive...</span>")
 
 		if(H.mind && !H.client) //Let's call up the correct ghost! Also, bodies with clients only, thank you.
-			for(var/mob/dead/observer/G in player_list)
-				if(G.mind == H.mind)
-					var/mob/dead/observer/ghost = G
-					if(ghost && ghost.client && ghost.can_reenter_corpse)
-						/*ghost << 'sound/effects/adminhelp_new.ogg'
-						ghost << "<span class='interface'><font size=3><span class='bold'>Someone is trying to revive your body. Return to it if you want to be resurrected!</span> \
-							(Verbs -> Ghost -> Re-enter corpse, or <a href='?src=\ref[ghost];reentercorpse=1'>click here!</a>)</font></span>"*/
-						user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Patient's soul has almost departed, please try again.</span>")
-						return
+			G = H.get_ghost()
+			if(istype(G))
+				user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Patient's soul has almost departed, please try again.</span>")
+				return
 			//We couldn't find a suitable ghost, this means the person is not returning
 			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Patient has a DNR.</span>")
 			return
