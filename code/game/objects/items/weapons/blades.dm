@@ -23,6 +23,14 @@
 	item_state = "machete"
 	force = 39
 
+
+/obj/item/weapon/claymore/mercsword/commander
+	name = "Ceremonial Sword"
+	desc = "A fancy ceremonial sword passed down from generation to generation. Despite this, it has been very well cared for, and is in top condition. Has the name 'Chang' printed along the blade."
+	icon_state = "mercsword"
+	item_state = "machete"
+	force = 65
+
 /obj/item/weapon/claymore/mercsword/machete
 	name = "\improper M2132 machete"
 	desc = "Latest issue of the USCM Machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."

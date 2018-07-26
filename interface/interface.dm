@@ -38,18 +38,20 @@
 /client/verb/donate()
 	set name = "Donate"
 	set desc = "Like our server? Buy us a beer and get some custom-made items."
-	set category = "OOC"
+	set hidden = 1
 
-	src << "Our server runs entirely off of player donations. If you donate, you can receive custom cosmetic items for your character. <br>The minimum amount to donate is $5 to receive your item. <br><br>View our donation page for more info: http://colonial-marines.com/page/donate <br><br>Thank you,<br>Apophis."
+	src << "<br>View our donation page for more info: https://cm-ss13.com/viewtopic.php?f=119&t=5978.<br>"
 	return
 
-/*#define RULES_FILE "config/rules.html"
-/client/verb/rules()
-	set name = "Rules"
-	set desc = "Show Server Rules."
+/client/verb/submitbug()
+	set name = "Submit Bug"
+	set desc = "Submit a bug."
 	set hidden = 1
-	src << browse(file(RULES_FILE), "window=rules;size=480x320")
-#undef RULES_FILE*/
+
+	if(alert("Please search for the bug first to make sure you aren't posting a duplicate.",,"Ok","Cancel")=="Cancel")
+		return
+	src << link("https://gitlab.com/cmdevs/ColonialMarines/issues")
+	return
 
 /client/verb/hotkeys_help()
 	set name = "hotkeys-help"

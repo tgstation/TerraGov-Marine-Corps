@@ -96,6 +96,8 @@
 		if(H != victim)
 			user << "<span class='warning'>The patient must remain on the table!</span>"
 			return
+		user << "<span class='notice'>You stop placing the mask on [H]'s face.</span>"
+		return
 	if(!anes_tank)
 		user << "<span class='warning'>There is no anesthetic tank connected to the table, load one first.</span>"
 		return

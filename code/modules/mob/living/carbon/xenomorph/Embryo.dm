@@ -203,12 +203,12 @@
 			O = H.internal_organs_by_name[i]
 			H.internal_organs_by_name -= i
 			H.internal_organs -= O
-	victim.adjustToxLoss(300) //This should kill without gibbing da body
-	victim.updatehealth()
+	victim.death() // Certain species were still surviving bursting (predators), DEFINITELY kill them this time.
 	victim.chestburst = 2
 	victim.update_burst()
 
-	if((!key || !client) && loc.z == 1 && (locate(/obj/structure/bed/nest) in loc) && hivenumber == XENO_HIVE_NORMAL)
+	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
+	if((!key || !client) && loc.z == 1 && (locate(/obj/structure/bed/nest) in loc) && hivenumber == XENO_HIVE_NORMAL && hive.living_xeno_queen && hive.living_xeno_queen.z == src.loc.z)
 		visible_message("<span class='xenodanger'>[src] quickly buries into the ground.</span>")
 		round_statistics.total_xenos_created-- // keep stats sane
 		ticker.mode.stored_larva++

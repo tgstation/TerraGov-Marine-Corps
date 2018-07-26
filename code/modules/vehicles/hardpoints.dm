@@ -244,7 +244,7 @@ Currently only has the tank hardpoints
 		P.generate_bullet(new ammo.default_ammo)
 		P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
 
-		playsound(get_turf(src), S, 60, 1)
+		playsound(get_turf(src), S, 60)
 		ammo.current_rounds--
 
 ////////////////////

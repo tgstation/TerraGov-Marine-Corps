@@ -14,9 +14,11 @@
 /obj/item/storage/donut_box
 	icon = 'icons/obj/items/food.dmi'
 	icon_state = "donutbox"
-	name = "donut box"
+	name = "\improper Yum! donuts"
+	desc = "A box of mouth watering \"<i>Yum!</i>\" brand donuts."
 	storage_slots = 6
 	var/startswith = 6
+	var/open = 0
 	can_hold = list("/obj/item/reagent_container/food/snacks/donut")
 	foldable = /obj/item/stack/sheet/cardboard
 
@@ -27,15 +29,26 @@
 	update_icon()
 	return
 
+/obj/item/storage/donut_box/attack_self(mob/user as mob)
+	user << "You [open ? "close [src]. Another time, then." : "open [src]. Mmmmm... donuts."]"
+	open = !open
+	update_icon()
+	if(!contents.len)
+		..()
+	return
+
 /obj/item/storage/donut_box/update_icon()
 	overlays.Cut()
+	if(!open)
+		icon_state = "donutbox"
+		return
+	icon_state = "donutbox_o"
 	var/i = 0
 	for(var/obj/item/reagent_container/food/snacks/donut/D in contents)
-		var/image/img = image('icons/obj/items/food.dmi', D.overlay_state)
-		img.pixel_x = i * 3
-		overlays += img
 		i++
+		var/image/img = image('icons/obj/items/food.dmi', "[D.overlay_state]-[i]")
+		overlays += img
 
 /obj/item/storage/donut_box/empty
-	icon_state = "donutbox0"
+	icon_state = "donutbox_o"
 	startswith = 0

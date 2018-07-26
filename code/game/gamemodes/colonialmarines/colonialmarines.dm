@@ -1,6 +1,6 @@
 /datum/game_mode/colonialmarines
-	name = "Colonial Marines"
-	config_tag = "Colonial Marines"
+	name = "Distress Signal"
+	config_tag = "Distress Signal"
 	required_players = 1 //Need at least one player, but really we need 2.
 	xeno_required_num = 1 //Need at least one xeno.
 	monkey_amount = 25
