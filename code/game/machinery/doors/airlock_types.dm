@@ -549,13 +549,10 @@
 	icon = 'icons/obj/doors/almayer/dropship2_pilot.dmi'
 
 //PRISON AIRLOCKS
-/obj/machinery/door/airlock/prison/medical/glass
+/obj/machinery/door/airlock/prison/
 	name = "\improper Cell Door"
 	icon = 'icons/obj/doors/prison/celldoor.dmi'
-	opacity = 0
 	glass = 0
-	req_access_txt = "0"
-	req_one_access_txt =  "2;8;19"
 
-/obj/machinery/door/airlock/prison/medical/glass/horizontal
+/obj/machinery/door/airlock/prison/horizontal
 	dir = 2

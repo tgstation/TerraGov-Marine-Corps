@@ -129,14 +129,13 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 					multipler -= 0.20
 				if(M.stat == CONSCIOUS)//If not on anesthetics or not unconsious
 					multipler -= 0.5
-					if(M.reagents.has_reagent("stoxin"))
-						multipler += 0.15
-					if(M.reagents.has_reagent("paracetamol"))
-						multipler += 0.15
-					if(M.reagents.has_reagent("tramadol"))
-						multipler += 0.25
-					if(M.reagents.has_reagent("oxycodone"))
-						multipler += 0.40
+					switch(M.reagent_pain_modifier)
+						if(PAIN_REDUCTION_MEDIUM to PAIN_REDUCTION_HEAVY)
+							multipler += 0.15
+						if(PAIN_REDUCTION_HEAVY to PAIN_REDUCTION_VERY_HEAVY)
+							multipler += 0.25
+						if(PAIN_REDUCTION_VERY_HEAVY to PAIN_REDUCTION_FULL)
+							multipler += 0.40
 					if(M.shock_stage > 100) //Being near to unconsious is good in this case
 						multipler += 0.25
 				if(istype(M.loc, /turf/open/shuttle/dropship))

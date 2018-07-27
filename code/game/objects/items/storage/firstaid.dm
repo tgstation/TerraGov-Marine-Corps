@@ -346,6 +346,7 @@
 /obj/item/storage/pill_bottle/ultrazine
 	name = "\improper Pill bottle"
 	icon_state = "pill_canister11"
+	max_storage_space = 5
 	skilllock = 0 //CL can open it
 	pill_type_to_fill = /obj/item/reagent_container/pill/ultrazine
 

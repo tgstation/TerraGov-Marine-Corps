@@ -30,6 +30,14 @@
 // Factor of how fast mob nutrition decreases
 #define HUNGER_FACTOR 0.05
 
+//Pain or shock reduction for different reagents
+#define PAIN_REDUCTION_VERY_LIGHT	-10 //alkysine
+#define PAIN_REDUCTION_LIGHT		-25 //inaprovaline
+#define PAIN_REDUCTION_MEDIUM		-40 //synaptizine
+#define PAIN_REDUCTION_HEAVY		-50 //paracetamol
+#define PAIN_REDUCTION_VERY_HEAVY	-80 //tramadol
+#define PAIN_REDUCTION_FULL			-200 //oxycodone, neuraline
+
 
 //=================================================
 /*

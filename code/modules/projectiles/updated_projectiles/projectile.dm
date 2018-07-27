@@ -307,40 +307,40 @@
 	if(layer >= OBJ_LAYER || src == P.original)
 		return TRUE
 
-/obj/structure/janitorialcart/get_projectile_hit_chance(obj/item/projectile/P)
-	if(src == P.original)
-		return TRUE
-
-/obj/structure/barricade/get_projectile_hit_chance(obj/item/projectile/P)
-	if(!density) //barricade is open
-		return FALSE
-	if(src == P.original && !(P.dir & dir)) //if on the defense side, clicking on the barricade doesn't hit the barricade
-		return TRUE
-	if(P.distance_travelled <= 1 || !anchored) //unanchored barricade offers no protection.
-		return FALSE
-	if(P.dir & reverse_direction(dir))
-		return prob(95)
-
-/obj/structure/bed/get_projectile_hit_chance(obj/item/projectile/P)
-	if(density && src == P.original)
-		return TRUE
-	else
+/obj/structure/get_projectile_hit_chance(obj/item/projectile/P)
+	if(!density) //structure is passable
 		return FALSE
 
-/obj/structure/reagent_dispensers/get_projectile_hit_chance(obj/item/projectile/P)
-	if(density && src == P.original)
+	if(src == P.original) //clicking on the structure itself hits the structure
 		return TRUE
-	else
+
+	if(!anchored) //unanchored structure offers no protection.
 		return FALSE
 
-/obj/structure/table/get_projectile_hit_chance(obj/item/projectile/P)
-	if(flags_atom & ON_BORDER) //flipped table
-		if(src == P.original)
-			return TRUE
-		if(P.distance_travelled <= 1)
-			return FALSE
-		if(P.dir & reverse_direction(dir))
-			return prob(95)
+	if(!throwpass)
+		return TRUE
+
+	if(P.ammo.flags_ammo_behavior & AMMO_SNIPER) //sniper rounds bypass cover
+		return FALSE
+
+	if(!(flags_atom & ON_BORDER))
+		return FALSE //window frames, unflipped tables
+
+	if(!( P.dir & reverse_direction(dir) || P.dir & dir))
+		return FALSE //no effect if bullet direction is perpendicular to barricade
+
+	var/distance = P.distance_travelled - 1
+
+	if(distance < 1)
+		return FALSE
+
+	var/coverage = 90 //maximum probability of blocking projectile
+	var/distance_limit = 6 //number of tiles needed to max out block probability
+	var/accuracy_factor = 50 //degree to which accuracy affects probability   (if accuracy is 100, probability is unaffected. Lower accuracies will increase block chance)
+
+	var/hitchance = min(coverage, (coverage * distance/distance_limit) + accuracy_factor * (1 - P.accuracy/100))
+	//world << "Distance travelled: [distance]  |  Accuracy: [P.accuracy]  |  Hit chance: [hitchance]"
+	return prob(hitchance)
 
 /obj/structure/window/get_projectile_hit_chance(obj/item/projectile/P)
 	if(P.ammo.flags_ammo_behavior & AMMO_ENERGY)
@@ -349,14 +349,7 @@
 		return TRUE
 
 /obj/machinery/door/poddoor/railing/get_projectile_hit_chance(obj/item/projectile/P)
-	if(!density)
-		return FALSE
-	if(P.distance_travelled <= 1)
-		return FALSE
-	if(P.dir & dir)
-		return prob(10)
-	if(P.dir & reverse_direction(dir))
-		return prob(10)
+	return src == P.original
 
 /obj/effect/alien/egg/get_projectile_hit_chance(obj/item/projectile/P)
 	return src == P.original

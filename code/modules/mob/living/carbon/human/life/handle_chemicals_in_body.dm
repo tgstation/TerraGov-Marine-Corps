@@ -2,7 +2,9 @@
 
 /mob/living/carbon/human/proc/handle_chemicals_in_body()
 
-	life_move_delay = 0
+	reagent_move_delay_modifier = 0
+	reagent_shock_modifier = 0
+	reagent_pain_modifier = 0
 
 	if(reagents && !(species.flags & NO_CHEM_METABOLIZATION))
 		var/alien = 0
