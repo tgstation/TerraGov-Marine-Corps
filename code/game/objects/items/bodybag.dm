@@ -59,6 +59,7 @@
 
 /obj/structure/closet/bodybag
 	name = "body bag"
+	var/bag_name = "body bag"
 	desc = "A plastic bag designed for the storage and transportation of cadavers."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "bodybag_closed"
@@ -72,7 +73,17 @@
 	anchored = 0
 	drag_delay = 2 //slightly easier than to drag the body directly.
 	var/obj/structure/bed/roller/roller_buckled //the roller bed this bodybag is attached to.
+	store_items = FALSE
 
+/obj/structure/closet/bodybag/proc/update_name()
+	if(opened)
+		name = bag_name
+	else
+		var/mob/living/carbon/human/H = locate() in contents
+		if(H)
+			name = "[bag_name] ([H.get_visible_name()])"
+		else
+			name = "[bag_name] (empty)"
 
 /obj/structure/closet/bodybag/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/tool/pen))
@@ -97,13 +108,38 @@
 	else if(istype(W, /obj/item/weapon/zombie_claws))
 		open()
 
+/obj/structure/closet/bodybag/store_mobs(var/stored_units) // overriding this
+	var/list/dead_mobs = list()
+	for(var/mob/living/M in loc)
+		if(M.buckled)
+			continue
+		if(M.stat != DEAD) // covers alive mobs
+			continue
+		if(!ishuman(M)) // all the dead other shit
+			dead_mobs += M
+			continue
+		var/mob/living/carbon/human/H = M
+		if(H.check_tod() || isSynth(H)) // revivable
+			if(H.is_revivable() && H.get_ghost()) // definitely revivable
+				continue
+		dead_mobs += M
+	var/mob/living/mob_to_store
+	if(dead_mobs.len)
+		mob_to_store = pick(dead_mobs)
+		mob_to_store.forceMove(src)
+		stored_units += mob_size
+	return stored_units
 
 /obj/structure/closet/bodybag/close()
 	if(..())
 		density = 0
+		update_name()
 		return 1
 	return 0
 
+/obj/structure/closet/bodybag/open()
+	. = ..()
+	update_name()
 
 /obj/structure/closet/bodybag/MouseDrop(over_object, src_location, over_location)
 	..()
@@ -148,11 +184,12 @@
 
 /obj/structure/closet/bodybag/cryobag
 	name = "stasis bag"
+	bag_name = "stasis bag"
 	desc = "A reusable plastic bag designed to prevent additional damage to an occupant."
 	icon = 'icons/obj/cryobag.dmi'
 	item_path = /obj/item/bodybag/cryobag
 	store_items = FALSE
-	var/mob/living/stasis_mob //the mob in stasis
+	var/mob/living/carbon/human/stasis_mob //the mob in stasis
 	var/used = 0
 	var/last_use = 0 //remembers the value of used, to delay crostasis start.
 	var/max_uses = 1800 //15 mins of usable cryostasis
@@ -165,10 +202,10 @@
 /obj/structure/closet/bodybag/cryobag/attackby(obj/item/I, mob/living/user)
 	if(!istype(I, /obj/item/device/healthanalyzer))
 		return
-	var/obj/item/device/healthanalyzer/J = I
 	if(!stasis_mob)
 		user << "<span class='warning'>The stasis bag is empty!</span>"
 		return
+	var/obj/item/device/healthanalyzer/J = I
 	J.attack(stasis_mob, user) // yes this is awful -spookydonut
 	return
 
@@ -191,12 +228,27 @@
 		new /obj/item/trash/used_stasis_bag(loc)
 		cdel(src)
 
+/obj/structure/closet/bodybag/cryobag/store_mobs(var/stored_units) // overriding this
+	var/list/mobs_can_store = list()
+	for(var/mob/living/carbon/human/H in loc)
+		if(H.buckled)
+			continue
+		if(H.stat == DEAD) // dead, nope
+			continue
+		mobs_can_store += H
+	var/mob/living/carbon/human/mob_to_store
+	if(mobs_can_store.len)
+		mob_to_store = pick(mobs_can_store)
+		mob_to_store.forceMove(src)
+		stored_units += mob_size
+	return stored_units
+
 /obj/structure/closet/bodybag/cryobag/close()
 	. = ..()
 	last_use = used + 1
-	var/mob/living/L = locate() in contents
-	if(L)
-		stasis_mob = L
+	var/mob/living/carbon/human/H = locate() in contents
+	if(H)
+		stasis_mob = H
 		processing_objects.Add(src)
 
 /obj/structure/closet/bodybag/cryobag/process()
