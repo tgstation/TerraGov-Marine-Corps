@@ -167,6 +167,8 @@
 
 /obj/vehicle/multitile/root/cm_armored/tank/handle_harm_attack(var/mob/M)
 
+	if(M.loc != entrance.loc)	return
+
 	if(!gunner && !driver)
 		M << "<span class='warning'>There is no one in the vehicle.</span>"
 		return
@@ -176,6 +178,8 @@
 	if(!do_after(M, 200, show_busy_icon = BUSY_ICON_HOSTILE))
 		M << "<span class='warning'>You stop pulling [driver ? driver : gunner] out of their seat.</span>"
 		return
+
+	if(M.loc != entrance.loc) return
 
 	if(!gunner && !driver)
 		M << "<span class='warning'>There is no longer anyone in the vehicle.</span>"
@@ -210,7 +214,9 @@
 		return
 
 	M << "<span class='notice'>You start climbing into [src].</span>"
-
+	for(var/obj/item/I in M.contents)
+		if(I.zoom)
+			I.zoom() // cancel zoom.
 	switch(slot)
 		if("Driver")
 
@@ -229,7 +235,9 @@
 			if(driver != null)
 				M << "<span class='notice'>Someone got into that seat before you could.</span>"
 				return
-
+			for(var/obj/item/I in M.contents)
+				if(I.zoom)
+					I.zoom() // cancel zoom.
 			driver = M
 			M.loc = src
 			M << "<span class='notice'>You enter the driver's seat.</span>"
@@ -255,7 +263,9 @@
 				return
 
 			if(!M.client) return //Disconnected while getting in
-
+			for(var/obj/item/I in M.contents)
+				if(I.zoom)
+					I.zoom() // cancel zoom.
 			gunner = M
 			M.loc = src
 			M << "<span class='notice'>You enter the gunner's seat.</span>"
