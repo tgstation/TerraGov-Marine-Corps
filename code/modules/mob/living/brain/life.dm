@@ -88,7 +88,9 @@
 
 /mob/living/brain/proc/handle_chemicals_in_body()
 
-	life_move_delay = 0
+	reagent_move_delay_modifier = 0
+	reagent_shock_modifier = 0
+	reagent_pain_modifier = 0
 
 	if(reagents) reagents.metabolize(src)
 

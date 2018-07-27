@@ -1,6 +1,6 @@
 /obj/item/implant/neurostim
 	name = "neurostimulator implant"
-	desc = "An implant which stimulates and regulates sensorimotor function to optimize performance. Benefits include pain reduction, improved balance, and improved resistance to overstimulation and disoritentation. To encourage compliance, negative stimulus is applied if the implant hears a (non-radio) spoken codeprhase. Implant may be degraded by the body's immune system over time, and thus may occasionally malfunction."
+	desc = "An implant which regulates nociception and sensory function. Benefits include pain reduction, improved balance, and improved resistance to overstimulation and disoritentation. To encourage compliance, negative stimulus is applied if the implant hears a (non-radio) spoken codeprhase. Implant may be degraded by the body's immune system over time, and thus may occasionally malfunction."
 	var/phrase = "supercalifragilisticexpialidocious"
 	var/last_activated = 0
 	var/implant_age = 0 //number of ticks since being implanted
@@ -88,15 +88,12 @@
 		activate(1)
 
 	else if(world.time - last_activated > 600)
-		if(istype(imp_in, /mob/living/))
-			var/mob/living/M = imp_in
-			M.drowsyness = max(M.drowsyness-5, 0)
-			M.dizziness = max(M.dizziness-5, 0)
-			M.stuttering = max(M.stuttering-5, 0)
-			M.confused = max(M.confused-5, 0)
-			M.AdjustKnockedout(-2)
-			M.AdjustStunned(-2)
-			M.AdjustKnockeddown(-1)
+		if(istype(imp_in, /mob/living/carbon/))
+			var/mob/living/carbon/M = imp_in
+
+			var/neuraline_inject_amount = max(1-M.reagents.get_reagent_amount("neuraline"), 0)
+
+			M.reagents.add_reagent("neuraline", neuraline_inject_amount, null, 1)
 
 
 /obj/item/implant/neurostim/emp_act(severity)

@@ -288,6 +288,8 @@
 				M.drowsyness  = max(M.drowsyness, 30)
 		data++
 
+		M.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
+
 	on_overdose(mob/living/M)
 		M.apply_damages(0, 0, 1, 2) //Overdose starts getting bad
 
