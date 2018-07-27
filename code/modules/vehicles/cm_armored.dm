@@ -666,6 +666,11 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			"<span class='notice'>You stop repairing the [slot] slot on [src].</span>")
 		return
 
+	if(!Adjacent(user))
+		user.visible_message("<span class='notice'>[user] stops repairing the [slot] slot on [src].</span>",
+			"<span class='notice'>You stop repairing the [slot] slot on [src].</span>")
+		return
+
 	user.visible_message("<span class='notice'>[user] repairs the [slot] slot on [src].</span>",
 		"<span class='notice'>You repair the [slot] slot on [src].</span>")
 
