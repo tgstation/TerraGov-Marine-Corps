@@ -26,44 +26,6 @@
 
 #undef DEBUG_XENO
 
-/datum/hive_status
-	var/hivenumber = XENO_HIVE_NORMAL
-	var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen
-	var/slashing_allowed = 1 //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
-	var/queen_time = 300 //5 minutes between queen deaths
-	var/xeno_queen_timer
-	var/hive_orders = "" //What orders should the hive have
-	var/color = null
-	var/prefix = ""
-	var/list/xeno_leader_list = list()
-
-/datum/hive_status/corrupted
-	hivenumber = XENO_HIVE_CORRUPTED
-	prefix = "Corrupted "
-	color = "#00ff80"
-
-/datum/hive_status/alpha
-	hivenumber = XENO_HIVE_ALPHA
-	prefix = "Alpha "
-	color = "#cccc00"
-
-/datum/hive_status/beta
-	hivenumber = XENO_HIVE_BETA
-	prefix = "Beta "
-	color = "#9999ff"
-
-/datum/hive_status/zeta
-	hivenumber = XENO_HIVE_ZETA
-	prefix = "Zeta "
-	color = "#606060"
-
-var/global/list/hive_datum = list(new /datum/hive_status(), new /datum/hive_status/corrupted(), new /datum/hive_status/alpha(), new /datum/hive_status/beta(), new /datum/hive_status/zeta())
-
-//This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
-//var/global/slashing_allowed = 1
-//var/global/queen_time = 300 //5 minutes between queen deaths
-//var/global/hive_orders = "" //What orders should the hive have
-
 /mob/living/carbon/Xenomorph
 	name = "Drone"
 	desc = "What the hell is THAT?"
@@ -240,6 +202,14 @@ var/global/list/hive_datum = list(new /datum/hive_status(), new /datum/hive_stat
 		return FALSE
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
+	/*if(ishuman(L) && L.stat == DEAD)
+		var/mob/living/carbon/human/H = L
+		if(H.status_flags & XENO_HOST)
+			if(world.time > H.timeofdeath + H.revive_grace_period)
+				return FALSE // they ain't gonna burst now
+		else
+			return FALSE // leave the dead alone*
+	*/ // this is disabled pending the results of the lighting change -spookydonut
 	return ..()
 
 /mob/living/carbon/Xenomorph/pull_response(mob/puller)

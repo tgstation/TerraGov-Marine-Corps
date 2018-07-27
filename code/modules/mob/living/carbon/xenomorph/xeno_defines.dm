@@ -11,6 +11,7 @@
 	var/max_grown = 200
 	var/time_of_birth
 	var/plasma_gain = 5
+	var/devour_timer = 0
 
 	var/evolution_allowed = 1 //Are they allowed to evolve (and have their evolution progress group)
 	var/evolution_stored = 0 //How much evolution they have stored
@@ -151,3 +152,36 @@
 	//Leader vars
 	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
 	var/leader_current_aura = "" //Pheromone type inherited from Queen
+
+/datum/hive_status
+	var/hivenumber = XENO_HIVE_NORMAL
+	var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen
+	var/slashing_allowed = 1 //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
+	var/queen_time = 300 //5 minutes between queen deaths
+	var/xeno_queen_timer
+	var/hive_orders = "" //What orders should the hive have
+	var/color = null
+	var/prefix = ""
+	var/list/xeno_leader_list = list()
+
+/datum/hive_status/corrupted
+	hivenumber = XENO_HIVE_CORRUPTED
+	prefix = "Corrupted "
+	color = "#00ff80"
+
+/datum/hive_status/alpha
+	hivenumber = XENO_HIVE_ALPHA
+	prefix = "Alpha "
+	color = "#cccc00"
+
+/datum/hive_status/beta
+	hivenumber = XENO_HIVE_BETA
+	prefix = "Beta "
+	color = "#9999ff"
+
+/datum/hive_status/zeta
+	hivenumber = XENO_HIVE_ZETA
+	prefix = "Zeta "
+	color = "#606060"
+
+var/global/list/hive_datum = list(new /datum/hive_status(), new /datum/hive_status/corrupted(), new /datum/hive_status/alpha(), new /datum/hive_status/beta(), new /datum/hive_status/zeta())

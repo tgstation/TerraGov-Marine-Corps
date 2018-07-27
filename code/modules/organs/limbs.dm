@@ -646,8 +646,21 @@ Note that amputating the affected organ does in fact remove the infection from t
 		O.status |= LIMB_AMPUTATED
 		O.setAmputatedTree()
 
+/mob/living/carbon/human/proc/remove_random_limb(var/delete_limb = 0)
+	var/list/limbs_to_remove = list()
+	for(var/datum/limb/E in limbs)
+		if(istype(E, /datum/limb/chest) || istype(E, /datum/limb/groin) || istype(E, /datum/limb/head))
+			continue
+		limbs_to_remove += E
+	if(limbs_to_remove.len)
+		var/datum/limb/L = pick(limbs_to_remove)
+		var/limb_name = L.display_name
+		L.droplimb(0,delete_limb)
+		return limb_name
+	return null
+
 //Handles dismemberment
-/datum/limb/proc/droplimb(amputation)
+/datum/limb/proc/droplimb(amputation, var/delete_limb = 0)
 	if(status & LIMB_DESTROYED)
 		return
 	else
@@ -668,7 +681,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			hidden = null
 
 		// If any organs are attached to this, destroy them
-		for(var/datum/limb/O in children) O.droplimb(amputation)
+		for(var/datum/limb/O in children) O.droplimb(amputation, delete_limb)
 
 		//Replace all wounds on that arm with one wound on parent organ.
 		wounds.Cut()
@@ -722,14 +735,17 @@ Note that amputating the affected organ does in fact remove the infection from t
 				if(!(status & LIMB_ROBOT)) organ = new /obj/item/limb/l_foot(owner.loc, owner)
 				owner.drop_inv_item_on_ground(owner.shoes, null, TRUE)
 
-		owner.visible_message("<span class='warning'>[owner.name]'s [display_name] flies off in an arc!</span>",
-		"<span class='highdanger'><b>Your [display_name] goes flying off!</b></span>",
-		"<span class='warning'>You hear a terrible sound of ripping tendons and flesh!</span>", 3)
+		if(delete_limb)
+			cdel(organ)
+		else
+			owner.visible_message("<span class='warning'>[owner.name]'s [display_name] flies off in an arc!</span>",
+			"<span class='highdanger'><b>Your [display_name] goes flying off!</b></span>",
+			"<span class='warning'>You hear a terrible sound of ripping tendons and flesh!</span>", 3)
 
-		if(organ)
-			//Throw organs around
-			var/lol = pick(cardinal)
-			step(organ,lol)
+			if(organ)
+				//Throw organs around
+				var/lol = pick(cardinal)
+				step(organ,lol)
 
 		owner.update_body(1, 1)
 

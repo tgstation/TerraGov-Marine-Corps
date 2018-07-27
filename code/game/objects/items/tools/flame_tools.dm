@@ -597,20 +597,26 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			user.SetLuminosity(2)
 			processing_objects.Add(src)
 		else
-			heat_source = 0
-			icon_state = icon_off
-			item_state = icon_off
-			if(istype(src, /obj/item/tool/lighter/zippo) )
-				user.visible_message("<span class='rose'>You hear a quiet click, as [user] shuts off [src] without even looking at what they're doing.")
-			else
-				user.visible_message("<span class='notice'>[user] quietly shuts off the [src].")
-
-			user.SetLuminosity(-2)
-			processing_objects.Remove(src)
+			turn_off(user, 0)
 	else
 		return ..()
 	return
 
+/obj/item/tool/lighter/proc/turn_off(mob/living/bearer, var/silent = 1)
+	if(heat_source)
+		heat_source = 0
+		icon_state = icon_off
+		item_state = icon_off
+		if(!silent)
+			if(istype(src, /obj/item/tool/lighter/zippo) )
+				bearer.visible_message("<span class='rose'>You hear a quiet click, as [bearer] shuts off [src] without even looking at what they're doing.")
+			else
+				bearer.visible_message("<span class='notice'>[bearer] quietly shuts off the [src].")
+
+		bearer.SetLuminosity(-2)
+		processing_objects.Remove(src)
+		return 1
+	return 0
 
 /obj/item/tool/lighter/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!isliving(M))
