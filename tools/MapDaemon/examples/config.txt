@@ -1,0 +1,53 @@
+### Config file for MapDaemon
+
+{
+"paths" : {
+	### The name of the project in DreamMaker
+	"project_name" : "ColonialMarinesALPHA",
+	### The directory where the actual code is that needs to be compiled, including maps
+	"project_base" : ".",
+	### The directory where DD runs out of, i.e. the destination folder when the binaries are copied from the poject base folder
+	"dest_base" : "tools/MapDaemon",
+	### The directory to save all of the logs
+	"crash_logs" : "tools/MapDaemon/logs",
+	### The installation directory of BYOND
+	"byond_base" : "C:/Program Files (x86)/BYOND"
+	},
+"server" : {
+	### The IP address of the server, localhost works, don't know if IPv6 does
+	"url" : "localhost",
+	### The port of the server
+	"port" : "59500"
+	},
+"game" : {
+	"maps" : {
+		### The first part of the filename for maps, not a regex (i.e. the "." isn't short for "any character")
+		"map_preprocess_line" : "Z.01.",
+		### CDL of maps, so the daemon knows what the options are, important for changing the gamemode text-file too. The name must be the same as the name of the relevant gamemode
+		"map_cdl" : "LV-624,Big-Red,Ice Colony",
+		### The default name of the map to use
+		"default_map" : "LV-624",
+		### LV624 map name (like from the file), with the option given to players on the left (also the name of the gamemode)
+		"LV-624" : "LV624",
+		### Big Red map name
+		"Big-Red" : "BigRed_v2",
+		### Ice Colony map name
+		"Ice Colony" : "Ice_Colony_v2",
+		### Prison Station map name
+		"Prison Station" : "Prison_Station_FOP"
+		}
+	},
+"prefs" : {
+	### Whether or not the bot is to be used, in case of special admin events and stuff, run by Apop or Rahl
+	"enable" : "true",
+	### How many seconds to wait between round-end checks. Can be a decimal.
+	"tick_delay" : "5.0",
+	### How many times to reattempt a mapdaemon command if there it fails.
+	"MAX_COMMAND_RETRIES" : "5",
+	###How long to wait on startup, in seconds. Can be a decimal.
+	"startup_delay" : "1.0",
+	###By what base to increase the read timeout. For example, a value of 2 will result in delays of 1, 2, 4, 8, 16 seconds and a value of 3 will result in 1, 3, 9, 27, 81 seconds
+	###Can be a decimal, but results of the exponential will be rounded down to the nearest integer.
+	"read_timeout_increment" : "2.0"
+	}
+}

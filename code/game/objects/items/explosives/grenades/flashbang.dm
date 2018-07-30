@@ -1,0 +1,176 @@
+/obj/item/explosive/grenade/flashbang
+	name = "flashbang"
+	icon_state = "flashbang2"
+	item_state = "flashbang"
+	origin_tech = "materials=2;combat=1"
+	var/banglet = 0
+
+
+/obj/item/explosive/grenade/flashbang/attack_self(mob/user)
+	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
+		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+		return
+	..()
+
+
+/obj/item/explosive/grenade/flashbang/prime()
+	..()
+	var/turf/T = get_turf(src)
+	for(var/obj/structure/closet/L in hear(7, T))
+		if(locate(/mob/living/carbon/, L))
+			for(var/mob/living/carbon/M in L)
+				bang(get_turf(src), M)
+
+
+	for(var/mob/living/carbon/M in hear(7, T))
+		if(!istype(M,/mob/living/carbon/Xenomorph))
+			bang(T, M)
+
+
+
+	new/obj/effect/particle_effect/smoke/flashbang(T)
+	cdel(src)
+	return
+
+/obj/item/explosive/grenade/flashbang/proc/bang(var/turf/T , var/mob/living/carbon/M)						// Added a new proc called 'bang' that takes a location and a person to be banged.
+	if (locate(/obj/item/device/cloaking_device, M))			// Called during the loop that bangs people in lockers/containers and when banging
+		for(var/obj/item/device/cloaking_device/S in M)			// people in normal view.  Could theroetically be called during other explosions.
+			S.active = 0										// -- Polymorph
+			S.icon_state = "shield0"
+
+	M << "\red <B>BANG</B>"
+	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1)
+
+//Checking for protections
+	var/ear_safety = 0
+	if(iscarbon(M))
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(istype(H.wear_ear, /obj/item/clothing/ears/earmuffs))
+				ear_safety += 2
+			if(HULK in H.mutations)
+				ear_safety += 1
+			if(istype(H.head, /obj/item/clothing/head/helmet/riot))
+				ear_safety += 2
+
+//Flashing everyone
+	if(M.flash_eyes())
+		M.Stun(2)
+		M.KnockDown(10)
+
+
+
+//Now applying sound
+	if((get_dist(M, T) <= 2 || src.loc == M.loc || src.loc == M))
+		if(ear_safety > 0)
+			M.Stun(2)
+			M.KnockDown(1)
+		else
+			M.Stun(10)
+			M.KnockDown(3)
+			if ((prob(14) || (M == src.loc && prob(70))))
+				M.ear_damage += rand(1, 10)
+			else
+				M.ear_damage += rand(0, 5)
+				M.ear_deaf = max(M.ear_deaf,15)
+
+	else if(get_dist(M, T) <= 5)
+		if(!ear_safety)
+			M.Stun(8)
+			M.ear_damage += rand(0, 3)
+			M.ear_deaf = max(M.ear_deaf,10)
+
+	else if(!ear_safety)
+		M.Stun(4)
+		M.ear_damage += rand(0, 1)
+		M.ear_deaf = max(M.ear_deaf,5)
+
+//This really should be in mob not every check
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
+		if (E && E.damage >= E.min_bruised_damage)
+			M << "\red Your eyes start to burn badly!"
+			if(!banglet && !(istype(src , /obj/item/explosive/grenade/flashbang/clusterbang)))
+				if (E.damage >= E.min_broken_damage)
+					M << "\red You can't see anything!"
+	if (M.ear_damage >= 15)
+		M << "\red Your ears start to ring badly!"
+		if(!banglet && !(istype(src , /obj/item/explosive/grenade/flashbang/clusterbang)))
+			if (prob(M.ear_damage - 10 + 5))
+				M << "\red You can't hear anything!"
+				M.sdisabilities |= DEAF
+	else
+		if (M.ear_damage >= 5)
+			M << "\red Your ears start to ring!"
+
+
+/obj/item/explosive/grenade/flashbang/clusterbang//Created by Polymorph, fixed by Sieve
+	desc = "Use of this weapon may constiute a war crime in your area, consult your local captain."
+	name = "clusterbang"
+	icon_state = "clusterbang"
+
+/obj/item/explosive/grenade/flashbang/clusterbang/prime()
+	var/numspawned = rand(4,8)
+	var/again = 0
+	for(var/more = numspawned,more > 0,more--)
+		if(prob(35))
+			again++
+			numspawned --
+
+	for(,numspawned > 0, numspawned--)
+		spawn(0)
+			new /obj/item/explosive/grenade/flashbang/cluster(src.loc)//Launches flashbangs
+			playsound(src.loc, 'sound/weapons/armbomb.ogg', 25, 1, 6)
+
+	for(,again > 0, again--)
+		spawn(0)
+			new /obj/item/explosive/grenade/flashbang/clusterbang/segment(src.loc)//Creates a 'segment' that launches a few more flashbangs
+			playsound(src.loc, 'sound/weapons/armbomb.ogg', 25, 1, 6)
+	spawn(0)
+		cdel(src)
+		return
+
+/obj/item/explosive/grenade/flashbang/clusterbang/segment
+	desc = "A smaller segment of a clusterbang. Better run."
+	name = "clusterbang segment"
+	icon_state = "clusterbang_segment"
+
+/obj/item/explosive/grenade/flashbang/clusterbang/segment/New()//Segments should never exist except part of the clusterbang, since these immediately 'do their thing' and asplode
+	icon_state = "clusterbang_segment_active"
+	active = 1
+	banglet = 1
+	var/stepdist = rand(1,4)//How far to step
+	var/temploc = src.loc//Saves the current location to know where to step away from
+	walk_away(src,temploc,stepdist)//I must go, my people need me
+	var/dettime = rand(15,60)
+	spawn(dettime)
+		prime()
+	..()
+
+/obj/item/explosive/grenade/flashbang/clusterbang/segment/prime()
+	var/numspawned = rand(4,8)
+	for(var/more = numspawned,more > 0,more--)
+		if(prob(35))
+			numspawned --
+
+	for(,numspawned > 0, numspawned--)
+		spawn(0)
+			new /obj/item/explosive/grenade/flashbang/cluster(src.loc)
+			playsound(src.loc, 'sound/weapons/armbomb.ogg', 25, 1, 6)
+	spawn(0)
+		cdel(src)
+		return
+
+/obj/item/explosive/grenade/flashbang/cluster/New()//Same concept as the segments, so that all of the parts don't become reliant on the clusterbang
+	spawn(0)
+		icon_state = "flashbang_active"
+		active = 1
+		banglet = 1
+		var/stepdist = rand(1,3)
+		var/temploc = src.loc
+		walk_away(src,temploc,stepdist)
+		var/dettime = rand(15,60)
+		spawn(dettime)
+		prime()
+	..()

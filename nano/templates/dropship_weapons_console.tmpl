@@ -1,0 +1,56 @@
+
+{{if data.screen_mode == 0}}
+	<div style="padding-top: 10px">
+		<h3>Equipment installed:</h3>
+		<div style="padding-top: 2px">
+			{{for data.equipment_data}}
+				{{if value.is_interactable}}
+					<div class="item">
+						{{:helper.link(value.name, null, {'equip_interact' : value.eqp_tag}, null , null)}}
+					</div>
+				{{else}}
+					<div class="item">
+						{{:value.name}}
+					</div>
+				{{/if}}
+			{{empty}}
+				No equipment installed.
+			{{/for}}
+		</div>
+	</div>
+{{else data.screen_mode == 1}}
+	<h3>Weapon Selected: <span class="white">{{:data.selected_eqp}}</span></h3>
+	{{if data.selected_eqp_ammo_name}}
+		<div class="item" style="padding-top: 2px">	
+			<span class="white">Ammo loaded:</span> {{:data.selected_eqp_ammo_name}}
+		</div>
+		<div class="itemContent">
+			{{if data.selected_eqp_ammo_amt > data.selected_eqp_max_ammo_amt*0.5}}
+		<span class="white">Ammo count:</span> <span class="good">{{:data.selected_eqp_ammo_amt}} / {{:data.selected_eqp_max_ammo_amt}}</span>
+			{{else data.selected_eqp_ammo_amt > 0}}
+				<span class="white">Ammo count:</span> <span class="average">{{:data.selected_eqp_ammo_amt}} / {{:data.selected_eqp_max_ammo_amt}}</span>
+			{{else}}
+				<span class="white">Ammo count:</span> <span class="bad">{{:data.selected_eqp_ammo_amt}} / {{:data.selected_eqp_max_ammo_amt}}</span>
+			{{/if}}
+			
+		</div>
+	{{else}}
+		<div class="item" style="padding-top: 2px">
+		<span class="bad">No ammo loaded</span>
+		</div>
+	{{/if}}
+
+	<span style="font-weight: bold;color: #ee5500;font-size: 12px;clear: both;margin: 0;padding-top: 8px">Available Targets:</span>
+	<div class="itemContent" style="padding-top: 2px">
+		{{for data.targets_data}}
+			{{:helper.link(value.target_name, null, {'open_fire' : value.target_tag},  (data.shuttle_state == "in_transit") ? null : 'disabled' , null)}}
+		{{empty}}
+			No laser target detected.
+		{{/for}}
+	</div>
+
+	<div style="padding-top: 20px; width: 100%">
+		{{:helper.link('Deselect Weapon', null, {'deselect' : '1'}, null , null)}}
+	</div>
+{{/if}}
+

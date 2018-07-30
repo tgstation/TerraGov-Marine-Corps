@@ -1,0 +1,597 @@
+"aa" = (/turf/space,/area/space)
+"ab" = (/turf/unsimulated/wall,/area/tdome)
+"ac" = (/obj/structure/closet/secure_closet/bar,/turf/unsimulated/floor{icon_state = "white"},/area/tdome)
+"ad" = (/turf/unsimulated/floor{icon_state = "white"},/area/tdome)
+"ae" = (/obj/machinery/gibber,/turf/unsimulated/floor{icon_state = "white"},/area/tdome)
+"af" = (/obj/machinery/vending/cigarette,/turf/unsimulated/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
+"ag" = (/obj/structure/table,/obj/item/reagent_container/food/drinks/cans/beer,/obj/item/reagent_container/food/drinks/cans/beer,/obj/item/reagent_container/food/drinks/cans/beer,/obj/item/tool/lighter/zippo,/obj/item/storage/fancy/cigarettes,/turf/unsimulated/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
+"ah" = (/obj/item/reagent_container/food/drinks/cans/cola,/obj/item/reagent_container/food/drinks/cans/cola,/obj/item/reagent_container/food/drinks/cans/cola,/obj/structure/table,/obj/item/ashtray/glass,/turf/unsimulated/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
+"ai" = (/obj/structure/reagent_dispensers/beerkeg,/turf/unsimulated/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
+"aj" = (/obj/structure/reagent_dispensers/beerkeg,/obj/item/storage/box/drinkingglasses,/turf/unsimulated/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
+"ak" = (/turf/unsimulated/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
+"al" = (/obj/machinery/vending/coffee,/turf/unsimulated/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
+"am" = (/obj/structure/closet/secure_closet/freezer/meat,/turf/unsimulated/floor{icon_state = "white"},/area/tdome)
+"an" = (/obj/structure/closet/secure_closet/freezer/fridge,/turf/unsimulated/floor{icon_state = "white"},/area/tdome)
+"ao" = (/obj/structure/bed/chair,/obj/effect/landmark{name = "tdomeobserve"},/turf/unsimulated/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
+"ap" = (/obj/structure/disposalpipe/trunk,/obj/structure/disposaloutlet,/turf/unsimulated/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
+"aq" = (/obj/machinery/vending/snack,/turf/unsimulated/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
+"ar" = (/obj/item/storage/box/donkpockets{pixel_x = 3; pixel_y = 3},/obj/item/storage/box/donkpockets{pixel_x = 3; pixel_y = 3},/obj/item/storage/box/donkpockets{pixel_x = 3; pixel_y = 3},/obj/item/storage/box/donkpockets{pixel_x = 3; pixel_y = 3},/obj/structure/table,/turf/unsimulated/floor{icon_state = "white"},/area/tdome)
+"as" = (/obj/structure/table,/obj/machinery/microwave,/turf/unsimulated/floor{icon_state = "white"},/area/tdome)
+"at" = (/obj/structure/table/reinforced,/turf/unsimulated/floor{icon_state = "white"},/area/tdome)
+"au" = (/obj/machinery/computer/security/telescreen,/turf/unsimulated/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
+"av" = (/obj/item/device/camera,/turf/unsimulated/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
+"aw" = (/obj/structure/disposalpipe/segment,/turf/unsimulated/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
+"ax" = (/obj/structure/bed/chair,/obj/structure/disposalpipe/segment,/obj/effect/landmark{name = "tdomeobserve"},/turf/unsimulated/floor{icon_state = "redbluefull"; dir = 8},/area/tdome/tdomeobserve)
+"ay" = (/turf/space{icon_state = "black"; opacity = 1},/area/space)
+"az" = (/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/tdome)
+"aA" = (/obj/structure/window/reinforced{dir = 5; health = 80},/obj/effect/forcefield{desc = "You can't get in. Heh."; layer = 1; name = "Blocker"},/turf/simulated/floor,/area/tdome)
+"aB" = (/obj/structure/window/reinforced{dir = 5; health = 80},/obj/effect/forcefield{desc = "You can't get in. Heh."; layer = 1; name = "Blocker"},/obj/structure/disposalpipe/segment,/turf/simulated/floor,/area/tdome)
+"aC" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/space,/area/space)
+"aD" = (/obj/machinery/igniter,/turf/simulated/floor,/area/tdome)
+"aE" = (/turf/simulated/floor,/area/tdome)
+"aF" = (/obj/structure/disposalpipe/segment,/turf/simulated/floor,/area/tdome)
+"aG" = (/turf/space/transit/north/shuttlespace_ns10,/area/space)
+"aH" = (/turf/space/transit/north/shuttlespace_ns15,/area/space)
+"aI" = (/obj/effect/landmark{name = "tdome2"},/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/tdome/tdome2)
+"aJ" = (/obj/machinery/door/poddoor{id = "thunderdome"; name = "Thunderdome Blast Door"},/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/tdome)
+"aK" = (/turf/simulated/floor{icon_state = "red"; dir = 8},/area/tdome)
+"aL" = (/turf/simulated/floor{icon_state = "green"; dir = 4},/area/tdome)
+"aM" = (/obj/effect/landmark{name = "tdome1"},/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/tdome/tdome1)
+"aN" = (/turf/space/transit/north/shuttlespace_ns11,/area/space)
+"aO" = (/turf/space/transit/north/shuttlespace_ns14,/area/space)
+"aP" = (/turf/space/transit/north/shuttlespace_ns12,/area/space)
+"aQ" = (/turf/space/transit/north/shuttlespace_ns13,/area/space)
+"aR" = (/turf/simulated/floor/bluegrid,/area/tdome)
+"aS" = (/obj/machinery/flasher{id = "flash"; name = "Thunderdome Flash"},/turf/simulated/floor/bluegrid,/area/tdome)
+"aT" = (/obj/machinery/atmospherics/pipe/vent,/turf/simulated/floor/bluegrid,/area/tdome)
+"aU" = (/obj/machinery/camera{pixel_x = 10; network = list("thunder"); c_tag = "Arena"},/turf/simulated/floor/bluegrid,/area/tdome)
+"aV" = (/turf/space/transit/north/shuttlespace_ns4,/area/space)
+"aW" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/space/transit/north/shuttlespace_ns11,/area/space)
+"aX" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/space/transit/north/shuttlespace_ns9,/area/space)
+"aY" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/space/transit/north/shuttlespace_ns14,/area/space)
+"aZ" = (/obj/machinery/atmospherics/pipe/simple/visible{tag = "icon-intact (NORTHEAST)"; icon_state = "intact"; dir = 5},/turf/simulated/floor,/area/tdome)
+"ba" = (/obj/machinery/atmospherics/pipe/manifold/visible{dir = 1; icon_state = "map"; tag = "icon-manifold (NORTH)"},/turf/simulated/floor,/area/tdome)
+"bb" = (/obj/machinery/atmospherics/pipe/simple/visible{tag = "icon-intact (NORTHWEST)"; icon_state = "intact"; dir = 9},/turf/simulated/floor,/area/tdome)
+"bc" = (/turf/space/transit/north/shuttlespace_ns3,/area/space)
+"bd" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/space/transit/north/shuttlespace_ns10,/area/space)
+"be" = (/turf/space,/area/shuttle/distress_transit)
+"bf" = (/obj/machinery/atmospherics/pipe/simple/visible,/turf/simulated/floor,/area/tdome)
+"bg" = (/turf/space/transit/north/shuttlespace_ns9,/area/space)
+"bh" = (/turf/space/transit/north/shuttlespace_ns2,/area/space)
+"bi" = (/turf/space/transit/north/shuttlespace_ns8,/area/space)
+"bj" = (/turf/space/transit/north/shuttlespace_ns1,/area/space)
+"bk" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/space/transit/north/shuttlespace_ns8,/area/space)
+"bl" = (/obj/machinery/door/airlock/command{name = "Thunderdome Administration"; req_access = null; req_access_txt = "102"},/turf/simulated/floor,/area/tdome)
+"bm" = (/obj/structure/window/reinforced{dir = 5; health = 80},/obj/effect/forcefield{desc = "You can't get in. Heh."; layer = 1; name = "Blocker"},/obj/machinery/atmospherics/pipe/simple/visible,/turf/simulated/floor,/area/tdome)
+"bn" = (/turf/space/transit/north/shuttlespace_ns7,/area/space)
+"bo" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/space/transit/north/shuttlespace_ns7,/area/space)
+"bp" = (/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bq" = (/obj/structure/bed/chair{dir = 1},/obj/effect/landmark{name = "tdomeadmin"},/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"br" = (/obj/item/tool/extinguisher,/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bs" = (/obj/machinery/atmospherics/valve,/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bt" = (/obj/structure/bed/chair{dir = 1},/obj/structure/disposalpipe/segment,/obj/effect/landmark{name = "tdomeadmin"},/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bu" = (/turf/space/transit/north/shuttlespace_ns6,/area/space)
+"bv" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/space/transit/north/shuttlespace_ns6,/area/space)
+"bw" = (/obj/machinery/computer/security/telescreen,/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bx" = (/obj/machinery/atmospherics/portables_connector{dir = 1},/obj/machinery/portable_atmospherics/canister/sleeping_agent{pixel_x = 1},/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"by" = (/obj/item/tool/wrench,/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bz" = (/obj/structure/disposalpipe/trunk{dir = 1},/obj/machinery/disposal,/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bA" = (/turf/space/transit/north/shuttlespace_ns5,/area/space)
+"bB" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/space/transit/north/shuttlespace_ns5,/area/space)
+"bC" = (/obj/structure/bed/chair,/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bD" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/space/transit/north/shuttlespace_ns4,/area/space)
+"bE" = (/obj/structure/table,/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bF" = (/obj/item/explosive/grenade/chem_grenade/cleaner,/obj/item/explosive/grenade/chem_grenade/cleaner,/obj/item/explosive/grenade/chem_grenade/cleaner,/obj/item/explosive/grenade/chem_grenade/cleaner,/obj/item/explosive/grenade/chem_grenade/cleaner,/obj/item/explosive/grenade/chem_grenade/cleaner,/obj/item/explosive/grenade/chem_grenade/cleaner,/obj/item/explosive/grenade/chem_grenade/cleaner,/obj/item/explosive/grenade/chem_grenade/cleaner,/obj/item/explosive/grenade/chem_grenade/cleaner,/obj/structure/table,/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bG" = (/obj/machinery/computer/pod{id = "thunderdomeaxe"; name = "Thunderdome Axe Supply"},/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bH" = (/obj/machinery/computer/pod{id = "thunderdomegen"; name = "Thunderdome General Supply"},/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bI" = (/obj/machinery/computer/pod{id = "thunderdomehea"; name = "Thunderdome Heavy Supply"},/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bJ" = (/obj/machinery/computer/pod{id = "thunderdome"; name = "Thunderdome Blast Door Control"},/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bK" = (/obj/item/stack/medical/ointment,/obj/item/stack/medical/ointment,/obj/item/stack/medical/ointment,/obj/structure/table{icon_state = "tabledir"; dir = 9},/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bL" = (/obj/structure/table,/obj/item/stack/medical/bruise_pack,/obj/item/stack/medical/bruise_pack,/obj/item/stack/medical/bruise_pack,/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bM" = (/obj/structure/table,/obj/item/storage/box/handcuffs,/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bN" = (/obj/structure/table,/obj/item/storage/toolbox/electrical,/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bO" = (/obj/structure/table,/obj/item/storage/toolbox/mechanical,/turf/unsimulated/floor{icon_state = "redyellowfull"; dir = 5},/area/tdome/tdomeadmin)
+"bP" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/space/transit/north/shuttlespace_ns3,/area/space)
+"bQ" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/space/transit/north/shuttlespace_ns2,/area/space)
+"bR" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/space/transit/north/shuttlespace_ns1,/area/space)
+"bS" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/space/transit/north/shuttlespace_ns15,/area/space)
+"bT" = (/turf/space/transit/north/shuttlespace_ns4,/area/almayer/evacuation/stranded/pod1)
+"bU" = (/turf/space/transit/north/shuttlespace_ns4,/area/almayer/evacuation/stranded/pod2)
+"bV" = (/turf/space/transit/north/shuttlespace_ns4,/area/almayer/evacuation/stranded/pod5)
+"bW" = (/turf/space/transit/north/shuttlespace_ns4,/area/almayer/evacuation/stranded/pod6)
+"bX" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{name = "1"},/turf/space/transit/north/shuttlespace_ns4,/area/space)
+"bY" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{name = "2"},/turf/space/transit/north/shuttlespace_ns4,/area/space)
+"bZ" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{name = "5"},/turf/space/transit/north/shuttlespace_ns4,/area/space)
+"ca" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{name = "6"},/turf/space/transit/north/shuttlespace_ns4,/area/space)
+"cb" = (/obj/effect/engine_exhaust{dir = 1},/turf/space,/area/space)
+"cc" = (/obj/structure/shuttle/engine/propulsion{tag = "icon-propulsion (NORTH)"; icon_state = "propulsion"; dir = 1},/turf/space,/area/space)
+"cd" = (/turf/simulated/wall/r_wall/dense,/area/yautja)
+"ce" = (/turf/simulated/shuttle/wall{icon_state = "pwall"; dir = 1},/area/yautja)
+"cf" = (/turf/space/transit/north/shuttlespace_ns4,/area/almayer/evacuation/stranded/pod3)
+"cg" = (/turf/space/transit/north/shuttlespace_ns4,/area/almayer/evacuation/stranded/pod4)
+"ch" = (/turf/space/transit/north/shuttlespace_ns4,/area/almayer/evacuation/stranded/pod7)
+"ci" = (/turf/space/transit/north/shuttlespace_ns4,/area/almayer/evacuation/stranded/pod8)
+"cj" = (/obj/structure/shuttle/engine/heater{tag = "icon-heater (NORTH)"; icon_state = "heater"; dir = 1},/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
+"ck" = (/obj/structure/shuttle/engine/heater{tag = "icon-heater (NORTH)"; icon_state = "heater"; dir = 1},/obj/machinery/light/small{dir = 1},/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
+"cl" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
+"cm" = (/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
+"cn" = (/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
+"co" = (/obj/machinery/light/small,/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
+"cp" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/turf/simulated/wall/r_wall/dense,/area/yautja)
+"cq" = (/obj/structure/cable{d1 = 2; d2 = 4; icon_state = "2-4"},/obj/structure/cable{d1 = 4; d2 = 8; icon_state = "4-8"; pixel_x = 0},/turf/simulated/wall/r_wall/dense,/area/yautja)
+"cr" = (/obj/structure/cable{d1 = 2; d2 = 8; icon_state = "2-8"},/turf/simulated/wall/r_wall/dense,/area/yautja)
+"cs" = (/obj/machinery/door/airlock/secure{name = "Storage Chamber"},/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
+"ct" = (/obj/machinery/power/smes/magical{capacity = 9e+008; charge = 9e+008; dir = 4; name = "plasma power generator"},/obj/structure/cable,/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
+"cu" = (/obj/machinery/power/apc/almayer{dir = 1},/obj/structure/table/reinforced{layer = 2.69},/obj/structure/cable{tag = "icon-0-2"; icon_state = "0-2"},/obj/structure/cable,/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
+"cv" = (/obj/structure/table/reinforced{layer = 2.69},/obj/machinery/light/small{tag = "icon-bulb1 (NORTH)"; icon_state = "bulb1"; dir = 1},/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
+"cw" = (/obj/structure/table/reinforced{layer = 2.69},/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
+"cx" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{name = "3"},/turf/space/transit/north/shuttlespace_ns4,/area/space)
+"cy" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{name = "4"},/turf/space/transit/north/shuttlespace_ns4,/area/space)
+"cz" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{name = "7"},/turf/space/transit/north/shuttlespace_ns4,/area/space)
+"cA" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{name = "8"},/turf/space/transit/north/shuttlespace_ns4,/area/space)
+"cB" = (/obj/machinery/power/terminal{tag = "icon-term (NORTH)"; icon_state = "term"; dir = 1},/obj/machinery/light/small{dir = 8},/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
+"cC" = (/obj/machinery/power/terminal{tag = "icon-term (NORTH)"; icon_state = "term"; dir = 1},/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
+"cD" = (/obj/structure/shuttle/engine/heater{tag = "icon-heater (NORTH)"; icon_state = "heater"; dir = 1},/obj/machinery/light/small{tag = "icon-bulb1 (NORTH)"; icon_state = "bulb1"; dir = 1},/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
+"cE" = (/obj/structure/ore_box,/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
+"cF" = (/obj/structure/rack,/obj/item/device/flashlight/lantern,/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
+"cG" = (/obj/structure/rack,/obj/item/weapon/twohanded/spear,/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
+"cH" = (/obj/structure/rack,/obj/item/device/flashlight/lantern,/obj/item/device/flashlight/lantern,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"cI" = (/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"cJ" = (/turf/simulated/shuttle/floor{icon_state = "floor6"},/area/yautja)
+"cK" = (/obj/machinery/light/small{tag = "icon-bulb1 (NORTH)"; icon_state = "bulb1"; dir = 1},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"cL" = (/obj/structure/rack,/obj/item/device/healthanalyzer,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"cM" = (/obj/structure/table/reinforced,/obj/item/device/flashlight/lantern,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"cN" = (/obj/structure/table/reinforced,/obj/item/storage/backpack/yautja,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"cO" = (/obj/structure/rack,/obj/machinery/light/small{dir = 8},/obj/item/device/flashlight/lantern,/obj/item/device/flashlight/lantern,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"cP" = (/obj/structure/rack,/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"cQ" = (/obj/structure/table/reinforced{layer = 2.69},/obj/item/device/flashlight/lantern,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"cR" = (/obj/structure/table/reinforced{layer = 2.69},/obj/item/reagent_container/hypospray/autoinjector/yautja,/obj/item/reagent_container/hypospray/autoinjector/yautja,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"cS" = (/obj/structure/table/reinforced{layer = 2.69},/obj/item/weapon/yautja_knife,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"cT" = (/obj/structure/bed/alien,/obj/effect/landmark{name = "pred_elder_spawn"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"cU" = (/obj/structure/table/reinforced,/obj/item/tool/surgery/retractor/predatorretractor,/obj/item/tool/surgery/circular_saw/predatorbonesaw,/obj/item/tool/surgery/cautery/predatorcautery,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"cV" = (/obj/machinery/light/small{tag = "icon-bulb1 (NORTH)"; icon_state = "bulb1"; dir = 1},/obj/machinery/optable,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"cW" = (/obj/structure/table/reinforced,/obj/item/tool/surgery/bonegel/predatorbonegel,/obj/item/tool/surgery/hemostat/predatorhemostat,/obj/item/tool/surgery/bonesetter/predatorbonesetter,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"cX" = (/obj/structure/table/reinforced,/obj/item/tank/anesthetic,/obj/item/clothing/mask/breath/medical,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"cY" = (/obj/structure/bed/alien,/obj/effect/landmark{name = "pred_spawn"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"cZ" = (/obj/structure/rack,/obj/item/storage/box/lights/bulbs,/obj/item/storage/box/lights/bulbs,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"da" = (/obj/machinery/light/small{tag = "icon-bulb1 (WEST)"; icon_state = "bulb1"; dir = 8},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"db" = (/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dc" = (/obj/structure/bed/alien,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dd" = (/obj/structure/table/reinforced{layer = 2.69},/obj/structure/window/reinforced{dir = 8},/obj/machinery/door/window/southleft,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"de" = (/turf/space/transit/north/shuttlespace_ns4,/area/almayer/evacuation/stranded/pod9)
+"df" = (/turf/space/transit/north/shuttlespace_ns4,/area/almayer/evacuation/stranded/pod10)
+"dg" = (/turf/space/transit/north/shuttlespace_ns4,/area/almayer/evacuation/stranded/pod11)
+"dh" = (/obj/structure/table/reinforced,/obj/item/tool/surgery/surgicaldrill/predatorsurgicaldrill,/obj/item/tool/surgery/scalpel/predatorscalpel,/obj/item/tool/surgery/FixOVein/predatorFixOVein,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"di" = (/obj/machinery/door/airlock/secure{name = "\improper Operation Room"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dj" = (/obj/machinery/door/airlock/secure{name = "Youngblood Quarters"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dk" = (/obj/machinery/light/small{dir = 8},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dl" = (/obj/machinery/door/airlock/secure{name = "Elder Quarters"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dm" = (/obj/structure/table/reinforced{layer = 2.69},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4; health = 80},/obj/machinery/door/window/southleft{dir = 1; icon_state = "left"; layer = 2.8; tag = "icon-left (NORTH)"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dn" = (/obj/structure/rack,/obj/item/storage/backpack/yautja,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"do" = (/obj/machinery/door/airlock/secure{name = "\improper Houndmaster's Quarters"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dp" = (/obj/machinery/atmospherics/unary/cryo_cell,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dq" = (/obj/machinery/atmospherics/unary/freezer{dir = 2; icon_state = "freezer_1"; on = 1; set_temperature = 1},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dr" = (/obj/structure/rack,/obj/item/reagent_container/food/snacks/meat,/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
+"ds" = (/obj/structure/rack,/obj/item/reagent_container/food/snacks/meat,/obj/item/reagent_container/food/snacks/xenomeat{pixel_x = -6; pixel_y = -5},/turf/simulated/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
+"dt" = (/obj/machinery/atmospherics/pipe/simple/visible{tag = "icon-intact (NORTHEAST)"; icon_state = "intact"; dir = 5},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"du" = (/obj/machinery/atmospherics/pipe/manifold/visible,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dv" = (/obj/machinery/atmospherics/pipe/manifold4w/visible,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dw" = (/obj/machinery/atmospherics/pipe/simple/visible{tag = "icon-intact (NORTHWEST)"; icon_state = "intact"; dir = 9},/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dx" = (/obj/structure/table/reinforced,/obj/item/stack/medical/splint{name = "splints"},/obj/item/stack/medical/splint{name = "splints"},/obj/item/stack/medical/splint{name = "splints"},/obj/machinery/light/small{dir = 8},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dy" = (/obj/structure/table/reinforced,/obj/item/stack/medical/bruise_pack/tajaran{name = "mending herbs"},/obj/item/stack/medical/bruise_pack/tajaran{name = "mending herbs"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dz" = (/obj/structure/table/reinforced{layer = 2.69},/obj/machinery/door/window/southleft,/obj/structure/window/reinforced{dir = 4; health = 80},/obj/structure/window/reinforced{dir = 8},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dA" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{name = "10"},/turf/space/transit/north/shuttlespace_ns4,/area/space)
+"dB" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{name = "11"},/turf/space/transit/north/shuttlespace_ns4,/area/space)
+"dC" = (/obj/machinery/atmospherics/pipe/simple/visible,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dD" = (/obj/machinery/door/airlock/secure,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dE" = (/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/obj/structure/table/reinforced,/obj/item/stack/medical/ointment/tajaran{name = "soothing herbs"},/obj/item/stack/medical/ointment/tajaran{name = "soothing herbs"},/obj/item/stack/medical/ointment/tajaran{name = "soothing herbs"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dF" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_trg/evacuation{name = "9"},/turf/space/transit/north/shuttlespace_ns4,/area/space)
+"dG" = (/obj/machinery/atmospherics/pipe/manifold/visible{dir = 8},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dH" = (/obj/machinery/atmospherics/pipe/simple/visible{dir = 10; icon_state = "intact"; tag = "icon-intact (NORTHWEST)"},/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dI" = (/obj/machinery/light/small{dir = 8},/obj/structure/table/reinforced,/obj/item/stack/medical/ointment/tajaran{name = "soothing herbs"},/obj/item/stack/medical/bruise_pack/tajaran{name = "mending herbs"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dJ" = (/obj/structure/table/reinforced,/obj/item/stack/medical/bruise_pack/tajaran{name = "mending herbs"},/obj/item/stack/medical/bruise_pack/tajaran{name = "mending herbs"},/obj/item/stack/medical/bruise_pack/tajaran{name = "mending herbs"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dK" = (/obj/structure/table/reinforced,/obj/item/tool/wrench,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dL" = (/obj/structure/table/reinforced,/obj/item/reagent_container/glass/beaker/cryopredmix,/obj/item/reagent_container/glass/beaker/cryopredmix,/obj/item/reagent_container/glass/beaker/cryopredmix,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dM" = (/obj/machinery/portable_atmospherics/canister/oxygen,/obj/machinery/atmospherics/portables_connector{dir = 1},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dN" = (/obj/machinery/light/small,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dO" = (/obj/machinery/door/airlock/secure{name = "\improper Medicine Room"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dP" = (/obj/machinery/autolathe/yautja,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dQ" = (/obj/structure/rack{layer = 2.79},/obj/item/stack/sheet/plasteel{amount = 30},/obj/item/stack/sheet/metal{amount = 50},/obj/item/stack/sheet/metal{amount = 50},/obj/item/stack/sheet/mineral/sandstone{amount = 50},/obj/item/stack/sheet/glass{amount = 50},/obj/machinery/light/small{tag = "icon-bulb1 (NORTH)"; icon_state = "bulb1"; dir = 1},/obj/item/stack/sheet/mineral/sandstone{amount = 50},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dR" = (/obj/machinery/door/airlock/secure{name = "\improper Hellhound Quarters"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dS" = (/obj/machinery/light/small,/turf/simulated/shuttle/floor{icon_state = "floor6"},/area/yautja)
+"dT" = (/turf/simulated/wall/almayer/outer{name = "reinforced hull"},/area/space)
+"dU" = (/turf/simulated/floor/almayer,/area/space)
+"dV" = (/turf/unsimulated/wall,/area/space)
+"dW" = (/obj/item/clothing/mask/gas/yautja,/obj/structure/window/reinforced{dir = 4},/obj/machinery/door/window/northright{icon_state = "right"; dir = 2},/obj/structure/table/reinforced{layer = 2.69},/obj/item/clothing/suit/armor/yautja,/obj/item/clothing/shoes/yautja,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dX" = (/obj/item/clothing/mask/gas/yautja,/obj/structure/window/reinforced{dir = 8; health = 80},/obj/structure/window/reinforced{dir = 4},/obj/machinery/door/window/northright{icon_state = "right"; dir = 2},/obj/structure/table/reinforced{layer = 2.69},/obj/item/clothing/suit/armor/yautja,/obj/item/clothing/shoes/yautja,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dY" = (/obj/item/clothing/mask/gas/yautja,/obj/structure/window/reinforced{dir = 8; health = 80},/obj/machinery/door/window/northright{icon_state = "right"; dir = 2},/obj/structure/table/reinforced{layer = 2.69},/obj/item/clothing/suit/armor/yautja,/obj/item/clothing/shoes/yautja,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dZ" = (/obj/effect/step_trigger/teleporter/yautja_ship,/turf/simulated/floor/light,/area/yautja)
+"ea" = (/obj/structure/shuttle/window,/turf/simulated/shuttle/floor{icon_state = "floor6"},/area/yautja)
+"eb" = (/obj/structure/table/reinforced,/obj/item/clothing/head/helmet/space/vox/pressure{anchored = 1},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"ec" = (/obj/structure/table/reinforced,/obj/item/weapon/twohanded/dualsaber,/obj/structure/window/reinforced{dir = 8; health = 80},/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"ed" = (/obj/structure/table/reinforced,/obj/item/weapon/katana,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8; health = 80},/obj/structure/window/reinforced,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"ee" = (/obj/structure/table/reinforced,/obj/structure/window/reinforced{dir = 4},/obj/structure/window/reinforced{dir = 8; health = 80},/obj/structure/window/reinforced,/obj/item/clothing/mask/gas/voice/space_ninja{desc = "A close-fitting mask that appears to only cover half of the face. One can only wonder who would make such a thing."; name = "strange half-mask"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"ef" = (/obj/structure/table/reinforced,/obj/structure/window/reinforced{dir = 8; health = 80},/obj/structure/window/reinforced,/obj/item/teleportation_scroll{desc = "A scroll written in some ancient language. One can only guess what it orignally said."; name = "ancient scroll"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"eg" = (/turf/simulated/floor/almayer/plating/catwalk,/area/supply/dock)
+"eh" = (/obj/structure/window/reinforced,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"ei" = (/turf/simulated/floor/almayer/plating{tag = "icon-test_floor5"; icon_state = "test_floor5"},/area/supply/dock)
+"ej" = (/obj/structure/table/reinforced{layer = 2.69},/obj/item/clothing/mask/gas/yautja,/obj/structure/window/reinforced{dir = 8; health = 80},/obj/machinery/door/window/northright{icon_state = "right"; dir = 2},/obj/item/clothing/suit/armor/yautja,/obj/item/clothing/shoes/yautja,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"ek" = (/obj/machinery/door/airlock/centcom{name = "Airlock Out"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"el" = (/obj/machinery/door/airlock/centcom,/turf/simulated/floor/almayer,/area/space)
+"em" = (/turf/simulated/floor/wood,/area/space)
+"en" = (/obj/item/legcuffs/yautja,/obj/item/legcuffs/yautja,/obj/item/legcuffs/yautja,/obj/item/legcuffs/yautja,/obj/item/legcuffs/yautja,/obj/item/legcuffs/yautja,/obj/item/legcuffs/yautja,/obj/structure/rack{layer = 2.79},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"eo" = (/obj/structure/xenoautopsy/tank,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"ep" = (/obj/structure/rack,/obj/item/device/encryptionkey/yautja,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"eq" = (/obj/structure/rack,/obj/item/reagent_container/food/snacks/meat,/obj/item/reagent_container/food/snacks/xenomeat{pixel_x = -6; pixel_y = -5},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"er" = (/obj/structure/xenoautopsy/tank/hugger,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"es" = (/turf/simulated/floor/almayer{tag = "icon-blue (NORTHWEST)"; icon_state = "blue"; dir = 9},/area/space)
+"et" = (/turf/simulated/floor/almayer{tag = "icon-blue (NORTHEAST)"; icon_state = "blue"; dir = 5},/area/space)
+"eu" = (/obj/structure/reagent_dispensers/watertank{desc = "A tank with a label on the side. It reads: Marine Tears - 100% naturally cultivated."; name = "Marine Tears"},/turf/simulated/floor/almayer{tag = "icon-test_floor4"; icon_state = "test_floor4"},/area/space)
+"ev" = (/turf/simulated/floor/almayer{tag = "icon-blue (NORTH)"; icon_state = "blue"; dir = 1},/area/space)
+"ew" = (/obj/structure/rack{layer = 2.79},/obj/item/explosive/grenade/spawnergrenade/smartdisc,/obj/item/explosive/grenade/spawnergrenade/smartdisc,/obj/item/explosive/grenade/spawnergrenade/smartdisc,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"ex" = (/obj/structure/xenoautopsy/tank/alien,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"ey" = (/obj/structure/rack,/obj/item/reagent_container/food/snacks/meat,/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"ez" = (/obj/structure/rack,/obj/item/reagent_container/food/snacks/xenomeat,/obj/machinery/light/small{dir = 8},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"eA" = (/obj/structure/xenoautopsy/tank/larva,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"eB" = (/obj/machinery/hologram/holopad,/turf/simulated/floor/almayer,/area/space)
+"eC" = (/turf/simulated/floor/almayer{tag = "icon-blue (EAST)"; icon_state = "blue"; dir = 4},/area/space)
+"eD" = (/turf/simulated/floor/almayer{tag = "icon-blue (WEST)"; icon_state = "blue"; dir = 8},/area/space)
+"eE" = (/obj/structure/bookcase{icon_state = "book-5"; name = "\improper Mentor's Guide Bookcase"},/turf/simulated/floor/wood,/area/space)
+"eF" = (/obj/structure/window/framed/almayer/hull{name = "ultra-reinforced window"},/turf/simulated/floor/plating,/area/space)
+"eG" = (/obj/structure/rack,/obj/item/weapon/yautja_knife,/obj/item/reagent_container/hypospray/autoinjector/yautja,/obj/machinery/light/small{tag = "icon-bulb1 (WEST)"; icon_state = "bulb1"; dir = 8},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"eH" = (/obj/structure/rack,/obj/item/weapon/yautja_knife,/obj/item/reagent_container/hypospray/autoinjector/yautja,/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"eI" = (/obj/structure/xenoautopsy/tank,/obj/machinery/light/small{dir = 8},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"eJ" = (/obj/structure/rack,/obj/item/reagent_container/food/snacks/meat,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"eK" = (/obj/structure/rack,/obj/item/reagent_container/food/snacks/meat,/obj/item/reagent_container/food/snacks/meat{pixel_x = -2; pixel_y = -2},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"eL" = (/obj/structure/xenoautopsy/tank,/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"eM" = (/obj/structure/rack,/obj/item/weapon/harpoon/yautja{pixel_y = -2},/obj/item/weapon/harpoon/yautja,/obj/item/weapon/harpoon/yautja,/obj/item/weapon/harpoon/yautja,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"eN" = (/obj/structure/rack,/obj/item/weapon/harpoon/yautja{pixel_x = -4; pixel_y = -3},/obj/item/weapon/harpoon/yautja{pixel_x = 4; pixel_y = 6},/obj/item/weapon/harpoon/yautja,/obj/item/weapon/harpoon/yautja,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"eO" = (/obj/machinery/door/airlock/secure{name = "Central Chamber"},/turf/simulated/shuttle/floor{icon_state = "floor6"},/area/yautja)
+"eP" = (/turf/simulated/floor/almayer{tag = "icon-bluecorner"; icon_state = "bluecorner"},/area/space)
+"eQ" = (/turf/simulated/floor/almayer{tag = "icon-blue"; icon_state = "blue"},/area/space)
+"eR" = (/turf/simulated/floor/almayer{tag = "icon-blue (SOUTHEAST)"; icon_state = "blue"; dir = 6},/area/space)
+"eS" = (/turf/simulated/floor/carpet{tag = "icon-carpetside (NORTHWEST)"; icon_state = "carpetside"; dir = 9},/area/space)
+"eT" = (/obj/structure/bed/chair/wood/normal{tag = "icon-wooden_chair (EAST)"; icon_state = "wooden_chair"; dir = 4},/turf/simulated/floor/carpet{tag = "icon-carpetside (NORTH)"; icon_state = "carpetside"; dir = 1},/area/space)
+"eU" = (/obj/structure/table/woodentable,/turf/simulated/floor/carpet{tag = "icon-carpetside (NORTH)"; icon_state = "carpetside"; dir = 1},/area/space)
+"eV" = (/obj/structure/bed/chair/wood/normal{tag = "icon-wooden_chair (WEST)"; icon_state = "wooden_chair"; dir = 8},/turf/simulated/floor/carpet{tag = "icon-carpetside (NORTH)"; icon_state = "carpetside"; dir = 1},/area/space)
+"eW" = (/turf/simulated/floor/carpet{tag = "icon-carpetside (NORTH)"; icon_state = "carpetside"; dir = 1},/area/space)
+"eX" = (/turf/simulated/floor/carpet{tag = "icon-carpetside (NORTHEAST)"; icon_state = "carpetside"; dir = 5},/area/space)
+"eY" = (/obj/machinery/door/airlock/secure{name = "Storage Chamber"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"eZ" = (/obj/machinery/door/airlock/centcom{name = "\improper Marine Tear Storage"},/turf/simulated/floor/almayer,/area/space)
+"fa" = (/obj/structure/bed/chair/comfy/teal{tag = "icon-comfychair (EAST)"; icon_state = "comfychair"; dir = 4},/turf/simulated/floor/almayer,/area/space)
+"fb" = (/obj/structure/table/reinforced,/obj/item/storage/briefcase{name = "Apophis' Briefcase"},/turf/simulated/floor/almayer,/area/space)
+"fc" = (/obj/structure/bed/chair/comfy/teal{tag = "icon-comfychair (WEST)"; icon_state = "comfychair"; dir = 8},/turf/simulated/floor/almayer,/area/space)
+"fd" = (/turf/simulated/floor/carpet{tag = "icon-carpetside (WEST)"; icon_state = "carpetside"; dir = 8},/area/space)
+"fe" = (/obj/structure/bed/chair/wood/normal{tag = "icon-wooden_chair (EAST)"; icon_state = "wooden_chair"; dir = 4},/turf/simulated/floor/carpet,/area/space)
+"ff" = (/obj/structure/table/woodentable,/turf/simulated/floor/carpet,/area/space)
+"fg" = (/obj/structure/bed/chair/wood/normal{tag = "icon-wooden_chair (WEST)"; icon_state = "wooden_chair"; dir = 8},/turf/simulated/floor/carpet,/area/space)
+"fh" = (/turf/simulated/floor/carpet,/area/space)
+"fi" = (/turf/simulated/floor/carpet{tag = "icon-carpetside (EAST)"; icon_state = "carpetside"; dir = 4},/area/space)
+"fj" = (/turf/unsimulated/wall,/area/centcom/control)
+"fk" = (/turf/unsimulated/wall,/area/centcom/living)
+"fl" = (/obj/structure/table/reinforced,/obj/effect/decal/warning_stripes,/obj/structure/window/reinforced{dir = 4},/obj/machinery/door/window/southleft{layer = 2.8},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"fm" = (/obj/structure/table/reinforced,/obj/effect/decal/warning_stripes,/obj/structure/window/reinforced{dir = 8},/obj/machinery/door/window/southleft{layer = 2.8},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"fn" = (/obj/machinery/power/am_control_unit,/turf/simulated/floor/almayer{icon_state = "ai_floors"; tag = "icon-sterile"},/area/space)
+"fo" = (/turf/simulated/floor/almayer{icon_state = "ai_floors"; tag = "icon-sterile"},/area/space)
+"fp" = (/obj/machinery/power/breakerbox/activated,/turf/simulated/floor/almayer{icon_state = "ai_floors"; tag = "icon-sterile"},/area/space)
+"fq" = (/turf/simulated/floor/almayer{tag = "icon-bluecorner (EAST)"; icon_state = "bluecorner"; dir = 4},/area/space)
+"fr" = (/obj/structure/showcase{desc = "A statue covered in blue armor, it's face plate sends chills up your spine. It is almost like it knows you are not supposed to be here."; name = "Statue"},/turf/simulated/floor/almayer{tag = "icon-bluefull"; icon_state = "bluefull"},/area/space)
+"fs" = (/obj/structure/table/reinforced,/obj/item/clipboard,/obj/item/tool/pen,/turf/simulated/floor/almayer,/area/space)
+"ft" = (/obj/structure/showcase{desc = "A statue covered in blue armor, it's face plate sends chills up your spine. It is almost like it knows you are not supposed to be here."; name = "Statue"},/turf/simulated/floor/vault,/area/space)
+"fu" = (/obj/structure/holowindow,/turf/simulated/floor/vault,/area/space)
+"fv" = (/obj/machinery/telecomms/receiver/preset_cent,/turf/unsimulated/floor{icon_state = "green"; dir = 9},/area/centcom/control)
+"fw" = (/obj/machinery/telecomms/bus/preset_cent,/turf/unsimulated/floor{icon_state = "green"; dir = 1},/area/centcom/control)
+"fx" = (/obj/machinery/telecomms/processor/preset_cent,/turf/unsimulated/floor{icon_state = "green"; dir = 1},/area/centcom/control)
+"fy" = (/obj/machinery/telecomms/server/presets/centcomm,/turf/unsimulated/floor{icon_state = "green"; dir = 1},/area/centcom/control)
+"fz" = (/obj/machinery/account_database{name = "CentComm Accounts database"},/turf/unsimulated/floor{icon_state = "green"; dir = 5},/area/centcom/control)
+"fA" = (/obj/structure/bed/chair/wood/wings,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"fB" = (/obj/structure/AIcore,/turf/simulated/floor/almayer{icon_state = "ai_floors"; tag = "icon-sterile"},/area/space)
+"fC" = (/obj/machinery/hologram/holopad,/turf/simulated/floor/almayer{icon_state = "ai_floors"; tag = "icon-sterile"},/area/space)
+"fD" = (/obj/machinery/door/airlock/almayer/generic{dir = 1; name = "\improper AI Core Room"; req_access_txt = "19"},/turf/simulated/floor/almayer{icon_state = "ai_floors"; tag = "icon-sterile"},/area/space)
+"fE" = (/obj/machinery/door/airlock/centcom{name = "\improper Meeting Room"},/turf/simulated/floor/almayer,/area/space)
+"fF" = (/obj/structure/table/reinforced,/obj/item/folder/yellow,/turf/simulated/floor/almayer,/area/space)
+"fG" = (/obj/machinery/door/airlock/vault,/turf/simulated/floor/vault,/area/space)
+"fH" = (/turf/simulated/floor/vault,/area/space)
+"fI" = (/obj/structure/safe{desc = "A huge chunk of metal with a dial embedded in it. Fine print on the dial reads \"Developer Secrets, do not open without at least two development team members present and permission from the host and head-dev.\""},/turf/simulated/floor/vault,/area/space)
+"fJ" = (/obj/structure/prop/almayer/ship_memorial{desc = "A memorial to all Development Team members that have retired from working on CM. No mentor names are present."; name = "slab of remembrance"},/turf/simulated/floor/carpet,/area/space)
+"fK" = (/obj/structure/flora/pottedplant{tag = "icon-plant-10"; icon_state = "plant-10"},/obj/machinery/hologram/holopad,/turf/simulated/floor/carpet,/area/space)
+"fL" = (/obj/structure/prop/almayer/ship_memorial{desc = "A memorial to all Admins and Moderators who have retired from CM. No mentor names are present."; name = "slab of remembrance"},/turf/simulated/floor/carpet,/area/space)
+"fM" = (/obj/machinery/telecomms/relay/preset/centcom,/turf/unsimulated/floor{icon_state = "green"; dir = 8},/area/centcom/control)
+"fN" = (/turf/unsimulated/floor{icon_state = "floor"},/area/centcom/control)
+"fO" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (EAST)"; icon_state = "wooden_chair_wings"; dir = 4},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"fP" = (/obj/structure/table/reinforced,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"fQ" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (WEST)"; icon_state = "wooden_chair_wings"; dir = 8},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"fR" = (/obj/structure/table/reinforced,/obj/effect/decal/warning_stripes,/obj/structure/window/reinforced{dir = 1},/obj/structure/window/reinforced,/obj/structure/window/reinforced{dir = 4; health = 80},/obj/machinery/door/window/southleft{dir = 8; icon_state = "left"; layer = 2.8; tag = "icon-left (WEST)"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"fS" = (/obj/mecha/combat/gygax/dark{desc = "Physical suit used by Snypehunter007. It appears to be well-maintained and ready for use at any time."; name = "M.A.P.P.I.N.G. Suit"},/turf/simulated/floor/mech_bay_recharge_floor,/area/space)
+"fT" = (/obj/structure/table/reinforced,/turf/simulated/floor/almayer,/area/space)
+"fU" = (/obj/structure/holowindow{tag = "icon-rwindow (NORTH)"; icon_state = "rwindow"; dir = 1},/turf/simulated/floor/vault,/area/space)
+"fV" = (/turf/unsimulated/floor{icon_state = "green"; dir = 8},/area/centcom/control)
+"fW" = (/obj/machinery/door/airlock/secure{name = "\improper Meeting Chamber"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"fX" = (/obj/machinery/door/airlock/secure{name = "Trophy Room"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"fY" = (/obj/structure/table/reinforced,/obj/item/paper_bin,/obj/item/tool/pen,/turf/simulated/floor/almayer,/area/space)
+"fZ" = (/obj/machinery/telecomms/allinone/interceptor,/turf/unsimulated/floor{icon_state = "green"; dir = 10},/area/centcom/control)
+"ga" = (/obj/machinery/telecomms/broadcaster/preset_cent,/turf/unsimulated/floor{icon_state = "green"},/area/centcom/control)
+"gb" = (/obj/machinery/telecomms/hub/preset_cent,/turf/unsimulated/floor{icon_state = "green"},/area/centcom/control)
+"gc" = (/obj/machinery/computer/rdservercontrol{badmin = 1; name = "Master R&amp;D Server Controller"},/turf/unsimulated/floor{icon_state = "green"},/area/centcom/control)
+"gd" = (/obj/machinery/r_n_d/server/centcom,/turf/unsimulated/floor{icon_state = "green"; dir = 6},/area/centcom/control)
+"ge" = (/obj/effect/decal/mecha_wreckage/phazon{desc = "Physical suit used by Snypehunter007. It appears to have completely fallen apart."; name = "A.D.M.I.N. Suit"},/turf/simulated/floor/mech_bay_recharge_floor,/area/space)
+"gf" = (/obj/effect/decal/mecha_wreckage/gygax{desc = "Physical suit used by Snypehunter007. It appears to have completely fallen apart."; name = "M.O.D.E.R.A.T.O.R Suit"},/turf/simulated/floor/mech_bay_recharge_floor,/area/space)
+"gg" = (/obj/effect/decal/mecha_wreckage/mauler{desc = "Physical suit used by Snypehunter007. It appears to have completely fallen apart."; name = "S.U.G.G.E.S.T.I.O.N. Suit"},/turf/simulated/floor/mech_bay_recharge_floor,/area/space)
+"gh" = (/turf/simulated/floor/carpet{tag = "icon-carpetside (SOUTHWEST)"; icon_state = "carpetside"; dir = 10},/area/space)
+"gi" = (/obj/structure/bed/chair/wood/normal{tag = "icon-wooden_chair (EAST)"; icon_state = "wooden_chair"; dir = 4},/turf/simulated/floor/carpet{icon_state = "carpetside"},/area/space)
+"gj" = (/obj/structure/table/woodentable,/turf/simulated/floor/carpet{icon_state = "carpetside"},/area/space)
+"gk" = (/obj/structure/bed/chair/wood/normal{tag = "icon-wooden_chair (WEST)"; icon_state = "wooden_chair"; dir = 8},/turf/simulated/floor/carpet{icon_state = "carpetside"},/area/space)
+"gl" = (/turf/simulated/floor/carpet{icon_state = "carpetside"},/area/space)
+"gm" = (/turf/simulated/floor/carpet{tag = "icon-carpetside (SOUTHEAST)"; icon_state = "carpetside"; dir = 6},/area/space)
+"gn" = (/obj/structure/bed/chair/wood/wings{tag = "icon-wooden_chair_wings (NORTH)"; icon_state = "wooden_chair_wings"; dir = 1},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"go" = (/obj/machinery/door/airlock/centcom{name = "\improper Suit Storage and Repair"},/turf/simulated/floor/almayer,/area/space)
+"gp" = (/obj/structure/table/reinforced,/obj/effect/decal/warning_stripes,/obj/structure/window/reinforced{dir = 4; health = 80},/obj/machinery/door/window/southleft{dir = 1; icon_state = "left"; layer = 2.8; tag = "icon-left (NORTH)"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gq" = (/obj/structure/table/reinforced,/obj/effect/decal/warning_stripes,/obj/structure/window/reinforced{dir = 8},/obj/machinery/door/window/southleft{dir = 1; icon_state = "left"; layer = 2.8; tag = "icon-left (NORTH)"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gr" = (/obj/structure/bookcase{icon_state = "book-5"},/turf/simulated/floor/wood,/area/space)
+"gs" = (/obj/structure/table/reinforced,/obj/effect/spawner/random/tool,/turf/simulated/floor/almayer,/area/space)
+"gt" = (/obj/structure/table/reinforced,/obj/effect/spawner/random/technology_scanner,/turf/simulated/floor/almayer,/area/space)
+"gu" = (/turf/simulated/floor/almayer{tag = "icon-blue (SOUTHWEST)"; icon_state = "blue"; dir = 10},/area/space)
+"gv" = (/obj/structure/table/reinforced,/obj/item/tool/kitchen/utensil/spoon,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gw" = (/obj/item/reagent_container/food/snacks/stew,/obj/structure/table/reinforced,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gx" = (/obj/item/reagent_container/food/snacks/stew,/obj/structure/table/reinforced,/obj/machinery/light/small{tag = "icon-bulb1 (NORTH)"; icon_state = "bulb1"; dir = 1},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gy" = (/obj/machinery/door/airlock/secure{name = "Practice Chamber"},/turf/simulated/shuttle/floor{icon_state = "floor6"},/area/yautja)
+"gz" = (/obj/machinery/light/small{dir = 8},/obj/structure/table/reinforced,/obj/item/clothing/shoes/combat,/obj/item/clothing/under/gladiator,/obj/item/clothing/gloves/combat,/obj/item/clothing/head/helmet/gladiator,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gA" = (/obj/structure/table/reinforced,/obj/item/device/assembly/voice,/obj/item/device/assembly/voice,/obj/item/weapon/baton/cattleprod,/obj/item/weapon/baton/cattleprod,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gB" = (/obj/structure/table/reinforced,/obj/item/clothing/mask/muzzle,/obj/item/clothing/mask/muzzle,/obj/item/clothing/mask/muzzle,/obj/item/clothing/mask/muzzle,/obj/item/clothing/mask/muzzle,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gC" = (/obj/machinery/door/airlock/freezer{name = "\improper Cooler Room"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gD" = (/obj/structure/window/reinforced{dir = 5; health = 80},/obj/structure/grille,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gE" = (/obj/machinery/door/airlock/glass{id = "Prisoner Cell 1"; name = "\improper Prisoner Cell 1"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gF" = (/obj/machinery/door_display/research_cell{id = "Prisoner Cell 1"},/turf/simulated/wall/r_wall/dense,/area/yautja)
+"gG" = (/obj/machinery/door/airlock/glass{id = "Prisoner Cell 2"; name = "\improper Prisoner Cell 2"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gH" = (/obj/machinery/door_display/research_cell{id = "Prisoner Cell 2"},/turf/simulated/wall/r_wall/dense,/area/yautja)
+"gI" = (/obj/machinery/door/airlock/glass{id = "Prisoner Cell 3"; name = "\improper Prisoner Cell 3"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gJ" = (/obj/machinery/door_display/research_cell{id = "Prisoner Cell 3"},/turf/simulated/wall/r_wall/dense,/area/yautja)
+"gK" = (/obj/structure/closet,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gL" = (/obj/machinery/door/airlock/secure{name = "\improper Feeder Room"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gM" = (/obj/structure/table/reinforced,/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gN" = (/obj/machinery/door/airlock/secure{name = "\improper Feed Hall"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gO" = (/obj/machinery/light/small{dir = 1},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gP" = (/obj/machinery/door/airlock/secure{name = "\improper Containment Cells"},/turf/simulated/shuttle/floor{icon_state = "floor6"},/area/yautja)
+"gQ" = (/obj/machinery/door/airlock/secure{name = "\improper Wargear Storage"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gR" = (/obj/machinery/light/small{tag = "icon-bulb1 (EAST)"; icon_state = "bulb1"; dir = 4},/obj/structure/table/reinforced,/obj/item/weapon/claymore/mercsword,/obj/item/weapon/claymore/mercsword,/obj/item/weapon/claymore/mercsword,/obj/item/weapon/claymore/mercsword,/obj/item/weapon/claymore/mercsword,/obj/item/weapon/claymore/mercsword,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gS" = (/turf/unsimulated/wall/other,/area/space)
+"gT" = (/obj/machinery/door/airlock/glass{name = "\improper Fighting Pit"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gU" = (/turf/simulated/shuttle/wall/ert{icon_state = "stan20"},/area/shuttle/distress_start)
+"gV" = (/turf/simulated/shuttle/wall/ert{icon_state = "stan27"},/area/shuttle/distress_start)
+"gW" = (/turf/simulated/shuttle/wall/ert{icon_state = "stan25"},/area/shuttle/distress_start)
+"gX" = (/obj/structure/kitchenspike,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gY" = (/obj/machinery/light/small,/obj/structure/kitchenspike,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"gZ" = (/obj/machinery/door/airlock/glass{id = "Prisoner Cell 4"; name = "\improper Prisoner Cell 4"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"ha" = (/obj/machinery/door_display/research_cell{id = "Prisoner Cell 4"},/turf/simulated/wall/r_wall/dense,/area/yautja)
+"hb" = (/obj/machinery/door/airlock/glass{id = "Prisoner Cell 5"; name = "\improper Prisoner Cell 5"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"hc" = (/obj/machinery/door_display/research_cell{id = "Prisoner Cell 5"},/turf/simulated/wall/r_wall/dense,/area/yautja)
+"hd" = (/obj/machinery/door/airlock/glass{id = "Prisoner Cell 6"; name = "\improper Prisoner Cell 6"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"he" = (/obj/machinery/door_display/research_cell{id = "Prisoner Cell 6"},/turf/simulated/wall/r_wall/dense,/area/yautja)
+"hf" = (/turf/unsimulated/wall,/area/start)
+"hg" = (/turf/unsimulated/wall,/area/centcom/solitary)
+"hh" = (/turf/simulated/shuttle/wall/ert{icon_state = "stan21"},/area/shuttle/distress_start)
+"hi" = (/turf/simulated/shuttle/wall/ert{icon_state = "stan22"},/area/shuttle/distress_start)
+"hj" = (/turf/simulated/shuttle/floor/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress_start)
+"hk" = (/turf/simulated/shuttle/wall/ert{icon_state = "stan23"},/area/shuttle/distress_start)
+"hl" = (/obj/structure/bed,/turf/unsimulated/floor{icon_state = "floorscorched1"},/area/centcom/solitary)
+"hm" = (/obj/effect/decal/cleanable/cobweb2,/turf/unsimulated/floor{icon_state = "platingdmg1"},/area/centcom/solitary)
+"hn" = (/obj/structure/bed,/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/centcom/solitary)
+"ho" = (/turf/unsimulated/floor{icon_state = "panelscorched"},/area/centcom/solitary)
+"hp" = (/obj/effect/decal/cleanable/blood,/turf/unsimulated/wall,/area/centcom/solitary)
+"hq" = (/turf/unsimulated/floor{icon_state = "platingdmg3"},/area/centcom/solitary)
+"hr" = (/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/centcom/solitary)
+"hs" = (/obj/effect/decal/cleanable/cobweb2,/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/centcom/solitary)
+"ht" = (/obj/structure/bed,/turf/unsimulated/floor{icon_state = "floorscorched2"},/area/centcom/solitary)
+"hu" = (/obj/effect/decal/cleanable/blood,/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/centcom/solitary)
+"hv" = (/turf/simulated/shuttle/wall/ert,/area/shuttle/distress_start)
+"hw" = (/obj/structure/rack,/obj/effect/landmark{name = "DistressItem"},/obj/item/storage/toolbox/mechanical,/obj/item/device/multitool,/turf/simulated/shuttle/floor/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress_start)
+"hx" = (/turf/simulated/shuttle/floor/dropship{tag = "icon-rasputin6"; icon_state = "rasputin6"},/area/shuttle/distress_start)
+"hy" = (/turf/simulated/shuttle/floor/dropship{icon_state = "floor8"; tag = "icon-rasputin7"},/area/shuttle/distress_start)
+"hz" = (/turf/simulated/shuttle/floor/dropship{tag = "icon-rasputin7"; icon_state = "rasputin7"},/area/shuttle/distress_start)
+"hA" = (/obj/structure/rack,/obj/effect/landmark{name = "DistressItem"},/obj/item/storage/firstaid/adv,/turf/simulated/shuttle/floor/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress_start)
+"hB" = (/turf/simulated/shuttle/wall/ert{icon_state = "stan5"},/area/shuttle/distress_start)
+"hC" = (/obj/machinery/light/small{dir = 1},/turf/simulated/shuttle/floor{icon_state = "floor6"},/area/yautja)
+"hD" = (/obj/structure/table/reinforced,/obj/item/handcuffs,/obj/item/handcuffs,/obj/item/handcuffs,/obj/item/handcuffs,/obj/item/handcuffs,/obj/item/handcuffs,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"hE" = (/obj/structure/table/reinforced,/obj/item/legcuffs,/obj/item/legcuffs,/obj/item/legcuffs,/obj/item/legcuffs,/obj/item/legcuffs,/obj/item/legcuffs,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"hF" = (/obj/effect/landmark{name = "prisonwarp"},/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/centcom/solitary)
+"hG" = (/turf/unsimulated/floor{icon_state = "floorgrime"},/area/centcom/solitary)
+"hH" = (/obj/machinery/door/unpowered/shuttle,/obj/machinery/door/poddoor/shutters,/turf/simulated/shuttle/floor{icon_state = "floor7"},/area/shuttle/distress_start)
+"hI" = (/turf/simulated/shuttle/floor/dropship{tag = "icon-rasputin3"; icon_state = "rasputin3"},/area/shuttle/distress_start)
+"hJ" = (/obj/structure/bed/chair/dropship/passenger,/obj/effect/landmark{name = "Distress"},/turf/simulated/shuttle/floor{icon_state = "floor7"},/area/shuttle/distress_start)
+"hK" = (/obj/structure/bed/chair/dropship/passenger{dir = 4},/obj/effect/landmark{name = "Distress"},/turf/simulated/shuttle/floor/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress_start)
+"hL" = (/obj/structure/bed/chair/dropship/passenger{dir = 8},/obj/effect/landmark{name = "Distress"},/turf/simulated/shuttle/floor/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress_start)
+"hM" = (/obj/structure/morgue/sarcophagus,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"hN" = (/obj/machinery/door/airlock/secure{name = "\improper Fore Rooms"},/turf/simulated/shuttle/floor{icon_state = "floor6"},/area/yautja)
+"hO" = (/obj/structure/table/reinforced,/obj/item/XenoBio/Blood,/obj/item/XenoBio/Blood,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"hP" = (/obj/structure/table/reinforced,/obj/item/XenoItem,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"hQ" = (/obj/machinery/light/small{dir = 1},/obj/structure/table/reinforced,/obj/item/alienjar,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"hR" = (/obj/effect/alien/egg,/obj/machinery/light/small{tag = "icon-bulb1 (NORTH)"; icon_state = "bulb1"; dir = 1},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"hS" = (/obj/structure/bed,/turf/unsimulated/floor{icon_state = "platingdmg3"},/area/centcom/solitary)
+"hT" = (/turf/unsimulated/floor{icon_state = "platingdmg1"},/area/centcom/solitary)
+"hU" = (/obj/structure/bed,/turf/unsimulated/floor{icon_state = "panelscorched"},/area/centcom/solitary)
+"hV" = (/obj/structure/bed,/obj/effect/decal/cleanable/cobweb,/turf/unsimulated/floor{icon_state = "plating"; name = "plating"},/area/centcom/solitary)
+"hW" = (/obj/machinery/light/small{dir = 4},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"hX" = (/obj/structure/table/reinforced,/obj/item/XenoBio/Resin,/obj/item/XenoBio/Resin,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"hY" = (/obj/machinery/door/window/southleft{layer = 2.8},/obj/machinery/door/window/southleft{dir = 1; icon_state = "left"; layer = 2.8; tag = "icon-left (NORTH)"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"hZ" = (/turf/unsimulated/floor{icon_state = "floorscorched1"},/area/centcom/solitary)
+"ia" = (/turf/unsimulated/floor{icon_state = "floorscorched2"},/area/centcom/solitary)
+"ib" = (/obj/machinery/door/airlock/secure{name = "\improper Burial Room"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"ic" = (/obj/machinery/door/airlock/secure{name = "\improper Growth and Research Chamber"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"id" = (/obj/machinery/door/airlock/external{name = "\improper Airlock"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"ie" = (/obj/effect/landmark/start,/turf/unsimulated/floor,/area/start)
+"if" = (/obj/structure/rack,/obj/effect/landmark{name = "DistressItem"},/obj/item/storage/firstaid/regular,/obj/item/storage/belt/combatLifesaver,/turf/simulated/shuttle/floor/dropship{tag = "icon-rasputin15"; icon_state = "rasputin15"},/area/shuttle/distress_start)
+"ig" = (/turf/simulated/shuttle/floor/dropship{icon_state = "rasputin4"; tag = "icon-rasputin7"},/area/shuttle/distress_start)
+"ih" = (/turf/simulated/shuttle/floor/dropship{icon_state = "rasputin8"; tag = "icon-rasputin7"},/area/shuttle/distress_start)
+"ii" = (/obj/machinery/door/airlock/secure{name = "Navigator's Room"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"ij" = (/obj/effect/alien/egg,/obj/machinery/light/small,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"ik" = (/turf/simulated/shuttle/wall/ert{icon_state = "stan_leftengine"},/area/shuttle/distress_start)
+"il" = (/turf/simulated/shuttle/wall/ert{icon_state = "stan8"},/area/shuttle/distress_start)
+"im" = (/turf/simulated/shuttle/wall/ert{icon_state = "stan9"},/area/shuttle/distress_start)
+"in" = (/turf/simulated/shuttle/wall/ert{icon_state = "stan_rightengine"},/area/shuttle/distress_start)
+"io" = (/turf/simulated/shuttle/wall/ert{icon_state = "leftengine_3"},/area/shuttle/distress_start)
+"ip" = (/turf/simulated/shuttle/wall/ert{icon_state = "rightengine_3"},/area/shuttle/distress_start)
+"iq" = (/turf/simulated/shuttle/wall/ert{icon_state = "leftengine_2"},/area/shuttle/distress_start)
+"ir" = (/turf/simulated/shuttle/wall/ert{icon_state = "rightengine_2"},/area/shuttle/distress_start)
+"is" = (/obj/structure/grille,/obj/structure/window/reinforced{dir = 5; health = 80},/turf/simulated/floor/plating,/area/yautja)
+"it" = (/obj/structure/bed/chair/wood/normal{icon_state = "echair0"},/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"iu" = (/turf/simulated/shuttle/wall/ert{icon_state = "leftengine_1"},/area/shuttle/distress_start)
+"iv" = (/turf/simulated/shuttle/wall/ert{icon_state = "stan1"},/area/shuttle/distress_start)
+"iw" = (/turf/simulated/shuttle/wall/ert{icon_state = "stan2"},/area/shuttle/distress_start)
+"ix" = (/turf/simulated/shuttle/wall/ert{icon_state = "stan3"},/area/shuttle/distress_start)
+"iy" = (/turf/simulated/shuttle/wall/ert{icon_state = "rightengine_1"},/area/shuttle/distress_start)
+"iz" = (/obj/structure/table/woodentable,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"iA" = (/obj/machinery/computer/crew,/turf/simulated/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"iB" = (/turf/unsimulated/wall/splashscreen,/area/start)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaabacadadadadaeabababababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaabacadadadadaeabafagahagaiajaiajaiajaiakakakalabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaabamadadadadanabakaoaoaoaoaoakakakaoaoaoaoapaqabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaabamarasasadadatakakauavauakakakakakauavauawakabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaababababababababakaoaoaoaoaoakakakaoaoaoaoaxakabababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaayayayayayayayayayayayayayayayayayayayayayayayayayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaababazazazazazabaAaAaAaAaAaAaAaAaAaAaAaAaAaBaAabazazazazazabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaayaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abababazazazazazabaDaEaEaEaEaEaEaEaEaEaEaEaEaFaDabazazazazazabababaaaaaaaaaaaaaaaaaaaaaaaaaaayaCaGaHaGaHaGaHaGaHaGaHaGaHaGaHaGaGaHaGaHaGaHaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abazazaIaIaIaIaIaJaKaEaEaEaEaEaEaEaEaEaEaEaEaFaLaJaMaMaMaMaMazazabaaaaaaaaaaaaaaaaaaaaaaaaaaayaCaNaOaNaOaNaOaNaOaNaOaNaOaNaOaNaNaOaNaOaNaOaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abazazaIaIaIaIaIaJaKaEaEaEaEaEaEaEaEaEaEaEaEaFaLaJaMaMaMaMaMazazabaaaaaaaaaaaaaaaaaaaaaaaaaaayaCaPaQaPaQaPaQaPaQaPaQaPaQaPaQaPaPaQaPaQaPaQaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abazazaIaIaIaIaIaJaKaEaEaEaEaEaRaSaRaEaEaEaEaFaLaJaMaMaMaMaMazazabaaaaaaaaaaaaaaaaaaaaaaaaaaayaCaQaPaQaPaQaPaQaPaQaPaQaPaQaPaQaQaPaQaPaQaPaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abazazaIaIaIaIaIaJaKaEaEaEaEaEaTaUaTaEaEaEaEaFaLaJaMaMaMaMaMazazabaaaaaaaaaaaaaaaaaaaaaaaaaaayaCaOaNaOaNaOaNaVaWaXaYaXaYaXaWaVaOaNaOaNaOaNaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abazazaIaIaIaIaIaJaKaEaEaEaEaEaZbabbaEaEaEaEaFaLaJaMaMaMaMaMazazabaaaaaaaaaaaaaaaaaaaaaaaaaaayaCaHaGaHaGaHaGbcbdbebebebebebdbcaHaGaHaGaHaGaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abazazaIaIaIaIaIaJaKaEaEaEaEaEaEbfaEaEaEaEaEaFaLaJaMaMaMaMaMazazabaaaaaaaaaaaaaaaaaaaaaaaaaaayaCaObgaObgaObgbhaXbebebebebeaXbhaObgaObgaObgaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+abababazazazazazabaDaEaEaEaEaEaEbfaEaEaEaEaEaFaDabazazazazazabababaaaaaaaaaaaaaaaaaaaaaaaaaaayaCaQbiaQbiaQbibjbkbebebebebebkbjaQbiaQbiaQbiaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabazazazazazabaAaAaAaAaAaAblbmblaAaAaAaAaBaAabazazazazazabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaayaCaPbnaPbnaPbnbhbobebebebebebobhaPbnaPbnaPbnaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaabababababababbpbqbqbqbqbqbrbsbpbqbqbqbqbtbpabababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaayaCbububububububcbvbebebebebebvbcbubububububuaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaabbpbpbwbpbwbpbpbxbybpbwbpbwbzbpabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaayaCaGbAaGbAaGbAaVbBbebebebebebBaVaGbAaGbAaGbAaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaabbpbpbpbCbCbCbpbpbpbCbCbCbCbCbpabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaayaCbgaVbgaVbgaVbAbDbebebebebebDbAbgaVbgaVbgaVaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaabbEbEbEbFbGbHbIbpbJbKbLbMbEbNbOabaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaayaCbibcbibcbibcbubPbebebebebebPbubibcbibcbibcaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaabababababababababababababababababaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaayaCbnbhbnbhbnbhbnbQbebebebebebQbnbnbhbnbhbnbhaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+ayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayaCbubjbubjbubjbibRbebebebebebRbibubjbubjbubjaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDayaCbAaHbAaHbAaHbgbSaXaYaXaYaXbSbgbAaHbAaHbAaHaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVbDayaCaVaOaVaOaVaOaGaHaGaHaGaHaGaHaGaVaOaVaOaVaOaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVbDayaCbcaQbcaQbcaQaNaOaNaOaNaOaNaOaNbcaQbcaQbcaQaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVbDbDbDbDbDbDaVaVaVaVaVbDbDbDbDbDbDaVaVaVaVaVbDbDbDbDbDbDaVaVaVaVaVbDbDbDbDbDbDaVaVbDayaCbhaPbhaPbhaPaPaQaPaQaPaQaPaQaPbhaPbhaPbhaPaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVbDbTbTbTbTbDaVaVaVaVaVbDbUbUbUbUbDaVaVaVaVaVbDbVbVbVbVbDaVaVaVaVaVbDbWbWbWbWbDaVaVbDayaCbjaNbjaNbjaNaQaPaQaPaQaPaQaPaQbjaNbjaNbjaNaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVbDbTbTbTbTbDaVaVaVaVaVbDbUbUbUbUbDaVaVaVaVaVbDbVbVbVbVbDaVaVaVaVaVbDbWbWbWbWbDaVaVbDayaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCaCayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVbDbTbTbTbTbDaVaVaVaVaVbDbUbUbUbUbDaVaVaVaVaVbDbVbVbVbVbDaVaVaVaVaVbDbWbWbWbWbDaVaVbDayayayayayayayayayayayayayayayayayayayayayayayayayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVbDbTbTbTbTbDaVaVaVaVaVbDbUbUbUbUbDaVaVaVaVaVbDbVbVbVbVbDaVaVaVaVaVbDbWbWbWbWbDaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVbDbTbTbTbTbDaVaVaVaVaVbDbUbUbUbUbDaVaVaVaVaVbDbVbVbVbVbDaVaVaVaVaVbDbWbWbWbWbDaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVbXbDbDbDbDbDaVaVaVaVaVbYbDbDbDbDbDaVaVaVaVaVbZbDbDbDbDbDaVaVaVaVaVcabDbDbDbDbDaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacbcbcbcbcbcbcbcbcbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaccccccccccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVbDbDbDbDbDbDaVaVaVaVaVbDbDbDbDbDbDaVaVaVaVaVbDbDbDbDbDbDaVaVaVaVaVbDbDbDbDbDbDaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcecececececececececdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVbDcfcfcfcfbDaVaVaVaVaVbDcgcgcgcgbDaVaVaVaVaVbDchchchchbDaVaVaVaVaVbDcicicicibDaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcjcjcjcjckcjcjcjcjcdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVbDcfcfcfcfbDaVaVaVaVaVbDcgcgcgcgbDaVaVaVaVaVbDchchchchbDaVaVaVaVaVbDcicicicibDaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdclcmcmcmcmcmcmcmcncdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVbDcfcfcfcfbDaVaVaVaVaVbDcgcgcgcgbDaVaVaVaVaVbDchchchchbDaVaVaVaVaVbDcicicicibDaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcmcmcmcocmcocmcmcmcdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVbDcfcfcfcfbDaVaVaVaVaVbDcgcgcgcgbDaVaVaVaVaVbDchchchchbDaVaVaVaVaVbDcicicicibDaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacbcbcbcbcbcdcpcqcqcrcscdcdcdcdcdcbcbcbcbcbaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVbDcfcfcfcfbDaVaVaVaVaVbDcgcgcgcgbDaVaVaVaVaVbDchchchchbDaVaVaVaVaVbDcicicicibDaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacccccccccccdctctctcucmcvcwcwcwcdccccccccccaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVcxbDbDbDbDbDaVaVaVaVaVcybDbDbDbDbDaVaVaVaVaVczbDbDbDbDbDaVaVaVaVaVcAbDbDbDbDbDaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcecececececdcBcCcCcmcmcmcmcmcncdcecececececdaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcjcjcDcjcjcdcmcmcmcmcmcmcmcmcmcdcjcjckcjcjcdaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdclcmcmcmcmcscmcocmcmcocmcmcocmcscmcmcmcmcncdaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcEcFcocmcdcdcdcdcscdcdcdcscdcdcdcdcmcocmcGcdaaaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcdcdcdcdcdcdcHcIcIcJcIcKcIcJcIcIcLcdcdcdcdcdcdcdaaaaaaaaaaaaaaaaaaaaaaaa
+aybDaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcdcdcdcdcdcMcNcKcNcMcdcOcIcIcJcIcIcIcJcIcIcPcdcQcRcScIcTcdcdcdcdcdcdaaaaaaaaaaaaaa
+aybDaVaVbDbDbDbDbDbDaVaVaVaVaVbDbDbDbDbDbDbDaVaVaVaVaVbDbDbDbDbDbDbDaVaVaVaVaVaVaVaVaVaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcdcUcVcWcXcdcYcIcIcIcYcdcLcIcIcJcJcJcJcJcIcIcZcddacIcIcIdbcddccIcKddcdcdaaaaaaaaaaaa
+aybDaVaVbDdedededebDaVaVaVaVaVbDdfdfdfdfdfbDaVaVaVaVaVbDdgdgdgdgdgbDaVaVaVaVaVaVaVaVaVaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacddhcIcIcIdbcdcIcIcIcIcIcdcdcdcdcIcIcJcIcIcdcdcdcdcIcIcIcIcIcdcIcIcIcIdbcdaaaaaaaaaaaa
+aybDaVaVbDdedededebDaVaVaVaVaVbDdfdfdfdfdfbDaVaVaVaVaVbDdgdgdgdgdgbDaVaVaVaVaVaVaVaVaVaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcdcdcdcdcdcdcddicdcdcdcIcIcdcIcIdjcIcIcddkcIcJcIdbcdcIcIdlcIcIdmcIdncdcdcddocdcdcdcdcdcdcdcdaa
+aybDaVaVbDdedededebDaVaVaVaVaVbDdfdfdfdfdfbDaVaVaVaVaVbDdgdgdgdgdgbDaVaVaVaVaVaVaVaVaVaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacddpdpdpdqcddccIcIcIdccddkdbcddkdbcddkcIdjcJcJcJcJcJdlcIdbcdcdcdcdcdcdcdcmcmcmcmcmcddrdsdsdrcdaa
+aybDaVaVbDdedededebDaVaVaVaVaVbDdfdfdfdfdfbDaVaVaVaVaVbDdgdgdgdgdgbDaVaVaVaVaVaVaVaVaVaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacddtdudvdwcddxcIcIcIdycdcIcIcdcIcIdjcIcIcdcIcIcJcIcIcdcIcIdlcIcIdzcIdncdcmcmcmcmcncdcmcmcmcmcdaa
+aybDaVaVbDdedededebDaVaVaVaVaVdAbDbDbDbDbDbDaVaVaVaVaVdBbDbDbDbDbDbDaVaVaVaVaVaVaVaVaVaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacddkcIdCcIdDcIcIcIcIdEcdcIcIcIcIcIcdcdcdcdcIcIcJcIcIcdcdcdcdcIcIcIcIcIcdclcmcmcmcmcscmcmcmcncdaa
+aybDaVaVdFbDbDbDbDbDaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcIcIdGdHcddIcIcIcIdJcdcYcIcIcIcYcdcdcdcddkcIcJcIdbcdcdcdcddacIcIcIdbcdcmcmcmcmcncdcmcmcmcmcdaa
+aybDaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacddKdLdMdMcddccIcIcIdccdcMcNdNcNcMcdcdcdcdcIcIcJcIcIcdcdcdcdcQcRcScIcTcdcmcmcmcmcmcddrdrdrdrcdaa
+aybDaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVaVbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcdcdcdcdcdcdcddOcdcdcdcdcdcdcdcdcddPdQcdcdcIcJcIcdcdcKcIcdcdcdcdcdcdcdcdcddRcdcdcdcdcdcdcdcdaa
+aybDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDbDayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcIcIcJcIcIcIcIcKcIcIcIcIcIcIcIcIcIcJcIcIcIcIcIcIcIcIcIcKcIcIcIcIcJcIcIcdaaaaaaaaaaaa
+ayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayayaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcIcIcJdScJcJcJcJcJcJcJdScJcJcJdScJcJcJdScJcJcJdScJcJcJcJcJcJcJdScJcIcIcdaaaaaaaaaaaa
+dTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcIcJcIcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdcdaaaaaaaaaaaa
+dTdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdTaadVdVdVdVdVdVdVaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacddWdXcKdXdYcdaacddZdZeacIcJcIeadZdZcdaacdebecedeeefcdaaaaaaaaaaaaaaaaaaaaaa
+dTdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdTaadVegegegegegdVaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdehehcIehehcdaacddZdZeacIcJcIeadZdZcdaacdcIcIcIcIcIcdaaaaaaaaaaaaaaaaaaaaaa
+dTdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdTaadVegeiegeiegdVaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcddWdXcIdXejcdcdcdekekcdcIcJcIcdekekcdcdcdcIcIcIcIcIcdcdaaaaaaaaaaaaaaaaaaaa
+dTdTdTdTdTdTeldTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTemdTdTdTdTdTdTdTdTaadVegegegegegdVaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdencIcIcIcIcIencdcIcJcJcIcIcJcIcIcJcJcIcdeocIepcdeqcIercdaaaaaaaaaaaaaaaaaaaa
+dTdUdUdUdTesdUetdTeudUeudTesevevevevevevetdTemememememememememememememememdTaadVegeiegeiegdVaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdewcIcIcIcIcIewcdcIcJcJcJcJcJcJcJcJcJcIcdexcIeycdezcIeAcdaaaaaaaaaaaaaaaaaaaa
+dTdUeBdUeldUdUeCdTeueBeudTeDdUdUdUdUdUdUeCdTemeEemeEeEeEeEemeEeEeEeEemeEemeFaadVegegegegegdVaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdeGcIcIcIcIcIeHcdcIdNcIcIcIcJcIcIcIdNcIcdeIcIeJcdeKcIeLcdaaaaaaaaaaaaaaaaaaaa
+dTdUdUdUeldUdUeCdTeudUeudTeDdUdUdUdUdUdUeCdTemeEemememememememememememeEemeFaadVdVdVdVdVdVdVaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdeMcIcIcIcIcIeNcdcdcdcdcdcdeOcdcdcdcdcdcdeAcIcIcIcIcIercdaaaaaaaaaaaaaaaaaaaa
+dTdUdUdUdTeDdUeCdTeudUeudTeDdUeBdUePeQeQeRdTemeEemeSeTeUeVeWeTeUeVeXemeEemeFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcdcdcdeYcdcdcdcdcIcIcIcKcIcJcIcKcIcIcIcdcdcdcdeYcdcdcdcdaaaaaaaaaaaaaaaaaaaa
+dTdTdTdTdTeDdUeCdTdTeZdTdTeDfafbfceCdTdTdTdTemeEemfdfefffgfhfefffgfiemeEemeFaafjfjfjfjfjfjfkaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcIcIcIcIcIcIcIcdcIcIcJcJcJcJcJcJcJcIcIcdflcIcIcIcIcIfmcdaaaaaaaaaaaaaaaaaaaa
+dTfnfofpdTeDdUfqevevdUfrdTeDfafsfceCdTftfudTemememfdfhfhfhfhfhfhfhfiemememeFaafjfvfwfxfyfzfkaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcIcIfAfAfAcIdbcddkcJcJcIcIcIcIcIcJcJdbcddkcIcIcIcIcIcIcdaaaaaaaaaaaaaaaaaaaa
+dTfBfCfofDdUeBdUdUdUdUdUfEdUfafFfcdUfGfHfIdTemememfdfhfJfhfKfLfhfhfiemememeFaafjfMfNfNfNfNfkaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcIfOfPfPfPfQcIcdcIcJcIcIcJdNcJcIcIcJcIcdcIcIfRcIfRcIcIcdaaaaaaaaaaaaaaaaaaaa
+dTfnfofSdTeDdUePeQeQdUfrdTeDfafTfceCdTftfUdTemeEemfdfhfhfhfhfhfhfhfiemeEemeFaafjfVfNfNfNfNfkaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacddafOfPcIfPfQcIfWcJcJcIcJcdcdcdcJcIcJcJfXcIcIcIcIcIcIdbcdaaaaaaaaaaaaaaaaaaaa
+dTdTdTdTdTeDdUeCdTdTeZdTdTeDfafYfceCdTdTdTdTemeEemfdfefffgfhfefffgfiemeEemeFaafjfZgagbgcgdfjaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcIfOfPfPfPfQcIcdcIcJcIcIcJcKcJcIcIcJcIcdcIcIfRcIfRcIcIcdaaaaaaaaaaaaaaaaaaaa
+dTgegfggdTeDdUeCdTeudUeudTeDdUeBdUfqevevetdTemeEemghgigjgkglgigjgkgmemeEemeFaafjfjfjfjfjfjfjaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcIcIgngngncIdbcddkcJcJcIcIcIcIcIcJcJdbcddkcIcIcIcIcIcIcdaaaaaaaaaaaaaaaaaaaa
+dTdUdUdUgodUdUeCdTeudUeudTeDdUdUdUdUdUdUeCdTemeEemememememememememememeEemeFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcIcIcIdNcIcIcIcdcIcIcJcJcJcJcJcJcJcIcIcdgpcIcIdNcIcIgqcdaaaaaaaaaaaaaaaaaaaa
+dTdUeBdUgodUdUeCdTeueBeudTeDdUdUdUdUdUdUeCdTemememeEeEeEgremeEeEeEeEemememeFaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcdcdcdcdcdcdcdcdcdcIcIdNcIcJcIdNcIcIcdcdcdcdcdcdcdcdcdcdcdcdcdaaaaaaaaaaaaaa
+dTgsgtgsdTgudUeRdTeudUeudTgueQeQeQeQeQeQeRdTemememememememememememememememdTaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcIgvgwgxgwgwgwgwcdcdcdcdcdgycdcdcdcdcdgzcIcdgzcIcdgzcIcdgAgBcdaaaaaaaaaaaaaa
+dTdTdTdTdTdTeldTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTemdTdTdTdTdTdTdTdTaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcdcdcdcdcIcIcIcIcIcIcIcIcdcIcIcKcIcJcIcKcIcIcdcIcIcdcIcIcdcIcIcdcIcIcdcdcdcdcdaaaaaa
+dTdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdTaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcIcKcIgCcIcIcIcIcIcIcIcIcdcIcJcJcJdScJcJcJcIcdgDgEgFgDgGgHgDgIgJcIcIcdgKgKgKcdaaaaaa
+dTdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdTaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcIcIcIcdcdgLcdfPfPfPfPgMcddkcJgDgDcdgDgDcJdbcddacIcIcIcIcIcIcIcIcIdbcdcIcIcIcdaaaaaa
+dTdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdUdTaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacddkcIcIcdcIcIcIcIcIcIcIcIgNcJcJgDcIgOcIgDcJcJgPcIcIcIcIcIcIcIcIcIcIcIgQcIcIgRcdaaaaaa
+dTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTdTaaaaaaaagSgSgSgSgSaaaaaagSgSgSgSgSaaaaaagSgSgSgSgSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcIcIcIcdcIfAfAfAfAfAfAdbcddkcJgTcIcIcIgTcJdbcddacIcIcIcIcIcIcIcIcIdbcdcIcIcIcdaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagSgSgSgUgVgWgSgSgSgSgSgUgVgWgSgSgSgSgSgUgVgWgSgSgSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdgXgYgXcddkfPfPfPfPfPfPcIcdcIcJgDcIdNcIgDcJcIcdgDgZhagDhbhcgDhdhecIcIcdgKgKgKcdaaaaaa
+hfhfhfhfhfhfhfhfhfhfhfhfhfhfhfaahghghghghghghghghghghghghghghghghghghghghghgaaaagSgUhhhihjhkhhgWgSgUhhhihjhkhhgWgSgUhhhihjhkhhgWgSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcdcdcdcdcIgngngngngngncIcdcIcJgDgDcdgDgDcJcIcdgzcIcdgzcIcdgzcIcdcIcIcdcdcdcdcdaaaaaa
+hfhfhfhfhfhfhfhfhfhfhfhfhfhfhfaahghlhmhghnhohphnhqhghnhrhghnhshghthuhghnhrhgaaaagShvhwhxhyhzhAhBgShvhwhxhyhzhAhBgShvhwhxhyhzhAhBgSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcIcIcIdNcIcIcIcIcdcIcJcJcJhCcJcJcJcIcdcIcIcdcIcIcdcIcIcdhDhEcdaaaaaaaaaaaaaa
+hfhfhfhfhfhfhfhfhfhfhfhfhfhfhfaahghFhGhghFhrhghFhGhghFhuhghFhohghFhrhghFhqhgaaaagShHhjhIhJhIhjhHgShHhjhIhJhIhjhHgShHhjhIhJhIhjhHgSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcdcdcdcdcdcdcdcdcdcdcdcIcIdNcIcJcIdNcIcIcdcdcdcdcdcdcdcdcdcdcdcdcdaaaaaaaaaaaaaa
+hfhfhfhfhfhfhfhfhfhfhfhfhfhfhfaahghghghghghghghghghghghghghghghghghghghghghgaaaagShvhKhIhJhIhLhBgShvhKhIhJhIhLhBgShvhKhIhJhIhLhBgSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdhMcIhMgOhMcIhMgOhMcIcdcdcdcdcdhNcdcdcdcdcdhOhPhQcIcIcdhRcdhRcdhRcdaaaaaaaaaaaaaa
+hfhfhfhfhfhfhfhfhfhfhfhfhfhfhfaahghShuhghnhThghnhGhghUhqhghnhqhghVhrhghnhuhgaaaagShvhKhIhJhIhLhBgShvhKhIhJhIhLhBgShvhKhIhJhIhLhBgSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcIcIcIcIcIcIcIcIcIhWcdcIcIgOcIcJcIgOcIcIcddafOhXcIcIcdhYcdhYcdhYcdaaaaaaaaaaaaaa
+hfhfhfhfhfhfhfhfhfhfhfhfhfhfhfaahghFhZhghFhrhghFhqhghFhrhphFhrhghFhThghFiahgaaaagShvhKhIhJhIhLhBgShvhKhIhJhIhLhBgShvhKhIhJhIhLhBgSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacddacIcIcIcIcIcIcIcIcIibcJcJcJcJcJcJcJcJcJiccIcIcIcIcIidcIcIcIcIcIcdaaaaaaaaaaaaaa
+hfhfhfhfhfhfhfhfhfhfhfhfhfhfhfaahghghghghghghghghghghghghghghghghghghghghghgaaaagShHhjhIhJhIhjhHgShHhjhIhJhIhjhHgShHhjhIhJhIhjhHgSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcIcIcIcIcIcIcIcIcIhWcdcIcIdNcIcJcIdNcIcIcddacIcIcIcIcdhYcdhYcdhYcdaaaaaaaaaaaaaa
+hfhfhfhfhfhfhfiehfhfhfhfhfhfhfaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagShvifighyihifhBgShvifighyihifhBgShvifighyihifhBgSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdhMcIhMdNhMcIhMdNhMcIcdcdcdcdcdiicdcdcdcdcdcIcIdNcIcIcdijcdijcdijcdaaaaaaaaaaaaaa
+hfhfhfhfhfhfhfhfhfhfhfhfhfhfhfaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagSikilhjhIhjimingSikilhjhIhjimingSikilhjhIhjimingSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacdcdcdcdcdcdcdcdcdcdcdcdcIcIcKcIcIcIcKcIcIcdcdcdcdcdcdcdcdcdcdcdcdcdaaaaaaaaaaaaaa
+hfhfhfhfhfhfhfhfhfhfhfhfhfhfhfaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagSiohvhjhIhjhBipgSiohvhjhIhjhBipgSiohvhjhIhjhBipgSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaacddacIcIcIcIcIcIcIdbcdaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+hfhfhfhfhfhfhfhfhfhfhfhfhfhfhfaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagSiqhvhjhIhjhBirgSiqhvhjhIhjhBirgSiqhvhjhIhjhBirgSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiscIcIcIcIitcIcIcIcIisaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+hfhfhfhfhfhfhfhfhfhfhfhfhfhfhfaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagSiuivhHiwhHixiygSiuivhHiwhHixiygSiuivhHiwhHixiygSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaiscIcIiziziAizizcIcIisaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+hfhfhfhfhfhfhfhfhfhfhfhfhfhfhfaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaagSgSgSgSgSgSgSgSgSgSgSgSgSgSgSgSgSgSgSgSgSgSgSgSgSaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaisisisisisisisisisisisaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+hfhfhfhfhfhfhfhfhfhfhfhfhfhfhfaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+iBhfhfhfhfhfhfhfhfhfhfhfhfhfhfaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}

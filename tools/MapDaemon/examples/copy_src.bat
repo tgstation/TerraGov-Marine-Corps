@@ -1,0 +1,1 @@
+copy "C:\Users\Sam\workspace\MapDaemon\src\map_daemon\*.java" "C:\Users\Sam\Desktop\MapDaemonExecutables\src"

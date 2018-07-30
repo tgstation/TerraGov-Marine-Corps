@@ -1,0 +1,123 @@
+<h3>Shuttle Status</h3>
+<div class="item" style="padding-top: 10px">
+	{{if data.shuttle_state != "crashed"}}
+		<div class="item">
+			{{:data.shuttle_status}}
+		</div>
+		<div class="item">
+			{{:data.shuttle_status_message}}
+		</div>
+	{{/if}}
+</div>
+<div class="item" style="padding-top: 10px">
+	<div class="item">
+		<div class="itemLabel">
+			Bluespace Drive:
+		</div>
+		<div class="itemContent">
+			{{if data.shuttle_state == "idle"}}
+				<span class="idle">IDLE</span>
+			{{else data.shuttle_state == "warmup"}}
+				<span style="font-weight: bold;color: #336699">SPINNING UP</span>
+			{{else data.shuttle_state == "in_transit"}}
+				<span style="font-weight: bold;color: #339933">ENGAGED</span>
+			{{else}}
+				<span class="bad">ERROR</span>
+			{{/if}}
+		</div>
+		{{if data.shuttle_state != "crashed" && data.recharge_time > 0}}
+			{{if data.shuttle_state == "idle"}}
+				<div class="line">
+					<div class="statusLabel">Recharge Status:</div>
+					{{if data.recharging > 0}}
+						{{if data.optimized}}
+							{{:helper.displayBar(data.recharge_status, 0, data.recharge_time, 'average')}}
+						{{else}}
+							{{:helper.displayBar(data.recharge_status, 0, data.recharge_time, 'bad')}}
+						{{/if}}
+						<div class="line">
+							The Bluespace Drive will be recharged in {{:data.recharging_seconds}} seconds.
+						</div>
+					{{else}}
+						{{:helper.displayBar(data.recharge_time, 0, data.recharge_time, 'good')}}
+						<div class="line">
+							The Bluespace Drive is ready to use.
+						</div>
+					{{/if}}
+				</div>
+			{{else}}
+				<div class="line">
+					The Bluespace Drive is currently under use.
+				</div>	
+			{{/if}}
+		{{/if}}
+	</div>
+</div>
+
+
+{{if data.has_docking && data.shuttle_state != "crashed"}}
+	<div class="item" style="padding-top: 10px">
+		<div class="item">
+			<div class="itemLabel">
+				Docking Status:
+			</div>
+			<div class="itemContent">
+				{{if data.docking_status == "docked"}}
+					<span class="good">DOCKED</span>
+				{{else data.docking_status == "docking"}}
+					{{if !data.docking_override}}
+						<span class="average">DOCKING</span>
+					{{else}}
+						<span class="average">DOCKING-MANUAL</span>
+					{{/if}}
+				{{else data.docking_status == "undocking"}}
+					{{if !data.docking_override}}
+						<span class="average">UNDOCKING</span>
+					{{else}}
+						<span class="average">UNDOCKING-MANUAL</span>
+					{{/if}}
+				{{else data.docking_status == "undocked"}}
+					<span class="idle">UNDOCKED</span>
+				{{else}}
+					<span class="bad">ERROR</span>
+				{{/if}}
+
+			</div>
+		</div>
+	</div>
+{{/if}}
+
+{{if data.shuttle_state != "crashed"}}
+	<div style="padding-top: 10px">
+		<h3>Shuttle Control</h3>
+		<div class="item">
+			<div class="itemContent" style="padding-top: 2px; width: 100%">
+				{{:helper.link('Launch Shuttle', 'arrowthickstop-1-e', {'move' : '1'}, data.can_launch? null : 'disabled' , null)}}
+				<!-- {{:helper.link('Cancel Launch', 'cancel', {'cancel' : '1'}, data.can_cancel ? null : 'disabled' , null)}}
+				{{:helper.link('Force Launch', 'alert', {'force' : '1'}, data.can_force? null : 'disabled' , data.can_force ? 'redButton' : null)}} -->
+				{{if data.human_user}}
+					{{if data.optimize_allowed == 1}}
+						{{:helper.link('Run Flight Optimization', 'refresh', {'optimize' : '1'}, data.can_optimize ? null : 'disabled' , null)}}
+					{{/if}}
+					{{if data.onboard && data.gun_mission_allowed == 1}}
+						{{:helper.link('Toggle Flight Type', 'refresh', {'fire_mission' : '1'}, data.shuttle_state == "idle" ? null : 'disabled' , null)}}
+					{{/if}}
+				{{/if}}
+			</div>
+		</div>
+	</div>
+{{/if}}
+
+{{if data.human_user && data.is_dropship && data.onboard}}
+	<div style="padding-top: 10px">
+		<h3>Door Control</h3>
+		{{:helper.link('Toggle Left Hatches', 'locked', {'side door' : '1', 'right side' : '0'}, null , null)}}
+		{{:helper.link('Toggle Right Hatches', 'locked', {'side door' : '1', 'right side' : '1'}, null , null)}}
+		{{:helper.link('Toggle Rear Hatch', 'locked', {'rear door' : '1'}, null, null)}}
+	</div>
+	<div style="padding-top: 10px">
+		<h3>Lockdown</h3>
+		{{:helper.link('Lockdown', 'locked', {'lockdown' : '1'}, null , null)}}
+		{{:helper.link('Release', 'locked', {'release' : '1'}, null , null)}}
+	</div>
+{{/if}}

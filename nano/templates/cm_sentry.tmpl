@@ -1,0 +1,76 @@
+<h3>{{:data.name}}:</h3>
+<br>
+<br>
+
+<div class="item">
+    
+    <div class="itemContent">
+        The {{:data.name}} is currently {{:data.is_on ? '<span class="good">ON</span>' : '<span class="bad">OFF</span>'}}
+    {{:helper.link(data.is_on ? 'Turn Off' : 'Turn On', 'power', {'?src' : data.self_ref, 'op' : 'power'})}}
+    
+    <br><br><br>
+    
+    <div class="itemLabel">
+        Power Cell Status:
+    </div>
+    <div class="itemContent">
+        {{:helper.displayBar(data.cell_charge, 0, data.cell_maxcharge, (data.cell_charge > (0.67 * data.cell_maxcharge)) ? 'good' : ((data.cell_charge > (0.33 * data.cell_maxcharge)) ? 'average' : 'bad'))}}
+        <br>
+        {{:data.has_cell ? data.cell_charge + ' W out of ' + data.cell_maxcharge + ' W' : 'No cell inserted'}}
+    </div>
+    
+    <br><br>
+    
+    <div class="itemLabel">
+        Structural Integrity:
+    </div>
+    <div class="itemContent">
+        {{:helper.displayBar(data.health, 0, data.health_max, (data.health > (0.67 * data.health_max)) ? 'good' : ((data.health > (0.33 * data.health_max)) ? 'average' : 'bad'))}}
+        <br>
+        {{:(data.health * 100 / data.health_max) - ((data.health * 100 / data.health_max) % 1)}} %
+    </div>
+    
+    <br><br>
+    
+    <div class="itemLabel">
+        Current Rounds:
+    </div>
+    <div class="itemContent">
+        {{:helper.displayBar(data.rounds, 0, data.rounds_max, (data.rounds > (0.67 * data.rounds_max)) ? 'good' : ((data.rounds > (0.33 * data.rounds_max)) ? 'average' : 'bad'))}}
+        <br>
+        {{:data.rounds}} out of {{:data.rounds_max}}
+    </div>
+
+    <br><br>
+
+    <div class="itemLabel">
+        Burst Fire:
+    </div>
+    <div class="itemContent">
+        Burst fire is currently <b>{{:data.burst_fire ? '<span class="good">ON</span>' : '<span class="bad">OFF</span>'}}</b>
+        <br>
+        {{:helper.link(data.burst_fire ? 'Turn off burst fire' : 'Turn on burst fire', data.burst_fire ? 'seek-next' : 'play', { '?src' : data.self_ref, 'op' : 'burst'}, data.is_on ? null : 'disabled')}}
+    </div>
+    
+    <br><br>
+        
+    <div class="itemLabel">
+        Weapon Safety:
+    </div>
+    <div class="itemContent">
+        Safety is currently <b>{{:data.safety_toggle ? '<span class="good">ON</span>' : '<span class="bad">OFF</span>'}}</b>
+        <br>
+        {{:helper.link(data.safety_toggle ? 'Turn off the safety' : 'Turn on the safety', data.safety_toggle ? 'close' : 'check', { '?src' : data.self_ref, 'op' : 'safety'}, data.is_on ? null : 'disabled')}}
+    </div>
+    
+    <br><br>
+        
+    <div class="itemLabel">
+        Manual Override:
+    </div>
+    <div class="itemContent">
+        Manual override is currently <b>{{:data.manual_override ? '<span class="good">ON</span>' : '<span class="bad">OFF</span>'}}</b>
+        <br>
+        {{:helper.link(data.manual_override ? 'Turn off Manual Override' : 'Turn on Manual Override', data.manual_override ? 'close' : 'check', { '?src' : data.self_ref, 'op' : 'manual'}, data.is_on ? null : 'disabled')}}
+    </div>
+</div>

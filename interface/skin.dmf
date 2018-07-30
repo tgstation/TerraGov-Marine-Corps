@@ -1,0 +1,854 @@
+macro "macro"
+	elem 
+		name = "TAB"
+		command = ".winset \"mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
+	elem 
+		name = "CENTER+REP"
+		command = ".center"
+	elem 
+		name = "NORTHEAST"
+		command = ".northeast"
+	elem 
+		name = "SOUTHEAST"
+		command = ".southeast"
+	elem 
+		name = "SOUTHWEST"
+		command = ".southwest"
+	elem 
+		name = "NORTHWEST"
+		command = ".northwest"
+	elem 
+		name = "CTRL+WEST"
+		command = "westface"
+	elem 
+		name = "WEST+REP"
+		command = ".west"
+	elem 
+		name = "CTRL+NORTH"
+		command = "northface"
+	elem 
+		name = "NORTH+REP"
+		command = ".north"
+	elem 
+		name = "CTRL+EAST"
+		command = "eastface"
+	elem 
+		name = "EAST+REP"
+		command = ".east"
+	elem 
+		name = "CTRL+SOUTH"
+		command = "southface"
+	elem 
+		name = "SOUTH+REP"
+		command = ".south"
+	elem 
+		name = "INSERT"
+		command = "a-intent right"
+	elem 
+		name = "DELETE"
+		command = "delete-key-pressed"
+	elem 
+		name = "CTRL+1"
+		command = "a-intent help"
+	elem 
+		name = "CTRL+2"
+		command = "a-intent disarm"
+	elem 
+		name = "CTRL+3"
+		command = "a-intent grab"
+	elem 
+		name = "CTRL+4"
+		command = "a-intent hurt"
+	elem 
+		name = "CTRL+A+REP"
+		command = ".west"
+	elem 
+		name = "CTRL+D+REP"
+		command = ".east"
+	elem 
+		name = "CTRL+E"
+		command = "quick-equip"
+	elem 
+		name = "CTRL+Q"
+		command = ".northwest"
+	elem 
+		name = "CTRL+R"
+		command = ".southwest"
+	elem 
+		name = "CTRL+S+REP"
+		command = ".south"
+	elem 
+		name = "CTRL+W+REP"
+		command = ".north"
+	elem 
+		name = "CTRL+X"
+		command = ".northeast"
+	elem 
+		name = "CTRL+Y"
+		command = "Activate-Held-Object"
+	elem 
+		name = "CTRL+Z"
+		command = "Activate-Held-Object"
+	elem 
+		name = "F1"
+		command = "adminhelp"
+	elem 
+		name = "CTRL+SHIFT+F1+REP"
+		command = ".options"
+	elem 
+		name = "F2"
+		command = "ooc"
+	elem 
+		name = "F2+REP"
+		command = ".screenshot auto"
+	elem 
+		name = "SHIFT+F2+REP"
+		command = ".screenshot"
+	elem 
+		name = "F3"
+		command = ".say"
+	elem 
+		name = "F4"
+		command = ".me"
+	elem 
+		name = "F5"
+		command = "asay"
+	elem 
+		name = "F6"
+		command = "Player-Panel"
+	elem 
+		name = "F7"
+		command = "Admin-PM"
+	elem 
+		name = "F8"
+		command = "Invisimin"
+	elem 
+		name = "F12"
+		command = "F12"
+
+macro "hotkeymode"
+	elem 
+		name = "TAB"
+		command = ".winset \"mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true\""
+	elem 
+		name = "CENTER+REP"
+		command = ".center"
+	elem 
+		name = "NORTHEAST"
+		command = ".northeast"
+	elem 
+		name = "SOUTHEAST"
+		command = ".southeast"
+	elem 
+		name = "SOUTHWEST"
+		command = ".southwest"
+	elem 
+		name = "NORTHWEST"
+		command = ".northwest"
+	elem 
+		name = "CTRL+WEST"
+		command = "westface"
+	elem 
+		name = "WEST+REP"
+		command = ".west"
+	elem 
+		name = "CTRL+NORTH"
+		command = "northface"
+	elem 
+		name = "NORTH+REP"
+		command = ".north"
+	elem 
+		name = "CTRL+EAST"
+		command = "eastface"
+	elem 
+		name = "EAST+REP"
+		command = ".east"
+	elem 
+		name = "CTRL+SOUTH"
+		command = "southface"
+	elem 
+		name = "SOUTH+REP"
+		command = ".south"
+	elem 
+		name = "INSERT"
+		command = "a-intent right"
+	elem 
+		name = "DELETE"
+		command = "delete-key-pressed"
+	elem 
+		name = "1"
+		command = "a-intent help"
+	elem 
+		name = "CTRL+1"
+		command = "a-intent help"
+	elem 
+		name = "2"
+		command = "a-intent disarm"
+	elem 
+		name = "CTRL+2"
+		command = "a-intent disarm"
+	elem 
+		name = "3"
+		command = "a-intent grab"
+	elem 
+		name = "CTRL+3"
+		command = "a-intent grab"
+	elem 
+		name = "4"
+		command = "a-intent hurt"
+	elem 
+		name = "CTRL+4"
+		command = "a-intent hurt"
+	elem 
+		name = "A+REP"
+		command = ".west"
+	elem 
+		name = "CTRL+A+REP"
+		command = ".west"
+	elem 
+		name = "D+REP"
+		command = ".east"
+	elem 
+		name = "CTRL+D+REP"
+		command = ".east"
+	elem 
+		name = "E"
+		command = "quick-equip"
+	elem 
+		name = "CTRL+E"
+		command = "quick-equip"
+	elem 
+		name = "H"
+		command = "holster"
+	elem 
+		name = "CTRL+H"
+		command = "holster"
+	elem 
+		name = "Q"
+		command = ".northwest"
+	elem 
+		name = "CTRL+Q"
+		command = ".northwest"
+	elem 
+		name = "R"
+		command = ".southwest"
+	elem 
+		name = "CTRL+R"
+		command = ".southwest"
+	elem "s_key"
+		name = "S+REP"
+		command = ".south"
+	elem 
+		name = "CTRL+S+REP"
+		command = ".south"
+	elem 
+		name = "T"
+		command = ".say"
+	elem "w_key"
+		name = "W+REP"
+		command = ".north"
+	elem 
+		name = "CTRL+W+REP"
+		command = ".north"
+	elem 
+		name = "X"
+		command = ".northeast"
+	elem 
+		name = "CTRL+X"
+		command = ".northeast"
+	elem 
+		name = "Y"
+		command = "Activate-Held-Object"
+	elem 
+		name = "CTRL+Y"
+		command = "Activate-Held-Object"
+	elem 
+		name = "Z"
+		command = "Activate-Held-Object"
+	elem 
+		name = "CTRL+Z"
+		command = "Activate-Held-Object"
+	elem 
+		name = "F1"
+		command = "adminhelp"
+	elem 
+		name = "CTRL+SHIFT+F1+REP"
+		command = ".options"
+	elem 
+		name = "F2"
+		command = "ooc"
+	elem 
+		name = "F2+REP"
+		command = ".screenshot auto"
+	elem 
+		name = "SHIFT+F2+REP"
+		command = ".screenshot"
+	elem 
+		name = "F3"
+		command = ".say"
+	elem 
+		name = "F4"
+		command = ".me"
+	elem 
+		name = "F5"
+		command = "asay"
+	elem 
+		name = "F6"
+		command = "Player-Panel"
+	elem 
+		name = "F7"
+		command = "Admin-PM"
+	elem 
+		name = "F8"
+		command = "Invisimin"
+	elem 
+		name = "F12"
+		command = "F12"
+
+
+menu "menu"
+	elem 
+		name = "&File"
+		command = ""
+		saved-params = "is-checked"
+	elem 
+		name = "&Quick screenshot\tF2"
+		command = ".screenshot auto"
+		category = "&File"
+		saved-params = "is-checked"
+	elem 
+		name = "&Save screenshot as...\tShift+F2"
+		command = ".screenshot"
+		category = "&File"
+		saved-params = "is-checked"
+	elem 
+		name = ""
+		command = ""
+		category = "&File"
+		saved-params = "is-checked"
+	elem 
+		name = "&Quit"
+		command = ".quit"
+		category = "&File"
+		saved-params = "is-checked"
+	elem 
+		name = "&Icons"
+		command = ""
+		saved-params = "is-checked"
+	elem "stretch"
+		name = "&Stretch to fit"
+		command = ".winset \"mapwindow.map.icon-size=0\""
+		category = "&Icons"
+		is-checked = true
+		can-check = true
+		group = "size"
+		saved-params = "is-checked"
+	elem "icon64"
+		name = "&64x64 (2x)"
+		command = ".winset \"mapwindow.map.icon-size=64\""
+		category = "&Icons"
+		can-check = true
+		group = "size"
+		saved-params = "is-checked"
+	elem "icon32"
+		name = "&32x32"
+		command = ".winset \"mapwindow.map.icon-size=32\""
+		category = "&Icons"
+		can-check = true
+		group = "size"
+		saved-params = "is-checked"
+	elem 
+		name = ""
+		command = ""
+		category = "&Icons"
+		saved-params = "is-checked"
+	elem "textmode"
+		name = "&Text"
+		command = ".winset \"menu.textmode.is-checked=true?mapwindow.map.text-mode=true:mapwindow.map.text-mode=false\""
+		category = "&Icons"
+		can-check = true
+		saved-params = "is-checked"
+	elem 
+		name = "&Help"
+		command = ""
+		saved-params = "is-checked"
+	elem 
+		name = "&Admin help\tF1"
+		command = "adminhelp"
+		category = "&Help"
+		saved-params = "is-checked"
+	elem 
+		name = "&Hotkeys"
+		command = "hotkeys-help"
+		category = "&Help"
+		saved-params = "is-checked"
+
+
+window "Telecomms IDE"
+	elem "Telecomms IDE"
+		type = MAIN
+		pos = 281,0
+		size = 569x582
+		anchor1 = none
+		anchor2 = none
+		background-color = #ffffff
+		is-visible = false
+		saved-params = "pos;size;is-minimized;is-maximized"
+		title = "TCS IDE"
+		statusbar = false
+		on-close = "exittcs"
+	elem "button5"
+		type = BUTTON
+		pos = 209,464
+		size = 70x20
+		anchor1 = 37,80
+		anchor2 = 49,83
+		saved-params = "is-checked"
+		text = "Clear Memory"
+		command = "tcsclearmem"
+	elem "button4"
+		type = BUTTON
+		pos = 157,464
+		size = 52x20
+		anchor1 = 28,80
+		anchor2 = 37,83
+		saved-params = "is-checked"
+		text = "Revert"
+		command = "tcsrevert"
+	elem "button3"
+		type = BUTTON
+		pos = 105,464
+		size = 52x20
+		anchor1 = 18,80
+		anchor2 = 28,83
+		saved-params = "is-checked"
+		text = "Execute"
+		command = "tcsrun"
+	elem "tcserror"
+		type = OUTPUT
+		pos = 0,488
+		size = 566x94
+		anchor1 = 0,84
+		anchor2 = 99,100
+		font-family = "sans-serif"
+		font-size = 9
+		saved-params = "max-lines"
+	elem "button2"
+		type = BUTTON
+		pos = 53,464
+		size = 52x20
+		anchor1 = 9,80
+		anchor2 = 18,83
+		saved-params = "is-checked"
+		text = "Compile"
+		command = "tcscompile"
+	elem "button1"
+		type = BUTTON
+		pos = 0,464
+		size = 53x20
+		anchor1 = 0,80
+		anchor2 = 9,83
+		saved-params = "is-checked"
+		text = "Apply"
+		command = "tcssave"
+	elem "tcscode"
+		type = INPUT
+		pos = 0,0
+		size = 569x464
+		anchor1 = 0,0
+		anchor2 = 100,80
+		font-family = "Courier"
+		font-size = 10
+		saved-params = ""
+		command = "cancel"
+		multi-line = true
+		no-command = true
+
+window "chemdispenser"
+	elem "chemdispenser"
+		type = MAIN
+		pos = 281,0
+		size = 340x480
+		anchor1 = none
+		anchor2 = none
+		is-visible = false
+		saved-params = "pos;size;is-minimized;is-maximized"
+		title = "Chem Dispenser"
+		statusbar = false
+	elem "energy"
+		type = LABEL
+		pos = 8,24
+		size = 56x16
+		anchor1 = none
+		anchor2 = none
+		saved-params = ""
+		text = "Energy: 25"
+	elem "eject"
+		type = BUTTON
+		pos = 264,4
+		size = 72x20
+		anchor1 = none
+		anchor2 = none
+		saved-params = "is-checked"
+		text = "[Insert beaker]"
+		command = "skincmd \"chemdispenser;eject\""
+	elem "amountc"
+		type = BUTTON
+		pos = 208,4
+		size = 48x20
+		anchor1 = none
+		anchor2 = none
+		saved-params = "is-checked"
+		text = "[Other]"
+		command = "skincmd \"chemdispenser;amountc\""
+	elem "amount3"
+		type = BUTTON
+		pos = 176,4
+		size = 24x20
+		anchor1 = none
+		anchor2 = none
+		saved-params = "is-checked"
+		text = "[30]"
+		command = "skincmd \"chemdispenser;amount30\""
+	elem "amount2"
+		type = BUTTON
+		pos = 144,4
+		size = 24x20
+		anchor1 = none
+		anchor2 = none
+		saved-params = "is-checked"
+		text = "[20]"
+		command = "skincmd \"chemdispenser;amount20\""
+	elem "amount1"
+		type = BUTTON
+		pos = 112,4
+		size = 24x20
+		anchor1 = none
+		anchor2 = none
+		saved-params = "is-checked"
+		text = "[10]"
+		command = "skincmd \"chemdispenser;amount10\""
+	elem "amount"
+		type = LABEL
+		pos = 4,4
+		size = 100x20
+		anchor1 = none
+		anchor2 = none
+		font-size = 12
+		saved-params = ""
+		text = "Amount: 30"
+	elem "child1"
+		type = CHILD
+		pos = 0,40
+		size = 340x440
+		anchor1 = none
+		anchor2 = none
+		saved-params = "splitter"
+		left = "chemdispenser_reagents"
+		is-vert = false
+
+window "chemdispenser_reagents"
+	elem "chemdispenser_reagents"
+		type = MAIN
+		pos = 281,0
+		size = 340x448
+		anchor1 = none
+		anchor2 = none
+		saved-params = "pos;size;is-minimized;is-maximized"
+		titlebar = false
+		statusbar = false
+		can-close = false
+		can-minimize = false
+		can-resize = false
+		is-pane = true
+		can-scroll = vertical
+	elem "template_dispense"
+		type = BUTTON
+		pos = 256,8
+		size = 64x32
+		anchor1 = none
+		anchor2 = none
+		is-visible = false
+		saved-params = "is-checked"
+		text = "Dispense"
+		image = 'icons\\dispensebutton_bg.png'
+		command = ""
+		is-flat = true
+	elem "template_name"
+		type = LABEL
+		pos = 18,8
+		size = 230x32
+		anchor1 = none
+		anchor2 = none
+		font-size = 15
+		is-visible = false
+		saved-params = ""
+		text = "Chloral Hydrate"
+		image = 'icons\\reagentname_bg.png'
+		image-mode = stretch
+
+window "mainwindow"
+	elem "mainwindow"
+		type = MAIN
+		pos = 281,0
+		size = 640x440
+		anchor1 = none
+		anchor2 = none
+		is-default = true
+		saved-params = "pos;size;is-minimized;is-maximized"
+		title = "CM-SS13 - USS Almayer"
+		is-maximized = true
+		icon = 'icons\\ss13_64.png'
+		macro = "macro"
+		menu = "menu"
+	elem "hotkey_toggle"
+		type = BUTTON
+		pos = 560,420
+		size = 80x20
+		anchor1 = 100,100
+		anchor2 = none
+		saved-params = ""
+		text = "Hotkey Toggle"
+		command = ".winset \"mainwindow.macro!=macro ? mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true : mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
+		button-type = pushbox
+	elem "mainvsplit"
+		type = CHILD
+		pos = 3,0
+		size = 634x416
+		anchor1 = 0,0
+		anchor2 = 100,100
+		saved-params = "splitter"
+		right = "rpane"
+		is-vert = true
+	elem "input"
+		type = INPUT
+		pos = 3,420
+		size = 517x20
+		anchor1 = 0,100
+		anchor2 = 100,100
+		background-color = #d3b5b5
+		is-default = true
+		border = sunken
+		saved-params = "command"
+	elem "saybutton"
+		type = BUTTON
+		pos = 520,420
+		size = 40x20
+		anchor1 = 100,100
+		anchor2 = none
+		saved-params = "is-checked"
+		text = "Chat"
+		command = ".winset \"saybutton.is-checked=true?input.command=\"!say \\\"\" macrobutton.is-checked=false:input.command=\""
+		button-type = pushbox
+
+window "mapwindow"
+	elem "mapwindow"
+		type = MAIN
+		pos = 281,0
+		size = 640x480
+		anchor1 = none
+		anchor2 = none
+		saved-params = "pos;size;is-minimized;is-maximized"
+		titlebar = false
+		statusbar = false
+		can-close = false
+		can-minimize = false
+		can-resize = false
+		is-pane = true
+	elem "map"
+		type = MAP
+		pos = 0,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		font-family = "Arial Rounded MT Bold,Arial Black,Arial,sans-serif"
+		font-size = 7
+		text-color = none
+		is-default = true
+		saved-params = "icon-size"
+		on-show = ".winset\"mainwindow.mainvsplit.left=mapwindow\""
+		on-hide = ".winset\"mainwindow.mainvsplit.left=\""
+
+window "outputwindow"
+	elem "outputwindow"
+		type = MAIN
+		pos = 281,0
+		size = 640x480
+		anchor1 = none
+		anchor2 = none
+		saved-params = "pos;size;is-minimized;is-maximized"
+		titlebar = false
+		statusbar = false
+		can-close = false
+		can-minimize = false
+		can-resize = false
+		is-pane = true
+	elem "output"
+		type = OUTPUT
+		pos = 0,0
+		size = 640x480
+		anchor1 = 0,0
+		anchor2 = 100,100
+		is-default = true
+		saved-params = "max-lines"
+		style = ".system {color:#ff0000;}"
+
+window "rpane"
+	elem "rpane"
+		type = MAIN
+		pos = 281,0
+		size = 859x480
+		anchor1 = none
+		anchor2 = none
+		background-color = none
+		saved-params = "pos;size;is-minimized;is-maximized"
+		is-pane = true
+	elem "rpanewindow"
+		type = CHILD
+		pos = 0,0
+		size = 859x499
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = none
+		saved-params = "splitter"
+		right = "outputwindow"
+		is-vert = false
+	elem "submitbug"
+		type = BUTTON
+		pos = 576,0
+		size = 106x20
+		anchor1 = 67,0
+		anchor2 = 79,0
+		background-color = none
+		saved-params = "is-checked"
+		text = "Submit Bug"
+		command = "submit-bug"
+		group = "rpanemode"
+	elem "donate"
+		type = BUTTON
+		pos = 682,0
+		size = 106x20
+		anchor1 = 79,0
+		anchor2 = 92,0
+		background-color = #8cffa4
+		saved-params = "is-checked"
+		text = "Donate"
+		command = "donate"
+		group = "rpanemode"
+	elem "rulesb"
+		type = BUTTON
+		pos = 258,0
+		size = 106x20
+		anchor1 = 30,0
+		anchor2 = 42,0
+		background-color = none
+		saved-params = "is-checked"
+		text = "Rules"
+		command = "rules"
+		group = "rpanemode"
+	elem "changelog"
+		type = BUTTON
+		pos = 153,0
+		size = 111x20
+		anchor1 = 18,0
+		anchor2 = 31,0
+		background-color = none
+		saved-params = "is-checked"
+		text = "Changelog"
+		command = "Changelog"
+		group = "rpanemode"
+	elem "forumb"
+		type = BUTTON
+		pos = 470,0
+		size = 106x20
+		anchor1 = 55,0
+		anchor2 = 67,0
+		background-color = none
+		saved-params = "is-checked"
+		text = "Forum"
+		command = "forum"
+		group = "rpanemode"
+	elem "wikib"
+		type = BUTTON
+		pos = 364,0
+		size = 106x20
+		anchor1 = 42,0
+		anchor2 = 55,0
+		background-color = none
+		saved-params = "is-checked"
+		text = "Wiki"
+		command = "wiki"
+		group = "rpanemode"
+	elem "textb"
+		type = BUTTON
+		pos = 0,0
+		size = 67x20
+		anchor1 = 0,0
+		anchor2 = 8,0
+		background-color = none
+		is-visible = false
+		saved-params = "is-checked"
+		text = "Text"
+		command = ".winset \"rpanewindow.left=;\""
+		is-checked = true
+		group = "rpanemode"
+		button-type = pushbox
+	elem "infob"
+		type = BUTTON
+		pos = 64,0
+		size = 70x20
+		anchor1 = 8,0
+		anchor2 = 15,0
+		background-color = none
+		is-visible = false
+		saved-params = "is-checked"
+		text = "Info"
+		command = ".winset \"rpanewindow.left=infowindow\""
+		group = "rpanemode"
+		button-type = pushbox
+
+window "browserwindow"
+	elem "browserwindow"
+		type = MAIN
+		pos = 281,0
+		size = 640x480
+		anchor1 = none
+		anchor2 = none
+		saved-params = "pos;size;is-minimized;is-maximized"
+		title = "Browser"
+		is-pane = true
+	elem "browser"
+		type = BROWSER
+		pos = 0,0
+		size = 640x499
+		anchor1 = 0,0
+		anchor2 = 100,100
+		background-color = #ffffff
+		is-default = true
+		saved-params = ""
+		on-show = ".winset\"rpane.infob.is-visible=true?rpane.infob.pos=130,0;rpane.textb.is-visible=true;rpane.browseb.is-visible=true;rpane.browseb.is-checked=true;rpane.rpanewindow.pos=0,30;rpane.rpanewindow.size=0x0;rpane.rpanewindow.left=browserwindow\""
+		on-hide = ".winset\"rpane.infob.is-visible=true?rpane.infob.is-checked=true rpane.infob.pos=65,0 rpane.rpanewindow.left=infowindow:rpane.rpanewindow.left=textwindow rpane.textb.is-visible=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0\""
+
+window "infowindow"
+	elem "infowindow"
+		type = MAIN
+		pos = 281,0
+		size = 640x480
+		anchor1 = none
+		anchor2 = none
+		saved-params = "pos;size;is-minimized;is-maximized"
+		title = "Info"
+		is-pane = true
+	elem "info"
+		type = INFO
+		pos = 0,0
+		size = 638x475
+		anchor1 = 0,0
+		anchor2 = 100,100
+		is-default = true
+		saved-params = ""
+		highlight-color = #00aa00
+		allow-html = false
+		on-show = ".winset\"rpane.infob.is-visible=true;rpane.browseb.is-visible=true?rpane.infob.pos=130,0:rpane.infob.pos=65,0 rpane.textb.is-visible=true rpane.infob.is-checked=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=infowindow\""
+		on-hide = ".winset\"rpane.infob.is-visible=false;rpane.browseb.is-visible=true?rpane.browseb.is-checked=true rpane.rpanewindow.left=browserwindow:rpane.textb.is-visible=true rpane.rpanewindow.pos=0,30 rpane.rpanewindow.size=0x0 rpane.rpanewindow.left=\""
+

@@ -1,0 +1,39 @@
+
+{{if data.currently_vending_name}}
+	<div itemLabel>
+		You have selected {{:data.currently_vending_name}}.
+		Please swipe your ID to pay for the article.
+		{{:helper.link('Cancel', null, {'cancel_buying' : '1'}, null, null)}}
+	</div>
+{{else}}
+	<div itemLabel>
+		{{if data.premium_length > 0}}
+			{{if data.coin}}
+				<b>Coin slot:</b> {{:helper.link('Remove', null, {'remove_coin' : '1'}, null, null)}}
+			{{else}}
+				<b>Coin slot:</b> No coin inserted
+			{{/if}}
+		{{/if}}
+	</div>
+	<div itemLabel>
+		{{if data.ewallet}}
+			<b>Charge card's credits:</b> {{:data.ewallet_worth}} {{:helper.link('Remove', null, {'remove_ewallet' : '1'}, null, null)}}
+		{{else}}
+			<b>Charge card's credits:</b> No charge card inserted
+		{{/if}}
+	</div>
+	<div itemLabel>
+		<h2>Select an item:</h2>
+	</div>
+	<div itemLabel>
+		{{for data.displayed_records}}
+			<div style="padding-top: 5px ; font-weight: bold ; float: left ; clear : both ; width: 30% ; color: {{:value.product_color}}">
+				{{:helper.link(value.product_name, null, {'vend' : value.prod_index , 'cat' : value.prod_cat}, value.amount ? null : 'disabled', null)}}
+			</div>
+		{{empty}}
+			<div style="padding-top: 5px ; float: left">
+				<font color='red'>No product loaded!</red>
+			</div>
+		{{/for}}
+	</div>
+{{/if}}

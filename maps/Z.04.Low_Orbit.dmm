@@ -1,0 +1,87 @@
+"a" = (/turf/open/space,/area/space)
+"b" = (/turf/closed/wall/indestructible,/area/space)
+"c" = (/obj/machinery/telecomms/relay/preset/station{explosion_resistance = 100; idle_power_usage = 0; listening_level = 1; unacidable = 1; use_power = 0},/turf/open/floor,/area/space)
+"d" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "tele_ground1"; teleport_x = 180; teleport_x_offset = 200; teleport_y = 50; teleport_y_offset = 80; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns2,/area/space)
+"e" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns2,/area/space)
+"f" = (/turf/open/space/transit/north/shuttlespace_ns4,/area/space)
+"g" = (/turf/open/space/transit/north/shuttlespace_ns2,/area/space)
+"h" = (/turf/open/space/transit/north/shuttlespace_ns1,/area/space)
+"i" = (/turf/open/space/transit/north/shuttlespace_ns14,/area/space)
+"j" = (/turf/open/space/transit/north/shuttlespace_ns11,/area/space)
+"k" = (/turf/open/space/transit/north/shuttlespace_ns7,/area/space)
+"l" = (/turf/open/space/transit/north/shuttlespace_ns9,/area/space)
+"m" = (/turf/open/space/transit/north/shuttlespace_ns3,/area/space)
+"n" = (/turf/open/space/transit/north/shuttlespace_ns13,/area/space)
+"o" = (/turf/open/space/transit/north/shuttlespace_ns15,/area/space)
+"p" = (/turf/open/space/transit/north/shuttlespace_ns10,/area/space)
+"q" = (/turf/open/space/transit/north/shuttlespace_ns12,/area/space)
+"r" = (/turf/open/space/transit/north/shuttlespace_ns8,/area/space)
+"s" = (/turf/open/space/transit/north/shuttlespace_ns5,/area/space)
+"t" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/turf/open/space/transit/north/shuttlespace_ns4,/area/space)
+"u" = (/turf/open/space/transit/north/shuttlespace_ns2,/area/shuttle/drop2/transit)
+"v" = (/turf/open/space/transit/north/shuttlespace_ns2,/area/shuttle/drop1/transit)
+"w" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_int/dropship{name = "2"},/turf/open/space/transit/north/shuttlespace_ns4,/area/space)
+"x" = (/obj/effect/step_trigger/teleporter/random{affect_ghosts = 1; name = "escapeshuttle_leave"; teleport_x = 25; teleport_x_offset = 245; teleport_y = 25; teleport_y_offset = 245; teleport_z = 1; teleport_z_offset = 1},/obj/effect/landmark/shuttle_loc/marine_int/dropship{name = "1"},/turf/open/space/transit/north/shuttlespace_ns4,/area/space)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabcbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabbbaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+dddddddddddddddddddddddddddddddddddddddddddaeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+dfghihjhihjhihjhihjhihjhihjhihjkilmkilmkigdaefgnopqnopqnopqnopqnopqnopqnopqropfropfropfropfge
+dfglnoplnoplnoplnoplnoplnoplnopogqiogqioggdaefghihjhihjhihjhihjhihjhihjhihjkilmkilmkilmkilmge
+dsoropfropfropfropfropfropfropfihjnihjnihgdaefglnoplnoplnoplnoplnoplnoplnopogqiogqiogqiogqige
+dsikilmkilmkilmkilmkilmkilmkilmnopqnopqnogdaesoropfropfropfropfropfropfropfihjnihjnihjnihjnge
+dgkogqiogqiogqiogqiogqiogqiogqihkgghkfggggdaesikilmkilmkilmkilmkilmkilmkilmnopqnopqnopqnopqre
+dngihjnihjnihjnihjnihjnihjnihjngrfgmgrfgggdaegkogqiogqiogqiogqiogqiogqiogqihkgghkfggghkfgghke
+dlhnopqnopqnopqnopqnopqnopqnopqhkfgghkfgggdaengihjnihjnihjnihjnihjnihjnihjngrfgmgrfggggfgggge
+dninopqnopqnopqfgggkfgkfgggkilmfggggfgggigdaelhnopqnopqnopqnopqnopqnopqnopqhkfgghkfggggfgggge
+domhihjhihjhihjfimngfngfimnogqifgimgfgigmgdaeninopqnopqnopqfgggkfgkfgggkilmfggggfgggimgfgimge
+dhglnoplnoplnopfmglhflhfmglihjnfgmgrfgmgggdaeomhihjhihjhihjfimngfngfimnogqifgimgfgigmgrfgmgre
+dshropfropfropffgonifnifgonnopqfgmgkfgghkidaehglnoplnoplnopfmglhflhfmglihjnfgmgrfgmgghkfgghke
+domkilmkilmkilmfhsomfomfhsohihjhihjhihjhimdaeshropfropfropffgonifnifgonnopqfgmgkfgghkfgggggge
+dggogqiogqiogqifgghgfhgfgghlnoplnoplnoplngdaeomkilmkilmkilmfhsomfomfhsohihjhihjhihjhihjhihjge
+dggihjnihjnihjnfghshfshfghsropfropfropfrogdaeggogqiogqiogqifgghgfhgfgghlnoplnoplnoplnoplnopge
+dfgnopqnopqnopqfglomfomfglokilmkilmkilmkigdaeggihjnihjnihjnfghshfshfghsropfropfropfropfropfge
+dfgnopqnopqnopqfgggmtttttttgmgiogqiogqioggdaefgnopqnopqnopqfglomfomfglokilmkilmkilmkilmkilmge
+dfgnopqnopqnopqfgffftuuuuutfffnihjnihjnihgdaefgnopqnopqnopqfggmgtttttttogqiogqiogqiogqiogqire
+dfghihjhihjhihjkfffftuuuuutfffqnopqnopqnogdaefghihjhihjhihjkfffftvvvvvtihjnihjnihjnihjnihjnke
+dfglnoplnoplnopofftttuuuuutttfjhihjhihjhigdaefglnoplnoplnopofffftvvvvvtnopqnopqnopqnopqnopqoe
+dfgropfropfropfifftuuuuuuuuutfplnoplnoplngdaefgropfropfropfifftttvvvvvtttfjhihjhihjhihjhihjie
+dfgkilmkilmkilmofttuuuuuuuuuttfropfropfrogdaefgkilmkilmkilmofftvvvvvvvvvtfplnoplnoplnoplnopke
+dfgogqiogqiogqihftuuuuuuuuuuutmkilmkilmkigdaefgogqiogqiogqihfttvvvvvvvvvttfropfropfropfropfge
+dfgihjnihjnihjngftuuuuuuuuuuutiogqiogqioggdaefgihjnihjnihjngftvvvvvvvvvvvtmkilmkilmkilmkilmhe
+dfinopqnopqnopqhftuuuuuuuuuuutnihjnihjnihidaefinopqnopqnopqhftvvvvvvvvvvvtiogqiogqiogqiogqiie
+dfmnopqnopqnopqffttuuuuuuuuuttqnopqnopqnomdaefmnopqnopqnopqfftvvvvvvvvvvvtnihjnihjnihjnihjnme
+dfghihjhihjhihjifftuuuuuuuuutfjhihjhihjhigdaefghihjhihjhihjifttvvvvvvvvvttqnopqnopqnopqnopqge
+dfhlnoplnoplnopgfftuuuuuuuuutfplnoplnoplnhdaefhlnoplnoplnopgfftvvvvvvvvvtfjhihjhihjhihjhihjhe
+dfgropfropfropfgfftuuuuuuuuutffropfropfrogdaefgropfropfropfgfftvvvvvvvvvtfplnoplnoplnoplnopme
+dggkilmkilmkilmffttuuuuuuuuuttmkilmkilmkigdaeggkilmkilmkilmffftvvvvvvvvvtffropfropfropfropfge
+dggogqiogqiogqifftuuuuuuuuuuutiogqiogqioggdaeggogqiogqiogqiffttvvvvvvvvvttmkilmkilmkilmkilmke
+dgfihjnihjnihjnfftuuuuuuuuuuutnihjnihjnihgdaegfihjnihjnihjnfftvvvvvvvvvvvtiogqiogqiogqiogqioe
+dgfnopqnopqnopqfftuuuuuuuuuuutqnopqnopqnoidaegfnopqnopqnopqfftvvvvvvvvvvvtnihjnihjnihjnihjnie
+dgfnopqnopqnopqfftuuuuuuuuuuutjhihjhihjhimdaegfnopqnopqnopqfftvvvvvvvvvvvtqnopqnopqnopqnopqke
+drfhihjhihjhihjfftuuuuuuuuuuutplnoplnoplngdaerfhihjhihjhihjfftvvvvvvvvvvvtjhihjhihjhihjhihjge
+dkflnoplnoplnopfftttuuuuuuutttfropfropfroodaekflnoplnoplnopfftvvvvvvvvvvvtplnoplnoplnoplnophe
+dofropfropfropfffftttutttutttfmkilmkilmkigdaeofropfropfropffftttvvvvvvvtttfropfropfropfropfie
+difkilmkilmkilmfffwuuutftuuutfiogqiogqioggdaeifkilmkilmkilmffftttvtttvtttfmkilmkilmkilmkilmme
+dkfogqiogqiogqiffftttttftttttfnihjnihjnihmdaekfogqiogqiogqifffxvvvtftvvvtfiogqiogqiogqiogqige
+dgfihjnihjnihjnffgggggggggggggggggjmglhfmgdaegfihjnihjnihjnffftttttftttttfnihjnihjnihjnihjnhe
+dhfnopqnopqnopqfffffffffffffffqnopqnopqngodaehfnopqnopqnopqfffffffffffffffqnopqnopqnopqnopqme
+dggnopqnopqnopqnopqnopqnopqnopqnopqnopqnggdaeggnopqnopqnopqnopqnopqnopqnopqnopqnopqnopqnopqge
+dgghihjhihjhihjhihjhihjhihjhihjhihjhihjhggdaegghihjhihjhihjhihjhihjhihjhihjhihjhihjhihjhihjge
+dfglnoplnoplnoplnoplnoplnoplnoplnoplnoplggdaefglnoplnoplnoplnoplnoplnoplnoplnoplnoplnoplnopge
+dfgropfropfropfropfropfropfropfropfropfrggdaefgropfropfropfropfropfropfropfropfropfropfropfge
+dfgkilmkilmkilmkilmkilmkilmkilmkilmkilmkmgdaefgkilmkilmkilmkilmkilmkilmkilmkilmkilmkilmkilmge
+dfgogqiogqiogqiogqiogqiogqiogqiogqiogqioggdaefgogqiogqiogqiogqiogqiogqiogqiogqiogqiogqiogqire
+dfgihjnihjnihjnihjnihjnihjnihjnihjnihjnihgdaefgihjnihjnihjnihjnihjnihjnihjnihjnihjnihjnihjnke
+dfgnopqnopqnopqnopqnopqnopqnopqnopqnopqnsgdaefgnopqnopqnopqnopqnopqnopqnopqnopqnopqnopqnopqoe
+dfggsiggsifggsiggsifggsifggsifggsiggsifgsgdaefggsiggsifggsiggsifggsifggsifggsiggsifggsifggsie
+dfgggkgggkfgggkgggkfgggkfgggkfgggkgggkfgggdaefgggkgggkfgggkgggkfgggkfgggkfgggkgggkfgggkfgggke
+dfimngimngfimngimngfimngfimngfimngimngfinidaefimngimngfimngimngfimngfimngfimngimngfimngfimnge
+dfmglhmglhfmglhmglhfmglhfmglhfmglhmglhfmlmdaefmglhmglhfmglhmglhfmglhfmglhfmglhmglhfmglhfmglhe
+dfgonigonifgonigonifgonifgonifgonigonifgngdaefgonigonifgonigonifgonifgonifgonigonifgonifgonie
+dfhsomhsomfhsomhsomfhsomfhsomfhsomhsomfhohdaefhsomhsomfhsomhsomfhsomfhsomfhsomhsomfhsomfhsome
+dfgghggghgfgghggghgfgghgfgghgfgghggghgfghgdaefgghggghgfgghggghgfgghgfgghgfgghggghgfgghgfgghge
+dddddddddddddddddddddddddddddddddddddddddddaeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee
+"}

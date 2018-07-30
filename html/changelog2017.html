@@ -1,0 +1,2524 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+  <title>Colonial Marines Changelog</title>
+  <link rel="stylesheet" type="text/css" href="changelog.css">
+  <base target="_blank" />
+  <script type='text/javascript'>
+
+	function changeText(tagID, newText, linkTagID){
+		var tag = document.getElementById(tagID);
+		tag.innerHTML = newText;
+		var linkTag = document.getElementById(linkTagID);
+		linkTag.removeAttribute("href");
+		linkTag.removeAttribute("onclick");
+	}
+
+  </script>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+</head>
+
+
+<body>
+<table align='center' width='650'><tr><td>
+<table align='center' class="top">
+	<tr>
+		<td valign='top'>
+			<div align='center'><font size='3'><b>Welcome to Colonial Marines!</b></font></div><br>
+			<div align='center'><font size='2'><i>Colonial Marines is a medium-roleplay Space Station 13 server inspired by the Aliens film and built from a heavily modified Baystation 12.</i></font></div>
+			<br>
+			<div align='center'><font size='3'><a href="https://cm-ss13.com/wiki/Rules">Rules</a> | <a href="https://cm-ss13.com/">Forum</a> | <a href="https://cm-ss13.com/wiki">Wiki</a><br></font></div>
+		</td>
+	</tr>
+</table>
+
+
+<br><b>Colonial Marines Development Team</b>
+<table align='center' class="top">
+	<tr>
+		<td valign='top'>
+			<font size='2'><b>Hosts:</b> Apophis (founder), Rahlzel<br></font>
+			<font size='2'><b>Head Developer:</b> BMC777<br></font>
+			<font size='2'><b>Gameplay Design:</b> Apophis, Rahlzel, BMC777, Feweh, forwardslashN<br></font>
+			<font size='2'><b>Repo Maintainer:</b> Phil235<br></font>
+			<font size='2'><b>Coders:</b> Apophis, Rahlzel, Abbysynth, Infernus, MadSnailDisease, forwardslashN, SnipeDragon, Dylanstrategie, BMC777, Hikato, Phil235, Spookydonut<br></font>
+			<font size='2'><b>Mappers:</b> Abbysynth, Apophis, Allan, Infernus, Rahlzel, Minijar, BMC777, RavingManiac, Artouris, Snypehunter007<br></font>
+			<font size='2'><b>Spriters:</b> Secretstamos (Joshuu), Arefridgerator, Monkeysfist, Infernus, Artouris, Gorg, NicBoone<br></font>
+			<font size='2'><b>Sounds:</b> Rahlzel<br></font>
+			<font size='2'><b>Thanks to:</b> Baystation 12, /tg/station 13, and the original SpaceStation developers</font>
+		</td>
+	</tr>
+</table>
+
+<table align='center' class="top">
+	<tr>
+		<td valign='top'>
+			<div align='center'><font size='2'><br> Changelogs:
+			<a href="https://cm-ss13.com/changelog/changelog2015.html">2015</a> |
+			<a href="https://cm-ss13.com/changelog/changelog2016.html">2016</a> |
+			<a href="https://cm-ss13.com/changelog/changelog2017.html">2017</a><br></font></div>
+		</td>
+	</tr>
+</table>
+
+<!--
+Changelog Section
+-->
+
+<!-- NOTE TO UPDATERS!! Please only list things which are important to players.
+Stuff which is in development and not yet visible to players or just code related
+(ie. code improvements for expandability, etc.) should not be listed here. They
+should be listed in the changelog upon commit though. Thanks. -->
+
+<!-- You can simply add changelogs using AddToChangelog.exe -->
+
+<!-- Blank template for devs:
+
+<div class='commit sansserif'>
+	<h2 class='date'>XX MONTH 2016</h2>
+	<h3 class='author'>YOURNAME updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>green bug</li>
+		<li class='wip'>hard hat</li>
+		<li class='tweak'>screwdriver & wrench</li>
+		<li class='soundadd'>note plus</li>
+		<li class='sounddel'>note minus</li>
+		<li class='rscdel'>red circle with white X</li>
+		<li class='rscadd'>green circle with white v</li>
+		<li class='imageadd'>image plus</li>
+		<li class='imagedel'>image minus</li>
+		<li class='spellcheck'>abc v</li>
+		<li class='experiment'>nuclear symbol</li>
+	</ul>
+</div>
+
+ -->
+
+<!-- DO NOT REMOVE, MOVE, OR COPY THIS COMMENT! THIS MUST BE THE LAST NON-EMPTY LINE BEFORE THE LOGS #ADDTOCHANGELOGMARKER# -->
+
+<div class='commit sansserif'>
+	<h2 class='date'>December 27 2017</h2>
+	<h3 class='author'>Apophis updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscdel'>Xmas Update/Features deactivated.  Hope you enjoyed it!</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>December 26 2017</h2>
+	<h3 class='author'>BMC777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Hivelords can now dig tunnels on Prison Station.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>December 23 2017</h2>
+	<h3 class='author'> Gorg updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Xeno acid now weakens walls and creates a hole in the wall.</li>
+		<li class='rscadd'>The small xeno castes can crawl through the holes by dragging their sprite onto the wall with the hole in it (dragged bodies will come a long for the ride).</li>
+		<li class='rscadd'>Human players can look through the holes by dragging the wall with the hole onto their player sprite.</li>
+		<li class='rscadd'>Human players can throw flares, flashlights and grenades through the holes.</li>
+		<li class='rscadd'>Big xenos can attack said weakened walls to destroy them.</li>
+		<li class='rscadd'>All walls now become girders or damaged girders upon destruction.</li>
+		<li class='rscadd'>Damaged girders cannot be destroyed.</li>
+		<li class='rscadd'>Girders can be repaired and built upon to repair the wall.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>December 18 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Odds of triggering a tail attack increased significantly</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>December 17 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>Tail attacks are now a critical hit roll on normal attacks instead of a manual ability</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>December 16 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>Modified survivor scaling and population cap.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>December 4 2017</h2>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='soundadd'>New *plasma emote for Xenos to alert other Xenos to come to their aid or give them plasma. Use *help or click IC > Emotes for a list of usable emotes.</li>
+    </ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>December 3 2017</h2>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Updated Requisitions Directives sign.</li>
+		<li class='rscadd'>Added 2 hand labelers to Requisitions.</li>
+		<li class='rscadd'>A stowaway was found and placed in the Commander's Quarters.</li>
+    </ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>December 2 2017</h2>
+	<h3 class='author'>BMC777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='imageadd'>Added Nicboone's new Big Red terrain sprites.</li>
+    </ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>November 30 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Humans on fire now take more damage.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>November 23 2017</h2>
+	<h3 class='author'>The Great Pumpkin (Apophis) updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Thanksgiving Food in the Cafeteria</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>November 22 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Added double doors to the lower medbay ladder area, for medical personnel only.</li>
+		<li class='tweak'>Changed the maintenance room behind the CL residence to a bathroom.</li>
+		<li class='tweak'>Changed the CL residence design.</li>
+		<li class='tweak'>Changed the color tiling of the firing range from cyan to green.</li>
+		<li class='tweak'>Changed the door access requirements for the medical doors closest to the hangar to all access.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>November 21 2017</h2>
+	<h3 class='author'>RavingManiac updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>New map: Prison Station!</li>
+	</ul>
+	<h3 class='author'>Gorglol updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='imageadd'>New walls, doors and floor sprites for Prison Station.</li>
+		<li class='imageadd'>New carpet sprite.</li>
+		<li class='imageadd'>New television sprite..</li>
+		<li class='imageadd'>New type of table sprite.</li>
+		<li class='imageadd'>New wooden floor sprite.</li>
+		<li class='bugfix'>Fixed some smooth tiling issues around doors and double doors.</li>
+	</ul>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Barricades can now be rotated after they are detached from the floor. This is done similar to windows - via the right-click menu of the barricade itself or in the 'Object' tab when standing beside it. Rotating a barricade will also temp-fix the layering problem of pulled barricades appearing over/under mobs until a better fix is done.</li>
+		<li class='rscadd'>Xenos using the Evolve verb now get user feedback on what they are evolving into. As usual, they can then move to interrupt the evolution if they accidentally select something they don't want.</li>
+	</ul>
+
+
+</div><div class='commit sansserif'>
+	<h2 class='date'>November 19 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Survivors now get more tools and are more skilled.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>November 18 2017</h2>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Requisitions: Fixed Anesthetic and Quickclot orders getting mixed up with Surgery and Sterile crates.</li>
+		<li class='tweak'>Requisitions: Further separated sniper and RPG ammo crates.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>November 17 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Removed the hallway leading directly from the cargo area south of LZ to the general store on Big Red.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>November 17 2017</h2>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li>Requisitions revamped:</li>
+		<li class='tweak'>Attachments, ammo, explosives, pouches, beacons, (and a few other categories) have been split up into item-specific crates to more easily manage orders.</li>
+		<li class='tweak'>New "Attachments" category.</li>
+		<li class='tweak'>Moved explosives to Weapons category.</li>
+		<li class='tweak'>Moved empty sandbags to Operations category.</li>
+		<li class='tweak'>Lots of new crates added, including "Anesthetic crate" (4x masks and tanks) and "Quickclot crate" (14x Quickclot autoinjectors), per suggestions via Gitlab.</li>
+		<li class='tweak'>Many crates show the contents in the ASRS console for ease of use (though some are missing or too complex to list). The "xY" (x2, x5, etc) is meant to show the total number of that item, not the number of containers. For example, the "Body Bag crate" comes with 4 boxes of body bags, but each box has 7 body bags, therefore the ASRS console shows "x28" body bags instead of "x4" boxes.</li>
+		<li class='tweak'>Many prices have been adjusted but are subject to change as we continue to improve balance.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>November 16 2017</h2>
+	<h3 class='author'>BMC777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Changed the name of the SADAR to the M5 RPG for lore accuracy.</li>
+		<li class='rscadd'>Added new M3-T armor to the Demolitionist Specialist's loadout crate.</li>
+	</ul>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Floodlight repair is now done in multiple steps: screwdriver, crowbar, welding tool, cable coil, screwdriver.</li>
+		<li class='tweak'>Xenomorph damaging floodlights is also no longer a single step, xenos have to attack the floodlight multiple times to break it.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>	<h2 class='date'>November 15 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Added Gorgol's new welder and water tank sprites.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>	<h2 class='date'>November 10 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed predator surgery tools not working.</li>
+		<li class='bugfix'>Fixed the brig disposals having an extra pipe under a disposal unit.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>November 10 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Added Nicboone's new cargo locker sprites.</li>
+		<li class='rscadd'>Added Nicboone's new predator surgery tool sprites.</li>
+		<li class='tweak'>Cleaned and organized the Admin Level.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>November 8 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Moved the Cryoslation room to the end of cells in the Brig.</li>
+		<li class='rscadd'>Re-added a second isolation room.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>November 6 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Added riot shields to the MP Armory.</li>
+	</ul>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Weeds now grow on walls, perspective windows and window frames. It also grows even on tiles with tables, closets, crates, machines, etc. The only objects to block weed growth are airlocks and shutters.</li>
+	</ul>
+	<h3 class='author'>RavingManiac updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Humans now have access to "View Crew Manifest" in the IC tab</li>
+		<li class='tweak'>For ghosts, "View Crew Manifest" moved to IC tab for consistency</li>
+		<li class='tweak'>First-aid pouches now have a tramadol injector instead of a tricordrazine injector</li>
+		<li class='tweak'>Damage displayed on health indicator may be masked by painkillers</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>	<h2 class='date'>November 5 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Added splints to wall nanomeds.</li>
+		<li class='rscadd'>Added a retractor to the autopsy room.</li>
+		<li class='rscadd'>Added a locker for the RO in their office.</li>
+		<li class='rscadd'>Added lockers for Cargo Technicians in the Requisitions Break Room.</li>
+		<li class='rscadd'>Added a break room to Requisitions.</li>
+		<li class='tweak'>Changed the ID requirements for the RO Office, now only the RO and Command Officers can open it.</li>
+		<li class='tweak'>Changed the ID requirements for the CE Office, now only the CE and Command Officers can open it.</li>
+		<li class='tweak'>Changed one of the Isolation Cells into a 'Cryoslation' Cell, allowing for MPs to brig and contain SSD criminals.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>	<h2 class='date'>November 3 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Added a Liasion Shutters button to the maintenance tunnel behind their office.</li>
+		<li class='tweak'>Replaced two vendors in the canteen with drink vendors.</li>
+		<li class='tweak'>Replaced the shotgun in Research with a Flamethrower.</li>
+		<li class='bugfix'>Changed the HG Shotgun's description to display the correct shell-count.</li>
+		<li class='bugfix'>Fixed the disposals room on the lower deck so that trash no longer gets stuck.</li>
+		<li class='bugfix'>Fixed the ID requirements to open the Commander's Quarters.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>November 3 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Dropships now keep communication while in transit.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>October 26 2017</h2>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li>A few Engineering quality of life fixes:</li>
+		<li class='tweak'>Barbed wire can now be removed from a barricade using wirecutters and will remain intact.</li>
+		<li class='soundadd'>Sounds added for barbed wire installation and removal.</li>
+		<li class='tweak'>The construction pouch can now hold barbed wire, cable coils, metal rods, and an entrenching tool, in addition to previous items. Previously it could only hold metal/glass sheets and empty sandbags (it was supposed to hold barbed wire but was bugged). The construction pouch's description has been updated to convey everything it is capable of holding.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>October 25 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>The overwatch console now lets you sort the list of marines by rank or by health status. It also gives you the total amount of marines deployed in the squad and how many are still alive.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>October 21 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Added a monkey cube to research.</li>
+		<li class='rscadd'>Added lockdown buttons to research.</li>
+		<li class='rscadd'>Added privacy shutters to the maintenance tunnel behind the CL's quarters.</li>
+		<li class='rscadd'>Added a office for the Commander.</li>
+		<li class='tweak'>Changed the location of some MT spawns.</li>
+		<li class='tweak'>Changed the location of the Commander's Quarters.</li>
+		<li class='tweak'>Changed the design of the Research Lounge.</li>
+		<li class='tweak'>Expanded the size of the XO's quarters.</li>
+		<li class='bugfix'>Chief Engineer now spawns in his office.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>October 17 2017</h2>
+                <h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Added new Xeno weeds sprites. Special thanks to Nicboone for the sprites and Phil for helping with the code.</li>
+                </ul>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fix being able to devour multiple mobs as a Xeno by abusing delays.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>October 15 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Added gear for marine prisoners to wear while on the Predator ship.</li>
+		<li class='tweak'>Fixed the anesthetic mask on the Predator ship.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>October 15 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Humans can now attempt to put out fire on another human by clicking them with an empty hand on help intent.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>October 13 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Added a paper copier to the Almayer Brig.</li>
+		<li class='rscadd'>Added pepper spray bottles to the Almayer Brig.</li>
+		<li class='rscadd'>Added black gloves to the Almayer Brig.</li>
+		<li class='rscadd'>Added 5 sets of new names to each ERT faction (1 set = 1 male name, 1 female name, 1 last name).</li>
+		<li class='tweak'>Added the full Greek Alphabet of code names to the Death Squad. This will hopefully keep repeats from happening in the same wave.</li>
+		<li class='rscdel'>Removed some old content from the admin level.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>October 11 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Changed the position of the Self Destruct APC to the Core Monitoring Room.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>October 11 2017</h2>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='soundadd'>New 'Power loss' sound effect when an Admin uses the 'Unpower all' button in the Secrets Panel.</li>
+		<li class='soundadd'>Remade ARES' 'Power has been restored' sound clip - it was way too loud.</li>
+		<li class='tweak'>Two new Adminhelp Autoresponse options for Staff - Autoresponse > 'IC Issue' and 'A: Devour as Xeno'. The former is useful to inform players that their Adminhelp should be dealt in-character along with links to our Wiki's Chain of Command and Marine Law, and the latter is for teaching players how to use the Xenos' Devour ability.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>October 10 2017</h2>
+	<h3 class='author'>RavingManiac updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Cargo gets supplies via an Automated Storage and Retrieval System, delivered through a cargo-only elevator. What's that? A shuttle jumping through interstellar space in mere minutes to deliver supplies? What rubbish! There has never been such a shuttle. Cargo sprites courtesy of Nicboone.</li>
+		<li class='tweak'>Regular cargo consoles no longer ask for a reason for ordering a crate. Request consoles will still ask for a reason.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>October 8 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Added ID access to the smartfridges in Medbay, only doctors, researchers, and the CMO can access it now.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>October 7 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Fixed some issues with Xeno critical bleedout, made it less hardcore off-weeds.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>October 6 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>Nerfed optimal grenade use by randomizing the length of timers.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>October 5 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>The Overwatch console now lets you transfer marines to another squad, report marines for insubordination (making them 'wanted' by the MPs), and assign a marine as squad leader even if they're not originally a squad leader. Changing the Squad's leader demote the current one if they're alive (demoted to their previous role if they were promoted to SL via overwatch console). A field-promoted SL gets automatically demoted and replaced by the squad's true SL if they join mid-round.</li>
+		<li class='rscadd'>Squad Leader locator is no longer using a tracking beacon item. You now have an HUD display on your screen when wearing a marine headset and are part of a squad. The display functions similarly to the Queen locator.</li>
+	</ul>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fix regurgitate not resetting digestion of mobs or items, notably monkeys.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>October 2 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>All department heads that didn't have big text yet (RO, CMO, CE) have been granted the gift of being loud on the radio.</li>
+		<li class='rscadd'>Implemented multiple suggestions to the Almayer.</li>
+		<li class='rscadd'>Pilot Officers now get heat-arborsbent coifs in their closets.</li>
+		<li class='bugfix'>Fix multiple exploits regarding performing actions while in vents.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>October 1 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>Added orders to all Command positions and Squad Leaders. Orders give a timed buff to nearby Marines that can be used for timed pushes</li>
+		<li class='experiment'>Changed how beacons are planted</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>September 30 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed the Predator Ship losing power when it shouldn't.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>September 29 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Increased number of doctor job slots by two.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>September 28 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='wip'>Redesigned the Predator ship since it hasn't been updated since preds were introduced.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>September 26 2017</h2>
+	<h3 class='author'>Apophis775 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Zombie Mode Added (with a lot of help from Phil)</li>
+		<li class='rscadd'>Mode still needs a LOT of staff input (spawning the zombies, setting the round up, etc).</li>
+		<li class='rscadd'>The infection CAN be used in any-game mode, but Infection Mode is the only one that will allow a "zombie victory".</li>
+		<li class='rscadd'>There IS a cure.  It has to be spawned in by admins/cent-com.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>September 24 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Added a separate area to the Chief MP Office.</li>
+		<li class='rscadd'>Added a separate area to the Officer's Study.</li>
+		<li class='rscadd'>Added more stuff to the secret room.</li>
+		<li class='tweak'>Moved the secret room.</li>
+		<li class='tweak'>Moved the A.R.E.S. Core Room.</li>
+		<li class='bugfix'>Gave the Captain's Mess the proper area.</li>
+		<li class='tweak'>Shrunk the size of the Astronavigation room.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>September 19 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Carriers get a new ability: "Place Trap". For 200 plasma you can place a resin hole on weeds. This hole can store a facehugger, just like an egg, and lets the facehugger ambush humans.</li>
+	</ul>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Re-piped the Almayer.</li>
+		<li class='rscadd'>Secrets.</li>
+		<li class='rscdel'>Removed the hovering air alarm near the southern Almayer ladders.</li>
+		<li class='bugfix'>Fixed Brig disposal chute ejecting its contents.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>September 18 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Increased Crusher bullet deflection.</li>
+		<li class='tweak'>Increased Crusher health.</li>
+		<li class='tweak'>Increased Ravager health.</li>
+		<li class='tweak'>Increased Crusher and Ravager health regen when standing on weeds (not resting).</li>
+	</ul>
+</div>
+
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>September 17 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Xeno's tail attack is now an action button.</li>
+		<li class='tweak'>Drone and Hivelord get the transfer plasma ability again. You now activate the ability like Pounce, select the ability and click a target to transfer a fixed plasma amount to another xeno at a certain range after a small delay. Hivelord transfers more plasma, at longer range, and faster.</li>
+		<li class='tweak'>Secrete Resin is now an active ability, like Pounce, it uses shift click or middle click. Hivelords can now secrete resin on tiles adjacent to them. They can also upgrade existing resin structures to their stronger version if it exists. Hivelord's Secrete Resin cost is increased.</li>
+		<li class='rscadd'>Xeno abilities are now using action buttons, just like items like marine armor light. Most of those abilities are removed from the Alien tab in the top right corner, which means no more macro with those abilities. Some of those abilities can now be selected via their button and then used using middle click or shift click (Pounce, Stomp, Spit, Charge, etc). The 'secrete resin' ability is now split into two: 'choose resin' to select which type of resin structure you want to secrete, and 'secrete resin' to actually build that structure. Secreting resin now takes time, something around 1 second (and less for the Hivelord). Toggling dark vision is now a button next to the health and plasma. </li>
+		<li class='tweak'>Praetorian's sticky resin spit is no longer its own ability but is now a different type of spit. It's also changed from a 3x3 sticky resin coverage to a single tile but the cooldown is reduced accordingly.</li>
+	</ul>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscdel'>You can no longer tunnel through or destroy rock walls.</li>
+	</ul>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Reduced the Queen's plasma cost of laying eggs from 500 to 400.</li>
+		<li class='tweak'>Increased Carrier's max number of facehuggers carried from 6 to 8.</li>
+		<li class='tweak'>Decreased Carrier's delay between throwing facehuggers.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>September 16 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>Xenos can now regenerate plasma when wounded and on weeds. This will happen at full rate regardless of health.</li>
+		<li class='experiment'>Xenos will now heal much faster if resting on weeds, and significantly slower if standing on weeds.</li>
+		<li class='experiment'>Xenos will now regenerate mainly using Warding pheromones when critically wounded. This will be slower than healing when resting.</li>
+		<li class='experiment'>Healing ffects of regeneration pheromones have been made more consistent.</li>
+		<li class='rscdel'>Transfer Plasma has been removed. Xenomorphs will now have to rely on their innate plasma regeneration and the effects of the Regen pheromone.</li>
+	</ul>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Added more walkways around Big Red.</li>
+		<li class='tweak'>Re-piped and rewired all the piping and wiring on Big Red so it no longer runs under walls.</li>
+	</ul>
+</div>
+
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>September 15 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed LV engineering not distributing power to the rest of the colony.</li>
+		<li class='bugfix'>Fixed the CIC disposal chute ejecting its contents.</li>
+		<li class='tweak'>Made Big Red LZ1 harder to defend.</li>
+		<li class='tweak'>Made Big Red LZ2 easier to defend.</li>
+	</ul>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Xeno weeds can no longer spread to, or be planted on, Big Red dirt tiles.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>September 12 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>The Crew Manifest now splits marines in squads.</li>
+		<li class='bugfix'>Fixes the Nuke explosion cinematic not playing when the Self Destruct system explodes. </li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>September 11 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Added Medal System.  Commander can use the computer to submit an award.  The awards appear after the game, and print-out an actual award that can be pinned onto players.  Abusing the system or making tons of fake awards will results in removal from Commander.</li>
+		<li class='bugfix'>Fixed CMO unable to use flash</li>
+		<li class='bugfix'>Fixed issue of magazines and gun sprites</li>
+		<li class='tweak'>XO and CO engineering skill increased to Combat Engineer level.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>September 10 2017</h2>
+	<h3 class='author'>Apophis775 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Response Teams now have a basic skillset including construction, basic medical, and badassery at CQC.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>September 8 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Medical HUD glasses now lets you add holographic cards on the patients you examine for triage purposes (same way that you mark criminals as 'wanted' with security HUD glasses). You can get rid of a holo card on you by simply clicking yourself.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>September 6 2017</h2>
+	<h3 class='author'>RavingManiac updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>:i will now cause you to speak into adjacent intercoms without having to toggle the microphone</li>
+		<li class='rscadd'>Tape recorders will use italics to distinguish regular speech from into-radio speech</li>
+		<li class='tweak'>Into-radio speech eavesdrop range increased from 1 to 2</li>
+		<li class='bugfix'>Objects can now hear speech beyond the tile the object is on</li>
+		<li class='bugfix'>When speaking into a radio, regular speech will appear in chat panel before radio message, instead of after</li>
+		<li class='bugfix'>Donor items will now spawn in storage correctly</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>September 4 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscdel'>Briefing Shutters button in Briefing removed. Get the MPs to work the checkpoints</li>
+		<li class='rscadd'>All ERTs with pistols on their belt now get a pistol belt loaded with ammo. If they had pistol ammo pouches, they were replaced with primary ammo pouches</li>
+		<li class='tweak'>Inverted plasma regeneration for hiding Runners. Will now regen on weeds, will no longer regen off weeds. If winding up tail, you will no longer get passive tick either</li>
+		<li class='tweak'>You can now log into communications console with the ID in your ID slot</li>
+		<li class='tweak'>Pen label sizes are now on part with hand labeler labels at 26 characters</li>
+		<li class='bugfix'>Fixed not being able to label buckets with pens</li>
+		<li class='bugfix'>Fixed rock outcroppings interacting weirdly with weeds</li>
+		<li class='bugfix'>Fixed CE closet having an incorrect unlocked sprite</li>
+		<li class='bugfix'>Fixed weird wall setup in Quarantine</li>
+		<li class='bugfix'>Fixed all the resin walls and resin membranes on LV</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>August 25 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='imageadd'>Added Nicboone's new Xeno wall, membrane, and door sprites.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>August 23 2017</h2>
+	<h3 class='author'>RavingManiac updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>New storage UI for backpacks, satchels, boxes and pill bottles</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>August 21 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Defibrillator no longer requires you to remove the patient's uniform, just the suit/armor.</li>
+		<li class='tweak'>Split Medical Crate into First-aid kit Crate and Medical Crate (syringe,bottles,autoinjectors).</li>
+		<li class='tweak'>OB is buffed. Fatty and Napalm rockets are nerf so they don't make OB obsolete.</li>
+		<li class='tweak'>Pill bottle in smartfridges now show their label.</li>
+		<li class='tweak'>Pill bottles now get randomized sprites, just like the pills currently. Each round the pill bottle of a certain type is a different color, but all pill bottles of that type will be of that color this round. This helps medics and doctors identify pill bottles at a glance.</li>
+		<li class='tweak'>Syringe and beaker fillings now take the color of the liquid they hold.</li>
+		<li class='tweak'>Cryobag no longer inflicts genetic and brain damage onto its patient.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>August 19 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Humans trained with firearms can now do tactical reloads by clicking and dragging a magazine (whether on ground, in hand, or in a storage) onto their gun held in hand.</li>
+		<li class='rscadd'>Squad Leaders and higher officers get a big green arrow when pointing, they also have less cooldown for pointing.</li>
+		<li class='tweak'>The Fatty rocket was changed.</li>
+		<li class='tweak'>Pistol pouches are no longer in marine vendors. They are in Medic Vendor, SL Vendor, Cargo Vendor.</li>
+		<li class='tweak'>Non medically trained personel can ingest pills again, but they do not recognize the type of pill they're taking. They also do not recognize pill bottle labels. Pills and pill bottle names are now nondescriptive and they must be examined to know what type they are.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>August 18 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'> Added a skill system that determines ability to use certain things such as the Powerloader, c4, defibrillator, or do certain actions like performing surgery or hacking machines, along with buffs or debuffs to weapon statistics. Skills are based off role.</li>
+	</ul>
+</div>
+
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>August 15 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>pockets can now hold small items again.</li>
+		<li class='tweak'>You can place items into your backpack while it's on your back again (but still can't take things from it while on your back).</li>
+		<li class='tweak'>Standard marine, specialist, and smartgunner now start with a satchel instead of a backpack.</li>
+		<li class='tweak'>Light ammo pouch is removed. General pouches can now hold rifle&smg magazines.</li>
+		<li class='tweak'>Flare pouch in vendors now starts full of flares.</li>
+		<li class='tweak'>Webbings can hold rifle&smg magazines again.</li>
+		<li class='tweak'>Helmet can now hold any type of glasses (instead of just marine goggles).</li>
+		<li class='tweak'>Small explosive pouch is removed, the large explosive pouch become "explosive pouch".</li>
+		<li class='tweak'>Belts are no longer necessary to equip pouches.</li>
+		<li class='bugfix'>Fixes survivors not spawning with their survival pouch.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>August 14 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>You now have an option in right-click menu to toggle how worn pouch behave when clicked with an empty hand. It can either open the storage menu, or take the first item inside the pouch. The first option is the default one for all single-slot pouches.</li>
+		<li class='tweak'>Marine standard belt now only has 5 slots. Satchels are available at marine vendor.</li>
+		<li class='rscadd'>Xenomorph now have their own hud to detect which human is dead or infected.</li>
+		<li class='rscadd'>Xenos also have a toggleable status HUD to see the health and plasma level of xenos.</li>
+		<li class='rscadd'>Ghost now have access to med HUD, sec HUD, squad HUD, xeno status HUD. All toggleable.</li>
+		<li class='rscadd'>Predator mask now give the predator a medical HUD.</li>
+		<li class='rscadd'>New pouch system. The pocket slots are now mostly used to attach pouches. You can still insert items in your pockets directly but they will only accept tiny ones. Pouches are specialized storages that can only take certain items depending on the pouch type. You need to wear a belt to have pouches in your pocket slots. Pouches are found in various vending machines, cargo crate, and in some job closets.</li>
+		<li class='tweak'>Various nerfs to other storages. Backpack can now hold less items. Backpacks and satchels now are funcitonally different, backpack can hold more but they cannot be opened and interacted with while worn on your back.. Pockets can now only accept tiny items except for pouches.</li>
+		<li class='tweak'>Storage objects now show when they are full, the storage rectangle now turns orange then red when nearly full and completely full respectively.</li>
+		<li class='bugfix'>Fixes grilles appearing on top of reinforced windows.</li>
+		<li class='tweak'>Some items are now bigger. Flare packs (M94) no longer fit in your armor, webbing, helmet or pocket slot. To compensate, the flare pack now contains 5 flares. Rifle and smg magazines no longer fit in your webbing or helmet or pocket slots. Knives and pistol ammo no longer fit in your pocket or helmet.</li>
+		<li class='tweak'>Ammo magazines can no longer be refilled by inserting them in vending machines. They can only be inserted in vending machines whel full. You can now insert guns and ammo by directly clicking the vendor with the item.</li>
+		<li class='tweak'>Marine vendor no longer contains AP ammo. Some can be found in the cargo vendors.</li>
+		<li class='tweak'>Medical belt can now hold roller beds. Pistol belt can now hold four magazines.</li>
+		<li class='tweak'>Changed some items size from small to tiny.</li>
+		<li class='tweak'>M41A magazines now only contain 32 rounds. M39 mags contain 40.</li>
+		<li class='tweak'>Cargo changes. Ammo crate orders are made cheaper. Specialist ammo crate is split into power pack crate and sniper ammo crate. Added pouch crate, shotgun ammo crate, and flare pack crate. Cargo ammo vendors no longer start nearly empty. Added a big ammo box for rifle AP ammo, and added a cargo crate for it.</li>
+		<li class='rscadd'>Most Pouches come in three sizes: light (1 slot), medium (2 slot), and large (3 slot). Pouches types are as follows: general pouch can hold small items, magazine pouches can hold certain magazines, firstaid pouch can hold ointment, gauze and autoinjector, flare pouch can hold flares, medkit pouch can hold  one medkit, bayonet sheath can hold one knife, medical pouch can hold most small medical supplies, construction pouch can hold most contruction materials, electronics pouch can hold powercells and circuitboards, pistol pouch can hold a pistol, explosives pouch can hold grenade, c4 and mines, document pouch can hold papers, Survival pouch contains a painkiller pill, a crowbar, bandages and a flare, syringe pouch can hold syringes. </li>
+		<li class='rscadd'>Ghosts now have a 'toggle zoom' verb. </li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>August 11 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Added more briefing shutters to block access to the ladders so that marines can't dodge pre-briefing lockdown.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+
+
+	<h2 class='date'>August 10 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Added a firing range.</li>
+		<li class='rscadd'>Added an execution chamber.</li>
+		<li class='tweak'>Relocated the isolation cell and added another isolation cell.</li>
+		<li class='rscadd'>Added four more normal brig cells.</li>
+		<li class='tweak'>Relocated and redesigned CIC (Thanks Feweh)</li>
+		<li class='tweak'>Relocated fluff particle cannons to the upper deck and merged the weapons and navigational rooms.</li>
+		<li class='bugfix'>Removed wall blocking the entrance to upper deck engineering storage.</li>
+		<li class='tweak'>Properly set the correct three point lines on the basketball court. Now all Almayer personnel can play a correct game of basketball.</li>
+		<li class='<tweak'>Relocated the AI to match the new location of the CIC.</li>
+	</ul>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Command announcements now have an expanded box, notably allowing the use of an elusive literary technique known as "line breaks".</li>
+		<li class='rscadd'>Added basic headsets to prisoner lockers and Security vendors. Remember, headsets are a right.</li>
+		<li class='rscadd'>Bicardine is now dosed 10u instead of 5u by default.</li>
+		<li class='tweak'>Welding Tool is now universally replaced by Blowtorch. First term doesn't exist. Depending on use, it can be a real blowtorch or an oxy-fuel cutter really.</li>
+		<li class='bugfix'>Word of the Queen is now sanitized. HTML tags should no longer work (don't put them in, they'll appear in plain text).</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>August 8 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Added a Self-Destruct Control Room.</li>
+		<li class='rscadd'>Self-Destruct room walls are now unmeltable.</li>
+		<li class='rscadd'>Added a lobby to upper engineering.</li>
+		<li class='rscadd'>Recolored the Almayer upper deck aft hallway tiles.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>August 7 2017</h2>
+	<h3 class='author'>Snypehunter007 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Relocated self-destruct room.</li>
+		<li class='rscadd'>Relocated and redesigned upper engineering.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>August 5 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Adds whitelisted 'Synthetic' job.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>August 4 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Dropships gets multiple changes. Dropships now have a wider cockpit. The cockpit computer is now split into three consoles. One is for cameras, one for flight controls and door controls, and the last console controls the equipment and weapons. Pilots can now operate the dropship shutters from the cockpit, they can also lock the side doors. Normandy gets a half finished new color, to be finished. Dropship shutters and side doors get new sprites. There are now four pilot jobs available (pilot plus copilot).</li>
+		<li class='tweak'>Some changes to laser targeting. Laser gets a new sprite. Removed the possibility of dropship ordnance to never reach the groun when the laser target disappears before impact. Just before impact, a blinking green laser appear on the tile that will be hit and a sound is heard. </li>
+		<li class='rscadd'>The dropship parts fabricator now works. It gets points with time, and you can buy new equipment and ammo with it, including stuff not available at roundstart.</li>
+		<li class='rscadd'>Added new dropship equipment. A laser detector electronics that lets you see the laser targets on the ground via the cockpit camera console while in the air. A LZ detector electronics that lets you see all LZs on the ground while in the air. New rocket, minirocket and 30mm ammo types. New laser beam gun.</li>
+		<li class='tweak'>Certain dropship weapons can now be fired even when in transport mode.</li>
+	</ul>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>All marine helmets now have a built-in camera. These can be jumped between via the Overwatch console's Squad Monitor window. Special thanks to NeroCavalier and Jay Burns for their help during testing.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>August 3 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>Added four boxes of nades to Requisition's weapon vendor (back room).</li>
+		<li class='experiment'>Grenade launchers now start fully unloaded.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>August 2 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>You can now only go down a ladder once at a time.</li>
+		<li class='tweak'>You can no longer close a crate if someone is standing inside it.</li>
+		<li class='tweak'>Xenomorphs can no longer evolve using stored evolution when the Queen is dead, except for Drone evolving into a new Queen and Larvas in general.</li>
+		<li class='bugfix'>Fixed attaching and detaching IV drips when in an improper state.</li>
+		<li class='bugfix'>Fixed being able to finish going down ladders when in an improper state.</li>
+		<li class='bugfix'>All designated ERT Medics should be able to use their defib now.</li>
+		<li class='bugfix'>Fixed multiple issues with crates being pushed over things they shouldn't be (eachother/window frames/tables).</li>
+		<li class='bugfix'>Fixed climbing shortcut not working on crates.</li>
+		<li class='bugfix'>Fixed deconstructed Almayer windows being invisible. For the record, repair works fine, just slap sheets of reinforced window on the frame.</li>
+		<li class='bugfix'>Fixed being able to stack pheromone windows to quickswitch pheromones and bypass some checks. Stacked windows will no longer do anything.</li>
+		<li class='bugfix'>Fixed being able to stack Overwatch squad selection windows and thus disabling squads. Stacked windows will no longer do anything.</li>
+		<li class='bugfix'>Fixed statis bags blocking revive in most cases due to a defibrilator check being too strict.</li>
+		<li class='bugfix'>Fixed wood floors being invisible on the ship.</li>
+		<li class='bugfix'>Fixed Hivelords not appearing in the Hive Status.</li>
+		<li class='bugfix'>Fixed obsolete uniform in the Officer Dress closet.</li>
+	</ul>
+</div>
+
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>August 1 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Weapon attachments can now be reloaded. The masterkey shotgun needs shotgun buckshot, the underslug grenade launcher needs M40 HEDP grenades, and the mini flamethrower needs  a flamethrower tank.</li>
+		<li class='tweak'>Using those attachment is no longer 'single use', i.e. if you fire the mini flamethrower once you're no longer automatically switched back to the main weapon. However if the attachment is empty and you try to use it you're automatically switched back to the main gun.</li>
+		<li class='tweak'>To reload those attachments: if detached you simply click it with the appropriate ammo, if attached to enable the attachment and click the gun with the ammo. Beware: you can no longer reload the primary gun with those attachments toggled on. You can now see exactly how much ammo is left in the attachment by examining the gun it's attached to.</li>
+		<li class='tweak'>To compensate for this new ability, those three attachments have been nerfed.</li>
+		<li class='tweak'>the masterkey now shoots buckshot instead of slugs.</li>
+	</ul>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Praetorians now spit thin sticky resin. Thin sticky resin has less health and slows less than regular sticky resin.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>July 30 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Praetorian sticky resin spit no longer places sticky resin on top of walls and objects it shouldn't.</li>
+		<li class='tweak'>Almayer Research containment cells can no longer be melted by acid.</li>
+		<li class='tweak'>Xenos spitting acid on walls is no longer instant.</li>
+		<li class='tweak'>Predators are resistant to knockdowns and stuns.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>July 25 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Resin structures built by Hivelords are much stronger.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>July 24 2017</h2>
+	<h3 class='author'>Apophis775 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Cryo Hot-fix.  There's a pipe that will be disconnected.  Connect it and it will force-start cryo.  Better Fix coming soon.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>July 23 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>The Hive Status was updated with an abridged readout and is now ordered by caste. It will list Larvas, but it won't list dead Xenos anymore.</li>
+		<li class='rscadd'>The Overwatch Console's Squad Monitor now sorts by role, instead of spawn order, as according to wiki listing (SL, Spec, Medic, Engi, Smarty, Marine). It also has an abridged list of roles in the squad.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>July 21 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+                                <li class='rscdel'>Removed ability to speak Sol Common.
+		<li class='bugfix'>Fixed Researchers not being able to use defibs.</li>
+		<li class='bugfix'>Fixed one extra Research job slot being available than originally intended.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>July 20 2017</h2>
+	<h3 class='author'>Joshuu updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='imageadd'>Added snow icons for the M44 holster.</li>
+		<li class='imageadd'>Modified the M42A Scoped Rifle sprite to be cleaner and more lore-accurate.</li>
+		<li class='imageadd'>Modified the MK221 to be more lore accurate. Made the attached grenade launcher more apparent. </li>
+		<li class='bugfix'>Fixed an issue with SO caps looking odd backwards.</li>
+		<li class='experiment'>CO now has a custom Mateba. </li>
+		<li class='rscadd'>SOs now have slightly fancier M4A3s.</li>
+		<li class='rscadd'>Added Mateba holsters.</li>
+		<li class='imageadd'>Tweaked speedloader icons to be more clean.</li>
+		<li class='imageadd'>Added new belt-slot wear icons for holsters.</li>
+		<li class='imageadd'>Added new suit-storage wear icons for holsters. </li>
+		<li class='tweak'>Tweaked medical scrub icon a little. Experimenting to see what works. </li>
+		<li class='imageadd'>Added Nic's marine boots icon.</li>
+		<li class='imageadd'>Added snow variants for the M37 stock. </li>
+		<li class='imageadd'>New survival knife sprite so people yell at me less.</li>
+	</ul>
+</div>
+
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>July 19 2017</h2>
+	<h3 class='author'>Apophis775 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Xeno Emote Cooldown reduced.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>July 18 2017</h2>
+	<h3 class='author'>Apophis775 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Removed text from Xeno Dance.</li>
+		<li class='tweak'>Added Xeno Emote Cooldowns.</li>
+		<li class='tweak'>Extended Dance Spin.</li>
+		<li class='tweak'>Xenos can not move while dancing.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>July 17 2017</h2>
+	<h3 class='author'>Joshuu updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='imageadd'>Added Ice uniforms for the XO.</li>
+		<li class='imageadd'>Added Ice uniforms for the SO.</li>
+		<li class='imageadd'>Added ice uniforms for the PO.</li>
+		<li class='imageadd'>Added Ice uniforms for the XO.</li>
+		<li class='imageadd'>Made the marine underwear sleeveless so that guy in minichat can show off his guns.</li>
+		<li class='imageadd'>Changed the doughnut sprite to include less sodium.</li>
+		<li class='imageadd'>Testing a new sterile mask sprite because some guy yelled at me.</li>
+		<li class='imageadd'>Added new wear icons for the marine belt.</li>
+		<li class='imageadd'>Testing a new M37 1-handed sprite.</li>
+		<li class='imageadd'>Slightly changed the M4A3 sprite.</li>
+		<li class='imageadd'>Added snow versions of the M37 holster.</li>
+		<li class='imageadd'>Changed the M4A3 holster sprite a little.</li>
+		<li class='rscadd'>Added heat protection to the CLF armor.</li>
+		<li class='bugfix'>Fixed arms being visible on rolled down ice colony jumpsuits.</li>
+		<li class='imageadd'>Added a new powerpack sprite for ease of clicking.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>July 17 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>New master processing loop to help handle high server load. </li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>July 16 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>New master processing loop to help handle high server load.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>12 July 2017</h2>
+	<h3 class='author'>RavingManiac updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Intra-ship intercoms added to dropships</li>
+		<li class='tweak'>Dropship 1 and Dropship 2 hangar positions swapped</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>11 July 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>Xenomorphs can now only eat one item at a time, but they will be able to keep it for much longer (about five minutes), the mob will no longer take idle damage</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>10 July 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Almayer Research Revamped.</li>
+		<li class='rscadd'>New Research containment cells with door/shutter control via console.</li>
+		<li class='rscadd'>Almayer Chemistry moved to Lower Medical.</li>
+		<li class='tweak'>More shuttle crash point possibilities, old ones that resulted in breaches have been moved.</li>
+                                <li class='tweak'>Increased number of Researcher slots to two.</li>
+	</ul>
+
+	<h3 class='author'>Joshuu updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='imageadd'>New spear icons.</li>
+		<li class='imageadd'>New fire axe icons.</li>
+		<li class='imageadd'>New medical mask icons.</li>
+		<li class='imageadd'>New rebreather icons.</li>
+		<li class='imageadd'>New swat mask icons.</li>
+		<li class='imageadd'>New toolbox hold icons.</li>
+		<li class='imageadd'>New metal rods icons.</li>
+		<li class='imageadd'>New hold icons for M39s.</li>
+		<li class='imageadd'>New cable coil icons (with new colors).</li>
+		<li class='imageadd'>New hold icons for floor signs.</li>
+		<li class='imageadd'>New hold icons for green and regular lamps.</li>
+		<li class='imageadd'>New hold icons for combisticks.</li>
+		<li class='imageadd'>New hold icons for fire extingishers.</li>
+		<li class='tweak'>Slightly increased fire-axe damage 1-handed.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>9 July 2017</h2>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='soundadd'>New Xeno sounds have been added as private alerts to signify A) the player has been chosen to become a chestburster, and B) the xeno player is ready to evolve.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>8 July 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Xenomorphs now start with no evolution. This should give Survivors a small breather before they get mobbed by Runners</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>3 July 2017</h2>
+	<h3 class='author'>Joshuu (SecretStamos) updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Adds ERTs for the CLF, UPP and Freelancers Factions.</li>
+		<li class='rscadd'>Adds platoon-sized ERTs for the current factions (PMCs,UPP, CLF, Freelancers, XRT) for use in admin-events. (please don't use these without talking to Feweh or SLC first)</li>
+		<li class='imageadd'>Added new sprites (hold and inventory) for katanas, wooden bats, metal bats and hatchets.</li>
+		<li class='rscadd'>Added scabbards for katanas.</li>
+		<li class='bugfix'>Fixed CLF armor not being able to hold guns.</li>
+		<li class='bugfix'>Spawned CLF with flashlights.</li>
+		<li class='tweak'>UPP Medics now have Lifesaver belts.</li>
+		<li class='tweak'>UPP Medics now have machine-pistols.</li>
+		<li class='bugfix'>Prevented faction bags and belts from going invisible on Ice Colony.</li>
+		<li class='tweak'>Improved the potency of the UPP Commando Tranq pistol rounds..</li>
+		<li class='tweak'>Added UPP white phosphorus grenades to Commandos.</li>
+		<li class='tweak'>Added molotovs to the CLF. Please be careful, they are a bit more unpredictable.</li>
+		<li class='tweak'>Gave CLF a much wider range of guns, including pistols. CLF now also spawn with an additional item or weapon.</li>
+		<li class='tweak'>Increased the ammo faction soldiers spawn with by one additional magazine.</li>
+		<li class='tweak'>Gave XRTs a team leader.</li>
+		<li class='tweak'>Increased the base damage of the katana, hatchet and bats by a small amount.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>26 June 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='imageadd'>New powerloader sprite by Joshuu.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>25 June 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscdel'>Pulling a wounded human no longer worsen their wounds.</li>
+	</ul>
+	<h3 class='author'>Joshuu updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Adding turning caps backwards for a very special snowflake</li>
+		<li class='imageadd'>Updated the icons for the marine armors</li>
+		<li class='imageadd'>Updated backpack wear icons</li>
+		<li class='imageadd'>Modified the knife icon to be more like the knife (Explorer Night Raider) used in the film</li>
+		<li class='imageadd'>Modified the holster to be more like the holster used in the film</li>
+		<li class='imageadd'>Added WY MK88s to both the XO and the PO as their sidearms</li>
+		<li class='imageadd'>Added hold icon for knives</li>
+		<li class='imageadd'>Updated Ice Colony sprites</li>
+		<li class='imageadd'>Updated M10 helmet sprites</li>
+		<li class='imageadd'>Updated flamethrower hold icon</li>
+		<li class='imageadd'>Updated Satchel wear icons</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>25 June 2017</h2>
+                <h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Slight increase to Crusher charge speed.</li>
+	</ul>
+
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>Changed how overdoses work, be careful about overconsuming medicine and some stimulants.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>22 June 2017</h2>
+                <h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Various sound-related verbs in the Preferences (everyone) and Fun (Admins only) tabs have been improved:</li>
+		<li><u>For all players</u> - Admin midis can still be permanently turned on/off via the Character Setup screen (or in Ghost > Edit Characters if you're observing). However, if you have admin midis enabled and an Admin plays a sound, you can use the new <b>Silence Current Midi</b> verb in the Preferences tab to forcibly stop hearing it. Additionally, a message is sent to staff when a player uses this verb within 30 seconds of a midi playing, letting us know that a player has silenced it. This is to give us a better idea of which sounds/midis are favorable over others. The goal is to improve immersion by teaching staff to play immersive, favorable songs and sounds while the game is played. For this reason, we're hoping those of you with Admin midis turned off will now turn them on in your Character Setup screen in order to take part.</li>
+		<li><u>For Staff with the Fun tab</u> - "Play Global Sound" and "Play Local Sound" have been replaced by <b>Play Imported Sound</b> and <b>Play Sound From List</b>. The former will allow importing any sound from anywhere on your computer and then tells all connected clients to download and then play it (the way "Play Global Sound" used to work). The latter will display a list of server sounds and music that are already in the project and do not need to be downloaded by anyone. Obviously, "Play Sound From List" is preferred, and this can and will grow as we add more immersive music to the project (within reason - we don't want gigabytes worth of music). Both verbs now have "Global" or "Local" as secondary options when playing a sound, and both will show how many players are hearing it.</li>
+		<li class='soundadd'>Also, Power Loader footstep sounds are now much more accurate.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>21 June 2017</h2>
+	<h3 class='author'>Apophis updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>MARINE LAW UPDATED - Read it, especially if your an MP</li>
+	</ul>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>All Xeno speeds have been rebalanced. Castes that were too fast should be slower. Castes that were too slow should be faster.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>20 June 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Slight speed increase to Crusher charge.</li>
+		<li class='tweak'>Reduced Queen and Ravager resistance to explosions.</li>
+		<li class='tweak'>Reduced Ravager melee damage and health.</li>
+		<li class='rscadd'>Ravagers sometimes slice limbs clean off when attacking and a limb is targeted.</li>
+		<li class='tweak'>Lessened the amount of shock recieved from losing limbs.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>19 June 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>If you climb on something, you can now universally transfer over other climbable objects with no delay (so for example, window frame, then walk on table, then walk over behind a cade, or leap over a cade onto a table and over another cade)</li>
+		<li class='rscadd'>You can now put down multiple barricades (sandbags and metal) on a single tile as long as they don't face the same way (corner, even box).</li>
+		<li class='rscadd'>You can now leap over barricades that don't have barbed wire attached. It's like climbing, except you skip over to the other side of the barricade. The rules are still pretty strict on what tiles you can land on to avoid exploits, so some things may block it.</li>
+		<li class='rscadd'>Climbing over crates and leaping over barricades is now faster.</li>
+		<li class='rscadd'>Normal Almayer walls can once again be thermited through and deconstructed in emergencies.</li>
+		<li class='rscdel'>You can no longer leap over barricades with barbed wire attached. Doing so will end badly.</li>
+		<li class='bugfix'>It is now completely impossible to breach the ship via outer hull walls or 'hull windows'.</li>
+		<li class='bugfix'>Changed rules for assembling stuff. You now need to have the tile clear from dense structures like a showcase, an unflipped table or a girder.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>17 June 2017</h2>
+	<h3 class='author'>Apophis775 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Survivors now start with weapons capable of killing runners.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+                <h2 class='date'>16 June 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Increased health of metal, sandbag, and plasteel barricades.</li>
+		<li class='tweak'>Increased health bonus to barricades and damage to Xenos caused by barbed wire.</li>
+		<li class='tweak'>Decreased cost of empty sandbag crate when ordered from Requisitions.</li>
+		<li class='tweak'>Decreased cost of metal barricades from five metal to four.</li>
+		<li class='tweak'>Decreased Crusher charge speed.</li>
+		<li class='tweak'>Plasteel and metal barricades now drop two of their respective sheets when destroyed.</li>
+	</ul>
+
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>The two dropships can now be equipped with weapons and electronics. Equipments can be found in the rooms next to the hangar, and it can be loaded with the new powerloaders. Pilots can now fire those weapons at ground targets identified with a laser. Squad Leaders can now laser targets with their binoculars by double clicking. The target must be in open ground, just like the orbital beacon. The laser takes a few second to appear and will disappear if the SL does not stand still. Target lasers will automatically disappear after 60 seconds. Pilots can now choose between two flight types: * TRANSPORT which is the one everyone knows, that moves between the Almayer and the ground planet, and * FIRE MISSION which allows you to detect laser targets on the ground and fire the dropship weapons at those targets, the dropship lands back where it started. So if you launched a fire mission from the almayer you will land back on the almayer after the fixed duration of the fire mission flight.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>15 June 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Reworked barricades. Barricade strength from weakest to strongest is snow -> wooden -> metal -> sandbag -> plasteel.</li>
+		<li class='rscadd'>Plasteel barricades may be flipped open or closed by clicking on them. When closed, plasteel barricades can be walked over. Xenos cannot open or close barricades.</li>
+		<li class='rscadd'>Crushers do high damage to barricades, but do not charge through them. Momentum is reset on hit.</li>
+		<li class='rscadd'>Boiler bombardments behave the same as bullets when it comes to chance to be blocked by barricades, if blocked the barricade is damaged.</li>
+		<li class='rscadd'>Barbed wire may be made from two metal sheets. Barbed wire can be applied to some barricades to boost their health and prevent climbing. </li>
+	    <li class='rscadd'>A crate of empty sandbags can now be ordered via Requisitions. Sandbags can be filled with dirt using the entrenching tool. Five filled sandbags can be used to construct a sandbag barricade.</li>
+	    <li class='rscadd'>The entrenching tool may be acquired via Engineer vendors, use the tool on the ground to get sand for the sandbags.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>14 June 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Squad HUD is now attached to the headset instead of the marine armor. The Squad HUD on the headset can be toggled on and off via the rightclick menu. Squad Marine headset start with the HUD on, while the rest of the Almayer crew start with it off.</li>
+		<li class='rscadd'>Marine closets in prep rooms are changed a bit. Squad leaders, medics and engineers start with the proper headset in their closets without having to insert any encryption keys. The same closets also have the relevant clothes for leader,medic, engineer instead of the standard marine equipment. Medic closets now also have medical HUD glasses and medical belt, and engineer closets have welding goggles, insulated version of squad gloves and utility belts.</li>
+		<li class='rscadd'>The squad medic belt (M276 pattern medical storage rig, not the lifesaver belt) is buffed to see more use. It now has two rows available. It starts with some medical equipment. It can now also hold revolver ammo, flares, bodybags, and defibrillators.</li>
+		<li class='tweak'>Lifesaver medical belt no longer has russian red pill bottle.</li>
+		<li class='rscdel'>Humans no longer have two ear slots.</li>
+	</ul>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Greatly improved the health analyzer readout for readability and clarity, added a new sound when using it to scan someone, and now the "Bone fractures detected" line is no longer redundant. It used to show up even when splintable fractures were already listed ("Unsecured fracture in subject's (limb). Splinting recommended"). Now it only shows up when there's an actual unknown fracture that requires a body scanner to locate, such as in the chest or groin. Screenshots: <a href="http://i.imgur.com/S0VdY2V.png">Old analyzer</a> and <a href="http://i.imgur.com/1Zs448S.png">new analyzer</a>.</li>
+	</ul>
+	<h3 class='author'>Apophis updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Adjusted Pred Translator</li>
+	</ul>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Added the ability to lock and unlock escape pod doors. This can only be done from the inside, so be considerate about your fellow escapees (or don't)</li>
+		<li class='rscadd'>Rail lights and bayonets are now available in the Marine Prep Vendors. For real this time.</li>
+		<li class='tweak'>Lowered nest cooldown from 30 seconds to 5 seconds to reduce annoyance from accidental unbucklings when nesting hosts, or if relocating.</li>
+		<li class='bugfix'>Fixed not being able to Force Launch during the waiting phase. Force Launch now forces launching the pod, you don't have to wait 3 minutes.</li>
+		<li class='bugfix'>Fixed multiple exploits with binoculars allowing people to use them as ghetto scopes.</li>
+		<li class='bugfix'>Fix single fire on sentry guns being less powerful than intended.</li>
+		<li class='bugfix'>You can no longer shoot a M56D Mounted Smartgun or a Sentry Gun if your active hand is already holding something. Gotta have fingers to pull that trigger.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>13 June 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Chambered shells in shotguns can now be ejected, either by pumping or by removing the shell manually (after removing the shells in the internal magazine the chambered one is removed next).</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>11 June 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>m39 holster now lets you unholster their weapon with one click.</li>
+		<li class='bugfix'>Fixes ravager being immune to explosion damage.</li>
+		<li class='bugfix'>Fixes explosions applying their damage twice on every creature in range.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>9 June 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>There is now a preference to start as the Alien Queen. If active, and with the preference to be an alien, you can start the round as the Alien Queen. This means the aliens can start the round with a queen instead of only larvas.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>8 June 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>All explosive and fire radius for Marine equipment has been increased by one tile, except for the Claymore and Flamethrower.</li>
+		<li class='tweak'>Some Almayer props can no longer be charged down/melted, notably artillery.</li>
+		<li class='bugfix'>Fixed all glass airlocks on the Almayer being opaque/not see-through.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>7 June 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>Added experimental smoother movement.</li>
+		<li class='tweak'>Increased sticky spit cost from 150 to 250.</li>
+		<li class='bugfix'>Sticky resin spawned from sticky spit no longer stacks.</li>
+	</ul>
+</div>
+
+
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>6 June 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Praetorians have a new spit type.</li>
+		<li class='tweak'>Only Crushers and Ravagers are immune to stun. Queen is no longer completely knocked out, but is not fully immune.</li>
+		<li class='bugfix'>Fixed Sniper, Smartgun, and Defib ID lock issues.</li>
+	</ul>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Adds rail flashlights to the marine vending machines in marine prep rooms.</li>
+		<li class='tweak'>Renames the M11 combat bayonet to M11 combat knife.</li>
+		<li class='rscadd'>Throwing knives now fit inside marine boots.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>5 June 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Chief MP radio text size increased.</li>
+		<li class='bugfix'>Fixed a couple situations that would result in negative momentum values for Crushers.</li>
+    </ul>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>There is now a small delay between wielding a gun and firing it. This should only affect people with macros. The delay is higher for heavy and scoped weaponry.</li>
+		<li class='experiment'>Pheromones have received a rework. Their effect now scales based on what caste and upgrade tier is diffusing them. Pheromones of the same type no longer stack, the strongest is used instead.</li>
+		<li class='rscadd'>Pheromone range is no longer fixed to 7 and can increase based on strength.</li>
+		<li class='rscadd'>Warding pheromones can now slow and even prevent crit bleedout for Xenos.</li>
+		<li class='rscadd'>Warding pheromones now grant armor and damage reduction to damage in general instead of just bullets.</li>
+		<li class='rscadd'>Big Xenos no longer get stunned by explosions.</li>
+		<li class='tweak'>Crushers are now a bit less robust.</li>
+	</ul>
+	<h3 class='author'>Apophis updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>5th SO no longer spawns behind the title screen</li>
+		<li class='bugfix'>Isolation in brig fixed</li>
+	</ul>
+	<h3 class='author'>RavingManiac updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Squad tracking beacons added to SL vendors. When activated, marines in the same squad can get the direction and approximate distance of the beacon by right-clicking their armor. Range limit of 30 meters. Replacements can be ordered via the Squad Beacons crate, and activating a tracking beacon in the same squad as an existing beacon will deactivate the latter.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>30 May 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Adds a ghost hivemind toggling option in the preferences, to hear or not hear xeno hivemind as a ghost.</li>
+		<li class='bugfix'>Fixes ui style and ui alpha preferences not being saved.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>29 May 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Defibs are now ID locked to CMO, Doctor, Researcher, and Squad Medic roles.</li>
+		<li class='rscadd'>The Smartgun is now ID locked to the Smartgunner and Commander roles.</li>
+		<li class='rscadd'>Specialist weapons are now ID locked to the Specialist role.</li>
+	</ul>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Squad Leaders get access to motion detectors. The device detects moving creatures, but ignores marines in armor. Like in the movie, the device beeps regularly and give another sound when a moving thing is detected. When held in your active hand, the device makes blips appears on your screen where the movement was detected. The device has two range modes. and fits in your belt slot.</li>
+		<li class='rscadd'>When doing a melee attack, living beings now do a quick back and forth movement toward the target. This helps other witnesses understand who is attacking who(or what). </li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>27 May 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Character preferences now have a "preferred squad" option that gives you a better chance to be in that squad.</li>
+		<li class='tweak'>Cryopods now retrieve almost all items in cryoed marines when they despawn.</li>
+		<li class='tweak'>Marine underpants are no longer a uniform but are now considered underwear. So you no longer have to swap them with your real uniform. All marines start with marine underpants underwear instead of the undershirt selected in your preferences.</li>
+		<li class='rscadd'>Backpacks are no longer limited to storing a maximum of 7 items no matter the size. They can now hold more than 7 if the stored items are small.</li>
+		<li class='bugfix'>Fixes Smartgunners not having a squad hud icon.</li>
+		<li class='tweak'>Squad hud fireteam sprites now have a black background for better visibility.</li>
+		<li class='rscadd'>Sandbags barricades can now be disassembled with an entrenching tool.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>26 May 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Specialist Sniper loadout now recieve NVG's.</li>
+		<li class='rscadd'>Specialist M50 armor and Grenade Launcher now combined into one Heavy Grenadier loadout.</li>
+		<li class='rscadd'>Specialist SADAR is now available through a new Demolitionist loadout.</li>
+		<li class='rscadd'>Specialist vendors all share the same inventory with regards to coin-aquired armaments.</li>
+	</ul>
+	<h3 class='author'>Apophis775 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>New Smartgunner Class</li>
+		<li class='rscadd'>Specialists no longer have access to Smartgunner weapons.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>21 May 2017</h2>
+	<h3 class='author'>Apophis updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Chief MP Spawn fixed</li>
+		<li class='bugfix'>Chief MP Rank fixed</li>
+		<li class='tweak'>Chief MP Wiki updated</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>20 May 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Actions that take time can now put a "busy" icon on top of you, and on top of your target if it's a mob. This helps alert your squadmates not to push you. Currently only used for human actions, and not xeno ones. Examples: injecting another human, building things with metal, etc. The two currently available busy sprites are a clock and a blinking medical sign (appears on the mob target of medical actions).</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>19 May 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Squad Leaders can assign their marines to fireteams to create subgroups in their squad. Simply examine a marine of your squad and click "Assign to a fireteam" in the text. Marines assigned to a fireteam get a small number icon next to their squad HUD icon so marines of a same fireteam can recognize each other and stay together.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>18 May 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Larva chestbursting is different now. When the alien embryo has grown a new larva is spawned inside the host and a candidate player given control if there's on. The player can trigger the chestburst sequence by just moving. After about 20 seconds of not bursting the larva automatically chestburst, whether it is controlled by a player yet or not. If a doctor removes the embryo after it has grown into a larva, the doctor extracts a live larva out of the human instead of a dead embryo.</li>
+	</ul>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Added door access buttons to Surgery hallway on the Almayer.</li>
+		<li class='bugfix'>Cockpit shutters now work in both dropships.</li>
+	</ul>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>New experimental sound system. It's a bit of a hack right now since we have to bypass some questionable BYOND engine code, but the goal is to have "realistic falloff and sound range". For now, only volume varies by distance, not pitch or tone</li>
+		<li class='imageadd'>The sprites of all perspective walls and windows have been touched up to allow for better tiling and to make the white versions look much better. A few perspective issues were also fixed</li>
+		<li class='imageadd'>All light items (light tubes, flashlights, lamps) have received a few tweaks</li>
+		<li class='tweak'>Perspective windows have had the grille merged into their sprite for convenience, gameplay and general sanity</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>17 May 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Adds a squad HUD. When worn your marine armor detects other marines via their ID, and shows you special icons next to all marines with ranks higher than Private.</li>
+		<li class='tweak'>Adds a cooldown to the Point-To action.</li>
+		<li class='bugfix'>Fixes false walls showing the wrong sprite when first created.</li>
+		<li class='rscadd'>Adds a 'toggle squad HUD' option to the marine armor.</li>
+		<li class='tweak'>The squad HUD icons now appear on the top right corner.</li>
+	</ul>
+	<h3 class='author'>Apophis775 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Renamed Warrant Officer to Chief MP</li>
+		<li class='tweak'>Chief MP rank is now Warrant Officer</li>
+		<li class='rscadd'>Added some more Clipboards around the ship in key areas</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>16 May 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Marine helmet gets a internal storage, like the marine armor, that replaces the old helmet storing system. It can fit only a single pocket-sized item.</li>
+		<li class='bugfix'>Fixes overlay for items on helmet not getting removed correctly when removing an item. </li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>15 May 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixes welding scrubber vent not playing sound and showing a message that you hit the scrubber.</li>
+		<li class='bugfix'>Fixes welding vents not giving you a message when the welding is done.</li>
+		<li class='bugfix'>Fixes typing indicator appearing when a dead mob tries to type.</li>
+		<li class='bugfix'>Dead hugger now always appear behind the living ones if there's more than one hugger on a tile.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>14 May 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixes wounds worsening when grabbed aggressively and moved.</li>
+		<li class='bugfix'>Fixes xenos swapping hugger from one hand to another not removing the reference in the hand.</li>
+		<li class='bugfix'>Fixes grab items being placed in crates.</li>
+		<li class='bugfix'>Fixes being able to take ammo from a magazine when your hand is deformed by mutation.</li>
+		<li class='tweak'>Throwing a person now requires them to be grabbed by the neck.</li>
+	</ul>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed crushers infinitely pushing xenos in a single direction.</li>
+		<li class='bugfix'>Fixed crushers not properly bumping things diagonally with their charge.</li>
+		<li class='bugfix'>Fixed pounces not properly getting blocked by certain weapons.</li>
+		<li class='bugfix'>Fixed ravagers hitting multiple times per charge.</li>
+		<li class='bugfix'>Fixed ravagers being unable to charge humans with a riot shield.</li>
+		<li class='tweak'>Blocking a pounce with a shield now requires directional facing.</li>
+		<li class='tweak'>Hitting mobs now lowers crusher momentum a bit more.</li>
+		<li class='tweak'>Ravagers now deal bonus damage while charging based on upgrade tier.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>13 May 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Pulling and grabbing are now a single functionality. Both control-click and using an empty hand on grab intent still work. Pulling/Grabbing now always require an empty hand, and it always make that hand busy by applying a grab sprite on it. You can now only grab one thing at a time.</li>
+		<li class='bugfix'>Fixes larva breaking your pull when walking on their tile.</li>
+		<li class='rscadd'>Grabbing someone buckled to a roller bed and pulling them now pulls both the person and the bed.</li>
+		<li class='bugfix'>Fixes being able to swap places with another person on help intent when that person in on top of a table or a wall.</li>
+		<li class='bugfix'>Fixes beartraps snapping on the leg of a person buckled to a roller bed.</li>
+		<li class='rscadd'>You can now swap places with the handcuffed person you're grabbing if you are on help or grab intent.</li>
+		<li class='rscdel'>Xenomorphs can no longer be buckled to roller beds.</li>
+		<li class='rscdel'>Wheelchairs can no longer be driven by someone other than the buckled person.</li>
+		<li class='bugfix'>Fixes wheelchair being very fast.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>12 May 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed crusher charges not triggering on the Almayer.</li>
+		<li class='bugfix'>Fixed chair slashing. Make sure harm is your intent.</li>
+		<li class='rscadd'>Mobs that are hit by a crusher charge, or are trampled, flash red.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>11 May 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed huggers dying to xeno spit.</li>
+		<li class='bugfix'>Fixed eggs dying to xeno spit.</li>
+		<li class='bugfix'>Fixed crushers being unable to properly push when not charging.</li>
+		<li class='bugfix'>Other fixes.</li>
+		<li class='tweak'>Only the drones, queen, hivelords, and carrier can pick up huggers. Carriers can only carry them on their back.</li>
+		<li class='tweak'>Huggers will die off after around 30 seconds if they are out of their egg, or not carried on a carrier's back. They will return to their egg if left alone on it.</li>
+		<li class='tweak'>Huggers can be placed back in the egg by clicking on it with a living hugger.</li>
+		<li class='tweak'>Huggers cannot be stripped off from those who are hugged. Infection is much faster, and your helmet won't save you.</li>
+		<li class='tweak'>Huggers will now leap on to potential targets on their own. Watch out.</li>
+		<li class='tweak'>Eggs now cost a lot more plasma, and can only be cleared by a queen, drones, and hivelords.</li>
+		<li class='tweak'>Thrown huggers on the floor will go inactive.</li>
+		<li class='tweak'>Xeno embryos will continue to grow if the person is dead but can still be revived.</li>
+		<li class='tweak'>Crushers can now stomp with middle click. Stomp cooldown lowered. Less stuns from hitting things and other adjustments to make them better battering rams.</li>
+		<li class='tweak'>Crushers no longer have a long-range stun. They instead can trample anything underneath them.</li>
+		<li class='tweak'>Carriers may leave presents when dying, unless gibbed.</li>
+		<li class='tweak'>Xenos can now destroy chairs/beds.</li>
+		<li class='tweak'>Xenos can now see where living sisters are located via hive menu.</li>
+		<li class='tweak'>Xeno slashing is now enabled on start.</li>
+		<li class='tweak'>Xenos cannot slash nested, infected hosts unless the xenomorph is the queen.</li>
+		<li class='tweak'>Exploding xenomorphs spew acid blood everywhere.</li>
+		<li class='tweak'>Xenomorph armor has been changed. Deflection is no longer a thing, unless shooting a crusher's crest.</li>
+		<li class='tweak'>Xenomorphs now move slower when seriously injured.</li>
+		<li class='tweak'>Most hunter and runner stuns after hitting objects are removed.</li>
+		<li class='tweak'>Some new caste adjustments, and xenomorph speed is generally increased.</li>
+		<li class='tweak'>Bullets and several other projectiles travel a lot faster.</li>
+		<li class='tweak'>The B18 helmet, and a few special helmets, will still provide great protection from facehuggers.</li>
+		<li class='rscadd'>Added a new xenomorph caste.</li>
+	</ul>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Using shift+middleclick now makes you point at something. </li>
+	</ul>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed bug where certain types of medical closet sprites were invisible.</li>
+		<li class='tweak'>Helmets no longer have a chance of blocking huggers.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>10 May 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>You can now edit your characters in the middle of a round if you're a ghost.</li>
+	</ul>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Xenos and Survivors spawning in Virology on Big Red now have a way out.</li>
+		<li class='bugfix'>Alt+Click a tile to view the contents works again.</li>
+		<li class='tweak'>RO Office now has a copy machine.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>9 May 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Adds big ammo boxes containing hundreds of rounds that you can use to refill your magazines.</li>
+		<li class='rscadd'>Adds supply crates for weapon holsters and big ammo boxes.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>	<h2 class='date'>7 May 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixes bodybag automatically putting all items on the tile it's deployed inside itself.</li>
+	</ul>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='soundadd'>New AI sounds for security level changes (Code Green, Code Blue, etc).</li>
+		<li class='soundadd'>New AI sounds for evacuation and self-destruct announcements.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>5 May 2017</h2>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='soundadd'>The new AI - ARES (Artificial Risk Evaluation System) - now has its own voice, with more planned for it to keep marines in the loop about what's happening.</li>
+		<li class='soundadd'>Blast doors and shutters now have opening/closing sounds.</li>
+	</ul>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>You can now remove ammo from magazines by holding them and clicking them with an empty hand.</li>
+		<li class='tweak'>Unsheating something from a scabbard now only takes one click.</li>
+		<li class='bugfix'>Removing a light bulb while lying down no longer delete the bulb.</li>
+		<li class='tweak'>Folded roller beds now fit inside backpacks.</li>
+		<li class='tweak'>Roller beds and bodybags can now also be deployed by clicking a tile next to you with the item in hand. Deploying a bodybag now automatically opens it. folding a roller bed or bodybag now tries to put the item directly in your hand.</li>
+		<li class='bugfix'>Fixes being able to fold roller beds through single pane windows.</li>
+		<li class='bugfix'>Bodybag sprites now properly updates to show whether there's a mob inside it or not.</li>
+		<li class='tweak'>Cryobag changes: Cryobags no longer become unusable after reopening them once. They are now reusable. Cryobags depletes slowly when they are actively being used. One cryobag gives you roughly 15 minutes of usable cryostasis. When the cryobag is depleted it automatically opens and becomes crumpled and unusable. Being placed into a cryobag now puts you to sleep. But the stasis/sleep effect takes a couple seconds to start, to avoid accidents. To avoid being stuck asleep in a cryobag indefinitely, you will randomely wake up for one or two seconds to allow you to escape.</li>
+	</ul>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed missing light effects from fire alarms and the like.</li>
+		<li class='bugfix'>Fixed ETA timer on the evacuation.</li>
+		<li class='bugfix'>Fixed getting back into cryo cells when an evac pod crashes.</li>
+		<li class='bugfix'>Fixed evac cryo cells not acting like proper stasis cells. They now keep you alive as you would expect from a proper stasis pod.</li>
+		<li class='bugfix'>Fixed getting a message for evacuating the ship before the evac pod actually launches.</li>
+		<li class='rscadd'>The ship's AI may now speak on individual department channels, such as command, or specific squads. Same use as regular radio codes: ":v This is an example."</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>	<h2 class='date'>4 May 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixes human head not updating visually when wounded.</li>
+		<li class='bugfix'>Predator's bloody wounds now are green, like its blood color, instead of red.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>2 May 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Xenomorph can no longer crawl into vents if they go unconscious or are stunned while trying to climb in the vent.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>30 April 2017</h2>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Welding tools no longer directly deplete 1 unit of fuel when turned on. But toggling the tool often still impacts fuel depletion. Fuel depletion when the tool is left on is no longer randomized.</li>
+		<li class='bugfix'>Fixes most papers not appearing on your mob's hand when held.</li>
+		<li class='bugfix'>Fixed all tableparts item other than default ones not having any sprite on a human when held by them.</li>
+		<li class='bugfix'>Fixes Xenos slipping on cleaner foam.</li>
+		<li class='bugfix'>Fixes being on the same tile as a flipped table counting as "being on a table" and allowing to climb on an adjacent table instantly.</li>
+		<li class='bugfix'>fixed the earmuff bug, where the offear item gets unequipped and not deleted.</li>
+		<li class='bugfix'>Fixes bug where you can't close a bodybag in front of an emergency firecloset or O2 closet.</li>
+		<li class='bugfix'>Fixed marine goggles not appearing on the mob when worn on the mask slot.</li>
+		<li class='bugfix'>Fixes beartrap not making any sound when triggered.</li>
+		<li class='bugfix'>Fixes people looking at the contents of a non-equipped storage item (e.g. backpack on the floor) not automatically seeing new items inserted into it. </li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>28 April 2017</h2>
+	<h3 class='author'>Artouris updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixes issues involving dropship shutters.</li>
+		<li class='bugfix'>Prevents xenos from breaking or melting atmospherics rooms.</li>
+		<li class='bugfix'>Fixes Solaris Ridge dropship console not having power the entire time.</li>
+		<li class='rscadd'>Adds large numbers in hangar to distinguish the dropships and to which LZ they travel to.</li>
+		<li class='rscadd'>Adds 1 more brig cell and a evidence locker to the brig.</li>
+		<li class='tweak'>Misc map changes.</li>
+	</ul>
+	<h3 class='author'>Gorg updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='imageadd'>Adds new telecommunications floor sprite.</li>
+	</ul>
+</div>
+
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>27 April 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Replaced old MRE type with new MREs.</li>
+	</ul>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed AI explosion and dead state.</li>
+		<li class='bugfix'>Fixed AI not having any sound when transmitting a message. Sounds are placeholder.</li>
+		<li class='bugfix'>Fixed not being able to call evacuation due to not activating distress with comm console.</li>
+		<li class='bugfix'>Fixed improper nanoui scrolling color and other fixes.</li>
+		<li class='tweak'>Evacuation pods can no longer be launched manually before the evacuation is in progress, generally about three minutes.</li>
+		<li class='tweak'>Evacuation pods can now be delayed from launching indefinitely, but can still be force-launched if desired. A pod with three occupants in cryo will launch regardless.</li>
+		<li class='rscadd'>The AI will now report how many people left via the escape pods after the launch sequence is finished.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>26 April 2017</h2>
+	<h3 class='author'>Artouris updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Adds blast doors to lockdown CIC.</li>
+		<li class='rscadd'>Adds nanomed wall vendors in the main hallways of the Almayer.</li>
+		<li class='rscadd'>Gives Req a autolathe.</li>
+		<li class='tweak'>Adds more Staff Officer, Military Police, and Maintenance Technician jobs to the Almayer.</li>
+		<li class='bugfix'>Removes the ability to stack racks, tables, and sandbag barricades in the same tile.</li>
+		<li class='bugfix'>Fixes Hivelord tunneling issues on Solaris Ridge.</li>
+		<li class='bugfix'>Fixes squad beacons not working on Solaris Ridge.</li>
+		<li class='tweak'>Adds more monkeys to Solaris Ridge.</li>
+	</ul>
+	<h3 class='author'>Nicboone updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Made new T-comms machinery, comm tower, rack, and misc item sprites.</li>
+	</ul>
+	<h3 class='author'>phil235 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixes autolathe getting stuck in busy mode in certain cases.</li>
+		<li class='bugfix'>Fixes cash card's name and outdated reference to Thalers upon examination.</li>
+		<li class='bugfix'>Fixes xeno being able to move onto a closed resin door. The resin door now automatically reopens if a mob snuck on its tile during closing sequence.</li>
+		<li class='bugfix'>Fixes border windows stopping thrown things and poucing xenos.</li>
+		<li class='bugfix'>Fixes ambiguous "bleeding" description when checking your non-bleeding wounded limb.</li>
+		<li class='bugfix'>Fixes visible robotic limbs not being mentionned when examining a human.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>25 April 2017</h2>
+	<h3 class='author'>Artouris updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Prevents Xenos from melting the Outer Hull.</li>
+		<li class='bugfix'>Fixes Typos involving some things.</li>
+		<li class='bugfix'>Fixes Engineer closet sprite.</li>
+		<li class='tweak'>Bumps up fire rate on M56D (Its a tweak since it seems like the slowness might have been actual lag issues).</li>
+		<li class='rscadd'>Adds Huntergames functionality to Big Red.</li>
+		<li class='rscadd'>Added Predator Functionality  to Big Red (You can now teleport to the surface).</li>
+		<li class='rscadd'>Adds more cleaning supplies to USS Almayer.</li>
+		<li class='tweak'>Makes minor mapping changes to the Almayer. Adds a third landing zone for ERTs. Adds a few more buttons for hangar lock downs and ammo storages. Moves T-comms APC on Almayer to a more secure location. Also adds 2 more control roles to even out the speed.</li>
+	</ul>
+	<h3 class='author'>Apophis updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Planetary Geothermal Bugs Fixed.</li>
+		<li class='imageadd'>Planetary Geothermal new sprites.</li>
+		<li class='tweak'>Almayer Fusion Engine output halfed (now 50k per engine instead of 100k).</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>24 April 2017</h2>
+	<h3 class='author'>Apophis updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='wip'>New engine for the USS Almayer. Functions pretty closely to geothermal engines for right now, but is still being looked into.</li>
+	</ul>
+	<h3 class='author'>Artouris updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>New map: <a href="https://cm-ss13.com/wiki/images/5/54/USS_Almayer.png">CLICK HERE!</a></li>
+		<li class='tweak'>General description of where to go as a marine: Alpha/bravo go north from cryo and then west into prep. Out west end of prep and south into RO and briefing. Charlie/Delta go south from cryo and then west into their prep and out the west end of prep to RO and briefing.</li>
+		<li class='rscadd'>Added squad prep uniform vendors. Shouldn't run out of headsets now for their squads.</li>
+		<li class='rscadd'>Adds entrenching tool and sandbags. Fold the tool to place it into your backpack. You dig up dirt from tiles and put them in empty sandbags. Sandbag barricades take 5 filled sandbags to make.</li>
+		<li class='rscadd'>Adds engineer welding backpack. This comes with a tank of fuel for welders at the expense of some of your carrying capacity.</li>
+		<li class='rscadd'>Adds M56D smartgun to the game for engineers to choose between for support guns. Unfold the mount by click dragging onto yourself. Then wrench it. Then either now or later load the gun with a magazine. Mount the gun and then screwdriver it. Wrench to rotate and screwdriver to disassemble into mount and gun (it retains ammo).</li>
+		<li class='rscadd'>Adds cryostasis bag recycler to medical. Located above the CMO office. </li>
+		<li class='rscadd'>There are now two dropships. Names are pending.</li>
+		<li class='tweak'>Adds Solaris Ridge as the current gamemode. Other maps will be put back in rotation over time as new shuttle layouts are put in. </li>
+		<li class='rscadd'>Adds various props that currently don't do anything for the dropships.</li>
+	</ul>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Implemented the Warrant Officer, a chief for the Military Police.</li>
+		<li class='tweak'>Revamped crates, sprites by Nicboone, to work properly.</li>
+	</ul>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>Added self destruct sequence and a new evacuation system.</li>
+		<li class='rscadd'>Escape pods can only leave during evacuation. Only three people allowed per escape pod, and the pod won't launch if there are more than three.</li>
+		<li class='rscadd'>To toggle the evacuation, the distress signal must be launched and the ship must be in red alert. The option will then become available in the communication console. The self destruct console unlocks in the secure core room following this. You only have a few minutes to board the pods before they begin their automatic takeoff.</li>
+		<li class='rscadd'>To trigger the self destruct you must interact with the console and then wait for several rods to come out of the ground. Interact with each rod to arm it, then interact with the console again to trigger the destruct. The sequence takes around 20 minutes.</li>
+		<li class='tweak'>The round-end system has been revamped, pending further refinement.</li>
+		<li class='wip'>New ship AI system that is currently being developed.</li>
+		<li class='bugfix'>Other misc changes.</li>
+	</ul>
+	<h3 class='author'>Gorg, Joshuu, Nicboone updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Sprite overhaul. Put in many new sprites to replace existing ones and did work on perspective walls to give the Almayer a new and unique look.</li>
+		<li class='imageadd'>New perspective walls! Walls also now have some random cosmetic decals to break up long sections.</li>
+		<li class='imageadd'>Vast majority of computers and consoles are replaced to take into account the new perspective look.</li>
+		<li class='imageadd'>New sprites for all of the doors and airlocks for the perspective look.</li>
+		<li class='imageadd'>Many sprite replacements for the various objects around the ship, including just about everything you can find!</li>
+		<li class='imageadd'>Several enhancements to old armor/uniform sprites.</li>
+	</ul>
+	<h3 class='author'>MadSnailDisease updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>All-new multi-tiling code for the various walls, doors, and other objects that now tile with each other.</li>
+		<li class='tweak'>Shuttle refactor to accomodate some recent changes.</li>
+		<li class='bugfix'>Other misc changes.</li>
+	</ul>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='imageadd'>Added maps for the Almayer and Solaris Ridge.</li>
+		<li class='soundadd'>Various all new sounds for everyone to enjoy, including new round-end sound cues.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>6 April 2017</h2>
+	<h3 class='author'>Artouris updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixes incinerator issues of being unable to be unloaded and loaded.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>5 April 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed wrong amount of glass in bottom engineering.</li>
+		<li class='bugfix'>Fixed incorrect RO cap in RO lockers.</li>
+		<li class='bugfix'>Fixed improper survivor dreams.</li>
+		<li class='bugfix'>Fixed a bug that prevented tunnel crawling in a rare circumstance.</li>
+		<li class='bugfix'>Fixed ghosting message text to be more clear.</li>
+		<li class='bugfix'>Fixed WY implant lockbox and case names.</li>
+		<li class='bugfix'>Fixed RO uniform not being able to wear officer armor.</li>
+		<li class='bugfix'>Fixed incinerator not generating light.</li>
+		<li class='bugfix'>Fixed an issue when examining the incinerator.</li>
+		<li class='bugfix'>Fixed PMC helmets not showing damage.</li>
+		<li class='bugfix'>Fixed another possible issue with bullets getting stuck.</li>
+		<li class='bugfix'>Fixed hailer not going into the MP armor.</li>
+		<li class='bugfix'>Fixed denied stamp sprite.</li>
+		<li class='bugfix'>(old) Fixed telekinetic gun safety toggle.</li>
+		<li class='bugfix'>(old) Fixed pred gibs.</li>
+		<li class='tweak'>Tweaked the incinerator along with the fixes.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>3 April 2017</h2>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>False walls have been restored, along with everything associated with girders - metal needed returned to 2, time to build a wall returned to 8. Thanks for the constructive criticism (https://cm-ss13.com/viewtopic.php?f=64&t=12048). We'll look into some good alternatives and in the future disable false walls at the same time as having a good replacement.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>2 April 2017</h2>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>When players come to a locked airlock, most of the time they'll just deconstruct the wall beside it since the airlock itself takes some time to hack and deconstructing the wall only takes 2 quick steps - welder and wrench. We're changing this to be more in line with realism and, as a bonus, making Squad Engineers more useful as airlock hackers. As a result several things have changed:</li>
+		<li class='tweak'>Normal (non-reinforced) walls now take 7 steps to deconstruct them instead of 2. Deconstruction starts the same way - with a lit welder - and the wall can be examined during the entire process to visually see which tool needs to be used next to continue. This will help prevent wiki-checking during normal gameplay. Also note that damaged walls must be repaired first (also with a welder) before they can be neatly deconstructed. This will all happen automagically just by hitting a wall with a lit welder - it will either start repair or start deconstruction.</li>
+		<li class='tweak'>Wall building/construction has been made a bit tougher in order to balance the realism of it now taking longer to deconstruct a wall. Walls now use 5 metal sheets on a girder instead of 2, and the time it takes to finish construction has been increased from 8 seconds to 30 seconds.</li>
+		<li class='tweak'>False walls have been removed. We debated this to some extent and ultimately came to the conclusion that an entire wall sliding in and out is not exactly canon or even realistic (it's also simply old Baycode that we just haven't dealt with yet). We are considering alternatives, however, such as a barricade "gate" that slides open and closed, or allowing marines to be more nimble by jumping over any barricade (including flipped ones) after a brief cooldown.</li>
+		<li class='tweak'>Unrelated, but noteworthy: The Chem Dispenser's access requirements are now working correctly, which means that Squad Medics no longer have access to them. The Chemist/Doctor/Researcher/CMO watching his or her Chem Dispenser getting raided each round can now feel useful again.</li>
+		<li>Thanks to forwardslashN for assistance with the above, and to Artouris for the April Fools update yesterday. The ocean-biomed "Nostromo" and "Old Sulaco" maps were quite popular, so we'll keep them and run them once in a while for fun and nostalgia. For those new to the community, they are based on our original 2 maps that were our first ones several years ago. You can read more about them here: https://cm-ss13.com/wiki/History#Pre-Alpha_Maps</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>28 March 2017</h2>
+	<h3 class='author'>Joshuu updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Changed the M41A/M to the M4RA battle rifle.</li>
+		<li class='imageadd'>Added icons for the M4RA.</li>
+		<li class='soundadd'>Added a firing sound for the M4RA.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>25 March 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixes to the previous update.</li>
+		<li class='tweak'>Adjusted chem explosives and their behavior.</li>
+		<li class='tweak'>Hunter Games: Changed the spawns for the various items to rebalance the mode. Guns are almost completely removed, and the focus is strictly on melee combat. Better make some friends.</li>
+		<li class='tweak'>Hunter Games: Ghost-drop rewards are now incredibly good and feature several items per drop. Some rewards are rare.
+		<li class='tweak'>Hunter Games: Hellhounds entering the nexus will be auto-gibbed.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>23 March 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Changes to the previous update.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>22 March 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>Experimental change to the LV map.</li>
+		<li class='tweak'>Added a few more guns/ammo for survivors on LV.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>12 March 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>LV624: Added a sleeper to meddome.</li>
+		<li class='tweak'>LV624: Changed up tunnel placement and terrain.</li>
+		<li class='tweak'>LV624: Removed some extra bodies.</li>
+	</ul>
+	<h3 class='author'>Joshuu updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='imageadd'>New flashlight sprites.</li>
+		<li class='imageadd'>New lightbulb sprites.</li>
+		<li class='imageadd'>New desk lamp sprites.</li>
+		<li class='imageadd'>New green lamp sprites.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>11 March 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>LV624 Additional cave networks in the NE.</li>
+		<li class='tweak'>LV624 Moved container area to east of table fort.</li>
+		<li class='tweak'>LV624 Bridge is now in a damaged state.</li>
+		<li class='tweak'>LV624 Sand temple has suffered some erosion over the years.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>2 March 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed issues with squad engineer access. Alarms, APCs, turrets, etc, should now be accessible.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>27 February 2017</h2>
+	<h3 class='author'>Apophis775 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Predator explosion adjusted.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>26 February 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed expended pred crystal sprite.</li>
+		<li class='bugfix'>Fixed Bicaridine used sprite.</li>
+		<li class='bugfix'>Fixed a predator dagger bug.</li>
+		<li class='bugfix'>Fixed issue with B18 and B12 snow variant armor names.</li>
+		<li class='bugfix'>Fixed PO helmet not having cold protection.</li>
+		<li class='bugfix'>Fixed the zoom gun toggle issue.</li>
+		<li class='bugfix'>Fixed comms working between planet and ship when inside something.</li>
+		<li class='bugfix'>Fixed predators using wristblades with no arms or hands.</li>
+		<li class='bugfix'>Fixed an internal issue with plasma caster/blades.</li>
+		<li class='bugfix'>Fixed freelancers not spawning with compression suits.</li>
+		<li class='bugfix'>Fixed cryo pods kicking people back to lobby.</li>
+		<li class='bugfix'>Fixed items still being held in hand when said hand is cut off/removed.</li>
+		<li class='bugfix'>Fixed splinting removed limbs.</li>
+		<li class='bugfix'>Fixed spamming self-splints to negate fumbling.</li>
+		<li class='bugfix'>Fixed splints breaking when quick clotting, or other minor sources of damage.</li>
+		<li class='bugfix'>Fixed broken, splinted limbs causing pain and dropping of items with no warning.</li>
+		<li class='bugfix'>Fixed missing limbs causing phantom pain messages.</li>
+		<li class='tweak'>Made wooden barricades stronger.</li>
+		<li class='tweak'>Removed engineering access from squad engineers.</li>
+		<li class='tweak'>Added safety glass to SM ejection button.</li>
+		<li class='tweak'>Adjusted rifle mag ejecting. Magazines will now hit the floor when ejecting manually unless retrieved with an active hand.</li>
+		<li class='tweak'>Enabled toggling of fire restriction on the smartgun. Use unique action to toggle the IFF tracker on or off.</li>
+		<li class='tweak'>Lowered number of mine boxes in the explosive supply crate.</li>
+		<li class='tweak'>Decreased sniper rifle fire delay.</li>
+		<li class='tweak'>Slight tweak to marksman rifle.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>24 February 2017</h2>
+	<h3 class='author'>Apophis775 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='imageadd'>Last of Donation Requests are done.  If you donated in the past and did NOT receive them, Message Apophis on the forum DIRECTLY.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>23 February 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='imageadd'>Added Gorg's new sprites for m4a3, m39, and m41a magazines.</li>
+		<li class='imageadd'>Added Gorg's new multitool sprite.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>22 February 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>LZ2 on Ice Colony is now underground.</li>
+		<li class='rscadd'>Ice Colony Predator ship is closed off from underground ice caves.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>21 February 2017</h2>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed the Pred teleporter dumping Preds into space on Ice Colony.</li>
+                                <li class='rscadd'>Added new pred teleporting animations.</li>
+                                <li class='rscadd'>Moved Comms to northwest Cargo.</li>
+		<li class='rscadd'>Opened up LZ1 a bit and removed some barricades.</li>
+		<li class='rscadd'>Elevators are now all access.</li>
+	</ul>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='soundadd'>New sounds for: Smartgun, m41a Pulse Rifle, chestbursting, Predator facehug, some computer consoles, fax machine, and welding tool.</li>
+		<li class='wip'>Welding tool sound and code is a bit of a mess right now, so it's only working on two commonly used objects - airlocks and vent pumps. We'll work on rewriting this in the future.</li>
+		<li class='tweak'>Time to weld an airlock increased from instant to 5 seconds.</li>
+		<li class='tweak'>Time to weld a vent pump increased from 2 seconds to 5 seconds.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>19 February 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed being able to join Xenos when Xeno banned.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>11 February 2017</h2>
+	<h3 class='author'>MadSnailDisease updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed certain items turning into rail attach lights.</li>
+	</ul>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed .click macro abuse by disabling the function. .click no longer works as a macro function. Old macros that use .click for firearms can now be triggered through the verb menu with no issues.</li>
+		<li class='bugfix'>Fixed certain ERT spawning with only ammo but no weapon.</li>
+	</ul>
+                <h3 class='author'>MadSnailDisease updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Increased the number of shuttle crashing areas. No more trying to outsmart the crashing shuttle for marines.</li>
+		<li class='bugfix'>Fixed bug that caused a standard launch by the Queen using multiple launches.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>7 February 2017</h2>
+	<h3 class='author'>Apophis775 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed CMO access problem</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>6 Feb 2017</h2>
+	<h3 class='author'>Apophis775 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed old autoinjector sprite for inaprovaline</li>
+		<li class='tweak'>Marine Medics no longer have access to the Blood or WeylandMed dispensers (they should be checking with a Doctor if they need something)</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>5 February 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed SL prep.</li>
+		<li class='bugfix'>Fixed invisible Bicaridine injector.</li>
+		<li class='bugfix'>Fixed Bicaridine pills having the wrong amount of chems.</li>
+		<li class='bugfix'>Fixed some naming inconsistencies.</li>
+	</ul>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>Added an experimental system to make most hits interrupt human speech. This might not account for every single last method of damage in the game, so this is a WIP.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>4 February 2017</h2>
+	<h3 class='author'>Apophis775 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed an exploit that will hopefully resolve some of our recent instability.</li>
+		<li class='tweak'>Redid contents of MarineMed, ColMarGear, and NanoMed (now WeyLandMed) vendors.</li>
+		<li class='tweak'>MarineMed now contains: Autoinjectors (expanded), Pill bottles, Basic medical tools.</li>
+		<li class='tweak'>WeylandMed contains: Minimal Autoinjectors, Syringes, Various Chemicals in bottles, Medical Tools that frequently run-out.</li>
+		<li class='tweak'>ColMar Medic Gear now contains: Basic Medic equipment (no medications, pills, or injectors).</li>
+		<li class='tweak'>Squad Leader room has shank a little bit.  Medic room has gotten bigger (and now contains a MarineMed vendor).</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>30 January 2017</h2>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Xenos can no longer pounce on an object (like a flare) to move it.</li>
+		<li class='bugfix'>Resin structures will now spawn weeds beneath them.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>29 January 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed an issue with changing paygrades.</li>
+		<li class='bugfix'>Fixed Sulaco wall bullet hole issue.</li>
+		<li class='bugfix'>Fixed infinite gun cocking and other weirdness.</li>
+		<li class='bugfix'>Fixed pred infinite join and a problem with start round joining.</li>
+		<li class='bugfix'>Fixed, hopefully, the hive menu. It should also report anyone who was gibbed.</li>
+		<li class='bugfix'>Fixed a job ban issue.</li>
+		<li class='bugfix'>Fixed not getting a random job if selecting it, and a few minor job related things.</li>
+		<li class='rscdel'>Removed some items from the cargo backroom vendors.</li>
+		<li class='tweak'>Increased the cost of the incinerator crate.</li>
+		<li class='wip'>Rebalanced the incinerator. Among other changes, the flame will not immediately set you on fire if stepped inside, though it can.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>26 January 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>You can now wear IDs without an uniform, and removing an uniform will no longer remove the ID.</li>
+		<li class='rscdel'>Medical HUDs can no longer spot larva infections, use the advanced scanner. Observers keep that ability.</li>
+		<li class='imageadd'>Added icon for (dead) patients that can be defibrillated. Do note that this doesn't work properly if the person disconnected or joined an ERT to save some performance.</li>
+		<li class='bugfix'>Fixed silly stripping messages (for the most part).</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>23 January 2017</h2>
+	<h3 class='author'>Artouris updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Overhauled fire, all fire based weapons now actually function like fire based weapons.</li>
+		<li class='tweak'>M240A1 Incinerator Units have been removed from Spec vendors and placed into SL vendors. SLs are expected to distribute them to the squad. Two in each SL vendor, four tanks for each. These tanks come with their own special fuel and will no longer accept phoron. You can eventually subsitute it with welding fuel from fuel dispensers if you run out of the original fuel. Use unique action to light the flamer, and should handle like a regular gun for the most part.</li>
+		<li class='rscadd'>Fire now catches both marines and xenos on fire if they stand on it. You can no longer run through it without taking any damage. Also fire will cause things to explode reasonably.</li>
+		<li class='rscadd'>Updated fire sprites have also been put in for marines/humans.</li>
+		<li class='bugfix'>Fixed being able to lay down and use the MG nest in WO.</li>
+		<li class='rscadd'>Added a manual eject option on a Med-Pod (right click the Med-Pod itself to see it) for when people get stuck in surgery.</li>
+		<li class='tweak'>Changed up WO Med-Pod timer due to it being too long for WO, should scale better, and minimum time spent in the pod is now 2 minutes instead of 4.</li>
+		<li class='tweak'>WO secondary defenses have been changed to help prevent xenos beelining to the Outpost itself; Also prevent xenos from blowing up secondary line defenses from behind.</li>
+		<li class='tweak'>AP ammo has been added in small amounts to the ABS Beacon supply drop that SLs get.</li>
+		<li class='tweak'>Med HUDs and welding goggles have been added to WO areas respectively to counter any issues with your custom loadout interfering with equipment.</li>
+		<li class='tweak'>Defibs have been added to WO medical.</li>
+		<li class='tweak'>Changed the spawn rates of xenos on WO, should no longer end any chance of marine victory at wave 13; should be more gradual until the expected final wave of 15.</li>
+	</ul>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed barricade issues involving sprite and direction (such as floating over southern facing barricades).</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>22 January 2017</h2>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscdel'>Cloning system removed!</li>
+		<li class='tweak'>Defibrilators have been buffed significantly. Players dead within 5 minutes can be revived as long as the defibrilator has enough charges, and as long as the player didn't die from suicide, chestbursting, head removal or extreme damage. Defibrilators can be charged using the same rechargers that are used for tasers and stun batons.</li>
+		<li class='tweak'>Sulaco Chemistry has been moved to the deck below Medbay to replace the Cloning Lab, and Medbay has been altered as well. Body Scanners, blood packs, a recharger, and a welding tool for robotic limbs has been added.</li>
+	</ul>
+</div>
+
+<div class='commit sansserif'>
+	<h2 class='date'>19 January 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>The Queen can now lock down a shuttle (remote control disabled) by interacting with the onboard console. This prevents remote launching. Marines can lift this by having someone with access interact with the onboard shuttle again.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>18 January 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>You can now deconstruct a barricade using screwdriver, wrench, crowbar in this order.</li>
+		<li class='tweak'>Amount of plasteel refunded from barricades is now proportional to remaining health (aka 0 if torn apart).</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>17 January 2017</h2>
+	<h3 class='author'>Artouris updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed WO Med-Pod icon issues involving being depowered (along with prevention of being put in when power goes out).</li>
+		<li class='tweak'>Tweaked WO Med-Pod times.</li>
+	</ul>
+	<h3 class='author'>Bmc777 updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='imageadd'>Exploding Xeno Eggs</li>
+		<li class='rscadd'>Xeno Eggs now explode when destroyed via damage. Animation courtesy of Fridge.</li>
+                                <li class='tweak'>Ice Colony Elevators Access</li>
+                                <li class='rscadd'>- Elevators are now all access.</li>
+                                <li class='tweak'>Ice Colony Survivor Spawn Relocations</li>
+                                <li class='rscadd'>- Moved two survivor spawns that were previously in areas that were impossible to leave.</li>
+                                <li class='bugfix'>Ice Colony Ladder Fix</li>
+                                <li class='rscadd'>- Fixed a bug where two underground ladders were tied to the same ladder above ground.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>16 January 2017</h2>
+	<h3 class='author'>Artouris updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>WO Med-Pods should now properly fix most conditions (might not fully heal, but internal damage should be fixed).</li>
+		<li class='rscadd'>WO waves now more noticiable by increased spacing so it doesn't get drowned out.</li>
+		<li class='rscadd'>WO waves now have sounds accompaning them. Should make it more atmospheric.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>15 January 2017</h2>
+	<h3 class='author'>Artouris updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Whiskey Outpost is updated and almost finished.</li>
+		<li class='tweak'>MG nests in WO now require click dragging to operate and control click to change between burst and single fire. </li>
+		<li class='tweak'>Sentry guns no longer give a prompt for manual override (this was done due to backend changes for MG nests and sentries)</li>
+		<li class='rscadd'>XO preferences now determine WO Commander. WO Commander preference in setup character has been removed. Along with that MPs now become outpost guards and MTs are now Outpost Engineers for WO.</li>
+		<li class='rscadd'>IRs have been removed from their old form in WO due to issues of operation. They've been replaced with laser designators that do the same thing + more (check your weapons verb tab).</li>
+		<li class='experiment'>Cyro Cells on WO have been replaced with Medical Pods (Auto-docs). These are still are still being worked on. Only Medics and Doctors are allowed to operate them.</li>
+		<li class='tweak'>WO supply drops have been revamped. There is only one drop per wave and its randomized between support/medical/weapon drops. To compenstate for this, SLs now get ammo supply beacons. Allows marines to resupply at the frontlines.</li>
+		<li class='tweak'>Weapon Loadouts have been reweighted/changed from their updated version of WO based on player feedback.</li>
+		<li class='tweak'>WO Map changes: Command Pod is now better reinforced, the armory has been removed, and outer defensive lines are now more defendable.</li>
+		<li class='tweak'>Xeno Spawnlists have been changed, should be less punishing to marines in the start.</li>
+		<li class='experiment'>A untested fix for not spawning in the round as a marine has been implimented to hopefully fix that issue.</li>
+		<li class='bugfix'>Fixed camera view bug. Was related to backend code.</li>
+	</ul>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Snow will now slow down both Xenos and Marines significantly less. Xenos will also no longer get stuck in snow, and Marines will get stuck for a bit less</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>10 January 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>SADARs now produce harmful backblast on the tile behind them, and smoke on the explosion epicenter</li>
+	</ul>
+	<h3 class='author'>RavingManiac updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Bullets will now leave holes in walls</li>
+	</ul>
+	<h3 class='author'>MadSnailDisease updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Dropship now crashes into the Sulaco at a RANDOM PLACE when the aliens use it.  The dropship is then DISABLED.  Queens using this to "attack" the sulaco instead of boarding will receive bans.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>7 January 2017</h2>
+	<h3 class='author'>MadSnailDisease updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='rscadd'>Added transit shutter to REALLY prevent depressurization</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>4 January 2017</h2>
+	<h3 class='author'>MadSnailDisease updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Made it less possible for Xenos to be sucked out of the shuttle on launch. NOTE: If Xenos remove the glass and shutters without placing a resin door, they will depressurize. Also, just to be safe, try not to open them during flight either.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>3 January 2017</h2>
+	<h3 class='author'>Rahlzel updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='tweak'>Military Police - A few dozen airlocks on the Sulaco (Requisitions, Engineering, Telecoms, Maintenance, Prep rooms, etc) were modified to allow MP access in order to help them do their jobs. </li>
+		<li class='tweak'>Xmas Xeno sprites returned to normal.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>2 January 2017</h2>
+	<h3 class='author'>forwardslashN updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='bugfix'>Fixed a problem with readying up to play standard and made some minor tweaks.</li>
+		<li class='bugfix'>Fixed Bears spawning with no backpacks.</li>
+		<li class='bugfix'>Fixed access issues with marine prep and other access weirdness.</li>
+		<li class='bugfix'>Fixed MP belt holding rockets.</li>
+		<li class='tweak'>Armor slowdown tweak. It's a tad lighter now and easier to move in.</li>
+		<li class='imageadd'>New icon for the IFF bullet by Artouris.</li>
+	</ul>
+</div>
+
+
+<div class='commit sansserif'>
+	<h2 class='date'>1 January 2017</h2>
+	<h3 class='author'>dylanstrategie updated:</h3>
+	<ul class='changes bgimages16'>
+		<li class='experiment'>Distress Beacon will now be autocalled if no staff marks it or answers to it within 60 seconds.</li>
+		<li class='tweak'>Armor slowdown rebalanced. Lighter and heavier armor now function as intended.</li>
+		<li class='tweak'>Weapon wield slowdown rebalanced.</li>
+		<li class='rscdel'>You can no longer wear armor on top of Marine underwear.</li>
+	</ul>
+</div>
+
+
+
+</body>
+</html>
