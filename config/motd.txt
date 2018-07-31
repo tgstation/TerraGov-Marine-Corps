@@ -1,5 +1,5 @@
-<h1>Welcome to Space Station 13!</h1>
+<h1>Welcome to DMCAstation 13!</h1>
 
--<i>This server is running <a href="http://baystation12.net/">Baystation 12's</a> modification of the <a href="http://ss13.eu/">/tg/station13</a> SS13 code.</i>
+<i>This server is running <a href="http://ss13.eu/">/tg/station13's</a> modification of <a href="https://cm-ss13.com/">CM-SS13's</a> modification of <a href="http://baystation12.net/">Baystation 12's</a> modification of the <a href="http://ss13.eu/">/tg/station13</a> SS13 code.</i>
 <br><br>
-<strong>Bugtracker:</strong> <a href="http://baystation12.net/forums/viewtopic.php?f=18&t=8185">http://baystation12.net/forums/viewtopic.php?f=18&t=8185</a>
+<strong>Bugtracker:</strong> <a href="https://github.com/ColonialMarines-Mirror/ColonialMarines-2018/issues">GitHub Repo</a>
