@@ -163,9 +163,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			ghost.timeofdeath = world.time // Because the living mob won't have a time of death and we want the respawn timer to work properly.
 	return
 
+/mob/dead/observer/proc/unfollow()
+	following?.followers -= src
+	following = null
 
 /mob/dead/observer/Move(NewLoc, direct)
-	following = null
+	unfollow()
 	dir = direct
 	if(NewLoc)
 		loc = NewLoc
@@ -274,7 +277,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		usr << "No area available."
 
 	usr.loc = pick(L)
-	following = null
+	unfollow()
 
 /mob/dead/observer/verb/follow()
 	set category = "Ghost"
@@ -331,14 +334,27 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/mob/target = mobs[input]
 	ManualFollow(target)
 
+/atom/movable
+	var/list/mob/dead/observer/followers = list()
+
+/atom/movable/Moved()
+	..()
+	
+	if(followers.len)
+		for(var/_F in followers)
+			var/mob/dead/observer/F = _F //Read this was faster than var/typepath/F in list
+			F.loc = loc
+
 // This is the ghost's follow verb with an argument
 /mob/dead/observer/proc/ManualFollow(var/atom/movable/target)
 	if(target && target != src)
 		if(following && following == target)
 			return
+		target.followers += src
 		following = target
+		loc = target.loc
 		src << "\blue Now following [target]"
-		spawn(0)
+		spawn(0) //Backup
 			while(target && following == target && client)
 				var/turf/T = get_turf(target)
 				if(!T)
@@ -371,7 +387,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 			if(T && isturf(T))	//Make sure the turf exists, then move the source to that destination.
 				A.loc = T
-				following = null
+				unfollow()
 			else
 				A << "This mob is not located in the game world."
 /*
