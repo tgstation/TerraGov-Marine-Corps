@@ -1,7 +1,5 @@
 {
     "documentation": "/tg/station server 3 configuration file",
     "static_directories": [
-      "config",
-      "data"
     ]
   }
