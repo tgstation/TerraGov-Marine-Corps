@@ -16,7 +16,7 @@
 
 //#define UPDATE_QUEUE_DEBUG
 // If btime.dll is available, do this shit
-#define PRECISE_TIMER_AVAILABLE
+/*
 
 #ifdef PRECISE_TIMER_AVAILABLE
 var/global/__btime__lastTimeOfHour = 0
@@ -32,5 +32,5 @@ proc/__btime__timeofhour()
 		global.__btime__lastTimeOfHour = __extern__timeofhour
 	return global.__btime__lastTimeOfHour
 #else
+*/
 #define TimeOfHour world.timeofday % 36000
-#endif
