@@ -35,12 +35,12 @@
 		src << "\red The rules URL is not set in the server configuration."
 	return
 
-/client/verb/donate()
-	set name = "Donate"
-	set desc = "Like our server? Buy us a beer and get some custom-made items."
+/client/verb/patreon()
+	set name = "Patreon"
+	set desc = "Like our server? Buy us and get satisfaction for your efforts."
 	set hidden = 1
 
-	src << "<br>View our donation page for more info: https://cm-ss13.com/viewtopic.php?f=119&t=5978.<br>"
+	src << "<br>View our donation page for more info: https://www.patreon.com/tgstation.<br>"
 	return
 
 /client/verb/submitbug()
@@ -50,7 +50,7 @@
 
 	if(alert("Please search for the bug first to make sure you aren't posting a duplicate.",,"Ok","Cancel")=="Cancel")
 		return
-	src << link("https://gitlab.com/cmdevs/ColonialMarines/issues")
+	src << link("https://github.com/ColonialMarines-Mirror/ColonialMarines-2018")
 	return
 
 /client/verb/hotkeys_help()

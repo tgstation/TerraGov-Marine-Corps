@@ -724,16 +724,16 @@ window "rpane"
 		text = "Submit Bug"
 		command = "submit-bug"
 		group = "rpanemode"
-	elem "donate"
+	elem "patreon"
 		type = BUTTON
 		pos = 682,0
 		size = 106x20
 		anchor1 = 79,0
 		anchor2 = 92,0
-		background-color = #8cffa4
+		background-color = #ff8040
 		saved-params = "is-checked"
-		text = "Donate"
-		command = "donate"
+		text = "Patreon"
+		command = "patreon"
 		group = "rpanemode"
 	elem "rulesb"
 		type = BUTTON
