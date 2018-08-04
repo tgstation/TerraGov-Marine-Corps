@@ -204,7 +204,6 @@
 	storage_slots = null
 	use_sound = null
 	max_storage_space = 16
-	var/skilllock = 1
 	var/pill_type_to_fill //type of pill to use to fill in the bottle in New()
 
 /obj/item/storage/pill_bottle/New()
@@ -214,9 +213,6 @@
 			new pill_type_to_fill(src)
 
 /obj/item/storage/pill_bottle/attack_self(mob/living/user)
-	if(skilllock && user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
-		user << "<span class='notice'>It must have some kind of ID lock...</span>"
-		return
 	if(user.get_inactive_hand())
 		user << "<span class='warning'>You need an empty hand to take out a pill.</span>"
 		return
@@ -234,78 +230,40 @@
 		return
 
 
-/obj/item/storage/pill_bottle/open(mob/user)
-	if(skilllock && user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
-		user << "<span class='notice'>It must have some kind of ID lock...</span>"
-		return
-	..()
-
-
-
-/obj/item/storage/pill_bottle/can_be_inserted(obj/item/W, stop_messages = 0)
-	. = ..()
-	if(.)
-		if(skilllock && usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
-			usr << "<span class='notice'>You can't open [src], it has some kind of lock.</span>"
-			return 0
-
-
-
 /obj/item/storage/pill_bottle/kelotane
 	name = "\improper Kelotane pill bottle"
 	icon_state = "pill_canister2"
 	pill_type_to_fill = /obj/item/reagent_container/pill/kelotane
-
-/obj/item/storage/pill_bottle/kelotane/skillless
-	skilllock = 0
 
 /obj/item/storage/pill_bottle/antitox
 	name = "\improper Dylovene pill bottle"
 	icon_state = "pill_canister6"
 	pill_type_to_fill = /obj/item/reagent_container/pill/antitox
 
-/obj/item/storage/pill_bottle/antitox/skillless
-	skilllock = 0
-
 /obj/item/storage/pill_bottle/inaprovaline
 	name = "\improper Inaprovaline pill bottle"
 	icon_state = "pill_canister3"
 	pill_type_to_fill = /obj/item/reagent_container/pill/inaprovaline
-
-/obj/item/storage/pill_bottle/inaprovaline/skillless
-	skilllock = 0
 
 /obj/item/storage/pill_bottle/tramadol
 	name = "\improper Tramadol pill bottle"
 	icon_state = "pill_canister5"
 	pill_type_to_fill = /obj/item/reagent_container/pill/tramadol
 
-/obj/item/storage/pill_bottle/tramadol/skillless
-	skilllock = 0
-
 /obj/item/storage/pill_bottle/spaceacillin
 	name = "\improper Spaceacillin pill bottle"
 	icon_state = "pill_canister4"
 	pill_type_to_fill = /obj/item/reagent_container/pill/spaceacillin
-
-/obj/item/storage/pill_bottle/spaceacillin/skillless
-	skilllock = 0
 
 /obj/item/storage/pill_bottle/bicaridine
 	name = "\improper Bicaridine pill bottle"
 	icon_state = "pill_canister11"
 	pill_type_to_fill = /obj/item/reagent_container/pill/bicaridine
 
-/obj/item/storage/pill_bottle/bicaridine/skillless
-	skilllock = 0
-
 /obj/item/storage/pill_bottle/dexalin
 	name = "\improper Dexalin pill bottle"
 	icon_state = "pill_canister1"
 	pill_type_to_fill = /obj/item/reagent_container/pill/dexalin
-
-/obj/item/storage/pill_bottle/dexalin/skillless
-	skilllock = 0
 
 //Alkysine
 /obj/item/storage/pill_bottle/alkysine
@@ -326,9 +284,6 @@
 	icon_state = "pill_canister10"
 	pill_type_to_fill = /obj/item/reagent_container/pill/peridaxon
 
-/obj/item/storage/pill_bottle/peridaxon/skillless
-	skilllock = 0
-
 //RUSSIAN RED ANTI-RAD
 /obj/item/storage/pill_bottle/russianRed
 	name = "\improper Russian Red pill bottle"
@@ -347,7 +302,6 @@
 	name = "\improper Pill bottle"
 	icon_state = "pill_canister11"
 	max_storage_space = 5
-	skilllock = 0 //CL can open it
 	pill_type_to_fill = /obj/item/reagent_container/pill/ultrazine
 
 	req_access_txt = "200"
