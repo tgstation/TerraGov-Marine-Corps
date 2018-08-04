@@ -36,15 +36,12 @@
 	if(..())  //Checks for power outages
 		return
 
-	if(user.mind.cm_skills && user.mind.cm_skills.leadership < SKILL_LEAD_EXPERT)
-		user << "<span class='warning'>You don't have the training to use [src].</span>"
-		return
-
-
 	user.set_interaction(src)
 	var/dat = "<head><title>Overwatch Console</title></head><body>"
-
-	if(!operator)
+	if(!allowed(user))
+		user << "\red You don't have access."
+		return
+	else if(!operator)
 		dat += "<BR><B>Operator:</b> <A href='?src=\ref[src];operation=change_operator'>----------</A><BR>"
 	else
 		dat += "<BR><B>Operator:</b> <A href='?src=\ref[src];operation=change_operator'>[operator.name]</A><BR>"
