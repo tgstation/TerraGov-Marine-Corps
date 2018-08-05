@@ -4,7 +4,6 @@
 /obj/item/storage/pill_bottle/happy
 	name = "Happy pills"
 	desc = "Highly illegal drug. When you want to see the rainbow."
-	skilllock = 0
 
 /obj/item/storage/pill_bottle/happy/New()
 	..()
@@ -19,7 +18,6 @@
 /obj/item/storage/pill_bottle/zoom
 	name = "Zoom pills"
 	desc = "Highly illegal drug. Trade brain for speed."
-	skilllock = 0
 
 /obj/item/storage/pill_bottle/zoom/New()
 	..()

@@ -677,7 +677,7 @@
 			M.equip_to_slot_or_del(new /obj/item/device/defibrillator(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/storage/firstaid/fire(M.back), WEAR_IN_BACK)
-			M.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol/skillless(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/upp_smg, WEAR_R_STORE)
 			M.equip_to_slot_or_del(new /obj/item/storage/pouch/bayonet/upp(M), WEAR_L_STORE)
 
@@ -845,7 +845,7 @@
 			M.equip_to_slot_or_del(new /obj/item/device/defibrillator(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/storage/firstaid/fire(M.back), WEAR_IN_BACK)
-			M.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol/skillless(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/large/upp(M), WEAR_R_STORE)
 
@@ -963,7 +963,7 @@
 			M.equip_to_slot_or_del(new /obj/item/device/defibrillator(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/storage/firstaid/fire(M.back), WEAR_IN_BACK)
-			M.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol/skillless(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/device/flashlight(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/device/healthanalyzer(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(M), WEAR_EYES)
@@ -1064,7 +1064,7 @@
 			M.equip_to_slot_or_del(new /obj/item/device/defibrillator(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/storage/firstaid/fire(M.back), WEAR_IN_BACK)
-			M.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol/skillless(M.back), WEAR_IN_BACK)
+			M.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/tramadol(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/device/healthanalyzer(M.back), WEAR_IN_BACK)
 			M.equip_to_slot_or_del(new /obj/item/storage/pouch/medical(M), WEAR_L_STORE)
 			M.equip_to_slot_or_del(new /obj/item/storage/pouch/general(M), WEAR_R_STORE)
@@ -1430,7 +1430,7 @@
 		/obj/item/clothing/tie/storage/webbing = null,
 		/obj/item/clothing/tie/storage/webbing = null,
 		/obj/item/storage/belt/marine = null,
-		/obj/item/storage/pill_bottle/tramadol/skillless = null,
+		/obj/item/storage/pill_bottle/tramadol = null,
 		/obj/item/explosive/grenade/phosphorus = null,
 		/obj/item/clothing/glasses/welding = null,
 		/obj/item/reagent_container/ld50_syringe/choral = null,
