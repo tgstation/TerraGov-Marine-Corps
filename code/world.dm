@@ -112,6 +112,7 @@ var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
 
 /world/Topic(T, addr, master, key)
+	if(findtext(T, "mapdaemon") == 0) diary << "TOPIC: \"[T]\", from:[addr], master:[master], key:[key][log_end]"
 
 	if (T == "ping")
 		var/x = 1
@@ -173,6 +174,125 @@ var/world_topic_spam_protect_time = world.timeofday
 			return "Bad Key"
 
 		return player_notes_show_irc(input["notes"])
+
+
+	//START: MAPDAEMON PROCESSING
+	if(addr == "127.0.0.1") //Verify that instructions are coming from the local machine
+
+		var/list/md_args = splittext(T,"&")
+		var/command = md_args[1]
+		var/MD_UID = md_args[2]
+
+		if(command == "mapdaemon_get_round_status")
+
+			if(!ticker) return "ERROR" //Yeah yeah wrong data type, but MapDaemon.java can handle it
+
+			if(MapDaemon_UID == -1) MapDaemon_UID = MD_UID //If we haven't seen an instance of MD yet, this is ours now
+
+			if(kill_map_daemon || MD_UID != MapDaemon_UID) return 2 //The super secret killing code that kills it until it's been killed.
+
+			else if(!ticker.mode) return 0 //Before round start
+
+			else if(ticker.mode.round_finished || force_mapdaemon_vote) return 1
+
+			else return 0 //IDK what would cause this but why not, don't really want runtimes
+
+		else if(MD_UID != MapDaemon_UID)
+			return 2 //kill the imposter, kill it with fire
+
+		else if(command == "mapdaemon_delay_round")
+
+			if(!ticker) return "ERROR"
+			spawn(200) //20 seconds
+
+				var/text = ""
+				text += "<hr><br>"
+				text += "<span class='centerbold'>"
+				text += "<font color='#00CC00'><b>You have 30 seconds to vote for the next map! Use the \"Map Vote\" verb in the OOC tab or click <a href='?src=\ref[src];vote_for_map=1'>here</a> to select an option.</b></font>"
+				text += "</span>"
+				text += "<hr><br>"
+
+				world << text
+				world << 'sound/voice/start_your_voting.ogg'
+
+			ticker.delay_end = 1
+			log_admin("World/Topic() call (likely MapDaemon.exe) has delayed the round end.")
+			message_admins("World/Topic() call (likely MapDaemon.exe) has delayed the round end.", 1)
+			return "SUCCESS"
+
+		else if(command == "mapdaemon_restart_round")
+
+			if(!ticker) return "ERROR"
+
+			ticker.delay_end = 0
+			message_admins("World/Topic() call (likely MapDaemon.exe) has resumed the round end.", 1)
+
+			//So admins have a chance to make EORG bans and do whatever
+			message_staff("NOTICE: Delay round within 30 seconds in order to prevent auto-restart!", 1)
+
+			MapDaemonHandleRestart() //Doesn't hold
+
+			return "WILL DO" //Yessir!
+
+		else if(command == "mapdaemon_receive_votes")
+
+			var/list/L = list()
+
+			var/i
+			for(i in NEXT_MAP_CANDIDATES)
+				L[i] = 0 //Initialize it
+
+			var/forced = 0
+			var/force_result = ""
+			i = null //Sanitize for safety
+			var/j
+			for(i in player_votes)
+				j = player_votes[i]
+				if(i == "}}}") //Special invalid ckey for forcing the next map
+					forced = 1
+					force_result = j
+					continue
+				L[j] = L[j] + 1 //Just number of votes indexed by map name
+
+			i = null
+			var/most_votes = -1
+			var/next_map = ""
+			for(i in L)
+				if(L[i] > most_votes)
+					most_votes = L[i]
+					next_map = i
+
+			if(!enable_map_vote && ticker && ticker.mode)
+				next_map = ticker.mode.name
+			else if(enable_map_vote && forced)
+				next_map = force_result
+
+			var/text = ""
+			text += "<font color='#00CC00'>"
+
+			var/log_text = ""
+			log_text += "\[[time2text(world.realtime, "DD Month YYYY")]\] Winner: [next_map] ("
+
+			text += "The voting results were:<br>"
+			for(var/name in L)
+				text += "[name] - [L[name]]<br>"
+				log_text += "[name] - [L[name]],"
+
+			log_text += ")\n"
+
+			if(forced) text += "<b>An admin has forced the next map.</b><br>"
+			else
+				text2file(log_text, "data/map_votes.txt")
+
+			text += "<b>The next map will be on [forced ? force_result : next_map].</b>"
+
+			text += "</font>"
+
+			world << text
+
+			return next_map
+
+
 
 /world/Reboot(var/reason)
 	/*spawn(0)
@@ -342,5 +462,21 @@ proc/establish_old_db_connection()
 		return setup_old_database_connection()
 	else
 		return 1
-		
+
+/proc/MapDaemonHandleRestart()
+	set waitfor = 0
+
+	sleep(300)
+
+	if(ticker.delay_end) return
+
+	world << "\red <b>Restarting world!</b> \blue Initiated by MapDaemon.exe!"
+	log_admin("World/Topic() call (likely MapDaemon.exe) initiated a reboot.")
+
+	if(blackbox)
+		blackbox.save_all_data_to_sql() //wtf does this even do?
+
+	sleep(30)
+	world.Reboot() //Whatever this is the important part
+
 #undef FAILED_DB_CONNECTION_CUTOFF
