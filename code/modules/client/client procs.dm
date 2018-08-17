@@ -42,6 +42,11 @@
 		cmd_admin_pm(C,null)
 		return
 
+	//Map voting
+	if(href_list["vote_for_map"])
+		mapVote()
+		return
+
 
 	//Logs all hrefs
 	if(config && config.log_hrefs && href_logfile)
