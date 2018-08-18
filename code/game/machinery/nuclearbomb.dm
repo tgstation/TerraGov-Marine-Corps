@@ -374,14 +374,14 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 	if(safety)
 		timing = 0
 		stop_processing()
-		r_FAL
+		return FALSE
 	timing = -1.0
 	yes_code = 0
 	safety = 1
 	if(!lighthack) icon_state = "nuclearbomb3"
 
 	EvacuationAuthority.trigger_self_destruct(list(z), src) //The round ends as soon as this happens, or it should.
-	r_TRU
+	return TRUE
 
 /obj/item/disk/nuclear/Dispose()
 	if(blobstart.len > 0)

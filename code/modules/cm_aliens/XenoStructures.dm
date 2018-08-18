@@ -701,14 +701,14 @@ TUNNEL
 		var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
 		if(!hive.living_xeno_queen)
 			M << "<span class='xenowarning'>There is no Queen. You must choose a queen first.</span>"
-			r_FAL
+			return FALSE
 		else if(isXenoQueen(M))
 			M << "<span class='xenowarning'>There is no reason to leave the safety of the caves yet.</span>"
-			r_FAL
+			return FALSE
 
 	if(M.anchored)
 		M << "<span class='xenowarning'>You can't climb through a tunnel while immobile.</span>"
-		r_FAL
+		return FALSE
 
 	var/tunnel_time = 40
 

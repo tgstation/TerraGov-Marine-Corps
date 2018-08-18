@@ -145,13 +145,13 @@
 				user.visible_message("<span class='notice'>[user] starts welding [src]'s internal damage.</span>",
 				"<span class='notice'>You start welding [src]'s internal damage.</span>")
 				if(do_after(user, 200, TRUE, 5, BUSY_ICON_BUILD))
-					if(buildstate != 1 || is_on || !WT.isOn()) r_FAL
+					if(buildstate != 1 || is_on || !WT.isOn()) return FALSE
 					playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 					buildstate = 2
 					user.visible_message("<span class='notice'>[user] welds [src]'s internal damage.</span>",
 					"<span class='notice'>You weld [src]'s internal damage.</span>")
 					update_icon()
-					r_TRU
+					return TRUE
 			else
 				user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
 				return
@@ -164,13 +164,13 @@
 			user.visible_message("<span class='notice'>[user] starts securing [src]'s wiring.</span>",
 			"<span class='notice'>You start securing [src]'s wiring.</span>")
 			if(do_after(user, 120, TRUE, 12, BUSY_ICON_BUILD))
-				if(buildstate != 2 || is_on) r_FAL
+				if(buildstate != 2 || is_on) return FALSE
 				playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 				buildstate = 3
 				user.visible_message("<span class='notice'>[user] secures [src]'s wiring.</span>",
 				"<span class='notice'>You secure [src]'s wiring.</span>")
 				update_icon()
-				r_TRU
+				return TRUE
 	else if(iswrench(O))
 		if(buildstate == 3 && !is_on)
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
@@ -180,13 +180,13 @@
 			user.visible_message("<span class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
 			"<span class='notice'>You start repairing [src]'s tubing and plating.</span>")
 			if(do_after(user, 150, TRUE, 15, BUSY_ICON_BUILD))
-				if(buildstate != 3 || is_on) r_FAL
+				if(buildstate != 3 || is_on) return FALSE
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				buildstate = 0
 				user.visible_message("<span class='notice'>[user] repairs [src]'s tubing and plating.</span>",
 				"<span class='notice'>You repair [src]'s tubing and plating.</span>")
 				update_icon()
-				r_TRU
+				return TRUE
 	else
 		return ..() //Deal with everything else, like hitting with stuff
 

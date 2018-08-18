@@ -121,7 +121,7 @@
 
 
 /datum/game_mode/proc/check_finished() //to be called by ticker
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) r_TRU
+	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) return TRUE
 
 /datum/game_mode/proc/cleanup()	//This is called when the round has ended but not the game, if any cleanup would be necessary in that case.
 	return

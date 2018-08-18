@@ -161,7 +161,7 @@
 			for(var/i = 1 to 2)
 				if(istype(A, text2path("/area/shuttle/drop[i]")))
 					S = shuttle_controller.shuttles["[MAIN_SHIP_NAME] Dropship [i]"]
-					if(S.moving_status == SHUTTLE_INTRANSIT) r_FAL
+					if(S.moving_status == SHUTTLE_INTRANSIT) return FALSE
 			if(M.density)
 				spawn()
 					M.open()

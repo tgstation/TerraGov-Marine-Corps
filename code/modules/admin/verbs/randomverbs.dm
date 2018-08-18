@@ -585,7 +585,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		src << "Only administrators may use this command."
 		return
 	var/input = input(usr, "This should be a message from the ship's AI.  Check with online staff before you send this. Do not use html.", "What?", "") as message|null
-	if(!input) r_FAL
+	if(!input) return FALSE
 	if(ai_system.Announce(input))
 
 		for (var/obj/machinery/computer/communications/C in machines)
@@ -624,7 +624,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 	var/input = input(usr, "This should be a message from the ruler of the Xenomorph race.", "What?", "") as message|null
 	var/customname = "Queen Mother Psychic Directive"
-	if(!input) r_FAL
+	if(!input) return FALSE
 
 	var/data = "<h1>[customname]</h1><br><br><br>\red[input]<br><br>"
 

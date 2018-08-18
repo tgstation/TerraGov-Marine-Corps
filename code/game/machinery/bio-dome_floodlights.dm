@@ -143,7 +143,7 @@
 				return //Larvae can't do shit
 			if(user.get_active_hand())
 				user << "<span class='warning'>You need your claws empty for this!</span>"
-				r_FAL
+				return FALSE
 			user.visible_message("<span class='danger'>[user] starts to slash and claw away at [src]!</span>",
 			"<span class='danger'>You start slashing and clawing at [src]!</span>")
 			if(do_after(user, 50, TRUE, 5, BUSY_ICON_HOSTILE) && !damaged) //Not when it's already damaged.

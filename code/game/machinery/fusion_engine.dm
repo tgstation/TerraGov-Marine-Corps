@@ -51,7 +51,7 @@
 		fail_rate+=2 //Each time the engine is allowed to seize up it's fail rate for the future increases because reasons.
 		update_icon()
 		stop_processing()
-		r_FAL
+		return FALSE
 
 	if(!check_failure())
 
@@ -87,18 +87,18 @@
 /obj/machinery/power/fusion_engine/attack_hand(mob/user)
 	if(!ishuman(user))
 		user << "<span class='warning'>You have no idea how to use that.</span>" //No ayylamos
-		r_FAL
+		return FALSE
 	add_fingerprint(user)
 	switch(buildstate)
 		if(1)
 			user << "<span class='info'>Use a blowtorch, then wirecutters, then wrench to repair it.</span>"
-			r_FAL
+			return FALSE
 		if(2)
 			user << "<span class='notice'>Use a wirecutters, then wrench to repair it.</span>"
-			r_FAL
+			return FALSE
 		if(3)
 			user << "<span class='notice'>Use a wrench to repair it.</span>"
-			r_FAL
+			return FALSE
 	if(is_on)
 		visible_message("\icon[src] <span class='warning'><b>[src]</b> beeps softly and the humming stops as [usr] shuts off the generator.</span>")
 		is_on = 0
@@ -106,16 +106,16 @@
 		cur_tick = 0
 		update_icon()
 		stop_processing()
-		r_TRU
+		return TRUE
 
 	if(!fusion_cell)
 		user << "<span class='notice'>The reactor requires a fuel cell before you can turn it on.</span>"
-		r_FAL
+		return FALSE
 
 	if(!powernet)
 		if(!connect_to_network())
 			user << "<span class='warning'>Power network not found, make sure the engine is connected to a cable.</span>"
-			r_FAL
+			return FALSE
 
 	if(fusion_cell.fuel_amount <= 10)
 		user << "\icon[src] <span class='warning'><b>[src]</b>: Fuel levels critically low.</span>"
@@ -125,24 +125,24 @@
 	cur_tick = 0
 	update_icon()
 	start_processing()
-	r_TRU
+	return TRUE
 
 
 /obj/machinery/power/fusion_engine/attackby(obj/item/O, mob/user)
 	if(istype(O, /obj/item/fuelCell))
 		if(is_on)
 			user << "<span class='warning'>The [src] needs to be turned off first.</span>"
-			r_TRU
+			return TRUE
 		if(!fusion_cell)
 			if(user.drop_inv_item_to_loc(O, src.))
 				fusion_cell = O
 				update_icon()
 				user << "<span class='notice'>You load the [src] with the [O].</span>"
-			r_TRU
+			return TRUE
 		else
 			user << "<span class='warning'>You need to remove the fuel cell from [src] first.</span>"
-			r_TRU
-		r_TRU
+			return TRUE
+		return TRUE
 	else if(iswelder(O))
 		if(buildstate == 1)
 			var/obj/item/tool/weldingtool/WT = O
@@ -156,16 +156,16 @@
 				user.visible_message("<span class='notice'>[user] starts welding [src]'s internal damage.</span>",
 				"<span class='notice'>You start welding [src]'s internal damage.</span>")
 				if(do_after(user, 200, TRUE, 5, BUSY_ICON_BUILD))
-					if(buildstate != 1 || is_on || !WT.isOn()) r_FAL
+					if(buildstate != 1 || is_on || !WT.isOn()) return FALSE
 					playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 					buildstate = 2
 					user.visible_message("<span class='notice'>[user] welds [src]'s internal damage.</span>",
 					"<span class='notice'>You weld [src]'s internal damage.</span>")
 					update_icon()
-					r_TRU
+					return TRUE
 			else
 				user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
-				r_FAL
+				return FALSE
 	else if(istype(O,/obj/item/tool/wirecutters))
 		if(buildstate == 2 && !is_on)
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
@@ -177,13 +177,13 @@
 			user.visible_message("<span class='notice'>[user] starts securing [src]'s wiring.</span>",
 			"<span class='notice'>You start securing [src]'s wiring.</span>")
 			if(do_after(user, 120, TRUE, 12, BUSY_ICON_BUILD))
-				if(buildstate != 2 || is_on) r_FAL
+				if(buildstate != 2 || is_on) return FALSE
 				playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 				buildstate = 3
 				user.visible_message("<span class='notice'>[user] secures [src]'s wiring.</span>",
 				"<span class='notice'>You secure [src]'s wiring.</span>")
 				update_icon()
-				r_TRU
+				return TRUE
 	else if(iswrench(O))
 		if(buildstate == 3 && !is_on)
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
@@ -195,13 +195,13 @@
 			user.visible_message("<span class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
 			"<span class='notice'>You start repairing [src]'s tubing and plating.</span>")
 			if(do_after(user, 150, TRUE, 15, BUSY_ICON_BUILD))
-				if(buildstate != 3 || is_on) r_FAL
+				if(buildstate != 3 || is_on) return FALSE
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				buildstate = 0
 				user.visible_message("<span class='notice'>[user] repairs [src]'s tubing and plating.</span>",
 				"<span class='notice'>You repair [src]'s tubing and plating.</span>")
 				update_icon()
-				r_TRU
+				return TRUE
 	else if(iscrowbar(O))
 		if(buildstate)
 			user << "<span class='warning'>You must repair the generator before working with its fuel cell.</span>"
@@ -221,14 +221,14 @@
 			user.visible_message("<span class='notice'>[user] starts prying [src]'s fuel receptacle open.</span>",
 			"<span class='notice'>You start prying [src]'s fuel receptacle open.</span>")
 			if(do_after(user, 100, TRUE, 15, BUSY_ICON_BUILD))
-				if(buildstate != 0 || is_on || !fusion_cell) r_FAL
+				if(buildstate != 0 || is_on || !fusion_cell) return FALSE
 				user.visible_message("<span class='notice'>[user] pries [src]'s fuel receptacle open and removes the cell.</span>",
 				"<span class='notice'>You pry [src]'s fuel receptacle open and remove the cell..</span>")
 				fusion_cell.update_icon()
 				user.put_in_hands(fusion_cell)
 				fusion_cell = null
 				update_icon()
-				r_TRU
+				return TRUE
 	else
 		return ..()
 
@@ -244,7 +244,7 @@
 					user << "<span class='info'>Use a wirecutters, then wrench to repair it.</span>"
 				if(3)
 					user << "<span class='info'>Use a wrench to repair it.</span>"
-			r_FAL
+			return FALSE
 
 		if(!is_on)
 			user << "<span class='info'>It looks offline.</span>"

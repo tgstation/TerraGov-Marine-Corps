@@ -231,7 +231,7 @@
 
 	sleep(travel_time) //Wait while we fly
 
-	if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_IN_PROGRESS) r_FAL //If a nuke is in progress, don't attempt a landing.
+	if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_IN_PROGRESS) return FALSE //If a nuke is in progress, don't attempt a landing.
 
 	playsound(turfs_int[sound_target], sound_landing, 60, 0)
 	playsound(turfs_trg[sound_target], sound_landing, 60, 0)
@@ -243,7 +243,7 @@
 
 	sleep(100) //Wait for it to finish.
 
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) r_FAL //If a nuke finished, don't land.
+	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) return FALSE //If a nuke finished, don't land.
 
 	target_turf = T_trg
 	target_rotation = trg_rot
@@ -394,7 +394,7 @@
 
 	sleep(travel_time) //Wait while we fly, but give extra time for crashing announcements etc
 
-	if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_IN_PROGRESS) r_FAL //If a nuke is in progress, don't attempt a landing.
+	if(EvacuationAuthority.dest_status >= NUKE_EXPLOSION_IN_PROGRESS) return FALSE //If a nuke is in progress, don't attempt a landing.
 
 	//This is where things change and shit gets real
 
@@ -404,7 +404,7 @@
 
 	sleep(85)
 
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) r_FAL //If a nuke finished, don't land.
+	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) return FALSE //If a nuke finished, don't land.
 
 	shake_cameras(turfs_int) //shake for 1.5 seconds before crash, 0.5 after
 
@@ -495,7 +495,7 @@
 	if(!istype(T_src) || !istype(T_trg))
 		message_admins("<span class=warning>Error with shuttles: Ref turfs are null. Code: MSD15.\n WARNING: DROPSHIPS MAY NO LONGER BE OPERABLE</span>")
 		log_admin("Error with shuttles: Ref turfs are null. Code: MSD15.")
-		r_FAL
+		return FALSE
 
 	locs_dock -= T_src
 	locs_land -= T_trg

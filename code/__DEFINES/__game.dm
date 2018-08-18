@@ -1,8 +1,6 @@
 //Admin perms are in global.dm.
 
 #define DEBUG 0
-#define r_TRU return TRUE //Handy shorthand.
-#define r_FAL return FALSE
 
 //Game defining directives.
 #define MAIN_SHIP_Z_LEVEL 3 //the main ship

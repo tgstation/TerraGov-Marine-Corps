@@ -40,11 +40,11 @@
 
 			if(!hive.slashing_allowed && !M.is_intelligent)
 				M << "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. You refuse to slash [src].</span>"
-				r_FAL
+				return FALSE
 
 			if(stat == DEAD)
 				M << "<span class='warning'>[src] is dead, why would you want to touch it?</span>"
-				r_FAL
+				return FALSE
 
 			if(!M.is_intelligent)
 				if(hive.slashing_allowed == 2)
@@ -52,22 +52,22 @@
 						for(var/obj/item/alien_embryo/embryo in src)
 							if(embryo.hivenumber == M.hivenumber)
 								M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is a host inside!</span>"
-								r_FAL
+								return FALSE
 
 					if(M.health > round(2 * M.maxHealth / 3)) //Note : Under 66 % health
 						M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders.</span>"
-						r_FAL
+						return FALSE
 
 				else if(istype(buckled, /obj/structure/bed/nest) && (status_flags & XENO_HOST))
 					for(var/obj/item/alien_embryo/embryo in src)
 						if(embryo.hivenumber == M.hivenumber)
 							M << "<span class='warning'>You should not harm this host! It has a sister inside.</span>"
-							r_FAL
+							return FALSE
 
 			if(check_shields(0, M.name) && prob(66)) //Bit of a bonus
 				M.visible_message("<span class='danger'>\The [M]'s slash is blocked by [src]'s shield!</span>", \
 				"<span class='danger'>Your slash is blocked by [src]'s shield!</span>", null, 5)
-				r_FAL
+				return FALSE
 
 			//From this point, we are certain a full attack will go out. Calculate damage and modifiers
 			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper) + dam_bonus
@@ -240,17 +240,17 @@
 						for(var/obj/item/alien_embryo/embryo in src)
 							if(embryo.hivenumber == M.hivenumber)
 								M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. There is a host inside!</span>"
-								r_FAL
+								return FALSE
 
 					if(M.health > round(2 * M.maxHealth / 3)) //Note : Under 66 % health
 						M << "<span class='warning'>You try to slash [src], but find you <B>cannot</B>. You are not yet injured enough to overcome the Queen's orders.</span>"
-						r_FAL
+						return FALSE
 
 				else if(istype(buckled, /obj/structure/bed/nest) && (status_flags & XENO_HOST))
 					for(var/obj/item/alien_embryo/embryo in src)
 						if(embryo.hivenumber == M.hivenumber)
 							M << "<span class='warning'>You should not harm this host! It has a sister inside.</span>"
-							r_FAL
+							return FALSE
 
 			if(issilicon(src) && stat != DEAD) //A bit of visual flavor for attacking Cyborgs. Sparks!
 				var/datum/effect_system/spark_spread/spark_system

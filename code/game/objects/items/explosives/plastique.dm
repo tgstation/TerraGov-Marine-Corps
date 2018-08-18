@@ -28,24 +28,24 @@
 	user << "Timer set for [timer] seconds."
 
 /obj/item/explosive/plastique/afterattack(atom/target, mob/user, flag)
-	if(!flag) r_FAL
+	if(!flag) return FALSE
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
 		return
 	if(istype(target, /obj/structure/ladder) || istype(target, /obj/item) || istype(target, /turf/open))
-		r_FAL
+		return FALSE
 	if(istype(target, /obj/effect) || istype(target, /obj/machinery))
 		var/obj/O = target
-		if(O.unacidable) r_FAL
+		if(O.unacidable) return FALSE
 	if(istype(target, /turf/closed/wall))
 		var/turf/closed/wall/W = target
 		if(W.hull)
-			r_FAL
+			return FALSE
 	if(istype(target, /obj/structure/window))
 		var/obj/structure/window/W = target
 		if(W.not_damageable)
 			user << "<span class='warning'>[W] is much too tough for you to do anything to it with [src]</span>." //On purpose to mimic wall message
-			r_FAL
+			return FALSE
 
 	user.visible_message("<span class='warning'>[user] is trying to plant [name] on [target]!</span>",
 	"<span class='warning'>You are trying to plant [name] on [target]!</span>")
