@@ -479,6 +479,11 @@
 	dir = 5
 	window_frame = /obj/structure/window_frame/almayer
 
+/obj/structure/window/framed/almayer/toughened
+	name = "safety glass"
+	desc = "A very tough looking glass window with a special rod matrice, probably bullet proof."
+	health = 300
+
 /obj/structure/window/framed/almayer/hull
 	name = "hull window"
 	desc = "A glass window with a special rod matrice inside a wall frame. This one was made out of exotic materials to prevent hull breaches. No way to get through here."
