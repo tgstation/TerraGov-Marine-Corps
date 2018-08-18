@@ -176,9 +176,9 @@
 
 	//if(charge_speed < charge_speed_buildup * charge_turfs_to_charge || !is_charging) return ..()
 
-	if(stat || !A || !istype(A) || A == src || !yes) r_FAL
+	if(stat || !A || !istype(A) || A == src || !yes) return FALSE
 
-	if(now_pushing) r_FAL//Just a plain ol turf, let's return.
+	if(now_pushing) return FALSE//Just a plain ol turf, let's return.
 
 	/*if(dir != charge_dir) //We aren't facing the way we're charging.
 		stop_momentum()
@@ -193,7 +193,7 @@
 		return ..()
 
 	lastturf = null //Reset this so we can properly continue with momentum.
-	r_TRU
+	return TRUE
 
 //Chance of insta limb amputation after a melee attack.
 /mob/living/carbon/Xenomorph/Queen/proc/delimb(var/mob/living/carbon/human/H, var/datum/limb/O)

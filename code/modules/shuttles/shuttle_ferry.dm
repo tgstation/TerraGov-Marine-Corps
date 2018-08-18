@@ -156,8 +156,8 @@
 	return
 
 /datum/shuttle/ferry/proc/can_launch()
-	if(moving_status != SHUTTLE_IDLE || locked || in_use) r_FAL
-	r_TRU
+	if(moving_status != SHUTTLE_IDLE || locked || in_use) return FALSE
+	return TRUE
 
 /datum/shuttle/ferry/proc/can_force()
 	if (moving_status == SHUTTLE_IDLE && process_state == WAIT_LAUNCH)

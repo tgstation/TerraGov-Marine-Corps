@@ -78,7 +78,7 @@
 			scan_a_turf(get_turf(AM))
 
 
-	ex_act() r_FAL //We do not want anything to delete these, simply to make sure that all the bullet references are not runtiming. Otherwise, constantly need to check if the bullet exists.
+	ex_act() return FALSE //We do not want anything to delete these, simply to make sure that all the bullet references are not runtiming. Otherwise, constantly need to check if the bullet exists.
 
 /obj/item/projectile/proc/generate_bullet(ammo_datum, bonus_damage = 0)
 	ammo 		= ammo_datum

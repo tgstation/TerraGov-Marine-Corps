@@ -587,7 +587,7 @@
 
 /datum/action/xeno_action/ready_charge/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(!X.check_state()) r_FAL
+	if(!X.check_state()) return FALSE
 	if(X.legcuffed)
 		src << "<span class='xenodanger'>You can't charge with that thing on your leg!</span>"
 		X.is_charging = 0

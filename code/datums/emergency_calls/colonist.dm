@@ -14,7 +14,7 @@
 	var/turf/T = get_spawn_point()
 	var/mob/original = M.current
 
-	if(!istype(T)) r_FAL
+	if(!istype(T)) return FALSE
 
 	var/mob/living/carbon/human/H = new(T)
 	H.gender = pick(MALE, FEMALE)
