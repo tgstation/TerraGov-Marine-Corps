@@ -19,7 +19,7 @@
 		mob_list += src
 
 	proc/version_check()
-		if((client.byond_version < world.byond_version) || ((client.byond_version == world.byond_version) && (client.byond_build < world.byond_build)))
+		if(client.byond_version < world.byond_version)
 			client << "<span class='warning'>Your version of Byond differs from the server (v[world.byond_version].[world.byond_build]). You may experience graphical glitches, crashes, or other errors. You will be disconnected until your version matches or exceeds the server version.<br> \
 			Direct Download (Windows Installer): http://www.byond.com/download/build/[world.byond_version]/[world.byond_version].[world.byond_build]_byond.exe <br> \
 			Other versions (search for [world.byond_build] or higher): http://www.byond.com/download/build/[world.byond_version]</span>"
