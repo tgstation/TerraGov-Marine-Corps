@@ -136,8 +136,9 @@
 		if(gloves && germ_level > gloves.germ_level && prob(10))
 			gloves.germ_level += 1
 
-		if(command_aura_cooldown > 0)
-			command_aura_cooldown--
+		if(command_aura_cooldown > 0 && (--command_aura_cooldown == 0))
+			update_action_buttons() // Update "Issue Order" action button
+		
 		if(command_aura)
 			command_aura_tick--
 			if(command_aura_tick < 1)

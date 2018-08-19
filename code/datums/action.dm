@@ -9,7 +9,11 @@
 	target = Target
 	button = new
 	if(target)
-		var/image/IMG = image(target.icon, button, target.icon_state)
+		var/image/IMG
+		if(ispath(target))
+			IMG = image(initial(target.icon), button, initial(target.icon_state))
+		else
+			IMG = image(target.icon, button, target.icon_state)
 		IMG.pixel_x = 0
 		IMG.pixel_y = 0
 		button.overlays += IMG
@@ -23,10 +27,16 @@
 	button = null
 	target = null
 
+/datum/action/proc/should_show()
+	return TRUE
+
 /datum/action/proc/update_button_icon()
 	return
 
 /datum/action/proc/action_activate()
+	return
+
+/datum/action/proc/fail_activate()
 	return
 
 /datum/action/proc/can_use_action()
@@ -168,9 +178,20 @@
 /datum/action/xeno_action/activable/proc/on_deactivation()
 	return
 
+/datum/action/skill
+	var/skill_name
+	var/skill_min
 
+/datum/action/skill/should_show()
+	return can_use_action()
 
+/datum/action/skill/can_use_action()
+	var/mob/living/carbon/human/human = owner
+	return istype(human) && human.mind && human.mind.cm_skills && human.mind.cm_skills.vars[skill_name] >= skill_min
 
+/datum/action/skill/fail_activate()
+	if(owner)
+		owner << "<span class='warning'>You are not competent enough to do that.</span>" // This message shouldn't show since incompetent people shouldn't have the button, but JIC.
 
 //This is the proc used to update all the action buttons.
 /mob/proc/update_action_buttons(reload_screen)
@@ -192,11 +213,17 @@
 				client.screen += A.button
 	else
 		for(var/datum/action/A in actions)
-			button_number++
-			var/obj/screen/action_button/B = A.button
-			B.screen_loc = B.get_button_screen_loc(button_number)
-			if(reload_screen)
-				client.screen += B
+			if(A.should_show())
+				A.update_button_icon()
+				button_number++
+				var/obj/screen/action_button/B = A.button
+				B.screen_loc = B.get_button_screen_loc(button_number)
+				if(reload_screen)
+					client.screen += B
+			else
+				A.button.screen_loc = null
+				if(reload_screen)
+					client.screen += A.button
 
 		if(!button_number)
 			hud_used.hide_actions_toggle.screen_loc = null

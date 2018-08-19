@@ -61,6 +61,8 @@
 
 	if(source_action.can_use_action())
 		source_action.action_activate()
+	else
+		source_action.fail_activate()
 	return 1
 
 /obj/screen/action_button/Dispose()

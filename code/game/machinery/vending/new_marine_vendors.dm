@@ -247,6 +247,7 @@
 						else
 							H << "<span class='warning'><b>Something bad occured with [src], tell a Dev.</b></span>"
 							return
+					H.update_action_buttons()
 					available_specialist_sets -= p_name
 
 

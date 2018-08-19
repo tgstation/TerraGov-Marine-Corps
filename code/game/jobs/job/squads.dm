@@ -176,6 +176,7 @@
 				old_lead.mind.role_comm_title = "Mar"
 				if(old_lead.mind.cm_skills)
 					old_lead.mind.cm_skills.leadership = SKILL_LEAD_NOVICE
+		old_lead.update_action_buttons()
 
 	if(!old_lead.mind || old_lead.mind.assigned_role != "Squad Leader" || !leader_killed)
 		if(istype(old_lead.wear_ear, /obj/item/device/radio/headset/almayer/marine))
