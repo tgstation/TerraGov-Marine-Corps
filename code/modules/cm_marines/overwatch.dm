@@ -653,6 +653,7 @@
 		H.mind.role_comm_title = "aSL"
 	if(H.mind.cm_skills)
 		H.mind.cm_skills.leadership = max(SKILL_LEAD_TRAINED, H.mind.cm_skills.leadership)
+		H.update_action_buttons()
 
 	if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))
 		var/obj/item/device/radio/headset/almayer/marine/R = H.wear_ear
@@ -1045,3 +1046,32 @@
 		if("focus")
 			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!")
 			say(message)
+	update_action_buttons()
+
+/datum/action/skill/issue_order
+	name = "Issue Order"
+	skill_name = "leadership"
+	skill_min = SKILL_LEAD_TRAINED
+
+/datum/action/skill/issue_order/New()
+	return ..(/obj/item/device/megaphone)
+
+/datum/action/skill/issue_order/action_activate()
+	var/mob/living/carbon/human/human = owner
+	if(istype(human))
+		human.issue_order()
+
+/datum/action/skill/issue_order/update_button_icon()
+	var/mob/living/carbon/human/human = owner
+	if(!istype(human))
+		return
+
+	if(human.command_aura_cooldown > 0)
+		button.color = rgb(255,0,0,255)
+	else
+		button.color = rgb(255,255,255,255)
+
+/mob/living/carbon/human/New()
+	..()
+	var/datum/action/skill/issue_order/issue_order_action = new
+	issue_order_action.give_action(src)
