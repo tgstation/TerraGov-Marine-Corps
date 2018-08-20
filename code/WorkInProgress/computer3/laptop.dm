@@ -35,22 +35,22 @@
 		set src in view(1)
 
 		if(usr.stat || usr.is_mob_restrained() || usr.lying || !istype(usr, /mob/living))
-			usr << "\red You can't do that."
+			to_chat(usr, "\red You can't do that.")
 			return
 
 		if(!Adjacent(usr))
-			usr << "You can't reach it."
+			to_chat(usr, "You can't reach it.")
 			return
 
 		if(!istype(loc,/turf))
-			usr << "[src] is too bulky!  You'll have to set it down."
+			to_chat(usr, "[src] is too bulky!  You'll have to set it down.")
 			return
 
 		if(!stored_computer)
 			if(contents.len)
 				for(var/obj/O in contents)
 					O.loc = loc
-			usr << "\The [src] crumbles to pieces."
+			to_chat(usr, "\The [src] crumbles to pieces.")
 			spawn(5)
 				cdel(src)
 			return
@@ -61,13 +61,13 @@
 			stored_computer.stat &= ~MAINT
 			stored_computer.update_icon()
 			loc = null
-			usr << "You open \the [src]."
+			to_chat(usr, "You open \the [src].")
 
 			spawn(5)
 				stored_computer.manipulating = 0
 				cdel(src)
 		else
-			usr << "\red You are already opening the computer!"
+			to_chat(usr, "\red You are already opening the computer!")
 
 
 /obj/item/device/laptop/clicked(var/mob/user, var/list/mods)
@@ -94,7 +94,7 @@
 	var/obj/item/computer3_part/cardslot/C = locate() in src.contents
 
 	if(!C)
-		usr << "There is no card port on the laptop."
+		to_chat(usr, "There is no card port on the laptop.")
 		return
 
 	var/obj/item/card/id/card
@@ -103,10 +103,10 @@
 	else if(C.writer)
 		card = C.writer
 	else
-		usr << "There is nothing to remove from the laptop card port."
+		to_chat(usr, "There is nothing to remove from the laptop card port.")
 		return
 
-	usr << "You remove [card] from the laptop."
+	to_chat(usr, "You remove [card] from the laptop.")
 	C.remove(card)
 
 
@@ -138,11 +138,11 @@
 		set src in view(1)
 
 		if(usr.stat || usr.is_mob_restrained() || usr.lying || !istype(usr, /mob/living))
-			usr << "\red You can't do that."
+			to_chat(usr, "\red You can't do that.")
 			return
 
 		if(!Adjacent(usr))
-			usr << "You can't reach it."
+			to_chat(usr, "You can't reach it.")
 			return
 
 		if(istype(loc,/obj/item/device/laptop))
@@ -154,7 +154,7 @@
 			return
 
 		if(stat&BROKEN)
-			usr << "\The [src] is broken!  You can't quite get it closed."
+			to_chat(usr, "\The [src] is broken!  You can't quite get it closed.")
 			return
 
 		if(!portable)
@@ -165,7 +165,7 @@
 			portable.loc = loc
 			loc = portable
 			stat |= MAINT
-			usr << "You close \the [src]."
+			to_chat(usr, "You close \the [src].")
 
 	proc/force_close_computer()
 		if(!portable)

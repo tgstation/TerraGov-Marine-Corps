@@ -18,48 +18,48 @@ RSF
 
 /obj/item/device/rsf/examine(mob/user)
 	..()
-	user << "It currently holds [stored_matter]/30 fabrication-units."
+	to_chat(user, "It currently holds [stored_matter]/30 fabrication-units.")
 
 /obj/item/device/rsf/attackby(obj/item/W as obj, mob/user as mob)
 	..()
 	if (istype(W, /obj/item/ammo_rcd))
 
 		if ((stored_matter + 10) > 30)
-			user << "The RSF can't hold any more matter."
+			to_chat(user, "The RSF can't hold any more matter.")
 			return
 
 		cdel(W)
 
 		stored_matter += 10
 		playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
-		user << "The RSF now holds [stored_matter]/30 fabrication-units."
+		to_chat(user, "The RSF now holds [stored_matter]/30 fabrication-units.")
 		return
 
 /obj/item/device/rsf/attack_self(mob/user as mob)
 	playsound(src.loc, 'sound/effects/pop.ogg', 15, 0)
 	if (mode == 1)
 		mode = 2
-		user << "Changed dispensing mode to 'Drinking Glass'"
+		to_chat(user, "Changed dispensing mode to 'Drinking Glass'")
 		return
 	if (mode == 2)
 		mode = 3
-		user << "Changed dispensing mode to 'Paper'"
+		to_chat(user, "Changed dispensing mode to 'Paper'")
 		return
 	if (mode == 3)
 		mode = 4
-		user << "Changed dispensing mode to 'Pen'"
+		to_chat(user, "Changed dispensing mode to 'Pen'")
 		return
 	if (mode == 4)
 		mode = 5
-		user << "Changed dispensing mode to 'Dice Pack'"
+		to_chat(user, "Changed dispensing mode to 'Dice Pack'")
 		return
 	if (mode == 5)
 		mode = 6
-		user << "Changed dispensing mode to 'Cigarette'"
+		to_chat(user, "Changed dispensing mode to 'Cigarette'")
 		return
 	if (mode == 6)
 		mode = 1
-		user << "Changed dispensing mode to 'Dosh'"
+		to_chat(user, "Changed dispensing mode to 'Dosh'")
 		return
 	// Change mode
 
@@ -102,7 +102,7 @@ RSF
 			product = new /obj/item/clothing/mask/cigarette()
 			used_energy = 10
 
-	user << "Dispensing [product ? product : "product"]..."
+	to_chat(user, "Dispensing [product ? product : "product"]...")
 	product.loc = get_turf(A)
 
 	if(isrobot(user))
@@ -111,4 +111,4 @@ RSF
 			R.cell.use(used_energy)
 	else
 		stored_matter--
-		user << "The RSF now holds [stored_matter]/30 fabrication-units."
+		to_chat(user, "The RSF now holds [stored_matter]/30 fabrication-units.")

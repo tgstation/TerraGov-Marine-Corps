@@ -40,13 +40,13 @@ RCD
 		..()
 		if(istype(W, /obj/item/ammo_rcd))
 			if((stored_matter + 10) > 30)
-				user << "<span class='notice'>The RCD cant hold any more matter-units.</span>"
+				to_chat(user, "<span class='notice'>The RCD cant hold any more matter-units.</span>")
 				return
 			user.drop_held_item()
 			cdel(W)
 			stored_matter += 10
 			playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
-			user << "<span class='notice'>The RCD now holds [stored_matter]/30 matter-units.</span>"
+			to_chat(user, "<span class='notice'>The RCD now holds [stored_matter]/30 matter-units.</span>")
 			desc = "A RCD. It currently holds [stored_matter]/30 matter-units."
 			return
 
@@ -57,19 +57,19 @@ RCD
 		switch(mode)
 			if(1)
 				mode = 2
-				user << "<span class='notice'>Changed mode to 'Airlock'</span>"
+				to_chat(user, "<span class='notice'>Changed mode to 'Airlock'</span>")
 				if(prob(20))
 					src.spark_system.start()
 				return
 			if(2)
 				mode = 3
-				user << "<span class='notice'>Changed mode to 'Deconstruct'</span>"
+				to_chat(user, "<span class='notice'>Changed mode to 'Deconstruct'</span>")
 				if(prob(20))
 					src.spark_system.start()
 				return
 			if(3)
 				mode = 1
-				user << "<span class='notice'>Changed mode to 'Floor & Walls'</span>"
+				to_chat(user, "<span class='notice'>Changed mode to 'Floor & Walls'</span>")
 				if(prob(20))
 					src.spark_system.start()
 				return
@@ -91,7 +91,7 @@ RCD
 			if(1)
 				if(istype(A, /turf/open/space))
 					if(useResource(1, user))
-						user << "Building Floor..."
+						to_chat(user, "Building Floor...")
 						activate()
 						A:ChangeTurf(/turf/open/floor/plating/airless)
 						return 1
@@ -99,7 +99,7 @@ RCD
 
 				if(istype(A, /turf/open/floor))
 					if(checkResource(3, user))
-						user << "Building Wall ..."
+						to_chat(user, "Building Wall ...")
 						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 						if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 							if(!useResource(3, user)) return 0
@@ -111,7 +111,7 @@ RCD
 			if(2)
 				if(istype(A, /turf/open/floor))
 					if(checkResource(10, user))
-						user << "Building Airlock..."
+						to_chat(user, "Building Airlock...")
 						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 						if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 							if(!useResource(10, user)) return 0
@@ -130,7 +130,7 @@ RCD
 					if(istype(A, /turf/closed/wall/r_wall) && !canRwall)
 						return 0
 					if(checkResource(5, user))
-						user << "Deconstructing Wall..."
+						to_chat(user, "Deconstructing Wall...")
 						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 						if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
 							if(!useResource(5, user)) return 0
@@ -141,7 +141,7 @@ RCD
 
 				if(istype(A, /turf/open/floor) && !istype(A, /turf/open/floor/plating))
 					if(checkResource(5, user))
-						user << "Deconstructing Floor..."
+						to_chat(user, "Deconstructing Floor...")
 						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 						if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 							if(!useResource(5, user)) return 0
@@ -152,7 +152,7 @@ RCD
 
 				if(istype(A, /obj/machinery/door/airlock))
 					if(checkResource(10, user))
-						user << "Deconstructing Airlock..."
+						to_chat(user, "Deconstructing Airlock...")
 						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 						if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 							if(!useResource(10, user)) return 0
@@ -162,7 +162,7 @@ RCD
 					return	0
 				return 0
 			else
-				user << "ERROR: RCD in MODE: [mode] attempted use by [user]. Send this text #coderbus or an admin."
+				to_chat(user, "ERROR: RCD in MODE: [mode] attempted use by [user]. Send this text #coderbus or an admin.")
 				return 0
 
 /obj/item/device/rcd/proc/useResource(var/amount, var/mob/user)

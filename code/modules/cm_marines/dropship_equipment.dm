@@ -31,13 +31,13 @@
 			if(istype(PC.loaded, /obj/structure/dropship_equipment))
 				var/obj/structure/dropship_equipment/SE = PC.loaded
 				if(SE.equip_category != base_category)
-					user << "<span class='warning'>[SE] doesn't fit on [src].</span>"
+					to_chat(user, "<span class='warning'>[SE] doesn't fit on [src].</span>")
 					return TRUE
 				if(installed_equipment) return TRUE
 				playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
 				if(!do_after(user, 70, FALSE, 5, BUSY_ICON_BUILD)) return TRUE
 				if(installed_equipment || PC.loaded != SE) return TRUE
-				user << "<span class='notice'>You install [SE] on [src].</span>"
+				to_chat(user, "<span class='notice'>You install [SE] on [src].</span>")
 				SE.forceMove(loc)
 				PC.loaded = null
 				playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
@@ -167,11 +167,11 @@
 								PC.loaded = null
 								playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
 								PC.update_icon()
-								user << "<span class='notice'>You load [SA] into [src].</span>"
+								to_chat(user, "<span class='notice'>You load [SA] into [src].</span>")
 								ammo_equipped = SA
 								update_equipment()
 					else
-						user << "<span class='warning'>[SA] doesn't fit in [src].</span>"
+						to_chat(user, "<span class='warning'>[SA] doesn't fit in [src].</span>")
 
 			else if(uses_ammo && ammo_equipped)
 				playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
@@ -180,13 +180,13 @@
 						playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 						if(!ammo_equipped.ammo_count)
 							ammo_equipped.loc = null
-							user << "<span class='notice'>You discarded the empty [ammo_equipped.name] in [src].</span>"
+							to_chat(user, "<span class='notice'>You discarded the empty [ammo_equipped.name] in [src].</span>")
 							cdel(ammo_equipped)
 						else
 							ammo_equipped.forceMove(PC.linked_powerloader)
 							PC.loaded = ammo_equipped
 							PC.update_icon()
-							user << "<span class='notice'>You've removed [ammo_equipped] from [src] and loaded it into [PC].</span>"
+							to_chat(user, "<span class='notice'>You've removed [ammo_equipped] from [src] and loaded it into [PC].</span>")
 						ammo_equipped = null
 						update_icon()
 			else
@@ -199,7 +199,7 @@
 						PC.loaded = src
 						playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
 						PC.update_icon()
-						user << "<span class='notice'>You've [ship_base ? "uninstalled" : "grabbed"] [PC.loaded] with [PC].</span>"
+						to_chat(user, "<span class='notice'>You've [ship_base ? "uninstalled" : "grabbed"] [PC.loaded] with [PC].</span>")
 						if(ship_base)
 							ship_base.installed_equipment = null
 							ship_base = null
@@ -231,7 +231,7 @@
 	if(is_interactable)
 		if(linked_console.selected_equipment) return
 		linked_console.selected_equipment = src
-		user << "<span class='notice'>You select [src].</span>"
+		to_chat(user, "<span class='notice'>You select [src].</span>")
 
 
 
@@ -262,7 +262,7 @@
 	examine(mob/user)
 		..()
 		if(!deployed_turret)
-			user << "Its turret is missing."
+			to_chat(user, "Its turret is missing.")
 
 	on_launch()
 		undeploy_sentry()
@@ -270,19 +270,19 @@
 	equipment_interact(mob/user)
 		if(deployed_turret)
 			if(deployment_cooldown > world.time)
-				user << "<span class='warning'>[src] is busy.</span>"
+				to_chat(user, "<span class='warning'>[src] is busy.</span>")
 				return //prevents spamming deployment/undeployment
 			if(deployed_turret.loc == src) //not deployed
 				if(z == LOW_ORBIT_Z_LEVEL)
-					user << "<span class='warning'>[src] can't deploy mid-flight.</span>"
+					to_chat(user, "<span class='warning'>[src] can't deploy mid-flight.</span>")
 				else
-					user << "<span class='notice'>You deploy [src].</span>"
+					to_chat(user, "<span class='notice'>You deploy [src].</span>")
 					deploy_sentry()
 			else
-				user << "<span class='notice'>You retract [src].</span>"
+				to_chat(user, "<span class='notice'>You retract [src].</span>")
 				undeploy_sentry()
 		else
-			user << "<span class='warning'>[src] is unresponsive.</span>"
+			to_chat(user, "<span class='warning'>[src] is unresponsive.</span>")
 
 	update_equipment()
 		if(ship_base)
@@ -356,7 +356,7 @@
 	examine(mob/user)
 		..()
 		if(!deployed_mg)
-			user << "Its machine gun is missing."
+			to_chat(user, "Its machine gun is missing.")
 
 	update_equipment()
 		if(deployed_mg)
@@ -428,16 +428,16 @@
 
 	equipment_interact(mob/user)
 		if(spotlights_cooldown > world.time)
-			user << "<span class='warning'>[src] is busy.</span>"
+			to_chat(user, "<span class='warning'>[src] is busy.</span>")
 			return //prevents spamming deployment/undeployment
 		if(luminosity != brightness)
 			SetLuminosity(brightness)
 			icon_state = "spotlights_on"
-			user << "<span class='notice'>You turn on [src].</span>"
+			to_chat(user, "<span class='notice'>You turn on [src].</span>")
 		else
 			SetLuminosity(0)
 			icon_state = "spotlights_off"
-			user << "<span class='notice'>You turn off [src].</span>"
+			to_chat(user, "<span class='notice'>You turn off [src].</span>")
 		spotlights_cooldown = world.time + 50
 
 	update_equipment()
@@ -600,7 +600,7 @@
 		if(ammo_equipped)
 			ammo_equipped.show_loaded_desc(user)
 		else
-			user << "It's empty."
+			to_chat(user, "It's empty.")
 
 
 
@@ -777,19 +777,19 @@
 		return
 
 	if(linked_shuttle.moving_status != SHUTTLE_INTRANSIT)
-		user << "<span class='warning'>[src] can only be used while in flight.</span>"
+		to_chat(user, "<span class='warning'>[src] can only be used while in flight.</span>")
 		return
 
 	if(!linked_shuttle.transit_gun_mission)
-		user << "<span class='warning'>[src] requires a flyby flight to be used.</span>"
+		to_chat(user, "<span class='warning'>[src] requires a flyby flight to be used.</span>")
 		return
 
 	if(busy_winch)
-		user << "<span class='warning'> The winch is already in motion.</span>"
+		to_chat(user, "<span class='warning'> The winch is already in motion.</span>")
 		return
 
 	if(world.time < medevac_cooldown)
-		user << "<span class='warning'>[src] was just used, you need to wait a bit before using it again.</span>"
+		to_chat(user, "<span class='warning'>[src] was just used, you need to wait a bit before using it again.</span>")
 		return
 
 	var/list/possible_stretchers = list()
@@ -811,7 +811,7 @@
 		possible_stretchers["[evaccee] ([AR.name])"] = MS
 
 	if(!possible_stretchers.len)
-		user << "<span class='warning'>No active medevac stretcher detected.</span>"
+		to_chat(user, "<span class='warning'>No active medevac stretcher detected.</span>")
 		return
 
 	var/stretcher_choice = input("Which emitting stretcher would you like to link with?", "Available stretchers") as null|anything in possible_stretchers
@@ -832,40 +832,40 @@
 		return
 
 	if(!selected_stretcher.buckled_mob && !selected_stretcher.buckled_bodybag)
-		user << "<span class='warning'>This medevac stretcher is empty.</span>"
+		to_chat(user, "<span class='warning'>This medevac stretcher is empty.</span>")
 		return
 
 	if(selected_stretcher.linked_medevac && selected_stretcher.linked_medevac != src)
-		user << "<span class='warning'>There's another dropship hovering over that medevac stretcher.</span>"
+		to_chat(user, "<span class='warning'>There's another dropship hovering over that medevac stretcher.</span>")
 		return
 
 	if(!linked_shuttle)
 		return
 
 	if(linked_shuttle.moving_status != SHUTTLE_INTRANSIT)
-		user << "<span class='warning'>[src] can only be used while in flight.</span>"
+		to_chat(user, "<span class='warning'>[src] can only be used while in flight.</span>")
 		return
 
 	if(!linked_shuttle.transit_gun_mission)
-		user << "<span class='warning'>[src] requires a flyby flight to be used.</span>"
+		to_chat(user, "<span class='warning'>[src] requires a flyby flight to be used.</span>")
 		return
 
 	if(busy_winch)
-		user << "<span class='warning'> The winch is already in motion.</span>"
+		to_chat(user, "<span class='warning'> The winch is already in motion.</span>")
 		return
 
 	if(world.time < medevac_cooldown)
-		user << "<span class='warning'>[src] was just used, you need to wait a bit before using it again.</span>"
+		to_chat(user, "<span class='warning'>[src] was just used, you need to wait a bit before using it again.</span>")
 		return
 
 	if(selected_stretcher == linked_stretcher) //already linked to us, unlink it
-		user << "<span class='notice'> You move your dropship away from that stretcher's beacon.</span>"
+		to_chat(user, "<span class='notice'> You move your dropship away from that stretcher's beacon.</span>")
 		linked_stretcher.visible_message("<span class='notice'>[linked_stretcher] detects a dropship is no longer overhead.</span>")
 		linked_stretcher.linked_medevac = null
 		linked_stretcher = null
 		return
 
-	user << "<span class='notice'> You move your dropship above the selected stretcher's beacon.</span>"
+	to_chat(user, "<span class='notice'> You move your dropship above the selected stretcher's beacon.</span>")
 
 	if(linked_stretcher)
 		linked_stretcher.linked_medevac = null
@@ -891,36 +891,36 @@
 	if(!ship_base) //not installed
 		return
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.pilot < SKILL_PILOT_TRAINED)
-		user << "<span class='warning'> You don't know how to use [src].</span>"
+		to_chat(user, "<span class='warning'> You don't know how to use [src].</span>")
 		return
 
 	if(!linked_shuttle)
 		return
 
 	if(linked_shuttle.moving_status != SHUTTLE_INTRANSIT)
-		user << "<span class='warning'>[src] can only be used while in flight.</span>"
+		to_chat(user, "<span class='warning'>[src] can only be used while in flight.</span>")
 		return
 
 	if(!linked_shuttle.transit_gun_mission)
-		user << "<span class='warning'>[src] requires a flyby flight to be used.</span>"
+		to_chat(user, "<span class='warning'>[src] requires a flyby flight to be used.</span>")
 		return
 
 	if(busy_winch)
-		user << "<span class='warning'> The winch is already in motion.</span>"
+		to_chat(user, "<span class='warning'> The winch is already in motion.</span>")
 		return
 
 	if(!linked_stretcher)
-		user << "<span class='warning'>There seems to be no medevac stretcher connected to [src].</span>"
+		to_chat(user, "<span class='warning'>There seems to be no medevac stretcher connected to [src].</span>")
 		return
 
 	if(linked_stretcher.z != 1)
 		linked_stretcher.linked_medevac = null
 		linked_stretcher = null
-		user << "<span class='warning'> There seems to be no medevac stretcher connected to [src].</span>"
+		to_chat(user, "<span class='warning'> There seems to be no medevac stretcher connected to [src].</span>")
 		return
 
 	if(world.time < medevac_cooldown)
-		user << "<span class='warning'>[src] was just used, you need to wait a bit before using it again.</span>"
+		to_chat(user, "<span class='warning'>[src] was just used, you need to wait a bit before using it again.</span>")
 		return
 
 	activate_winch(user)
@@ -951,7 +951,7 @@
 		if(linked_stretcher)
 			linked_stretcher.linked_medevac = null
 			linked_stretcher = null
-		user << "<span class='warning'>The winch finishes lifting but there seems to be no medevac stretchers connected to [src].</span>"
+		to_chat(user, "<span class='warning'>The winch finishes lifting but there seems to be no medevac stretchers connected to [src].</span>")
 		return
 
 	var/atom/movable/lifted_object
@@ -965,7 +965,7 @@
 		T.ceiling_debris_check(2)
 		lifted_object.forceMove(loc)
 	else
-		user << "<span class='warning'>The winch finishes lifting the medevac stretcher but it's empty!</span>"
+		to_chat(user, "<span class='warning'>The winch finishes lifting the medevac stretcher but it's empty!</span>")
 		linked_stretcher.linked_medevac = null
 		linked_stretcher = null
 		return

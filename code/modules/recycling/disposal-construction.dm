@@ -107,7 +107,7 @@
 			return
 
 		if(anchored)
-			usr << "You must unfasten the pipe before rotating it."
+			to_chat(usr, "You must unfasten the pipe before rotating it.")
 			return
 
 		dir = turn(dir, -90)
@@ -121,7 +121,7 @@
 			return
 
 		if(anchored)
-			usr << "You must unfasten the pipe before flipping it."
+			to_chat(usr, "You must unfasten the pipe before flipping it.")
 			return
 
 		dir = turn(dir, 180)
@@ -200,7 +200,7 @@
 
 		var/turf/T = src.loc
 		if(T.intact_tile)
-			user << "You can only attach the [nicetype] if the floor plating is removed."
+			to_chat(user, "You can only attach the [nicetype] if the floor plating is removed.")
 			return
 
 		var/obj/structure/disposalpipe/CP = locate() in T
@@ -213,15 +213,15 @@
 					density = 0
 				else
 					density = 1
-				user << "You detach the [nicetype] from the underfloor."
+				to_chat(user, "You detach the [nicetype] from the underfloor.")
 			else
 				if(ptype>=6 && ptype <= 8) // Disposal or outlet
 					if(CP) // There's something there
 						if(!istype(CP,/obj/structure/disposalpipe/trunk))
-							user << "The [nicetype] requires a trunk underneath it in order to work."
+							to_chat(user, "The [nicetype] requires a trunk underneath it in order to work.")
 							return
 					else // Nothing under, fuck.
-						user << "The [nicetype] requires a trunk underneath it in order to work."
+						to_chat(user, "The [nicetype] requires a trunk underneath it in order to work.")
 						return
 				else
 					if(CP)
@@ -230,7 +230,7 @@
 						if(istype(CP, /obj/structure/disposalpipe/broken))
 							pdir = CP.dir
 						if(pdir & dpdir)
-							user << "There is already a [nicetype] at that location."
+							to_chat(user, "There is already a [nicetype] at that location.")
 							return
 
 				anchored = 1
@@ -239,7 +239,7 @@
 					density = 0
 				else
 					density = 1 // We don't want disposal bins or outlets to go density 0
-				user << "You attach the [nicetype] to the underfloor."
+				to_chat(user, "You attach the [nicetype] to the underfloor.")
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			update()
 
@@ -248,10 +248,10 @@
 				var/obj/item/tool/weldingtool/W = I
 				if(W.remove_fuel(0,user))
 					playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-					user << "Welding the [nicetype] in place."
+					to_chat(user, "Welding the [nicetype] in place.")
 					if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 						if(!src || !W.isOn()) return
-						user << "The [nicetype] has been welded in place!"
+						to_chat(user, "The [nicetype] has been welded in place!")
 						update() // TODO: Make this neat
 						if(ispipe) // Pipe
 
@@ -290,8 +290,8 @@
 						cdel(src)
 						return
 				else
-					user << "You need more welding fuel to complete this task."
+					to_chat(user, "You need more welding fuel to complete this task.")
 					return
 			else
-				user << "You need to attach it to the plating first!"
+				to_chat(user, "You need to attach it to the plating first!")
 				return

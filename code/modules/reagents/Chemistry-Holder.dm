@@ -289,7 +289,7 @@ var/const/INGEST = 2
 
 					var/list/seen = viewers(4, get_turf(my_atom))
 					for(var/mob/M in seen)
-						M << "\blue \icon[my_atom] The solution begins to bubble."
+						to_chat(M, "\blue \icon[my_atom] The solution begins to bubble.")
 
 					playsound(get_turf(my_atom), 'sound/effects/bubbles.ogg', 25, 1)
 
@@ -429,9 +429,9 @@ var/const/INGEST = 2
 		SetViruses(R, data) // Includes setting data
 
 		//debug
-		//world << "Adding data"
+		//to_chat(world, "Adding data")
 		//for(var/D in R.data)
-		//	world << "Container data: [D] = [R.data[D]]"
+		//	to_chat(world, "Container data: [D] = [R.data[D]]")
 		//debug
 		update_total()
 		my_atom.on_reagent_change()
@@ -521,13 +521,13 @@ var/const/INGEST = 2
 /datum/reagents/proc/get_data(var/reagent_id)
 	for(var/datum/reagent/D in reagent_list)
 		if(D.id == reagent_id)
-			//world << "proffering a data-carrying reagent ([reagent_id])"
+			//to_chat(world, "proffering a data-carrying reagent ([reagent_id])")
 			return D.data
 
 /datum/reagents/proc/set_data(var/reagent_id, var/new_data)
 	for(var/datum/reagent/D in reagent_list)
 		if(D.id == reagent_id)
-			//world << "reagent data set ([reagent_id])"
+			//to_chat(world, "reagent data set ([reagent_id])")
 			D.data = new_data
 
 

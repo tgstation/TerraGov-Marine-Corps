@@ -62,20 +62,20 @@
 	var/mob/living/carbon/human/H = user
 
 	if(!allowed(user))
-		user << "<span class='warning'>Access denied.</span>"
+		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
 
 	var/obj/item/card/id/I = H.wear_id
 	if(!istype(I)) //not wearing an ID
-		H << "<span class='warning'>Access denied. No ID card detected</span>"
+		to_chat(H, "<span class='warning'>Access denied. No ID card detected</span>")
 		return
 
 	if(I.registered_name != H.real_name)
-		H << "<span class='warning'>Wrong ID card owner detected.</span>"
+		to_chat(H, "<span class='warning'>Wrong ID card owner detected.</span>")
 		return
 
 	if(vendor_role && I.rank != vendor_role)
-		H << "<span class='warning'>This machine isn't for you.</span>"
+		to_chat(H, "<span class='warning'>This machine isn't for you.</span>")
 		return
 
 
@@ -143,7 +143,7 @@
 		if (href_list["vend"])
 
 			if(!allowed(usr))
-				usr << "<span class='warning'>Access denied.</span>"
+				to_chat(usr, "<span class='warning'>Access denied.</span>")
 				return
 
 			var/idx=text2num(href_list["vend"])
@@ -154,43 +154,43 @@
 
 			var/obj/item/card/id/I = H.wear_id
 			if(!istype(I)) //not wearing an ID
-				H << "<span class='warning'>Access denied. No ID card detected</span>"
+				to_chat(H, "<span class='warning'>Access denied. No ID card detected</span>")
 				return
 
 			if(I.registered_name != H.real_name)
-				H << "<span class='warning'>Wrong ID card owner detected.</span>"
+				to_chat(H, "<span class='warning'>Wrong ID card owner detected.</span>")
 				return
 
 			if(vendor_role && I.rank != vendor_role)
-				H << "<span class='warning'>This machine isn't for you.</span>"
+				to_chat(H, "<span class='warning'>This machine isn't for you.</span>")
 				return
 
 			if(use_points && I.marine_points < cost)
-				H << "<span class='warning'>Not enough points.</span>"
+				to_chat(H, "<span class='warning'>Not enough points.</span>")
 				return
 
 			if(!H.assigned_squad || (squad_tag && H.assigned_squad.name != squad_tag))
-				H << "<span class='warning'>This machine isn't for you.</span>"
+				to_chat(H, "<span class='warning'>This machine isn't for you.</span>")
 				return
 
 
 			var/turf/T = loc
 			if(T.contents.len > 25)
-				H << "<span class='warning'>The floor is too cluttered, make some space.</span>"
+				to_chat(H, "<span class='warning'>The floor is too cluttered, make some space.</span>")
 				return
 
 			var/bitf = L[4]
 			if(bitf)
 				if(bitf == MARINE_CAN_BUY_ESSENTIALS && vendor_role == "Squad Specialist")
 					if(!H.mind || H.mind.assigned_role != "Squad Specialist")
-						H << "<span class='warning'>Only specialists can take specialist sets.</span>"
+						to_chat(H, "<span class='warning'>Only specialists can take specialist sets.</span>")
 						return
 					else if(!H.mind.cm_skills || H.mind.cm_skills.spec_weapons != SKILL_SPEC_TRAINED)
-						H << "<span class='warning'>You already have a specialist specialization.</span>"
+						to_chat(H, "<span class='warning'>You already have a specialist specialization.</span>")
 						return
 					var/p_name = L[1]
 					if(!available_specialist_sets.Find(p_name))
-						H << "<span class='warning'>That set is already taken</span>"
+						to_chat(H, "<span class='warning'>That set is already taken</span>")
 						return
 
 				if(I.marine_buy_flags & bitf)
@@ -202,7 +202,7 @@
 					else
 						I.marine_buy_flags &= ~bitf
 				else
-					H << "<span class='warning'>You can't buy things from this category anymore.</span>"
+					to_chat(H, "<span class='warning'>You can't buy things from this category anymore.</span>")
 					return
 
 
@@ -245,7 +245,7 @@
 						if("Pyro Set")
 							H.mind.cm_skills.spec_weapons = SKILL_SPEC_PYRO
 						else
-							H << "<span class='warning'><b>Something bad occured with [src], tell a Dev.</b></span>"
+							to_chat(H, "<span class='warning'><b>Something bad occured with [src], tell a Dev.</b></span>")
 							return
 					H.update_action_buttons()
 					available_specialist_sets -= p_name

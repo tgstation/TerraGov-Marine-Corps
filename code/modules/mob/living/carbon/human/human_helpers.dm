@@ -177,7 +177,7 @@
 				. = 0
 	if(!. && error_msg && user)
  		// Might need re-wording.
-		user << "<span class='alert'>There is no exposed flesh or thin material [target_zone == "head" ? "on their head" : "on their body"] to inject into.</span>"
+		to_chat(user, "<span class='alert'>There is no exposed flesh or thin material [target_zone == "head" ? "on their head" : "on their body"] to inject into.</span>")
 
 
 /mob/living/carbon/human/has_brain()
@@ -247,14 +247,14 @@
 			if(Z.turn_off(src))
 				goes_out++
 	if(goes_out && light_off)
-		src << "<span class='notice'>Your sources of light short and fizzle out.</span>"
+		to_chat(src, "<span class='notice'>Your sources of light short and fizzle out.</span>")
 	else if(goes_out)
 		if(goes_out > 1)
-			src << "<span class='notice'>Your sources of light fizzle out.</span>"
+			to_chat(src, "<span class='notice'>Your sources of light fizzle out.</span>")
 		else
-			src << "<span class='notice'>Your source of light fizzles out.</span>"
+			to_chat(src, "<span class='notice'>Your source of light fizzles out.</span>")
 	else if(light_off)
 		if(light_off > 1)
-			src << "<span class='notice'>Your sources of light short out.</span>"
+			to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
 		else
-			src << "<span class='notice'>Your source of light shorts out.</span>"
+			to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")

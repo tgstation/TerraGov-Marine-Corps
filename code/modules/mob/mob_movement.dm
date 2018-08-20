@@ -38,7 +38,7 @@
 		var/mob/living/carbon/C = usr
 		C.toggle_throw_mode()
 	else
-		usr << "\red This mob type cannot throw items."
+		to_chat(usr, "\red This mob type cannot throw items.")
 	return
 
 
@@ -46,11 +46,11 @@
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(!C.get_active_hand())
-			usr << "\red You have nothing to drop in your hand."
+			to_chat(usr, "\red You have nothing to drop in your hand.")
 			return
 		C.drop_held_item()
 	else
-		usr << "\red This mob type cannot drop items."
+		to_chat(usr, "\red This mob type cannot drop items.")
 	return
 
 //This gets called when you press the delete button.
@@ -58,7 +58,7 @@
 	set hidden = 1
 
 	if(!usr.pulling)
-		usr << "\blue You are not pulling anything."
+		to_chat(usr, "\blue You are not pulling anything.")
 		return
 	usr.stop_pulling()
 
@@ -150,7 +150,7 @@
 			return
 		else if(mob.is_mob_restrained(0))
 			next_movement = world.time + 20 //to reduce the spam
-			src << "<span class='warning'>You're restrained! You can't move!</span>"
+			to_chat(src, "<span class='warning'>You're restrained! You can't move!</span>")
 			return
 		else if(!mob.resist_grab(TRUE))
 			return
@@ -215,7 +215,7 @@
 
 	//Check to see if we slipped
 	if(prob(Process_Spaceslipping(5)))
-		src << "\blue <B>You slipped!</B>"
+		to_chat(src, "\blue <B>You slipped!</B>")
 		src.inertia_dir = src.last_move_dir
 		step(src, src.inertia_dir)
 		return 0

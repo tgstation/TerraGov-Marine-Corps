@@ -75,7 +75,7 @@
 */
 
 /datum/game_mode/proc/announce() //to be calles when round starts
-	world << "<B>Notice</B>: [src] did not define announce()"
+	to_chat(world, "<B>Notice</B>: [src] did not define announce()")
 
 
 ///can_start()
@@ -227,10 +227,10 @@
 			if(suplink)
 				var/extra = 4
 				suplink.uses += extra
-				man << "\red We have received notice that enemy intelligence suspects you to be linked with us. We have thus invested significant resources to increase your uplink's capacity."
+				to_chat(man, "\red We have received notice that enemy intelligence suspects you to be linked with us. We have thus invested significant resources to increase your uplink's capacity.")
 			else
 				// Give them a warning!
-				man << "\red They are on to you!"
+				to_chat(man, "\red They are on to you!")
 
 		// Some poor people who were just in the wrong place at the wrong time..
 		else if(prob(10))
@@ -335,7 +335,7 @@
 			if(applicant)
 				candidates += applicant
 				drafted.Remove(applicant)
-				world << "\red [applicant.key] was force-drafted as [roletext], because there aren't enough candidates."
+				to_chat(world, "\red [applicant.key] was force-drafted as [roletext], because there aren't enough candidates.")
 				log_debug("[applicant.key] was force-drafted as [roletext], because there aren't enough candidates.")
 
 		else //Not enough scrubs, ABORT ABORT ABORT
@@ -381,7 +381,7 @@
 
 /datum/game_mode/New()
 	if(!map_tag)
-		world << "MT001: No mapping tag set, tell a coder. [map_tag]"
+		to_chat(world, "MT001: No mapping tag set, tell a coder. [map_tag]")
 	newscaster_announcements = pick(newscaster_standard_feeds)
 
 //////////////////////////
@@ -438,7 +438,7 @@ proc/display_roundstart_logout_report()
 
 	for(var/mob/M in mob_list)
 		if(M.client && M.client.holder)
-			M << msg
+			to_chat(M, msg)
 
 
 proc/get_nt_opposed()
@@ -455,13 +455,14 @@ proc/get_nt_opposed()
 //Announces objectives/generic antag text.
 /proc/show_generic_antag_text(var/datum/mind/player)
 	if(player.current)
-		player.current << \
+		var/msg = \
 		"You are an antagonist! <font color=blue>Within the rules,</font> \
 		try to act as an opposing force to the crew. Further RP and try to make sure \
 		other players have <i>fun</i>! If you are confused or at a loss, always adminhelp, \
 		and before taking extreme actions, please try to also contact the administration! \
 		Think through your actions and make the roleplay immersive! <b>Please remember all \
 		rules aside from those without explicit exceptions apply to antagonists.</b>"
+		to_chat(player.current, msg)
 
 /proc/show_objectives(var/datum/mind/player)
 
@@ -472,9 +473,9 @@ proc/get_nt_opposed()
 		return
 
 	var/obj_count = 1
-	player.current << "\blue Your current objectives:"
+	to_chat(player.current, "\blue Your current objectives:")
 	for(var/datum/objective/objective in player.objectives)
-		player.current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
+		to_chat(player.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 		obj_count++
 
 /datum/game_mode/proc/printplayer(var/datum/mind/ply)

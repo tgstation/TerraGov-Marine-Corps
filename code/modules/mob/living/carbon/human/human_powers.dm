@@ -10,7 +10,7 @@
 		return
 
 	if(is_mob_incapacitated() || lying || buckled)
-		src << "You cannot tackle someone in your current state."
+		to_chat(src, "You cannot tackle someone in your current state.")
 		return
 
 	var/list/choices = list()
@@ -29,7 +29,7 @@
 		return
 
 	if(is_mob_incapacitated() || lying || buckled)
-		src << "You cannot tackle in your current state."
+		to_chat(src, "You cannot tackle in your current state.")
 		return
 
 	last_special = world.time + 50
@@ -58,7 +58,7 @@
 		return
 
 	if(is_mob_incapacitated() || lying || buckled)
-		src << "You cannot leap in your current state."
+		to_chat(src, "You cannot leap in your current state.")
 		return
 
 	var/list/choices = list()
@@ -77,7 +77,7 @@
 		return
 
 	if(is_mob_incapacitated() || lying || buckled)
-		src << "You cannot leap in your current state."
+		to_chat(src, "You cannot leap in your current state.")
 		return
 
 	last_special = world.time + 75
@@ -92,7 +92,7 @@
 	if(status_flags & LEAPING) status_flags &= ~LEAPING
 
 	if(!src.Adjacent(T))
-		src << "\red You miss!"
+		to_chat(src, "\red You miss!")
 		return
 
 	T.KnockDown(5)
@@ -116,16 +116,16 @@
 		return
 
 	if(is_mob_incapacitated(TRUE) || lying)
-		src << "\red You cannot do that in your current state."
+		to_chat(src, "\red You cannot do that in your current state.")
 		return
 
 	var/obj/item/grab/G = locate() in src
 	if(!G || !istype(G))
-		src << "\red You are not grabbing anyone."
+		to_chat(src, "\red You are not grabbing anyone.")
 		return
 
 	if(usr.grab_level < GRAB_AGGRESSIVE)
-		src << "\red You must have an aggressive grab to gut your prey!"
+		to_chat(src, "\red You must have an aggressive grab to gut your prey!")
 		return
 
 	last_special = world.time + 50
@@ -167,17 +167,17 @@
 	var/mob/M = targets[target]
 
 	if(istype(M, /mob/dead/observer) || M.stat == DEAD)
-		src << "Not even a [src.species.name] can speak to the dead."
+		to_chat(src, "Not even a [src.species.name] can speak to the dead.")
 		return
 
 	log_say("[key_name(src)] communed to [key_name(M)]: [text]")
 
-	M << "\blue Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]"
+	to_chat(M, "\blue Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]")
 	if(istype(M,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		if(H.species.name == src.species.name)
 			return
-		H << "\red Your nose begins to bleed..."
+		to_chat(H, "\red Your nose begins to bleed...")
 		H.drip(1)
 
 /mob/living/carbon/human/proc/psychic_whisper(mob/M as mob in oview())
@@ -188,6 +188,6 @@
 	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
 	if(msg)
 		log_say("PsychicWhisper: [key_name(src)]->[M.key] : [msg]")
-		M << "\green You hear a strange, alien voice in your head... \italic [msg]"
-		src << "\green You said: \"[msg]\" to [M]"
+		to_chat(M, "\green You hear a strange, alien voice in your head... \italic [msg]")
+		to_chat(src, "\green You said: \"[msg]\" to [M]")
 	return

@@ -62,7 +62,7 @@
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		if(!H.lying)
-			H << "<span class='danger'>Your feet scald and burn! Argh!</span>"
+			to_chat(H, "<span class='danger'>Your feet scald and burn! Argh!</span>")
 			H.emote("pain")
 			H.KnockDown(3)
 			var/datum/limb/affecting = H.get_limb("l_foot")
@@ -74,7 +74,7 @@
 			H.updatehealth()
 		else
 			H.adjustFireLoss(rand(2, 5)) //This is ticking damage!
-			H << "<span class='danger'>You are scalded by the burning acid!</span>"
+			to_chat(H, "<span class='danger'>You are scalded by the burning acid!</span>")
 
 /obj/effect/xenomorph/spray/process()
 	var/turf/T = loc

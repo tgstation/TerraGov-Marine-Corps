@@ -126,7 +126,7 @@
 				V.loc = src.loc
 				V.update_canmove()
 				src.buckled_mob = V
-				V << "<span class='danger'>The vines [pick("wind", "tangle", "tighten")] around you!</span>"
+				to_chat(V, "<span class='danger'>The vines [pick("wind", "tangle", "tighten")] around you!</span>")
 
 		// FEED ME, SEYMOUR.
 		if(buckled_mob && seed && (buckled_mob.stat != DEAD)) //Don't bother with a dead mob.
@@ -137,7 +137,7 @@
 
 			// Drink some blood/cause some brute.
 			if(seed.carnivorous == 2)
-				buckled_mob << "<span class='danger'>\The [src] pierces your flesh greedily!</span>"
+				to_chat(buckled_mob, "<span class='danger'>\The [src] pierces your flesh greedily!</span>")
 
 				var/damage = rand(round(seed.potency/2),seed.potency)
 				if(!istype(H))
@@ -158,7 +158,7 @@
 
 			// Inject some chems.
 			if(seed.chems && seed.chems.len && istype(H))
-				H << "<span class='danger'>You feel something seeping into your skin!</span>"
+				to_chat(H, "<span class='danger'>You feel something seeping into your skin!</span>")
 				for(var/rid in seed.chems)
 					var/injecting = min(5,max(1,seed.potency/5))
 					H.reagents.add_reagent(rid,injecting)

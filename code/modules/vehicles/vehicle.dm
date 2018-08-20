@@ -38,7 +38,7 @@
 		if(on && powered && cell && cell.charge < charge_use)
 			turn_off()
 		else if(!on && powered)
-			user << "<span class='warning'>Turn on the engine first.</span>"
+			to_chat(user, "<span class='warning'>Turn on the engine first.</span>")
 		else
 			. = step(src, direction)
 
@@ -48,7 +48,7 @@
 		if(!locked)
 			open = !open
 			update_icon()
-			user << "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>"
+			to_chat(user, "<span class='notice'>Maintenance panel is now [open ? "opened" : "closed"].</span>")
 	else if(istype(W, /obj/item/tool/crowbar) && cell && open)
 		remove_cell(user)
 
@@ -65,7 +65,7 @@
 					health = min(maxhealth, health+10)
 					user.visible_message("<span class='notice'>[user] repairs [src].</span>","<span class='notice'>You repair [src].</span>")
 			else
-				user << "<span class='notice'>[src] does not need repairs.</span>"
+				to_chat(user, "<span class='notice'>[src] does not need repairs.</span>")
 
 	else if(W.force)
 		switch(W.damtype)
@@ -149,7 +149,7 @@
 
 	if(locked)
 		locked = 0
-		user << "<span class='warning'>You bypass [src]'s controls.</span>"
+		to_chat(user, "<span class='warning'>You bypass [src]'s controls.</span>")
 
 /obj/vehicle/proc/explode()
 	src.visible_message("\red <B>[src] blows apart!</B>", 1)
@@ -202,13 +202,13 @@
 	H.drop_inv_item_to_loc(C, src)
 	cell = C
 	powercheck()
-	usr << "<span class='notice'>You install [C] in [src].</span>"
+	to_chat(usr, "<span class='notice'>You install [C] in [src].</span>")
 
 /obj/vehicle/proc/remove_cell(var/mob/living/carbon/human/H)
 	if(!cell)
 		return
 
-	usr << "<span class='notice'>You remove [cell] from [src].</span>"
+	to_chat(usr, "<span class='notice'>You remove [cell] from [src].</span>")
 	cell.forceMove(get_turf(H))
 	H.put_in_hands(cell)
 	cell = null

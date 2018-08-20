@@ -50,12 +50,12 @@
 
 /obj/item/XenoItem/ResinPaste/afterattack(obj/item/clothing/head/helmet/marine/A as obj, mob/user as mob)
 	if (!istype(A) || !istype(usr))
-		usr << "Doesn't work that way"
+		to_chat(usr, "Doesn't work that way")
 		return
 	if (A.anti_hug >= 1)
-		usr <<"This Helmet can't be further reinforced."
+		to_chat(usr, "This Helmet can't be further reinforced.")
 		return
-	usr << "You reinforce the Helmet..."
+	to_chat(usr, "You reinforce the Helmet...")
 	A.anti_hug++
 	user.temp_drop_inv_item(src)
 	cdel(src)
@@ -70,12 +70,12 @@
 
 /obj/item/XenoItem/ChitinPlate/afterattack(obj/item/clothing/suit/storage/marine/A as obj, mob/user as mob)
 	if (!istype(A) || !istype(usr))
-		usr << "Doesn't work that way..."
+		to_chat(usr, "Doesn't work that way...")
 		return
 	if (A.flags_marine_armor & ARMOR_IS_REINFORCED)
-		usr <<"This armor is already reinforced."
+		to_chat(usr, "This armor is already reinforced.")
 		return
-	usr << "You reinforce the armor with some Chitin Plating..."
+	to_chat(usr, "You reinforce the armor with some Chitin Plating...")
 	A.armor = list(melee = 70, bullet = 90, laser = 7, energy = 40, bomb = 50, bio = 40, rad = 20)
 	A.slowdown++
 	A.flags_marine_armor |= ARMOR_IS_REINFORCED
@@ -94,15 +94,15 @@
 
 /obj/item/XenoItem/AntiAcid/afterattack(obj/A as obj, mob/user as mob, proximity)
 	if (!isobj(A))
-		usr << "Doesn't work that way..."
+		to_chat(usr, "Doesn't work that way...")
 		return
 	if (A.unacidable == 1)
-		usr << "It's already resistant to acid..."
+		to_chat(usr, "It's already resistant to acid...")
 		return
 	if (istype(A, /obj/machinery/door))
-		usr << "It doesn't work on doors..."
+		to_chat(usr, "It doesn't work on doors...")
 		return
-	usr << "You spray [A] with the Anti-Acid spray making it unacidable..."
+	to_chat(usr, "You spray [A] with the Anti-Acid spray making it unacidable...")
 	A.unacidable = 1
 	user.temp_drop_inv_item(src)
 	cdel(src)

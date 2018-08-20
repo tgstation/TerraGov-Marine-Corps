@@ -44,13 +44,13 @@
 	..()
 	if(dirt_amt)
 		var/dirt_name = dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"
-		user << "It holds [dirt_amt] layer\s of [dirt_name]."
+		to_chat(user, "It holds [dirt_amt] layer\s of [dirt_name].")
 
 /obj/item/tool/shovel/attack_self(mob/user)
 	add_fingerprint(user)
 
 	if(dirt_amt)
-		user << "<span class='notice'>You dump the dirt!</span>"
+		to_chat(user, "<span class='notice'>You dump the dirt!</span>")
 		if(dirt_type == DIRT_TYPE_SNOW)
 			var/turf/T = get_turf(user.loc)
 			var/obj/item/stack/snow/S = locate() in T
@@ -80,7 +80,7 @@
 					var/turf/open/snow/ST = T
 					if(!ST.slayer)
 						return
-				user << "<span class='notice'>You start digging.</span>"
+				to_chat(user, "<span class='notice'>You start digging.</span>")
 				playsound(user.loc, 'sound/effects/thud.ogg', 40, 1, 6)
 				if(!do_after(user, shovelspeed, TRUE, 5, BUSY_ICON_BUILD))
 					return
@@ -92,16 +92,16 @@
 					transf_amt = min(ST.slayer, dirt_amt_per_dig)
 					ST.slayer -= transf_amt
 					ST.update_icon(1,0)
-					user << "<span class='notice'>You dig up some snow.</span>"
+					to_chat(user, "<span class='notice'>You dig up some snow.</span>")
 				else
-					user << "<span class='notice'>You dig up some dirt.</span>"
+					to_chat(user, "<span class='notice'>You dig up some dirt.</span>")
 				dirt_amt = transf_amt
 				dirt_type = turfdirt
 				update_icon()
 
 		else
 			var/turf/T = target
-			user << "<span class='notice'>you dump the [dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"]!</span>"
+			to_chat(user, "<span class='notice'>you dump the [dirt_type == DIRT_TYPE_SNOW ? "snow" : "dirt"]!</span>")
 			playsound(user.loc, "rustle", 30, 1, 6)
 			if(dirt_type == DIRT_TYPE_SNOW)
 				var/obj/item/stack/snow/S = locate() in T

@@ -69,7 +69,7 @@ suffice.
 	var/turf/T = locate(ref.x + C.x_pos, ref.y + C.y_pos, ref.z) //Get a turf from the coordinates.
 	if(!istype(T))
 		log_debug("ERROR CODE EV0: unable to find the first turf of [shuttle_tag].")
-		world << "<span class='debuginfo'>ERROR CODE EV0: unable to find the first turf of [shuttle_tag].</span>"
+		to_chat(world, "<span class='debuginfo'>ERROR CODE EV0: unable to find the first turf of [shuttle_tag].</span>")
 		return FALSE
 
 	staging_area = T.loc //Grab the area and store it on file.
@@ -78,7 +78,7 @@ suffice.
 	D = locate() in staging_area
 	if(!D)
 		log_debug("ERROR CODE EV1.5: could not find door in [shuttle_tag].")
-		world << "<span class='debuginfo'>ERROR CODE EV1: could not find door in [shuttle_tag].</span>"
+		to_chat(world, "<span class='debuginfo'>ERROR CODE EV1: could not find door in [shuttle_tag].</span>")
 		return FALSE
 	D.id_tag = shuttle_tag //So that the door can be operated via controller later.
 
@@ -86,7 +86,7 @@ suffice.
 	var/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/R = locate() in staging_area //Grab the controller.
 	if(!R)
 		log_debug("ERROR CODE EV1.5: could not find controller in [shuttle_tag].")
-		world << "<span class='debuginfo'>ERROR CODE EV1: could not find controller in [shuttle_tag].</span>"
+		to_chat(world, "<span class='debuginfo'>ERROR CODE EV1: could not find controller in [shuttle_tag].</span>")
 		return FALSE
 
 	//Set the tags.
@@ -103,7 +103,7 @@ suffice.
 		E.evacuation_program = evacuation_program
 	if(!cryo_cells.len)
 		log_debug("ERROR CODE EV2: could not find cryo pods in [shuttle_tag].")
-		world << "<span class='debuginfo'>ERROR CODE EV2: could not find cryo pods in [shuttle_tag].</span>"
+		to_chat(world, "<span class='debuginfo'>ERROR CODE EV2: could not find cryo pods in [shuttle_tag].</span>")
 		return FALSE
 
 #define MOVE_MOB_OUTSIDE \
@@ -165,7 +165,7 @@ This can probably be done a lot more elegantly either way, but it'll suffice for
 	for(var/obj/machinery/cryopod/evacuation/C in cryo_cells)
 		if(C.occupant)
 			n++
-			if(C.occupant.stat != DEAD && msg) C.occupant << msg
+			if(C.occupant.stat != DEAD && msg) to_chat(C.occupant, msg)
 	//Hardcoded typecast, which should be changed into some weight system of some kind eventually.
 	var/area/A = msg ? evacuation_program.master.loc.loc : staging_area //Before or after launch.
 	for(var/i in A)
@@ -174,16 +174,16 @@ This can probably be done a lot more elegantly either way, but it'll suffice for
 			M = locate(/mob/living/carbon/human) in i
 			if(M)
 				n++ //No hiding in closets.
-				if(M.stat != DEAD && msg) M << msg
+				if(M.stat != DEAD && msg) to_chat(M, msg)
 		else if(istype(i, /mob/living/carbon/human) || istype(i, /mob/living/silicon/robot))
 			n++ //Dead or alive, counts as a thing.
 			M = i
-			if(M.stat != DEAD && msg) M << msg
+			if(M.stat != DEAD && msg) to_chat(M, msg)
 		else if(istype(i, /mob/living/carbon/Xenomorph))
 			var/mob/living/carbon/Xenomorph/X = i
 			if(X.mob_size == MOB_SIZE_BIG) return FALSE //Huge xenomorphs will automatically fail the launch.
 			n++
-			if(X.stat != DEAD && msg) X << msg
+			if(X.stat != DEAD && msg) to_chat(X, msg)
 	if(n > cryo_cells.len)  . = FALSE //Default is 3 cryo cells and three people inside the pod.
 	if(msg)
 		passengers += n //Return the total number of occupants instead if it successfully launched.
@@ -289,15 +289,15 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 	attackby(obj/item/grab/G, mob/user)
 		if(istype(G))
 			if(being_forced)
-				user << "<span class='warning'>There's something forcing it open!</span>"
+				to_chat(user, "<span class='warning'>There's something forcing it open!</span>")
 				return FALSE
 
 			if(occupant)
-				user << "<span class='warning'>There is someone in there already!</span>"
+				to_chat(user, "<span class='warning'>There is someone in there already!</span>")
 				return FALSE
 
 			if(evacuation_program.dock_state < STATE_READY)
-				user << "<span class='warning'>The cryo pod is not responding to commands!</span>"
+				to_chat(user, "<span class='warning'>The cryo pod is not responding to commands!</span>")
 				return FALSE
 
 			var/mob/living/carbon/human/M = G.grabbed_thing
@@ -318,7 +318,7 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 
 		if(occupant) //Once you're in, you cannot exit, and outside forces cannot eject you.
 			//The occupant is actually automatically ejected once the evac is canceled.
-			if(occupant != usr) usr << "<span class='warning'>You are unable to eject the occupant unless the evacuation is canceled.</span>"
+			if(occupant != usr) to_chat(usr, "<span class='warning'>You are unable to eject the occupant unless the evacuation is canceled.</span>")
 
 		add_fingerprint(usr)
 
@@ -339,15 +339,15 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 		if(!istype(user) || user.stat || user.is_mob_restrained()) return FALSE
 
 		if(being_forced)
-			user << "<span class='warning'>You can't enter when it's being forced open!</span>"
+			to_chat(user, "<span class='warning'>You can't enter when it's being forced open!</span>")
 			return FALSE
 
 		if(occupant)
-			user << "<span class='warning'>The cryogenic pod is already in use! You will need to find another.</span>"
+			to_chat(user, "<span class='warning'>The cryogenic pod is already in use! You will need to find another.</span>")
 			return FALSE
 
 		if(evacuation_program.dock_state < STATE_READY)
-			user << "<span class='warning'>The cryo pod is not responding to commands!</span>"
+			to_chat(user, "<span class='warning'>The cryo pod is not responding to commands!</span>")
 			return FALSE
 
 		visible_message("<span class='warning'>[user] starts climbing into the cryo pod.</span>", 3)
@@ -358,11 +358,11 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 
 	attack_alien(mob/living/carbon/Xenomorph/user)
 		if(being_forced)
-			user << "<span class='xenowarning'>It's being forced open already!</span>"
+			to_chat(user, "<span class='xenowarning'>It's being forced open already!</span>")
 			return FALSE
 
 		if(!occupant)
-			user << "<span class='xenowarning'>There is nothing of interest in there.</span>"
+			to_chat(user, "<span class='xenowarning'>There is nothing of interest in there.</span>")
 			return FALSE
 
 		being_forced = !being_forced
@@ -373,11 +373,11 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 
 /obj/machinery/cryopod/evacuation/proc/move_mob_inside(mob/M)
 	if(occupant)
-		M << "<span class='warning'>The cryogenic pod is already in use. You will need to find another.</span>"
+		to_chat(M, "<span class='warning'>The cryogenic pod is already in use. You will need to find another.</span>")
 		return FALSE
 		return
 	M.forceMove(src)
-	M << "<span class='notice'>You feel cool air surround you as your mind goes blank and the pod locks.</span>"
+	to_chat(M, "<span class='notice'>You feel cool air surround you as your mind goes blank and the pod locks.</span>")
 	occupant = M
 	occupant.in_stasis = STASIS_IN_CRYO_CELL
 	add_fingerprint(M)

@@ -51,19 +51,19 @@
 		return
 
 	if(!reagent_volumes[reagent_ids[mode]])
-		user << "<span class='warning'>The injector is empty.</span>"
+		to_chat(user, "<span class='warning'>The injector is empty.</span>")
 		return
 
-	user << "\blue You inject [M] with the injector."
-	M << "\blue [user] injects you with the injector."
+	to_chat(user, "\blue You inject [M] with the injector.")
+	to_chat(M, "\blue [user] injects you with the injector.")
 	playsound(loc, 'sound/items/hypospray.ogg', 50, 1)
 
 	if(M.reagents)
 		var/t = min(amount_per_transfer_from_this, reagent_volumes[reagent_ids[mode]])
 		M.reagents.add_reagent(reagent_ids[mode], t)
 		reagent_volumes[reagent_ids[mode]] -= t
-		// user << "<span class='notice'>[t] units injected. [reagent_volumes[reagent_ids[mode]]] units remaining.</span>"
-		user << "\blue [t] units of \red [reagent_ids[mode]] \blue injected for a total of \red [round(M.reagents.get_reagent_amount(reagent_ids[mode]))]\blue. [reagent_volumes[reagent_ids[mode]]] units remaining."
+		// to_chat(user, "<span class='notice'>[t] units injected. [reagent_volumes[reagent_ids[mode]]] units remaining.</span>")
+		to_chat(user, "\blue [t] units of \red [reagent_ids[mode]] \blue injected for a total of \red [round(M.reagents.get_reagent_amount(reagent_ids[mode]))]\blue. [reagent_volumes[reagent_ids[mode]]] units remaining.")
 
 	return
 
@@ -71,7 +71,7 @@
 	var/selection = input("Please select a reagent:", "Reagent", null) as null|anything in reagent_ids
 	if(!selection) return
 	var/datum/reagent/R = chemical_reagents_list[selection]
-	user << "\blue Synthesizer is now producing '[R.name]'."
+	to_chat(user, "\blue Synthesizer is now producing '[R.name]'.")
 	mode = reagent_ids.Find(selection)
 	playsound(src.loc, 'sound/effects/pop.ogg', 15, 0)
 	return
@@ -82,4 +82,4 @@
 
 	var/datum/reagent/R = chemical_reagents_list[reagent_ids[mode]]
 
-	user << "<span class='notice'>It is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left.</span>"
+	to_chat(user, "<span class='notice'>It is currently producing [R.name] and has [reagent_volumes[reagent_ids[mode]]] out of [volume] units left.</span>")

@@ -201,25 +201,25 @@
 		update()
 
 /obj/machinery/power/apc/examine(mob/user)
-	user << desc
+	to_chat(user, desc)
 	if(stat & BROKEN)
-		user << "<span class='info'>It appears to be completely broken. It's hard to see what else is wrong with it.</span>"
+		to_chat(user, "<span class='info'>It appears to be completely broken. It's hard to see what else is wrong with it.</span>")
 		return
 	if(opened)
 		if(has_electronics && terminal)
-			user << "<span class='info'>The cover is [opened == 2 ? "removed":"open"] and the power cell is [cell ? "installed":"missing"].</span>"
+			to_chat(user, "<span class='info'>The cover is [opened == 2 ? "removed":"open"] and the power cell is [cell ? "installed":"missing"].</span>")
 		else if (!has_electronics && terminal)
-			user << "<span class='info'>There are some wires but no any electronics.</span>"
+			to_chat(user, "<span class='info'>There are some wires but no any electronics.</span>")
 		else if (has_electronics && !terminal)
-			user << "<span class='info'>Electronics installed but not wired.</span>"
+			to_chat(user, "<span class='info'>Electronics installed but not wired.</span>")
 		else
-			user << "<span class='info'>There is no electronics nor connected wires.</span>"
+			to_chat(user, "<span class='info'>There is no electronics nor connected wires.</span>")
 
 	else
 		if(stat & MAINT)
-			user << "<span class='info'>The cover is closed. Something is wrong with it, it doesn't work.</span>"
+			to_chat(user, "<span class='info'>The cover is closed. Something is wrong with it, it doesn't work.</span>")
 		else
-			user << "<span class='info'>The cover is closed.</span>"
+			to_chat(user, "<span class='info'>The cover is closed.</span>")
 
 //Update the APC icon to show the three base states
 //Also add overlays for indicator lights
@@ -392,10 +392,10 @@
 		if(has_electronics == 1)
 			if(user.action_busy) return
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				user << "<span class='warning'>You have no idea how to deconstruct [src].</span>"
+				to_chat(user, "<span class='warning'>You have no idea how to deconstruct [src].</span>")
 				return
 			if(terminal)
-				user << "<span class='warning'>Disconnect the terminal first.</span>"
+				to_chat(user, "<span class='warning'>Disconnect the terminal first.</span>")
 				return
 			playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] starts removing [src]'s power control board.</span>",
@@ -414,21 +414,21 @@
 			update_icon()
 	else if(iscrowbar(W) && !((stat & BROKEN)))
 		if(coverlocked && !(stat & MAINT))
-			user << "<span class='warning'>The cover is locked and cannot be opened.</span>"
+			to_chat(user, "<span class='warning'>The cover is locked and cannot be opened.</span>")
 			return
 		else
 			opened = 1
 			update_icon()
 	else if(istype(W, /obj/item/cell) && opened) //Trying to put a cell inside
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			user << "<span class='warning'>You have no idea how to fit [W] into [src].</span>"
+			to_chat(user, "<span class='warning'>You have no idea how to fit [W] into [src].</span>")
 			return
 		if(cell)
-			user << "<span class='warning'>There is a power cell already installed.</span>"
+			to_chat(user, "<span class='warning'>There is a power cell already installed.</span>")
 			return
 		else
 			if(stat & MAINT)
-				user << "<span class='warning'>There is no connector for your power cell.</span>"
+				to_chat(user, "<span class='warning'>There is no connector for your power cell.</span>")
 				return
 			if(user.drop_inv_item_to_loc(W, src))
 				cell = W
@@ -439,10 +439,10 @@
 	else if(isscrewdriver(W)) //Haxing
 		if(opened)
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				user << "<span class='warning'>[src]'s wiring confuses you.</span>"
+				to_chat(user, "<span class='warning'>[src]'s wiring confuses you.</span>")
 				return
 			if(cell)
-				user << "<span class='warning'>Close the APC first.</span>" //Less hints more mystery!
+				to_chat(user, "<span class='warning'>Close the APC first.</span>")
 				return
 			else
 				if(has_electronics == 1 && terminal)
@@ -458,11 +458,11 @@
 					user.visible_message("<span class='notice'>[user] unfastens [src]'s circuit electronics.</span>",
 					"<span class='notice'>You unfasten [src]'s circuit electronics.</span>")
 				else
-					user << "<span class='warning'>There is nothing to secure.</span>"
+					to_chat(user, "<span class='warning'>There is nothing to secure.</span>")
 					return
 				update_icon()
 		else if(emagged)
-			user << "<span class='warning'>The interface is broken.</span>"
+			to_chat(user, "<span class='warning'>The interface is broken.</span>")
 		else
 			wiresexposed = !wiresexposed
 			user.visible_message("<span class='notice'>[user] [wiresexposed ? "exposes" : "unexposes"] [src]'s wiring.</span>",
@@ -471,16 +471,16 @@
 
 	else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda)) //Trying to unlock the interface with an ID card
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			user << "<span class='warning'>You're not sure where to swipe [W] on [src].</span>"
+			to_chat(user, "<span class='warning'>You're not sure where to swipe [W] on [src].</span>")
 			return
 		if(emagged)
-			user << "<span class='warning'>The interface is broken.</span>"
+			to_chat(user, "<span class='warning'>The interface is broken.</span>")
 		else if(opened)
-			user << "<span class='warning'>You must close the cover to swipe an ID card.</span>"
+			to_chat(user, "<span class='warning'>You must close the cover to swipe an ID card.</span>")
 		else if(wiresexposed)
-			user << "<span class='warning'>You must close the panel.</span>"
+			to_chat(user, "<span class='warning'>You must close the panel.</span>")
 		else if(stat & (BROKEN|MAINT))
-			user << "<span class='warning'>Nothing happens.</span>"
+			to_chat(user, "<span class='warning'>Nothing happens.</span>")
 		else
 			if(allowed(usr))
 				locked = !locked
@@ -488,34 +488,34 @@
 				"<span class='notice'>You [locked ? "lock" : "unlock"] [src]'s interface.</span>")
 				update_icon()
 			else
-				user << "<span class='warning'>Access denied.</span>"
+				to_chat(user, "<span class='warning'>Access denied.</span>")
 	else if(istype(W, /obj/item/card/emag) && !(emagged)) // trying to unlock with an emag card
 		if(opened)
-			user << "<span class='warning'>You must close the cover to swipe an ID card.</span>"
+			to_chat(user, "<span class='warning'>You must close the cover to swipe an ID card.</span>")
 		else if(wiresexposed)
-			user << "<span class='warning'>You must close the panel first</span>"
+			to_chat(user, "<span class='warning'>You must close the panel first</span>")
 		else if(stat & (BROKEN|MAINT))
-			user << "<span class='warning'>Nothing happens.</span>"
+			to_chat(user, "<span class='warning'>Nothing happens.</span>")
 		else
 			flick("apc-spark", src)
 			if(do_after(user, 6, TRUE, 5, BUSY_ICON_HOSTILE))
 				if(prob(50))
 					emagged = 1
 					locked = 0
-					user << "<span class='warning'>You emag [src]'s interface.</span>"
+					to_chat(user, "<span class='warning'>You emag [src]'s interface.</span>")
 					update_icon()
 				else
-					user << "<span class='warning'>You fail to [ locked ? "unlock" : "lock"] [src]'s interface.</span>"
+					to_chat(user, "<span class='warning'>You fail to [ locked ? "unlock" : "lock"] [src]'s interface.</span>")
 	else if(iswire(W) && !terminal && opened && has_electronics != 2)
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			user << "<span class='warning'>You have no idea what to do with [src].</span>"
+			to_chat(user, "<span class='warning'>You have no idea what to do with [src].</span>")
 			return
 		if(loc:intact_tile)
-			user << "<span class='warning'>You must remove the floor plating in front of the APC first.</span>"
+			to_chat(user, "<span class='warning'>You must remove the floor plating in front of the APC first.</span>")
 			return
 		var/obj/item/stack/cable_coil/C = W
 		if(C.get_amount() < 10)
-			user << "<span class='warning'>You need more wires.</span>"
+			to_chat(user, "<span class='warning'>You need more wires.</span>")
 			return
 		user.visible_message("<span class='notice'>[user] starts wiring [src]'s frame.</span>",
 		"<span class='notice'>You start wiring [src]'s frame.</span>")
@@ -535,10 +535,10 @@
 				terminal.connect_to_network()
 	else if(iswirecutter(W) && terminal && opened && has_electronics != 2)
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			user << "<span class='warning'>You have no idea what to do with [W].</span>"
+			to_chat(user, "<span class='warning'>You have no idea what to do with [W].</span>")
 			return
 		if(loc:intact_tile)
-			user << "<span class='warning'>You must remove the floor plating in front of the APC first.</span>"
+			to_chat(user, "<span class='warning'>You must remove the floor plating in front of the APC first.</span>")
 			return
 		user.visible_message("<span class='notice'>[user] starts removing [src]'s wiring and terminal.</span>",
 		"<span class='notice'>You start removing [src]'s wiring and terminal.</span>")
@@ -556,7 +556,7 @@
 			terminal = null
 	else if(istype(W, /obj/item/circuitboard/apc) && opened && has_electronics == 0 && !(stat & BROKEN))
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			user << "<span class='warning'>You have no idea what to do with [W].</span>"
+			to_chat(user, "<span class='warning'>You have no idea what to do with [W].</span>")
 			return
 		user.visible_message("<span class='notice'>[user] starts inserting the power control board into [src].</span>",
 		"<span class='notice'>You start inserting the power control board into [src].</span>")
@@ -568,17 +568,17 @@
 			cdel(W)
 	else if(istype(W, /obj/item/circuitboard/apc) && opened && has_electronics == 0 && (stat & BROKEN))
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			user << "<span class='warning'>You have no idea what to do with [W].</span>"
+			to_chat(user, "<span class='warning'>You have no idea what to do with [W].</span>")
 			return
-		user << "<span class='warning'>You cannot put the board inside, the frame is damaged.</span>"
+		to_chat(user, "<span class='warning'>You cannot put the board inside, the frame is damaged.</span>")
 		return
 	else if(iswelder(W) && opened && has_electronics == 0 && !terminal)
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			user << "<span class='warning'>You have no idea what to do with [W].</span>"
+			to_chat(user, "<span class='warning'>You have no idea what to do with [W].</span>")
 			return
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.get_fuel() < 3)
-			user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
+			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return
 		user.visible_message("<span class='notice'>[user] starts welding [src]'s frame.</span>",
 		"<span class='notice'>You start welding [src]'s frame.</span>")
@@ -597,7 +597,7 @@
 			return
 	else if(istype(W, /obj/item/frame/apc) && opened && emagged)
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			user << "<span class='warning'>You have no idea what to do with [W].</span>"
+			to_chat(user, "<span class='warning'>You have no idea what to do with [W].</span>")
 			return
 		emagged = 0
 		if(opened == 2)
@@ -608,10 +608,10 @@
 		update_icon()
 	else if(istype(W, /obj/item/frame/apc) && opened && (stat & BROKEN))
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			user << "<span class='warning'>You have no idea what to do with [W].</span>"
+			to_chat(user, "<span class='warning'>You have no idea what to do with [W].</span>")
 			return
 		if(has_electronics)
-			user << "<span class='warning'>You cannot repair this APC until you remove the electronics still inside.</span>"
+			to_chat(user, "<span class='warning'>You cannot repair this APC until you remove the electronics still inside.</span>")
 			return
 		user.visible_message("<span class='notice'>[user] begins replacing [src]'s damaged frontal panel with a new one.</span>",
 		"<span class='notice'>You begin replacing [src]'s damaged frontal panel with a new one.</span>")
@@ -654,7 +654,7 @@
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 				s.set_up(3, 1, src)
 				s.start()
-				H << "<span class='danger'>The APC's power currents surge eratically, damaging your chassis!</span>"
+				to_chat(H, "<span class='danger'>The APC's power currents surge eratically, damaging your chassis!</span>")
 				H.adjustFireLoss(10,0)
 			else if(cell && cell.charge > 0)
 				if(H.nutrition < 450)
@@ -665,15 +665,15 @@
 						H.nutrition += cell.charge/10
 						cell.charge = 0
 
-					user << "<span class='notice'>You slot your fingers into the APC interface and siphon off some of the stored charge for your own use.</span>"
+					to_chat(user, "<span class='notice'>You slot your fingers into the APC interface and siphon off some of the stored charge for your own use.</span>")
 					if(cell.charge < 0) cell.charge = 0
 					if(H.nutrition > 500) H.nutrition = 500
 					charging = 1
 
 				else
-					user << "<span class='warning'>You are already fully charged.</span>"
+					to_chat(user, "<span class='warning'>You are already fully charged.</span>")
 			else
-				user << "<span class='warning'>There is no charge to draw from that APC.</span>"
+				to_chat(user, "<span class='warning'>There is no charge to draw from that APC.</span>")
 			return
 		else if(H.species.can_shred(H))
 			user.visible_message("<span class='warning'>[user.name] slashes [src]!</span>",
@@ -702,7 +702,7 @@
 	if(usr == user && opened && (!issilicon(user)))
 		if(cell)
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				user << "<span class='warning'>You have no idea how to remove the power cell from [src].</span>"
+				to_chat(user, "<span class='warning'>You have no idea how to remove the power cell from [src].</span>")
 				return
 			user.put_in_hands(cell)
 			cell.add_fingerprint(user)
@@ -907,25 +907,25 @@
 
 /obj/machinery/power/apc/proc/can_use(mob/user as mob, var/loud = 0) //used by attack_hand() and Topic()
 	if(user.stat)
-		user << "<span class='warning'>You must be conscious to use [src]!</span>"
+		to_chat(user, "<span class='warning'>You must be conscious to use [src]!</span>")
 		return 0
 	if(!user.client)
 		return 0
 	if(!(ishuman(user) || issilicon(user) || ismonkey(user)))
-		user << "<span class='warning'>You don't have the dexterity to use [src]!</span>"
+		to_chat(user, "<span class='warning'>You don't have the dexterity to use [src]!</span>")
 		nanomanager.close_user_uis(user, src)
 		return 0
 	if(user.is_mob_restrained())
-		user << "<span class='warning'>You must have free hands to use [src].</span>"
+		to_chat(user, "<span class='warning'>You must have free hands to use [src].</span>")
 		return 0
 	if(user.lying)
-		user << "<span class='warning'>You can't reach [src]!</span>"
+		to_chat(user, "<span class='warning'>You can't reach [src]!</span>")
 		return 0
 	autoflag = 5
 	if(issilicon(user))
 		if(aidisabled)
 			if(!loud)
-				user << "<span class='warning'>[src] has AI control disabled!</span>"
+				to_chat(user, "<span class='warning'>[src] has AI control disabled!</span>")
 				nanomanager.close_user_uis(user, src)
 			return 0
 	else
@@ -941,7 +941,7 @@
 				"<span class='warning'>You stare cluelessly at [src] and drool.</span>")
 			return 0
 		else if(prob(H.getBrainLoss()))
-			user << "<span class='warning'>You momentarily forget how to use [src].</span>"
+			to_chat(user, "<span class='warning'>You momentarily forget how to use [src].</span>")
 			return 0
 	return 1
 
@@ -951,13 +951,13 @@
 			return 0
 	add_fingerprint(usr)
 	if(ishuman(usr) && usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-		usr << "<span class='warning'>You don't know how to use [src]'s interface.</span>"
+		to_chat(usr, "<span class='warning'>You don't know how to use [src]'s interface.</span>")
 		return
 
 	if(href_list["apcwires"])
 		var/t1 = text2num(href_list["apcwires"])
 		if(!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
-			usr << "<span class='warning'>You need wirecutters!</span>"
+			to_chat(usr, "<span class='warning'>You need wirecutters!</span>")
 			return 0
 		if(isWireColorCut(t1))
 			mend(t1)
@@ -966,10 +966,10 @@
 	else if(href_list["pulse"])
 		var/t1 = text2num(href_list["pulse"])
 		if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
-			usr << "<span class='warning'>You need a multitool!</span>"
+			to_chat(usr, "<span class='warning'>You need a multitool!</span>")
 			return 0
 		if(isWireColorCut(t1))
-			usr << "<span class='warning'>You can't pulse a cut wire.</span>"
+			to_chat(usr, "<span class='warning'>You can't pulse a cut wire.</span>")
 			return 0
 		else
 			pulse(t1)

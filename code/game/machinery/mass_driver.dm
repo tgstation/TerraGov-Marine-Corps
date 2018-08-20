@@ -27,7 +27,7 @@
 				O_limit++
 				if(O_limit >= 20)
 					for(var/mob/M in hearers(src, null))
-						M << "\blue The mass driver lets out a screech, it mustn't be able to handle any more items."
+						to_chat(M, "\blue The mass driver lets out a screech, it mustn't be able to handle any more items.")
 					break
 				use_power(500)
 				spawn( 0 )

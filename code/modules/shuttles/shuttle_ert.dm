@@ -181,13 +181,13 @@
 					//other ERT shuttles already docked on almayer or about to be
 					if(!F.location || F.moving_status != SHUTTLE_IDLE)
 						if(F.area_station.type == dock_id)
-							usr << "\red The [dock_name] dock area is unavailable."
+							to_chat(usr, "\red The [dock_name] dock area is unavailable.")
 							return
 
 			for(var/area/A in all_areas)
 				if(A.type == dock_id)
 					MS.area_station = A
-					usr << "\red You set the docking area on the Almayer to \"[dock_name]\"."
+					to_chat(usr, "\red You set the docking area on the Almayer to \"[dock_name]\".")
 					break
 
 		ui_interact(usr)

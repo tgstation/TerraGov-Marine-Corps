@@ -26,14 +26,14 @@
 				idcard.loc = src
 				modify = idcard
 			else
-				user << "Both slots are full already. Remove a card first."
+				to_chat(user, "Both slots are full already. Remove a card first.")
 		else
 			if(!modify)
 				usr.drop_held_item()
 				idcard.loc = src
 				modify = idcard
 			else
-				user << "Both slots are full already. Remove a card first."
+				to_chat(user, "Both slots are full already. Remove a card first.")
 	else
 		..()
 
@@ -266,7 +266,7 @@
 				if (check_access(scan))
 					authenticated = 1
 			else if ((!( authenticated ) && (istype(usr, /mob/living/silicon))) && (!modify))
-				usr << "You can't modify an ID without an ID inserted to modify. Once one is in the modify slot on the computer, you can log in."
+				to_chat(usr, "You can't modify an ID without an ID inserted to modify. Once one is in the modify slot on the computer, you can log in.")
 		if ("logout")
 			authenticated = 0
 		if("access")
@@ -295,11 +295,11 @@
 							break
 
 					if(!jobdatum)
-						usr << "\red No log exists for this job."
+						to_chat(usr, "\red No log exists for this job.")
 						return
 
 					if(!modify)
-						usr << "\red No card to modify!"
+						to_chat(usr, "\red No card to modify!")
 						return
 
 					modify.access = jobdatum.get_access()
@@ -379,7 +379,7 @@
 			idcard.loc = src
 			modify = idcard
 		else
-			user << "Remove the inserted card first."
+			to_chat(user, "Remove the inserted card first.")
 	else
 		..()
 
@@ -464,21 +464,21 @@
 					for(var/datum/squad/Q in RoleAuthority.squads)
 						if(findtext(modify.assignment,Q.name)) //Found one!
 							modify.access -= Q.access //Remove any access found.
-							usr << "Old squad access removed."
+							to_chat(usr, "Old squad access removed.")
 
 					modify.assignment = modify.rank //Use the original assignment name.
 					if(selected && selected.usable) //Now we have a proper squad. Change their ID to it.
 						var/card_ass = modify.assignment
 						modify.assignment = "[selected.name] [card_ass]" //Add squad name to assignment. "Alpha Squad Marine"
 						modify.access += selected.access //Add their new squad access (if anything) to their ID.
-						usr << "[selected.name] Squad added to card."
+						to_chat(usr, "[selected.name] Squad added to card.")
 					else
-						usr << "No squad selected."
+						to_chat(usr, "No squad selected.")
 					modify.name = "[modify.registered_name]'s ID Card ([modify.assignment])" //Reset our ID name.
 				else
-					usr << "You need to insert a card to modify."
+					to_chat(usr, "You need to insert a card to modify.")
 			else
-				usr << "You don't have sufficient access to use this console."
+				to_chat(usr, "You don't have sufficient access to use this console.")
 		src.add_fingerprint(usr)
 	src.attack_hand(usr)
 	return

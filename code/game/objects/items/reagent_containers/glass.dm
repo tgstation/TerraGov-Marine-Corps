@@ -48,19 +48,19 @@
 	..()
 	if(get_dist(user, src) > 2 && user != loc) return
 	if(reagents && reagents.reagent_list.len)
-		user << "<span class='info'>It contains [reagents.total_volume] units of liquid.</span>"
+		to_chat(user, "<span class='info'>It contains [reagents.total_volume] units of liquid.</span>")
 	else
-		user << "<span class='info'>It is empty.</span>"
+		to_chat(user, "<span class='info'>It is empty.</span>")
 	if(!is_open_container())
-		user << "<span class='info'>An airtight lid seals it completely.</span>"
+		to_chat(user, "<span class='info'>An airtight lid seals it completely.</span>")
 
 /obj/item/reagent_container/glass/attack_self()
 	..()
 	if(is_open_container())
-		usr << "<span class='notice'>You put the lid on \the [src].</span>"
+		to_chat(usr, "<span class='notice'>You put the lid on \the [src].</span>")
 		flags_atom ^= OPENCONTAINER
 	else
-		usr << "<span class='notice'>You take the lid off \the [src].</span>"
+		to_chat(usr, "<span class='notice'>You take the lid off \the [src].</span>")
 		flags_atom |= OPENCONTAINER
 	update_icon()
 
@@ -74,7 +74,7 @@
 			return
 
 	if(ismob(target) && target.reagents && reagents.total_volume)
-		user << "<span class='notice'>You splash the solution onto [target].</span>"
+		to_chat(user, "<span class='notice'>You splash the solution onto [target].</span>")
 		playsound(target, 'sound/effects/slosh.ogg', 25, 1)
 
 		var/mob/living/M = target
@@ -94,34 +94,34 @@
 		target.add_fingerprint(user)
 
 		if(!target.reagents.total_volume && target.reagents)
-			user << "<span class='warning'>[target] is empty.</span>"
+			to_chat(user, "<span class='warning'>[target] is empty.</span>")
 			return
 
 		if(reagents.total_volume >= reagents.maximum_volume)
-			user << "<span class='warning'>[src] is full.</span>"
+			to_chat(user, "<span class='warning'>[src] is full.</span>")
 			return
 
 		var/trans = target.reagents.trans_to(src, target:amount_per_transfer_from_this)
-		user << "<span class='notice'>You fill [src] with [trans] units of the contents of [target].</span>"
+		to_chat(user, "<span class='notice'>You fill [src] with [trans] units of the contents of [target].</span>")
 
 	else if(target.is_open_container() && target.reagents) //Something like a glass. Player probably wants to transfer TO it.
 
 		if(!reagents.total_volume)
-			user << "<span class='warning'>[src] is empty.</span>"
+			to_chat(user, "<span class='warning'>[src] is empty.</span>")
 			return
 
 		if(target.reagents.total_volume >= target.reagents.maximum_volume)
-			user << "<span class='warning'>[target] is full.</span>"
+			to_chat(user, "<span class='warning'>[target] is full.</span>")
 			return
 
 		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
-		user << "<span class='notice'>You transfer [trans] units of the solution to [target].</span>"
+		to_chat(user, "<span class='notice'>You transfer [trans] units of the solution to [target].</span>")
 
 	else if(istype(target, /obj/machinery/smartfridge))
 		return
 
 	else if(reagents.total_volume)
-		user << "<span class='notice'>You splash the solution onto [target].</span>"
+		to_chat(user, "<span class='notice'>You splash the solution onto [target].</span>")
 		playsound(target, 'sound/effects/slosh.ogg', 25, 1)
 		reagents.reaction(target, TOUCH)
 		spawn(5) src.reagents.clear_reagents()
@@ -131,7 +131,7 @@
 	if(istype(W, /obj/item/tool/pen) || istype(W, /obj/item/device/flashlight/pen))
 		var/tmp_label = sanitize(input(user, "Enter a label for [name]","Label", label_text))
 		if(length(tmp_label) > MAX_NAME_LEN)
-			user << "<span class='warning'>The label can be at most [MAX_NAME_LEN] characters long.</span>"
+			to_chat(user, "<span class='warning'>The label can be at most [MAX_NAME_LEN] characters long.</span>")
 		else
 			user.visible_message("<span class='notice'>[user] labels [src] as \"[tmp_label]\".</span>", \
 								 "<span class='notice'>You label [src] as \"[tmp_label]\".</span>")
@@ -263,17 +263,17 @@
 
 /obj/item/reagent_container/glass/bucket/attackby(obj/item/I, mob/user)
 	if(isprox(I))
-		user << "You add [I] to [src]."
+		to_chat(user, "You add [I] to [src].")
 		cdel(I)
 		user.put_in_hands(new /obj/item/frame/bucket_sensor)
 		user.drop_inv_item_on_ground(src)
 		cdel(src)
 	else if(istype(I, /obj/item/tool/mop))
 		if(reagents.total_volume < 1)
-			user << "[src] is out of water!</span>"
+			to_chat(user, "[src] is out of water!</span>")
 		else
 			reagents.trans_to(I, 5)
-			user << "<span class='notice'>You wet [I] in [src].</span>"
+			to_chat(user, "<span class='notice'>You wet [I] in [src].</span>")
 			playsound(loc, 'sound/effects/slosh.ogg', 25, 1)
 		return
 	else

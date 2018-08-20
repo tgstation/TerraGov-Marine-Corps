@@ -28,7 +28,7 @@
 	if(ishuman(user) && !user.stat && !user.is_mob_restrained())
 		armed = !armed
 		icon_state = "beartrap[armed]"
-		user << "<span class='notice'>[src] is now [armed ? "armed" : "disarmed"]</span>"
+		to_chat(user, "<span class='notice'>[src] is now [armed ? "armed" : "disarmed"]</span>")
 
 /obj/item/legcuffs/beartrap/Crossed(atom/movable/AM)
 	if(armed)
@@ -46,7 +46,7 @@
 							armed = 0
 							icon_state = "beartrap0"
 							playsound(loc, 'sound/effects/snap.ogg', 25, 1)
-							H << "\red <B>You step on \the [src]!</B>"
+							to_chat(H, "\red <B>You step on \the [src]!</B>")
 							feedback_add_details("handcuffs","B") //Yes, I know they're legcuffs. Don't change this, no need for an extra variable. The "B" is used to tell them apart.
 							for(var/mob/O in viewers(H, null))
 								if(O == H)
@@ -91,7 +91,7 @@
 	if(ishuman(user) && !user.stat && !user.is_mob_restrained())
 		armed = !armed
 		icon_state = "yauttrap[armed]"
-		user << "<span class='notice'>[src] is now [armed ? "armed" : "disarmed"].</span>"
+		to_chat(user, "<span class='notice'>[src] is now [armed ? "armed" : "disarmed"].</span>")
 
 /obj/item/legcuffs/yautja/Crossed(atom/movable/AM)
 	if(armed)
@@ -102,7 +102,7 @@
 					if(isturf(src.loc))
 						var/mob/living/carbon/H = AM
 						if(isYautja(H))
-							H << "<span class='notice'>You carefully avoid stepping on the trap.</span>"
+							to_chat(H, "<span class='notice'>You carefully avoid stepping on the trap.</span>")
 							return
 						if(H.m_intent == MOVE_INTENT_RUN)
 							armed = 0
@@ -111,7 +111,7 @@
 							src.loc = H
 							H.legcuff_update()
 							playsound(H,'sound/weapons/tablehit1.ogg', 25, 1)
-							H << "\icon[src] \red <B>You step on \the [src]!</B>"
+							to_chat(H, "\icon[src] \red <B>You step on \the [src]!</B>")
 							H.KnockDown(4)
 							if(ishuman(H))
 								H.emote("pain")

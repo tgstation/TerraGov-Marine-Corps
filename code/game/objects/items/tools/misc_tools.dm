@@ -23,25 +23,25 @@
 		return		// don't set a label
 
 	if(!labels_left)
-		user << "<span class='notice'>No labels left.</span>"
+		to_chat(user, "<span class='notice'>No labels left.</span>")
 		return
 	if(!label || !length(label))
-		user << "<span class='notice'>No text set.</span>"
+		to_chat(user, "<span class='notice'>No text set.</span>")
 		return
 	if(length(A.name) + length(label) > 64)
-		user << "<span class='notice'>Label too big.</span>"
+		to_chat(user, "<span class='notice'>Label too big.</span>")
 		return
 	if(isliving(A))
-		user << "<span class='notice'>You can't label living beings.</span>"
+		to_chat(user, "<span class='notice'>You can't label living beings.</span>")
 		return
 	if(istype(A, /obj/item/reagent_container/glass))
-		user << "<span class='notice'>The label will not stick to [A]. Use a pen instead.</span>"
+		to_chat(user, "<span class='notice'>The label will not stick to [A]. Use a pen instead.</span>")
 		return
 	if(istype(A, /obj/item/tool/surgery))
-		user << "<span class='notice'>That wouldn't be sanitary.</span>"
+		to_chat(user, "<span class='notice'>That wouldn't be sanitary.</span>")
 		return
 	if(isturf(A))
-		user << "<span class='notice'>The label won't stick to that.</span>"
+		to_chat(user, "<span class='notice'>The label won't stick to that.</span>")
 		return
 
 	user.visible_message("<span class='notice'>[user] labels [A] as \"[label]\".</span>", \
@@ -53,16 +53,16 @@
 	mode = !mode
 	icon_state = "labeler[mode]"
 	if(mode)
-		user << "<span class='notice'>You turn on \the [src].</span>"
+		to_chat(user, "<span class='notice'>You turn on \the [src].</span>")
 		//Now let them chose the text.
 		var/str = copytext(reject_bad_text(input(user,"Label text?", "Set label", "")), 1, MAX_NAME_LEN)
 		if(!str || !length(str))
-			user << "<span class='notice'>Invalid text.</span>"
+			to_chat(user, "<span class='notice'>Invalid text.</span>")
 			return
 		label = str
-		user << "<span class='notice'>You set the text to '[str]'.</span>"
+		to_chat(user, "<span class='notice'>You set the text to '[str]'.</span>")
 	else
-		user << "<span class='notice'>You turn off \the [src].</span>"
+		to_chat(user, "<span class='notice'>You turn off \the [src].</span>")
 
 
 
@@ -106,8 +106,8 @@
 /obj/item/tool/pen/attack(mob/M as mob, mob/user as mob)
 	if(!ismob(M))
 		return
-	user << "<span class='warning'>You stab [M] with the pen.</span>"
-//	M << "\red You feel a tiny prick!" //That's a whole lot of meta!
+	to_chat(user, "<span class='warning'>You stab [M] with the pen.</span>")
+//	to_chat(M, "\red You feel a tiny prick!")
 	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been stabbed with [name]  by [user.name] ([user.ckey])</font>")
 	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used the [name] to stab [M.name] ([M.ckey])</font>")
 	msg_admin_attack("[user.name] ([user.ckey]) Used the [name] to stab [M.name] ([M.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")

@@ -396,18 +396,18 @@ var/list/wood_icons = list("wood", "wood-broken")
 				cdel(C)
 				T.state = C //Fixing it by bashing it with a light bulb, fun eh?
 				update_icon()
-				user << "<span class='notice'>You replace the light bulb.</span>"
+				to_chat(user, "<span class='notice'>You replace the light bulb.</span>")
 			else
-				user << "<span class='notice'>The lightbulb seems fine, no need to replace it.</span>"
+				to_chat(user, "<span class='notice'>The lightbulb seems fine, no need to replace it.</span>")
 
 	if(istype(C, /obj/item/tool/crowbar) && (!(is_plating())))
 		if(broken || burnt)
-			user << "<span class='warning'>You remove the broken plating.</span>"
+			to_chat(user, "<span class='warning'>You remove the broken plating.</span>")
 		else
 			if(is_wood_floor())
-				user << "<span class='warning'>You forcefully pry off the planks, destroying them in the process.</span>"
+				to_chat(user, "<span class='warning'>You forcefully pry off the planks, destroying them in the process.</span>")
 			else
-				user << "<span class='warning'>You remove the [floor_tile.name].</span>"
+				to_chat(user, "<span class='warning'>You remove the [floor_tile.name].</span>")
 				new floor_tile.type(src)
 
 		make_plating()
@@ -419,7 +419,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 			return
 		else
 			if(is_wood_floor())
-				user << "<span class='warning'>You unscrew the planks.</span>"
+				to_chat(user, "<span class='warning'>You unscrew the planks.</span>")
 				new floor_tile.type(src)
 
 		make_plating()
@@ -430,9 +430,9 @@ var/list/wood_icons = list("wood", "wood-broken")
 		var/obj/item/stack/rods/R = C
 		if(is_plating())
 			if(R.get_amount() < 2)
-				user << "<span class='warning'>You need more rods.</span>"
+				to_chat(user, "<span class='warning'>You need more rods.</span>")
 				return
-			user << "<span class='notice'>Reinforcing the floor.</span>"
+			to_chat(user, "<span class='notice'>Reinforcing the floor.</span>")
 			if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD) && is_plating())
 				if(!R) return
 				if(R.use(2))
@@ -441,7 +441,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 				return
 			else
 		else
-			user << "<span class='warning'>You must remove the plating first.</span>"
+			to_chat(user, "<span class='warning'>You must remove the plating first.</span>")
 		return
 
 	if(istype(C, /obj/item/stack/tile))
@@ -472,7 +472,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 				levelupdate()
 				playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 			else
-				user << "<span class='notice'>This section is too damaged to support a tile. Use a welder to fix the damage.</span>"
+				to_chat(user, "<span class='notice'>This section is too damaged to support a tile. Use a welder to fix the damage.</span>")
 
 
 	if(istype(C, /obj/item/stack/cable_coil))
@@ -480,29 +480,29 @@ var/list/wood_icons = list("wood", "wood-broken")
 			var/obj/item/stack/cable_coil/coil = C
 			coil.turf_place(src, user)
 		else
-			user << "<span class='warning'>You must remove the plating first.</span>"
+			to_chat(user, "<span class='warning'>You must remove the plating first.</span>")
 
 	if(istype(C, /obj/item/tool/shovel))
 		if(is_grass_floor())
 			new /obj/item/ore/glass(src)
 			new /obj/item/ore/glass(src) //Make some sand if you shovel grass
-			user << "<span class='notice'>You shovel the grass.</span>"
+			to_chat(user, "<span class='notice'>You shovel the grass.</span>")
 			make_plating()
 		else
-			user << "<span class='warning'>You cannot shovel this.</span>"
+			to_chat(user, "<span class='warning'>You cannot shovel this.</span>")
 
 	if(istype(C, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/welder = C
 		if(welder.isOn() && (is_plating()))
 			if(broken || burnt)
 				if(welder.remove_fuel(0, user))
-					user << "<span class='warning'>You fix some dents on the broken plating.</span>"
+					to_chat(user, "<span class='warning'>You fix some dents on the broken plating.</span>")
 					playsound(src, 'sound/items/Welder.ogg', 25, 1)
 					icon_state = "plating"
 					burnt = 0
 					broken = 0
 				else
-					user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
+					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 
 
 

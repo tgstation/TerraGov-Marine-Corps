@@ -26,13 +26,13 @@
 	if(!active)
 
 		if(!user.IsAdvancedToolUser())
-			user << "<span class='warning'>You don't have the dexterity to do this!</span>"
+			to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 
 		add_fingerprint(user)
 		activate(user)
 		if((CLUMSY in user.mutations) && prob(50))
-			user << "<span class='warning'>Huh? How does this thing work?</span>"
+			to_chat(user, "<span class='warning'>Huh? How does this thing work?</span>")
 			spawn(5) prime()
 
 		else
@@ -80,16 +80,16 @@
 		switch(det_time)
 			if ("1")
 				det_time = 10
-				user << "<span class='notice'>You set the [name] for 1 second detonation time.</span>"
+				to_chat(user, "<span class='notice'>You set the [name] for 1 second detonation time.</span>")
 			if ("10")
 				det_time = 30
-				user << "<span class='notice'>You set the [name] for 3 second detonation time.</span>"
+				to_chat(user, "<span class='notice'>You set the [name] for 3 second detonation time.</span>")
 			if ("30")
 				det_time = 50
-				user << "<span class='notice'>You set the [name] for 5 second detonation time.</span>"
+				to_chat(user, "<span class='notice'>You set the [name] for 5 second detonation time.</span>")
 			if ("50")
 				det_time = 1
-				user << "<span class='notice'>You set the [name] for instant detonation.</span>"
+				to_chat(user, "<span class='notice'>You set the [name] for instant detonation.</span>")
 		add_fingerprint(user)
 	..()
 	return

@@ -14,21 +14,21 @@
 /obj/item/device/megaphone/attack_self(mob/living/user)
 	if (user.client)
 		if(user.client.prefs.muted & MUTE_IC)
-			src << "\red You cannot speak in IC (muted)."
+			to_chat(src, "\red You cannot speak in IC (muted).")
 			return
 	if(!ishuman(user))
-		user << "\red You don't know how to use this!"
+		to_chat(user, "\red You don't know how to use this!")
 		return
 	if(user.silent)
 		return
 
 	var/mob/living/carbon/human/H = user
 	if(H.species && H.species == "Yautja")
-		user << "Some soft-meat toy. It's useless to you."
+		to_chat(user, "Some soft-meat toy. It's useless to you.")
 		return
 
 	if(spamcheck)
-		user << "\red \The [src] needs to recharge!"
+		to_chat(user, "\red \The [src] needs to recharge!")
 		return
 
 	var/message = copytext(sanitize(input(user, "Shout a message?", "Megaphone", null)  as text),1,MAX_MESSAGE_LEN)
@@ -43,7 +43,7 @@
 					O.show_message("<B>[user]</B> broadcasts, <FONT size=3>\"[pick(insultmsg)]\"</FONT>",2) // 2 stands for hearable message
 				insults--
 			else
-				user << "\red *BZZZZzzzzzt*"
+				to_chat(user, "\red *BZZZZzzzzzt*")
 		else
 			for(var/mob/living/carbon/human/O in (viewers(user)))
 				if(O.species && O.species.name == "Yautja") //NOPE
@@ -58,7 +58,7 @@
 
 /obj/item/device/megaphone/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/card/emag) && !emagged)
-		user << "\red You overload \the [src]'s voice synthesizer."
+		to_chat(user, "\red You overload \the [src]'s voice synthesizer.")
 		emagged = 1
 		insults = rand(1, 3)//to prevent dickflooding
 		return

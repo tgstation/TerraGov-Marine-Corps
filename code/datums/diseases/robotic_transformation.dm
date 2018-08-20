@@ -19,36 +19,36 @@
 	switch(stage)
 		if(2)
 			if (prob(8))
-				affected_mob << "Your joints feel stiff."
+				to_chat(affected_mob, "Your joints feel stiff.")
 				affected_mob.take_limb_damage(1)
 			if (prob(9))
-				affected_mob << "\red Beep...boop.."
+				to_chat(affected_mob, "\red Beep...boop..")
 			if (prob(9))
-				affected_mob << "\red Bop...beeep..."
+				to_chat(affected_mob, "\red Bop...beeep...")
 		if(3)
 			if (prob(8))
-				affected_mob << "\red Your joints feel very stiff."
+				to_chat(affected_mob, "\red Your joints feel very stiff.")
 				affected_mob.take_limb_damage(1)
 			if (prob(8))
 				affected_mob.say(pick("Beep, boop", "beep, beep!", "Boop...bop"))
 			if (prob(10))
-				affected_mob << "Your skin feels loose."
+				to_chat(affected_mob, "Your skin feels loose.")
 				affected_mob.take_limb_damage(5)
 			if (prob(4))
-				affected_mob << "\red You feel a stabbing pain in your head."
+				to_chat(affected_mob, "\red You feel a stabbing pain in your head.")
 				affected_mob.KnockOut(2)
 			if (prob(4))
-				affected_mob << "\red You can feel something move...inside."
+				to_chat(affected_mob, "\red You can feel something move...inside.")
 		if(4)
 			if (prob(10))
-				affected_mob << "\red Your skin feels very loose."
+				to_chat(affected_mob, "\red Your skin feels very loose.")
 				affected_mob.take_limb_damage(8)
 			if (prob(20))
 				affected_mob.say(pick("beep, beep!", "Boop bop boop beep.", "kkkiiiill mmme", "I wwwaaannntt tttoo dddiiieeee..."))
 			if (prob(8))
-				affected_mob << "\red You can feel... something...inside you."
+				to_chat(affected_mob, "\red You can feel... something...inside you.")
 		if(5)
-			affected_mob <<"\red Your skin feels as if it's about to burst off..."
+			to_chat(affected_mob, "\red Your skin feels as if it's about to burst off...")
 			affected_mob.adjustToxLoss(10)
 			affected_mob.updatehealth()
 			if(prob(40)) //So everyone can feel like robot Seth Brundle

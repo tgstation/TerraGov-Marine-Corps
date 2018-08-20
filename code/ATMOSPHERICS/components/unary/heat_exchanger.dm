@@ -38,7 +38,7 @@
 		return ..()
 	var/turf/T = loc
 	if(level == 1 && isturf(T) && T.intact_tile)
-		user << "<span class='warning'>You must remove the plating first.</span>"
+		to_chat(user, "<span class='warning'>You must remove the plating first.</span>")
 		return 1
 
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)

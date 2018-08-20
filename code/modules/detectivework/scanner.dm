@@ -11,11 +11,11 @@
 
 /obj/item/device/detective_scanner/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	if (!ishuman(M))
-		user << "<span class='warning'>[M] is not human and cannot have the fingerprints.</span>"
+		to_chat(user, "<span class='warning'>[M] is not human and cannot have the fingerprints.</span>")
 		flick("forensic0",src)
 		return 0
 	if (( !( istype(M.dna, /datum/dna) ) || M.gloves) )
-		user << "<span class='notice'>No fingerprints found on [M]</span>"
+		to_chat(user, "<span class='notice'>No fingerprints found on [M]</span>")
 		flick("forensic0",src)
 		return 0
 	else
@@ -24,13 +24,13 @@
 		F.add_fingerprint(M)
 		F.icon_state = "fingerprint1"
 		F.name = text("FPrintC- '[M.name]'")
-		user << "<span class='notice'>Done printing."
-		user << "<span class='notice'>[M]'s Fingerprints: [md5(M.dna.uni_identity)]"
+		to_chat(user, "<span class='notice'>Done printing.")
+		to_chat(user, "<span class='notice'>[M]'s Fingerprints: [md5(M.dna.uni_identity)]")
 	if ( M.blood_DNA && M.blood_DNA.len )
-		user << "<span class='notice'>Blood found on [M]. Analysing...</span>"
+		to_chat(user, "<span class='notice'>Blood found on [M]. Analysing...</span>")
 		spawn(15)
 			for(var/blood in M.blood_DNA)
-				user << "<span class='notice'>Blood type: [M.blood_DNA[blood]]\nDNA: [blood]</span>"
+				to_chat(user, "<span class='notice'>Blood type: [M.blood_DNA[blood]]\nDNA: [blood]</span>")
 	return
 
 /obj/item/device/detective_scanner/afterattack(atom/A as obj|turf, mob/user, proximity)
@@ -45,7 +45,7 @@
 		return
 
 	if(istype(A,/obj/item/f_card))
-		user << "The scanner displays on the screen: \"ERROR 43: Object on Excluded Object List.\""
+		to_chat(user, "The scanner displays on the screen: \"ERROR 43: Object on Excluded Object List.\"")
 		flick("forensic0",src)
 		return
 
@@ -57,12 +57,12 @@
 		var/turf/T = get_turf(A)
 		for(var/obj/effect/decal/cleanable/blood/B in T)
 			if (B.blood_DNA && B.blood_DNA.len)
-				user << "<span class='notice'>Blood detected. Analysing...</span>"
+				to_chat(user, "<span class='notice'>Blood detected. Analysing...</span>")
 				spawn(15)
 					for(var/blood in B.blood_DNA)
-						user << "Blood type: \red [B.blood_DNA[blood]] \t \black DNA: \red [blood]"
+						to_chat(user, "Blood type: \red [B.blood_DNA[blood]] \t \black DNA: \red [blood]")
 					if(add_data(B))
-						user << "<span class='notice'>Object already in internal memory. Consolidating data...</span>"
+						to_chat(user, "<span class='notice'>Object already in internal memory. Consolidating data...</span>")
 						flick("forensic2",src)
 				return
 	if ((!A.fingerprints || !A.fingerprints.len) && !A.suit_fibers && !A.blood_DNA)
@@ -73,37 +73,37 @@
 		return 0
 
 	if(add_data(A))
-		user << "<span class='notice'>Object already in internal memory. Consolidating data...</span>"
+		to_chat(user, "<span class='notice'>Object already in internal memory. Consolidating data...</span>")
 		flick("forensic2",src)
 		return
 
 	//PRINTS
 	if(A.fingerprints && A.fingerprints.len)
-		user << "<span class='notice'>Isolated [A.fingerprints.len] fingerprints:</span>"
-		user << "Data Stored: Scan with Hi-Res Forensic Scanner to retrieve.</span>"
+		to_chat(user, "<span class='notice'>Isolated [A.fingerprints.len] fingerprints:</span>")
+		to_chat(user, "Data Stored: Scan with Hi-Res Forensic Scanner to retrieve.</span>")
 		var/list/complete_prints = list()
 		for(var/i in A.fingerprints)
 			var/print = A.fingerprints[i]
 			if(stringpercent(print) <= FINGERPRINT_COMPLETE)
 				complete_prints += print
 		if(complete_prints.len < 1)
-			user << "<span class='notice'>No intact prints found</span>"
+			to_chat(user, "<span class='notice'>No intact prints found</span>")
 		else
-			user << "<span class='notice'>Found [complete_prints.len] intact prints</span>"
+			to_chat(user, "<span class='notice'>Found [complete_prints.len] intact prints</span>")
 			for(var/i in complete_prints)
-				user << "<span class='notice'>&nbsp;&nbsp;&nbsp;&nbsp;[i]</span>"
+				to_chat(user, "<span class='notice'>&nbsp;&nbsp;&nbsp;&nbsp;[i]</span>")
 
 	//FIBERS
 	if(A.suit_fibers && A.suit_fibers.len)
-		user << "<span class='notice'>Fibers/Materials Data Stored: Scan with Hi-Res Forensic Scanner to retrieve."
+		to_chat(user, "<span class='notice'>Fibers/Materials Data Stored: Scan with Hi-Res Forensic Scanner to retrieve.")
 		flick("forensic2",src)
 
 	//Blood
 	if (A.blood_DNA && A.blood_DNA.len)
-		user << "<span class='notice'>Blood detected. Analysing...</span>"
+		to_chat(user, "<span class='notice'>Blood detected. Analysing...</span>")
 		spawn(15)
 			for(var/blood in A.blood_DNA)
-				user << "Blood type: \red [A.blood_DNA[blood]] \t \black DNA: \red [blood]"
+				to_chat(user, "Blood type: \red [A.blood_DNA[blood]] \t \black DNA: \red [blood]")
 
 	user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
 	"<span class='notice'>You finish scanning \the [A].</span>",\

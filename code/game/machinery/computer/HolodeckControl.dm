@@ -113,8 +113,8 @@ var/global/list/holodeck_programs = list(
 	if(istype(D, /obj/item/card/emag) && !emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
 		emagged = 1
-		user << "\blue You vastly increase projector power and override the safety and security protocols."
-		user << "Warning.  Automatic shutoff and derezing protocols have been corrupted.  Please call Nanotrasen maintenance and do not use the simulator."
+		to_chat(user, "\blue You vastly increase projector power and override the safety and security protocols.")
+		to_chat(user, "Warning.  Automatic shutoff and derezing protocols have been corrupted.  Please call Nanotrasen maintenance and do not use the simulator.")
 		log_game("[key_name(usr)] emagged the Holodeck Control Computer")
 	src.updateUsrDialog()
 	return
@@ -341,7 +341,7 @@ var/global/list/holodeck_programs = list(
 		if(ismob(G.grabbed_thing))
 			var/mob/M = G.grabbed_thing
 			if(user.grab_level < GRAB_AGGRESSIVE)
-				user << "<span class='warning'>You need a better grip to do that!</span>"
+				to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 				return
 			M.forceMove(loc)
 			M.KnockDown(5)
@@ -349,7 +349,7 @@ var/global/list/holodeck_programs = list(
 		return
 
 	if (istype(W, /obj/item/tool/wrench))
-		user << "It's a holotable!  There are no bolts!"
+		to_chat(user, "It's a holotable!  There are no bolts!")
 		return
 
 	if(isrobot(user))
@@ -417,7 +417,7 @@ var/global/list/holodeck_programs = list(
 		if(ismob(G.grabbed_thing))
 			var/mob/M = G.grabbed_thing
 			if(user.grab_level < GRAB_AGGRESSIVE)
-				user << "<span class='warning'>You need a better grip to do that!</span>"
+				to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 				return
 			M.forceMove(loc)
 			M.KnockDown(5)
@@ -471,11 +471,11 @@ var/global/list/holodeck_programs = list(
 	power_channel = ENVIRON
 
 /obj/machinery/readybutton/attack_ai(mob/user as mob)
-	user << "The station AI is not to interact with these devices!"
+	to_chat(user, "The station AI is not to interact with these devices!")
 	return
 
 /obj/machinery/readybutton/attack_paw(mob/user as mob)
-	user << "You are too primitive to use this device."
+	to_chat(user, "You are too primitive to use this device.")
 	return
 
 /obj/machinery/readybutton/New()
@@ -483,11 +483,11 @@ var/global/list/holodeck_programs = list(
 
 
 /obj/machinery/readybutton/attackby(obj/item/W as obj, mob/user as mob)
-	user << "The device is a solid button, there's nothing you can do with it!"
+	to_chat(user, "The device is a solid button, there's nothing you can do with it!")
 
 /obj/machinery/readybutton/attack_hand(mob/user as mob)
 	if(user.stat || stat & (NOPOWER|BROKEN))
-		user << "This device is not powered."
+		to_chat(user, "This device is not powered.")
 		return
 
 	currentarea = get_area(src.loc)
@@ -495,7 +495,7 @@ var/global/list/holodeck_programs = list(
 		cdel(src)
 
 	if(eventstarted)
-		usr << "The event has already begun!"
+		to_chat(usr, "The event has already begun!")
 		return
 
 	ready = !ready
@@ -527,7 +527,7 @@ var/global/list/holodeck_programs = list(
 		cdel(W)
 
 	for(var/mob/M in currentarea)
-		M << "FIGHT!"
+		to_chat(M, "FIGHT!")
 
 //Holorack
 
@@ -542,5 +542,5 @@ var/global/list/holodeck_programs = list(
 
 /obj/structure/rack/holorack/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/tool/wrench))
-		user << "It's a holorack!  You can't unwrench it!"
+		to_chat(user, "It's a holorack!  You can't unwrench it!")
 		return

@@ -13,7 +13,7 @@
 
 	attack_self(mob/user)
 		if(!isturf(user.loc))
-			user << "You cannot turn the light on while in [user.loc]" //To prevent some lighting anomalities.
+			to_chat(user, "You cannot turn the light on while in [user.loc]")
 			return
 		on = !on
 		icon_state = "hardhat[on]_[hardhat_color]"

@@ -82,42 +82,42 @@
 			if(istype(P, /obj/item/tool/wrench))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					user << "\blue You wrench the frame into place."
+					to_chat(user, "\blue You wrench the frame into place.")
 					src.anchored = 1
 					src.state = 1
 			if(istype(P, /obj/item/tool/weldingtool))
 				var/obj/item/tool/weldingtool/WT = P
 				if(!WT.remove_fuel(0, user))
-					user << "[WT] must be on to complete this task."
+					to_chat(user, "[WT] must be on to complete this task.")
 					return
 				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 					if(!src || !WT.isOn()) return
-					user << "\blue You deconstruct the frame."
+					to_chat(user, "\blue You deconstruct the frame.")
 					new /obj/item/stack/sheet/metal( src.loc, 5 )
 					cdel(src)
 		if(1)
 			if(istype(P, /obj/item/tool/wrench))
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					user << "\blue You unfasten the frame."
+					to_chat(user, "\blue You unfasten the frame.")
 					src.anchored = 0
 					src.state = 0
 			if(istype(P, /obj/item/circuitboard/computer) && !circuit)
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-				user << "\blue You place the circuit board inside the frame."
+				to_chat(user, "\blue You place the circuit board inside the frame.")
 				icon_state = "1"
 				circuit = P
 				user.drop_inv_item_to_loc(P, src)
 
 			if(istype(P, /obj/item/tool/screwdriver) && circuit)
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				user << "\blue You screw the circuit board into place."
+				to_chat(user, "\blue You screw the circuit board into place.")
 				src.state = 2
 				src.icon_state = "2"
 			if(istype(P, /obj/item/tool/crowbar) && circuit)
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-				user << "\blue You remove the circuit board."
+				to_chat(user, "\blue You remove the circuit board.")
 				src.state = 1
 				src.icon_state = "0"
 				circuit.loc = src.loc
@@ -125,7 +125,7 @@
 		if(2)
 			if(istype(P, /obj/item/tool/screwdriver) && circuit)
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				user << "\blue You unfasten the circuit board."
+				to_chat(user, "\blue You unfasten the circuit board.")
 				src.state = 1
 				src.icon_state = "1"
 
@@ -134,10 +134,10 @@
 					playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 					if(do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD))
 						battery.loc = loc
-						user << "\blue You remove [battery]."
+						to_chat(user, "\blue You remove [battery].")
 						battery = null
 				else
-					user << "\red There's no battery to remove!"
+					to_chat(user, "\red There's no battery to remove!")
 
 			if(istype(P, /obj/item/cell))
 				if(!battery)
@@ -145,9 +145,9 @@
 					if(do_after(user, 5, TRUE, 5, BUSY_ICON_BUILD))
 						battery = P
 						P.loc = src
-						user << "\blue You insert [battery]."
+						to_chat(user, "\blue You insert [battery].")
 				else
-					user << "\red There's already \an [battery] in [src]!"
+					to_chat(user, "\red There's already \an [battery] in [src]!")
 
 
 			if(istype(P, /obj/item/stack/cable_coil))
@@ -157,16 +157,16 @@
 						if(P)
 							P:amount -= 5
 							if(!P:amount) cdel(P)
-							user << "\blue You add cables to the frame."
+							to_chat(user, "\blue You add cables to the frame.")
 							src.state = 3
 							src.icon_state = "3"
 		if(3)
 			if(istype(P, /obj/item/tool/wirecutters))
 				if(components.len)
-					user << "There are parts in the way!"
+					to_chat(user, "There are parts in the way!")
 					return
 				playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
-				user << "\blue You remove the cables."
+				to_chat(user, "\blue You remove the cables.")
 				src.state = 2
 				src.icon_state = "2"
 				var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( src.loc )
@@ -181,19 +181,19 @@
 					if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 						if(P)
 							P:use(2)
-							user << "\blue You put in the glass panel."
+							to_chat(user, "\blue You put in the glass panel.")
 							src.state = 4
 							src.icon_state = "4"
 		if(4)
 			if(istype(P, /obj/item/tool/crowbar))
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-				user << "\blue You remove the glass panel."
+				to_chat(user, "\blue You remove the glass panel.")
 				src.state = 3
 				src.icon_state = "3"
 				new /obj/item/stack/sheet/glass( src.loc, 2 )
 			if(istype(P, /obj/item/tool/screwdriver))
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				user << "\blue You connect the monitor."
+				to_chat(user, "\blue You connect the monitor.")
 				var/obj/machinery/computer3/B = new src.circuit.build_path ( src.loc, built=1 )
 				/*if(circuit.powernet) B:powernet = circuit.powernet
 				if(circuit.id) B:id = circuit.id
@@ -216,7 +216,7 @@
 */
 /obj/structure/computer3frame/proc/remove_peripheral(var/obj/item/I = null)
 	if(!components || !components.len)
-		usr << "\red There are no components in [src] to take out!"
+		to_chat(usr, "\red There are no components in [src] to take out!")
 		return 0
 	if(!I)
 		I = input(usr, "Remove which component?","Remove component", null) as null|obj in components
@@ -255,42 +255,42 @@
 			else
 				warning("Erronous component in computerframe/remove_peripheral: [I]")
 				I.loc = loc
-			usr << "\blue You remove [I]"
+			to_chat(usr, "\blue You remove [I]")
 			return 1
 	return 0
 /obj/structure/computer3frame/proc/insert_peripheral(var/obj/item/I)
 	if(components.len >= max_components)
-		usr << "There isn't room in [src] for another component!"
+		to_chat(usr, "There isn't room in [src] for another component!")
 		return 0
 	switch(I.type)
 		if(/obj/item/computer3_part/storage/hdd)
 			if(hdd)
-				usr << "There is already \an [hdd] in [src]!"
+				to_chat(usr, "There is already \an [hdd] in [src]!")
 				return 0
 			hdd = I
 			components += hdd
 			hdd.loc = src
 		if(/obj/item/computer3_part/storage/removable)
 			if(floppy)
-				usr << "There is already \an [floppy] in [src]!"
+				to_chat(usr, "There is already \an [floppy] in [src]!")
 				return 0
 			floppy = I
 			components += floppy
 			floppy.loc = src
 		if(/obj/item/computer3_part/networking/radio)
 			if(radio)
-				usr << "There is already \an [radio] in [src]!"
+				to_chat(usr, "There is already \an [radio] in [src]!")
 				return 0
 			radio = I
 			components += radio
 			radio.loc = src
 		if(/obj/item/computer3_part/networking/cameras)
 			if(camnet)
-				usr << "There is already \an [camnet] in [src]!"
+				to_chat(usr, "There is already \an [camnet] in [src]!")
 				return 0
 			camnet = I
 			components += camnet
 			camnet.loc = src
 		if(/obj/item/computer3_part/networking)
 			if(net)
-				usr << "There is already \an [net] in [src]!"
+				to_chat(usr, "There is already \an [net] in [src]!")

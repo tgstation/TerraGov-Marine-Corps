@@ -45,7 +45,7 @@
 			calc_reimburse(L)
 			usr.drop_inv_item_to_loc(L, src)
 			vendmode = 3
-			usr << "<span class='notice'>You slot your [L.name] into \The [src.name]</span>"
+			to_chat(usr, "<span class='notice'>You slot your [L.name] into \The [src.name]</span>")
 	else
 		..()
 
@@ -204,7 +204,7 @@
 		visible_message("<span class='info'>[usr] swipes a card through [src].</span>")
 		var/datum/money_account/CH = get_account(C.associated_account_number)
 		if(!CH || isnull(CH) || !istype(CH))
-			usr << "\red This card has no account data!"
+			to_chat(usr, "\red This card has no account data!")
 			return
 		if(CH.security_level != 0) //If card requires pin authentication (ie seclevel 1 or 2)
 			if(vendor_account)
@@ -213,9 +213,9 @@
 				if(D)
 					transfer_and_vend(D, C)
 				else
-					usr << "\icon[src]<span class='warning'>Unable to access account. Check security settings and try again.</span>"
+					to_chat(usr, "\icon[src]<span class='warning'>Unable to access account. Check security settings and try again.</span>")
 			else
-				usr << "\icon[src]<span class='warning'>Unable to access vendor account. Please record the machine ID and call CentComm Support.</span>"
+				to_chat(usr, "\icon[src]<span class='warning'>Unable to access vendor account. Please record the machine ID and call CentComm Support.</span>")
 		else
 			transfer_and_vend(CH, C)
 
@@ -264,7 +264,7 @@
 		network = 0
 		power = 0
 	else
-		usr << "\icon[src]<span class='warning'>You don't have that much money!</span>"
+		to_chat(usr, "\icon[src]<span class='warning'>You don't have that much money!</span>")
 
 /obj/machinery/lapvend/proc/total()
 	var/total = 0
@@ -357,9 +357,9 @@
 				if(D)
 					transfer_and_reimburse(D)
 				else
-					usr << "\icon[src]<span class='warning'>Unable to access account. Check security settings and try again.</span>"
+					to_chat(usr, "\icon[src]<span class='warning'>Unable to access account. Check security settings and try again.</span>")
 			else
-				usr << "\icon[src]<span class='warning'>Unable to access vendor account. Please record the machine ID and call CentComm Support.</span>"
+				to_chat(usr, "\icon[src]<span class='warning'>Unable to access vendor account. Please record the machine ID and call CentComm Support.</span>")
 		else
 			transfer_and_reimburse(CH)
 

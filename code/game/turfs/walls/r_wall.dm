@@ -13,12 +13,12 @@
 /turf/closed/wall/r_wall/attack_hand(mob/user)
 	if (HULK in user.mutations)
 		if (prob(10))
-			usr << text("\blue You smash through the wall.")
+			to_chat(usr, text("\blue You smash through the wall."))
 			usr.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 			dismantle_wall(1)
 			return
 		else
-			user << "\blue You punch the wall."
+			to_chat(user, "\blue You punch the wall.")
 			return
 
 	add_fingerprint(user)
@@ -28,7 +28,7 @@
 		return
 
 	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		user << "<span class='warning'>You don't have the dexterity to do this!</span>"
+		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 
 	//get the user's location
@@ -38,7 +38,7 @@
 	if(thermite)
 		if(W.heat_source >= 1000)
 			if(hull)
-				user << "<span class='warning'>[src] is much too tough for you to do anything to it with [W]</span>."
+				to_chat(user, "<span class='warning'>[src] is much too tough for you to do anything to it with [W]</span>.")
 			else
 				if(istype(W, /obj/item/tool/weldingtool))
 					var/obj/item/tool/weldingtool/WT = W
@@ -49,14 +49,14 @@
 	if(damage && istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0,user))
-			user << "<span class='notice'>You start repairing the damage to [src].</span>"
+			to_chat(user, "<span class='notice'>You start repairing the damage to [src].</span>")
 			playsound(src, 'sound/items/Welder.ogg', 25, 1)
 			if(do_after(user, max(5, damage / 5, TRUE, 5, BUSY_ICON_FRIENDLY)) && WT && WT.isOn())
-				user << "<span class='notice'>You finish repairing the damage to [src].</span>"
+				to_chat(user, "<span class='notice'>You finish repairing the damage to [src].</span>")
 				take_damage(-damage)
 			return
 		else
-			user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
+			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return
 
 
@@ -67,12 +67,12 @@
 				playsound(src, 'sound/items/Wirecutter.ogg', 25, 1)
 				src.d_state = 1
 				new /obj/item/stack/rods( src )
-				user << "<span class='notice'>You cut the outer grille.</span>"
+				to_chat(user, "<span class='notice'>You cut the outer grille.</span>")
 				return
 
 		if(1)
 			if (istype(W, /obj/item/tool/screwdriver))
-				user << "<span class='notice'>You begin removing the support lines.</span>"
+				to_chat(user, "<span class='notice'>You begin removing the support lines.</span>")
 				playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
 
 				if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
@@ -81,14 +81,14 @@
 
 					if(d_state == 1)
 						d_state = 2
-						user << "<span class='notice'>You remove the support lines.</span>"
+						to_chat(user, "<span class='notice'>You remove the support lines.</span>")
 				return
 
 			//REPAIRING (replacing the outer grille for cosmetic damage)
 			else if( istype(W, /obj/item/stack/rods) )
 				var/obj/item/stack/O = W
 				d_state = 0
-				user << "<span class='notice'>You replace the outer grille.</span>"
+				to_chat(user, "<span class='notice'>You replace the outer grille.</span>")
 				if (O.amount > 1)
 					O.amount--
 				else
@@ -100,7 +100,7 @@
 				var/obj/item/tool/weldingtool/WT = W
 				if( WT.remove_fuel(0,user) )
 
-					user << "<span class='notice'>You begin slicing through the metal cover.</span>"
+					to_chat(user, "<span class='notice'>You begin slicing through the metal cover.</span>")
 					playsound(src, 'sound/items/Welder.ogg', 25, 1)
 
 					if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
@@ -110,14 +110,14 @@
 
 						if( d_state == 2)
 							d_state = 3
-							user << "<span class='notice'>You press firmly on the cover, dislodging it.</span>"
+							to_chat(user, "<span class='notice'>You press firmly on the cover, dislodging it.</span>")
 				else
-					user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
+					to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
 				return
 
 			if( istype(W, /obj/item/tool/pickaxe/plasmacutter) )
 
-				user << "<span class='notice'>You begin slicing through the metal cover.</span>"
+				to_chat(user, "<span class='notice'>You begin slicing through the metal cover.</span>")
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 
 				if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
@@ -126,13 +126,13 @@
 
 					if(d_state == 2 )
 						d_state = 3
-						user << "<span class='notice'>You press firmly on the cover, dislodging it.</span>"
+						to_chat(user, "<span class='notice'>You press firmly on the cover, dislodging it.</span>")
 				return
 
 		if(3)
 			if (istype(W, /obj/item/tool/crowbar))
 
-				user << "<span class='notice'>You struggle to pry off the cover.</span>"
+				to_chat(user, "<span class='notice'>You struggle to pry off the cover.</span>")
 				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 
 				if(do_after(user, 100, TRUE, 5, BUSY_ICON_BUILD))
@@ -140,13 +140,13 @@
 						return
 					if(d_state == 3 )
 						d_state = 4
-						user << "<span class='notice'>You pry off the cover.</span>"
+						to_chat(user, "<span class='notice'>You pry off the cover.</span>")
 				return
 
 		if(4)
 			if (istype(W, /obj/item/tool/wrench))
 
-				user << "<span class='notice'>You start loosening the anchoring bolts which secure the support rods to their frame.</span>"
+				to_chat(user, "<span class='notice'>You start loosening the anchoring bolts which secure the support rods to their frame.</span>")
 				playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
 
 				if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
@@ -155,7 +155,7 @@
 
 					if(d_state == 4)
 						d_state = 5
-						user << "<span class='notice'>You remove the bolts anchoring the support rods.</span>"
+						to_chat(user, "<span class='notice'>You remove the bolts anchoring the support rods.</span>")
 				return
 
 		if(5)
@@ -177,7 +177,7 @@
 		if(6)
 			if( istype(W, /obj/item/tool/crowbar) )
 
-				user << "<span class='notice'>You struggle to pry off the outer sheath.</span>"
+				to_chat(user, "<span class='notice'>You struggle to pry off the outer sheath.</span>")
 				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 
 				if(do_after(user, 100, TRUE, 5, BUSY_ICON_BUILD))
@@ -185,7 +185,7 @@
 						return
 
 					if(d_state == 6)
-						user << "<span class='notice'>You pry off the outer sheath.</span>"
+						to_chat(user, "<span class='notice'>You pry off the outer sheath.</span>")
 						dismantle_wall()
 				return
 
@@ -194,12 +194,12 @@
 	//DRILLING
 	if (istype(W, /obj/item/tool/pickaxe/diamonddrill))
 
-		user << "<span class='notice'>You begin to drill though the wall.</span>"
+		to_chat(user, "<span class='notice'>You begin to drill though the wall.</span>")
 
 		if(do_after(user, 200, TRUE, 5, BUSY_ICON_BUILD))
 			if(!istype(src, /turf/closed/wall/r_wall))
 				return
-			user << "<span class='notice'>Your drill tears though the last of the reinforced plating.</span>"
+			to_chat(user, "<span class='notice'>Your drill tears though the last of the reinforced plating.</span>")
 			dismantle_wall()
 
 	//REPAIRING

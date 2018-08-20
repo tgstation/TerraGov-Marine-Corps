@@ -38,7 +38,7 @@
 	set name = "Show Camera List"
 
 	if(src.stat == 2)
-		src << "You can't list the cameras because you are dead!"
+		to_chat(src, "You can't list the cameras because you are dead!")
 		return
 
 	if (!camera || camera == "Cancel")
@@ -56,24 +56,24 @@
 
 	loc = copytext(sanitize(loc), 1, MAX_MESSAGE_LEN)
 	if(!loc)
-		src << "\red Must supply a location name"
+		to_chat(src, "\red Must supply a location name")
 		return
 
 	if(stored_locations.len >= max_locations)
-		src << "\red Cannot store additional locations. Remove one first"
+		to_chat(src, "\red Cannot store additional locations. Remove one first")
 		return
 
 	if(loc in stored_locations)
-		src << "\red There is already a stored location by this name"
+		to_chat(src, "\red There is already a stored location by this name")
 		return
 
 	var/L = src.eyeobj.getLoc()
 	if (InvalidTurf(get_turf(L)))
-		src << "\red Unable to store this location"
+		to_chat(src, "\red Unable to store this location")
 		return
 
 	stored_locations[loc] = L
-	src << "Location '[loc]' stored"
+	to_chat(src, "Location '[loc]' stored")
 
 /mob/living/silicon/ai/proc/sorted_stored_locations()
 	return sortList(stored_locations)
@@ -84,7 +84,7 @@
 	set desc = "Returns to the selected camera location"
 
 	if (!(loc in stored_locations))
-		src << "\red Location [loc] not found"
+		to_chat(src, "\red Location [loc] not found")
 		return
 
 	var/L = stored_locations[loc]
@@ -96,11 +96,11 @@
 	set desc = "Deletes the selected camera location"
 
 	if (!(loc in stored_locations))
-		src << "\red Location [loc] not found"
+		to_chat(src, "\red Location [loc] not found")
 		return
 
 	stored_locations.Remove(loc)
-	src << "Location [loc] removed"
+	to_chat(src, "Location [loc] removed")
 
 // Used to allow the AI is write in mob names/camera name from the CMD line.
 /datum/trackable
@@ -163,7 +163,7 @@
 	set desc = "Select who you would like to track."
 
 	if(src.stat == 2)
-		src << "You can't track with camera because you are dead!"
+		to_chat(src, "You can't track with camera because you are dead!")
 		return
 	if(!target_name)
 		src.cameraFollow = null
@@ -176,7 +176,7 @@
 	if(!cameraFollow)
 		return
 
-	src << "Follow camera mode [forced ? "terminated" : "ended"]."
+	to_chat(src, "Follow camera mode [forced ? "terminated" : "ended"].")
 	cameraFollow = null
 
 /mob/living/silicon/ai/proc/ai_actual_track(mob/living/target as mob)
@@ -184,10 +184,10 @@
 	var/mob/living/silicon/ai/U = usr
 
 	U.cameraFollow = target
-	//U << text("Now tracking [] on camera.", target.name)
+	//to_chat(U, text("Now tracking [] on camera.", target.name))
 	//if (U.interactee == null)
 	//	U.set_interaction(U)
-	U << "Now tracking [target.name] on camera."
+	to_chat(U, "Now tracking [target.name] on camera.")
 
 	spawn (0)
 		while (U.cameraFollow == target)
@@ -207,7 +207,7 @@
 				return
 
 			if (!near_camera(target))
-				U << "Target is not near any active cameras."
+				to_chat(U, "Target is not near any active cameras.")
 				sleep(100)
 				continue
 

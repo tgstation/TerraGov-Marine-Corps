@@ -64,7 +64,7 @@
 		return 1
 	else if(istype(mover, /mob/living))
 		if(prob(50))
-			mover << "<span class='warning'>You get stuck in [src] for a moment.</span>"
+			to_chat(mover, "<span class='warning'>You get stuck in [src] for a moment.</span>")
 			return 0
 	else if(istype(mover, /obj/item/projectile))
 		return prob(30)

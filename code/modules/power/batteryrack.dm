@@ -110,20 +110,20 @@
 					cdel(src)
 					return 1
 				else
-					user << "<span class='warning'>Turn off the [src] before dismantling it.</span>"
+					to_chat(user, "<span class='warning'>Turn off the [src] before dismantling it.</span>")
 			else
-				user << "<span class='warning'>Better let [src] discharge before dismantling it.</span>"
+				to_chat(user, "<span class='warning'>Better let [src] discharge before dismantling it.</span>")
 		else if ((istype(W, /obj/item/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(W, /obj/item/cell) && (cells_amount < 5)))
 			if (charge < (capacity / 100))
 				if (!online && !chargemode)
 					if(user.drop_inv_item_to_loc(W, src))
 						component_parts += W
 						RefreshParts()
-						user << "<span class='notice'>You upgrade the [src] with [W.name].</span>"
+						to_chat(user, "<span class='notice'>You upgrade the [src] with [W.name].</span>")
 				else
-					user << "<span class='warning'>Turn off the [src] before dismantling it.</span>"
+					to_chat(user, "<span class='warning'>Turn off the [src] before dismantling it.</span>")
 			else
-				user << "<span class='warning'>Better let [src] discharge before putting your hand inside it.</span>"
+				to_chat(user, "<span class='warning'>Better let [src] discharge before putting your hand inside it.</span>")
 		else
 			user.set_interaction(src)
 			interact(user)

@@ -14,7 +14,7 @@
 
 		if (src.malfhack)
 			if (src.malfhack.aidisabled)
-				src << "\red ERROR: APC access disabled, hack attempt canceled."
+				to_chat(src, "\red ERROR: APC access disabled, hack attempt canceled.")
 				src.malfhacking = 0
 				src.malfhack = null
 
@@ -76,12 +76,12 @@
 */
 
 			if (src:aiRestorePowerRoutine==2)
-				src << "Alert cancelled. Power has been restored without our assistance."
+				to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
 				src:aiRestorePowerRoutine = 0
 				clear_fullscreen("blind")
 				return
 			else if (src:aiRestorePowerRoutine==3)
-				src << "Alert cancelled. Power has been restored."
+				to_chat(src, "Alert cancelled. Power has been restored.")
 				src:aiRestorePowerRoutine = 0
 				clear_fullscreen("blind")
 				return
@@ -99,31 +99,31 @@
 				if (src:aiRestorePowerRoutine==0)
 					src:aiRestorePowerRoutine = 1
 
-					src << "You've lost power!"
-//							world << "DEBUG CODE TIME! [loc] is the area the AI is sucking power from"
+					to_chat(src, "You've lost power!")
+//							to_chat(world, "DEBUG CODE TIME! [loc] is the area the AI is sucking power from")
 					if (!is_special_character(src))
 						src.set_zeroth_law("")
 					//src.clear_supplied_laws() // Don't reset our laws.
 					//var/time = time2text(world.realtime,"hh:mm:ss")
 					//lawchanges.Add("[time] <b>:</b> [src.name]'s noncore laws have been reset due to power failure")
 					spawn(20)
-						src << "Backup battery online. Scanners, camera, and radio interface offline. Beginning fault-detection."
+						to_chat(src, "Backup battery online. Scanners, camera, and radio interface offline. Beginning fault-detection.")
 						sleep(50)
 						if (loc.master.power_equip)
 							if (!istype(T, /turf/open/space))
-								src << "Alert cancelled. Power has been restored without our assistance."
+								to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
 								src:aiRestorePowerRoutine = 0
 								clear_fullscreen("blind")
 								return
-						src << "Fault confirmed: missing external power. Shutting down main control system to save power."
+						to_chat(src, "Fault confirmed: missing external power. Shutting down main control system to save power.")
 						sleep(20)
-						src << "Emergency control system online. Verifying connection to power network."
+						to_chat(src, "Emergency control system online. Verifying connection to power network.")
 						sleep(50)
 						if (istype(T, /turf/open/space))
-							src << "Unable to verify! No power connection detected!"
+							to_chat(src, "Unable to verify! No power connection detected!")
 							src:aiRestorePowerRoutine = 2
 							return
-						src << "Connection verified. Searching for APC in power network."
+						to_chat(src, "Connection verified. Searching for APC in power network.")
 						sleep(50)
 						var/obj/machinery/power/apc/theAPC = null
 /*
@@ -143,29 +143,31 @@
 										break
 							if (!theAPC)
 								switch(PRP)
-									if (1) src << "Unable to locate APC!"
-									else src << "Lost connection with the APC!"
+									if (1)
+										to_chat(src, "Unable to locate APC!")
+									else
+										to_chat(src, "Lost connection with the APC!")
 								src:aiRestorePowerRoutine = 2
 								return
 							if (loc.master.power_equip)
 								if (!istype(T, /turf/open/space))
-									src << "Alert cancelled. Power has been restored without our assistance."
+									to_chat(src, "Alert cancelled. Power has been restored without our assistance.")
 									src:aiRestorePowerRoutine = 0
 									clear_fullscreen("blind")
 									return
 							switch(PRP)
-								if (1) src << "APC located. Optimizing route to APC to avoid needless power waste."
-								if (2) src << "Best route identified. Hacking offline APC power port."
-								if (3) src << "Power port upload access confirmed. Loading control program into APC power port software."
+								if (1) to_chat(src, "APC located. Optimizing route to APC to avoid needless power waste.")
+								if (2) to_chat(src, "Best route identified. Hacking offline APC power port.")
+								if (3) to_chat(src, "Power port upload access confirmed. Loading control program into APC power port software.")
 								if (4)
-									src << "Transfer complete. Forcing APC to execute program."
+									to_chat(src, "Transfer complete. Forcing APC to execute program.")
 									sleep(50)
-									src << "Receiving control information from APC."
+									to_chat(src, "Receiving control information from APC.")
 									sleep(2)
 									//bring up APC dialog
 									theAPC.attack_ai(src)
 									src:aiRestorePowerRoutine = 3
-									src << "Here are your current laws:"
+									to_chat(src, "Here are your current laws:")
 									src.show_laws()
 							sleep(50)
 							theAPC = null

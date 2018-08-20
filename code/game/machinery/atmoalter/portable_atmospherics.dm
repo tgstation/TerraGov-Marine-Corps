@@ -67,32 +67,32 @@
 	if (istype(W, /obj/item/tool/wrench))
 		if(connected_port)
 			disconnect()
-			user << "\blue You disconnect [name] from the port."
+			to_chat(user, "\blue You disconnect [name] from the port.")
 			update_icon()
 			return
 		else
 			var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
 			if(possible_port)
 				if(connect(possible_port))
-					user << "\blue You connect [name] to the port."
+					to_chat(user, "\blue You connect [name] to the port.")
 					update_icon()
 					return
 				else
-					user << "\blue [name] failed to connect to the port."
+					to_chat(user, "\blue [name] failed to connect to the port.")
 					return
 			else
-				user << "\blue Nothing happens."
+				to_chat(user, "\blue Nothing happens.")
 				return
 
 	else if ((istype(W, /obj/item/device/analyzer)) && Adjacent(user))
 		visible_message("\red [user] has used [W] on \icon[icon]")
-		user << "\blue Results of analysis of \icon[icon]"
+		to_chat(user, "\blue Results of analysis of \icon[icon]")
 		if (pressure>0)
-			user << "\blue Pressure: [round(pressure,0.1)] kPa"
-			user << "\blue [gas_type]: [100]%"
-			user << "\blue Temperature: [round(temperature-T0C)]&deg;C"
+			to_chat(user, "\blue Pressure: [round(pressure,0.1)] kPa")
+			to_chat(user, "\blue [gas_type]: [100]%")
+			to_chat(user, "\blue Temperature: [round(temperature-T0C)]&deg;C")
 		else
-			user << "\blue Tank is empty!"
+			to_chat(user, "\blue Tank is empty!")
 
 
 
@@ -106,7 +106,7 @@
 /obj/machinery/portable_atmospherics/powered/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/cell))
 		if(cell)
-			user << "There is already a power cell installed."
+			to_chat(user, "There is already a power cell installed.")
 			return
 
 		var/obj/item/cell/C = I
@@ -119,7 +119,7 @@
 
 	if(istype(I, /obj/item/tool/screwdriver))
 		if(!cell)
-			user << "\red There is no power cell installed."
+			to_chat(user, "\red There is no power cell installed.")
 			return
 
 		user.visible_message("\blue [user] opens the panel on [src] and removes [cell].", "\blue You open the panel on [src] and remove [cell].")

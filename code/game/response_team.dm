@@ -13,16 +13,16 @@ var/can_call_ert
 	set desc = "Send an emergency response team to the station"
 
 	if(!holder)
-		usr << "\red Only administrators may use this command."
+		to_chat(usr, "\red Only administrators may use this command.")
 		return
 	if(!ticker)
-		usr << "\red The game hasn't started yet!"
+		to_chat(usr, "\red The game hasn't started yet!")
 		return
 	if(ticker.current_state == 1)
-		usr << "\red The round hasn't started yet!"
+		to_chat(usr, "\red The round hasn't started yet!")
 		return
 	if(send_emergency_team)
-		usr << "\red Central Command has already dispatched an emergency response team!"
+		to_chat(usr, "\red Central Command has already dispatched an emergency response team!")
 		return
 	if(alert("Do you want to dispatch an Emergency Response Team?",,"Yes","No") != "Yes")
 		return
@@ -31,7 +31,7 @@ var/can_call_ert
 			if("No")
 				return
 	if(send_emergency_team)
-		usr << "\red Looks like somebody beat you to it!"
+		to_chat(usr, "\red Looks like somebody beat you to it!")
 		return
 
 	message_admins("[key_name_admin(usr)] is dispatching an Emergency Response Team.", 1)
@@ -44,16 +44,16 @@ client/verb/JoinResponseTeam()
 
 	if(istype(usr,/mob/dead/observer) || istype(usr,/mob/new_player))
 		if(!send_emergency_team)
-			usr << "No emergency response team is currently being sent."
+			to_chat(usr, "No emergency response team is currently being sent.")
 			return
 	/*	if(admin_emergency_team)
-			usr << "An emergency response team has already been sent."
+			to_chat(usr, "An emergency response team has already been sent.")
 			return */
 		if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Emergency Response Team") || jobban_isbanned(usr, "Security Officer"))
-			usr << "<font color=red><b>You are jobbanned from the emergency reponse team!"
+			to_chat(usr, "<font color=red><b>You are jobbanned from the emergency reponse team!")
 			return
 
-		if(response_team_members.len > 5) usr << "The emergency response team is already full!"
+		if(response_team_members.len > 5) to_chat(usr, "The emergency response team is already full!")
 
 
 		for (var/obj/effect/landmark/L in landmarks_list) if (L.name == "Commando")
@@ -68,16 +68,16 @@ client/verb/JoinResponseTeam()
 			new_commando.mind.key = usr.key
 			new_commando.key = usr.key
 
-			new_commando << "\blue You are [!leader_selected?"a member":"the <B>LEADER</B>"] of an Emergency Response Team, a type of military division, under CentComm's service. There is a code red alert on [station_name()], you are tasked to go and fix the problem."
-			new_commando << "<b>You should first gear up and discuss a plan with your team. More members may be joining, don't move out before you're ready."
+			to_chat(new_commando, "\blue You are [!leader_selected?"a member":"the <B>LEADER</B>"] of an Emergency Response Team, a type of military division, under CentComm's service. There is a code red alert on [station_name()], you are tasked to go and fix the problem.")
+			to_chat(new_commando, "<b>You should first gear up and discuss a plan with your team. More members may be joining, don't move out before you're ready.")
 			if(!leader_selected)
-				new_commando << "<b>As member of the Emergency Response Team, you answer only to your leader and CentComm officials.</b>"
+				to_chat(new_commando, "<b>As member of the Emergency Response Team, you answer only to your leader and CentComm officials.</b>")
 			else
-				new_commando << "<b>As leader of the Emergency Response Team, you answer only to CentComm, and have authority to override the Captain where it is necessary to achieve your mission goals. It is recommended that you attempt to cooperate with the captain where possible, however."
+				to_chat(new_commando, "<b>As leader of the Emergency Response Team, you answer only to CentComm, and have authority to override the Captain where it is necessary to achieve your mission goals. It is recommended that you attempt to cooperate with the captain where possible, however.")
 			return
 
 	else
-		usr << "You need to be an observer or new player to use this."
+		to_chat(usr, "You need to be an observer or new player to use this.")
 */
 // returns a number of dead players in %
 proc/percentage_dead()
@@ -147,7 +147,7 @@ proc/trigger_armed_response_team(var/force = 0)
 
 /client/proc/create_response_team(obj/spawn_location, leader_selected = 0, commando_name)
 
-	//usr << "\red ERT has been temporarily disabled. Talk to a coder."
+	//to_chat(usr, "\red ERT has been temporarily disabled. Talk to a coder.")
 	//return
 
 	var/mob/living/carbon/human/M = new(null)

@@ -67,19 +67,19 @@ var/bomb_set
 			if (src.opened == 0)
 				src.opened = 1
 				overlays += image(icon, "npanel_open")
-				user << "You unscrew the control panel of [src]."
+				to_chat(user, "You unscrew the control panel of [src].")
 
 			else
 				src.opened = 0
 				overlays -= image(icon, "npanel_open")
-				user << "You screw the control panel of [src] back on."
+				to_chat(user, "You screw the control panel of [src] back on.")
 		else
 			if (src.opened == 0)
-				user << "The [src] emits a buzzing noise, the panel staying locked in."
+				to_chat(user, "The [src] emits a buzzing noise, the panel staying locked in.")
 			if (src.opened == 1)
 				src.opened = 0
 				overlays -= image(icon, "npanel_open")
-				user << "You screw the control panel of [src] back on."
+				to_chat(user, "You screw the control panel of [src] back on.")
 			flick("nuclearbombc", src)
 
 		return
@@ -102,7 +102,7 @@ var/bomb_set
 					var/obj/item/tool/weldingtool/WT = O
 					if(!WT.isOn()) return
 					if(WT.get_fuel() < 5) // uses up 5 fuel.
-						user << "<span class='warning'>You need more fuel to complete this task.</span>"
+						to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
 						return
 					user.visible_message("<span class='notice'>[user] starts cutting loose the anchoring bolt covers on [src].</span>",
 					"<span class='notice'>You start cutting loose the anchoring bolt covers with [O].</span>")
@@ -129,7 +129,7 @@ var/bomb_set
 					var/obj/item/tool/weldingtool/WT = O
 					if(!WT.isOn()) return
 					if(WT.get_fuel() < 5) //Uses up 5 fuel.
-						user << "<span class='warning'>You need more fuel to complete this task.</span>"
+						to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
 						return
 					user.visible_message("<span class='notice'>[user] starts cutting apart the anchoring system sealant on [src].</span>",
 					"<span class='notice'>You start cutting apart the anchoring system's sealant with [O].</span>")
@@ -170,11 +170,11 @@ var/bomb_set
 /obj/machinery/nuclearbomb/attack_hand(mob/user as mob)
 	if (src.extended)
 		if (!ishuman(user))
-			usr << "\red You don't have the dexterity to do this!"
+			to_chat(usr, "\red You don't have the dexterity to do this!")
 			return 1
 
 		if (!ishuman(user))
-			usr << "\red You don't have the dexterity to do this!"
+			to_chat(usr, "\red You don't have the dexterity to do this!")
 			return 1
 		user.set_interaction(src)
 		var/dat = text("<TT><B>Nuclear Fission Explosive</B><BR>\nAuth. Disk: <A href='?src=\ref[];auth=1'>[]</A><HR>", src, (src.auth ? "++++++++++" : "----------"))
@@ -227,14 +227,14 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 	if (!usr.canmove || usr.stat || usr.is_mob_restrained())
 		return
 	if (!ishuman(usr))
-		usr << "\red You don't have the dexterity to do this!"
+		to_chat(usr, "\red You don't have the dexterity to do this!")
 		return 1
 
 	if (src.deployable)
-		usr << "\red You close several panels to make [src] undeployable."
+		to_chat(usr, "\red You close several panels to make [src] undeployable.")
 		src.deployable = 0
 	else
-		usr << "\red You adjust some panels to make [src] deployable."
+		to_chat(usr, "\red You adjust some panels to make [src] deployable.")
 		src.deployable = 1
 	return
 
@@ -249,10 +249,10 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 			var/temp_wire = href_list["wire"]
 			if(href_list["act"] == "pulse")
 				if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
-					usr << "You need a multitool!"
+					to_chat(usr, "You need a multitool!")
 				else
 					if(src.wires[temp_wire])
-						usr << "You can't pulse a cut wire."
+						to_chat(usr, "You can't pulse a cut wire.")
 					else
 						if(src.light_wire == temp_wire)
 							src.lighthack = !src.lighthack
@@ -272,7 +272,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 								visible_message("\blue The [src] emits a quiet whirling noise!")
 			if(href_list["act"] == "wire")
 				if (!istype(usr.get_active_hand(), /obj/item/tool/wirecutters))
-					usr << "You need wirecutters!"
+					to_chat(usr, "You need wirecutters!")
 				else
 					wires[temp_wire] = !wires[temp_wire]
 					if(src.safety_wire == temp_wire)
@@ -324,7 +324,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 					if (src.timing == -1.0)
 						return
 					if (src.safety)
-						usr << "\red The safety is still on."
+						to_chat(usr, "\red The safety is still on.")
 						return
 					src.timing = !( src.timing )
 					if (src.timing)

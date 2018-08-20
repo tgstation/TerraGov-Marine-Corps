@@ -166,10 +166,10 @@
 		return
 
 	if (M.mob_size > MOB_SIZE_HUMAN)
-		user << "<span class='warning'>[M] is too big to buckle in.</span>"
+		to_chat(user, "<span class='warning'>[M] is too big to buckle in.</span>")
 		return
 	if (istype(user, /mob/living/carbon/Xenomorph))
-		user << "<span class='warning'>You don't have the dexterity to do that, try a nest.</span>"
+		to_chat(user, "<span class='warning'>You don't have the dexterity to do that, try a nest.</span>")
 		return
 
 	if(density)

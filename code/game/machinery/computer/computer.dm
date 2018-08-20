@@ -96,7 +96,7 @@
 /obj/machinery/computer/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/tool/screwdriver) && circuit)
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
-			user << "<span class='warning'>You don't know how to deconstruct [src]...</span>"
+			to_chat(user, "<span class='warning'>You don't know how to deconstruct [src]...</span>")
 			return
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
@@ -107,12 +107,12 @@
 			for (var/obj/C in src)
 				C.loc = src.loc
 			if (src.stat & BROKEN)
-				user << "\blue The broken glass falls out."
+				to_chat(user, "\blue The broken glass falls out.")
 				new /obj/item/shard( src.loc )
 				A.state = 3
 				A.icon_state = "3"
 			else
-				user << "\blue You disconnect the monitor."
+				to_chat(user, "\blue You disconnect the monitor.")
 				A.state = 4
 				A.icon_state = "4"
 			M.deconstruct(src)

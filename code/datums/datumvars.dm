@@ -7,7 +7,7 @@ client
 		set name = "View Variables"
 
 		if(!usr.client || !usr.client.holder || !(usr.client.holder.rights & R_MOD))
-			usr << "\red You need to be a moderator or higher to access this."
+			to_chat(usr, "\red You need to be a moderator or higher to access this.")
 			return
 
 		if(!D)	return
@@ -17,11 +17,11 @@ client
 
 		//Sort of a temporary solution for right now.
 		if(istype(D,/datum/admins) && !(ishost(usr))) //Prevents non-hosts from changing their own permissions.
-			usr << "<span class='warning'>You need host permission to access this.</span>"
+			to_chat(usr, "<span class='warning'>You need host permission to access this.</span>")
 			return
 
 		if((istype(D,/datum/ammo) || istype(D,/mob/living/carbon/Xenomorph/Predalien)) && !(usr.client.holder.rights & R_DEBUG))
-			usr << "<span class='warning'>You need debugging permission to access this.</span>"
+			to_chat(usr, "<span class='warning'>You need debugging permission to access this.</span>")
 			return
 
 		if(istype(D, /atom))
@@ -435,7 +435,7 @@ client
 
 		var/mob/M = locate(href_list["rename"])
 		if(!istype(M))
-			usr << "This can only be used on instances of type /mob"
+			to_chat(usr, "This can only be used on instances of type /mob")
 			return
 
 		var/new_name = stripped_input(usr,"What would you like to name this mob?","Input a name",M.real_name,MAX_NAME_LEN)
@@ -450,7 +450,7 @@ client
 
 		var/D = locate(href_list["datumedit"])
 		if(!istype(D,/datum) && !istype(D,/client))
-			usr << "This can only be used on instances of types /client or /datum"
+			to_chat(usr, "This can only be used on instances of types /client or /datum")
 			return
 
 		modify_variables(D, href_list["varnameedit"], 1)
@@ -460,7 +460,7 @@ client
 
 		var/D = locate(href_list["datumchange"])
 		if(!istype(D,/datum) && !istype(D,/client))
-			usr << "This can only be used on instances of types /client or /datum"
+			to_chat(usr, "This can only be used on instances of types /client or /datum")
 			return
 
 		modify_variables(D, href_list["varnamechange"], 0)
@@ -470,7 +470,7 @@ client
 
 		var/atom/A = locate(href_list["datummass"])
 		if(!istype(A))
-			usr << "This can only be used on instances of type /atom"
+			to_chat(usr, "This can only be used on instances of type /atom")
 			return
 
 		cmd_mass_modify_object_variables(A, href_list["varnamemass"])
@@ -480,7 +480,7 @@ client
 
 		var/mob/M = locate(href_list["mob_player_panel"])
 		if(!istype(M))
-			usr << "This can only be used on instances of type /mob"
+			to_chat(usr, "This can only be used on instances of type /mob")
 			return
 
 		src.holder.show_player_panel(M)
@@ -491,7 +491,7 @@ client
 
 		var/mob/M = locate(href_list["give_spell"])
 		if(!istype(M))
-			usr << "This can only be used on instances of type /mob"
+			to_chat(usr, "This can only be used on instances of type /mob")
 			return
 
 		src.give_spell(M)
@@ -502,7 +502,7 @@ client
 
 		var/mob/M = locate(href_list["give_disease"])
 		if(!istype(M))
-			usr << "This can only be used on instances of type /mob"
+			to_chat(usr, "This can only be used on instances of type /mob")
 			return
 
 		src.give_disease(M)
@@ -513,7 +513,7 @@ client
 
 		var/mob/M = locate(href_list["godmode"])
 		if(!istype(M))
-			usr << "This can only be used on instances of type /mob"
+			to_chat(usr, "This can only be used on instances of type /mob")
 			return
 
 		src.cmd_admin_godmode(M)
@@ -524,7 +524,7 @@ client
 
 		var/mob/M = locate(href_list["gib"])
 		if(!istype(M))
-			usr << "This can only be used on instances of type /mob"
+			to_chat(usr, "This can only be used on instances of type /mob")
 			return
 
 		src.cmd_admin_gib(M)
@@ -534,7 +534,7 @@ client
 
 		var/mob/M = locate(href_list["drop_everything"])
 		if(!istype(M))
-			usr << "This can only be used on instances of type /mob"
+			to_chat(usr, "This can only be used on instances of type /mob")
 			return
 
 		if(usr.client)
@@ -545,7 +545,7 @@ client
 
 		var/mob/M = locate(href_list["direct_control"])
 		if(!istype(M))
-			usr << "This can only be used on instances of type /mob"
+			to_chat(usr, "This can only be used on instances of type /mob")
 			return
 
 		if(usr.client)
@@ -556,7 +556,7 @@ client
 
 		var/mob/living/carbon/human/H = locate(href_list["make_skeleton"])
 		if(!istype(H))
-			usr << "This can only be used on instances of type /mob/living/carbon/human"
+			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
 			return
 
 		H.makeSkeleton()
@@ -567,7 +567,7 @@ client
 
 		var/obj/O = locate(href_list["delall"])
 		if(!isobj(O))
-			usr << "This can only be used on instances of type /obj"
+			to_chat(usr, "This can only be used on instances of type /obj")
 			return
 
 		var/action_type = alert("Strict type ([O.type]) or type and all subtypes?",,"Strict type","Type and subtypes","Cancel")
@@ -589,7 +589,7 @@ client
 						i++
 						cdel(Obj)
 				if(!i)
-					usr << "No objects of this type exist"
+					to_chat(usr, "No objects of this type exist")
 					return
 				log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
 				message_admins("\blue [key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
@@ -600,7 +600,7 @@ client
 						i++
 						cdel(Obj)
 				if(!i)
-					usr << "No objects of this type exist"
+					to_chat(usr, "No objects of this type exist")
 					return
 				log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
 				message_admins("\blue [key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
@@ -610,7 +610,7 @@ client
 
 		var/atom/A = locate(href_list["explode"])
 		if(!isobj(A) && !ismob(A) && !isturf(A))
-			usr << "This can only be done to instances of type /obj, /mob and /turf"
+			to_chat(usr, "This can only be done to instances of type /obj, /mob and /turf")
 			return
 
 		src.cmd_admin_explosion(A)
@@ -621,7 +621,7 @@ client
 
 		var/atom/A = locate(href_list["emp"])
 		if(!isobj(A) && !ismob(A) && !isturf(A))
-			usr << "This can only be done to instances of type /obj, /mob and /turf"
+			to_chat(usr, "This can only be done to instances of type /obj, /mob and /turf")
 			return
 
 		src.cmd_admin_emp(A)
@@ -632,7 +632,7 @@ client
 
 		var/datum/D = locate(href_list["mark_object"])
 		if(!istype(D))
-			usr << "This can only be done to instances of type /datum"
+			to_chat(usr, "This can only be done to instances of type /datum")
 			return
 
 		src.holder.marked_datum = D
@@ -643,7 +643,7 @@ client
 
 		var/atom/A = locate(href_list["rotatedatum"])
 		if(!istype(A))
-			usr << "This can only be done to instances of type /atom"
+			to_chat(usr, "This can only be done to instances of type /atom")
 			return
 
 		switch(href_list["rotatedir"])
@@ -656,12 +656,12 @@ client
 
 		var/mob/living/carbon/human/H = locate(href_list["makemonkey"])
 		if(!istype(H))
-			usr << "This can only be done to instances of type /mob/living/carbon/human"
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
 		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
 		if(!H)
-			usr << "Mob doesn't exist anymore"
+			to_chat(usr, "Mob doesn't exist anymore")
 			return
 		holder.Topic(href, list("monkeyone"=href_list["makemonkey"]))
 
@@ -670,12 +670,12 @@ client
 
 		var/mob/living/carbon/human/H = locate(href_list["makerobot"])
 		if(!istype(H))
-			usr << "This can only be done to instances of type /mob/living/carbon/human"
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
 		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
 		if(!H)
-			usr << "Mob doesn't exist anymore"
+			to_chat(usr, "Mob doesn't exist anymore")
 			return
 		holder.Topic(href, list("makerobot"=href_list["makerobot"]))
 
@@ -684,12 +684,12 @@ client
 
 		var/mob/living/carbon/human/H = locate(href_list["makealien"])
 		if(!istype(H))
-			usr << "This can only be done to instances of type /mob/living/carbon/human"
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
 		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
 		if(!H)
-			usr << "Mob doesn't exist anymore"
+			to_chat(usr, "Mob doesn't exist anymore")
 			return
 		holder.Topic(href, list("makealien"=href_list["makealien"]))
 
@@ -698,7 +698,7 @@ client
 
 		var/mob/living/carbon/Xenomorph/X = locate(href_list["changehivenumber"])
 		if(!istype(X))
-			usr << "This can only be done to instances of type /mob/living/carbon/Xenomorph"
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/Xenomorph")
 			return
 		var/hivenumber_status = X.hivenumber
 		var/list/namelist = list("Normal","Corrupted","Alpha","Beta","Zeta")
@@ -706,7 +706,7 @@ client
 		var/newhive = input(src,"Select a hive.", null, null) in namelist
 
 		if(!X)
-			usr << "This xeno no longer exists"
+			to_chat(usr, "This xeno no longer exists")
 			return
 		var/newhivenumber
 		switch(newhive)
@@ -721,7 +721,7 @@ client
 			if("Zeta")
 				newhivenumber = XENO_HIVE_ZETA
 		if(X.hivenumber != hivenumber_status)
-			usr << "Someone else changed this xeno while you were deciding"
+			to_chat(usr, "Someone else changed this xeno while you were deciding")
 			return
 
 		holder.Topic(href, list("changehivenumber"=href_list["changehivenumber"],"newhivenumber"=newhivenumber))
@@ -731,12 +731,12 @@ client
 
 		var/mob/living/carbon/human/H = locate(href_list["makeai"])
 		if(!istype(H))
-			usr << "This can only be done to instances of type /mob/living/carbon/human"
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
 		if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")	return
 		if(!H)
-			usr << "Mob doesn't exist anymore"
+			to_chat(usr, "Mob doesn't exist anymore")
 			return
 		holder.Topic(href, list("makeai"=href_list["makeai"]))
 
@@ -745,7 +745,7 @@ client
 
 		var/mob/living/carbon/human/H = locate(href_list["setmutantrace"])
 		if(!istype(H))
-			usr << "This can only be done to instances of type /mob/living/carbon/human"
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
 		var/new_mutantrace = input("Please choose a new mutantrace","Mutantrace",null) as null|anything in list("NONE","golem","lizard","slime","plant","shadow","tajaran","skrell","vox")
@@ -755,7 +755,7 @@ client
 			if("NONE")
 				new_mutantrace = ""
 		if(!H)
-			usr << "Mob doesn't exist anymore"
+			to_chat(usr, "Mob doesn't exist anymore")
 			return
 		if(H.dna)
 			H.dna.mutantrace = new_mutantrace
@@ -766,7 +766,7 @@ client
 
 		var/mob/living/carbon/human/H = locate(href_list["setspecies"])
 		if(!istype(H))
-			usr << "This can only be done to instances of type /mob/living/carbon/human"
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
 		var/new_species = input("Please choose a new species.","Species",null) as null|anything in all_species
@@ -774,24 +774,24 @@ client
 		if(!new_species) return
 
 		if(!H)
-			usr << "Mob doesn't exist anymore"
+			to_chat(usr, "Mob doesn't exist anymore")
 			return
 
 		if(H.set_species(new_species))
-			usr << "Set species of [H] to [H.species]."
+			to_chat(usr, "Set species of [H] to [H.species].")
 		else
-			usr << "Failed! Something went wrong."
+			to_chat(usr, "Failed! Something went wrong.")
 
 	else if(href_list["edit_skill"])
 		if(!check_rights(R_SPAWN))	return
 
 		var/mob/living/carbon/human/H = locate(href_list["edit_skill"])
 		if(!istype(H))
-			usr << "This can only be done to instances of type /mob/living/carbon/human"
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
 		if(!H.mind)
-			usr << "This can't be used on humans without a mind."
+			to_chat(usr, "This can't be used on humans without a mind.")
 			return
 
 		if(!H.mind.cm_skills)
@@ -802,11 +802,11 @@ client
 			return
 
 		if(!H)
-			usr << "Mob doesn't exist anymore"
+			to_chat(usr, "Mob doesn't exist anymore")
 			return
 
 		if(!H.mind)
-			usr << "Mob lost its mind."
+			to_chat(usr, "Mob lost its mind.")
 			return
 
 		var/new_skill_level = input("Select a new level for the [selected_skill] skill ","New Skill Level") as null|num
@@ -814,11 +814,11 @@ client
 			return
 
 		if(!H)
-			usr << "Mob doesn't exist anymore"
+			to_chat(usr, "Mob doesn't exist anymore")
 			return
 
 		if(!H.mind)
-			usr << "Mob lost its mind."
+			to_chat(usr, "Mob lost its mind.")
 			return
 
 		switch(selected_skill)
@@ -863,7 +863,7 @@ client
 		
 		H.update_action_buttons()
 
-		usr << "[H]'s [selected_skill] skill is now set to [new_skill_level]."
+		to_chat(usr, "[H]'s [selected_skill] skill is now set to [new_skill_level].")
 
 
 	else if(href_list["addlanguage"])
@@ -871,7 +871,7 @@ client
 
 		var/mob/H = locate(href_list["addlanguage"])
 		if(!istype(H))
-			usr << "This can only be done to instances of type /mob"
+			to_chat(usr, "This can only be done to instances of type /mob")
 			return
 
 		var/new_language = input("Please choose a language to add.","Language",null) as null|anything in all_languages
@@ -880,24 +880,24 @@ client
 			return
 
 		if(!H)
-			usr << "Mob doesn't exist anymore"
+			to_chat(usr, "Mob doesn't exist anymore")
 			return
 
 		if(H.add_language(new_language))
-			usr << "Added [new_language] to [H]."
+			to_chat(usr, "Added [new_language] to [H].")
 		else
-			usr << "Mob already knows that language."
+			to_chat(usr, "Mob already knows that language.")
 
 	else if(href_list["remlanguage"])
 		if(!check_rights(R_SPAWN))	return
 
 		var/mob/H = locate(href_list["remlanguage"])
 		if(!istype(H))
-			usr << "This can only be done to instances of type /mob"
+			to_chat(usr, "This can only be done to instances of type /mob")
 			return
 
 		if(!H.languages.len)
-			usr << "This mob knows no languages."
+			to_chat(usr, "This mob knows no languages.")
 			return
 
 		var/datum/language/rem_language = input("Please choose a language to remove.","Language",null) as null|anything in H.languages
@@ -906,13 +906,13 @@ client
 			return
 
 		if(!H)
-			usr << "Mob doesn't exist anymore"
+			to_chat(usr, "Mob doesn't exist anymore")
 			return
 
 		if(H.remove_language(rem_language.name))
-			usr << "Removed [rem_language] from [H]."
+			to_chat(usr, "Removed [rem_language] from [H].")
 		else
-			usr << "Mob doesn't know that language."
+			to_chat(usr, "Mob doesn't know that language.")
 
 	else if(href_list["addverb"])
 		if(!check_rights(R_DEBUG))      return
@@ -920,7 +920,7 @@ client
 		var/mob/living/H = locate(href_list["addverb"])
 
 		if(!istype(H))
-			usr << "This can only be done to instances of type /mob/living"
+			to_chat(usr, "This can only be done to instances of type /mob/living")
 			return
 		var/list/possibleverbs = list()
 		possibleverbs += "Cancel" 								// One for the top...
@@ -937,7 +937,7 @@ client
 
 		var/verb = input("Select a verb!", "Verbs",null) as anything in possibleverbs
 		if(!H)
-			usr << "Mob doesn't exist anymore"
+			to_chat(usr, "Mob doesn't exist anymore")
 			return
 		if(!verb || verb == "Cancel")
 			return
@@ -950,11 +950,11 @@ client
 		var/mob/H = locate(href_list["remverb"])
 
 		if(!istype(H))
-			usr << "This can only be done to instances of type /mob"
+			to_chat(usr, "This can only be done to instances of type /mob")
 			return
 		var/verb = input("Please choose a verb to remove.","Verbs",null) as null|anything in H.verbs
 		if(!H)
-			usr << "Mob doesn't exist anymore"
+			to_chat(usr, "Mob doesn't exist anymore")
 			return
 		if(!verb)
 			return
@@ -966,17 +966,17 @@ client
 
 		var/mob/living/carbon/M = locate(href_list["addorgan"])
 		if(!istype(M))
-			usr << "This can only be done to instances of type /mob/living/carbon"
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
 			return
 
 		var/new_organ = input("Please choose an organ to add.","Organ",null) as null|anything in typesof(/datum/internal_organ)-/datum/internal_organ
 
 		if(!M)
-			usr << "Mob doesn't exist anymore"
+			to_chat(usr, "Mob doesn't exist anymore")
 			return
 
 		if(locate(new_organ) in M.internal_organs)
-			usr << "Mob already has that organ."
+			to_chat(usr, "Mob already has that organ.")
 			return
 
 		if(istype(M,/mob/living/carbon/human))
@@ -999,35 +999,35 @@ client
 					organ_slot = "unknown organ"
 
 			if(H.internal_organs_by_name[organ_slot])
-				usr << "[H] already has an organ in that slot."
+				to_chat(usr, "[H] already has an organ in that slot.")
 				cdel(I)
 				return
 
 			H.internal_organs_by_name[organ_slot] = I
-			usr << "Added new [new_organ] to [H] as slot [organ_slot]."
+			to_chat(usr, "Added new [new_organ] to [H] as slot [organ_slot].")
 		else
 			new new_organ(M)
-			usr << "Added new [new_organ] to [M]."
+			to_chat(usr, "Added new [new_organ] to [M].")
 
 	else if(href_list["remorgan"])
 		if(!check_rights(R_SPAWN))	return
 
 		var/mob/living/carbon/M = locate(href_list["remorgan"])
 		if(!istype(M))
-			usr << "This can only be done to instances of type /mob/living/carbon"
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
 			return
 
 		var/rem_organ = input("Please choose an organ to remove.","Organ",null) as null|anything in M.internal_organs
 
 		if(!M)
-			usr << "Mob doesn't exist anymore"
+			to_chat(usr, "Mob doesn't exist anymore")
 			return
 
 		if(!(locate(rem_organ) in M.internal_organs))
-			usr << "Mob does not have that organ."
+			to_chat(usr, "Mob does not have that organ.")
 			return
 
-		usr << "Removed [rem_organ] from [M]."
+		to_chat(usr, "Removed [rem_organ] from [M].")
 		cdel(rem_organ)
 
 
@@ -1036,20 +1036,20 @@ client
 
 		var/mob/living/carbon/human/M = locate(href_list["addlimb"])
 		if(!istype(M))
-			usr << "This can only be done to instances of type /mob/living/carbon/human"
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
 		var/new_limb = input("Please choose an organ to add.","Organ",null) as null|anything in typesof(/datum/limb)-/datum/limb
 
 		if(!M)
-			usr << "Mob doesn't exist anymore"
+			to_chat(usr, "Mob doesn't exist anymore")
 			return
 
 		var/datum/limb/EO = locate(new_limb) in M.limbs
 		if(!EO)
 			return
 		if(!(EO.status & LIMB_DESTROYED))
-			usr << "Mob already has that organ."
+			to_chat(usr, "Mob already has that organ.")
 			return
 
 		EO.status = NOFLAGS
@@ -1065,20 +1065,20 @@ client
 
 		var/mob/living/carbon/human/M = locate(href_list["remlimb"])
 		if(!istype(M))
-			usr << "This can only be done to instances of type /mob/living/carbon/human"
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
 		var/rem_limb = input("Please choose a limb to remove.","Organ",null) as null|anything in M.limbs
 
 		if(!M)
-			usr << "Mob doesn't exist anymore"
+			to_chat(usr, "Mob doesn't exist anymore")
 			return
 
 		var/datum/limb/EO = locate(rem_limb) in M.limbs
 		if(!EO)
 			return
 		if(EO.status & LIMB_DESTROYED)
-			usr << "Mob doesn't have that limb."
+			to_chat(usr, "Mob doesn't have that limb.")
 			return
 		EO.droplimb(1)
 
@@ -1089,13 +1089,13 @@ client
 		var/mob/H = locate(href_list["fix_nano"])
 
 		if(!istype(H) || !H.client)
-			usr << "This can only be done on mobs with clients"
+			to_chat(usr, "This can only be done on mobs with clients")
 			return
 
 		nanomanager.send_resources(H.client)
 
-		usr << "Resource files sent"
-		H << "Your NanoUI Resource files have been refreshed"
+		to_chat(usr, "Resource files sent")
+		to_chat(H, "Your NanoUI Resource files have been refreshed")
 
 		log_admin("[key_name(usr)] resent the NanoUI resource files to [key_name(H)] ")
 
@@ -1104,7 +1104,7 @@ client
 
 		var/mob/M = locate(href_list["regenerateicons"])
 		if(!ismob(M))
-			usr << "This can only be done to instances of type /mob"
+			to_chat(usr, "This can only be done to instances of type /mob")
 			return
 		M.regenerate_icons()
 
@@ -1119,7 +1119,7 @@ client
 		var/amount =  input("Deal how much damage to mob? (Negative values here heal)","Adjust [Text]loss",0) as num
 
 		if(!L)
-			usr << "Mob doesn't exist anymore"
+			to_chat(usr, "Mob doesn't exist anymore")
 			return
 
 		switch(Text)
@@ -1130,7 +1130,7 @@ client
 			if("brain")	L.adjustBrainLoss(amount)
 			if("clone")	L.adjustCloneLoss(amount)
 			else
-				usr << "You caused an error. DEBUG: Text:[Text] Mob:[L]"
+				to_chat(usr, "You caused an error. DEBUG: Text:[Text] Mob:[L]")
 				return
 		L.updatehealth()
 

@@ -25,12 +25,12 @@
 /obj/structure/reagent_dispensers/examine(mob/user)
 	..()
 	if (get_dist(user, src) > 2 && user != loc) return
-	user << "\blue It contains:"
+	to_chat(user, "\blue It contains:")
 	if(reagents && reagents.reagent_list.len)
 		for(var/datum/reagent/R in reagents.reagent_list)
-			user << "\blue [R.volume] units of [R.name]"
+			to_chat(user, "\blue [R.volume] units of [R.name]")
 	else
-		user << "\blue Nothing."
+		to_chat(user, "\blue Nothing.")
 
 /obj/structure/reagent_dispensers/verb/set_APTFT() //set amount_per_transfer_from_this
 	set name = "Set transfer amount"
@@ -98,9 +98,9 @@
 	..()
 	if(user != loc) return
 	if(modded)
-		user << "\red Fuel faucet is wrenched open, leaking the fuel!"
+		to_chat(user, "\red Fuel faucet is wrenched open, leaking the fuel!")
 	if(rig)
-		user << "<span class='notice'>There is some kind of device rigged to the tank."
+		to_chat(user, "<span class='notice'>There is some kind of device rigged to the tank.")
 
 /obj/structure/reagent_dispensers/fueltank/attack_hand()
 	if (rig)
@@ -123,7 +123,7 @@
 			leak_fuel(amount_per_transfer_from_this)
 	if (istype(W,/obj/item/device/assembly_holder))
 		if (rig)
-			user << "\red There is another device in the way."
+			to_chat(user, "\red There is another device in the way.")
 			return ..()
 		user.visible_message("[user] begins rigging [W] to \the [src].", "You begin rigging [W] to \the [src]")
 		if(do_after(user, 20, TRUE, 5, BUSY_ICON_HOSTILE))

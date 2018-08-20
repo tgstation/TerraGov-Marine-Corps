@@ -80,22 +80,22 @@
 //attempts to attach src as a follower of the train T
 /obj/vehicle/train/proc/attach_to(obj/vehicle/train/T, mob/user)
 	if (get_dist(src, T) > 1)
-		user << "\red [src] is too far away from [T] to hitch them together."
+		to_chat(user, "\red [src] is too far away from [T] to hitch them together.")
 		return
 
 	if (lead)
-		user << "\red [src] is already hitched to something."
+		to_chat(user, "\red [src] is already hitched to something.")
 		return
 
 	if (T.tow)
-		user << "\red [T] is already towing something."
+		to_chat(user, "\red [T] is already towing something.")
 		return
 
 	//check for cycles.
 	var/obj/vehicle/train/next_car = T
 	while (next_car)
 		if (next_car == src)
-			user << "\red That seems very silly."
+			to_chat(user, "\red That seems very silly.")
 			return
 		next_car = next_car.lead
 
@@ -105,7 +105,7 @@
 	dir = lead.dir
 
 	if(user)
-		user << "\blue You hitch [src] to [T]."
+		to_chat(user, "\blue You hitch [src] to [T].")
 
 	update_stats()
 
@@ -113,13 +113,13 @@
 //detaches the train from whatever is towing it
 /obj/vehicle/train/proc/unattach(mob/user)
 	if (!lead)
-		user << "\red [src] is not hitched to anything."
+		to_chat(user, "\red [src] is not hitched to anything.")
 		return
 
 	lead.tow = null
 	lead.update_stats()
 
-	user << "\blue You unhitch [src] from [lead]."
+	to_chat(user, "\blue You unhitch [src] from [lead].")
 	lead = null
 
 	update_stats()

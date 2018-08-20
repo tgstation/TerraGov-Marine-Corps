@@ -25,9 +25,9 @@
 		return
 	var/turf/loc = get_turf(usr)
 	if (!istype(loc, /turf/open/floor))
-		usr << "\red [src.name] cannot be placed on this spot."
+		to_chat(usr, "\red [src.name] cannot be placed on this spot.")
 		return
-	usr << "Attaching [src] to the wall."
+	to_chat(usr, "Attaching [src] to the wall.")
 	playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 	var/constrdir = usr.dir
 	var/constrloc = usr.loc

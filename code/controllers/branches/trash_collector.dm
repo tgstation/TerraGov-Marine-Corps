@@ -55,7 +55,7 @@ var/global/datum/authority/branch/trash/TrashAuthority = new() //This is the act
 			if(TA_REVIVE_ME)
 				RecycleAuthority.RecycleTrash(garbage)
 				#if DEBUG_TA_AUTHORITY
-				world << "<span class='debuginfo'>Sending [garbage.type] to the recycler.</span>"
+				to_chat(world, "<span class='debuginfo'>Sending [garbage.type] to the recycler.</span>")
 				#endif
 			if(TA_PURGE_ME_NOW) TrashAuthority.PurgeTrash(garbage)
 			else 				TrashAuthority.DeliverTrash(garbage) //If it returned anything else.
@@ -163,14 +163,15 @@ TO DO: Implement more support for /mob.
 	set name = "Trash: TA Diagnose"
 	set desc = "This will bring up diagnostic information about the Trash Authority and log the results in debug."
 
-	usr << "Currently processed: <b>[TrashAuthority.soft_del_count]</b> soft deletions and <b>[TrashAuthority.hard_del_count]</b> hard deletions."
-	usr << "Currently storing: <b>[TrashAuthority.trashing.len]</b> items in queue."
-	usr << "Currently hard deleted: <b>[TrashAuthority.cannot_trash.len]</b> items:"
+	to_chat(usr, "Currently processed: <b>[TrashAuthority.soft_del_count]</b> soft deletions and <b>[TrashAuthority.hard_del_count]</b> hard deletions.")
+	to_chat(usr, "Currently storing: <b>[TrashAuthority.trashing.len]</b> items in queue.")
+	to_chat(usr, "Currently hard deleted: <b>[TrashAuthority.cannot_trash.len]</b> items:")
 	if(TrashAuthority.cannot_trash.len)
 		for(var/I in TrashAuthority.cannot_trash)
 			var/deletion_time = TrashAuthority.cannot_trash[I]
-			usr << "<b>[TrashAuthority.cannot_trash[I]]</b> deleted at:[TrashAuthority.cannot_trash[deletion_time]]."
-	else usr << "\blue Empty!"
+			to_chat(usr, "<b>[TrashAuthority.cannot_trash[I]]</b> deleted at:[TrashAuthority.cannot_trash[deletion_time]].")
+	else
+		to_chat(usr, "\blue Empty!")
 	log_debug("TA: Currently processed: <b>[TrashAuthority.soft_del_count]</b> soft deletions and <b>[TrashAuthority.hard_del_count]</b> hard deletions.")
 
 /datum/proc/ta_purge()
@@ -179,7 +180,7 @@ TO DO: Implement more support for /mob.
 	set desc = "This will toggle the Trash Authority's purge mode and log the results in debug. Do not use this without good reason."
 
 	TrashAuthority.purging = !TrashAuthority.purging
-	usr << "\red TA is [TrashAuthority.purging? "now purging." : "is no longer purging."]"
+	to_chat(usr, "\red TA is [TrashAuthority.purging? "now purging." : "is no longer purging."]")
 	log_debug("TA: <b>[usr.key]</b> used the purge toggle.")
 
 #undef DEBUG_TA_AUTHORITY

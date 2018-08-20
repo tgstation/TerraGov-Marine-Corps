@@ -81,7 +81,7 @@
 			return 1
 
 		if("disarm")
-			M << "<span class='warning'>There's nothing to disarm!</span>"
+			to_chat(M, "<span class='warning'>There's nothing to disarm!</span>")
 
 	return 0
 

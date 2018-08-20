@@ -34,11 +34,11 @@
 
 	examine(mob/user)
 		..()
-		user << "It's turned [lit? "on" : "off"]."
+		to_chat(user, "It's turned [lit? "on" : "off"].")
 		if(current_mag)
-			user << "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!"
+			to_chat(user, "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!")
 		else
-			user << "There's no tank in [src]!"
+			to_chat(user, "There's no tank in [src]!")
 
 /obj/item/weapon/gun/flamer/able_to_fire(mob/user)
 	. = ..()
@@ -67,7 +67,7 @@
 	if (!targloc || !curloc) return //Something has gone wrong...
 
 	if(!lit)
-		user << "<span class='alert'>The weapon isn't lit</span>"
+		to_chat(user, "<span class='alert'>The weapon isn't lit</span>")
 		return
 
 	if(!current_mag) return
@@ -78,32 +78,32 @@
 
 /obj/item/weapon/gun/flamer/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
-		user << "<span class='warning'>That's not a magazine!</span>"
+		to_chat(user, "<span class='warning'>That's not a magazine!</span>")
 		return
 
 	if(magazine.current_rounds <= 0)
-		user << "<span class='warning'>That [magazine.name] is empty!</span>"
+		to_chat(user, "<span class='warning'>That [magazine.name] is empty!</span>")
 		return
 
 	if(!istype(src, magazine.gun_type))
-		user << "<span class='warning'>That magazine doesn't fit in there!</span>"
+		to_chat(user, "<span class='warning'>That magazine doesn't fit in there!</span>")
 		return
 
 	if (istype(magazine, /obj/item/ammo_magazine/flamer_tank/large))
-		user << "<span class='warning'>That tank is too large for this model!</span>"
+		to_chat(user, "<span class='warning'>That tank is too large for this model!</span>")
 		return
 
 	if(!isnull(current_mag) && current_mag.loc == src)
-		user << "<span class='warning'>It's still got something loaded!</span>"
+		to_chat(user, "<span class='warning'>It's still got something loaded!</span>")
 		return
 
 	else
 		if(user)
 			if(magazine.reload_delay > 1)
-				user << "<span class='notice'>You begin reloading [src]. Hold still...</span>"
+				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
 				if(do_after(user,magazine.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY)) replace_magazine(user, magazine)
 				else
-					user << "<span class='warning'>Your reload was interrupted!</span>"
+					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
 					return
 			else replace_magazine(user, magazine)
 		else
@@ -227,7 +227,7 @@
 		M.adjust_fire_stacks(rand(5,burn*2))
 		M.IgniteMob()
 		M.adjustFireLoss(rand(burn,(burn*2))) // Make it so its the amount of heat or twice it for the initial blast.
-		M << "[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!"
+		to_chat(M, "[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
 
 /obj/item/weapon/gun/flamer/proc/triangular_flame(var/atom/target, var/mob/living/user, var/burntime, var/burnlevel)
 	set waitfor = 0
@@ -302,28 +302,28 @@
 
 /obj/item/weapon/gun/flamer/M240T/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
-		user << "<span class='warning'>That's not a magazine!</span>"
+		to_chat(user, "<span class='warning'>That's not a magazine!</span>")
 		return
 
 	if(magazine.current_rounds <= 0)
-		user << "<span class='warning'>That [magazine.name] is empty!</span>"
+		to_chat(user, "<span class='warning'>That [magazine.name] is empty!</span>")
 		return
 
 	if(!istype(src, magazine.gun_type))
-		user << "<span class='warning'>That magazine doesn't fit in there!</span>"
+		to_chat(user, "<span class='warning'>That magazine doesn't fit in there!</span>")
 		return
 
 	if(!isnull(current_mag) && current_mag.loc == src)
-		user << "<span class='warning'>It's still got something loaded!</span>"
+		to_chat(user, "<span class='warning'>It's still got something loaded!</span>")
 		return
 
 	else
 		if(user)
 			if(magazine.reload_delay > 1)
-				user << "<span class='notice'>You begin reloading [src]. Hold still...</span>"
+				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
 				if(do_after(user,magazine.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY)) replace_magazine(user, magazine)
 				else
-					user << "<span class='warning'>Your reload was interrupted!</span>"
+					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
 					return
 			else replace_magazine(user, magazine)
 		else
@@ -341,7 +341,7 @@
 			return
 
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_PYRO)
-			user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+			to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
 			return 0
 
 
@@ -414,7 +414,7 @@
 			M.IgniteMob()
 
 		M.adjustFireLoss(round(burnlevel*0.5)) //This makes fire stronk.
-		M << "<span class='danger'>You are burned!</span>"
+		to_chat(M, "<span class='danger'>You are burned!</span>")
 		if(isXeno(M)) M.updatehealth()
 
 

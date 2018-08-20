@@ -20,7 +20,7 @@
 		..()
 		fire_delay = config.low_fire_delay*3
 		if(num_flares)
-			user << "<span class='warning'>It has a flare loaded!</span>"
+			to_chat(user, "<span class='warning'>It has a flare loaded!</span>")
 
 	update_icon()
 		if(num_flares)
@@ -48,18 +48,18 @@
 		if(istype(I,/obj/item/device/flashlight/flare))
 			var/obj/item/device/flashlight/flare/flare = I
 			if(num_flares >= max_flares)
-				user << "It's already full."
+				to_chat(user, "It's already full.")
 				return
 
 			if(flare.on)
-				user << "<span class='warning'>[flare] is already active. Can't load it now!</span>"
+				to_chat(user, "<span class='warning'>[flare] is already active. Can't load it now!</span>")
 				return
 
 			num_flares++
 			user.temp_drop_inv_item(flare)
 			sleep(-1)
 			cdel(flare)
-			user << "<span class='notice'>You insert the flare.</span>"
+			to_chat(user, "<span class='notice'>You insert the flare.</span>")
 			update_icon()
 			return
 
@@ -71,9 +71,10 @@
 			if(user) user.put_in_hands(new_flare)
 			else new_flare.loc = get_turf(src)
 			num_flares--
-			if(user) user << "<span class='notice'>You unload a flare from [src].</span>"
+			if(user) to_chat(user, "<span class='notice'>You unload a flare from [src].</span>")
 			update_icon()
-		else user << "<span class='warning'>It's empty!</span>"
+		else
+			to_chat(user, "<span class='warning'>It's empty!</span>")
 
 //-------------------------------------------------------
 //This gun is very powerful, but also has a kick.
@@ -108,7 +109,7 @@
 	recoil = config.med_recoil_value
 
 /obj/item/weapon/gun/minigun/toggle_burst()
-	usr << "<span class='warning'>This weapon can only fire in bursts!</span>"
+	to_chat(usr, "<span class='warning'>This weapon can only fire in bursts!</span>")
 
 //-------------------------------------------------------
 //Toy rocket launcher.
@@ -172,8 +173,9 @@
 /obj/item/weapon/gun/launcher/spike/examine(mob/user)
 	if(isYautja(user))
 		..()
-		user << "It currently has [spikes] / [max_spikes] spikes."
-	else user << "Looks like some kind of...mechanical donut."
+		to_chat(user, "It currently has [spikes] / [max_spikes] spikes.")
+	else
+		to_chat(user, "Looks like some kind of...mechanical donut.")
 
 /obj/item/weapon/gun/launcher/spike/update_icon()
 	var/new_icon_state = spikes <=1 ? null : icon_state + "[round(spikes/4, 1)]"
@@ -181,7 +183,7 @@
 
 /obj/item/weapon/gun/launcher/spike/able_to_fire(mob/user)
 	if(!isYautja(user))
-		user << "<span class='warning'>You have no idea how this thing works!</span>"
+		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
 
 	return ..()
@@ -224,7 +226,7 @@
 /obj/item/weapon/gun/syringe/examine(mob/user)
 	..()
 	if(user != loc) return
-	user << "\blue [syringes.len] / [max_syringes] syringes."
+	to_chat(user, "\blue [syringes.len] / [max_syringes] syringes.")
 
 /obj/item/weapon/gun/syringe/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/reagent_container/syringe))
@@ -234,12 +236,12 @@
 				user.drop_inv_item_to_loc(I, src)
 				syringes += I
 				update_icon()
-				user << "\blue You put the syringe in [src]."
-				user << "\blue [syringes.len] / [max_syringes] syringes."
+				to_chat(user, "\blue You put the syringe in [src].")
+				to_chat(user, "\blue [syringes.len] / [max_syringes] syringes.")
 			else
-				usr << "\red [src] cannot hold more syringes."
+				to_chat(usr, "\red [src] cannot hold more syringes.")
 		else
-			usr << "\red This syringe is broken!"
+			to_chat(usr, "\red This syringe is broken!")
 
 
 /obj/item/weapon/gun/syringe/afterattack(obj/target, mob/user , flag)
@@ -257,7 +259,7 @@
 	if(syringes.len)
 		spawn(0) fire_syringe(target,user)
 	else
-		usr << "\red [src] is empty."
+		to_chat(usr, "\red [src] is empty.")
 
 /obj/item/weapon/gun/syringe/proc/fire_syringe(atom/target, mob/user)
 	if (locate (/obj/structure/table, src.loc))

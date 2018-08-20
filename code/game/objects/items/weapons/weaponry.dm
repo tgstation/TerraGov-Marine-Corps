@@ -89,7 +89,7 @@
 /obj/item/weapon/butterfly/attack_self(mob/user)
 	active = !active
 	if(active)
-		user << "<span class='notice'>You flip out your [src].</span>"
+		to_chat(user, "<span class='notice'>You flip out your [src].</span>")
 		playsound(user, 'sound/weapons/flipblade.ogg', 15, 1)
 		force = 15 //bay adjustments
 		throwforce = 12
@@ -100,7 +100,7 @@
 		w_class = 3
 		attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	else
-		user << "<span class='notice'>The butterfly knife can now be concealed.</span>"
+		to_chat(user, "<span class='notice'>The butterfly knife can now be concealed.</span>")
 		force = initial(force)
 		edge = 0
 		sharp = 0
@@ -144,7 +144,7 @@
 		var/obj/item/weapon/twohanded/spear/S = new /obj/item/weapon/twohanded/spear
 
 		user.put_in_hands(S)
-		user << "<span class='notice'>You fasten the glass shard to the top of the rod with the cable.</span>"
+		to_chat(user, "<span class='notice'>You fasten the glass shard to the top of the rod with the cable.</span>")
 		cdel(I)
 		cdel(src)
 		update_icon(user)
@@ -153,7 +153,7 @@
 		var/obj/item/weapon/baton/cattleprod/P = new /obj/item/weapon/baton/cattleprod
 
 		user.put_in_hands(P)
-		user << "<span class='notice'>You fasten the wirecutters to the top of the rod with the cable, prongs outward.</span>"
+		to_chat(user, "<span class='notice'>You fasten the wirecutters to the top of the rod with the cable, prongs outward.</span>")
 		cdel(I)
 		cdel(src)
 		update_icon(user)

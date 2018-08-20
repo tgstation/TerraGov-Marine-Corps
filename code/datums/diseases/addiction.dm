@@ -23,7 +23,7 @@
 /datum/disease/ultrazine_addiction/stage_act()
 	..()
 
-	//world << "stage: [stage], addiction_progression: [addiction_progression]"
+	//to_chat(world, "stage: [stage], addiction_progression: [addiction_progression]")
 
 	//withdrawal process
 	if(affected_mob.reagents.has_reagent("ultrazine"))
@@ -48,7 +48,7 @@
 				if(prob(20))
 					affected_mob.halloss = max(affected_mob.halloss, min(20, withdrawal_progression*0.5) )
 					if(prob(50))
-						affected_mob << "<span class='danger'>[pick("You could use another hit.", "More of that would be nice.", "Another dose would help.", "One more dose wouldn't hurt", "Why not take one more?")]</span>"
+						to_chat(affected_mob, "<span class='danger'>[pick("You could use another hit.", "More of that would be nice.", "Another dose would help.", "One more dose wouldn't hurt", "Why not take one more?")]</span>")
 
 				affected_mob.next_move_slowdown = max(affected_mob.next_move_slowdown, 5)
 
@@ -60,7 +60,7 @@
 			if(prob(20))
 				affected_mob.halloss = max(affected_mob.halloss, min(40, withdrawal_progression) )
 				if(prob(50))
-					affected_mob << "<span class='danger'>[pick("It's just not the same without it.", "You could use another hit.", "You should take another.", "Just one more.", "Looks like you need another one.")]</span>"
+					to_chat(affected_mob, "<span class='danger'>[pick("It's just not the same without it.", "You could use another hit.", "You should take another.", "Just one more.", "Looks like you need another one.")]</span>")
 				if(prob(25))
 					affected_mob.emote("me",1, pick("winces slightly.", "grimaces.") )
 
@@ -73,7 +73,7 @@
 			if(prob(20))
 				affected_mob.halloss = max(affected_mob.halloss, min(60, withdrawal_progression*1.5) )
 				if(prob(50))
-					affected_mob << "<span class='danger'>[pick("You need more.", "It's hard to go on like this.", "You want more. You need more.", "Just take another hit. Now.", "One more.")]</span>"
+					to_chat(affected_mob, "<span class='danger'>[pick("You need more.", "It's hard to go on like this.", "You want more. You need more.", "Just take another hit. Now.", "One more.")]</span>")
 				if(prob(25))
 					affected_mob.emote("me",1, pick("winces.", "grimaces.", "groans!") )
 

@@ -379,7 +379,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				hackState = 0
 				icon_state="req_comp_open"
 		else
-			user << "You can't do much with that."*/
+			to_chat(user, "You can't do much with that.")*/
 
 	if (istype(O, /obj/item/card/id))
 		if(screen == 9)
@@ -393,7 +393,7 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 				announcement.announcer = ID.assignment ? "[ID.assignment] [ID.registered_name]" : ID.registered_name
 			else
 				reset_announce()
-				user << "\red You are not authorized to send announcements."
+				to_chat(user, "\red You are not authorized to send announcements.")
 			updateUsrDialog()
 	if (istype(O, /obj/item/tool/stamp))
 		if(screen == 9)

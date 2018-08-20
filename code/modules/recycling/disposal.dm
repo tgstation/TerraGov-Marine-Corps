@@ -50,29 +50,29 @@
 	if(mode <= 0) //It's off
 		if(istype(I, /obj/item/tool/screwdriver))
 			if(contents.len > 0)
-				user << "<span class='warning'>Eject the contents first!</span>"
+				to_chat(user, "<span class='warning'>Eject the contents first!</span>")
 				return
 			if(mode == 0) //It's off but still not unscrewed
 				mode = -1 //Set it to doubleoff
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				user << "<span class='notice'>You remove the screws around the power connection.</span>"
+				to_chat(user, "<span class='notice'>You remove the screws around the power connection.</span>")
 				return
 			else if(mode == -1)
 				mode = 0
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				user << "<span class='notice'>You attach the screws around the power connection.</span>"
+				to_chat(user, "<span class='notice'>You attach the screws around the power connection.</span>")
 				return
 		else if(istype(I, /obj/item/tool/weldingtool) && mode == -1)
 			if(contents.len > 0)
-				user << "<span class='warning'>Eject the contents first!</span>"
+				to_chat(user, "<span class='warning'>Eject the contents first!</span>")
 				return
 			var/obj/item/tool/weldingtool/W = I
 			if(W.remove_fuel(0, user))
 				playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-				user << "<span class='notice'>You start slicing the floorweld off the disposal unit.</span>"
+				to_chat(user, "<span class='notice'>You start slicing the floorweld off the disposal unit.</span>")
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 					if(!src || !W.isOn()) return
-					user << "<span class='notice'>You sliced the floorweld off the disposal unit.</span>"
+					to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal unit.</span>")
 					var/obj/structure/disposalconstruct/C = new(loc)
 					transfer_fingerprints_to(C)
 					C.ptype = 6 //6 = disposal unit
@@ -81,12 +81,12 @@
 					C.update()
 					cdel(src)
 			else
-				user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
+				to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return
 
 	if(istype(I, /obj/item/storage/bag/trash))
 		var/obj/item/storage/bag/trash/T = I
-		user << "<span class='notice'>You empty the bag into [src].</span>"
+		to_chat(user, "<span class='notice'>You empty the bag into [src].</span>")
 		for(var/obj/item/O in T.contents)
 			T.remove_from_storage(O, src)
 		T.update_icon()
@@ -193,7 +193,7 @@
 //Human interact with machine
 /obj/machinery/disposal/attack_hand(mob/user as mob)
 	if(user && user.loc == src)
-		usr << "\red You cannot reach the controls from inside."
+		to_chat(usr, "\red You cannot reach the controls from inside.")
 		return
 
 	interact(user, 0)
@@ -232,11 +232,11 @@
 //Handle machine interaction
 /obj/machinery/disposal/Topic(href, href_list)
 	if(usr.loc == src)
-		usr << "<span class='warning'>You cannot reach the controls from inside.</span>"
+		to_chat(usr, "<span class='warning'>You cannot reach the controls from inside.</span>")
 		return
 
 	if(mode == -1 && !href_list["eject"]) // only allow ejecting if mode is -1
-		usr << "<span class='warning'>The disposal units power is disabled.</span>"
+		to_chat(usr, "<span class='warning'>The disposal units power is disabled.</span>")
 		return
 	..()
 	add_fingerprint(usr)
@@ -797,9 +797,9 @@
 			if(user.loc == uloc && wloc == W.loc)
 				welded()
 			else
-				user << "<span class='warning'>You must stay still while welding [src].</span>"
+				to_chat(user, "<span class='warning'>You must stay still while welding [src].</span>")
 		else
-			user << "<span class='warning'>You need more welding fuel to cut [src].</span>"
+			to_chat(user, "<span class='warning'>You need more welding fuel to cut [src].</span>")
 
 //Called when pipe is cut with blowtorch
 /obj/structure/disposalpipe/proc/welded()
@@ -1079,7 +1079,7 @@
 		if(O.currTag) //Tag set
 			sort_tag = O.currTag
 			playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
-			user << "<span class='notice'>Changed tag to '[sort_tag]'.</span>"
+			to_chat(user, "<span class='notice'>Changed tag to '[sort_tag]'.</span>")
 			updatename()
 			updatedesc()
 
@@ -1148,7 +1148,7 @@
 		if(O.currTag) //Tag set
 			sortType = O.currTag
 			playsound(loc, 'sound/machines/twobeep.ogg', 25, 1)
-			user << "<span class='notice'>Changed filter to '[sortType]'.</span>"
+			to_chat(user, "<span class='notice'>Changed filter to '[sortType]'.</span>")
 			updatename()
 			updatedesc()
 
@@ -1258,9 +1258,9 @@
 			if(user.loc == uloc && wloc == W.loc)
 				welded()
 			else
-				user << "<span class='warning'>You must stay still while welding the pipe.</span>"
+				to_chat(user, "<span class='warning'>You must stay still while welding the pipe.</span>")
 		else
-			user << "<span class='warning'>You need more welding fuel to cut the pipe.</span>"
+			to_chat(user, "<span class='warning'>You need more welding fuel to cut the pipe.</span>")
 
 //Would transfer to next pipe segment, but we are in a trunk. If not entering from disposal bin, transfer to linked object (outlet or bin)
 /obj/structure/disposalpipe/trunk/transfer(var/obj/structure/disposalholder/H)
@@ -1347,19 +1347,19 @@
 		if(mode == 0)
 			mode = 1
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-			user << "<span class='notice'>You remove the screws around the power connection.</span>"
+			to_chat(user, "<span class='notice'>You remove the screws around the power connection.</span>")
 		else if(mode == 1)
 			mode = 0
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-			user << "<span class='notice'>You attach the screws around the power connection.</span>"
+			to_chat(user, "<span class='notice'>You attach the screws around the power connection.</span>")
 	else if(istype(I, /obj/item/tool/weldingtool) && mode == 1)
 		var/obj/item/tool/weldingtool/W = I
 		if(W.remove_fuel(0, user))
 			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
-			user << "<span class='notice'>You start slicing the floorweld off the disposal outlet.</span>"
+			to_chat(user, "<span class='notice'>You start slicing the floorweld off the disposal outlet.</span>")
 			if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 				if(!src || !W.isOn()) return
-				user << "<span class='notice'>You sliced the floorweld off the disposal outlet.</span>"
+				to_chat(user, "<span class='notice'>You sliced the floorweld off the disposal outlet.</span>")
 				var/obj/structure/disposalconstruct/C = new(loc)
 				transfer_fingerprints_to(C)
 				C.ptype = 7 //7 =  outlet
@@ -1368,7 +1368,7 @@
 				C.density = 1
 				cdel(src)
 		else
-			user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
+			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 
 /obj/structure/disposaloutlet/retrieval
 	name = "retrieval outlet"

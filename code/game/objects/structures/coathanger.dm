@@ -26,7 +26,7 @@
 		coat.forceMove(src)
 		update_icon()
 	else
-		user << "<span class='notice'>You cannot hang [W] on [src]</span>"
+		to_chat(user, "<span class='notice'>You cannot hang [W] on [src]</span>")
 		return ..()
 
 /obj/structure/coatrack/Crossed(atom/movable/AM)

@@ -118,7 +118,7 @@ var/list/department_radio_keys = list(
 	var/not_dead_speaker = (stat != DEAD)
 	for(var/mob/M in listening)
 		if(not_dead_speaker)
-			M << speech_bubble
+			to_chat(M, speech_bubble)
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
 
 	spawn(30)

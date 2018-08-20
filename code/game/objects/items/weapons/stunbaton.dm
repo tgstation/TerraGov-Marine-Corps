@@ -55,9 +55,9 @@
 /obj/item/weapon/baton/examine(mob/user)
 	..()
 	if(bcell)
-		user <<"<span class='notice'>The baton is [round(bcell.percent())]% charged.</span>"
+		to_chat(user, "<span class='notice'>The baton is [round(bcell.percent())]% charged.</span>")
 	else
-		user <<"<span class='warning'>The baton does not have a power source installed.</span>"
+		to_chat(user, "<span class='warning'>The baton does not have a power source installed.</span>")
 
 /obj/item/weapon/baton/attack_hand(mob/user)
 	if(check_user_auth(user))
@@ -95,17 +95,17 @@
 			if(user.drop_held_item())
 				W.forceMove(src)
 				bcell = W
-				user << "<span class='notice'>You install a cell in [src].</span>"
+				to_chat(user, "<span class='notice'>You install a cell in [src].</span>")
 				update_icon()
 		else
-			user << "<span class='notice'>[src] already has a cell.</span>"
+			to_chat(user, "<span class='notice'>[src] already has a cell.</span>")
 
 	else if(istype(W, /obj/item/tool/screwdriver))
 		if(bcell)
 			bcell.updateicon()
 			bcell.loc = get_turf(src.loc)
 			bcell = null
-			user << "<span class='notice'>You remove the cell from the [src].</span>"
+			to_chat(user, "<span class='notice'>You remove the cell from the [src].</span>")
 			status = 0
 			update_icon()
 			return
@@ -113,28 +113,28 @@
 
 /obj/item/weapon/baton/attack_self(mob/user)
 	if(has_user_lock && user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
-		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
 		return
 	if(bcell && bcell.charge > hitcost)
 		status = !status
-		user << "<span class='notice'>[src] is now [status ? "on" : "off"].</span>"
+		to_chat(user, "<span class='notice'>[src] is now [status ? "on" : "off"].</span>")
 		playsound(loc, "sparks", 25, 1, 6)
 		update_icon()
 	else
 		status = 0
 		if(!bcell)
-			user << "<span class='warning'>[src] does not have a power source!</span>"
+			to_chat(user, "<span class='warning'>[src] does not have a power source!</span>")
 		else
-			user << "<span class='warning'>[src] is out of charge.</span>"
+			to_chat(user, "<span class='warning'>[src] is out of charge.</span>")
 	add_fingerprint(user)
 
 
 /obj/item/weapon/baton/attack(mob/M, mob/user)
 	if(has_user_lock && user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
-		user << "<span class='warning'>You don't seem to know how to use [src]...</span>"
+		to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
 		return
 	if(status && (CLUMSY in user.mutations) && prob(50))
-		user << "span class='danger'>You accidentally hit yourself with the [src]!</span>"
+		to_chat(user, "span class='danger'>You accidentally hit yourself with the [src]!</span>")
 		user.KnockDown(30)
 		deductcharge(hitcost)
 		return

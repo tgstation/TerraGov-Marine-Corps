@@ -22,22 +22,22 @@ obj/machinery/recharger/attackby(obj/item/G as obj, mob/user as mob)
 
 	if(allowed)
 		if(charging)
-			user << "\red \A [charging] is already charging here."
+			to_chat(user, "\red \A [charging] is already charging here.")
 			return
 		// Checks to make sure he's not in space doing it, and that the area got proper power.
 		var/area/a = get_area(src)
 		if(!isarea(a) || (a.power_equip == 0 && !a.unlimited_power))
-			user << "\red The [name] blinks red as you try to insert the item!"
+			to_chat(user, "\red The [name] blinks red as you try to insert the item!")
 			return
 		if(istype(G, /obj/item/device/laptop))
 			var/obj/item/device/laptop/L = G
 			if(!L.stored_computer.battery)
-				user << "There's no battery in it!"
+				to_chat(user, "There's no battery in it!")
 				return
 		if(istype(G, /obj/item/device/defibrillator))
 			var/obj/item/device/defibrillator/D = G
 			if(D.ready)
-				user << "<span class='warning'>It won't fit, put the paddles back into [D] first!</span>"
+				to_chat(user, "<span class='warning'>It won't fit, put the paddles back into [D] first!</span>")
 				return
 		if(user.drop_inv_item_to_loc(G, src))
 			charging = G
@@ -45,10 +45,10 @@ obj/machinery/recharger/attackby(obj/item/G as obj, mob/user as mob)
 			update_icon()
 	else if(istype(G, /obj/item/tool/wrench))
 		if(charging)
-			user << "\red Remove [charging] first!"
+			to_chat(user, "\red Remove [charging] first!")
 			return
 		anchored = !anchored
-		user << "You [anchored ? "attached" : "detached"] the recharger."
+		to_chat(user, "You [anchored ? "attached" : "detached"] the recharger.")
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 
 obj/machinery/recharger/attack_hand(mob/user as mob)

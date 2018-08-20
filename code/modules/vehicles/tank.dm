@@ -93,12 +93,12 @@
 	deactivate_all_hardpoints()
 
 	if(driver)
-		driver << "<span class='danger'>You dismount to as the smoke and flames start to choke you!</span>"
+		to_chat(driver, "<span class='danger'>You dismount to as the smoke and flames start to choke you!</span>")
 		driver.Move(entrance.loc)
 		driver.unset_interaction()
 		driver = null
 	else if(gunner)
-		gunner << "<span class='danger'>You dismount to as the smoke and flames start to choke you!</span>"
+		to_chat(gunner, "<span class='danger'>You dismount to as the smoke and flames start to choke you!</span>")
 		gunner.Move(entrance.loc)
 		gunner.unset_interaction()
 		gunner = null
@@ -126,18 +126,18 @@
 	//But all of the other code about those two would look like shit
 	if(usr == gunner)
 		if(driver)
-			usr << "<span class='notice'>There's already someone in the other seat.</span>"
+			to_chat(usr, "<span class='notice'>There's already someone in the other seat.</span>")
 			return
 
-		usr << "<span class='notice'>You start getting into the other seat.</span>"
+		to_chat(usr, "<span class='notice'>You start getting into the other seat.</span>")
 
 		sleep(30)
 
 		if(driver)
-			usr << "<span class='notice'>Someone beat you to the other seat!</span>"
+			to_chat(usr, "<span class='notice'>Someone beat you to the other seat!</span>")
 			return
 
-		usr << "<span class='notice'>You switch seats.</span>"
+		to_chat(usr, "<span class='notice'>You switch seats.</span>")
 
 		deactivate_all_hardpoints()
 
@@ -146,18 +146,18 @@
 
 	else if(usr == driver)
 		if(gunner)
-			usr << "<span class='notice'>There's already someone in the other seat.</span>"
+			to_chat(usr, "<span class='notice'>There's already someone in the other seat.</span>")
 			return
 
-		usr << "<span class='notice'>You start getting into the other seat.</span>"
+		to_chat(usr, "<span class='notice'>You start getting into the other seat.</span>")
 
 		sleep(30)
 
 		if(gunner)
-			usr << "<span class='notice'>Someone beat you to the other seat!</span>"
+			to_chat(usr, "<span class='notice'>Someone beat you to the other seat!</span>")
 			return
 
-		usr << "<span class='notice'>You switch seats.</span>"
+		to_chat(usr, "<span class='notice'>You switch seats.</span>")
 
 		gunner = driver
 		driver = null
@@ -170,19 +170,19 @@
 	if(M.loc != entrance.loc)	return
 
 	if(!gunner && !driver)
-		M << "<span class='warning'>There is no one in the vehicle.</span>"
+		to_chat(M, "<span class='warning'>There is no one in the vehicle.</span>")
 		return
 
-	M << "<span class='notice'>You start pulling [driver ? driver : gunner] out of their seat.</span>"
+	to_chat(M, "<span class='notice'>You start pulling [driver ? driver : gunner] out of their seat.</span>")
 
 	if(!do_after(M, 200, show_busy_icon = BUSY_ICON_HOSTILE))
-		M << "<span class='warning'>You stop pulling [driver ? driver : gunner] out of their seat.</span>"
+		to_chat(M, "<span class='warning'>You stop pulling [driver ? driver : gunner] out of their seat.</span>")
 		return
 
 	if(M.loc != entrance.loc) return
 
 	if(!gunner && !driver)
-		M << "<span class='warning'>There is no longer anyone in the vehicle.</span>"
+		to_chat(M, "<span class='warning'>There is no longer anyone in the vehicle.</span>")
 		return
 
 	M.visible_message("<span class='warning'>[M] pulls [driver ? driver : gunner] out of their seat in [src].</span>",
@@ -195,7 +195,7 @@
 	else
 		targ = gunner
 		gunner = null
-	targ << "<span class='danger'>[M] forcibly drags you out of your seat and dumps you on the ground!</span>"
+	to_chat(targ, "<span class='danger'>[M] forcibly drags you out of your seat and dumps you on the ground!</span>")
 	targ.forceMove(entrance.loc)
 	targ.unset_interaction()
 	targ.KnockDown(7, 1)
@@ -210,10 +210,10 @@
 	if(!M || M.client == null) return
 
 	if(!M.mind || !(!M.mind.cm_skills || M.mind.cm_skills.large_vehicle >= SKILL_LARGE_VEHICLE_TRAINED))
-		M << "<span class='notice'>You have no idea how to operate this thing.</span>"
+		to_chat(M, "<span class='notice'>You have no idea how to operate this thing.</span>")
 		return
 
-	M << "<span class='notice'>You start climbing into [src].</span>"
+	to_chat(M, "<span class='notice'>You start climbing into [src].</span>")
 	for(var/obj/item/I in M.contents)
 		if(I.zoom)
 			I.zoom() // cancel zoom.
@@ -221,45 +221,45 @@
 		if("Driver")
 
 			if(driver != null)
-				M << "<span class='notice'>That seat is already taken.</span>"
+				to_chat(M, "<span class='notice'>That seat is already taken.</span>")
 				return
 
 			if(!do_after(M, 100, needhand = FALSE, show_busy_icon = TRUE))
-				M << "<span class='notice'>Something interrupted you while getting in.</span>"
+				to_chat(M, "<span class='notice'>Something interrupted you while getting in.</span>")
 				return
 
 			if(M.loc != entrance.loc)
-				M << "<span class='notice'>You stop getting in.</span>"
+				to_chat(M, "<span class='notice'>You stop getting in.</span>")
 				return
 
 			if(driver != null)
-				M << "<span class='notice'>Someone got into that seat before you could.</span>"
+				to_chat(M, "<span class='notice'>Someone got into that seat before you could.</span>")
 				return
 			for(var/obj/item/I in M.contents)
 				if(I.zoom)
 					I.zoom() // cancel zoom.
 			driver = M
 			M.loc = src
-			M << "<span class='notice'>You enter the driver's seat.</span>"
+			to_chat(M, "<span class='notice'>You enter the driver's seat.</span>")
 			M.set_interaction(src)
 			return
 
 		if("Gunner")
 
 			if(gunner != null)
-				M << "<span class='notice'>That seat is already taken.</span>"
+				to_chat(M, "<span class='notice'>That seat is already taken.</span>")
 				return
 
 			if(!do_after(M, 100, needhand = FALSE, show_busy_icon = TRUE))
-				M << "<span class='notice'>Something interrupted you while getting in.</span>"
+				to_chat(M, "<span class='notice'>Something interrupted you while getting in.</span>")
 				return
 
 			if(M.loc != entrance.loc)
-				M << "<span class='notice'>You stop getting in.</span>"
+				to_chat(M, "<span class='notice'>You stop getting in.</span>")
 				return
 
 			if(gunner != null)
-				M << "<span class='notice'>Someone got into that seat before you could.</span>"
+				to_chat(M, "<span class='notice'>Someone got into that seat before you could.</span>")
 				return
 
 			if(!M.client) return //Disconnected while getting in
@@ -268,7 +268,7 @@
 					I.zoom() // cancel zoom.
 			gunner = M
 			M.loc = src
-			M << "<span class='notice'>You enter the gunner's seat.</span>"
+			to_chat(M, "<span class='notice'>You enter the gunner's seat.</span>")
 			M.set_interaction(src)
 
 			return
@@ -281,24 +281,24 @@
 	if(M != gunner && M != driver) return
 
 	if(occupant_exiting)
-		M << "<span class='notice'>Someone is already getting out of the vehicle.</span>"
+		to_chat(M, "<span class='notice'>Someone is already getting out of the vehicle.</span>")
 		return
 
-	M << "<span class='notice'>You start climbing out of [src].</span>"
+	to_chat(M, "<span class='notice'>You start climbing out of [src].</span>")
 
 	occupant_exiting = 1
 	sleep(50)
 	occupant_exiting = 0
 
 	if(!M.Move(entrance.loc))
-		M << "<span class='notice'>Something is blocking you from exiting.</span>"
+		to_chat(M, "<span class='notice'>Something is blocking you from exiting.</span>")
 	else
 		if(M == gunner)
 			deactivate_all_hardpoints()
 			gunner = null
 		else if(M == driver) driver = null
 		M.unset_interaction()
-		M << "<span class='notice'>You climb out of [src].</span>"
+		to_chat(M, "<span class='notice'>You climb out of [src].</span>")
 
 //No one but the driver can drive
 /obj/vehicle/multitile/root/cm_armored/tank/relaymove(var/mob/user, var/direction)

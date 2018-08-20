@@ -26,10 +26,10 @@
 
 			var/obj/item/organ/brain/B = O
 			if(B.health <= 0)
-				user << "\red That brain is well and truly dead."
+				to_chat(user, "\red That brain is well and truly dead.")
 				return
 			else if(!B.brainmob)
-				user << "\red You aren't sure where this brain came from, but you're pretty sure it's a useless brain."
+				to_chat(user, "\red You aren't sure where this brain came from, but you're pretty sure it's a useless brain.")
 				return
 
 			for(var/mob/V in viewers(src, null))
@@ -58,9 +58,9 @@
 		if((istype(O,/obj/item/card/id)||istype(O,/obj/item/device/pda)) && brainmob)
 			if(allowed(user))
 				locked = !locked
-				user << "\blue You [locked ? "lock" : "unlock"] the brain holder."
+				to_chat(user, "\blue You [locked ? "lock" : "unlock"] the brain holder.")
 			else
-				user << "\red Access denied."
+				to_chat(user, "\red Access denied.")
 			return
 		if(brainmob)
 			O.attack(brainmob, user)//Oh noooeeeee
@@ -70,11 +70,11 @@
 	//TODO: ORGAN REMOVAL UPDATE. Make the brain remain in the MMI so it doesn't lose organ data.
 	attack_self(mob/user as mob)
 		if(!brainmob)
-			user << "\red You upend the MMI, but there's nothing in it."
+			to_chat(user, "\red You upend the MMI, but there's nothing in it.")
 		else if(locked)
-			user << "\red You upend the MMI, but the brain is clamped into place."
+			to_chat(user, "\red You upend the MMI, but the brain is clamped into place.")
 		else
-			user << "\blue You upend the MMI, spilling the brain onto the floor."
+			to_chat(user, "\blue You upend the MMI, spilling the brain onto the floor.")
 			var/obj/item/organ/brain/brain = new(user.loc)
 			brainmob.container = null//Reset brainmob mmi var.
 			brainmob.loc = brain//Throw mob into brain.
@@ -119,10 +119,10 @@
 			set popup_menu = 0//Will not appear when right clicking.
 
 			if(brainmob.stat)//Only the brainmob will trigger these so no further check is necessary.
-				brainmob << "Can't do that while incapacitated or dead."
+				to_chat(brainmob, "Can't do that while incapacitated or dead.")
 
 			radio.broadcasting = radio.broadcasting==1 ? 0 : 1
-			brainmob << "\blue Radio is [radio.broadcasting==1 ? "now" : "no longer"] broadcasting."
+			to_chat(brainmob, "\blue Radio is [radio.broadcasting==1 ? "now" : "no longer"] broadcasting.")
 
 		Toggle_Listening()
 			set name = "Toggle Listening"
@@ -132,10 +132,10 @@
 			set popup_menu = 0
 
 			if(brainmob.stat)
-				brainmob << "Can't do that while incapacitated or dead."
+				to_chat(brainmob, "Can't do that while incapacitated or dead.")
 
 			radio.listening = radio.listening==1 ? 0 : 1
-			brainmob << "\blue Radio is [radio.listening==1 ? "now" : "no longer"] receiving broadcast."
+			to_chat(brainmob, "\blue Radio is [radio.listening==1 ? "now" : "no longer"] receiving broadcast.")
 
 /obj/item/device/mmi/emp_act(severity)
 	if(!brainmob)

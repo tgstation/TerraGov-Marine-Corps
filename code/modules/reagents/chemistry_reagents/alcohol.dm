@@ -73,14 +73,14 @@
 		if(istype(O,/obj/item/paper))
 			var/obj/item/paper/paperaffected = O
 			paperaffected.clearpaper()
-			usr << "The solution dissolves the ink on the paper."
+			to_chat(usr, "The solution dissolves the ink on the paper.")
 		if(istype(O,/obj/item/book))
 			if(volume >= 5)
 				var/obj/item/book/affectedbook = O
 				affectedbook.dat = null
-				usr << "The solution dissolves the ink on the book."
+				to_chat(usr, "The solution dissolves the ink on the book.")
 			else
-				usr << "It wasn't enough..."
+				to_chat(usr, "It wasn't enough...")
 		return
 
 	reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)//Splashing people with ethanol isn't quite as good as fuel.

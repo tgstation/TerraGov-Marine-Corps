@@ -28,7 +28,7 @@
 
 	if (src.client)
 		if(client.prefs.muted & MUTE_IC)
-			src << "You cannot send IC messages (muted)."
+			to_chat(src, "You cannot send IC messages (muted).")
 			return
 		if (src.client.handle_spam_prevention(message,MUTE_IC))
 			return
@@ -81,17 +81,17 @@
 
 		for(var/mob/living/silicon/D in listeners)
 			if(D.client && istype(D,src.type))
-				D << "<b>[src]</b> transmits, \"[message]\""
+				to_chat(D, "<b>[src]</b> transmits, \"[message]\"")
 
 		for (var/mob/M in player_list)
 			if (istype(M, /mob/new_player))
 				continue
 			else if(M.stat == 2 &&  M.client.prefs.toggles_chat & CHAT_GHOSTEARS)
-				if(M.client) M << "<b>[src]</b> transmits, \"[message]\""
+				if(M.client) to_chat(M, "<b>[src]</b> transmits, \"[message]\"")
 		return
 
 	if(message_mode && bot_type == IS_ROBOT && !R.is_component_functioning("radio"))
-		src << "\red Your radio isn't functional at this time."
+		to_chat(src, "\red Your radio isn't functional at this time.")
 		return
 
 	switch(message_mode)
@@ -109,7 +109,7 @@
 			switch(bot_type)
 				if(IS_AI)
 					if (AI.aiRadio.disabledAi)
-						src << "\red System Error - Transceiver Disabled"
+						to_chat(src, "\red System Error - Transceiver Disabled")
 						return
 					else
 						log_say("[key_name(src)] : [message]")
@@ -124,7 +124,7 @@
 				switch(bot_type)
 					if(IS_AI)
 						if (AI.aiRadio.disabledAi)
-							src << "\red System Error - Transceiver Disabled"
+							to_chat(src, "\red System Error - Transceiver Disabled")
 							return
 						else
 							log_say("[key_name(src)] : [message]")
@@ -157,7 +157,7 @@
 		var/message_stars = stars(message)
 		var/rendered_b = "<span class='game say'><span class='name'>[voice_name]</span> [verb], <span class='message'>\"[message_stars]\"</span></span>"
 
-		src << "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [verb], <span class='message'>[message]</span></span></i>"//The AI can "hear" its own message.
+		to_chat(src, "<i><span class='game say'>Holopad transmitted, <span class='name'>[real_name]</span> [verb], <span class='message'>[message]</span></span></i>")
 		for(var/mob/M in hearers(T.loc))//The location is the object, default distance.
 			if(M.say_understands(src))//If they understand AI speak. Humans and the like will be able to.
 				M.show_message(rendered_a, 2)
@@ -166,7 +166,7 @@
 		/*Radios "filter out" this conversation channel so we don't need to account for them.
 		This is another way of saying that we won't bother dealing with them.*/
 	else
-		src << "No holopad connected."
+		to_chat(src, "No holopad connected.")
 		return
 	return 1
 

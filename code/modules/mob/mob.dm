@@ -73,9 +73,9 @@
 					return
 
 	if(stat == UNCONSCIOUS)
-		src << "<I>... You can almost hear someone talking ...</I>"
+		to_chat(src, "<I>... You can almost hear someone talking ...</I>")
 	else
-		src << msg
+		to_chat(src, msg)
 
 
 // Show a message to all mobs in sight of this one
@@ -144,13 +144,13 @@
 	if(!W.mob_can_equip(src, slot, disable_warning))
 		if(del_on_fail) cdel(W)
 		else
-			if(!disable_warning) src << "<span class='warning'>You are unable to equip that.</span>" //Only print if del_on_fail is false
+			if(!disable_warning) to_chat(src, "<span class='warning'>You are unable to equip that.</span>")
 		return
 	var/start_loc = W.loc
 	if(W.time_to_equip && !ignore_delay)
 		spawn(0)
 			if(!do_after(src, W.time_to_equip, TRUE, 5, BUSY_ICON_GENERIC))
-				src << "You stop putting on \the [W]"
+				to_chat(src, "You stop putting on \the [W]")
 			else
 				equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 				if(permanent)
@@ -261,7 +261,7 @@ var/list/slot_equipment_priority = list( \
 /mob/proc/update_flavor_text()
 	set src in usr
 	if(usr != src)
-		usr << "No."
+		to_chat(usr, "No.")
 	var/msg = input(usr,"Set the flavor text in your 'examine' verb. Can also be used for OOC notes about your character.","Flavor Text",html_decode(flavor_text)) as message|null
 
 	if(msg != null)
@@ -272,8 +272,8 @@ var/list/slot_equipment_priority = list( \
 
 /mob/proc/warn_flavor_changed()
 	if(flavor_text && flavor_text != "") // don't spam people that don't use it!
-		src << "<h2 class='alert'>OOC Warning:</h2>"
-		src << "<span class='alert'>Your flavor text is likely out of date! <a href='byond://?src=\ref[src];flavor_change=1'>Change</a></span>"
+		to_chat(src, "<h2 class='alert'>OOC Warning:</h2>")
+		to_chat(src, "<span class='alert'>Your flavor text is likely out of date! <a href='byond://?src=\ref[src];flavor_change=1'>Change</a></span>")
 
 /mob/proc/print_flavor_text()
 	if (flavor_text && flavor_text != "")
@@ -414,7 +414,7 @@ var/list/slot_equipment_priority = list( \
 /mob/proc/show_viewers(message)
 	for(var/mob/M in viewers())
 		if(!M.stat)
-			src << message
+			to_chat(src, message)
 
 
 /*
@@ -610,11 +610,11 @@ mob/proc/yank_out_object()
 	usr.next_move = world.time + 20
 
 	if(usr.stat)
-		usr << "You are unconcious and cannot do that!"
+		to_chat(usr, "You are unconcious and cannot do that!")
 		return
 
 	if(usr.is_mob_restrained())
-		usr << "You are restrained and cannot do that!"
+		to_chat(usr, "You are restrained and cannot do that!")
 		return
 
 	var/mob/S = src
@@ -628,23 +628,23 @@ mob/proc/yank_out_object()
 	valid_objects = get_visible_implants(0)
 	if(!valid_objects.len)
 		if(self)
-			src << "You have nothing stuck in your body that is large enough to remove."
+			to_chat(src, "You have nothing stuck in your body that is large enough to remove.")
 		else
-			U << "[src] has nothing stuck in their wounds that is large enough to remove."
+			to_chat(U, "[src] has nothing stuck in their wounds that is large enough to remove.")
 		return
 
 	var/obj/item/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
 
 	if(self)
 		if(get_active_hand())
-			src << "<span class='warning'>You need an empty hand for this!</span>"
+			to_chat(src, "<span class='warning'>You need an empty hand for this!</span>")
 			return FALSE
-		src << "<span class='warning'>You attempt to get a good grip on [selection] in your body.</span>"
+		to_chat(src, "<span class='warning'>You attempt to get a good grip on [selection] in your body.</span>")
 	else
 		if(get_active_hand())
-			U << "<span class='warning'>You need an empty hand for this!</span>"
+			to_chat(U, "<span class='warning'>You need an empty hand for this!</span>")
 			return FALSE
-		U << "<span class='warning'>You attempt to get a good grip on [selection] in [S]'s body.</span>"
+		to_chat(U, "<span class='warning'>You attempt to get a good grip on [selection] in [S]'s body.</span>")
 
 	if(!do_after(U, 80, TRUE, 5, BUSY_ICON_FRIENDLY))
 		return

@@ -392,9 +392,9 @@ var/global/list/uneatable = list(
 			if (istype(M,/mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
 				if(istype(H.glasses,/obj/item/clothing/glasses/meson))
-					H << "\blue You look directly into [src], good thing you had your protective eyewear on!"
+					to_chat(H, "\blue You look directly into [src], good thing you had your protective eyewear on!")
 					return
-		M << "\red You look directly into [src] and feel weak."
+		to_chat(M, "\red You look directly into [src] and feel weak.")
 		M.apply_effect(3, STUN)
 		visible_message("<span class='danger'>[M] stares blankly at [src]!</span>")
 

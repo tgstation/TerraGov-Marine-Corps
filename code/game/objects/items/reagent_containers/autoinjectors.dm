@@ -28,9 +28,9 @@
 /obj/item/reagent_container/hypospray/autoinjector/examine(mob/user)
 	..()
 	if(reagents && reagents.reagent_list.len)
-		user << "\blue It is currently loaded."
+		to_chat(user, "\blue It is currently loaded.")
 	else
-		user << "\blue It is spent."
+		to_chat(user, "\blue It is spent.")
 
 
 

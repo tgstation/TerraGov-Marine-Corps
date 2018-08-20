@@ -138,7 +138,7 @@
 /mob/living/proc/IgniteMob()
 	if(fire_stacks > 0 && !on_fire)
 		on_fire = 1
-		src << "<span class='danger'>You are on fire! Use Resist to put yourself out!</span>"
+		to_chat(src, "<span class='danger'>You are on fire! Use Resist to put yourself out!</span>")
 		update_fire()
 		return 1
 

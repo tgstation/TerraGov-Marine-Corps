@@ -30,17 +30,17 @@
 
 		if (istype(A, /obj/item/toy/gun_ammo))
 			if (src.bullets >= 7)
-				user << "\blue It's already fully loaded!"
+				to_chat(user, "\blue It's already fully loaded!")
 				return 1
 			if (A.amount_left <= 0)
-				user << "\red There is no more caps!"
+				to_chat(user, "\red There is no more caps!")
 				return 1
 			if (A.amount_left < (7 - bullets))
 				src.bullets += A.amount_left
-				user << "\red You reload [A.amount_left] caps\s!"
+				to_chat(user, "\red You reload [A.amount_left] caps\s!")
 				A.amount_left = 0
 			else
-				user << "\red You reload [7 - bullets] caps\s!"
+				to_chat(user, "\red You reload [7 - bullets] caps\s!")
 				A.amount_left -= 7 - bullets
 				bullets = 7
 			A.update_icon()
@@ -52,7 +52,7 @@
 		if (flag)
 			return
 		if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-			usr << "\red You don't have the dexterity to do this!"
+			to_chat(usr, "\red You don't have the dexterity to do this!")
 			return
 		src.add_fingerprint(user)
 		if (src.bullets < 1)
@@ -97,7 +97,7 @@
 	examine(mob/user)
 		..()
 		if (bullets)
-			user << "\blue It is loaded with [bullets] foam darts!"
+			to_chat(user, "\blue It is loaded with [bullets] foam darts!")
 
 	attackby(obj/item/I as obj, mob/user as mob)
 		if(istype(I, /obj/item/toy/crossbow_ammo))
@@ -105,9 +105,9 @@
 				if(user.drop_held_item())
 					cdel(I)
 					bullets++
-					user << "\blue You load the foam dart into the crossbow."
+					to_chat(user, "\blue You load the foam dart into the crossbow.")
 			else
-				usr << "\red It's already fully loaded."
+				to_chat(usr, "\red It's already fully loaded.")
 
 
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)
@@ -212,13 +212,13 @@
 	attack_self(mob/user as mob)
 		src.active = !( src.active )
 		if (src.active)
-			user << "\blue You extend the plastic blade with a quick flick of your wrist."
+			to_chat(user, "\blue You extend the plastic blade with a quick flick of your wrist.")
 			playsound(user, 'sound/weapons/saberon.ogg', 15, 1)
 			src.icon_state = "swordblue"
 			src.item_state = "swordblue"
 			src.w_class = 4
 		else
-			user << "\blue You push the plastic blade back down into the handle."
+			to_chat(user, "\blue You push the plastic blade back down into the handle.")
 			playsound(user, 'sound/weapons/saberoff.ogg', 15, 1)
 			src.icon_state = "sword0"
 			src.item_state = "sword0"

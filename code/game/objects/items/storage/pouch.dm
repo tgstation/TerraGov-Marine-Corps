@@ -13,7 +13,7 @@
 
 /obj/item/storage/pouch/examine(mob/user)
 	..()
-	user << "Can be worn by attaching it to a pocket."
+	to_chat(user, "Can be worn by attaching it to a pocket.")
 
 
 /obj/item/storage/pouch/equipped(mob/user, slot)
@@ -336,7 +336,7 @@
 		var/obj/item/storage/box/m94/M = W
 		if(M.contents.len)
 			if(contents.len < storage_slots)
-				user << "<span class='notice'>You start refilling [src] with [M].</span>"
+				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
 				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC)) return
 				for(var/obj/item/I in M)
 					if(contents.len < storage_slots)
@@ -346,9 +346,9 @@
 						break
 				playsound(user.loc, "rustle", 15, 1, 6)
 			else
-				user << "<span class='warning'>[src] is full.</span>"
+				to_chat(user, "<span class='warning'>[src] is full.</span>")
 		else
-			user << "<span class='warning'>[M] is empty.</span>"
+			to_chat(user, "<span class='warning'>[M] is empty.</span>")
 		return TRUE
 	else
 		return ..()

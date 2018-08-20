@@ -63,7 +63,7 @@
 
 /turf/Enter(atom/movable/mover as mob|obj, atom/forget as mob|obj|turf|area)
 	if(movement_disabled && usr.ckey != movement_disabled_exception)
-		usr << "\red Movement is admin-disabled." //This is to identify lag problems
+		to_chat(usr, "\red Movement is admin-disabled.")
 		return
 	if (!mover || !isturf(mover.loc))
 		return 1
@@ -172,7 +172,7 @@
 
 	var/old_lumcount = lighting_lumcount - initial(lighting_lumcount)
 
-	//world << "Replacing [src.type] with [new_turf_path]"
+	//to_chat(world, "Replacing [src.type] with [new_turf_path]")
 
 	var/path = "[src.type]"
 	var/turf/W = new new_turf_path( locate(src.x, src.y, src.z) )
@@ -288,19 +288,19 @@
 	var/area/A = get_area(src)
 	switch(A.ceiling)
 		if(CEILING_NONE)
-			user << "It is in the open."
+			to_chat(user, "It is in the open.")
 		if(CEILING_GLASS)
-			user << "The ceiling above is glass."
+			to_chat(user, "The ceiling above is glass.")
 		if(CEILING_METAL)
-			user << "The ceiling above is metal."
+			to_chat(user, "The ceiling above is metal.")
 		if(CEILING_UNDERGROUND)
-			user << "It is underground. The cavern roof lies above."
+			to_chat(user, "It is underground. The cavern roof lies above.")
 		if(CEILING_UNDERGROUND_METAL)
-			user << "It is underground. The ceiling above is metal."
+			to_chat(user, "It is underground. The ceiling above is metal.")
 		if(CEILING_DEEP_UNDERGROUND)
-			user << "It is deep underground. The cavern roof lies above."
+			to_chat(user, "It is deep underground. The cavern roof lies above.")
 		if(CEILING_DEEP_UNDERGROUND_METAL)
-			user << "It is deep underground. The ceiling above is metal."
+			to_chat(user, "It is deep underground. The ceiling above is metal.")
 
 
 

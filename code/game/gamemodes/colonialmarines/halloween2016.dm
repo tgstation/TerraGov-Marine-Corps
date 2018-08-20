@@ -14,7 +14,7 @@
 	var/shuffle1 = input("Select which role to spawn.","1-20") as num
 	var/shuffle2 = input("Select which sub-role to spawn.","1-2") as num
 	CM.handle_event_major_spooky(shuffle1,shuffle2)
-	world << "<span class='debug'>Major event triggered.</span>"
+	to_chat(world, "<span class='debug'>Major event triggered.</span>")
 
 /mob/living/verb/test_minor_spooky()
 	set name = "Debug Minor Event"
@@ -24,7 +24,7 @@
 	var/shuffle1 = input("Select which event to play.","1-20") as num
 	var/shuffle2 = input("Select which sub event to play.","1-20") as num
 	CM.handle_event_minor_spooky(shuffle1,shuffle2)
-	world << "<span class='debug'>Minor event triggered.</span>"
+	to_chat(world, "<span class='debug'>Minor event triggered.</span>")
 
 /mob/living/verb/test_battle_spawn()
 	set name = "Debug Character Spawn"
@@ -79,12 +79,12 @@
 	//initialize_starting_predator_list()
 	var/ready_players = num_players() // Get all players that have "Ready" selected
 	if(ready_players < required_players)
-		world << "<span class='round_setup'>Not enough players to start the game. Aborting.</span>"
+		to_chat(world, "<span class='round_setup'>Not enough players to start the game. Aborting.</span>")
 		return
 	return 1
 
 /datum/game_mode/colonialmarines_halloween_2016/announce()
-	world << "<span class='round_header'>The current game mode is - Nightmare on LV-624!</span>"
+	to_chat(world, "<span class='round_header'>The current game mode is - Nightmare on LV-624!</span>")
 	world << 'sound/misc/surrounded_by_assholes.ogg'
 
 /datum/game_mode/colonialmarines_halloween_2016/send_intercept()
@@ -96,7 +96,7 @@
 /* Pre-setup */
 //We can ignore this for now, we don't want to do anything before characters are set up.
 /datum/game_mode/colonialmarines_halloween_2016/pre_setup()
-	world << "<span class='round_setup'>Declaring spawn locations...</span>"
+	to_chat(world, "<span class='round_setup'>Declaring spawn locations...</span>")
 
 	var/obj/effect/landmark/L
 	var/obj/effect/step_trigger/attunement/R
@@ -112,7 +112,7 @@
 	var/turf/pmc_supplies[] 		= new
 	var/turf/marine_supplies[] 		= new
 
-	world << "<span class='round_setup'>Attuning blood shrines...</span>"
+	to_chat(world, "<span class='round_setup'>Attuning blood shrines...</span>")
 	//This will set up the various blood attuners to correspond to blood type.
 	var/blood_types[] 		= HUMAN_BLOODTYPES
 	var/blood_attuners[] 	= new
@@ -128,11 +128,11 @@
 		while(++i < e) blood_chosen += pick(blood_types)
 		blood_attuners["blood attunement [t]"] = blood_chosen
 
-	world << "<span class='round_setup'>Setting up the mist...</span>"
+	to_chat(world, "<span class='round_setup'>Setting up the mist...</span>")
 	//Get all the fog effects in the world.
 	for(F in effect_list) fog_blockers += F
 
-	world << "<span class='round_setup'>Generating spawn locations...</span>"
+	to_chat(world, "<span class='round_setup'>Generating spawn locations...</span>")
 	//Set up landmarks.
 	for(L in landmarks_list)
 		switch(L.name)
@@ -157,7 +157,7 @@
 			else L = null //So we are not deleting all landmarks that still may exist, like observer spawn.
 		cdel(L)
 
-	world << "<span class='round_setup'>Generating treasures...</span>"
+	to_chat(world, "<span class='round_setup'>Generating treasures...</span>")
 
 	if(blood_idol_spawns.len)
 		var/turf/T = pick(blood_idol_spawns)
@@ -168,7 +168,7 @@
 			new /obj/structure/closet/crate(T)
 			blood_idol_spawns -= T
 
-	world << "<span class='round_setup'>Generating supplies...</span>"
+	to_chat(world, "<span class='round_setup'>Generating supplies...</span>")
 	//Generate supplies.
 	create_pmc_supplies(pmc_supplies)
 	create_marine_supplies(marine_supplies)
@@ -190,7 +190,7 @@
 	lobby_time = world.time
 	//initialize_post_predator_list()
 
-	world << "<span class='round_setup'>Shuffling playable parties...</span>"
+	to_chat(world, "<span class='round_setup'>Shuffling playable parties...</span>")
 	var/mob/M
 	var/temp_player_list[] = new
 	for(var/i in player_list) temp_player_list += i
@@ -214,7 +214,7 @@
 	if(--round_started > 0) return
 	if(!round_finished && ++round_checkwin >= 5)
 		if(world.time >= (FOG_DELAY_INTERVAL + lobby_time) && fog_blockers.len)
-			world << "<span class='boldnotice'>The sickly fog surrounding the area is receding!</span>"
+			to_chat(world, "<span class='boldnotice'>The sickly fog surrounding the area is receding!</span>")
 			var/obj/O
 			for(O in fog_blockers)
 				fog_blockers -= O
@@ -229,7 +229,7 @@
 		 * Note : Find something else to send for next halloween
 		if(!total_attuned)
 			total_attuned--
-			world << "<span class='event_announcement'>All the blood seals are broken! He comes!</span>"
+			to_chat(world, "<span class='event_announcement'>All the blood seals are broken! He comes!</span>")
 		 */
 
 		check_win()
@@ -327,7 +327,7 @@
 	health = 500
 
 	attack_hand(mob/M)
-		M << "<span class='warning'>You don't know what this thing could do if you mess with it. Better to leave it alone.</span>"
+		to_chat(M, "<span class='warning'>You don't know what this thing could do if you mess with it. Better to leave it alone.</span>")
 
 	bullet_act(obj/item/projectile/P)
 		bullet_ping(P)
@@ -378,7 +378,7 @@
 		dir  = pick(CARDINAL_DIRS)
 
 	attack_hand(mob/M)
-		M << "<span class='notice'>You peer through the fog, but it's impossible to tell what's on the other side...</span>"
+		to_chat(M, "<span class='notice'>You peer through the fog, but it's impossible to tell what's on the other side...</span>")
 
 	attack_alien(M)
 		return attack_hand(M)
@@ -405,7 +405,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(b_type.len && H.b_type in b_type)
-				H << "<span class='notice'>You feel a sudden sense of relief wash over you...</span>"
+				to_chat(H, "<span class='notice'>You feel a sudden sense of relief wash over you...</span>")
 				return
 
 		switch(rand(1,3))
@@ -432,10 +432,10 @@
 		SetLuminosity(0)
 		if(ticker && ticker.mode && ticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
 			var/datum/game_mode/colonialmarines_halloween_2016/T = ticker.mode
-			world << "<span class='event_announcement'>A blood seal has broken! [--T.total_attuned ? T.total_attuned : "None"] remain!</span>"
+			to_chat(world, "<span class='event_announcement'>A blood seal has broken! [--T.total_attuned ? T.total_attuned : "None"] remain!</span>")
 
 /obj/effect/rune/attunement/attack_hand(mob/living/user) //Special snowflake rune, do not steal 2016.
-	user << "<span class='notice'>You touch the rune, feeling it glow beneath your fingertip. It feels warm, somehow pleasant. The rune soon fades and disappears, as you feel a new sense of understanding about the world.</span>"
+	to_chat(user, "<span class='notice'>You touch the rune, feeling it glow beneath your fingertip. It feels warm, somehow pleasant. The rune soon fades and disappears, as you feel a new sense of understanding about the world.</span>")
 	user.dna.SetSEState(pick(HULKBLOCK,XRAYBLOCK,FIREBLOCK,TELEBLOCK,NOBREATHBLOCK,REMOTEVIEWBLOCK), 1)
 	domutcheck(user,null,MUTCHK_FORCED)
 	user.update_mutations()
@@ -465,25 +465,25 @@
 			H.loc = pick(pmc_spawns)
 			spawn(40)
 				if(H)
-					H << "________________________"
-					H << "\red <b>You are the [H.mind.assigned_role]!<b>"
-					H << "It was just a regular day in the office when the higher up decided to send you in to this hot mess. If only you called in sick that day..."
-					H << "The W-Y mercs were hired to protect some important science experiment, and W-Y expects you to keep them in line."
-					H << "These are hardened killers, and you write on paper for a living. It won't be easy, that's for damn sure."
-					H << "Best to let the mercs do the killing and the dying, but <b>remind them who pays the bills.</b>"
-					H << "________________________"
+					to_chat(H, "________________________")
+					to_chat(H, "\red <b>You are the [H.mind.assigned_role]!<b>")
+					to_chat(H, "It was just a regular day in the office when the higher up decided to send you in to this hot mess. If only you called in sick that day...")
+					to_chat(H, "The W-Y mercs were hired to protect some important science experiment, and W-Y expects you to keep them in line.")
+					to_chat(H, "These are hardened killers, and you write on paper for a living. It won't be easy, that's for damn sure.")
+					to_chat(H, "Best to let the mercs do the killing and the dying, but <b>remind them who pays the bills.</b>")
+					to_chat(H, "________________________")
 			return
 		if("Commander")
 			H.loc = pick(marine_spawns)
 			spawn(40)
 				if(H)
-					H << "________________________"
-					H << "\red <b>You are the [H.mind.assigned_role]!<b>"
-					H << "What the hell did you do to get assigned on this mission? Maybe someone is looking to bump you off for a promotion. Regardless..."
-					H << "The marines need a leader to inspire them and lead them to victory. You'll settle for telling them which side of the gun the bullets come from."
-					H << "You are a vet, a real badass in your day, but now you're in the thick of it with the grunts. You're plenty sure they are going to die in droves."
-					H << "Come hell or high water, <b>you are going to be there for them</b>."
-					H << "________________________"
+					to_chat(H, "________________________")
+					to_chat(H, "\red <b>You are the [H.mind.assigned_role]!<b>")
+					to_chat(H, "What the hell did you do to get assigned on this mission? Maybe someone is looking to bump you off for a promotion. Regardless...")
+					to_chat(H, "The marines need a leader to inspire them and lead them to victory. You'll settle for telling them which side of the gun the bullets come from.")
+					to_chat(H, "You are a vet, a real badass in your day, but now you're in the thick of it with the grunts. You're plenty sure they are going to die in droves.")
+					to_chat(H, "Come hell or high water, <b>you are going to be there for them</b>.")
+					to_chat(H, "________________________")
 			return
 
 	var/random_primary = 1
@@ -660,13 +660,13 @@
 		H.mind.role_comm_title = "W-Y"
 		spawn(40)
 			if(H)
-				H << "________________________"
-				H << "\red <b>You are the [H.mind.assigned_role]!<b>"
-				H << "We have a new mission for you. The USCM is coming to investigate one of our blacksites, and we require your services."
-				H << "Make sure you keep the Colonial Marines from tampering with our equipment. It is very, very expensive, and will be hard to replace."
-				H << "As usual, you will be handsomely rewarded upon completion of this mission. Should you fail, we will deny our involvement."
-				H << "Hold out for an hour, and your job is finished. It goes without saying, <b>do not let us down.</b>"
-				H << "________________________"*/
+				to_chat(H, "________________________")
+				to_chat(H, "\red <b>You are the [H.mind.assigned_role]!<b>")
+				to_chat(H, "We have a new mission for you. The USCM is coming to investigate one of our blacksites, and we require your services.")
+				to_chat(H, "Make sure you keep the Colonial Marines from tampering with our equipment. It is very, very expensive, and will be hard to replace.")
+				to_chat(H, "As usual, you will be handsomely rewarded upon completion of this mission. Should you fail, we will deny our involvement.")
+				to_chat(H, "Hold out for an hour, and your job is finished. It goes without saying, <b>do not let us down.</b>")
+				to_chat(H, "________________________")*/
 
 	//SQUADS
 	else
@@ -895,13 +895,13 @@
 		//Give them some information
 		spawn(40)
 			if(H)
-				H << "________________________"
-				H << "\red <b>You are the [H.mind.assigned_role]!<b>"
-				H << "Gear up, maggot! You have been dropped off in this God-forsaken place to complete some wetworks for Uncle Sam! Not even your mother knows that you're here!"
-				H << "Some W-Y mercs are camping out north of the colony, and they got some doo-hickie doomsday device they are planning to use. Make sure they don't!"
-				H << "Wipe them out and destroy their tech! The [MAIN_SHIP_NAME] will maintain radio silence for the duration of the mission!"
-				H << "You've got an hour. And watch out... That colony ain't right, it ain't right at all. <b>DISMISSED!</b>"
-				H << "________________________"
+				to_chat(H, "________________________")
+				to_chat(H, "\red <b>You are the [H.mind.assigned_role]!<b>")
+				to_chat(H, "Gear up, maggot! You have been dropped off in this God-forsaken place to complete some wetworks for Uncle Sam! Not even your mother knows that you're here!")
+				to_chat(H, "Some W-Y mercs are camping out north of the colony, and they got some doo-hickie doomsday device they are planning to use. Make sure they don't!")
+				to_chat(H, "Wipe them out and destroy their tech! The [MAIN_SHIP_NAME] will maintain radio silence for the duration of the mission!")
+				to_chat(H, "You've got an hour. And watch out... That colony ain't right, it ain't right at all. <b>DISMISSED!</b>")
+				to_chat(H, "________________________")
 
 	H.loc = picked
 
@@ -940,7 +940,7 @@
 								if(4) dat = "<span class='notice'>Did someone say something? Who was that talking just now?</span> "
 								if(5) dat = "<span class='notice'>Something is calling you, just around the corner. Who is that?</span> "
 							dat += pick("<span class='rose'>[pick(phrases)]</span>")
-							M << dat
+							to_chat(M, dat)
 						if(12 to 16)
 							var/spooky_sounds[] = list(
 								'sound/hallucinations/behind_you1.ogg',
@@ -962,7 +962,7 @@
 								'sound/hallucinations/turn_around2.ogg',
 								'sound/hallucinations/veryfar_noise.ogg',
 								'sound/hallucinations/wail.ogg')
-							M << pick(spooky_sounds)
+							M << spooky_sounds
 						else
 							var/mob/living/carbon/human/H = M
 							H.hallucination += 60
@@ -1213,16 +1213,21 @@
 		return
 
 	horror.key = horror_key
-	if(horror.client) horror.client.change_view(world.view)
+	if(horror.client)
+		horror.client.change_view(world.view)
 	horror.mind.key = horror.key
 
-	world << "<span class='event_announcement'>An otherwordly presence is reaching through the fabric of reality!</span>"
+	to_chat(world, "<span class='event_announcement'>An otherwordly presence is reaching through the fabric of reality!</span>")
 	sleep(10)
 	switch(shuffle1)
-		if(1 to 4) horror << "<span class='alien'>You must baptize everything in fire! The world will burn! ROAR!</span>"
-		if(5 to 15) horror << "<span class='rough'>You hunger for blood of the living! Murder! Death! KILL!</span>"
-		else horror << "<span class='notice'>You have been transported to who-knows where from elsewhere! Fight the horrors of this place!</span>"
-	if(entry_sound) world << entry_sound
+		if(1 to 4)
+			to_chat(horror, "<span class='alien'>You must baptize everything in fire! The world will burn! ROAR!</span>")
+		if(5 to 15)
+			to_chat(horror, "<span class='rough'>You hunger for blood of the living! Murder! Death! KILL!</span>")
+		else
+			to_chat(horror, "<span class='notice'>You have been transported to who-knows where from elsewhere! Fight the horrors of this place!</span>")
+	if(entry_sound)
+		world << entry_sound
 
 /datum/game_mode/colonialmarines_halloween_2016/proc/generate_supply_crate(turf/supply_spawn[], supply_manifest[], crate_name = "supplies", crate_desc = "A crate of supplies. Surely the contents will help, somehow.")
 	var/turf/spawn_point = pick(supply_spawn)
@@ -1488,7 +1493,7 @@
 		processing_objects -= src
 
 	attack_hand(mob/M) //You dun goofed now, goofy.
-		M << "<span class='danger'>The strange thing in your hand begins to move around! You suddenly get a very bad feeling about this!</span>"
+		to_chat(M, "<span class='danger'>The strange thing in your hand begins to move around! You suddenly get a very bad feeling about this!</span>")
 		icon_state = "statuette2"
 		mouse_opacity = 0 //Can't be interacted with again.
 		shadow_wights = new
@@ -1662,4 +1667,4 @@
 			cdel(src,,animation_destruction_fade(src))
 
 /obj/effect/shadow_wight/Bump(atom/A)
-	A << "<span class='warning'>You feel a chill run down your spine!</span>"
+	to_chat(A, "<span class='warning'>You feel a chill run down your spine!</span>")

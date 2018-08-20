@@ -24,4 +24,4 @@
 			else
 				sign_type = oldreplacetext(lowertext(sign_type), " ", "") // lowercase, strip spaces - along with choices for user options, avoids huge if-else-else
 				src.ChangeSign(sign_type)
-				user << "You change the barsign."
+				to_chat(user, "You change the barsign.")

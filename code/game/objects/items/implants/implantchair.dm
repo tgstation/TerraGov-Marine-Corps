@@ -103,10 +103,10 @@
 
 	put_mob(mob/living/carbon/M)
 		if(!iscarbon(M))
-			usr << "\red <B>The [src.name] cannot hold this!</B>"
+			to_chat(usr, "\red <B>The [src.name] cannot hold this!</B>")
 			return
 		if(src.occupant)
-			usr << "\red <B>The [src.name] is already occupied!</B>"
+			to_chat(usr, "\red <B>The [src.name] is already occupied!</B>")
 			return
 		M.forceMove(src)
 		src.occupant = M

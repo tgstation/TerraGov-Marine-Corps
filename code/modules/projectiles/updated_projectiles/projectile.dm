@@ -339,7 +339,7 @@
 	var/accuracy_factor = 50 //degree to which accuracy affects probability   (if accuracy is 100, probability is unaffected. Lower accuracies will increase block chance)
 
 	var/hitchance = min(coverage, (coverage * distance/distance_limit) + accuracy_factor * (1 - P.accuracy/100))
-	//world << "Distance travelled: [distance]  |  Accuracy: [P.accuracy]  |  Hit chance: [hitchance]"
+	//to_chat(world, "Distance travelled: [distance]  |  Accuracy: [P.accuracy]  |  Hit chance: [hitchance]")
 	return prob(hitchance)
 
 /obj/structure/window/get_projectile_hit_chance(obj/item/projectile/P)
@@ -371,7 +371,7 @@
 
 	. = P.accuracy //We want a temporary variable so accuracy doesn't change every time the bullet misses.
 	#if DEBUG_HIT_CHANCE
-	world << "<span class='debuginfo'>Base accuracy is <b>[P.accuracy]; scatter:[P.scatter]; distance:[P.distance_travelled]</b></span>"
+	to_chat(world, "<span class='debuginfo'>Base accuracy is <b>[P.accuracy]; scatter:[P.scatter]; distance:[P.distance_travelled]</b></span>")
 	#endif
 
 	if (P.distance_travelled <= P.ammo.accurate_range + rand(0, 2))
@@ -388,7 +388,7 @@
 
 
 	#if DEBUG_HIT_CHANCE
-	world << "<span class='debuginfo'>Final accuracy is <b>[.]</b></span>"
+	to_chat(world, "<span class='debuginfo'>Final accuracy is <b>[.]</b></span>")
 	#endif
 
 	. = max(5, .) //default hit chance is at least 5%.
@@ -464,7 +464,7 @@
 			adjust_fire_stacks(rand(6,10))
 			IgniteMob()
 			emote("scream")
-			src << "<span class='highdanger'>You burst into flames!! Stop drop and roll!</span>"
+			to_chat(src, "<span class='highdanger'>You burst into flames!! Stop drop and roll!</span>")
 	return 1
 
 /*
@@ -483,7 +483,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	var/damage = max(0, P.damage - round(P.distance_travelled * P.ammo.damage_falloff))
 	#if DEBUG_HUMAN_DEFENSE
-	world << "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>"
+	to_chat(world, "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>")
 	#endif
 
 	//Any projectile can decloak a predator. It does defeat one free bullet though.
@@ -516,12 +516,12 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			if(TOX, OXY, CLONE) armor = getarmor_organ(organ, "bio")
 			else armor = getarmor_organ(organ, "energy") //Won't be used, but just in case.
 		#if DEBUG_HUMAN_DEFENSE
-		world << "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>"
+		to_chat(world, "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>")
 		#endif
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
 		armor -= penetration//Minus armor penetration from the bullet. If the bullet has negative penetration, adding to their armor, but they don't have armor, they get nothing.
 		#if DEBUG_HUMAN_DEFENSE
-		world << "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>"
+		to_chat(world, "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>")
 		#endif
 
 		if(armor > 0) //Armor check. We should have some to continue.
@@ -533,7 +533,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			armor			-= round(armor_soak * config.base_armor_resist_low) //If you still have armor left over, you generally should, we subtract the soak.
 											  		   //This gives smaller calibers a chance to actually deal damage.
 			#if DEBUG_HUMAN_DEFENSE
-			world << "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>"
+			to_chat(world, "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
 			#endif
 			var/i = 0
 			if(damage)
@@ -543,11 +543,11 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 						armor 		-= armor_soak * config.base_armor_resist_high
 						damage 		-= armor_soak
 						#if DEBUG_HUMAN_DEFENSE
-						world << "<span class='debuginfo'>Currently soaked: <b>[armor_soak]</b>. Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>"
+						to_chat(world, "<span class='debuginfo'>Currently soaked: <b>[armor_soak]</b>. Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
 						#endif
 					else break //If we failed to block the damage, it's time to get out of the loop.
 					i++
-			if(i || damage <= 5) src << "<span class='notice'>Your armor [ i == 2 ? "absorbs the force of [P]!" : "softens the impact of [P]!" ]</span>"
+			if(i || damage <= 5) to_chat(src, "<span class='notice'>Your armor [ i == 2 ? "absorbs the force of [P]!" : "softens the impact of [P]!" ]</span>")
 			if(damage <= 0)
 				damage = 0
 				if(P.ammo.sound_armor) playsound(src, P.ammo.sound_armor, 50, 1)
@@ -569,14 +569,14 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			organ.embed(shrap)
 			if(!stat && !(species && species.flags & NO_PAIN))
 				emote("scream")
-				src << "<span class='highdanger'>You scream in pain as the impact sends <B>shrapnel</b> into the wound!</span>"
+				to_chat(src, "<span class='highdanger'>You scream in pain as the impact sends <B>shrapnel</b> into the wound!</span>")
 
 		if(P.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
 			adjust_fire_stacks(rand(6,11))
 			IgniteMob()
 			if(!stat && !(species.flags & NO_PAIN))
 				emote("scream")
-				src << "<span class='highdanger'>You burst into flames!! Stop drop and roll!</span>"
+				to_chat(src, "<span class='highdanger'>You burst into flames!! Stop drop and roll!</span>")
 		return 1
 
 //Deal with xeno bullets.
@@ -593,7 +593,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	var/damage = max(0, P.damage - round(P.distance_travelled * P.ammo.damage_falloff)) //Has to be at least zero, no negatives.
 	#if DEBUG_XENO_DEFENSE
-	world << "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>"
+	to_chat(world, "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>")
 	#endif
 
 	if(damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR))
@@ -605,7 +605,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			else if(P.dir == reverse_direction(charger.dir)) armor += round(armor_deflection * config.xeno_armor_resist_low) //We are facing the bullet.
 			//Otherwise use the standard armor deflection for crushers.
 			#if DEBUG_XENO_DEFENSE
-			world << "<span class='debuginfo'>Adjusted crest armor is: <b>[armor]</b></span>"
+			to_chat(world, "<span class='debuginfo'>Adjusted crest armor is: <b>[armor]</b></span>")
 			#endif
 
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
@@ -619,7 +619,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			armor			-= round(armor_soak * config.base_armor_resist_low) //If you still have armor left over, you generally should, we subtract the soak.
 											  		   //This gives smaller calibers a chance to actually deal damage.
 			#if DEBUG_XENO_DEFENSE
-			world << "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>"
+			to_chat(world, "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
 			#endif
 			var/i = 0
 			if(damage)
@@ -629,11 +629,11 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 						armor 		-= armor_soak * config.base_armor_resist_high
 						damage 		-= armor_soak
 						#if DEBUG_XENO_DEFENSE
-						world << "<span class='debuginfo'>Currently soaked: <b>[armor_soak]</b>. Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>"
+						to_chat(world, "<span class='debuginfo'>Currently soaked: <b>[armor_soak]</b>. Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
 						#endif
 					else break //If we failed to block the damage, it's time to get out of the loop.
 					i++
-			if(i || damage <= 5) src << "<span class='xenonotice'>Your exoskeleton [ i == 2 ? "absorbs the force of [P]!" : "softens the impact of [P]!" ]</span>"
+			if(i || damage <= 5) to_chat(src, "<span class='xenonotice'>Your exoskeleton [ i == 2 ? "absorbs the force of [P]!" : "softens the impact of [P]!" ]</span>")
 			if(damage <= 3)
 				damage = 0
 				bullet_ping(P)
@@ -649,7 +649,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			emote(pain_emote)
 		if(P.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
 			if(fire_immune)
-				if(!stat) src << "<span class='avoidharm'>You shrug off some persistent flames.</span>"
+				if(!stat) to_chat(src, "<span class='avoidharm'>You shrug off some persistent flames.</span>")
 			else
 				adjust_fire_stacks(rand(2,6) + round(damage / 8))
 				IgniteMob()
@@ -748,7 +748,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(!P) return
 
 	if(P.ammo.flags_ammo_behavior & AMMO_IS_SILENCED)
-		src << "[isXeno(src) ? "<span class='xenodanger'>" : "<span class='highdanger'>" ]You've been shot in the [parse_zone(P.def_zone)] by [P.name]!</span>"
+		to_chat(src, "[isXeno(src) ? "<span class='xenodanger'>" : "<span class='highdanger'>" ]You've been shot in the [parse_zone(P.def_zone)] by [P.name]!</span>")
 	else
 		visible_message("<span class='danger'>[name] is hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>", \
 						"<span class='highdanger'>You are hit by the [P.name] in the [parse_zone(P.def_zone)]!</span>", null, 4)

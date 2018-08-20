@@ -130,7 +130,7 @@ obj/item/circuitboard/machine/rdserver
 
 /obj/item/circuitboard/machine/unary_atmos/examine(mob/user)
 	..()
-	user << "The jumper is connecting the [dir2text(machine_dir)] pins."
+	to_chat(user, "The jumper is connecting the [dir2text(machine_dir)] pins.")
 
 /obj/item/circuitboard/machine/unary_atmos/construct(var/obj/machinery/atmospherics/unary/U)
 	//TODO: Move this stuff into the relevant constructor when pipe/construction.dm is cleaned up.

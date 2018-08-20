@@ -28,29 +28,29 @@
 		var/obj/item/stack/rods/R = W
 		if(R.use(4))
 			new /obj/item/frame/table/reinforced(get_turf(src))
-			user << "<span class='notice'>You reinforce [src].</span>"
+			to_chat(user, "<span class='notice'>You reinforce [src].</span>")
 			user.temp_drop_inv_item(src)
 			cdel(src)
 		else
-			user << "<span class='warning'>You need at least four rods to reinforce [src].</span>"
+			to_chat(user, "<span class='warning'>You need at least four rods to reinforce [src].</span>")
 
 	if(istype(W, /obj/item/stack/sheet/wood))
 		var/obj/item/stack/sheet/wood/S = W
 		if(S.use(2))
 			new /obj/item/frame/table/wood(get_turf(src))
 			new /obj/item/stack/sheet/metal(get_turf(src))
-			user << "<span class='notice'>You replace the metal parts of [src].</span>"
+			to_chat(user, "<span class='notice'>You replace the metal parts of [src].</span>")
 			user.temp_drop_inv_item(src)
 			cdel(src)
 		else
-			user << "<span class='warning'>You need at least two wood sheets to swap the metal parts of [src].</span>"
+			to_chat(user, "<span class='warning'>You need at least two wood sheets to swap the metal parts of [src].</span>")
 
 /obj/item/frame/table/attack_self(mob/user)
 
 
 
 	if(istype(get_area(loc), /area/shuttle))  //HANGAR/SHUTTLE BUILDING
-		user << "<span class='warning'>No. This area is needed for the dropship.</span>"
+		to_chat(user, "<span class='warning'>No. This area is needed for the dropship.</span>")
 		return
 
 	var/obj/structure/table/T = new table_type(user.loc)
@@ -97,7 +97,7 @@
 	if(istype(W, /obj/item/stack/tile/carpet))
 		var/obj/item/stack/tile/carpet/C = W
 		if(C.use(1))
-			user << "<span class='notice'>You put a layer of carpet on [src].</span>"
+			to_chat(user, "<span class='notice'>You put a layer of carpet on [src].</span>")
 			new /obj/item/frame/table/gambling(get_turf(src))
 			cdel(src)
 
@@ -120,7 +120,7 @@
 		cdel(src)
 
 	if(istype(W, /obj/item/tool/crowbar))
-		user << "<span class='notice'>You pry the carpet out of [src].</span>"
+		to_chat(user, "<span class='notice'>You pry the carpet out of [src].</span>")
 		new /obj/item/stack/tile/carpet(get_turf(src))
 		new /obj/item/frame/table/wood(get_turf(src))
 		cdel(src)
@@ -151,15 +151,15 @@
 /obj/item/frame/rack/attack_self(mob/user as mob)
 
 	if(istype(get_area(loc), /area/shuttle))  //HANGAR/SHUTTLE BUILDING
-		user << "<span class='warning'>No. This area is needed for the dropship.</span>"
+		to_chat(user, "<span class='warning'>No. This area is needed for the dropship.</span>")
 		return
 
 	if(locate(/obj/structure/table) in user.loc || locate(/obj/structure/barricade) in user.loc)
-		user << "<span class='warning'>There is already a structure here.</span>"
+		to_chat(user, "<span class='warning'>There is already a structure here.</span>")
 		return
 
 	if(locate(/obj/structure/rack) in user.loc)
-		user << "<span class='warning'>There already is a rack here.</span>"
+		to_chat(user, "<span class='warning'>There already is a rack here.</span>")
 		return
 
 	var/obj/structure/rack/R = new /obj/structure/rack(user.loc)

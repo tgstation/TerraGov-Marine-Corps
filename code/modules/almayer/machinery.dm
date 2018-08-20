@@ -198,7 +198,7 @@
 	if(istype(I, /obj/item/dogtag))
 		var/obj/item/dogtag/D = I
 		if(D.fallen_names)
-			user << "<span class='notice'>You add [D] to [src].</span>"
+			to_chat(user, "<span class='notice'>You add [D] to [src].</span>")
 			if(!fallen_list)
 				fallen_list = list()
 			fallen_list += D.fallen_names
@@ -216,7 +216,7 @@
 				faltext += "[fallen_list[i]], "
 			else
 				faltext += fallen_list[i]
-		user << "<span class='notice'>To our fallen soldiers:</span> <b>[faltext]</b>."
+		to_chat(user, "<span class='notice'>To our fallen soldiers:</span> <b>[faltext]</b>.")
 
 /obj/structure/prop/almayer/particle_cannon
 	name = "\improper 75cm/140 Mark 74 General Atomics railgun"

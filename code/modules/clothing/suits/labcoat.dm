@@ -21,84 +21,84 @@
 		switch(icon_state)
 			if("labcoat_open")
 				src.icon_state = "labcoat"
-				usr << "You button up the labcoat."
+				to_chat(usr, "You button up the labcoat.")
 			if("labcoat")
 				src.icon_state = "labcoat_open"
-				usr << "You unbutton the labcoat."
+				to_chat(usr, "You unbutton the labcoat.")
 			if("red_labcoat_open")
 				src.icon_state = "red_labcoat"
-				usr << "You button up the labcoat."
+				to_chat(usr, "You button up the labcoat.")
 			if("red_labcoat")
 				src.icon_state = "red_labcoat_open"
-				usr << "You unbutton the labcoat."
+				to_chat(usr, "You unbutton the labcoat.")
 			if("blue_labcoat_open")
 				src.icon_state = "blue_labcoat"
-				usr << "You button up the labcoat."
+				to_chat(usr, "You button up the labcoat.")
 			if("blue_labcoat")
 				src.icon_state = "blue_labcoat_open"
-				usr << "You unbutton the labcoat."
+				to_chat(usr, "You unbutton the labcoat.")
 			if("purple_labcoat_open")
 				src.icon_state = "purple_labcoat"
-				usr << "You button up the labcoat."
+				to_chat(usr, "You button up the labcoat.")
 			if("purple_labcoat")
 				src.icon_state = "purple_labcoat_open"
-				usr << "You unbutton the labcoat."
+				to_chat(usr, "You unbutton the labcoat.")
 			if("green_labcoat_open")
 				src.icon_state = "green_labcoat"
-				usr << "You button up the labcoat."
+				to_chat(usr, "You button up the labcoat.")
 			if("green_labcoat")
 				src.icon_state = "green_labcoat_open"
-				usr << "You unbutton the labcoat."
+				to_chat(usr, "You unbutton the labcoat.")
 			if("orange_labcoat_open")
 				src.icon_state = "orange_labcoat"
-				usr << "You button up the labcoat."
+				to_chat(usr, "You button up the labcoat.")
 			if("orange_labcoat")
 				src.icon_state = "orange_labcoat_open"
-				usr << "You unbutton the labcoat."
+				to_chat(usr, "You unbutton the labcoat.")
 			if("labcoat_cmo_open")
 				src.icon_state = "labcoat_cmo"
-				usr << "You button up the labcoat."
+				to_chat(usr, "You button up the labcoat.")
 			if("labcoat_cmo")
 				src.icon_state = "labcoat_cmo_open"
-				usr << "You unbutton the labcoat."
+				to_chat(usr, "You unbutton the labcoat.")
 			if("labcoat_gen_open")
 				src.icon_state = "labcoat_gen"
-				usr << "You button up the labcoat."
+				to_chat(usr, "You button up the labcoat.")
 			if("labcoat_gen")
 				src.icon_state = "labcoat_gen_open"
-				usr << "You unbutton the labcoat."
+				to_chat(usr, "You unbutton the labcoat.")
 			if("labcoat_chem_open")
 				src.icon_state = "labcoat_chem"
-				usr << "You button up the labcoat."
+				to_chat(usr, "You button up the labcoat.")
 			if("labcoat_chem")
 				src.icon_state = "labcoat_chem_open"
-				usr << "You unbutton the labcoat."
+				to_chat(usr, "You unbutton the labcoat.")
 			if("labcoat_vir_open")
 				src.icon_state = "labcoat_vir"
-				usr << "You button up the labcoat."
+				to_chat(usr, "You button up the labcoat.")
 			if("labcoat_vir")
 				src.icon_state = "labcoat_vir_open"
-				usr << "You unbutton the labcoat."
+				to_chat(usr, "You unbutton the labcoat.")
 			if("labcoat_tox_open")
 				src.icon_state = "labcoat_tox"
-				usr << "You button up the labcoat."
+				to_chat(usr, "You button up the labcoat.")
 			if("labcoat_tox")
 				src.icon_state = "labcoat_tox_open"
-				usr << "You unbutton the labcoat."
+				to_chat(usr, "You unbutton the labcoat.")
 			if("labgreen_open")
 				src.icon_state = "labgreen"
-				usr << "You button up the labcoat."
+				to_chat(usr, "You button up the labcoat.")
 			if("labgreen")
 				src.icon_state = "labgreen_open"
-				usr << "You unbutton the labcoat."
+				to_chat(usr, "You unbutton the labcoat.")
 			if("sciencecoat_open")
 				src.icon_state = "sciencecoat"
-				usr << "You button up the labcoat."
+				to_chat(usr, "You button up the labcoat.")
 			if("sciencecoat")
 				src.icon_state = "sciencecoat_open"
-				usr << "You unbutton the labcoat."
+				to_chat(usr, "You unbutton the labcoat.")
 			else
-				usr << "You attempt to button-up the velcro on your [src], before promptly realising how silly you are."
+				to_chat(usr, "You attempt to button-up the velcro on your [src], before promptly realising how silly you are.")
 				return
 		update_clothing_icon()	//so our overlays update
 

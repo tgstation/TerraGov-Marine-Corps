@@ -55,7 +55,7 @@
 					if(G.amount>=G.max_amount)
 						continue
 					G.attackby(NG, user)
-					user << "You add the newly-formed glass to the stack. It now contains [NG.amount] sheets."
+					to_chat(user, "You add the newly-formed glass to the stack. It now contains [NG.amount] sheets.")
 				cdel(src)
 				return
 	return ..()
@@ -65,7 +65,7 @@
 		var/mob/M = AM
 		playsound(src.loc, 'sound/effects/glass_step.ogg', 25, 1) // not sure how to handle metal shards with sounds
 		if(!M.buckled)
-			M << "\red <B>You step on \the [src]!</B>"
+			to_chat(M, "\red <B>You step on \the [src]!</B>")
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 

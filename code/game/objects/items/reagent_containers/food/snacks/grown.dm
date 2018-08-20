@@ -88,7 +88,7 @@
 	if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = W
 		if(C.use(5))
-			user << "<span class='notice'>You add some cable to the potato and slide it inside the battery encasing.</span>"
+			to_chat(user, "<span class='notice'>You add some cable to the potato and slide it inside the battery encasing.</span>")
 			var/obj/item/cell/potato/pocell = new /obj/item/cell/potato(user.loc)
 			pocell.maxcharge = src.potency * 10
 			pocell.charge = pocell.maxcharge
@@ -162,7 +162,7 @@
 	poultice.heal_burn = potency
 	cdel(src)
 
-	user << "<span class='notice'>You mash the petals into a poultice.</span>"
+	to_chat(user, "<span class='notice'>You mash the petals into a poultice.</span>")
 
 /obj/item/reagent_container/food/snacks/grown/shand/attack_self(mob/user as mob)
 	if(istype(user.loc,/turf/open/space))
@@ -172,7 +172,7 @@
 	poultice.heal_brute = potency
 	cdel(src)
 
-	user << "<span class='notice'>You mash the leaves into a poultice.</span>"
+	to_chat(user, "<span class='notice'>You mash the leaves into a poultice.</span>")
 
 /obj/item/reagent_container/food/snacks/grown/glowberries
 	name = "bunch of glow-berries"
@@ -290,7 +290,7 @@
 
 /obj/item/reagent_container/food/snacks/grown/pumpkin/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.sharp == IS_SHARP_ITEM_ACCURATE || W.sharp == IS_SHARP_ITEM_BIG)
-		user << "<span class='notice'>You carve a face into [src]!</span>"
+		to_chat(user, "<span class='notice'>You carve a face into [src]!</span>")
 		new /obj/item/clothing/head/pumpkinhead (user.loc)
 		cdel(src)
 	else
@@ -390,7 +390,7 @@
 	new /mob/living/simple_animal/tomato(user.loc)
 	cdel(src)
 
-	user << "<span class='notice'>You plant the killer-tomato.</span>"
+	to_chat(user, "<span class='notice'>You plant the killer-tomato.</span>")
 
 /obj/item/reagent_container/food/snacks/grown/bloodtomato
 	name = "blood-tomato"
@@ -525,7 +525,7 @@
 	new /mob/living/simple_animal/mushroom(user.loc)
 	cdel(src)
 
-	user << "<span class='notice'>You plant the walking mushroom.</span>"
+	to_chat(user, "<span class='notice'>You plant the walking mushroom.</span>")
 
 /obj/item/reagent_container/food/snacks/grown/mushroom/chanterelle
 	name = "chanterelle cluster"
@@ -552,7 +552,7 @@
 	planted.potency = potency
 	cdel(src)
 
-	user << "<span class='notice'>You plant the glowshroom.</span>"
+	to_chat(user, "<span class='notice'>You plant the glowshroom.</span>")
 
 /obj/item/reagent_container/food/snacks/grown/mushroom/glowshroom/Dispose()
 	if(istype(loc,/mob))

@@ -38,7 +38,7 @@
 								ammo_count += transf_amt
 								SA.ammo_count -= transf_amt
 								playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
-								user << "<span class='notice'>You transfer [transf_amt] [ammo_name] to [src].</span>"
+								to_chat(user, "<span class='notice'>You transfer [transf_amt] [ammo_name] to [src].</span>")
 								if(!SA.ammo_count)
 									PC.loaded = null
 									PC.update_icon()
@@ -48,7 +48,7 @@
 					PC.loaded = src
 					playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
 					PC.update_icon()
-					user << "<span class='notice'>You grab [PC.loaded] with [PC].</span>"
+					to_chat(user, "<span class='notice'>You grab [PC.loaded] with [PC].</span>")
 					update_icon()
 			return TRUE
 		. = ..()
@@ -56,11 +56,11 @@
 
 	examine(mob/user)
 		..()
-		user << "Moving this will require some sort of lifter."
+		to_chat(user, "Moving this will require some sort of lifter.")
 
 //what to show to the user that examines the weapon we're loaded on.
 /obj/structure/ship_ammo/proc/show_loaded_desc(mob/user)
-	user << "It's loaded with \a [src]."
+	to_chat(user, "It's loaded with \a [src].")
 	return
 
 /obj/structure/ship_ammo/proc/detonate_on(turf/impact)
@@ -84,13 +84,13 @@
 
 	examine(mob/user)
 		..()
-		user << "It has [ammo_count] round\s."
+		to_chat(user, "It has [ammo_count] round\s.")
 
 	show_loaded_desc(mob/user)
 		if(ammo_count)
-			user << "It's loaded with \a [src] containing [ammo_count] round\s."
+			to_chat(user, "It's loaded with \a [src] containing [ammo_count] round\s.")
 		else
-			user << "It's loaded with an empty [name]."
+			to_chat(user, "It's loaded with an empty [name].")
 
 	detonate_on(turf/impact)
 		set waitfor = 0
@@ -152,14 +152,14 @@
 
 /obj/structure/ship_ammo/laser_battery/examine(mob/user)
 	..()
-	user << "It's at [round(100*ammo_count/max_ammo_count)]% charge."
+	to_chat(user, "It's at [round(100*ammo_count/max_ammo_count)]% charge.")
 
 
 /obj/structure/ship_ammo/laser_battery/show_loaded_desc(mob/user)
 	if(ammo_count)
-		user << "It's loaded with \a [src] at [round(100*ammo_count/max_ammo_count)]% charge."
+		to_chat(user, "It's loaded with \a [src] at [round(100*ammo_count/max_ammo_count)]% charge.")
 	else
-		user << "It's loaded with an empty [name]."
+		to_chat(user, "It's loaded with an empty [name].")
 
 
 /obj/structure/ship_ammo/laser_battery/detonate_on(turf/impact)
@@ -330,11 +330,11 @@
 
 	show_loaded_desc(mob/user)
 		if(ammo_count)
-			user << "It's loaded with \a [src] containing [ammo_count] minirocket\s."
+			to_chat(user, "It's loaded with \a [src] containing [ammo_count] minirocket\s.")
 
 	examine(mob/user)
 		..()
-		user << "It has [ammo_count] minirocket\s."
+		to_chat(user, "It has [ammo_count] minirocket\s.")
 
 
 /obj/structure/ship_ammo/minirocket/incendiary

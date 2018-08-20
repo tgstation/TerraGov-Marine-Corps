@@ -36,7 +36,7 @@
 			h_user.temp_drop_inv_item(src)
 			h_user.temp_drop_inv_item(bundle)
 			h_user.put_in_hands(bundle)
-		user << "<span class='notice'>You add [src.worth] dollars worth of money to the bundles.<br>It holds [bundle.worth] dollars now.</span>"
+		to_chat(user, "<span class='notice'>You add [src.worth] dollars worth of money to the bundles.<br>It holds [bundle.worth] dollars now.</span>")
 		cdel(src)
 
 /obj/item/spacecash/bundle
@@ -162,4 +162,4 @@ proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 /obj/item/spacecash/ewallet/examine(mob/user)
 	..()
 	if(user == loc)
-		user << "<span class='notice'>Charge card's owner: [owner_name]. Dollars remaining: [worth].</span>"
+		to_chat(user, "<span class='notice'>Charge card's owner: [owner_name]. Dollars remaining: [worth].</span>")

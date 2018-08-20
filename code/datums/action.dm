@@ -146,12 +146,12 @@
 		if(!X.check_plasma(plasma_cost))
 			return
 	if(X.selected_ability == src)
-		X << "You will no longer use [ability_name] with [X.middle_mouse_toggle ? "middle-click" :"shift-click"]."
+		to_chat(X, "You will no longer use [ability_name] with [X.middle_mouse_toggle ? "middle-click" :"shift-click"].")
 		button.icon_state = "template"
 		X.selected_ability.on_deactivation()
 		X.selected_ability = null
 	else
-		X << "You will now use [ability_name] with [X.middle_mouse_toggle ? "middle-click" :"shift-click"]."
+		to_chat(X, "You will now use [ability_name] with [X.middle_mouse_toggle ? "middle-click" :"shift-click"].")
 		if(X.selected_ability)
 			X.selected_ability.button.icon_state = "template"
 			X.selected_ability.on_deactivation()

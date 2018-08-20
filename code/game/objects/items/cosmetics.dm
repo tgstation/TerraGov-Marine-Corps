@@ -36,20 +36,20 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.lip_style)	//if they already have lipstick on
-			user << "<span class='warning'>You need to wipe the old paint off with paper first!</span>"
+			to_chat(user, "<span class='warning'>You need to wipe the old paint off with paper first!</span>")
 			return
 		if(H == user)
 			paint_face(H, user)
 			return 1
 		else
-			user << "<span class='notice'>You attempt to apply [src] on [H]...</span>"
-			H << "<span class='notice'>[user] is trying to apply [src] on your face...</span>"
+			to_chat(user, "<span class='notice'>You attempt to apply [src] on [H]...</span>")
+			to_chat(H, "<span class='notice'>[user] is trying to apply [src] on your face...</span>")
 			if(alert(H,"Will you allow [user] to paint your face?",,"Sure","No") == "Sure")
 				if( user && loc == user && (user in range(1,H)) ) //Have to be close and hold the thing.
 					paint_face(H, user)
 					return 1
 
-	user << "<span class='warning'>Foiled!</span>"
+	to_chat(user, "<span class='warning'>Foiled!</span>")
 
 
 /obj/item/facepaint/proc/paint_face(var/mob/living/carbon/human/H, var/mob/user)

@@ -150,14 +150,14 @@
 	if(isrobot(user))
 		return
 	if(src.beaker)
-		user << "Something is already loaded into the machine."
+		to_chat(user, "Something is already loaded into the machine.")
 		return
 	if(istype(B, /obj/item/reagent_container/glass) || istype(B, /obj/item/reagent_container/food))
 		if(!accept_glass && istype(B,/obj/item/reagent_container/food))
-			user << "<span class='notice'>This machine only accepts beakers</span>"
+			to_chat(user, "<span class='notice'>This machine only accepts beakers</span>")
 		if(user.drop_inv_item_to_loc(B, src))
 			beaker =  B
-			user << "You set [B] on the machine."
+			to_chat(user, "You set [B] on the machine.")
 			nanomanager.update_uis(src) // update all UIs attached to src
 		return
 
@@ -172,7 +172,7 @@
 		return
 	var/mob/living/carbon/human/H = user
 	if(!check_access(H.wear_id))
-		user << "<span class='warning'>Access denied.</span>"
+		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
 	ui_interact(user)
 
@@ -191,13 +191,13 @@
 	..()
 	if(istype(B, /obj/item/device/multitool))
 		if(hackedcheck == 0)
-			user << "You change the mode from 'McNano' to 'Pizza King'."
+			to_chat(user, "You change the mode from 'McNano' to 'Pizza King'.")
 			dispensable_reagents += list("thirteenloko","grapesoda")
 			hackedcheck = 1
 			return
 
 		else
-			user << "You change the mode from 'Pizza King' to 'McNano'."
+			to_chat(user, "You change the mode from 'Pizza King' to 'McNano'.")
 			dispensable_reagents -= list("thirteenloko","grapesoda")
 			hackedcheck = 0
 			return
@@ -218,13 +218,13 @@
 
 	if(istype(B, /obj/item/device/multitool))
 		if(hackedcheck == 0)
-			user << "You disable the 'nanotrasen-are-cheap-bastards' lock, enabling hidden and very expensive boozes."
+			to_chat(user, "You disable the 'nanotrasen-are-cheap-bastards' lock, enabling hidden and very expensive boozes.")
 			dispensable_reagents += list("goldschlager","patron","watermelonjuice","berryjuice")
 			hackedcheck = 1
 			return
 
 		else
-			user << "You re-enable the 'nanotrasen-are-cheap-bastards' lock, disabling hidden and very expensive boozes."
+			to_chat(user, "You re-enable the 'nanotrasen-are-cheap-bastards' lock, disabling hidden and very expensive boozes.")
 			dispensable_reagents -= list("goldschlager","patron","watermelonjuice","berryjuice")
 			hackedcheck = 0
 			return
@@ -272,23 +272,23 @@
 	if(istype(B, /obj/item/reagent_container/glass))
 
 		if(src.beaker)
-			user << "A beaker is already loaded into the machine."
+			to_chat(user, "A beaker is already loaded into the machine.")
 			return
 		beaker = B
 		user.drop_inv_item_to_loc(B, src)
-		user << "You add the beaker to the machine!"
+		to_chat(user, "You add the beaker to the machine!")
 		updateUsrDialog()
 		icon_state = "mixer1"
 
 	else if(istype(B, /obj/item/storage/pill_bottle))
 
 		if(src.loaded_pill_bottle)
-			user << "A pill bottle is already loaded into the machine."
+			to_chat(user, "A pill bottle is already loaded into the machine.")
 			return
 
 		loaded_pill_bottle = B
 		user.drop_inv_item_to_loc(B, src)
-		user << "You add the pill bottle into the dispenser slot!"
+		to_chat(user, "You add the pill bottle into the dispenser slot!")
 		updateUsrDialog()
 	return
 
@@ -791,12 +791,12 @@
 	if(istype(I, /obj/item/reagent_container/glass))
 		if(stat & (NOPOWER|BROKEN)) return
 		if(beaker)
-			user << "A beaker is already loaded into the machine."
+			to_chat(user, "A beaker is already loaded into the machine.")
 			return
 
 		beaker =  I
 		user.drop_inv_item_to_loc(I, src)
-		user << "You add the beaker to the machine!"
+		to_chat(user, "You add the beaker to the machine!")
 		updateUsrDialog()
 		icon_state = "mixer1"
 
@@ -890,7 +890,7 @@
 			return 0
 
 	if(holdingitems && holdingitems.len >= limit)
-		usr << "The machine cannot hold anymore items."
+		to_chat(usr, "The machine cannot hold anymore items.")
 		return 1
 
 	//Fill machine with the plantbag!
@@ -901,17 +901,17 @@
 			G.loc = src
 			holdingitems += G
 			if(holdingitems && holdingitems.len >= limit) //Sanity checking so the blender doesn't overfill
-				user << "You fill the All-In-One grinder to the brim."
+				to_chat(user, "You fill the All-In-One grinder to the brim.")
 				break
 
 		if(!O.contents.len)
-			user << "You empty the plant bag into the All-In-One grinder."
+			to_chat(user, "You empty the plant bag into the All-In-One grinder.")
 
 		src.updateUsrDialog()
 		return 0
 
 	if (!is_type_in_list(O, blend_items) && !is_type_in_list(O, juice_items))
-		user << "Cannot refine into a reagent."
+		to_chat(user, "Cannot refine into a reagent.")
 		return 1
 
 	user.drop_inv_item_to_loc(O, src)

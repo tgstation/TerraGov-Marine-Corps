@@ -165,21 +165,21 @@
 			if (candidates.len)
 				var/datum/limb/O = pick(candidates)
 				O.mutate()
-				src << "<span class = 'notice'>Something is not right with your [O.display_name]...</span>"
+				to_chat(src, "<span class = 'notice'>Something is not right with your [O.display_name]...</span>")
 				return
 	else
 		if (prob(heal_prob))
 			for (var/datum/limb/O in limbs)
 				if (O.status & LIMB_MUTATED)
 					O.unmutate()
-					src << "<span class = 'notice'>Your [O.display_name] is shaped normally again.</span>"
+					to_chat(src, "<span class = 'notice'>Your [O.display_name] is shaped normally again.</span>")
 					return
 
 	if (getCloneLoss() < 1)
 		for (var/datum/limb/O in limbs)
 			if (O.status & LIMB_MUTATED)
 				O.unmutate()
-				src << "<span class = 'notice'>Your [O.display_name] is shaped normally again.</span>"
+				to_chat(src, "<span class = 'notice'>Your [O.display_name] is shaped normally again.</span>")
 
 
 // Defined here solely to take species flags into account without having to recast at mob/living level.

@@ -108,10 +108,10 @@
 		if(!PC.powernet)
 			PC.powernet = new()
 			powernets += PC.powernet
-//			if(Debug)	world.log << "Starting mpn at [PC.x],[PC.y] ([PC.d1]/[PC.d2])"
+//			if(Debug)	to_chat(world.log, "Starting mpn at [PC.x],[PC.y] ([PC.d1]/[PC.d2])")
 			powernet_nextlink(PC,PC.powernet)
 
-//	if(Debug) world.log << "[powernets.len] powernets found"
+//	if(Debug) to_chat(world.log, "[powernets.len] powernets found")
 
 	for(var/obj/structure/cable/C in cable_list)
 		if(!C.powernet)	continue
@@ -139,7 +139,7 @@
 	else
 		Zdir = 999
 ///// Z-Level Stuff
-//	world.log << "d=[d] fdir=[fdir]"
+//	to_chat(world.log, "d=[d] fdir=[fdir]")
 	for(var/AM in T)
 		if(AM == source)	continue			//we don't want to return source
 
@@ -262,11 +262,11 @@
 
 /obj/machinery/power/proc/disconnect_from_network()
 	if(!powernet)
-		//world << " no powernet"
+		//to_chat(world, " no powernet")
 		return 0
 	powernet.nodes -= src
 	powernet = null
-	//world << "powernet null"
+	//to_chat(world, "powernet null")
 	return 1
 
 /turf/proc/get_cable_node()

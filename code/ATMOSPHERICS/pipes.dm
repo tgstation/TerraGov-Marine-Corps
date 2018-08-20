@@ -87,7 +87,7 @@
 		return ..()
 	var/turf/T = src.loc
 	if(level == 1 && isturf(T) && T.intact_tile)
-		user << "<span class='warning'>You must remove the plating first.</span>"
+		to_chat(user, "<span class='warning'>You must remove the plating first.</span>")
 		return 1
 
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -1101,15 +1101,15 @@
 
 	if(istype(W, /obj/item/device/analyzer) && in_range(user, src))
 		for (var/mob/O in viewers(user, null))
-			O << "\red [user] has used the analyzer on \icon[icon]"
+			to_chat(O, "\red [user] has used the analyzer on \icon[icon]")
 
-		user << "\blue Results of analysis of \icon[icon]"
+		to_chat(user, "\blue Results of analysis of \icon[icon]")
 		if (pressure>0)
-			user << "\blue Pressure: [round(pressure,0.1)] kPa"
-			user << "\blue [gas_type]: [100]%"
-			user << "\blue Temperature: [round(temperature-T0C)]&deg;C"
+			to_chat(user, "\blue Pressure: [round(pressure,0.1)] kPa")
+			to_chat(user, "\blue [gas_type]: [100]%")
+			to_chat(user, "\blue Temperature: [round(temperature-T0C)]&deg;C")
 		else
-			user << "\blue Tank is empty!"
+			to_chat(user, "\blue Tank is empty!")
 
 /obj/machinery/atmospherics/pipe/tank/air
 	name = "Pressure Tank (Air)"

@@ -192,5 +192,5 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel")
 			var/list/L = chemical_reactions_list[reaction]
 			for(var/t in L)
 				. += "    has: [t]\n"
-	world << .
+	to_chat(world, .)
 */

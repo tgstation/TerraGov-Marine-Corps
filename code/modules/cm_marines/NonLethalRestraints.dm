@@ -25,7 +25,7 @@
 
 /obj/item/weapon/stunprod/attack_self(mob/user as mob)
 	if(status && (CLUMSY in user.mutations) && prob(50))
-		user << "\red You grab the [src] on the wrong side."
+		to_chat(user, "\red You grab the [src] on the wrong side.")
 		user.KnockDown(30)
 		charges--
 		if(charges < 1)
@@ -34,17 +34,17 @@
 		return
 	if(charges > 0)
 		status = !status
-		user << "<span class='notice'>\The [src] is now [status ? "on" : "off"].</span>"
+		to_chat(user, "<span class='notice'>\The [src] is now [status ? "on" : "off"].</span>")
 		playsound(src.loc, "sparks", 15, 1)
 		update_icon()
 	else
 		status = 0
-		user << "<span class='warning'>\The [src] is out of charge.</span>"
+		to_chat(user, "<span class='warning'>\The [src] is out of charge.</span>")
 	add_fingerprint(user)
 
 /obj/item/weapon/stunprod/attack(mob/M, mob/user)
 	if(status && (CLUMSY in user.mutations) && prob(50))
-		user << "<span class='danger'>You accidentally hit yourself with the [src]!</span>"
+		to_chat(user, "<span class='danger'>You accidentally hit yourself with the [src]!</span>")
 		user.KnockDown(30)
 		charges--
 		if(charges < 1)
@@ -104,4 +104,4 @@
 
 	examine(mob/user)
 		..()
-		user << "<span class='notice'>It has [charges] charges left.</span>"
+		to_chat(user, "<span class='notice'>It has [charges] charges left.</span>")

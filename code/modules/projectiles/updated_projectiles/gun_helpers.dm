@@ -130,7 +130,7 @@ DEFINES in setup.dm, referenced here.
 	else ..()
 
 /obj/item/weapon/gun/throw_at(atom/target, range, speed, thrower)
-	if( harness_check(thrower) ) usr << "<span class='warning'>\The [src] clanks on the ground.</span>"
+	if( harness_check(thrower) ) to_chat(usr, "<span class='warning'>\The [src] clanks on the ground.</span>")
 	else ..()
 
 /*
@@ -173,7 +173,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 			if("PMC Leader","PMC", "WY Agent", "Corporate Laison", "Event") return 1
 		switch(user.mind.special_role)
 			if("DEATH SQUAD","PMC") return 1
-	user << "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>"
+	to_chat(user, "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>")
 
 /*
 Here we have throwing and dropping related procs.
@@ -197,7 +197,7 @@ should be alright.
 		if(isnull(user.s_store) && isturf(loc))
 			var/obj/item/I = user.wear_suit
 			user.equip_to_slot_if_possible(src,WEAR_J_STORE)
-			if(user.s_store == src) user << "<span class='warning'>[src] snaps into place on [I].</span>"
+			if(user.s_store == src) to_chat(user, "<span class='warning'>[src] snaps into place on [I].</span>")
 			user.update_inv_s_store()
 
 /obj/item/weapon/gun/attack_self(mob/user)
@@ -226,7 +226,7 @@ should be alright.
 			if(istype(I,/obj/item/ammo_magazine))
 				var/obj/item/ammo_magazine/MG = I
 				if(istype(src, MG.gun_type))
-					user << "<span class='notice'>You disable [active_attachable].</span>"
+					to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
 					playsound(user, active_attachable.activation_sound, 15, 1)
 					active_attachable.activate_attachment(src, null, TRUE)
 					reload(user,MG)
@@ -244,19 +244,19 @@ should be alright.
 		if(!istype(user) || user.is_mob_incapacitated(TRUE))
 			return
 		if(src != user.r_hand && src != user.l_hand)
-			user << "<span class='warning'>[src] must be in your hand to do that.</span>"
+			to_chat(user, "<span class='warning'>[src] must be in your hand to do that.</span>")
 			return
 		if(flags_gun_features & GUN_INTERNAL_MAG)
-			user << "<span class='warning'>Can't do tactical reloads with [src].</span>"
+			to_chat(user, "<span class='warning'>Can't do tactical reloads with [src].</span>")
 			return
 		//no tactical reload for the untrained.
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.firearms == 0)
-			user << "<span class='warning'>You don't know how to do tactical reloads.</span>"
+			to_chat(user, "<span class='warning'>You don't know how to do tactical reloads.</span>")
 			return
 		if(istype(src, AM.gun_type))
 			if(current_mag)
 				unload(user,0,1)
-				user << "<span class='notice'>You start a tactical reload.</span>"
+				to_chat(user, "<span class='notice'>You start a tactical reload.</span>")
 			var/old_mag_loc = AM.loc
 			var/tac_reload_time = 15
 			if(user.mind && user.mind.cm_skills)
@@ -285,7 +285,7 @@ should be alright.
 	if(user)
 		var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
 		if( in_hand != src ) //It has to be held.
-			user << "<span class='warning'>You have to hold [src] to do that!</span>"
+			to_chat(user, "<span class='warning'>You have to hold [src] to do that!</span>")
 			return
 	return 1
 
@@ -294,7 +294,7 @@ should be alright.
 		var/obj/item/weapon/gun/in_handL = user.l_hand
 		var/obj/item/weapon/gun/in_handR = user.r_hand
 		if( in_handL != src && in_handR != src ) //It has to be held.
-			user << "<span class='warning'>You have to hold [src] to do that!</span>"
+			to_chat(user, "<span class='warning'>You have to hold [src] to do that!</span>")
 			return
 	return 1
 
@@ -307,7 +307,7 @@ should be alright.
 
 /obj/item/weapon/gun/proc/attach_to_gun(mob/user, obj/item/attachable/attachment)
 	if(attachable_allowed && !(attachment.type in attachable_allowed) )
-		user << "<span class='warning'>[attachment] doesn't fit on [src]!</span>"
+		to_chat(user, "<span class='warning'>[attachment] doesn't fit on [src]!</span>")
 		return
 
 	//Checks if they can attach the thing in the first place, like with fixed attachments.
@@ -323,7 +323,7 @@ should be alright.
 			if(stock && !(stock.flags_attach_features & ATTACH_REMOVABLE)) can_attach = 0
 
 	if(!can_attach)
-		user << "<span class='warning'>The attachment on [src]'s [attachment.slot] cannot be removed!</span>"
+		to_chat(user, "<span class='warning'>The attachment on [src]'s [attachment.slot] cannot be removed!</span>")
 		return
 
 	user.visible_message("<span class='notice'>[user] begins attaching [attachment] to [src].</span>",
@@ -395,13 +395,13 @@ should be alright.
 	if(!ishuman(usr)) return
 
 	if(!user.canmove || user.stat || user.is_mob_restrained() || !user.loc || !isturf(usr.loc))
-		user << "<span class='warning'>Not right now.</span>"
+		to_chat(user, "<span class='warning'>Not right now.</span>")
 		return
 
 	var/obj/item/weapon/gun/G = user.get_held_item()
 
 	if(!istype(G))
-		user << "<span class='warning'>You need a gun in your active hand to do that!</span>"
+		to_chat(user, "<span class='warning'>You need a gun in your active hand to do that!</span>")
 		return
 
 	if(G.flags_gun_features & GUN_BURST_FIRING) return
@@ -432,11 +432,11 @@ should be alright.
 		return
 
 	if(zoom)
-		usr << "<span class='warning'>You cannot conceviably do that while looking down \the [src]'s scope!</span>"
+		to_chat(usr, "<span class='warning'>You cannot conceviably do that while looking down \the [src]'s scope!</span>")
 		return
 
 	if(!rail && !muzzle && !under && !stock)
-		usr << "<span class='warning'>This weapon has no attachables. You can only field strip enhanced weapons!</span>"
+		to_chat(usr, "<span class='warning'>This weapon has no attachables. You can only field strip enhanced weapons!</span>")
 		return
 
 	var/list/possible_attachments = list()
@@ -451,7 +451,7 @@ should be alright.
 		possible_attachments += stock
 
 	if(!possible_attachments.len)
-		usr << "<span class='warning'>[src] has no removable attachments.</span>"
+		to_chat(usr, "<span class='warning'>[src] has no removable attachments.</span>")
 		return
 
 	var/obj/item/attachable/A
@@ -511,7 +511,7 @@ should be alright.
 	//Burst of 1 doesn't mean anything. The weapon will only fire once regardless.
 	//Just a good safety to have all weapons that can equip a scope with 1 burst_amount.
 	if(burst_amount < 2)
-		usr << "<span class='warning'>This weapon does not have a burst fire mode!</span>"
+		to_chat(usr, "<span class='warning'>This weapon does not have a burst fire mode!</span>")
 		return
 
 	if(flags_gun_features & GUN_BURST_FIRING)//can't toggle mid burst
@@ -523,17 +523,17 @@ should be alright.
 			if(flags_gun_features & GUN_FULL_AUTO_ON)
 				flags_gun_features &= ~GUN_FULL_AUTO_ON
 				flags_gun_features &= ~GUN_BURST_ON
-				usr << "<span class='notice'>\icon[src] You set [src] to single fire mode.</span>"
+				to_chat(usr, "<span class='notice'>\icon[src] You set [src] to single fire mode.</span>")
 			else
 				flags_gun_features|= GUN_FULL_AUTO_ON
-				usr << "<span class='notice'>\icon[src] You set [src] to full auto mode.</span>"
+				to_chat(usr, "<span class='notice'>\icon[src] You set [src] to full auto mode.</span>")
 		else
 			flags_gun_features |= GUN_BURST_ON
-			usr << "<span class='notice'>\icon[src] You set [src] to burst fire mode.</span>"
+			to_chat(usr, "<span class='notice'>\icon[src] You set [src] to burst fire mode.</span>")
 	else
 		flags_gun_features ^= GUN_BURST_ON
 
-		usr << "<span class='notice'>\icon[src] You [flags_gun_features & GUN_BURST_ON ? "<B>enable</b>" : "<B>disable</b>"] [src]'s burst fire mode.</span>"
+		to_chat(usr, "<span class='notice'>\icon[src] You [flags_gun_features & GUN_BURST_ON ? "<B>enable</b>" : "<B>disable</b>"] [src]'s burst fire mode.</span>")
 
 
 /obj/item/weapon/gun/verb/empty_mag()
@@ -581,10 +581,10 @@ should be alright.
 		return
 
 	if(usr.is_mob_incapacitated() || !usr.loc || !isturf(usr.loc))
-		usr << "Not right now."
+		to_chat(usr, "Not right now.")
 		return
 
-	usr << "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>"
+	to_chat(usr, "<span class='notice'>You toggle the safety [flags_gun_features & GUN_TRIGGER_SAFETY ? "<b>off</b>" : "<b>on</b>"].</span>")
 	playsound(usr, 'sound/machines/click.ogg', 15, 1)
 	flags_gun_features ^= GUN_TRIGGER_SAFETY
 
@@ -614,7 +614,7 @@ should be alright.
 		usable_attachments += muzzle
 
 	if(!usable_attachments.len) //No usable attachments.
-		usr << "<span class='warning'>[src] does not have any usable attachments!</span>"
+		to_chat(usr, "<span class='warning'>[src] does not have any usable attachments!</span>")
 		return
 
 	if(usable_attachments.len == 1) //Activates the only attachment if there is only one.

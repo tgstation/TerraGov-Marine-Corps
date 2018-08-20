@@ -20,7 +20,7 @@
 		var/obj/item/tool/weldingtool/WT = W
 
 		if(amount < 4)
-			user << "\red You need at least four rods to do this."
+			to_chat(user, "\red You need at least four rods to do this.")
 			return
 
 		if(WT.remove_fuel(0,user))
@@ -44,7 +44,7 @@
 	if(!istype(user.loc,/turf)) return 0
 
 	if(istype(get_area(usr.loc),/area/sulaco/hangar))  //HANGER BUILDING
-		usr << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
+		to_chat(usr, "<span class='warning'>No. This area is needed for the dropships and personnel.</span>")
 		return
 
 	if (locate(/obj/structure/grille, usr.loc))
@@ -60,15 +60,15 @@
 
 	else if(!in_use)
 		if(amount < 4)
-			user << "\blue You need at least four rods to do this."
+			to_chat(user, "\blue You need at least four rods to do this.")
 			return
-		usr << "\blue Assembling grille..."
+		to_chat(usr, "\blue Assembling grille...")
 		in_use = 1
 		if (!do_after(usr, 20, TRUE, 5, BUSY_ICON_BUILD))
 			in_use = 0
 			return
 		var/obj/structure/grille/F = new /obj/structure/grille/ ( usr.loc )
-		usr << "\blue You assemble a grille"
+		to_chat(usr, "\blue You assemble a grille")
 		in_use = 0
 		F.add_fingerprint(usr)
 		use(4)

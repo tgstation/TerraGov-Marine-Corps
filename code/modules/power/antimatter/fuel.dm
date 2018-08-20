@@ -26,7 +26,7 @@
 		if(istype(F, /obj/item/weapon/fuel/antiH))
 			src.fuel += F.fuel
 			F.fuel = 0
-			user << "You have added the anti-Hydrogen to the storage ring, it now contains [src.fuel]kg"
+			to_chat(user, "You have added the anti-Hydrogen to the storage ring, it now contains [src.fuel]kg")
 		if(istype(F, /obj/item/weapon/fuel/H))
 			src.fuel += F.fuel
 			del(F)
@@ -35,7 +35,7 @@
 		if(istype(F, /obj/item/weapon/fuel/H))
 			src.fuel += F.fuel
 			F.fuel = 0
-			user << "You have added the Hydrogen to the storage ring, it now contains [src.fuel]kg"
+			to_chat(user, "You have added the Hydrogen to the storage ring, it now contains [src.fuel]kg")
 		if(istype(F, /obj/item/weapon/fuel/antiH))
 			src.fuel += F.fuel
 			del(src)
@@ -70,14 +70,14 @@
 /obj/item/weapon/fuel/examine()
 	set src in view(1)
 	if(usr && !usr.stat)
-		usr << "A magnetic storage ring, it contains [fuel]kg of [content ? content : "nothing"]."
+		to_chat(usr, "A magnetic storage ring, it contains [fuel]kg of [content ? content : "nothing"].")
 
 /obj/item/weapon/fuel/proc/injest(mob/M as mob)
 	switch(content)
 		if("Anti-Hydrogen")
 			M.gib()
 		if("Hydrogen")
-			M << "\blue You feel very light, as if you might just float away..."
+			to_chat(M, "\blue You feel very light, as if you might just float away...")
 	del(src)
 	return
 

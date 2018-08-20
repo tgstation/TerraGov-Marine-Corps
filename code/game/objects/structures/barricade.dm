@@ -35,12 +35,12 @@
 	..()
 
 	if(is_wired)
-		user << "<span class='info'>There is a length of wire strewn across the top of this barricade.</span>"
+		to_chat(user, "<span class='info'>There is a length of wire strewn across the top of this barricade.</span>")
 	switch(damage_state)
-		if(0) user << "<span class='info'>It appears to be in good shape.</span>"
-		if(1) user << "<span class='warning'>It's slightly damaged, but still very functional.</span>"
-		if(2) user << "<span class='warning'>It's quite beat up, but it's holding together.</span>"
-		if(3) user << "<span class='warning'>It's crumbling apart, just a few more blows will tear it apart.</span>"
+		if(0) to_chat(user, "<span class='info'>It appears to be in good shape.</span>")
+		if(1) to_chat(user, "<span class='warning'>It's slightly damaged, but still very functional.</span>")
+		if(2) to_chat(user, "<span class='warning'>It's quite beat up, but it's holding together.</span>")
+		if(3) to_chat(user, "<span class='warning'>It's crumbling apart, just a few more blows will tear it apart.</span>")
 
 /obj/structure/barricade/hitby(atom/movable/AM)
 	if(AM.throwing && is_wired)
@@ -129,7 +129,7 @@
 
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
 		if(A.acid_t == src)
-			user << "You can't get near that, it's melting!"
+			to_chat(user, "You can't get near that, it's melting!")
 			return
 
 	if(istype(W, /obj/item/stack/barbed_wire))
@@ -269,7 +269,7 @@
 	set src in oview(1)
 
 	if(anchored)
-		usr << "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>"
+		to_chat(usr, "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>")
 		return 0
 
 	dir = turn(dir, 90)
@@ -282,7 +282,7 @@
 	set src in oview(1)
 
 	if(anchored)
-		usr << "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>"
+		to_chat(usr, "<span class='warning'>It is fastened to the floor, you can't rotate it!</span>")
 		return 0
 
 	dir = turn(dir, 270)
@@ -317,7 +317,7 @@
 /obj/structure/barricade/snow/attackby(obj/item/W, mob/user)
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
 		if(A.acid_t == src)
-			user << "You can't get near that, it's melting!"
+			to_chat(user, "You can't get near that, it's melting!")
 			return
 	//Removing the barricades
 	if(istype(W, /obj/item/tool/shovel) && user.a_intent != "hurt")
@@ -382,13 +382,13 @@
 /obj/structure/barricade/wooden/attackby(obj/item/W as obj, mob/user as mob)
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
 		if(A.acid_t == src)
-			user << "You can't get near that, it's melting!"
+			to_chat(user, "You can't get near that, it's melting!")
 			return
 	if(istype(W, /obj/item/stack/sheet/wood))
 		var/obj/item/stack/sheet/wood/D = W
 		if(health < maxhealth)
 			if(D.get_amount() < 1)
-				user << "<span class='warning'>You need one plank of wood to repair [src].</span>"
+				to_chat(user, "<span class='warning'>You need one plank of wood to repair [src].</span>")
 				return
 			visible_message("<span class='notice'>[user] begins to repair [src].</span>")
 			if(do_after(user,20, TRUE, 5, BUSY_ICON_FRIENDLY) && health < maxhealth)
@@ -440,32 +440,32 @@
 	..()
 	switch(build_state)
 		if(2)
-			user << "<span class='info'>The protection panel is still tighly screwed in place.</span>"
+			to_chat(user, "<span class='info'>The protection panel is still tighly screwed in place.</span>")
 		if(1)
-			user << "<span class='info'>The protection panel has been removed, you can see the anchor bolts.</span>"
+			to_chat(user, "<span class='info'>The protection panel has been removed, you can see the anchor bolts.</span>")
 		if(0)
-			user << "<span class='info'>The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.</span>"
+			to_chat(user, "<span class='info'>The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.</span>")
 
 /obj/structure/barricade/metal/attackby(obj/item/W, mob/user)
 
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
 		if(A.acid_t == src)
-			user << "You can't get near that, it's melting!"
+			to_chat(user, "You can't get near that, it's melting!")
 			return
 
 	if(iswelder(W))
 		if(user.action_busy)
 			return
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
-			user << "<span class='warning'>You're not trained to repair [src]...</span>"
+			to_chat(user, "<span class='warning'>You're not trained to repair [src]...</span>")
 			return
 		var/obj/item/tool/weldingtool/WT = W
 		if(health <= maxhealth * 0.3)
-			user << "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>"
+			to_chat(user, "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>")
 			return
 
 		if(health == maxhealth)
-			user << "<span class='warning'>[src] doesn't need repairs.</span>"
+			to_chat(user, "<span class='warning'>[src] doesn't need repairs.</span>")
 			return
 
 		var/old_loc = loc
@@ -488,7 +488,7 @@
 				if(user.action_busy)
 					return
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
-					user << "<span class='warning'>You are not trained to disassemble [src]...</span>"
+					to_chat(user, "<span class='warning'>You are not trained to disassemble [src]...</span>")
 					return
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD)) return
@@ -501,7 +501,7 @@
 				if(user.action_busy)
 					return
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
-					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					to_chat(user, "<span class='warning'>You are not trained to assemble [src]...</span>")
 					return
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD)) return
@@ -513,7 +513,7 @@
 				if(user.action_busy)
 					return
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
-					user << "<span class='warning'>You are not trained to disassemble [src]...</span>"
+					to_chat(user, "<span class='warning'>You are not trained to disassemble [src]...</span>")
 					return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD)) return
@@ -528,11 +528,11 @@
 				if(user.action_busy)
 					return
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
-					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					to_chat(user, "<span class='warning'>You are not trained to assemble [src]...</span>")
 					return
 				for(var/obj/structure/barricade/B in loc)
 					if(B != src && B.dir == dir)
-						user << "<span class='warning'>There's already a barricade here.</span>"
+						to_chat(user, "<span class='warning'>There's already a barricade here.</span>")
 						return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD)) return
@@ -546,7 +546,7 @@
 				if(user.action_busy)
 					return
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
-					user << "<span class='warning'>You are not trained to disassemble [src]...</span>"
+					to_chat(user, "<span class='warning'>You are not trained to disassemble [src]...</span>")
 					return
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
 				"<span class='notice'>You start unseating [src]'s panels.</span>")
@@ -611,17 +611,17 @@
 
 	switch(build_state)
 		if(2)
-			user << "<span class='info'>The protection panel is still tighly screwed in place.</span>"
+			to_chat(user, "<span class='info'>The protection panel is still tighly screwed in place.</span>")
 		if(1)
-			user << "<span class='info'>The protection panel has been removed, you can see the anchor bolts.</span>"
+			to_chat(user, "<span class='info'>The protection panel has been removed, you can see the anchor bolts.</span>")
 		if(0)
-			user << "<span class='info'>The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.</span>"
+			to_chat(user, "<span class='info'>The protection panel has been removed and the anchor bolts loosened. It's ready to be taken apart.</span>")
 
 /obj/structure/barricade/plasteel/attackby(obj/item/W, mob/user)
 
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
 		if(A.acid_t == src)
-			user << "You can't get near that, it's melting!"
+			to_chat(user, "You can't get near that, it's melting!")
 			return
 
 	if(iswelder(W))
@@ -629,15 +629,15 @@
 			return
 		tool_cooldown = world.time + 10
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
-			user << "<span class='warning'>You're not trained to repair [src]...</span>"
+			to_chat(user, "<span class='warning'>You're not trained to repair [src]...</span>")
 			return
 		var/obj/item/tool/weldingtool/WT = W
 		if(health <= maxhealth * 0.3)
-			user << "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>"
+			to_chat(user, "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>")
 			return
 
 		if(health == maxhealth)
-			user << "<span class='warning'>[src] doesn't need repairs.</span>"
+			to_chat(user, "<span class='warning'>[src] doesn't need repairs.</span>")
 			return
 
 		if(WT.remove_fuel(0, user))
@@ -662,12 +662,12 @@
 					return
 				tool_cooldown = world.time + 10
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
-					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					to_chat(user, "<span class='warning'>You are not trained to assemble [src]...</span>")
 					return
 
 				for(var/obj/structure/barricade/B in loc)
 					if(B != src && B.dir == dir)
-						user << "<span class='warning'>There's already a barricade here.</span>"
+						to_chat(user, "<span class='warning'>There's already a barricade here.</span>")
 						return
 				user.visible_message("<span class='notice'>[user] removes [src]'s protection panel.</span>",
 
@@ -682,7 +682,7 @@
 					return
 				tool_cooldown = world.time + 10
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
-					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					to_chat(user, "<span class='warning'>You are not trained to assemble [src]...</span>")
 					return
 				user.visible_message("<span class='notice'>[user] set [src]'s protection panel back.</span>",
 				"<span class='notice'>You set [src]'s protection panel back.</span>")
@@ -694,7 +694,7 @@
 					return
 				tool_cooldown = world.time + 10
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
-					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					to_chat(user, "<span class='warning'>You are not trained to assemble [src]...</span>")
 					return
 				user.visible_message("<span class='notice'>[user] loosens [src]'s anchor bolts.</span>",
 				"<span class='notice'>You loosen [src]'s anchor bolts.</span>")
@@ -710,7 +710,7 @@
 					return
 				tool_cooldown = world.time + 10
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
-					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					to_chat(user, "<span class='warning'>You are not trained to assemble [src]...</span>")
 					return
 				user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
 				"<span class='notice'>You secure [src]'s anchor bolts.</span>")
@@ -724,7 +724,7 @@
 					return
 				tool_cooldown = world.time + 10
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
-					user << "<span class='warning'>You are not trained to assemble [src]...</span>"
+					to_chat(user, "<span class='warning'>You are not trained to assemble [src]...</span>")
 					return
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
 				"<span class='notice'>You start unseating [src]'s panels.</span>")
@@ -811,7 +811,7 @@
 
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
 		if(A.acid_t == src)
-			user << "You can't get near that, it's melting!"
+			to_chat(user, "You can't get near that, it's melting!")
 			return
 
 	if(istype(W, /obj/item/tool/shovel) && user.a_intent != "hurt")

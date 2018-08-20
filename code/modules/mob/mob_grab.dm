@@ -79,23 +79,23 @@
 		if(!istype(pulled))
 			return
 		if(isXeno(pulled) || isSynth(pulled))
-			X << "<span class='warning'>That wouldn't taste very good.</span>"
+			to_chat(X, "<span class='warning'>That wouldn't taste very good.</span>")
 			return 0
 		if(pulled.buckled)
-			X << "<span class='warning'>[pulled] is buckled to something.</span>"
+			to_chat(X, "<span class='warning'>[pulled] is buckled to something.</span>")
 			return 0
 		if(pulled.stat == DEAD)
-			X << "<span class='warning'>Ew, [pulled] is already starting to rot.</span>"
+			to_chat(X, "<span class='warning'>Ew, [pulled] is already starting to rot.</span>")
 			return 0
 		if(X.stomach_contents.len) //Only one thing in the stomach at a time, please
-			X << "<span class='warning'>You already have something in your belly, there's no way that will fit.</span>"
+			to_chat(X, "<span class='warning'>You already have something in your belly, there's no way that will fit.</span>")
 			return 0
 			/* Saving this in case we want to allow devouring of dead bodies UNLESS their client is still online somewhere
 			if(pulled.client) //The client is still inside the body
 			else // The client is observing
 				for(var/mob/dead/observer/G in player_list)
 					if(ckey(G.mind.original.ckey) == pulled.ckey)
-						src << "You start to devour [pulled] but realize \he is already dead."
+						to_chat(src, "You start to devour [pulled] but realize \he is already dead.")
 						return */
 		X.visible_message("<span class='danger'>[X] starts to devour [pulled]!</span>", \
 		"<span class='danger'>You start to devour [pulled]!</span>", null, 5)
@@ -118,5 +118,5 @@
 				pulled.forceMove(X)
 				return 1
 		if(!(pulled in X.stomach_contents))
-			X << "<span class='warning'>You stop devouring \the [pulled]. \He probably tasted gross anyways.</span>"
+			to_chat(X, "<span class='warning'>You stop devouring \the [pulled]. \He probably tasted gross anyways.</span>")
 		return 0

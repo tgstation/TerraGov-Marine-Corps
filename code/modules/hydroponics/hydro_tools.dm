@@ -43,7 +43,7 @@
 		grown_reagents = H.reagents
 
 	if(!grown_seed)
-		user << "\red [src] can tell you nothing about [target]."
+		to_chat(user, "\red [src] can tell you nothing about [target].")
 		return
 
 	var/dat = "<h3>Plant data for [target]</h3>"

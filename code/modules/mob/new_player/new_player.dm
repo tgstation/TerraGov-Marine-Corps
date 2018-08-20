@@ -20,9 +20,9 @@
 
 	proc/version_check()
 		if(client.byond_version < world.byond_version)
-			client << "<span class='warning'>Your version of Byond differs from the server (v[world.byond_version].[world.byond_build]). You may experience graphical glitches, crashes, or other errors. You will be disconnected until your version matches or exceeds the server version.<br> \
+			to_chat(client, "<span class='warning'>Your version of Byond differs from the server (v[world.byond_version].[world.byond_build]). You may experience graphical glitches, crashes, or other errors. You will be disconnected until your version matches or exceeds the server version.<br> \
 			Direct Download (Windows Installer): http://www.byond.com/download/build/[world.byond_version]/[world.byond_version].[world.byond_build]_byond.exe <br> \
-			Other versions (search for [world.byond_build] or higher): http://www.byond.com/download/build/[world.byond_version]</span>"
+			Other versions (search for [world.byond_build] or higher): http://www.byond.com/download/build/[world.byond_version]</span>")
 
 			cdel(client)
 
@@ -121,10 +121,10 @@
 					close_spawn_windows()
 					var/obj/O = locate("landmark*Observer-Start")
 					if(istype(O))
-						src << "<span class='notice'>Now teleporting.</span>"
+						to_chat(src, "<span class='notice'>Now teleporting.</span>")
 						observer.loc = O.loc
 					else
-						src << "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>"
+						to_chat(src, "<span class='danger'>Could not locate an observer spawn point. Use the Teleport verb to jump to the station map.</span>")
 					observer.timeofdeath = world.time // Set the time of death so that the respawn timer works correctly.
 
 					client.prefs.update_preview_icon()
@@ -146,28 +146,28 @@
 			if("late_join")
 
 				if(!ticker || ticker.current_state != GAME_STATE_PLAYING || !ticker.mode)
-					src << "<span class='warning'>The round is either not ready, or has already finished...</span>"
+					to_chat(src, "<span class='warning'>The round is either not ready, or has already finished...</span>")
 					return
 
 				if(ticker.mode.flags_round_type	& MODE_NO_LATEJOIN)
-					src << "<span class='warning'>Sorry, you cannot late join during [ticker.mode.name]. You have to start at the beginning of the round. You may observe or try to join as an alien, if possible.</span>"
+					to_chat(src, "<span class='warning'>Sorry, you cannot late join during [ticker.mode.name]. You have to start at the beginning of the round. You may observe or try to join as an alien, if possible.</span>")
 					return
 
 				if(client.prefs.species != "Human")
 					if(!is_alien_whitelisted(src, client.prefs.species) && config.usealienwhitelist)
-						src << alert("You are currently not whitelisted to play [client.prefs.species].")
+						to_chat(src, alert("You are currently not whitelisted to play [client.prefs.species]."))
 						return
 
 					var/datum/species/S = all_species[client.prefs.species]
 					if(!(S.flags & IS_WHITELISTED))
-						src << alert("Your current species,[client.prefs.species], is not available for play on the station.")
+						to_chat(src, alert("Your current species,[client.prefs.species], is not available for play on the station."))
 						return
 
 				LateChoices()
 
 			if("late_join_xeno")
 				if(!ticker || ticker.current_state != GAME_STATE_PLAYING || !ticker.mode)
-					src << "<span class='warning'>The round is either not ready, or has already finished...</span>"
+					to_chat(src, "<span class='warning'>The round is either not ready, or has already finished...</span>")
 					return
 
 				if(alert(src,"Are you sure you want to attempt joining as a xenomorph?","Confirmation","Yes","No") == "Yes" )
@@ -179,7 +179,7 @@
 
 			if("late_join_pred")
 				if(!ticker || ticker.current_state != GAME_STATE_PLAYING || !ticker.mode)
-					src << "<span class='warning'>The round is either not ready, or has already finished...</span>"
+					to_chat(src, "<span class='warning'>The round is either not ready, or has already finished...</span>")
 					return
 
 				if(alert(src,"Are you sure you want to attempt joining as a predator?","Confirmation","Yes","No") == "Yes" )
@@ -187,7 +187,7 @@
 						close_spawn_windows()
 						ticker.mode.attempt_to_join_as_predator(src)
 					else
-						src << "<span class='warning'>You are no longer able to join as predator.</span>"
+						to_chat(src, "<span class='warning'>You are no longer able to join as predator.</span>")
 						new_player_panel()
 
 			if("manifest")
@@ -196,17 +196,17 @@
 			if("SelectedJob")
 
 				if(!enter_allowed)
-					usr << "<span class='warning'>There is an administrative lock on entering the game!</span>"
+					to_chat(usr, "<span class='warning'>There is an administrative lock on entering the game!</span>")
 					return
 
 				if(client.prefs.species != "Human")
 					if(!is_alien_whitelisted(src, client.prefs.species) && config.usealienwhitelist)
-						src << alert("You are currently not whitelisted to play [client.prefs.species].")
+						to_chat(src, alert("You are currently not whitelisted to play [client.prefs.species]."))
 						return 0
 
 					var/datum/species/S = all_species[client.prefs.species]
 					if(!(S.flags & IS_WHITELISTED))
-						src << alert("Your current species,[client.prefs.species], is not available for play on the station.")
+						to_chat(src, alert("Your current species,[client.prefs.species], is not available for play on the station."))
 						return 0
 
 				AttemptLateSpawn(href_list["job_selected"],client.prefs.spawnpoint)
@@ -260,7 +260,7 @@
 				var/sql = "INSERT INTO erro_privacy VALUES (null, Now(), '[src.ckey]', '[option]')"
 				var/DBQuery/query_insert = dbcon.NewQuery(sql)
 				query_insert.Execute()
-				usr << "<b>Thank you for your vote!</b>"
+				to_chat(usr, "<b>Thank you for your vote!</b>")
 				usr << browse(null,"window=privacypoll")
 
 
@@ -289,7 +289,7 @@
 					var/id_max = text2num(href_list["maxid"])
 
 					if( (id_max - id_min) > 100 )	//Basic exploit prevention
-						usr << "The option ID difference is too big. Please contact administration or the database admin."
+						to_chat(usr, "The option ID difference is too big. Please contact administration or the database admin.")
 						return
 
 					for(var/optionid = id_min; optionid <= id_max; optionid++)
@@ -308,7 +308,7 @@
 					var/id_max = text2num(href_list["maxoptionid"])
 
 					if( (id_max - id_min) > 100 )	//Basic exploit prevention
-						usr << "The option ID difference is too big. Please contact administration or the database admin."
+						to_chat(usr, "The option ID difference is too big. Please contact administration or the database admin.")
 						return
 
 					for(var/optionid = id_min; optionid <= id_max; optionid++)
@@ -320,13 +320,13 @@
 		if (src != usr)
 			return
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
-			usr << "<span class='warning'>The round is either not ready, or has already finished!<spawn>"
+			to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
 			return
 		if(!enter_allowed)
-			usr << "<span class='warning'>There is an administrative lock on entering the game!<spawn>"
+			to_chat(usr, "<span class='warning'>There is an administrative lock on entering the game!<spawn>")
 			return
 		if(!RoleAuthority.assign_role(src, RoleAuthority.roles_for_mode[rank], 1))
-			src << alert("[rank] is not available. Please try another.")
+			to_chat(src, alert("[rank] is not available. Please try another."))
 			return
 
 		spawning = 1

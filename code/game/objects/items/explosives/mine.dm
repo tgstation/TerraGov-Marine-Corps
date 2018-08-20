@@ -45,15 +45,15 @@
 //Arming
 /obj/item/explosive/mine/attack_self(mob/living/user)
 	if(locate(/obj/item/explosive/mine) in get_turf(src))
-		user << "<span class='warning'>There already is a mine at this position!</span>"
+		to_chat(user, "<span class='warning'>There already is a mine at this position!</span>")
 		return
 
 	if(user.loc && user.loc.density)
-		user << "<span class='warning'>You can't plant a mine here.</span>"
+		to_chat(user, "<span class='warning'>You can't plant a mine here.</span>")
 		return
 
 	/*if(user.z == MAIN_SHIP_Z_LEVEL || user.z == LOW_ORBIT_Z_LEVEL) // Almayer or dropship transit level
-		user << "<span class='warning'>You can't plant a mine on a spaceship!</span>"
+		to_chat(user, "<span class='warning'>You can't plant a mine on a spaceship!</span>")
 		return*/
 
 	if(!armed)

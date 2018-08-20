@@ -88,12 +88,12 @@
 					var/mob/living/carbon/Xenomorph/target = M
 					if(target.mob_size == MOB_SIZE_BIG) return //Big xenos are not affected.
 					target.apply_effects(0,1) //Smaller ones just get shaken.
-					target << "<span class='xenodanger'>You are shaken by the sudden impact!</span>"
+					to_chat(target, "<span class='xenodanger'>You are shaken by the sudden impact!</span>")
 				else
 					if(!isYautja(M)) //Not predators.
 						var/mob/living/target = M
 						target.apply_effects(1,2) //Humans get stunned a bit.
-						target << "<span class='highdanger'>The blast knocks you off your feet!</span>"
+						to_chat(target, "<span class='highdanger'>The blast knocks you off your feet!</span>")
 			step_away(M,P)
 
 	proc/burst(atom/target, obj/item/projectile/P, damage_type = BRUTE)
@@ -1297,7 +1297,7 @@
 	damage = 1
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
-		M << "<font size=6 color=red>NO BUGS</font>"
+		to_chat(M, "<font size=6 color=red>NO BUGS</font>")
 
 	on_hit_obj(obj/O,obj/item/projectile/P)
 		return

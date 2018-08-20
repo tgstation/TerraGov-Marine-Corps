@@ -30,7 +30,7 @@
 /obj/item/seeds/examine(mob/user)
 	..()
 	if(seed && !seed.roundstart)
-		user << "It's tagged as variety #[seed.uid]."
+		to_chat(user, "It's tagged as variety #[seed.uid].")
 
 /obj/item/seeds/cutting
 	name = "cuttings"

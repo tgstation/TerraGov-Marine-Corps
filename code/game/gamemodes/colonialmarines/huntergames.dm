@@ -171,11 +171,11 @@ var/waiting_for_drop_votes = 0
 	if(config) config.remove_gun_restrictions = 1 //This will allow anyone to use cool guns.
 
 	spawn(10)
-		world << "<B>The current game mode is - HUNTER GAMES!</B>"
-		world << "You have been dropped off on a Weyland Yutani colony overrun with alien Predators who have turned it into a game preserve.."
-		world << "And you are both the hunter and the hunted!"
-		world << "Be the <B>last survivor</b> and <B>win glory</B>! Fight in any way you can! Team up or be a loner, it's up to you."
-		world << "Be warned though - if someone hasn't died in 3 minutes, the watching Predators get irritated!"
+		to_chat(world, "<B>The current game mode is - HUNTER GAMES!</B>")
+		to_chat(world, "You have been dropped off on a Weyland Yutani colony overrun with alien Predators who have turned it into a game preserve..")
+		to_chat(world, "And you are both the hunter and the hunted!")
+		to_chat(world, "Be the <B>last survivor</b> and <B>win glory</B>! Fight in any way you can! Team up or be a loner, it's up to you.")
+		to_chat(world, "Be warned though - if someone hasn't died in 3 minutes, the watching Predators get irritated!")
 		world << sound('sound/effects/siren.ogg')
 
 	spawn(1000)
@@ -276,37 +276,37 @@ var/waiting_for_drop_votes = 0
 
 	//Give them some information
 	spawn(4)
-		H << "<h2>There can be only one!!</h2>"
-		H << "Use the flare in your pocket to light the way!"
+		to_chat(H, "<h2>There can be only one!!</h2>")
+		to_chat(H, "Use the flare in your pocket to light the way!")
 	return 1
 
 /datum/game_mode/huntergames/proc/loop_package()
 	while(finished == 0)
 		if(!drops_disabled)
-			world << "<span class='round_body'>Your Predator capturers have decided it is time to bestow a gift upon the scurrying humans.</span>"
-			world << "<span class='round_body'>One lucky contestant should prepare for a supply drop in 60 seconds.</span>"
+			to_chat(world, "<span class='round_body'>Your Predator capturers have decided it is time to bestow a gift upon the scurrying humans.</span>")
+			to_chat(world, "<span class='round_body'>One lucky contestant should prepare for a supply drop in 60 seconds.</span>")
 			for(var/mob/dead/D in dead_mob_list)
-				D << "<span class='round_body'>Now is your chance to vote for a supply drop beneficiary! Go to Ghost tab, Spectator Vote!</span>"
+				to_chat(D, "<span class='round_body'>Now is your chance to vote for a supply drop beneficiary! Go to Ghost tab, Spectator Vote!</span>")
 			world << sound('sound/effects/alert.ogg')
 			last_drop = world.time
 			waiting_for_drop_votes = 1
 			sleep(600)
 			if(!supply_votes.len)
-				world << "<span class='round_body'>Nobody got anything! .. weird.</span>"
+				to_chat(world, "<span class='round_body'>Nobody got anything! .. weird.</span>")
 				waiting_for_drop_votes = 0
 				supply_votes = list()
 			else
 				var/mob/living/carbon/human/winner = pick(supply_votes) //Way it works is, more votes = more odds of winning. But not guaranteed.
 				if(istype(winner) && !winner.stat)
-					world << "<span class='round_body'>The spectator and Predator votes have been tallied, and the supply drop recipient is <B>[winner.real_name]</B>! Congrats!</span>"
+					to_chat(world, "<span class='round_body'>The spectator and Predator votes have been tallied, and the supply drop recipient is <B>[winner.real_name]</B>! Congrats!</span>")
 					world << sound('sound/effects/alert.ogg')
-					world << "<span class='round_body'>The package will shortly be dropped off at: [get_area(winner.loc)].</span>"
+					to_chat(world, "<span class='round_body'>The package will shortly be dropped off at: [get_area(winner.loc)].</span>")
 					var/turf/drop_zone = locate(winner.x + rand(-2,2),winner.y + rand(-2,2),winner.z)
 					if(istype(drop_zone))
 						playsound(drop_zone,'sound/effects/bamf.ogg', 50, 1)
 						place_drop(drop_zone,"god", 1)
 				else
-					world << "<span class='round_body'>The spectator and Predator votes have been talled, and the supply drop recipient is dead or dying<B>. Bummer.</b></span>"
+					to_chat(world, "<span class='round_body'>The spectator and Predator votes have been talled, and the supply drop recipient is dead or dying<B>. Bummer.</b></span>")
 					world << sound('sound/misc/sadtrombone.ogg')
 				supply_votes = list()
 				waiting_for_drop_votes = 0
@@ -331,11 +331,11 @@ var/waiting_for_drop_votes = 0
 	var/C = count_humans()
 	if(C < last_tally)
 		if(last_tally - C == 1)
-			world << "<span class='round_body'>A contestant has died! There are now [C] contestants remaining!</span>"
+			to_chat(world, "<span class='round_body'>A contestant has died! There are now [C] contestants remaining!</span>")
 			world << sound('sound/effects/explosionfar.ogg')
 		else
 			var/diff = last_tally - C
-			world << "<span class='round_body'>Multiple contestants have died! [diff] in fact. [C] are left!</span>"
+			to_chat(world, "<span class='round_body'>Multiple contestants have died! [diff] in fact. [C] are left!</span>")
 			spawn(7) world << sound('sound/effects/explosionfar.ogg')
 
 	last_tally = C
@@ -379,28 +379,28 @@ var/waiting_for_drop_votes = 0
 
 	if(finished == 1 && !isnull(winner) && istype(winner))
 		feedback_set_details("round_end_result","single winner")
-		world << "\red <FONT size = 4><B>We have a winner! >> [winner.real_name] ([winner.key]) << defeated all enemies!</B></FONT>"
-		world << "<FONT size = 3><B>Well done, your tale of survival will live on in legend!</B></FONT>"
+		to_chat(world, "\red <FONT size = 4><B>We have a winner! >> [winner.real_name] ([winner.key]) << defeated all enemies!</B></FONT>")
+		to_chat(world, "<FONT size = 3><B>Well done, your tale of survival will live on in legend!</B></FONT>")
 
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]\nBig Winner: [winner.real_name] ([winner.key])"
+			to_chat(round_stats, "Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]\nBig Winner: [winner.real_name] ([winner.key])")
 
 	else if(finished == 2)
 		feedback_set_details("round_end_result","no winners")
-		world << "\red <FONT size = 4><B>NOBODY WON!?</B></FONT>"
-		world << "<FONT size = 3><B>'Somehow you stupid humans managed to even fuck up killing yourselves. Well done.'</B></FONT>"
+		to_chat(world, "\red <FONT size = 4><B>NOBODY WON!?</B></FONT>")
+		to_chat(world, "<FONT size = 3><B>'Somehow you stupid humans managed to even fuck up killing yourselves. Well done.'</B></FONT>")
 		world << 'sound/misc/sadtrombone.ogg'
 
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
+			to_chat(round_stats, "Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]")
 	else
 		feedback_set_details("round_end_result","no winners")
-		world << "\red <FONT size = 4><B>NOBODY WON!</B></FONT>"
-		world << "<FONT size = 3><B>There was a winner, but they died before they could receive the prize!! Bummer.</B></FONT>"
+		to_chat(world, "\red <FONT size = 4><B>NOBODY WON!</B></FONT>")
+		to_chat(world, "<FONT size = 3><B>There was a winner, but they died before they could receive the prize!! Bummer.</B></FONT>")
 		world << 'sound/misc/sadtrombone.ogg'
 
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
+			to_chat(round_stats, "Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]")
 
 	return 1
 

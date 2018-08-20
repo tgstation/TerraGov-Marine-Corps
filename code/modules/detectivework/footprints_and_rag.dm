@@ -46,5 +46,5 @@
 	return
 
 /obj/item/reagent_container/glass/rag/examine(mob/user)
-	user << "That's \a [src]."
-	user << desc
+	to_chat(user, "That's \a [src].")
+	to_chat(user, desc)

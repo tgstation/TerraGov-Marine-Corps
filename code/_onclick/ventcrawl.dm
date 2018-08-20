@@ -6,7 +6,7 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 /mob/living/proc/ventcrawl_carry()
 	for(var/atom/A in src.contents)
 		if(!(is_type_in_list(A, canEnterVentWith)))
-			src << "<span class='warning'>You can't be carrying items or have items equipped when vent crawling!</span>"
+			to_chat(src, "<span class='warning'>You can't be carrying items or have items equipped when vent crawling!</span>")
 			return 0
 	return 1
 
@@ -30,7 +30,7 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 		if(is_type_in_list(U,ventcrawl_machinery) && Adjacent(U))
 			pipes |= U
 	if(!pipes || !pipes.len)
-		src <<  "<span class='warning'>There are no pipes that you can ventcrawl into within range!</span>"
+		to_chat(src, "<span class='warning'>There are no pipes that you can ventcrawl into within range!</span>")
 		return
 	if(pipes.len == 1)
 		pipe = pipes[1]
@@ -76,13 +76,13 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 
 						switch(vent_found.temperature)
 							if(0 to BODYTEMP_COLD_DAMAGE_LIMIT)
-								src << "<span class='danger'>You feel a painful freeze coming from the vent!</span>"
+								to_chat(src, "<span class='danger'>You feel a painful freeze coming from the vent!</span>")
 							if(BODYTEMP_COLD_DAMAGE_LIMIT to T0C)
-								src << "<span class='warning'>You feel an icy chill coming from the vent.</span>"
+								to_chat(src, "<span class='warning'>You feel an icy chill coming from the vent.</span>")
 							if(T0C + 40 to BODYTEMP_HEAT_DAMAGE_LIMIT)
-								src << "<span class='warning'>You feel a hot wash coming from the vent.</span>"
+								to_chat(src, "<span class='warning'>You feel a hot wash coming from the vent.</span>")
 							if(BODYTEMP_HEAT_DAMAGE_LIMIT to INFINITY)
-								src << "<span class='danger'>You feel a searing heat coming from the vent!</span>"
+								to_chat(src, "<span class='danger'>You feel a searing heat coming from the vent!</span>")
 
 					visible_message("<span class='notice'>[src] begins climbing into [vent_found].</span>", \
 					"<span class='notice'>You begin climbing into [vent_found].</span>")
@@ -108,16 +108,16 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 					add_ventcrawl(vent_found)
 
 				else
-					src << "<span class='warning'>This vent is not connected to anything.</span>"
+					to_chat(src, "<span class='warning'>This vent is not connected to anything.</span>")
 
 			else
-				src << "<span class='warning'>You must be standing on or beside an air vent to enter it.</span>"
+				to_chat(src, "<span class='warning'>You must be standing on or beside an air vent to enter it.</span>")
 
 		else
-			src <<  "<span class='warning'>You can't vent crawl while you're stunned!</span>"
+			to_chat(src, "<span class='warning'>You can't vent crawl while you're stunned!</span>")
 
 	else
-		src << "<span class='warning'>You must be conscious to do this!</span>"
+		to_chat(src, "<span class='warning'>You must be conscious to do this!</span>")
 	return
 
 /mob/living/proc/add_ventcrawl(obj/machinery/atmospherics/starting_machine)

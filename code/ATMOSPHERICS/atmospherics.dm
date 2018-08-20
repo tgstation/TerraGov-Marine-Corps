@@ -169,7 +169,7 @@ obj/machinery/atmospherics/proc/check_connect_types_construction(obj/machinery/a
 				return
 			ventcrawl_message_busy = world.time + 20
 			target_move.visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
-			user << "<span class='notice'>You begin to climb out of [target_move]</span>"
+			to_chat(user, "<span class='notice'>You begin to climb out of [target_move]</span>")
 			if(do_after(user, 20, FALSE))
 				user.remove_ventcrawl()
 				user.forceMove(target_move.loc) //handles entering and so on
@@ -188,7 +188,7 @@ obj/machinery/atmospherics/proc/check_connect_types_construction(obj/machinery/a
 				return
 			ventcrawl_message_busy = world.time + 20
 			visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
-			user << "<span class='notice'>You begin to climb out of [src]</span>"
+			to_chat(user, "<span class='notice'>You begin to climb out of [src]</span>")
 			if(do_after(user, 20, FALSE))
 				user.remove_ventcrawl()
 				user.forceMove(src.loc)

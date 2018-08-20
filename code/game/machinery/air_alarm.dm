@@ -337,7 +337,7 @@
 	signal.data["sigtype"] = "command"
 
 	radio_connection.post_signal(src, signal, RADIO_FROM_AIRALARM)
-//			world << text("Signal [] Broadcasted to []", command, target)
+//			to_chat(world, text("Signal [] Broadcasted to []", command, target))
 
 	return 1
 
@@ -551,7 +551,7 @@
 
 
 		else if (istype(user, /mob/living/silicon) && aidisabled)
-			user << "AI control for this Air Alarm interface has been disabled."
+			to_chat(user, "AI control for this Air Alarm interface has been disabled.")
 			user << browse(null, "window=air_alarm")
 			return
 
@@ -856,7 +856,7 @@ table tr:first-child th:first-child { border: none;}
 		var/min_temperature = max(selected[2] - T0C, MIN_TEMPERATURE)
 		var/input_temperature = input("What temperature would you like the system to mantain? (Capped between [min_temperature]C and [max_temperature]C)", "Thermostat Controls") as num|null
 		if(!input_temperature || input_temperature > max_temperature || input_temperature < min_temperature)
-			usr << "Temperature must be between [min_temperature]C and [max_temperature]C"
+			to_chat(usr, "Temperature must be between [min_temperature]C and [max_temperature]C")
 		else
 			target_temperature = input_temperature + T0C
 
@@ -958,14 +958,14 @@ table tr:first-child th:first-child { border: none;}
 		if (href_list["AAlarmwires"])
 			var/t1 = text2num(href_list["AAlarmwires"])
 			if (!( istype(usr.get_held_item(), /obj/item/tool/wirecutters) ))
-				usr << "You need wirecutters!"
+				to_chat(usr, "You need wirecutters!")
 				return
 			if (isWireColorCut(t1))
 				mend(t1)
 			else
 				cut(t1)
 				if (AAlarmwires == 0)
-					usr << "<span class='notice'>You cut last of wires inside [src]</span>"
+					to_chat(usr, "<span class='notice'>You cut last of wires inside [src]</span>")
 					update_icon()
 					buildstage = 1
 				return
@@ -973,10 +973,10 @@ table tr:first-child th:first-child { border: none;}
 		else if (href_list["pulse"])
 			var/t1 = text2num(href_list["pulse"])
 			if (!istype(usr.get_held_item(), /obj/item/device/multitool))
-				usr << "You need a multitool!"
+				to_chat(usr, "You need a multitool!")
 				return
 			if (isWireColorCut(t1))
-				usr << "You can't pulse a cut wire."
+				to_chat(usr, "You can't pulse a cut wire.")
 				return
 			else
 				pulse(t1)
@@ -998,9 +998,9 @@ table tr:first-child th:first-child { border: none;}
 	switch(buildstage)
 		if(2)
 			if(isscrewdriver(W))  // Opening that Air Alarm up.
-				//user << "You pop the Air Alarm's maintence panel open."
+				//to_chat(user, "You pop the Air Alarm's maintence panel open.")
 				wiresexposed = !wiresexposed
-				user << "The wires have been [wiresexposed ? "exposed" : "unexposed"]"
+				to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"]")
 				update_icon()
 				return
 
@@ -1009,28 +1009,28 @@ table tr:first-child th:first-child { border: none;}
 
 			if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
 				if(stat & (NOPOWER|BROKEN))
-					user << "It does nothing"
+					to_chat(user, "It does nothing")
 					return
 				else
 					if(allowed(usr) && !isWireCut(AALARM_WIRE_IDSCAN))
 						locked = !locked
-						user << "\blue You [ locked ? "lock" : "unlock"] the Air Alarm interface."
+						to_chat(user, "\blue You [ locked ? "lock" : "unlock"] the Air Alarm interface.")
 						updateUsrDialog()
 					else
-						user << "\red Access denied."
+						to_chat(user, "\red Access denied.")
 			return
 
 		if(1)
 			if(iscoil(W))
 				var/obj/item/stack/cable_coil/C = W
 				if(C.use(5))
-					user << "<span class='notice'>You wire \the [src].</span>"
+					to_chat(user, "<span class='notice'>You wire \the [src].</span>")
 					buildstage = 2
 					update_icon()
 					first_run()
 					return
 				else
-					user << "<span class='warning'>You need 5 pieces of cable to do wire \the [src].</span>"
+					to_chat(user, "<span class='warning'>You need 5 pieces of cable to do wire \the [src].</span>")
 					return
 
 			else if(iscrowbar(W))
@@ -1047,14 +1047,14 @@ table tr:first-child th:first-child { border: none;}
 				return
 		if(0)
 			if(istype(W, /obj/item/circuitboard/airalarm))
-				user << "You insert the circuit!"
+				to_chat(user, "You insert the circuit!")
 				cdel(W)
 				buildstage = 1
 				update_icon()
 				return
 
 			else if(iswrench(W))
-				user << "You remove the fire alarm assembly from the wall!"
+				to_chat(user, "You remove the fire alarm assembly from the wall!")
 				var/obj/item/frame/air_alarm/frame = new /obj/item/frame/air_alarm()
 				frame.loc = user.loc
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -1070,9 +1070,9 @@ table tr:first-child th:first-child { border: none;}
 /obj/machinery/alarm/examine(mob/user)
 	..()
 	if (buildstage < 2)
-		user << "It is not wired."
+		to_chat(user, "It is not wired.")
 	if (buildstage < 1)
-		user << "The circuit is missing."
+		to_chat(user, "The circuit is missing.")
 
 
 

@@ -110,14 +110,15 @@
 
 	attack_self(mob/user)
 		if(current_rounds <= 0)
-			user << "<span class='notice'>You begin taking apart the empty tube frame...</span>"
+			to_chat(user, "<span class='notice'>You begin taking apart the empty tube frame...</span>")
 			if(do_after(user,10, TRUE, 5, BUSY_ICON_BUILD))
 				user.visible_message("[user] deconstructs the rocket tube frame.","<span class='notice'>You take apart the empty frame.</span>")
 				var/obj/item/stack/sheet/metal/M = new(get_turf(user))
 				M.amount = 2
 				user.drop_held_item()
 				cdel(src)
-		else user << "Not with a missile inside!"
+		else
+			to_chat(user, "Not with a missile inside!")
 
 	update_icon()
 		overlays.Cut()

@@ -21,7 +21,7 @@
 
 /obj/item/blueprints/attack_self(mob/M as mob)
 	if (!istype(M,/mob/living/carbon/human))
-		M << "This stack of blue paper means nothing to you." //monkeys cannot into projecting
+		to_chat(M, "This stack of blue paper means nothing to you.")
 		return
 	interact()
 	return
@@ -100,32 +100,32 @@ move an amendment</a> to the drawing.</p>
 	return AREA_STATION
 
 /obj/item/blueprints/proc/create_area()
-	//world << "DEBUG: create_area"
+	//to_chat(world, "DEBUG: create_area")
 	var/res = detect_room(get_turf(usr))
 	if(!istype(res,/list))
 		switch(res)
 			if(ROOM_ERR_SPACE)
-				usr << "\red The new area must be completely airtight!"
+				to_chat(usr, "\red The new area must be completely airtight!")
 				return
 			if(ROOM_ERR_TOOLARGE)
-				usr << "\red The new area too large!"
+				to_chat(usr, "\red The new area too large!")
 				return
 			else
-				usr << "\red Error! Please notify administration!"
+				to_chat(usr, "\red Error! Please notify administration!")
 				return
 	var/list/turf/turfs = res
 	var/str = trim(stripped_input(usr,"New area name:","Blueprint Editing", "", MAX_NAME_LEN))
 	if(!str || !length(str)) //cancel
 		return
 	if(length(str) > 50)
-		usr << "\red Name too long."
+		to_chat(usr, "\red Name too long.")
 		return
 	var/area/A = new
 	A.name = str
 	A.tagbase = "[A.type]_[md5(str)]" // without this dynamic light system ruin everithing
 	//var/ma
 	//ma = A.master ? "[A.master]" : "(null)"
-	//world << "DEBUG: create_area: <br>A.name=[A.name]<br>A.tag=[A.tag]<br>A.master=[ma]"
+	//to_chat(world, "DEBUG: create_area: <br>A.name=[A.name]<br>A.tag=[A.tag]<br>A.master=[ma]")
 	A.power_equip = 0
 	A.power_light = 0
 	A.power_environ = 0
@@ -139,7 +139,7 @@ move an amendment</a> to the drawing.</p>
 
 	spawn(5)
 		//ma = A.master ? "[A.master]" : "(null)"
-		//world << "DEBUG: create_area(5): <br>A.name=[A.name]<br>A.tag=[A.tag]<br>A.master=[ma]"
+		//to_chat(world, "DEBUG: create_area(5): <br>A.name=[A.name]<br>A.tag=[A.tag]<br>A.master=[ma]")
 		interact()
 	return
 
@@ -152,18 +152,18 @@ move an amendment</a> to the drawing.</p>
 
 /obj/item/blueprints/proc/edit_area()
 	var/area/A = get_area()
-	//world << "DEBUG: edit_area"
+	//to_chat(world, "DEBUG: edit_area")
 	var/prevname = "[A.name]"
 	var/str = trim(stripped_input(usr,"New area name:","Blueprint Editing", prevname, MAX_NAME_LEN))
 	if(!str || !length(str) || str==prevname) //cancel
 		return
 	if(length(str) > 50)
-		usr << "\red Text too long."
+		to_chat(usr, "\red Text too long.")
 		return
 	set_area_machinery_title(A,str,prevname)
 	for(var/area/RA in A.related)
 		RA.name = str
-	usr << "\blue You set the area '[prevname]' title to '[str]'."
+	to_chat(usr, "\blue You set the area '[prevname]' title to '[str]'.")
 	interact()
 	return
 

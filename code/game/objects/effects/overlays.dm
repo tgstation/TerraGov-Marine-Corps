@@ -124,7 +124,7 @@
 /obj/effect/overlay/temp/laser_target/examine()
 	..()
 	if(ishuman(usr))
-		usr << "<span class='danger'>It's a laser to designate artillery targets, get away from it!</span>"
+		to_chat(usr, "<span class='danger'>It's a laser to designate artillery targets, get away from it!</span>")
 
 
 //used to show where dropship ordnance will impact.

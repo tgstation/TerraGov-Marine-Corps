@@ -135,7 +135,7 @@
 		return
 
 	if(!allowed(user))
-		user << "<span class='warning'>Access Denied.</span>"
+		to_chat(user, "<span class='warning'>Access Denied.</span>")
 		return
 
 	use_power(5)

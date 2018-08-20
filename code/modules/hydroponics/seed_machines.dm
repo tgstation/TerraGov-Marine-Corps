@@ -17,7 +17,7 @@
 	if(genes.len)
 		var/choice = alert(user, "Are you sure you want to wipe the disk?", "Xenobotany Data", "No", "Yes")
 		if(src && user && genes && choice == "Yes")
-			user << "You wipe the disk data."
+			to_chat(user, "You wipe the disk data.")
 			name = initial(name)
 			desc = initial(name)
 			genes = list()
@@ -86,21 +86,21 @@
 /obj/machinery/botany/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/seeds))
 		if(seed)
-			user << "There is already a seed loaded."
+			to_chat(user, "There is already a seed loaded.")
 			return
 		var/obj/item/seeds/S =W
 		if(S.seed && S.seed.immutable > 0)
-			user << "That seed is not compatible with our genetics technology."
+			to_chat(user, "That seed is not compatible with our genetics technology.")
 		else
 			user.drop_held_item()
 			W.loc = src
 			seed = W
-			user << "You load [W] into [src]."
+			to_chat(user, "You load [W] into [src].")
 		return
 
 	if(istype(W,/obj/item/tool/screwdriver))
 		open = !open
-		user << "\blue You [open ? "open" : "close"] the maintenance panel."
+		to_chat(user, "\blue You [open ? "open" : "close"] the maintenance panel.")
 		return
 
 	if(open)
@@ -110,24 +110,24 @@
 
 	if(istype(W,/obj/item/disk/botany))
 		if(loaded_disk)
-			user << "There is already a data disk loaded."
+			to_chat(user, "There is already a data disk loaded.")
 			return
 		else
 			var/obj/item/disk/botany/B = W
 
 			if(B.genes && B.genes.len)
 				if(!disk_needs_genes)
-					user << "That disk already has gene data loaded."
+					to_chat(user, "That disk already has gene data loaded.")
 					return
 			else
 				if(disk_needs_genes)
-					user << "That disk does not have any gene data loaded."
+					to_chat(user, "That disk does not have any gene data loaded.")
 					return
 
 			user.drop_held_item()
 			W.loc = src
 			loaded_disk = W
-			user << "You load [W] into [src]."
+			to_chat(user, "You load [W] into [src].")
 
 		return
 	..()

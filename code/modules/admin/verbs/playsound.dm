@@ -5,7 +5,7 @@
 	if(!check_rights(R_SOUNDS))	return
 
 	if(midi_playing)
-		usr << "No. An Admin already played a midi recently."
+		to_chat(usr, "No. An Admin already played a midi recently.")
 		return
 
 	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)

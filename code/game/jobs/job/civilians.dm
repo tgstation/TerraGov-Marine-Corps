@@ -246,7 +246,7 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 		if(!H.real_name || H.real_name == "Undefined") //In case they don't have a name set or no prefs, there's a name.
 			H.real_name = "David"
 			spawn(9)
-				H << "<span class='warning'>You forgot to set your name in your preferences. Please do so next time.</span>"
+				to_chat(H, "<span class='warning'>You forgot to set your name in your preferences. Please do so next time.</span>")
 		H.mind.name = H.real_name
 		//update id with new name
 		if(H.wear_id)

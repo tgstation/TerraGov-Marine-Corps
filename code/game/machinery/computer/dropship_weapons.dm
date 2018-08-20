@@ -18,7 +18,7 @@
 	if(..())
 		return
 	if(!allowed(user))
-		user << "<span class='warning'>Access denied.</span>"
+		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return 1
 
 	user.set_interaction(src)
@@ -109,29 +109,29 @@
 		var/targ_id = text2num(href_list["open_fire"])
 		var/mob/M = usr
 		if(M.mind.assigned_role != "Pilot Officer") //only pilots can fire dropship weapons.
-			usr << "<span class='warning'>A screen with graphics and walls of physics and engineering values open, you immediately force it closed.</span>"
+			to_chat(usr, "<span class='warning'>A screen with graphics and walls of physics and engineering values open, you immediately force it closed.</span>")
 			return
 		for(var/X in active_laser_targets)
 			var/obj/effect/overlay/temp/laser_target/LT = X
 			if(LT.target_id == targ_id)
 				if(shuttle.moving_status != SHUTTLE_INTRANSIT)
-					usr << "<span class='warning'>Dropship can only fire while in flight.</span>"
+					to_chat(usr, "<span class='warning'>Dropship can only fire while in flight.</span>")
 					return
 				if(shuttle.queen_locked) return
 
 				if(!selected_equipment || !selected_equipment.is_weapon)
-					usr << "<span class='warning'>No weapon selected.</span>"
+					to_chat(usr, "<span class='warning'>No weapon selected.</span>")
 					return
 				var/obj/structure/dropship_equipment/weapon/DEW = selected_equipment
 				if(!shuttle.transit_gun_mission && DEW.fire_mission_only)
-					usr << "<span class='warning'>[DEW] requires a fire mission flight type to be fired.</span>"
+					to_chat(usr, "<span class='warning'>[DEW] requires a fire mission flight type to be fired.</span>")
 					return
 
 				if(!DEW.ammo_equipped || DEW.ammo_equipped.ammo_count <= 0)
-					usr << "<span class='warning'>[DEW] has no ammo.</span>"
+					to_chat(usr, "<span class='warning'>[DEW] has no ammo.</span>")
 					return
 				if(DEW.last_fired > world.time - DEW.firing_delay)
-					usr << "<span class='warning'>[DEW] just fired, wait for it to cool down.</span>"
+					to_chat(usr, "<span class='warning'>[DEW] just fired, wait for it to cool down.</span>")
 					return
 				if(!LT.loc) return
 				DEW.open_fire(LT)

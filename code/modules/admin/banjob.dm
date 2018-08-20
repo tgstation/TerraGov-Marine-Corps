@@ -11,7 +11,7 @@ won't recognize the older one, as an example.
 	set category = "DEBUG"
 
 	for(var/s in jobban_keylist)
-		world << s
+		to_chat(world, s)
 
 /mob/verb/reload_jobbans()
 	set name = "reload jobbans"
@@ -50,7 +50,7 @@ won't recognize the older one, as an example.
 
 		if(!banned_jobs.Find(title))
 			banned_jobs[title] = list()
-			world << "New job found in list [title]"
+			to_chat(world, "New job found in list [title]")
 
 		if(!reason) banned_jobs[title][ckey] = "Reason Unspecified"
 		else banned_jobs[title][ckey] = reason

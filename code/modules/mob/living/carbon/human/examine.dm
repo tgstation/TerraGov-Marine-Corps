@@ -1,6 +1,6 @@
 /mob/living/carbon/human/examine(mob/user)
 	if( user.sdisabilities & BLIND || user.blinded || user.stat==UNCONSCIOUS )
-		user << "<span class='notice'>Something is there but you can't see it.</span>"
+		to_chat(user, "<span class='notice'>Something is there but you can't see it.</span>")
 		return
 
 	if (isXeno(user))
@@ -26,7 +26,7 @@
 		else if(stat || !client)
 			msg += "<span class='xenowarning'>It doesn't seem responsive.</span>\n"
 		msg += "*---------*</span>"
-		user << msg
+		to_chat(user, msg)
 		return
 
 	var/skipgloves = 0
@@ -242,9 +242,9 @@
 		spawn(15)
 			if(user && src && distance <= 1 && user.stat != 1)
 				if(pulse == PULSE_NONE)
-					user << "<span class='deadsay'>[t_He] has no pulse[src.client ? "" : " and [t_his] soul has departed"]...</span>"
+					to_chat(user, "<span class='deadsay'>[t_He] has no pulse[src.client ? "" : " and [t_his] soul has departed"]...</span>")
 				else
-					user << "<span class='deadsay'>[t_He] has a pulse!</span>"
+					to_chat(user, "<span class='deadsay'>[t_He] has a pulse!</span>")
 
 	msg += "<span class='warning'>"
 
@@ -557,7 +557,7 @@
 			pose = addtext(pose,".") //Makes sure all emotes end with a period.
 		msg += "\n[t_He] is [pose]"
 
-	user << msg
+	to_chat(user, msg)
 
 //Helper procedure. Called by /mob/living/carbon/human/examine() and /mob/living/carbon/human/Topic() to determine HUD access to security and medical records.
 /proc/hasHUD(mob/M, hudtype)

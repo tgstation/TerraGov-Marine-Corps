@@ -741,7 +741,7 @@
 						human_occupant.reagents.add_reagent("inaprovaline", REJUVENATORS_INJECT)
 					else
 						human_occupant.reagents.add_reagent("inaprovaline", round(REJUVENATORS_MAX - human_occupant.reagents.get_reagent_amount("inaprovaline")))
-				//usr << text("Occupant now has [] units of rejuvenation in his/her bloodstream.", human_occupant.reagents.get_reagent_amount("inaprovaline"))
+				//to_chat(usr, text("Occupant now has [] units of rejuvenation in his/her bloodstream.", human_occupant.reagents.get_reagent_amount("inaprovaline")))
 
 	////////////////////////////////////////////////////////
 	if (href_list["strucmenuplus"])

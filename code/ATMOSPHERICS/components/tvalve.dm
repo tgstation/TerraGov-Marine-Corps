@@ -307,7 +307,7 @@
 	if(!powered())
 		return
 	if(!src.allowed(user))
-		user << "\red Access denied."
+		to_chat(user, "\red Access denied.")
 		return
 	..()
 
@@ -349,7 +349,7 @@
 	if(!iswrench(W))
 		return ..()
 	if(istype(src, /obj/machinery/atmospherics/tvalve/digital))
-		user << "<span class='warning'>You cannot unwrench [src], it's too complicated.</span>"
+		to_chat(user, "<span class='warning'>You cannot unwrench [src], it's too complicated.</span>")
 		return 1
 
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -442,7 +442,7 @@
 	if(!powered())
 		return
 	if(!src.allowed(user))
-		user << "\red Access denied."
+		to_chat(user, "\red Access denied.")
 		return
 	..()
 
