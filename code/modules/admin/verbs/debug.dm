@@ -115,7 +115,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	if(targetselected)
 		if(!target)
-			usr << "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>"
+			to_chat(usr, "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>")
 			return
 
 		var/actual_name = procname
@@ -130,7 +130,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		actual_name = replacetext(actual_name, "()", "")
 
 		if(!hascall(target,actual_name))
-			usr << "<font color='red'>Error: callproc(): target has no such call [procname].</font>"
+			to_chat(usr, "<font color='red'>Error: callproc(): target has no such call [procname].</font>")
 			return
 		log_admin("[key_name(src)] called [target]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
 		returnval = call(target,actual_name)(arglist(lst)) // Pass the lst as an argument list to the proc
@@ -139,7 +139,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		log_admin("[key_name(src)] called [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
 		returnval = call(procname)(arglist(lst)) // Pass the lst as an argument list to the proc
 
-	usr << "<font color='blue'>[procname] returned: [returnval ? returnval : "null"]</font>"
+	to_chat(usr, "<font color='blue'>[procname] returned: [returnval ? returnval : "null"]</font>")
 	feedback_add_details("admin_verb","APC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -162,7 +162,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		return
 
 	if(!hascall(A,procname))
-		usr << "<font color='red'>Error: callatomproc(): type [A.type] has no proc named [procname].</font>"
+		to_chat(usr, "<font color='red'>Error: callatomproc(): type [A.type] has no proc named [procname].</font>")
 		return
 
 	var/argnum = input("Number of arguments","Number:",0) as num|null
@@ -213,7 +213,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	log_admin("[key_name(src)] called [A]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
 	message_admins("\blue [key_name_admin(src)] called [A]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
 	returnval = call(A,procname)(arglist(lst)) // Pass the lst as an argument list to the proc
-	usr << "<font color='blue'>[procname] returned: [returnval ? returnval : "null"]</font>"
+	to_chat(usr, "<font color='blue'>[procname] returned: [returnval ? returnval : "null"]</font>")
 	feedback_add_details("admin_verb","AAPC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -308,7 +308,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M.generate_name()
 		if(istype(M, /mob/living/carbon/Xenomorph/Queen))
 			update_living_queens()
-		usr << "Hivenumber set to [M.hivenumber]"
+		to_chat(usr, "Hivenumber set to [M.hivenumber]")
 		feedback_add_details("admin_verb","CHHN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		message_admins("\blue [key_name(src)] changed hivenumber of [M] to [M.hivenumber].", 1)
 	else
@@ -326,7 +326,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		chosen_deletion = text2path(chosen_deletion)
 		if(ispath(chosen_deletion))
 			if(!ispath(/mob) && !ispath(/obj))
-				usr << "<span class = 'warning'>Only works for types of /obj or /mob.</span>"
+				to_chat(usr, "<span class = 'warning'>Only works for types of /obj or /mob.</span>")
 			else
 				var/hsbitem = input(usr, "Choose an object to delete.", "Delete:") as null|anything in typesof(chosen_deletion)
 				if(hsbitem)
@@ -343,7 +343,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 						log_admin("[key_name(src)] has deleted all instances of [hsbitem] ([del_amt]).")
 						message_admins("[key_name_admin(src)] has deleted all instances of [hsbitem] ([del_amt]).", 0)
 		else
-			usr << "<span class = 'warning'>Not a valid type path.</span>"
+			to_chat(usr, "<span class = 'warning'>Not a valid type path.</span>")
 	feedback_add_details("admin_verb","DELA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_debug_make_powernets()
@@ -497,33 +497,33 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	var/list/areas_without_intercom = areas_all - areas_with_intercom
 	var/list/areas_without_camera = areas_all - areas_with_camera
 
-	world << "<b>AREAS WITHOUT AN APC:</b>"
+	to_chat(world, "<b>AREAS WITHOUT AN APC:</b>")
 	for(var/areatype in areas_without_APC)
-		world << "* [areatype]"
+		to_chat(world, "* [areatype]")
 
-	world << "<b>AREAS WITHOUT AN AIR ALARM:</b>"
+	to_chat(world, "<b>AREAS WITHOUT AN AIR ALARM:</b>")
 	for(var/areatype in areas_without_air_alarm)
-		world << "* [areatype]"
+		to_chat(world, "* [areatype]")
 
-	world << "<b>AREAS WITHOUT A REQUEST CONSOLE:</b>"
+	to_chat(world, "<b>AREAS WITHOUT A REQUEST CONSOLE:</b>")
 	for(var/areatype in areas_without_RC)
-		world << "* [areatype]"
+		to_chat(world, "* [areatype]")
 
-	world << "<b>AREAS WITHOUT ANY LIGHTS:</b>"
+	to_chat(world, "<b>AREAS WITHOUT ANY LIGHTS:</b>")
 	for(var/areatype in areas_without_light)
-		world << "* [areatype]"
+		to_chat(world, "* [areatype]")
 
-	world << "<b>AREAS WITHOUT A LIGHT SWITCH:</b>"
+	to_chat(world, "<b>AREAS WITHOUT A LIGHT SWITCH:</b>")
 	for(var/areatype in areas_without_LS)
-		world << "* [areatype]"
+		to_chat(world, "* [areatype]")
 
-	world << "<b>AREAS WITHOUT ANY INTERCOMS:</b>"
+	to_chat(world, "<b>AREAS WITHOUT ANY INTERCOMS:</b>")
 	for(var/areatype in areas_without_intercom)
-		world << "* [areatype]"
+		to_chat(world, "* [areatype]")
 
-	world << "<b>AREAS WITHOUT ANY CAMERAS:</b>"
+	to_chat(world, "<b>AREAS WITHOUT ANY CAMERAS:</b>")
 	for(var/areatype in areas_without_camera)
-		world << "* [areatype]"
+		to_chat(world, "* [areatype]")
 
 /client/proc/startSinglo()
 
@@ -632,7 +632,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				SMES.output = 75000
 
 	if(!found_the_pump && response == "Setup Completely")
-		src << "\red Unable to locate air supply to fill up with coolant, adding some coolant around the supermatter"
+		to_chat(src, "\red Unable to locate air supply to fill up with coolant, adding some coolant around the supermatter")
 
 
 
@@ -649,17 +649,17 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	switch(input("Which list?") in list("Players","Admins","Mobs","Living Mobs","Dead Mobs", "Clients"))
 		if("Players")
-			usr << list2text(player_list,",")
+			to_chat(usr, list2text(player_list,","))
 		if("Admins")
-			usr << list2text(admins,",")
+			to_chat(usr, list2text(admins,","))
 		if("Mobs")
-			usr << list2text(mob_list,",")
+			to_chat(usr, list2text(mob_list,","))
 		if("Living Mobs")
-			usr << list2text(living_mob_list,",")
+			to_chat(usr, list2text(living_mob_list,","))
 		if("Dead Mobs")
-			usr << list2text(dead_mob_list,",")
+			to_chat(usr, list2text(dead_mob_list,","))
 		if("Clients")
-			usr << list2text(clients,",")
+			to_chat(usr, list2text(clients,","))
 
 // DNA2 - Admin Hax
 /client/proc/cmd_admin_toggle_block(var/mob/M,var/block)

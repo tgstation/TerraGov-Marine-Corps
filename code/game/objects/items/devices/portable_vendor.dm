@@ -42,24 +42,24 @@
 	src.add_fingerprint(usr)
 
 	if(broken)
-		user << "<span class='notice'>[src] is irrepairably broken.</span>"
+		to_chat(user, "<span class='notice'>[src] is irrepairably broken.</span>")
 		return
 
 	if(!allowed(user))
-		user << "<span class='warning'>Access denied.</span>"
+		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
 
 	var/obj/item/card/id/I = H.wear_id
 	if(!istype(I)) //not wearing an ID
-		H << "<span class='warning'>Access denied. No ID card detected</span>"
+		to_chat(H, "<span class='warning'>Access denied. No ID card detected</span>")
 		return
 
 	if(I.registered_name != H.real_name)
-		H << "<span class='warning'>Wrong ID card owner detected.</span>"
+		to_chat(H, "<span class='warning'>Wrong ID card owner detected.</span>")
 		return
 
 	if(req_role && I.rank != req_role)
-		H << "<span class='warning'>This device isn't for you.</span>"
+		to_chat(H, "<span class='warning'>This device isn't for you.</span>")
 		return
 
 
@@ -118,21 +118,21 @@
 		if (href_list["vend"])
 
 			if(!allowed(usr))
-				usr << "<span class='warning'>Access denied.</span>"
+				to_chat(usr, "<span class='warning'>Access denied.</span>")
 				return
 
 			var/mob/living/carbon/human/H = usr
 			var/obj/item/card/id/I = H.wear_id
 			if(!istype(I)) //not wearing an ID
-				H << "<span class='warning'>Access denied. No ID card detected</span>"
+				to_chat(H, "<span class='warning'>Access denied. No ID card detected</span>")
 				return
 
 			if(I.registered_name != H.real_name)
-				H << "<span class='warning'>Wrong ID card owner detected.</span>"
+				to_chat(H, "<span class='warning'>Wrong ID card owner detected.</span>")
 				return
 
 			if(req_role && I.rank != req_role)
-				H << "<span class='warning'>This device isn't for you.</span>"
+				to_chat(H, "<span class='warning'>This device isn't for you.</span>")
 				return
 
 			var/idx=text2num(href_list["vend"])
@@ -141,12 +141,12 @@
 			var/cost = L[2]
 
 			if(use_points && points < cost)
-				H << "<span class='warning'>Not enough points.</span>"
+				to_chat(H, "<span class='warning'>Not enough points.</span>")
 
 
 			var/turf/T = loc
 			if(T.contents.len > 25)
-				H << "<span class='warning'>The floor is too cluttered, make some space.</span>"
+				to_chat(H, "<span class='warning'>The floor is too cluttered, make some space.</span>")
 				return
 
 

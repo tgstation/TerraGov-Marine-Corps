@@ -30,7 +30,7 @@
 
 		//some clothes can only be worn when wearing specific uniforms
 		if(uniform_restricted && (!is_type_in_list(U, uniform_restricted) || !U))
-			H << "<span class='warning'>Your [U ? "[U.name]":"naked body"] doesn't allow you to wear this [name].</span>" //Note : Duplicate warning, commenting
+			to_chat(H, "<span class='warning'>Your [U ? "[U.name]":"naked body"] doesn't allow you to wear this [name].</span>")
 			return 0
 
 		if(species_restricted)
@@ -50,7 +50,7 @@
 						wearable = 1
 
 				if(!wearable && (slot != 15 && slot != 16)) //Pockets.
-					M << "\red Your species cannot wear [src]."
+					to_chat(M, "\red Your species cannot wear [src].")
 					return 0
 
 	return 1
@@ -145,7 +145,7 @@
 		var/obj/item/clothing/under/U = H.w_uniform
 		//some uniforms prevent you from wearing any suits but certain types
 		if(U && U.suit_restricted && !is_type_in_list(src, U.suit_restricted))
-			H << "<span class='warning'>[src] can't be worn with [U].</span>"
+			to_chat(H, "<span class='warning'>[src] can't be worn with [U].</span>")
 			return 0
 	return 1
 
@@ -190,7 +190,7 @@
 /obj/item/clothing/gloves/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/tool/wirecutters) || istype(W, /obj/item/tool/surgery/scalpel))
 		if (clipped)
-			user << "<span class='notice'>The [src] have already been clipped!</span>"
+			to_chat(user, "<span class='notice'>The [src] have already been clipped!</span>")
 			update_icon()
 			return
 

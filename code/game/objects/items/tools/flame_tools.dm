@@ -235,7 +235,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(F.lit)
 			light("<span class='notice'>[user] lights their [src] with the pilot light of the [F].</span>")
 		else
-			user << "<span class='warning'>Turn on the pilot light first!</span>"
+			to_chat(user, "<span class='warning'>Turn on the pilot light first!</span>")
 
 	else if(istype(W, /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/G = W
@@ -264,12 +264,12 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		var/obj/item/reagent_container/glass/glass = target
 		var/transfered = glass.reagents.trans_to(src, chem_volume)
 		if(transfered)	//if reagents were transfered, show the message
-			user << "<span class='notice'>You dip \the [src] into \the [glass].</span>"
+			to_chat(user, "<span class='notice'>You dip \the [src] into \the [glass].</span>")
 		else			//if not, either the beaker was empty, or the cigarette was full
 			if(!glass.reagents.total_volume)
-				user << "<span class='notice'>[glass] is empty.</span>"
+				to_chat(user, "<span class='notice'>[glass] is empty.</span>")
 			else
-				user << "<span class='notice'>[src] is full.</span>"
+				to_chat(user, "<span class='notice'>[src] is full.</span>")
 
 	else if(isturf(target))
 		var/turf/T = target
@@ -362,7 +362,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	transfer_fingerprints_to(butt)
 	if(ismob(loc))
 		var/mob/living/M = loc
-		M << "<span class='notice'>Your [name] goes out.</span>"
+		to_chat(M, "<span class='notice'>Your [name] goes out.</span>")
 		M.temp_drop_inv_item(src)	//un-equip it so the overlays can update
 		M.update_inv_wear_mask()
 	processing_objects.Remove(src)
@@ -436,7 +436,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		if(F.lit)
 			light("<span class='notice'>[user] lights their [src] with the pilot light of the [F], the glint of pyromania in their eye.</span>")
 		else
-			user << "<span class='warning'>Turn on the pilot light first!</span>"
+			to_chat(user, "<span class='warning'>Turn on the pilot light first!</span>")
 
 	else if(istype(W, /obj/item/weapon/gun))
 		var/obj/item/weapon/gun/G = W
@@ -474,7 +474,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		new /obj/effect/decal/cleanable/ash(location)
 		if(ismob(loc))
 			var/mob/living/M = loc
-			M << "<span class='notice'>Your [name] goes out, and you empty the ash.</span>"
+			to_chat(M, "<span class='notice'>Your [name] goes out, and you empty the ash.</span>")
 			heat_source = 0
 			icon_state = icon_off
 			item_state = icon_off
@@ -491,7 +491,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		processing_objects.Remove(src)
 		return
 	if(smoketime <= 0)
-		user << "<span class='notice'>You refill the pipe with tobacco.</span>"
+		to_chat(user, "<span class='notice'>You refill the pipe with tobacco.</span>")
 		smoketime = initial(smoketime)
 	return
 
@@ -587,7 +587,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				if(prob(95))
 					user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src].</span>")
 				else
-					user << "<span class='warning'>You burn yourself while lighting the lighter.</span>"
+					to_chat(user, "<span class='warning'>You burn yourself while lighting the lighter.</span>")
 					if (user.l_hand == src)
 						user.apply_damage(2,BURN,"l_hand")
 					else

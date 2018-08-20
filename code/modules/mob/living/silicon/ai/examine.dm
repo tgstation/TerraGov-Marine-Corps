@@ -1,6 +1,6 @@
 /mob/living/silicon/ai/examine(mob/user)
 	if( (user.sdisabilities & BLIND || user.blinded || user.stat) && !istype(user,/mob/dead/observer) )
-		user << "<span class='notice'>Something is there but you can't see it.</span>"
+		to_chat(user, "<span class='notice'>Something is there but you can't see it.</span>")
 		return
 
 	var/msg = "<span class='info'>*---------*\nThis is \icon[src] <EM>[src]</EM>!\n"
@@ -24,4 +24,4 @@
 		msg += "</span>"
 	msg += "*---------*</span>"
 
-	user << msg
+	to_chat(user, msg)

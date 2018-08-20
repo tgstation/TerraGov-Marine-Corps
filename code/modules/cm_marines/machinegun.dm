@@ -59,7 +59,7 @@
 	if(ammo <= 0)
 		if(User)
 			playsound(src, empty_sound, 70, 1)
-			User << "This machine gun is out of ammo!"
+			to_chat(User, "This machine gun is out of ammo!")
 
 		return
 	if(T && User && User.stat == CONSCIOUS)

@@ -50,7 +50,7 @@
 			return
 		var/obj/item/stack/rods/R = C
 		if (R.use(1))
-			user << "\blue Constructing support lattice ..."
+			to_chat(user, "\blue Constructing support lattice ...")
 			playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 			ReplaceWithLattice()
 		return
@@ -67,7 +67,7 @@
 			S.use(1)
 			return
 		else
-			user << "\red The plating is going to need some support."
+			to_chat(user, "\red The plating is going to need some support.")
 	return
 
 
@@ -96,7 +96,7 @@
 				if(istype(A, /mob/living))
 					var/mob/living/MM = A
 					if(MM.client && !MM.stat)
-						MM << "\red Something you are carrying is preventing you from leaving. Don't play stupid; you know exactly what it is."
+						to_chat(MM, "\red Something you are carrying is preventing you from leaving. Don't play stupid; you know exactly what it is.")
 						if(MM.x <= TRANSITIONEDGE)
 							MM.inertia_dir = 4
 						else if(MM.x >= world.maxx -TRANSITIONEDGE)

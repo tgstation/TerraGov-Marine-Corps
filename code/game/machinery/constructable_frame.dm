@@ -30,14 +30,14 @@
 /obj/machinery/constructable_frame/machine_frame
 	attackby(obj/item/P as obj, mob/user as mob)
 		if(P.crit_fail)
-			user << "\red This part is faulty, you cannot add this to the machine!"
+			to_chat(user, "\red This part is faulty, you cannot add this to the machine!")
 			return
 		switch(state)
 			if(1)
 				if(iscoil(P))
 					var/obj/item/stack/cable_coil/C = P
 					if(C.get_amount() < 5)
-						user << "<span class='warning'>You need five lengths of cable to add them to the frame.</span>"
+						to_chat(user, "<span class='warning'>You need five lengths of cable to add them to the frame.</span>")
 						return
 					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 					user.visible_message("<span class='notice'>[user] starts adding cables to [src].</span>",
@@ -51,13 +51,13 @@
 				else
 					if(iswrench(P))
 						playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-						user << "\blue You dismantle the frame"
+						to_chat(user, "\blue You dismantle the frame")
 						new /obj/item/stack/sheet/metal(src.loc, 5)
 						cdel(src)
 			if(2)
 				if(istype(P, /obj/item/circuitboard/machine))
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-					user << "\blue You add the circuit board to the frame."
+					to_chat(user, "\blue You add the circuit board to the frame.")
 					circuit = P
 					if(user.drop_inv_item_to_loc(P, src))
 						icon_state = "box_2"
@@ -75,12 +75,12 @@
 							desc = circuit.frame_desc
 						else
 							update_desc()
-						user << desc
+						to_chat(user, desc)
 
 				else
 					if(istype(P, /obj/item/tool/wirecutters))
 						playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
-						user << "\blue You remove the cables."
+						to_chat(user, "\blue You remove the cables.")
 						state = 1
 						icon_state = "box_0"
 						var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( src.loc )
@@ -93,9 +93,9 @@
 					circuit.loc = src.loc
 					circuit = null
 					if(components.len == 0)
-						user << "\blue You remove the circuit board."
+						to_chat(user, "\blue You remove the circuit board.")
 					else
-						user << "\blue You remove the circuit board and other components."
+						to_chat(user, "\blue You remove the circuit board and other components.")
 						for(var/obj/item/W in components)
 							W.loc = src.loc
 					desc = initial(desc)
@@ -142,7 +142,7 @@
 										req_components[I]--
 										update_desc()
 									break
-							user << desc
+							to_chat(user, desc)
 							if(P && P.loc != src && !istype(P, /obj/item/stack/cable_coil))
-								user << "\red You cannot add that component to the machine!"
+								to_chat(user, "\red You cannot add that component to the machine!")
 

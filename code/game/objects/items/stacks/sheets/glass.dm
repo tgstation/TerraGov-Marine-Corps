@@ -28,7 +28,7 @@
 /obj/item/stack/sheet/glass/attack_self(mob/user as mob)
 
 	if(istype(get_area(usr.loc),/area/sulaco/hangar))  //HANGER BUILDING
-		usr << "<span class='warning'>No. This area is needed for the dropships and personnel.</span>"
+		to_chat(usr, "<span class='warning'>No. This area is needed for the dropships and personnel.</span>")
 		return
 
 	construct_window(user)
@@ -39,17 +39,17 @@
 		if(istype(W,/obj/item/stack/cable_coil))
 			var/obj/item/stack/cable_coil/CC = W
 			if (get_amount() < 1 || CC.get_amount() < 5)
-				user << "<span class='warning'>You need five lengths of coil and one sheet of glass to make wired glass.</span>"
+				to_chat(user, "<span class='warning'>You need five lengths of coil and one sheet of glass to make wired glass.</span>")
 				return
 
 			CC.use(5)
 			new /obj/item/stack/light_w(user.loc, 1)
 			use(1)
-			user << "<span class='notice'>You attach wire to the [name].</span>"
+			to_chat(user, "<span class='notice'>You attach wire to the [name].</span>")
 		else if(istype(W, /obj/item/stack/rods))
 			var/obj/item/stack/rods/V  = W
 			if (V.get_amount() < 1 || get_amount() < 1)
-				user << "<span class='warning'>You need one rod and one sheet of glass to make reinforced glass.</span>"
+				to_chat(user, "<span class='warning'>You need one rod and one sheet of glass to make reinforced glass.</span>")
 				return
 
 			var/obj/item/stack/sheet/glass/reinforced/RG = new (user.loc)
@@ -67,10 +67,10 @@
 	if(!user || !src)	return 0
 	if(!istype(user.loc,/turf)) return 0
 	if(!user.IsAdvancedToolUser())
-		user << "\red You don't have the dexterity to do this!"
+		to_chat(user, "\red You don't have the dexterity to do this!")
 		return 0
 	if(ishuman(user) && user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_PLASTEEL)
-		user << "<span class='warning'>You are not trained to build with [src]...</span>"
+		to_chat(user, "<span class='warning'>You are not trained to build with [src]...</span>")
 		return 0
 	var/title = "Sheet-[name]"
 	title += " ([src.amount] sheet\s left)"
@@ -84,11 +84,11 @@
 			for (var/obj/structure/window/win in user.loc)
 				i++
 				if(i >= 4)
-					user << "\red There are too many windows in this location."
+					to_chat(user, "\red There are too many windows in this location.")
 					return 1
 				directions-=win.dir
 				if(!(win.dir in cardinal))
-					user << "\red Can't let you do that."
+					to_chat(user, "\red Can't let you do that.")
 					return 1
 
 			//Determine the direction. It will first check in the direction the person making the window is facing, if it finds an already made window it will try looking at the next cardinal direction, etc.
@@ -107,10 +107,10 @@
 			if(!src)	return 1
 			if(src.loc != user)	return 1
 			if(src.amount < 4)
-				user << "\red You need more glass to do that."
+				to_chat(user, "\red You need more glass to do that.")
 				return 1
 			if(locate(/obj/structure/window) in user.loc)
-				user << "\red There is a window in the way."
+				to_chat(user, "\red There is a window in the way.")
 				return 1
 			new created_window( user.loc, SOUTHWEST, 1 )
 			src.use(4)
@@ -120,15 +120,15 @@
 			if(!src || src.loc != user) return 1
 
 			if(isturf(user.loc) && locate(/obj/structure/windoor_assembly/, user.loc))
-				user << "\red There is already a windoor assembly in that location."
+				to_chat(user, "\red There is already a windoor assembly in that location.")
 				return 1
 
 			if(isturf(user.loc) && locate(/obj/machinery/door/window/, user.loc))
-				user << "\red There is already a windoor in that location."
+				to_chat(user, "\red There is already a windoor in that location.")
 				return 1
 
 			if(src.amount < 5)
-				user << "\red You need more glass to do that."
+				to_chat(user, "\red You need more glass to do that.")
 				return 1
 
 			new /obj/structure/windoor_assembly(user.loc, user.dir, 1)

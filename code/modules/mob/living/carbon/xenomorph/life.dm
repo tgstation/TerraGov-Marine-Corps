@@ -31,7 +31,7 @@
 				if(evolution_allowed && evolution_stored < evolution_threshold && hive.living_xeno_queen && hive.living_xeno_queen.ovipositor)
 					evolution_stored = min(evolution_stored + 1, evolution_threshold)
 					if(evolution_stored == evolution_threshold - 1)
-						src << "<span class='xenodanger'>Your carapace crackles and your tendons strengthen. You are ready to evolve!</span>" //Makes this bold so the Xeno doesn't miss it
+						to_chat(src, "<span class='xenodanger'>Your carapace crackles and your tendons strengthen. You are ready to evolve!</span>")
 						src << sound('sound/effects/xeno_evolveready.ogg')
 
 		//Status updates, death etc.
@@ -192,7 +192,7 @@
 					var/mob/living/carbon/human/H = M
 					var/limb_name = H.remove_random_limb(1)
 					if(limb_name)
-						H << "<span class='danger'>Your [limb_name] dissolved in the acid!</span>"
+						to_chat(H, "<span class='danger'>Your [limb_name] dissolved in the acid!</span>")
 					if(prob(50))
 						stomach_contents.Remove(M)
 						M.acid_damage = 0
@@ -202,7 +202,7 @@
 
 				M.acid_damage++
 				if(M.acid_damage > 300)
-					src << "<span class='xenodanger'>\The [M] is dissolved in your gut with a gurgle.</span>"
+					to_chat(src, "<span class='xenodanger'>\The [M] is dissolved in your gut with a gurgle.</span>")
 					stomach_contents.Remove(M)
 					cdel(M)
 	return 1
@@ -346,7 +346,7 @@ updatehealth()
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire2"
 			if(prob(20))
-				src << "<span class='warning'>You feel a searing heat!</span>"
+				to_chat(src, "<span class='warning'>You feel a searing heat!</span>")
 		else
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire0"
@@ -390,7 +390,7 @@ updatehealth()
 				plasma_stored -= 30
 				if(plasma_stored < 0)
 					H.speed_activated = 0
-					src << "<span class='warning'>You feel dizzy as the world slows down.</span>"
+					to_chat(src, "<span class='warning'>You feel dizzy as the world slows down.</span>")
 
 		if(current_aura)
 			plasma_stored -= 5
@@ -425,7 +425,7 @@ updatehealth()
 				plasma_stored -= 30
 				if(plasma_stored < 0)
 					H.speed_activated = 0
-					src << "<span class='warning'>You feel dizzy as the world slows down.</span>"
+					to_chat(src, "<span class='warning'>You feel dizzy as the world slows down.</span>")
 
 		if(current_aura)
 			plasma_stored -= 5
@@ -437,7 +437,7 @@ updatehealth()
 		plasma_stored = 0
 		if(current_aura)
 			current_aura = null
-			src << "<span class='warning'>You have run out of pheromones and stopped emitting pheromones.</span>"
+			to_chat(src, "<span class='warning'>You have run out of pheromones and stopped emitting pheromones.</span>")
 
 	for(var/X in actions)
 		var/datum/action/A = X

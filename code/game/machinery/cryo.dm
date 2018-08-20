@@ -164,11 +164,11 @@
 /obj/machinery/atmospherics/unary/cryo_cell/attackby(obj/item/W, mob/living/user)
 	if(istype(W, /obj/item/reagent_container/glass))
 		if(beaker)
-			user << "<span class='warning'>A beaker is already loaded into the machine.</span>"
+			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
 			return
 
 		if(istype(W, /obj/item/reagent_container/glass/bucket))
-			user << "<span class='warning'>That's too big to fit!</span>"
+			to_chat(user, "<span class='warning'>That's too big to fit!</span>")
 			return
 
 		beaker =  W
@@ -252,23 +252,23 @@
 	return
 /obj/machinery/atmospherics/unary/cryo_cell/proc/put_mob(mob/living/carbon/M as mob)
 	if (stat & (NOPOWER|BROKEN))
-		usr << "\red The cryo cell is not functioning."
+		to_chat(usr, "\red The cryo cell is not functioning.")
 		return
 	if (!istype(M))
-		usr << "\red <B>The cryo cell cannot handle such a lifeform!</B>"
+		to_chat(usr, "\red <B>The cryo cell cannot handle such a lifeform!</B>")
 		return
 	if (occupant)
-		usr << "\red <B>The cryo cell is already occupied!</B>"
+		to_chat(usr, "\red <B>The cryo cell is already occupied!</B>")
 		return
 	if (M.abiotic())
-		usr << "\red Subject may not have abiotic items on."
+		to_chat(usr, "\red Subject may not have abiotic items on.")
 		return
 	if(!node)
-		usr << "\red The cell is not correctly connected to its pipe network!"
+		to_chat(usr, "\red The cell is not correctly connected to its pipe network!")
 		return
 	M.forceMove(src)
 	if(M.health > -100 && (M.health < 0 || M.sleeping))
-		M << "\blue <b>You feel a cold liquid surround you. Your skin starts to freeze up.</b>"
+		to_chat(M, "\blue <b>You feel a cold liquid surround you. Your skin starts to freeze up.</b>")
 	occupant = M
 	update_use_power(2)
 //	M.metabslow = 1
@@ -283,7 +283,7 @@
 	if(usr == occupant)//If the user is inside the tube...
 		if (usr.stat == 2)//and he's not dead....
 			return
-		usr << "\blue Release sequence activated. This will take two minutes."
+		to_chat(usr, "\blue Release sequence activated. This will take two minutes.")
 		sleep(1200)
 		if(!src || !usr || !occupant || (occupant != usr)) //Check if someone's released/replaced/bombed him already
 			return

@@ -102,11 +102,11 @@
 		if (!opened)
 			opened = 1
 			icon_state = "server_o"
-			user << "You open the maintenance hatch of [src]."
+			to_chat(user, "You open the maintenance hatch of [src].")
 		else
 			opened = 0
 			icon_state = "server"
-			user << "You close the maintenance hatch of [src]."
+			to_chat(user, "You close the maintenance hatch of [src].")
 		return
 	if (opened)
 		if(istype(O, /obj/item/tool/crowbar))
@@ -180,7 +180,7 @@
 	add_fingerprint(usr)
 	usr.set_interaction(src)
 	if(!src.allowed(usr) && !emagged)
-		usr << "\red You do not have the required access level"
+		to_chat(usr, "\red You do not have the required access level")
 		return
 
 	if(href_list["main"])
@@ -309,7 +309,7 @@
 	if(istype(D, /obj/item/card/emag) && !emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
 		emagged = 1
-		user << "\blue You you disable the security protocols"
+		to_chat(user, "\blue You you disable the security protocols")
 	src.updateUsrDialog()
 	return ..()
 

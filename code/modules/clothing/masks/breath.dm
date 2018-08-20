@@ -26,14 +26,14 @@
 				gas_transfer_coefficient = 1 //gas is now escaping to the turf and vice versa
 				flags_inventory &= ~(COVERMOUTH|ALLOWINTERNALS)
 				icon_state = "breathdown"
-				usr << "Your mask is now hanging on your neck."
+				to_chat(usr, "Your mask is now hanging on your neck.")
 
 			else
 				src.hanging = !src.hanging
 				gas_transfer_coefficient = 0.10
 				flags_inventory |= COVERMOUTH|ALLOWINTERNALS
 				icon_state = "breath"
-				usr << "You pull the mask up to cover your face."
+				to_chat(usr, "You pull the mask up to cover your face.")
 			update_clothing_icon()
 
 /obj/item/clothing/mask/breath/medical

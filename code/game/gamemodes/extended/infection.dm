@@ -13,10 +13,10 @@
 	var/const/waittime_h = 1800
 
 /datum/game_mode/infection/announce()
-	world << "<B>The current game mode is - ZOMBIES!</B>"
-	world << "<B>Just have fun and role-play!</B>"
-	world << "<B>If you die as a zombie, you come back.  NO MATTER HOW MUCH DAMAGE.</B>"
-	world << "<B>Don't ahelp asking for specific details, you won't get them.</B>"
+	to_chat(world, "<B>The current game mode is - ZOMBIES!</B>")
+	to_chat(world, "<B>Just have fun and role-play!</B>")
+	to_chat(world, "<B>If you die as a zombie, you come back.  NO MATTER HOW MUCH DAMAGE.</B>")
+	to_chat(world, "<B>Don't ahelp asking for specific details, you won't get them.</B>")
 
 /datum/game_mode/infection/pre_setup()
 	return 1
@@ -38,8 +38,8 @@
 	var/living_player_list[] = count_humans_and_xenos(EvacuationAuthority.get_affected_zlevels())
 	var/num_humans = living_player_list[1]
 	var/zed = living_player_list[2]
-//	world << "ZED: [zed]"
-//	world << "Humie: [num_humans]"
+//	to_chat(world, "ZED: [zed]")
+//	to_chat(world, "Humie: [num_humans]")
 
 	if(num_humans <=0 && zed >= 1)
 		round_finished = MODE_INFECTION_ZOMBIE_WIN
@@ -56,22 +56,22 @@
 			round_checkwin = 0
 
 /datum/game_mode/infection/declare_completion()
-	//world << "<span class='round_header'>[round_finished]</span>"
-	world << "<span class='round_header'>|Round Complete|</span>"
+	//to_chat(world, "<span class='round_header'>[round_finished]</span>")
+	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
 	feedback_set_details("round_end_result",round_finished)
 
-	world << "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [map_tag].</span>"
+	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [map_tag].</span>")
 	var/musical_track = pick('sound/theme/sad_loss1.ogg','sound/theme/sad_loss2.ogg')
-	world << musical_track
-	world << "<span class='round_body'>The zombies have been victorious!</span>"
+	to_chat(world, musical_track)
+	to_chat(world, "<span class='round_body'>The zombies have been victorious!</span>")
 
 	var/dat = ""
 	//if(flags_round_type & MODE_INFESTATION)
 		//var/living_player_list[] = count_humans_and_xenos()
 		//dat = "\nXenomorphs remaining: [living_player_list[2]]. Humans remaining: [living_player_list[1]]."
-	if(round_stats) round_stats << "[round_finished][dat]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal Preds spawned: [predators.len]\nTotal humans spawned: [round_statistics.total_humans_created][log_end]" // Logging to data/logs/round_stats.log
+	if(round_stats) to_chat(round_stats, "[round_finished][dat]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal Preds spawned: [predators.len]\nTotal humans spawned: [round_statistics.total_humans_created][log_end]")
 
-	world << dat
+	to_chat(world, dat)
 
 	declare_completion_announce_individual()
 	declare_completion_announce_predators()

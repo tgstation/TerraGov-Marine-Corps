@@ -46,11 +46,11 @@
 	chameleon_cooldown = world.time + 20
 	if(chameleon_on)
 		user.alpha = 25
-		user << "<span class='notice'>You activate the [src].</span>"
+		to_chat(user, "<span class='notice'>You activate the [src].</span>")
 		spark_system.start()
 	else
 		user.alpha = initial(user.alpha)
-		user << "<span class='notice'>You deactivate the [src].</span>"
+		to_chat(user, "<span class='notice'>You deactivate the [src].</span>")
 		spark_system.start()
 
 /obj/item/device/chameleon/proc/disrupt(mob/user)
@@ -80,10 +80,10 @@
 /obj/item/device/cloaking_device/attack_self(mob/user as mob)
 	src.active = !( src.active )
 	if (src.active)
-		user << "\blue The cloaking device is now active."
+		to_chat(user, "\blue The cloaking device is now active.")
 		src.icon_state = "shield1"
 	else
-		user << "\blue The cloaking device is now inactive."
+		to_chat(user, "\blue The cloaking device is now inactive.")
 		src.icon_state = "shield0"
 	src.add_fingerprint(user)
 	return

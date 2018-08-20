@@ -24,11 +24,11 @@
 		var/datum/reagents/R = src.reagents
 
 		if(!R || !R.total_volume)
-			user << "\red The [src.name] is empty!"
+			to_chat(user, "\red The [src.name] is empty!")
 			return 0
 
 		if(M == user)
-			M << "\blue You swallow some of contents of the [src]."
+			to_chat(M, "\blue You swallow some of contents of the [src].")
 			if(reagents.total_volume)
 				reagents.trans_to_ingest(M, 10)
 
@@ -63,26 +63,26 @@
 		if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
 
 			if(!target.reagents.total_volume)
-				user << "\red [target] is empty."
+				to_chat(user, "\red [target] is empty.")
 				return
 
 			if(reagents.total_volume >= reagents.maximum_volume)
-				user << "\red [src] is full."
+				to_chat(user, "\red [src] is full.")
 				return
 
 			var/trans = target.reagents.trans_to(src, target:amount_per_transfer_from_this)
-			user << "\blue You fill [src] with [trans] units of the contents of [target]."
+			to_chat(user, "\blue You fill [src] with [trans] units of the contents of [target].")
 
 		//Something like a glass or a food item. Player probably wants to transfer TO it.
 		else if(target.is_open_container() || istype(target, /obj/item/reagent_container/food/snacks))
 			if(!reagents.total_volume)
-				user << "\red [src] is empty."
+				to_chat(user, "\red [src] is empty.")
 				return
 			if(target.reagents.total_volume >= target.reagents.maximum_volume)
-				user << "\red you can't add anymore to [target]."
+				to_chat(user, "\red you can't add anymore to [target].")
 				return
 			var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
-			user << "\blue You transfer [trans] units of the condiment to [target]."
+			to_chat(user, "\blue You transfer [trans] units of the condiment to [target].")
 
 	on_reagent_change()
 		if(icon_state == "saltshakersmall" || icon_state == "peppermillsmall")

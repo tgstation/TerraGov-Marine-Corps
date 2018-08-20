@@ -100,7 +100,7 @@
 
 /obj/item/tool/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << "\red You accidentally cut yourself with the [src]."
+		to_chat(user, "\red You accidentally cut yourself with the [src].")
 		user.take_limb_damage(20)
 		return
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, 5)
@@ -115,7 +115,7 @@
 
 /obj/item/tool/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << "\red You somehow managed to cut yourself with the [src]."
+		to_chat(user, "\red You somehow managed to cut yourself with the [src].")
 		user.take_limb_damage(20)
 		return
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, 5)
@@ -192,7 +192,7 @@
 
 /obj/item/tool/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << "\red The [src] slips out of your hand and hits your head."
+		to_chat(user, "\red The [src] slips out of your hand and hits your head.")
 		user.take_limb_damage(10)
 		user.KnockOut(2)
 		return
@@ -209,7 +209,7 @@
 			if (H.stat < 2 && H.health < 50 && prob(90))
 				// ******* Check
 				if (istype(head_protection) && head_protection.flags_inventory & BLOCKSHARPOBJ  && prob(80))
-					H << "\red The helmet protects you from being hit hard in the head!"
+					to_chat(H, "\red The helmet protects you from being hit hard in the head!")
 					return
 				var/time = rand(2, 6)
 				if (prob(75))
@@ -275,7 +275,7 @@
 
 
 	if((CLUMSY in user.mutations) && prob(50))              //What if he's a clown?
-		M << "\red You accidentally slam yourself with the [src]!"
+		to_chat(M, "\red You accidentally slam yourself with the [src]!")
 		M.KnockDown(1)
 		user.take_limb_damage(2)
 		if(prob(50))
@@ -319,7 +319,7 @@
 
 
 	if(istype(M, /mob/living/carbon/human) && ((H.head && (H.head.flags_inventory & COVEREYES) ) || (H.wear_mask && (H.wear_mask.flags_inventory & COVEREYES) ) || (H.glasses && (H.glasses.flags_inventory & COVEREYES) )))
-		M << "\red You get slammed in the face with the tray, against your mask!"
+		to_chat(M, "\red You get slammed in the face with the tray, against your mask!")
 		if(prob(33))
 			src.add_mob_blood(H)
 			if (H.wear_mask)
@@ -349,7 +349,7 @@
 			return
 
 	else //No eye or head protection, tough luck!
-		M << "\red You get slammed in the face with the tray!"
+		to_chat(M, "\red You get slammed in the face with the tray!")
 		if(prob(33))
 			src.add_mob_blood(M)
 			var/turf/location = H.loc

@@ -382,7 +382,7 @@ proc/listclearnulls(list/list)
 
 //Don't use this on lists larger than half a dozen or so
 /proc/insertion_sort_numeric_list_ascending(var/list/L)
-	//world.log << "ascending len input: [L.len]"
+	//to_chat(world.log, "ascending len input: [L.len]")
 	var/list/out = list(pop(L))
 	for(var/entry in L)
 		if(isnum(entry))
@@ -395,13 +395,13 @@ proc/listclearnulls(list/list)
 			if(!success)
 				out.Add(entry)
 
-	//world.log << "	output: [out.len]"
+	//to_chat(world.log, "	output: [out.len]")
 	return out
 
 /proc/insertion_sort_numeric_list_descending(var/list/L)
-	//world.log << "descending len input: [L.len]"
+	//to_chat(world.log, "descending len input: [L.len]")
 	var/list/out = insertion_sort_numeric_list_ascending(L)
-	//world.log << "	output: [out.len]"
+	//to_chat(world.log, "	output: [out.len]")
 	return reverselist(out)
 
 proc/dd_sortedObjectList(list/incoming)

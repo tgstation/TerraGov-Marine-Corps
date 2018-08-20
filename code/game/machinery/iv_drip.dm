@@ -62,11 +62,11 @@
 /obj/machinery/iv_drip/attackby(obj/item/W, mob/living/user)
 	if (istype(W, /obj/item/reagent_container))
 		if(beaker)
-			user << "<span class='warning'>There is already a reagent container loaded!</span>"
+			to_chat(user, "<span class='warning'>There is already a reagent container loaded!</span>")
 			return
 
 		if((!istype(W, /obj/item/reagent_container/blood) && !istype(W, /obj/item/reagent_container/glass)) || istype(W, /obj/item/reagent_container/glass/bucket))
-			user << "<span class='warning'>That won't fit!</span>"
+			to_chat(user, "<span class='warning'>That won't fit!</span>")
 			return
 
 		if(user.drop_inv_item_to_loc(W, src))
@@ -79,7 +79,7 @@
 			message_staff("[key_name(user)] put a [beaker] into [src], containing [reagentnames] at ([src.loc.x],[src.loc.y],[src.loc.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.loc.x];Y=[src.loc.y];Z=[src.loc.z]'>JMP</a>).", 1)
 			log_admin("[key_name(user)] put a [beaker] into [src], containing [reagentnames] at ([src.loc.x],[src.loc.y],[src.loc.z]).")
 
-			user << "You attach \the [W] to \the [src]."
+			to_chat(user, "You attach \the [W] to \the [src].")
 			update_icon()
 		return
 	else
@@ -156,18 +156,18 @@
 		return
 
 	mode = !mode
-	usr << "The IV drip is now [mode ? "injecting" : "taking blood"]."
+	to_chat(usr, "The IV drip is now [mode ? "injecting" : "taking blood"].")
 
 /obj/machinery/iv_drip/examine(mob/user)
 	..()
-	user << "The IV drip is [mode ? "injecting" : "taking blood"]."
+	to_chat(user, "The IV drip is [mode ? "injecting" : "taking blood"].")
 
 	if(beaker)
 		if(beaker.reagents && beaker.reagents.reagent_list.len)
-			user << "\blue Attached is \a [beaker] with [beaker.reagents.total_volume] units of liquid."
+			to_chat(user, "\blue Attached is \a [beaker] with [beaker.reagents.total_volume] units of liquid.")
 		else
-			user << "\blue Attached is an empty [beaker]."
+			to_chat(user, "\blue Attached is an empty [beaker].")
 	else
-		user << "\blue No chemicals are attached."
+		to_chat(user, "\blue No chemicals are attached.")
 
-	user << "\blue [attached ? attached : "No one"] is attached."
+	to_chat(user, "\blue [attached ? attached : "No one"] is attached.")

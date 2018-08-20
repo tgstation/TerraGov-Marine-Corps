@@ -72,7 +72,7 @@
 				ghost.client.mob = ghost.corpse
 
 	if(R.health < 0)
-		usr << "You have to repair the borg before using this module!"
+		to_chat(usr, "You have to repair the borg before using this module!")
 		return 0
 
 	R.stat = 0
@@ -104,8 +104,8 @@
 
 /obj/item/robot/upgrade/tasercooler/action(var/mob/living/silicon/robot/R)
 	if(!istype(R.module, /obj/item/weapon/robot_module/security))
-		R << "Upgrade mounting error!  No suitable hardpoint detected!"
-		usr << "There's no mounting point for the module!"
+		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
+		to_chat(usr, "There's no mounting point for the module!")
 		return 0
 
 	var/obj/item/weapon/gun/energy/taser/cyborg/T = locate() in R.module
@@ -114,12 +114,12 @@
 	if(!T)
 		T = locate() in R.module.modules
 	if(!T)
-		usr << "This cyborg has had its taser removed!"
+		to_chat(usr, "This cyborg has had its taser removed!")
 		return 0
 
 	if(T.recharge_time <= 2)
-		R << "Maximum cooling achieved for this hardpoint!"
-		usr << "There's no room for another cooling unit!"
+		to_chat(R, "Maximum cooling achieved for this hardpoint!")
+		to_chat(usr, "There's no room for another cooling unit!")
 		return 0
 
 	else
@@ -136,8 +136,8 @@
 
 /obj/item/robot/upgrade/jetpack/action(var/mob/living/silicon/robot/R)
 	if(!istype(R.module, /obj/item/weapon/robot_module/miner))
-		R << "Upgrade mounting error!  No suitable hardpoint detected!"
-		usr << "There's no mounting point for the module!"
+		to_chat(R, "Upgrade mounting error!  No suitable hardpoint detected!")
+		to_chat(usr, "There's no mounting point for the module!")
 		return 0
 	else
 		R.module.modules += new/obj/item/weapon/tank/jetpack/carbondioxide

@@ -489,7 +489,7 @@
 			return chassis.dynattackby(W,user)
 		chassis.log_message("Attacked by [W]. Attacker - [user]")
 		if(prob(chassis.deflect_chance*deflect_coeff))
-			user << "\red The [W] bounces off [chassis] armor."
+			to_chat(user, "\red The [W] bounces off [chassis] armor.")
 			chassis.log_append_to_last("Armor saved.")
 		else
 			chassis.occupant_message("<font color='red'><b>[user] hits [chassis] with [W].</b></font>")
@@ -859,7 +859,7 @@
 		if(isnull(result))
 			user.visible_message("[user] tries to shove [weapon] into [src]. What a dumb-ass.","<font color='red'>[fuel] traces minimal. [weapon] cannot be used as fuel.</font>")
 		else if(!result)
-			user << "Unit is full."
+			to_chat(user, "Unit is full.")
 		else
 			user.visible_message("[user] loads [src] with [fuel].","[result] unit\s of [fuel] successfully loaded.")
 		return
@@ -1033,9 +1033,9 @@
 			log_message("[user] boarded.")
 			occupant_message("[user] boarded.")
 		else if(src.occupant != user)
-			user << "\red [src.occupant] was faster. Try better next time, loser."
+			to_chat(user, "\red [src.occupant] was faster. Try better next time, loser.")
 	else
-		user << "You stop entering the exosuit."
+		to_chat(user, "You stop entering the exosuit.")
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/verb/eject()
 	set name = "Eject"
@@ -1045,7 +1045,7 @@
 
 	if(usr != occupant)
 		return
-	occupant << "You climb out from \the [src]."
+	to_chat(occupant, "You climb out from \the [src].")
 	go_out()
 	occupant_message("[occupant] disembarked.")
 	log_message("[occupant] disembarked.")
@@ -1107,13 +1107,13 @@
 		return
 
 	if (!isturf(usr.loc))
-		usr << "\red You can't reach the passenger compartment from here."
+		to_chat(usr, "\red You can't reach the passenger compartment from here.")
 		return
 
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(C.handcuffed)
-			usr << "\red Kinda hard to climb in while handcuffed don't you think?"
+			to_chat(usr, "\red Kinda hard to climb in while handcuffed don't you think?")
 			return
 
 	//search for a valid passenger compartment
@@ -1133,10 +1133,10 @@
 	//didn't find anything
 	switch (feedback)
 		if (OCCUPIED)
-			usr << "\red The passenger compartment is already occupied!"
+			to_chat(usr, "\red The passenger compartment is already occupied!")
 		if (LOCKED)
-			usr << "\red The passenger compartment hatch is locked!"
+			to_chat(usr, "\red The passenger compartment hatch is locked!")
 		if (OCCUPIED|LOCKED)
-			usr << "\red All of the passenger compartments are already occupied or locked!"
+			to_chat(usr, "\red All of the passenger compartments are already occupied or locked!")
 		if (0)
-			usr << "\red \The [src] doesn't have a passenger compartment."
+			to_chat(usr, "\red \The [src] doesn't have a passenger compartment.")

@@ -76,7 +76,7 @@ var/global/image/typing_indicator
 	set desc = "Toggles showing an indicator when you are typing emote or say message."
 	prefs.toggles_chat ^= SHOW_TYPING
 	prefs.save_preferences()
-	src << "You will [(prefs.toggles_chat & SHOW_TYPING) ? "no longer" : "now"] display a typing indicator."
+	to_chat(src, "You will [(prefs.toggles_chat & SHOW_TYPING) ? "no longer" : "now"] display a typing indicator.")
 
 	// Clear out any existing typing indicator.
 	if(prefs.toggles_chat & SHOW_TYPING)

@@ -36,7 +36,7 @@
 	s.start()
 	if(buckled_mob)
 		buckled_mob.burn_skin(85)
-		buckled_mob << "<span class='danger'>You feel a deep shock course through your body!</span>"
+		to_chat(buckled_mob, "<span class='danger'>You feel a deep shock course through your body!</span>")
 		sleep(1)
 		buckled_mob.burn_skin(85)
 		buckled_mob.Stun(600)

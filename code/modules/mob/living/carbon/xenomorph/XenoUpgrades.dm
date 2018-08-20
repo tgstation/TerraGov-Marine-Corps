@@ -42,7 +42,7 @@ proc/initialize_upgrades()
 /mob/living/carbon/Xenomorph/proc/upgrade_claws()
 	melee_damage_lower += 10
 	melee_damage_upper += 10
-	src << "<span class='xenonotice'>Your claws feel sharper.</span>"
+	to_chat(src, "<span class='xenonotice'>Your claws feel sharper.</span>")
 	update_icons()
 
 /datum/upgrade/claws2
@@ -62,7 +62,7 @@ proc/initialize_upgrades()
 /mob/living/carbon/Xenomorph/proc/upgrade_claws2()
 	melee_damage_lower += 10
 	melee_damage_upper += 10
-	src << "<span class='xenonotice'>Your claws feel razor sharp.</span>"
+	to_chat(src, "<span class='xenonotice'>Your claws feel razor sharp.</span>")
 
 /datum/upgrade/claws3
 	name = "Corrosive Claws"
@@ -79,7 +79,7 @@ proc/initialize_upgrades()
 
 /mob/living/carbon/Xenomorph/proc/upgrade_claws3()
 	melee_damage_lower += 5
-	src << "<span class='xenonotice'>Your claws drip with corrosive acid.</span>"
+	to_chat(src, "<span class='xenonotice'>Your claws drip with corrosive acid.</span>")
 
 /datum/upgrade/claws4
 	name = "Resin Claws"
@@ -95,7 +95,7 @@ proc/initialize_upgrades()
 	helptext = "Your claws are coated with fibrous resin, dealing less damage but allowing easy knockdowns."
 
 /mob/living/carbon/Xenomorph/proc/upgrade_claws4()
-	src << "<span class='xenonotice'>Your claws drip with sticky resin.</span>"
+	to_chat(src, "<span class='xenonotice'>Your claws drip with sticky resin.</span>")
 
 /datum/upgrade/armor
 	name = "Hardened Carapace"
@@ -119,7 +119,7 @@ proc/initialize_upgrades()
 		armor_deflection += 15
 	else
 		armor_deflection = 60
-	src << "<span class='xenonotice'>Your exoskeleton feels thicker.</span>"
+	to_chat(src, "<span class='xenonotice'>Your exoskeleton feels thicker.</span>")
 
 /datum/upgrade/armor2
 	name = "Increased Musclemass"
@@ -137,7 +137,7 @@ proc/initialize_upgrades()
 
 /mob/living/carbon/Xenomorph/proc/upgrade_health()
 	src.maxHealth = round(maxHealth * 5 / 4) + 10 //20% + 10
-	src << "<span class='xenonotice'>You feel bulkier.</span>"
+	to_chat(src, "<span class='xenonotice'>You feel bulkier.</span>")
 
 /datum/upgrade/armor3
 	name = "Blast Resistance"
@@ -159,7 +159,7 @@ proc/initialize_upgrades()
 
 /mob/living/carbon/Xenomorph/proc/upgrade_bombs()
 	src.maxHealth = round(maxHealth * 8 / 7)
-	src << "<span class='xenonotice'>You grow a new layer on your exoskeleton.</span>"
+	to_chat(src, "<span class='xenonotice'>You grow a new layer on your exoskeleton.</span>")
 
 /datum/upgrade/armor4
 	name = "Reinforced Exoskeleton"
@@ -177,7 +177,7 @@ proc/initialize_upgrades()
 
 /mob/living/carbon/Xenomorph/proc/upgrade_armor2()
 	src.maxHealth = round(maxHealth * 6 / 5) + 20
-	src << "<span class='xenonotice'>Your exoskeleton grows thick as stone.</span>"
+	to_chat(src, "<span class='xenonotice'>Your exoskeleton grows thick as stone.</span>")
 
 /datum/upgrade/armor5
 	name = "Razors"
@@ -198,7 +198,7 @@ proc/initialize_upgrades()
 	helptext = "You have sharp spines on your exoskeleton, damaging enemies you bump into."
 
 /mob/living/carbon/Xenomorph/proc/upgrade_armor3()
-	src << "<span class='xenonotice'>Razor sharp spikes spring from your exoskeleton.</span>"
+	to_chat(src, "<span class='xenonotice'>Razor sharp spikes spring from your exoskeleton.</span>")
 
 /datum/upgrade/jelly
 	name = "Quickened Evolution"
@@ -225,7 +225,7 @@ proc/initialize_upgrades()
 		evolution_allowed = 1
 		evolution_stored += 10
 
-	src << "<span class='xenonotice'>You feel royal jelly ripple through your haemolymph.</span>"
+	to_chat(src, "<span class='xenonotice'>You feel royal jelly ripple through your haemolymph.</span>")
 
 //Changes a xeno's evolution points.
 /mob/living/carbon/Xenomorph/proc/change_ep(var/amount)
@@ -246,7 +246,7 @@ proc/initialize_upgrades()
 		return 0
 
 	if(evo_points - amount < 0)
-		src << "<span class='warning'>You lack the required amount of evolution points - you need <B>[amount]</b> but have only <B>[evo_points]</b>.</span>"
+		to_chat(src, "<span class='warning'>You lack the required amount of evolution points - you need <B>[amount]</b> but have only <B>[evo_points]</b>.</span>")
 		return 0
 
 	change_ep(amount)

@@ -47,7 +47,7 @@
 /obj/machinery/drone_fabricator/examine(mob/user)
 	..()
 	if(produce_drones && drone_progress >= 100 && istype(user,/mob/dead) && config.allow_drone_spawn && count_drones() < config.max_maint_drones)
-		user << "<BR><B>A drone is prepared. Select 'Join As Drone' from the Ghost tab to spawn as a maintenance drone.</B>"
+		to_chat(user, "<BR><B>A drone is prepared. Select 'Join As Drone' from the Ghost tab to spawn as a maintenance drone.</B>")
 
 /obj/machinery/drone_fabricator/proc/count_drones()
 	var/drones = 0
@@ -87,11 +87,11 @@
 
 
 	if(ticker.current_state < GAME_STATE_PLAYING)
-		src << "\red The game hasn't started yet!"
+		to_chat(src, "\red The game hasn't started yet!")
 		return
 
 	if(!(config.allow_drone_spawn))
-		src << "\red That verb is not currently permitted."
+		to_chat(src, "\red That verb is not currently permitted.")
 		return
 
 	if (!src.stat)
@@ -101,14 +101,14 @@
 		return 0 //something is terribly wrong
 
 	if(jobban_isbanned(src,"Cyborg"))
-		usr << "\red You are banned from playing synthetics and cannot spawn as a drone."
+		to_chat(usr, "\red You are banned from playing synthetics and cannot spawn as a drone.")
 		return
 
 	var/deathtime = world.time - src.timeofdeath
 //	if(istype(src,/mob/dead/observer))
 //		var/mob/dead/observer/G = src
 //		if(G.has_enabled_antagHUD == 1 && config.antag_hud_restricted)
-//			usr << "\blue <B>Upon using the antagHUD you forfeighted the ability to join the round.</B>"
+//			to_chat(usr, "\blue <B>Upon using the antagHUD you forfeighted the ability to join the round.</B>")
 //			return
 
 	var/deathtimeminutes = round(deathtime / 600)
@@ -122,8 +122,8 @@
 	var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
 
 	if (deathtime < 6000)
-		usr << "You have been dead for[pluralcheck] [deathtimeseconds] seconds."
-		usr << "You must wait 10 minutes to respawn as a drone!"
+		to_chat(usr, "You have been dead for[pluralcheck] [deathtimeseconds] seconds.")
+		to_chat(usr, "You must wait 10 minutes to respawn as a drone!")
 		return
 
 	for(var/obj/machinery/drone_fabricator/DF in machines)
@@ -131,7 +131,7 @@
 			continue
 
 		if(DF.count_drones() >= config.max_maint_drones)
-			src << "\red There are too many active drones in the world for you to spawn."
+			to_chat(src, "\red There are too many active drones in the world for you to spawn.")
 			return
 
 		if(DF.drone_progress >= 100)

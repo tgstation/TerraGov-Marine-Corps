@@ -143,21 +143,21 @@
 
 		R.product_name = initial(temp_path.name)
 
-//		world << "Added: [R.product_name]] - [R.amount] - [R.product_path]"
+//		to_chat(world, "Added: [R.product_name]] - [R.amount] - [R.product_path]")
 	return
 
 /obj/machinery/vending/attackby(obj/item/W, mob/user)
 	if(tipped_level)
-		user << "Tip it back upright first!"
+		to_chat(user, "Tip it back upright first!")
 		return
 
 	if (istype(W, /obj/item/card/emag))
 		src.emagged = 1
-		user << "You short out the product lock on [src]"
+		to_chat(user, "You short out the product lock on [src]")
 		return
 	else if(istype(W, /obj/item/tool/screwdriver))
 		src.panel_open = !src.panel_open
-		user << "You [src.panel_open ? "open" : "close"] the maintenance panel."
+		to_chat(user, "You [src.panel_open ? "open" : "close"] the maintenance panel.")
 		src.overlays.Cut()
 		if(src.panel_open)
 			src.overlays += image(src.icon, "[initial(icon_state)]-panel")
@@ -170,7 +170,7 @@
 	else if(istype(W, /obj/item/coin))
 		if(user.drop_inv_item_to_loc(W, src))
 			coin = W
-			user << "\blue You insert the [W] into the [src]"
+			to_chat(user, "\blue You insert the [W] into the [src]")
 		return
 	else if(istype(W, /obj/item/card))
 		var/obj/item/card/I = W
@@ -179,7 +179,7 @@
 	else if (istype(W, /obj/item/spacecash/ewallet))
 		if(user.drop_inv_item_to_loc(W, src))
 			ewallet = W
-			user << "\blue You insert the [W] into the [src]"
+			to_chat(user, "\blue You insert the [W] into the [src]")
 		return
 
 	else if(istype(W, /obj/item/tool/wrench))
@@ -213,14 +213,14 @@
 						var/datum/money_account/D = attempt_account_access(C.associated_account_number, attempt_pin, 2)
 						transfer_and_vend(D)
 					else
-						usr << "\icon[src]<span class='warning'>Unable to access account. Check security settings and try again.</span>"
+						to_chat(usr, "\icon[src]<span class='warning'>Unable to access account. Check security settings and try again.</span>")
 				else
 					//Just Vend it.
 					transfer_and_vend(CH)
 			else
-				usr << "\icon[src]<span class='warning'>Connected account has been suspended.</span>"
+				to_chat(usr, "\icon[src]<span class='warning'>Connected account has been suspended.</span>")
 		else
-			usr << "\icon[src]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>"
+			to_chat(usr, "\icon[src]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
 
 /obj/machinery/vending/proc/transfer_and_vend(var/datum/money_account/acc)
 	if(acc)
@@ -257,9 +257,9 @@
 			src.vend(src.currently_vending, usr)
 			currently_vending = null
 		else
-			usr << "\icon[src]<span class='warning'>You don't have that much money!</span>"
+			to_chat(usr, "\icon[src]<span class='warning'>You don't have that much money!</span>")
 	else
-		usr << "\icon[src]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>"
+		to_chat(usr, "\icon[src]<span class='warning'>Error: Unable to access your account. Please contact technical support if problem persists.</span>")
 
 
 /obj/machinery/vending/attack_paw(mob/user as mob)
@@ -395,23 +395,23 @@
 
 	if(href_list["remove_coin"] && !istype(usr,/mob/living/silicon))
 		if(!coin)
-			usr << "There is no coin in this machine."
+			to_chat(usr, "There is no coin in this machine.")
 			return
 
 		coin.loc = src.loc
 		if(!usr.get_active_hand())
 			usr.put_in_hands(coin)
-		usr << "\blue You remove the [coin] from the [src]"
+		to_chat(usr, "\blue You remove the [coin] from the [src]")
 		coin = null
 
 	if(href_list["remove_ewallet"] && !istype(usr,/mob/living/silicon))
 		if (!ewallet)
-			usr << "There is no charge card in this machine."
+			to_chat(usr, "There is no charge card in this machine.")
 			return
 		ewallet.loc = src.loc
 		if(!usr.get_active_hand())
 			usr.put_in_hands(ewallet)
-		usr << "\blue You remove the [ewallet] from the [src]"
+		to_chat(usr, "\blue You remove the [ewallet] from the [src]")
 		ewallet = null
 
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
@@ -419,7 +419,7 @@
 		if ((href_list["vend"]) && vend_ready && !currently_vending)
 
 			if(!allowed(usr) && !emagged && (wires & WIRE_SCANID || hacking_safety)) //For SECURE VENDING MACHINES YEAH. Hacking safety always prevents bypassing emag or access
-				usr << "<span class='warning'>Access denied.</span>" //Unless emagged of course
+				to_chat(usr, "<span class='warning'>Access denied.</span>")
 				flick(src.icon_deny,src)
 				return
 
@@ -438,7 +438,7 @@
 						ewallet.worth -= R.price
 						src.vend(R, usr)
 					else
-						usr << "\red The ewallet doesn't have enough money to pay for that."
+						to_chat(usr, "\red The ewallet doesn't have enough money to pay for that.")
 						src.currently_vending = R
 						src.updateUsrDialog()
 				else
@@ -454,10 +454,10 @@
 		else if ((href_list["cutwire"]) && (src.panel_open))
 			var/twire = text2num(href_list["cutwire"])
 			if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				usr << "<span class='warning'>You don't understand anything about this wiring...</span>"
+				to_chat(usr, "<span class='warning'>You don't understand anything about this wiring...</span>")
 				return 0
 			if (!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
-				usr << "You need wirecutters!"
+				to_chat(usr, "You need wirecutters!")
 				return
 			if (src.isWireColorCut(twire))
 				src.mend(twire)
@@ -467,13 +467,13 @@
 		else if ((href_list["pulsewire"]) && (src.panel_open))
 			var/twire = text2num(href_list["pulsewire"])
 			if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				usr << "<span class='warning'>You don't understand anything about this wiring...</span>"
+				to_chat(usr, "<span class='warning'>You don't understand anything about this wiring...</span>")
 				return 0
 			if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
-				usr << "You need a multitool!"
+				to_chat(usr, "You need a multitool!")
 				return
 			if (src.isWireColorCut(twire))
-				usr << "You can't pulse a cut wire."
+				to_chat(usr, "You can't pulse a cut wire.")
 				return
 			else
 				src.pulse(twire)
@@ -490,19 +490,19 @@
 
 /obj/machinery/vending/proc/vend(datum/data/vending_product/R, mob/user)
 	if(!allowed(user) && !emagged && (wires & WIRE_SCANID || hacking_safety)) //For SECURE VENDING MACHINES YEAH
-		user << "<span class='warning'>Access denied.</span>" //Unless emagged of course
+		to_chat(user, "<span class='warning'>Access denied.</span>")
 		flick(src.icon_deny,src)
 		return
 
 	if (R in coin_records)
 		if(!coin)
-			user << "\blue You need to insert a coin to get this item."
+			to_chat(user, "\blue You need to insert a coin to get this item.")
 			return
 		if(coin.string_attached)
 			if(prob(50))
-				user << "\blue You successfully pull the coin out before the [src] could swallow it."
+				to_chat(user, "\blue You successfully pull the coin out before the [src] could swallow it.")
 			else
-				user << "\blue You weren't able to pull the coin out fast enough, the machine ate it, string and all."
+				to_chat(user, "\blue You weren't able to pull the coin out fast enough, the machine ate it, string and all.")
 				cdel(coin)
 				coin = null
 		else
@@ -554,17 +554,17 @@
 			if(istype(item_to_stock, /obj/item/weapon/gun))
 				var/obj/item/weapon/gun/G = item_to_stock
 				if(G.in_chamber || (G.current_mag && !istype(G.current_mag, /obj/item/ammo_magazine/internal)) || (istype(G.current_mag, /obj/item/ammo_magazine/internal) && G.current_mag.current_rounds > 0) )
-					user << "<span class='warning'>[G] is still loaded. Unload it before you can restock it.</span>"
+					to_chat(user, "<span class='warning'>[G] is still loaded. Unload it before you can restock it.</span>")
 					return
 				for(var/obj/item/attachable/A in G.contents) //Search for attachments on the gun. This is the easier method
 					if((A.flags_attach_features & ATTACH_REMOVABLE) && !(is_type_in_list(A, G.starting_attachment_types))) //There are attachments that are default and others that can't be removed
-						user << "<span class='warning'>[G] has non-standard attachments equipped. Detach them before you can restock it.</span>"
+						to_chat(user, "<span class='warning'>[G] has non-standard attachments equipped. Detach them before you can restock it.</span>")
 						return
 
 			if(istype(item_to_stock, /obj/item/ammo_magazine))
 				var/obj/item/ammo_magazine/A = item_to_stock
 				if(A.current_rounds < A.max_rounds)
-					user << "<span class='warning'>[A] isn't full. Fill it before you can restock it.</span>"
+					to_chat(user, "<span class='warning'>[A] isn't full. Fill it before you can restock it.</span>")
 					return
 			if(item_to_stock.loc == user) //Inside the mob's inventory
 				if(item_to_stock.flags_item & WIELDED)

@@ -171,7 +171,7 @@
 		if(M.health <= 25)
 			M.mutations.Remove(HULK)
 			M.update_mutations()		//update our mutation overlays
-			M << "\red You suddenly feel very weak."
+			to_chat(M, "\red You suddenly feel very weak.")
 			M.KnockDown(3)
 			M.emote("collapse")
 

@@ -30,11 +30,11 @@ var/global/datum/global_init/init = new ()
 	diary = file("data/logs/[date_string].log")
 	diary << "[log_end]\n[log_end]\nStarting up. [time2text(world.timeofday, "hh:mm.ss")][log_end]\n---------------------[log_end]"
 	round_stats = file("data/logs/[year_string]/round_stats.log")
-	round_stats << "[log_end]\nStarting up - [time2text(world.realtime,"YYYY-MM-DD (hh:mm:ss)")][log_end]\n---------------------[log_end]"
+	to_chat(round_stats, "[log_end]\nStarting up - [time2text(world.realtime,"YYYY-MM-DD (hh:mm:ss)")][log_end]\n---------------------[log_end]")
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
 	if(byond_version < RECOMMENDED_VERSION)
-		world.log << "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND"
+		to_chat(world.log, "Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
 
 	initialize_marine_armor()
 
@@ -62,7 +62,7 @@ var/global/datum/global_init/init = new ()
 
 	if(!RoleAuthority)
 		RoleAuthority = new /datum/authority/branch/role()
-		world << "\red \b Job setup complete"
+		to_chat(world, "\red \b Job setup complete")
 
 	if(!syndicate_code_phrase)		syndicate_code_phrase	= generate_code_phrase()
 	if(!syndicate_code_response)	syndicate_code_response	= generate_code_phrase()
@@ -71,13 +71,13 @@ var/global/datum/global_init/init = new ()
 	world.tick_lag = config.Ticklag
 
 	// Process Scheduler
-	src << "\red \b Scheduler initialized."
+	to_chat(src, "\red \b Scheduler initialized.")
 	processScheduler = new
 
 	spawn(0)
 		processScheduler.setup()
 
-	src << "\red \b Scheduler setup complete."
+	to_chat(src, "\red \b Scheduler setup complete.")
 
 	spawn(0)
 		processScheduler.start()
@@ -98,14 +98,14 @@ var/global/datum/global_init/init = new ()
 	return
 
 //world/Topic(href, href_list[])
-//		world << "Received a Topic() call!"
-//		world << "[href]"
+//		to_chat(world, "Received a Topic() call!")
+//		to_chat(world, "[href]")
 //		for(var/a in href_list)
-//			world << "[a]"
+//			to_chat(world, "[a]")
 //		if(href_list["hello"])
-//			world << "Hello world!"
+//			to_chat(world, "Hello world!")
 //			return "Hello world!"
-//		world << "End of Topic() call."
+//		to_chat(world, "End of Topic() call.")
 //		..()
 
 var/world_topic_spam_protect_ip = "0.0.0.0"
@@ -212,7 +212,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				text += "</span>"
 				text += "<hr><br>"
 
-				world << text
+				to_chat(world, text)
 				world << 'sound/voice/start_your_voting.ogg'
 
 			ticker.delay_end = 1
@@ -288,7 +288,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 			text += "</font>"
 
-			world << text
+			to_chat(world, text)
 
 			return next_map
 
@@ -317,7 +317,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				if(C.is_afk(INACTIVITY_KICK))
 					if(!istype(C.mob, /mob/dead))
 						log_access("AFK: [key_name(C)]")
-						C << "\red You have been inactive for more than 10 minutes and have been disconnected."
+						to_chat(C, "\red You have been inactive for more than 10 minutes and have been disconnected.")
 						cdel(C)
 #undef INACTIVITY_KICK
 
@@ -336,7 +336,7 @@ var/world_topic_spam_protect_time = world.timeofday
 /world/proc/save_mode(var/the_mode)
 	var/F = file("data/mode.txt")
 	fdel(F)
-	F << the_mode
+	to_chat(F, the_mode)
 
 /hook/startup/proc/loadMOTD()
 	world.load_motd()
@@ -381,9 +381,9 @@ var/failed_old_db_connections = 0
 
 // /hook/startup/proc/connectDB()
 // 	if(!setup_database_connection())
-// 		world.log << "Your server failed to establish a connection with the feedback database."
+// 		to_chat(world.log, "Your server failed to establish a connection with the feedback database.")
 // 	else
-// 		world.log << "Feedback database connection established."
+// 		to_chat(world.log, "Feedback database connection established.")
 // 	return 1
 
 proc/setup_database_connection()
@@ -406,7 +406,7 @@ proc/setup_database_connection()
 		failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 	else
 		failed_db_connections++		//If it failed, increase the failed connections counter.
-		world.log << dbcon.ErrorMsg()
+		to_chat(world.log, dbcon.ErrorMsg())
 
 	return .
 
@@ -423,9 +423,9 @@ proc/establish_db_connection()
 
 // /hook/startup/proc/connectOldDB()
 // 	if(!setup_old_database_connection())
-// 		world.log << "Your server failed to establish a connection with the SQL database."
+// 		to_chat(world.log, "Your server failed to establish a connection with the SQL database.")
 // 	else
-// 		world.log << "SQL database connection established."
+// 		to_chat(world.log, "SQL database connection established.")
 // 	return 1
 
 //These two procs are for the old database, while it's being phased out. See the tgstation.sql file in the SQL folder for more information.
@@ -449,7 +449,7 @@ proc/setup_old_database_connection()
 		failed_old_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 	else
 		failed_old_db_connections++		//If it failed, increase the failed connections counter.
-		world.log << dbcon.ErrorMsg()
+		to_chat(world.log, dbcon.ErrorMsg())
 
 	return .
 
@@ -470,7 +470,7 @@ proc/establish_old_db_connection()
 
 	if(ticker.delay_end) return
 
-	world << "\red <b>Restarting world!</b> \blue Initiated by MapDaemon.exe!"
+	to_chat(world, "\red <b>Restarting world!</b> \blue Initiated by MapDaemon.exe!")
 	log_admin("World/Topic() call (likely MapDaemon.exe) initiated a reboot.")
 
 	if(blackbox)

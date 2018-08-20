@@ -64,7 +64,7 @@
 			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 				if(prob(1))
 					var/word = pick("dizzy","woozy","faint")
-					src << "\red You feel [word]"
+					to_chat(src, "\red You feel [word]")
 				if(oxyloss < 20)
 					oxyloss += 3
 			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
@@ -76,13 +76,13 @@
 				if(prob(15))
 					KnockOut(rand(1,3))
 					var/word = pick("dizzy","woozy","faint")
-					src << "\red You feel extremely [word]"
+					to_chat(src, "\red You feel extremely [word]")
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
 				oxyloss += 5
 				toxloss += 3
 				if(prob(15))
 					var/word = pick("dizzy","woozy","faint")
-					src << "\red You feel extremely [word]"
+					to_chat(src, "\red You feel extremely [word]")
 			if(0 to BLOOD_VOLUME_SURVIVE)
 				death()
 

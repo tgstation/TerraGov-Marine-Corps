@@ -192,7 +192,7 @@
 		for(var/ID in list(H.get_active_hand(), H.wear_id, H.belt))
 			if(src.check_access(ID))
 				return 1
-	M << "<font color='red'>You don't have required permissions to use [src]</font>"
+	to_chat(M, "<font color='red'>You don't have required permissions to use [src]</font>")
 	return 0
 
 
@@ -267,13 +267,13 @@
 			var/index = resources.Find(p)
 			index = resources.Find(p, ++index)
 			if(index) //duplicate resource
-				world << "Duplicate resource definition for [src](\ref[src])"
+				to_chat(world, "Duplicate resource definition for [src](\ref[src])")
 				return 0
 		for(var/set_name in part_sets)
 			var/index = part_sets.Find(set_name)
 			index = part_sets.Find(set_name, ++index)
 			if(index) //duplicate part set
-				world << "Duplicate part set definition for [src](\ref[src])"
+				to_chat(world, "Duplicate part set definition for [src](\ref[src])")
 				return 0
 		return 1
 */
@@ -734,11 +734,11 @@
 		if (!opened)
 			opened = 1
 			icon_state = "fab-o"
-			user << "You open the maintenance hatch of [src]."
+			to_chat(user, "You open the maintenance hatch of [src].")
 		else
 			opened = 0
 			icon_state = "fab-idle"
-			user << "You close the maintenance hatch of [src]."
+			to_chat(user, "You close the maintenance hatch of [src].")
 		return
 	if (opened)
 		if(istype(W, /obj/item/tool/crowbar))
@@ -774,7 +774,7 @@
 			cdel(src)
 			return 1
 		else
-			user << "\red You can't load the [src.name] while it's opened."
+			to_chat(user, "\red You can't load the [src.name] while it's opened.")
 			return 1
 
 	if(istype(W, /obj/item/card/emag))
@@ -801,7 +801,7 @@
 			return ..()
 
 	if(src.being_built)
-		user << "The fabricator is currently processing. Please wait until completion."
+		to_chat(user, "The fabricator is currently processing. Please wait until completion.")
 		return
 
 	var/obj/item/stack/sheet/stack = W
@@ -819,11 +819,11 @@
 				stack.use(1)
 				count++
 			src.overlays -= "fab-load-[material]"
-			user << "You insert [count] [sname] into the fabricator."
+			to_chat(user, "You insert [count] [sname] into the fabricator.")
 			src.updateUsrDialog()
 		else
-			user << "The fabricator can only accept full sheets of [sname]."
+			to_chat(user, "The fabricator can only accept full sheets of [sname].")
 			return
 	else
-		user << "The fabricator cannot hold more [sname]."
+		to_chat(user, "The fabricator cannot hold more [sname].")
 	return

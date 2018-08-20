@@ -194,7 +194,7 @@
 
 /obj/machinery/suit_storage_unit/proc/toggle_open(mob/user as mob)
 	if(isUV)
-		user << "<font color='red'>Unable to open unit.</font>"
+		to_chat(user, "<font color='red'>Unable to open unit.</font>")
 		return
 	isopen = !isopen
 	update_icon()
@@ -204,16 +204,16 @@
 	set waitfor = 0
 
 	if(isopen)
-		user << "<font color='red'>Unit storage is not closed -- Aborting.</font>"
+		to_chat(user, "<font color='red'>Unit storage is not closed -- Aborting.</font>")
 		return
 
 	if(isUV)
 		return
 
 	if(!inserted_helmet && !inserted_mask && !inserted_suit) //shit's empty yo
-		user << "<font color='red'>Unit storage bays empty. Nothing to disinfect -- Aborting.</font>"
+		to_chat(user, "<font color='red'>Unit storage bays empty. Nothing to disinfect -- Aborting.</font>")
 		return
-	user << "<span class='notice'>You start the Unit's cauterisation cycle.</span>"
+	to_chat(user, "<span class='notice'>You start the Unit's cauterisation cycle.</span>")
 	isUV = 1
 	update_icon()
 	updateUsrDialog()
@@ -246,10 +246,10 @@
 			if( istype(I,/obj/item/clothing/suit/space) )
 				var/obj/item/clothing/suit/space/S = I
 				if(inserted_suit)
-					user << "<span class='warning'>The unit already contains a suit.</span>"
+					to_chat(user, "<span class='warning'>The unit already contains a suit.</span>")
 					return
 				if(user.drop_inv_item_to_loc(S, src))
-					user << "<span class='notice'>You load the [S.name] into the storage compartment.</span>"
+					to_chat(user, "<span class='notice'>You load the [S.name] into the storage compartment.</span>")
 					inserted_suit = S
 					update_icon()
 					updateUsrDialog()
@@ -258,9 +258,9 @@
 			if( istype(I,/obj/item/clothing/head/helmet) )
 				var/obj/item/clothing/head/helmet/H = I
 				if(inserted_helmet)
-					user << "<span class='warning'>The unit already contains a helmet.</span>"
+					to_chat(user, "<span class='warning'>The unit already contains a helmet.</span>")
 					return
-				user << "<span class='notice'>You load the [H.name] into the storage compartment.</span>"
+				to_chat(user, "<span class='notice'>You load the [H.name] into the storage compartment.</span>")
 				if(user.drop_inv_item_to_loc(H, src))
 					inserted_helmet = H
 					update_icon()
@@ -270,9 +270,9 @@
 			if( istype(I,/obj/item/clothing/mask) )
 				var/obj/item/clothing/mask/M = I
 				if(inserted_mask)
-					user << "<span class='warning'>The unit already contains a mask.</span>"
+					to_chat(user, "<span class='warning'>The unit already contains a mask.</span>")
 					return
-				user << "<span class='notice'>You load the [M.name] into the storage compartment.</span>"
+				to_chat(user, "<span class='notice'>You load the [M.name] into the storage compartment.</span>")
 				if(user.drop_inv_item_to_loc(M, src))
 					inserted_mask = M
 					update_icon()
@@ -282,9 +282,9 @@
 			if( istype(I,/obj/item/tank) )
 				var/obj/item/tank/T = I
 				if(inserted_tank)
-					user << "<span class='warning'>The unit already contains a tank.</span>"
+					to_chat(user, "<span class='warning'>The unit already contains a tank.</span>")
 					return
-				user << "<span class='notice'>You load the [T.name] into the storage compartment.</span>"
+				to_chat(user, "<span class='notice'>You load the [T.name] into the storage compartment.</span>")
 				if(user.drop_inv_item_to_loc(T, src))
 					inserted_tank = T
 					update_icon()
@@ -298,7 +298,7 @@
 
 
 /obj/machinery/suit_storage_unit/attack_paw(mob/user as mob)
-	user << "<font color='blue'>The console controls are far too complicated for your tiny brain!</font>"
+	to_chat(user, "<font color='blue'>The console controls are far too complicated for your tiny brain!</font>")
 	return
 
 

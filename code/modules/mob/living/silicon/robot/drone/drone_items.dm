@@ -4,7 +4,7 @@
 /mob/living/silicon/robot/drone/installed_modules()
 
 	if(weapon_lock)
-		src << "\red Weapon lock active, unable to use modules! Count:[weaponlock_time]"
+		to_chat(src, "\red Weapon lock active, unable to use modules! Count:[weaponlock_time]")
 		return
 
 	if(!module)

@@ -42,10 +42,10 @@ var/global/list/randomized_pill_icons
 			if(istype(M, /mob/living/carbon/human))
 				var/mob/living/carbon/human/H = M
 				if(H.species.flags & IS_SYNTHETIC)
-					H << "\red You can't eat pills."
+					to_chat(H, "\red You can't eat pills.")
 					return
 
-			M << "\blue You swallow [src]."
+			to_chat(M, "\blue You swallow [src].")
 			M.drop_inv_item_on_ground(src) //icon update
 			if(reagents.total_volume)
 				reagents.trans_to_ingest(M, reagents.total_volume)
@@ -57,7 +57,7 @@ var/global/list/randomized_pill_icons
 
 			var/mob/living/carbon/human/H = M
 			if(H.species.flags & IS_SYNTHETIC)
-				H << "\red They have a monitor for a head, where do you think you're going to put that?"
+				to_chat(H, "\red They have a monitor for a head, where do you think you're going to put that?")
 				return
 
 			user.visible_message("<span class='warning'>[user] attempts to force [M] to swallow [src].</span>")
@@ -93,9 +93,9 @@ var/global/list/randomized_pill_icons
 
 		if(target.is_open_container() != 0 && target.reagents)
 			if(!target.reagents.total_volume)
-				user << "\red [target] is empty. Cant dissolve pill."
+				to_chat(user, "\red [target] is empty. Cant dissolve pill.")
 				return
-			user << "\blue You dissolve the pill in [target]"
+			to_chat(user, "\blue You dissolve the pill in [target]")
 
 			var/rgt_list_text = get_reagent_list_text()
 

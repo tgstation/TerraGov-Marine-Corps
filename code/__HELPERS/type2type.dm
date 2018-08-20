@@ -222,7 +222,7 @@ proc/tg_list2text(list/list, glue=",")
 		if(4.0) return EAST
 		if(8.0) return WEST
 		else
-			world.log << "UNKNOWN DIRECTION: [direction]"
+			to_chat(world.log, "UNKNOWN DIRECTION: [direction]")
 
 
 

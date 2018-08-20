@@ -599,10 +599,10 @@
 	if(!H.regenZ) return  //Also in each check, in case they are hit with the stuff to stop the regenerating during timers.
 	sleep(5)
 	if(H && H.loc && H.stat == DEAD && H.regenZ)
-		H << "\green You fall... but your body is slowly regenerating itself."
+		to_chat(H, "\green You fall... but your body is slowly regenerating itself.")
 	sleep(1200)
 	if(H && H.loc && H.stat == DEAD && H.regenZ)
-		H << "\green Your body is half regenerated..."
+		to_chat(H, "\green Your body is half regenerated...")
 	sleep(1200)
 
 	if(H && H.loc && H.stat == DEAD && H.regenZ)

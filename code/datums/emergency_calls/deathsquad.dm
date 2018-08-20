@@ -43,17 +43,17 @@
 		if(!leader)       //First one spawned is always the leader.
 			leader = mob
 			spawn_officer(mob)
-			mob << "<font size='3'>\red You are the Death Squad Leader!</font>"
-			mob << "<B> You must clear out any traces of the infestation and its survivors..</b>"
-			mob << "<B> Follow any orders directly from Weyland-Yutani!</b>"
+			to_chat(mob, "<font size='3'>\red You are the Death Squad Leader!</font>")
+			to_chat(mob, "<B> You must clear out any traces of the infestation and its survivors..</b>")
+			to_chat(mob, "<B> Follow any orders directly from Weyland-Yutani!</b>")
 		else
 			spawn_standard(mob)
-			mob << "<font size='3'>\red You are a Death Squad Commando!!</font>"
-			mob << "<B> You must clear out any traces of the infestation and its survivors..</b>"
-			mob << "<B> Follow any orders directly from Weyland-Yutani!</b>"
+			to_chat(mob, "<font size='3'>\red You are a Death Squad Commando!!</font>")
+			to_chat(mob, "<B> You must clear out any traces of the infestation and its survivors..</b>")
+			to_chat(mob, "<B> Follow any orders directly from Weyland-Yutani!</b>")
 
 	spawn(10)
-		M << "<B>Objectives:</b> [objectives]"
+		to_chat(M, "<B>Objectives:</b> [objectives]")
 
 	if(original)
 		cdel(original)

@@ -22,10 +22,10 @@
 	if(!istype(C))
 		return ..()
 	if (!istype(user, /mob/living/carbon/human))
-		user << "\red You don't have the dexterity to do this!"
+		to_chat(user, "\red You don't have the dexterity to do this!")
 		return
 	if ((CLUMSY in usr.mutations) && prob(50))
-		user << "\red Uh ... how do those things work?!"
+		to_chat(user, "\red Uh ... how do those things work?!")
 		place_handcuffs(user, user)
 		return
 	if(!C.handcuffed)
@@ -41,7 +41,7 @@
 		var/mob/living/carbon/human/H = target
 
 		if (!H.has_limb_for_slot(WEAR_HANDCUFFS))
-			user << "\red \The [H] needs at least two wrists before you can cuff them together!"
+			to_chat(user, "\red \The [H] needs at least two wrists before you can cuff them together!")
 			return
 
 		H.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been handcuffed (attempt) by [user.name] ([user.ckey])</font>")
@@ -119,7 +119,7 @@
 			var/obj/item/weapon/wirerod/W = new /obj/item/weapon/wirerod
 
 			user.put_in_hands(W)
-			user << "<span class='notice'>You wrap the cable restraint around the top of the rod.</span>"
+			to_chat(user, "<span class='notice'>You wrap the cable restraint around the top of the rod.</span>")
 			cdel(src)
 			update_icon(user)
 
@@ -137,7 +137,7 @@
 		if (ishuman(C))
 			var/mob/living/carbon/human/H = C
 			if (!H.has_limb_for_slot(WEAR_HANDCUFFS))
-				user << "\red \The [H] needs at least two wrists before you can cuff them together!"
+				to_chat(user, "\red \The [H] needs at least two wrists before you can cuff them together!")
 				return
 
 		spawn(30)
@@ -169,7 +169,7 @@
 
 /obj/item/restraints/attack(mob/living/carbon/C as mob, mob/user as mob)
 	if(!istype(C, /mob/living/carbon/Xenomorph))
-		user << "\red The cuffs do not fit!"
+		to_chat(user, "\red The cuffs do not fit!")
 		return
 	if(!C.handcuffed)
 		var/turf/p_loc = user.loc

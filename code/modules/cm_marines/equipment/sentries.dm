@@ -73,17 +73,17 @@
 /obj/machinery/marine_turret_frame/examine(mob/user as mob)
 	..()
 	if(!anchored)
-		user << "<span class='info'>It must be <B>wrenched</B> to the floor.</span>"
+		to_chat(user, "<span class='info'>It must be <B>wrenched</B> to the floor.</span>")
 	if(!has_cable)
-		user << "<span class='info'>It requires <B>cable coil</B> for wiring.</span>"
+		to_chat(user, "<span class='info'>It requires <B>cable coil</B> for wiring.</span>")
 	if(!has_top)
-		user << "<span class='info'>The <B>main turret</B> is not installed.</span>"
+		to_chat(user, "<span class='info'>The <B>main turret</B> is not installed.</span>")
 	if(!has_plates)
-		user << "<span class='info'>It does not have <B>metal</B> plating installed.</span>"
+		to_chat(user, "<span class='info'>It does not have <B>metal</B> plating installed.</span>")
 	if(!is_welded)
-		user << "<span class='info'>It requires the metal plating to be <B>welded</B>.</span>"
+		to_chat(user, "<span class='info'>It requires the metal plating to be <B>welded</B>.</span>")
 	if(!has_sensor)
-		user << "<span class='info'>It does not have a <b>turret sensor</B> installed.</span>"
+		to_chat(user, "<span class='info'>It does not have a <b>turret sensor</B> installed.</span>")
 
 /obj/machinery/marine_turret_frame/attackby(var/obj/item/O as obj, mob/user as mob)
 	if(!ishuman(user))
@@ -105,7 +105,7 @@
 					dir = NORTH
 		else
 			if(locate(/obj/machinery/marine_turret) in loc)
-				user << "<span class='warning'>There already is a turret in this position.</span>"
+				to_chat(user, "<span class='warning'>There already is a turret in this position.</span>")
 				return
 
 			user.visible_message("<span class='notice'>[user] begins securing [src] to the ground.</span>",
@@ -121,12 +121,12 @@
 	//Install wiring
 	if(istype(O,/obj/item/stack/cable_coil))
 		if(!anchored)
-			user << "<span class='warning'>You must secure [src] to the ground first.</span>"
+			to_chat(user, "<span class='warning'>You must secure [src] to the ground first.</span>")
 			return
 
 		var/obj/item/stack/cable_coil/CC = O
 		if(has_cable)
-			user << "<span class='warning'>[src]'s wiring is already installed.</span>"
+			to_chat(user, "<span class='warning'>[src]'s wiring is already installed.</span>")
 			return
 		user.visible_message("<span class='notice'>[user] begins installing [src]'s wiring.</span>",
 		"<span class='notice'>You begin installing [src]'s wiring.</span>")
@@ -139,15 +139,15 @@
 				icon_state = "sentry_base_wired"
 				return
 			else
-				user << "<span class='warning'>You will need at least ten cable lengths to finish [src]'s wiring.</span>"
+				to_chat(user, "<span class='warning'>You will need at least ten cable lengths to finish [src]'s wiring.</span>")
 
 	//Install turret head
 	if(istype(O, /obj/item/device/turret_top))
 		if(!has_cable)
-			user << "<span class='warning'>You must install [src]'s wiring first.</span>"
+			to_chat(user, "<span class='warning'>You must install [src]'s wiring first.</span>")
 			return
 		if(has_top)
-			user << "<span class='warning'>[src] already has a turret installed.</span>"
+			to_chat(user, "<span class='warning'>[src] already has a turret installed.</span>")
 			return
 		user.visible_message("<span class='notice'>[user] begins installing [O] on [src].</span>",
 		"<span class='notice'>You begin installing [O] on [src].</span>")
@@ -165,15 +165,15 @@
 	if(istype(O, /obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/M = O
 		if(!has_top)
-			user << "<span class='warning'>You must install [src]'s turret first.</span>"
+			to_chat(user, "<span class='warning'>You must install [src]'s turret first.</span>")
 			return
 
 		if(has_plates)
-			user << "<span class='warning'>[src] already has plates installed.</span>"
+			to_chat(user, "<span class='warning'>[src] already has plates installed.</span>")
 			return
 
 		if(M.amount < 10)
-			user << "<span class='warning'>[src]'s plating will require at least ten sheets of metal.</span>"
+			to_chat(user, "<span class='warning'>[src]'s plating will require at least ten sheets of metal.</span>")
 			return
 
 		user.visible_message("<span class='notice'>[user] begins installing [src]'s reinforced plating.</span>",
@@ -188,13 +188,13 @@
 				M.use(10)
 				return
 			else
-				user << "<span class='warning'>[src]'s plating will require at least ten sheets of metal.</span>"
+				to_chat(user, "<span class='warning'>[src]'s plating will require at least ten sheets of metal.</span>")
 				return
 
 	//Weld plating
 	if(istype(O, /obj/item/tool/weldingtool))
 		if(!has_plates)
-			user << "<span class='warning'>You must install [src]'s plating first.</span>"
+			to_chat(user, "<span class='warning'>You must install [src]'s plating first.</span>")
 			return
 		var/obj/item/tool/weldingtool/WT = O
 		playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
@@ -210,17 +210,17 @@
 				icon_state = "sentry_sensor_none"
 				return
 			else
-				user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
+				to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 				return
 
 	//Install sensor
 	if(istype(O, /obj/item/device/turret_sensor))
 		if(!is_welded)
-			user << "<span class='warning'>You must weld the plating on the [src] first!</span>"
+			to_chat(user, "<span class='warning'>You must weld the plating on the [src] first!</span>")
 			return
 
 		if(has_sensor)
-			user << "<span class='warning'>[src] already has a sensor installed.</span>"
+			to_chat(user, "<span class='warning'>[src] already has a sensor installed.</span>")
 			return
 
 		user.visible_message("<span class='notice'>[user] begins installing [O] on [src].</span>",
@@ -327,20 +327,20 @@
 
 /obj/machinery/marine_turret/attack_hand(mob/user as mob)
 	if(isYautja(user))
-		user << "<span class='warning'>You punch [src] but nothing happens.</span>"
+		to_chat(user, "<span class='warning'>You punch [src] but nothing happens.</span>")
 		return
 	src.add_fingerprint(user)
 
 	if(!cell || cell.charge <= 0)
-		user << "<span class='warning'>You try to activate [src] but nothing happens. The cell must be empty.</span>"
+		to_chat(user, "<span class='warning'>You try to activate [src] but nothing happens. The cell must be empty.</span>")
 		return
 
 	if(!anchored)
-		user << "<span class='warning'>It must be anchored to the ground before you can activate it.</span>"
+		to_chat(user, "<span class='warning'>It must be anchored to the ground before you can activate it.</span>")
 		return
 
 	if(immobile)
-		user << "<span class='warning'>[src]'s panel is completely locked, you can't do anything.</span>"
+		to_chat(user, "<span class='warning'>[src]'s panel is completely locked, you can't do anything.</span>")
 		return
 
 	if(stat)
@@ -355,7 +355,7 @@
 		return
 
 	if(locked)
-		user << "<span class='warning'>[src]'s control panel is locked! Only a Squad Leader or Engineer can unlock it now.</span>"
+		to_chat(user, "<span class='warning'>[src]'s control panel is locked! Only a Squad Leader or Engineer can unlock it now.</span>")
 		return
 
 	user.set_interaction(src)
@@ -410,7 +410,7 @@
 			if(burst_fire)
 				burst_fire = 0
 				visible_message("\icon[src] A green light on [src] blinks slowly.")
-				usr << "\blue You deactivate the burst fire mode."
+				to_chat(usr, "\blue You deactivate the burst fire mode.")
 			else
 				burst_fire = 1
 				fire_delay = 15
@@ -435,10 +435,10 @@
 
 		if("manual") //Alright so to clean this up, fuck that manual control pop up. Its a good idea but its not working out in practice.
 			if(user.interactee != src) //Make sure if we're using a machine we can't use another one (ironically now impossible due to handle_click())
-				user << "<span class='warning'>You can't multitask like this!</span>"
+				to_chat(user, "<span class='warning'>You can't multitask like this!</span>")
 				return
 			if(operator != user && operator) //Don't question this. If it has operator != user it wont fucken work. Like for some reason this does it proper.
-				user << "<span class='warning'>Someone is already controlling [src].</span>"
+				to_chat(user, "<span class='warning'>Someone is already controlling [src].</span>")
 				return
 			if(!operator) //Make sure we can use it.
 				operator = user
@@ -454,7 +454,7 @@
 					visible_message("\icon[src] <span class='notice'>The [name] buzzes: AI targeting re-initialized.</span>")
 					user.unset_interaction()
 				else
-					user << "<span class='warning'>You are not currently overriding this turret.</span>" //Should be system only failure
+					to_chat(user, "<span class='warning'>You are not currently overriding this turret.</span>")
 			if(stat == 2)
 				stat = 0 //Weird bug goin on here
 
@@ -512,20 +512,20 @@
 				if(user.interactee == src)
 					attack_hand(user)
 		else
-			user << "<span class='warning'>Access denied.</span>"
+			to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
 
 
 	//Securing/Unsecuring
 	if(iswrench(O))
 		if(immobile)
-			user << "<span class='warning'>[src] is completely welded in place. You can't move it without damaging it.</span>"
+			to_chat(user, "<span class='warning'>[src] is completely welded in place. You can't move it without damaging it.</span>")
 			return
 
 		//Unsecure
 		if(anchored)
 			if(on)
-				user << "<span class='warning'>[src] is currently active. The motors will prevent you from unanchoring it safely.</span>"
+				to_chat(user, "<span class='warning'>[src] is currently active. The motors will prevent you from unanchoring it safely.</span>")
 				return
 
 			user.visible_message("<span class='notice'>[user] begins unanchoring [src] from the ground.</span>",
@@ -555,11 +555,11 @@
 	if(isscrewdriver(O))
 
 		if(immobile)
-			user << "<span class='warning'>[src] is completely welded in place. You can't move it without damaging it.</span>"
+			to_chat(user, "<span class='warning'>[src] is completely welded in place. You can't move it without damaging it.</span>")
 			return
 
 		if(on)
-			user << "<span class='warning'>[src] is currently active. The motors will prevent you from rotating it safely.</span>"
+			to_chat(user, "<span class='warning'>[src] is currently active. The motors will prevent you from rotating it safely.</span>")
 			return
 
 		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -579,11 +579,11 @@
 	if(istype(O, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = O
 		if(health < 0 || stat)
-			user << "<span class='warning'>[src]'s internal circuitry is ruined, there's no way you can salvage this on the go.</span>"
+			to_chat(user, "<span class='warning'>[src]'s internal circuitry is ruined, there's no way you can salvage this on the go.</span>")
 			return
 
 		if(health >= health_max)
-			user << "<span class='warning'>[src] isn't in need of repairs.</span>"
+			to_chat(user, "<span class='warning'>[src] isn't in need of repairs.</span>")
 			return
 
 		if(WT.remove_fuel(0, user))
@@ -602,7 +602,7 @@
 		if(anchored || immobile)
 			if(cell)
 				if(on)
-					user << "<span class='warning'>Turn off [src] before attempting to remove the battery!</span>"
+					to_chat(user, "<span class='warning'>Turn off [src] before attempting to remove the battery!</span>")
 					return
 
 				user.visible_message("<span class='notice'>[user] begins removing [src]'s [cell.name].</span>",
@@ -619,7 +619,7 @@
 
 	if(istype(O, /obj/item/cell))
 		if(cell)
-			user << "<span class='warning'>There is already \a [cell.name] installed in [src]! Remove it with a crowbar first!</span>"
+			to_chat(user, "<span class='warning'>There is already \a [cell.name] installed in [src]! Remove it with a crowbar first!</span>")
 			return
 
 		user.visible_message("<span class='notice'>[user] begins installing \a [O.name] into [src].</span>",
@@ -637,7 +637,7 @@
 		var/obj/item/ammo_magazine/sentry/M = O
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.heavy_weapons < SKILL_HEAVY_WEAPONS_TRAINED)
 			if(rounds)
-				user << "<span class='warning'>You only know how to swap the box magazine when it's empty.</span>"
+				to_chat(user, "<span class='warning'>You only know how to swap the box magazine when it's empty.</span>")
 				return
 			user.visible_message("<span class='notice'>[user] begins swapping a new [O.name] into [src].</span>",
 			"<span class='notice'>You begin swapping a new [O.name] into [src].</span>")
@@ -961,7 +961,7 @@
 		user.unset_interaction()
 		return 0
 	if(user.get_active_hand() != null)
-		usr << "<span class='warning'>You need a free hand to shoot [src].</span>"
+		to_chat(usr, "<span class='warning'>You need a free hand to shoot [src].</span>")
 		return 0
 
 	target = A
@@ -1051,20 +1051,20 @@
 	attack_hand(mob/user as mob)
 
 		if(isYautja(user))
-			user << "<span class='warning'>You punch [src] but nothing happens.</span>"
+			to_chat(user, "<span class='warning'>You punch [src] but nothing happens.</span>")
 			return
 		src.add_fingerprint(user)
 
 		if(!cell || cell.charge <= 0)
-			user << "<span class='warning'>You try to activate [src] but nothing happens. The cell must be empty.</span>"
+			to_chat(user, "<span class='warning'>You try to activate [src] but nothing happens. The cell must be empty.</span>")
 			return
 
 		if(!anchored)
-			user << "<span class='warning'>It must be anchored to the ground before you can activate it.</span>"
+			to_chat(user, "<span class='warning'>It must be anchored to the ground before you can activate it.</span>")
 			return
 
 		if(!on)
-			user << "You turn on the [src]."
+			to_chat(user, "You turn on the [src].")
 			visible_message("\blue [src] hums to life and emits several beeps.")
 			visible_message("\icon[src] [src] buzzes in a monotone: 'Default systems initiated.'")
 			target = null

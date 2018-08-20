@@ -26,7 +26,7 @@ datum/controller/vote
 			// No more change mode votes after the game has started.
 			// 3 is GAME_STATE_PLAYING, but that #define is undefined for some reason
 			if(mode == "gamemode" && ticker.current_state >= 2)
-				world << "<b>Voting aborted due to game start.</b>"
+				to_chat(world, "<b>Voting aborted due to game start.</b>")
 				src.reset()
 				return
 
@@ -65,7 +65,7 @@ datum/controller/vote
 	/*	if(auto_muted && !ooc_allowed)
 			auto_muted = 0
 			ooc_allowed = !( ooc_allowed )
-			world << "<b>The OOC channel has been automatically enabled due to vote end.</b>"
+			to_chat(world, "<b>The OOC channel has been automatically enabled due to vote end.</b>")
 			log_admin("OOC was toggled automatically due to vote end.")
 			message_admins("OOC has been toggled on automatically.")
 	*/
@@ -127,7 +127,7 @@ datum/controller/vote
 		else
 			text += "<b>Vote Result: Inconclusive - No Votes!</b>"
 		log_vote(text)
-		world << "<font color='purple'>[text]</font>"
+		to_chat(world, "<font color='purple'>[text]</font>")
 		return .
 
 	proc/result()
@@ -149,10 +149,10 @@ datum/controller/vote
 		if(mode == "gamemode") //fire this even if the vote fails.
 			if(!going)
 				going = 1
-				world << "<font color='red'><b>The round will start soon.</b></font>"
+				to_chat(world, "<font color='red'><b>The round will start soon.</b></font>")
 
 		if(restart)
-			world << "World restarting due to vote..."
+			to_chat(world, "World restarting due to vote...")
 			feedback_set_details("end_error","restart vote")
 			if(blackbox)	blackbox.save_all_data_to_sql()
 			sleep(50)
@@ -212,7 +212,7 @@ datum/controller/vote
 				text += "\n[question]"
 
 			log_vote(text)
-			world << "<font color='purple'><b>[text]</b>\nType vote to place your votes.\nYou have [config.vote_period/10] seconds to vote.</font>"
+			to_chat(world, "<font color='purple'><b>[text]</b>\nType vote to place your votes.\nYou have [config.vote_period/10] seconds to vote.</font>")
 			switch(vote_type)
 				if("gamemode")
 					world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 1)
@@ -220,7 +220,7 @@ datum/controller/vote
 					world << sound('sound/ambience/alarm4.ogg', repeat = 0, wait = 0, volume = 50, channel = 1)
 			if(mode == "gamemode" && going)
 				going = 0
-				world << "<font color='red'><b>Round start has been delayed.</b></font>"
+				to_chat(world, "<font color='red'><b>Round start has been delayed.</b></font>")
 
 
 
@@ -338,7 +338,7 @@ var/force_mapdaemon_vote = 0
 	set name = "Map Vote"
 
 	if(!ticker.mode || !ticker.mode.round_finished)
-		src << "<span class='notice'>Please wait until the round ends.</span>"
+		to_chat(src, "<span class='notice'>Please wait until the round ends.</span>")
 		return
 
 	var/list/L = list()
@@ -349,10 +349,10 @@ var/force_mapdaemon_vote = 0
 	if(!selection || !src) return
 
 	if(selection == "Don't care")
-		src << "<span class='notice'>You have not voted.</span>"
+		to_chat(src, "<span class='notice'>You have not voted.</span>")
 		return
 
-	src << "<span class='notice'>You have voted for [selection].</span>"
+	to_chat(src, "<span class='notice'>You have voted for [selection].</span>")
 
 	player_votes[src.ckey] = selection
 
@@ -361,7 +361,7 @@ var/force_mapdaemon_vote = 0
 	set category = "Server"
 
 	force_mapdaemon_vote = !force_mapdaemon_vote
-	src << "<span class='notice'>The server will [force_mapdaemon_vote ? "now" : "no longer"] tell Mapdaemon to start a vote the next time possible.</span>"
+	to_chat(src, "<span class='notice'>The server will [force_mapdaemon_vote ? "now" : "no longer"] tell Mapdaemon to start a vote the next time possible.</span>")
 
 	message_admins("[src] is attempting to force a MapDaemon vote.")
 	log_admin("[src] is attempting to force a MapDaemon vote.")
@@ -379,7 +379,7 @@ var/force_mapdaemon_vote = 0
 
 	if(!selection || !src) return
 
-	src << "<span class='notice'>You have forced the next map to be [selection]</span>"
+	to_chat(src, "<span class='notice'>You have forced the next map to be [selection]</span>")
 
 	log_admin("[src] just forced the next map to be [selection].")
 	message_admins("[src] just forced the next map to be [selection].")
@@ -396,8 +396,8 @@ var/enable_map_vote = 1
 
 	enable_map_vote = !enable_map_vote
 
-	world << "<span class='notice'>[src] has toggled the map vote [enable_map_vote ? "on" : "off"]</span>"
-	src << "<span class='notice'>You have toggled the map vote [enable_map_vote ? "on" : "off"]</span>"
+	to_chat(world, "<span class='notice'>[src] has toggled the map vote [enable_map_vote ? "on" : "off"]</span>")
+	to_chat(src, "<span class='notice'>You have toggled the map vote [enable_map_vote ? "on" : "off"]</span>")
 
 	log_admin("[src] just toggled the map vote [enable_map_vote ? "on" : "off"].")
 	message_admins("[src] just toggled the map vote [enable_map_vote ? "on" : "off"].")
@@ -406,10 +406,10 @@ var/enable_map_vote = 1
 	set name = "Map Vote - List Maps"
 	set category = "Server"
 
-	src << "Next map candidates:"
+	to_chat(src, "Next map candidates:")
 	var/i
 	for(i in NEXT_MAP_CANDIDATES)
-		src << i
+		to_chat(src, i)
 
 /client/proc/editVotableMaps()
 	set name = "Map Vote - Edit Maps"

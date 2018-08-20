@@ -18,7 +18,7 @@
 	set name = "Toggle Debug Messages"
 	set category = "Debug"
 	M.debug = !M.debug
-	usr << "[M]: Debug messages toggled [M.debug? "on" : "off"]."
+	to_chat(usr, "[M]: Debug messages toggled [M.debug? "on" : "off"].")
 
 
 //This proc handles power usages.

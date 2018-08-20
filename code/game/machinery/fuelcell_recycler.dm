@@ -24,16 +24,16 @@
 				cell_right = I
 				start_processing()
 		else
-			user << "<span class='notice'>The recycler is full!</span>"
+			to_chat(user, "<span class='notice'>The recycler is full!</span>")
 			return
 		update_icon()
 	else
-		user << "<span class='notice'>You can't see how you'd use [I] with [src]...</span>"
+		to_chat(user, "<span class='notice'>You can't see how you'd use [I] with [src]...</span>")
 		return
 
 /obj/machinery/fuelcell_recycler/attack_hand(mob/M)
 	if(cell_left == null && cell_right == null)
-		M << "<span class='notice'>The recycler is empty.</span>"
+		to_chat(M, "<span class='notice'>The recycler is empty.</span>")
 		return
 
 	add_fingerprint(M)

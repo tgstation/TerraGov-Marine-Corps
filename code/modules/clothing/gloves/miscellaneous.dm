@@ -66,7 +66,7 @@
 
 /obj/item/clothing/gloves/boxing/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/tool/wirecutters) || istype(W, /obj/item/tool/surgery/scalpel))
-		user << "<span class='notice'>That won't work.</span>"	//Nope
+		to_chat(user, "<span class='notice'>That won't work.</span>"	)
 		return
 	..()
 

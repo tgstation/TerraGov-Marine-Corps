@@ -18,7 +18,7 @@
 	if(prisonAreas && prisonAreas.len > 0)
 		command_announcement.Announce("Malignant trojan detected in [station_name()] brig subroutines.", "Security Alert")
 	else
-		world.log << "ERROR: Could not initate. Unable find prison or brig area."
+		to_chat(world.log, "ERROR: Could not initate. Unable find prison or brig area.")
 		kill()
 
 

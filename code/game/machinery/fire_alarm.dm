@@ -90,14 +90,14 @@ FIRE ALARM
 				if(istype(W, /obj/item/stack/cable_coil))
 					var/obj/item/stack/cable_coil/C = W
 					if (C.use(5))
-						user << "<span class='notice'>You wire \the [src].</span>"
+						to_chat(user, "<span class='notice'>You wire \the [src].</span>")
 						buildstage = 2
 						return
 					else
-						user << "<span class='warning'>You need 5 pieces of cable to do wire \the [src].</span>"
+						to_chat(user, "<span class='warning'>You need 5 pieces of cable to do wire \the [src].</span>")
 						return
 				else if(istype(W, /obj/item/tool/crowbar))
-					user << "You pry out the circuit!"
+					to_chat(user, "You pry out the circuit!")
 					playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 					spawn(20)
 						var/obj/item/circuitboard/firealarm/circuit = new()
@@ -106,13 +106,13 @@ FIRE ALARM
 						update_icon()
 			if(0)
 				if(istype(W, /obj/item/circuitboard/firealarm))
-					user << "You insert the circuit!"
+					to_chat(user, "You insert the circuit!")
 					cdel(W)
 					buildstage = 1
 					update_icon()
 
 				else if(istype(W, /obj/item/tool/wrench))
-					user << "You remove the fire alarm assembly from the wall!"
+					to_chat(user, "You remove the fire alarm assembly from the wall!")
 					var/obj/item/frame/fire_alarm/frame = new /obj/item/frame/fire_alarm()
 					frame.loc = user.loc
 					playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)

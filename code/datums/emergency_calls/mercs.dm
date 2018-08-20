@@ -15,16 +15,16 @@
 
 
 /datum/emergency_call/mercs/print_backstory(mob/living/carbon/human/mob)
-	mob << "<B> You started off in Tychon's Rift system as a colonist seeking work at one of the established colonies.</b>"
-	mob << "<B> The withdrawl of United American forces in the early 2180s, the system fell into disarray.</b>"
-	mob << "<B> Taking up arms as a mercenary, the Freelancers have become a powerful force of order in the system.</b>"
-	mob << "<B> While they are motivated primarily by money, many colonists see the Freelancers as the main forces of order in Tychon's Rift.</b>"
+	to_chat(mob, "<B> You started off in Tychon's Rift system as a colonist seeking work at one of the established colonies.</b>")
+	to_chat(mob, "<B> The withdrawl of United American forces in the early 2180s, the system fell into disarray.</b>")
+	to_chat(mob, "<B> Taking up arms as a mercenary, the Freelancers have become a powerful force of order in the system.</b>")
+	to_chat(mob, "<B> While they are motivated primarily by money, many colonists see the Freelancers as the main forces of order in Tychon's Rift.</b>")
 	if(hostility)
-		mob << "<B> Despite this, you have been tasked to ransack the [MAIN_SHIP_NAME] and kill anyone who gets in your way.</b>"
-		mob << "<B> Any UPP, CLF or WY forces also responding are to be considered neutral parties unless proven hostile.</b>"
+		to_chat(mob, "<B> Despite this, you have been tasked to ransack the [MAIN_SHIP_NAME] and kill anyone who gets in your way.</b>")
+		to_chat(mob, "<B> Any UPP, CLF or WY forces also responding are to be considered neutral parties unless proven hostile.</b>")
 	else
-		mob << "<B> To this end, you have been contacted by Weyland-Yutani of the USCSS Royce to assist the [MAIN_SHIP_NAME]..</b>"
-		mob << "<B> Ensure they are not destroyed.</b>"
+		to_chat(mob, "<B> To this end, you have been contacted by Weyland-Yutani of the USCSS Royce to assist the [MAIN_SHIP_NAME]..</b>")
+		to_chat(mob, "<B> Ensure they are not destroyed.</b>")
 
 
 
@@ -63,21 +63,21 @@
 			leader = mob
 			mob.mind.set_cm_skills(/datum/skills/SL)
 			mob.arm_equipment(mob, "Freelancer (Leader)")
-			mob << "<font size='3'>\red You are the Freelancer leader!</font>"
+			to_chat(mob, "<font size='3'>\red You are the Freelancer leader!</font>")
 
 		else if(medics < max_medics)
 			mob.mind.set_cm_skills(/datum/skills/combat_medic)
 			mob.arm_equipment(mob, "Freelancer (Medic)")
 			medics++
-			mob << "<font size='3'>\red You are a Freelancer medic!</font>"
+			to_chat(mob, "<font size='3'>\red You are a Freelancer medic!</font>")
 		else
 			mob.mind.set_cm_skills(/datum/skills/pfc)
 			mob.arm_equipment(mob, "Freelancer (Standard)")
-			mob << "<font size='3'>\red You are a Freelancer mercenary!</font>"
+			to_chat(mob, "<font size='3'>\red You are a Freelancer mercenary!</font>")
 		print_backstory(mob)
 
 	spawn(10)
-		M << "<B>Objectives:</b> [objectives]"
+		to_chat(M, "<B>Objectives:</b> [objectives]")
 
 	if(original)
 		cdel(original)

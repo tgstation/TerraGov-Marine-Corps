@@ -26,29 +26,29 @@
 	set_state(1)
 
 /obj/machinery/power/breakerbox/examine(mob/user)
-	user << "Large machine with heavy duty switching circuits used for advanced grid control"
+	to_chat(user, "Large machine with heavy duty switching circuits used for advanced grid control")
 	if(on)
-		user << "\green It seems to be online."
+		to_chat(user, "\green It seems to be online.")
 	else
-		user << "\red It seems to be offline"
+		to_chat(user, "\red It seems to be offline")
 
 /obj/machinery/power/breakerbox/attack_ai(mob/user)
 	if(busy)
-		user << "\red System is busy. Please wait until current operation is finished before changing power settings."
+		to_chat(user, "\red System is busy. Please wait until current operation is finished before changing power settings.")
 		return
 
 	busy = 1
-	user << "\green Updating power settings.."
+	to_chat(user, "\green Updating power settings..")
 	if(do_after(user, 50, FALSE, 5, BUSY_ICON_GENERIC)) //5s for AI as AIs can manipulate electronics much faster.
 		set_state(!on)
-		user << "\green Update Completed. New setting:[on ? "on": "off"]"
+		to_chat(user, "\green Update Completed. New setting:[on ? "on": "off"]")
 	busy = 0
 
 
 /obj/machinery/power/breakerbox/attack_hand(mob/user)
 
 	if(busy)
-		user << "\red System is busy. Please wait until current operation is finished before changing power settings."
+		to_chat(user, "\red System is busy. Please wait until current operation is finished before changing power settings.")
 		return
 
 	busy = 1

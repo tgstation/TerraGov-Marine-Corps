@@ -78,7 +78,7 @@
 				F.dir = 0
 				F.icon_state = mode
 		else
-			usr << "You can't paint that!"
+			to_chat(usr, "You can't paint that!")
 
 /obj/item/device/floor_painter/attack_self(mob/user as mob)
 	var/type = input("What type of floor?", "Floor painter", "solid") in list("solid", "corner", "opposite corners", "side/three corners", "special", "letters")
@@ -206,4 +206,4 @@
 
 /obj/item/device/floor_painter/examine(mob/user)
 	..()
-	user << "It is in [mode_nice] mode."
+	to_chat(user, "It is in [mode_nice] mode.")

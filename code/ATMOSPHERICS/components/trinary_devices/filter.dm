@@ -124,7 +124,7 @@
 		return
 
 	if(!src.allowed(user))
-		user << "\red Access denied."
+		to_chat(user, "\red Access denied.")
 		return
 
 	var/dat

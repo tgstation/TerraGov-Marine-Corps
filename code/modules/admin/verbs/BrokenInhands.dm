@@ -30,5 +30,5 @@
 	if(text)
 		var/F = file("broken_icons.txt")
 		fdel(F)
-		F << text
-		world << "Completeled successfully and written to [F]"
+		to_chat(F, text)
+		to_chat(world, "Completeled successfully and written to [F]")

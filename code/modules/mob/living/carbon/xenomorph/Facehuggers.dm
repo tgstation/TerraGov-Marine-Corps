@@ -90,7 +90,7 @@
 		Attach(M)
 		user.update_icons()
 	else
-		user << "<span class='warning'>The facehugger refuses to attach.</span>"
+		to_chat(user, "<span class='warning'>The facehugger refuses to attach.</span>")
 		..()
 
 /obj/item/clothing/mask/facehugger/attack_self(mob/user)
@@ -101,10 +101,10 @@
 /obj/item/clothing/mask/facehugger/examine(mob/user)
 	..()
 	switch(stat)
-		if(DEAD, UNCONSCIOUS) user << "<span class='danger'>[src] is not moving.</span>"
-		if(CONSCIOUS) user << "<span class='danger'>[src] seems to be active.</span>"
+		if(DEAD, UNCONSCIOUS) to_chat(user, "<span class='danger'>[src] is not moving.</span>")
+		if(CONSCIOUS) to_chat(user, "<span class='danger'>[src] seems to be active.</span>")
 	if(sterile)
-		user << "<span class='danger'>It looks like the proboscis has been removed.</span>"
+		to_chat(user, "<span class='danger'>It looks like the proboscis has been removed.</span>")
 
 /obj/item/clothing/mask/facehugger/attackby(obj/item/W, mob/user)
 	if(W.flags_item & NOBLUDGEON) return

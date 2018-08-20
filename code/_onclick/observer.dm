@@ -6,9 +6,9 @@
 	if(!client) return
 	client.inquisitive_ghost = !client.inquisitive_ghost
 	if(client.inquisitive_ghost)
-		src << "\blue You will now examine everything you click on."
+		to_chat(src, "\blue You will now examine everything you click on.")
 	else
-		src << "\blue You will no longer examine things you click on."
+		to_chat(src, "\blue You will no longer examine things you click on.")
 
 /mob/dead/observer/click(var/atom/A, var/list/mods)
 	if (..())
@@ -64,13 +64,13 @@
 	if(awaygate)
 		user.loc = awaygate.loc
 	else
-		user << "[src] has no destination."
+		to_chat(user, "[src] has no destination.")
 
 /obj/machinery/gateway/centeraway/attack_ghost(mob/user as mob)
 	if(stationgate)
 		user.loc = stationgate.loc
 	else
-		user << "[src] has no destination."
+		to_chat(user, "[src] has no destination.")
 
 /obj/structure/ladder/attack_ghost(mob/user as mob)
 	if(up && down)
@@ -111,7 +111,7 @@
 		return
 
 	if(!can_mind_transfer) //away_timer is not high enough. Number below should match number in mob.dm.
-		user << "That player hasn't been away long enough. Please wait [60 - away_timer] more seconds."
+		to_chat(user, "That player hasn't been away long enough. Please wait [60 - away_timer] more seconds.")
 		return
 
 	if (alert(user, "Are you sure you want to transfer yourself into this Alien Larva?", "Confirmation", "Yes", "No") == "Yes")

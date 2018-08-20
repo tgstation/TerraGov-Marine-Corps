@@ -88,7 +88,7 @@
 	healthcheck()
 
 /obj/effect/alien/resin/attack_hand()
-	usr << "<span class='warning'>You scrape ineffectively at \the [src].</span>"
+	to_chat(usr, "<span class='warning'>You scrape ineffectively at \the [src].</span>")
 
 /obj/effect/alien/resin/attack_paw()
 	return attack_hand()
@@ -153,11 +153,11 @@
 
 /obj/effect/alien/resin/trap/examine(mob/user)
 	if(isXeno(user))
-		user << "A hole for a little one to hide in ambush."
+		to_chat(user, "A hole for a little one to hide in ambush.")
 		if(hugger)
-			user << "There's a little one inside."
+			to_chat(user, "There's a little one inside.")
 		else
-			user << "It's empty."
+			to_chat(user, "It's empty.")
 	else
 		..()
 
@@ -196,7 +196,7 @@
 						if(!X.stat)
 							var/area/A = get_area(src)
 							if(A)
-								X << "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>"
+								to_chat(X, "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>")
 						break
 			drop_hugger()
 
@@ -215,13 +215,13 @@
 		var/list/allowed_castes = list("Queen","Drone","Hivelord","Carrier")
 		if(allowed_castes.Find(M.caste))
 			if(!hugger)
-				M << "<span class='warning'>[src] is empty.</span>"
+				to_chat(M, "<span class='warning'>[src] is empty.</span>")
 			else
 				hugger = FALSE
 				icon_state = "trap0"
 				var/obj/item/clothing/mask/facehugger/F = new ()
 				M.put_in_active_hand(F)
-				M << "<span class='xenonotice'>You remove the facehugger from [src].</span>"
+				to_chat(M, "<span class='xenonotice'>You remove the facehugger from [src].</span>")
 		return
 	..()
 
@@ -229,11 +229,11 @@
 	if(istype(W, /obj/item/clothing/mask/facehugger) && isXeno(user))
 		var/obj/item/clothing/mask/facehugger/FH = W
 		if(FH.stat == DEAD)
-			user << "<span class='warning'>You can't put a dead facehugger in [src].</span>"
+			to_chat(user, "<span class='warning'>You can't put a dead facehugger in [src].</span>")
 		else
 			hugger = TRUE
 			icon_state = "trap1"
-			user << "<span class='xenonotice'>You place a facehugger in [src].</span>"
+			to_chat(user, "<span class='xenonotice'>You place a facehugger in [src].</span>")
 			cdel(FH)
 	else
 		. = ..()
@@ -436,12 +436,12 @@
 					M.plasma_stored++
 					cdel(src)
 		if(GROWING)
-			M << "<span class='xenowarning'>The child is not developed yet.</span>"
+			to_chat(M, "<span class='xenowarning'>The child is not developed yet.</span>")
 		if(GROWN)
 			if(isXenoLarva(M))
-				M << "<span class='xenowarning'>You nudge the egg, but nothing happens.</span>"
+				to_chat(M, "<span class='xenowarning'>You nudge the egg, but nothing happens.</span>")
 				return
-			M << "<span class='xenonotice'>You retrieve the child.</span>"
+			to_chat(M, "<span class='xenonotice'>You retrieve the child.</span>")
 			Burst(0)
 
 /obj/effect/alien/egg/proc/Grow()
@@ -539,9 +539,10 @@
 					status = GROWN
 					icon_state = "Egg"
 					cdel(F)
-				if(DESTROYED) user << "<span class='xenowarning'>This egg is no longer usable.</span>"
-				if(GROWING,GROWN) user << "<span class='xenowarning'>This one is occupied with a child.</span>"
-		else user << "<span class='xenowarning'>This child is dead.</span>"
+				if(DESTROYED) to_chat(user, "<span class='xenowarning'>This egg is no longer usable.</span>")
+				if(GROWING,GROWN) to_chat(user, "<span class='xenowarning'>This one is occupied with a child.</span>")
+		else
+			to_chat(user, "<span class='xenowarning'>This child is dead.</span>")
 		return
 
 	if(W.flags_item & NOBLUDGEON)
@@ -655,12 +656,12 @@ TUNNEL
 		return
 
 	if(!other)
-		user << "<span class='warning'>It does not seem to lead anywhere.</span>"
+		to_chat(user, "<span class='warning'>It does not seem to lead anywhere.</span>")
 	else
 		var/area/A = get_area(other)
-		user << "<span class='info'>It seems to lead to <b>[A.name]</b>.</span>"
+		to_chat(user, "<span class='info'>It seems to lead to <b>[A.name]</b>.</span>")
 		if(tunnel_desc)
-			user << "<span class='info'>The Hivelord scent reads: \'[tunnel_desc]\'</span>"
+			to_chat(user, "<span class='info'>The Hivelord scent reads: \'[tunnel_desc]\'</span>")
 
 /obj/structure/tunnel/proc/healthcheck()
 	if(health <= 0)
@@ -700,14 +701,14 @@ TUNNEL
 	if(ticker && ticker.mode && ticker.mode.flags_round_type & MODE_FOG_ACTIVATED)
 		var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
 		if(!hive.living_xeno_queen)
-			M << "<span class='xenowarning'>There is no Queen. You must choose a queen first.</span>"
+			to_chat(M, "<span class='xenowarning'>There is no Queen. You must choose a queen first.</span>")
 			return FALSE
 		else if(isXenoQueen(M))
-			M << "<span class='xenowarning'>There is no reason to leave the safety of the caves yet.</span>"
+			to_chat(M, "<span class='xenowarning'>There is no reason to leave the safety of the caves yet.</span>")
 			return FALSE
 
 	if(M.anchored)
-		M << "<span class='xenowarning'>You can't climb through a tunnel while immobile.</span>"
+		to_chat(M, "<span class='xenowarning'>You can't climb through a tunnel while immobile.</span>")
 		return FALSE
 
 	var/tunnel_time = 40
@@ -719,7 +720,7 @@ TUNNEL
 		tunnel_time = 5
 
 	if(!other || !isturf(other.loc))
-		M << "<span class='warning'>\The [src] doesn't seem to lead anywhere.</span>"
+		to_chat(M, "<span class='warning'>\The [src] doesn't seem to lead anywhere.</span>")
 		return
 
 	var/area/A = get_area(other)
@@ -737,7 +738,7 @@ TUNNEL
 			M.visible_message("<span class='xenonotice'>\The [M] pops out of \the [src].</span>", \
 			"<span class='xenonotice'>You pop out through the other side!</span>")
 		else
-			M << "<span class='warning'>\The [src] ended unexpectedly, so you return back up.</span>"
+			to_chat(M, "<span class='warning'>\The [src] ended unexpectedly, so you return back up.</span>")
 	else
-		M << "<span class='warning'>Your crawling was interrupted!</span>"
+		to_chat(M, "<span class='warning'>Your crawling was interrupted!</span>")
 

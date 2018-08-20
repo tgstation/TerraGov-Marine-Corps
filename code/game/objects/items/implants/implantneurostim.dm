@@ -71,7 +71,7 @@
 		return 0
 	phrase = p
 	user.mind.store_memory("[src] in [source] can be made to deliver negative stimulus by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.", 0, 0)
-	user << "<span class='notice'>[src] in [source] can be made to deliver negative stimulus by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.</span>"
+	to_chat(user, "<span class='notice'>[src] in [source] can be made to deliver negative stimulus by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.</span>")
 	processing_objects.Add(src)
 	return 1
 

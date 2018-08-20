@@ -70,7 +70,7 @@
 <span class='role_body'>|______________________|</span>
 "}
 
-		H << t
+		to_chat(H, t)
 
 /datum/job/proc/generate_entry_conditions(mob/living/M) return //Anything special that should happen to the mob upon entering the world.
 

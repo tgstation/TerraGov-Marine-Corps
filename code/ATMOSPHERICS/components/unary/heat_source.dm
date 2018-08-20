@@ -166,7 +166,7 @@
 /obj/machinery/atmospherics/unary/heater/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/tool/screwdriver))
 		opened = !opened
-		user << "You [opened ? "open" : "close"] the maintenance hatch of [src]."
+		to_chat(user, "You [opened ? "open" : "close"] the maintenance hatch of [src].")
 		return
 
 	if (opened && istype(O, /obj/item/tool/crowbar))
@@ -178,4 +178,4 @@
 /obj/machinery/atmospherics/unary/heater/examine(mob/user)
 	..()
 	if(opened)
-		user << "The maintenance hatch is open."
+		to_chat(user, "The maintenance hatch is open.")

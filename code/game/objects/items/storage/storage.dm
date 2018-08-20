@@ -336,7 +336,7 @@
 		return 0 //Means the item is already in the storage item
 	if(storage_slots != null && contents.len >= storage_slots)
 		if(!stop_messages)
-			usr << "<span class='notice'>[src] is full, make some space.</span>"
+			to_chat(usr, "<span class='notice'>[src] is full, make some space.</span>")
 		return 0 //Storage item is full
 
 	if(can_hold.len)
@@ -349,13 +349,13 @@
 			if(!stop_messages)
 				if (istype(W, /obj/item/tool/hand_labeler))
 					return 0
-				usr << "<span class='notice'>[src] cannot hold [W].</span>"
+				to_chat(usr, "<span class='notice'>[src] cannot hold [W].</span>")
 			return 0
 
 	for(var/A in cant_hold) //Check for specific items which this container can't hold.
 		if(istype(W, text2path(A) ))
 			if(!stop_messages)
-				usr << "<span class='notice'>[src] cannot hold [W].</span>"
+				to_chat(usr, "<span class='notice'>[src] cannot hold [W].</span>")
 			return 0
 
 	var/w_limit_bypassed = 0
@@ -367,7 +367,7 @@
 
 	if (!w_limit_bypassed && W.w_class > max_w_class)
 		if(!stop_messages)
-			usr << "<span class='notice'>[W] is too long for this [src].</span>"
+			to_chat(usr, "<span class='notice'>[W] is too long for this [src].</span>")
 		return 0
 
 	var/sum_storage_cost = W.get_storage_cost()
@@ -376,13 +376,13 @@
 
 	if(sum_storage_cost > max_storage_space)
 		if(!stop_messages)
-			usr << "<span class='notice'>[src] is full, make some space.</span>"
+			to_chat(usr, "<span class='notice'>[src] is full, make some space.</span>")
 		return 0
 
 	if(W.w_class >= src.w_class && (istype(W, /obj/item/storage)))
 		if(!istype(src, /obj/item/storage/backpack/holding))	//bohs should be able to hold backpacks again. The override for putting a boh in a boh is in backpack.dm.
 			if(!stop_messages)
-				usr << "<span class='notice'>[src] cannot hold [W] as it's a storage item of the same size.</span>"
+				to_chat(usr, "<span class='notice'>[src] cannot hold [W] as it's a storage item of the same size.</span>")
 			return 0 //To prevent the stacking of same sized storage items.
 
 	return 1
@@ -449,7 +449,7 @@
 	..()
 
 	if(isrobot(user))
-		user << "\blue You're a robot. No."
+		to_chat(user, "\blue You're a robot. No.")
 		return //Robots can't interact with storage items.
 
 	if(!can_be_inserted(W))
@@ -459,14 +459,14 @@
 		var/obj/item/tool/kitchen/tray/T = W
 		if(T.calc_carry() > 0)
 			if(prob(85))
-				user << "\red The tray won't fit in [src]."
+				to_chat(user, "\red The tray won't fit in [src].")
 				return
 			else
 				W.loc = user.loc
 				if ((user.client && user.s_active != src))
 					user.client.screen -= W
 				W.dropped(user)
-				user << "\red God damnit!"
+				to_chat(user, "\red God damnit!")
 
 	W.add_fingerprint(user)
 	return handle_item_insertion(W, FALSE, user)
@@ -493,9 +493,9 @@
 	collection_mode = !collection_mode
 	switch (collection_mode)
 		if(1)
-			usr << "[src] now picks up all items in a tile at once."
+			to_chat(usr, "[src] now picks up all items in a tile at once.")
 		if(0)
-			usr << "[src] now picks up one item at a time."
+			to_chat(usr, "[src] now picks up one item at a time.")
 
 
 
@@ -504,9 +504,9 @@
 	set category = "Object"
 	draw_mode = !draw_mode
 	if(draw_mode)
-		usr << "Clicking [src] with an empty hand now puts the last stored item in your hand."
+		to_chat(usr, "Clicking [src] with an empty hand now puts the last stored item in your hand.")
 	else
-		usr << "Clicking [src] with an empty hand now opens the pouch storage menu."
+		to_chat(usr, "Clicking [src] with an empty hand now opens the pouch storage menu.")
 
 
 
@@ -625,7 +625,7 @@
 		close(M)
 
 	// Now make the cardboard
-	user << "<span class='notice'>You fold [src] flat.</span>"
+	to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
 	new foldable(get_turf(src))
 	cdel(src)
 //BubbleWrap END

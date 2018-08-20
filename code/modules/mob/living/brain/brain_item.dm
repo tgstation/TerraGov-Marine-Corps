@@ -38,15 +38,15 @@
 	if(H.mind)
 		H.mind.transfer_to(brainmob)
 
-	brainmob << "\blue You feel slightly disoriented. That's normal when you're just a brain."
+	to_chat(brainmob, "\blue You feel slightly disoriented. That's normal when you're just a brain.")
 	callHook("debrain", list(brainmob))
 
 /obj/item/organ/brain/examine(mob/user)
 	..()
 	if(brainmob && brainmob.client)//if thar be a brain inside... the brain.
-		user << "You can feel the small spark of life still left in this one."
+		to_chat(user, "You can feel the small spark of life still left in this one.")
 	else
-		user << "This one seems particularly lifeless. Perhaps it will regain some of its luster later.."
+		to_chat(user, "This one seems particularly lifeless. Perhaps it will regain some of its luster later..")
 
 /obj/item/organ/brain/removed(var/mob/living/target,var/mob/living/user)
 

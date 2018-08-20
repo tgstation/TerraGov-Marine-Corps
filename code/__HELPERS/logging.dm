@@ -9,16 +9,16 @@
 
 
 /proc/error(msg)
-	world.log << "## ERROR: [msg][log_end]"
+	to_chat(world.log, "## ERROR: [msg][log_end]")
 
 #define WARNING(MSG) warning("[MSG] in [__FILE__] at line [__LINE__] src: [src] usr: [usr].")
 //print a warning message to world.log
 /proc/warning(msg)
-	world.log << "## WARNING: [msg][log_end]"
+	to_chat(world.log, "## WARNING: [msg][log_end]")
 
 //print a testing-mode debug message to world.log
 /proc/testing(msg)
-	world.log << "## TESTING: [msg][log_end]"
+	to_chat(world.log, "## TESTING: [msg][log_end]")
 
 /proc/log_admin(text)
 	admin_log.Add(text)
@@ -32,7 +32,7 @@
 
 	for(var/client/C in admins)
 		if(C.prefs.toggles_chat & CHAT_DEBUGLOGS)
-			C << "DEBUG: [text]"
+			to_chat(C, "DEBUG: [text]")
 
 
 /proc/log_game(text)

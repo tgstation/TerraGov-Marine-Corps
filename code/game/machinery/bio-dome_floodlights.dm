@@ -65,10 +65,10 @@
 
 /obj/machinery/hydro_floodlight_switch/attack_hand(mob/user as mob)
 	if(!ishuman(user))
-		user << "Nice try."
+		to_chat(user, "Nice try.")
 		return 0
 	if(!ispowered)
-		user << "Nothing happens."
+		to_chat(user, "Nothing happens.")
 		return 0
 	playsound(src,'sound/machines/click.ogg', 15, 1)
 	use_power(5)
@@ -122,27 +122,27 @@
 				update_icon()
 				return 1
 		else
-			user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
+			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return 0
 	..()
 	return 0
 
 /obj/machinery/hydro_floodlight/attack_hand(mob/user as mob)
 	if(ishuman(user))
-		user << "<span class='warning'>Nothing happens. Looks like it's powered elsewhere.</span>"
+		to_chat(user, "<span class='warning'>Nothing happens. Looks like it's powered elsewhere.</span>")
 		return 0
 	else if(!is_lit)
-		user << "<span class='warning'>Why bother? It's just some weird metal thing.</span>"
+		to_chat(user, "<span class='warning'>Why bother? It's just some weird metal thing.</span>")
 		return 0
 	else
 		if(damaged)
-			user << "<span class='warning'>It's already damaged.</span>"
+			to_chat(user, "<span class='warning'>It's already damaged.</span>")
 			return 0
 		else
 			if(isXenoLarva(user))
 				return //Larvae can't do shit
 			if(user.get_active_hand())
-				user << "<span class='warning'>You need your claws empty for this!</span>"
+				to_chat(user, "<span class='warning'>You need your claws empty for this!</span>")
 				return FALSE
 			user.visible_message("<span class='danger'>[user] starts to slash and claw away at [src]!</span>",
 			"<span class='danger'>You start slashing and clawing at [src]!</span>")

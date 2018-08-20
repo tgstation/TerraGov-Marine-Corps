@@ -99,14 +99,14 @@
 /obj/structure/mineral_door/attackby(obj/item/W, mob/living/user)
 	if(istype(W,/obj/item/tool/pickaxe))
 		var/obj/item/tool/pickaxe/digTool = W
-		user << "You start digging the [name]."
+		to_chat(user, "You start digging the [name].")
 		if(do_after(user,digTool.digspeed*hardness, TRUE, 5, BUSY_ICON_GENERIC) && src)
-			user << "You finished digging."
+			to_chat(user, "You finished digging.")
 			Dismantle()
 	else if(!(W.flags_item & NOBLUDGEON) && W.force)
 		user.animation_attack_on(src)
 		hardness -= W.force/100
-		user << "You hit the [name] with your [W.name]!"
+		to_chat(user, "You hit the [name] with your [W.name]!")
 		CheckHardness()
 	else
 		attack_hand(user)

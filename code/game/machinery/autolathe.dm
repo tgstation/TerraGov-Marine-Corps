@@ -108,13 +108,13 @@
 		return
 
 	if (busy)
-		user << "\red \The [src] is busy. Please wait for completion of previous operation."
+		to_chat(user, "\red \The [src] is busy. Please wait for completion of previous operation.")
 		return
 
 	if(istype(O, /obj/item/tool/screwdriver))
 		opened = !opened
 		icon_state = (opened ? "autolathe_t": "autolathe")
-		user << "You [opened ? "open" : "close"] the maintenance hatch of [src]."
+		to_chat(user, "You [opened ? "open" : "close"] the maintenance hatch of [src].")
 		updateUsrDialog()
 		return
 
@@ -132,7 +132,7 @@
 	//Resources are being loaded.
 	var/obj/item/eating = O
 	if(!eating.matter)
-		user << "\The [eating] does not contain significant amounts of useful materials and cannot be accepted."
+		to_chat(user, "\The [eating] does not contain significant amounts of useful materials and cannot be accepted.")
 		return
 
 	var/filltype = 0       // Used to determine message.
@@ -165,12 +165,12 @@
 		mass_per_sheet += eating.matter[material]
 
 	if(!filltype)
-		user << "\red \The [src] is full. Please remove material from the autolathe in order to insert more."
+		to_chat(user, "\red \The [src] is full. Please remove material from the autolathe in order to insert more.")
 		return
 	else if(filltype == 1)
-		user << "You fill \the [src] to capacity with \the [eating]."
+		to_chat(user, "You fill \the [src] to capacity with \the [eating].")
 	else
-		user << "You fill \the [src] with \the [eating]."
+		to_chat(user, "You fill \the [src] with \the [eating].")
 
 	flick("autolathe_o",src) // Plays metal insertion animation. Work out a good way to work out a fitting animation. ~Z
 
@@ -200,7 +200,7 @@
 	add_fingerprint(usr)
 
 	if(busy)
-		usr << "\red The autolathe is busy. Please wait for completion of previous operation."
+		to_chat(usr, "\red The autolathe is busy. Please wait for completion of previous operation.")
 		return
 
 	if(href_list["change_category"])
@@ -267,11 +267,11 @@
 		if(href_list["act"] == "pulse")
 
 			if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
-				usr << "You need a multitool!"
+				to_chat(usr, "You need a multitool!")
 				return
 
 			if(wires[temp_wire])
-				usr << "You can't pulse a cut wire."
+				to_chat(usr, "You can't pulse a cut wire.")
 				return
 
 			if(hack_wire == temp_wire)
@@ -297,7 +297,7 @@
 		else if(href_list["act"] == "wire")
 
 			if (!istype(usr.get_active_hand(), /obj/item/tool/wirecutters))
-				usr << "You need wirecutters!"
+				to_chat(usr, "You need wirecutters!")
 				return
 
 			wires[temp_wire] = !wires[temp_wire]

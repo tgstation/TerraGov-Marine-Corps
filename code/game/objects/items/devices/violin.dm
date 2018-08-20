@@ -15,7 +15,7 @@
 	var/max_lines = 50
 
 /obj/item/device/violin/proc/playnote(var/note as text)
-	//world << "Note: [note]"
+	//to_chat(world, "Note: [note]")
 	var/soundfile
 	/*BYOND loads resource files at compile time if they are ''. This means you can't really manipulate them dynamically.
 	Tried doing it dynamically at first but its more trouble than its worth. Would have saved many lines tho.*/
@@ -202,18 +202,18 @@
 			cur_acc[i] = "n"
 
 		for(var/line in song.lines)
-			//world << line
+			//to_chat(world, line)
 			for(var/beat in text2list(lowertext(line), ","))
-				//world << "beat: [beat]"
+				//to_chat(world, "beat: [beat]")
 				var/list/notes = text2list(beat, "/")
 				for(var/note in text2list(notes[1], "-"))
-					//world << "note: [note]"
+					//to_chat(world, "note: [note]")
 					if(!playing || !isliving(loc))//If the violin is playing, or isn't held by a person
 						playing = 0
 						return
 					if(lentext(note) == 0)
 						continue
-					//world << "Parse: [copytext(note,1,2)]"
+					//to_chat(world, "Parse: [copytext(note,1,2)]")
 					var/cur_note = text2ascii(note) - 96
 					if(cur_note < 1 || cur_note > 7)
 						continue
@@ -374,12 +374,12 @@
 					tempo = 600 / text2num(copytext(lines[1],6))
 					lines.Cut(1,2)
 				if(lines.len > max_lines)
-					usr << "Too many lines!"
+					to_chat(usr, "Too many lines!")
 					lines.Cut(51)
 				var/linenum = 1
 				for(var/l in lines)
 					if(lentext(l) > 50)
-						usr << "Line [linenum] too long!"
+						to_chat(usr, "Line [linenum] too long!")
 						lines.Remove(l)
 					else
 						linenum++

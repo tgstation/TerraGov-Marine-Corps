@@ -251,17 +251,17 @@
 	set src in usr
 
 	if(!active)
-		usr << "System appears to be working fine..."
+		to_chat(usr, "System appears to be working fine...")
 		return
 	if(active)
 		resetting = 1
-		usr << "Resetting tool, This will take a few seconds...  Do not attempt to use the tool during the reset or it may malfunction."
+		to_chat(usr, "Resetting tool, This will take a few seconds...  Do not attempt to use the tool during the reset or it may malfunction.")
 		while(active) //While keep running until it's reset (in case of lag-spam)
 			active = 0 //Sets it to not active
-			usr << "Processing..."
+			to_chat(usr, "Processing...")
 			spawn(60) // runs a timer before the final check.  timer is longer than autopsy timers.
 				if(!active)
-					usr << "System Reset completed"
+					to_chat(usr, "System Reset completed")
 					resetting = 0
 
 /obj/item/tool/surgery/WYautopsy/attack(mob/living/carbon/Xenomorph/T as mob, mob/living/user as mob)
@@ -269,27 +269,27 @@
 	set name = "Perform Alien Autopsy"
 	set src in usr*/
 	if(resetting)
-		usr << "Tool is currently returning to factory default.  If you have been waiting, try running the reset again."
+		to_chat(usr, "Tool is currently returning to factory default.  If you have been waiting, try running the reset again.")
 	if(!isXeno(T))
-		usr << "What are you, some sort of fucking MONSTER?"
+		to_chat(usr, "What are you, some sort of fucking MONSTER?")
 		return
 	if(T.health > 0)
-		usr << "Nope."
+		to_chat(usr, "Nope.")
 		return
 	if(active)
-		usr << "Your already performing an autopsy"
+		to_chat(usr, "Your already performing an autopsy")
 		return
 	if(istype(T, /mob/living/carbon/Xenomorph/Larva))
-		usr << "It's too young... (This will be in a future update)"
+		to_chat(usr, "It's too young... (This will be in a future update)")
 		return
 	active = 1
 	var CHECK = user.loc
 	playsound(loc, 'sound/weapons/pierce.ogg', 25)
-	usr << "You begin to cut into the alien... This might take some time..."
+	to_chat(usr, "You begin to cut into the alien... This might take some time...")
 	if(T.health >-100)
-		usr << "HOLY SHIT IT'S STILL ALIVE.  It knocks you down as it jumps up."
+		to_chat(usr, "HOLY SHIT IT'S STILL ALIVE.  It knocks you down as it jumps up.")
 		usr.KnockDown(20)
-		T << "You feel TREMENDOUS pain and jump back up to use the last of your strength to kill [usr] with your final moments of life. (~10 seconds)"
+		to_chat(T, "You feel TREMENDOUS pain and jump back up to use the last of your strength to kill [usr] with your final moments of life. (~10 seconds)")
 		T.health = T.maxHealth*2 //It's hulk levels of angry.
 		active = 0
 		spawn (1000) //Around 10 seconds
@@ -300,9 +300,9 @@
 		if(0)
 			spawn(50)
 				if(CHECK != user.loc)
-					usr << "This is difficult, you probably shouldn't move"
+					to_chat(usr, "This is difficult, you probably shouldn't move")
 					return.
-				usr << "You've cut through the outer layers of Chitin"
+				to_chat(usr, "You've cut through the outer layers of Chitin")
 				new /obj/item/XenoBio/Chitin(T.loc) //This will be 1-3 Chitin eventually (depending on tier)
 				new /obj/item/XenoBio/Chitin(T.loc) //This will be 1-3 Chitin eventually (depending on tier)
 				T.butchery_progress++
@@ -310,28 +310,28 @@
 		if(1)
 			spawn(50)
 				if(CHECK != user.loc)
-					usr << "This is difficult, you probably shouldn't move."
+					to_chat(usr, "This is difficult, you probably shouldn't move.")
 					return
-				usr << "You've cut into the chest cavity and retreived a sample of blood."
+				to_chat(usr, "You've cut into the chest cavity and retreived a sample of blood.")
 				new /obj/item/XenoBio/Blood(T.loc)//This will be a sample of blood eventually
 				T.butchery_progress++
 				active = 0
 		if(2)
 			spawn(50)
 				if(CHECK != user.loc)
-					usr << "This is difficult, you probably shouldn't move."
+					to_chat(usr, "This is difficult, you probably shouldn't move.")
 					return
-				//usr << "You've cut out an intact organ."
-				usr << "You've cut out some Biomass..."
+				//to_chat(usr, "You've cut out an intact organ.")
+				to_chat(usr, "You've cut out some Biomass...")
 				new /obj/item/XenoBio/Resin(T.loc)//This will be an organ eventually, based on the caste.
 				T.butchery_progress++
 				active = 0
 		if(3)
 			spawn(50)
 				if(CHECK != user.loc)
-					usr << "This is difficult, you probably shouldn't move."
+					to_chat(usr, "This is difficult, you probably shouldn't move.")
 					return
-				usr << "You scrape out the remaining biomass."
+				to_chat(usr, "You scrape out the remaining biomass.")
 				active = 0
 				new /obj/item/XenoBio/Resin(T.loc)
 				new /obj/effect/decal/remains/xeno(T.loc)

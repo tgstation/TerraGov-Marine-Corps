@@ -56,11 +56,11 @@
 
 /obj/item/stack/cable_coil/examine(mob/user)
 	if(amount == 1)
-		user << "A short piece of power cable."
+		to_chat(user, "A short piece of power cable.")
 	else if(amount == 2)
-		user << "A piece of power cable."
+		to_chat(user, "A piece of power cable.")
 	else
-		user << "A coil of power cable. There are [amount] lengths of cable in the coil."
+		to_chat(user, "A coil of power cable. There are [amount] lengths of cable in the coil.")
 
 /obj/item/stack/cable_coil/verb/make_restraint()
 	set name = "Make Cable Restraints"
@@ -70,21 +70,21 @@
 	if(ishuman(M) && !M.is_mob_incapacitated())
 		if(!istype(usr.loc,/turf)) return
 		if(src.amount <= 14)
-			usr << "<span class='warning'>You need at least 15 lengths to make restraints!</span>"
+			to_chat(usr, "<span class='warning'>You need at least 15 lengths to make restraints!</span>")
 			return
 		var/obj/item/handcuffs/cable/B = new /obj/item/handcuffs/cable(usr.loc)
 		B.color = color
-		usr << "<span class='notice'>You wind some cable together to make some restraints.</span>"
+		to_chat(usr, "<span class='notice'>You wind some cable together to make some restraints.</span>")
 		src.use(15)
 	else
-		usr << "<span class='notice'>\blue You cannot do that.</span>"
+		to_chat(usr, "<span class='notice'>\blue You cannot do that.</span>")
 	..()
 
 /obj/item/stack/cable_coil/attackby(obj/item/W, mob/user)
 	if( istype(W, /obj/item/tool/wirecutters) && src.amount > 1)
 		src.amount--
 		new/obj/item/stack/cable_coil(user.loc, 1,color)
-		user << "<span class='notice'>You cut a piece off the cable coil.</span>"
+		to_chat(user, "<span class='notice'>You cut a piece off the cable coil.</span>")
 		src.updateicon()
 		src.update_wclass()
 		return
@@ -92,17 +92,17 @@
 	else if( istype(W, /obj/item/stack/cable_coil) )
 		var/obj/item/stack/cable_coil/C = W
 		if(C.amount >= MAXCOIL)
-			user << "The coil is too long, you cannot add any more cable to it."
+			to_chat(user, "The coil is too long, you cannot add any more cable to it.")
 			return
 
 		if( (C.amount + src.amount <= MAXCOIL) )
-			user << "You join the cable coils together."
+			to_chat(user, "You join the cable coils together.")
 			C.add(src.amount) // give it cable
 			src.use(src.amount) // make sure this one cleans up right
 
 		else
 			var/amt = MAXCOIL - C.amount
-			user << "You transfer [amt] length\s of cable from one coil to the other."
+			to_chat(user, "You transfer [amt] length\s of cable from one coil to the other.")
 			C.add(amt)
 			src.use(amt)
 		return
@@ -140,11 +140,11 @@
 		return
 
 	if(get_dist(F,user) > 1)
-		user << "<span class='warning'>You can't lay cable at a place that far away.</span>"
+		to_chat(user, "<span class='warning'>You can't lay cable at a place that far away.</span>")
 		return
 
 	if(F.intact_tile)		// if floor is intact, complain
-		user << "<span class='warning'>You can't lay cable there unless the floor tiles are removed.</span>"
+		to_chat(user, "<span class='warning'>You can't lay cable there unless the floor tiles are removed.</span>")
 		return
 
 	else
@@ -157,12 +157,12 @@
 
 		for(var/obj/structure/cable/LC in F)
 			if((LC.d1 == dirn && LC.d2 == 0 ) || ( LC.d2 == dirn && LC.d1 == 0))
-				user << "<span class='warning'>There's already a cable at that position.</span>"
+				to_chat(user, "<span class='warning'>There's already a cable at that position.</span>")
 				return
 
 		for(var/obj/structure/cable/LC in F)
 			if((LC.d1 == dirn && LC.d2 == 0 ) || ( LC.d2 == dirn && LC.d1 == 0))
-				user << "There's already a cable at that position."
+				to_chat(user, "There's already a cable at that position.")
 				return
 
 		var/obj/structure/cable/C = new(F)
@@ -205,7 +205,7 @@
 		return
 
 	if(get_dist(C, user) > 1)		// make sure it's close enough
-		user << "<span class='warning'>You can't lay cable at a place that far away.</span>"
+		to_chat(user, "<span class='warning'>You can't lay cable at a place that far away.</span>")
 		return
 
 
@@ -216,7 +216,7 @@
 
 	if(C.d1 == dirn || C.d2 == dirn)		// one end of the clicked cable is pointing towards us
 		if(U.intact_tile)						// can't place a cable if the floor is complete
-			user << "<span class='warning'>You can't lay cable there unless the floor tiles are removed.</span>"
+			to_chat(user, "<span class='warning'>You can't lay cable there unless the floor tiles are removed.</span>")
 			return
 		else
 			// cable is pointing at us, we're standing on an open tile
@@ -226,7 +226,7 @@
 
 			for(var/obj/structure/cable/LC in U)		// check to make sure there's not a cable there already
 				if(LC.d1 == fdirn || LC.d2 == fdirn)
-					user << "<span class='warning'>There's already a cable at that position.</span>"
+					to_chat(user, "<span class='warning'>There's already a cable at that position.</span>")
 					return
 
 			var/obj/structure/cable/NC = new(U)
@@ -264,7 +264,7 @@
 			if(LC == C)			// skip the cable we're interacting with
 				continue
 			if((LC.d1 == nd1 && LC.d2 == nd2) || (LC.d1 == nd2 && LC.d2 == nd1) )	// make sure no cable matches either direction
-				user << "<span class='warning'>There's already a cable at that position.</span>"
+				to_chat(user, "<span class='warning'>There's already a cable at that position.</span>")
 				return
 
 
@@ -336,7 +336,7 @@
 			var/mob/living/carbon/human/H = M
 			if(H.species.flags & IS_SYNTHETIC)
 				if(M == user)
-					user << "\red You can't repair damage to your own body - it's against OH&S."
+					to_chat(user, "\red You can't repair damage to your own body - it's against OH&S.")
 					return
 
 		if(S.burn_dam > 0 && use(1))
@@ -344,7 +344,7 @@
 			user.visible_message("\red \The [user] repairs some burn damage on \the [M]'s [S.display_name] with \the [src].")
 			return
 		else
-			user << "Nothing to fix!"
+			to_chat(user, "Nothing to fix!")
 
 	else
 		return ..()

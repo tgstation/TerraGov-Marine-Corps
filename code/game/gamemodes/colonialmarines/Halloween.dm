@@ -25,7 +25,7 @@
 	var/list/datum/mind/possible_aliens = get_players_for_role(BE_ALIEN)
 
 	if(possible_aliens.len==0)
-		world << "<h2 style=\"color:red\">Not enough players have chosen 'Be alien' in their character setup. Aborting.</h2>"
+		to_chat(world, "<h2 style=\"color:red\">Not enough players have chosen 'Be alien' in their character setup. Aborting.</h2>")
 		return 0
 
 	while(numaliens > 0)
@@ -41,7 +41,7 @@
 				numaliens--
 
 	if(!xenomorphs.len) //Our list is empty! This shouldn't EVER happen. Abort!
-		world << "<h2 style=\"color:red\">Something is messed up with the alien generator - no alien candidates found. Aborting.</h2>"
+		to_chat(world, "<h2 style=\"color:red\">Something is messed up with the alien generator - no alien candidates found. Aborting.</h2>")
 		return 0
 
 	for(var/datum/mind/A in xenomorphs)
@@ -60,7 +60,7 @@
 	return 1
 
 /datum/game_mode/Halloween/announce()
-	world << "<B>The current game mode is - Colonial Marines Halloween! SpooOOOoooky!!!</B>"
+	to_chat(world, "<B>The current game mode is - Colonial Marines Halloween! SpooOOOoooky!!!</B>")
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -99,9 +99,9 @@
 
 	ghost.transfer_to(new_xeno)
 
-	new_xeno << "<B>You are now an alien!</B>"
-	new_xeno << "<B>Your job is to spread the hive and protect the Queen. You can become the Queen yourself by evolving into a drone.</B>"
-	new_xeno << "Use say :a to talk to the hive."
+	to_chat(new_xeno, "<B>You are now an alien!</B>")
+	to_chat(new_xeno, "<B>Your job is to spread the hive and protect the Queen. You can become the Queen yourself by evolving into a drone.</B>")
+	to_chat(new_xeno, "Use say :a to talk to the hive.")
 
 	new_xeno.update_icons()
 
@@ -154,10 +154,10 @@
 
 	//Give them some information
 	spawn(4)
-		H << "<h2>You are a survivor!</h2>"
-		H << "\blue You are a survivor of the attack on LV-624. You worked or lived in the archaeology colony, and managed to avoid the alien attacks.. until now."
-		H << "\blue You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit."
-		H << "\blue You are NOT aware of the marines or their intentions, and lingering around arrival zones will get you survivor-banned."
+		to_chat(H, "<h2>You are a survivor!</h2>")
+		to_chat(H, "\blue You are a survivor of the attack on LV-624. You worked or lived in the archaeology colony, and managed to avoid the alien attacks.. until now.")
+		to_chat(H, "\blue You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit.")
+		to_chat(H, "\blue You are NOT aware of the marines or their intentions, and lingering around arrival zones will get you survivor-banned.")
 	return 1
 
 //This is processed each tick, but check_win is only checked 5 ticks, so we don't go crazy with scanning for mobs.
@@ -256,52 +256,52 @@
 /datum/game_mode/Halloween/declare_completion()
 	if(finished == 1)
 		feedback_set_details("round_end_result","alien major victory - marine incursion fails")
-		world << "\red <FONT size = 4><B>Alien major victory!</B></FONT>"
-		world << "<FONT size = 3><B>The aliens have successfully wiped out the marines and will live to spread the infestation!</B></FONT>"
+		to_chat(world, "\red <FONT size = 4><B>Alien major victory!</B></FONT>")
+		to_chat(world, "<FONT size = 3><B>The aliens have successfully wiped out the marines and will live to spread the infestation!</B></FONT>")
 		if(prob(50))
 			world << 'sound/misc/Game_Over_Man.ogg'
 		else
 			world << 'sound/misc/asses_kicked.ogg'
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Alien major victory\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
+			to_chat(round_stats, "Alien major victory\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]")
 
 	else if(finished == 2)
 		feedback_set_details("round_end_result","marine major victory - xenomorph infestation eradicated")
-		world << "\red <FONT size = 4><B>Marines major victory!</B></FONT>"
-		world << "<FONT size = 3><B>The marines managed to wipe out the aliens and stop the infestation!</B></FONT>"
+		to_chat(world, "\red <FONT size = 4><B>Marines major victory!</B></FONT>")
+		to_chat(world, "<FONT size = 3><B>The marines managed to wipe out the aliens and stop the infestation!</B></FONT>")
 		if(prob(50))
 			world << 'sound/misc/hardon.ogg'
 		else
 			world << 'sound/misc/hell_march.ogg'
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Marine major victory\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
+			to_chat(round_stats, "Marine major victory\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]")
 
 	else if(finished == 3)
 		feedback_set_details("round_end_result","marine minor victory - infestation stopped at a great cost")
-		world << "\red <FONT size = 3><B>Marine minor victory.</B></FONT>"
-		world << "<FONT size = 3><B>Both the marines and the aliens have been terminated. At least the infestation has been eradicated!</B></FONT>"
+		to_chat(world, "\red <FONT size = 3><B>Marine minor victory.</B></FONT>")
+		to_chat(world, "<FONT size = 3><B>Both the marines and the aliens have been terminated. At least the infestation has been eradicated!</B></FONT>")
 		world << 'sound/misc/sadtrombone.ogg'
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Marine minor victory (Both dead)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
+			to_chat(round_stats, "Marine minor victory (Both dead)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]")
 
 	else if(finished == 4)
 		feedback_set_details("round_end_result","alien minor victory - infestation survives")
-		world << "\red <FONT size = 3><B>Alien minor victory.</B></FONT>"
-		world << "<FONT size = 3><B>The [MAIN_SHIP_NAME] has been evacuated... but the infestation remains!</B></FONT>"
+		to_chat(world, "\red <FONT size = 3><B>Alien minor victory.</B></FONT>")
+		to_chat(world, "<FONT size = 3><B>The [MAIN_SHIP_NAME] has been evacuated... but the infestation remains!</B></FONT>")
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Alien minor victory (Evac)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
+			to_chat(round_stats, "Alien minor victory (Evac)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]")
 
 	else if(finished == 5)
 		feedback_set_details("round_end_result","draw - the station has been nuked")
-		world << "\red <FONT size = 3><B>Draw.</B></FONT>"
-		world << "<FONT size = 3><B>The station has blown by a nuclear fission device... there are no winners!</B></FONT>"
+		to_chat(world, "\red <FONT size = 3><B>Draw.</B></FONT>")
+		to_chat(world, "<FONT size = 3><B>The station has blown by a nuclear fission device... there are no winners!</B></FONT>")
 		world << 'sound/misc/sadtrombone.ogg'
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Draw (Nuke)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
+			to_chat(round_stats, "Draw (Nuke)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()][log_end]")
 	else
-		world << "\red Whoops, something went wrong with declare_completion(), finished: [finished]. Blame the coders!"
+		to_chat(world, "\red Whoops, something went wrong with declare_completion(), finished: [finished]. Blame the coders!")
 
-	world << "Xenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]."
+	to_chat(world, "Xenos Remaining: [count_xenos()]. Humans remaining: [count_humans()].")
 
 	spawn(45)
 		if(xenomorphs.len)
@@ -320,7 +320,7 @@
 						else
 							text += "survived"
 						text += ")"
-			world << text
+			to_chat(world, text)
 		if(survivors.len)
 			var/text = "<br><FONT size = 3><B>The survivors were:</B></FONT>"
 			for(var/datum/mind/A in survivors)
@@ -340,7 +340,7 @@
 					else
 						text += "<BR>[A.key] was Unknown! (body destroyed)"
 
-			world << text
+			to_chat(world, text)
 //	..()
 	return 1
 

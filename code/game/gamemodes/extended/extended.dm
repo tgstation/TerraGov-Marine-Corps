@@ -11,8 +11,8 @@
 	var/const/waittime_h = 1800
 
 /datum/game_mode/announce()
-	world << "<B>The current game mode is - Extended Role-Playing!</B>"
-	world << "<B>Just have fun and role-play!</B>"
+	to_chat(world, "<B>The current game mode is - Extended Role-Playing!</B>")
+	to_chat(world, "<B>Just have fun and role-play!</B>")
 
 /datum/game_mode/extended/pre_setup()
 	return 1
@@ -33,20 +33,20 @@
 /datum/game_mode/extended/check_win()
 
 /datum/game_mode/extended/declare_completion()
-	//world << "<span class='round_header'>[round_finished]</span>"
-	world << "<span class='round_header'>|Round Complete|</span>"
+	//to_chat(world, "<span class='round_header'>[round_finished]</span>")
+	to_chat(world, "<span class='round_header'>|Round Complete|</span>")
 	feedback_set_details("round_end_result",round_finished)
 
-	world << "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [map_tag].</span>"
+	to_chat(world, "<span class='round_body'>Thus ends the story of the brave men and women of the [MAIN_SHIP_NAME] and their struggle on [map_tag].</span>")
 	var/musical_track = pick('sound/theme/neutral_hopeful1.ogg','sound/theme/neutral_hopeful2.ogg')
-	world << musical_track
+	to_chat(world, musical_track)
 	var/dat = ""
 	//if(flags_round_type & MODE_INFESTATION)
 		//var/living_player_list[] = count_humans_and_xenos()
 		//dat = "\nXenomorphs remaining: [living_player_list[2]]. Humans remaining: [living_player_list[1]]."
-	if(round_stats) round_stats << "[round_finished][dat]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal Preds spawned: [predators.len]\nTotal humans spawned: [round_statistics.total_humans_created][log_end]" // Logging to data/logs/round_stats.log
+	if(round_stats) to_chat(round_stats, "[round_finished][dat]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal Preds spawned: [predators.len]\nTotal humans spawned: [round_statistics.total_humans_created][log_end]")
 
-	world << dat
+	to_chat(world, dat)
 
 	declare_completion_announce_individual()
 	declare_completion_announce_predators()

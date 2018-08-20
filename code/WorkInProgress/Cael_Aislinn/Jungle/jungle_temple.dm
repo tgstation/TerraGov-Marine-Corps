@@ -298,7 +298,7 @@
 
 	switch(trap_type)
 		if("sawburst")
-			M << "\red <b>A sawblade shoots out of the ground and strikes you!</b>"
+			to_chat(M, "\red <b>A sawblade shoots out of the ground and strikes you!</b>")
 			M.apply_damage(rand(5,10), BRUTE, sharp=1, edge=1)
 
 			var/atom/myloc = src.loc
@@ -309,7 +309,7 @@
 				cdel(flicker)
 			//flick("sawblade",src)
 		if("poison_dart")
-			M << "\red <b>You feel something small and sharp strike you!</b>"
+			to_chat(M, "\red <b>You feel something small and sharp strike you!</b>")
 			M.apply_damage(rand(5,10), TOX)
 
 			var/atom/myloc = src.loc
@@ -320,7 +320,7 @@
 				cdel(flicker)
 			//flick("dart[rand(1,3)]",src)
 		if("flame_burst")
-			M << "\red <b>A jet of fire comes out of nowhere!</b>"
+			to_chat(M, "\red <b>A jet of fire comes out of nowhere!</b>")
 			M.apply_damage(rand(5,10), BURN)
 
 			var/atom/myloc = src.loc

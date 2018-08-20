@@ -51,7 +51,7 @@
 		wrapped = null
 		return
 
-	src.loc << "\red You drop \the [wrapped]."
+	to_chat(src.loc, "\red You drop \the [wrapped].")
 	wrapped.loc = get_turf(src)
 	wrapped = null
 	//update_icon()
@@ -102,12 +102,12 @@
 
 		//We can grab the item, finally.
 		if(grab)
-			user << "You collect \the [I]."
+			to_chat(user, "You collect \the [I].")
 			I.loc = src
 			wrapped = I
 			return
 		else
-			user << "\red Your gripper cannot hold \the [target]."
+			to_chat(user, "\red Your gripper cannot hold \the [target].")
 
 	else if(istype(target,/obj/machinery/power/apc))
 		var/obj/machinery/power/apc/A = target
@@ -179,15 +179,15 @@
 			if(!istype(D))
 				return
 
-			D << "\red You begin decompiling the other drone."
+			to_chat(D, "\red You begin decompiling the other drone.")
 
 			if(!do_after(D, 50, FALSE, 5, BUSY_ICON_GENERIC))
-				D << "\red You need to remain still while decompiling such a large object."
+				to_chat(D, "\red You need to remain still while decompiling such a large object.")
 				return
 
 			if(!M || !D) return
 
-			D << "\red You carefully and thoroughly decompile your downed fellow, storing as much of its resources as you can within yourself."
+			to_chat(D, "\red You carefully and thoroughly decompile your downed fellow, storing as much of its resources as you can within yourself.")
 
 			cdel(M)
 			new/obj/effect/decal/cleanable/blood/oil(get_turf(src))
@@ -260,7 +260,7 @@
 		grabbed_something = 1
 
 	if(grabbed_something)
-		user << "\blue You deploy your decompiler and clear out the contents of \the [T]."
+		to_chat(user, "\blue You deploy your decompiler and clear out the contents of \the [T].")
 	else
-		user << "\red Nothing on \the [T] is useful to you."
+		to_chat(user, "\red Nothing on \the [T] is useful to you.")
 	return

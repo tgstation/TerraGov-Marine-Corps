@@ -53,9 +53,9 @@
 
 		P.loc = user.loc
 		user.put_in_hands(P)
-		user << "<span class='notice'>You take [P] out of the [src].</span>"
+		to_chat(user, "<span class='notice'>You take [P] out of the [src].</span>")
 	else
-		user << "<span class='notice'>[src] is empty!</span>"
+		to_chat(user, "<span class='notice'>[src] is empty!</span>")
 
 	add_fingerprint(user)
 	return
@@ -66,16 +66,16 @@
 		return
 
 	if(user.drop_inv_item_to_loc(i, src))
-		user << "<span class='notice'>You put [i] in [src].</span>"
+		to_chat(user, "<span class='notice'>You put [i] in [src].</span>")
 		papers.Add(i)
 		amount++
 
 
 /obj/item/paper_bin/examine(mob/user)
 	if(amount)
-		user << "<span class='notice'>There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.</span>"
+		to_chat(user, "<span class='notice'>There " + (amount > 1 ? "are [amount] papers" : "is one paper") + " in the bin.</span>")
 	else
-		user << "<span class='notice'>There are no papers in the bin.</span>"
+		to_chat(user, "<span class='notice'>There are no papers in the bin.</span>")
 
 
 /obj/item/paper_bin/update_icon()

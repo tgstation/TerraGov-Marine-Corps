@@ -90,7 +90,7 @@
 		if(istype(I,/obj/item/stack/cable_coil))
 			var/obj/item/stack/cable_coil/CC = I
 			if (CC.use(5))
-				user << "You wrap some cable around the bayonet. It can now be attached to a gun."
+				to_chat(user, "You wrap some cable around the bayonet. It can now be attached to a gun.")
 				if(istype(loc, /obj/item/storage))
 					var/obj/item/storage/S = loc
 					S.remove_from_storage(src)
@@ -102,7 +102,7 @@
 					F.loc = get_turf(src)
 				cdel(src) //Delete da old knife
 			else
-				user << "<span class='notice'>You don't have enough cable for that.</span>"
+				to_chat(user, "<span class='notice'>You don't have enough cable for that.</span>")
 				return
 		else
 			..()

@@ -57,7 +57,7 @@
 		return
 
 	if(legcuffed)
-		src << "<span class='xenodanger'>You can't charge with that thing on your leg!</span>"
+		to_chat(src, "<span class='xenodanger'>You can't charge with that thing on your leg!</span>")
 		return
 
 	visible_message("<span class='danger'>[src] charges towards \the [T]!</span>", \
@@ -68,7 +68,7 @@
 	throw_at(T, CHARGEDISTANCE, CHARGESPEED, src)
 	spawn(CHARGECOOLDOWN)
 		usedPounce = 0
-		src << "<span class='notice'>Your exoskeleton quivers as you get ready to charge again.</span>"
+		to_chat(src, "<span class='notice'>Your exoskeleton quivers as you get ready to charge again.</span>")
 		for(var/X in actions)
 			var/datum/action/A = X
 			A.update_button_icon()
@@ -167,4 +167,4 @@
 				continue
 
 		M.adjustFireLoss(rand(20, 50)) //Fwoom!
-		M << "[isXeno(M) ? "<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!</Sspan>"
+		to_chat(M, "[isXeno(M) ? "<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!</Sspan>")

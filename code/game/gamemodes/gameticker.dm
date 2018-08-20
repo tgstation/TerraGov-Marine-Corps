@@ -50,8 +50,8 @@ var/global/datum/controller/gameticker/ticker
 
 	do
 		pregame_timeleft = 180
-		world << "<B><FONT color='blue'>Welcome to the pre-game lobby of Colonial Marines!</FONT></B>"
-		world << "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds"
+		to_chat(world, "<B><FONT color='blue'>Welcome to the pre-game lobby of Colonial Marines!</FONT></B>")
+		to_chat(world, "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds")
 		while(current_state == GAME_STATE_PREGAME)
 			for(var/i=0, i<10, i++)
 				sleep(1)
@@ -79,7 +79,7 @@ var/global/datum/controller/gameticker/ticker
 		runnable_modes = config.get_runnable_modes()
 		if (runnable_modes.len==0)
 			current_state = GAME_STATE_PREGAME
-			world << "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby."
+			to_chat(world, "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby.")
 			return 0
 		if(secret_force_mode != "secret")
 			var/datum/game_mode/M = config.pick_mode(secret_force_mode)
@@ -94,7 +94,7 @@ var/global/datum/controller/gameticker/ticker
 	else
 		src.mode = config.pick_mode(master_mode)
 	if (!src.mode.can_start())
-		world << "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby."
+		to_chat(world, "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
 		cdel(mode)
 		mode = null
 		current_state = GAME_STATE_PREGAME
@@ -106,7 +106,7 @@ var/global/datum/controller/gameticker/ticker
 		cdel(mode)
 		mode = null
 		current_state = GAME_STATE_PREGAME
-		world << "<B>Error setting up [master_mode].</B> Reverting to pre-game lobby."
+		to_chat(world, "<B>Error setting up [master_mode].</B> Reverting to pre-game lobby.")
 		RoleAuthority.reset_roles()
 		return 0
 
@@ -115,8 +115,8 @@ var/global/datum/controller/gameticker/ticker
 		for (var/datum/game_mode/M in runnable_modes)
 			modes+=M.name
 		modes = sortList(modes)
-		world << "<B>The current game mode is - Secret!</B>"
-		world << "<B>Possibilities:</B> [english_list(modes)]"
+		to_chat(world, "<B>The current game mode is - Secret!</B>")
+		to_chat(world, "<B>Possibilities:</B> [english_list(modes)]")
 	else
 		src.mode.announce()
 
@@ -146,7 +146,7 @@ var/global/datum/controller/gameticker/ticker
 			//Deleting Startpoints but we need the ai point to AI-ize people later
 			if (S.name != "AI")
 				cdel(S)
-		world << "<FONT color='blue'><B>Enjoy the game!</B></FONT>"
+		to_chat(world, "<FONT color='blue'><B>Enjoy the game!</B></FONT>")
 		//world << sound('sound/AI/welcome.ogg') // Skie
 		//Holiday Round-start stuff	~Carn
 		Holiday_Game_Start()
@@ -155,7 +155,7 @@ var/global/datum/controller/gameticker/ticker
 	//new random event system is handled from the MC.
 
 	if(config.autooocmute)
-		world << "\red <B>The OOC channel has been globally disabled due to round start!</B>"
+		to_chat(world, "\red <B>The OOC channel has been globally disabled due to round start!</B>")
 		ooc_allowed = !( ooc_allowed )
 
 //	var/admins_number = 0
@@ -217,7 +217,7 @@ var/global/datum/controller/gameticker/ticker
 		if(captainless)
 			for(var/mob/M in player_list)
 				if(!istype(M,/mob/new_player))
-					M << "Marine commander position not forced on anyone."
+					to_chat(M, "Marine commander position not forced on anyone.")
 
 
 	proc/process()
@@ -250,7 +250,7 @@ var/global/datum/controller/gameticker/ticker
 					feedback_set_details("end_proper","proper completion")
 
 				if(config.autooocmute && !ooc_allowed)
-					world << "\red <B>The OOC channel has been globally enabled due to round end!</B>"
+					to_chat(world, "\red <B>The OOC channel has been globally enabled due to round end!</B>")
 					ooc_allowed = 1
 
 				if(blackbox)
@@ -261,13 +261,13 @@ var/global/datum/controller/gameticker/ticker
 					if(!delay_end)
 						world.Reboot()
 					else
-						world << "<hr>"
-						world << "<span class='centerbold'><b>An admin has delayed the round end.</b></span>"
-						world << "<hr>"
+						to_chat(world, "<hr>")
+						to_chat(world, "<span class='centerbold'><b>An admin has delayed the round end.</b></span>")
+						to_chat(world, "<hr>")
 				else
-					world << "<hr>"
-					world << "<span class='centerbold'><b>An admin has delayed the round end.</b></span>"
-					world << "<hr>"
+					to_chat(world, "<hr>")
+					to_chat(world, "<span class='centerbold'><b>An admin has delayed the round end.</b></span>")
+					to_chat(world, "<hr>")
 
 		else if (mode_finished)
 			post_game = 1
@@ -277,7 +277,7 @@ var/global/datum/controller/gameticker/ticker
 			//call a transfer shuttle vote
 			spawn(50)
 				if(!round_end_announced) // Spam Prevention. Now it should announce only once.
-					world << "\red The round has ended!"
+					to_chat(world, "\red The round has ended!")
 					round_end_announced = 1
 
 		return 1
@@ -289,43 +289,43 @@ var/global/datum/controller/gameticker/ticker
 
 
 /datum/controller/gameticker/proc/declare_completion()
-/* 	world << "<br><br><br><font size=3><b>The round has ended.</b></font>"
+/* 	to_chat(world, "<br><br><br><font size=3><b>The round has ended.</b></font>")
 	for(var/mob/Player in player_list)
 		if(Player.mind && !isnewplayer(Player))
 			if(Player.stat != DEAD)
 				var/turf/playerTurf = get_turf(Player)
 				if(emergency_shuttle.departed && emergency_shuttle.evac)
 					if(playerTurf.z != 2)
-						Player << "<font color='blue'><b>You managed to survive, but were marooned on [station_name()] as [Player.real_name]...</b></font>"
+						to_chat(Player, "<font color='blue'><b>You managed to survive, but were marooned on [station_name()] as [Player.real_name]...</b></font>")
 					else
-						Player << "<font color='green'><b>You managed to survive the events on [station_name()] as [Player.real_name].</b></font>"
+						to_chat(Player, "<font color='green'><b>You managed to survive the events on [station_name()] as [Player.real_name].</b></font>")
 				else if(playerTurf.z == 2)
-					Player << "<font color='green'><b>You successfully underwent crew transfer after events on [station_name()] as [Player.real_name].</b></font>"
+					to_chat(Player, "<font color='green'><b>You successfully underwent crew transfer after events on [station_name()] as [Player.real_name].</b></font>")
 				else if(issilicon(Player))
-					Player << "<font color='green'><b>You remain operational after the events on [station_name()] as [Player.real_name].</b></font>"
+					to_chat(Player, "<font color='green'><b>You remain operational after the events on [station_name()] as [Player.real_name].</b></font>")
 				else
-					Player << "<font color='blue'><b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b></font>"
+					to_chat(Player, "<font color='blue'><b>You missed the crew transfer after the events on [station_name()] as [Player.real_name].</b></font>")
 			else
 				if(istype(Player,/mob/dead/observer))
 					var/mob/dead/observer/O = Player
 					if(!O.started_as_observer)
-						Player << "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
+						to_chat(Player, "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>")
 				else
-					Player << "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>"
-	world << "<br>" */
+					to_chat(Player, "<font color='red'><b>You did not survive the events on [station_name()]...</b></font>")
+	to_chat(world, "<br>") */
 
 	for (var/mob/living/silicon/ai/aiPlayer in mob_list)
 		if (aiPlayer.stat != 2)
-			world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>"
+			to_chat(world, "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>")
 		else
-			world << "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b>"
+			to_chat(world, "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws when it was deactivated were:</b>")
 		aiPlayer.show_laws(1)
 
 		if (aiPlayer.connected_robots.len)
 			var/robolist = "<b>The AI's loyal minions were:</b> "
 			for(var/mob/living/silicon/robot/robo in aiPlayer.connected_robots)
 				robolist += "[robo.name][robo.stat?" (Deactivated) (Played by: [robo.key]), ":" (Played by: [robo.key]), "]"
-			world << "[robolist]"
+			to_chat(world, "[robolist]")
 
 	var/dronecount = 0
 
@@ -337,15 +337,15 @@ var/global/datum/controller/gameticker/ticker
 
 		if (!robo.connected_ai)
 			if (robo.stat != 2)
-				world << "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less borg! Its laws were:</b>"
+				to_chat(world, "<b>[robo.name] (Played by: [robo.key]) survived as an AI-less borg! Its laws were:</b>")
 			else
-				world << "<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a cyborg without an AI. Its laws were:</b>"
+				to_chat(world, "<b>[robo.name] (Played by: [robo.key]) was unable to survive the rigors of being a cyborg without an AI. Its laws were:</b>")
 
 			if(robo) //How the hell do we lose robo between here and the world messages directly above this?
 				robo.laws.show_laws(world)
 
 	if(dronecount)
-		world << "<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round."
+		to_chat(world, "<b>There [dronecount>1 ? "were" : "was"] [dronecount] industrious maintenance [dronecount>1 ? "drones" : "drone"] at the end of this round.")
 
 	mode.declare_completion()//To declare normal completion.
 

@@ -58,7 +58,7 @@ var/global/datum/authority/branch/recycle/RecycleAuthority = new()
 			else 					fetched.New(directive)
 			recycle_count++
 			#if DEBUG_RA_AUTHORITY
-			world << "<span class='debuginfo'>Was able to pull product from shelf.</span>"
+			to_chat(world, "<span class='debuginfo'>Was able to pull product from shelf.</span>")
 			#endif
 			return fetched
 
@@ -67,7 +67,7 @@ var/global/datum/authority/branch/recycle/RecycleAuthority = new()
 	if(islist(directive)) 	. = new fetch_type(arglist(directive)) //Give us a an argument list.
 	else 					. = new fetch_type(directive) //Give us a loc.
 	#if DEBUG_RA_AUTHORITY
-	world << "<span class='debuginfo'>Had to create a new atom. Could not get from shelf.</span>"
+	to_chat(world, "<span class='debuginfo'>Had to create a new atom. Could not get from shelf.</span>")
 	#endif
 
 /*
@@ -93,14 +93,14 @@ so there's honestly not too much to do here.
 		blacklist &= product.vars //We need to get the items they have in common only, as this is what we need to remove.
 		gathered_variables[product.type] = product.vars ^ blacklist //Then we remove the incommon items. Easy.
 		#if DEBUG_RA_AUTHORITY
-		world << "<span class='debuginfo'>Successfully notated [product.type].</span>"
+		to_chat(world, "<span class='debuginfo'>Successfully notated [product.type].</span>")
 		#endif
 
 		for(i in gathered_variables[product.type])
 			if(islist(product.vars[i])) gathered_variables[product.type][i] = list() //We reset it to empty if it's a list.
 			else gathered_variables[product.type][i] = initial(product.vars[i]) //Reset.
 		#if DEBUG_RA_AUTHORITY
-		world << "<span class='debuginfo'>Successfully reset [product.type].</span>"
+		to_chat(world, "<span class='debuginfo'>Successfully reset [product.type].</span>")
 		#endif
 
 	//Time to reset its variables.
@@ -135,20 +135,20 @@ You can also return the entire list of variables if you reset them manually. Not
 
 	var/directives[] = list('icons/testing/Zone.dmi',src,"assigned",10,10)
 	var/image/debug_image/I = new(arglist(directives))
-	src << "<span class='debuginfo'><b>Initial Spawn</b></span>"
-	src << "<span class='debuginfo'>Icon is [I.icon].</span>"
-	src << "<span class='debuginfo'>Location is [I.loc].</span>"
-	src << "<span class='debuginfo'>Icon state is [I.icon_state].</span>"
-	src << "<span class='debuginfo'>Layer is [I.layer].</span>"
-	src << "<span class='debuginfo'>Direction is [I.dir].</span>"
+	to_chat(src, "<span class='debuginfo'><b>Initial Spawn</b></span>")
+	to_chat(src, "<span class='debuginfo'>Icon is [I.icon].</span>")
+	to_chat(src, "<span class='debuginfo'>Location is [I.loc].</span>")
+	to_chat(src, "<span class='debuginfo'>Icon state is [I.icon_state].</span>")
+	to_chat(src, "<span class='debuginfo'>Layer is [I.layer].</span>")
+	to_chat(src, "<span class='debuginfo'>Direction is [I.dir].</span>")
 
 	I.New(arglist(list('icons/testing/Zone.dmi',src,"assigned2",4,6)))
-	src << "<span class='debuginfo'><b>New() Spawn</b></span>"
-	src << "<span class='debuginfo'>Icon is [I.icon].</span>"
-	src << "<span class='debuginfo'>Location is [I.loc].</span>"
-	src << "<span class='debuginfo'>Icon state is [I.icon_state].</span>"
-	src << "<span class='debuginfo'>Layer is [I.layer].</span>"
-	src << "<span class='debuginfo'>Direction is [I.dir].</span>"
+	to_chat(src, "<span class='debuginfo'><b>New() Spawn</b></span>")
+	to_chat(src, "<span class='debuginfo'>Icon is [I.icon].</span>")
+	to_chat(src, "<span class='debuginfo'>Location is [I.loc].</span>")
+	to_chat(src, "<span class='debuginfo'>Icon state is [I.icon_state].</span>")
+	to_chat(src, "<span class='debuginfo'>Layer is [I.layer].</span>")
+	to_chat(src, "<span class='debuginfo'>Direction is [I.dir].</span>")
 #endif
 
 /*Generic image parent for any reusable image that works with the recycler.
@@ -198,8 +198,8 @@ overhead only applies when the image is first created.*/
 	set name = "Trash: RA Diagnose"
 	set desc = "This will bring up diagnostic information about the Trash Authority and log the results in debug."
 
-	usr << "Currently processed: <b>[RecycleAuthority.recycle_count]</b> products."
-	usr << "Currently storing: <b>[RecycleAuthority.recycling.len]</b> item categories."
+	to_chat(usr, "Currently processed: <b>[RecycleAuthority.recycle_count]</b> products.")
+	to_chat(usr, "Currently storing: <b>[RecycleAuthority.recycling.len]</b> item categories.")
 	log_debug("RA: Currently processed: <b>[RecycleAuthority.recycle_count]</b> products. Currently storing: <b>[RecycleAuthority.recycling.len]</b> item categories.")
 
 /datum/proc/ra_purge()
@@ -208,7 +208,7 @@ overhead only applies when the image is first created.*/
 	set desc = "This will toggle the Recycle Authority's purge mode and log the results in debug. Do not use this without good reason."
 
 	RecycleAuthority.purging = !RecycleAuthority.purging
-	usr << "\red RA is [RecycleAuthority.purging? "now purging." : "is no longer purging."]"
+	to_chat(usr, "\red RA is [RecycleAuthority.purging? "now purging." : "is no longer purging."]")
 	log_debug("RA: <b>[usr.key]</b> used the purge toggle.")
 
 #undef DEBUG_RA_AUTHORITY

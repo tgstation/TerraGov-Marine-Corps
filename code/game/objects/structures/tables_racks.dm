@@ -271,7 +271,7 @@
 					"<span class='danger'>You slam [M]'s face against [src]!</span>")
 					playsound(src.loc, 'sound/weapons/tablehit1.ogg', 25, 1)
 				else
-					user << "<span class='warning'>You need a better grip to do that!</span>"
+					to_chat(user, "<span class='warning'>You need a better grip to do that!</span>")
 					return
 			else if(user.grab_level >= GRAB_AGGRESSIVE)
 				M.forceMove(loc)
@@ -300,7 +300,7 @@
 			"<span class='danger'>You slice [src] apart!")
 			destroy()
 		else
-			user << "<span class='warning'>You slice at the table, but only claw it up a little.</span>"
+			to_chat(user, "<span class='warning'>You slice at the table, but only claw it up a little.</span>")
 		return
 
 	user.drop_inv_item_to_loc(W, loc)
@@ -331,7 +331,7 @@
 		return
 
 	if(!flip(get_cardinal_dir(usr, src)))
-		usr << "<span class='warning'>[src] won't budge.</span>"
+		to_chat(usr, "<span class='warning'>[src] won't budge.</span>")
 		return
 
 	usr.visible_message("<span class='warning'>[usr] flips [src]!</span>",
@@ -376,7 +376,7 @@
 		return
 
 	if(!unflipping_check())
-		usr << "<span class='warning'>[src] won't budge.</span>"
+		to_chat(usr, "<span class='warning'>[src] won't budge.</span>")
 		return
 
 	unflip()

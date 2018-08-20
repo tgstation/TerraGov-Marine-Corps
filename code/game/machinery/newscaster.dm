@@ -723,7 +723,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 						O.show_message("[user.name] forcefully slams the [src.name] with the [I.name]!" )
 					playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 		else
-			user << "<FONT COLOR='blue'>This does nothing.</FONT>"
+			to_chat(user, "<FONT COLOR='blue'>This does nothing.</FONT>")
 	src.update_icon()
 
 /obj/machinery/newscaster/attack_ai(mob/user as mob)
@@ -731,7 +731,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 
 
 /obj/machinery/newscaster/attack_paw(mob/user as mob)
-	user << "<font color='blue'>The newscaster controls are far too complicated for your tiny brain!</font>"
+	to_chat(user, "<font color='blue'>The newscaster controls are far too complicated for your tiny brain!</font>")
 	return
 
 /obj/machinery/newscaster/proc/AttachPhoto(mob/user as mob)
@@ -776,7 +776,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 
 /*obj/item/newspaper/attack_hand(mob/user as mob)
 	..()
-	world << "derp"*/
+	to_chat(world, "derp")*/
 
 obj/item/newspaper/attack_self(mob/user as mob)
 	if(ishuman(user))
@@ -855,7 +855,7 @@ obj/item/newspaper/attack_self(mob/user as mob)
 		human_user << browse(dat, "window=newspaper_main;size=300x400")
 		onclose(human_user, "newspaper_main")
 	else
-		user << "The paper is full of intelligible symbols!"
+		to_chat(user, "The paper is full of intelligible symbols!")
 
 
 obj/item/newspaper/Topic(href, href_list)
@@ -893,7 +893,7 @@ obj/item/newspaper/Topic(href, href_list)
 obj/item/newspaper/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/tool/pen))
 		if(src.scribble_page == src.curr_page)
-			user << "<FONT COLOR='blue'>There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?</FONT>"
+			to_chat(user, "<FONT COLOR='blue'>There's already a scribble in this page... You wouldn't want to make things too cluttered, would you?</FONT>")
 		else
 			var/s = strip_html( input(user, "Write something", "Newspaper", "") )
 			s = copytext(sanitize(s), 1, MAX_MESSAGE_LEN)

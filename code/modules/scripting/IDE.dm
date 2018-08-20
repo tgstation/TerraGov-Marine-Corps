@@ -13,7 +13,7 @@ client/verb/tcssave()
 				log_misc(msg)
 				message_admins("[mob.name] has uploaded a NTLS script to [Machine.SelectedServer] ([mob.x],[mob.y],[mob.z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[mob.x];Y=[mob.y];Z=[mob.z]'>JMP</a>)",0,1)
 				Server.setcode( tcscode ) // this actually saves the code from input to the server
-				src << output(null, "tcserror") // clear the errors
+				src << output(null, "tcserror")
 			else
 				src << output(null, "tcserror")
 				src << output("<font color = red>Failed to save: Unable to locate server machine. (Back up your code before exiting the window!)</font color>", "tcserror")
@@ -171,7 +171,7 @@ client/verb/tcsrevert()
 
 				winset(mob, "tcscode", "text=\"[showcode]\"")
 
-				src << output(null, "tcserror") // clear the errors
+				src << output(null, "tcserror")
 			else
 				src << output(null, "tcserror")
 				src << output("<font color = red>Failed to revert: Unable to locate server machine.</font color>", "tcserror")

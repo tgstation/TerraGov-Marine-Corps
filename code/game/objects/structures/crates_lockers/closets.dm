@@ -129,7 +129,7 @@
 /obj/structure/closet/proc/toggle(mob/living/user)
 	user.next_move = world.time + 5
 	if(!(src.opened ? src.close() : src.open()))
-		user << "<span class='notice'>It won't budge!</span>"
+		to_chat(user, "<span class='notice'>It won't budge!</span>")
 	return
 
 // this should probably use dump_contents()
@@ -186,7 +186,7 @@
 		if(istype(W, /obj/item/tool/weldingtool))
 			var/obj/item/tool/weldingtool/WT = W
 			if(!WT.remove_fuel(0,user))
-				user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
+				to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
 				return
 			new /obj/item/stack/sheet/metal(src.loc)
 			for(var/mob/M in viewers(src))
@@ -202,7 +202,7 @@
 	else if(istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
 		if(!WT.remove_fuel(0,user))
-			user << "<span class='notice'>You need more welding fuel to complete this task.</span>"
+			to_chat(user, "<span class='notice'>You need more welding fuel to complete this task.</span>")
 			return
 		welded = !welded
 		update_icon()
@@ -247,11 +247,11 @@
 	user.next_move = world.time + 5
 
 	if(!src.open())
-		user << "<span class='notice'>It won't budge!</span>"
+		to_chat(user, "<span class='notice'>It won't budge!</span>")
 		if(!lastbang)
 			lastbang = 1
 			for (var/mob/M in hearers(src, null))
-				M << text("<FONT size=[]>BANG, bang!</FONT>", max(0, 5 - get_dist(src, M)))
+				to_chat(M, text("<FONT size=[]>BANG, bang!</FONT>", max(0, 5 - get_dist(src, M))))
 			spawn(30)
 				lastbang = 0
 
@@ -269,7 +269,7 @@
 /obj/structure/closet/attack_self_tk(mob/user as mob)
 	src.add_fingerprint(user)
 	if(!src.toggle())
-		usr << "<span class='notice'>It won't budge!</span>"
+		to_chat(usr, "<span class='notice'>It won't budge!</span>")
 
 /obj/structure/closet/verb/verb_toggleopen()
 	set src in oview(1)
@@ -283,7 +283,7 @@
 		src.add_fingerprint(usr)
 		src.toggle(usr)
 	else
-		usr << "<span class='warning'>This mob type can't use this verb.</span>"
+		to_chat(usr, "<span class='warning'>This mob type can't use this verb.</span>")
 
 /obj/structure/closet/update_icon()//Putting the welded stuff in updateicon() so it's easy to overwrite for special cases (Fridges, cabinets, and whatnot)
 	overlays.Cut()

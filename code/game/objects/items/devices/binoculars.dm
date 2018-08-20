@@ -40,7 +40,7 @@
 
 /obj/item/device/binoculars/tactical/examine()
 	..()
-	usr << "<span class='notice'>They are currently set to [mode ? "range finder" : "CAS marking"] mode.</span>"
+	to_chat(usr, "<span class='notice'>They are currently set to [mode ? "range finder" : "CAS marking"] mode.</span>")
 
 /obj/item/device/binoculars/tactical/Dispose()
 	if(laser)
@@ -84,12 +84,12 @@
 		return
 
 	if(!changable)
-		user << "These binoculars only have one mode."
+		to_chat(user, "These binoculars only have one mode.")
 		return
 
 	if(!zoom)
 		mode = !mode
-		user << "<span class='notice'>You switch [src] to [mode? "range finder" : "CAS marking" ] mode.</span>"
+		to_chat(user, "<span class='notice'>You switch [src] to [mode? "range finder" : "CAS marking" ] mode.</span>")
 		update_icon()
 		playsound(usr, 'sound/machines/click.ogg', 15, 1)
 
@@ -97,11 +97,11 @@
 	set waitfor = 0
 
 	if(laser || coord)
-		user << "<span class='warning'>You're already targeting something.</span>"
+		to_chat(user, "<span class='warning'>You're already targeting something.</span>")
 		return
 
 	if(world.time < laser_cooldown)
-		user << "<span class='warning'>[src]'s laser battery is recharging.</span>"
+		to_chat(user, "<span class='warning'>[src]'s laser battery is recharging.</span>")
 		return
 
 	if(!user.mind)
@@ -127,18 +127,18 @@
 			if(CEILING_GLASS)
 				is_outside = TRUE
 	if(!is_outside)
-		user << "<span class='warning'>INVALID TARGET: target must be visible from high altitude.</span>"
+		to_chat(user, "<span class='warning'>INVALID TARGET: target must be visible from high altitude.</span>")
 		return
 	if(user.action_busy)
 		return
 	playsound(src, 'sound/effects/nightvision.ogg', 35)
-	user << "<span class='notice'>INITIATING LASER TARGETING. Stand still.</span>"
+	to_chat(user, "<span class='notice'>INITIATING LASER TARGETING. Stand still.</span>")
 	if(!do_after(user, acquisition_time, TRUE, 5, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
 		return
 	if(mode)
 		var/obj/effect/overlay/temp/laser_coordinate/LT = new (TU, laz_name)
 		coord = LT
-		user << "<span class='notice'>SIMPLIFIED COORDINATES OF TARGET. LONGITUDE [coord.x]. LATITUDE [coord.y].</span>"
+		to_chat(user, "<span class='notice'>SIMPLIFIED COORDINATES OF TARGET. LONGITUDE [coord.x]. LATITUDE [coord.y].</span>")
 		playsound(src, 'sound/effects/binoctarget.ogg', 35)
 		while(coord)
 			if(!do_after(user, 50, TRUE, 5, BUSY_ICON_GENERIC))
@@ -147,7 +147,7 @@
 					coord = null
 				break
 	else
-		user << "<span class='notice'>TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE.</span>"
+		to_chat(user, "<span class='notice'>TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE.</span>")
 		var/obj/effect/overlay/temp/laser_target/LT = new (TU, laz_name)
 		laser = LT
 		playsound(src, 'sound/effects/binoctarget.ogg', 35)

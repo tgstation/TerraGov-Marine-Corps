@@ -214,6 +214,6 @@
 
 	if(hud_used && client)
 		hud_used.show_hud()
-		usr << "<span class ='info'>Switched HUD mode. Press F12 to toggle.</span>"
+		to_chat(usr, "<span class ='info'>Switched HUD mode. Press F12 to toggle.</span>")
 	else
-		usr << "<span class ='warning'>This mob type does not use a HUD.</span>"
+		to_chat(usr, "<span class ='warning'>This mob type does not use a HUD.</span>")

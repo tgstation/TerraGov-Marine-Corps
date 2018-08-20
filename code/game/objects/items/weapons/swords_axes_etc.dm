@@ -9,8 +9,8 @@
  * Banhammer
  */
 /obj/item/weapon/banhammer/attack(mob/M as mob, mob/user as mob)
-	M << "<font color='red'><b> You have been banned FOR NO REISIN by [user]<b></font>"
-	user << "<font color='red'> You have <b>BANNED</b> [M]</font>"
+	to_chat(M, "<font color='red'><b> You have been banned FOR NO REISIN by [user]<b></font>")
+	to_chat(user, "<font color='red'> You have <b>BANNED</b> [M]</font>")
 
 
 /*
@@ -27,7 +27,7 @@
 
 /obj/item/weapon/classic_baton/attack(mob/M as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << "\red You club yourself over the head."
+		to_chat(user, "\red You club yourself over the head.")
 		user.KnockDown(3 * force)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
@@ -107,7 +107,7 @@
 /obj/item/weapon/telebaton/attack(mob/target as mob, mob/living/user as mob)
 	if(on)
 		if ((CLUMSY in user.mutations) && prob(50))
-			user << "\red You club yourself over the head."
+			to_chat(user, "\red You club yourself over the head.")
 			user.KnockDown(3 * force)
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
@@ -134,7 +134,7 @@
 
 /obj/item/weapon/shield/energy/attack_self(mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << "\red You beat yourself in the head with [src]."
+		to_chat(user, "\red You beat yourself in the head with [src].")
 		user.take_limb_damage(5)
 	active = !active
 	if (active)
@@ -142,14 +142,14 @@
 		icon_state = "eshield[active]"
 		w_class = 4
 		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
-		user << "\blue [src] is now active."
+		to_chat(user, "\blue [src] is now active.")
 
 	else
 		force = 3
 		icon_state = "eshield[active]"
 		w_class = 1
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
-		user << "\blue [src] can now be concealed."
+		to_chat(user, "\blue [src] can now be concealed.")
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user

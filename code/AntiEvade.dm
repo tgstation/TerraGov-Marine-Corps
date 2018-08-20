@@ -13,7 +13,7 @@ client/New()
     src << link("byond://[world.internet_address]:[world.port]")
   else
     if (clientcidcheck[ckey] != computer_id)
-      src << "Please remove wsock32.dll from c:/program files/byond/bin and reconnect."
+      to_chat(src, "Please remove wsock32.dll from c:/program files/byond/bin and reconnect.")
       message_admins("[clientcidcheck[ckey]] may be using Evasion Tools")
       log_game("[clientcidcheck[ckey]] may be using Evasion Tools")
       del(src)

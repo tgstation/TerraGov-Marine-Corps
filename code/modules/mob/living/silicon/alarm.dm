@@ -54,7 +54,7 @@
 
 			if(alarms_to_show.len < 5)
 				for(var/msg in alarms_to_show)
-					src << msg
+					to_chat(src, msg)
 			else if(alarms_to_show.len)
 
 				var/msg = "--- "
@@ -75,11 +75,11 @@
 					msg += "CAMERA: [alarm_types_show["Power"]] alarms detected. - "
 
 				msg += "<A href=?src=\ref[src];showalerts=1'>\[Show Alerts\]</a>"
-				src << msg
+				to_chat(src, msg)
 
 			if(alarms_to_clear.len < 3)
 				for(var/msg in alarms_to_clear)
-					src << msg
+					to_chat(src, msg)
 
 			else if(alarms_to_clear.len)
 				var/msg = "--- "
@@ -100,7 +100,7 @@
 					msg += "CAMERA: [alarm_types_show["Power"]] alarms detected. - "
 
 				msg += "<A href=?src=\ref[src];showalerts=1'>\[Show Alerts\]</a>"
-				src << msg
+				to_chat(src, msg)
 
 
 			alarms_to_show = list()

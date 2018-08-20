@@ -155,7 +155,7 @@ obj/structure/bed/Dispose()
 		var/obj/item/grab/G = W
 		if(ismob(G.grabbed_thing))
 			var/mob/M = G.grabbed_thing
-			user << "<span class='notice'>You place [M] on [src].</span>"
+			to_chat(user, "<span class='notice'>You place [M] on [src].</span>")
 			M.forceMove(loc)
 		return TRUE
 
@@ -219,7 +219,7 @@ obj/structure/bed/Dispose()
 	if(istype(W, /obj/item/roller_holder) && rollertype == /obj/structure/bed/roller)
 		var/obj/item/roller_holder/RH = W
 		if(!RH.held)
-			user << "<span class='notice'>You pick up [src].</span>"
+			to_chat(user, "<span class='notice'>You pick up [src].</span>")
 			loc = RH
 			RH.held = src
 			return
@@ -245,11 +245,11 @@ obj/structure/bed/Dispose()
 /obj/item/roller_holder/attack_self(mob/user as mob)
 
 	if(!held)
-		user << "<span class='warning'>The rack is empty.</span>"
+		to_chat(user, "<span class='warning'>The rack is empty.</span>")
 		return
 
 	var/obj/structure/bed/roller/R = new(user.loc)
-	user << "<span class='notice'>You deploy [R].</span>"
+	to_chat(user, "<span class='notice'>You deploy [R].</span>")
 	R.add_fingerprint(user)
 	cdel(held)
 	held = null
@@ -306,11 +306,11 @@ var/global/list/activated_medevac_stretchers = list()
 		return
 
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
-		user << "<span class='warning'>You don't know how to use [src].</span>"
+		to_chat(user, "<span class='warning'>You don't know how to use [src].</span>")
 		return
 
 	if(user == buckled_mob)
-		user << "<span class='warning'>You can't reach the beacon activation button while buckled to [src].</span>"
+		to_chat(user, "<span class='warning'>You can't reach the beacon activation button while buckled to [src].</span>")
 		return
 
 	if(stretcher_activated)
@@ -319,26 +319,26 @@ var/global/list/activated_medevac_stretchers = list()
 		if(linked_medevac)
 			linked_medevac.linked_stretcher = null
 			linked_medevac = null
-		user << "<span class='notice'>You deactivate [src]'s beacon.</span>"
+		to_chat(user, "<span class='notice'>You deactivate [src]'s beacon.</span>")
 		update_icon()
 
 	else
 		if(z != 1)
-			user << "<span class='warning'>You can't activate [src]'s beacon here.</span>"
+			to_chat(user, "<span class='warning'>You can't activate [src]'s beacon here.</span>")
 			return
 
 		var/area/AR = get_area(src)
 		if(AR.ceiling >= CEILING_METAL)
-			user << "<span class='warning'>[src] must be in the open or under a glass roof.</span>"
+			to_chat(user, "<span class='warning'>[src] must be in the open or under a glass roof.</span>")
 			return
 
 		if(buckled_mob || buckled_bodybag)
 			stretcher_activated = TRUE
 			activated_medevac_stretchers += src
-			user << "<span class='notice'>You activate [src]'s beacon.</span>"
+			to_chat(user, "<span class='notice'>You activate [src]'s beacon.</span>")
 			update_icon()
 		else
-			user << "<span class='warning'>You need to attach something to [src] before you can activate its beacon yet.</span>"
+			to_chat(user, "<span class='warning'>You need to attach something to [src] before you can activate its beacon yet.</span>")
 
 /obj/item/roller/medevac
 	name = "medevac stretcher"

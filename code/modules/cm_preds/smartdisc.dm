@@ -16,9 +16,9 @@
 		if(!active)
 			if(!isYautja(user))
 				if(prob(75))
-					user << "You fiddle with the disc, but nothing happens. Try again maybe?"
+					to_chat(user, "You fiddle with the disc, but nothing happens. Try again maybe?")
 					return
-			user << "<span class='warning'>You activate the smart-disc and it whirrs to life!</span>"
+			to_chat(user, "<span class='warning'>You activate the smart-disc and it whirrs to life!</span>")
 			activate(user)
 			add_fingerprint(user)
 			if(iscarbon(user))

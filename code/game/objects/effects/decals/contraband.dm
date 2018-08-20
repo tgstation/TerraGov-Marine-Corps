@@ -52,10 +52,10 @@ obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/tool/wirecutters))
 		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 		if(ruined)
-			user << "<span class='notice'>You remove the remnants of the poster.</span>"
+			to_chat(user, "<span class='notice'>You remove the remnants of the poster.</span>")
 			cdel(src)
 		else
-			user << "<span class='notice'>You carefully remove the poster from the wall.</span>"
+			to_chat(user, "<span class='notice'>You carefully remove the poster from the wall.</span>")
 			roll_and_drop(user.loc)
 		return
 
@@ -89,20 +89,20 @@ obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
 /turf/closed/wall/proc/place_poster(var/obj/item/contraband/poster/P, var/mob/user)
 
 	if(!istype(src,/turf/closed/wall))
-		user << "\red You can't place this here!"
+		to_chat(user, "\red You can't place this here!")
 		return
 
 	var/stuff_on_wall = 0
 	for(var/obj/O in contents) //Let's see if it already has a poster on it or too much stuff
 		if(istype(O,/obj/structure/sign/poster))
-			user << "<span class='notice'>The wall is far too cluttered to place a poster!</span>"
+			to_chat(user, "<span class='notice'>The wall is far too cluttered to place a poster!</span>")
 			return
 		stuff_on_wall++
 		if(stuff_on_wall == 3)
-			user << "<span class='notice'>The wall is far too cluttered to place a poster!</span>"
+			to_chat(user, "<span class='notice'>The wall is far too cluttered to place a poster!</span>")
 			return
 
-	user << "<span class='notice'>You start placing the poster on the wall...</span>" //Looks like it's uncluttered enough. Place the poster.
+	to_chat(user, "<span class='notice'>You start placing the poster on the wall...</span>")
 
 	//declaring D because otherwise if P gets 'deconstructed' we lose our reference to P.resulting_poster
 	var/obj/structure/sign/poster/D = new(P.serial_number)
@@ -117,7 +117,7 @@ obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
 	if(!D)	return
 
 	if(istype(src,/turf/closed/wall) && user && user.loc == temp_loc)//Let's check if everything is still there
-		user << "<span class='notice'>You place the poster!</span>"
+		to_chat(user, "<span class='notice'>You place the poster!</span>")
 	else
 		D.roll_and_drop(temp_loc)
 	return

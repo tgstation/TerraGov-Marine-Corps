@@ -45,14 +45,14 @@
 	if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_MEDIC)
 		..()
 	else
-		user << "<span class='warning'>You have no idea what any of the data means and power it off before it makes you nauseated.</span>"
+		to_chat(user, "<span class='warning'>You have no idea what any of the data means and power it off before it makes you nauseated.</span>")
 		active = 0
 
 /obj/item/clothing/glasses/hud/health/equipped(mob/living/carbon/human/user, slot)
 	if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_MEDIC)
 		..()
 	else
-		user << "<span class='warning'>You have no idea what any of the data means and power it off before it makes you nauseated.</span>"
+		to_chat(user, "<span class='warning'>You have no idea what any of the data means and power it off before it makes you nauseated.</span>")
 		active = 0
 
 /obj/item/clothing/glasses/hud/security

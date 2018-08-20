@@ -109,11 +109,11 @@
 /mob/living/silicon/robot/drone/attackby(obj/item/W, mob/living/user)
 
 	if(istype(W, /obj/item/robot/upgrade/))
-		user << "\red The maintenance drone chassis not compatible with \the [W]."
+		to_chat(user, "\red The maintenance drone chassis not compatible with \the [W].")
 		return
 
 	else if (istype(W, /obj/item/tool/crowbar))
-		user << "The machine is hermetically sealed. You can't open the case."
+		to_chat(user, "The machine is hermetically sealed. You can't open the case.")
 		return
 
 	..()
@@ -149,13 +149,13 @@
 //CONSOLE PROCS
 /mob/living/silicon/robot/drone/proc/law_resync()
 	if(stat != 2)
-		src << "\red A reset-to-factory directive packet filters through your data connection, and you obediently modify your programming to suit it."
+		to_chat(src, "\red A reset-to-factory directive packet filters through your data connection, and you obediently modify your programming to suit it.")
 		full_law_reset()
 		show_laws()
 
 /mob/living/silicon/robot/drone/proc/shut_down()
 	if(stat != 2)
-		src << "\red You feel a system kill order percolate through your tiny brain, and you obediently destroy yourself."
+		to_chat(src, "\red You feel a system kill order percolate through your tiny brain, and you obediently destroy yourself.")
 		death()
 
 /mob/living/silicon/robot/drone/proc/full_law_reset()
@@ -190,14 +190,14 @@
 		player.mob.mind.transfer_to(src)
 
 	lawupdate = 0
-	src << "<b>Systems rebooted</b>. Loading base pattern maintenance protocol... <b>loaded</b>."
+	to_chat(src, "<b>Systems rebooted</b>. Loading base pattern maintenance protocol... <b>loaded</b>.")
 	full_law_reset()
-	src << "<br><b>You are a maintenance drone, a tiny-brained robotic repair machine</b>."
-	src << "You have no individual will, no personality, and no drives or urges other than your laws."
-	src << "Use <b>:d</b> to talk to other drones and <b>say</b> to speak silently to your nearby fellows."
-	src << "Remember, <b>you are lawed against interference with the crew</b>."
-	src << "<b>Don't invade their worksites and don't steal their resources.</b>"
-	src << "<b>If a crewmember has noticed you, <i>you are probably breaking your third law</i></b>."
+	to_chat(src, "<br><b>You are a maintenance drone, a tiny-brained robotic repair machine</b>.")
+	to_chat(src, "You have no individual will, no personality, and no drives or urges other than your laws.")
+	to_chat(src, "Use <b>:d</b> to talk to other drones and <b>say</b> to speak silently to your nearby fellows.")
+	to_chat(src, "Remember, <b>you are lawed against interference with the crew</b>.")
+	to_chat(src, "<b>Don't invade their worksites and don't steal their resources.</b>")
+	to_chat(src, "<b>If a crewmember has noticed you, <i>you are probably breaking your third law</i></b>.")
 
 /mob/living/silicon/robot/drone/Bump(atom/movable/AM as mob|obj, yes)
 	if (!yes || ( \
@@ -220,12 +220,12 @@
 	else if(istype(AM,/obj/item))
 		var/obj/item/O = AM
 		if(O.w_class > 2)
-			src << "<span class='warning'>You are too small to pull that.</span>"
+			to_chat(src, "<span class='warning'>You are too small to pull that.</span>")
 			return
 		else
 			..()
 	else
-		src << "<span class='warning'>You are too small to pull that.</span>"
+		to_chat(src, "<span class='warning'>You are too small to pull that.</span>")
 		return
 
 /mob/living/silicon/robot/drone/add_robot_verbs()
@@ -246,7 +246,7 @@
 
 		for (var/mob/living/silicon/robot/drone/A in mob_list)
 			if(newname == A.nicknumber)
-				src << "<span class='warning'>That identifier is taken, pick again.</span>"
+				to_chat(src, "<span class='warning'>That identifier is taken, pick again.</span>")
 				return 0
 
 		custom_name = newname
@@ -259,4 +259,4 @@
 	set category = "Robot Commands"
 	if(resting)
 		resting = 0
-		src << "<span class='notice'>You begin powering up.</span>"
+		to_chat(src, "<span class='notice'>You begin powering up.</span>")

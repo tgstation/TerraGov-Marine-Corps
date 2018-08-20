@@ -8,7 +8,7 @@
 
 	if (src.client)
 		if(src.client.prefs.muted & MUTE_DEADCHAT)
-			src << "\red You cannot talk in deadchat (muted)."
+			to_chat(src, "\red You cannot talk in deadchat (muted).")
 			return
 
 		if (src.client.handle_spam_prevention(message,MUTE_DEADCHAT))
@@ -57,7 +57,7 @@
 	if(client.prefs.toggles_chat & CHAT_GHOSTEARS && speaker.z == z && get_dist(speaker, src) <= world.view)
 		message = "<b>[message]</b>"
 
-	src << "<span class='game say'><span class='name'>[comm_paygrade][speaker_name]</span>[alt_name] [track][verb], <span class='message'><span class='[style]'>\"[message]\"</span></span></span>"
+	to_chat(src, "<span class='game say'><span class='name'>[comm_paygrade][speaker_name]</span>[alt_name] [track][verb], <span class='message'><span class='[style]'>\"[message]\"</span></span></span>")
 	if (speech_sound && (get_dist(speaker, src) <= world.view && src.z == speaker.z))
 		var/turf/source = speaker? get_turf(speaker) : get_turf(src)
 		src.playsound_local(source, speech_sound, sound_vol, 1)
@@ -81,7 +81,7 @@
 
 	if(src.client)
 		if(src.client.prefs.muted & MUTE_DEADCHAT)
-			src << "\red You cannot emote in deadchat (muted)."
+			to_chat(src, "\red You cannot emote in deadchat (muted).")
 			return
 
 		if(src.client.handle_spam_prevention(message, MUTE_DEADCHAT))

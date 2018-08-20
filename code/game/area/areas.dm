@@ -371,7 +371,7 @@
 		mob:AdjustStunned(2)
 		mob:AdjustKnockeddown(2)
 
-	mob << "Gravity!"
+	to_chat(mob, "Gravity!")
 
 
 

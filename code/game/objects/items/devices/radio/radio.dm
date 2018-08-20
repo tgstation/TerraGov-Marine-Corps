@@ -59,7 +59,7 @@
 			frequency = sanitize_frequency(frequency, maxf)
 	// The max freq is higher than a regular headset to decrease the chance of people listening in, if you use the higher channels.
 	else if (frequency < 1441 || frequency > maxf)
-		//world.log << "[src] ([type]) has a frequency of [frequency], sanitizing."
+		//to_chat(world.log, "[src] ([type]) has a frequency of [frequency], sanitizing.")
 		frequency = sanitize_frequency(frequency, maxf)
 
 	set_frequency(frequency)
@@ -180,7 +180,7 @@
 	var/datum/radio_frequency/connection = null
 	if(channel && channels && channels.len > 0)
 		if (channel == "department")
-			//world << "DEBUG: channel=\"[channel]\" switching to \"[channels[1]]\""
+			//to_chat(world, "DEBUG: channel=\"[channel]\" switching to \"[channels[1]]\"")
 			channel = channels[1]
 		connection = secure_radio_connections[channel]
 	else
@@ -472,9 +472,9 @@
 	..()
 	if ((in_range(src, user) || loc == user))
 		if (b_stat)
-			user << "\blue [src] can be attached and modified!"
+			to_chat(user, "\blue [src] can be attached and modified!")
 		else
-			user << "\blue [src] can not be modified or attached!"
+			to_chat(user, "\blue [src] can not be modified or attached!")
 
 
 /obj/item/device/radio/attackby(obj/item/W as obj, mob/user as mob)
@@ -543,14 +543,14 @@
 					keyslot = null
 
 			recalculateChannels()
-			user << "You pop out the encryption key in the radio!"
+			to_chat(user, "You pop out the encryption key in the radio!")
 
 		else
-			user << "This radio doesn't have any encryption keys!"
+			to_chat(user, "This radio doesn't have any encryption keys!")
 
 	if(istype(W, /obj/item/device/encryptionkey/))
 		if(keyslot)
-			user << "The radio can't hold another key!"
+			to_chat(user, "The radio can't hold another key!")
 			return
 
 		if(!keyslot)
@@ -601,10 +601,10 @@
 	if (href_list["mode"])
 		if(subspace_transmission != 1)
 			subspace_transmission = 1
-			usr << "Subspace Transmission is disabled"
+			to_chat(usr, "Subspace Transmission is disabled")
 		else
 			subspace_transmission = 0
-			usr << "Subspace Transmission is enabled"
+			to_chat(usr, "Subspace Transmission is enabled")
 		if(subspace_transmission == 1)//Simple as fuck, clears the channel list to prevent talking/listening over them if subspace transmission is disabled
 			channels = list()
 		else

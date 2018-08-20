@@ -161,7 +161,7 @@
 			precision = max(rand(1,100)*bagholding.len,100)
 			if(istype(teleatom, /mob/living))
 				var/mob/living/MM = teleatom
-				MM << "\red The Bluespace interface on your Bag of Holding interferes with the teleport!"
+				to_chat(MM, "\red The Bluespace interface on your Bag of Holding interferes with the teleport!")
 		return 1
 
 	teleportChecks()
@@ -180,7 +180,7 @@
 		if(destination.z == 2) //centcomm z-level
 			if(istype(teleatom, /obj/mecha))
 				var/obj/mecha/MM = teleatom
-				MM.occupant << "\red <B>The mech would not survive the jump to a location so far away!</B>"
+				to_chat(MM.occupant, "\red <B>The mech would not survive the jump to a location so far away!</B>")
 				return 0
 			if(!isemptylist(teleatom.search_contents_for(/obj/item/storage/backpack/holding)))
 				teleatom.visible_message("\red <B>The Bag of Holding bounces off of the portal!</B>")

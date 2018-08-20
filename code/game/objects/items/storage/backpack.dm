@@ -23,7 +23,7 @@
 				if(!user.put_in_active_hand(src))
 					dropped(user)
 */
-			H << "<span class='notice'>You can't look in [src] while it's on your back.</span>"
+			to_chat(H, "<span class='notice'>You can't look in [src] while it's on your back.</span>")
 			return
 	..()
 
@@ -31,7 +31,7 @@
 /*	if(!worn_accessible && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.back == src)
-			H << "<span class='notice'>You can't access [src] while it's on your back.</span>"
+			to_chat(H, "<span class='notice'>You can't access [src] while it's on your back.</span>")
 			return TRUE
 */
 	if (use_sound)
@@ -53,7 +53,7 @@
 
 	for (var/type in uniform_restricted)
 		if (!(locate(type) in equipment))
-			H << "<span class='warning'>You must be wearing [initial(type:name)] to equip [name]!"
+			to_chat(H, "<span class='warning'>You must be wearing [initial(type:name)] to equip [name]!")
 			return 0
 	return 1
 
@@ -75,7 +75,7 @@
 	if(!worn_accessible && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.back == src)
-			H << "<span class='notice'>You can't access [src] while it's on your back.</span>"
+			to_chat(H, "<span class='notice'>You can't access [src] while it's on your back.</span>")
 			return
 	..()
 
@@ -93,10 +93,10 @@
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if(crit_fail)
-			user << "\red The Bluespace generator isn't working."
+			to_chat(user, "\red The Bluespace generator isn't working.")
 			return
 		if(istype(W, /obj/item/storage/backpack/holding) && !W.crit_fail)
-			user << "\red The Bluespace interfaces of the two devices conflict and malfunction."
+			to_chat(user, "\red The Bluespace interfaces of the two devices conflict and malfunction.")
 			cdel(W)
 			return
 		..()
@@ -104,9 +104,9 @@
 	proc/failcheck(mob/user as mob)
 		if (prob(src.reliability)) return 1 //No failure
 		if (prob(src.reliability))
-			user << "\red The Bluespace portal resists your attempt to add another item." //light failure
+			to_chat(user, "\red The Bluespace portal resists your attempt to add another item.")
 		else
-			user << "\red The Bluespace generator malfunctions!"
+			to_chat(user, "\red The Bluespace generator malfunctions!")
 			for (var/obj/O in src.contents) //it broke, delete what was in it
 				cdel(O)
 			crit_fail = 1
@@ -357,7 +357,7 @@
 		return
 
 	if (M.back != src)
-		M << "<span class='warning'>You must be wearing the cloak to activate it!"
+		to_chat(M, "<span class='warning'>You must be wearing the cloak to activate it!")
 		return
 
 	if (camo_active)
@@ -365,12 +365,12 @@
 		return
 
 	if (!camo_ready)
-		M << "<span class='warning'>Your thermal dampeners are still recharging!"
+		to_chat(M, "<span class='warning'>Your thermal dampeners are still recharging!")
 		return
 
 	camo_ready = 0
 	camo_active = 1
-	M << "<span class='notice'>You activate your cloak's camouflage.</span>"
+	to_chat(M, "<span class='notice'>You activate your cloak's camouflage.</span>")
 
 	for (var/mob/O in oviewers(M))
 		O.show_message("[M] vanishes into thin air!", 1)
@@ -394,7 +394,7 @@
 	if (!user)
 		return 0
 
-	user << "<span class='warning'>Your cloak's camouflage has deactivated!</span>"
+	to_chat(user, "<span class='warning'>Your cloak's camouflage has deactivated!</span>")
 	camo_active = 0
 
 	for (var/mob/O in oviewers(user))
@@ -418,7 +418,7 @@
 
 	spawn while (!camo_ready && !camo_active)
 		if (world.timeofday > camo_cooldown_timer)
-			user << "<span class='notice'>Your cloak's thermal dampeners have recharged!"
+			to_chat(user, "<span class='notice'>Your cloak's thermal dampeners have recharged!")
 			camo_ready = 1
 
 		sleep(10)	// Process every second.
@@ -458,11 +458,11 @@
 	if(istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/T = W
 		if(T.welding)
-			user << "<span class='warning'>That was close! However you realized you had the welder on and prevented disaster.</span>"
+			to_chat(user, "<span class='warning'>That was close! However you realized you had the welder on and prevented disaster.</span>")
 			return
 		if(!(T.get_fuel()==T.max_fuel) && reagents.total_volume)
 			reagents.trans_to(W, T.max_fuel)
-			user << "<span class='notice'>Welder refilled!</span>"
+			to_chat(user, "<span class='notice'>Welder refilled!</span>")
 			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 			return
 	else if(istype(W, /obj/item/ammo_magazine/flamer_tank))
@@ -473,7 +473,7 @@
 			FT.current_rounds = fuel_available
 			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 			FT.caliber = "Fuel"
-			user << "<span class='notice'>You refill [FT] with [lowertext(FT.caliber)].</span>"
+			to_chat(user, "<span class='notice'>You refill [FT] with [lowertext(FT.caliber)].</span>")
 			FT.update_icon()
 			return
 	. = ..()
@@ -483,17 +483,17 @@
 		return
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume < max_fuel)
 		O.reagents.trans_to(src, max_fuel)
-		user << "\blue You crack the cap off the top of the pack and fill it back up again from the tank."
+		to_chat(user, "\blue You crack the cap off the top of the pack and fill it back up again from the tank.")
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume == max_fuel)
-		user << "\blue The pack is already full!"
+		to_chat(user, "\blue The pack is already full!")
 		return
 	..()
 
 /obj/item/storage/backpack/marine/engineerpack/examine(mob/user)
 	..()
-	user << "[reagents.total_volume] units of fuel left!"
+	to_chat(user, "[reagents.total_volume] units of fuel left!")
 
 // Pyrotechnician Spec backpack fuel tank
 /obj/item/storage/backpack/marine/engineerpack/flamethrower
@@ -511,7 +511,7 @@
 			FTL.current_rounds = fuel_available
 			playsound(loc, 'sound/effects/refill.ogg', 25, 1, 3)
 			FTL.caliber = "UT-Napthal Fuel"
-			user << "<span class='notice'>You refill [FTL] with [lowertext(FTL.caliber)].</span>"
+			to_chat(user, "<span class='notice'>You refill [FTL] with [lowertext(FTL.caliber)].</span>")
 			FTL.update_icon()
 	. = ..()
 

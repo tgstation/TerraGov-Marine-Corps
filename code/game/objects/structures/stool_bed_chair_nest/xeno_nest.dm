@@ -24,7 +24,7 @@
 		var/obj/item/grab/G = W
 		if(ismob(G.grabbed_thing))
 			var/mob/M = G.grabbed_thing
-			user << "<span class='notice'>You place [M] on [src].</span>"
+			to_chat(user, "<span class='notice'>You place [M] on [src].</span>")
 			M.forceMove(loc)
 		return TRUE
 	else
@@ -52,7 +52,7 @@
 				unbuckle()
 			else
 				if(buckled_mob.stat)
-					buckled_mob << "<span class='warning'>You're a little too unconscious to try that.</span>"
+					to_chat(buckled_mob, "<span class='warning'>You're a little too unconscious to try that.</span>")
 					return
 				if(resisting_ready && buckled_mob == user && buckled_mob.stat != DEAD)
 					buckled_mob.visible_message("<span class='danger'>\The [buckled_mob] breaks free from \the [src]!</span>",\
@@ -61,7 +61,7 @@
 					unbuckle()
 					return
 				if(resisting)
-					buckled_mob << "<span class='warning'>You're already trying to free yourself. Give it some time.</span>"
+					to_chat(buckled_mob, "<span class='warning'>You're already trying to free yourself. Give it some time.</span>")
 					return
 				if(buckled_mob && buckled_mob.name)
 					buckled_mob.visible_message("<span class='warning'>\The [buckled_mob] struggles to break free of \the [src].</span>",\
@@ -76,9 +76,9 @@
 						if(ishuman(usr))
 							var/mob/living/carbon/human/H = usr
 							if(H.handcuffed)
-								buckled_mob << "<span class='danger'>You are ready to break free of the nest, but your limbs are still secured. Resist once more to pop up, then resist again to break your limbs free!</span>"
+								to_chat(buckled_mob, "<span class='danger'>You are ready to break free of the nest, but your limbs are still secured. Resist once more to pop up, then resist again to break your limbs free!</span>")
 							else
-								buckled_mob << "<span class='danger'>You are ready to break free! Resist once more to free yourself!</span>"
+								to_chat(buckled_mob, "<span class='danger'>You are ready to break free! Resist once more to free yourself!</span>")
 			add_fingerprint(user)
 
 /mob/living/carbon/human/proc/start_nesting_cooldown()
@@ -93,25 +93,25 @@
 		return
 
 	if(buckled_mob)
-		user << "<span class='warning'>There's already someone in [src].</span>"
+		to_chat(user, "<span class='warning'>There's already someone in [src].</span>")
 		return
 
 	if(M.mob_size > MOB_SIZE_HUMAN)
-		user << "<span class='warning'>\The [M] is too big to fit in [src].</span>"
+		to_chat(user, "<span class='warning'>\The [M] is too big to fit in [src].</span>")
 		return
 
 	if(!isXeno(user))
-		user << "<span class='warning'>Gross! You're not touching that stuff.</span>"
+		to_chat(user, "<span class='warning'>Gross! You're not touching that stuff.</span>")
 		return
 
 	if(isYautja(M))
-		user << "<span class='warning'>\The [M] seems to be wearing some kind of resin-resistant armor!</span>"
+		to_chat(user, "<span class='warning'>\The [M] seems to be wearing some kind of resin-resistant armor!</span>")
 		return
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(H.recently_unbuckled)
-			user << "<span class='warning'>[M] was recently unbuckled. Wait a bit.</span>"
+			to_chat(user, "<span class='warning'>[M] was recently unbuckled. Wait a bit.</span>")
 			return
 
 	if(M == user)
@@ -120,7 +120,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(!H.lying) //Don't ask me why is has to be
-			user << "<span class='warning'>[M] is resisting, ground them.</span>"
+			to_chat(user, "<span class='warning'>[M] is resisting, ground them.</span>")
 			return
 
 	user.visible_message("<span class='warning'>[user] pins [M] into [src], preparing the securing resin.</span>",
@@ -129,12 +129,12 @@
 	if(do_after(user, 15, TRUE, 5, BUSY_ICON_HOSTILE))
 		if(M.loc != M_loc) return
 		if(buckled_mob) //Just in case
-			user << "<span class='warning'>There's already someone in [src].</span>"
+			to_chat(user, "<span class='warning'>There's already someone in [src].</span>")
 			return
 		if(ishuman(M)) //Improperly stunned Marines won't be nested
 			var/mob/living/carbon/human/H = M
 			if(!H.lying) //Don't ask me why is has to be
-				user << "<span class='warning'>[M] is resisting, ground them.</span>"
+				to_chat(user, "<span class='warning'>[M] is resisting, ground them.</span>")
 				return
 		do_buckle(M, user)
 

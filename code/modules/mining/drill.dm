@@ -137,68 +137,68 @@
 	if(istype(W,/obj/item/tool/screwdriver))
 		if(active) return
 		open = !open
-		user << "\blue You [open ? "open" : "close"] the maintenance panel." //TODO: Sprite.
+		to_chat(user, "\blue You [open ? "open" : "close"] the maintenance panel.")
 		return
 	else
 		if(!open || active) return ..()
 		if(istype(W,/obj/item/tool/crowbar))
 			if(cell)
-				user << "You pry out \the [cell]."
+				to_chat(user, "You pry out \the [cell].")
 				cell.loc = get_turf(src)
 				cell = null
 			else if(storage)
-				user << "You slip the bolt and pry out \the [storage]."
+				to_chat(user, "You slip the bolt and pry out \the [storage].")
 				storage.loc = get_turf(src)
 				storage = null
 			else if(cutter)
-				user << "You carefully detatch and pry out \the [cutter]."
+				to_chat(user, "You carefully detatch and pry out \the [cutter].")
 				cutter.loc = get_turf(src)
 				cutter = null
 			else if(cellmount)
-				user << "You yank out a few wires and pry out \the [cellmount]."
+				to_chat(user, "You yank out a few wires and pry out \the [cellmount].")
 				cellmount.loc = get_turf(src)
 				cellmount = null
 			else
-				user << "There's nothing inside the drilling rig to remove."
+				to_chat(user, "There's nothing inside the drilling rig to remove.")
 			return
 		else if(istype(W,/obj/item/stock_parts/matter_bin))
 			if(storage)
-				user << "The drill already has a matter bin installed."
+				to_chat(user, "The drill already has a matter bin installed.")
 			else
 				if(user.drop_inv_item_to_loc(W, src))
 					storage = W
-					user << "You install \the [W]."
+					to_chat(user, "You install \the [W].")
 			return
 		else if(istype(W,/obj/item/stock_parts/micro_laser))
 			if(cutter)
-				user << "The drill already has a cutting head installed."
+				to_chat(user, "The drill already has a cutting head installed.")
 			else
 				if(user.drop_inv_item_to_loc(W, src))
 					cutter = W
-					user << "You install \the [W]."
+					to_chat(user, "You install \the [W].")
 			return
 		else if(istype(W,/obj/item/stock_parts/capacitor))
 			if(cellmount)
-				user << "The drill already has a cell capacitor installed."
+				to_chat(user, "The drill already has a cell capacitor installed.")
 			else
 				if(user.drop_inv_item_to_loc(W, src))
 					cellmount = W
-					user << "You install \the [W]."
+					to_chat(user, "You install \the [W].")
 			return
 		else if(istype(W,/obj/item/cell))
 			if(cell)
-				user << "The drill already has a cell installed."
+				to_chat(user, "The drill already has a cell installed.")
 			else
 				if(user.drop_inv_item_to_loc(W, src))
 					cell = W
-					user << "You install \the [W]."
+					to_chat(user, "You install \the [W].")
 			return
 	..()
 /obj/machinery/mining/drill/attack_hand(mob/user as mob)
 	check_supports()
 
 	if(need_player_check)
-		user << "You hit the manual override and reset the drill's error checking."
+		to_chat(user, "You hit the manual override and reset the drill's error checking.")
 		need_player_check = 0
 		if(anchored) get_resource_field()
 		update_icon()
@@ -208,14 +208,14 @@
 		if(use_cell_power())
 			active = !active
 			if(active)
-				user << "\blue You engage \the [src] and it lurches downwards, grinding noisily."
+				to_chat(user, "\blue You engage \the [src] and it lurches downwards, grinding noisily.")
 				need_update_field = 1
 			else
-				user << "\blue You disengage \the [src] and it shudders to a grinding halt."
+				to_chat(user, "\blue You disengage \the [src] and it shudders to a grinding halt.")
 		else
-			user << "\blue The drill is unpowered."
+			to_chat(user, "\blue The drill is unpowered.")
 	else
-		user << "\blue Turning on a piece of industrial machinery without sufficient bracing is a bad idea."
+		to_chat(user, "\blue Turning on a piece of industrial machinery without sufficient bracing is a bad idea.")
 
 	update_icon()
 
@@ -301,9 +301,9 @@
 	if(B)
 		for(var/obj/item/ore/O in contents)
 			O.loc = B
-		usr << "\red You unload the drill's storage cache into the ore box."
+		to_chat(usr, "\red You unload the drill's storage cache into the ore box.")
 	else
-		usr << "\red You must move an ore box up to the drill before you can unload it."
+		to_chat(usr, "\red You must move an ore box up to the drill before you can unload it.")
 */
 
 /obj/machinery/mining/brace
@@ -318,15 +318,15 @@
 	if(istype(W,/obj/item/tool/wrench))
 
 		if(istype(get_turf(src),/turf/space))
-			user << "\blue You can't anchor something to empty space. Idiot."
+			to_chat(user, "\blue You can't anchor something to empty space. Idiot.")
 			return
 
 		if(connected && connected.active)
-			user << "\blue You can't unanchor the brace of a running drill!"
+			to_chat(user, "\blue You can't unanchor the brace of a running drill!")
 			return
 
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-		user << "\blue You [anchored ? "un" : ""]anchor the brace."
+		to_chat(user, "\blue You [anchored ? "un" : ""]anchor the brace.")
 
 		anchored = !anchored
 		if(anchored)
@@ -376,7 +376,7 @@
 	if(usr.stat) return
 
 	if (src.anchored)
-		usr << "It is anchored in place!"
+		to_chat(usr, "It is anchored in place!")
 		return 0
 
 	src.dir = turn(src.dir, 90)

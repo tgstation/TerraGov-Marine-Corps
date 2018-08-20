@@ -30,7 +30,7 @@
 	has_suit.overlays += inv_overlay
 
 	if(user)
-		user << "<span class='notice'>You attach [src] to [has_suit].</span>"
+		to_chat(user, "<span class='notice'>You attach [src] to [has_suit].</span>")
 		src.add_fingerprint(user)
 
 /obj/item/clothing/tie/proc/on_removed()
@@ -111,14 +111,14 @@
 
 /obj/item/clothing/tie/medal/tie_check(obj/item/clothing/under/U, mob/user)
 	if(!ishuman(U.loc))
-		user << "<span class='warning'>[U] must be worn to apply [src].</span>"
+		to_chat(user, "<span class='warning'>[U] must be worn to apply [src].</span>")
 	else
 		var/mob/living/carbon/human/H = U.loc
 		if(H.w_uniform != U)
-			user << "<span class='warning'>[U] must be worn to apply [src].</span>"
+			to_chat(user, "<span class='warning'>[U] must be worn to apply [src].</span>")
 		else
 			if(recipient_name != H.real_name)
-				user << "<span class='warning'>[src] isn't awarded to [H].</span>"
+				to_chat(user, "<span class='warning'>[src] isn't awarded to [H].</span>")
 			else
 				return TRUE
 
@@ -127,11 +127,11 @@
 		if(H.w_uniform)
 			var/obj/item/clothing/under/U = H.w_uniform
 			if(U.hastie)
-				user << "<span class='warning'>There's already something attached to [H]'s [U.name].</span>"
+				to_chat(user, "<span class='warning'>There's already something attached to [H]'s [U.name].</span>")
 				return
 			else
 				if(recipient_name != H.real_name)
-					user << "<span class='warning'>[src] isn't awarded to [H].</span>"
+					to_chat(user, "<span class='warning'>[src] isn't awarded to [H].</span>")
 					return
 				if(user != H)
 					user.visible_message("[user] starts pinning [src] on [H]'s [U.name].", \
@@ -151,14 +151,14 @@
 					user.visible_message("[user] pins [src] on [H]'s [U.name].", \
 					"<span class='notice'>You pin [src] on [H]'s [U.name].</span>")
 		else
-			user << "<span class='warning'>[src] needs a uniform to be pinned to.</span>"
+			to_chat(user, "<span class='warning'>[src] needs a uniform to be pinned to.</span>")
 	else
 		return ..()
 
 
 /obj/item/clothing/tie/medal/examine(mob/user)
 	..()
-	user << "Awarded to: \'[recipient_rank] [recipient_name]\'. The citation reads \'[medal_citation]\'."
+	to_chat(user, "Awarded to: \'[recipient_rank] [recipient_name]\'. The citation reads \'[medal_citation]\'.")
 
 /obj/item/clothing/tie/medal/conduct
 	name = "distinguished conduct medal"
@@ -258,16 +258,16 @@
 
 /obj/item/clothing/tie/holster/proc/holster(obj/item/I, mob/user as mob)
 	if(holstered)
-		user << "\red There is already a [holstered] holstered here!"
+		to_chat(user, "\red There is already a [holstered] holstered here!")
 		return
 
 	if (!istype(I, /obj/item/weapon/gun))
-		user << "\red Only guns can be holstered!"
+		to_chat(user, "\red Only guns can be holstered!")
 		return
 
 	var/obj/item/weapon/gun/W = I
 	if (!can_holster(W))
-		user << "\red This [W] won't fit in the [src]!"
+		to_chat(user, "\red This [W] won't fit in the [src]!")
 		return
 
 	holstered = W
@@ -280,7 +280,7 @@
 		return
 
 	if(user.get_active_hand() && user.get_inactive_hand())
-		user << "<span class='warning'>You need an empty hand to draw the [holstered]!</span>"
+		to_chat(user, "<span class='warning'>You need an empty hand to draw the [holstered]!</span>")
 	else
 		if(user.a_intent == "hurt")
 			usr.visible_message("<span class='danger'>[user] draws the [holstered], ready to shoot!</span>", \
@@ -311,9 +311,9 @@
 /obj/item/clothing/tie/holster/examine(mob/user)
 	..()
 	if (holstered)
-		user << "A [holstered] is holstered here."
+		to_chat(user, "A [holstered] is holstered here.")
 	else
-		user << "It is empty."
+		to_chat(user, "It is empty.")
 
 /obj/item/clothing/tie/holster/on_attached(obj/item/clothing/under/S, mob/user as mob)
 	..()
@@ -340,11 +340,11 @@
 			H = S.hastie
 
 	if (!H)
-		usr << "/red Something is very wrong."
+		to_chat(usr, "/red Something is very wrong.")
 
 	if(!H.holstered)
 		if(!istype(usr.get_active_hand(), /obj/item/weapon/gun))
-			usr << "\blue You need your gun equiped to holster it."
+			to_chat(usr, "\blue You need your gun equiped to holster it.")
 			return
 		var/obj/item/weapon/gun/W = usr.get_active_hand()
 		H.holster(W, usr)
@@ -414,7 +414,7 @@
 	..()
 
 /obj/item/clothing/tie/storage/attack_self(mob/user as mob)
-	user << "<span class='notice'>You empty [src].</span>"
+	to_chat(user, "<span class='notice'>You empty [src].</span>")
 	var/turf/T = get_turf(src)
 	hold.hide_from(usr)
 	for(var/obj/item/I in hold.contents)
@@ -496,7 +496,7 @@
 
 /obj/item/clothing/tie/holobadge/attack_self(mob/user as mob)
 	if(!stored_name)
-		user << "Waving around a badge before swiping an ID would be pretty pointless."
+		to_chat(user, "Waving around a badge before swiping an ID would be pretty pointless.")
 		return
 	if(isliving(user))
 		user.visible_message("\red [user] displays their W-Y Internal Security Legal Authorization Badge.\nIt reads: [stored_name], W-Y Security.","\red You display your W-Y Internal Security Legal Authorization Badge.\nIt reads: [stored_name], W-Y Security.")
@@ -505,11 +505,11 @@
 
 	if (istype(O, /obj/item/card/emag))
 		if (emagged)
-			user << "\red [src] is already cracked."
+			to_chat(user, "\red [src] is already cracked.")
 			return
 		else
 			emagged = 1
-			user << "\red You swipe [O] and crack the holobadge security checks."
+			to_chat(user, "\red You swipe [O] and crack the holobadge security checks.")
 			return
 
 	else if(istype(O, /obj/item/card/id) || istype(O, /obj/item/device/pda))
@@ -523,12 +523,12 @@
 			id_card = pda.id
 
 		if(ACCESS_MARINE_BRIG in id_card.access || emagged)
-			user << "You imprint your ID details onto the badge."
+			to_chat(user, "You imprint your ID details onto the badge.")
 			stored_name = id_card.registered_name
 			name = "holobadge ([stored_name])"
 			desc = "This glowing blue badge marks [stored_name] as THE LAW."
 		else
-			user << "[src] rejects your insufficient access rights."
+			to_chat(user, "[src] rejects your insufficient access rights.")
 		return
 	..()
 

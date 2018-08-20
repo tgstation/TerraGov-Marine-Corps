@@ -71,7 +71,7 @@
 			user << browse("<HTML><HEAD><TITLE>[name]</TITLE></HEAD><BODY>[info][stamps]</BODY></HTML>", "window=[name]")
 			onclose(user, "[name]")
 	else
-		user << "<span class='notice'>It is too far away.</span>"
+		to_chat(user, "<span class='notice'>It is too far away.</span>")
 	return
 
 /obj/item/paper/verb/rename()
@@ -80,7 +80,7 @@
 	set src in usr
 
 	if((CLUMSY in usr.mutations) && prob(50))
-		usr << "<span class='warning'>You cut yourself on the paper.</span>"
+		to_chat(usr, "<span class='warning'>You cut yourself on the paper.</span>")
 		return
 	var/n_name = copytext(sanitize(input(usr, "What would you like to label the paper?", "Paper Labelling", null)  as text), 1, MAX_NAME_LEN)
 	if((loc == usr && usr.stat == 0))
@@ -123,7 +123,7 @@
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(H == user)
-				user << "<span class='notice'>You wipe off the lipstick with [src].</span>"
+				to_chat(user, "<span class='notice'>You wipe off the lipstick with [src].</span>")
 				H.lip_style = null
 				H.update_body()
 			else
@@ -307,7 +307,7 @@
 				cdel(src)
 
 			else
-				user << "\red You must hold \the [P] steady to burn \the [src]."
+				to_chat(user, "\red You must hold \the [P] steady to burn \the [src].")
 
 
 /obj/item/paper/Topic(href, href_list)
@@ -357,7 +357,7 @@
 		if (istype(P, /obj/item/paper/carbon))
 			var/obj/item/paper/carbon/C = P
 			if (!C.iscopy && !C.copied)
-				user << "<span class='notice'>Take off the carbon copy first.</span>"
+				to_chat(user, "<span class='notice'>Take off the carbon copy first.</span>")
 				add_fingerprint(user)
 				return
 		if(loc != user) return
@@ -368,7 +368,7 @@
 			B.name = P.name
 		user.drop_inv_item_on_ground(P)
 		user.drop_inv_item_on_ground(src)
-		user << "<span class='notice'>You clip the [P.name] to [(src.name == "paper") ? "the paper" : src.name].</span>"
+		to_chat(user, "<span class='notice'>You clip the [P.name] to [(src.name == "paper") ? "the paper" : src.name].</span>")
 		B.attach_doc(src, user, TRUE)
 		B.attach_doc(P, user, TRUE)
 		user.put_in_hands(B)
@@ -402,7 +402,7 @@
 
 		if(istype(P, /obj/item/tool/stamp/clown))
 			if(!clown)
-				user << "<span class='notice'>You are totally unable to use the stamp. HONK!</span>"
+				to_chat(user, "<span class='notice'>You are totally unable to use the stamp. HONK!</span>")
 				return
 
 		if(!ico)
@@ -415,7 +415,7 @@
 		stamped += P.type
 		overlays += stampoverlay
 
-		user << "<span class='notice'>You stamp the paper with your rubber stamp.</span>"
+		to_chat(user, "<span class='notice'>You stamp the paper with your rubber stamp.</span>")
 
 	else if(P.heat_source >= 400)
 		burnpaper(P, user)

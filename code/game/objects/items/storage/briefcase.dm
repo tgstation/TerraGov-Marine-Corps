@@ -18,7 +18,7 @@
 	//..()
 
 	if ((CLUMSY in user.mutations) && prob(50))
-		user << "\red The [src] slips out of your hand and hits your head."
+		to_chat(user, "\red The [src] slips out of your hand and hits your head.")
 		user.take_limb_damage(10)
 		user.KnockOut(2)
 		return
@@ -33,7 +33,7 @@
 			var/mob/living/carbon/human/H = M
 			var/obj/item/P = H.head
 			if(istype(P) && P.flags_inventory & BLOCKSHARPOBJ && prob(80))
-				M << "\red The helmet protects you from being hit hard in the head!"
+				to_chat(M, "\red The helmet protects you from being hit hard in the head!")
 				return
 		var/time = rand(2, 6)
 		if (prob(75))
@@ -44,7 +44,7 @@
 		for(var/mob/O in viewers(M, null))
 			O.show_message(text("\red <B>[] has been knocked unconscious!</B>", M), 1, "\red You hear someone fall.", 2)
 	else
-		M << text("\red [] tried to knock you unconcious!",user)
+		to_chat(M, text("\red [] tried to knock you unconcious!",user))
 		M.eye_blurry += 3
 
 	return

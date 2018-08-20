@@ -61,7 +61,7 @@
 					visible_message("\The [src] speaks: Blood filtering complete.")
 				else if(prob(10))
 					visible_message("\The [src] whirrs and gurgles as the dialysis module operates.")
-					occupant << "<span class='info'>You feel slightly better.</span>"
+					to_chat(occupant, "<span class='info'>You feel slightly better.</span>")
 			if(blood_transfer)
 				if(occupant.blood_volume < BLOOD_VOLUME_NORMAL)
 					if(blood_pack.reagents.get_reagent_amount("blood") < 4)
@@ -70,7 +70,7 @@
 					occupant.inject_blood(blood_pack, 8) // double iv stand rate
 					if(prob(10))
 						visible_message("\The [src] whirrs and gurgles as it tranfuses blood.")
-						occupant << "<span class='info'>You feel slightly less faint.</span>"
+						to_chat(occupant, "<span class='info'>You feel slightly less faint.</span>")
 				else
 					blood_transfer = 0
 					visible_message("\The [src] speaks: Blood transfer complete.")
@@ -79,7 +79,7 @@
 					occupant.heal_limb_damage(3,0)
 					if(prob(10))
 						visible_message("\The [src] whirrs and clicks as it stitches flesh together.")
-						occupant << "<span class='info'>You feel your wounds being stitched and sealed shut.</span>"
+						to_chat(occupant, "<span class='info'>You feel your wounds being stitched and sealed shut.</span>")
 				else
 					heal_brute = 0
 					visible_message("\The [src] speaks: Trauma repair surgery complete.")
@@ -88,7 +88,7 @@
 					occupant.heal_limb_damage(0,3)
 					if(prob(10))
 						visible_message("\The [src] whirrs and clicks as it grafts synthetic skin.")
-						occupant << "<span class='info'>You feel your burned flesh being sliced away and replaced.</span>"
+						to_chat(occupant, "<span class='info'>You feel your burned flesh being sliced away and replaced.</span>")
 				else
 					heal_burn = 0
 					visible_message("\The [src] speaks: Skin grafts complete.")
@@ -97,7 +97,7 @@
 					occupant.adjustToxLoss(-3)
 					if(prob(10))
 						visible_message("\The [src] whirrs and gurgles as it kelates the occupant.")
-						occupant << "<span class='info'>You feel slighly less ill.</span>"
+						to_chat(occupant, "<span class='info'>You feel slighly less ill.</span>")
 				else
 					heal_toxin = 0
 					visible_message("\The [src] speaks: Chelation complete.")
@@ -260,7 +260,7 @@
 						var/datum/reagent/R = chemical_reagents_list["spaceacillin"]
 						var/amount = R.overdose - H.reagents.get_reagent_amount("spaceacillin")
 						var/inject_per_second = 3
-						occupant << "<span class='info'>You feel a soft prick from a needle.</span>"
+						to_chat(occupant, "<span class='info'>You feel a soft prick from a needle.</span>")
 						while(amount > 0)
 							if(!surgery) break
 							if(amount < inject_per_second)
@@ -461,7 +461,7 @@
 						var/datum/reagent/R = chemical_reagents_list["spaceacillin"]
 						var/amount = (R.overdose/2) - H.reagents.get_reagent_amount("spaceacillin")
 						var/inject_per_second = 3
-						occupant << "<span class='info'>You feel a soft prick from a needle.</span>"
+						to_chat(occupant, "<span class='info'>You feel a soft prick from a needle.</span>")
 						while(amount > 0)
 							if(!surgery) break
 							if(amount < inject_per_second)
@@ -577,12 +577,12 @@
 			return
 		if(usr == occupant)
 			if(surgery)
-				usr << "<span class='warning'>There's no way you're getting out while this thing is operating on you!</span>"
+				to_chat(usr, "<span class='warning'>There's no way you're getting out while this thing is operating on you!</span>")
 			else
 				visible_message("[usr] engages the internal release mechanism, and climbs out of \the [src].")
 			return
 		if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
-			usr << "<span class='warning'>You don't have the training to use this.</span>"
+			to_chat(usr, "<span class='warning'>You don't have the training to use this.</span>")
 			return
 		if(surgery)
 			visible_message("\The [src] malfunctions as [usr] aborts the surgery in progress.")
@@ -602,22 +602,22 @@
 	if(usr.stat != 0 || !ishuman(usr)) return
 
 	if(occupant)
-		usr << "<span class='notice'>\The [src] is already occupied!</span>"
+		to_chat(usr, "<span class='notice'>\The [src] is already occupied!</span>")
 		return
 
 	if(stat & (NOPOWER|BROKEN))
-		usr << "<span class='notice'>\The [src] is non-functional!</span>"
+		to_chat(usr, "<span class='notice'>\The [src] is non-functional!</span>")
 		return
 
 	if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
-		usr << "<span class='warning'>You're going to need someone trained in the use of \the [src] to help you get into it.</span>"
+		to_chat(usr, "<span class='warning'>You're going to need someone trained in the use of \the [src] to help you get into it.</span>")
 		return
 
 	usr.visible_message("<span class='notice'>[usr] starts climbing into \the [src].</span>",
 	"<span class='notice'>You start climbing into \the [src].</span>")
 	if(do_after(usr, 20, FALSE, 5, BUSY_ICON_GENERIC))
 		if(occupant)
-			usr << "<span class='notice'>\The [src] is already occupied!</span>"
+			to_chat(usr, "<span class='notice'>\The [src] is already occupied!</span>")
 			return
 		usr.stop_pulling()
 		usr.client.perspective = EYE_PERSPECTIVE
@@ -649,7 +649,7 @@
 		return // no
 	if(istype(W, /obj/item/stack/sheet/metal))
 		var/obj/item/stack/sheet/metal/M = W
-		user << "<span class='notice'>\The [src] processes \the [W].</span>"
+		to_chat(user, "<span class='notice'>\The [src] processes \the [W].</span>")
 		stored_metal += M.amount * 100
 		user.drop_held_item()
 		cdel(W)
@@ -660,22 +660,22 @@
 			return
 		var/mob/M = G.grabbed_thing
 		if(src.occupant)
-			user << "<span class='notice'>\The [src] is already occupied!</span>"
+			to_chat(user, "<span class='notice'>\The [src] is already occupied!</span>")
 			return
 
 		if(stat & (NOPOWER|BROKEN))
-			user << "<span class='notice'>\The [src] is non-functional!</span>"
+			to_chat(user, "<span class='notice'>\The [src] is non-functional!</span>")
 			return
 
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
-			user << "<span class='warning'>You have no idea how to put someone into \the [src]!</span>"
+			to_chat(user, "<span class='warning'>You have no idea how to put someone into \the [src]!</span>")
 			return
 
 		visible_message("[user] starts putting [M] into [src].", 3)
 
 		if(do_after(user, 20, FALSE, 5, BUSY_ICON_GENERIC))
 			if(src.occupant)
-				user << "<span class='notice'>\The [src] is already occupied!</span>"
+				to_chat(user, "<span class='notice'>\The [src] is already occupied!</span>")
 				return
 			if(!G || !G.grabbed_thing) return
 			M.forceMove(src)
@@ -725,10 +725,10 @@
 	var/dat = ""
 	if(!connected || (connected.stat & (NOPOWER|BROKEN)))
 		dat += "This console is not connected to a Med-Pod or the Med-Pod is non-functional."
-		user << "This console seems to be powered down."
+		to_chat(user, "This console seems to be powered down.")
 	else
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !connected.event)
-			user << "<span class='warning'>You have no idea how to use this.</span>"
+			to_chat(user, "<span class='warning'>You have no idea how to use this.</span>")
 			return
 		var/mob/living/occupant = connected.occupant
 		dat += "<font color='blue'><B>Occupant Statistics:</B></FONT><BR>"
@@ -773,9 +773,9 @@
 					dat += "<span class='danger'>Automatic Mode Unavaliable, Scan Patient First.</span><br>"
 			else
 				if(!isnull(N.fields["autodoc_manual"]))
-					//world << "AUTODOC DEBUG: non null autodoc data"
+					//to_chat(world, "AUTODOC DEBUG: non null autodoc data")
 					for(var/datum/autodoc_surgery/A in N.fields["autodoc_manual"])
-						//world << "AUTODOC DEBUG: found a surgery"
+						//to_chat(world, "AUTODOC DEBUG: found a surgery")
 						switch(A.type_of_surgery)
 							if(EXTERNAL_SURGERY)
 								switch(A.surgery_procedure)

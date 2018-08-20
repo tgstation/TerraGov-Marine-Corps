@@ -32,9 +32,9 @@
 				cdel(G)
 
 			else
-				user << "\red The spike already has something on it, finish collecting its meat first!"
+				to_chat(user, "\red The spike already has something on it, finish collecting its meat first!")
 		else
-			user << "\red They are too big for the spike, try something smaller!"
+			to_chat(user, "\red They are too big for the spike, try something smaller!")
 			return
 
 //	MouseDrop_T(var/atom/movable/C, mob/user)
@@ -50,21 +50,21 @@
 				if(src.meat > 1)
 					src.meat--
 					new /obj/item/reagent_container/food/snacks/meat/monkey( src.loc )
-					usr << "You remove some meat from the monkey."
+					to_chat(usr, "You remove some meat from the monkey.")
 				else if(src.meat == 1)
 					src.meat--
 					new /obj/item/reagent_container/food/snacks/meat/monkey(src.loc)
-					usr << "You remove the last piece of meat from the monkey!"
+					to_chat(usr, "You remove the last piece of meat from the monkey!")
 					src.icon_state = "spike"
 					src.occupied = 0
 			else if(src.meattype == 2)
 				if(src.meat > 1)
 					src.meat--
 					new /obj/item/reagent_container/food/snacks/xenomeat( src.loc )
-					usr << "You remove some meat from the alien."
+					to_chat(usr, "You remove some meat from the alien.")
 				else if(src.meat == 1)
 					src.meat--
 					new /obj/item/reagent_container/food/snacks/xenomeat(src.loc)
-					usr << "You remove the last piece of meat from the alien!"
+					to_chat(usr, "You remove the last piece of meat from the alien!")
 					src.icon_state = "spike"
 					src.occupied = 0

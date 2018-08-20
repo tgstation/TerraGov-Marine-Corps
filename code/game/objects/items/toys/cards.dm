@@ -31,7 +31,7 @@
 			cards += P
 		update_icon()
 		cdel(O)
-		user << "You place your cards on the bottom of the deck."
+		to_chat(user, "You place your cards on the bottom of the deck.")
 		return
 	..()
 
@@ -56,7 +56,7 @@
 	var/mob/living/carbon/human/user = usr
 
 	if(!cards.len)
-		usr << "There are no cards in the deck."
+		to_chat(usr, "There are no cards in the deck.")
 		return
 
 	var/obj/item/toy/handcard/H
@@ -76,7 +76,7 @@
 	H.update_icon()
 	update_icon()
 	user.visible_message("\The [user] draws a card.")
-	user << "It's the [P]."
+	to_chat(user, "It's the [P].")
 
 /obj/item/toy/deck/verb/deal_card()
 
@@ -88,7 +88,7 @@
 	if(usr.stat || !Adjacent(usr)) return
 
 	if(!cards.len)
-		usr << "There are no cards in the deck."
+		to_chat(usr, "There are no cards in the deck.")
 		return
 
 	var/list/players = list()
@@ -139,7 +139,7 @@
 	if(!ishuman(over) || !(over in viewers(3))) return
 
 	if(!cards.len)
-		usr << "There are no cards in the deck."
+		to_chat(usr, "There are no cards in the deck.")
 		return
 
 	deal_at(usr, over)
@@ -215,11 +215,11 @@
 /obj/item/toy/handcard/examine(mob/user)
 	..()
 	if(cards.len)
-		user << "It has [cards.len] cards."
+		to_chat(user, "It has [cards.len] cards.")
 		if((!concealed || loc == user))
-			user << "The cards are: "
+			to_chat(user, "The cards are: ")
 			for(var/datum/playingcard/P in cards)
-				user << "The [P.name]."
+				to_chat(user, "The [P.name].")
 
 /obj/item/toy/handcard/update_icon(var/direction = 0)
 	if(cards.len > 1)

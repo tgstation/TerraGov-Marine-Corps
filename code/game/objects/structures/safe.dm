@@ -67,9 +67,9 @@ FLOOR SAFES
 /obj/structure/safe/proc/check_unlocked(mob/user as mob, canhear)
 	if(user && canhear)
 		if(tumbler_1_pos == tumbler_1_open)
-			user << "<span class='notice'>You hear a [pick("tonk", "krunk", "plunk")] from [src].</span>"
+			to_chat(user, "<span class='notice'>You hear a [pick("tonk", "krunk", "plunk")] from [src].</span>")
 		if(tumbler_2_pos == tumbler_2_open)
-			user << "<span class='notice'>You hear a [pick("tink", "krink", "plink")] from [src].</span>"
+			to_chat(user, "<span class='notice'>You hear a [pick("tink", "krink", "plink")] from [src].</span>")
 	if(tumbler_1_pos == tumbler_1_open && tumbler_2_pos == tumbler_2_open)
 		if(user) visible_message("<b>[pick("Spring", "Sprang", "Sproing", "Clunk", "Click")]!</b>")
 		return 1
@@ -132,13 +132,13 @@ FLOOR SAFES
 
 	if(href_list["open"])
 		if(check_unlocked())
-			user << "<span class='notice'>You [open ? "close" : "open"] [src].</span>"
+			to_chat(user, "<span class='notice'>You [open ? "close" : "open"] [src].</span>")
 			open = !open
 			update_icon()
 			updateUsrDialog()
 			return
 		else
-			user << "<span class='notice'>You can't [open ? "close" : "open"] [src], the lock is engaged!</span>"
+			to_chat(user, "<span class='notice'>You can't [open ? "close" : "open"] [src], the lock is engaged!</span>")
 			return
 
 	if(href_list["decrement"])
@@ -178,15 +178,15 @@ FLOOR SAFES
 		if(I.w_class + space <= maxspace)
 			space += I.w_class
 			if(user.drop_inv_item_to_loc(I, src))
-				user << "<span class='notice'>You put [I] in [src].</span>"
+				to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
 			updateUsrDialog()
 			return
 		else
-			user << "<span class='notice'>[I] won't fit in [src].</span>"
+			to_chat(user, "<span class='notice'>[I] won't fit in [src].</span>")
 			return
 	else
 		if(istype(I, /obj/item/clothing/tie/stethoscope))
-			user << "Hold [I] in one of your hands while you manipulate the dial."
+			to_chat(user, "Hold [I] in one of your hands while you manipulate the dial.")
 			return
 
 obj/structure/safe/ex_act(severity)

@@ -36,8 +36,8 @@
 
 	spawn(20)
 		if(H && H.loc)
-			H << "<span class='role_header'>You are a Zombie!</span>"
-			H << "<span class='role_body'>Spread... Consume... Infect...</span>"
+			to_chat(H, "<span class='role_header'>You are a Zombie!</span>")
+			to_chat(H, "<span class='role_body'>Spread... Consume... Infect...</span>")
 
 	if(original && original.loc)
 		cdel(original)

@@ -138,21 +138,21 @@
 	//Loading a disk into it.
 	if(istype(D, /obj/item/disk))
 		if(t_disk || d_disk)
-			user << "A disk is already loaded into the machine."
+			to_chat(user, "A disk is already loaded into the machine.")
 			return
 
 		if(istype(D, /obj/item/disk/tech_disk)) t_disk = D
 		else if (istype(D, /obj/item/disk/design_disk)) d_disk = D
 		else
-			user << "\red Machine cannot accept disks in that format."
+			to_chat(user, "\red Machine cannot accept disks in that format.")
 			return
 		user.drop_held_item()
 		D.loc = src
-		user << "\blue You add the disk to the machine!"
+		to_chat(user, "\blue You add the disk to the machine!")
 	else if(istype(D, /obj/item/card/emag) && !emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
-		user << "\blue You you disable the security protocols"
+		to_chat(user, "\blue You you disable the security protocols")
 	else
 		//The construction/deconstruction of the console code.
 		..()
@@ -174,7 +174,7 @@
 		if(temp_screen <= 1.1 || (3 <= temp_screen && 4.9 >= temp_screen) || src.allowed(usr) || emagged) //Unless you are making something, you need access.
 			screen = temp_screen
 		else
-			usr << "Unauthorized Access."
+			to_chat(usr, "Unauthorized Access.")
 
 	else if(href_list["reset"])
 		warning("RnD console has errored during protolathe operation. Resetting.")
@@ -185,7 +185,7 @@
 	else if(href_list["eject_item"]) //Eject the item inside the destructive analyzer.
 		if(linked_destroy)
 			if(linked_destroy.busy)
-				usr << "\red The destructive analyzer is busy at the moment."
+				to_chat(usr, "\red The destructive analyzer is busy at the moment.")
 
 			else if(linked_destroy.loaded_item)
 				linked_destroy.loaded_item.loc = linked_destroy.loc
@@ -196,7 +196,7 @@
 	else if(href_list["deconstruct"]) //Deconstruct the item in the destructive analyzer and update the research holder.
 		if(linked_destroy)
 			if(linked_destroy.busy)
-				usr << "\red The destructive analyzer is busy at the moment."
+				to_chat(usr, "\red The destructive analyzer is busy at the moment.")
 			else
 				var/choice = input("Proceeding will destroy loaded item.") in list("Proceed", "Cancel")
 				if(choice == "Cancel" || !linked_destroy) return
@@ -209,7 +209,7 @@
 						linked_destroy.busy = 0
 						if(!linked_destroy.hacked)
 							if(!linked_destroy.loaded_item)
-								usr <<"\red The destructive analyzer appears to be empty."
+								to_chat(usr, "\red The destructive analyzer appears to be empty.")
 								screen = 1.0
 								return
 							if(linked_destroy.loaded_item.reliability >= 90)
@@ -245,12 +245,12 @@
 		if(src.allowed(usr))
 			screen = text2num(href_list["lock"])
 		else
-			usr << "Unauthorized Access."
+			to_chat(usr, "Unauthorized Access.")
 
 	else if(href_list["sync"]) //Sync the research holder with all the R&D consoles in the game that aren't sync protected.
 		screen = 0.0
 		if(!sync)
-			usr << "\red You must connect to the network first!"
+			to_chat(usr, "\red You must connect to the network first!")
 		else
 			griefProtection() //Putting this here because I dont trust the sync process
 			spawn(30)
@@ -484,7 +484,7 @@
 	else if (href_list["organScan"])//initiate an organic scan - CM
 		if(linked_organic)
 			if(linked_organic.busy)
-				usr << "\red The Weyland Brand Organic Analyzer(TM) is busy at the moment."
+				to_chat(usr, "\red The Weyland Brand Organic Analyzer(TM) is busy at the moment.")
 			else
 				var/choice = input("Proceeding will destroy loaded item, preventing it's use for biomass.") in list("Proceed", "Cancel")
 				if(choice == "Cancel" || !linked_organic) return
@@ -497,7 +497,7 @@
 						linked_organic.busy = 0
 						if(!linked_organic.hacked)
 							if(!linked_organic.loaded_item)
-								usr <<"\red The Weyland Brand Organic Analyzer(TM) appears to be empty."
+								to_chat(usr, "\red The Weyland Brand Organic Analyzer(TM) appears to be empty.")
 								screen = 1.0
 								return
 							if(linked_organic.loaded_item.reliability >= 90)
@@ -519,7 +519,7 @@
 	else if(href_list["eject_organ"]) //Eject the item inside the destructive analyzer.
 		if(linked_organic)
 			if(linked_organic.busy)
-				usr << "\red The Weyland Brand Organic Analyzer(TM) is busy at the moment."
+				to_chat(usr, "\red The Weyland Brand Organic Analyzer(TM) is busy at the moment.")
 
 			else if(linked_organic.loaded_item)
 				linked_organic.loaded_item.loc = linked_organic.loc

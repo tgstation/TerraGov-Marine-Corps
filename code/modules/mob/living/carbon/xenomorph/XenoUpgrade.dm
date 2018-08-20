@@ -50,7 +50,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 		//FIRST UPGRADE
 		if(1)
 			upgrade_name = "Mature"
-			src << "<span class='xenodanger'>You feel a bit stronger.</span>"
+			to_chat(src, "<span class='xenodanger'>You feel a bit stronger.</span>")
 			switch(caste)
 				if("Runner")
 					melee_damage_lower = 15
@@ -265,7 +265,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 		//SECOND UPGRADE
 		if(2)
 			upgrade_name = "Elite"
-			src << "<span class='xenodanger'>You feel a whole lot stronger.</span>"
+			to_chat(src, "<span class='xenodanger'>You feel a whole lot stronger.</span>")
 			switch(caste)
 				if("Runner")
 					melee_damage_lower = 20
@@ -482,7 +482,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 			upgrade_name = "Ancient"
 			switch(caste)
 				if("Runner")
-					src << "<span class='xenoannounce'>You are the fastest assassin of all time. Your speed is unmatched.</span>"
+					to_chat(src, "<span class='xenoannounce'>You are the fastest assassin of all time. Your speed is unmatched.</span>")
 					melee_damage_lower = 25
 					melee_damage_upper = 35
 					health = 140
@@ -498,7 +498,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tackle_chance = 70
 					pounce_delay = 25
 				if("Lurker")
-					src << "<span class='xenoannounce'>You are the epitome of the hunter. Few can stand against you in open combat.</span>"
+					to_chat(src, "<span class='xenoannounce'>You are the epitome of the hunter. Few can stand against you in open combat.</span>")
 					melee_damage_lower = 50
 					melee_damage_upper = 60
 					health = 250
@@ -514,7 +514,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tackle_chance = 65
 					pounce_delay = 40
 				if("Ravager")
-					src << "<span class='xenoannounce'>You are death incarnate. All will tremble before you.</span>"
+					to_chat(src, "<span class='xenoannounce'>You are death incarnate. All will tremble before you.</span>")
 					melee_damage_lower = 80
 					melee_damage_upper = 100
 					health = 350
@@ -528,7 +528,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 10
 					tackle_chance = 95
 				if ("Defender")
-					src << "<span class='xenoannounce'>You are a incredibly resilient, you can control the battle through sheer force.</span>"
+					to_chat(src, "<span class='xenoannounce'>You are a incredibly resilient, you can control the battle through sheer force.</span>")
 					health = 325
 					maxHealth = 325
 					plasma_gain = 8
@@ -538,7 +538,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					speed = -0.4
 					armor_deflection = 55
 				if ("Warrior")
-					src << "<span class='xenoannounce'>None can stand before you. You will annihilate all weaklings who try.</span>"
+					to_chat(src, "<span class='xenoannounce'>None can stand before you. You will annihilate all weaklings who try.</span>")
 					melee_damage_lower = 45
 					melee_damage_upper = 50
 					health = 275
@@ -550,7 +550,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					speed = -1.1
 					armor_deflection = 45
 				if("Crusher")
-					src << "<span class='xenoannounce'>You are the physical manifestation of a Tank. Almost nothing can harm you.</span>"
+					to_chat(src, "<span class='xenoannounce'>You are the physical manifestation of a Tank. Almost nothing can harm you.</span>")
 					melee_damage_lower = 35
 					melee_damage_upper = 45
 					tacklemin = 5
@@ -563,7 +563,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					caste_desc = "It always has the right of way."
 					armor_deflection = 75
 				if("Sentinel")
-					src << "<span class='xenoannounce'>You are the stun master. Your stunning is legendary and causes massive quantities of salt.</span>"
+					to_chat(src, "<span class='xenoannounce'>You are the stun master. Your stunning is legendary and causes massive quantities of salt.</span>")
 					melee_damage_lower = 25
 					melee_damage_upper = 35
 					health = 200
@@ -578,7 +578,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tackle_chance = 60
 					speed = -1.1
 				if("Spitter")
-					src << "<span class='xenoannounce'>You are a master of ranged stuns and damage. Go fourth and generate salt.</span>"
+					to_chat(src, "<span class='xenoannounce'>You are a master of ranged stuns and damage. Go fourth and generate salt.</span>")
 					melee_damage_lower = 35
 					melee_damage_upper = 45
 					health = 250
@@ -593,7 +593,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tackle_chance = 75
 					speed = -0.8
 				if("Boiler")
-					src << "<span class='xenoannounce'>You are the master of ranged artillery. Bring death from above.</span>"
+					to_chat(src, "<span class='xenoannounce'>You are the master of ranged artillery. Bring death from above.</span>")
 					melee_damage_lower = 35
 					melee_damage_upper = 45
 					health = 250
@@ -609,7 +609,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tackle_chance = 80
 					speed = 0.4
 				if("Praetorian")
-					src << "<span class='xenoannounce'>You are the strongest range fighter around. Your spit is devestating and you can fire nearly a constant stream.</span>"
+					to_chat(src, "<span class='xenoannounce'>You are the strongest range fighter around. Your spit is devestating and you can fire nearly a constant stream.</span>")
 					melee_damage_lower = 40
 					melee_damage_upper = 50
 					health = 270
@@ -625,7 +625,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					speed = -0.2
 					aura_strength = 4.5
 				if("Drone")
-					src <<"<span class='xenoannounce'>You are the ultimate worker of the Hive. Time to clock in, and clock the tallhosts out.</span>"
+					to_chat(src, "<span class='xenoannounce'>You are the ultimate worker of the Hive. Time to clock in, and clock the tallhosts out.</span>")
 					melee_damage_lower = 20
 					melee_damage_upper = 30
 					health = 200
@@ -640,7 +640,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					speed = -1.1
 					aura_strength = 2
 				if("Hivelord")
-					src <<"<span class='xenoannounce'>You are the builder of walls. Ensure that the marines are the ones who pay for them.</span>"
+					to_chat(src, "<span class='xenoannounce'>You are the builder of walls. Ensure that the marines are the ones who pay for them.</span>")
 					melee_damage_lower = 20
 					melee_damage_upper = 30
 					health = 300
@@ -654,7 +654,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tackle_chance = 80
 					speed = 0.1
 				if("Carrier")
-					src << "<span class='xenoannounce'>You are the master of huggers. Throw them like baseballs at the marines!</span>"
+					to_chat(src, "<span class='xenoannounce'>You are the master of huggers. Throw them like baseballs at the marines!</span>")
 					melee_damage_lower = 35
 					melee_damage_upper = 45
 					health = 250
@@ -673,7 +673,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					CA.hugger_delay = 10
 					CA.eggs_max = 6
 				if("Queen")
-					src << "<span class='xenoannounce'>You are the Alpha and the Omega. The beginning and the end.</span>"
+					to_chat(src, "<span class='xenoannounce'>You are the Alpha and the Omega. The beginning and the end.</span>")
 					melee_damage_lower = 70
 					melee_damage_upper = 90
 					health = 400

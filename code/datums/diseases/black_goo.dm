@@ -34,12 +34,12 @@
 			survive_mob_death = TRUE //changed because infection rate was REALLY horrible.
 			if(goo_message_cooldown < world.time )
 				if(prob(3))
-					affected_mob << "\red You feel really warm..."
+					to_chat(affected_mob, "\red You feel really warm...")
 					goo_message_cooldown = world.time + 100
 		if(2)
 			if(goo_message_cooldown < world.time)
-				if (prob(3)) affected_mob << "\red Your throat is really dry..."
-				else if (prob(6)) affected_mob << "\red You feel really warm..."
+				if (prob(3)) to_chat(affected_mob, "\red Your throat is really dry...")
+				else if (prob(6)) to_chat(affected_mob, "\red You feel really warm...")
 				else if (prob(2)) H.vomit_on_floor()
 				goo_message_cooldown = world.time + 100
 		if(3)
@@ -48,13 +48,13 @@
 			H.next_move_slowdown = max(H.next_move_slowdown, 1)
 			if(goo_message_cooldown < world.time)
 				if (prob(3))
-					affected_mob << "\red You cough up some black fluid..."
+					to_chat(affected_mob, "\red You cough up some black fluid...")
 					goo_message_cooldown = world.time + 100
 				else if (prob(6))
-					affected_mob << "\red Your throat is really dry..."
+					to_chat(affected_mob, "\red Your throat is really dry...")
 					goo_message_cooldown = world.time + 100
 				else if (prob(9))
-					affected_mob << "\red You feel really warm..."
+					to_chat(affected_mob, "\red You feel really warm...")
 					goo_message_cooldown = world.time + 100
 				else if(prob(5))
 					goo_message_cooldown = world.time + 100
@@ -78,7 +78,7 @@
 				H.nutrition = 450 //never hungry
 				if(goo_message_cooldown < world.time)
 					goo_message_cooldown = world.time + 100
-					affected_mob << "\green Spread... Consume... Infect..."
+					to_chat(affected_mob, "\green Spread... Consume... Infect...")
 
 
 /datum/disease/black_goo/proc/zombie_transform(mob/living/carbon/human/H)
@@ -188,13 +188,13 @@
 
 
 	examine(mob/user)
-		user << "A strange looking metal container..."
+		to_chat(user, "A strange looking metal container...")
 		if(contents.len <= 0)
-			user << "There are no bottles left inside it."
+			to_chat(user, "There are no bottles left inside it.")
 		else if(contents.len == 1)
-			user << "There is one bottles left inside it."
+			to_chat(user, "There is one bottles left inside it.")
 		else
-			user << "There are [src.contents.len] bottles inside the container."
+			to_chat(user, "There are [src.contents.len] bottles inside the container.")
 
 
 /obj/item/storage/fancy/blackgoo/New()

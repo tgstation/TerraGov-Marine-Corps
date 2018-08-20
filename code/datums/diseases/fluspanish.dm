@@ -21,7 +21,7 @@
 			if(prob(5))
 				affected_mob.emote("cough")
 			if(prob(1))
-				affected_mob << "\red You're burning in your own skin!"
+				to_chat(affected_mob, "\red You're burning in your own skin!")
 				affected_mob.take_limb_damage(0,5)
 
 		if(3)
@@ -31,6 +31,6 @@
 			if(prob(5))
 				affected_mob.emote("cough")
 			if(prob(5))
-				affected_mob << "\red You're burning in your own skin!"
+				to_chat(affected_mob, "\red You're burning in your own skin!")
 				affected_mob.take_limb_damage(0,5)
 	return

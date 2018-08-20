@@ -26,10 +26,10 @@
 			s.start()
 
 			for(var/mob/M in viewers(5, location))
-				M << "\red The solution violently explodes."
+				to_chat(M, "\red The solution violently explodes.")
 			for(var/mob/M in viewers(1, location))
 				if (prob (50 * amount))
-					M << "\red The explosion knocks you down."
+					to_chat(M, "\red The explosion knocks you down.")
 					M.KnockDown(rand(1,5))
 			return
 		else
@@ -40,7 +40,7 @@
 			if (flash && flashing_factor) flash = light + 1
 
 			for(var/mob/M in viewers(8, location))
-				M << "\red The solution violently explodes."
+				to_chat(M, "\red The solution violently explodes.")
 
 			explosion(location, -1, -1, light, flash)
 			if(light > 0) return TRUE

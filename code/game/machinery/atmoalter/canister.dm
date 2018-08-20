@@ -191,7 +191,7 @@ update_flag
 			JT.gas_type = gas_type
 			JT.pressure = JT.pressure_full
 			pressure -= 10
-			user << "You pulse-pressurize your jetpack from [src]."
+			to_chat(user, "You pulse-pressurize your jetpack from [src].")
 		return
 
 	else if(istype(W, /obj/item/tank))
@@ -200,7 +200,7 @@ update_flag
 			TAK.gas_type = gas_type
 			TAK.pressure = TAK.pressure_full
 			pressure -= 10
-			user << "You pulse-pressurize [TAK] from [src]."
+			to_chat(user, "You pulse-pressurize [TAK] from [src].")
 		return
 
 	..()

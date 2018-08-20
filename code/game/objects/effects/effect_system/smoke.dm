@@ -261,7 +261,7 @@
 				M.coughedtime = 0
 
 	//Topical damage (acid on exposed skin)
-	M << "<span class='danger'>Your skin feels like it is melting away!</span>"
+	to_chat(M, "<span class='danger'>Your skin feels like it is melting away!</span>")
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		H.adjustFireLoss(amount*rand(15, 20)) //Burn damage, randomizes between various parts //Amount corresponds to upgrade level, 1 to 2.5
@@ -298,7 +298,7 @@
 		M.adjustOxyLoss(15) //Causes even more oxyloss damage due to neurotoxin locking up respiratory system
 		M.ear_deaf = max(M.ear_deaf, round(effect_amt*1.5)) //Paralysis of hearing system, aka deafness
 		if(!M.eye_blind) //Eye exposure damage
-			M << "<span class='danger'>Your eyes sting. You can't see!</span>"
+			to_chat(M, "<span class='danger'>Your eyes sting. You can't see!</span>")
 		M.eye_blurry = max(M.eye_blurry, effect_amt*2)
 		M.eye_blind = max(M.eye_blind, round(effect_amt))
 		if(M.coughedtime != 1 && !M.stat) //Coughing/gasping
@@ -311,7 +311,7 @@
 				M.coughedtime = 0
 
 	//Topical damage (neurotoxin on exposed skin)
-	M << "<span class='danger'>Your body is going numb, almost as if paralyzed!</span>"
+	to_chat(M, "<span class='danger'>Your body is going numb, almost as if paralyzed!</span>")
 	if(prob(40 + round(amount*15))) //Highly likely to drop items due to arms/hands seizing up
 		M.drop_held_item()
 	if(ishuman(M))

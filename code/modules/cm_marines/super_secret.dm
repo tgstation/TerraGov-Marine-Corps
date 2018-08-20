@@ -15,9 +15,9 @@
 				coins++
 				cdel(W)
 			else
-				user << "\red \the [W] does not fit anymore."
+				to_chat(user, "\red \the [W] does not fit anymore.")
 		else
-			user << "\red \the [W] does not fit inside that rectangular hole."
+			to_chat(user, "\red \the [W] does not fit inside that rectangular hole.")
 
 	examine(mob/user)
 		desc = state?"<font size='4' color='red'>NO BUGS</font>":"A strange small metal object with a button in the middle and rectangular hole on the side..."
@@ -35,18 +35,18 @@
 						if(1)
 							for(var/mob/living/carbon/human/H in range(8))
 								if(!H || isnull(H) || H.stat) continue
-								H << "<font size=5 color=red>NO BUGS</font>"
+								to_chat(H, "<font size=5 color=red>NO BUGS</font>")
 
 						if(2)
 							for(var/mob/living/carbon/human/H in range(9))
 								if(!H || isnull(H) || H.stat) continue
-								H << "<font size=6 color=red>NO - BUGS</font>"
+								to_chat(H, "<font size=6 color=red>NO - BUGS</font>")
 								new /obj/item/reagent_container/food/snacks/sliceable/braincake(get_turf(H.loc))
 
 						if(3)
 							for(var/mob/living/carbon/human/H in range(10))
 								if(!H || isnull(H) || H.stat) continue
-								H << "<font size=7 color=red><b>NO<br>BUGS</b></font>"
+								to_chat(H, "<font size=7 color=red><b>NO<br>BUGS</b></font>")
 								new /obj/item/reagent_container/pill/happy(get_turf(H.loc))
 								new /obj/item/reagent_container/pill/happy(get_turf(H.loc))
 								new /obj/item/reagent_container/pill/happy(get_turf(H.loc))
@@ -55,7 +55,7 @@
 						if(4)
 							for(var/mob/living/carbon/human/H in range(12))
 								if(!H || isnull(H) || H.stat) continue
-								H << "<font size=8 color=red><b>NO<br><br>BUGS</b></font>"
+								to_chat(H, "<font size=8 color=red><b>NO<br><br>BUGS</b></font>")
 							new /obj/item/weapon/gun/launcher/rocket/nobugs(get_turf(src.loc))
 							new /obj/item/ammo_magazine/rocket/nobugs(get_turf(src.loc))
 							new /obj/item/ammo_magazine/rocket/nobugs(get_turf(src.loc))
@@ -73,6 +73,6 @@
 						layer = 2
 						coins = 0
 			else
-				usr << "\red Nothing happened..."
+				to_chat(usr, "\red Nothing happened...")
 		else
-			usr << "\red Nothing happened..."
+			to_chat(usr, "\red Nothing happened...")

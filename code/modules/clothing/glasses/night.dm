@@ -61,7 +61,7 @@
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(!istype(H.back, /obj/item/smartgun_powerpack))
-				user << "You must be wearing an M56 Powerpack on your back to wear these."
+				to_chat(user, "You must be wearing an M56 Powerpack on your back to wear these.")
 				return 0
 	return ..()
 

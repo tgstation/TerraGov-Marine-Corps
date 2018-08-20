@@ -56,11 +56,11 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 				linked_console.linked_lathe = null
 				linked_console = null
 			icon_state = "protolathe_t"
-			user << "You open the maintenance hatch of [src]."
+			to_chat(user, "You open the maintenance hatch of [src].")
 		else
 			opened = 0
 			icon_state = "protolathe"
-			user << "You close the maintenance hatch of [src]."
+			to_chat(user, "You close the maintenance hatch of [src].")
 		return
 	if (opened)
 		if(istype(O, /obj/item/tool/crowbar))
@@ -83,18 +83,18 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 			cdel(src)
 			return 1
 		else
-			user << "\red You can't load the [src.name] while it's opened."
+			to_chat(user, "\red You can't load the [src.name] while it's opened.")
 			return 1
 	if (disabled)
 		return
 	if (!linked_console)
-		user << "\The Weyland Yutani Brand Bioprinter(TM) must be linked to an R&D console first!"
+		to_chat(user, "\The Weyland Yutani Brand Bioprinter(TM) must be linked to an R&D console first!")
 		return 1
 	if (busy)
-		user << "\red The Weyland Yutani Brand Bioprinter(TM) is busy. Please wait for completion of previous operation."
+		to_chat(user, "\red The Weyland Yutani Brand Bioprinter(TM) is busy. Please wait for completion of previous operation.")
 		return 1
 	if (!istype(O, /obj/item/XenoBio))
-		user << "\red You cannot insert this item into the protolathe!"
+		to_chat(user, "\red You cannot insert this item into the protolathe!")
 		return 1
 	if (stat)
 		return 1
@@ -103,7 +103,7 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 	busy = 1
 	use_power(max(1000, (3750)))
 	if (do_after(user, 16, TRUE, 5, BUSY_ICON_GENERIC))
-		user << "\blue You add a [O] to the [src.name]."
+		to_chat(user, "\blue You add a [O] to the [src.name].")
 		icon_state = "protolathe"
 		if(istype(O, /obj/item/XenoBio/Blood))
 			blood_amount++

@@ -80,7 +80,7 @@
 				dirty = 0 // just to be sure
 				flags_atom = OPENCONTAINER
 		else
-			user << "\red It's broken!"
+			to_chat(user, "\red It's broken!")
 			return 1
 	else if(src.dirty==100) // The microwave is all dirty so can't be used!
 		if(istype(O, /obj/item/reagent_container/spray/cleaner)) // If they're trying to clean it then let them
@@ -98,11 +98,11 @@
 				icon_state = "mw"
 				flags_atom = OPENCONTAINER
 		else //Otherwise bad luck!!
-			user << "\red It's dirty!"
+			to_chat(user, "\red It's dirty!")
 			return 1
 	else if(is_type_in_list(O,acceptable_items))
 		if (contents.len>=max_n_of_items)
-			user << "\red This [src] is full of ingredients, you cannot put more."
+			to_chat(user, "\red This [src] is full of ingredients, you cannot put more.")
 			return 1
 		if(istype(O, /obj/item/stack) && O:get_amount() > 1) // This is bad, but I can't think of how to change it
 			var/obj/item/stack/S = O
@@ -126,13 +126,13 @@
 			return 1
 		for (var/datum/reagent/R in O.reagents.reagent_list)
 			if (!(R.id in acceptable_reagents))
-				user << "\red Your [O] contains components unsuitable for cookery."
+				to_chat(user, "\red Your [O] contains components unsuitable for cookery.")
 				return 1
 		//G.reagents.trans_to(src,G.amount_per_transfer_from_this)
 	else if(istype(O,/obj/item/grab))
 		return 1
 	else
-		user << "\red You have no idea what you can cook with this [O]."
+		to_chat(user, "\red You have no idea what you can cook with this [O].")
 		return 1
 	src.updateUsrDialog()
 
@@ -315,7 +315,7 @@
 	if (src.reagents.total_volume)
 		src.dirty++
 	src.reagents.clear_reagents()
-	usr << "\blue You dispose of the microwave contents."
+	to_chat(usr, "\blue You dispose of the microwave contents.")
 	src.updateUsrDialog()
 
 /obj/machinery/microwave/proc/muck_start()

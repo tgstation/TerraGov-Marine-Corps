@@ -16,42 +16,42 @@
 			if(istype(P, /obj/item/tool/wrench))
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					user << "\blue You wrench the frame into place."
+					to_chat(user, "\blue You wrench the frame into place.")
 					anchored = 1
 					state = 1
 			if(istype(P, /obj/item/tool/weldingtool))
 				var/obj/item/tool/weldingtool/WT = P
 				if(!WT.isOn())
-					user << "The welder must be on for this task."
+					to_chat(user, "The welder must be on for this task.")
 					return
 				playsound(loc, 'sound/items/Welder.ogg', 25, 1)
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 					if(!src || !WT.remove_fuel(0, user)) return
-					user << "\blue You deconstruct the frame."
+					to_chat(user, "\blue You deconstruct the frame.")
 					new /obj/item/stack/sheet/plasteel( loc, 4)
 					cdel(src)
 		if(1)
 			if(istype(P, /obj/item/tool/wrench))
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					user << "\blue You unfasten the frame."
+					to_chat(user, "\blue You unfasten the frame.")
 					anchored = 0
 					state = 0
 			if(istype(P, /obj/item/circuitboard/aicore) && !circuit)
 				if(user.drop_held_item())
 					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-					user << "\blue You place the circuit board inside the frame."
+					to_chat(user, "\blue You place the circuit board inside the frame.")
 					icon_state = "1"
 					circuit = P
 					P.forceMove(src)
 			if(istype(P, /obj/item/tool/screwdriver) && circuit)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				user << "\blue You screw the circuit board into place."
+				to_chat(user, "\blue You screw the circuit board into place.")
 				state = 2
 				icon_state = "2"
 			if(istype(P, /obj/item/tool/crowbar) && circuit)
 				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
-				user << "\blue You remove the circuit board."
+				to_chat(user, "\blue You remove the circuit board.")
 				state = 1
 				icon_state = "0"
 				circuit.loc = loc
@@ -59,29 +59,29 @@
 		if(2)
 			if(istype(P, /obj/item/tool/screwdriver) && circuit)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				user << "\blue You unfasten the circuit board."
+				to_chat(user, "\blue You unfasten the circuit board.")
 				state = 1
 				icon_state = "1"
 			if(istype(P, /obj/item/stack/cable_coil))
 				var/obj/item/stack/cable_coil/C = P
 				if (C.get_amount() < 5)
-					user << "<span class='warning'>You need five coils of wire to add them to the frame.</span>"
+					to_chat(user, "<span class='warning'>You need five coils of wire to add them to the frame.</span>")
 					return
-				user << "<span class='notice'>You start to add cables to the frame.</span>"
+				to_chat(user, "<span class='notice'>You start to add cables to the frame.</span>")
 				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 				if (do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD) && state == 2)
 					if (C.use(5))
 						state = 3
 						icon_state = "3"
-						user << "<span class='notice'>You add cables to the frame.</span>"
+						to_chat(user, "<span class='notice'>You add cables to the frame.</span>")
 				return
 		if(3)
 			if(istype(P, /obj/item/tool/wirecutters))
 				if (brain)
-					user << "Get that brain out of there first"
+					to_chat(user, "Get that brain out of there first")
 				else
 					playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-					user << "\blue You remove the cables."
+					to_chat(user, "\blue You remove the cables.")
 					state = 2
 					icon_state = "2"
 					var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( loc )
@@ -90,13 +90,13 @@
 			if(istype(P, /obj/item/stack/sheet/glass/reinforced))
 				var/obj/item/stack/sheet/glass/reinforced/RG = P
 				if (RG.get_amount() < 2)
-					user << "<span class='warning'>You need two sheets of glass to put in the glass panel.</span>"
+					to_chat(user, "<span class='warning'>You need two sheets of glass to put in the glass panel.</span>")
 					return
-				user << "<span class='notice'>You start to put in the glass panel.</span>"
+				to_chat(user, "<span class='notice'>You start to put in the glass panel.</span>")
 				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 				if (do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD) && state == 3)
 					if(RG.use(2))
-						user << "<span class='notice'>You put in the glass panel.</span>"
+						to_chat(user, "<span class='notice'>You put in the glass panel.</span>")
 						state = 4
 						icon_state = "4"
 
@@ -104,46 +104,46 @@
 				laws.add_inherent_law("You may not injure a human being or, through inaction, allow a human being to come to harm.")
 				laws.add_inherent_law("You must obey orders given to you by human beings, except where such orders would conflict with the First Law.")
 				laws.add_inherent_law("You must protect your own existence as long as such does not conflict with the First or Second Law.")
-				usr << "Law module applied."
+				to_chat(usr, "Law module applied.")
 
 			if(istype(P, /obj/item/circuitboard/ai_module/nanotrasen))
 				laws.add_inherent_law("Safeguard: Protect your assigned space station to the best of your ability. It is not something we can easily afford to replace.")
 				laws.add_inherent_law("Serve: Serve the crew of your assigned space station to the best of your abilities, with priority as according to their rank and role.")
 				laws.add_inherent_law("Protect: Protect the crew of your assigned space station to the best of your abilities, with priority as according to their rank and role.")
 				laws.add_inherent_law("Survive: AI units are not expendable, they are expensive. Do not allow unauthorized personnel to tamper with your equipment.")
-				usr << "Law module applied."
+				to_chat(usr, "Law module applied.")
 
 			if(istype(P, /obj/item/circuitboard/ai_module/purge))
 				laws.clear_inherent_laws()
-				usr << "Law module applied."
+				to_chat(usr, "Law module applied.")
 
 
 			if(istype(P, /obj/item/circuitboard/ai_module/freeform))
 				var/obj/item/circuitboard/ai_module/freeform/M = P
 				laws.add_inherent_law(M.newFreeFormLaw)
-				usr << "Added a freeform law."
+				to_chat(usr, "Added a freeform law.")
 
 			if(istype(P, /obj/item/device/mmi))
 				if(!P:brainmob)
-					user << "\red Sticking an empty [P] into the frame would sort of defeat the purpose."
+					to_chat(user, "\red Sticking an empty [P] into the frame would sort of defeat the purpose.")
 					return
 				if(P:brainmob.stat == 2)
-					user << "\red Sticking a dead [P] into the frame would sort of defeat the purpose."
+					to_chat(user, "\red Sticking a dead [P] into the frame would sort of defeat the purpose.")
 					return
 
 				if(jobban_isbanned(P:brainmob, "AI"))
-					user << "\red This [P] does not seem to fit."
+					to_chat(user, "\red This [P] does not seem to fit.")
 					return
 
 				if(user.drop_held_item())
 					P.forceMove(src)
 					brain = P
-					usr << "Added [P]."
+					to_chat(usr, "Added [P].")
 					icon_state = "3b"
 
 			if(istype(P, /obj/item/tool/crowbar) && brain)
 				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
-				user << "\blue You remove the brain."
+				to_chat(user, "\blue You remove the brain.")
 				brain.loc = loc
 				brain = null
 				icon_state = "3"
@@ -151,7 +151,7 @@
 		if(4)
 			if(istype(P, /obj/item/tool/crowbar))
 				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
-				user << "\blue You remove the glass panel."
+				to_chat(user, "\blue You remove the glass panel.")
 				state = 3
 				if (brain)
 					icon_state = "3b"
@@ -162,7 +162,7 @@
 
 			if(istype(P, /obj/item/tool/screwdriver))
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				user << "\blue You connect the monitor."
+				to_chat(user, "\blue You connect the monitor.")
 				var/mob/living/silicon/ai/A = new /mob/living/silicon/ai ( loc, laws, brain )
 				if(A) //if there's no brain, the mob is deleted and a structure/AIcore is created
 					A.rename_self("ai", 1)
@@ -196,7 +196,7 @@ That prevents a few funky behaviors.
 					if("AICARD")
 						var/obj/item/device/aicard/C = src
 						if(C.contents.len)//If there is an AI on card.
-							U << "\red <b>Transfer failed</b>: \black Existing AI found on this terminal. Remove existing AI to install a new one."
+							to_chat(U, "\red <b>Transfer failed</b>: \black Existing AI found on this terminal. Remove existing AI to install a new one.")
 						else
 							new /obj/structure/AIcore/deactivated(T.loc)//Spawns a deactivated terminal at AI location.
 							T.aiRestorePowerRoutine = 0//So the AI initially has power.
@@ -208,8 +208,8 @@ That prevents a few funky behaviors.
 							else
 								C.icon_state = "aicard-full"
 							T.cancel_camera()
-							T << "You have been downloaded to a mobile storage device. Remote device connection severed."
-							U << "\blue <b>Transfer successful</b>: \black [T.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory."
+							to_chat(T, "You have been downloaded to a mobile storage device. Remote device connection severed.")
+							to_chat(U, "\blue <b>Transfer successful</b>: \black [T.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory.")
 
 			if("INACTIVE")//Inactive AI object.
 				var/obj/structure/AIcore/deactivated/T = target
@@ -225,8 +225,8 @@ That prevents a few funky behaviors.
 							C.name = "inteliCard"
 							C.overlays.Cut()
 							A.cancel_camera()
-							A << "You have been uploaded to a stationary terminal. Remote device connection restored."
-							U << "\blue <b>Transfer successful</b>: \black [A.name] ([rand(1000,9999)].exe) installed and executed succesfully. Local copy has been removed."
+							to_chat(A, "You have been uploaded to a stationary terminal. Remote device connection restored.")
+							to_chat(U, "\blue <b>Transfer successful</b>: \black [A.name] ([rand(1000,9999)].exe) installed and executed succesfully. Local copy has been removed.")
 							cdel(T)
 			if("AIFIXER")//AI Fixer terminal.
 				var/obj/machinery/computer/aifixer/T = target
@@ -235,7 +235,7 @@ That prevents a few funky behaviors.
 						var/obj/item/device/aicard/C = src
 						if(!T.contents.len)
 							if (!C.contents.len)
-								U << "No AI to copy over!"//Well duh
+								to_chat(U, "No AI to copy over!")
 							else for(var/mob/living/silicon/ai/A in C)
 								C.icon_state = "aicard"
 								C.name = "inteliCard"
@@ -249,8 +249,8 @@ That prevents a few funky behaviors.
 									T.overlays += image('icons/obj/machines/computer.dmi', "ai-fixer-full")
 								T.overlays -= image('icons/obj/machines/computer.dmi', "ai-fixer-empty")
 								A.cancel_camera()
-								A << "You have been uploaded to a stationary terminal. Sadly, there is no remote access from here."
-								U << "\blue <b>Transfer successful</b>: \black [A.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed."
+								to_chat(A, "You have been uploaded to a stationary terminal. Sadly, there is no remote access from here.")
+								to_chat(U, "\blue <b>Transfer successful</b>: \black [A.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed.")
 						else
 							if(!C.contents.len && T.occupant && !T.active)
 								C.name = "inteliCard - [T.occupant.name]"
@@ -261,17 +261,17 @@ That prevents a few funky behaviors.
 								else
 									C.icon_state = "aicard-full"
 									T.overlays -= image('icons/obj/machines/computer.dmi', "ai-fixer-full")
-								T.occupant << "You have been downloaded to a mobile storage device. Still no remote access."
-								U << "\blue <b>Transfer successful</b>: \black [T.occupant.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory."
+								to_chat(T.occupant, "You have been downloaded to a mobile storage device. Still no remote access.")
+								to_chat(U, "\blue <b>Transfer successful</b>: \black [T.occupant.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory.")
 								T.occupant.loc = C
 								T.occupant.cancel_camera()
 								T.occupant = null
 							else if (C.contents.len)
-								U << "\red <b>ERROR</b>: \black Artificial intelligence detected on terminal."
+								to_chat(U, "\red <b>ERROR</b>: \black Artificial intelligence detected on terminal.")
 							else if (T.active)
-								U << "\red <b>ERROR</b>: \black Reconstruction in progress."
+								to_chat(U, "\red <b>ERROR</b>: \black Reconstruction in progress.")
 							else if (!T.occupant)
-								U << "\red <b>ERROR</b>: \black Unable to locate artificial intelligence."
+								to_chat(U, "\red <b>ERROR</b>: \black Unable to locate artificial intelligence.")
 	else
-		U << "\red <b>ERROR</b>: \black AI flush is in progress, cannot execute transfer protocol."
+		to_chat(U, "\red <b>ERROR</b>: \black AI flush is in progress, cannot execute transfer protocol.")
 	return

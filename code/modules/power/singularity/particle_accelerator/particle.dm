@@ -67,7 +67,7 @@
 			radiation = round(radiation/2,1)*/
 	M.apply_effect((radiation*3),IRRADIATE,0)
 	M.updatehealth()
-	//M << "\red You feel odd."
+	//to_chat(M, "\red You feel odd.")
 	return
 
 

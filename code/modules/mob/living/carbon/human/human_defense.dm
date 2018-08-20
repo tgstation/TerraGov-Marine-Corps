@@ -137,7 +137,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if (!affecting)
 		return 0
 	if(affecting.status & LIMB_DESTROYED)
-		user << "What [affecting.display_name]?"
+		to_chat(user, "What [affecting.display_name]?")
 		return 0
 	var/hit_area = affecting.display_name
 

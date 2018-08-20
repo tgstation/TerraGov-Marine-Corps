@@ -12,7 +12,7 @@
 		if (C.bugged && C.status)
 			cameras.Add(C)
 	if (length(cameras) == 0)
-		usr << "\red No bugged functioning cameras found."
+		to_chat(usr, "\red No bugged functioning cameras found.")
 		return
 
 	var/list/friendly_cameras = new/list()

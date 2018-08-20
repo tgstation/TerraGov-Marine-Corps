@@ -50,11 +50,11 @@ Note: Must be placed within 3 tiles of the R&D Console
 				linked_console.linked_destroy = null
 				linked_console = null
 			icon_state = "d_analyzer_t"
-			user << "You open the maintenance hatch of [src]."
+			to_chat(user, "You open the maintenance hatch of [src].")
 		else
 			opened = 0
 			icon_state = "d_analyzer"
-			user << "You close the maintenance hatch of [src]."
+			to_chat(user, "You close the maintenance hatch of [src].")
 		return
 	if (opened)
 		if(istype(O, /obj/item/tool/crowbar))
@@ -67,33 +67,33 @@ Note: Must be placed within 3 tiles of the R&D Console
 			cdel(src)
 			return 1
 		else
-			user << "\red You can't load the [src.name] while it's opened."
+			to_chat(user, "\red You can't load the [src.name] while it's opened.")
 			return 1
 	if (disabled)
 		return
 	if (!linked_console)
-		user << "\red The destructive analyzer must be linked to an R&D console first!"
+		to_chat(user, "\red The destructive analyzer must be linked to an R&D console first!")
 		return
 	if (busy)
-		user << "\red The destructive analyzer is busy right now."
+		to_chat(user, "\red The destructive analyzer is busy right now.")
 		return
 	if (istype(O, /obj/item) && !loaded_item)
 		if(isrobot(user)) //Don't put your module items in there!
 			return
 		if(!O.origin_tech)
-			user << "\red This doesn't seem to have a tech origin!"
+			to_chat(user, "\red This doesn't seem to have a tech origin!")
 			return
 		var/list/temp_tech = ConvertReqString2List(O.origin_tech)
 		if (temp_tech.len == 0)
-			user << "\red You cannot deconstruct this item!"
+			to_chat(user, "\red You cannot deconstruct this item!")
 			return
 		if(O.reliability < 90 && O.crit_fail == 0)
-			usr << "\red Item is neither reliable enough nor broken enough to learn from."
+			to_chat(usr, "\red Item is neither reliable enough nor broken enough to learn from.")
 			return
 		busy = 1
 		loaded_item = O
 		user.drop_inv_item_to_loc(O, src)
-		user << "\blue You add the [O.name] to the machine!"
+		to_chat(user, "\blue You add the [O.name] to the machine!")
 		flick("d_analyzer_la", src)
 		spawn(10)
 			icon_state = "d_analyzer_l"

@@ -110,8 +110,8 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	rc_msgs += new/datum/data_rc_msg(recipient,sender,message,stamp,id_auth)
 
 /obj/machinery/message_server/attack_hand(user as mob)
-//	user << "\blue There seem to be some parts missing from this server. They should arrive on the station in a few days, give or take a few CentCom delays."
-	user << "You toggle PDA message passing from [active ? "On" : "Off"] to [active ? "Off" : "On"]"
+//	to_chat(user, "\blue There seem to be some parts missing from this server. They should arrive on the station in a few days, give or take a few CentCom delays.")
+	to_chat(user, "You toggle PDA message passing from [active ? "On" : "Off"] to [active ? "Off" : "On"]")
 	active = !active
 	update_icon()
 
@@ -123,7 +123,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 		spamfilter_limit += round(MESSAGE_SERVER_DEFAULT_SPAM_LIMIT / 2)
 		user.temp_drop_inv_item(O)
 		cdel(O)
-		user << "You install additional memory and processors into message server. Its filtering capabilities have been enhanced."
+		to_chat(user, "You install additional memory and processors into message server. Its filtering capabilities have been enhanced.")
 	else
 		..(O, user)
 

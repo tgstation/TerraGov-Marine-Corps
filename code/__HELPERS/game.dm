@@ -147,7 +147,7 @@
 			if(sight_check && !isInSight(A, O))
 				continue
 			L |= M
-			//world.log << "[recursion_limit] = [M] - [get_turf(M)] - ([M.x], [M.y], [M.z])"
+			//to_chat(world.log, "[recursion_limit] = [M] - [get_turf(M)] - ([M.x], [M.y], [M.z])")
 
 		else if(include_radio && istype(A, /obj/item/device/radio))
 			if(sight_check && !isInSight(A, O))
@@ -177,7 +177,7 @@
 			var/mob/M = A
 			if(M.client)
 				hear += M
-			//world.log << "Start = [M] - [get_turf(M)] - ([M.x], [M.y], [M.z])"
+			//to_chat(world.log, "Start = [M] - [get_turf(M)] - ([M.x], [M.y], [M.z])")
 		else if(istype(A, /obj/item/device/radio))
 			hear += A
 

@@ -39,7 +39,7 @@
 
 /obj/item/weapon/gun/revolver/examine(mob/user)
 	..()
-	user << "[current_mag.chamber_closed? "It's closed.": "It's open with [current_mag.current_rounds] round\s loaded."]"
+	to_chat(user, "[current_mag.chamber_closed? "It's closed.": "It's open with [current_mag.current_rounds] round\s loaded."]")
 
 /obj/item/weapon/gun/revolver/update_icon() //Special snowflake update icon.
 	icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_o"
@@ -50,7 +50,7 @@
 /obj/item/weapon/gun/revolver/proc/spin_cylinder(mob/user)
 	if(current_mag.chamber_closed) //We're not spinning while it's open. Could screw up reloading.
 		current_mag.chamber_position = rand(1,current_mag.max_rounds)
-		user << "<span class='notice'>You spin the cylinder.</span>"
+		to_chat(user, "<span class='notice'>You spin the cylinder.</span>")
 		playsound(user, cocked_sound, 25, 1)
 		russian_roulette = !russian_roulette //Sets to play RR. Resets when the gun is emptied.
 
@@ -87,19 +87,19 @@
 		if(flags_gun_features & GUN_BURST_FIRING) return
 
 		if(!magazine || !istype(magazine))
-			user << "<span class='warning'>That's not gonna work!</span>"
+			to_chat(user, "<span class='warning'>That's not gonna work!</span>")
 			return
 
 		if(magazine.current_rounds <= 0)
-			user << "<span class='warning'>That [magazine.name] is empty!</span>"
+			to_chat(user, "<span class='warning'>That [magazine.name] is empty!</span>")
 			return
 
 		if(current_mag.chamber_closed)
-			user << "<span class='warning'>You can't load anything when the cylinder is closed!</span>"
+			to_chat(user, "<span class='warning'>You can't load anything when the cylinder is closed!</span>")
 			return
 
 		if(current_mag.current_rounds == current_mag.max_rounds)
-			user << "<span class='warning'>It's already full!</span>"
+			to_chat(user, "<span class='warning'>It's already full!</span>")
 			return
 
 		if(istype(magazine, /obj/item/ammo_magazine/handful)) //Looks like we're loading via handful.
@@ -113,7 +113,7 @@
 				if(current_mag.transfer_ammo(magazine,user,1))
 					add_to_cylinder(user)//If the magazine is deleted, we're still fine.
 			else
-				user << "[current_mag] is [current_mag.current_rounds ? "already loaded with some other ammo. Better not mix them up." : "not compatible with that ammo."]"//Not the right kind of ammo.
+				to_chat(user, "[current_mag] is [current_mag.current_rounds ? "already loaded with some other ammo. Better not mix them up." : "not compatible with that ammo."]")
 		else //So if it's not a handful, it's an actual speedloader.
 			if(!current_mag.current_rounds) //We can't have rounds in the gun if it's a speeloader.
 				if(current_mag.gun_type == magazine.gun_type) //Has to be the same gun type.
@@ -123,15 +123,15 @@
 						replace_cylinder(current_mag.current_rounds)
 						playsound(user, reload_sound, 25, 1) // Reloading via speedloader.
 				else
-					user << "<span class='warning'>That [magazine] doesn't fit!</span>"
+					to_chat(user, "<span class='warning'>That [magazine] doesn't fit!</span>")
 			else
-				user << "<span class='warning'>You can't load a speedloader when there's something in the cylinder!</span>"
+				to_chat(user, "<span class='warning'>You can't load a speedloader when there's something in the cylinder!</span>")
 
 	unload(mob/user)
 		if(flags_gun_features & GUN_BURST_FIRING) return
 
 		if(current_mag.chamber_closed) //If it's actually closed.
-			user << "<span class='notice'>You clear the cylinder of [src].</span>"
+			to_chat(user, "<span class='notice'>You clear the cylinder of [src].</span>")
 			make_casing(type_of_casings)
 			empty_cylinder()
 			current_mag.create_handful(user)
@@ -152,7 +152,7 @@
 		. = ..()
 		if(. && istype(user))
 			if(!current_mag.chamber_closed)
-				user << "<span class='warning'>Close the cylinder!</span>"
+				to_chat(user, "<span class='warning'>Close the cylinder!</span>")
 				return 0
 
 	ready_in_chamber()
@@ -205,7 +205,7 @@
 
 	invisibility = 100
 	for(var/mob/M in viewers(user))
-		M << trick
+		to_chat(M, trick)
 	sleep(5)
 	trick.loc = null
 	if(loc && user)
@@ -258,7 +258,7 @@
 				else
 					revolver_throw_catch(user)
 	else
-		if(prob(10)) user << "<span class='warning'>You fumble with [src] like an idiot... Uncool.</span>"
+		if(prob(10)) to_chat(user, "<span class='warning'>You fumble with [src] like an idiot... Uncool.</span>")
 		else user.visible_message("<span class='info'><b>[user]</b> fumbles with [src] like a huge idiot!</span>")
 
 	recent_trick = world.time //Turn on the delay for the next trick.

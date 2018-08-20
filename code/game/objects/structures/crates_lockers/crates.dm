@@ -93,7 +93,7 @@
 	else if(istype(W, /obj/item/stack/cable_coil))
 		var/obj/item/stack/cable_coil/C = W
 		if(rigged)
-			user << "<span class='notice'>[src] is already rigged!</span>"
+			to_chat(user, "<span class='notice'>[src] is already rigged!</span>")
 			return
 		if (C.use(1))
 			user  << "<span class='notice'>You rig [src].</span>"

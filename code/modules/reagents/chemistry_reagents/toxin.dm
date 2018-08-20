@@ -422,27 +422,27 @@
 
 				if(H.head)
 					if(prob(meltprob) && !H.head.unacidable)
-						H << "<span class='danger'>Your headgear melts away but protects you from the acid!</span>"
+						to_chat(H, "<span class='danger'>Your headgear melts away but protects you from the acid!</span>")
 						cdel(H.head)
 						H.update_inv_head(0)
 						H.update_hair(0)
 					else
-						H << "<span class='warning'>Your headgear protects you from the acid.</span>"
+						to_chat(H, "<span class='warning'>Your headgear protects you from the acid.</span>")
 					return
 
 				if(H.wear_mask)
 					if(prob(meltprob) && !H.wear_mask.unacidable)
-						H << "<span class='danger'>Your mask melts away but protects you from the acid!</span>"
+						to_chat(H, "<span class='danger'>Your mask melts away but protects you from the acid!</span>")
 						cdel(H.wear_mask)
 						H.update_inv_wear_mask(0)
 						H.update_hair(0)
 					else
-						H << "<span class='warning'>Your mask protects you from the acid.</span>"
+						to_chat(H, "<span class='warning'>Your mask protects you from the acid.</span>")
 					return
 
 				if(H.glasses) //Doesn't protect you from the acid but can melt anyways!
 					if(prob(meltprob) && !H.glasses.unacidable)
-						H << "<span class='danger'>Your glasses melts away!</span>"
+						to_chat(H, "<span class='danger'>Your glasses melts away!</span>")
 						cdel(H.glasses)
 						H.update_inv_glasses(0)
 
@@ -450,11 +450,11 @@
 				var/mob/living/carbon/monkey/MK = M
 				if(MK.wear_mask)
 					if(!MK.wear_mask.unacidable)
-						MK << "<span class='danger'>Your mask melts away but protects you from the acid!</span>"
+						to_chat(MK, "<span class='danger'>Your mask melts away but protects you from the acid!</span>")
 						cdel(MK.wear_mask)
 						MK.update_inv_wear_mask(0)
 					else
-						MK << "<span class='warning'>Your mask protects you from the acid.</span>"
+						to_chat(MK, "<span class='warning'>Your mask protects you from the acid.</span>")
 					return
 
 			if(!M.unacidable)
@@ -481,7 +481,7 @@
 				var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 				I.desc = "Looks like this was \an [O] some time ago."
 				for(var/mob/M in viewers(5, O))
-					M << "\red \the [O] melts."
+					to_chat(M, "\red \the [O] melts.")
 				cdel(O)
 
 /datum/reagent/toxin/acid/polyacid

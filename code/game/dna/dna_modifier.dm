@@ -101,13 +101,13 @@
 	if (usr.stat != 0)
 		return
 	if (!ishuman(usr) && !ismonkey(usr)) //Make sure they're a mob that has dna
-		usr << "\blue Try as you might, you can not climb up into the scanner."
+		to_chat(usr, "\blue Try as you might, you can not climb up into the scanner.")
 		return
 	if (src.occupant)
-		usr << "\blue <B>The scanner is already occupied!</B>"
+		to_chat(usr, "\blue <B>The scanner is already occupied!</B>")
 		return
 	if (usr.abiotic())
-		usr << "\blue <B>Subject cannot have abiotic items on.</B>"
+		to_chat(usr, "\blue <B>Subject cannot have abiotic items on.</B>")
 		return
 	usr.stop_pulling()
 	usr.client.perspective = EYE_PERSPECTIVE
@@ -121,7 +121,7 @@
 /obj/machinery/dna_scannernew/attackby(var/obj/item/item as obj, var/mob/user as mob)
 	if(istype(item, /obj/item/reagent_container/glass))
 		if(beaker)
-			user << "\red A beaker is already loaded into the machine."
+			to_chat(user, "\red A beaker is already loaded into the machine.")
 			return
 
 		beaker = item
@@ -135,10 +135,10 @@
 		return
 	var/mob/M = G.grabbed_thing
 	if (src.occupant)
-		user << "\blue <B>The scanner is already occupied!</B>"
+		to_chat(user, "\blue <B>The scanner is already occupied!</B>")
 		return
 	if (M.abiotic())
-		user << "\blue <B>Subject cannot have abiotic items on.</B>"
+		to_chat(user, "\blue <B>Subject cannot have abiotic items on.</B>")
 		return
 	put_in(M)
 	add_fingerprint(user)
@@ -223,7 +223,7 @@
 		if (!src.disk)
 			user.drop_inv_item_to_loc(I, src)
 			src.disk = I
-			user << "You insert [I]."
+			to_chat(user, "You insert [I].")
 			nanomanager.update_uis(src) // update all UIs attached to src
 			return
 	else

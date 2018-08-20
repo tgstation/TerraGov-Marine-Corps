@@ -243,10 +243,10 @@
 
 /obj/machinery/shieldgen/attack_hand(mob/user as mob)
 	if(locked)
-		user << "The machine is locked, you are unable to use it."
+		to_chat(user, "The machine is locked, you are unable to use it.")
 		return
 	if(is_open)
-		user << "The panel must be closed before operating this machine."
+		to_chat(user, "The panel must be closed before operating this machine.")
 		return
 
 	if (src.active)
@@ -261,7 +261,7 @@
 				"You hear heavy droning.")
 			src.shields_up()
 		else
-			user << "The device must first be secured to the floor."
+			to_chat(user, "The device must first be secured to the floor.")
 	return
 
 /obj/machinery/shieldgen/attackby(obj/item/W as obj, mob/user as mob)
@@ -272,47 +272,47 @@
 	else if(istype(W, /obj/item/tool/screwdriver))
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		if(is_open)
-			user << "\blue You close the panel."
+			to_chat(user, "\blue You close the panel.")
 			is_open = 0
 		else
-			user << "\blue You open the panel and expose the wiring."
+			to_chat(user, "\blue You open the panel and expose the wiring.")
 			is_open = 1
 
 	else if(istype(W, /obj/item/stack/cable_coil) && malfunction && is_open)
 		var/obj/item/stack/cable_coil/coil = W
-		user << "<span class='notice'>You begin to replace the wires.</span>"
+		to_chat(user, "<span class='notice'>You begin to replace the wires.</span>")
 		//if(do_after(user, min(60, round( ((maxhealth/health)*10)+(malfunction*10) ))) //Take longer to repair heavier damage
 		if(do_after(user, 30, TRUE, 5, BUSY_ICON_FRIENDLY))
 			if (coil.use(1))
 				health = max_health
 				malfunction = 0
-				user << "<span class='notice'>You repair the [src]!</span>"
+				to_chat(user, "<span class='notice'>You repair the [src]!</span>")
 				update_icon()
 
 	else if(istype(W, /obj/item/tool/wrench))
 		if(locked)
-			user << "The bolts are covered, unlocking this would retract the covers."
+			to_chat(user, "The bolts are covered, unlocking this would retract the covers.")
 			return
 		if(anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-			user << "\blue You unsecure the [src] from the floor!"
+			to_chat(user, "\blue You unsecure the [src] from the floor!")
 			if(active)
-				user << "\blue The [src] shuts off!"
+				to_chat(user, "\blue The [src] shuts off!")
 				src.shields_down()
 			anchored = 0
 		else
 			if(istype(get_turf(src), /turf/open/space)) return //No wrenching these in space!
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-			user << "\blue You secure the [src] to the floor!"
+			to_chat(user, "\blue You secure the [src] to the floor!")
 			anchored = 1
 
 
 	else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda))
 		if(src.allowed(user))
 			src.locked = !src.locked
-			user << "The controls are now [src.locked ? "locked." : "unlocked."]"
+			to_chat(user, "The controls are now [src.locked ? "locked." : "unlocked."]")
 		else
-			user << "\red Access denied."
+			to_chat(user, "\red Access denied.")
 
 	else
 		..()

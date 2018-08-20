@@ -29,7 +29,7 @@
 			if(player_caused)
 				if (src.client)
 					if (client.prefs.muted & MUTE_IC)
-						src << "\red You cannot send IC messages (muted)."
+						to_chat(src, "\red You cannot send IC messages (muted).")
 						return
 					if (src.client.handle_spam_prevention(message,MUTE_IC))
 						return
@@ -357,7 +357,7 @@
 
 
 		if ("help")
-			src << "<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: green;'>green</span>. Spamming emotes with sound will likely get you banned. Don't do it.<br><br> \
+			var/msg = "<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: green;'>green</span>. Spamming emotes with sound will likely get you banned. Don't do it.<br><br> \
 			blink, \
 			blink_r, \
 			bow-(mob name), \
@@ -401,8 +401,9 @@
 			twitch, \
 			wave, \
 			yawn</b><br>"
+			to_chat(src, msg)
 			if (has_species(src,"Yautja"))
-				src << "<br><b>As a Predator, you have the following additional emotes. Tip: The *medic emote has neither a cooldown nor a visibile origin...<br><br>\
+				var/yautja_msg = "<br><b>As a Predator, you have the following additional emotes. Tip: The *medic emote has neither a cooldown nor a visibile origin...<br><br>\
 				<span style='color: green;'>anytime</span>, \
 				<span style='color: green;'>click</span>, \
 				<span style='color: green;'>helpme</span>, \
@@ -417,6 +418,7 @@
 				<span style='color: green;'>overhere</span>, \
 				<span style='color: green;'>turnaround</span>, \
 				<span style='color: green;'>roar</span></b><br>"
+				to_chat(src, yautja_msg)
 
 
 		// Pred emotes
@@ -482,7 +484,7 @@
 				m_type = 1
 				playsound(src.loc, 'sound/voice/pred_turnaround.ogg', 25, 0)
 		else
-			src << "\blue Unusable emote '[act]'. Say *help for a list of emotes."
+			to_chat(src, "\blue Unusable emote '[act]'. Say *help for a list of emotes.")
 
 	if (message)
 		log_emote("[name]/[key] : [message]")

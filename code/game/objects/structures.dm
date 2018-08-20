@@ -92,7 +92,7 @@
 
 		//dense obstacles (border or not) on the structure's tile
 		if(O.density && (!(O.flags_atom & ON_BORDER) || O.dir & get_dir(src,user)))
-			user << "<span class='warning'>There's \a [O.name] in the way.</span>"
+			to_chat(user, "<span class='warning'>There's \a [O.name] in the way.</span>")
 			return 0
 
 	for(var/obj/O in U.contents)
@@ -102,27 +102,27 @@
 				continue
 		//dense border obstacles on our tile
 		if(O.density && (O.flags_atom & ON_BORDER) && O.dir & get_dir(user, src))
-			user << "<span class='warning'>There's \a [O.name] in the way.</span>"
+			to_chat(user, "<span class='warning'>There's \a [O.name] in the way.</span>")
 			return 0
 
 	if((flags_atom & ON_BORDER))
 		if(user.loc != loc && user.loc != get_step(T, dir))
-			user << "<span class='warning'>You need to be up against [src] to leap over.</span>"
+			to_chat(user, "<span class='warning'>You need to be up against [src] to leap over.</span>")
 			return
 		if(user.loc == loc)
 			var/turf/target = get_step(T, dir)
 			if(target.density) //Turf is dense, not gonna work
-				user << "<span class='warning'>You cannot leap this way.</span>"
+				to_chat(user, "<span class='warning'>You cannot leap this way.</span>")
 				return
 			for(var/atom/movable/A in target)
 				if(A && A.density && !(A.flags_atom & ON_BORDER))
 					if(istype(A, /obj/structure))
 						var/obj/structure/S = A
 						if(!S.climbable) //Transfer onto climbable surface
-							user << "<span class='warning'>You cannot leap this way.</span>"
+							to_chat(user, "<span class='warning'>You cannot leap this way.</span>")
 							return
 					else
-						user << "<span class='warning'>You cannot leap this way.</span>"
+						to_chat(user, "<span class='warning'>You cannot leap this way.</span>")
 						return
 	return 1
 
@@ -150,17 +150,17 @@
 			user.visible_message("<span class='warning'>[user] leaps over \the [src]!</span>")
 		else
 			if(target.density) //Turf is dense, not gonna work
-				user << "<span class='warning'>You cannot leap this way.</span>"
+				to_chat(user, "<span class='warning'>You cannot leap this way.</span>")
 				return
 			for(var/atom/movable/A in target)
 				if(A && A.density && !(A.flags_atom & ON_BORDER))
 					if(istype(A, /obj/structure))
 						var/obj/structure/S = A
 						if(!S.climbable) //Transfer onto climbable surface
-							user << "<span class='warning'>You cannot leap this way.</span>"
+							to_chat(user, "<span class='warning'>You cannot leap this way.</span>")
 							return
 					else
-						user << "<span class='warning'>You cannot leap this way.</span>"
+						to_chat(user, "<span class='warning'>You cannot leap this way.</span>")
 						return
 			user.forceMove(get_turf(target)) //One more move, we "leap" over the border structure
 
@@ -174,14 +174,14 @@
 		if(M.lying) return //No spamming this on people.
 
 		M.KnockDown(5)
-		M << "\red You topple as \the [src] moves under you!"
+		to_chat(M, "\red You topple as \the [src] moves under you!")
 
 		if(prob(25))
 
 			var/damage = rand(15,30)
 			var/mob/living/carbon/human/H = M
 			if(!istype(H))
-				H << "<span class='danger'>You land heavily!</span>"
+				to_chat(H, "<span class='danger'>You land heavily!</span>")
 				M.apply_damage(damage, BRUTE)
 				return
 
@@ -200,12 +200,12 @@
 					affecting = H.get_limb("head")
 
 			if(affecting)
-				M << "<span class='danger'>You land heavily on your [affecting.display_name]!</span>"
+				to_chat(M, "<span class='danger'>You land heavily on your [affecting.display_name]!</span>")
 				affecting.take_damage(damage, 0)
 				if(affecting.parent)
 					affecting.parent.add_autopsy_data("Misadventure", damage)
 			else
-				H << "<span class='danger'>You land heavily!</span>"
+				to_chat(H, "<span class='danger'>You land heavily!</span>")
 				H.apply_damage(damage, BRUTE)
 
 			H.UpdateDamageIcon()
@@ -218,11 +218,11 @@
 	if(!Adjacent(user) || !isturf(user.loc))
 		return 0
 	if(user.is_mob_restrained() || user.buckled)
-		user << "<span class='notice'>You need your hands and legs free for this.</span>"
+		to_chat(user, "<span class='notice'>You need your hands and legs free for this.</span>")
 		return 0
 	if(user.is_mob_incapacitated(TRUE) || user.lying)
 		return 0
 	if(issilicon(user))
-		user << "<span class='notice'>You need hands for this.</span>"
+		to_chat(user, "<span class='notice'>You need hands for this.</span>")
 		return 0
 	return 1

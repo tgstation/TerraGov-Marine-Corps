@@ -202,10 +202,10 @@
 	if((air_info[2] < species.cold_level_1 || air_info[2] > species.heat_level_1) && !(COLD_RESISTANCE in mutations))
 		if(air_info[2] < species.cold_level_1)
 			if(prob(20))
-				src << "<span class='danger'>You feel your face freezing and icicles forming in your lungs!</span>"
+				to_chat(src, "<span class='danger'>You feel your face freezing and icicles forming in your lungs!</span>")
 		else if(air_info[2] > species.heat_level_1)
 			if(prob(20))
-				src << "<span class='danger'>You feel your face burning and a searing heat in your lungs!</span>"
+				to_chat(src, "<span class='danger'>You feel your face burning and a searing heat in your lungs!</span>")
 
 		var/breath_temp = air_info[2]
 

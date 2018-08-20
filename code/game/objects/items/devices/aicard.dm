@@ -26,7 +26,7 @@
 			return ..()
 		else
 			M.death()
-			user << "<b>ERROR ERROR ERROR</b>"
+			to_chat(user, "<b>ERROR ERROR ERROR</b>")
 
 	attack_self(mob/user)
 		if (!in_range(src, user))
@@ -97,8 +97,8 @@
 			if ("Radio")
 				for(var/mob/living/silicon/ai/A in src)
 					A.aiRadio.disabledAi = !A.aiRadio.disabledAi
-					A << "Your Subspace Transceiver has been: [A.aiRadio.disabledAi ? "disabled" : "enabled"]"
-					U << "You [A.aiRadio.disabledAi ? "Disable" : "Enable"] the AI's Subspace Transceiver"
+					to_chat(A, "Your Subspace Transceiver has been: [A.aiRadio.disabledAi ? "disabled" : "enabled"]")
+					to_chat(U, "You [A.aiRadio.disabledAi ? "Disable" : "Enable"] the AI's Subspace Transceiver")
 
 			if ("Wipe")
 				var/confirm = alert("Are you sure you want to wipe this card's memory? This cannot be undone once started.", "Confirm Wipe", "Yes", "No")
@@ -111,7 +111,7 @@
 						flush = 1
 						for(var/mob/living/silicon/ai/A in src)
 							A.suiciding = 1
-							A << "Your core files are being wiped!"
+							to_chat(A, "Your core files are being wiped!")
 							while (A.stat != 2)
 								A.adjustOxyLoss(2)
 								A.updatehealth()
@@ -121,7 +121,7 @@
 			if ("Wireless")
 				for(var/mob/living/silicon/ai/A in src)
 					A.control_disabled = !A.control_disabled
-					A << "The intelicard's wireless port has been [A.control_disabled ? "disabled" : "enabled"]!"
+					to_chat(A, "The intelicard's wireless port has been [A.control_disabled ? "disabled" : "enabled"]!")
 					if (A.control_disabled)
 						overlays -= image('icons/obj/items/pda.dmi', "aicard-on")
 					else

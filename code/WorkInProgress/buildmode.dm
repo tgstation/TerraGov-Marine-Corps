@@ -68,36 +68,36 @@
 /obj/effect/bmode/buildhelp/clicked()
 	switch(master.cl.buildmode)
 		if(1)
-			usr << "\blue ***********************************************************"
-			usr << "\blue Left Mouse Button        = Construct / Upgrade"
-			usr << "\blue Right Mouse Button       = Deconstruct / Delete / Downgrade"
-			usr << "\blue Left Mouse Button + ctrl = R-Window"
-			usr << "\blue Left Mouse Button + alt  = Airlock"
-			usr << ""
-			usr << "\blue Use the button in the upper left corner to"
-			usr << "\blue change the direction of built objects."
-			usr << "\blue ***********************************************************"
+			to_chat(usr, "\blue ***********************************************************")
+			to_chat(usr, "\blue Left Mouse Button        = Construct / Upgrade")
+			to_chat(usr, "\blue Right Mouse Button       = Deconstruct / Delete / Downgrade")
+			to_chat(usr, "\blue Left Mouse Button + ctrl = R-Window")
+			to_chat(usr, "\blue Left Mouse Button + alt  = Airlock")
+			to_chat(usr, "")
+			to_chat(usr, "\blue Use the button in the upper left corner to")
+			to_chat(usr, "\blue change the direction of built objects.")
+			to_chat(usr, "\blue ***********************************************************")
 		if(2)
-			usr << "\blue ***********************************************************"
-			usr << "\blue Right Mouse Button on buildmode button = Set object type"
-			usr << "\blue Middle Mouse Button on turf/obj        = Set object type"
-			usr << "\blue Left Mouse Button on turf/obj          = Place objects"
-			usr << "\blue Right Mouse Button                     = Delete objects"
-			usr << ""
-			usr << "\blue Use the button in the upper left corner to"
-			usr << "\blue change the direction of built objects."
-			usr << "\blue ***********************************************************"
+			to_chat(usr, "\blue ***********************************************************")
+			to_chat(usr, "\blue Right Mouse Button on buildmode button = Set object type")
+			to_chat(usr, "\blue Middle Mouse Button on turf/obj        = Set object type")
+			to_chat(usr, "\blue Left Mouse Button on turf/obj          = Place objects")
+			to_chat(usr, "\blue Right Mouse Button                     = Delete objects")
+			to_chat(usr, "")
+			to_chat(usr, "\blue Use the button in the upper left corner to")
+			to_chat(usr, "\blue change the direction of built objects.")
+			to_chat(usr, "\blue ***********************************************************")
 		if(3)
-			usr << "\blue ***********************************************************"
-			usr << "\blue Right Mouse Button on buildmode button = Select var(type) & value"
-			usr << "\blue Left Mouse Button on turf/obj/mob      = Set var(type) & value"
-			usr << "\blue Right Mouse Button on turf/obj/mob     = Reset var's value"
-			usr << "\blue ***********************************************************"
+			to_chat(usr, "\blue ***********************************************************")
+			to_chat(usr, "\blue Right Mouse Button on buildmode button = Select var(type) & value")
+			to_chat(usr, "\blue Left Mouse Button on turf/obj/mob      = Set var(type) & value")
+			to_chat(usr, "\blue Right Mouse Button on turf/obj/mob     = Reset var's value")
+			to_chat(usr, "\blue ***********************************************************")
 		if(4)
-			usr << "\blue ***********************************************************"
-			usr << "\blue Left Mouse Button on turf/obj/mob      = Select"
-			usr << "\blue Right Mouse Button on turf/obj/mob     = Throw"
-			usr << "\blue ***********************************************************"
+			to_chat(usr, "\blue ***********************************************************")
+			to_chat(usr, "\blue Left Mouse Button on turf/obj/mob      = Select")
+			to_chat(usr, "\blue Right Mouse Button on turf/obj/mob     = Throw")
+			to_chat(usr, "\blue ***********************************************************")
 	return 1
 
 /obj/effect/bmode/buildquit
@@ -243,7 +243,7 @@
 					A.dir = holder.builddir.dir
 			else if(mods["middle"])
 				holder.buildmode.objholder = text2path("[object.type]")
-				usr << "Selected: [object.type]"
+				to_chat(usr, "Selected: [object.type]")
 			else if(mods["right"])
 				if(isobj(object)) cdel(object)
 
@@ -253,13 +253,13 @@
 					log_admin("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
 					object.vars[holder.buildmode.varholder] = holder.buildmode.valueholder
 				else
-					usr << "\red [initial(object.name)] does not have a var called '[holder.buildmode.varholder]'"
+					to_chat(usr, "\red [initial(object.name)] does not have a var called '[holder.buildmode.varholder]'")
 			if(mods["right"])
 				if(object.vars.Find(holder.buildmode.varholder))
 					log_admin("[key_name(usr)] modified [object.name]'s [holder.buildmode.varholder] to [holder.buildmode.valueholder]")
 					object.vars[holder.buildmode.varholder] = initial(object.vars[holder.buildmode.varholder])
 				else
-					usr << "\red [initial(object.name)] does not have a var called '[holder.buildmode.varholder]'"
+					to_chat(usr, "\red [initial(object.name)] does not have a var called '[holder.buildmode.varholder]'")
 
 		if(4)
 			if(mods["left"])

@@ -85,7 +85,7 @@ field_generator power level display
 	if(state == 2)
 		if(get_dist(src, user) <= 1)//Need to actually touch the thing to turn it on
 			if(src.active >= 1)
-				user << "You are unable to turn off the [src.name] once it is online."
+				to_chat(user, "You are unable to turn off the [src.name] once it is online.")
 				return 1
 			else
 				user.visible_message("[user.name] turns on the [src.name]", \
@@ -96,13 +96,13 @@ field_generator power level display
 
 				src.add_fingerprint(user)
 	else
-		user << "The [src] needs to be firmly secured to the floor first."
+		to_chat(user, "The [src] needs to be firmly secured to the floor first.")
 		return
 
 
 /obj/machinery/field_generator/attackby(obj/item/W, mob/user)
 	if(active)
-		user << "The [src] needs to be off."
+		to_chat(user, "The [src] needs to be off.")
 		return
 	else if(istype(W, /obj/item/tool/wrench))
 		switch(state)
@@ -121,13 +121,13 @@ field_generator power level display
 					"You hear ratchet")
 				src.anchored = 0
 			if(2)
-				user << "\red The [src.name] needs to be unwelded from the floor."
+				to_chat(user, "\red The [src.name] needs to be unwelded from the floor.")
 				return
 	else if(istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
 		switch(state)
 			if(0)
-				user << "\red The [src.name] needs to be wrenched to the floor."
+				to_chat(user, "\red The [src.name] needs to be wrenched to the floor.")
 				return
 			if(1)
 				if (WT.remove_fuel(0,user))
@@ -138,7 +138,7 @@ field_generator power level display
 					if (do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
 						if(!src || !WT.isOn()) return
 						state = 2
-						user << "You weld the field generator to the floor."
+						to_chat(user, "You weld the field generator to the floor.")
 				else
 					return
 			if(2)
@@ -150,7 +150,7 @@ field_generator power level display
 					if (do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
 						if(!src || !WT.isOn()) return
 						state = 1
-						user << "You cut the [src] free from the floor."
+						to_chat(user, "You cut the [src] free from the floor.")
 				else
 					return
 	else

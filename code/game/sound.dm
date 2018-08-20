@@ -98,7 +98,7 @@
 			0, 1.0, 1.0, 1.0, 1.0, 7)
 
 	if(!is_global) S.environment = 2
-	src << S
+	to_chat(src, S)
 
 /client/proc/playtitlemusic()
 	if(!ticker || !ticker.login_music)	return FALSE

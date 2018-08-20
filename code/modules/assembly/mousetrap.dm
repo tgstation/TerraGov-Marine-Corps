@@ -10,7 +10,7 @@
 	examine(mob/user)
 		..()
 		if(armed)
-			user << "It looks like it's armed."
+			to_chat(user, "It looks like it's armed.")
 
 	update_icon()
 		if(armed)
@@ -53,7 +53,7 @@
 
 	attack_self(mob/living/user as mob)
 		if(!armed)
-			user << "<span class='notice'>You arm [src].</span>"
+			to_chat(user, "<span class='notice'>You arm [src].</span>")
 		else
 			if(((user.getBrainLoss() >= 60 || (CLUMSY in user.mutations)) && prob(50)))
 				var/which_hand = "l_hand"
@@ -63,7 +63,7 @@
 				user.visible_message("<span class='warning'>[user] accidentally sets off [src], breaking their fingers.</span>", \
 									 "<span class='warning'>You accidentally trigger [src]!</span>")
 				return
-			user << "<span class='notice'>You disarm [src].</span>"
+			to_chat(user, "<span class='notice'>You disarm [src].</span>")
 		armed = !armed
 		update_icon()
 		playsound(user.loc, 'sound/weapons/handcuffs.ogg', 25, 1, 6)
@@ -125,4 +125,4 @@
 		return
 
 	layer = TURF_LAYER+0.2
-	usr << "<span class='notice'>You hide [src].</span>"
+	to_chat(usr, "<span class='notice'>You hide [src].</span>")

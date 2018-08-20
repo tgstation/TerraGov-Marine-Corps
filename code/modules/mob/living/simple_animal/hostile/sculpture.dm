@@ -256,7 +256,7 @@
 
 		//Warn everyone
 		visible_message("<span class='danger'>[src] [response_snap] [target]!</span>")
-		target << "<span class='alert'><b>[response_snap_target]</b> Your vision fades away...</span>"
+		to_chat(target, "<span class='alert'><b>[response_snap_target]</b> Your vision fades away...</span>")
 
 		target.death() //Immediately trigger death to avoid doublesnap during lag
 

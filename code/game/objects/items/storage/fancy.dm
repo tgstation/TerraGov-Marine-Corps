@@ -31,11 +31,11 @@
 	examine(mob/user)
 		..()
 		if(contents.len <= 0)
-			user << "There are no [src.icon_type]s left in the box."
+			to_chat(user, "There are no [src.icon_type]s left in the box.")
 		else if(contents.len == 1)
-			user << "There is one [src.icon_type] left in the box."
+			to_chat(user, "There is one [src.icon_type] left in the box.")
 		else
-			user << "There are [src.contents.len] [src.icon_type]s in the box."
+			to_chat(user, "There are [src.contents.len] [src.icon_type]s in the box.")
 
 
 /*
@@ -115,10 +115,10 @@
 	if(istype(W,/obj/item/toy/crayon))
 		switch(W:colourName)
 			if("mime")
-				usr << "This crayon is too sad to be contained in this box."
+				to_chat(usr, "This crayon is too sad to be contained in this box.")
 				return
 			if("rainbow")
-				usr << "This crayon is too powerful to be contained in this box."
+				to_chat(usr, "This crayon is too powerful to be contained in this box.")
 				return
 	..()
 
@@ -164,7 +164,7 @@
 		if(C)
 			remove_from_storage(C, get_turf(user))
 			user.equip_to_slot_if_possible(C, WEAR_FACE)
-			user << "<span class='notice'>You take a cigarette out of the pack.</span>"
+			to_chat(user, "<span class='notice'>You take a cigarette out of the pack.</span>")
 			update_icon()
 	else
 		..()
@@ -233,7 +233,7 @@
 		if(C)
 			remove_from_storage(C, get_turf(user))
 			user.equip_to_slot_if_possible(C, WEAR_FACE)
-			user << "<span class='notice'>You take a cigar out of the case.</span>"
+			to_chat(user, "<span class='notice'>You take a cigar out of the case.</span>")
 			update_icon()
 	else
 		..()

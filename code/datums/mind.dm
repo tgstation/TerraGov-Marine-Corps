@@ -73,7 +73,7 @@ datum/mind
 
 	proc/transfer_to(mob/living/new_character)
 		if(!istype(new_character))
-			world.log << "## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob. Please inform Carn"
+			to_chat(world.log, "## DEBUG: transfer_to(): Some idiot has tried to transfer_to() a non mob/living mob. Please inform Carn")
 		if(current)	current.mind = null	//remove ourself from our old body's mind variable
 
 		if(new_character.mind) new_character.mind.current = null //remove any mind currently in our new body's mind variable
@@ -314,7 +314,7 @@ datum/mind
 						ticker.mode.traitors -= src
 						special_role = null
 						current.hud_set_special_role()
-						current << "\red <FONT size = 3><B>You have been brainwashed! You are no longer a traitor!</B></FONT>"
+						to_chat(current, "\red <FONT size = 3><B>You have been brainwashed! You are no longer a traitor!</B></FONT>")
 						log_admin("[key_name_admin(usr)] has de-traitor'ed [current].")
 						if(isAI(current))
 							var/mob/living/silicon/ai/A = current
@@ -326,7 +326,7 @@ datum/mind
 						ticker.mode.traitors += src
 						special_role = "traitor"
 						current.hud_set_special_role()
-						current << "<B>\red You are a traitor!</B>"
+						to_chat(current, "<B>\red You are a traitor!</B>")
 						log_admin("[key_name_admin(usr)] has traitor'ed [current].")
 						show_objectives()
 
@@ -338,7 +338,7 @@ datum/mind
 				if("autoobjectives")
 					if (!config.objectives_disabled)
 						ticker.mode.forge_traitor_objectives(src)
-						usr << "\blue The objectives for traitor [key] have been generated. You can edit them and anounce manually."
+						to_chat(usr, "\blue The objectives for traitor [key] have been generated. You can edit them and anounce manually.")
 
 		else if (href_list["common"])
 			switch(href_list["common"])
@@ -360,13 +360,13 @@ datum/mind
 								suplink.uses = crystals
 				if("uplink")
 					if (!ticker.mode.equip_traitor(current, !(src in ticker.mode.traitors)))
-						usr << "\red Equipping a syndicate failed!"
+						to_chat(usr, "\red Equipping a syndicate failed!")
 
 		else if (href_list["obj_announce"])
 			var/obj_count = 1
-			current << "\blue Your current objectives:"
+			to_chat(current, "\blue Your current objectives:")
 			for(var/datum/objective/objective in objectives)
-				current << "<B>Objective #[obj_count]</B>: [objective.explanation_text]"
+				to_chat(current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 				obj_count++
 
 		edit_memory()
@@ -437,7 +437,7 @@ datum/mind
 		mind = new /datum/mind(key)
 		mind.original = src
 		if(ticker) ticker.minds += mind
-		else world.log << "## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn"
+		else to_chat(world.log, "## DEBUG: mind_initialize(): No ticker ready yet! Please inform Carn")
 		. = 1 //successfully created a new mind
 	if(!mind.name)	mind.name = real_name
 	mind.current = src

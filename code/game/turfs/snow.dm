@@ -16,10 +16,10 @@
 	if(istype(I, /obj/item/lightstick))
 		var/obj/item/lightstick/L = I
 		if(locate(/obj/item/lightstick) in get_turf(src))
-			user << "There's already a [L]  at this position!"
+			to_chat(user, "There's already a [L]  at this position!")
 			return
 
-		user << "Now planting \the [L]."
+		to_chat(user, "Now planting \the [L].")
 		if(!do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
 			return
 
@@ -52,9 +52,9 @@
 				can_stuck = 0
 			C.next_move_slowdown += slow_amount * slayer
 			if(prob(2))
-				C << "<span class='warning'>Moving through [src] slows you down.</span>" //Warning only
+				to_chat(C, "<span class='warning'>Moving through [src] slows you down.</span>")
 			else if(can_stuck && slayer == 3 && prob(2))
-				C << "<span class='warning'>You get stuck in [src] for a moment!</span>"
+				to_chat(C, "<span class='warning'>You get stuck in [src] for a moment!</span>")
 				C.next_move_slowdown += 10
 	..()
 

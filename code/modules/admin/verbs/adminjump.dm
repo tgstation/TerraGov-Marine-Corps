@@ -9,7 +9,7 @@
 	set desc = "Area to jump to"
 	set category = "Admin"
 	if(!src.holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 
 	if(config.allow_admin_jump)
@@ -26,7 +26,7 @@
 	set name = "Jump to Turf"
 	set category = "Admin"
 	if(!src.holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 	if(config.allow_admin_jump)
 		log_admin("[key_name(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
@@ -43,7 +43,7 @@
 	set name = "Jump to Mob"
 
 	if(!src.holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 
 	if(config.allow_admin_jump)
@@ -57,7 +57,7 @@
 				A.on_mob_jump()
 				A.forceMove(T)
 			else
-				A << "This mob is not located in the game world."
+				to_chat(A, "This mob is not located in the game world.")
 	else
 		alert("Admin jumping disabled")
 
@@ -66,7 +66,7 @@
 	set name = "Jump to Coordinate"
 
 	if (!holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 
 	if (config.allow_admin_jump)
@@ -91,7 +91,7 @@
 	set name = "Jump to Key"
 
 	if(!src.holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 
 	if(config.allow_admin_jump)
@@ -100,7 +100,7 @@
 			keys += M.client
 		var/selection = input("Please, select a player!", "Admin Jumping", null, null) as null|anything in sortKey(keys)
 		if(!selection)
-			src << "No keys found."
+			to_chat(src, "No keys found.")
 			return
 		var/mob/M = selection:mob
 		log_admin("[key_name(usr)] jumped to [key_name(M)]")
@@ -116,7 +116,7 @@
 	set name = "Get Mob"
 	set desc = "Mob to teleport"
 	if(!src.holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 	if(config.allow_admin_jump)
 		log_admin("[key_name(usr)] teleported [key_name(M)]")
@@ -133,7 +133,7 @@
 	set desc = "Key to teleport"
 
 	if(!src.holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 
 	if(config.allow_admin_jump)
@@ -160,7 +160,7 @@
 	set category = "Admin"
 	set name = "Send Mob"
 	if(!src.holder)
-		src << "Only administrators may use this command."
+		to_chat(src, "Only administrators may use this command.")
 		return
 	var/area/A = input(usr, "Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
 	if(A)

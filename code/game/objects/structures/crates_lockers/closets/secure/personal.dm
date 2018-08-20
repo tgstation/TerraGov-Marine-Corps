@@ -67,7 +67,7 @@
 		if (W) W.loc = src.loc
 	else if(istype(W, /obj/item/card/id))
 		if(src.broken)
-			user << "\red It appears to be broken."
+			to_chat(user, "\red It appears to be broken.")
 			return
 		var/obj/item/card/id/I = W
 		if(!I || !I.registered_name)	return
@@ -81,7 +81,7 @@
 				src.registered_name = I.registered_name
 				src.desc = "Owned by [I.registered_name]."
 		else
-			user << "\red Access Denied"
+			to_chat(user, "\red Access Denied")
 	else if(istype(W, /obj/item/card/emag))
 		if(broken) return
 		broken = 1
@@ -89,7 +89,7 @@
 		desc = "It appears to be broken."
 		icon_state = src.icon_broken
 	else
-		user << "\red Access Denied"
+		to_chat(user, "\red Access Denied")
 	return
 
 /obj/structure/closet/secure_closet/personal/verb/reset()
@@ -101,9 +101,9 @@
 	if(ishuman(usr))
 		src.add_fingerprint(usr)
 		if (src.locked || !src.registered_name)
-			usr << "\red You need to unlock it first."
+			to_chat(usr, "\red You need to unlock it first.")
 		else if (src.broken)
-			usr << "\red It appears to be broken."
+			to_chat(usr, "\red It appears to be broken.")
 		else
 			if (src.opened)
 				if(!src.close())

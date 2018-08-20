@@ -110,7 +110,7 @@ var/list/alldepartments = list()
 				SendFax(tofax.info, tofax.name, usr, dpt)
 				sendcooldown = 600
 
-			usr << "Message transmitted successfully."
+			to_chat(usr, "Message transmitted successfully.")
 
 			spawn(sendcooldown) // cooldown time
 				sendcooldown = 0
@@ -118,11 +118,11 @@ var/list/alldepartments = list()
 	if(href_list["remove"])
 		if(tofax)
 			if(!ishuman(usr))
-				usr << "<span class='warning'>You can't do it.</span>"
+				to_chat(usr, "<span class='warning'>You can't do it.</span>")
 			else
 				tofax.loc = usr.loc
 				usr.put_in_hands(tofax)
-				usr << "<span class='notice'>You take the paper out of \the [src].</span>"
+				to_chat(usr, "<span class='notice'>You take the paper out of \the [src].</span>")
 				tofax = null
 
 	if(href_list["scan"])
@@ -163,11 +163,11 @@ var/list/alldepartments = list()
 		if(!tofax)
 			user.drop_inv_item_to_loc(O, src)
 			tofax = O
-			user << "<span class='notice'>You insert the paper into \the [src].</span>"
+			to_chat(user, "<span class='notice'>You insert the paper into \the [src].</span>")
 			flick("faxsend", src)
 			updateUsrDialog()
 		else
-			user << "<span class='notice'>There is already something in \the [src].</span>"
+			to_chat(user, "<span class='notice'>There is already something in \the [src].</span>")
 
 	else if(istype(O, /obj/item/card/id))
 
@@ -179,7 +179,7 @@ var/list/alldepartments = list()
 	else if(istype(O, /obj/item/tool/wrench))
 		playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 		anchored = !anchored
-		user << "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>"
+		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 	return
 
 /proc/Centcomm_fax(var/originfax, var/sent, var/sentname, var/mob/Sender)
@@ -188,7 +188,7 @@ var/list/alldepartments = list()
 	var/msg = "\blue <b><font color='#006100'>USCM FAX: </font>[key_name(Sender, 1)] (<A HREF='?_src_=holder;mark=\ref[src]'>Mark</A>) (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='?_src_=holder;USCMFaxReply=\ref[Sender];originfax=\ref[originfax]'>RPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>view message</a>"
 	USCMFaxes.Add("<a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>\[view message at [world.timeofday]\]</a> <a href='?_src_=holder;USCMFaxReply=\ref[Sender];originfax=\ref[originfax]'>REPLY</a>")
 	for(var/client/C in admins)
-		C << msg
+		to_chat(C, msg)
 
 /proc/Solgov_fax(var/originfax, var/sent, var/sentname, var/mob/Sender)
 	var/faxcontents = "[sent]"
@@ -197,7 +197,7 @@ var/list/alldepartments = list()
 	CLFaxes.Add("<a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>\[view message at [world.timeofday]\]</a> <a href='?_src_=holder;CLFaxReply=\ref[Sender];originfax=\ref[originfax]'>REPLY</a>")
 	for(var/client/C in admins)
 		if((R_ADMIN|R_MOD) & C.holder.rights)
-			C << msg
+			to_chat(C, msg)
 			C << 'sound/effects/sos-morse-code.ogg'
 
 proc/SendFax(var/sent, var/sentname, var/mob/Sender, var/dpt)

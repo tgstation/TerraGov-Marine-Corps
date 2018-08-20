@@ -15,55 +15,55 @@
 	var/potential_queens = 0
 
 	if(is_ventcrawling)
-		src << "<span class='warning'>This place is too constraining to evolve.</span>"
+		to_chat(src, "<span class='warning'>This place is too constraining to evolve.</span>")
 		return
 
 	if(!isturf(loc))
-		src << "<span class='warning'>You can't evolve here.</span>"
+		to_chat(src, "<span class='warning'>You can't evolve here.</span>")
 		return
 
 	if(hardcore)
-		src << "<span class='warning'>Nuh-uh.</span>"
+		to_chat(src, "<span class='warning'>Nuh-uh.</span>")
 		return
 
 	if(jobban_isbanned(src, "Alien"))
-		src << "<span class='warning'>You are jobbanned from aliens and cannot evolve. How did you even become an alien?</span>"
+		to_chat(src, "<span class='warning'>You are jobbanned from aliens and cannot evolve. How did you even become an alien?</span>")
 		return
 
 	if(is_mob_incapacitated(TRUE))
-		src << "<span class='warning'>You can't evolve in your current state.</span>"
+		to_chat(src, "<span class='warning'>You can't evolve in your current state.</span>")
 		return
 
 	if(handcuffed || legcuffed)
-		src << "<span class='warning'>The restraints are too restricting to allow you to evolve.</span>"
+		to_chat(src, "<span class='warning'>The restraints are too restricting to allow you to evolve.</span>")
 		return
 
 	if(isXenoLarva(src)) //Special case for dealing with larvae
 		if(amount_grown < max_grown)
-			src << "<span class='warning'>You are not yet fully grown. Currently at: [amount_grown] / [max_grown].</span>"
+			to_chat(src, "<span class='warning'>You are not yet fully grown. Currently at: [amount_grown] / [max_grown].</span>")
 			return
 
 	if(isnull(evolves_to))
-		src << "<span class='warning'>You are already the apex of form and function. Go forth and spread the hive!</span>"
+		to_chat(src, "<span class='warning'>You are already the apex of form and function. Go forth and spread the hive!</span>")
 		return
 
 	if(health < maxHealth)
-		src << "<span class='warning'>You must be at full health to evolve.</span>"
+		to_chat(src, "<span class='warning'>You must be at full health to evolve.</span>")
 		return
 
 	if(plasma_stored < plasma_max)
-		src << "<span class='warning'>You must be at full plasma to evolve.</span>"
+		to_chat(src, "<span class='warning'>You must be at full plasma to evolve.</span>")
 		return
 
 	if (agility || fortify || crest_defense)
-		src << "<span class='warning'>You cannot evolve while in this stance.</span>"
+		to_chat(src, "<span class='warning'>You cannot evolve while in this stance.</span>")
 		return
 
 	//Debugging that should've been done
-	// world << "[tierA] Tier 1"
-	// world << "[tierB] Tier 2"
-	// world << "[tierC] Tier 3"
-	// world << "[totalXenos] Total"
+	// to_chat(world, "[tierA] Tier 1")
+	// to_chat(world, "[tierB] Tier 2")
+	// to_chat(world, "[tierC] Tier 3")
+	// to_chat(world, "[totalXenos] Total")
 
 	var/castepick = input("You are growing into a beautiful alien! It is time to choose a caste.") as null|anything in evolves_to
 	if(!castepick) //Changed my mind
@@ -73,7 +73,7 @@
 		return
 
 	if(is_mob_incapacitated(TRUE))
-		src << "<span class='warning'>You can't evolve in your current state.</span>"
+		to_chat(src, "<span class='warning'>You can't evolve in your current state.</span>")
 		return
 
 	var/datum/hive_status/hive
@@ -84,28 +84,28 @@
 		hive = hive_datum[hivenumber]
 
 	if((!hive.living_xeno_queen) && castepick != "Queen" && !isXenoLarva(src))
-		src << "<span class='warning'>The Hive is shaken by the death of the last Queen. You can't find the strength to evolve.</span>"
+		to_chat(src, "<span class='warning'>The Hive is shaken by the death of the last Queen. You can't find the strength to evolve.</span>")
 		return
 
 	if(handcuffed || legcuffed)
-		src << "<span class='warning'>The restraints are too restricting to allow you to evolve.</span>"
+		to_chat(src, "<span class='warning'>The restraints are too restricting to allow you to evolve.</span>")
 		return
 
 	if(castepick == "Queen") //Special case for dealing with queenae
 		if(!hardcore)
 			if(plasma_stored >= 500)
 				if(hive.living_xeno_queen)
-					src << "<span class='warning'>There already is a living Queen.</span>"
+					to_chat(src, "<span class='warning'>There already is a living Queen.</span>")
 					return
 			else
-				src << "<span class='warning'>You require more plasma! Currently at: [plasma_stored] / 500.</span>"
+				to_chat(src, "<span class='warning'>You require more plasma! Currently at: [plasma_stored] / 500.</span>")
 				return
 
 			if(hivenumber == 1 && ticker && ticker.mode && hive.xeno_queen_timer)
-				src << "<span class='warning'>You must wait about [round(hive.xeno_queen_timer / 60)] minutes for the hive to recover from the previous Queen's death.<span>"
+				to_chat(src, "<span class='warning'>You must wait about [round(hive.xeno_queen_timer / 60)] minutes for the hive to recover from the previous Queen's death.<span>")
 				return
 		else
-			src << "<span class='warning'>Nuh-uhh.</span>"
+			to_chat(src, "<span class='warning'>Nuh-uhh.</span>")
 			return
 
 	//This will build a list of ALL the current Xenos and their Tiers, then use that to calculate if they can evolve or not.
@@ -127,24 +127,24 @@
 				if(3)
 					tierC++
 				else
-					src <<"<span class='warning'>You shouldn't see this. If you do, bug repot it! (Error XE01).</span>"
+					to_chat(src, "<span class='warning'>You shouldn't see this. If you do, bug repot it! (Error XE01).</span>")
 
 					continue
 			if(M.client && M.ckey)
 				totalXenos++
 
 	if(tier == 1 && ((tierB + tierC) / max(totalXenos, 1))> 0.5 && castepick != "Queen")
-		src << "<span class='warning'>The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die.</span>"
+		to_chat(src, "<span class='warning'>The hive cannot support another Tier 2, wait for either more aliens to be born or someone to die.</span>")
 		return
 	else if(tier == 2 && (tierC / max(totalXenos, 1))> 0.25 && castepick != "Queen")
-		src << "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>"
+		to_chat(src, "<span class='warning'>The hive cannot support another Tier 3, wait for either more aliens to be born or someone to die.</span>")
 
 		return
 	else if(!hive.living_xeno_queen && potential_queens == 1 && isXenoLarva(src) && castepick != "Drone")
-		src << "<span class='xenonotice'>The hive currently has no sister able to become Queen! The survival of the hive requires you to be a Drone!</span>"
+		to_chat(src, "<span class='xenonotice'>The hive currently has no sister able to become Queen! The survival of the hive requires you to be a Drone!</span>")
 		return
 	else
-		src << "<span class='xenonotice'>It looks like the hive can support your evolution to <span style='font-weight: bold'>[castepick]!</span></span>"
+		to_chat(src, "<span class='xenonotice'>It looks like the hive can support your evolution to <span style='font-weight: bold'>[castepick]!</span></span>")
 
 	var/mob/living/carbon/Xenomorph/M = null
 
@@ -194,12 +194,12 @@
 			M = /mob/living/carbon/Xenomorph/Predalien
 
 	if(isnull(M))
-		usr << "<span class='warning'>[castepick] is not a valid caste! If you're seeing this message, tell a coder!</span>"
+		to_chat(usr, "<span class='warning'>[castepick] is not a valid caste! If you're seeing this message, tell a coder!</span>")
 		return
 
 	if(evolution_threshold && castepick != "Queen") //Does the caste have an evolution timer? Then check it
 		if(evolution_stored < evolution_threshold)
-			src << "<span class='warning'>You must wait before evolving. Currently at: [evolution_stored] / [evolution_threshold].</span>"
+			to_chat(src, "<span class='warning'>You must wait before evolving. Currently at: [evolution_stored] / [evolution_threshold].</span>")
 			return
 
 	visible_message("<span class='xenonotice'>\The [src] begins to twist and contort.</span>", \
@@ -210,10 +210,10 @@
 			return
 		if(castepick == "Queen") //Do another check after the tick.
 			if(jobban_isbanned(src, "Queen"))
-				src << "<span class='warning'>You are jobbanned from the Queen role.</span>"
+				to_chat(src, "<span class='warning'>You are jobbanned from the Queen role.</span>")
 				return
 			if(hive.living_xeno_queen)
-				src << "<span class='warning'>There already is a Queen.</span>"
+				to_chat(src, "<span class='warning'>There already is a Queen.</span>")
 				return
 
 		//From there, the new xeno exists, hopefully
@@ -221,7 +221,7 @@
 
 		if(!istype(new_xeno))
 			//Something went horribly wrong!
-			usr << "<span class='warning'>Something went terribly wrong here. Your new xeno is null! Tell a coder immediately!</span>"
+			to_chat(usr, "<span class='warning'>Something went terribly wrong here. Your new xeno is null! Tell a coder immediately!</span>")
 			if(new_xeno)
 				cdel(new_xeno)
 			return
@@ -270,4 +270,4 @@
 		cdel(src)
 		new_xeno.xeno_jitter(25)
 	else
-		src << "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>"
+		to_chat(src, "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>")

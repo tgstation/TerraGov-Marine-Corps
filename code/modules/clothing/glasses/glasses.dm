@@ -30,12 +30,12 @@
 			active = 0
 			icon_state = deactive_state
 			user.update_inv_glasses()
-			user << "You deactivate the optical matrix on [src]."
+			to_chat(user, "You deactivate the optical matrix on [src].")
 		else
 			active = 1
 			icon_state = initial(icon_state)
 			user.update_inv_glasses()
-			user << "You activate the optical matrix on [src]."
+			to_chat(user, "You activate the optical matrix on [src].")
 
 		if(ishuman(loc))
 			var/mob/living/carbon/human/H = loc
@@ -172,7 +172,7 @@
 			flags_armor_protection &= ~EYES
 			icon_state = "[initial(icon_state)]up"
 			eye_protection = 0
-			usr << "You push [src] up out of your face."
+			to_chat(usr, "You push [src] up out of your face.")
 		else
 			active = 1
 			flags_inventory |= COVEREYES
@@ -180,7 +180,7 @@
 			flags_armor_protection |= EYES
 			icon_state = initial(icon_state)
 			eye_protection = initial(eye_protection)
-			usr << "You flip [src] down to protect your eyes."
+			to_chat(usr, "You flip [src] down to protect your eyes.")
 
 
 		if(ishuman(loc))

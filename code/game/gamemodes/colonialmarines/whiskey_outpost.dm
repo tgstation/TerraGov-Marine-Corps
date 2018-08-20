@@ -108,12 +108,12 @@
 			spawn_player(M)
 
 	sleep(10)
-	world << "<span class='round_header'>The current game mode is - WHISKEY OUTPOST!</span>"
-	world << "<span class='round_body'>It is the year 2181 on the planet LV-624, five years before the arrival of the USS Almayer and the 7th 'Falling Falcons' Battalion in the sector</span>"
-	world << "<span class='round_body'>The 3rd 'Dust Raiders' Battalion is charged with establishing a USCM prescence in the Tychon's Rift sector</span>"
-	world << "<span class='round_body'>[map_tag], one of the Dust Raider bases being established in the sector, has come under attack from unrecognized alien forces</span>"
-	world << "<span class='round_body'>With casualties mounting and supplies running thin, the Dust Raiders at [map_tag] must survive for an hour to alert the rest of their battalion in the sector</span>"
-	world << "<span class='round_body'>Hold out for as long as you can.</span>"
+	to_chat(world, "<span class='round_header'>The current game mode is - WHISKEY OUTPOST!</span>")
+	to_chat(world, "<span class='round_body'>It is the year 2181 on the planet LV-624, five years before the arrival of the USS Almayer and the 7th 'Falling Falcons' Battalion in the sector</span>")
+	to_chat(world, "<span class='round_body'>The 3rd 'Dust Raiders' Battalion is charged with establishing a USCM prescence in the Tychon's Rift sector</span>")
+	to_chat(world, "<span class='round_body'>[map_tag], one of the Dust Raider bases being established in the sector, has come under attack from unrecognized alien forces</span>")
+	to_chat(world, "<span class='round_body'>With casualties mounting and supplies running thin, the Dust Raiders at [map_tag] must survive for an hour to alert the rest of their battalion in the sector</span>")
+	to_chat(world, "<span class='round_body'>Hold out for as long as you can.</span>")
 	world << sound('sound/effects/siren.ogg')
 
 	sleep(50)
@@ -198,17 +198,17 @@
 
 			sleep(40)
 			if(H)
-				H << "________________________"
-				H << "<span class='boldnotice'>You are the Dust Raiders Commander!</span>"
-				H << "Coordinate your team and prepare defenses."
-				H << "Stay alive!"
-				H << "Hold the outpost for one hour until the distress beacon can be broadcast to the remaining Dust Raiders!"
-				H << "The local population warned you about establishing a base in the jungles of [map_tag]..."
-				H << "________________________"
+				to_chat(H, "________________________")
+				to_chat(H, "<span class='boldnotice'>You are the Dust Raiders Commander!</span>")
+				to_chat(H, "Coordinate your team and prepare defenses.")
+				to_chat(H, "Stay alive!")
+				to_chat(H, "Hold the outpost for one hour until the distress beacon can be broadcast to the remaining Dust Raiders!")
+				to_chat(H, "The local population warned you about establishing a base in the jungles of [map_tag]...")
+				to_chat(H, "________________________")
 			sleep(240) //So they can see it
 			if(H)
-				H << "<span class='boldnotice'>THIS IS A CRITICAL ROLE</span>"
-				H << "<span class='notice'> If you kill yourself or leave the server without notifying admins, you will be banned.</span>"
+				to_chat(H, "<span class='boldnotice'>THIS IS A CRITICAL ROLE</span>")
+				to_chat(H, "<span class='notice'> If you kill yourself or leave the server without notifying admins, you will be banned.</span>")
 		//SQUADS
 		//~Art 08JAN17 Adding specialized and better loadouts to the fucken jobs
 		//Complaints of lack of ammo (three mags are not enough).
@@ -245,13 +245,13 @@
 
 			sleep(40)
 			if(H)
-				H << "________________________"
-				H << "<span class='boldnotice'>You are part of the Battalion Honor Guard!</span>"
-				H << "Protect the outpost itself! Make sure the Ground Commander lives!"
-				H << "Stay alive!"
-				H << "This role does not know engineering or medical tasks(outside of first aid)!"
-				H << "Aid your commander, you can use overwatch consoles!"
-				H << "________________________"
+				to_chat(H, "________________________")
+				to_chat(H, "<span class='boldnotice'>You are part of the Battalion Honor Guard!</span>")
+				to_chat(H, "Protect the outpost itself! Make sure the Ground Commander lives!")
+				to_chat(H, "Stay alive!")
+				to_chat(H, "This role does not know engineering or medical tasks(outside of first aid)!")
+				to_chat(H, "Aid your commander, you can use overwatch consoles!")
+				to_chat(H, "________________________")
 
 		if("Synthetic")
 			custom_message = 1
@@ -285,11 +285,11 @@
 			H.equip_to_slot_or_del(W, WEAR_ID)
 			sleep(40)
 			if(H)
-				H << "________________________"
-				H << "<span class='boldnotice'>You are a Dust Raiders Synthetic Unit!</span>"
-				H << "Assist the humans as much as possible, only engage in combat if no other option presents itself!"
-				H << "Aid your comrades!"
-				H << "________________________"
+				to_chat(H, "________________________")
+				to_chat(H, "<span class='boldnotice'>You are a Dust Raiders Synthetic Unit!</span>")
+				to_chat(H, "Assist the humans as much as possible, only engage in combat if no other option presents itself!")
+				to_chat(H, "Aid your comrades!")
+				to_chat(H, "________________________")
 
 		if("Maintenance Tech")
 			custom_message = 1
@@ -335,13 +335,13 @@
 
 			sleep(40)
 			if(H)
-				H << "________________________"
-				H << "<span class='boldnotice'>You are a Dust Raiders Engineer!</span>"
-				H << "Fortify the frontlines with the other combat engineers and make sure the outpost functions!"
-				H << "Stay alive!"
-				H << "This role does knows how to do engineering tasks but does not know medical!"
-				H << "Aid your comrades!"
-				H << "________________________"
+				to_chat(H, "________________________")
+				to_chat(H, "<span class='boldnotice'>You are a Dust Raiders Engineer!</span>")
+				to_chat(H, "Fortify the frontlines with the other combat engineers and make sure the outpost functions!")
+				to_chat(H, "Stay alive!")
+				to_chat(H, "This role does knows how to do engineering tasks but does not know medical!")
+				to_chat(H, "Aid your comrades!")
+				to_chat(H, "________________________")
 
 		//SQUAD LEADER
 		if("Squad Leader")
@@ -393,16 +393,16 @@
 		//Give them some information
 			sleep(40)
 			if(H)
-				H << "________________________"
-				H << "<span class='boldnotice'>You are the WO Doctor!</span>"
-				H << "Gear up, prepare the medbay and keep your temmates alive."
-				H << "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!"
-				H << "Hold the outpost for one hour until the signal can be established!"
-				H << "________________________"
+				to_chat(H, "________________________")
+				to_chat(H, "<span class='boldnotice'>You are the WO Doctor!</span>")
+				to_chat(H, "Gear up, prepare the medbay and keep your temmates alive.")
+				to_chat(H, "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!")
+				to_chat(H, "Hold the outpost for one hour until the signal can be established!")
+				to_chat(H, "________________________")
 			sleep(240) //So they can see it
 			if(H)
-				H << "<span class='boldnotice'>THIS IS A CRITICAL ROLE</span>"
-				H << "<span class='notice'>If you kill yourself or leave the server without notifying admins, you will be banned.</span>"
+				to_chat(H, "<span class='boldnotice'>THIS IS A CRITICAL ROLE</span>")
+				to_chat(H, "<span class='notice'>If you kill yourself or leave the server without notifying admins, you will be banned.</span>")
 
 
 		//SQUAD ENGINEER
@@ -631,13 +631,13 @@
 		//Give them some information
 	sleep(40)
 	if(H && !custom_message)
-		H << "________________________"
-		H << "<span class='boldnotice'>You are the [H.mind.assigned_role]!</span>"
-		H << "Gear up, prepare defenses, work as a team. Protect your doctors and commander!"
-		H << "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!"
-		H << "Hold the outpost for one hour until the signal can be established!"
-		H << "Ensure the Dust Raiders don't lose their foothold on [map_tag] so you can alert the main forces."
-		H << "________________________"
+		to_chat(H, "________________________")
+		to_chat(H, "<span class='boldnotice'>You are the [H.mind.assigned_role]!</span>")
+		to_chat(H, "Gear up, prepare defenses, work as a team. Protect your doctors and commander!")
+		to_chat(H, "Motion trackers have detected movement from local creatures, and they are heading towards the outpost!")
+		to_chat(H, "Hold the outpost for one hour until the signal can be established!")
+		to_chat(H, "Ensure the Dust Raiders don't lose their foothold on [map_tag] so you can alert the main forces.")
+		to_chat(H, "________________________")
 
 	return 1
 
@@ -651,14 +651,14 @@
 	//XENO AND SUPPLY DROPS SPAWNER
 	if(wave_ticks_passed >= spawn_next_wave)
 		if(count_xenos() < 50)//Checks braindead too, so we don't overpopulate! Also make sure its less than twice us in the world, so we advance waves/get more xenos the more marines survive.
-			world << "<br><br>"
-			world << "<br><br>"
-			world << "<span class='notice'>*___________________________________*</span>" //We also then ram it down later anyways, should cut down on the lag a bit.
-			world << "<span class='boldnotice'>***Whiskey Outpost Controller***</span>"
-			world << "\blue <b>Wave:</b> [xeno_wave][wave_times_delayed?"|\red Times delayed: [wave_times_delayed]":""]"
-			world << "<span class='notice'>*___________________________________*</span>"
-			world << "<br><br>"
-			world << "<br><br>"
+			to_chat(world, "<br><br>")
+			to_chat(world, "<br><br>")
+			to_chat(world, "<span class='notice'>*___________________________________*</span>")
+			to_chat(world, "<span class='boldnotice'>***Whiskey Outpost Controller***</span>")
+			to_chat(world, "\blue <b>Wave:</b> [xeno_wave][wave_times_delayed?"|\red Times delayed: [wave_times_delayed]":""]")
+			to_chat(world, "<span class='notice'>*___________________________________*</span>")
+			to_chat(world, "<br><br>")
+			to_chat(world, "<br><br>")
 
 			if(xeno_wave != (1 || 8 || 9)) // Make sure to not xeno roar over our story sounds.
 				world << sound(pick('sound/voice/alien_distantroar_3.ogg','sound/voice/xenos_roaring.ogg', 'sound/voice/4_xeno_roars.ogg'))
@@ -756,19 +756,19 @@
 	switch(side)
 		if(0)
 			xeno_spawn_loc = xeno_spawns_all
-//			world << "Loc: All"
+//			to_chat(world, "Loc: All")
 		if(1)
 			xeno_spawn_loc = xeno_spawns_1
-//			world << "Loc: 1"
+//			to_chat(world, "Loc: 1")
 		if(2)
 			xeno_spawn_loc = xeno_spawns_2
-//			world << "Loc: 2"
+//			to_chat(world, "Loc: 2")
 		if(3)
 			xeno_spawn_loc = xeno_spawns_3
-//			world << "Loc: 3"
+//			to_chat(world, "Loc: 3")
 		if(4)
 			xeno_spawn_loc = xeno_spawns_4
-//			world << "Loc: 4"
+//			to_chat(world, "Loc: 4")
 
 	switch(xeno_wave)//Xeno spawn controller
 		if(1)//Mostly weak runners
@@ -981,7 +981,7 @@
 				//	X:huggers_cur = 6 //Max out huggers
 
 	//if(xenos_spawned)
-	//	world << "Xenos_spawned: [xenos_spawned]"
+	//	to_chat(world, "Xenos_spawned: [xenos_spawned]")
 
 /datum/game_mode/whiskey_outpost/proc/count_humans()
 	var/human_count = 0
@@ -1011,10 +1011,10 @@
 				xeno_count++
 
 	if(xeno_count)
-		world << "<span class='notice'>*___________________________________*</span>"
-		world << "<span class='boldnotice'>***Whiskey Outpost Controller***</span>"
-		world << "\blue Moved [xeno_count] Xeno remains to trash."
-		world << "<span class='notice'>*___________________________________*</span>"
+		to_chat(world, "<span class='notice'>*___________________________________*</span>")
+		to_chat(world, "<span class='boldnotice'>***Whiskey Outpost Controller***</span>")
+		to_chat(world, "\blue Moved [xeno_count] Xeno remains to trash.")
+		to_chat(world, "<span class='notice'>*___________________________________*</span>")
 
 
 ///////////////////////////////
@@ -1033,33 +1033,33 @@
 /datum/game_mode/whiskey_outpost/declare_completion()
 	if(finished == 1)
 		feedback_set_details("round_end_result","Xenos won")
-		world << "<span class='round_header'>The Xenos have succesfully defended their hive from colonization.</span>"
-		world << "<span class='round_body'>Well done, you've secured LV-624 for the hive!</span>"
-		world << "<span class='round_body'>It will be another five years before the USCM returns to the Tychon's Rift sector, with the arrival of the 7th 'Falling Falcons' Battalion and the USS Almayer.</span>"
-		world << "<span class='round_body'>The xenomorph hive on LV-624 remains unthreatened until then..</span>"
+		to_chat(world, "<span class='round_header'>The Xenos have succesfully defended their hive from colonization.</span>")
+		to_chat(world, "<span class='round_body'>Well done, you've secured LV-624 for the hive!</span>")
+		to_chat(world, "<span class='round_body'>It will be another five years before the USCM returns to the Tychon's Rift sector, with the arrival of the 7th 'Falling Falcons' Battalion and the USS Almayer.</span>")
+		to_chat(world, "<span class='round_body'>The xenomorph hive on LV-624 remains unthreatened until then..</span>")
 		world << sound('sound/misc/Game_Over_Man.ogg')
 
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Marines remaining: [count_humans()]\nRound time: [duration2text()][log_end]\nBig Winner:)"
+			to_chat(round_stats, "Marines remaining: [count_humans()]\nRound time: [duration2text()][log_end]\nBig Winner:)")
 
 	else if(finished == 2)
 		feedback_set_details("round_end_result","Marines Won")
-		world << "<span class='round_header'>Against the onslaught, the marines have survived.</span>"
-		world << "<span class='round_body'>The signal rings out to the USS Alistoun, and Dust Raiders stationed elsewhere in Tychon's Rift begin to converge on LV-624.</span>"
-		world << "<span class='round_body'>Eventually, the Dust Raiders secure LV-624 and the entire Tychon's Rift sector in 2182, pacifiying it and establishing peace in the sector for decades to come.</span>"
-		world << "<span class='round_body'>The USS Almayer and the 7th 'Falling Falcons' Battalion are never sent to the sector and are spared their fate in 2186.</span>"
+		to_chat(world, "<span class='round_header'>Against the onslaught, the marines have survived.</span>")
+		to_chat(world, "<span class='round_body'>The signal rings out to the USS Alistoun, and Dust Raiders stationed elsewhere in Tychon's Rift begin to converge on LV-624.</span>")
+		to_chat(world, "<span class='round_body'>Eventually, the Dust Raiders secure LV-624 and the entire Tychon's Rift sector in 2182, pacifiying it and establishing peace in the sector for decades to come.</span>")
+		to_chat(world, "<span class='round_body'>The USS Almayer and the 7th 'Falling Falcons' Battalion are never sent to the sector and are spared their fate in 2186.</span>")
 		world << sound('sound/misc/hell_march.ogg')
 
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Marines remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
+			to_chat(round_stats, "Marines remaining: [count_humans()]\nRound time: [duration2text()][log_end]")
 	else
 		feedback_set_details("round_end_result","no winners")
-		world << "<span class='round_header'>NOBODY WON!</span>"
-		world << "<span class='round_body'>How? Don't ask me...</span>"
+		to_chat(world, "<span class='round_header'>NOBODY WON!</span>")
+		to_chat(world, "<span class='round_body'>How? Don't ask me...</span>")
 		world << 'sound/misc/sadtrombone.ogg'
 
 		if(round_stats) // Logging to data/logs/round_stats.log
-			round_stats << "Marines remaining: [count_humans()]\nRound time: [duration2text()][log_end]"
+			to_chat(round_stats, "Marines remaining: [count_humans()]\nRound time: [duration2text()][log_end]")
 
 	return 1
 
@@ -1279,23 +1279,23 @@
 		if(istype(usr, /mob/living/silicon) || \
 			istype(usr, /mob/living/carbon/Xenomorph) || \
 			istype(usr, /mob/living/carbon/monkey))
-			usr << "\red You don't have the dexterity to do this!"
+			to_chat(usr, "\red You don't have the dexterity to do this!")
 			return
 		if(working)
-			user << "\red Wait for it to recharge first."
+			to_chat(user, "\red Wait for it to recharge first.")
 			return
 
 		var/remove_max = 10
 		var/turf/T = src.loc
 		if(T)
-			user << "\red You turn on the recycler."
+			to_chat(user, "\red You turn on the recycler.")
 			var/removed = 0
 			for(var/i, i < remove_max, i++)
 				for(var/obj/O in T)
 					if(istype(O,/obj/structure/closet/crate))
 						var/obj/structure/closet/crate/C = O
 						if(C.contents.len)
-							user << "\red [O] must be emptied before it can be recycled"
+							to_chat(user, "\red [O] must be emptied before it can be recycled")
 							continue
 						new /obj/item/stack/sheet/metal(get_step(src,dir))
 						O.loc = get_turf(locate(84,237,2)) //z.2
@@ -1387,17 +1387,17 @@
 	switch(laz_mode)
 		if(0) //Actually adding descriptions so you can tell what the hell you've selected now.
 			laz_mode = 1
-			usr << "<span class='warning'>IR Laser enabled! You will now designate airstrikes!</span>"
+			to_chat(usr, "<span class='warning'>IR Laser enabled! You will now designate airstrikes!</span>")
 			update_icon()
 			return
 		if(1)
 			laz_mode = 2
-			usr << "<span class='warning'>UV Laser enabled! You will now designate mortars!</span>"
+			to_chat(usr, "<span class='warning'>UV Laser enabled! You will now designate mortars!</span>")
 			update_icon()
 			return
 		if(2)
 			laz_mode = 0
-			usr << "<span class='warning'> System offline, now this is just a pair of binoculars but heavier.</span>"
+			to_chat(usr, "<span class='warning'> System offline, now this is just a pair of binoculars but heavier.</span>")
 			update_icon()
 			return
 	return
@@ -1413,11 +1413,11 @@
 	switch(plane_toggle)
 		if(0)
 			plane_toggle = 1
-			usr << "<span class='warning'> Airstrike plane is now N-S! If using mortars its now HE rounds!</span>"
+			to_chat(usr, "<span class='warning'> Airstrike plane is now N-S! If using mortars its now HE rounds!</span>")
 			return
 		if(1)
 			plane_toggle = 0
-			usr << "<span class='warning'> Airstrike plane is now E-W! If using mortars its now concussion rounds!</span>"
+			to_chat(usr, "<span class='warning'> Airstrike plane is now E-W! If using mortars its now concussion rounds!</span>")
 			return
 	return
 
@@ -1458,14 +1458,14 @@
 	var/turf/T = get_turf(A)
 
 	if(!laz_mode)
-		user << "<span class='warning'>The Laser Designator is currently off!</span>"
+		to_chat(user, "<span class='warning'>The Laser Designator is currently off!</span>")
 		return 0
 
 	if(laz_r || laz_b) //Make sure we don't spam strikes
-		user << "<span class='warning'>The laser is currently cooling down. Please wait roughly 10 minutes from lasing the target.</span>"
+		to_chat(user, "<span class='warning'>The laser is currently cooling down. Please wait roughly 10 minutes from lasing the target.</span>")
 		return 0
 
-	user << "<span class='boldnotice'> You start lasing the target area.</span>"
+	to_chat(user, "<span class='boldnotice'> You start lasing the target area.</span>")
 	message_admins("ALERT: [user] ([user.key]) IS CURRENTLY LAZING A TARGET: CURRENT MODE [laz_mode], at ([T.x],[T.y],[T.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>).") // Alert all the admins to this asshole. Added the jmp command from the explosion code.
 	var/obj/effect/las_target/lasertarget = new(T.loc)
 	if(laz_mode == 1 && !laz_r) // Heres our IR bomb code.
@@ -1569,16 +1569,16 @@
 
 /obj/item/device/whiskey_supply_beacon/attack_self(mob/user)
 	if(activated)
-		user << "Toss it to get supplies!"
+		to_chat(user, "Toss it to get supplies!")
 		return
 
 	if(!ishuman(user)) return
 	if(!user.mind)
-		user << "It doesn't seem to do anything for you."
+		to_chat(user, "It doesn't seem to do anything for you.")
 		return
 
 	if(user.z != 1)
-		user << "You have to be on the ground to use this or it won't transmit."
+		to_chat(user, "You have to be on the ground to use this or it won't transmit.")
 		return
 
 	activated = 1
@@ -1586,7 +1586,7 @@
 	w_class = 10
 	icon_state = "[icon_activated]"
 	playsound(src, 'sound/machines/twobeep.ogg', 15, 1)
-	user << "You activate the [src]. Now toss it, the supplies will arrive in a moment!"
+	to_chat(user, "You activate the [src]. Now toss it, the supplies will arrive in a moment!")
 	sleep(100) //10 seconds should be enough.
 	var/turf/T = get_turf(src) //Make sure we get the turf we're tossing this on.
 	drop_supplies(T, supply_drop)
@@ -1605,23 +1605,23 @@
 	switch(supply_drop)
 		if(0)
 			supply_drop = 1
-			usr << "<span class='notice'>Rocket ammo will now drop!</span>"
+			to_chat(usr, "<span class='notice'>Rocket ammo will now drop!</span>")
 			return
 		if(1)
 			supply_drop = 2
-			usr << "<span class='notice'>Smartgun ammo will now drop!</span>"
+			to_chat(usr, "<span class='notice'>Smartgun ammo will now drop!</span>")
 			return
 		if(2)
 			supply_drop = 3
-			usr << "<span class='notice'>Sniper ammo will now drop!</span>"
+			to_chat(usr, "<span class='notice'>Sniper ammo will now drop!</span>")
 			return
 		if(3)
 			supply_drop = 4
-			usr << "<span class='notice'>Explosives and grenades will now drop!</span>"
+			to_chat(usr, "<span class='notice'>Explosives and grenades will now drop!</span>")
 			return
 		if(4)
 			supply_drop = 0
-			usr << "<span class='notice'>10x24mm, slugs, buckshot, and 10x20mm rounds will now drop!</span>"
+			to_chat(usr, "<span class='notice'>10x24mm, slugs, buckshot, and 10x20mm rounds will now drop!</span>")
 			return
 	return
 

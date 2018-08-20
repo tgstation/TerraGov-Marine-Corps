@@ -241,18 +241,18 @@
 					welded = 0
 					update_icon()
 			else
-				user << "<span class='warning'>[WT] needs to be on to start this task.</span>"
+				to_chat(user, "<span class='warning'>[WT] needs to be on to start this task.</span>")
 		else
-			user << "<span class='warning'>You need more welding fuel to complete this task.</span>"
+			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 		return
 	if(!iswrench(W))
 		return ..()
 	if(!(stat & NOPOWER) && on)
-		user << "<span class='warning'>You cannot unwrench [src], turn it off first.</span>"
+		to_chat(user, "<span class='warning'>You cannot unwrench [src], turn it off first.</span>")
 		return 1
 	var/turf/T = loc
 	if(node && node.level == 1 && isturf(T) && T.intact_tile)
-		user << "<span class='warning'>You must remove the plating first.</span>"
+		to_chat(user, "<span class='warning'>You must remove the plating first.</span>")
 		return 1
 
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -268,11 +268,11 @@
 /obj/machinery/atmospherics/unary/vent_scrubber/examine(mob/user)
 	..()
 	if(get_dist(user, src) <= 1)
-		user << "<span class='info'>A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W.</span>"
+		to_chat(user, "<span class='info'>A small gauge in the corner reads [round(last_flow_rate, 0.1)] L/s; [round(last_power_draw)] W.</span>")
 	else
-		user << "<span class='info'>You are too far away to read the gauge.</span>"
+		to_chat(user, "<span class='info'>You are too far away to read the gauge.</span>")
 	if(welded)
-		user << "<span class='info'>It seems welded shut.</span>"
+		to_chat(user, "<span class='info'>It seems welded shut.</span>")
 
 /obj/machinery/atmospherics/unary/vent_scrubber/Dispose()
 	if(initial_loc)

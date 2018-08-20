@@ -128,7 +128,7 @@ mob/living/silicon/ai/Move(n, direct)
 	unset_interaction()
 
 	if(!src.eyeobj)
-		src << "ERROR: Eyeobj not found. Creating new eye..."
+		to_chat(src, "ERROR: Eyeobj not found. Creating new eye...")
 		src.eyeobj = new(src.loc)
 		src.eyeobj.ai = src
 		src.SetName(src.name)
@@ -144,4 +144,4 @@ mob/living/silicon/ai/Move(n, direct)
 	set name = "Toggle Camera Acceleration"
 
 	acceleration = !acceleration
-	usr << "Camera acceleration has been toggled [acceleration ? "on" : "off"]."
+	to_chat(usr, "Camera acceleration has been toggled [acceleration ? "on" : "off"].")

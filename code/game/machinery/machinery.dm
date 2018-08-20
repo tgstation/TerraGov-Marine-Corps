@@ -205,7 +205,7 @@ Class Procs:
 			istype(usr, /mob/living/silicon) || \
 			istype(usr, /mob/living/carbon/Xenomorph) || \
 			istype(usr, /mob/living/carbon/monkey)) )
-		usr << "\red You don't have the dexterity to do this!"
+		to_chat(usr, "\red You don't have the dexterity to do this!")
 		return 1
 
 	var/norange = 0
@@ -248,7 +248,7 @@ Class Procs:
 			istype(usr, /mob/living/silicon) || \
 			istype(usr, /mob/living/carbon/Xenomorph) || \
 			istype(usr, /mob/living/carbon/monkey)) )
-		usr << "\red You don't have the dexterity to do this!"
+		to_chat(usr, "\red You don't have the dexterity to do this!")
 		return 1
 /*
 	//distance checks are made by atom/proc/clicked()
@@ -261,7 +261,7 @@ Class Procs:
 			visible_message("\red [H] stares cluelessly at [src] and drools.")
 			return 1
 		else if(prob(H.getBrainLoss()))
-			user << "\red You momentarily forget how to use [src]."
+			to_chat(user, "\red You momentarily forget how to use [src].")
 			return 1
 
 	src.add_fingerprint(user)

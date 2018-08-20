@@ -6,7 +6,7 @@
 		var/mob/living/carbon/human/H = src
 		var/obj/item/I = H.get_active_hand()
 		if(!I)
-			H << "<span class='notice'>You are not holding anything to equip.</span>"
+			to_chat(H, "<span class='notice'>You are not holding anything to equip.</span>")
 			return
 		if(H.equip_to_appropriate_slot(I, 0))
 			if(hand)
@@ -14,7 +14,7 @@
 			else
 				update_inv_r_hand(0)
 		else
-			H << "\red You are unable to equip that."
+			to_chat(H, "\red You are unable to equip that.")
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)
@@ -341,7 +341,7 @@
 				if(istype(T) && T.hold.storage_slots) W.loc = T.hold
 
 		else
-			src << "\red You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it..."
+			to_chat(src, "\red You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it...")
 			return
 
 	return 1
@@ -396,10 +396,10 @@
 	if(I.flags_item & ITEM_ABSTRACT)
 		return
 	if(I.flags_item & NODROP)
-		src << "<span class='warning'>You can't remove \the [I.name], it appears to be stuck!</span>"
+		to_chat(src, "<span class='warning'>You can't remove \the [I.name], it appears to be stuck!</span>")
 		return
 	if(I.flags_inventory & CANTSTRIP)
-		src << "<span class='warning'>You're having difficulty removing \the [I.name].</span>"
+		to_chat(src, "<span class='warning'>You're having difficulty removing \the [I.name].</span>")
 		return
 	M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their [I.name] ([slot_to_process]) attempted to be removed by [name] ([ckey])</font>"
 	attack_log += "\[[time_stamp()]\] <font color='red'>Attempted to remove [M.name]'s ([M.ckey]) [I.name] ([slot_to_process])</font>"
@@ -419,13 +419,13 @@
 /mob/living/carbon/human/stripPanelEquip(obj/item/I, mob/M, slot_to_process)
 	if(I && !(I.flags_item & ITEM_ABSTRACT))
 		if(I.flags_item & NODROP)
-			src << "<span class='warning'>You can't put \the [I.name] on [M], it's stuck to your hand!</span>"
+			to_chat(src, "<span class='warning'>You can't put \the [I.name] on [M], it's stuck to your hand!</span>")
 			return
 		if(I.flags_inventory & CANTSTRIP)
-			src << "<span class='warning'>You're having difficulty putting \the [I.name] on [M].</span>"
+			to_chat(src, "<span class='warning'>You're having difficulty putting \the [I.name] on [M].</span>")
 			return
 		if(!I.mob_can_equip(M, slot_to_process, TRUE))
-			src << "<span class='warning'>You can't put \the [I.name] on [M]!</span>"
+			to_chat(src, "<span class='warning'>You can't put \the [I.name] on [M]!</span>")
 			return
 		visible_message("<span class='notice'>[src] tries to put [I] on [M].</span>", null, 5)
 		if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))

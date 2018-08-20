@@ -315,7 +315,7 @@ turf/proc/build_lighting_area(const/tag, const/level, const/color_light)
 	if (l_color != A.l_color)
 		A.l_color = l_color
 		//color_light = min(max(round(color_lighting_lumcount, 1), 0), lighting_controller.lighting_states)
-		//world << "[color_light] [color_lighting_lumcount]"
+		//to_chat(world, "[color_light] [color_lighting_lumcount]")
 
 	A.SetLightLevel(level, color_light)
 	Area.related += A
@@ -419,10 +419,10 @@ area
 					color_overlay.alpha = 200
 					//color_overlay.alpha = 30
 				if (-INFINITY to 0)
-					//world << "Zero or below, [color_light]."
+					//to_chat(world, "Zero or below, [color_light].")
 					color_overlay.alpha = 0
 				else
-					//world << "Setting the alpha to max... color_light [color_light]."
+					//to_chat(world, "Setting the alpha to max... color_light [color_light].")
 					color_overlay.alpha = 180
 
 			color_overlay.blend_mode = BLEND_ADD
