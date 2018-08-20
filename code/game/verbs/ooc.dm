@@ -8,32 +8,16 @@ var/global/normal_ooc_colour = "#002eb8"
 	if(say_disabled)	//This is here to try to identify lag problems
 		usr << "\red Speech is currently admin-disabled."
 		return
-	if(usr.talked == 2)
-		usr << "\red Your spam has been consumed for it's nutritional value."
-		return
-	if((usr.talked == 1) && (usr.chatWarn >= 5))
-		usr.talked = 2
-		usr << "\red You have been flagged for spam.  You may not speak for at least [usr.chatWarn] seconds (if you spammed alot this might break and never unmute you).  This number will increase each time you are flagged for spamming"
-		if(usr.chatWarn >10)
-			message_admins("[key_name(usr, usr.client)] is spamming like a dirty bitch, their current chatwarn is [usr.chatWarn]. ")
-		spawn(usr.chatWarn*10)
-			usr.talked = 0
-			usr << "\blue You may now speak again."
-			usr.chatWarn++
-		return
-	else if(usr.talked == 1)
-		usr << "\blue You just said something, take a breath."
-		usr.chatWarn++
-		return
 
-
-	if(!mob)	return
+	if(!mob)
+		return
 	if(IsGuestKey(key))
 		src << "Guests may not use OOC."
 		return
 
 	msg = trim(copytext(sanitize(msg), 1, MAX_MESSAGE_LEN))
-	if(!msg)	return
+	if(!msg)
+		return
 
 	if(!(prefs.toggles_chat & CHAT_OOC))
 		src << "\red You have OOC muted."
@@ -99,11 +83,6 @@ var/global/normal_ooc_colour = "#002eb8"
 			else
 				C << "<font color='[normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[src.key]:</EM> <span class='message'>[msg]</span></span></font>"
 			*/
-	usr.talked = 1
-	spawn (5)
-		if(!usr) return
-		if (usr.talked ==2) return
-		usr.talked = 0
 
 /client/proc/set_ooc_color_global(newColor as color)
 	set name = "OOC Text Color - Global"
@@ -213,7 +192,30 @@ var/global/normal_ooc_colour = "#002eb8"
 		usr.talked = 0
 
 /client/verb/round_info()
-	set name = "round_info" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
+	set name = "round_info"
 	set desc = "Information about the current round"
 	set category = "OOC"
 	usr << "The current map is [map_tag]"
+
+/client/verb/setup_character()
+	set name = "Game Preferences"
+	set category = "OOC"
+	set desc = "Allows you to access the Setup Character screen. Changes to your character won't take effect until next round, but other changes will."
+	prefs.ShowChoices(usr)
+
+/client/verb/motd()
+	set name = "MOTD"
+	set category = "OOC"
+	set desc ="Check the Message of the Day"
+	var/join_motd = file2text("config/motd.txt")
+	if( join_motd )
+		src << "<span class='motd'>[join_motd]</span>"
+	else
+		src << "\red The motd is not set in the server configuration."
+	return
+
+/client/verb/stop_sounds()
+	set name = "Stop Sounds"
+	set category = "OOC"
+	set desc = "Stop Current Sounds"
+	src << sound(null)
