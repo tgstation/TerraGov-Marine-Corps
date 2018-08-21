@@ -189,7 +189,7 @@ datum/controller/vote
 					if(ticker.current_state >= 2)
 						return 0
 					choices.Add(config.votable_modes)
-					var/list/L = typesof(/datum/game_mode) - /datum/game_mode
+					var/list/L = subtypesof(/datum/game_mode)
 					for (var/F in choices)
 						for (var/T in L)
 							var/datum/game_mode/M = new T()

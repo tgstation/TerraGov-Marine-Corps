@@ -146,7 +146,7 @@
 	component_parts += new /obj/item/stock_parts/console_screen(src)
 	RefreshParts()
 
-	//	part_sets["Cyborg Upgrade Modules"] = typesof(/obj/item/borg/upgrade/) - /obj/item/borg/upgrade/  // Eh.  This does it dymaically, but to support having the items referenced otherwhere in the code but not being constructable, going to do it manaully.
+	//	part_sets["Cyborg Upgrade Modules"] = subtypesof(/obj/item/borg/upgrade/)  // Eh.  This does it dymaically, but to support having the items referenced otherwhere in the code but not being constructable, going to do it manaully.
 
 	for(var/part_set in part_sets)
 		convert_part_set(part_set)

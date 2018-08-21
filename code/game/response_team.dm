@@ -175,7 +175,7 @@ proc/trigger_armed_response_team(var/force = 0)
 
 
 	// hair
-	var/list/all_hairs = typesof(/datum/sprite_accessory/hair) - /datum/sprite_accessory/hair
+	var/list/all_hairs = subtypesof(/datum/sprite_accessory/hair)
 	var/list/hairs = list()
 
 	// loop through potential hairs

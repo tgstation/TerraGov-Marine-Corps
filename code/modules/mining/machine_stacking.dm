@@ -81,7 +81,7 @@
 /obj/machinery/mineral/stacking_machine/New()
 	..()
 
-	for(var/stacktype in typesof(/obj/item/stack/sheet/mineral)-/obj/item/stack/sheet/mineral)
+	for(var/stacktype in subtypesof(/obj/item/stack/sheet/mineral))
 		var/obj/item/stack/S = new stacktype(src)
 		stack_storage[S.name] = 0
 		stack_paths[S.name] = stacktype

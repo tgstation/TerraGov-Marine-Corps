@@ -24,7 +24,7 @@ var/global/list/gene_tag_masks = list()   // Gene obfuscation for delicious tria
 proc/populate_seed_list()
 
 	// Populate the global seed datum list.
-	for(var/type in typesof(/datum/seed)-/datum/seed)
+	for(var/type in subtypesof(/datum/seed))
 		var/datum/seed/S = new type
 		seed_types[S.name] = S
 		S.uid = "[seed_types.len]"

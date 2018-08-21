@@ -1640,3 +1640,5 @@ var/list/WALLITEMS = list(
 
 /proc/to_chat(target, message)
 	target << message
+//hidden subtypes of
+#define subtypesof(typepath) ( typesof(typepath) - typepath )

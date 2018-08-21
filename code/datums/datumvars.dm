@@ -969,7 +969,7 @@ client
 			to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
 			return
 
-		var/new_organ = input("Please choose an organ to add.","Organ",null) as null|anything in typesof(/datum/internal_organ)-/datum/internal_organ
+		var/new_organ = input("Please choose an organ to add.","Organ",null) as null|anything in subtypesof(/datum/internal_organ)
 
 		if(!M)
 			to_chat(usr, "Mob doesn't exist anymore")
@@ -1039,7 +1039,7 @@ client
 			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
-		var/new_limb = input("Please choose an organ to add.","Organ",null) as null|anything in typesof(/datum/limb)-/datum/limb
+		var/new_limb = input("Please choose an organ to add.","Organ",null) as null|anything in subtypesof(/datum/limb)
 
 		if(!M)
 			to_chat(usr, "Mob doesn't exist anymore")
