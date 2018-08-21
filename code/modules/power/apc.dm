@@ -392,8 +392,10 @@
 		if(has_electronics == 1)
 			if(user.action_busy) return
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				to_chat(user, "<span class='warning'>You have no idea how to deconstruct [src].</span>")
-				return
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
+				"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
+				var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 			if(terminal)
 				to_chat(user, "<span class='warning'>Disconnect the terminal first.</span>")
 				return
@@ -421,8 +423,10 @@
 			update_icon()
 	else if(istype(W, /obj/item/cell) && opened) //Trying to put a cell inside
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			to_chat(user, "<span class='warning'>You have no idea how to fit [W] into [src].</span>")
-			return
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fit [W] into [src].</span>",
+			"<span class='notice'>You fumble around figuring out how to fit [W] into [src].</span>")
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		if(cell)
 			to_chat(user, "<span class='warning'>There is a power cell already installed.</span>")
 			return
@@ -439,8 +443,10 @@
 	else if(isscrewdriver(W)) //Haxing
 		if(opened)
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				to_chat(user, "<span class='warning'>[src]'s wiring confuses you.</span>")
-				return
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s confusing wiring.</span>",
+				"<span class='notice'>You fumble around figuring out [src]'s confusing wiring.</span>")
+				var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 			if(cell)
 				to_chat(user, "<span class='warning'>Close the APC first.</span>")
 				return
@@ -471,8 +477,10 @@
 
 	else if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda)) //Trying to unlock the interface with an ID card
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			to_chat(user, "<span class='warning'>You're not sure where to swipe [W] on [src].</span>")
-			return
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out where to swipe [W] on [src].</span>",
+			"<span class='notice'>You fumble around figuring out where to swipe [W] on [src].</span>")
+			var/fumbling_time = 30 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		if(emagged)
 			to_chat(user, "<span class='warning'>The interface is broken.</span>")
 		else if(opened)
@@ -508,8 +516,10 @@
 					to_chat(user, "<span class='warning'>You fail to [ locked ? "unlock" : "lock"] [src]'s interface.</span>")
 	else if(iswire(W) && !terminal && opened && has_electronics != 2)
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			to_chat(user, "<span class='warning'>You have no idea what to do with [src].</span>")
-			return
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [src].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [src].</span>")
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		if(loc:intact_tile)
 			to_chat(user, "<span class='warning'>You must remove the floor plating in front of the APC first.</span>")
 			return
@@ -535,8 +545,10 @@
 				terminal.connect_to_network()
 	else if(iswirecutter(W) && terminal && opened && has_electronics != 2)
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			to_chat(user, "<span class='warning'>You have no idea what to do with [W].</span>")
-			return
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [W].</span>")
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		if(loc:intact_tile)
 			to_chat(user, "<span class='warning'>You must remove the floor plating in front of the APC first.</span>")
 			return
@@ -556,8 +568,10 @@
 			terminal = null
 	else if(istype(W, /obj/item/circuitboard/apc) && opened && has_electronics == 0 && !(stat & BROKEN))
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			to_chat(user, "<span class='warning'>You have no idea what to do with [W].</span>")
-			return
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [W].</span>")
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		user.visible_message("<span class='notice'>[user] starts inserting the power control board into [src].</span>",
 		"<span class='notice'>You start inserting the power control board into [src].</span>")
 		playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
@@ -568,14 +582,18 @@
 			cdel(W)
 	else if(istype(W, /obj/item/circuitboard/apc) && opened && has_electronics == 0 && (stat & BROKEN))
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			to_chat(user, "<span class='warning'>You have no idea what to do with [W].</span>")
-			return
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [W].</span>")
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		to_chat(user, "<span class='warning'>You cannot put the board inside, the frame is damaged.</span>")
 		return
 	else if(iswelder(W) && opened && has_electronics == 0 && !terminal)
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			to_chat(user, "<span class='warning'>You have no idea what to do with [W].</span>")
-			return
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [W].</span>")
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.get_fuel() < 3)
 			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
@@ -597,8 +615,10 @@
 			return
 	else if(istype(W, /obj/item/frame/apc) && opened && emagged)
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			to_chat(user, "<span class='warning'>You have no idea what to do with [W].</span>")
-			return
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [W].</span>")
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		emagged = 0
 		if(opened == 2)
 			opened = 1
@@ -608,8 +628,10 @@
 		update_icon()
 	else if(istype(W, /obj/item/frame/apc) && opened && (stat & BROKEN))
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			to_chat(user, "<span class='warning'>You have no idea what to do with [W].</span>")
-			return
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
+			"<span class='notice'>You fumble around figuring out what to do with [W].</span>")
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		if(has_electronics)
 			to_chat(user, "<span class='warning'>You cannot repair this APC until you remove the electronics still inside.</span>")
 			return
@@ -702,8 +724,10 @@
 	if(usr == user && opened && (!issilicon(user)))
 		if(cell)
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				to_chat(user, "<span class='warning'>You have no idea how to remove the power cell from [src].</span>")
-				return
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to remove the power cell from [src].</span>",
+				"<span class='notice'>You fumble around figuring out how to remove the power cell from [src].</span>")
+				var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 			user.put_in_hands(cell)
 			cell.add_fingerprint(user)
 			cell.updateicon()
@@ -951,8 +975,10 @@
 			return 0
 	add_fingerprint(usr)
 	if(ishuman(usr) && usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-		to_chat(usr, "<span class='warning'>You don't know how to use [src]'s interface.</span>")
-		return
+		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to use [src]'s interface.</span>",
+		"<span class='notice'>You fumble around figuring out how to use [src]'s interface.</span>")
+		var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer )
+		if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 
 	if(href_list["apcwires"])
 		var/t1 = text2num(href_list["apcwires"])

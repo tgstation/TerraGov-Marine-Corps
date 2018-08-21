@@ -92,8 +92,10 @@
 
 	if(istype(W, /obj/item/stack/rods) && health < health_max)
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_PLASTEEL)
-			to_chat(user, "<span class='warning'>You don't have the skill needed to fix [src]'s wiring.")
-			return
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fix [src]'s wiring.</span>",
+			"<span class='notice'>You fumble around figuring out how to fix [src]'s wiring.</span>")
+			var/fumbling_time = 100 - 20 * user.mind.cm_skills.construction
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		var/obj/item/stack/rods/R = W
 		var/amount_needed = 2
 		if(health)

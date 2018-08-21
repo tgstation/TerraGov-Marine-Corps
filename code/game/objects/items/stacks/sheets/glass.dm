@@ -70,8 +70,10 @@
 		to_chat(user, "\red You don't have the dexterity to do this!")
 		return 0
 	if(ishuman(user) && user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_PLASTEEL)
-		to_chat(user, "<span class='warning'>You are not trained to build with [src]...</span>")
-		return 0
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to build with [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to build with [src].</span>")
+		var/fumbling_time = 100 - 20 * user.mind.cm_skills.construction
+		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 	var/title = "Sheet-[name]"
 	title += " ([src.amount] sheet\s left)"
 	switch(input(title, "What would you like to construct?") as null|anything in construction_options)

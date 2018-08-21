@@ -196,18 +196,20 @@
 			return
 
 	if(href_list["fire_mission"])
+		var/mob/M = usr
 		if(shuttle.moving_status != SHUTTLE_IDLE) return
 		if(shuttle.locked) return
-		shuttle.transit_gun_mission = !shuttle.transit_gun_mission
 		if(shuttle.transit_gun_mission)
-			var/mob/M = usr
-			if(M.mind && M.mind.cm_skills && !M.mind.cm_skills.pilot) //only pilots can activate the fire mission mode, but everyone can reset it back to transport..
-				to_chat(usr, "<span class='warning'>A screen with graphics and walls of physics and engineering values open, you immediately force it closed.</span>")
-				return
-			else
-				to_chat(usr, "<span class='notice'>You upload a flight plan for a low altitude flyby above the planet.</span>")
+			if(M.mind && M.mind.cm_skills && M.mind.cm_skills.pilot < SKILL_PILOT_TRAINED) //everyone can activate the fire mission mode while fumbling, but everyone can reset it back to transport without.
+				M.visible_message("<span class='notice'>[M] fumbles around figuring out how to set the autopilot.</span>",
+				"<span class='notice'>You fumble around figuring out how to set the autopilot.</span>")
+				var/fumbling_time = 100 - 20 * usr.mind.cm_skills.pilot
+				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+			to_chat(M, "<span class='notice'>You upload a flight plan for a low altitude flyby above the planet.</span>")
+			shuttle.transit_gun_mission = !shuttle.transit_gun_mission
 		else
-			to_chat(usr, "<span class='notice'>You reset the flight plan to a transport mission between the Almayer and the planet.</span>")
+			to_chat(M, "<span class='notice'>You reset the flight plan to a transport mission between the Almayer and the planet.</span>")
+			shuttle.transit_gun_mission = !shuttle.transit_gun_mission
 
 	if(href_list["lockdown"])
 		if(shuttle.door_override || z == 3)
@@ -356,7 +358,7 @@
 
 	unacidable = 1
 	exproof = 1
-	req_one_access_txt = "22;200"
+	req_access = list(ACCESS_MARINE_DROPSHIP)
 
 /obj/machinery/computer/shuttle_control/dropship1/New()
 	..()
@@ -376,7 +378,7 @@
 	icon_state = "shuttle"
 	unacidable = 1
 	exproof = 1
-	req_one_access_txt = "12;22;200"
+	req_access = list(ACCESS_MARINE_DROPSHIP)
 
 /obj/machinery/computer/shuttle_control/dropship2/New()
 	..()

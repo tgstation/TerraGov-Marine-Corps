@@ -175,6 +175,22 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 			if("DEATH SQUAD","PMC") return 1
 	to_chat(user, "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>")
 
+/obj/item/weapon/gun/proc/spec_allowed_check(mob/living/carbon/human/user)
+	if(config && config.remove_gun_restrictions) return 1 //Not if the config removed it.
+
+	if(user.mind)
+		if(user.mind.cm_skills && user.mind.cm_skills.spec_weapons > SKILL_SPEC_DEFAULT) return 1
+		if(allowed(user)) return 1
+	to_chat(user, "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>")
+
+/obj/item/weapon/gun/proc/police_allowed_check(mob/living/carbon/human/user)
+	if(config && config.remove_gun_restrictions) return 1 //Not if the config removed it.
+
+	if(user.mind)
+		if(user.mind.cm_skills && user.mind.cm_skills.police >= SKILL_POLICE_MP) return 1
+		if(allowed(user)) return 1
+	to_chat(user, "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>")
+
 /*
 Here we have throwing and dropping related procs.
 This should fix some issues with throwing mag harnessed guns when

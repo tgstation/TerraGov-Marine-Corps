@@ -9,6 +9,7 @@
 	item_state = "hypo"
 	amount_per_transfer_from_this = 15
 	volume = 15
+	skilllock = 0
 
 /obj/item/reagent_container/hypospray/autoinjector/attack(mob/M as mob, mob/user as mob)
 	. = ..()
@@ -43,12 +44,6 @@
 		..()
 		reagents.add_reagent("tricordrazine", 15)
 		update_icon()
-
-/obj/item/reagent_container/hypospray/autoinjector/tricord/skillless
-	name = "\improper First-aid autoinjector"
-	desc = "An autoinjector loaded with a small dose of medicine for marines to treat themselves with."
-	skilllock = 0
-
 
 /obj/item/reagent_container/hypospray/autoinjector/quickclot
 	name = "\improper Quick Clot autoinjector"
@@ -106,12 +101,6 @@
 		..()
 		reagents.add_reagent("tramadol", 15)
 		update_icon()
-
-/obj/item/reagent_container/hypospray/autoinjector/Tramadol/skillless
-	name = "\improper Pain-stop autoinjector"
-	desc = "An auto-injector loaded with a small amount of painkiller for marines to self-administer."
-	skilllock = 0
-
 
 /obj/item/reagent_container/hypospray/autoinjector/Oxycodone
 	name = "\improper Oxycodone (EXTREME PAINKILLER) autoinjector"

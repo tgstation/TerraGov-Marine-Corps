@@ -221,8 +221,8 @@
 	icon_deny = "wallmed-deny"
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
 	wrenchable = FALSE
-	products = list(/obj/item/reagent_container/hypospray/autoinjector/tricord/skillless = 1,
-					/obj/item/reagent_container/hypospray/autoinjector/Tramadol/skillless = 1,
+	products = list(/obj/item/reagent_container/hypospray/autoinjector/tricord = 1,
+					/obj/item/reagent_container/hypospray/autoinjector/Tramadol = 1,
 					/obj/item/stack/medical/bruise_pack = 2,
 					/obj/item/stack/medical/ointment = 2,
 					/obj/item/device/healthanalyzer = 1,
@@ -237,8 +237,8 @@
 	icon_deny = "wallmed-deny"
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
 	wrenchable = FALSE
-	products = list(/obj/item/reagent_container/hypospray/autoinjector/tricord/skillless = 1,
-					/obj/item/reagent_container/hypospray/autoinjector/Tramadol/skillless = 1,
+	products = list(/obj/item/reagent_container/hypospray/autoinjector/tricord = 1,
+					/obj/item/reagent_container/hypospray/autoinjector/Tramadol = 1,
 					/obj/item/reagent_container/syringe/antitoxin = 3,
 					/obj/item/stack/medical/bruise_pack = 3,
 					/obj/item/stack/medical/ointment =3,

@@ -305,10 +305,6 @@ var/global/list/activated_medevac_stretchers = list()
 	if(!ishuman(user))
 		return
 
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
-		to_chat(user, "<span class='warning'>You don't know how to use [src].</span>")
-		return
-
 	if(user == buckled_mob)
 		to_chat(user, "<span class='warning'>You can't reach the beacon activation button while buckled to [src].</span>")
 		return

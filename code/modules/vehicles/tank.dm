@@ -22,6 +22,8 @@
 
 	luminosity = 7
 
+	req_access = list(ACCESS_MARINE_TANK)
+
 /obj/effect/multitile_spawner/cm_armored/tank
 
 	width = 3
@@ -209,11 +211,18 @@
 
 	if(!M || M.client == null) return
 
-	if(!M.mind || !(!M.mind.cm_skills || M.mind.cm_skills.large_vehicle >= SKILL_LARGE_VEHICLE_TRAINED))
-		to_chat(M, "<span class='notice'>You have no idea how to operate this thing.</span>")
+	if(!allowed(M))
+		to_chat(M, "<span class='notice'>Access denied.</span>")
 		return
 
+	if(!M.mind || !(!M.mind.cm_skills || M.mind.cm_skills.large_vehicle >= SKILL_LARGE_VEHICLE_TRAINED))
+		M.visible_message("<span class='notice'>[M] fumbles around figuring out how to get into [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to get into [src].</span>")
+		var/fumbling_time = 100 - 20 * M.mind.cm_skills.large_vehicle
+		if(!do_after(M, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+
 	to_chat(M, "<span class='notice'>You start climbing into [src].</span>")
+
 	for(var/obj/item/I in M.contents)
 		if(I.zoom)
 			I.zoom() // cancel zoom.

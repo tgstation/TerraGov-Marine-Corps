@@ -9,13 +9,6 @@
 	gun_skill_category = GUN_SKILL_SPEC
 	wield_delay = WIELD_DELAY_SLOW
 
-	able_to_fire(mob/living/user)
-		. = ..()
-		if(. && istype(user)) //Let's check all that other stuff first.
-			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_SNIPER)
-				to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
-				return 0
-
 //Pow! Headshot.
 /obj/item/weapon/gun/rifle/sniper/M42A
 	name = "\improper M42A scoped rifle"
@@ -31,6 +24,7 @@
 	attachable_allowed = list(/obj/item/attachable/bipod)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
+	req_access = list(ACCESS_MARINE_SPECPREP)
 
 	New()
 		select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a") )
@@ -167,6 +161,7 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
+	req_access = list(ACCESS_MARINE_SPECPREP)
 
 /obj/item/weapon/gun/rifle/m4ra/New()
 	..()
@@ -189,15 +184,6 @@
 	scatter = config.low_scatter_value
 	damage_mult = config.base_hit_damage_mult
 	recoil = config.min_recoil_value
-
-/obj/item/weapon/gun/rifle/m4ra/able_to_fire(mob/living/user)
-	. = ..()
-	if (. && istype(user)) //Let's check all that other stuff first.
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_SCOUT)
-			to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
-			return 0
-
-
 
 //-------------------------------------------------------
 //SMARTGUN
@@ -255,13 +241,9 @@
 	if(.)
 		if(!ishuman(user)) return 0
 		var/mob/living/carbon/human/H = user
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.smartgun < SKILL_SMART_USE)
-			to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
-			return 0
 		if ( !istype(H.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner) || !istype(H.back,/obj/item/smartgun_powerpack))
 			click_empty(H)
 			return 0
-
 
 /obj/item/weapon/gun/smartgun/load_into_chamber(mob/user)
 //	if(active_attachable) active_attachable = null
@@ -338,6 +320,8 @@
 
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
+	req_access = list(ACCESS_MARINE_SPECPREP)
+	var/datum/effect_system/smoke_spread/smoke
 
 /obj/item/weapon/gun/launcher/m92/New()
 	set waitfor = 0
@@ -407,13 +391,6 @@
 	else
 		to_chat(user, "<span class='warning'>It's empty!</span>")
 
-/obj/item/weapon/gun/launcher/m92/able_to_fire(mob/living/user)
-	. = ..()
-	if (. && istype(user)) //Let's check all that other stuff first.
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_GRENADIER)
-			to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
-			return 0
-
 /obj/item/weapon/gun/launcher/m92/proc/fire_grenade(atom/target, mob/user)
 	set waitfor = 0
 	last_fired = world.time
@@ -450,8 +427,9 @@
 	fire_sound = 'sound/weapons/armbomb.ogg'
 	cocked_sound = 'sound/weapons/gun_m92_cocked.ogg'
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
+	req_access = list(ACCESS_MARINE_SPECPREP)
 	attachable_allowed = list()
 	var/grenade
 	var/grenade_type_allowed = /obj/item/explosive/grenade
@@ -524,19 +502,6 @@
 	else
 		to_chat(user, "<span class='warning'>It's empty!</span>")
 
-/obj/item/weapon/gun/launcher/m81/able_to_fire(mob/living/user)
-	. = ..()
-	if (. && istype(user)) //Let's check all that other stuff first.
-		if(user.mind && user.mind.cm_skills)
-			if(riot_version)
-				if(user.mind.cm_skills.police < SKILL_POLICE_MP)
-					to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
-					return 0
-			else if(user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_GRENADIER)
-				to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
-				return 0
-
-
 /obj/item/weapon/gun/launcher/m81/proc/fire_grenade(atom/target, mob/user)
 	set waitfor = 0
 	last_fired = world.time
@@ -563,6 +528,8 @@
 	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by the Colonial Marines Military Police during riots."
 	grenade_type_allowed = /obj/item/explosive/grenade/chem_grenade
 	riot_version = TRUE
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_POLICE|GUN_WIELDED_FIRING_ONLY
+	req_access = list(ACCESS_MARINE_BRIG)
 
 
 
@@ -589,6 +556,7 @@
 
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
+	req_access = list(ACCESS_MARINE_SPECPREP)
 	var/datum/effect_system/smoke_spread/smoke
 
 /obj/item/weapon/gun/launcher/rocket/New()
@@ -609,19 +577,6 @@
 	..()
 	if(current_mag.current_rounds)  to_chat(user, "It's ready to rocket.")
 	else 							to_chat(user, "It's empty.")
-
-
-/obj/item/weapon/gun/launcher/rocket/able_to_fire(mob/living/user)
-	. = ..()
-	if (. && istype(user)) //Let's check all that other stuff first.
-		/*var/turf/current_turf = get_turf(user)
-		if (current_turf.z == 3 || current_turf.z == 4) //Can't fire on the Almayer, bub.
-			click_empty(user)
-			to_chat(user, "<span class='warning'>You can't fire that here!</span>")
-			return 0*/
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_ROCKET)
-			to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
-			return 0
 
 /obj/item/weapon/gun/launcher/rocket/load_into_chamber(mob/user)
 //	if(active_attachable) active_attachable = null

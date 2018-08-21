@@ -299,6 +299,8 @@
 	name = "\improper M240-T incinerator unit"
 	desc = "An improved version of the M240A1 incenerator unit, the M240-T model is capable of dispersing a larger variety of fuel types."
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_SPECIALIST
+	req_access = list(ACCESS_MARINE_SPECPREP)
 
 /obj/item/weapon/gun/flamer/M240T/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
@@ -339,12 +341,6 @@
 	if(.)
 		if(!current_mag || !current_mag.current_rounds)
 			return
-
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED && user.mind.cm_skills.spec_weapons != SKILL_SPEC_PYRO)
-			to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
-			return 0
-
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //Time to redo part of abby's code.

@@ -569,8 +569,7 @@
 				if(H.mind && (!H.mind.cm_skills || H.mind.cm_skills.police >= SKILL_POLICE_MP))
 					return istype(H.glasses, /obj/item/clothing/glasses/hud/security) || istype(H.glasses, /obj/item/clothing/glasses/sunglasses/sechud)
 			if("medical")
-				if(H.mind && H.mind.cm_skills && H.mind.cm_skills.medical >= SKILL_MEDICAL_MEDIC)
-					return istype(H.glasses, /obj/item/clothing/glasses/hud/health)
+				return istype(H.glasses, /obj/item/clothing/glasses/hud/health)
 			if("squadleader")
 				return H.mind && H.assigned_squad && H.assigned_squad.squad_leader == H && istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine)
 			else

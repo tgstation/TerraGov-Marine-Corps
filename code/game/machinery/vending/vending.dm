@@ -454,8 +454,10 @@
 		else if ((href_list["cutwire"]) && (src.panel_open))
 			var/twire = text2num(href_list["cutwire"])
 			if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				to_chat(usr, "<span class='warning'>You don't understand anything about this wiring...</span>")
-				return 0
+				usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
+				"<span class='notice'>You fumble around figuring out the wiring.</span>")
+				var/fumbling_time = 20 * ( SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer )
+				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 			if (!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
 				to_chat(usr, "You need wirecutters!")
 				return
@@ -467,8 +469,10 @@
 		else if ((href_list["pulsewire"]) && (src.panel_open))
 			var/twire = text2num(href_list["pulsewire"])
 			if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				to_chat(usr, "<span class='warning'>You don't understand anything about this wiring...</span>")
-				return 0
+				usr.visible_message("<span class='notice'>[usr] fumbles around figuring out the wiring.</span>",
+				"<span class='notice'>You fumble around figuring out the wiring.</span>")
+				var/fumbling_time = 20 * ( SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer )
+				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 			if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
 				to_chat(usr, "You need a multitool!")
 				return

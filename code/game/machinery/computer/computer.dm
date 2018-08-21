@@ -96,8 +96,10 @@
 /obj/machinery/computer/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/tool/screwdriver) && circuit)
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
-			to_chat(user, "<span class='warning'>You don't know how to deconstruct [src]...</span>")
-			return
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
+			"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 			var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )

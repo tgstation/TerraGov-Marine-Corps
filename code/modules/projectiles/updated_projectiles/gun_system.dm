@@ -769,6 +769,10 @@ and you're good to go.
 
 		if( (flags_gun_features & GUN_WY_RESTRICTED) && !wy_allowed_check(user) ) return
 
+		if( (flags_gun_features & GUN_SPECIALIST) && !spec_allowed_check(user) ) return
+
+		if( (flags_gun_features & GUN_POLICE) && !police_allowed_check(user) ) return
+
 		//Has to be on the bottom of the stack to prevent delay when failing to fire the weapon for the first time.
 		//Can also set last_fired through New(), but honestly there's not much point to it.
 

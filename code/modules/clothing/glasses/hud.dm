@@ -40,21 +40,6 @@
 	hud_type = MOB_HUD_MEDICAL_ADVANCED
 	actions_types = list(/datum/action/item_action/toggle)
 
-
-/obj/item/clothing/glasses/hud/health/attack_self(mob/living/user)
-	if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_MEDIC)
-		..()
-	else
-		to_chat(user, "<span class='warning'>You have no idea what any of the data means and power it off before it makes you nauseated.</span>")
-		active = 0
-
-/obj/item/clothing/glasses/hud/health/equipped(mob/living/carbon/human/user, slot)
-	if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_MEDIC)
-		..()
-	else
-		to_chat(user, "<span class='warning'>You have no idea what any of the data means and power it off before it makes you nauseated.</span>")
-		active = 0
-
 /obj/item/clothing/glasses/hud/security
 	name = "\improper PatrolMate HUD"
 	desc = "A heads-up display that scans the humans in view and provides accurate data about their ID status and security records."
