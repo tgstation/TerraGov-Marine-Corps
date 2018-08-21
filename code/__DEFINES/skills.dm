@@ -60,8 +60,8 @@
 //construction skill
 #define SKILL_CONSTRUCTION_DEFAULT	0
 #define SKILL_CONSTRUCTION_METAL 	1	//metal barricade construction (CT)
-#define SKILL_CONSTRUCTION_PLASTEEL 2	//plasteel barricade,(Req)(combat engi)
-#define SKILL_CONSTRUCTION_ADVANCED	3	//windows and girder construction
+#define SKILL_CONSTRUCTION_PLASTEEL 2	//plasteel barricade,(RO, SL)
+#define SKILL_CONSTRUCTION_ADVANCED	3	//windows and girder construction (combat engi, CO)
 #define SKILL_CONSTRUCTION_MASTER	4	//building machine&computer frames (MT, CE)
 
 
@@ -82,13 +82,17 @@
 #define SKILL_MEDICAL_MEDIC		2 //syringe use & defib use (Combat Medic)
 #define SKILL_MEDICAL_DOCTOR	3
 #define SKILL_MEDICAL_CMO		4
+#define SKILL_MEDICAL_MASTER	5
 //higher levels means faster syringe use and better defibrillation
 
 
 //surgery skill
-#define SKILL_SURGERY_DEFAULT	0
-#define SKILL_SURGERY_TRAINED	1 //can do surgery (Doctor)
-#define SKILL_SURGERY_EXPERT	2 //faster surgery (CMO)
+#define SKILL_SURGERY_DEFAULT		0 //untrained, really slow
+#define SKILL_SURGERY_AMATEUR		1 //basic notions of first aid and biology (SL, SO)
+#define SKILL_SURGERY_TRAINED		2 //semi-professional surgery (Medic)
+#define SKILL_SURGERY_PROFESSIONAL	3 //professional but unspecialized (Researcher)
+#define SKILL_SURGERY_EXPERT		4 //specialized (Doctor, CMO)
+#define SKILL_SURGERY_MASTER		5 //to be implemented, perhaps instant surgery
 //higher levels means faster surgery.
 
 
@@ -162,3 +166,15 @@
 //multitile vehicle skills
 #define SKILL_LARGE_VEHICLE_DEFAULT 0
 #define SKILL_LARGE_VEHICLE_TRAINED 1
+
+////////////////////////////////////////////////
+
+//skill-related fumble and delay times
+#define SKILL_TASK_TRIVIAL		10
+#define SKILL_TASK_VERY_EASY	20
+#define SKILL_TASK_EASY			30
+#define SKILL_TASK_AVERAGE		50
+#define SKILL_TASK_TOUGH		80
+#define SKILL_TASK_DIFFICULT	100
+#define SKILL_TASK_CHALLENGING	150
+#define SKILL_TASK_FORMIDABLE	200

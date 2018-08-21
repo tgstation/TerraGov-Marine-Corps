@@ -582,8 +582,10 @@
 				visible_message("[usr] engages the internal release mechanism, and climbs out of \the [src].")
 			return
 		if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
-			to_chat(usr, "<span class='warning'>You don't have the training to use this.</span>")
-			return
+			usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to use [src].</span>",
+			"<span class='notice'>You fumble around figuring out how to use [src].</span>")
+			var/fumbling_time = SKILL_TASK_AVERAGE - ( SKILL_TASK_VERY_EASY * ( SKILL_SURGERY_TRAINED - usr.mind.cm_skills.surgery ) ) // 3 seconds with medical skill, 5 without
+			if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		if(surgery)
 			visible_message("\The [src] malfunctions as [usr] aborts the surgery in progress.")
 			occupant.take_limb_damage(rand(30,50),rand(30,50))
@@ -610,8 +612,10 @@
 		return
 
 	if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
-		to_chat(usr, "<span class='warning'>You're going to need someone trained in the use of \the [src] to help you get into it.</span>")
-		return
+		usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to get into \the [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to get into \the [src].</span>")
+		var/fumbling_time = SKILL_TASK_AVERAGE - ( SKILL_TASK_VERY_EASY * ( SKILL_SURGERY_TRAINED - usr.mind.cm_skills.surgery ) ) // 3 seconds with medical skill, 5 without
+		if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 
 	usr.visible_message("<span class='notice'>[usr] starts climbing into \the [src].</span>",
 	"<span class='notice'>You start climbing into \the [src].</span>")
@@ -667,9 +671,11 @@
 			to_chat(user, "<span class='notice'>\The [src] is non-functional!</span>")
 			return
 
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.surgery < SKILL_SURGERY_TRAINED && !event)
-			to_chat(user, "<span class='warning'>You have no idea how to put someone into \the [src]!</span>")
-			return
+		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.surgery < SKILL_SURGERY_PROFESSIONAL && !event)
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to put [M] into [src].</span>",
+			"<span class='notice'>You fumble around figuring out how to use put [M] into [src].</span>")
+			var/fumbling_time = SKILL_TASK_TOUGH - ( SKILL_TASK_EASY * ( SKILL_SURGERY_PROFESSIONAL - user.mind.cm_skills.surgery ) ) // 8 secs non-trained, 5 amateur, 2 trained
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 
 		visible_message("[user] starts putting [M] into [src].", 3)
 

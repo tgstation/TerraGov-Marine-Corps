@@ -144,15 +144,6 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	return 1
 
-
-/obj/item/weapon/gun/shotgun/able_to_fire(mob/living/user)
-	. = ..()
-	if (. && istype(user)) //Let's check all that other stuff first.
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons == SKILL_SPEC_SCOUT)
-			to_chat(user, "<span class='warning'>Scout specialists can't use shotguns...</span>")
-			return 0
-
-
 //-------------------------------------------------------
 //GENERIC MERC SHOTGUN //Not really based on anything.
 

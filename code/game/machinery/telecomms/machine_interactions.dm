@@ -24,8 +24,10 @@
 
 	else
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
-			to_chat(user, "<span class='warning'>You stare at [src] cluelessly...</span>")
-			return 0
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out how [src] works.</span>",
+			"<span class='notice'>You fumble around figuring out how [src] works.</span>")
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 
 	// REPAIRING: Use Nanopaste to repair 10-20 integrity points.
 	if(istype(P, /obj/item/stack/nanopaste))
@@ -117,8 +119,10 @@
 	// You need a multitool to use this, or be silicon
 	if(!issilicon(user))
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
-			to_chat(user, "<span class='warning'>You stare at [src] cluelessly...</span>")
-			return
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out how [src] works.</span>",
+			"<span class='notice'>You fumble around figuring out how [src] works.</span>")
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_MT - user.mind.cm_skills.engineer )
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		// istype returns false if the value is null
 		if(!istype(user.get_active_hand(), /obj/item/device/multitool))
 			return

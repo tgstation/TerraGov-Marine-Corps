@@ -26,8 +26,10 @@
 		return
 	if (reagents.total_volume)
 		if(skilllock && user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
-			to_chat(user, "<span class='warning'>You can't figure out to use \the [src], guess it must have some sort of ID lock.</span>")
-			return 0
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the [src].</span>",
+			"<span class='notice'>You fumble around figuring out how to use the [src].</span>")
+			var/fumbling_time = SKILL_TASK_EASY
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 
 		if(M != user && M.stat != DEAD && M.a_intent != "help" && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isYautja(M))) // preds have null skills
 			user.KnockDown(3)

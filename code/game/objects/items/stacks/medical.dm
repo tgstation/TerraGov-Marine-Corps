@@ -46,6 +46,7 @@
 	singular_name = "medical gauze"
 	desc = "Some sterile gauze to wrap around bloody stumps."
 	icon_state = "brutepack"
+	heal_brute = 1
 	origin_tech = "biotech=1"
 	stack_id = "bruise pack"
 
@@ -94,7 +95,7 @@
 	gender = PLURAL
 	singular_name = "ointment"
 	icon_state = "ointment"
-	heal_burn = 1
+	heal_burn = 3
 	origin_tech = "biotech=1"
 	stack_id = "ointment"
 
@@ -168,7 +169,7 @@
 				to_chat(user, "<span class='warning'>You start fumbling with [src].</span>")
 				if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 					return
-				heal_amt = 3 //non optimal application means less healing
+				heal_amt = heal_brute * 0.5 //non optimal application means less healing
 
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 
@@ -224,7 +225,7 @@
 				to_chat(user, "<span class='warning'>You start fumbling with [src].</span>")
 				if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 					return
-				heal_amt = 3 //non optimal application means less healing
+				heal_amt = heal_burn * 0.5 //non optimal application means less healing
 
 		var/datum/limb/affecting = H.get_limb(user.zone_selected)
 

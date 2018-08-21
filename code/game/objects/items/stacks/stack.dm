@@ -113,10 +113,6 @@
 		var/multiplier = text2num(href_list["multiplier"])
 		if(!multiplier || (multiplier <= 0)) //href exploit protection
 			return
-		if(R.skill_req)
-			if(ishuman(usr) && usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.construction < R.skill_req)
-				to_chat(usr, "<span class='warning'>You are not trained to build this...</span>")
-				return
 		if(amount < R.req_amount * multiplier)
 			if(R.req_amount * multiplier > 1)
 				to_chat(usr, "<span class='warning'>You need more [name] to build \the [R.req_amount*multiplier] [R.title]\s!</span>")
@@ -146,6 +142,12 @@
 				return
 		if(R.time)
 			if(usr.action_busy) return
+			if(R.skill_req)
+				if(ishuman(usr) && usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.construction < R.skill_req)
+					usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to build with [src].</span>",
+					"<span class='notice'>You fumble around figuring out how to build with [src].</span>")
+					var/fumbling_time = R.time * ( R.skill_req - usr.mind.cm_skills.construction )
+					if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 			usr.visible_message("<span class='notice'>[usr] starts assembling \a [R.title].</span>",
 			"<span class='notice'>You start assembling \a [R.title].</span>")
 			if(!do_after(usr, R.time, TRUE, 5, BUSY_ICON_BUILD))

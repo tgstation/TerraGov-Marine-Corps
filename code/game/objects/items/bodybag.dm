@@ -292,9 +292,6 @@
 /obj/structure/closet/bodybag/cryobag/Topic(href, href_list)
 	if (href_list["scanreport"])
 		if(hasHUD(usr,"medical"))
-			if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
-				to_chat(usr, "<span class='warning'>You're not trained to use this.</span>")
-				return
 			if(get_dist(usr, src) > 7)
 				to_chat(usr, "<span class='warning'>[src] is too far away.</span>")
 				return

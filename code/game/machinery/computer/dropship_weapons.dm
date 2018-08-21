@@ -108,9 +108,11 @@
 	if(href_list["open_fire"])
 		var/targ_id = text2num(href_list["open_fire"])
 		var/mob/M = usr
-		if(M.mind.assigned_role != "Pilot Officer") //only pilots can fire dropship weapons.
-			to_chat(usr, "<span class='warning'>A screen with graphics and walls of physics and engineering values open, you immediately force it closed.</span>")
-			return
+		if(M.mind.assigned_role != "Pilot Officer") //everyone can fire dropship weapons while fumbling.
+			usr.visible_message("<span class='notice'>[usr] fumbles around figuring out how to use the automated targeting system.</span>",
+			"<span class='notice'>You fumble around figuring out how to use the automated targeting system.</span>")
+			var/fumbling_time = 100 - 20 * usr.mind.cm_skills.pilot
+			if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		for(var/X in active_laser_targets)
 			var/obj/effect/overlay/temp/laser_target/LT = X
 			if(LT.target_id == targ_id)
@@ -144,13 +146,16 @@
 
 /obj/machinery/computer/dropship_weapons/dropship1
 	name = "\improper 'Alamo' weapons controls"
-	New()
-		..()
-		shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
+	req_access = list(ACCESS_MARINE_DROPSHIP)
+
+/obj/machinery/computer/dropship_weapons/dropship1/New()
+	..()
+	shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
 
 /obj/machinery/computer/dropship_weapons/dropship2
 	name = "\improper 'Normandy' weapons controls"
+	req_access = list(ACCESS_MARINE_DROPSHIP)
 
-	New()
-		..()
-		shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
+/obj/machinery/computer/dropship_weapons/dropship2/New()
+	..()
+	shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"

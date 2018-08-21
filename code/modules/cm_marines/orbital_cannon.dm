@@ -446,8 +446,10 @@ var/list/ob_type_fuel_requirements
 		return
 
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-		to_chat(user, "<span class='warning'>You have no idea how to use that console.</span>")
-		return 1
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the console.</span>",
+		"<span class='notice'>You fumble around figuring out how to use the console.</span>")
+		var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 
 	user.set_interaction(src)
 

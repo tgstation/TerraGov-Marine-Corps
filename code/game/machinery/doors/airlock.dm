@@ -678,8 +678,10 @@ About the new airlock wires panel:
 	if((in_range(src, usr) && istype(src.loc, /turf)) && src.p_open)
 		usr.set_interaction(src)
 		if(ishuman(usr) && usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			to_chat(usr, "<span class='warning'>You don't understand anything about [src]'s wiring...</span>")
-			return 0
+			usr.visible_message("<span class='notice'>[usr] fumbles around figuring out [src]'s wiring.</span>",
+			"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
+			var/fumbling_time = 100 - 20 * usr.mind.cm_skills.engineer
+			if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		if(href_list["wires"])
 			var/t1 = text2num(href_list["wires"])
 			if(!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
@@ -970,8 +972,10 @@ About the new airlock wires panel:
 	else if(C.pry_capable)
 		if(C.pry_capable == IS_PRY_CAPABLE_CROWBAR && src.p_open && (operating == -1 || (density && welded && operating != 1 && !src.arePowerSystemsOn() && !src.locked)) )
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				to_chat(user, "<span class='warning'>You don't seem to know how to deconstruct machines.</span>")
-				return
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
+				"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")
+				var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 			if(width > 1)
 				to_chat(user, "<span class='warning'>Large doors seem impossible to disassemble.</span>")
 				return

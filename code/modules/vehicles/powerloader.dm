@@ -78,9 +78,6 @@
 	if(M != user) return
 	if(!ishuman(M))	return
 	var/mob/living/carbon/human/H = M
-	if(H.mind && user.mind.cm_skills && !user.mind.cm_skills.powerloader)
-		to_chat(H, "<span class='warning'>You don't seem to know how to operate [src].</span>")
-		return
 	if(H.r_hand || H.l_hand)
 		to_chat(H, "<span class='warning'>You need your two hands to use [src].</span>")
 		return

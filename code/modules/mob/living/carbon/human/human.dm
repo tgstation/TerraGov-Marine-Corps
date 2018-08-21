@@ -805,9 +805,6 @@
 									R.fields[text("com_[counter]")] = text("Made by [U.name] ([U.modtype] [U.braintype]) on [time2text(world.realtime, "DDD MMM DD hh:mm:ss")], [game_year]<BR>[t1]")
 
 	if (href_list["medholocard"])
-		if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
-			to_chat(usr, "<span class='warning'>You're not trained to use this.</span>")
-			return
 		if(!has_species(src, "Human"))
 			to_chat(usr, "<span class='warning'>Triage holocards only works on humans.</span>")
 			return
@@ -827,9 +824,6 @@
 
 	if (href_list["scanreport"])
 		if(hasHUD(usr,"medical"))
-			if(usr.mind && usr.mind.cm_skills && usr.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
-				to_chat(usr, "<span class='warning'>You're not trained to use this.</span>")
-				return
 			if(!has_species(src, "Human"))
 				to_chat(usr, "<span class='warning'>This only works on humans.</span>")
 				return

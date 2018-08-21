@@ -28,8 +28,10 @@
 		to_chat(user, "<span class='warning'>You kick [src] but nothing happens.</span>")
 		return
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-		to_chat(user, "<span class='warning'>You don't have the training to use [src].</span>")
-		return
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
+		var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 	if(busy)
 		to_chat(user, "<span class='warning'>Someone else is currently using [src].</span>")
 		return
@@ -112,8 +114,10 @@
 
 		var/obj/item/mortal_shell/mortar_shell = O
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			to_chat(user, "<span class='warning'>You don't have the training to fire [src].</span>")
-			return
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fire [src].</span>",
+			"<span class='notice'>You fumble around figuring out how to fire [src].</span>")
+			var/fumbling_time = 30 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		if(busy)
 			to_chat(user, "<span class='warning'>Someone else is currently using [src].</span>")
 			return
@@ -164,8 +168,10 @@
 
 	if(istype(O, /obj/item/tool/wrench))
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-			to_chat(user, "<span class='warning'>You don't have the training to undeploy [src].</span>")
-			return
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to undeploy [src].</span>",
+			"<span class='notice'>You fumble around figuring out how to undeploy [src].</span>")
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		if(fixed)
 			to_chat(user, "<span class='warning'>[src]'s supports are bolted and welded into the floor. It looks like it's going to be staying there.</span>")
 			return
@@ -209,8 +215,10 @@
 /obj/item/mortar_kit/attack_self(mob/user)
 
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-		to_chat(user, "<span class='warning'>You don't have the training to deploy [src].</span>")
-		return
+		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deploy [src].</span>",
+		"<span class='notice'>You fumble around figuring out how to deploy [src].</span>")
+		var/fumbling_time = 50 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
+		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 	if(user.z != 1)
 		to_chat(user, "<span class='warning'>You cannot deploy [src] here.</span>")
 		return

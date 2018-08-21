@@ -457,8 +457,10 @@
 		if(user.action_busy)
 			return
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
-			to_chat(user, "<span class='warning'>You're not trained to repair [src]...</span>")
-			return
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to repair [src].</span>",
+			"<span class='notice'>You fumble around figuring out how to repair [src].</span>")
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_METAL - user.mind.cm_skills.engineer )
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		var/obj/item/tool/weldingtool/WT = W
 		if(health <= maxhealth * 0.3)
 			to_chat(user, "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>")
@@ -488,8 +490,10 @@
 				if(user.action_busy)
 					return
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
-					to_chat(user, "<span class='warning'>You are not trained to disassemble [src]...</span>")
-					return
+					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
+					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
+					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
+					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD)) return
 				user.visible_message("<span class='notice'>[user] removes [src]'s protection panel.</span>",
@@ -501,8 +505,10 @@
 				if(user.action_busy)
 					return
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
-					to_chat(user, "<span class='warning'>You are not trained to assemble [src]...</span>")
-					return
+					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
+					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
+					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
+					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD)) return
 				user.visible_message("<span class='notice'>[user] set [src]'s protection panel back.</span>",
@@ -513,8 +519,10 @@
 				if(user.action_busy)
 					return
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
-					to_chat(user, "<span class='warning'>You are not trained to disassemble [src]...</span>")
-					return
+					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
+					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
+					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
+					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 				if(!do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD)) return
 				user.visible_message("<span class='notice'>[user] loosens [src]'s anchor bolts.</span>",
@@ -528,8 +536,10 @@
 				if(user.action_busy)
 					return
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
-					to_chat(user, "<span class='warning'>You are not trained to assemble [src]...</span>")
-					return
+					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
+					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
+					var/fumbling_time = 10 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
+					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 				for(var/obj/structure/barricade/B in loc)
 					if(B != src && B.dir == dir)
 						to_chat(user, "<span class='warning'>There's already a barricade here.</span>")
@@ -546,8 +556,10 @@
 				if(user.action_busy)
 					return
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.construction < SKILL_CONSTRUCTION_METAL)
-					to_chat(user, "<span class='warning'>You are not trained to disassemble [src]...</span>")
-					return
+					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
+					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
+					var/fumbling_time = 50 * ( SKILL_CONSTRUCTION_METAL - user.mind.cm_skills.construction )
+					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
 				"<span class='notice'>You start unseating [src]'s panels.</span>")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
@@ -629,8 +641,10 @@
 			return
 		tool_cooldown = world.time + 10
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
-			to_chat(user, "<span class='warning'>You're not trained to repair [src]...</span>")
-			return
+			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to repair [src].</span>",
+			"<span class='notice'>You fumble around figuring out how to repair [src].</span>")
+			var/fumbling_time = 50 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		var/obj/item/tool/weldingtool/WT = W
 		if(health <= maxhealth * 0.3)
 			to_chat(user, "<span class='warning'>[src] has sustained too much structural damage to be repaired.</span>")
@@ -658,17 +672,20 @@
 	switch(build_state)
 		if(2) //Fully constructed step. Use screwdriver to remove the protection panels to reveal the bolts
 			if(isscrewdriver(W))
-				if(busy || tool_cooldown > world.time)
+				if(busy || tool_cooldown > world.time || user.action_busy)
 					return
 				tool_cooldown = world.time + 10
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
-					to_chat(user, "<span class='warning'>You are not trained to assemble [src]...</span>")
-					return
+					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
+					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
+					var/fumbling_time = 10 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
+					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 
 				for(var/obj/structure/barricade/B in loc)
 					if(B != src && B.dir == dir)
 						to_chat(user, "<span class='warning'>There's already a barricade here.</span>")
 						return
+				if(!do_after(user, 1, TRUE, 5, BUSY_ICON_BUILD)) return
 				user.visible_message("<span class='notice'>[user] removes [src]'s protection panel.</span>",
 
 				"<span class='notice'>You remove [src]'s protection panels, exposing the anchor bolts.</span>")
@@ -678,24 +695,30 @@
 
 		if(1) //Protection panel removed step. Screwdriver to put the panel back, wrench to unsecure the anchor bolts
 			if(isscrewdriver(W))
-				if(busy || tool_cooldown > world.time)
+				if(busy || tool_cooldown > world.time || user.action_busy)
 					return
 				tool_cooldown = world.time + 10
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
-					to_chat(user, "<span class='warning'>You are not trained to assemble [src]...</span>")
-					return
+					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
+					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
+					var/fumbling_time = 10 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
+					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, 1, TRUE, 5, BUSY_ICON_BUILD)) return
 				user.visible_message("<span class='notice'>[user] set [src]'s protection panel back.</span>",
 				"<span class='notice'>You set [src]'s protection panel back.</span>")
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				build_state = 2
 				return
 			if(iswrench(W))
-				if(busy || tool_cooldown > world.time)
+				if(busy || tool_cooldown > world.time || user.action_busy)
 					return
 				tool_cooldown = world.time + 10
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
-					to_chat(user, "<span class='warning'>You are not trained to assemble [src]...</span>")
-					return
+					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
+					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
+					var/fumbling_time = 10 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
+					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, 1, TRUE, 5, BUSY_ICON_BUILD)) return
 				user.visible_message("<span class='notice'>[user] loosens [src]'s anchor bolts.</span>",
 				"<span class='notice'>You loosen [src]'s anchor bolts.</span>")
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -706,12 +729,15 @@
 
 		if(0) //Anchor bolts loosened step. Apply crowbar to unseat the panel and take apart the whole thing. Apply wrench to rescure anchor bolts
 			if(iswrench(W))
-				if(busy || tool_cooldown > world.time)
+				if(busy || tool_cooldown > world.time || user.action_busy)
 					return
 				tool_cooldown = world.time + 10
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
-					to_chat(user, "<span class='warning'>You are not trained to assemble [src]...</span>")
-					return
+					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to assemble [src].</span>",
+					"<span class='notice'>You fumble around figuring out how to assemble [src].</span>")
+					var/fumbling_time = 10 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
+					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(user, 1, TRUE, 5, BUSY_ICON_BUILD)) return
 				user.visible_message("<span class='notice'>[user] secures [src]'s anchor bolts.</span>",
 				"<span class='notice'>You secure [src]'s anchor bolts.</span>")
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -724,8 +750,10 @@
 					return
 				tool_cooldown = world.time + 10
 				if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_PLASTEEL)
-					to_chat(user, "<span class='warning'>You are not trained to assemble [src]...</span>")
-					return
+					user.visible_message("<span class='notice'>[user] fumbles around figuring out how to disassemble [src].</span>",
+					"<span class='notice'>You fumble around figuring out how to disassemble [src].</span>")
+					var/fumbling_time = 50 * ( SKILL_ENGINEER_PLASTEEL - user.mind.cm_skills.engineer )
+					if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 				user.visible_message("<span class='notice'>[user] starts unseating [src]'s panels.</span>",
 				"<span class='notice'>You start unseating [src]'s panels.</span>")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)

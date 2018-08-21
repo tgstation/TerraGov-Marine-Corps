@@ -2,7 +2,7 @@
 	name = "\improper G-11 geothermal generator"
 	icon = 'icons/turf/geothermal.dmi'
 	icon_state = "weld"
-	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a blowtorch, wrench, then wirecutters to repair it."
+	desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a blowtorch, then wirecutters, and then a wrench to repair it."
 	anchored = 1
 	density = 1
 	directwired = 0     //Requires a cable directly underneath
@@ -34,10 +34,10 @@
 	else
 		if(buildstate == 1)
 			icon_state = "weld"
-			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a blowtorch, wirecutters, then wrench to repair it."
+			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is heavily damaged. Use a blowtorch, wirecutters, and then a wrench to repair it."
 		else if(buildstate == 2)
 			icon_state = "wire"
-			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is damaged. Use a wirecutters, then wrench to repair it."
+			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is damaged. Use wirecutters and then a wrench to repair it."
 		else
 			icon_state = "wrench"
 			desc = "A thermoelectric generator sitting atop a plasma-filled borehole. This one is lightly damaged. Use a wrench to repair it."
@@ -104,12 +104,8 @@
 
 	add_fingerprint(user)
 
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-		to_chat(user, "<span class='warning'>You have no clue how this thing works...</span>")
-		return 0
-
 	if(buildstate == 1)
-		to_chat(usr, "<span class='info'>Use a blowtorch, then wirecutters, then wrench to repair it.")
+		to_chat(usr, "<span class='info'>Use a blowtorch, then wirecutters, then a wrench to repair it.")
 		return 0
 	else if (buildstate == 2)
 		to_chat(usr, "<span class='info'>Use a wirecutters, then wrench to repair it.")
@@ -136,8 +132,10 @@
 	if(iswelder(O))
 		if(buildstate == 1 && !is_on)
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				to_chat(user, "<span class='warning'>You have no clue how to repair this thing.</span>")
-				return 0
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
+				"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
+				var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 			var/obj/item/tool/weldingtool/WT = O
 			if(WT.remove_fuel(1, user))
 
@@ -158,8 +156,10 @@
 	else if(iswirecutter(O))
 		if(buildstate == 2 && !is_on)
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				to_chat(user, "<span class='warning'>You have no clue how to repair this thing.</span>")
-				return 0
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
+				"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
+				var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] starts securing [src]'s wiring.</span>",
 			"<span class='notice'>You start securing [src]'s wiring.</span>")
@@ -174,8 +174,10 @@
 	else if(iswrench(O))
 		if(buildstate == 3 && !is_on)
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				to_chat(user, "<span class='warning'>You have no clue how to repair this thing.</span>")
-				return 0
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s tubing and plating.</span>",
+				"<span class='notice'>You fumble around figuring out [src]'s tubing and plating.</span>")
+				var/fumbling_time = 100 - 20 * user.mind.cm_skills.engineer
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] starts repairing [src]'s tubing and plating.</span>",
 			"<span class='notice'>You start repairing [src]'s tubing and plating.</span>")
@@ -311,8 +313,10 @@
 	if(damaged)
 		if(isscrewdriver(I))
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				to_chat(user, "<span class='warning'>You have no clue how to repair [src].</span>")
-				return 0
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src] maintenance hatch's screws.</span>",
+				"<span class='notice'>You fumble around figuring out [src] maintenance hatch's screws.</span>")
+				var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 
 			if(repair_state == FLOODLIGHT_REPAIR_UNSCREW)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -346,8 +350,10 @@
 
 		else if(iscrowbar(I))
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				to_chat(user, "<span class='warning'>You have no clue how to repair [src].</span>")
-				return 0
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out an opening for [src]'s maintenance hatch.</span>",
+				"<span class='notice'>You fumble around figuring out an opening for [src]'s maintenance hatch.</span>")
+				var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 
 			if(repair_state == FLOODLIGHT_REPAIR_CROWBAR)
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
@@ -366,8 +372,10 @@
 			var/obj/item/tool/weldingtool/WT = I
 
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				to_chat(user, "<span class='warning'>You have no clue how to repair [src].</span>")
-				return 0
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s internals.</span>",
+				"<span class='notice'>You fumble around figuring out [src]'s internals.</span>")
+				var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 
 			if(repair_state == FLOODLIGHT_REPAIR_WELD)
 				if(WT.remove_fuel(1, user))
@@ -389,8 +397,10 @@
 		else if(iscoil(I))
 			var/obj/item/stack/cable_coil/C = I
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
-				to_chat(user, "<span class='warning'>You have no clue how to repair [src].</span>")
-				return 0
+				user.visible_message("<span class='notice'>[user] fumbles around figuring out [src]'s wiring.</span>",
+				"<span class='notice'>You fumble around figuring out [src]'s wiring.</span>")
+				var/fumbling_time = 60 - 20 * user.mind.cm_skills.engineer
+				if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 
 			if(repair_state == FLOODLIGHT_REPAIR_CABLE)
 				if(C.get_amount() < 2)
