@@ -1,5 +1,5 @@
 
-var/list/upgrades = typesof(/datum/upgrade) - /datum/upgrade //Removes the initial one
+var/list/upgrades = subtypesof(/datum/upgrade) //Removes the initial one
 var/list/datum/upgrade/upgrade_list = list()
 
 //Initializes upgrade datums. Always called at round start.

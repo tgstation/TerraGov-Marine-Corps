@@ -1,5 +1,5 @@
-var/list/allEvents = typesof(/datum/event) - /datum/event
-var/list/potentialRandomEvents = typesof(/datum/event) - /datum/event
+var/list/allEvents = subtypesof(/datum/event)//this var sounds fun!
+var/list/potentialRandomEvents = subtypesof(/datum/event)
 //var/list/potentialRandomEvents = typesof(/datum/event) - /datum/event - /datum/event/spider_infestation - /datum/event/alien_infestation
 
 var/eventTimeLower = 12000	//20 minutes

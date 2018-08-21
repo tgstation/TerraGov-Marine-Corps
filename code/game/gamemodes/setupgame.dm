@@ -126,7 +126,7 @@
 	// HIDDEN MUTATIONS / SUPERPOWERS INITIALIZTION
 
 	/*
-	for(var/x in typesof(/datum/mutations) - /datum/mutations)
+	for(var/x in subtypesof(/datum/mutations))
 		var/datum/mutations/mut = new x
 
 		for(var/i = 1, i <= mut.required, i++)

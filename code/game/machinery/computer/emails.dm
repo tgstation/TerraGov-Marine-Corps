@@ -15,7 +15,7 @@
 /obj/machinery/computer/emails/New()
 	..()
 	email_list = list()
-	var/list/L = typesof(email_type) - email_type
+	var/list/L = subtypesof(email_type)
 	var/email_amt = rand(2,4)
 	for(var/i=1 to email_amt)
 		var/path = pick_n_take(L)

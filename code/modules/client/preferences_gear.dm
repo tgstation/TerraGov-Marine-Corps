@@ -1,7 +1,7 @@
 var/global/list/gear_datums = list()
 
 /hook/startup/proc/populate_gear_list()
-	for(var/type in typesof(/datum/gear)-/datum/gear)
+	for(var/type in subtypesof(/datum/gear))
 		var/datum/gear/G = new type()
 		gear_datums[G.display_name] = G
 	return 1

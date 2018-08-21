@@ -120,11 +120,11 @@
 	..()
 
 	//TODO: Ore and alloy global storage datum.
-	for(var/alloytype in typesof(/datum/alloy)-/datum/alloy)
+	for(var/alloytype in subtypesof(/datum/alloy))
 		alloy_data += new alloytype()
 	start_processing()
 
-	for(var/oretype in typesof(/datum/ore)-/datum/ore)
+	for(var/oretype in subtypesof(/datum/ore))
 		var/datum/ore/OD = new oretype()
 		ore_data[OD.oretag] = OD
 		ores_processing[OD.oretag] = 0

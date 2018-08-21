@@ -87,7 +87,7 @@
 			output = null
 
 /obj/machinery/processor/proc/select_recipe(var/X)
-	for (var/Type in typesof(/datum/food_processor_process) - /datum/food_processor_process - /datum/food_processor_process/mob)
+	for (var/Type in subtypesof(/datum/food_processor_process) - /datum/food_processor_process/mob)
 		var/datum/food_processor_process/P = new Type()
 		if (!istype(X, P.input))
 			continue

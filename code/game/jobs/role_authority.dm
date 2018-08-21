@@ -20,27 +20,27 @@ var/global/datum/authority/branch/role/RoleAuthority
 /datum/authority/branch/role
 	name = "Role Authority"
 
-	var/roles_by_path[] //Master list generated when role aithority is created, listing every role by path, including variable roles. Great for manually equipping with.
-	var/roles_by_name[] //Master list generated when role authority is created, listing every default role by name, including those that may not be regularly selected.
-	var/roles_for_mode[] //Derived list of roles only for the game mode, generated when the round starts.
-	var/roles_whitelist[] //Associated list of lists, by ckey. Checks to see if a person is whitelisted for a specific role.
+	var/roles_by_path //Master list generated when role aithority is created, listing every role by path, including variable roles. Great for manually equipping with.
+	var/roles_by_name //Master list generated when role authority is created, listing every default role by name, including those that may not be regularly selected.
+	var/roles_for_mode //Derived list of roles only for the game mode, generated when the round starts.
+	var/roles_whitelist //Associated list of lists, by ckey. Checks to see if a person is whitelisted for a specific role.
 
-	var/unassigned_players[]
-	var/squads[]
+	var/unassigned_players
+	var/squads
 
  //#define FACTION_TO_JOIN "Marines"
+ 
 	//Whenever the controller is created, we want to set up the basic role lists.
-	New()
-		var/roles_all[] = typesof(/datum/job) - list( //We want to prune all the parent types that are only variable holders.
-												/datum/job,
-												/datum/job/pmc,
-												/datum/job/command,
-												/datum/job/civilian,
-												/datum/job/logistics,
-												/datum/job/logistics/tech,
-												/datum/job/marine,
-												/datum/job/pmc/elite_responder)
-		var/squads_all[] = typesof(/datum/squad) - /datum/squad
+/datum/authority/branch/role/New()
+	var/roles_all = subtypesof(/datum/job) - list(
+							/datum/job/pmc,
+							/datum/job/command,
+							/datum/job/civilian,
+							/datum/job/logistics,
+							/datum/job/logistics/tech,
+							/datum/job/marine,
+							/datum/job/pmc/elite_responder)
+	var/squads_all = subtypesof(/datum/squad)
 
 		if(!roles_all.len)
 			to_chat(world, "<span class='debug'>Error setting up jobs, no job datums found.</span>")
@@ -52,42 +52,44 @@ var/global/datum/authority/branch/role/RoleAuthority
 			log_debug("Error setting up squads, no squad datums found.")
 			return
 
-		roles_by_path 	= new
-		roles_by_name 	= new
-		roles_for_mode  = new
-		roles_whitelist = new
-		squads 			= new
+	roles_by_path 	= new
+	roles_by_name 	= new
+	roles_for_mode  = new
+	roles_whitelist = new
+	squads 			= new
 
-		var/L[] = new
-		var/datum/job/J
-		var/datum/squad/S
-		var/i
+	var/L = new
+	var/datum/job/J
+	var/datum/squad/S
 
-		for(i in roles_all) //Setting up our roles.
-			J = new i
+	for(var/i in roles_all) //Setting up our roles.
+		J = new i
 
 			if(!J.title) //In case you forget to subtract one of those variable holder jobs.
-				to_chat(world, "<span class='debug'>Error setting up jobs, blank title job: [J.type].</span>")
+				world << "<span class='debug'>Error setting up jobs, blank title job: [J.type].</span>"
 				log_debug("Error setting up jobs, blank title job: [J.type].")
 				continue
 
-			roles_by_path[J.type] = J
-			if(J.flags_startup_parameters & ROLE_ADD_TO_DEFAULT) roles_by_name[J.title] = J
-			if(J.flags_startup_parameters & ROLE_ADD_TO_MODE) roles_for_mode[J.title] = J
+		roles_by_path[J.type] = J
+		if(J.flags_startup_parameters & ROLE_ADD_TO_DEFAULT)
+			roles_by_name[J.title] = J
+		if(J.flags_startup_parameters & ROLE_ADD_TO_MODE)
+			roles_for_mode[J.title] = J
 
-		//	if(J.faction == FACTION_TO_JOIN)  //TODO Initialize non-faction jobs? //TODO Do we really need this?
+	//	if(J.faction == FACTION_TO_JOIN)  //TODO Initialize non-faction jobs? //TODO Do we really need this?
 
-		//TODO Come up with some dynamic method of doing this.
-		for(i in ROLES_REGULAR_ALL) //We're going to re-arrange the list for mode to look better, starting with the officers.
-			J = roles_for_mode[i]
-			if(J) L[J.title] = J
+	//TODO Come up with some dynamic method of doing this.
+	for(var/i in ROLES_REGULAR_ALL) //We're going to re-arrange the list for mode to look better, starting with the officers.
+		J = roles_for_mode[i]
+		if(J)
+			L[J.title] = J
 		roles_for_mode = L
 
-		for(i in squads_all) //Setting up our squads.
-			S = new i()
-			squads += S
+	for(i in squads_all) //Setting up our squads.
+		S = new i()
+		squads += S
 
-		load_whitelist()
+	load_whitelist()
 
 /datum/authority/branch/role/proc/load_whitelist(filename = "config/role_whitelist.txt")
 	var/L[] = file2list(filename)
