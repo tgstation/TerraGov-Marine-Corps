@@ -123,7 +123,8 @@
 	desc = "It can contain a pistol. Useful for emergencies."
 	icon_state = "pistol"
 	max_w_class = 3
-	can_hold = list("/obj/item/weapon/gun/pistol")
+	can_hold = list("/obj/item/weapon/gun/pistol",
+					"/obj/item/weapon/gun/revolver")
 	draw_mode = 1
 
 
