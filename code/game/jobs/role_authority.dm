@@ -20,19 +20,19 @@ var/global/datum/authority/branch/role/RoleAuthority
 /datum/authority/branch/role
 	name = "Role Authority"
 
-	var/roles_by_path //Master list generated when role aithority is created, listing every role by path, including variable roles. Great for manually equipping with.
-	var/roles_by_name //Master list generated when role authority is created, listing every default role by name, including those that may not be regularly selected.
-	var/roles_for_mode //Derived list of roles only for the game mode, generated when the round starts.
-	var/roles_whitelist //Associated list of lists, by ckey. Checks to see if a person is whitelisted for a specific role.
+	var/list/roles_by_path //Master list generated when role aithority is created, listing every role by path, including variable roles. Great for manually equipping with.
+	var/list/roles_by_name //Master list generated when role authority is created, listing every default role by name, including those that may not be regularly selected.
+	var/list/roles_for_mode //Derived list of roles only for the game mode, generated when the round starts.
+	var/list/roles_whitelist //Associated list of lists, by ckey. Checks to see if a person is whitelisted for a specific role.
 
-	var/unassigned_players
-	var/squads
+	var/list/unassigned_players
+	var/list/squads
 
  //#define FACTION_TO_JOIN "Marines"
- 
+
 	//Whenever the controller is created, we want to set up the basic role lists.
 /datum/authority/branch/role/New()
-	var/roles_all = subtypesof(/datum/job) - list(
+	var/list/roles_all = subtypesof(/datum/job) - list(
 							/datum/job/pmc,
 							/datum/job/command,
 							/datum/job/civilian,
@@ -40,17 +40,17 @@ var/global/datum/authority/branch/role/RoleAuthority
 							/datum/job/logistics/tech,
 							/datum/job/marine,
 							/datum/job/pmc/elite_responder)
-	var/squads_all = subtypesof(/datum/squad)
+	var/list/squads_all = subtypesof(/datum/squad)
 
-		if(!roles_all.len)
-			to_chat(world, "<span class='debug'>Error setting up jobs, no job datums found.</span>")
-			log_debug("Error setting up jobs, no job datums found.")
-			return //No real reason this should be length zero, so we'll just return instead.
+	if(!roles_all.len)
+		to_chat(world, "<span class='debug'>Error setting up jobs, no job datums found.</span>")
+		log_debug("Error setting up jobs, no job datums found.")
+		return //No real reason this should be length zero, so we'll just return instead.
 
-		if(!squads_all.len)
-			to_chat(world, "<span class='debug'>Error setting up squads, no squad datums found.</span>")
-			log_debug("Error setting up squads, no squad datums found.")
-			return
+	if(!squads_all.len)
+		to_chat(world, "<span class='debug'>Error setting up squads, no squad datums found.</span>")
+		log_debug("Error setting up squads, no squad datums found.")
+		return
 
 	roles_by_path 	= new
 	roles_by_name 	= new
@@ -58,17 +58,17 @@ var/global/datum/authority/branch/role/RoleAuthority
 	roles_whitelist = new
 	squads 			= new
 
-	var/L = new
+	var/list/L = new
 	var/datum/job/J
 	var/datum/squad/S
 
 	for(var/i in roles_all) //Setting up our roles.
 		J = new i
 
-			if(!J.title) //In case you forget to subtract one of those variable holder jobs.
-				world << "<span class='debug'>Error setting up jobs, blank title job: [J.type].</span>"
-				log_debug("Error setting up jobs, blank title job: [J.type].")
-				continue
+		if(!J.title) //In case you forget to subtract one of those variable holder jobs
+			to_chat(world, "<span class='debug'>Error setting up jobs, blank title job: [J.type].</span>")
+			log_debug("Error setting up jobs, blank title job: [J.type].")
+			continue
 
 		roles_by_path[J.type] = J
 		if(J.flags_startup_parameters & ROLE_ADD_TO_DEFAULT)
@@ -85,7 +85,7 @@ var/global/datum/authority/branch/role/RoleAuthority
 			L[J.title] = J
 		roles_for_mode = L
 
-	for(i in squads_all) //Setting up our squads.
+	for(var/i in squads_all) //Setting up our squads.
 		S = new i()
 		squads += S
 
@@ -139,24 +139,24 @@ var/global/datum/authority/branch/role/RoleAuthority
 	//===============================================================\\
 	//PART I: Initializing starting lists and such.
 
-	if(!roles_for_mode || !roles_for_mode.len) return //Can't start if this doesn't exist.
+	if(!roles_for_mode || !roles_for_mode.len)
+		return //Can't start if this doesn't exist.
 
 	var/datum/job/J
-	var/i
 	//var/roles_special[]	= new   //TODO Make this a reality.
 	var/datum/game_mode/G = ticker.mode
 	switch(G.role_instruction)
 		if(1) //Replacing the entire list.
 			roles_for_mode = new
-			for(i in G.roles_for_mode)
+			for(var/i in G.roles_for_mode)
 				J = roles_by_path[i]
 				roles_for_mode[J.title] = J
 		if(2) //Adding a role, or multiple roles, to the list.
-			for(i in G.roles_for_mode)
+			for(var/i in G.roles_for_mode)
 				J = roles_by_path[i]
 				roles_for_mode[J.title] = J
 		if(3) //Subtracting from the list.
-			for(i in G.roles_for_mode)
+			for(var/i in G.roles_for_mode)
 				J = roles_by_path[i]
 				roles_for_mode -= J.title
 
@@ -178,7 +178,7 @@ var/global/datum/authority/branch/role/RoleAuthority
 	var/good_age_min = 20//Best command candidates are in the 25 to 40 range.
 	var/good_age_max = 50
 
-	for(i in player_list) //Get all players who are ready.
+	for(var/i in player_list) //Get all players who are ready.
 		M = i
 		if(istype(M) && M.ready && M.mind && !M.mind.assigned_role)
 			//TODO, check if mobs are already spawned as human before this triggers.
@@ -242,12 +242,15 @@ var/global/datum/authority/branch/role/RoleAuthority
 		assign_initial_roles(l, roles_command, 1) //Do command positions first.
 		roles_regular = assign_initial_roles(l, roles_regular) //The regular positions. We keep our unassigned pool between calls.
 
-	for(i in unassigned_players)
+	for(var/i in unassigned_players)
 		M = i
 		switch(M.client.prefs.alternate_option)
-			if(GET_RANDOM_JOB) 	roles_regular = assign_random_role(M, roles_regular) //We want to keep the list between assignments.
-			if(BE_ASSISTANT)	assign_role(M, roles_for_mode["Squad Marine"]) //Should always be available, in all game modes, as a candidate. Even if it may not be a marine.
-			if(RETURN_TO_LOBBY) M.ready = 0
+			if(GET_RANDOM_JOB)
+				roles_regular = assign_random_role(M, roles_regular) //We want to keep the list between assignments.
+			if(BE_ASSISTANT)
+				assign_role(M, roles_for_mode["Squad Marine"]) //Should always be available, in all game modes, as a candidate. Even if it may not be a marine.
+			if(RETURN_TO_LOBBY)
+				M.ready = 0
 		unassigned_players -= M
 	if(unassigned_players.len)
 		to_chat(world, "<span class='debug'>Error setting up jobs, unassigned_players still has players left. Length of: [unassigned_players.len].</span>")

@@ -168,7 +168,7 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel")
 	// Our ammo stuff is initialized here.
 	var/blacklist = list(/datum/ammo/energy, /datum/ammo/energy/yautja, /datum/ammo/energy/yautja/rifle, /datum/ammo/bullet/shotgun, /datum/ammo/xeno)
 	for(var/t in subtypesof(/datum/ammo) - blacklist)
-		var/datum/ammo/A = new T
+		var/datum/ammo/A = new t
 		ammo_list[A.type] = A
 	return 1
 
