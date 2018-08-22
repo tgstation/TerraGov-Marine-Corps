@@ -83,7 +83,7 @@ var/global/datum/authority/branch/role/RoleAuthority
 		J = roles_for_mode[i]
 		if(J)
 			L[J.title] = J
-		roles_for_mode = L
+	roles_for_mode = L
 
 	for(var/i in squads_all) //Setting up our squads.
 		S = new i()
