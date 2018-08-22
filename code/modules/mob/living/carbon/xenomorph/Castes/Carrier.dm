@@ -30,7 +30,7 @@
 	var/hugger_delay = 30
 	var/eggs_cur = 0
 	var/eggs_max = 3
-	tier = 3
+	tier = 2
 	upgrade = 0
 	pixel_x = -16 //Needed for 2x2
 	old_x = -16
