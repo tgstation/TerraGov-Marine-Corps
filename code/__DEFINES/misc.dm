@@ -15,3 +15,6 @@
 #define FLOOR_WET_WATER	1
 #define FLOOR_WET_LUBE	2
 #define FLOOR_WET_ICE	3
+
+//subtypesof(), typesof() without the parent path
+#define subtypesof(typepath) ( typesof(typepath) - typepath )
