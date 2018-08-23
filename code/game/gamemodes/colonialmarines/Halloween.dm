@@ -157,7 +157,6 @@
 		to_chat(H, "<h2>You are a survivor!</h2>")
 		to_chat(H, "\blue You are a survivor of the attack on LV-624. You worked or lived in the archaeology colony, and managed to avoid the alien attacks.. until now.")
 		to_chat(H, "\blue You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit.")
-		to_chat(H, "\blue You are NOT aware of the marines or their intentions, and lingering around arrival zones will get you survivor-banned.")
 	return 1
 
 //This is processed each tick, but check_win is only checked 5 ticks, so we don't go crazy with scanning for mobs.

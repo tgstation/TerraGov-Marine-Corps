@@ -649,7 +649,6 @@ datum/game_mode/proc/initialize_special_clamps()
 			else
 				to_chat(H, "\blue You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now.")
 		to_chat(H, "\blue You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit.")
-		to_chat(H, "\blue You are NOT aware of the marines or their intentions, and lingering around arrival zones will get you survivor-banned.")
 	return 1
 
 /datum/game_mode/proc/tell_survivor_story()
