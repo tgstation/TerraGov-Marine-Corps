@@ -161,6 +161,11 @@
 	icon_state = "bandana"
 	item_state = "bandana"
 
+/obj/item/clothing/head/bandana/red
+	name = "red bandana"
+	desc = "For when it comes crashing down and it hurts inside."
+	icon_state = "bandana_red"
+
 /obj/item/clothing/head/bowler
 	name = "bowler-hat"
 	desc = "Gentleman, elite aboard!"
