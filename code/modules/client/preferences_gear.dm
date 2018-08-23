@@ -17,6 +17,12 @@ var/global/list/gear_datums = list()
 // This is sorted both by slot and alphabetically! Don't fuck it up!
 // Headslot items
 
+/datum/gear/red_bandana
+	display_name = "Bandana (Red)"
+	path = /obj/item/clothing/head/bandana/red
+	cost = 3
+	slot = WEAR_HEAD
+
 /datum/gear/cmbandana
 	display_name = "USCM Bandana (Green)"
 	path = /obj/item/clothing/head/cmbandana
