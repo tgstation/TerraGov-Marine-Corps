@@ -20,18 +20,21 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 	adminhelped = 1 //Determines if they get the message to reply by clicking the name.
 
 	var/msg
-	var/list/type = list ("Suggestion / Bug Report", "Gameplay / Roleplay Issue")
+	var/list/type = list ("Suggestion / Bug Report", "Gameplay / Roleplay Issue", "Admins Spawn Shit")
 	var/selected_type = input("Pick a category.", "Admin Help", null, null) as null|anything in type
 	if(selected_type == "Gameplay / Roleplay Issue")
 		msg = input("Please enter your message:", "Admin Help", null, null) as message|null
 
 	if(selected_type == "Suggestion / Bug Report")
-		switch(alert("Adminhelps are not for suggestions or bug reports - they should be posted on our Gitlab.",,"Go to Gitlab","Cancel"))
-			if("Go to Gitlab")
-				src << link("https://gitlab.com/cmdevs/ColonialMarines/issues")
-			else
-				return
+		switch(alert("Adminhelps are not for suggestions or bug reports - issues should be posted on our Github, and suggestions on our forums. #WHENYOUCODEIT",,"Go to Github","Go to forums","Cancel"))
+			if("Go to Github")
+				src << link("https://github.com/ColonialMarines-Mirror/ColonialMarines-2018/issues")
+			if("Go to forums")
+				src << link("https://tgstation13.org/phpBB/viewforum.php?f=65")
 
+	if(selected_type == "Admins Spawn Shit")
+		src << "\red <B>No</B>"
+			
 	var/selected_upper = uppertext(selected_type)
 
 	if(src.handle_spam_prevention(msg,MUTE_ADMINHELP))
