@@ -114,8 +114,8 @@
 	w_class = 2
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal1
-	name = "\improper USCM Prepared Meal (cornbread)"
-	desc = "A tray of standard USCM food. Stale cornbread, tomato paste and some green goop fill this tray."
+	name = "\improper USCM Prepared Meal (bread)"
+	desc = "A staple of the Clown Planet, every clown baby's first solid food is a slice of banana bread with cream pie spread."
 	icon_state = "MREa"
 	filling_color = "#ED1169"
 
@@ -126,7 +126,7 @@
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal2
 	name = "\improper USCM Prepared Meal (pork)"
-	desc = "A tray of standard USCM food. Partially raw pork, goopy corn and some water mashed potatos fill this tray."
+	desc = "It's hard to go wrong with rice and pork."
 	icon_state = "MREb"
 
 	New()
@@ -135,8 +135,8 @@
 		bitesize = 2
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal3
-	name = "\improper USCM Prepared Meal (pasta)"
-	desc = "A tray of standard USCM food. Overcooked spaghetti, waterlogged carrots and two french fries fill this tray."
+	name = "\improper USCM Prepared Meal (spag)"
+	desc = "That's-a spicy meat-aball!"
 	icon_state = "MREc"
 
 	New()
@@ -146,7 +146,7 @@
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal4
 	name = "\improper USCM Prepared Meal (pizza)"
-	desc = "A tray of standard USCM food. Cold pizza, wet greenbeans and a shitty egg fill this tray. Get something other than pizza, lardass."
+	desc = "Aubergine, carrot and sweetcorn, all on a bed of cheese and tomato sauce."
 	icon_state = "MREd"
 
 	New()
@@ -155,8 +155,8 @@
 		bitesize = 1
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal5
-	name = "\improper USCM Prepared Meal (chicken)"
-	desc = "A tray of standard USCM food. Moist chicken, dry rice and a mildly depressed piece of broccoli fill this tray."
+	name = "\improper USCM Prepared Meal (monkey)"
+	desc = "Sopa de Macaco, Uma Delicia."
 	icon_state = "MREe"
 
 	New()
@@ -166,13 +166,13 @@
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal6
 	name = "\improper USCM Prepared Meal (tofu)"
-	desc = "The USCM doesn't serve tofu you grass sucking hippie. The flag signifies your defeat."
+	desc = "BBQ sticky tofu in a bun, hand crafted by Hungarian children who believe in a galaxy with soldiers that kill people, not animals."
 	icon_state = "MREf"
 
 	New()
 		..()
-		reagents.add_reagent("nutriment", 2)
-		bitesize = 1
+		reagents.add_reagent("nutriment", 8)
+		bitesize = 2
 
 /obj/item/reagent_container/food/snacks/mre_pack/xmas1
 	name = "\improper Xmas Prepared Meal:sugar cookies"
