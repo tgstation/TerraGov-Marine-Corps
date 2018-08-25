@@ -11,8 +11,8 @@
 	tacklemin = 3
 	tacklemax = 8
 	tackle_chance = 75
-	health = 250
-	maxHealth = 250
+	health = 200
+	maxHealth = 200
 	plasma_stored = 200
 	plasma_gain = 25
 	plasma_max = 800
