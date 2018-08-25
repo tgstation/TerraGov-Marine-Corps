@@ -485,8 +485,8 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					to_chat(src, "<span class='xenoannounce'>You are the fastest assassin of all time. Your speed is unmatched.</span>")
 					melee_damage_lower = 25
 					melee_damage_upper = 35
-					health = 140
-					maxHealth = 140
+					health = 160
+					maxHealth = 160
 					plasma_gain = 2
 					plasma_max = 200
 					caste_desc = "Not what you want to run into in a dark alley. It looks fucking deadly."
@@ -561,7 +561,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					plasma_gain = 30
 					plasma_max = 400
 					caste_desc = "It always has the right of way."
-					armor_deflection = 75
+					armor_deflection = 90
 				if("Sentinel")
 					to_chat(src, "<span class='xenoannounce'>You are the stun master. Your stunning is legendary and causes massive quantities of salt.</span>")
 					melee_damage_lower = 25
