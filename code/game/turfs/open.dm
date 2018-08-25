@@ -29,7 +29,7 @@
 						bloodcolor=H.feet_blood_color
 						H.track_blood--
 
-				if (bloodDNA)
+				if (bloodDNA && !locate(/obj/structure) in contents)
 					src.AddTracks(/obj/effect/decal/cleanable/blood/tracks/footprints,bloodDNA,H.dir,0,bloodcolor) // Coming
 					var/turf/from = get_step(H,reverse_direction(H.dir))
 					if(istype(from) && from)
