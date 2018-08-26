@@ -214,7 +214,7 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 	supervisors = "the acting commander"
 	selection_color = "#aaee55"
 	idtype = /obj/item/card/id/gold
-	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADMIN_NOTIFY|ROLE_WHITELISTED
+	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADMIN_NOTIFY
 	flags_whitelist = WHITELIST_SYNTHETIC
 	skills_type = /datum/skills/synthetic
 
@@ -256,7 +256,7 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 		H.name = H.get_visible_name()
 
 	generate_entry_message()
-		. = {"You are a Synthetic! You are held to a higher standard and are required to obey not only the Server Rules but Marine Law and Synthetic Rules. Failure to do so may result in your White-list Removal.
+		. = {"You are a Synthetic!
 Your primary job is to support and assist all USCM Departments and Personnel on-board.
 In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship.
 As a Synthetic you answer to the acting commander. Special circumstances may change this!"}

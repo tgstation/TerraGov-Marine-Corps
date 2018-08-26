@@ -471,7 +471,7 @@
 	name = "Synthetic"
 	name_plural = "synthetics"
 
-	unarmed_type = /datum/unarmed_attack/punch/strong
+	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 2
 
 	total_health = 150 //more health than regular humans
@@ -489,7 +489,7 @@
 
 	body_temperature = 350
 
-	flags = IS_WHITELISTED|NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION
+	flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION
 
 	blood_color = "#EEEEEE"
 
@@ -498,16 +498,13 @@
 		"brain" =    /datum/internal_organ/brain/prosthetic,
 		)
 
-	knock_down_reduction = 5
-	stun_reduction = 5
-
 
 /datum/species/early_synthetic
 	name = "Early Synthetic"
 	name_plural = "Early Synthetics"
 	icobase = 'icons/mob/human_races/r_synthetic.dmi'
 	deform = 'icons/mob/human_races/r_synthetic.dmi'
-	unarmed_type = /datum/unarmed_attack/punch/strong
+	unarmed_type = /datum/unarmed_attack/punch
 	rarity_value = 1.5
 	slowdown = 1.3 //Slower than later synths
 	total_health = 200 //But more durable
@@ -525,7 +522,7 @@
 
 	body_temperature = 350
 
-	flags = IS_WHITELISTED|NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION
+	flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION
 
 	blood_color = "#EEEEEE"
 	hair_color = "#000000"
@@ -534,8 +531,6 @@
 		"brain" =    /datum/internal_organ/brain/prosthetic,
 		)
 
-	knock_down_reduction = 2
-	stun_reduction = 2
 
 /datum/species/zombie
 	name= "Zombie"
