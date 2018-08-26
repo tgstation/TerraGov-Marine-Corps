@@ -129,16 +129,13 @@
 
 /datum/skills/synthetic
 	name = "Synthetic"
-	cqc = SKILL_CQC_MASTER
 	engineer = SKILL_ENGINEER_MT
 	construction = SKILL_CONSTRUCTION_MASTER
 	firearms = SKILL_FIREARMS_TRAINED
 	smartgun = SKILL_SMART_TRAINED
 	spec_weapons = SKILL_SPEC_TRAINED
-	leadership = SKILL_LEAD_EXPERT
 	medical = SKILL_MEDICAL_CMO
 	surgery = SKILL_SURGERY_EXPERT
-	melee_weapons = SKILL_MELEE_SUPER
 	pilot = SKILL_PILOT_TRAINED
 	pistols = SKILL_PISTOLS_TRAINED
 	smgs = SKILL_SMGS_TRAINED
@@ -151,7 +148,6 @@
 
 /datum/skills/early_synthetic
 	name = "Early Synthetic"
-	cqc = SKILL_MELEE_TRAINED
 	engineer = SKILL_ENGINEER_MT
 	construction = SKILL_CONSTRUCTION_MASTER
 	firearms = SKILL_FIREARMS_TRAINED
