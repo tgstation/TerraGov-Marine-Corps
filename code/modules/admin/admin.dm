@@ -758,19 +758,6 @@ var/global/floorIsLava = 0
 	message_admins("[key_name_admin(usr)] toggled OOC.", 1)
 	feedback_add_details("admin_verb","TOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/togglelooc()
-	set category = "Server"
-	set desc="Globally Toggles LOOC"
-	set name="Toggle LOOC"
-	looc_allowed = !( looc_allowed )
-	if (looc_allowed)
-		to_chat(world, "<B>The LOOC channel has been globally enabled!</B>")
-	else
-		to_chat(world, "<B>The LOOC channel has been globally disabled!</B>")
-	log_admin("[key_name(usr)] toggled LOOC.")
-	message_admins("[key_name_admin(usr)] toggled LOOC.", 1)
-	feedback_add_details("admin_verb","TLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 /datum/admins/proc/toggledsay()
 	set category = "Server"
 	set desc = "Globally Toggles Deadchat"
@@ -793,16 +780,6 @@ var/global/floorIsLava = 0
 	log_admin("[key_name(usr)] toggled Dead OOC.")
 	message_admins("[key_name_admin(usr)] toggled Dead OOC.", 1)
 	feedback_add_details("admin_verb","TDOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/datum/admins/proc/toggleloocdead()
-	set category = "Server"
-	set desc="Toggle the ability for dead people to use LOOC chat"
-	set name="Toggle Dead LOOC"
-	dlooc_allowed = !( dlooc_allowed )
-
-	log_admin("[key_name(usr)] toggled Dead LOOC.")
-	message_admins("[key_name_admin(usr)] toggled Dead LOOC.", 1)
-	feedback_add_details("admin_verb","TDLOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggletraitorscaling()
 	set category = "Server"

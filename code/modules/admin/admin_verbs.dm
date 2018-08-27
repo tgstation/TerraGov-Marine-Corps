@@ -47,9 +47,7 @@ var/list/admin_verbs_admin = list(
 	// /client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/secrets,
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
-	/datum/admins/proc/togglelooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/toggleoocdead,	/*toggles ooc on/off for everyone who is dead*/
-	/datum/admins/proc/toggleloocdead,	/*toggles looc on/off for everyone who is dead*/
 	/datum/admins/proc/toggledsay,		/*toggles dsay on/off for everyone*/
 	/client/proc/game_panel,			/*game panel, allows to change game-mode etc*/
 	/client/proc/cmd_admin_say,			/*admin-only ooc chat*/
@@ -264,12 +262,11 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/view_txt_log,
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/toggleoocdead,	/*toggles ooc on/off for everyone who is dead*/
-	/datum/admins/proc/toggleloocdead,	/*toggles looc on/off for everyone who is dead*/
 	/client/proc/cmd_admin_changekey,
 	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/
 	/client/proc/cmd_admin_xeno_report,  //Allows creation of IC reports by the Queen Mother
 	/proc/release,
-	/datum/admins/proc/viewUnheardAhelps, //Why even have it as a client proc anyway?  ï¿½\_("/)_/ï¿½
+	/datum/admins/proc/viewUnheardAhelps, //Why even have it as a client proc anyway? ¯\_("/)_/¯
 	/datum/admins/proc/viewCLFaxes,
 	/datum/admins/proc/viewUSCMFaxes
 )
@@ -391,7 +388,7 @@ var/list/admin_verbs_mentor = list(
 		var/mob/body = mob
 		body.ghostize(1)
 		if(body && !body.key)
-			body.key = "@[key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame adminbus
+			body.key = "@[key]"	//Haaaaaaaack. But the people have spoken. If it breaks; blame coderbus
 			if(body.client) body.client.change_view(world.view) //reset view range to default.
 		feedback_add_details("admin_verb","O") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
