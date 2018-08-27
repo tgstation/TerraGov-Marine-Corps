@@ -65,7 +65,9 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 		C.remove_admin_verbs()
 		C.holder = null
 	admins.Cut()
-
+	//Clear profile access
+	for(var/A in world.GetConfig("admin"))
+		world.SetConfig("APP/admin", A, null)
 	if(config.admin_legacy_system)
 		load_admin_ranks()
 
