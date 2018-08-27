@@ -19,7 +19,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	accuracy_mult = 1.15
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
 	aim_slowdown = SLOWDOWN_ADS_SHOTGUN
-	wield_delay = WIELD_DELAY_FAST //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
+	wield_delay = WIELD_DELAY_NORMAL //Shotguns are really easy to put up to fire, since they are designed for CQC (at least compared to a rifle)
 	gun_skill_category = GUN_SKILL_SHOTGUNS
 
 /obj/item/weapon/gun/shotgun/New()
@@ -217,11 +217,11 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/combat/set_gun_config_values()
 	fire_delay = config.mhigh_fire_delay*2
-	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
+	accuracy_mult = config.base_hit_accuracy_mult
 	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.hmed_hit_accuracy_mult
 	scatter = config.med_scatter_value
 	scatter_unwielded = config.max_scatter_value
-	damage_mult = config.base_hit_damage_mult
+	damage_mult = config.base_hit_damage_mult - config.low_hit_damage_mult
 	recoil = config.low_recoil_value
 	recoil_unwielded = config.high_recoil_value
 
@@ -481,10 +481,10 @@ can cause issues with ammo types getting mixed up during the burst.
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 23, "under_x" = 19, "under_y" = 17, "stock_x" = 19, "stock_y" = 17)
 
 /obj/item/weapon/gun/shotgun/pump/cmb/set_gun_config_values()
-	fire_delay = config.med_fire_delay*4
-	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.hmed_hit_accuracy_mult
-	scatter = config.med_scatter_value
+	fire_delay = config.med_fire_delay*6
+	accuracy_mult = config.base_hit_accuracy_mult + config.hmed_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.hmed_hit_accuracy_mult
+	scatter = config.low_scatter_value
 	scatter_unwielded = config.max_scatter_value
 	damage_mult = config.base_hit_damage_mult
 	recoil = config.low_recoil_value

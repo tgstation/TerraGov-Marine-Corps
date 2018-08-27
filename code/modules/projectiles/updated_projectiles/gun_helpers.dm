@@ -115,22 +115,25 @@ DEFINES in setup.dm, referenced here.
 /obj/item/weapon/gun/clicked(var/mob/user, var/list/mods)
 	if (mods["alt"])
 		toggle_gun_safety()
-		return 1
+		return TRUE
 	return (..())
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)
 	//Cannot equip wielded items or items burst firing.
-	if(flags_gun_features & GUN_BURST_FIRING) return
+	if(flags_gun_features & GUN_BURST_FIRING)
+		return
 	unwield(user)
 	return ..()
 
 /obj/item/weapon/gun/attack_hand(mob/user)
 	var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
-	if( in_hand == src && (flags_item & TWOHANDED) ) unload(user)//It has to be held if it's a two hander.
+	if( in_hand == src && (flags_item & TWOHANDED) )
+		unload(user)//It has to be held if it's a two hander.
 	else ..()
 
 /obj/item/weapon/gun/throw_at(atom/target, range, speed, thrower)
-	if( harness_check(thrower) ) to_chat(usr, "<span class='warning'>\The [src] clanks on the ground.</span>")
+	if( harness_check(thrower) )
+		to_chat(usr, "<span class='warning'>\The [src] clanks on the ground.</span>")
 	else ..()
 
 /*
@@ -153,8 +156,8 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(flags_gun_features & GUN_FLASHLIGHT_ON)
 		bearer.SetLuminosity(-rail.light_mod)
 		SetLuminosity(rail.light_mod)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/item/weapon/gun/pickup(mob/user)
 	..()
@@ -166,30 +169,81 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	unwield(user)
 
 /obj/item/weapon/gun/proc/wy_allowed_check(mob/living/carbon/human/user)
-	if(config && config.remove_gun_restrictions) return 1 //Not if the config removed it.
+	if(config && config.remove_gun_restrictions)
+		return TRUE //Not if the config removed it.
 
 	if(user.mind)
 		switch(user.mind.assigned_role)
-			if("PMC Leader","PMC", "WY Agent", "Corporate Laison", "Event") return 1
+			if("PMC Leader","PMC", "WY Agent", "Corporate Laison", "Event")
+				return TRUE
 		switch(user.mind.special_role)
-			if("DEATH SQUAD","PMC") return 1
+			if("DEATH SQUAD","PMC")
+				return TRUE
 	to_chat(user, "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>")
 
 /obj/item/weapon/gun/proc/spec_allowed_check(mob/living/carbon/human/user)
-	if(config && config.remove_gun_restrictions) return 1 //Not if the config removed it.
+	if(config && config.remove_gun_restrictions)
+		return TRUE //Not if the config removed it.
 
 	if(user.mind)
-		if(user.mind.cm_skills && user.mind.cm_skills.spec_weapons > SKILL_SPEC_DEFAULT) return 1
-		if(allowed(user)) return 1
+		if(user.mind.cm_skills && user.mind.cm_skills.spec_weapons > SKILL_SPEC_DEFAULT)
+			return TRUE
+		if(allowed(user))
+			return TRUE
 	to_chat(user, "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>")
 
 /obj/item/weapon/gun/proc/police_allowed_check(mob/living/carbon/human/user)
-	if(config && config.remove_gun_restrictions) return 1 //Not if the config removed it.
+	if(config && config.remove_gun_restrictions)
+		return TRUE //Not if the config removed it.
 
 	if(user.mind)
-		if(user.mind.cm_skills && user.mind.cm_skills.police >= SKILL_POLICE_MP) return 1
-		if(allowed(user)) return 1
+		if(user.mind.cm_skills && user.mind.cm_skills.police >= SKILL_POLICE_MP)
+			return TRUE
+		if(allowed(user))
+			return TRUE
 	to_chat(user, "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>")
+
+/obj/item/weapon/gun/proc/wielded_stable() //soft wield-delay
+	if(world.time > wield_time)
+		return TRUE
+	else
+		return FALSE
+		
+/obj/item/weapon/gun/proc/do_wield(mob/user, wield_time) //a poor way to make timed actions show an icon without affecting them until /tg/'s do_mob is ported.
+	var/delay = wield_time - world.time
+	if(!istype(user) || delay <= 0)
+		return FALSE
+	var/mob/living/L
+	if(istype(user, /mob/living))
+		L = user
+	var/image/busy_icon
+	busy_icon = get_busy_icon(BUSY_ICON_HOSTILE)
+	user.overlays += busy_icon
+	user.action_busy = TRUE
+	var/delayfraction = round(delay/5)
+	var/obj/holding = user.get_active_hand()
+	. = TRUE
+	for(var/i = 1 to 5)
+		sleep(delayfraction)
+		if(!user || user.stat || user.knocked_down || user.stunned)
+			. = FALSE
+			break
+		if(L && L.health < config.health_threshold_crit)
+			. = FALSE
+			break
+		if(holding)
+			if(!holding.loc || user.get_active_hand() != holding)
+				. = FALSE
+				break
+		else if(user.get_active_hand())
+			. = FALSE
+			break
+		if(world.time > wield_time)
+			. = FALSE
+			break
+	if(user && busy_icon)
+		user.overlays -= busy_icon
+	user.action_busy = FALSE
 
 /*
 Here we have throwing and dropping related procs.
@@ -224,17 +278,22 @@ should be alright.
 
 	//There are only two ways to interact here.
 	if(flags_item & TWOHANDED)
-		if(flags_item & WIELDED) unwield(user)//Trying to unwield it
-		else wield(user)//Trying to wield it
-	else unload(user)//We just unload it.
+		if(flags_item & WIELDED)
+			unwield(user)//Trying to unwield it
+		else
+			wield(user)//Trying to wield it
+	else
+		unload(user)//We just unload it.
 
 //Clicking stuff onto the gun.
 //Attachables & Reloading
 /obj/item/weapon/gun/attackby(obj/item/I, mob/user)
-	if(flags_gun_features & GUN_BURST_FIRING) return
+	if(flags_gun_features & GUN_BURST_FIRING)
+		return
 
 	if(istype(I,/obj/item/attachable))
-		if(check_inactive_hand(user)) attach_to_gun(user,I)
+		if(check_inactive_hand(user))
+			attach_to_gun(user,I)
 
  	//the active attachment is reloadable
 	else if(active_attachable && active_attachable.flags_attach_features & ATTACH_RELOADABLE)
@@ -250,7 +309,8 @@ should be alright.
 			active_attachable.reload_attachment(I, user)
 
 	else if(istype(I,/obj/item/ammo_magazine))
-		if(check_inactive_hand(user)) reload(user,I)
+		if(check_inactive_hand(user))
+			reload(user,I)
 
 
 //tactical reloads
@@ -303,7 +363,7 @@ should be alright.
 		if( in_hand != src ) //It has to be held.
 			to_chat(user, "<span class='warning'>You have to hold [src] to do that!</span>")
 			return
-	return 1
+	return TRUE
 
 /obj/item/weapon/gun/proc/check_both_hands(mob/user)
 	if(user)
@@ -315,11 +375,16 @@ should be alright.
 	return 1
 
 /obj/item/weapon/gun/proc/has_attachment(A)
-	if(!A) return
-	if(istype(muzzle,A)) return 1
-	if(istype(under,A)) return 1
-	if(istype(rail,A)) return 1
-	if(istype(stock,A)) return 1
+	if(!A)
+		return
+	if(istype(muzzle,A))
+		return TRUE
+	if(istype(under,A))
+		return TRUE
+	if(istype(rail,A))
+		return TRUE
+	if(istype(stock,A))
+		return TRUE
 
 /obj/item/weapon/gun/proc/attach_to_gun(mob/user, obj/item/attachable/attachment)
 	if(attachable_allowed && !(attachment.type in attachable_allowed) )
@@ -330,13 +395,17 @@ should be alright.
 	var/can_attach = 1
 	switch(attachment.slot)
 		if("rail")
-			if(rail && !(rail.flags_attach_features & ATTACH_REMOVABLE)) can_attach = 0
+			if(rail && !(rail.flags_attach_features & ATTACH_REMOVABLE))
+				can_attach = FALSE
 		if("muzzle")
-			if(muzzle && !(muzzle.flags_attach_features & ATTACH_REMOVABLE)) can_attach = 0
+			if(muzzle && !(muzzle.flags_attach_features & ATTACH_REMOVABLE))
+				can_attach = FALSE
 		if("under")
-			if(under && !(under.flags_attach_features & ATTACH_REMOVABLE)) can_attach = 0
+			if(under && !(under.flags_attach_features & ATTACH_REMOVABLE))
+				can_attach = FALSE
 		if("stock")
-			if(stock && !(stock.flags_attach_features & ATTACH_REMOVABLE)) can_attach = 0
+			if(stock && !(stock.flags_attach_features & ATTACH_REMOVABLE))
+				can_attach = FALSE
 
 	if(!can_attach)
 		to_chat(user, "<span class='warning'>The attachment on [src]'s [attachment.slot] cannot be removed!</span>")
@@ -382,7 +451,8 @@ should be alright.
 		I.pixel_y = attachable_offset["[slot]_y"] - A.pixel_shift_y
 		attachable_overlays[slot] = I
 		overlays += I
-	else attachable_overlays[slot] = null
+	else
+		attachable_overlays[slot] = null
 
 /obj/item/weapon/gun/proc/update_mag_overlay()
 	var/image/reusable/I = attachable_overlays["mag"]
@@ -392,7 +462,8 @@ should be alright.
 		I = rnew(/image/reusable, list(current_mag.icon,src,current_mag.bonus_overlay))
 		attachable_overlays["mag"] = I
 		overlays += I
-	else attachable_overlays["mag"] = null
+	else
+		attachable_overlays["mag"] = null
 
 /obj/item/weapon/gun/proc/update_special_overlay(new_icon_state)
 	overlays -= attachable_overlays["special"]
@@ -403,12 +474,16 @@ should be alright.
 
 /obj/item/weapon/gun/proc/update_force_list()
 	switch(force)
-		if(-50 to 15) attack_verb = list("struck", "hit", "bashed") //Unlikely to ever be -50, but just to be safe.
-		if(16 to 35) attack_verb = list("smashed", "struck", "whacked", "beaten", "cracked")
-		else attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored") //Greater than 35
+		if(-50 to 15)
+			attack_verb = list("struck", "hit", "bashed") //Unlikely to ever be -50, but just to be safe.
+		if(16 to 35)
+			attack_verb = list("smashed", "struck", "whacked", "beaten", "cracked")
+		else
+			attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored") //Greater than 35
 
 /obj/item/weapon/gun/proc/get_active_firearm(mob/user)
-	if(!ishuman(usr)) return
+	if(!ishuman(usr))
+		return
 
 	if(!user.canmove || user.stat || user.is_mob_restrained() || !user.loc || !isturf(usr.loc))
 		to_chat(user, "<span class='warning'>Not right now.</span>")
@@ -420,7 +495,8 @@ should be alright.
 		to_chat(user, "<span class='warning'>You need a gun in your active hand to do that!</span>")
 		return
 
-	if(G.flags_gun_features & GUN_BURST_FIRING) return
+	if(G.flags_gun_features & GUN_BURST_FIRING)
+		return
 
 	return G
 
@@ -521,7 +597,8 @@ should be alright.
 	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-	if(!G) return
+	if(!G)
+		return
 	src = G
 
 	//Burst of 1 doesn't mean anything. The weapon will only fire once regardless.
@@ -559,7 +636,8 @@ should be alright.
 	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-	if(!G) return
+	if(!G)
+		return
 	src = G
 
 	unload(usr,,1) //We want to drop the mag on the ground.
@@ -571,7 +649,8 @@ should be alright.
 	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-	if(!G) return
+	if(!G)
+		return
 	src = G
 
 	unique_action(usr)
@@ -613,7 +692,8 @@ should be alright.
 	set src = usr.contents
 
 	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-	if(!G) return
+	if(!G)
+		return
 	src = G
 
 	var/obj/item/attachable/A

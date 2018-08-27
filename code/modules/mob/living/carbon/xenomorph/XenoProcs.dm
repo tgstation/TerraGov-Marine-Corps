@@ -149,6 +149,9 @@
 	if(frenzy_aura)
 		. -= (frenzy_aura * 0.05)
 
+	if(slowdown)
+		. += slowdown
+
 	if(is_charging)
 		if(legcuffed)
 			is_charging = 0

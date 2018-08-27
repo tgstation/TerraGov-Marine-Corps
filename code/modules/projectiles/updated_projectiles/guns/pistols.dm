@@ -303,12 +303,12 @@
 		attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 16, "under_y" = 15, "stock_x" = 16, "stock_y" = 15)
 
 /obj/item/weapon/gun/pistol/highpower/set_gun_config_values()
-	fire_delay = config.mhigh_fire_delay
+	fire_delay = config.high_fire_delay*2
 	accuracy_mult = config.base_hit_accuracy_mult
 	accuracy_mult_unwielded = config.base_hit_accuracy_mult
 	scatter = config.med_scatter_value
 	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult + config.low_hit_damage_mult
+	damage_mult = config.base_hit_damage_mult + config.max_hit_damage_mult
 	recoil = config.min_recoil_value
 	recoil_unwielded = config.med_recoil_value
 
