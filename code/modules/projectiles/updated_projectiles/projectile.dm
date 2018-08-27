@@ -3,6 +3,7 @@
 #define DEBUG_HIT_CHANCE	0
 #define DEBUG_HUMAN_DEFENSE	0
 #define DEBUG_XENO_DEFENSE	0
+#define DEBUG_CREST_DEFENSE	0
 
 //The actual bullet objects.
 /obj/item/projectile
@@ -451,7 +452,7 @@
 /mob/living/bullet_act(obj/item/projectile/P)
 	if(!P) return
 
-	var/damage = max(0, P.damage - round(P.distance_travelled * P.ammo.damage_falloff))
+	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff))
 	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )
 		apply_effects(arglist(P.ammo.debilitate))
 
@@ -481,7 +482,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC)
 		round_statistics.total_bullet_hits_on_humans++
 
-	var/damage = max(0, P.damage - round(P.distance_travelled * P.ammo.damage_falloff))
+	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff))
 	#if DEBUG_HUMAN_DEFENSE
 	to_chat(world, "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>")
 	#endif
@@ -591,16 +592,22 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	flash_weak_pain()
 
-	var/damage = max(0, P.damage - round(P.distance_travelled * P.ammo.damage_falloff)) //Has to be at least zero, no negatives.
+	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff)) //Has to be at least zero, no negatives.
 	#if DEBUG_XENO_DEFENSE
 	to_chat(world, "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>")
 	#endif
 
 	if(damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR))
 		var/armor = armor_deflection
+		#if DEBUG_XENO_DEFENSE
+		world << "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>"
+		#endif
 		if(isXenoQueen(src) || isXenoCrusher(src)) //Charging and crest resistances. Charging Xenos get a lot of extra armor, currently Crushers and Queens
 			var/mob/living/carbon/Xenomorph/charger = src
 			armor += round(charger.charge_speed * 5) //Some armor deflection when charging.
+			#if DEBUG_CREST_DEFENSE
+			world << "<span class='debuginfo'>Projectile direction is: <b>[P.dir]</b> and crest direction is: <b>[charger.dir]</b></span>"
+			#endif
 			if(P.dir == charger.dir) armor = max(0, armor - (armor_deflection * config.xeno_armor_resist_low)) //Both facing same way -- ie. shooting from behind.
 			else if(P.dir == reverse_direction(charger.dir)) armor += round(armor_deflection * config.xeno_armor_resist_low) //We are facing the bullet.
 			//Otherwise use the standard armor deflection for crushers.
@@ -610,6 +617,9 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
 		armor -= penetration
+		#if DEBUG_XENO_DEFENSE
+		world << "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>"
+		#endif
 		if(armor > 0) //Armor check. We should have some to continue.
 			 /*Automatic damage soak due to armor. Greater difference between armor and damage, the more damage
 			 soaked. Small caliber firearms aren't really effective against combat armor.*/

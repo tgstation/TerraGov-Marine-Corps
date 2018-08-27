@@ -1,5 +1,7 @@
 //Xenomorph Life - Colonial Marines - Apophis775 - Last Edit: 03JAN2015
 
+#define DEBUG_XENO_LIFE	0
+
 /mob/living/carbon/Xenomorph/Life()
 
 	set invisibility = 0
@@ -171,6 +173,9 @@
 			if(mind)
 				if((mind.active && client != null) || immune_to_ssd)
 					sleeping = max(sleeping - 1, 0)
+				#if DEBUG_XENO_LIFE
+					sleeping = max(sleeping - 1, 0)
+				#endif
 			blinded = 1
 			stat = UNCONSCIOUS
 		else
@@ -181,7 +186,8 @@
 					adjustHalLoss(-3)
 				else
 					adjustHalLoss(-1)
-
+		handle_stagger()
+		handle_slowdown()
 		handle_statuses()//natural decrease of stunned, knocked_down, etc...
 
 		//Deal with dissolving/damaging stuff in stomach.
@@ -491,3 +497,37 @@ updatehealth()
 	if(knocked_down && client)
 		knocked_down = max(knocked_down-2,0)
 	return knocked_down
+
+/mob/living/carbon/Xenomorph/proc/handle_stagger()
+	if(stagger)
+		#if DEBUG_XENO_LIFE
+		world << "<span class='debuginfo'>Regen: Initial stagger is: <b>[stagger]</b></span>"
+		#endif
+		adjust_stagger(-1)
+		#if DEBUG_XENO_LIFE
+		world << "<span class='debuginfo'>Regen: Final stagger is: <b>[stagger]</b></span>"
+		#endif
+	return stagger
+
+/mob/living/carbon/Xenomorph/proc/adjust_stagger(amount)
+	stagger = max(stagger + amount,0)
+	return stagger
+
+/mob/living/carbon/Xenomorph/proc/handle_slowdown()
+	if(slowdown)
+		#if DEBUG_XENO_LIFE
+		world << "<span class='debuginfo'>Regen: Initial slowdown is: <b>[slowdown]</b></span>"
+		#endif
+		adjust_slowdown(-XENO_SLOWDOWN_REGEN)
+		#if DEBUG_XENO_LIFE
+		world << "<span class='debuginfo'>Regen: Final slowdown is: <b>[slowdown]</b></span>"
+		#endif
+	return slowdown
+
+/mob/living/carbon/Xenomorph/proc/adjust_slowdown(amount)
+	slowdown = max(slowdown + amount,0)
+	return slowdown
+
+/mob/living/carbon/Xenomorph/proc/add_slowdown(amount)
+	slowdown = adjust_slowdown(amount*XENO_SLOWDOWN_REGEN)
+	return slowdown

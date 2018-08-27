@@ -25,6 +25,10 @@
 		to_chat(src, "<span class='xenodanger'>You can't pounce with that thing on your leg!</span>")
 		return
 
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake up the shock!</span>")
+		return
+
 	if(layer == XENO_HIDING_LAYER) //Xeno is currently hiding, unhide him
 		layer = MOB_LAYER
 
@@ -66,6 +70,10 @@
 		to_chat(src, "<span class='xenowarning'>You must wait to produce enough acid to spray.</span>")
 		return
 
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>Your muscles fail to respond as you try to shake up the shock!</span>")
+		return
+
 	if (!check_plasma(200))
 		to_chat(src, "<span class='xenowarning'>You must produce more plasma before doing this.</span>")
 		return
@@ -93,6 +101,10 @@
 		return
 
 	if (!check_plasma(200))
+		return
+
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>The shock disrupts you!</span>")
 		return
 
 	round_statistics.praetorian_acid_sprays++
@@ -278,6 +290,10 @@
 	if (!Adjacent(A))
 		return
 
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake up the shock!</span>")
+		return
+
 	var/mob/living/carbon/human/H = A
 	if(H.stat == DEAD) return
 	round_statistics.warrior_flings++
@@ -326,6 +342,10 @@
 		return
 
 	if (!Adjacent(A))
+		return
+
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake up the shock!</span>")
 		return
 
 	var/mob/living/carbon/human/H = A
@@ -393,6 +413,10 @@
 	if (!check_plasma(10))
 		return
 
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake up the shock!</span>")
+		return
+
 	var/mob/living/carbon/human/H = A
 	if(H.stat == DEAD) return
 	round_statistics.warrior_lunges++
@@ -431,6 +455,10 @@
 
 	if(action_busy) //can't stack the attempts
 		return 0
+
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake up the shock!</span>")
+		return
 
 	var/mob/living/carbon/human/H = M
 	var/datum/limb/L = H.get_limb(check_zone(zone_selected))
@@ -540,6 +568,10 @@
 	if (!check_plasma(10))
 		return
 
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake up the shock!</span>")
+		return
+
 	var/mob/living/carbon/human/H = M
 
 	var/distance = get_dist(src, H)
@@ -604,6 +636,10 @@
 		return
 
 	if (!check_plasma(10))
+		return
+
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake up the shock!</span>")
 		return
 
 	round_statistics.defender_tail_sweeps++
@@ -886,6 +922,10 @@
 		to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
 		return
 
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>Your muscles fail to respond as you try to shake up the shock!</span>")
+		return
+
 	if(plasma_stored < amount)
 		amount = plasma_stored //Just use all of it
 	use_plasma(amount)
@@ -909,6 +949,10 @@
 		return
 
 	if(!check_plasma(ammo.spit_cost))
+		return
+
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>Your muscles fail to respond as you try to shake up the shock!</span>")
 		return
 
 	var/turf/current_turf = get_turf(src)
@@ -949,6 +993,9 @@
 	if(!check_state())
 		return
 	if(!check_plasma(resin_plasma_cost))
+		return
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>Your dexterous limbs fail to properly respond as you try to shake up the shock!</span>")
 		return
 	var/turf/current_turf = loc
 	if (caste == "Hivelord") //hivelords can thicken existing resin structures.
@@ -1112,6 +1159,10 @@
 
 	if(!isturf(loc))
 		to_chat(src, "<span class='warning'>You can't melt [O] from here!</span>")
+		return
+
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>Your muscles fail to respond as you try to shake up the shock!</span>")
 		return
 
 	face_atom(O)

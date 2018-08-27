@@ -70,6 +70,7 @@
 /obj/item/ammo_magazine/smg/ppsh
 	name = "\improper PPSh-17b drum magazine (7.62x25mm)"
 	desc = "A drum magazine for the PPSh submachinegun."
+	default_ammo = /datum/ammo/bullet/smg/ppsh
 	caliber = "7.62x25mm"
 	icon_state = "ppsh17b"
 	max_rounds = 35

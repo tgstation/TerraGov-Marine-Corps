@@ -118,7 +118,7 @@
 
 /datum/action/xeno_action/can_use_action()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && X.plasma_stored >= plasma_cost)
+	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && X.plasma_stored >= plasma_cost && !X.stagger)
 		return TRUE
 
 

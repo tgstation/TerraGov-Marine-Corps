@@ -363,7 +363,7 @@
 
 /datum/action/xeno_action/emit_pheromones/can_use_action()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (!X.current_aura || X.plasma_stored >= plasma_cost))
+	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (!X.current_aura || X.plasma_stored >= plasma_cost) && !X.stagger)
 		return TRUE
 
 /datum/action/xeno_action/emit_pheromones/action_activate()
@@ -428,7 +428,7 @@
 
 /datum/action/xeno_action/toggle_long_range/can_use_action()
 	var/mob/living/carbon/Xenomorph/Boiler/X = owner
-	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (X.is_zoomed || X.plasma_stored >= plasma_cost))
+	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (X.is_zoomed || X.plasma_stored >= plasma_cost) && !X.stagger)
 		return TRUE
 
 /datum/action/xeno_action/toggle_long_range/action_activate()
@@ -604,7 +604,7 @@
 
 /datum/action/xeno_action/toggle_speed/can_use_action()
 	var/mob/living/carbon/Xenomorph/Hivelord/X = owner
-	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (X.speed_activated || X.plasma_stored >= plasma_cost))
+	if(X && !X.is_mob_incapacitated() && !X.lying && !X.buckled && (X.speed_activated || X.plasma_stored >= plasma_cost) && !X.stagger)
 		return TRUE
 
 /datum/action/xeno_action/toggle_speed/action_activate()

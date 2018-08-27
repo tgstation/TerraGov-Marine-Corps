@@ -25,6 +25,8 @@
 	var/tacklemin = 2
 	var/tacklemax = 4
 	var/tackle_chance = 50
+	var/slowdown = 0 //Temporary penalty on movement
+	var/stagger = 0 //Temporary inability to use special actions
 	var/is_intelligent = 0 //If they can use consoles, etc. Set on Queen
 	var/caste_desc = null
 	var/has_spat = 0
