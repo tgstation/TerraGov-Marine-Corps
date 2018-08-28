@@ -64,6 +64,8 @@ Defined in conflicts.dm of the #defines folder.
 	var/aim_speed_mod	= 0 //Changes the aiming speed slowdown of the wearer by this value.
 	var/wield_delay_mod	= 0 //How long ADS takes (time before firing)
 	var/movement_acc_penalty_mod = 0 //Modifies accuracy/scatter penalty when firing onehanded while moving.
+	var/attach_delay = 30 //How long in deciseconds it takes to attach a weapon with level 1 firearms training. Default is 30 seconds.
+	var/detach_delay = 30 //How long in deciseconds it takes to detach a weapon with level 1 firearms training. Default is 30 seconds.
 
 	var/activation_sound = 'sound/machines/click.ogg'
 
@@ -266,6 +268,8 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 	attach_icon = "bayonet_a"
 	force = 20
 	throwforce = 10
+	attach_delay = 10 //Bayonets attach/detach quickly.
+	detach_delay = 10
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	melee_mod = 20 //35 for a rifle, comparable to 37 before. 40 with the stock, comparable to 42.
 	slot = "muzzle"
