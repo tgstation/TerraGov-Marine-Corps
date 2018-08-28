@@ -117,10 +117,10 @@
 					/obj/item/weapon/gun/shotgun/combat = 0,
 					/obj/item/explosive/mine = 1,
 					/obj/item/storage/box/nade_box = 4,
-					/obj/item/explosive/grenade/frag = 1,
-					/obj/item/explosive/grenade/frag/m15 = 1,
-					/obj/item/explosive/grenade/incendiary = 1,
-					/obj/item/explosive/grenade/smokebomb = 1,
+					/obj/item/explosive/grenade/frag = 2,
+					/obj/item/explosive/grenade/frag/m15 = 2,
+					/obj/item/explosive/grenade/incendiary = 4,
+					/obj/item/explosive/grenade/smokebomb = 2,
 					/obj/item/explosive/grenade/phosphorus = 0,
 					/obj/item/storage/box/m94 = 8,
 					/obj/item/storage/box/zipcuffs = 4,
@@ -129,6 +129,7 @@
 					)
 
 	contraband = list(
+					/obj/item/weapon/gun/smg/ppsh = 4,
 					/obj/item/weapon/gun/pistol/holdout = 0,
 					/obj/item/weapon/gun/pistol/heavy = 0,
 					/obj/item/weapon/gun/pistol/highpower = 0,
@@ -137,7 +138,7 @@
 					/obj/item/weapon/gun/revolver/cmb = 0,
 					/obj/item/weapon/gun/shotgun/merc = 0,
 					/obj/item/weapon/gun/shotgun/pump/cmb = 0,
-					/obj/item/weapon/gun/shotgun/double = 0,
+					/obj/item/weapon/gun/shotgun/double = 2,
 					/obj/item/weapon/gun/smg/mp7 = 0,
 					/obj/item/weapon/gun/smg/skorpion = 0,
 					/obj/item/weapon/gun/smg/uzi = 0,
@@ -197,6 +198,8 @@
 					)
 
 	contraband = list(
+					/obj/item/ammo_magazine/smg/ppsh/ = 20,
+					/obj/item/ammo_magazine/smg/ppsh/extended = 4,
 					/obj/item/ammo_magazine/pistol/incendiary = 0,
 					/obj/item/ammo_magazine/pistol/heavy = 0,
 					/obj/item/ammo_magazine/pistol/holdout = 0,
@@ -552,6 +555,7 @@
 						/obj/item/attachable/stock/rifle = 3 ,
 						/obj/item/attachable/stock/revolver = 3,
 						/obj/item/attachable/stock/smg = 3,
+						/obj/item/attachable/stock/tactical = 3,
 
 						/obj/item/attachable/attached_gun/grenade = 5,
 						/obj/item/attachable/attached_gun/shotgun = 3,
