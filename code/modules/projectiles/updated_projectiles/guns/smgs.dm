@@ -37,6 +37,7 @@
 	current_mag = /obj/item/ammo_magazine/smg/m39
 	type_of_casings = null
 	attachable_allowed = list(
+						/obj/item/attachable/quickfire,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
@@ -216,6 +217,9 @@
 	origin_tech = "combat=3;materials=2;syndicate=4"
 	fire_sound = 'sound/weapons/smg_heavy.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/ppsh
+	attachable_allowed = list(
+						/obj/item/attachable/flashlight)
+
 	flags_gun_features = GUN_CAN_POINTBLANK
 
 	New()
