@@ -279,11 +279,9 @@
 	return null
 
 /area/proc/get_apc()
-	for(var/area/RA in src.related)
-		var/obj/machinery/power/apc/FINDME = locate() in RA
-		if (FINDME)
-			return FINDME
-
+	for(var/obj/machinery/power/apc/A in apcs_list)
+		if(A.area == src)
+			return A
 
 //Determines how strong could be shock, deals damage to mob, uses power.
 //M is a mob who touched wire/whatever
