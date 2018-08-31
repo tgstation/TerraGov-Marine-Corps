@@ -219,6 +219,9 @@ var/list/APCWireColorToFlag = RandomAPCWires()
 var/list/APCIndexToFlag
 var/list/APCIndexToWireColor
 var/list/APCWireColorToIndex
+// Optimization for the APCS, this list contains every APC, faster to search through it then the old method was.
+var/list/apcs_list = list()
+// *******
 var/list/BorgWireColorToFlag = RandomBorgWires()
 var/list/BorgIndexToFlag
 var/list/BorgIndexToWireColor

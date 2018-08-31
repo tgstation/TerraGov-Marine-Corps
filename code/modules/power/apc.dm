@@ -139,7 +139,7 @@
 
 /obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0)
 	..()
-
+	apcs_list += src
 	//Offset 24 pixels in direction of dir
 	//This allows the APC to be embedded in a wall, yet still inside an area
 	if(building)
