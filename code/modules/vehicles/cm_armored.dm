@@ -91,6 +91,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	//Placeholders
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_engine"
+
 /obj/vehicle/multitile/root/cm_armored/Dispose()
 	for(var/i in linked_objs)
 		var/obj/O = linked_objs[i]
@@ -390,6 +391,14 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		var/obj/structure/table/T = A
 		T.visible_message("<span class='danger'>[root] crushes [T]!</span>")
 		T.destroy(1)
+	else if(istype(A, /obj/structure/window/framed))
+		var/obj/structure/window/framed/W = A
+		W.visible_message("<span class='danger'>[root] crashes through the [W]!</span>")
+		W.shatter_window(1)
+	else if(istype(A, /obj/structure/window_frame))
+		var/obj/structure/window_frame/WF = A
+		WF.visible_message("<span class='danger'>[root] runs over the [WF]!</span>")
+		WF.Dispose()
 	else if(istype(A, /obj/structure/girder))
 		var/obj/structure/girder/G = A
 		G.dismantle()
@@ -398,6 +407,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		if(world.time > lastsound + 10)
 			playsound(G, 'sound/effects/metal_crash.ogg', 35)
 			lastsound = world.time
+
 /obj/vehicle/multitile/hitbox/cm_armored/Move(var/atom/A, var/direction)
 
 	for(var/mob/living/M in get_turf(src))
