@@ -5,10 +5,10 @@
 	circuit = null
 
 	var/shuttle_tag  // Used to coordinate data in shuttle controller.
-	var/hacked = 0   // Has been emagged, no access restrictions.
-	var/shuttle_optimized = 0 //Have the shuttle's flight subroutines been generated ?
-	var/onboard = 0 //Wether or not the computer is on the physical ship. A bit hacky but that'll do.
-	var/skip_time_lock = 0	// Allows admins to var edit the time lock away.
+	var/hacked = FALSE   // Has been emagged, no access restrictions.
+	var/shuttle_optimized = FALSE //Have the shuttle's flight subroutines been generated ?
+	var/onboard = FALSE //Wether or not the computer is on the physical ship. A bit hacky but that'll do.
+	var/skip_time_lock = FALSE	// Allows admins to var edit the time lock away.
 	var/obj/structure/dropship_equipment/selected_equipment //the currently selected equipment installed on the shuttle this console controls.
 	var/list/shuttle_equipments = list() //list of the equipments on the shuttle this console controls
 
@@ -30,14 +30,14 @@
 			else
 				to_chat(user, "<span class='notice'>You interact with the pilot's console and re-enable remote control.</span>")
 				shuttle.last_locked = world.time
-				shuttle.queen_locked = 0
+				shuttle.queen_locked = FALSE
 		if(shuttle.door_override)
 			if(world.time < shuttle.last_door_override + SHUTTLE_LOCK_COOLDOWN)
 				to_chat(user, "<span class='warning'>You can't seem to reverse the door override. Please wait another [round((shuttle.last_door_override + SHUTTLE_LOCK_COOLDOWN - world.time)/600)] minutes before trying again.</span>")
 			else
 				to_chat(user, "<span class='notice'>You reverse the door override.</span>")
 				shuttle.last_door_override = world.time
-				shuttle.door_override = 0
+				shuttle.door_override = FALSE
 	ui_interact(user)
 
 /obj/machinery/computer/shuttle_control/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 0)
@@ -154,7 +154,8 @@
 		spawn(0)
 		if(shuttle.moving_status == SHUTTLE_IDLE) //Multi consoles, hopefully this will work
 
-			if(shuttle.locked) return
+			if(shuttle.locked)
+				return
 
 			//Alert code is the Queen is the one calling it, the shuttle is on the ground and the shuttle still allows alerts
 			if(isXenoQueen(usr) && shuttle.location == 1 && shuttle.alerts_allowed && onboard && !shuttle.iselevator)
@@ -180,13 +181,15 @@
 				to_chat(usr, "<span class='alert'>Hrm, that didn't work. Maybe try the one on the ship?</span>")
 				return
 			else
-				if(z == 1) shuttle.transit_gun_mission = 0 //remote launch always do transport flight.
+				if(z == 1)
+					shuttle.transit_gun_mission = FALSE //remote launch always do transport flight.
 				shuttle.launch(src)
 			log_admin("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] from [src]")
 			message_admins("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] using [src].")
 
 	if(href_list["optimize"])
-		if(shuttle.transit_optimized) return
+		if(shuttle.transit_optimized)
+			return
 		var/mob/M = usr
 		if(M.mind && M.mind.cm_skills && !M.mind.cm_skills.pilot)
 			to_chat(usr, "<span class='warning'>A screen with graphics and walls of physics and engineering values open, you immediately force it closed.</span>")
@@ -197,19 +200,22 @@
 
 	if(href_list["fire_mission"])
 		var/mob/M = usr
-		if(shuttle.moving_status != SHUTTLE_IDLE) return
-		if(shuttle.locked) return
-		if(shuttle.transit_gun_mission)
+		if(shuttle.moving_status != SHUTTLE_IDLE)
+			return
+		if(shuttle.locked)
+			return
+		if(shuttle.transit_gun_mission == TRUE)
+			to_chat(M, "<span class='notice'>You reset the flight plan to a transport mission between the Almayer and the planet.</span>")
+			shuttle.transit_gun_mission = FALSE
+		else
 			if(M.mind && M.mind.cm_skills && M.mind.cm_skills.pilot < SKILL_PILOT_TRAINED) //everyone can activate the fire mission mode while fumbling, but everyone can reset it back to transport without.
 				M.visible_message("<span class='notice'>[M] fumbles around figuring out how to set the autopilot.</span>",
 				"<span class='notice'>You fumble around figuring out how to set the autopilot.</span>")
 				var/fumbling_time = 100 - 20 * usr.mind.cm_skills.pilot
-				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+					return
 			to_chat(M, "<span class='notice'>You upload a flight plan for a low altitude flyby above the planet.</span>")
-			shuttle.transit_gun_mission = !shuttle.transit_gun_mission
-		else
-			to_chat(M, "<span class='notice'>You reset the flight plan to a transport mission between the Almayer and the planet.</span>")
-			shuttle.transit_gun_mission = !shuttle.transit_gun_mission
+			shuttle.transit_gun_mission = TRUE
 
 	if(href_list["lockdown"])
 		if(shuttle.door_override || z == 3)
@@ -342,7 +348,8 @@
 	return 0
 
 /obj/machinery/computer/shuttle_control/ex_act(severity)
-	if(unacidable) return //unacidable shuttle consoles are also immune to explosions.
+	if(unacidable)
+		return //unacidable shuttle consoles are also immune to explosions.
 	..()
 
 
