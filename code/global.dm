@@ -96,10 +96,7 @@ var/hadevent = 0
 var/blobevent = 0
 	///////////////
 
-var/diary = null
 var/diaryofmeanpeople = null
-var/round_stats = null
-var/href_logfile = null
 var/station_name = "[MAIN_SHIP_NAME]"
 var/game_version = "Colonial Marines"
 var/changelog_hash = ""
@@ -182,10 +179,18 @@ var/datum/station_state/start_state = null
 var/datum/configuration/config = null
 var/datum/sun/sun = null
 
-var/list/combatlog = list()
-var/list/IClog = list()
-var/list/OOClog = list()
-var/list/adminlog = list()
+//Logging
+var/log_directory
+var/world_game_log
+var/world_attack_log
+var/world_runtime_log
+var/world_ra_log
+var/world_pda_log
+var/world_href_log
+var/sql_error_log
+var/config_error_log
+
+var/list/all_player_details = list()  // [ckey] = /datum/player_details
 
 
 var/list/powernets = list()

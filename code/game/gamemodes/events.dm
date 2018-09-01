@@ -278,7 +278,7 @@
 		sleep(150)
 		command_announcement.Announce("Malignant trojan detected in [station_name()] Brig subroutines.", "Security Alert")
 	else
-		to_chat(world.log, "ERROR: Could not initate grey-tide. Unable find prison or brig area.")
+		log_world("ERROR: Could not initate grey-tide. Unable find prison or brig area.")
 
 /proc/carp_migration() // -- Darem
 	for(var/obj/effect/landmark/C in landmarks_list)

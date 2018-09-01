@@ -64,7 +64,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/proc/critfail()
 	if(chassis)
-		log_message("Critical failure",1)
+		log_message("Critical failure", color="red")
 	return
 
 /obj/item/mecha_parts/mecha_equipment/proc/get_equip_info()
@@ -147,7 +147,9 @@
 		chassis.occupant_message("\icon[src] [message]")
 	return
 
-/obj/item/mecha_parts/mecha_equipment/proc/log_message(message)
+/obj/item/mecha_parts/mecha_equipment/log_message(message, message_type=LOG_GAME, color=null)
 	if(chassis)
-		chassis.log_message("<i>[src]:</i> [message]")
+		chassis.log_message("([src]) [message]", message_type, color)
+	else
+		..()
 	return

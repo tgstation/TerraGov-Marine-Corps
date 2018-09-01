@@ -9,7 +9,6 @@
 #define DIRT_TYPE_MARS		2
 #define DIRT_TYPE_SNOW		3
 
-
 //wet floors
 
 #define FLOOR_WET_WATER	1

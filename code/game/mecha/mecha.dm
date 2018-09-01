@@ -396,7 +396,7 @@
 	return
 
 /obj/mecha/attack_hand(mob/user as mob)
-	src.log_message("Attack by hand/paw. Attacker - [user].",1)
+	src.log_message("Attack by hand/paw. Attacker - [user].", color="red")
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
@@ -430,7 +430,7 @@
 	return src.attack_hand(user)
 
 /obj/mecha/attack_animal(mob/living/user as mob)
-	src.log_message("Attack by simple animal. Attacker - [user].",1)
+	src.log_message("Attack by simple animal. Attacker - [user].", color="red")
 	if(user.melee_damage_upper == 0)
 		user.emote("[user.friendly] [src]")
 	else
@@ -439,18 +439,18 @@
 			src.take_damage(damage)
 			src.check_for_internal_damage(list(MECHA_INT_CONTROL_LOST))
 			visible_message("\red <B>[user]</B> [user.attacktext] [src]!")
-			user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
+			log_combat(user, src, "attacked")
 		else
 			src.log_append_to_last("Armor saved.")
 			playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
 			src.occupant_message("\blue The [user]'s attack is stopped by the armor.")
 			visible_message("\blue The [user] rebounds off [src.name]'s armor!")
-			user.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name]</font>")
+			log_combat(user, src, "attacked")
 	return
 
 /obj/mecha/hitby(atom/movable/A as mob|obj) //wrapper
 	..()
-	src.log_message("Hit by [A].",1)
+	src.log_message("Hit by [A].", color="red")
 	call((proc_res["dynhitby"]||src), "dynhitby")(A)
 	return
 
@@ -475,7 +475,7 @@
 
 
 /obj/mecha/bullet_act(var/obj/item/projectile/Proj) //wrapper
-	src.log_message("Hit by projectile. Type: [Proj.name].",1)
+	src.log_message("Hit by projectile. Type: [Proj.name].", color="red")
 	call((proc_res["dynbulletdamage"]||src), "dynbulletdamage")(Proj) //calls equipment
 	..()
 	return 1
@@ -546,7 +546,7 @@
 	return
 
 /obj/mecha/ex_act(severity)
-	src.log_message("Affected by explosion of severity: [severity].",1)
+	src.log_message("Affected by explosion of severity: [severity].", color="red")
 	if(prob(src.deflect_chance))
 		severity++
 		src.log_append_to_last("Armor saved, changing severity to [severity].")
@@ -571,13 +571,13 @@
 	if(get_charge())
 		use_power((cell.charge/2)/severity)
 		take_damage(50 / severity,"energy")
-	src.log_message("EMP detected",1)
-	check_for_internal_damage(list(MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),1)
+	src.log_message("EMP detected", color="red")
+	check_for_internal_damage(list(MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT), color="red")
 	return
 
 /obj/mecha/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature>src.max_temperature)
-		src.log_message("Exposed to dangerous temperature.",1)
+		src.log_message("Exposed to dangerous temperature.", color="red")
 		src.take_damage(5,"fire")
 	return
 
@@ -1330,17 +1330,18 @@
 
 /obj/mecha/proc/occupant_message(message as text)
 	if(message)
-		if(src.occupant && src.occupant.client)
-			to_chat(src.occupant, "\icon[src] [message]")
+		if(occupant && occupant.client)
+			to_chat(occupant, "\icon[src] [message]")
 	return
 
-/obj/mecha/proc/log_message(message as text,red=null)
+/obj/mecha/log_message(message as text, message_type=LOG_GAME, color=null)
 	log.len++
-	log[log.len] = list("time"=world.timeofday,"message"="[red?"<font color='red'>":null][message][red?"</font>":null]")
+	log[log.len] = list("time"=world.timeofday,"message"="[color?"<font color='[color]'>":null][message][color?"</font>":null]")
+	..()
 	return log.len
 
 /obj/mecha/proc/log_append_to_last(message as text,red=null)
-	var/list/last_entry = src.log[src.log.len]
+	var/list/last_entry = log[log.len]
 	last_entry["message"] += "<br>[red?"<font color='red'>":null][message][red?"</font>":null]"
 	return
 
@@ -1524,7 +1525,7 @@
 				src.log_message("Recalibration of coordination system finished with 0 errors.")
 			else
 				src.occupant_message("<font color='red'>Recalibration failed.</font>")
-				src.log_message("Recalibration of coordination system failed with 1 error.",1)
+				src.log_message("Recalibration of coordination system failed with 1 error.", color="red")
 
 	return
 

@@ -41,7 +41,7 @@ var/global/normal_ooc_colour = "#002eb8"
 			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
 			return
 
-	log_ooc("[mob.name]/[key] : [msg]")
+	mob.log_talk(msg, LOG_OOC)
 
 	var/display_colour = normal_ooc_colour
 	if(holder && !holder.fakekey)

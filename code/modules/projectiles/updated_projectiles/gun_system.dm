@@ -698,7 +698,7 @@ and you're good to go.
 						playsound(user, actual_sound, sound_volume, 1)
 						simulate_recoil(2, user)
 						var/obj/item/weapon/gun/revolver/current_revolver = src
-						var/t = "\[[time_stamp()]\] <b>[user]/[user.ckey]</b> committed suicide with <b>[src]</b>" //Log it.
+						var/t = "[key_name(user)] committed suicide with [key_name(src)]" //Log it.
 						if(istype(current_revolver) && current_revolver.russian_roulette) //If it's a revolver set to Russian Roulette.
 							t += " after playing Russian Roulette"
 							user.apply_damage(projectile_to_fire.damage * 3, projectile_to_fire.ammo.damage_type, "head", used_weapon = "An unlucky pull of the trigger during Russian Roulette!", sharp = 1)
@@ -717,7 +717,7 @@ and you're good to go.
 									var/mob/living/carbon/human/HM = user
 									HM.undefibbable = TRUE //can't be defibbed back from self inflicted gunshot to head
 								user.death()
-						user.attack_log += t //Apply the attack log.
+						user.log_message(t, LOG_ATTACK, "red") //Apply the attack log.
 						last_fired = world.time
 
 						projectile_to_fire.play_damage_effect(user)

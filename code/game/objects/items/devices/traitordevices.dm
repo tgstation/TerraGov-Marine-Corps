@@ -36,7 +36,7 @@ effective or pretty fucking useless.
 		to_chat(user, "\red The mind batterer has been burnt out!")
 		return
 
-	user.attack_log += text("\[[time_stamp()]\] <font color='red'>Used [src] to knock down people in the area.</font>")
+	user.log_message("used [key_name(src)] to knock down people in the area", LOG_ATTACK)
 
 	for(var/mob/living/carbon/human/M in orange(10, user))
 		spawn()

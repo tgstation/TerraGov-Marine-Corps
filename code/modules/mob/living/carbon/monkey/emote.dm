@@ -126,7 +126,7 @@
 			to_chat(src, text("Invalid Emote: []", act))
 	if (message)
 		if(src.client)
-			log_emote("[name]/[key] : [message]")
+			log_message(message, LOG_EMOTE)
 		if (m_type & 1)
 			for(var/mob/O in viewers(src, null))
 				O.show_message(message, m_type)

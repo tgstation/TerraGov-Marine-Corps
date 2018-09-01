@@ -35,8 +35,7 @@
 
 	var/s = "\red [H.name] chews on \his [O.display_name]!"
 	H.visible_message(s, "\red You chew on your [O.display_name]!")
-	H.attack_log += text("\[[time_stamp()]\] <font color='red'>[s] ([H.ckey])</font>")
-	log_attack("[s] ([H.ckey])")
+	H.log_message("[s] ([key_name(H)])", LOG_ATTACK)
 
 	if(O.take_damage(1,0,1,1,"teeth marks"))
 		H.UpdateDamageIcon()

@@ -49,7 +49,7 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 	return 1
 
 /mob/living/proc/handle_ventcrawl(var/atom/clicked_on)
-	diary << "\The [src] is ventcrawling."
+	log_message("Started ventcrawling", LOG_GAME)
 	if(!stat)
 		if(!lying)
 

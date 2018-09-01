@@ -40,6 +40,9 @@ LOG_HIVEMIND
 ## log admin actions
 LOG_ADMIN
 
+## log admin chat
+LOG_ADMINCHAT
+
 ## log client access (logon/logoff)
 LOG_ACCESS
 
@@ -63,6 +66,9 @@ LOG_PDA
 
 ## log all Topic() calls (for use by coders in tracking down Topic issues)
 LOG_HREFS
+
+## log world/Topic() calls
+LOG_WORLD_TOPIC
 
 ## log world.log and runtime errors to a file
 LOG_RUNTIME

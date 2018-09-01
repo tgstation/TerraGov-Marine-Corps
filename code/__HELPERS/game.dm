@@ -10,14 +10,16 @@
 	return null
 
 /proc/get_area(atom/A)
+	if(isarea(A))
+		return A
 	var/turf/T = get_turf(A)
-	if(T) . = T.loc
+	return T ? T.loc : null
 
-/proc/get_area_name(N) //get area by its name
-	for(var/area/A in all_areas)
-		if(A.name == N)
-			return A
-	return 0
+/proc/get_area_name(atom/X, format_text = FALSE)
+	var/area/A = isarea(X) ? X : get_area(X)
+	if(!A)
+		return null
+	return format_text ? format_text(A.name) : A.name
 
 /proc/in_range(source, user)
 	if(get_dist(source, user) <= 1)
@@ -147,7 +149,7 @@
 			if(sight_check && !isInSight(A, O))
 				continue
 			L |= M
-			//to_chat(world.log, "[recursion_limit] = [M] - [get_turf(M)] - ([M.x], [M.y], [M.z])")
+			//log_world("[recursion_limit] = [M] - [get_turf(M)] - ([M.x], [M.y], [M.z])")
 
 		else if(include_radio && istype(A, /obj/item/device/radio))
 			if(sight_check && !isInSight(A, O))
@@ -177,7 +179,7 @@
 			var/mob/M = A
 			if(M.client)
 				hear += M
-			//to_chat(world.log, "Start = [M] - [get_turf(M)] - ([M.x], [M.y], [M.z])")
+			//log_world("Start = [M] - [get_turf(M)] - ([M.x], [M.y], [M.z])")
 		else if(istype(A, /obj/item/device/radio))
 			hear += A
 

@@ -95,7 +95,7 @@
 			var/obj/item/implant/I = locate(href_list["warn"])
 			if( istype(I) && I.imp_in)
 				var/mob/living/carbon/R = I.imp_in
-				log_say("PrisonComputer3 message: [key_name(usr)]->[key_name(R)] : [warning]")
+				log_directed_talk(usr, R, warning, LOG_SAY, "prison computer")
 				to_chat(R, "\green You hear a voice in your head saying: '[warning]'")
 
 		interact()

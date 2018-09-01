@@ -91,14 +91,14 @@
 
 //	if(Debug)
 //		for(var/obj/O in P1)
-//			to_chat(world.log, "P1: [O] at [O.x] [O.y] : [istype(O, /obj/structure/cable) ? "[O:d1]/[O:d2]" : null] ")
+//			log_world("P1: [O] at [O.x] [O.y] : [istype(O, /obj/structure/cable) ? "[O:d1]/[O:d2]" : null] ")
 //		for(var/obj/O in P2)
-//			to_chat(world.log, "P2: [O] at [O.x] [O.y] : [istype(O, /obj/structure/cable) ? "[O:d1]/[O:d2]" : null] ")
+//			log_world("P2: [O] at [O.x] [O.y] : [istype(O, /obj/structure/cable) ? "[O:d1]/[O:d2]" : null] ")
 
 
 	if(P1.len == 0 || P2.len == 0)//if nothing in either list, then the cable was an endpoint no need to rebuild the powernet,
 		cables -= C				//just remove cut cable from the list
-//		if(Debug) to_chat(world.log, "Was end of cable")
+//		if(Debug) log_world("Was end of cable")
 		return
 
 	//null the powernet reference of all cables & nodes in this powernet
@@ -145,7 +145,7 @@
 		var/datum/powernet/PN = new()
 		powernets += PN
 
-//		if(Debug) to_chat(world.log, "Was not looped: spliting PN#[number] ([cables.len];[nodes.len])")
+//		if(Debug) log_world("Was not looped: spliting PN#[number] ([cables.len];[nodes.len])")
 
 		i=1
 		while(i<=cables.len)
@@ -173,12 +173,12 @@
 			if(P.powernet && !P.powernet.nodes[src])
 				P.disconnect_from_network()
 //		if(Debug)
-//			to_chat(world.log, "Old PN#[number] : ([cables.len];[nodes.len])")
-//			to_chat(world.log, "New PN#[PN.number] : ([PN.cables.len];[PN.nodes.len])")
+//			log_world("Old PN#[number] : ([cables.len];[nodes.len])")
+//			log_world("New PN#[PN.number] : ([PN.cables.len];[PN.nodes.len])")
 //
 //	else
 //		if(Debug)
-//			to_chat(world.log, "Was looped.")
+//			log_world("Was looped.")
 //		//there is a loop, so nothing to be done
 //		return
 

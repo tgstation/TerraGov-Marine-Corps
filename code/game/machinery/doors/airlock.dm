@@ -190,7 +190,7 @@ About the new airlock wires panel:
 			//one wire for electrifying the door. Sending a pulse through this electrifies the door for 30 seconds.
 			if(src.secondsElectrified==0)
 				shockedby += text("\[[time_stamp()]\][usr](ckey:[usr.ckey])")
-				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Electrified the [name] at [x] [y] [z]</font>")
+				log_combat(usr, src, "electrified")
 				src.secondsElectrified = 30
 				spawn(10)
 					//TODO: Move this into process() and make pulsing reset secondsElectrified to 30
@@ -252,7 +252,7 @@ About the new airlock wires panel:
 			//Cutting this wire electrifies the door, so that the next person to touch the door without insulated gloves gets electrocuted.
 			if(src.secondsElectrified != -1)
 				shockedby += text("\[[time_stamp()]\][usr](ckey:[usr.ckey])")
-				usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Electrified the [name] at [x] [y] [z]</font>")
+				log_combat(usr, src, "electrified")
 				src.secondsElectrified = -1
 		if (AIRLOCK_WIRE_SAFETY)
 			safe = 0
@@ -845,7 +845,7 @@ About the new airlock wires panel:
 						to_chat(usr, text("The door is already electrified. Cannot re-electrify it while it's already electrified.<br>\n"))
 					else
 						shockedby += text("\[[time_stamp()]\][usr](ckey:[usr.ckey])")
-						usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Electrified the [name] at [x] [y] [z]</font>")
+						log_combat(usr, src, "electrified")
 						to_chat(usr, "The door is now electrified for thirty seconds.")
 						src.secondsElectrified = 30
 						spawn(10)
@@ -864,7 +864,7 @@ About the new airlock wires panel:
 						to_chat(usr, text("The door is already electrified. You can't re-electrify it while it's already electrified.<br>\n"))
 					else
 						shockedby += text("\[[time_stamp()]\][usr](ckey:[usr.ckey])")
-						usr.attack_log += text("\[[time_stamp()]\] <font color='red'>Electrified the [name] at [x] [y] [z]</font>")
+						log_combat(usr, src, "electrified")
 						to_chat(usr, "The door is now electrified.")
 						src.secondsElectrified = -1
 				if(7)

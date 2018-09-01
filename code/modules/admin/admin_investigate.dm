@@ -26,7 +26,7 @@
 	to_chat(F, "<small>[time2text(world.timeofday,"hh:mm")] \ref[src] ([x],[y],[z])</small> || [src] [message]<br>")
 
 //ADMINVERBS
-/client/proc/investigate_show( subject in list("hrefs","notes","singulo","telesci") )
+/client/proc/investigate_show( subject in list("notes","singulo","telesci") )
 	set name = "Investigate"
 	set category = "Admin"
 	if(!holder)	return
@@ -37,14 +37,3 @@
 				to_chat(src, "<font color='red'>Error: admin_investigate: [INVESTIGATE_DIR][subject] is an invalid path or cannot be accessed.</font>")
 				return
 			src << browse(F,"window=investigate[subject];size=800x300")
-
-		if("hrefs")				//persistant logs and stuff
-			if(config && config.log_hrefs)
-				if(href_logfile)
-					src << browse(href_logfile,"window=investigate[subject];size=800x300")
-				else
-					to_chat(src, "<font color='red'>Error: admin_investigate: No href logfile found.</font>")
-					return
-			else
-				to_chat(src, "<font color='red'>Error: admin_investigate: Href Logging is not on.</font>")
-				return

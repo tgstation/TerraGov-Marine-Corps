@@ -50,11 +50,11 @@
 
 	var/icon/Tile = icon(file("nano/mapbase1024.png"))
 	if (Tile.Width() != NANOMAP_MAX_ICON_DIMENSION || Tile.Height() != NANOMAP_MAX_ICON_DIMENSION)
-		to_chat(world.log, "NanoMapGen: <B>ERROR: BASE IMAGE DIMENSIONS ARE NOT [NANOMAP_MAX_ICON_DIMENSION]x[NANOMAP_MAX_ICON_DIMENSION]</B>")
+		log_world("NanoMapGen: <B>ERROR: BASE IMAGE DIMENSIONS ARE NOT [NANOMAP_MAX_ICON_DIMENSION]x[NANOMAP_MAX_ICON_DIMENSION]</B>")
 		sleep(3)
 		return NANOMAP_TERMINALERR
 
-	to_chat(world.log, "NanoMapGen: <B>GENERATE MAP ([startX],[startY],[currentZ]) to ([endX],[endY],[currentZ])</B>")
+	log_world("NanoMapGen: <B>GENERATE MAP ([startX],[startY],[currentZ]) to ([endX],[endY],[currentZ])</B>")
 	to_chat(usr, "NanoMapGen: <B>GENERATE MAP ([startX],[startY],[currentZ]) to ([endX],[endY],[currentZ])</B>")
 
 	var/count = 0;
@@ -71,16 +71,16 @@
 			count++
 
 			if (count % 8000 == 0)
-				to_chat(world.log, "NanoMapGen: <B>[count] tiles done</B>")
+				log_world("NanoMapGen: <B>[count] tiles done</B>")
 				sleep(1)
 
 	var/mapFilename = "nanomap_z[currentZ]-new.png"
 
-	to_chat(world.log, "NanoMapGen: <B>sending [mapFilename] to client</B>")
+	log_world("NanoMapGen: <B>sending [mapFilename] to client</B>")
 
 	usr << browse(Tile, "window=picture;file=[mapFilename];display=0")
 
-	to_chat(world.log, "NanoMapGen: <B>Done.</B>")
+	log_world("NanoMapGen: <B>Done.</B>")
 
 	to_chat(usr, "NanoMapGen: <B>Done. File [mapFilename] uploaded to your cache.</B>")
 

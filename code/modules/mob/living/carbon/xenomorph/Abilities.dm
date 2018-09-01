@@ -813,7 +813,7 @@
 
 	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
 	if(msg)
-		log_say("PsychicWhisper: [key_name(X)]->[M.key] : [msg]")
+		log_directed_talk(X, M, msg, LOG_SAY, "psychic whisper")
 		to_chat(M, "<span class='alien'>You hear a strange, alien voice in your head. \italic \"[msg]\"</span>")
 		to_chat(X, "<span class='xenonotice'>You said: \"[msg]\" to [M]</span>")
 

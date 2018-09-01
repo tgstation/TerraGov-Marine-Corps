@@ -305,8 +305,7 @@
 	playsound(loc, "alien_bite", 25)
 	visible_message("<span class='danger'>\The [M] is viciously shredded by \the [src]'s sharp teeth!</span>", \
 	"<span class='danger'>You viciously rend \the [M] with your teeth!</span>", null, 5)
-	M.attack_log += text("\[[time_stamp()]\] <font color='red'>bit [src.name] ([src.ckey])</font>")
-	attack_log += text("\[[time_stamp()]\] <font color='orange'>was bitten by [M.name] ([M.ckey])</font>")
+	log_combat(M, src, "bitten")
 
 	M.apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1) //This should slicey dicey
 	M.updatehealth()
@@ -333,8 +332,7 @@
 	playsound(M.loc, 'sound/weapons/alien_tail_attack.ogg', 25, 1) //Stolen from Yautja! Owned!
 	visible_message("<span class='danger'>\The [M] is suddenly impaled by \the [src]'s sharp tail!</span>", \
 	"<span class='danger'>You violently impale \the [M] with your tail!</span>", null, 5)
-	M.attack_log += text("\[[time_stamp()]\] <font color='red'>tail-stabbed [M.name] ([M.ckey])</font>")
-	attack_log += text("\[[time_stamp()]\] <font color='orange'>was tail-stabbed by [src.name] ([src.ckey])</font>")
+	log_combat(src, M, "tail-stabbed")
 
 	M.apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
 	M.updatehealth()

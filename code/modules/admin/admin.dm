@@ -78,7 +78,8 @@ var/global/floorIsLava = 0
 		<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a> -
 		<a href='?src=\ref[src];subtlemessage=\ref[M]'>SM</a> -
 		<a href='?src=\ref[src];adminplayerobservejump=\ref[M]'>JMP</a> -
-		<a href='?src=\ref[src];adminplayerfollow=\ref[M]'>FLW</a>\]</b><br>
+		<a href='?src=\ref[src];adminplayerfollow=\ref[M]'>FLW</a>\ -</b><br>
+		<a href='?src=\ref[src];individuallog=\ref[M]'>LOGS</a>\]</b><br>
 		<b>Mob type</b> = [M.type]<br><br>
 		<A href='?src=\ref[src];boot2=\ref[M]'>Kick</A> |
 		<A href='?src=\ref[src];newban=\ref[M]'>Ban</A> |

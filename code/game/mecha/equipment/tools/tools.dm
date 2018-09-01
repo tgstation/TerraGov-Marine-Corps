@@ -54,8 +54,7 @@
 				M.updatehealth()
 				occupant_message("\red You squeeze [target] with the [src.name]!")
 				chassis.visible_message("\red [chassis] squeezes [target]!")
-				chassis.occupant.attack_log += text("\[[time_stamp()]\] <font color='red'>squeezed [M.name] with the [src.name]</font>")
-				M.attack_log += text("\[[time_stamp()]\] <font color='orange'>was squeezed by [chassis.occupant.name] with the [src.name]</font>")
+				log_combat(chassis.occupant, M, "squeezed", src)
 				playsound(chassis.loc, 'sound/mecha/powerloader_attack.ogg', 25, 1)
 			else
 				step_away(M,chassis)
