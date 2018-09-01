@@ -349,3 +349,41 @@
 			for(var/turf/T in range(2, impact))
 				if(!locate(/obj/flamer_fire) in T) // No stacking flames!
 					new/obj/flamer_fire(T)
+
+/obj/structure/ship_ammo/minirocket/illumination
+	name = "illumination rocket-launched flare stack"
+	desc = "A pack of laser guided mini rockets, each loaded with a payload of white-star illuminant and a parachute, while extremely ineffective at damaging the enemy, it is very effective at lighting the battlefield so marines can damage the enemy."
+	icon_state = "minirocket_ilm"
+	point_cost = 350 // Not as expensive as actual weaponry but still a hefty sum so we don't have this spammed everywhere
+
+/obj/structure/ship_ammo/minirocket/illumination/detonate_on(turf/impact)
+	impact.ceiling_debris_check(2)
+	spawn(5)
+		var/turf/T = pick(range(5, impact))
+		explosion(T,-1,-1,1, 2, 0)// Smaller explosion to prevent this becoming the PO meta
+		var/datum/effect_system/expl_particles/P = new/datum/effect_system/expl_particles()
+		P.set_up(4, 0, T)
+		P.start()
+		spawn(5)
+			var/datum/effect_system/smoke_spread/S = new/datum/effect_system/smoke_spread()
+			S.set_up(1,0,T,null)
+			S.start()
+		spawn(10)
+			new/obj/item/device/flashlight/flare/on/cas(T) 
+		if(!ammo_count && loc)
+			cdel(src) //deleted after last minirocket is fired and impact the ground.
+
+/obj/item/device/flashlight/flare/on/cas
+	name = "illumination flare"
+	desc = "Report this if you actually see this FUCK"
+	icon_state = "" //No sprite
+	invisibility = 101
+	mouse_opacity = 0
+	brightness_on = 7 //Magnesium/sodium fires (White star) really are bright
+
+/obj/item/device/flashlight/flare/on/cas/New()
+	..()
+	var/turf/T = get_turf(src)
+	fuel = rand(700, 900) // About the same burn time as a flare, considering it requires it's own CAS run.
+	T.visible_message("<span class='warning'>You see a tiny flash, and then a blindingly bright light from the flare as it lights off in the sky!</span>")
+	playsound(T, 'sound/weapons/gun_flare.ogg', 50, 1, 4) // stolen from the mortar i'm not even sorry
