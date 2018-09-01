@@ -4,7 +4,7 @@
 	if (!message)
 		return
 
-	log_say("Ghost/[src.key] : [message]")
+	src.log_talk(message, LOG_SAY, tag="ghost")
 
 	if (src.client)
 		if(src.client.prefs.muted & MUTE_DEADCHAT)
@@ -77,7 +77,7 @@
 	if(act != "me")
 		return
 
-	log_emote("Ghost/[src.key] : [message]")
+	log_message(message, LOG_EMOTE)
 
 	if(src.client)
 		if(src.client.prefs.muted & MUTE_DEADCHAT)

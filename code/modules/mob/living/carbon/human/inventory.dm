@@ -401,8 +401,7 @@
 	if(I.flags_inventory & CANTSTRIP)
 		to_chat(src, "<span class='warning'>You're having difficulty removing \the [I.name].</span>")
 		return
-	M.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their [I.name] ([slot_to_process]) attempted to be removed by [name] ([ckey])</font>"
-	attack_log += "\[[time_stamp()]\] <font color='red'>Attempted to remove [M.name]'s ([M.ckey]) [I.name] ([slot_to_process])</font>"
+	log_combat(src, M, "attempted to remove [key_name(I)] ([slot_to_process])")
 
 	M.visible_message("<span class='danger'>[src] tries to remove [M]'s [I.name].</span>", \
 					"<span class='userdanger'>[src] tries to remove [M]'s [I.name].</span>", null, 5)

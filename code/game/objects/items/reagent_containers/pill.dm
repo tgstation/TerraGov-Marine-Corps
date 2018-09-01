@@ -74,8 +74,7 @@ var/global/list/randomized_pill_icons
 
 			var/rgt_list_text = get_reagent_list_text()
 
-			M.attack_log += text("\[[time_stamp()]\] <font color='orange'>Has been fed [src.name] by [user.name] ([user.ckey]) Reagents: [rgt_list_text]</font>")
-			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Fed [M.name] by [M.name] ([M.ckey]) Reagents: [rgt_list_text]</font>")
+			log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
 			msg_admin_attack("[user.name] ([user.ckey]) fed [M.name] ([M.ckey]) with [src.name] Reagents: [rgt_list_text] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 			if(reagents.total_volume)
@@ -99,7 +98,7 @@ var/global/list/randomized_pill_icons
 
 			var/rgt_list_text = get_reagent_list_text()
 
-			user.attack_log += text("\[[time_stamp()]\] <font color='red'>Spiked \a [target] with a pill. Reagents: [rgt_list_text]</font>")
+			log_combat(user, target, "spiked", src, "Reagents: [rgt_list_text]")
 			msg_admin_attack("[user.name] ([user.ckey]) spiked \a [target] with a pill. Reagents: [rgt_list_text] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 			reagents.trans_to(target, reagents.total_volume)

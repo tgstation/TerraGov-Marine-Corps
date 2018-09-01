@@ -7,7 +7,7 @@
 	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	if(!msg)	return
 
-	log_admin("[key_name(src)] : [msg]")
+	mob.log_talk(msg, LOG_ASAY)
 
 	var/color = "adminsay"
 	if(ishost(usr))

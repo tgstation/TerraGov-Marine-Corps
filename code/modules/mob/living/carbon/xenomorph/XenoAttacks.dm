@@ -15,8 +15,7 @@
 			visible_message("<span class='danger'>[S] [S.attacktext] [src]!</span>", null, null, 5)
 			var/damage = rand(S.melee_damage_lower, S.melee_damage_upper)
 			apply_damage(damage, BRUTE)
-			S.attack_log += text("\[[time_stamp()]\] <font color='red'>attacked [src.name] ([src.ckey])</font>")
-			attack_log += text("\[[time_stamp()]\] <font color='orange'>was attacked by [S.name] ([S.ckey])</font>")
+			log_combat(S, src, "attacked")
 			updatehealth()
 
 /mob/living/carbon/Xenomorph/attack_paw(mob/living/carbon/monkey/M as mob)
@@ -152,9 +151,7 @@
 
 					M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
 					"<span class='danger'>You slash [src]!</span>", null, 5)
-					src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was slashed by [M.name] ([M.ckey])</font>")
-					M.attack_log += text("\[[time_stamp()]\] <font color='red'>slashed [src.name] ([src.ckey])</font>")
-					log_attack("[M.name] ([M.ckey]) slashed [src.name] ([src.ckey])")
+					log_combat(M, src, "slashed")
 
 					M.flick_attack_overlay(src, "slash")
 					playsound(loc, "alien_claw_flesh", 25, 1)

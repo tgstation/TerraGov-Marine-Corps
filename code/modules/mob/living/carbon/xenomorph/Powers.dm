@@ -491,9 +491,7 @@
 		"<span class='xenowarning'>\The [M]'s [L.display_name] bones snap with a satisfying crunch!</span>")
 		L.take_damage(rand(15,25), 0, 0)
 		L.fracture()
-	src.attack_log += text("\[[time_stamp()]\] <font color='red'>ripped the [L.display_name] off of [M.name] ([M.ckey]) 1/2 progress</font>")
-	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>had their [L.display_name] ripped off by [src.name] ([src.ckey]) 1/2 progress</font>")
-	log_attack("[src.name] ([src.ckey]) ripped the [L.display_name] off of [M.name] ([M.ckey]) 1/2 progress")
+	log_message(src, M, "ripped the [L.display_name] off", addition="1/2 progress")
 
 	if(!do_after(src, limb_time, TRUE, 5, BUSY_ICON_HOSTILE)  || M.stat == DEAD)
 		to_chat(src, "<span class='notice'>You stop ripping off the limb.</span>")
@@ -504,9 +502,7 @@
 
 	visible_message("<span class='xenowarning'>\The [src] rips [M]'s [L.display_name] away from \his body!</span>", \
 	"<span class='xenowarning'>\The [M]'s [L.display_name] rips away from \his body!</span>")
-	src.attack_log += text("\[[time_stamp()]\] <font color='red'>ripped the [L.display_name] off of [M.name] ([M.ckey]) 2/2 progress</font>")
-	M.attack_log += text("\[[time_stamp()]\] <font color='orange'>had their [L.display_name] ripped off by [src.name] ([src.ckey]) 2/2 progress</font>")
-	log_attack("[src.name] ([src.ckey]) ripped the [L.display_name] off of [M.name] ([M.ckey]) 2/2 progress")
+	log_message(src, M, "ripped the [L.display_name] off", addition="2/2 progress")
 
 	L.droplimb()
 
@@ -1254,8 +1250,8 @@
 	A.add_hiddenprint(src)
 
 	if(!isturf(O))
+		log_combat(src, O, "spat on", addition="with corrosive acid")
 		msg_admin_attack("[src.name] ([src.ckey]) spat acid on [O].")
-		attack_log += text("\[[time_stamp()]\] <font color='green'>Spat acid on [O]</font>")
 	visible_message("<span class='xenowarning'>\The [src] vomits globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</span>", \
 	"<span class='xenowarning'>You vomit globs of vile stuff all over \the [O]. It begins to sizzle and melt under the bubbling mess of acid!</span>", null, 5)
 	playsound(loc, "sound/bullets/acid_impact1.ogg", 25)

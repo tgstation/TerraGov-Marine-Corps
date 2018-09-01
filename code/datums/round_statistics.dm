@@ -1,6 +1,5 @@
 
 //the datum that stores specific statistics from the current round.
-//not to be confused with the round_stats var which is stores logs like round starting or ending.
 
 var/datum/round_statistics/round_statistics = new()
 

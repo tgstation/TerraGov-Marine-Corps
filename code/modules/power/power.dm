@@ -108,10 +108,10 @@
 		if(!PC.powernet)
 			PC.powernet = new()
 			powernets += PC.powernet
-//			if(Debug)	to_chat(world.log, "Starting mpn at [PC.x],[PC.y] ([PC.d1]/[PC.d2])")
+//			if(Debug)	log_world("Starting mpn at [PC.x],[PC.y] ([PC.d1]/[PC.d2])")
 			powernet_nextlink(PC,PC.powernet)
 
-//	if(Debug) to_chat(world.log, "[powernets.len] powernets found")
+//	if(Debug) log_world("[powernets.len] powernets found")
 
 	for(var/obj/structure/cable/C in cable_list)
 		if(!C.powernet)	continue
@@ -139,7 +139,7 @@
 	else
 		Zdir = 999
 ///// Z-Level Stuff
-//	to_chat(world.log, "d=[d] fdir=[fdir]")
+//	log_world("d=[d] fdir=[fdir]")
 	for(var/AM in T)
 		if(AM == source)	continue			//we don't want to return source
 

@@ -35,8 +35,7 @@
 
 	var/turf/T
 	if(ismob(body))
-		T = get_turf(body)				//Where is the body located?
-		attack_log = body.attack_log	//preserve our attack logs by copying them to our ghost
+		T = get_turf(body)
 
 		if (ishuman(body))
 			var/mob/living/carbon/human/H = body

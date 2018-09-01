@@ -59,14 +59,12 @@
 			if(GRAB_KILL)
 				icon_state = "disarm/kill1"
 				user.visible_message("<span class='danger'>[user] has tightened \his grip on [victim]'s neck!</span>", null, null, 5)
-				victim.attack_log += "\[[time_stamp()]\] <font color='orange'>Has been strangled (kill intent) by [user] ([user.ckey])</font>"
-				user.attack_log += "\[[time_stamp()]\] <font color='red'>Strangled (kill intent) [victim] ([victim.ckey])</font>"
+				log_combat(user, victim, "strangled", addition="(kill intent)")
 				msg_admin_attack("[key_name(user)] strangled (kill intent) [key_name(victim)]")
 			if(GRAB_NECK)
 				icon_state = "disarm/kill"
 				user.visible_message("<span class='warning'>[user] has reinforced \his grip on [victim] (now neck)!</span>", null, null, 5)
-				victim.attack_log += "\[[time_stamp()]\] <font color='orange'>Has had their neck grabbed by [user] ([user.ckey])</font>"
-				user.attack_log += "\[[time_stamp()]\] <font color='red'>Grabbed the neck of [victim] ([victim.ckey])</font>"
+				log_combat(user, victim, "neck grabbed")
 				msg_admin_attack("[key_name(user)] grabbed the neck of [key_name(victim)]")
 			if(GRAB_AGGRESSIVE)
 				user.visible_message("<span class='warning'>[user] has grabbed [victim] aggressively (now hands)!</span>", null, null, 5)

@@ -170,7 +170,7 @@
 		to_chat(src, "Not even a [src.species.name] can speak to the dead.")
 		return
 
-	log_say("[key_name(src)] communed to [key_name(M)]: [text]")
+	log_directed_talk(src, M, text, LOG_SAY, "telepathic commune")
 
 	to_chat(M, "\blue Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]")
 	if(istype(M,/mob/living/carbon/human))
@@ -187,7 +187,7 @@
 
 	var/msg = sanitize(input("Message:", "Psychic Whisper") as text|null)
 	if(msg)
-		log_say("PsychicWhisper: [key_name(src)]->[M.key] : [msg]")
+		log_directed_talk(src, M, msg, LOG_SAY, "psychic whisper")
 		to_chat(M, "\green You hear a strange, alien voice in your head... \italic [msg]")
 		to_chat(src, "\green You said: \"[msg]\" to [M]")
 	return

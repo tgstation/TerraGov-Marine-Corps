@@ -162,8 +162,8 @@
 			src.occupant.reagents.trans_to(newmeat, round (sourcetotalreagents / totalslabs, 1)) // Transfer all the reagents from the
 			allmeat[i] = newmeat
 
-		src.occupant.attack_log += "\[[time_stamp()]\] Was gibbed by <b>[user]/[user.ckey]</b>" //One shall not simply gib a mob unnoticed!
-		user.attack_log += "\[[time_stamp()]\] Gibbed <b>[src.occupant]/[src.occupant.ckey]</b>"
+
+		log_combat(user, src.occupant, "gibbed") //One shall not simply gib a mob unnoticed!
 		msg_admin_attack("[user.name] ([user.ckey]) gibbed [src.occupant] ([src.occupant.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 		src.occupant.death(1)
@@ -196,13 +196,12 @@
 
 			allmeat[i] = newmeat
 
-		if(src.occupant.client) // Gibbed a cow with a client in it? log that shit
-			src.occupant.attack_log += "\[[time_stamp()]\] Was gibbed by <b>[user]/[user.ckey]</b>"
-			user.attack_log += "\[[time_stamp()]\] Gibbed <b>[src.occupant]/[src.occupant.ckey]</b>"
+		if(occupant.client) // Gibbed a cow with a client in it? log that shit
+			log_combat(occupant, user, "gibbed")
 			msg_admin_attack("\[[time_stamp()]\] <b>[key_name(user)]</b> gibbed <b>[key_name(src.occupant)]</b>")
 
-		src.occupant.death(1)
-		src.occupant.ghostize()
+		occupant.death(1)
+		occupant.ghostize()
 
 	cdel(occupant)
 	occupant = null

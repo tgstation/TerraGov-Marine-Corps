@@ -157,8 +157,7 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 									"<span class='warning'>You sever [brainmob]'s brain's connection to the spine with [W]!</span>")
 				to_chat(brainmob, "<span class='warning'>[user] severs your brain's connection to the spine with [W]!</span>")
 
-				user.attack_log += "\[[time_stamp()]\]<font color='red'> Debrained [brainmob.name] ([brainmob.ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)])</font>"
-				brainmob.attack_log += "\[[time_stamp()]\]<font color='orange'> Debrained by [user.name] ([user.ckey]) with [W.name] (INTENT: [uppertext(user.a_intent)])</font>"
+				log_combat(user, brainmob, "debrained", W, "(INTENT: [uppertext(user.a_intent)])")
 				msg_admin_attack("[user] ([user.ckey]) debrained [brainmob] ([brainmob.ckey]) (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
 				//TODO: ORGAN REMOVAL UPDATE.

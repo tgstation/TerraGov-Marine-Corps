@@ -387,8 +387,7 @@ var/list/slot_equipment_priority = list( \
 
 		flick_attack_overlay(M, "grab")
 
-		attack_log += "\[[time_stamp()]\]<font color='green'> Grabbed [M.name] ([M.ckey]) </font>"
-		M.attack_log += "\[[time_stamp()]\]<font color='orange'> Grabbed by [name] ([ckey]) </font>"
+		log_combat(src, M, "grabbed")
 		msg_admin_attack("[key_name(src)] grabbed [key_name(M)]" )
 
 		if(!no_msg)

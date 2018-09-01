@@ -16,7 +16,7 @@
 
 /datum/language/proc/broadcast(var/mob/living/speaker,var/message,var/speaker_mask)
 
-	log_say("[key_name(speaker)] : ([name]) [message]")
+	speaker.log_talk(message, LOG_SAY)
 
 	for(var/mob/player in player_list)
 

@@ -73,9 +73,7 @@
 				if(!(M.status_flags & XENO_HOST) && !istype(M.buckled, /obj/structure/bed/nest))
 					round_statistics.crusher_stomp_victims++
 					M.take_overall_damage(40) //The same as a full charge, but no more than that.
-					M.attack_log += text("\[[time_stamp()]\] <font color='orange'>was xeno stomped by [src] ([ckey])</font>")
-					attack_log += text("\[[time_stamp()]\] <font color='red'>xeno stomped [M.name] ([M.ckey])</font>")
-					log_attack("[src] ([ckey]) xeno stomped [M.name] ([M.ckey])")
+					log_combat(src, M, "xeno stomped")
 				M.KnockDown(rand(2, 3))
 				to_chat(M, "<span class='highdanger'>You are stomped on by [src]!</span>")
 			shake_camera(M, 2, 2)
@@ -271,9 +269,7 @@
 			if(count)
 				X.charge_speed -= X.charge_speed_buildup / (count * 2) // half normal slowdown regardless of number of corpses.
 		else if(!(status_flags & XENO_HOST) && !istype(buckled, /obj/structure/bed/nest))
-			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was xeno charged by [X.name] ([X.ckey])</font>")
-			X.attack_log += text("\[[time_stamp()]\] <font color='red'>xeno charged [src.name] ([src.ckey])</font>")
-			log_attack("[X.name] ([X.ckey]) xeno charged [src.name] ([src.ckey])")
+			log_combat(X, src, "xeno charged")
 			apply_damage(X.charge_speed * 40, BRUTE)
 			X.visible_message("<span class='danger'>[X] rams [src]!</span>",
 			"<span class='xenodanger'>You ram [src]!</span>")
@@ -289,9 +285,7 @@
 	if(X.charge_speed > X.charge_speed_buildup * X.charge_turfs_to_charge)
 		playsound(loc, "punch", 25, 1)
 		if(hivenumber != X.hivenumber)
-			src.attack_log += text("\[[time_stamp()]\] <font color='orange'>was xeno charged by [X.name] ([X.ckey])</font>")
-			X.attack_log += text("\[[time_stamp()]\] <font color='red'>xeno charged [src.name] ([src.ckey])</font>")
-			log_attack("[X.name] ([X.ckey]) xeno charged [src.name] ([src.ckey])")
+			log_combat(X, src, "xeno charged")
 			apply_damage(X.charge_speed * 20, BRUTE) // half damage to avoid sillyness
 		if(anchored) //Ovipositor queen can't be pushed
 			X.stop_momentum(X.charge_dir, TRUE)

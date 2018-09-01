@@ -132,9 +132,10 @@
 //################ Logs and messages ############################################
 
 
-/obj/vehicle/proc/log_message(message as text,red=null)
+/obj/vehicle/log_message(message as text, message_type=LOG_GAME, color=null)
 	log.len++
-	log[log.len] = list("time"=world.timeofday,"message"="[red?"<font color='red'>":null][message][red?"</font>":null]")
+	log[log.len] = list("time"=world.timeofday,"message"="[color?"<font color='[color]'>":null][message][color?"</font>":null]")
+	..()
 	return log.len
 
 

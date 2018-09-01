@@ -57,5 +57,7 @@
 	var/stat_fast_update = 0	// Helps with forcing client to render statpanels in client/Stat()
 	var/stat_force_fast_update = 0	// Helps with forcing client to render statpanels from outside of client/Stat()
 
+	var/datum/player_details/player_details //these persist between logins/logouts during the same round.
+
 
 	preload_rsc = 0 // This is 0 so we can set it to an URL once the player logs in and have them download the resources from a different server.
