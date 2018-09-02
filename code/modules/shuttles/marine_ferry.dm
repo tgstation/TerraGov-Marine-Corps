@@ -421,9 +421,6 @@
 		explosion(sploded, 0, 5, 10, 0)
 		sleep(3)
 
-	for(var/obj/structure/window/framed/almayer/requisitions/R in structure_list)
-		R.shatter_window(1) // break the reqs windows
-
 	explosion(get_turf(HangarLowerElevator), 0, 3, 5, 0)
 	var/datum/shuttle/ferry/hangar/hangarelevator = shuttle_controller.shuttles["Hangar"]
 	hangarelevator.process_state = FORCE_CRASH
