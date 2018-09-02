@@ -134,17 +134,23 @@ var/list/mechtoys = list(
 	var/list/shoppinglist = list()
 	var/list/requestlist = list()
 	var/list/supply_packs = list()
+	var/list/export_types = list()
 	//shuttle movement
 	var/datum/shuttle/ferry/supply/shuttle
 
 	New()
 		ordernum = rand(1,9000)
 
+
 	//Supply shuttle ticker - handles supply point regenertion and shuttle travelling between centcomm and the station
 	proc/process()
 		for(var/typepath in subtypesof(/datum/supply_packs))
 			var/datum/supply_packs/P = new typepath()
 			supply_packs[P.name] = P
+
+		for(var/typepath in subtypesof(/datum/supply_export))
+			var/datum/supply_export/E = new typepath()
+			export_types += E
 
 		spawn(0)
 			set background = 1
@@ -158,7 +164,9 @@ var/list/mechtoys = list(
 	//To stop things being sent to centcomm which should not be sent to centcomm. Recursively checks for these types.
 	proc/forbidden_atoms_check(atom/A)
 		if(istype(A,/mob/living))
-			return 1
+			var/mob/living/X = A
+			if (!(isXeno(X) && X.stat == DEAD))
+				return 1
 		if(istype(A,/obj/item/disk/nuclear))
 			return 1
 		if(istype(A,/obj/item/device/radio/beacon))
@@ -208,6 +216,16 @@ var/list/mechtoys = list(
 					if(istype(A, /obj/item/stack/sheet/mineral/platinum))
 						var/obj/item/stack/sheet/mineral/platinum/P = A
 						plat_count += P.get_amount()
+
+			//Sell Xeno Corpses
+			if (isXeno(MA))
+				var/cost = 0
+				for(var/datum/supply_export in export_types)
+					var/datum/supply_export/E = supply_export
+					if(MA.type == E.export_obj)
+						cost = E.cost
+				points += cost
+
 
 			cdel(MA)
 
@@ -502,7 +520,7 @@ var/list/mechtoys = list(
 	if(href_list["send"])
 		if(shuttle.at_station())
 			if (shuttle.forbidden_atoms_check())
-				temp = "For safety reasons, the Automated Storage and Retrieval System cannot store live organisms, classified nuclear weaponry or homing beacons.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
+				temp = "For safety reasons, the Automated Storage and Retrieval System cannot store live, non-xeno organisms, classified nuclear weaponry or homing beacons.<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
 			else
 				shuttle.launch(src)
 				temp = "Lowering platform. \[<span class='warning'><A href='?src=\ref[src];force_send=1'>Force</A></span>\]<BR><BR><A href='?src=\ref[src];mainmenu=1'>OK</A>"
