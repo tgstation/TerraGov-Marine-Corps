@@ -126,6 +126,17 @@
 	if(M == linked_powerloader.buckled_mob)
 		unbuckle() //if the pilot clicks themself with the clamp, it unbuckles them.
 		return 1
+	else if(isXeno(M) && user.a_intent == "help")
+		var/mob/living/carbon/Xenomorph/X = M
+		if(X.stat == DEAD)
+			if(!X.anchored)
+				if(linked_powerloader)
+					X.forceMove(linked_powerloader)
+					loaded = X
+					playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+					update_icon()
+					user.visible_message("<span class='notice'>[user] grabs [loaded] with [src].</span>",
+					"<span class='notice'>You grab [loaded] with [src].</span>")
 	else
 		return ..()
 

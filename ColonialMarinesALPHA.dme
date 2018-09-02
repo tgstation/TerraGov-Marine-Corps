@@ -149,6 +149,7 @@
 #include "code\datums\skills.dm"
 #include "code\datums\spell.dm"
 #include "code\datums\sun.dm"
+#include "code\datums\supplyexports.dm"
 #include "code\datums\supplypacks.dm"
 #include "code\datums\diseases\addiction.dm"
 #include "code\datums\diseases\appendicitis.dm"
