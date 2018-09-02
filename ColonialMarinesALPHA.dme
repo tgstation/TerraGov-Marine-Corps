@@ -1416,6 +1416,7 @@
 #include "code\modules\vehicles\multitile.dm"
 #include "code\modules\vehicles\powerloader.dm"
 #include "code\modules\vehicles\tank.dm"
+#include "code\modules\vehicles\tankvendor.dm"
 #include "code\modules\vehicles\train.dm"
 #include "code\modules\vehicles\vehicle.dm"
 #include "code\WorkInProgress\buildmode.dm"

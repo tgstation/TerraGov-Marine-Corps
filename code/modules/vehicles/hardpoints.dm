@@ -3,7 +3,6 @@ All of the hardpoints, for the tank or other
 Currently only has the tank hardpoints
 */
 
-
 /obj/item/hardpoint
 
 	var/slot //What slot do we attach to?
@@ -12,6 +11,7 @@ Currently only has the tank hardpoints
 	icon = 'icons/obj/hardpoint_modules.dmi'
 	icon_state = "tires" //Placeholder
 
+	var/maxhealth = 100
 	health = 100
 	w_class = 15
 
@@ -25,6 +25,7 @@ Currently only has the tank hardpoints
 	var/next_use = 0
 	var/is_activatable = 0
 	var/max_angle = 180
+	var/point_cost = 0
 
 	var/list/backup_clips = list()
 	var/max_clips = 1 //1 so they can reload their backups and actually reload once
@@ -138,7 +139,9 @@ Currently only has the tank hardpoints
 	name = "LTB Cannon"
 	desc = "A primary cannon for tanks that shoots explosive rounds"
 
+	maxhealth = 500
 	health = 500
+	point_cost = 100
 
 	icon_state = "ltb_cannon"
 
@@ -181,7 +184,9 @@ Currently only has the tank hardpoints
 	name = "LTAA-AP Minigun"
 	desc = "A primary weapon for tanks that spews bullets"
 
+	maxhealth = 350
 	health = 350
+	point_cost = 100
 
 	icon_state = "ltaaap_minigun"
 
@@ -259,7 +264,9 @@ Currently only has the tank hardpoints
 	name = "Secondary Flamer Unit"
 	desc = "A secondary weapon for tanks that shoots flames"
 
+	maxhealth = 300
 	health = 300
+	point_cost = 100
 
 	icon_state = "flamer"
 
@@ -301,7 +308,9 @@ Currently only has the tank hardpoints
 	name = "TOW Launcher"
 	desc = "A secondary weapon for tanks that shoots rockets"
 
+	maxhealth = 500
 	health = 500
+	point_cost = 100
 
 	icon_state = "tow_launcher"
 
@@ -343,7 +352,9 @@ Currently only has the tank hardpoints
 	name = "M56 Cupola"
 	desc = "A secondary weapon for tanks that shoots bullets"
 
+	maxhealth = 350
 	health = 350
+	point_cost = 50
 
 	icon_state = "m56_cupola"
 
@@ -386,7 +397,9 @@ Currently only has the tank hardpoints
 	name = "Grenade Launcher"
 	desc = "A secondary weapon for tanks that shoots grenades"
 
+	maxhealth = 500
 	health = 500
+	point_cost = 25
 
 	icon_state = "glauncher"
 
@@ -436,7 +449,9 @@ Currently only has the tank hardpoints
 	name = "Smoke Launcher"
 	desc = "Launches smoke forward to obscure vision"
 
+	maxhealth = 300
 	health = 300
+	point_cost = 10
 
 	icon_state = "slauncher_0"
 
@@ -494,7 +509,9 @@ Currently only has the tank hardpoints
 	name = "Integrated Weapons Sensor Array"
 	desc = "Improves the accuracy and fire rate of all onboard weapons"
 
+	maxhealth = 250
 	health = 250
+	point_cost = 100
 
 	icon_state = "warray"
 
@@ -523,7 +540,9 @@ Currently only has the tank hardpoints
 	name = "Overdrive Enhancer"
 	desc = "Increases the movement speed of the vehicle it's atached to"
 
+	maxhealth = 250
 	health = 250
+	point_cost = 100
 
 	icon_state = "odrive_enhancer"
 
@@ -540,7 +559,10 @@ Currently only has the tank hardpoints
 	name = "Artillery Module"
 	desc = "Allows the gunner to look far into the distance."
 
+	maxhealth = 250
 	health = 250
+	point_cost = 100
+
 	is_activatable = 1
 	var/is_active = 0
 
@@ -607,7 +629,9 @@ Currently only has the tank hardpoints
 	name = "Ballistic Armor"
 	desc = "Protects the vehicle from high-penetration weapons"
 
+	maxhealth = 1000
 	health = 1000
+	point_cost = 100
 
 	icon_state = "ballistic_armor"
 
@@ -628,7 +652,9 @@ Currently only has the tank hardpoints
 	name = "Caustic Armor"
 	desc = "Protects vehicles from most types of acid"
 
+	maxhealth = 1000
 	health = 1000
+	point_cost = 100
 
 	icon_state = "caustic_armor"
 
@@ -647,7 +673,9 @@ Currently only has the tank hardpoints
 	name = "Concussive Armor"
 	desc = "Protects the vehicle from high-impact weapons"
 
+	maxhealth = 1000
 	health = 1000
+	point_cost = 100
 
 	icon_state = "concussive_armor"
 
@@ -666,7 +694,9 @@ Currently only has the tank hardpoints
 	name = "Paladin Armor"
 	desc = "Protects the vehicle from large incoming explosive projectiles"
 
+	maxhealth = 1000
 	health = 1000
+	point_cost = 100
 
 	icon_state = "paladin_armor"
 
@@ -685,8 +715,10 @@ Currently only has the tank hardpoints
 	name = "Snowplow"
 	desc = "Clears a path in the snow for friendlies"
 
+	maxhealth = 600
 	health = 600
 	is_activatable = 1
+	point_cost = 50
 
 	icon_state = "snowplow"
 
@@ -712,7 +744,9 @@ Currently only has the tank hardpoints
 	name = "Treads"
 	desc = "Integral to the movement of the vehicle"
 
+	maxhealth = 500
 	health = 500
+	point_cost = 25
 
 	icon_state = "treads"
 
@@ -740,6 +774,7 @@ Currently only has the tank hardpoints
 //Special ammo magazines for hardpoint modules. Some aren't here since you can use normal magazines on them
 /obj/item/ammo_magazine/tank
 	flags_magazine = 0 //No refilling
+	var/point_cost = 0
 
 /obj/item/ammo_magazine/tank/ltb_cannon
 	name = "LTB Cannon Magazine"
@@ -749,6 +784,7 @@ Currently only has the tank hardpoints
 	w_class = 15 //Heavy fucker
 	default_ammo = /datum/ammo/rocket/ltb
 	max_rounds = 4
+	point_cost = 50
 	gun_type = /obj/item/hardpoint/primary/cannon
 
 	update_icon()
@@ -762,6 +798,7 @@ Currently only has the tank hardpoints
 	icon_state = "painless"
 	default_ammo = /datum/ammo/bullet/minigun
 	max_rounds = 300
+	point_cost = 25
 	gun_type = /obj/item/hardpoint/primary/minigun
 
 
@@ -773,6 +810,7 @@ Currently only has the tank hardpoints
 	w_class = 12
 	default_ammo = /datum/ammo/flamethrower/tank_flamer
 	max_rounds = 120
+	point_cost = 50
 	gun_type = /obj/item/hardpoint/secondary/flamer
 
 
@@ -784,6 +822,7 @@ Currently only has the tank hardpoints
 	w_class = 10
 	default_ammo = /datum/ammo/rocket/ap //Fun fact, AP rockets seem to be a straight downgrade from normal rockets. Maybe I'm missing something...
 	max_rounds = 5
+	point_cost = 100
 	gun_type = /obj/item/hardpoint/secondary/towlauncher
 
 
@@ -795,6 +834,7 @@ Currently only has the tank hardpoints
 	w_class = 12
 	default_ammo = /datum/ammo/bullet/smartgun
 	max_rounds = 500
+	point_cost = 10
 	gun_type = /obj/item/hardpoint/secondary/m56cupola
 
 
@@ -806,6 +846,7 @@ Currently only has the tank hardpoints
 	w_class = 9
 	default_ammo = /datum/ammo/grenade_container
 	max_rounds = 10
+	point_cost = 25
 	gun_type = /obj/item/hardpoint/secondary/grenade_launcher
 
 	update_icon()
@@ -825,6 +866,7 @@ Currently only has the tank hardpoints
 	w_class = 12
 	default_ammo = /datum/ammo/grenade_container/smoke
 	max_rounds = 6
+	point_cost = 5
 	gun_type = /obj/item/hardpoint/support/smoke_launcher
 
 	update_icon()
