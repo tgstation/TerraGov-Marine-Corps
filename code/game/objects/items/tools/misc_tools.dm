@@ -16,31 +16,22 @@
 	var/mode = 0	//off or on.
 
 /obj/item/tool/hand_labeler/afterattack(atom/A, mob/user as mob, proximity)
-	if(!proximity) return
+	if(!proximity) 
+		return
 	if(!mode)	//if it's off, give up.
 		return
 	if(A == loc)	// if placing the labeller into something (e.g. backpack)
 		return		// don't set a label
-
-	if(!labels_left)
-		to_chat(user, "<span class='notice'>No labels left.</span>")
-		return
 	if(!label || !length(label))
 		to_chat(user, "<span class='notice'>No text set.</span>")
 		return
 	if(length(A.name) + length(label) > 64)
 		to_chat(user, "<span class='notice'>Label too big.</span>")
 		return
-	if(isliving(A))
-		to_chat(user, "<span class='notice'>You can't label living beings.</span>")
+	if(!labels_left)
+		to_chat(user, "<span class='notice'>You've run out of labelling paper, feed some paper into it.</span>")
 		return
-	if(istype(A, /obj/item/reagent_container/glass))
-		to_chat(user, "<span class='notice'>The label will not stick to [A]. Use a pen instead.</span>")
-		return
-	if(istype(A, /obj/item/tool/surgery))
-		to_chat(user, "<span class='notice'>That wouldn't be sanitary.</span>")
-		return
-	if(isturf(A))
+	if(isturf(A) || ismob(A))
 		to_chat(user, "<span class='notice'>The label won't stick to that.</span>")
 		return
 
@@ -65,6 +56,12 @@
 		to_chat(user, "<span class='notice'>You turn off \the [src].</span>")
 
 
+/obj/item/tool/hand_labeler/attackby(obj/item/I, mob/user, params)
+	. = ..()
+	if(istype(I, /obj/item/paper))
+		to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
+		cdel(I)
+		labels_left = min(labels_left+5, initial(labels_left))
 
 
 
