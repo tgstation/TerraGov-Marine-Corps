@@ -795,11 +795,9 @@ and you're good to go.
 			return
 
 		if(!config.allow_synthetic_gun_use)
-			if(ishuman(user))
-				var/mob/living/carbon/human/H = user
-				if(istype(H.species , /datum/species/synthetic))
-					to_chat(user, "<span class='warning'>Your program does not allow you to use firearms.</span>")
-					return
+			if(isSynth(user))
+				to_chat(user, "<span class='warning'>Your program does not allow you to use firearms.</span>")
+				return
 
 		if(flags_gun_features & GUN_TRIGGER_SAFETY)
 			to_chat(user, "<span class='warning'>The safety is on!</span>")
