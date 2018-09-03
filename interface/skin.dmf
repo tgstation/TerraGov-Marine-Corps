@@ -1,51 +1,54 @@
 macro "macro"
 	elem 
-		name = "TAB"
+		name = "Tab"
 		command = ".winset \"mainwindow.macro=hotkeymode hotkey_toggle.is-checked=true mapwindow.map.focus=true\""
 	elem 
-		name = "CENTER+REP"
+		name = "Center+REP"
 		command = ".center"
 	elem 
-		name = "NORTHEAST"
+		name = "Space"
+		command = "unique-action"
+	elem 
+		name = "Northeast"
 		command = ".northeast"
 	elem 
-		name = "SOUTHEAST"
+		name = "Southeast"
 		command = ".southeast"
 	elem 
-		name = "SOUTHWEST"
+		name = "Southwest"
 		command = ".southwest"
 	elem 
-		name = "NORTHWEST"
+		name = "Northwest"
 		command = ".northwest"
 	elem 
-		name = "CTRL+WEST"
+		name = "CTRL+West"
 		command = "westface"
 	elem 
-		name = "WEST+REP"
+		name = "West+REP"
 		command = ".west"
 	elem 
-		name = "CTRL+NORTH"
+		name = "CTRL+North"
 		command = "northface"
 	elem 
-		name = "NORTH+REP"
+		name = "North+REP"
 		command = ".north"
 	elem 
-		name = "CTRL+EAST"
+		name = "CTRL+East"
 		command = "eastface"
 	elem 
-		name = "EAST+REP"
+		name = "East+REP"
 		command = ".east"
 	elem 
-		name = "CTRL+SOUTH"
+		name = "CTRL+South"
 		command = "southface"
 	elem 
-		name = "SOUTH+REP"
+		name = "South+REP"
 		command = ".south"
 	elem 
-		name = "INSERT"
+		name = "Insert"
 		command = "a-intent right"
 	elem 
-		name = "DELETE"
+		name = "Delete"
 		command = "delete-key-pressed"
 	elem 
 		name = "CTRL+1"
@@ -68,6 +71,9 @@ macro "macro"
 	elem 
 		name = "CTRL+E"
 		command = "quick-equip"
+	elem 
+		name = "CTRL+O"
+		command = "ooc"
 	elem 
 		name = "CTRL+Q"
 		command = ".northwest"
@@ -97,22 +103,16 @@ macro "macro"
 		command = ".options"
 	elem 
 		name = "F2"
-		command = "ooc"
-	elem 
-		name = "F2+REP"
 		command = ".screenshot auto"
 	elem 
-		name = "SHIFT+F2+REP"
+		name = "SHIFT+F2"
 		command = ".screenshot"
 	elem 
 		name = "F3"
-		command = ".say"
-	elem 
-		name = "F4"
-		command = ".me"
+		command = "asay"
 	elem 
 		name = "F5"
-		command = "asay"
+		command = "aghost"
 	elem 
 		name = "F6"
 		command = "Player-Panel"
@@ -128,52 +128,55 @@ macro "macro"
 
 macro "hotkeymode"
 	elem 
-		name = "TAB"
+		name = "Tab"
 		command = ".winset \"mainwindow.macro=macro hotkey_toggle.is-checked=false input.focus=true\""
 	elem 
-		name = "CENTER+REP"
+		name = "Center+REP"
 		command = ".center"
 	elem 
-		name = "NORTHEAST"
+		name = "Space"
+		command = "unique-action"
+	elem 
+		name = "Northeast"
 		command = ".northeast"
 	elem 
-		name = "SOUTHEAST"
+		name = "Southeast"
 		command = ".southeast"
 	elem 
-		name = "SOUTHWEST"
+		name = "Southwest"
 		command = ".southwest"
 	elem 
-		name = "NORTHWEST"
+		name = "Northwest"
 		command = ".northwest"
 	elem 
-		name = "CTRL+WEST"
+		name = "CTRL+West"
 		command = "westface"
 	elem 
-		name = "WEST+REP"
+		name = "West+REP"
 		command = ".west"
 	elem 
-		name = "CTRL+NORTH"
+		name = "CTRL+North"
 		command = "northface"
 	elem 
-		name = "NORTH+REP"
+		name = "North+REP"
 		command = ".north"
 	elem 
-		name = "CTRL+EAST"
+		name = "CTRL+East"
 		command = "eastface"
 	elem 
-		name = "EAST+REP"
+		name = "East+REP"
 		command = ".east"
 	elem 
-		name = "CTRL+SOUTH"
+		name = "CTRL+South"
 		command = "southface"
 	elem 
-		name = "SOUTH+REP"
+		name = "South+REP"
 		command = ".south"
 	elem 
-		name = "INSERT"
+		name = "Insert"
 		command = "a-intent right"
 	elem 
-		name = "DELETE"
+		name = "Delete"
 		command = "delete-key-pressed"
 	elem 
 		name = "1"
@@ -223,6 +226,12 @@ macro "hotkeymode"
 	elem 
 		name = "CTRL+H"
 		command = "holster"
+	elem 
+		name = "M"
+		command = "me"
+	elem 
+		name = "O"
+		command = "ooc"
 	elem 
 		name = "Q"
 		command = ".northwest"
@@ -276,22 +285,16 @@ macro "hotkeymode"
 		command = ".options"
 	elem 
 		name = "F2"
-		command = "ooc"
-	elem 
-		name = "F2+REP"
 		command = ".screenshot auto"
 	elem 
-		name = "SHIFT+F2+REP"
+		name = "SHIFT+F2"
 		command = ".screenshot"
 	elem 
 		name = "F3"
-		command = ".say"
-	elem 
-		name = "F4"
-		command = ".me"
+		command = "asay"
 	elem 
 		name = "F5"
-		command = "asay"
+		command = "aghost"
 	elem 
 		name = "F6"
 		command = "Player-Panel"
@@ -343,6 +346,13 @@ menu "menu"
 		can-check = true
 		group = "size"
 		saved-params = "is-checked"
+	elem "icon96"
+		name = "&96x96 (3x)"
+		command = ".winset \"mapwindow.map.icon-size=96\""
+		category = "&Icons"
+		can-check = true
+		group = "size"
+		saved-params = "is-checked"
 	elem "icon64"
 		name = "&64x64 (2x)"
 		command = ".winset \"mapwindow.map.icon-size=64\""
@@ -350,23 +360,45 @@ menu "menu"
 		can-check = true
 		group = "size"
 		saved-params = "is-checked"
+	elem "icon48"
+		name = "&48x48 (1.5x)"
+		command = ".winset \"mapwindow.map.icon-size=48\""
+		category = "&Icons"
+		can-check = true
+		group = "size"
+		saved-params = "is-checked"
 	elem "icon32"
-		name = "&32x32"
+		name = "&32x32 (1x)"
 		command = ".winset \"mapwindow.map.icon-size=32\""
 		category = "&Icons"
 		can-check = true
 		group = "size"
 		saved-params = "is-checked"
 	elem 
-		name = ""
+		name = "Scaling"
 		command = ""
-		category = "&Icons"
 		saved-params = "is-checked"
-	elem "textmode"
-		name = "&Text"
-		command = ".winset \"menu.textmode.is-checked=true?mapwindow.map.text-mode=true:mapwindow.map.text-mode=false\""
-		category = "&Icons"
+	elem "NN"
+		name = "Nearest Neighbor"
+		command = ".winset\"mapwindow.map.zoom-mode=distort\""
+		category = "Scaling"
 		can-check = true
+		group = "scaling"
+		saved-params = "is-checked"
+	elem "PS"
+		name = "Point Sampling"
+		command = ".winset\"mapwindow.map.zoom-mode=normal\""
+		category = "Scaling"
+		is-checked = true
+		can-check = true
+		group = "scaling"
+		saved-params = "is-checked"
+	elem "BL"
+		name = "Bilinear"
+		command = ".winset\"mapwindow.map.zoom-mode=blur\""
+		category = "Scaling"
+		can-check = true
+		group = "scaling"
 		saved-params = "is-checked"
 	elem 
 		name = "&Help"
@@ -700,7 +732,6 @@ window "rpane"
 		size = 859x480
 		anchor1 = none
 		anchor2 = none
-		background-color = none
 		saved-params = "pos;size;is-minimized;is-maximized"
 		is-pane = true
 	elem "rpanewindow"
@@ -709,7 +740,6 @@ window "rpane"
 		size = 859x499
 		anchor1 = 0,0
 		anchor2 = 100,100
-		background-color = none
 		saved-params = "splitter"
 		right = "outputwindow"
 		is-vert = false
@@ -719,7 +749,6 @@ window "rpane"
 		size = 106x20
 		anchor1 = 67,0
 		anchor2 = 79,0
-		background-color = none
 		saved-params = "is-checked"
 		text = "Submit Bug"
 		command = "submit-bug"
@@ -741,7 +770,6 @@ window "rpane"
 		size = 106x20
 		anchor1 = 30,0
 		anchor2 = 42,0
-		background-color = none
 		saved-params = "is-checked"
 		text = "Rules"
 		command = "rules"
@@ -752,7 +780,6 @@ window "rpane"
 		size = 111x20
 		anchor1 = 18,0
 		anchor2 = 31,0
-		background-color = none
 		saved-params = "is-checked"
 		text = "Changelog"
 		command = "Changelog"
@@ -763,7 +790,6 @@ window "rpane"
 		size = 106x20
 		anchor1 = 55,0
 		anchor2 = 67,0
-		background-color = none
 		saved-params = "is-checked"
 		text = "Forum"
 		command = "forum"
@@ -774,7 +800,6 @@ window "rpane"
 		size = 106x20
 		anchor1 = 42,0
 		anchor2 = 55,0
-		background-color = none
 		saved-params = "is-checked"
 		text = "Wiki"
 		command = "wiki"
@@ -785,7 +810,6 @@ window "rpane"
 		size = 67x20
 		anchor1 = 0,0
 		anchor2 = 8,0
-		background-color = none
 		is-visible = false
 		saved-params = "is-checked"
 		text = "Text"
@@ -799,7 +823,6 @@ window "rpane"
 		size = 70x20
 		anchor1 = 8,0
 		anchor2 = 15,0
-		background-color = none
 		is-visible = false
 		saved-params = "is-checked"
 		text = "Info"

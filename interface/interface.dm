@@ -67,7 +67,10 @@ Hotkey-Mode: (hotkey-mode must be on)
 \tq = drop
 \te = equip
 \tr = throw
+\tm = me
 \tt = say
+\to = ooc
+\tspace = unique-action (commonly for pumping shotguns)
 \tx = swap-hand
 \tz = activate held object (or y)
 \t1 = help-intent
@@ -87,6 +90,8 @@ Any-Mode: (hotkey doesn't need to be on)
 \tCtrl+r = throw
 \tCtrl+x = swap-hand
 \tCtrl+z = activate held object (or Ctrl+y)
+\tCtrl+o = ooc
+\tspace = unique-action (commonly for pumping shotguns)
 \tCtrl+1 = help-intent
 \tCtrl+2 = disarm-intent
 \tCtrl+3 = grab-intent
@@ -101,6 +106,7 @@ Any-Mode: (hotkey doesn't need to be on)
 
 	var/admin = {"<font color='purple'>
 Admin:
+\tF3 = Asay (adminsay)
 \tF5 = Aghost (admin-ghost)
 \tF6 = player-panel
 \tF7 = admin-pm
