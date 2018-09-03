@@ -85,6 +85,10 @@
 	melee_weapons = SKILL_MELEE_DEFAULT
 	pistols = SKILL_PISTOLS_DEFAULT
 
+/datum/skills/civilian/survivor/clown
+	name = "Survivor Clown"
+	cqc = SKILL_CQC_MP
+	melee_weapons = SKILL_MELEE_SUPER
 
 
 /datum/skills/combat_engineer

@@ -412,6 +412,7 @@ datum/game_mode/proc/initialize_special_clamps()
 
 	if(original) cdel(original) //Just to be sure.
 
+
 //===================================================\\
 
 			//SURVIVOR INITIATLIZE\\
@@ -451,13 +452,13 @@ datum/game_mode/proc/initialize_special_clamps()
 	var/list/survivor_types
 	switch(map_tag)
 		if(MAP_PRISON_STATION)
-			survivor_types = list("Scientist","Doctor","Corporate","Security","Prisoner","Prisoner","Prisoner")
+			survivor_types = list("Scientist","Doctor","Corporate","Security","Prisoner","Prisoner","Prisoner","Clown")
 		if(MAP_LV_624,MAP_BIG_RED)
-			survivor_types = list("Assistant","Civilian","Scientist","Doctor","Chef","Botanist","Atmos Tech","Chaplain","Miner","Salesman","Colonial Marshall")
+			survivor_types = list("Assistant","Civilian","Scientist","Doctor","Chef","Botanist","Atmos Tech","Chaplain","Miner","Salesman","Colonial Marshall","Clown")
 		if(MAP_ICE_COLONY)
-			survivor_types = list("Scientist","Doctor","Salesman","Security")
+			survivor_types = list("Scientist","Doctor","Salesman","Security","Clown")
 		else
-			survivor_types = list("Assistant","Civilian","Scientist","Doctor","Chef","Botanist","Atmos Tech","Chaplain","Miner","Salesman","Colonial Marshall")
+			survivor_types = list("Assistant","Civilian","Scientist","Doctor","Chef","Botanist","Atmos Tech","Chaplain","Miner","Salesman","Colonial Marshall","Clown")
 
 	var/mob/living/carbon/human/H = ghost.current
 
@@ -577,6 +578,27 @@ datum/game_mode/proc/initialize_special_clamps()
 			H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(H), WEAR_L_HAND)
 			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/sec(H), WEAR_BACK)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor/marshall)
+		if("Clown")//HONK
+			id_assignment = "Clown"
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/clown(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/clown_shoes(H), WEAR_FEET)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/clown(H), WEAR_BACK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/clown_hat(H), WEAR_FACE)
+			H.equip_to_slot_or_del(new /obj/item/tool/stamp/clown(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/reagent_container/spray/waterflower(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), WEAR_IN_BACK) //The clown needs a number of bananas to be prepared for the xenomorphs
+			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/toy/bikehorn(H), WEAR_IN_BACK)
+			H.fully_replace_character_name(H.real_name, pick(clown_names))
+			var/datum/dna/gene/disability/clumsy/G = new /datum/dna/gene/disability/clumsy
+			G.activate(H)
+			ghost.set_cm_skills(/datum/skills/civilian/survivor/clown)
+
 
 	if(map_tag == MAP_ICE_COLONY)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), WEAR_HEAD)
