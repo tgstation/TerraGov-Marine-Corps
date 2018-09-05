@@ -459,6 +459,8 @@ its easier to just keep the beam vertical.
 			log_say(log_text)
 		if(LOG_WHISPER)
 			log_whisper(log_text)
+		if(LOG_HIVEMIND)
+			log_hivemind(log_text)
 		if(LOG_EMOTE)
 			log_emote(log_text)
 		if(LOG_DSAY)
