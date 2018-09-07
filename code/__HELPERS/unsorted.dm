@@ -755,21 +755,23 @@ proc/anim(turf/location,atom/target,a_icon,a_icon_state as text,flick_anim as te
 	return toReturn
 
 //Step-towards method of determining whether one atom can see another. Similar to viewers()
-/proc/can_see(var/atom/source, var/atom/target, var/length=5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
+/proc/can_see(atom/source, atom/target, length=5) // I couldnt be arsed to do actual raycasting :I This is horribly inaccurate.
 	var/turf/current = get_turf(source)
 	var/turf/target_turf = get_turf(target)
-	var/steps = 0
-
-	while(current != target_turf)
-		if(steps > length) return 0
-		if(current.opacity) return 0
-		for(var/atom/A in current)
-			if(A.opacity) return 0
-		current = get_step_towards(current, target_turf)
-		steps++
-
-	return 1
-
+	if(current == target_turf)
+		return TRUE
+	if(get_dist(current, target_turf) > length)
+		return FALSE
+	current = get_step_towards(source, target_turf)
+	while((current != target_turf))
+		if(current.opacity)
+			return FALSE
+		for(var/thing in current)
+			var/atom/A = thing
+			if(A.opacity)
+				return FALSE
+		current = get_step_towards(source, target_turf)
+	return TRUE
 /proc/is_blocked_turf(var/turf/T)
 	var/cant_pass = 0
 	if(T.density) cant_pass = 1
