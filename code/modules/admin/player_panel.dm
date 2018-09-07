@@ -437,11 +437,11 @@
 		dat += "Current Game Mode: <B>[ticker.mode.name]</B><BR>"
 		dat += "Round Duration: <B>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
 
-		if(check_rights(R_DEBUG))
+		if(check_rights(R_DEBUG, FALSE))
 			dat += "<br><A HREF='?_src_=vars;Vars=\ref[EvacuationAuthority]'>VV Evacuation Controller</A><br>"
 			dat += "<A HREF='?_src_=vars;Vars=\ref[shuttle_controller]'>VV Shuttle Controller</A><br><br>"
 
-		if(check_rights(R_MOD))
+		if(check_rights(R_MOD, FALSE))
 			dat += "<b>Evacuation:</b> "
 			switch(EvacuationAuthority.evac_status)
 				if(EVACUATION_STATUS_STANDING_BY) dat += 	"STANDING BY"
@@ -454,7 +454,7 @@
 			dat += "<a href='?src=\ref[src];evac_authority=toggle_evac'>Toggle Evacuation Permission (does not affect evac in progress)</a><br>"
 			if(check_rights(R_ADMIN)) dat += "<a href='?src=\ref[src];evac_authority=force_evac'>Force Evacuation Now</a><br>"
 
-		if(check_rights(R_ADMIN))
+		if(check_rights(R_ADMIN, FALSE))
 			dat += "<b>Self Destruct:</b> "
 			switch(EvacuationAuthority.dest_status)
 				if(NUKE_EXPLOSION_INACTIVE) dat += 		"INACTIVE"
