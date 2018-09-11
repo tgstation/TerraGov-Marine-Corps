@@ -108,7 +108,7 @@
 		return
 
 	if (busy)
-		to_chat(user, "\red \The [src] is busy. Please wait for completion of previous operation.")
+		to_chat(user, "<span class='warning'>\The [src] is busy. Please wait for completion of previous operation.</span>")
 		return
 
 	if(istype(O, /obj/item/tool/screwdriver))
@@ -132,7 +132,11 @@
 	//Resources are being loaded.
 	var/obj/item/eating = O
 	if(!eating.matter)
-		to_chat(user, "\The [eating] does not contain significant amounts of useful materials and cannot be accepted.")
+		to_chat(user, "<span class='warning'>\The [eating] does not contain significant amounts of useful materials and cannot be accepted.</span>")
+		return
+
+	if (eating.is_robot_module() || (eating.flags_item & (NODROP|DELONDROP)))
+		to_chat(user, "<span class='warning'>\The [eating] is stuck to you and cannot be placed into [src].</span>")
 		return
 
 	var/filltype = 0       // Used to determine message.
@@ -210,7 +214,7 @@
 		show_category = choice
 
 	if(href_list["make"] && autolathe_recipes)
-		
+
 		var/index = text2num(href_list["make"])
 		var/multiplier = text2num(href_list["multiplier"])
 		var/datum/autolathe/recipe/making
