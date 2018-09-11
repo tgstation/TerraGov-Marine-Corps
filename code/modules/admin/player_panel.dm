@@ -452,7 +452,8 @@
 			dat += "<a href='?src=\ref[src];evac_authority=init_evac'>Initiate Evacuation</a><br>"
 			dat += "<a href='?src=\ref[src];evac_authority=cancel_evac'>Cancel Evacuation</a><br>"
 			dat += "<a href='?src=\ref[src];evac_authority=toggle_evac'>Toggle Evacuation Permission (does not affect evac in progress)</a><br>"
-			if(check_rights(R_ADMIN)) dat += "<a href='?src=\ref[src];evac_authority=force_evac'>Force Evacuation Now</a><br>"
+			if(check_rights(R_ADMIN, FALSE))
+				dat += "<a href='?src=\ref[src];evac_authority=force_evac'>Force Evacuation Now</a><br>"
 
 		if(check_rights(R_ADMIN, FALSE))
 			dat += "<b>Self Destruct:</b> "
