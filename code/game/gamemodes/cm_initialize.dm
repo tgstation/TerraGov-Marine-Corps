@@ -912,6 +912,7 @@ datum/game_mode/proc/initialize_special_clamps()
 						/obj/item/ammo_magazine/rifle/ap = 0,
 						/obj/item/ammo_magazine/shotgun = round(scale * 10),
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
+						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 10),
 
 						/obj/item/weapon/combat_knife = round(scale * 30),
 						/obj/item/weapon/throwing_knife = round(scale * 10),
