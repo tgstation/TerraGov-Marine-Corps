@@ -271,9 +271,12 @@ var/datum/mob_hud/huds = list(
 		if(world.time - timeofdeath > revive_grace_period || undefibbable)
 			revive_enabled = 0
 		else
-			var/mob/dead/observer/G = get_ghost()
-			if((istype(G) && !client) || !suiciding || !head || !head.is_usable() || !heart || heart.is_broken() || !has_brain() || chestburst || (HUSK in mutations) || !mind)
+			if(suiciding || !head || !head.is_usable() || !heart || heart.is_broken() || !has_brain() || chestburst || (HUSK in mutations) || !mind)
 				revive_enabled = 0
+			else if(!client)
+				var/mob/dead/observer/G = get_ghost()
+				if(!istype(G))
+					revive_enabled = 0
 
 		var/holder2_set = 0
 		if(status_flags & XENO_HOST)
