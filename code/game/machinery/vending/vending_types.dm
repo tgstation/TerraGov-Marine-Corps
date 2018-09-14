@@ -180,6 +180,7 @@
 					/obj/item/reagent_container/hypospray/autoinjector/dexP = 5,
 					/obj/item/reagent_container/hypospray/autoinjector/chloralhydrate =3,
 					/obj/item/reagent_container/hypospray/autoinjector/Inaprovaline = 5,
+					/obj/item/reagent_container/hypospray/autoinjector/hypervene = 5,
 					/obj/item/reagent_container/hypospray/tricordrazine = 2,
 					/obj/item/reagent_container/syringe = 20,
 					/obj/item/reagent_container/glass/bottle/antitoxin = 4,

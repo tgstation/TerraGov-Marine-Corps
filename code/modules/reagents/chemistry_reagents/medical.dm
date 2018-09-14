@@ -162,10 +162,10 @@
 
 /datum/reagent/sterilizine/reaction_obj(var/obj/O, var/volume)
 	O.germ_level -= min(volume*20, O.germ_level)
-		
+
 /datum/reagent/sterilizine/reaction_turf(var/turf/T, var/volume)
 	T.germ_level -= min(volume*20, T.germ_level)
-		
+
 /datum/reagent/sterilizine/on_mob_life(mob/living/M)
 	M.adjustToxLoss(2*REM) // >Drinking bleach
 
@@ -990,3 +990,49 @@
 	on_mob_life(mob/living/carbon/human/M)
 		M.regenZ = 0
 		. = ..()
+
+/datum/reagent/hypervene
+	name = "Hypervene"
+	id = "hypervene"
+	description = "Quickly purges the body of toxin damage, radiation and all other chemicals. Causes significant pain."
+	reagent_state = LIQUID
+	color = "#19C832"
+	overdose = REAGENTS_OVERDOSE * 0.5
+	overdose_critical = REAGENTS_OVERDOSE_CRITICAL * 0.5
+	custom_metabolism = REAGENTS_METABOLISM * 2
+	scannable = TRUE
+
+	/datum/reagent/hypervene/on_mob_life(mob/living/M, alien)
+		. = ..()
+		if(!.)
+			return
+		for(var/datum/reagent/R in M.reagents.reagent_list)
+			if(R != src)
+				M.reagents.remove_reagent(R.id,8 * REM)
+		M.reagent_shock_modifier -= PAIN_REDUCTION_HEAVY //Significant pain while metabolized.
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(prob(5)) //causes vomiting
+				H.vomit()
+		//M.adjustToxLoss(-4 * REM)
+		//M.radiation = max(M.radiation-8*REM,0)
+
+	/datum/reagent/hypervene/on_overdose(mob/living/M, alien)
+		if(alien == IS_YAUTJA) return
+		M.apply_damages(1, 1) //Starts detoxing, hard
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(prob(10)) //heavy vomiting
+				H.vomit()
+		if(ishuman(M))
+			M.reagent_shock_modifier -= PAIN_REDUCTION_VERY_HEAVY * 1.25//Massive pain.
+
+	/datum/reagent/hypervene/on_overdose_critical(mob/living/M, alien)
+		if(alien == IS_YAUTJA) return
+		M.apply_damages(3, 3) //Starts detoxing, hard
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(prob(20)) //violent vomiting
+				H.vomit()
+		if(ishuman(M))
+			M.reagent_shock_modifier -= PAIN_REDUCTION_FULL //Unlimited agony.

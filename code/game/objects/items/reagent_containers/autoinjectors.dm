@@ -8,6 +8,7 @@
 	icon_state = "autoinjector"
 	item_state = "hypo"
 	amount_per_transfer_from_this = 15
+	w_class = 1.0
 	volume = 15
 	skilllock = 0
 
@@ -40,10 +41,10 @@
 	desc = "An autoinjector loaded with 15 units of Tricordrazine, a weak general use medicine for treating damage."
 	icon_state = "tricord"
 
-	New()
-		..()
-		reagents.add_reagent("tricordrazine", 15)
-		update_icon()
+/obj/item/reagent_container/hypospray/autoinjector/tricord/New()
+	..()
+	reagents.add_reagent("tricordrazine", 15)
+	update_icon()
 
 /obj/item/reagent_container/hypospray/autoinjector/quickclot
 	name = "\improper Quick Clot autoinjector"
@@ -52,10 +53,10 @@
 	volume = 10
 	icon_state = "quickclot"
 
-	New()
-		..()
-		reagents.add_reagent("quickclot", 10)
-		update_icon()
+/obj/item/reagent_container/hypospray/autoinjector/quickclot/New()
+	..()
+	reagents.add_reagent("quickclot", 10)
+	update_icon()
 
 /obj/item/reagent_container/hypospray/autoinjector/dexP
 	name = "\improper Dexalin Plus autoinjector"
@@ -64,10 +65,10 @@
 	volume = 1
 	icon_state = "dexalin"
 
-	New()
-		..()
-		reagents.add_reagent("dexalinp", 1)
-		update_icon()
+/obj/item/reagent_container/hypospray/autoinjector/dexP/New()
+	..()
+	reagents.add_reagent("dexalinp", 1)
+	update_icon()
 
 /obj/item/reagent_container/hypospray/autoinjector/chloralhydrate
 	name = "anesthetic autoinjector"
@@ -76,31 +77,31 @@
 	volume = 10
 	icon_state = "anesthetic"
 
-	New()
-		..()
-		reagents.add_reagent("chloralhydrate", 1)
-		reagents.add_reagent("stoxin", 9)
-		update_icon()
+/obj/item/reagent_container/hypospray/autoinjector/chloralhydrate/New()
+	..()
+	reagents.add_reagent("chloralhydrate", 1)
+	reagents.add_reagent("stoxin", 9)
+	update_icon()
 
 /obj/item/reagent_container/hypospray/autoinjector/Dylovene
 	name = "\improper Dylovene (anti-tox) autoinjector"
 	desc = "An auto-injector loaded with 15 units of Dylovene, an anti-toxin agent useful in cases of poisoning, overdoses and toxin build-up."
 	icon_state = "dylovene"
 
-	New()
-		..()
-		reagents.add_reagent("anti_toxin", 15)
-		update_icon()
+/obj/item/reagent_container/hypospray/autoinjector/Dylovene/New()
+	..()
+	reagents.add_reagent("anti_toxin", 15)
+	update_icon()
 
 /obj/item/reagent_container/hypospray/autoinjector/Tramadol
 	name = "\improper Tramadol autoinjector"
 	desc = "An auto-injector loaded with 15 units of Tramadol, a weak but effective painkiller for normal wounds."
 	icon_state = "tramadol"
 
-	New()
-		..()
-		reagents.add_reagent("tramadol", 15)
-		update_icon()
+/obj/item/reagent_container/hypospray/autoinjector/Tramadol/New()
+	..()
+	reagents.add_reagent("tramadol", 15)
+	update_icon()
 
 /obj/item/reagent_container/hypospray/autoinjector/Oxycodone
 	name = "\improper Oxycodone (EXTREME PAINKILLER) autoinjector"
@@ -109,37 +110,47 @@
 	volume = 10
 	icon_state = "oxycodone"
 
-	New()
-		..()
-		reagents.add_reagent("oxycodone", 10)
-		update_icon()
+/obj/item/reagent_container/hypospray/autoinjector/Oxycodone/New()
+	..()
+	reagents.add_reagent("oxycodone", 10)
+	update_icon()
 
 /obj/item/reagent_container/hypospray/autoinjector/Kelo
 	name = "\improper Kelotane autoinjector"
 	desc = "An auto-injector loaded with 15 units of Kelotane, a common burn medicine."
 	icon_state = "kelotine"
 
-	New()
-		..()
-		reagents.add_reagent("kelotane", 15)
-		update_icon()
+/obj/item/reagent_container/hypospray/autoinjector/Kelo/New()
+	..()
+	reagents.add_reagent("kelotane", 15)
+	update_icon()
 
 /obj/item/reagent_container/hypospray/autoinjector/Bicard
 	name = "\improper Bicaridine autoinjector"
 	desc = "An auto-injector loaded with 15 units of Bicaridine, a common brute and circulatory damage medicine."
 	icon_state = "bicaridine"
 
-	New()
-		..()
-		reagents.add_reagent("bicaridine", 15)
-		update_icon()
+/obj/item/reagent_container/hypospray/autoinjector/Bicard/New()
+	..()
+	reagents.add_reagent("bicaridine", 15)
+	update_icon()
 
 /obj/item/reagent_container/hypospray/autoinjector/Inaprovaline
 	name = "\improper Inaprovaline autoinjector"
 	desc = "An auto-injector loaded with 15 units of Inaprovaline, an emergency stabilization medicine for patients in critical condition."
 	icon_state = "clonefix" //TEMP
 
-	New()
-		..()
-		reagents.add_reagent("inaprovaline", 15)
-		update_icon()
+/obj/item/reagent_container/hypospray/autoinjector/Inaprovaline/New()
+	..()
+	reagents.add_reagent("inaprovaline", 15)
+	update_icon()
+
+/obj/item/reagent_container/hypospray/autoinjector/hypervene
+	name = "\improper Hypervene autoinjector"
+	desc = "An auto-injector loaded with 3 units of Hypervene, an emergency medicine that rapidly purges chems. Causes pain and vomitting."
+	icon_state = "anesthetic" //TEMP
+
+/obj/item/reagent_container/hypospray/autoinjector/hypervene/New()
+	..()
+	reagents.add_reagent("hypervene", 3)
+	update_icon()

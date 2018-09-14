@@ -217,3 +217,10 @@
 	result = "paroxetine"
 	required_reagents = list("mindbreaker" = 1, "oxygen" = 1, "inaprovaline" = 1)
 	result_amount = 3
+
+/datum/chemical_reaction/hypervene //New purge chem.
+	name = "Hypervene"
+	id = "hypervene"
+	result = "hypervene"
+	required_reagents = list("arithrazine" = 1, "dylovene" = 1, "ethylredoxrazine" = 1)
+	result_amount = 3
