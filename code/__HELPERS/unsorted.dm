@@ -770,7 +770,7 @@ proc/anim(turf/location,atom/target,a_icon,a_icon_state as text,flick_anim as te
 			var/atom/A = thing
 			if(A.opacity)
 				return FALSE
-		current = get_step_towards(source, target_turf)
+		current = get_step_towards(current, target_turf)
 	return TRUE
 /proc/is_blocked_turf(var/turf/T)
 	var/cant_pass = 0
