@@ -140,7 +140,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "rack_parts"
 	flags_atom = FPRINT|CONDUCT
-	matter = list("metal" = 18750) //A big storage shelf, takes five sheets to build
+	matter = list("metal" = 3750)
 
 /obj/item/frame/rack/attackby(obj/item/W as obj, mob/user as mob)
 	..()
