@@ -1043,9 +1043,10 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 
 /obj/item/attachable/bipod/activate_attachment(obj/item/weapon/gun/G,mob/living/user, turn_off)
 	if(turn_off)
-		bipod_deployed = FALSE
-		G.aim_slowdown -= SLOWDOWN_ADS_SCOPE
-		G.wield_delay -= WIELD_DELAY_FAST
+		if(bipod_deployed)
+			bipod_deployed = FALSE
+			G.aim_slowdown -= SLOWDOWN_ADS_SCOPE
+			G.wield_delay -= WIELD_DELAY_FAST
 	else
 		if(bipod_deployed)
 			to_chat(user, "<span class='notice'>You retract [src].</span>")
