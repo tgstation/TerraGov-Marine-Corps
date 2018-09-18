@@ -1247,7 +1247,7 @@
 			log_admin("[key_name(usr)] changed [H] into a new Yautja, [M.real_name].")
 			message_admins("[key_name(usr)] made [H] into a Yautja, [M.real_name].")
 			if(H.mind)
-				H.mind.transfer_to(M)
+				H.mind.transfer_to(M, TRUE)
 				if(M.mind.cm_skills)
 					cdel(M.mind.cm_skills)
 				M.mind.cm_skills = null //no skill restriction
@@ -1259,7 +1259,7 @@
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), WEAR_JACKET)
 				H.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), WEAR_L_HAND)
 
-			if(H) cdel(H) //May have to clear up round-end vars and such....
+			cdel(H) //May have to clear up round-end vars and such....
 
 		return
 
