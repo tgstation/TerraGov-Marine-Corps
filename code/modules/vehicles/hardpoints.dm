@@ -796,6 +796,7 @@ Currently only has the tank hardpoints
 	desc = "A primary armament minigun magazine"
 	caliber = "7.62x51mm" //Correlates to miniguns
 	icon_state = "painless"
+	w_class = 10
 	default_ammo = /datum/ammo/bullet/minigun
 	max_rounds = 300
 	point_cost = 25

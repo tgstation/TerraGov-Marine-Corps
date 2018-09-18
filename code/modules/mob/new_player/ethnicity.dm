@@ -84,7 +84,7 @@
 	ethnic_category = "African"
 
 /datum/ethnicity/costalafrican
-	name = "Costal African"
+	name = "Coastal African"
 	icon_name = "costalafrican"
 	ethnic_category = "African"
 
