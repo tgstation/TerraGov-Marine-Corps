@@ -43,8 +43,8 @@
 	if(src.dna)
 		M.dna = src.dna.Clone()
 
-	if(mind)
-		mind.transfer_to(M)
+	if(mind && isliving(M))
+		mind.transfer_to(M, TRUE) // second argument to force key move to new mob)
 	else
 		M.key = key
 		if(M.client) M.client.change_view(world.view)
