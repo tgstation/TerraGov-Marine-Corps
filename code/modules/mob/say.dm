@@ -14,19 +14,11 @@
 		return
 
 	if(message == "*dance")
-		set_typing_indicator(0)
+		set_typing_indicator(FALSE)
 		usr.say(message)
 		return
-
-
-
-	set_typing_indicator(0)
+	set_typing_indicator(FALSE)
 	usr.say(message)
-	usr.talked = 1
-	spawn (10)
-		if (usr.talked ==2)
-			return
-		usr.talked = 0
 
 
 /mob/verb/me_verb(message as text)
@@ -36,37 +28,13 @@
 	if(say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "\red Speech is currently admin-disabled.")
 		return
-
-	if(usr.talked == 2)
-		to_chat(usr, "\red Your spam has been consumed for it's nutritional value.")
-		return
-	if((usr.talked == 1) && (usr.chatWarn >= 5))
-		usr.talked = 2
-		to_chat(usr, "\red You have been flagged for spam.  You may not speak for at least [usr.chatWarn] seconds (if you spammed alot this might break and never unmute you).  This number will increase each time you are flagged for spamming")
-		if(usr.chatWarn >= 5)
-			message_admins("[key_name(usr, usr.client)] is spamming like crazy. Their current chatwarn is [usr.chatWarn]. ")
-		spawn(usr.chatWarn*10)
-			usr.talked = 0
-			to_chat(usr, "\blue You may now speak again.")
-			usr.chatWarn++
-		return
-	else if(usr.talked == 1)
-		to_chat(usr, "\blue You just said something, take a breath.")
-		usr.chatWarn++
-		return
-
 	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
 
-	set_typing_indicator(0)
+	set_typing_indicator(FALSE)
 	if(use_me)
 		usr.emote("me",usr.emote_type,message, TRUE)
 	else
 		usr.emote(message, 1, null, TRUE)
-	usr.talked = 1
-	spawn (10)
-		if (usr.talked ==2)
-			return
-		usr.talked = 0
 
 /mob/proc/say_dead(var/message)
 	var/name = src.real_name
@@ -74,26 +42,6 @@
 	if(say_disabled)	//This is here to try to identify lag problems
 		to_chat(usr, "\red Speech is currently admin-disabled.")
 		return
-	if(usr.talked == 2)
-		to_chat(usr, "\red Your spam has been consumed for it's nutritional value.")
-		return
-	if((usr.talked == 1) && (usr.chatWarn >= 5))
-		usr.talked = 2
-		to_chat(usr, "\red You have been flagged for spam.  You may not speak for at least [usr.chatWarn] seconds (if you spammed alot this might break and never unmute you).  This number will increase each time you are flagged for spamming")
-		if(usr.chatWarn >10)
-			message_admins("[key_name(usr, usr.client)] is spamming like a dirty bitch, their current chatwarn is [usr.chatWarn]. ")
-		spawn(usr.chatWarn*10)
-			usr.talked = 0
-			to_chat(usr, "\blue You may now speak again.")
-			usr.chatWarn++
-		return
-	else if(usr.talked == 1)
-		to_chat(usr, "\blue You just said something, take a breath.")
-		usr.chatWarn++
-		return
-
-
-
 	if(!src.client) //Somehow
 		return
 
@@ -117,21 +65,16 @@
 	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span> says, <span class='message'>\"[message]\"</span></span>"
 
 	for(var/mob/M in player_list)
+	
 		if(istype(M, /mob/new_player))
 			continue
+			
 		if(M.client && M.stat == DEAD && (M.client.prefs.toggles_chat & CHAT_DEAD))
 			to_chat(M, rendered)
 			continue
 
-		if(M.client && M.client.holder && !is_mentor(M.client) && (M.client.prefs.toggles_chat & CHAT_DEAD) ) // Show the message to admins/mods with deadchat toggled on
-			to_chat(M, rendered	)
-
-	usr.talked = 1
-	spawn (5)
-		if (usr.talked ==2)
-			return
-		usr.talked = 0
-
+		if(M.client && M.client.holder && !is_mentor(M.client) && (M.client.prefs.toggles_chat & CHAT_DEAD)) // Show the message to admins/mods with deadchat toggled on
+			to_chat(M, rendered)
 /mob/proc/say_understands(var/mob/other,var/datum/language/speaking = null)
 
 	if (src.stat == 2)		//Dead
