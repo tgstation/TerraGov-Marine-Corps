@@ -123,7 +123,7 @@ REAGENT SCANNER
 	var/TX = M.getToxLoss() > 50 	? 	"<b>[M.getToxLoss()]</b>" 		: M.getToxLoss()
 	var/BU = M.getFireLoss() > 50 	? 	"<b>[M.getFireLoss()]</b>" 		: M.getFireLoss()
 	var/BR = M.getBruteLoss() > 50 	? 	"<b>[M.getBruteLoss()]</b>" 	: M.getBruteLoss()
-	
+
 	// Show overall
 	if(M.status_flags & FAKEDEATH)
 		OX = fake_oxy > 50 			? 	"<b>[fake_oxy]</b>" 			: fake_oxy
@@ -226,19 +226,33 @@ REAGENT SCANNER
 		else if(!M.client)
 			dat += "<span class='warning'>\tSSD detected.</span>\n" // SSD
 
-	var/internal_bleed_detected = 0
-
+	var/internal_bleed_detected = FALSE
+	var/fracture_detected = FALSE
+	var/unknown_body = 0
+	//var/infected = FALSE
+	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
+		var/core_fracture = FALSE
 		for(var/X in H.limbs)
 			var/datum/limb/e = X
 			var/limb = e.display_name
 			var/can_amputate = ""
-			/*if(e.status & LIMB_BROKEN)
-				if(((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg") || (e.name == "l_hand") || (e.name == "r_hand") || (e.name == "l_foot") || (e.name == "r_foot")) && (!(e.status & LIMB_SPLINTED)))
-					dat += "\t<span class='scanner'> *Unsecured fracture in subject's <b>[limb]</b>. Splinting recommended.</span>\n"*/
+			for(var/datum/wound/W in e.wounds)
+				if(W.internal)
+					internal_bleed_detected = TRUE
+					break
 			if((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg") || (e.name == "l_hand") || (e.name == "r_hand") || (e.name == "l_foot") || (e.name == "r_foot"))
 				can_amputate = "or amputation"
+				if((e.status & LIMB_BROKEN) && !(e.status & LIMB_SPLINTED))
+					if(!fracture_detected)
+						fracture_detected = TRUE
+					dat += "\t<span class='scanner'> *<b>Bone Fracture:</b> Unsecured fracture in subject's <b>[limb]</b>. Splinting recommended.</span>\n"
+			else
+				if((e.status & LIMB_BROKEN) && !(e.status & LIMB_SPLINTED))
+					if(!fracture_detected)
+						fracture_detected = TRUE
+					core_fracture = TRUE
 			if(e.germ_level >= INFECTION_LEVEL_THREE)
 				dat += "\t<span class='scanner'> *Subject's <b>[limb]</b> is in the last stage of infection. < 30u of antibiotics [can_amputate] recommended.</span>\n"
 				infection_present = 25
@@ -247,16 +261,21 @@ REAGENT SCANNER
 				infection_present = 5
 			if(e.has_infected_wound())
 				dat += "\t<span class='scanner'> *Infected wound detected in subject's <b>[limb]</b>. Disinfection recommended.</span>\n"
+			if (e.implants.len)
+				for(var/I in e.implants)
+					if(!is_type_in_list(I,known_implants))
+						unknown_body++
+			if(e.hidden)
+				unknown_body++
+			if(e.body_part == UPPER_TORSO) //embryo in chest?
+				if(locate(/obj/item/alien_embryo) in H)
+					unknown_body++
 
-		var/core_fracture = 0
-		for(var/X in H.limbs)
-			var/datum/limb/e = X
-			for(var/datum/wound/W in e.wounds) if(W.internal)
-				internal_bleed_detected = 1
-				break
-			if(e.status & LIMB_BROKEN)
-				if(!((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg") || (e.name == "l_hand") || (e.name == "r_hand") || (e.name == "l_foot") || (e.name == "r_foot")))
-					core_fracture = 1
+		if(unknown_body)
+			if(unknown_body > 1)
+				dat += "\t<span class='scanner'> *<b>Foreign objects</b> detected in body. Advanced scanner required for location.</span>\n"
+			else
+				dat += "\t<span class='scanner'> *<b>Foreign object</b> detected in body. Advanced scanner required for location.</span>\n"
 		if(core_fracture)
 			dat += "\t<span class='scanner'> *<b>Bone fractures</b> detected. Advanced scanner required for location.</span>\n"
 		if(internal_bleed_detected)
@@ -335,7 +354,7 @@ REAGENT SCANNER
 						death_message = "<b>URGENT: Brain death occurring soon.</b> Reduce total injury value to sub-200 and administer defibrillator to unarmoured chest to revive."
 					else //Freshly dead.
 						death_message = "Brain death will occur if patient is left untreated. Reduce total injury value to sub-200 and administer defibrillator to unarmoured chest to revive."
-				else //No soul? Change the death message.	
+				else //No soul? Change the death message.
 					death_message = "No soul detected. Cannot revive."
 				advice += "<span class='scanner'><b>Patient Dead:</b> [death_message]</span>\n"
 			if(M.on_fire)
@@ -358,8 +377,17 @@ REAGENT SCANNER
 				if(reagents_in_body["hyronalin"] < 3)
 					hyronalin = "hyronalin"
 				advice += "<span class='scanner'><b>Radiation:</b> Administer one dose of: [arithrazine] | [hyronalin]</span>\n"
-			if(internal_bleed_detected && reagents_in_body["quickclot"] < 5)
-				advice += "<span class='scanner'><b>Internal Bleeding:</b> Administer one dose of quickclot.</span>\n"
+			if(unknown_body)
+				advice += "<span class='scanner'><b>Shrapnel/Embedded Object(s):</b> Seek surgical remedy to remove embedded object(s).</span>\n"
+			//if(infected)
+			//	advice += "<span class='scanner'><b>Larval Infection:</b> !!URGENT: Place patient in cryobag and seek surgical remedy immediately!!</span>\n"
+			if(fracture_detected)
+				advice += "<span class='scanner'><b>Unsecured Fracture:</b> Administer splints to specified areas.</span>\n"
+			if(internal_bleed_detected)
+				var/internal_bleed_advice = "Administer one dose of quickclot then seek surgical remedy."
+				if(reagents_in_body["quickclot"] > 4)
+					internal_bleed_advice = "Quickclot has been administered to patient. Seek surgical remedy."
+				advice += "<span class='scanner'><b>Internal Bleeding:</b> [internal_bleed_advice]</span>\n"
 			if(H.getToxLoss() > 10)
 				var/dylovene = ""
 				//var/hypervene = ""
@@ -405,7 +433,7 @@ REAGENT SCANNER
 				if(reagents_in_body["tricordrazine"] < 5)
 					tricordrazine = "tricordrazine"
 				advice += "<span class='scanner'><b>Burn Damage:</b> Administer burn kit to affected areas and one dose of: [kelotane] | [dermaline] | [tricordrazine].</span>\n"
-			if(H.getBruteLoss(1) > 10) 
+			if(H.getBruteLoss(1) > 10)
 				var/bicaridine = ""
 				if (reagents_in_body["bicaridine"] < 5)
 					bicaridine = "bicaridine"
