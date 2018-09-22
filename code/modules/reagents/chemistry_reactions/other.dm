@@ -216,7 +216,8 @@
 		for(var/turf/T in range(radius,location))
 			if(T.density) continue
 			if(istype(T,/turf/open/space)) continue
-			if(locate(/obj/flamer_fire) in T) continue //No stacking
+			for(var/obj/flamer_fire/F in T) // No stacking flames!
+				cdel(F)
 			new /obj/flamer_fire(T, 5 + rand(0,11))
 
 		holder.del_reagent("napalm")

@@ -385,8 +385,9 @@ var/list/ob_type_fuel_requirements
 /obj/structure/ob_ammo/warhead/incendiary/warhead_impact(turf/target, inaccuracy_amt = 0)
 	var/range_num = max(8 - inaccuracy_amt*2, 3)
 	for(var/turf/TU in range(range_num,target))
-		if(!locate(/obj/flamer_fire) in TU)
-			new/obj/flamer_fire(TU, 10, 50) //super hot flames
+		for(var/obj/flamer_fire/F in TU) // No stacking flames!
+			cdel(F)
+		new/obj/flamer_fire(TU, 10, 50) //super hot flames
 
 
 /obj/structure/ob_ammo/warhead/cluster

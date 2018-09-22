@@ -149,10 +149,11 @@
 /mob/living/carbon/Xenomorph/Ravager/ravenger/proc/flame_turf(turf/T)
 	if(!istype(T))
 		return
-	if(!locate(/obj/flamer_fire) in T) // No stacking flames!
-		new/obj/flamer_fire(T)
-	else
-		return
+
+	for(var/obj/flamer_fire/F in T) // No stacking flames!
+		cdel(F)
+
+	new/obj/flamer_fire(T)
 
 	for(var/mob/living/carbon/M in T) //Deal bonus damage if someone's caught directly in initial stream
 		if(M.stat == DEAD)
