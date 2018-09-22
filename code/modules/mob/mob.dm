@@ -183,6 +183,9 @@
 
 //The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
 var/list/slot_equipment_priority = list( \
+		WEAR_IN_HOLSTER,\
+		WEAR_IN_J_HOLSTER,\
+		WEAR_IN_B_HOLSTER,\
 		WEAR_BACK,\
 		WEAR_ID,\
 		WEAR_BODY,\
