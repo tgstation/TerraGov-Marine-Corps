@@ -172,6 +172,26 @@ proc/flame_radius(radius = 1, turf/T) //~Art updated fire.
 		smoke.start()
 		cdel(src)
 
+/obj/item/explosive/grenade/cloakbomb
+	name = "\improper M40-2 SCDP smoke grenade"
+	desc = "A sophisticated version of the M40 HSDP with an improved smoke screen payload, currently being field-tested in the USCM. It's set to detonate in 2 seconds."
+	icon_state = "grenade_cloak"
+	det_time = 20
+	item_state = "grenade_cloak"
+	underslug_launchable = TRUE
+	var/datum/effect_system/smoke_spread/tactical/smoke
+
+	New()
+		..()
+		smoke = new /datum/effect_system/smoke_spread/tactical
+		smoke.attach(src)
+
+	prime()
+		playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
+		smoke.set_up(3, 0, usr.loc, null, 7)
+		smoke.start()
+		cdel(src)
+
 /obj/item/explosive/grenade/phosphorus
 	name = "\improper M40 HPDP grenade"
 	desc = "The M40 HPDP is a small, but powerful phosphorus grenade. It is set to detonate in 2 seconds."

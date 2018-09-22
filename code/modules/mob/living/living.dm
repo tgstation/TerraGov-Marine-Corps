@@ -1,3 +1,8 @@
+/mob/living/Life()
+	. = ..()
+
+	if(smokecloaked)
+		update_cloak()
 
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
@@ -395,4 +400,39 @@
 			clear_fullscreen("flash", 20)
 		return 1
 
+/mob/living/proc/smokecloak_on()
 
+	if(smokecloaked)
+		return
+
+	alpha = 5 // bah, let's make it better, it's a disposable device anyway
+
+	if(!isXeno(src)||!isanimal(src))
+		var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
+		SA.remove_from_hud(src)
+		var/datum/mob_hud/xeno_infection/XI = huds[MOB_HUD_XENO_INFECTION]
+		XI.remove_from_hud(src)
+
+	smokecloaked = TRUE
+
+/mob/living/proc/smokecloak_off()
+
+	if(!smokecloaked)
+		return
+
+	alpha = initial(alpha)
+
+	if(!isXeno(src)|| !isanimal(src))
+		var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
+		SA.add_to_hud(src)
+		var/datum/mob_hud/xeno_infection/XI = huds[MOB_HUD_XENO_INFECTION]
+		XI.add_to_hud(src)
+
+	smokecloaked = FALSE
+
+/mob/living/proc/update_cloak()
+	var/obj/effect/particle_effect/smoke/tactical/S = locate() in src.loc
+	if(S)
+		return
+	else
+		smokecloak_off()
