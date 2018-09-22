@@ -5,10 +5,9 @@
 
 /obj/item/device/flashlight/combat
 	name = "combat flashlight"
-	desc = "A Flashlight designed to be held in the hand, or attached to a rifle"
-	icon_state = "flashlight"
-	item_state = "flashlight"
-	brightness_on = 5 //Pretty luminous, but still a flashlight that fits in a pocket
+	desc = "A robust flashlight designed to be held in the hand, or attached to a rifle"
+	force = 10 //This is otherwise no different from a normal flashlight minus the flavour.
+	throwforce = 12 //"combat" flashlight
 
 //MARINE SNIPER TARPS
 

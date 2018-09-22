@@ -7,13 +7,11 @@
 	w_class = 2
 	flags_atom = CONDUCT
 	flags_equip_slot = SLOT_WAIST
-
 	matter = list("metal" = 50,"glass" = 20)
-
 	actions_types = list(/datum/action/item_action)
-	var/on = 0
+	var/on = FALSE
 	var/brightness_on = 5 //luminosity when on
-	var/raillight_compatible = 1 //Can this be turned into a rail light ?
+	var/raillight_compatible = TRUE //Can this be turned into a rail light ?
 
 /obj/item/device/flashlight/initialize()
 	..()
@@ -147,7 +145,7 @@
 	flags_atom = CONDUCT
 	brightness_on = 2
 	w_class = 1
-	raillight_compatible = 0
+	raillight_compatible = FALSE
 
 /obj/item/device/flashlight/drone
 	name = "low-power flashlight"
@@ -156,7 +154,7 @@
 	item_state = ""
 	brightness_on = 2
 	w_class = 1
-	raillight_compatible = 0
+	raillight_compatible = FALSE
 
 //The desk lamps are a bit special
 /obj/item/device/flashlight/lamp
@@ -167,7 +165,7 @@
 	brightness_on = 5
 	w_class = 4
 	on = 1
-	raillight_compatible = 0
+	raillight_compatible = FALSE
 
 //Menorah!
 /obj/item/device/flashlight/lamp/menorah
@@ -177,7 +175,7 @@
 	item_state = "menorah"
 	brightness_on = 2
 	w_class = 4
-	on = 1
+	on = TRUE
 
 //Green-shaded desk lamp
 /obj/item/device/flashlight/lamp/green
@@ -208,7 +206,7 @@
 	icon_state = "flare"
 	item_state = "flare"
 	actions = list()	//just pull it manually, neckbeard.
-	raillight_compatible = 0
+	raillight_compatible = FALSE
 	var/fuel = 0
 	var/on_damage = 7
 
@@ -278,8 +276,8 @@
 	item_state = "slime"
 	w_class = 1
 	brightness_on = 6
-	on = 1 //Bio-luminesence has one setting, on.
-	raillight_compatible = 0
+	on = TRUE //Bio-luminesence has one setting, on.
+	raillight_compatible = FALSE
 
 /obj/item/device/flashlight/slime/New()
 	SetLuminosity(brightness_on)
@@ -297,3 +295,4 @@
 	icon_state = "lantern"
 	desc = "A mining lantern."
 	brightness_on = 6			// luminosity when on
+	raillight_compatible = FALSE
