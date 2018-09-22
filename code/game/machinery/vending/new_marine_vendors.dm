@@ -51,6 +51,14 @@
 
 	var/list/listed_products
 
+/obj/machinery/marine_selector/power_change()
+	. = ..()
+	if( !(stat & NOPOWER) )
+		icon_state = initial(icon_state)
+	else
+		spawn(rand(0, 15))
+			icon_state = "[initial(icon_state)]-off"
+
 
 
 /obj/machinery/marine_selector/attack_hand(mob/user)
