@@ -22,7 +22,7 @@
 	throwforce = 5
 	throw_speed = 3
 	throw_range = 5
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	origin_tech = "materials=1"
 	attack_verb = list("attacked", "stabbed", "poked")
 	sharp = 0
@@ -128,7 +128,7 @@
 	name = "kitchen knife"
 	icon_state = "knife"
 	desc = "A general purpose Chef's Knife made by SpaceCook Incorporated. Guaranteed to stay sharp for years to come."
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
 	force = 10.0
@@ -159,7 +159,7 @@
 	name = "butcher's cleaver"
 	icon_state = "butch"
 	desc = "A huge thing used for chopping and chopping up meat. This includes clowns and clown-by-products."
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	force = 15.0
 	w_class = 2.0
 	throwforce = 8.0
@@ -237,7 +237,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 3.0
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	matter = list("metal" = 3000)
 	/* // NOPE
 	var/food_total= 0

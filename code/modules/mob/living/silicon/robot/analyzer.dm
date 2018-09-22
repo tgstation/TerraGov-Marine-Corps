@@ -6,7 +6,7 @@
 	icon_state = "robotanalyzer"
 	item_state = "analyzer"
 	desc = "A hand-held scanner able to diagnose robotic injuries."
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = SLOT_WAIST
 	throwforce = 3
 	w_class = 2.0

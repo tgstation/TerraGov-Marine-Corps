@@ -180,7 +180,7 @@
 	item_state = "reactiveoff"
 	blood_overlay_type = "armor"
 	slowdown = 1
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/armor/reactive/IsShield()

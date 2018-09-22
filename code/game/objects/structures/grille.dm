@@ -5,7 +5,7 @@
 	icon_state = "grille"
 	density = 1
 	anchored = 1
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	layer = OBJ_LAYER
 	explosion_resistance = 5
 	var/health = 10

@@ -5,7 +5,7 @@
 	var/list/stored = list()
 	w_class = 3.0
 	item_state = "electronic"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_item = NOBLUDGEON
 	flags_equip_slot = SLOT_WAIST
 

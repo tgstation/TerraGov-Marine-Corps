@@ -83,20 +83,20 @@
 	name = "metal body"
 	desc = "It may be metallic, but it contains the heart and soul of Alex J. Murphy."
 	icon_state = "robocop_suit"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 
 /obj/item/clothing/shoes/gimmick/robocop
 	name = "polished metal boots"
 	desc = "The perfect size to stomp on the scum of Detroit."
 	icon_state = "robocop_shoes"
 	armor = list(melee = 87, bullet = 87, laser = 87, energy = 87, bomb = 87, bio = 50, rad = 50)
-	flags_inventory = FPRINT|CONDUCT|NOSLIPPING
+	flags_inventory = CONDUCT|NOSLIPPING
 
 /obj/item/clothing/gloves/gimmick/robocop
 	name = "metal hands"
 	desc = "The cold, unfeeling hands of the law."
 	icon_state = "robocop_gloves"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	armor = list(melee = 87, bullet = 87, laser = 87,energy = 87, bomb = 87, bio = 50, rad = 50)
 
 /obj/item/clothing/head/helmet/gimmick/robocop
@@ -115,7 +115,7 @@
 	icon_state = "robocop_armor"
 	item_state = "robocop_armor"
 	slowdown = 1
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_inventory = BLOCKSHARPOBJ
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
@@ -133,7 +133,7 @@
 	name = "black boots"
 	desc = "Perfectly functional, this pair of boots has stomped on many planets and starships."
 	icon_state = "skywalker_shoes"
-	flags_inventory = FPRINT|NOSLIPPING
+	flags_inventory = NOSLIPPING
 
 /obj/item/clothing/gloves/gimmick/skywalker
 	name = "black glove"

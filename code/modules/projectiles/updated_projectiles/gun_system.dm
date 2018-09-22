@@ -13,7 +13,7 @@
 	force 		= 5
 	attack_verb = null
 	sprite_sheet_id = 1
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_item = TWOHANDED
 
 	var/muzzle_flash 	= "muzzle_flash"

@@ -5,7 +5,7 @@
 	icon_state = "helmet"
 	item_state = "helmet"
 	armor = list(melee = 50, bullet = 15, laser = 50,energy = 10, bomb = 25, bio = 0, rad = 0)
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_inventory = COVEREYES|BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDEEYES
 	flags_cold_protection = HEAD

@@ -3,7 +3,7 @@
 	desc = "A metal pea-whistle. Can be blown while held, or worn in the mouth"
 	icon_state = "whistle"
 	w_class = 1.0
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = SLOT_FACE
 
 	var/volume = 60
@@ -57,7 +57,7 @@
 	icon_state = "voice0"
 	item_state = "flashbang"	//looks exactly like a flash (and nothing like a flashbang)
 	w_class = 1.0
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 
 	var/spamcheck = 0
 	var/emagged = 0

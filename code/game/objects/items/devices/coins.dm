@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	name = "Coin"
 	icon_state = "coin"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	force = 0.0
 	throwforce = 0.0
 	w_class = 1.0

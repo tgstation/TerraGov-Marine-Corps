@@ -5,7 +5,7 @@
 	icon_state = "flashlight"
 	item_state = "flashlight"
 	w_class = 2
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = SLOT_WAIST
 
 	matter = list("metal" = 50,"glass" = 20)
@@ -144,7 +144,7 @@
 	desc = "A pen-sized light, used by medical staff."
 	icon_state = "penlight"
 	item_state = ""
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	brightness_on = 2
 	w_class = 1
 	raillight_compatible = 0

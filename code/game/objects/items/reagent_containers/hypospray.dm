@@ -11,7 +11,7 @@
 	amount_per_transfer_from_this = 5
 	volume = 30
 	possible_transfer_amounts = null
-	flags_atom = FPRINT|OPENCONTAINER
+	flags_atom = OPENCONTAINER
 	flags_equip_slot = SLOT_WAIST
 	var/skilllock = 1
 

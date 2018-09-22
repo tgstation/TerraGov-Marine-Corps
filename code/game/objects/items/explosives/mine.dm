@@ -15,7 +15,7 @@
 	throw_range = 6
 	throw_speed = 3
 	unacidable = 1
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 
 	var/iff_signal = ACCESS_IFF_MARINE
 	var/triggered = 0

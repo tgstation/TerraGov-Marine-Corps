@@ -6,7 +6,6 @@
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	permeability_coefficient = 0.90
-	flags_pass = PASSTABLE
 	flags_equip_slot = SLOT_ICLOTHING
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	w_class = 3

@@ -19,14 +19,13 @@
 //flags_atom
 
 #define NOINTERACT				1		// You can't interact with it, at all. Useful when doing certain animations.
-#define FPRINT					2		// takes a fingerprint
-#define CONDUCT					4		// conducts electricity (metal etc.)
-#define ON_BORDER				8		// 'border object'. item has priority to check when entering or leaving
-#define NOBLOODY				16		// Don't want a blood overlay on this one.
-#define DIRLOCK					32		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
-#define	NOREACT					64		//Reagents dont' react inside this container.
-#define OPENCONTAINER			128		//is an open container for chemistry purposes
-#define RELAY_CLICK				256		//This is used for /obj/ that relay your clicks via handle_click(), mostly for MGs + Sentries ~Art
+#define CONDUCT					2		// conducts electricity (metal etc.)
+#define ON_BORDER				4		// 'border object'. item has priority to check when entering or leaving
+#define NOBLOODY				8		// Don't want a blood overlay on this one.
+#define DIRLOCK					16		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
+#define	NOREACT					32		//Reagents dont' react inside this container.
+#define OPENCONTAINER			64		//is an open container for chemistry purposes
+#define RELAY_CLICK				128		//This is used for /obj/ that relay your clicks via handle_click(), mostly for MGs + Sentries ~Art
 //==========================================================================================
 
 //flags_item

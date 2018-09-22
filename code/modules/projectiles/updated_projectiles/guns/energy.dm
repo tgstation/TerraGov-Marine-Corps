@@ -295,7 +295,7 @@
 	var/charge_cost = 100 //How much energy is needed to fire.
 	var/mode = 0
 	actions_types = list(/datum/action/item_action/toggle)
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_item = NOBLUDGEON|DELONDROP //Can't bludgeon with this.
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 

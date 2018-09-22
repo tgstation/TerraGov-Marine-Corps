@@ -369,7 +369,6 @@ var/global/list/holodeck_programs = list(
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "stool"
 	anchored = 1.0
-	flags_atom = FPRINT
 
 
 /obj/item/clothing/gloves/boxing/hologlove

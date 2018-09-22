@@ -4,7 +4,7 @@
 	icon_state = "electropack0"
 	item_state = "electropack"
 	frequency = 1457
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = SLOT_BACK
 	w_class = 5.0
 

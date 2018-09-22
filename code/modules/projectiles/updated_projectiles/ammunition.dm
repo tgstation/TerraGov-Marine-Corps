@@ -10,7 +10,7 @@ They're all essentially identical when it comes to getting the job done.
 	icon_state = null
 	item_state = "ammo_mag" //PLACEHOLDER. This ensures the mag doesn't use the icon state instead.
 	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = SLOT_WAIST
 	matter = list("metal" = 1000)
 	origin_tech = "combat=2'materials=2" //Low.
@@ -162,7 +162,7 @@ bullets/shells. ~N
 	w_class = 2
 	current_rounds = 1 // So it doesn't get autofilled for no reason.
 	max_rounds = 5 // For shotguns, though this will be determined by the handful type when generated.
-	flags_atom = FPRINT|CONDUCT|DIRLOCK
+	flags_atom = CONDUCT|DIRLOCK
 	flags_magazine = AMMUNITION_HANDFUL
 	attack_speed = 3 // should make reloading less painful
 
@@ -229,7 +229,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	w_class = 1.0
 	layer = LOWER_ITEM_LAYER //Below other objects
 	dir = 1 //Always north when it spawns.
-	flags_atom = FPRINT|CONDUCT|DIRLOCK
+	flags_atom = CONDUCT|DIRLOCK
 	matter = list("metal" = 8) //tiny amount of metal
 	var/current_casings = 1 //This is manipulated in the procs that use these.
 	var/max_casings = 16

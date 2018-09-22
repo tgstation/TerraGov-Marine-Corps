@@ -33,7 +33,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "cane"
 	item_state = "stick"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	force = 5.0
 	throwforce = 7.0
 	w_class = 2.0

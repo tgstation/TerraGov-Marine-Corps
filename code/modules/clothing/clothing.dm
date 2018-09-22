@@ -212,7 +212,6 @@
 	name = "mask"
 	icon = 'icons/obj/clothing/masks.dmi'
 	flags_armor_protection = HEAD
-	flags_pass = PASSTABLE
 	flags_equip_slot = SLOT_FACE
 	flags_armor_protection = FACE|EYES
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')

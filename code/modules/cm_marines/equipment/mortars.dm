@@ -243,7 +243,7 @@
 	icon = 'icons/Marine/mortar.dmi'
 	icon_state = "mortar_ammo_cas"
 	w_class = 5
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 
 /obj/item/mortal_shell/proc/detonate(var/turf/T)
 

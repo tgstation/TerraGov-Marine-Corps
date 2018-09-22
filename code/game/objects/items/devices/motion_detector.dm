@@ -18,7 +18,7 @@
 	icon = 'icons/Marine/marine-items.dmi'
 	icon_state = "detector_off"
 	item_state = "electronic"
-	flags_atom = FPRINT| CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = SLOT_WAIST
 	var/list/blip_pool = list()
 	var/detector_range = 14

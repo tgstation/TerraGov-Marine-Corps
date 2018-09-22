@@ -5,7 +5,7 @@
 	desc = "Used for building lights."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-item"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	var/fixture_type = "tube"
 	var/obj/machinery/light/newlight = null
 	var/sheets_refunded = 2

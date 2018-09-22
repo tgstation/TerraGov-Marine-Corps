@@ -549,7 +549,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/clr = "g"
 	w_class = 1
 	throwforce = 4
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = SLOT_WAIST
 	attack_verb = list("burnt", "singed")
 

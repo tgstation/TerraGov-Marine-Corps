@@ -13,7 +13,7 @@
 	desc = "Retracts stuff."
 	icon_state = "retractor"
 	matter = list("metal" = 10000, "glass" = 5000)
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	w_class = 2.0
 	origin_tech = "materials=1;biotech=1"
 
@@ -25,7 +25,7 @@
 	desc = "You think you have seen this before."
 	icon_state = "hemostat"
 	matter = list("metal" = 5000, "glass" = 2500)
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	w_class = 2.0
 	origin_tech = "materials=1;biotech=1"
 	attack_verb = list("attacked", "pinched")
@@ -38,7 +38,7 @@
 	desc = "This stops bleeding."
 	icon_state = "cautery"
 	matter = list("metal" = 5000, "glass" = 2500)
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	w_class = 1
 	origin_tech = "materials=1;biotech=1"
 	attack_verb = list("burnt")
@@ -52,7 +52,7 @@
 	icon_state = "drill"
 	hitsound = 'sound/weapons/circsawhit.ogg'
 	matter = list("metal" = 15000, "glass" = 10000)
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	force = 15.0
 	w_class = 2.0
 	origin_tech = "materials=1;biotech=1"
@@ -70,7 +70,7 @@
 	name = "scalpel"
 	desc = "Cut, cut, and once more cut."
 	icon_state = "scalpel"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	force = 10.0
 	sharp = IS_SHARP_ITEM_ACCURATE
 	edge = 1
@@ -125,7 +125,7 @@
 	desc = "For heavy duty cutting."
 	icon_state = "saw3"
 	hitsound = 'sound/weapons/circsawhit.ogg'
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	force = 15.0
 	w_class = 2.0
 	throwforce = 9.0

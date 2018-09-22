@@ -3,7 +3,7 @@
 	desc = "What are you standing around staring at this for? Get to killing!"
 	icon_state = "claymore"
 	item_state = "claymore"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = SLOT_WAIST
 	force = 40
 	throwforce = 10
@@ -46,7 +46,7 @@
 	name = "katana"
 	desc = "A finely made Japanese sword, with a well sharpened blade. The blade has been filed to a molecular edge, and is extremely deadly. Commonly found in the hands of mercenaries and yakuza."
 	icon_state = "katana"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	force = 50
 	throwforce = 10
 	sharp = IS_SHARP_ITEM_BIG
@@ -75,7 +75,7 @@
 	icon_state = "combat_knife"
 	item_state = "combat_knife"
 	desc = "The standard issue survival knife issued to Colonial Marines soldiers. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle."
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 25
 	w_class = 2
@@ -129,7 +129,7 @@
 	icon='icons/obj/items/weapons.dmi'
 	icon_state = "throwing_knife"
 	desc="A military knife designed to be thrown at the enemy. Much quieter than a firearm, but requires a steady hand to be used effectively."
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 10
 	w_class = 1

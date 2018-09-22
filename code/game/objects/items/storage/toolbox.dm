@@ -3,7 +3,7 @@
 	desc = "Danger. Very robust."
 	icon_state = "red"
 	item_state = "toolbox_red"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	force = 5.0
 	throwforce = 10.0
 	throw_speed = 1

@@ -314,7 +314,7 @@
 
 	w_class = 2
 	item_state = "electronic"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = SLOT_WAIST
 
 	proc/openwindow(mob/user as mob)

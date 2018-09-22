@@ -75,7 +75,7 @@
 	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
-	flags_inventory = FPRINT|NOSLIPPING
+	flags_inventory = NOSLIPPING
 	siemens_coefficient = 0.6
 
 /obj/item/clothing/shoes/veteran/PMC/commando

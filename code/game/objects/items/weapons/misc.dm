@@ -3,7 +3,7 @@
 	desc = "A tool used by great men to placate the frothing masses."
 	icon_state = "chain"
 	item_state = "chain"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = SLOT_WAIST
 	force = 10
 	throwforce = 7

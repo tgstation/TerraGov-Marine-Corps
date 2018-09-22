@@ -7,7 +7,7 @@
 	desc = "A suitcase-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense small items."
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "secure"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	force = 8.0
 	hitsound = "swing_hit"
 	throw_speed = 1

@@ -13,7 +13,7 @@
 	icon_state = "table_parts"
 	item_state = "table_parts"
 	matter = list("metal" = 7500) //A table, takes two sheets to build
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	attack_verb = list("slammed", "bashed", "battered", "bludgeoned", "thrashed", "whacked")
 	var/table_type = /obj/structure/table //what type of table it creates when assembled
 
@@ -139,8 +139,9 @@
 	desc = "A kit for a storage rack with multiple metal shelves. Relatively cheap, useful for mass storage. Some assembly required."
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "rack_parts"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	matter = list("metal" = 3750)
+
 
 /obj/item/frame/rack/attackby(obj/item/W as obj, mob/user as mob)
 	..()

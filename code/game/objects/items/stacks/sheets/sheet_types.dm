@@ -72,7 +72,7 @@ var/global/list/datum/stack_recipe/metal_recipes = list ( \
 	icon_state = "sheet-metal"
 	matter = list("metal" = 3750)
 	throwforce = 14.0
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	origin_tech = "materials=1"
 	stack_id = "metal"
 
@@ -108,7 +108,7 @@ var/global/list/datum/stack_recipe/plasteel_recipes = list ( \
 	item_state = "sheet-metal"
 	matter = list("metal" = 7500)
 	throwforce = 15.0
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	origin_tech = "materials=2"
 	stack_id = "plasteel"
 
