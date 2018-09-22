@@ -42,12 +42,6 @@
 		cmd_admin_pm(C,null)
 		return
 
-	//Map voting
-	if(href_list["vote_for_map"])
-		mapVote()
-		return
-
-
 	//Logs all hrefs
 	if(config && config.log_hrefs)
 		log_href("[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr]) || [hsrc ? "[hsrc] " : ""][href]")
@@ -251,7 +245,6 @@
 	query_accesslog.Execute()
 
 
-#undef TOPIC_SPAM_DELAY
 #undef UPLOAD_LIMIT
 #undef MIN_CLIENT_VERSION
 
