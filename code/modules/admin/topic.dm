@@ -316,7 +316,8 @@
 		usr.client.warn(href_list["warn"])
 
 	else if(href_list["unbanupgradeperma"])
-		if(!check_rights(R_ADMIN)) return
+		if(!check_rights(R_BAN)) 
+			return
 		UpdateTime()
 		var/reason
 
