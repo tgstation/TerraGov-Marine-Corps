@@ -58,7 +58,6 @@
 	scatter_unwielded = config.med_scatter_value
 	damage_mult = config.base_hit_damage_mult
 
-
 /obj/item/weapon/gun/pistol/m4a3/custom
 	name = "\improper M4A3 custom pistol"
 	desc = "An M4A3 Service Pistol, the standard issue sidearm of the Colonial Marines. Uses 9mm pistol rounds. This one has an ivory-colored grip and has a slide carefully polished yearly by a team of orphan children. Looks like it belongs to a low-ranking officer."
@@ -76,7 +75,6 @@
 	scatter = config.med_scatter_value
 	scatter_unwielded = config.med_scatter_value
 	damage_mult = config.base_hit_damage_mult + config.low_hit_damage_mult
-
 
 //-------------------------------------------------------
 //M4A3 45 //Inspired by the 1911
@@ -105,7 +103,6 @@
 	item_state = "b92fs"
 	current_mag = /obj/item/ammo_magazine/pistol/b92fs
 
-
 	New()
 		..()
 		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
@@ -118,6 +115,21 @@
 	scatter_unwielded = config.med_scatter_value
 	damage_mult = config.base_hit_damage_mult
 
+/obj/item/weapon/gun/pistol/b92fs/M9
+	name = "\improper M9 Custom pistol"
+	desc = "A 20th century military firearm customized for special forces use, fires tranq darts to take down enemies nonlethally"
+	icon_state = "b92fs"
+	item_state = "b92fs"
+	current_mag =/obj/item/ammo_magazine/pistol/b92fstranq
+	starting_attachment_types = list(
+									/obj/item/attachable/lasersight,
+									/obj/item/attachable/suppressor
+									)
+/obj/item/weapon/gun/pistol/b92fs/set_gun_config_values()
+	fire_delay = config.mhigh_fire_delay //to simulate manually cocking the pistol
+	accuracy_mult = config.base_hit_accuracy_mult + config.med_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult  //for CQC
+	damage_mult = config.base_hit_damage_mult - config.max_hit_damage_mult //We don't use guns to take people down, Raiden
 
 //-------------------------------------------------------
 //DEAGLE //This one is obvious.
@@ -150,7 +162,6 @@
 		item_state = skin + item_state
 		attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 23, "under_x" = 20, "under_y" = 17, "stock_x" = 20, "stock_y" = 17)
 
-
 /obj/item/weapon/gun/pistol/heavy/set_gun_config_values()
 	fire_delay = config.max_fire_delay
 	accuracy_mult = config.base_hit_accuracy_mult
@@ -160,9 +171,6 @@
 	damage_mult = config.base_hit_damage_mult + config.med_hit_damage_mult
 	recoil = config.low_recoil_value
 	recoil_unwielded = config.high_recoil_value
-
-
-
 
 //-------------------------------------------------------
 //MAUSER MERC PISTOL //Inspired by the Makarov.
@@ -202,8 +210,6 @@
 	scatter = config.med_scatter_value
 	scatter_unwielded = config.med_scatter_value
 	damage_mult = config.base_hit_damage_mult
-
-
 
 /obj/item/weapon/gun/pistol/c99/russian
 	icon_state = "pk9r"
@@ -247,7 +253,6 @@
 	damage_mult = config.base_hit_damage_mult
 	recoil = config.min_recoil_value
 	recoil_unwielded = config.med_recoil_value
-
 
 //-------------------------------------------------------
 //PIZZACHIMP PROTECTION
@@ -312,8 +317,6 @@
 	recoil = config.min_recoil_value
 	recoil_unwielded = config.med_recoil_value
 
-
-
 //-------------------------------------------------------
 //VP70 //Not actually the VP70, but it's more or less the same thing. VP70 was the standard sidearm in Aliens though.
 
@@ -370,7 +373,6 @@
 	recoil = config.min_recoil_value
 	recoil_unwielded = config.med_recoil_value
 
-
 //-------------------------------------------------------
 /*
 Auto 9 The gun RoboCop uses. A better version of the VP78, with more rounds per magazine. Probably the best pistol around, but takes no attachments.
@@ -399,8 +401,6 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	damage_mult = config.base_hit_damage_mult
 	recoil = config.min_recoil_value
 	recoil_unwielded = config.med_recoil_value
-
-
 
 //-------------------------------------------------------
 //The first rule of monkey pistol is we don't talk about monkey pistol.
