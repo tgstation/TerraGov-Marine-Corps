@@ -118,7 +118,10 @@
 	icon_state = "hos_cypherkey"
 	channels = list("Delta" = 1)
 
-
+/obj/item/device/encryptionkey/general
+    	name = "\improper General radio encryption key"
+    	icon_state = "cypherkey"
+    	channels = list("Almayer" = 1)
 
 
 //PMCs
