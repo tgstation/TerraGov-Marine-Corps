@@ -196,7 +196,7 @@
 			if("SelectedJob")
 
 				if(!enter_allowed)
-					to_chat(usr, "<span class='warning'>There is an administrative lock on entering the game!</span>")
+					to_chat(usr, "<span class='warning'>Spawning currently disabled, pick another role or observe.</span>")
 					return
 
 				if(client.prefs.species != "Human")
@@ -323,7 +323,7 @@
 			to_chat(usr, "<span class='warning'>The round is either not ready, or has already finished!<spawn>")
 			return
 		if(!enter_allowed)
-			to_chat(usr, "<span class='warning'>There is an administrative lock on entering the game!<spawn>")
+			to_chat(usr, "<span class='warning'>Spawning currently disabled, pick another role or observe.<spawn>")
 			return
 		if(!RoleAuthority.assign_role(src, RoleAuthority.roles_for_mode[rank], 1))
 			to_chat(src, alert("[rank] is not available. Please try another."))
