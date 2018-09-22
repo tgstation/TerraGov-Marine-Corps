@@ -291,7 +291,7 @@
 	icon = 'icons/obj/doors/almayer/personaldoor.dmi'
 
 /obj/machinery/door/airlock/almayer/generic/corporate
-	name = "Corporate Liason's Quarters"
+	name = "Corporate Liaison's Quarters"
 	icon = 'icons/obj/doors/almayer/personaldoor.dmi'
 	req_access_txt = "200"
 

@@ -491,7 +491,7 @@ datum/game_mode/proc/initialize_special_clamps()
 			H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(H.back), WEAR_IN_BACK)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor/doctor)
 		if("Corporate") //Corporate guy
-			id_assignment = "Corporate Liason"
+			id_assignment = "Corporate Liaison"
 			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), WEAR_BODY)
 			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
 			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), WEAR_BACK)

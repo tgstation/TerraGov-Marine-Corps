@@ -174,7 +174,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 	if(user.mind)
 		switch(user.mind.assigned_role)
-			if("PMC Leader","PMC", "WY Agent", "Corporate Laison", "Event")
+			if("PMC Leader","PMC", "WY Agent", "Corporate Liaison", "Event")
 				return TRUE
 		switch(user.mind.special_role)
 			if("DEATH SQUAD","PMC")
@@ -208,7 +208,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		return TRUE
 	else
 		return FALSE
-		
+
 /obj/item/weapon/gun/proc/do_wield(mob/user, wield_time) //a poor way to make timed actions show an icon without affecting them until /tg/'s do_mob is ported.
 	var/delay = wield_time - world.time
 	if(!istype(user) || delay <= 0)

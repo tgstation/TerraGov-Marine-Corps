@@ -67,8 +67,8 @@
 	icon_state = "selfdestruct"
 	fake_zlevel = 1 // upperdeck
 
-/area/almayer/command/corporateliason
-	name = "\improper Corporate Liason Office"
+/area/almayer/command/corporateliaison
+	name = "\improper Corporate Liaison Office"
 	icon_state = "corporatespace"
 	fake_zlevel = 1 // upperdeck
 
