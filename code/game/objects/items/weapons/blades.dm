@@ -77,6 +77,7 @@
 	desc = "The standard issue survival knife issued to Colonial Marines soldiers. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle."
 	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
+	matter = list("metal" = 1000)
 	force = 25
 	w_class = 2
 	throwforce = 20
