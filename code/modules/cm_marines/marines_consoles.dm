@@ -589,7 +589,7 @@
 				crewmembers += "temporary item"
 				crewmembers[crewmembers.len] = crewmemberData
 
-	crewmembers = sortByKey(crewmembers, "name")
+	crewmembers = sortRecord(crewmembers, "name")
 
 	data["crewmembers"] = crewmembers
 
