@@ -5,7 +5,7 @@
 	anchored = 1
 	w_class = 4.0
 	canhear_range = 2
-	flags_atom = FPRINT|CONDUCT|NOBLOODY
+	flags_atom = CONDUCT|NOBLOODY
 	var/number = 0
 	var/anyai = 1
 	var/mob/living/silicon/ai/ai = list()

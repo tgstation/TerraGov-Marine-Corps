@@ -6,7 +6,6 @@
 	density = 1
 	anchored = 1
 	layer = WINDOW_LAYER
-	flags_atom = FPRINT
 	var/health = 50
 	var/health_max = 50
 	var/cut = 0 //Cut fences can be passed through

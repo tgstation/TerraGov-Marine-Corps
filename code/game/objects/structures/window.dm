@@ -6,7 +6,7 @@
 	density = 1
 	anchored = 1
 	layer = WINDOW_LAYER
-	flags_atom = ON_BORDER|FPRINT
+	flags_atom = ON_BORDER
 	var/health = 15
 	var/state = 2
 	var/reinf = 0
@@ -405,7 +405,6 @@
 	basestate = "window"
 	health = 40
 	reinf = 1
-	flags_atom = FPRINT
 
 /obj/structure/window/shuttle/update_icon() //icon_state has to be set manually
 	return
@@ -416,7 +415,6 @@
 	name = "theoretical window"
 	layer = TABLE_LAYER
 	static_frame = 1
-	flags_atom = FPRINT
 	var/window_frame //For perspective windows,so the window frame doesn't magically dissapear
 	var/list/tiles_special = list(/obj/machinery/door/airlock,
 		/obj/structure/window/framed,

@@ -189,7 +189,7 @@ proc/cardinalrange(var/center)
 	icon_state = "box"
 	item_state = "electronic"
 	w_class = 4.0
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	throwforce = 5
 	throw_speed = 1
 	throw_range = 2

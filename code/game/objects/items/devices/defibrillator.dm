@@ -3,7 +3,7 @@
 	desc = "A handheld emergency defibrillator, used to restore fibrillating patients. Can optionally bring people back from the dead."
 	icon_state = "defib_full"
 	item_state = "defib"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_item = NOBLUDGEON
 	flags_equip_slot = SLOT_WAIST
 	force = 5

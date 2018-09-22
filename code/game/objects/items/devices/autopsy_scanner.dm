@@ -6,7 +6,7 @@
 	name = "autopsy scanner"
 	desc = "Extracts information on wounds."
 	icon_state = "autopsy_scanner"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	w_class = 2.0
 	origin_tech = "materials=1;biotech=1"
 	var/list/datum/autopsy_data_scanner/wdata = list()

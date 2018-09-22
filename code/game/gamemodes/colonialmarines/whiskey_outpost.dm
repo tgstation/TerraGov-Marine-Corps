@@ -1349,7 +1349,7 @@
 
 	//Considering putting in power cells into the weapon to power it but for now its probably not going to happen. So we'll settle for cooldowns then.
 	//laser_con is to add you to the list of laser users.
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	force = 5.0
 	w_class = 2.0
 	throwforce = 5.0

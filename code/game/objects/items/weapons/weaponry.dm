@@ -131,7 +131,7 @@
 	desc = "A rod with some wire wrapped around the top. It'd be easy to attach something to the top bit."
 	icon_state = "wiredrod"
 	item_state = "rods"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	force = 8
 	throwforce = 10
 	w_class = 3

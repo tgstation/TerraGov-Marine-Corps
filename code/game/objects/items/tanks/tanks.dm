@@ -4,7 +4,7 @@
 /obj/item/tank
 	name = "tank"
 	icon = 'icons/obj/items/tank.dmi'
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = SLOT_BACK
 	w_class = 3
 

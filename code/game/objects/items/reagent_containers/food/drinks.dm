@@ -6,7 +6,7 @@
 	desc = "yummy"
 	icon = 'icons/obj/items/drinks.dmi'
 	icon_state = null
-	flags_atom = FPRINT|OPENCONTAINER
+	flags_atom = OPENCONTAINER
 	var/gulp_size = 5 //This is now officially broken ... need to think of a nice way to fix it.
 	possible_transfer_amounts = list(5,10,25)
 	volume = 50
@@ -153,7 +153,7 @@
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = null
 	volume = 150
-	flags_atom = FPRINT|CONDUCT|OPENCONTAINER
+	flags_atom = CONDUCT|OPENCONTAINER
 
 /obj/item/reagent_container/food/drinks/golden_cup/tournament_26_06_2011
 	desc = "A golden cup. It will be presented to a winner of tournament 26 june and name of the winner will be graved on it."

@@ -1,7 +1,7 @@
 /obj/item/circuitboard/robot_module
 	name = "robot module"
 	icon_state = "std_mod"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	var/channels = list()
 	var/list/modules = list()
 	var/obj/item/emag = null

@@ -14,7 +14,7 @@
 	desc = "Used for repairing or building APCs"
 	icon = 'icons/obj/apc_repair.dmi'
 	icon_state = "apc_frame"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 
 /obj/item/frame/apc/attackby(obj/item/W as obj, mob/user as mob)
 	..()

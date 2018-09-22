@@ -3,7 +3,7 @@
 	icon = 'icons/obj/items/robot_parts.dmi'
 	item_state = "buildpipe"
 	icon_state = "blank"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = SLOT_WAIST
 	matter = list("metal" = 500, "glass" = 0)
 	var/construction_time = 100

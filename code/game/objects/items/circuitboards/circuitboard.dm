@@ -4,7 +4,7 @@
 	icon = 'icons/obj/items/circuitboards.dmi'
 	icon_state = "id_mod"
 	item_state = "electronic"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	matter = list("metal" = 50, "glass" = 50)
 	origin_tech = "programming=2"
 	var/build_path = null

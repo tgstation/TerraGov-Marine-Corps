@@ -88,7 +88,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "hoe"
 	item_state = "hoe"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_item = NOBLUDGEON
 	force = 5.0
 	throwforce = 7.0
@@ -105,7 +105,7 @@
 	desc = "A sharp hand hatchet, commonly used to cut things apart, be it timber or other objects. Often found in the hands of woodsmen, scouts, and looters."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "hatchet"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	force = 25.0
 	w_class = 2.0
 	throwforce = 20.0
@@ -132,7 +132,7 @@
 	throw_speed = 1
 	throw_range = 3
 	w_class = 4.0
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_item = NOSHIELD
 	flags_equip_slot = SLOT_BACK
 	origin_tech = "materials=2;combat=2"

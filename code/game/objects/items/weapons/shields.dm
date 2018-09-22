@@ -34,7 +34,7 @@
 	desc = "A shield capable of stopping most projectile and melee attacks. It can be retracted, expanded, and stored anywhere."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "eshield0" // eshield1 for expanded
-	flags_atom = FPRINT|CONDUCT|NOBLOODY
+	flags_atom = CONDUCT|NOBLOODY
 	force = 3.0
 	throwforce = 5.0
 	throw_speed = 1

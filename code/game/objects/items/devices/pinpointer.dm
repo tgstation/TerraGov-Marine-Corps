@@ -1,8 +1,7 @@
 /obj/item/device/pinpointer
 	name = "pinpointer"
 	icon_state = "pinoff"
-	flags_atom = FPRINT | CONDUCT
-	flags_pass = PASSTABLE
+	flags_atom = CONDUCT
 	flags_equip_slot = SLOT_WAIST
 	w_class = 1
 	item_state = "electronic"

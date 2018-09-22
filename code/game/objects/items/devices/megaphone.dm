@@ -4,7 +4,7 @@
 	icon_state = "megaphone"
 	item_state = "radio"
 	w_class = 2.0
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 
 	var/spamcheck = 0
 	var/emagged = 0

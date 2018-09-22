@@ -9,7 +9,7 @@
 	throwforce = 8.0
 	throw_speed = 3
 	throw_range = 6
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	max_amount = 60
 
 /obj/item/stack/tile/plasteel/New(var/loc, var/amount=null)

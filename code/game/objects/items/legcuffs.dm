@@ -5,7 +5,7 @@
 	gender = PLURAL
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "handcuff"
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	throwforce = 0
 	w_class = 3.0
 	origin_tech = "materials=1"

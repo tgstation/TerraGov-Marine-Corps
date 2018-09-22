@@ -135,7 +135,7 @@
 	edge = 1
 	w_class = 4.0
 	flags_equip_slot = SLOT_BACK
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_item = TWOHANDED
 	force_wielded = 45
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
@@ -172,7 +172,7 @@
 	force_wielded = 70
 	wieldsound = 'sound/weapons/saberon.ogg'
 	unwieldsound = 'sound/weapons/saberoff.ogg'
-	flags_atom = FPRINT|NOBLOODY
+	flags_atom = NOBLOODY
 	flags_item = NOSHIELD|TWOHANDED
 	origin_tech = "magnets=3;syndicate=4"
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
@@ -237,7 +237,7 @@
 	throw_speed = 3
 	edge = 1
 	sharp = IS_SHARP_ITEM_BIG
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_item = NOSHIELD|TWOHANDED
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")

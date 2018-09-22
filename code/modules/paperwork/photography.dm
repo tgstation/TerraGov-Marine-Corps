@@ -118,7 +118,7 @@
 	icon_state = "camera"
 	item_state = "electropack"
 	w_class = 2.0
-	flags_atom = FPRINT|CONDUCT
+	flags_atom = CONDUCT
 	flags_equip_slot = SLOT_WAIST
 	matter = list("metal" = 2000)
 	var/pictures_max = 10

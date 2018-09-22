@@ -1,6 +1,6 @@
 /obj/item/weapon/energy
 	var/active = 0
-	flags_atom = FPRINT|NOBLOODY
+	flags_atom = NOBLOODY
 
 	suicide_act(mob/user)
 		viewers(user) << pick("\red <b>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</b>", \
@@ -18,7 +18,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 3.0
-	flags_atom = FPRINT|CONDUCT|NOBLOODY
+	flags_atom = CONDUCT|NOBLOODY
 	flags_item = NOSHIELD
 	origin_tech = "combat=3"
 	attack_verb = list("attacked", "chopped", "cleaved", "torn", "cut")
@@ -56,7 +56,7 @@
 	throw_speed = 1
 	throw_range = 5
 	w_class = 2.0
-	flags_atom = FPRINT|NOBLOODY
+	flags_atom = NOBLOODY
 	flags_item = NOSHIELD
 	origin_tech = "magnets=3;syndicate=4"
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
