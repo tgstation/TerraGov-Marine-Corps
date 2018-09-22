@@ -89,16 +89,21 @@
 		if(!user.is_mob_incapacitated() && get_dist(user, src) <= 1 && !user.blinded && !user.lying && !user.buckled && !user.anchored)
 			//TODO: Using forceMove is desirable here, but this breaks the pull. If you know how to preserve the pull, this would be nice!
 			user.loc = ladder_dest.loc //Cannot use forceMove method on pulls! Move manually //Make sure we move before we broadcast the message
+			var/mob/living/M = user
+			M.smokecloak_off()
 			visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>") //Hack to give a visible message to the people here without duplicating user message
 			user.visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>",
 			"<span class='notice'>You climb [ladder_dir_name] [src].</span>")
 			ladder_dest.add_fingerprint(user)
 			if(user.pulling && get_dist(src, user.pulling) <= 2)
 				user.pulling.loc = ladder_dest.loc //Cannot use forceMove method on pulls! Move manually
+				var/mob/living/P = user.pulling
+				P.smokecloak_off()
 				if(isobj(user.pulling))
 					var/obj/O = user.pulling
 					if(O.buckled_mob)
 						O.buckled_mob.loc = ladder_dest.loc //Cannot use forceMove method on pulls! Move manually
+						O.buckled_mob.smokecloak_off()
 	busy = 0
 	add_fingerprint(user)
 

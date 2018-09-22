@@ -38,7 +38,7 @@
 	if(time_to_live <= 0)
 		cdel(src)
 	else if(time_to_live == 1)
-		alpha = 180
+		alpha -= 75
 		amount = 0
 		SetOpacity(0)
 
@@ -117,6 +117,64 @@
 				M.emote("cough")
 			spawn(20)
 				M.coughedtime = 0
+
+/////////////////////////////////////////////
+// Cloak Smoke
+/////////////////////////////////////////////
+/obj/effect/particle_effect/smoke/tactical
+	opacity = 0
+	alpha = 145
+
+/obj/effect/particle_effect/smoke/tactical/New(loc, oldamount)
+	..()
+	for(var/mob/living/M in get_turf(src))
+		affect(M)
+
+/obj/effect/particle_effect/smoke/tactical/Move()
+	..()
+	for(var/mob/living/M in get_turf(src))
+		affect(M)
+
+/obj/effect/particle_effect/smoke/tactical/process()
+	.=..()
+	for(var/mob/living/M in get_turf(src))
+		affect(M)
+
+/obj/effect/particle_effect/smoke/tactical/Dispose()
+	for(var/mob/living/M in get_turf(src))
+		uncloak_smoke_act(M)
+	..()
+
+/obj/effect/particle_effect/smoke/tactical/affect(var/mob/living/M)
+	if(istype(M))
+		cloak_smoke_act(M)
+
+/obj/effect/particle_effect/smoke/tactical/Crossed(atom/movable/M)
+	..()
+	if(isliving(M))
+		affect(M)
+
+/obj/effect/particle_effect/smoke/tactical/Uncrossed(var/mob/living/M)
+	..()
+	uncloak_smoke_act(M)
+
+/obj/effect/particle_effect/smoke/tactical/proc/cloak_smoke_act(var/mob/living/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		var/obj/item/clothing/gloves/yautja/Y = H.gloves
+		var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = H.back
+		if(H.back)
+			if(istype(S) && S.camo_active)
+				return
+		if(H.gloves)
+			if(istype(Y) && Y.cloaked)
+				return
+		return M.smokecloak_on()
+	return M.smokecloak_on()
+
+
+/obj/effect/particle_effect/smoke/tactical/proc/uncloak_smoke_act(var/mob/living/M)
+	return M.smokecloak_off()
 
 /////////////////////////////////////////////
 // Sleep smoke
@@ -353,6 +411,9 @@
 
 /datum/effect_system/smoke_spread/bad
 	smoke_type = /obj/effect/particle_effect/smoke/bad
+
+datum/effect_system/smoke_spread/tactical
+	smoke_type = /obj/effect/particle_effect/smoke/tactical
 
 /datum/effect_system/smoke_spread/sleepy
 	smoke_type = /obj/effect/particle_effect/smoke/sleepy
