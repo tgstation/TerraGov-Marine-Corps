@@ -120,11 +120,16 @@
 			cdel(src)
 		return
 
-proc/flame_radius(radius = 1, turf/turf) //~Art updated fire.
-	if(!turf || !isturf(turf)) return
-	if(radius < 0) radius = 0
-	if(radius > 5) radius = 5
-	new /obj/flamer_fire(turf, 5 + rand(0,11), 15, null, radius)
+proc/flame_radius(radius = 1, turf/T) //~Art updated fire.
+	if(!T || !isturf(T))
+		return
+	if(radius < 0)
+		radius = 0
+	if(radius > 5)
+		radius = 5
+	for(var/obj/flamer_fire/F in range(radius,T)) // No stacking flames!
+		cdel(F)
+	new /obj/flamer_fire(T, 5 + rand(0,11), 15, null, radius)
 
 
 /obj/item/explosive/grenade/incendiary/molotov

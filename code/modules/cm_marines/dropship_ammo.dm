@@ -188,8 +188,9 @@
 		L.adjustFireLoss(120)
 		L.adjust_fire_stacks(20)
 		L.IgniteMob()
-	if(!locate(/obj/flamer_fire) in T)
-		new/obj/flamer_fire(T, 5, 30) //short but intense
+	for(var/obj/flamer_fire/F in T) // No stacking flames!
+		cdel(F)
+	new/obj/flamer_fire(T, 5, 30) //short but intense
 
 
 //Rockets
@@ -293,8 +294,9 @@
 		spawn(5)
 			explosion(impact,1,2,3,6,1,0) //relatively weak
 			for(var/turf/T in range(4,impact))
-				if(!locate(/obj/flamer_fire) in T) // No stacking flames!
-					new/obj/flamer_fire(T, 60, 30) //cooking for a long time
+				for(var/obj/flamer_fire/F in T) // No stacking flames!
+					cdel(F)
+				new/obj/flamer_fire(T, 60, 30) //cooking for a long time
 			cdel(src)
 
 
@@ -346,9 +348,9 @@
 	detonate_on(turf/impact)
 		..()
 		spawn(5)
-			for(var/turf/T in range(2, impact))
-				if(!locate(/obj/flamer_fire) in T) // No stacking flames!
-					new/obj/flamer_fire(T)
+			for(var/obj/flamer_fire/F in impact) // No stacking flames!
+				cdel(F)
+			new/obj/flamer_fire(impact)
 
 /obj/structure/ship_ammo/minirocket/illumination
 	name = "illumination rocket-launched flare stack"
@@ -369,7 +371,7 @@
 			S.set_up(1,0,T,null)
 			S.start()
 		spawn(10)
-			new/obj/item/device/flashlight/flare/on/cas(T) 
+			new/obj/item/device/flashlight/flare/on/cas(T)
 		if(!ammo_count && loc)
 			cdel(src) //deleted after last minirocket is fired and impact the ground.
 

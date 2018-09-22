@@ -184,8 +184,8 @@
 	proc/drop_flame(turf/T) // ~Art updated fire 20JAN17
 		if(!istype(T))
 			return
-		if(locate(/obj/flamer_fire) in T)
-			return
+		for(var/obj/flamer_fire/F in T) // No stacking flames!
+			cdel(F)
 		new /obj/flamer_fire(T, 20, 20)
 
 

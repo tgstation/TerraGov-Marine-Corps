@@ -256,14 +256,15 @@
 	if(!istype(target) || istype(target,/turf/open/space))
 		return
 
-	if(!locate(/obj/effect/xenomorph/spray) in target) //No stacking flames!
-		new /obj/effect/xenomorph/spray(target)
-		for(var/mob/living/carbon/M in target)
-			if(ishuman(M) || ismonkey(M))
-				if((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest))
-					continue //nested infected hosts are not hurt by acid spray
-				M.adjustFireLoss(rand(20 + 5 * upgrade, 30 + 5 * upgrade))
-				to_chat(M, "<span class='xenodanger'>\The [src] showers you in corrosive acid!</span>")
-				if(!isYautja(M))
-					M.emote("scream")
-					M.KnockDown(rand(3, 4))
+	for(var/obj/effect/xenomorph/spray/S in target) //No stacking spray!
+		cdel(S)
+	new /obj/effect/xenomorph/spray(target)
+	for(var/mob/living/carbon/M in target)
+		if(ishuman(M) || ismonkey(M))
+			if((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest))
+				continue //nested infected hosts are not hurt by acid spray
+			M.adjustFireLoss(rand(20 + 5 * upgrade, 30 + 5 * upgrade))
+			to_chat(M, "<span class='xenodanger'>\The [src] showers you in corrosive acid!</span>")
+			if(!isYautja(M))
+				M.emote("scream")
+				M.KnockDown(rand(3, 4))
