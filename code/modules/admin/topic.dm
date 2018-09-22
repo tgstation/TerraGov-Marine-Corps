@@ -2486,27 +2486,27 @@
 		var/msgplayer
 		switch(choice)
 			if("IC Issue")
-				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. This issue has been deemed an IC (In-Character) issue, and will not be handled by staff. In case it's relevant, you may wish to ask your <a href='http://cm-ss13.com/wiki/Rank'>Chain Of Command</a> about your issue if you believe <a href='http://cm-ss13.com/wiki/Marine_Law'>Marine Law</a> has been broken.</b>"
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. This issue has been deemed an IC (In-Character) issue, and will not be handled by staff. In case it's relevant, you may wish to ask your <a href='http://cm-ss13.com/wiki/Rank'>Chain Of Command</a> about your issue if you believe <a href='https://tgstation13.org/wiki/Space_Law'>Space Law</a> has been broken.</b>"
 			if("Being Handled")
 				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. The issue is already being dealt with.</b>"
 			if("Fixed")
 				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. The issue is already fixed.</b>"
 			if("Thanks")
-				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>! Have a CM day!</b>"
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>! Have a DMCA day!</b>"
 			if("Guilty")
-				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. You broke Marine Law.</b>"
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. You broke Space Law.</b>"
 			if("L: Xeno Quickstart Guide")
-				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Your answer can be found on the Xeno Quickstart Guide on our wiki. <a href='http://cm-ss13.com/wiki/Xeno_Quickstart_Guide'>Check it out here.</a></b>"
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Your answer can be found on the Xeno Quickstart Guide. <a href='http://cm-ss13.com/wiki/Xeno_Quickstart_Guide'>Check it out here.</a></b>"
 			if("L: Marine quickstart guide")
-				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Your answer can be found on the Marine Quickstart Guide on our wiki. <a href='http://cm-ss13.com/wiki/Marine_Quickstart_Guide'>Check it out here.</a></b>"
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Your answer can be found on the Marine Quickstart Guide. <a href='http://cm-ss13.com/wiki/Marine_Quickstart_Guide'>Check it out here.</a></b>"
 			if("L: Current Map")
-				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. If you need a map to the current game, you can (usually) find them on the front page of our wiki in the 'Maps' section. <a href='http://cm-ss13.com/wiki/Main_Page'>Check it out here.</a> If the map is not listed, it's a new or rare map and the overview hasn't been finished yet.</b>"
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. If you need a map for the current game, you can find it <a href='http://cm-ss13.com/wiki/Main_Page'>here.</a></b>"
 			if("A: No plasma regen")
 				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. If you have low/no plasma regen, it's most likely because you are off weeds or are currently using a passive ability, such as the Runner's 'Hide' or emitting a pheromone.</b>"
 			if("A: Devour as Xeno")
 				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Devouring is useful to quickly transport incapacitated hosts from one place to another. In order to devour a host as a Xeno, grab the mob (CTRL+Click) and then click on yourself to begin devouring. The host can resist by breaking out of your belly, so make sure your target is incapacitated or only have them devoured for a short time. Also, the devoured host will eventually be digested (~5 minutes), which results in you killing a viable host to grow the hive. To release your target, click 'Regurgitate' on the HUD to throw them back up.</b>"
 			if("J: Job bans")
-				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. All job bans, including xeno bans, are permenant until appealed. you can appeal it over on the forums at http://cm-ss13.com/viewforum.php?f=76</b>"
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. All job bans, including xeno bans, are permanent.</b>"
 			if("E: Event in progress")
 				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. There is currently a special event running and many things may be changed or different, however normal rules still apply unless you have been specifically instructed otherwise by a staff member.</b>"
 			if("R: Radios")
@@ -2514,7 +2514,7 @@
 			if("D: Joining disabled")
 				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. A staff member has disabled joining for new players as the current round is coming to an end, you can observe while it ends and wait for a new round to start.</b>"
 			if("M: Macros")
-				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. To set a macro right click the title bar, select Client->Macros. Binding unique-action to a key is useful for pumping shotguns etc; Binding load-from-attachment will activate any scopes etc; Binding resist and give to seperate keys is also handy. For more information on macros, head over to our guide, at: http://cm-ss13.com/wiki/Macros</b>"
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. To set a macro right click the title bar, select Client->Macros. Binding unique-action to a key is useful for pumping shotguns etc; Binding load-from-attachment will activate any scopes etc; Binding resist and give to seperate keys is also handy. For more information on macros can be found <a href='http://cm-ss13.com/wiki/Macros>here.</a></b>"
 			else return
 
 		message_staff("[usr.key] is autoresponding to [ref_person] with <font color='#009900'>'[choice]'</font>. They have been shown the following:\n[msgplayer]", 1)
@@ -2528,22 +2528,6 @@
 		ref_person.adminhelp_marked = 1 //Timer to prevent multiple clicks
 		spawn(1000) //This should be <= the Adminhelp cooldown in adminhelp.dm
 			if(ref_person)	ref_person.adminhelp_marked = 0
-
-	// Saving this for future lels -Rahl
-	// if(href_list["retarded"]) // Their message is fucking stupid
-	// 	var/mob/ref_person = locate(href_list["retarded"])
-	// 	if(!istype(ref_person))
-	// 		to_chat(usr, "\blue Looks like that person stopped existing!")
-	// 		return
-	// 	var/msg = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has marked the Adminhelp from <font color=red>[ref_person.ckey]/([ref_person])</font> as 'Completely fucking retarded' - this Ahelp was written by someone whom, if they were any less intelligent, would need to be watered twice a day. The player has been nicely notified of this as 'No response necessary'.</b>"
-	// 	var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has received your Adminhelp and marked it as 'No response necessary'. Either your issue is being handled or it's fixed.</font></b>"
-	//
-	// 	//send this msg to all admins
-	// 	for(var/client/X in admins)
-	// 		if((R_ADMIN|R_MOD|R_MENTOR) & X.holder.rights)
-	// 			to_chat(X, msg)
-	//
-	// 	to_chat(ref_person, msgplayer)
 
 
 	if(href_list["ccmark"]) // CentComm-mark. We want to let all Admins know that something is "Marked", but not let the player know because it's not very RP-friendly.
