@@ -56,6 +56,13 @@
 	default_ammo = /datum/ammo/bullet/pistol
 	gun_type = /obj/item/weapon/gun/pistol/b92fs
 
+/obj/item/ammo_magazine/pistol/b92fstranq
+	name = "\improper M9 tranq magazine (9mm)"
+	caliber = "9mm"
+	icon_state = "m4a3"
+	max_rounds = 12
+	default_ammo = /datum/ammo/bullet/pistol/tranq
+	gun_type = /obj/item/weapon/gun/pistol/b92fs/M9
 
 //-------------------------------------------------------
 //DEAGLE //This one is obvious.
