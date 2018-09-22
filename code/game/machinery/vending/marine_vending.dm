@@ -166,6 +166,9 @@
 /obj/machinery/vending/marine/cargo_ammo
 	name = "\improper ColMarTech automated munition vendor"
 	desc = "A automated rack hooked up to a small supply of ammo magazines."
+	icon_state = "cargo-armory"
+	icon_vend = "cargo-armory-vend"
+	icon_deny = "cargo-armory"
 	hacking_safety = 1
 	wrenchable = FALSE
 	products = list(
@@ -235,8 +238,7 @@
 /obj/machinery/vending/marineFood
 	name = "\improper Marine Food and Drinks Vendor"
 	desc = "Standard Issue Food and Drinks Vendor, containing standard military food and drinks."
-	icon_state = "generic"
-	icon_deny = "generic-deny"
+	icon_state = "sustenance"
 	wrenchable = FALSE
 	products = list(/obj/item/reagent_container/food/snacks/protein_pack = 50,
 					/obj/item/reagent_container/food/snacks/mre_pack/meal1 = 15,
@@ -332,8 +334,8 @@
 	desc = "A marine medic equipment vendor"
 	product_ads = "They were gonna die anyway.;Let's get space drugged!"
 	req_access = list(ACCESS_MARINE_MEDPREP)
-	icon_state = "medicprepvendor"
-	icon_deny = "medicprepvendor-deny"
+	icon_state = "marinemed"
+	icon_deny = "marinemed-deny"
 	wrenchable = FALSE
 
 	products = list(
