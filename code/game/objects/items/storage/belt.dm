@@ -189,31 +189,10 @@
 	new /obj/item/reagent_container/hypospray/autoinjector/hypervene(src)
 
 /obj/item/storage/belt/combatLifesaver/upp
+	name ="\improper Type 41 pattern lifesaver bag"
+	desc = "The Type 41 load rig is the standard-issue LBE of the UPP military. This configuration mounts a satchel filled with a range of injectors and light medical supplies, common among medics and partisans."
 	icon_state = "medicalbag_u"
 	item_state = "medicbag_u"
-
-/obj/item/storage/belt/combatLifesaver/upp/New()  //The belt, with all it's magic inside!
-	..()
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/splint(src)
-	new /obj/item/storage/pill_bottle/bicaridine(src)
-	new /obj/item/storage/pill_bottle/dexalin(src)
-	new /obj/item/storage/pill_bottle/antitox(src)
-	new /obj/item/storage/pill_bottle/kelotane(src)
-	new /obj/item/storage/pill_bottle/spaceacillin(src)
-	new /obj/item/storage/pill_bottle/inaprovaline(src)
-	new /obj/item/storage/pill_bottle/tramadol(src)
-	new /obj/item/storage/pill_bottle/peridaxon(src)
-	new /obj/item/storage/pill_bottle/hypervene(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/quickclot(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/quickclot(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/dexP(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/dexP(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/Oxycodone(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/hypervene(src)
 
 /obj/item/storage/belt/security
 	name = "\improper M276 pattern security rig"
@@ -232,8 +211,7 @@
 		"/obj/item/clothing/glasses",
 		"/obj/item/ammo_magazine/pistol",
 		"/obj/item/ammo_magazine/handful",
-		"/obj/item/reagent_container/food/snacks/donut/normal",
-		"/obj/item/reagent_container/food/snacks/donut/jelly",
+		"/obj/item/reagent_container/food/snacks/donut",
 		"/obj/item/weapon/baton",
 		"/obj/item/weapon/gun/energy/taser",
 		"/obj/item/tool/lighter/zippo",

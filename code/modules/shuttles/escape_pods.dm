@@ -137,17 +137,18 @@ for(var/obj/machinery/cryopod/evacuation/C in cryo_cells) C.go_out()
 	sleep(31)
 	if(!check_passengers())
 		evacuation_program.dock_state = STATE_BROKEN
-		explosion(evacuation_program.master, -1, -1, 3, 4)
-		sleep(25)
-		staging_area.initialize_power_and_lighting(TRUE) //We want to reinitilize power usage and turn off everything.
-
 		MOVE_MOB_OUTSIDE
 		//evacuation_program.open_door()
 		spawn()
 			D.unlock()
 			D.open()
 			D.lock()
-		evacuation_program.master.state("<span class='warning'>WARNING: Maximum weight limit reached, pod unable to launch. Warning: Thruster failure detected.</span>")
+		evacuation_program.master.state("<span class='warning'>WARNING: Maximum weight limit reached, pod unable to launch. DANGER: Thruster failure imminent.</span>")
+		playsound(evacuation_program.master,'sound/effects/alert.ogg', 25, 1)
+		sleep(40)
+		explosion(evacuation_program.master, -1, -1, 3, 4)
+		sleep(20)
+		staging_area.initialize_power_and_lighting(TRUE) //We want to reinitilize power usage and turn off everything.
 		return FALSE
 	launch()
 	return TRUE
