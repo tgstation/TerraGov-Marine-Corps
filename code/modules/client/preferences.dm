@@ -63,12 +63,12 @@ datum/preferences
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round
 	var/gender = MALE					//gender of character (well duh)
-	var/age = 18						//age of character
+	var/age = 20						//age of character
 	var/spawnpoint = "Arrivals Shuttle" //where this character will spawn (0-2).
 	var/underwear = 1					//underwear type
 	var/undershirt = 1					//undershirt type
 	var/backbag = 2						//backpack type
-	var/h_style = "Crewcut"				//Hair type
+	var/h_style = "Bald"				//Hair type
 	var/r_hair = 0						//Hair color
 	var/g_hair = 0						//Hair color
 	var/b_hair = 0						//Hair color
@@ -153,9 +153,11 @@ datum/preferences
 			if(load_preferences())
 				if(load_character())
 					return
-	gender = pick(MALE, FEMALE)
-	real_name = random_name(gender)
+	real_name = random_name(MALE)
 	gear = list()
+	age = rand(18,23)
+	h_style = pick("Crewcut","Bald","Short Hair")
+
 
 /datum/preferences/proc/ZeroSkills(var/forced = 0)
 	for(var/V in SKILLS) for(var/datum/skill/S in SKILLS[V])
