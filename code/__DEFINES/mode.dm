@@ -74,7 +74,7 @@ var/list/be_special_flags = list(
 	)
 
 #define AGE_MIN 17			//youngest a character can be
-#define AGE_MAX 160			//oldest a character can be
+#define AGE_MAX 85			//oldest a character can be
 //Number of marine players against which the Marine's gear scales
 #define MARINE_GEAR_SCALING_NORMAL 30
 #define MAX_GEAR_COST 5 //Used in chargen for loadout limit.
