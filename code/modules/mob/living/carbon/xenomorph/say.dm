@@ -21,31 +21,34 @@
 
 	var/datum/language/speaking = null
 
-	if(length(message) >= 2)
-		var/channel_prefix = copytext(message, 1, 3)
-		if(languages.len)
-			for(var/datum/language/L in languages)
-				if(lowertext(channel_prefix) == ":[L.key]" || lowertext(channel_prefix) == ".[L.key]")
-					verb = L.speech_verb
-					speaking = L
-					break
+	if(copytext(message, 1, 2) != ";")
+		if(length(message) >= 2)
+			var/channel_prefix = copytext(message, 1, 3)
+			if(languages.len)
+				for(var/datum/language/L in languages)
+					if(lowertext(channel_prefix) == ":[L.key]" || lowertext(channel_prefix) == ".[L.key]")
+						verb = L.speech_verb
+						speaking = L
+						break
 
-	if(!is_robotic)
-		if(isnull(speaking) || speaking.key != "a") //Not hivemind? Then default to xenocommon. BRUTE FORCE YO
-			for(var/datum/language/L in languages)
-				if(L.key == "x")
-					verb = L.speech_verb
-					speaking = L
-					forced = 1
-					break
+		if(!is_robotic)
+			if(isnull(speaking) || speaking.key != "a") //Not hivemind? Then default to xenocommon. BRUTE FORCE YO
+				for(var/datum/language/L in languages)
+					if(L.key == "x")
+						verb = L.speech_verb
+						speaking = L
+						forced = 1
+						break
+		else
+			if(!speaking || isnull(speaking))
+				for(var/datum/language/L in languages)
+					if(L.key == "0")
+						verb = L.speech_verb
+						speaking = L
+						forced = 1
+						break
 	else
-		if(!speaking || isnull(speaking))
-			for(var/datum/language/L in languages)
-				if(L.key == "0")
-					verb = L.speech_verb
-					speaking = L
-					forced = 1
-					break
+		message = trim(copytext(message,2))
 
 	if(speaking && !forced)
 		message = trim(copytext(message,3))
