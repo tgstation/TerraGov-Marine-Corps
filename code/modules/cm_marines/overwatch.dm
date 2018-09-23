@@ -767,6 +767,11 @@
 
 	var/obj/item/card/id/ID = transfer_marine.wear_id
 	ID.assigned_fireteam = 0 //reset fireteam assignment
+	
+	//Changes headset frequency to match new squad
+	var/obj/item/device/radio/headset/almayer/marine/H = transfer_marine.wear_ear
+	if(istype(H, /obj/item/device/radio/headset/almayer/marine))
+		H.set_frequency(new_squad.radio_freq)
 
 	transfer_marine.hud_set_squad()
 	visible_message("\icon[src] <span class='boldnotice'>[transfer_marine] has been transfered from squad '[old_squad]' to squad '[new_squad]'. Logging to enlistment file.</span>")
