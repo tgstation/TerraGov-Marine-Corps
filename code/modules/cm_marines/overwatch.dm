@@ -578,22 +578,22 @@
 	//All set, let's do this.
 	busy = 1
 	visible_message("\icon[src] <span class='boldnotice'>Orbital bombardment request for squad '[current_squad]' accepted. Orbital cannons are now calibrating.</span>")
-	send_to_squad("Initializing fire coordinates.")
+	send_to_squad("Initializing fire coordinates...")
 	if(current_squad.bbeacon)
 		playsound(current_squad.bbeacon.loc,'sound/effects/alert.ogg', 25, 1)  //Placeholder
-	sleep(20)
-	send_to_squad("Transmitting beacon feed.")
-	sleep(20)
-	send_to_squad("Calibrating trajectory window.")
-	sleep(20)
+	sleep(15)
+	send_to_squad("Transmitting beacon feed...")
+	sleep(15)
+	send_to_squad("Calibrating trajectory window...")
+	sleep(11)
 	for(var/mob/living/carbon/H in living_mob_list)
 		if(H.z == MAIN_SHIP_Z_LEVEL && !H.stat) //USS Almayer decks.
 			to_chat(H, "<span class='warning'>The deck of the USS Almayer shudders as the orbital cannons open fire on the colony.</span>")
 			if(H.client)
 				shake_camera(H, 10, 1)
 	visible_message("\icon[src] <span class='boldnotice'>Orbital bombardment for squad '[current_squad]' has fired! Impact imminent!</span>")
-	send_to_squad("WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!")
-	spawn(6)
+	send_to_squad("<span class='danger'>WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!</span>")
+	spawn(25)
 		if(!current_squad.bbeacon) //May have been destroyed en route
 			send_to_squad("Critical error. Orbital beacon signal lost, shell has landed off-site.")
 			busy = 0
