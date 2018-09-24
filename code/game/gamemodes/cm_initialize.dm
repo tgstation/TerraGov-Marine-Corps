@@ -402,11 +402,11 @@ datum/game_mode/proc/initialize_special_clamps()
 	if(is_queen)
 		to_chat(new_xeno, "<B>You are now the alien queen!</B>")
 		to_chat(new_xeno, "<B>Your job is to spread the hive.</B>")
-		to_chat(new_xeno, "Talk in Hivemind using <strong>:a</strong> (e.g. ':aMy life for the queen!')")
+		to_chat(new_xeno, "Talk in Hivemind using <strong>;</strong> (e.g. ';My life for the hive!')")
 	else
 		to_chat(new_xeno, "<B>You are now an alien!</B>")
 		to_chat(new_xeno, "<B>Your job is to spread the hive and protect the Queen. If there's no Queen, you can become the Queen yourself by evolving into a drone.</B>")
-		to_chat(new_xeno, "Talk in Hivemind using <strong>:a</strong> (e.g. ':aMy life for the queen!')")
+		to_chat(new_xeno, "Talk in Hivemind using <strong>;</strong> (e.g. ';My life for the queen!')")
 
 	new_xeno.update_icons()
 

@@ -150,7 +150,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	generate_entry_message(mob/living/carbon/human/H)
 		. = {"You are a civilian, and are not subject to follow military chain of command, but you do work for the USCM.
 You are tasked with researching and developing new medical treatments, helping your fellow doctors, and generally learning new things.
-Your role involves a lot of roleplaying, but you can perform the function of a regular doctor. Do not hand out things to marines without getting permission from your supervisor."}
+Your role involves some roleplaying and gimmickry, but you can perform the function of a regular doctor."}
 
 //Liaison
 /datum/job/civilian/liaison
@@ -179,10 +179,10 @@ Your role involves a lot of roleplaying, but you can perform the function of a r
 
 
 	generate_entry_message(mob/living/carbon/human/H)
-		. = {"As a representative of Weyland-Yutani Corporation, your job requires you to stay in character at all times.
+		. = {"As a representative of Weyland-Yutani Corporation you are expected to stay professional and loyal to the corporation at all times.
 You are not required to follow military orders; however, you cannot give military orders.
 Your primary job is to observe and report back your findings to Weyland-Yutani. Follow regular game rules unless told otherwise by your superiors.
-Use your office fax machine to communicate with corporate headquarters or to acquire new directives. You may not receive anything back, and this is normal."}
+Use your office fax machine to communicate with corporate headquarters or to acquire new directives. You may not receive anything back (especially if the game staff is absent or otherwise busy), and this is normal."}
 
 	generate_entry_conditions(mob/living/carbon/human/H)
 		if(ticker && H.mind) ticker.liaison = H.mind //TODO Look into CL tracking in game mode.

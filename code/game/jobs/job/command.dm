@@ -41,12 +41,12 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 
 	generate_entry_message()
-		. = {"Your job is HEAVY ROLE PLAY and requires you to stay IN CHARACTER at all times.
-While you support Weyland-Yutani, you report to the USCM High Command, not the corporate office.
+		. = {"As the commander of the USS Almayer you are held by higher standard and are expected to act competently.
+While you may support Weyland-Yutani, you report to the USCM High Command, not the corporate office.
 Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
 Your first order of business should be briefing the marines on the mission they are about to undertake.
-If you require any help, use adminhelp to talk to game staff about what you're supposed to do.
-Godspeed, commander!"}
+If you require any help, use adminhelp to ask mentors about what you're supposed to do.
+Godspeed, commander! And remember, you are not above the law."}
 
 	announce_entry_message(mob/living/carbon/human/H)
 		..()
@@ -262,9 +262,9 @@ While you are an officer, your authority is limited to your own vehicle, where y
 				)
 
 	generate_entry_message(mob/living/carbon/human/H)
-		. = {"You are held by a higher standard and are required to obey not only the server rules but the <a href='http://cm-ss13.com/wiki/Marine_Law'>Marine Law</a>.
-Failure to do so may result in a job ban or server ban.
-Your primary job is to maintain peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
+		. = {"You are held by a higher standard and are required to not abuse your position to severely hinder the progress of the round.
+Failure to do so may result in a job ban.
+Your primary job is to uphold the <a href='https://tgstation13.org/wiki/Space_Law'>Space Law</a>, and peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
 In addition, you are tasked with the security of high-ranking personnel, including the command staff. Keep them safe!"}
 
 //Chief MP
@@ -294,7 +294,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 				)
 
 	generate_entry_message(mob/living/carbon/human/H)
-		. = {"You are held by a higher standard and are required to obey not only the server rules but the <a href='http://cm-ss13.com/wiki/Marine_Law'>Marine Law</a>.
-Failure to do so may result in a job ban or server ban.
-You lead the Military Police, ensure your officers maintain peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
+		. = {"You are held by a higher standard and are required to not abuse your position to severely hinder the progress of the round.
+Failure to do so may result in a job ban.
+You lead the Military Police, ensure your officers uphold the <a href='https://tgstation13.org/wiki/Space_Law'>Space Law</a>, and maintain peace and stability aboard the ship. Marines can get rowdy after a few weeks of cryosleep!
 In addition, you are tasked with the security of high-ranking personnel, including the command staff. Keep them safe!"}
