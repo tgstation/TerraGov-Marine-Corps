@@ -723,6 +723,7 @@
 #include "code\game\objects\structures\lamarr_cage.dm"
 #include "code\game\objects\structures\landing_signs.dm"
 #include "code\game\objects\structures\lattice.dm"
+#include "code\game\objects\structures\memorial.dm"
 #include "code\game\objects\structures\mineral_doors.dm"
 #include "code\game\objects\structures\mirror.dm"
 #include "code\game\objects\structures\misc.dm"
