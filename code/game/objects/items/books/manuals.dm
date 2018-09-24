@@ -718,11 +718,11 @@
 		"}
 
 /obj/item/book/manual/marine_law
-	name = "Marine Law"
-	desc = "A set of guidelines for keeping law and order on military vessels."
+	name = "Space Law"
+	desc = "A set of universal guidelines for keeping law and order on civilian, private and military vessels alike."
 	icon_state = "bookSpaceLaw"
 	author = "The Company"
-	title = "Marine Law"
+	title = "Space Law"
 
 	dat = {"
 
@@ -730,7 +730,7 @@
 		</head>
 
 		<body>
-		<iframe width='100%' height='97%' src="http://cm-ss13.com/wiki/Marine_Law" frameborder="0" id="main_frame"></iframe>
+		<iframe width='100%' height='97%' src="https://tgstation13.org/wiki/Space_Law?printable=yes&removelinks=1" frameborder="0" id="main_frame"></iframe>
 		</body>
 
 		</html>

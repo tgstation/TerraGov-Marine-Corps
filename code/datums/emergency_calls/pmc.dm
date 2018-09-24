@@ -84,7 +84,7 @@
 	to_chat(M, "<B>You were born [pick(75;"in Europe", 15;"in Asia", 10;"on Mars")] to a [pick(75;"well-off", 15;"well-established", 10;"average")] family.</b>")
 	to_chat(M, "<B>Joining the ranks of Weyland Yutani has proven to be very profitable for you.</b>")
 	to_chat(M, "<B>While you are officially an employee, much of your work is off the books. You work as a skilled mercenary.</b>")
-	to_chat(M, "<B>You are [pick(50;"unaware of the xenomorph threat", 15;"acutely aware of the xenomorph threat", 10;"well-informed of the xenomorph threat")]</b>")
+	to_chat(M, "<B>You are well-informed of the xenomorph threat.</b>")
 	to_chat(M, "")
 	to_chat(M, "")
 	to_chat(M, "<B>You are part of  Weyland Yutani Task Force Oberon that arrived in 2182 following the UA withdrawl of the Tychon's Rift sector.</b>")
