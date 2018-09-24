@@ -778,7 +778,8 @@ and you're good to go.
 							cdel(projectile_to_fire)
 						reload_into_chamber(user) //Reload into the chamber if the gun supports it.
 						return TRUE
-
+					else
+						return FALSE
 	return ..() //Pistolwhippin'
 
 //----------------------------------------------------------
