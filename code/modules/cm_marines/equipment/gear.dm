@@ -45,15 +45,19 @@
 	item_path = /obj/item/bodybag/tarp/snow
 
 
-
-
 /obj/item/coin/marine
+	name = "marine premium token"
+	desc = "A special coin meant to be inserted in a marine vendor in order to access a single premium equipment or device... or just to suffice your vices."
+	icon_state = "coin_adamantine"
+	flags_token = TOKEN_MARINE|TOKEN_GENERAL //when you do prefer a premium smoke over else.
+
+/obj/item/coin/marine/attackby(obj/item/W as obj, mob/user as mob) //To remove attaching a string functionality
+	return
+
+/obj/item/coin/marine/specialist
 	name = "marine specialist weapon token"
 	desc = "Insert this into a specialist vendor in order to access a single highly dangerous weapon."
-	icon_state = "coin_adamantine"
-
-	attackby(obj/item/W as obj, mob/user as mob) //To remove attaching a string functionality
-		return
+	flags_token = TOKEN_SPEC
 
 /obj/structure/broken_apc
 	name = "\improper M577 armored personnel carrier"

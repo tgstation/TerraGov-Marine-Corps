@@ -127,3 +127,11 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define IS_PRY_CAPABLE_CROWBAR		2 //actual crowbar
 #define IS_PRY_CAPABLE_FORCE		3 //can force open even powered airlocks
 
+//flags_token & tokensupport
+//used for coins and vendors, restricting specific tokens to associated vendors.
+
+#define TOKEN_GENERAL			1
+#define TOKEN_MARINE			2
+#define TOKEN_ENGI				4
+#define TOKEN_SPEC				8
+#define TOKEN_ALL				15

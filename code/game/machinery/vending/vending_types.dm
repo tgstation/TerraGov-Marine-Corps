@@ -382,6 +382,7 @@
 /obj/machinery/vending/shared_vending
 	var/list/shared = list()
 	var/static/list/shared_products = list()
+	isshared = TRUE
 
 /obj/machinery/vending/shared_vending/New()
 	..()
