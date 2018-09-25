@@ -9,11 +9,18 @@
 	<div itemLabel>
 		{{if data.premium_length > 0}}
 			{{if data.coin}}
-				<b>Coin slot:</b> {{:helper.link('Remove', null, {'remove_coin' : '1'}, null, null)}}
+				<b>Coin slot:</b> {{:data.coin}} {{:helper.link('Remove', null, {'remove_coin' : '1'}, null, null)}}
+			{{else}}
+				<b>Coin slot:</b> No coin inserted
+			{{/if}}
+		{{else data.isshared}}
+			{{if data.coin}}
+				<b>Coin slot:</b> {{:data.coin}} {{:helper.link('Remove', null, {'remove_coin' : '1'}, null, null)}}
 			{{else}}
 				<b>Coin slot:</b> No coin inserted
 			{{/if}}
 		{{/if}}
+		
 	</div>
 	<div itemLabel>
 		{{if data.ewallet}}

@@ -56,6 +56,7 @@
 	var/panel_open = 0 //Hacking that vending machine. Gonna get a free candy bar.
 	var/wires = 15
 	var/obj/item/coin/coin
+	var/tokensupport = TOKEN_GENERAL
 	var/const/WIRE_EXTEND = 1
 	var/const/WIRE_SCANID = 2
 	var/const/WIRE_SHOCK = 3
@@ -66,6 +67,7 @@
 	var/tipped_level = 0
 	var/hacking_safety = 0 //1 = Will never shoot inventory or allow all access
 	var/wrenchable = TRUE
+	var/isshared = FALSE
 
 /obj/machinery/vending/New()
 	..()
@@ -168,9 +170,20 @@
 			attack_hand(user)
 		return
 	else if(istype(W, /obj/item/coin))
-		if(user.drop_inv_item_to_loc(W, src))
-			coin = W
-			to_chat(user, "\blue You insert the [W] into the [src]")
+		var/obj/item/coin/C = W
+		if(coin)
+			to_chat(user, "<span class='warning'>[src] already has [coin] inserted</span>")
+			return
+		if(!premium.len && !isshared)
+			to_chat(user, "<span class='warning'>[src] doesn't have a coin slot.</span>")
+			return
+		if(C.flags_token & tokensupport)
+			if(user.drop_inv_item_to_loc(W, src))
+				coin = W
+				to_chat(user, "\blue You insert the [W] into the [src]")
+		else
+			to_chat(user, "<span class='warning'>\The [src] rejects the [W].</span>")
+			return
 		return
 	else if(istype(W, /obj/item/card))
 		var/obj/item/card/I = W
@@ -377,6 +390,7 @@
 		"ewallet_worth" = ewallet ? ewallet.worth : null,
 		"coin" = coin ? coin.name : null,
 		"displayed_records" = display_list,
+		"isshared" = isshared
 	)
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
