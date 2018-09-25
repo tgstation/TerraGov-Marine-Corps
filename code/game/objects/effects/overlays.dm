@@ -182,7 +182,7 @@
 
 
 /obj/effect/overlay/temp/gib_animation/xeno
-	icon = 'icons/Xeno/xenomorph_48x48.dmi'
+	icon = 'icons/Xeno/1x1_Xenos.dmi'
 	effect_duration = 10
 
 /obj/effect/overlay/temp/gib_animation/xeno/New(Loc, mob/source_mob, gib_icon, new_icon)

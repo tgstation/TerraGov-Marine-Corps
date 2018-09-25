@@ -4,7 +4,7 @@
 	caste = "Boiler"
 	name = "Boiler"
 	desc = "A huge, grotesque xenomorph covered in glowing, oozing acid slime."
-	icon = 'icons/Xeno/xenomorph_64x64.dmi'
+	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Boiler Walking"
 	melee_damage_lower = 12
 	melee_damage_upper = 15

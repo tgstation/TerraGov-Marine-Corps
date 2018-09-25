@@ -19,7 +19,7 @@
 	caste = "Queen"
 	name = "Queen"
 	desc = "A huge, looming alien creature. The biggest and the baddest."
-	icon = 'icons/Xeno/xenomorph_64x64.dmi'
+	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Queen Walking"
 	melee_damage_lower = 30
 	melee_damage_upper = 46

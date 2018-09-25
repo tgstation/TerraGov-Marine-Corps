@@ -2,7 +2,7 @@
 	caste = "Defender"
 	name = "Defender"
 	desc = "A alien with an armored head crest."
-	icon = 'icons/Xeno/xenomorph_64x64.dmi'
+	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Defender Walking"
 	melee_damage_lower = 15
 	melee_damage_upper = 25

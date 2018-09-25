@@ -4,7 +4,7 @@
 	caste = "Lurker"
 	name = "Lurker"
 	desc = "A beefy, fast alien with sharp claws."
-	icon = 'icons/Xeno/xenomorph_48x48.dmi'
+	icon = 'icons/Xeno/1x1_Xenos.dmi'
 	icon_state = "Lurker Walking"
 	melee_damage_lower = 20
 	melee_damage_upper = 30
@@ -17,8 +17,8 @@
 	upgrade_threshold = 500
 	caste_desc = "A fast, powerful front line combatant."
 	speed = -1.5 //Not as fast as runners, but faster than other xenos
-	pixel_x = -12
-	old_x = -12
+	pixel_x = 0
+	old_x = 0
 	evolves_to = list("Ravager")
 	charge_type = 2 //Pounce - Hunter
 	armor_deflection = 15
