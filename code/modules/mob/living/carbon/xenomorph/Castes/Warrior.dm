@@ -2,7 +2,7 @@
 	caste = "Warrior"
 	name = "Warrior"
 	desc = "A beefy, alien with an armored carapace."
-	icon = 'icons/Xeno/xenomorph_64x64.dmi'
+	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Warrior Walking"
 	melee_damage_lower = 30
 	melee_damage_upper = 35

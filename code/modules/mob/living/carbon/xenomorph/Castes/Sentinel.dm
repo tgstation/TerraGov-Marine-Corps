@@ -4,7 +4,7 @@
 	caste = "Sentinel"
 	name = "Sentinel"
 	desc = "A slithery, spitting kind of alien."
-	icon = 'icons/Xeno/xenomorph_48x48.dmi'
+	icon = 'icons/Xeno/1x1_Xenos.dmi'
 	icon_state = "Sentinel Walking"
 	melee_damage_lower = 10
 	melee_damage_upper = 20
@@ -18,8 +18,8 @@
 	spit_delay = 30
 	spit_types = list(/datum/ammo/xeno/toxin)
 	caste_desc = "A weak ranged combat alien."
-	pixel_x = -12
-	old_x = -12
+	pixel_x = 0
+	old_x = 0
 	evolves_to = list("Spitter")
 	armor_deflection = 15
 	tier = 1
