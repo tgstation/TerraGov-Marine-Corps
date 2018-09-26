@@ -16,6 +16,7 @@
 	var/trick_delay = 6
 	var/recent_trick //So they're not spamming tricks.
 	var/russian_roulette = 0 //God help you if you do this.
+	var/catchworking = TRUE
 	type_of_casings = "bullet"
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
 	wield_delay = WIELD_DELAY_VERY_FAST //If you modify your revolver to be two-handed, it will still be fast to aim
@@ -43,6 +44,12 @@
 
 /obj/item/weapon/gun/revolver/update_icon() //Special snowflake update icon.
 	icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_o"
+
+/obj/item/weapon/gun/revolver/attackby(obj/item/P as obj, mob/user as mob)
+	if(istype(P, /obj/item/tool/screwdriver))
+		to_chat(user, "[catchworking? "You adjust the cylinder lock to allow the cylinder to be spun.": "You adjust the cylinder lock to the correct depth."]")
+		catchworking = !catchworking
+	..()
 
 /obj/item/weapon/gun/revolver/proc/rotate_cylinder(mob/user) //Cylinder moves backward.
 	current_mag.chamber_position = current_mag.chamber_position == 1 ? current_mag.max_rounds : current_mag.chamber_position - 1
@@ -80,106 +87,109 @@
 			current_mag.chamber_position++
 
 	playsound(user, hand_reload_sound, 25, 1)
-	return 1
+	return TRUE
 
-/obj/item/weapon/gun/revolver
-	reload(mob/user, obj/item/ammo_magazine/magazine)
-		if(flags_gun_features & GUN_BURST_FIRING) return
-
-		if(!magazine || !istype(magazine))
-			to_chat(user, "<span class='warning'>That's not gonna work!</span>")
-			return
-
-		if(magazine.current_rounds <= 0)
-			to_chat(user, "<span class='warning'>That [magazine.name] is empty!</span>")
-			return
-
-		if(current_mag.chamber_closed)
-			to_chat(user, "<span class='warning'>You can't load anything when the cylinder is closed!</span>")
-			return
-
-		if(current_mag.current_rounds == current_mag.max_rounds)
-			to_chat(user, "<span class='warning'>It's already full!</span>")
-			return
-
-		if(istype(magazine, /obj/item/ammo_magazine/handful)) //Looks like we're loading via handful.
-			if( !current_mag.current_rounds && current_mag.caliber == magazine.caliber) //Make sure nothing's loaded and the calibers match.
-				replace_ammo(user, magazine) //We are going to replace the ammo just in case.
-				current_mag.match_ammo(magazine)
-				current_mag.transfer_ammo(magazine,user,1) //Handful can get deleted, so we can't check through it.
-				add_to_cylinder(user)
-			//If bullets still remain in the gun, we want to check if the actual ammo matches.
-			else if(magazine.default_ammo == current_mag.default_ammo) //Ammo datums match, let's see if they are compatible.
-				if(current_mag.transfer_ammo(magazine,user,1))
-					add_to_cylinder(user)//If the magazine is deleted, we're still fine.
-			else
-				to_chat(user, "[current_mag] is [current_mag.current_rounds ? "already loaded with some other ammo. Better not mix them up." : "not compatible with that ammo."]")
-		else //So if it's not a handful, it's an actual speedloader.
-			if(!current_mag.current_rounds) //We can't have rounds in the gun if it's a speeloader.
-				if(current_mag.gun_type == magazine.gun_type) //Has to be the same gun type.
-					if(current_mag.transfer_ammo(magazine,user,magazine.current_rounds))//Make sure we're successful.
-						replace_ammo(user, magazine) //We want to replace the ammo ahead of time, but not necessary here.
-						current_mag.match_ammo(magazine)
-						replace_cylinder(current_mag.current_rounds)
-						playsound(user, reload_sound, 25, 1) // Reloading via speedloader.
-				else
-					to_chat(user, "<span class='warning'>That [magazine] doesn't fit!</span>")
-			else
-				to_chat(user, "<span class='warning'>You can't load a speedloader when there's something in the cylinder!</span>")
-
-	unload(mob/user)
-		if(flags_gun_features & GUN_BURST_FIRING) return
-
-		if(current_mag.chamber_closed) //If it's actually closed.
-			to_chat(user, "<span class='notice'>You clear the cylinder of [src].</span>")
-			make_casing(type_of_casings)
-			empty_cylinder()
-			current_mag.create_handful(user)
-			current_mag.chamber_closed = !current_mag.chamber_closed
-			russian_roulette = !russian_roulette //Resets the RR variable.
-		else
-			current_mag.chamber_closed = !current_mag.chamber_closed
-		playsound(src, unload_sound, 25, 1)
-		update_icon()
+/obj/item/weapon/gun/revolver/reload(mob/user, obj/item/ammo_magazine/magazine)
+	if(flags_gun_features & GUN_BURST_FIRING)
 		return
 
-	make_casing()
-		if(current_mag.used_casings)
-			. = ..()
-			current_mag.used_casings = 0 //Always dump out everything.
+	if(!magazine || !istype(magazine))
+		to_chat(user, "<span class='warning'>That's not gonna work!</span>")
+		return
 
-	able_to_fire(mob/user)
+	if(magazine.current_rounds <= 0)
+		to_chat(user, "<span class='warning'>That [magazine.name] is empty!</span>")
+		return
+
+	if(current_mag.chamber_closed)
+		to_chat(user, "<span class='warning'>You can't load anything when the cylinder is closed!</span>")
+		return
+
+	if(current_mag.current_rounds == current_mag.max_rounds)
+		to_chat(user, "<span class='warning'>It's already full!</span>")
+		return
+
+	if(istype(magazine, /obj/item/ammo_magazine/handful)) //Looks like we're loading via handful.
+		if( !current_mag.current_rounds && current_mag.caliber == magazine.caliber) //Make sure nothing's loaded and the calibers match.
+			replace_ammo(user, magazine) //We are going to replace the ammo just in case.
+			current_mag.match_ammo(magazine)
+			current_mag.transfer_ammo(magazine,user,1) //Handful can get deleted, so we can't check through it.
+			add_to_cylinder(user)
+		//If bullets still remain in the gun, we want to check if the actual ammo matches.
+		else if(magazine.default_ammo == current_mag.default_ammo) //Ammo datums match, let's see if they are compatible.
+			if(current_mag.transfer_ammo(magazine,user,1))
+				add_to_cylinder(user)//If the magazine is deleted, we're still fine.
+		else
+			to_chat(user, "[current_mag] is [current_mag.current_rounds ? "already loaded with some other ammo. Better not mix them up." : "not compatible with that ammo."]")
+	else //So if it's not a handful, it's an actual speedloader.
+		if(!current_mag.current_rounds) //We can't have rounds in the gun if it's a speeloader.
+			if(current_mag.gun_type == magazine.gun_type) //Has to be the same gun type.
+				if(current_mag.transfer_ammo(magazine,user,magazine.current_rounds))//Make sure we're successful.
+					replace_ammo(user, magazine) //We want to replace the ammo ahead of time, but not necessary here.
+					current_mag.match_ammo(magazine)
+					replace_cylinder(current_mag.current_rounds)
+					playsound(user, reload_sound, 25, 1) // Reloading via speedloader.
+			else
+				to_chat(user, "<span class='warning'>That [magazine] doesn't fit!</span>")
+		else
+			to_chat(user, "<span class='warning'>You can't load a speedloader when there's something in the cylinder!</span>")
+
+/obj/item/weapon/gun/revolver/unload(mob/user)
+	if(flags_gun_features & GUN_BURST_FIRING) return
+
+	if(current_mag.chamber_closed) //If it's actually closed.
+		to_chat(user, "<span class='notice'>You clear the cylinder of [src].</span>")
+		make_casing(type_of_casings)
+		empty_cylinder()
+		current_mag.create_handful(user)
+		current_mag.chamber_closed = !current_mag.chamber_closed
+		russian_roulette = !russian_roulette //Resets the RR variable.
+	else
+		current_mag.chamber_closed = !current_mag.chamber_closed
+	playsound(src, unload_sound, 25, 1)
+	update_icon()
+	return
+
+/obj/item/weapon/gun/revolver/make_casing()
+	if(current_mag.used_casings)
 		. = ..()
-		if(. && istype(user))
-			if(!current_mag.chamber_closed)
-				to_chat(user, "<span class='warning'>Close the cylinder!</span>")
-				return 0
+		current_mag.used_casings = 0 //Always dump out everything.
 
-	ready_in_chamber()
-		if(current_mag.current_rounds > 0)
-			if( current_mag.chamber_contents[current_mag.chamber_position] == "bullet")
-				current_mag.current_rounds-- //Subtract the round from the mag.
-				in_chamber = create_bullet(ammo)
-				return in_chamber
+/obj/item/weapon/gun/revolver/able_to_fire(mob/user)
+	. = ..()
+	if(. && istype(user))
+		if(!current_mag.chamber_closed)
+			to_chat(user, "<span class='warning'>Close the cylinder!</span>")
+			return FALSE
 
-	load_into_chamber(mob/user)
-//		if(active_attachable) active_attachable = null
-		if(ready_in_chamber())
+/obj/item/weapon/gun/revolver/ready_in_chamber()
+	if(current_mag.current_rounds > 0)
+		if( current_mag.chamber_contents[current_mag.chamber_position] == "bullet")
+			current_mag.current_rounds-- //Subtract the round from the mag.
+			in_chamber = create_bullet(ammo)
 			return in_chamber
-		rotate_cylinder() //If we fail to return to chamber the round, we just move the firing pin some.
 
-	reload_into_chamber(mob/user)
-		current_mag.chamber_contents[current_mag.chamber_position] = "blank" //We shot the bullet.
-		current_mag.used_casings++ //We add this only if we actually fired the bullet.
-		rotate_cylinder()
-		return 1
+/obj/item/weapon/gun/revolver/load_into_chamber(mob/user)
+//		if(active_attachable) active_attachable = null
+	if(ready_in_chamber())
+		return in_chamber
+	rotate_cylinder() //If we fail to return to chamber the round, we just move the firing pin some.
 
-	delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
-		cdel(projectile_to_fire)
-		if(refund) current_mag.current_rounds++
-		return 1
+/obj/item/weapon/gun/revolver/reload_into_chamber(mob/user)
+	current_mag.chamber_contents[current_mag.chamber_position] = "blank" //We shot the bullet.
+	current_mag.used_casings++ //We add this only if we actually fired the bullet.
+	rotate_cylinder()
+	return TRUE
 
-	unique_action(mob/user)
+/obj/item/weapon/gun/revolver/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
+	cdel(projectile_to_fire)
+	if(refund) current_mag.current_rounds++
+	return TRUE
+
+/obj/item/weapon/gun/revolver/unique_action(mob/user)
+	if(catchworking)
+		unload(user)
+	else
 		spin_cylinder(user)
 
 /obj/item/weapon/gun/revolver/proc/revolver_basic_spin(mob/living/carbon/human/user, direction = 1, obj/item/weapon/gun/revolver/double)
