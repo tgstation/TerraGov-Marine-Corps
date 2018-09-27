@@ -41,6 +41,7 @@
 			var/mob/living/carbon/human/H = body
 			icon = H.stand_icon
 			overlays = H.overlays_standing
+			underlays = H.underlays_standing
 		else
 			icon = body.icon
 			icon_state = body.icon_state

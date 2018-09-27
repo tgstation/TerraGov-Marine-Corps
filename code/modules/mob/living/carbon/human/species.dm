@@ -27,12 +27,15 @@
 	var/language                  // Default racial language, if any.
 	// Default language is used when 'say' is used without modifiers.
 	var/default_language = "English"
+	var/speech_verb_override
 	var/secondary_langs = list()  // The names of secondary languages that are available to this species.
 	var/mutantrace                // Safeguard due to old code.
 	var/list/speech_sounds        // A list of sounds to potentially play when speaking.
 	var/list/speech_chance
 	var/has_fine_manipulation = 1 // Can use small items.
 	var/insulated                 // Immune to electrocution and glass shards to the feet.
+	var/show_paygrade = FALSE
+	var/count_human = FALSE // Does this count as a human?
 
 	// Some species-specific gibbing data.
 	var/gibbed_anim = "gibbed-h"
@@ -70,6 +73,8 @@
 	var/flags = 0       // Various specific features.
 
 	var/list/abilities = list()	// For species-derived or admin-given powers
+	var/list/preferences = list()
+	var/list/screams = list()
 
 	var/blood_color = "#A10808" //Red.
 	var/flesh_color = "#FFC896" //Pink.
@@ -154,6 +159,12 @@
 	H.visible_message("<span class='notice'>[H] hugs [target] to make [t_him] feel better!</span>", \
 					"<span class='notice'>You hug [target] to make [t_him] feel better!</span>", null, 4)
 
+/datum/species/proc/random_name(gender)
+	if(gender == FEMALE)
+		return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
+	else
+		return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
+
 //special things to change after we're no longer that species
 /datum/species/proc/post_species_loss(mob/living/carbon/human/H)
 	return
@@ -207,6 +218,21 @@
 /datum/species/proc/can_understand(var/mob/other)
 	return
 
+/datum/species/proc/handle_fire(mob/living/carbon/human/H)
+	return
+
+/datum/species/proc/update_body(mob/living/carbon/human/H)
+	return
+
+/datum/species/proc/update_inv_head(mob/living/carbon/human/H)
+	return
+
+/datum/species/proc/update_inv_w_uniform(mob/living/carbon/human/H)
+	return
+
+/datum/species/proc/update_inv_wear_suit(mob/living/carbon/human/H)
+	return
+
 /datum/species/human
 	name = "Human"
 	name_plural = "Humans"
@@ -214,6 +240,10 @@
 	primitive = /mob/living/carbon/monkey
 	unarmed_type = /datum/unarmed_attack/punch
 	flags = HAS_SKIN_TONE|HAS_LIPS|HAS_UNDERWEAR
+	show_paygrade = TRUE
+	count_human = TRUE
+
+	screams = list("male" = "male_scream", "female" = "female_scream")
 
 	//If you wanted to add a species-level ability:
 	/*abilities = list(/client/proc/test_ability)*/
@@ -294,7 +324,7 @@
 	heat_level_2 = 480 //Default 400
 	heat_level_3 = 1100 //Default 1000
 
-	flags = IS_WHITELISTED|HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR
+	flags = HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR
 
 	flesh_color = "#34AF10"
 
@@ -321,7 +351,7 @@
 
 	primitive = /mob/living/carbon/monkey/tajara
 
-	flags = IS_WHITELISTED|HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR
+	flags = HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR
 
 	flesh_color = "#AFA59E"
 	base_color = "#333333"
@@ -335,11 +365,66 @@
 	primitive = /mob/living/carbon/monkey/skrell
 	unarmed_type = /datum/unarmed_attack/punch
 
-	flags = IS_WHITELISTED|HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR
+	flags = HAS_LIPS|HAS_UNDERWEAR|HAS_SKIN_COLOR
 
 	flesh_color = "#8CD7A3"
 
 	reagent_tag = IS_SKRELL
+
+/datum/species/moth
+	name = "Moth"
+	name_plural = "Moth"
+	icobase = 'icons/mob/human_races/r_moth.dmi'
+	deform = 'icons/mob/human_races/r_moth.dmi'
+	eyes = "blank_eyes"
+	speech_verb_override = "flutters"
+	show_paygrade = TRUE
+	count_human = TRUE
+
+	flags = HAS_LIPS|HAS_NO_HAIR
+	preferences = list("moth_wings" = "Wings")
+	screams = list("neuter" = 'sound/voice/moth_scream.ogg')
+
+	flesh_color = "#E5CD99"
+
+	reagent_tag = IS_MOTH
+
+/datum/species/moth/handle_fire(mob/living/carbon/human/H)
+	if(H.moth_wings != "Burnt Off" && H.bodytemperature >= 400 && H.fire_stacks > 0)
+		to_chat(H, "<span class='danger'>Your precious wings burn to a crisp!</span>")
+		H.moth_wings = "Burnt Off"
+		H.update_body()
+
+/datum/species/moth/random_name()
+	return "[pick(moth_first)] [pick(moth_last)]"
+
+/datum/species/moth/proc/update_moth_wings(mob/living/carbon/human/H)
+	H.remove_overlay(MOTH_WINGS_LAYER)
+	H.remove_underlay(MOTH_WINGS_BEHIND_LAYER)
+
+	var/datum/sprite_accessory/moth_wings/wings = moth_wings_list[H.moth_wings]
+
+	if(wings)
+		H.overlays_standing[MOTH_WINGS_LAYER] = image(wings.icon, icon_state = "m_moth_wings_[wings.icon_state]_FRONT")
+		H.underlays_standing[MOTH_WINGS_BEHIND_LAYER] = image(wings.icon, icon_state = "m_moth_wings_[wings.icon_state]_BEHIND")
+		H.apply_overlay(MOTH_WINGS_LAYER)
+		H.apply_underlay(MOTH_WINGS_BEHIND_LAYER)
+
+/datum/species/moth/update_body(mob/living/carbon/human/H)
+	update_moth_wings(H)
+
+/datum/species/moth/update_inv_head(mob/living/carbon/human/H)
+	update_moth_wings(H)
+
+/datum/species/moth/update_inv_w_uniform(mob/living/carbon/human/H)
+	update_moth_wings(H)
+
+/datum/species/moth/update_inv_wear_suit(mob/living/carbon/human/H)
+	update_moth_wings(H)
+
+/datum/species/moth/post_species_loss(mob/living/carbon/human/H)
+	H.remove_overlay(MOTH_WINGS_LAYER)
+	H.remove_underlay(MOTH_WINGS_BEHIND_LAYER)
 
 /datum/species/vox
 	name = "Vox"
@@ -457,7 +542,7 @@
 
 	body_temperature = 350
 
-	flags = IS_WHITELISTED|NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION
+	flags = NO_BREATHE|NO_SCAN|NO_BLOOD|NO_POISON|NO_PAIN|IS_SYNTHETIC|NO_CHEM_METABOLIZATION
 
 	blood_color = "#EEEEEE"
 	flesh_color = "#272757"
@@ -640,7 +725,7 @@
 	brute_mod = 0.33 //Beefy!
 	burn_mod = 0.65
 	reagent_tag = IS_YAUTJA
-	flags = IS_WHITELISTED|HAS_SKIN_COLOR|NO_PAIN|NO_SCAN|NO_POISON //Hmm, let's see if this does anything
+	flags = HAS_SKIN_COLOR|NO_PAIN|NO_SCAN|NO_POISON //Hmm, let's see if this does anything
 	language = "Sainja" //"Warrior"
 	default_language = "Sainja"
 	unarmed_type = /datum/unarmed_attack/punch/strong

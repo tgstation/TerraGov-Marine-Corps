@@ -710,8 +710,10 @@ datum/game_mode/proc/initialize_special_clamps()
 		if(!istype(survivor))
 			current_survivors -= survivor
 			continue //Not a mind? How did this happen?
-
-		random_name = pick(random_name(FEMALE),random_name(MALE))
+		
+		var/mob/living/carbon/human/current = survivor.current
+		var/datum/species/species = istype(current) ? current.species : all_species[DEFAULT_SPECIES]
+		random_name = species.random_name(pick(MALE, FEMALE))
 
 		if(current_survivors.len > 1) //If we have another survivor to pick from.
 			if(survivor_multi_story.len) //Unlikely.

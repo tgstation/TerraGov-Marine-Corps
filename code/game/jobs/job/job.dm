@@ -98,7 +98,8 @@
 		G = gear_datums[i]
 		if(G)
 			if(G.allowed_roles && !(title in G.allowed_roles)) 				continue //Is the role allowed?
-			if(G.whitelisted && !is_alien_whitelisted(H, G.whitelisted)) 	continue //is the role whitelisted? //TODO Remove this.
+			if(G.whitelisted && !is_alien_whitelisted(G.whitelisted))
+				continue //is the role whitelisted? //TODO Remove this.
 			H.equip_to_slot_or_del(new G.path(H), G.slot ? G.slot : WEAR_IN_BACK)
 
 	//Give humans wheelchairs, if they need them.

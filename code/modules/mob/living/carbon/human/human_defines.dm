@@ -25,6 +25,9 @@
 	var/r_skin = 0
 	var/g_skin = 0
 	var/b_skin = 0
+	
+	//Species specific
+	var/moth_wings = "Plain"
 
 	var/size_multiplier = 1 //multiplier for the mob's icon size
 	var/icon_update = 1 //whether icon updating shall take place

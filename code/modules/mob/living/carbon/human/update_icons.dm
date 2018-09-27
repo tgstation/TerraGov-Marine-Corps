@@ -60,38 +60,9 @@ There are several things that need to be remembered:
 
 */
 
-//Human Overlays Indexes/////////
-#define MUTANTRACE_LAYER		25
-#define MUTATIONS_LAYER			24
-#define DAMAGE_LAYER			23
-#define UNIFORM_LAYER			22
-#define TAIL_LAYER				21		//bs12 specific. this hack is probably gonna come back to haunt me
-#define ID_LAYER				20
-#define SHOES_LAYER				19
-#define GLOVES_LAYER			18
-#define SUIT_LAYER				17
-#define GLASSES_LAYER			16
-#define BELT_LAYER				15		//Possible make this an overlay of somethign required to wear a belt?
-#define SUIT_STORE_LAYER		14
-#define BACK_LAYER				13
-#define HAIR_LAYER				12		//TODO: make part of head layer?
-#define EARS_LAYER				11
-#define FACEMASK_LAYER			10
-#define HEAD_LAYER				9
-#define COLLAR_LAYER			8
-#define HANDCUFF_LAYER			7
-#define LEGCUFF_LAYER			6
-#define L_HAND_LAYER			5
-#define R_HAND_LAYER			4
-#define BURST_LAYER				3 	//Chestburst overlay
-#define TARGETED_LAYER			2	//for target sprites when held at gun point, and holo cards.
-#define FIRE_LAYER				1		//If you're on fire		//BS12: Layer for the target overlay from weapon targeting system
-
-#define TOTAL_LAYERS			25
-//////////////////////////////////
-
 /mob/living/carbon/human
 	var/list/overlays_standing[TOTAL_LAYERS]
+	var/list/underlays_standing[TOTAL_UNDERLAYS]
 	var/previous_damage_appearance // store what the body last looked like, so we only have to update it if something changed
 
 
@@ -106,6 +77,15 @@ There are several things that need to be remembered:
 		overlays -= overlays_standing[cache_index]
 		overlays_standing[cache_index] = null
 
+/mob/living/carbon/human/apply_underlay(cache_index)
+	var/image/I = underlays_standing[cache_index]
+	if(I)
+		underlays += I
+
+/mob/living/carbon/human/remove_underlay(cache_index)
+	if(underlays_standing[cache_index])
+		underlays -= underlays_standing[cache_index]
+		underlays_standing[cache_index] = null
 
 //UPDATES OVERLAYS FROM OVERLAYS_LYING/OVERLAYS_STANDING
 //this proc is messy as I was forced to include some old laggy cloaking code to it so that I don't break cloakers
@@ -352,13 +332,16 @@ var/global/list/damage_icon_parts = list()
 
 	icon = stand_icon
 
-	//tail
-	update_tail_showing(0)
+	species?.update_body(src)
+	update_tail_showing()
 
 //HAIR OVERLAY
 /mob/living/carbon/human/proc/update_hair()
 	//Reset our hair
 	remove_overlay(HAIR_LAYER)
+
+	if(species.flags & HAS_NO_HAIR)
+		return
 
 	var/datum/limb/head/head_organ = get_limb("head")
 	if( !head_organ || (head_organ.status & LIMB_DESTROYED) )
@@ -543,6 +526,7 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[UNIFORM_LAYER]	= standing
 
 		apply_overlay(UNIFORM_LAYER)
+	species?.update_inv_w_uniform(src)
 
 /mob/living/carbon/human/update_inv_wear_id()
 	remove_overlay(ID_LAYER)
@@ -712,6 +696,7 @@ var/global/list/damage_icon_parts = list()
 		overlays_standing[HEAD_LAYER] = standing
 
 		apply_overlay(HEAD_LAYER)
+	species?.update_inv_head(src)
 
 /mob/living/carbon/human/update_inv_belt()
 	remove_overlay(BELT_LAYER)
@@ -774,6 +759,8 @@ var/global/list/damage_icon_parts = list()
 
 	update_tail_showing()
 	update_collar()
+
+	species?.update_inv_wear_suit(src)
 
 	apply_overlay(SUIT_LAYER)
 
@@ -894,7 +881,6 @@ var/global/list/damage_icon_parts = list()
 
 			apply_overlay(TAIL_LAYER)
 
-
 //Adds a collar overlay above the helmet layer if the suit has one
 //	Suit needs an identically named sprite in icons/mob/collar.dmi
 /mob/living/carbon/human/proc/update_collar()
@@ -966,32 +952,3 @@ var/global/list/damage_icon_parts = list()
 			if(15 to 20) overlays_standing[FIRE_LAYER] = image("icon"='icons/mob/OnFire.dmi', "icon_state"="Standing_medium", "layer"=-FIRE_LAYER)
 
 		apply_overlay(FIRE_LAYER)
-
-
-//Human Overlays Indexes/////////
-#undef MUTANTRACE_LAYER
-#undef MUTATIONS_LAYER
-#undef DAMAGE_LAYER
-#undef UNIFORM_LAYER
-#undef TAIL_LAYER
-#undef ID_LAYER
-#undef SHOES_LAYER
-#undef GLOVES_LAYER
-#undef EARS_LAYER
-#undef SUIT_LAYER
-#undef GLASSES_LAYER
-#undef FACEMASK_LAYER
-#undef BELT_LAYER
-#undef SUIT_STORE_LAYER
-#undef BACK_LAYER
-#undef HAIR_LAYER
-#undef HEAD_LAYER
-#undef COLLAR_LAYER
-#undef HANDCUFF_LAYER
-#undef LEGCUFF_LAYER
-#undef L_HAND_LAYER
-#undef R_HAND_LAYER
-#undef TARGETED_LAYER
-#undef FIRE_LAYER
-#undef BURST_LAYER
-#undef TOTAL_LAYERS

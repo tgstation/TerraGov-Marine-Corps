@@ -16,6 +16,7 @@ datum/preferences
 		randomize_hair_color("facial")
 		randomize_eyes_color()
 		randomize_skin_color()
+		randomize_species_specific()
 		underwear = rand(1,underwear_m.len)
 		undershirt = rand(1,undershirt_t.len)
 		backbag = 2
@@ -180,7 +181,6 @@ datum/preferences
 		g_skin = green
 		b_skin = blue
 
-
 	proc/update_preview_icon()		//seriously. This is horrendous.
 		if(updating_icon)
 			return
@@ -233,23 +233,29 @@ datum/preferences
 		if(current_species && (current_species.tail))
 			var/icon/temp = new/icon("icon" = 'icons/effects/species.dmi', "icon_state" = "[current_species.tail]_s")
 			preview_icon.Blend(temp, ICON_OVERLAY)
-
-
+		
+		if(current_species && (current_species.name == "Moth"))
+			var/datum/sprite_accessory/moth_wings/wings = moth_wings_list[moth_wings]
+			var/icon/behind = new/icon("icon" = wings.icon, "icon_state" = "m_moth_wings_[wings.icon_state]_BEHIND")
+			var/icon/front = new/icon("icon" = wings.icon, "icon_state" = "m_moth_wings_[wings.icon_state]_FRONT")
+			preview_icon.Blend(behind, ICON_OVERLAY)
+			preview_icon.Blend(front, ICON_OVERLAY)
 
 		var/icon/eyes_s = new/icon("icon" = 'icons/mob/human_face.dmi', "icon_state" = current_species ? current_species.eyes : "eyes_s")
 		eyes_s.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
 
-		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
-		if(hair_style)
-			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
-			hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
-			eyes_s.Blend(hair_s, ICON_OVERLAY)
+		if(!(current_species.flags & HAS_NO_HAIR))
+			var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
+			if(hair_style)
+				var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
+				hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
+				eyes_s.Blend(hair_s, ICON_OVERLAY)
 
-		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
-		if(facial_hair_style)
-			var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
-			facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
-			eyes_s.Blend(facial_s, ICON_OVERLAY)
+			var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
+			if(facial_hair_style)
+				var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
+				facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
+				eyes_s.Blend(facial_s, ICON_OVERLAY)
 
 		var/icon/underwear_s = null
 		if(underwear > 0 && underwear < 5 && current_species.flags & HAS_UNDERWEAR)
@@ -588,3 +594,6 @@ datum/preferences
 		cdel(undershirt_s)
 		cdel(clothes_s)
 		updating_icon = 0
+
+/datum/preferences/proc/randomize_species_specific()
+	moth_wings = pick(moth_wings_list - "Burnt Off")

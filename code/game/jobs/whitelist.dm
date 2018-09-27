@@ -28,26 +28,14 @@ var/list/whitelist = list()
 	if (!text)
 		log_misc("Failed to load config/alienwhitelist.txt")
 	else
-		alien_whitelist = text2list(text, "\n")
+		alien_whitelist["Human"] = TRUE
+
+		for(var/line in text2list(text, "\n"))
+			if(all_species[line])
+				alien_whitelist[line] = TRUE
 
 //todo: admin aliens
-/proc/is_alien_whitelisted(mob/M, var/species)
-	if(!config.usealienwhitelist) //If there's not config to use the whitelist.
-		return 1
-	if(species == "human" || species == "Human")
-		return 1
-//	if(check_rights(R_ADMIN, 0)) //Admins are not automatically considered to be whitelisted anymore. ~N
-//		return 1				//This actually screwed up a bunch of procs, but I only noticed it with the wrong spawn point.
-	if(!alien_whitelist)
-		return 0
-	if(M && species)
-		for (var/s in alien_whitelist)
-			if(findtext(lowertext(s),"[lowertext(M.key)] - [species]"))
-				return 1
-			//if(findtext(lowertext(s),"[lowertext(M.key)] - [species] Elder")) //Unnecessary.
-			//	return 1
-			if(findtext(lowertext(s),"[lowertext(M.key)] - All"))
-				return 1
-	return 0
+/proc/is_alien_whitelisted(species)
+	return alien_whitelist[species]
 
 #undef WHITELISTFILE

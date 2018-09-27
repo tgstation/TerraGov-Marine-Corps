@@ -131,8 +131,10 @@
 					observer.icon = client.prefs.preview_icon
 					observer.alpha = 127
 
+					var/datum/species/species = all_species[client.prefs.species] || all_species[DEFAULT_SPECIES]
+
 					if(client.prefs.be_random_name)
-						client.prefs.real_name = random_name(client.prefs.gender)
+						client.prefs.real_name = species.random_name(client.prefs.gender)
 					observer.real_name = client.prefs.real_name
 					observer.name = observer.real_name
 	//				if(!client.holder && !config.antag_hud_allowed)           // For new ghosts we remove the verb from even showing up if it's not allowed.
@@ -154,13 +156,8 @@
 					return
 
 				if(client.prefs.species != "Human")
-					if(!is_alien_whitelisted(src, client.prefs.species) && config.usealienwhitelist)
+					if(!is_alien_whitelisted(client.prefs.species) && config.usealienwhitelist)
 						to_chat(src, alert("You are currently not whitelisted to play [client.prefs.species]."))
-						return
-
-					var/datum/species/S = all_species[client.prefs.species]
-					if(!(S.flags & IS_WHITELISTED))
-						to_chat(src, alert("Your current species,[client.prefs.species], is not available for play on the station."))
 						return
 
 				LateChoices()
@@ -200,13 +197,8 @@
 					return
 
 				if(client.prefs.species != "Human")
-					if(!is_alien_whitelisted(src, client.prefs.species) && config.usealienwhitelist)
+					if(!is_alien_whitelisted(client.prefs.species) && config.usealienwhitelist)
 						to_chat(src, alert("You are currently not whitelisted to play [client.prefs.species]."))
-						return 0
-
-					var/datum/species/S = all_species[client.prefs.species]
-					if(!(S.flags & IS_WHITELISTED))
-						to_chat(src, alert("Your current species,[client.prefs.species], is not available for play on the station."))
 						return 0
 
 				AttemptLateSpawn(href_list["job_selected"],client.prefs.spawnpoint)
@@ -408,7 +400,7 @@
 			chosen_species = all_species[client.prefs.species]
 		if(chosen_species)
 			// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
-			if(is_species_whitelisted(chosen_species) || has_admin_rights())
+			if(is_alien_whitelisted(client.prefs.species))
 				new_character = new(loc, client.prefs.species)
 
 		if(!new_character)
@@ -420,12 +412,12 @@
 		if(client.prefs.language)
 			chosen_language = all_languages["[client.prefs.language]"]
 		if(chosen_language)
-			if(is_alien_whitelisted(src, client.prefs.language) || !config.usealienwhitelist || !(chosen_language.flags & WHITELISTED) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
+			if(is_alien_whitelisted(client.prefs.language) || !config.usealienwhitelist || !(chosen_language.flags & WHITELISTED) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 				new_character.add_language("[client.prefs.language]")
 
 		if(ticker.random_players)
 			new_character.gender = pick(MALE, FEMALE)
-			client.prefs.real_name = random_name(new_character.gender)
+			client.prefs.real_name = chosen_species.random_name(new_character.gender)
 			client.prefs.randomize_appearance_for(new_character)
 		else
 			client.prefs.copy_to(new_character)
@@ -469,22 +461,14 @@
 		src << browse(null, "window=playersetup") //closes the player setup window
 		src << sound(null, repeat = 0, wait = 0, volume = 85, channel = 1) // Stops lobby music.
 
-	proc/has_admin_rights()
-		return client.holder.rights & R_ADMIN
-
-	proc/is_species_whitelisted(datum/species/S)
-		if(!S) return 1
-		return is_alien_whitelisted(src, S.name) || !config.usealienwhitelist || !(S.flags & IS_WHITELISTED)
-
 /mob/new_player/get_species()
 	var/datum/species/chosen_species
 	if(client.prefs.species)
 		chosen_species = all_species[client.prefs.species]
-
 	if(!chosen_species)
 		return "Human"
 
-	if(is_species_whitelisted(chosen_species) || has_admin_rights())
+	if(is_alien_whitelisted(chosen_species))
 		return chosen_species.name
 
 	return "Human"

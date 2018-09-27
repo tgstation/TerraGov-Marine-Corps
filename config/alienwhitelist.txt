@@ -1,1 +1,2 @@
-some~user - Species
+# Write the names of the species you want pickable by all players. Humans are implied always pickable.
+Moth
