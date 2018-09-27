@@ -28,7 +28,7 @@
 	replace_cylinder(current_mag.current_rounds)
 
 /obj/item/weapon/gun/revolver/set_gun_config_values()
-	fire_delay = config.max_fire_delay
+	fire_delay = config.mlow_fire_delay
 	accuracy_mult = config.base_hit_accuracy_mult
 	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult
 	scatter = config.med_scatter_value
@@ -321,7 +321,7 @@
 		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
 
 /obj/item/weapon/gun/revolver/upp/set_gun_config_values()
-	fire_delay = config.low_fire_delay
+	fire_delay = config.mlow_fire_delay
 	accuracy_mult = config.base_hit_accuracy_mult
 	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
 	scatter = config.med_scatter_value
@@ -349,7 +349,7 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
 /obj/item/weapon/gun/revolver/small/set_gun_config_values()
-	fire_delay = config.low_fire_delay
+	fire_delay = config.mlow_fire_delay
 	accuracy_mult = config.base_hit_accuracy_mult
 	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult
 	scatter = config.med_scatter_value
