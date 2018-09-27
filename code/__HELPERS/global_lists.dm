@@ -60,7 +60,6 @@ var/list/global/active_laser_targets = list()
 var/global/list/all_species[0]
 var/global/list/all_languages[0]
 var/global/list/language_keys[0]					//table of say codes for all languages
-var/global/list/whitelisted_species = list("Human")
 var/global/list/synth_types = list("Synthetic","Early Synthetic")
 
 // Posters
@@ -85,6 +84,8 @@ var/global/list/underwear_f = list("Briefs", "Panties")
 var/global/list/undershirt_t = list("None","Undershirt(Sleeveless)", "Undershirt(Sleeved)", "Rolled Undershirt(Sleeveless)", "Rolled Undershirt(Sleeved)")
 	//Backpacks
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel")
+	// Species specific
+var/global/list/moth_wings_list = list()
 // var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
 
 //////////////////////////
@@ -116,6 +117,11 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel")
 			else
 				facial_hair_styles_male_list += H.name
 				facial_hair_styles_female_list += H.name
+	
+	// Species specific
+	for(var/path in subtypesof(/datum/sprite_accessory/moth_wings))
+		var/datum/sprite_accessory/moth_wings/wings = new path()
+		moth_wings_list[wings.name] = wings
 
 	// Ethnicity - Initialise all /datum/ethnicity into a list indexed by ethnicity name
 	for(var/path in subtypesof(/datum/ethnicity))
@@ -161,9 +167,6 @@ var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel")
 		var/datum/species/S = new T
 		S.race_key = rkey //Used in mob icon caching.
 		all_species[S.name] = S
-
-		if(S.flags & IS_WHITELISTED)
-			whitelisted_species += S.name
 
 	// Our ammo stuff is initialized here.
 	var/blacklist = list(/datum/ammo/energy, /datum/ammo/energy/yautja, /datum/ammo/energy/yautja/rifle, /datum/ammo/bullet/shotgun, /datum/ammo/xeno)

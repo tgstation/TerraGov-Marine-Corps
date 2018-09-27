@@ -45,7 +45,7 @@
 			speaking.broadcast(src,trim(message))
 			return
 		//If we've gotten this far, keep going!
-		verb = speaking.get_spoken_verb(ending)
+		verb = speaking.get_spoken_verb(ending, src)
 	else
 		if(ending=="!")
 			verb=pick("exclaims","shouts","yells")
@@ -195,7 +195,7 @@
 	var/ending = copytext(message, length(message))
 
 	if(speaking)
-		verb = speaking.get_spoken_verb(ending)
+		verb = speaking.get_spoken_verb(ending, src)
 	else
 		if(ending == "!")
 			verb=pick("exclaims","shouts","yells")

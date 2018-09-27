@@ -90,6 +90,9 @@ datum/preferences
 	var/list/gear						//Custom/fluff item loadout.
 	var/preferred_squad = "None"
 
+	// Species specific
+	var/moth_wings = "Plain"
+
 		//Some faction information.
 	var/home_system = "Unset"           //System of birth.
 	var/citizenship = "United Americas (United States)" //Current home system.
@@ -153,7 +156,9 @@ datum/preferences
 			if(load_preferences())
 				if(load_character())
 					return
-	real_name = random_name(MALE)
+	gender = pick(MALE, FEMALE)
+	var/datum/species/S = all_species[species]
+	real_name = S.random_name(gender)
 	gear = list()
 	age = rand(18,23)
 	h_style = pick("Crewcut","Bald","Short Hair")
@@ -302,9 +307,16 @@ datum/preferences
 	dat += "<b>Age:</b> <a href='?_src_=prefs;preference=age;task=input'><b>[age]</b></a><br>"
 	dat += "<b>Gender:</b> <a href='?_src_=prefs;preference=gender'><b>[gender == MALE ? "Male" : "Female"]</b></a><br>"
 	dat += "<b>Ethnicity:</b> <a href='?_src_=prefs;preference=ethnicity;task=input'><b>[ethnicity]</b></a><br>"
+	dat += "<b>Species:</b> <a href='?_src_=prefs;preference=species;task=input'><b>[species]</b></a><br>"
 	dat += "<b>Body Type:</b> <a href='?_src_=prefs;preference=body_type;task=input'><b>[body_type]</b></a><br>"
 	dat += "<b>Poor Eyesight:</b> <a href='?_src_=prefs;preference=disabilities'><b>[disabilities == 0 ? "No" : "Yes"]</b></a><br>"
 	dat += "<br>"
+
+	var/datum/species/current_species = all_species[species]
+	if(current_species.preferences)
+		for(var/preference_id in current_species.preferences)
+			dat += "<b>[current_species.preferences[preference_id]]:</b> <a href='?_src_=prefs;preference=[preference_id];task=input'><b>[vars[preference_id]]</b></a><br>"
+		dat += "<br>"
 
 	dat += "<big><b><u>Occupation Choices:</u></b></big>"
 	dat += "<br>"
@@ -859,7 +871,7 @@ datum/preferences
 
 					for(var/gear_name in gear_datums)
 						var/datum/gear/G = gear_datums[gear_name]
-						if(G.whitelisted && !is_alien_whitelisted(user, G.whitelisted))
+						if(G.whitelisted && !is_alien_whitelisted(G.whitelisted))
 							continue
 						valid_gear_choices += gear_name
 
@@ -984,7 +996,8 @@ datum/preferences
 		if ("random")
 			switch (href_list["preference"])
 				if ("name")
-					real_name = random_name(gender)
+					var/datum/species/S = all_species[species]
+					real_name = S.random_name(gender)
 				if ("age")
 					age = rand(AGE_MIN, AGE_MAX)
 				if ("ethnicity")
@@ -1013,14 +1026,14 @@ datum/preferences
 					r_eyes = rand(0,255)
 					g_eyes = rand(0,255)
 					b_eyes = rand(0,255)
-
 				if ("s_color")
 					r_skin = rand(0,255)
 					g_skin = rand(0,255)
 					b_skin = rand(0,255)
 				if ("bag")
 					backbag = rand(1,4)
-
+				if ("moth_wings")
+					moth_wings = pick(moth_wings_list - "Burnt Off")
 				if ("all")
 					randomize_appearance_for()	//no params needed
 		if("input")
@@ -1081,7 +1094,7 @@ datum/preferences
 					if(config.usealienwhitelist)
 						for(var/L in all_languages)
 							var/datum/language/lang = all_languages[L]
-							if((!(lang.flags & RESTRICTED)) && (is_alien_whitelisted(user, L)||(!( lang.flags & WHITELISTED ))||(S && (L in S.secondary_langs))))
+							if((!(lang.flags & RESTRICTED)) && (is_alien_whitelisted(L)||(!( lang.flags & WHITELISTED ))||(S && (L in S.secondary_langs))))
 								new_languages += lang
 
 								languages_available = 1
@@ -1140,6 +1153,11 @@ datum/preferences
 
 					if (new_body_type)
 						body_type = new_body_type
+				
+				if("species")
+					var/new_species = input(user, "Choose your species:", "Character Preferences") as null|anything in get_playable_species()
+					if(new_species && is_alien_whitelisted(new_species))
+						species = new_species
 
 				if("facial")
 					var/new_facial = input(user, "Choose your character's facial-hair colour:", "Character Preference") as color|null
@@ -1211,6 +1229,13 @@ datum/preferences
 					var/new_backbag = input(user, "Choose your character's style of bag:", "Character Preference")  as null|anything in backbaglist
 					if(new_backbag)
 						backbag = backbaglist.Find(new_backbag)
+				
+				if("moth_wings")
+					if(species == "Moth")
+						var/new_wings = input(user, "Choose your character's wings: ", "Character Preferences") as null|anything in (moth_wings_list - "Burnt Off")
+						
+						if(new_wings)
+							moth_wings = new_wings
 
 				if("nt_relation")
 					var/new_relation = input(user, "Choose your relation to the Weyland-Yutani company. Note that this represents what others can find out about your character by researching your background, not what your character actually thinks.", "Character Preference")  as null|anything in list("Loyal", "Supportive", "Neutral", "Skeptical", "Opposed")
@@ -1441,9 +1466,10 @@ datum/preferences
 
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, safety = 0)
 	if(be_random_name)
-		real_name = random_name(gender)
+		var/datum/species/S = all_species[species]
+		real_name = S.random_name(gender)
 
-	if(config.humans_need_surnames)
+	if(config.humans_need_surnames && species == "Human")
 		var/firstspace = findtext(real_name, " ")
 		var/name_length = length(real_name)
 		if(!firstspace)	//we need a surname
@@ -1501,6 +1527,8 @@ datum/preferences
 
 	character.skills = skills
 	character.used_skillpoints = used_skillpoints
+
+	character.moth_wings = moth_wings
 
 	// Destroy/cyborgize organs
 

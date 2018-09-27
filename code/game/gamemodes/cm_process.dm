@@ -252,9 +252,9 @@ Only checks living mobs with a client attached.
 
 	for(var/mob/M in player_list)
 		if(M.z && (M.z in z_levels) && M.stat != DEAD && !istype(M.loc, /turf/open/space)) //If they have a z var, they are on a turf.
-			if(ishuman(M) && !isYautja(M) && !(M.status_flags & XENO_HOST) && !iszombie(M))
+			if(ishuman(M) && !(M.status_flags & XENO_HOST) && !iszombie(M))
 				var/mob/living/carbon/human/H = M
-				if(H.species && H.species.name == "Human") //only real humans count
+				if(H.species && H.species.count_human) //only real humans count
 					num_humans++
 			else if(isXeno(M)) num_xenos++
 			else if(iszombie(M)) num_xenos++

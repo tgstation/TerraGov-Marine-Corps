@@ -259,7 +259,7 @@
 
 		if(isXeno(L) && !isXenoLarva(L)) //Handling pushing Xenos in general, but big Xenos and Preds can still push small Xenos
 			var/mob/living/carbon/Xenomorph/X = L
-			if((has_species(src, "Human") && X.mob_size == MOB_SIZE_BIG) || (isXeno(src) && X.mob_size == MOB_SIZE_BIG))
+			if((ishuman(src) && X.mob_size == MOB_SIZE_BIG) || (isXeno(src) && X.mob_size == MOB_SIZE_BIG))
 				if(!isXeno(src) && client)
 					do_bump_delay = 1
 				now_pushing = 0
@@ -267,7 +267,7 @@
 
 		if(isXeno(src) && !isXenoLarva(src) && ishuman(L)) //We are a Xenomorph and pushing a human
 			var/mob/living/carbon/Xenomorph/X = src
-			if(has_species(L, "Human") && X.mob_size == MOB_SIZE_BIG)
+			if(X.mob_size == MOB_SIZE_BIG)
 				L.do_bump_delay = 1
 
 		if(L.pulledby && L.pulledby != src && L.is_mob_restrained())

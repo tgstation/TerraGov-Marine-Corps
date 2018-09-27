@@ -351,8 +351,8 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define HAS_SKIN_COLOR 256
 #define HAS_LIPS 512
 #define HAS_UNDERWEAR 1024
-#define IS_PLANT 2048
-#define IS_WHITELISTED 4096
+#define HAS_NO_HAIR	2048
+#define IS_PLANT 4096
 #define IS_SYNTHETIC 8192
 //=================================================
 
@@ -363,6 +363,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define IS_XENOS 5
 #define IS_YAUTJA 6
 #define IS_HORROR 7
+#define IS_MOTH 8
 //=================================================
 
 //Mob sizes
@@ -423,3 +424,37 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 #define CRUSHER_STOMP_COOLDOWN 200
 #define XENO_SLOWDOWN_REGEN 0.4
+
+// Human Overlay Indexes
+#define MOTH_WINGS_LAYER		26
+#define MUTANTRACE_LAYER		25
+#define MUTATIONS_LAYER			24
+#define DAMAGE_LAYER			23
+#define UNIFORM_LAYER			22
+#define TAIL_LAYER				21		//bs12 specific. this hack is probably gonna come back to haunt me
+#define ID_LAYER				20
+#define SHOES_LAYER				19
+#define GLOVES_LAYER			18
+#define SUIT_LAYER				17
+#define GLASSES_LAYER			16
+#define BELT_LAYER				15		//Possible make this an overlay of somethign required to wear a belt?
+#define SUIT_STORE_LAYER		14
+#define BACK_LAYER				13
+#define HAIR_LAYER				12		//TODO: make part of head layer?
+#define EARS_LAYER				11
+#define FACEMASK_LAYER			10
+#define HEAD_LAYER				9
+#define COLLAR_LAYER			8
+#define HANDCUFF_LAYER			7
+#define LEGCUFF_LAYER			6
+#define L_HAND_LAYER			5
+#define R_HAND_LAYER			4
+#define BURST_LAYER				3 	//Chestburst overlay
+#define TARGETED_LAYER			2	//for target sprites when held at gun point, and holo cards.
+#define FIRE_LAYER				1		//If you're on fire		//BS12: Layer for the target overlay from weapon targeting system
+
+#define TOTAL_LAYERS			26
+
+#define MOTH_WINGS_BEHIND_LAYER	1
+
+#define TOTAL_UNDERLAYS			1

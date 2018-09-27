@@ -530,7 +530,7 @@
 		return
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(H.species.name == "Human") //no effect on synths or preds.
+		if(H.species && H.species.count_human) //no effect on synths or preds.
 			if(H.mind && H.mind.special_role)
 				H.apply_effects(0,1) //ineffective against antags.
 			else

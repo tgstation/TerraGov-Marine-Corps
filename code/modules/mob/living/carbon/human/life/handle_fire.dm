@@ -7,3 +7,4 @@
 	if((1 - thermal_protection) > 0.0001)
 		bodytemperature += BODYTEMP_HEATING_MAX
 		adjustFireLoss(5)
+	species?.handle_fire(src)

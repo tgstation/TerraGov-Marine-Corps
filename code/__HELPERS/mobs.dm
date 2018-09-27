@@ -44,10 +44,6 @@ proc/random_facial_hair_style(gender, species = "Human")
 
 		return f_style
 
-proc/random_name(gender, species = "Human")
-	if(gender==FEMALE)	return capitalize(pick(first_names_female)) + " " + capitalize(pick(last_names))
-	else				return capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
-
 proc/random_skin_tone()
 	switch(pick(60;"caucasian", 15;"afroamerican", 10;"african", 10;"latino", 5;"albino"))
 		if("caucasian")		. = -10
@@ -57,6 +53,13 @@ proc/random_skin_tone()
 		if("albino")		. = 34
 		else				. = rand(-185,34)
 	return min(max( .+rand(-25, 25), -185),34)
+
+/proc/get_playable_species()
+	var/list/playable_species = list()
+	for(var/species in all_species)
+		if(is_alien_whitelisted(species))
+			playable_species += species
+	return playable_species
 
 proc/skintone2racedescription(tone)
 	switch (tone)

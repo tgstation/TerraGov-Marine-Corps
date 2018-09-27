@@ -141,6 +141,7 @@
 	S["age"]				>> age
 	S["ethnicity"]			>> ethnicity
 	S["body_type"]			>> body_type
+	S["species"]			>> species
 	S["language"]			>> language
 	S["spawnpoint"]			>> spawnpoint
 
@@ -163,6 +164,9 @@
 	S["undershirt"]			>> undershirt
 	S["backbag"]			>> backbag
 	//S["b_type"]				>> b_type
+
+	//Species specific
+	S["moth_wings"]			>> moth_wings
 
 	//Jobs
 	S["alternate_option"]	>> alternate_option
@@ -224,12 +228,12 @@
 	if(isnull(language)) language = "None"
 	if(isnull(spawnpoint)) spawnpoint = "Arrivals Shuttle"
 	if(isnull(nanotrasen_relation)) nanotrasen_relation = initial(nanotrasen_relation)
-	if(!real_name) real_name = random_name(gender)
 	be_random_name	= sanitize_integer(be_random_name, 0, 1, initial(be_random_name))
 	gender			= sanitize_gender(gender)
 	age				= sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
 	ethnicity		= sanitize_ethnicity(ethnicity)
 	body_type		= sanitize_body_type(body_type)
+	species			= (species in all_species) ? species : DEFAULT_SPECIES
 	r_hair			= sanitize_integer(r_hair, 0, 255, initial(r_hair))
 	g_hair			= sanitize_integer(g_hair, 0, 255, initial(g_hair))
 	b_hair			= sanitize_integer(b_hair, 0, 255, initial(b_hair))
@@ -252,6 +256,8 @@
 	backbag			= sanitize_integer(backbag, 1, backbaglist.len, initial(backbag))
 	//b_type			= sanitize_text(b_type, initial(b_type))
 
+	moth_wings		= (moth_wings in moth_wings_list) ? moth_wings : "Plain" // Dear CM coders, why do you have sanitize functions that are the equivalent of a ternary?
+
 	alternate_option = sanitize_integer(alternate_option, 0, 2, initial(alternate_option))
 	job_command_high = sanitize_integer(job_command_high, 0, 65535, initial(job_command_high))
 	job_command_med = sanitize_integer(job_command_med, 0, 65535, initial(job_command_med))
@@ -266,6 +272,9 @@
 	job_marines_med = sanitize_integer(job_marines_med, 0, 65535, initial(job_marines_med))
 	job_marines_low = sanitize_integer(job_marines_low, 0, 65535, initial(job_marines_low))
 
+	if(!real_name)
+		var/datum/species/Species = all_species[species]
+		real_name = Species.random_name(gender)
 	if(!skills) skills = list()
 	if(!used_skillpoints) used_skillpoints= 0
 	if(isnull(disabilities)) disabilities = 0
@@ -296,6 +305,7 @@
 	S["age"]				<< age
 	S["ethnicity"]			<< ethnicity
 	S["body_type"]			<< body_type
+	S["species"]			<< species
 	S["language"]			<< language
 	S["hair_red"]			<< r_hair
 	S["hair_green"]			<< g_hair
@@ -316,6 +326,9 @@
 	S["backbag"]			<< backbag
 	//S["b_type"]				<< b_type
 	S["spawnpoint"]			<< spawnpoint
+
+	// Species specific
+	S["moth_wings"]			<< moth_wings
 
 	//Jobs
 	S["alternate_option"]	<< alternate_option

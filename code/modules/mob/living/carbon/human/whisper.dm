@@ -43,7 +43,7 @@
 	var/italics = 1
 
 	if (speaking)
-		verb = speaking.speech_verb + pick(" quietly", " softly")
+		verb = speaking.get_speech_verb(src) + pick(" quietly", " softly")
 
 	message = capitalize(trim(message))
 
