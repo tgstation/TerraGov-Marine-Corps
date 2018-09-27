@@ -5,6 +5,7 @@
 
 /mob/living
 	var/blood_volume = 0 //how much blood the mob has
+	var/heart_multi = 1
 
 /mob/living/carbon
 	blood_volume = BLOOD_VOLUME_NORMAL
@@ -36,50 +37,56 @@
 		if(blood_volume < BLOOD_VOLUME_NORMAL)
 			blood_volume += 0.1 // regenerate blood VERY slowly
 
-		var/b_volume = blood_volume
-
 		// Damaged heart virtually reduces the blood volume, as the blood isn't
 		// being pumped properly anymore.
 		if(species && species.has_organ["heart"])
 			var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
 
 			if(!heart)
-				b_volume = 0
-			else if(reagents.get_reagent_amount("peridaxon") >= 0.05)
-				b_volume *= 1
-			else if(heart.damage > 1 && heart.damage < heart.min_bruised_damage)
-				b_volume *= 0.8
-			else if(heart.damage >= heart.min_bruised_damage && heart.damage < heart.min_broken_damage)
-				b_volume *= 0.6
-			else if(heart.damage >= heart.min_broken_damage && heart.damage < INFINITY)
-				b_volume *= 0.3
+				heart_multi *= 0.5 //you'd die in seconds but you can't remove internal organs even with varediting.
+
+			if(!(reagents.get_reagent_amount("peridaxon") >= 0.05) && heart.damage > 1)
+				if(heart.damage < heart.min_bruised_damage)
+					heart_multi = 0.9
+					blood_volume = max(blood_volume - 0.1, 0) //nulls regeneration
+				else if(heart.damage < heart.min_broken_damage)
+					heart_multi = 0.7
+					blood_volume = max(blood_volume - 0.5, 0)
+				else
+					heart_multi = 0.5
+					blood_volume = max(blood_volume - 1.3, 0)
+			else
+				heart_multi = 1
 
 
 
 
 
 	//Effects of bloodloss
-		switch(blood_volume)
+		switch(blood_volume * heart_multi)
 
 			if(BLOOD_VOLUME_OKAY to BLOOD_VOLUME_SAFE)
 				if(prob(1))
 					var/word = pick("dizzy","woozy","faint")
 					to_chat(src, "\red You feel [word]")
 				if(oxyloss < 20)
-					oxyloss += 3
+					adjustOxyLoss(3)
 			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
 				if(eye_blurry < 50)
-					eye_blurry += 6
-				if(oxyloss < 50)
-					oxyloss += 10
-				oxyloss += 2
+					eye_blurry += 5
+				if(oxyloss < 40)
+					adjustOxyLoss(6)
+				else
+					adjustOxyLoss(3)
+				if(prob(10) && stat == UNCONSCIOUS)
+					adjustToxLoss(1)
 				if(prob(15))
 					KnockOut(rand(1,3))
 					var/word = pick("dizzy","woozy","faint")
 					to_chat(src, "\red You feel extremely [word]")
 			if(BLOOD_VOLUME_SURVIVE to BLOOD_VOLUME_BAD)
-				oxyloss += 5
-				toxloss += 3
+				adjustOxyLoss(5)
+				adjustToxLoss(2)
 				if(prob(15))
 					var/word = pick("dizzy","woozy","faint")
 					to_chat(src, "\red You feel extremely [word]")
