@@ -203,22 +203,24 @@
 	wield_delay = 16
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 	var/datum/ammo/ammo_secondary = /datum/ammo/bullet/smartgun/lethal//Toggled ammo type
-	var/shells_fired_max = 20 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
+	var/shells_fired_max = 50 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
 	var/restriction_toggled = 1 //Begin with the safety on.
 	gun_skill_category = GUN_SKILL_SMARTGUN
 	attachable_allowed = list(
+						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/flashlight,
 						/obj/item/attachable/burstfire_assembly,
 						/obj/item/attachable/bipod)
 
-	flags_gun_features = GUN_INTERNAL_MAG|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
-
+	flags_gun_features = GUN_INTERNAL_MAG|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	starting_attachment_types = list(/obj/item/attachable/flashlight)
 
 /obj/item/weapon/gun/smartgun/New()
 	..()
 	ammo_secondary = ammo_list[ammo_secondary]
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 17, "rail_y" = 19, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 17, "rail_y" = 17, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
 
 
 /obj/item/weapon/gun/smartgun/set_gun_config_values()
@@ -228,6 +230,7 @@
 	accuracy_mult = config.base_hit_accuracy_mult + config.min_hit_accuracy_mult
 	scatter = config.med_scatter_value
 	damage_mult = config.base_hit_damage_mult
+	damage_falloff_mult = config.med_damage_falloff_mult
 
 /obj/item/weapon/gun/smartgun/examine(mob/user)
 	..()
@@ -277,7 +280,7 @@
 	set waitfor = 0
 	sleep(5)
 	if(power_pack && power_pack.loc)
-		power_pack.attack_self(smart_gunner)
+		power_pack.attack_self(smart_gunner, TRUE)
 
 /obj/item/weapon/gun/smartgun/dirty
 	name = "\improper M56D 'dirty' smartgun"

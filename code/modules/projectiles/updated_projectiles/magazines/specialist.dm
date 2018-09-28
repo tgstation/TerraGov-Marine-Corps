@@ -83,7 +83,7 @@
 /obj/item/ammo_magazine/internal/smartgun
 	name = "integrated smartgun belt"
 	caliber = "10x28mm"
-	max_rounds = 50 //Should be 500 in total.
+	max_rounds = 100
 	default_ammo = /datum/ammo/bullet/smartgun
 
 
