@@ -22,11 +22,13 @@
 					/obj/item/weapon/gun/revolver/m44 = 5,
 					/obj/item/weapon/gun/smg/m39 = 20,
 					/obj/item/weapon/gun/rifle/m41a = 25,
+					/obj/item/weapon/gun/energy/lasgun/M43 = 10,
 					/obj/item/weapon/gun/shotgun/pump = 10,
 					/obj/item/ammo_magazine/pistol = 30,
 					/obj/item/ammo_magazine/revolver = 25,
 					/obj/item/ammo_magazine/smg/m39 = 30,
 					/obj/item/ammo_magazine/rifle = 22,
+					/obj/item/ammo_magazine/lasgun/M43 = 22,
 					/obj/item/ammo_magazine/shotgun = 8,
 					/obj/item/ammo_magazine/shotgun/buckshot = 8,
 					/obj/item/ammo_magazine/shotgun/flechette = 8,
@@ -117,6 +119,7 @@
 					/obj/item/weapon/gun/rifle/lmg = 0,
 					/obj/item/weapon/gun/shotgun/pump = 5,
 					/obj/item/weapon/gun/shotgun/combat = 0,
+					/obj/item/weapon/gun/energy/lasgun/M43 = 5,
 					/obj/item/explosive/mine = 1,
 					/obj/item/storage/box/nade_box = 4,
 					/obj/item/explosive/grenade/frag = 2,
@@ -196,6 +199,9 @@
 					/obj/item/ammo_magazine/shotgun = 5,
 					/obj/item/ammo_magazine/shotgun/buckshot = 5,
 					/obj/item/ammo_magazine/shotgun/flechette = 5,
+					/obj/item/ammo_magazine/lasgun/M43 = 15,
+					/obj/item/ammo_magazine/lasgun/M43/highcap = 1,
+					/obj/item/ammo_magazine/rifle/extended = 1,
 					/obj/item/ammo_magazine/sniper = 1,
 					/obj/item/ammo_magazine/sniper/incendiary = 1,
 					/obj/item/ammo_magazine/sniper/flak = 1,
@@ -232,7 +238,62 @@
 	. = ..()
 	cargo_ammo_vendors.Remove(src)
 
+/obj/machinery/vending/lasgun
+	name = "ColMarTech Lasgun Field Charger"
+	desc = "An automated power cell dispenser and charger. Used to recharge energy weapon power cells, including in the field. Has an internal battery that charges off the power grid."
+	icon_state = "lascharger"
+	icon_vend = "lascharger-dispensing"
+	icon_deny = "lascharger-denied"
+	req_access = null
+	req_access_txt = "0"
+	req_one_access = null
+	req_one_access_txt = "9;2;21"
+	wrenchable = TRUE
+	drag_delay = FALSE
+	anchored = FALSE
+	idle_power_usage = 1
+	vend_power_usage = 50
+	machine_current_charge = 20000 //integrated battery for recharging energy weapons. Normally 10000.
+	machine_max_charge = 20000
 
+	product_ads = "Lasgun running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
+	products = list(
+					/obj/item/ammo_magazine/lasgun/M43 = 10,
+					/obj/item/ammo_magazine/lasgun/M43/highcap = 2,
+					)
+
+	contraband =   list()
+
+	premium = list()
+
+	prices = list()
+
+/obj/machinery/vending/lasgun/New()
+	..()
+	update_icon()
+
+/obj/machinery/vending/lasgun/update_icon()
+	if(machine_current_charge <= 0)
+		icon_state = "lascharger-off"
+	else if(machine_current_charge > round(machine_max_charge*0.75))
+		icon_state = "lascharger"
+	else if(machine_current_charge > round(machine_max_charge*0.5))
+		icon_state = "lascharger_75"
+	else if(machine_current_charge > round(machine_max_charge*0.25))
+		icon_state = "lascharger_50"
+	else
+		icon_state = "lascharger_25"
+
+/obj/machinery/vending/lasgun/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/ammo_magazine/lasgun))
+		stock(W, user, TRUE)
+		//to_chat(user, "<span class='warning'>DEBUG: Lasgun vendor restocked with [W].</span>")
+		return TRUE
+	. = ..()
+
+/obj/machinery/vending/lasgun/examine(mob/user)
+	..()
+	to_chat(user, "<b>It has [machine_current_charge] of [machine_max_charge] charge remaining.</b>")
 
 
 //MARINE FOOD VENDOR APOPHIS775 23DEC2017

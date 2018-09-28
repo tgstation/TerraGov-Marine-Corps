@@ -19,6 +19,7 @@ They're all essentially identical when it comes to getting the job done.
 	throw_speed = 2
 	throw_range = 6
 	var/default_ammo = /datum/ammo/bullet
+	var/overcharge_ammo = null //Generally used for energy weapons
 	var/caliber = null // This is used for matching handfuls to each other or whatever the mag is. Examples are" "12g" ".44" ".357" etc.
 	var/current_rounds = -1 //Set this to something else for it not to start with different initial counts.
 	var/max_rounds = 7 //How many rounds can it hold?

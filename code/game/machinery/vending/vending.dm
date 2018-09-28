@@ -543,11 +543,20 @@
 /obj/machinery/vending/proc/release_item(datum/data/vending_product/R, delay_vending = 0, dump_product = 0)
 	set waitfor = 0
 	if(delay_vending)
-		use_power(vend_power_usage)	//actuators and stuff
-		if (icon_vend) flick(icon_vend,src) //Show the vending animation if needed
-		sleep(delay_vending)
+		if(powered(power_channel))
+			use_power(vend_power_usage)	//actuators and stuff
+			if (icon_vend) flick(icon_vend,src) //Show the vending animation if needed
+			sleep(delay_vending)
+		else if(machine_current_charge > vend_power_usage) //if no power, use the machine's battery.
+			machine_current_charge -= min(machine_current_charge, vend_power_usage) //Sterilize with min; no negatives allowed.
+			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Vend Power Usage: [vend_power_usage] Machine Current Charge: [machine_current_charge].</span>")
+			if (icon_vend) flick(icon_vend,src) //Show the vending animation if needed
+			sleep(delay_vending)
+		else
+			return
 	if(ispath(R.product_path,/obj/item/weapon/gun)) . = new R.product_path(get_turf(src),1)
 	else . = new R.product_path(get_turf(src))
+
 
 /obj/machinery/vending/MouseDrop_T(var/atom/movable/A, mob/user)
 
@@ -562,9 +571,12 @@
 
 	if(istype(A, /obj/item))
 		var/obj/item/I = A
-		stock(I, user)
+		if(istype(I, /obj/item/ammo_magazine/lasgun) && istype(src, /obj/machinery/vending/lasgun))
+			stock(I, user, TRUE)
+		else
+			stock(I, user)
 
-/obj/machinery/vending/proc/stock(obj/item/item_to_stock, mob/user)
+/obj/machinery/vending/proc/stock(obj/item/item_to_stock, mob/user, recharge = FALSE)
 	var/datum/data/vending_product/R //Let's try with a new datum.
 	 //More accurate comparison between absolute paths.
 	for(R in (product_records + hidden_records + coin_records))
@@ -581,7 +593,22 @@
 
 			if(istype(item_to_stock, /obj/item/ammo_magazine))
 				var/obj/item/ammo_magazine/A = item_to_stock
-				if(A.current_rounds < A.max_rounds)
+				//to_chat(user, "<span class='warning'>DEBUG: Magazine Name: [A]. Recharge?: [recharge]. Current Charge: [machine_current_charge].</span>")
+				if(istype(A, /obj/item/ammo_magazine/lasgun) && recharge)
+					var/recharge_cost = (A.max_rounds - A.current_rounds) * 10 //10 energy per shot
+					if(recharge_cost > machine_current_charge)
+						to_chat(user, "<span class='warning'>[A] cannot be recharged; [src] has inadequate charge remaining: [machine_current_charge] of [machine_max_charge].</span>")
+						return
+					else
+						to_chat(user, "<span class='warning'>You insert [A] into [src] to be recharged.</span>")
+						if (icon_vend)
+							flick(icon_vend,src)
+						playsound(src.loc, 'sound/machines/hydraulics_1.ogg', 25, 1)
+						machine_current_charge -= min(machine_current_charge, recharge_cost)
+						to_chat(user, "<span class='notice'>This dispenser has [machine_current_charge] of [machine_max_charge] remaining.</span>")
+						update_icon()
+					//to_chat(user, "<span class='warning'>DEBUG: Recharge Cost: [recharge_cost]. Current Charge: [machine_current_charge].</span>")
+				else if(A.current_rounds < A.max_rounds)
 					to_chat(user, "<span class='warning'>[A] isn't full. Fill it before you can restock it.</span>")
 					return
 			if(item_to_stock.loc == user) //Inside the mob's inventory
@@ -594,8 +621,9 @@
 				S.remove_from_storage(item_to_stock, user.loc)
 
 			cdel(item_to_stock)
-			user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
-			"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
+			if(!recharge)
+				user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
+				"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
 			R.amount++
 			updateUsrDialog()
 			return //We found our item, no reason to go on.

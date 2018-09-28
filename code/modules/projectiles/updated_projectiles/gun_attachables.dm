@@ -684,6 +684,19 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 	scatter_unwielded_mod = -config.min_scatter_value
 
 
+/obj/item/attachable/stock/lasgun
+	name = "\improper M43 Sunfury lasgun stock"
+	desc = "The standard stock for the M43 Sunfury lasgun."
+	slot = "stock"
+	wield_delay_mod = null
+	melee_mod = 5
+	icon_state = "laserstock"
+	attach_icon = "laserstock"
+	pixel_shift_x = 41
+	pixel_shift_y = 10
+
+ /obj/item/attachable/stock/lasgun/New()
+	..() //Cosmetic mainly.
 
 
 

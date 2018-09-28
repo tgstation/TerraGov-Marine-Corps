@@ -1324,6 +1324,7 @@
 #include "code\modules\projectiles\updated_projectiles\guns\shotguns.dm"
 #include "code\modules\projectiles\updated_projectiles\guns\smgs.dm"
 #include "code\modules\projectiles\updated_projectiles\guns\specialist.dm"
+#include "code\modules\projectiles\updated_projectiles\magazines\energy.dm"
 #include "code\modules\projectiles\updated_projectiles\magazines\flamer.dm"
 #include "code\modules\projectiles\updated_projectiles\magazines\misc.dm"
 #include "code\modules\projectiles\updated_projectiles\magazines\pistols.dm"
