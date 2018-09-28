@@ -156,6 +156,8 @@
 		reagents.add_reagent("enzyme", 50)
 
 /obj/item/reagent_container/food/condiment/sugar
+	name = "Sugar"
+	desc = "Sweet, it's sugar"
 	New()
 		..()
 		reagents.add_reagent("sugar", 50)

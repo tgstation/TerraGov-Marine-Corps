@@ -15,7 +15,7 @@ log transactions
 /obj/item/card/id/var/money = 2000
 
 /obj/machinery/atm
-	name = "W-Y Automatic Teller Machine"
+	name = "NT Automatic Teller Machine"
 	desc = "For all your monetary needs!"
 	icon = 'icons/obj/terminals.dmi'
 	icon_state = "atm"
@@ -116,17 +116,17 @@ log transactions
 
 /obj/machinery/atm/attack_hand(mob/user as mob)
 	if(istype(user, /mob/living/silicon))
-		to_chat(user, "\red \icon[src] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per Weyland Yutani regulation #1005.")
+		to_chat(user, "\red \icon[src] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per Nanotrasen regulation #1005.")
 		return
 	if(get_dist(src,user) <= 1)
 
 		//js replicated from obj/machinery/computer/card
-		var/dat = "<h1>Weyland Yutani Automatic Teller Machine</h1>"
+		var/dat = "<h1>Nanotrasen Automatic Teller Machine</h1>"
 		dat += "For all your monetary needs!<br>"
-		dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting Weyland Yutani IT Support</i><br/>"
+		dat += "<i>This terminal is</i> [machine_id]. <i>Report this code when contacting Nanotrasen IT Support</i><br/>"
 
 		if(emagged > 0)
-			dat += "Card: <span style='color: red;'>LOCKED</span><br><br><span style='color: red;'>Unauthorized terminal access detected! This ATM has been locked. Please contact Weyland Yutani IT Support.</span>"
+			dat += "Card: <span style='color: red;'>LOCKED</span><br><br><span style='color: red;'>Unauthorized terminal access detected! This ATM has been locked. Please contact Nanotrasen IT Support.</span>"
 		else
 			dat += "Card: <a href='?src=\ref[src];choice=insert_card'>[held_card ? held_card.name : "------"]</a><br><br>"
 
@@ -357,7 +357,7 @@ log transactions
 				if(authenticated_account)
 					var/obj/item/paper/R = new(src.loc)
 					R.name = "Account balance: [authenticated_account.owner_name]"
-					R.info = "<b>WY Automated Teller Account Statement</b><br><br>"
+					R.info = "<b>NT Automated Teller Account Statement</b><br><br>"
 					R.info += "<i>Account holder:</i> [authenticated_account.owner_name]<br>"
 					R.info += "<i>Account number:</i> [authenticated_account.account_number]<br>"
 					R.info += "<i>Balance:</i> $[authenticated_account.money]<br>"
@@ -371,7 +371,7 @@ log transactions
 						R.stamped = new
 					R.stamped += /obj/item/tool/stamp
 					R.overlays += stampoverlay
-					R.stamps += "<HR><i>This paper has been stamped by the WY Automatic Teller Machine.</i>"
+					R.stamps += "<HR><i>This paper has been stamped by the NT Automatic Teller Machine.</i>"
 
 				if(prob(50))
 					playsound(loc, 'sound/items/polaroid1.ogg', 15, 1)
@@ -413,7 +413,7 @@ log transactions
 						R.stamped = new
 					R.stamped += /obj/item/tool/stamp
 					R.overlays += stampoverlay
-					R.stamps += "<HR><i>This paper has been stamped by the WY Automatic Teller Machine.</i>"
+					R.stamps += "<HR><i>This paper has been stamped by the NT Automatic Teller Machine.</i>"
 
 				if(prob(50))
 					playsound(loc, 'sound/items/polaroid1.ogg', 15, 1)
