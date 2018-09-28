@@ -124,7 +124,7 @@
 					/obj/item/explosive/grenade/incendiary = 4,
 					/obj/item/explosive/grenade/smokebomb = 2,
 					/obj/item/explosive/grenade/phosphorus = 0,
-					/obj/item/storage/box/m94 = 8,
+					/obj/item/storage/box/m94 = 30,
 					/obj/item/storage/box/zipcuffs = 4,
 					/obj/item/device/flashlight/combat = 5,
 					/obj/item/clothing/mask/gas = 10

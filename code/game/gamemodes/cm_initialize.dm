@@ -887,7 +887,7 @@ datum/game_mode/proc/initialize_special_clamps()
 						/obj/item/explosive/grenade/incendiary = round(scale * 2),
 						/obj/item/explosive/grenade/smokebomb = round(scale * 5),
 						/obj/item/explosive/grenade/phosphorus = 0,
-						/obj/item/storage/box/m94 = round(scale * 10),
+						/obj/item/storage/box/m94 = round(scale * 30),
 						/obj/item/device/flashlight/combat = round(scale * 5),
 						/obj/item/clothing/mask/gas = round(scale * 10)
 						)
