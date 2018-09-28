@@ -279,7 +279,7 @@
 /area/almayer/living/basketball
 	name = "\improper Basketball Court"
 	icon_state = "basketball"
-	fake_zlevel = 1 // upperdeck
+	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/living/grunt_rnr
 	name = "\improper Lounge"
@@ -312,9 +312,9 @@
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/living/offices
-	name = "\improper Office Area"
+	name = "\improper Pool Area"
 	icon_state = "briefing"
-	fake_zlevel = 2 // lowerdeck
+	fake_zlevel = 1 // upperdeck
 
 /area/almayer/living/captain_mess
 	name = "\improper Captain's Mess"

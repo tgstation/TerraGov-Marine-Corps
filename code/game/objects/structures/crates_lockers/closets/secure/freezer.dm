@@ -1,4 +1,11 @@
 /obj/structure/closet/secure_closet/freezer
+	name = "Fridge"
+	icon_state = "fridge1"
+	icon_closed = "fridge"
+	icon_locked = "fridge1"
+	icon_opened = "fridgeopen"
+	icon_broken = "fridgebroken"
+	icon_off = "fridge1"
 
 /obj/structure/closet/secure_closet/freezer/update_icon()
 	if(broken)
@@ -26,21 +33,7 @@
 			new /obj/item/reagent_container/food/snacks/meat/monkey(src)
 		return
 
-
-/obj/structure/closet/secure_closet/freezer/kitchen/mining
-	req_access = list()
-
-
-
 /obj/structure/closet/secure_closet/freezer/meat
-	name = "Meat Fridge"
-	icon_state = "fridge1"
-	icon_closed = "fridge"
-	icon_locked = "fridge1"
-	icon_opened = "fridgeopen"
-	icon_broken = "fridgebroken"
-	icon_off = "fridge1"
-
 
 	New()
 		..()
@@ -49,17 +42,7 @@
 			new /obj/item/reagent_container/food/snacks/meat/monkey(src)
 		return
 
-
-
 /obj/structure/closet/secure_closet/freezer/fridge
-	name = "Refrigerator"
-	icon_state = "fridge1"
-	icon_closed = "fridge"
-	icon_locked = "fridge1"
-	icon_opened = "fridgeopen"
-	icon_broken = "fridgebroken"
-	icon_off = "fridge1"
-
 
 	New()
 		..()
@@ -72,18 +55,9 @@
 			new /obj/item/storage/fancy/egg_box(src)
 		return
 
-
-
 /obj/structure/closet/secure_closet/freezer/money
 	name = "Freezer"
-	icon_state = "fridge1"
-	icon_closed = "fridge"
-	icon_locked = "fridge1"
-	icon_opened = "fridgeopen"
-	icon_broken = "fridgebroken"
-	icon_off = "fridge1"
 	req_access = list(ACCESS_CIVILIAN_PUBLIC)
-
 
 	New()
 		..()
@@ -95,11 +69,3 @@
 		for(var/i = 0, i < 6, i++)
 			new /obj/item/spacecash/c200(src)
 		return
-
-
-
-
-
-
-
-

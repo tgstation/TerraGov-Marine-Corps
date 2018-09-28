@@ -12,59 +12,12 @@
 	icon = 'icons/Marine/almayer_props.dmi'
 	icon_state = "hangarbox"
 
-/obj/item/prop/almayer/box
-	name = "metal crate"
-	desc = "A metal crate used often for storing small electronics that go into dropships"
-	icon_state = "hangarbox"
-	w_class = 4
-
-/obj/item/prop/almayer/flight_recorder
-	name = "\improper FR-112 flight recorder"
-	desc = "A small red box that contains flight data from a dropship while its on mission. Usually refered to the black box, although this one comes in bloody red."
-	icon_state = "flight_recorder"
-	w_class = 4
-
-/obj/item/prop/almayer/lantern_pod
-	name = "\improper LANTERN pod"
-	desc = "A long green box mounted into a dropship to provide various optical support for its ground targeting systems."
-	icon_state = "lantern_pod"
-	w_class = 4
-
-/obj/item/prop/almayer/flare_launcher
-	name = "\improper MJU-77/C case"
-	desc = "A flare launcher that usually gets mounted onto dropships to help survivability against infrared tracking missiles."
-	icon_state = "flare_launcher"
-	w_class = 2
-
-/obj/item/prop/almayer/chaff_launcher
-	name = "\improper RR-247 Chaff case"
-	desc = "A chaff launcher that usually gets mounted onto dropships to help survivability against radar tracking missiles."
-	icon_state = "chaff_launcher"
-	w_class = 3
-
-/obj/item/prop/almayer/handheld1
-	name = "small handheld"
-	desc = "A small piece of electronic doodads"
-	icon_state = "handheld1"
-	w_class = 2
-
-/obj/item/prop/almayer/comp_closed
-	name = "dropship maintenance computer"
-	desc = "A closed dropship maintenance computer that technicans and pilots use to find out whats wrong with a dropship. It has various outlets for different systems."
-	icon_state = "hangar_comp"
-	w_class = 4
-
-/obj/item/prop/almayer/comp_open
-	name = "dropship maintenance computer"
-	desc = "A opened dropship maintenance computer, it seems to be off however. Its used by technicans and pilots to find damaged or broken systems on a dropship. It has various outlets for different systems."
-	icon_state = "hangar_comp_open"
-	w_class = 4
-
 /obj/machinery/prop/almayer
 	name = "GENERIC USS ALMAYER PROP"
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P01' IF SEEN IN ROUND WITH LOCATION"
 
 /obj/machinery/prop/almayer/hangar/dropship_part_fabricator
+
 /obj/machinery/prop/almayer/computer/PC
 	name = "personal desktop"
 	desc = "A small computer hooked up into the ship's computer network."
@@ -193,7 +146,6 @@
 	var/list/fallen_list
 
 
-
 /obj/structure/prop/almayer/ship_memorial/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/dogtag))
 		var/obj/item/dogtag/D = I
@@ -218,6 +170,7 @@
 				faltext += fallen_list[i]
 		to_chat(user, "<span class='notice'>To our fallen soldiers:</span> <b>[faltext]</b>.")
 
+
 /obj/structure/prop/almayer/particle_cannon
 	name = "\improper 75cm/140 Mark 74 General Atomics railgun"
 	desc = "The Mark 74 Railgun is top of the line for space based weaponry. Capable of firing a round with a diameter of 3/4ths of a meter at 24 kilometers per second. It also is capable of using a variety of round types which can be interchanged at anytime with its newly designed feed system."
@@ -226,9 +179,10 @@
 	unacidable = 1
 
 /obj/structure/prop/almayer/name_stencil
+	name = "\improper The DMCA, a DMCA-Class Marine Carrier Arsenal Ship"
 	desc = "The name of the ship stenciled on the hull."
 	icon = 'icons/Marine/almayer_props64.dmi'
-	icon_state = "almayer0"
+	icon_state = "DMCA1"
 	density = 0 //dunno who would walk on it, but you know.
 	unacidable = 1
 
@@ -244,13 +198,10 @@
 	density = 0
 	layer = ABOVE_TURF_LAYER
 
-
-
-
 /obj/structure/prop/almayer/anti_air_cannon
 	name = "\improper Anti-air Cannon"
 	desc = "An anti-air cannon for shooting spaceships. It looks broken."
-	icon = 'icons/effects/128x128.dmi'
+	icon = 'icons/obj/machines/artillery.dmi'
 	icon_state = "anti_air_cannon"
 	density = 1
 	anchored = 1
@@ -296,13 +247,6 @@
 /obj/structure/prop/almayer/cannon_cable_connector/bullet_act()
 	return
 
-
-
-
-
-
-
-
 //------- Cryobag Recycler -------//
 // Wanted to put this in, but since we still have extra time until tomorrow and this is really simple thing. It just recycles opened cryobags to make it nice-r for medics.
 // Also the lack of sleep makes me keep typing cyro instead of cryo. FFS ~Art
@@ -330,18 +274,3 @@
 			user.put_in_hands(R)
 			return TRUE
 	..()
-
-/obj/structure/closet/basketball
-	name = "athletic wardrobe"
-	desc = "It's a storage unit for athletic wear."
-	icon_state = "mixed"
-	icon_closed = "mixed"
-
-/obj/structure/closet/basketball/New()
-	..()
-	sleep(2)
-	new /obj/item/clothing/under/shorts/grey(src)
-	new /obj/item/clothing/under/shorts/black(src)
-	new /obj/item/clothing/under/shorts/red(src)
-	new /obj/item/clothing/under/shorts/blue(src)
-	new /obj/item/clothing/under/shorts/green(src)
