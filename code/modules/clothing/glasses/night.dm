@@ -54,7 +54,7 @@
 	toggleable = 1
 	actions_types = list(/datum/action/item_action/toggle)
 	vision_flags = SEE_TURFS
-	fullscreen_vision = /obj/screen/fullscreen/thermal
+	fullscreen_vision = null //Nulled out due to general dislike for the overlay.
 
 /obj/item/clothing/glasses/night/m56_goggles/mob_can_equip(mob/user, slot)
 	if(slot == WEAR_EYES)
