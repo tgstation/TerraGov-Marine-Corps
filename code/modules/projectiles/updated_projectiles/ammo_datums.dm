@@ -1129,7 +1129,7 @@
 
 /datum/ammo/energy/lasgun/M43/overcharge/New()
 	..()
-	damage = config.hmed_hit_damage //55 damage
+	damage = config.lmed_hit_damage
 	max_range = config.max_shell_range
 	penetration = config.mhigh_armor_penetration
 
