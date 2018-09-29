@@ -135,7 +135,8 @@
 			#if DEBUG_STAGGER_SLOWDOWN
 			to_chat(world, "<span class='debuginfo'>Damage: Initial stagger is: <b>[target.stagger]</b></span>")
 			#endif
-			X.adjust_stagger(stagger)
+			if(!isXenoQueen(X)) //Stagger too powerful vs the Queen.
+				X.adjust_stagger(stagger)
 			#if DEBUG_STAGGER_SLOWDOWN
 			to_chat(world, "<span class='debuginfo'>Damage: Final stagger is: <b>[target.stagger]</b></span>")
 			#endif
@@ -522,7 +523,7 @@
 	penetration= config.low_armor_penetration
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/item/projectile/P)
-	staggerstun(M, P, config.close_shell_range, 0, 1, 8, 8)
+	staggerstun(M, P, config.close_shell_range, 0, 1, 4, 4)
 
 
 /datum/ammo/bullet/shotgun/beanbag
