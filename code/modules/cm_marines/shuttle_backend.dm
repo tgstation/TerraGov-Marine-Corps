@@ -407,8 +407,8 @@ cdel(src)
 		y = C.y_pos
 		C1.x_pos = x*cos(deg) + y*sin(deg)
 		C1.y_pos = y*cos(deg) - x*sin(deg)
-		C1.x_pos = roundNearest(C.x_pos) //Sometimes you get very close to the right number but off by around 1e-15 and I want integers dammit
-		C1.y_pos = roundNearest(C.y_pos)
+		C1.x_pos = round(C.x_pos, 1) //Sometimes you get very close to the right number but off by around 1e-15 and I want integers dammit
+		C1.y_pos = round(C.y_pos, 1)
 		toReturn += i
 		toReturn[i] = C1
 

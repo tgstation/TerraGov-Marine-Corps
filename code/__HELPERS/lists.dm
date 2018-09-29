@@ -31,13 +31,13 @@
 		return "[output][and_text][input[index]]"
 
 //Returns list element or null. Should prevent "index out of bounds" error.
-proc/listgetindex(var/list/list,index)
-	if(istype(list) && list.len)
-		if(isnum(index))
-			if(InRange(index,1,list.len))
-				return list[index]
-		else if(index in list)
-			return list[index]
+proc/listgetindex(var/list/L,index)
+	if(istype(L))
+		if(isnum(index) && ISINTEGER(index))
+			if(ISINRANGE(index,1,L.len))
+				return L[index]
+		else if(index in L)
+			return L[index]
 	return
 
 proc/islist(list/list)

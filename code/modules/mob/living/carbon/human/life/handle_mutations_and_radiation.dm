@@ -18,7 +18,7 @@
 			speech_problem_flag = 1
 			gene.OnMobLife(src)
 
-	radiation = Clamp(radiation,0,100)
+	radiation = CLAMP(radiation,0,100)
 
 	if(radiation)
 

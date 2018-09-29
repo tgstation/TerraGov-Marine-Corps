@@ -105,7 +105,7 @@
 
 /obj/structure/closet/proc/store_items(var/stored_units)
 	for(var/obj/item/I in src.loc)
-		var/item_size = Ceiling(I.w_class / 2)
+		var/item_size = CEILING(I.w_class / 2, 1)
 		if(stored_units + item_size > storage_capacity)
 			continue
 		if(!I.anchored)

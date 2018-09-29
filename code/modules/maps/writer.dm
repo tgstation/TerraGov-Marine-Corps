@@ -65,7 +65,7 @@ dmm_suite{
 				}
 			template_buffer += "."
 			}
-		var/key_length = round/*floor*/(log(letter_digits.len,templates.len-1)+1)
+		var/key_length = round/*FLOOR*/(log(letter_digits.len,templates.len-1)+1)
 		var/list/keys[templates.len]
 		for(var/key_pos=1;key_pos<=templates.len;key_pos++){
 			keys[key_pos] = get_model_key(key_pos,key_length)
@@ -164,7 +164,7 @@ dmm_suite{
 			var/key = ""
 			var/working_digit = which-1
 			for(var/digit_pos=key_length;digit_pos>=1;digit_pos--){
-				var/place_value = round/*floor*/(working_digit/(letter_digits.len**(digit_pos-1)))
+				var/place_value = round/*FLOOR*/(working_digit/(letter_digits.len**(digit_pos-1)))
 				working_digit-=place_value*(letter_digits.len**(digit_pos-1))
 				key = "[key][letter_digits[place_value+1]]"
 				}

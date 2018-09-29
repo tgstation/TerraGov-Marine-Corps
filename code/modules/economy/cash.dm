@@ -71,7 +71,7 @@
 /obj/item/spacecash/bundle/attack_self(mob/user)
 	var/oldloc = loc
 	var/amount = input(user, "How many dollars do you want to take? (0 to [src.worth])", "Take Money", 20) as num
-	amount = round(Clamp(amount, 0, src.worth))
+	amount = round(CLAMP(amount, 0, src.worth))
 	if(amount==0) return 0
 	if(disposed || loc != oldloc) return
 
