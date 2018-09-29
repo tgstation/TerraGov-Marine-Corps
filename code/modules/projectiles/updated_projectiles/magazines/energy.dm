@@ -34,7 +34,6 @@
 	overcharge_ammo = /datum/ammo/energy/lasgun/M43/overcharge
 	max_rounds = 50
 	current_rounds = 50
-	w_class = 3.0
 	gun_type = /obj/item/weapon/gun/energy/lasgun/M43
 	caliber = "M43lasgun"
 
