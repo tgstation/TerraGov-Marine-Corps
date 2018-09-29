@@ -3,7 +3,7 @@
 // Surgery Tools
 /obj/item/tool/surgery
 	icon = 'icons/obj/items/surgery_tools.dmi'
-	attack_speed = 4 // reduced
+	attack_speed = 11 //Used to be 4 which made them attack insanely fast.
 
 /*
  * Retractor
