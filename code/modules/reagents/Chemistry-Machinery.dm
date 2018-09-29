@@ -16,9 +16,10 @@
 	var/obj/item/reagent_container/beaker = null
 	var/recharged = 0
 	var/hackedcheck = 0
-	var/list/dispensable_reagents = list("hydrogen","lithium","carbon","nitrogen","oxygen","fluorine",
-	"sodium","aluminum","silicon","phosphorus","sulfur","chlorine","potassium","iron",
-	"copper","mercury","radium","water","ethanol","sugar","sacid","tungsten")
+	var/list/dispensable_reagents = list(
+	"aluminum","carbon","chlorine","copper","ethanol","fluorine","hydrogen",
+	"iron","lithium","mercury","nitrogen","oxygen","phosphorus","potassium",
+	"radium","sacid","silicon","sodium","sugar","sulfur","tungsten","water")
 
 /obj/machinery/chem_dispenser/proc/recharge()
 	if(stat & (BROKEN|NOPOWER)) return
