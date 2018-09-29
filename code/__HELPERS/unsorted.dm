@@ -1557,10 +1557,10 @@ var/list/WALLITEMS = list(
 	var/line[] = list(locate(px,py,M.z))
 	var/dx=N.x-px	//x distance
 	var/dy=N.y-py
-	var/dxabs=abs(dx)//Absolute value of x distance
-	var/dyabs=abs(dy)
-	var/sdx=sign(dx)	//Sign of x distance (+ or -)
-	var/sdy=sign(dy)
+	var/dxabs = abs(dx)//Absolute value of x distance
+	var/dyabs = abs(dy)
+	var/sdx = SIGN(dx)	//Sign of x distance (+ or -)
+	var/sdy = SIGN(dy)
 	var/x=dxabs>>1	//Counters for steps taken, setting to distance/2
 	var/y=dyabs>>1	//Bit-shifting makes me l33t.  It also makes getline() unnessecarrily fast.
 	var/j			//Generic integer for counting

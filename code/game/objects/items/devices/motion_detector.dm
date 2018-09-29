@@ -119,9 +119,9 @@
 		var/view_y_offset = 0
 		if(c_view > 7)
 			if(user.client.pixel_x >= 0) view_x_offset = round(user.client.pixel_x/32)
-			else view_x_offset = Ceiling(user.client.pixel_x/32)
+			else view_x_offset = CEILING(user.client.pixel_x/32, 1)
 			if(user.client.pixel_y >= 0) view_y_offset = round(user.client.pixel_y/32)
-			else view_y_offset = Ceiling(user.client.pixel_y/32)
+			else view_y_offset = CEILING(user.client.pixel_y/32, 1)
 
 		var/diff_dir_x = 0
 		var/diff_dir_y = 0
@@ -136,7 +136,7 @@
 			DB.icon_state = initial(DB.icon_state)
 			DB.dir = initial(DB.dir)
 
-		DB.screen_loc = "[Clamp(c_view + 1 - view_x_offset + (target.x - user.x), 1, 2*c_view+1)],[Clamp(c_view + 1 - view_y_offset + (target.y - user.y), 1, 2*c_view+1)]"
+		DB.screen_loc = "[CLAMP(c_view + 1 - view_x_offset + (target.x - user.x), 1, 2*c_view+1)],[CLAMP(c_view + 1 - view_y_offset + (target.y - user.y), 1, 2*c_view+1)]"
 		user.client.screen += DB
 		sleep(12)
 		if(user.client)

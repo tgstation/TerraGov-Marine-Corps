@@ -75,9 +75,6 @@
 	if (!firerate) // If firerate is set to lower aim after one shot, untarget the target
 		T.NotTargeted(src)
 
-//Yay, math!
-
-#define SIGN(X) ((X<0)?-1:1)
 
 /proc/GunTrace(X1,Y1,X2,Y2,Z=1,exc_obj,PX1=16,PY1=16,PX2=16,PY2=16)
 	//to_chat(bluh, "Tracin' [X1],[Y1] to [X2],[Y2] on floor [Z].")
@@ -86,7 +83,7 @@
 	if(X1==X2)
 		if(Y1==Y2) return 0 //Light cannot be blocked on same tile
 		else
-			var/s = SIGN(Y2-Y1)
+			var/s = (((Y2-Y1)<0)?-1:1)
 			Y1+=s
 			while(1)
 				T = locate(X1,Y1,Z)
@@ -100,8 +97,8 @@
 		var
 			m=(32*(Y2-Y1)+(PY2-PY1))/(32*(X2-X1)+(PX2-PX1))
 			b=(Y1+PY1/32-0.015625)-m*(X1+PX1/32-0.015625) //In tiles
-			signX = SIGN(X2-X1)
-			signY = SIGN(Y2-Y1)
+			signX = (((X2-X1)<0)?-1:1)
+			signY = (((Y2-Y1)<0)?-1:1)
 		if(X1<X2) b+=m
 		while(1)
 			var/xvert = round(m*X1+b-Y1)

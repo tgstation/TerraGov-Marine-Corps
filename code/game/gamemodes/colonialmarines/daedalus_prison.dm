@@ -20,7 +20,7 @@
 
 	// Alien number scales to player number (preferred). Swap these to test solo.
 	var/readyplayers = num_players()
-	numaliens = Clamp((readyplayers/4), 1, 14) //(n, minimum, maximum)
+	numaliens = CLAMP((readyplayers/4), 1, 14) //(n, minimum, maximum)
 
 	var/list/datum/mind/possible_aliens = get_players_for_role(BE_ALIEN)
 	var/list/datum/mind/possible_survivors = get_players_for_role(BE_SURVIVOR)
@@ -56,7 +56,7 @@
 			if(X.assigned_role == "MODE")
 				possible_survivors -= X
 
-		numsurvivors = Clamp((readyplayers/7), 0, 5) //(n, minimum, maximum)
+		numsurvivors = CLAMP((readyplayers/7), 0, 5) //(n, minimum, maximum)
 		if(possible_survivors.len) //We may have stripped out all the contendors, so check again.
 			while(numsurvivors > 0)
 				if(!possible_survivors.len) //Ran out of candidates! Can't have a null pick(), so just stick with what we have.

@@ -455,7 +455,7 @@
 
 /mob/living/simple_animal/shyguy/adjustBruteLoss(var/damage)
 
-	health = Clamp(health - damage, 0, maxHealth)
+	health = CLAMP(health - damage, 0, maxHealth)
 
 	if(damage > 0)
 		staggered += damage

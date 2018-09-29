@@ -239,7 +239,7 @@
 	update_health()
 
 /obj/structure/barricade/proc/update_health(nomessage)
-	health = Clamp(health, 0, maxhealth)
+	health = CLAMP(health, 0, maxhealth)
 
 	if(!health)
 		if(!nomessage)

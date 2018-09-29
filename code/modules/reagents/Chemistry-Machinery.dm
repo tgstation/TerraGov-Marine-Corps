@@ -385,7 +385,7 @@
 				return
 
 			if (href_list["createpill_multiple"])
-				count = Clamp(isgoodnumber(input("Select the number of pills to make. (max: [max_pill_count])", 10, pillamount) as num|null),0,max_pill_count)
+				count = CLAMP(isgoodnumber(input("Select the number of pills to make. (max: [max_pill_count])", 10, pillamount) as num|null),0,max_pill_count)
 				if(!count)
 					return
 
