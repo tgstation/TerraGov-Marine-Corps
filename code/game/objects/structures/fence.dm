@@ -3,12 +3,12 @@
 	desc = "A large metal mesh strewn between two poles. Intended as a cheap way to separate areas, while allowing one to see through it."
 	icon = 'icons/obj/structures/fence.dmi'
 	icon_state = "fence0"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	layer = WINDOW_LAYER
 	var/health = 50
 	var/health_max = 50
-	var/cut = 0 //Cut fences can be passed through
+	var/cut = FALSE //Cut fences can be passed through
 	var/junction = 0 //Because everything is terrible, I'm making this a fence-level var
 	var/basestate = "fence"
 
@@ -30,12 +30,12 @@
 /obj/structure/fence/bullet_act(var/obj/item/projectile/Proj)
 	//Tasers and the like should not damage windows.
 	if(Proj.ammo.damage_type == HALLOSS || Proj.damage <= 0 || Proj.ammo.flags_ammo_behavior == AMMO_ENERGY)
-		return 0
+		return FALSE
 
 	health -= Proj.damage * 0.3
 	..()
 	healthcheck()
-	return 1
+	return TRUE
 
 /obj/structure/fence/ex_act(severity)
 	switch(severity)
@@ -74,6 +74,16 @@
 /obj/structure/fence/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
+/obj/structure/fence/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
+	var/damage_dealt = 5
+	M.visible_message("<span class='danger'>\The [M] mangles [src]!</span>", \
+	"<span class='danger'>You mangle [src]!</span>", \
+	"<span class='danger'>You hear twisting metal!</span>", 5)
+
+	health -= damage_dealt
+	healthcheck()
+
 //Used by attack_animal
 /obj/structure/fence/proc/attack_generic(mob/living/user, damage = 0)
 	health -= damage
@@ -82,9 +92,11 @@
 	healthcheck(1, 1, user)
 
 /obj/structure/fence/attack_animal(mob/user as mob)
-	if(!isanimal(user)) return
+	if(!isanimal(user))
+		return
 	var/mob/living/simple_animal/M = user
-	if(M.melee_damage_upper <= 0) return
+	if(M.melee_damage_upper <= 0)
+		return
 	attack_generic(M, M.melee_damage_upper)
 
 /obj/structure/fence/attackby(obj/item/W, mob/user)
@@ -94,7 +106,8 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to fix [src]'s wiring.</span>",
 			"<span class='notice'>You fumble around figuring out how to fix [src]'s wiring.</span>")
 			var/fumbling_time = 100 - 20 * user.mind.cm_skills.construction
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+				return
 		var/obj/item/stack/rods/R = W
 		var/amount_needed = 2
 		if(health)
@@ -148,7 +161,8 @@
 			healthcheck(1, 1, M) //The person thrown into the window literally shattered it
 		return
 
-	if(W.flags_item & NOBLUDGEON) return
+	if(W.flags_item & NOBLUDGEON)
+		return
 
 	if(istype(W, /obj/item/tool/wirecutters))
 		user.visible_message("<span class='notice'>[user] starts cutting through [src] with [W].</span>",
@@ -207,7 +221,8 @@
 	//this way it will only update full-tile ones
 	//This spawn is here so windows get properly updated when one gets deleted.
 	spawn(2)
-		if(!src) return
+		if(!src)
+			return
 		for(var/obj/structure/fence/W in orange(src, 1))
 			if(abs(x - W.x) - abs(y - W.y)) //Doesn't count grilles, placed diagonally to src
 				junction |= get_dir(src, W)

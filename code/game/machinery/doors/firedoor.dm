@@ -17,19 +17,19 @@
 	icon = 'icons/obj/doors/DoorHazard.dmi'
 	icon_state = "door_open"
 	req_one_access = list(ACCESS_CIVILIAN_ENGINEERING)
-	opacity = 0
-	density = 0
+	opacity = FALSE
+	density = FALSE
 	layer = FIREDOOR_OPEN_LAYER
 	open_layer = FIREDOOR_OPEN_LAYER // Just below doors when open
 	closed_layer = FIREDOOR_CLOSED_LAYER // Just above doors when closed
 	power_channel = ENVIRON
-	use_power = 1
+	use_power = TRUE
 	idle_power_usage = 5
 	
-	var/blocked = 0
-	var/lockdown = 0 // When the door has detected a problem, it locks.
-	var/pdiff_alert = 0
-	var/pdiff = 0
+	var/blocked = FALSE
+	var/lockdown = FALSE // When the door has detected a problem, it locks.
+	var/pdiff_alert = FALSE
+	var/pdiff = FALSE
 	var/nextstate = null
 	var/net_id
 	var/list/areas_added
@@ -45,30 +45,30 @@
 		"cold"
 	)
 
-	New()
-		. = ..()
-		for(var/obj/machinery/door/firedoor/F in loc)
-			if(F != src)
-				spawn(1)
-					cdel(src)
-				return .
-		var/area/A = get_area(src)
-		ASSERT(istype(A))
+/obj/machinery/door/firedoor/New()
+	. = ..()
+	for(var/obj/machinery/door/firedoor/F in loc)
+		if(F != src)
+			spawn(1)
+				cdel(src)
+			return .
+	var/area/A = get_area(src)
+	ASSERT(istype(A))
 
-		A.all_doors.Add(src)
-		areas_added = list(A)
+	A.all_doors.Add(src)
+	areas_added = list(A)
 
-		for(var/direction in cardinal)
-			A = get_area(get_step(src,direction))
-			if(istype(A) && !(A in areas_added))
-				A.all_doors.Add(src)
-				areas_added += A
-		start_processing()
+	for(var/direction in cardinal)
+		A = get_area(get_step(src,direction))
+		if(istype(A) && !(A in areas_added))
+			A.all_doors.Add(src)
+			areas_added += A
+	start_processing()
 
-	Dispose()
-		for(var/area/A in areas_added)
-			A.all_doors.Remove(src)
-		. = ..()
+/obj/machinery/door/firedoor/Dispose()
+	for(var/area/A in areas_added)
+		A.all_doors.Remove(src)
+	. = ..()
 
 
 /obj/machinery/door/firedoor/examine(mob/user)
@@ -122,10 +122,38 @@
 		var/obj/mecha/mecha = AM
 		if(mecha.occupant)
 			var/mob/M = mecha.occupant
-			if(world.time - M.last_bumped <= 10) return //Can bump-open one airlock per second. This is to prevent popup message spam.
+			if(world.time - M.last_bumped <= 10)
+				return //Can bump-open one airlock per second. This is to prevent popup message spam.
 			M.last_bumped = world.time
 			attack_hand(M)
-	return 0
+	return FALSE
+
+/obj/machinery/door/firedoor/attack_alien(mob/living/carbon/Xenomorph/M)
+	var/turf/cur_loc = M.loc
+	if(blocked)
+		to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
+		return FALSE
+	if(!istype(cur_loc))
+		return FALSE //Some basic logic here
+	if(!density)
+		to_chat(M, "<span class='warning'>\The [src] is already open!</span>")
+		return FALSE
+
+	playsound(src.loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
+	"<span class='warning'>You dig into \the [src] and begin to pry it open.</span>", null, 5)
+
+	if(do_after(M, 30, FALSE, 5, BUSY_ICON_HOSTILE))
+		if(M.loc != cur_loc)
+			return FALSE //Make sure we're still there
+		if(blocked)
+			to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
+			return FALSE
+		if(density) //Make sure it's still closed
+			spawn(0)
+				open(1)
+				M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
+				"<span class='danger'>You pry \the [src] open.</span>", null, 5)
 
 /obj/machinery/door/firedoor/attack_hand(mob/user as mob)
 	add_fingerprint(user)
@@ -139,7 +167,7 @@
 	var/alarmed = lockdown
 	for(var/area/A in areas_added)		//Checks if there are fire alarms in any areas associated with that firedoor
 		if(A.flags_alarm_state & ALARM_WARNING_FIRE || A.air_doors_activated)
-			alarmed = 1
+			alarmed = TRUE
 
 	var/answer = alert(user, "Would you like to [density ? "open" : "close"] this [src.name]?[ alarmed && density ? "\nNote that by doing so, you acknowledge any damages from opening this\n[src.name] as being your own fault, and you will be held accountable under the law." : ""]",\
 	"\The [src]", "Yes, [density ? "open" : "close"]", "No")
@@ -160,12 +188,12 @@
 		"\The [src] [density ? "open" : "close"]s.",\
 		"You hear a beep, and a door opening.")
 
-	var/needs_to_close = 0
+	var/needs_to_close = FALSE
 	if(density)
 		if(alarmed)
 			// Accountability!
 			users_to_open |= user.name
-			needs_to_close = 1
+			needs_to_close = TRUE
 		spawn()
 			open()
 	else
@@ -174,10 +202,10 @@
 
 	if(needs_to_close)
 		spawn(50)
-			alarmed = 0
+			alarmed = FALSE
 			for(var/area/A in areas_added)		//Just in case a fire alarm is turned off while the firedoor is going through an autoclose cycle
 				if(A.flags_alarm_state & ALARM_WARNING_FIRE || A.air_doors_activated)
-					alarmed = 1
+					alarmed = TRUE
 			if(alarmed)
 				nextstate = CLOSED
 				close()
@@ -211,7 +239,8 @@
 				"You hear metal strain.")
 		var/old_density = density
 		if(do_after(user,30, TRUE, 5, BUSY_ICON_HOSTILE))
-			if(blocked || density != old_density) return
+			if(blocked || density != old_density)
+				return
 			user.visible_message("<span class='danger'>\The [user] forces \the [blocked ? "welded " : "" ][name] [density ? "open" : "closed"] with \a [C]!</span>",\
 				"<span class='notice'>You force \the [blocked ? "welded " : ""][name] [density ? "open" : "closed"] with \the [C]!</span>",\
 				"You hear metal strain and groan, and a door [density ? "opening" : "closing"].")

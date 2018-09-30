@@ -6,23 +6,23 @@
 	var/base_state = "left"
 	var/health = 150.0 //If you change this, consiter changing ../door/window/brigdoor/ health at the bottom of this .dm file
 	visible = 0.0
-	use_power = 0
+	use_power = FALSE
 	flags_atom = ON_BORDER
-	opacity = 0
+	opacity = FALSE
 	var/obj/item/circuitboard/airlock/electronics = null
 	explosion_resistance = 5
 	air_properties_vary_with_direction = 1
 
-	New()
-		..()
-		if (src.req_access && src.req_access.len)
-			src.icon_state = "[src.icon_state]"
-			src.base_state = src.icon_state
+/obj/machinery/door/window/New()
+	..()
+	if (src.req_access && src.req_access.len)
+		src.icon_state = "[src.icon_state]"
+		src.base_state = src.icon_state
 
-	Dispose()
-		density = 0
-		playsound(src, "shatter", 50, 1)
-		. = ..()
+/obj/machinery/door/window/Dispose()
+	density = FALSE
+	playsound(src, "shatter", 50, 1)
+	. = ..()
 
 /obj/machinery/door/window/Bumped(atom/movable/AM as mob|obj)
 	if (!( ismob(AM) ))
@@ -56,25 +56,25 @@
 
 /obj/machinery/door/window/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
-		return 1
+		return TRUE
 	if(get_dir(loc, target) == dir) //Make sure looking at appropriate border
 		return !density
 	else
-		return 1
+		return TRUE
 
 /obj/machinery/door/window/CheckExit(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGLASS))
-		return 1
+		return TRUE
 	if(get_dir(loc, target) == dir)
 		return !density
 	else
-		return 1
+		return TRUE
 
 /obj/machinery/door/window/open()
 	if (src.operating == 1) //doors can still open when emag-disabled
-		return 0
+		return FALSE
 	if (!ticker)
-		return 0
+		return FALSE
 	if(!src.operating) //in case of emag
 		src.operating = 1
 	flick(text("[]opening", src.base_state), src)
@@ -82,12 +82,12 @@
 	src.icon_state = text("[]open", src.base_state)
 	sleep(10)
 
-	explosion_resistance = 0
-	src.density = 0
+	explosion_resistance = FALSE
+	src.density = FALSE
 
 	if(operating == 1) //emag again
 		src.operating = 0
-	return 1
+	return TRUE
 
 /obj/machinery/door/window/close()
 	if (src.operating)
@@ -97,13 +97,13 @@
 	playsound(src.loc, 'sound/machines/windowdoor.ogg', 25, 1)
 	src.icon_state = src.base_state
 
-	src.density = 1
+	src.density = TRUE
 	explosion_resistance = initial(explosion_resistance)
 
 	sleep(10)
 
 	src.operating = 0
-	return 1
+	return TRUE
 
 /obj/machinery/door/window/proc/take_damage(var/damage)
 	src.health = max(0, src.health - damage)
@@ -120,7 +120,7 @@
 				ae.conf_access = src.req_access
 			else if (src.req_one_access.len)
 				ae.conf_access = src.req_one_access
-				ae.one_access = 1
+				ae.one_access = TRUE
 		else
 			ae = electronics
 			electronics = null
@@ -128,14 +128,14 @@
 		if(operating == -1)
 			ae.icon_state = "door_electronics_smoked"
 			operating = 0
-		src.density = 0
+		src.density = FALSE
 		cdel(src)
 		return
 
 /obj/machinery/door/window/bullet_act(var/obj/item/projectile/Proj)
 	if(Proj.ammo.damage)
 		take_damage(round(Proj.ammo.damage / 2))
-	return 1
+	return TRUE
 
 //When an object is thrown at the window
 /obj/machinery/door/window/hitby(AM as mob|obj)
@@ -155,6 +155,17 @@
 
 /obj/machinery/door/window/attack_ai(mob/user as mob)
 	return src.attack_hand(user)
+
+//Slashing windoors
+/obj/machinery/door/window/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
+	playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
+	M.visible_message("<span class='danger'>[M] smashes against [src]!</span>", \
+	"<span class='danger'>You smash against [src]!</span>", null, 5)
+	var/damage = 25
+	if(M.mob_size == MOB_SIZE_BIG)
+		damage = 40
+	take_damage(damage)
 
 /obj/machinery/door/window/attack_hand(mob/user)
 	if(istype(user,/mob/living/carbon/human))
@@ -178,7 +189,7 @@
 		flick("[src.base_state]spark", src)
 		sleep(6)
 		open()
-		return 1
+		return TRUE
 
 	//If it's emagged, crowbar can pry electronics out.
 	if (src.operating == -1 && istype(I, /obj/item/tool/crowbar))
@@ -208,7 +219,7 @@
 					ae.conf_access = src.req_access
 				else if (src.req_one_access.len)
 					ae.conf_access = src.req_one_access
-					ae.one_access = 1
+					ae.one_access = TRUE
 			else
 				ae = electronics
 				electronics = null
@@ -225,7 +236,7 @@
 		visible_message("\red <B>[src] was hit by [I].</B>")
 		if(I.damtype == BRUTE || I.damtype == BURN)
 			take_damage(aforce)
-		return 1
+		return TRUE
 	else
 		return try_to_activate_door(user)
 

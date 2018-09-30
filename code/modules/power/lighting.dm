@@ -16,7 +16,7 @@
 	desc = "A light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "tube-construct-stage1"
-	anchored = 1
+	anchored = TRUE
 	layer = FLY_LAYER
 	var/stage = 1
 	var/fixture_type = "tube"
@@ -61,7 +61,8 @@
 			return
 
 	if(istype(W, /obj/item/tool/wirecutters))
-		if (src.stage != 2) return
+		if (src.stage != 2)
+			return
 		src.stage = 1
 		switch(fixture_type)
 			if ("tube")
@@ -75,7 +76,8 @@
 		return
 
 	if(istype(W, /obj/item/stack/cable_coil))
-		if (src.stage != 1) return
+		if (src.stage != 1)
+			return
 		var/obj/item/stack/cable_coil/coil = W
 		if (coil.use(1))
 			switch(fixture_type)
@@ -118,7 +120,7 @@
 	desc = "A small light fixture under construction."
 	icon = 'icons/obj/lighting.dmi'
 	icon_state = "bulb-construct-stage1"
-	anchored = 1
+	anchored = TRUE
 	stage = 1
 	fixture_type = "bulb"
 	sheets_refunded = 1
@@ -130,23 +132,23 @@
 	var/base_state = "tube"		// base description and icon_state
 	icon_state = "tube1"
 	desc = "A lighting fixture."
-	anchored = 1
+	anchored = TRUE
 	layer = FLY_LAYER
 	use_power = 2
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	var/on = 0					// 1 if on, 0 if off
-	var/on_gs = 0
+	var/on = FALSE
+	var/on_gs = FALSE
 	var/brightness = 8			// luminosity when on, also used in power calculation
 	var/status = LIGHT_OK		// LIGHT_OK, _EMPTY, _BURNED or _BROKEN
-	var/flickering = 0
+	var/flickering = FALSE
 	var/light_type = /obj/item/light_bulb/tube		// the type of light item
 	var/fitting = "tube"
 	var/switchcount = 0			// count of number of times switched on/off
 								// this is used to calc the probability the light burns out
 
-	var/rigged = 0				// true if rigged to explode
+	var/rigged = FALSE				// true if rigged to explode
 
 // the smaller bulb light fixture
 
@@ -203,15 +205,15 @@
 /obj/machinery/light/Dispose()
 	var/area/A = get_area(src)
 	if(A)
-		on = 0
+		on = FALSE
 //		A.update_lights()
 	SetLuminosity(0)
 	. = ..()
 
 /obj/machinery/light/proc/is_broken()
 	if(status == LIGHT_BROKEN)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/machinery/light/update_icon()
 
@@ -220,13 +222,13 @@
 			icon_state = "[base_state][on]"
 		if(LIGHT_EMPTY)
 			icon_state = "[base_state]-empty"
-			on = 0
+			on = FALSE
 		if(LIGHT_BURNED)
 			icon_state = "[base_state]-burned"
-			on = 0
+			on = FALSE
 		if(LIGHT_BROKEN)
 			icon_state = "[base_state]-broken"
-			on = 0
+			on = FALSE
 	return
 
 // update the icon_state and luminosity of the light depending on its state
@@ -247,7 +249,7 @@
 				if(status == LIGHT_OK && trigger)
 					status = LIGHT_BURNED
 					icon_state = "[base_state]-burned"
-					on = 0
+					on = FALSE
 					SetLuminosity(0)
 			else
 				use_power = 2
@@ -387,18 +389,20 @@
 	return A.master.lightswitch && A.master.power_light
 
 /obj/machinery/light/proc/flicker(var/amount = rand(10, 20))
-	if(flickering) return
-	flickering = 1
+	if(flickering)
+		return
+	flickering = TRUE
 	spawn(0)
 		if(on && status == LIGHT_OK)
 			for(var/i = 0; i < amount; i++)
-				if(status != LIGHT_OK) break
+				if(status != LIGHT_OK)
+					break
 				on = !on
 				update(0)
 				sleep(rand(5, 15))
 			on = (status == LIGHT_OK)
 			update(0)
-		flickering = 0
+		flickering = FALSE
 
 // ai attack - make lights flicker, because why not
 
@@ -407,7 +411,8 @@
 	return
 
 /obj/machinery/light/attack_animal(mob/living/M)
-	if(M.melee_damage_upper == 0)	return
+	if(M.melee_damage_upper == 0)
+		return
 	if(status == LIGHT_EMPTY||status == LIGHT_BROKEN)
 		to_chat(M, "\red That object is useless to you.")
 		return
@@ -416,6 +421,16 @@
 			O.show_message("\red [M.name] smashed the light!", 3, "You hear a tinkle of breaking glass", 2)
 		broken()
 	return
+
+//Xenos smashing lights
+/obj/machinery/light/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(status == 2) //Ignore if broken.
+		return FALSE
+	M.animation_attack_on(src)
+	M.visible_message("<span class='danger'>\The [M] smashes [src]!</span>", \
+	"<span class='danger'>You smash [src]!</span>", null, 5)
+	broken() //Smashola!
+
 // attack with hand - remove tube/bulb
 // if hands aren't protected and the light is on, burn the player
 
@@ -525,7 +540,7 @@
 		return
 	status = LIGHT_OK
 	brightness = initial(brightness)
-	on = 1
+	on = TRUE
 	update()
 
 // explosion effect
@@ -670,7 +685,7 @@
 			log_admin("LOG: [user.name] ([user.ckey]) injected a light with phoron, rigging it to explode.")
 			message_admins("LOG: [user.name] ([user.ckey]) injected a light with phoron, rigging it to explode.")
 
-			rigged = 1
+			rigged = TRUE
 
 		S.reagents.clear_reagents()
 	else
@@ -682,7 +697,8 @@
 // now only shatter if the intent was harm
 
 /obj/item/light_bulb/afterattack(atom/target, mob/user, proximity)
-	if(!proximity) return
+	if(!proximity)
+		return
 	if(istype(target, /obj/machinery/light))
 		return
 	if(user.a_intent != "hurt")
@@ -705,14 +721,14 @@
 	icon_state = "landingstripetop"
 	desc = "A landing light, if it's flashing stay clear!"
 	var/id = "" // ID for landing zone
-	anchored = 1
-	density = 0
+	anchored = TRUE
+	density = FALSE
 	layer = BELOW_TABLE_LAYER
 	use_power = 2
 	idle_power_usage = 2
 	active_power_usage = 20
 	power_channel = LIGHT //Lights are calc'd via area so they dont need to be in the machine list
-	unacidable = 1
+	unacidable = TRUE
 
 //Don't allow blowing those up, so Marine nades don't fuck them
 /obj/machinery/landinglight/ex_act(severity)

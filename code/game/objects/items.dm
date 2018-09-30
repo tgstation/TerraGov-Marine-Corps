@@ -15,10 +15,10 @@
 
 	var/health = null
 
-	var/sharp = 0		// whether this item cuts
-	var/edge = 0		// whether this item is more likely to dismember
-	var/pry_capable = 0 //whether this item can be used to pry things open.
-	var/heat_source = 0 //whether this item is a source of heat, and how hot it is (in Kelvin).
+	var/sharp = FALSE		// whether this item cuts
+	var/edge = FALSE		// whether this item is more likely to dismember
+	var/pry_capable = FALSE //whether this item can be used to pry things open.
+	var/heat_source = FALSE //whether this item is a source of heat, and how hot it is (in Kelvin).
 
 	var/hitsound = null
 	var/w_class = 3.0
@@ -52,7 +52,7 @@
 	var/list/allowed = null //suit storage stuff.
 	var/obj/item/device/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
-	var/zoom = 0 //1 if item is actively being used to zoom. For scoped guns and binoculars.
+	var/zoom = FALSE //TRUE if item is actively being used to zoom. For scoped guns and binoculars.
 
 	var/list/uniform_restricted //Need to wear this uniform to equip this
 
@@ -177,7 +177,8 @@ cases. Override_icon_state should be a list.*/
 		to_chat(user, desc)
 
 /obj/item/attack_hand(mob/user as mob)
-	if (!user) return
+	if (!user)
+		return
 
 	if(anchored)
 		to_chat(user, "[src] is anchored to the ground.")
@@ -187,7 +188,7 @@ cases. Override_icon_state should be a list.*/
 		var/obj/item/storage/S = src.loc
 		S.remove_from_storage(src, user.loc)
 
-	throwing = 0
+	throwing = FALSE
 
 	if(loc == user)
 		if(!user.drop_inv_item_on_ground(src))
@@ -211,7 +212,7 @@ cases. Override_icon_state should be a list.*/
 		var/obj/item/storage/S = src.loc
 		S.remove_from_storage(src, user.loc)
 
-	src.throwing = 0
+	src.throwing = FALSE
 	if (loc == user)
 		if(!user.drop_inv_item_on_ground(src))
 			return
@@ -230,17 +231,17 @@ cases. Override_icon_state should be a list.*/
 		if(S.use_to_pickup && isturf(loc))
 			if(S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
 				var/list/rejections = list()
-				var/success = 0
-				var/failure = 0
+				var/success = FALSE
+				var/failure = FALSE
 
 				for(var/obj/item/I in src.loc)
 					if(I.type in rejections) // To limit bag spamming: any given type only complains once
 						continue
 					if(!S.can_be_inserted(I))	// Note can_be_inserted still makes noise when the answer is no
 						rejections += I.type	// therefore full bags are still a little spammy
-						failure = 1
+						failure = TRUE
 						continue
-					success = 1
+					success = TRUE
 					S.handle_item_insertion(I, TRUE, user)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
 				if(success && !failure)
 					to_chat(user, "<span class='notice'>You put everything in [S].</span>")
@@ -310,8 +311,10 @@ cases. Override_icon_state should be a list.*/
 // Set disable_warning to 1 if you wish it to not give you outputs.
 // warning_text is used in the case that you want to provide a specific warning for why the item cannot be equipped.
 /obj/item/proc/mob_can_equip(M as mob, slot, disable_warning = 0)
-	if(!slot) return 0
-	if(!M) return 0
+	if(!slot)
+		return FALSE
+	if(!M)
+		return FALSE
 
 	if(ishuman(M))
 		//START HUMAN
@@ -370,7 +373,7 @@ cases. Override_icon_state should be a list.*/
 						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
 					return FALSE
 				if(!(flags_equip_slot & SLOT_WAIST))
-					return
+					return FALSE
 				return TRUE
 			if(WEAR_EYES)
 				if(H.glasses)
@@ -549,7 +552,7 @@ cases. Override_icon_state should be a list.*/
 
 
 /obj/item/proc/IsShield()
-	return 0
+	return FALSE
 
 /obj/item/proc/get_loc_turf()
 	var/atom/L = loc
@@ -577,7 +580,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 */
 
 /obj/item/proc/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
-	if(!user) return
+	if(!user)
+		return
 	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
 
 	for(var/obj/item/I in user.contents)
@@ -585,10 +589,14 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 			to_chat(user, "<span class='warning'>You are already looking through \the [zoom_device].</span>")
 			return //Return in the interest of not unzooming the other item. Check first in the interest of not fucking with the other clauses
 
-	if(user.eye_blind) 												to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
-	else if(user.stat || !ishuman(user)) 							to_chat(user, "<span class='warning'>You are unable to focus through \the [zoom_device].</span>")
-	else if(!zoom && user.client && user.update_tint()) 			to_chat(user, "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>")
-	else if(!zoom && user.get_active_hand() != src)					to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
+	if(user.eye_blind)
+		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
+	else if(user.stat || !ishuman(user))
+		to_chat(user, "<span class='warning'>You are unable to focus through \the [zoom_device].</span>")
+	else if(!zoom && user.client && user.update_tint())
+		to_chat(user, "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>")
+	else if(!zoom && user.get_active_hand() != src)
+		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
 	else if(zoom) //If we are zoomed out, reset that parameter.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
 		"<span class='notice'>You look up from [zoom_device].</span>")
@@ -633,3 +641,8 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.client.change_view(world.view)
 		user.client.pixel_x = 0
 		user.client.pixel_y = 0
+
+//This proc is here to prevent Xenomorphs from picking up objects (default attack_hand behaviour)
+//Note that this is overriden by every proc concerning a child of obj unless inherited
+/obj/item/attack_alien(mob/living/carbon/Xenomorph/M)
+	return FALSE

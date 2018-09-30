@@ -15,7 +15,7 @@
 	anchored = 1.0
 	var/panel_open = 0 // 0 = Closed / 1 = Open
 	var/invuln = null
-	var/bugged = 0
+	var/bugged = FALSE
 	var/obj/item/frame/camera/assembly = null
 
 	// WIRES
@@ -30,8 +30,8 @@
 	var/view_range = 7
 	var/short_range = 2
 
-	var/light_disabled = 0
-	var/alarm_on = 0
+	var/light_disabled = FALSE
+	var/alarm_on = FALSE
 
 /obj/machinery/camera/New()
 	WireColorToFlag = randomCameraWires()
@@ -91,6 +91,15 @@
 	src.view_range = num
 	cameranet.updateVisibility(src, 0)
 
+/obj/machinery/camera/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(status)
+		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
+		"<span class='danger'>You slice [src] apart!</span>", null, 5)
+		playsound(loc, "alien_claw_metal", 25, 1)
+		wires = 0 //wires all cut
+		light_disabled = 0
+		toggle_cam_status(M, TRUE)
+
 /obj/machinery/camera/attack_hand(mob/living/carbon/human/user as mob)
 
 	if(!istype(user))
@@ -99,8 +108,8 @@
 	if(user.species.can_shred(user))
 		visible_message("<span class='warning'>\The [user] slashes at [src]!</span>")
 		playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
-		wires = 0 //wires all cut
-		light_disabled = 0
+		wires = FALSE //wires all cut
+		light_disabled = FALSE
 		toggle_cam_status(user, TRUE)
 
 /obj/machinery/camera/attackby(W as obj, mob/living/user as mob)
@@ -162,10 +171,10 @@
 			return
 		if (src.bugged)
 			to_chat(user, "\blue Camera bug removed.")
-			src.bugged = 0
+			src.bugged = FALSE
 		else
 			to_chat(user, "\blue Camera bugged.")
-			src.bugged = 1
+			src.bugged = TRUE
 	else
 		..()
 	return
@@ -199,22 +208,22 @@
 				to_chat(O, "The screen bursts into static.")
 
 /obj/machinery/camera/proc/triggerCameraAlarm()
-	alarm_on = 1
+	alarm_on = TRUE
 	for(var/mob/living/silicon/S in mob_list)
 		S.triggerAlarm("Camera", get_area(src), list(src), src)
 
 
 /obj/machinery/camera/proc/cancelCameraAlarm()
-	alarm_on = 0
+	alarm_on = FALSE
 	for(var/mob/living/silicon/S in mob_list)
 		S.cancelAlarm("Camera", get_area(src), src)
 
 /obj/machinery/camera/proc/can_use()
 	if(!status)
-		return 0
+		return FALSE
 	if(stat & EMPED)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/machinery/camera/proc/can_see()
 	var/list/see = null
@@ -264,9 +273,9 @@
 /obj/machinery/camera/proc/weld(var/obj/item/tool/weldingtool/WT, var/mob/user)
 
 	if(user.action_busy)
-		return 0
+		return FALSE
 	if(!WT.isOn())
-		return 0
+		return FALSE
 
 	//Do after stuff here
 	user.visible_message("<span class='notice'>[user] starts to weld [src].</span>",
@@ -275,9 +284,9 @@
 	WT.eyecheck(user)
 	if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 		if(!WT.isOn())
-			return 0
+			return FALSE
 		playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] welds [src].</span>",
 		"<span class='notice'>You weld [src].</span>")
-		return 1
-	return 0
+		return TRUE
+	return FALSE

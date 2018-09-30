@@ -309,6 +309,29 @@
 	else
 		icon_state = "floodoff"
 
+/obj/machinery/colony_floodlight/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+	M.visible_message("[M] starts biting [src]!","In a rage, you start biting [src], but with no effect!", null, 5)
+
+/obj/machinery/colony_floodlight/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(!is_lit)
+		to_chat(M, "Why bother? It's just some weird metal thing.")
+		return FALSE
+	else if(damaged)
+		to_chat(M, "It's already damaged.")
+		return FALSE
+	else
+		M.animation_attack_on(src)
+		M.visible_message("[M] slashes away at [src]!","You slash and claw at the bright light!", null, null, 5)
+		health  = max(health - rand(M.melee_damage_lower, M.melee_damage_upper), 0)
+		if(!health)
+			playsound(src, "shatter", 70, 1)
+			damaged = TRUE
+			if(is_lit)
+				SetLuminosity(0)
+			update_icon()
+		else
+			playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
+
 /obj/machinery/colony_floodlight/attackby(obj/item/I, mob/user)
 	if(damaged)
 		if(isscrewdriver(I))

@@ -8,16 +8,16 @@
 	w_class = 2.0
 	var/unfolded_path = /obj/structure/closet/bodybag
 
-	attack_self(mob/user)
-		deploy_bodybag(user, user.loc)
+/obj/item/bodybag/attack_self(mob/user)
+	deploy_bodybag(user, user.loc)
 
-	afterattack(atom/target, mob/user, proximity)
-		if(!proximity)
-			return
-		if(isturf(target))
-			var/turf/T = target
-			if(!T.density)
-				deploy_bodybag(user, T)
+/obj/item/bodybag/afterattack(atom/target, mob/user, proximity)
+	if(!proximity)
+		return
+	if(isturf(target))
+		var/turf/T = target
+		if(!T.density)
+			deploy_bodybag(user, T)
 
 /obj/item/bodybag/proc/deploy_bodybag(mob/user, atom/location)
 	var/obj/structure/closet/bodybag/R = new unfolded_path(location, src)
@@ -35,10 +35,10 @@
 	unfolded_path = /obj/structure/closet/bodybag/cryobag
 	var/used = 0
 
-	New(loc, obj/structure/closet/bodybag/cryobag/CB)
-		..()
-		if(CB)
-			used = CB.used
+/obj/item/bodybag/cryobag/New(loc, obj/structure/closet/bodybag/cryobag/CB)
+	..()
+	if(CB)
+		used = CB.used
 
 
 /obj/item/storage/box/bodybags
@@ -46,15 +46,15 @@
 	desc = "This box contains body bags."
 	icon_state = "bodybags"
 	w_class = 3
-	New()
-		..()
-		new /obj/item/bodybag(src)
-		new /obj/item/bodybag(src)
-		new /obj/item/bodybag(src)
-		new /obj/item/bodybag(src)
-		new /obj/item/bodybag(src)
-		new /obj/item/bodybag(src)
-		new /obj/item/bodybag(src)
+/obj/item/storage/box/bodybags/New()
+	..()
+	new /obj/item/bodybag(src)
+	new /obj/item/bodybag(src)
+	new /obj/item/bodybag(src)
+	new /obj/item/bodybag(src)
+	new /obj/item/bodybag(src)
+	new /obj/item/bodybag(src)
+	new /obj/item/bodybag(src)
 
 
 /obj/structure/closet/bodybag
@@ -134,8 +134,8 @@
 	if(..())
 		density = 0
 		update_name()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/structure/closet/bodybag/open()
 	. = ..()
@@ -144,9 +144,12 @@
 /obj/structure/closet/bodybag/MouseDrop(over_object, src_location, over_location)
 	..()
 	if(over_object == usr && Adjacent(usr) && !roller_buckled)
-		if(!ishuman(usr))	return
-		if(opened)	return 0
-		if(contents.len)	return 0
+		if(!ishuman(usr))
+			return
+		if(opened)
+			return FALSE
+		if(contents.len)
+			return FALSE
 		visible_message("<span class='notice'>[usr] folds up [name].</span>")
 		var/obj/item/I = new item_path(get_turf(src), src)
 		usr.put_in_hands(I)
@@ -159,7 +162,7 @@
 		if (!roller_buckled.anchored)
 			return roller_buckled.Move(NewLoc, direct)
 		else
-			return 0
+			return FALSE
 	else
 		. = ..()
 
@@ -208,6 +211,16 @@
 	var/obj/item/device/healthanalyzer/J = I
 	J.attack(stasis_mob, user) // yes this is awful -spookydonut
 	return
+
+/obj/structure/closet/bodybag/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(opened)
+		return FALSE // stop xeno closing things
+	M.animation_attack_on(src)
+	add_fingerprint(M)
+	open()
+	M.visible_message("<span class='danger'>\The [M] slashes \the [src] open!</span>", \
+		"<span class='danger'>You slash \the [src] open!</span>", null, 5)
+	return TRUE
 
 /obj/structure/closet/bodybag/cryobag/Dispose()
 	var/mob/living/L = locate() in contents

@@ -10,14 +10,14 @@
 	name = "Mecha"
 	desc = "Exosuit"
 	icon = 'icons/mecha/mecha.dmi'
-	density = 1 //Dense. To raise the heat.
-	opacity = 1 ///opaque. Menacing.
-	anchored = 1 //no pulling around.
-	unacidable = 1 //and no deleting hoomans inside
+	density = TRUE //Dense. To raise the heat.
+	opacity = TRUE ///opaque. Menacing.
+	anchored = TRUE //no pulling around.
+	unacidable = TRUE //and no deleting hoomans inside
 	layer = LYING_MOB_LAYER //so ejected occupant lying down don't appear behind the mech
 	infra_luminosity = 15 //byond implementation is bugged.
 	var/initial_icon = null //Mech type for resetting icon. Only used for reskinning kits (see custom items)
-	var/can_move = 1
+	var/can_move = TRUE
 	var/mob/living/carbon/occupant = null
 	var/step_in = 10 //make a step in step_in/10 sec.
 	var/dir_in = 2//What direction will the mech face when entered/powered on? Defaults to South.
@@ -30,16 +30,16 @@
 	var/state = 0
 	var/list/log = new
 	var/last_message = 0
-	var/add_req_access = 1
-	var/maint_access = 1
+	var/add_req_access = TRUE
+	var/maint_access = TRUE
 	var/dna	//dna-locking the mech
 	var/list/proc_res = list() //stores proc owners, like proc_res["functionname"] = owner reference
 	var/datum/effect_system/spark_spread/spark_system = new
-	var/lights = 0
+	var/lights = FALSE
 	var/lights_power = 6
 
 	//inner atmos
-	var/use_internal_tank = 0
+	var/use_internal_tank = FALSE
 	var/internal_tank_valve = ONE_ATMOSPHERE
 	var/obj/machinery/portable_atmospherics/canister/internal_tank
 
@@ -154,8 +154,8 @@
 /obj/mecha/proc/do_after(delay as num)
 	sleep(delay)
 	if(src)
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/mecha/proc/enter_after(delay as num, var/mob/user as mob, var/numticks = 5)
 	var/delayfraction = delay/numticks
@@ -165,17 +165,17 @@
 	for(var/i = 0, i<numticks, i++)
 		sleep(delayfraction)
 		if(!src || !user || !user.canmove || !(user.loc == T))
-			return 0
+			return FALSE
 
-	return 1
+	return TRUE
 
 
 
 /obj/mecha/proc/check_for_support()
 	if(locate(/obj/structure/grille, orange(1, src)) || locate(/obj/structure/lattice, orange(1, src)) || locate(/turf/closed, orange(1, src)))
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 /obj/mecha/examine(mob/user)
 	..()
@@ -210,13 +210,17 @@
 ////////////////////////////
 
 /obj/mecha/proc/click_action(atom/target,mob/user)
-	if(!src.occupant || src.occupant != user ) return
-	if(user.stat) return
+	if(!src.occupant || src.occupant != user )
+		return
+	if(user.stat)
+		return
 	if(state)
 		occupant_message("<font color='red'>Maintenance protocols in effect</font>")
 		return
-	if(!get_charge()) return
-	if(src == target) return
+	if(!get_charge())
+		return
+	if(src == target)
+		return
 	var/dir_to_target = get_dir(src,target)
 	if(dir_to_target && !(dir_to_target & src.dir))//wrong direction
 		return
@@ -255,12 +259,12 @@
 	if(user != src.occupant) //While not "realistic", this piece is player friendly.
 		user.forceMove(get_turf(src))
 		to_chat(user, "You climb out from [src]")
-		return 0
+		return FALSE
 	if(connected_port)
 		if(world.time - last_message > 20)
 			src.occupant_message("Unable to move while connected to the air system port")
 			last_message = world.time
-		return 0
+		return FALSE
 	if(state)
 		occupant_message("<font color='red'>Maintenance protocols in effect</font>")
 		return
@@ -271,11 +275,11 @@
 
 /obj/mecha/proc/dyndomove(direction)
 	if(!can_move)
-		return 0
+		return FALSE
 	if(src.pr_inertial_movement.active())
-		return 0
+		return FALSE
 	if(!has_charge(step_energy_drain))
-		return 0
+		return FALSE
 	var/move_result = 0
 	if(hasInternalDamage(MECHA_INT_CONTROL_LOST))
 		move_result = mechsteprand()
@@ -284,21 +288,21 @@
 	else
 		move_result	= mechstep(direction)
 	if(move_result)
-		can_move = 0
+		can_move = FALSE
 		use_power(step_energy_drain)
 		if(istype(src.loc, /turf/open/space))
 			if(!src.check_for_support())
 				src.pr_inertial_movement.start(list(src,direction))
 				src.log_message("Movement control lost. Inertial movement started.")
 		if(do_after(step_in))
-			can_move = 1
-		return 1
-	return 0
+			can_move = TRUE
+		return TRUE
+	return FALSE
 
 /obj/mecha/proc/mechturn(direction)
 	dir = direction
 	pick(playsound(src.loc, 'sound/mecha/powerloader_turn.ogg', 25, 1), playsound(src.loc, 'sound/mecha/powerloader_turn2.ogg', 25, 1))
-	return 1
+	return TRUE
 
 /obj/mecha/proc/mechstep(direction)
 	var/result = step(src,direction)
@@ -394,6 +398,21 @@
 	else
 		src.destroy()
 	return
+
+/obj/mecha/attack_alien(mob/living/carbon/Xenomorph/M)
+	log_message("Attack by claw. Attacker - [M].", color="red")
+
+	if(!prob(deflect_chance))
+		take_damage((rand(M.melee_damage_lower, M.melee_damage_upper)/2))
+		check_for_internal_damage(list(MECHA_INT_CONTROL_LOST))
+		playsound(loc, "alien_claw_metal", 25, 1)
+		M.visible_message("<span class='danger'>[M] slashes [src]'s armor!</span>", \
+		"<span class='danger'>You slash [src]'s armor!</span>", null, 5)
+	else
+		src.log_append_to_last("Armor saved.")
+		playsound(loc, "alien_claw_metal", 25, 1)
+		M.visible_message("<span class='warning'>[M] slashes [src]'s armor to no effect!</span>", \
+		"<span class='danger'>You slash [src]'s armor to no effect!</span>", null, 5)
 
 /obj/mecha/attack_hand(mob/user as mob)
 	src.log_message("Attack by hand/paw. Attacker - [user].", color="red")

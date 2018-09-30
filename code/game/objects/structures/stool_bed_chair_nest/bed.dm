@@ -42,12 +42,12 @@ obj/structure/bed/Dispose()
 		M.pixel_y = buckling_y
 		M.old_y = buckling_y
 		if(base_bed_icon)
-			density = 1
+			density = TRUE
 	else
 		M.pixel_y = initial(buckled_mob.pixel_y)
 		M.old_y = initial(buckled_mob.pixel_y)
 		if(base_bed_icon)
-			density = 0
+			density = FALSE
 
 	update_icon()
 
@@ -58,7 +58,7 @@ obj/structure/bed/Dispose()
 	B.loc = loc
 	B.dir = dir
 	buckled_bodybag = B
-	density = 1
+	density = TRUE
 	update_icon()
 	if(buckling_y)
 		buckled_bodybag.pixel_y = buckling_y
@@ -69,7 +69,7 @@ obj/structure/bed/Dispose()
 		buckled_bodybag.pixel_y = initial(buckled_bodybag.pixel_y)
 		buckled_bodybag.roller_buckled = null
 		buckled_bodybag = null
-		density = 0
+		density = FALSE
 		update_icon()
 	else
 		..()
@@ -78,7 +78,7 @@ obj/structure/bed/Dispose()
 	if(buckled_bodybag)
 		unbuckle()
 		add_fingerprint(user)
-		return 1
+		return TRUE
 	else
 		. = ..()
 
@@ -92,7 +92,7 @@ obj/structure/bed/Dispose()
 /obj/structure/bed/Move(NewLoc, direct)
 	. = ..()
 	if(. && buckled_bodybag && !handle_buckled_bodybag_movement(loc,direct)) //Movement fails if buckled mob's move fails.
-		return 0
+		return FALSE
 
 /obj/structure/bed/proc/handle_buckled_bodybag_movement(NewLoc, direct)
 	if(!(direct & (direct - 1))) //Not diagonal move. the obj's diagonal move is split into two cardinal moves and those moves will handle the buckled bodybag's movement.
@@ -143,6 +143,15 @@ obj/structure/bed/Dispose()
 					new buildstacktype (loc, buildstackamount)
 				cdel(src)
 
+/obj/structure/bed/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(M.a_intent == "hurt")
+		M.animation_attack_on(src)
+		playsound(src, hit_bed_sound, 25, 1)
+		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",
+		"<span class='danger'>You slice [src] apart!</span>", null, 5)
+		unbuckle()
+		destroy()
+	else attack_hand(M)
 
 /obj/structure/bed/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/tool/wrench))
@@ -209,7 +218,8 @@ obj/structure/bed/Dispose()
 	deploy_roller(user, user.loc)
 
 /obj/item/roller/afterattack(obj/target, mob/user , proximity)
-	if(!proximity) return
+	if(!proximity)
+		return
 	if(isturf(target))
 		var/turf/T = target
 		if(!T.density)
@@ -272,6 +282,9 @@ var/global/list/activated_medevac_stretchers = list()
 	accepts_bodybag = TRUE
 	var/stretcher_activated
 	var/obj/structure/dropship_equipment/medevac_system/linked_medevac
+
+/obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/Xenomorph/M)
+	unbuckle()
 
 /obj/structure/bed/medevac_stretcher/Dispose()
 	if(stretcher_activated)
