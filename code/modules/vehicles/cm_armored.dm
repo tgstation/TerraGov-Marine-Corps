@@ -439,7 +439,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	if(.)
 		for(var/mob/living/M in get_turf(A))
 			//I don't call Bump() otherwise that would encourage trampling for infinite unpunishable damage
-			M.sleeping = 1e7 //Maintain their lying-down-ness
+			M.sleeping = 5 //Maintain their lying-down-ness
 
 /obj/vehicle/multitile/hitbox/cm_armored/Uncrossed(var/atom/movable/A)
 	if(isliving(A))
