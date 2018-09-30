@@ -88,6 +88,42 @@
 	in_use = user
 	process_state = FORCE_CRASH
 
+/datum/shuttle/ferry/marine/proc/hijack(mob/living/carbon/Xenomorph/M)
+	if(!queen_locked) //we have not hijacked it yet
+		if(world.time < SHUTTLE_LOCK_TIME_LOCK)
+			to_chat(M, "<span class='xenodanger'>You can't mobilize the strength to hijack the shuttle yet. Please wait another [round((SHUTTLE_LOCK_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
+			return
+		to_chat(M, "<span class='xenonotice'>You interact with the machine and disable remote control.</span>")
+		xeno_message("<span class='xenoannounce'>We have wrested away remote control of the metal bird! Rejoice!</span>",3,M.hivenumber)
+		last_locked = world.time
+		queen_locked = TRUE
+
+/datum/shuttle/ferry/marine/proc/door_override(mob/living/carbon/Xenomorph/M)
+	if(!door_override)
+		to_chat(M, "<span class='xenonotice'>You override the doors.</span>")
+		xeno_message("<span class='xenoannounce'>The doors of the metal bird have been overridden! Rejoice!</span>",3,M.hivenumber)
+		last_door_override = world.time
+		door_override = TRUE
+
+		var/ship_id = "sh_dropship1"
+		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
+			ship_id = "sh_dropship2"
+
+		for(var/obj/machinery/door/airlock/dropship_hatch/D in machines)
+			if(D.id == ship_id)
+				D.unlock()
+
+		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
+		switch(ship_id)
+			if("sh_dropship1")
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in machines)
+					reardoor = D
+			if("sh_dropship2")
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in machines)
+					reardoor = D
+
+		reardoor.unlock()
+
 /*
 	Please ensure that long_jump() and short_jump() are only called from here. This applies to subtypes as well.
 	Doing so will ensure that multiple jumps cannot be initiated in parallel.

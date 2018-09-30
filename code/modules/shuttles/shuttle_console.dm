@@ -343,6 +343,17 @@
 	else
 		..()
 
+/obj/machinery/computer/shuttle_control/attack_alien(mob/living/carbon/Xenomorph/M)
+	var/datum/shuttle/ferry/marine/shuttle = shuttle_controller.shuttles[shuttle_tag]
+	if(M.is_intelligent)
+		attack_hand(M)
+		if(!shuttle.iselevator)
+			shuttle.door_override(M)
+			if(onboard) //This is the shuttle's onboard console
+				shuttle.hijack(M)
+	else
+		..()
+
 /obj/machinery/computer/shuttle_control/bullet_act(var/obj/item/projectile/Proj)
 	visible_message("[Proj] ricochets off [src]!")
 	return 0

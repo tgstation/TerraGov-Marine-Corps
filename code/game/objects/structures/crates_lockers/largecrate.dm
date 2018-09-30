@@ -6,6 +6,18 @@
 	density = 1
 	anchored = 0
 
+/obj/structure/largecrate/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
+	playsound(src, 'sound/effects/woodhit.ogg', 25, 1)
+	new /obj/item/stack/sheet/wood(src)
+	var/turf/T = get_turf(src)
+	for(var/obj/O in contents)
+		O.loc = T
+	M.visible_message("<span class='danger'>\The [M] smashes \the [src] apart!</span>", \
+	"<span class='danger'>You smash \the [src] apart!</span>", \
+	"<span class='danger'>You hear splitting wood!</span>", 5)
+	cdel(src)
+
 /obj/structure/largecrate/attack_hand(mob/user as mob)
 	to_chat(user, "<span class='notice'>You need a crowbar to pry this open!</span>")
 	return

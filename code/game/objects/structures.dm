@@ -4,7 +4,7 @@
 	var/climb_delay = 50
 	var/breakable
 	var/parts
-	anchored = 1
+	anchored = TRUE
 
 /obj/structure/New()
 	..()
@@ -17,7 +17,7 @@
 /obj/structure/proc/destroy(deconstruct)
 	if(parts)
 		new parts(loc)
-	density = 0
+	density = FALSE
 	cdel(src)
 
 /obj/structure/attack_hand(mob/user)
@@ -28,6 +28,10 @@
 			visible_message("<span class='danger'>[user] smashes the [src] apart!</span>")
 			destroy()
 
+//Default "structure" proc. This should be overwritten by sub procs.
+/obj/structure/attack_alien(mob/living/carbon/Xenomorph/M)
+	return FALSE
+
 /obj/structure/attack_animal(mob/living/user)
 	if(breakable)
 		if(user.wall_smash)
@@ -35,7 +39,8 @@
 			destroy()
 
 /obj/structure/attack_paw(mob/user)
-	if(breakable) attack_hand(user)
+	if(breakable)
+		attack_hand(user)
 
 /obj/structure/attack_tk()
 	return
@@ -76,13 +81,16 @@
 
 /obj/structure/proc/can_climb(var/mob/living/user)
 	if(!climbable || !can_touch(user))
-		return 0
+		return FALSE
 
 	var/turf/T = src.loc
 	var/turf/U = get_turf(user)
-	if(!istype(T) || !istype(U)) return 0
-	if(T.density) return 0 //src is on top of a dense turf.
-	if(!user.Adjacent(src))	return 0 //this catches border objects that don't let you throw things over them, but not barricades
+	if(!istype(T) || !istype(U))
+		return FALSE
+	if(T.density)
+		return FALSE //src is on top of a dense turf.
+	if(!user.Adjacent(src))
+		return FALSE //this catches border objects that don't let you throw things over them, but not barricades
 
 	for(var/obj/O in T.contents)
 		if(istype(O, /obj/structure))
@@ -93,7 +101,7 @@
 		//dense obstacles (border or not) on the structure's tile
 		if(O.density && (!(O.flags_atom & ON_BORDER) || O.dir & get_dir(src,user)))
 			to_chat(user, "<span class='warning'>There's \a [O.name] in the way.</span>")
-			return 0
+			return FALSE
 
 	for(var/obj/O in U.contents)
 		if(istype(O, /obj/structure))
@@ -103,7 +111,7 @@
 		//dense border obstacles on our tile
 		if(O.density && (O.flags_atom & ON_BORDER) && O.dir & get_dir(user, src))
 			to_chat(user, "<span class='warning'>There's \a [O.name] in the way.</span>")
-			return 0
+			return FALSE
 
 	if((flags_atom & ON_BORDER))
 		if(user.loc != loc && user.loc != get_step(T, dir))
@@ -124,7 +132,7 @@
 					else
 						to_chat(user, "<span class='warning'>You cannot leap this way.</span>")
 						return
-	return 1
+	return TRUE
 
 /obj/structure/proc/do_climb(var/mob/living/user)
 	if(!can_climb(user))
@@ -171,7 +179,8 @@
 
 	for(var/mob/living/M in get_turf(src))
 
-		if(M.lying) return //No spamming this on people.
+		if(M.lying)
+			return //No spamming this on people.
 
 		M.KnockDown(5)
 		to_chat(M, "\red You topple as \the [src] moves under you!")
@@ -214,15 +223,15 @@
 
 /obj/structure/proc/can_touch(mob/user)
 	if(!user)
-		return 0
+		return FALSE
 	if(!Adjacent(user) || !isturf(user.loc))
-		return 0
+		return FALSE
 	if(user.is_mob_restrained() || user.buckled)
 		to_chat(user, "<span class='notice'>You need your hands and legs free for this.</span>")
-		return 0
+		return FALSE
 	if(user.is_mob_incapacitated(TRUE) || user.lying)
-		return 0
+		return FALSE
 	if(issilicon(user))
 		to_chat(user, "<span class='notice'>You need hands for this.</span>")
-		return 0
-	return 1
+		return FALSE
+	return TRUE

@@ -45,8 +45,22 @@
 /obj/machinery/door_control/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
-/obj/machinery/door_control/attack_alien(mob/user as mob)
-	return
+/obj/machinery/door_control/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(M.is_intelligent && normaldoorcontrol == CONTROL_DROPSHIP)
+		var/shuttle_tag
+		switch(id)
+			if("sh_dropship1")
+				shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
+			if("sh_dropship2")
+				shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
+			else
+				return
+
+		var/datum/shuttle/ferry/marine/shuttle = shuttle_controller.shuttles[shuttle_tag]
+		shuttle.hijack(M)
+		shuttle.door_override(M)
+	else
+		..()
 
 /obj/machinery/door_control/attackby(obj/item/W, mob/user as mob)
 	/* For later implementation

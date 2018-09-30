@@ -1,18 +1,21 @@
+#define CLOSED 0
+#define OPEN 1
+
 //NOT using the existing /obj/machinery/door type, since that has some complications on its own, mainly based on its
 //machineryness
 
 /obj/structure/mineral_door
 	name = "mineral door"
-	density = 1
-	anchored = 1
-	opacity = 1
+	density = TRUE
+	anchored = TRUE
+	opacity = TRUE
 
 	icon = 'icons/obj/doors/mineral_doors.dmi'
 	icon_state = "metal"
 
 	var/mineralType = "metal"
-	var/state = 0 //closed, 1 == open
-	var/isSwitchingStates = 0
+	var/state = CLOSED
+	var/isSwitchingStates = FALSE
 	var/hardness = 1
 	var/oreAmount = 7
 
@@ -47,7 +50,8 @@
 	return !density
 
 /obj/structure/mineral_door/proc/TryToSwitchState(atom/user)
-	if(isSwitchingStates) return
+	if(isSwitchingStates)
+		return
 	if(ismob(user))
 		var/mob/M = user
 		if(M.client)
@@ -71,23 +75,23 @@
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 	flick("[mineralType]opening",src)
 	sleep(10)
-	density = 0
-	opacity = 0
-	state = 1
+	density = FALSE
+	opacity = FALSE
+	state = OPEN
 	update_icon()
-	isSwitchingStates = 0
+	isSwitchingStates = FALSE
 
 
 /obj/structure/mineral_door/proc/Close()
-	isSwitchingStates = 1
+	isSwitchingStates = TRUE
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 25, 1)
 	flick("[mineralType]closing",src)
 	sleep(10)
-	density = 1
-	opacity = 1
-	state = 0
+	density = TRUE
+	opacity = TRUE
+	state = CLOSED
 	update_icon()
-	isSwitchingStates = 0
+	isSwitchingStates = FALSE
 
 
 /obj/structure/mineral_door/update_icon()
@@ -177,11 +181,11 @@
 	hardness = 0.5
 
 /obj/structure/mineral_door/transparent
-	opacity = 0
+	opacity = FALSE
 
 /obj/structure/mineral_door/transparent/Close()
 	..()
-	opacity = 0
+	opacity = FALSE
 
 /obj/structure/mineral_door/transparent/phoron
 	mineralType = "phoron"
@@ -209,26 +213,26 @@
 	hardness = 1
 
 /obj/structure/mineral_door/wood/Open()
-	isSwitchingStates = 1
+	isSwitchingStates = TRUE
 	playsound(loc, 'sound/effects/doorcreaky.ogg', 25, 1)
 	flick("[mineralType]opening",src)
 	sleep(10)
-	density = 0
-	opacity = 0
-	state = 1
+	density = FALSE
+	opacity = FALSE
+	state = OPEN
 	update_icon()
-	isSwitchingStates = 0
+	isSwitchingStates = FALSE
 
 /obj/structure/mineral_door/wood/Close()
-	isSwitchingStates = 1
+	isSwitchingStates = TRUE
 	playsound(loc, 'sound/effects/doorcreaky.ogg', 25, 1)
 	flick("[mineralType]closing",src)
 	sleep(10)
-	density = 1
-	opacity = 1
-	state = 0
+	density = TRUE
+	opacity = TRUE
+	state = CLOSED
 	update_icon()
-	isSwitchingStates = 0
+	isSwitchingStates = FALSE
 
 /obj/structure/mineral_door/wood/Dismantle(devastated = 0)
 	if(!devastated)
@@ -238,7 +242,10 @@
 
 //Mapping instance
 /obj/structure/mineral_door/wood/open
-	density = 0
-	opacity = 0
-	state = 1
+	density = FALSE
+	opacity = FALSE
+	state = OPEN
 	icon_state = "woodopen"
+
+#undef CLOSED
+#undef OPEN

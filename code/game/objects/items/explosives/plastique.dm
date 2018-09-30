@@ -20,7 +20,8 @@
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 		var/fumbling_time = 20
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			return
 	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
 	if(newtime < 10)
 		newtime = 10
@@ -30,24 +31,27 @@
 	to_chat(user, "Timer set for [timer] seconds.")
 
 /obj/item/explosive/plastique/afterattack(atom/target, mob/user, flag)
-	if(!flag) return FALSE
+	if(!flag)
+		return FALSE
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 		var/fumbling_time = 50
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			return
 	if(istype(target, /obj/structure/ladder) || istype(target, /obj/item) || istype(target, /turf/open))
 		return FALSE
 	if(istype(target, /obj/effect) || istype(target, /obj/machinery))
 		var/obj/O = target
-		if(O.unacidable) return FALSE
+		if(O.unacidable)
+			return FALSE
 	if(istype(target, /turf/closed/wall))
 		var/turf/closed/wall/W = target
 		if(W.hull)
 			return FALSE
 	if(istype(target, /obj/structure/window))
 		var/obj/structure/window/W = target
-		if(W.not_damageable)
+		if(!W.damageable)
 			to_chat(user, "<span class='warning'>[W] is much too tough for you to do anything to it with [src]</span>.")
 			return FALSE
 

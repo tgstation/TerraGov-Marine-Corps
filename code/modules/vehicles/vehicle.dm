@@ -2,22 +2,22 @@
 	name = "vehicle"
 	icon = 'icons/obj/vehicles.dmi'
 	layer = ABOVE_MOB_LAYER //so it sits above objects including mobs
-	density = 1
-	anchored = 1
-	animate_movement = 1
+	density = TRUE
+	anchored = TRUE
+	animate_movement = FORWARD_STEPS
 	luminosity = 2
 	can_buckle = TRUE
 
-	var/on = 0
+	var/on = FALSE
 	var/health = 100
 	var/maxhealth = 100
 	var/fire_dam_coeff = 1.0
 	var/brute_dam_coeff = 1.0
-	var/open = 0	//Maint panel
-	var/locked = 1
+	var/open = FALSE	//Maint panel
+	var/locked = TRUE
 	var/stat = 0
 	var/emagged = 0
-	var/powered = 0		//set if vehicle is powered and should use fuel when moving
+	var/powered = FALSE		//set if vehicle is powered and should use fuel when moving
 	var/move_delay = 1	//set this to limit the speed of the vehicle
 	var/buckling_y = 0
 
@@ -32,7 +32,8 @@
 	//spawn the cell you want in each vehicle
 
 /obj/vehicle/relaymove(mob/user, direction)
-	if(user.is_mob_incapacitated()) return
+	if(user.is_mob_incapacitated())
+		return
 	if(world.time > l_move_time + move_delay)
 		if(on && powered && cell && cell.charge < charge_use)
 			turn_off()
@@ -78,8 +79,21 @@
 	else
 		..()
 
+/obj/vehicle/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(M.a_intent == "hurt")
+		M.animation_attack_on(src)
+		playsound(loc, "alien_claw_metal", 25, 1)
+		M.flick_attack_overlay(src, "slash")
+		health -= 15
+		playsound(src.loc, "alien_claw_metal", 25, 1)
+		M.visible_message("<span class='danger'>[M] slashes [src].</span>","<span class='danger'>You slash [src].</span>", null, 5)
+		healthcheck()
+	else
+		attack_hand(M)
+
 /obj/vehicle/attack_animal(var/mob/living/simple_animal/M as mob)
-	if(M.melee_damage_upper == 0)	return
+	if(M.melee_damage_upper == 0)
+		return
 	health -= M.melee_damage_upper
 	src.visible_message("\red <B>[M] has [M.attacktext] [src]!</B>")
 	log_combat(M, src, "attacked")
@@ -91,7 +105,7 @@
 	health -= Proj.damage
 	..()
 	healthcheck()
-	return 1
+	return TRUE
 
 /obj/vehicle/ex_act(severity)
 	switch(severity)
@@ -130,16 +144,16 @@
 //-------------------------------------------
 /obj/vehicle/proc/turn_on()
 	if(stat)
-		return 0
+		return FALSE
 	if(powered && cell.charge < charge_use)
-		return 0
-	on = 1
+		return FALSE
+	on = TRUE
 	SetLuminosity(initial(luminosity))
 	update_icon()
-	return 1
+	return TRUE
 
 /obj/vehicle/proc/turn_off()
-	on = 0
+	on = FALSE
 	SetLuminosity(0)
 	update_icon()
 
@@ -147,7 +161,7 @@
 	emagged = 1
 
 	if(locked)
-		locked = 0
+		locked = FALSE
 		to_chat(user, "<span class='warning'>You bypass [src]'s controls.</span>")
 
 /obj/vehicle/proc/explode()

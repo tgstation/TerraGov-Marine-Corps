@@ -282,6 +282,34 @@
 	else
 		return TryToSwitchState(user)
 
+/obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+	var/turf/cur_loc = M.loc
+	if(!istype(cur_loc))
+		return FALSE
+	TryToSwitchState(M)
+	return TRUE
+
+//clicking on resin doors attacks them, or opens them without harm intent
+/obj/structure/mineral_door/resin/attack_alien(mob/living/carbon/Xenomorph/M)
+	var/turf/cur_loc = M.loc
+	if(!istype(cur_loc))
+		return FALSE //Some basic logic here
+	if(M.a_intent != "hurt")
+		TryToSwitchState(M)
+		return TRUE
+
+	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins ripping it down.</span>", \
+	"<span class='warning'>You dig into \the [src] and begin ripping it down.</span>", null, 5)
+	playsound(src, "alien_resin_break", 25)
+	if(do_after(M, 80, FALSE, 5, BUSY_ICON_HOSTILE))
+		if(!loc)
+			return FALSE //Someone already destroyed it, do_after should check this but best to be safe
+		if(M.loc != cur_loc)
+			return FALSE //Make sure we're still there
+		M.visible_message("<span class='danger'>[M] rips down \the [src]!</span>", \
+		 "<span class='danger'>You rip down \the [src]!</span>", null, 5)
+		cdel(src)
+
 /obj/structure/mineral_door/resin/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage/2
 	..()

@@ -4,27 +4,27 @@
 	icon = 'icons/obj/aibots.dmi'
 	layer = MOB_LAYER
 	luminosity = 3
-	use_power = 0
+	use_power = FALSE
 	var/obj/item/card/id/botcard			// the ID card that the bot "holds"
-	var/on = 1
+	var/on = TRUE
 	var/health = 0 //do not forget to set health for your bot!
 	var/maxhealth = 0
 	var/fire_dam_coeff = 1.0
 	var/brute_dam_coeff = 1.0
-	var/open = 0//Maint panel
-	var/locked = 1
+	var/open = FALSE //Maint panel
+	var/locked = TRUE
 	//var/emagged = 0 //Urist: Moving that var to the general /bot tree as it's used by most bots
 
 
 /obj/machinery/bot/proc/turn_on()
 	if(stat)
-		return 0
-	on = 1
+		return FALSE
+	on = TRUE
 	SetLuminosity(initial(luminosity))
-	return 1
+	return TRUE
 
 /obj/machinery/bot/proc/turn_off()
-	on = 0
+	on = FALSE
 	SetLuminosity(0)
 
 /obj/machinery/bot/proc/explode()
@@ -40,7 +40,7 @@
 
 /obj/machinery/bot/proc/Emag(mob/user as mob)
 	if(locked)
-		locked = 0
+		locked = FALSE
 		emagged = 1
 		to_chat(user, "<span class='warning'>You short out [src]'s maintenance hatch lock.</span>")
 		log_and_message_admins("emagged [src]'s maintenance hatch lock")
@@ -57,10 +57,25 @@
 			to_chat(user, "<span class='danger'>[src]'s parts look very loose!</span>")
 
 /obj/machinery/bot/attack_animal(var/mob/living/simple_animal/M as mob)
-	if(M.melee_damage_upper == 0)	return
+	if(M.melee_damage_upper == 0)
+		return
 	health -= M.melee_damage_upper
 	visible_message("\red <B>[M] has [M.attacktext] [src]!</B>")
 	log_combat(M, src, "attacked")
+	if(prob(10))
+		new /obj/effect/decal/cleanable/blood/oil(src.loc)
+	healthcheck()
+
+/obj/machinery/bot/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
+	health -= rand(15, 30)
+	if(health <= 0)
+		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
+		"<span class='danger'>You slice [src] apart!</span>", null, 5)
+	else
+		M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
+		"<span class='danger'>You slash [src]!</span>", null, 5)
+	playsound(loc, "alien_claw_metal", 25, 1)
 	if(prob(10))
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)
 	healthcheck()
@@ -97,7 +112,7 @@
 	health -= Proj.ammo.damage
 	..()
 	healthcheck()
-	return 1
+	return TRUE
 
 /obj/machinery/bot/ex_act(severity)
 	switch(severity)
@@ -161,45 +176,51 @@
 // Movement through doors allowed if ID has access
 /proc/LinkBlockedWithAccess(turf/A, turf/B, obj/item/card/id/ID)
 
-	if(A == null || B == null) return 1
+	if(A == null || B == null)
+		return TRUE
 	var/adir = get_dir(A,B)
 	var/rdir = get_dir(B,A)
 	if((adir & (NORTH|SOUTH)) && (adir & (EAST|WEST)))	//diagonal
 		var/iStep = get_step(A,adir&(NORTH|SOUTH))
 		if(!LinkBlockedWithAccess(A,iStep, ID) && !LinkBlockedWithAccess(iStep,B,ID))
-			return 0
+			return FALSE
 
 		var/pStep = get_step(A,adir&(EAST|WEST))
 		if(!LinkBlockedWithAccess(A,pStep,ID) && !LinkBlockedWithAccess(pStep,B,ID))
-			return 0
-		return 1
+			return FALSE
+		return TRUE
 
 	if(DirBlockedWithAccess(A,adir, ID))
-		return 1
+		return TRUE
 
 	if(DirBlockedWithAccess(B,rdir, ID))
-		return 1
+		return TRUE
 
 	for(var/obj/O in B)
 		if(O.density && !istype(O, /obj/machinery/door) && !(O.flags_atom & ON_BORDER))
-			return 1
+			return TRUE
 
-	return 0
+	return FALSE
 
 // Returns true if direction is blocked from loc
 // Checks doors against access with given ID
 /proc/DirBlockedWithAccess(turf/loc,var/dir,var/obj/item/card/id/ID)
 	for(var/obj/structure/window/D in loc)
-		if(!D.density)			continue
-		if(D.dir == SOUTHWEST)	return 1
-		if(D.dir == dir)		return 1
+		if(!D.density)
+			continue
+		if(D.dir == SOUTHWEST)
+			return TRUE
+		if(D.dir == dir)
+			return TRUE
 
 	for(var/obj/machinery/door/D in loc)
-		if(!D.density)			continue
+		if(!D.density)
+			continue
 		if(istype(D, /obj/machinery/door/window))
-			if( dir & D.dir )	return !D.check_access(ID)
+			if( dir & D.dir )
+				return !D.check_access(ID)
 
 			//if((dir & SOUTH) && (D.dir & (EAST|WEST)))		return !D.check_access(ID)
 			//if((dir & EAST ) && (D.dir & (NORTH|SOUTH)))	return !D.check_access(ID)
 		else return !D.check_access(ID)	// it's a real, air blocking door
-	return 0
+	return FALSE

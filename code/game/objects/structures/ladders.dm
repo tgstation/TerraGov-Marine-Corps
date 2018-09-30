@@ -59,6 +59,12 @@
 	else	//wtf make your ladders properly assholes
 		icon_state = "ladder00"
 
+/obj/structure/ladder/attack_alien(mob/living/carbon/Xenomorph/M)
+	return attack_hand(M)
+
+/obj/structure/ladder/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+	return attack_hand(M)
+
 /obj/structure/ladder/attack_hand(mob/user)
 	if(user.stat || get_dist(user, src) > 1 || user.blinded || user.lying || user.buckled || user.anchored) return
 	if(busy)

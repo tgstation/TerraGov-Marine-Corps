@@ -382,6 +382,30 @@
 			update_icon()
 			updating_icon = 0
 
+/obj/machinery/power/apc/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
+	M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
+	"<span class='danger'>You slash \the [src]!</span>", null, 5)
+	playsound(loc, "alien_claw_metal", 25, 1)
+	var/allcut = TRUE
+	for(var/wire in apcwirelist)
+		if(!isWireCut(apcwirelist[wire]))
+			allcut = FALSE
+			break
+
+	if(beenhit >= pick(3, 4) && wiresexposed != 1)
+		wiresexposed = TRUE
+		update_icon()
+		visible_message("<span class='danger'>\The [src]'s cover swings open, exposing the wires!</span>", null, null, 5)
+
+	else if(wiresexposed == TRUE && allcut == FALSE)
+		for(var/wire in apcwirelist)
+			cut(apcwirelist[wire])
+		update_icon()
+		visible_message("<span class='danger'>\The [src]'s wires snap apart in a rain of sparks!", null, null, 5)
+	else
+		beenhit += 1
+
 //Attack with an item - open/close cover, insert cell, or (un)lock interface
 /obj/machinery/power/apc/attackby(obj/item/W, mob/user)
 

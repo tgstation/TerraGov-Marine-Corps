@@ -239,6 +239,11 @@ Class Procs:
 /obj/machinery/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
+//Xenomorphs can't use machinery, not even the "intelligent" ones
+//Exception is Queen and shuttles, because plot power
+/obj/machinery/attack_alien(mob/living/carbon/Xenomorph/M)
+	to_chat(M, "<span class='warning'>You stare at \the [src] cluelessly.</span>")
+
 /obj/machinery/attack_hand(mob/user as mob)
 	if(inoperable(MAINT))
 		return 1

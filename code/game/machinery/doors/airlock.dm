@@ -598,6 +598,60 @@ About the new airlock wires panel:
 /obj/machinery/door/airlock/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
+//Prying open doors
+/obj/machinery/door/airlock/attack_alien(mob/living/carbon/Xenomorph/M)
+	var/turf/cur_loc = M.loc
+	if(isElectrified())
+		if(shock(M, 70))
+			return
+	if(locked)
+		to_chat(M, "<span class='warning'>\The [src] is bolted down tight.</span>")
+		return FALSE
+	if(welded)
+		to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
+		return FALSE
+	if(!istype(cur_loc))
+		return FALSE //Some basic logic here
+	if(!density)
+		to_chat(M, "<span class='warning'>\The [src] is already open!</span>")
+		return FALSE
+
+	if(M.action_busy)
+		return FALSE
+
+	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
+	"<span class='warning'>You dig into \the [src] and begin to pry it open.</span>", null, 5)
+
+	if(do_after(M, 40, FALSE, 5, BUSY_ICON_HOSTILE))
+		if(M.loc != cur_loc)
+			return FALSE //Make sure we're still there
+		if(M.lying)
+			return FALSE
+		if(locked)
+			to_chat(M, "<span class='warning'>\The [src] is bolted down tight.</span>")
+			return FALSE
+		if(welded)
+			to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
+			return FALSE
+		if(density) //Make sure it's still closed
+			spawn(0)
+				open(1)
+				M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
+				"<span class='danger'>You pry \the [src] open.</span>", null, 5)
+
+/obj/machinery/door/airlock/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+	for(var/atom/movable/AM in get_turf(src))
+		if(AM != src && AM.density && !AM.CanPass(M, M.loc))
+			to_chat(M, "<span class='warning'>\The [AM] prevents you from squeezing under \the [src]!</span>")
+			return
+	if(locked || welded) //Can't pass through airlocks that have been bolted down or welded
+		to_chat(M, "<span class='warning'>\The [src] is locked down tight. You can't squeeze underneath!</span>")
+		return
+	M.visible_message("<span class='warning'>\The [M] scuttles underneath \the [src]!</span>", \
+	"<span class='warning'>You squeeze and scuttle underneath \the [src].</span>", null, 5)
+	M.forceMove(loc)
+
 /obj/machinery/door/airlock/attack_hand(mob/user as mob)
 	if(!istype(usr, /mob/living/silicon))
 		if(src.isElectrified())

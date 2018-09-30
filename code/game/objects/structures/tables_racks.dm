@@ -15,18 +15,18 @@
 	desc = "A square metal surface resting on four legs. Useful to put stuff on. Can be flipped in emergencies to act as cover."
 	icon = 'icons/obj/structures/tables.dmi'
 	icon_state = "table"
-	density = 1
+	density = TRUE
 	anchored = 1.0
 	layer = TABLE_LAYER
-	throwpass = 1	//You can throw objects over this, despite it's density.")
-	climbable = 1
-	breakable = 1
+	throwpass = TRUE	//You can throw objects over this, despite it's density.")
+	climbable = TRUE
+	breakable = TRUE
 	parts = /obj/item/frame/table
 
 	var/sheet_type = /obj/item/stack/sheet/metal
 	var/table_prefix = "" //used in update_icon()
 	var/reinforced = FALSE
-	var/flipped = 0
+	var/flipped = FALSE
 	var/flip_cooldown = 0 //If flip cooldown exists, don't allow flipping or putting back. This carries a WORLD.TIME value
 	var/health = 100
 
@@ -85,19 +85,19 @@
 				icon_state = icon_state+"-"
 			if(tabledirs & turn(dir,-90))
 				icon_state = icon_state+"+"
-		return 1
+		return TRUE
 
 	var/dir_sum = 0
 	for(var/direction in CARDINAL_ALL_DIRS)
-		var/skip_sum = 0
+		var/skip_sum = FALSE
 		for(var/obj/structure/window/W in src.loc)
 			if(W.dir == direction) //So smooth tables don't go smooth through windows
-				skip_sum = 1
+				skip_sum = TRUE
 				continue
 		var/inv_direction = turn(dir, 180) //inverse direction
 		for(var/obj/structure/window/W in get_step(src, direction))
 			if(W.dir == inv_direction) //So smooth tables don't go smooth through windows when the window is on the other table's tile
-				skip_sum = 1
+				skip_sum = TRUE
 				continue
 		if(!skip_sum) //there is no window between the two tiles in this direction
 			var/obj/structure/table/T = locate(/obj/structure/table, get_step(src, direction))
@@ -213,26 +213,26 @@
 
 /obj/structure/table/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
+		return TRUE
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border objects allow you to universally climb over others
-		return 1
+		return TRUE
 	if(flipped)
 		if(get_dir(loc, target) & dir)
 			return !density
 		else
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 /obj/structure/table/CheckExit(atom/movable/O as mob|obj, target as turf)
 	if(istype(O) && O.checkpass(PASSTABLE))
-		return 1
+		return TRUE
 	if(flipped)
 		if(get_dir(loc, target) & dir)
 			return !density
 		else
-			return 1
-	return 1
+			return TRUE
+	return TRUE
 
 //Flipping tables, nothing more, nothing less
 /obj/structure/table/MouseDrop(over_object, src_location, over_location)
@@ -254,12 +254,28 @@
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
 
-
+/obj/structure/table/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(breakable)
+		M.animation_attack_on(src)
+		if(sheet_type == /obj/item/stack/sheet/wood)
+			playsound(src, 'sound/effects/woodhit.ogg', 25, 1)
+		else
+			playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
+		health -= rand(M.melee_damage_lower, M.melee_damage_upper)
+		if(health <= 0)
+			M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
+			"<span class='danger'>You slice [src] apart!</span>", null, 5)
+			destroy()
+		else
+			M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
+			"<span class='danger'>You slash [src]!</span>", null, 5)
 
 /obj/structure/table/attackby(obj/item/W, mob/user)
-	if(!W) return
+	if(!W)
+		return
 	if(istype(W, /obj/item/grab) && get_dist(src, user) <= 1)
-		if(isXeno(user)) return
+		if(isXeno(user))
+			return
 		var/obj/item/grab/G = W
 		if(istype(G.grabbed_thing, /mob/living))
 			var/mob/living/M = G.grabbed_thing
@@ -311,14 +327,14 @@
 	for(var/angle in list(-90, 90))
 		T = locate() in get_step(loc, turn(direction, angle))
 		if(T && !T.flipped)
-			return 0
+			return FALSE
 	T = locate() in get_step(src.loc,direction)
 	if(!T || T.flipped)
-		return 1
+		return TRUE
 	if(istype(T, /obj/structure/table/reinforced/))
 		var/obj/structure/table/reinforced/R = T
 		if(R.status == 2)
-			return 0
+			return FALSE
 	return T.straight_table_check(direction)
 
 /obj/structure/table/verb/do_flip()
@@ -345,10 +361,10 @@
 /obj/structure/table/proc/unflipping_check(var/direction)
 
 	if(world.time < flip_cooldown)
-		return 0
+		return FALSE
 
 	for(var/mob/M in oview(src, 0))
-		return 0
+		return FALSE
 
 	var/list/L = list()
 	if(direction)
@@ -360,11 +376,11 @@
 		var/obj/structure/table/T = locate() in get_step(loc, new_dir)
 		if(T)
 			if(T.flipped && T.dir == src.dir && !T.unflipping_check(new_dir))
-				return 0
+				return FALSE
 	for(var/obj/structure/S in loc)
 		if((S.flags_atom & ON_BORDER) && S.density && S != src) //We would put back on a structure that wouldn't allow it
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 /obj/structure/table/proc/do_put()
 	set name = "Put table back"
@@ -386,10 +402,10 @@
 /obj/structure/table/proc/flip(var/direction)
 
 	if(world.time < flip_cooldown)
-		return 0
+		return FALSE
 
 	if(!straight_table_check(turn(direction, 90)) || !straight_table_check(turn(direction, -90)))
-		return 0
+		return FALSE
 
 	verbs -=/obj/structure/table/verb/do_flip
 	verbs +=/obj/structure/table/proc/do_put
@@ -403,7 +419,7 @@
 	dir = direction
 	if(dir != NORTH)
 		layer = FLY_LAYER
-	flipped = 1
+	flipped = TRUE
 	flags_atom |= ON_BORDER
 	for(var/D in list(turn(direction, 90), turn(direction, -90)))
 		var/obj/structure/table/T = locate() in get_step(src,D)
@@ -412,7 +428,7 @@
 	update_icon()
 	update_adjacent()
 
-	return 1
+	return TRUE
 
 /obj/structure/table/proc/unflip()
 
@@ -420,7 +436,7 @@
 	verbs +=/obj/structure/table/verb/do_flip
 
 	layer = initial(layer)
-	flipped = 0
+	flipped = FALSE
 	climbable = initial(climbable)
 	flags_atom &= ~ON_BORDER
 	for(var/D in list(turn(dir, 90), turn(dir, -90)))
@@ -430,7 +446,7 @@
 	update_icon()
 	update_adjacent()
 
-	return 1
+	return TRUE
 
 /*
  * Wooden tables
@@ -468,7 +484,7 @@
 	parts = /obj/item/frame/table/reinforced
 
 /obj/structure/table/reinforced/flip(var/direction)
-	return 0 //No, just no. It's a full desk, you can't flip that
+	return FALSE //No, just no. It's a full desk, you can't flip that
 
 /obj/structure/table/reinforced/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/tool/weldingtool))
@@ -479,7 +495,8 @@
 				"<span class='notice'>You start weakening [src]</span>")
 				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
 				if (do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
-					if(!src || !WT.isOn()) return
+					if(!src || !WT.isOn())
+						return
 					user.visible_message("<span class='notice'>[user] weakens [src].</span>",
 					"<span class='notice'>You weaken [src]</span>")
 					src.status = 1
@@ -488,7 +505,8 @@
 				"<span class='notice'>You start welding [src] back together.</span>")
 				playsound(src.loc, 'sound/items/Welder.ogg', 25, 1)
 				if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
-					if(!src || !WT.isOn()) return
+					if(!src || !WT.isOn())
+						return
 					user.visible_message("<span class='notice'>[user] welds [src] back together.</span>",
 					"<span class='notice'>You weld [src] back together.</span>")
 					status = 2
@@ -522,24 +540,24 @@
 	desc = "A bunch of metal shelves stacked on top of eachother. Excellent for storage purposes, less so as cover."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "rack"
-	density = 1
+	density = TRUE
 	layer = TABLE_LAYER
 	anchored = 1.0
-	throwpass = 1	//You can throw objects over this, despite it's density.
-	breakable = 1
-	climbable = 1
+	throwpass = TRUE	//You can throw objects over this, despite it's density.
+	breakable = TRUE
+	climbable = TRUE
 	parts = /obj/item/frame/rack
 
 /obj/structure/rack/CanPass(atom/movable/mover, turf/target)
 	if(!density) //Because broken racks
-		return 1
+		return TRUE
 	if(istype(mover) && mover.checkpass(PASSTABLE))
-		return 1
+		return TRUE
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
 	if(S && S.climbable && !(S.flags_atom & ON_BORDER) && climbable && isliving(mover)) //Climbable non-border  objects allow you to universally climb over others
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 /obj/structure/rack/MouseDrop_T(obj/item/I, mob/user)
 	if (!istype(I) || user.get_active_hand() != I)
@@ -550,6 +568,12 @@
 	if(I.loc != loc)
 		step(I, get_dir(I, src))
 
+/obj/structure/rack/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
+	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
+	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
+	"<span class='danger'>You slice [src] apart!</span>", null, 5)
+	destroy()
 
 /obj/structure/rack/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/tool/wrench))

@@ -29,11 +29,11 @@
 	if(..())
 		if(tow)
 			tow.Move(old_loc)
-		return 1
+		return TRUE
 	else
 		if(lead)
 			unattach()
-		return 0
+		return FALSE
 
 //-------------------------------------------
 // Vehicle procs
@@ -76,6 +76,10 @@
 //-------------------------------------------
 // Latching/unlatching procs
 //-------------------------------------------
+
+//Xeno interaction with the Cargo Tug Train
+/obj/vehicle/train/attack_alien(mob/living/carbon/Xenomorph/M)
+	attack_hand(M)
 
 //attempts to attach src as a follower of the train T
 /obj/vehicle/train/proc/attach_to(obj/vehicle/train/T, mob/user)
@@ -126,7 +130,7 @@
 
 /obj/vehicle/train/proc/latch(obj/vehicle/train/T, mob/user)
 	if(!istype(T) || !Adjacent(T))
-		return 0
+		return FALSE
 
 	var/T_dir = get_dir(src, T)	//figure out where T is wrt src
 
@@ -135,11 +139,11 @@
 	else if(reverse_direction(dir) == T_dir)	//else if car is behind
 		T.attach_to(src, user)
 
-//returns 1 if this is the lead car of the train
+//returns true if this is the lead car of the train
 /obj/vehicle/train/proc/is_train_head()
 	if (lead)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 //-------------------------------------------------------
 // Stat update procs
