@@ -245,9 +245,7 @@
 	icon_vend = "lascharger-dispensing"
 	icon_deny = "lascharger-denied"
 	req_access = null
-	req_access_txt = "0"
-	req_one_access = null
-	req_one_access_txt = "9;2;21"
+	req_one_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_CARGO)
 	wrenchable = TRUE
 	drag_delay = FALSE
 	anchored = FALSE
@@ -273,16 +271,18 @@
 	update_icon()
 
 /obj/machinery/vending/lasgun/update_icon()
-	if(machine_current_charge <= 0)
-		icon_state = "lascharger-off"
-	else if(machine_current_charge > round(machine_max_charge*0.75))
-		icon_state = "lascharger"
-	else if(machine_current_charge > round(machine_max_charge*0.5))
-		icon_state = "lascharger_75"
-	else if(machine_current_charge > round(machine_max_charge*0.25))
-		icon_state = "lascharger_50"
-	else
-		icon_state = "lascharger_25"
+	if(machine_max_charge)
+		switch(machine_current_charge / machine_max_charge)
+			if(0)
+				icon_state = "lascharger-off"
+			if(1 to .76)
+				icon_state = "lascharger"
+			if(.75 to .51)
+				icon_state = "lascharger_75"
+			if(.50 to .26)
+				icon_state = "lascharger_50"
+			if(.25 to .01)
+				icon_state = "lascharger_25"
 
 /obj/machinery/vending/lasgun/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/ammo_magazine/lasgun))
