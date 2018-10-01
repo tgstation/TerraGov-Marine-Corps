@@ -76,7 +76,6 @@
 
 	for(var/atom/movable/A in stomach_contents)
 		stomach_contents.Remove(A)
-		A.acid_damage = 0 //Reset the acid damage
 		A.forceMove(loc)
 
 	round_statistics.total_xeno_deaths++

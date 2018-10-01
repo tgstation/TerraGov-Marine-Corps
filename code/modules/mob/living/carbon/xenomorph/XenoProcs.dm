@@ -180,6 +180,20 @@
 				else
 					upgrade_stored = min(upgrade_stored + 1, upgrade_threshold)
 
+/mob/living/carbon/Xenomorph/proc/update_evolving()
+	if(!client || !ckey) // stop evolve progress for ssd/ghosted xenos
+		return
+	if(evolution_stored >= evolution_threshold || !evolution_allowed)
+		return
+	if(!hivenumber || hivenumber > hive_datum.len) //something broke
+		return
+	var/datum/hive_status/hive = hive_datum[hivenumber]
+	if(hive.living_xeno_queen)
+		evolution_stored++
+		if(evolution_stored == evolution_threshold - 1)
+			to_chat(src, "<span class='xenodanger'>Your carapace crackles and your tendons strengthen. You are ready to evolve!</span>")
+			src << sound('sound/effects/xeno_evolveready.ogg')
+
 /mob/living/carbon/Xenomorph/show_inv(mob/user)
 	return
 
@@ -265,7 +279,6 @@
 	if(stomach_contents.len)
 		for(var/atom/movable/S in stomach_contents)
 			stomach_contents.Remove(S)
-			S.acid_damage = 0 //Reset the acid damage
 			S.forceMove(get_turf(src))
 
 	if(contents.len) //Get rid of anything that may be stuck inside us as well
@@ -367,13 +380,13 @@
 			client.pixel_y = 0
 
 /mob/living/carbon/Xenomorph/proc/zoom_out()
+	is_zoomed = 0
+	zoom_turf = null
 	if(!client)
 		return
 	client.change_view(world.view)
 	client.pixel_x = 0
 	client.pixel_y = 0
-	is_zoomed = 0
-	zoom_turf = null
 
 /mob/living/carbon/Xenomorph/proc/check_alien_construction(var/turf/current_turf)
 	var/has_obstacle
@@ -502,21 +515,6 @@
 	lastturf = isturf(loc) && !istype(loc, /turf/open/space) ? loc : null//Set their turf, to make sure they're moving and not jumped in a locker or some shit
 
 	update_icons()
-
-//Welp
-/mob/living/carbon/Xenomorph/proc/xeno_jitter(var/jitter_time = 25)
-
-	set waitfor = 0
-
-	while(jitter_time) //In ticks, so 10 ticks = 1 sec of jitter!
-		set waitfor = 0
-		pixel_x = old_x + rand(-3, 3)
-		pixel_y = old_y + rand(-1, 1)
-		sleep(1)
-		jitter_time--
-	//endwhile - reset the pixel offsets to zero
-	pixel_x = old_x
-	pixel_y = old_y
 
 //When the Queen's pheromones are updated, or we add/remove a leader, update leader pheromones
 /mob/living/carbon/Xenomorph/proc/handle_xeno_leader_pheromones(var/mob/living/carbon/Xenomorph/Queen/Q)
