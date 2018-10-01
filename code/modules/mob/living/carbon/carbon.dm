@@ -63,7 +63,6 @@
 	for(var/atom/movable/A in stomach_contents)
 		stomach_contents.Remove(A)
 		A.forceMove(loc)
-		A.acid_damage = 0 //Reset the acid damage
 		if(ismob(A))
 			visible_message("<span class='danger'>[A] bursts out of [src]!</span>")
 

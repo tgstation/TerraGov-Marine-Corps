@@ -1,4 +1,12 @@
-//Xenomorph Life - Colonial Marines - Apophis775 - Last Edit: 03JAN2015
+/*Heal 1/70th of your max health in brute per tick. 1 as a bonus, to help smaller pools.
+Additionally, recovery pheromones mutiply this base healing, up to 2.5 times faster at level 5
+Modified via m, to multiply the number of wounds healed.
+Heal from fire slower
+Make sure their actual health updates immediately.*/
+
+#define XENO_HEAL_WOUNDS(m) \
+adjustBruteLoss(-((maxHealth / 60) + 0.5 + (maxHealth / 60) * recovery_aura/2)*(m)); \
+adjustFireLoss(-(maxHealth / 70 + 0.5 + (maxHealth / 70) * recovery_aura/2)*(m))
 
 #define DEBUG_XENO_LIFE	0
 
@@ -7,211 +15,238 @@
 	set invisibility = 0
 	set background = 1
 
-	if(monkeyizing)
-		return
-	if(!loc)
+	if(monkeyizing || !loc)
 		return
 
 	..()
 
-	if(is_zoomed)
-		if(zoom_turf)
-			if(loc != zoom_turf)
+	switch(stat)
+		if(DEAD) //Dead, nothing else to do.
+			return
+		if(UNCONSCIOUS)
+			if(is_zoomed)
 				zoom_out()
+			handle_aura_receiver()
+			handle_living_status_updates()
+			handle_living_health_updates()
+			handle_living_plasma_updates()
+			handle_critical_status_updates()
+			update_canmove()
+			update_icons()
+		if(CONSCIOUS)
+			if(is_zoomed)
+				if(loc != zoom_turf || lying)
+					zoom_out()
+			update_progression()
+			update_evolving()	
+			//Status updates, death etc.
+			handle_aura_emiter()
+			handle_aura_receiver()
+			handle_living_status_updates()
+			handle_living_health_updates()
+			handle_living_plasma_updates()
+			handle_conscious_status_updates()
+			update_canmove()
+			update_icons()
+			if(client)
+				handle_regular_hud_updates()
 
-		if(stat || lying)
-			zoom_out()
-
-	if(stat != DEAD) //Stop if dead. Performance boost
-
-		update_progression()
-
-		if(client && ckey) // stop evolve progress for ssd/ghosted xenos
-			if(hivenumber && hivenumber <= hive_datum.len)
-				var/datum/hive_status/hive = hive_datum[hivenumber]
-
-				if(evolution_allowed && evolution_stored < evolution_threshold && hive.living_xeno_queen && hive.living_xeno_queen.ovipositor)
-					evolution_stored = min(evolution_stored + 1, evolution_threshold)
-					if(evolution_stored == evolution_threshold - 1)
-						to_chat(src, "<span class='xenodanger'>Your carapace crackles and your tendons strengthen. You are ready to evolve!</span>")
-						src << sound('sound/effects/xeno_evolveready.ogg')
-
-		//Status updates, death etc.
-		handle_regular_status_updates()
-		update_canmove()
-		update_icons()
-		if(loc)
-			handle_environment()
-		if(client)
-			handle_regular_hud_updates()
-
-/mob/living/carbon/Xenomorph/proc/handle_regular_status_updates()
-
-	if(status_flags & GODMODE)
-		return 0
-
-	if(on_fire)
-		SetLuminosity(min(fire_stacks,5)) // light up xenos
-		var/obj/item/clothing/mask/facehugger/F = get_active_hand()
-		var/obj/item/clothing/mask/facehugger/G = get_inactive_hand()
-		if(istype(F))
-			F.Die()
-			drop_inv_item_on_ground(F)
-		if(istype(G))
-			G.Die()
-			drop_inv_item_on_ground(G)
-		if(!fire_immune)
-			adjustFireLoss(fire_stacks + 3)
-
-	else
-		if(isXenoBoiler(src))
-			SetLuminosity(3) // needs a less hacky way of doing this, like a default luminosity var
-		else
-			SetLuminosity(0)
-
-	if(health <= 0) //Sleeping Xenos are also unconscious, but all crit Xenos are under 0 HP. Go figure
-		var/turf/T = loc
-		if(istype(T))
-			if(!locate(/obj/effect/alien/weeds) in T) //In crit, damage is maximal if you're caught off weeds
-				adjustBruteLoss(2.5 - warding_aura*0.5) //Warding can heavily lower the impact of bleedout. Halved at 2.5 phero, stopped at 5 phero
-			else
-				adjustBruteLoss(-warding_aura*0.5) //Warding pheromones provides 0.25 HP per second per step, up to 2.5 HP per tick.
-
-	//Rollercoaster of fucking stupid because Xeno life ticks aren't synchronised properly and values reset just after being applied
-	//At least it's more efficient since only Xenos with an aura do this, instead of all Xenos
-	//Basically, we use a special tally var so we don't reset the actual aura value before making sure they're not affected
-	//Now moved out of healthy only state, because crit xenos can def still be affected by pheros
-
-	if(stat != DEAD) //Dead Xenos don't emit or receive pheromones, ever
-		if(current_aura && !stat && plasma_stored > 5)
-			if(caste == "Queen" && anchored) //stationary queen's pheromone apply around the observed xeno.
-				var/mob/living/carbon/Xenomorph/Queen/Q = src
-				var/atom/phero_center = Q
-				if(Q.observed_xeno)
-					phero_center = Q.observed_xeno
-				var/pheromone_range = round(6 + aura_strength * 2)
-				for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, phero_center)) //Goes from 8 for Queen to 16 for Ancient Queen
-					if(current_aura == "frenzy" && aura_strength > Z.frenzy_new && hivenumber == Z.hivenumber)
-						Z.frenzy_new = aura_strength
-					if(current_aura == "warding" && aura_strength > Z.warding_new && hivenumber == Z.hivenumber)
-						Z.warding_new = aura_strength
-					if(current_aura == "recovery" && aura_strength > Z.recovery_new && hivenumber == Z.hivenumber)
-						Z.recovery_new = aura_strength
-			else
-				var/pheromone_range = round(6 + aura_strength * 2)
-				for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
-					if(current_aura == "frenzy" && aura_strength > Z.frenzy_new && hivenumber == Z.hivenumber)
-						Z.frenzy_new = aura_strength
-					if(current_aura == "warding" && aura_strength > Z.warding_new && hivenumber == Z.hivenumber)
-						Z.warding_new = aura_strength
-					if(current_aura == "recovery" && aura_strength > Z.recovery_new && hivenumber == Z.hivenumber)
-						Z.recovery_new = aura_strength
-
-		if(leader_current_aura && !stat)
-			var/pheromone_range = round(6 + leader_aura_strength * 2)
-			for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
-				if(leader_current_aura == "frenzy" && leader_aura_strength > Z.frenzy_new && hivenumber == Z.hivenumber)
-					Z.frenzy_new = leader_aura_strength
-				if(leader_current_aura == "warding" && leader_aura_strength > Z.warding_new && hivenumber == Z.hivenumber)
-					Z.warding_new = leader_aura_strength
-				if(leader_current_aura == "recovery" && leader_aura_strength > Z.recovery_new && hivenumber == Z.hivenumber)
-					Z.recovery_new = leader_aura_strength
-
-		if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
-			frenzy_aura = frenzy_new
-			warding_aura = warding_new
-			recovery_aura = recovery_new
-			hud_set_pheromone()
-
-		frenzy_new = 0
-		warding_new = 0
-		recovery_new = 0
-
-		armor_bonus = 0
-
-		if(warding_aura > 0)
-			armor_bonus = warding_aura * 3 //Bonus armor from pheromones, no matter what the armor was previously. Was 5
-
-		update_icons()
-
-	updatehealth()
-
-	if(health <= crit_health) //dead
+/mob/living/carbon/Xenomorph/proc/handle_critical_status_updates()
+	if(health > 0)
+		if(!knocked_out && !sleeping) //wake if not napping
+			blinded = FALSE
+			stat = CONSCIOUS
+			see_in_dark = 8
+			ear_deaf = 0 //All this stuff is prob unnecessary
+			ear_damage = 0
+			eye_blind = 0
+			eye_blurry = 0
+		return
+	else if(health <= crit_health) //dead
 		if(prob(gib_chance + 0.5*(crit_health - health)))
 			gib()
 		else
 			death()
 		return
 
-	else if(health <= 0) //in crit
+/mob/living/carbon/Xenomorph/Boiler/handle_critical_status_updates()
+	..()
+	if(see_in_dark == 8)
+		see_in_dark = 20
+
+/mob/living/carbon/Xenomorph/proc/handle_conscious_status_updates()
+	if(status_flags & GODMODE)
+		return FALSE
+	if(sleeping || knocked_out || health <= 0) //voluntary or forced nap, or crit
+		blinded = TRUE
 		stat = UNCONSCIOUS
-		blinded = 1
 		see_in_dark = 5
-		if(isXenoRunner(src) && layer != initial(layer)) //Unhide
-			layer = MOB_LAYER
 
-	else						//alive and not in crit! Turn on their vision.
-		if(isXenoBoiler(src))
-			see_in_dark = 20
+/mob/living/carbon/Xenomorph/Runner/handle_conscious_status_updates()
+	..()
+	if(stat == UNCONSCIOUS && layer != initial(layer))
+		layer = MOB_LAYER
+
+/mob/living/carbon/Xenomorph/proc/handle_living_status_updates()
+	if(status_flags & GODMODE)
+		return FALSE
+	if(mind && sleeping)
+		if((mind.active && client != null) || immune_to_ssd)
+			sleeping = max(sleeping - 1, 0)
+	handle_statuses()//natural decrease of stunned, knocked_down, etc...
+
+	//Deal with devoured things and people
+	if(stomach_contents.len)
+		for(var/atom/movable/M in stomach_contents)
+			if(world.time > devour_timer && ishuman(M) && !is_ventcrawling)
+				stomach_contents.Remove(M)
+				if(M.loc != src)
+					continue
+				M.forceMove(loc)
+	return TRUE
+
+/mob/living/carbon/Xenomorph/handle_statuses()
+	handle_stunned() // 2 each time
+	handle_knocked_down() // 5 each time, used to recover 2 here and 3 elsewhere
+	//handle_stuttering()
+	//handle_silent()
+	//handle_drugged()
+	//handle_slurring()
+	handle_stagger() // 1 each time
+	handle_slowdown() // 0.4 each time
+	handle_halloss() // 3 each time
+
+/mob/living/carbon/Xenomorph/proc/handle_critical_health_updates()
+	var/turf/T = loc
+	if(istype(T))
+		if(!locate(/obj/effect/alien/weeds) in T) //In crit, damage is maximal if you're caught off weeds
+			adjustBruteLoss(2.5 - warding_aura*0.5) //Warding can heavily lower the impact of bleedout. Halved at 2.5 phero, stopped at 5 phero
 		else
-			see_in_dark = 8
+			adjustBruteLoss(-warding_aura*0.5) //Warding pheromones provides 0.25 HP per second per step, up to 2.5 HP per tick.
 
-		ear_deaf = 0 //All this stuff is prob unnecessary
-		ear_damage = 0
-		eye_blind = 0
-		eye_blurry = 0
+/mob/living/carbon/Xenomorph/proc/handle_living_health_updates()
+	if(on_fire && !fire_immune)
+		adjustFireLoss(fire_stacks + 3)
+	var/turf/T = loc
+	if(!T || !istype(T) || hardcore)
+		return
+	if(health < maxHealth && (locate(/obj/effect/alien/weeds) in T) || innate_healing)
+		var/datum/hive_status/hive = hive_datum[hivenumber]
+		if(hive.living_xeno_queen.loc.z == loc.z || !hive.living_xeno_queen || innate_healing)
+			if(lying || resting)
+				XENO_HEAL_WOUNDS(1)
+			else
+				XENO_HEAL_WOUNDS(0.33) //Major healing nerf if standing
+	updatehealth()
 
-		if(knocked_out) //If they're down, make sure they are actually down.
-			AdjustKnockedout(-3)
-			blinded = 1
-			stat = UNCONSCIOUS
-			if(halloss > 0)
-				adjustHalLoss(-3)
-		else if(sleeping)
-			if(halloss > 0)
-				adjustHalLoss(-3)
-			if(mind)
-				if((mind.active && client != null) || immune_to_ssd)
-					sleeping = max(sleeping - 1, 0)
-				#if DEBUG_XENO_LIFE
-					sleeping = max(sleeping - 1, 0)
-				#endif
-			blinded = 1
-			stat = UNCONSCIOUS
+/mob/living/carbon/Xenomorph/Xenoborg/handle_living_health_updates()
+	if(on_fire && !fire_immune)
+		adjustFireLoss(fire_stacks + 3)
+	updatehealth()
+	return
+
+/mob/living/carbon/Xenomorph/proc/handle_living_plasma_updates()
+	var/turf/T = loc
+	if(!T || !istype(T))
+		return
+	if(current_aura)
+		plasma_stored -= 5
+	if(plasma_stored == plasma_max)
+		return
+	if(locate(/obj/effect/alien/weeds) in T)
+		plasma_stored += plasma_gain
+		if(recovery_aura)
+			plasma_stored += round(plasma_gain * recovery_aura * 0.25) //Divided by four because it gets massive fast. 1 is equivalent to weed regen! Only the strongest pheromones should bypass weeds
+	else
+		plasma_stored++
+	if(plasma_stored > plasma_max)
+		plasma_stored = plasma_max
+	else if(plasma_stored < 0)
+		plasma_stored = 0
+		if(current_aura)
+			current_aura = null
+			to_chat(src, "<span class='warning'>You have ran out of plasma and stopped emitting pheromones.</span>")
+	hud_set_plasma() //update plasma amount on the plasma mob_hud
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.update_button_icon()
+
+/mob/living/carbon/Xenomorph/Hivelord/handle_living_plasma_updates()
+	if(speed_activated)
+		plasma_stored -= 30
+		if(plasma_stored < 0)
+			speed_activated = FALSE
+			to_chat(src, "<span class='warning'>You feel dizzy as the world slows down.</span>")
+	..()
+
+/mob/living/carbon/Xenomorph/Xenoborg/handle_living_plasma_updates()
+	return
+
+/mob/living/carbon/Xenomorph/proc/handle_aura_emiter()
+	//Rollercoaster of fucking stupid because Xeno life ticks aren't synchronised properly and values reset just after being applied
+	//At least it's more efficient since only Xenos with an aura do this, instead of all Xenos
+	//Basically, we use a special tally var so we don't reset the actual aura value before making sure they're not affected
+	if(current_aura && plasma_stored > 5)
+		if(caste == "Queen" && anchored) //stationary queen's pheromone apply around the observed xeno.
+			var/mob/living/carbon/Xenomorph/Queen/Q = src
+			var/atom/phero_center = Q
+			if(Q.observed_xeno)
+				phero_center = Q.observed_xeno
+			var/pheromone_range = round(6 + aura_strength * 2)
+			for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, phero_center)) //Goes from 8 for Queen to 16 for Ancient Queen
+				if(Z.stat != DEAD && hivenumber == Z.hivenumber)
+					switch(current_aura)
+						if("frenzy")
+							if(aura_strength > Z.frenzy_new)
+								Z.frenzy_new = aura_strength
+						if("warding")
+							if(aura_strength > Z.warding_new)
+								Z.warding_new = aura_strength
+						if("recovery")
+							if(aura_strength > Z.recovery_new)
+								Z.recovery_new = aura_strength
 		else
-			blinded = 0
-			stat = CONSCIOUS
-			if(halloss > 0)
-				if(resting)
-					adjustHalLoss(-3)
-				else
-					adjustHalLoss(-1)
-		handle_stagger()
-		handle_slowdown()
-		handle_statuses()//natural decrease of stunned, knocked_down, etc...
+			var/pheromone_range = round(6 + aura_strength * 2)
+			for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
+				if(Z.stat != DEAD && hivenumber == Z.hivenumber)
+					switch(current_aura)
+						if("frenzy")
+							if(aura_strength > Z.frenzy_new)
+								Z.frenzy_new = aura_strength
+						if("warding")
+							if(aura_strength > Z.warding_new)
+								Z.warding_new = aura_strength
+						if("recovery")
+							if(aura_strength > Z.recovery_new)
+								Z.recovery_new = aura_strength
+		if(leader_current_aura && !stat)
+			var/pheromone_range = round(6 + leader_aura_strength * 2)
+			for(var/mob/living/carbon/Xenomorph/Z in range(pheromone_range, src)) //Goes from 7 for Young Drone to 16 for Ancient Queen
+				if(Z.stat != DEAD && hivenumber == Z.hivenumber)
+					switch(leader_current_aura)
+						if("frenzy")
+							if(leader_aura_strength > Z.frenzy_new)
+								Z.frenzy_new = leader_aura_strength
+						if("warding")
+							if(leader_aura_strength > Z.warding_new)
+								Z.warding_new = leader_aura_strength
+						if("recovery")
+							if(leader_aura_strength > Z.recovery_new)
+								Z.recovery_new = leader_aura_strength
 
-		//Deal with dissolving/damaging stuff in stomach.
-		if(stomach_contents.len)
-			for(var/atom/movable/M in stomach_contents)
-				if(world.time > devour_timer && ishuman(M))
-					devour_timer = world.time + 500 + rand(0,200) // 50-70 seconds
-					var/mob/living/carbon/human/H = M
-					var/limb_name = H.remove_random_limb(1)
-					if(limb_name)
-						to_chat(H, "<span class='danger'>Your [limb_name] dissolved in the acid!</span>")
-					if(prob(50))
-						stomach_contents.Remove(M)
-						M.acid_damage = 0
-						if(M.loc != src)
-							continue
-						M.forceMove(loc)
+/mob/living/carbon/Xenomorph/proc/handle_aura_receiver()
+	if(frenzy_aura != frenzy_new || warding_aura != warding_new || recovery_aura != recovery_new)
+		frenzy_aura = frenzy_new
+		warding_aura = warding_new
+		recovery_aura = recovery_new
+		hud_set_pheromone()
+	frenzy_new = 0
+	warding_new = 0
+	recovery_new = 0
+	armor_bonus = 0
+	if(warding_aura > 0)
+		armor_bonus = warding_aura * 3 //Bonus armor from pheromones, no matter what the armor was previously. Was 5
 
-				M.acid_damage++
-				if(M.acid_damage > 300)
-					to_chat(src, "<span class='xenodanger'>\The [M] is dissolved in your gut with a gurgle.</span>")
-					stomach_contents.Remove(M)
-					cdel(M)
-	return 1
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_hud_updates()
 
@@ -312,38 +347,19 @@
 			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
 		else
 			clear_fullscreen("blind")
-
-	if(!stat && prob(25)) //Only a 25% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
-		queen_locator()
-
-	if(stat != DEAD) //Ladders have cameras now.
+		
 		if(interactee)
 			interactee.check_eye(src)
 		else
 			if(client && !client.adminobs)
 				reset_view(null)
 
-	return 1
+	if(!stat && prob(25)) //Only a 25% chance of proccing the queen locator, since it is expensive and we don't want it firing every tick
+		queen_locator()
 
-/*Heal 1/70th of your max health in brute per tick. 1 as a bonus, to help smaller pools.
-Additionally, recovery pheromones mutiply this base healing, up to 2.5 times faster at level 5
-Modified via m, to multiply the number of wounds healed.
-Heal from fire half as fast
-Xenos don't actually take oxyloss, oh well
-hmmmm, this is probably unnecessary
-Make sure their actual health updates immediately.*/
+	return TRUE
 
-#define XENO_HEAL_WOUNDS(m) \
-adjustBruteLoss(-((maxHealth / 70) + 0.5 + (maxHealth / 70) * recovery_aura/2)*(m)); \
-adjustFireLoss(-(maxHealth / 60 + 0.5 + (maxHealth / 60) * recovery_aura/2)*(m)); \
-adjustOxyLoss(-(maxHealth * 0.1 + 0.5 + (maxHealth * 0.1) * recovery_aura/2)*(m)); \
-adjustToxLoss(-(maxHealth / 5 + 0.5 + (maxHealth / 5) * recovery_aura/2)*(m)); \
-updatehealth()
-
-
-/mob/living/carbon/Xenomorph/proc/handle_environment()
-	var/turf/T = loc
-
+/mob/living/carbon/Xenomorph/proc/handle_environment() //unused while atmos is not on
 	var/env_temperature = loc.return_temperature()
 	if(!fire_immune)
 		if(env_temperature > (T0C + 66))
@@ -357,104 +373,9 @@ updatehealth()
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire0"
 
-	if(!T || !istype(T))
-		return
-
-	var/is_runner_hiding
-
-	if(isXenoRunner(src) && layer != initial(layer))
-		is_runner_hiding = 1
-
-	if(!is_robotic && !hardcore) //Robot no heal
-		if(innate_healing || (locate(/obj/effect/alien/weeds) in T))
-			plasma_stored += plasma_gain
-			if(recovery_aura)
-				plasma_stored += round(plasma_gain * recovery_aura/4) //Divided by four because it gets massive fast. 1 is equivalent to weed regen! Only the strongest pheromones should bypass weeds
-			if(health < maxHealth)
-				var/datum/hive_status/hive = hive_datum[hivenumber]
-				if(innate_healing || !hive.living_xeno_queen || hive.living_xeno_queen.loc.z == loc.z)
-					if(lying || resting)
-						if(health > -100 && health < 0) //Unconscious
-							XENO_HEAL_WOUNDS(0.33) //Healing is much slower. Warding pheromones make up for the rest if you're curious
-						else
-							XENO_HEAL_WOUNDS(1)
-					else if(isXenoCrusher() || isXenoRavager())
-						XENO_HEAL_WOUNDS(0.66)
-					else
-						XENO_HEAL_WOUNDS(0.33) //Major healing nerf if standing
-
-
-				updatehealth()
-
-		else //Xenos restore plasma VERY slowly off weeds, regardless of health, as long as they are not using special abilities
-			if(prob(50) && !is_runner_hiding && !current_aura)
-				plasma_stored++
-
-		if(isXenoHivelord(src))
-			var/mob/living/carbon/Xenomorph/Hivelord/H = src
-			if(H.speed_activated)
-				plasma_stored -= 30
-				if(plasma_stored < 0)
-					H.speed_activated = 0
-					to_chat(src, "<span class='warning'>You feel dizzy as the world slows down.</span>")
-
-		if(current_aura)
-			plasma_stored -= 5
-
-	//START HARDCORE //This needs to be removed.
-	else if(!is_robotic && hardcore)//Robot no heal
-		if(locate(/obj/effect/alien/weeds) in T)
-			if(health > 0)
-				plasma_stored += plasma_gain
-				if(recovery_aura)
-					plasma_stored += (recovery_aura * 2)
-			if(health < 35) //Barely enough to stay near critical if saved
-				adjustBruteLoss(-(maxHealth / 70) - 1) //Heal 1/60th of your max health in brute per tick. -2 as a bonus, to help smaller pools.
-				if(recovery_aura)
-					adjustBruteLoss(-(recovery_aura))
-				adjustFireLoss(-(maxHealth / 60)) //Heal from fire half as fast
-				adjustOxyLoss(-(maxHealth / 10)) //Xenos don't actually take oxyloss, oh well
-				adjustToxLoss(-(maxHealth / 5)) //hmmmm, this is probably unnecessary
-				updatehealth() //Make sure their actual health updates immediately.
-
-		else //Xenos restore plasma VERY slowly off weeds, regardless of health, as long as they are not using special abilities
-			if(prob(50) && !is_runner_hiding && !current_aura)
-				plasma_stored++
-			if(recovery_aura)
-				adjustBruteLoss(-(maxHealth / 80) - 1 - recovery_aura)
-				plasma_stored += round(recovery_aura + 1)
-				updatehealth()
-
-		if(isXenoHivelord(src))
-			var/mob/living/carbon/Xenomorph/Hivelord/H = src
-			if(H.speed_activated)
-				plasma_stored -= 30
-				if(plasma_stored < 0)
-					H.speed_activated = 0
-					to_chat(src, "<span class='warning'>You feel dizzy as the world slows down.</span>")
-
-		if(current_aura)
-			plasma_stored -= 5
-		//END HARDCORE
-
-	if(plasma_stored > plasma_max)
-		plasma_stored = plasma_max
-	if(plasma_stored < 0)
-		plasma_stored = 0
-		if(current_aura)
-			current_aura = null
-			to_chat(src, "<span class='warning'>You have run out of pheromones and stopped emitting pheromones.</span>")
-
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.update_button_icon()
-
-	hud_set_plasma() //update plasma amount on the plasma mob_hud
-
-
-
 /mob/living/carbon/Xenomorph/proc/queen_locator()
-	if(!hud_used || !hud_used.locate_leader) return
+	if(!hud_used || !hud_used.locate_leader)
+		return
 
 	var/datum/hive_status/hive
 	if(hivenumber && hivenumber <= hive_datum.len)
@@ -495,7 +416,7 @@ updatehealth()
 
 /mob/living/carbon/Xenomorph/handle_knocked_down()
 	if(knocked_down && client)
-		knocked_down = max(knocked_down-2,0)
+		knocked_down = max(knocked_down-5,0)
 	return knocked_down
 
 /mob/living/carbon/Xenomorph/proc/handle_stagger()
@@ -531,3 +452,7 @@ updatehealth()
 /mob/living/carbon/Xenomorph/proc/add_slowdown(amount)
 	slowdown = adjust_slowdown(amount*XENO_SLOWDOWN_REGEN)
 	return slowdown
+
+/mob/living/carbon/Xenomorph/proc/handle_halloss()
+	if(halloss)
+		adjustHalLoss(XENO_HALOSS_REGEN)

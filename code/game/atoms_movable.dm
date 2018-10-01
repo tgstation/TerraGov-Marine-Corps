@@ -16,8 +16,6 @@
 	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 								// and if yes, are we doing the first or second move.
 
-	var/acid_damage = 0 //Counter for stomach acid damage. At ~60 ticks, dissolved
-
 //===========================================================================
 /atom/movable/Dispose()
 	for(var/atom/movable/I in contents) cdel(I)

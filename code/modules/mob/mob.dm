@@ -459,40 +459,10 @@ note dizziness decrements automatically in the mob's Life() proc.
 		client.pixel_x = 0
 		client.pixel_y = 0
 
-// jitteriness - copy+paste of dizziness
+// jitteriness
 
 /mob/proc/make_jittery(var/amount)
 	return
-
-/mob/living/carbon/human/make_jittery(var/amount)
-	if(stat == DEAD) return //dead humans can't jitter
-	jitteriness = min(1000, jitteriness + amount)	// store what will be new value
-													// clamped to max 1000
-	if(jitteriness > 100 && !is_jittery)
-		spawn(0)
-			jittery_process()
-
-
-// Typo from the oriignal coder here, below lies the jitteriness process. So make of his code what you will, the previous comment here was just a copypaste of the above.
-/mob/proc/jittery_process()
-	//var/old_x = pixel_x
-	//var/old_y = pixel_y
-	is_jittery = 1
-	while(jitteriness > 100)
-//		var/amplitude = jitteriness*(sin(jitteriness * 0.044 * world.time) + 1) / 70
-//		pixel_x = amplitude * sin(0.008 * jitteriness * world.time)
-//		pixel_y = amplitude * cos(0.008 * jitteriness * world.time)
-
-		var/amplitude = min(4, jitteriness / 100)
-		pixel_x = old_x + rand(-amplitude, amplitude)
-		pixel_y = old_y + rand(-amplitude/3, amplitude/3)
-
-		sleep(1)
-	//endwhile - reset the pixel offsets to zero
-	is_jittery = 0
-	pixel_x = old_x
-	pixel_y = old_y
-
 
 //handles up-down floaty effect in space
 /mob/proc/make_floating(var/n)
@@ -541,23 +511,23 @@ note dizziness decrements automatically in the mob's Life() proc.
 	var/laid_down = (stat || knocked_down || knocked_out || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_level >= GRAB_NECK))
 
 	if(laid_down)
-		lying = 1
+		lying = TRUE
 	else
-		lying = 0
+		lying = FALSE
 	if(buckled)
 		if(buckled.buckle_lying)
-			lying = 1
+			lying = TRUE
 		else
-			lying = 0
+			lying = FALSE
 
 	canmove =  !(stunned || frozen || laid_down)
 
 	if(lying)
-		density = 0
+		density = FALSE
 		drop_l_hand()
 		drop_r_hand()
 	else
-		density = 1
+		density = TRUE
 
 	if(lying_prev != lying)
 		update_transform()

@@ -91,7 +91,6 @@
 	if(X.stomach_contents.len)
 		for(var/mob/M in X.stomach_contents)
 			X.stomach_contents.Remove(M)
-			M.acid_damage = 0 //Reset the acid damage
 			if(M.loc != X)
 				continue
 			M.forceMove(X.loc)
