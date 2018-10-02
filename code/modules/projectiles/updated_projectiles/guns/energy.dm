@@ -590,6 +590,39 @@
 			update_icon(user)
 		return in_chamber
 
+/obj/item/weapon/gun/energy/lasgun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
+	user.drop_inv_item_to_loc(magazine, src) //Click!
+	current_mag = magazine
+	replace_ammo(user,magazine)
+	if(!in_chamber)
+		ready_in_chamber(user)
+		if(!flags_gun_features & GUN_ENERGY)
+			cock_gun(user)
+	user.visible_message("<span class='notice'>[user] loads [magazine] into [src]!</span>",
+	"<span class='notice'>You load [magazine] into [src]!</span>", null, 3)
+	if(reload_sound)
+		playsound(user, reload_sound, 25, 1, 5)
+	update_icon()
+
+
+/obj/item/weapon/gun/energy/lasgun/proc/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
+	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)))
+		return
+
+	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
+		current_mag.loc = get_turf(src) //Drop it on the ground.
+	else
+		user.put_in_hands(current_mag)
+
+	playsound(user, unload_sound, 25, 1, 5)
+	user.visible_message("<span class='notice'>[user] unloads [current_mag] from [src].</span>",
+	"<span class='notice'>You unload [current_mag] from [src].</span>", null, 4)
+	current_mag.update_icon()
+	current_mag = null
+
+	update_icon(user)
+
+
 //EMPs will fuck with remaining charge
 /obj/item/weapon/gun/energy/lasgun/emp_act(severity)
 	var/amount = round(current_mag.max_rounds * rand(2,severity) * 0.1)
