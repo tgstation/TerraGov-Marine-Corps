@@ -97,6 +97,7 @@
 	..()
 
 /obj/item/powerloader_clamp
+	icon = 'icons/obj/powerloader.dmi'
 	name = "\improper RPL-Y Cargo Loader Hydraulic Claw"
 	icon_state = "loader_clamp"
 	force = 20
