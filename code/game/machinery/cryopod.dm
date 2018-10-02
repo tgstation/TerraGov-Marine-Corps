@@ -238,7 +238,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 
 			item_loop:
 				for(var/obj/item/W in items)
-					if((W.flags_inventory & CANTSTRIP) || (W.flags_item & NODROP)) //We don't keep donor items and undroppable/unremovable items
+					if((W.flags_inventory & CANTSTRIP) || (W.flags_item & NODROP)) //We don't keep undroppable/unremovable items
 						if(istype(W, /obj/item/clothing/suit/storage))
 							var/obj/item/clothing/suit/storage/SS = W
 							for(var/obj/item/I in SS.pockets) //But we keep stuff inside them
