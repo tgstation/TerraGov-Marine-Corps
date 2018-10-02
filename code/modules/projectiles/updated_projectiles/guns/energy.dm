@@ -465,7 +465,7 @@
 			return
 		//While overcharge is active, double ammo consumption, and
 		playsound(user, 'sound/weapons/emitter.ogg', 15, 1)
-		ammo_per_shot = 2
+		ammo_per_shot = OVERCHARGE_AMMO_COST
 		fire_delay = config.med_fire_delay * 2 // 1 shot per second fire rate
 		damage_falloff_mult = config.low_damage_falloff_mult
 		fire_sound = 'sound/weapons/Laser3.ogg'
@@ -526,6 +526,69 @@
 		else if (src == user.r_hand)
 			M.update_inv_r_hand()
 
+
+/obj/item/weapon/gun/energy/lasgun/proc/replace_ammo(mob/user = null, var/obj/item/ammo_magazine/magazine)
+	if(!magazine.default_ammo)
+		to_chat(user, "Something went horribly wrong. Ahelp the following: ERROR CODE A1: null ammo while reloading.")
+		log_debug("ERROR CODE A1: null ammo while reloading. User: <b>[user]</b>")
+		ammo = ammo_list[/datum/ammo/bullet] //Looks like we're defaulting it.
+	else
+		ammo = ammo_list[overcharge? magazine.overcharge_ammo : magazine.default_ammo]
+		//to_chat(user, "DEBUG: REPLACE AMMO. Ammo: [ammo]")
+
+
+/obj/item/weapon/gun/energy/lasgun/proc/load_into_chamber(mob/user, overcharge_check = FALSE)
+	//The workhorse of the bullet procs.
+ 	//If we have a round chambered and no active attachable, we're good to go.
+	if(in_chamber && !active_attachable)
+		if(overcharge_check) //Check to see if we have the proper ammo in chamber to match the overcharge fire mode
+			var/obj/item/projectile/reg_ammo = rnew(/obj/item/projectile, src)
+			//reg_ammo.generate_bullet(ammo_list[current_mag.default_ammo])
+			var/obj/item/projectile/over_ammo = rnew(/obj/item/projectile, src)
+			//over_ammo.generate_bullet(ammo_list[current_mag.overcharge_ammo])
+			//to_chat(user, "<span class='warning'>DEBUG: Load Into Chamber. Overcharge: [overcharge] Chamber: [in_chamber] Reg_Ammo: [reg_ammo] Over_Ammo: [over_ammo] </span>")
+			if(overcharge && in_chamber.name == reg_ammo.name)
+				//to_chat(user, "<span class='warning'>DEBUG: Chamber ammo replaced with overcharge. Chamber: [in_chamber] </span>")
+				in_chamber = null //clean the chamber of the erroneous round
+				current_mag.current_rounds += 1 //refund cost of a standard shot.
+				return ready_in_chamber(user, 1)
+			else if (!overcharge && in_chamber.name == over_ammo.name)
+				//to_chat(user, "<span class='warning'>DEBUG: Chamber ammo replaced with regular shot. Chamber: [in_chamber] </span>")
+				in_chamber = null //clean the chamber of the erroneous round
+				current_mag.current_rounds += OVERCHARGE_AMMO_COST //refund cost of an overcharge shot.
+				return ready_in_chamber(user, 2)
+		return in_chamber //Already set!
+	//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
+	if(active_attachable)
+		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
+			active_attachable.current_rounds--
+			return create_bullet(active_attachable.ammo)
+		else
+			to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
+			to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
+			playsound(user, active_attachable.activation_sound, 15, 1)
+			active_attachable.activate_attachment(src, null, TRUE)
+	else
+		return ready_in_chamber(user)//We're not using the active attachable, we must use the active mag if there is one.
+
+
+/obj/item/weapon/gun/energy/lasgun/proc/ready_in_chamber(mob/user, switch_modes = FALSE)
+	if(current_mag && current_mag.current_rounds > 0)
+		if(current_mag.current_rounds < ammo_per_shot && overcharge)
+			if(istype(src, /obj/item/weapon/gun/energy/lasgun))
+				var/obj/item/weapon/gun/energy/lasgun/L = src
+				L.toggle_chargemode(user)
+				//to_chat(user, "<span class='warning'>DEBUG: Overcharge mode toggled off due to lack of power.</span>")
+		if(switch_modes) //Let the player know wtf is going on with his ammo count if he switches charge modes with mismatched ammo types in the chamber
+			if(switch_modes == 1)
+				to_chat(user, "<span class='warning'>With a hum, [src]'s capacitors draw additional charge as you switch to overcharge mode. [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[max(0,current_mag.current_rounds - ammo_per_shot)]</b>/[current_mag.max_rounds]" : ""]</span>")
+			else
+				to_chat(user, "<span class='warning'>With a whine, [src]'s capacitors discharge back into the battery as you switch from overcharge mode. [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[max(0,current_mag.current_rounds - ammo_per_shot)]</b>/[current_mag.max_rounds]" : ""]</span>")
+		in_chamber = create_bullet(ammo)
+		current_mag.current_rounds -= ammo_per_shot //Subtract the round from the mag.
+		if(flags_gun_features & GUN_ENERGY)
+			update_icon(user)
+		return in_chamber
 
 //EMPs will fuck with remaining charge
 /obj/item/weapon/gun/energy/lasgun/emp_act(severity)
