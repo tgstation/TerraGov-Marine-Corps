@@ -527,7 +527,7 @@
 			M.update_inv_r_hand()
 
 
-/obj/item/weapon/gun/energy/lasgun/proc/replace_ammo(mob/user = null, var/obj/item/ammo_magazine/magazine)
+/obj/item/weapon/gun/energy/lasgun/replace_ammo(mob/user = null, var/obj/item/ammo_magazine/magazine)
 	if(!magazine.default_ammo)
 		to_chat(user, "Something went horribly wrong. Ahelp the following: ERROR CODE A1: null ammo while reloading.")
 		log_debug("ERROR CODE A1: null ammo while reloading. User: <b>[user]</b>")
@@ -537,7 +537,7 @@
 		//to_chat(user, "DEBUG: REPLACE AMMO. Ammo: [ammo]")
 
 
-/obj/item/weapon/gun/energy/lasgun/proc/load_into_chamber(mob/user, overcharge_check = FALSE)
+/obj/item/weapon/gun/energy/lasgun/load_into_chamber(mob/user, overcharge_check = FALSE)
 	//The workhorse of the bullet procs.
  	//If we have a round chambered and no active attachable, we're good to go.
 	if(in_chamber && !active_attachable)
@@ -572,7 +572,7 @@
 		return ready_in_chamber(user)//We're not using the active attachable, we must use the active mag if there is one.
 
 
-/obj/item/weapon/gun/energy/lasgun/proc/ready_in_chamber(mob/user, switch_modes = FALSE)
+/obj/item/weapon/gun/energy/lasgun/ready_in_chamber(mob/user, switch_modes = FALSE)
 	if(current_mag && current_mag.current_rounds > 0)
 		if(current_mag.current_rounds < ammo_per_shot && overcharge)
 			if(istype(src, /obj/item/weapon/gun/energy/lasgun))
@@ -590,7 +590,7 @@
 			update_icon(user)
 		return in_chamber
 
-/obj/item/weapon/gun/energy/lasgun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
+/obj/item/weapon/gun/energy/lasgun/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
 	user.drop_inv_item_to_loc(magazine, src) //Click!
 	current_mag = magazine
 	replace_ammo(user,magazine)
@@ -605,7 +605,7 @@
 	update_icon()
 
 
-/obj/item/weapon/gun/energy/lasgun/proc/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
+/obj/item/weapon/gun/energy/lasgun/unload(mob/user, reload_override = 0, drop_override = 0) //Override for reloading mags after shooting, so it doesn't interrupt burst. Drop is for dropping the magazine on the ground.
 	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)))
 		return
 

@@ -74,3 +74,5 @@
 #define WIELD_DELAY_VERY_SLOW		16
 #define WIELD_DELAY_HORRIBLE		20
 //=================================================
+
+#define OVERCHARGE_AMMO_COST		2

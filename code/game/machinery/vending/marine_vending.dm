@@ -275,13 +275,13 @@
 		switch(machine_current_charge / machine_max_charge)
 			if(0)
 				icon_state = "lascharger-off"
-			if(1 to .76)
+			if(1 to 0.76)
 				icon_state = "lascharger"
-			if(.75 to .51)
+			if(0.75 to 0.51)
 				icon_state = "lascharger_75"
-			if(.50 to .26)
+			if(0.50 to 0.26)
 				icon_state = "lascharger_50"
-			if(.25 to .01)
+			if(0.25 to 0.01)
 				icon_state = "lascharger_25"
 
 /obj/machinery/vending/lasgun/attackby(obj/item/W, mob/user)

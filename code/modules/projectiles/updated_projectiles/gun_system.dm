@@ -223,7 +223,7 @@
 		return
 
 	var/obj/item/offhand
-	if(offhand = user.get_inactive_hand())
+	if(offhand == user.get_inactive_hand())
 		if(offhand == user.r_hand)
 			user.drop_r_hand()
 		else if(offhand == user.l_hand)
