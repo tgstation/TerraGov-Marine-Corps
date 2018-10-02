@@ -545,12 +545,14 @@
 	if(delay_vending)
 		if(powered(power_channel))
 			use_power(vend_power_usage)	//actuators and stuff
-			if (icon_vend) flick(icon_vend,src) //Show the vending animation if needed
+			if (icon_vend)
+				flick(icon_vend,src) //Show the vending animation if needed
 			sleep(delay_vending)
 		else if(machine_current_charge > vend_power_usage) //if no power, use the machine's battery.
 			machine_current_charge -= min(machine_current_charge, vend_power_usage) //Sterilize with min; no negatives allowed.
 			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Vend Power Usage: [vend_power_usage] Machine Current Charge: [machine_current_charge].</span>")
-			if (icon_vend) flick(icon_vend,src) //Show the vending animation if needed
+			if (icon_vend)
+				flick(icon_vend,src) //Show the vending animation if needed
 			sleep(delay_vending)
 		else
 			return
@@ -571,10 +573,7 @@
 
 	if(istype(A, /obj/item))
 		var/obj/item/I = A
-		if(istype(I, /obj/item/ammo_magazine/lasgun) && istype(src, /obj/machinery/vending/lasgun))
-			stock(I, user, TRUE)
-		else
-			stock(I, user)
+		stock(I, user)
 
 /obj/machinery/vending/proc/stock(obj/item/item_to_stock, mob/user, recharge = FALSE)
 	var/datum/data/vending_product/R //Let's try with a new datum.

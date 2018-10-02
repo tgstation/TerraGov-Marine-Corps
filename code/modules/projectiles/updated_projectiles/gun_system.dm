@@ -222,16 +222,15 @@
 	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
 		return
 
-	if(user.get_inactive_hand())//Drop item held in the off-hand if occupied.
-		var/obj/item/offhand = user.get_inactive_hand()
-		if(offhand)
-			if(offhand == user.r_hand)
-				user.drop_r_hand()
-			else if(offhand == user.l_hand)
-				user.drop_l_hand()
-			if(user.get_inactive_hand()) //Failsafe; if there's somehow still something in the off-hand (undroppable), bail.
-				to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
-				return
+	var/obj/item/offhand
+	if(offhand = user.get_inactive_hand())
+		if(offhand == user.r_hand)
+			user.drop_r_hand()
+		else if(offhand == user.l_hand)
+			user.drop_l_hand()
+		if(user.get_inactive_hand()) //Failsafe; if there's somehow still something in the off-hand (undroppable), bail.
+			to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
+			return
 
 	if(ishuman(user))
 		var/check_hand = user.r_hand == src ? "l_hand" : "r_hand"

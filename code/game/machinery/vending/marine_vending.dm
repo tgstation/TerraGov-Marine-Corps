@@ -296,6 +296,17 @@
 	to_chat(user, "<b>It has [machine_current_charge] of [machine_max_charge] charge remaining.</b>")
 
 
+/obj/machinery/vending/lasgun/MouseDrop_T(var/atom/movable/A, mob/user)
+	..()
+
+	if(istype(A, /obj/item))
+		var/obj/item/I = A
+		if(istype(I, /obj/item/ammo_magazine/lasgun) && istype(src, /obj/machinery/vending/lasgun))
+			stock(I, user, TRUE)
+		else
+			stock(I, user)
+
+
 //MARINE FOOD VENDOR APOPHIS775 23DEC2017
 /obj/machinery/vending/marineFood
 	name = "\improper Marine Food and Drinks Vendor"
