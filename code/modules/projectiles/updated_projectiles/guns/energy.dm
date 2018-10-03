@@ -543,9 +543,9 @@
 	if(in_chamber && !active_attachable)
 		if(overcharge_check) //Check to see if we have the proper ammo in chamber to match the overcharge fire mode
 			var/obj/item/projectile/reg_ammo = rnew(/obj/item/projectile, src)
-			//reg_ammo.generate_bullet(ammo_list[current_mag.default_ammo])
+			reg_ammo.generate_bullet(ammo_list[current_mag.default_ammo])
 			var/obj/item/projectile/over_ammo = rnew(/obj/item/projectile, src)
-			//over_ammo.generate_bullet(ammo_list[current_mag.overcharge_ammo])
+			over_ammo.generate_bullet(ammo_list[current_mag.overcharge_ammo])
 			//to_chat(user, "<span class='warning'>DEBUG: Load Into Chamber. Overcharge: [overcharge] Chamber: [in_chamber] Reg_Ammo: [reg_ammo] Over_Ammo: [over_ammo] </span>")
 			if(overcharge && in_chamber.name == reg_ammo.name)
 				//to_chat(user, "<span class='warning'>DEBUG: Chamber ammo replaced with overcharge. Chamber: [in_chamber] </span>")
@@ -586,8 +586,7 @@
 				to_chat(user, "<span class='warning'>With a whine, [src]'s capacitors discharge back into the battery as you switch from overcharge mode. [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[max(0,current_mag.current_rounds - ammo_per_shot)]</b>/[current_mag.max_rounds]" : ""]</span>")
 		in_chamber = create_bullet(ammo)
 		current_mag.current_rounds -= ammo_per_shot //Subtract the round from the mag.
-		if(flags_gun_features & GUN_ENERGY)
-			update_icon(user)
+		update_icon(user)
 		return in_chamber
 
 
