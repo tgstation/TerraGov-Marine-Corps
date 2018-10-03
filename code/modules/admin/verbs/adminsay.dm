@@ -13,7 +13,7 @@
 	if(ishost(usr))
 		color = "headminsay"
 
-	if(check_rights(R_ADMIN,0))
+	if(check_rights(R_ADMIN|R_MOD,0))
 		msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> <EM>[key_name(usr, 1)]</EM> (<a href='?_src_=holder;adminplayerobservejump=\ref[mob]'>JMP</A>): <span class='message'>[msg]</span></span>"
 		for(var/client/C in admins)
 			if(R_ADMIN & C.holder.rights)
@@ -26,7 +26,8 @@
 	set name = "Msay"
 	set hidden = 1
 
-	if(!check_rights(R_ADMIN|R_MOD|R_MENTOR))	return
+	if(!check_rights(R_ADMIN|R_MOD|R_MENTOR, 0))	
+		return
 
 	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	log_admin("MOD: [key_name(src)] : [msg]")
@@ -34,7 +35,7 @@
 	if (!msg)
 		return
 	var/color = "mod"
-	if (check_rights(R_ADMIN,0))
+	if (check_rights(R_ADMIN|R_MOD,0))
 		color = "adminmod"
 
 	var/channel = "MOD:"
