@@ -742,7 +742,7 @@
 	..()
 	accurate_range = config.short_shell_range
 	damage = config.low_hit_damage
-	penetration= config.low_armor_penetration
+	penetration = config.low_armor_penetration
 
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -750,8 +750,8 @@
 
 /datum/ammo/bullet/smartgun/lethal/New()
 	..()
-	damage = config.lmed_hit_damage
-	penetration= config.low_armor_penetration
+	damage = config.low_hit_damage
+	penetration = config.mlow_armor_penetration
 
 /datum/ammo/bullet/smartgun/dirty
 	name = "irradiated smartgun bullet"
