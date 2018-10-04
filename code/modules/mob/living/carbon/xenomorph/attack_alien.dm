@@ -43,7 +43,18 @@
 				return FALSE
 
 			if(stat == DEAD)
-				to_chat(M, "<span class='warning'>[src] is dead, why would you want to touch it?</span>")
+				if(luminosity > 0)
+					playsound(loc, "alien_claw_metal", 25, 1)
+					M.flick_attack_overlay(src, "slash")
+					var/datum/effect_system/spark_spread/spark_system2
+					spark_system2 = new /datum/effect_system/spark_spread()
+					spark_system2.set_up(5, 0, src)
+					spark_system2.attach(src)
+					spark_system2.start(src)
+					disable_lights()
+					to_chat(M, "<span class='warning'>You disable whatever annoying lights the dead creature possesses.</span>")
+				else
+					to_chat(M, "<span class='warning'>[src] is dead, why would you want to touch it?</span>")
 				return FALSE
 
 			if(!M.is_intelligent)

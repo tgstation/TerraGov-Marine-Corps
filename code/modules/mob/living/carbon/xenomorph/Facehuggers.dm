@@ -315,7 +315,6 @@
 			var/mob/living/carbon/human/H
 			if(ishuman(target))
 				H = target
-				H.disable_lights()
 				playsound(loc, (target.gender == "male"?'sound/misc/facehugged_male.ogg' : 'sound/misc/facehugged_female.ogg') , 25, 0)
 			if(!sterile)
 				if(!H || !H.species || !(H.species.flags & IS_SYNTHETIC)) //synthetics aren't paralyzed
