@@ -310,8 +310,7 @@
 							list("Pistol magazine pouch", 0, /obj/item/storage/pouch/magazine/pistol, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
 							list("Pistol pouch", 0, /obj/item/storage/pouch/pistol, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
 							list("MASKS", 0, null, null, null),
-							list("Gas mask", 0, /obj/item/clothing/mask/gas, MARINE_CAN_BUY_MASK, "black"),
-
+							list("Gas mask", 0, /obj/item/clothing/mask/gas, MARINE_CAN_BUY_MASK, "black")
 							)
 
 
@@ -384,10 +383,8 @@
 							list("Large pistol magazine pouch", 0, /obj/item/storage/pouch/magazine/pistol/large, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
 							list("Pistol pouch", 0, /obj/item/storage/pouch/pistol, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
 							list("MASKS", 0, null, null, null),
-							list("Gas mask", 0, /obj/item/clothing/mask/gas, MARINE_CAN_BUY_MASK, "black"),
-
+							list("Gas mask", 0, /obj/item/clothing/mask/gas, MARINE_CAN_BUY_MASK, "black")
 							)
-
 
 /obj/machinery/marine_selector/clothes/engi/alpha
 	squad_tag = "Alpha"
@@ -508,7 +505,6 @@
 							list("Knives belt", 0, /obj/item/storage/belt/knifepouch, MARINE_CAN_BUY_BELT, "black"),
 							list("Pistol belt", 0, /obj/item/storage/belt/gun/m4a3, MARINE_CAN_BUY_BELT, "black"),
 							list("Revolver belt", 0, /obj/item/storage/belt/gun/m44, MARINE_CAN_BUY_BELT, "black"),
-
 							list("POUCHES (choose 2)", 0, null, null, null),
 							list("Shotgun shell pouch", 0, /obj/item/storage/pouch/shotgun, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
 							list("Magazine pouch", 0, /obj/item/storage/pouch/magazine, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
@@ -697,7 +693,29 @@
 	desc = "An automated equipment rack hooked up to a colossal storage of standard-issue equipments."
 	icon_state = "sec"
 	use_points = TRUE
+	listed_products = list(
+		list("GUN ATTACHMENTS (Choose 1)", 0, null, null, null),
+		list("Vertical Grip", 0, /obj/item/attachable/verticalgrip, MARINE_CAN_BUY_ATTACHMENT, "black"),
+		list("Red-dot sight", 0, /obj/item/attachable/reddot, MARINE_CAN_BUY_ATTACHMENT, "black"),
+		list("Recoil Compensator", 0, /obj/item/attachable/compensator, MARINE_CAN_BUY_ATTACHMENT, "black"),
+		list("Laser Sight", 0, /obj/item/attachable/lasersight,  MARINE_CAN_BUY_ATTACHMENT, "black")
+		)
 
+/obj/machinery/marine_selector/gear/alpha
+	squad_tag = "Alpha"
+	req_access = list(ACCESS_MARINE_ALPHA)
+
+/obj/machinery/marine_selector/gear/bravo
+	squad_tag = "Bravo"
+	req_access = list(ACCESS_MARINE_BRAVO)
+
+/obj/machinery/marine_selector/gear/charlie
+	squad_tag = "Charlie"
+	req_access = list(ACCESS_MARINE_CHARLIE)
+
+/obj/machinery/marine_selector/gear/delta
+	squad_tag = "Delta"
+	req_access = list(ACCESS_MARINE_DELTA)
 
 /obj/machinery/marine_selector/gear/medic
 	vendor_role = "Squad Medic"
