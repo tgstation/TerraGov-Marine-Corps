@@ -426,6 +426,12 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define XENO_SLOWDOWN_REGEN 0.4
 #define XENO_HALOSS_REGEN 3
 
+
+// halloss defines
+
+#define BASE_HALLOSS_RECOVERY_RATE -2
+#define REST_HALLOSS_RECOVERY_RATE -10
+
 // Human Overlay Indexes
 #define MOTH_WINGS_LAYER		26
 #define MUTANTRACE_LAYER		25
