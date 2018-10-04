@@ -369,6 +369,7 @@ var/list/slot_equipment_priority = list( \
 	var/mob/M
 	if(ismob(AM))
 		M = AM
+
 	else if(istype(AM, /obj))
 		AM.add_fingerprint(src)
 

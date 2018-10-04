@@ -450,9 +450,6 @@
 					drop_inv_item_on_ground(I)
 					if(I && !I.disposed) //Might be self-deleted?
 						M.equip_to_slot_if_possible(I, slot_to_process, 1, 0, 1, 1)
-						if(ishuman(M) && M.stat == DEAD)
-							var/mob/living/carbon/human/H = M
-							H.disable_lights() // take that powergamers -spookydonut
 
 	if(M)
 		if(interactee == M && Adjacent(M))
