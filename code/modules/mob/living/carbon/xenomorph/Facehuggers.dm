@@ -2,6 +2,8 @@
 
 //TODO: Make these simple_animals
 
+#define FACEHUGGER_KNOCKOUT 30
+
 #define MIN_IMPREGNATION_TIME 100 //Time it takes to impregnate someone
 #define MAX_IMPREGNATION_TIME 150
 
@@ -318,7 +320,7 @@
 				playsound(loc, (target.gender == "male"?'sound/misc/facehugged_male.ogg' : 'sound/misc/facehugged_female.ogg') , 25, 0)
 			if(!sterile)
 				if(!H || !H.species || !(H.species.flags & IS_SYNTHETIC)) //synthetics aren't paralyzed
-					target.KnockOut(MIN_IMPREGNATION_TIME * 0.5) //THIS MIGHT NEED TWEAKS
+					target.KnockOut(FACEHUGGER_KNOCKOUT) //THIS MIGHT NEED TWEAKS
 
 	GoIdle()
 

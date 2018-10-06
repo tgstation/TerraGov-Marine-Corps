@@ -143,14 +143,16 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
 
-#define FOG_DELAY_INTERVAL		27000 // 45 minutes
+#define FOG_DELAY_INTERVAL		18000 // 30 minutes
 //This is processed each tick, but check_win is only checked 5 ticks, so we don't go crazy with scanning for mobs.
 /datum/game_mode/colonialmarines/process()
-	if(--round_started > 0) return FALSE //Initial countdown, just to be safe, so that everyone has a chance to spawn before we check anything.
+	if(--round_started > 0)
+		return FALSE //Initial countdown, just to be safe, so that everyone has a chance to spawn before we check anything.
 
 	if(!round_finished)
 		for(var/datum/hive_status/hive in hive_datum)
-			if(hive.xeno_queen_timer && --hive.xeno_queen_timer <= 1) xeno_message("The Hive is ready for a new Queen to evolve.", 3, hive.hivenumber)
+			if(hive.xeno_queen_timer && --hive.xeno_queen_timer <= 1)
+				xeno_message("The Hive is ready for a new Queen to evolve.", 3, hive.hivenumber)
 
 		// Automated bioscan / Queen Mother message
 		if(world.time > bioscan_current_interval) //If world time is greater than required bioscan time.
@@ -158,7 +160,8 @@
 			bioscan_current_interval += bioscan_ongoing_interval //Add to the interval based on our set interval time.
 
 		if(++round_checkwin >= 5) //Only check win conditions every 5 ticks.
-			if(flags_round_type & MODE_FOG_ACTIVATED && world.time >= (FOG_DELAY_INTERVAL + round_time_lobby + round_time_fog)) disperse_fog()//Some RNG thrown in.
+			if(flags_round_type & MODE_FOG_ACTIVATED && world.time >= (FOG_DELAY_INTERVAL + round_time_lobby + round_time_fog))
+				disperse_fog()//Some RNG thrown in.
 			check_win()
 			round_checkwin = 0
 

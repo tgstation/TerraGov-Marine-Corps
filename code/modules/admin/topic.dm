@@ -267,7 +267,7 @@
 			if("runner")			M.change_mob_type( /mob/living/carbon/Xenomorph/Runner , null, null, delmob )
 			if("drone")				M.change_mob_type( /mob/living/carbon/Xenomorph/Drone , null, null, delmob )
 			if("sentinel")			M.change_mob_type( /mob/living/carbon/Xenomorph/Sentinel , null, null, delmob )
-			if("lurker")			M.change_mob_type( /mob/living/carbon/Xenomorph/Lurker , null, null, delmob )
+			if("hunter")			M.change_mob_type( /mob/living/carbon/Xenomorph/Hunter , null, null, delmob )
 			if("carrier")			M.change_mob_type( /mob/living/carbon/Xenomorph/Carrier , null, null, delmob )
 			if("hivelord")			M.change_mob_type( /mob/living/carbon/Xenomorph/Hivelord , null, null, delmob )
 			if("praetorian")		M.change_mob_type( /mob/living/carbon/Xenomorph/Praetorian , null, null, delmob )

@@ -168,8 +168,8 @@
 			M = /mob/living/carbon/Xenomorph/Sentinel
 		if("Spitter")
 			M = /mob/living/carbon/Xenomorph/Spitter
-		if("Lurker")
-			M = /mob/living/carbon/Xenomorph/Lurker
+		if("Hunter")
+			M = /mob/living/carbon/Xenomorph/Hunter
 		if ("Warrior")
 			M = /mob/living/carbon/Xenomorph/Warrior
 		if ("Defender")

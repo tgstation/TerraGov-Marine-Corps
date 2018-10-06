@@ -39,9 +39,9 @@
 	cost = 20
 	export_obj = /mob/living/carbon/Xenomorph/Hivelord
 
-/datum/supply_export/xemomorph/lurker
+/datum/supply_export/xemomorph/hunter
 	cost = 15
-	export_obj = /mob/living/carbon/Xenomorph/Lurker
+	export_obj = /mob/living/carbon/Xenomorph/Hunter
 
 /datum/supply_export/xemomorph/warrior
 	cost = 15

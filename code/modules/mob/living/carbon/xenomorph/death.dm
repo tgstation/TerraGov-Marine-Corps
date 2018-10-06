@@ -35,7 +35,7 @@
 
 				if(hivenumber == XENO_HIVE_NORMAL)
 					if(ticker.mode.stored_larva)
-						ticker.mode.stored_larva = round(ticker.mode.stored_larva * ((upgrade+1)/6.0)) // 83/66/50/33 for ancient/elite emp/elite queen/queen
+						ticker.mode.stored_larva = round(ticker.mode.stored_larva * ((upgrade+1)/6.0)) // 83/66/50/33 for ancient/elder emp/elder queen/queen
 						var/turf/larva_spawn
 						while(ticker.mode.stored_larva > 0) // stil some left
 							larva_spawn = pick(xeno_spawn)

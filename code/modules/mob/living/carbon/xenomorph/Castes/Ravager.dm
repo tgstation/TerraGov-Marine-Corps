@@ -6,8 +6,8 @@
 	desc = "A huge, nasty red alien with enormous scythed claws."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Ravager Walking"
-	melee_damage_lower = 25
-	melee_damage_upper = 35
+	melee_damage_lower = 40
+	melee_damage_upper = 60
 	tacklemin = 3
 	tacklemax = 6
 	tackle_chance = 80
@@ -16,7 +16,7 @@
 	plasma_stored = 50
 	plasma_gain = 8
 	plasma_max = 100
-	upgrade_threshold = 800
+	upgrade_threshold = 400
 	evolution_allowed = FALSE
 	caste_desc = "A brutal, devastating front-line attacker."
 	speed = -0.7 //Not as fast as runners, but faster than other xenos.
@@ -107,11 +107,9 @@
 		/datum/action/xeno_action/activable/breathe_fire,
 		)
 
-	New()
-		..()
-		verbs -= /mob/living/carbon/Xenomorph/verb/hive_status
-		spawn(15) name = "Ravenger"
-
+/mob/living/carbon/Xenomorph/Ravager/ravenger/New()
+	..()
+	verbs -= /mob/living/carbon/Xenomorph/verb/hive_status
 
 /mob/living/carbon/Xenomorph/Ravager/ravenger/proc/breathe_fire(atom/A)
 	set waitfor = 0

@@ -27,7 +27,7 @@ proc/initialize_upgrades()
 						/mob/living/carbon/Xenomorph/Carrier,
 						/mob/living/carbon/Xenomorph/Drone,
 						/mob/living/carbon/Xenomorph/Hivelord,
-						/mob/living/carbon/Xenomorph/Lurker,
+						/mob/living/carbon/Xenomorph/Hunter,
 						/mob/living/carbon/Xenomorph/Praetorian,
 						/mob/living/carbon/Xenomorph/Ravager,
 						/mob/living/carbon/Xenomorph/Runner,
@@ -49,7 +49,7 @@ proc/initialize_upgrades()
 	name = "Razor Claws"
 	cost = 30
 	which_castes = list(
-						/mob/living/carbon/Xenomorph/Lurker,
+						/mob/living/carbon/Xenomorph/Hunter,
 						/mob/living/carbon/Xenomorph/Praetorian,
 						/mob/living/carbon/Xenomorph/Ravager,
 						/mob/living/carbon/Xenomorph/Runner
@@ -104,7 +104,7 @@ proc/initialize_upgrades()
 						/mob/living/carbon/Xenomorph/Carrier,
 						/mob/living/carbon/Xenomorph/Drone,
 						/mob/living/carbon/Xenomorph/Hivelord,
-						/mob/living/carbon/Xenomorph/Lurker,
+						/mob/living/carbon/Xenomorph/Hunter,
 						/mob/living/carbon/Xenomorph/Praetorian,
 						/mob/living/carbon/Xenomorph/Ravager,
 						/mob/living/carbon/Xenomorph/Sentinel,
@@ -126,7 +126,7 @@ proc/initialize_upgrades()
 	cost = 30
 	which_castes = list(
 						/mob/living/carbon/Xenomorph/Hivelord,
-						/mob/living/carbon/Xenomorph/Lurker,
+						/mob/living/carbon/Xenomorph/Hunter,
 						/mob/living/carbon/Xenomorph/Praetorian,
 						/mob/living/carbon/Xenomorph/Ravager
 					)
@@ -146,7 +146,7 @@ proc/initialize_upgrades()
 						/mob/living/carbon/Xenomorph/Carrier,
 						/mob/living/carbon/Xenomorph/Drone,
 						/mob/living/carbon/Xenomorph/Hivelord,
-						/mob/living/carbon/Xenomorph/Lurker,
+						/mob/living/carbon/Xenomorph/Hunter,
 						/mob/living/carbon/Xenomorph/Praetorian,
 						/mob/living/carbon/Xenomorph/Ravager,
 						/mob/living/carbon/Xenomorph/Sentinel,
@@ -166,7 +166,7 @@ proc/initialize_upgrades()
 	cost = 70
 	which_castes = list(
 						/mob/living/carbon/Xenomorph/Hivelord,
-						/mob/living/carbon/Xenomorph/Lurker,
+						/mob/living/carbon/Xenomorph/Hunter,
 						/mob/living/carbon/Xenomorph/Praetorian,
 						/mob/living/carbon/Xenomorph/Ravager
 					)
@@ -186,7 +186,7 @@ proc/initialize_upgrades()
 						/mob/living/carbon/Xenomorph/Carrier,
 						/mob/living/carbon/Xenomorph/Drone,
 						/mob/living/carbon/Xenomorph/Hivelord,
-						/mob/living/carbon/Xenomorph/Lurker,
+						/mob/living/carbon/Xenomorph/Hunter,
 						/mob/living/carbon/Xenomorph/Praetorian,
 						/mob/living/carbon/Xenomorph/Ravager,
 						/mob/living/carbon/Xenomorph/Sentinel,
@@ -207,7 +207,7 @@ proc/initialize_upgrades()
 						/mob/living/carbon/Xenomorph/Carrier,
 						/mob/living/carbon/Xenomorph/Drone,
 						/mob/living/carbon/Xenomorph/Hivelord,
-						/mob/living/carbon/Xenomorph/Lurker,
+						/mob/living/carbon/Xenomorph/Hunter,
 						/mob/living/carbon/Xenomorph/Praetorian,
 						/mob/living/carbon/Xenomorph/Ravager,
 						/mob/living/carbon/Xenomorph/Runner,

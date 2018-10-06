@@ -4,8 +4,8 @@
 	desc = "A huge alien with an enormous armored head crest."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Crusher Walking"
-	melee_damage_lower = 15
-	melee_damage_upper = 30
+	melee_damage_lower = 20
+	melee_damage_upper = 35
 	tacklemin = 4
 	tacklemax = 7
 	tackle_chance = 60
@@ -14,12 +14,12 @@
 	plasma_stored = 200
 	plasma_gain = 10
 	plasma_max = 200
-	upgrade_threshold = 800
+	upgrade_threshold = 400
 	evolution_allowed = FALSE
 	caste_desc = "A huge tanky xenomorph."
 	speed = 0.1
 	tail_chance = 0 //Inherited from old code. Tail's too big
-	armor_deflection = 75
+	armor_deflection = 80
 	tier = 3
 	upgrade = 0
 	drag_delay = 6 //pulling a big dead xeno is hard

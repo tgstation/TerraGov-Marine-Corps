@@ -166,13 +166,20 @@
 				if(!ticker || ticker.current_state != GAME_STATE_PLAYING || !ticker.mode)
 					to_chat(src, "<span class='warning'>The round is either not ready, or has already finished...</span>")
 					return
-
-				if(alert(src,"Are you sure you want to attempt joining as a xenomorph?","Confirmation","Yes","No") == "Yes" )
-					if(ticker.mode.check_xeno_late_join(src))
-						var/mob/new_xeno = ticker.mode.attempt_to_join_as_xeno(src, 0)
-						if(new_xeno)
-							close_spawn_windows(new_xeno)
-							ticker.mode.transfer_xeno(src, new_xeno)
+				switch(alert(src,"Would you like to try joining as a burrowed larva or as a living xenomorph?","Select","Burrowed Larva","Living Xenomorph","Cancel"))
+					if("Burrowed Larva")
+						if(ticker.mode.check_xeno_late_join(src))
+							var/mob/living/carbon/Xenomorph/Queen/mother
+							mother = ticker.mode.attempt_to_join_as_larva(src)
+							if(mother)
+								close_spawn_windows()
+								ticker.mode.spawn_larva(src, mother)
+					if("Living Xenomorph")
+						if(ticker.mode.check_xeno_late_join(src))
+							var/mob/new_xeno = ticker.mode.attempt_to_join_as_xeno(src, 0)
+							if(new_xeno)
+								close_spawn_windows(new_xeno)
+								ticker.mode.transfer_xeno(src, new_xeno)
 
 			if("late_join_pred")
 				if(!ticker || ticker.current_state != GAME_STATE_PLAYING || !ticker.mode)

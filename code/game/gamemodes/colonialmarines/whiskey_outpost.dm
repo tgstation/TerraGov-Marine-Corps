@@ -791,7 +791,7 @@
 
 
 		if(3)//Tier II versions added, but rare
-			spawnxeno += list(/mob/living/carbon/Xenomorph/Lurker,
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter,
 						/mob/living/carbon/Xenomorph/Spitter)
 
 			spawnxeno -= list(/mob/living/carbon/Xenomorph/Runner,
@@ -799,7 +799,7 @@
 						/mob/living/carbon/Xenomorph/Runner)
 
 		if(4)//Tier II more common
-			spawnxeno += list(/mob/living/carbon/Xenomorph/Lurker,
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter,
 						/mob/living/carbon/Xenomorph/Drone,
 						/mob/living/carbon/Xenomorph/Spitter)
 
@@ -807,7 +807,7 @@
 			spawn_xeno_num = (count_humans() * 0.5) //Reset
 
 		if(6)//Tier II more common
-			spawnxeno += list(/mob/living/carbon/Xenomorph/Lurker,
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter,
 						/mob/living/carbon/Xenomorph/Spitter)
 
 		if(7)
@@ -823,8 +823,8 @@
 
 		if(9)//Ravager and Praetorian Added, Tier II more common, Tier I less common
 			spawn_next_wave -= 1000 //Speed it up again. After the period of grace.
-			spawnxeno += list(/mob/living/carbon/Xenomorph/Lurker/mature,
-						/mob/living/carbon/Xenomorph/Lurker/mature,
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/mature,
+						/mob/living/carbon/Xenomorph/Hunter/mature,
 						/mob/living/carbon/Xenomorph/Spitter/mature,
 						/mob/living/carbon/Xenomorph/Runner/mature,
 						/mob/living/carbon/Xenomorph/Runner/mature,
@@ -837,15 +837,15 @@
 			spawn_xeno_num = count_humans()
 
 		if(11)
-			spawnxeno += list(/mob/living/carbon/Xenomorph/Lurker/elite,
-						/mob/living/carbon/Xenomorph/Lurker/elite,
-						/mob/living/carbon/Xenomorph/Spitter/elite,
-						/mob/living/carbon/Xenomorph/Runner/elite,
-						/mob/living/carbon/Xenomorph/Runner/elite,
-						/mob/living/carbon/Xenomorph/Drone/elite)
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/elder,
+						/mob/living/carbon/Xenomorph/Hunter/elder,
+						/mob/living/carbon/Xenomorph/Spitter/elder,
+						/mob/living/carbon/Xenomorph/Runner/elder,
+						/mob/living/carbon/Xenomorph/Runner/elder,
+						/mob/living/carbon/Xenomorph/Drone/elder)
 
-			spawnxeno -= list(/mob/living/carbon/Xenomorph/Lurker/mature,
-						/mob/living/carbon/Xenomorph/Lurker/mature,
+			spawnxeno -= list(/mob/living/carbon/Xenomorph/Hunter/mature,
+						/mob/living/carbon/Xenomorph/Hunter/mature,
 						/mob/living/carbon/Xenomorph/Spitter/mature,
 						/mob/living/carbon/Xenomorph/Runner/mature,
 						/mob/living/carbon/Xenomorph/Runner/mature,
@@ -862,17 +862,17 @@
 						/mob/living/carbon/Xenomorph/Runner,
 						/mob/living/carbon/Xenomorph/Runner)
 
-		if(13)//Start the elite transition
+		if(13)//Start the elder transition
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher/mature,
 						/mob/living/carbon/Xenomorph/Boiler,
-						/mob/living/carbon/Xenomorph/Ravager/elite,
-						/mob/living/carbon/Xenomorph/Runner/elite,
-						/mob/living/carbon/Xenomorph/Hivelord/elite,
-						/mob/living/carbon/Xenomorph/Spitter/elite,
-						/mob/living/carbon/Xenomorph/Praetorian/elite)
+						/mob/living/carbon/Xenomorph/Ravager/elder,
+						/mob/living/carbon/Xenomorph/Runner/elder,
+						/mob/living/carbon/Xenomorph/Hivelord/elder,
+						/mob/living/carbon/Xenomorph/Spitter/elder,
+						/mob/living/carbon/Xenomorph/Praetorian/elder)
 
 			spawnxeno -= list(/mob/living/carbon/Xenomorph/Spitter/mature,
-						/mob/living/carbon/Xenomorph/Drone/elite,
+						/mob/living/carbon/Xenomorph/Drone/elder,
 						/mob/living/carbon/Xenomorph/Hivelord)
 
 		if(14)//Start the ancient Also keeping this spawnlist the same since its suppose to be just about get fucked in the end.
@@ -881,12 +881,12 @@
 						/mob/living/carbon/Xenomorph/Boiler/ancient,
 						/mob/living/carbon/Xenomorph/Ravager/ancient,
 						/mob/living/carbon/Xenomorph/Runner/ancient,
-						/mob/living/carbon/Xenomorph/Lurker/ancient,
+						/mob/living/carbon/Xenomorph/Hunter/ancient,
 						/mob/living/carbon/Xenomorph/Spitter/ancient,
 						/mob/living/carbon/Xenomorph/Praetorian/ancient)
 
 			spawnxeno -= list(/mob/living/carbon/Xenomorph/Crusher,
-						/mob/living/carbon/Xenomorph/Lurker/mature,
+						/mob/living/carbon/Xenomorph/Hunter/mature,
 						/mob/living/carbon/Xenomorph/Praetorian)
 
 		if(15 to INFINITY)
@@ -905,7 +905,7 @@
 						if(4)//Add another Crusher
 							spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher/ancient)
 						if(5)//Add another Hunter and Spitter
-							spawnxeno += list(/mob/living/carbon/Xenomorph/Lurker/ancient,
+							spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/ancient,
 										/mob/living/carbon/Xenomorph/Spitter/ancient)
 
 				if(6)//Runner madness

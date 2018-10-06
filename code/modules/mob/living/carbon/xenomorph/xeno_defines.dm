@@ -25,8 +25,6 @@
 	var/tacklemin = 2
 	var/tacklemax = 4
 	var/tackle_chance = 50
-	var/slowdown = 0 //Temporary penalty on movement
-	var/stagger = 0 //Temporary inability to use special actions
 	var/is_intelligent = 0 //If they can use consoles, etc. Set on Queen
 	var/caste_desc = null
 	var/has_spat = 0
@@ -36,6 +34,7 @@
 	var/charge_type = 0 //0: normal. 1: warrior/hunter style pounce. 2: ravager free attack.
 	var/armor_deflection = 0 //Chance of deflecting projectiles.
 	var/armor_bonus = 0 //Extra chance of deflecting projectiles due to temporary effects
+	var/armor_pheromone_bonus = 0 //
 	var/fire_immune = 0 //Boolean
 	var/obj/structure/tunnel/start_dig = null
 	var/tunnel_delay = 0
@@ -59,7 +58,10 @@
 	var/zoom_turf = null
 	var/autopsied = 0
 	var/attack_delay = 0 //Bonus or pen to time in between attacks. + makes slashes slower.
-	var/speed = -0.5 //Speed bonus/penalties. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
+	var/speed = -0.5 //Regular xeno speed modifier. Positive makes you go slower. (1.5 is equivalent to FAT mutation)
+	var/speed_modifier = 0 //Speed bonus/penalties. Positive makes you go slower.
+	var/slowdown = 0 //Temporary penalty on movement. Regenerates each tick.
+	var/stagger = 0 //Temporary inability to use special actions. Regenerates each tick.
 	var/tier = 1 //This will track their "tier" to restrict/limit evolutions
 	var/hardcore = 0 //Set to 1 in New() when Whiskey Outpost is active. Prevents healing and queen evolution
 	var/crit_health = -100 // What negative healthy they die in.
@@ -159,7 +161,7 @@
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen
 	var/slashing_allowed = 1 //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
-	var/queen_time = 300 //5 minutes between queen deaths
+	var/queen_time = QUEEN_DEATH_TIMER //5 minutes between queen deaths
 	var/xeno_queen_timer
 	var/hive_orders = "" //What orders should the hive have
 	var/color = null

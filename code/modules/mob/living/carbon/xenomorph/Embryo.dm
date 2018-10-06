@@ -64,7 +64,8 @@
 			processing_objects.Remove(src)
 			return FALSE
 
-	if(affected_mob.in_stasis == STASIS_IN_CRYO_CELL) return FALSE //If they are in cryo, the embryo won't grow.
+	if(affected_mob.in_stasis == STASIS_IN_CRYO_CELL)
+		return FALSE //If they are in cryo, the embryo won't grow.
 
 	process_growth()
 
@@ -77,10 +78,9 @@
 		else if(stage == 4)
 			counter += 0.11
 	else if(istype(affected_mob.buckled, /obj/structure/bed/nest)) //Hosts who are nested in resin nests provide an ideal setting, larva grows faster
-		counter += 2.5 //Currently twice as much and a bit, can be changed
-	else
-		if(stage <= 4)
-			counter++
+		counter += 1 + max(0,(0.03 * affected_mob.health)) //Up to +300% faster, depending on the health of the host
+	else if(stage <= 4)
+		counter++
 
 	if(stage < 5 && counter >= 120)
 		counter = 0

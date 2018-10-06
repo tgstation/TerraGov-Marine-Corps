@@ -243,10 +243,9 @@ adjustFireLoss(-(maxHealth / 70 + 0.5 + (maxHealth / 70) * recovery_aura/2)*(m))
 	frenzy_new = 0
 	warding_new = 0
 	recovery_new = 0
-	armor_bonus = 0
+	armor_pheromone_bonus = 0
 	if(warding_aura > 0)
-		armor_bonus = warding_aura * 3 //Bonus armor from pheromones, no matter what the armor was previously. Was 5
-
+		armor_pheromone_bonus = warding_aura * 3 //Bonus armor from pheromones, no matter what the armor was previously. Was 5
 
 /mob/living/carbon/Xenomorph/proc/handle_regular_hud_updates()
 

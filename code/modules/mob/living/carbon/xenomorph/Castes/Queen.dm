@@ -21,8 +21,8 @@
 	desc = "A huge, looming alien creature. The biggest and the baddest."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Queen Walking"
-	melee_damage_lower = 30
-	melee_damage_upper = 46
+	melee_damage_lower = 45
+	melee_damage_upper = 55
 	tacklemin = 4
 	tacklemax = 6
 	tackle_chance = 80

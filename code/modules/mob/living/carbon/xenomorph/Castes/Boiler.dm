@@ -6,17 +6,17 @@
 	desc = "A huge, grotesque xenomorph covered in glowing, oozing acid slime."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Boiler Walking"
-	melee_damage_lower = 12
-	melee_damage_upper = 15
+	melee_damage_lower = 20
+	melee_damage_upper = 25
 	tacklemin = 2
 	tacklemax = 4
 	tackle_chance = 60
-	health = 180
-	maxHealth = 180
+	health = 200
+	maxHealth = 200
 	plasma_stored = 450
 	plasma_gain = 30
 	plasma_max = 800
-	upgrade_threshold = 800
+	upgrade_threshold = 400
 	evolution_allowed = FALSE
 	spit_delay = 40
 	speed = 0.7
@@ -28,7 +28,7 @@
 	upgrade = 0
 	gib_chance = 100
 	drag_delay = 6 //pulling a big dead xeno is hard
-	armor_deflection = 20
+	armor_deflection = 30
 	var/is_bombarding = 0
 	var/obj/item/explosive/grenade/grenade_type = "/obj/item/explosive/grenade/xeno"
 	var/bomb_cooldown = 0
@@ -48,25 +48,20 @@
 		/datum/action/xeno_action/activable/spray_acid,
 		)
 
-	New()
-		..()
-		SetLuminosity(3)
-		smoke = new /datum/effect_system/smoke_spread/xeno_acid
-		smoke.attach(src)
-		see_in_dark = 20
-		ammo = ammo_list[/datum/ammo/xeno/boiler_gas]
+/mob/living/carbon/Xenomorph/Boiler/New()
+	..()
+	SetLuminosity(3)
+	smoke = new /datum/effect_system/smoke_spread/xeno_acid
+	smoke.attach(src)
+	see_in_dark = 20
+	ammo = ammo_list[/datum/ammo/xeno/boiler_gas]
 
-	Dispose()
-		SetLuminosity(0)
-		if(smoke)
-			cdel(smoke)
-			smoke = null
-		. = ..()
-
-
-
-
-
+/mob/living/carbon/Xenomorph/Boiler/Dispose()
+	SetLuminosity(0)
+	if(smoke)
+		cdel(smoke)
+		smoke = null
+	return ..()
 
 
 /mob/living/carbon/Xenomorph/Boiler/proc/bomb_turf(var/turf/T)
