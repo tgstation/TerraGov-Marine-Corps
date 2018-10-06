@@ -11,14 +11,14 @@
 	plasma_stored = 50
 	plasma_gain = 8
 	plasma_max = 100
-	evolution_threshold = 500
-	upgrade_threshold = 500
+	evolution_threshold = 200
+	upgrade_threshold = 200
 	caste_desc = "A powerful front line combatant."
-	speed = -0.8
+	speed = -0.3
 	pixel_x = -16
 	old_x = -16
 	evolves_to = list("Praetorian", "Crusher")
-	armor_deflection = 30
+	armor_deflection = 40
 	tier = 2
 	upgrade = 0
 	actions = list(
@@ -63,11 +63,9 @@
 
 
 /mob/living/carbon/Xenomorph/Warrior/start_pulling(atom/movable/AM, lunge, no_msg)
-	if (!check_state() || agility)
+	if (!check_state() || agility || !isliving(AM))
 		return FALSE
 
-	if(!isliving(AM))
-		return FALSE
 	var/mob/living/L = AM
 
 	if(!isXeno(AM))
@@ -79,7 +77,7 @@
 			return FALSE
 
 		if(!lunge)
-			used_lunge = 1
+			used_lunge = TRUE
 
 	. = ..(AM, lunge, TRUE) //no_msg = true because we don't want to show the defaul pull message
 
@@ -91,7 +89,7 @@
 			round_statistics.warrior_grabs++
 			grab_level = GRAB_NECK
 			L.drop_held_items()
-			L.Stun(5)
+			L.KnockDown(3)
 			visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
 			"<span class='xenowarning'>You grab [L] by the throat!</span>")
 

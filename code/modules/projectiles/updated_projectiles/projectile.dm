@@ -597,7 +597,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	#endif
 
 	if(damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR))
-		var/armor = armor_deflection
+		var/armor = armor_deflection + armor_bonus + armor_pheromone_bonus
 		#if DEBUG_XENO_DEFENSE
 		world << "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>"
 		#endif

@@ -158,10 +158,6 @@
 	healthcheck()
 	return TRUE //don't call afterattack
 
-/obj/effect/alien/weeds/proc/healthcheck()
-	if(health <= 0)
-		cdel(src)
-
 /obj/effect/alien/weeds/update_icon()
 	return
 

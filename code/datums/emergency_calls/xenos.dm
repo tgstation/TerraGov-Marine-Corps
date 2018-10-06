@@ -29,11 +29,11 @@
 		new_xeno = new /mob/living/carbon/Xenomorph/Ravager(spawn_loc)
 		leader = new_xeno
 	else if(chance == 0)
-		new_xeno = new /mob/living/carbon/Xenomorph/Drone/elite(spawn_loc)
+		new_xeno = new /mob/living/carbon/Xenomorph/Drone/elder(spawn_loc)
 	else if(chance == 1)
 		new_xeno = new /mob/living/carbon/Xenomorph/Spitter/mature(spawn_loc)
 	else
-		new_xeno = new /mob/living/carbon/Xenomorph/Lurker/mature(spawn_loc)
+		new_xeno = new /mob/living/carbon/Xenomorph/Hunter/mature(spawn_loc)
 	new_xeno.key  = M.key
 
 	if(original) //Just to be sure.

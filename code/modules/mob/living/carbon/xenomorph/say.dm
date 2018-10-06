@@ -72,26 +72,22 @@
 		hivemind_talk(message)
 
 /mob/living/carbon/Xenomorph/say_understands(var/mob/other,var/datum/language/speaking = null)
-
 	if(isXeno(other))
-		return 1
+		return TRUE
 	return ..()
-
 
 //General proc for hivemind. Lame, but effective.
 /mob/living/carbon/Xenomorph/proc/hivemind_talk(var/message)
 	if(!message || src.stat)
 		return
-
 	var/datum/hive_status/hive
 	if(hivenumber && hivenumber <= hive_datum.len)
 		hive = hive_datum[hivenumber]
-	else return
-
-	if(!hive.living_xeno_queen)
-		to_chat(src, "<span class='warning'>There is no Queen. You are alone.</span>")
+	else
 		return
-
+	if(!hive.living_xeno_queen && hive.xeno_queen_timer > QUEEN_DEATH_TIMER*0.5 && hivenumber == 1)
+		to_chat(src, "<span class='warning'>The Queen is dead. The hivemind is weakened. Despair!</span>")
+		return
 	var/rendered
 	if(isXenoQueen(src))
 		rendered = "<font size='3' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'> hisses, '[message]'</span></span></i></font>"
@@ -101,22 +97,21 @@
 	else
 		rendered = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'> hisses, '[message]'</span></span></i>"
 	log_talk(message, LOG_HIVEMIND)
-
 	var/track = ""
 	var/ghostrend
-
 	for (var/mob/S in player_list)
-		if(!isnull(S) && (isXeno(S) || S.stat == DEAD) && !istype(S,/mob/new_player))
-			if(istype(S,/mob/dead/observer))
-				if(S.client.prefs && S.client.prefs.toggles_chat & CHAT_GHOSTHIVEMIND)
-					track = "(<a href='byond://?src=\ref[S];track=\ref[src]'>follow</a>)"
-					if(isXenoQueen(src))
-						ghostrend = "<font size='3' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span> [track]<span class='message'> hisses, '[message]'</span></span></i></font>"
-					else
-						ghostrend = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> [track]<span class='message'> hisses, '[message]'</span></span></i>"
-					S.show_message(ghostrend, 2)
-			else if(S != src && S == hive.living_xeno_queen && hive.living_xeno_queen.ovipositor)
-				var/queenrend = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> (<a href='byond://?src=\ref[S];queentrack=\ref[src]'>watch</a>)<span class='message'> hisses, '[message]'</span></span></i>"
-				S.show_message(queenrend, 2)
-			else if(hivenumber == xeno_hivenumber(S))
-				S.show_message(rendered, 2)
+		if(isnull(S) || (!isXeno(S) && S.stat != DEAD) || istype(S,/mob/new_player))
+			continue
+		if(istype(S,/mob/dead/observer))
+			if(S.client.prefs && S.client.prefs.toggles_chat & CHAT_GHOSTHIVEMIND)
+				track = "(<a href='byond://?src=\ref[S];track=\ref[src]'>follow</a>)"
+				if(isXenoQueen(src))
+					ghostrend = "<font size='3' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span> [track]<span class='message'> hisses, '[message]'</span></span></i></font>"
+				else
+					ghostrend = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> [track]<span class='message'> hisses, '[message]'</span></span></i>"
+				S.show_message(ghostrend, 2)
+		else if(S != src && S == hive.living_xeno_queen && hive.living_xeno_queen.ovipositor)
+			var/queenrend = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> (<a href='byond://?src=\ref[S];queentrack=\ref[src]'>watch</a>)<span class='message'> hisses, '[message]'</span></span></i>"
+			S.show_message(queenrend, 2)
+		else if(hivenumber == xeno_hivenumber(S))
+			S.show_message(rendered, 2)

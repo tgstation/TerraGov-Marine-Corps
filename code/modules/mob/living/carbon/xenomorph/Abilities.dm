@@ -5,7 +5,8 @@
 
 /datum/action/xeno_action/plant_weeds/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
-	if(!X.check_state()) return
+	if(!X.check_state())
+		return
 
 	var/turf/T = X.loc
 
@@ -41,7 +42,7 @@
 	if (!X || X.is_mob_incapacitated(1) || X.buckled || X.fortify || X.crest_defense)
 		return
 
-	return 1
+	return TRUE
 
 /datum/action/xeno_action/xeno_resting/action_activate()
 	var/mob/living/carbon/Xenomorph/X = owner
@@ -50,6 +51,7 @@
 
 	X.resting = !X.resting
 	to_chat(X, "\blue You are now [X.resting ? "resting" : "getting up"]")
+	X.update_action_buttons()
 
 
 // Shift Spits
@@ -1021,14 +1023,14 @@
 			if("Crusher")
 				newcaste = "Warrior"
 			if("Ravager")
-				newcaste = "Lurker"
+				newcaste = "Hunter"
 			if("Praetorian")
 				newcaste = "Warrior"
 			if("Boiler")
 				newcaste = "Spitter"
 			if("Spitter")
 				newcaste = "Sentinel"
-			if("Lurker")
+			if("Hunter")
 				newcaste = "Runner"
 			if("Warrior")
 				newcaste = "Defender"
@@ -1071,8 +1073,8 @@
 				xeno_type = /mob/living/carbon/Xenomorph/Sentinel
 			if("Spitter")
 				xeno_type = /mob/living/carbon/Xenomorph/Spitter
-			if("Lurker")
-				xeno_type = /mob/living/carbon/Xenomorph/Lurker
+			if("Hunter")
+				xeno_type = /mob/living/carbon/Xenomorph/Hunter
 			if("Warrior")
 				xeno_type = /mob/living/carbon/Xenomorph/Warrior
 			if("Defender")
