@@ -48,6 +48,7 @@
 	uni_append = list(0x044,0xC5D) // 044C5D
 
 /mob/living/carbon/monkey/New()
+	verbs += /mob/living/proc/lay_down
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
@@ -276,6 +277,11 @@
 
 	return 1
 
+/mob/living/carbon/get_standard_pixel_y_offset()
+	if(lying)
+		return -6
+	else
+		return initial(pixel_y)
 
 /mob/living/carbon/monkey/Stat()
 	stat(null, text("Intent: []", a_intent))

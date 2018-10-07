@@ -131,6 +131,9 @@
 		overlays_standing[X_FIRE_LAYER] = I
 		apply_overlay(X_FIRE_LAYER)
 
+/mob/living/carbon/Xenomorph/update_transform()
+	..()
+	return update_icons()
 
 //Xeno Overlays Indexes//////////
 #undef X_HEAD_LAYER

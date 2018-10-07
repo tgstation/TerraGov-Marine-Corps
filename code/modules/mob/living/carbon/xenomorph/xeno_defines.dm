@@ -51,8 +51,6 @@
 	var/frenzy_aura = 0 //Strength of aura we are affected by. NOT THE ONE WE ARE EMITTING
 	var/warding_aura = 0
 	var/recovery_aura = 0
-	var/adjust_size_x = 1 //Adjust pixel size. 0.x is smaller, 1.x is bigger, percentage based.
-	var/adjust_size_y = 1
 	var/list/spit_types //list of datum projectile types the xeno can use.
 	var/is_zoomed = 0
 	var/zoom_turf = null

@@ -43,6 +43,7 @@
 	universal_speak = 0
 	health = 5
 	maxHealth = 5
+	rotate_on_lying = 0
 	mob_size = MOB_SIZE_XENO
 	hand = 1 //Make right hand active by default. 0 is left hand, mob defines it as null normally
 	see_in_dark = 8
@@ -54,6 +55,7 @@
 
 
 /mob/living/carbon/Xenomorph/New()
+	verbs += /mob/living/proc/lay_down
 	..()
 	//WO GAMEMODE
 	if(map_tag == MAP_WHISKEY_OUTPOST)
@@ -79,11 +81,6 @@
 
 	living_xeno_list += src
 	round_statistics.total_xenos_created++
-
-	if(adjust_size_x != 1)
-		var/matrix/M = matrix()
-		M.Scale(adjust_size_x, adjust_size_y)
-		transform = M
 
 	spawn(6) //Mind has to be transferred! Hopefully this will give it enough time to do so.
 		generate_name()

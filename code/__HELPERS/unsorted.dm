@@ -531,7 +531,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			continue
 		if (M.stat == 2)
 			continue
-		if(!M.ckey || !M.client) 
+		if(!M.ckey || !M.client)
 			continue
 		var/name = M.name
 		if (name in names)
@@ -1684,3 +1684,10 @@ var/list/WALLITEMS = list(
 
 /datum/proc/stack_trace(msg)
 	CRASH(msg)
+
+////// Matrices ///////
+
+/matrix/proc/TurnTo(old_angle, new_angle)
+	. = new_angle - old_angle
+	Turn(.) //BYOND handles cases such as -270, 360, 540 etc. DOES NOT HANDLE 180 TURNS WELL, THEY TWEEN AND LOOK LIKE SHIT
+

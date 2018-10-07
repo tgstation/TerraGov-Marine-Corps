@@ -16,3 +16,7 @@
 		if(src.health < 30)
 			var/image/bloody = image("icon" = src.icon, "icon_state" = "bloodsmear")
 			overlays += bloody
+
+/mob/living/carbon/hellhound/update_transform()
+	..()
+	return update_icons()

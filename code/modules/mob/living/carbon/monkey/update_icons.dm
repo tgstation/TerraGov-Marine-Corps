@@ -33,21 +33,6 @@
 	update_burst()
 	update_transform()
 
-
-/mob/living/carbon/monkey/update_transform()
-	if(lying != lying_prev )
-		lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
-
-		if(lying)
-			var/matrix/M = matrix()
-			M.Turn(90)
-			M.Translate(1,-6)
-			src.transform = M
-		else
-			var/matrix/M = matrix()
-			src.transform = M
-
-
 ////////
 /mob/living/carbon/monkey/update_inv_wear_mask()
 	remove_overlay(M_MASK_LAYER)
