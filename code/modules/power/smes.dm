@@ -8,31 +8,31 @@
 	name = "power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
 	icon_state = "smes"
-	density = 1
-	anchored = 1
-	use_power = 0
-	directwired = 0
+	density = TRUE
+	anchored = TRUE
+	use_power = FALSE
+	directwired = FALSE
 	var/output = 50000		//Amount of power it tries to output
 	var/lastout = 0			//Amount of power it actually outputs to the powernet
 	var/loaddemand = 0		//For use in restore()
 	var/capacity = 5e6		//Maximum amount of power it can hold
 	var/charge = 1.0e6		//Current amount of power it holds
 	var/charging = 0		//1 if it's actually charging, 0 if not
-	var/chargemode = 0		//1 if it's trying to charge, 0 if not.
+	var/chargemode = FALSE		//TRUE if it's trying to charge, FALSE if not.
 	//var/chargecount = 0
 	var/chargelevel = 0		//Amount of power it tries to charge from powernet
-	var/online = 1			//1 if it's outputting power, 0 if not.
+	var/online = TRUE			//TRUE if it's outputting power, FALSE if not.
 	var/name_tag = null
 	var/obj/machinery/power/terminal/terminal = null
 	//Holders for powerout event.
 	var/last_output = 0
 	var/last_charge = 0
 	var/last_online = 0
-	var/open_hatch = 0
+	var/open_hatch = FALSE
 	var/building_terminal = 0 //Suggestions about how to avoid clickspam building several terminals accepted!
 	var/input_level_max = 200000
 	var/output_level_max = 200000
-	var/should_be_mapped = 0 // If this is set to 0 it will send out warning on New()
+	var/should_be_mapped = FALSE // If this is set to 0 it will send out warning on New()
 
 /obj/machinery/power/smes/New()
 	..()
@@ -55,9 +55,6 @@
 			terminal.connect_to_network()
 		updateicon()
 		start_processing()
-
-
-
 
 		if(!should_be_mapped)
 			warning("Non-buildable or Non-magical SMES at [src.x]X [src.y]Y [src.z]Z")
@@ -119,7 +116,7 @@
 		charge -= lastout*SMESRATE		// reduce the storage (may be recovered in /restore() if excessive)
 		add_avail(lastout)				// add output to powernet (smes side)
 		if(charge < 0.0001)
-			online = 0					// stop output if charge falls to zero
+			online = FALSE					// stop output if charge falls to zero
 
 	// only update icon if state changed
 	if(last_disp != chargedisplay() || last_chrg != charging || last_onln != online)
@@ -158,11 +155,11 @@
 		updateicon()
 	return
 
-//Will return 1 on failure
+//Will return TRUE on failure
 /obj/machinery/power/smes/proc/make_terminal(const/mob/user)
 	if (user.loc == loc)
 		to_chat(user, "<span class='warning'>You must not be on the same tile as the [src].</span>")
-		return 1
+		return TRUE
 
 	//Direction the terminal will face to
 	var/tempDir = get_dir(user, src)
@@ -174,24 +171,24 @@
 	var/turf/tempLoc = get_step(src, reverse_direction(tempDir))
 	if (istype(tempLoc, /turf/open/space))
 		to_chat(user, "<span class='warning'>You can't build a terminal on space.</span>")
-		return 1
+		return TRUE
 	else if (istype(tempLoc))
 		if(tempLoc.intact_tile)
 			to_chat(user, "<span class='warning'>You must remove the floor plating first.</span>")
-			return 1
+			return TRUE
 	to_chat(user, "<span class='notice'>You start adding cable to the [src].</span>")
 	if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 		terminal = new /obj/machinery/power/terminal(tempLoc)
 		terminal.dir = tempDir
 		terminal.master = src
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 
 /obj/machinery/power/smes/add_load(var/amount)
 	if(terminal && terminal.powernet)
 		return terminal.powernet.draw_power(amount)
-	return 0
+	return FALSE
 
 
 /obj/machinery/power/smes/attack_ai(mob/user)
@@ -207,17 +204,17 @@
 /obj/machinery/power/smes/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	if(istype(W, /obj/item/tool/screwdriver))
 		if(!open_hatch)
-			open_hatch = 1
+			open_hatch = TRUE
 			to_chat(user, "<span class='notice'>You open the maintenance hatch of [src].</span>")
-			return 0
+			return FALSE
 		else
-			open_hatch = 0
+			open_hatch = FALSE
 			to_chat(user, "<span class='notice'>You close the maintenance hatch of [src].</span>")
-			return 0
+			return FALSE
 
 	if (!open_hatch)
 		to_chat(user, "<span class='warning'>You need to open access hatch on [src] first!</spann>")
-		return 0
+		return FALSE
 
 	if(istype(W, /obj/item/stack/cable_coil) && !terminal && !building_terminal)
 		building_terminal = 1
@@ -225,10 +222,10 @@
 		if (CC.get_amount() <= 10)
 			to_chat(user, "<span class='warning'>You need more cables.</span>")
 			building_terminal = 0
-			return 0
+			return FALSE
 		if (make_terminal(user))
 			building_terminal = 0
-			return 0
+			return FALSE
 		building_terminal = 0
 		CC.use(10)
 		user.visible_message(\
@@ -236,7 +233,7 @@
 				"<span class='notice'>You added cables to the [src].</span>")
 		terminal.connect_to_network()
 		stat = 0
-		return 0
+		return FALSE
 
 	else if(istype(W, /obj/item/tool/wirecutters) && terminal && !building_terminal)
 		building_terminal = 1
@@ -253,7 +250,7 @@
 						s.set_up(5, 1, src)
 						s.start()
 						building_terminal = 0
-						return 0
+						return FALSE
 					new /obj/item/stack/cable_coil(loc,10)
 					user.visible_message(\
 						"<span class='notice'>[user.name] cut the cables and dismantled the power terminal.</span>",\
@@ -261,8 +258,8 @@
 					cdel(terminal)
 					terminal = null
 		building_terminal = 0
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/machinery/power/smes/ui_interact(mob/user, ui_key = "main", var/datum/nanoui/ui = null, var/force_open = 1)
 
@@ -309,7 +306,7 @@
 //to_chat(world, "[href] ; [href_list[href]]")
 
 	if (!istype(src.loc, /turf) && !istype(usr, /mob/living/silicon/))
-		return 0 // Do not update ui
+		return FALSE // Do not update ui
 
 	for(var/area/A in active_areas)
 		A.master.powerupdate = 3
@@ -346,7 +343,7 @@
 
 	investigate_log("input/output; [chargelevel>output?"<font color='green'>":"<font color='red'>"][chargelevel]/[output]</font>|Output-mode: [online?"<font color='green'>on</font>":"<font color='red'>off</font>"]|Input-mode: [chargemode?"<font color='green'>auto</font>":"<font color='red'>off</font>"] by [usr.key]","singulo")
 
-	return 1
+	return TRUE
 
 
 /obj/machinery/power/smes/proc/ion_act()
@@ -378,8 +375,8 @@
 
 
 /obj/machinery/power/smes/emp_act(severity)
-	online = 0
-	charging = 0
+	online = FALSE
+	charging = FALSE
 	output = 0
 	charge -= 1e6/severity
 	if (charge < 0)
@@ -390,14 +387,24 @@
 		online = initial(online)
 	..()
 
+/obj/machinery/power/smes/preset
+	name = "power storage unit"
+	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit."
+	charging = TRUE
+	chargemode = TRUE
+	chargelevel = 1000000
+	should_be_mapped = TRUE
 
+/obj/machinery/power/smes/preset/process()
+	charge = 5000000
+	..()
 
 /obj/machinery/power/smes/magical
 	name = "magical power storage unit"
 	desc = "A high-capacity superconducting magnetic energy storage (SMES) unit. Magically produces power."
 	capacity = 9000000
 	output = 250000
-	should_be_mapped = 1
+	should_be_mapped = TRUE
 
 /obj/machinery/power/smes/magical/process()
 	charge = 5000000
