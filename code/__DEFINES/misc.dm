@@ -17,3 +17,5 @@
 
 //subtypesof(), typesof() without the parent path
 #define subtypesof(typepath) ( typesof(typepath) - typepath )
+
+#define RESIZE_DEFAULT_SIZE 1

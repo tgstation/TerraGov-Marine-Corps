@@ -1,6 +1,8 @@
 /mob/living
 	see_invisible = SEE_INVISIBLE_LIVING
 
+	var/resize = 1 //Badminnery resize
+
 	//Health and life related vars
 	var/maxHealth = 100 //Maximum health that should be possible.
 	var/health = 100 	//A mob's health

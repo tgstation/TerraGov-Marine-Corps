@@ -8,6 +8,7 @@
 	gender = NEUTER
 	health = 120 //Kinda tough. They heal quickly.
 	maxHealth = 120
+	rotate_on_lying = 0
 
 	var/obj/item/device/radio/headset/yautja/radio
 	var/obj/machinery/camera/camera
@@ -16,6 +17,7 @@
 	var/attack_timer = 0
 
 /mob/living/carbon/hellhound/New()
+	verbs += /mob/living/proc/lay_down
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
 	R.my_atom = src

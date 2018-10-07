@@ -275,12 +275,23 @@
 						to_chat(CM, "\blue You successfully remove \the [CM.legcuffed].")
 						CM.drop_inv_item_on_ground(CM.legcuffed)
 
-/mob/living/verb/lay_down()
+/mob/living/proc/lay_down()
 	set name = "Rest"
 	set category = "IC"
 
 	if(is_mob_incapacitated(TRUE))
 		return
 
-	resting = !resting
-	to_chat(src, "\blue You are now [resting ? "resting" : "getting up"]")
+	if(!resting)
+		resting = TRUE
+		to_chat(src, "<span class='notice'>You are now resting.</span>")
+		update_canmove()
+	else
+		if(action_busy) // do_after is unoptimal
+			return
+		if(do_after(src, 10, FALSE, 5, BUSY_ICON_GENERIC))
+			to_chat(src, "<span class='notice'>You get up.</span>")
+			resting = FALSE
+			update_canmove()
+		else
+			to_chat(src, "<span class='notice'>You fail to get up.</span>")

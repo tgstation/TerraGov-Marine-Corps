@@ -61,7 +61,6 @@
 	verbs -= /mob/living/silicon/robot/verb/Namepick
 	verbs += /mob/living/silicon/robot/drone/verb/Drone_name_pick
 	verbs += /mob/living/silicon/robot/drone/verb/Power_up
-	verbs -= /mob/living/verb/lay_down // this should fix that issue
 	verbs -= /mob/living/silicon/robot/drone/verb/set_mail_tag // we dont have mail tubes
 
 	module = new /obj/item/circuitboard/robot_module/drone(src)
