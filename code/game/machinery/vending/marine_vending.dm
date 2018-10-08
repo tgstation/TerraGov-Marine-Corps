@@ -287,9 +287,8 @@
 /obj/machinery/vending/lasgun/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/ammo_magazine/lasgun))
 		stock(W, user, TRUE)
-		//to_chat(user, "<span class='warning'>DEBUG: Lasgun vendor restocked with [W].</span>")
 		return TRUE
-	. = ..()
+	return ..()
 
 /obj/machinery/vending/lasgun/examine(mob/user)
 	..()
@@ -299,12 +298,11 @@
 /obj/machinery/vending/lasgun/MouseDrop_T(var/atom/movable/A, mob/user)
 	..()
 
-	if(istype(A, /obj/item))
-		var/obj/item/I = A
-		if(istype(I, /obj/item/ammo_magazine/lasgun) && istype(src, /obj/machinery/vending/lasgun))
-			stock(I, user, TRUE)
-		else
-			stock(I, user)
+	var/obj/item/I = A
+	if(istype(I, /obj/item/ammo_magazine/lasgun))
+		stock(I, user, TRUE)
+	else
+		stock(I, user)
 
 
 //MARINE FOOD VENDOR APOPHIS775 23DEC2017
