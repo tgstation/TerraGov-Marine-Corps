@@ -48,16 +48,17 @@
 	..()
 
 /obj/item/ammo_magazine/lasgun/M43/update_icon()
-	if(current_rounds <= 0)
-		icon_state = base_ammo_icon + "_0"
-	else if(current_rounds > round(max_rounds * 0.75))
-		icon_state = base_ammo_icon + "_100"
-	else if(current_rounds > round(max_rounds * 0.5))
-		icon_state = base_ammo_icon + "_75"
-	else if(current_rounds > round(max_rounds * 0.25))
-		icon_state = base_ammo_icon + "_50"
-	else
-		icon_state = base_ammo_icon + "_25"
+	switch(current_rounds / max(1,max_rounds))
+		if(0)
+			icon_state = base_ammo_icon + "_0"
+		if(1 to 0.76)
+			icon_state = base_ammo_icon + "_100"
+		if(0.75 to 0.51)
+			icon_state = base_ammo_icon + "_75"
+		if(0.5 to 0.26)
+			icon_state = base_ammo_icon + "_50"
+		if(0.25 to 0.01)
+			icon_state = base_ammo_icon + "_25"
 	//to_chat(world, "<span class='warning'>DEBUG: Lasgun Magazine Icon Update. Icon State: [icon_state] Current Rounds: [current_rounds]</span>")
 
 /obj/item/ammo_magazine/lasgun/M43/highcap// Large battery
