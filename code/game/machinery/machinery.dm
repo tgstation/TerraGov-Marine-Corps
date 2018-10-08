@@ -167,20 +167,20 @@ Class Procs:
 
 /obj/machinery/proc/auto_use_power()
 	if(!powered(power_channel))
-		if(src.use_power == 1 && (machine_current_charge > idle_power_usage)) //Does it have an integrated battery/reserve power to tap into?
+		if(src.use_power == TRUE && (machine_current_charge > idle_power_usage)) //Does it have an integrated battery/reserve power to tap into?
 			machine_current_charge -= min(machine_current_charge, idle_power_usage) //Sterilize with min; no negatives allowed.
 			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Idle Power Usage: [idle_power_usage] Machine Current Charge: [machine_current_charge].</span>")
 			update_icon()
-			return 1
+			return TRUE
 		else if (machine_current_charge > active_power_usage)
 			machine_current_charge -= min(machine_current_charge, active_power_usage)
 			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Active Power Usage: [active_power_usage] Machine Current Charge: [machine_current_charge].</span>")
 			update_icon()
-			return 1
+			return TRUE
 		else
-			return 0
+			return FALSE
 
-	if(src.use_power == 1)
+	if(src.use_power == TRUE)
 		if(machine_current_charge < machine_max_charge) //here we handle recharging the internal battery of machines
 			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Machine Current Charge: [machine_current_charge] .</span>")
 			var/power_usage = (min(500,max(0,machine_max_charge - machine_current_charge)))
@@ -189,11 +189,11 @@ Class Procs:
 			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Power Usage: [power_usage] Machine Current Charge: [machine_current_charge].</span>")
 			update_icon()
 		else
-			use_power(idle_power_usage,power_channel, 1)
+			use_power(idle_power_usage,power_channel, TRUE)
 
 	else if(src.use_power >= 2)
-		use_power(active_power_usage,power_channel, 1)
-	return 1
+		use_power(active_power_usage,power_channel, TRUE)
+	return TRUE
 
 /obj/machinery/proc/operable(var/additional_flags = 0)
 	return !inoperable(additional_flags)
