@@ -385,7 +385,7 @@
 	flags_equip_slot = SLOT_BACK
 	w_class = 4
 	force = 15
-	overcharge = 0
+	overcharge = FALSE
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY
 	aim_slowdown = SLOWDOWN_ADS_RIFLE
 	wield_delay = WIELD_DELAY_SLOW
@@ -407,7 +407,7 @@
 /obj/item/weapon/gun/energy/lasgun/M43
 	name = "\improper M43 Sunfury Lasgun MK1"
 	desc = "An accurate, recoilless laser based battle rifle with an integrated charge selector. Ideal for longer range engagements. Uses power cells."
-	force = 15 //Large and hefty!
+	force = 20 //Large and hefty! Includes stock bonus.
 	icon_state = "m43"
 	item_state = "m43"
 	attachable_allowed = list(
@@ -458,7 +458,7 @@
 
 //Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.
 /obj/item/weapon/gun/energy/lasgun/proc/toggle_chargemode(mob/user)
-	if(overcharge == 0)
+	if(overcharge == FALSE)
 		if(current_mag.current_rounds < 1)
 			playsound(user, 'sound/machines/buzz-two.ogg', 15, 1)
 			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s overcharge mode but your battery pack lacks adequate charge to do so.</span>")
@@ -470,7 +470,7 @@
 		damage_falloff_mult = config.low_damage_falloff_mult
 		fire_sound = 'sound/weapons/Laser3.ogg'
 		to_chat(user, "\icon[src] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
-		overcharge = 1
+		overcharge = TRUE
 	else
 		playsound(user, 'sound/weapons/emitter2.ogg', 15, 1)
 		ammo_per_shot = 1
@@ -478,7 +478,7 @@
 		damage_falloff_mult = config.med_damage_falloff_mult
 		fire_sound = 'sound/weapons/Laser.ogg'
 		to_chat(user, "\icon[src] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
-		overcharge = 0
+		overcharge = FALSE
 	replace_ammo(user,current_mag)
 	load_into_chamber(user, TRUE)
 	//to_chat(user, "DEBUG: Toggle End: Magazine: [current_mag] Regular: [current_mag.default_ammo] Overcharge: [current_mag.overcharge_ammo] Ammo per Shot: [ammo_per_shot] Ammo: [ammo] Chamber: [in_chamber] Rounds Left: [current_mag.current_rounds]")
@@ -493,30 +493,32 @@
 			item_state = "m43_0_w"
 		else
 			item_state = "m43_0"
-	else if(current_mag.current_rounds > round(current_mag.max_rounds*0.75))
-		icon_state = base_gun_icon + "_100"
-		if(flags_item & WIELDED)
-			item_state = "m43_100_w"
-		else
-			item_state = "m43_100"
-	else if(current_mag.current_rounds > round(current_mag.max_rounds*0.5))
-		icon_state = base_gun_icon + "_75"
-		if(flags_item & WIELDED)
-			item_state = "m43_75_w"
-		else
-			item_state = "m43_75"
-	else if(current_mag.current_rounds > round(current_mag.max_rounds*0.25))
-		icon_state = base_gun_icon + "_50"
-		if(flags_item & WIELDED)
-			item_state = "m43_50_w"
-		else
-			item_state = "m43_50"
 	else
-		icon_state = base_gun_icon + "_25"
-		if(flags_item & WIELDED)
-			item_state = "m43_25_w"
-		else
-			item_state = "m43_25"
+		switch(current_mag.current_rounds / max(current_mag.max_rounds, 1))
+			if(1 to 0.76)
+				icon_state = base_gun_icon + "_100"
+				if(flags_item & WIELDED)
+					item_state = "m43_100_w"
+				else
+					item_state = "m43_100"
+			if(0.75 to 0.51)
+				icon_state = base_gun_icon + "_75"
+				if(flags_item & WIELDED)
+					item_state = "m43_75_w"
+				else
+					item_state = "m43_75"
+			if(0.5 to 0.26)
+				icon_state = base_gun_icon + "_50"
+				if(flags_item & WIELDED)
+					item_state = "m43_50_w"
+				else
+					item_state = "m43_50"
+			if(0.25 to 0.01)
+				icon_state = base_gun_icon + "_25"
+				if(flags_item & WIELDED)
+					item_state = "m43_25_w"
+				else
+					item_state = "m43_25"
 	if(current_mag)
 		update_mag_overlay()
 	if(ishuman(user))
@@ -529,7 +531,6 @@
 
 /obj/item/weapon/gun/energy/lasgun/replace_ammo(mob/user = null, var/obj/item/ammo_magazine/magazine)
 	if(!magazine.default_ammo)
-		to_chat(user, "Something went horribly wrong. Ahelp the following: ERROR CODE A1: null ammo while reloading.")
 		log_debug("ERROR CODE A1: null ammo while reloading. User: <b>[user]</b>")
 		ammo = ammo_list[/datum/ammo/bullet] //Looks like we're defaulting it.
 	else
