@@ -556,8 +556,8 @@
 			sleep(delay_vending)
 		else
 			return
-	if(ispath(R.product_path,/obj/item/weapon/gun)) . = new R.product_path(get_turf(src),1)
-	else . = new R.product_path(get_turf(src))
+	if(ispath(R.product_path,/obj/item/weapon/gun)) return = new R.product_path(get_turf(src),1)
+	else return = new R.product_path(get_turf(src))
 
 
 /obj/machinery/vending/MouseDrop_T(var/atom/movable/A, mob/user)
@@ -594,19 +594,7 @@
 				var/obj/item/ammo_magazine/A = item_to_stock
 				//to_chat(user, "<span class='warning'>DEBUG: Magazine Name: [A]. Recharge?: [recharge]. Current Charge: [machine_current_charge].</span>")
 				if(istype(A, /obj/item/ammo_magazine/lasgun) && recharge)
-					var/recharge_cost = (A.max_rounds - A.current_rounds) * 10 //10 energy per shot
-					if(recharge_cost > machine_current_charge)
-						to_chat(user, "<span class='warning'>[A] cannot be recharged; [src] has inadequate charge remaining: [machine_current_charge] of [machine_max_charge].</span>")
-						return
-					else
-						to_chat(user, "<span class='warning'>You insert [A] into [src] to be recharged.</span>")
-						if (icon_vend)
-							flick(icon_vend,src)
-						playsound(src.loc, 'sound/machines/hydraulics_1.ogg', 25, 1)
-						machine_current_charge -= min(machine_current_charge, recharge_cost)
-						to_chat(user, "<span class='notice'>This dispenser has [machine_current_charge] of [machine_max_charge] remaining.</span>")
-						update_icon()
-					//to_chat(user, "<span class='warning'>DEBUG: Recharge Cost: [recharge_cost]. Current Charge: [machine_current_charge].</span>")
+					recharge_lasguncell(A, user)
 				else if(A.current_rounds < A.max_rounds)
 					to_chat(user, "<span class='warning'>[A] isn't full. Fill it before you can restock it.</span>")
 					return
@@ -753,3 +741,18 @@
 			src.seconds_electrified = 30
 		if (WIRE_SHOOTINV)
 			src.shoot_inventory = !src.shoot_inventory
+
+/obj/machinery/vending/proc/recharge_lasguncell(/obj/item/ammo_magazine/lasgun/A, mob/user)
+	var/recharge_cost = (A.max_rounds - A.current_rounds) * 10 //10 energy per shot
+	if(recharge_cost > machine_current_charge)
+		to_chat(user, "<span class='warning'>[A] cannot be recharged; [src] has inadequate charge remaining: [machine_current_charge] of [machine_max_charge].</span>")
+		return
+	else
+		to_chat(user, "<span class='warning'>You insert [A] into [src] to be recharged.</span>")
+		if (icon_vend)
+			flick(icon_vend,src)
+		playsound(src.loc, 'sound/machines/hydraulics_1.ogg', 25, 1)
+		machine_current_charge -= min(machine_current_charge, recharge_cost)
+		to_chat(user, "<span class='notice'>This dispenser has [machine_current_charge] of [machine_max_charge] remaining.</span>")
+		update_icon()
+	//to_chat(user, "<span class='warning'>DEBUG: Recharge Cost: [recharge_cost]. Current Charge: [machine_current_charge].</span>")
