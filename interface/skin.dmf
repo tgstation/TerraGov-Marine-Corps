@@ -25,25 +25,25 @@ macro "macro"
 		command = "westface"
 	elem 
 		name = "West+REP"
-		command = ".west"
+		command = ".fastWest"
 	elem 
 		name = "CTRL+North"
 		command = "northface"
 	elem 
 		name = "North+REP"
-		command = ".north"
+		command = ".fastNorth"
 	elem 
 		name = "CTRL+East"
 		command = "eastface"
 	elem 
 		name = "East+REP"
-		command = ".east"
+		command = ".fastEast"
 	elem 
 		name = "CTRL+South"
 		command = "southface"
 	elem 
 		name = "South+REP"
-		command = ".south"
+		command = ".fastSouth"
 	elem 
 		name = "Insert"
 		command = "a-intent right"
