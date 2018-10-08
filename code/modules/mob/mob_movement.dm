@@ -7,20 +7,32 @@
 
 
 
-/client/North()
-	..()
+/client/verb/fastNorth()
+	set instant = TRUE
+	set hidden = TRUE
+	set name = ".fastNorth"
+	Move(get_step(mob, NORTH), NORTH)
 
 
-/client/South()
-	..()
+/client/verb/fastSouth()
+	set instant = TRUE
+	set hidden = TRUE 
+	set name = ".fastSouth"
+	Move(get_step(mob, SOUTH), SOUTH)
 
 
-/client/West()
-	..()
+/client/verb/fastWest()
+	set instant = TRUE
+	set hidden = TRUE 
+	set name = ".fastWest"
+	Move(get_step(mob, WEST), WEST)
 
 
-/client/East()
-	..()
+/client/verb/fastEast()
+	set instant = TRUE
+	set hidden = TRUE 
+	set name = ".fastEast"
+	Move(get_step(mob, EAST), EAST)
 
 
 /client/Northeast()
