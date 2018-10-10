@@ -736,7 +736,7 @@
 				if(prob(50)) H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/medic(H), WEAR_BACK)
 				else H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel/medic(H), WEAR_BACK)
 
-				H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/tricord(H.back), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine(H.back), WEAR_IN_BACK)
 				H.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(H.back), WEAR_IN_BACK)
 				H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(H.back), WEAR_IN_BACK)
 				H.equip_to_slot_or_del(new /obj/item/device/defibrillator(H.back), WEAR_IN_BACK)
@@ -778,7 +778,7 @@
 
 						new /obj/item/explosive/plastique(W.hold)
 						new /obj/item/explosive/plastique(W.hold)
-						new /obj/item/reagent_container/hypospray/autoinjector/tricord(W.hold)
+						new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine(W.hold)
 						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket(H.back), WEAR_IN_BACK)
 						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/ap(H.back), WEAR_IN_BACK)
 						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rocket/ap(H.back), WEAR_IN_BACK)

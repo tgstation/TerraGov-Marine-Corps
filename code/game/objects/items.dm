@@ -454,13 +454,26 @@ cases. Override_icon_state should be a list.*/
 				if(!istype(src, /obj/item/legcuffs))
 					return FALSE
 				return TRUE
+			if(WEAR_ACCESSORY)
+				if(!istype(src, /obj/item/clothing/tie))
+					return FALSE
+				var/obj/item/clothing/under/U = H.w_uniform
+				if(!U || U.hastie)
+					return FALSE
+				return TRUE
+			if(EQUIP_IN_BOOT)
+				if(!istype(src, /obj/item/weapon/combat_knife) && !istype(src, /obj/item/weapon/throwing_knife))
+					return FALSE
+				var/obj/item/clothing/shoes/marine/B = H.shoes
+				if(!B || !istype(B) || B.knife)
+					return FALSE
+				return TRUE
 			if(WEAR_IN_BACK)
-				if (H.back && istype(H.back, /obj/item/storage/backpack))
-					var/obj/item/storage/backpack/B = H.back
-					if(src.w_class <= B.max_w_class)
-						if(B.can_be_inserted(src))
-							return TRUE
-				return FALSE
+				if (!H.back || !istype(H.back, /obj/item/storage/backpack))
+					return FALSE
+				var/obj/item/storage/backpack/B = H.back
+				if(src.w_class <= B.max_w_class && B.can_be_inserted(src))
+					return TRUE
 			if(WEAR_IN_B_HOLSTER)
 				if (H.back && istype(H.back, /obj/item/storage/large_holster))
 					var/obj/item/storage/S = H.back
@@ -479,6 +492,24 @@ cases. Override_icon_state should be a list.*/
 					if(S.can_be_inserted(src))
 						return TRUE
 				return FALSE
+			if(EQUIP_IN_STORAGE)
+				if(!H.s_active)
+					return FALSE
+				var/obj/item/storage/S = H.s_active
+				if(S.can_be_inserted(src))
+					return TRUE
+			if(EQUIP_IN_L_POUCH)
+				if(!H.l_store || !istype(H.l_store, /obj/item/storage/pouch))
+					return FALSE
+				var/obj/item/storage/S = H.l_store
+				if(S.can_be_inserted(src))
+					return TRUE
+			if(EQUIP_IN_R_POUCH)
+				if(!H.r_store || !istype(H.r_store, /obj/item/storage/pouch))
+					return FALSE
+				var/obj/item/storage/S = H.r_store
+				if(S.can_be_inserted(src))
+					return TRUE
 		return FALSE //Unsupported slot
 		//END HUMAN
 

@@ -145,12 +145,16 @@
 #define WEAR_R_HAND			"r_hand"
 #define WEAR_HANDCUFFS		"handcuffs"
 #define WEAR_LEGCUFFS		"legcuffs"
+#define EQUIP_IN_BOOT		"in_boot"
 #define WEAR_IN_BACK		"in_back"
 #define WEAR_IN_JACKET		"in_jacket"
 #define WEAR_IN_ACCESSORY	"in_accessory"
 #define WEAR_IN_HOLSTER		"in_holster"
 #define WEAR_IN_B_HOLSTER	"in_b_holster"
 #define WEAR_IN_J_HOLSTER	"in_j_holster"
+#define EQUIP_IN_STORAGE	"in_storage"
+#define EQUIP_IN_L_POUCH	"in_l_pouch"
+#define EQUIP_IN_R_POUCH	"in_r_pouch"
 //=================================================
 
 // bitflags for clothing parts

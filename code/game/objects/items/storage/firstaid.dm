@@ -11,30 +11,31 @@
 	name = "first-aid kit"
 	desc = "It's an emergency medical kit for those serious boo-boos."
 	icon_state = "firstaid"
+	w_class = 4
 	throw_speed = 2
 	throw_range = 8
 	cant_hold = list("/obj/item/ammo_magazine",
-							"/obj/item/explosive/grenade")
-	var/empty = 0 //whether the kit starts empty
+						"/obj/item/explosive/grenade")
+	var/empty = FALSE //whether the kit starts empty
 	var/icon_full //icon state to use when kit is full
 	var/possible_icons_full
 
-	New()
-		..()
-		if(possible_icons_full)
-			icon_state = pick(possible_icons_full)
-		icon_full = icon_state
-		if(empty)
-			icon_state = "kit_empty"
-		else
-			fill_firstaid_kit()
+/obj/item/storage/firstaid/New()
+	..()
+	if(possible_icons_full)
+		icon_state = pick(possible_icons_full)
+	icon_full = icon_state
+	if(empty)
+		icon_state = "kit_empty"
+	else
+		fill_firstaid_kit()
 
 
-	update_icon()
-		if(!contents.len)
-			icon_state = "kit_empty"
-		else
-			icon_state = icon_full
+/obj/item/storage/firstaid/update_icon()
+	if(!contents.len)
+		icon_state = "kit_empty"
+	else
+		icon_state = icon_full
 
 
 //to fill medkits with stuff when spawned
@@ -49,28 +50,27 @@
 	item_state = "firstaid-ointment"
 	possible_icons_full = list("ointment","firefirstaid")
 
-	fill_firstaid_kit()
-		new /obj/item/device/healthanalyzer( src )
-		new /obj/item/stack/medical/ointment( src )
-		new /obj/item/stack/medical/ointment( src )
-		new /obj/item/stack/medical/ointment( src )
-		new /obj/item/reagent_container/pill/kelotane( src )
-		new /obj/item/reagent_container/pill/kelotane( src )
-		new /obj/item/storage/syringe_case/burn( src )
-
+/obj/item/storage/firstaid/fire/fill_firstaid_kit()
+	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/storage/syringe_case/burn(src)
 
 
 /obj/item/storage/firstaid/regular
 	icon_state = "firstaid"
 
-	fill_firstaid_kit()
-		new /obj/item/device/healthanalyzer(src)
-		new /obj/item/stack/medical/bruise_pack(src)
-		new /obj/item/stack/medical/bruise_pack(src)
-		new /obj/item/stack/medical/bruise_pack(src)
-		new /obj/item/stack/medical/ointment(src)
-		new /obj/item/stack/medical/ointment(src)
-		new /obj/item/storage/syringe_case/regular(src)
+/obj/item/storage/firstaid/regular/fill_firstaid_kit()
+	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/stack/medical/bruise_pack(src)
+	new /obj/item/stack/medical/ointment(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/tramadol(src)
+	new /obj/item/stack/medical/splint(src)
+	new /obj/item/storage/syringe_case/regular(src)
 
 
 /obj/item/storage/firstaid/toxin
@@ -80,14 +80,14 @@
 	item_state = "firstaid-toxin"
 	possible_icons_full = list("antitoxin","antitoxfirstaid","antitoxfirstaid2","antitoxfirstaid3")
 
-	fill_firstaid_kit()
-		new /obj/item/device/healthanalyzer( src )
-		new /obj/item/reagent_container/syringe/antitoxin( src )
-		new /obj/item/reagent_container/pill/antitox( src )
-		new /obj/item/reagent_container/pill/antitox( src )
-		new /obj/item/reagent_container/pill/antitox( src )
-		new /obj/item/reagent_container/hypospray/autoinjector/hypervene(src)
-		new /obj/item/storage/syringe_case/tox( src )
+/obj/item/storage/firstaid/toxin/fill_firstaid_kit()
+	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/storage/pill_bottle/antitox(src)
+	new /obj/item/storage/pill_bottle/peridaxon(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/hypervene(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/hypervene(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/hypervene(src)
+	new /obj/item/storage/syringe_case/tox(src)
 
 
 /obj/item/storage/firstaid/o2
@@ -96,14 +96,14 @@
 	icon_state = "o2"
 	item_state = "firstaid-o2"
 
-	fill_firstaid_kit()
-		new /obj/item/device/healthanalyzer( src )
-		new /obj/item/reagent_container/pill/dexalin( src )
-		new /obj/item/reagent_container/pill/dexalin( src )
-		new /obj/item/reagent_container/pill/dexalin( src )
-		new /obj/item/reagent_container/pill/dexalin( src )
-		new /obj/item/reagent_container/hypospray/autoinjector/dexP(src)
-		new /obj/item/storage/syringe_case/oxy( src )
+/obj/item/storage/firstaid/o2/fill_firstaid_kit()
+	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/storage/pill_bottle/dexalin(src)
+	new /obj/item/storage/pill_bottle/inaprovaline(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/dexP(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/dexP(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/dexP(src)
+	new /obj/item/storage/syringe_case/oxy(src)
 
 
 /obj/item/storage/firstaid/adv
@@ -112,14 +112,14 @@
 	icon_state = "advfirstaid"
 	item_state = "firstaid-advanced"
 
-	fill_firstaid_kit()
-		new /obj/item/reagent_container/hypospray/autoinjector/tricord(src)
-		new /obj/item/stack/medical/advanced/bruise_pack(src)
-		new /obj/item/stack/medical/advanced/bruise_pack(src)
-		new /obj/item/stack/medical/advanced/bruise_pack(src)
-		new /obj/item/stack/medical/advanced/ointment(src)
-		new /obj/item/stack/medical/advanced/ointment(src)
-		new /obj/item/stack/medical/splint(src)
+/obj/item/storage/firstaid/adv/fill_firstaid_kit()
+	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/storage/pill_bottle/bicaridine(src)
+	new /obj/item/storage/pill_bottle/kelotane(src)
+	new /obj/item/storage/pill_bottle/tramadol(src)
+	new /obj/item/stack/medical/splint(src)
 
 
 /obj/item/storage/firstaid/rad
@@ -127,15 +127,14 @@
 	desc = "Contains treatment for radiation exposure"
 	icon_state = "purplefirstaid"
 
-	fill_firstaid_kit()
-		new /obj/item/reagent_container/hypospray/autoinjector/Dylovene(src)
-		new /obj/item/reagent_container/pill/russianRed(src)
-		new /obj/item/reagent_container/pill/russianRed(src)
-		new /obj/item/reagent_container/pill/russianRed(src)
-		new /obj/item/reagent_container/pill/russianRed(src)
-		new /obj/item/reagent_container/hypospray/autoinjector/Dylovene(src)
-		new /obj/item/reagent_container/hypospray/autoinjector/Bicard(src)
-		new /obj/item/reagent_container/hypospray/autoinjector/Bicard(src)
+/obj/item/storage/firstaid/rad/fill_firstaid_kit()
+	new /obj/item/device/healthanalyzer(src)
+	new /obj/item/storage/pill_bottle/russianRed(src)
+	new /obj/item/storage/pill_bottle/antitox(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/Bicard(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/Bicard(src)
 
 
 	/*
@@ -155,35 +154,35 @@
 
 /obj/item/storage/syringe_case/regular
 
-	New()
-		..()
-		new /obj/item/reagent_container/syringe( src )
-		new /obj/item/reagent_container/glass/bottle/inaprovaline( src )
-		new /obj/item/reagent_container/glass/bottle/spaceacillin( src )
+/obj/item/storage/syringe_case/regular/New()
+	..()
+	new /obj/item/reagent_container/syringe(src)
+	new /obj/item/reagent_container/glass/bottle/inaprovaline(src)
+	new /obj/item/reagent_container/glass/bottle/tricordrazine(src)
 
 /obj/item/storage/syringe_case/burn
 
-	New()
-		..()
-		new /obj/item/reagent_container/syringe( src )
-		new /obj/item/reagent_container/glass/bottle/kelotane( src )
-		new /obj/item/reagent_container/glass/bottle/spaceacillin( src )
+/obj/item/storage/syringe_case/burn/New()
+	..()
+	new /obj/item/reagent_container/syringe(src)
+	new /obj/item/reagent_container/glass/bottle/kelotane(src)
+	new /obj/item/reagent_container/glass/bottle/dermaline(src)
 
 /obj/item/storage/syringe_case/tox
 
-	New()
-		..()
-		new /obj/item/reagent_container/syringe( src )
-		new /obj/item/reagent_container/glass/bottle/antitoxin( src )
-		new /obj/item/reagent_container/glass/bottle/antitoxin( src )
+/obj/item/storage/syringe_case/tox/New()
+	..()
+	new /obj/item/reagent_container/syringe(src)
+	new /obj/item/reagent_container/glass/bottle/antitoxin(src)
+	new /obj/item/reagent_container/glass/bottle/hypervene(src)
 
 /obj/item/storage/syringe_case/oxy
 
-	New()
-		..()
-		new /obj/item/reagent_container/syringe( src )
-		new /obj/item/reagent_container/glass/bottle/inaprovaline( src )
-		new /obj/item/reagent_container/glass/bottle/dexalin( src )
+/obj/item/storage/syringe_case/oxy/New()
+	..()
+	new /obj/item/reagent_container/syringe(src)
+	new /obj/item/reagent_container/glass/bottle/inaprovaline(src)
+	new /obj/item/reagent_container/glass/bottle/dexalin(src)
 
 /*
  * Pill Bottles
@@ -312,7 +311,7 @@
 	max_storage_space = 5
 	pill_type_to_fill = /obj/item/reagent_container/pill/ultrazine
 
-	req_access_txt = "200"
+	req_access = list(ACCESS_WY_CORPORATE)
 	var/req_role = "Corporate Liaison"
 
 
@@ -322,22 +321,22 @@
 
 	if(!allowed(user))
 		to_chat(user, "<span class='notice'>It must have some kind of ID lock...</span>")
-		return 0
+		return FALSE
 
 	var/obj/item/card/id/I = H.wear_id
 	if(!istype(I)) //not wearing an ID
 		to_chat(H, "<span class='notice'>It must have some kind of ID lock...</span>")
-		return 0
+		return FALSE
 
 	if(I.registered_name != H.real_name)
 		to_chat(H, "<span class='warning'>Wrong ID card owner detected.</span>")
-		return 0
+		return FALSE
 
 	if(req_role && I.rank != req_role)
 		to_chat(H, "<span class='notice'>It must have some kind of ID lock...</span>")
-		return 0
+		return FALSE
 
-	return 1
+	return TRUE
 
 /obj/item/storage/pill_bottle/ultrazine/attack_self(mob/living/user)
 	if(!id_check(user))

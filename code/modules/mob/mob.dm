@@ -138,13 +138,15 @@
 //set del_on_fail to have it delete W if it fails to equip
 //set disable_warning to disable the 'you are unable to equip that' warning.
 //unset redraw_mob to prevent the mob from being redrawn at the end.
-/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = 1, del_on_fail = 0, disable_warning = 0, redraw_mob = 1, permanent = 0)
-	if(!istype(W)) return
+/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = TRUE, del_on_fail = FALSE, disable_warning = FALSE, redraw_mob = TRUE, permanent = FALSE)
+	if(!istype(W))
+		return
 
 	if(!W.mob_can_equip(src, slot, disable_warning))
-		if(del_on_fail) cdel(W)
-		else
-			if(!disable_warning) to_chat(src, "<span class='warning'>You are unable to equip that.</span>")
+		if(del_on_fail)
+			cdel(W)
+		else if(!disable_warning)
+			to_chat(src, "<span class='warning'>You are unable to equip that.</span>")
 		return
 	var/start_loc = W.loc
 	if(W.time_to_equip && !ignore_delay)
@@ -158,9 +160,11 @@
 					W.flags_item |= NODROP
 				if(W.loc == start_loc && get_active_hand() != W)
 					//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
-					if(W.zoom) W.zoom(src)
-					if(W.flags_item & TWOHANDED) W.unwield(src)
-		return 1
+					if(W.zoom)
+						W.zoom(src)
+					if(W.flags_item & TWOHANDED)
+						W.unwield(src)
+		return TRUE
 	else
 		equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 		if(permanent)
@@ -168,9 +172,11 @@
 			W.flags_item |= NODROP
 		if(W.loc == start_loc && get_active_hand() != W)
 			//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
-			if(W.zoom) W.zoom(src)
-			if(W.flags_item & TWOHANDED) W.unwield(src)
-		return 1
+			if(W.zoom)
+				W.zoom(src)
+			if(W.flags_item & TWOHANDED)
+				W.unwield(src)
+		return TRUE
 
 //This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
 //In most cases you will want to use equip_to_slot_if_possible()
@@ -189,6 +195,7 @@ var/list/slot_equipment_priority = list( \
 		WEAR_BACK,\
 		WEAR_ID,\
 		WEAR_BODY,\
+		WEAR_ACCESSORY,\
 		WEAR_JACKET,\
 		WEAR_FACE,\
 		WEAR_HEAD,\
@@ -199,19 +206,24 @@ var/list/slot_equipment_priority = list( \
 		WEAR_WAIST,\
 		WEAR_J_STORE,\
 		WEAR_L_STORE,\
-		WEAR_R_STORE\
+		WEAR_R_STORE,\
+		EQUIP_IN_BOOT,\
+		EQUIP_IN_STORAGE,\
+		EQUIP_IN_L_POUCH,\
+		EQUIP_IN_R_POUCH\
 	)
 
 //puts the item "W" into an appropriate slot in a human's inventory
 //returns 0 if it cannot, 1 if successful
-/mob/proc/equip_to_appropriate_slot(obj/item/W, ignore_delay = 1)
-	if(!istype(W)) return 0
+/mob/proc/equip_to_appropriate_slot(obj/item/W, ignore_delay = TRUE)
+	if(!istype(W))
+		return FALSE
 
 	for(var/slot in slot_equipment_priority)
 		if(equip_to_slot_if_possible(W, slot, ignore_delay, 0, 1, 1)) //del_on_fail = 0; disable_warning = 0; redraw_mob = 1
-			return 1
+			return TRUE
 
-	return 0
+	return FALSE
 
 /mob/proc/reset_view(atom/A)
 	if (client)

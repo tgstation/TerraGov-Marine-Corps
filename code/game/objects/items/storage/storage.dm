@@ -330,14 +330,15 @@
 //This proc return 1 if the item can be picked up and 0 if it can't.
 //Set the stop_messages to stop it from printing messages
 /obj/item/storage/proc/can_be_inserted(obj/item/W as obj, stop_messages = 0)
-	if(!istype(W) || (W.flags_item & NODROP)) return //Not an item
+	if(!istype(W) || (W.flags_item & NODROP))
+		return //Not an item
 
 	if(src.loc == W)
-		return 0 //Means the item is already in the storage item
+		return FALSE //Means the item is already in the storage item
 	if(storage_slots != null && contents.len >= storage_slots)
 		if(!stop_messages)
 			to_chat(usr, "<span class='notice'>[src] is full, make some space.</span>")
-		return 0 //Storage item is full
+		return FALSE //Storage item is full
 
 	if(can_hold.len)
 		var/ok = 0
