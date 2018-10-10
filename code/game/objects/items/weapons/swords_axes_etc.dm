@@ -70,7 +70,7 @@
 		icon_state = "telebaton_1"
 		item_state = "telebaton_1"
 		w_class = 3
-		force = 50//Super Robust - Probably shouldn't give it to anyone who isn't staff unless you want BEATINGS
+		force = 10
 		attack_verb = list("smacked", "struck", "slapped")
 	else
 		user.visible_message("\blue [user] collapses their telescopic baton.",\
@@ -109,9 +109,10 @@
 			user.KnockDown(3 * force)
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
-				H.apply_damage(2*force, BRUTE, "head")
+				H.apply_damage(force, BRUTE, "head")
+				H.apply_damage(force, HALLOSS, "head")
 			else
-				user.take_limb_damage(2*force)
+				user.take_limb_damage(force * 2)
 			return
 		if(..())
 			//playsound(src.loc, "swing_hit", 25, 1, 6)

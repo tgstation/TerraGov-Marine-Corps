@@ -29,6 +29,12 @@
 			to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 
+		if(ishuman(user))
+			var/mob/living/carbon/human/S = user
+			if(S.species.flags & IS_SYNTHETIC)
+				to_chat(user, "<span class='warning'>Your programming prevents you from operating this device!</span>")
+				return
+
 		add_fingerprint(user)
 		activate(user)
 		if((CLUMSY in user.mutations) && prob(50))
