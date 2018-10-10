@@ -660,7 +660,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					maxHealth = 250
 					plasma_max = 400
 					plasma_gain = 15
-					caste_desc = "It's literally crawling with 10 huggers."
+					caste_desc = "It's literally crawling with 11 huggers."
 					armor_deflection = 15
 					tacklemin = 5
 					tacklemax = 6
