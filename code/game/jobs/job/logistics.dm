@@ -103,13 +103,14 @@ A happy ship is a well-functioning ship."}
 				WEAR_FEET = /obj/item/clothing/shoes/marine,
 				WEAR_HANDS = /obj/item/clothing/gloves/yellow,
 				WEAR_WAIST = /obj/item/storage/belt/utility/full,
+				WEAR_EYES = /obj/item/clothing/glasses/welding,
 				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,
 				WEAR_R_STORE = /obj/item/storage/pouch/general/medium
 				)
 
 	generate_stored_equipment()
 		. = list(
-				WEAR_L_HAND = /obj/item/device/t_scanner
+				WEAR_L_HAND = /obj/item/tool/weldpack
 				)
 
 	generate_entry_message(mob/living/carbon/human/H)

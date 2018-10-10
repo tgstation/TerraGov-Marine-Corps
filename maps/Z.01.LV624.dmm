@@ -1967,7 +1967,7 @@
 "LQ" = (/obj/structure/jungle/vines/heavy{icon_state = "Med1"; pixel_x = 0},/turf/closed/wall,/area/lv624/lazarus/atmos)
 "LR" = (/obj/structure/fence,/turf/open/gm/grass{icon_state = "grass2"},/area/lv624/ground/compound/c)
 "LS" = (/obj/structure/rack{layer = 2.5},/obj/item/weapon/gun/shotgun/pump,/obj/item/ammo_magazine/shotgun,/turf/open/floor{icon_state = "cult"; dir = 2},/area/lv624/lazarus/armory)
-"LT" = (/obj/effect/decal/cleanable/cobweb2,/obj/item/reagent_container/hypospray/autoinjector/tricord,/obj/structure/rack{layer = 2.5},/obj/item/reagent_container/hypospray/autoinjector/dexP{pixel_x = -2; pixel_y = -2},/obj/item/reagent_container/hypospray/autoinjector/quickclot{pixel_x = 3; pixel_y = 3},/obj/item/reagent_container/hypospray/autoinjector/tricord,/obj/effect/landmark{name = "crap_item"},/obj/effect/landmark{name = "crap_item"},/turf/open/floor{icon_state = "cult"; dir = 2},/area/lv624/lazarus/armory)
+"LT" = (/obj/effect/decal/cleanable/cobweb2,/obj/item/reagent_container/hypospray/autoinjector/tricordrazine,/obj/structure/rack{layer = 2.5},/obj/item/reagent_container/hypospray/autoinjector/dexP{pixel_x = -2; pixel_y = -2},/obj/item/reagent_container/hypospray/autoinjector/quickclot{pixel_x = 3; pixel_y = 3},/obj/item/reagent_container/hypospray/autoinjector/tricordrazine,/obj/effect/landmark{name = "crap_item"},/obj/effect/landmark{name = "crap_item"},/turf/open/floor{icon_state = "cult"; dir = 2},/area/lv624/lazarus/armory)
 "LU" = (/obj/structure/jungle/plantbot1,/turf/open/gm/grass,/area/lv624/ground/jungle1)
 "LV" = (/turf/open/gm/grass,/area/lv624/ground/jungle1)
 "LW" = (/turf/closed/gm/dense{icon_state = "wall2"},/area/lv624/ground/jungle1)

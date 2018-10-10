@@ -102,8 +102,8 @@
 	storage_slots = 5
 	can_hold = list(
 					"/obj/item/stack/medical/ointment",
-					"/obj/item/reagent_container/hypospray/autoinjector/Tramadol",
-					"/obj/item/reagent_container/hypospray/autoinjector/tricord",
+					"/obj/item/reagent_container/hypospray/autoinjector/tramadol",
+					"/obj/item/reagent_container/hypospray/autoinjector/tricordrazine",
 					"/obj/item/stack/medical/bruise_pack",
 					"/obj/item/stack/medical/splint"
 					)
@@ -114,8 +114,8 @@
 /obj/item/storage/pouch/firstaid/full/New()
 	..()
 	new /obj/item/stack/medical/ointment (src)
-	new /obj/item/reagent_container/hypospray/autoinjector/Tramadol (src)
-	new /obj/item/reagent_container/hypospray/autoinjector/tricord (src)
+	new /obj/item/reagent_container/hypospray/autoinjector/tramadol (src)
+	new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine (src)
 	new /obj/item/stack/medical/bruise_pack (src)
 	new /obj/item/stack/medical/splint (src)
 
@@ -284,6 +284,11 @@
 	    "/obj/item/reagent_container/hypospray"
 	)
 
+/obj/item/storage/pouch/medical/full/New()
+	..()
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/splint(src)
 
 /obj/item/storage/pouch/autoinjector
 	name = "auto-injector pouch"
@@ -307,11 +312,13 @@
 
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
-	max_w_class = 3
+	w_class = 4.1 //does not fit in backpack
+	max_w_class = 4
 	draw_mode = 1
 	icon_state = "medkit"
 	desc = "It's specifically made to hold a medkit."
 	can_hold = list("/obj/item/storage/firstaid")
+	bypass_w_limit = list("/obj/item/storage/firstaid")
 
 
 /obj/item/storage/pouch/medkit/full/New()

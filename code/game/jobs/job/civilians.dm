@@ -35,19 +35,20 @@
 				WEAR_EAR = /obj/item/device/radio/headset/almayer/cmo,
 				WEAR_BODY = /obj/item/clothing/under/rank/medical/green,
 				WEAR_FEET = /obj/item/clothing/shoes/white,
+				WEAR_WAIST = /obj/item/storage/belt/medical,
 				WEAR_HANDS = /obj/item/clothing/gloves/latex,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat,
 				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
 				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,
-				WEAR_R_STORE = /obj/item/storage/pouch/medical,
-				WEAR_L_STORE = /obj/item/storage/pouch/syringe,
-				WEAR_HEAD = /obj/item/clothing/head/surgery/green
+				WEAR_R_STORE = /obj/item/storage/pouch/medkit,
+				WEAR_L_STORE = /obj/item/storage/pouch/medical/full,
+				WEAR_HEAD = /obj/item/clothing/head/surgery/green,
+				WEAR_FACE = /obj/item/clothing/mask/surgical
 				//WEAR_HEAD = /obj/item/clothing/head/cmo //2.10.2018 Will want to work on this a bit more, it doesn't quite fit. - Joshuu
 				)
 
 	generate_stored_equipment()
 		. = list(
-				WEAR_WAIST = /obj/item/device/healthanalyzer,
 				WEAR_J_STORE = /obj/item/device/flashlight/pen,
 				WEAR_L_HAND = /obj/item/storage/firstaid/adv
 				)
@@ -85,18 +86,19 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 				WEAR_EAR = /obj/item/device/radio/headset/almayer/doc,
 				WEAR_BODY = /obj/item/clothing/under/rank/medical/green,
 				WEAR_FEET = /obj/item/clothing/shoes/white,
+				WEAR_WAIST = /obj/item/storage/belt/medical,
 				WEAR_HANDS = /obj/item/clothing/gloves/latex,
 				//WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat,
 				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
 				WEAR_HEAD = /obj/item/clothing/head/surgery/green,
 				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,
-				WEAR_R_STORE = /obj/item/storage/pouch/medical,
-				WEAR_L_STORE = /obj/item/storage/pouch/syringe
+				WEAR_R_STORE = /obj/item/storage/pouch/medkit,
+				WEAR_L_STORE = /obj/item/storage/pouch/medical/full,
+				WEAR_FACE = /obj/item/clothing/mask/surgical
 				)
 
 	generate_stored_equipment()
 		. = list(
-				WEAR_WAIST = /obj/item/device/healthanalyzer,
 				WEAR_L_HAND = /obj/item/storage/firstaid/adv
 				)
 
@@ -133,18 +135,20 @@ You are also an expert when it comes to medication and treatment. If you do not 
 				WEAR_EAR = /obj/item/device/radio/headset/almayer/doc,
 				WEAR_BODY = /obj/item/clothing/under/marine/officer/researcher,
 				WEAR_FEET = /obj/item/clothing/shoes/laceup,
+				WEAR_WAIST = /obj/item/storage/belt/medical,
 				WEAR_HANDS = /obj/item/clothing/gloves/latex,
 				WEAR_JACKET = /obj/item/clothing/suit/storage/labcoat/researcher,
 				WEAR_EYES = /obj/item/clothing/glasses/hud/health,
 				WEAR_BACK = /obj/item/storage/backpack/marine/satchel,
-				WEAR_R_STORE = /obj/item/storage/pouch/medical,
-				WEAR_L_STORE = /obj/item/storage/pouch/syringe
+				WEAR_R_STORE = /obj/item/storage/pouch/medkit,
+				WEAR_L_STORE = /obj/item/storage/pouch/medical/full,
+				WEAR_FACE = /obj/item/clothing/mask/surgical
 				)
 
 	generate_stored_equipment()
 		. = list(
-				WEAR_WAIST = /obj/item/device/healthanalyzer,
-				WEAR_J_STORE = /obj/item/device/flashlight/pen
+				WEAR_J_STORE = /obj/item/device/flashlight/pen,
+				WEAR_L_HAND = /obj/item/storage/firstaid/adv
 				)
 
 	generate_entry_message(mob/living/carbon/human/H)

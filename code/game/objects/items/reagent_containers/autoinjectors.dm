@@ -36,12 +36,12 @@
 
 
 
-/obj/item/reagent_container/hypospray/autoinjector/tricord
+/obj/item/reagent_container/hypospray/autoinjector/tricordrazine
 	name = "\improper Tricordrazine autoinjector"
 	desc = "An autoinjector loaded with 15 units of Tricordrazine, a weak general use medicine for treating damage."
 	icon_state = "tricord"
 
-/obj/item/reagent_container/hypospray/autoinjector/tricord/New()
+/obj/item/reagent_container/hypospray/autoinjector/tricordrazine/New()
 	..()
 	reagents.add_reagent("tricordrazine", 15)
 	update_icon()
@@ -93,12 +93,12 @@
 	reagents.add_reagent("anti_toxin", 15)
 	update_icon()
 
-/obj/item/reagent_container/hypospray/autoinjector/Tramadol
+/obj/item/reagent_container/hypospray/autoinjector/tramadol
 	name = "\improper Tramadol autoinjector"
 	desc = "An auto-injector loaded with 15 units of Tramadol, a weak but effective painkiller for normal wounds."
 	icon_state = "tramadol"
 
-/obj/item/reagent_container/hypospray/autoinjector/Tramadol/New()
+/obj/item/reagent_container/hypospray/autoinjector/tramadol/New()
 	..()
 	reagents.add_reagent("tramadol", 15)
 	update_icon()
@@ -135,12 +135,12 @@
 	reagents.add_reagent("bicaridine", 15)
 	update_icon()
 
-/obj/item/reagent_container/hypospray/autoinjector/Inaprovaline
+/obj/item/reagent_container/hypospray/autoinjector/inaprovaline
 	name = "\improper Inaprovaline autoinjector"
 	desc = "An auto-injector loaded with 15 units of Inaprovaline, an emergency stabilization medicine for patients in critical condition."
 	icon_state = "clonefix" //TEMP
 
-/obj/item/reagent_container/hypospray/autoinjector/Inaprovaline/New()
+/obj/item/reagent_container/hypospray/autoinjector/inaprovaline/New()
 	..()
 	reagents.add_reagent("inaprovaline", 15)
 	update_icon()
