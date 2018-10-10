@@ -21,21 +21,21 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 
-	New()
-		..()
-		fire_delay = config.max_fire_delay * 5
-		attachable_offset = list("rail_x" = 12, "rail_y" = 23)
+/obj/item/weapon/gun/flamer/New()
+	..()
+	fire_delay = config.max_fire_delay * 5
+	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 
-	unique_action(mob/user)
-		toggle_flame(user)
+/obj/item/weapon/gun/flamer/unique_action(mob/user)
+	toggle_flame(user)
 
-	examine(mob/user)
-		..()
-		to_chat(user, "It's turned [lit? "on" : "off"].")
-		if(current_mag)
-			to_chat(user, "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!")
-		else
-			to_chat(user, "There's no tank in [src]!")
+/obj/item/weapon/gun/flamer/examine(mob/user)
+	..()
+	to_chat(user, "It's turned [lit? "on" : "off"].")
+	if(current_mag)
+		to_chat(user, "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!")
+	else
+		to_chat(user, "There's no tank in [src]!")
 
 /obj/item/weapon/gun/flamer/able_to_fire(mob/user)
 	. = ..()
@@ -58,16 +58,19 @@
 
 /obj/item/weapon/gun/flamer/Fire(atom/target, mob/living/user, params, reflex)
 	set waitfor = 0
-	if(!able_to_fire(user)) return
+	if(!able_to_fire(user))
+		return
 	var/turf/curloc = get_turf(user) //In case the target or we are expired.
 	var/turf/targloc = get_turf(target)
-	if (!targloc || !curloc) return //Something has gone wrong...
+	if (!targloc || !curloc)
+		return //Something has gone wrong...
 
 	if(!lit)
 		to_chat(user, "<span class='alert'>The weapon isn't lit</span>")
 		return
 
-	if(!current_mag) return
+	if(!current_mag)
+		return
 	if(current_mag.current_rounds <= 0)
 		click_empty(user)
 	else
@@ -98,24 +101,28 @@
 		if(user)
 			if(magazine.reload_delay > 1)
 				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-				if(do_after(user,magazine.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY)) replace_magazine(user, magazine)
+				if(do_after(user,magazine.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
+					replace_magazine(user, magazine)
 				else
 					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
 					return
-			else replace_magazine(user, magazine)
+			else
+				replace_magazine(user, magazine)
 		else
 			current_mag = magazine
 			magazine.loc = src
 			replace_ammo(,magazine)
 
 	update_icon()
-	return 1
+	return TRUE
 
 /obj/item/weapon/gun/flamer/unload(mob/user, reload_override = 0, drop_override = 0)
-	if(!current_mag) return //no magazine to unload
+	if(!current_mag)
+		return //no magazine to unload
 	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
 		current_mag.forceMove(get_turf(src)) //Drop it on the ground.
-	else user.put_in_hands(current_mag)
+	else
+		user.put_in_hands(current_mag)
 
 	playsound(user, unload_sound, 25, 1)
 	user.visible_message("<span class='notice'>[user] unloads [current_mag] from [src].</span>",
@@ -155,7 +162,8 @@
 			burnlevel = 10
 			burntime = 10
 			max_range = 4
-		else return
+		else
+			return
 
 	var/list/turf/turfs = getline2(user,target)
 	playsound(user, fire_sound, 50, 1)
@@ -166,18 +174,18 @@
 		if(T == user.loc)
 			prev_T = T
 			continue
-		if(T.density)
-			break
 		if(loc != user)
 			break
 		if(!current_mag || !current_mag.current_rounds)
 			break
 		if(distance > max_range)
 			break
-		if(prev_T && LinkBlocked(prev_T, T))
+		if(prev_T && LinkPreBlocksFire(prev_T, T))
 			break
 		current_mag.current_rounds--
 		flame_turf(T,user, burntime, burnlevel, fire_color)
+		if(PostBlocksFire(T))
+			break
 		distance++
 		prev_T = T
 		sleep(1)
@@ -203,11 +211,13 @@
 		cdel(V)
 		
 	for(var/mob/living/M in T) //Deal bonus damage if someone's caught directly in initial stream
-		if(M.stat == DEAD)		continue
+		if(M.stat == DEAD)
+			continue
 
 		if(isXeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
-			if(X.fire_immune) 	continue
+			if(X.fire_immune)
+				continue
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M //fixed :s
 
@@ -283,7 +293,8 @@
 		for (var/turf/L in left)
 			if (L.density)
 				break
-			if(prev_L && LinkBlocked(prev_L, L))  break
+			if(prev_L && LinkBlocked(prev_L, L))
+				break
 
 			flame_turf(L, user, burntime, burnlevel, "green")
 			prev_L = L
@@ -325,14 +336,15 @@
 				else
 					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
 					return
-			else replace_magazine(user, magazine)
+			else
+				replace_magazine(user, magazine)
 		else
 			current_mag = magazine
 			magazine.loc = src
 			replace_ammo(,magazine)
 
 	update_icon()
-	return 1
+	return TRUE
 
 /obj/item/weapon/gun/flamer/M240T/able_to_fire(mob/user)
 	. = ..()
@@ -361,16 +373,20 @@
 		flame_color = f_color
 
 	icon_state = "[flame_color]_2"
-	if(fire_lvl) firelevel = fire_lvl
-	if(burn_lvl) burnlevel = burn_lvl
+	if(fire_lvl)
+		firelevel = fire_lvl
+	if(burn_lvl)
+		burnlevel = burn_lvl
 	processing_objects.Add(src)
 
 	if(fire_spread_amount > 0)
 		var/turf/T
 		for(var/dirn in cardinal)
 			T = get_step(loc, dirn)
-			if(istype(T,/turf/open/space)) continue
-			if(locate(/obj/flamer_fire) in T) continue //No stacking
+			if(istype(T,/turf/open/space))
+				continue
+			if(locate(/obj/flamer_fire) in T)
+				continue //No stacking
 			var/new_spread_amt = T.density ? 0 : fire_spread_amount - 1 //walls stop the spread
 			if(new_spread_amt)
 				for(var/obj/O in T)
@@ -384,7 +400,7 @@
 /obj/flamer_fire/Dispose()
 	SetLuminosity(0)
 	processing_objects.Remove(src)
-	. = ..()
+	return ..()
 
 
 /obj/flamer_fire/Crossed(mob/living/M) //Only way to get it to reliable do it when you walk into it.
@@ -402,14 +418,16 @@
 				return
 		if(isXeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
-			if(X.fire_immune) 	return
+			if(X.fire_immune)
+				return
 		M.adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
 		if (prob(firelevel + 2*M.fire_stacks)) //the more soaked in fire you are, the likelier to be ignited
 			M.IgniteMob()
 
 		M.adjustFireLoss(round(burnlevel*0.5)) //This makes fire stronk.
 		to_chat(M, "<span class='danger'>You are burned!</span>")
-		if(isXeno(M)) M.updatehealth()
+		if(isXeno(M))
+			M.updatehealth()
 
 
 /obj/flamer_fire/proc/updateicon()
@@ -430,7 +448,7 @@
 /obj/flamer_fire/process()
 	var/turf/T = loc
 	firelevel = max(0, firelevel)
-	if(!istype(T)) //Is it a valid turf? Has to be on a floor
+	if(!istype(T)) //Is it a valid turf?
 		cdel(src)
 		return
 
@@ -440,9 +458,12 @@
 		cdel(src)
 		return
 
+	T.flamer_fire_act()
+
 	var/j = 0
 	for(var/i in loc)
-		if(++j >= 11) break
+		if(++j >= 11)
+			break
 		if(isliving(i))
 			var/mob/living/I = i
 			if(istype(I,/mob/living/carbon/human))
@@ -461,10 +482,12 @@
 					X.plasma_stored = X.plasma_max
 					X.usedcharge = 0 //Reset charge cooldown
 					X.show_message(text("<span class='danger'>The heat of the fire roars in your veins! KILL! CHARGE! DESTROY!</span>"),1)
-					if(rand(1,100) < 70) X.emote("roar")
+					if(rand(1,100) < 70)
+						X.emote("roar")
 				continue
 			I.adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
-			if(prob(firelevel)) I.IgniteMob()
+			if(prob(firelevel))
+				I.IgniteMob()
 			//I.adjustFireLoss(rand(10 ,burnlevel)) //Including the fire should be way stronger.
 			I.show_message(text("<span class='warning'>You are burned!</span>"),1)
 			if(isXeno(I)) //Have no fucken idea why the Xeno thing was there twice.
