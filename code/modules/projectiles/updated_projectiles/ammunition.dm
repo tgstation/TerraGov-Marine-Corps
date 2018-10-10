@@ -380,7 +380,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 		icon_state = "[base_icon_state]_empty"
 
 /obj/item/ammobox/examine(mob/user)
-	to_chat(user, "It contains [magazine_amount] out of [max_magazine_amount] magazines\s.")
+	. = ..()
+	to_chat(user, "It contains [magazine_amount] out of [max_magazine_amount] magazines.")
 
 /obj/item/ammobox/attackby(obj/item/I, mob/user)
 	var/obj/item/ammo_magazine/MG = I
@@ -478,6 +479,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 			cdel(src)
 
 /obj/item/ammo_magazine/shotgunbox/examine(mob/user)
+	. = ..()
 	to_chat(user, "It contains [current_rounds] out of [max_rounds] rounds.")
 
 /obj/item/ammo_magazine/shotgunbox/attack_hand(mob/user)
