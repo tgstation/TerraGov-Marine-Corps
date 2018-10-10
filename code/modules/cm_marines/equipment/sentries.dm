@@ -21,31 +21,28 @@
 	storage_slots = 6
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 
-	New()
-		..()
-		spawn(1)
-			var/obj/item/stack/sheet/plasteel/plasteel_stack = new(src)
-			plasteel_stack.amount = 20
-			var/obj/item/stack/sheet/metal/metal_stack = new(src)
-			metal_stack.amount = 10
-			new /obj/item/device/turret_top(src)
-			new /obj/item/device/turret_sensor(src)
-			new /obj/item/cell(src)
-			new /obj/item/ammo_magazine/sentry(src)
+/obj/item/storage/box/sentry/New()
+	. = ..()
+	new /obj/item/stack/sheet/plasteel/sentry_stack(src)
+	new /obj/item/stack/sheet/metal/small_stack(src)
+	new /obj/item/device/turret_top(src)
+	new /obj/item/device/turret_sensor(src)
+	new /obj/item/cell(src)
+	new /obj/item/ammo_magazine/sentry(src)
 
 /obj/machinery/marine_turret_frame
 	name = "\improper UA 571-C turret frame"
 	desc = "An unfinished turret frame. It requires wrenching, cable coil, a turret piece, a sensor, and metal plating."
 	icon = 'icons/Marine/turret.dmi'
 	icon_state = "sentry_base"
-	anchored = 0
-	density = 1
+	anchored = FALSE
+	density = TRUE
 	layer = ABOVE_OBJ_LAYER
-	var/has_cable = 0
-	var/has_top = 0
-	var/has_plates = 0
-	var/is_welded = 0
-	var/has_sensor = 0
+	var/has_cable = FALSE
+	var/has_top = FALSE
+	var/has_plates = FALSE
+	var/is_welded = FALSE
+	var/has_sensor = FALSE
 	var/frame_hp = 100
 
 
@@ -62,7 +59,8 @@
 
 
 /obj/machinery/marine_turret_frame/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(isXenoLarva(M)) return //Larvae can't do shit
+	if(isXenoLarva(M))
+		return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
 	"<span class='danger'>You slash [src]!</span>")
 	M.animation_attack_on(src)
@@ -114,7 +112,7 @@
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] secures [src] to the ground.</span>",
 				"<span class='notice'>You secure [src] to the ground.</span>")
-				anchored = 1
+				anchored = TRUE
 		return
 
 
@@ -132,7 +130,7 @@
 		"<span class='notice'>You begin installing [src]'s wiring.</span>")
 		if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
 			if(CC.use(10))
-				has_cable = 1
+				has_cable = TRUE
 				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] installs [src]'s wiring.</span>",
 				"<span class='notice'>You install [src]'s wiring.</span>")
@@ -155,7 +153,7 @@
 			playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] installs [O] on [src].</span>",
 			"<span class='notice'>You install [O] on [src].</span>")
-			has_top = 1
+			has_top = TRUE
 			icon_state = "sentry_armorless"
 			user.drop_held_item()
 			cdel(O)
@@ -181,7 +179,7 @@
 		if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 			if(!M) return
 			if(M.amount >= 10)
-				has_plates = 1
+				has_plates = TRUE
 				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] installs [src]'s reinforced plating.</span>",
 				"<span class='notice'>You install [src]'s reinforced plating.</span>")
@@ -206,7 +204,7 @@
 				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
 				user.visible_message("<span class='notice'>[user] welds [src]'s plating to the frame.</span>",
 				"<span class='notice'>You weld [src]'s plating to the frame.</span>")
-				is_welded = 1
+				is_welded = TRUE
 				icon_state = "sentry_sensor_none"
 				return
 			else
@@ -226,7 +224,7 @@
 		user.visible_message("<span class='notice'>[user] begins installing [O] on [src].</span>",
 		"<span class='notice'>You begin installing [O] on [src].</span>")
 		if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-			has_sensor = 1
+			has_sensor = TRUE
 			playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] installs [O] on [src].</span>",
 			"<span class='notice'>You install [O] on [src].</span>")
@@ -244,7 +242,7 @@
 /obj/item/device/turret_sensor
 	name = "\improper UA 571-C turret sensor"
 	desc = "An AI control and locking sensor for an automated sentry. This must be installed on the final product for it to work."
-	unacidable = 1
+	unacidable = TRUE
 	w_class = 1
 	icon = 'icons/Marine/turret.dmi'
 	icon_state = "sentry_sensor"
@@ -252,7 +250,7 @@
 /obj/item/device/turret_top
 	name = "\improper UA 571-C turret"
 	desc = "The turret part of an automated sentry turret. This must be installed on a turret frame and welded together for it to do anything."
-	unacidable = 1
+	unacidable = TRUE
 	w_class = 5
 	icon = 'icons/Marine/turret.dmi'
 	icon_state = "sentry_head"
@@ -262,32 +260,32 @@
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
 	icon = 'icons/Marine/turret.dmi'
 	icon_state = "sentry_off"
-	anchored = 1
-	unacidable = 1
-	density = 1
+	anchored = TRUE
+	unacidable = TRUE
+	density = TRUE
 	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
 	use_power = 0
 	flags_atom = RELAY_CLICK
 	req_one_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_ENGPREP, ACCESS_MARINE_LEADER)
 	var/iff_signal = ACCESS_IFF_MARINE
-	var/safety_off = 0
+	var/safety_off = FALSE
 	var/rounds = 500
 	var/rounds_max = 500
 	var/burst_size = 10
-	var/locked = 0
+	var/locked = FALSE
 	var/atom/target = null
-	var/manual_override = 0
-	var/on = 0
+	var/manual_override = FALSE
+	var/on = FALSE
 	var/health = 200
 	var/health_max = 200
 	stat = 0 //Used just like mob.stat
 	var/datum/effect_system/spark_spread/spark_system //The spark system, used for generating... sparks?
 	var/obj/item/cell/cell = null
-	var/burst_fire = 0
+	var/burst_fire = FALSE
 	var/obj/machinery/camera/camera = null
 	var/fire_delay = 3
 	var/last_fired = 0
-	var/is_bursting = 0
+	var/is_bursting = FALSE
 	var/range = 7
 	var/muzzle_flash_lum = 3 //muzzle flash brightness
 	var/obj/item/turret_laptop/laptop = null
@@ -295,35 +293,35 @@
 	var/datum/ammo/bullet/turret/ammo = /datum/ammo/bullet/turret
 	var/obj/item/projectile/in_chamber = null
 
-	New()
-		spark_system = new /datum/effect_system/spark_spread
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		cell = new (src)
-		camera = new (src)
-		camera.network = list("military")
-		camera.c_tag = "[name] ([rand(0, 1000)])"
-		spawn(2)
-			stat = 0
-			//processing_objects.Add(src)
-		ammo = ammo_list[ammo]
-		start_processing()
+/obj/machinery/marine_turret/New()
+	spark_system = new /datum/effect_system/spark_spread
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+	cell = new (src)
+	camera = new (src)
+	camera.network = list("military")
+	camera.c_tag = "[name] ([rand(0, 1000)])"
+	spawn(2)
+		stat = 0
+		//processing_objects.Add(src)
+	ammo = ammo_list[ammo]
+	start_processing()
 
-	Dispose() //Clear these for safety's sake.
-		if(operator)
-			operator.unset_interaction()
-			operator = null
-		if(camera)
-			cdel(camera)
-			camera = null
-		if(cell)
-			cdel(cell)
-			cell = null
-		if(target)
-			target = null
-		SetLuminosity(0)
-		//processing_objects.Remove(src)
-		. = ..()
+/obj/machinery/marine_turret/Dispose() //Clear these for safety's sake.
+	if(operator)
+		operator.unset_interaction()
+		operator = null
+	if(camera)
+		cdel(camera)
+		camera = null
+	if(cell)
+		cdel(cell)
+		cell = null
+	if(target)
+		target = null
+	SetLuminosity(0)
+	//processing_objects.Remove(src)
+	. = ..()
 
 /obj/machinery/marine_turret/attack_hand(mob/user as mob)
 	if(isYautja(user))
@@ -446,7 +444,7 @@
 				"<span class='notice'>You take manual control of [src]</span>")
 				visible_message("\icon[src] <span class='warning'>The [name] buzzes: <B>WARNING!</B> MANUAL OVERRIDE INITIATED.</span>")
 				user.set_interaction(src)
-				manual_override = 1
+				manual_override = TRUE
 			else
 				if(user.interactee)
 					user.visible_message("<span class='notice'>[user] lets go of [src]</span>",
@@ -465,7 +463,7 @@
 				visible_message("\icon[src] <span class='notice'>The [name] hums to life and emits several beeps.</span>")
 				visible_message("\icon[src] <span class='notice'>The [name] buzzes in a monotone voice: 'Default systems initiated'.</span>'")
 				target = null
-				on = 1
+				on = TRUE
 				SetLuminosity(7)
 				if(!camera)
 					camera = new /obj/machinery/camera(src)
@@ -473,7 +471,7 @@
 					camera.c_tag = src.name
 				update_icon()
 			else
-				on = 0
+				on = FALSE
 				user.visible_message("<span class='notice'>[user] deactivates [src].</span>",
 				"<span class='notice'>You deactivate [src].</span>")
 				visible_message("\icon[src] <span class='notice'>The [name] powers down and goes silent.</span>")
@@ -486,7 +484,7 @@
 	..()
 	if(manual_override && operator == user)
 		operator = null
-		manual_override = 0
+		manual_override = FALSE
 
 /obj/machinery/marine_turret/check_eye(mob/user)
 	if(user.is_mob_incapacitated() || get_dist(user, src) > 1 || user.blinded || user.lying || !user.client)
@@ -705,9 +703,9 @@
 		if(prob(5 + round(damage/5)))
 			visible_message("\icon[src] <span class='danger'>The [name] is knocked over!</span>")
 			stat = 1
-			on = 0
+			on = FALSE
 	if(stat)
-		density = 0
+		density = FALSE
 	else
 		density = initial(density)
 	update_icon()
@@ -715,25 +713,25 @@
 /obj/machinery/marine_turret/proc/check_power(var/power)
 	if (!cell)
 		icon_state = "sentry_battery_none"
-		return 0
+		return FALSE
 
 	if(!on || stat)
-		on = 0
+		on = FALSE
 		icon_state = "sentry_off"
-		return 0
+		return FALSE
 
 	if(cell.charge - power <= 0)
 		cell.charge = 0
 		visible_message("\icon[src] <span class='warning'>[src] emits a low power warning and immediately shuts down!</span>")
 		playsound(loc, 'sound/weapons/smg_empty_alarm.ogg', 25, 1)
-		on = 0
+		on = FALSE
 		update_icon()
 		SetLuminosity(0)
 		icon_state = "sentry_battery_dead"
-		return 0
+		return FALSE
 
 	cell.charge -= power
-	return 1
+	return TRUE
 
 /obj/machinery/marine_turret/emp_act(severity)
 	if(cell)
@@ -745,7 +743,7 @@
 			for(var/i = 1 to 6)
 				dir = pick(1, 2, 3, 4)
 				sleep(2)
-			on = 0
+			on = FALSE
 	if(health > 0)
 		update_health(25)
 	return
@@ -803,7 +801,7 @@
 		update_icon()
 		return
 
-	manual_override = 0
+	manual_override = FALSE
 	target = get_target()
 	process_shot()
 	return
@@ -941,58 +939,67 @@
 
 		if(path.len)
 			for(T in path)
-				if(T.density) continue
+				if(T.opacity) continue
 			targets += M
 
 	if(targets.len) . = pick(targets)
 
 //Direct replacement to new proc. Everything works.
 /obj/machinery/marine_turret/handle_click(mob/living/carbon/human/user, atom/A, params)
-	if(!operator || !istype(user)) return 0
-	if(operator != user) return 0
-	if(istype(A, /obj/screen)) return 0
-	if(!manual_override) return 0
-	if(operator.interactee != src) return 0
-	if(is_bursting) return
+	if(!operator || !istype(user) || operator != user)
+		return FALSE
+	if(istype(A, /obj/screen))
+		return FALSE
+	if(!manual_override)
+		return FALSE
+	if(operator.interactee != src)
+		return FALSE
+	if(is_bursting)
+		return
 	if(get_dist(user, src) > 1 || user.is_mob_incapacitated())
 		user.visible_message("<span class='notice'>[user] lets go of [src]</span>",
 		"<span class='notice'>You let go of [src]</span>")
 		visible_message("\icon[src] <span class='notice'>The [name] buzzes: AI targeting re-initialized.</span>")
 		user.unset_interaction()
-		return 0
+		return FALSE
 	if(user.get_active_hand() != null)
 		to_chat(usr, "<span class='warning'>You need a free hand to shoot [src].</span>")
-		return 0
+		return FALSE
 
 	target = A
 	if(!istype(target))
-		return 0
+		return FALSE
 
 	if(target.z != z || target.z == 0 || z == 0 || isnull(operator.loc) || isnull(loc))
-		return 0
+		return FALSE
 
 	if(get_dist(target, loc) > 10)
-		return 0
+		return FALSE
 
 	var/list/modifiers = params2list(params) //Only single clicks.
-	if(modifiers["middle"] || modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"])	return 0
+	if(modifiers["middle"] || modifiers["shift"] || modifiers["alt"] || modifiers["ctrl"])
+		return FALSE
 
 	var/dx = target.x - x
 	var/dy = target.y - y //Calculate which way we are relative to them. Should be 90 degree cone..
 	var/direct
 
 	if(abs(dx) < abs(dy))
-		if(dy > 0)	direct = NORTH
-		else		direct = SOUTH
+		if(dy > 0)
+			direct = NORTH
+		else
+			direct = SOUTH
 	else
-		if(dx > 0)	direct = EAST
-		else		direct = WEST
+		if(dx > 0)
+			direct = EAST
+		else
+			direct = WEST
 
 	if(direct == dir && target.loc != src.loc && target.loc != operator.loc)
 		process_shot()
-		return 1
+		return TRUE
 
-	return 0
+	return FALSE
 /*
 /obj/item/turret_laptop
 	name = "UA 571-C Turret Control Laptop"
@@ -1019,27 +1026,27 @@
 */
 /obj/machinery/marine_turret/premade
 	name = "UA-577 Gauss Turret"
-	immobile = 1
-	on = 1
-	burst_fire = 1
+	immobile = TRUE
+	on = TRUE
+	burst_fire = TRUE
 	rounds = 500
 	rounds_max = 500
 	icon_state = "sentry_on"
 
-	New()
-		spark_system = new /datum/effect_system/spark_spread
-		spark_system.set_up(5, 0, src)
-		spark_system.attach(src)
-		var/obj/item/cell/super/H = new(src) //Better cells in these ones.
-		cell = H
-		camera = new (src)
-		camera.network = list("military")
-		camera.c_tag = "[src.name] ([rand(0,1000)])"
-		spawn(2)
-			stat = 0
-			//processing_objects.Add(src)
-			start_processing()
-		ammo = ammo_list[ammo]
+/obj/machinery/marine_turret/premade/New()
+	spark_system = new /datum/effect_system/spark_spread
+	spark_system.set_up(5, 0, src)
+	spark_system.attach(src)
+	var/obj/item/cell/super/H = new(src) //Better cells in these ones.
+	cell = H
+	camera = new (src)
+	camera.network = list("military")
+	camera.c_tag = "[src.name] ([rand(0,1000)])"
+	spawn(2)
+		stat = 0
+		//processing_objects.Add(src)
+		start_processing()
+	ammo = ammo_list[ammo]
 
 /obj/machinery/marine_turret/premade/dumb
 	name = "Modified UA-577 Gauss Turret"
@@ -1048,47 +1055,47 @@
 	rounds = 1000000
 	ammo = /datum/ammo/bullet/turret/dumb
 
-	attack_hand(mob/user as mob)
+/obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)
 
-		if(isYautja(user))
-			to_chat(user, "<span class='warning'>You punch [src] but nothing happens.</span>")
-			return
-		src.add_fingerprint(user)
+	if(isYautja(user))
+		to_chat(user, "<span class='warning'>You punch [src] but nothing happens.</span>")
+		return
+	src.add_fingerprint(user)
 
-		if(!cell || cell.charge <= 0)
-			to_chat(user, "<span class='warning'>You try to activate [src] but nothing happens. The cell must be empty.</span>")
-			return
+	if(!cell || cell.charge <= 0)
+		to_chat(user, "<span class='warning'>You try to activate [src] but nothing happens. The cell must be empty.</span>")
+		return
 
-		if(!anchored)
-			to_chat(user, "<span class='warning'>It must be anchored to the ground before you can activate it.</span>")
-			return
+	if(!anchored)
+		to_chat(user, "<span class='warning'>It must be anchored to the ground before you can activate it.</span>")
+		return
 
-		if(!on)
-			to_chat(user, "You turn on the [src].")
-			visible_message("\blue [src] hums to life and emits several beeps.")
-			visible_message("\icon[src] [src] buzzes in a monotone: 'Default systems initiated.'")
-			target = null
-			on = 1
-			SetLuminosity(7)
-			if(!camera)
-				camera = new /obj/machinery/camera(src)
-				camera.network = list("military")
-				camera.c_tag = src.name
-			update_icon()
-		else
-			on = 0
-			user.visible_message("<span class='notice'>[user] deactivates [src].</span>",
-			"<span class='notice'>You deactivate [src].</span>")
-			visible_message("\icon[src] <span class='notice'>The [name] powers down and goes silent.</span>")
-			update_icon()
+	if(!on)
+		to_chat(user, "You turn on the [src].")
+		visible_message("\blue [src] hums to life and emits several beeps.")
+		visible_message("\icon[src] [src] buzzes in a monotone: 'Default systems initiated.'")
+		target = null
+		on = TRUE
+		SetLuminosity(7)
+		if(!camera)
+			camera = new /obj/machinery/camera(src)
+			camera.network = list("military")
+			camera.c_tag = src.name
+		update_icon()
+	else
+		on = FALSE
+		user.visible_message("<span class='notice'>[user] deactivates [src].</span>",
+		"<span class='notice'>You deactivate [src].</span>")
+		visible_message("\icon[src] <span class='notice'>The [name] powers down and goes silent.</span>")
+		update_icon()
 
 //the turret inside the sentry deployment system
 /obj/machinery/marine_turret/premade/dropship
-	density = 0
+	density = FALSE
 	var/obj/structure/dropship_equipment/sentry_holder/deployment_system
 
-	Dispose()
-		if(deployment_system)
-			deployment_system.deployed_turret = null
-			deployment_system = null
-		. = ..()
+/obj/machinery/marine_turret/premade/dropship/Dispose()
+	if(deployment_system)
+		deployment_system.deployed_turret = null
+		deployment_system = null
+	. = ..()
