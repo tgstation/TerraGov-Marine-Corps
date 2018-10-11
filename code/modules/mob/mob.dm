@@ -715,7 +715,7 @@ mob/proc/yank_out_object()
 		slurring = max(slurring-1, 0)
 	return slurring
 
-/mob/living/proc/handle_knocked_out() // Currently only used by simple_animal.dm, treated as a special case in other mobs
+/mob/living/proc/handle_knocked_out() //used by simple_animal.dm and xenomorph/life.dm
 	if(knocked_out)
 		AdjustKnockedout(-1)
 	return knocked_out
