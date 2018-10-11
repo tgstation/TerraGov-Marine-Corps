@@ -108,6 +108,7 @@ adjustFireLoss(-(maxHealth / 70 + 0.5 + (maxHealth / 70) * recovery_aura/2)*(m))
 /mob/living/carbon/Xenomorph/handle_statuses()
 	handle_stunned() // 2 each time
 	handle_knocked_down() // 5 each time, used to recover 2 here and 3 elsewhere
+	handle_knocked_out()
 	//handle_stuttering()
 	//handle_silent()
 	//handle_drugged()
