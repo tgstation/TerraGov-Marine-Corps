@@ -402,7 +402,7 @@
 	damage_var_low = config.med_proj_variance
 	damage_var_high = config.high_proj_variance
 	accurate_range = config.close_shell_range
-	damage_falloff = config.smg_damage_falloff
+	damage_falloff = config.reg_damage_falloff
 
 /datum/ammo/bullet/smg/ap
 	name = "armor-piercing submachinegun bullet"
