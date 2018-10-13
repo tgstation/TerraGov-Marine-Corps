@@ -14,18 +14,13 @@
 		return
 	if(!H || !H.mind)
 		return
-	var/obj/item/card/id/I = H.wear_id
 	feedback_add_details("admin_verb","SMRK") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	if(newrank != "Custom")
-		var/datum/job/J = RoleAuthority.roles_by_name[newrank]
-		H.mind.role_comm_title = J.comm_title
-		H.mind.set_cm_skills(J.skills_type)
-		if(istype(I))
-			I.access = J.get_access()
-			I.rank = J.title
-			I.assignment = J.disp_title
-			I.name = "[I.registered_name]'s ID Card ([I.assignment])"
-			I.paygrade = J.paygrade
+		H.reset_comm_title(newrank)
+		H.reset_cm_skills(newrank)
+		H.reset_alt_title(newrank)
+		H.set_ID(newrank)
+		H.update_action_buttons()
 	else
 		var/newcommtitle = input("Write the custom title appearing on comms chat (e.g. Spc)", "Comms title") as null|text
 		if(!newcommtitle)
@@ -34,7 +29,7 @@
 			return
 
 		H.mind.role_comm_title = newcommtitle
-
+		var/obj/item/card/id/I = H.wear_id
 		if(!istype(I) || I != H.wear_id)
 			to_chat(usr, "The mob has no id card, unable to modify ID and chat title.")
 		else
@@ -154,9 +149,9 @@
 			W.paygrade = "E2"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			if(M.mind)
-				M.mind.role_comm_title = "Mar"
-				M.mind.assigned_role = "Squad Marine"
-				M.mind.set_cm_skills(/datum/skills/pfc)
+				M.reset_comm_title(W.rank)
+				M.reset_role(W.rank)
+				M.reset_cm_skills(W.rank)
 
 		if("USCM Private")
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine(M), WEAR_BODY)
@@ -178,9 +173,9 @@
 			W.paygrade = "E2"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			if(M.mind)
-				M.mind.role_comm_title = "Mar"
-				M.mind.assigned_role = "Squad Marine"
-				M.mind.set_cm_skills(/datum/skills/pfc)
+				M.reset_comm_title(W.rank)
+				M.reset_role(W.rank)
+				M.reset_cm_skills(W.rank)
 
 		if("USCM Specialist (Smartgunner)")
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine(M), WEAR_BODY)
@@ -203,9 +198,9 @@
 			W.paygrade = "E3"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			if(M.mind)
-				M.mind.role_comm_title = "LCpl"
-				M.mind.assigned_role = "Squad Smartgunner"
-				M.mind.set_cm_skills(/datum/skills/smartgunner)
+				M.reset_comm_title(W.rank)
+				M.reset_role(W.rank)
+				M.reset_cm_skills(W.rank)
 
 		if("USCM Tank Crewman")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom, WEAR_EAR)
@@ -226,9 +221,9 @@
 			W.paygrade = "O1"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			if(M.mind)
-				M.mind.role_comm_title = "TC"
-				M.mind.assigned_role = "Tank Crewman"
-				M.mind.set_cm_skills(/datum/skills/tank_crew)
+				M.reset_comm_title(W.rank)
+				M.reset_role(W.rank)
+				M.reset_cm_skills(W.rank)
 
 		if("USCM Combat Synth (Smartgunner)")
 			var/obj/item/clothing/under/marine/J = new(M)
@@ -260,15 +255,23 @@
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			M.set_species("Early Synthetic")
 			if(M.mind)
-				M.mind.role_comm_title = "LCpl"
-				M.mind.assigned_role = "Squad Smartgunner"
-				M.mind.set_cm_skills(/datum/skills/smartgunner)
+				M.reset_comm_title(W.rank)
+				M.reset_role(W.rank)
+				M.reset_cm_skills(W.rank)
 
 		if("USCM Specialist (Armor)")
+			var/obj/item/card/id/dogtag/W = new(M)
+			W.name = "[M.real_name]'s ID Card"
+			W.access = list()
+			W.assignment = "Squad Specialist"
+			W.rank = "Squad Specialist"
+			W.registered_name = M.real_name
+			W.paygrade = "E5"
+			M.equip_to_slot_or_del(W, WEAR_ID)
 			if(M.mind)
-				M.mind.role_comm_title = "Spc"
-				M.mind.assigned_role = "Squad Specialist"
-				M.mind.set_cm_skills(/datum/skills/specialist) //skills are set before equipment because of skill restrictions on certain clothes.
+				M.reset_comm_title(W.rank)
+				M.reset_role(W.rank)
+				M.reset_cm_skills(W.rank)
 
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine(M), WEAR_BODY)
 			M.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/specialist(M), WEAR_JACKET)
@@ -281,14 +284,6 @@
 			M.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(M), WEAR_L_HAND)
 			M.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/specialist(M), WEAR_HANDS)
 
-			var/obj/item/card/id/dogtag/W = new(M)
-			W.name = "[M.real_name]'s ID Card"
-			W.access = list()
-			W.assignment = "Squad Specialist"
-			W.rank = "Squad Specialist"
-			W.registered_name = M.real_name
-			W.paygrade = "E5"
-			M.equip_to_slot_or_del(W, WEAR_ID)
 
 
 
@@ -310,9 +305,9 @@
 			W.paygrade = "O2"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			if(M.mind)
-				M.mind.role_comm_title = "SO"
-				M.mind.assigned_role = "Staff Officer"
-				M.mind.set_cm_skills(/datum/skills/SO)
+				M.reset_comm_title(W.rank)
+				M.reset_role(W.rank)
+				M.reset_cm_skills(W.rank)
 
 		if("USCM First-Lieutenant (XO)")
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/exec(M), WEAR_BODY)
@@ -334,9 +329,9 @@
 			W.paygrade = "O3"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			if(M.mind)
-				M.mind.role_comm_title = "XO"
-				M.mind.assigned_role = "Executive Officer"
-				M.mind.set_cm_skills(/datum/skills/XO)
+				M.reset_comm_title(W.rank)
+				M.reset_role(W.rank)
+				M.reset_cm_skills(W.rank)
 
 		if("USCM Captain (CO)")
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/command(M), WEAR_BODY)
@@ -358,9 +353,9 @@
 			W.paygrade = "O4"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 			if(M.mind)
-				M.mind.role_comm_title = "CO"
-				M.mind.assigned_role = "Commander"
-				M.mind.set_cm_skills(/datum/skills/XO)
+				M.reset_comm_title(W.rank)
+				M.reset_role(W.rank)
+				M.reset_cm_skills(W.rank)
 
 		if("Weyland-Yutani PMC (Standard)")
 			var/choice = rand(1,4)
@@ -406,9 +401,11 @@
 			M.equip_to_slot_or_del(W, WEAR_ID)
 
 			if(M.mind)
-				M.mind.assigned_role = "PMC"
-				M.mind.special_role = "MODE"
-				M.mind.set_cm_skills(/datum/skills/pfc)
+				M.reset_comm_title(W.rank)
+				M.reset_role(W.rank)
+				M.reset_cm_skills(W.rank)
+				M.mind.special_role = "PMC"
+
 
 		if("Weyland-Yutani PMC (Leader)")
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_EAR)
@@ -440,17 +437,28 @@
 			M.equip_to_slot_or_del(W, WEAR_ID)
 
 			if(M.mind)
-				M.mind.role_comm_title = "SL"
-				M.mind.assigned_role = "PMC Leader"
-				M.mind.special_role = "MODE"
-				M.mind.set_cm_skills(/datum/skills/SL/pmc)
+				M.reset_comm_title(W.rank)
+				M.reset_role(W.rank)
+				M.reset_cm_skills(W.rank)
+				M.mind.special_role = "PMC"
 
 		if("Weyland-Yutani PMC (Gunner)")
+			var/obj/item/card/id/W = new(src)
+			W.assignment = "PMC Specialist"
+			W.rank = "PMC Gunner"
+			W.registered_name = M.real_name
+			W.name = "[M.real_name]'s ID Card ([W.assignment])"
+			W.icon_state = "centcom"
+			W.access = get_all_accesses()
+			W.access += get_all_centcom_access()
+			W.paygrade = "PMC3"
+			M.equip_to_slot_or_del(W, WEAR_ID)
+
 			if(M.mind)
-				M.mind.role_comm_title = "Spc"
-				M.mind.assigned_role = "PMC"
-				M.mind.special_role = "MODE"
-				M.mind.set_cm_skills(/datum/skills/smartgunner/pmc)
+				M.reset_comm_title(W.rank)
+				M.reset_role(W.rank)
+				M.reset_cm_skills(W.rank)
+				M.mind.special_role = "PMC"
 
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_EAR)
 			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/m56_goggles(M), WEAR_EYES)
@@ -466,9 +474,11 @@
 
 			M.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(M), WEAR_WAIST)
 
+
+		if("Weyland-Yutani PMC (Sniper)")
 			var/obj/item/card/id/W = new(src)
-			W.assignment = "PMC Specialist"
-			W.rank = "PMC Gunner"
+			W.assignment = "PMC Sniper"
+			W.rank = "PMC Sharpshooter"
 			W.registered_name = M.real_name
 			W.name = "[M.real_name]'s ID Card ([W.assignment])"
 			W.icon_state = "centcom"
@@ -477,13 +487,11 @@
 			W.paygrade = "PMC3"
 			M.equip_to_slot_or_del(W, WEAR_ID)
 
-
-		if("Weyland-Yutani PMC (Sniper)")
 			if(M.mind)
-				M.mind.role_comm_title = "Spc"
-				M.mind.assigned_role = "PMC"
-				M.mind.special_role = "MODE"
-				M.mind.set_cm_skills(/datum/skills/specialist/pmc)
+				M.reset_comm_title(W.rank)
+				M.reset_role(W.rank)
+				M.reset_cm_skills(W.rank)
+				M.mind.special_role = "PMC"
 
 			M.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(M), WEAR_EAR)
 			M.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(M), WEAR_BODY)
@@ -499,18 +507,6 @@
 
 			M.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/sniper/elite(M), WEAR_J_STORE)
 			M.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/large/pmc_sniper(M), WEAR_L_STORE)
-
-
-			var/obj/item/card/id/W = new(src)
-			W.assignment = "PMC Sniper"
-			W.rank = "PMC Sharpshooter"
-			W.registered_name = M.real_name
-			W.name = "[M.real_name]'s ID Card ([W.assignment])"
-			W.icon_state = "centcom"
-			W.access = get_all_accesses()
-			W.access += get_all_centcom_access()
-			W.paygrade = "PMC3"
-			M.equip_to_slot_or_del(W, WEAR_ID)
 
 
 		if("Weyland-Yutani Deathsquad")
@@ -544,10 +540,10 @@
 			M.equip_to_slot_or_del(W, WEAR_ID)
 
 			if(M.mind)
-				M.mind.assigned_role = "MODE"
+				M.reset_comm_title(W.rank)
+				M.reset_role(W.rank)
+				M.reset_cm_skills(W.rank)
 				M.mind.special_role = "DEATH SQUAD"
-				M.mind.set_cm_skills(/datum/skills/commando/deathsquad)
-
 
 		if("USCM Officer (USCM Command)")
 			M.equip_if_possible(new /obj/item/clothing/under/rank/centcom/officer(M), WEAR_BODY)
@@ -1486,3 +1482,21 @@
 
 
 	return 1
+
+/mob/living/proc/set_ID(new_job)
+	return
+
+/mob/living/carbon/human/set_ID(new_job)
+	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
+	if(new_job)
+		if(wear_id)
+			var/obj/item/card/id/I = wear_id.GetID()
+			if(I)
+				var/title_alt = J.get_alternative_title(src)
+				I.access = J.get_access()
+				I.rank = J.title
+				I.assignment = title_alt ? title_alt :  J.disp_title
+				I.name = "[I.registered_name]'s ID Card ([I.assignment])"
+				I.paygrade = J.paygrade
+		else
+			J.equip_identification(src, J)
