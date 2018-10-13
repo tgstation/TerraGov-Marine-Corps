@@ -69,7 +69,6 @@ can cause issues with ammo types getting mixed up during the burst.
 		return
 
 	unload_shell(user)
-	to_chat(user, "<span class='warning'>[src] is already empty.</span>")
 	if(!current_mag.current_rounds && !in_chamber) update_icon()
 
 /obj/item/weapon/gun/shotgun/proc/unload_shell(mob/user)
@@ -468,7 +467,9 @@ can cause issues with ammo types getting mixed up during the burst.
 	return 1
 
 /obj/item/weapon/gun/shotgun/pump/unload(mob/user)
-	pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
+	if(pump_lock)
+		to_chat(user, "<span class='notice'><b>You disengage [src]'s pump lock with the slide release.</b></span>")
+		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
 	return ..()
 
 //-------------------------------------------------------
