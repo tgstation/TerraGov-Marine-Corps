@@ -427,12 +427,12 @@
 /area/prison/monorail/west
 	name = "\improper West Monorail Station"
 
-/area/prison/hanger/main
-	name = "\improper Main Hanger"
+/area/prison/hangar/main
+	name = "\improper Main Hangar"
 	icon_state = "hangar_alpha"
 
-/area/prison/hanger/research
-	name = "\improper Research Hanger"
+/area/prison/hangar/civilian
+	name = "\improper Civilian Hangar"
 	icon_state = "hangar_beta"
 
 /area/prison/hangar_storage/main
