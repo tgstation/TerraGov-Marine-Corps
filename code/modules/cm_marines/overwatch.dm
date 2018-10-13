@@ -767,7 +767,7 @@
 
 	var/obj/item/card/id/ID = transfer_marine.wear_id
 	ID.assigned_fireteam = 0 //reset fireteam assignment
-	
+
 	//Changes headset frequency to match new squad
 	var/obj/item/device/radio/headset/almayer/marine/H = transfer_marine.wear_ear
 	if(istype(H, /obj/item/device/radio/headset/almayer/marine))

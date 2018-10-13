@@ -105,6 +105,13 @@
 	req_access_txt = "0"
 	req_one_access_txt =  "2;8;19"
 
+/obj/machinery/door/airlock/multi_tile/almayer/research
+	name = "\improper Research Airlock"
+	icon = 'icons/obj/doors/almayer/2x1medidoor.dmi'
+	opacity = 0
+	glass = 1
+	req_access = list(ACCESS_MARINE_RESEARCH)
+
 /obj/machinery/door/airlock/multi_tile/almayer/comdoor
 	name = "\improper Command Airlock"
 	icon = 'icons/obj/doors/almayer/2x1comdoor.dmi'

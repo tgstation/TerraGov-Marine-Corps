@@ -6,12 +6,14 @@
 /datum/job/civilian/colonist
 	title = "Colonist"
 	comm_title = "CLN"
+	paygrade = "C"
 	access = list(ACCESS_IFF_MARINE)
 	minimal_access = list(ACCESS_IFF_MARINE)
 
 /datum/job/civilian/passenger
 	title = "Passenger"
 	comm_title = "PAS"
+	paygrade = "C"
 	access = list(ACCESS_IFF_MARINE)
 	minimal_access = list(ACCESS_IFF_MARINE)
 

@@ -80,13 +80,13 @@
 		"<span class='warning'>You plant [name] on [target]! Timer counting down from [timer].</span>")
 		spawn(timer*10)
 			if(plant_target && !plant_target.disposed)
-				explosion(location, -1, -1, 2, 3)
-				plant_target.ex_act(1)
+				explosion(location, -1, -1, 3)
+				if(istype(plant_target,/turf/closed/wall) || istype(plant_target,/obj/machinery/door))
+					cdel(plant_target)
+				else
+					plant_target.ex_act(1)
 				if(plant_target && !plant_target.disposed)
-					if(isobj(plant_target))
-						cdel(plant_target)
-					else
-						plant_target.overlays -= image('icons/obj/items/assemblies.dmi', "plastic-explosive2")
+					plant_target.overlays -= image('icons/obj/items/assemblies.dmi', "plastic-explosive2")
 			cdel(src)
 
 /obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)

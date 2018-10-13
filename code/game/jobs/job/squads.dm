@@ -149,33 +149,18 @@
 /datum/squad/proc/demote_squad_leader(leader_killed)
 	var/mob/living/carbon/human/old_lead = squad_leader
 	squad_leader = null
-	if(old_lead.mind)
-		switch(old_lead.mind.assigned_role)
-			if("Squad Specialist")
-				old_lead.mind.role_comm_title = "Sgt"
-				if(old_lead.mind.cm_skills)
-					old_lead.mind.cm_skills.leadership = SKILL_LEAD_BEGINNER
-			if("Squad Engineer")
-				old_lead.mind.role_comm_title = "Cpl"
-				if(old_lead.mind.cm_skills)
-					old_lead.mind.cm_skills.leadership = SKILL_LEAD_BEGINNER
-			if("Squad Medic")
-				old_lead.mind.role_comm_title = "Cpl"
-				if(old_lead.mind.cm_skills)
-					old_lead.mind.cm_skills.leadership = SKILL_LEAD_BEGINNER
-			if("Squad Smartgunner")
-				if(old_lead.mind.cm_skills)
-					old_lead.mind.cm_skills.leadership = SKILL_LEAD_BEGINNER
-				old_lead.mind.role_comm_title = "LCpl"
-			if("Squad Leader")
+	if(old_lead.mind.assigned_role)
+		old_lead.reset_comm_title(old_lead.mind.assigned_role)
+		if(old_lead.mind.cm_skills)
+			if(old_lead.mind.assigned_role == ("Squad Specialist" || "Squad Engineer" || "Squad Medic" || "Squad Smartgunner"))
+				old_lead.mind.cm_skills.leadership = SKILL_LEAD_BEGINNER
+
+			else if(old_lead.mind == "Squad Leader")
 				if(!leader_killed)
-					if(old_lead.mind.cm_skills)
-						old_lead.mind.cm_skills.leadership = SKILL_LEAD_NOVICE
-					old_lead.mind.role_comm_title = "Mar"
-			else
-				old_lead.mind.role_comm_title = "Mar"
-				if(old_lead.mind.cm_skills)
 					old_lead.mind.cm_skills.leadership = SKILL_LEAD_NOVICE
+			else
+				old_lead.mind.cm_skills.leadership = SKILL_LEAD_NOVICE
+
 		old_lead.update_action_buttons()
 
 	if(!old_lead.mind || old_lead.mind.assigned_role != "Squad Leader" || !leader_killed)
