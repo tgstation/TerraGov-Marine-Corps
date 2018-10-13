@@ -450,7 +450,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	to_chat(user, "<span class='notice'><b>You pump [src].</b></span>")
 	playsound(user, pump_sound, 25, 1)
 	recent_pump = world.time
-	pump_lock = TRUE
+	if(in_chamber) //Lock only if we have ammo loaded.
+		pump_lock = TRUE
 
 
 /obj/item/weapon/gun/shotgun/pump/reload_into_chamber(mob/user)
