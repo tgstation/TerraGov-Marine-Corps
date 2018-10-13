@@ -130,8 +130,8 @@
 	name = "\improper Weyland-Yutani Ship USS Omortson"
 	icon_state = "blue-red2"
 
-/area/prison/hanger
-	name = "\improper droppod hanger"
+/area/prison/hangar
+	name = "\improper droppod hangar"
 	icon_state = "storage"
 
 /area/prison/relay
