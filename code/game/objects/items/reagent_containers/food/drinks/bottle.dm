@@ -108,8 +108,8 @@
 		reagents.add_reagent("whiskey", 100)
 
 /obj/item/reagent_container/food/drinks/bottle/sake
-	name = "\improper Weyland-Yutani Sake"
-	desc = "Sake made with ancient techniques passed down for thousands of years. Fermented in Iowa by the Weyland Yutani Corporation."
+	name = "\improper Harakiri traditional styled sake"
+	desc = "Sweet as can be, and burns like fire going down."
 	icon_state = "sakebottle"
 	center_of_mass = list("x"=17, "y"=7)
 	New()
@@ -118,8 +118,8 @@
 
 /obj/item/reagent_container/food/drinks/bottle/vodka
 	name = "\improper Red Star Vodka"
-	desc = "Red Star Vodka: A staple of the enemy's diet. Who knew that liquid potato could smell this potent. The bottle reads, 'Ra Ra Red Star Man: Lover of the Finer Things.' Or at least that's what you assume...you can't read Russian."
-	icon_state = "red_star_vodka"
+	desc = "The bottle reads, 'Ra Ra Red Star Man: Lover of the Finer Things.' Or at least that's what you assume...."
+	icon_state = "vodkabottle"
 	center_of_mass = list("x"=17, "y"=3)
 	New()
 		..()
@@ -137,7 +137,7 @@
 /obj/item/reagent_container/food/drinks/bottle/davenport
 	name = "\improper Davenport Rye Whiskey"
 	desc = "An expensive whiskey with a distinct flavor. The bottle proudly proclaims that it's, 'A True Classic.'"
-	icon_state = "davenport"
+	icon_state = "davenportbottle"
 	center_of_mass = list("x"=16, "y"=3)
 	New()
 		..()
