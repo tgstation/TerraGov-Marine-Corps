@@ -90,36 +90,36 @@
 //DRINKS
 
 /obj/item/reagent_container/food/drinks/cans/cola
-	name = "\improper Fruit-Beer"
-	desc = "In theory, Mango flavored root beer sounds like a pretty good idea. Weyland Yutani has disproved yet another theory with its latest line of cola. Canned by the Weyland-Yutani Corporation."
-	icon_state = "fruit_beer"
+	name = "\improper TGM Cola"
+	desc = "A can of artificial flavors, sweeteners, and coloring, at least it's carbonated. Canned by Nanotrasen."
+	icon_state = "tgm_cola"
 	center_of_mass = list("x"=16, "y"=10)
 	New()
 		..()
 		reagents.add_reagent("cola", 30)
 
 /obj/item/reagent_container/food/drinks/cans/waterbottle
-	name = "\improper Weyland-Yutani Bottled Spring Water"
-	desc = "Overpriced 'Spring' water. Bottled by the Weyland-Yutani Corporation."
-	icon_state = "wy_water"
+	name = "\improper Nanotrasen bottled spring water"
+	desc = "Overpriced 'Spring' water. Bottled by Nanotrasen."
+	icon_state = "bottled_water"
 	center_of_mass = list("x"=15, "y"=8)
 	New()
 		..()
 		reagents.add_reagent("water", 30)
 
 /obj/item/reagent_container/food/drinks/cans/beer
-	name = "beer bottle"
+	name = "can of beer"
 	desc = "Beer. You've dialed in your target. Time to fire for effect."
-	icon_state = "beer"
+	icon_state = "beercan"
 	center_of_mass = list("x"=16, "y"=12)
 	New()
 		..()
 		reagents.add_reagent("beer", 30)
 
 /obj/item/reagent_container/food/drinks/cans/ale
-	name = "ale bottle"
+	name = "can of ale"
 	desc = "Beer's misunderstood cousin."
-	icon_state = "alebottle"
+	icon_state = "alecan"
 	item_state = "beer"
 	center_of_mass = list("x"=16, "y"=10)
 	New()
@@ -257,8 +257,8 @@
 		reagents.add_reagent("water", 25)
 
 /obj/item/reagent_container/food/drinks/cans/aspen
-	name = "\improper Weyland Yutani Aspen Beer"
-	desc = "Pretty good when you get past the fact that it tastes like piss. Canned by the Weyland-Yutani Corporation."
+	name = "\improper Nanotrasen Aspen Beer"
+	desc = "Pretty good when you get past the fact that it tastes like piss. Canned by Nanotrasen."
 	icon_state = "6_pack_1"
 	center_of_mass = list("x"=16, "y"=10)
 	New()
