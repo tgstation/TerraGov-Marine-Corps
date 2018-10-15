@@ -189,8 +189,9 @@
 		moving = 1
 		glide_size = 32 / max(move_delay, tick_lag) * tick_lag
 
-		if(mob.confused)
-			step(mob, pick(cardinal))
+		var/mob/living/L = mob
+		if(L.confused)
+			step(L, pick(cardinal))
 		else
 			. = ..()
 

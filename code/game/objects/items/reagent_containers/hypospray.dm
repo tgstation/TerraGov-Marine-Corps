@@ -11,7 +11,7 @@
 	amount_per_transfer_from_this = 5
 	volume = 30
 	possible_transfer_amounts = null
-	flags_atom = OPENCONTAINER
+	container_type = OPENCONTAINER
 	flags_equip_slot = SLOT_WAIST
 	var/skilllock = 1
 
@@ -38,13 +38,13 @@
 			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!</span>", \
 				"<span class='warning'>You knock [user] to the ground before they inject you!</span>", null, 5)
 			playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-			return 0
+			return FALSE
 
-		to_chat(user, "\blue You inject [M] with [src].")
-		to_chat(M, "\red You feel a tiny prick!")
+		to_chat(user, "<span class='notice'>You inject [M] with [src]</span>.")
+		to_chat(M, "<span class='warning'>You feel a tiny prick!</span>")
 		playsound(loc, 'sound/items/hypospray.ogg', 50, 1)
 
-		src.reagents.reaction(M, INGEST)
+		reagents.reaction(M, INJECT)
 		if(M.reagents)
 
 			var/list/injected = list()
@@ -57,15 +57,11 @@
 			var/trans = reagents.trans_to(M, amount_per_transfer_from_this)
 			to_chat(user, "\blue [trans] units injected. [reagents.total_volume] units remaining in [src].")
 
-	return 1
+	return TRUE
 
 
 
 /obj/item/reagent_container/hypospray/tricordrazine
 	desc = "The DeForest Medical Corporation hypospray is a sterile, air-needle autoinjector for rapid administration of drugs to patients. Contains tricordrazine."
 	volume = 30
-
-/obj/item/reagent_container/hypospray/tricordrazine/New()
-	..()
-	reagents.add_reagent("tricordrazine", 30)
-
+	list_reagents = list("tricordrazine" = 30)

@@ -619,17 +619,17 @@
 /obj/item/reagent_container/food/drinks/drinkingglass/soda
 	name = "soda glass"
 	desc = "A drinking glass for soda."
+	list_reagents = list("sodawater" = 50)
 
-	New()
-		..()
-		reagents.add_reagent("sodawater", 50)
-		on_reagent_change()
+/obj/item/reagent_container/food/drinks/drinkingglass/soda/New()
+	. = ..()
+	on_reagent_change()
 
 /obj/item/reagent_container/food/drinks/drinkingglass/cola
 	name = "cola glass"
 	desc = "A drinking glass for cola."
+	list_reagents = list("cola" = 50)
 
-	New()
-		..()
-		reagents.add_reagent("cola", 50)
-		on_reagent_change()
+/obj/item/reagent_container/food/drinks/drinkingglass/cola/New()
+	. = ..()
+	on_reagent_change()

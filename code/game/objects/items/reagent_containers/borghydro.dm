@@ -58,6 +58,7 @@
 	to_chat(M, "\blue [user] injects you with the injector.")
 	playsound(loc, 'sound/items/hypospray.ogg', 50, 1)
 
+	reagents.reaction(M, INJECT)
 	if(M.reagents)
 		var/t = min(amount_per_transfer_from_this, reagent_volumes[reagent_ids[mode]])
 		M.reagents.add_reagent(reagent_ids[mode], t)

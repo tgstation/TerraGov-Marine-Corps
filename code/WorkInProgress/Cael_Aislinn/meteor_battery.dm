@@ -251,7 +251,7 @@
 	if(!(stat & BROKEN))
 		playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1, -1)
 		for(var/mob/O in viewers(src, null))
-			if ((O.client && !( O.blinded )))
+			if ((O.client && !( is_blind(O) )))
 				O.show_message(text("\red <B>[] has slashed at []!</B>", M, src), 1)
 		src.health -= 15
 		if (src.health <= 0)

@@ -37,17 +37,12 @@
 	var/eye_blurry = null	//Carbon
 	var/ear_deaf = null		//Carbon
 	var/ear_damage = null	//Carbon
-	var/stuttering = null	//Carbon
-	var/slurring = null		//Carbon
 	var/real_name = null
 	var/flavor_text = ""
 	var/med_record = ""
 	var/sec_record = ""
 	var/gen_record = ""
 	var/exploit_record = ""
-	var/blinded = null
-	var/druggy = 0			//Carbon
-	var/confused = 0		//Carbon
 	var/antitoxs = null
 	var/sleeping = 0		//Carbon
 	var/resting = 0			//Carbon
@@ -73,8 +68,6 @@
 	var/old_y = 0
 	var/drowsyness = 0.0//Carbon
 	var/dizziness = 0//Carbon
-	var/is_dizzy = 0
-	var/is_jittery = 0
 	var/jitteriness = 0//Carbon
 	var/is_floating = 0
 	var/floatiness = 0

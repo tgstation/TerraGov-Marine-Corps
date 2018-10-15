@@ -108,7 +108,7 @@
 					affected_mob.visible_message("<span class='danger'>\The [affected_mob] starts shaking uncontrollably!</span>", \
 												 "<span class='danger'>You start shaking uncontrollably!</span>")
 					affected_mob.KnockOut(10)
-					affected_mob.make_jittery(105)
+					affected_mob.Jitter(105)
 					affected_mob.take_limb_damage(1)
 			if(prob(2))
 				to_chat(affected_mob, "<span class='warning'>[pick("Your chest hurts badly", "It becomes difficult to breathe", "Your heart starts beating rapidly, and each beat is painful")].</span>")
@@ -173,7 +173,7 @@
 		victim.KnockOut(20)
 	victim.visible_message("<span class='danger'>\The [victim] starts shaking uncontrollably!</span>", \
 								 "<span class='danger'>You feel something ripping up your insides!</span>")
-	victim.make_jittery(300)
+	victim.Jitter(300)
 	sleep(30)
 	if(!victim || !victim.loc) return//host could've been deleted, or we could've been removed from host.
 	if(loc != victim)

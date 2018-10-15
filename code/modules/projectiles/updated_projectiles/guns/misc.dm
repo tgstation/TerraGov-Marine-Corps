@@ -304,6 +304,7 @@
 
 					if(M.can_inject())
 						if(D.reagents)
+							D.reagents.reaction(M, INJECT)
 							D.reagents.trans_to(M, 15)
 					else
 						M.visible_message("<span class='danger'>The syringe bounces off [M]!</span>")

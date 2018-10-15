@@ -10,7 +10,7 @@ Note: Must be placed west/left of and R&D console to function.
 /obj/machinery/r_n_d/protolathe
 	name = "Protolathe"
 	icon_state = "protolathe"
-	flags_atom = OPENCONTAINER
+	container_type = REFILLABLE
 
 	use_power = 1
 	idle_power_usage = 30

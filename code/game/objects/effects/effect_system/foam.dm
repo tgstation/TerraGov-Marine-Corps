@@ -200,7 +200,7 @@
 	if ((HULK in user.mutations) || (prob(75 - metal*25)))
 		to_chat(user, "\blue You smash through the metal foam wall.")
 		for(var/mob/O in oviewers(user))
-			if ((O.client && !( O.blinded )))
+			if ((O.client && !( is_blind(O) )))
 				to_chat(O, "\red [user] smashes through the foamed metal.")
 
 		cdel(src)
@@ -213,7 +213,7 @@
 	if(prob(I.force*20 - metal*25))
 		to_chat(user, "\blue You smash through the foamed metal with \the [I].")
 		for(var/mob/O in oviewers(user))
-			if ((O.client && !( O.blinded )))
+			if ((O.client && !( is_blind(O) )))
 				to_chat(O, "\red [user] smashes through the foamed metal.")
 		cdel(src)
 	else

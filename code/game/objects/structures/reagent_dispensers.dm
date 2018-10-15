@@ -7,6 +7,7 @@
 	icon_state = "watertank"
 	density = 1
 	anchored = 0
+	container_type = AMOUNT_VISIBLE
 
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10,25,50,100)
@@ -21,16 +22,6 @@
 	if (!possible_transfer_amounts)
 		src.verbs -= /obj/structure/reagent_dispensers/verb/set_APTFT
 	..()
-
-/obj/structure/reagent_dispensers/examine(mob/user)
-	..()
-	if (get_dist(user, src) > 2 && user != loc) return
-	to_chat(user, "\blue It contains:")
-	if(reagents && reagents.reagent_list.len)
-		for(var/datum/reagent/R in reagents.reagent_list)
-			to_chat(user, "\blue [R.volume] units of [R.name]")
-	else
-		to_chat(user, "\blue Nothing.")
 
 /obj/structure/reagent_dispensers/verb/set_APTFT() //set amount_per_transfer_from_this
 	set name = "Set transfer amount"

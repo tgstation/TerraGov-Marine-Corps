@@ -324,8 +324,8 @@
 	New()
 		..()
 		sleep(2)
-		new /obj/item/reagent_container/ld50_syringe/choral(src)
-		new /obj/item/reagent_container/ld50_syringe/choral(src)
+		new /obj/item/reagent_container/syringe/ld50_syringe/choral(src)
+		new /obj/item/reagent_container/syringe/ld50_syringe/choral(src)
 		return
 
 

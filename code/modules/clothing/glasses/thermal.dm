@@ -9,7 +9,7 @@
 	origin_tech = "magnets=3"
 	toggleable = 1
 	vision_flags = SEE_MOBS
-	invisa_view = 2
+	see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
 	eye_protection = -1
 	deactive_state = "goggles_off"
 	fullscreen_vision = /obj/screen/fullscreen/thermal
@@ -19,8 +19,8 @@
 		var/mob/living/carbon/human/M = src.loc
 		to_chat(M, "\red The Optical Thermal Scanner overloads and blinds you!")
 		if(M.glasses == src)
-			M.eye_blind = 3
-			M.eye_blurry = 5
+			M.blind_eyes(3)
+			M.blur_eyes(5)
 			M.disabilities |= NEARSIGHTED
 			spawn(100)
 				M.disabilities &= ~NEARSIGHTED
@@ -65,7 +65,6 @@
 	icon_state = "visor_thermal"
 	item_state = "securityhud"
 	vision_flags = SEE_MOBS
-	invisa_view = 2
 	flags_inventory = COVEREYES
 	flags_item = NODROP|DELONDROP
 	toggleable = 0

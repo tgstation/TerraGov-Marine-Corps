@@ -13,6 +13,7 @@
 	force = 10.0
 	matter = list("metal" = 90)
 	attack_verb = list("slammed", "whacked", "bashed", "thunked", "battered", "bludgeoned", "thrashed")
+	container_type = AMOUNT_VISIBLE
 	var/max_water = 50
 	var/last_use = 1.0
 	var/safety = 1
@@ -38,12 +39,11 @@
 
 /obj/item/tool/extinguisher/examine(mob/user)
 	..()
-	to_chat(user, "It contains [reagents.total_volume] units of water left!")
+	to_chat(user, "The safety is [safety ? "on" : "off"].")
 
 /obj/item/tool/extinguisher/attack_self(mob/user as mob)
 	safety = !safety
-	src.icon_state = "[sprite_name][!safety]"
-	src.desc = "The safety is [safety ? "on" : "off"]."
+	icon_state = "[sprite_name][!safety]"
 	to_chat(user, "The safety is [safety ? "on" : "off"].")
 	return
 

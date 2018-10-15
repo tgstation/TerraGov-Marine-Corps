@@ -12,119 +12,89 @@
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25,30,60)
 	volume = 60
-	flags_atom = OPENCONTAINER
+	container_type = OPENCONTAINER
 
 	var/label_text = ""
 
-	var/list/can_be_placed_into = list(
-		/obj/machinery/chem_master/,
-		/obj/machinery/chem_dispenser/,
-		/obj/machinery/reagentgrinder,
-		/obj/structure/table,
-		/obj/structure/closet,
-		/obj/structure/sink,
-		/obj/item/storage,
-		/obj/machinery/atmospherics/unary/cryo_cell,
-		/obj/machinery/dna_scannernew,
-		/obj/item/explosive/grenade/chem_grenade,
-		/obj/machinery/bot/medbot,
-		/obj/machinery/computer/pandemic,
-		/obj/item/storage/secure/safe,
-		/obj/machinery/iv_drip,
-		/obj/machinery/disposal,
-		/obj/machinery/apiary,
-		/mob/living/simple_animal/cow,
-		/mob/living/simple_animal/hostile/retaliate/goat,
-		/obj/machinery/sleeper,
-		/obj/machinery/smartfridge/,
-		/obj/machinery/biogenerator,
-		/obj/machinery/constructable_frame)
-
-	New()
-		..()
-		base_name = name
+/obj/item/reagent_container/glass/New()
+	. = ..()
+	base_name = name
 
 /obj/item/reagent_container/glass/examine(mob/user)
 	..()
-	if(get_dist(user, src) > 2 && user != loc) return
-	if(reagents && reagents.reagent_list.len)
-		to_chat(user, "<span class='info'>It contains [reagents.total_volume] units of liquid.</span>")
-	else
-		to_chat(user, "<span class='info'>It is empty.</span>")
-	if(!is_open_container())
-		to_chat(user, "<span class='info'>An airtight lid seals it completely.</span>")
+	if(get_dist(user, src) > 2 && user != loc)
+		if(!is_open_container())
+			to_chat(user, "<span class='info'>An airtight lid seals it completely.</span>")
 
 /obj/item/reagent_container/glass/attack_self()
 	..()
 	if(is_open_container())
 		to_chat(usr, "<span class='notice'>You put the lid on \the [src].</span>")
-		flags_atom ^= OPENCONTAINER
+		container_type ^= OPENCONTAINER
+		container_type |= TRANSPARENT
 	else
 		to_chat(usr, "<span class='notice'>You take the lid off \the [src].</span>")
-		flags_atom |= OPENCONTAINER
+		container_type ^= TRANSPARENT
+		container_type |= OPENCONTAINER
 	update_icon()
 
-/obj/item/reagent_container/glass/afterattack(obj/target, mob/user , flag)
-
-	if(!is_open_container() || !flag)
+/obj/item/reagent_container/glass/afterattack(obj/target, mob/user , proximity)
+	if(!proximity)
 		return
 
-	for(var/type in src.can_be_placed_into)
-		if(istype(target, type))
+	if(target.is_refillable()) //Something like a glass. Player probably wants to transfer TO it.
+		if(!is_drainable())
+			to_chat(user, "<span class='warning'>take [src]'s lid off first!</span>")
 			return
-
-	if(ismob(target) && target.reagents && reagents.total_volume)
-		to_chat(user, "<span class='notice'>You splash the solution onto [target].</span>")
-		playsound(target, 'sound/effects/slosh.ogg', 25, 1)
-
-		var/mob/living/M = target
-		var/list/injected = list()
-		for(var/datum/reagent/R in src.reagents.reagent_list)
-			injected += R.name
-		var/contained = english_list(injected)
-		log_combat(user, M, "splashed", src, "Reagents: [contained]")
-		msg_admin_attack("[user.name] ([user.ckey]) splashed [M.name] ([M.key]) with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
-
-		visible_message("<span class='warning'>[target] has been splashed with something by [user]!</span>")
-		reagents.reaction(target, TOUCH)
-		spawn(5) reagents.clear_reagents()
-		return
-	else if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
-		target.add_fingerprint(user)
-
-		if(!target.reagents.total_volume && target.reagents)
-			to_chat(user, "<span class='warning'>[target] is empty.</span>")
-			return
-
-		if(reagents.total_volume >= reagents.maximum_volume)
-			to_chat(user, "<span class='warning'>[src] is full.</span>")
-			return
-
-		var/trans = target.reagents.trans_to(src, target:amount_per_transfer_from_this)
-		to_chat(user, "<span class='notice'>You fill [src] with [trans] units of the contents of [target].</span>")
-
-	else if(target.is_open_container() && target.reagents) //Something like a glass. Player probably wants to transfer TO it.
-
 		if(!reagents.total_volume)
-			to_chat(user, "<span class='warning'>[src] is empty.</span>")
+			to_chat(user, "<span class='warning'>[src] is empty!</span>")
 			return
-
-		if(target.reagents.total_volume >= target.reagents.maximum_volume)
+		if(target.reagents.holder_full())
 			to_chat(user, "<span class='warning'>[target] is full.</span>")
 			return
 
-		var/trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
-		to_chat(user, "<span class='notice'>You transfer [trans] units of the solution to [target].</span>")
+		var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
+		to_chat(user, "<span class='notice'>You transfer [trans] unit\s of the solution to [target].</span>")
 
-	else if(istype(target, /obj/machinery/smartfridge))
-		return
+	else if(target.is_drainable()) //A dispenser. Transfer FROM it TO us.
+		if(!is_refillable())
+			to_chat(user, "<span class='warning'>take [src]'s lid off first!</span>")
+			return
+		if(!target.reagents.total_volume)
+			to_chat(user, "<span class='warning'>[target] is empty and can't be refilled!</span>")
+			return
+		if(reagents.holder_full())
+			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			return
 
-	else if(reagents.total_volume)
-		to_chat(user, "<span class='notice'>You splash the solution onto [target].</span>")
-		playsound(target, 'sound/effects/slosh.ogg', 25, 1)
-		reagents.reaction(target, TOUCH)
-		spawn(5) src.reagents.clear_reagents()
-		return
+		var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
+		to_chat(user, "<span class='notice'>You fill [src] with [trans] unit\s of the contents of [target].</span>")
+
+	if(user.a_intent == "harm")
+		if(ismob(target) && target.reagents && reagents.total_volume)
+			to_chat(user, "<span class='notice'>You splash the solution onto [target].</span>")
+			playsound(target, 'sound/effects/slosh.ogg', 25, 1)
+
+			var/mob/living/M = target
+			var/list/injected = list()
+			for(var/datum/reagent/R in src.reagents.reagent_list)
+				injected += R.name
+			var/contained = english_list(injected)
+			log_combat(user, M, "splashed", src, "Reagents: [contained]")
+			msg_admin_attack("[user.name] ([user.ckey]) splashed [M.name] ([M.key]) with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+
+			visible_message("<span class='warning'>[target] has been splashed with something by [user]!</span>")
+			reagents.reaction(target, TOUCH)
+			spawn(5) reagents.clear_reagents()
+			return
+
+
+		else if(reagents.total_volume)
+			to_chat(user, "<span class='notice'>You splash the solution onto [target].</span>")
+			playsound(target, 'sound/effects/slosh.ogg', 25, 1)
+			reagents.reaction(target, TOUCH)
+			spawn(5) src.reagents.clear_reagents()
+			return
 
 /obj/item/reagent_container/glass/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/tool/pen) || istype(W, /obj/item/device/flashlight/pen))
@@ -206,7 +176,10 @@
 	matter = list("glass" = 500)
 	volume = 60
 	amount_per_transfer_from_this = 10
-	flags_atom = OPENCONTAINER|NOREACT
+
+/obj/item/reagent_container/glass/beaker/noreact/New()
+	. = ..()
+	reagents.set_reacting(FALSE)
 
 /obj/item/reagent_container/glass/beaker/bluespace
 	name = "bluespace beaker"
@@ -226,26 +199,27 @@
 	volume = 30
 	amount_per_transfer_from_this = 10
 	possible_transfer_amounts = list(5,10,15,25)
-	flags_atom = OPENCONTAINER
 
 /obj/item/reagent_container/glass/beaker/cryoxadone
-	New()
-		..()
-		reagents.add_reagent("cryoxadone", 30)
-		update_icon()
+	list_reagents = list("cryoxadone" = 30)
+
+/obj/item/reagent_container/glass/beaker/cryoxadone/New()
+	. = ..()
+	update_icon()
 
 /obj/item/reagent_container/glass/beaker/cryopredmix
-	New()
-		..()
-		reagents.add_reagent("cryoxadone", 30)
-		reagents.add_reagent("clonexadone", 30)
-		update_icon()
+	list_reagents = list("cryoxadone" = 30, "clonexadone" = 30)
+
+/obj/item/reagent_container/glass/beaker/cryopredmix/New()
+	. = ..()
+	update_icon()
 
 /obj/item/reagent_container/glass/beaker/sulphuric
-	New()
-		..()
-		reagents.add_reagent("sacid", 60)
-		update_icon()
+	list_reagents = list("sacid" = 60)
+
+/obj/item/reagent_container/glass/beaker/sulphuric/New()
+	. = ..()
+	update_icon()
 
 /obj/item/reagent_container/glass/bucket
 	desc = "It's a bucket."
@@ -254,11 +228,10 @@
 	icon_state = "bucket"
 	item_state = "bucket"
 	matter = list("metal" = 200)
-	w_class = 3.0
+	w_class = 3
 	amount_per_transfer_from_this = 20
 	possible_transfer_amounts = list(10,20,30,60,120)
 	volume = 120
-	flags_atom = OPENCONTAINER
 
 /obj/item/reagent_container/glass/bucket/attackby(obj/item/I, mob/user)
 	if(isprox(I))

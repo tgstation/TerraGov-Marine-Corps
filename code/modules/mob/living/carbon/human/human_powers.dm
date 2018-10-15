@@ -46,7 +46,7 @@
 		src.KnockDown(rand(2,4))
 
 	for(var/mob/O in viewers(src, null))
-		if ((O.client && !( O.blinded )))
+		if ((O.client && !( is_blind(O) )))
 			O.show_message(text("\red <B>[] [failed ? "tried to tackle" : "has tackled"] down []!</B>", src, T), 1)
 
 /mob/living/carbon/human/proc/leap()

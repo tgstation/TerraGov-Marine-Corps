@@ -9,7 +9,7 @@
 	icon = 'icons/obj/decals.dmi'
 	icon_state = "shock"
 
-	attack(mob/M as mob, mob/living/silicon/robot/user as mob)
+	attack(mob/living/M as mob, mob/living/silicon/robot/user as mob)
 		log_combat(user, M, "attacked", src)
 		msg_admin_attack("[user.name] ([user.ckey]) used the [src.name] to attack [M.name] ([M.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 

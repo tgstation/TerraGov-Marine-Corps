@@ -1,10 +1,7 @@
 //Refer to life.dm for caller
 
-/mob/living/carbon/human/proc/handle_regular_hud_updates()
-
-	//Now handle what we see on our screen
-	if(!client || isnull(client))
-		return 0
+/mob/living/carbon/human/handle_regular_hud_updates()
+	..()
 
 	if(stat != DEAD) //the dead get zero fullscreens
 
@@ -56,35 +53,6 @@
 				overlay_fullscreen("brute", /obj/screen/fullscreen/brute, severity)
 			else
 				clear_fullscreen("brute")
-
-
-		if(blinded)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
-		else
-			clear_fullscreen("blind")
-
-		if (disabilities & NEARSIGHTED)
-			if(glasses)
-				var/obj/item/clothing/glasses/G = glasses
-				if(!G.prescription)
-					overlay_fullscreen("nearsighted", /obj/screen/fullscreen/impaired, 1)
-				else
-					clear_fullscreen("nearsighted")
-			else
-				overlay_fullscreen("nearsighted", /obj/screen/fullscreen/impaired, 1)
-		else
-			clear_fullscreen("nearsighted")
-
-		if(eye_blurry)
-			overlay_fullscreen("blurry", /obj/screen/fullscreen/blurry)
-		else
-			clear_fullscreen("blurry")
-
-		if(druggy)
-			overlay_fullscreen("high", /obj/screen/fullscreen/high)
-		else
-			clear_fullscreen("high")
-
 
 		if(hud_used)
 			if(hud_used.locate_leader && hud_used.locate_leader.alpha && prob(25)) //not invisible, 25% to not call it all the time

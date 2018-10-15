@@ -1066,11 +1066,6 @@ var/list/robot_verbs_default = list(
 		return 1
 	return 0
 
-
-
-
-
-
 /mob/living/silicon/robot/update_sight()
 	if (stat == DEAD || XRAY in mutations || sight_mode & BORGXRAY)
 		sight |= SEE_TURFS

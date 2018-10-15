@@ -1,4 +1,3 @@
-
 //The reaction procs must ALWAYS set src = null, this detaches the proc from the object (the reagent)
 //so that it can continue working when the reagent is deleted while the proc is still active.
 
@@ -7,86 +6,123 @@
 	var/name = "Reagent"
 	var/id = "reagent"
 	var/description = ""
+	var/specific_heat = SPECIFIC_HEAT_DEFAULT	//J/(K*mol)
+	var/taste_description = "metaphorical salt"
+	var/taste_multi = 1 //how this taste compares to others. Higher values means it is more noticable
 	var/datum/reagents/holder = null
 	var/reagent_state = SOLID
-	var/list/data = null
-	var/volume = 0
-	var/nutriment_factor = 0
-	var/custom_metabolism = REAGENTS_METABOLISM
-	var/overdose = 0 //The young brother of overdose. Side effects include
-	var/overdose_critical = 0 //The nastier brother of overdose. Expect to die
-	var/overdose_dam = 1//Handeled by heart damage
+	var/list/data
+	var/current_cycle = 0
+	var/volume = 0						//pretend this is moles
+	var/custom_metabolism = REAGENTS_METABOLISM //how fast the reagent is metabolized by the mob
+	var/overdosed = 0 // You fucked up and this is now triggering its side effects.
+	var/overdosed_crit = 0 //You done it big time, purge that shit quick.
+	var/overdose_threshold = 0
+	var/overdose_crit_threshold = 0
+	var/addiction_threshold = 0
+	var/addiction_stage = 0
 	var/scannable = 0 //shows up on health analyzers
+	var/self_consuming = FALSE
 	var/spray_warning = FALSE //whether spraying that reagent creates an admin message.
-	//var/list/viruses = list()
-	var/color = "#000000" // rgb: 0, 0, 0 (does not support alpha channels - yet!)
+	var/list/viruses = list()
+	var/color = "#000000" // rgb: 0, 0, 0
+	var/can_synth = TRUE // can this reagent be synthesized? (example: odysseus syringe gun)
 
-/datum/reagent/proc/reaction_mob(var/mob/M, var/method=TOUCH, var/volume) //By default we have a chance to transfer some
-	if(!istype(M, /mob/living))	return 0
-	var/datum/reagent/self = src
-	src = null										  //of the reagent to the mob on TOUCHING it.
+/datum/reagent/Dispose() // This should only be called by the holder, so it's already handled clearing its references
+	. = ..()
+	holder = null
 
-	if(self.holder)		//for catching rare runtimes
-		if(!istype(self.holder.my_atom, /obj/effect/particle_effect/smoke/chem))
-			// If the chemicals are in a smoke cloud, do not try to let the chemicals "penetrate" into the mob's system (balance station 13) -- Doohl
+/datum/reagent/proc/reaction_mob(var/mob/living/M, method=TOUCH, reac_volume, show_message = 1, touch_protection = 0)
+	if(!istype(M))
+		return 0
 
-			if(method == TOUCH)
-
-				var/chance = 1
-				var/block  = 0
-
-				for(var/obj/item/clothing/C in M.get_equipped_items())
-					if(C.permeability_coefficient < chance) chance = C.permeability_coefficient
-					if(istype(C, /obj/item/clothing/suit/bio_suit))
-						// bio suits are just about completely fool-proof - Doohl
-						// kind of a hacky way of making bio suits more resistant to chemicals but w/e
-						if(prob(75))
-							block = 1
-
-					if(istype(C, /obj/item/clothing/head/bio_hood))
-						if(prob(75))
-							block = 1
-
-				chance = chance * 100
-
-				if(prob(chance) && !block)
-					if(M.reagents)
-						M.reagents.add_reagent(self.id,self.volume/2)
+	if(method == VAPOR) //smoke, foam, spray
+		if(M.reagents)
+			var/modifier = CLAMP((1 - touch_protection), 0, 1) //to be replaced with CLAMP01
+			var/amount = round(reac_volume*modifier, 0.1)
+			if(amount >= 0.5)
+				M.reagents.add_reagent(id, amount)
 	return 1
 
-/datum/reagent/proc/reaction_obj(var/obj/O, var/volume) //By default we transfer a small part of the reagent to the object
-	src = null						//if it can hold reagents. nope!
-	//if(O.reagents)
-	//	O.reagents.add_reagent(id,volume/3)
+/datum/reagent/proc/reaction_obj(obj/O, volume)
 	return
 
-/datum/reagent/proc/reaction_turf(var/turf/T, var/volume)
-	src = null
+/datum/reagent/proc/reaction_turf(turf/T, volume)
 	return
 
-/datum/reagent/proc/on_mob_life(mob/living/M, alien)
-	if((!isliving(M) || alien == IS_HORROR)) return //Noticed runtime errors from pacid trying to damage ghosts, this should fix. --NEO
-	//We do not horrors to metabolize anything.
-	holder.remove_reagent(id, custom_metabolism) //By default it slowly disappears.
-	if(overdose && volume >= overdose)
-		on_overdose(M, alien) //Small OD
-
-	if(overdose_critical && volume > overdose_critical)
-		on_overdose_critical(M, alien) //Big OD
+/datum/reagent/proc/on_mob_life(mob/living/carbon/M, alien)
+	current_cycle++
+	holder.remove_reagent(id, custom_metabolism * M.metabolism_efficiency) //By default it slowly disappears.
 	return 1
 
-/datum/reagent/proc/on_overdose(mob/living/M, alien)
+
+// Called when this reagent is first added to a mob
+/datum/reagent/proc/on_mob_add(mob/living/L)
 	return
 
-/datum/reagent/proc/on_overdose_critical(mob/living/M, alien)
+// Called when this reagent is removed while inside a mob
+/datum/reagent/proc/on_mob_delete(mob/living/L)
+	return
+
+// Called if the reagent has passed the overdose threshold and is set to be triggering overdose effects
+/datum/reagent/proc/overdose_process(mob/living/M, alien)
+	return
+
+/datum/reagent/proc/on_overdose_start(mob/living/M, alien)
+	if(prob(30)) //placeholder vague feedback
+		to_chat(M, "<span class='notice'>You feel a little nauseous...</span>")
+	return
+
+// Similar to the above, but for CRITICAL overdose effects.
+/datum/reagent/proc/overdose_crit_process(mob/living/M, alien)
+	return
+
+/datum/reagent/proc/on_overdose_crit_start(mob/living/M, alien)
+	to_chat(M, "<span class='danger'>You feel like you took too much of [name]!</span>")
 	return
 
 /datum/reagent/proc/on_move(var/mob/M)
 	return
 
-	// Called after add_reagents creates a new reagent.
+// Called after add_reagents creates a new reagent.
 /datum/reagent/proc/on_new(var/data)
+	return
+
+// Called when two reagents of the same are mixing.
+/datum/reagent/proc/on_merge(data)
 	return
 
 /datum/reagent/proc/on_update(var/atom/A)
 	return
+
+// Called when the reagent container is hit by an explosion
+/datum/reagent/proc/on_ex_act(severity)
+	return
+
+/datum/reagent/proc/addiction_act_stage1(mob/living/M)
+	if(prob(30))
+		to_chat(M, "<span class='notice'>You feel like having some [name] right about now.</span>")
+	return
+
+/datum/reagent/proc/addiction_act_stage2(mob/living/M)
+	if(prob(30))
+		to_chat(M, "<span class='notice'>You feel like you need [name]. You just can't get enough.</span>")
+	return
+
+/datum/reagent/proc/addiction_act_stage3(mob/living/M)
+	if(prob(30))
+		to_chat(M, "<span class='danger'>You have an intense craving for [name].</span>")
+	return
+
+/datum/reagent/proc/addiction_act_stage4(mob/living/M)
+	if(prob(30))
+		to_chat(M, "<span class='boldannounce'>You're not feeling good at all! You really need some [name].</span>")
+	return
+
+/proc/pretty_string_from_reagent_list(list/reagent_list)
+	//Convert reagent list to a printable string for logging etc
+	var/list/rs = list()
+	for (var/datum/reagent/R in reagent_list)
+		rs += "[R.name], [R.volume]"
+
+	return rs.Join(" | ")

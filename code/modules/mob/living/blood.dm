@@ -73,7 +73,7 @@
 					adjustOxyLoss(3)
 			if(BLOOD_VOLUME_BAD to BLOOD_VOLUME_OKAY)
 				if(eye_blurry < 50)
-					eye_blurry += 5
+					adjust_blurriness(5)
 				if(oxyloss < 40)
 					adjustOxyLoss(6)
 				else

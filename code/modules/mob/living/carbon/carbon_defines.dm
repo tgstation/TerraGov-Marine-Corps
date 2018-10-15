@@ -1,4 +1,4 @@
-/mob/living/carbon/
+/mob/living/carbon
 	gender = MALE
 	var/datum/species/species //Contains icon generation and language information, set during New().
 	var/list/stomach_contents = list()
@@ -16,4 +16,7 @@
 	var/butchery_progress = 0
 	var/list/internal_organs = list()
 
+	var/drunkenness = 0 //Overall drunkenness - check handle_status_effects() in life.dm for effects
+
 	var/rotate_on_lying = 1
+

@@ -43,7 +43,8 @@
 		return ..()
 
 	if (reagents.total_volume > 0)
-		reagents.trans_to_ingest(M, reagents.total_volume)
+		reagents.reaction(M, INGEST)
+		reagents.trans_to(M, reagents.total_volume)
 		if(M == user)
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("\blue [] eats some [] from \the [].", user, loaded, src), 1)
@@ -221,7 +222,7 @@
 				return
 			else
 				H.visible_message("\red [user] tried to knock [H] unconscious!", "\red [user] tried to knock you unconscious!")
-				H.eye_blurry += 3
+				H.blur_eyes(3)
 	return ..()
 
 /*

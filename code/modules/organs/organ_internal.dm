@@ -196,6 +196,7 @@
 	parent_limb = "chest"
 	removed_type = /obj/item/organ/liver
 	robotic_type = /obj/item/organ/liver/prosthetic
+	var/alcohol_tolerance = 0.005 //lower value, higher resistance.
 
 /datum/internal_organ/liver/process()
 	..()
@@ -212,20 +213,23 @@
 		//High toxins levels are dangerous
 		if(owner.getToxLoss() >= 60 && !owner.reagents.has_reagent("anti_toxin"))
 			//Healthy liver suffers on its own
-			if (src.damage < min_broken_damage)
-				src.damage += 0.2 * PROCESS_ACCURACY
+			if (damage < min_broken_damage)
+				damage += 0.2 * PROCESS_ACCURACY
 			//Damaged one shares the fun
 			else
 				var/datum/internal_organ/O = pick(owner.internal_organs)
 				if(O)
 					O.damage += 0.2  * PROCESS_ACCURACY
 
-		//Detox can heal small amounts of damage
-		if (src.damage && src.damage < src.min_bruised_damage && owner.reagents.has_reagent("anti_toxin"))
-			src.damage -= 0.2 * PROCESS_ACCURACY
+		// Heal a bit if needed and we're not busy. This allows recovery from low amounts of toxins.
+		if(!owner.drunkenness && owner.getToxLoss() <= 15 && !owner.radiation && min_bruised_damage > damage > 0)
+			if(!owner.reagents.has_reagent("anti_toxin")) // Detox effect
+				damage -= 0.2 * PROCESS_ACCURACY
+			else
+				damage -= 0.04 * PROCESS_ACCURACY
 
-		if(src.damage < 0)
-			src.damage = 0
+		if(damage < 0)
+			damage = 0
 
 		// Get the effectiveness of the liver.
 		var/filter_effect = 3
@@ -240,7 +244,7 @@
 			// Damaged liver means some chemicals are very dangerous
 			// The liver is also responsible for clearing out alcohol and toxins.
 			// Ethanol and all drinks are bad.K
-			if(istype(R, /datum/reagent/ethanol))
+			if(istype(R, /datum/reagent/consumable/ethanol))
 				if(filter_effect < 3)
 					owner.adjustToxLoss(0.1 * PROCESS_ACCURACY)
 				owner.reagents.remove_reagent(R.id, R.custom_metabolism*filter_effect)
@@ -264,6 +268,7 @@
 /datum/internal_organ/liver/prosthetic
 	robotic = ORGAN_ROBOT
 	removed_type = /obj/item/organ/liver/prosthetic
+	alcohol_tolerance = 0.003
 
 /datum/internal_organ/kidneys
 	name = "kidneys"
@@ -277,7 +282,7 @@
 	// Coffee is really bad for you with busted kidneys.
 	// This should probably be expanded in some way, but fucked if I know
 	// what else kidneys can process in our reagent list.
-	var/datum/reagent/coffee = locate(/datum/reagent/drink/coffee) in owner.reagents.reagent_list
+	var/datum/reagent/coffee = locate(/datum/reagent/consumable/drink/coffee) in owner.reagents.reagent_list
 	if(coffee && !owner.reagents.get_reagent_amount("peridaxon") >= 0.05)
 		if(is_bruised())
 			owner.adjustToxLoss(0.1 * PROCESS_ACCURACY)
@@ -322,9 +327,9 @@
 	..()
 	if(!owner.reagents.get_reagent_amount("peridaxon") >= 0.05)
 		if(is_bruised())
-			owner.eye_blurry = 20
+			owner.set_blurriness(20)
 		if(is_broken())
-			owner.eye_blind = 20
+			owner.set_blindness(20)
 
 /datum/internal_organ/eyes/prosthetic
 	robotic = ORGAN_ROBOT

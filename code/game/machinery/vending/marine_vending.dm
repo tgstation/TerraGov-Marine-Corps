@@ -191,7 +191,7 @@
 					/obj/item/ammobox = 3,
 					/obj/item/ammo_magazine/rifle = 15,
 					/obj/item/ammobox/ext = 1,
-					/obj/item/ammo_magazine/rifle/extended = 5,				
+					/obj/item/ammo_magazine/rifle/extended = 5,
 					/obj/item/ammobox/ap = 1,
 					/obj/item/ammo_magazine/rifle/ap = 5,
 					/obj/item/ammo_magazine/shotgunbox = 3,
@@ -305,7 +305,7 @@
 					/obj/item/device/healthanalyzer = 3,
 					/obj/item/bodybag/cryobag = 2)
 
-	contraband = list(/obj/item/reagent_container/hypospray/autoinjector/chloralhydrate =3)
+	contraband = list(/obj/item/reagent_container/hypospray/autoinjector/stoxin =3)
 
 
 

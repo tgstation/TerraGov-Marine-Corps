@@ -6,7 +6,7 @@
 	icon_state = "hydrotray3"
 	density = 1
 	anchored = 1
-	flags_atom = OPENCONTAINER
+	flags_atom = AMOUNT_VISIBLE|REFILLABLE
 	volume = 100
 	throwpass = 1
 	layer = BELOW_OBJ_LAYER

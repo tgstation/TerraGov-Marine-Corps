@@ -66,7 +66,8 @@
 	return attack_hand(M)
 
 /obj/structure/ladder/attack_hand(mob/user)
-	if(user.stat || get_dist(user, src) > 1 || user.blinded || user.lying || user.buckled || user.anchored) return
+	if(user.stat || get_dist(user, src) > 1 || is_blind(user) || user.lying || user.buckled || user.anchored)
+		return
 	if(busy)
 		to_chat(user, "<span class='warning'>Someone else is currently using [src].</span>")
 		return
@@ -92,7 +93,7 @@
 	"<span class='notice'>You start climbing [ladder_dir_name] [src].</span>")
 	busy = 1
 	if(do_after(user, 20, FALSE, 5, BUSY_ICON_GENERIC))
-		if(!user.is_mob_incapacitated() && get_dist(user, src) <= 1 && !user.blinded && !user.lying && !user.buckled && !user.anchored)
+		if(!user.is_mob_incapacitated() && get_dist(user, src) <= 1 && !is_blind(user) && !user.lying && !user.buckled && !user.anchored)
 			//TODO: Using forceMove is desirable here, but this breaks the pull. If you know how to preserve the pull, this would be nice!
 			user.loc = ladder_dest.loc //Cannot use forceMove method on pulls! Move manually //Make sure we move before we broadcast the message
 			var/mob/living/M = user
@@ -118,7 +119,7 @@
 
 /obj/structure/ladder/check_eye(mob/user)
 	//Are we capable of looking?
-	if(user.is_mob_incapacitated() || get_dist(user, src) > 1 || user.blinded || user.lying || !user.client)
+	if(user.is_mob_incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.lying || !user.client)
 		user.unset_interaction()
 
 	//Are ladder cameras ok?
@@ -153,7 +154,7 @@
 //Peeking up/down
 /obj/structure/ladder/MouseDrop(over_object, src_location, over_location)
 	if((over_object == usr && (in_range(src, usr))))
-		if(isXenoLarva(usr) || isobserver(usr) || usr.is_mob_incapacitated() || usr.blinded || usr.lying)
+		if(isXenoLarva(usr) || isobserver(usr) || usr.is_mob_incapacitated() || is_blind(usr) || usr.lying)
 			to_chat(usr, "You can't do that in your current state.")
 			return
 		if(is_watching)

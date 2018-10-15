@@ -1033,20 +1033,6 @@ var/global/floorIsLava = 0
 	M.mind.edit_memory()
 	feedback_add_details("admin_verb","STP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
-/datum/admins/proc/toggletintedweldhelmets()
-	set category = "Debug"
-	set desc="Reduces view range when wearing welding helmets"
-	set name="Toggle tinted welding helmes"
-	tinted_weldhelh = !( tinted_weldhelh )
-	if (tinted_weldhelh)
-		to_chat(world, "<B>The tinted_weldhelh has been enabled!</B>")
-	else
-		to_chat(world, "<B>The tinted_weldhelh has been disabled!</B>")
-	log_admin("[key_name(usr)] toggled tinted_weldhelh.")
-	message_admins("[key_name_admin(usr)] toggled tinted_weldhelh.", 1)
-	feedback_add_details("admin_verb","TTWH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 /datum/admins/proc/toggleguests()
 	set category = "Server"
 	set desc="Guests can't enter"

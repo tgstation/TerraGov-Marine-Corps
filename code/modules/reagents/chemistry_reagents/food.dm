@@ -3,413 +3,430 @@
 // Part of the food code. Nutriment is used instead of the old "heal_amt" code. Also is where all the food
 // 	condiments, additives, and such go.
 
-/datum/reagent/nutriment
+/datum/reagent/consumable
+	name = "Consumable"
+	id = "consumable"
+	taste_description = "generic food"
+	taste_multi = 4
+	var/nutriment_factor = 1
+	taste_description = "generic food"
+
+/datum/reagent/consumable/on_mob_life(mob/living/carbon/M)
+	current_cycle++
+	M.nutrition += nutriment_factor * REAGENTS_METABOLISM
+	holder.remove_reagent(src.id, custom_metabolism)
+
+/datum/reagent/consumable/nutriment
 	name = "Nutriment"
 	id = "nutriment"
 	description = "All the vitamins, minerals, and carbohydrates the body needs in pure form."
-	reagent_state = SOLID
-	nutriment_factor = 15 * REAGENTS_METABOLISM
+	nutriment_factor = 15
 	color = "#664330" // rgb: 102, 67, 48
 
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		if(prob(50)) M.heal_limb_damage(1,0)
-		M.nutrition += nutriment_factor	// For hunger and fatness
-		if(iscarbon(M))
-			var/mob/living/carbon/C = M
-			if(C.blood_volume < BLOOD_VOLUME_NORMAL)
-				C.blood_volume += 0.4
+	var/brute_heal = 1
+	var/burn_heal = 0
+	var/blood_gain = 0.4
 
+/datum/reagent/consumable/nutriment/on_mob_life(mob/living/M)
+	if(prob(50))
+		M.heal_limb_damage(brute_heal,burn_heal)
+	if(iscarbon(M))
+		var/mob/living/carbon/C = M
+		if(C.blood_volume < BLOOD_VOLUME_NORMAL)
+			C.blood_volume += blood_gain
 
-/datum/reagent/lipozine
-	name = "Lipozine" // The anti-nutriment.
-	id = "lipozine"
-	description = "A chemical compound that causes a powerful fat-burning reaction."
+	..()
+
+/datum/reagent/consumable/nutriment/on_new(list/supplied_data)
+	// taste data can sometimes be ("salt" = 3, "chips" = 1)
+	// and we want it to be in the form ("salt" = 0.75, "chips" = 0.25)
+	// which is called "normalizing"
+	if(!supplied_data)
+		supplied_data = data
+
+	// if data isn't an associative list, this has some WEIRD side effects
+	// TODO probably check for assoc list?
+
+	data = counterlist_normalise(supplied_data)
+
+/datum/reagent/consumable/nutriment/on_merge(list/newdata, newvolume)
+	if(!islist(newdata) || !newdata.len)
+		return
+
+	// data for nutriment is one or more (flavour -> ratio)
+	// where all the ratio values adds up to 1
+
+	var/list/taste_amounts = list()
+	if(data)
+		taste_amounts = data.Copy()
+
+	counterlist_scale(taste_amounts, volume)
+
+	var/list/other_taste_amounts = newdata.Copy()
+	counterlist_scale(other_taste_amounts, newvolume)
+
+	counterlist_combine(taste_amounts, other_taste_amounts)
+
+	counterlist_normalise(taste_amounts)
+
+	data = taste_amounts
+
+/datum/reagent/consumable/sugar
+	name = "Sugar"
+	id = "sugar"
+	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
+	color = "#FFFFFF" // rgb: 255, 255, 255
+	nutriment_factor = 10
+	taste_description = "sweetness"
+
+/datum/reagent/consumable/virus_food
+	name = "Virus Food"
+	id = "virusfood"
+	description = "A mixture of water, milk, and oxygen. Virus cells can use this mixture to reproduce."
 	reagent_state = LIQUID
-	nutriment_factor = 10 * REAGENTS_METABOLISM
-	color = "#BBEDA4" // rgb: 187, 237, 164
-	overdose = REAGENTS_OVERDOSE
-	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
+	nutriment_factor = 2
+	color = "#899613" // rgb: 137, 150, 19
+	taste_description = "watery milk"
 
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		M.nutrition = max(M.nutrition - nutriment_factor, 0)
-		M.overeatduration = 0
-		if(M.nutrition < 0)//Prevent from going into negatives.
-			M.nutrition = 0
-
-	on_overdose(mob/living/M)
-		M.apply_damages(1, 1) //Causes chemical burns and structural damage
-
-	on_overdose_critical(mob/living/M)
-		M.apply_damages(4, 4) //Causes massive burns and structural damage
-
-/datum/reagent/soysauce
+/datum/reagent/consumable/soysauce
 	name = "Soysauce"
 	id = "soysauce"
 	description = "A salty sauce made from the soy plant."
 	reagent_state = LIQUID
-	nutriment_factor = 2 * REAGENTS_METABOLISM
+	nutriment_factor = 2
 	color = "#792300" // rgb: 121, 35, 0
+	taste_description = "umami"
 
-/datum/reagent/ketchup
+/datum/reagent/consumable/ketchup
 	name = "Ketchup"
 	id = "ketchup"
 	description = "Ketchup, catsup, whatever. It's tomato paste."
 	reagent_state = LIQUID
-	nutriment_factor = 5 * REAGENTS_METABOLISM
+	nutriment_factor = 5
 	color = "#731008" // rgb: 115, 16, 8
+	taste_description = "ketchup"
 
-/datum/reagent/capsaicin
+/datum/reagent/consumable/capsaicin
 	name = "Capsaicin Oil"
 	id = "capsaicin"
 	description = "This is what makes chilis hot."
 	reagent_state = LIQUID
 	color = "#B31008" // rgb: 179, 16, 8
+	taste_description = "hot peppers"
 
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		if(!M)
-			M = holder.my_atom
-		if(!data)
-			data = 1
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(H.species && !(H.species.flags & (NO_PAIN|IS_SYNTHETIC)) )
-				switch(data)
-					if(1 to 2)
+/datum/reagent/consumable/capsaicin/on_mob_life(mob/living/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(!(H.species.flags & NO_PAIN))
+			switch(current_cycle)
+				if(1 to 2)
+					to_chat(H, "\red <b>Your insides feel uncomfortably hot !</b>")
+				if(2 to 20)
+					if(prob(5))
 						to_chat(H, "\red <b>Your insides feel uncomfortably hot !</b>")
-					if(2 to 20)
-						if(prob(5))
-							to_chat(H, "\red <b>Your insides feel uncomfortably hot !</b>")
-					if(20 to INFINITY)
-						H.apply_effect(2,AGONY,0)
-						if(prob(5))
-							H.visible_message("<span class='warning'>[H] [pick("dry heaves!","coughs!","splutters!")]</span>")
-							to_chat(H, "\red <b>You feel like your insides are burning !</b>")
-		holder.remove_reagent("frostoil", 5)
-		holder.remove_reagent(src.id, FOOD_METABOLISM)
-		data++
+				if(20 to INFINITY)
+					H.apply_effect(2,AGONY,0)
+					if(prob(5))
+						H.visible_message("<span class='warning'>[H] [pick("dry heaves!","coughs!","splutters!")]</span>")
+						to_chat(H, "\red <b>You feel like your insides are burning !</b>")
+	holder.remove_reagent("frostoil", 5)
+	..()
 
-/datum/reagent/condensedcapsaicin
+/datum/reagent/consumable/condensedcapsaicin
 	name = "Condensed Capsaicin"
 	id = "condensedcapsaicin"
 	description = "A chemical agent used for self-defense and in police work."
 	reagent_state = LIQUID
 	color = "#B31008" // rgb: 179, 16, 8
+	taste_description = "scorching agony"
 
-	reaction_mob(var/mob/living/M, var/method=TOUCH, var/volume)
-		if(!istype(M, /mob/living) || has_species(M,"Horror"))
-			return
-		if(method == TOUCH)
-			if(istype(M, /mob/living/carbon/human))
-				var/mob/living/carbon/human/victim = M
-				var/mouth_covered = 0
-				var/eyes_covered = 0
-				var/obj/item/safe_thing = null
-				if( victim.wear_mask )
-					if( victim.wear_mask.flags_inventory & COVEREYES )
-						eyes_covered = 1
-						safe_thing = victim.wear_mask
-					if( victim.wear_mask.flags_inventory & COVERMOUTH )
-						mouth_covered = 1
-						safe_thing = victim.wear_mask
-				if( victim.head )
-					if( victim.head.flags_inventory & COVEREYES )
-						eyes_covered = 1
-						safe_thing = victim.head
-					if( victim.head.flags_inventory & COVERMOUTH )
-						mouth_covered = 1
-						safe_thing = victim.head
-				if(victim.glasses)
+/datum/reagent/consumable/condensedcapsaicin/reaction_mob(mob/living/M, method=TOUCH, var/volume)
+	if(method in list(TOUCH, VAPOR, PATCH))
+		if(istype(M, /mob/living/carbon/human))
+			var/mob/living/carbon/human/victim = M
+			var/mouth_covered = 0
+			var/eyes_covered = 0
+			var/obj/item/safe_thing = null
+			if( victim.wear_mask )
+				if( victim.wear_mask.flags_inventory & COVEREYES )
 					eyes_covered = 1
-					if( !safe_thing )
-						safe_thing = victim.glasses
-				if( eyes_covered && mouth_covered )
-					to_chat(victim, "\red Your [safe_thing.name] protects you from the pepperspray!")
-					return
-				else if( eyes_covered )	// Reduced effects if partially protected
-					to_chat(victim, "\red Your [safe_thing] protect you from most of the pepperspray!")
-					victim.eye_blurry = max(M.eye_blurry, 15)
-					victim.eye_blind = max(M.eye_blind, 5)
-					victim.Stun(5)
-					victim.KnockDown(5)
-					//victim.KnockOut(10)
-					//victim.drop_held_item()
-					return
-				else if( mouth_covered ) // Mouth cover is better than eye cover
-					to_chat(victim, "\red Your [safe_thing] protects your face from the pepperspray!")
-					if(!(victim.species && (victim.species.flags & NO_PAIN)))
+					safe_thing = victim.wear_mask
+				if( victim.wear_mask.flags_inventory & COVERMOUTH )
+					mouth_covered = 1
+					safe_thing = victim.wear_mask
+			if( victim.head )
+				if( victim.head.flags_inventory & COVEREYES )
+					eyes_covered = 1
+					safe_thing = victim.head
+				if( victim.head.flags_inventory & COVERMOUTH )
+					mouth_covered = 1
+					safe_thing = victim.head
+			if(victim.glasses)
+				eyes_covered = 1
+				if( !safe_thing )
+					safe_thing = victim.glasses
+			if( eyes_covered && mouth_covered )
+				to_chat(victim, "<span class='danger'>Your [safe_thing.name] protects you from the pepperspray!</span>")
+				return
+			else if( mouth_covered )	// Reduced effects if partially protected
+				to_chat(victim, "<span class='danger'>Your [safe_thing] protect your face from the pepperspray!</span>")
+				victim.blur_eyes(15)
+				victim.blind_eyes(5)
+				victim.Stun(5)
+				victim.KnockDown(5)
+				//victim.KnockOut(10)
+				//victim.drop_held_item()
+				return
+			else if( eyes_covered ) // Mouth cover is better than eye cover, except it's actually the opposite.
+				to_chat(victim, "<span class='danger'>Your [safe_thing] protects you from most of the pepperspray!</span>")
+				if(!(victim.species && (victim.species.flags & NO_PAIN)))
+					if(prob(10))
+						victim.Stun(1)
+				victim.blur_eyes(5)
+				return
+			else // Oh dear :D
+				if(!(victim.species && (victim.species.flags & NO_PAIN)))
+					if(prob(10))
 						victim.emote("scream")
-					victim.eye_blurry = max(M.eye_blurry, 5)
-					return
-				else // Oh dear :D
-					if(!(victim.species && (victim.species.flags & NO_PAIN)))
-						victim.emote("scream")
-					to_chat(victim, "\red You're sprayed directly in the eyes with pepperspray!")
-					victim.eye_blurry = max(M.eye_blurry, 25)
-					victim.eye_blind = max(M.eye_blind, 10)
-					victim.Stun(5)
-					victim.KnockDown(5)
-					//victim.KnockOut(10)
-					//victim.drop_held_item()
+				to_chat(victim, "<span class='danger'>You're sprayed directly in the eyes with pepperspray!</span>")
+				victim.blur_eyes(25)
+				victim.blind_eyes(10)
+				victim.Stun(5)
+				victim.KnockDown(5)
+				//victim.KnockOut(10)
+				//victim.drop_held_item()
 
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		if(!M)
-			M = holder.my_atom
-		if(!data)
-			data = 1
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(H.species && !(H.species.flags & (NO_PAIN|IS_SYNTHETIC)) )
-				switch(data)
-					if(1)
+/datum/reagent/consumable/condensedcapsaicin/on_mob_life(mob/living/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		if(H.species && !(H.species.flags & (NO_PAIN|IS_SYNTHETIC)) )
+			switch(current_cycle)
+				if(1)
+					to_chat(H, "\red <b>You feel like your insides are burning !</b>")
+				if(2 to INFINITY)
+					H.apply_effect(4,AGONY,0)
+					if(prob(5))
+						H.visible_message("<span class='warning'>[H] [pick("dry heaves!","coughs!","splutters!")]</span>")
 						to_chat(H, "\red <b>You feel like your insides are burning !</b>")
-					if(2 to INFINITY)
-						H.apply_effect(4,AGONY,0)
-						if(prob(5))
-							H.visible_message("<span class='warning'>[H] [pick("dry heaves!","coughs!","splutters!")]</span>")
-							to_chat(H, "\red <b>You feel like your insides are burning !</b>")
-		holder.remove_reagent("frostoil", 5)
-		holder.remove_reagent(src.id, FOOD_METABOLISM)
-		data++
+	holder.remove_reagent("frostoil", 5)
+	..()
 
-/datum/reagent/frostoil
+
+/datum/reagent/consumable/frostoil
 	name = "Frost Oil"
 	id = "frostoil"
 	description = "A special oil that noticably chills the body. Extracted from Ice Peppers."
 	reagent_state = LIQUID
 	color = "#B31008" // rgb: 139, 166, 233
+	taste_description = "mint"
 
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		if(!M)
-			M = holder.my_atom
-		M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 0)
-		if(prob(1))
-			M.emote("shiver")
-		holder.remove_reagent("capsaicin", 5)
-		holder.remove_reagent(src.id, FOOD_METABOLISM)
+/datum/reagent/consumable/frostoil/on_mob_life(mob/living/M)
+	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 0)
+	if(prob(1))
+		M.emote("shiver")
+	holder.remove_reagent("capsaicin", 5)
+	..()
 
-/datum/reagent/sodiumchloride
+/datum/reagent/consumable/sodiumchloride
 	name = "Table Salt"
 	id = "sodiumchloride"
 	description = "A salt made of sodium chloride. Commonly used to season food."
-	reagent_state = SOLID
 	color = "#FFFFFF" // rgb: 255,255,255
-	overdose = REAGENTS_OVERDOSE
-	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
+	overdose_threshold = REAGENTS_OVERDOSE
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+	taste_description = "salt"
 
-	on_overdose(mob/living/M)
-		M.confused = max(M.confused, 20)
-		if(prob(10))
-			M.emote(pick("sigh","grumble","frown"))
+/datum/reagent/consumable/sodiumchloride/overdose_process(mob/living/M, alien)
+	M.confused = max(M.confused, 20)
+	if(prob(10))
+		M.emote(pick("sigh","grumble","frown"))
 
-	on_overdose_critical(mob/living/M)
-		M.make_jittery(5) //Turn super salty
-		M.knocked_out = max(M.knocked_out, 20)
-		if(prob(10))
-			M.emote(pick("cry","moan","pain"))
+/datum/reagent/consumable/sodiumchloride/overdose_crit_process(mob/living/M, alien)
+	M.Jitter(5) //Turn super salty
+	if(prob(10))
+		M.KnockDown(10)
+	if(prob(10))
+		M.emote(pick("cry","moan","pain"))
 
-/datum/reagent/blackpepper
+/datum/reagent/consumable/blackpepper
 	name = "Black Pepper"
 	id = "blackpepper"
 	description = "A powder ground from peppercorns. *AAAACHOOO*"
-	reagent_state = SOLID
 	// no color (ie, black)
+	taste_description = "pepper"
 
-/datum/reagent/coco
+/datum/reagent/consumable/coco
 	name = "Coco Powder"
 	id = "coco"
 	description = "A fatty, bitter paste made from coco beans."
-	reagent_state = SOLID
-	nutriment_factor = 5 * REAGENTS_METABOLISM
+	nutriment_factor = 5
 	color = "#302000" // rgb: 48, 32, 0
+	taste_description = "bitterness"
 
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		M.nutrition += nutriment_factor
-
-/datum/reagent/hot_coco
+/datum/reagent/consumable/hot_coco
 	name = "Hot Chocolate"
 	id = "hot_coco"
 	description = "Made with love! And cocoa beans."
 	reagent_state = LIQUID
-	nutriment_factor = 2 * REAGENTS_METABOLISM
+	nutriment_factor = 2
 	color = "#403010" // rgb: 64, 48, 16
+	taste_description = "creamy chocolate"
 
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		if(M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
-			M.bodytemperature = min(310, M.bodytemperature + (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
-		M.nutrition += nutriment_factor
+/datum/reagent/consumable/hot_coco/on_mob_life(mob/living/M)
+	if(M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
+		M.bodytemperature = min(310, M.bodytemperature + (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
+	..()
 
-/datum/reagent/psilocybin
+/datum/reagent/consumable/psilocybin
 	name = "Psilocybin"
 	id = "psilocybin"
 	description = "A strong psycotropic derived from certain species of mushroom."
 	color = "#E700E7" // rgb: 231, 0, 231
-	overdose = REAGENTS_OVERDOSE
-	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
+	overdose_threshold = REAGENTS_OVERDOSE
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+	taste_description = "mushroom"
 
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		M.druggy = max(M.druggy, 30)
-		if(!data) data = 1
-		switch(data)
-			if(1 to 5)
-				if(!M.stuttering) M.stuttering = 1
-				M.make_dizzy(5)
-				if(prob(10)) M.emote(pick("twitch","giggle"))
-			if(5 to 10)
-				if(!M.stuttering) M.stuttering = 1
-				M.make_jittery(10)
-				M.make_dizzy(10)
-				M.druggy = max(M.druggy, 35)
-				if(prob(20)) M.emote(pick("twitch","giggle"))
-			if(10 to INFINITY)
-				if(!M.stuttering) M.stuttering = 1
-				M.make_jittery(20)
-				M.make_dizzy(20)
-				M.druggy = max(M.druggy, 40)
-				if(prob(30)) M.emote(pick("twitch","giggle"))
-		holder.remove_reagent(src.id, 0.2)
-		data++
+/datum/reagent/consumable/psilocybin/on_mob_life(mob/living/M)
+	M.druggy = max(M.druggy, 30)
+	switch(current_cycle)
+		if(1 to 5)
+			M.stuttering += 1
+			M.Dizzy(5)
+			if(prob(10))
+				M.emote(pick("twitch","giggle"))
+		if(5 to 10)
+			M.stuttering += 1
+			M.Jitter(10)
+			M.Dizzy(10)
+			M.set_drugginess(35)
+			if(prob(20))
+				M.emote(pick("twitch","giggle"))
+		if(10 to INFINITY)
+			M.stuttering += 1
+			M.Jitter(20)
+			M.Dizzy(20)
+			M.set_drugginess(40)
+			if(prob(30))
+				M.emote(pick("twitch","giggle"))
+	..()
 
-	on_overdose(mob/living/M)
-		M.apply_damage(1, TOX) //Overdose starts getting bad
-		M.knocked_out = max(M.knocked_out, 20)
+/datum/reagent/consumable/psilocybin/overdose_process(mob/living/M, alien)
+	M.apply_damage(1, TOX)
+	if(prob(15))
+		M.KnockOut(5)
 
-	on_overdose_critical(mob/living/M)
-		M.apply_damage(4, TOX) //Overdose starts getting bad
-		M.knocked_out = max(M.knocked_out, 20)
-		M.drowsyness = max(M.drowsyness, 30)
+/datum/reagent/consumable/psilocybin/overdose_crit_process(mob/living/M, alien)
+	M.apply_damage(2, TOX)
+	if(prob(60))
+		M.KnockOut(3)
+	M.drowsyness = max(M.drowsyness, 30)
 
-/datum/reagent/sprinkles
+/datum/reagent/consumable/sprinkles
 	name = "Sprinkles"
 	id = "sprinkles"
 	description = "Multi-colored little bits of sugar, commonly found on donuts. Loved by cops."
-	nutriment_factor = 1 * REAGENTS_METABOLISM
+	nutriment_factor = 5
 	color = "#FF00FF" // rgb: 255, 0, 255
+	taste_description = "childhood whimsy"
 
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		M.nutrition += nutriment_factor
-
-/datum/reagent/cornoil
+/datum/reagent/consumable/cornoil
 	name = "Corn Oil"
 	id = "cornoil"
 	description = "An oil derived from various types of corn."
 	reagent_state = LIQUID
-	nutriment_factor = 20 * REAGENTS_METABOLISM
+	nutriment_factor = 20
 	color = "#302000" // rgb: 48, 32, 0
+	taste_description = "slime"
 
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		M.nutrition += nutriment_factor
+/datum/reagent/consumable/cornoil/reaction_turf(var/turf/T, var/volume)
+	if(!istype(T))
+		return
+	src = null
+	if(volume >= 3)
+		T.wet_floor(FLOOR_WET_WATER)
 
-	reaction_turf(var/turf/T, var/volume)
-		if(!istype(T)) return
-		src = null
-		if(volume >= 3)
-			T.wet_floor(FLOOR_WET_WATER)
-
-/datum/reagent/enzyme
+/datum/reagent/consumable/enzyme
 	name = "Universal Enzyme"
 	id = "enzyme"
 	description = "A universal enzyme used in the preperation of certain chemicals and foods."
 	reagent_state = LIQUID
 	color = "#365E30" // rgb: 54, 94, 48
-	overdose = REAGENTS_OVERDOSE
-	overdose_critical = REAGENTS_OVERDOSE_CRITICAL
+	overdose_threshold = REAGENTS_OVERDOSE
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+	taste_description = "sweetness"
 
-	on_overdose(mob/living/M)
-		M.apply_damage(1, BURN) //Causes chemical burns
+/datum/reagent/consumable/enzyme/overdose_process(mob/living/M, alien)
+	M.apply_damage(1, BURN)
 
-	on_overdose_critical(mob/living/M)
-		M.apply_damages(5, BURN) //Causes massive burns
+/datum/reagent/consumable/enzyme/overdose_crit_process(mob/living/M, alien)
+	M.apply_damages(2, BURN)
 
-/datum/reagent/dry_ramen
+/datum/reagent/consumable/dry_ramen
 	name = "Dry Ramen"
 	id = "dry_ramen"
 	description = "Space age food, since August 25, 1958. Contains dried noodles, vegetables, and chemicals that boil in contact with water."
-	reagent_state = SOLID
-	nutriment_factor = 1 * REAGENTS_METABOLISM
+	nutriment_factor = 1
 	color = "#302000" // rgb: 48, 32, 0
+	taste_description = "dry and cheap noodles"
 
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		M.nutrition += nutriment_factor
-
-/datum/reagent/hot_ramen
+/datum/reagent/consumable/hot_ramen
 	name = "Hot Ramen"
 	id = "hot_ramen"
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
 	reagent_state = LIQUID
-	nutriment_factor = 5 * REAGENTS_METABOLISM
+	nutriment_factor = 5
 	color = "#302000" // rgb: 48, 32, 0
+	taste_description = "wet and cheap noodles"
 
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		M.nutrition += nutriment_factor
-		if(M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
-			M.bodytemperature = min(310, M.bodytemperature + (10 * TEMPERATURE_DAMAGE_COEFFICIENT))
+/datum/reagent/consumable/hot_ramen/on_mob_life(mob/living/M)
+	if(M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
+		M.bodytemperature = min(310, M.bodytemperature + (10 * TEMPERATURE_DAMAGE_COEFFICIENT))
+	..()
 
-/datum/reagent/hell_ramen
+/datum/reagent/consumable/hell_ramen
 	name = "Hell Ramen"
 	id = "hell_ramen"
 	description = "The noodles are boiled, the flavors are artificial, just like being back in school."
 	reagent_state = LIQUID
-	nutriment_factor = 5 * REAGENTS_METABOLISM
+	nutriment_factor = 5
 	color = "#302000" // rgb: 48, 32, 0
+	taste_description = "wet and cheap noodles on fire"
 
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		M.nutrition += nutriment_factor
-		M.bodytemperature += 10 * TEMPERATURE_DAMAGE_COEFFICIENT
+/datum/reagent/consumable/hell_ramen/on_mob_life(mob/living/M)
+	M.bodytemperature += 10 * TEMPERATURE_DAMAGE_COEFFICIENT
+	..()
 
-/datum/reagent/rice
+/datum/reagent/consumable/rice
 	name = "Rice"
 	id = "rice"
 	description = "Enjoy the great taste of nothing."
-	reagent_state = SOLID
-	nutriment_factor = 1 * REAGENTS_METABOLISM
+	nutriment_factor = 2
 	color = "#FFFFFF" // rgb: 0, 0, 0
+	taste_description = "rice"
 
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		M.nutrition += nutriment_factor
 
-/datum/reagent/cherryjelly
+/datum/reagent/consumable/cherryjelly
 	name = "Cherry Jelly"
 	id = "cherryjelly"
 	description = "Totally the best. Only to be spread on foods with excellent lateral symmetry."
 	reagent_state = LIQUID
-	nutriment_factor = 1 * REAGENTS_METABOLISM
+	nutriment_factor = 5
 	color = "#801E28" // rgb: 128, 30, 40
+	taste_description = "cherry"
 
-	on_mob_life(mob/living/M)
-		. = ..()
-		if(!.) return
-		M.nutrition += nutriment_factor
-
-/datum/reagent/honey
+/datum/reagent/consumable/honey
 	name = "Honey"
 	id = "honey"
 	description = "A golden yellow syrup, loaded with sugary sweetness."
 	color = "#FFFF00"
+	nutriment_factor = 15
+	taste_description = "sweetness"
+
+/datum/reagent/consumable/honey/on_mob_life(mob/living/carbon/M)
+	M.reagents.add_reagent("sugar",3)
+	if(prob(55))
+		M.adjustBruteLoss(-1*REM, 0)
+		M.adjustFireLoss(-1*REM, 0)
+		M.adjustOxyLoss(-1*REM, 0)
+		M.adjustToxLoss(-1*REM, 0)
+..()

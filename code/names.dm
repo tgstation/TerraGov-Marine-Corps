@@ -14,5 +14,6 @@ var/list/moth_last = file2list("config/names/moth_last.txt")
 
 var/list/verbs = file2list("config/names/verbs.txt")
 var/list/adjectives = file2list("config/names/adjectives.txt")
+var/list/food_adjectives = file2list("config/names/food_adjectives.txt")
 //loaded on startup because of "
 //would include in rsc if ' was used

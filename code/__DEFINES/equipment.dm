@@ -23,9 +23,7 @@
 #define ON_BORDER				4		// 'border object'. item has priority to check when entering or leaving
 #define NOBLOODY				8		// Don't want a blood overlay on this one.
 #define DIRLOCK					16		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
-#define	NOREACT					32		//Reagents dont' react inside this container.
-#define OPENCONTAINER			64		//is an open container for chemistry purposes
-#define RELAY_CLICK				128		//This is used for /obj/ that relay your clicks via handle_click(), mostly for MGs + Sentries ~Art
+#define RELAY_CLICK				32		//This is used for /obj/ that relay your clicks via handle_click(), mostly for MGs + Sentries ~Art
 //==========================================================================================
 
 //flags_item

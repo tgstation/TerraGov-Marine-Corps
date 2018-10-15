@@ -44,6 +44,7 @@
 	var/list/actions_types = list() //list of paths of action datums to give to the item on New().
 
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
+	var/body_parts_covered = 0
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
@@ -155,26 +156,6 @@ cases. Override_icon_state should be a list.*/
 				if(new_protection) min_cold_protection_temperature = new_protection
 
 		item_state = icon_state
-
-
-/obj/item/examine(mob/user)
-	var/size
-	switch(w_class)
-		if(1.0)
-			size = "tiny"
-		if(2.0)
-			size = "small"
-		if(3.0)
-			size = "normal-sized"
-		if(4.0)
-			size = "bulky"
-		if(5.0)
-			size = "huge"
-		else
-	//if ((CLUMSY in usr.mutations) && prob(50)) t = "funny-looking"
-	to_chat(user, "This is a [blood_DNA ? blood_color != "#030303" ? "bloody " : "oil-stained " : ""]\icon[src][src.name]. It is a [size] item.")
-	if(desc)
-		to_chat(user, desc)
 
 /obj/item/attack_hand(mob/user as mob)
 	if (!user)
@@ -614,17 +595,18 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	if(!user)
 		return
 	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
+	var/mob/living/carbon/human/H = user
 
 	for(var/obj/item/I in user.contents)
 		if(I.zoom && I != src)
 			to_chat(user, "<span class='warning'>You are already looking through \the [zoom_device].</span>")
 			return //Return in the interest of not unzooming the other item. Check first in the interest of not fucking with the other clauses
 
-	if(user.eye_blind)
+	if(is_blind(user))
 		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
 	else if(user.stat || !ishuman(user))
 		to_chat(user, "<span class='warning'>You are unable to focus through \the [zoom_device].</span>")
-	else if(!zoom && user.client && user.update_tint())
+	else if(!zoom && user.client && H.tinttotal >= 3)
 		to_chat(user, "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>")
 	else if(!zoom && user.get_active_hand() != src)
 		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")

@@ -20,7 +20,9 @@ mob/living/carbon/var
 	hal_crit = 0
 
 mob/living/carbon/proc/handle_hallucinations()
-	if(handling_hal) return
+	if(!hallucination)
+		return
+
 	handling_hal = 1
 	while(client && hallucination > 20)
 		sleep(rand(200,500)/(hallucination/25))
@@ -319,7 +321,7 @@ proc/check_panel(mob/M)
 						my_target << sound(pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg'))
 						my_target.show_message("\red <B>[my_target] has been attacked with [weapon_name] by [src.name] </B>", 1)
 						my_target.halloss += 8
-						if(prob(20)) my_target.eye_blurry += 3
+						if(prob(20)) my_target.adjust_blurriness(3)
 						if(prob(33))
 							if(!locate(/obj/effect/overlay) in my_target.loc)
 								fake_blood(my_target)
