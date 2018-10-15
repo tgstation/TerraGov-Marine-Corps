@@ -1,5 +1,3 @@
-
-
 /mob/verb/mode()
 	set name = "Activate Held Object"
 	set category = "Object"
@@ -113,8 +111,8 @@
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
 		to_chat(usr, "You have been dead for[pluralcheck] [deathtimeseconds] seconds.")
 
-		if (deathtime < 18000 && !is_admin)
-			to_chat(usr, "You must wait 30 minutes to respawn!")
+		if (deathtime < (respawntime * 600) && !is_admin)
+			to_chat(usr, "You must wait [respawntime] minutes to respawn!")
 			return
 		else
 			to_chat(usr, "You can respawn now, enjoy your new life!")

@@ -113,6 +113,7 @@ var/list/admin_verbs_server = list(
 	/datum/admins/proc/restart,
 	/datum/admins/proc/delay,
 	/datum/admins/proc/toggleaban,
+	/datum/admins/proc/toggleatime,
 	/datum/admins/proc/end_round,
 	/client/proc/toggle_log_hrefs,
 	/datum/admins/proc/toggleAI,
