@@ -7,13 +7,17 @@
 #define PROCESS_STATUS_HUNG 6
 
 // Process time thresholds
-#define PROCESS_DEFAULT_HANG_WARNING_TIME 	900 // 90 seconds
-#define PROCESS_DEFAULT_HANG_ALERT_TIME 	1800 // 180 seconds
-#define PROCESS_DEFAULT_HANG_RESTART_TIME 	2400 // 240 seconds
+#define PROCESS_DEFAULT_HANG_WARNING_TIME 	3000 // 300 seconds
+#define PROCESS_DEFAULT_HANG_ALERT_TIME 	6000 // 600 seconds
+#define PROCESS_DEFAULT_HANG_RESTART_TIME 	9000 // 900 seconds
 #define PROCESS_DEFAULT_SCHEDULE_INTERVAL 	50  // 50 ticks
-#define PROCESS_DEFAULT_TICK_ALLOWANCE		25	// 25% of one tick
+#define PROCESS_DEFAULT_TICK_ALLOWANCE		41	// 41% of one tick
+#define LAGCHECK(x) while (world.tick_usage > x) stoplag(world.tick_lag)
 
-
+#define TICK_LIMIT_RUNNING 80
+#define TICK_LIMIT_TO_RUN 70
+#define TICK_LIMIT_MC 70
+#define TICK_LIMIT_MC_INIT_DEFAULT 98
 //#define UPDATE_QUEUE_DEBUG
 // If btime.dll is available, do this shit
 /*
