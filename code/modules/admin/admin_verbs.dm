@@ -795,7 +795,6 @@ var/list/admin_verbs_mentor = list(
 	else
 		to_chat(usr, "<span class='boldnotice'>You will no longer get friendly fire attack log messages.</span>")
 
-
 /client/proc/toggleghostwriters()
 	set name = "Toggle Ghost Blood Writing"
 	set category = "Server"
