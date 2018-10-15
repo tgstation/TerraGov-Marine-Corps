@@ -30,16 +30,17 @@ var/global/respawntime = 15
 	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ATTACK:</span> <span class=\"message\">[text]</span></span>"
 	for(var/client/C in admins)
 		if(R_MOD & C.holder.rights)
-			if(C.prefs.toggles_chat & CHAT_ATTACKLOGS)
+			if((C.prefs.toggles_chat & CHAT_ATTACKLOGS) && !((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
 				var/msg = rendered
 				to_chat(C, msg)
 
 /proc/msg_admin_ff(var/text)
 	log_attack(text) //Do everything normally BUT IN GREEN SO THEY KNOW
 	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ATTACK:</span> <font color=#00ff00><b>[text]</b></font></span>" //I used <font> because I never learned html correctly, fix this if you want
+		
 	for(var/client/C in admins)
 		if(R_MOD & C.holder.rights)
-			if(C.prefs.toggles_chat & CHAT_FFATTACKLOGS)
+			if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) && !((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
 				var/msg = rendered
 				to_chat(C, msg)
 
