@@ -1429,7 +1429,7 @@
 		/obj/item/storage/pill_bottle/tramadol = null,
 		/obj/item/explosive/grenade/phosphorus = null,
 		/obj/item/clothing/glasses/welding = null,
-		/obj/item/reagent_container/ld50_syringe/choral = null,
+		/obj/item/reagent_container/syringe/ld50_syringe/choral = null,
 		/obj/item/storage/firstaid/regular = null,
 		/obj/item/reagent_container/pill/cyanide = null,
 		/obj/item/device/megaphone = null,

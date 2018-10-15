@@ -3,7 +3,7 @@
 /datum/chemical_reaction
 	var/name = null
 	var/id = null
-	var/result = null
+	var/list/results = null
 	var/list/required_reagents = new/list()
 	var/list/required_catalysts = new/list()
 
@@ -13,10 +13,11 @@
 	var/atom/required_container = null // the container required for the reaction to happen
 	var/required_other = 0 // an integer required for the reaction to happen
 
-	var/result_amount = 0 //I recommend you set the result amount to the total volume of all components.
-	var/secondary = 0 // set to nonzero if secondary reaction
-	var/list/secondary_results = list()		//additional reagents produced by the reaction
-	var/requires_heating = 0
+	var/required_temp = 0
+	var/is_cold_recipe = 0 // Set to 1 if you want the recipe to only react when it's BELOW the required temp.
+	var/mix_message = "The solution begins to bubble." //The message shown to nearby people upon mixing, if applicable
+	var/mix_sound = 'sound/effects/bubbles.ogg' //The sound played upon mixing, if applicable
 
 /datum/chemical_reaction/proc/on_reaction(var/datum/reagents/holder, var/created_volume)
 	return
+	//I recommend you set the result amount to the total volume of all components.

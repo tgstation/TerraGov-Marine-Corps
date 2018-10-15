@@ -103,11 +103,9 @@
 	icon_state = "yummers"
 	filling_color = "#ED1169"
 	w_class = 1
-
-	New()
-		..()
-		reagents.add_reagent("nutriment", 8)
-		bitesize = 4
+	list_reagents = list("nutriment" = 8)
+	bitesize = 4
+	tastes = list("nutraloafed food" = 7, "cocoa" = 1)
 
 
 /obj/item/reagent_container/food/snacks/mre_pack
@@ -121,91 +119,73 @@
 	desc = "A staple of the Clown Planet, every clown baby's first solid food is a slice of banana bread with cream pie spread."
 	icon_state = "MREa"
 	filling_color = "#ED1169"
-
-	New()
-		..()
-		reagents.add_reagent("nutriment", 9)
-		bitesize = 3
+	list_reagents = list("nutriment" = 9)
+	bitesize = 3
+	tastes = list("something funny" = 2, "bread" = 4)
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal2
 	name = "\improper USCM Prepared Meal (pork)"
 	desc = "It's hard to go wrong with rice and pork."
 	icon_state = "MREb"
-
-	New()
-		..()
-		reagents.add_reagent("nutriment", 9)
-		bitesize = 2
+	list_reagents = list("nutriment" = 9)
+	bitesize = 2
+	tastes = list("rice and pork" = 1)
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal3
 	name = "\improper USCM Prepared Meal (spag)"
 	desc = "That's-a spicy meat-aball!"
 	icon_state = "MREc"
-
-	New()
-		..()
-		reagents.add_reagent("nutriment", 9)
-		bitesize = 3
+	list_reagents = list("nutriment" = 9)
+	tastes = list("pasta" = 3, "ground beef" = 1)
+	bitesize = 3
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal4
 	name = "\improper USCM Prepared Meal (pizza)"
 	desc = "Aubergine, carrot and sweetcorn, all on a bed of cheese and tomato sauce."
 	icon_state = "MREd"
-
-	New()
-		..()
-		reagents.add_reagent("nutriment", 8)
-		bitesize = 1
+	list_reagents = list("nutriment" = 8)
+	tastes = list("pizza" = 3, "vegetables" = 1)
+	bitesize = 1
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal5
 	name = "\improper USCM Prepared Meal (monkey)"
 	desc = "Sopa de Macaco, Uma Delicia."
 	icon_state = "MREe"
-
-	New()
-		..()
-		reagents.add_reagent("nutriment", 10)
-		bitesize = 3
+	list_reagents = list("nutriment" = 10)
+	tastes = list("meat soup" = 2, "the jungle" = 2)
+	bitesize = 3
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal6
 	name = "\improper USCM Prepared Meal (tofu)"
 	desc = "BBQ sticky tofu in a bun, hand crafted by Hungarian children who believe in a galaxy with soldiers that kill people, not animals."
 	icon_state = "MREf"
-
-	New()
-		..()
-		reagents.add_reagent("nutriment", 8)
-		bitesize = 2
+	list_reagents = list("nutriment" = 8)
+	tastes = list("grilled tofu" = 2, "grass" = 1)
+	bitesize = 2
 
 /obj/item/reagent_container/food/snacks/mre_pack/xmas1
 	name = "\improper Xmas Prepared Meal:sugar cookies"
 	desc = "Delicious Sugar Cookies"
 	icon_state = "mreCookies"
-
-	New()
-		..()
-		reagents.add_reagent("nutriment", 10)
-		bitesize = 2
+	list_reagents = list("nutriment" = 9, "sugar" = 1)
+	bitesize = 2
+	tastes = list("cookies" = 1, "artificial flavoring" = 1)
 
 /obj/item/reagent_container/food/snacks/mre_pack/xmas2
 	name = "\improper Xmas Prepared Meal:gingerbread cookie"
 	desc = "A cookie without a soul."
 	icon_state = "mreGingerbread"
-
-	New()
-		..()
-		reagents.add_reagent("nutriment", 10)
-		bitesize = 2
+	list_reagents = list("nutriment" = 9, "sugar" = 1)
+	tastes = list("batter" = 3, "ginger" = 1)
+	bitesize = 2
 
 /obj/item/reagent_container/food/snacks/mre_pack/xmas3
 	name = "\improper Xmas Prepared Meal:fruitcake"
 	desc = "Also known as ''the Commander''."
 	icon_state = "mreFruitcake"
-
-	New()
-		..()
-		reagents.add_reagent("nutriment", 10)
-		bitesize = 2
+	list_reagents = list("nutriment" = 9, "sugar" = 1)
+	tastes = list("fruits" = 3, "leadership" = 1)
+	bitesize = 2
 
 /obj/item/storage/box/pizza
 	name = "food delivery box"
@@ -236,8 +216,6 @@
 	name = "crumbled paper"
 	icon_state = "pamphlet"
 	info = "In loving memory of Cub Johnson."
-
-
 
 /obj/item/storage/box/wy_mre
 	name = "\improper Weyland-Yutani brand MRE"

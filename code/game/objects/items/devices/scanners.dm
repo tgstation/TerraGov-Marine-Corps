@@ -291,7 +291,7 @@ REAGENT SCANNER
 				var/datum/reagent/R = A
 				reagents_in_body["[R.id]"] = R.volume
 				if(R.scannable)
-					if(R.overdose != 0 && R.volume >= R.overdose)
+					if(R.overdosed)
 						reagentdata["[R.id]"] = "<span class='warning'><b>OD: </b></span> <font color='#9773C4'><b>[round(R.volume, 1)]u [R.name]</b></font>"
 						overdosed++
 					else
@@ -558,8 +558,9 @@ REAGENT SCANNER
 	name = "mass-spectrometer"
 	icon_state = "spectrometer"
 	item_state = "analyzer"
-	w_class = 2.0
-	flags_atom = CONDUCT|OPENCONTAINER
+	w_class = 2
+	flags_atom = CONDUCT
+	container_type = OPENCONTAINER
 	flags_equip_slot = SLOT_WAIST
 	throwforce = 5
 	throw_speed = 4

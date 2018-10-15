@@ -13,7 +13,7 @@
 
 	//non-verbal languages are garbled if you can't see the speaker. Yes, this includes if they are inside a closet.
 	if (language && (language.flags & NONVERBAL))
-		if (!speaker || (src.sdisabilities & BLIND || src.blinded) || !(speaker.z == z && get_dist(speaker, src) <= world.view))
+		if (!speaker || is_blind(src) || !(speaker.z == z && get_dist(speaker, src) <= world.view))
 			message = stars(message)
 
 	if(!say_understands(speaker,language))
@@ -71,7 +71,7 @@
 
 	//non-verbal languages are garbled if you can't see the speaker. Yes, this includes if they are inside a closet.
 	if (language && (language.flags & NONVERBAL))
-		if (!speaker || (src.sdisabilities & BLIND || src.blinded) || !(speaker in view(src)))
+		if (!speaker || is_blind(speaker) || !(speaker in view(src)))
 			message = stars(message)
 
 	if(!say_understands(speaker,language))

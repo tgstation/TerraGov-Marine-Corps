@@ -6,6 +6,7 @@
 	blood_overlay_type = "coat"
 	flags_armor_protection = UPPER_TORSO|ARMS
 	allowed = list(/obj/item/device/analyzer,/obj/item/stack/medical,/obj/item/dnainjector,/obj/item/reagent_container/dropper,/obj/item/reagent_container/syringe,/obj/item/reagent_container/hypospray,/obj/item/device/healthanalyzer,/obj/item/device/flashlight/pen,/obj/item/reagent_container/glass/bottle,/obj/item/reagent_container/glass/beaker,/obj/item/reagent_container/pill,/obj/item/storage/pill_bottle,/obj/item/paper)
+	permeability_coefficient = 0.6
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 50, rad = 0)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
 
@@ -192,11 +193,13 @@
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	blood_overlay_type = "armor"
 	siemens_coefficient = 0.7
+	permeability_coefficient = 0.8
 	allowed = list (/obj/item/device/flashlight, /obj/item/tank/emergency_oxygen)
 
 /obj/item/clothing/suit/storage/snow_suit/doctor
 	name = "doctor's snow suit"
 	icon_state = "snowsuit_doctor"
+	permeability_coefficient = 0.6
 	armor = list(melee = 25, bullet = 35, laser = 35, energy = 20, bomb = 10, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/snow_suit/engineer

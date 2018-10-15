@@ -355,10 +355,10 @@
 	if(!istype(M.wear_mask, /obj/item/clothing/mask/gas))
 		M.adjustOxyLoss(15) //Causes even more oxyloss damage due to neurotoxin locking up respiratory system
 		M.ear_deaf = max(M.ear_deaf, round(effect_amt*1.5)) //Paralysis of hearing system, aka deafness
-		if(!M.eye_blind) //Eye exposure damage
+		if(!is_blind(M)) //Eye exposure damage
 			to_chat(M, "<span class='danger'>Your eyes sting. You can't see!</span>")
-		M.eye_blurry = max(M.eye_blurry, effect_amt*2)
-		M.eye_blind = max(M.eye_blind, round(effect_amt))
+		M.blur_eyes(effect_amt*2)
+		M.blind_eyes(round(effect_amt))
 		if(M.coughedtime != 1 && !M.stat) //Coughing/gasping
 			M.coughedtime = 1
 			if(prob(50))
@@ -430,12 +430,3 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/xeno_weaken
 	smoke_type = /obj/effect/particle_effect/smoke/xeno_weak
-
-
-
-
-
-
-
-
-

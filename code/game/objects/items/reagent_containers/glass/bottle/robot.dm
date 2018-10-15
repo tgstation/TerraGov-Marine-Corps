@@ -12,11 +12,7 @@
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle16"
 	reagent = "inaprovaline"
-
-	New()
-		..()
-		reagents.add_reagent("inaprovaline", 60)
-		return
+	list_reagents = list("inaprovaline" = 60)
 
 
 /obj/item/reagent_container/glass/bottle/robot/antitoxin
@@ -25,8 +21,4 @@
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle17"
 	reagent = "anti_toxin"
-
-	New()
-		..()
-		reagents.add_reagent("anti_toxin", 60)
-		return
+	list_reagents = list("anti_toxin" = 60)

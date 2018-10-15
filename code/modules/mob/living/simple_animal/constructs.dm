@@ -78,12 +78,12 @@
 			damage = 0
 		adjustBruteLoss(damage)
 		for(var/mob/M in viewers(src, null))
-			if ((M.client && !( M.blinded )))
+			if ((M.client && !is_blind(M)))
 				M.show_message("\red \b [src] has been attacked with [O] by [user]. ")
 	else
 		to_chat(usr, "\red This weapon is ineffective, it does no damage.")
 		for(var/mob/M in viewers(src, null))
-			if ((M.client && !( M.blinded )))
+			if ((M.client && !is_blind(M)))
 				M.show_message("\red [user] gently taps [src] with [O]. ")
 
 
@@ -120,16 +120,16 @@
 				damage = 0
 			adjustBruteLoss(damage)
 			for(var/mob/M in viewers(src, null))
-				if ((M.client && !( M.blinded )))
+				if ((M.client && !is_blind(M)))
 					M.show_message("\red \b [src] has been attacked with [O] by [user]. ")
 		else
 			for(var/mob/M in viewers(src, null))
-				if ((M.client && !( M.blinded )))
+				if ((M.client && !is_blind(M)))
 					M.show_message("\red \b [O] bounces harmlessly off of [src]. ")
 	else
 		to_chat(usr, "\red This weapon is ineffective, it does no damage.")
 		for(var/mob/M in viewers(src, null))
-			if ((M.client && !( M.blinded )))
+			if ((M.client && !is_blind(M)))
 				M.show_message("\red [user] gently taps [src] with [O]. ")
 
 
@@ -246,16 +246,16 @@
 				damage = 0
 			adjustBruteLoss(damage)
 			for(var/mob/M in viewers(src, null))
-				if ((M.client && !( M.blinded )))
+				if ((M.client && !is_blind(M)))
 					M.show_message("\red \b [src] has been attacked with [O] by [user]. ")
 		else
 			for(var/mob/M in viewers(src, null))
-				if ((M.client && !( M.blinded )))
+				if ((M.client && !is_blind(M)))
 					M.show_message("\red \b [O] bounces harmlessly off of [src]. ")
 	else
 		to_chat(usr, "\red This weapon is ineffective, it does no damage.")
 		for(var/mob/M in viewers(src, null))
-			if ((M.client && !( M.blinded )))
+			if ((M.client && !is_blind(M)))
 				M.show_message("\red [user] gently taps [src] with [O]. ")
 
 

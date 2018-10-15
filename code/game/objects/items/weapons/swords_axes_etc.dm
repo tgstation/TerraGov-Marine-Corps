@@ -25,7 +25,7 @@
 	flags_equip_slot = SLOT_WAIST
 	force = 10
 
-/obj/item/weapon/classic_baton/attack(mob/M as mob, mob/living/user as mob)
+/obj/item/weapon/classic_baton/attack(mob/living/M as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, "\red You club yourself over the head.")
 		user.KnockDown(3 * force)

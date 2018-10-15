@@ -377,7 +377,7 @@
 		V.show_message("\blue [user] washes their hands using \the [src].")
 
 
-/obj/structure/sink/attackby(obj/item/O as obj, mob/user as mob)
+/obj/structure/sink/attackby(obj/item/O as obj, mob/living/user as mob)
 	if(busy)
 		to_chat(user, "\red Someone's already washing here.")
 		return

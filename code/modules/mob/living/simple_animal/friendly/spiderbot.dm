@@ -140,12 +140,12 @@
 				damage = 0
 			adjustBruteLoss(damage)
 			for(var/mob/M in viewers(src, null))
-				if ((M.client && !( M.blinded )))
+				if ((M.client && !is_blind(M)))
 					M.show_message("\red \b [src] has been attacked with the [O] by [user]. ")
 		else
 			to_chat(usr, "\red This weapon is ineffective, it does no damage.")
 			for(var/mob/M in viewers(src, null))
-				if ((M.client && !( M.blinded )))
+				if ((M.client && !is_blind(M)))
 					M.show_message("\red [user] gently taps [src] with the [O]. ")
 
 /mob/living/simple_animal/spiderbot/proc/transfer_personality(var/obj/item/device/mmi/M as obj)
@@ -158,7 +158,7 @@
 
 /mob/living/simple_animal/spiderbot/proc/explode() //When emagged.
 	for(var/mob/M in viewers(src, null))
-		if ((M.client && !( M.blinded )))
+		if ((M.client && !is_blind(M)))
 			M.show_message("\red [src] makes an odd warbling noise, fizzles, and explodes.")
 	explosion(get_turf(loc), -1, -1, 3, 5)
 	eject_brain()

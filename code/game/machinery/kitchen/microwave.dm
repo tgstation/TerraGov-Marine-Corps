@@ -9,7 +9,7 @@
 	use_power = 1
 	idle_power_usage = 5
 	active_power_usage = 100
-	flags_atom = OPENCONTAINER|NOREACT
+	container_type = OPENCONTAINER
 	var/operating = 0 // Is it on?
 	var/dirty = 0 // = {0..100} Does it need cleaning?
 	var/broken = 0 // ={0,1,2} How broken is it???
@@ -78,7 +78,7 @@
 				icon_state = "mw"
 				broken = 0 // Fix it!
 				dirty = 0 // just to be sure
-				flags_atom = OPENCONTAINER
+				container_type = OPENCONTAINER
 		else
 			to_chat(user, "\red It's broken!")
 			return 1
@@ -96,7 +96,7 @@
 				dirty = 0 // It's clean!
 				broken = 0 // just to be sure
 				icon_state = "mw"
-				flags_atom = OPENCONTAINER
+				container_type = OPENCONTAINER
 		else //Otherwise bad luck!!
 			to_chat(user, "\red It's dirty!")
 			return 1

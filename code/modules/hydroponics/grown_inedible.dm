@@ -161,7 +161,7 @@
 		log_combat(user, M, "hit", src)
 		msg_admin_attack("[user.name] ([user.ckey]) used the [src.name] on [M.name] ([M.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
 
-		M.eye_blurry += force/7
+		M.adjust_blurriness(force/7)
 		if(prob(20))
 			M.KnockOut(force/6)
 			M.KnockDown(force/15)

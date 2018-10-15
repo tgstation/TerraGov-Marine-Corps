@@ -9,10 +9,6 @@
 /*
 	reagents defines
 */
-
-#define SOLID 1
-#define LIQUID 2
-#define GAS 3
 #define REAGENTS_OVERDOSE 30
 #define REAGENTS_OVERDOSE_CRITICAL 50
 
@@ -52,6 +48,11 @@
 #define INFECTION_LEVEL_THREE	800
 
 #define MIN_ANTIBIOTICS			0
+
+
+#define LIVING_PERM_COEFF 0
+#define HELLHOUND_PERM_COEFF 0.5
+#define XENO_PERM_COEFF 0.8
 //=================================================
 
 #define HUMAN_STRIP_DELAY 40 //takes 40ds = 4s to strip someone.
@@ -345,15 +346,16 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define NO_SCAN 4
 #define NO_PAIN 8
 #define NO_SLIP 16
-#define NO_POISON 32
-#define NO_CHEM_METABOLIZATION 64 //Prevents reagents from acting on_mob_life().
-#define HAS_SKIN_TONE 128
-#define HAS_SKIN_COLOR 256
-#define HAS_LIPS 512
-#define HAS_UNDERWEAR 1024
-#define HAS_NO_HAIR	2048
-#define IS_PLANT 4096
-#define IS_SYNTHETIC 8192
+#define NO_OVERDOSE 32
+#define NO_POISON 64
+#define NO_CHEM_METABOLIZATION 128
+#define HAS_SKIN_TONE 256
+#define HAS_SKIN_COLOR 512
+#define HAS_LIPS 1024
+#define HAS_UNDERWEAR 2048
+#define HAS_NO_HAIR 4096
+#define IS_PLANT 8192
+#define IS_SYNTHETIC 16384
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
@@ -372,6 +374,12 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define MOB_SIZE_XENO			2
 #define MOB_SIZE_BIG		3
 
+//taste sensitivity defines, used in mob/living/proc/taste
+#define TASTE_HYPERSENSITIVE 5 //anything below 5% is not tasted
+#define TASTE_SENSITIVE 10 //anything below 10%
+#define TASTE_NORMAL 15 //anything below 15%
+#define TASTE_DULL 30 //anything below 30%
+#define TASTE_NUMB 101 //no taste
 
 //defines for the busy icons when the mob does something that takes time using do_after proc
 #define BUSY_ICON_GENERIC	1

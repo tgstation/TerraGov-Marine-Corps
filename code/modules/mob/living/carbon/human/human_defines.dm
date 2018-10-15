@@ -25,7 +25,7 @@
 	var/r_skin = 0
 	var/g_skin = 0
 	var/b_skin = 0
-	
+
 	//Species specific
 	var/moth_wings = "Plain"
 
@@ -66,6 +66,8 @@
 	var/list/skills = null
 
 	var/icon/stand_icon = null
+
+	var/tinttotal = 0
 
 	var/voice = ""	//Instead of new say code calling GetVoice() over and over and over, we're just going to ask this variable, which gets updated in Life()
 
@@ -117,6 +119,7 @@
 	var/mobility_new = 0
 	var/protection_new = 0
 	var/marskman_new = 0
+	var/aura_recovery_multiplier = 1
 
 	var/temporary_slowdown = 0 //Stacking slowdown caused from effects, currently used by neurotoxin gas
 

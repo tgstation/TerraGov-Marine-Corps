@@ -9,7 +9,6 @@
 	stat = DEAD
 	density = 0
 	canmove = 0
-	blinded = 0
 	anchored = 1	//  don't get pushed around
 	invisibility = INVISIBILITY_OBSERVER
 	layer = ABOVE_FLY_LAYER
@@ -339,7 +338,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /atom/movable/Moved()
 	..()
-	
+
 	if(followers.len)
 		for(var/_F in followers)
 			var/mob/dead/observer/F = _F //Read this was faster than var/typepath/F in list

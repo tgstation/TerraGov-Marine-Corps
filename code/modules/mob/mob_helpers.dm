@@ -104,6 +104,13 @@ proc/isdeaf(A)
 		return (M.sdisabilities & DEAF) || M.ear_deaf
 	return 0
 
+proc/is_blind(A)
+	if(istype(A, /mob))
+		var/mob/M = A
+		return (M.sdisabilities & BLIND) || M.eye_blind
+	return FALSE
+
+
 proc/isnewplayer(A)
 	if(istype(A, /mob/new_player))
 		return 1
@@ -576,6 +583,8 @@ var/list/intents = list("help","disarm","grab","hurt")
 /mob/proc/is_mob_incapacitated(ignore_restrained)
 	return (stat || stunned || knocked_down || knocked_out || (!ignore_restrained && is_mob_restrained()))
 
+/mob/proc/reagent_check(datum/reagent/R)
+	return 1
 
 //returns how many non-destroyed legs the mob has (currently only useful for humans)
 /mob/proc/has_legs()

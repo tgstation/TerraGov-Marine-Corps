@@ -393,7 +393,7 @@
 
 	New()
 		..()
-		flags_atom |= NOREACT
+		reagents.set_reacting(FALSE)
 		syringes = new
 		known_reagents = list("inaprovaline"="Inaprovaline","anti_toxin"="Dylovene")
 		processed_reagents = new
@@ -406,7 +406,7 @@
 
 	critfail()
 		..()
-		flags_atom &= ~NOREACT
+		reagents.set_reacting(TRUE)
 		return
 
 	get_equip_info()
@@ -456,6 +456,7 @@
 					if(M)
 						S.icon_state = initial(S.icon_state)
 						S.icon = initial(S.icon)
+						reagents.reaction(M, INJECT)
 						S.reagents.trans_to(M, S.reagents.total_volume)
 						M.take_limb_damage(2)
 						S.visible_message("<span class=\"attack\"> [M] was hit by the syringe!</span>")

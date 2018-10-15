@@ -20,6 +20,7 @@
 	if(((species.total_health - total_burn) < config.health_threshold_dead * 1.5))
 		ChangeToHusk()
 
+	update_stat()
 	med_hud_set_health()
 	med_hud_set_status()
 

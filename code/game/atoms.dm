@@ -10,6 +10,7 @@
 	var/last_bumped = 0
 	var/flags_pass = 0
 	var/throwpass = 0
+	var/container_type = 0
 	var/germ_level = GERM_LEVEL_AMBIENT // The higher the germ level, the more germ on the atom.
 
 	///Chemistry.
@@ -94,11 +95,21 @@ directive is properly returned.
 		return 0
 
 
-// Convenience proc to see if a container is open for chemistry handling
-// returns true if open
-// false if closed
+// Convenience proc for reagents handling.
 /atom/proc/is_open_container()
-	return flags_atom & OPENCONTAINER
+	return is_refillable() && is_drainable()
+
+/atom/proc/is_injectable(allowmobs = TRUE)
+	return reagents && (container_type & (INJECTABLE | REFILLABLE))
+
+/atom/proc/is_drawable(allowmobs = TRUE)
+	return reagents && (container_type & (DRAWABLE | DRAINABLE))
+
+/atom/proc/is_refillable()
+	return reagents && (container_type & REFILLABLE)
+
+/atom/proc/is_drainable()
+	return reagents && (container_type & DRAINABLE)
 
 /*//Convenience proc to see whether a container can be accessed in a certain way.
 
@@ -224,19 +235,84 @@ its easier to just keep the beam vertical.
 	for(var/obj/effect/overlay/beam/O in orange(10,src)) if(O.BeamSource==src) cdel(O)
 
 
-//All atoms
-/atom/verb/atom_examine()
+//mob verbs are faster than object verbs. See https://secure.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
+/mob/verb/examinate(atom/A as mob|obj|turf in view())
 	set name = "Examine"
 	set category = "IC"
-	set src in view(usr.client) //If it can be seen, it can be examined.
 
-	if(!usr) return
-	examine(usr)
+	if(is_blind(src))
+		to_chat(src, "<span class='notice'>Something is there but you can't see it.</span>")
+		return
+
+	face_atom(A)
+	A.examine(src)
 
 /atom/proc/examine(mob/user)
-	to_chat(user, "\icon[src] That's \a [src].")
+
+	if(!istype(src, /obj/item))
+		to_chat(user, "\icon[src] That's \a [src].")
+
+	else // No component signaling, dropping it here.
+		var/obj/item/I = src
+		var/size
+		switch(I.w_class)
+			if(1)
+				size = "tiny"
+			if(2)
+				size = "small"
+			if(3)
+				size = "normal-sized"
+			if(4 to 5)
+				size = "bulky"
+			if(6 to INFINITY)
+				size = "huge"
+		to_chat(user, "This is a [blood_DNA ? blood_color != "#030303" ? "bloody " : "oil-stained " : ""]\icon[src][src.name]. It is a [size] item.")
+
+
 	if(desc)
 		to_chat(user, desc)
+
+	if(get_dist(user,src) <= 2)
+		if(reagents)
+			if(container_type & TRANSPARENT)
+				to_chat(user, "It contains:")
+				if(reagents.reagent_list.len) // TODO: Implement scan_reagent and can_see_reagents() to show each individual reagent
+					var/total_volume = 0
+					for(var/datum/reagent/R in reagents.reagent_list)
+						total_volume += R.volume
+					to_chat(user, "<span class='notice'>[total_volume] units of various reagents.</span>")
+				else
+					to_chat(user, "<span class='notice'>Nothing.")
+			else if(container_type & AMOUNT_VISIBLE)
+				if(reagents.total_volume)
+					to_chat(user, "<span class='notice'>It has [reagents.total_volume] unit\s left.</span>")
+				else
+					to_chat(user, "<span class='warning'>It's empty.</span>")
+			else if(container_type & AMOUNT_SKILLCHECK)
+				if(isXeno())
+					return
+				if(!user.mind || !user.mind.cm_skills || user.mind.cm_skills.medical >= SKILL_MEDICAL_CHEM) // If they have no skillset(admin-spawn, etc), or are properly skilled.
+					to_chat(user, "It contains:")
+					if(reagents.reagent_list.len)
+						for(var/datum/reagent/R in reagents.reagent_list)
+							to_chat(user, "[R.volume] units of [R.name]")
+					else
+						to_chat(user, "Nothing.")
+				else
+					to_chat(user, "You don't know what's in it.")
+			else if(container_type & AMOUNT_ESTIMEE)
+				var/obj/item/reagent_container/C = src
+				if(!reagents.total_volume)
+					to_chat(user, "<span class='notice'>\The [src] is empty!</span>")
+				else if (reagents.total_volume<= C.volume*0.3)
+					to_chat(user, "<span class='notice'>\The [src] is almost empty!</span>")
+				else if (reagents.total_volume<= C.volume*0.6)
+					to_chat(user, "<span class='notice'>\The [src] is half full!</span>")
+				else if (reagents.total_volume<= C.volume*0.9)
+					to_chat(user, "<span class='notice'>\The [src] is almost full!</span>")
+				else
+					to_chat(user, "<span class='notice'>\The [src] is full!</span>")
+
 
 // called by mobs when e.g. having the atom as their machine, pulledby, loc (AKA mob being inside the atom) or buckled var set.
 // see code/modules/mob/mob_movement.dm for more.

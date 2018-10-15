@@ -10,6 +10,7 @@
 	possible_transfer_amounts = list(1,2,3,4,5)
 	w_class = 1
 	volume = 5
+	container_type = TRANSPARENT
 	var/filled = 0
 
 	afterattack(obj/target, mob/user , flag)
@@ -21,7 +22,7 @@
 				to_chat(user, "\red [target] is full.")
 				return
 
-			if(!target.is_open_container() && !ismob(target) && !istype(target,/obj/item/reagent_container/food) && !istype(target, /obj/item/clothing/mask/cigarette)) //You can inject humans and food but you cant remove the shit.
+			if(!target.is_injectable() && !ismob(target)) //You can inject humans and food but you cant remove the shit.
 				to_chat(user, "\red You cannot directly fill this object.")
 				return
 

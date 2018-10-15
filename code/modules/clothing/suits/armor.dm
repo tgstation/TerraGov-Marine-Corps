@@ -21,6 +21,7 @@
 	icon_state = "armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
+	permeability_coefficient = 0.8
 	flags_armor_protection = UPPER_TORSO
 	armor = list(melee = 20, bullet = 30, laser = 25, energy = 10, bomb = 15, bio = 0, rad = 0)
 
@@ -103,6 +104,7 @@
 	flags_armor_protection = UPPER_TORSO
 	armor = list(melee = 20, bullet = 50, laser = 25, energy = 10, bomb = 15, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
+	permeability_coefficient = 0.9
 	time_to_unequip = 20
 	time_to_equip = 20
 
@@ -117,6 +119,7 @@
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEJUMPSUIT
 	siemens_coefficient = 0.5
+	permeability_coefficient = 0.7
 	time_to_unequip = 20
 	time_to_equip = 20
 

@@ -186,7 +186,7 @@
 		surgery_list += create_autodoc_surgery(null,EXTERNAL_SURGERY,"toxin")
 	var/overdoses = 0
 	for(var/datum/reagent/x in M.reagents.reagent_list)
-		if(istype(x,/datum/reagent/toxin)||M.reagents.get_reagent_amount(x.id) > x.overdose)
+		if(istype(x,/datum/reagent/toxin)||M.reagents.get_reagent_amount(x.id) > x.overdose_threshold)
 			overdoses++
 	if(overdoses)
 		surgery_list += create_autodoc_surgery(null,EXTERNAL_SURGERY,"dialysis")
@@ -258,7 +258,7 @@
 					if("germs") // Just dose them with the maximum amount of antibiotics and hope for the best
 						if(prob(30)) visible_message("\The [src] speaks, Beginning organ disinfection.");
 						var/datum/reagent/R = chemical_reagents_list["spaceacillin"]
-						var/amount = R.overdose - H.reagents.get_reagent_amount("spaceacillin")
+						var/amount = R.overdose_threshold - H.reagents.get_reagent_amount("spaceacillin")
 						var/inject_per_second = 3
 						to_chat(occupant, "<span class='info'>You feel a soft prick from a needle.</span>")
 						while(amount > 0)
@@ -459,7 +459,7 @@
 						if(prob(30)) visible_message("\The [src] speaks, Beginning limb disinfection.");
 
 						var/datum/reagent/R = chemical_reagents_list["spaceacillin"]
-						var/amount = (R.overdose/2) - H.reagents.get_reagent_amount("spaceacillin")
+						var/amount = (R.overdose_threshold/2) - H.reagents.get_reagent_amount("spaceacillin")
 						var/inject_per_second = 3
 						to_chat(occupant, "<span class='info'>You feel a soft prick from a needle.</span>")
 						while(amount > 0)

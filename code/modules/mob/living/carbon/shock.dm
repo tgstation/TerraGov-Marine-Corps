@@ -16,8 +16,10 @@
 
 	traumatic_shock += reagent_shock_modifier
 
-	if(slurring) 								traumatic_shock -= 20
-	if(analgesic) 								traumatic_shock = 0
+	if(slurring)
+		traumatic_shock -= 10
+	if(analgesic)
+		traumatic_shock = 0
 
 
 	//Broken or ripped off organs and limbs will add quite a bit of pain
@@ -51,3 +53,7 @@
 
 /mob/living/carbon/proc/handle_shock()
 	updateshock()
+
+/mob/living/carbon/proc/halloss_recovery()
+	var/rate = (stat || resting) ? REST_HALLOSS_RECOVERY_RATE : BASE_HALLOSS_RECOVERY_RATE
+	adjustHalLoss(rate)

@@ -74,7 +74,7 @@
 				return // they have no ID on, fuck them.
 		src.locked = !src.locked
 		for(var/mob/O in viewers(user, 3))
-			if((O.client && !( O.blinded )))
+			if(O.client && !is_blind(O))
 				to_chat(O, "<span class='notice'>The locker has been [locked ? null : "un"]locked by [user].</span>")
 		update_icon()
 	else

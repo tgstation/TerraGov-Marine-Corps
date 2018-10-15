@@ -55,5 +55,5 @@
 		target.KnockOut(amt_knocked_out)
 		target.Stun(amt_stunned)
 
-		target.eye_blind += amt_eye_blind
-		target.eye_blurry += amt_eye_blurry
+		target.blind_eyes(amt_eye_blind)
+		target.blur_eyes(amt_eye_blurry)

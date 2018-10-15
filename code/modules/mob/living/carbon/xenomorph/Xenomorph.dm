@@ -189,7 +189,10 @@
 /mob/living/carbon/Xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
-
+/mob/living/carbon/Xenomorph/handle_knocked_out()
+	if(knocked_out)
+		AdjustKnockedout(-2)
+	return knocked_out
 
 /mob/living/carbon/Xenomorph/start_pulling(atom/movable/AM, lunge, no_msg)
 	if(!isliving(AM))
@@ -247,9 +250,14 @@
 	visible_message("<b>[src]</b> points to [A]")
 	return 1
 
+/mob/living/carbon/Xenomorph/get_permeability_protection()
+	return XENO_PERM_COEFF
 
-
-///get_eye_protection()
-///Returns a number between -1 to 2
 /mob/living/carbon/Xenomorph/get_eye_protection()
 	return 2
+
+/mob/living/carbon/Xenomorph/vomit()
+	return
+
+/mob/living/carbon/Xenomorph/reagent_check(datum/reagent/R) //For the time being they can't metabolize chemicals.
+	return TRUE

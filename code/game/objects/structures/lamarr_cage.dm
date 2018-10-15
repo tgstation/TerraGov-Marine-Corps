@@ -67,7 +67,7 @@
 	else
 		to_chat(usr, text("\blue You kick the lab cage."))
 		for(var/mob/O in oviewers())
-			if ((O.client && !( O.blinded )))
+			if ((O.client && !( is_blind(O) )))
 				to_chat(O, text("\red [] kicks the lab cage.", usr))
 		src.health -= 2
 		healthcheck()

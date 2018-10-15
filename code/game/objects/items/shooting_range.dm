@@ -94,7 +94,7 @@
 		hp -= Proj.ammo.damage
 		if(hp <= 0)
 			for(var/mob/O in oviewers())
-				if ((O.client && !( O.blinded )))
+				if (O.client && !is_blind(O))
 					to_chat(O, "\red [src] breaks into tiny pieces and collapses!")
 			cdel(src)
 

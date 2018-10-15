@@ -57,13 +57,13 @@
 	if(!client)	return
 
 	if (type)
-		if(type & 1 && (sdisabilities & BLIND || blinded) )//Vision related
+		if(type & 1 && (sdisabilities & BLIND || is_blind()) )//Vision related
 			if (!alt)
 				return
 			else
 				msg = alt
 				type = alt_type
-		if (type & 2 && (sdisabilities & DEAF || ear_deaf))//Hearing related
+		if (type & 2 && (sdisabilities & DEAF || isdeaf()))//Hearing related
 			if (!alt)
 				return
 			else
@@ -431,52 +431,6 @@ var/list/slot_equipment_priority = list( \
 		if(!M.stat)
 			to_chat(src, message)
 
-
-/*
-adds a dizziness amount to a mob
-use this rather than directly changing var/dizziness
-since this ensures that the dizzy_process proc is started
-currently only humans get dizzy
-
-value of dizziness ranges from 0 to 1000
-below 100 is not dizzy
-*/
-/mob/proc/make_dizzy(var/amount)
-	if(!istype(src, /mob/living/carbon/human)) // for the moment, only humans get dizzy
-		return
-
-	dizziness = min(1000, dizziness + amount)	// store what will be new value
-													// clamped to max 1000
-	if(dizziness > 100 && !is_dizzy)
-		spawn(0)
-			dizzy_process()
-
-
-/*
-dizzy process - wiggles the client's pixel offset over time
-spawned from make_dizzy(), will terminate automatically when dizziness gets <100
-note dizziness decrements automatically in the mob's Life() proc.
-*/
-/mob/proc/dizzy_process()
-	is_dizzy = 1
-	while(dizziness > 100)
-		if(client)
-			var/amplitude = dizziness*(sin(dizziness * 0.044 * world.time) + 1) / 70
-			client.pixel_x = amplitude * sin(0.008 * dizziness * world.time)
-			client.pixel_y = amplitude * cos(0.008 * dizziness * world.time)
-
-		sleep(1)
-	//endwhile - reset the pixel offsets to zero
-	is_dizzy = 0
-	if(client)
-		client.pixel_x = 0
-		client.pixel_y = 0
-
-// jitteriness
-
-/mob/proc/make_jittery(var/amount)
-	return
-
 //handles up-down floaty effect in space
 /mob/proc/make_floating(var/n)
 
@@ -677,50 +631,11 @@ mob/proc/yank_out_object()
 	selection.loc = get_turf(src)
 	return 1
 
-/mob/living/proc/handle_statuses()
-	handle_stunned()
-	handle_knocked_down()
-	handle_stuttering()
-	handle_silent()
-	handle_drugged()
-	handle_slurring()
+/mob/proc/update_stat()
+	return
 
-/mob/living/proc/handle_stunned()
-	if(stunned)
-		AdjustStunned(-1)
-	return stunned
-
-/mob/living/proc/handle_knocked_down()
-	if(knocked_down && client)
-		knocked_down = max(knocked_down-1,0)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
-	return knocked_down
-
-/mob/living/proc/handle_stuttering()
-	if(stuttering)
-		stuttering = max(stuttering-1, 0)
-	return stuttering
-
-/mob/living/proc/handle_silent()
-	if(silent)
-		silent = max(silent-1, 0)
-	return silent
-
-/mob/living/proc/handle_drugged()
-	if(druggy)
-		druggy = max(druggy-1, 0)
-	return druggy
-
-/mob/living/proc/handle_slurring()
-	if(slurring)
-		slurring = max(slurring-1, 0)
-	return slurring
-
-/mob/living/proc/handle_knocked_out() //used by simple_animal.dm and xenomorph/life.dm
-	if(knocked_out)
-		AdjustKnockedout(-1)
-	return knocked_out
-
-
+/mob/proc/update_health_hud()
+	return
 
 /mob/proc/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE

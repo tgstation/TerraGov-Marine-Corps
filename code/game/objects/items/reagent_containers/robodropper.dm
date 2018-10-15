@@ -18,7 +18,7 @@
 				to_chat(user, "\red [target] is full.")
 				return
 
-			if(!target.is_open_container() && !ismob(target) && !istype(target,/obj/item/reagent_container/food)) //You can inject humans and food but you cant remove the shit.
+			if(!target.is_injectable() && !ismob(target)) //You can inject humans and food but you cant remove the shit.
 				to_chat(user, "\red You cannot directly fill this object.")
 				return
 
@@ -52,7 +52,7 @@
 
 
 						to_chat(user, "\blue You transfer [trans] units of the solution.")
-						if (src.reagents.total_volume<=0)
+						if (reagents.total_volume<=0)
 							filled = 0
 							icon_state = "dropper[filled]"
 						return
@@ -60,7 +60,7 @@
 
 				for(var/mob/O in viewers(world.view, user))
 					O.show_message(text("\red <B>[] squirts something into []'s eyes!</B>", user, target), 1)
-				src.reagents.reaction(target, TOUCH)
+				reagents.reaction(target, TOUCH)
 
 				var/mob/M = target
 				var/list/injected = list()

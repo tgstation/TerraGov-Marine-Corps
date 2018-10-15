@@ -8,6 +8,7 @@
 	item_state = "glasses"
 	origin_tech = "magnets=2"
 	darkness_view = 7
+	see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING // Needed for no darkness overlay
 	fullscreen_vision = /obj/screen/fullscreen/nvg
 
 

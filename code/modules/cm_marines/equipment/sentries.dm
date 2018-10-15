@@ -487,7 +487,7 @@
 		manual_override = FALSE
 
 /obj/machinery/marine_turret/check_eye(mob/user)
-	if(user.is_mob_incapacitated() || get_dist(user, src) > 1 || user.blinded || user.lying || !user.client)
+	if(user.is_mob_incapacitated() || get_dist(user, src) > 1 || is_blind(user) || user.lying || !user.client)
 		user.unset_interaction()
 
 /obj/machinery/marine_turret/attackby(var/obj/item/O as obj, mob/user as mob)
@@ -1014,7 +1014,7 @@
 	var/obj/machinery/camera/current = null
 
 	check_eye(var/mob/user as mob)
-		if (user.z == 0 || user.stat || ((get_dist(user, src) > 1 || user.blinded) && !istype(user, /mob/living/silicon))) //user can't see - not sure why canmove is here.
+		if (user.z == 0 || user.stat || ((get_dist(user, src) > 1 || is_blind(user)) && !istype(user, /mob/living/silicon))) //user can't see - not sure why canmove is here.
 			return null
 		if(!linked_turret || isnull(linked_turret.camera))
 			return null
