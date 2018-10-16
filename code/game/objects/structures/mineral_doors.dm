@@ -1,5 +1,5 @@
-#define CLOSED 0
-#define OPEN 1
+#define D_CLOSED 0
+#define D_OPEN 1
 
 //NOT using the existing /obj/machinery/door type, since that has some complications on its own, mainly based on its
 //machineryness
@@ -14,7 +14,7 @@
 	icon_state = "metal"
 
 	var/mineralType = "metal"
-	var/state = CLOSED
+	var/state = D_CLOSED
 	var/isSwitchingStates = FALSE
 	var/hardness = 1
 	var/oreAmount = 7
@@ -77,7 +77,7 @@
 	sleep(10)
 	density = FALSE
 	opacity = FALSE
-	state = OPEN
+	state = D_OPEN
 	update_icon()
 	isSwitchingStates = FALSE
 
@@ -89,7 +89,7 @@
 	sleep(10)
 	density = TRUE
 	opacity = TRUE
-	state = CLOSED
+	state = D_CLOSED
 	update_icon()
 	isSwitchingStates = FALSE
 
@@ -219,7 +219,7 @@
 	sleep(10)
 	density = FALSE
 	opacity = FALSE
-	state = OPEN
+	state = D_OPEN
 	update_icon()
 	isSwitchingStates = FALSE
 
@@ -230,7 +230,7 @@
 	sleep(10)
 	density = TRUE
 	opacity = TRUE
-	state = CLOSED
+	state = D_CLOSED
 	update_icon()
 	isSwitchingStates = FALSE
 
@@ -244,8 +244,8 @@
 /obj/structure/mineral_door/wood/open
 	density = FALSE
 	opacity = FALSE
-	state = OPEN
+	state = D_OPEN
 	icon_state = "woodopen"
 
-#undef CLOSED
-#undef OPEN
+#undef D_CLOSED
+#undef D_OPEN

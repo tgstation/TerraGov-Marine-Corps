@@ -4,7 +4,7 @@
 #define M_HANDCUFF_LAYER		6
 #define M_L_HAND_LAYER			5
 #define M_R_HAND_LAYER			4
-#define TARGETED_LAYER			3
+#define M_TARGETED_LAYER		3
 #define M_FIRE_LAYER			2
 #define M_BURST_LAYER			1
 #define M_TOTAL_LAYERS			8
@@ -98,13 +98,13 @@
 
 //Call when target overlay should be added/removed
 /mob/living/carbon/monkey/update_targeted()
-	remove_overlay(TARGETED_LAYER)
+	remove_overlay(M_TARGETED_LAYER)
 	if (targeted_by && target_locked)
-		overlays_standing[TARGETED_LAYER]	= image("icon"=target_locked, "layer" =-TARGETED_LAYER)
+		overlays_standing[M_TARGETED_LAYER]	= image("icon"=target_locked, "layer" =-M_TARGETED_LAYER)
 	else if (!targeted_by && target_locked)
 		cdel(target_locked)
 		target_locked = null
-	apply_overlay(TARGETED_LAYER)
+	apply_overlay(M_TARGETED_LAYER)
 
 /mob/living/carbon/monkey/update_burst()
 	remove_overlay(M_BURST_LAYER)
@@ -126,7 +126,7 @@
 #undef M_HANDCUFF_LAYER
 #undef M_L_HAND_LAYER
 #undef M_R_HAND_LAYER
-#undef TARGETED_LAYER
+#undef M_TARGETED_LAYER
 #undef M_FIRE_LAYER
 #undef M_BURST_LAYER
 #undef M_TOTAL_LAYERS
