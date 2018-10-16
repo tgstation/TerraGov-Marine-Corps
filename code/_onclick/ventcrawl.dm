@@ -50,78 +50,61 @@ var/list/ventcrawl_machinery = list(/obj/machinery/atmospherics/unary/vent_pump,
 
 /mob/living/proc/handle_ventcrawl(var/atom/clicked_on)
 	log_message("Started ventcrawling", LOG_GAME)
-	if(!stat)
-		if(!lying)
-
-			var/obj/machinery/atmospherics/unary/vent_found
-
-			if(clicked_on && Adjacent(clicked_on))
-				vent_found = clicked_on
-				if(!istype(vent_found) || !vent_found.can_crawl_through())
-					vent_found = null
-
-			if(!vent_found)
-				var/obj/machinery/atmospherics/P
-				var/obj/O
-				for(O in range(1, src))
-					P = O
-					if(is_type_in_list(P, ventcrawl_machinery) && P.can_crawl_through())
-						vent_found = P
-						break
-
-			if(vent_found)
-				if(vent_found.network && (vent_found.network.normal_members.len || vent_found.network.line_members.len))
-
-					if(!issilicon(src))
-
-						switch(vent_found.temperature)
-							if(0 to BODYTEMP_COLD_DAMAGE_LIMIT)
-								to_chat(src, "<span class='danger'>You feel a painful freeze coming from the vent!</span>")
-							if(BODYTEMP_COLD_DAMAGE_LIMIT to T0C)
-								to_chat(src, "<span class='warning'>You feel an icy chill coming from the vent.</span>")
-							if(T0C + 40 to BODYTEMP_HEAT_DAMAGE_LIMIT)
-								to_chat(src, "<span class='warning'>You feel a hot wash coming from the vent.</span>")
-							if(BODYTEMP_HEAT_DAMAGE_LIMIT to INFINITY)
-								to_chat(src, "<span class='danger'>You feel a searing heat coming from the vent!</span>")
-
-					visible_message("<span class='notice'>[src] begins climbing into [vent_found].</span>", \
-					"<span class='notice'>You begin climbing into [vent_found].</span>")
-
-					if(!do_after(src, 45, FALSE, 5, BUSY_ICON_GENERIC))
-						return
-
-					updatehealth()
-					if(stat || stunned || knocked_down || lying || health < 0)
-						return
-
-					if(!client)
-						return
-
-					if(!ventcrawl_carry())
-						return
-
-					visible_message("<span class='danger'>[src] scrambles into [vent_found]!</span>", \
-					"<span class='warning'>You climb into [vent_found].</span>")
-					pick(playsound(src, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(src, 'sound/effects/alien_ventpass2.ogg', 35, 1))
-
-					forceMove(vent_found)
-					add_ventcrawl(vent_found)
-
-				else
-					to_chat(src, "<span class='warning'>This vent is not connected to anything.</span>")
-
-			else
-				to_chat(src, "<span class='warning'>You must be standing on or beside an air vent to enter it.</span>")
-
-		else
-			to_chat(src, "<span class='warning'>You can't vent crawl while you're stunned!</span>")
-
-	else
+	if(stat)
 		to_chat(src, "<span class='warning'>You must be conscious to do this!</span>")
+		return
+	if(lying)
+		to_chat(src, "<span class='warning'>You can't vent crawl while you're stunned!</span>")
+		return
+	var/obj/machinery/atmospherics/unary/vent_found
+	if(clicked_on && Adjacent(clicked_on))
+		vent_found = clicked_on
+		if(!istype(vent_found) || !vent_found.can_crawl_through())
+			vent_found = null
+	if(!vent_found)
+		var/obj/machinery/atmospherics/P
+		var/obj/O
+		for(O in range(1, src))
+			P = O
+			if(is_type_in_list(P, ventcrawl_machinery) && P.can_crawl_through())
+				vent_found = P
+				break
+	if(!vent_found)
+		to_chat(src, "<span class='warning'>You must be standing on or beside an air vent to enter it.</span>")
+		return
+	if(!vent_found.network || !vent_found.network.normal_members.len && !vent_found.network.line_members.len)
+		to_chat(src, "<span class='warning'>This vent is not connected to anything.</span>")
+		return
+	if(!issilicon(src))
+		switch(vent_found.temperature)
+			if(0 to BODYTEMP_COLD_DAMAGE_LIMIT)
+				to_chat(src, "<span class='danger'>You feel a painful freeze coming from the vent!</span>")
+			if(BODYTEMP_COLD_DAMAGE_LIMIT to T0C)
+				to_chat(src, "<span class='warning'>You feel an icy chill coming from the vent.</span>")
+			if(T0C + 40 to BODYTEMP_HEAT_DAMAGE_LIMIT)
+				to_chat(src, "<span class='warning'>You feel a hot wash coming from the vent.</span>")
+			if(BODYTEMP_HEAT_DAMAGE_LIMIT to INFINITY)
+				to_chat(src, "<span class='danger'>You feel a searing heat coming from the vent!</span>")
+	visible_message("<span class='notice'>[src] begins climbing into [vent_found].</span>", \
+	"<span class='notice'>You begin climbing into [vent_found].</span>")
+	if(!do_after(src, 45, FALSE, 5, BUSY_ICON_GENERIC))
+		return
+	updatehealth()
+	if(stat || stunned || knocked_down || lying || health < 0)
+		return
+	if(!client)
+		return
+	if(!ventcrawl_carry())
+		return
+	visible_message("<span class='danger'>[src] scrambles into [vent_found]!</span>", \
+	"<span class='warning'>You climb into [vent_found].</span>")
+	pick(playsound(src, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(src, 'sound/effects/alien_ventpass2.ogg', 35, 1))
+	forceMove(vent_found)
+	add_ventcrawl(vent_found)
 	return
 
 /mob/living/proc/add_ventcrawl(obj/machinery/atmospherics/starting_machine)
-	is_ventcrawling = 1
+	is_ventcrawling = TRUE
 	var/datum/pipe_network/network = starting_machine.return_network(starting_machine)
 	if(!network)
 		return

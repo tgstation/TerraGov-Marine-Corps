@@ -66,12 +66,9 @@
 
 /obj/machinery/atmospherics/pipe/Dispose()
 	if(!disposed) //not already cdel'd
-		if(contents.len)
-			for(var/atom/movable/A in contents)
-				A.forceMove(loc)
 		if(parent)
 			cdel(parent)
-	. = ..()
+	return ..()
 	//build_network()
 
 /obj/machinery/atmospherics/pipe/attackby(var/obj/item/W as obj, var/mob/user as mob)
@@ -216,11 +213,13 @@
 		dir = 4
 
 /obj/machinery/atmospherics/pipe/simple/Dispose()
-	if(node1)
-		node1.disconnect(src)
-	if(node2)
-		node2.disconnect(src)
+	var/obj/machinery/atmospherics/n1 = node1
+	var/obj/machinery/atmospherics/n2 = node2
+	n1?.disconnect(src)
+	n2?.disconnect(src)
 	. = ..()
+	n1?.build_network()
+	n2?.build_network()
 
 /obj/machinery/atmospherics/pipe/simple/pipeline_expansion()
 	return list(node1, node2)
@@ -440,13 +439,16 @@
 		stop_processing()
 
 /obj/machinery/atmospherics/pipe/manifold/Dispose()
-	if(node1)
-		node1.disconnect(src)
-	if(node2)
-		node2.disconnect(src)
-	if(node3)
-		node3.disconnect(src)
+	var/obj/machinery/atmospherics/n1 = node1
+	var/obj/machinery/atmospherics/n2 = node2
+	var/obj/machinery/atmospherics/n3 = node3
+	n1?.disconnect(src)
+	n2?.disconnect(src)
+	n3?.disconnect(src)
 	. = ..()
+	n1?.build_network()
+	n2?.build_network()
+	n3?.build_network()
 
 /obj/machinery/atmospherics/pipe/manifold/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
@@ -677,15 +679,19 @@
 		stop_processing()
 
 /obj/machinery/atmospherics/pipe/manifold4w/Dispose()
-	if(node1)
-		node1.disconnect(src)
-	if(node2)
-		node2.disconnect(src)
-	if(node3)
-		node3.disconnect(src)
-	if(node4)
-		node4.disconnect(src)
+	var/obj/machinery/atmospherics/n1 = node1
+	var/obj/machinery/atmospherics/n2 = node2
+	var/obj/machinery/atmospherics/n3 = node3
+	var/obj/machinery/atmospherics/n4 = node4
+	n1?.disconnect(src)
+	n2?.disconnect(src)
+	n3?.disconnect(src)
+	n4?.disconnect(src)
 	. = ..()
+	n1?.build_network()
+	n2?.build_network()
+	n3?.build_network()
+	n4?.build_network()
 
 /obj/machinery/atmospherics/pipe/manifold4w/disconnect(obj/machinery/atmospherics/reference)
 	if(reference == node1)
