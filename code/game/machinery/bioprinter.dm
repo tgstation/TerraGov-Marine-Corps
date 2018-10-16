@@ -47,11 +47,13 @@
 		stored_metal -= products[choice][3] //Metal
 		to_chat(user, "\blue \The [src] is now printing the selected organ. Please hold.")
 		working = 1
+		update_icon()
 		spawn(products[choice][4]) //Time
 			var/new_organ = products[choice][1]
 			new new_organ(get_turf(src))
 			working = 0
 			visible_message("The bio/synthetic printer spits out a new organ.")
+			update_icon()
 
 	else
 		to_chat(user, "There is not enough materials in the printer.")
@@ -78,3 +80,16 @@
 /obj/machinery/bioprinter/examine(mob/user)
 	..()
 	to_chat(user, "It has [stored_matter] matter and [stored_metal] metal left.")
+
+/obj/machinery/bioprinter/power_change()
+	.=..()
+	update_icon()
+
+/obj/machinery/bioprinter/update_icon()
+	if(stat & NOPOWER)
+		icon_state = "bioprinter_off"
+	else
+		if(working)
+			icon_state = "bioprinter_busy"
+		else
+			icon_state = "bioprinter"
