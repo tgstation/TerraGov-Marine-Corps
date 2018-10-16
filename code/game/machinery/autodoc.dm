@@ -37,7 +37,16 @@
 		visible_message("\The [src] engages the safety override, ejecting the occupant.")
 		surgery = 0
 		go_out()
-		return
+
+/obj/machinery/autodoc/update_icon()
+	if(stat & NOPOWER)
+		icon_state = "autodoc_off"
+	else if(surgery)
+		icon_state = "autodoc_operate"
+	else if (occupant)
+		icon_state = "autodoc_closed"
+	else
+		icon_state = "autodoc_open"
 
 /obj/machinery/autodoc/process()
 	updateUsrDialog()
@@ -222,7 +231,7 @@
 
 	visible_message("\The [src] begins to operate, loud audible clicks lock the pod.")
 	surgery = 1
-	icon_state = "autodoc_operate"
+	update_icon()
 
 	var/known_implants = list(/obj/item/implant/chem, /obj/item/implant/death_alarm, /obj/item/implant/loyalty, /obj/item/implant/tracking, /obj/item/implant/neurostim)
 
@@ -629,7 +638,7 @@
 		usr.loc = src
 		update_use_power(2)
 		occupant = usr
-		icon_state = "autodoc_closed"
+		update_icon()
 		start_processing()
 		connected.start_processing()
 
@@ -643,7 +652,7 @@
 	occupant = null
 	surgery_todo_list = list()
 	update_use_power(1)
-	icon_state = "autodoc_open"
+	update_icon()
 	stop_processing()
 	connected.stop_processing()
 	connected.process() // one last update
@@ -687,7 +696,7 @@
 			M.forceMove(src)
 			update_use_power(2)
 			occupant = M
-			icon_state = "autodoc_closed"
+			update_icon()
 			start_processing()
 			connected.start_processing()
 
