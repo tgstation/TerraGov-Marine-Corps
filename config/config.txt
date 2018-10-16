@@ -286,3 +286,11 @@ REQ_CULT_GHOSTWRITER 6
 
 ## Automute the OOC channel. OOC mutes itself at round-start and unmutes itself at round-end.
 AUTOOOCMUTE
+
+# MAP URLS
+ALMAYER_URL https://affectedarc07.github.io/SS13WebMap/DMCA/Almayer/index.html
+BIGRED_URL https://affectedarc07.github.io/SS13WebMap/DMCA/BigRed/index.html
+ICECOLONY_URL https://affectedarc07.github.io/SS13WebMap/DMCA/IceColony/index.html
+LV624_URL https://affectedarc07.github.io/SS13WebMap/DMCA/LV624/index.html
+PRISONSTATION_URL https://affectedarc07.github.io/SS13WebMap/PrisonStation/Almayer/index.html
+WHISKEYOUTPOST_URL https://affectedarc07.github.io/SS13WebMap/DMCA/WhiskeyOutpost/index.html
