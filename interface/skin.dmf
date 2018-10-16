@@ -743,10 +743,20 @@ window "rpane"
 		saved-params = "splitter"
 		right = "outputwindow"
 		is-vert = false
+	elem "webmap"
+		type = BUTTON
+		pos = 720,0
+		size = 90x20
+		anchor1 = 92,0
+		anchor2 = 104,0
+		saved-params = "is-checked"
+		text = "Webmap"
+		command = "webmap"
+		group = "rpanemode"
 	elem "submitbug"
 		type = BUTTON
-		pos = 576,0
-		size = 106x20
+		pos = 540,0
+		size = 90x20
 		anchor1 = 67,0
 		anchor2 = 79,0
 		saved-params = "is-checked"
@@ -755,8 +765,8 @@ window "rpane"
 		group = "rpanemode"
 	elem "patreon"
 		type = BUTTON
-		pos = 682,0
-		size = 106x20
+		pos = 630,0
+		size = 90x20
 		anchor1 = 79,0
 		anchor2 = 92,0
 		background-color = #ff8040
@@ -766,8 +776,8 @@ window "rpane"
 		group = "rpanemode"
 	elem "rulesb"
 		type = BUTTON
-		pos = 258,0
-		size = 106x20
+		pos = 270,0
+		size = 90x20
 		anchor1 = 30,0
 		anchor2 = 42,0
 		saved-params = "is-checked"
@@ -776,8 +786,8 @@ window "rpane"
 		group = "rpanemode"
 	elem "changelog"
 		type = BUTTON
-		pos = 153,0
-		size = 111x20
+		pos = 180,0
+		size = 90x20
 		anchor1 = 18,0
 		anchor2 = 31,0
 		saved-params = "is-checked"
@@ -786,8 +796,8 @@ window "rpane"
 		group = "rpanemode"
 	elem "forumb"
 		type = BUTTON
-		pos = 470,0
-		size = 106x20
+		pos = 450,0
+		size = 90x20
 		anchor1 = 55,0
 		anchor2 = 67,0
 		saved-params = "is-checked"
@@ -796,8 +806,8 @@ window "rpane"
 		group = "rpanemode"
 	elem "wikib"
 		type = BUTTON
-		pos = 364,0
-		size = 106x20
+		pos = 360,0
+		size = 90x20
 		anchor1 = 42,0
 		anchor2 = 55,0
 		saved-params = "is-checked"
