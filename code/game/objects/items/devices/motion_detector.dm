@@ -23,7 +23,7 @@
 	var/list/blip_pool = list()
 	var/detector_range = 14
 	var/detector_mode = MOTION_DETECTOR_LONG
-	w_class = 3
+	w_class = 2
 	var/active = 0
 	var/recycletime = 120
 	var/long_range_cooldown = 2

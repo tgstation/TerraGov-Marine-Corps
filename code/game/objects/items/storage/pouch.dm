@@ -30,15 +30,9 @@
 
 /obj/item/storage/pouch/general
 	name = "light general pouch"
-	desc = "A general purpose pouch used to carry small items and ammo magazines."
+	desc = "A general purpose pouch used to carry small items."
 	icon_state = "small_drop"
 	draw_mode = 1
-	bypass_w_limit = list("/obj/item/ammo_magazine/rifle",
-					"/obj/item/ammo_magazine/smg",
-					"/obj/item/ammo_magazine/pistol",
-					"/obj/item/ammo_magazine/revolver",
-					"/obj/item/ammo_magazine/sniper",
-					)
 
 /obj/item/storage/pouch/general/medium
 	name = "medium general pouch"
@@ -381,6 +375,33 @@
 	draw_mode = 1
 	desc = "It can contain two handheld radios."
 	can_hold = list("/obj/item/device/radio")
+
+
+/obj/item/storage/pouch/field_pouch
+	name = "field utility pouch"
+	storage_slots = 5
+	max_w_class = 3
+	icon_state = "radio"
+	draw_mode = 1
+	desc = "It can contain a motion detector, signaller, beacons, maps, flares, radios and other handy battlefield communication and detection devices."
+	can_hold = list("/obj/item/device/motiondetector",
+					"/obj/item/device/radio",
+					"/obj/item/device/assembly/signaler",
+					"/obj/item/device/megaphone",
+					"/obj/item/device/flashlight",
+					"/obj/item/device/whistle",
+					"/obj/item/device/binoculars",
+					"/obj/item/map/current_map",
+					"/obj/item/map/squad_beacon",
+					)
+
+/obj/item/storage/pouch/field_pouch/full/New()
+	.=..()
+	new /obj/item/device/motiondetector (src)
+	new /obj/item/device/whistle (src)
+	new /obj/item/device/radio (src)
+	new /obj/item/map/current_map (src)
+	new /obj/item/device/binoculars/tactical (src)
 
 
 /obj/item/storage/pouch/electronics
