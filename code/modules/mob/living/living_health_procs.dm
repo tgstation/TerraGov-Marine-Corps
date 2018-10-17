@@ -125,6 +125,7 @@
 	setOxyLoss(0)
 	setCloneLoss(0)
 	setBrainLoss(0)
+	setHalLoss(0)
 	SetKnockedout(0)
 	SetStunned(0)
 	SetKnockeddown(0)
@@ -139,8 +140,8 @@
 	disabilities = 0
 
 	// fix blindness and deafness
-	set_blindness(0)
-	set_blurriness(0)
+	set_blindness(0, TRUE)
+	set_blurriness(0, TRUE)
 	setEarDamage(0, 0)
 	heal_overall_damage(getBruteLoss(), getFireLoss())
 
@@ -165,6 +166,7 @@
 
 	// restore us to conciousness
 	stat = CONSCIOUS
+	updatehealth()
 
 	// make the icons look correct
 	regenerate_icons()

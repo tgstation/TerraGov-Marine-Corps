@@ -1432,7 +1432,8 @@
 				overlay_fullscreen("glasses_vision", G.fullscreen_vision)
 			else
 				clear_fullscreen("glasses_vision", 0)
-			see_invisible = min(G.see_invisible, see_invisible)
+			if(G.see_invisible)
+				see_invisible = min(G.see_invisible, see_invisible)
 	else
 		clear_fullscreen("glasses_vision", 0)
 

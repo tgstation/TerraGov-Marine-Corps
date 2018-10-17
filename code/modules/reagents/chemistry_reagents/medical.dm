@@ -348,8 +348,8 @@
 	M.setBrainLoss(0)
 	M.disabilities = 0
 	M.sdisabilities = 0
-	M.set_blurriness(0)
-	M.set_blindness(0)
+	M.set_blurriness(0, TRUE)
+	M.set_blindness(0, TRUE)
 	M.SetKnockeddown(0)
 	M.SetStunned(0)
 	M.SetKnockedout(0)

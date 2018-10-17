@@ -111,8 +111,7 @@
 			blind_minimum = 1
 		if(isliving(src))
 			var/mob/living/L = src
-			var/mob/living/carbon/human/H = src
-			if(L.sdisabilities & BLIND || !L.has_eyes(src) || H.tinttotal >= 3)
+			if(!L.has_vision())
 				blind_minimum = 1
 		eye_blind = max(eye_blind+amount, blind_minimum)
 		if(!eye_blind)
@@ -130,8 +129,7 @@
 			blind_minimum = 1
 		if(isliving(src))
 			var/mob/living/L = src
-			var/mob/living/carbon/human/H = src
-			if(L.sdisabilities & BLIND || !L.has_eyes(src) || H.tinttotal >= 3)
+			if(!L.has_vision())
 				blind_minimum = 1
 		eye_blind = blind_minimum
 		if(!eye_blind)
