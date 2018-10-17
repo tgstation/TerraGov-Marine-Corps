@@ -376,7 +376,7 @@
 
 	unacidable = 1
 	exproof = 1
-	req_access = list(ACCESS_MARINE_DROPSHIP)
+	req_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 
 /obj/machinery/computer/shuttle_control/dropship1/New()
 	..()
@@ -388,6 +388,7 @@
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "console"
 	onboard = 1
+	req_access = list(ACCESS_MARINE_DROPSHIP)
 
 /obj/machinery/computer/shuttle_control/dropship2
 	name = "\improper 'Normandy' dropship console"
@@ -396,7 +397,7 @@
 	icon_state = "shuttle"
 	unacidable = 1
 	exproof = 1
-	req_access = list(ACCESS_MARINE_DROPSHIP)
+	req_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
 
 /obj/machinery/computer/shuttle_control/dropship2/New()
 	..()
@@ -408,6 +409,7 @@
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "console"
 	onboard = 1
+	req_access = list(ACCESS_MARINE_DROPSHIP)
 
 
 
