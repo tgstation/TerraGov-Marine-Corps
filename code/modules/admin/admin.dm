@@ -52,13 +52,14 @@ var/global/respawntime = 15
 	set name = "Show Player Panel"
 	set desc="Edit player (respawn, ban, heal, etc)"
 
-	if(!M)
-		to_chat(usr, "You seem to be selecting a mob that doesn't exist anymore.")
-		return
 	if (!istype(src,/datum/admins))
 		src = usr.client.holder
 	if (!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
+		return
+
+	if(M.disposed)
+		to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 		return
 
 	var/body = "<html><head><title>Options for [M.key]</title></head>"

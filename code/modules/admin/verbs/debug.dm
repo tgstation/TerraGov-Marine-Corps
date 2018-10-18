@@ -246,6 +246,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
+
+	if(M.disposed)
+		alert("That mob doesn't seem to exist, close the panel and try again.")
+		return
+
 	if(istype(M, /mob/living/carbon/human))
 		log_admin("[key_name(src)] has robotized [M.key].")
 		spawn(10)
@@ -262,7 +267,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("Wait until the game starts")
 		return
 
-	if(!M)
+	if(!M.disposed)
 		alert("That mob doesn't seem to exist, close the panel and try again.")
 		return
 
@@ -281,6 +286,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
+
+	if(M.disposed)
+		alert("That mob doesn't seem to exist, close the panel and try again.")
+		return
+
 	if(ishuman(M))
 		log_admin("[key_name(src)] has alienized [M.key].")
 		spawn(10)
@@ -298,6 +308,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
+
+	if(M.disposed)
+		alert("That mob doesn't seem to exist, close the panel and try again.")
+		return
+
 	if(isXeno(M))
 		log_admin("[key_name(src)] changed hivenumber of [M] to [M.hivenumber].")
 		M.hivenumber = hivenumber
