@@ -252,6 +252,14 @@
 					M.KnockDown(charge_type == 1 ? 1 : 3)
 					step_to(src, M)
 					canmove = FALSE
+					if(savage) //If Runner Savage is toggled on, attempt to use it.
+						if(!savage_used)
+							if(plasma_stored >= 10)
+								Savage(M)
+							else
+								to_chat(src, "<span class='xenodanger'>You attempt to savage your victim, but you need [10-plasma_stored] more plasma.</span>")
+						else
+							to_chat(src, "<span class='xenodanger'>You attempt to savage your victim, but you aren't yet ready.</span>")
 					frozen = TRUE
 					if(!is_robotic) playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
 					spawn(charge_type == 1 ? 5 : 15)
