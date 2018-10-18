@@ -469,7 +469,16 @@
 /turf/closed/wall/resin/attackby(obj/item/W, mob/living/user)
 	if(!(W.flags_item & NOBLUDGEON))
 		user.animation_attack_on(src)
-		take_damage(W.force)
+		var/power = W.force
+		var/multiplier = 1
+		if(W.damtype == "burn") //Burn damage deals extra vs resin structures (mostly welders).
+			multiplier += 1
+			if(istype(W, /obj/item/tool/pickaxe/plasmacutter)) //Plasma cutters are particularly good at destroying resin structures.
+				var/obj/item/tool/pickaxe/plasmacutter/P = W
+				multiplier += PLASMACUTTER_RESIN_MULTIPLIER
+				P.cut_apart(user, src.name, src, P.charge_cost * PLASMACUTTER_VLOW_MOD) //Minimal enregy cost.
+		power *= max(0,multiplier)
+		take_damage(power)
 		playsound(src, "alien_resin_break", 25)
 	else
 		return attack_hand(user)

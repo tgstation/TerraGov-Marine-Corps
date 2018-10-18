@@ -822,6 +822,7 @@
 							list("Metal x10", 5, /obj/item/stack/sheet/metal/small_stack, null, "orange"),
 							list("Plasteel x10", 7, /obj/item/stack/sheet/plasteel/small_stack, null, "orange"),
 							list("Sandbags x25", 10, /obj/item/stack/sandbags_empty/half, null, "orange"),
+							list("Plasma cutter", 20, /obj/item/tool/pickaxe/plasmacutter, null, "black"),
 							list("Plastique explosive", 5, /obj/item/explosive/plastique, null, "black"),
 							list("Entrenching tool", 1, /obj/item/tool/shovel/etool, null, "black"),
 							list("Range Finder", 10, /obj/item/device/binoculars/tactical/range, null, "black"),
