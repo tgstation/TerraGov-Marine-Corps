@@ -125,6 +125,26 @@
 /turf/closed/ice/thin/intersection
 	icon_state = "Intersection"
 
+/turf/closed/attackby(obj/item/W, mob/user)
+
+	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
+		var/obj/item/tool/pickaxe/plasmacutter/P = W
+		if(!P.cell.charge >= P.charge_cost || !P.powered)
+			P.fizzle_message(user)
+			return
+		if(!istype(src, /turf/closed/mineral) && !istype(src, /turf/closed/gm/dense) && !istype(src, /turf/closed/ice) && !istype(src, /turf/closed/desertdamrockwall))
+			to_chat(user, "<span class='warning'>[P] can't cut through this!</span>")
+			return
+		P.start_cut(user, src.name, src)
+		if(do_after(user, PLASMACUTTER_CUT_DELAY, TRUE, 5, BUSY_ICON_FRIENDLY) && P)
+			P.cut_apart(user, src.name, src, P.charge_cost)
+			if(istype(src, /turf/closed/mineral) || istype(src, /turf/closed/desertdamrockwall))
+				ChangeTurf(/turf/open/desertdam/cave/inner_cave_floor)
+			else if(istype(src, /turf/closed/gm/dense))
+				ChangeTurf(/turf/open/jungle/clear)
+			else
+				ChangeTurf(/turf/open/ice)
+			return
 
 //Ice Secret Wall
 /turf/closed/ice/secret

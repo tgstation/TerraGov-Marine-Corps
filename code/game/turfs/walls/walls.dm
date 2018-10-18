@@ -385,6 +385,18 @@
 		to_chat(user, "<span class='warning'>[src] is much too tough for you to do anything to it with [W]</span>.")
 		return
 
+	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
+		var/obj/item/tool/pickaxe/plasmacutter/P = W
+		if(P.cell.charge >= P.charge_cost && P.powered)
+			P.start_cut(user, src.name, src)
+			if(do_after(user, P.calc_delay(user), TRUE, 5, BUSY_ICON_HOSTILE) && P)
+				P.cut_apart(user, src.name, src, P.charge_cost)
+				dismantle_wall()
+			return
+		else
+			P.fizzle_message(user)
+			return
+
 	if(damage && istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))

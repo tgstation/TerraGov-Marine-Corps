@@ -127,6 +127,15 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define IS_PRY_CAPABLE_CROWBAR		2 //actual crowbar
 #define IS_PRY_CAPABLE_FORCE		3 //can force open even powered airlocks
 
+//plasma cutter
+
+#define PLASMACUTTER_VLOW_MOD	0.1
+#define PLASMACUTTER_LOW_MOD	0.5
+#define PLASMACUTTER_HIGH_MOD	2
+#define PLASMACUTTER_VHIGH_MOD	3
+#define PLASMACUTTER_CUT_DELAY	30
+#define PLASMACUTTER_RESIN_MULTIPLIER	4
+
 //flags_token & tokensupport
 //used for coins and vendors, restricting specific tokens to associated vendors.
 
