@@ -1402,3 +1402,46 @@
 		to_chat(src, "<span class='notice'>The selected xeno ability will now be activated with shift clicking.</span>")
 	else
 		to_chat(src, "<span class='notice'>The selected xeno ability will now be activated with middle mouse clicking.</span>")
+
+
+// Runner Savage
+/mob/living/carbon/Xenomorph/proc/Savage(var/mob/living/carbon/M)
+
+	if(!check_state())
+		return
+
+	if(savage_used)
+		to_chat(src, "<span class='xenowarning'>You're too tired to savage right now.</span>")
+		return
+
+	if(legcuffed)
+		to_chat(src, "<span class='xenodanger'>You can't savage with that thing on your leg!</span>")
+		return
+
+	if(stagger)
+		to_chat(src, "<span class='xenodanger'>You're too disoriented from the shock to savage!</span>")
+		return
+
+	var/alien_roar = "alien_roar[rand(1,6)]"
+	playsound(src, alien_roar, 50)
+	use_plasma(10) //Base cost of the Savage
+	src.visible_message("<span class='danger'>\ [src] savages [M]!</span>", \
+	"<span class='xenodanger'>You savage [M]!</span>", null, 5)
+	var/extra_dam = min(15, plasma_stored * 0.2)
+	M.attack_alien(src,  extra_dam, FALSE, TRUE, TRUE, TRUE) //Inflict a free attack on pounce that deals +1 extra damage per 4 plasma stored, up to 35 or twice the max damage of an Ancient Runner attack.
+	use_plasma(extra_dam * 5) //Expend plasma equal to 4 times the extra damage.
+	savage_used = TRUE
+	do_savage_cooldown()
+
+	return TRUE
+
+/mob/living/carbon/Xenomorph/proc/do_savage_cooldown()
+	if(!savage_used)//sanity check/safeguard
+		return
+	spawn(savage_cooldown)
+		savage_used = FALSE
+		to_chat(src, "<span class='xenowarning'><b>You can now savage your victims again.</b></span>")
+		playsound(src, "xeno_newlarva", 100, 0, 1)
+		for(var/X in actions)
+			var/datum/action/act = X
+			act.update_button_icon()

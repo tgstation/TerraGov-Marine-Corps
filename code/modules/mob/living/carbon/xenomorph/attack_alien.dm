@@ -8,7 +8,7 @@
  */
 
 
-/mob/living/carbon/human/attack_alien(mob/living/carbon/Xenomorph/M, dam_bonus)
+/mob/living/carbon/human/attack_alien(mob/living/carbon/Xenomorph/M, dam_bonus, set_location = FALSE, random_location = FALSE, no_head = FALSE, no_crit = FALSE)
 	if (M.fortify)
 		return FALSE
 
@@ -90,12 +90,12 @@
 			M.animation_attack_on(src)
 
 			//Check for a special bite attack
-			if(prob(M.bite_chance))
+			if(prob(M.bite_chance) && !no_crit) //Can't crit if we already crit in the past 3 seconds
 				M.bite_attack(src, damage)
 				return TRUE
 
 			//Check for a special bite attack
-			if(prob(M.tail_chance))
+			if(prob(M.tail_chance) && !no_crit) //Can't crit if we already crit in the past 3 seconds
 				M.tail_attack(src, damage)
 				return TRUE
 
@@ -109,9 +109,14 @@
 
 			M.flick_attack_overlay(src, "slash")
 			var/datum/limb/affecting
-			affecting = get_limb(ran_zone(M.zone_selected, 70))
-			if(!affecting) //No organ, just get a random one
+			if(set_location)
+				affecting = get_limb(set_location)
+			else
+				affecting = get_limb(ran_zone(M.zone_selected, 70))
+			if(!affecting || (random_location && !set_location)) //No organ, just get a random one
 				affecting = get_limb(ran_zone(null, 0))
+			if(no_head && affecting == get_limb("chest"))
+				affecting = get_limb("chest")
 			if(!affecting) //Still nothing??
 				affecting = get_limb("chest") //Gotta have a torso?!
 
