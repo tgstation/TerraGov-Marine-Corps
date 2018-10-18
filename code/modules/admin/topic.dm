@@ -247,6 +247,11 @@
 		if(!check_rights(R_SPAWN))	return
 
 		var/mob/M = locate(href_list["mob"])
+
+		if(M.disposed)
+			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
+			return
+
 		if(!ismob(M))
 			to_chat(usr, "This can only be used on instances of type /mob")
 			return
@@ -316,7 +321,7 @@
 		usr.client.warn(href_list["warn"])
 
 	else if(href_list["unbanupgradeperma"])
-		if(!check_rights(R_BAN)) 
+		if(!check_rights(R_BAN))
 			return
 		UpdateTime()
 		var/reason
@@ -862,19 +867,13 @@
 		var/reason = ""
 		switch(alert("Are you sure you want to lazyban this person?", , "Yes", "No"))
 			if("Yes")
-				switch(alert("Reason?", , "Disobeying staff", "Arguing with staff", "EORG"))
+				switch(alert("Reason?", , "Disobeying staff", "Arguing with staff"))
 					if("Disobeying staff")
 						mins = 4320
 						reason = "Expressly disobeying staff"
 					if("Arguing with staff")
 						mins = 4320
 						reason = "Needlessly talking back and/or arguing with staff members"
-					if("EORG")
-						switch(alert("Which offense?", ,"1st", "2nd", "3rd or more"))
-							if("1st") mins = 180
-							if("2nd") mins = 720
-							if("3rd or more") mins = 1440
-						reason = "EORG"
 			if("No")
 				return
 		AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
@@ -882,7 +881,7 @@
 		to_chat(M, "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>")
 		to_chat(M, "\red This is a temporary ban, it will be removed in [mins] minutes.")
 		to_chat(M, "\blue This ban was made using a one-click ban system. If you think an error has been made, please visit our forums' ban appeal section.")
-		to_chat(M, "\blue If you make sure to mention that this was a one-click ban, MadSnailDisease will personally double-check this code for you.")
+		to_chat(M, "\blue If you make sure to mention that this was a one-click ban, the administration team may double-check this code for you.")
 		if(config.banappeals)
 			to_chat(M, "\blue The ban appeal forums are located here: [config.banappeals]")
 		else
@@ -966,6 +965,11 @@
 		if(!check_rights(R_SPAWN))	return
 
 		var/mob/living/carbon/human/H = locate(href_list["monkeyone"])
+
+		if(H.disposed)
+			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
+			return
+
 		if(!istype(H))
 			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
 			return
@@ -978,6 +982,11 @@
 		if(!check_rights(R_SPAWN))	return
 
 		var/mob/living/carbon/human/H = locate(href_list["corgione"])
+
+		if(H.disposed)
+			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
+			return
+
 		if(!istype(H))
 			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
 			return
@@ -1170,6 +1179,7 @@
 		if(!check_rights(R_REJUVINATE))	return
 
 		var/mob/living/L = locate(href_list["revive"])
+
 		if(!istype(L))
 			to_chat(usr, "This can only be used on instances of type /mob/living")
 			return
@@ -1185,6 +1195,11 @@
 		if(!check_rights(R_SPAWN))	return
 
 		var/mob/living/carbon/human/H = locate(href_list["makeai"])
+
+		if(H.disposed)
+			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
+			return
+
 		if(!istype(H))
 			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
 			return
@@ -1197,6 +1212,11 @@
 		if(!check_rights(R_SPAWN))	return
 
 		var/mob/living/carbon/human/H = locate(href_list["makealien"])
+
+		if(H.disposed)
+			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
+			return
+
 		if(!istype(H))
 			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
 			return
@@ -1220,6 +1240,10 @@
 			return
 
 		var/mob/H = locate(href_list["makeyautja"])
+
+		if(H.disposed)
+			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
+			return
 
 		if(!istype(H))
 			to_chat(usr, "This can only be used on mobs. How did you even do this?")
@@ -1268,6 +1292,11 @@
 		if(!check_rights(R_SPAWN))	return
 
 		var/mob/living/carbon/human/H = locate(href_list["makerobot"])
+
+		if(H.disposed)
+			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
+			return
+
 		if(!istype(H))
 			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
 			return
@@ -1278,6 +1307,11 @@
 		if(!check_rights(R_SPAWN))	return
 
 		var/mob/M = locate(href_list["makeanimal"])
+
+		if(M.disposed)
+			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
+			return
+
 		if(istype(M, /mob/new_player))
 			to_chat(usr, "This cannot be used on instances of type /mob/new_player")
 			return
@@ -1288,9 +1322,15 @@
 		if(!check_rights(R_SPAWN))	return
 
 		var/mob/living/carbon/human/H = locate(href_list["togmutate"])
+
+		if(H.disposed)
+			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
+			return
+
 		if(!istype(H))
 			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
 			return
+
 		var/block=text2num(href_list["block"])
 		//testing("togmutate([href_list["block"]] -> [block])")
 		usr.client.cmd_admin_toggle_block(H,block)
