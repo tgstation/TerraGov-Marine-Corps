@@ -339,37 +339,37 @@ var/list/ghostteleportlocs = list()
 // CENTCOM
 
 /area/centcom
-	name = "\improper abandoned  Centcom"
+	name = "\improper Centcom"
 	icon_state = "centcom"
 	requires_power = 0
 
 /area/centcom/control
-	name = "\improper abandoned  Centcom Control"
+	name = "\improper Centcom Control"
 
 /area/centcom/evac
-	name = "\improper abandoned  Centcom Emergency Shuttle"
+	name = "\improper Centcom Emergency Shuttle"
 
 /area/centcom/suppy
-	name = "\improper abandoned  Centcom Supply Shuttle"
+	name = "\improper Centcom Supply"
 
 /area/centcom/ferry
-	name = "\improper abandoned  Centcom Transport Shuttle"
+	name = "\improper Centcom Transport Shuttle"
 
 /area/centcom/shuttle
-	name = "\improper abandoned  Centcom Administration Shuttle"
+	name = "\improper Centcom Administration Shuttle"
 
 /area/centcom/test
-	name = "\improper abandoned  Centcom Testing Facility"
+	name = "\improper Centcom Testing Facility"
 
 /area/centcom/living
-	name = "\improper abandoned  Centcom Living Quarters"
+	name = "\improper Centcom Living Quarters"
 
 /area/centcom/specops
-	name = "\improper abandoned  Centcom Special Ops"
-
+	name = "\improper Centcom Special Ops"
+/*
 /area/centcom/creed
 	name = "Creed's Office"
-
+*/
 /area/centcom/holding
 	name = "\improper abandoned  Holding Facility"
 

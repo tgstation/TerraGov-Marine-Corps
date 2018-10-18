@@ -86,6 +86,18 @@
 	ex_act(severity) //immune to explosions
 		return
 
+/obj/machinery/door/poddoor/shutters/almayer/open
+	density = FALSE
+	opacity = FALSE
+	unacidable = TRUE
+	icon_state = "shutter0"
+
+/obj/machinery/door/poddoor/shutters/transit/open
+	density = FALSE
+	opacity = FALSE
+	unacidable = TRUE
+	icon_state = "shutter0"
+
 /obj/machinery/door/poddoor/shutters/almayer/pressure
 	name = "pressure shutters"
 	density = 0
