@@ -646,11 +646,9 @@
 		new /obj/item/lightstick/red(src)
 
 
-
-
 /obj/item/storage/box/MRE
 	name = "\improper USCM MRE"
-	desc = "Meal Ready-to-Eat, property of the US Colonial Marines. Meant to be consumed in the field, and has an expiration that is at least two decades past your combat life expectancy."
+	desc = "Meal Ready-to-Eat, meant to be consumed in the field, and has an expiration that is two decades past a marine's average combat life expectancy."
 	icon_state = "mealpack"
 	w_class = 2
 	can_hold = list()
@@ -664,14 +662,14 @@
 		pickflavor()
 
 /obj/item/storage/box/MRE/proc/pickflavor()
-	var/main = pick("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti chunks", "chicken tender")
-	var/second = pick("cracker", "cheese spread", "rice onigiri", "mashed potatoes", "risotto")
-	var/side = pick("biscuit", "meatballs", "pretzels", "peanuts", "sushi")
-	var/desert = pick("spiced apples", "chocolate brownie", "sugar cookie", "coco bar", "flan", "honey flan")
-	name = "[initial(name)] ([main])"
-	new /obj/item/reagent_container/food/snacks/packaged_meal(src, main)
-	new /obj/item/reagent_container/food/snacks/packaged_meal(src, second)
+	var/entree = pick("boneless pork ribs", "grilled chicken", "pizza square", "spaghetti", "chicken tenders", "red crayon")
+	var/side = pick("meatballs", "cheese spread", "beef turnover", "mashed potatoes", "yellow crayon")
+	var/snack = pick("biscuit", "pretzels", "peanuts", "cracker", "purple crayon")
+	var/desert = pick("spiced apples", "chocolate brownie", "sugar cookie", "choco bar", "blue crayon")
+	name = "[initial(name)] ([entree])"
+	new /obj/item/reagent_container/food/snacks/packaged_meal(src, entree)
 	new /obj/item/reagent_container/food/snacks/packaged_meal(src, side)
+	new /obj/item/reagent_container/food/snacks/packaged_meal(src, snack)
 	new /obj/item/reagent_container/food/snacks/packaged_meal(src, desert)
 
 /obj/item/storage/box/MRE/update_icon()
