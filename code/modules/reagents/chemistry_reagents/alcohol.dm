@@ -436,7 +436,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/bloody_mary/on_mob_life(mob/living/carbon/C)
 	if(C.blood_volume < BLOOD_VOLUME_NORMAL)
 		C.blood_volume += 0.3 //Bloody Mary slowly restores blood loss.
-..()
+	return ..()
 
 /datum/reagent/consumable/ethanol/brave_bull
 	name = "Brave Bull"

@@ -429,4 +429,4 @@
 		M.adjustFireLoss(-1*REM, 0)
 		M.adjustOxyLoss(-1*REM, 0)
 		M.adjustToxLoss(-1*REM, 0)
-..()
+	return ..()
