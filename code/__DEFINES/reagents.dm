@@ -36,6 +36,19 @@
 #define REAGENTS_OVERDOSE 30
 #define REAGENTS_OVERDOSE_CRITICAL 50
 
+// How many units of reagent are consumed per tick, by default.
+#define REAGENTS_METABOLISM 0.2
+// By defining the effect multiplier this way, it'll exactly adjust
+// all effects according to how they originally were with the 0.4 metabolism
+#define REAGENTS_EFFECT_MULTIPLIER REAGENTS_METABOLISM / 0.4
+
+// Reagent metabolism defines.
+#define FOOD_METABOLISM 0.4
+#define ALCOHOL_METABOLISM 0.1
+
+// Factor of how fast mob nutrition decreases
+#define HUNGER_FACTOR 0.05
+
 //Flags for reagents
 #define REAGENT_NOREACT (1<<0) //until we get to GLOB. lists and vars.
 

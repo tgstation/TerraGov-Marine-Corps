@@ -35,7 +35,6 @@
 /datum/var/disposed
 
 #define DELTA_CALC max(max(world.tick_usage, world.cpu) / 100, 1)
-#define CEILING(x, y) ( -round(-(x) / (y)) * (y) )
 #define DS2TICKS(DS) ((DS)/world.tick_lag)
 //returns the number of ticks slept
 /proc/stoplag(initial_delay)

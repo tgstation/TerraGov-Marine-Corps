@@ -27,26 +27,6 @@
 	icon_state = "shuttle"
 	fake_zlevel = 3
 
-/obj/machinery/computer/shuttle_control/almayer/hangar
-	name = "Elevator Console"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "supply"
-	unacidable = 1
-	exproof = 1
-	density = 1
-	req_access = null
-	shuttle_tag = "Hangar"
-
-/obj/machinery/computer/shuttle_control/almayer/maintenance
-	name = "Elevator Console"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "shuttle"
-	unacidable = 1
-	exproof = 1
-	density = 1
-	req_access = null
-	shuttle_tag = "Maintenance"
-
 /area/almayer/command/cic
 	name = "\improper Combat Information Center"
 	icon_state = "cic"
