@@ -72,7 +72,7 @@ also doesn't really matter. You can only reload them with handfuls.
 
 
 /obj/item/ammo_magazine/internal/shotgun/combat
-
+	max_rounds = 9
 
 /obj/item/ammo_magazine/internal/shotgun/merc
 	max_rounds = 5
