@@ -547,7 +547,12 @@
 	var/distance = get_dist(src, H)
 
 	if (distance > 2)
+		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
+			to_chat(src, "<span class='xenowarning'>Your target is too far away!</span>")
+
+			recent_notice = world.time //anti-notice spam
 		return
+
 
 	if (distance > 1)
 		step_towards(src, H, 1)
@@ -563,8 +568,19 @@
 	used_headbutt = 1
 	use_plasma(10)
 
+	face_atom(H) //Face towards the target so we don't look silly
+
 	if(H.stat != DEAD && (!(H.status_flags & XENO_HOST) || !istype(H.buckled, /obj/structure/bed/nest)) )
-		H.apply_damage(20)
+		var/damage = rand(melee_damage_lower,melee_damage_upper)
+		if(frenzy_aura > 0)
+			damage += (frenzy_aura * 2)
+		damage *= (1 + distance * 0.25) //More distance = more momentum = stronger Headbutt.
+		var/affecting = H.get_limb(ran_zone(null, 0))
+		if(!affecting) //Still nothing??
+			affecting = H.get_limb("chest") //Gotta have a torso?!
+		var/armor_block = H.run_armor_check(affecting, "melee")
+		H.apply_damage(damage, BRUTE, affecting, armor_block) //We deal crap brute damage after armor...
+		H.apply_damage(damage, HALLOSS) //...But some sweet armour ignoring Halloss
 		shake_camera(H, 2, 1)
 
 	var/facing = get_dir(src, H)
@@ -579,6 +595,7 @@
 		T = temp
 
 	H.throw_at(T, headbutt_distance, 1, src)
+	H.KnockDown(1, 1)
 	playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
 	spawn(headbutt_cooldown)
 		used_headbutt = 0
@@ -623,12 +640,21 @@
 
 	for (var/mob/living/carbon/human/H in L)
 		step_away(H, src, sweep_range, 2)
-		H.apply_damage(10)
+		if(H.stat != DEAD)
+			var/damage = rand(melee_damage_lower,melee_damage_upper)
+			if(frenzy_aura > 0)
+				damage += (frenzy_aura * 2)
+			var/affecting = H.get_limb(ran_zone(null, 0))
+			if(!affecting) //Still nothing??
+				affecting = H.get_limb("chest") //Gotta have a torso?!
+			var/armor_block = H.run_armor_check(affecting, "melee")
+			H.apply_damage(damage, BRUTE, affecting, armor_block) //Crap base damage after armour...
+			H.apply_damage(damage, HALLOSS) //...But some sweet armour ignoring Halloss
+			H.KnockDown(1, 1)
 		round_statistics.defender_tail_sweep_hits++
 		shake_camera(H, 2, 1)
 
-		if (prob(50))
-			H.KnockDown(2, 1)
+
 
 		to_chat(H, "<span class='xenowarning'>You are struck by \the [src]'s tail sweep!</span>")
 		playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
