@@ -1256,7 +1256,7 @@
 "ayh" = (/obj/machinery/vending/medical,/turf/open/floor{tag = "icon-whitegreen (NORTHWEST)"; icon_state = "whitegreen"; dir = 9},/area/bigredv2/outside/medical)
 "ayi" = (/obj/structure/sign/safety/autodoc{pixel_x = 32},/turf/open/floor{tag = "icon-whitegreen (NORTHEAST)"; icon_state = "whitegreen"; dir = 5},/area/bigredv2/outside/medical)
 "ayj" = (/obj/machinery/atmospherics/unary/freezer{dir = 2; icon_state = "freezer_1"; on = 1; set_temperature = 1},/turf/open/floor{icon_state = "white"},/area/bigredv2/outside/medical)
-"ayk" = (/obj/machinery/atmospherics/unary/cryo_cell,/turf/open/floor{icon_state = "white"},/area/bigredv2/outside/medical)
+"ayk" = (/obj/machinery/cryo_cell,/turf/open/floor{icon_state = "white"},/area/bigredv2/outside/medical)
 "ayl" = (/obj/machinery/atmospherics/pipe/tank/oxygen,/turf/open/floor{icon_state = "white"},/area/bigredv2/outside/medical)
 "aym" = (/obj/structure/sign/safety/autodoc{pixel_x = -32},/turf/open/floor{tag = "icon-whitegreen (WEST)"; icon_state = "whitegreen"; dir = 8},/area/bigredv2/outside/medical)
 "ayn" = (/obj/effect/decal/cleanable/dirt,/obj/machinery/light{tag = "icon-tube1 (EAST)"; icon_state = "tube1"; dir = 4},/obj/item/device/radio/intercom{anyai = 1; freerange = 1; frequency = 1469; name = "General Listening Channel"; pixel_x = 30; pixel_y = 0},/turf/open/floor{tag = "icon-whitegreen (EAST)"; icon_state = "whitegreen"; dir = 4},/area/bigredv2/outside/medical)
