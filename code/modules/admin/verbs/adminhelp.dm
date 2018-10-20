@@ -22,18 +22,23 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 	var/msg
 	var/list/type = list ("Suggestion / Bug Report", "Gameplay / Roleplay Issue", "Admins Spawn Shit")
 	var/selected_type = input("Pick a category.", "Admin Help", null, null) as null|anything in type
-	if(selected_type == "Gameplay / Roleplay Issue")
-		msg = input("Please enter your message:", "Admin Help", null, null) as message|null
-
-	if(selected_type == "Suggestion / Bug Report")
-		switch(alert("Adminhelps are not for suggestions or bug reports - issues should be posted on our Github, and suggestions on our forums. #WHENYOUCODEIT",,"Go to Github","Go to forums","Cancel"))
-			if("Go to Github")
-				src << link("https://github.com/ColonialMarines-Mirror/ColonialMarines-2018/issues")
-			if("Go to forums")
-				src << link("https://tgstation13.org/phpBB/viewforum.php?f=65")
-
-	if(selected_type == "Admins Spawn Shit")
-		src << "\red <B>No</B>"
+	switch(selected_type)
+		if("Gameplay / Roleplay Issue")
+			msg = input("Please enter your message:", "Admin Help", null, null) as message|null
+		if("Suggestion / Bug Report")
+			switch(alert("Adminhelps are not for suggestions or bug reports - issues should be posted on our Github, and suggestions on our forums. #WHENYOUCODEIT",,"Go to Github","Go to forums","Cancel"))
+				if("Go to Github")
+					if(config.bugtrackerurl)
+						src << link(config.bugtrackerurl)
+					else
+						to_chat(src, "<span class='warning'>The bug tracker URL is not set in the server configuration.</span>")
+				if("Go to forums")
+					if(config.forumurl)
+						src << link(config.forumurl)
+					else
+						to_chat(src, "<span class='warning'>The forum URL is not set in the server configuration.</span>")
+		if("Admins Spawn Shit")
+			to_chat(src, "<span class='warning'>No</span>")
 			
 	var/selected_upper = uppertext(selected_type)
 

@@ -255,12 +255,25 @@ var/world_topic_spam_protect_time = world.timeofday
 	var/s = ""
 
 	if (config && config.server_name)
-		s += "<a href=\"[config.forumurl]\"><b>[config.server_name] &#8212; [MAIN_SHIP_NAME]</b>"
-		s += "<br><img src=\"[config.forumurl]/byond_hub_logo.jpg\"></a>"
-		// s += "<a href=\"http://goo.gl/04C5lP\">Wiki</a>|<a href=\"http://goo.gl/hMmIKu\">Rules</a>"
+		if(config.chaturl)
+			s += "<a href=\"[config.chaturl]\"><b>[config.server_name] &#8212; [MAIN_SHIP_NAME]</a></b>"
+		else
+			s += "<b>[config.server_name] &#8212; [MAIN_SHIP_NAME]</b>"
 		if(ticker)
 			if(master_mode)
-				s += "<br>Map: <b>[map_tag]</b>"
+				switch(map_tag)
+					if("Ice Colony")
+						s += "<br>Map: <a href=\"[config.icecolony_url]\"><b>[map_tag]</a></b>"
+					if("LV-624")
+						s += "<br>Map: <a href=\"[config.lv624_url]\"><b>[map_tag]</a></b>"
+					if("Solaris Ridge")
+						s += "<br>Map: <a href=\"[config.bigred_url]\"><b>[map_tag]</a></b>"
+					if("Prison Station")
+						s += "<br>Map: <a href=\"[config.prisonstation_url]\"><b>[map_tag]</a></b>"
+					if("Whiskey Outpost")
+						s += "<br>Map: <a href=\"[config.whiskeyoutpost_url]\"><b>[map_tag]</a></b>"
+					else
+						s += "<br>Map: <b>[map_tag]</b>"
 				s += "<br>Mode: <b>[ticker.mode.name]</b>"
 				s += "<br>Round time: <b>[duration2text()]</b>"
 		else

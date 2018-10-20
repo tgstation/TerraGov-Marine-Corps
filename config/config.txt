@@ -187,16 +187,25 @@ GUEST_BAN
 #SERVER server.net:port
 
 ## forum address
-FORUMURL https://tgstation13.org/phpBB/
+FORUMURL https://tgstation13.org/phpBB/viewforum.php?f=64
 
 ## Wiki address
-WIKIURL https://tgstation13.org/wiki
+WIKIURL https://tgstation13.org/wiki/DMCA
 
 ## Rules address
 RULESURL https://tgstation13.org/wiki/DMCA_Rules
 
+## Chat address
+CHATURL https://discord.gg/2dFpfNE
+
+## Donation address
+DONATIONURL https://www.patreon.com/tgstation
+
+## Bug tracker address
+BUGTRACKERURL https://github.com/ColonialMarines-Mirror/ColonialMarines-2018/issues
+
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
-BANAPPEALS https://cm-ss13.com/viewforum.php?f=76
+BANAPPEALS https://cc.ddmers.com/dmca/
 
 ## In-game features
 ## spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
