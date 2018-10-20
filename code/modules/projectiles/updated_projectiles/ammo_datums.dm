@@ -332,9 +332,7 @@
 
 /datum/ammo/bullet/revolver/New()
 	..()
-	accuracy = -config.med_hit_accuracy
-	damage = config.lmed_hit_damage
-	penetration= config.min_armor_penetration
+	damage = config.hlow_hit_damage
 
 /datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/item/projectile/P)
 	staggerstun(M, P, config.close_shell_range, 0, 0, 1, 0.5, 0)
@@ -409,9 +407,8 @@
 
 /datum/ammo/bullet/smg/ap/New()
 	..()
-	scatter = config.min_scatter_value
 	damage = config.llow_hit_damage
-	penetration= config.med_armor_penetration
+	penetration= config.hmed_armor_penetration //40 AP
 
 /datum/ammo/bullet/smg/ppsh
 	name = "submachinegun light bullet"
@@ -442,7 +439,7 @@
 
 /datum/ammo/bullet/rifle/ap/New()
 	..()
-	damage = config.hlow_hit_damage
+	damage = config.low_hit_damage
 	penetration = config.high_armor_penetration
 
 /datum/ammo/bullet/rifle/incendiary
@@ -523,7 +520,7 @@
 	penetration= config.low_armor_penetration
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/item/projectile/P)
-	staggerstun(M, P, config.close_shell_range, 0, 1, 4, 4)
+	staggerstun(M, P, config.close_shell_range, 0, 1, 2, 4)
 
 
 /datum/ammo/bullet/shotgun/beanbag
