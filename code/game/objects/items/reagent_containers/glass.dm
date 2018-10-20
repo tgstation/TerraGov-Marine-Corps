@@ -214,6 +214,13 @@
 	. = ..()
 	update_icon()
 
+/obj/item/reagent_container/glass/beaker/cryomix
+	list_reagents = list("cryoxadone" = 10, "clonexadone" = 10, "iron" = 10, "tricordrazine" = 10, "quickclot" = 5, "peridaxon" = 5, "dexplus" = 5, "spaceacillin" = 5)
+
+/obj/item/reagent_container/glass/beaker/cryomix/New()
+	. = ..()
+	update_icon()
+
 /obj/item/reagent_container/glass/beaker/sulphuric
 	list_reagents = list("sacid" = 60)
 

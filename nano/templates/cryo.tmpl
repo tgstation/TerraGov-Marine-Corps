@@ -75,7 +75,22 @@ Used In File(s): \code\game\machinery\cryo.dm
 		{{:helper.link('Eject Occupant', 'arrowreturnthick-1-s', {'ejectOccupant' : 1}, data.hasOccupant ? null : 'disabled')}}
 	</div>
 </div>
-<div class="item">&nbsp;</div>
+<div class="item">
+	<div class="itemLabel">
+		Cryo Cell Autorelease:
+	</div>
+	<div class="itemContent" style="width: 40%;">
+		{{:helper.link('Activate', 'arrowreturnthick-1-s', {'releaseOn' : 1}, data.autoRelease ? 'selected' : null)}}{{:helper.link('Deactivate', 'close', {'releaseOff' : 1}, data.autoRelease ? null : 'selected')}}
+	</div>
+</div>
+<div class="item">
+	<div class="itemLabel">
+		Cryo Cell Notifications:
+	</div>
+	<div class="itemContent" style="width: 40%;">
+		{{:helper.link('Notices On', 'power', {'noticeOn' : 1}, data.releaseNotice ? 'selected' : null)}}{{:helper.link('Notices Off', 'close', {'noticeOff' : 1}, data.releaseNotice ? null : 'selected')}}
+	</div>
+</div>
 <div class="item">
 	<div class="itemLabel">
 		Beaker:

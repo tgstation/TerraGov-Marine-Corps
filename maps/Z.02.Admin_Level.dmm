@@ -171,7 +171,7 @@
 "do" = (/obj/structure/table/reinforced{layer = 2.69},/obj/structure/window/reinforced{dir = 8},/obj/structure/window/reinforced{dir = 4; health = 80},/obj/machinery/door/window/southleft{dir = 1; icon_state = "left"; layer = 2.8; tag = "icon-left (NORTH)"},/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "dp" = (/obj/structure/rack,/obj/item/storage/backpack/yautja,/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "dq" = (/obj/machinery/door/airlock/secure{name = "\improper Houndmaster's Quarters"},/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
-"dr" = (/obj/machinery/atmospherics/unary/cryo_cell,/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
+"dr" = (/obj/machinery/cryo_cell,/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "ds" = (/obj/machinery/atmospherics/unary/freezer{dir = 2; icon_state = "freezer_1"; on = 1; set_temperature = 1},/turf/open/floor/holofloor{icon_state = "cult"; dir = 2},/area/yautja)
 "dt" = (/obj/structure/rack,/obj/item/reagent_container/food/snacks/meat,/turf/open/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
 "du" = (/obj/structure/rack,/obj/item/reagent_container/food/snacks/meat,/obj/item/reagent_container/food/snacks/xenomeat{pixel_x = -6; pixel_y = -5},/turf/open/floor{tag = "icon-floor4"; icon_state = "floor4"},/area/yautja)
