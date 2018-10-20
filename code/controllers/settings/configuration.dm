@@ -94,6 +94,9 @@
 	var/wikiurl
 	var/forumurl
 	var/rulesurl
+	var/chaturl
+	var/donationurl
+	var/bugtrackerurl
 
 	//Alert level description
 	var/alert_desc_green = "All security alerts have passed."
@@ -338,6 +341,15 @@
 
 		if ("rulesurl")
 			config.rulesurl = value
+
+		if ("chaturl")
+			config.chaturl = value
+
+		if ("donationurl")
+			config.donationurl = value
+
+		if ("bugtrackerurl")
+			config.bugtrackerurl = value
 
 		if ("guest_jobban")
 			config.guest_jobban = 1
