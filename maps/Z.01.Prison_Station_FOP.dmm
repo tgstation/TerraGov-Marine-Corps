@@ -1064,7 +1064,7 @@
 "aux" = (/obj/structure/bed,/turf/open/floor/prison{tag = "icon-floor_plate (SOUTHWEST)"; icon_state = "floor_plate"; dir = 10},/area/prison/cellblock/maxsec/south)
 "auy" = (/obj/structure/bed,/obj/effect/decal/cleanable/blood/splatter,/turf/open/floor/prison,/area/prison/cellblock/maxsec/south)
 "auz" = (/obj/machinery/atmospherics/unary/freezer{dir = 2; icon_state = "freezer_1"; on = 1; set_temperature = 1},/turf/open/floor/prison,/area/prison/medbay)
-"auA" = (/obj/machinery/atmospherics/unary/cryo_cell,/turf/open/floor/prison,/area/prison/medbay)
+"auA" = (/obj/machinery/cryo_cell,/turf/open/floor/prison,/area/prison/medbay)
 "auB" = (/obj/machinery/light{dir = 4},/turf/open/floor/prison{dir = 4; icon_state = "whitegreen"},/area/prison/medbay)
 "auC" = (/obj/structure/morgue,/turf/open/floor/prison,/area/prison/medbay/morgue)
 "auD" = (/obj/structure/morgue{tag = "icon-morgue1 (WEST)"; icon_state = "morgue1"; dir = 8},/turf/open/floor/prison,/area/prison/medbay/morgue)
