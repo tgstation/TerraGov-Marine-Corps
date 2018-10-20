@@ -464,11 +464,11 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 
 /obj/item/attachable/quickfire/New()
 	..()
-	accuracy_mod = -config.low_hit_accuracy_mult
+	accuracy_mod = -config.med_hit_accuracy_mult
 	scatter_mod = config.min_scatter_value
 	delay_mod = -config.min_fire_delay
 	burst_mod = -config.min_burst_value
-	accuracy_unwielded_mod = -config.med_hit_accuracy_mult
+	accuracy_unwielded_mod = -config.hmed_hit_accuracy_mult
 	scatter_unwielded_mod = config.med_scatter_value
 
 
@@ -1089,10 +1089,10 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 
 /obj/item/attachable/burstfire_assembly/New()
 	..()
-	accuracy_mod = -config.low_hit_accuracy_mult
+	accuracy_mod = -config.med_hit_accuracy_mult
 	burst_mod = config.low_burst_value
 	scatter_mod = config.low_scatter_value
 
-	accuracy_unwielded_mod = -config.med_hit_accuracy_mult
+	accuracy_unwielded_mod = -config.hmed_hit_accuracy_mult
 	scatter_unwielded_mod = config.med_scatter_value
 
