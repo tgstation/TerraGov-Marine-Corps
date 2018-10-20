@@ -6,7 +6,7 @@ obj/item/projectile/flareburst
 		layer = 10  //random high layer to show visibillity above other icons
 		mouse_opacity=0
 		icon='icons/Marine/flaregun.dmi'
-		icon_state = "horrible"
+		icon_state = "flareround"
 		damage = 3
 		stun=1
 		damage_type = BURN
@@ -24,7 +24,7 @@ obj/item/projectile/flareburst
 /obj/item/weapon/flaregun
 	name = "Signal Flare Gun"
 	icon = 'icons/Marine/flaregun.dmi'
-	item_state = "flare_g"
+	item_state = "flaregun"
 	origin_tech = "combat=1;materials=2"
 	force = 3.0
 	w_class = 1.0
