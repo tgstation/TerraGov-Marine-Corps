@@ -3460,7 +3460,7 @@
 "boB" = (/obj/structure/bed/chair,/turf/open/floor/almayer{icon_state = "sterile_green_side"; tag = "icon-sterile"},/area/almayer/medical/lower_medical)
 "boC" = (/obj/structure/ship_ammo/heavygun,/obj/effect/decal/warning_stripes{tag = "icon-E"; icon_state = "E"},/turf/open/floor/almayer{icon_state = "plate"; tag = "icon-sterile"},/area/almayer/hallways/hangar)
 "boD" = (/obj/machinery/body_scanconsole,/turf/open/floor/almayer{icon_state = "dark_sterile"; tag = "icon-sterile"},/area/almayer/medical/lower_medical)
-"boE" = (/obj/machinery/atmospherics/unary/cryo_cell,/turf/open/floor/almayer{tag = "icon-sterile_green_side (NORTH)"; icon_state = "sterile_green_side"; dir = 1},/area/almayer/medical/cryo_tubes)
+"boE" = (/obj/machinery/cryo_cell,/turf/open/floor/almayer{tag = "icon-sterile_green_side (NORTH)"; icon_state = "sterile_green_side"; dir = 1},/area/almayer/medical/cryo_tubes)
 "boF" = (/obj/structure/ship_ammo/heavygun,/obj/effect/decal/warning_stripes{tag = "icon-W"; icon_state = "W"},/turf/open/floor/almayer{icon_state = "plate"; tag = "icon-sterile"},/area/almayer/hallways/hangar)
 "boG" = (/obj/machinery/atmospherics/unary/vent_pump{dir = 4; on = 1},/turf/open/floor/almayer,/area/almayer/living/cryo_cells)
 "boH" = (/obj/machinery/atmospherics/pipe/simple/hidden/supply{tag = "icon-intact-supply (EAST)"; icon_state = "intact-supply"; dir = 4},/turf/open/floor/almayer,/area/almayer/living/cryo_cells)

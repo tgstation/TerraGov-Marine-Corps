@@ -68,7 +68,7 @@
 		if(status_flags & GODMODE)
 			return 1 //Godmode
 
-		if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
+		if(!istype(loc, /obj/machinery/cryo_cell))
 
 			if(bodytemperature < species.cold_level_3)
 				take_overall_damage(burn = COLD_DAMAGE_LEVEL_3, used_weapon = "Low Body Temperature")
