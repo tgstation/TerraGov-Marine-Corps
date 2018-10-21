@@ -29,7 +29,7 @@
 /obj/item/ammo_magazine/pistol/extended
 	name = "\improper M4A3 extended magazine (9mm)"
 	max_rounds = 22
-	icon_state = "m4a3" //PLACEHOLDER
+	icon_state = "m4a3_ext"
 	bonus_overlay = "m4a3_ex"
 
 

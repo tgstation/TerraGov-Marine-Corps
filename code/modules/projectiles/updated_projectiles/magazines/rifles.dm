@@ -17,6 +17,7 @@
 /obj/item/ammo_magazine/rifle/extended
 	name = "\improper M41A extended magazine (10x24mm)"
 	desc = "A 10mm assault extended rifle magazine."
+	icon_state = "m41a_ext"
 	max_rounds = 60
 	bonus_overlay = "m41a_ex"
 
