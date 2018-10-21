@@ -757,7 +757,7 @@
 	for(var/obj/machinery/M in get_location_area(location))
 		if(istype(M, /obj/machinery/computer/shuttle_control))
 			controls += M
-		else if(istype(M, /obj/machinery/door/airlock/multi_tile/elevator))
+		else if(istype(M, /obj/machinery/door/airlock/multi_tile/))
 			main_doors += M
 
 //Kinda messy proc, but the best solution to prevent shearing of multitile vehicles
@@ -768,7 +768,7 @@
 //		-Issues here are that this is not atomic at all and vics get left behind unless the entirety of them is on the shuttle/elevator,
 //			plus then part of the vic would be in space since elevators leave that behind
 /datum/shuttle/ferry/elevator/preflight_checks()
-	for(var/obj/machinery/door/airlock/multi_tile/elevator/E in main_doors)
+	for(var/obj/machinery/door/airlock/multi_tile/E in main_doors)
 		//If there is part of a multitile vic in any of the turfs the door occupies, cancel
 		//An argument can be made for tanks being allowed to block the door, but
 		//	that would make this already relatively expensive and inefficent even more so
