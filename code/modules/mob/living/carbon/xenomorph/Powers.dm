@@ -434,14 +434,11 @@
 	var/mob/living/carbon/human/H = M
 	var/datum/limb/L = H.get_limb(check_zone(zone_selected))
 
-	if (!L || L.body_part == UPPER_TORSO || L.body_part == LOWER_TORSO || (L.status & LIMB_DESTROYED)) //Only limbs and head.
+	if (!L || L.body_part == UPPER_TORSO || L.body_part == LOWER_TORSO || (L.status & LIMB_DESTROYED) || L.body_part == HEAD) //Only limbs; no head
 		to_chat(src, "<span class='xenowarning'>You can't rip off that limb.</span>")
 		return FALSE
 	round_statistics.warrior_limb_rips++
 	var/limb_time = rand(40,60)
-
-	if (L.body_part == HEAD)
-		limb_time = rand(90,110)
 
 	visible_message("<span class='xenowarning'>\The [src] begins pulling on [M]'s [L.display_name] with incredible strength!</span>", \
 	"<span class='xenowarning'>You begin to pull on [M]'s [L.display_name] with incredible strength!</span>")
