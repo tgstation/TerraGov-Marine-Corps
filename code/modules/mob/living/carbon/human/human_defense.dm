@@ -156,8 +156,10 @@ Contains most of the procs that are called when a mob is attacked by something
 		weapon_sharp = 0
 		weapon_edge = 0
 
-	if(armor >= 2)	return 0
-	if(!I.force)	return 0
+	if(armor >= 1) //Complete negation
+		return 0
+	if(!I.force)
+		return 0
 	if(weapon_sharp)
 		user.flick_attack_overlay(src, "punch")
 	else
@@ -264,7 +266,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		src.visible_message("\red [src] has been hit in the [hit_area] by [O].", null, null, 5)
 		var/armor = run_armor_check(affecting, "melee", "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here
 
-		if(armor < 2)
+		if(armor < 1)
 			apply_damage(throw_damage, dtype, zone, armor, is_sharp(O), has_edge(O), O)
 
 		if(ismob(O.thrower))

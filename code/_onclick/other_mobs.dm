@@ -52,7 +52,8 @@
 		ML.apply_damage(rand(1,3), BRUTE, dam_zone, armor)
 		for(var/mob/O in viewers(ML, null))
 			O.show_message("\red <B>[name] has bit [ML]!</B>", 1)
-		if(armor >= 2) return
+		if(armor >= 1) //Complete negation
+			return
 		if(ismonkey(ML))
 			for(var/datum/disease/D in viruses)
 				if(istype(D, /datum/disease/jungle_fever))

@@ -292,7 +292,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper B18 defensive armor"
 	desc = "A heavy, rugged set of armor plates for when you really, really need to not die horribly. Slows you down though.\nComes with two tricord injectors in each arm guard."
 	icon_state = "xarmor"
-	armor = list(melee = 95, bullet = 110, laser = 80, energy = 80, bomb = 75, bio = 20, rad = 20)
+	armor = list(melee = 80, bullet = 110, laser = 80, energy = 65, bomb = 80, bio = 20, rad = 20)
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
@@ -339,7 +339,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper M3-T light armor"
 	desc = "A custom set of M3 armor designed for users of long ranged explosive weaponry."
 	icon_state = "demolitionist"
-	armor = list(melee = 70, bullet = 45, laser = 40, energy = 25, bomb = 35, bio = 0, rad = 0)
+	armor = list(melee = 65, bullet = 50, laser = 40, energy = 25, bomb = 50, bio = 0, rad = 0)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/weapon/gun/launcher/rocket)
 	req_access = list(ACCESS_MARINE_SPECPREP)
@@ -352,7 +352,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper M3-S light armor"
 	desc = "A custom set of M3 armor designed for USCM Scouts."
 	icon_state = "scout_armor"
-	armor = list(melee = 75, bullet = 45, laser = 40, energy = 25, bomb = 55, bio = 0, rad = 0)
+	armor = list(melee = 65, bullet = 80, laser = 40, energy = 25, bomb = 35, bio = 0, rad = 0)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	req_access = list(ACCESS_MARINE_SPECPREP)
 
@@ -371,7 +371,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper M35 armor"
 	desc = "A custom set of M35 armor designed for use by USCM Pyrotechnicians. Contains thick kevlar shielding."
 	icon_state = "pyro_armor"
-	armor = list(melee = 85, bullet = 90, laser = 60, energy = 60, bomb = 30, bio = 0, rad = 0)
+	armor = list(melee = 70, bullet = 90, laser = 60, energy = 60, bomb = 30, bio = 0, rad = 0)
 	max_heat_protection_temperature = FIRESUIT_max_heat_protection_temperature
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
@@ -393,7 +393,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper M3 pattern recon armor"
 	desc = "A custom modified set of M3 armor designed for recon missions."
 	icon_state = "marine_sniper"
-	armor = list(melee = 70, bullet = 45, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
+	armor = list(melee = 65, bullet = 70, laser = 40, energy = 25, bomb = 30, bio = 0, rad = 0)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	//uniform_restricted = list(/obj/item/clothing/under/marine/sniper) //TODO : This item exists, but isn't implemented yet. Makes sense otherwise
 
