@@ -14,6 +14,7 @@
 
 /obj/item/ammo_magazine/pistol/hp
 	name = "\improper M4A3 hollowpoint magazine (9mm)"
+	icon_state = "m4a3_HP"
 	default_ammo = /datum/ammo/bullet/pistol/hollow
 
 /obj/item/ammo_magazine/pistol/ap
