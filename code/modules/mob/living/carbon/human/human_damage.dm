@@ -345,6 +345,12 @@ This function restores all limbs.
 
 	//visible_message("Hit debug. [damage]|[damagetype]|[def_zone]|[blocked]|[sharp]|[used_weapon]")
 
+	if(blocked >= 1) //Complete negation
+		return 0
+
+	if(!damage) //Complete negation
+		return 0
+
 	if(protection_aura)
 		damage = round(damage * ((15 - protection_aura) / 15))
 
@@ -360,8 +366,6 @@ This function restores all limbs.
 	//Handle BRUTE and BURN damage
 	handle_suit_punctures(damagetype, damage)
 
-	if(blocked >= 2)	return 0
-
 	var/datum/limb/organ = null
 	if(isorgan(def_zone))
 		organ = def_zone
@@ -371,7 +375,7 @@ This function restores all limbs.
 	if(!organ)	return 0
 
 	if(blocked)
-		damage = (damage/(blocked+1))
+		damage *= CLAMP01(1-blocked) //Percentage reduction
 
 	switch(damagetype)
 		if(BRUTE)
