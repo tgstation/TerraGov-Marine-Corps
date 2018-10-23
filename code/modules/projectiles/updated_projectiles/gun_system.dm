@@ -693,6 +693,10 @@ and you're good to go.
 			if(able_to_fire(user))
 				flags_gun_features ^= GUN_CAN_POINTBLANK //If they try to click again, they're going to hit themselves.
 				M.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger.</span>")
+				message_admins("[key_name(user)] is trying to commit suicide (<A HREF='?_src_=holder;adminplayerobservejump=\ref[user]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[user.name]'>FLW</A>).", 1)
+				log_game("[key_name(user)] is trying to commit suicide.")
+				var/u = "[key_name(user)] is trying to commit suicide."
+				user.log_message(u, LOG_ATTACK, "red")
 				if(do_after(user, 40, TRUE, 5, BUSY_ICON_HOSTILE))
 					if(active_attachable && !(active_attachable.flags_attach_features & ATTACH_PROJECTILE))
 						active_attachable.activate_attachment(src, null, TRUE)//We're not firing off a nade into our mouth.
@@ -705,6 +709,8 @@ and you're good to go.
 						simulate_recoil(2, user)
 						var/obj/item/weapon/gun/revolver/current_revolver = src
 						var/t = "[key_name(user)] committed suicide with [key_name(src)]" //Log it.
+						message_admins("[user.name] ([user.ckey]) committed suicide with [key_name(src)] (<A HREF='?_src_=holder;adminplayerobservejump=\ref[user]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[user.name]'>FLW</A>)", 1)
+						log_game("[user.name] ([user.ckey]) committed suicide with [key_name(src)].")
 						if(istype(current_revolver) && current_revolver.russian_roulette) //If it's a revolver set to Russian Roulette.
 							t += " after playing Russian Roulette"
 							user.apply_damage(projectile_to_fire.damage * 3, projectile_to_fire.ammo.damage_type, "head", used_weapon = "An unlucky pull of the trigger during Russian Roulette!", sharp = 1)
