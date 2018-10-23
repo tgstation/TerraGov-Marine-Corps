@@ -4330,7 +4330,7 @@
 "bFn" = (/obj/structure/filingcabinet,/turf/open/floor/wood,/area/ice_colony/underground/command/pv1)
 "bFo" = (/obj/structure/table/reinforced,/obj/item/spacecash/c500,/obj/item/spacecash/c100,/obj/item/spacecash/c10,/obj/item/spacecash/c1,/turf/open/floor{tag = "icon-darkblue2"; icon_state = "darkblue2"; dir = 2},/area/ice_colony/underground/storage/highsec)
 "bFp" = (/obj/structure/table/reinforced,/obj/item/toy/farwadoll,/turf/open/floor{tag = "icon-darkblue2"; icon_state = "darkblue2"; dir = 2},/area/ice_colony/underground/storage/highsec)
-"bFq" = (/obj/structure/table/reinforced,/obj/item/reagent_container/hypospray/tricordrazine,/turf/open/floor{dir = 6; icon_state = "darkblue2"; tag = "icon-darkblue2"},/area/ice_colony/underground/storage/highsec)
+"bFq" = (/obj/structure/table/reinforced,/turf/open/floor{dir = 6; icon_state = "darkblue2"; tag = "icon-darkblue2"},/area/ice_colony/underground/storage/highsec)
 "bFr" = (/obj/structure/flora/pottedplant,/turf/open/floor{dir = 10; icon_state = "darkblue2"; tag = "icon-darkblue2"},/area/ice_colony/underground/command/center)
 "bFs" = (/obj/structure/table/woodentable,/turf/open/floor/wood,/area/ice_colony/underground/crew/dorm_l)
 "bFt" = (/turf/open/floor/wood,/area/ice_colony/underground/crew/dorm_l)
