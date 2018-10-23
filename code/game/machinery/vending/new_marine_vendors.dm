@@ -279,10 +279,9 @@
 
 
 /obj/machinery/marine_selector/clothes
-	name = "ColMarTech Automated Closet"
-	desc = "An automated closet hooked up to a colossal storage of standard-issue uniform and armor."
-	icon_state = "uniform_marine"
-
+	name = "GHMME Automated Closet"
+	desc = "An automated closet hooked up to a colossal storage unit of standard-issue uniform and armor."
+	icon_state = "marineuniform"
 	vendor_role = "Squad Marine"
 
 	listed_products = list(
@@ -635,9 +634,6 @@
 
 
 
-
-
-
 /obj/machinery/marine_selector/clothes/leader
 	req_access = list(ACCESS_MARINE_LEADER)
 	vendor_role = "Squad Leader"
@@ -679,7 +675,6 @@
 							list("Pistol pouch", 0, /obj/item/storage/pouch/pistol, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
 							list("MASKS", 0, null, null, null),
 							list("Gas mask", 0, /obj/item/clothing/mask/gas, MARINE_CAN_BUY_MASK, "black"),
-
 							)
 
 
@@ -710,15 +705,14 @@
 
 
 
-
 ////////////////////// Gear ////////////////////////////////////////////////////////
 
 
 
 /obj/machinery/marine_selector/gear
-	name = "ColMarTech Automated Equipment Rack"
-	desc = "An automated equipment rack hooked up to a colossal storage of standard-issue equipments."
-	icon_state = "sec"
+	name = "NEXUS Automated Equipment Rack"
+	desc = "An automated equipment rack hooked up to a colossal storage unit."
+	icon_state = "marinearmory"
 	use_points = TRUE
 	listed_products = list(
 		list("GUN ATTACHMENTS (Choose 1)", 0, null, null, null),
@@ -745,11 +739,13 @@
 	req_access = list(ACCESS_MARINE_DELTA)
 
 /obj/machinery/marine_selector/gear/medic
+	name = "NEXUS Automated Medic Equipment Rack"
+	desc = "An automated medic equipment rack hooked up to a colossal storage unit."
+	icon_state = "medic"
 	vendor_role = "Squad Medic"
 	req_access = list(ACCESS_MARINE_MEDPREP)
 
 	listed_products = list(
-
 							list("MEDICAL SET (Mandatory)", 0, null, null, null),
 							list("Essential Medic Set", 0, /obj/effect/essentials_set/medic, MARINE_CAN_BUY_ESSENTIALS, "white"),
 
@@ -812,6 +808,9 @@
 
 
 /obj/machinery/marine_selector/gear/engi
+	name = "NEXUS Automated Engineer Equipment Rack"
+	desc = "An automated engineer equipment rack hooked up to a colossal storage unit."
+	icon_state = "engineer"
 	vendor_role = "Squad Engineer"
 	req_access = list(ACCESS_MARINE_ENGPREP)
 
@@ -859,19 +858,18 @@
 							list("M41A skeleton stock", 0, /obj/item/attachable/stock/rifle, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
 							list("Shotgun stock", 0, /obj/item/attachable/stock/shotgun, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
 							list("Submachinegun stock", 0, /obj/item/attachable/stock/smg, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-
  							)
 
 
 
-
-
 /obj/machinery/marine_selector/gear/smartgun
+	name = "NEXUS Automated Smartgunner Equipment Rack"
+	desc = "An automated smartgunner equipment rack hooked up to a colossal storage unit."
+	icon_state = "smartgunner"
 	vendor_role = "Squad Smartgunner"
 	req_access = list(ACCESS_MARINE_SMARTPREP)
 
 	listed_products = list(
-
 							list("SMARTGUN SET (Mandatory)", 0, null, null, null),
 							list("Essential Smartgunner Set", 0, /obj/item/storage/box/m56_system, MARINE_CAN_BUY_ESSENTIALS, "white"),
 
@@ -902,10 +900,7 @@
 							list("M41A skeleton stock", 0, /obj/item/attachable/stock/rifle, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
 							list("Shotgun stock", 0, /obj/item/attachable/stock/shotgun, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
 							list("Submachinegun stock", 0, /obj/item/attachable/stock/smg, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
-
 							)
-
-
 
 
 
@@ -914,11 +909,13 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 
 
 /obj/machinery/marine_selector/gear/spec
+	name = "NEXUS Automated Specialist Equipment Rack"
+	desc = "An automated specialist equipment rack hooked up to a colossal storage unit."
+	icon_state = "specialist"
 	vendor_role = "Squad Specialist"
 	req_access = list(ACCESS_MARINE_SPECPREP)
 
 	listed_products = list(
-
 							list("SPECIALIST SETS (Choose one)", 0, null, null, null),
 							list("Scout Set", 0, /obj/item/storage/box/spec/scout, MARINE_CAN_BUY_ESSENTIALS, "white"),
 							list("Sniper Set", 0, /obj/item/storage/box/spec/sniper, MARINE_CAN_BUY_ESSENTIALS, "white"),
@@ -958,16 +955,14 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 
 
 
-
-
-
-
 /obj/machinery/marine_selector/gear/leader
+	name = "NEXUS Automated Squad Leader Equipment Rack"
+	desc = "An automated squad leader equipment rack hooked up to a colossal storage unit."
+	icon_state = "squadleader"
 	vendor_role = "Squad Leader"
 	req_access = list(ACCESS_MARINE_LEADER)
 
 	listed_products = list(
-
 							list("SQUAD LEADER SET (Mandatory)", 0, null, null, null),
 							list("Essential SL Set", 0, /obj/effect/essentials_set/leader, MARINE_CAN_BUY_ESSENTIALS, "white"),
 
@@ -1018,15 +1013,6 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 							list("Shotgun stock", 0, /obj/item/attachable/stock/shotgun, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
 							list("Submachinegun stock", 0, /obj/item/attachable/stock/smg, (MARINE_CAN_BUY_ATTACHMENT|MARINE_CAN_BUY_ATTACHMENT2), "black"),
 							)
-
-
-
-
-
-
-
-
-
 
 
 /obj/effect/essentials_set
@@ -1082,8 +1068,6 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/device/binoculars/tactical,
 						/obj/item/clothing/glasses/hud/health,
 						)
-
-
 
 
 
