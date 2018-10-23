@@ -122,6 +122,7 @@
 	custom_metabolism = 0.25 // Lasts 10 minutes for 15 units
 	overdose_threshold = REAGENTS_OVERDOSE * 0.66
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL * 0.66
+	scannable = TRUE
 
 /datum/reagent/oxycodone/on_mob_life(mob/living/M)
 	M.reagent_pain_modifier += PAIN_REDUCTION_FULL
