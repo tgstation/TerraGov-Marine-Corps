@@ -644,8 +644,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	if (alert(src, "Are you sure you want to delete:\n[O]\nat ([O.x], [O.y], [O.z])?", "Confirmation", "Yes", "No") == "Yes")
-		log_admin("[key_name(usr)] deleted [O] at ([O.x],[O.y],[O.z]) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>)")
-		message_admins("[key_name_admin(usr)] deleted [O] at ([O.x],[O.y],[O.z])", 1)
+		log_admin("[key_name(usr)] deleted [O] at ([O.x],[O.y],[O.z])")
+		message_admins("[key_name_admin(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) deleted [O] at ([O.x],[O.y],[O.z])", 1)
 		feedback_add_details("admin_verb","DEL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		cdel(O)
 

@@ -109,8 +109,8 @@
 			"You wrench [src]'s faucet [modded ? "closed" : "open"]")
 		modded = modded ? 0 : 1
 		if (modded)
-			message_admins("[key_name_admin(user)] opened fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]), leaking fuel. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>)")
-			log_game("[key_name(user)] opened fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]), leaking fuel.")
+			message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) opened fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]), leaking fuel.")
+			log_game("[key_name(usr)] opened fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]), leaking fuel.")
 			leak_fuel(amount_per_transfer_from_this)
 	if (istype(W,/obj/item/device/assembly_holder))
 		if (rig)
@@ -122,7 +122,7 @@
 
 			var/obj/item/device/assembly_holder/H = W
 			if (istype(H.a_left,/obj/item/device/assembly/igniter) || istype(H.a_right,/obj/item/device/assembly/igniter))
-				message_admins("[key_name_admin(user)] rigged fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]) for explosion. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>)")
+				message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) rigged fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]) for explosion.")
 				log_game("[key_name(user)] rigged fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]) for explosion.")
 
 			rig = W
@@ -139,7 +139,7 @@
 /obj/structure/reagent_dispensers/fueltank/bullet_act(var/obj/item/projectile/Proj)
 	if(exploding) return 0
 	if(istype(Proj.firer,/mob/living/carbon/human))
-		message_admins("[key_name_admin(Proj.firer)] shot fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>).")
+		message_admins("[key_name(Proj.firer)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[Proj.firer]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[Proj.firer.x];Y=[Proj.firer.y];Z=[Proj.firer.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[Proj.firer]'>FLW</a>) shot fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]).")
 		log_game("[key_name(Proj.firer)] shot fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]).")
 
 	if(Proj.damage > 10 && prob(60))

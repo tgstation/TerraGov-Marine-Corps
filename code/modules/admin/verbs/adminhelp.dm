@@ -199,8 +199,10 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 			(<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) \
 			(<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>) \
 			(<A HREF='?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>) \
+			(<A HREF='?_src_=holder;adminplayerfollow=[ref_mob]'>FLW</a>) \
 			(<A HREF='?_src_=holder;check_antagonist=1'>CA</A>)</b>"
 		if(3)
 			return "<b>[key_name(C, link, name, highlight_special)] \
 			(<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) \
-			(<A HREF='?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>)</b>"
+			(<A HREF='?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>) \
+			(<A HREF='?_src_=holder;adminplayerfollow=[ref_mob]'>FLW</a>)</b>"

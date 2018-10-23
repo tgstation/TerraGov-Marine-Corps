@@ -599,8 +599,8 @@
 			busy = 0
 			return
 		if(A)
-			message_mods("ALERT: [usr] ([usr.key]) fired an orbital bombardment in [A.name] for squad '[current_squad]' (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)")
-			log_attack("[usr.name] ([usr.ckey]) fired an orbital bombardment in [A.name] for squad '[current_squad]'")
+			message_mods("ALERT: [key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) fired an orbital bombardment in [A.name] for squad '[current_squad]' (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)")
+			log_attack("[key_name(usr)] fired an orbital bombardment in [A.name] for squad '[current_squad]'")
 		busy = 0
 		if(current_squad.bbeacon)
 			cdel(current_squad.bbeacon) //Wipe the beacon. It's only good for one use.

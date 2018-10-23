@@ -74,7 +74,7 @@
 
 	//Attack logs
 	log_combat(user, target, "smashed", src)
-	msg_admin_attack("[user.name] ([user.ckey]) attacked [target.name] ([target.ckey]) with a bottle. (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+	msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) attacked [key_name(target)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[target]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[target]'>FLW</a>) with a bottle. (INTENT: [uppertext(user.a_intent)])")
 
 	//The reagents in the bottle splash all over the target, thanks for the idea Nodrak
 	if(src.reagents)
