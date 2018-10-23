@@ -27,6 +27,7 @@
 	var/active = 0
 	var/recycletime = 120
 	var/long_range_cooldown = 2
+	var/iff_signal = ACCESS_IFF_MARINE
 
 /obj/item/device/motiondetector/verb/toggle_range_mode()
 	set name = "Toggle Range Mode"
@@ -66,6 +67,15 @@
 	if(!active)
 		processing_objects.Remove(src)
 		return
+
+	var/mob/living/carbon/human/human_user
+	if(ishuman(loc))
+		human_user = loc
+	else
+		icon_state = "detector_off" //No appropriate user detected; shut down to conserve resources.
+		processing_objects.Remove(src)
+		return
+
 	recycletime--
 	if(!recycletime)
 		recycletime = initial(recycletime)
@@ -81,23 +91,18 @@
 
 	playsound(loc, 'sound/items/detector.ogg', 60, 0, 7, 2)
 
-	var/mob/living/carbon/human/human_user
-	if(ishuman(loc))
-		human_user = loc
-
 	var/detected
-	for(var/mob/M in living_mob_list)
-		if(loc == null || M == null) continue
-		if(loc.z != M.z) continue
-		if(get_dist(M, src) > detector_range) continue
-		if(M == loc) continue //device user isn't detected
-		if(!isturf(M.loc)) continue
-		if(world.time > M.l_move_time + 20) continue //hasn't moved recently
-		if(isrobot(M)) continue
+	for(var/mob/living/M in orange(detector_range, human_user))
+		if(!isturf(M.loc))
+			continue
+		if(world.time > M.l_move_time + 20)
+			continue //hasn't moved recently
+		if(isrobot(M))
+			continue
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer))
-				continue //device detects marine headset and ignores the wearer.
+			if(H.get_target_lock(iff_signal))
+				continue //device checks for IFF data; if it matches, skip.
 		detected = TRUE
 
 		if(human_user)
@@ -105,6 +110,7 @@
 
 		if(detected)
 			playsound(loc, 'sound/items/tick.ogg', 50, 0, 7, 2)
+
 
 /obj/item/device/motiondetector/proc/show_blip(mob/user, mob/target)
 	set waitfor = 0
@@ -141,3 +147,8 @@
 		sleep(12)
 		if(user.client)
 			user.client.screen -= DB
+
+/obj/item/device/motiondetector/pmc
+	name = "motion detector (PMC)"
+	desc = "A device that detects movement, but ignores friendlies. It has a mode selection button on the side. It has been modified for use by the W-Y PMC forces."
+	iff_signal = ACCESS_IFF_PMC
