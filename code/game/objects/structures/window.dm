@@ -180,11 +180,17 @@
 			switch(state)
 				if(GRAB_PASSIVE)
 					M.visible_message("<span class='warning'>[user] slams [M] against \the [src]!</span>")
+					log_admin("[key_name(usr)] slams [key_name(M)] against \the [src].")
+					log_combat(user, M, "slammed", "", "against \the [src]")
+					msg_admin_attack("[key_name(usr)] slammed [key_name(M)]'s face' against \the [src].")
 					M.apply_damage(7)
 					if(damageable) //Possible to destroy
 						health -= 10
 				if(GRAB_AGGRESSIVE)
 					M.visible_message("<span class='danger'>[user] bashes [M] against \the [src]!</span>")
+					log_admin("[key_name(usr)] bashes [key_name(M)] against \the [src].")
+					log_combat(user, M, "bashed", "", "against \the [src]")
+					msg_admin_attack("[key_name(usr)] bashed [key_name(M)]'s face' against \the [src].")
 					if(prob(50))
 						M.KnockDown(1)
 					M.apply_damage(10)
@@ -192,6 +198,9 @@
 						health -= 25
 				if(GRAB_NECK)
 					M.visible_message("<span class='danger'><big>[user] crushes [M] against \the [src]!</big></span>")
+					log_admin("[key_name(usr)] crushes [key_name(M)] against \the [src].")
+					log_combat(user, M, "crushed", "", "against \the [src]")
+					msg_admin_attack("[key_name(usr)] crushed [key_name(M)]'s face' against \the [src].")
 					M.KnockDown(5)
 					M.apply_damage(20)
 					if(damageable) //Possible to destroy
