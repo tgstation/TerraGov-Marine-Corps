@@ -780,6 +780,7 @@
 							list("Injector (Oxycodone)", 1, /obj/item/reagent_container/hypospray/autoinjector/Oxycodone, null, "black"),
 							list("Injector (Tricord)", 1, /obj/item/reagent_container/hypospray/autoinjector/tricordrazine, null, "black"),
 							list("Injector (Hypervene)", 1, /obj/item/reagent_container/hypospray/autoinjector/hypervene, null, "black"),
+							list("Advanced hypospray", 2, /obj/item/reagent_container/hypospray/advanced, null, "black"),
 							list("Health analyzer", 2, /obj/item/device/healthanalyzer, null, "black"),
 							list("Medical HUD glasses", 2, /obj/item/clothing/glasses/hud/health, null, "black"),
 
@@ -1050,7 +1051,7 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/device/healthanalyzer,
 						/obj/item/roller/medevac,
 						/obj/item/roller,
-						/obj/item/reagent_container/hypospray,
+						/obj/item/reagent_container/hypospray/advanced/oxycodone,
 						/obj/item/reagent_container/syringe
 						)
 

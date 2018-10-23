@@ -2058,6 +2058,21 @@ MEDICAL
 	containername = "\improper sterile equipment crate"
 	group = "Medical"
 
+/datum/supply_packs/hypospray
+	name = "hypospray crate (x5 hyposprays)"
+	contains = list(
+					/obj/item/reagent_container/hypospray/advanced,
+					/obj/item/reagent_container/hypospray/advanced,
+					/obj/item/reagent_container/hypospray/advanced,
+					/obj/item/reagent_container/hypospray/advanced,
+					/obj/item/reagent_container/hypospray/advanced,
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/secure/surgery
+	containername = "\improper hypospray crate"
+	access = ACCESS_MARINE_MEDBAY
+	group = "Medical"
+
 
 /*******************************************************************************
 ENGINEERING
