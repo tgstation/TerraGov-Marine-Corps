@@ -139,9 +139,8 @@
 
 	var/headbutt_cooldown = 40
 	var/tail_sweep_cooldown = 120
-	var/crest_defense_cooldown = 150
-	var/fortify_cooldown = 200
-	var/fortify_timer = 60
+	var/crest_defense_cooldown = 20
+	var/fortify_cooldown = 20
 
 	//Praetorian vars
 	var/acid_spray_range = 3

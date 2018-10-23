@@ -669,10 +669,6 @@
 // Defender Crest Defense
 /mob/living/carbon/Xenomorph/proc/toggle_crest_defense()
 
-	if (fortify)
-		to_chat(src, "<span class='xenowarning'>You cannot use abilities while fortified.</span>")
-		return
-
 	if (!check_state())
 		return
 
@@ -683,8 +679,20 @@
 	used_crest_defense = TRUE
 
 	if (crest_defense)
+		if(fortify)
+			if(!used_fortify)
+				toggle_crest_defense()
+				to_chat(src, "<span class='xenowarning'>You carefully untuck, keeping your crest lowered.</span>")
+				fortify = FALSE
+				fortify_off()
+			else
+				to_chat(src, "<span class='xenowarning'>You cannot yet untuck yourself!</span>")
+				crest_defense = !crest_defense
+				used_crest_defense = FALSE
+				return
+		else
+			to_chat(src, "<span class='xenowarning'>You tuck yourself into a defensive stance.</span>")
 		round_statistics.defender_crest_lowerings++
-		to_chat(src, "<span class='xenowarning'>You lower your crest.</span>")
 		armor_bonus += DEFENDER_CRESTDEFENSE_ARMOR
 		speed_modifier += DEFENDER_CRESTDEFENSE_SLOWDOWN	// This is actually a slowdown but speed is dumb
 		update_icons()
@@ -709,10 +717,6 @@
 
 // Defender Fortify
 /mob/living/carbon/Xenomorph/proc/fortify()
-	if (crest_defense)
-		to_chat(src, "<span class='xenowarning'>You cannot use abilities with your crest lowered.</span>")
-		return
-
 	if (!check_state())
 		return
 
@@ -725,35 +729,34 @@
 	used_fortify = TRUE
 
 	if (fortify)
-		to_chat(src, "<span class='xenowarning'>You tuck yourself into a defensive stance.</span>")
+		if (crest_defense)
+			if(!used_crest_defense)
+				toggle_crest_defense()
+				to_chat(src, "<span class='xenowarning'>You tuck your lowered crest into yourself.</span>")
+			else
+				to_chat(src, "<span class='xenowarning'>You cannot yet transition to a defensive stance!</span>")
+				fortify = !fortify
+				used_fortify = FALSE
+				return
+		else
+			to_chat(src, "<span class='xenowarning'>You tuck yourself into a defensive stance.</span>")
 		armor_bonus += DEFENDER_FORTIFY_ARMOR
-		xeno_explosion_resistance++
+		xeno_explosion_resistance = 3
 		frozen = TRUE
 		anchored = TRUE
 		update_canmove()
 		update_icons()
 		do_fortify_cooldown()
-		fortify_timer = world.timeofday + 90		// How long we can be fortified
-		process_fortify()
 		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, 1)
 		return
 
 	fortify_off()
 	do_fortify_cooldown()
 
-/mob/living/carbon/Xenomorph/proc/process_fortify()
-	set background = 1
-
-	spawn while (fortify)
-		if (world.timeofday > fortify_timer)
-			fortify = FALSE
-			fortify_off()
-		sleep(10)	// Process every second.
-
 /mob/living/carbon/Xenomorph/proc/fortify_off()
 	to_chat(src, "<span class='xenowarning'>You resume your normal stance.</span>")
 	armor_bonus -= DEFENDER_FORTIFY_ARMOR
-	xeno_explosion_resistance--
+	xeno_explosion_resistance = 0
 	frozen = FALSE
 	anchored = FALSE
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, 1)
