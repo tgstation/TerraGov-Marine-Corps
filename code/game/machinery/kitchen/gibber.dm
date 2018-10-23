@@ -164,7 +164,7 @@
 
 
 		log_combat(user, src.occupant, "gibbed") //One shall not simply gib a mob unnoticed!
-		msg_admin_attack("[user.name] ([user.ckey]) gibbed [src.occupant] ([src.occupant.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+		msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) gibbed [key_name(src.occupant)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[src.occupant]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.occupant.x];Y=[src.occupant.y];Z=[src.occupant.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[src.occupant]'>FLW</a>)")
 
 		src.occupant.death(1)
 		src.occupant.ghostize()
