@@ -110,12 +110,23 @@
 		if(!isliving(M))
 			return
 		var/impact_message = ""
+		if(isXeno(M))
+			var/mob/living/carbon/Xenomorph/D = M
+			if(D.fortify) //If we're fortified we don't give a shit about staggerstun.
+				impact_message += "<span class='xenodanger'>Your fortified stance braces you against the impact.</span>"
+				return
+			if(D.crest_defense) //Crest defense halves all effects, and protects us from the stun.
+				impact_message += "<span class='xenodanger'>Your crest protects you against some of the impact.</span>"
+				slowdown *= 0.5
+				stagger *= 0.5
+				stun = 0
 		if(shake)
 			shake_camera(M, shake+2, shake+3)
 			if(isXeno(M))
 				impact_message += "<span class='xenodanger'>You are shaken by the sudden impact!</span>"
 			else
 				impact_message += "<span class='warning'>You are shaken by the sudden impact!</span>"
+
 		//Check for and apply hard CC.
 		if(((isYautja(M) || M.mob_size == MOB_SIZE_BIG) && hard_size_threshold > 2) || (M.mob_size == MOB_SIZE_XENO && hard_size_threshold > 1) || (ishuman(M) && hard_size_threshold > 0))
 			var/mob/living/L = M
