@@ -69,11 +69,17 @@
 					swirlie = GM
 					if(do_after(user, 30, TRUE, 5, BUSY_ICON_HOSTILE))
 						user.visible_message("<span class='danger'>[user] gives [GM.name] a swirlie!</span>", "<span class='notice'>You give [GM.name] a swirlie!</span>", "You hear a toilet flushing.")
+						log_admin("[key_name(usr)] gives [key_name(GM)] a swirlie.")
+						log_combat(user, GM, "given a swirlie")
+						msg_admin_attack("[key_name(usr)] gave [key_name(GM)] a swirlie.")
 						if(!GM.internal)
 							GM.adjustOxyLoss(5)
 					swirlie = null
 				else
 					user.visible_message("<span class='danger'>[user] slams [GM.name] into the [src]!</span>", "<span class='notice'>You slam [GM.name] into the [src]!</span>")
+					log_admin("[key_name(usr)] slams [key_name(GM)] into the \the [src].")
+					log_combat(user, GM, "slammed", "", "into the \the [src]")
+					msg_admin_attack("[key_name(usr)] slammed [key_name(GM)] into the \the [src].")
 					GM.apply_damage(8, BRUTE)
 			else
 				to_chat(user, "<span class='notice'>You need a tighter grip.</span>")
