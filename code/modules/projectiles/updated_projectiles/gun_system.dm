@@ -693,7 +693,6 @@ and you're good to go.
 			if(able_to_fire(user))
 				flags_gun_features ^= GUN_CAN_POINTBLANK //If they try to click again, they're going to hit themselves.
 				M.visible_message("<span class='warning'>[user] sticks their gun in their mouth, ready to pull the trigger.</span>")
-				message_admins("[key_name(user)] is trying to commit suicide (<A HREF='?_src_=holder;adminplayerobservejump=\ref[user]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[user.name]'>FLW</A>).", 1)
 				log_game("[key_name(user)] is trying to commit suicide.")
 				var/u = "[key_name(user)] is trying to commit suicide."
 				user.log_message(u, LOG_ATTACK, "red")
