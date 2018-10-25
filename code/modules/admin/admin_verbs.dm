@@ -89,6 +89,7 @@ var/list/admin_verbs_sounds = list(
 	)
 var/list/admin_verbs_fun = list(
 	// /client/proc/object_talk,
+	/datum/admins/proc/access_news_network,
 	/client/proc/cmd_admin_dress,
 	/client/proc/cmd_admin_select_mob_rank,
 	/client/proc/cmd_admin_gib_self,
