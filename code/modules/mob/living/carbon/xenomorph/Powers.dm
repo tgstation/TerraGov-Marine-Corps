@@ -517,6 +517,9 @@
 	if (!M || !istype(M, /mob/living/carbon/human))
 		return
 
+	if(M.stat == DEAD || (istype(M.buckled, /obj/structure/bed/nest) && M.status_flags & XENO_HOST) ) //No bullying the dead/secured hosts
+		return
+
 	if (fortify)
 		to_chat(src, "<span class='xenowarning'>You cannot use abilities while fortified.</span>")
 		return
@@ -567,18 +570,17 @@
 
 	face_atom(H) //Face towards the target so we don't look silly
 
-	if(H.stat != DEAD && (!(H.status_flags & XENO_HOST) || !istype(H.buckled, /obj/structure/bed/nest)) )
-		var/damage = rand(melee_damage_lower,melee_damage_upper)
-		if(frenzy_aura > 0)
-			damage += (frenzy_aura * 2)
-		damage *= (1 + distance * 0.25) //More distance = more momentum = stronger Headbutt.
-		var/affecting = H.get_limb(ran_zone(null, 0))
-		if(!affecting) //Still nothing??
-			affecting = H.get_limb("chest") //Gotta have a torso?!
-		var/armor_block = H.run_armor_check(affecting, "melee")
-		H.apply_damage(damage, BRUTE, affecting, armor_block) //We deal crap brute damage after armor...
-		H.apply_damage(damage, HALLOSS) //...But some sweet armour ignoring Halloss
-		shake_camera(H, 2, 1)
+	var/damage = rand(melee_damage_lower,melee_damage_upper)
+	if(frenzy_aura > 0)
+		damage += (frenzy_aura * 2)
+	damage *= (1 + distance * 0.25) //More distance = more momentum = stronger Headbutt.
+	var/affecting = H.get_limb(ran_zone(null, 0))
+	if(!affecting) //Still nothing??
+		affecting = H.get_limb("chest") //Gotta have a torso?!
+	var/armor_block = H.run_armor_check(affecting, "melee")
+	H.apply_damage(damage, BRUTE, affecting, armor_block) //We deal crap brute damage after armor...
+	H.apply_damage(damage, HALLOSS) //...But some sweet armour ignoring Halloss
+	shake_camera(H, 2, 1)
 
 	var/facing = get_dir(src, H)
 	var/headbutt_distance = 3
@@ -637,7 +639,7 @@
 
 	for (var/mob/living/carbon/human/H in L)
 		step_away(H, src, sweep_range, 2)
-		if(H.stat != DEAD)
+		if(H.stat != DEAD && !(istype(H.buckled, /obj/structure/bed/nest) && H.status_flags & XENO_HOST) ) //No bully
 			var/damage = rand(melee_damage_lower,melee_damage_upper)
 			if(frenzy_aura > 0)
 				damage += (frenzy_aura * 2)
