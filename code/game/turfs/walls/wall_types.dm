@@ -476,7 +476,7 @@
 			if(istype(W, /obj/item/tool/pickaxe/plasmacutter)) //Plasma cutters are particularly good at destroying resin structures.
 				var/obj/item/tool/pickaxe/plasmacutter/P = W
 				multiplier += PLASMACUTTER_RESIN_MULTIPLIER
-				P.cut_apart(user, src.name, src, P.charge_cost * PLASMACUTTER_VLOW_MOD) //Minimal enregy cost.
+				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal enregy cost.
 		power *= max(0,multiplier)
 		take_damage(power)
 		playsound(src, "alien_resin_break", 25)

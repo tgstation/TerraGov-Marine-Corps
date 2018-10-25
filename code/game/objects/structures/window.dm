@@ -7,6 +7,7 @@
 	anchored = TRUE
 	layer = WINDOW_LAYER
 	flags_atom = ON_BORDER
+	var/dismantle = FALSE //If we're dismantling the window properly no smashy smashy
 	var/health = 15
 	var/state = 2
 	var/reinf = FALSE
@@ -211,7 +212,17 @@
 	if(W.flags_item & NOBLUDGEON)
 		return
 
-	if(istype(W, /obj/item/tool/screwdriver) && deconstructable)
+	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy && deconstructable)
+		var/obj/item/tool/pickaxe/plasmacutter/P = W
+		if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
+			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P)
+				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
+				health = 0
+				healthcheck(0, 0, 1)
+				return
+
+	else if(istype(W, /obj/item/tool/screwdriver) && deconstructable)
+		dismantle = TRUE
 		if(reinf && state >= 1)
 			state = 3 - state
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -229,19 +240,20 @@
 		else if(static_frame && state == 0)
 			disassemble_window()
 	else if(istype(W, /obj/item/tool/crowbar) && reinf && state <= 1 && deconstructable)
+		dismantle = TRUE
 		state = 1 - state
 		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 		to_chat(user, (state ? "<span class='notice'>You have pried the window into the frame.</span>" : "<span class='notice'>You have pried the window out of the frame.</span>"))
-	else
-		if(damageable) //Possible to destroy
-			health -= W.force
-			if(health <= 7  && !reinf && !static_frame && deconstructable)
-				anchored = FALSE
-				update_nearby_icons()
-				step(src, get_dir(user, src))
+
+	if(damageable && dismantle == FALSE) //Possible to destroy
+		health -= W.force
+		if(health <= 7  && !reinf && !static_frame && deconstructable)
+			anchored = FALSE
+			update_nearby_icons()
+			step(src, get_dir(user, src))
 		healthcheck(1, 1, 1, user, W)
-		..()
-	return
+	dismantle = FALSE
+	return ..()
 
 
 /obj/structure/window/proc/disassemble_window()

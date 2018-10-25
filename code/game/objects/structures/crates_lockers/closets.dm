@@ -214,17 +214,13 @@
 			return
 		if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
 			var/obj/item/tool/pickaxe/plasmacutter/P = W
-			if(P.cell.charge >= P.charge_cost * PLASMACUTTER_VLOW_MOD && P.powered)
-				P.cut_apart(user, src.name, src, P.charge_cost * PLASMACUTTER_VLOW_MOD) //Closets require much less power to cut apart.
-				new /obj/item/stack/sheet/metal(src.loc)
-				for(var/mob/M in viewers(src))
-					M.show_message("<span class='notice'>\The [src] has been cut apart by [user] with [P].</span>", 3, "You hear welding.", 2)
-				P.debris(loc, 1, 0) //Generate some metal
-				cdel(src)
+			if(!P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
 				return
-			else
-				P.fizzle_message(user)
-				return
+			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Window frames require half the normal power
+			P.debris(loc, 1, 0) //Generate some metal
+			cdel(src)
+			return
+
 		if(isrobot(user))
 			return
 		user.drop_inv_item_to_loc(W,loc)

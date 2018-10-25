@@ -135,6 +135,7 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define PLASMACUTTER_VHIGH_MOD	3
 #define PLASMACUTTER_CUT_DELAY	30
 #define PLASMACUTTER_RESIN_MULTIPLIER	4
+#define PLASMACUTTER_BASE_COST	1000
 
 //flags_token & tokensupport
 //used for coins and vendors, restricting specific tokens to associated vendors.
