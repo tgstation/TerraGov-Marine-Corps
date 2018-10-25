@@ -226,7 +226,7 @@
 		if(user.get_inactive_hand()) //Failsafe; if there's somehow still something in the off-hand (undroppable), bail.
 			to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
 			return
-			
+
 	if(ishuman(user))
 		var/check_hand = user.r_hand == src ? "l_hand" : "r_hand"
 		var/mob/living/carbon/human/wielder = user
@@ -937,7 +937,7 @@ and you're good to go.
 				playsound(user, actual_sound, 60)
 				if(bullets_fired == 1)
 					user.visible_message(
-					"<span class='danger'>[user] [src][reflex ? " by reflex":""]!</span>", \
+					"<span class='danger'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
 					"<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]" : ""]</span>", \
 					"<span class='warning'>You hear a [istype(projectile_to_fire.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!</span>", 4
 					)
