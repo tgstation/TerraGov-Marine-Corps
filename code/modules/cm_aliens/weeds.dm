@@ -134,14 +134,9 @@
 	if(!W || !user || isnull(W) || (W.flags_item & NOBLUDGEON))
 		return 0
 
-	if(istype(src, /obj/effect/alien/weeds/node)) //The pain is real
-		to_chat(user, "<span class='warning'>You hit \the [src] with \the [W].</span>")
-	else
-		to_chat(user, "<span class='warning'>You cut \the [src] away with \the [W].</span>")
-
 	var/damage = W.force
 	if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
-		damage /= 4
+		damage *= 0.25
 
 	if(istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
@@ -154,7 +149,24 @@
 		playsound(loc, "alien_resin_break", 25)
 	user.animation_attack_on(src)
 
-	health -= damage
+	var/multiplier = 1
+	if(W.damtype == "burn") //Burn damage deals extra vs resin structures (mostly welders).
+		multiplier += 1
+
+	var/obj/item/tool/pickaxe/plasmacutter/P
+	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
+		P = W
+		if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
+			multiplier += PLASMACUTTER_RESIN_MULTIPLIER //Plasma cutters are particularly good at destroying resin structures.
+			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
+
+	if(!P) //Plasma cutters have their own message.
+		if(istype(src, /obj/effect/alien/weeds/node)) //The pain is real
+			to_chat(user, "<span class='warning'>You hit \the [src] with \the [W].</span>")
+		else
+			to_chat(user, "<span class='warning'>You cut \the [src] away with \the [W].</span>")
+
+	health -= damage * multiplier
 	healthcheck()
 	return TRUE //don't call afterattack
 

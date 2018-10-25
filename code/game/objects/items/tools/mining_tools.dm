@@ -1,5 +1,6 @@
 
 
+
 /*****************************Pickaxe********************************/
 
 /obj/item/tool/pickaxe
@@ -102,7 +103,6 @@
 	var/cutting_sound = 'sound/items/Welder2.ogg'
 	var/powered = FALSE
 	var/dirt_amt_per_dig = 5
-	var/charge_cost = 1000
 	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
 
 /obj/item/tool/pickaxe/plasmacutter/New()
@@ -154,17 +154,26 @@
 	else
 		to_chat(user, "<span class='warning'>The plasma cutter has inadequate charge remaining! Replace or recharge the battery. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
 
-/obj/item/tool/pickaxe/plasmacutter/proc/start_cut(mob/user, name = "", atom/source)
+/obj/item/tool/pickaxe/plasmacutter/proc/start_cut(mob/user, name = "", atom/source, charge_amount = PLASMACUTTER_BASE_COST, custom_string, no_string, SFX = TRUE)
+	if(!(cell.charge >= charge_amount) || !powered) //Check power
+		fizzle_message(user)
+		return 0
 	eyecheck(user)
-	playsound(source, cutting_sound, 25, 1)
-	var/datum/effect_system/spark_spread/spark_system
-	spark_system = new /datum/effect_system/spark_spread()
-	spark_system.set_up(5, 0, source)
-	spark_system.attach(source)
-	spark_system.start(source)
-	to_chat(user, "<span class='notice'>You start cutting apart the [name] with [src]. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
+	if(SFX)
+		playsound(source, cutting_sound, 25, 1)
+		var/datum/effect_system/spark_spread/spark_system
+		spark_system = new /datum/effect_system/spark_spread()
+		spark_system.set_up(5, 0, source)
+		spark_system.attach(source)
+		spark_system.start(source)
+	if(!no_string)
+		if(custom_string)
+			to_chat(user, "<span class='notice'>[custom_string] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
+		else
+			to_chat(user, "<span class='notice'>You start cutting apart the [name] with [src]. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
+	return 1
 
-/obj/item/tool/pickaxe/plasmacutter/proc/cut_apart(mob/user, name = "", atom/source, charge_amount = charge_cost)
+/obj/item/tool/pickaxe/plasmacutter/proc/cut_apart(mob/user, name = "", atom/source, charge_amount = PLASMACUTTER_BASE_COST, custom_string)
 	eyecheck(user)
 	playsound(source, cutting_sound, 25, 1)
 	var/datum/effect_system/spark_spread/spark_system
@@ -173,7 +182,10 @@
 	spark_system.attach(source)
 	spark_system.start(source)
 	use_charge(user, charge_amount, FALSE)
-	to_chat(user, "<span class='notice'>You cut apart the [name] with [src]. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
+	if(custom_string)
+		to_chat(user, "<span class='notice'>[custom_string]<b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
+	else
+		to_chat(user, "<span class='notice'>You cut apart the [name] with [src]. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
 
 /obj/item/tool/pickaxe/plasmacutter/proc/debris(location, metal = 0, rods = 0, wood = 0, wires = 0, shards = 0, plasteel = 0)
 	if(metal)
@@ -191,7 +203,7 @@
 	if(plasteel)
 		new /obj/item/stack/sheet/plasteel (location, plasteel)
 
-/obj/item/tool/pickaxe/plasmacutter/proc/use_charge(mob/user, amount = charge_cost, mention_charge = TRUE)
+/obj/item/tool/pickaxe/plasmacutter/proc/use_charge(mob/user, amount = PLASMACUTTER_BASE_COST, mention_charge = TRUE)
 	cell.charge -= min(cell.charge, amount)
 	if(mention_charge)
 		to_chat(user, "<span class='notice'><b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
@@ -296,14 +308,14 @@
 	return
 
 
-/obj/item/tool/pickaxe/plasmacutter/attack(mob/M, mob/user)
+/obj/item/tool/pickaxe/plasmacutter/attack(atom/M, mob/user)
 
 	if(!powered)
 		return ..()
-	if(cell.charge < charge_cost * 0.25)
+	if(cell.charge < PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
 		fizzle_message(user)
 	else
-		use_charge(user, charge_cost * 0.25)
+		use_charge(user, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
 		playsound(M, cutting_sound, 25, 1)
 		eyecheck(user)
 		update_plasmacutter()
@@ -327,14 +339,12 @@
 		var/turf/open/snow/ST = T
 		if(!ST.slayer)
 			return
-		if(!cell.charge >= charge_cost * PLASMACUTTER_VLOW_MOD || !powered)
-			fizzle_message(user)
+		if(!start_cut(user, target.name, target, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, "<span class='notice'>You start melting the [target.name] with [src].</span>"))
 			return
-		to_chat(user, "<span class='notice'>You start melting the snow with [src].</span>")
 		playsound(user.loc, 'sound/items/Welder.ogg', 25, 1)
 		if(!do_after(user, calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, 5, BUSY_ICON_BUILD))
 			return
-		if(!cell.charge >= charge_cost * PLASMACUTTER_VLOW_MOD || !powered)
+		if(!cell.charge >= PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD || !powered)
 			fizzle_message(user)
 			return
 		if(!turfdirt == DIRT_TYPE_SNOW)
@@ -343,5 +353,4 @@
 			return
 		ST.slayer = max(0 , ST.slayer - dirt_amt_per_dig)
 		ST.update_icon(1,0)
-		to_chat(user, "<span class='notice'>You melt the snow with [src].</span>")
-		use_charge(user, name, ST, charge_cost * PLASMACUTTER_VLOW_MOD) //costs 25% normal
+		cut_apart(user, target.name, target, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, "You melt the snow with [src]. ") //costs 25% normal

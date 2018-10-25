@@ -252,12 +252,10 @@
 		if(!welded)
 			to_chat(user, "<span class='warning'>\The [P] can only cut open welds!</span>")
 			return
-		if(!P.cell.charge >= P.charge_cost * PLASMACUTTER_VLOW_MOD || !P.powered)
-			P.fizzle_message(user)
+		if(!(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)))
 			return
-		P.start_cut(user, src.name, src)
 		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P)
-			P.cut_apart(user, src.name, src, P.charge_cost * PLASMACUTTER_VLOW_MOD) //Vents require much less charge
+			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Vents require much less charge
 			welded = FALSE
 			update_icon()
 			return
