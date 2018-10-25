@@ -25,10 +25,10 @@
 	results = list("dermaline" = 3)
 	required_reagents = list("oxygen" = 1, "phosphorus" = 1, "kelotane" = 1)
 
-/datum/chemical_reaction/dexalinp
+/datum/chemical_reaction/dexalinplus
 	name = "Dexalin Plus"
-	id = "dexalinp"
-	results = list("dexalinp" = 3)
+	id = "dexalinplus"
+	results = list("dexalinplus" = 3)
 	required_reagents = list("dexalin" = 1, "carbon" = 1, "iron" = 1)
 
 /datum/chemical_reaction/bicaridine

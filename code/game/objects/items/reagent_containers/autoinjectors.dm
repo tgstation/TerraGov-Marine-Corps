@@ -65,7 +65,7 @@
 	amount_per_transfer_from_this = 1
 	volume = 1
 	icon_state = "dexalin"
-	list_reagents = list("dexalinp" = 1)
+	list_reagents = list("dexalinplus" = 1)
 
 /obj/item/reagent_container/hypospray/autoinjector/dexP/New()
 	..()

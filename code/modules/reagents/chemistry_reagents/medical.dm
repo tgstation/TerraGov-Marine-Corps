@@ -246,16 +246,16 @@
 /datum/reagent/medicine/dexalin/overdose_crit_process(mob/living/M, alien)
 	M.apply_damages(2, 0, 2)
 
-/datum/reagent/medicine/dexalinp
+/datum/reagent/medicine/dexalinplus
 	name = "Dexalin Plus"
-	id = "dexalinp"
+	id = "dexalinplus"
 	description = "Dexalin Plus is used in the treatment of oxygen deprivation. It is highly effective."
 	color = "#C8A5FC"
 	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 	scannable = TRUE
 
-/datum/reagent/medicine/dexalinp/on_mob_life(mob/living/M,alien)
+/datum/reagent/medicine/dexalinplus/on_mob_life(mob/living/M,alien)
 	if(alien == IS_VOX)
 		M.adjustToxLoss(3*REM)
 	else if(!alien)
@@ -263,10 +263,10 @@
 	holder.remove_reagent("lexorin", 2*REM)
 	..()
 
-/datum/reagent/medicine/dexalinp/overdose_process(mob/living/M, alien)
+/datum/reagent/medicine/dexalinplus/overdose_process(mob/living/M, alien)
 	M.apply_damage(1, TOX)
 
-/datum/reagent/medicine/dexalinp/overdose_crit_process(mob/living/M, alien)
+/datum/reagent/medicine/dexalinplus/overdose_crit_process(mob/living/M, alien)
 	M.apply_damages(2, 0, 3)
 
 /datum/reagent/medicine/tricordrazine
