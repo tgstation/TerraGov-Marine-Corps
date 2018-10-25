@@ -2423,6 +2423,22 @@
 		notes_del(key, index)
 		player_notes_show(key)
 
+	if(href_list["hide_player_info"])
+		message_admins("hide button clicked.")
+		var/key = href_list["hide_player_info"]
+		var/index = text2num(href_list["remove_index"])
+
+		notes_hide(key, index)
+		player_notes_show(key)
+
+	if(href_list["unhide_player_info"])
+		message_admins("notes unhide button clicked.")
+		var/key = href_list["unhide_player_info"]
+		var/index = text2num(href_list["remove_index"])
+
+		notes_unhide(key, index)
+		player_notes_show(key)
+
 	if(href_list["notes"])
 		var/ckey = href_list["ckey"]
 		if(!ckey)

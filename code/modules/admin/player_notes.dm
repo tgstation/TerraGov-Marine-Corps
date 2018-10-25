@@ -119,6 +119,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 		P.rank = "Friendly Robot"
 	P.content = note
 	P.timestamp = "[copytext(full_date,1,day_loc)][day_string][copytext(full_date,day_loc+2)]"
+	P.hidden = FALSE
 
 	infos += P
 	to_chat(info, infos)
@@ -132,8 +133,10 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	var/savefile/note_list = new("data/player_notes.sav")
 	var/list/note_keys
 	note_list >> note_keys
-	if(!note_keys) note_keys = list()
-	if(!note_keys.Find(key)) note_keys += key
+	if(!note_keys) 
+		note_keys = list()
+	if(!note_keys.Find(key)) 
+		note_keys += key
 	to_chat(note_list, note_keys)
 	cdel(note_list)
 
@@ -142,7 +145,8 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || infos.len < index) return
+	if(!infos || infos.len < index) 
+		return
 
 	var/datum/player_info/item = infos[index]
 	infos.Remove(item)
@@ -150,6 +154,40 @@ datum/admins/proc/notes_gethtml(var/ckey)
 
 	message_admins("\blue [key_name_admin(usr)] deleted one of [key]'s notes.")
 	log_admin("[key_name_admin(usr)] deleted one of [key]'s notes.")
+
+	cdel(info)
+
+/proc/notes_hide(var/key, var/index)
+	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/list/infos
+	info >> infos
+	if(!infos || infos.len < index) 
+		return
+
+	var/datum/player_info/item = infos[index]
+	item.hidden = TRUE
+
+	to_chat(info, infos)
+
+	message_admins("\blue [key_name_admin(usr)] has hidden one of [key]'s notes.")
+	log_admin("[key_name_admin(usr)] has hidden one of [key]'s notes.")
+
+	cdel(info)
+
+/proc/notes_unhide(var/key, var/index)
+	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/list/infos
+	info >> infos
+	if(!infos || infos.len < index) 
+		return
+
+	var/datum/player_info/item = infos[index]
+	item.hidden = FALSE
+
+	to_chat(info, infos)
+
+	message_admins("\blue [key_name_admin(usr)] has made one of [key]'s notes visible.")
+	log_admin("[key_name_admin(usr)] has made one of [key]'s notes visible.")
 
 	cdel(info)
 
