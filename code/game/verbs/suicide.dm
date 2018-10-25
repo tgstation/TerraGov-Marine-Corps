@@ -18,7 +18,7 @@
 		permitted = 1
 
 	if(!permitted)
-		message_admins("[ckey] has tried to suicide, but they were not permitted due to not being antagonist as human.", 1)
+		message_admins("[key_name(ckey)] has tried to suicide using the suicide verb, but they were not permitted due to not being antagonist as human.", 1)
 		to_chat(src, "Suicide is easy! Just attack yourself with a gun, while targeting your mouth.")
 		to_chat(src, "Please don't do so flippantly! If you want to just leave the round, enter a hypersleep bed.")
 		return
