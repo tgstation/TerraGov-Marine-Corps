@@ -1188,9 +1188,9 @@
 								/obj/item/reagent_container/hypospray/autoinjector/tricordrazine,
 								/obj/item/reagent_container/hypospray/autoinjector/tricordrazine,
 								/obj/item/reagent_container/hypospray/autoinjector/quickclot,
-								/obj/item/reagent_container/hypospray/autoinjector/dexP,
-								/obj/item/reagent_container/hypospray/autoinjector/Bicard,
-								/obj/item/reagent_container/hypospray/autoinjector/Kelo)
+								/obj/item/reagent_container/hypospray/autoinjector/dexalinplus,
+								/obj/item/reagent_container/hypospray/autoinjector/bicaridine,
+								/obj/item/reagent_container/hypospray/autoinjector/kelotane)
 
 			if(31 to 40)//Random Attachments Crate 20% because the lord commeth and said let there be attachments.
 				crate = new /obj/structure/closet/crate/secure/weapon(T)

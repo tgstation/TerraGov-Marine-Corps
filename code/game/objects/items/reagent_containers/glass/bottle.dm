@@ -97,12 +97,12 @@
 	icon_state = "bottle12"
 	list_reagents = list("cyanide" = 60)
 
-/obj/item/reagent_container/glass/bottle/stoxin
+/obj/item/reagent_container/glass/bottle/sleeptoxin
 	name = "soporific bottle"
 	desc = "A small bottle of soporific. Just the fumes make you sleepy."
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle20"
-	list_reagents = list("stoxin" = 60)
+	list_reagents = list("sleeptoxin" = 60)
 
 /obj/item/reagent_container/glass/bottle/chloralhydrate
 	name = "chloral hydrate bottle"
@@ -111,12 +111,12 @@
 	icon_state = "bottle20"
 	list_reagents = list("chloralhydrate" = 60)
 
-/obj/item/reagent_container/glass/bottle/antitoxin
-	name = "\improper Dylovene bottle"
-	desc = "A small bottle of dylovene. Counters poisons, and repairs damage. A wonder drug."
+/obj/item/reagent_container/glass/bottle/dylovene
+	name = "dylovene bottle"
+	desc = "A small bottle of dylovene. Used to counter poisons. Basically an anti-toxin."
 	icon = 'icons/obj/items/chemistry.dmi'
 	icon_state = "bottle7"
-	list_reagents = list("anti_toxin" = 60)
+	list_reagents = list("dylovene" = 60)
 
 /obj/item/reagent_container/glass/bottle/mutagen
 	name = "unstable mutagen bottle"

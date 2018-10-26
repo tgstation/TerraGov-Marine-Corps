@@ -11,7 +11,7 @@ Structure: ///////////////////          //////////////////////////
 		   							     |        |         |
 		   							      V          V          V
 
-		   							         reagents (datums)	    	Reagents. I.e. Water , antitoxins or mercury.
+		   							         reagents (datums)	    	Reagents. I.e. Water , dylovene or mercury.
 
 
 Random important notes:

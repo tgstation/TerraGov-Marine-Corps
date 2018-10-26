@@ -1951,7 +1951,7 @@ MEDICAL
 					/obj/item/storage/box/autoinjectors,
 					/obj/item/storage/box/syringes,
 					/obj/item/reagent_container/glass/bottle/inaprovaline,
-					/obj/item/reagent_container/glass/bottle/antitoxin,
+					/obj/item/reagent_container/glass/bottle/dylovene,
 					/obj/item/reagent_container/glass/bottle/bicaridine,
 					/obj/item/reagent_container/glass/bottle/dexalin,
 					/obj/item/reagent_container/glass/bottle/spaceacillin,

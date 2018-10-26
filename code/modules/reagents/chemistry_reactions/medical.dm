@@ -3,14 +3,14 @@
 	name = "Tricordrazine"
 	id = "tricordrazine"
 	results = list("tricordrazine" = 2)
-	required_reagents = list("inaprovaline" = 1, "anti_toxin" = 1)
+	required_reagents = list("inaprovaline" = 1, "dylovene" = 1)
 	mob_react = FALSE
 
 /datum/chemical_reaction/alkysine
 	name = "Alkysine"
 	id = "alkysine"
 	results = list("alkysine" = 2)
-	required_reagents = list("chlorine" = 1, "nitrogen" = 1, "anti_toxin" = 1)
+	required_reagents = list("chlorine" = 1, "nitrogen" = 1, "dylovene" = 1)
 
 /datum/chemical_reaction/dexalin
 	name = "Dexalin"
@@ -72,13 +72,13 @@
 	name = "imidazoline"
 	id = "imidazoline"
 	results = list("imidazoline" = 2)
-	required_reagents = list("carbon" = 1, "hydrogen" = 1, "anti_toxin" = 1)
+	required_reagents = list("carbon" = 1, "hydrogen" = 1, "dylovene" = 1)
 
 /datum/chemical_reaction/ethylredoxrazine
 	name = "Ethylredoxrazine"
 	id = "ethylredoxrazine"
 	results = list("ethylredoxrazine" = 3)
-	required_reagents = list("oxygen" = 1, "anti_toxin" = 1, "carbon" = 1)
+	required_reagents = list("oxygen" = 1, "dylovene" = 1, "carbon" = 1)
 
 /datum/chemical_reaction/ethanoloxidation
 	name = "ethanoloxidation"	//Kind of a placeholder in case someone ever changes it so that chemicals
@@ -90,7 +90,7 @@
 	name = "Sterilizine"
 	id = "sterilizine"
 	results = list("sterilizine" = 3)
-	required_reagents = list("ethanol" = 1, "anti_toxin" = 1, "chlorine" = 1)
+	required_reagents = list("ethanol" = 1, "dylovene" = 1, "chlorine" = 1)
 
 /datum/chemical_reaction/inaprovaline
 	name = "Inaprovaline"
@@ -98,10 +98,10 @@
 	results = list("inaprovaline" = 3)
 	required_reagents = list("oxygen" = 1, "carbon" = 1, "sugar" = 1)
 
-/datum/chemical_reaction/anti_toxin
+/datum/chemical_reaction/dylovene
 	name = "Dylovene"
-	id = "anti_toxin"
-	results = list("anti_toxin" = 3)
+	id = "dylovene"
+	results = list("dylovene" = 3)
 	required_reagents = list("silicon" = 1, "potassium" = 1, "nitrogen" = 1)
 
 
@@ -141,7 +141,7 @@
 	name = "Hyronalin"
 	id = "hyronalin"
 	results = list("hyronalin" = 2)
-	required_reagents = list("radium" = 1, "anti_toxin" = 1)
+	required_reagents = list("radium" = 1, "dylovene" = 1)
 
 /datum/chemical_reaction/arithrazine
 	name = "Arithrazine"
@@ -163,7 +163,7 @@
 	required_catalysts = list("phoron" = 5)
 
 /datum/chemical_reaction/quickclot
-	name = "Quickclot"
+	name = "Quick-Clot"
 	id = "quickclot"
 	results = list("quickclot" = 1)
 	required_reagents = list("kelotane" = 2, "clonexadone" = 2)

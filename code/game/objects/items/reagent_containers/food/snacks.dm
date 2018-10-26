@@ -582,7 +582,7 @@
 	desc = "A fake turkey made from tofu."
 	icon_state = "tofurkey"
 	filling_color = "#FFFEE0"
-	list_reagents = list("nutriment" = 12, "stoxin" = 3)
+	list_reagents = list("nutriment" = 12, "sleeptoxin" = 3)
 	bitesize = 3
 	tastes = list("tofu" = 3, "breadcrumbs" = 1)
 
@@ -635,7 +635,7 @@
 	desc = "A very manly slab of meat."
 	icon_state = "bearmeat"
 	filling_color = "#DB0000"
-	list_reagents = list("nutriment" = 12, "stoxin" = 3)
+	list_reagents = list("nutriment" = 12, "sleeptoxin" = 3)
 	tastes = list("meat" = 1, "salmon" = 1)
 	bitesize = 3
 

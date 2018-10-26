@@ -254,9 +254,9 @@
 				if(H.species.flags & IS_PLANT) //plantmen take a LOT of damage
 					H.adjustToxLoss(10)
 
-/datum/reagent/toxin/stoxin
+/datum/reagent/toxin/sleeptoxin
 	name = "Soporific"
-	id = "stoxin"
+	id = "sleeptoxin"
 	description = "An effective hypnotic used to treat insomnia."
 	color = "#E895CC" // rgb: 232, 149, 204
 	toxpwr = 0
@@ -266,7 +266,7 @@
 	scannable = 1
 	taste_description = "cough syrup"
 
-/datum/reagent/toxin/stoxin/on_mob_life(mob/living/M)
+/datum/reagent/toxin/sleeptoxin/on_mob_life(mob/living/M)
 	switch(current_cycle)
 		if(1 to 12)
 			if(prob(5))
@@ -283,10 +283,10 @@
 	M.reagent_pain_modifier += PAIN_REDUCTION_HEAVY
 	..()
 
-/datum/reagent/toxin/stoxin/overdose_process(mob/living/M, alien)
+/datum/reagent/toxin/sleeptoxin/overdose_process(mob/living/M, alien)
 	M.apply_damages(0, 0, 1, 2) //Overdose starts getting bad
 
-/datum/reagent/toxin/stoxin/overdose_crit_process(mob/living/M)
+/datum/reagent/toxin/sleeptoxin/overdose_crit_process(mob/living/M)
 	M.apply_damages(0, 0, 1, 1) //Overdose starts getting bad
 
 /datum/reagent/toxin/chloralhydrate
