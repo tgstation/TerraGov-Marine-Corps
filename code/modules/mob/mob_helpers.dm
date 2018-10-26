@@ -558,6 +558,78 @@ var/list/intents = list("help","disarm","grab","hurt")
 		hud_used.action_intent.icon_state = "intent_[a_intent]"
 
 
+/mob/verb/a_select_zone(input as text)
+	set name = "a-select-zone"
+	set hidden = 1
+
+	switch(input)
+		if("head")
+			switch(usr.zone_selected)
+				if("head")
+					usr.zone_selected = "eyes"
+					usr.client.screen[21].selecting = "eyes"
+				if("eyes")
+					usr.zone_selected = "mouth"
+					usr.client.screen[21].selecting = "mouth"
+				if("mouth")
+					usr.zone_selected = "head"
+					usr.client.screen[21].selecting = "head"
+				else
+					usr.zone_selected = "head"
+					usr.client.screen[21].selecting = "head"
+		if("chest")
+			usr.zone_selected = "chest"
+			usr.client.screen[21].selecting = "chest"
+		if("groin")
+			usr.zone_selected = "groin"
+			usr.client.screen[21].selecting = "groin"
+		if("rarm")
+			switch(usr.zone_selected)
+				if("r_arm")
+					usr.zone_selected = "r_hand"
+					usr.client.screen[21].selecting = "r_hand"
+				if("r_hand")
+					usr.zone_selected = "r_arm"
+					usr.client.screen[21].selecting = "r_arm"
+				else
+					usr.zone_selected = "r_arm"
+					usr.client.screen[21].selecting = "r_arm"
+		if("larm")
+			switch(usr.zone_selected)
+				if("l_arm")
+					usr.zone_selected = "l_hand"
+					usr.client.screen[21].selecting = "l_hand"
+				if("l_hand")
+					usr.zone_selected = "l_arm"
+					usr.client.screen[21].selecting = "l_arm"
+				else
+					usr.zone_selected = "l_arm"
+					usr.client.screen[21].selecting = "l_arm"
+		if("rleg")
+			switch(usr.zone_selected)
+				if("r_leg")
+					usr.zone_selected = "r_foot"
+					usr.client.screen[21].selecting = "r_foot"
+				if("r_foot")
+					usr.zone_selected = "r_leg"
+					usr.client.screen[21].selecting = "r_leg"
+				else
+					usr.zone_selected = "r_leg"
+					usr.client.screen[21].selecting = "r_leg"
+		if("lleg")
+			switch(usr.zone_selected)
+				if("l_leg")
+					usr.zone_selected = "l_foot"
+					usr.client.screen[21].selecting = "l_foot"
+				if("l_foot")
+					usr.zone_selected = "l_leg"
+					usr.client.screen[21].selecting = "l_leg"
+				else
+					usr.zone_selected = "l_leg"
+					usr.client.screen[21].selecting = "l_leg"
+
+	usr.client.screen[21].update_icon()
+
 //can the mob be operated on?
 /mob/proc/can_be_operated_on()
 	return FALSE
