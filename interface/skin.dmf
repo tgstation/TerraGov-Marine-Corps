@@ -307,6 +307,28 @@ macro "hotkeymode"
 	elem 
 		name = "F12"
 		command = "F12"
+	elem 
+		name = "Numpad8"
+		command = "a-select-zone head"
+	elem 
+		name = "Numpad5"
+		command = "a-select-zone chest"
+	elem 
+		name = "Numpad2"
+		command = "a-select-zone groin"
+	elem 
+		name = "Numpad4"
+		command = "a-select-zone rarm"
+	elem 
+		name = "Numpad6"
+		command = "a-select-zone larm"
+	elem 
+		name = "Numpad1"
+		command = "a-select-zone rleg"
+	elem 
+		name = "Numpad3"
+		command = "a-select-zone lleg"
+
 
 
 menu "menu"
