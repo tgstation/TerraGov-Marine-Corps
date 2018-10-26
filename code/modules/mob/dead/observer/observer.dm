@@ -19,10 +19,34 @@
 							//If you died in the game and are a ghsot - this will remain as null.
 							//Note that this is not a reliable way to determine if admins started as observers, since they change mobs a lot.
 //	var/has_enabled_antagHUD = 0
-	var/list/HUD_toggled = list(0,0,0,0)
-//	var/antagHUD = 0
+	var/ghost_medhud = 0
+	var/ghost_sechud = 0
+	var/ghost_squadhud = 0
+	var/ghost_xenohud = 0
+	//	var/antagHUD = 0
 	universal_speak = 1
 	var/atom/movable/following = null
+
+/mob/dead/observer/Login()
+	client.prefs.load_preferences()
+	ghost_medhud = client.prefs.ghost_medhud
+	ghost_sechud = client.prefs.ghost_sechud
+	ghost_squadhud = client.prefs.ghost_squadhud
+	ghost_xenohud = client.prefs.ghost_xenohud
+	var/datum/mob_hud/H
+	if(ghost_medhud)
+		H = huds[MOB_HUD_MEDICAL_OBSERVER]
+		H.add_hud_to(src)	
+	if(ghost_sechud)
+		H = huds[MOB_HUD_SECURITY_ADVANCED]
+		H.add_hud_to(src)
+	if(ghost_squadhud)
+		H = huds[MOB_HUD_SQUAD]
+		H.add_hud_to(src)
+	if(ghost_xenohud)
+		H = huds[MOB_HUD_XENO_STATUS]
+		H.add_hud_to(src)
+	return ..()
 
 /mob/dead/observer/New(mob/body)
 	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
@@ -68,6 +92,7 @@
 	if(!name)							//To prevent nameless ghosts
 		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 	real_name = name
+	Login()
 	..()
 	if(ticker && ticker.mode && ticker.mode.flags_round_type & MODE_PREDATOR)
 		spawn(20)
@@ -228,32 +253,42 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/hud_choice = input("Choose a HUD to toggle", "Toggle HUD", null) as null|anything in listed_huds
 	if(!client)
 		return
+	client.prefs.load_preferences()
+	ghost_medhud = client.prefs.ghost_medhud
+	ghost_sechud = client.prefs.ghost_sechud
+	ghost_squadhud = client.prefs.ghost_squadhud
+	ghost_xenohud = client.prefs.ghost_xenohud
 	var/datum/mob_hud/H
-	var/HUD_nbr = 1
+
 	switch(hud_choice)
 		if("Medical HUD")
+			ghost_medhud = !ghost_medhud
 			H = huds[MOB_HUD_MEDICAL_OBSERVER]
+			ghost_medhud ? H.add_hud_to(src) : H.remove_hud_from(src)
+			client.prefs.ghost_medhud = ghost_medhud
+			client.prefs.save_preferences()
+			to_chat(src, (ghost_medhud ? "\blue <B>[hud_choice] Enabled</B>" : "\blue <B>[hud_choice] Disabled</B>"))
 		if("Security HUD")
+			ghost_sechud = !ghost_sechud
 			H = huds[MOB_HUD_SECURITY_ADVANCED]
-			HUD_nbr = 2
+			ghost_sechud ? H.add_hud_to(src) : H.remove_hud_from(src)
+			client.prefs.ghost_sechud = ghost_sechud
+			client.prefs.save_preferences()
+			to_chat(src, (ghost_sechud ? "\blue <B>[hud_choice] Enabled</B>" : "\blue <B>[hud_choice] Disabled</B>"))
 		if("Squad HUD")
+			ghost_squadhud = !ghost_squadhud
 			H = huds[MOB_HUD_SQUAD]
-			HUD_nbr = 3
+			ghost_squadhud ? H.add_hud_to(src) : H.remove_hud_from(src)
+			client.prefs.ghost_squadhud = ghost_squadhud
+			client.prefs.save_preferences()
+			to_chat(src, (ghost_squadhud ? "\blue <B>[hud_choice] Enabled</B>" : "\blue <B>[hud_choice] Disabled</B>"))
 		if("Xeno Status HUD")
+			ghost_xenohud = !ghost_xenohud
 			H = huds[MOB_HUD_XENO_STATUS]
-			HUD_nbr = 4
-		else
-			return
-
-	if(HUD_toggled[HUD_nbr])
-		HUD_toggled[HUD_nbr] = 0
-		H.remove_hud_from(src)
-		to_chat(src, "\blue <B>[hud_choice] Disabled</B>")
-	else
-		HUD_toggled[HUD_nbr] = 1
-		H.add_hud_to(src)
-		to_chat(src, "\blue <B>[hud_choice] Enabled</B>")
-
+			ghost_xenohud ? H.add_hud_to(src) : H.remove_hud_from(src)
+			client.prefs.ghost_xenohud = ghost_xenohud
+			client.prefs.save_preferences()
+			to_chat(src, (ghost_xenohud ? "\blue <B>[hud_choice] Enabled</B>" : "\blue <B>[hud_choice] Disabled</B>"))
 
 
 /mob/dead/observer/proc/dead_tele()

@@ -59,6 +59,12 @@ datum/preferences
 	var/predator_armor_type = 1
 	var/predator_boot_type = 1
 
+	//Ghost preferences
+	var/ghost_medhud = 1
+	var/ghost_sechud = 0
+	var/ghost_squadhud = 1
+	var/ghost_xenohud = 1
+
 	//character preferences
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round
