@@ -137,7 +137,16 @@
 	else
 		take_damage(damage, 0, 1, 1, used_weapon = "EMP")
 
-/datum/limb/proc/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list(), no_limb_loss)
+/datum/limb/proc/take_damage(brute, burn, sharp, edge, used_weapon = null, list/forbidden_limbs = list(), no_limb_loss, blocked = 0)
+	if(blocked >= 1) //Complete negation
+		return 0
+
+	if(blocked)
+		if(brute)
+			brute *= CLAMP(1-blocked,0.00,1.00) //Percentage reduction
+		if(burn)
+			burn *= CLAMP(1-blocked,0.00,1.00) //Percentage reduction
+
 	if((brute <= 0) && (burn <= 0))
 		return 0
 
