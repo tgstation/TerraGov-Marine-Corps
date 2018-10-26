@@ -72,7 +72,7 @@
 			log_combat(M, user, "blocked", addition="using their cqc skill (syringe injection)")
 			msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) got robusted by the cqc of [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>)")
 			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!</span>", \
-				"<span class='warning'>You knock [user] to the ground before they inject you!</span>", null, 5)
+				"<span class='warning'>You knock [user] to the ground before they could inject you!</span>", null, 5)
 			playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 			return
 
@@ -374,7 +374,7 @@
 
 
 /obj/item/reagent_container/syringe/inaprovaline
-	name = "\improper syringe (Inaprovaline)"
+	name = "syringe (inaprovaline)"
 	desc = "Contains inaprovaline - used to stabilize patients."
 	list_reagents = list("inaprovaline" = 15)
 
@@ -383,22 +383,22 @@
 	mode = SYRINGE_INJECT
 	update_icon()
 
-/obj/item/reagent_container/syringe/antitoxin
-	name = "syringe (anti-toxin)"
+/obj/item/reagent_container/syringe/dylovene
+	name = "syringe (dylovene)"
 	desc = "Contains anti-toxins."
-	list_reagents = list("anti_toxin" = 15)
+	list_reagents = list("dylovene" = 15)
 
-/obj/item/reagent_container/syringe/antitoxin/New()
+/obj/item/reagent_container/syringe/dylovene/New()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
 
 /obj/item/reagent_container/syringe/antiviral
-	name = "\improper syringe (Spaceacillin)"
+	name = "syringe (spaceacillin)"
 	desc = "Contains antiviral agents. Can also be used to treat infected wounds."
 	list_reagents = list("spaceacillin" = 15)
 
-/obj/item/reagent_container/syringe/robot/antiviral/New()
+/obj/item/reagent_container/syringe/antiviral/New()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -408,7 +408,7 @@
 	desc = "Contains aggressive drugs meant for torture."
 	list_reagents = list("space_drugs" = 5, "mindbreaker" = 5, "cryptobiolin" = 5)
 
-/obj/item/reagent_container/syringe/robot/drugs/New()
+/obj/item/reagent_container/syringe/drugs/New()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()
@@ -421,36 +421,12 @@
 	mode = SYRINGE_INJECT
 	update_icon()
 
+/obj/item/reagent_container/syringe/mixed
+	name = "syringe (mixed)"
+	desc = "Contains inaprovaline & dylovene."
+	list_reagents = list("inaprovaline" = 7, "dylovene" = 8)
 
-//Robot syringes
-//Not special in any way, code wise. They don't have added variables or procs.
-/obj/item/reagent_container/syringe/robot/antitoxin
-	name = "syringe (anti-toxin)"
-	desc = "Contains anti-toxins."
-	list_reagents = list("anti_toxin" = 15)
-
-/obj/item/reagent_container/syringe/robot/antitoxin/New()
-	. = ..()
-	mode = SYRINGE_INJECT
-	update_icon()
-
-/obj/item/reagent_container/syringe/robot/inoprovaline
-	name = "\improper syringe (Inoprovaline)"
-	desc = "Contains inaprovaline - used to stabilize patients."
-	list_reagents = list("inaprovaline" = 15)
-
-/obj/item/reagent_container/syringe/robot/inaprovaline/New()
-	. = ..()
-	reagents.add_reagent("inaprovaline", 15)
-	mode = SYRINGE_INJECT
-	update_icon()
-
-/obj/item/reagent_container/syringe/robot/mixed
-	name = "\improper syringe (mixed)"
-	desc = "Contains inaprovaline & anti-toxins."
-	list_reagents = list("inaprovaline" = 7, "anti_toxin" = 8)
-
-/obj/item/reagent_container/syringe/robot/mixed/New()
+/obj/item/reagent_container/syringe/mixed/New()
 	. = ..()
 	mode = SYRINGE_INJECT
 	update_icon()

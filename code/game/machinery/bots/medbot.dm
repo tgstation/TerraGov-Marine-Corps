@@ -46,7 +46,7 @@
 	treatment_oxy = "dexalinplus"
 	treatment_brute = "bicaridine"
 	treatment_fire = "kelotane"
-	treatment_tox = "anti_toxin"
+	treatment_tox = "dylovene"
 
 
 

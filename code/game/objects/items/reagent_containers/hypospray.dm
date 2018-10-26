@@ -18,7 +18,7 @@
 	var/skilllock = 1
 
 /obj/item/reagent_container/hypospray/attack_paw(mob/user as mob)
-	return src.attack_hand(user)
+	return attack_hand(user)
 
 /obj/item/reagent_container/hypospray/attack(mob/M, mob/living/user)
 	if(!reagents.total_volume)
@@ -31,14 +31,15 @@
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to use the [src].</span>")
 			var/fumbling_time = SKILL_TASK_EASY
-			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+				return
 
 		if(M != user && M.stat != DEAD && M.a_intent != "help" && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isYautja(M))) // preds have null skills
 			user.KnockDown(3)
 			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
 			msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) got robusted by the cqc of [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>)")
 			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!</span>", \
-				"<span class='warning'>You knock [user] to the ground before they inject you!</span>", null, 5)
+				"<span class='warning'>You knock [user] to the ground before they could inject you!</span>", null, 5)
 			playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 			return FALSE
 
@@ -57,8 +58,7 @@
 			msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) injected [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)])")
 
 			var/trans = reagents.trans_to(M, amount_per_transfer_from_this)
-			to_chat(user, "<span class='notice'> [trans] units injected. [reagents.total_volume] units remaining in [src]. </span>")
-			update_icon()
+			to_chat(user, "<span class='notice'>[trans] units injected. [reagents.total_volume] units remaining in [src]. </span>")
 
 	return TRUE
 
@@ -86,17 +86,9 @@
 /obj/item/reagent_container/hypospray/advanced/tricordrazine
 	list_reagents = list("tricordrazine" = 60)
 
-/obj/item/reagent_container/hypospray/advanced/tricordrazine/New()
-	. = ..()
-	update_icon()
-
 
 /obj/item/reagent_container/hypospray/advanced/oxycodone
 	list_reagents = list("oxycodone" = 60)
-
-/obj/item/reagent_container/hypospray/advanced/oxycodone/New()
-	. = ..()
-	update_icon()
 
 /obj/item/reagent_container/hypospray/advanced/attack_self(mob/user)
 	var/str = copytext(reject_bad_text(input(user,"Label text?", "Set label", "")), 1, MAX_NAME_LEN)
@@ -126,6 +118,7 @@
 		overlays += filling
 
 /obj/item/reagent_container/hypospray/advanced/examine(mob/user as mob)
+	. = ..()
 	if(get_dist(user,src) > 2)
 		to_chat(user, "<span class = 'warning'>You're too far away to see [src]'s reagent display!</span>")
 		return
@@ -137,9 +130,8 @@
 				var/percent = round(R.volume / max(0.01 , reagents.total_volume * 0.01),0.01)
 				var/dose = round(min(reagents.total_volume, amount_per_transfer_from_this) * percent * 0.01,0.01)
 				if(R.scannable)
-					dat += "\n \t <b>[R.name]:</b> [R.volume]|[percent]% <b>Amount per dose:</b> [dose]</br>"
+					dat += "\n \t <b>[R]:</b> [R.volume]|[percent]% <b>Amount per dose:</b> [dose]</br>"
 				else
 					dat += "\n \t <b>Unknown:</b> [R.volume]|[percent]% <b>Amount per dose:</b> [dose]</br>"
 		if(dat)
 			to_chat(user, "<span class = 'notice'>[src]'s reagent display shows the following contents: [dat]</span>")
-	. = ..()

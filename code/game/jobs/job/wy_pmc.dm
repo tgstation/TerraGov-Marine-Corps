@@ -150,7 +150,7 @@
 	generate_stored_equipment()
 		. = list(
 				WEAR_L_STORE = /obj/item/storage/pouch/medkit/full,
-				WEAR_IN_BACK = /obj/item/reagent_container/hypospray/autoinjector/Oxycodone,
+				WEAR_IN_BACK = /obj/item/reagent_container/hypospray/autoinjector/oxycodone,
 				WEAR_IN_BACK = /obj/item/storage/firstaid/adv,
 				WEAR_IN_BACK = /obj/item/device/defibrillator,
 				WEAR_IN_BACK = /obj/item/bodybag,
@@ -199,7 +199,7 @@
 				WEAR_IN_ACCESSORY = /obj/item/explosive/grenade/smokebomb,
 				WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/pistol/vp70,
 				WEAR_IN_JACKET = /obj/item/reagent_container/hypospray/autoinjector/quickclot,
-				WEAR_IN_JACKET = /obj/item/reagent_container/hypospray/autoinjector/Oxycodone
+				WEAR_IN_JACKET = /obj/item/reagent_container/hypospray/autoinjector/oxycodone
 				)
 
 /datum/job/pmc/elite_responder/sharpshooter
@@ -334,5 +334,5 @@
 				WEAR_IN_ACCESSORY = /obj/item/ammo_magazine/pistol/vp70,
 				WEAR_IN_ACCESSORY = /obj/item/explosive/grenade/smokebomb,
 				WEAR_IN_JACKET = /obj/item/reagent_container/hypospray/autoinjector/quickclot,
-				WEAR_IN_JACKET = /obj/item/reagent_container/hypospray/autoinjector/Bicard
+				WEAR_IN_JACKET = /obj/item/reagent_container/hypospray/autoinjector/bicaridine
 				)

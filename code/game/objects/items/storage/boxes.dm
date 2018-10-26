@@ -467,8 +467,8 @@
 			new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine(src)
 
 /obj/item/storage/box/quickclot
-	name = "box of quickclot injectors"
-	desc = "Contains quickclot autoinjectors."
+	name = "box of quick-clot injectors"
+	desc = "Contains quick-clot autoinjectors."
 	icon_state = "syringe"
 	New()
 		..()

@@ -60,13 +60,13 @@
 	name = "Toxin"
 	id = "sdtoxin"
 	results = list("sdtoxin" = 2)
-	required_reagents = list("synaptizine" = 1, "anti_toxin" = 1)
+	required_reagents = list("synaptizine" = 1, "dylovene" = 1)
 
 
-/datum/chemical_reaction/stoxin
+/datum/chemical_reaction/sleeptoxin
 	name = "Soporific"
-	id = "stoxin"
-	results = list("stoxin" = 5)
+	id = "sleeptoxin"
+	results = list("sleeptoxin" = 5)
 	required_reagents = list("chloralhydrate" = 1, "sugar" = 4)
 
 /datum/chemical_reaction/mutagen
@@ -237,7 +237,7 @@
 	name = "Zombie Powder"
 	id = "zombiepowder"
 	results = list("zombiepowder" = 2)
-	required_reagents = list("carpotoxin" = 5, "stoxin" = 5, "copper" = 5)
+	required_reagents = list("carpotoxin" = 5, "sleeptoxin" = 5, "copper" = 5)
 
 /datum/chemical_reaction/rezadone
 	name = "Rezadone"
@@ -249,7 +249,7 @@
 	name = "Mindbreaker Toxin"
 	id = "mindbreaker"
 	results = list("mindbreaker" = 3)
-	required_reagents = list("silicon" = 1, "hydrogen" = 1, "anti_toxin" = 1)
+	required_reagents = list("silicon" = 1, "hydrogen" = 1, "dylovene" = 1)
 
 /datum/chemical_reaction/lipozine
 	name = "Lipozine"

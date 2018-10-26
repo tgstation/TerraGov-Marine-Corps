@@ -384,9 +384,9 @@ REAGENT SCANNER
 			if(fracture_detected)
 				advice += "<span class='scanner'><b>Unsecured Fracture:</b> Administer splints to specified areas.</span>\n"
 			if(internal_bleed_detected)
-				var/internal_bleed_advice = "Administer one dose of quickclot then seek surgical remedy."
+				var/internal_bleed_advice = "Administer one dose of quick-clot then seek surgical remedy."
 				if(reagents_in_body["quickclot"] > 4)
-					internal_bleed_advice = "Quickclot has been administered to patient. Seek surgical remedy."
+					internal_bleed_advice = "Quick-Clot has been administered to patient. Seek surgical remedy."
 				advice += "<span class='scanner'><b>Internal Bleeding:</b> [internal_bleed_advice]</span>\n"
 			if(H.getToxLoss() > 10)
 				var/dylovene = ""
@@ -394,7 +394,7 @@ REAGENT SCANNER
 				var/dylo_recommend = ""
 				//if(reagents_in_body["hypervene"] < 3)
 				//	hypervene = "hypervene"
-				if(reagents_in_body["anti_toxin"] < 5)
+				if(reagents_in_body["dylovene"] < 5)
 					if(synaptizine_amount)
 						dylo_recommend = "Addendum: Dylovene recommended, but conflicting synaptizine present."
 					else
@@ -420,8 +420,8 @@ REAGENT SCANNER
 				var/dexplus = ""
 				if(reagents_in_body["dexalin"] < 5)
 					dexalin = "dexalin"
-				if(reagents_in_body["dexplus"] < 1)
-					dexplus = "dexplus"
+				if(reagents_in_body["dexalinplus"] < 1)
+					dexplus = "dexalin plus"
 				advice += "<span class='scanner'><b>Oxygen Deprivation:</b> Administer one dose of: [dexalin] | [dexplus].</span>\n"
 			if(H.getFireLoss(1)  > 10)
 				var/kelotane = ""

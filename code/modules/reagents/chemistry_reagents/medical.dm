@@ -298,9 +298,9 @@
 /datum/reagent/medicine/tricordrazine/overdose_crit_process(mob/living/M, alien)
 	M.apply_damages(3, 3, 3)
 
-/datum/reagent/medicine/anti_toxin
+/datum/reagent/medicine/dylovene
 	name = "Dylovene"
-	id = "anti_toxin"
+	id = "dylovene"
 	description = "Dylovene is a broad-spectrum antitoxin."
 	color = "#A8F59C"
 	scannable = TRUE
@@ -308,7 +308,7 @@
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
 	taste_description = "a roll of gauze"
 
-/datum/reagent/medicine/anti_toxin/on_mob_life(mob/living/M,alien)
+/datum/reagent/medicine/dylovene/on_mob_life(mob/living/M,alien)
 	if(!alien)
 		M.reagents.remove_all_type(/datum/reagent/toxin, REM, 0, 1)
 		M.drowsyness = max(M.drowsyness- 2 * REM, 0)
@@ -316,14 +316,14 @@
 		M.adjustToxLoss(-2 * REM)
 	..()
 
-/datum/reagent/medicine/anti_toxin/overdose_process(mob/living/carbon/M, alien)
+/datum/reagent/medicine/dylovene/overdose_process(mob/living/carbon/M, alien)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 		if(E)
 			E.damage += 0.5
 
-/datum/reagent/medicine/anti_toxin/overdose_crit_process(mob/living/M, alien)
+/datum/reagent/medicine/dylovene/overdose_crit_process(mob/living/M, alien)
 	M.apply_damages(2, 2) //Starts detoxing, hard
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M

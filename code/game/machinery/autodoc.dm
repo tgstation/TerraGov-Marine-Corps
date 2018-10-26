@@ -68,7 +68,7 @@
 		if(surgery)
 			// keep them alive
 			occupant.adjustToxLoss(-1 * REM) // pretend they get IV dylovene
-			occupant.adjustOxyLoss(-occupant.getOxyLoss()) // keep them breathing, pretend they get IV dexplus
+			occupant.adjustOxyLoss(-occupant.getOxyLoss()) // keep them breathing, pretend they get IV dexalinplus
 			if(filtering)
 				var/filtered = 0
 				for(var/datum/reagent/x in occupant.reagents.reagent_list)

@@ -611,7 +611,7 @@
 						H.equip_to_slot_or_del(new /obj/item/storage/belt/combatLifesaver(H), WEAR_WAIST)
 						H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/med(H), WEAR_BACK)
 					//	H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/quickclot(H), WEAR_L_STORE)
-						H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/Oxycodone(H), WEAR_L_STORE)
+						H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/oxycodone(H), WEAR_L_STORE)
 						H.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(H.back), WEAR_IN_BACK)
 						H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(H.back), WEAR_IN_BACK)
 						H.equip_to_slot_or_del(new /obj/item/device/defibrillator(H.back), WEAR_IN_BACK)
@@ -731,7 +731,7 @@
 				H.equip_to_slot_or_del(new /obj/item/clothing/mask/surgical(H), WEAR_FACE)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
 				H.equip_to_slot_or_del(new /obj/item/storage/belt/combatLifesaver(H), WEAR_WAIST)
-				H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/dexP(H), WEAR_WAIST)
+				H.equip_to_slot_or_del(new /obj/item/reagent_container/hypospray/autoinjector/dexalinplus(H), WEAR_WAIST)
 
 				if(prob(50)) H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/medic(H), WEAR_BACK)
 				else H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel/medic(H), WEAR_BACK)
@@ -1297,9 +1297,9 @@
 		/obj/item/storage/firstaid/toxin = 1,
 		/obj/item/storage/firstaid/o2 = 1,
 		/obj/item/storage/firstaid/adv = 3,
-		/obj/item/reagent_container/glass/bottle/antitoxin = 2,
+		/obj/item/reagent_container/glass/bottle/dylovene = 2,
 		/obj/item/reagent_container/glass/bottle/inaprovaline = 2,
-		/obj/item/reagent_container/glass/bottle/stoxin = 2,
+		/obj/item/reagent_container/glass/bottle/sleeptoxin = 2,
 		/obj/item/storage/box/syringes = 1,
 		/obj/item/storage/box/autoinjectors = 1
 		)
@@ -1443,9 +1443,9 @@
 		/obj/item/storage/firstaid/toxin = 2,
 		/obj/item/storage/firstaid/o2 = 2,
 		/obj/item/storage/firstaid/adv = 1,
-		/obj/item/reagent_container/glass/bottle/antitoxin = 2,
+		/obj/item/reagent_container/glass/bottle/dylovene = 2,
 		/obj/item/reagent_container/glass/bottle/inaprovaline = 2,
-		/obj/item/reagent_container/glass/bottle/stoxin = 2,
+		/obj/item/reagent_container/glass/bottle/sleeptoxin = 2,
 		/obj/item/storage/box/syringes = 1,
 		/obj/item/storage/box/autoinjectors = 1)
 	generate_supply_crate(supply_spawn,supply_manifest,"medical crate", "A crate containing assorted medical supplies. Hopefully some of the labels should make sense.")

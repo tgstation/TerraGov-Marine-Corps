@@ -211,7 +211,7 @@
 	if(owner.life_tick % PROCESS_ACCURACY == 0)
 
 		//High toxins levels are dangerous
-		if(owner.getToxLoss() >= 60 && !owner.reagents.has_reagent("anti_toxin"))
+		if(owner.getToxLoss() >= 60 && !owner.reagents.has_reagent("dylovene"))
 			//Healthy liver suffers on its own
 			if (damage < min_broken_damage)
 				damage += 0.2 * PROCESS_ACCURACY
@@ -223,7 +223,7 @@
 
 		// Heal a bit if needed and we're not busy. This allows recovery from low amounts of toxins.
 		if(!owner.drunkenness && owner.getToxLoss() <= 15 && !owner.radiation && min_bruised_damage > damage > 0)
-			if(!owner.reagents.has_reagent("anti_toxin")) // Detox effect
+			if(!owner.reagents.has_reagent("dylovene")) // Detox effect
 				damage -= 0.2 * PROCESS_ACCURACY
 			else
 				damage -= 0.04 * PROCESS_ACCURACY

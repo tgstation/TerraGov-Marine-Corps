@@ -395,7 +395,7 @@
 		..()
 		reagents.set_reacting(FALSE)
 		syringes = new
-		known_reagents = list("inaprovaline"="Inaprovaline","anti_toxin"="Dylovene")
+		known_reagents = list("inaprovaline"="Inaprovaline","dylovene"="Dylovene")
 		processed_reagents = new
 		create_reagents(max_volume)
 		synth = new (list(src),0)
