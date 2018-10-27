@@ -368,15 +368,28 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/hitbox/cm_armored/Bump(var/atom/A)
 	. = ..()
 	if(isliving(A))
-		if (isXenoDefender(A))
-			var/mob/living/carbon/Xenomorph/X = A
-			if (X.fortify)
-				return
-
 		var/mob/living/M = A
-		M.KnockDown(10, 1)
-		M.apply_damage(7 + rand(0, 5), BRUTE)
-		M.visible_message("<span class='danger'>[src] runs over [M]!</span>", "<span class='danger'>[src] runs you over! Get out of the way!</span>")
+		var/facing = get_dir(src, M)
+		var/turf/T = loc
+		var/turf/temp = loc
+		if (isXenoQueen(A) || isXenoCrusher (A))
+			temp = get_step(T, facing)
+			T = temp
+			T = get_step(T, pick(cardinal))
+			M.throw_at(T, 2, 1, src, 0)
+			M.visible_message("<span class='danger'>[src] bumps into [M] pushing them away!</span>", "<span class='danger'>[src] bumps into you!</span>")
+			return
+		if(M.lying==0 && !isXenoLarva(M))
+			temp = get_step(T, facing)
+			T = temp
+			T = get_step(T, pick(cardinal))
+			if(M.mob_size == MOB_SIZE_BIG)
+				M.throw_at(T, 2, 1, src, 0)
+			else
+				M.throw_at(T, 2, 1, src, 1)
+			M.KnockDown(1)
+			M.apply_damage(10 + rand(0, 5), BRUTE)
+			M.visible_message("<span class='danger'>[src] bumps into [M] throwing them away!</span>", "<span class='danger'>[src] bumps into you!</span>")
 		var/obj/vehicle/multitile/root/cm_armored/CA = root
 		var/list/slots = CA.get_activatable_hardpoints()
 		for(var/slot in slots)
