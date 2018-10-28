@@ -74,6 +74,8 @@
 			return 0
 
 		stat("Map:", "[map_tag]")
+		if(!ticker)
+			return
 		if(ticker.hide_mode)
 			stat("Game Mode:", "Colonial Marines")
 		else
