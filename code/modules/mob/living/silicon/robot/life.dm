@@ -18,6 +18,7 @@
 		process_locks()
 
 /mob/living/silicon/robot/update_stat()
+	. = ..()
 	if(status_flags & GODMODE)
 		return
 	if(stat != DEAD)

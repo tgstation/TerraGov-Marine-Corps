@@ -5,9 +5,6 @@
 
 /mob/living/carbon/Xenomorph/Life()
 
-	set invisibility = 0
-	set background = 1
-
 	if(monkeyizing || !loc)
 		return
 
@@ -33,6 +30,9 @@
 	update_icons()
 
 /mob/living/carbon/Xenomorph/update_stat()
+
+	update_cloak()
+
 	if(status_flags & GODMODE)
 		return
 

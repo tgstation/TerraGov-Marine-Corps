@@ -133,7 +133,7 @@
 	if(health <= -maxHealth)
 		gib()
 		return
-	..()
+	return ..()
 
 //DRONE MOVEMENT.
 /mob/living/silicon/robot/drone/Process_Spaceslipping(var/prob_slip)

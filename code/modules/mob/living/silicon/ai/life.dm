@@ -164,6 +164,8 @@
 							theAPC = null
 
 /mob/living/silicon/ai/update_stat()
+	. = ..()
+
 	if(status_flags & GODMODE)
 		return
 	if(stat != DEAD)
