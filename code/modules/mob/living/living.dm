@@ -22,9 +22,6 @@
 	handle_silent()
 	handle_disabilities()
 
-	if(smokecloaked)
-		update_cloak()
-
 /mob/living/proc/handle_stunned()
 	if(stunned)
 		AdjustStunned(-1)
@@ -90,6 +87,9 @@
 		return
 	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss()
 	update_stat()
+
+/mob/living/update_stat()
+	update_cloak()
 
 /mob/living/New()
 	..()
@@ -522,6 +522,9 @@
 	smokecloaked = FALSE
 
 /mob/living/proc/update_cloak()
+	if(!smokecloaked)
+		return
+
 	var/obj/effect/particle_effect/smoke/tactical/S = locate() in loc
 	if(S)
 		return

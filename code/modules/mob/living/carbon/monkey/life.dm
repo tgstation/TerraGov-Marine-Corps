@@ -10,9 +10,9 @@
 
 
 /mob/living/carbon/monkey/Life()
-	set invisibility = 0
-	set background = 1
-	if (monkeyizing)	return
+
+	if (monkeyizing)
+		return
 	if (update_muts)
 		update_muts=0
 		domutcheck(src,null,MUTCHK_FORCED)
@@ -320,15 +320,21 @@
 
 /mob/living/carbon/monkey/handle_regular_hud_updates()
 	. = ..()
+	if(!(.))
+		return FALSE
 
 	update_sight()
 
+	if(hud_used.pressure_icon)
+		hud_used.pressure_icon.icon_state = "pressure[pressure_alert]"
 
-	if(hud_used.pressure_icon)	hud_used.pressure_icon.icon_state = "pressure[pressure_alert]"
+	if (hud_used.toxin_icon)
+		hud_used.toxin_icon.icon_state = "tox[phoron_alert ? 1 : 0]"
+	if (hud_used.oxygen_icon)
+		hud_used.oxygen_icon.icon_state = "oxy[oxygen_alert ? 1 : 0]"
+	if (hud_used.fire_icon)
+		hud_used.fire_icon.icon_state = "fire[fire_alert ? 2 : 0]"
 
-	if (hud_used.toxin_icon)	hud_used.toxin_icon.icon_state = "tox[phoron_alert ? 1 : 0]"
-	if (hud_used.oxygen_icon)	hud_used.oxygen_icon.icon_state = "oxy[oxygen_alert ? 1 : 0]"
-	if (hud_used.fire_icon)	hud_used.fire_icon.icon_state = "fire[fire_alert ? 2 : 0]"
 	//NOTE: the alerts dont reset when youre out of danger. dont blame me,
 	//blame the person who coded them. Temporary fix added.
 

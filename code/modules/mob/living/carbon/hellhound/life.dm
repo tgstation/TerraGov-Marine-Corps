@@ -1,6 +1,4 @@
 /mob/living/carbon/hellhound/Life()
-	set invisibility = 0
-	set background = 1
 
 	..()
 
