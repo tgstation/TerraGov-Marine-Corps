@@ -118,18 +118,14 @@
 
 	if(!threw_a_hugger)
 		threw_a_hugger = 1
-		for(var/X in actions)
-			var/datum/action/A = X
-			A.update_button_icon()
+		update_action_button_icons()
 		drop_inv_item_on_ground(F)
 		F.throw_at(T, 4, throwspeed)
 		visible_message("<span class='xenowarning'>\The [src] throws something towards \the [T]!</span>", \
 		"<span class='xenowarning'>You throw a facehugger towards \the [T]!</span>")
 		spawn(hugger_delay)
 			threw_a_hugger = 0
-			for(var/X in actions)
-				var/datum/action/A = X
-				A.update_button_icon()
+			update_action_button_icons()
 
 
 

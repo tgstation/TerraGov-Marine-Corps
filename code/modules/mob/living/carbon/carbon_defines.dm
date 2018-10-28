@@ -20,3 +20,7 @@
 
 	var/rotate_on_lying = 1
 
+	var/halloss = 0		//Hallucination damage. 'Fake' damage obtained through hallucinating or the holodeck. Sleeping should cause it to wear off.
+
+	var/traumatic_shock = 0
+	var/shock_stage = 0

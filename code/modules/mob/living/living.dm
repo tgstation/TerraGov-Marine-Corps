@@ -88,8 +88,7 @@
 /mob/living/proc/updatehealth()
 	if(status_flags & GODMODE)
 		return
-
-	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss() - halloss
+	health = maxHealth - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss() - getCloneLoss()
 	update_stat()
 
 /mob/living/New()
@@ -574,3 +573,8 @@ below 100 is not dizzy
 	if(client)
 		client.pixel_x = 0
 		client.pixel_y = 0
+
+/mob/living/proc/update_action_button_icons()
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.update_button_icon()

@@ -67,9 +67,7 @@
 
 		update_clothing_icon()	//so our mob-overlays update
 
-		for(var/X in actions)
-			var/datum/action/A = X
-			A.update_button_icon()
+		update_action_button_icons()
 
 /*
  * Cakehat

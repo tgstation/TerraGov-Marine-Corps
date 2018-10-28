@@ -684,71 +684,71 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	addiction_threshold = 0.4 // Adios Addiction Virus
 	taste_multi = 2
 
-/datum/reagent/medicine/ultrazine/on_mob_life(mob/living/M)
-	M.reagent_move_delay_modifier -= 10
+/datum/reagent/medicine/ultrazine/on_mob_life(mob/living/carbon/C)
+	C.reagent_move_delay_modifier -= 10
 	if(prob(50))
-		M.AdjustKnockeddown(-1)
-		M.AdjustStunned(-1)
-		M.AdjustKnockedout(-1)
-	M.adjustHalLoss(-2)
+		C.AdjustKnockeddown(-1)
+		C.AdjustStunned(-1)
+		C.AdjustKnockedout(-1)
+	C.adjustHalLoss(-2)
 	if(prob(2))
-		M.emote(pick("twitch","blink_r","shiver"))
-	..()
+		C.emote(pick("twitch","blink_r","shiver"))
+	return ..()
 
-/datum/reagent/medicine/ultrazine/addiction_act_stage1(mob/living/M, alien)
+/datum/reagent/medicine/ultrazine/addiction_act_stage1(mob/living/carbon/C, alien)
 	if(prob(10))
-		to_chat(M, "<span class='notice'>[pick("You could use another hit.", "More of that would be nice.", "Another dose would help.", "One more dose wouldn't hurt", "Why not take one more?")]</span>")
+		to_chat(C, "<span class='notice'>[pick("You could use another hit.", "More of that would be nice.", "Another dose would help.", "One more dose wouldn't hurt", "Why not take one more?")]</span>")
 	if(prob(5))
-		M.emote(pick("twitch","blink_r","shiver"))
-		M.adjustHalLoss(20)
+		C.emote(pick("twitch","blink_r","shiver"))
+		C.adjustHalLoss(20)
 	if(prob(20))
-		M.hallucination += 10
+		C.hallucination += 10
 	return
 
-/datum/reagent/medicine/ultrazine/addiction_act_stage2(mob/living/M, alien)
+/datum/reagent/medicine/ultrazine/addiction_act_stage2(mob/living/carbon/C, alien)
 	if(prob(10))
-		to_chat(M, "<span class='warning'>[pick("It's just not the same without it.", "You could use another hit.", "You should take another.", "Just one more.", "Looks like you need another one.")]</span>")
+		to_chat(C, "<span class='warning'>[pick("It's just not the same without it.", "You could use another hit.", "You should take another.", "Just one more.", "Looks like you need another one.")]</span>")
 	if(prob(5))
-		M.emote("me",1, pick("winces slightly.", "grimaces."))
-		M.adjustHalLoss(35)
-		M.Stun(2)
+		C.emote("me",1, pick("winces slightly.", "grimaces."))
+		C.adjustHalLoss(35)
+		C.Stun(2)
 	if(prob(20))
-		M.hallucination += 15
-		M.confused += 3
+		C.hallucination += 15
+		C.confused += 3
 	return
 
 
-/datum/reagent/medicine/ultrazine/addiction_act_stage3(mob/living/M, alien)
+/datum/reagent/medicine/ultrazine/addiction_act_stage3(mob/living/carbon/C, alien)
 	if(prob(10))
-		to_chat(M, "<span class='warning'>[pick("You need more.", "It's hard to go on like this.", "You want more. You need more.", "Just take another hit. Now.", "One more.")]</span>")
+		to_chat(C, "<span class='warning'>[pick("You need more.", "It's hard to go on like this.", "You want more. You need more.", "Just take another hit. Now.", "One more.")]</span>")
 	if(prob(5))
-		M.emote("me",1, pick("winces.", "grimaces.", "groans!"))
-		M.adjustHalLoss(50)
-		M.Stun(3)
+		C.emote("me",1, pick("winces.", "grimaces.", "groans!"))
+		C.adjustHalLoss(50)
+		C.Stun(3)
 	if(prob(20))
-		M.hallucination += 20
-		M.confused += 5
-		M.Dizzy(60)
-	M.adjustToxLoss(0.1)
-	M.adjustBrainLoss(0.1)
+		C.hallucination += 20
+		C.confused += 5
+		C.Dizzy(60)
+	C.adjustToxLoss(0.1)
+	C.adjustBrainLoss(0.1)
 	return
 
-/datum/reagent/medicine/ultrazine/addiction_act_stage4(mob/living/M, alien)
+/datum/reagent/medicine/ultrazine/addiction_act_stage4(mob/living/carbon/C, alien)
 	if(prob(10))
-		to_chat(M, "<span class='danger'>[pick("You need another dose, now. NOW.", "You can't stand it. You have to go back. You have to go back.", "You need more. YOU NEED MORE.", "MORE", "TAKE MORE.")]</span>")
+		to_chat(C, "<span class='danger'>[pick("You need another dose, now. NOW.", "You can't stand it. You have to go back. You have to go back.", "You need more. YOU NEED MORE.", "MORE", "TAKE MORE.")]</span>")
 	if(prob(5))
-		M.emote("me",1, pick("groans painfully!", "contorts with pain!"))
-		M.adjustHalLoss(65)
-		M.Stun(4)
-		M.do_jitter_animation(200)
+		C.emote("me",1, pick("groans painfully!", "contorts with pain!"))
+		C.adjustHalLoss(65)
+		C.Stun(4)
+		C.do_jitter_animation(200)
 	if(prob(20))
-		M.hallucination += 30
-		M.confused += 7
-		M.Dizzy(80)
-	M.adjustToxLoss(0.3)
-	M.adjustBrainLoss(0.1)
-	if(prob(15) && ishuman(M))
-		var/mob/living/carbon/human/H = M
+		C.hallucination += 30
+		C.confused += 7
+		C.Dizzy(80)
+	C.adjustToxLoss(0.3)
+	C.adjustBrainLoss(0.1)
+	if(prob(15) && ishuman(C))
+		var/mob/living/carbon/human/H = C
 		var/affected_organ = pick("heart","lungs","liver","kidneys")
 		var/datum/internal_organ/I =  H.internal_organs_by_name[affected_organ]
 			I.damage += 2

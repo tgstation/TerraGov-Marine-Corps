@@ -62,31 +62,34 @@
 
 //Can be picked up by aliens
 /obj/item/clothing/mask/facehugger/attack_paw(user as mob)
-	attack_hand(user)
-
-/obj/item/clothing/mask/facehugger/attack_hand(user as mob)
-
-	if((stat == CONSCIOUS && !sterile))
-		if(CanHug(user))
-			Attach(user) //If we're conscious, don't let them pick us up even if this fails. Just return.
-			return
-	if(!isXeno(user) && stat != DEAD)
-		return
-
-	return ..()
+	if(isXeno(user))
+		attack_alien(user)
+	else
+		attack_hand(user)
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
 /obj/item/clothing/mask/facehugger/attack_alien(mob/living/carbon/Xenomorph/user)
-
 	if(user.hivenumber != hivenumber)
 		user.animation_attack_on(src)
 		user.visible_message("<span class='xenowarning'>[user] crushes \the [src]","<span class='xenowarning'>You crush \the [src]")
 		Die()
 		return
+	else
+		attack_hand(user)
 
-	switch(user.caste)
-		if("Queen","Drone","Hivelord","Carrier")
-			attack_hand(user)//Not a carrier, or already full? Just pick it up.
+/obj/item/clothing/mask/facehugger/attack_hand(user as mob)
+	if(isXeno(user))
+		var/mob/living/carbon/Xenomorph/X = user
+		switch(X.caste)
+			if("Queen","Drone","Hivelord","Carrier")
+				return ..() // These can pick up huggers.
+			else
+				return FALSE // The rest can't.
+	if(stat == DEAD || sterile)
+		return ..() // Dead or sterile (lamarr) can be picked.
+	else if(stat == CONSCIOUS && CanHug(user)) // If you try to take a healthy one it will try to hug you.
+		Attach(user)
+	return FALSE // Else you can't pick.
 
 /obj/item/clothing/mask/facehugger/attack(mob/M, mob/user)
 	if(CanHug(M))

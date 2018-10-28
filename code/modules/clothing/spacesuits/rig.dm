@@ -40,9 +40,7 @@
 			var/mob/living/carbon/human/H = user
 			H.update_inv_head()
 
-		for(var/X in actions)
-			var/datum/action/A = X
-			A.update_button_icon()
+		update_action_button_icons()
 
 	pickup(mob/user)
 		if(on)

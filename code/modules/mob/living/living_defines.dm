@@ -14,7 +14,6 @@
 	var/fireloss = 0.0	//Burn damage caused by being way too hot, too cold or burnt.
 	var/cloneloss = 0	//Damage caused by being cloned or ejected from the cloner early
 	var/brainloss = 0	//'Retardation' damage caused by someone hitting you in the head with a bible or being infected with brainrot.
-	var/halloss = 0		//Hallucination damage. 'Fake' damage obtained through hallucinating or the holodeck. Sleeping should cause it to wear off.
 
 	var/confused = 0	//Makes the mob move in random directions.
 	var/is_dizzy = FALSE
@@ -76,3 +75,5 @@
 	var/reagent_pain_modifier = 0 //same as above, except can potentially mask damage
 
 	var/smokecloaked = FALSE //For the new Smoke Grenade
+
+	var/canEnterVentWith = "/obj/item/implant=0&/obj/item/clothing/mask/facehugger=0&/obj/item/device/radio/borg=0&/obj/machinery/camera=0&/obj/item/verbs=0" // Vent crawling whitelisted items, whoo

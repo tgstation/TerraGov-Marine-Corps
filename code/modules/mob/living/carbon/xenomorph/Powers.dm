@@ -45,9 +45,7 @@
 	spawn(pounce_delay)
 		usedPounce = 0
 		to_chat(src, "<span class='notice'>You get ready to pounce again.</span>")
-		for(var/X in actions)
-			var/datum/action/A = X
-			A.update_button_icon()
+		update_action_button_icons()
 
 	return TRUE
 
@@ -297,9 +295,7 @@
 	spawn(fling_cooldown)
 		used_fling = FALSE
 		to_chat(src, "<span class='notice'>You gather enough strength to fling something again.</span>")
-		for(var/X in actions)
-			var/datum/action/act = X
-			act.update_button_icon()
+		update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/proc/punch(var/mob/living/M)
 
@@ -339,7 +335,7 @@
 	playsound(M, S, 50, 1)
 
 	if(!ishuman(M))
-		apply_damage(damage, BRUTE, target_zone, armor_block) //If we're not a humie, just apply brute.
+		M.apply_damage(damage, BRUTE, target_zone, armor_block) //If we're not a humie, just apply brute.
 	else
 		var/mob/living/carbon/human/H = M
 
@@ -374,16 +370,14 @@
 			L.take_damage(damage, 0, 0, 0, null, null, null, armor_block)
 			if(prob(fracture_chance))
 				L.fracture()
-	apply_damage(damage, HALLOSS) //Armor penetrating halloss also applies.
+		H.apply_damage(damage, HALLOSS) //Armor penetrating halloss also applies.
 	shake_camera(M, 2, 1)
 	step_away(M, src, 2)
 
 	spawn(punch_cooldown)
 		used_punch = FALSE
 		to_chat(src, "<span class='notice'>You gather enough strength to punch again.</span>")
-		for(var/X in actions)
-			var/datum/action/act = X
-			act.update_button_icon()
+		update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/proc/lunge(atom/A)
 
@@ -419,9 +413,7 @@
 	spawn(lunge_cooldown)
 		used_lunge = FALSE
 		to_chat(src, "<span class='notice'>You get ready to lunge again.</span>")
-		for(var/X in actions)
-			var/datum/action/act = X
-			act.update_button_icon()
+		update_action_button_icons()
 
 	return TRUE
 
@@ -522,9 +514,7 @@
 	spawn(toggle_agility_cooldown)
 		used_toggle_agility = FALSE
 		to_chat(src, "<span class='notice'>You can [agility ? "raise yourself back up" : "lower yourself back down"] again.</span>")
-		for(var/X in actions)
-			var/datum/action/act = X
-			act.update_button_icon()
+		update_action_button_icons()
 
 
 // Defender Headbutt
@@ -614,9 +604,7 @@
 	spawn(headbutt_cooldown)
 		used_headbutt = 0
 		to_chat(src, "<span class='notice'>You gather enough strength to headbutt again.</span>")
-		for(var/X in actions)
-			var/datum/action/act = X
-			act.update_button_icon()
+		update_action_button_icons()
 
 
 // Defender Tail Sweep
@@ -678,9 +666,7 @@
 	spawn(tail_sweep_cooldown)
 		used_tail_sweep = FALSE
 		to_chat(src, "<span class='notice'>You gather enough strength to tail sweep again.</span>")
-		for(var/X in actions)
-			var/datum/action/act = X
-			act.update_button_icon()
+		update_action_button_icons()
 
 
 // Defender Crest Defense
@@ -727,9 +713,7 @@
 	spawn(crest_defense_cooldown)
 		used_crest_defense = FALSE
 		to_chat(src, "<span class='notice'>You can [crest_defense ? "raise" : "lower"] your crest.</span>")
-		for(var/X in actions)
-			var/datum/action/act = X
-			act.update_button_icon()
+		update_action_button_icons()
 
 
 // Defender Fortify
@@ -784,9 +768,7 @@
 	spawn(fortify_cooldown)
 		used_fortify = FALSE
 		to_chat(src, "<span class='notice'>You can [fortify ? "stand up" : "fortify"] again.</span>")
-		for(var/X in actions)
-			var/datum/action/act = X
-			act.update_button_icon()
+		update_action_button_icons()
 
 
 /* WIP Burrower stuff
@@ -840,9 +822,7 @@
 	spawn(burrow_cooldown)
 		used_burrow = 0
 		to_chat(src, "<span class='notice'>You can now surface or tunnel.</span>")
-		for(var/X in actions)
-			var/datum/action/act = X
-			act.update_button_icon()
+		update_action_button_icons()
 
 
 /mob/living/carbon/Xenomorph/proc/tunnel(var/turf/T)
@@ -887,9 +867,7 @@
 	spawn(tunnel_cooldown)
 		used_tunnel = 0
 		to_chat(src, "<span class='notice'>You can now tunnel while burrowed.</span>")
-		for(var/X in actions)
-			var/datum/action/act = X
-			act.update_button_icon()
+		update_action_button_icons()
 */
 
 // Vent Crawl
@@ -995,9 +973,7 @@
 	switch(message)
 		if("spit")
 			to_chat(src, "<span class='notice'>You feel your neurotoxin glands swell with ichor. You can spit again.</span>")
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.update_button_icon()
+	update_action_button_icons()
 
 
 
@@ -1485,6 +1461,4 @@
 		savage_used = FALSE
 		to_chat(src, "<span class='xenowarning'><b>You can now savage your victims again.</b></span>")
 		playsound(src, "xeno_newlarva", 100, 0, 1)
-		for(var/X in actions)
-			var/datum/action/act = X
-			act.update_button_icon()
+		update_action_button_icons()

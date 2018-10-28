@@ -354,23 +354,23 @@
 			else
 				shake_camera(M, 30, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
 
-	for(var/mob/living/carbon/human/M in oview(7, src))
-		var/dist = get_dist(src,M)
-		var/reduction = max(1 - 0.1 * M.protection_aura, 0) //Hold orders will reduce the Halloss; 10% per rank.
+	for(var/mob/living/carbon/human/H in oview(7, src))
+		var/dist = get_dist(src,H)
+		var/reduction = max(1 - 0.1 * H.protection_aura, 0) //Hold orders will reduce the Halloss; 10% per rank.
 		var/halloss_damage = (max(0,140 - dist * 10)) * reduction //Max 130 beside Queen, 70 at the edge
 		var/stun_duration = max(0,1.1 - dist * 0.1) * reduction //Max 1 beside Queen, 0.4 at the edge.
 
 		if(dist < 8)
-			to_chat(M, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
-			M.druggy += 3 //Perception distorting effects of the psychic scream
-			M.stunned += stun_duration
-			M.KnockDown(stun_duration)
-			M.apply_damage(halloss_damage, HALLOSS)
-			if(!M.ear_deaf)
-				M.ear_deaf += stun_duration * 20  //Deafens them temporarily
+			to_chat(H, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
+			H.druggy += 3 //Perception distorting effects of the psychic scream
+			H.stunned += stun_duration
+			H.KnockDown(stun_duration)
+			H.apply_damage(halloss_damage, HALLOSS)
+			if(!H.ear_deaf)
+				H.ear_deaf += stun_duration * 20  //Deafens them temporarily
 			spawn(31)
-				M.druggy += stun_duration * 10 //Perception distorting effects of the psychic scream
-				shake_camera(M, stun_duration * 10, 0.75) //Perception distorting effects of the psychic scream
+				H.druggy += stun_duration * 10 //Perception distorting effects of the psychic scream
+				shake_camera(H, stun_duration * 10, 0.75) //Perception distorting effects of the psychic scream
 
 /mob/living/carbon/Xenomorph/Queen/proc/queen_gut(atom/A)
 

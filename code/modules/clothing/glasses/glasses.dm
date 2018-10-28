@@ -42,9 +42,7 @@
 				H.update_tint()
 				H.update_sight()
 
-		for(var/X in actions)
-			var/datum/action/A = X
-			A.update_button_icon()
+		update_action_button_icons()
 
 
 
@@ -189,9 +187,7 @@
 
 		update_clothing_icon()
 
-		for(var/X in actions)
-			var/datum/action/A = X
-			A.update_button_icon()
+		update_action_button_icons()
 
 
 /obj/item/clothing/glasses/welding/superior
