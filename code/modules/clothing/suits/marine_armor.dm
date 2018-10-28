@@ -189,9 +189,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	playsound(src,'sound/machines/click.ogg', 15, 1)
 	update_icon(user)
 
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.update_button_icon()
+	update_action_button_icons()
 
 
 /obj/item/clothing/suit/storage/marine/MP
@@ -599,9 +597,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	playsound(src,'sound/machines/click.ogg', 15, 1)
 	update_icon(user)
 
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.update_button_icon()
+	update_action_button_icons()
 
 
 

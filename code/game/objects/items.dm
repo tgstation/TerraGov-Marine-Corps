@@ -184,25 +184,7 @@ cases. Override_icon_state should be a list.*/
 
 
 /obj/item/attack_paw(mob/user as mob)
-
-	if(anchored)
-		to_chat(user, "[src] is anchored to the ground.")
-		return
-
-	if (istype(src.loc, /obj/item/storage))
-		var/obj/item/storage/S = src.loc
-		S.remove_from_storage(src, user.loc)
-
-	src.throwing = FALSE
-	if (loc == user)
-		if(!user.drop_inv_item_on_ground(src))
-			return
-	else
-		user.next_move = max(user.next_move+2,world.time + 2)
-	if(!disposed) //item may have been cdel'd by the drop above.
-		pickup(user)
-		if(!user.put_in_active_hand(src))
-			dropped(user)
+	return attack_hand(user)
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
@@ -699,3 +681,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/attack_alien(mob/living/carbon/Xenomorph/M)
 	return FALSE
 
+/obj/item/proc/update_action_button_icons()
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.update_button_icon()

@@ -50,18 +50,14 @@
 		return 0
 	on = !on
 	update_brightness(user)
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.update_button_icon()
+	update_action_button_icons()
 	return 1
 
 /obj/item/device/flashlight/proc/turn_off_light(mob/bearer)
 	if(on)
 		on = 0
 		update_brightness(bearer)
-		for(var/X in actions)
-			var/datum/action/A = X
-			A.update_button_icon()
+		update_action_button_icons()
 		return 1
 	return 0
 

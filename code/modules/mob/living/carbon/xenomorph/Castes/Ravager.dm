@@ -69,9 +69,7 @@
 	spawn(CHARGECOOLDOWN)
 		usedPounce = 0
 		to_chat(src, "<span class='notice'>Your exoskeleton quivers as you get ready to charge again.</span>")
-		for(var/X in actions)
-			var/datum/action/A = X
-			A.update_button_icon()
+		update_action_button_icons()
 
 
 //Chance of insta limb amputation after a melee attack.

@@ -6,70 +6,69 @@
 	return bruteloss
 
 /mob/living/proc/adjustBruteLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	bruteloss = min(max(bruteloss + amount, 0),(maxHealth*2))
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	bruteloss = CLAMP(bruteloss+amount,0,maxHealth*2)
 
 /mob/living/proc/getOxyLoss()
 	return oxyloss
 
 /mob/living/proc/adjustOxyLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	oxyloss = min(max(oxyloss + amount, 0),(maxHealth*2))
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	oxyloss = CLAMP(oxyloss+amount,0,maxHealth*2)
 
 /mob/living/proc/setOxyLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	oxyloss = amount
 
 /mob/living/proc/getToxLoss()
 	return toxloss
 
 /mob/living/proc/adjustToxLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	toxloss = min(max(toxloss + amount, 0),(maxHealth*2))
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	toxloss = CLAMP(toxloss+amount,0,maxHealth*2)
 
 /mob/living/proc/setToxLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	toxloss = amount
 
 /mob/living/proc/getFireLoss()
 	return fireloss
 
 /mob/living/proc/adjustFireLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	fireloss = min(max(fireloss + amount, 0),(maxHealth*2))
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	fireloss = CLAMP(fireloss+amount,0,maxHealth*2)
 
 /mob/living/proc/getCloneLoss()
 	return cloneloss
 
 /mob/living/proc/adjustCloneLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	cloneloss = min(max(cloneloss + amount, 0),(maxHealth*2))
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	cloneloss = CLAMP(cloneloss+amount,0,maxHealth*2)
 
 /mob/living/proc/setCloneLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	cloneloss = amount
 
 /mob/living/proc/getBrainLoss()
 	return brainloss
 
 /mob/living/proc/adjustBrainLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	brainloss = min(max(brainloss + amount, 0),(maxHealth*2))
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
+	brainloss = CLAMP(brainloss+amount,0,maxHealth*2)
 
 /mob/living/proc/setBrainLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	brainloss = amount
-
-/mob/living/proc/getHalLoss()
-	return halloss
-
-/mob/living/proc/adjustHalLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	halloss = min(max(halloss + amount, 0),(maxHealth*2))
-
-/mob/living/proc/setHalLoss(var/amount)
-	if(status_flags & GODMODE)	return 0	//godmode
-	halloss = amount
 
 /mob/living/proc/getMaxHealth()
 	return maxHealth
@@ -77,6 +76,8 @@
 /mob/living/proc/setMaxHealth(var/newMaxHealth)
 	maxHealth = newMaxHealth
 
+mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
+	return
 
 
 
@@ -91,7 +92,8 @@
 
 // damage ONE limb, organ gets randomly selected from damaged ones.
 /mob/living/proc/take_limb_damage(var/brute, var/burn)
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
 	src.updatehealth()
@@ -104,7 +106,8 @@
 
 // damage MANY limbs, in random order
 /mob/living/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
-	if(status_flags & GODMODE)	return 0	//godmode
+	if(status_flags & GODMODE)
+		return FALSE	//godmode
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
 	src.updatehealth()
@@ -117,7 +120,6 @@
 /mob/living/proc/revive(keep_viruses)
 	rejuvenate()
 
-
 /mob/living/proc/rejuvenate()
 
 	// shut down various types of badness
@@ -125,7 +127,6 @@
 	setOxyLoss(0)
 	setCloneLoss(0)
 	setBrainLoss(0)
-	setHalLoss(0)
 	SetKnockedout(0)
 	SetStunned(0)
 	SetKnockeddown(0)
@@ -144,15 +145,6 @@
 	set_blurriness(0, TRUE)
 	setEarDamage(0, 0)
 	heal_overall_damage(getBruteLoss(), getFireLoss())
-
-	// restore all of a human's blood
-	if(ishuman(src))
-		var/mob/living/carbon/human/H = src
-		H.restore_blood()
-		H.reagents.clear_reagents() //and clear all reagents in them
-		H.undefibbable = FALSE
-		H.chestburst = 0
-		H.mutations.Remove(HUSK)
 
 	// fix all of our organs
 	restore_all_organs()
@@ -173,3 +165,23 @@
 	med_hud_set_status()
 	med_hud_set_health()
 	reload_fullscreens()
+
+/mob/living/carbon/rejuvenate()
+	setHalLoss(0)
+	setTraumatic_Shock(0)
+	setShock_Stage(0)
+	return ..()
+
+/mob/living/carbon/human/rejuvenate()
+	restore_blood() //restore all of a human's blood
+	reagents.clear_reagents() //and clear all reagents in them
+	undefibbable = FALSE
+	chestburst = 0
+	mutations.Remove(HUSK)
+	return ..()
+
+/mob/living/carbon/Xenomorph/rejuvenate()
+	plasma_stored = plasma_max
+	stagger = 0
+	slowdown = 0
+	return ..()

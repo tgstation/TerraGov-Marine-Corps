@@ -41,9 +41,7 @@
 		var/mob/M = usr
 		M.update_inv_back()
 
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.update_button_icon()
+	update_action_button_icons()
 
 /obj/item/tank/jetpack/proc/allow_thrust(num, mob/living/user)
 	if(!(src.on))

@@ -97,9 +97,7 @@
 		spawn(lunge_cooldown)
 			used_lunge = 0
 			to_chat(src, "<span class='notice'>You get ready to lunge again.</span>")
-			for(var/X in actions)
-				var/datum/action/act = X
-				act.update_button_icon()
+			update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/Warrior/hitby(atom/movable/AM as mob|obj,var/speed = 5)
 	if(ishuman(AM))

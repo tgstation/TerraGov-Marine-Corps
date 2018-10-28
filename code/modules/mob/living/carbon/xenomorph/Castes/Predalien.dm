@@ -130,7 +130,7 @@ Your health meter will not regenerate normally, so kill and die for the hive!</s
 			playsound(loc, 'sound/weapons/slice.ogg', 25)
 			emote("growl")
 			var/to_heal = max(1, 5 - (0.2 * (health < maxHealth ? butchered_sum++ : butchered_sum)))//So we do not heal multiple times due to the inline proc below.
-			XENO_HEAL_WOUNDS(isYautja(H)? 15 : to_heal) //Predators give far better healing.
+			heal_wounds(isYautja(H)? 15 : to_heal) //Predators give far better healing.
 		else
 			visible_message("<span class='danger'>[src] slices and dices [H]'s body like a ragdoll!</span>",
 			"<span class='xenodanger'>You fly into a frenzy and butcher [H]'s body!</span>")

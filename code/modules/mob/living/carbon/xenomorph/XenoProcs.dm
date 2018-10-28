@@ -113,15 +113,11 @@
 
 /mob/living/carbon/Xenomorph/proc/use_plasma(value)
 	plasma_stored = max(plasma_stored - value, 0)
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.update_button_icon()
+	update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/proc/gain_plasma(value)
 	plasma_stored = min(plasma_stored + value, plasma_max)
-	for(var/X in actions)
-		var/datum/action/A = X
-		A.update_button_icon()
+	update_action_button_icons()
 
 
 

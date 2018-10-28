@@ -113,23 +113,28 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	tiles_with = list(
 		/turf/closed/wall)
 
-/obj/machinery/door/airlock/bumpopen(mob/living/user as mob) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
-	if(!issilicon(usr))
-		if(src.isElectrified())
-			if(!src.justzap)
-				if(src.shock(user, 100))
-					src.justzap = 1
-					spawn (openspeed)
-						src.justzap = 0
-					return
-			else /*if(src.justzap)*/
+/obj/machinery/door/airlock/bumpopen(mob/living/user) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
+	if(issilicon(user))
+		return ..(user)
+	if(iscarbon(user) && isElectrified())
+		if(!justzap)
+			if(shock(user, 100))
+				justzap = TRUE
+				spawn (openspeed)
+					justzap = FALSE
 				return
-		else if(user.hallucination > 50 && prob(10) && src.operating == 0)
-			to_chat(user, "\red <B>You feel a powerful shock course through your body!</B>")
-			user.halloss += 10
-			user.stunned += 10
+		else /*if(justzap)*/
 			return
-	..(user)
+	else if(ishuman(user) && user.hallucination > 50 && prob(10) && !operating)
+		var/mob/living/carbon/human/H = user
+		if(H.gloves)
+			to_chat(H, "\red <B>You feel a powerful shock course through your body!</B>")
+			var/obj/item/clothing/gloves/G = H.gloves
+			if(G.siemens_coefficient)//not insulated
+				H.halloss += 10
+				H.stunned += 10
+				return
+	return ..(user)
 
 /obj/machinery/door/airlock/bumpopen(mob/living/simple_animal/user as mob)
 	..(user)

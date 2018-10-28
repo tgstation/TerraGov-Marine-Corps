@@ -31,19 +31,25 @@
 		if(HALLOSS)
 			adjustHalLoss(damage)
 	updatehealth()
-	return 1
+	return TRUE
 
 
 /mob/living/proc/apply_damages(var/brute = 0, var/burn = 0, var/tox = 0, var/oxy = 0, var/clone = 0, var/halloss = 0, var/def_zone = null, var/blocked = 0)
 	if(blocked >= 1) //Complete negation/100% reduction
-		return 0
-	if(brute)	apply_damage(brute, BRUTE, def_zone, blocked)
-	if(burn)	apply_damage(burn, BURN, def_zone, blocked)
-	if(tox)		apply_damage(tox, TOX, def_zone, blocked)
-	if(oxy)		apply_damage(oxy, OXY, def_zone, blocked)
-	if(clone)	apply_damage(clone, CLONE, def_zone, blocked)
-	if(halloss) apply_damage(halloss, HALLOSS, def_zone, blocked)
-	return 1
+		return FALSE
+	if(brute)
+		apply_damage(brute, BRUTE, def_zone, blocked)
+	if(burn)
+		apply_damage(burn, BURN, def_zone, blocked)
+	if(tox)
+		apply_damage(tox, TOX, def_zone, blocked)
+	if(oxy)
+		apply_damage(oxy, OXY, def_zone, blocked)
+	if(clone)
+		apply_damage(clone, CLONE, def_zone, blocked)
+	if(halloss)
+		apply_damage(halloss, HALLOSS, def_zone, blocked)
+	return TRUE
 
 
 
@@ -57,7 +63,7 @@
 		if(PARALYZE)
 			KnockOut(effect/(blocked+1))
 		if(AGONY)
-			halloss += effect // Useful for objects that cause "subdual" damage. PAIN!
+			adjustHalLoss(effect/blocked+1)
 		if(IRRADIATE)
 			var/rad_protection = getarmor(null, "rad")/100
 			radiation += max((1-rad_protection)*effect/(blocked+1),0)//Rads auto check armor
