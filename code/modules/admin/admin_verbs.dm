@@ -661,8 +661,8 @@ var/list/admin_verbs_mentor = list(
 	set name = "Re-admin Self"
 	set category = "Admin"
 
-	load_admins() //A bit ugly, but hey
 	verbs -= /client/proc/readmin_self
+	readmin()
 	to_chat(src, "<br><br><span class='centerbold'><big>You have ascended back to adminhood. All your verbs should be back where you left them.</big></span><br>")
 	log_admin("[src] readmined themselves.")
 	message_admins("[src] readmined themselves.", 1)

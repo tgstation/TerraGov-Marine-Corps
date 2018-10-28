@@ -28,6 +28,8 @@
 	var/atom/movable/following = null
 
 /mob/dead/observer/Login()
+	if(!client)
+		return
 	client.prefs.load_preferences()
 	ghost_medhud = client.prefs.ghost_medhud
 	ghost_sechud = client.prefs.ghost_sechud
@@ -829,11 +831,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	if(!ticker || ticker.current_state < GAME_STATE_PLAYING || !ticker.mode)
-		to_chat(src, "<span class='warning'>The game hasn't started yet!</span?")
+		to_chat(src, "<span class='warning'>The game hasn't started yet!</span>")
 		return
 
 	if(ticker.mode.check_predator_late_join(src))
-		ticker.mode.attempt_to_join_as_predator(src)
+		if(jobban_isbanned(src, "Predator"))
+			to_chat(src, "<span class='warning'>You have been jobbanned from playing predator! Jobbans are only lifted upon request.</span>")
+			return
+		else
+			ticker.mode.attempt_to_join_as_predator(src)
 
 /mob/dead/verb/drop_vote()
 	set category = "Ghost"

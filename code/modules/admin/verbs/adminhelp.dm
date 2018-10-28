@@ -20,25 +20,31 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 	adminhelped = 1 //Determines if they get the message to reply by clicking the name.
 
 	var/msg
-	var/list/type = list ("Suggestion / Bug Report", "Gameplay / Roleplay Issue", "Admins Spawn Shit")
+	var/list/type = list ("Mentorhelp", "Adminhelp", "Suggestion / Bug Report")
 	var/selected_type = input("Pick a category.", "Admin Help", null, null) as null|anything in type
 	switch(selected_type)
-		if("Gameplay / Roleplay Issue")
+		if("Mentorhelp")
+			msg = input("Please enter your message:", "Admin Help", null, null) as message|null
+		if("Adminhelp")
 			msg = input("Please enter your message:", "Admin Help", null, null) as message|null
 		if("Suggestion / Bug Report")
-			switch(alert("Adminhelps are not for suggestions or bug reports - issues should be posted on our Github, and suggestions on our forums. #WHENYOUCODEIT",,"Go to Github","Go to forums","Cancel"))
-				if("Go to Github")
+			switch(alert("Adminhelps are not for suggestions or bug reports - issues should be posted on our GitHub or on our Discord in #coding, and suggestions on our Discord in #suggestions. If you want something done, feel free to code it yourself.",,"Go to GitHub","Go to Discord","Go to Forums","Cancel"))
+				if("Go to Discord")
+					if(config.chaturl)
+						src << link(config.chaturl)
+					else
+						to_chat(src, "<span class='warning'>The chat URL is not set in the server configuration.</span>")
+				if("Go to GitHub")
 					if(config.bugtrackerurl)
 						src << link(config.bugtrackerurl)
 					else
 						to_chat(src, "<span class='warning'>The bug tracker URL is not set in the server configuration.</span>")
-				if("Go to forums")
+				if("Go to Forums")
 					if(config.forumurl)
 						src << link(config.forumurl)
 					else
 						to_chat(src, "<span class='warning'>The forum URL is not set in the server configuration.</span>")
-		if("Admins Spawn Shit")
-			to_chat(src, "<span class='warning'>No</span>")
+
 			
 	var/selected_upper = uppertext(selected_type)
 
@@ -107,42 +113,50 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 							continue
 			msg += "[original_word] "
 
-	if(!mob)	return	//this doesn't happen
+	if(!mob)	
+		return
 
-	var/mentor_msg = "<br><br><font color='#009900'><b>[selected_upper]: [get_options_bar(mob, 0, 0, 1, 0)]:</b></font> <br><font color='#DA6200'><b>[msg]</font></b><br>"
-	msg = "<br><br><font color='#009900'><b>[selected_upper]: [get_options_bar(mob, 2, 1, 1)]:</b></font> <br><font color='#DA6200'><b>[msg]</font></b><br>"
+	var/mentor_msg = "<br><br><font color='#009900'><b>[selected_upper]: [get_options_bar(mob, 4, 1, 1, 0)]:</b></font> <br><font color='#DA6200'><b>[msg]</font></b><br>"
+	msg = "<br><br><font color='#009900'><b>[selected_upper]: [get_options_bar(mob, 2, 1, 1, 1)]:</b></font> <br><font color='#DA6200'><b>[msg]</font></b><br>"
 
 	var/admin_number_afk = 0
 
 	var/list/mentorholders = list()
-	var/list/debugholders = list()
 	var/list/adminholders = list()
 	for(var/client/X in admins)
-		if(R_MENTOR & X.holder.rights && !(R_ADMIN & X.holder.rights)) // we don't want to count admins twice. This list should be JUST mentors
+		if((R_MENTOR & X.holder.rights) && !((R_ADMIN & X.holder.rights) || (R_MOD & X.holder.rights))) // we don't want to count admins twice. This list should be JUST mentors
 			mentorholders += X
 			if(X.is_afk())
 				admin_number_afk++
-		if(R_DEBUG & X.holder.rights) // Looking for anyone with +Debug which will be admins, developers, and developer mentors
-			debugholders += X
-			if(!(R_ADMIN & X.holder.rights))
-				if(X.is_afk())
-					admin_number_afk++
-		if(R_ADMIN|R_MOD & X.holder.rights) // just admins here please
+		if((R_ADMIN & X.holder.rights) || (R_MOD & X.holder.rights)) // just admins here please
 			adminholders += X
 			if(X.is_afk())
 				admin_number_afk++
 
-	if("Gameplay/Roleplay Issue")
-		if(mentorholders.len)
-			for(var/client/X in mentorholders) // Mentors get a message without buttons and no character name
-				if(X.prefs.toggles_sound & SOUND_ADMINHELP)
-					X << 'sound/effects/adminhelp_new.ogg'
-				to_chat(X, mentor_msg)
-		if(adminholders.len)
-			for(var/client/X in adminholders) // Admins get the full monty
-				if(X.prefs.toggles_sound & SOUND_ADMINHELP)
-					X << 'sound/effects/adminhelp_new.ogg'
-				to_chat(X, msg)
+	switch(selected_type)
+		if("Mentorhelp")
+			if(mentorholders.len)
+				for(var/client/X in mentorholders) // Mentors get a reduced message
+					if(X.prefs.toggles_sound & SOUND_ADMINHELP)
+						X << 'sound/effects/adminhelp_new.ogg'
+					to_chat(X, mentor_msg)
+			if(adminholders.len)
+				for(var/client/X in adminholders) // Admins get the full monty
+					if(X.prefs.toggles_sound & SOUND_ADMINHELP)
+						X << 'sound/effects/adminhelp_new.ogg'
+					to_chat(X, msg)
+		if("Adminhelp")
+			if(adminholders.len)
+				for(var/client/X in adminholders) // Admins get the full monty
+					if(X.prefs.toggles_sound & SOUND_ADMINHELP)
+						X << 'sound/effects/adminhelp_new.ogg'
+					to_chat(X, msg)
+			else
+				if(mentorholders.len)
+					for(var/client/X in mentorholders) // Mentors get a reduced message
+						if(X.prefs.toggles_sound & SOUND_ADMINHELP)
+							X << 'sound/effects/adminhelp_new.ogg'
+						to_chat(X, mentor_msg)
 
 	//show it to the person adminhelping too
 	to_chat(src, "<br><font color='#009900'><b>PM to Staff ([selected_type]): <font color='#DA6200'>[original_msg]</b></font><br>")
@@ -204,5 +218,13 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 		if(3)
 			return "<b>[key_name(C, link, name, highlight_special)] \
 			(<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) \
+			(<A HREF='?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>) \
+			(<A HREF='?_src_=holder;adminplayerfollow=[ref_mob]'>FLW</a>)</b>"
+		if(4)
+			return "<b>[key_name(C, link, name, highlight_special)] \
+			(<A HREF='?_src_=holder;mark=[ref_mob]'>Mark</A>) \
+			(<A HREF='?_src_=holder;noresponse=[ref_mob]'>NR</A>) \
+			(<A HREF='?_src_=holder;autoresponse=[ref_mob]'>AutoResponse...</A>) \
+			(<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>) \
 			(<A HREF='?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>) \
 			(<A HREF='?_src_=holder;adminplayerfollow=[ref_mob]'>FLW</a>)</b>"

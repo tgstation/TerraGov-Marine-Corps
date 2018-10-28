@@ -305,12 +305,13 @@ var/global/respawntime = 15
 				I.rank = "N/A"
 				update_file = 1
 			dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
-			if(I.author == usr.key || I.author == "Adminbot" || ishost(usr))
+			if((I.author == usr.key || I.author == "Adminbot" || ishost(usr)) && ((R_ADMIN & usr.client.holder.rights) || (R_MOD & usr.client.holder.rights)))
 				dat += "<A href='?src=\ref[src];remove_player_info=[key];remove_index=[i]'>Remove</A> "
-			if(I.hidden)
-				dat += "<A href='?src=\ref[src];unhide_player_info=[key];remove_index=[i]'>Unhide</A>"
-			else
-				dat += "<A href='?src=\ref[src];hide_player_info=[key];remove_index=[i]'>Hide</A>"
+			if((R_ADMIN & usr.client.holder.rights) || (R_MOD & usr.client.holder.rights))
+				if(I.hidden)
+					dat += "<A href='?src=\ref[src];unhide_player_info=[key];remove_index=[i]'>Unhide</A>"
+				else
+					dat += "<A href='?src=\ref[src];hide_player_info=[key];remove_index=[i]'>Hide</A>"
 			dat += "<br><br>"
 		if(update_file) to_chat(info, infos)
 

@@ -592,6 +592,7 @@
 		else
 			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=Queen;jobban4=\ref[M]'>Queen</a></td>"
 
+		jobs += "</tr><tr align='center'>"
 
 		//Survivor
 		if(jobban_isbanned(M, "Survivor") || isbanned_dept)
@@ -604,6 +605,18 @@
 			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=WO Role;jobban4=\ref[M]'><font color=red>WO Role</font></a></td>"
 		else
 			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=WO Role;jobban4=\ref[M]'>WO Role</a></td>"
+
+		//Synthetic
+		if(jobban_isbanned(M, "Synthetic") || isbanned_dept)
+			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=Synthetic;jobban4=\ref[M]'><font color=red>Synthetic</font></a></td>"
+		else
+			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=Synthetic;jobban4=\ref[M]'>Synthetic</a></td>"
+
+		//Predator
+		if(jobban_isbanned(M, "Predator") || isbanned_dept)
+			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=Predator;jobban4=\ref[M]'><font color=red>Predator</font></a></td>"
+		else
+			jobs += "<td width='20%'><a href='?src=\ref[src];jobban3=Predator;jobban4=\ref[M]'>Predator</a></td>"
 
 
 		jobs += "</tr></table>"
@@ -2424,7 +2437,6 @@
 		player_notes_show(key)
 
 	if(href_list["hide_player_info"])
-		message_admins("hide button clicked.")
 		var/key = href_list["hide_player_info"]
 		var/index = text2num(href_list["remove_index"])
 
@@ -2432,7 +2444,6 @@
 		player_notes_show(key)
 
 	if(href_list["unhide_player_info"])
-		message_admins("notes unhide button clicked.")
 		var/key = href_list["unhide_player_info"]
 		var/index = text2num(href_list["remove_index"])
 
@@ -2537,12 +2548,12 @@
 			if(alert(usr, "Are you sure you want to autoreply to this marked ahelp?", "Confirmation", "Yes", "No") != "Yes")
 				return
 
-		var/choice = input("Which autoresponse option do you want to send to the player?\n\n L - A webpage link.\n A - An answer to a common question.", "Autoresponse", "--CANCEL--") in list ("--CANCEL--", "IC Issue", "Being Handled", "Fixed", "Thanks", "Guilty", "L: Xeno Quickstart Guide", "L: Marine quickstart guide", "L: Current Map", "A: No plasma regen", "A: Devour as Xeno", "J: Job bans", "E: Event in progress", "R: Radios", "D: Joining disabled", "M: Macros")
+		var/choice = input("Which autoresponse option do you want to send to the player?\n\n L - A webpage link.\n A - An answer to a common question.", "Autoresponse", "--CANCEL--") in list ("--CANCEL--", "IC Issue", "Being Handled", "Fixed", "Thanks", "Guilty", "Find out IC-ly", "L: Xeno Quickstart Guide", "L: Marine quickstart guide", "L: Current Map", "A: No plasma regen", "A: Devour as Xeno", "J: Job bans", "E: Event in progress", "R: Radios", "M: Macros")
 
 		var/msgplayer
 		switch(choice)
 			if("IC Issue")
-				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. This issue has been deemed an IC (In-Character) issue, and will not be handled by staff. In case it's relevant, you may wish to ask your <a href='http://cm-ss13.com/wiki/Rank'>Chain Of Command</a> about your issue if you believe <a href='https://tgstation13.org/wiki/Space_Law'>Space Law</a> has been broken.</b>"
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. This issue has been deemed an IC (In-Character) issue, and will not be handled by staff.</b>"
 			if("Being Handled")
 				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. The issue is already being dealt with.</b>"
 			if("Fixed")
@@ -2551,26 +2562,26 @@
 				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>! Have a DMCA day!</b>"
 			if("Guilty")
 				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. You broke Space Law.</b>"
+			if("Find out IC-ly")
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Whatever your question is, you will have to find out using in-character means. The staff won't reveal anything relevant.</b>"
 			if("L: Xeno Quickstart Guide")
-				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Your answer can be found on the Xeno Quickstart Guide. <a href='http://cm-ss13.com/wiki/Xeno_Quickstart_Guide'>Check it out here.</a></b>"
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Your answer can be found on the Xeno Quickstart Guide. <a href='https://tgstation13.org/wiki/DMCA:Xeno_Quickstart_Guide'>Check it out here.</a></b>"
 			if("L: Marine quickstart guide")
-				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Your answer can be found on the Marine Quickstart Guide. <a href='http://cm-ss13.com/wiki/Marine_Quickstart_Guide'>Check it out here.</a></b>"
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Your answer can be found on the Marine Quickstart Guide. <a href='https://tgstation13.org/wiki/DMCA:Marine_Quickstart_Guide'>Check it out here.</a></b>"
 			if("L: Current Map")
 				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. If you need a map for the current game, you can find it <a href='http://cm-ss13.com/wiki/Main_Page'>here.</a></b>"
 			if("A: No plasma regen")
 				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. If you have low/no plasma regen, it's most likely because you are off weeds or are currently using a passive ability, such as the Runner's 'Hide' or emitting a pheromone.</b>"
 			if("A: Devour as Xeno")
-				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Devouring is useful to quickly transport incapacitated hosts from one place to another. In order to devour a host as a Xeno, grab the mob (CTRL+Click) and then click on yourself to begin devouring. The host can resist by breaking out of your belly, so make sure your target is incapacitated or only have them devoured for a short time. Also, the devoured host will eventually be digested (~5 minutes), which results in you killing a viable host to grow the hive. To release your target, click 'Regurgitate' on the HUD to throw them back up.</b>"
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Devouring is useful to quickly transport incapacitated hosts from one place to another. In order to devour a host as a Xeno, grab the mob (CTRL+Click) and then click on yourself to begin devouring. The host cannot resist breaking out of your belly, but the devoured host will eventually be spat out (~2 minutes), so make sure to hurry up. To release your target, click 'Regurgitate' on the HUD to throw them back up.</b>"
 			if("J: Job bans")
 				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. All job bans, including xeno bans, are permanent.</b>"
 			if("E: Event in progress")
 				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. There is currently a special event running and many things may be changed or different, however normal rules still apply unless you have been specifically instructed otherwise by a staff member.</b>"
 			if("R: Radios")
-				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. Radios have been changed, the prefix for all squad marines is now ; to access your squad radio. Squad Medics have access to the medical channel using :m, Engineers have :e and the (acting) Squad Leader has :v for command.  Examine your radio headset to get a listing of the channels you have access to.</b>"
-			if("D: Joining disabled")
-				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. A staff member has disabled joining for new players as the current round is coming to an end, you can observe while it ends and wait for a new round to start.</b>"
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. The prefix for all squad marines is now ; to access your squad radio that is global, :z for the general radio channel that is location-specific. Examine your radio headset to get a listing of the channels you have access to.</b>"
 			if("M: Macros")
-				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. To set a macro right click the title bar, select Client->Macros. Binding unique-action to a key is useful for pumping shotguns etc; Binding load-from-attachment will activate any scopes etc; Binding resist and give to seperate keys is also handy. For more information on macros can be found <a href='http://cm-ss13.com/wiki/Macros'>here.</a></b>"
+				msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> is autoresponding with <font color='#009900'>'[choice]'</font>. To set a macro right click the title bar, select Client->Macros. Binding load-from-attachment will activate any attachments; Binding resist and give to seperate keys is also handy. More information on macros can be found <a href='https://tgstation13.org/wiki/DMCA:Macros'>here.</a></b>"
 			else return
 
 		message_staff("[usr.key] is autoresponding to [ref_person] with <font color='#009900'>'[choice]'</font>. They have been shown the following:\n[msgplayer]", 1)

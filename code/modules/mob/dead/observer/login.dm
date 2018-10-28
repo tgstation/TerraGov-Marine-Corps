@@ -1,4 +1,7 @@
 /mob/dead/observer/Login()
+	if(!client)
+		return
+	client.prefs.load_preferences()
 	ghost_medhud = client.prefs.ghost_medhud
 	ghost_sechud = client.prefs.ghost_sechud
 	ghost_squadhud = client.prefs.ghost_squadhud

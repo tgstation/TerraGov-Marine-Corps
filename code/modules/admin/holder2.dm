@@ -88,3 +88,40 @@ you will have to do something like if(client.holder.rights & R_ADMIN) yourself.
 		cdel(holder)
 		holder = null
 	return 1
+
+/client/proc/readmin()
+	//load text from file
+	var/list/Lines = file2list("config/admins.txt")
+
+	//process each line seperately
+	for(var/line in Lines)
+		if(!length(line))				
+			continue
+		if(copytext(line,1,2) == "#")	
+			continue
+
+		//Split the line at every "-"
+		var/list/List = text2list(line, "-")
+		if(!List.len)					
+			continue
+
+		//ckey is before the first "-"
+		var/target = ckey(List[1])
+		if(!target)						
+			continue
+		if(target != ckey)
+			continue
+
+		//rank follows the first "-"
+		var/rank = ""
+		if(List.len >= 2)
+			rank = ckeyEx(List[2])
+
+		//load permissions associated with this rank
+		var/rights = admin_ranks[rank]
+
+		//create the admin datum and store it for later use
+		var/datum/admins/D = new /datum/admins(rank, rights, target)
+
+		//find the client for a ckey if they are connected and associate them with the new admin datum
+		D.associate(directory[target])
