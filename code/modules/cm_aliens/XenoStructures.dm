@@ -24,7 +24,7 @@
 	healthcheck()
 
 /obj/effect/alien/bullet_act(var/obj/item/projectile/Proj)
-	if(Proj.damtype == "burn")
+	if(Proj.damtype == "fire")
 		health -= Proj.damage*2
 	else
 		health -= Proj.damage*0.5
@@ -102,14 +102,14 @@
 	if(!(W.flags_item & NOBLUDGEON))
 		var/damage = W.force
 		var/multiplier = 1
-		if(W.damtype == "burn") //Burn damage deals extra vs resin structures (mostly welders).
+		if(W.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
 			multiplier += 1
 			if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
 				var/obj/item/tool/pickaxe/plasmacutter/P = W
-				if(!P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
+				if(!P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_MIN_MOD, null, null, SFX = FALSE))
 					return
 				multiplier += PLASMACUTTER_RESIN_MULTIPLIER //Plasma cutters are particularly good at destroying resin structures.
-				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
+				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_MIN_MOD) //Minimal energy cost.
 
 		else if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
 			multiplier *= 0.25

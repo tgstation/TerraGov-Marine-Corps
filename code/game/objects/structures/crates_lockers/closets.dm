@@ -214,7 +214,7 @@
 			return
 		if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
 			var/obj/item/tool/pickaxe/plasmacutter/P = W
-			if(!P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
+			if(!P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, null, null, SFX = FALSE))
 				return
 			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Window frames require half the normal power
 			P.debris(loc, 1, 0) //Generate some metal

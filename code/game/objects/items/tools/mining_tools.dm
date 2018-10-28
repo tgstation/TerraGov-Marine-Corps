@@ -310,9 +310,7 @@
 
 /obj/item/tool/pickaxe/plasmacutter/attack(atom/M, mob/user)
 
-	if(!powered)
-		return ..()
-	if(cell.charge < PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
+	if(!powered || (cell.charge < PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD))
 		fizzle_message(user)
 	else
 		use_charge(user, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)
@@ -324,7 +322,7 @@
 		spark_system.set_up(5, 0, M)
 		spark_system.attach(M)
 		spark_system.start(M)
-		return ..()
+	return ..()
 
 
 /obj/item/tool/pickaxe/plasmacutter/afterattack(atom/target, mob/user, proximity)

@@ -129,6 +129,7 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 
 //plasma cutter
 
+#define PLASMACUTTER_MIN_MOD	0.01
 #define PLASMACUTTER_VLOW_MOD	0.1
 #define PLASMACUTTER_LOW_MOD	0.5
 #define PLASMACUTTER_HIGH_MOD	2

@@ -150,7 +150,7 @@
 	user.animation_attack_on(src)
 
 	var/multiplier = 1
-	if(W.damtype == "burn") //Burn damage deals extra vs resin structures (mostly welders).
+	if(W.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
 		multiplier += 1
 
 	var/obj/item/tool/pickaxe/plasmacutter/P
