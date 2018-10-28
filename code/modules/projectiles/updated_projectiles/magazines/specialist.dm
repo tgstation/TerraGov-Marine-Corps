@@ -19,10 +19,12 @@
 /obj/item/ammo_magazine/sniper/incendiary
 	name = "\improper M42A incendiary magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/incendiary
+	icon_state = "m42c_inc"
 
 /obj/item/ammo_magazine/sniper/flak
 	name = "\improper M42A flak magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/flak
+	icon_state = "m42c_flak"
 
 
 //M42C magazine
