@@ -353,5 +353,8 @@ proc/tg_list2text(list/list, glue=",")
 	switch(ui_style)
 		if("old")		return 'icons/mob/screen1_old.dmi'
 		if("Orange")	return 'icons/mob/screen1_Orange.dmi'
+		if("Slimecore")	return 'icons/mob/screen1_Slimecore.dmi'
+		if("Operative") return 'icons/mob/screen1_Operative.dmi'
+		if("Clockwork") return 'icons/mob/screen1_Clockwork.dmi'
 		if("Midnight")	return 'icons/mob/screen1_Midnight.dmi'
 		else			return 'icons/mob/screen1_White.dmi'
