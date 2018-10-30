@@ -140,9 +140,6 @@ proc/do_surgery(mob/living/carbon/M, mob/living/user, obj/item/tool)
 							multipler += 0.40
 					if(M.shock_stage > 100) //Being near to unconsious is good in this case
 						multipler += 0.25
-				if(istype(M.loc, /turf/open/shuttle/dropship))
-					multipler -= 0.65
-
 				if(isSynth(M) || isYautja(M)) multipler = 1
 
 				//calculate step duration
