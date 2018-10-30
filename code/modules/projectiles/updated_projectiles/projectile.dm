@@ -596,6 +596,12 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	to_chat(world, "<span class='debuginfo'>Initial damage is: <b>[damage]</b></span>")
 	#endif
 
+	if(warding_aura) //Damage reduction. Every half point of warding decreases damage by 2.5 %. Maximum is 25 % at 5 pheromone strength.
+		damage = round(damage * (1 - (warding_aura * 0.05) ) )
+		#if DEBUG_XENO_DEFENSE
+		to_chat(world, "<span class='debuginfo'>Damage migated by a warding aura level of [warding_aura], damage is now <b>[damage]</b></span>")
+		#endif
+
 	if(damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR))
 		var/armor = armor_deflection + armor_bonus + armor_pheromone_bonus
 		#if DEBUG_XENO_DEFENSE

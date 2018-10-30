@@ -97,9 +97,6 @@
 	if(stat == DEAD)
 		return FALSE
 
-	if(warding_aura) //Damage reduction. Every half point of warding decreases damage by 2.5 %. Maximum is 25 % at 5 pheromone strength.
-		damage = round(damage * (1 - (warding_aura * 0.05) ) )
-
 	switch(damagetype)
 		if(BRUTE)
 			adjustBruteLoss(damage)
