@@ -12,7 +12,6 @@
 	layer = LADDER_LAYER
 	var/is_watching = 0
 	var/obj/machinery/camera/cam
-	var/busy = 0 //Ladders are wonderful creatures, only one person can use it at a time
 
 /obj/structure/ladder/New()
 	..()
@@ -68,9 +67,6 @@
 /obj/structure/ladder/attack_hand(mob/user)
 	if(user.stat || get_dist(user, src) > 1 || is_blind(user) || user.lying || user.buckled || user.anchored)
 		return
-	if(busy)
-		to_chat(user, "<span class='warning'>Someone else is currently using [src].</span>")
-		return
 	var/ladder_dir_name
 	var/obj/structure/ladder/ladder_dest
 	if(up && down)
@@ -91,28 +87,15 @@
 	step(user, get_dir(user, src))
 	user.visible_message("<span class='notice'>[user] starts climbing [ladder_dir_name] [src].</span>",
 	"<span class='notice'>You start climbing [ladder_dir_name] [src].</span>")
-	busy = 1
-	if(do_after(user, 20, FALSE, 5, BUSY_ICON_GENERIC))
-		if(!user.is_mob_incapacitated() && get_dist(user, src) <= 1 && !is_blind(user) && !user.lying && !user.buckled && !user.anchored)
-			//TODO: Using forceMove is desirable here, but this breaks the pull. If you know how to preserve the pull, this would be nice!
-			user.loc = ladder_dest.loc //Cannot use forceMove method on pulls! Move manually //Make sure we move before we broadcast the message
-			var/mob/living/M = user
-			M.smokecloak_off()
-			visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>") //Hack to give a visible message to the people here without duplicating user message
-			user.visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>",
-			"<span class='notice'>You climb [ladder_dir_name] [src].</span>")
-			ladder_dest.add_fingerprint(user)
-			if(user.pulling && get_dist(src, user.pulling) <= 2)
-				user.pulling.loc = ladder_dest.loc //Cannot use forceMove method on pulls! Move manually
-				var/mob/living/P = user.pulling
-				P.smokecloak_off()
-				if(isobj(user.pulling))
-					var/obj/O = user.pulling
-					if(O.buckled_mob)
-						O.buckled_mob.loc = ladder_dest.loc //Cannot use forceMove method on pulls! Move manually
-						O.buckled_mob.smokecloak_off()
-	busy = 0
 	add_fingerprint(user)
+	if(!do_after(user, 20, FALSE, 5, BUSY_ICON_GENERIC))
+		return
+	if(!user.is_mob_incapacitated() && get_dist(user, src) <= 1 && !is_blind(user) && !user.lying && !user.anchored)
+		user.trainteleport(ladder_dest.loc)
+		visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>") //Hack to give a visible message to the people here without duplicating user message
+		user.visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>",
+		"<span class='notice'>You climb [ladder_dir_name] [src].</span>")
+		ladder_dest.add_fingerprint(user)
 
 /obj/structure/ladder/attack_paw(mob/user as mob)
 	return attack_hand(user)

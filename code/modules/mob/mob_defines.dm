@@ -165,3 +165,5 @@
 	var/list/hud_possible //HUD images that this mob can provide.
 
 	var/action_busy //whether the mob is currently doing an action that takes time (do_after or do_mob procs)
+
+	var/list/fullscreens = list()

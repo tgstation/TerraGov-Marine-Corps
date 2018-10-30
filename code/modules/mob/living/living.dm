@@ -313,16 +313,6 @@
 /mob/living/carbon/human/ignore_pull_delay()
 	return has_species(src,"Yautja") //Predators aren't slowed when pulling their prey.
 
-/mob/living/forceMove(atom/destination)
-	stop_pulling()
-	if(pulledby)
-		pulledby.stop_pulling()
-	if(buckled)
-		buckled.unbuckle()
-	. = ..()
-	if(.)
-		reset_view(destination)
-
 /mob/living/proc/can_inject()
 	return TRUE
 
