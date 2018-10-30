@@ -119,7 +119,7 @@
 			var/mob/living/carbon/human/H = M
 			if(H.get_target_lock(iff_signal)) //device checks for IFF data and status
 				if(M.stat == DEAD)
-					if(H.is_revivable())
+					if(H.is_revivable() && H.get_ghost())
 						if(detect_revivable)
 							status = MOTION_DETECTOR_DEAD //Dead, but revivable.
 						else
