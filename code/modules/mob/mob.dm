@@ -647,4 +647,84 @@ mob/proc/yank_out_object()
 	if(istype(AM, /obj/item))
 		temp_drop_inv_item(AM, TRUE) //unequip before deletion to clear possible item references on the mob.
 
+/mob/forceMove(atom/destination)
+	stop_pulling()
+	if(pulledby)
+		pulledby.stop_pulling()
+	if(buckled)
+		buckled.unbuckle()
+	. = ..()
+	if(.)
+		reset_view(destination)
 
+/mob/proc/trainteleport(atom/destination)
+	if(!destination || anchored)
+		return FALSE //Gotta go somewhere and be able to move
+	if(!pulling)
+		return forceMove(destination) //No need for a special proc if there's nothing being pulled.
+	pulledby?.stop_pulling() //The leader of the choo-choo train breaks the pull
+	var/atom/movable/list/conga_line[0]
+	var/end_of_conga = FALSE
+	var/mob/S = src
+	conga_line += S
+	if(S.buckled)
+		if(S.buckled.anchored)
+			S.buckled.unbuckle() //Unbuckle the first of the line if anchored.
+		else
+			conga_line += S.buckled
+	while(!end_of_conga)
+		var/atom/movable/A = S.pulling
+		if(A in conga_line || A.anchored) //No loops, nor moving anchored things.
+			end_of_conga = TRUE
+			break
+		conga_line += A
+		var/mob/M = A
+		if(istype(M)) //Is a mob
+			if(M.buckled && !(M.buckled in conga_line))
+				if(M.buckled.anchored)
+					conga_line -= A //Remove from the conga line if on anchored buckles.
+					end_of_conga = TRUE //Party is over, they won't be dragging anyone themselves.
+					break
+				else
+					conga_line += M.buckled //Or bring the buckles along.
+			var/mob/living/L = M
+			if(istype(L))
+				L.smokecloak_off()
+			if(M.pulling)
+				S = M
+			else
+				end_of_conga = TRUE
+		else //Not a mob.
+			var/obj/O = A
+			if(istype(O) && O.buckled_mob) //But can have a mob associated.
+				conga_line += O.buckled_mob
+				if(O.buckled_mob.pulling) //Unlikely, but who knows? A train of wheelchairs?
+					S = O.buckled_mob
+					continue
+			var/obj/structure/bed/B = O
+			if(istype(B) && B.buckled_bodybag)
+				conga_line += B.buckled_bodybag
+			end_of_conga = TRUE //Only mobs can continue the cycle.
+	var/area/new_area = get_area(destination)
+	for(var/atom/movable/AM in conga_line)
+		var/oldLoc
+		if(AM.loc)
+			oldLoc = AM.loc
+			AM.loc.Exited(AM,destination)
+		AM.loc = destination
+		AM.loc.Entered(AM,oldLoc)
+		var/area/old_area
+		if(oldLoc)
+			old_area = get_area(oldLoc)
+		if(new_area && old_area != new_area)
+			new_area.Entered(AM,oldLoc)
+		for(var/atom/movable/CR in destination)
+			if(CR in conga_line)
+				continue
+			CR.Crossed(AM)
+		if(oldLoc)
+			AM.Moved(oldLoc)
+		var/mob/M = AM
+		if(istype(M))
+			M.reset_view(destination)
+	return TRUE
