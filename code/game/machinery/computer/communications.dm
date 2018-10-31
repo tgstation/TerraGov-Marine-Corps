@@ -65,14 +65,14 @@
 			var/obj/item/card/id/I = C.get_active_hand()
 			if(istype(I))
 				if(check_access(I)) authenticated = 1
-				if(ACCESS_MARINE_COMMANDER in I.access)
+				if(ACCESS_MARINE_BRIDGE in I.access)
 					authenticated = 2
 					crew_announcement.announcer = GetNameAndAssignmentFromId(I)
 			else
 				I = C.wear_id
 				if(istype(I))
 					if(check_access(I)) authenticated = 1
-					if(ACCESS_MARINE_COMMANDER in I.access)
+					if(ACCESS_MARINE_BRIDGE in I.access)
 						authenticated = 2
 						crew_announcement.announcer = GetNameAndAssignmentFromId(I)
 		if("logout")
