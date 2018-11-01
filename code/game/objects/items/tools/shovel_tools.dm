@@ -23,7 +23,7 @@
 	var/dirt_type = NO_DIRT // 0 for no dirt, 1 for brown dirt, 2 for snow, 3 for big red.
 	var/shovelspeed = 15
 	var/dirt_amt = 0
-	var/dirt_amt_per_dig = 3
+	var/dirt_amt_per_dig = 5
 
 
 /obj/item/tool/shovel/update_icon()
@@ -151,8 +151,8 @@
 	w_class = 4 //three for unfolded, 3 for folded. This should keep it outside backpacks until its folded, made it 3 because 2 lets you fit in pockets appearntly.
 	origin_tech = "engineering=1"
 	dirt_overlay = "etool_overlay"
-	dirt_amt_per_dig = 2
-	shovelspeed = 25
+	dirt_amt_per_dig = 5
+	shovelspeed = 20
 
 
 /obj/item/tool/shovel/etool/update_icon()
