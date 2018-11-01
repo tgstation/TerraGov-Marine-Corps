@@ -1958,7 +1958,7 @@ MEDICAL
 					/obj/item/reagent_container/glass/bottle/kelotane,
 					/obj/item/reagent_container/glass/bottle/tramadol,
 					/obj/item/storage/pill_bottle/inaprovaline,
-					/obj/item/storage/pill_bottle/antitox,
+					/obj/item/storage/pill_bottle/dylovene,
 					/obj/item/storage/pill_bottle/bicaridine,
 					/obj/item/storage/pill_bottle/dexalin,
 					/obj/item/storage/pill_bottle/spaceacillin,

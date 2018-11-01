@@ -1,25 +1,27 @@
 /obj/var/list/req_access = null
-/obj/var/req_access_txt = "0"
 /obj/var/list/req_one_access = null
+
+//Don't directly use these two, please. No: magic numbers, Yes: defines.
 /obj/var/req_one_access_txt = "0"
+/obj/var/req_access_txt = "0"
 
 //returns 1 if this mob has sufficient access to use this object
 /obj/proc/allowed(mob/M)
 	//check if it doesn't require any access at all
-	if(check_access()) return 1
-	if(istype(M, /mob/living/silicon)) return 1 //AI can do whatever he wants
+	if(check_access())
+		return TRUE
+	if(issilicon(M))
+		return TRUE //Silicons can access whatever they want
 
-	else if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		//if they are holding or wearing a card that has access, that works
-		if(check_access(H.get_active_hand()) || check_access(H.wear_id)) return 1
-	else if(istype(M, /mob/living/carbon/monkey) || istype(M, /mob/living/carbon/Xenomorph))
-		var/mob/living/carbon/C = M
-		if(check_access(C.get_active_hand())) return 1
+	var/obj/item/card/id/I = M.get_idcard() //if they are holding or wearing a card that has access, that works.
+	if(check_access(I))
+		return TRUE
 
-/obj/item/proc/GetAccess() return list()
+/obj/item/proc/GetAccess()
+	return list()
 
-/obj/item/proc/GetID() return
+/obj/item/proc/GetID()
+	return
 
 /obj/proc/check_access(obj/item/I)
 	//These generations have been moved out of /obj/New() because they were slowing down the creation of objects that never even used the access system.

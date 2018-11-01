@@ -1180,7 +1180,7 @@
 								/obj/item/storage/pill_bottle/tramadol,
 								/obj/item/storage/pill_bottle/tramadol,
 								/obj/item/storage/pill_bottle/spaceacillin,
-								/obj/item/storage/pill_bottle/antitox,
+								/obj/item/storage/pill_bottle/dylovene,
 								/obj/item/storage/pill_bottle/kelotane,
 								/obj/item/stack/medical/splint,
 								/obj/item/stack/medical/splint,

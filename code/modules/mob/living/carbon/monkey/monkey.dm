@@ -380,3 +380,17 @@
 		sight &= ~SEE_OBJS
 		see_in_dark = 2
 		see_invisible = SEE_INVISIBLE_LIVING
+
+/mob/living/carbon/monkey/get_idcard(hand_first)
+	//Check hands
+	var/obj/item/card/id/id_card
+	var/obj/item/held_item
+	held_item = get_active_hand()
+	if(held_item) //Check active hand
+		id_card = held_item.GetID()
+	if(!id_card) //If there is no id, check the other hand
+		held_item = get_inactive_hand()
+		if(held_item)
+			id_card = held_item.GetID()
+	if(id_card)
+		return id_card
