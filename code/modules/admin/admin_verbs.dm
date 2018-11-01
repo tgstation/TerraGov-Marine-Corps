@@ -260,6 +260,7 @@ var/list/admin_verbs_mod = list(
 	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/
 	/client/proc/cmd_admin_xeno_report,  //Allows creation of IC reports by the Queen Mother
 	/proc/release,
+	/datum/admins/proc/viewUnheardMhelps,
 	/datum/admins/proc/viewUnheardAhelps, //Why even have it as a client proc anyway?
 	/datum/admins/proc/viewCLFaxes,
 	/datum/admins/proc/viewUSCMFaxes
@@ -275,6 +276,7 @@ var/list/admin_verbs_mentor = list(
 	/client/proc/dsay,
 	/datum/admins/proc/togglesleep,
 	/client/proc/cmd_admin_subtle_message,
+	/datum/admins/proc/viewUnheardMhelps,
 	/datum/admins/proc/viewUnheardAhelps,
 	/datum/admins/proc/viewCLFaxes,
 	/datum/admins/proc/viewUSCMFaxes

@@ -22,6 +22,110 @@
 		else
 			set_species()
 
+	switch(pick("female", "male"))
+		if("female")
+			gender = FEMALE
+			name = pick(first_names_female) + " " + pick(last_names)
+			real_name = name
+			voice_name = name
+
+		if("male")
+			gender = MALE
+			name = pick(first_names_male) + " " + pick(last_names)
+			real_name = name
+			voice_name = name
+
+
+	switch(pick(15;"black", 15;"grey", 15;"brown", 15;"lightbrown", 10;"white", 15;"blonde", 15;"red"))
+		if("black")
+			r_hair = 10
+			g_hair = 10
+			b_hair = 10
+			r_facial = 10
+			g_facial = 10
+			b_facial = 10
+		if("grey")
+			r_hair = 50
+			g_hair = 50
+			b_hair = 50
+			r_facial = 50
+			g_facial = 50
+			b_facial = 50
+		if("brown")
+			r_hair = 70
+			g_hair = 35
+			b_hair = 0
+			r_facial = 70
+			g_facial = 35
+			b_facial = 0
+		if("lightbrown")
+			r_hair = 100
+			g_hair = 50
+			b_hair = 0
+			r_facial = 100
+			g_facial = 50
+			b_facial = 0
+		if("white")
+			r_hair = 235
+			g_hair = 235
+			b_hair = 235
+			r_facial = 235
+			g_facial = 235
+			b_facial = 235
+		if("blonde")
+			r_hair = 240
+			g_hair = 240
+			b_hair = 0
+			r_facial = 240
+			g_facial = 240
+			b_facial = 0
+		if("red")
+			r_hair = 128
+			g_hair = 0
+			b_hair = 0
+			r_facial = 128
+			g_facial = 0
+			b_facial = 0
+
+	h_style = random_hair_style(gender)
+
+	switch(pick("none", "some"))
+		if("none")
+			f_style = "Shaved"
+		if("some")
+			f_style = random_facial_hair_style(gender)
+
+	switch(pick(15;"black", 15;"green", 15;"brown", 15;"blue", 15;"lightblue", 5;"red"))
+		if("black")
+			r_eyes = 10
+			g_eyes = 10
+			b_eyes = 10
+		if("green")
+			r_eyes = 200
+			g_eyes = 0
+			b_eyes = 0
+		if("brown")
+			r_eyes = 100
+			g_eyes = 50
+			b_eyes = 0
+		if("blue")
+			r_eyes = 0
+			g_eyes = 0
+			b_eyes = 200
+		if("lightblue")
+			r_eyes = 0
+			g_eyes = 150
+			b_eyes = 255
+		if("red")
+			r_eyes = 220
+			g_eyes = 0
+			b_eyes = 0
+
+	ethnicity = random_ethnicity()
+	body_type = random_body_type()
+
+	age = rand(17,55)
+
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
