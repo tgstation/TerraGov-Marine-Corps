@@ -85,6 +85,7 @@ MAX_BURST_VALUE 6
 ##FIRE DELAY
 ##Ticks before the weapon can be fired again. Should be 6 for regular delay and 2 for burst delay.
 MIN_FIRE_DELAY 1
+VLOW_FIRE_DELAY 1.5
 MLOW_FIRE_DELAY 2
 LOW_FIRE_DELAY 3
 MED_FIRE_DELAY 4
