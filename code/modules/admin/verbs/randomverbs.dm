@@ -48,19 +48,19 @@
 	set category = null
 	set name = "Subtle Message"
 
-	if(!ismob(M))	return
-	if (!holder)
-		to_chat(src, "Only administrators may use this command.")
+	if(!ismob(M))	
+		return
+	if(!check_rights(R_ADMIN|R_MOD|R_MENTOR))
+		to_chat(src, "Only staff members may use this command.")
 		return
 
 	var/msg = input("Message:", text("Subtle PM to [M.key]")) as text
 
-	if (!msg)
+	if(!msg)
 		return
-	if(usr)
-		if (usr.client)
-			if(usr.client.holder)
-				to_chat(M, "\bold You hear a voice in your head... \italic [msg]")
+
+	if(usr?.client?.holder)
+		to_chat(M, "\bold You hear a voice in your head... \italic [msg]")
 
 	log_admin("SubtlePM: [key_name(usr)] -> [key_name(M)] : [msg]")
 	message_admins("\blue \bold SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] : [msg]", 1)
@@ -112,7 +112,7 @@
 
 	var/msg = input("Message:", text("Enter the text you wish to appear to everyone:")) as text
 
-	if (!msg)
+	if(!msg)
 		return
 	to_chat(world, "[msg]")
 	log_admin("GlobalNarrate: [key_name(usr)] : [msg]")

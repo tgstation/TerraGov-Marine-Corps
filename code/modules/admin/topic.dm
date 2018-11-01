@@ -1757,7 +1757,8 @@
 		usr.client.cmd_admin_direct_narrate(M)
 
 	else if(href_list["subtlemessage"])
-		if(!check_rights(R_MOD,0) && !check_rights(R_ADMIN))  return
+		if(!check_rights(R_ADMIN|R_MOD|R_MENTOR))
+			return
 
 		var/mob/M = locate(href_list["subtlemessage"])
 		usr.client.cmd_admin_subtle_message(M)
@@ -2475,17 +2476,19 @@
 			to_chat(usr, "\blue Looks like that person stopped existing!")
 			return
 		if(ref_person && ref_person.adminhelp_marked)
-			to_chat(usr, "<b>This Adminhelp is already being handled.</b>")
+			to_chat(usr, "<b>This Pray/Mentorhelp/Adminhelp is already being handled.</b>")
 			usr << sound('sound/effects/adminhelp-error.ogg')
 			return
 
-		message_staff("[usr.key] has used 'Mark' on the Adminhelp from [key_name_admin(ref_person)] and is preparing to respond...", 1)
+		message_staff("[usr.key] has used 'Mark' on the Pray/Mentorhelp/Adminhelp from [key_name_admin(ref_person)] and is preparing to respond...", 1)
 		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has marked your request and is preparing to respond...</b>"
 
 		to_chat(ref_person, msgplayer)
 
+		unansweredMhelps.Remove(ref_person.computer_id)
 		unansweredAhelps.Remove(ref_person.computer_id) //It has been answered so take it off of the unanswered list
-		src.viewUnheardAhelps() //This SHOULD refresh the page
+		viewUnheardMhelps() //This SHOULD refresh the page
+		viewUnheardAhelps()
 
 		ref_person.adminhelp_marked = 1 //Timer to prevent multiple clicks
 		spawn(1000) //This should be <= the Adminhelp cooldown in adminhelp.dm
@@ -2497,18 +2500,20 @@
 			to_chat(usr, "\blue Looks like that person stopped existing!")
 			return
 		if(ref_person && ref_person.adminhelp_marked)
-			to_chat(usr, "<b>This Adminhelp is already being handled.</b>")
+			to_chat(usr, "<b>This Pray/Mentorhelp/Adminhelp is already being handled.</b>")
 			usr << sound('sound/effects/adminhelp-error.ogg')
 			return
 
-		message_staff("[usr.key] has used 'No Response' on the Adminhelp from [key_name_admin(ref_person)]. The player has been notified that their issue 'is being handled, it's fixed, or it's nonsensical'.", 1)
-		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has received your Adminhelp and marked it as 'No response necessary'. Either your Adminhelp is being handled, it's fixed, or it's nonsensical.</font></b>"
+		message_staff("[usr.key] has used 'No Response' on the Mentorhelp/Adminhelp from [key_name_admin(ref_person)]. The player has been notified that their issue 'is being handled, it's fixed, or it's nonsensical'.", 1)
+		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has received your Mentorhelp/Adminhelp and marked it as 'No response necessary'. Either your Mentorhelp/Adminhelp is being handled, it's fixed, or it's nonsensical.</font></b>"
 
 		to_chat(ref_person, msgplayer)
 		ref_person << sound('sound/effects/adminhelp-error.ogg')
 
+		unansweredMhelps.Remove(ref_person.computer_id)
 		unansweredAhelps.Remove(ref_person.computer_id) //It has been answered so take it off of the unanswered list
-		src.viewUnheardAhelps() //This SHOULD refresh the page
+		viewUnheardMhelps() //This SHOULD refresh the page
+		viewUnheardAhelps()
 
 		ref_person.adminhelp_marked = 1 //Timer to prevent multiple clicks
 		spawn(1000) //This should be <= the Adminhelp cooldown in adminhelp.dm
@@ -2520,18 +2525,21 @@
 			to_chat(usr, "\blue Looks like that person stopped existing!")
 			return
 		if(ref_person && ref_person.adminhelp_marked)
-			to_chat(usr, "<b>This Adminhelp is already being handled.</b>")
+			to_chat(usr, "<b>This Pray/Mentorhelp/Adminhelp is already being handled.</b>")
 			usr << sound('sound/effects/adminhelp-error.ogg')
 			return
 
-		message_staff("[usr.key] has used 'Warn' on the Adminhelp from [key_name_admin(ref_person)]. The player has been warned for abusing the Adminhelp system.", 1)
-		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has given you a <font color=red>warning</font>. Adminhelps are for serious inquiries only. Please do not abuse this system.</b>"
+		message_staff("[usr.key] has used 'Warn' on the Mentorhelp/Adminhelp from [key_name_admin(ref_person)]. The player has been warned for abusing the Adminhelp system.", 1)
+		var/msgplayer = "\blue <b>NOTICE: <font color=red>[usr.key]</font> has given you a <font color=red>warning</font>. Mentorhelps/Adminhelps are for serious inquiries only. Please do not abuse this system.</b>"
 
 		to_chat(ref_person, msgplayer)
 		ref_person << sound('sound/effects/adminhelp-error.ogg')
 
+
+		unansweredMhelps.Remove(ref_person.computer_id)
 		unansweredAhelps.Remove(ref_person.computer_id) //It has been answered so take it off of the unanswered list
-		src.viewUnheardAhelps() //This SHOULD refresh the page
+		src.viewUnheardMhelps() //This SHOULD refresh the page
+		src.viewUnheardAhelps()
 
 		ref_person.adminhelp_marked = 1 //Timer to prevent multiple clicks
 		spawn(1000) //This should be <= the Adminhelp cooldown in adminhelp.dm
@@ -2543,9 +2551,9 @@
 			to_chat(usr, "\blue Looks like that person stopped existing!")
 			return
 		if(ref_person && ref_person.adminhelp_marked)
-			to_chat(usr, "<b>This Adminhelp is already being handled, but continue if you wish.</b>")
+			to_chat(usr, "<b>This Mentorhelp/Adminhelp is already being handled, but continue if you wish.</b>")
 			usr << sound('sound/effects/adminhelp-error.ogg')
-			if(alert(usr, "Are you sure you want to autoreply to this marked ahelp?", "Confirmation", "Yes", "No") != "Yes")
+			if(alert(usr, "Are you sure you want to autoreply to this marked Mentorhelp/Adminhelp?", "Confirmation", "Yes", "No") != "Yes")
 				return
 
 		var/choice = input("Which autoresponse option do you want to send to the player?\n\n L - A webpage link.\n A - An answer to a common question.", "Autoresponse", "--CANCEL--") in list ("--CANCEL--", "IC Issue", "Being Handled", "Fixed", "Thanks", "Guilty", "Find out IC-ly", "L: Xeno Quickstart Guide", "L: Marine quickstart guide", "L: Current Map", "A: No plasma regen", "A: Devour as Xeno", "J: Job bans", "E: Event in progress", "R: Radios", "M: Macros")

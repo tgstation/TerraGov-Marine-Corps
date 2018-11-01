@@ -2,7 +2,7 @@
 /datum/admins/proc/create_mob(var/mob/user)
 	if (!create_mob_html)
 		var/mobjs = null
-		mobjs = list2text(typesof(/mob) - list(/mob/living/carbon/Xenomorph/Larva/predalien,/mob/living/carbon/Xenomorph/Predalien), ";")
+		mobjs = list2text(typesof(/mob), ";")
 		create_mob_html = file2text('html/create_object.html')
 		create_mob_html = oldreplacetext(create_mob_html, "null /* object types */", "\"[mobjs]\"")
 
