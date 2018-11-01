@@ -120,7 +120,8 @@ var/global/list/randomized_pill_icons
 /obj/item/reagent_container/pill/dylovene
 	pill_desc = "A dylovene pill. It neutralizes many common toxins."
 	list_reagents = list("dylovene" = 25)
-/obj/item/reagent_container/pill/antitox/New()
+
+/obj/item/reagent_container/pill/dylovene/New()
 	. = ..()
 	icon_state = randomized_pill_icons[1]
 
@@ -153,7 +154,7 @@ var/global/list/randomized_pill_icons
 	pill_desc = "A sleeping pill commonly used to treat insomnia."
 	list_reagents = list("sleeptoxin" = 15)
 
-/obj/item/reagent_container/pill/stox/New()
+/obj/item/reagent_container/pill/sleeptox/New()
 	. = ..()
 	icon_state = randomized_pill_icons[4]
 

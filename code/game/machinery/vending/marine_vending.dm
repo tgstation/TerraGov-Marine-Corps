@@ -280,7 +280,7 @@
 					/obj/item/reagent_container/hypospray/autoinjector/hypervene = 4,
 					/obj/item/storage/pill_bottle/bicaridine = 3,
 					/obj/item/storage/pill_bottle/dexalin = 3,
-					/obj/item/storage/pill_bottle/antitox = 3,
+					/obj/item/storage/pill_bottle/dylovene = 3,
 					/obj/item/storage/pill_bottle/kelotane = 3,
 					/obj/item/storage/pill_bottle/spaceacillin = 3,
 					/obj/item/storage/pill_bottle/inaprovaline = 3,

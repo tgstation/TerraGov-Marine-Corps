@@ -516,7 +516,6 @@
 #include "code\game\objects\items\blueprints.dm"
 #include "code\game\objects\items\bodybag.dm"
 #include "code\game\objects\items\cards_ids.dm"
-#include "code\game\objects\items\contraband.dm"
 #include "code\game\objects\items\cosmetics.dm"
 #include "code\game\objects\items\disks.dm"
 #include "code\game\objects\items\dna_injector.dm"
