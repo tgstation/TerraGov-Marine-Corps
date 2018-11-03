@@ -112,24 +112,6 @@
 	zone_sel.update_icon(owner)
 	static_inventory += zone_sel
 
-	//Handle the gun settings buttons
-	gun_setting_icon = new /obj/screen/gun/mode()
-	gun_setting_icon.update_icon(owner)
-	static_inventory += gun_setting_icon
-
-	gun_item_use_icon = new /obj/screen/gun/item()
-	gun_item_use_icon.update_icon(owner)
-	static_inventory += gun_item_use_icon
-
-	gun_move_icon = new /obj/screen/gun/move()
-	gun_move_icon.update_icon(owner)
-	static_inventory +=	gun_move_icon
-
-	gun_run_icon = new /obj/screen/gun/run()
-	gun_run_icon.update_icon(owner)
-	static_inventory +=	gun_run_icon
-
-
 
 /mob/living/silicon/robot/create_hud()
 	if(client && !hud_used)
