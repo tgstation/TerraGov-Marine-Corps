@@ -532,17 +532,14 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	switch(severity)
 		if(1.0)
-			take_damage_type(rand(100, 150), "explosive")
+			take_damage_type(rand(250, 350), "explosive") //Devastation level explosives are anti-tank and do real damage.
 			take_damage_type(rand(20, 40), "slash")
 
 		if(2.0)
-			take_damage_type(rand(60,80), "explosive")
+			take_damage_type(rand(30, 40), "explosive") //Heavy explosions do some damage, but are largely deferred by the armour/bulk.
 			take_damage_type(rand(10, 15), "slash")
 
-		if(3.0)
-			take_damage_type(rand(20, 25), "explosive")
-
-	healthcheck()
+	healthcheck() //Tanks/armoured vehicles don't really take damage from light explosions, such as frag grenades. Also makes using the LTB more viable due to crush/stun chaining being removed.
 
 //Honestly copies some code from the Xeno files, just handling some special cases
 /obj/vehicle/multitile/root/cm_armored/attack_alien(var/mob/living/carbon/Xenomorph/M, var/dam_bonus)

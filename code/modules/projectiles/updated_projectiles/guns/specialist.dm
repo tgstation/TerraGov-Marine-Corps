@@ -570,6 +570,13 @@
 	smoke = new()
 	smoke.attach(src)
 
+/obj/item/weapon/gun/launcher/rocket/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
+	if(!able_to_fire(user))
+		return
+	if(!do_after(user,5, TRUE, 5, BUSY_ICON_HOSTILE)) //slight wind up
+		return
+	return ..()
+
 /obj/item/weapon/gun/launcher/rocket/set_gun_config_values()
 	fire_delay = config.high_fire_delay*2
 	accuracy_mult = config.base_hit_accuracy_mult

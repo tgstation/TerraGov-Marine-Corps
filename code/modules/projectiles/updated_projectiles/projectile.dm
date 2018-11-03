@@ -219,20 +219,11 @@
 
 	// Firer's turf, keep moving
 	if(firer && T == firer.loc)
-		return 0
-
-	// Explosive ammo always explodes on the turf of the clicked target
-	if(ammo.flags_ammo_behavior & AMMO_EXPLOSIVE && T == target_turf)
-		ammo.on_hit_turf(T,src)
-
-		if(T && T.loc)
-			T.bullet_act(src)
-
-		return 1
+		return FALSE
 
 	// Empty turf, keep moving
 	if(!T.contents.len)
-		return 0
+		return FALSE
 
 	for(var/atom/movable/A in T)
 		// If we've already handled this atom, don't do it again
@@ -273,9 +264,11 @@
 								break
 				if(mob_is_hit)
 					ammo.on_hit_mob(L,src)
-					if(L && L.loc)
+					if(L?.loc)
+						if(ammo.flags_ammo_behavior & AMMO_EXPLOSIVE) //If we're explosive, we go off.
+							ammo.on_hit_turf(L,src)
 						L.bullet_act(src)
-					return 1
+					return TRUE
 				else if (!L.lying)
 					animatation_displace_reset(L)
 					if(ammo.sound_miss) L.playsound_local(get_turf(L), ammo.sound_miss, 75, 1)
@@ -284,9 +277,17 @@
 			else if(isobj(A))
 				ammo.on_hit_obj(A,src)
 				if(A && A.loc)
+					if(ammo.flags_ammo_behavior & AMMO_EXPLOSIVE) //If we're explosive, we go off.
+						ammo.on_hit_turf(A,src)
 					A.bullet_act(src)
-				return 1
+				return TRUE
 
+	// Explosive ammo always explodes on the turf of the clicked target
+	if(src && ammo.flags_ammo_behavior & AMMO_EXPLOSIVE && T == target_turf)
+		ammo.on_hit_turf(T,src)
+		if(T?.loc)
+			T.bullet_act(src)
+		return TRUE
 
 //----------------------------------------------------------
 		    	//				    	\\
@@ -329,7 +330,7 @@
 
 	if(!( P.dir & reverse_direction(dir) || P.dir & dir))
 		return FALSE //no effect if bullet direction is perpendicular to barricade
-		
+
 	var/distance = P.distance_travelled - 1
 	if(distance < P.ammo.barricade_clear_distance)
 		return FALSE
