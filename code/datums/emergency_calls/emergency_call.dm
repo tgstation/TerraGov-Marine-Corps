@@ -160,7 +160,7 @@
 
 			ticker.mode.distress_cooldown = 1
 			ticker.mode.picked_call = null
-			spawn(1200)
+			spawn(600)
 				ticker.mode.distress_cooldown = 0
 		else //We've got enough!
 			//Trim down the list
