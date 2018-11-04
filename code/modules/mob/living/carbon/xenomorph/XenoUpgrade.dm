@@ -100,14 +100,16 @@ Queen		 0.0	 0.1	 0.2	 0.3
 				if ("Defender")
 					melee_damage_lower = 20
 					melee_damage_upper = 30
-					health = 325
-					maxHealth = 325
-					plasma_gain = 8
-					plasma_max = 100
+					health = 275
+					maxHealth = 275
+					plasma_gain = 13
+					plasma_max = 175
 					upgrade_threshold = 200
 					caste_desc = "An alien with an armored head crest. It looks a little more dangerous."
 					speed = -0.3
-					armor_deflection = 20
+					armor_deflection = 25
+					fortify_armor = 80
+					crest_defense_armor = 40
 				if ("Warrior")
 					melee_damage_lower = 35
 					melee_damage_upper = 45
@@ -313,16 +315,18 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tacklemax = 9
 					tackle_chance = 90
 				if ("Defender")
-					melee_damage_lower = 20
-					melee_damage_upper = 35
-					health = 340
-					maxHealth = 340
-					plasma_gain = 8
-					plasma_max = 100
+					melee_damage_lower = 23
+					melee_damage_upper = 33
+					health = 290
+					maxHealth = 290
+					plasma_gain = 14
+					plasma_max = 190
 					upgrade_threshold = 400
 					caste_desc = "An alien with an armored head crest. It looks pretty strong."
 					speed = -0.4
-					armor_deflection = 25
+					armor_deflection = 28
+					fortify_armor = 87
+					crest_defense_armor = 43
 				if ("Warrior")
 					melee_damage_lower = 40
 					melee_damage_upper = 45
@@ -528,14 +532,18 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tackle_chance = 95
 				if ("Defender")
 					to_chat(src, "<span class='xenoannounce'>You are a incredibly resilient, you can control the battle through sheer force.</span>")
-					health = 350
-					maxHealth = 350
-					plasma_gain = 8
-					plasma_max = 100
+					melee_damage_lower = 26
+					melee_damage_upper = 36
+					health = 300
+					maxHealth = 300
+					plasma_gain = 15
+					plasma_max = 200
 					upgrade_threshold = 800
 					caste_desc = "An unstoppable force that remains when others would fall."
 					speed = -0.4
-					armor_deflection = 25
+					armor_deflection = 30
+					fortify_armor = 90
+					crest_defense_armor = 45
 				if ("Warrior")
 					to_chat(src, "<span class='xenoannounce'>None can stand before you. You will annihilate all weaklings who try.</span>")
 					melee_damage_lower = 45
