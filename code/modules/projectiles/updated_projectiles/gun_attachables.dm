@@ -19,6 +19,7 @@ Defined in conflicts.dm of the #defines folder.
 #define ATTACH_PROJECTILE	4
 #define ATTACH_RELOADABLE	8
 #define ATTACH_WEAPON		16
+#define ATTACH_UTILITY		32
 */
 
 /obj/item/attachable
@@ -1095,4 +1096,34 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 
 	accuracy_unwielded_mod = -config.hmed_hit_accuracy_mult
 	scatter_unwielded_mod = config.med_scatter_value
+
+
+/obj/item/attachable/hydro_cannon
+	name = "M240T Hydro Cannon"
+	desc = "An integrated component of the M240T incinerator unit, the hydro cannon fires high pressure sprays of water; mainly to extinguish any wayward allies or unintended collateral damage."
+	icon_state = "hydrocannon"
+	attach_icon = ""
+	slot = "under"
+	flags_attach_features = ATTACH_ACTIVATION|ATTACH_UTILITY
+	attachment_action_type = /datum/action/item_action/toggle
+	var/max_water = 200
+	var/last_use
+
+/obj/item/attachable/hydro_cannon/activate_attachment(obj/item/weapon/gun/G, mob/living/user, turn_off)
+	if(G.active_attachable == src)
+		if(user)
+			to_chat(user, "<span class='notice'>You are no longer using [src].</span>")
+		G.active_attachable = null
+		icon_state = initial(icon_state)
+	else if(!turn_off)
+		if(user)
+			to_chat(user, "<span class='notice'>You are now using [src].</span>")
+		G.active_attachable = src
+		icon_state += "-on"
+
+	for(var/X in G.actions)
+		var/datum/action/A = X
+		A.update_button_icon()
+	return TRUE
+
 
