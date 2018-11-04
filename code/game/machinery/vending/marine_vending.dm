@@ -102,6 +102,7 @@
 					/obj/item/storage/pouch/firstaid/full = 5,
 					/obj/item/storage/pouch/pistol = 10,
 					/obj/item/storage/pouch/magazine/pistol/large = 5,
+					/obj/item/storage/pouch/shotgun = 10,
 					/obj/item/weapon/gun/pistol/m4a3 = 20,
 					/obj/item/weapon/gun/pistol/m1911 = 2,
 					/obj/item/weapon/gun/revolver/m44 = 10,
