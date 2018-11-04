@@ -12,6 +12,15 @@
 	add_fingerprint(user)
 	if(!C.pry_capable)
 		return
+	else if(!unacidable && istype(C, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
+		var/obj/item/tool/pickaxe/plasmacutter/P = C
+		if(!P.start_cut(user, name, src))
+			return
+		if(do_after(user, P.calc_delay(user), TRUE, 5, BUSY_ICON_HOSTILE) && P)
+			P.cut_apart(user, name, src)
+			cdel()
+		return
+
 	if(density && (stat & NOPOWER) && !operating && !unacidable)
 		operating = 1
 		spawn(-1)
