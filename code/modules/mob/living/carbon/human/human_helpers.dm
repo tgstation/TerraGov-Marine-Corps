@@ -250,6 +250,10 @@
 			if(W.isOn())
 				W.toggle()
 				goes_out++
+		for(var/obj/item/tool/pickaxe/plasmacutter/W in contents)
+			if(W.powered)
+				W.toggle()
+				goes_out++
 		for(var/obj/item/tool/match/M in contents)
 			M.burn_out(src)
 		for(var/obj/item/tool/lighter/Z in contents)
