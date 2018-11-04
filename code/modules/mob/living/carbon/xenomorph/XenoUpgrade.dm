@@ -241,7 +241,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					aura_strength = 1.5
 					var/mob/living/carbon/Xenomorph/Carrier/CA = src
 					CA.huggers_max = 9
-					CA.hugger_delay = 30
+					CA.hugger_delay = 20
 					CA.eggs_max = 4
 				if("Queen")
 					melee_damage_lower = 50
@@ -456,7 +456,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					aura_strength = 2
 					var/mob/living/carbon/Xenomorph/Carrier/CA = src
 					CA.huggers_max = 10
-					CA.hugger_delay = 20
+					CA.hugger_delay = 15
 					CA.eggs_max = 5
 				if("Queen")
 					melee_damage_lower = 55
