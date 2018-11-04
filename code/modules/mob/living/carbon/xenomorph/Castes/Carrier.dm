@@ -26,9 +26,9 @@
 	mob_size = MOB_SIZE_BIG
 	var/huggers_max = 8
 	var/huggers_cur = 0
-	var/throwspeed = 1
+	var/throwspeed = 2
 	var/threw_a_hugger = 0
-	var/hugger_delay = 30
+	var/hugger_delay = 25
 	var/eggs_cur = 0
 	var/eggs_max = 3
 	tier = 2
@@ -44,6 +44,9 @@
 		/datum/action/xeno_action/activable/throw_hugger,
 		/datum/action/xeno_action/activable/retrieve_egg,
 		/datum/action/xeno_action/place_trap,
+		)
+	inherent_verbs = list(
+		/mob/living/carbon/Xenomorph/proc/vent_crawl,
 		)
 
 	death(gibbed)
@@ -120,7 +123,7 @@
 		threw_a_hugger = 1
 		update_action_button_icons()
 		drop_inv_item_on_ground(F)
-		F.throw_at(T, 4, throwspeed)
+		F.throw_at(T, 5, throwspeed)
 		visible_message("<span class='xenowarning'>\The [src] throws something towards \the [T]!</span>", \
 		"<span class='xenowarning'>You throw a facehugger towards \the [T]!</span>")
 		spawn(hugger_delay)
