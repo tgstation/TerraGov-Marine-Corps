@@ -944,6 +944,7 @@ datum/game_mode/proc/initialize_special_clamps()
 						/obj/item/storage/pouch/firstaid/full = round(scale * 5),
 						/obj/item/storage/pouch/pistol = round(scale * 10),
 						/obj/item/storage/pouch/magazine/pistol/large = round(scale * 5),
+						/obj/item/storage/pouch/shotgun = round(scale * 10),
 						/obj/item/weapon/gun/pistol/m4a3 = round(scale * 20),
 						/obj/item/weapon/gun/pistol/m1911 = round(scale * 2),
 						/obj/item/weapon/gun/revolver/m44 = round(scale * 10),
