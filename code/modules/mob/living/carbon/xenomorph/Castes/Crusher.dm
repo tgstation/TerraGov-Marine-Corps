@@ -38,6 +38,7 @@
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/stomp,
 		/datum/action/xeno_action/ready_charge,
+		/datum/action/xeno_action/activable/cresttoss,
 		)
 
 /mob/living/carbon/Xenomorph/Crusher/proc/stomp()
@@ -52,9 +53,14 @@
 		to_chat(src, "<span class='xenodanger'>You can't rear up to stomp with that thing on your leg!</span>")
 		return
 
-	if(!check_plasma(50)) return
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>You try to stomp but are unable as you fail to shake off the shock!</span>")
+		return
+
+	if(!check_plasma(80))
+		return
 	has_screeched = world.time
-	use_plasma(50)
+	use_plasma(80)
 
 	round_statistics.crusher_stomps++
 
@@ -63,21 +69,33 @@
 	"<span class='xenodanger'>You smash into the ground!</span>")
 	create_stomp() //Adds the visual effect. Wom wom wom
 
-	var/i = 5
-	for(var/mob/living/M in range(1,loc))
-		if(!i) break
-		if(!isXeno(M))
-			if(M.loc == loc)
-				if(M.stat == DEAD)
-					continue
-				if(!(M.status_flags & XENO_HOST) && !istype(M.buckled, /obj/structure/bed/nest))
-					round_statistics.crusher_stomp_victims++
-					M.take_overall_damage(40) //The same as a full charge, but no more than that.
-					log_combat(src, M, "xeno stomped")
-				M.KnockDown(rand(2, 3))
-				to_chat(M, "<span class='highdanger'>You are stomped on by [src]!</span>")
+	for(var/mob/living/M in range(2,loc))
+		if(isXeno(M) || M.stat == DEAD || ((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest)))
+			continue
+		var/distance = get_dist(M, loc)
+		var/damage = (rand(melee_damage_lower, melee_damage_upper) * 1.5) / max(1,distance + 1)
+		if(frenzy_aura > 0)
+			damage *= (1 + round(frenzy_aura * 0.1,0.01)) //+10% per level of Frenzy
+		if(distance == 0) //If we're on top of our victim, give him the full impact
+			round_statistics.crusher_stomp_victims++
+			var/armor_block = M.run_armor_check("chest", "melee")
+			if(ishuman(M))
+				var/mob/living/carbon/human/H = M
+				H.take_overall_damage(rand(damage * 0.75,damage * 1.25), armor_block) //Armour functions against this.
+			else
+				M.take_overall_damage(rand(damage * 0.75,damage * 1.25), armor_block) //Armour functions against this.
+			to_chat(M, "<span class='highdanger'>You are stomped on by [src]!</span>")
+			shake_camera(M, 3, 3)
+		else
+			step_away(M, src, 1) //Knock away
 			shake_camera(M, 2, 2)
-		i--
+			to_chat(M, "<span class='highdanger'>You reel from the shockwave of [src]'s stomp!</span>")
+		if(distance < 2) //If we're beside or adjacent to the Crusher, we get knocked down.
+			M.KnockDown(1)
+		else
+			M.Stun(1) //Otherwise we just get stunned.
+		M.apply_damage(rand(damage * 0.75 , damage * 1.25), HALLOSS) //Armour ignoring Halloss
+
 
 //The atom collided with is passed to this proc, all types of collisions are dealt with here.
 //The atom does not tell the Crusher how to handle a collision, the Crusher is an independant

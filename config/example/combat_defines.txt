@@ -22,8 +22,17 @@ CRITICAL_CHANCE_HIGH 10
 BASE_ARMOR_RESIST_LOW 1.0 
 ##This is the derived multiple * after soaking damgage again.
 BASE_ARMOR_RESIST_HIGH 2.0
+
+##Xenos use this as a lower boundary for soaking damage or adding more armor.
+XENO_ARMOR_RESIST_MIN 0.25
+##Xenos use this as a mid-lower boundary for soaking damage or adding more armor.
+XENO_ARMOR_RESIST_VLOW 0.33
 ##Xenos use this as a lower boundary for soaking damage or adding more armor.
 XENO_ARMOR_RESIST_LOW 0.5
+##Xenos use this as a lower boundary for soaking damage or adding more armor.
+XENO_ARMOR_RESIST_MLOW 0.66
+##Xenos use this as a lower boundary for soaking damage or adding more armor.
+XENO_ARMOR_RESIST_LMED 0.75
 ##Xenos use this as the upper boundary for deflecting damage on their second pass.
 XENO_ARMOR_RESIST_HIGH 1.5
 

@@ -11,7 +11,11 @@
 	var/base_armor_resist_low = 1.0
 	var/base_armor_resist_high = 2.0
 
+	var/xeno_armor_resist_min = 0.25
+	var/xeno_armor_resist_vlow = 0.33
 	var/xeno_armor_resist_low = 0.5
+	var/xeno_armor_resist_mlow = 0.66
+	var/xeno_armor_resist_lmed = 0.75
 	var/xeno_armor_resist_high = 1.5
 
 	var/min_hit_accuracy = 5
@@ -185,12 +189,22 @@
 			critical_chance_low = value
 		if("critical_chance_high")
 			critical_chance_high = value
+
 		if("base_armor_resist_low")
 			base_armor_resist_low = value
 		if("base_armor_resist_high")
 			base_armor_resist_high = value
+
+		if("xeno_armor_resist_min")
+			xeno_armor_resist_min = value
+		if("xeno_armor_resist_vlow")
+			xeno_armor_resist_vlow = value
 		if("xeno_armor_resist_low")
 			xeno_armor_resist_low = value
+		if("xeno_armor_resist_mlow")
+			xeno_armor_resist_low = value
+		if("xeno_armor_resist_lmed")
+			xeno_armor_resist_lmed = value
 		if("xeno_armor_resist_high")
 			xeno_armor_resist_high = value
 

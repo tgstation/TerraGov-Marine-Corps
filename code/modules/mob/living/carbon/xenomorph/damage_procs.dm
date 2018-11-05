@@ -79,7 +79,13 @@
 
 
 /mob/living/carbon/Xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, used_weapon = null, sharp = 0, edge = 0)
-	if(damage <= 0)
+	if(blocked >= 1) //total negation
+		return FALSE
+
+	if(blocked)
+		damage *= CLAMP(1-blocked,0.00,1.00) //Percentage reduction
+
+	if(!damage) //no damage
 		return FALSE
 
 	//We still want to check for blood splash before we get to the damage application.

@@ -11,10 +11,12 @@
 /mob/living/proc/apply_damage(var/damage = 0,var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0)
 	if(blocked >= 1) //total negation
 		return 0
-	if(!damage) //no damage
-		return 0
+
 	if(blocked)
 		damage *= CLAMP(1-blocked,0.00,1.00) //Percentage reduction
+
+	if(!damage) //no damage
+		return 0
 
 	switch(damagetype)
 		if(BRUTE)
