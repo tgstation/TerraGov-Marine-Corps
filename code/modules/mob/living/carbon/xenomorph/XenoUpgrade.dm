@@ -63,9 +63,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					speed = -1.9
 					armor_deflection = 10
 					attack_delay = -4
-					tacklemin = 2
-					tacklemax = 4
-					tackle_chance = 50
+					tackle_damage = 30 // Prior was 25
 					pounce_delay = 35
 				if("Hunter")
 					melee_damage_lower = 30
@@ -79,9 +77,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					speed = -1.6
 					armor_deflection = 20
 					attack_delay = -2
-					tacklemin = 3
-					tacklemax = 5
-					tackle_chance = 60
+					tackle_damage = 40 // Prior was 35
 					pounce_delay = 50
 				if("Ravager")
 					melee_damage_lower = 50
@@ -94,9 +90,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					caste_desc = "A brutal, devastating front-line attacker. It looks a little more dangerous."
 					speed = -0.8
 					armor_deflection = 45
-					tacklemin = 4
-					tacklemax = 8
-					tackle_chance = 85
+					tackle_damage = 60 // Prior was 55
 				if ("Defender")
 					melee_damage_lower = 20
 					melee_damage_upper = 30
@@ -107,6 +101,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					upgrade_threshold = 200
 					caste_desc = "An alien with an armored head crest. It looks a little more dangerous."
 					speed = -0.3
+					tackle_damage = 35 // Prior was 30
 					armor_deflection = 25
 					fortify_armor = 80
 					crest_defense_armor = 40
@@ -121,12 +116,9 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					caste_desc = "An alien with an armored carapace. It looks a little more dangerous."
 					speed = -0.4
 					armor_deflection = 50
+					tackle_damage = 45 // Prior was 40
 				if("Crusher")
-					melee_damage_lower = 25
-					melee_damage_upper = 40
-					tacklemin = 4
-					tacklemax = 7
-					tackle_chance = 65
+					tackle_damage = 55 // Prior was 50
 					health = 325
 					maxHealth = 325
 					plasma_gain = 15
@@ -145,9 +137,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					spit_delay = 20
 					caste_desc = "A ranged combat alien. It looks a little more dangerous."
 					armor_deflection = 15
-					tacklemin = 3
-					tacklemax = 5
-					tackle_chance = 60
+					tackle_damage = 30 // Prior was 25
 					speed = -0.9
 				if("Spitter")
 					melee_damage_lower = 25
@@ -159,10 +149,8 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					upgrade_threshold = 400
 					spit_delay = 20
 					caste_desc = "A ranged damage dealer. It looks a little more dangerous."
+					tackle_damage = 35 // Prior was 30
 					armor_deflection = 25
-					tacklemin = 3
-					tacklemax = 5
-					tackle_chance = 60
 					speed = -0.6
 				if("Boiler")
 					melee_damage_lower = 25
@@ -175,10 +163,8 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					spit_delay = 30
 					bomb_strength = 1.5
 					caste_desc = "Some sort of abomination. It looks a little more dangerous."
+					tackle_damage = 25 // Prior was 20
 					armor_deflection = 35
-					tacklemin = 3
-					tacklemax = 5
-					tackle_chance = 65
 					speed = 0.6
 				if("Praetorian")
 					melee_damage_lower = 25
@@ -191,9 +177,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					spit_delay = 15
 					caste_desc = "A giant ranged monster. It looks a little more dangerous."
 					armor_deflection = 40
-					tacklemin = 5
-					tacklemax = 8
-					tackle_chance = 75
+					tackle_damage = 45 // Prior was 40
 					speed = 0.0
 					aura_strength = 2.5
 				if("Drone")
@@ -206,9 +190,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					upgrade_threshold = 200
 					caste_desc = "The workhorse of the hive. It looks a little more dangerous."
 					armor_deflection = 5
-					tacklemin = 3
-					tacklemax = 5
-					tackle_chance = 60
+					tackle_damage = 30 // Prior was 25
 					speed = -0.9
 					aura_strength = 1
 				if("Hivelord")
@@ -236,9 +218,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					upgrade_threshold = 400
 					caste_desc = "A portable Love transport. It looks a little more dangerous."
 					armor_deflection = 10
-					tacklemin = 3
-					tacklemax = 4
-					tackle_chance = 60
+					tackle_damage = 35 // Prior was 30
 					speed = -0.1
 					aura_strength = 1.5
 					var/mob/living/carbon/Xenomorph/Carrier/CA = src
@@ -256,9 +236,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					spit_delay = 20
 					caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs."
 					armor_deflection = 50
-					tacklemin = 5
-					tacklemax = 7
-					tackle_chance = 85
+					tackle_damage = 60 // Prior was 55
 					speed = 0.5
 					aura_strength = 3
 					queen_leader_limit = 2
@@ -280,9 +258,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					speed = -2.0
 					armor_deflection = 10
 					attack_delay = -4
-					tacklemin = 3
-					tacklemax = 5
-					tackle_chance = 60
+					tackle_damage = 35 // Prior was 30
 					pounce_delay = 30
 				if("Hunter")
 					melee_damage_lower = 35
@@ -296,9 +272,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					speed = -1.7
 					armor_deflection = 25
 					attack_delay = -3
-					tacklemin = 4
-					tacklemax = 6
-					tackle_chance = 65
+					tackle_damage = 45 // Prior was 40
 					pounce_delay = 45
 				if("Ravager")
 					melee_damage_lower = 55
@@ -311,12 +285,11 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					caste_desc = "A brutal, devastating front-line attacker. It looks pretty strong."
 					speed = -0.9
 					armor_deflection = 50
-					tacklemin = 5
-					tacklemax = 9
-					tackle_chance = 90
+					tackle_damage = 65 // Prior was 60
 				if ("Defender")
 					melee_damage_lower = 23
 					melee_damage_upper = 33
+					tackle_damage = 35 // Prior was 30
 					health = 290
 					maxHealth = 290
 					plasma_gain = 14
@@ -330,6 +303,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 				if ("Warrior")
 					melee_damage_lower = 40
 					melee_damage_upper = 45
+					tackle_damage = 50 // Prior was 45
 					health = 260
 					maxHealth = 260
 					plasma_gain = 8
@@ -341,9 +315,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 				if("Crusher")
 					melee_damage_lower = 30
 					melee_damage_upper = 40
-					tacklemin = 5
-					tacklemax = 9
-					tackle_chance = 70
+					tackle_damage = 65 // Prior was 60
 					health = 340
 					maxHealth = 340
 					plasma_gain = 30
@@ -362,9 +334,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					spit_delay = 15
 					caste_desc = "A ranged combat alien. It looks pretty strong."
 					armor_deflection = 20
-					tacklemin = 4
-					tacklemax = 6
-					tackle_chance = 60
+					tackle_damage = 35 // Prior was 30
 					speed = -1.0
 				if("Spitter")
 					melee_damage_lower = 30
@@ -377,9 +347,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					spit_delay = 15
 					caste_desc = "A ranged damage dealer. It looks pretty strong."
 					armor_deflection = 30
-					tacklemin = 4
-					tacklemax = 6
-					tackle_chance = 70
+					tackle_damage = 40 // Prior was 35
 					speed = -0.7
 				if("Boiler")
 					melee_damage_lower = 30
@@ -393,9 +361,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					bomb_strength = 2
 					caste_desc = "Some sort of abomination. It looks pretty strong."
 					armor_deflection = 35
-					tacklemin = 3
-					tacklemax = 5
-					tackle_chance = 70
+					tackle_damage = 30 // Prior was 25
 					speed = 0.5
 				if("Praetorian")
 					melee_damage_lower = 30
@@ -408,9 +374,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					spit_delay = 15
 					caste_desc = "A giant ranged monster. It looks pretty strong."
 					armor_deflection = 40
-					tacklemin = 6
-					tacklemax = 9
-					tackle_chance = 80
+					tackle_damage = 50 // Prior was 45
 					speed = -0.1
 					aura_strength = 3.5
 				if("Drone")
@@ -423,9 +387,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					upgrade_threshold = 400
 					caste_desc = "The workhorse of the hive. It looks a little more dangerous."
 					armor_deflection = 10
-					tacklemin = 3
-					tacklemax = 5
-					tackle_chance = 60
+					tackle_damage = 35 // Prior was 30
 					speed = -1.0
 					aura_strength = 1.5
 				if("Hivelord")
@@ -438,9 +400,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					upgrade_threshold = 800
 					caste_desc = "A builder of REALLY BIG hives. It looks pretty strong."
 					armor_deflection = 10
-					tacklemin = 4
-					tacklemax = 6
-					tackle_chance = 70
+					tackle_damage = 40 // Prior was 35
 					speed = 0.2
 					aura_strength = 2
 				if("Carrier")
@@ -453,9 +413,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					upgrade_threshold = 800
 					caste_desc = "A portable Love transport. It looks pretty strong."
 					armor_deflection = 10
-					tacklemin = 4
-					tacklemax = 5
-					tackle_chance = 70
+					tackle_damage = 40 // Prior was 35
 					speed = -0.2
 					aura_strength = 2
 					var/mob/living/carbon/Xenomorph/Carrier/CA = src
@@ -473,9 +431,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					spit_delay = 20
 					caste_desc = "The biggest and baddest xeno. The Empress controls multiple hives and planets."
 					armor_deflection = 55
-					tacklemin = 6
-					tacklemax = 9
-					tackle_chance = 90
+					tackle_damage = 65 // Prior was 60
 					speed = 0.4
 					aura_strength = 4
 					queen_leader_limit = 3
@@ -498,9 +454,8 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					attack_delay = -4
 					tacklemin = 3
 					tacklemax = 5
-					tackle_chance = 70
+					tackle_damage = 40 // Prior was 30
 					pounce_delay = 30
-				if("Hunter")
 					to_chat(src, "<span class='xenoannounce'>You are the epitome of the hunter. Few can stand against you in open combat.</span>")
 					melee_damage_lower = 40
 					melee_damage_upper = 50
@@ -512,9 +467,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					speed = -1.8
 					armor_deflection = 25
 					attack_delay = -3
-					tacklemin = 4
-					tacklemax = 6
-					tackle_chance = 65
+					tackle_damage = 50 // Prior was 45
 					pounce_delay = 45
 				if("Ravager")
 					to_chat(src, "<span class='xenoannounce'>You are death incarnate. All will tremble before you.</span>")
@@ -527,9 +480,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					caste_desc = "As I walk through the valley of the shadow of death."
 					speed = -1.0
 					armor_deflection = 50
-					tacklemin = 6
-					tacklemax = 10
-					tackle_chance = 95
+					tackle_damage = 70 // Prior was 65
 				if ("Defender")
 					to_chat(src, "<span class='xenoannounce'>You are a incredibly resilient, you can control the battle through sheer force.</span>")
 					melee_damage_lower = 26
@@ -548,6 +499,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					to_chat(src, "<span class='xenoannounce'>None can stand before you. You will annihilate all weaklings who try.</span>")
 					melee_damage_lower = 45
 					melee_damage_upper = 50
+					tackle_damage = 55 // Prior was 50
 					health = 265
 					maxHealth = 265
 					plasma_gain = 8
@@ -560,9 +512,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					to_chat(src, "<span class='xenoannounce'>You are the physical manifestation of a Tank. Almost nothing can harm you.</span>")
 					melee_damage_lower = 35
 					melee_damage_upper = 45
-					tacklemin = 5
-					tacklemax = 9
-					tackle_chance = 75
+					tackle_damage = 70 // Prior was 65
 					health = 350
 					maxHealth = 350
 					plasma_gain = 30
@@ -580,9 +530,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					spit_delay = 15
 					caste_desc = "Neurotoxin Factory, don't let it get you."
 					armor_deflection = 20
-					tacklemin = 4
-					tacklemax = 6
-					tackle_chance = 60
+					tackle_damage = 40	 // Prior was 35
 					speed = -1.1
 				if("Spitter")
 					to_chat(src, "<span class='xenoannounce'>You are a master of ranged stuns and damage. Go fourth and generate salt.</span>")
@@ -595,9 +543,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					spit_delay = 15
 					caste_desc = "A ranged destruction machine."
 					armor_deflection = 30
-					tacklemin = 5
-					tacklemax = 7
-					tackle_chance = 75
+					tackle_damage = 45	 // Prior was 35
 					speed = -0.8
 				if("Boiler")
 					to_chat(src, "<span class='xenoannounce'>You are the master of ranged artillery. Bring death from above.</span>")
@@ -626,9 +572,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					spit_delay = 10
 					caste_desc = "Its mouth looks like a minigun."
 					armor_deflection = 45
-					tacklemin = 7
-					tacklemax = 10
-					tackle_chance = 85
+					tackle_damage = 60 // Prior was 55
 					speed = -0.2
 					aura_strength = 4.5
 				if("Drone")
@@ -641,9 +585,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					plasma_gain = 40
 					caste_desc = "A very mean architect."
 					armor_deflection = 15
-					tacklemin = 4
-					tacklemax = 6
-					tackle_chance = 80
+					tackle_damage = 40 // Prior was 35
 					speed = -1.1
 					aura_strength = 2
 				if("Hivelord")
@@ -656,9 +598,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					plasma_gain = 60
 					caste_desc = "An extreme construction machine. It seems to be building walls..."
 					armor_deflection = 15
-					tacklemin = 5
-					tacklemax = 7
-					tackle_chance = 80
+					tackle_damage = 45 // Prior was 40
 					speed = 0.1
 				if("Carrier")
 					to_chat(src, "<span class='xenoannounce'>You are the master of huggers. Throw them like baseballs at the marines!</span>")
@@ -670,9 +610,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					plasma_gain = 15
 					caste_desc = "It's literally crawling with 11 huggers."
 					armor_deflection = 15
-					tacklemin = 5
-					tacklemax = 6
-					tackle_chance = 75
+					tackle_damage = 45 // Prior was 40
 					speed = -0.3
 					aura_strength = 2.5
 					var/mob/living/carbon/Xenomorph/Carrier/CA = src
@@ -690,9 +628,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					spit_delay = 15
 					caste_desc = "The most perfect Xeno form imaginable."
 					armor_deflection = 60
-					tacklemin = 7
-					tacklemax = 10
-					tackle_chance = 95
+					tackle_damage = 70 // Prior was 65
 					speed = 0.3
 					aura_strength = 5
 					queen_leader_limit = 4

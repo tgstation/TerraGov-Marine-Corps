@@ -6,6 +6,7 @@
 	icon_state = "Warrior Walking"
 	melee_damage_lower = 30
 	melee_damage_upper = 35
+	tackle_damage = 40
 	health = 200
 	maxHealth = 200
 	plasma_stored = 50

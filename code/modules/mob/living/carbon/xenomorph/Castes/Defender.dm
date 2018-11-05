@@ -6,6 +6,7 @@
 	icon_state = "Defender Walking"
 	melee_damage_lower = 15
 	melee_damage_upper = 25
+	tackle_damage = 30
 	health = 250
 	maxHealth = 250
 	plasma_stored = 50

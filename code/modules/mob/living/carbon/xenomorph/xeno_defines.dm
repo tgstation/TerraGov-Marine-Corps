@@ -12,6 +12,7 @@
 	var/time_of_birth
 	var/plasma_gain = 5
 	var/devour_timer = 0
+	var/tackle_damage = 20 //How much HALLOSS damage a xeno deals when tackling
 
 	var/evolution_allowed = 1 //Are they allowed to evolve (and have their evolution progress group)
 	var/evolution_stored = 0 //How much evolution they have stored
@@ -22,9 +23,12 @@
 	var/upgrade_threshold = 0
 
 	var/list/evolves_to = list() //This is where you add castes to evolve into. "Seperated", "by", "commas"
-	var/tacklemin = 2
-	var/tacklemax = 4
-	var/tackle_chance = 50
+	var/tacklemin = 1
+	var/tacklemax = 1
+	var/tackle_chance = 100
+	var/critical_proc = 0
+	var/critical_delay = 25
+
 	var/is_intelligent = 0 //If they can use consoles, etc. Set on Queen
 	var/caste_desc = null
 	var/has_spat = 0

@@ -8,9 +8,7 @@
 	icon_state = "Praetorian Walking"
 	melee_damage_lower = 20
 	melee_damage_upper = 25
-	tacklemin = 3
-	tacklemax = 8
-	tackle_chance = 75
+	tackle_damage = 40
 	health = 210
 	maxHealth = 210
 	plasma_stored = 200

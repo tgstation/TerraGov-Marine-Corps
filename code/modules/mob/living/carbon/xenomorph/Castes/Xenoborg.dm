@@ -6,6 +6,7 @@
 	icon_state = "Xenoborg Walking"
 	melee_damage_lower = 24
 	melee_damage_upper = 24
+	tackle_damage = 50
 	health = 300
 	maxHealth = 300
 	plasma_stored = 1500
