@@ -107,8 +107,6 @@
 		overlays += "fire"
 
 /obj/structure/flora/tree/proc/healthcheck()
-	if(on_fire)
-		health -= 10
 	if(health <= 0)
 		density = 0
 		var/obj/structure/flora/stump/S = new(loc)
