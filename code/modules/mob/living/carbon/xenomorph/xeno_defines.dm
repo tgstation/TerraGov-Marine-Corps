@@ -166,6 +166,9 @@
 	var/recent_notice = 0
 	var/notice_delay = 20 //2 second between notices
 
+	var/cresttoss_used = FALSE
+	var/cresttoss_cooldown = 60
+
 /datum/hive_status
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen

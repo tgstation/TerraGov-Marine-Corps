@@ -105,9 +105,22 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	src.updatehealth()
 
 // damage MANY limbs, in random order
-/mob/living/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null)
+/mob/living/proc/take_overall_damage(var/brute, var/burn, var/used_weapon = null, var/blocked = 0)
 	if(status_flags & GODMODE)
-		return FALSE	//godmode
+		return 0//godmode
+
+	if(blocked >= 1) //Complete negation
+		return 0
+
+	if(blocked)
+		if(brute)
+			brute *= CLAMP(1-blocked,0.00,1.00) //Percentage reduction
+		if(burn)
+			burn *= CLAMP(1-blocked,0.00,1.00) //Percentage reduction
+
+	if(!brute && !burn) //Complete negation
+		return 0
+
 	adjustBruteLoss(brute)
 	adjustFireLoss(burn)
 	src.updatehealth()
