@@ -8,6 +8,7 @@
 	icon_state = "Hivelord Walking"
 	melee_damage_lower = 15
 	melee_damage_upper = 20
+	tackle_damage = 30
 	health = 250
 	maxHealth = 250
 	plasma_stored = 200

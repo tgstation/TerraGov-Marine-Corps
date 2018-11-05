@@ -8,6 +8,7 @@
 	icon_state = "Drone Walking"
 	melee_damage_lower = 12
 	melee_damage_upper = 16
+	tackle_damage = 25
 	health = 120
 	maxHealth = 120
 	plasma_stored = 350

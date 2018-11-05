@@ -245,7 +245,7 @@
 
 					visible_message("<span class='danger'>[src] pounces on [M]!</span>",
 									"<span class='xenodanger'>You pounce on [M]!</span>", null, 5)
-					M.KnockDown(charge_type == 1 ? 1 : 3)
+					M.KnockDown(1)
 					step_to(src, M)
 					canmove = FALSE
 					if(savage) //If Runner Savage is toggled on, attempt to use it.
@@ -257,15 +257,17 @@
 						else
 							to_chat(src, "<span class='xenodanger'>You attempt to savage your victim, but you aren't yet ready.</span>")
 					frozen = TRUE
+					if(charge_type == 2)
+						M.attack_alien(src, null, "disarm") //Hunters get a free throttle in exchange for lower initial stun.
 					if(!is_robotic) playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
 					spawn(charge_type == 1 ? 5 : 15)
 						frozen = FALSE
 						update_canmove()
 
 				if(3) //Ravagers get a free attack if they charge into someone. This will tackle if disarm is set instead.
-					var/extra_dam = min(melee_damage_lower, rand(melee_damage_lower, melee_damage_upper) / (4 - upgrade)) //About 12.5 to 80 extra damage depending on upgrade level.
+					var/extra_dam = min(melee_damage_lower, rand(melee_damage_lower, melee_damage_upper) * (0.3 + 0.3 * upgrade)) //About 15 to 84 extra damage depending on upgrade level.
 					M.attack_alien(src,  extra_dam) //Ancients deal about twice as much damage on a charge as a regular slash.
-					M.KnockDown(2)
+					M.KnockDown(1)
 
 				if(4) //Predalien.
 					M.attack_alien(src) //Free hit/grab/tackle. Does not weaken, and it's just a regular slash if they choose to do that.
@@ -323,6 +325,9 @@
 
 	M.apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1) //This should slicey dicey
 	M.updatehealth()
+	critical_proc = TRUE
+	spawn(critical_delay) //Delay before we have a chance of another crit
+		critical_proc = FALSE
 
 //Tail stab. Checked during a slash, after the above.
 //Deals a monstrous amount of damage based on how long it's been charging, but charging it drains plasma.
@@ -350,6 +355,9 @@
 
 	M.apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
 	M.updatehealth()
+	critical_proc = TRUE
+	spawn(critical_delay) //Delay before we have a chance of another crit
+		critical_proc = FALSE
 
 /mob/living/carbon/Xenomorph/proc/zoom_in(var/tileoffset = 5, var/viewsize = 12)
 	if(stat || resting)
@@ -528,3 +536,14 @@
 		leader_aura_strength = Q.aura_strength
 		leader_current_aura = Q.current_aura
 		to_chat(src, "<span class='xenowarning'>Your pheromones have changed. The Queen has new plans for the Hive.</span>")
+
+
+/mob/living/carbon/Xenomorph/proc/update_spits()
+	if(!ammo || !spit_types.len) //Only update xenos with ammo and spit types.
+		return
+	for(var/i in 1 to spit_types.len)
+		if(ammo.icon_state == ammo_list[spit_types[i]].icon_state)
+			ammo = ammo_list[spit_types[i]]
+			return
+	ammo = ammo_list[spit_types[1]] //No matching projectile time; default to first spit type
+	return

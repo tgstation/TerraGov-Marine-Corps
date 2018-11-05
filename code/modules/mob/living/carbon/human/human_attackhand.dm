@@ -235,4 +235,4 @@
 				to_chat(src, "\t [status=="OK"?"\blue ":"\red "]My [org.display_name] is [status].")
 			if((SKELETON in mutations) && !w_uniform && !wear_suit)
 				play_xylophone()
-	..()
+	return ..()
