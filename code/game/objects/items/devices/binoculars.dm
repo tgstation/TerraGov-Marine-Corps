@@ -114,11 +114,16 @@
 	var/datum/squad/S = user.assigned_squad
 
 	var/laz_name = ""
-	if(S) laz_name = S.name
+	laz_name += user.get_paygrade()
+	laz_name += user.name
+	if(S)
+		laz_name += " ([S.name])"
+
 
 	var/turf/TU = get_turf(A)
 	var/area/targ_area = get_area(A)
-	if(!istype(TU)) return
+	if(!istype(TU))
+		return
 	var/is_outside = FALSE
 	if(TU.z == 1)
 		switch(targ_area.ceiling)
@@ -136,7 +141,7 @@
 	if(!do_after(user, acquisition_time, TRUE, 5, BUSY_ICON_GENERIC) || world.time < laser_cooldown || laser)
 		return
 	if(mode)
-		var/obj/effect/overlay/temp/laser_coordinate/LT = new (TU, laz_name)
+		var/obj/effect/overlay/temp/laser_coordinate/LT = new (TU, laz_name, S)
 		coord = LT
 		to_chat(user, "<span class='notice'>SIMPLIFIED COORDINATES OF TARGET. LONGITUDE [coord.x]. LATITUDE [coord.y].</span>")
 		playsound(src, 'sound/effects/binoctarget.ogg', 35)
@@ -148,7 +153,7 @@
 				break
 	else
 		to_chat(user, "<span class='notice'>TARGET ACQUIRED. LASER TARGETING IS ONLINE. DON'T MOVE.</span>")
-		var/obj/effect/overlay/temp/laser_target/LT = new (TU, laz_name)
+		var/obj/effect/overlay/temp/laser_target/LT = new (TU, laz_name, S)
 		laser = LT
 		playsound(src, 'sound/effects/binoctarget.ogg', 35)
 		while(laser)

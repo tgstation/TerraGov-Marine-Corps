@@ -19,3 +19,6 @@
 #define subtypesof(typepath) ( typesof(typepath) - typepath )
 
 #define RESIZE_DEFAULT_SIZE 1
+
+/var/static/global_unique_id = 1
+#define UNIQUEID (global_unique_id++)

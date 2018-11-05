@@ -5,9 +5,15 @@
 //Note: some important procs are held by the job controller, in job_controller.dm.
 //In particular, get_lowest_squad() and randomize_squad()
 
+#define NO_SQUAD 0
+#define ALPHA_SQUAD 1
+#define BRAVO_SQUAD 2
+#define CHARLIE_SQUAD 3
+#define DELTA_SQUAD 4
 
 /datum/squad
 	var/name = "Empty Squad"  //Name of the squad
+	var/id = NO_SQUAD //Just a little number identifier
 	var/max_positions = -1 //Maximum number allowed in a squad. Defaults to infinite
 	var/color = 0 //Color for helmets, etc.
 	var/list/access = list() //Which special access do we grant them
@@ -27,18 +33,21 @@
 	var/num_engineers = 0
 	var/num_medics = 0
 	var/count = 0 //Current # in the squad
-	var/list/marines_list = list() // list of mobs (or name, not always a mob ref) in that squad.
+	var/mob/living/carbon/human/list/marines_list = list() // list of humans in that squad.
+	var/gibbed_marines_list[0] // List of the names of the gibbed humans associated with roles.
 
 	var/mob/living/carbon/human/overwatch_officer = null //Who's overwatching this squad?
 	var/supply_cooldown = 0 //Cooldown for supply drops
 	var/primary_objective = null //Text strings
 	var/secondary_objective = null
 	var/obj/item/device/squad_beacon/sbeacon = null
-	var/obj/item/device/squad_beacon/bomb/bbeacon = null
 	var/obj/structure/supply_drop/drop_pad = null
+	var/list/squad_orbital_beacons = list()
+	var/list/squad_laser_targets = list()
 
 /datum/squad/alpha
 	name = "Alpha"
+	id = ALPHA_SQUAD
 	color = 1
 	access = list(ACCESS_MARINE_ALPHA)
 	usable = 1
@@ -46,6 +55,7 @@
 
 /datum/squad/bravo
 	name = "Bravo"
+	id = BRAVO_SQUAD
 	color = 2
 	access = list(ACCESS_MARINE_BRAVO)
 	usable = 1
@@ -53,6 +63,7 @@
 
 /datum/squad/charlie
 	name = "Charlie"
+	id = CHARLIE_SQUAD
 	color = 3
 	access = list(ACCESS_MARINE_CHARLIE)
 	usable = 1
@@ -60,6 +71,7 @@
 
 /datum/squad/delta
 	name = "Delta"
+	id = DELTA_SQUAD
 	color = 4
 	access = list(ACCESS_MARINE_DELTA)
 	usable = 1
@@ -142,9 +154,20 @@
 		if("Squad Smartgunner") num_smartgun--
 		if("Squad Leader") num_leaders--
 
-
-
-
+//proc used by human dispose to clean the mob from squad lists
+/datum/squad/proc/clean_marine_from_squad(mob/living/carbon/human/H, wipe = FALSE)
+	if(!H.assigned_squad || !(H in marines_list))
+		return FALSE
+	marines_list -= src //they were never here
+	if(!wipe) //preserve their memories
+		var/role = "unknown"
+		if(H.mind?.assigned_role)
+			role = H.mind.assigned_role
+		gibbed_marines_list[H.name] = role
+	if(squad_leader == src)
+		squad_leader = null
+	H.assigned_squad = null
+	return TRUE
 
 /datum/squad/proc/demote_squad_leader(leader_killed)
 	var/mob/living/carbon/human/old_lead = squad_leader

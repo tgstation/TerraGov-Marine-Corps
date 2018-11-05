@@ -4,13 +4,15 @@
 var/obj/structure/orbital_cannon/almayer_orbital_cannon
 var/list/ob_type_fuel_requirements
 
+var/obj/structure/ship_rail_gun/almayer_rail_gun
+
 /obj/structure/orbital_cannon
 	name = "\improper Orbital Cannon"
 	desc = "The USCM Orbital Cannon System. Used for shooting large targets on the planet that is orbited. It accelerates its payload with solid fuel for devastating results upon impact."
 	icon = 'icons/obj/machines/artillery.dmi'
 	icon_state = "OBC_unloaded"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	layer = LADDER_LAYER
 	bound_width = 128
 	bound_height = 64
@@ -517,3 +519,49 @@ var/list/ob_type_fuel_requirements
 	add_fingerprint(usr)
 //	updateUsrDialog()
 	attack_hand(usr)
+
+/obj/structure/ship_rail_gun
+	name = "\improper Rail Gun"
+	desc = "A powerful ship-to-ship weapon sometimes used for ground support at reduced efficiency."
+	icon = 'icons/obj/machines/artillery.dmi'
+	icon_state = "anti_air_cannon"
+	density = TRUE
+	anchored = TRUE
+	layer = LADDER_LAYER
+	bound_width = 128
+	bound_height = 64
+	bound_y = 64
+	unacidable = TRUE
+	var/cannon_busy = FALSE
+	var/last_firing = 0 //stores the last time it was fired to check when we can fire again
+	var/obj/structure/ship_ammo/heavygun/highvelocity/rail_gun_ammo
+
+/obj/structure/ship_rail_gun/New()
+	. = ..()
+	if(!almayer_rail_gun)
+		almayer_rail_gun = src
+	rail_gun_ammo = new /obj/structure/ship_ammo/heavygun/highvelocity(src)
+	rail_gun_ammo.max_ammo_count = 16000 //400 uses
+	rail_gun_ammo.ammo_count = 16000
+
+/obj/structure/ship_rail_gun/proc/fire_rail_gun(turf/T, mob/user)
+	set waitfor = 0
+	if(cannon_busy)
+		return
+	if(!rail_gun_ammo?.ammo_count)
+		to_chat(user, "<span class='warning'>[src] has ran out of ammo.</span>")
+		return
+	cannon_busy = TRUE
+	last_firing = world.time
+	playsound(loc, 'sound/weapons/tank_smokelauncher_fire.ogg', 70, 1)
+	playsound(loc, 'sound/weapons/pred_plasma_shot.ogg', 70, 1)
+	var/turf/target = locate(T.x + pick(-2,2), T.y + pick(-2,2), T.z)
+	sleep(15)
+	rail_gun_ammo.detonate_on(target)
+	cannon_busy = FALSE
+
+/obj/structure/ship_rail_gun/ex_act()
+	return
+
+/obj/structure/ship_rail_gun/bullet_act()
+	return
