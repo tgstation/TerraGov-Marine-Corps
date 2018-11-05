@@ -97,7 +97,7 @@
 		return ..()
 	user.visible_message("<span class='warning'>\ [user] attempts to plant [src] on [M]'s face!</span>", \
 	"<span class='warning'>You attempt to plant [src] on [M]'s face!</span>")
-	if(M.client && M.stat) //Delay for conscious cliented mobs, who should be resisting.
+	if(M.client && !M.stat) //Delay for conscious cliented mobs, who should be resisting.
 		if(!do_after(user, 5, TRUE, 5, BUSY_ICON_HOSTILE))
 			return
 	Attach(M)
