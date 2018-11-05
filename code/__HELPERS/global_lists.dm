@@ -52,7 +52,11 @@ var/global/list/active_diseases = list()
 var/global/list/events = list()
 
 //used by binoculars for dropship bombardment
-var/list/global/active_laser_targets = list()
+var/global/list/active_laser_targets = list()
+
+//used by the main overwatch console
+var/global/list/active_orbital_beacons = list()
+var/global/list/active_supply_beacons = list()
 
 //Used by Queen overwatch
 //var/global/list/xeno_leader_list = list() - moved to hive_datum
