@@ -424,6 +424,9 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define DEFENDER_HEADBUTT_COST 20
 #define DEFENDER_TAILSWIPE_COST 30
 
+//carrier defines
+
+#define CARRIER_SPAWN_HUGGER_COST 100
 
 // halloss defines
 

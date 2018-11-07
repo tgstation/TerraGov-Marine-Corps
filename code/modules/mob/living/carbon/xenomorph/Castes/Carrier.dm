@@ -29,6 +29,9 @@
 	var/hugger_delay = 25
 	var/eggs_cur = 0
 	var/eggs_max = 3
+	var/used_spawn_facehugger = FALSE
+	var/last_spawn_facehugger
+	var/cooldown_spawn_facehugger = 100 //10 seconds; keeping this as a var for now as I may have it adjust with upgrade level
 	tier = 2
 	upgrade = 0
 	pixel_x = -16 //Needed for 2x2
