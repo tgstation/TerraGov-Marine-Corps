@@ -573,7 +573,10 @@
 /obj/item/weapon/gun/launcher/rocket/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	if(!able_to_fire(user))
 		return
-	if(!do_after(user,5, TRUE, 5, BUSY_ICON_HOSTILE)) //slight wind up
+	var/delay = 3
+	if(has_attachment(/obj/item/attachable/scope/mini))
+		delay = 6
+	if(!do_after(user, delay, TRUE, 3, BUSY_ICON_HOSTILE)) //slight wind up
 		return
 	return ..()
 
