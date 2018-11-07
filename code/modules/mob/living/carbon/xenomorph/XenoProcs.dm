@@ -190,6 +190,13 @@
 		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
 		cancel_stealth()
 
+/mob/living/carbon/Xenomorph/Ravager/movement_delay()
+	. = ..()
+
+	if(rage)
+		. -=round(rage * 0.025,0.01) //Ravagers gain 0.025 units of speed per unit of rage; min -0.025, max -1.25
+
+
 /mob/living/carbon/Xenomorph/proc/update_progression()
 	if(upgrade != -1 && upgrade != 3) //upgrade possible
 		if(client && ckey) // pause for ssd/ghosted
@@ -293,18 +300,16 @@
 						update_canmove()
 					stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
-				if(3) //Ravagers get a free attack if they charge into someone. This will tackle if disarm is set instead.
-					var/extra_dam = min(melee_damage_lower, rand(melee_damage_lower, melee_damage_upper) * (0.3 + 0.3 * upgrade)) //About 15 to 84 extra damage depending on upgrade level.
-					M.attack_alien(src,  extra_dam) //Ancients deal about twice as much damage on a charge as a regular slash.
-					M.KnockDown(1)
+				if(RAV_CHARGE_TYPE) //Ravagers get a free attack if they charge into someone.
+					process_ravager_charge(TRUE, M)
 
 				if(4) //Predalien.
 					M.attack_alien(src) //Free hit/grab/tackle. Does not weaken, and it's just a regular slash if they choose to do that.
 
 		throwing = FALSE //Resert throwing since something was hit.
 		return TRUE
-
-	..() //Do the parent otherwise, for turfs.
+	process_ravager_charge(FALSE)
+	return ..() //Do the parent otherwise, for turfs.
 
 //Bleuugh
 /mob/living/carbon/Xenomorph/proc/empty_gut()
@@ -329,64 +334,7 @@
 		see_in_dark = 8
 		sight |= SEE_MOBS
 
-//Random bite attack. Procs more often on downed people. Returns 0 if the check fails.
-//Does a LOT of damage.
-/mob/living/carbon/Xenomorph/proc/bite_attack(var/mob/living/carbon/human/M, var/damage)
 
-	damage += 20
-
-	if(mob_size == MOB_SIZE_BIG)
-		damage += 10
-
-	var/datum/limb/affecting
-	affecting = M.get_limb(ran_zone("head", 50))
-	if(!affecting) //No head? Just get a random one
-		affecting = M.get_limb(ran_zone(null, 0))
-	if(!affecting) //Still nothing??
-		affecting = M.get_limb("chest") //Gotta have a torso?!
-	var/armor_block = M.run_armor_check(affecting, "melee")
-
-	flick_attack_overlay(M, "slash") //TODO: Special bite attack overlay ?
-	playsound(loc, "alien_bite", 25)
-	visible_message("<span class='danger'>\The [M] is viciously shredded by \the [src]'s sharp teeth!</span>", \
-	"<span class='danger'>You viciously rend \the [M] with your teeth!</span>", null, 5)
-	log_combat(M, src, "bitten")
-
-	M.apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1) //This should slicey dicey
-	M.updatehealth()
-	critical_proc = TRUE
-	spawn(critical_delay) //Delay before we have a chance of another crit
-		critical_proc = FALSE
-
-//Tail stab. Checked during a slash, after the above.
-//Deals a monstrous amount of damage based on how long it's been charging, but charging it drains plasma.
-//Toggle is in XenoPowers.dm.
-/mob/living/carbon/Xenomorph/proc/tail_attack(mob/living/carbon/human/M, var/damage)
-
-	damage += 20
-
-	if(mob_size == MOB_SIZE_BIG)
-		damage += 10
-
-	var/datum/limb/affecting
-	affecting = M.get_limb(ran_zone(zone_selected, 75))
-	if(!affecting) //No organ, just get a random one
-		affecting = M.get_limb(ran_zone(null, 0))
-	if(!affecting) //Still nothing??
-		affecting = M.get_limb("chest") // Gotta have a torso?!
-	var/armor_block = M.run_armor_check(affecting, "melee")
-
-	flick_attack_overlay(M, "tail")
-	playsound(M.loc, 'sound/weapons/alien_tail_attack.ogg', 25, 1) //Stolen from Yautja! Owned!
-	visible_message("<span class='danger'>\The [M] is suddenly impaled by \the [src]'s sharp tail!</span>", \
-	"<span class='danger'>You violently impale \the [M] with your tail!</span>", null, 5)
-	log_combat(src, M, "tail-stabbed")
-
-	M.apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
-	M.updatehealth()
-	critical_proc = TRUE
-	spawn(critical_delay) //Delay before we have a chance of another crit
-		critical_proc = FALSE
 
 /mob/living/carbon/Xenomorph/proc/zoom_in(var/tileoffset = 5, var/viewsize = 12)
 	if(stat || resting)
@@ -594,3 +542,18 @@
 				return TRUE
 			else
 				return FALSE
+
+/mob/living/carbon/Xenomorph/proc/process_ravager_charge(hit = TRUE, mob/living/carbon/M = null)
+	return FALSE
+
+/mob/living/carbon/Xenomorph/Ravager/process_ravager_charge(hit = TRUE, mob/living/carbon/M = null)
+	if(hit)
+		var/extra_dam = rand(melee_damage_lower, melee_damage_upper) * (1 + round(rage * 0.04) ) //+4% bonus damage per point of Rage.relative to base melee damage.
+		M.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, "hurt") //Location is always random, cannot crit, harm only
+		var/target_turf = get_step_away(src,M,rand(1,3)) //This is where we blast our target
+		target_turf =  get_step_rand(target_turf) //Scatter
+		throw_at(get_turf(target_turf), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, M)
+		M.KnockDown(1)
+		rage = 0
+	else
+		rage *= 0.5 //Halve rage instead of 0ing it out if we miss.

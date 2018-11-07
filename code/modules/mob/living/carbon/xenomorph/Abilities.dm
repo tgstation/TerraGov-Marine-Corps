@@ -1137,7 +1137,7 @@
 //Ravager Abilities
 
 /datum/action/xeno_action/activable/charge
-	name = "Charge (20)"
+	name = "Eviscerating Charge (80)"
 	action_icon_state = "charge"
 	ability_name = "charge"
 
@@ -1148,6 +1148,35 @@
 /datum/action/xeno_action/activable/charge/action_cooldown_check()
 	var/mob/living/carbon/Xenomorph/Ravager/X = owner
 	return !X.usedPounce
+
+
+/datum/action/xeno_action/activable/ravage
+	name = "Ravage (40)"
+	action_icon_state = "ravage"
+	ability_name = "ravage"
+
+/datum/action/xeno_action/activable/ravage/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Ravager/X = owner
+	X.Ravage(A)
+
+/datum/action/xeno_action/activable/ravage/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Ravager/X = owner
+	return !X.ravage_used
+
+
+/datum/action/xeno_action/activable/second_wind
+	name = "Second Wind"
+	action_icon_state = "second_wind"
+	ability_name = "second wind"
+
+/datum/action/xeno_action/activable/second_wind/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Ravager/X = owner
+	X.Second_Wind(A)
+
+/datum/action/xeno_action/activable/second_wind/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Ravager/X = owner
+	return !X.second_wind_used
+
 
 //Ravenger
 
