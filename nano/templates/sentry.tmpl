@@ -47,9 +47,15 @@
         Burst Fire:
     </div>
     <div class="itemContent">
-        Burst fire is currently <b>{{:data.burst_fire ? '<span class="good">ON</span>' : '<span class="bad">OFF</span>'}}</b>
+        Burst fire is currently <b>{{:data.burst_fire ? '<span class="good">ON</span>' : '<span class="bad">OFF</span>'}}</b>.
+		<br>
+		Burst count set to: <b>{{:data.burst_size}}</b>
         <br>
         {{:helper.link(data.burst_fire ? 'Turn off burst fire' : 'Turn on burst fire', data.burst_fire ? 'seek-next' : 'play', { '?src' : data.self_ref, 'op' : 'burst'}, data.is_on ? null : 'disabled')}}
+		<br>
+		{{:helper.link('Increment Burst Count', 'plus', { '?src' : data.self_ref, 'op' : 'burstup'}, data.is_on ? null : 'disabled')}}
+		<br>
+		{{:helper.link('Decrement Burst Count', 'minus', { '?src' : data.self_ref, 'op' : 'burstdown'}, data.is_on ? null : 'disabled')}}
     </div>
     
     <br><br>
@@ -58,7 +64,7 @@
         Weapon Safety:
     </div>
     <div class="itemContent">
-        Safety is currently <b>{{:data.safety_toggle ? '<span class="good">ON</span>' : '<span class="bad">OFF</span>'}}</b>
+        Safety is currently <b>{{:data.safety_toggle ? '<span class="good">ON</span> (Only Xenos will be targeted.)' : '<span class="bad">OFF</span> (Non-Xenos without IFF clearance will be targeted.'}}</b>
         <br>
         {{:helper.link(data.safety_toggle ? 'Turn off the safety' : 'Turn on the safety', data.safety_toggle ? 'close' : 'check', { '?src' : data.self_ref, 'op' : 'safety'}, data.is_on ? null : 'disabled')}}
     </div>
@@ -72,5 +78,27 @@
         Manual override is currently <b>{{:data.manual_override ? '<span class="good">ON</span>' : '<span class="bad">OFF</span>'}}</b>
         <br>
         {{:helper.link(data.manual_override ? 'Turn off Manual Override' : 'Turn on Manual Override', data.manual_override ? 'close' : 'check', { '?src' : data.self_ref, 'op' : 'manual'}, data.is_on ? null : 'disabled')}}
+    </div>
+	
+    <br><br>
+        
+    <div class="itemLabel">
+        Radial Mode:
+    </div>
+    <div class="itemContent">
+        Radial Mode is currently <b>{{:data.radial_mode ? '<span class="good">ON</span>' : '<span class="bad">OFF</span>'}}</b>
+        <br>
+        {{:helper.link(data.radial_mode ? 'Turn off Radial Mode' : 'Turn on Radial Mode', data.radial_mode ? 'close' : 'check', { '?src' : data.self_ref, 'op' : 'toggle_radial'}, data.is_on ? null : 'disabled')}}
+    </div>
+	
+    <br><br>
+        
+    <div class="itemLabel">
+        Alert Mode:
+    </div>
+    <div class="itemContent">
+        Alert Mode is currently <b>{{:data.alerts_on ? '<span class="good">ON</span>' : '<span class="bad">OFF</span>'}}</b>
+        <br>
+        {{:helper.link(data.alerts_on ? 'Turn off Alert Mode' : 'Turn on Alert Mode', data.alerts_on ? 'close' : 'check', { '?src' : data.self_ref, 'op' : 'toggle_alert'}, data.is_on ? null : 'disabled')}}
     </div>
 </div>

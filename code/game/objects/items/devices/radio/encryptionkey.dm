@@ -29,7 +29,7 @@
 	name = "AI Integrated Encryption Key"
 	desc = "Integrated encryption key"
 	icon_state = "cap_cypherkey"
-	channels = list("Command" = 1, "MP" = 1, "Engi" = 1, "MedSci" = 1)
+	channels = list("Almayer" = 1, "Command" = 1, "MP" = 1, "Engi" = 1, "MedSci" = 1)
 
 /obj/item/device/encryptionkey/engi
 	name = "Engineering Radio Encryption Key"
