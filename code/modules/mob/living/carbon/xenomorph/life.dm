@@ -29,6 +29,19 @@
 	update_action_button_icons()
 	update_icons()
 
+/mob/living/carbon/Xenomorph/Ravager/handle_status_effects()
+	if(rage) //Rage increases speed, attack speed, armor and fire resistance, and stun/knockdown recovery; speed is handled under movement_delay() in XenoProcs.dm
+		if(world.time > last_rage + 30) //Decrement Rage if it's been more than 3 seconds since we last raged.
+			rage = CLAMP(rage - 5,0,50) //Rage declines over time.
+		AdjustStunned( round(-rage * 0.1,0.01) ) //Recover 0.1 more stun stacks per unit of rage; min 0.1, max 5
+		AdjustKnockeddown( round(-rage * 0.1, 0.01 ) ) //Recover 0.1 more knockdown stacks per unit of rage; min 0.1, max 5
+		adjust_slowdown( round(-rage * 0.1,0.01) ) //Recover 0.1 more stagger stacks per unit of rage; min 0.1, max 5
+		adjust_stagger( round(-rage * 0.1,0.01) ) //Recover 0.1 more stagger stacks per unit of rage; min 0.1, max 5
+		rage_resist = CLAMP(1-round(rage * 0.012,0.01),0.4,1) //+1.2% damage resist per point of rage
+		fire_resist = initial(fire_resist) - round(rage * 0.01,0.01) //+1% fire resistance per stack of rage, max +50%; initial resist is 50%
+		attack_delay = initial(attack_delay) - round(rage * 0.05,0.01) //-0.05 attack delay to a maximum reduction of -2.5
+	return ..()
+
 /mob/living/carbon/Xenomorph/update_stat()
 
 	update_cloak()
@@ -123,10 +136,11 @@
 			adjustBruteLoss(-warding_aura*0.5) //Warding pheromones provides 0.25 HP per second per step, up to 2.5 HP per tick.
 
 /mob/living/carbon/Xenomorph/handle_fire()
-	if(..())
+	. = ..()
+	if(.)
 		return
 	if(!fire_immune && on_fire) //Sanity check; have to be on fire to actually take the damage.
-		adjustFireLoss(fire_stacks + 3)
+		adjustFireLoss((fire_stacks + 3) * fire_resist)
 
 /mob/living/carbon/Xenomorph/proc/handle_living_health_updates()
 	if(health >= maxHealth || hardcore) //no damage, don't bother
@@ -410,7 +424,7 @@
 	var/env_temperature = loc.return_temperature()
 	if(!fire_immune)
 		if(env_temperature > (T0C + 66))
-			adjustFireLoss((env_temperature - (T0C + 66)) / 5) //Might be too high, check in testing.
+			adjustFireLoss((env_temperature - (T0C + 66)) / 5 * fire_resist) //Might be too high, check in testing.
 			updatehealth() //unused while atmos is off
 			if(hud_used && hud_used.fire_icon)
 				hud_used.fire_icon.icon_state = "fire2"

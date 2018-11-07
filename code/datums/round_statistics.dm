@@ -32,3 +32,7 @@ var/datum/round_statistics/round_statistics = new()
 	var/defender_crest_lowerings = 0
 	var/defender_crest_raises = 0 //manual disabling of the crest
 	var/defender_fortifiy_toggles = 0
+	var/runner_savage_attacks = 0
+	var/ravager_ravages = 0
+	var/ravager_ravage_victims = 0
+	var/ravager_second_winds = 0

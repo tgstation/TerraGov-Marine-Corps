@@ -407,27 +407,6 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define PAINFUL 2
 #define EXTREMELY_PAINFUL 3
 
-// xeno defines
-
-#define CRUSHER_STOMP_COOLDOWN 200
-#define XENO_SLOWDOWN_REGEN 0.4
-#define XENO_HALOSS_REGEN 3
-#define QUEEN_DEATH_TIMER 300 // 5 minutes
-#define DEFENDER_CRESTDEFENSE_ARMOR 30
-#define DEFENDER_CRESTDEFENSE_SLOWDOWN 0.8
-#define DEFENDER_FORTIFY_ARMOR 60
-#define WARRIOR_AGILITY_ARMOR 30
-#define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
-
-//defender defines
-
-#define DEFENDER_HEADBUTT_COST 20
-#define DEFENDER_TAILSWIPE_COST 30
-
-//carrier defines
-
-#define CARRIER_SPAWN_HUGGER_COST 100
-
 // halloss defines
 
 #define BASE_HALLOSS_RECOVERY_RATE -4
@@ -484,3 +463,39 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define HANDLE_STEALTH_CHECK				1
 #define HANDLE_STEALTH_CODE_CANCEL		2
 #define HANDLE_SNEAK_ATTACK_CHECK		3
+
+// xeno defines
+
+#define CRUSHER_STOMP_COOLDOWN 200
+#define XENO_SLOWDOWN_REGEN 0.4
+#define XENO_HALOSS_REGEN 3
+#define QUEEN_DEATH_TIMER 300 // 5 minutes
+#define DEFENDER_CRESTDEFENSE_ARMOR 30
+#define DEFENDER_CRESTDEFENSE_SLOWDOWN 0.8
+#define DEFENDER_FORTIFY_ARMOR 60
+#define WARRIOR_AGILITY_ARMOR 30
+#define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
+
+
+#define CRITICAL_HIT_DELAY 25
+
+//Ravager defines:
+#define RAVAGER_MAX_RAGE 50
+#define RAV_CHARGESPEED					3
+#define RAV_CHARGESTRENGTH				3
+#define RAV_CHARGEDISTANCE				7
+#define RAV_CHARGECOOLDOWN				300
+#define RAV_CHARGE_TYPE					3
+#define RAV_SECOND_WIND_COOLDOWN		600
+#define RAV_RAVAGE_COOLDOWN				100
+#define RAV_HANDLE_CHARGE				1
+
+//defender defines
+
+#define DEFENDER_HEADBUTT_COST 20
+#define DEFENDER_TAILSWIPE_COST 30
+
+
+//carrier defines
+
+#define CARRIER_SPAWN_HUGGER_COST 100
