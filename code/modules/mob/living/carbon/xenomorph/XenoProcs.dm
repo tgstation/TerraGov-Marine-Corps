@@ -162,6 +162,34 @@
 				else
 					handle_momentum()
 
+//Stealth handling
+/mob/living/carbon/Xenomorph/Hunter/movement_delay()
+	. = ..()
+	if(stealth)
+		handle_stealth_movement()
+
+
+
+/mob/living/carbon/Xenomorph/Hunter/proc/handle_stealth_movement()
+	//Initial stealth
+	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
+		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
+		return
+	//Stationary stealth
+	else if(last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 3 seconds we become almost completely invisible
+		alpha = HUNTER_STEALTH_STILL_ALPHA //95% invisible
+	//Walking stealth
+	else if(m_intent == MOVE_INTENT_WALK)
+		alpha = HUNTER_STEALTH_WALK_ALPHA //80% invisible
+		use_plasma(HUNTER_STEALTH_WALK_PLASMADRAIN * 0.5)
+	//Running stealth
+	else
+		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
+		use_plasma(HUNTER_STEALTH_RUN_PLASMADRAIN * 0.5)
+	if(!plasma_stored)
+		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
+		cancel_stealth()
+
 /mob/living/carbon/Xenomorph/proc/update_progression()
 	if(upgrade != -1 && upgrade != 3) //upgrade possible
 		if(client && ckey) // pause for ssd/ghosted
@@ -263,6 +291,7 @@
 					spawn(charge_type == 1 ? 5 : 15)
 						frozen = FALSE
 						update_canmove()
+					stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 				if(3) //Ravagers get a free attack if they charge into someone. This will tackle if disarm is set instead.
 					var/extra_dam = min(melee_damage_lower, rand(melee_damage_lower, melee_damage_upper) * (0.3 + 0.3 * upgrade)) //About 15 to 84 extra damage depending on upgrade level.
@@ -547,3 +576,21 @@
 			return
 	ammo = ammo_list[spit_types[1]] //No matching projectile time; default to first spit type
 	return
+
+/mob/living/carbon/Xenomorph/proc/stealth_router(code = 0)
+	return FALSE
+
+/mob/living/carbon/Xenomorph/Hunter/stealth_router(code = 0)
+	switch(code)
+		if(HANDLE_STEALTH_CHECK)
+			if(stealth)
+				return TRUE
+			else
+				return FALSE
+		if(HANDLE_STEALTH_CODE_CANCEL)
+			cancel_stealth()
+		if(HANDLE_SNEAK_ATTACK_CHECK)
+			if(can_sneak_attack)
+				return TRUE
+			else
+				return FALSE

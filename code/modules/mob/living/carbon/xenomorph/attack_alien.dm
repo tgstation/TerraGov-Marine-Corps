@@ -34,6 +34,9 @@
 			if(Adjacent(M)) //Logic!
 				M.start_pulling(src)
 
+			if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+
 		if("hurt")
 			var/datum/hive_status/hive
 			if(M.hivenumber && M.hivenumber <= hive_datum.len)
@@ -92,12 +95,12 @@
 			M.animation_attack_on(src)
 
 			//Check for a special bite attack
-			if(prob(M.bite_chance) && !M.critical_proc && !no_crit) //Can't crit if we already crit in the past 3 seconds
+			if(prob(M.bite_chance) && !M.critical_proc && !no_crit && !M.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
 				M.bite_attack(src, damage)
 				return TRUE
 
 			//Check for a special bite attack
-			if(prob(M.tail_chance) && !M.critical_proc && !no_crit) //Can't crit if we already crit in the past 3 seconds
+			if(prob(M.bite_chance) && !M.critical_proc && !no_crit && !M.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
 				M.tail_attack(src, damage)
 				return TRUE
 
@@ -113,6 +116,8 @@
 			var/datum/limb/affecting
 			if(set_location)
 				affecting = get_limb(set_location)
+			else if(M.stealth_router(HANDLE_STEALTH_CHECK) && M.stealth_router(HANDLE_SNEAK_ATTACK_CHECK)) //We always get the limb we're aiming for if we're sneak attacking
+				affecting = get_limb(M.zone_selected)
 			else
 				affecting = get_limb(ran_zone(M.zone_selected, 70))
 			if(!affecting || (random_location && !set_location)) //No organ, just get a random one
@@ -160,8 +165,18 @@
 				if (R.delimb(src, affecting))
 					return TRUE
 
+			if(M.stealth_router(HANDLE_STEALTH_CHECK)) //Cancel stealth if we have it due to aggro.
+				if(M.stealth_router(HANDLE_SNEAK_ATTACK_CHECK)) //Pouncing prevents us from making a sneak attack for 4 seconds
+					damage *= 3 //Massive damage on the sneak attack... hope you have armour.
+					KnockOut(2) //...And we knock them out
+					M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
+					"<span class='danger'>You strike [src] with vicious precision!</span>")
+				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
 			updatehealth()
+
+
 
 		if("disarm")
 			if(M.legcuffed && isYautja(src))
@@ -189,6 +204,13 @@
 				tackle_pain = tackle_pain * (1 + (0.05 * M.frenzy_aura))  //Halloss damage increased by 5% per rank of frenzy aura
 			if(protection_aura)
 				tackle_pain = tackle_pain * (1 - (0.10 + 0.05 * protection_aura))  //Halloss damage decreased by 10% + 5% per rank of protection aura
+			if(M.stealth_router(HANDLE_STEALTH_CHECK))
+				if(M.stealth_router(HANDLE_SNEAK_ATTACK_CHECK))
+					KnockOut(2)
+					tackle_pain *= 2 //Halloss multiplied by 2.
+					M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
+					"<span class='danger'>You strike [src] with vicious precision!</span>")
+				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 			if(dam_bonus)
 				tackle_pain += dam_bonus
 			apply_damage(tackle_pain, HALLOSS)
