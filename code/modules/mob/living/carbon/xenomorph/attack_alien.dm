@@ -183,7 +183,8 @@
 				"<span class='danger'>You slam [src] to the ground!</span>", null, 5)
 
 			playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
-			var/tackle_pain = (rand(M.tackle_damage * 0.10, M.tackle_damage * 0.40) + rand(M.tackle_damage * 0.10, M.tackle_damage * 0.40))
+
+			var/tackle_pain = (rand(M.tackle_damage * 0.20, M.tackle_damage * 0.80) + rand(M.tackle_damage * 0.20, M.tackle_damage * 0.80))
 			if(M.frenzy_aura)
 				tackle_pain = tackle_pain * (1 + (0.05 * M.frenzy_aura))  //Halloss damage increased by 5% per rank of frenzy aura
 			if(protection_aura)
