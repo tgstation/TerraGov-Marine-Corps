@@ -320,7 +320,7 @@
 		new /obj/item/clothing/suit/storage/marine/MP/RO(src)
 		new /obj/item/storage/belt/marine(src)
 		new /obj/item/storage/belt/marine(src)
-		new /obj/item/storage/backpack/marine(src)
+		new /obj/item/storage/backpack/marine/standard(src)
 
 /obj/structure/closet/secure_closet/pilot_officer
 	name = "pilot officer's locker"

@@ -19,7 +19,12 @@
 	icon_state = "sentry_case"
 	w_class = 5
 	storage_slots = 6
-	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
+	bypass_w_limit = list("/obj/item/device/turret_top",
+					"/obj/item/device/turret_top",
+					"/obj/item/device/turret_sensor",
+					"/obj/item/ammo_magazine/sentry",
+					)
+
 
 /obj/item/storage/box/sentry/New()
 	. = ..()

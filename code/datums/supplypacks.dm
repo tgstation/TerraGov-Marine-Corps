@@ -1831,9 +1831,9 @@ CLOTHING
 					/obj/item/storage/belt/marine,
 					/obj/item/storage/belt/marine,
 					/obj/item/storage/belt/marine,
-					/obj/item/storage/backpack/marine,
-					/obj/item/storage/backpack/marine,
-					/obj/item/storage/backpack/marine,
+					/obj/item/storage/backpack/marine/standard,
+					/obj/item/storage/backpack/marine/standard,
+					/obj/item/storage/backpack/marine/standard,
 					/obj/item/clothing/shoes/marine,
 					/obj/item/clothing/shoes/marine,
 					/obj/item/clothing/shoes/marine
