@@ -4,12 +4,14 @@
 //NOTE: Don't add living things to crates, that's bad, it will break the shuttle.
 //NOTE: Do NOT set the price of any crates below 7 points. Doing so allows infinite points.
 
-#define RO_PRICE_NEAR_FREE	10
-#define RO_PRICE_VERY_CHEAP	20
-#define RO_PRICE_CHEAP		30
-#define RO_PRICE_NORMAL		40
-#define RO_PRICE_PRICY		60
-#define RO_PRICE_VERY_PRICY	100
+#define RO_PRICE_NEAR_FREE		10
+#define RO_PRICE_VERY_CHEAP		20
+#define RO_PRICE_CHEAP			30
+#define RO_PRICE_NORMAL			40
+#define RO_PRICE_PRICY			60
+#define RO_PRICE_PRETTY_PRICY	80
+#define RO_PRICE_VERY_PRICY		100
+#define RO_PRICE_MAX_PRICY		120
 
 var/list/all_supply_groups = list("Operations", "Weapons", "Hardpoint Modules", "Attachments", "Ammo", "Armor", "Clothing", "Medical", "Engineering", "Science", "Supplies")
 
@@ -232,10 +234,32 @@ WEAPONS
 
 /datum/supply_packs/weapons_sentry
 	name = "UA 571-C sentry crate (x1)"
-	contains = list()
+	contains = list(
+					/obj/item/storage/box/sentry
+					)
 	cost = RO_PRICE_VERY_PRICY
-	containertype = /obj/item/storage/box/sentry
+	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper sentry crate"
+	group = "Weapons"
+
+/datum/supply_packs/weapons_minisentry
+	name = "UA-580 point defense sentry crate (x1)"
+	contains = list(
+					/obj/item/storage/box/minisentry
+					)
+	cost = RO_PRICE_PRETTY_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper mini-sentry crate"
+	group = "Weapons"
+
+/datum/supply_packs/weapons_m56d_emplacement
+	name = "M56D mounted smartgun crate (x1)"
+	contains = list(
+					/obj/item/storage/box/m56d_hmg
+					)
+	cost = RO_PRICE_VERY_PRICY
+	containertype = /obj/structure/closet/crate/weapon
+	containername = "\improper M56D emplacement crate"
 	group = "Weapons"
 
 /datum/supply_packs/gun/pistols
@@ -1766,6 +1790,29 @@ AMMO
 					)
 	containertype = /obj/structure/closet/crate/mortar_ammo
 	containername = "\improper M402 mortar ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammo_minisentry
+	name = "UA-580 point defense sentry ammo crate (x3)"
+	contains = list(
+					/obj/item/ammo_magazine/minisentry,
+					/obj/item/ammo_magazine/minisentry,
+					/obj/item/ammo_magazine/minisentry,
+					)
+	cost = RO_PRICE_NORMAL
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper mini-sentry ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammo_m56d
+	name = "M56D mounted smartgun ammo crate (x2)"
+	contains = list(
+					/obj/item/ammo_magazine/m56d,
+					/obj/item/ammo_magazine/m56d,
+					)
+	cost = RO_PRICE_NORMAL
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper M56D emplacement ammo crate"
 	group = "Ammo"
 
 /*******************************************************************************

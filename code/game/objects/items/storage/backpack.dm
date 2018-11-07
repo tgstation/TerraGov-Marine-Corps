@@ -373,7 +373,7 @@
 
 /obj/item/storage/backpack/marine/tech
 	name = "\improper USCM technician backpack"
-	desc = "The standard-issue backpack worn by USCM technicians."
+	desc = "The standard-issue backpack worn by USCM technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
 	icon_state = "marinepackt"
 	bypass_w_limit = list("/obj/item/device/m56d_gun",
 					"/obj/item/ammo_magazine/m56d",
