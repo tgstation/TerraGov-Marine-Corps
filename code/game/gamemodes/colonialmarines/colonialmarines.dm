@@ -3,7 +3,7 @@
 	config_tag = "Distress Signal"
 	required_players = 1 //Need at least one player, but really we need 2.
 	xeno_required_num = 1 //Need at least one xeno.
-	monkey_amount = 25
+	monkey_amount = 5
 	flags_round_type = MODE_INFESTATION|MODE_FOG_ACTIVATED
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -13,10 +13,12 @@
 /datum/game_mode/colonialmarines/can_start()
 	initialize_special_clamps()
 	initialize_starting_predator_list()
-	if(!initialize_starting_xenomorph_list())
-		return
+	var/found_queen = initialize_starting_queen_list()
+	var/found_xenos = initialize_starting_xenomorph_list()
+	if(!found_queen && !found_xenos)
+		return FALSE
 	initialize_starting_survivor_list()
-	return 1
+	return TRUE
 
 /datum/game_mode/colonialmarines/announce()
 	to_chat(world, "<span class='round_header'>The current map is - [map_tag]!</span>")
@@ -82,6 +84,12 @@
 			if(MAP_PRISON_STATION) new /obj/item/map/FOP_map(T)
 
 	if(monkey_amount)
+		var/playerC = 0
+		for(var/mob/new_player/player in player_list)
+			if(player.client && player.ready)
+				playerC++
+		var/scale = max((playerC / MARINE_GEAR_SCALING_NORMAL), 1)
+		monkey_amount = round(scale * monkey_amount)
 		//var/debug_tally = 0
 		switch(map_tag)
 			if(MAP_LV_624) monkey_types = list(/mob/living/carbon/monkey, /mob/living/carbon/monkey/tajara, /mob/living/carbon/monkey/unathi, /mob/living/carbon/monkey/skrell)
@@ -122,6 +130,7 @@
 //Xenos and survivors should not spawn anywhere until we transform them.
 /datum/game_mode/colonialmarines/post_setup()
 	initialize_post_predator_list()
+	initialize_post_queen_list()
 	initialize_post_xenomorph_list()
 	initialize_post_survivor_list()
 	initialize_post_marine_gear_list()
