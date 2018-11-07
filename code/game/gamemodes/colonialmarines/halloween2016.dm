@@ -773,7 +773,7 @@
 					if(12 to 15) //SADAR. the most popular choice, but also pretty damn deadly.
 						H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), WEAR_HEAD)
 						H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
-						H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine(H), WEAR_BACK)
+						H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/standard(H), WEAR_BACK)
 						H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m44/full(H), WEAR_WAIST)
 
 						new /obj/item/explosive/plastique(W.hold)
@@ -825,7 +825,7 @@
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
 				H.equip_to_slot_or_del(new /obj/item/storage/belt/marine(H), WEAR_WAIST)
 				if(prob(65))
-					H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine(H), WEAR_BACK)
+					H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/standard(H), WEAR_BACK)
 					if(prob(50))
 						H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/m44(H.back), WEAR_IN_BACK)
 						H.equip_to_slot_or_del(new /obj/item/ammo_magazine/revolver(H), WEAR_R_STORE)

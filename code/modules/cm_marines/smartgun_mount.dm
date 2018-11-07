@@ -28,7 +28,10 @@
 	icon_state = "M56D_case" // I guess a placeholder? Not actually going to show up ingame for now.
 	w_class = 5
 	storage_slots = 6
-	can_hold = list()
+	bypass_w_limit = list("/obj/item/device/m56d_gun",
+					"/obj/item/ammo_magazine/m56d",
+					"/obj/item/device/m56d_post",
+					)
 
 	New()
 		..()

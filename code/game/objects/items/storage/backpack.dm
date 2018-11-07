@@ -10,7 +10,7 @@
 	flags_equip_slot = SLOT_BACK	//ERROOOOO
 	max_w_class = 3
 	storage_slots = null
-	max_storage_space = 21
+	max_storage_space = 30
 	var/worn_accessible = FALSE //whether you can access its content while worn on the back
 
 /obj/item/storage/backpack/attack_hand(mob/user)
@@ -275,9 +275,6 @@
 	icon_state = "ert_medical"
 
 
-
-
-
 //==========================// MARINE BACKPACKS\\================================\\
 //=======================================================================\\
 
@@ -292,15 +289,100 @@
 			select_gamemode_skin(type)
 		..()
 
+/obj/item/storage/backpack/marine/standard
+	name = "\improper lightweight IMP backpack"
+	desc = "The standard-issue pack of the USCM forces. Designed to slug gear into the battlefield."
+
 /obj/item/storage/backpack/marine/medic
 	name = "\improper USCM medic backpack"
 	desc = "The standard-issue backpack worn by USCM medics."
 	icon_state = "marinepackm"
+	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
+
+/obj/item/storage/backpack/marine/medic/New()
+	. = ..()
+	cell = new /obj/item/cell/high(src)
+	update_icon()
+
+/obj/item/storage/backpack/marine/medic/proc/use_charge(mob/user, amount = 0, mention_charge = TRUE)
+	var/warning = ""
+	if(amount > cell.charge)
+		playsound(src, 'sound/machines/buzz-two.ogg', 25, 1)
+		if(cell.charge)
+			warning = "<span class='warning'>[src]'s defibrillator recharge unit buzzes a warning, its battery only having enough power to partially recharge the defibrillator for [cell.charge] amount. "
+		else
+			warning = "<span class='warning'>[src]'s defibrillator recharge unit buzzes a warning, as its battery is completely depleted of charge. "
+	else
+		playsound(src, 'sound/machines/ping.ogg', 25, 1)
+		warning = "<span class='notice'>[src]'s defibrillator recharge unit cheerfully pings as it successfully recharges the defibrillator. "
+	cell.charge -= min(cell.charge, amount)
+	if(mention_charge)
+		to_chat(user, "<span class='notice'>[warning]<b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
+	update_icon()
+	return ..()
+
+/obj/item/storage/backpack/marine/medic/examine(mob/user)
+	. = ..()
+	if(cell)
+		to_chat(user, "<span class='notice'>Its defibrillator recharge unit has a loaded power cell and its readout counter is active. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
+	else
+		to_chat(user, "<span class='warning'>Its defibrillator recharge unit does not have a power cell installed!</span>")
+
+/obj/item/storage/backpack/marine/medic/update_icon()
+	icon_state = initial(icon_state)
+	if(cell?.charge)
+		switch(round(cell.charge * 100 / max(1,cell.maxcharge)))
+			if(75 to INFINITY)
+				icon_state += "_100"
+			if(50 to 74)
+				icon_state += "_75"
+			if(25 to 49)
+				icon_state += "_50"
+			if(1 to 24)
+				icon_state += "_25"
+	else
+		icon_state += "_0"
+
+/obj/item/storage/backpack/marine/medic/MouseDrop_T(obj/item/W, mob/living/user) //Dragging the defib/power cell onto the backpack will trigger its special functionality.
+	if(istype(W, /obj/item/device/defibrillator))
+		if(cell)
+			var/obj/item/device/defibrillator/D = W
+			var/charge_difference = D.dcell.maxcharge - D.dcell.charge
+			if(charge_difference) //If the defib has less than max charge, recharge it.
+				use_charge(user, charge_difference) //consume an appropriate amount of charge
+				D.dcell.charge += min(charge_difference, cell.charge) //Recharge the defibrillator battery with the lower of the difference between its present and max cap, or the remaining charge
+			else
+				to_chat(user, "<span class='warning'>This defibrillator is already at maximum charge!</span>")
+		else
+			to_chat(user, "<span class='warning'>[src]'s defibrillator recharge unit does not have a power cell installed!</span>")
+	else if(istype(W, /obj/item/cell))
+		if(user.drop_held_item())
+			W.loc = src
+			var/replace_install = "You replace the cell in [src]'s defibrillator recharge unit."
+			if(!cell)
+				replace_install = "You install a cell in [src]'s defibrillator recharge unit."
+			else
+				cell.updateicon()
+				user.put_in_hands(cell)
+			cell = W
+			to_chat(user, "<span class='notice'>[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
+			playsound(user, 'sound/weapons/gun_rifle_reload.ogg', 25, 1, 5)
+			update_icon()
+	return ..()
+
 
 /obj/item/storage/backpack/marine/tech
 	name = "\improper USCM technician backpack"
 	desc = "The standard-issue backpack worn by USCM technicians."
 	icon_state = "marinepackt"
+	bypass_w_limit = list("/obj/item/device/m56d_gun",
+					"/obj/item/ammo_magazine/m56d",
+					"/obj/item/device/m56d_post",
+					"/obj/item/device/turret_top",
+					"/obj/item/ammo_magazine/sentry",
+					"/obj/item/ammo_magazine/sentry",
+					"/obj/item/stack/sandbags"
+					)
 
 /obj/item/storage/backpack/marine/satchel
 	name = "\improper USCM satchel"
@@ -445,9 +527,9 @@
 	desc = "A specialized backpack worn by USCM technicians. It carries a fueltank for quick welder refueling and use,"
 	icon_state = "engineerpack"
 	var/max_fuel = 260
-	max_storage_space = 15
 	storage_slots = null
 	has_gamemode_skin = FALSE //same sprites for all gamemodes
+	max_storage_space = 15
 
 /obj/item/storage/backpack/marine/engineerpack/New()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
@@ -504,6 +586,7 @@
 	desc = "A specialized fueltank worn by USCM Pyrotechnicians for use with the M240-T incinerator unit. A small general storage compartment is installed."
 	icon_state = "flamethrower_tank"
 	max_fuel = 500
+
 
 /obj/item/storage/backpack/marine/engineerpack/flamethrower/attackby(obj/item/W, mob/living/user)
 	if (istype(W, /obj/item/ammo_magazine/flamer_tank))

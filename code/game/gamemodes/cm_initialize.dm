@@ -923,7 +923,7 @@ datum/game_mode/proc/initialize_special_clamps()
 		CG.product_records = list()
 
 		CG.products = list(
-						/obj/item/storage/backpack/marine = round(scale * 15),
+						/obj/item/storage/backpack/marine/standard = round(scale * 15),
 						/obj/item/storage/belt/marine = round(scale * 15),
 						/obj/item/storage/belt/shotgun = round(scale * 10),
 						/obj/item/clothing/tie/storage/webbing = round(scale * 3),
