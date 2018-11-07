@@ -69,6 +69,31 @@
 	if(stat != CONSCIOUS && fortify == TRUE)
 		fortify_off() //Fortify prevents dragging due to the anchor component.
 
+/mob/living/carbon/Xenomorph/Hunter/proc/handle_stealth()
+	if(!stealth_router(HANDLE_STEALTH_CHECK))
+		return
+	if(stat != CONSCIOUS || stealth == FALSE || lying || resting) //Can't stealth while unconscious/resting
+		cancel_stealth()
+		return
+	//Initial stealth
+	if(last_stealth > world.time - HUNTER_STEALTH_INITIAL_DELAY) //We don't start out at max invisibility
+		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
+		return
+	//Stationary stealth
+	else if(last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 4 seconds we become almost completely invisible
+		alpha = HUNTER_STEALTH_STILL_ALPHA //95% invisible
+	//Walking stealth
+	else if(m_intent == MOVE_INTENT_WALK)
+		alpha = HUNTER_STEALTH_WALK_ALPHA //80% invisible
+	//Running stealth
+	else
+		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
+	//If we have 0 plasma after expending stealth's upkeep plasma, end stealth.
+	if(!plasma_stored)
+		to_chat(src, "<span class='xenodanger'>You lack sufficient plasma to remain camouflaged.</span>")
+		cancel_stealth()
+
+
 /mob/living/carbon/Xenomorph/Runner/update_stat()
 	. = ..()
 	if(stat != CONSCIOUS && layer != initial(layer))
@@ -84,6 +109,10 @@
 	handle_stagger() // 1 each time
 	handle_slowdown() // 0.4 each time
 	handle_halloss() // 3 each time
+
+/mob/living/carbon/Xenomorph/Hunter/handle_status_effects()
+	. = ..()
+	handle_stealth()
 
 /mob/living/carbon/Xenomorph/proc/handle_critical_health_updates()
 	var/turf/T = loc
@@ -104,7 +133,7 @@
 		updatehealth() //Update health-related stats, like health itself (using brute and fireloss), health HUD and status.
 		return
 	var/turf/T = loc
-	if(!T || !istype(T) || hardcore) 
+	if(!T || !istype(T) || hardcore)
 		return
 	if(on_fire) //Can't regenerate while on fire
 		updatehealth()
@@ -161,10 +190,38 @@
 		plasma_stored = 0
 		if(current_aura)
 			current_aura = null
-			to_chat(src, "<span class='warning'>You have ran out of plasma and stopped emitting pheromones.</span>")
+			to_chat(src, "<span class='warning'>You have run out of plasma and stopped emitting pheromones.</span>")
 
 	hud_set_plasma() //update plasma amount on the plasma mob_hud
 
+/mob/living/carbon/Xenomorph/Hunter/handle_living_plasma_updates()
+	var/turf/T = loc
+	if(!T || !istype(T))
+		return
+	if(current_aura)
+		plasma_stored -= 5
+	if(plasma_stored == plasma_max)
+		return
+	var/modifier = 1
+	if(stealth && last_move_intent > world.time - 20) //Stealth halves the rate of plasma recovery on weeds, and eliminates it entirely while moving
+		modifier = 0.0
+	else
+		modifier = 0.5
+	if(locate(/obj/effect/alien/weeds) in T)
+		plasma_stored += plasma_gain * modifier
+		if(recovery_aura)
+			plasma_stored += round(plasma_gain * recovery_aura * 0.25 * modifier) //Divided by four because it gets massive fast. 1 is equivalent to weed regen! Only the strongest pheromones should bypass weeds
+	else
+		plasma_stored++
+	if(plasma_stored > plasma_max)
+		plasma_stored = plasma_max
+	else if(plasma_stored < 0)
+		plasma_stored = 0
+		if(current_aura)
+			current_aura = null
+			to_chat(src, "<span class='warning'>You have ran out of plasma and stopped emitting pheromones.</span>")
+
+	hud_set_plasma() //update plasma amount on the plasma mob_hud
 
 /mob/living/carbon/Xenomorph/Hivelord/handle_living_plasma_updates()
 	if(speed_activated)

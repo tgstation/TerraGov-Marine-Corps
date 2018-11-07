@@ -1227,6 +1227,37 @@
 	var/mob/living/carbon/Xenomorph/Carrier/X = owner
 	return !X.used_spawn_facehugger
 
+//Carrier abilities
+/datum/action/xeno_action/activable/stealth
+	name = "Spawn Facehugger (100)"
+	action_icon_state = "spawn_hugger"
+	ability_name = "spawn facehugger"
+	plasma_cost = 100
+
+/datum/action/xeno_action/activable/stealth/action_activate()
+	var/mob/living/carbon/Xenomorph/Carrier/X = owner
+	X.Spawn_Hugger()
+
+/datum/action/xeno_action/activable/stealth/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Carrier/X = owner
+	return !X.used_spawn_facehugger
+
+//Hunter abilities
+/datum/action/xeno_action/activable/stealth
+	name = "Toggle Stealth"
+	action_icon_state = "stealth_on"
+	ability_name = "stealth"
+	plasma_cost = 0
+
+/datum/action/xeno_action/activable/stealth/action_activate()
+	var/mob/living/carbon/Xenomorph/Hunter/X = owner
+	X.Stealth()
+
+/datum/action/xeno_action/activable/stealth/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Hunter/X = owner
+	return !X.used_stealth
+
+
 /////////////////////////////////////////////////////////////////////////////////////////////
 
 /mob/living/carbon/Xenomorph/proc/add_abilities()

@@ -256,7 +256,10 @@ Only checks living mobs with a client attached.
 				var/mob/living/carbon/human/H = M
 				if(H.species && H.species.count_human) //only real humans count
 					num_humans++
-			else if(isXeno(M)) num_xenos++
+			else if(isXeno(M))
+				var/mob/living/carbon/Xenomorph/X = M
+				if(!X.stealth_router(HANDLE_STEALTH_CHECK)) //We don't count stealthed Beanos due to delay potential
+					num_xenos++
 			else if(iszombie(M)) num_xenos++
 
 	return list(num_humans,num_xenos)

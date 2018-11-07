@@ -171,18 +171,20 @@ obj/machinery/atmospherics/proc/check_connect_types_construction(obj/machinery/a
 			if(ventcrawl_message_busy > world.time)
 				return
 			ventcrawl_message_busy = world.time + 20
-			target_move.visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
+			if(!istype(user,/mob/living/carbon/Xenomorph/Hunter))
+				target_move.visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
 			to_chat(user, "<span class='notice'>You begin to climb out of [target_move]</span>")
 			if(do_after(user, 20, FALSE))
 				user.remove_ventcrawl()
 				user.forceMove(target_move.loc) //handles entering and so on
 				user.visible_message("<span class='warning'>[user] climbs out of [target_move].</span>", \
 				"<span class='notice'>You climb out of [target_move].</span>")
-				pick(playsound(user, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(user, 'sound/effects/alien_ventpass2.ogg', 35, 1))
+				if(!istype(user,/mob/living/carbon/Xenomorph/Hunter)) //Hunters silently enter/exit vents.
+					pick(playsound(user, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(user, 'sound/effects/alien_ventpass2.ogg', 35, 1))
 		else if(target_move.can_crawl_through())
 			user.loc = target_move
 			user.client.eye = target_move //if we don't do this, Byond only updates the eye every tick - required for smooth movement
-			if(world.time - user.last_played_vent > VENT_SOUND_DELAY)
+			if(world.time - user.last_played_vent > VENT_SOUND_DELAY && !istype(user,/mob/living/carbon/Xenomorph/Hunter) ) //Hunters silently enter/exit/move through vents.
 				user.last_played_vent = world.time
 				pick(playsound(src, 'sound/effects/alien_ventcrawl1.ogg', 25, 1), playsound(src, 'sound/effects/alien_ventcrawl2.ogg', 25, 1))
 	else
@@ -190,14 +192,16 @@ obj/machinery/atmospherics/proc/check_connect_types_construction(obj/machinery/a
 			if(ventcrawl_message_busy > world.time)
 				return
 			ventcrawl_message_busy = world.time + 20
-			visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
+			if(!istype(user,/mob/living/carbon/Xenomorph/Hunter) ) //Hunters silently enter/exit/move through vents.
+				visible_message("<span class='warning'>You hear something squeezing through the ducts.</span>")
 			to_chat(user, "<span class='notice'>You begin to climb out of [src]</span>")
 			if(do_after(user, 20, FALSE))
 				user.remove_ventcrawl()
 				user.forceMove(src.loc)
 				user.visible_message("<span class='warning'>[user] climbs out of [src].</span>", \
 				"<span class='notice'>You climb out of [src].</span>")
-				pick(playsound(user, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(user, 'sound/effects/alien_ventpass2.ogg', 35, 1))
+				if(!istype(user,/mob/living/carbon/Xenomorph/Hunter) )
+					pick(playsound(user, 'sound/effects/alien_ventpass1.ogg', 35, 1), playsound(user, 'sound/effects/alien_ventpass2.ogg', 35, 1))
 	user.canmove = 0
 	spawn(1)
 		user.canmove = 1
