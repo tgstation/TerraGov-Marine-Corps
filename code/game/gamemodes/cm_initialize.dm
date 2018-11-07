@@ -42,6 +42,7 @@ Additional game mode variables.
 	var/datum/mind/xenomorphs[] = list() //These are our basic lists to keep track of who is in the game.
 	var/datum/mind/survivors[] = list()
 	var/datum/mind/predators[] = list()
+	var/datum/mind/queen
 	var/datum/mind/hellhounds[] = list() //Hellhound spawning is not supported at round start.
 	var/pred_keys[] = list() //People who are playing predators, we can later reference who was a predator during the round.
 
@@ -89,7 +90,7 @@ Additional game mode variables.
 
 datum/game_mode/proc/initialize_special_clamps()
 	var/ready_players = num_players() // Get all players that have "Ready" selected
-	xeno_starting_num = max((ready_players/7), xeno_required_num) //(n, minimum, maximum)
+	xeno_starting_num = max((ready_players/7), xeno_required_num)
 	surv_starting_num = CLAMP((ready_players/25), 0, 8)
 	merc_starting_num = max((ready_players/3), 1)
 	marine_starting_num = ready_players - xeno_starting_num - surv_starting_num - merc_starting_num
@@ -101,7 +102,6 @@ datum/game_mode/proc/initialize_special_clamps()
 	for(var/datum/job/J in RoleAuthority.roles_by_name)
 		if(J.scaled)
 			J.set_spawn_positions(marine_starting_num)
-
 
 //===================================================\\
 
@@ -290,13 +290,14 @@ datum/game_mode/proc/initialize_special_clamps()
 	var/datum/mind/new_xeno
 	var/turf/larvae_spawn
 	while(i > 0) //While we can still pick someone for the role.
-		if(possible_xenomorphs.len) //We still have candidates
+		if(length(possible_xenomorphs)) //We still have candidates
 			new_xeno = pick(possible_xenomorphs)
-			if(!new_xeno) break  //Looks like we didn't get anyone. Back out.
+			if(!new_xeno) 
+				break  //Looks like we didn't get anyone. Back out.
 			new_xeno.assigned_role = "MODE"
 			new_xeno.special_role = "Xenomorph"
-			possible_xenomorphs -= new_xeno
 			xenomorphs += new_xeno
+			possible_xenomorphs -= new_xeno
 		else //Out of candidates, spawn in empty larvas directly
 			larvae_spawn = pick(xeno_spawn)
 			new /mob/living/carbon/Xenomorph/Larva(larvae_spawn)
@@ -312,9 +313,41 @@ datum/game_mode/proc/initialize_special_clamps()
 
 	return TRUE
 
+/datum/game_mode/proc/initialize_starting_queen_list()
+	var/list/datum/mind/possible_queens = get_players_for_role(BE_QUEEN)
+
+	//Minds are not transferred at this point, so we have to clean out those who may be already picked to play.
+	for(var/datum/mind/A in possible_queens)
+		if(A.assigned_role == "MODE")
+			possible_queens -= A
+
+	if(!length(possible_queens))
+		return FALSE
+
+	for(var/datum/mind/new_queen in possible_queens)
+		if(jobban_isbanned(new_queen.current))
+			continue
+		new_queen.assigned_role = "MODE"
+		new_queen.special_role = "Xenomorph"
+		queen = new_queen
+		break
+
+	if(!queen)
+		return FALSE
+	else
+		return TRUE
+
 /datum/game_mode/proc/initialize_post_xenomorph_list()
 	for(var/datum/mind/new_xeno in xenomorphs) //Build and move the xenos.
-		transform_xeno(new_xeno)
+		if(new_xeno == queen)
+			continue
+		else
+			transform_xeno(new_xeno)
+
+datum/game_mode/proc/initialize_post_queen_list()
+	if(!queen)
+		return
+	transform_queen(queen)
 
 /datum/game_mode/proc/check_xeno_late_join(mob/xeno_candidate)
 	if(jobban_isbanned(xeno_candidate, "Alien")) // User is jobbanned
@@ -442,29 +475,39 @@ datum/game_mode/proc/initialize_special_clamps()
 /datum/game_mode/proc/transform_xeno(datum/mind/ghost_mind)
 	var/mob/original = ghost_mind.current
 	var/mob/living/carbon/Xenomorph/new_xeno
-	var/is_queen = FALSE
-	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
-	if(!hive.living_xeno_queen && original && original.client && original.client.prefs && (original.client.prefs.be_special & BE_QUEEN) && !jobban_isbanned(original, "Queen"))
-		new_xeno = new /mob/living/carbon/Xenomorph/Queen (pick(xeno_spawn))
-		is_queen = TRUE
-	else
-		new_xeno = new /mob/living/carbon/Xenomorph/Larva(pick(xeno_spawn))
+
+	new_xeno = new /mob/living/carbon/Xenomorph/Larva(pick(xeno_spawn))
 	ghost_mind.transfer_to(new_xeno) //The mind is fine, since we already labeled them as a xeno. Away they go.
 	ghost_mind.name = ghost_mind.current.name
 
-	if(is_queen)
-		to_chat(new_xeno, "<B>You are now the alien queen!</B>")
-		to_chat(new_xeno, "<B>Your job is to spread the hive.</B>")
-		to_chat(new_xeno, "Talk in Hivemind using <strong>;</strong> (e.g. ';My life for the hive!')")
-	else
-		to_chat(new_xeno, "<B>You are now an alien!</B>")
-		to_chat(new_xeno, "<B>Your job is to spread the hive and protect the Queen. If there's no Queen, you can become the Queen yourself by evolving into a drone.</B>")
-		to_chat(new_xeno, "Talk in Hivemind using <strong>;</strong> (e.g. ';My life for the queen!')")
+	to_chat(new_xeno, "<B>You are now an alien!</B>")
+	to_chat(new_xeno, "<B>Your job is to spread the hive and protect the Queen. If there's no Queen, you can become the Queen yourself by evolving into a drone.</B>")
+	to_chat(new_xeno, "Talk in Hivemind using <strong>;</strong> (e.g. ';My life for the queen!')")
 
 	new_xeno.update_icons()
 
-	if(original) cdel(original) //Just to be sure.
+	if(original) 
+		cdel(original) //Just to be sure.
 
+/datum/game_mode/proc/transform_queen(datum/mind/ghost_mind)
+	var/mob/original = ghost_mind.current
+	var/mob/living/carbon/Xenomorph/new_queen
+	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
+	if(!hive.living_xeno_queen && original?.client?.prefs && (original.client.prefs.be_special & BE_QUEEN) && !jobban_isbanned(original, "Queen"))
+		new_queen = new /mob/living/carbon/Xenomorph/Queen (pick(xeno_spawn))
+	else
+		return
+	ghost_mind.transfer_to(new_queen)
+	ghost_mind.name = ghost_mind.current.name
+
+	to_chat(new_queen, "<B>You are now the alien queen!</B>")
+	to_chat(new_queen, "<B>Your job is to spread the hive.</B>")
+	to_chat(new_queen, "Talk in Hivemind using <strong>;</strong> (e.g. ';My life for the hive!')")
+
+	new_queen.update_icons()
+
+	if(original) 
+		cdel(original) //Just to be sure.
 
 //===================================================\\
 
@@ -484,9 +527,11 @@ datum/game_mode/proc/initialize_special_clamps()
 			var/i = surv_starting_num
 			var/datum/mind/new_survivor
 			while(i > 0)
-				if(!possible_survivors.len) break  //Ran out of candidates! Can't have a null pick(), so just stick with what we have.
+				if(!length(possible_survivors)) 
+					break  //Ran out of candidates! Can't have a null pick(), so just stick with what we have.
 				new_survivor = pick(possible_survivors)
-				if(!new_survivor) break  //We ran out of survivors!
+				if(!new_survivor) 
+					break  //We ran out of survivors!
 				new_survivor.assigned_role = "MODE"
 				new_survivor.special_role = "Survivor"
 				possible_survivors -= new_survivor
