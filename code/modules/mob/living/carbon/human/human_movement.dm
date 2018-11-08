@@ -80,6 +80,30 @@
 
 	. += config.human_delay
 
+	Process_SL_Locator() //Adjust the angle of the overlay
+
+
+/mob/living/carbon/human/proc/Process_SL_Locator()
+	if(!assigned_squad)
+		return
+	var/mob/living/carbon/human/H = assigned_squad.squad_leader
+
+	if(!H)
+		hud_used.locate_leader.icon_state = "trackoff"
+		sl_locator.icon_state = "SL_locator_null"
+		return
+
+	if(H.z != src.z || get_dist(src,H) < 1 || src == H)
+		hud_used.locate_leader.icon_state = "trackondirect"
+		sl_locator.icon_state = "SL_locator_null"
+	else
+		hud_used.locate_leader.dir = get_dir(src,H)
+		hud_used.locate_leader.icon_state = "trackon"
+		sl_locator.icon_state = "SL_locator" //Reset and 0 out.
+		sl_locator.transform = 0 //Reset and 0 out
+		sl_locator.transform = turn(sl_locator.transform, Get_Angle(src,H))
+
+
 
 /mob/living/carbon/human/Process_Spacemove(var/check_drift = 0)
 	//Can we act

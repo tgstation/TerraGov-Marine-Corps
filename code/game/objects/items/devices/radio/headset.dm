@@ -231,6 +231,11 @@
 			if(user.mind && user.assigned_squad && user.hud_used && user.hud_used.locate_leader)
 				user.hud_used.locate_leader.alpha = 255
 				user.hud_used.locate_leader.mouse_opacity = 1
+				user.sl_locator = new/obj/effect/SL_locator
+				user.sl_locator.loc = H
+				user.vis_contents += user.sl_locator
+				user.sl_locator.alpha = 180
+
 
 	..()
 
@@ -243,6 +248,10 @@
 			if(user.hud_used && user.hud_used.locate_leader)
 				user.hud_used.locate_leader.alpha = 0
 				user.hud_used.locate_leader.mouse_opacity = 0
+				if(user.sl_locator)
+					user.vis_contents -= user.sl_locator
+					user.sl_locator.alpha = 0
+					user.sl_locator.dir = 0
 	..()
 
 

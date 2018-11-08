@@ -124,3 +124,16 @@
 	var/temporary_slowdown = 0 //Stacking slowdown caused from effects, currently used by neurotoxin gas
 
 	var/datum/squad/assigned_squad //the squad this human is assigned to
+
+	var/obj/effect/sl_locator = new/obj/effect/SL_locator
+
+
+/obj/effect/SL_locator
+	icon = 'icons/Marine/marine-items.dmi'
+	icon_state = "SL_locator"
+	layer = BELOW_FULLSCREEN_LAYER
+	alpha = 0
+	mouse_opacity = 0
+
+	Dispose()
+		..()
