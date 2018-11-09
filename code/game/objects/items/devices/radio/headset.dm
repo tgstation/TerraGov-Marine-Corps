@@ -241,10 +241,11 @@
 	if(user.mind && user.assigned_squad && user.hud_used && user.hud_used.locate_leader)
 		user.hud_used.locate_leader.alpha = 255
 		user.hud_used.locate_leader.mouse_opacity = 1
-		user.hud_used.SL_locator.alpha = 180
+		user.hud_used.SL_locator.alpha = 128
 		user.hud_used.SL_locator.loc = H
 		user.vis_contents += user.hud_used.SL_locator
 		user.sl_headset_active = TRUE
+		user.Process_SL_Locator()
 
 /obj/item/device/radio/headset/almayer/proc/remove_squadhud(datum/mob_hud/H, mob/living/carbon/human/user)
 	H.remove_hud_from(user)
