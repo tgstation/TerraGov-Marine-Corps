@@ -374,6 +374,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define HUD_STYLE_REDUCED	2
 #define HUD_STYLE_NOHUD		3
 #define HUD_VERSIONS		3
+#define HUD_SL_LOCATOR_COOLDOWN	1
 
 
 //Blood levels

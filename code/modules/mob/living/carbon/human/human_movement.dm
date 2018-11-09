@@ -84,24 +84,32 @@
 
 
 /mob/living/carbon/human/proc/Process_SL_Locator()
+	if(!sl_headset_active)
+		return
 	if(!assigned_squad)
 		return
+	if(world.time < sl_locator_next_update)
+		return
 	var/mob/living/carbon/human/H = assigned_squad.squad_leader
+	var/obj/screen/SL = hud_used.SL_locator
+	var/obj/screen/SL_dial = hud_used.locate_leader
 
 	if(!H)
-		hud_used.locate_leader.icon_state = "trackoff"
-		sl_locator.icon_state = "SL_locator_null"
+		SL_dial.icon_state = "trackoff"
+		SL.icon_state = "SL_locator_null"
 		return
 
 	if(H.z != src.z || get_dist(src,H) < 1 || src == H)
-		hud_used.locate_leader.icon_state = "trackondirect"
-		sl_locator.icon_state = "SL_locator_null"
+		SL_dial.icon_state = "trackondirect"
+		SL.icon_state = "SL_locator_null"
 	else
-		hud_used.locate_leader.dir = get_dir(src,H)
-		hud_used.locate_leader.icon_state = "trackon"
-		sl_locator.icon_state = "SL_locator" //Reset and 0 out.
-		sl_locator.transform = 0 //Reset and 0 out
-		sl_locator.transform = turn(sl_locator.transform, Get_Angle(src,H))
+		SL_dial.dir = get_dir(src,H)
+		SL_dial.icon_state = "trackon"
+		SL.icon_state = "SL_locator" //Reset and 0 out.
+		SL.transform = 0 //Reset and 0 out
+		SL.transform = turn(SL.transform, Get_Angle(src,H))
+
+	sl_locator_next_update = world.time + HUD_SL_LOCATOR_COOLDOWN
 
 
 

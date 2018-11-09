@@ -226,34 +226,34 @@
 	if(slot == WEAR_EAR)
 		if(headset_hud_on)
 			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
-			H.add_hud_to(user)
-			//squad leader locator is no longer invisible on our player HUD.
-			if(user.mind && user.assigned_squad && user.hud_used && user.hud_used.locate_leader)
-				user.hud_used.locate_leader.alpha = 255
-				user.hud_used.locate_leader.mouse_opacity = 1
-				user.sl_locator = new/obj/effect/SL_locator
-				user.sl_locator.loc = H
-				user.vis_contents += user.sl_locator
-				user.sl_locator.alpha = 180
-
-
+			add_squadhud(H, user)
 	..()
 
 /obj/item/device/radio/headset/almayer/dropped(mob/living/carbon/human/user)
 	if(istype(user) && headset_hud_on)
 		if(user.wear_ear == src) //dropped() is called before the inventory reference is update.
 			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
-			H.remove_hud_from(user)
-			//squad leader locator is invisible again
-			if(user.hud_used && user.hud_used.locate_leader)
-				user.hud_used.locate_leader.alpha = 0
-				user.hud_used.locate_leader.mouse_opacity = 0
-				if(user.sl_locator)
-					user.vis_contents -= user.sl_locator
-					user.sl_locator.alpha = 0
-					user.sl_locator.dir = 0
+			remove_squadhud(H, user)
 	..()
 
+/obj/item/device/radio/headset/almayer/proc/add_squadhud(datum/mob_hud/H, mob/living/carbon/human/user)
+	H.add_hud_to(user)
+	if(user.mind && user.assigned_squad && user.hud_used && user.hud_used.locate_leader)
+		user.hud_used.locate_leader.alpha = 255
+		user.hud_used.locate_leader.mouse_opacity = 1
+		user.hud_used.SL_locator.alpha = 180
+		user.hud_used.SL_locator.loc = H
+		user.vis_contents += user.hud_used.SL_locator
+		user.sl_headset_active = TRUE
+
+/obj/item/device/radio/headset/almayer/proc/remove_squadhud(datum/mob_hud/H, mob/living/carbon/human/user)
+	H.remove_hud_from(user)
+	if(user.hud_used && user.hud_used.locate_leader)
+		user.hud_used.locate_leader.alpha = 0
+		user.hud_used.locate_leader.mouse_opacity = 0
+		user.vis_contents -= user.hud_used.SL_locator
+		user.hud_used.SL_locator.alpha = 0
+		user.sl_headset_active = FALSE
 
 /obj/item/device/radio/headset/almayer/verb/toggle_squadhud()
 	set name = "Toggle headset HUD"
@@ -268,15 +268,9 @@
 		if(src == user.wear_ear) //worn
 			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
 			if(headset_hud_on)
-				H.add_hud_to(usr)
-				if(user.mind && user.assigned_squad && user.hud_used && user.hud_used.locate_leader)
-					user.hud_used.locate_leader.alpha = 255
-					user.hud_used.locate_leader.mouse_opacity = 1
+				add_squadhud(H, user)
 			else
-				H.remove_hud_from(usr)
-				if(user.hud_used && user.hud_used.locate_leader)
-					user.hud_used.locate_leader.alpha = 0
-					user.hud_used.locate_leader.mouse_opacity = 0
+				remove_squadhud(H, user)
 	to_chat(usr, "<span class='notice'>You toggle [src]'s headset HUD [headset_hud_on ? "on":"off"].</span>")
 	playsound(src,'sound/machines/click.ogg', 20, 1)
 
