@@ -45,7 +45,7 @@
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/charge,
 		/datum/action/xeno_action/activable/ravage,
-		/datum/action/xeno_action/activable/second_wind,
+		/datum/action/xeno_action/second_wind,
 		)
 
 
@@ -78,7 +78,7 @@
 
 	spawn(RAV_CHARGECOOLDOWN)
 		usedPounce = FALSE
-		to_chat(src, "<span class='notice'><b>Your exoskeleton quivers as you get ready to use Eviscerating Charge again.</b></span>")
+		to_chat(src, "<span class='xenodanger'>Your exoskeleton quivers as you get ready to use Eviscerating Charge again.</span>")
 		playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 		update_action_button_icons()
 

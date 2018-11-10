@@ -132,6 +132,7 @@
 	rage += round(damage * 0.3) //Gain Rage stacks equal to 30% of damage received.
 	last_rage = world.time //We incremented rage, so bookmark this.
 	damage *= rage_resist //reduce damage by rage resist %
+	rage_resist = CLAMP(1-round(rage * 0.014,0.01),0.3,1) //Update rage resistance _after_ we take damage
 	return damage
 
 /mob/living/carbon/Xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)

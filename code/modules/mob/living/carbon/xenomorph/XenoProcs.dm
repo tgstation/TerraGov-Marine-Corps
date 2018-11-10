@@ -194,8 +194,7 @@
 	. = ..()
 
 	if(rage)
-		. -=round(rage * 0.025,0.01) //Ravagers gain 0.025 units of speed per unit of rage; min -0.025, max -1.25
-
+		. -=round(rage * 0.02,0.01) //Ravagers gain 0.02 units of speed per unit of rage; min -0.02, max -1
 
 /mob/living/carbon/Xenomorph/proc/update_progression()
 	if(upgrade != -1 && upgrade != 3) //upgrade possible
