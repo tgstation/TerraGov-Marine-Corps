@@ -1720,7 +1720,7 @@
 		return
 	spawn(HUNTER_POUNCE_SNEAKATTACK_DELAY)
 		can_sneak_attack = TRUE
-		to_chat(src, "<span class='xenodanger'><b>You're ready to use Sneak Attack while stealthed.</b></span>")
+		to_chat(src, "<span class='xenodanger'>You're ready to use Sneak Attack while stealthed.</span>")
 		playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 
 
@@ -1785,7 +1785,7 @@
 
 	spawn(CLAMP(RAV_RAVAGE_COOLDOWN - (victims * 30),10,100)) //10 second cooldown base, minus 2 per victim
 		ravage_used = FALSE
-		to_chat(src, "<span class='notice'><b>You gather enough strength to Ravage again.</b></span>")
+		to_chat(src, "<span class='xenodanger'>You gather enough strength to Ravage again.</span>")
 		playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 		update_action_button_icons()
 
@@ -1801,26 +1801,29 @@
 		to_chat(src, "<span class='xenowarning'>You must gather your strength before using Second Wind. Second Wind can be used in [(second_wind_delay - world.time) * 0.1] seconds.</span>")
 		return
 
-	to_chat(src, "<span class='notice'><b>You attempt to martial your fury, tapping an inner reserve of strength.</b></span>")
-	var/current_rage = rage //lock in the value at the time we use it.
+	to_chat(src, "<span class='xenodanger'>Your coursing adrenaline stimulates tissues into a spat of rapid regeneration...</span>")
+	var/current_rage = CLAMP(rage,0,RAVAGER_MAX_RAGE) //lock in the value at the time we use it; min 0, max 50.
 	do_jitter_animation(1000)
 	if(!do_after(src, 50, TRUE, 5, BUSY_ICON_FRIENDLY))
 		return
 	do_jitter_animation(1000)
 	playsound(src, "sound/effects/alien_drool2.ogg", 50, 0)
-	to_chat(src, "<span class='notice'><b>You recoup your health, your tapped rage restoring your body, flesh and chitin reknitting themselves.</b></span>")
+	to_chat(src, "<span class='xenodanger'>You recoup your health, your tapped rage restoring your body, flesh and chitin reknitting themselves...</span>")
 	health += CLAMP( (maxHealth - health) * (0.25 + current_rage * 0.015), 0, maxHealth - health) //Restore HP equal to 25% + 1.5% of the difference between min and max health per rage
 	plasma_stored += CLAMP( (plasma_max - plasma_stored) * (0.25 + current_rage * 0.015), 0, plasma_max - plasma_stored) //Restore Plasma equal to 25% + 1.5% of the difference between min and max health per rage
+	updatehealth()
+	hud_set_plasma()
 
 	round_statistics.ravager_second_winds++
 
-	rage = 0
 	second_wind_used = TRUE
 
-	second_wind_delay = world.time + (RAV_SECOND_WIND_COOLDOWN * round(1 - rage * 0.01) )
+	second_wind_delay = world.time + (RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.01) )
 
-	spawn(RAV_SECOND_WIND_COOLDOWN * round(1 - rage * 0.01) ) //2 minute cooldown, minus 0.5 seconds per rage to minimum 30 seconds.
+	spawn(RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.01) ) //1 minute cooldown, minus 0.5 seconds per rage to minimum 30 seconds.
 		second_wind_used = FALSE
-		to_chat(src, "<span class='notice'><b>You gather enough strength to use Second Wind again.</b></span>")
+		to_chat(src, "<span class='xenodanger'>You gather enough strength to use Second Wind again.</span>")
 		playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 		update_action_button_icons()
+
+	rage = 0

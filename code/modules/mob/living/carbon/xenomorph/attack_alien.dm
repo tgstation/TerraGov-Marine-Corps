@@ -102,8 +102,8 @@
 			if(prob(M.bite_chance) && !M.critical_proc && !no_crit && !M.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
 				damage *= 1.5
 				attack_sound = "alien_bite"
-				attack_message1 = "<span class='danger'>\The [M] is viciously shredded by \the [src]'s sharp teeth!</span>"
-				attack_message2 = "<span class='danger'>You viciously rend \the [M] with your teeth!</span>"
+				attack_message1 = "<span class='danger'>\The [src] is viciously shredded by \the [M]'s sharp teeth!</span>"
+				attack_message2 = "<span class='danger'>You viciously rend \the [src] with your teeth!</span>"
 				log = "bit"
 				M.critical_proc = TRUE
 				spawn(CRITICAL_HIT_DELAY)
@@ -114,8 +114,8 @@
 				damage *= 1.25
 				attack_flick = "tail"
 				attack_sound = 'sound/weapons/alien_tail_attack.ogg'
-				attack_message1 = "<span class='danger'>\The [M] is suddenly impaled by \the [src]'s sharp tail!</span>"
-				attack_message2 = "<span class='danger'>You violently impale \the [M] with your tail!</span>"
+				attack_message1 = "<span class='danger'>\The [src] is suddenly impaled by \the [M]'s sharp tail!</span>"
+				attack_message2 = "<span class='danger'>You violently impale \the [src] with your tail!</span>"
 				log = "tail-stabbed"
 				M.critical_proc = TRUE
 				spawn(CRITICAL_HIT_DELAY)
