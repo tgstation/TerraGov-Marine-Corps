@@ -99,15 +99,15 @@ proc/isorgan(A)
 	return 0
 
 proc/isdeaf(A)
-	if(istype(A, /mob))
-		var/mob/M = A
-		return (M.sdisabilities & DEAF) || M.ear_deaf
-	return 0
+	if(isliving(A))
+		var/mob/living/M = A
+		return M.ear_deaf
+	return FALSE
 
 proc/is_blind(A)
-	if(istype(A, /mob))
-		var/mob/M = A
-		return (M.sdisabilities & BLIND) || M.eye_blind
+	if(isliving(A))
+		var/mob/living/M = A
+		return M.eye_blind
 	return FALSE
 
 
