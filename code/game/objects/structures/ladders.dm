@@ -65,7 +65,7 @@
 	return attack_hand(M)
 
 /obj/structure/ladder/attack_hand(mob/user)
-	if(user.is_mob_incapacitated() || Adjacent(user) || user.lying || user.buckled || user.anchored)
+	if(user.is_mob_incapacitated() || !Adjacent(user) || user.lying || user.buckled || user.anchored)
 		return
 	var/ladder_dir_name
 	var/obj/structure/ladder/ladder_dest
