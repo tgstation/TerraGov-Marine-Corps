@@ -1242,32 +1242,16 @@
 	return !X.cresttoss_used
 
 //Carrier abilities
-/datum/action/xeno_action/activable/stealth
+/datum/action/xeno_action/spawn_hugger
 	name = "Spawn Facehugger (100)"
 	action_icon_state = "spawn_hugger"
-	ability_name = "spawn facehugger"
 	plasma_cost = 100
 
-/datum/action/xeno_action/activable/stealth/action_activate()
+/datum/action/xeno_action/spawn_hugger/action_activate()
 	var/mob/living/carbon/Xenomorph/Carrier/X = owner
 	X.Spawn_Hugger()
 
-/datum/action/xeno_action/activable/stealth/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/Carrier/X = owner
-	return !X.used_spawn_facehugger
-
-//Carrier abilities
-/datum/action/xeno_action/activable/stealth
-	name = "Spawn Facehugger (100)"
-	action_icon_state = "spawn_hugger"
-	ability_name = "spawn facehugger"
-	plasma_cost = 100
-
-/datum/action/xeno_action/activable/stealth/action_activate()
-	var/mob/living/carbon/Xenomorph/Carrier/X = owner
-	X.Spawn_Hugger()
-
-/datum/action/xeno_action/activable/stealth/action_cooldown_check()
+/datum/action/xeno_action/spawn_hugger/action_cooldown_check()
 	var/mob/living/carbon/Xenomorph/Carrier/X = owner
 	return !X.used_spawn_facehugger
 

@@ -499,3 +499,5 @@ var/list/global_mutations = list() // list of hidden mutation things
 //carrier defines
 
 #define CARRIER_SPAWN_HUGGER_COST 100
+#define CARRIER_HUGGER_THROW_SPEED 2
+#define CARRIER_HUGGER_THROW_DISTANCE 5
