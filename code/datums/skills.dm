@@ -1,6 +1,3 @@
-
-
-
 /datum/skills
 	var/name //the name of the skillset
 	var/cqc = SKILL_CQC_DEFAULT
@@ -27,11 +24,9 @@
 	var/large_vehicle = SKILL_LARGE_VEHICLE_DEFAULT
 
 
-
 /datum/skills/pfc
 	name = "Private"
 	//same as default
-
 
 
 /datum/skills/civilian
@@ -39,7 +34,6 @@
 	cqc = SKILL_CQC_WEAK
 	firearms = SKILL_FIREARMS_UNTRAINED
 	melee_weapons = SKILL_MELEE_WEAK
-
 
 /datum/skills/civilian/survivor
 	name = "Survivor"
@@ -97,7 +91,6 @@
 	construction = SKILL_CONSTRUCTION_ADVANCED
 	leadership = SKILL_LEAD_BEGINNER
 
-
 /datum/skills/combat_medic
 	name = "Combat Medic"
 	leadership = SKILL_LEAD_BEGINNER
@@ -117,8 +110,6 @@
 	medical = SKILL_MEDICAL_DOCTOR
 	melee_weapons = SKILL_MELEE_WEAK
 	surgery = SKILL_SURGERY_EXPERT
-
-
 
 /datum/skills/CMO
 	name = "CMO"
@@ -165,6 +156,7 @@
 	powerloader = SKILL_POWERLOADER_TRAINED
 	large_vehicle = SKILL_LARGE_VEHICLE_TRAINED
 
+
 /datum/skills/commander
 	name = "Commander"
 	engineer = SKILL_ENGINEER_ENGI
@@ -194,13 +186,11 @@
 	medical = SKILL_MEDICAL_MEDIC
 	surgery = SKILL_SURGERY_AMATEUR
 
-
 /datum/skills/pilot
 	name = "Pilot Officer"
 	pilot = SKILL_PILOT_TRAINED
 	powerloader = SKILL_POWERLOADER_PRO
 	leadership = SKILL_LEAD_TRAINED
-
 
 /datum/skills/MP
 	name = "Military Police"
@@ -213,7 +203,6 @@
 	police = SKILL_POLICE_MP
 	leadership = SKILL_LEAD_TRAINED
 
-
 /datum/skills/CE
 	name = "Chief Engineer"
 	engineer = SKILL_ENGINEER_MT
@@ -221,7 +210,6 @@
 	leadership = SKILL_LEAD_MASTER
 	police = SKILL_POLICE_FLASH
 	powerloader = SKILL_POWERLOADER_TRAINED
-
 
 /datum/skills/RO
 	name = "Requisition Officer"

@@ -22,6 +22,9 @@ var/global/datum/authority/branch/role/RoleAuthority
 
 	var/list/roles_by_path //Master list generated when role aithority is created, listing every role by path, including variable roles. Great for manually equipping with.
 	var/list/roles_by_name //Master list generated when role authority is created, listing every default role by name, including those that may not be regularly selected.
+	var/list/roles_by_name_paths
+	var/list/roles_by_equipment
+	var/list/roles_by_equipment_paths
 	var/list/roles_for_mode //Derived list of roles only for the game mode, generated when the round starts.
 	var/list/roles_whitelist //Associated list of lists, by ckey. Checks to see if a person is whitelisted for a specific role.
 
@@ -32,14 +35,7 @@ var/global/datum/authority/branch/role/RoleAuthority
 
 	//Whenever the controller is created, we want to set up the basic role lists.
 /datum/authority/branch/role/New()
-	var/list/roles_all = subtypesof(/datum/job) - list(
-							/datum/job/pmc,
-							/datum/job/command,
-							/datum/job/civilian,
-							/datum/job/logistics,
-							/datum/job/logistics/tech,
-							/datum/job/marine,
-							/datum/job/pmc/elite_responder)
+	var/list/roles_all = subtypesof(/datum/job)
 	var/list/squads_all = subtypesof(/datum/squad)
 
 	if(!roles_all.len)
@@ -52,11 +48,14 @@ var/global/datum/authority/branch/role/RoleAuthority
 		log_debug("Error setting up squads, no squad datums found.")
 		return
 
-	roles_by_path 	= new
-	roles_by_name 	= new
-	roles_for_mode  = new
-	roles_whitelist = new
-	squads 			= new
+	roles_by_path 	         = new
+	roles_by_name 	         = new
+	roles_by_name_paths      = new
+	roles_by_equipment 	     = new
+	roles_by_equipment_paths = new
+	roles_for_mode           = new
+	roles_whitelist          = new
+	squads 			         = new
 
 	var/list/L = new
 	var/datum/job/J
@@ -72,8 +71,15 @@ var/global/datum/authority/branch/role/RoleAuthority
 
 		roles_by_path[J.type] = J
 		if(J.flags_startup_parameters & ROLE_ADD_TO_DEFAULT)
-			roles_by_name[J.title] = J
-		if(J.flags_startup_parameters & ROLE_ADD_TO_MODE)
+			if(J.title)
+				roles_by_name[J.title] = J
+				roles_by_name_paths[J.type] = J
+			if(J.equipment)
+				roles_by_equipment[J.title] = J
+				roles_by_equipment_paths[J.type] = J
+		else
+			log_admin("[J]")
+		if(J.flags_startup_parameters & ROLE_ADD_TO_DEFAULT)
 			roles_for_mode[J.title] = J
 
 	//	if(J.faction == FACTION_TO_JOIN)  //TODO Initialize non-faction jobs? //TODO Do we really need this?
@@ -393,7 +399,7 @@ roles willy nilly.
 /datum/authority/branch/role/proc/equip_role(mob/living/M, datum/job/J, turf/late_join)
 	if(!istype(M) || !istype(J)) return
 
-	J.equip(M) //Equip them with the base job gear.
+	J.generate_equipment(M) //Equip them with the base job gear.
 
 	//If they didn't join late, we want to move them to the start position for their role.
 	if(late_join) M.loc = late_join //If they late joined, we passed on the location from the parent proc.
