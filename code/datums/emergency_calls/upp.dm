@@ -2,8 +2,7 @@
 
 //UPP Strike Team
 /datum/emergency_call/upp
-	name = "UPP Naval Infantry (Squad)"
-	mob_max = 7
+	name = "UPP"
 	probability = 10
 	shuttle_id = "Distress_UPP"
 	name_of_spawn = "Distress_UPP"
@@ -51,79 +50,56 @@
 	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
 
-	if(!istype(spawn_loc)) return //Didn't find a useable spawn point.
+	if(!istype(spawn_loc)) 
+		return //Didn't find a useable spawn point.
 
-	var/mob/living/carbon/human/mob = new(spawn_loc)
-	mob.gender = pick(60;MALE,40;FEMALE)
-	var/datum/preferences/A = new()
-	A.randomize_appearance_for(mob)
-	var/list/first_names_mr = list("Badai","Mongkeemur","Alexei","Andrei","Artyom","Viktor","Xangai","Ivan","Choban","Oleg", "Dayan", "Taghi", "Batu", "Arik", "Orda", "Ghazan", "Bala", "Gao", "Zhan", "Ren", "Hou", "Xue", "Serafim", "Luca", "Su", "György", "István", "Mihály")
-	var/list/first_names_fr = list("Altani","Cirina","Anastasiya","Saran","Wei","Oksana","Ren","Svena","Tatyana","Yaroslava", "Izabella", "Kata", "Krisztina", "Miruna", "Flori", "Lucia", "Anica", "Li", "Yimu")
-	var/list/last_names_r = list("Azarov","Bogdanov","Barsukov","Golovin","Davydov","Khan","Noica","Barbu","Zhukov","Ivanov","Mihai","Kasputin","Belov","Melnikov", "Vasilevsky", "Aleksander", "Halkovich", "Stanislaw", "Proca", "Zaituc", "Arcos", "Kubat", "Kral", "Volf", "Xun", "Jia")
+	var/mob/living/carbon/human/mob = new /mob/living/carbon/human(spawn_loc)
+	
 	if(mob.gender == MALE)
-		mob.real_name = "[pick(first_names_mr)] [pick(last_names_r)]"
-		mob.f_style = "5 O'clock Shadow"
+		mob.name = pick(first_names_male_russian) + " " + pick(last_names_russian)
+		mob.real_name = mob.name
+		mob.voice_name = mob.name
 	else
-		mob.real_name = "[pick(first_names_fr)] [pick(last_names_r)]"
-
-	mob.name = mob.real_name
-	mob.age = rand(17,35)
-	mob.h_style = "Shaved Head"
-	mob.r_hair = 15
-	mob.g_hair = 15
-	mob.b_hair = 25
-	mob.r_eyes = 139
-	mob.g_eyes = 62
-	mob.b_eyes = 19
-	mob.dna.ready_dna(mob)
+		mob.name = pick(first_names_female_russian) + " " + pick(last_names_russian)
+		mob.real_name = mob.name
+		mob.voice_name = mob.name
+		
 	mob.key = M.key
-	if(mob.client) mob.client.change_view(world.view)
-	mob.mind.assigned_role = "MODE"
-	mob.mind.special_role = "UPP"
-	ticker.mode.traitors += mob.mind
+	mob.client?.change_view(world.view)
+
 	spawn(0)
 		if(!leader)       //First one spawned is always the leader.
 			leader = mob
-			mob.mind.set_cm_skills(/datum/skills/SL/upp)
-			mob.arm_equipment(mob, "UPP Soldier (Leader)")
+			var/datum/job/J = new /datum/job/upp/leader
+			mob.set_everything(mob, "UPP Leader")
+			J.generate_equipment(mob)
+			J.generate_entry_conditions(mob)
 			to_chat(mob, "<font size='3'>\red You are an officer of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>")
 		else if(medics < max_medics)
-			mob.mind.set_cm_skills(/datum/skills/combat_medic/crafty)
+			var/datum/job/J = new /datum/job/upp/medic
+			mob.set_everything(mob, "UPP Medic")
+			J.generate_equipment(mob)
+			J.generate_entry_conditions(mob)
 			to_chat(mob, "<font size='3'>\red You are a medic of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>")
-			mob.arm_equipment(mob, "UPP Soldier (Medic)")
 			medics++
 		else if(heavies < max_heavies)
-			mob.mind.set_cm_skills(/datum/skills/specialist/upp)
+			var/datum/job/J = new /datum/job/upp/heavy
+			mob.set_everything(mob, "UPP Heavy")
+			J.generate_equipment(mob)
+			J.generate_entry_conditions(mob)
 			to_chat(mob, "<font size='3'>\red You are a soldier of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>")
-			mob.arm_equipment(mob, "UPP Soldier (Heavy)")
 			heavies++
 		else
-			mob.mind.set_cm_skills(/datum/skills/pfc/crafty)
+			var/datum/job/J = new /datum/job/upp/standard
+			mob.set_everything(mob, "UPP Standard")
+			J.generate_equipment(mob)
+			J.generate_entry_conditions(mob)
 			to_chat(mob, "<font size='3'>\red You are a soldier of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>")
-			mob.arm_equipment(mob, "UPP Soldier (Standard)")
 
 		print_backstory(mob)
-
 
 	spawn(10)
 		to_chat(mob, "<B>Objectives:</b> [objectives]")
 
-	mob.remove_language("Sol Common")
-	mob.add_language("Russian")
-
 	if(original)
 		cdel(original)
-
-
-
-
-
-/datum/emergency_call/upp/platoon
-	name = "UPP Naval Infantry (Platoon)"
-	mob_min = 8
-	mob_max = 30
-	probability = 0
-	max_medics = 2
-	max_heavies = 2
-
-

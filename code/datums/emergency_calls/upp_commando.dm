@@ -5,7 +5,6 @@
 
 /datum/emergency_call/upp_commando
 	name = "UPP Commandos"
-	mob_max = 6
 	probability = 0
 	objectives = "Stealthily assault the ship. Use your silenced weapons, tranquilizers, and night vision to get the advantage on the enemy. Take out the power systems, comms and engine. Stick together and keep a low profile."
 	shuttle_id = "Distress_UPP"
@@ -46,61 +45,48 @@
 	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
 
-	if(!istype(spawn_loc)) return //Didn't find a useable spawn point.
+	if(!istype(spawn_loc)) 
+		return //Didn't find a useable spawn point.
 
-	var/mob/living/carbon/human/mob = new(spawn_loc)
-	mob.gender = pick(60;MALE,40;FEMALE)
-	var/datum/preferences/A = new()
-	A.randomize_appearance_for(mob)
-	var/list/first_names_mr = list("Badai","Mongkeemur","Alexei","Andrei","Artyom","Viktor","Xangai","Ivan","Choban","Oleg", "Dayan", "Taghi", "Batu", "Arik", "Orda", "Ghazan", "Bala", "Gao", "Zhan", "Ren", "Hou", "Serafim", "Luca")
-	var/list/first_names_fr = list("Altani","Cirina","Anastasiya","Saran","Wei","Oksana","Ren","Svena","Tatyana","Yaroslava", "Miruna", "Flori", "Lucia", "Anica")
-	var/list/last_names_r = list("Azarov","Bogdanov","Barsukov","Golovin","Davydov","Khan","Noica","Barbu","Zhukov","Ivanov","Mihai","Kasputin","Belov","Melnikov", "Vasilevsky", "Proca", "Zaituc", "Arcos", "Kubat", "Kral", "Volf")
-
+	var/mob/living/carbon/human/mob = new /mob/living/carbon/human(spawn_loc)
+	
 	if(mob.gender == MALE)
-		mob.real_name = "[pick(first_names_mr)] [pick(last_names_r)]"
-		mob.f_style = "7 O'clock Shadow"
+		mob.name = pick(first_names_male_russian) + " " + pick(last_names_russian)
+		mob.real_name = mob.name
+		mob.voice_name = mob.name
 	else
-		mob.real_name = "[pick(first_names_fr)] [pick(last_names_r)]"
+		mob.name = pick(first_names_female_russian) + " " + pick(last_names_russian)
+		mob.real_name = mob.name
+		mob.voice_name = mob.name
 
-	mob.name = mob.real_name
-	mob.age = rand(25,35)
-	mob.h_style = "Shaved Head"
-	mob.r_hair = 15
-	mob.g_hair = 15
-	mob.b_hair = 25
-	mob.r_eyes = 139
-	mob.g_eyes = 62
-	mob.b_eyes = 19
-	mob.dna.ready_dna(mob)
 	mob.key = M.key
-	if(mob.client) mob.client.change_view(world.view)
-	mob.mind.assigned_role = "MODE"
-	mob.mind.special_role = "UPP"
-	ticker.mode.traitors += mob.mind
+	mob.client?.change_view(world.view)
+
 	spawn(0)
 		if(!leader)       //First one spawned is always the leader.
 			leader = mob
-			mob.mind.set_cm_skills(/datum/skills/commando/leader)
-			mob.arm_equipment(mob, "UPP Commando (Leader)")
+			var/datum/job/J = new /datum/job/upp/commando/leader
+			mob.set_everything(mob, "UPP Commando Leader")
+			J.generate_equipment(mob)
+			J.generate_entry_conditions(mob)
 			to_chat(mob, "<font size='3'>\red You are a commando officer of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>")
 		else if(medics < max_medics)
-			mob.mind.set_cm_skills(/datum/skills/commando/medic)
+			var/datum/job/J = new /datum/job/upp/commando/medic
+			mob.set_everything(mob, "UPP Commando Medic")
+			J.generate_equipment(mob)
+			J.generate_entry_conditions(mob)
 			to_chat(mob, "<font size='3'>\red You are a commando medic of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>")
-			mob.arm_equipment(mob, "UPP Commando (Medic)")
 			medics++
 		else
-			mob.mind.set_cm_skills(/datum/skills/commando)
+			var/datum/job/J = new /datum/job/upp/commando/leader
+			mob.set_everything(mob, "UPP Commando Standard")
+			J.generate_equipment(mob)
+			J.generate_entry_conditions(mob)
 			to_chat(mob, "<font size='3'>\red You are a commando of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>")
-			mob.arm_equipment(mob, "UPP Commando (Standard)")
 		print_backstory(mob)
 
 	spawn(10)
 		to_chat(mob, "<B>Objectives:</b> [objectives]")
 
-	mob.remove_language("Sol Common")
-	mob.add_language("Russian")
-
 	if(original)
 		cdel(original)
-
-
