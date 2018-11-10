@@ -56,6 +56,9 @@
 			else
 				clear_fullscreen("brute")
 
+		if(hud_used.locate_leader && hud_used.locate_leader.alpha && world.time > (sl_locator_next_update + HUD_SL_LOCATOR_PROCESS_COOLDOWN) ) //not invisible
+			Process_SL_Locator()
+
 		if(hud_used.healths)
 			if(analgesic)
 				hud_used.healths.icon_state = "health_health_numb"

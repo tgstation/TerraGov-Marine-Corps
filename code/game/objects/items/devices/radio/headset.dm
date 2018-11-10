@@ -243,7 +243,6 @@
 		user.hud_used.locate_leader.mouse_opacity = 1
 		user.hud_used.SL_locator.alpha = 128
 		user.hud_used.SL_locator.loc = H
-		user.vis_contents += user.hud_used.SL_locator
 		user.sl_headset_active = TRUE
 		user.Process_SL_Locator()
 
@@ -252,7 +251,6 @@
 	if(user.hud_used && user.hud_used.locate_leader)
 		user.hud_used.locate_leader.alpha = 0
 		user.hud_used.locate_leader.mouse_opacity = 0
-		user.vis_contents -= user.hud_used.SL_locator
 		user.hud_used.SL_locator.alpha = 0
 		user.sl_headset_active = FALSE
 
