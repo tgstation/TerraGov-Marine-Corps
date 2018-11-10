@@ -66,20 +66,16 @@
 
 /mob/living/proc/handle_impaired_vision()
 	//Eyes
-	if(sdisabilities & BLIND)	//blindness from disability or unconsciousness doesn't get better on its own
-		blind_eyes(1)
+	if(eye_blind)
+		adjust_blindness(-1)
 	if(eye_blurry)			//blurry eyes heal slowly
 		adjust_blurriness(-1)
 
 
 /mob/living/proc/handle_impaired_hearing()
 	//Ears
-	if(sdisabilities & DEAF)	//disabled-deaf, doesn't get better on its own
-		setEarDamage(null, max(ear_deaf, 1))
-	else if(ear_damage < 25)
+	if(ear_damage < 100)
 		adjustEarDamage(-0.05, -1)	// having ear damage impairs the recovery of ear_deaf
-	else if(ear_damage < 100)
-		adjustEarDamage(-0.05, 0)	// deafness recovers slowly over time, unless ear_damage is over 100. TODO meds that heal ear_damage
 
 /mob/living/proc/handle_regular_hud_updates()
 	if(!client)

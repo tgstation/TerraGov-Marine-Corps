@@ -639,42 +639,37 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 
 /obj/item/proc/eyecheck(mob/user)
 	if(!ishuman(user))
-		return 1
+		return TRUE
 	var/safety = user.get_eye_protection()
 	var/mob/living/carbon/human/H = user
 	var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
-	if(!E)
-		return
-	if(E.robotic == ORGAN_ROBOT)
-		return
 	switch(safety)
 		if(1)
-			to_chat(user, "<span class='danger'>Your eyes sting a little.</span>")
 			E.damage += rand(1, 2)
-			if(E.damage > 12)
-				H.eye_blurry += rand(3,6)
 		if(0)
-			to_chat(user, "<span class='warning'>Your eyes burn.</span>")
 			E.damage += rand(2, 4)
-			if(E.damage > 10)
-				E.damage += rand(4,10)
 		if(-1)
-			to_chat(user, "<span class='warning'>Your thermals intensify [src]'s glow. Your eyes itch and burn severely.</span>")
-			H.eye_blurry += rand(12,20)
+			H.blur_eyes(rand(12,20))
 			E.damage += rand(12, 16)
 	if(safety<2)
-		if(E.damage > 10)
-			to_chat(H, "<span class='warning'>Your eyes are really starting to hurt. This can't be good for you!</span>")
 		if(E.damage >= E.min_broken_damage)
-			to_chat(H, "<span class='warning'>You go blind!</span>")
-			H.sdisabilities |= BLIND
+			to_chat(H, "<span class='danger'>You can't see anything!</span>")
+			H.blind_eyes(1)
 		else if (E.damage >= E.min_bruised_damage)
-			to_chat(H, "<span class='warning'>You go blind!</span>")
-			H.eye_blind = 5
-			H.eye_blurry = 5
-			H.disabilities |= NEARSIGHTED
-			spawn(100)
-				H.disabilities &= ~NEARSIGHTED
+			to_chat(H, "<span class='warning'>Your eyes are really starting to hurt. This can't be good for you!</span>")
+			H.blind_eyes(5)
+		else
+			switch(safety)
+				if(1)
+					to_chat(user, "<span class='warning'>Your eyes sting a little.</span>")
+				if(0)
+					to_chat(user, "<span class='warning'>Your eyes burn.</span>")
+				if(-1)
+					to_chat(user, "<span class='danger'>Your eyes itch and burn severely.</span>")
+
+
+
+
 
 //This proc is here to prevent Xenomorphs from picking up objects (default attack_hand behaviour)
 //Note that this is overriden by every proc concerning a child of obj unless inherited
