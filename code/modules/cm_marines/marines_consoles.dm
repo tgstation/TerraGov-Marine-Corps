@@ -492,7 +492,8 @@
 	idle_power_usage = 250
 	active_power_usage = 500
 //	circuit = "/obj/item/circuitboard/computer/crew"
-	var/list/tracked = list(  )
+	var/list/tracked = list()
+	var/list/crewmembers = list()
 
 
 /obj/machinery/computer/crew/New()
@@ -546,7 +547,7 @@
 	scan()
 
 	var/data[0]
-	var/list/crewmembers = list()
+	crewmembers = list()
 
 	for(var/obj/item/clothing/under/C in tracked)
 
@@ -589,9 +590,7 @@
 				crewmembers += "temporary item"
 				crewmembers[crewmembers.len] = crewmemberData
 
-	crewmembers = sortRecord(crewmembers, "name")
-
-	data["crewmembers"] = crewmembers
+	data["crewmembers"] = sortRecord(crewmembers, "name")
 
 	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
 	if(!ui)
