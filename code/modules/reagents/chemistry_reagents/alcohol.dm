@@ -13,8 +13,6 @@
 	var/boozepwr = 65 //Higher numbers equal higher hardness, higher hardness equals more intense alcohol poisoning.
 
 	var/druggy = 0
-	var/adj_temp = 0
-	var/targ_temp = 310
 	var/halluci = 0
 
 /*
@@ -46,9 +44,6 @@ All effects don't start immediately, but rather get worse over time; the rate is
 
 	if(druggy != 0)
 		C.set_drugginess(druggy)
-
-	if(adj_temp != 0 && C.bodytemperature != targ_temp)
-		C.bodytemperature = min(targ_temp, C.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
 
 	if(halluci)
 		C.hallucination += halluci
