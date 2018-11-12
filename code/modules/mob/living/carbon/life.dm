@@ -51,9 +51,10 @@
 
 	var/crit_threshold = ishuman(src) ? config.health_threshold_crit : 0
 	if(knocked_out || sleeping || getOxyLoss() > 50 || health < crit_threshold)
+		if(stat != UNCONSCIOUS)
+			blind_eyes(1)
 		stat = UNCONSCIOUS
-		blind_eyes(1)
-	else
+	else if(stat == UNCONSCIOUS)
 		stat = CONSCIOUS
 		adjust_blindness(-1)
 	update_canmove()

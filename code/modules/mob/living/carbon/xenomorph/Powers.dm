@@ -1510,7 +1510,8 @@
 	src.visible_message("<span class='danger'>\ [src] savages [M]!</span>", \
 	"<span class='xenodanger'>You savage [M]!</span>", null, 5)
 	var/extra_dam = min(15, plasma_stored * 0.2)
-	M.attack_alien(src,  extra_dam, FALSE, FALSE, TRUE, TRUE, TRUE) //Inflict a free attack on pounce that deals +1 extra damage per 4 plasma stored, up to 35 or twice the max damage of an Ancient Runner attack.
+	round_statistics.runner_savage_attacks++
+	M.attack_alien(src,  extra_dam, FALSE, TRUE, TRUE, TRUE) //Inflict a free attack on pounce that deals +1 extra damage per 4 plasma stored, up to 35 or twice the max damage of an Ancient Runner attack.
 	use_plasma(extra_dam * 5) //Expend plasma equal to 4 times the extra damage.
 	savage_used = TRUE
 	do_savage_cooldown()
@@ -1642,9 +1643,9 @@
 		to_chat(src, "<span class='xenowarning'>You can't host any more young ones!</span>")
 		return
 
-	to_chat(src, "<span class='xenowarning'>You spawn a young one via the miracle of asexual internal reproduction, adding it to your stores.</span>")
-	playsound(src, 'sound/voice/alien_drool2.ogg', 50, 0, 1)
 	huggers_cur = min(huggers_max, huggers_cur + 1) //Add it to our cache
+	to_chat(src, "<span class='xenowarning'>You spawn a young one via the miracle of asexual internal reproduction, adding it to your stores. Now sheltering: [huggers_cur] / [huggers_max].</span>")
+	playsound(src, 'sound/voice/alien_drool2.ogg', 50, 0, 1)
 	last_spawn_facehugger = world.time
 	used_spawn_facehugger = TRUE
 	use_plasma(CARRIER_SPAWN_HUGGER_COST)
@@ -1719,5 +1720,110 @@
 		return
 	spawn(HUNTER_POUNCE_SNEAKATTACK_DELAY)
 		can_sneak_attack = TRUE
-		to_chat(src, "<span class='xenodanger'><b>You're ready to use Sneak Attack while stealthed.</b></span>")
+		to_chat(src, "<span class='xenodanger'>You're ready to use Sneak Attack while stealthed.</span>")
 		playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
+
+
+/mob/living/carbon/Xenomorph/Ravager/proc/Ravage(atom/A)
+	if (!check_state())
+		return
+
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake off the shock!</span>")
+		return
+
+	if (ravage_used)
+		to_chat(src, "<span class='xenowarning'>You must gather your strength before Ravaging. Ravage can be used in [(ravage_delay - world.time) * 0.1] seconds.</span>")
+		return
+
+	var/dist = get_dist(src,A)
+	if (dist > 2)
+		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
+			to_chat(src, "<span class='xenowarning'>Your target is too far away!</span>")
+
+			recent_notice = world.time //anti-notice spam
+		return
+
+	if (!check_plasma(40))
+		return
+
+	emote("roar")
+	round_statistics.ravager_ravages++
+	visible_message("<span class='danger'>\The [src] thrashes about in a murderous frenzy!</span>", \
+	"<span class='xenowarning'>You thrash about in a murderous frenzy!</span>")
+
+	face_atom(A)
+	if(dist > 1) //Lunge towards the target turf
+		step_towards(src,A,2)
+
+	var/sweep_range = 1
+	var/list/L = orange(sweep_range)		// Not actually the fruit
+	var/victims
+	var/target_facing
+	for (var/mob/living/carbon/human/H in L)
+		if(victims >= 3) //Max 3 victims
+			break
+		target_facing = get_dir(src, H)
+		if(target_facing != dir && target_facing != turn(dir,45) && target_facing != turn(dir,-45) ) //Have to be actually facing the target
+			continue
+		if(H.stat != DEAD && !(istype(H.buckled, /obj/structure/bed/nest) && H.status_flags & XENO_HOST) ) //No bully
+			var/extra_dam = rand(melee_damage_lower, melee_damage_upper) * (1 + round(rage * 0.01) ) //+1% bonus damage per point of Rage.relative to base melee damage.
+			H.attack_alien(src,  extra_dam, FALSE, TRUE, FALSE, TRUE, "hurt")
+			victims++
+			round_statistics.ravager_ravage_victims++
+		step_away(H, src, sweep_range, 2)
+		shake_camera(H, 2, 1)
+		H.KnockDown(1, 1)
+
+	victims = CLAMP(victims,0,3) //Just to be sure
+	rage = (0 + 10 * victims) //rage resets to 0, though we regain 10 rage per victim.
+
+	ravage_used = TRUE
+	use_plasma(40)
+
+	ravage_delay = world.time + (RAV_RAVAGE_COOLDOWN - (victims * 30))
+
+	spawn(CLAMP(RAV_RAVAGE_COOLDOWN - (victims * 30),10,100)) //10 second cooldown base, minus 2 per victim
+		ravage_used = FALSE
+		to_chat(src, "<span class='xenodanger'>You gather enough strength to Ravage again.</span>")
+		playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
+		update_action_button_icons()
+
+/mob/living/carbon/Xenomorph/Ravager/proc/Second_Wind()
+	if (!check_state())
+		return
+
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>Your limbs fail to respond as you try to shake off the shock!</span>")
+		return
+
+	if (second_wind_used)
+		to_chat(src, "<span class='xenowarning'>You must gather your strength before using Second Wind. Second Wind can be used in [(second_wind_delay - world.time) * 0.1] seconds.</span>")
+		return
+
+	to_chat(src, "<span class='xenodanger'>Your coursing adrenaline stimulates tissues into a spat of rapid regeneration...</span>")
+	var/current_rage = CLAMP(rage,0,RAVAGER_MAX_RAGE) //lock in the value at the time we use it; min 0, max 50.
+	do_jitter_animation(1000)
+	if(!do_after(src, 50, TRUE, 5, BUSY_ICON_FRIENDLY))
+		return
+	do_jitter_animation(1000)
+	playsound(src, "sound/effects/alien_drool2.ogg", 50, 0)
+	to_chat(src, "<span class='xenodanger'>You recoup your health, your tapped rage restoring your body, flesh and chitin reknitting themselves...</span>")
+	health += CLAMP( (maxHealth - health) * (0.25 + current_rage * 0.015), 0, maxHealth - health) //Restore HP equal to 25% + 1.5% of the difference between min and max health per rage
+	plasma_stored += CLAMP( (plasma_max - plasma_stored) * (0.25 + current_rage * 0.015), 0, plasma_max - plasma_stored) //Restore Plasma equal to 25% + 1.5% of the difference between min and max health per rage
+	updatehealth()
+	hud_set_plasma()
+
+	round_statistics.ravager_second_winds++
+
+	second_wind_used = TRUE
+
+	second_wind_delay = world.time + (RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.01) )
+
+	spawn(RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.01) ) //1 minute cooldown, minus 0.5 seconds per rage to minimum 30 seconds.
+		second_wind_used = FALSE
+		to_chat(src, "<span class='xenodanger'>You gather enough strength to use Second Wind again.</span>")
+		playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
+		update_action_button_icons()
+
+	rage = 0

@@ -1137,7 +1137,7 @@
 //Ravager Abilities
 
 /datum/action/xeno_action/activable/charge
-	name = "Charge (20)"
+	name = "Eviscerating Charge (80)"
 	action_icon_state = "charge"
 	ability_name = "charge"
 
@@ -1148,6 +1148,30 @@
 /datum/action/xeno_action/activable/charge/action_cooldown_check()
 	var/mob/living/carbon/Xenomorph/Ravager/X = owner
 	return !X.usedPounce
+
+
+/datum/action/xeno_action/activable/ravage
+	name = "Ravage (40)"
+	action_icon_state = "ravage"
+	ability_name = "ravage"
+
+/datum/action/xeno_action/activable/ravage/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Ravager/X = owner
+	X.Ravage(A)
+
+/datum/action/xeno_action/activable/ravage/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Ravager/X = owner
+	return !X.ravage_used
+
+
+/datum/action/xeno_action/second_wind
+	name = "Second Wind"
+	action_icon_state = "second_wind"
+
+/datum/action/xeno_action/second_wind/action_activate()
+	var/mob/living/carbon/Xenomorph/Ravager/X = owner
+	X.Second_Wind()
+
 
 //Ravenger
 
@@ -1213,32 +1237,16 @@
 	return !X.cresttoss_used
 
 //Carrier abilities
-/datum/action/xeno_action/activable/stealth
+/datum/action/xeno_action/spawn_hugger
 	name = "Spawn Facehugger (100)"
 	action_icon_state = "spawn_hugger"
-	ability_name = "spawn facehugger"
 	plasma_cost = 100
 
-/datum/action/xeno_action/activable/stealth/action_activate()
+/datum/action/xeno_action/spawn_hugger/action_activate()
 	var/mob/living/carbon/Xenomorph/Carrier/X = owner
 	X.Spawn_Hugger()
 
-/datum/action/xeno_action/activable/stealth/action_cooldown_check()
-	var/mob/living/carbon/Xenomorph/Carrier/X = owner
-	return !X.used_spawn_facehugger
-
-//Carrier abilities
-/datum/action/xeno_action/activable/stealth
-	name = "Spawn Facehugger (100)"
-	action_icon_state = "spawn_hugger"
-	ability_name = "spawn facehugger"
-	plasma_cost = 100
-
-/datum/action/xeno_action/activable/stealth/action_activate()
-	var/mob/living/carbon/Xenomorph/Carrier/X = owner
-	X.Spawn_Hugger()
-
-/datum/action/xeno_action/activable/stealth/action_cooldown_check()
+/datum/action/xeno_action/spawn_hugger/action_cooldown_check()
 	var/mob/living/carbon/Xenomorph/Carrier/X = owner
 	return !X.used_spawn_facehugger
 

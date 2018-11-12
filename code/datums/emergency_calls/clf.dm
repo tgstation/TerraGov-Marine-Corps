@@ -1,14 +1,9 @@
-
-
 //Colonial Liberation Front
 /datum/emergency_call/clf
-	name = "Colonial Liberation Front (Squad)"
-	mob_max = 10
+	name = "CLF"
 	arrival_message = "Incoming Transmission: 'Attention, you are tresspassing on our soverign territory. Expect no forgiveness.'"
 	objectives = "Assault the USCM, and sabotage as much as you can. Ensure any survivors escape in your custody."
 	probability = 20
-
-
 
 
 /datum/emergency_call/clf/print_backstory(mob/living/carbon/human/mob)
@@ -29,52 +24,45 @@
 	to_chat(mob, "<B>It is up to you and your fellow colonists to make them realize their trespasses. This sector is no longer theirs.</B>")
 
 
-
 /datum/emergency_call/clf/create_member(datum/mind/M)
 	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
 
-	if(!istype(spawn_loc)) return //Didn't find a useable spawn point.
+	if(!istype(spawn_loc)) 
+		return //Didn't find a useable spawn point.
 
-	var/mob/living/carbon/human/mob = new(spawn_loc)
-	mob.gender = pick(60;MALE, 40;FEMALE)
-	var/list/first_names_mreb = list("Alan","Jack","Bil","Jonathan","John","Shiro","Gareth","Clark","Sam", "Lionel", "Aaron", "Charlie", "Scott", "Winston", "Aidan", "Ellis", "Mason", "Wesley", "Nicholas", "Calvin", "Nishikawa", "Hiroto", "Chiba", "Ouchi", "Furuse", "Takagi", "Oba", "Kishimoto")
-	var/list/first_names_freb = list("Emma", "Adelynn", "Mary", "Halie", "Chelsea", "Lexie", "Arya", "Alicia", "Selah", "Amber", "Heather", "Myra", "Heidi", "Charlotte", "Oliva", "Lydia", "Tia", "Riko", "Ari", "Machida", "Ueki", "Mihara", "Noda")
-	var/list/last_names_reb = list("Hawkins","Rickshaw","Elliot","Billard","Cooper","Fox", "Barlow", "Barrows", "Stewart", "Morgan", "Green", "Stone", "Burr", "Hunt", "Yuko", "Gesshin", "Takanibu", "Tetsuzan", "Tomomi", "Bokkai", "Takesi")
+	var/mob/living/carbon/human/mob = new /mob/living/carbon/human(spawn_loc)
+
 	if(mob.gender == MALE)
-		mob.real_name = "[pick(first_names_mreb)] [pick(last_names_reb)]"
+		mob.name = pick(first_names_male_clf) + " " + pick(last_names_clf)
+		mob.real_name = mob.name
+		mob.voice_name = mob.name
 	else
-		mob.real_name = "[pick(first_names_freb)] [pick(last_names_reb)]"
-	mob.name = mob.real_name
-	mob.age = rand(17,45)
-	mob.dna.ready_dna(mob)
+		mob.name = pick(first_names_female_clf) + " " + pick(last_names_clf)
+		mob.real_name = mob.name
+		mob.voice_name = mob.name
+
 	mob.key = M.key
-	if(mob.client) mob.client.change_view(world.view)
-	mob.mind.assigned_role = "MODE"
-	mob.mind.special_role = "CLF"
-	ticker.mode.traitors += mob.mind
-	mob.r_hair = 25
-	mob.g_hair = 25
-	mob.b_hair = 35
-	mob.r_eyes = 139
-	mob.g_eyes = 62
-	mob.b_eyes = 19
+	mob.client?.change_view(world.view)
 
 	spawn(0)
 		if(!leader)       //First one spawned is always the leader.
-			mob.mind.set_cm_skills(/datum/skills/pfc)
-			to_chat(mob, "<font size='4'>\red You are a leader of the local resistance group, the Colonial Liberation Front.")
-			mob.arm_equipment(mob, "CLF Fighter (Leader)")
 			leader = mob
+			var/datum/job/J = new /datum/job/clf/leader
+			mob.set_everything(mob, "CLF Leader")
+			J.generate_equipment(mob)
+			to_chat(mob, "<font size='4'>\red You are a leader of the local resistance group, the Colonial Liberation Front.")
 		else if(medics < max_medics)
-			mob.mind.set_cm_skills(/datum/skills/combat_medic)
+			var/datum/job/J = new /datum/job/clf/medic
+			mob.set_everything(mob, "CLF Medic")
+			J.generate_equipment(mob)
 			to_chat(mob, "<font size='4'>\red You are a medic of the local resistance group, the Colonial Liberation Front.")
-			mob.arm_equipment(mob, "CLF Fighter (Medic)")
 			medics++
 		else
-			mob.mind.set_cm_skills(/datum/skills/SL)
+			var/datum/job/J = new /datum/job/clf/standard
+			mob.set_everything(mob, "CLF Standard")
+			J.generate_equipment(mob)
 			to_chat(mob, "<font size='4'>\red You are a member of the local resistance group, the Colonial Liberation Front.")
-			mob.arm_equipment(mob, "CLF Fighter (Standard)")
 		print_backstory(mob)
 
 	spawn(10)
@@ -83,12 +71,3 @@
 	if(original)
 		cdel(original)
 	return
-
-
-
-/datum/emergency_call/clf/platoon
-	name = "Colonial Liberation Front (Platoon)"
-	mob_min = 8
-	mob_max = 35
-	probability = 0
-	max_medics = 2

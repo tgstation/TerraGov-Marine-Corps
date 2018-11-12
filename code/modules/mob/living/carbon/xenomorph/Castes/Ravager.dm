@@ -12,33 +12,40 @@
 	health = 200
 	maxHealth = 200
 	plasma_stored = 50
-	plasma_gain = 8
-	plasma_max = 100
+	plasma_gain = 10
+	plasma_max = 150
 	upgrade_threshold = 400
 	evolution_allowed = FALSE
 	caste_desc = "A brutal, devastating front-line attacker."
 	speed = -0.7 //Not as fast as runners, but faster than other xenos.
-	var/usedcharge = 0 //What's the deal with the all caps?? They're not constants :|
-	var/CHARGESPEED = 2
-	var/CHARGESTRENGTH = 2
-	var/CHARGEDISTANCE = 4
-	var/CHARGECOOLDOWN = 120
 	charge_type = 3 //Claw at end of charge
-	fire_immune = 1
-	armor_deflection = 40
+	fire_resist = 0.5
+	armor_deflection = 20
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
-	xeno_explosion_resistance = 2 //no stuns from explosions
+	xeno_explosion_resistance = 1 //can't be gibbed from explosions
 	attack_delay = -2
 	tier = 3
 	upgrade = 0
 	pixel_x = -16
 	old_x = -16
+	//Ravager vars
+	var/rage = 0
+	var/rage_resist = 1.00
+	var/ravage_used = FALSE
+	var/ravage_delay = null
+	var/charge_delay = null
+	var/second_wind_used = FALSE
+	var/second_wind_delay = null
+	var/last_rage = null
+	var/usedcharge = FALSE
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/charge,
+		/datum/action/xeno_action/activable/ravage,
+		/datum/action/xeno_action/second_wind,
 		)
 
 
@@ -49,9 +56,10 @@
 		return
 
 	if(usedPounce)
+		to_chat(src, "<span class='xenowarning'>You must gather your strength before using Eviscerating Charge. It can be used in: [(charge_delay - world.time) * 0.1] seconds.</span>")
 		return
 
-	if(!check_plasma(20))
+	if(!check_plasma(80))
 		return
 
 	if(legcuffed)
@@ -62,11 +70,16 @@
 	"<span class='danger'>You charge towards \the [T]!</span>" )
 	emote("roar") //heheh
 	usedPounce = 1 //This has to come before throw_at, which checks impact. So we don't do end-charge specials when thrown
-	use_plasma(20)
-	throw_at(T, CHARGEDISTANCE, CHARGESPEED, src)
-	spawn(CHARGECOOLDOWN)
-		usedPounce = 0
-		to_chat(src, "<span class='notice'>Your exoskeleton quivers as you get ready to charge again.</span>")
+	use_plasma(80)
+
+	throw_at(T, RAV_CHARGEDISTANCE, RAV_CHARGESPEED, src)
+
+	charge_delay = world.time + RAV_CHARGECOOLDOWN
+
+	spawn(RAV_CHARGECOOLDOWN)
+		usedPounce = FALSE
+		to_chat(src, "<span class='xenodanger'>Your exoskeleton quivers as you get ready to use Eviscerating Charge again.</span>")
+		playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
 		update_action_button_icons()
 
 
@@ -149,17 +162,20 @@
 
 	new/obj/flamer_fire(T)
 
+	var/fire_mod
 	for(var/mob/living/carbon/M in T) //Deal bonus damage if someone's caught directly in initial stream
 		if(M.stat == DEAD)
 			continue
+		fire_mod = 1
 		if(isXeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
 			if(X.fire_immune)
 				continue
+			fire_mod = X.fire_resist
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || istype(H.wear_suit, /obj/item/clothing/suit/space/rig/atmos))
 				continue
 
-		M.adjustFireLoss(rand(20, 50)) //Fwoom!
+		M.adjustFireLoss(rand(20, 50) * fire_mod) //Fwoom!
 		to_chat(M, "[isXeno(M) ? "<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!</Sspan>")

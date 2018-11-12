@@ -84,12 +84,12 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					melee_damage_upper = 70
 					health = 250
 					maxHealth = 250
-					plasma_gain = 10
-					plasma_max = 150
+					plasma_gain = 13
+					plasma_max = 175
 					upgrade_threshold = 800
 					caste_desc = "A brutal, devastating front-line attacker. It looks a little more dangerous."
 					speed = -0.8
-					armor_deflection = 45
+					armor_deflection = 25
 					tackle_damage = 60 // Prior was 55
 				if ("Defender")
 					melee_damage_lower = 20
@@ -279,12 +279,12 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					melee_damage_upper = 75
 					health = 260
 					maxHealth = 260
-					plasma_gain = 15
-					plasma_max = 200
+					plasma_gain = 14
+					plasma_max = 190
 					upgrade_threshold = 1600
 					caste_desc = "A brutal, devastating front-line attacker. It looks pretty strong."
-					speed = -0.9
-					armor_deflection = 50
+					speed = -0.87
+					armor_deflection = 28
 					tackle_damage = 65 // Prior was 60
 				if ("Defender")
 					melee_damage_lower = 23
@@ -479,8 +479,8 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					plasma_gain = 15
 					plasma_max = 200
 					caste_desc = "As I walk through the valley of the shadow of death."
-					speed = -1.0
-					armor_deflection = 50
+					speed = -0.9
+					armor_deflection = 30
 					tackle_damage = 70 // Prior was 65
 				if ("Defender")
 					to_chat(src, "<span class='xenoannounce'>You are a incredibly resilient, you can control the battle through sheer force.</span>")

@@ -1,10 +1,6 @@
-
-
-
 //Randomly-equipped mercenaries. May be friendly or hostile to the USCM, hostile to xenos.
 /datum/emergency_call/mercs
-	name = "Freelancers (Squad)"
-	mob_max = 8
+	name = "Freelancers"
 	probability = 25
 
 	New()
@@ -32,47 +28,41 @@
 	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
 
-	if(!istype(spawn_loc)) return //Didn't find a useable spawn point.
+	if(!istype(spawn_loc)) 
+		return //Didn't find a useable spawn point.
 
-	var/mob/living/carbon/human/mob = new(spawn_loc)
-	mob.gender = pick(60;MALE,40;FEMALE)
-	var/datum/preferences/A = new()
-	A.randomize_appearance_for(mob)
-	var/list/first_names_mcol = list("Alan","Jack","Bil","Jonathan","John","Shiro","Gareth","Clark","Sam", "Lionel", "Aaron", "Charlie", "Scott", "Winston", "Aidan", "Ellis", "Mason", "Wesley", "Nicholas", "Calvin", "Nishikawa", "Hiroto", "Chiba", "Ouchi", "Furuse", "Takagi", "Oba", "Kishimoto")
-	var/list/first_names_fcol = list("Emma", "Adelynn", "Mary", "Halie", "Chelsea", "Lexie", "Arya", "Alicia", "Selah", "Amber", "Heather", "Myra", "Heidi", "Charlotte", "Ashley", "Raven", "Tori", "Anne", "Madison", "Oliva", "Lydia", "Tia", "Riko", "Ari", "Machida", "Ueki", "Mihara", "Noda")
-	var/list/last_names_col = list("Hawkins","Rickshaw","Elliot","Billard","Cooper","Fox", "Barlow", "Barrows", "Stewart", "Morgan", "Green", "Stone", "Titan", "Crowe", "Krantz", "Pathillo", "Driggers", "Burr", "Hunt", "Yuko", "Gesshin", "Takanibu", "Tetsuzan", "Tomomi", "Bokkai", "Takesi")
+	var/mob/living/carbon/human/mob = new /mob/living/carbon/human(spawn_loc)
+	
 	if(mob.gender == MALE)
-		mob.real_name = "[pick(first_names_mcol)] [pick(last_names_col)]"
-		mob.f_style = "5 O'clock Shadow"
+		mob.name = pick(first_names_male_clf) + " " + pick(last_names_clf)
+		mob.real_name = mob.name
+		mob.voice_name = mob.name
 	else
-		mob.real_name = "[pick(first_names_fcol)] [pick(last_names_col)]"
-	mob.name = mob.real_name
-	mob.age = rand(20,45)
-	mob.dna.ready_dna(mob)
-	mob.r_hair = 25
-	mob.g_hair = 25
-	mob.b_hair = 35
+		mob.name = pick(first_names_female_clf) + " " + pick(last_names_clf)
+		mob.real_name = mob.name
+		mob.voice_name = mob.name
+
 	mob.key = M.key
-	if(mob.client) mob.client.change_view(world.view)
-	mob.mind.assigned_role = "MODE"
-	mob.mind.special_role = "Mercenary"
-	ticker.mode.traitors += mob.mind
+	mob.client?.change_view(world.view)
 
 	spawn(0)
 		if(!leader)       //First one spawned is always the leader.
 			leader = mob
-			mob.mind.set_cm_skills(/datum/skills/SL)
-			mob.arm_equipment(mob, "Freelancer (Leader)")
+			var/datum/job/J = new /datum/job/freelancer/leader
+			mob.set_everything(mob, "Freelancer Leader")
+			J.generate_equipment(mob)
 			to_chat(mob, "<font size='3'>\red You are the Freelancer leader!</font>")
 
 		else if(medics < max_medics)
-			mob.mind.set_cm_skills(/datum/skills/combat_medic)
-			mob.arm_equipment(mob, "Freelancer (Medic)")
+			var/datum/job/J = new /datum/job/freelancer/medic
+			mob.set_everything(mob, "Freelancer Medic")
+			J.generate_equipment(mob)
 			medics++
 			to_chat(mob, "<font size='3'>\red You are a Freelancer medic!</font>")
 		else
-			mob.mind.set_cm_skills(/datum/skills/pfc)
-			mob.arm_equipment(mob, "Freelancer (Standard)")
+			var/datum/job/J = new /datum/job/freelancer/standard
+			mob.set_everything(mob, "Freelancer Standard")
+			J.generate_equipment(mob)
 			to_chat(mob, "<font size='3'>\red You are a Freelancer mercenary!</font>")
 		print_backstory(mob)
 
@@ -81,12 +71,3 @@
 
 	if(original)
 		cdel(original)
-
-
-
-/datum/emergency_call/mercs/platoon
-	name = "Freelancers (Platoon)"
-	mob_min = 8
-	mob_max = 30
-	probability = 0
-	max_medics = 3

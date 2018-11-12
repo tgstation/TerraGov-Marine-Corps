@@ -9,11 +9,18 @@
 	taste_description = "generic food"
 	taste_multi = 4
 	var/nutriment_factor = 1
+	var/adj_temp = 0
+	var/targ_temp = 310
 	taste_description = "generic food"
 
 /datum/reagent/consumable/on_mob_life(mob/living/carbon/M)
 	current_cycle++
 	M.nutrition += nutriment_factor * REAGENTS_METABOLISM
+	if(adj_temp != 0 && M.bodytemperature != targ_temp)
+		if(adj_temp)
+			M.bodytemperature = min(targ_temp, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
+		else
+			M.bodytemperature = max(targ_temp, M.bodytemperature + (adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT))
 	holder.remove_reagent(src.id, custom_metabolism)
 
 /datum/reagent/consumable/nutriment
@@ -219,9 +226,10 @@
 	reagent_state = LIQUID
 	color = "#B31008" // rgb: 139, 166, 233
 	taste_description = "mint"
+	targ_temp = 50
+	adj_temp = 10
 
 /datum/reagent/consumable/frostoil/on_mob_life(mob/living/M)
-	M.bodytemperature = max(M.bodytemperature - 10 * TEMPERATURE_DAMAGE_COEFFICIENT, 0)
 	if(prob(1))
 		M.emote("shiver")
 	holder.remove_reagent("capsaicin", 5)
@@ -271,11 +279,7 @@
 	nutriment_factor = 2
 	color = "#403010" // rgb: 64, 48, 16
 	taste_description = "creamy chocolate"
-
-/datum/reagent/consumable/hot_coco/on_mob_life(mob/living/M)
-	if(M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
-		M.bodytemperature = min(310, M.bodytemperature + (5 * TEMPERATURE_DAMAGE_COEFFICIENT))
-	..()
+	adj_temp = 5
 
 /datum/reagent/consumable/psilocybin
 	name = "Psilocybin"
@@ -377,11 +381,7 @@
 	nutriment_factor = 5
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "wet and cheap noodles"
-
-/datum/reagent/consumable/hot_ramen/on_mob_life(mob/living/M)
-	if(M.bodytemperature < 310)//310 is the normal bodytemp. 310.055
-		M.bodytemperature = min(310, M.bodytemperature + (10 * TEMPERATURE_DAMAGE_COEFFICIENT))
-	..()
+	adj_temp = 10
 
 /datum/reagent/consumable/hell_ramen
 	name = "Hell Ramen"
@@ -391,10 +391,8 @@
 	nutriment_factor = 5
 	color = "#302000" // rgb: 48, 32, 0
 	taste_description = "wet and cheap noodles on fire"
-
-/datum/reagent/consumable/hell_ramen/on_mob_life(mob/living/M)
-	M.bodytemperature += 10 * TEMPERATURE_DAMAGE_COEFFICIENT
-	..()
+	targ_temp = INFINITY
+	adj_temp = 10
 
 /datum/reagent/consumable/rice
 	name = "Rice"

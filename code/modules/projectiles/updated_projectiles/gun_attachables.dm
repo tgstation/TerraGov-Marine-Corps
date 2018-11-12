@@ -864,14 +864,18 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 
 	new/obj/flamer_fire(T)
 
+	var/fire_mod
 	for(var/mob/living/carbon/M in T) //Deal bonus damage if someone's caught directly in initial stream
 		if(M.stat == DEAD)
 			continue
+
+		fire_mod = 1
 
 		if(isXeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
 			if(X.fire_immune)
 				continue
+			fire_mod = X.fire_resist
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 
@@ -887,7 +891,7 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 				continue
 
 		M.adjust_fire_stacks(rand(3,5))
-		M.adjustFireLoss(rand(20,40))  //fwoom!
+		M.adjustFireLoss(rand(20,40) * fire_mod) //fwoom!
 		to_chat(M, "[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
 
 /obj/item/attachable/attached_gun/shotgun

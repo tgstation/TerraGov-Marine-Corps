@@ -105,6 +105,8 @@
 	if(stat == DEAD)
 		return FALSE
 
+	damage = process_rage_damage(damage, src)
+
 	switch(damagetype)
 		if(BRUTE)
 			adjustBruteLoss(damage)
@@ -120,6 +122,18 @@
 
 /mob/living/carbon/Xenomorph/adjustFireLoss(amount)
 	fireloss = CLAMP(fireloss + amount, 0, maxHealth - crit_health)
+
+/mob/living/carbon/Xenomorph/proc/process_rage_damage(damage)
+	return damage
+
+/mob/living/carbon/Xenomorph/Ravager/process_rage_damage(damage)
+	if(!damage)
+		return damage
+	rage += round(damage * 0.3) //Gain Rage stacks equal to 30% of damage received.
+	last_rage = world.time //We incremented rage, so bookmark this.
+	damage *= rage_resist //reduce damage by rage resist %
+	rage_resist = CLAMP(1-round(rage * 0.014,0.01),0.3,1) //Update rage resistance _after_ we take damage
+	return damage
 
 /mob/living/carbon/Xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
 	if(!damage)

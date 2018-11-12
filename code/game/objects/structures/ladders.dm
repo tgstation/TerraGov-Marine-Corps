@@ -65,7 +65,7 @@
 	return attack_hand(M)
 
 /obj/structure/ladder/attack_hand(mob/user)
-	if(user.stat || get_dist(user, src) > 1 || is_blind(user) || user.lying || user.buckled || user.anchored)
+	if(user.is_mob_incapacitated() || !Adjacent(user) || user.lying || user.buckled || user.anchored)
 		return
 	var/ladder_dir_name
 	var/obj/structure/ladder/ladder_dest
@@ -90,7 +90,7 @@
 	add_fingerprint(user)
 	if(!do_after(user, 20, FALSE, 5, BUSY_ICON_GENERIC))
 		return
-	if(!user.is_mob_incapacitated() && get_dist(user, src) <= 1 && !is_blind(user) && !user.lying && !user.anchored)
+	if(!user.is_mob_incapacitated() && get_dist(user, src) <= 1 && !user.lying && !user.anchored)
 		user.trainteleport(ladder_dest.loc)
 		visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>") //Hack to give a visible message to the people here without duplicating user message
 		user.visible_message("<span class='notice'>[user] climbs [ladder_dir_name] [src].</span>",

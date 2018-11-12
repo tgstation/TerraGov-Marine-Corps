@@ -40,6 +40,7 @@
 	var/armor_bonus = 0 //Extra chance of deflecting projectiles due to temporary effects
 	var/armor_pheromone_bonus = 0 //
 	var/fire_immune = 0 //Boolean
+	var/fire_resist = 1 //0 to 1; lower is better as it is a multiplier.
 	var/obj/structure/tunnel/start_dig = null
 	var/tunnel_delay = 0
 	var/datum/ammo/xeno/ammo = null //The ammo datum for our spit projectiles. We're born with this, it changes sometimes.

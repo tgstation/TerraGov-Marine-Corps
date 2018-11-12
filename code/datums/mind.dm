@@ -427,29 +427,38 @@ datum/mind
 
 /mob/living/proc/reset_cm_skills(new_job)
 	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
-	if(new_job)
-		mind.set_cm_skills(J.skills_type) //give new role's job_knowledge to us.
+	if(J)
+		mind?.set_cm_skills(J.skills_type) //give new role's job_knowledge to us.
 
 /mob/living/proc/reset_comm_title(new_job)
 	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
-	if(new_job)
+	if(J && mind)
 		mind.role_comm_title = J.comm_title
 
 /mob/living/proc/reset_alt_title(new_job)
 	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
-	if(new_job)
+	if(J && mind)
 		mind.role_alt_title = J.get_alternative_title(src)
 
 /mob/living/proc/reset_special_role(new_job)
 	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
-	if(new_job)
-		mind.role_alt_title = J.special_role
+	if(J && mind)
+		mind.special_role = J.special_role
+
 
 /mob/living/proc/reset_role(new_job)
 	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
-	if(new_job)
+	if(J && mind)
 		mind.assigned_role = J.title
 
+/mob/living/proc/set_everything(var/mob/living/carbon/human/H, var/new_role)
+	H.reset_cm_skills(new_role)
+	H.reset_special_role(new_role)
+	H.reset_comm_title(new_role)
+	H.reset_alt_title(new_role)
+	H.reset_role(new_role)
+	H.set_ID(new_role)
+	H.update_action_buttons()
 
 //Initialisation procs
 /mob/proc/mind_initialize()
