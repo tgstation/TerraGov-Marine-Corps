@@ -238,7 +238,7 @@
 
 /obj/item/device/radio/headset/almayer/proc/add_squadhud(datum/mob_hud/H, mob/living/carbon/human/user)
 	H.add_hud_to(user)
-	if(user.mind && user.assigned_squad && user.hud_used && user.hud_used.locate_leader)
+	if(user.mind && user.assigned_squad && user.hud_used?.locate_leader)
 		user.hud_used.locate_leader.alpha = 255
 		user.hud_used.locate_leader.mouse_opacity = 1
 		user.hud_used.SL_locator.alpha = 128
