@@ -524,7 +524,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	name = "\improper Rail Gun"
 	desc = "A powerful ship-to-ship weapon sometimes used for ground support at reduced efficiency."
 	icon = 'icons/obj/machines/artillery.dmi'
-	icon_state = "anti_air_cannon"
+	icon_state = "Railgun"
 	density = TRUE
 	anchored = TRUE
 	layer = LADDER_LAYER
@@ -551,6 +551,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	if(!rail_gun_ammo?.ammo_count)
 		to_chat(user, "<span class='warning'>[src] has ran out of ammo.</span>")
 		return
+	flick("Railgun_firing",src)
 	cannon_busy = TRUE
 	last_firing = world.time
 	playsound(loc, 'sound/weapons/tank_smokelauncher_fire.ogg', 70, 1)
