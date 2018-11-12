@@ -195,7 +195,7 @@
 //Putting these here since it's power-related
 /obj/machinery/colony_floodlight_switch
 	name = "Colony Floodlight Switch"
-	icon = 'icons/turf/ground_map.dmi'
+	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "panelnopower"
 	desc = "This switch controls the floodlights surrounding the archaeology complex. It only functions when there is power."
 	density = 0
@@ -280,7 +280,7 @@
 
 /obj/machinery/colony_floodlight
 	name = "Colony Floodlight"
-	icon = 'icons/turf/ground_map.dmi'
+	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "floodoff"
 	density = 1
 	anchored = 1
