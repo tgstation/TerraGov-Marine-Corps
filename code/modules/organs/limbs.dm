@@ -879,9 +879,9 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 		var/mob/living/carbon/human/H = owner
 
-		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit/space))
+		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit))
 
-			var/obj/item/clothing/suit/space/suit = H.wear_suit
+			var/obj/item/clothing/suit/suit = H.wear_suit
 
 			if(isnull(suit.supporting_limbs))
 				return

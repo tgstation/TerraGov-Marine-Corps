@@ -80,7 +80,7 @@ REAGENT SCANNER
 	var/mode = 1
 	var/hud_mode = 1
 
-/obj/item/device/healthanalyzer/attack(mob/living/carbon/M, mob/living/user)
+/obj/item/device/healthanalyzer/attack(mob/living/carbon/M, mob/living/user, integrated = FALSE) //Integrated analyzers don't need special training to be used quickly.
 	var/dat = ""
 	if(( (CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
 		to_chat(user, "<span class='warning'>You try to analyze the floor's vitals!</span>")
@@ -94,7 +94,7 @@ REAGENT SCANNER
 	if(!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
+	if((user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC) && integrated == FALSE)
 		to_chat(user, "<span class='warning'>You start fumbling around with [src]...</span>")
 		var/fduration = 60
 		if(user.mind.cm_skills.medical > 0)
