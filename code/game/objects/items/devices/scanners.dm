@@ -94,7 +94,7 @@ REAGENT SCANNER
 	if(!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
-	if((user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC) && integrated == FALSE)
+	if(user.mind?.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC && integrated == FALSE)
 		to_chat(user, "<span class='warning'>You start fumbling around with [src]...</span>")
 		var/fduration = 60
 		if(user.mind.cm_skills.medical > 0)
