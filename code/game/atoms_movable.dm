@@ -383,3 +383,18 @@
 //called when a mob tries to breathe while inside us.
 /atom/movable/proc/handle_internal_lifeform(mob/lifeform_inside_me)
 	. = return_air()
+
+
+/atom/movable/proc/check_blocked_turf(turf/target)
+	if(target.density)
+		return TRUE //Blocked; we can't proceed further.
+
+	for(var/obj/machinery/MA in target)
+		if(MA.density)
+			return TRUE //Blocked; we can't proceed further.
+
+	for(var/obj/structure/S in target)
+		if(S.density)
+			return TRUE //Blocked; we can't proceed further.
+
+	return FALSE
