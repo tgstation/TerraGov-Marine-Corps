@@ -1390,23 +1390,9 @@
 	var/turf/target = get_step(user.loc,user.dir)
 	if(!target)
 		return
-	var/blocked
-	if(target.density)
-		blocked = TRUE
 
-	if(!blocked) //allows us to stop checks and thus save resources if we find something that blocks placement
-		for(var/obj/machinery/MA in target)
-			if(MA.density)
-				blocked = TRUE
-				break //LoF Broken; stop checking; we can't proceed further.
-	if(!blocked)
-		for(var/obj/structure/S in target)
-			if(S.density)
-				blocked = TRUE
-				break //LoF Broken; stop checking; we can't proceed further.
-
-	if(blocked)
-		to_chat(user, "<span class='warning'>Insufficient room to deploy [src]!</span>")
+	if(check_blocked_turf(target)) //check if blocked
+		to_chat(user, "<span class='warning'>There is insufficient room to deploy [src]!</span>")
 		return
 	if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
 		if(!src) //Make sure the sentry still exists
