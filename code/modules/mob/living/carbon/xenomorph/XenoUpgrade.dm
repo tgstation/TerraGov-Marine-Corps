@@ -88,7 +88,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					plasma_max = 175
 					upgrade_threshold = 800
 					caste_desc = "A brutal, devastating front-line attacker. It looks a little more dangerous."
-					speed = -0.8
+					speed = -0.75
 					armor_deflection = 25
 					tackle_damage = 60 // Prior was 55
 				if ("Defender")
@@ -283,7 +283,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					plasma_max = 190
 					upgrade_threshold = 1600
 					caste_desc = "A brutal, devastating front-line attacker. It looks pretty strong."
-					speed = -0.87
+					speed = -0.78
 					armor_deflection = 28
 					tackle_damage = 65 // Prior was 60
 				if ("Defender")
@@ -474,12 +474,13 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					to_chat(src, "<span class='xenoannounce'>You are death incarnate. All will tremble before you.</span>")
 					melee_damage_lower = 60
 					melee_damage_upper = 80
+					adjustBruteLoss(255)
 					health = 265
 					maxHealth = 265
 					plasma_gain = 15
 					plasma_max = 200
 					caste_desc = "As I walk through the valley of the shadow of death."
-					speed = -0.9
+					speed = -0.8
 					armor_deflection = 30
 					tackle_damage = 70 // Prior was 65
 				if ("Defender")
