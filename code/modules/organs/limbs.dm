@@ -1003,26 +1003,39 @@ Note that amputating the affected organ does in fact remove the infection from t
 		W.forceMove(owner)
 
 /datum/limb/proc/apply_splints(obj/item/stack/medical/splint/S, mob/living/user, mob/living/carbon/human/target)
-	if(do_mob(user, target, 50, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
-		if(!(status & LIMB_DESTROYED) && !(status & LIMB_SPLINTED))
-			if(target != user)
-				user.visible_message(
-				"<span class='warning'>[user] finishes applying [S] to [target]'s [display_name].</span>",
-				"<span class='notice'>You finish applying [S] to [target]'s [display_name].</span>")
-				status |= LIMB_SPLINTED
-				. = 1
-			else
-				if(prob(25))
-					user.visible_message(
-					"<span class='warning'>[user] successfully applies [S] to their [display_name].</span>",
-					"<span class='notice'>You successfully apply [S] to your [display_name].</span>")
-					status |= LIMB_SPLINTED
-					. = 1
-				else
-					user.visible_message(
-					"<span class='warning'>[user] fumbles with [S].</span>",
-					"<span class='warning'>You fumble with [S].</span>")
 
+	if(!istype(user))
+		return
+
+	if(status & LIMB_DESTROYED)
+		to_chat(user, "<span class='warning'>There's nothing there to splint!</span>")
+		return FALSE
+
+	if(status & LIMB_SPLINTED)
+		to_chat(user, "<span class='warning'>This limb is already splinted!</span>")
+		return FALSE
+
+	var/delay = SKILL_TASK_AVERAGE
+	var/text1 = "<span class='warning'>[user] finishes applying [S] to [target]'s [display_name].</span>"
+	var/text2 = "<span class='notice'>You finish applying [S] to [target]'s [display_name].</span>"
+
+	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical) //Higher skill lowers the delay.
+		delay -= 10 + user.mind.cm_skills.medical * 5
+
+	if(target == user) //If self splinting, multiply delay by 4
+		delay *= 4
+		text1 = "<span class='warning'>[user] successfully applies [S] to their [display_name].</span>"
+		text2 = "<span class='notice'>You successfully apply [S] to your [display_name].</span>"
+
+	if(!do_mob(user, target, delay, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+		return FALSE
+
+	if(!(status & LIMB_DESTROYED) && !(status & LIMB_SPLINTED))
+		user.visible_message(
+		"[text1]",
+		"[text2]")
+		status |= LIMB_SPLINTED
+		return TRUE
 
 
 //called when limb is removed or robotized, any ongoing surgery and related vars are reset
