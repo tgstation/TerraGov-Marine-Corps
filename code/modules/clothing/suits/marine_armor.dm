@@ -303,7 +303,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	var/B18_pain_cooldown = null
 	var/B18_automed_on = TRUE
 	var/B18_automed_damage = 50
-	var/B18_automed_pain = 60
+	var/B18_automed_pain = 70
 	var/obj/item/device/healthanalyzer/B18_analyzer = null
 	supporting_limbs = list(UPPER_TORSO, LOWER_TORSO, ARMS, LEGS, FEET) //B18 effectively auto-splints these.
 	unacidable = 1
@@ -318,20 +318,21 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	B18_analyzer = new /obj/item/device/healthanalyzer
 
 /obj/item/clothing/suit/storage/marine/specialist/Dispose()
+	b18automed_turn_off(wearer, TRUE)
 	wearer = null
-	b18automed_turn_off()
 	cdel(B18_analyzer)
 	. = ..()
 
 /obj/item/clothing/suit/storage/marine/specialist/dropped(mob/user)
 	. = ..()
+	b18automed_turn_off(wearer, TRUE)
 	wearer = null
-	b18automed_turn_off()
 
 /obj/item/clothing/suit/storage/marine/specialist/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
 	if(slot == WEAR_JACKET)
 		wearer = user
+		b18automed_turn_on(user)
 
 /obj/item/clothing/suit/storage/marine/specialist/mob_can_equip(mob/M, slot, disable_warning = 0)
 	. = ..()
@@ -340,17 +341,19 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 			to_chat(M, "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>")
 			return 0
 
-/obj/item/clothing/suit/storage/marine/specialist/proc/b18automed_turn_off(mob/living/carbon/human/user)
+/obj/item/clothing/suit/storage/marine/specialist/proc/b18automed_turn_off(mob/living/carbon/human/user, silent = FALSE)
 	B18_automed_on = FALSE
 	processing_objects.Remove(src)
-	to_chat(user, "<span class='warning'>[src] lets out a beep as its automedical suite deactivates.</span>")
-	playsound(src,'sound/machines/click.ogg', 15, 0, 1)
+	if(!silent)
+		to_chat(user, "<span class='warning'>[src] lets out a beep as its automedical suite deactivates.</span>")
+		playsound(src,'sound/machines/click.ogg', 15, 0, 1)
 
-/obj/item/clothing/suit/storage/marine/specialist/proc/b18automed_turn_on(mob/living/carbon/human/user)
+/obj/item/clothing/suit/storage/marine/specialist/proc/b18automed_turn_on(mob/living/carbon/human/user, silent = FALSE)
 	B18_automed_on = TRUE
 	processing_objects.Add(src)
-	to_chat(user, "<span class='notice'>[src] lets out a hum as its automedical suite activates.</span>")
-	playsound(src,'sound/mecha/nominal.ogg', 15, 0, 1)
+	if(!silent)
+		to_chat(user, "<span class='notice'>[src] lets out a hum as its automedical suite activates.</span>")
+		playsound(src,'sound/mecha/nominal.ogg', 15, 0, 1)
 
 /obj/item/clothing/suit/storage/marine/specialist/process()
 	if(!B18_automed_on)
@@ -362,75 +365,99 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 	var/list/details = list()
 	var/dose_administered = null
-	var/tricordrazine = REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("tricordrazine") + 0.5)
+	var/tricordrazine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("tricordrazine") + 0.5),0,REAGENTS_OVERDOSE - 0.5)
 
 	if(wearer.getFireLoss() > B18_automed_damage && !B18_burn_cooldown)
-		var/dermaline = REAGENTS_OVERDOSE*0.5 - (wearer.reagents.get_reagent_amount("dermaline") + 0.5)
-		var/kelotane = REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("kelotane") + 0.5)
-		if(dermaline < REAGENTS_OVERDOSE*0.5)
-			wearer.reagents.add_reagent("dermaline",REAGENTS_OVERDOSE*0.5 - dermaline + 0.5)
-		if(kelotane < REAGENTS_OVERDOSE)
-			wearer.reagents.add_reagent("kelotane",REAGENTS_OVERDOSE - kelotane + 0.5)
-		if(tricordrazine < REAGENTS_OVERDOSE)
-			wearer.reagents.add_reagent("tricordrazine",REAGENTS_OVERDOSE - tricordrazine + 0.5)
-		details +=("Significant tissue burns detected. Restorative injection administered. <b>Dosage: Dermaline: [dermaline]U | Kelotane: [kelotane]U | Tricordrazine: [tricordrazine]U</b></br>")
-		B18_burn_cooldown = world.time + B18_CHEM_COOLDOWN
-		handle_chem_cooldown(B18_BURN_CODE)
-		dose_administered = TRUE
+		var/dermaline = CLAMP(REAGENTS_OVERDOSE*0.5 - (wearer.reagents.get_reagent_amount("dermaline") + 0.5),0,REAGENTS_OVERDOSE*0.5 - 0.5)
+		var/kelotane = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("kelotane") + 0.5),0,REAGENTS_OVERDOSE - 0.5)
+		var/burndose = null
+		if(dermaline)
+			wearer.reagents.add_reagent("dermaline",dermaline)
+			burndose = TRUE
+		if(kelotane)
+			wearer.reagents.add_reagent("kelotane",kelotane)
+			burndose = TRUE
+		if(tricordrazine)
+			wearer.reagents.add_reagent("tricordrazine",tricordrazine)
+			burndose = TRUE
+		if(burndose) //Only report if we actually administer something
+			details +=("Significant tissue burns detected. Restorative injection administered. <b>Dosage:[dermaline ? " Dermaline: [dermaline]U |" : ""][kelotane ? " Kelotane: [kelotane]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
+			B18_burn_cooldown = world.time + B18_CHEM_COOLDOWN
+			handle_chem_cooldown(B18_BURN_CODE)
+			dose_administered = TRUE
 
 	if(wearer.getBruteLoss() > B18_automed_damage && !B18_brute_cooldown)
-		var/bicaridine = REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("bicaridine") + 0.5)
-		var/quickclot = REAGENTS_OVERDOSE * 0.5 - (wearer.reagents.get_reagent_amount("quickclot") + 0.5)
-		if(quickclot < REAGENTS_OVERDOSE)
+		var/bicaridine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("bicaridine") + 0.5),0,REAGENTS_OVERDOSE - 0.5)
+		var/quickclot = CLAMP(REAGENTS_OVERDOSE * 0.5 - (wearer.reagents.get_reagent_amount("quickclot") + 0.5),0,REAGENTS_OVERDOSE * 0.5 - 0.5)
+		var/brutedose = null
+		if(quickclot)
 			wearer.reagents.add_reagent("quickclot",quickclot)
-		if(bicaridine < REAGENTS_OVERDOSE)
+			brutedose = TRUE
+		if(bicaridine)
 			wearer.reagents.add_reagent("bicaridine",bicaridine)
-		if(tricordrazine < REAGENTS_OVERDOSE)
+			brutedose = TRUE
+		if(tricordrazine)
 			wearer.reagents.add_reagent("tricordrazine",tricordrazine)
-		details +=("Significant physical trauma detected. Regenerative formula administered. <b>Dosage: Bicaridine: [bicaridine]U | Quickclot: [quickclot]U | Tricordrazine: [tricordrazine]U</b></br>")
-		B18_brute_cooldown = world.time + B18_CHEM_COOLDOWN
-		handle_chem_cooldown(B18_BRUTE_CODE)
-		dose_administered = TRUE
+			brutedose = TRUE
+		if(brutedose) //Only report if we actually administer something
+			details +=("Significant physical trauma detected. Regenerative formula administered. <b>Dosage:[bicaridine ? " Bicaridine: [bicaridine]U |" : ""][quickclot ? " Quickclot: [quickclot]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
+			B18_brute_cooldown = world.time + B18_CHEM_COOLDOWN
+			handle_chem_cooldown(B18_BRUTE_CODE)
+			dose_administered = TRUE
 
 	if(wearer.getOxyLoss() > B18_automed_damage && !B18_oxy_cooldown)
-		var/dexalinplus = REAGENTS_OVERDOSE * 0.5 - (wearer.reagents.get_reagent_amount("dexalinplus") + 0.5)
-		var/inaprovaline = REAGENTS_OVERDOSE * 2 - (wearer.reagents.get_reagent_amount("inaprovaline") + 0.5)
-		if(dexalinplus < REAGENTS_OVERDOSE*0.5)
+		var/dexalinplus = CLAMP(REAGENTS_OVERDOSE * 0.5 - (wearer.reagents.get_reagent_amount("dexalinplus") + 0.5),0,REAGENTS_OVERDOSE * 0.5 - 0.5)
+		var/inaprovaline = CLAMP(REAGENTS_OVERDOSE * 2 - (wearer.reagents.get_reagent_amount("inaprovaline") + 0.5),0,REAGENTS_OVERDOSE * 2 - 0.5)
+		var/oxydose = null
+		if(dexalinplus)
 			wearer.reagents.add_reagent("dexalinplus",dexalinplus)
-		if(inaprovaline < REAGENTS_OVERDOSE)
+			oxydose = TRUE
+		if(inaprovaline)
 			wearer.reagents.add_reagent("inaprovaline",inaprovaline)
-		if(tricordrazine < REAGENTS_OVERDOSE)
+			oxydose = TRUE
+		if(tricordrazine)
 			wearer.reagents.add_reagent("tricordrazine",tricordrazine)
-		details +=("Low blood oxygen detected. Reoxygenating preparation administered. <b>Dosage: Dexalin Plus: [dexalinplus]U | Inaprovaline: [inaprovaline]U | Tricordrazine: [tricordrazine]U</br>")
-		B18_oxy_cooldown = world.time + B18_CHEM_COOLDOWN
-		handle_chem_cooldown(B18_OXY_CODE)
-		dose_administered = TRUE
+			oxydose = TRUE
+		if(oxydose) //Only report if we actually administer something
+			details +=("Low blood oxygen detected. Reoxygenating preparation administered. <b>Dosage:[dexalinplus ? " Dexalin Plus: [dexalinplus]U |" : ""][inaprovaline ? " Inaprovaline: [inaprovaline]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
+			B18_oxy_cooldown = world.time + B18_CHEM_COOLDOWN
+			handle_chem_cooldown(B18_OXY_CODE)
+			dose_administered = TRUE
 
 	if(wearer.getToxLoss() > B18_automed_damage && !B18_tox_cooldown)
-		var/dylovene = REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("dylovene") + 0.5)
-		var/spaceacillin = REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("spaceacillin") + 0.5)
-		if(dylovene < REAGENTS_OVERDOSE)
+		var/dylovene = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("dylovene") + 0.5),0,REAGENTS_OVERDOSE - 0.5)
+		var/spaceacillin = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("spaceacillin") + 0.5),0,REAGENTS_OVERDOSE - 0.5)
+		var/toxdose = null
+		if(dylovene)
 			wearer.reagents.add_reagent("dylovene",dylovene)
-		if(spaceacillin < REAGENTS_OVERDOSE)
+			toxdose = TRUE
+		if(spaceacillin)
 			wearer.reagents.add_reagent("spaceacillin",spaceacillin)
-		if(tricordrazine < REAGENTS_OVERDOSE)
+			toxdose = TRUE
+		if(tricordrazine)
 			wearer.reagents.add_reagent("tricordrazine",tricordrazine)
-		details +=("Significant blood toxicity detected. Chelating agents and curatives administered. <b>Dosage: Dylovene: [dylovene]U | Spaceacillin: [spaceacillin]U | Tricordrazine: [tricordrazine]U</b></br>")
-		B18_tox_cooldown = world.time + B18_CHEM_COOLDOWN
-		handle_chem_cooldown(B18_TOX_CODE)
-		dose_administered = TRUE
+			toxdose = TRUE
+		if(toxdose) //Only report if we actually administer something
+			details +=("Significant blood toxicity detected. Chelating agents and curatives administered. <b>Dosage:[dylovene ? " Dylovene: [dylovene]U |" : ""][spaceacillin ? " Spaceacillin: [spaceacillin]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
+			B18_tox_cooldown = world.time + B18_CHEM_COOLDOWN
+			handle_chem_cooldown(B18_TOX_CODE)
+			dose_administered = TRUE
 
 	if(wearer.traumatic_shock > B18_automed_pain && !B18_pain_cooldown)
-		var/oxycodone = REAGENTS_OVERDOSE * 0.66 - (wearer.reagents.get_reagent_amount("oxycodone") + 0.5)
-		var/tramadol = REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("tramadol") + 0.5)
-		if(oxycodone < REAGENTS_OVERDOSE)
+		var/oxycodone = CLAMP(REAGENTS_OVERDOSE * 0.66 - (wearer.reagents.get_reagent_amount("oxycodone") + 0.5),0,REAGENTS_OVERDOSE * 0.66 - 0.5)
+		var/tramadol = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("tramadol") + 0.5),0,REAGENTS_OVERDOSE - 0.5)
+		var/paindose = null
+		if(oxycodone)
 			wearer.reagents.add_reagent("oxycodone",oxycodone)
-		if(tramadol < REAGENTS_OVERDOSE)
+			paindose = TRUE
+		if(tramadol)
 			wearer.reagents.add_reagent("tramadol",tramadol)
-		details +=("User pain at performance impeding levels. Painkillers administered. <b>Dosage: Oxycodone: [oxycodone]U | Tramadol: [tramadol]U</b></br>")
-		B18_pain_cooldown = world.time + B18_CHEM_COOLDOWN
-		handle_chem_cooldown(B18_PAIN_CODE)
-		dose_administered = TRUE
+			paindose = TRUE
+		if(paindose) //Only report if we actually administer something
+			details +=("User pain at performance impeding levels. Painkillers administered. <b>Dosage:[oxycodone ? " Oxycodone: [oxycodone]U |" : ""][tramadol ? " Tramadol: [tramadol]U" : ""]</b></br>")
+			B18_pain_cooldown = world.time + B18_CHEM_COOLDOWN
+			handle_chem_cooldown(B18_PAIN_CODE)
+			dose_administered = TRUE
 
 	if(dose_administered)
 		playsound(src,'sound/items/hypospray.ogg', 25, 0, 1)
@@ -468,7 +495,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	set category = "B18 Armor"
 	set src in usr
 
-	if(!usr.canmove || usr.stat || usr.is_mob_restrained() || usr != wearer )
+	if(usr.is_mob_incapacitated() || usr != wearer )
 		return 0
 
 	handle_interface(usr)
@@ -509,9 +536,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 //Interface for the B18
 /obj/item/clothing/suit/storage/marine/specialist/Topic(href, href_list)
 	//..()
-	if(usr.stat || usr.is_mob_restrained())
+	if(usr.is_mob_incapacitated() || usr != wearer || !usr.IsAdvancedToolUser())
 		return
-	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
+	if(usr.contents.Find(src) )
 		usr.set_interaction(src)
 		if(href_list["B18_automed_on"])
 			if(B18_automed_on)
@@ -520,7 +547,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 				b18automed_turn_on(usr)
 
 		else if(href_list["B18_analyzer"] && B18_analyzer && usr == wearer) //Integrated scanner
-			B18_analyzer.attack(usr, usr)
+			B18_analyzer.attack(usr, usr, TRUE)
 
 		else if(href_list["B18_automed_damage"])
 			B18_automed_damage += text2num(href_list["B18_automed_damage"])
