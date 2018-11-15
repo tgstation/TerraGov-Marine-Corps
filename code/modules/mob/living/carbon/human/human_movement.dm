@@ -84,9 +84,9 @@
 
 
 /mob/living/carbon/human/proc/Process_SL_Locator()
-	if(world.time < sl_locator_next_update)
-		return
 	if(!sl_headset_active)
+		return
+	if(world.time < sl_locator_next_update)
 		return
 	if(!assigned_squad)
 		return

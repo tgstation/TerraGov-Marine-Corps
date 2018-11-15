@@ -224,7 +224,7 @@
 
 /obj/item/device/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
 	if(slot == WEAR_EAR)
-		if(headset_hud_on && user.assigned_squad)
+		if(headset_hud_on)
 			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
 			add_squadhud(H, user)
 	..()
