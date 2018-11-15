@@ -17,7 +17,7 @@
 	upgrade_threshold = 400
 	evolution_allowed = FALSE
 	caste_desc = "A brutal, devastating front-line attacker."
-	speed = -0.7 //Not as fast as runners, but faster than other xenos.
+	speed = -0.5 //Not as fast as runners, but faster than other xenos.
 	charge_type = 3 //Claw at end of charge
 	fire_resist = 0.5
 	armor_deflection = 20
