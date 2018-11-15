@@ -490,8 +490,32 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 						to_chat(wearer,"<span class='notice'>[src] beeps: Painkiller reservoir replenished.</span>")
 			playsound(src,'sound/effects/refill.ogg', 25, 0, 1)
 
+/obj/item/clothing/suit/storage/marine/specialist/verb/b18_automedic_toggle()
+	set name = "Toggle B18 Automedic"
+	set category = "B18 Armor"
+	set src in usr
+
+	if(usr.is_mob_incapacitated() || usr != wearer )
+		return 0
+
+	if(B18_automed_on)
+		b18automed_turn_off(usr)
+	else
+		b18automed_turn_on(usr)
+
+
+/obj/item/clothing/suit/storage/marine/specialist/verb/b18_automedic_scan()
+	set name = "B18 Automedic User Scan"
+	set category = "B18 Armor"
+	set src in usr
+
+	if(usr.is_mob_incapacitated() || usr != wearer )
+		return 0
+
+	B18_analyzer.attack(usr, usr, TRUE)
+
 /obj/item/clothing/suit/storage/marine/specialist/verb/configure_automedic()
-	set name = "Configure Automedic"
+	set name = "Configure B18 Automedic"
 	set category = "B18 Armor"
 	set src in usr
 
