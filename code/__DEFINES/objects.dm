@@ -160,7 +160,7 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define SENTRY_DAMAGE_ALERT_DELAY		50 //5 seconds
 
 //B18 DEFINES
-#define B18_CHEM_COOLDOWN				3000 //5 minutes
+#define B18_CHEM_COOLDOWN				5 MINUTES
 #define B18_BRUTE_CODE					1
 #define B18_BURN_CODE					2
 #define B18_OXY_CODE					3
