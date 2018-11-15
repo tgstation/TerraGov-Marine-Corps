@@ -265,8 +265,6 @@
 				if(mob_is_hit)
 					ammo.on_hit_mob(L,src)
 					if(L?.loc)
-						if(ammo.flags_ammo_behavior & AMMO_EXPLOSIVE) //If we're explosive, we go off.
-							ammo.on_hit_turf(L,src)
 						L.bullet_act(src)
 					return TRUE
 				else if (!L.lying)
@@ -277,8 +275,6 @@
 			else if(isobj(A))
 				ammo.on_hit_obj(A,src)
 				if(A && A.loc)
-					if(ammo.flags_ammo_behavior & AMMO_EXPLOSIVE) //If we're explosive, we go off.
-						ammo.on_hit_turf(A,src)
 					A.bullet_act(src)
 				return TRUE
 
