@@ -4,6 +4,7 @@
 	var/climb_delay = 50
 	var/breakable
 	var/parts
+	var/flags_barrier = 0
 	anchored = TRUE
 
 /obj/structure/New()
@@ -19,6 +20,9 @@
 		new parts(loc)
 	density = FALSE
 	cdel(src)
+
+/obj/structure/proc/handle_barrier_chance(mob/living/M)
+	return FALSE
 
 /obj/structure/attack_hand(mob/user)
 	..()

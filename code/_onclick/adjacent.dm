@@ -142,3 +142,20 @@ Quick adjacency (to turf):
 
 	Since I don't want to complicate the click code rework by messing with unrelated systems it won't be changed here.
 */
+
+/atom/proc/handle_barriers(mob/living/M)
+	for(var/obj/structure/S in M.loc)
+		if(S.flags_atom & ON_BORDER && S.dir & get_dir(M,src) || S.dir&(S.dir-1))
+			if(S.flags_barrier & HANDLE_BARRIER_CHANCE)
+				if(S.handle_barrier_chance(M))
+					return S // blocked
+	for(var/obj/structure/S in loc)
+		if(S.flags_atom & ON_BORDER && S.dir & get_dir(src,M) || S.dir&(S.dir-1))
+			if(S.flags_barrier & HANDLE_BARRIER_CHANCE)
+				if(S.handle_barrier_chance(M))
+					return S // blocked
+	return src // not blocked
+
+/turf/handle_barriers(mob/living/M)
+	return src
+	
