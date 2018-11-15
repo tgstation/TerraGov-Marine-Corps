@@ -1555,13 +1555,6 @@
 		to_chat(src, "<span class='xenowarning'>[M] is too large to fling!</span>")
 		return
 
-	icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
-	visible_message("<span class='xenowarning'>\The [src] flings [M] away with its crest!</span>", \
-	"<span class='xenowarning'>You fling [M] away with your crest!</span>")
-
-	cresttoss_used = 1
-	use_plasma(40)
-
 	face_atom(M) //Face towards the target so we don't look silly
 
 	var/facing = get_dir(src, M)
@@ -1576,18 +1569,32 @@
 			T = temp
 	else
 		facing = get_dir(M, src)
-		M.loc = get_step(T, facing) //Move the target behind us before flinging
-		for (var/x = 0, x < toss_distance, x++)
-			temp = get_step(T, facing)
-			if (!temp)
-				break
-			T = temp
+		if(check_blocked_turf(get_step(T, facing) ) ) //Make sure we can actually go to the target turf
+			M.loc = get_step(T, facing) //Move the target behind us before flinging
+			for (var/x = 0, x < toss_distance, x++)
+				temp = get_step(T, facing)
+				if (!temp)
+					break
+				T = temp
+		else
+			to_chat(src, "<span class='xenowarning'>You try to fling [M] behind you, but there's no room!</span>")
+			return
+
 	//The target location deviates up to 1 tile in any direction
 	var/scatter_x = rand(-1,1)
 	var/scatter_y = rand(-1,1)
 	var/turf/new_target = locate(T.x + round(scatter_x),T.y + round(scatter_y),T.z) //Locate an adjacent turf.
 	if(new_target)
 		T = new_target//Looks like we found a turf.
+
+	icon_state = "Crusher Charging"  //Momentarily lower the crest for visual effect
+
+	visible_message("<span class='xenowarning'>\The [src] flings [M] away with its crest!</span>", \
+	"<span class='xenowarning'>You fling [M] away with your crest!</span>")
+
+	cresttoss_used = 1
+	use_plasma(40)
+
 
 	M.throw_at(T, toss_distance, 1, src)
 
@@ -1809,7 +1816,8 @@
 	do_jitter_animation(1000)
 	playsound(src, "sound/effects/alien_drool2.ogg", 50, 0)
 	to_chat(src, "<span class='xenodanger'>You recoup your health, your tapped rage restoring your body, flesh and chitin reknitting themselves...</span>")
-	health += CLAMP( (maxHealth - health) * (0.25 + current_rage * 0.015), 0, maxHealth - health) //Restore HP equal to 25% + 1.5% of the difference between min and max health per rage
+	adjustFireLoss(-CLAMP( (getFireLoss()) * (0.25 + current_rage * 0.015), 0, getFireLoss()) )//Restore HP equal to 25% + 1.5% of the difference between min and max health per rage
+	adjustBruteLoss(-CLAMP( (getBruteLoss()) * (0.25 + current_rage * 0.015), 0, getBruteLoss()) )//Restore HP equal to 25% + 1.5% of the difference between min and max health per rage
 	plasma_stored += CLAMP( (plasma_max - plasma_stored) * (0.25 + current_rage * 0.015), 0, plasma_max - plasma_stored) //Restore Plasma equal to 25% + 1.5% of the difference between min and max health per rage
 	updatehealth()
 	hud_set_plasma()
