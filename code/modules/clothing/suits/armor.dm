@@ -51,7 +51,6 @@
 		/obj/item/storage/large_holster/machete,
 		/obj/item/storage/belt/gun/m4a3,
 		/obj/item/storage/belt/gun/m44)
-	uniform_restricted = list(/obj/item/clothing/under/marine/officer/pilot)
 	New()
 		select_gamemode_skin(/obj/item/clothing/suit/armor/vest/pilot)
 		..()
@@ -62,7 +61,6 @@
 	icon = 'icons/obj/clothing/cm_suits.dmi'
 	icon_state = "dutch_armor"
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
-	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/dutch)
 
 /obj/item/clothing/suit/armor/vest/admiral
 	name = "admiral's jacket"
