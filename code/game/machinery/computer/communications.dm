@@ -181,19 +181,11 @@
 					to_chat(usr, "<span class='warning'>The distress beacon cannot be launched this early in the operation. Please wait another [round((DISTRESS_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
 					return FALSE
 
-				if(!ticker || !ticker.mode) return FALSE //Not a game mode?
-
-				if(ticker.mode.has_called_emergency)
-					to_chat(usr, "<span class='warning'>The [MAIN_SHIP_NAME]'s distress beacon is already broadcasting.</span>")
-					return FALSE
+				if(!ticker || !ticker.mode) 
+					return FALSE //Not a game mode?
 
 				if(ticker.mode.distress_cooldown)
 					to_chat(usr, "<span class='warning'>The distress beacon is currently recalibrating.</span>")
-					return FALSE
-
-				 //Comment block to test
-				if(world.time < cooldown_request + COOLDOWN_COMM_REQUEST)
-					to_chat(usr, "<span class='warning'>The distress beacon has recently broadcast a message. Please wait.</span>")
 					return FALSE
 
 				//Currently only counts aliens, but this will likely need to change with human opponents.

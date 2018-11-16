@@ -1,6 +1,6 @@
 //This file deals with distress beacons. It randomizes between a number of different types when activated.
 //There's also an admin commmand which lets you set one to your liking.
-
+#define COOLDOWN_COMM_REQUEST 3000
 
 
 
@@ -137,7 +137,7 @@
 	if(!ticker || !ticker.mode) //Something horribly wrong with the gamemode ticker
 		return
 
-	if(ticker.mode.has_called_emergency) //It's already been called.
+	if(ticker.mode.distress_cooldown) //It's already been called.
 		return
 
 	if(mob_max > 0)
@@ -145,7 +145,7 @@
 	show_join_message() //Show our potential candidates the message to let them join.
 	message_admins("Distress beacon: '[name]' activated. Looking for candidates.", 1)
 
-	if (announce)
+	if(announce)
 		command_announcement.Announce("A distress beacon has been launched from the [MAIN_SHIP_NAME].", "Priority Alert", new_sound='sound/AI/distressbeacon.ogg')
 
 	ticker.mode.has_called_emergency = 1
@@ -162,7 +162,7 @@
 
 			ticker.mode.distress_cooldown = 1
 			ticker.mode.picked_call = null
-			spawn(1200)
+			spawn(COOLDOWN_COMM_REQUEST)
 				ticker.mode.distress_cooldown = 0
 		else //We've got enough!
 			//Trim down the list
@@ -269,3 +269,5 @@
 
 /datum/emergency_call/proc/print_backstory(mob/living/carbon/human/M)
 	return
+
+#undef COOLDOWN_COMM_REQUEST
