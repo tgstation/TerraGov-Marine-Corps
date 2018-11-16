@@ -261,6 +261,12 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	var/datum/limb/picked = pick(parts)
 	if(picked.take_damage(brute,burn,sharp,edge))
 		UpdateDamageIcon()
+
+	if(brute)
+		camo_off_process(SCOUT_CLOAK_OFF_DAMAGE, brute) //If we have the Scout cloak, check for a short out
+	if(burn)
+		camo_off_process(SCOUT_CLOAK_OFF_DAMAGE, burn) //If we have the Scout cloak, check for a short out
+
 	updatehealth()
 	speech_problem_flag = 1
 
@@ -321,6 +327,12 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 		burn	-= (picked.burn_dam - burn_was)
 
 		parts -= picked
+
+	if(brute)
+		camo_off_process(SCOUT_CLOAK_OFF_DAMAGE, brute) //If we have the Scout cloak, check for a short out
+	if(burn)
+		camo_off_process(SCOUT_CLOAK_OFF_DAMAGE, burn) //If we have the Scout cloak, check for a short out
+
 	updatehealth()
 	if(update)	UpdateDamageIcon()
 
@@ -410,5 +422,8 @@ This function restores all limbs.
 				UpdateDamageIcon()
 
 	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life().
+
+	camo_off_process(SCOUT_CLOAK_OFF_DAMAGE, damage) //If we have the Scout cloak, check for a short out
+
 	updatehealth()
 	return 1

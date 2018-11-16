@@ -84,5 +84,6 @@
 		var/hit = H.attacked_by(src, user, def_zone)
 		if (hit && hitsound)
 			playsound(loc, hitsound, 25, 1)
+		H.camo_off_process(SCOUT_CLOAK_OFF_ATTACK)
 		return hit
 	return 1
