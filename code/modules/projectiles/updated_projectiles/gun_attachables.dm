@@ -497,8 +497,6 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 
 /obj/item/attachable/scope/New()
 	..()
-	burst_delay_mod = config.mhigh_fire_delay
-	accuracy_mod = config.high_hit_accuracy_mult
 	movement_acc_penalty_mod = config.low_movement_acc_penalty
 	accuracy_unwielded_mod = -config.min_hit_accuracy_mult
 
@@ -506,6 +504,7 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 /obj/item/attachable/scope/activate_attachment(obj/item/weapon/gun/G, mob/living/carbon/user, turn_off)
 	if(turn_off)
 		if(G.zoom)
+			accuracy_mod = null
 			G.zoom(user, zoom_offset, zoom_viewsize)
 		return TRUE
 
@@ -514,6 +513,7 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 			to_chat(user, "<span class='warning'>You must hold [G] with two hands to use [src].</span>")
 		return FALSE
 	else
+		accuracy_mod = config.high_hit_accuracy_mult
 		G.zoom(user, zoom_offset, zoom_viewsize)
 	return TRUE
 
@@ -532,6 +532,31 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 	..()
 	burst_delay_mod = config.low_fire_delay
 
+/obj/item/attachable/scope/mini/activate_attachment(obj/item/weapon/gun/G, mob/living/carbon/user, turn_off)
+	if(turn_off)
+		if(G.zoom)
+			accuracy_mod = -config.low_hit_accuracy_mult
+			G.zoom(user, zoom_offset, zoom_viewsize)
+		return TRUE
+
+	if(!G.zoom && !(G.flags_item & WIELDED))
+		if(user)
+			to_chat(user, "<span class='warning'>You must hold [G] with two hands to use [src].</span>")
+		return FALSE
+	else
+		accuracy_mod = config.low_hit_accuracy_mult
+		G.zoom(user, zoom_offset, zoom_viewsize)
+	return TRUE
+
+/obj/item/attachable/scope/m4ra
+	name = "m4ra rail scope"
+	icon_state = "sniperscope"
+	attach_icon = "sniperscope_a"
+	desc = "A rail mounted zoom sight scope specialized for the M4RA Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+
+/obj/item/attachable/scope/m4ra/New()
+	..()
+	burst_delay_mod = null
 
 /obj/item/attachable/scope/slavic
 	icon_state = "slavicscope"

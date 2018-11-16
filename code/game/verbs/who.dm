@@ -36,24 +36,25 @@
 
 	var/list/Lines = list()
 
-	if(holder && (R_ADMIN & holder.rights || R_MOD & holder.rights))
-		for(var/client/C in clients)
-			var/entry = "\t[C.key]"
-			if(C.holder && C.holder.fakekey)
-				entry += " <i>(as [C.holder.fakekey])</i>"
-			entry += " - Playing as [C.mob.real_name]"
-			switch(C.mob.stat)
-				if(UNCONSCIOUS)
-					entry += " - <font color='#404040'><b>Unconscious</b></font>"
-				if(DEAD)
-					if(isobserver(C.mob))
-						var/mob/dead/observer/O = C.mob
-						if(O.started_as_observer)
-							entry += " - <font color='#777'>Observing</font>"
+	if(holder)
+		if(holder.rights & (R_ADMIN|R_MOD))
+			for(var/client/C in clients)
+				var/entry = "\t[C.key]"
+				if(C.holder?.fakekey)
+					entry += " <i>(as [C.holder.fakekey])</i>"
+				entry += " - Playing as [C.mob.real_name]"
+				switch(C.mob.stat)
+					if(UNCONSCIOUS)
+						entry += " - <font color='#404040'><b>Unconscious</b></font>"
+					if(DEAD)
+						if(isobserver(C.mob))
+							var/mob/dead/observer/O = C.mob
+							if(O.started_as_observer)
+								entry += " - <font color='#777'>Observing</font>"
+							else
+								entry += " - <font color='#000'><b>DEAD</b></font>"
 						else
 							entry += " - <font color='#000'><b>DEAD</b></font>"
-					else
-						entry += " - <font color='#000'><b>DEAD</b></font>"
 
 /*			var/age
 			if(isnum(C.player_age))
@@ -68,13 +69,19 @@
 
 			entry += " - [age]"*/
 
-			if(is_special_character(C.mob))
-				entry += " - <b><font color='red'>Antagonist</font></b>"
-			entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
-			Lines += entry
+				if(is_special_character(C.mob))
+					entry += " - <b><font color='red'>Antagonist</font></b>"
+				entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
+				Lines += entry
+		else
+			for(var/client/C in clients)
+				if(C.holder?.fakekey)
+					Lines += C.holder.fakekey
+				else
+					Lines += C.key
 	else
 		for(var/client/C in clients)
-			if(C.holder && C.holder.fakekey)
+			if(C.holder?.fakekey)
 				Lines += C.holder.fakekey
 			else
 				Lines += C.key
@@ -83,12 +90,13 @@
 		msg += "[line]\n"
 
 	if(holder)
-		var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
-		msg += "<b>Total Players: [length(Lines)]</b>"
-		msg += "<br><b style='color:#777'>Observers: [count_observers] (Non-Admin: [count_nonadmin_observers])</b>"
-		msg += "<br><b style='color:#2C7EFF'>Humans: [count_humans]</b> <b style='color:#688944'>(Marines: ~[count_marine_humans])</b> <b style='color:#F00'>(Infected: [count_infectedhumans])</b><br><b style='color:#2C7EFF'>Zeds: [count_zed]</b>"
-		msg += "<br><b style='color:#8200FF'>Aliens: [count_aliens]</b> <b style='color:#4D0096'>(Queen: [hive.living_xeno_queen ? "Alive" : "Dead"])</b>"
-		msg += "<br><b style='color:#7ABA19'>Predators: [count_preds]</b>"
+		if((holder.rights & (R_ADMIN|R_MOD)) || ((mob.stat == DEAD) && (holder.rights & (R_MENTOR))))
+			var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
+			msg += "<b>Total Players: [length(Lines)]</b>"
+			msg += "<br><b style='color:#777'>Observers: [count_observers] (Non-Admin: [count_nonadmin_observers])</b>"
+			msg += "<br><b style='color:#2C7EFF'>Humans: [count_humans]</b> <b style='color:#688944'>(Marines: ~[count_marine_humans])</b> <b style='color:#F00'>(Infected: [count_infectedhumans])</b><br><b style='color:#2C7EFF'>Zeds: [count_zed]</b>"
+			msg += "<br><b style='color:#8200FF'>Aliens: [count_aliens]</b> <b style='color:#4D0096'>(Queen: [hive.living_xeno_queen ? "Alive" : "Dead"])</b>"
+			msg += "<br><b style='color:#7ABA19'>Predators: [count_preds]</b>"
 	else
 		msg += "<b>Total Players: [length(Lines)]</b>"
 	to_chat(src, msg)
@@ -104,58 +112,70 @@
 	var/num_admins_online = 0
 	var/num_mentors_online = 0
 	if(holder)
-		for(var/client/C in admins)
-			if(R_ADMIN & C.holder.rights || (!R_MOD & C.holder.rights && !R_MENTOR & C.holder.rights))	//Used to determine who shows up in admin rows
+		if((holder.rights & (R_ADMIN|R_MOD)) || ((mob.stat == DEAD) && (holder.rights & (R_MENTOR))))
+			for(var/client/C in admins)
+				if(R_ADMIN & C.holder.rights || (!R_MOD & C.holder.rights && !R_MENTOR & C.holder.rights))	//Used to determine who shows up in admin rows
 
-				if(C.holder.fakekey && (!R_ADMIN & holder.rights && !R_MOD & holder.rights))		//Mentors can't see stealthmins
-					continue
+					if(C.holder.fakekey && !(holder.rights & (R_ADMIN|R_MOD)))		//Mentors can't see stealthmins
+						continue
 
-				msg += "\t[C] is a [C.holder.rank]"
+					msg += "\t[C] is a [C.holder.rank]"
 
-				if(C.holder.fakekey)
-					msg += " <i>(as [C.holder.fakekey])</i>"
+					if(C.holder.fakekey)
+						msg += " <i>(as [C.holder.fakekey])</i>"
 
-				if(isobserver(C.mob))
-					msg += " - Observing"
-				else if(istype(C.mob,/mob/new_player))
-					msg += " - Lobby"
-				else
-					msg += " - Playing"
+					if(isobserver(C.mob))
+						msg += " - Observing"
+					else if(istype(C.mob,/mob/new_player))
+						msg += " - Lobby"
+					else
+						msg += " - Playing"
 
-				if(C.is_afk())
-					msg += " (AFK)"
-				msg += "\n"
+					if(C.is_afk())
+						msg += " (AFK)"
+					msg += "\n"
 
-				num_admins_online++
-			else if(R_MOD & C.holder.rights)				//Who shows up in mod/mentor rows.
-				modmsg += "\t[C] is a [C.holder.rank]"
+					num_admins_online++
+				else if(R_MOD & C.holder.rights)				//Who shows up in mod/mentor rows.
+					modmsg += "\t[C] is a [C.holder.rank]"
 
-				if(isobserver(C.mob))
-					modmsg += " - Observing"
-				else if(istype(C.mob,/mob/new_player))
-					modmsg += " - Lobby"
-				else
-					modmsg += " - Playing"
+					if(isobserver(C.mob))
+						modmsg += " - Observing"
+					else if(istype(C.mob,/mob/new_player))
+						modmsg += " - Lobby"
+					else
+						modmsg += " - Playing"
 
-				if(C.is_afk())
-					modmsg += " (AFK)"
-				modmsg += "\n"
-				num_mods_online++
+					if(C.is_afk())
+						modmsg += " (AFK)"
+					modmsg += "\n"
+					num_mods_online++
 
-			else if(R_MENTOR & C.holder.rights)
-				mentmsg += "\t[C] is a [C.holder.rank]"
-				if(isobserver(C.mob))
-					mentmsg += " - Observing"
-				else if(istype(C.mob,/mob/new_player))
-					mentmsg += " - Lobby"
-				else
-					mentmsg += " - Playing"
+				else if(R_MENTOR & C.holder.rights)
+					mentmsg += "\t[C] is a [C.holder.rank]"
+					if(isobserver(C.mob))
+						mentmsg += " - Observing"
+					else if(istype(C.mob,/mob/new_player))
+						mentmsg += " - Lobby"
+					else
+						mentmsg += " - Playing"
 
-				if(C.is_afk())
-					mentmsg += " (AFK)"
-				mentmsg += "\n"
-				num_mentors_online++
-
+					if(C.is_afk())
+						mentmsg += " (AFK)"
+					mentmsg += "\n"
+					num_mentors_online++
+		else
+			for(var/client/C in admins)
+				if(C.holder.rights & R_ADMIN || !(C.holder.rights & (R_MOD|R_MENTOR)))
+					if(!C.holder.fakekey)
+						msg += "\t[C] is a [C.holder.rank]\n"
+						num_admins_online++
+				else if (R_MOD & C.holder.rights)
+					modmsg += "\t[C] is a [C.holder.rank]\n"
+					num_mods_online++
+				else if (R_MENTOR & C.holder.rights)
+					mentmsg += "\t[C] is a [C.holder.rank]\n"
+					num_mentors_online++
 	else
 		for(var/client/C in admins)
 			if(R_ADMIN & C.holder.rights || (!R_MOD & C.holder.rights && !R_MENTOR & C.holder.rights))

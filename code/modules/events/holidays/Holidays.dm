@@ -14,11 +14,12 @@ var/global/Holiday = null
 
 /hook/startup/proc/updateHoliday()
 	Get_Holiday()
-	return 1
+	return TRUE
 
 //sets up the Holiday global variable. Shouldbe called on game configuration or something.
 /proc/Get_Holiday()
-	if(!Holiday)	return		// Holiday stuff was not enabled in the config!
+	if(!Holiday)
+		return		// Holiday stuff was not enabled in the config!
 
 	Holiday = null				// reset our switch now so we can recycle it as our Holiday name
 
@@ -51,16 +52,16 @@ var/global/Holiday = null
 
 		if(4)	//Apr
 			switch(DD)
-				if(1)
-					Holiday = "April Fool's Day"
-					if(YY == 18 && prob(50)) 	Holiday = "Easter"
-				if(5)
-					if(YY == 15)				Holiday = "Easter"
-				if(16)
-					if(YY == 17)				Holiday = "Easter"
-				if(20)
-					Holiday = "Four-Twenty"
-					if(YY == 14 && prob(50))	Holiday = "Easter"
+				if(1)							Holiday = "April Fool's Day"
+				if(4)
+					if(YY == 21)				Holiday = "Easter"
+				if(12)
+					if(YY == 20)				Holiday = "Easter"
+				if(17)
+					if(YY == 22)				Holiday = "Easter"
+				if(20)							Holiday = "Four-Twenty"
+				if(21)
+					if(YY == 19)				Holiday = "Easter"
 				if(22)							Holiday = "Earth Day"
 
 		if(5)	//May
@@ -105,7 +106,6 @@ var/global/Holiday = null
 			switch(DD)
 				if(10)							Holiday = "Human-Rights Day"
 				if(14)							Holiday = "Monkey Day"
-				if(21)							if(YY==12)	Holiday = "End of the World"
 				if(22)							Holiday = "Orgasming Day"		//lol. These all actually exist
 				if(24)							Holiday = "Christmas Eve"
 				if(25)							Holiday = "Christmas"
@@ -123,7 +123,8 @@ var/global/Holiday = null
 	set name = ".Set Holiday"
 	set category = "Fun"
 	set desc = "Force-set the Holiday variable to make the game think it's a certain day."
-	if(!check_rights(R_SERVER))	return
+	if(!check_rights(R_SERVER))
+		return
 
 	Holiday = T
 	//get a new station name
@@ -158,6 +159,7 @@ var/global/Holiday = null
 			return
 
 		if("Easter")		//I'll make this into some helper procs at some point
+			return
 /*			var/list/turf/open/floor/Floorlist = list()
 			for(var/turf/open/floor/T)
 				if(T.contents)
@@ -175,8 +177,8 @@ var/global/Holiday = null
 				containers += S
 
 			message_admins("\blue DEBUG: Event: Egg spawned at [Egg.loc] ([Egg.x],[Egg.y],[Egg.z])")*/
-		if("End of the World")
-			if(prob(eventchance))	GameOver()
 
 		if("Christmas","Christmas Eve")
-			if(prob(eventchance))	ChristmasEvent()
+			return
+			//if(prob(eventchance))
+			//	ChristmasEvent()

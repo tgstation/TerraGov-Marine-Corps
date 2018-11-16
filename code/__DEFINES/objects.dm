@@ -159,6 +159,22 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define SENTRY_ALERT_DELAY				20 SECONDS
 #define SENTRY_DAMAGE_ALERT_DELAY		5 SECONDS
 
+
+//Scout cloak defines
+#define SCOUT_CLOAK_ENERGY	100
+#define SCOUT_CLOAK_STEALTH_DELAY 30
+#define SCOUT_CLOAK_RUN_DRAIN	5
+#define SCOUT_CLOAK_WALK_DRAIN	1
+#define SCOUT_CLOAK_ACTIVE_RECOVERY -5 //You only get this once every obj tick, so it'll be comparable to the inactive value
+#define SCOUT_CLOAK_INACTIVE_RECOVERY 5
+#define SCOUT_CLOAK_COOLDOWN 100
+#define SCOUT_CLOAK_TIMER 50
+#define SCOUT_CLOAK_RUN_ALPHA 128
+#define SCOUT_CLOAK_WALK_ALPHA 51
+#define SCOUT_CLOAK_STILL_ALPHA 13
+#define SCOUT_CLOAK_MAX_ENERGY 100
+#define SCOUT_CLOAK_OFF_DAMAGE (1 << 0)
+#define SCOUT_CLOAK_OFF_ATTACK (1 << 1)
 //B18 DEFINES
 #define B18_CHEM_COOLDOWN				5 MINUTES
 #define B18_BRUTE_CODE					1

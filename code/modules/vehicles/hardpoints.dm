@@ -172,6 +172,9 @@ Currently only has the tank hardpoints
 			return
 
 		next_use = world.time + owner.cooldowns["primary"] * owner.misc_ratios["prim_cool"]
+
+		if(!do_after(usr, 5, FALSE, 5, BUSY_ICON_HOSTILE))
+			return
 		if(!prob(owner.accuracies["primary"] * 100 * owner.misc_ratios["prim_acc"]))
 			T = get_step(T, pick(cardinal))
 		var/obj/item/projectile/P = new

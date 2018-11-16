@@ -267,7 +267,6 @@
 		src.thrower = null
 		src.throw_source = null
 
-
 //Overlays
 /atom/movable/overlay
 	var/atom/master = null

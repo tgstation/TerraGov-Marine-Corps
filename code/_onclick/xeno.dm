@@ -8,7 +8,9 @@
 	if(lying) //No attacks while laying down
 		return 0
 
-	A.attack_alien(src)
+	var/atom/S = A.handle_barriers(src)
+	S.attack_alien(src)
+
 	next_move = world.time + (10 + attack_delay) //Adds some lag to the 'attack'
 
 //The parent proc, will default to attack_paw behaviour unless overriden

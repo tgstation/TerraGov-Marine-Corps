@@ -25,11 +25,15 @@
 	var/can_wire = FALSE
 	var/is_wired = FALSE
 	var/image/wired_overlay
+	flags_barrier = HANDLE_BARRIER_CHANCE
 
 /obj/structure/barricade/New()
 	..()
 	spawn(0)
 		update_icon()
+
+/obj/structure/barricade/handle_barrier_chance(mob/living/M)
+	return prob(max(30,(100.0*health)/maxhealth))
 
 /obj/structure/barricade/examine(mob/user)
 	..()
@@ -646,6 +650,12 @@
 	var/build_state = 2 //2 is fully secured, 1 is after screw, 0 is after wrench. Crowbar disassembles
 	var/tool_cooldown = 0 //Delay to apply tools to prevent spamming
 	var/busy = FALSE //Standard busy check
+
+/obj/structure/barricade/plasteel/handle_barrier_chance(mob/living/M)
+	if(closed)
+		return ..()
+	else
+		return FALSE
 
 /obj/structure/barricade/plasteel/examine(mob/user)
 	..()

@@ -579,6 +579,7 @@ and you're good to go.
 				active_attachable.activate_attachment(src, null, TRUE)
 			else
 				active_attachable.fire_attachment(target,src,user) //Fire it.
+				user.camo_off_process(SCOUT_CLOAK_OFF_ATTACK) //Cause cloak to shimmer.
 				last_fired = world.time
 			return
 			//If there's more to the attachment, it will be processed farther down, through in_chamber and regular bullet act.
@@ -687,6 +688,8 @@ and you're good to go.
 		if(i < bullets_fired) // We still have some bullets to fire.
 			extra_delay = min(extra_delay+(burst_delay*2), fire_delay*3) // The more bullets you shoot, the more delay there is, but no more than thrice the regular delay.
 			sleep(burst_delay)
+
+		user.camo_off_process(SCOUT_CLOAK_OFF_ATTACK) //Cause cloak to shimmer.
 
 	flags_gun_features &= ~GUN_BURST_FIRING // We always want to turn off bursting when we're done.
 
