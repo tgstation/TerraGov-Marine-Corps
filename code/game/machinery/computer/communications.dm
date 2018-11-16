@@ -201,6 +201,12 @@
 				//Comment block to test
 				var/L[] = ticker.mode.count_humans_and_xenos()
 				var/M[] = ticker.mode.count_humans_and_xenos(list(MAIN_SHIP_Z_LEVEL))
+				message_admins("L1 [L[1]]")
+				message_admins("L2 [L[2]]")
+				message_admins("M1 [M[1]]")
+				message_admins("M2 [M[2]]")
+				message_admins("[round(L[1] * 0.8)]")
+				message_admins("[round(M[1] * 0.5)]")
 				if((L[2] < round(L[1] * 0.8)) || (M[2] < round(M[1] * 0.5)))
 					log_game("[key_name(usr)] has attemped to call a distress beacon, but it was denied due to lack of threat.")
 					to_chat(usr, "<span class='warning'>The sensors aren't picking up enough of a threat to warrant a distress beacon.</span>")
