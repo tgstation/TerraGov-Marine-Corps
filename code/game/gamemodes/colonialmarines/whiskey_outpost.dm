@@ -11,7 +11,7 @@
 					/datum/job/marine/specialist/equipped,
 					/datum/job/marine/smartgunner/equipped,
 					/datum/job/marine/leader/equipped,
-					/datum/job/civilian/doctor,
+					/datum/job/medical/doctor,
 					/datum/job/command/commander,
 					/datum/job/logistics/tech/maint,
 					/datum/job/command/police,
