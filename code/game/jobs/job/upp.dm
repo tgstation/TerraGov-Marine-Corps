@@ -111,7 +111,7 @@
 	skills_type = /datum/skills/SL/upp
 	equipment = TRUE
 
-/datum/job/upp/standard/generate_equipment(mob/living/carbon/human/H)
+/datum/job/upp/leader/generate_equipment(mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(H), WEAR_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/UPP(H), WEAR_BODY)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/faction/UPP/heavy(H), WEAR_JACKET)
@@ -213,7 +213,7 @@
 	skills_type = /datum/skills/commando/leader
 	equipment = TRUE
 
-/datum/job/upp/commando/leader/generate_equipment(mob/living/carbon/human/H)
+/datum/job/upp/commando/standard/generate_equipment(mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(H), WEAR_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/UPP(H), WEAR_BODY)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/faction/UPP/commando(H), WEAR_JACKET)
