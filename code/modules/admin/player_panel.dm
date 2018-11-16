@@ -1,6 +1,6 @@
 
 /datum/admins/proc/player_panel_new()//The new one
-	if (!usr.client.holder)
+	if(!usr.client.holder.rights & (R_ADMIN|R_MOD))
 		return
 	var/dat = "<html><head><title>Admin Player Panel</title></head>"
 
@@ -387,7 +387,7 @@
 
 //Extended panel with ban related things
 /datum/admins/proc/player_panel_extended()
-	if (!usr.client.holder)
+	if(!usr.client.holder.rights & (R_ADMIN|R_MOD))
 		return
 
 	var/dat = "<html><head><title>Player Menu</title></head>"
