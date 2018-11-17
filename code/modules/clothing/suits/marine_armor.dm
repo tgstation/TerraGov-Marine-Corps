@@ -364,17 +364,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	if(wearer.getFireLoss() > B18_automed_damage && !B18_burn_cooldown)
 		var/dermaline = CLAMP(REAGENTS_OVERDOSE*0.5 - (wearer.reagents.get_reagent_amount("dermaline") + 0.5),0,REAGENTS_OVERDOSE*0.5 - 0.5)
 		var/kelotane = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("kelotane") + 0.5),0,REAGENTS_OVERDOSE - 0.5)
-		var/burndose = null
 		if(dermaline)
 			wearer.reagents.add_reagent("dermaline",dermaline)
-			burndose = TRUE
 		if(kelotane)
 			wearer.reagents.add_reagent("kelotane",kelotane)
-			burndose = TRUE
 		if(tricordrazine)
 			wearer.reagents.add_reagent("tricordrazine",tricordrazine)
-			burndose = TRUE
-		if(burndose) //Only report if we actually administer something
+		if(dermaline || kelotane || tricordrazine) //Only report if we actually administer something
 			details +=("Significant tissue burns detected. Restorative injection administered. <b>Dosage:[dermaline ? " Dermaline: [dermaline]U |" : ""][kelotane ? " Kelotane: [kelotane]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
 			B18_burn_cooldown = world.time + B18_CHEM_COOLDOWN
 			handle_chem_cooldown(B18_BURN_CODE)
@@ -383,17 +379,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	if(wearer.getBruteLoss() > B18_automed_damage && !B18_brute_cooldown)
 		var/bicaridine = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("bicaridine") + 0.5),0,REAGENTS_OVERDOSE - 0.5)
 		var/quickclot = CLAMP(REAGENTS_OVERDOSE * 0.5 - (wearer.reagents.get_reagent_amount("quickclot") + 0.5),0,REAGENTS_OVERDOSE * 0.5 - 0.5)
-		var/brutedose = null
 		if(quickclot)
 			wearer.reagents.add_reagent("quickclot",quickclot)
-			brutedose = TRUE
 		if(bicaridine)
 			wearer.reagents.add_reagent("bicaridine",bicaridine)
-			brutedose = TRUE
 		if(tricordrazine)
 			wearer.reagents.add_reagent("tricordrazine",tricordrazine)
-			brutedose = TRUE
-		if(brutedose) //Only report if we actually administer something
+		if(quickclot || bicaridine || tricordrazine) //Only report if we actually administer something
 			details +=("Significant physical trauma detected. Regenerative formula administered. <b>Dosage:[bicaridine ? " Bicaridine: [bicaridine]U |" : ""][quickclot ? " Quickclot: [quickclot]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
 			B18_brute_cooldown = world.time + B18_CHEM_COOLDOWN
 			handle_chem_cooldown(B18_BRUTE_CODE)
@@ -402,17 +394,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	if(wearer.getOxyLoss() > B18_automed_damage && !B18_oxy_cooldown)
 		var/dexalinplus = CLAMP(REAGENTS_OVERDOSE * 0.5 - (wearer.reagents.get_reagent_amount("dexalinplus") + 0.5),0,REAGENTS_OVERDOSE * 0.5 - 0.5)
 		var/inaprovaline = CLAMP(REAGENTS_OVERDOSE * 2 - (wearer.reagents.get_reagent_amount("inaprovaline") + 0.5),0,REAGENTS_OVERDOSE * 2 - 0.5)
-		var/oxydose = null
 		if(dexalinplus)
 			wearer.reagents.add_reagent("dexalinplus",dexalinplus)
-			oxydose = TRUE
 		if(inaprovaline)
 			wearer.reagents.add_reagent("inaprovaline",inaprovaline)
-			oxydose = TRUE
 		if(tricordrazine)
 			wearer.reagents.add_reagent("tricordrazine",tricordrazine)
-			oxydose = TRUE
-		if(oxydose) //Only report if we actually administer something
+		if(dexalinplus || inaprovaline || tricordrazine) //Only report if we actually administer something
 			details +=("Low blood oxygen detected. Reoxygenating preparation administered. <b>Dosage:[dexalinplus ? " Dexalin Plus: [dexalinplus]U |" : ""][inaprovaline ? " Inaprovaline: [inaprovaline]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
 			B18_oxy_cooldown = world.time + B18_CHEM_COOLDOWN
 			handle_chem_cooldown(B18_OXY_CODE)
@@ -421,17 +409,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	if(wearer.getToxLoss() > B18_automed_damage && !B18_tox_cooldown)
 		var/dylovene = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("dylovene") + 0.5),0,REAGENTS_OVERDOSE - 0.5)
 		var/spaceacillin = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("spaceacillin") + 0.5),0,REAGENTS_OVERDOSE - 0.5)
-		var/toxdose = null
 		if(dylovene)
 			wearer.reagents.add_reagent("dylovene",dylovene)
-			toxdose = TRUE
 		if(spaceacillin)
 			wearer.reagents.add_reagent("spaceacillin",spaceacillin)
-			toxdose = TRUE
 		if(tricordrazine)
 			wearer.reagents.add_reagent("tricordrazine",tricordrazine)
-			toxdose = TRUE
-		if(toxdose) //Only report if we actually administer something
+		if(dylovene || spaceacillin || tricordrazine) //Only report if we actually administer something
 			details +=("Significant blood toxicity detected. Chelating agents and curatives administered. <b>Dosage:[dylovene ? " Dylovene: [dylovene]U |" : ""][spaceacillin ? " Spaceacillin: [spaceacillin]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
 			B18_tox_cooldown = world.time + B18_CHEM_COOLDOWN
 			handle_chem_cooldown(B18_TOX_CODE)
@@ -440,14 +424,11 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	if(wearer.traumatic_shock > B18_automed_pain && !B18_pain_cooldown)
 		var/oxycodone = CLAMP(REAGENTS_OVERDOSE * 0.66 - (wearer.reagents.get_reagent_amount("oxycodone") + 0.5),0,REAGENTS_OVERDOSE * 0.66 - 0.5)
 		var/tramadol = CLAMP(REAGENTS_OVERDOSE - (wearer.reagents.get_reagent_amount("tramadol") + 0.5),0,REAGENTS_OVERDOSE - 0.5)
-		var/paindose = null
 		if(oxycodone)
 			wearer.reagents.add_reagent("oxycodone",oxycodone)
-			paindose = TRUE
 		if(tramadol)
 			wearer.reagents.add_reagent("tramadol",tramadol)
-			paindose = TRUE
-		if(paindose) //Only report if we actually administer something
+		if(oxycodone || tramadol) //Only report if we actually administer something
 			details +=("User pain at performance impeding levels. Painkillers administered. <b>Dosage:[oxycodone ? " Oxycodone: [oxycodone]U |" : ""][tramadol ? " Tramadol: [tramadol]U" : ""]</b></br>")
 			B18_pain_cooldown = world.time + B18_CHEM_COOLDOWN
 			handle_chem_cooldown(B18_PAIN_CODE)
