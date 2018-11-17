@@ -174,7 +174,7 @@
 						message_admins("DEBUG: Distress ran out of candidates")
 						break//We ran out of candidates, maybe they alienized. Use what we have.
 					var/datum/mind/M = pick(candidates) //Get a random candidate, then remove it from the candidates list.
-					if(istype(M.current,/mob/living/carbon/Xenomorph))
+					if(M.current.stat != DEAD)
 						candidates -= M //Strip them from the list, they aren't dead anymore.
 						if(!candidates.len)
 							message_admins("DEBUG: Distress ran out of candidates after removing xenos") 
@@ -224,11 +224,11 @@
 
 /datum/emergency_call/proc/add_candidate(var/mob/M)
 	if(!M.client) 
-		return FALSE//Not connected
+		return FALSE  //Not connected
 	if(M.mind && M.mind in candidates) 
-		return FALSE//Already there.
-	if(istype(M,/mob/living/carbon/Xenomorph) && !M.stat) 
-		return FALSE//Something went wrong
+		return FALSE  //Already there.
+	if(isXeno(M) && M.stat != DEAD)
+		return FALSE  //Is a xeno
 	if(M.mind)
 		candidates += M.mind
 	else
