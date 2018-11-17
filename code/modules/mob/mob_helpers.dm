@@ -2,101 +2,101 @@
 // fun if you want to typecast humans/monkeys/etc without writing long path-filled lines.
 /proc/ishuman(A)
 	if(istype(A, /mob/living/carbon/human))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/iszombie(A)
 	if(ishuman(A))
 		var/mob/living/carbon/human/Z = A
 		if(Z.species.name == "Zombie")
-			return 1
-		return 0
-	return 0
+			return TRUE
+		return FALSE
+	return FALSE
 
 /proc/ismonkey(A)
 	if(A && istype(A, /mob/living/carbon/monkey))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/isbrain(A)
 	if(A && istype(A, /mob/living/brain))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/isrobot(A)
 	if(istype(A, /mob/living/silicon/robot))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/isanimal(A)
 	if(istype(A, /mob/living/simple_animal))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/iscorgi(A)
 	if(istype(A, /mob/living/simple_animal/corgi))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/iscrab(A)
 	if(istype(A, /mob/living/simple_animal/crab))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/iscat(A)
 	if(istype(A, /mob/living/simple_animal/cat))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/ismouse(A)
 	if(istype(A, /mob/living/simple_animal/mouse))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/isbear(A)
 	if(istype(A, /mob/living/simple_animal/hostile/bear))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/iscarp(A)
 	if(istype(A, /mob/living/simple_animal/hostile/carp))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/isclown(A)
 	if(istype(A, /mob/living/simple_animal/hostile/retaliate/clown))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/isAI(A)
 	if(istype(A, /mob/living/silicon/ai))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/iscarbon(A)
 	if(istype(A, /mob/living/carbon))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/issilicon(A)
 	if(istype(A, /mob/living/silicon))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /proc/isliving(A)
 	if(istype(A, /mob/living))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/isobserver(A)
 	if(istype(A, /mob/dead/observer))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/isorgan(A)
 	if(istype(A, /datum/limb))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/isdeaf(A)
 	if(isliving(A))
@@ -113,120 +113,120 @@ proc/is_blind(A)
 
 proc/isnewplayer(A)
 	if(istype(A, /mob/new_player))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
-proc/isXeno(A) //Xenomorph Hud Test APOPHIS 22MAY2015
+proc/isXeno(A)
 	if(istype(A, /mob/living/carbon/Xenomorph))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/xeno_hivenumber(A)
 	if(isXeno(A))
 		var/mob/living/carbon/Xenomorph/X = A
 		return X.hivenumber
-	return 0
+	return FALSE
 
 proc/isXenoBoiler(A)
 	if(istype(A, /mob/living/carbon/Xenomorph/Boiler))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/isXenoCarrier(A)
 	if(istype(A, /mob/living/carbon/Xenomorph/Carrier))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/isXenoCrusher(A)
 	if(istype(A, /mob/living/carbon/Xenomorph/Crusher))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/isXenoDrone(A)
 	if(istype(A, /mob/living/carbon/Xenomorph/Drone))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/isXenoHivelord(A)
 	if(istype(A, /mob/living/carbon/Xenomorph/Hivelord))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/isXenoHunter(A)
 	if(istype(A, /mob/living/carbon/Xenomorph/Hunter))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/isXenoDefender(A)
 	if (istype(A, /mob/living/carbon/Xenomorph/Defender))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
-proc/isXenoLarva(A) //Xenomorph Larva Hud Test APOPHIS 22MAY2015
+proc/isXenoLarva(A)
 	if(istype(A, /mob/living/carbon/Xenomorph/Larva))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/isXenoPraetorian(A)
 	if(istype(A, /mob/living/carbon/Xenomorph/Praetorian))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/isXenoQueen(A)
 	if(istype(A, /mob/living/carbon/Xenomorph/Queen))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/isXenoRavager(A)
 	if(istype(A, /mob/living/carbon/Xenomorph/Ravager))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/isXenoRunner(A)
 	if(istype(A, /mob/living/carbon/Xenomorph/Runner))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/isXenoSentinel(A)
 	if(istype(A, /mob/living/carbon/Xenomorph/Sentinel))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/isXenoSpitter(A)
 	if(istype(A, /mob/living/carbon/Xenomorph/Spitter))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/isXenoWarrior(A)
 	if (istype(A, /mob/living/carbon/Xenomorph/Warrior))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/isYautja(A)
 	if(isHellhound(A))
-		return 1 //They are always considered Yautja.
+		return TRUE //They are always considered Yautja.
 	if(ishuman(A))
 		var/mob/living/carbon/human/H = A
 		if(H.species.name == "Yautja")
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 proc/isSynth(A)
 	if(ishuman(A))
 		var/mob/living/carbon/human/H = A
 		if(H.species.name == "Synthetic" || H.species.name == "Early Synthetic")
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 proc/ismaintdrone(A)
 	if(istype(A,/mob/living/silicon/robot/drone))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/isHellhound(A)
 	if(istype(A, /mob/living/carbon/hellhound))
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 proc/hasorgans(A)
 	return ishuman(A)
@@ -244,7 +244,7 @@ proc/hasorgans(A)
 
 /mob/proc/is_mechanical()
 	if(mind && (mind.assigned_role == "Cyborg" || mind.assigned_role == "AI"))
-		return 1
+		return TRUE
 	return istype(src, /mob/living/silicon) || get_species() == "Machine"
 
 /mob/proc/is_ready()
@@ -502,18 +502,18 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 /proc/findname(msg)
 	for(var/mob/M in mob_list)
 		if (M.real_name == text("[msg]"))
-			return 1
-	return 0
+			return TRUE
+	return FALSE
 
 
 /mob/proc/abiotic(var/full_body = 0)
 	if(full_body && ((src.l_hand && !( src.l_hand.flags_item & ITEM_ABSTRACT )) || (src.r_hand && !( src.r_hand.flags_item & ITEM_ABSTRACT )) || (src.back || src.wear_mask)))
-		return 1
+		return TRUE
 
 	if((src.l_hand && !( src.l_hand.flags_item & ITEM_ABSTRACT )) || (src.r_hand && !( src.r_hand.flags_item & ITEM_ABSTRACT )))
-		return 1
+		return TRUE
 
-	return 0
+	return FALSE
 
 //converts intent-strings into numbers and back
 var/list/intents = list("help","disarm","grab","hurt")
