@@ -52,6 +52,7 @@
 		if(MAP_ICE_COLONY)
 			products2 = list(
 						/obj/item/clothing/mask/rebreather/scarf = 10,
+						/obj/item/clothing/mask/rebreather = 10
 							)
 	build_inventory(products2)
 
@@ -599,6 +600,7 @@
 					/obj/item/clothing/suit/storage/marine = 20,
 					/obj/item/clothing/head/helmet/marine = 20,
 					/obj/item/clothing/mask/rebreather/scarf = 10,
+					/obj/item/clothing/mask/rebreather = 10
 					)
 
 	prices = list()
