@@ -32,9 +32,6 @@
 		/datum/action/xeno_action/activable/headbutt,
 		/datum/action/xeno_action/activable/tail_sweep
 		)
-	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/vent_crawl,
-		)
 
 /mob/living/carbon/Xenomorph/Defender/update_icons()
 	if (stat == DEAD)

@@ -30,9 +30,6 @@
 		/datum/action/xeno_action/activable/lunge,
 		/datum/action/xeno_action/activable/punch
 		)
-	inherent_verbs = list(
-		/mob/living/carbon/Xenomorph/proc/vent_crawl,
-		)
 
 /mob/living/carbon/Xenomorph/Warrior/update_icons()
 	if (stat == DEAD)

@@ -1083,6 +1083,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		if(map_tag == MAP_ICE_COLONY)
 			products2 = list(
 						/obj/item/clothing/mask/rebreather/scarf = round(scale * 30),
+						/obj/item/clothing/mask/rebreather = round(scale * 30),
 							)
 		M.build_inventory(products2)
 

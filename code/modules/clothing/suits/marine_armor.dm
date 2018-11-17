@@ -19,12 +19,6 @@
 //=======================================================================\\
 //=======================================================================
 
-#define ALPHA		1
-#define BRAVO		2
-#define CHARLIE		3
-#define DELTA		4
-#define NONE 		5
-
 var/list/armormarkings = list()
 var/list/armormarkings_sql = list()
 var/list/helmetmarkings = list()
