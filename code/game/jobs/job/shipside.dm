@@ -359,8 +359,8 @@ A happy ship is a well-functioning ship."}
 	scaled = 1
 	supervisors = "the chief engineer"
 	selection_color = "#fff5cc"
-	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_CIVILIAN_ENGINEERING)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_CIVILIAN_ENGINEERING)
+	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_PREP, ACCESS_MARINE_MEDBAY)
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
 	skills_type = /datum/skills/MT
 	equipment = TRUE
@@ -426,8 +426,12 @@ Start with the ship's engine, and don't forget radiation equipment."}
 Stay in your department when possible to ensure the marines have full access to the supplies they may require.
 Listen to the radio in case someone requests a supply drop via the overwatch system."}
 
+/datum/job/medical
+	department_flag = ROLEGROUP_MARINE_MED_SCIENCE
+	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 
-/datum/job/civilian/professor
+
+/datum/job/medical/professor
 	title = "Chief Medical Officer"
 	comm_title = "CMO"
 	paygrade = "CCMO"
@@ -443,7 +447,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 	skills_type = /datum/skills/CMO
 	equipment = TRUE
 
-/datum/job/civilian/professor/generate_equipment(mob/living/carbon/human/H)
+/datum/job/medical/professor/generate_equipment(mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/cmo(H), WEAR_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical/green(H), WEAR_BODY)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(H), WEAR_HANDS)
@@ -460,14 +464,14 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 	H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), WEAR_J_STORE)
 
 
-/datum/job/civilian/professor/generate_entry_message()
+/datum/job/medical/professor/generate_entry_message()
 	return {"You are a civilian, and are not subject to follow military chain of command, but you do work for the USCM.
 You have final authority over the medical department, medications, and treatments.
 Make sure that the doctors and nurses are doing their jobs and keeping the marines healthy and strong."}
 
 
 //Doctor
-/datum/job/civilian/doctor
+/datum/job/medical/doctor
 	title = "Doctor"
 	comm_title = "Doc"
 	paygrade = "CD"
@@ -483,7 +487,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	skills_type = /datum/skills/doctor
 	equipment = TRUE
 
-/datum/job/civilian/doctor/generate_equipment(mob/living/carbon/human/H)
+/datum/job/medical/doctor/generate_equipment(mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/doc(H), WEAR_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical/green(H), WEAR_BODY)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(H), WEAR_HANDS)
@@ -497,20 +501,20 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/medical/full(H), WEAR_L_STORE)
 	H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(H), WEAR_L_HAND)
 
-/datum/job/civilian/doctor/set_spawn_positions(var/count)
+/datum/job/medical/doctor/set_spawn_positions(var/count)
 	spawn_positions = doc_slot_formula(count)
 
-/datum/job/civilian/doctor/get_total_positions(var/latejoin = 0)
+/datum/job/medical/doctor/get_total_positions(var/latejoin = 0)
 	return (latejoin ? doc_slot_formula(get_total_marines()) : spawn_positions)
 
-/datum/job/civilian/doctor/generate_entry_message(mob/living/carbon/human/H)
+/datum/job/medical/doctor/generate_entry_message(mob/living/carbon/human/H)
 	return {"You are a civilian, and are not subject to follow military chain of command, but you do work for the USCM.
 You are tasked with keeping the marines healthy and strong, usually in the form of surgery.
 You are also an expert when it comes to medication and treatment. If you do not know what you are doing, adminhelp so a mentor can assist you."}
 
 
 //Researcher
-/datum/job/civilian/researcher
+/datum/job/medical/researcher
 	title = "Researcher"
 	disp_title = "Medical Researcher"
 	comm_title = "Rsr"
@@ -527,7 +531,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	skills_type = /datum/skills/doctor
 	equipment = TRUE
 
-/datum/job/civilian/researcher/generate_equipment(mob/living/carbon/human/H)
+/datum/job/medical/researcher/generate_equipment(mob/living/carbon/human/H)
 		H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/doc(H), WEAR_EAR)
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/researcher(H), WEAR_BODY)
 		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/latex(H), WEAR_HANDS)
@@ -542,13 +546,13 @@ You are also an expert when it comes to medication and treatment. If you do not 
 		H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(H), WEAR_L_HAND)
 		H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), WEAR_J_STORE)
 
-/datum/job/civilian/researcher/set_spawn_positions(var/count)
+/datum/job/medical/researcher/set_spawn_positions(var/count)
 	spawn_positions = rsc_slot_formula(count)
 
-/datum/job/civilian/researcher/get_total_positions(var/latejoin = 0)
+/datum/job/medical/researcher/get_total_positions(var/latejoin = 0)
 	return (latejoin ? rsc_slot_formula(get_total_marines()) : spawn_positions)
 
-/datum/job/civilian/researcher/generate_entry_message(mob/living/carbon/human/H)
+/datum/job/medical/researcher/generate_entry_message(mob/living/carbon/human/H)
 	return {"You are a civilian, and are not subject to follow military chain of command, but you do work for the USCM.
 You are tasked with researching and developing new medical treatments, helping your fellow doctors, and generally learning new things.
 Your role involves some roleplaying and gimmickry, but you can perform the function of a regular doctor."}

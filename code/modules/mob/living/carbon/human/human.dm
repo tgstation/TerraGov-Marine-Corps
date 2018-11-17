@@ -496,8 +496,7 @@
 							DT.icon_state = "dogtag_taken"
 							var/obj/item/dogtag/D = new(loc)
 							D.fallen_names = list(DT.registered_name)
-							D.fallen_assgn = DT.assignment
-							D.fallen_blood_type = DT.blood_type
+							D.fallen_assignements = list(DT.assignment)
 							usr.put_in_hands(D)
 						else
 							to_chat(usr, "<span class='warning'>You can't take a dogtag's information tag while its owner is alive.</span>")
