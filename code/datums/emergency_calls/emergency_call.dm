@@ -227,7 +227,7 @@
 		return FALSE  //Not connected
 	if(M.mind && M.mind in candidates) 
 		return FALSE  //Already there.
-	if(isXeno(M) && M.stat != DEAD)
+	if(M.stat != DEAD)
 		return FALSE  //Is a xeno
 	if(M.mind)
 		candidates += M.mind
