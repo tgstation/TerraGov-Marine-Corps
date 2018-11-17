@@ -21,6 +21,7 @@
 #include "code\__DEFINES\atmospherics.dm"
 #include "code\__DEFINES\conflict.dm"
 #include "code\__DEFINES\equipment.dm"
+#include "code\__DEFINES\flags.dm"
 #include "code\__DEFINES\layers.dm"
 #include "code\__DEFINES\logging.dm"
 #include "code\__DEFINES\maths.dm"
