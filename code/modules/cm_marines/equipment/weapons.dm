@@ -248,7 +248,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "grenade_case"
 	w_class = 5
-	storage_slots = 3
+	storage_slots = 2
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -257,8 +257,7 @@
 		..()
 		spawn(1)
 			new /obj/item/weapon/gun/launcher/m92(src)
-			new /obj/item/storage/belt/grenade(src)
-			new /obj/item/storage/belt/grenade(src)
+			new /obj/item/storage/belt/grenade/b18(src)
 
 
 /obj/item/storage/box/rocket_system

@@ -298,7 +298,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	var/B18_automed_on = TRUE
 	var/B18_automed_damage = 50
 	var/B18_automed_pain = 70
-	var/obj/item/device/healthanalyzer/B18_analyzer = null
+	var/obj/item/device/healthanalyzer/integrated/B18_analyzer = null
 	supporting_limbs = list(UPPER_TORSO, LOWER_TORSO, ARMS, LEGS, FEET) //B18 effectively auto-splints these.
 	unacidable = TRUE
 	req_access = list(ACCESS_MARINE_SPECPREP)
@@ -309,7 +309,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 /obj/item/clothing/suit/storage/marine/specialist/New()
 	. = ..()
-	B18_analyzer = new /obj/item/device/healthanalyzer
+	B18_analyzer = new /obj/item/device/healthanalyzer/integrated
 
 /obj/item/clothing/suit/storage/marine/specialist/Dispose()
 	b18automed_turn_off(wearer, TRUE)

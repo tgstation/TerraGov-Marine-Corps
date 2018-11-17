@@ -13,7 +13,7 @@
 	var/mob/living/buckled_mob
 	var/buckle_lying = FALSE //Is the mob buckled in a lying position
 	var/can_buckle = FALSE
-	
+
 	var/explosion_resistance = 0
 
 /obj/New()
@@ -225,3 +225,71 @@
 	if(mover == buckled_mob) //can't collide with the thing you're buckled to
 		return TRUE
 	. = ..()
+
+/obj/proc/check_skill_level(skill_threshold = 1, skill_type, mob/living/M) //used to calculate do-after delays
+	if(!skill_threshold) //autopass
+		return TRUE
+
+	if(!skill_type) //No skills to check?
+		return TRUE
+
+	var/skill = get_skill(skill_type, M)
+	if(skill < skill_threshold) //If we're less than the threshold return the maximum delay.
+		return FALSE
+
+	return TRUE
+
+/obj/proc/skill_delay(difficulty = SKILL_TASK_AVERAGE, skill_threshold = 1, skill_type, mob/living/M) //used to calculate do-after delays
+	if(!difficulty) //autopass, no delay
+		return 0
+
+	if(!M.mind?.cm_skills) //No skills to thrill?
+		return difficulty
+
+	var/skill = get_skill(skill_type, M)
+	if(skill < skill_threshold) //If we're less than the threshold return the maximum delay.
+		return difficulty
+
+	difficulty = max(difficulty - (skill * 10), 0)
+	return difficulty
+
+/obj/proc/get_skill(skill_type = null, mob/living/M)
+	switch(skill_type)
+		if(OBJ_SKILL_CQC)
+			return M.mind.cm_skills.cqc
+		if(OBJ_SKILL_MELEE_WEAPONS)
+			return M.mind.cm_skills.melee_weapons
+		if(OBJ_SKILL_FIREARMS)
+			return M.mind.cm_skills.firearms
+		if(OBJ_SKILL_PISTOLS)
+			return M.mind.cm_skills.pistols
+		if(OBJ_SKILL_RIFLES)
+			return M.mind.cm_skills.rifles
+		if(OBJ_SKILL_SMG)
+			return M.mind.cm_skills.smgs
+		if(OBJ_SKILL_SHOTGUNS)
+			return M.mind.cm_skills.shotguns
+		if(OBJ_SKILL_HEAVYWEAPONS)
+			return M.mind.cm_skills.heavy_weapons
+		if(OBJ_SKILL_SMARTGUN)
+			return M.mind.cm_skills.smartgun
+		if(OBJ_SKILL_SPEC_WEAPONS)
+			return M.mind.cm_skills.spec_weapons
+		if(OBJ_SKILL_LEADERSHIP)
+			return M.mind.cm_skills.leadership
+		if(OBJ_SKILL_MEDICAL)
+			return M.mind.cm_skills.medical
+		if(OBJ_SKILL_SURGERY)
+			return M.mind.cm_skills.surgery
+		if(OBJ_SKILL_PILOT)
+			return M.mind.cm_skills.pilot
+		if(OBJ_SKILL_ENDURANCE)
+			return M.mind.cm_skills.endurance
+		if(OBJ_SKILL_ENGINEER)
+			return M.mind.cm_skills.engineer
+		if(OBJ_SKILL_CONSTRUCTION)
+			return M.mind.cm_skills.construction
+		if(OBJ_SKILL_POLICE)
+			return M.mind.cm_skills.police
+		if(OBJ_SKILL_POWERLOADER)
+			return M.mind.cm_skills.powerloader
