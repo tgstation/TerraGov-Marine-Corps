@@ -1,6 +1,6 @@
 //This file deals with distress beacons. It randomizes between a number of different types when activated.
 //There's also an admin commmand which lets you set one to your liking.
-#define COOLDOWN_COMM_REQUEST 3000
+#define COOLDOWN_COMM_REQUEST 5 MINUTES
 
 
 

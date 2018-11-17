@@ -11,7 +11,7 @@
 #define STATE_CONFIRM_LEVEL 10
 
 #define COOLDOWN_COMM_MESSAGE 600
-#define COOLDOWN_COMM_REQUEST 3000
+#define COOLDOWN_COMM_REQUEST 5 MINUTES
 #define COOLDOWN_COMM_CENTRAL 300
 
 //Note: Commented out procs are things I left alone and did not revise. Usually AI-related interactions.
@@ -181,7 +181,7 @@
 					to_chat(usr, "<span class='warning'>The distress beacon cannot be launched this early in the operation. Please wait another [round((DISTRESS_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
 					return FALSE
 
-				if(!ticker || !ticker.mode) 
+				if(!ticker?.mode) 
 					return FALSE //Not a game mode?
 
 				if(ticker.mode.distress_cooldown)
