@@ -20,7 +20,7 @@
 	if(!supporting_limbs || !supporting_limbs.len)
 		return
 
-	var/mob/living/carbon/human/H = src.loc
+	var/mob/living/carbon/human/H = loc
 
 	// If the holder isn't human, or the holder IS and is wearing the suit, it keeps supporting the limbs.
 	if(!istype(H) || H.wear_suit == src)
