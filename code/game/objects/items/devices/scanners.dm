@@ -79,8 +79,9 @@ REAGENT SCANNER
 	origin_tech = "magnets=1;biotech=1"
 	var/mode = 1
 	var/hud_mode = 1
+	var/skill_threshold = SKILL_MEDICAL_MEDIC
 
-/obj/item/device/healthanalyzer/attack(mob/living/carbon/M, mob/living/user)
+/obj/item/device/healthanalyzer/attack(mob/living/carbon/M, mob/living/user) //Integrated analyzers don't need special training to be used quickly.
 	var/dat = ""
 	if(( (CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
 		to_chat(user, "<span class='warning'>You try to analyze the floor's vitals!</span>")
@@ -94,11 +95,9 @@ REAGENT SCANNER
 	if(!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
+	if(!check_skill_level(skill_threshold, OBJ_SKILL_MEDICAL, user) )
 		to_chat(user, "<span class='warning'>You start fumbling around with [src]...</span>")
-		var/fduration = 60
-		if(user.mind.cm_skills.medical > 0)
-			fduration = 30
+		var/fduration = skill_delay(SKILL_TASK_AVERAGE, SKILL_MEDICAL_MEDIC, OBJ_SKILL_MEDICAL, user)
 		if(!do_after(user, fduration, TRUE, 5, BUSY_ICON_FRIENDLY) || !user.Adjacent(M))
 			return
 	if(isXeno(M))
@@ -508,6 +507,11 @@ REAGENT SCANNER
 			to_chat(usr, "The scanner now shows results on the hud.")
 		if(0)
 			to_chat(usr, "The scanner no longer shows results on the hud.")
+
+/obj/item/device/healthanalyzer/integrated
+	name = "\improper HF2 integrated health analyzer"
+	desc = "A body scanner able to distinguish vital signs of the subject. This model has been integrated into another object, and is simpler to use."
+	skill_threshold = 0
 
 /obj/item/device/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."
