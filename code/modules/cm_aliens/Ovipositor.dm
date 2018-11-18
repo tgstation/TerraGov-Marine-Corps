@@ -74,7 +74,7 @@
 				M.start_pulling(src)
 
 		if("hurt")
-			var/damage = (rand(M.melee_damage_lower, M.melee_damage_upper) + 3)
+			var/damage = (rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) + 3)
 			M.visible_message("<span class='danger'>\The [M] bites [src]!</span>", \
 			"<span class='danger'>You bite [src]!</span>")
 			health -= damage
