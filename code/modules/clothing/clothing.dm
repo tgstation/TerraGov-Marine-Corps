@@ -128,6 +128,7 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	flags_equip_slot = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
+	var/list/supporting_limbs = null
 	siemens_coefficient = 0.9
 	w_class = 3
 
