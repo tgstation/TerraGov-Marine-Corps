@@ -1,6 +1,6 @@
 /obj/item/clothing/suit/equipped(mob/M)
 	check_limb_support()
-	..()
+	return ..()
 
 /obj/item/clothing/suit/dropped()
 	check_limb_support()
