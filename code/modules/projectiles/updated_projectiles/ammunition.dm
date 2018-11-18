@@ -602,3 +602,13 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	max_rounds = 100
 	current_rounds = 100
 	base = /obj/item/ammo_magazine/shotgunbox/buckshot
+
+/obj/item/ammo_magazine/shotgunbox/flechette
+	name = "Flechette Ammo Box"
+	icon_state = "ammoboxflechette"
+	item_state = "ammoboxflechette"
+	base_icon_state = "ammoboxflechette"
+	default_ammo = /datum/ammo/bullet/shotgun/flechette
+	max_rounds = 100
+	current_rounds = 100
+	base = /obj/item/ammo_magazine/shotgunbox/flechette

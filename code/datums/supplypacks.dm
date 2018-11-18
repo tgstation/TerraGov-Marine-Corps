@@ -1173,6 +1173,16 @@ AMMO
 	containername = "\improper Buckshot ammo box crate"
 	group = "Ammo"
 
+/datum/supply_packs/ammoboxflechette
+	name = "Flechette Ammo Box Crate"
+	contains = list(
+					/obj/item/ammo_magazine/shotgunbox/flechette
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper Flechette ammo box crate"
+	group = "Ammo"
+
 /datum/supply_packs/ammo_regular
 	name = "regular magazines crate (M41A x5, M4A3 x2, M44 x2, M39 x2, M37A2 x1)"
 	contains = list(
