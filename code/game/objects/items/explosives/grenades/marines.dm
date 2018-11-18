@@ -132,7 +132,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	for(var/mob/living/carbon/M in range(radius, T))
 		if(isXeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
-			if(X.fire_immune)
+			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
 		if(M.stat == DEAD)
 			continue

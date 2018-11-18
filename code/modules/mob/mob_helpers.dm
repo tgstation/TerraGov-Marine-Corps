@@ -167,6 +167,11 @@ proc/isXenoLarva(A)
 		return TRUE
 	return FALSE
 
+proc/isXenoLarvaStrict(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Larva) && !istype(A, /mob/living/carbon/Xenomorph/Larva/predalien))
+		return TRUE
+	return FALSE
+
 proc/isXenoPraetorian(A)
 	if(istype(A, /mob/living/carbon/Xenomorph/Praetorian))
 		return TRUE
@@ -199,6 +204,11 @@ proc/isXenoSpitter(A)
 
 proc/isXenoWarrior(A)
 	if (istype(A, /mob/living/carbon/Xenomorph/Warrior))
+		return TRUE
+	return FALSE
+
+proc/isXenoPredalien(A)
+	if(istype(A, /mob/living/carbon/Xenomorph/Predalien))
 		return TRUE
 	return FALSE
 
