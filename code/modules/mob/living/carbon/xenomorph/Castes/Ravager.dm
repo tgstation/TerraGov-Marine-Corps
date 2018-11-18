@@ -17,7 +17,7 @@
 	upgrade_threshold = 400
 	evolution_allowed = FALSE
 	caste_desc = "A brutal, devastating front-line attacker."
-	speed = -0.5 //Not as fast as runners, but faster than other xenos.
+	speed = -0.4 //Not as fast as runners, but faster than other xenos.
 	charge_type = 3 //Claw at end of charge
 	fire_resist = 0.5
 	armor_deflection = 20
@@ -38,6 +38,7 @@
 	var/second_wind_used = FALSE
 	var/second_wind_delay = null
 	var/last_rage = null
+	var/last_damage = null
 	var/usedcharge = FALSE
 
 	actions = list(
@@ -48,6 +49,12 @@
 		/datum/action/xeno_action/second_wind,
 		)
 
+/mob/living/carbon/Xenomorph/Ravager/Stat()
+	. = ..()
+	if(!.)
+		return
+
+	stat(null, "Rage: [rage] / [RAVAGER_MAX_RAGE]")
 
 /mob/living/carbon/Xenomorph/Ravager/proc/charge(atom/T)
 	if(!T) return
