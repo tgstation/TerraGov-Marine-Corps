@@ -558,6 +558,34 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 	..()
 	burst_delay_mod = null
 
+/obj/item/attachable/scope/m42a
+	name = "m4ra rail scope"
+	icon_state = "sniperscope"
+	attach_icon = "sniperscope_a"
+	desc = "A rail mounted zoom sight scope specialized for the M42A Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
+
+/obj/item/attachable/scope/m42a/New()
+	..()
+	burst_delay_mod = null
+
+/obj/item/attachable/scope/m42a/activate_attachment(obj/item/weapon/gun/rifle/sniper/M42A/G, mob/living/carbon/user, turn_off)
+	if(turn_off)
+		if(G.zoom)
+			accuracy_mod = null
+			G.laser_off(user) //turn off the targeting laser when zooming out
+			G.zoom(user, zoom_offset, zoom_viewsize)
+		return TRUE
+
+	if(!G.zoom && !(G.flags_item & WIELDED))
+		if(user)
+			to_chat(user, "<span class='warning'>You must hold [G] with two hands to use [src].</span>")
+		return FALSE
+	else
+		accuracy_mod = config.max_hit_accuracy_mult
+		G.zoom(user, zoom_offset, zoom_viewsize)
+	return TRUE
+
+
 /obj/item/attachable/scope/slavic
 	icon_state = "slavicscope"
 
@@ -1073,7 +1101,7 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 		G.aim_slowdown += SLOWDOWN_ADS_SCOPE
 		G.wield_delay += WIELD_DELAY_FAST
 	G.update_slowdown()
-		
+
 	//var/image/targeting_icon = image('icons/mob/mob.dmi', null, "busy_targeting", "pixel_y" = 22) //on hold until the bipod is fixed
 	if(bipod_deployed)
 		icon_state = "bipod-on"
@@ -1102,12 +1130,12 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 	for(var/obj/O in T)
 		if(O.throwpass && O.density && O.dir == user.dir && O.flags_atom & ON_BORDER)
 			return O
-	
-	T = get_step(T, user.dir) 
+
+	T = get_step(T, user.dir)
 	for(var/obj/O in T)
 		if((istype(O, /obj/structure/window_frame)))
 			return O
-	
+
 	return FALSE
 
 

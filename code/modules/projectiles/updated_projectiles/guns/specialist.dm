@@ -21,7 +21,17 @@
 	force = 12
 	wield_delay = 12 //Ends up being 1.6 seconds due to scope
 	zoomdevicename = "scope"
-	attachable_allowed = list(/obj/item/attachable/bipod)
+	var/targetlaser_on = TRUE
+	var/mob/laser_target = null
+	var/obj/effect/overlay/temp/laser_target/laser
+	attachable_allowed = list(
+                        /obj/item/attachable/heavy_barrel,
+                        /obj/item/attachable/extended_barrel,
+                        /obj/item/attachable/suppressor,
+                        /obj/item/attachable/bipod,
+                        /obj/item/attachable/compensator,
+                        /obj/item/attachable/lasersight,
+                        )
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 	req_access = list(ACCESS_MARINE_SPECPREP)
@@ -30,7 +40,7 @@
 		select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a") )
 		..()
 		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
-		var/obj/item/attachable/scope/S = new(src)
+		var/obj/item/attachable/scope/m42a/S = new(src)
 		S.attach_icon = "" //Let's make it invisible. The sprite already has one.
 		S.icon_state = ""
 		S.flags_attach_features &= ~ATTACH_REMOVABLE
@@ -40,6 +50,59 @@
 		update_attachables()
 		S.icon_state = initial(S.icon_state)
 
+/obj/item/weapon/gun/rifle/sniper/M42A/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
+	if(!able_to_fire(user))
+		return
+	if(targetlaser_on)
+		if(istype(target,/mob) )
+			cdel(laser)
+			to_chat(user, "<span class='danger'>You focus your targeting laser on [target]!</span>")
+			laser_target = target
+			var/obj/effect/overlay/temp/laser_target/LT = new (laser_target, "targeting laser")
+			laser = LT
+		return
+	return ..()
+
+/obj/item/weapon/gun/rifle/sniper/M42A/unique_action(mob/user)
+	if(!targetlaser_on)
+		laser_on(user)
+
+	else if(zoom)
+		laser_off(user)
+
+/atom/proc/sniper_target(atom/A)
+	return FALSE
+
+/obj/item/weapon/gun/rifle/sniper/M42A/sniper_target(atom/A)
+	if(A == laser_target)
+		return laser_target
+
+	return FALSE
+
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_on(mob/user, silent = FALSE)
+	if(targetlaser_on)
+		return
+	if(!zoom)
+		if(!silent)
+			to_chat(user, "<span class='warning'>You must be zoomed in to use your targeting laser!</span>")
+		return
+	targetlaser_on = TRUE
+	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
+	damage_mult = config.base_hit_damage_mult + config.max_hit_damage_mult
+	if(!silent)
+		to_chat(user, "<span class='notice'><b>You activate your targeting laser and take careful aim.</b></span>")
+
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_off(mob/user, silent = FALSE)
+	if(!targetlaser_on)
+		return
+	targetlaser_on = FALSE
+	laser_target = null
+	accuracy_mult = config.base_hit_accuracy_mult
+	damage_mult = config.base_hit_damage_mult
+	cdel(laser)
+	laser = null
+	if(!silent)
+		to_chat(user, "<span class='notice'><b>You deactivate your targeting laser.</b></span>")
 
 /obj/item/weapon/gun/rifle/sniper/M42A/set_gun_config_values()
 	fire_delay = config.high_fire_delay*4
@@ -153,17 +216,11 @@
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
 	force = 16
 	attachable_allowed = list(
-						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
 						/obj/item/attachable/bipod,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/lasersight,
-						/obj/item/attachable/attached_gun/grenade,
-						/obj/item/attachable/attached_gun/shotgun,
-						)
+						/obj/item/attachable/compensator)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
@@ -171,8 +228,8 @@
 
 /obj/item/weapon/gun/rifle/m4ra/New()
 	..()
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
-	var/obj/item/attachable/scope/m4ra/S = new(src)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+	var/obj/item/attachable/scope/S = new(src)
 	S.icon_state = null // the gun's sprite already shows a scope
 	S.attach_icon = null
 	S.flags_attach_features &= ~ATTACH_REMOVABLE //Don't want it coming off.
@@ -183,16 +240,13 @@
 
 
 /obj/item/weapon/gun/rifle/m4ra/set_gun_config_values()
-	fire_delay = config.mhigh_fire_delay
-	burst_amount = config.low_burst_value
-	burst_delay = config.vlow_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.max_hit_accuracy_mult
-	scatter_unwielded = config.max_scatter_value
+	fire_delay = config.high_fire_delay
+	burst_amount = config.med_burst_value
+	burst_delay = config.mlow_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	scatter = config.low_scatter_value
 	damage_mult = config.base_hit_damage_mult
 	recoil = config.min_recoil_value
-	recoil_unwielded = config.high_recoil_value
-	damage_falloff_mult = config.low_damage_falloff_mult
 
 //-------------------------------------------------------
 //SMARTGUN
