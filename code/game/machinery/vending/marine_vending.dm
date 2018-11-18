@@ -195,6 +195,7 @@
 					/obj/item/ammo_magazine/shotgun = 10,
 					/obj/item/ammo_magazine/shotgunbox/buckshot = 3,
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
+					/obj/item/ammo_magazine/shotgunbox/flechette = 3,
 					/obj/item/ammo_magazine/shotgun/flechette = 15,
 					/obj/item/smartgun_powerpack = 2
 					)
