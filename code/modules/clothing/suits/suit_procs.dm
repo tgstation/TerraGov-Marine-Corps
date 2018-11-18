@@ -8,7 +8,7 @@
 
 /obj/item/clothing/suit/Dispose()
 	check_limb_support()
-	..()
+	return ..()
 
 // Some space suits are equipped with reactive membranes that support
 // broken limbs - at the time of writing, only the ninja suit, but
