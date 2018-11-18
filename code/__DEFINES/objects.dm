@@ -176,7 +176,8 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define SCOUT_CLOAK_OFF_DAMAGE (1 << 0)
 #define SCOUT_CLOAK_OFF_ATTACK (1 << 1)
 //B18 DEFINES
-#define B18_CHEM_COOLDOWN				5 MINUTES
+#define B18_CHEM_COOLDOWN				2.5 MINUTES
+#define B18_CHEM_MOD					0.5
 #define B18_BRUTE_CODE					1
 #define B18_BURN_CODE					2
 #define B18_OXY_CODE					3
