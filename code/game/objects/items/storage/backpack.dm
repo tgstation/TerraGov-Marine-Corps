@@ -428,8 +428,6 @@
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/Dispose()
 	camo_off()
-	wearer = null
-	processing_objects.Remove(src)
 	return ..()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/dropped(mob/user)
@@ -496,6 +494,9 @@
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_off(var/mob/user)
 	if (!user)
+		camo_active = FALSE
+		wearer = null
+		processing_objects.Remove(src)
 		return 0
 
 	to_chat(user, "<span class='warning'>Your cloak's camouflage has deactivated!</span>")
@@ -561,14 +562,18 @@
 		camo_off(user)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/process()
+	if(!wearer)
+		camo_off()
+		return
 
-	if(camo_last_shimmer > world.time - SCOUT_CLOAK_STEALTH_DELAY) //Shimmer after taking aggressive actions; no energy regeneration
+	var/stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY
+	if(camo_last_shimmer > stealth_delay) //Shimmer after taking aggressive actions; no energy regeneration
 		alpha = SCOUT_CLOAK_RUN_ALPHA //50% invisible
-	else if(camo_last_stealth > (world.time - SCOUT_CLOAK_STEALTH_DELAY) ) //We have an initial reprieve at max invisibility allowing us to reposition; no energy recovery during this time
+	else if(camo_last_stealth > stealth_delay ) //We have an initial reprieve at max invisibility allowing us to reposition; no energy recovery during this time
 		wearer.alpha = SCOUT_CLOAK_STILL_ALPHA
 		return
 	//Stationary stealth
-	else if((camo_last_shimmer && wearer.last_move_intent) < (world.time - SCOUT_CLOAK_STEALTH_DELAY) ) //If we're standing still and haven't shimmed in the past 3 seconds we become almost completely invisible
+	else if( (camo_last_shimmer < stealth_delay) && (wearer.last_move_intent < stealth_delay) ) //If we're standing still and haven't shimmed in the past 3 seconds we become almost completely invisible
 		wearer.alpha = SCOUT_CLOAK_STILL_ALPHA //95% invisible
 		camo_adjust_energy(wearer, SCOUT_CLOAK_ACTIVE_RECOVERY)
 
