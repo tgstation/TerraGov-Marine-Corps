@@ -603,7 +603,7 @@
 					var/can_reach_splints = 1
 					if(wear_suit && istype(wear_suit,/obj/item/clothing/suit))
 						var/obj/item/clothing/suit/suit = wear_suit
-						if(suit.supporting_limbs && suit.supporting_limbs.len)
+						if(suit.supporting_limbs?.len)
 							to_chat(usr, "You cannot remove the splints, [src]'s [suit] is supporting some of the breaks.")
 							can_reach_splints = 0
 
