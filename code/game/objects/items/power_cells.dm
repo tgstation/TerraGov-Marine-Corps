@@ -19,7 +19,7 @@
 	matter = list("metal" = 700, "glass" = 50)
 
 	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is licking the electrodes of the [src.name]! It looks like \he's trying to commit suicide.</b>"
+		user.visible_message("\red <b>[user] is licking the electrodes of the [src.name]! It looks like \he's trying to commit suicide.</b>")
 		return (FIRELOSS)
 
 /obj/item/cell/crap

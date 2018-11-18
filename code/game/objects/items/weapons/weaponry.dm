@@ -13,7 +13,7 @@
 	attack_verb = list("banned")
 
 	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is hitting \himself with the [src.name]! It looks like \he's trying to ban \himself from life.</b>"
+		user.visible_message("\red <b>[user] is hitting \himself with the [src.name]! It looks like \he's trying to ban \himself from life.</b>")
 		return (BRUTELOSS|FIRELOSS|TOXLOSS|OXYLOSS)
 
 /obj/item/weapon/nullrod
@@ -29,7 +29,7 @@
 	w_class = 2
 
 	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is impaling \himself with the [src.name]! It looks like \he's trying to commit suicide.</b>"
+		user.visible_message("\red <b>[user] is impaling \himself with the [src.name]! It looks like \he's trying to commit suicide.</b>")
 		return (BRUTELOSS|FIRELOSS)
 
 /obj/item/weapon/harpoon
