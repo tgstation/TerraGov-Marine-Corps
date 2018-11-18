@@ -433,30 +433,27 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 		details +=("Estimated [B18_CHEM_COOLDOWN/600] minute replenishment time for each dosage.")
 		to_chat(wearer, "<span class='notice'>\icon [src] beeps:</br> [details.Join(" ")]</span>")
 
-/obj/item/clothing/suit/storage/marine/specialist/proc/handle_chem_cooldown(code = B18_BRUTE_CODE)
+/obj/item/clothing/suit/storage/marine/specialist/proc/handle_chem_cooldown(code = B18_BRUTE_CODE, silent = FALSE)
 	if(code)
 		spawn(B18_CHEM_COOLDOWN)
 			switch(code)
 				if(B18_BRUTE_CODE)
 					if(B18_brute_cooldown)
 						B18_brute_cooldown = null
-						to_chat(wearer,"<span class='notice'>[src] beeps: Trauma treatment reservoir replenished.</span>")
 				if(B18_BURN_CODE)
 					if(B18_burn_cooldown)
 						B18_burn_cooldown = null
-						to_chat(wearer,"<span class='notice'>[src] beeps: Burn treatment reservoir replenished.</span>")
 				if(B18_OXY_CODE)
 					if(B18_oxy_cooldown)
 						B18_oxy_cooldown = null
-						to_chat(wearer,"<span class='notice'>[src] beeps: Oxygenation treatment reservoir replenished.</span>")
 				if(B18_TOX_CODE)
 					if(B18_tox_cooldown)
 						B18_tox_cooldown = null
-						to_chat(wearer,"<span class='notice'>[src] beeps: Toxicity treatment reservoir replenished.</span>")
 				if(B18_PAIN_CODE)
 					if(B18_pain_cooldown)
 						B18_pain_cooldown = null
-						to_chat(wearer,"<span class='notice'>[src] beeps: Painkiller reservoir replenished.</span>")
+			if(!silent)
+				to_chat(wearer, "<span class='notice'>[src] beeps: [code == B18_BRUTE_CODE ? "Trauma treatment" : code == B18_BURN_CODE ? "Burn treatment" : code == B18_OXY_CODE ? "Oxygenation treatment" : code == B18_TOX_CODE ? "Toxicity treatment" : "Painkiller"] reservoir replenished.</span>")
 			playsound(src,'sound/effects/refill.ogg', 25, 0, 1)
 
 /obj/item/clothing/suit/storage/marine/specialist/verb/b18_automedic_toggle()
