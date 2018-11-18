@@ -127,10 +127,11 @@
 	return damage
 
 /mob/living/carbon/Xenomorph/Ravager/process_rage_damage(damage)
-	if(!damage)
+	if(!damage || world.time < last_damage)
 		return damage
 	rage += round(damage * 0.3) //Gain Rage stacks equal to 30% of damage received.
 	last_rage = world.time //We incremented rage, so bookmark this.
+	last_damage = world.time + 2 //Limit how often this proc can trigger; once per 0.2 seconds
 	damage *= rage_resist //reduce damage by rage resist %
 	rage_resist = CLAMP(1-round(rage * 0.014,0.01),0.3,1) //Update rage resistance _after_ we take damage
 	return damage

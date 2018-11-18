@@ -484,10 +484,10 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define RAV_CHARGESPEED					3
 #define RAV_CHARGESTRENGTH				3
 #define RAV_CHARGEDISTANCE				7
-#define RAV_CHARGECOOLDOWN				300
+#define RAV_CHARGECOOLDOWN				30 SECONDS
 #define RAV_CHARGE_TYPE					3
-#define RAV_SECOND_WIND_COOLDOWN		600
-#define RAV_RAVAGE_COOLDOWN				100
+#define RAV_SECOND_WIND_COOLDOWN		5 MINUTES
+#define RAV_RAVAGE_COOLDOWN				10 SECONDS
 #define RAV_HANDLE_CHARGE				1
 
 //defender defines
