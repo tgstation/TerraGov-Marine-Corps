@@ -144,9 +144,7 @@
 
 	var/headbutt_cooldown = 40
 	var/tail_sweep_cooldown = 120
-	var/crest_defense_cooldown = 10
 	var/crest_defense_armor = 35
-	var/fortify_cooldown = 10
 	var/fortify_armor = 70
 
 
