@@ -4,7 +4,7 @@
 
 /obj/item/clothing/suit/dropped()
 	check_limb_support()
-	..()
+	return ..()
 
 /obj/item/clothing/suit/Dispose()
 	check_limb_support()
