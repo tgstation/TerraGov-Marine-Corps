@@ -50,8 +50,8 @@
 	aura_strength = 2 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 	xeno_explosion_resistance = 3 //some resistance against explosion stuns.
-	spit_delay = 25
-	spit_types = list(/datum/ammo/xeno/acid/medium)
+	spit_delay = 10
+	spit_types = list(/datum/ammo/xeno/toxin/medium, /datum/ammo/xeno/acid/medium)
 
 	var/breathing_counter = 0
 	var/ovipositor = FALSE //whether the Queen is attached to an ovipositor
@@ -72,6 +72,7 @@
 		/datum/action/xeno_action/emit_pheromones,
 		/datum/action/xeno_action/activable/gut,
 		/datum/action/xeno_action/psychic_whisper,
+		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
 		)
 	inherent_verbs = list(
@@ -507,6 +508,7 @@
 			/datum/action/xeno_action/emit_pheromones,
 			/datum/action/xeno_action/activable/gut,
 			/datum/action/xeno_action/psychic_whisper,
+		  /datum/action/xeno_action/shift_spits,
 			/datum/action/xeno_action/activable/xeno_spit,
 			)
 

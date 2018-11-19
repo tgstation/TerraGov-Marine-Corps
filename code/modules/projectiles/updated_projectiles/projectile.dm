@@ -49,8 +49,10 @@
 	var/distance_travelled = 0
 	var/in_flight = 0
 
+	var/list_reagents = null
+
 	New()
-		..()
+		. = ..()
 		path = list()
 		permutated = list()
 
@@ -64,6 +66,7 @@
 		starting = null
 		permutated = null
 		path = null
+		list_reagents = null
 		return TA_REVIVE_ME
 
 	Recycle()
@@ -81,7 +84,7 @@
 
 	ex_act() return FALSE //We do not want anything to delete these, simply to make sure that all the bullet references are not runtiming. Otherwise, constantly need to check if the bullet exists.
 
-/obj/item/projectile/proc/generate_bullet(ammo_datum, bonus_damage = 0)
+/obj/item/projectile/proc/generate_bullet(ammo_datum, bonus_damage = 0, reagent_multiplier = 0)
 	ammo 		= ammo_datum
 	name 		= ammo.name
 	icon_state 	= ammo.icon_state
@@ -91,6 +94,7 @@
 	accuracy   *= rand(config.proj_variance_low-ammo.accuracy_var_low, config.proj_variance_high+ammo.accuracy_var_high) * config.proj_base_accuracy_mult//Rand only works with integers.
 	damage     *= rand(config.proj_variance_low-ammo.damage_var_low, config.proj_variance_high+ammo.damage_var_high) * config.proj_base_damage_mult
 	damage_falloff = ammo.damage_falloff
+	list_reagents = ammo.ammo_reagents
 
 //Target, firer, shot from. Ie the gun
 /obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
@@ -285,6 +289,11 @@
 			T.bullet_act(src)
 		return TRUE
 
+		if(T?.loc)
+			T.bullet_act(src)
+
+		return TRUE
+
 //----------------------------------------------------------
 		    	//				    	\\
 			    //  HITTING THE TARGET  \\
@@ -407,6 +416,7 @@
 			. += shooter_human.marskman_aura * 1.5 //Flat buff of 3 % accuracy per aura level
 			. += P.distance_travelled * 0.35 * shooter_human.marskman_aura //Flat buff to accuracy per tile travelled
 
+
 /mob/living/carbon/human/get_projectile_hit_chance(obj/item/projectile/P)
 	. = ..()
 	if(.)
@@ -456,6 +466,9 @@
 	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff))
 	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )
 		apply_effects(arglist(P.ammo.debilitate))
+
+	if(P.list_reagents && stat != DEAD && (ishuman() || ismonkey()))
+		reagents.add_reagent_list(P.list_reagents)
 
 	if(damage)
 		bullet_message(P)
@@ -559,6 +572,9 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		if(species.name != "Yautja" && !(species.flags & IS_SYNTHETIC)) apply_effects(arglist(P.ammo.debilitate))
 
 	bullet_message(P) //We still want this, regardless of whether or not the bullet did damage. For griefers and such.
+
+	if(P.list_reagents && stat != DEAD)
+		reagents.add_reagent_list(P.list_reagents)
 
 	if(damage)
 		apply_damage(damage, P.ammo.damage_type, P.def_zone)

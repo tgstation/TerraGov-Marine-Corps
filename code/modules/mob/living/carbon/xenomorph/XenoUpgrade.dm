@@ -133,9 +133,10 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					maxHealth = 180
 					plasma_gain = 12
 					plasma_max = 400
+					spit_delay = 10
 					upgrade_threshold = 200
-					spit_delay = 20
 					caste_desc = "A ranged combat alien. It looks a little more dangerous."
+					spit_types = list(/datum/ammo/xeno/toxin/upgrade1)
 					armor_deflection = 15
 					tackle_damage = 30 // Prior was 25
 					speed = -0.9
@@ -144,10 +145,10 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					melee_damage_upper = 35
 					health = 220
 					maxHealth = 220
-					plasma_gain = 25
-					plasma_max = 700
+					plasma_gain = 30
+					plasma_max = 1000
+					spit_delay = 10
 					upgrade_threshold = 400
-					spit_delay = 20
 					caste_desc = "A ranged damage dealer. It looks a little more dangerous."
 					tackle_damage = 35 // Prior was 30
 					armor_deflection = 25
@@ -173,9 +174,10 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					maxHealth = 225
 					plasma_gain = 30
 					plasma_max = 900
+					spit_delay = 10
 					upgrade_threshold = 800
-					spit_delay = 15
 					caste_desc = "A giant ranged monster. It looks a little more dangerous."
+					spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade1, /datum/ammo/xeno/acid/heavy, /datum/ammo/xeno/sticky)
 					armor_deflection = 40
 					tackle_damage = 45 // Prior was 40
 					speed = 0.0
@@ -233,7 +235,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					plasma_max = 800
 					plasma_gain = 40
 					upgrade_threshold = 1600
-					spit_delay = 20
+					spit_delay = 10
 					caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs."
 					armor_deflection = 50
 					tackle_damage = 60 // Prior was 55
@@ -330,9 +332,10 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					maxHealth = 190
 					plasma_gain = 15
 					plasma_max = 500
+					spit_delay = 10
 					upgrade_threshold = 400
-					spit_delay = 15
 					caste_desc = "A ranged combat alien. It looks pretty strong."
+					spit_types = list(/datum/ammo/xeno/toxin/upgrade2)
 					armor_deflection = 20
 					tackle_damage = 35 // Prior was 30
 					speed = -1.0
@@ -341,10 +344,10 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					melee_damage_upper = 35
 					health = 240
 					maxHealth = 240
-					plasma_gain = 30
-					plasma_max = 800
+					plasma_gain = 33
+					plasma_max = 1100
+					spit_delay = 10
 					upgrade_threshold = 800
-					spit_delay = 15
 					caste_desc = "A ranged damage dealer. It looks pretty strong."
 					armor_deflection = 30
 					tackle_damage = 40 // Prior was 35
@@ -373,6 +376,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					upgrade_threshold = 1600
 					spit_delay = 15
 					caste_desc = "A giant ranged monster. It looks pretty strong."
+					spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade2, /datum/ammo/xeno/acid/heavy, /datum/ammo/xeno/sticky)
 					armor_deflection = 40
 					tackle_damage = 50 // Prior was 45
 					speed = -0.1
@@ -428,7 +432,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					plasma_max = 900
 					plasma_gain = 50
 					upgrade_threshold = 3200
-					spit_delay = 20
+					spit_delay = 10
 					caste_desc = "The biggest and baddest xeno. The Empress controls multiple hives and planets."
 					armor_deflection = 55
 					tackle_damage = 65 // Prior was 60
@@ -520,7 +524,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					caste_desc = "It always has the right of way."
 					armor_deflection = 100
 				if("Sentinel")
-					to_chat(src, "<span class='xenoannounce'>You are the stun master. Your stunning is legendary and causes massive quantities of salt.</span>")
+					to_chat(src, "<span class='xenoannounce'>You are the neuro master. Your neuro spam is legendary and causes massive quantities of salt.</span>")
 					melee_damage_lower = 25
 					melee_damage_upper = 35
 					health = 195
@@ -529,18 +533,19 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					plasma_max = 600
 					spit_delay = 15
 					caste_desc = "Neurotoxin Factory, don't let it get you."
+					spit_types = list(/datum/ammo/xeno/toxin/upgrade3)
 					armor_deflection = 20
 					tackle_damage = 40	 // Prior was 35
 					speed = -1.1
 				if("Spitter")
-					to_chat(src, "<span class='xenoannounce'>You are a master of ranged stuns and damage. Go fourth and generate salt.</span>")
+					to_chat(src, "<span class='xenoannounce'>You are a master of ranged damage. Go fourth and generate salt.</span>")
 					melee_damage_lower = 30
 					melee_damage_upper = 40
 					health = 250
 					maxHealth = 250
-					plasma_gain = 50
-					plasma_max = 900
-					spit_delay = 15
+					plasma_gain = 35
+					plasma_max = 1150
+					spit_delay = 10
 					caste_desc = "A ranged destruction machine."
 					armor_deflection = 30
 					tackle_damage = 45	 // Prior was 35
@@ -562,7 +567,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					tackle_chance = 80
 					speed = 0.4
 				if("Praetorian")
-					to_chat(src, "<span class='xenoannounce'>You are the strongest range fighter around. Your spit is devestating and you can fire nearly a constant stream.</span>")
+					to_chat(src, "<span class='xenoannounce'>You are the strongest range fighter around. Your spit is devastating and you can fire nearly a constant stream.</span>")
 					melee_damage_lower = 35
 					melee_damage_upper = 40
 					health = 250
@@ -571,6 +576,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 					plasma_max = 1000
 					spit_delay = 10
 					caste_desc = "Its mouth looks like a minigun."
+					spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade3, /datum/ammo/xeno/acid/heavy, /datum/ammo/xeno/sticky)
 					armor_deflection = 45
 					tackle_damage = 60 // Prior was 55
 					speed = -0.2
@@ -637,6 +643,7 @@ Queen		 0.0	 0.1	 0.2	 0.3
 
 	hud_set_queen_overwatch() //update the upgrade level insignia on our xeno hud.
 
+	update_spits() //Update spits to new/better ones
 
 //Tiered spawns.
 /mob/living/carbon/Xenomorph/Runner/mature/New()

@@ -149,8 +149,8 @@
 
 
 	//Praetorian vars
-	var/acid_spray_range = 3
-	var/acid_spray_cooldown = 150
+	var/acid_spray_range = 4
+	var/acid_spray_cooldown = 200
 	var/used_acid_spray = 0
 
 	//Queen vars
@@ -160,10 +160,16 @@
 	var/leader_aura_strength = 0 //Pheromone strength inherited from Queen
 	var/leader_current_aura = "" //Pheromone type inherited from Queen
 
+	var/acid_cooldown = 0
+	var/acid_delay = 90 //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
+
 	//Runner vars
 	var/savage = FALSE
 	var/savage_used = FALSE
 	var/savage_cooldown = 300
+
+	//Acid spray
+	var/last_spray_used
 
 	//Notification spam controls
 	var/recent_notice = 0

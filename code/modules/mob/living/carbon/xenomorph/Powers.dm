@@ -135,10 +135,10 @@
 	if (target == loc || !target || action_busy)
 		return
 
-	if(!do_after(src, 12, TRUE, 5, BUSY_ICON_HOSTILE))
+	if (used_acid_spray || !check_plasma(200))
 		return
 
-	if (used_acid_spray || !check_plasma(200))
+	if(!do_after(src, 5, TRUE, 5, BUSY_ICON_HOSTILE))
 		return
 
 	if(stagger)
@@ -177,8 +177,12 @@
 			if(!O.CheckExit(src, next_T))
 				if(istype(O, /obj/structure/barricade))
 					var/obj/structure/barricade/B = O
-					B.health -= rand(20, 30)
+					B.health -= rand(40,60) + 8 * upgrade
 					B.update_health(1)
+				else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
+					var/obj/vehicle/multitile/root/cm_armored/A = O
+					A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
+					A.healthcheck()
 				return
 
 		T = next_T
@@ -190,8 +194,12 @@
 			if(!O.CanPass(src, loc))
 				if(istype(O, /obj/structure/barricade))
 					var/obj/structure/barricade/B = O
-					B.health -= rand(20, 30)
+					B.health -= rand(40,60) + 8 * upgrade
 					B.update_health(1)
+				else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
+					var/obj/vehicle/multitile/root/cm_armored/A = O
+					A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
+					A.healthcheck()
 				return
 
 		var/obj/effect/xenomorph/spray/S = acid_splat_turf(T)
@@ -226,8 +234,12 @@
 				if(!O.CheckExit(left_S, next_normal_turf))
 					if(istype(O, /obj/structure/barricade))
 						var/obj/structure/barricade/B = O
-						B.health -= rand(20, 30)
+						B.health -= rand(40,60) + 8 * upgrade
 						B.update_health(1)
+					else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
+						var/obj/vehicle/multitile/root/cm_armored/A = O
+						A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
+						A.healthcheck()
 					normal_density_flag = 1
 					break
 
@@ -241,8 +253,12 @@
 					if(!O.CanPass(left_S, left_S.loc))
 						if(istype(O, /obj/structure/barricade))
 							var/obj/structure/barricade/B = O
-							B.health -= rand(20, 30)
+							B.health -= rand(40,60) + 8 * upgrade
 							B.update_health(1)
+						else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
+							var/obj/vehicle/multitile/root/cm_armored/A = O
+							A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
+							A.healthcheck()
 						normal_density_flag = 1
 						break
 
@@ -258,8 +274,12 @@
 				if(!O.CheckExit(right_S, next_inverse_normal_turf))
 					if(istype(O, /obj/structure/barricade))
 						var/obj/structure/barricade/B = O
-						B.health -= rand(20, 30)
+						B.health -= rand(40,60) + 8 * upgrade
 						B.update_health(1)
+					else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
+						var/obj/vehicle/multitile/root/cm_armored/A = O
+						A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
+						A.healthcheck()
 					inverse_normal_density_flag = 1
 					break
 
@@ -273,8 +293,12 @@
 					if(!O.CanPass(right_S, right_S.loc))
 						if(istype(O, /obj/structure/barricade))
 							var/obj/structure/barricade/B = O
-							B.health -= rand(20, 30)
+							B.health -= rand(40,60) + 8 * upgrade
 							B.update_health(1)
+						else if(istype(O, /obj/vehicle/multitile/root/cm_armored) )
+							var/obj/vehicle/multitile/root/cm_armored/A = O
+							A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
+							A.healthcheck()
 						inverse_normal_density_flag = 1
 						break
 
@@ -290,8 +314,12 @@
 
 		// This should probably be moved into obj/effect/xenomorph/spray or something
 		for (var/obj/structure/barricade/B in T)
-			B.health -= rand(20, 30)
+			B.health -= rand(40,60) + 8 * upgrade
 			B.update_health(1)
+
+		for (var/obj/vehicle/multitile/root/cm_armored/A in T)
+			A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
+			A.healthcheck()
 
 		for (var/mob/living/carbon/C in T)
 			if (!ishuman(C) && !ismonkey(C))
@@ -301,12 +329,20 @@
 				continue
 
 			round_statistics.praetorian_spray_direct_hits++
-			C.adjustFireLoss(rand(20,30) + 5 * upgrade)
+
+			C.acid_process_cooldown = 2 //prevent the victim from being damaged by acid puddle process damage for 1 tick, so there's no chance they get immediately double dipped by it.
+			var/armor_block = C.run_armor_check("chest", "energy")
+			var/damage = rand(30,40) + 4 * upgrade
+			if(ishuman(C))
+				var/mob/living/carbon/human/H = C
+				H.take_overall_damage(null, damage, null, null, null, armor_block)
+			else
+				C.apply_damage(damage, BURN, null, armor_block)
 			to_chat(C, "<span class='xenodanger'>\The [src] showers you in corrosive acid!</span>")
 
 			if (!isYautja(C))
 				C.emote("scream")
-				C.KnockDown(rand(3, 4))
+				C.KnockDown(1)
 
 
 // Warrior Fling
@@ -1020,9 +1056,10 @@
 	playsound(src.loc, sound_to_play, 25, 1)
 
 	var/obj/item/projectile/A = rnew(/obj/item/projectile, current_turf)
-	A.generate_bullet(ammo)
+	A.generate_bullet(ammo, ammo.damage * (max(0,upgrade) * 0.15)) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
 	A.permutated += src
 	A.def_zone = get_limbzone_target()
+
 	A.fire_at(T, src, null, ammo.max_range, ammo.shell_speed)
 	has_spat = world.time + spit_delay + ammo.added_spit_delay
 	use_plasma(ammo.spit_cost)
@@ -1835,3 +1872,123 @@
 		update_action_button_icons()
 
 	rage = 0
+
+/mob/living/carbon/Xenomorph/proc/spray_turfs(list/turflist)
+	set waitfor = 0
+
+	if(isnull(turflist))
+		return
+	var/turf/prev_turf
+	var/distance = 0
+
+	turf_loop:
+		for(var/turf/T in turflist)
+			distance++
+
+			if(!prev_turf && turflist.len > 1)
+				prev_turf = get_turf(src)
+				continue //So we don't burn the tile we be standin on
+
+			if(T.density || istype(T, /turf/open/space))
+				break
+			if(distance > 7)
+				break
+
+			if(locate(/obj/structure/girder, T))
+				break //Nope.avi
+
+			var/obj/machinery/M = locate() in T
+			if(M?.density)
+				break
+
+			if(prev_turf && LinkBlocked(prev_turf, T))
+				break
+
+			for(var/obj/structure/barricade/B in T)
+				B.health -= rand(45, 60) + 8 * upgrade
+				B.update_health(TRUE)
+				if(prev_turf)
+					if(get_dir(B, prev_turf) & B.dir)
+						break turf_loop
+
+			prev_turf = T
+			splat_turf(T)
+			sleep(2)
+
+
+/mob/living/carbon/Xenomorph/proc/splat_turf(var/turf/target)
+	if(!istype(target) || istype(target,/turf/open/space))
+		return
+
+	for(var/obj/effect/xenomorph/spray/S in target) //No stacking spray!
+		cdel(S)
+	new /obj/effect/xenomorph/spray(target)
+	for(var/mob/living/carbon/M in target)
+		if( isXeno(M) ) //Xenos immune to acid
+			continue
+		if((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest)) //nested infected hosts are not hurt by acid spray
+			continue
+		var/armor_block = M.run_armor_check("chest")
+		M.apply_damage(rand(30, 40) + 5 * upgrade, BURN, "chest", armor_block)
+		to_chat(M, "<span class='xenodanger'>\The [src] showers you in corrosive acid!</span>")
+		if(!isYautja(M))
+			M.emote("scream")
+			M.KnockDown(1)
+
+/mob/living/carbon/Xenomorph/proc/acid_spray(atom/T, plasmacost = 250, acid_d = acid_delay)
+	if(!T)
+		to_chat(src, "<span class='warning'>You see nothing to spit at!</span>")
+		return
+
+	if(!check_state())
+		return
+
+	if(!isturf(loc) || istype(loc, /turf/open/space))
+		to_chat(src, "<span class='warning'>You can't do that from there.</span>")
+		return
+
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>The shock disrupts you!</span>")
+		return
+
+	if(!check_plasma(plasmacost))
+		return
+
+	if(acid_cooldown)
+		to_chat(src, "<span class='xenowarning'>You're not yet ready to spray again! You can do so in [( (last_spray_used + acid_d) - world.time) * 0.1] seconds.</span>")
+		return
+
+	if(!do_after(src, 3, TRUE, 3, BUSY_ICON_HOSTILE))
+		return
+
+	var/turf/target
+
+	if(isturf(T))
+		target = T
+	else
+		target = get_turf(T)
+
+	if(!target || !istype(target)) //Something went horribly wrong. Clicked off edge of map probably
+		return
+
+	if(target == loc)
+		to_chat(src, "<span class='warning'>That's far too close!</span>")
+		return
+
+
+	acid_cooldown = TRUE
+	last_spray_used = world.time
+	use_plasma(plasmacost)
+	playsound(loc, 'sound/effects/refill.ogg', 50, 1)
+	visible_message("<span class='xenowarning'>\The [src] spews forth a virulent spray of acid!</span>", \
+	"<span class='xenowarning'>You spew forth a spray of acid!</span>", null, 5)
+	var/turflist = getline(src, target)
+	spray_turfs(turflist)
+
+	spawn(acid_d)
+		acid_cooldown = FALSE
+		playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+		to_chat(src, "<span class='xenodanger'>You feel your acid glands refill. You can spray acid again.</span>")
+		for(var/X in actions)
+			var/datum/action/A = X
+			A.update_button_icon()
