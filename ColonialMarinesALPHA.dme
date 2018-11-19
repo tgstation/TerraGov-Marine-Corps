@@ -1144,7 +1144,6 @@
 #include "code\modules\mob\living\carbon\xenomorph\Xenomorph.dm"
 #include "code\modules\mob\living\carbon\xenomorph\XenoProcs.dm"
 #include "code\modules\mob\living\carbon\xenomorph\XenoUpgrade.dm"
-#include "code\modules\mob\living\carbon\xenomorph\XenoUpgrades.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Boiler.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Carrier.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Crusher.dm"
