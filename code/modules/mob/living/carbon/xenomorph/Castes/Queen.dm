@@ -540,7 +540,7 @@
 			if(victim.stat != DEAD) //Not dead yet.
 				to_chat(src, "<span class='xenowarning'>The host and child are still alive!</span>")
 				return
-			else if(istype(H) && ( world.time <= H.timeofdeath + H.revive_grace_period )) //Dead, but the host can still hatch, possibly.
+			else if(istype(H) && !H.check_tod()) //Dead, but the host can still hatch, possibly.
 				to_chat(src, "<span class='xenowarning'>The child may still hatch! Not yet!</span>")
 				return
 

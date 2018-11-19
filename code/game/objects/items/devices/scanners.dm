@@ -346,7 +346,7 @@ REAGENT SCANNER
 				//Check for whether there's an appropriate ghost
 				if(H.client)
 					//Calculate revival status/time left
-					var/revive_timer = round((H.timeofdeath + H.revive_grace_period - world.time) * 0.1)
+					var/revive_timer = round((H.timeofdeath + config.revive_grace_period - world.time) * 0.1)
 					if(revive_timer < 60) //Almost out of time; urgency required.
 						death_message = "<b>CRITICAL: Brain death imminent.</b> Reduce total injury value to sub-200 and administer defibrillator to unarmoured chest <b>immediately</b>."
 					else if(revive_timer < 120) //Running out of time; increase urgency of message.

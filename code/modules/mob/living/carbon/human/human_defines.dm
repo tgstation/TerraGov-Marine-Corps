@@ -98,7 +98,6 @@
 	var/pressure_alert = 0
 	var/prev_gender = null // Debug for plural genders
 	var/temperature_alert = 0
-	var/revive_grace_period = 3000 //In deciseconds. Set to 5 minutes
 	var/undefibbable = FALSE //whether the human is dead and past the defibbrillation period.
 
 	var/holo_card_color = "" //which color type of holocard is printed on us
