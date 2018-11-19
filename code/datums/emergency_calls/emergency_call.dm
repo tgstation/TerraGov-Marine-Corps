@@ -12,9 +12,9 @@
 	var/distress_cooldown = 0
 	var/waiting_for_candidates = 0
 
-//The distress call parent. Cannot be called itself due to "name" being a filtered target.
+//The distress call parent.
 /datum/emergency_call
-	var/name = "name"
+	var/name = ""
 	var/mob_max = 20
 	var/mob_min = 1
 	var/dispatch_message = "An encrypted signal has been received from a nearby vessel. Stand by." //Msg to display when starting
@@ -45,9 +45,11 @@
 		to_chat(world, "\red \b Error setting up emergency calls, no datums found.")
 		return 0
 	for(var/S in total_calls)
-		var/datum/emergency_call/C= new S()
-		if(!C)	continue
-		if(C.name == "name") continue //The default parent, don't add it
+		var/datum/emergency_call/C = new S()
+		if(!C)	
+			continue
+		if(!C.name) 
+			continue //The default parent, don't add it
 		all_calls += C
 
 //Randomizes and chooses a call datum.
@@ -71,10 +73,9 @@
 		return chosen_call
 
 /datum/emergency_call/proc/show_join_message()
-	if(!mob_max || !ticker || !ticker.mode) //Just a supply drop, don't bother.
+	if(!mob_max || !ticker || !ticker.mode) //Not a joinable distress call.
 		return
 
-//	var/list/datum/mind/possible_joiners = ticker.mode.get_players_for_role(role_needed) //Default role_needed is BE_RESPONDER
 	for(var/mob/dead/observer/M in player_list)
 		if(M.client)
 			to_chat(M, "\n<font size='3'><span class='attack'>An emergency beacon has been activated. Use the <B>Ghost > Join Response Team</b> verb to join!</span>")
@@ -94,17 +95,19 @@
 	set category = "Ghost"
 	set desc = "Join an ongoing distress call response. You must be ghosted to do this."
 
+	var/datum/emergency_call/distress = ticker.mode.picked_call //Just to simplify things a bit
+
 	if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Emergency Response Team"))
 		to_chat(usr, "<span class='danger'>You are jobbanned from the emergency reponse team!</span>")
 		return
-	if(!ticker || !ticker.mode || isnull(ticker.mode.picked_call))
+	if(!ticker || !ticker.mode || isnull(distress))
 		to_chat(usr, "<span class='warning'>No distress beacons are active. You will be notified if this changes.</span>")
 		return
-
-	var/datum/emergency_call/distress = ticker.mode.picked_call //Just to simplify things a bit
+	
 	if(!istype(distress) || !distress.mob_max)
 		to_chat(usr, "<span class='warning'>The emergency response team is already full!</span>")
 		return
+
 	var/deathtime = world.time - usr.timeofdeath
 
 	if(deathtime < 600) //Nice try, ghosting right after the announcement
@@ -119,15 +122,19 @@
 		usr.mind = new /datum/mind(usr.key)
 		usr.mind.active = 1
 		usr.mind.current = usr
-	if(usr.mind.key != usr.key) usr.mind.key = usr.key //Sigh. This can happen when admin-switching people into afking people, leading to runtime errors for a clientless key.
 
-	if(!usr.client || !usr.mind) return //Somehow
+	if(usr.mind.key != usr.key) //Sigh. This can happen when admin-switching people into afking people, leading to runtime errors for a clientless key.
+		usr.mind.key = usr.key 
+
+	if(!usr.client || !usr.mind) //Somehow
+		return 
+
 	if(usr.mind in distress.candidates)
 		to_chat(usr, "<span class='warning'>You are already a candidate for this emergency response team.</span>")
 		return
 
 	if(distress.add_candidate(usr))
-		message_admins("DEBUG: Added candidate [usr]")
+		message_admins("DEBUG: Valid candidate attempting to join: [usr]")
 		to_chat(usr, "<span class='boldnotice'>You are now a candidate in the emergency response team! If there are enough candidates, you may be picked to be part of the team.</span>")
 	else
 		message_admins("DEBUG: Something went wrong while trying to add candidate [usr]")
@@ -142,6 +149,7 @@
 
 	if(mob_max > 0)
 		ticker.mode.waiting_for_candidates = 1
+
 	show_join_message() //Show our potential candidates the message to let them join.
 	message_admins("Distress beacon: '[name]' activated. Looking for candidates.", 1)
 
@@ -186,9 +194,9 @@
 							message_admins("DEBUG: Distress ran out of candidates after removing wrong types") 
 							break //No empty lists!!
 						M = pick(candidates) //Lets try this again
+					message_admins("DEBUG: Adding to picked candadites: [M]")
 					picked_candidates += M
 					candidates -= M
-					message_admins("Picked candidate [M]")
 				spawn(10) //Wait for all the above to be done
 					if(candidates.len)
 						for(var/datum/mind/I in candidates)
@@ -212,8 +220,8 @@
 			if(picked_candidates.len)
 				var/i = 0
 				for(var/datum/mind/M in picked_candidates)
+					message_admins("DEBUG: Adding to members: [M]")
 					members += M
-					message_admins("DEBUG: Added member [M]")
 					i++
 					if(i > mob_max) 
 						break //Some logic. Hopefully this will never happen..
@@ -228,12 +236,14 @@
 	if(M.mind && M.mind in candidates) 
 		return FALSE  //Already there.
 	if(M.stat != DEAD)
-		return FALSE  //Is a xeno
+		return FALSE  //Alive, could have been drafted into xenos or something else.
 	if(M.mind)
+		message_admins("DEBUG: Adding to candidates: [M]")
 		candidates += M.mind
 	else
 		if(M.key)
 			M.mind = new /datum/mind(M.key)
+			message_admins("DEBUG: Adding mindless to candidates: [M]")
 			candidates += M.mind
 	return TRUE
 
@@ -258,16 +268,16 @@
 	return spawn_loc
 
 
-
 /datum/emergency_call/proc/create_member(datum/mind/M) //This is the parent, each type spawns its own variety.
 	return
 
-//Spawn various items around the shuttle area thing.
-/datum/emergency_call/proc/spawn_items()
+
+/datum/emergency_call/proc/spawn_items()  //Spawn various items around the shuttle area thing.
 	return
 
 
 /datum/emergency_call/proc/print_backstory(mob/living/carbon/human/M)
 	return
+
 
 #undef COOLDOWN_COMM_REQUEST
