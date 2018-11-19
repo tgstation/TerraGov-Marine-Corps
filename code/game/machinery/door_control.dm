@@ -46,7 +46,7 @@
 	return src.attack_hand(user)
 
 /obj/machinery/door_control/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(M.is_intelligent && normaldoorcontrol == CONTROL_DROPSHIP)
+	if(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT && normaldoorcontrol == CONTROL_DROPSHIP)
 		var/shuttle_tag
 		switch(id)
 			if("sh_dropship1")

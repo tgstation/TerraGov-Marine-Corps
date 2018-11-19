@@ -544,7 +544,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //Honestly copies some code from the Xeno files, just handling some special cases
 /obj/vehicle/multitile/root/cm_armored/attack_alien(var/mob/living/carbon/Xenomorph/M, var/dam_bonus)
 
-	var/damage = rand(M.melee_damage_lower, M.melee_damage_upper) + dam_bonus
+	var/damage = rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) + dam_bonus
 
 	//Frenzy auras stack in a way, then the raw value is multipled by two to get the additive modifier
 	if(M.frenzy_aura > 0)
@@ -563,7 +563,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
 	"<span class='danger'>You slash [src]!</span>")
 
-	take_damage_type(damage * ( (M.caste == "Ravager") ? 2 : 1 ), "slash", M) //Ravs do a bitchin double damage
+	take_damage_type(damage * ( (isXenoRavager(M)) ? 2 : 1 ), "slash", M) //Ravs do a bitchin double damage
 
 	healthcheck()
 

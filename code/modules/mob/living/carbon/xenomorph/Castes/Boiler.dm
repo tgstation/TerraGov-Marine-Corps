@@ -1,39 +1,176 @@
-//Boiler Code - Colonial Marines - Last Edit: Apophis775 - 11JUN16
+/datum/xeno_caste/boiler
+	caste_name = "Boiler"
+	display_name = "Boiler"
+	upgrade_name = "Young"
+	caste_desc = "Gross!"
+
+	caste_type_path = /mob/living/carbon/Xenomorph/Boiler
+
+	tier = 3
+	upgrade = 0
+
+	// *** Melee Attacks *** //
+	melee_damage_lower = 20
+	melee_damage_upper = 25
+
+	// *** Tackle *** //
+	tackle_damage = 25 
+
+	// *** Speed *** //
+	speed = 0.7
+
+	// *** Plasma *** //
+	plasma_max = 800
+	plasma_gain = 30
+
+	// *** Health *** //
+	max_health = 200
+
+	// *** Evolution *** //
+	upgrade_threshold = 400
+
+	deevolves_to = /mob/living/carbon/Xenomorph/Spitter
+
+	// *** Flags *** //
+	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
+
+	// *** Defense *** //
+	armor_deflection = 30 
+
+	// *** Ranged Attack *** //
+	spit_delay = 4 SECONDS
+
+	// *** Boiler Abilities *** //
+	bomb_strength = 1 //Multiplier to the effectiveness of the boiler glob. Improves by 0.5 per upgrade
+	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
+	bomb_delay = 20 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
+
+/datum/xeno_caste/boiler/mature
+	upgrade_name = "Mature"
+	caste_desc = "Some sort of abomination. It looks a little more dangerous."
+	upgrade = 1
+
+	// *** Melee Attacks *** //
+	melee_damage_lower = 25
+	melee_damage_upper = 30
+
+	// *** Tackle *** //
+	tackle_damage = 25 
+
+	// *** Speed *** //
+	speed = 0.6
+
+	// *** Plasma *** //
+	plasma_max = 900
+	plasma_gain = 35
+
+	// *** Health *** //
+	max_health = 220
+
+	// *** Evolution *** //
+	upgrade_threshold = 800
+
+	// *** Defense *** //
+	armor_deflection = 35
+
+	// *** Ranged Attack *** //
+	spit_delay = 3 SECONDS
+
+	// *** Boiler Abilities *** //
+	bomb_strength = 1.5 
+	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
+	bomb_delay = 20 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
+
+/datum/xeno_caste/boiler/elder
+	upgrade_name = "Elder"
+	caste_desc = "Some sort of abomination. It looks pretty strong."
+	upgrade = 2
+
+	// *** Melee Attacks *** //
+	melee_damage_lower = 30
+	melee_damage_upper = 35
+
+	// *** Tackle *** //
+	tackle_damage = 30
+
+	// *** Speed *** //
+	speed = 0.5
+
+	// *** Plasma *** //
+	plasma_max = 1000
+	plasma_gain = 40
+
+	// *** Health *** //
+	max_health = 240
+
+	// *** Evolution *** //
+	upgrade_threshold = 1600
+
+	// *** Defense *** //
+	armor_deflection = 35
+
+	// *** Ranged Attack *** //
+	spit_delay = 2 SECONDS
+
+	// *** Boiler Abilities *** //
+	bomb_strength = 2 
+	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
+	bomb_delay = 20 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
+
+/datum/xeno_caste/boiler/ancient
+	upgrade_name = "Ancient"
+	caste_desc = "A devestating piece of alien artillery."
+	upgrade = 3
+	ancient_message = "You are the master of ranged artillery. Bring death from above."
+
+	// *** Melee Attacks *** //
+	melee_damage_lower = 35
+	melee_damage_upper = 40
+
+	// *** Tackle *** //
+	tackle_damage = 30
+
+	// *** Speed *** //
+	speed = 0.4
+
+	// *** Plasma *** //
+	plasma_max = 1000
+	plasma_gain = 50
+
+	// *** Health *** //
+	max_health = 245
+
+	// *** Defense *** //
+	armor_deflection = 35
+
+	// *** Ranged Attack *** //
+	spit_delay = 1 SECONDS
+
+	// *** Boiler Abilities *** //
+	bomb_strength = 2.5
+	acid_delay = 9 SECONDS //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
+	bomb_delay = 20 SECONDS //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
 
 /mob/living/carbon/Xenomorph/Boiler
-	caste = "Boiler"
+	caste_base_type = /mob/living/carbon/Xenomorph/Boiler
 	name = "Boiler"
 	desc = "A huge, grotesque xenomorph covered in glowing, oozing acid slime."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Boiler Walking"
-	melee_damage_lower = 20
-	melee_damage_upper = 25
-	tackle_damage = 25
 	health = 200
 	maxHealth = 200
 	plasma_stored = 450
-	plasma_gain = 30
-	plasma_max = 800
-	upgrade_threshold = 400
-	evolution_allowed = FALSE
-	spit_delay = 40
-	speed = 0.7
 	pixel_x = -16
 	old_x = -16
-	caste_desc = "Gross!"
 	mob_size = MOB_SIZE_BIG
 	tier = 3
 	upgrade = 0
 	gib_chance = 100
 	drag_delay = 6 //pulling a big dead xeno is hard
-	armor_deflection = 30
 	var/is_bombarding = 0
 	var/obj/item/explosive/grenade/grenade_type = "/obj/item/explosive/grenade/xeno"
 	var/bomb_cooldown = 0
-	var/bomb_delay = 200 //20 seconds per glob at Young, -2.5 per upgrade down to 10 seconds
 	var/datum/effect_system/smoke_spread/xeno_acid/smoke
-	var/acid_cooldown = 0
-	var/acid_delay = 90 //9 seconds delay on acid. Reduced by -1 per upgrade down to 5 seconds
 	var/turf/bomb_turf = null
 
 	actions = list(
@@ -134,7 +271,7 @@
 			round_statistics.boiler_neuro_smokes++
 
 
-		spawn(bomb_delay) //20 seconds cooldown.
+		spawn(xeno_caste.bomb_delay) //20 seconds cooldown.
 			bomb_cooldown = 0
 			to_chat(src, "<span class='notice'>You feel your toxin glands swell. You are able to bombard an area again.</span>")
 			update_action_button_icons()
@@ -143,117 +280,3 @@
 		bomb_cooldown = 0
 		to_chat(src, "<span class='warning'>You decide not to launch any acid.</span>")
 	return
-
-
-/mob/living/carbon/Xenomorph/Boiler/proc/acid_spray(atom/T)
-	if(!T) return
-
-	if(!check_state())
-		return
-
-	if(acid_cooldown)
-		return
-
-	if(!isturf(loc) || istype(loc, /turf/open/space))
-		to_chat(src, "<span class='warning'>You can't do that from there.</span>")
-		return
-
-	if(!check_plasma(10))
-		return
-
-	if(T)
-		var/turf/target
-
-		if(isturf(T))
-			target = T
-		else
-			target = get_turf(T)
-
-		if(!istype(target)) //Something went horribly wrong. Clicked off edge of map probably
-			return
-
-		if(target == loc)
-			to_chat(src, "<span class='warning'>That's far too close!</span>")
-			return
-
-		if(!target)
-			return
-
-		acid_cooldown = 1
-		use_plasma(10)
-		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1)
-		visible_message("<span class='xenowarning'>\The [src] spews forth a virulent spray of acid!</span>", \
-		"<span class='xenowarning'>You spew forth a spray of acid!</span>", null, 5)
-		var/turflist = getline(src, target)
-		spray_turfs(turflist)
-		spawn(acid_delay) //12 second cooldown.
-			acid_cooldown = 0
-			to_chat(src, "<span class='warning'>You feel your acid glands refill. You can spray <B>acid</b> again.</span>")
-			update_action_button_icons()
-	else
-		to_chat(src, "<span class='warning'>You see nothing to spit at!</span>")
-
-
-/mob/living/carbon/Xenomorph/Boiler/proc/spray_turfs(list/turflist)
-	set waitfor = 0
-
-	if(isnull(turflist))
-		return
-	var/turf/prev_turf
-	var/distance = 0
-
-	turf_loop:
-		for(var/turf/T in turflist)
-			distance++
-
-			if(!prev_turf && turflist.len > 1)
-				prev_turf = get_turf(src)
-				continue //So we don't burn the tile we be standin on
-
-			if(T.density || istype(T, /turf/open/space))
-				break
-			if(distance > 7)
-				break
-
-			if(locate(/obj/structure/girder, T))
-				break //Nope.avi
-
-			var/obj/machinery/M = locate() in T
-			if(M)
-				if(M.density)
-					break
-
-			if(prev_turf && LinkBlocked(prev_turf, T))
-				break
-
-			for(var/obj/structure/barricade/B in T)
-				B.health -= rand(20, 30)
-				B.update_health(TRUE)
-				if(prev_turf)
-					if(get_dir(B, prev_turf) & B.dir)
-						break turf_loop
-
-			if(!check_plasma(10))
-				break
-			plasma_stored -= 10
-			prev_turf = T
-			splat_turf(T)
-			sleep(2)
-
-
-/mob/living/carbon/Xenomorph/Boiler/proc/splat_turf(var/turf/target)
-	if(!istype(target) || istype(target,/turf/open/space))
-		return
-
-	for(var/obj/effect/xenomorph/spray/S in target) //No stacking spray!
-		cdel(S)
-	new /obj/effect/xenomorph/spray(target)
-	for(var/mob/living/carbon/M in target)
-		if(ishuman(M) || ismonkey(M))
-			if((M.status_flags & XENO_HOST) && istype(M.buckled, /obj/structure/bed/nest))
-				continue //nested infected hosts are not hurt by acid spray
-			M.adjustFireLoss(rand(20 + 5 * upgrade, 30 + 5 * upgrade))
-			to_chat(M, "<span class='xenodanger'>\The [src] showers you in corrosive acid!</span>")
-			if(!isYautja(M))
-				M.emote("scream")
-				M.KnockDown(rand(3, 4))

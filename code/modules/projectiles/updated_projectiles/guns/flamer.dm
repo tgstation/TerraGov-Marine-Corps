@@ -219,9 +219,9 @@
 
 		if(isXeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
-			if(X.fire_immune)
+			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
-			fire_mod = X.fire_resist
+			fire_mod = X.xeno_caste.fire_resist + X.fire_resist_modifier
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M //fixed :s
 
@@ -236,9 +236,17 @@
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
 				continue
 
+		var/armor_block = M.run_armor_check(null, "energy")
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
+				H.show_message(text("Your suit protects you from the flames."),1)
+				armor_block = CLAMP(armor_block * 1.5, 0.75, 1) //Min 75% resist, max 100%
+		M.apply_damage(rand(burn,(burn*2))* fire_mod, BURN, null, armor_block) // Make it so its the amount of heat or twice it for the initial blast.
+
 		M.adjust_fire_stacks(rand(5,burn*2))
 		M.IgniteMob()
-		M.adjustFireLoss(rand(burn,(burn*2))* fire_mod)  // Make it so its the amount of heat or twice it for the initial blast.
+
 		to_chat(M, "[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
 
 /obj/item/weapon/gun/flamer/proc/triangular_flame(var/atom/target, var/mob/living/user, var/burntime, var/burnlevel)
@@ -409,7 +417,7 @@
 	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
 	var/flame_color = "red"
 
-/obj/flamer_fire/New(loc, fire_lvl, burn_lvl, f_color, fire_spread_amount)
+/obj/flamer_fire/New(loc, fire_lvl, burn_lvl, f_color, fire_spread_amount, fire_stacks = 0, fire_damage = 0)
 	..()
 	if (f_color)
 		flame_color = f_color
@@ -427,8 +435,9 @@
 			T = get_step(loc, dirn)
 			if(istype(T,/turf/open/space))
 				continue
-			if(locate(/obj/flamer_fire) in T)
-				continue //No stacking
+			var/obj/flamer_fire/F
+			if(locate(F) in T)
+				cdel(F) //No stacking
 			var/new_spread_amt = T.density ? 0 : fire_spread_amount - 1 //walls stop the spread
 			if(new_spread_amt)
 				for(var/obj/O in T)
@@ -436,7 +445,18 @@
 						new_spread_amt = 0
 						break
 			spawn(0) //delay so the newer flame don't block the spread of older flames
-				new /obj/flamer_fire(T, fire_lvl, burn_lvl, f_color, new_spread_amt)
+				new /obj/flamer_fire(T, fire_lvl, burn_lvl, f_color, new_spread_amt, fire_stacks, fire_damage)
+				var/mob/living/C
+				if(fire_stacks || fire_damage)
+					for(C in T)
+						if(C.fire_immune)
+							continue
+						else
+							C.adjust_fire_stacks(fire_stacks)
+							var/armor_block = C.run_armor_check("chest", "energy")
+							C.apply_damage(fire_damage, BURN, null, armor_block)
+							C.IgniteMob()
+							C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isXeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
 
 /obj/flamer_fire/Dispose()
@@ -448,17 +468,6 @@
 /obj/flamer_fire/Crossed(mob/living/M) //Only way to get it to reliable do it when you walk into it.
 	if(istype(M))
 		var/fire_mod = 1
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(isXeno(H.pulledby))
-				var/mob/living/carbon/Xenomorph/Z = H.pulledby
-				if(!Z.fire_immune)
-					Z.adjust_fire_stacks(burnlevel)
-					Z.IgniteMob()
-			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
-				H.show_message(text("Your suit protects you from the flames."),1)
-				H.adjustFireLoss(burnlevel*0.25) //Does small burn damage to a person wearing one of the suits.
-				return
 		if(isXeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
 			if(X.fire_immune)
@@ -468,7 +477,19 @@
 		if (prob(firelevel + 2*M.fire_stacks)) //the more soaked in fire you are, the likelier to be ignited
 			M.IgniteMob()
 
-		M.adjustFireLoss(round(burnlevel*0.5)* fire_mod) //This makes fire stronk.
+		var/armor_block = M.run_armor_check(null, "energy")
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(isXeno(H.pulledby))
+				var/mob/living/carbon/Xenomorph/Z = H.pulledby
+				if(!Z.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+					Z.adjust_fire_stacks(burnlevel)
+					Z.IgniteMob()
+			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
+				H.show_message(text("Your suit protects you from the flames."),1)
+				armor_block = CLAMP(armor_block * 1.5, 0.75, 1) //Min 75% resist, max 100%
+		M.apply_damage(round(burnlevel*0.5)* fire_mod, BURN, null, armor_block)
+
 		to_chat(M, "<span class='danger'>You are burned!</span>")
 		if(isXeno(M))
 			M.updatehealth()
@@ -523,12 +544,14 @@
 			if(istype(I,/mob/living/carbon/Xenomorph/Ravager))
 				if(!I.stat)
 					var/mob/living/carbon/Xenomorph/Ravager/X = I
-					X.plasma_stored = X.plasma_max
+					X.plasma_stored = X.xeno_caste.plasma_max
 					X.usedcharge = 0 //Reset charge cooldown
 					X.show_message(text("<span class='danger'>The heat of the fire roars in your veins! KILL! CHARGE! DESTROY!</span>"),1)
 					if(rand(1,100) < 70)
 						X.emote("roar")
 				continue
+
+
 			I.adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
 			if(prob(firelevel))
 				I.IgniteMob()

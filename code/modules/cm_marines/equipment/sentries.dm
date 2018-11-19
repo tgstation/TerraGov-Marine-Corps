@@ -76,7 +76,7 @@
 	M.animation_attack_on(src)
 	M.flick_attack_overlay(src, "slash")
 	playsound(loc, "alien_claw_metal", 25)
-	update_health(rand(M.melee_damage_lower,M.melee_damage_upper))
+	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
 
 /obj/machinery/marine_turret_frame/examine(mob/user as mob)
 	..()
@@ -882,7 +882,7 @@
 	if(prob(10))
 		if(!locate(/obj/effect/decal/cleanable/blood/oil) in loc)
 			new /obj/effect/decal/cleanable/blood/oil(loc)
-	update_health(rand(M.melee_damage_lower,M.melee_damage_upper))
+	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
 
 /obj/machinery/marine_turret/bullet_act(var/obj/item/projectile/Proj) //Nope.
 	visible_message("[src] is hit by the [Proj.name]!")
@@ -1390,23 +1390,9 @@
 	var/turf/target = get_step(user.loc,user.dir)
 	if(!target)
 		return
-	var/blocked
-	if(target.density)
-		blocked = TRUE
 
-	if(!blocked) //allows us to stop checks and thus save resources if we find something that blocks placement
-		for(var/obj/machinery/MA in target)
-			if(MA.density)
-				blocked = TRUE
-				break //LoF Broken; stop checking; we can't proceed further.
-	if(!blocked)
-		for(var/obj/structure/S in target)
-			if(S.density)
-				blocked = TRUE
-				break //LoF Broken; stop checking; we can't proceed further.
-
-	if(blocked)
-		to_chat(user, "<span class='warning'>Insufficient room to deploy [src]!</span>")
+	if(check_blocked_turf(target)) //check if blocked
+		to_chat(user, "<span class='warning'>There is insufficient room to deploy [src]!</span>")
 		return
 	if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
 		if(!src) //Make sure the sentry still exists

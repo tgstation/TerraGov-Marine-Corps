@@ -238,7 +238,7 @@
 	flags_item 	   ^= WIELDED
 	name 	   += " (Wielded)"
 	item_state += "_w"
-	slowdown = initial(slowdown) + aim_slowdown
+	update_slowdown()
 	place_offhand(user, initial(name))
 	wield_time = world.time + wield_delay
 	//slower or faster wield delay depending on skill.
@@ -274,9 +274,16 @@
 	flags_item ^= WIELDED
 	name 	    = copytext(name, 1, -10)
 	item_state  = copytext(item_state, 1, -2)
-	slowdown = initial(slowdown)
+	update_slowdown()
 	remove_offhand(user)
 	return TRUE
+	
+/obj/item/weapon/gun/proc/update_slowdown()
+	if(flags_item & WIELDED)
+		slowdown = initial(slowdown) + aim_slowdown
+	else
+		slowdown = initial(slowdown)
+	
 
 //----------------------------------------------------------
 			//							        \\
@@ -572,6 +579,7 @@ and you're good to go.
 				active_attachable.activate_attachment(src, null, TRUE)
 			else
 				active_attachable.fire_attachment(target,src,user) //Fire it.
+				user.camo_off_process(SCOUT_CLOAK_OFF_ATTACK) //Cause cloak to shimmer.
 				last_fired = world.time
 			return
 			//If there's more to the attachment, it will be processed farther down, through in_chamber and regular bullet act.
@@ -624,7 +632,7 @@ and you're good to go.
 		var/scatter_chance_mod = 0
 		var/burst_scatter_chance_mod = 0
 		//They decrease scatter chance and increase accuracy a tad. Can also increase damage.
-		if(user && under && under.bipod_deployed) //Let's get to work on the bipod. I'm not really concerned if they are the same person as the previous user. It doesn't matter.
+		if(flags_item & WIELDED && user && under?.bipod_deployed) //Let's get to work on the bipod. I'm not really concerned if they are the same person as the previous user. It doesn't matter.
 			if(under.check_bipod_support(src, user))
 				//Passive accuracy and recoil buff, but only when firing in position.
 				projectile_to_fire.accuracy *= config.base_hit_accuracy_mult + config.hmed_hit_accuracy_mult //More accuracy.
@@ -635,10 +643,6 @@ and you're good to go.
 					projectile_to_fire.damage *= config.base_hit_damage_mult + config.low_hit_damage_mult//Lower chance of a damage buff.
 				if(i == 1)
 					to_chat(user, "<span class='notice'>Your bipod keeps [src] steady!</span>")
-			else
-				under.activate_attachment(src, user, TRUE) //If there is no support, retract it to warn the user.
-				to_chat(user, "<span class='notice'>Your bipod retracts due to lack of support.</span>")
-				playsound(user, 'sound/machines/click.ogg', 15, 1)
 		//End of bipods.
 
 		target = original_target ? original_target : targloc
@@ -684,6 +688,8 @@ and you're good to go.
 		if(i < bullets_fired) // We still have some bullets to fire.
 			extra_delay = min(extra_delay+(burst_delay*2), fire_delay*3) // The more bullets you shoot, the more delay there is, but no more than thrice the regular delay.
 			sleep(burst_delay)
+
+		user.camo_off_process(SCOUT_CLOAK_OFF_ATTACK) //Cause cloak to shimmer.
 
 	flags_gun_features &= ~GUN_BURST_FIRING // We always want to turn off bursting when we're done.
 
@@ -918,8 +924,9 @@ and you're good to go.
 	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
 
 	if(user) //The gun only messages when fired by a user.
+		gun_scatter += user.scatter_modifier //Any modifiers to scatter
 		projectile_to_fire.firer = user
-		if(isliving(user))
+		if(iscarbon(user))
 			projectile_to_fire.def_zone = user.zone_selected
 
 		//firing from an attachment

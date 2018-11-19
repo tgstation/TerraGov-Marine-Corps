@@ -46,15 +46,34 @@ var/global/normal_ooc_colour = "#002eb8"
 	var/display_colour = normal_ooc_colour
 	if(holder && !holder.fakekey)
 		display_colour = "#2e78d9"	//light blue
-		if(holder.rights & R_MOD && !(holder.rights & R_ADMIN))
-			display_colour = "#184880"	//dark blue
-		if(holder.rights & R_DEBUG && !(holder.rights & R_ADMIN))
-			display_colour = "#1b521f"	//dark green
-		else if(holder.rights & R_COLOR)
-			if(config.allow_admin_ooccolor)
-				display_colour = src.prefs.ooccolor
+		switch(holder.rank)
+			if("Mentor")
+				display_colour = "#008000"	//green
+			if("Headmentor")
+				display_colour = "#004100"	//dark green
+			if("TrialAdmin")
+				display_colour = "#c85000"	//orange
+			if("Admin")
+				display_colour = "#c80000"	//red
+			if("RetiredAdmin")
+				display_colour = "#aa5050"	//light red
+			if("Headmin")
+				display_colour = "#640000"	//dark red
+			if("Manager")
+				display_colour = "#800080"	//purple
+			if("Headcoder")
+				display_colour = "#800080"	//dark blue
+			if("Host")
+				display_colour = "#000000"	//black
+			if("Maintainer")
+				display_colour = "#0064ff"	//different light blue
 			else
-				display_colour = "#b82e00"	//orange
+				display_colour = "#643200"	//brown
+		//else if(holder.rights & R_COLOR)
+		//	if(config.allow_admin_ooccolor)
+		//		display_colour = src.prefs.ooccolor
+		//	else
+		//		display_colour = "#b82e00"	//orange
 	if(donator)
 		display_colour = src.prefs.ooccolor
 

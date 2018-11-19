@@ -1,5 +1,4 @@
 /datum/job/other
-	department_flag = ROLEGROUP_MARINE_MED_SCIENCE
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT
 
 /datum/job/other/colonist

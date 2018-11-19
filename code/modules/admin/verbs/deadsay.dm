@@ -2,11 +2,14 @@
 	set category = "Special Verbs"
 	set name = "Dsay" //Gave this shit a shorter name so you only have to time out "dsay" rather than "dead say" to use it --NeoFite
 	set hidden = 1
-	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
-		return
+
 	if(!src.mob)
 		return
+
+	if(!(holder.rights & (R_ADMIN|R_MOD)) && mob.stat != DEAD)
+		to_chat(src, "You must be an observer to use dsay.")
+		return
+
 	if(prefs.muted & MUTE_DEADCHAT)
 		to_chat(src, "\red You cannot send DSAY messages (muted).")
 		return
@@ -15,7 +18,7 @@
 		to_chat(src, "\red You have deadchat muted.")
 		return
 
-	if (src.handle_spam_prevention(msg,MUTE_DEADCHAT))
+	if(handle_spam_prevention(msg, MUTE_DEADCHAT))
 		return
 
 	var/stafftype = null
@@ -25,16 +28,16 @@
 	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
 	mob.log_talk(msg, LOG_DSAY)
 
-	if (!msg)
+	if(!msg)
 		return
 
 	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[stafftype]([src.holder.fakekey ? pick("BADMIN", "hornigranny", "TLF", "scaredforshadows", "KSI", "Silnazi", "HerpEs", "BJ69", "SpoofedEdd", "Uhangay", "Wario90900", "Regarity", "MissPhareon", "LastFish", "unMportant", "Deurpyn", "Fatbeaver") : src.key])</span> says, <span class='message'>\"[msg]\"</span></span>"
 
-	for (var/mob/M in player_list)
-		if (istype(M, /mob/new_player))
+	for(var/mob/M in player_list)
+		if(istype(M, /mob/new_player))
 			continue
 
-		if(M.client && M.client.holder && (M.client.prefs.toggles_chat & CHAT_DEAD)) // show the message to admins who have deadchat toggled on
+		if(M.client?.holder && (M.client.holder.rights & (R_ADMIN|R_MOD)) && (M.client.prefs.toggles_chat & CHAT_DEAD)) // show the message to admins who have deadchat toggled on
 			M.show_message(rendered, 2)
 
 		else if(M.stat == DEAD && (M.client.prefs.toggles_chat & CHAT_DEAD)) // show the message to regular ghosts who have deadchat toggled on

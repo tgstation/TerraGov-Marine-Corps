@@ -26,6 +26,11 @@
 #define RELAY_CLICK				32		//This is used for /obj/ that relay your clicks via handle_click(), mostly for MGs + Sentries ~Art
 //==========================================================================================
 
+//flags_barrier
+
+#define HANDLE_BARRIER_CHANCE 1
+#define HANDLE_BARRIER_BLOCK 2
+
 //flags_item
 //bitflags that were previously under flags_atom, these only apply to items.
 //clothing specific stuff uses flags_inventory.

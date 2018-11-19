@@ -361,7 +361,32 @@
 		new /obj/item/explosive/grenade/frag(src)
 		new /obj/item/explosive/grenade/frag(src)
 
+/obj/item/storage/belt/grenade/b18
+	w_class = 4
+	storage_slots = 16
+	max_w_class = 3
+	max_storage_space = 32
+	can_hold = list("/obj/item/explosive/grenade")
 
+/obj/item/storage/belt/grenade/b18/New()
+	..()
+	spawn(1)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/frag(src)
+		new /obj/item/explosive/grenade/frag(src)
+		new /obj/item/explosive/grenade/frag(src)
+		new /obj/item/explosive/grenade/frag(src)
+		new /obj/item/explosive/grenade/frag(src)
+		new /obj/item/explosive/grenade/frag(src)
+		new /obj/item/explosive/grenade/frag(src)
+		new /obj/item/explosive/grenade/frag(src)
 
 /obj/item/storage/sparepouch
 	name="\improper G8 general utility pouch"

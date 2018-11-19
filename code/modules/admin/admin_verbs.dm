@@ -1,11 +1,7 @@
 //admin verb groups - They can overlap if you so wish. Only one of each verb will exist in the verbs list regardless
 var/list/admin_verbs_default = list(
-	/datum/admins/proc/show_player_panel,	/*shows an interface for individual players, with various links (links require additional flags*/
 	/client/proc/toggleadminhelpsound,	/*toggles whether we hear a sound when adminhelps/PMs are used*/
 	/client/proc/deadmin_self,			/*destroys our own admin datum so we can play as a regular player*/
-	/client/proc/hide_verbs,			/*hides all our adminverbs*/
-	/client/proc/hide_most_verbs,		/*hides all our hideable adminverbs*/
-	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
 	// /client/proc/cmd_mentor_check_new_players
 	)
 var/list/admin_verbs_admin = list(
@@ -77,7 +73,13 @@ var/list/admin_verbs_admin = list(
 	/client/proc/check_round_statistics,
 	/client/proc/award_medal,
 	/client/proc/force_shuttle,
-	/client/proc/remove_players_from_vic
+	/client/proc/remove_players_from_vic,
+	/client/proc/hide_verbs,			/*hides all our adminverbs*/
+	/client/proc/hide_most_verbs,		/*hides all our hideable adminverbs*/
+	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game. +VAREDIT needed to modify*/
+	/datum/admins/proc/show_player_panel,	/*shows an interface for individual players, with various links (links require additional flags*/
+	/datum/admins/proc/viewUnheardMhelps,
+	/datum/admins/proc/viewUnheardAhelps,
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel
@@ -269,17 +271,13 @@ var/list/admin_verbs_mod = list(
 var/list/admin_verbs_mentor = list(
 	/client/proc/cmd_admin_pm_context,
 	/client/proc/cmd_admin_pm_panel,
-	/datum/admins/proc/player_notes_list,
-	/datum/admins/proc/player_notes_show,
 	/client/proc/admin_ghost,
 	/client/proc/cmd_mod_say,
 	/client/proc/dsay,
-	/datum/admins/proc/togglesleep,
 	/client/proc/cmd_admin_subtle_message,
 	/datum/admins/proc/viewUnheardMhelps,
 	/datum/admins/proc/viewUnheardAhelps,
-	/datum/admins/proc/viewCLFaxes,
-	/datum/admins/proc/viewUSCMFaxes
+	/datum/admins/proc/viewCLFaxes
 )
 
 /client/proc/add_admin_verbs()
@@ -798,7 +796,7 @@ var/list/admin_verbs_mentor = list(
 		to_chat(usr, "<span class='boldnotice'>You will now get friendly fire attack log messages.</span>")
 	else
 		to_chat(usr, "<span class='boldnotice'>You will no longer get friendly fire attack log messages.</span>")
-		
+
 /client/proc/toggleendofroundattacklogs()
 	set name = "Toggle End-Of-Round Attack Log Messages"
 	set category = "Preferences"

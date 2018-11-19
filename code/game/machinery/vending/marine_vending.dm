@@ -52,6 +52,7 @@
 		if(MAP_ICE_COLONY)
 			products2 = list(
 						/obj/item/clothing/mask/rebreather/scarf = 10,
+						/obj/item/clothing/mask/rebreather = 10
 							)
 	build_inventory(products2)
 
@@ -172,9 +173,12 @@
 	products = list(
 					/obj/item/storage/large_holster/machete/full = 10,
 					/obj/item/ammo_magazine/pistol = 20,
+					/obj/item/ammobox/m4a3 = 3,
 					/obj/item/ammo_magazine/pistol/ap = 5,
+					/obj/item/ammobox/m4a3ap = 3,
 					/obj/item/ammo_magazine/pistol/incendiary = 2,
 					/obj/item/ammo_magazine/pistol/extended = 10,
+					/obj/item/ammobox/m4a3ext = 3,
 					/obj/item/ammo_magazine/pistol/m1911 = 10,
 					/obj/item/ammo_magazine/revolver = 20,
 					/obj/item/ammo_magazine/revolver/marksman = 5,
@@ -194,6 +198,7 @@
 					/obj/item/ammo_magazine/shotgun = 10,
 					/obj/item/ammo_magazine/shotgunbox/buckshot = 3,
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
+					/obj/item/ammo_magazine/shotgunbox/flechette = 3,
 					/obj/item/ammo_magazine/shotgun/flechette = 15,
 					/obj/item/smartgun_powerpack = 2
 					)
@@ -599,6 +604,7 @@
 					/obj/item/clothing/suit/storage/marine = 20,
 					/obj/item/clothing/head/helmet/marine = 20,
 					/obj/item/clothing/mask/rebreather/scarf = 10,
+					/obj/item/clothing/mask/rebreather = 10
 					)
 
 	prices = list()

@@ -496,8 +496,7 @@
 							DT.icon_state = "dogtag_taken"
 							var/obj/item/dogtag/D = new(loc)
 							D.fallen_names = list(DT.registered_name)
-							D.fallen_assgn = DT.assignment
-							D.fallen_blood_type = DT.blood_type
+							D.fallen_assignements = list(DT.assignment)
 							usr.put_in_hands(D)
 						else
 							to_chat(usr, "<span class='warning'>You can't take a dogtag's information tag while its owner is alive.</span>")
@@ -602,9 +601,9 @@
 
 				if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 					var/can_reach_splints = 1
-					if(wear_suit && istype(wear_suit,/obj/item/clothing/suit/space))
-						var/obj/item/clothing/suit/space/suit = wear_suit
-						if(suit.supporting_limbs && suit.supporting_limbs.len)
+					if(wear_suit && istype(wear_suit,/obj/item/clothing/suit))
+						var/obj/item/clothing/suit/suit = wear_suit
+						if(suit.supporting_limbs?.len)
 							to_chat(usr, "You cannot remove the splints, [src]'s [suit] is supporting some of the breaks.")
 							can_reach_splints = 0
 

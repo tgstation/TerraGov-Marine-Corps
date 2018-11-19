@@ -364,3 +364,19 @@
 	name = "Workman outfit"
 	desc = "The very image of a working man. Not that you're probably doing work."
 	icon_state = "mechanic_s"
+
+/obj/item/clothing/under/spec_operative
+	name = "Special Operations Uniform"
+	desc = "Created by an unknown corporation for high risk missions, made with several layers of a unknown nano-fiber that, while light, molds to the wearer's body shape and hardens protecting them."
+	icon_state = "pilot_spec"
+	item_state = "pilot_spec"
+	unacidable = TRUE
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	armor = list(melee = 70, bullet = 70, laser = 70, energy = 70, bomb = 70, bio = 70, rad = 70)
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature
+	siemens_coefficient = 0
+	slowdown= -1
+	gas_transfer_coefficient = 0.01
+	permeability_coefficient = 0.01
+	rollable_sleeves = TRUE

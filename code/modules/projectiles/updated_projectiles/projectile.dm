@@ -49,8 +49,10 @@
 	var/distance_travelled = 0
 	var/in_flight = 0
 
+	var/list_reagents = null
+
 	New()
-		..()
+		. = ..()
 		path = list()
 		permutated = list()
 
@@ -64,6 +66,7 @@
 		starting = null
 		permutated = null
 		path = null
+		list_reagents = null
 		return TA_REVIVE_ME
 
 	Recycle()
@@ -81,7 +84,7 @@
 
 	ex_act() return FALSE //We do not want anything to delete these, simply to make sure that all the bullet references are not runtiming. Otherwise, constantly need to check if the bullet exists.
 
-/obj/item/projectile/proc/generate_bullet(ammo_datum, bonus_damage = 0)
+/obj/item/projectile/proc/generate_bullet(ammo_datum, bonus_damage = 0, reagent_multiplier = 0)
 	ammo 		= ammo_datum
 	name 		= ammo.name
 	icon_state 	= ammo.icon_state
@@ -91,6 +94,7 @@
 	accuracy   *= rand(config.proj_variance_low-ammo.accuracy_var_low, config.proj_variance_high+ammo.accuracy_var_high) * config.proj_base_accuracy_mult//Rand only works with integers.
 	damage     *= rand(config.proj_variance_low-ammo.damage_var_low, config.proj_variance_high+ammo.damage_var_high) * config.proj_base_damage_mult
 	damage_falloff = ammo.damage_falloff
+	list_reagents = ammo.ammo_reagents
 
 //Target, firer, shot from. Ie the gun
 /obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
@@ -265,8 +269,6 @@
 				if(mob_is_hit)
 					ammo.on_hit_mob(L,src)
 					if(L?.loc)
-						if(ammo.flags_ammo_behavior & AMMO_EXPLOSIVE) //If we're explosive, we go off.
-							ammo.on_hit_turf(L,src)
 						L.bullet_act(src)
 					return TRUE
 				else if (!L.lying)
@@ -277,8 +279,6 @@
 			else if(isobj(A))
 				ammo.on_hit_obj(A,src)
 				if(A && A.loc)
-					if(ammo.flags_ammo_behavior & AMMO_EXPLOSIVE) //If we're explosive, we go off.
-						ammo.on_hit_turf(A,src)
 					A.bullet_act(src)
 				return TRUE
 
@@ -287,6 +287,11 @@
 		ammo.on_hit_turf(T,src)
 		if(T?.loc)
 			T.bullet_act(src)
+		return TRUE
+
+		if(T?.loc)
+			T.bullet_act(src)
+
 		return TRUE
 
 //----------------------------------------------------------
@@ -411,6 +416,7 @@
 			. += shooter_human.marskman_aura * 1.5 //Flat buff of 3 % accuracy per aura level
 			. += P.distance_travelled * 0.35 * shooter_human.marskman_aura //Flat buff to accuracy per tile travelled
 
+
 /mob/living/carbon/human/get_projectile_hit_chance(obj/item/projectile/P)
 	. = ..()
 	if(.)
@@ -460,6 +466,9 @@
 	var/damage = max(0, P.damage - round(P.distance_travelled * P.damage_falloff))
 	if(P.ammo.debilitate && stat != DEAD && ( damage || (P.ammo.flags_ammo_behavior & AMMO_IGNORE_RESIST) ) )
 		apply_effects(arglist(P.ammo.debilitate))
+
+	if(P.list_reagents && stat != DEAD && (ishuman() || ismonkey()))
+		reagents.add_reagent_list(P.list_reagents)
 
 	if(damage)
 		bullet_message(P)
@@ -564,6 +573,9 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	bullet_message(P) //We still want this, regardless of whether or not the bullet did damage. For griefers and such.
 
+	if(P.list_reagents && stat != DEAD)
+		reagents.add_reagent_list(P.list_reagents)
+
 	if(damage)
 		apply_damage(damage, P.ammo.damage_type, P.def_zone)
 		P.play_damage_effect(src)
@@ -609,7 +621,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		#endif
 
 	if(damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR))
-		var/armor = armor_deflection + armor_bonus + armor_pheromone_bonus
+		var/armor = xeno_caste.armor_deflection + armor_bonus + armor_pheromone_bonus
 		#if DEBUG_XENO_DEFENSE
 		world << "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>"
 		#endif
@@ -621,10 +633,10 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			#endif
 			if(P.dir == charger.dir)
 				if(isXenoQueen(src))
-					armor = max(0, armor - (armor_deflection * config.xeno_armor_resist_low)) //Both facing same way -- ie. shooting from behind; armour reduced by 50% of base.
+					armor = max(0, armor - (xeno_caste.armor_deflection * config.xeno_armor_resist_low)) //Both facing same way -- ie. shooting from behind; armour reduced by 50% of base.
 				else
-					armor = max(0, armor - (armor_deflection * config.xeno_armor_resist_lmed)) //Both facing same way -- ie. shooting from behind; armour reduced by 75% of base.
-			else if(P.dir == reverse_direction(charger.dir)) armor += round(armor_deflection * config.xeno_armor_resist_low) //We are facing the bullet.
+					armor = max(0, armor - (xeno_caste.armor_deflection * config.xeno_armor_resist_lmed)) //Both facing same way -- ie. shooting from behind; armour reduced by 75% of base.
+			else if(P.dir == reverse_direction(charger.dir)) armor += round(xeno_caste.armor_deflection * config.xeno_armor_resist_low) //We are facing the bullet.
 			//Otherwise use the standard armor deflection for crushers.
 			#if DEBUG_XENO_DEFENSE
 			to_chat(world, "<span class='debuginfo'>Adjusted crest armor is: <b>[armor]</b></span>")
@@ -673,7 +685,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			var/pain_emote = prob(70) ? "hiss" : "roar"
 			emote(pain_emote)
 		if(P.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
-			if(fire_immune)
+			if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				if(!stat) to_chat(src, "<span class='avoidharm'>You shrug off some persistent flames.</span>")
 			else
 				adjust_fire_stacks(rand(2,6) + round(damage / 8))

@@ -128,6 +128,7 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	flags_equip_slot = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
+	var/list/supporting_limbs = null
 	siemens_coefficient = 0.9
 	w_class = 3
 
@@ -145,7 +146,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/clothing/under/U = H.w_uniform
 		//some uniforms prevent you from wearing any suits but certain types
-		if(U && U.suit_restricted && !is_type_in_list(src, U.suit_restricted))
+		if(U?.suit_restricted && !is_type_in_list(src, U.suit_restricted))
 			to_chat(H, "<span class='warning'>[src] can't be worn with [U].</span>")
 			return 0
 	return 1

@@ -7,7 +7,7 @@
 /turf/closed/wall/almayer
 	name = "hull"
 	desc = "A huge chunk of metal used to seperate rooms and make up the ship."
-	icon = 'icons/turf/almayer.dmi'
+	icon = 'icons/turf/almayerwalls.dmi'
 	icon_state = "testwall0"
 	walltype = "testwall"
 
@@ -53,7 +53,7 @@
 
 
 /turf/closed/wall/almayer/research/can_be_dissolved()
-	return 0
+	return FALSE
 
 /turf/closed/wall/almayer/research/containment/wall
 	name = "cell wall"
@@ -67,7 +67,7 @@
 	icon_state = "containment_wall_divide"
 
 /turf/closed/wall/almayer/research/containment/wall/south
-	icon_state = "containment_wall_south"
+	icon_state = "containment_wall_s"
 
 /turf/closed/wall/almayer/research/containment/wall/west
 	icon_state = "containment_wall_w"
@@ -91,7 +91,6 @@
 	icon_state = "containment_wall_n"
 
 /turf/closed/wall/almayer/research/containment/wall/connect_e2
-	name = "\improper cell wall."
 	icon_state = "containment_wall_connect_e2"
 
 /turf/closed/wall/almayer/research/containment/wall/connect_s1
@@ -103,7 +102,7 @@
 /turf/closed/wall/almayer/research/containment/wall/purple
 	name = "cell window"
 	icon_state = "containment_window"
-	opacity = 0
+	opacity = FALSE
 
 
 
@@ -154,7 +153,7 @@
 	return
 
 /turf/closed/wall/sulaco/unmeltable/can_be_dissolved()
-	return 0
+	return FALSE
 
 
 

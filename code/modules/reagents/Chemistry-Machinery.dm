@@ -128,8 +128,8 @@
 		amount = round(text2num(href_list["amount"]), 5) // round to nearest 5
 		if (amount < 0) // Since the user can actually type the commands himself, some sanity checking
 			amount = 0
-		if (amount > 120)
-			amount = 120
+		if (amount > 240)
+			amount = 240
 
 	if(href_list["dispense"])
 		if (dispensable_reagents.Find(href_list["dispense"]) && beaker != null && beaker.is_open_container())
@@ -256,7 +256,7 @@
 
 /obj/machinery/chem_master/New()
 	..()
-	var/datum/reagents/R = new/datum/reagents(120)
+	var/datum/reagents/R = new/datum/reagents(240)
 	reagents = R
 	R.my_atom = src
 

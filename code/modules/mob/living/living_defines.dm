@@ -78,4 +78,7 @@
 
 	var/canEnterVentWith = "/obj/item/implant=0&/obj/item/clothing/mask/facehugger=0&/obj/item/device/radio/borg=0&/obj/machinery/camera=0&/obj/item/verbs=0" // Vent crawling whitelisted items, whoo
 
-	var/no_stun = 0
+	var/no_stun = FALSE
+
+	var/fire_immune = FALSE
+	var/fire_resist = 1 //0 to 1; lower is better as it is a multiplier.

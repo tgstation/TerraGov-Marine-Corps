@@ -238,7 +238,7 @@
 	name = "explosive pouch"
 	desc = "It can contain grenades, plastiques, mine boxes, and other explosives."
 	icon_state = "large_explosive"
-	storage_slots = 3
+	storage_slots = 4
 	max_w_class = 3
 	can_hold = list(
 					"/obj/item/explosive/plastique",

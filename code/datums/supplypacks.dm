@@ -1153,6 +1153,36 @@ AMMO
 	containername = "\improper M39 Ext ammo box crate"
 	group = "Ammo"
 
+/datum/supply_packs/ammoboxm4a3
+	name = "M4A3 Ammo Box Crate"
+	contains = list(
+					/obj/item/ammobox/m4a3
+					)
+	cost = RO_PRICE_VERY_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper M4A3 ammo box crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammoboxm4a3ap
+	name = "M4A3 AP Ammo Box Crate"
+	contains = list(
+					/obj/item/ammobox/m4a3ap
+					)
+	cost = RO_PRICE_NORMAL
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper M4A3 AP ammo box crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammoboxm4a3ext
+	name = "M4A3 Ext Ammo Box Crate"
+	contains = list(
+					/obj/item/ammobox/m4a3ext
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper M4A3 Ext ammo box crate"
+	group = "Ammo"
+
 /datum/supply_packs/ammoboxslug
 	name = "Slug Ammo Box Crate"
 	contains = list(
@@ -1171,6 +1201,16 @@ AMMO
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper Buckshot ammo box crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammoboxflechette
+	name = "Flechette Ammo Box Crate"
+	contains = list(
+					/obj/item/ammo_magazine/shotgunbox/flechette
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper Flechette ammo box crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_regular

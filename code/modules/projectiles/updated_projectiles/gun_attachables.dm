@@ -497,8 +497,6 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 
 /obj/item/attachable/scope/New()
 	..()
-	burst_delay_mod = config.mhigh_fire_delay
-	accuracy_mod = config.high_hit_accuracy_mult
 	movement_acc_penalty_mod = config.low_movement_acc_penalty
 	accuracy_unwielded_mod = -config.min_hit_accuracy_mult
 
@@ -506,6 +504,7 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 /obj/item/attachable/scope/activate_attachment(obj/item/weapon/gun/G, mob/living/carbon/user, turn_off)
 	if(turn_off)
 		if(G.zoom)
+			accuracy_mod = null
 			G.zoom(user, zoom_offset, zoom_viewsize)
 		return TRUE
 
@@ -514,6 +513,7 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 			to_chat(user, "<span class='warning'>You must hold [G] with two hands to use [src].</span>")
 		return FALSE
 	else
+		accuracy_mod = config.high_hit_accuracy_mult
 		G.zoom(user, zoom_offset, zoom_viewsize)
 	return TRUE
 
@@ -532,6 +532,31 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 	..()
 	burst_delay_mod = config.low_fire_delay
 
+/obj/item/attachable/scope/mini/activate_attachment(obj/item/weapon/gun/G, mob/living/carbon/user, turn_off)
+	if(turn_off)
+		if(G.zoom)
+			accuracy_mod = -config.low_hit_accuracy_mult
+			G.zoom(user, zoom_offset, zoom_viewsize)
+		return TRUE
+
+	if(!G.zoom && !(G.flags_item & WIELDED))
+		if(user)
+			to_chat(user, "<span class='warning'>You must hold [G] with two hands to use [src].</span>")
+		return FALSE
+	else
+		accuracy_mod = config.low_hit_accuracy_mult
+		G.zoom(user, zoom_offset, zoom_viewsize)
+	return TRUE
+
+/obj/item/attachable/scope/m4ra
+	name = "m4ra rail scope"
+	icon_state = "sniperscope"
+	attach_icon = "sniperscope_a"
+	desc = "A rail mounted zoom sight scope specialized for the M4RA Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+
+/obj/item/attachable/scope/m4ra/New()
+	..()
+	burst_delay_mod = null
 
 /obj/item/attachable/scope/slavic
 	icon_state = "slavicscope"
@@ -873,9 +898,9 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 
 		if(isXeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
-			if(X.fire_immune)
+			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
-			fire_mod = X.fire_resist
+			fire_mod = X.xeno_caste.fire_resist + X.fire_resist_modifier
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 
@@ -1035,23 +1060,20 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 			bipod_deployed = FALSE
 			G.aim_slowdown -= SLOWDOWN_ADS_SCOPE
 			G.wield_delay -= WIELD_DELAY_FAST
-	else
+	else if(bipod_deployed)
+		to_chat(user, "<span class='notice'>You retract [src].</span>")
+		G.aim_slowdown -= SLOWDOWN_ADS_SCOPE
+		G.wield_delay -= WIELD_DELAY_FAST
+		bipod_deployed = !bipod_deployed
+	else if(do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD))
 		if(bipod_deployed)
-			to_chat(user, "<span class='notice'>You retract [src].</span>")
-			G.aim_slowdown -= SLOWDOWN_ADS_SCOPE
-			G.wield_delay -= WIELD_DELAY_FAST
-			bipod_deployed = !bipod_deployed
-		else
-			var/obj/support = check_bipod_support(G, user)
-			if(support)
-				if(do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD))
-					bipod_deployed = !bipod_deployed
-					to_chat(user, "<span class='notice'>You deploy [src] on [support].</span>")
-					G.aim_slowdown += SLOWDOWN_ADS_SCOPE
-					G.wield_delay += WIELD_DELAY_FAST
-			else
-				to_chat(user, "<span class='notice'>There is nothing to support [src].</span>")
-				return FALSE
+			return
+		bipod_deployed = !bipod_deployed
+		to_chat(user, "<span class='notice'>You deploy [src].</span>")
+		G.aim_slowdown += SLOWDOWN_ADS_SCOPE
+		G.wield_delay += WIELD_DELAY_FAST
+	G.update_slowdown()
+		
 	//var/image/targeting_icon = image('icons/mob/mob.dmi', null, "busy_targeting", "pixel_y" = 22) //on hold until the bipod is fixed
 	if(bipod_deployed)
 		icon_state = "bipod-on"
@@ -1080,6 +1102,12 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 	for(var/obj/O in T)
 		if(O.throwpass && O.density && O.dir == user.dir && O.flags_atom & ON_BORDER)
 			return O
+	
+	T = get_step(T, user.dir) 
+	for(var/obj/O in T)
+		if((istype(O, /obj/structure/window_frame)))
+			return O
+	
 	return FALSE
 
 

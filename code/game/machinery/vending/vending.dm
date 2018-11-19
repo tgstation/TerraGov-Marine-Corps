@@ -155,7 +155,7 @@
 
 	if(M.a_intent == "hurt")
 		M.animation_attack_on(src)
-		if(prob(M.melee_damage_lower))
+		if(prob(M.xeno_caste.melee_damage_lower))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] beyond recognition!</span>", \
 			"<span class='danger'>You enter a frenzy and smash \the [src] apart!</span>", null, 5)
@@ -272,15 +272,12 @@
 		var/obj/item/card/id/C = I
 		visible_message("<span class='info'>[usr] swipes a card through [src].</span>")
 		var/datum/money_account/CH = get_account(C.associated_account_number)
-		if (CH) // Only proceed if card contains proper account number.
+		if(CH) // Only proceed if card contains proper account number.
 			if(!CH.suspended)
 				if(CH.security_level != 0) //If card requires pin authentication (ie seclevel 1 or 2)
-					if(vendor_account)
-						var/attempt_pin = input("Enter pin code", "Vendor transaction") as num
-						var/datum/money_account/D = attempt_account_access(C.associated_account_number, attempt_pin, 2)
-						transfer_and_vend(D)
-					else
-						to_chat(usr, "\icon[src]<span class='warning'>Unable to access account. Check security settings and try again.</span>")
+					var/attempt_pin = input("Enter pin code", "Vendor transaction") as num
+					var/datum/money_account/D = attempt_account_access(C.associated_account_number, attempt_pin, 2)
+					transfer_and_vend(D)
 				else
 					//Just Vend it.
 					transfer_and_vend(CH)
@@ -296,11 +293,9 @@
 
 			//transfer the money
 			acc.money -= transaction_amount
-			vendor_account.money += transaction_amount
 
 			//create entries in the two account transaction logs
 			var/datum/transaction/T = new()
-			T.target_name = "[vendor_account.owner_name] (via [src.name])"
 			T.purpose = "Purchase of [currently_vending.product_name]"
 			if(transaction_amount > 0)
 				T.amount = "([transaction_amount])"
@@ -310,15 +305,6 @@
 			T.date = current_date_string
 			T.time = worldtime2text()
 			acc.transaction_log.Add(T)
-							//
-			T = new()
-			T.target_name = acc.owner_name
-			T.purpose = "Purchase of [currently_vending.product_name]"
-			T.amount = "[transaction_amount]"
-			T.source_terminal = src.name
-			T.date = current_date_string
-			T.time = worldtime2text()
-			vendor_account.transaction_log.Add(T)
 
 			// Vend the item
 			src.vend(src.currently_vending, usr)
