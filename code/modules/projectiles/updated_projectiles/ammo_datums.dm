@@ -965,10 +965,8 @@
 		return
 	smoke.set_up(1, T)
 	smoke.start()
-	for(var/obj/flamer_fire/F in range(radius,T)) // No stacking flames!
-		cdel(F)
 	playsound(T, 'sound/weapons/gun_flamethrower2.ogg', 50, 1, 4)
-	flame_radius(radius, 25, 25, 25, 15)
+	flame_radius(radius, T, 25, 25, 25, 15)
 
 
 /datum/ammo/rocket/wp/on_hit_mob(mob/M,obj/item/projectile/P)
