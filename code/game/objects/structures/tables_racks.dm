@@ -261,7 +261,7 @@
 			playsound(src, 'sound/effects/woodhit.ogg', 25, 1)
 		else
 			playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
-		health -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
+		health -= rand(M.melee_damage_lower, M.melee_damage_upper)
 		if(health <= 0)
 			M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
 			"<span class='danger'>You slice [src] apart!</span>", null, 5)

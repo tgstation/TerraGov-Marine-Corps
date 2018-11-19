@@ -1,154 +1,30 @@
-/datum/xeno_caste/ravager
-	caste_name = "Ravager"
-	display_name = "Ravager"
-	upgrade_name = "Young"
-	caste_desc = "A brutal, devastating front-line attacker."
-	caste_type_path = /mob/living/carbon/Xenomorph/Ravager
-	tier = 3
-	upgrade = 0
-
-	// *** Melee Attacks *** //
-	melee_damage_lower = 40
-	melee_damage_upper = 60
-	attack_delay = -2 
-
-	// *** Tackle *** //
-	tackle_damage = 55
-
-	// *** Speed *** //
-	speed = -0.4
-
-	// *** Plasma *** //
-	plasma_max = 150
-	plasma_gain = 10
-
-	// *** Health *** //
-	max_health = 200
-
-	// *** Evolution *** //
-	upgrade_threshold = 400
-
-	deevolves_to = /mob/living/carbon/Xenomorph/Hunter
-
-	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
-	
-	// *** Defense *** //
-	armor_deflection = 20
-
-	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
-
-	// *** Ranged Attack *** //
-	charge_type = 3 //Claw at end of charge
-
-/datum/xeno_caste/ravager/mature
-	upgrade_name = "Mature"
-	caste_desc = "A brutal, devastating front-line attacker. It looks a little more dangerous."
-
-	upgrade = 1
-
-	// *** Melee Attacks *** //
-	melee_damage_lower = 50
-	melee_damage_upper = 70
-	attack_delay = -2 
-
-	// *** Tackle *** //
-	tackle_damage = 60
-
-	// *** Speed *** //
-	speed = -0.45
-
-	// *** Plasma *** //
-	plasma_max = 175
-	plasma_gain = 13
-
-	// *** Health *** //
-	max_health = 250
-
-	// *** Evolution *** //
-	upgrade_threshold = 800
-
-	// *** Defense *** //
-	armor_deflection = 25
-
-	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
-
-/datum/xeno_caste/ravager/elder
-	upgrade_name = "Elder"
-	caste_desc = "A brutal, devastating front-line attacker. It looks pretty strong."
-
-	upgrade = 2
-
-	// *** Melee Attacks *** //
-	melee_damage_lower = 55
-	melee_damage_upper = 75
-	attack_delay = -2 
-
-	// *** Tackle *** //
-	tackle_damage = 65
-
-	// *** Speed *** //
-	speed = -0.48
-
-	// *** Plasma *** //
-	plasma_max = 190
-	plasma_gain = 14
-
-	// *** Health *** //
-	max_health = 260
-
-	// *** Evolution *** //
-	upgrade_threshold = 1600
-
-	// *** Defense *** //
-	armor_deflection = 28
-
-	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
-
-/datum/xeno_caste/ravager/ancient
-	upgrade_name = "Ancient"
-	caste_desc = "As I walk through the valley of the shadow of death."
-	ancient_message = "You are death incarnate. All will tremble before you."
-	upgrade = 3
-
-	// *** Melee Attacks *** //
-	melee_damage_lower = 60
-	melee_damage_upper = 80
-	attack_delay = -2 
-
-	// *** Tackle *** //
-	tackle_damage = 70
-
-	// *** Speed *** //
-	speed = -0.5
-
-	// *** Plasma *** //
-	plasma_max = 200
-	plasma_gain = 15
-
-	// *** Health *** //
-	max_health = 265
-
-	// *** Evolution *** //
-	upgrade_threshold = 1600
-
-	// *** Defense *** //
-	armor_deflection = 30
-
-	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
+//Ravager Code - Colonial Marines - Last Edit: Apophis775 - 11JUN16
 
 /mob/living/carbon/Xenomorph/Ravager
-	caste_base_type = /mob/living/carbon/Xenomorph/Ravager
+	caste = "Ravager"
 	name = "Ravager"
 	desc = "A huge, nasty red alien with enormous scythed claws."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Ravager Walking"
+	melee_damage_lower = 40
+	melee_damage_upper = 60
+	tackle_damage = 55
 	health = 200
 	maxHealth = 200
 	plasma_stored = 50
+	plasma_gain = 10
+	plasma_max = 150
+	upgrade_threshold = 400
+	evolution_allowed = FALSE
+	caste_desc = "A brutal, devastating front-line attacker."
+	speed = -0.4 //Not as fast as runners, but faster than other xenos.
+	charge_type = 3 //Claw at end of charge
+	fire_resist = 0.5
+	armor_deflection = 20
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
 	xeno_explosion_resistance = 1 //can't be gibbed from explosions
+	attack_delay = -2
 	tier = 3
 	upgrade = 0
 	pixel_x = -16
@@ -226,49 +102,21 @@
 	return 0
 
 //Super hacky firebreathing Halloween rav.
-/datum/xeno_caste/ravager/ravenger
-	caste_name = "Ravenger"
-	display_name = "Ravenger"
-	upgrade_name = ""
-	caste_type_path = /mob/living/carbon/Xenomorph/Ravager/ravenger
-	tier = 3
-	upgrade = 3
-
-	// *** Melee Attacks *** //
+/mob/living/carbon/Xenomorph/Ravager/ravenger
+	name = "Ravenger"
+	desc = "It's a goddamn dragon! Run! RUUUUN!"
+	is_intelligent = 1
+	hardcore = 1
 	melee_damage_lower = 70
 	melee_damage_upper = 90
-	attack_delay = -2 
-
-	// *** Tackle *** //
-	tackle_damage = 55
-
-	// *** Speed *** //
-	speed = -0.5
-
-	// *** Plasma *** //
-	plasma_max = 200
-	plasma_gain = 15
-
-	// *** Health *** //
-	max_health = 600
-
-	hardcore = TRUE
-
-	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT
-
-	// *** Defense *** //
-	armor_deflection = 20
-
-	fire_resist = 0.5 //0 to 1; lower is better as it is a multiplier.
-
-	// *** Ranged Attack *** //
-	charge_type = 3 //Claw at end of charge
-
-/mob/living/carbon/Xenomorph/Ravager/ravenger
-	caste_base_type = /mob/living/carbon/Xenomorph/Ravager/ravenger
-	desc = "It's a goddamn dragon! Run! RUUUUN!"
+	tacklemin = 3
+	tacklemax = 6
+	tackle_chance = 85
+	health = 600
+	maxHealth = 600
 	plasma_stored = 200
+	plasma_gain = 15
+	plasma_max = 200
 	upgrade = 3
 	var/used_fire_breath = 0
 	actions = list(
@@ -328,9 +176,9 @@
 		fire_mod = 1
 		if(isXeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
-			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+			if(X.fire_immune)
 				continue
-			fire_mod = X.xeno_caste.fire_resist + X.fire_resist_modifier
+			fire_mod = X.fire_resist
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || istype(H.wear_suit, /obj/item/clothing/suit/space/rig/atmos))

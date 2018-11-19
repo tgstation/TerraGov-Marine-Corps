@@ -116,7 +116,7 @@
 		"<span class='warning'>You creepily tap on [src].</span>", \
 		"<span class='warning'>You hear a glass tapping sound.</span>", 5)
 	else
-		attack_generic(M, M.xeno_caste.melee_damage_lower)
+		attack_generic(M, M.melee_damage_lower)
 
 /obj/structure/window/attack_hand(mob/user as mob)
 	if(HULK in user.mutations)

@@ -58,11 +58,9 @@
 /mob/living/carbon/Xenomorph/New()
 	verbs += /mob/living/proc/lay_down
 	..()
-
-	set_datum()
 	//WO GAMEMODE
 	if(map_tag == MAP_WHISKEY_OUTPOST)
-		xeno_caste.hardcore = 1 //Prevents healing and queen evolution
+		hardcore = 1 //Prevents healing and queen evolution
 	time_of_birth = world.time
 	add_language("Xenomorph") //xenocommon
 	add_language("Hivemind") //hivemind
@@ -74,8 +72,8 @@
 	see_in_dark = 8
 
 
-	if(xeno_caste.spit_types?.len)
-		ammo = ammo_list[xeno_caste.spit_types[1]]
+	if(spit_types && spit_types.len)
+		ammo = ammo_list[spit_types[1]]
 
 	var/datum/reagents/R = new/datum/reagents(100)
 	reagents = R
@@ -91,26 +89,6 @@
 	regenerate_icons()
 
 	toggle_xeno_mobhud() //This is a verb, but fuck it, it just werks
-
-/mob/living/carbon/Xenomorph/proc/set_datum()
-	if(!caste_base_type)
-		error("xeno spawned without a caste_base_type set")
-		return
-	if(!xeno_caste_datums[caste_base_type])
-		error("error finding base type")
-		return
-	if(!xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)])
-		error("error finding datum")
-		return
-	var/datum/xeno_caste/X = xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
-	if(!istype(X))
-		error("error with caste datum")
-		return
-	xeno_caste = X
-
-	plasma_stored = xeno_caste.plasma_max
-	maxHealth = xeno_caste.max_health
-	health = maxHealth
 
 //Off-load this proc so it can be called freely
 //Since Xenos change names like they change shoes, we need somewhere to hammer in all those legos
@@ -131,7 +109,7 @@
 
 
 	//Larvas have their own, very weird naming conventions, let's not kick a beehive, not yet
-	if(isXenoLarva(src))
+	if(caste == "Larva")
 		return
 
 	var/name_prefix = ""
@@ -151,13 +129,14 @@
 		remove_language("English") // its hacky doing it here sort of
 
 	//Queens have weird, hardcoded naming conventions based on upgrade levels. They also never get nicknumbers
-	if(isXenoQueen(src))
+	if(caste == "Queen")
 		switch(upgrade)
 			if(0) name = "\improper [name_prefix]Queen"			 //Young
 			if(1) name = "\improper [name_prefix]Elder Queen"	 //Mature
 			if(2) name = "\improper [name_prefix]Elder Empress"	 //Elder
 			if(3) name = "\improper [name_prefix]Ancient Empress" //Ancient
-	else name = "\improper [name_prefix][xeno_caste.upgrade_name] [xeno_caste.display_name] ([nicknumber])"
+	else if(caste == "Predalien") name = "\improper [name_prefix][name] ([nicknumber])"
+	else name = "\improper [name_prefix][upgrade_name] [caste] ([nicknumber])"
 
 	//Update linked data so they show up properly
 	real_name = name
@@ -165,8 +144,8 @@
 
 /mob/living/carbon/Xenomorph/examine(mob/user)
 	..()
-	if(isXeno(user) && xeno_caste.caste_desc)
-		to_chat(user, xeno_caste.caste_desc)
+	if(isXeno(user) && caste_desc)
+		to_chat(user, caste_desc)
 
 	if(stat == DEAD)
 		to_chat(user, "It is DEAD. Kicked the bucket. Off to that great hive in the sky.")
@@ -234,7 +213,7 @@
 /mob/living/carbon/Xenomorph/pull_response(mob/puller)
 	var/mob/living/carbon/human/H = puller
 	if(stat == CONSCIOUS && H.species?.count_human) // If the Xeno is conscious, fight back against a grab/pull
-		puller.KnockDown(rand(xeno_caste.tacklemin,xeno_caste.tacklemax))
+		puller.KnockDown(rand(tacklemin,tacklemax))
 		playsound(puller.loc, 'sound/weapons/pierce.ogg', 25, 1)
 		puller.visible_message("<span class='warning'>[puller] tried to pull [src] but instead gets a tail swipe to the head!</span>")
 		puller.stop_pulling()
@@ -264,7 +243,7 @@
 
 /mob/living/carbon/Xenomorph/point_to_atom(atom/A, turf/T)
 	//xeno leader get a bit arrow and less cooldown
-	if(queen_chosen_lead || isXenoQueen(src))
+	if(queen_chosen_lead || caste == "Queen")
 		recently_pointed_to = world.time + 10
 		new /obj/effect/overlay/temp/point/big(T)
 	else

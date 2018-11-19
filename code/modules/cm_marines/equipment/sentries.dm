@@ -76,7 +76,7 @@
 	M.animation_attack_on(src)
 	M.flick_attack_overlay(src, "slash")
 	playsound(loc, "alien_claw_metal", 25)
-	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
+	update_health(rand(M.melee_damage_lower,M.melee_damage_upper))
 
 /obj/machinery/marine_turret_frame/examine(mob/user as mob)
 	..()
@@ -882,7 +882,7 @@
 	if(prob(10))
 		if(!locate(/obj/effect/decal/cleanable/blood/oil) in loc)
 			new /obj/effect/decal/cleanable/blood/oil(loc)
-	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
+	update_health(rand(M.melee_damage_lower,M.melee_damage_upper))
 
 /obj/machinery/marine_turret/bullet_act(var/obj/item/projectile/Proj) //Nope.
 	visible_message("[src] is hit by the [Proj.name]!")

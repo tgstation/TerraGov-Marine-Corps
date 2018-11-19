@@ -155,7 +155,7 @@
 
 	if(M.a_intent == "hurt")
 		M.animation_attack_on(src)
-		if(prob(M.xeno_caste.melee_damage_lower))
+		if(prob(M.melee_damage_lower))
 			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] beyond recognition!</span>", \
 			"<span class='danger'>You enter a frenzy and smash \the [src] apart!</span>", null, 5)
