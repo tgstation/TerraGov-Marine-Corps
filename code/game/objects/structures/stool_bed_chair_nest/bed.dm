@@ -129,6 +129,8 @@ obj/structure/bed/Dispose()
 					var/obj/structure/bed/medevac_stretcher/B = src
 					M.last_teleport = B.last_teleport
 					M.linked_beacon = B.linked_beacon
+					if(M.linked_beacon.linked_bed_deployed == src)
+						M.linked_beacon.linked_bed = M
 				H.visible_message("<span class='warning'>[H] grabs [src] from the floor!</span>",
 				"<span class='warning'>You grab [src] from the floor!</span>")
 				cdel(src)
@@ -249,6 +251,8 @@ obj/structure/bed/Dispose()
 		var/obj/structure/bed/medevac_stretcher/B = R
 		B.last_teleport = I.last_teleport
 		B.linked_beacon = I.linked_beacon
+		if(B.linked_beacon.linked_bed == src)
+			B.linked_beacon.linked_bed_deployed = B
 	cdel(src)
 
 /obj/item/roller_holder
@@ -448,13 +452,14 @@ var/global/list/activated_medevac_stretchers = list()
 		spark_system2.start(linked_beacon)
 		playsound(linked_beacon.loc,'sound/effects/phasein.ogg', 50, FALSE)
 
-		medvac_alert(M) //We warn med channel about the mob, not what was teleported.
+		linked_beacon.medvac_alert(M) //We warn med channel about the mob, not what was teleported.
 		last_teleport = world.time + MEDEVAC_COOLDOWN
 
 /obj/structure/bed/medevac_stretcher/attackby(obj/item/W, mob/user)
 	if(istype(W,/obj/item/device/medevac_beacon))
 		var/obj/item/device/medevac_beacon/B = W
 		linked_beacon = B
+		B.linked_bed = src
 		to_chat(user, "<span class='notice'><b>You link the medvac beacon to the medvac stretcher.</b></span>")
 		playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
 		return
@@ -473,17 +478,17 @@ var/global/list/activated_medevac_stretchers = list()
 	playsound(loc, 'sound/machines/ping.ogg', 50, FALSE)
 	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 	AI.SetName("Medevac Notification System")
-	AI.aiRadio.talk_into(AI,"Patient [M] has been tele-vaced to medvac beacon at: [get_area(linked_beacon)]. Coordinates: (X: [linked_beacon.x], Y: [linked_beacon.x])","MedSci","announces")
+	AI.aiRadio.talk_into(AI,"Patient [M] has been tele-vaced to medvac beacon at: [get_area(linked_beacon)]. Coordinates: (X: [linked_beacon.x], Y: [linked_beacon.y])","MedSci","announces")
 	cdel(AI)
 
 /obj/structure/bed/medevac_stretcher/examine(mob/user)
 	. = ..()
 	var/list/details = list()
 	if(linked_beacon)
-		details +=("It's linked to a beacon located at: [get_area(linked_beacon)]. Coordinates: (X: [linked_beacon.x], Y: [linked_beacon.x]).</br>")
+		details +=("It's linked to a beacon located at: [get_area(linked_beacon)]. Coordinates: (X: [linked_beacon.x], Y: [linked_beacon.y]).</br>")
 
 	if(world.time < last_teleport)
-		details +=("It's bluespace engine is currently recharging. The interface estimates: [round(last_teleport - world.time) * 0.1] seconds until it has recharged.</br>")
+		details +=("Its bluespace engine is currently recharging. <b>The interface displays: [round(last_teleport - world.time) * 0.1] seconds until it has recharged.</b></br>")
 
 	if(buckled_mob)
 		details +=("It contains [buckled_mob].</br>")
@@ -510,7 +515,7 @@ var/global/list/activated_medevac_stretchers = list()
 	. = ..()
 	var/list/details = list()
 	if(linked_beacon)
-		details +=("It's linked to a beacon located at: [get_area(linked_beacon)]. Coordinates: (X: [linked_beacon.x], Y: [linked_beacon.x]).</br>")
+		details +=("It's linked to a beacon located at: [get_area(linked_beacon)]. Coordinates: (X: [linked_beacon.x], Y: [linked_beacon.y]).</br>")
 
 	if(world.time < last_teleport)
 		details +=("<span class='warning'>It's bluespace engine is currently recharging. The interface estimates: [round(last_teleport - world.time) * 0.1] seconds until it has recharged.</span></br>")
@@ -522,6 +527,7 @@ var/global/list/activated_medevac_stretchers = list()
 	if(istype(W,/obj/item/device/medevac_beacon))
 		var/obj/item/device/medevac_beacon/B = W
 		linked_beacon = B
+		B.linked_bed = src
 		to_chat(user, "<span class='notice'><b>You link the medvac beacon to the medvac stretcher.</b></span>")
 		playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
 		return
@@ -534,7 +540,39 @@ var/global/list/activated_medevac_stretchers = list()
 	icon_state = "med_beacon0"
 	var/planted = FALSE
 	var/locked = FALSE
+	var/obj/item/roller/medevac/linked_bed = null
+	var/obj/structure/bed/medevac_stretcher/linked_bed_deployed = null
 	req_one_access = list(ACCESS_MARINE_MEDPREP, ACCESS_MARINE_LEADER)
+
+
+/obj/item/device/medevac_beacon/examine(mob/user)
+	. = ..()
+	var/list/details = list()
+	if(!check_power())
+		details +=("<b>It's currently unpowered.</b></br>")
+	else
+		details +=("<b>It's currently powered.</b></br>")
+	if(linked_bed_deployed)
+		details +=("It's linked to a medvac bed located at: [get_area(linked_bed_deployed)]. Coordinates: (X: [linked_bed_deployed.x], Y: [linked_bed_deployed.y]).</br>")
+		var/teleport_time = linked_bed_deployed.last_teleport
+		if(world.time < teleport_time)
+			details +=("The linked bed's bluespace engine is currently recharging. <b>The interface displays: [round(teleport_time - world.time) * 0.1] seconds until it has recharged.</b></br>")
+	else if(linked_bed)
+		details +=("It's linked to a medvac bed located at: [get_area(linked_bed)]. Coordinates: (X: [linked_bed.x], Y: [linked_bed.y]).</br>")
+		var/teleport_time = linked_bed.last_teleport
+		if(world.time < teleport_time)
+			details +=("The linked bed's bluespace engine is currently recharging. <b>The interface displays: [round(teleport_time - world.time) * 0.1] seconds until it has recharged.</b></br>")
+	else
+		details +=("It's not currently linked to a medvac bed.</br>")
+
+	to_chat(user, "<span class='notice'>[details.Join(" ")]</span>")
+
+/obj/item/device/medevac_beacon/proc/medvac_alert(mob/M)
+	playsound(loc, 'sound/machines/ping.ogg', 50, FALSE)
+	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
+	AI.SetName("Medevac Notification System")
+	AI.aiRadio.talk_into(AI,"Patient [M] has been tele-vaced to medvac beacon at: [get_area(src)]. Coordinates: (X: [src.x], Y: [src.y])","MedSci","announces")
+	cdel(AI)
 
 /obj/item/device/medevac_beacon/attack_self(mob/user)
 	if(locked)
@@ -569,10 +607,24 @@ var/global/list/activated_medevac_stretchers = list()
 	if(istype(O, /obj/item/card/id))
 		if(!allowed(user))
 			to_chat(user, "<span class='warning'>Access denied.</span>")
+			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
 			return
 		locked = !locked
 		user.visible_message("<span class='notice'>[user] [locked ? "locks" : "unlocks"] [src]'s interface.</span>",
 		"<span class='notice'>You [locked ? "lock" : "unlock"] [src]'s interface.</span>")
+	else if(istype(O,/obj/item/roller/medevac))
+		if(locked && !allowed(user))
+			to_chat(user, "<span class='warning'>Access denied.</span>")
+			playsound(loc,'sound/machines/buzz-two.ogg', 25, FALSE)
+			return
+		var/obj/item/roller/medevac/R = O
+		linked_bed = R
+		R.linked_beacon = src
+		to_chat(user, "<span class='notice'><b>You link the medvac beacon to the medvac stretcher.</b></span>")
+		playsound(loc,'sound/machines/ping.ogg', 25, FALSE)
+		return
+	return ..()
+
 
 /obj/item/device/medevac_beacon/proc/check_power()
 	var/area/A = loc?.loc
