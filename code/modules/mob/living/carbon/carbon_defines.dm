@@ -24,3 +24,5 @@
 
 	var/traumatic_shock = 0
 	var/shock_stage = 0
+
+	var/acid_process_cooldown = 0 //While this is true, the human is unaffected by acid damage from acid puddles; normally applied on being hit by acid spit/spray; reduced at a rate of 1/tick. Used to avoid double whammies.

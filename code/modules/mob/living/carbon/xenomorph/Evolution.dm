@@ -249,6 +249,8 @@
 
 		new_xeno.middle_mouse_toggle = middle_mouse_toggle //Keep our toggle state
 
+		update_spits() //Update spits to new/better ones
+
 		for(var/obj/item/W in contents) //Drop stuff
 			drop_inv_item_on_ground(W)
 

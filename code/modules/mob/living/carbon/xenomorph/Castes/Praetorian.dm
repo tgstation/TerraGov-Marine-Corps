@@ -16,7 +16,7 @@
 	plasma_max = 800
 	upgrade_threshold = 400
 	evolution_allowed = FALSE
-	spit_delay = 20
+	spit_delay = 10
 	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy, /datum/ammo/xeno/sticky)
 	speed = -0.1
 	pixel_x = -16
