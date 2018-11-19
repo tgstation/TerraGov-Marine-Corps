@@ -5,7 +5,7 @@
 /datum/game_mode
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
 	var/datum/emergency_call/picked_call = null //Which distress call is currently active
-	var/distress_cooldown = 0
+	var/on_distress_cooldown = 0
 	var/waiting_for_candidates = 0
 
 //The distress call parent.
@@ -95,7 +95,7 @@
 	set category = "Ghost"
 	set desc = "Join an ongoing distress call response. You must be ghosted to do this."
 
-	var/datum/emergency_call/distress = ticker.mode.picked_call //Just to simplify things a bit
+	var/datum/emergency_call/distress = ticker?.mode?.picked_call //Just to simplify things a bit
 
 	if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Emergency Response Team"))
 		to_chat(usr, "<span class='danger'>You are jobbanned from the emergency reponse team!</span>")
@@ -145,11 +145,11 @@
 	if(!ticker || !ticker.mode) //Something horribly wrong with the gamemode ticker
 		return
 
-	if(ticker.mode.distress_cooldown) //It's already been called.
+	if(ticker.mode.on_distress_cooldown) //It's already been called.
 		return
 
 	if(mob_max > 0)
-		ticker.mode.waiting_for_candidates = 1
+		ticker.mode.waiting_for_candidates = TRUE
 
 	show_join_message() //Show our potential candidates the message to let them join.
 	message_admins("Distress beacon: '[name]' activated. Looking for candidates.", 1)
@@ -157,12 +157,12 @@
 	if(announce)
 		command_announcement.Announce("A distress beacon has been launched from the [MAIN_SHIP_NAME].", "Priority Alert", new_sound='sound/AI/distressbeacon.ogg')
 
-	ticker.mode.distress_cooldown = 1
+	ticker.mode.on_distress_cooldown = TRUE
 
 	spawn(1 MINUTE)
 		if(candidates.len < mob_min)
 			message_admins("Aborting distress beacon, not enough candidates: found [candidates.len].", 1)
-			ticker.mode.waiting_for_candidates = 0
+			ticker.mode.waiting_for_candidates = FALSE
 			members = list() //Empty the members list.
 			candidates = list()
 
@@ -170,10 +170,10 @@
 				command_announcement.Announce("The distress signal has not received a response, the launch tubes are now recalibrating.", "Distress Beacon")
 
 			ticker.mode.picked_call = null
-			ticker.mode.distress_cooldown = 1
+			ticker.mode.on_distress_cooldown = TRUE
 
 			spawn(COOLDOWN_COMM_REQUEST)
-				ticker.mode.distress_cooldown = 0
+				ticker.mode.on_distress_cooldown = TRUE
 			
 		else //We've got enough!
 			//Trim down the list
@@ -234,7 +234,7 @@
 			candidates = list()
 
 			spawn(COOLDOWN_COMM_REQUEST)
-				ticker.mode.distress_cooldown = 0
+				ticker.mode.on_distress_cooldown = 0
 
 /datum/emergency_call/proc/add_candidate(var/mob/M)
 	if(!M.client) 

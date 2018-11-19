@@ -20,7 +20,7 @@
 	req_access = list(ACCESS_MARINE_BRIDGE)
 	circuit = "/obj/item/circuitboard/computer/communications"
 	var/prints_intercept = TRUE
-	var/authenticated = FALSE
+	var/authenticated = 0
 	var/list/messagetitle = list()
 	var/list/messagetext = list()
 	var/currmsg = 0
@@ -50,7 +50,8 @@
 			updateDialog()
 
 /obj/machinery/computer/communications/Topic(href, href_list)
-	if(..()) 
+	. = ..()
+	if(.)
 		return FALSE
 
 	usr.set_interaction(src)
@@ -194,7 +195,7 @@
 					to_chat(usr, "<span class='warning'>The distress beacon has been just launched.</span>")
 					return FALSE
 
-				if(ticker.mode.distress_cooldown)
+				if(ticker.mode.on_distress_cooldown)
 					to_chat(usr, "<span class='warning'>The distress beacon is currently recalibrating.</span>")
 					return FALSE
 
