@@ -70,7 +70,7 @@
 		return chosen_call
 
 /datum/emergency_call/proc/show_join_message()
-	if(!mob_max || !ticker || !ticker.mode) //Not a joinable distress call.
+	if(!mob_max || !ticker?.mode) //Not a joinable distress call.
 		return
 
 	for(var/mob/dead/observer/M in player_list)
