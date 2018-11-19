@@ -118,10 +118,10 @@
 
 
 /mob/living/carbon/Xenomorph/adjustBruteLoss(amount)
-	bruteloss = CLAMP(bruteloss + amount, 0, maxHealth - crit_health)
+	bruteloss = CLAMP(bruteloss + amount, 0, maxHealth - xeno_caste.crit_health)
 
 /mob/living/carbon/Xenomorph/adjustFireLoss(amount)
-	fireloss = CLAMP(fireloss + amount, 0, maxHealth - crit_health)
+	fireloss = CLAMP(fireloss + amount, 0, maxHealth - xeno_caste.crit_health)
 
 /mob/living/carbon/Xenomorph/proc/process_rage_damage(damage)
 	return damage

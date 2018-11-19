@@ -42,7 +42,7 @@
 				hive = hive_datum[M.hivenumber]
 			else return
 
-			if(!hive.slashing_allowed && !M.is_intelligent)
+			if(!hive.slashing_allowed && !(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 				to_chat(M, "<span class='warning'>Slashing is currently <b>forbidden</b> by the Queen. You refuse to slash [src].</span>")
 				return FALSE
 
@@ -61,7 +61,7 @@
 					to_chat(M, "<span class='warning'>[src] is dead, why would you want to touch it?</span>")
 				return FALSE
 
-			if(!M.is_intelligent)
+			if(!(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 				if(hive.slashing_allowed == 2)
 					if(status_flags & XENO_HOST)
 						for(var/obj/item/alien_embryo/embryo in src)
@@ -85,7 +85,7 @@
 				return FALSE
 
 			//From this point, we are certain a full attack will go out. Calculate damage and modifiers
-			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper) + dam_bonus
+			var/damage = rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) + dam_bonus
 
 			//Frenzy auras stack in a way, then the raw value is multipled by two to get the additive modifier
 			if(M.frenzy_aura > 0)
@@ -99,7 +99,7 @@
 			var/attack_message2 = "<span class='danger'>You slash [src]!</span>"
 			var/log = "slashed"
 			//Check for a special bite attack
-			if(prob(M.bite_chance) && !M.critical_proc && !no_crit && !M.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
+			if(prob(M.xeno_caste.bite_chance) && !M.critical_proc && !no_crit && !M.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
 				damage *= 1.5
 				attack_sound = "alien_bite"
 				attack_message1 = "<span class='danger'>\The [src] is viciously shredded by \the [M]'s sharp teeth!</span>"
@@ -110,7 +110,7 @@
 					M.critical_proc = FALSE
 
 			//Check for a special bite attack
-			if(prob(M.bite_chance) && !M.critical_proc && !no_crit && !M.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
+			if(prob(M.xeno_caste.bite_chance) && !M.critical_proc && !no_crit && !M.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
 				damage *= 1.25
 				attack_flick = "tail"
 				attack_sound = 'sound/weapons/alien_tail_attack.ogg'
@@ -151,7 +151,7 @@
 					var/knock_chance = 1
 					if(M.frenzy_aura > 0)
 						knock_chance += 2 * M.frenzy_aura
-					if(M.is_intelligent)
+					if(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT)
 						knock_chance += 2
 					knock_chance += min(round(damage * 0.25), 10) //Maximum of 15% chance.
 					if(prob(knock_chance))
@@ -211,7 +211,7 @@
 
 			playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 
-			var/tackle_pain = (rand(M.tackle_damage * 0.20, M.tackle_damage * 0.80) + rand(M.tackle_damage * 0.20, M.tackle_damage * 0.80))
+			var/tackle_pain = (rand(M.xeno_caste.tackle_damage * 0.20, M.xeno_caste.tackle_damage * 0.80) + rand(M.xeno_caste.tackle_damage * 0.20, M.xeno_caste.tackle_damage * 0.80))
 			if(M.frenzy_aura)
 				tackle_pain = tackle_pain * (1 + (0.05 * M.frenzy_aura))  //Halloss damage increased by 5% per rank of frenzy aura
 			if(protection_aura)
@@ -276,7 +276,7 @@
 				hive = hive_datum[M.hivenumber]
 			else return
 
-			if(!M.is_intelligent)
+			if(!(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT))
 				if(hive.slashing_allowed == 2)
 					if(status_flags & XENO_HOST)
 						for(var/obj/item/alien_embryo/embryo in src)
@@ -304,7 +304,7 @@
 
 			// copypasted from attack_alien.dm
 			//From this point, we are certain a full attack will go out. Calculate damage and modifiers
-			var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
+			var/damage = rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
 
 			//Frenzy auras stack in a way, then the raw value is multipled by two to get the additive modifier
 			if(M.frenzy_aura > 0)

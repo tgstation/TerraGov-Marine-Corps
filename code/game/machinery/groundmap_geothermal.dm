@@ -322,7 +322,7 @@
 	else
 		M.animation_attack_on(src)
 		M.visible_message("[M] slashes away at [src]!","You slash and claw at the bright light!", null, null, 5)
-		health  = max(health - rand(M.melee_damage_lower, M.melee_damage_upper), 0)
+		health  = max(health - rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper), 0)
 		if(!health)
 			playsound(src, "shatter", 70, 1)
 			damaged = TRUE
