@@ -60,23 +60,23 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 
 	var/flags_scuttle = NOFLAGS
 
-	New()
-		..()
-		dest_master = locate()
-		if(!dest_master)
-			log_debug("ERROR CODE SD1: could not find master self-destruct console")
-			to_chat(world, "<span class='debuginfo'>ERROR CODE SD1: could not find master self-destruct console</span>")
-			return FALSE
-		dest_rods = new
-		for(var/obj/machinery/self_destruct/rod/I in dest_master.loc.loc) dest_rods += I
-		if(!dest_rods.len)
-			log_debug("ERROR CODE SD2: could not find any self destruct rods")
-			to_chat(world, "<span class='debuginfo'>ERROR CODE SD2: could not find any self destruct rods</span>")
-			cdel(dest_master)
-			dest_master = null
-			return FALSE
-		dest_cooldown = SELF_DESTRUCT_ROD_STARTUP_TIME / dest_rods.len
-		dest_master.desc = "The main operating panel for a self-destruct system. It requires very little user input, but the final safety mechanism is manually unlocked.\nAfter the initial start-up sequence, [dest_rods.len] control rods must be armed, followed by manually flipping the detonation switch."
+/datum/authority/branch/evacuation/EvacuationAuthority/New()
+	. = ..()
+	dest_master = locate()
+	if(!dest_master)
+		log_debug("ERROR CODE SD1: could not find master self-destruct console")
+		to_chat(world, "<span class='debuginfo'>ERROR CODE SD1: could not find master self-destruct console</span>")
+		return FALSE
+	dest_rods = new
+	for(var/obj/machinery/self_destruct/rod/I in dest_master.loc.loc) dest_rods += I
+	if(!dest_rods.len)
+		log_debug("ERROR CODE SD2: could not find any self destruct rods")
+		to_chat(world, "<span class='debuginfo'>ERROR CODE SD2: could not find any self destruct rods</span>")
+		cdel(dest_master)
+		dest_master = null
+		return FALSE
+	dest_cooldown = SELF_DESTRUCT_ROD_STARTUP_TIME / dest_rods.len
+	dest_master.desc = "The main operating panel for a self-destruct system. It requires very little user input, but the final safety mechanism is manually unlocked.\nAfter the initial start-up sequence, [dest_rods.len] control rods must be armed, followed by manually flipping the detonation switch."
 
 /datum/authority/branch/evacuation/proc/get_affected_zlevels() //This proc returns the ship's z level list (or whatever specified), when an evac/self destruct happens.
 	if(dest_status < NUKE_EXPLOSION_IN_PROGRESS && evac_status == EVACUATION_STATUS_COMPLETE) //Nuke is not in progress and evacuation finished, end the round on ship and low orbit (dropships in transit) only.
@@ -95,7 +95,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		enter_allowed = 0 //No joining during evac.
 		evac_time = world.time
 		evac_status = EVACUATION_STATUS_INITIATING
-		ai_system.Announce("Attention. Emergency. All personel must evacuate immediately. You have [round(EVACUATION_ESTIMATE_DEPARTURE/60,1)] minute\s until departure.", 'sound/AI/evacuate.ogg')
+		command_announcement.Announce("Emergency evacuation has been triggered. Please proceed to the escape pods.", "Priority Alert", new_sound='sound/AI/evacuate.ogg', to_xenos = 0)
 		xeno_message("A wave of adrenaline ripples through the hive. The fleshy creatures are trying to escape!")
 		var/datum/shuttle/ferry/marine/evacuation_pod/P
 		for(var/i = 1 to MAIN_SHIP_ESCAPE_POD_NUMBER)
@@ -109,7 +109,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		enter_allowed = 1
 		evac_time = null
 		evac_status = EVACUATION_STATUS_STANDING_BY
-		ai_system.Announce("Evacuation has been cancelled.", 'sound/AI/evacuate_cancelled.ogg')
+		command_announcement.Announce("Evacuation has been cancelled.", "Priority Alert", new_sound='sound/AI/evacuate_cancelled.ogg')
 		var/datum/shuttle/ferry/marine/evacuation_pod/P
 		for(var/i = 1 to MAIN_SHIP_ESCAPE_POD_NUMBER)
 			P = shuttle_controller.shuttles["[MAIN_SHIP_NAME] Evac [i]"]
@@ -120,7 +120,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	if(evac_status == EVACUATION_STATUS_INITIATING)
 		evac_status = EVACUATION_STATUS_IN_PROGRESS //Cannot cancel at this point. All shuttles are off.
 		spawn() //One of the few times spawn() is appropriate. No need for a new proc.
-			ai_system.Announce("WARNING: Evacuation order confirmed. Launching escape pods.", 'sound/AI/evacuation_confirmed.ogg')
+			command_announcement.Announce("WARNING: Evacuation order confirmed. Launching escape pods.", "Priority Alert", new_sound='sound/AI/evacuation_confirmed.ogg')
 			var/datum/shuttle/ferry/marine/evacuation_pod/P
 			var/L[] = new
 			var/i
@@ -132,7 +132,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 				L -= i
 				sleep(50) //Sleeps 5 seconds each launch.
 			sleep(300) //Sleep 30 more seconds to make sure everyone had a chance to leave.
-			ai_system.Announce("ATTENTION: Evacuation complete. Outbound lifesigns detected: [P.passengers ? P.passengers  : "none"].", 'sound/AI/evacuation_complete.ogg')
+			command_announcement.Announce("ATTENTION: Evacuation complete. Outbound lifesigns detected: [P.passengers ? P.passengers  : "none"].", "Priority Alert", new_sound='sound/AI/evacuation_complete.ogg')
 			evac_status = EVACUATION_STATUS_COMPLETE
 		return TRUE
 
@@ -140,7 +140,8 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	set background = 1
 
 	spawn while(evac_status == EVACUATION_STATUS_INITIATING) //If it's not departing, no need to process.
-		if(world.time >= evac_time + EVACUATION_AUTOMATIC_DEPARTURE) begin_launch()
+		if(world.time >= evac_time + EVACUATION_AUTOMATIC_DEPARTURE) 
+			begin_launch()
 		sleep(10) //One second.
 
 /datum/authority/branch/evacuation/proc/get_status_panel_eta()
@@ -148,7 +149,8 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		if(EVACUATION_STATUS_INITIATING)
 			var/eta = EVACUATION_ESTIMATE_DEPARTURE
 			. = "[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
-		if(EVACUATION_STATUS_IN_PROGRESS) . = "NOW"
+		if(EVACUATION_STATUS_IN_PROGRESS) 
+			. = "NOW"
 
 //=========================================================================================
 //=========================================================================================
@@ -185,7 +187,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 			if(I.active_state == SELF_DESTRUCT_MACHINE_ACTIVE || (I.active_state == SELF_DESTRUCT_MACHINE_ARMED && override)) I.lock_or_unlock(1)
 		dest_master.lock_or_unlock(1)
 		dest_index = 1
-		ai_system.Announce("The emergency destruct system has been deactivated.", 'sound/AI/selfdestruct_deactivated.ogg')
+		command_announcement.Announce("The emergency destruct system has been deactivated.", "Priority Alert", new_sound='sound/AI/selfdestruct_deactivated.ogg')
 		if(evac_status == EVACUATION_STATUS_STANDING_BY) //the evac has also been cancelled or was never started.
 			set_security_level(SEC_LEVEL_RED, TRUE) //both SD and evac are inactive, lowering the security level.
 		return TRUE
@@ -203,7 +205,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		for(i in EvacuationAuthority.dest_rods)
 			I = i
 			I.in_progress = 1
-		ai_system.Announce("DANGER. DANGER. Self destruct system activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.")
+		command_announcement.Announce("DANGER. DANGER. Self destruct system activated. DANGER. DANGER. Self destruct in progress. DANGER. DANGER.", "Priority Alert")
 		trigger_self_destruct(,,override)
 		return TRUE
 
@@ -226,7 +228,8 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		var/mob/M
 		var/turf/T
 		for(M in player_list) //This only does something cool for the people about to die, but should prove pretty interesting.
-			if(!M || !M.loc) continue //In case something changes when we sleep().
+			if(!M || !M.loc) 
+				continue //In case something changes when we sleep().
 			T = get_turf(M)
 			if(T.z in z_levels)
 				if(M.stat == DEAD)
@@ -291,20 +294,22 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	var/in_progress = 0 //Cannot interact with while it's doing something, like an animation.
 	var/active_state = SELF_DESTRUCT_MACHINE_INACTIVE //What step of the process it's on.
 
-	New()
-		..()
-		icon_state += "_1"
+/obj/machinery/self_destruct/New()
+	. = ..()
+	icon_state += "_1"
 
-	Dispose()
-		. = ..()
-		machines -= src
-		operator = null
+/obj/machinery/self_destruct/Dispose()
+	. = ..()
+	machines -= src
+	operator = null
 
-	ex_act(severity) return FALSE
+/obj/machinery/self_destruct/ex_act(severity)
+	return FALSE
 
-	attack_hand()
-		if(..() || in_progress) return FALSE //This check is backward, ugh.
-		return TRUE
+/obj/machinery/self_destruct/attack_hand()
+	if(..() || in_progress) 
+		return FALSE //This check is backward, ugh.
+	return TRUE
 
 //Add sounds.
 /obj/machinery/self_destruct/proc/lock_or_unlock(lock)
@@ -321,55 +326,57 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	name = "self destruct control panel"
 	icon_state = "console"
 
-	Dispose()
-		. = ..()
-		EvacuationAuthority.dest_master = null
-		EvacuationAuthority.dest_rods = null
+/obj/machinery/self_destruct/console/Dispose()
+	. = ..()
+	EvacuationAuthority.dest_master = null
+	EvacuationAuthority.dest_rods = null
 
-	lock_or_unlock(lock)
-		playsound(src, 'sound/machines/hydraulics_1.ogg', 25, 1)
-		..()
+/obj/machinery/self_destruct/console/lock_or_unlock(lock)
+	playsound(src, 'sound/machines/hydraulics_1.ogg', 25, 1)
+	. = ..()
 
 	//TODO: Add sounds.
-	attack_hand(mob/user)
-		. = ..()
-		if(.) ui_interact(user)
+/obj/machinery/self_destruct/console/attack_hand(mob/user)
+	. = ..()
+	if(.) 
+		ui_interact(user)
 
-	Topic(href, href_list)
-		if(..()) return TRUE
-		switch(href_list["command"])
-			if("dest_start")
-				to_chat(usr, "<span class='notice'>You press a few keys on the panel.</span>")
-				to_chat(usr, "<span class='notice'>The system must be booting up the self-destruct sequence now.</span>")
-				ai_system.Announce("Danger. The emergency destruct system is now activated. The ship will detonate in T-minus 20 minutes. Automatic detonation is unavailable. Manual detonation is required.", 'sound/AI/selfdestruct.ogg')
-				active_state = SELF_DESTRUCT_MACHINE_ARMED //Arm it here so the process can execute it later.
-				var/obj/machinery/self_destruct/rod/I = EvacuationAuthority.dest_rods[EvacuationAuthority.dest_index]
-				I.activate_time = world.time
-				EvacuationAuthority.process_self_destruct()
-				var/data[] = list(
-					"dest_status" = active_state
-				)
-				nanomanager.try_update_ui(usr, src, "main",, data)
-			if("dest_trigger")
-				if(EvacuationAuthority.initiate_self_destruct()) nanomanager.close_user_uis(usr, src, "main")
-			if("dest_cancel")
-				var/list/allowed_officers = list("Commander", "Executive Officer", "Staff Officer", "Chief MP","Chief Medical Officer","Chief Engineer")
-				if(!usr.mind || !allowed_officers.Find(usr.mind.assigned_role))
-					to_chat(usr, "<span class='notice'>You don't have the necessary clearance to cancel the emergency destruct system.</span>")
-					return
-				if(EvacuationAuthority.cancel_self_destruct()) nanomanager.close_user_uis(usr, src, "main")
+/obj/machinery/self_destruct/console/Topic(href, href_list)
+	if(..()) 
+		return TRUE
+	switch(href_list["command"])
+		if("dest_start")
+			to_chat(usr, "<span class='notice'>You press a few keys on the panel.</span>")
+			to_chat(usr, "<span class='notice'>The system must be booting up the self-destruct sequence now.</span>")
+			command_announcement.Announce("Danger. The emergency destruct system is now activated. The ship will detonate in T-minus 20 minutes. Automatic detonation is unavailable. Manual detonation is required.", "Priority Alert", 'sound/AI/selfdestruct.ogg')
+			active_state = SELF_DESTRUCT_MACHINE_ARMED //Arm it here so the process can execute it later.
+			var/obj/machinery/self_destruct/rod/I = EvacuationAuthority.dest_rods[EvacuationAuthority.dest_index]
+			I.activate_time = world.time
+			EvacuationAuthority.process_self_destruct()
+			var/data[] = list("dest_status" = active_state)
+			nanomanager.try_update_ui(usr, src, "main",, data)
 
-	ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
-		var/data[] = list(
-			"dest_status" = active_state
-		)
+		if("dest_trigger")
+			if(EvacuationAuthority.initiate_self_destruct()) 
+				nanomanager.close_user_uis(usr, src, "main")
 
-		ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+		if("dest_cancel")
+			var/list/allowed_officers = list("Commander", "Executive Officer", "Staff Officer", "Chief MP","Chief Medical Officer","Chief Engineer")
+			if(!usr.mind || !allowed_officers.Find(usr.mind.assigned_role))
+				to_chat(usr, "<span class='notice'>You don't have the necessary clearance to cancel the emergency destruct system.</span>")
+				return
+			if(EvacuationAuthority.cancel_self_destruct()) 
+				nanomanager.close_user_uis(usr, src, "main")
 
-		if(!ui)
-			ui = new(user, src, ui_key, "self_destruct_console.tmpl", "OMICRON6 PAYLOAD", 470, 290)
-			ui.set_initial_data(data)
-			ui.open()
+/obj/machinery/self_destruct/console/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)
+	var/data[] = list("dest_status" = active_state)
+
+	ui = nanomanager.try_update_ui(user, src, ui_key, ui, data, force_open)
+
+	if(!ui)
+		ui = new(user, src, ui_key, "self_destruct_console.tmpl", "OMICRON6 PAYLOAD", 470, 290)
+		ui.set_initial_data(data)
+		ui.open()
 
 /obj/machinery/self_destruct/rod
 	name = "self destruct control rod"
@@ -378,36 +385,36 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	layer = BELOW_OBJ_LAYER
 	var/activate_time
 
-	Dispose()
-		. = ..()
-		EvacuationAuthority.dest_rods -= src
+/obj/machinery/self_destruct/rod/Dispose()
+	. = ..()
+	EvacuationAuthority.dest_rods -= src
 
-	lock_or_unlock(lock)
-		playsound(src, 'sound/machines/hydraulics_2.ogg', 25, 1)
-		..()
-		if(lock)
-			activate_time = null
-			density = FALSE
-			layer = initial(layer)
-		else
-			density = TRUE
-			layer = ABOVE_OBJ_LAYER
+/obj/machinery/self_destruct/rod/lock_or_unlock(lock)
+	playsound(src, 'sound/machines/hydraulics_2.ogg', 25, 1)
+	. = ..()
+	if(lock)
+		activate_time = null
+		density = FALSE
+		layer = initial(layer)
+	else
+		density = TRUE
+		layer = ABOVE_OBJ_LAYER
 
-	attack_hand(mob/user)
-		if(..())
-			switch(active_state)
-				if(SELF_DESTRUCT_MACHINE_ACTIVE)
-					to_chat(user, "<span class='notice'>You twist and release the control rod, arming it.</span>")
-					playsound(src, 'sound/machines/switch.ogg', 25, 1)
-					icon_state = "rod_4"
-					active_state = SELF_DESTRUCT_MACHINE_ARMED
-				if(SELF_DESTRUCT_MACHINE_ARMED)
-					to_chat(user, "<span class='notice'>You twist and release the control rod, disarming it.</span>")
-					playsound(src, 'sound/machines/switch.ogg', 25, 1)
-					icon_state = "rod_3"
-					active_state = SELF_DESTRUCT_MACHINE_ACTIVE
-				else
-					to_chat(user, "<span class='warning'>The control rod is not ready.</span>")
+/obj/machinery/self_destruct/rod/attack_hand(mob/user)
+	if(..())
+		switch(active_state)
+			if(SELF_DESTRUCT_MACHINE_ACTIVE)
+				to_chat(user, "<span class='notice'>You twist and release the control rod, arming it.</span>")
+				playsound(src, 'sound/machines/switch.ogg', 25, 1)
+				icon_state = "rod_4"
+				active_state = SELF_DESTRUCT_MACHINE_ARMED
+			if(SELF_DESTRUCT_MACHINE_ARMED)
+				to_chat(user, "<span class='notice'>You twist and release the control rod, disarming it.</span>")
+				playsound(src, 'sound/machines/switch.ogg', 25, 1)
+				icon_state = "rod_3"
+				active_state = SELF_DESTRUCT_MACHINE_ACTIVE
+			else
+				to_chat(user, "<span class='warning'>The control rod is not ready.</span>")
 
 
 #undef SELF_DESTRUCT_MACHINE_INACTIVE

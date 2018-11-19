@@ -1,14 +1,10 @@
 //This file deals with distress beacons. It randomizes between a number of different types when activated.
 //There's also an admin commmand which lets you set one to your liking.
-#define COOLDOWN_COMM_REQUEST 5 MINUTES
-
-
 
 //basic persistent gamemode stuff.
 /datum/game_mode
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
 	var/datum/emergency_call/picked_call = null //Which distress call is currently active
-	var/has_called_emergency = 0
 	var/distress_cooldown = 0
 	var/waiting_for_candidates = 0
 
@@ -37,13 +33,14 @@
 
 
 /datum/game_mode/proc/initialize_emergency_calls()
-	if(all_calls.len) //It's already been set up.
+	if(length(all_calls)) //It's already been set up.
 		return
 
 	var/list/total_calls = typesof(/datum/emergency_call)
-	if(!total_calls.len)
+	if(!length(total_calls))
 		to_chat(world, "\red \b Error setting up emergency calls, no datums found.")
-		return 0
+		return FALSE
+
 	for(var/S in total_calls)
 		var/datum/emergency_call/C = new S()
 		if(!C)	
@@ -83,10 +80,13 @@
 
 /datum/game_mode/proc/activate_distress()
 	picked_call = get_random_call()
+
 	if(!istype(picked_call, /datum/emergency_call)) //Something went horribly wrong
 		return
-	if(ticker && ticker.mode && ticker.mode.waiting_for_candidates) //It's already been activated
+
+	if(ticker?.mode?.waiting_for_candidates) //It's already been activated
 		return
+
 	picked_call.activate()
 	return
 
@@ -100,7 +100,8 @@
 	if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Emergency Response Team"))
 		to_chat(usr, "<span class='danger'>You are jobbanned from the emergency reponse team!</span>")
 		return
-	if(!ticker || !ticker.mode || isnull(distress))
+
+	if(isnull(distress))
 		to_chat(usr, "<span class='warning'>No distress beacons are active. You will be notified if this changes.</span>")
 		return
 	
@@ -156,22 +157,24 @@
 	if(announce)
 		command_announcement.Announce("A distress beacon has been launched from the [MAIN_SHIP_NAME].", "Priority Alert", new_sound='sound/AI/distressbeacon.ogg')
 
-	ticker.mode.has_called_emergency = 1
-	spawn(600) //If after 60 seconds we aren't full, abort
+	ticker.mode.distress_cooldown = 1
+
+	spawn(1 MINUTE)
 		if(candidates.len < mob_min)
 			message_admins("Aborting distress beacon, not enough candidates: found [candidates.len].", 1)
 			ticker.mode.waiting_for_candidates = 0
-			ticker.mode.has_called_emergency = 0
 			members = list() //Empty the members list.
 			candidates = list()
 
-			if (announce)
+			if(announce)
 				command_announcement.Announce("The distress signal has not received a response, the launch tubes are now recalibrating.", "Distress Beacon")
 
-			ticker.mode.distress_cooldown = 1
 			ticker.mode.picked_call = null
+			ticker.mode.distress_cooldown = 1
+
 			spawn(COOLDOWN_COMM_REQUEST)
 				ticker.mode.distress_cooldown = 0
+			
 		else //We've got enough!
 			//Trim down the list
 			var/datum/mind/picked_candidates[0]
@@ -230,6 +233,9 @@
 			candidates = null //Blank out the candidates list for next time.
 			candidates = list()
 
+			spawn(COOLDOWN_COMM_REQUEST)
+				ticker.mode.distress_cooldown = 0
+
 /datum/emergency_call/proc/add_candidate(var/mob/M)
 	if(!M.client) 
 		return FALSE  //Not connected
@@ -278,6 +284,3 @@
 
 /datum/emergency_call/proc/print_backstory(mob/living/carbon/human/M)
 	return
-
-
-#undef COOLDOWN_COMM_REQUEST
