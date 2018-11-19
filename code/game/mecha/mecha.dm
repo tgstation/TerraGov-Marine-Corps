@@ -403,7 +403,7 @@
 	log_message("Attack by claw. Attacker - [M].", color="red")
 
 	if(!prob(deflect_chance))
-		take_damage((rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)/2))
+		take_damage((rand(M.melee_damage_lower, M.melee_damage_upper)/2))
 		check_for_internal_damage(list(MECHA_INT_CONTROL_LOST))
 		playsound(loc, "alien_claw_metal", 25, 1)
 		M.visible_message("<span class='danger'>[M] slashes [src]'s armor!</span>", \

@@ -1,178 +1,33 @@
-/datum/xeno_caste/carrier
-	caste_name = "Carrier"
-	display_name = "Carrier"
-	upgrade_name = "Young"
-	caste_desc = "A carrier of huggies."
+//Carrier Code - Colonial Marines - Last Edit: Apophis775 - 11JUN16
 
-	caste_type_path = /mob/living/carbon/Xenomorph/Carrier
-
-	tier = 2
-	upgrade = 0
-
-	// *** Melee Attacks *** //
-	melee_damage_lower = 20
-	melee_damage_upper = 30
-
-	// *** Tackle *** //
-	tackle_damage = 30 
-
-	// *** Speed *** //
-	speed = 0
-
-	// *** Plasma *** //
-	plasma_max = 250
-	plasma_gain = 8
-
-	// *** Health *** //
-	max_health = 200
-
-	// *** Evolution *** //
-	upgrade_threshold = 200
-
-	deevolves_to = /mob/living/carbon/Xenomorph/Drone 
-
-	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA
-	can_hold_eggs = CAN_HOLD_ONE_HAND
-	
-	// *** Defense *** //
-	armor_deflection = 5
-
-	// *** Pheromones *** //	
-	aura_strength = 1 //Carrier's pheromones are equivalent to Hivelord. Climbs 0.5 up to 2.5
-	aura_allowed = list("frenzy", "warding", "recovery") 
-
-	// *** Carrier Abilities *** //
-	huggers_max = 8
-	hugger_delay = 2.5 SECONDS
-	eggs_max = 3
-
-/datum/xeno_caste/carrier/mature
-	upgrade_name = "Mature"
-	caste_desc = "A portable Love transport. It looks a little more dangerous."
-
-	upgrade = 1
-
-	// *** Melee Attacks *** //
-	melee_damage_lower = 25
-	melee_damage_upper = 35
-
-	// *** Tackle *** //
-	tackle_damage = 35
-
-	// *** Speed *** //
-	speed = -0.1
-
-	// *** Plasma *** //
-	plasma_max = 300
-	plasma_gain = 10
-
-	// *** Health *** //
-	max_health = 220
-
-	// *** Evolution *** //
-	upgrade_threshold = 400
-
-	// *** Defense *** //
-	armor_deflection = 10
-
-	// *** Pheromones *** //	
-	aura_strength = 1.5
-
-	// *** Carrier Abilities *** //
-	huggers_max = 9
-	hugger_delay = 2.0 SECONDS
-	eggs_max = 4
-
-/datum/xeno_caste/carrier/elite
-	upgrade_name = "Elite"
-	caste_desc = "A portable Love transport. It looks pretty strong."
-
-	upgrade = 2
-
-	// *** Melee Attacks *** //
-	melee_damage_lower = 30
-	melee_damage_upper = 40
-
-	// *** Tackle *** //
-	tackle_damage = 40
-
-	// *** Speed *** //
-	speed = -0.2
-
-	// *** Plasma *** //
-	plasma_max = 350
-	plasma_gain = 12
-
-	// *** Health *** //
-	max_health = 220
-
-	// *** Evolution *** //
-	upgrade_threshold = 800
-
-	// *** Defense *** //
-	armor_deflection = 10
-
-	// *** Pheromones *** //	
-	aura_strength = 2
-
-	// *** Carrier Abilities *** //
-	huggers_max = 10
-	hugger_delay = 1.5 SECONDS
-	eggs_max = 5
-
-/datum/xeno_caste/carrier/ancient
-	upgrade_name = "Ancient"
-	caste_desc = "It's literally crawling with 11 huggers."
-	upgrade = 3
-	ancient_message = "You are the master of huggers. Throw them like baseballs at the marines!"
-
-	// *** Melee Attacks *** //
-	melee_damage_lower = 35
-	melee_damage_upper = 45
-
-	// *** Tackle *** //
-	tackle_damage = 45
-
-	// *** Speed *** //
-	speed = -0.3
-
-	// *** Plasma *** //
-	plasma_max = 400
-	plasma_gain = 15
-
-	// *** Health *** //
-	max_health = 250
-
-	// *** Evolution *** //
-	upgrade_threshold = 800
-
-	// *** Defense *** //
-	armor_deflection = 15
-
-	// *** Pheromones *** //	
-	aura_strength = 2.5
-
-	// *** Carrier Abilities *** //
-	huggers_max = 11
-	hugger_delay = 1.0 SECONDS
-	eggs_max = 6	
-					
 /mob/living/carbon/Xenomorph/Carrier
-	caste_base_type = /mob/living/carbon/Xenomorph/Carrier
+	caste = "Carrier"
 	name = "Carrier"
 	desc = "A strange-looking alien creature. It carries a number of scuttling jointed crablike creatures."
 	icon = 'icons/Xeno/2x2_Xenos.dmi' //They are now like, 2x2
 	icon_state = "Carrier Walking"
+	melee_damage_lower = 20
+	melee_damage_upper = 30
+	tackle_damage = 30
 	health = 200
 	maxHealth = 200
 	plasma_stored = 50
+	plasma_max = 250
+	upgrade_threshold = 200
+	evolution_allowed = FALSE
+	plasma_gain = 8
+	caste_desc = "A carrier of huggies."
 	drag_delay = 6 //pulling a big dead xeno is hard
+	aura_strength = 1 //Carrier's pheromones are equivalent to Hivelord. Climbs 0.5 up to 2.5
 	speed = 0
+	armor_deflection = 5
 	mob_size = MOB_SIZE_BIG
+	var/huggers_max = 8
 	var/huggers_cur = 0
 	var/threw_a_hugger = 0
+	var/hugger_delay = 25
 	var/eggs_cur = 0
+	var/eggs_max = 3
 	var/used_spawn_facehugger = FALSE
 	var/last_spawn_facehugger
 	var/cooldown_spawn_facehugger = 100 //10 seconds; keeping this as a var for now as I may have it adjust with upgrade level
@@ -215,15 +70,15 @@
 	if (!..())
 		return 0
 
-	stat(null, "Stored Huggers: [huggers_cur] / [xeno_caste.huggers_max]")
-	stat(null, "Stored Eggs: [eggs_cur] / [xeno_caste.eggs_max]")
+	stat(null, "Stored Huggers: [huggers_cur] / [huggers_max]")
+	stat(null, "Stored Eggs: [eggs_cur] / [eggs_max]")
 	return 1
 
 /mob/living/carbon/Xenomorph/Carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F)
-	if(huggers_cur < xeno_caste.huggers_max)
+	if(huggers_cur < huggers_max)
 		if(F.stat == CONSCIOUS && !F.sterile)
 			huggers_cur++
-			to_chat(src, "<span class='notice'>You store the facehugger and carry it for safekeeping. Now sheltering: [huggers_cur] / [xeno_caste.huggers_max].</span>")
+			to_chat(src, "<span class='notice'>You store the facehugger and carry it for safekeeping. Now sheltering: [huggers_cur] / [huggers_max].</span>")
 			cdel(F)
 		else
 			to_chat(src, "<span class='warning'>This [F.name] looks too unhealthy.</span>")
@@ -258,7 +113,7 @@
 		F.hivenumber = hivenumber
 		huggers_cur--
 		put_in_active_hand(F)
-		to_chat(src, "<span class='xenonotice'>You grab one of the facehugger in your storage. Now sheltering: [huggers_cur] / [xeno_caste.huggers_max].</span>")
+		to_chat(src, "<span class='xenonotice'>You grab one of the facehugger in your storage. Now sheltering: [huggers_cur] / [huggers_max].</span>")
 		return
 
 	if(!istype(F)) //something else in our hand
@@ -272,7 +127,7 @@
 		F.throw_at(T, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		visible_message("<span class='xenowarning'>\The [src] throws something towards \the [T]!</span>", \
 		"<span class='xenowarning'>You throw a facehugger towards \the [T]!</span>")
-		spawn(xeno_caste.hugger_delay)
+		spawn(hugger_delay)
 			threw_a_hugger = 0
 			update_action_button_icons()
 
@@ -282,10 +137,10 @@
 	if(E.hivenumber != hivenumber)
 		to_chat(src, "<span class='warning'>That egg is tainted!</span>")
 		return
-	if(eggs_cur < xeno_caste.eggs_max)
+	if(eggs_cur < eggs_max)
 		if(stat == CONSCIOUS)
 			eggs_cur++
-			to_chat(src, "<span class='notice'>You store the egg and carry it for safekeeping. Now sheltering: [eggs_cur] / [xeno_caste.eggs_max].</span>")
+			to_chat(src, "<span class='notice'>You store the egg and carry it for safekeeping. Now sheltering: [eggs_cur] / [eggs_max].</span>")
 			cdel(E)
 		else
 			to_chat(src, "<span class='warning'>This [E.name] looks too unhealthy.</span>")
@@ -316,7 +171,7 @@
 		E.hivenumber = hivenumber
 		eggs_cur--
 		put_in_active_hand(E)
-		to_chat(src, "<span class='xenonotice'>You grab one of the eggs in your storage. Now sheltering: [eggs_cur] / [xeno_caste.eggs_max].</span>")
+		to_chat(src, "<span class='xenonotice'>You grab one of the eggs in your storage. Now sheltering: [eggs_cur] / [eggs_max].</span>")
 		return
 
 	if(!istype(E)) //something else in our hand

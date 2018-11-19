@@ -322,13 +322,11 @@ var/datum/mob_hud/huds = list(
 //xeno status HUD
 
 /mob/living/carbon/Xenomorph/proc/hud_set_plasma()
-	if(!xeno_caste) // usually happens because hud ticks before New() finishes.
-		return
 	var/image/holder = hud_list[PLASMA_HUD]
 	if(stat == DEAD)
 		holder.icon_state = "plasma0"
 	else
-		var/amount = round(plasma_stored * 100 / xeno_caste.plasma_max, 10)
+		var/amount = round(plasma_stored * 100 / plasma_max, 10)
 		holder.icon_state = "plasma[amount]"
 
 

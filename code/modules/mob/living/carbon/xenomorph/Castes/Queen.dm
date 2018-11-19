@@ -1,161 +1,5 @@
-/datum/xeno_caste/queen
-	caste_name = "Queen"
-	display_name = "Queen"
-	caste_type_path = /mob/living/carbon/Xenomorph/Queen
-	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 
-	tier = 0
-	upgrade = 0
-
-	// *** Melee Attacks *** //
-	melee_damage_lower = 45
-	melee_damage_upper = 55
-
-	// *** Tackle *** //
-	tackle_damage = 55 
-
-	// *** Speed *** //
-	speed = 0.6
-
-	// *** Plasma *** //
-	plasma_max = 700
-	plasma_gain = 30
-
-	// *** Health *** //
-	max_health = 300
-
-	// *** Evolution *** //
-	upgrade_threshold = 800
-
-	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_FIRE_IMMUNE
-
-	can_hold_eggs = CAN_HOLD_TWO_HANDS
-	
-	// *** Defense *** //
-	armor_deflection = 45 
-
-	// *** Ranged Attack *** //
-	spit_delay = 2.5 SECONDS
-	spit_types = list(/datum/ammo/xeno/acid/medium)
-
-	// *** Pheromones *** //	
-	aura_strength = 2 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
-	aura_allowed = list("frenzy", "warding", "recovery") 
-
-	// *** Queen Abilities *** //
-	queen_leader_limit = 1 //Amount of leaders allowed
-
-/datum/xeno_caste/queen/mature
-	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
-
-	upgrade = 1
-
-	// *** Melee Attacks *** //
-	melee_damage_lower = 50
-	melee_damage_upper = 60
-
-	// *** Tackle *** //
-	tackle_damage = 60 
-	
-	// *** Speed *** //
-	speed = 0.5
-
-	// *** Plasma *** //
-	plasma_max = 800
-	plasma_gain = 40
-
-	// *** Health *** //
-	max_health = 325
-
-	// *** Evolution *** //
-	upgrade_threshold = 1600
-
-	// *** Defense *** //
-	armor_deflection = 50
-
-	// *** Ranged Attack *** //
-	spit_delay = 2.0 SECONDS
-
-	// *** Pheromones *** //	
-	aura_strength = 3 
-
-	// *** Queen Abilities *** //
-	queen_leader_limit = 2
-
-/datum/xeno_caste/queen/elder
-	caste_desc = "The biggest and baddest xeno. The Empress controls multiple hives and planets."
-
-	upgrade = 2
-
-	// *** Melee Attacks *** //
-	melee_damage_lower = 55
-	melee_damage_upper = 65
-
-	// *** Tackle *** //
-	tackle_damage = 65 
-	
-	// *** Speed *** //
-	speed = 0.4
-
-	// *** Plasma *** //
-	plasma_max = 900
-	plasma_gain = 50
-
-	// *** Health *** //
-	max_health = 350
-
-	// *** Evolution *** //
-	upgrade_threshold = 3200
-
-	// *** Defense *** //
-	armor_deflection = 55
-
-	// *** Ranged Attack *** //
-	spit_delay = 2.0 SECONDS
-
-	// *** Pheromones *** //	
-	aura_strength = 4 
-
-	// *** Queen Abilities *** //
-	queen_leader_limit = 3
-
-/datum/xeno_caste/queen/ancient
-	caste_desc = "The most perfect Xeno form imaginable."
-	ancient_message = "You are the Alpha and the Omega. The beginning and the end."
-	upgrade = 3
-
-	// *** Melee Attacks *** //
-	melee_damage_lower = 60
-	melee_damage_upper = 70
-
-	// *** Tackle *** //
-	tackle_damage = 70 
-	
-	// *** Speed *** //
-	speed = 0.3
-
-	// *** Plasma *** //
-	plasma_max = 1000
-	plasma_gain = 50
-
-	// *** Health *** //
-	max_health = 375
-
-	// *** Evolution *** //
-	upgrade_threshold = 3200
-
-	// *** Defense *** //
-	armor_deflection = 60
-
-	// *** Ranged Attack *** //
-	spit_delay = 1.5 SECONDS
-
-	// *** Pheromones *** //	
-	aura_strength = 5 
-
-	// *** Queen Abilities *** //
-	queen_leader_limit = 4
+//var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen //global reference to the Xeno Queen if there's one alive.
 
 /proc/update_living_queens() // needed to update when you change a queen to a different hive
 	outer_loop:
@@ -172,11 +16,14 @@
 
 
 /mob/living/carbon/Xenomorph/Queen
-	caste_base_type = /mob/living/carbon/Xenomorph/Queen
+	caste = "Queen"
 	name = "Queen"
 	desc = "A huge, looming alien creature. The biggest and the baddest."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Queen Walking"
+	melee_damage_lower = 45
+	melee_damage_upper = 55
+	tackle_damage = 55
 	attacktext = "bites"
 	attack_sound = null
 	friendly = "nuzzles"
@@ -186,14 +33,25 @@
 	amount_grown = 0
 	max_grown = 10
 	plasma_stored = 300
+	plasma_max = 700
+	plasma_gain = 30
+	is_intelligent = 1
 	speed = 0.6
+	upgrade_threshold = 800
+	evolution_allowed = FALSE
 	pixel_x = -16
 	old_x = -16
+	fire_immune = 1
 	mob_size = MOB_SIZE_BIG
 	drag_delay = 6 //pulling a big dead xeno is hard
+	armor_deflection = 45
 	tier = 0 //Queen doesn't count towards population limit.
 	upgrade = 0
+	aura_strength = 2 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
+	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 	xeno_explosion_resistance = 3 //some resistance against explosion stuns.
+	spit_delay = 25
+	spit_types = list(/datum/ammo/xeno/acid/medium)
 
 	var/breathing_counter = 0
 	var/ovipositor = FALSE //whether the Queen is attached to an ovipositor

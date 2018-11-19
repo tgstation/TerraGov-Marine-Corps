@@ -228,7 +228,8 @@
 
 /obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(M.a_intent != "hurt")
-		if(M.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
+		var/list/allowed_castes = list("Queen","Drone","Hivelord","Carrier")
+		if(allowed_castes.Find(M.caste))
 			if(!hugger)
 				to_chat(M, "<span class='warning'>[src] is empty.</span>")
 			else
@@ -483,12 +484,13 @@
 
 	switch(status)
 		if(BURST, DESTROYED)
-			if(M.xeno_caste.can_hold_eggs)
-				M.visible_message("<span class='xenonotice'>\The [M] clears the hatched egg.</span>", \
-				"<span class='xenonotice'>You clear the hatched egg.</span>")
-				playsound(src.loc, "alien_resin_break", 25)
-				M.plasma_stored++
-				cdel(src)
+			switch(M.caste)
+				if("Queen","Drone","Hivelord","Carrier")
+					M.visible_message("<span class='xenonotice'>\The [M] clears the hatched egg.</span>", \
+					"<span class='xenonotice'>You clear the hatched egg.</span>")
+					playsound(src.loc, "alien_resin_break", 25)
+					M.plasma_stored++
+					cdel(src)
 		if(GROWING)
 			to_chat(M, "<span class='xenowarning'>The child is not developed yet.</span>")
 		if(GROWN)

@@ -24,17 +24,17 @@
 
 /mob/living/carbon/Xenomorph/update_icons()
 	if(stat == DEAD)
-		icon_state = "[xeno_caste.caste_name] Dead"
+		icon_state = "[caste] Dead"
 	else if(lying)
 		if((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
-			icon_state = "[xeno_caste.caste_name] Sleeping"
+			icon_state = "[caste] Sleeping"
 		else
-			icon_state = "[xeno_caste.caste_name] Knocked Down"
+			icon_state = "[caste] Knocked Down"
 	else
 		if(m_intent == MOVE_INTENT_RUN)
-			icon_state = "[xeno_caste.caste_name] Running"
+			icon_state = "[caste] Running"
 		else
-			icon_state = "[xeno_caste.caste_name] Walking"
+			icon_state = "[caste] Walking"
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 
 /mob/living/carbon/Xenomorph/regenerate_icons()

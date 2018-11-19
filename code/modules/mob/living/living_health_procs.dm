@@ -194,7 +194,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	return ..()
 
 /mob/living/carbon/Xenomorph/rejuvenate()
-	plasma_stored = xeno_caste.plasma_max
+	plasma_stored = plasma_max
 	stagger = 0
 	slowdown = 0
 	return ..()

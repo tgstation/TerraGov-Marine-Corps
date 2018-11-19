@@ -1,46 +1,29 @@
-/datum/xeno_caste/larva
-	caste_name = "Bloody Larva"
-	display_name = "Bloody Larva"
-	upgrade_name = ""
-	caste_desc = "D'awwwww, so cute!"
-	caste_type_path = /mob/living/carbon/Xenomorph/Larva
-	tier = 0
-	upgrade = -1
+//Xenomorph - Larva - Colonial Marines - Apophis775 - Last Edit: 11JUN16
 
-	// *** Melee Attacks *** //
-	melee_damage_lower = 0
-	melee_damage_upper = 0
-
-	// *** Speed *** //
-	speed = -1.6
-
-	// *** Plasma *** //
-	plasma_gain = 1
-
-	// *** Health *** //
-	max_health = 35
-	crit_health = -25
-
-	// *** Evolution *** //
-	evolves_to = list(/mob/living/carbon/Xenomorph/Drone, /mob/living/carbon/Xenomorph/Runner, /mob/living/carbon/Xenomorph/Sentinel, /mob/living/carbon/Xenomorph/Defender)
-
-	// *** Flags *** //
-	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_INNATE_HEALING
 
 /mob/living/carbon/Xenomorph/Larva
-	caste_base_type = /mob/living/carbon/Xenomorph/Larva
+	name = "Bloody Larva"
+	caste = "Bloody Larva"
 	speak_emote = list("hisses")
 	icon_state = "Bloody Larva"
 	amount_grown = 0
 	max_grown = 100
 	maxHealth = 35
 	health = 35
+	plasma_gain = 1
+	melee_damage_lower = 0
+	melee_damage_upper = 0
+	evolves_to = list("Drone", "Runner", "Sentinel", "Defender") //Add sentinel etc here
 	see_in_dark = 8
+	caste_desc = "D'awwwww, so cute!"
 	flags_pass = PASSTABLE | PASSMOB
+	speed = -1.6 //Zoom!
 	away_timer = 300
 	tier = 0  //Larva's don't count towards Pop limits
 	upgrade = -1
+	crit_health = -25
 	gib_chance = 25
+	innate_healing = TRUE //heals even outside weeds so you're not stuck unable to evolve when hiding on the ship wounded.
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/xenohide,
@@ -49,14 +32,10 @@
 		/mob/living/carbon/Xenomorph/proc/vent_crawl
 		)
 
-/datum/xeno_caste/larva/predalien
-	caste_name = "Predalien Larva"
-	evolves_to = list(/mob/living/carbon/Xenomorph/Predalien)
-	caste_type_path = /mob/living/carbon/Xenomorph/Larva/predalien
-
 /mob/living/carbon/Xenomorph/Larva/predalien
 	icon_state = "Predalien Larva"
-	caste_base_type = /mob/living/carbon/Xenomorph/Larva/predalien
+	caste = "Predalien Larva"
+	evolves_to = list("Predalien")
 
 /mob/living/carbon/Xenomorph/Larva/UnarmedAttack(atom/A)
 	a_intent = "help" //Forces help intent for all interactions.

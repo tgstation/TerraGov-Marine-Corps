@@ -42,7 +42,7 @@
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> growls."
-				if(isXenoPredalien(src))
+				if(caste == "Predalien")
 					playsound(loc, 'sound/voice/predalien_growl.ogg', 25, 1)
 				else
 					playsound(loc, "alien_growl", 15)
@@ -65,7 +65,7 @@
 			if (!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> hisses."
-				if(isXenoPredalien(src))
+				if(caste == "Predalien")
 					playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
 				else
 					playsound(loc, "alien_hiss", 25)
@@ -73,7 +73,7 @@
 			if (!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> hisses."
-				if(isXenoPredalien(src))
+				if(caste == "Predalien")
 					playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
 				else
 					playsound(loc, "sound/voice/alien_hiss1.ogg", 25)
@@ -81,7 +81,7 @@
 			if (!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> hisses."
-				if(isXenoPredalien(src))
+				if(caste == "Predalien")
 					playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
 				else
 					playsound(loc, "sound/voice/alien_hiss2.ogg", 25)
@@ -89,7 +89,7 @@
 			if (!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> hisses."
-				if(isXenoPredalien(src))
+				if(caste == "Predalien")
 					playsound(loc, 'sound/voice/predalien_hiss.ogg', 25, 1)
 				else
 					playsound(loc, "sound/voice/alien_hiss3.ogg", 25)
@@ -102,7 +102,7 @@
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
-				if(isXenoPredalien(src))
+				if(caste == "Predalien")
 					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
 					playsound(loc, "alien_roar", 40)
@@ -110,7 +110,7 @@
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
-				if(isXenoPredalien(src))
+				if(caste == "Predalien")
 					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
 					playsound(loc, "sound/voice/alien_roar1.ogg", 40)
@@ -118,7 +118,7 @@
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
-				if(isXenoPredalien(src))
+				if(caste == "Predalien")
 					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
 					playsound(loc, "sound/voice/alien_roar2.ogg", 40)
@@ -126,7 +126,7 @@
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
-				if(isXenoPredalien(src))
+				if(caste == "Predalien")
 					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
 					playsound(loc, "sound/voice/alien_roar3.ogg", 40)
@@ -134,7 +134,7 @@
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
-				if(isXenoPredalien(src))
+				if(caste == "Predalien")
 					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
 					playsound(loc, "sound/voice/alien_roar4.ogg", 40)
@@ -142,7 +142,7 @@
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
-				if(isXenoPredalien(src))
+				if(caste == "Predalien")
 					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
 					playsound(loc, "sound/voice/alien_roar5.ogg", 40)
@@ -150,7 +150,7 @@
 			if(!muzzled)
 				m_type = 2
 				message = "<B>The [name]</B> roars!"
-				if(isXenoPredalien(src))
+				if(caste == "Predalien")
 					playsound(loc, 'sound/voice/predalien_roar.ogg', 40, 1)
 				else
 					playsound(loc, "sound/voice/alien_roar6.ogg", 40)

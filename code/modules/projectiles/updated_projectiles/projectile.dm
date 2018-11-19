@@ -605,7 +605,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		#endif
 
 	if(damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR))
-		var/armor = xeno_caste.armor_deflection + armor_bonus + armor_pheromone_bonus
+		var/armor = armor_deflection + armor_bonus + armor_pheromone_bonus
 		#if DEBUG_XENO_DEFENSE
 		world << "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>"
 		#endif
@@ -617,10 +617,10 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			#endif
 			if(P.dir == charger.dir)
 				if(isXenoQueen(src))
-					armor = max(0, armor - (xeno_caste.armor_deflection * config.xeno_armor_resist_low)) //Both facing same way -- ie. shooting from behind; armour reduced by 50% of base.
+					armor = max(0, armor - (armor_deflection * config.xeno_armor_resist_low)) //Both facing same way -- ie. shooting from behind; armour reduced by 50% of base.
 				else
-					armor = max(0, armor - (xeno_caste.armor_deflection * config.xeno_armor_resist_lmed)) //Both facing same way -- ie. shooting from behind; armour reduced by 75% of base.
-			else if(P.dir == reverse_direction(charger.dir)) armor += round(xeno_caste.armor_deflection * config.xeno_armor_resist_low) //We are facing the bullet.
+					armor = max(0, armor - (armor_deflection * config.xeno_armor_resist_lmed)) //Both facing same way -- ie. shooting from behind; armour reduced by 75% of base.
+			else if(P.dir == reverse_direction(charger.dir)) armor += round(armor_deflection * config.xeno_armor_resist_low) //We are facing the bullet.
 			//Otherwise use the standard armor deflection for crushers.
 			#if DEBUG_XENO_DEFENSE
 			to_chat(world, "<span class='debuginfo'>Adjusted crest armor is: <b>[armor]</b></span>")
@@ -669,7 +669,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			var/pain_emote = prob(70) ? "hiss" : "roar"
 			emote(pain_emote)
 		if(P.ammo.flags_ammo_behavior & AMMO_INCENDIARY)
-			if(xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+			if(fire_immune)
 				if(!stat) to_chat(src, "<span class='avoidharm'>You shrug off some persistent flames.</span>")
 			else
 				adjust_fire_stacks(rand(2,6) + round(damage / 8))

@@ -60,12 +60,12 @@
 	var/mob/living/carbon/Xenomorph/X = owner
 	if(!X.check_state())
 		return
-	for(var/i in 1 to X.xeno_caste.spit_types.len)
-		if(X.ammo == ammo_list[X.xeno_caste.spit_types[i]])
-			if(i == X.xeno_caste.spit_types.len)
-				X.ammo = ammo_list[X.xeno_caste.spit_types[1]]
+	for(var/i in 1 to X.spit_types.len)
+		if(X.ammo == ammo_list[X.spit_types[i]])
+			if(i == X.spit_types.len)
+				X.ammo = ammo_list[X.spit_types[1]]
 			else
-				X.ammo = ammo_list[X.xeno_caste.spit_types[i+1]]
+				X.ammo = ammo_list[X.spit_types[i+1]]
 			break
 	to_chat(X, "<span class='notice'>You will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma).</span>")
 	button.overlays.Cut()
@@ -375,7 +375,7 @@
 	else
 		if(!X.check_plasma(30))
 			return
-		var/choice = input(X, "Choose a pheromone") in X.xeno_caste.aura_allowed + "help" + "cancel"
+		var/choice = input(X, "Choose a pheromone") in X.aura_allowed + "help" + "cancel"
 		if(choice == "help")
 			to_chat(X, "<span class='notice'><br>Pheromones provide a buff to all Xenos in range at the cost of some stored plasma every second. Burning Xenos can neither emit nor benefit from pheromones. Effects are as follows:<br><B>Frenzy</B> - Increased run speed, damage and tackle chance.<br><B>Warding</B> - Increased armor, reduced incoming damage and critical bleedout.<br><B>Recovery</B> - Increased plasma and health regeneration.<br></span>")
 			return
@@ -825,7 +825,7 @@
 		return
 	var/list/possible_xenos = list()
 	for(var/mob/living/carbon/Xenomorph/T in living_mob_list)
-		if(T.z != ADMIN_Z_LEVEL && !isXenoQueen(T) && X.hivenumber == T.hivenumber)
+		if(T.z != ADMIN_Z_LEVEL && T.caste != "Queen" && X.hivenumber == T.hivenumber)
 			possible_xenos += T
 
 	var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
@@ -867,7 +867,7 @@
 		if(X.queen_ability_cooldown > world.time)
 			to_chat(X, "<span class='xenowarning'>You're still recovering from your last overwatch ability. Wait [round((X.queen_ability_cooldown-world.time)*0.1)] seconds.</span>")
 			return
-		if(X.xeno_caste.queen_leader_limit <= hive.xeno_leader_list.len && !X.observed_xeno.queen_chosen_lead)
+		if(X.queen_leader_limit <= hive.xeno_leader_list.len && !X.observed_xeno.queen_chosen_lead)
 			to_chat(X, "<span class='xenowarning'>You currently have [hive.xeno_leader_list.len] promoted leaders. You may not maintain additional leaders until your power grows.</span>")
 			return
 		var/mob/living/carbon/Xenomorph/T = X.observed_xeno
@@ -910,26 +910,23 @@
 	if(X.queen_ability_cooldown > world.time)
 		to_chat(X, "<span class='xenowarning'>You're still recovering from your last overwatch ability. Wait [round((X.queen_ability_cooldown-world.time)*0.1)] seconds.</span>")
 		return
-	if(!X.observed_xeno)
+	if(X.observed_xeno)
+		var/mob/living/carbon/Xenomorph/target = X.observed_xeno
+		if(X.loc.z != target.loc.z)
+			to_chat(X, "<span class='xenowarning'>They are too far away to do this.</span>")
+			return
+		if(target.stat != DEAD)
+			if(target.health < target.maxHealth)
+				if(X.check_plasma(600))
+					X.use_plasma(600)
+					target.adjustBruteLoss(-50)
+					X.queen_ability_cooldown = world.time + 150 //15 seconds
+					to_chat(X, "<span class='xenonotice'>You channel your plasma to heal [target]'s wounds.</span>")
+			else
+
+				to_chat(X, "<span class='warning'>[target] is at full health.</span>")
+	else
 		to_chat(X, "<span class='warning'>You must overwatch the xeno you want to give healing to.</span>")
-		return
-	var/mob/living/carbon/Xenomorph/target = X.observed_xeno
-	if(!(X.xeno_caste.caste_flags & CASTE_CAN_BE_QUEEN_HEALED))
-		to_chat(X, "<span class='xenowarning'>You can't heal that caste.</span>")
-		return
-	if(X.loc.z != target.loc.z)
-		to_chat(X, "<span class='xenowarning'>They are too far away to do this.</span>")
-		return
-	if(target.stat == DEAD)
-		return
-	if(target.health >= target.maxHealth)
-		to_chat(X, "<span class='warning'>[target] is at full health.</span>")
-		return
-	if(X.check_plasma(600))
-		X.use_plasma(600)
-		target.adjustBruteLoss(-50)
-		X.queen_ability_cooldown = world.time + 15 SECONDS //15 seconds
-		to_chat(X, "<span class='xenonotice'>You channel your plasma to heal [target]'s wounds.</span>")
 
 /datum/action/xeno_action/queen_give_plasma
 	name = "Give Plasma (600)"
@@ -943,23 +940,21 @@
 	if(X.queen_ability_cooldown > world.time)
 		to_chat(X, "<span class='xenowarning'>You're still recovering from your last overwatch ability. Wait [round((X.queen_ability_cooldown-world.time)*0.1)] seconds.</span>")
 		return
-	if(!X.observed_xeno)
+	if(X.observed_xeno)
+		var/mob/living/carbon/Xenomorph/target = X.observed_xeno
+		if(target.stat != DEAD)
+			if(target.plasma_stored < target.plasma_max)
+				if(X.check_plasma(600))
+					X.use_plasma(600)
+					target.gain_plasma(100)
+					X.queen_ability_cooldown = world.time + 150 //15 seconds
+					to_chat(X, "<span class='xenonotice'>You transfer some plasma to [target].</span>")
+
+			else
+
+				to_chat(X, "<span class='warning'>[target] is at full plasma.</span>")
+	else
 		to_chat(X, "<span class='warning'>You must overwatch the xeno you want to give plasma to.</span>")
-		return
-	var/mob/living/carbon/Xenomorph/target = X.observed_xeno
-	if(target.stat == DEAD)
-		return
-	if(!(target.xeno_caste.caste_flags & CASTE_CAN_BE_GIVEN_PLASMA))
-		to_chat(X, "<span class='warning'>You can't give that caste plasma.</span>")
-		return
-	if(target.plasma_stored >= target.xeno_caste.plasma_max)
-		to_chat(X, "<span class='warning'>[target] is at full plasma.</span>")
-		return
-	if(X.check_plasma(600))
-		X.use_plasma(600)
-		target.gain_plasma(100)
-		X.queen_ability_cooldown = world.time + 15 SECONDS //15 seconds
-		to_chat(X, "<span class='xenonotice'>You transfer some plasma to [target].</span>")
 
 /datum/action/xeno_action/queen_order
 	name = "Give Order (100)"
@@ -998,114 +993,146 @@
 	var/mob/living/carbon/Xenomorph/Queen/X = owner
 	if(!X.check_state())
 		return
-	if(!X.observed_xeno)
-		to_chat(X, "<span class='warning'>You must overwatch the xeno you want to de-evolve.</span>")
-		return
-	
-	var/mob/living/carbon/Xenomorph/T = X.observed_xeno
-	if(!X.check_plasma(600)) // check plasma gives an error message itself
-		return
+	if(X.observed_xeno)
+		var/mob/living/carbon/Xenomorph/T = X.observed_xeno
+		if(!X.check_plasma(600)) return
 
-	if(T.is_ventcrawling)
-		to_chat(X, "<span class='warning'>[T] can't be deevolved here.</span>")
-		return
+		if(T.is_ventcrawling)
+			to_chat(X, "<span class='warning'>[T] can't be deevolved here.</span>")
+			return
 
-	if(!isturf(T.loc))
-		to_chat(X, "<span class='warning'>[T] can't be deevolved here.</span>")
-		return
+		if(!isturf(T.loc))
+			to_chat(X, "<span class='warning'>[T] can't be deevolved here.</span>")
+			return
 
-	if(T.health <= 0)
-		to_chat(X, "<span class='warning'>[T] is too weak to be deevolved.</span>")
-		return
+		if(T.health <= 0)
+			to_chat(X, "<span class='warning'>[T] is too weak to be deevolved.</span>")
+			return
 
-	if(!T.xeno_caste.deevolves_to)
-		to_chat(X, "<span class='xenowarning'>[T] can't be deevolved.</span>")
-		return
-	
-	var/datum/xeno_caste/new_caste = xeno_caste_datums[T.xeno_caste.deevolves_to][1]
+		var/newcaste = ""
 
-	var/confirm = alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", , "Yes", "No")
-	if(confirm == "No")
-		return
+		switch(T.caste)
+			if("Hivelord")
+				newcaste = "Drone"
+			if("Carrier")
+				newcaste = "Drone"
+			if("Crusher")
+				newcaste = "Warrior"
+			if("Ravager")
+				newcaste = "Hunter"
+			if("Praetorian")
+				newcaste = "Warrior"
+			if("Boiler")
+				newcaste = "Spitter"
+			if("Spitter")
+				newcaste = "Sentinel"
+			if("Hunter")
+				newcaste = "Runner"
+			if("Warrior")
+				newcaste = "Defender"
 
-	var/reason = stripped_input(X, "Provide a reason for deevolving this xenomorph, [T]")
-	if(isnull(reason))
-		to_chat(X, "<span class='xenowarning'>You must provide a reason for deevolving [T].</span>")
-		return
+		if(!newcaste)
+			to_chat(X, "<span class='xenowarning'>[T] can't be deevolved.</span>")
+			return
 
-	if(!X.check_state() || !X.check_plasma(600) || X.observed_xeno != T)
-		return
+		var/confirm = alert(X, "Are you sure you want to deevolve [T] from [T.caste] to [newcaste]?", , "Yes", "No")
+		if(confirm == "No")
+			return
 
-	if(T.is_ventcrawling)
-		return
+		var/reason = stripped_input(X, "Provide a reason for deevolving this xenomorph, [T]")
+		if(isnull(reason))
+			to_chat(X, "<span class='xenowarning'>You must provide a reason for deevolving [T].</span>")
+			return
 
-	if(!isturf(T.loc))
-		return
+		if(!X.check_state() || !X.check_plasma(600) || X.observed_xeno != T)
+			return
 
-	if(T.health <= 0)
-		return
+		if(T.is_ventcrawling)
+			return
 
-	to_chat(T, "<span class='xenowarning'>The queen is deevolving you for the following reason: [reason]</span>")
+		if(!isturf(T.loc))
+			return
 
-	var/xeno_type = new_caste.caste_type_path
+		if(T.health <= 0)
+			return
 
-	//From there, the new xeno exists, hopefully
-	var/mob/living/carbon/Xenomorph/new_xeno = new xeno_type(get_turf(T))
+		to_chat(T, "<span class='xenowarning'>The queen is deevolving you for the following reason: [reason]</span>")
 
-	if(!istype(new_xeno))
-		//Something went horribly wrong!
-		to_chat(X, "<span class='warning'>Something went terribly wrong here. Your new xeno is null! Tell a coder immediately!</span>")
-		if(new_xeno)
-			cdel(new_xeno)
-		return
+		var/xeno_type
 
-	if(T.mind)
-		T.mind.transfer_to(new_xeno)
+		switch(newcaste)
+			if("Runner")
+				xeno_type = /mob/living/carbon/Xenomorph/Runner
+			if("Drone")
+				xeno_type = /mob/living/carbon/Xenomorph/Drone
+			if("Sentinel")
+				xeno_type = /mob/living/carbon/Xenomorph/Sentinel
+			if("Spitter")
+				xeno_type = /mob/living/carbon/Xenomorph/Spitter
+			if("Hunter")
+				xeno_type = /mob/living/carbon/Xenomorph/Hunter
+			if("Warrior")
+				xeno_type = /mob/living/carbon/Xenomorph/Warrior
+			if("Defender")
+				xeno_type = /mob/living/carbon/Xenomorph/Defender
+
+		//From there, the new xeno exists, hopefully
+		var/mob/living/carbon/Xenomorph/new_xeno = new xeno_type(get_turf(T))
+
+		if(!istype(new_xeno))
+			//Something went horribly wrong!
+			to_chat(X, "<span class='warning'>Something went terribly wrong here. Your new xeno is null! Tell a coder immediately!</span>")
+			if(new_xeno)
+				cdel(new_xeno)
+			return
+
+		if(T.mind)
+			T.mind.transfer_to(new_xeno)
+		else
+			new_xeno.key = T.key
+			if(new_xeno.client)
+				new_xeno.client.change_view(world.view)
+				new_xeno.client.pixel_x = 0
+				new_xeno.client.pixel_y = 0
+
+		//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
+		new_xeno.nicknumber = T.nicknumber
+		new_xeno.generate_name()
+
+		if(T.xeno_mobhud)
+			var/datum/mob_hud/H = huds[MOB_HUD_XENO_STATUS]
+			H.add_hud_to(new_xeno) //keep our mobhud choice
+			new_xeno.xeno_mobhud = TRUE
+
+		new_xeno.middle_mouse_toggle = T.middle_mouse_toggle //Keep our toggle state
+
+		for(var/obj/item/W in T.contents) //Drop stuff
+			T.drop_inv_item_on_ground(W)
+
+		T.empty_gut()
+		new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.caste] emerges from the husk of \the [T].</span>", \
+		"<span class='xenodanger'>[X] makes you regress into your previous form.</span>")
+
+		if(T.queen_chosen_lead)
+			new_xeno.queen_chosen_lead = TRUE
+			new_xeno.hud_set_queen_overwatch()
+
+		var/datum/hive_status/hive = hive_datum[X.hivenumber]
+
+		if(hive.living_xeno_queen && hive.living_xeno_queen.observed_xeno == T)
+			hive.living_xeno_queen.set_queen_overwatch(new_xeno)
+
+		new_xeno.upgrade_xeno(TRUE, min(T.upgrade+1,3)) //a young Crusher de-evolves into a MATURE Hunter
+
+		message_admins("[key_name_admin(X)] has deevolved [key_name_admin(T)]. Reason: [reason]")
+		log_admin("[key_name_admin(X)] has deevolved [key_name_admin(T)]. Reason: [reason]")
+
+		round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
+		cdel(T)
+		X.use_plasma(600)
+
 	else
-		new_xeno.key = T.key
-		if(new_xeno.client)
-			new_xeno.client.change_view(world.view)
-			new_xeno.client.pixel_x = 0
-			new_xeno.client.pixel_y = 0
-
-	//Pass on the unique nicknumber, then regenerate the new mob's name now that our player is inside
-	new_xeno.nicknumber = T.nicknumber
-	new_xeno.generate_name()
-
-	if(T.xeno_mobhud)
-		var/datum/mob_hud/H = huds[MOB_HUD_XENO_STATUS]
-		H.add_hud_to(new_xeno) //keep our mobhud choice
-		new_xeno.xeno_mobhud = TRUE
-
-	new_xeno.middle_mouse_toggle = T.middle_mouse_toggle //Keep our toggle state
-
-	for(var/obj/item/W in T.contents) //Drop stuff
-		T.drop_inv_item_on_ground(W)
-
-	T.empty_gut()
-	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [T].</span>", \
-	"<span class='xenodanger'>[X] makes you regress into your previous form.</span>")
-
-	if(T.queen_chosen_lead)
-		new_xeno.queen_chosen_lead = TRUE
-		new_xeno.hud_set_queen_overwatch()
-
-	var/datum/hive_status/hive = hive_datum[X.hivenumber]
-
-	if(hive.living_xeno_queen && hive.living_xeno_queen.observed_xeno == T)
-		hive.living_xeno_queen.set_queen_overwatch(new_xeno)
-
-	// this sets the right datum
-	new_xeno.upgrade_xeno(min(T.upgrade+1,3)) //a young Crusher de-evolves into a MATURE Hunter
-
-	message_admins("[key_name_admin(X)] has deevolved [key_name_admin(T)]. Reason: [reason]")
-	log_admin("[key_name_admin(X)] has deevolved [key_name_admin(T)]. Reason: [reason]")
-
-	round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
-	cdel(T)
-	X.use_plasma(600)
-
-	
+		to_chat(X, "<span class='warning'>You must overwatch the xeno you want to de-evolve.</span>")
 
 //Ravager Abilities
 
