@@ -86,9 +86,18 @@ Quick adjacency (to turf):
 		if(T.Adjacent(neighbor,src)) return 1
 	return 0
 
+/obj/Adjacent(var/atom/neighbor)
+	if(neighbor == loc)
+		return 1
+	var/turf/T = get_turf(loc)
+	if(!T)
+		return 0
+	return (T.Adjacent(neighbor,src))
+
 // This is necessary for storage items not on your person.
 /obj/item/Adjacent(var/atom/neighbor, var/recurse = 1)
-	if(neighbor == loc) return 1
+	if(neighbor == loc)
+		return 1
 	if(istype(loc,/obj/item))
 		if(recurse > 0)
 			return loc.Adjacent(neighbor,recurse - 1)

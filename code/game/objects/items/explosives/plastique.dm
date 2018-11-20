@@ -3,7 +3,7 @@
 	desc = "Used to put holes in specific areas without too much extra hole."
 	gender = PLURAL
 	icon = 'icons/obj/items/assemblies.dmi'
-	icon_state = "plastic-explosive0"
+	icon_state = "plastic-explosive_off"
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
 	w_class = 2.0
@@ -75,7 +75,7 @@
 			message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) with [timer] second fuse",0,1)
 			log_game("[key_name(usr)] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) with [timer] second fuse")
 
-		target.overlays += image('icons/obj/items/assemblies.dmi', "plastic-explosive2")
+		target.overlays += image('icons/obj/items/assemblies.dmi', "plastic-explosive_set_armed")
 		user.visible_message("<span class='warning'>[user] plants [name] on [target]!</span>",
 		"<span class='warning'>You plant [name] on [target]! Timer counting down from [timer].</span>")
 		spawn(timer*10)
@@ -86,7 +86,7 @@
 				else
 					plant_target.ex_act(1)
 				if(plant_target && !plant_target.disposed)
-					plant_target.overlays -= image('icons/obj/items/assemblies.dmi', "plastic-explosive2")
+					plant_target.overlays -= image('icons/obj/items/assemblies.dmi', "plastic-explosive_set_armed")
 			cdel(src)
 
 /obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
