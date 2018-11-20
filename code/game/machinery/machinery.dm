@@ -81,7 +81,7 @@ Class Procs:
 		//2 = run auto, use active
 	var/idle_power_usage = 0
 	var/active_power_usage = 0
-	var/machine_current_charge = 0 //Does it have an integrated battery? Normally 10k if so.
+	var/machine_current_charge = 0 //Does it have an integrated, unremovable capacitor? Normally 10k if so.
 	var/machine_max_charge = 0
 	var/power_channel = EQUIP
 	var/mob/living/carbon/human/operator = null //Had no idea where to put this so I put this here. Used for operating machines with RELAY_CLICK
