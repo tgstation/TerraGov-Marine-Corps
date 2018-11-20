@@ -162,7 +162,7 @@
 						dat += "<font color='green'>Ready!</font><br>"
 					dat += "<B>Launch Pad Status:</b> "
 					var/obj/C = locate() in current_squad.drop_pad.loc //This thing should ALWAYS exist.
-					if(!istype(C,/obj/machinery/vending) && !istype(C,/obj/structure/closet/crate)) //Can only send vendors and crates
+					if(!istype(C,/obj/machinery/vending/lasgun) && !istype(C,/obj/structure/closet/crate)) //Can only send vendors and crates
 						C = null
 					if(C)
 						dat += "<font color='green'>Supply crate loaded</font><BR>"
