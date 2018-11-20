@@ -45,7 +45,7 @@
 	var/amount = round(max_rounds * rand(2,severity) * 0.1)
 	current_rounds = max(0,current_rounds - amount)
 	update_icon()
-	..()
+	return ..()
 
 /obj/item/ammo_magazine/lasgun/M43/update_icon()
 	switch(current_rounds / max(1,max_rounds))
