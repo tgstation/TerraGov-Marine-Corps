@@ -178,7 +178,7 @@ Class Procs:
 
 /obj/machinery/proc/auto_use_power()
 	if(!powered(power_channel))
-		if(src.use_power == TRUE && (machine_current_charge > idle_power_usage)) //Does it have an integrated battery/reserve power to tap into?
+		if(use_power && (machine_current_charge > idle_power_usage)) //Does it have an integrated battery/reserve power to tap into?
 			machine_current_charge -= min(machine_current_charge, idle_power_usage) //Sterilize with min; no negatives allowed.
 			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Idle Power Usage: [idle_power_usage] Machine Current Charge: [machine_current_charge].</span>")
 			update_icon()
