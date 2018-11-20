@@ -598,7 +598,7 @@
 	current_mag.current_rounds = max(0,current_mag.current_rounds - amount)
 	update_icon()
 	current_mag.update_icon()
-	..()
+	return ..()
 
 // use power from a cell
 /obj/item/ammo_magazine/lasgun/proc/use(var/amount)
