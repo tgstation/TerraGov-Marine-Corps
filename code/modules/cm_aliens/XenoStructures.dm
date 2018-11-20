@@ -6,37 +6,33 @@
 	name = "alien thing"
 	desc = "theres something alien about this"
 	icon = 'icons/Xeno/Effects.dmi'
-	unacidable = 1
+	unacidable = TRUE
+	anchored = TRUE
 	var/health = 1
+	var/on_fire = FALSE
+
+/obj/effect/alien/proc/healthcheck()
+	if(health <= 0)
+		cdel(src)
 
 /obj/effect/alien/flamer_fire_act()
 	health -= 50
-	if(health < 0) cdel(src)
+	healthcheck()
 
-/*
- * Resin
- */
-/obj/effect/alien/resin
-	name = "resin"
-	desc = "Looks like some kind of slimy growth."
-	icon_state = "Resin1"
-	anchored = 1
-	health = 200
-	unacidable = 1
+/obj/effect/alien/fire_act()
+	health -= 50
+	healthcheck()
 
-
-/obj/effect/alien/resin/proc/healthcheck()
-	if(health <= 0)
-		density = 0
-		cdel(src)
-
-/obj/effect/alien/resin/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.damage/2
+/obj/effect/alien/bullet_act(var/obj/item/projectile/Proj)
+	if(Proj.damtype == "fire")
+		health -= Proj.damage*2
+	else
+		health -= Proj.damage*0.5
 	..()
 	healthcheck()
-	return 1
+	return TRUE
 
-/obj/effect/alien/resin/ex_act(severity)
+/obj/effect/alien/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			health -= 500
@@ -46,6 +42,15 @@
 			health -= (rand(50, 100))
 	healthcheck()
 	return
+
+/*
+ * Resin
+ */
+/obj/effect/alien/resin
+	name = "resin"
+	desc = "Looks like some kind of slimy growth."
+	icon_state = "Resin1"
+	health = 200
 
 /obj/effect/alien/resin/hitby(AM as mob|obj)
 	..()
@@ -96,9 +101,20 @@
 /obj/effect/alien/resin/attackby(obj/item/W, mob/user)
 	if(!(W.flags_item & NOBLUDGEON))
 		var/damage = W.force
-		if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
-			damage /= 4
-		health -= damage
+		var/multiplier = 1
+		if(W.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
+			multiplier += 1
+			if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
+				var/obj/item/tool/pickaxe/plasmacutter/P = W
+				if(!P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_MIN_MOD, null, null, SFX = FALSE))
+					return
+				multiplier += PLASMACUTTER_RESIN_MULTIPLIER //Plasma cutters are particularly good at destroying resin structures.
+				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_MIN_MOD) //Minimal energy cost.
+
+		else if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
+			multiplier *= 0.25
+		damage *= max(0,multiplier)
+		health -= max(0,round(damage))
 		if(istype(src, /obj/effect/alien/resin/sticky))
 			playsound(loc, "alien_resin_move", 25)
 		else
@@ -181,7 +197,7 @@
 /obj/effect/alien/resin/trap/bullet_act(obj/item/projectile/P)
 	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
 		return
-	. = ..()
+	return ..()
 
 /obj/effect/alien/resin/trap/HasProximity(atom/movable/AM)
 	if(hugger)
@@ -212,8 +228,7 @@
 
 /obj/effect/alien/resin/trap/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(M.a_intent != "hurt")
-		var/list/allowed_castes = list("Queen","Drone","Hivelord","Carrier")
-		if(allowed_castes.Find(M.caste))
+		if(M.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
 			if(!hugger)
 				to_chat(M, "<span class='warning'>[src] is empty.</span>")
 			else
@@ -236,7 +251,7 @@
 			to_chat(user, "<span class='xenonotice'>You place a facehugger in [src].</span>")
 			cdel(FH)
 	else
-		. = ..()
+		return ..()
 
 /obj/effect/alien/resin/trap/Crossed(atom/A)
 	if(ismob(A))
@@ -245,7 +260,7 @@
 /obj/effect/alien/resin/trap/Dispose()
 	if(hugger && loc)
 		drop_hugger()
-	. = ..()
+	return ..()
 
 
 
@@ -255,6 +270,7 @@
 	mineralType = "resin"
 	icon = 'icons/Xeno/Effects.dmi'
 	hardness = 1.5
+	layer = RESIN_STRUCTURE_LAYER
 	var/health = 80
 	var/close_delay = 100
 
@@ -282,19 +298,58 @@
 	else
 		return TryToSwitchState(user)
 
+/obj/structure/mineral_door/resin/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+	var/turf/cur_loc = M.loc
+	if(!istype(cur_loc))
+		return FALSE
+	TryToSwitchState(M)
+	return TRUE
+
+//clicking on resin doors attacks them, or opens them without harm intent
+/obj/structure/mineral_door/resin/attack_alien(mob/living/carbon/Xenomorph/M)
+	var/turf/cur_loc = M.loc
+	if(!istype(cur_loc))
+		return FALSE //Some basic logic here
+	if(M.a_intent != "hurt")
+		TryToSwitchState(M)
+		return TRUE
+
+	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins ripping it down.</span>", \
+	"<span class='warning'>You dig into \the [src] and begin ripping it down.</span>", null, 5)
+	playsound(src, "alien_resin_break", 25)
+	if(do_after(M, 80, FALSE, 5, BUSY_ICON_HOSTILE))
+		if(!loc)
+			return FALSE //Someone already destroyed it, do_after should check this but best to be safe
+		if(M.loc != cur_loc)
+			return FALSE //Make sure we're still there
+		M.visible_message("<span class='danger'>[M] rips down \the [src]!</span>", \
+		 "<span class='danger'>You rip down \the [src]!</span>", null, 5)
+		cdel(src)
+
 /obj/structure/mineral_door/resin/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.damage/2
+	health -= Proj.damage * 0.5
 	..()
 	healthcheck()
-	return 1
+	return TRUE
+
+/obj/structure/mineral_door/resin/flamer_fire_act()
+	health -= 50
+	if(health <= 0)
+		cdel(src)
+
+/turf/closed/wall/resin/fire_act()
+	take_damage(50)
+	if(damage >= damage_cap)
+		cdel(src)
 
 /obj/structure/mineral_door/resin/TryToSwitchState(atom/user)
 	if(isXeno(user))
 		return ..()
 
 /obj/structure/mineral_door/resin/Open()
-	if(state || !loc) return //already open
-	isSwitchingStates = 1
+	if(state || !loc)
+		return //already open
+	isSwitchingStates = TRUE
 	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]opening",src)
 	sleep(10)
@@ -309,14 +364,15 @@
 			Close()
 
 /obj/structure/mineral_door/resin/Close()
-	if(!state || !loc) return //already closed
+	if(!state || !loc)
+		return //already closed
 	//Can't close if someone is blocking it
 	for(var/turf/turf in locs)
 		if(locate(/mob/living) in turf)
 			spawn (close_delay)
 				Close()
 			return
-	isSwitchingStates = 1
+	isSwitchingStates = TRUE
 	playsound(loc, "alien_resin_move", 25)
 	flick("[mineralType]closing",src)
 	sleep(10)
@@ -344,10 +400,11 @@
 		var/turf/T
 		for(var/i in cardinal)
 			T = get_step(U, i)
-			if(!istype(T)) continue
+			if(!istype(T))
+				continue
 			for(var/obj/structure/mineral_door/resin/R in T)
 				R.check_resin_support()
-	. = ..()
+	return ..()
 
 /obj/structure/mineral_door/resin/proc/healthcheck()
 	if(src.health <= 0)
@@ -360,10 +417,10 @@
 	for(var/i in cardinal)
 		T = get_step(src, i)
 		if(T.density)
-			. = 1
+			. = TRUE
 			break
 		if(locate(/obj/structure/mineral_door/resin) in T)
-			. = 1
+			. = TRUE
 			break
 	if(!.)
 		visible_message("<span class = 'notice'>[src] collapses from the lack of support.</span>")
@@ -395,12 +452,10 @@
 	name = "egg"
 	icon_state = "Egg Growing"
 	density = 0
-	anchored = 1
 
 	health = 80
 	var/list/egg_triggers = list()
 	var/status = GROWING //can be GROWING, GROWN or BURST; all mutually exclusive
-	var/on_fire = 0
 	var/hivenumber = XENO_HIVE_NORMAL
 
 /obj/effect/alien/egg/New()
@@ -413,14 +468,14 @@
 	delete_egg_triggers()
 
 /obj/effect/alien/egg/ex_act(severity)
-	Burst(1)//any explosion destroys the egg.
+	Burst(TRUE)//any explosion destroys the egg.
 
 /obj/effect/alien/egg/attack_alien(mob/living/carbon/Xenomorph/M)
 
 	if(M.hivenumber != hivenumber)
 		M.animation_attack_on(src)
 		M.visible_message("<span class='xenowarning'>[M] crushes \the [src]","<span class='xenowarning'>You crush \the [src]")
-		Burst(1)
+		Burst(TRUE)
 		return
 
 	if(!istype(M))
@@ -428,13 +483,12 @@
 
 	switch(status)
 		if(BURST, DESTROYED)
-			switch(M.caste)
-				if("Queen","Drone","Hivelord","Carrier")
-					M.visible_message("<span class='xenonotice'>\The [M] clears the hatched egg.</span>", \
-					"<span class='xenonotice'>You clear the hatched egg.</span>")
-					playsound(src.loc, "alien_resin_break", 25)
-					M.plasma_stored++
-					cdel(src)
+			if(M.xeno_caste.can_hold_eggs)
+				M.visible_message("<span class='xenonotice'>\The [M] clears the hatched egg.</span>", \
+				"<span class='xenonotice'>You clear the hatched egg.</span>")
+				playsound(src.loc, "alien_resin_break", 25)
+				M.plasma_stored++
+				cdel(src)
 		if(GROWING)
 			to_chat(M, "<span class='xenowarning'>The child is not developed yet.</span>")
 		if(GROWN)
@@ -442,7 +496,7 @@
 				to_chat(M, "<span class='xenowarning'>You nudge the egg, but nothing happens.</span>")
 				return
 			to_chat(M, "<span class='xenonotice'>You retrieve the child.</span>")
-			Burst(0)
+			Burst(FALSE)
 
 /obj/effect/alien/egg/proc/Grow()
 	set waitfor = 0
@@ -475,7 +529,7 @@
 		egg_triggers -= trigger
 		cdel(trigger)
 
-/obj/effect/alien/egg/proc/Burst(kill = 1) //drops and kills the hugger if any is remaining
+/obj/effect/alien/egg/proc/Burst(kill = TRUE) //drops and kills the hugger if any is remaining
 	set waitfor = 0
 	if(kill)
 		if(status != DESTROYED)
@@ -500,7 +554,8 @@
 
 /obj/effect/alien/egg/bullet_act(var/obj/item/projectile/P)
 	..()
-	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX)) return
+	if(P.ammo.flags_ammo_behavior & (AMMO_XENO_ACID|AMMO_XENO_TOX))
+		return
 	health -= P.ammo.damage_type == BURN ? P.damage * 1.3 : P.damage
 	healthcheck()
 	P.ammo.on_hit_obj(src,P)
@@ -514,13 +569,6 @@
 			color = hive.color
 	if(on_fire)
 		overlays += "alienegg_fire"
-
-/obj/effect/alien/egg/fire_act()
-	on_fire = 1
-	if(on_fire)
-		update_icon()
-		spawn(rand(125, 200))
-			cdel(src)
 
 /obj/effect/alien/egg/attackby(obj/item/W, mob/living/user)
 	if(health <= 0)
@@ -569,32 +617,34 @@
 	healthcheck()
 
 
-/obj/effect/alien/egg/proc/healthcheck()
+/obj/effect/alien/egg/healthcheck()
 	if(health <= 0)
-		Burst(1)
+		Burst(TRUE)
 
 /obj/effect/alien/egg/HasProximity(atom/movable/AM as mob|obj)
 	if(status == GROWN)
 		if(!CanHug(AM) || isYautja(AM) || isSynth(AM)) //Predators are too stealthy to trigger eggs to burst. Maybe the huggers are afraid of them.
 			return
-		Burst(0)
+		Burst(FALSE)
 
 /obj/effect/alien/egg/flamer_fire_act() // gotta kill the egg + hugger
-	Burst(1)
+	Burst(TRUE)
 
+/obj/effect/alien/egg/fire_act()
+	Burst(TRUE)
 
 //The invisible traps around the egg to tell it there's a mob right next to it.
 /obj/effect/egg_trigger
 	name = "egg trigger"
 	icon = 'icons/effects/effects.dmi'
-	anchored = 1
+	anchored = TRUE
 	mouse_opacity = 0
 	invisibility = INVISIBILITY_MAXIMUM
 	var/obj/effect/alien/egg/linked_egg
 
-	New(loc, obj/effect/alien/egg/source_egg)
-		..()
-		linked_egg = source_egg
+/obj/effect/egg_trigger/New(loc, obj/effect/alien/egg/source_egg)
+	..()
+	linked_egg = source_egg
 
 
 /obj/effect/egg_trigger/Crossed(atom/A)

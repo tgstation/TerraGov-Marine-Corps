@@ -65,7 +65,7 @@
 	user.visible_message("<span class='xenonotice'>[user] starts planting [src].</span>", \
 					"<span class='xenonotice'>You start planting [src].</span>", null, 5)
 	var/plant_time = 35
-	if(user.caste != "Drone")
+	if(!isXenoDrone(user))
 		plant_time = 25
 	if(!do_after(user, plant_time, TRUE, 5, BUSY_ICON_BUILD))
 		return
@@ -84,7 +84,7 @@
 /obj/item/xeno_egg/attack_self(mob/user)
 	if(isXeno(user))
 		var/mob/living/carbon/Xenomorph/X = user
-		if(X.caste == "Carrier")
+		if(isXenoCarrier(X))
 			var/mob/living/carbon/Xenomorph/Carrier/C = X
 			C.store_egg(src)
 		else
@@ -95,10 +95,10 @@
 
 //Deal with picking up facehuggers. "attack_alien" is the universal 'xenos click something while unarmed' proc.
 /obj/item/xeno_egg/attack_alien(mob/living/carbon/Xenomorph/user)
-	switch(user.caste)
-		if("Queen","Carrier")
+	switch(user.xeno_caste.can_hold_eggs)
+		if(CAN_HOLD_ONE_HAND)
 			attack_hand(user)
-		if("Drone","Hivelord")
+		if(CAN_HOLD_TWO_HANDS)
 			if(user.r_hand || user.l_hand)
 				to_chat(user, "<span class='xenowarning'>You need two hands to hold [src].</span>")
 			else

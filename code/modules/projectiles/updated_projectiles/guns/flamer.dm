@@ -12,7 +12,7 @@
 	fire_sound = 'sound/weapons/gun_flamethrower2.ogg'
 	aim_slowdown = SLOWDOWN_ADS_INCINERATOR
 	current_mag = /obj/item/ammo_magazine/flamer_tank
-	var/max_range = 5
+	var/max_range = 6
 	var/lit = 0 //Turn the flamer on/off
 
 	attachable_allowed = list( //give it some flexibility.
@@ -21,21 +21,21 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 
-	New()
-		..()
-		fire_delay = config.max_fire_delay * 5
-		attachable_offset = list("rail_x" = 12, "rail_y" = 23)
+/obj/item/weapon/gun/flamer/New()
+	..()
+	fire_delay = config.max_fire_delay * 5
+	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 
-	unique_action(mob/user)
-		toggle_flame(user)
+/obj/item/weapon/gun/flamer/unique_action(mob/user)
+	toggle_flame(user)
 
-	examine(mob/user)
-		..()
-		to_chat(user, "It's turned [lit? "on" : "off"].")
-		if(current_mag)
-			to_chat(user, "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!")
-		else
-			to_chat(user, "There's no tank in [src]!")
+/obj/item/weapon/gun/flamer/examine(mob/user)
+	..()
+	to_chat(user, "It's turned [lit? "on" : "off"].")
+	if(current_mag)
+		to_chat(user, "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!")
+	else
+		to_chat(user, "There's no tank in [src]!")
 
 /obj/item/weapon/gun/flamer/able_to_fire(mob/user)
 	. = ..()
@@ -58,16 +58,19 @@
 
 /obj/item/weapon/gun/flamer/Fire(atom/target, mob/living/user, params, reflex)
 	set waitfor = 0
-	if(!able_to_fire(user)) return
+	if(!able_to_fire(user))
+		return
 	var/turf/curloc = get_turf(user) //In case the target or we are expired.
 	var/turf/targloc = get_turf(target)
-	if (!targloc || !curloc) return //Something has gone wrong...
+	if (!targloc || !curloc)
+		return //Something has gone wrong...
 
 	if(!lit)
 		to_chat(user, "<span class='alert'>The weapon isn't lit</span>")
 		return
 
-	if(!current_mag) return
+	if(!current_mag)
+		return
 	if(current_mag.current_rounds <= 0)
 		click_empty(user)
 	else
@@ -98,24 +101,28 @@
 		if(user)
 			if(magazine.reload_delay > 1)
 				to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-				if(do_after(user,magazine.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY)) replace_magazine(user, magazine)
+				if(do_after(user,magazine.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
+					replace_magazine(user, magazine)
 				else
 					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
 					return
-			else replace_magazine(user, magazine)
+			else
+				replace_magazine(user, magazine)
 		else
 			current_mag = magazine
 			magazine.loc = src
 			replace_ammo(,magazine)
 
 	update_icon()
-	return 1
+	return TRUE
 
 /obj/item/weapon/gun/flamer/unload(mob/user, reload_override = 0, drop_override = 0)
-	if(!current_mag) return //no magazine to unload
+	if(!current_mag)
+		return //no magazine to unload
 	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
 		current_mag.forceMove(get_turf(src)) //Drop it on the ground.
-	else user.put_in_hands(current_mag)
+	else
+		user.put_in_hands(current_mag)
 
 	playsound(user, unload_sound, 25, 1)
 	user.visible_message("<span class='notice'>[user] unloads [current_mag] from [src].</span>",
@@ -135,7 +142,7 @@
 		if("UT-Napthal Fuel") //This isn't actually Napalm actually
 			burnlevel = 24
 			burntime = 17
-			max_range = 5
+			max_range = 6
 
 		// Area denial, light damage, large AOE, long burntime
 		if("Napalm B")
@@ -147,15 +154,16 @@
 			return
 
 		if("Napalm X") //Probably can end up as a spec fuel or DS flamer fuel. Also this was the original fueltype, the madman i am.
-			burnlevel = 50
+			burnlevel = 45
 			burntime = 40
 			max_range = 7
 			fire_color = "blue"
 		if("Fuel") //This is welding fuel and thus pretty weak. Not ment to be exactly used for flamers either.
-			burnlevel = 10
+			burnlevel = 12
 			burntime = 10
-			max_range = 4
-		else return
+			max_range = 5
+		else
+			return
 
 	var/list/turf/turfs = getline2(user,target)
 	playsound(user, fire_sound, 50, 1)
@@ -166,18 +174,18 @@
 		if(T == user.loc)
 			prev_T = T
 			continue
-		if(T.density)
-			break
 		if(loc != user)
 			break
 		if(!current_mag || !current_mag.current_rounds)
 			break
 		if(distance > max_range)
 			break
-		if(prev_T && LinkBlocked(prev_T, T))
+		if(prev_T && LinkPreBlocksFire(prev_T, T))
 			break
 		current_mag.current_rounds--
 		flame_turf(T,user, burntime, burnlevel, fire_color)
+		if(PostBlocksFire(T))
+			break
 		distance++
 		prev_T = T
 		sleep(1)
@@ -198,33 +206,47 @@
 		if (S.slayer > 0)
 			S.slayer -= 1
 			S.update_icon(1, 0)
-	
+
 	for(var/obj/structure/jungle/vines/V in T)
 		cdel(V)
-		
+
+	var/fire_mod
 	for(var/mob/living/M in T) //Deal bonus damage if someone's caught directly in initial stream
-		if(M.stat == DEAD)		continue
+		if(M.stat == DEAD)
+			continue
+
+		fire_mod = 1
 
 		if(isXeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
-			if(X.fire_immune) 	continue
+			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+				continue
+			fire_mod = X.xeno_caste.fire_resist + X.fire_resist_modifier
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M //fixed :s
 
 			if(user)
 				if(user.mind && !user.mind.special_role && H.mind && !H.mind.special_role)
 					log_combat(user, H, "shot", src)
-					msg_admin_ff("[user] ([user.ckey]) shot [H] ([H.ckey]) with \a [name] in [get_area(user)] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>) (<a href='?priv_msg=\ref[user.client]'>PM</a>)")
+					msg_admin_ff("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) shot [key_name(H)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[H]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[H.x];Y=[H.y];Z=[H.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[H]'>FLW</a>) with \a [name] in [get_area(user)]")
 				else
 					log_combat(user, H, "shot", src)
-					msg_admin_attack("[user] ([user.ckey]) shot [H] ([H.ckey]) with \a [name] in [get_area(user)] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+					msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) shot [key_name(H)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[H]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[H.x];Y=[H.y];Z=[H.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[H]'>FLW</a>) with \a [name] in [get_area(user)]")
 
-			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro))) 
+			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
 				continue
+
+		var/armor_block = M.run_armor_check(null, "energy")
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
+				H.show_message(text("Your suit protects you from the flames."),1)
+				armor_block = CLAMP(armor_block * 1.5, 0.75, 1) //Min 75% resist, max 100%
+		M.apply_damage(rand(burn,(burn*2))* fire_mod, BURN, null, armor_block) // Make it so its the amount of heat or twice it for the initial blast.
 
 		M.adjust_fire_stacks(rand(5,burn*2))
 		M.IgniteMob()
-		M.adjustFireLoss(rand(burn,(burn*2))) // Make it so its the amount of heat or twice it for the initial blast.
+
 		to_chat(M, "[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
 
 /obj/item/weapon/gun/flamer/proc/triangular_flame(var/atom/target, var/mob/living/user, var/burntime, var/burnlevel)
@@ -283,7 +305,8 @@
 		for (var/turf/L in left)
 			if (L.density)
 				break
-			if(prev_L && LinkBlocked(prev_L, L))  break
+			if(prev_L && LinkBlocked(prev_L, L))
+				break
 
 			flame_turf(L, user, burntime, burnlevel, "green")
 			prev_L = L
@@ -299,6 +322,8 @@
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_SPECIALIST
 	req_access = list(ACCESS_MARINE_SPECPREP)
+	var/max_water = 200
+	var/last_use
 
 /obj/item/weapon/gun/flamer/M240T/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
@@ -325,20 +350,57 @@
 				else
 					to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
 					return
-			else replace_magazine(user, magazine)
+			else
+				replace_magazine(user, magazine)
 		else
 			current_mag = magazine
 			magazine.loc = src
 			replace_ammo(,magazine)
 
 	update_icon()
-	return 1
+	return TRUE
 
 /obj/item/weapon/gun/flamer/M240T/able_to_fire(mob/user)
 	. = ..()
 	if(.)
 		if(!current_mag || !current_mag.current_rounds)
 			return
+
+/obj/item/weapon/gun/flamer/M240T/examine(mob/user)
+	. = ..()
+	to_chat(user, "<span class='notice'>Its hydro cannon contains [M240T_WATER_AMOUNT]/[max_water] units of water!</span>")
+
+
+/obj/item/weapon/gun/flamer/M240T/New()
+	. = ..()
+	var/datum/reagents/R = new/datum/reagents(max_water)
+	reagents = R
+	R.my_atom = src
+	R.add_reagent("water", max_water)
+
+	var/obj/item/attachable/hydro_cannon/G = new(src)
+	G.icon_state = ""
+	G.Attach(src)
+	update_attachable(G.slot)
+	G.icon_state = initial(G.icon_state)
+
+/obj/item/weapon/gun/flamer/M240T/Fire(atom/target, mob/living/user, params, reflex)
+	if(active_attachable && istype(active_attachable, /obj/item/attachable/hydro_cannon) && (world.time > last_use + 10))
+		extinguish(target,user) //Fire it.
+		last_fired = world.time
+		last_use = world.time
+		return
+	return ..()
+
+/obj/item/weapon/gun/flamer/M240T/afterattack(atom/target, mob/user)
+	. = ..()
+	if( istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(user,target) <= 1)
+		var/obj/o = target
+		o.reagents.trans_to(src, max_water)
+		to_chat(user, "\blue \The [src]'s hydro cannon is refilled with water.")
+		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
+		return
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //Time to redo part of abby's code.
@@ -355,22 +417,27 @@
 	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
 	var/flame_color = "red"
 
-/obj/flamer_fire/New(loc, fire_lvl, burn_lvl, f_color, fire_spread_amount)
+/obj/flamer_fire/New(loc, fire_lvl, burn_lvl, f_color, fire_spread_amount, fire_stacks = 0, fire_damage = 0)
 	..()
 	if (f_color)
 		flame_color = f_color
 
 	icon_state = "[flame_color]_2"
-	if(fire_lvl) firelevel = fire_lvl
-	if(burn_lvl) burnlevel = burn_lvl
+	if(fire_lvl)
+		firelevel = fire_lvl
+	if(burn_lvl)
+		burnlevel = burn_lvl
 	processing_objects.Add(src)
 
 	if(fire_spread_amount > 0)
 		var/turf/T
 		for(var/dirn in cardinal)
 			T = get_step(loc, dirn)
-			if(istype(T,/turf/open/space)) continue
-			if(locate(/obj/flamer_fire) in T) continue //No stacking
+			if(istype(T,/turf/open/space))
+				continue
+			var/obj/flamer_fire/F
+			if(locate(F) in T)
+				cdel(F) //No stacking
 			var/new_spread_amt = T.density ? 0 : fire_spread_amount - 1 //walls stop the spread
 			if(new_spread_amt)
 				for(var/obj/O in T)
@@ -378,38 +445,54 @@
 						new_spread_amt = 0
 						break
 			spawn(0) //delay so the newer flame don't block the spread of older flames
-				new /obj/flamer_fire(T, fire_lvl, burn_lvl, f_color, new_spread_amt)
+				new /obj/flamer_fire(T, fire_lvl, burn_lvl, f_color, new_spread_amt, fire_stacks, fire_damage)
+				var/mob/living/C
+				if(fire_stacks || fire_damage)
+					for(C in T)
+						if(C.fire_immune)
+							continue
+						else
+							C.adjust_fire_stacks(fire_stacks)
+							var/armor_block = C.run_armor_check("chest", "energy")
+							C.apply_damage(fire_damage, BURN, null, armor_block)
+							C.IgniteMob()
+							C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isXeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
 
 /obj/flamer_fire/Dispose()
 	SetLuminosity(0)
 	processing_objects.Remove(src)
-	. = ..()
+	return ..()
 
 
 /obj/flamer_fire/Crossed(mob/living/M) //Only way to get it to reliable do it when you walk into it.
 	if(istype(M))
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(isXeno(H.pulledby))
-				var/mob/living/carbon/Xenomorph/Z = H.pulledby
-				if(!Z.fire_immune)
-					Z.adjust_fire_stacks(burnlevel)
-					Z.IgniteMob()
-			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
-				H.show_message(text("Your suit protects you from the flames."),1)
-				H.adjustFireLoss(burnlevel*0.25) //Does small burn damage to a person wearing one of the suits.
-				return
+		var/fire_mod = 1
 		if(isXeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
-			if(X.fire_immune) 	return
+			if(X.fire_immune)
+				return
+			fire_mod = X.fire_resist
 		M.adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
 		if (prob(firelevel + 2*M.fire_stacks)) //the more soaked in fire you are, the likelier to be ignited
 			M.IgniteMob()
 
-		M.adjustFireLoss(round(burnlevel*0.5)) //This makes fire stronk.
+		var/armor_block = M.run_armor_check(null, "energy")
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(isXeno(H.pulledby))
+				var/mob/living/carbon/Xenomorph/Z = H.pulledby
+				if(!Z.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+					Z.adjust_fire_stacks(burnlevel)
+					Z.IgniteMob()
+			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
+				H.show_message(text("Your suit protects you from the flames."),1)
+				armor_block = CLAMP(armor_block * 1.5, 0.75, 1) //Min 75% resist, max 100%
+		M.apply_damage(round(burnlevel*0.5)* fire_mod, BURN, null, armor_block)
+
 		to_chat(M, "<span class='danger'>You are burned!</span>")
-		if(isXeno(M)) M.updatehealth()
+		if(isXeno(M))
+			M.updatehealth()
 
 
 /obj/flamer_fire/proc/updateicon()
@@ -430,7 +513,7 @@
 /obj/flamer_fire/process()
 	var/turf/T = loc
 	firelevel = max(0, firelevel)
-	if(!istype(T)) //Is it a valid turf? Has to be on a floor
+	if(!istype(T)) //Is it a valid turf?
 		cdel(src)
 		return
 
@@ -440,9 +523,12 @@
 		cdel(src)
 		return
 
+	T.flamer_fire_act()
+
 	var/j = 0
 	for(var/i in loc)
-		if(++j >= 11) break
+		if(++j >= 11)
+			break
 		if(isliving(i))
 			var/mob/living/I = i
 			if(istype(I,/mob/living/carbon/human))
@@ -458,13 +544,17 @@
 			if(istype(I,/mob/living/carbon/Xenomorph/Ravager))
 				if(!I.stat)
 					var/mob/living/carbon/Xenomorph/Ravager/X = I
-					X.plasma_stored = X.plasma_max
+					X.plasma_stored = X.xeno_caste.plasma_max
 					X.usedcharge = 0 //Reset charge cooldown
 					X.show_message(text("<span class='danger'>The heat of the fire roars in your veins! KILL! CHARGE! DESTROY!</span>"),1)
-					if(rand(1,100) < 70) X.emote("roar")
+					if(rand(1,100) < 70)
+						X.emote("roar")
 				continue
+
+
 			I.adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
-			if(prob(firelevel)) I.IgniteMob()
+			if(prob(firelevel))
+				I.IgniteMob()
 			//I.adjustFireLoss(rand(10 ,burnlevel)) //Including the fire should be way stronger.
 			I.show_message(text("<span class='warning'>You are burned!</span>"),1)
 			if(isXeno(I)) //Have no fucken idea why the Xeno thing was there twice.

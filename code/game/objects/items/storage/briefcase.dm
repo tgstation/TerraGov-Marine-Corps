@@ -44,6 +44,6 @@
 			O.show_message(text("\red <B>[] has been knocked unconscious!</B>", M), 1, "\red You hear someone fall.", 2)
 	else
 		to_chat(M, text("\red [] tried to knock you unconcious!",user))
-		M.eye_blurry += 3
+		M.adjust_blurriness(3)
 
 	return

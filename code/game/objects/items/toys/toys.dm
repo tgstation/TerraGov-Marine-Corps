@@ -57,7 +57,7 @@
 			else if(O.reagents.total_volume >= 1)
 				if(O.reagents.has_reagent("pacid", 1))
 					to_chat(user, "The acid chews through the balloon!")
-					O.reagents.reaction(user)
+					O.reagents.reaction(user, TOUCH)
 					cdel(src)
 				else
 					src.desc = "A translucent balloon with some form of liquid sloshing around in it."
@@ -69,9 +69,9 @@
 /obj/item/toy/balloon/throw_impact(atom/hit_atom)
 	if(src.reagents.total_volume >= 1)
 		src.visible_message("\red The [src] bursts!","You hear a pop and a splash.")
-		src.reagents.reaction(get_turf(hit_atom))
+		src.reagents.reaction(get_turf(hit_atom), TOUCH)
 		for(var/atom/A in get_turf(hit_atom))
-			src.reagents.reaction(A)
+			src.reagents.reaction(A, TOUCH)
 		src.icon_state = "burst"
 		spawn(5)
 			if(src)

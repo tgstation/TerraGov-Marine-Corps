@@ -97,17 +97,24 @@
 	var/target_id
 	var/obj/item/device/binoculars/tactical/source_binoc
 	var/obj/machinery/camera/laser_cam/linked_cam
+	var/datum/squad/squad
 
-	New(loc, squad_name)
-		..()
-		if(squad_name)
-			name = "[squad_name] laser"
-		target_id = rand(1,1000) //giving it a pseudo unique id.
-		active_laser_targets += src
-		linked_cam = new(loc, name)
+/obj/effect/overlay/temp/laser_target/New(loc, named, assigned_squad = null)
+	. = ..()
+	if(named)
+		name = "[named] laser"
+	target_id = UNIQUEID //giving it a unique id.
+	active_laser_targets += src
+	squad = assigned_squad
+	if(squad)
+		squad.squad_laser_targets += src
+	linked_cam = new(loc, name)
 
 /obj/effect/overlay/temp/laser_target/Dispose()
 	active_laser_targets -= src
+	if(squad)
+		squad.squad_laser_targets -= src
+		squad = null
 	if(source_binoc)
 		source_binoc.laser_cooldown = world.time + source_binoc.cooldown_duration
 		source_binoc.laser = null

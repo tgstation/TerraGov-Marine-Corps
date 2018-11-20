@@ -7,7 +7,7 @@ using metal and glass, it uses glass and reagents (usually sulfuric acis).
 /obj/machinery/r_n_d/circuit_imprinter
 	name = "Circuit Imprinter"
 	icon_state = "circuit_imprinter"
-	flags_atom = OPENCONTAINER
+	container_type = REFILLABLE
 
 	var/g_amount = 0
 	var/gold_amount = 0

@@ -131,20 +131,19 @@
 
 /obj/item/storage/belt/medical/New()
 	..()
-	new /obj/item/stack/medical/advanced/bruise_pack(src)
-	new /obj/item/stack/medical/advanced/ointment(src)
-	new /obj/item/stack/medical/splint(src)
+	new /obj/item/device/defibrillator(src)
+	new /obj/item/bodybag/cryobag(src)
+	new /obj/item/roller(src)
 	new /obj/item/storage/pill_bottle/hypervene(src)
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/dexalin(src)
-	new /obj/item/storage/pill_bottle/antitox(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/spaceacillin(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
 	new /obj/item/storage/pill_bottle/tramadol(src)
 	new /obj/item/storage/pill_bottle/peridaxon(src)
 	new /obj/item/storage/pill_bottle/quickclot(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/hypervene(src)
 
 
 /obj/item/storage/belt/combatLifesaver
@@ -174,7 +173,7 @@
 	new /obj/item/stack/medical/splint(src)
 	new /obj/item/storage/pill_bottle/bicaridine(src)
 	new /obj/item/storage/pill_bottle/dexalin(src)
-	new /obj/item/storage/pill_bottle/antitox(src)
+	new /obj/item/storage/pill_bottle/dylovene(src)
 	new /obj/item/storage/pill_bottle/kelotane(src)
 	new /obj/item/storage/pill_bottle/spaceacillin(src)
 	new /obj/item/storage/pill_bottle/inaprovaline(src)
@@ -183,9 +182,9 @@
 	new /obj/item/storage/pill_bottle/quickclot(src)
 	new /obj/item/storage/pill_bottle/hypervene(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/quickclot(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/dexP(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/dexP(src)
-	new /obj/item/reagent_container/hypospray/autoinjector/Oxycodone(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/dexalinplus(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/dexalinplus(src)
+	new /obj/item/reagent_container/hypospray/autoinjector/oxycodone(src)
 	new /obj/item/reagent_container/hypospray/autoinjector/hypervene(src)
 
 /obj/item/storage/belt/combatLifesaver/upp
@@ -362,7 +361,32 @@
 		new /obj/item/explosive/grenade/frag(src)
 		new /obj/item/explosive/grenade/frag(src)
 
+/obj/item/storage/belt/grenade/b18
+	w_class = 4
+	storage_slots = 16
+	max_w_class = 3
+	max_storage_space = 32
+	can_hold = list("/obj/item/explosive/grenade")
 
+/obj/item/storage/belt/grenade/b18/New()
+	..()
+	spawn(1)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/incendiary(src)
+		new /obj/item/explosive/grenade/frag(src)
+		new /obj/item/explosive/grenade/frag(src)
+		new /obj/item/explosive/grenade/frag(src)
+		new /obj/item/explosive/grenade/frag(src)
+		new /obj/item/explosive/grenade/frag(src)
+		new /obj/item/explosive/grenade/frag(src)
+		new /obj/item/explosive/grenade/frag(src)
+		new /obj/item/explosive/grenade/frag(src)
 
 /obj/item/storage/sparepouch
 	name="\improper G8 general utility pouch"

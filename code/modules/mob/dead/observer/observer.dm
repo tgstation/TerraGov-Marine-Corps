@@ -9,7 +9,6 @@
 	stat = DEAD
 	density = 0
 	canmove = 0
-	blinded = 0
 	anchored = 1	//  don't get pushed around
 	invisibility = INVISIBILITY_OBSERVER
 	layer = ABOVE_FLY_LAYER
@@ -20,10 +19,36 @@
 							//If you died in the game and are a ghsot - this will remain as null.
 							//Note that this is not a reliable way to determine if admins started as observers, since they change mobs a lot.
 //	var/has_enabled_antagHUD = 0
-	var/list/HUD_toggled = list(0,0,0,0)
-//	var/antagHUD = 0
+	var/ghost_medhud = 0
+	var/ghost_sechud = 0
+	var/ghost_squadhud = 0
+	var/ghost_xenohud = 0
+	//	var/antagHUD = 0
 	universal_speak = 1
 	var/atom/movable/following = null
+
+/mob/dead/observer/Login()
+	if(!client)
+		return
+	client.prefs.load_preferences()
+	ghost_medhud = client.prefs.ghost_medhud
+	ghost_sechud = client.prefs.ghost_sechud
+	ghost_squadhud = client.prefs.ghost_squadhud
+	ghost_xenohud = client.prefs.ghost_xenohud
+	var/datum/mob_hud/H
+	if(ghost_medhud)
+		H = huds[MOB_HUD_MEDICAL_OBSERVER]
+		H.add_hud_to(src)	
+	if(ghost_sechud)
+		H = huds[MOB_HUD_SECURITY_ADVANCED]
+		H.add_hud_to(src)
+	if(ghost_squadhud)
+		H = huds[MOB_HUD_SQUAD]
+		H.add_hud_to(src)
+	if(ghost_xenohud)
+		H = huds[MOB_HUD_XENO_STATUS]
+		H.add_hud_to(src)
+	return ..()
 
 /mob/dead/observer/New(mob/body)
 	sight |= SEE_TURFS|SEE_MOBS|SEE_OBJS|SEE_SELF
@@ -69,6 +94,7 @@
 	if(!name)							//To prevent nameless ghosts
 		name = capitalize(pick(first_names_male)) + " " + capitalize(pick(last_names))
 	real_name = name
+	Login()
 	..()
 	if(ticker && ticker.mode && ticker.mode.flags_round_type & MODE_PREDATOR)
 		spawn(20)
@@ -155,9 +181,9 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(response != "Ghost")	return	//didn't want to ghost after-all
 		resting = 1
 		var/turf/location = get_turf(src)
+		log_game("[key_name(usr)] has ghosted.")
 		if(location) //to avoid runtime when a mob ends up in nullspace
-			message_admins("[key_name_admin(usr)] has ghosted. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
-		log_game("[key_name_admin(usr)] has ghosted.")
+			message_admins("[key_name(usr)] has ghosted (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>)")
 		var/mob/dead/observer/ghost = ghostize(0)						//0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3
 		if(ghost) //Could be null if no key
 			ghost.timeofdeath = world.time // Because the living mob won't have a time of death and we want the respawn timer to work properly.
@@ -229,32 +255,42 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/hud_choice = input("Choose a HUD to toggle", "Toggle HUD", null) as null|anything in listed_huds
 	if(!client)
 		return
+	client.prefs.load_preferences()
+	ghost_medhud = client.prefs.ghost_medhud
+	ghost_sechud = client.prefs.ghost_sechud
+	ghost_squadhud = client.prefs.ghost_squadhud
+	ghost_xenohud = client.prefs.ghost_xenohud
 	var/datum/mob_hud/H
-	var/HUD_nbr = 1
+
 	switch(hud_choice)
 		if("Medical HUD")
+			ghost_medhud = !ghost_medhud
 			H = huds[MOB_HUD_MEDICAL_OBSERVER]
+			ghost_medhud ? H.add_hud_to(src) : H.remove_hud_from(src)
+			client.prefs.ghost_medhud = ghost_medhud
+			client.prefs.save_preferences()
+			to_chat(src, (ghost_medhud ? "\blue <B>[hud_choice] Enabled</B>" : "\blue <B>[hud_choice] Disabled</B>"))
 		if("Security HUD")
+			ghost_sechud = !ghost_sechud
 			H = huds[MOB_HUD_SECURITY_ADVANCED]
-			HUD_nbr = 2
+			ghost_sechud ? H.add_hud_to(src) : H.remove_hud_from(src)
+			client.prefs.ghost_sechud = ghost_sechud
+			client.prefs.save_preferences()
+			to_chat(src, (ghost_sechud ? "\blue <B>[hud_choice] Enabled</B>" : "\blue <B>[hud_choice] Disabled</B>"))
 		if("Squad HUD")
+			ghost_squadhud = !ghost_squadhud
 			H = huds[MOB_HUD_SQUAD]
-			HUD_nbr = 3
+			ghost_squadhud ? H.add_hud_to(src) : H.remove_hud_from(src)
+			client.prefs.ghost_squadhud = ghost_squadhud
+			client.prefs.save_preferences()
+			to_chat(src, (ghost_squadhud ? "\blue <B>[hud_choice] Enabled</B>" : "\blue <B>[hud_choice] Disabled</B>"))
 		if("Xeno Status HUD")
+			ghost_xenohud = !ghost_xenohud
 			H = huds[MOB_HUD_XENO_STATUS]
-			HUD_nbr = 4
-		else
-			return
-
-	if(HUD_toggled[HUD_nbr])
-		HUD_toggled[HUD_nbr] = 0
-		H.remove_hud_from(src)
-		to_chat(src, "\blue <B>[hud_choice] Disabled</B>")
-	else
-		HUD_toggled[HUD_nbr] = 1
-		H.add_hud_to(src)
-		to_chat(src, "\blue <B>[hud_choice] Enabled</B>")
-
+			ghost_xenohud ? H.add_hud_to(src) : H.remove_hud_from(src)
+			client.prefs.ghost_xenohud = ghost_xenohud
+			client.prefs.save_preferences()
+			to_chat(src, (ghost_xenohud ? "\blue <B>[hud_choice] Enabled</B>" : "\blue <B>[hud_choice] Disabled</B>"))
 
 
 /mob/dead/observer/proc/dead_tele()
@@ -339,7 +375,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 /atom/movable/Moved()
 	..()
-	
+
 	if(followers.len)
 		for(var/_F in followers)
 			var/mob/dead/observer/F = _F //Read this was faster than var/typepath/F in list
@@ -604,7 +640,24 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	if(ticker.mode.check_xeno_late_join(src))
 		var/mob/new_xeno = ticker.mode.attempt_to_join_as_xeno(src)
-		if(new_xeno) ticker.mode.transfer_xeno(src, new_xeno)
+		if(new_xeno)
+			ticker.mode.transfer_xeno(src, new_xeno)
+
+/mob/dead/verb/join_as_larva()
+	set category = "Ghost"
+	set name = "Join as Larva"
+	set desc = "Attempt to be born as a burrowed larva should a Queen be in ovi."
+	if (!stat || !client || !ticker.mode.check_xeno_late_join(src))
+		return FALSE
+	if(!ticker || ticker.current_state < GAME_STATE_PLAYING || !ticker.mode)
+		to_chat(src, "<span class='warning'>The game hasn't started yet!</span>")
+		return FALSE
+	var/mob/living/carbon/Xenomorph/Queen/mother = ticker.mode.attempt_to_join_as_larva(src)
+	if(!mother)
+		return FALSE
+	else
+		ticker.mode.spawn_larva(src, mother)
+		return TRUE
 
 /mob/dead/verb/join_as_zombie() //Adapted from join as hellhoud
 	set category = "Ghost"
@@ -778,11 +831,15 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		return
 
 	if(!ticker || ticker.current_state < GAME_STATE_PLAYING || !ticker.mode)
-		to_chat(src, "<span class='warning'>The game hasn't started yet!</span?")
+		to_chat(src, "<span class='warning'>The game hasn't started yet!</span>")
 		return
 
 	if(ticker.mode.check_predator_late_join(src))
-		ticker.mode.attempt_to_join_as_predator(src)
+		if(jobban_isbanned(src, "Predator"))
+			to_chat(src, "<span class='warning'>You have been jobbanned from playing predator! Jobbans are only lifted upon request.</span>")
+			return
+		else
+			ticker.mode.attempt_to_join_as_predator(src)
 
 /mob/dead/verb/drop_vote()
 	set category = "Ghost"

@@ -28,6 +28,9 @@ JOBS_HAVE_MINIMAL_ACCESS
 ## Unhash this to use recursive explosions, keep it hashed to use circle explosions. Recursive explosions react to walls, airlocks and blast doors, making them look a lot cooler than the boring old circular explosions. They require more CPU and are (as of january 2013) experimental
 #USE_RECURSIVE_EXPLOSIONS
 
+## Unhash this to permit husking from flames.
+#HUSKING_ON
+
 ## log OOC channel
 LOG_OOC
 
@@ -187,16 +190,25 @@ GUEST_BAN
 #SERVER server.net:port
 
 ## forum address
-FORUMURL https://tgstation13.org/phpBB/
+FORUMURL https://tgstation13.org/phpBB/viewforum.php?f=64
 
 ## Wiki address
-WIKIURL https://tgstation13.org/wiki
+WIKIURL https://tgstation13.org/wiki/DMCA
 
 ## Rules address
 RULESURL https://tgstation13.org/wiki/DMCA_Rules
 
+## Chat address
+CHATURL https://discord.gg/2dFpfNE
+
+## Donation address
+DONATIONURL https://www.patreon.com/tgstation
+
+## Bug tracker address
+BUGTRACKERURL https://github.com/ColonialMarines-Mirror/ColonialMarines-2018/issues
+
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
-BANAPPEALS https://cm-ss13.com/viewforum.php?f=76
+BANAPPEALS https://cc.ddmers.com/dmca/
 
 ## In-game features
 ## spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
@@ -286,3 +298,11 @@ REQ_CULT_GHOSTWRITER 6
 
 ## Automute the OOC channel. OOC mutes itself at round-start and unmutes itself at round-end.
 AUTOOOCMUTE
+
+# MAP URLS
+ALMAYER_URL https://affectedarc07.github.io/SS13WebMap/DMCA/Almayer/index.html
+BIGRED_URL https://affectedarc07.github.io/SS13WebMap/DMCA/BigRed/index.html
+ICECOLONY_URL https://affectedarc07.github.io/SS13WebMap/DMCA/IceColony/index.html
+LV624_URL https://affectedarc07.github.io/SS13WebMap/DMCA/LV624/index.html
+PRISONSTATION_URL https://affectedarc07.github.io/SS13WebMap/PrisonStation/Almayer/index.html
+WHISKEYOUTPOST_URL https://affectedarc07.github.io/SS13WebMap/DMCA/WhiskeyOutpost/index.html

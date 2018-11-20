@@ -86,7 +86,7 @@ var/list/liftable_structures = list(
 #define PULSE_THREADY	5	//occurs during hypovolemic shock
 //feel free to add shit to lists below
 var/list/tachycardics = list("coffee", "inaprovaline", "hyperzine", "nitroglycerin", "thirteenloko", "nicotine")	//increase heart rate
-var/list/bradycardics = list("neurotoxin", "cryoxadone", "clonexadone", "space_drugs", "stoxin")					//decrease heart rate
+var/list/bradycardics = list("neurotoxin", "cryoxadone", "clonexadone", "space_drugs", "sleeptoxin")					//decrease heart rate
 var/list/heartstopper = list("potassium_phorochloride", "zombie_powder") //this stops the heart
 var/list/cheartstopper = list("potassium_chloride") //this stops the heart when overdose is met -- c = conditional
 
@@ -127,6 +127,17 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define IS_PRY_CAPABLE_CROWBAR		2 //actual crowbar
 #define IS_PRY_CAPABLE_FORCE		3 //can force open even powered airlocks
 
+//plasma cutter
+
+#define PLASMACUTTER_MIN_MOD	0.01
+#define PLASMACUTTER_VLOW_MOD	0.1
+#define PLASMACUTTER_LOW_MOD	0.5
+#define PLASMACUTTER_HIGH_MOD	2
+#define PLASMACUTTER_VHIGH_MOD	3
+#define PLASMACUTTER_CUT_DELAY	30
+#define PLASMACUTTER_RESIN_MULTIPLIER	4
+#define PLASMACUTTER_BASE_COST	1000
+
 //flags_token & tokensupport
 //used for coins and vendors, restricting specific tokens to associated vendors.
 
@@ -135,3 +146,66 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define TOKEN_ENGI				4
 #define TOKEN_SPEC				8
 #define TOKEN_ALL				15
+
+//MEDEVAC DEFINES
+#define MEDEVAC_COOLDOWN		3000 //300 seconds or 5 minutes
+#define MEDEVAC_TELE_DELAY		50 //5 seconds
+//Sentry defines
+#define SENTRY_ALERT_AMMO				1
+#define SENTRY_ALERT_HOSTILE			2
+#define SENTRY_ALERT_FALLEN				3
+#define SENTRY_ALERT_DAMAGE				4
+#define SENTRY_ALERT_BATTERY			5
+#define SENTRY_ALERT_DELAY				20 SECONDS
+#define SENTRY_DAMAGE_ALERT_DELAY		5 SECONDS
+
+
+//Scout cloak defines
+#define SCOUT_CLOAK_ENERGY	100
+#define SCOUT_CLOAK_STEALTH_DELAY 30
+#define SCOUT_CLOAK_RUN_DRAIN	5
+#define SCOUT_CLOAK_WALK_DRAIN	1
+#define SCOUT_CLOAK_ACTIVE_RECOVERY -5 //You only get this once every obj tick, so it'll be comparable to the inactive value
+#define SCOUT_CLOAK_INACTIVE_RECOVERY 5
+#define SCOUT_CLOAK_COOLDOWN 100
+#define SCOUT_CLOAK_TIMER 50
+#define SCOUT_CLOAK_RUN_ALPHA 128
+#define SCOUT_CLOAK_WALK_ALPHA 38
+#define SCOUT_CLOAK_STILL_ALPHA 13
+#define SCOUT_CLOAK_MAX_ENERGY 100
+#define SCOUT_CLOAK_OFF_DAMAGE (1 << 0)
+#define SCOUT_CLOAK_OFF_ATTACK (1 << 1)
+//B18 DEFINES
+#define B18_CHEM_COOLDOWN				2.5 MINUTES
+#define B18_CHEM_MOD					0.5
+#define B18_BRUTE_CODE					1
+#define B18_BURN_CODE					2
+#define B18_OXY_CODE					3
+#define B18_TOX_CODE					4
+#define B18_PAIN_CODE					5
+#define B18_DAMAGE_MIN					50
+#define B18_DAMAGE_MAX					150
+#define B18_PAIN_MIN					50
+#define B18_PAIN_MAX					150
+
+//Obj skill check defines
+
+#define OBJ_SKILL_CQC			1
+#define OBJ_SKILL_MELEE_WEAPONS	2
+#define OBJ_SKILL_FIREARMS		3
+#define OBJ_SKILL_PISTOLS		4
+#define OBJ_SKILL_RIFLES		5
+#define OBJ_SKILL_SMG			6
+#define OBJ_SKILL_SHOTGUNS		7
+#define OBJ_SKILL_HEAVYWEAPONS	8
+#define OBJ_SKILL_SMARTGUN		9
+#define OBJ_SKILL_SPEC_WEAPONS	10
+#define OBJ_SKILL_LEADERSHIP	11
+#define OBJ_SKILL_MEDICAL		12
+#define OBJ_SKILL_SURGERY		13
+#define OBJ_SKILL_PILOT			14
+#define OBJ_SKILL_ENDURANCE		15
+#define OBJ_SKILL_ENGINEER		16
+#define OBJ_SKILL_CONSTRUCTION	17
+#define OBJ_SKILL_POLICE		18
+#define OBJ_SKILL_POWERLOADER	19

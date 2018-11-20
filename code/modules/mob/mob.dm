@@ -57,13 +57,13 @@
 	if(!client)	return
 
 	if (type)
-		if(type & 1 && (sdisabilities & BLIND || blinded) )//Vision related
+		if(type & 1 && (sdisabilities & BLIND || is_blind()) )//Vision related
 			if (!alt)
 				return
 			else
 				msg = alt
 				type = alt_type
-		if (type & 2 && (sdisabilities & DEAF || ear_deaf))//Hearing related
+		if (type & 2 && (sdisabilities & DEAF || isdeaf()))//Hearing related
 			if (!alt)
 				return
 			else
@@ -138,13 +138,15 @@
 //set del_on_fail to have it delete W if it fails to equip
 //set disable_warning to disable the 'you are unable to equip that' warning.
 //unset redraw_mob to prevent the mob from being redrawn at the end.
-/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = 1, del_on_fail = 0, disable_warning = 0, redraw_mob = 1, permanent = 0)
-	if(!istype(W)) return
+/mob/proc/equip_to_slot_if_possible(obj/item/W, slot, ignore_delay = TRUE, del_on_fail = FALSE, disable_warning = FALSE, redraw_mob = TRUE, permanent = FALSE)
+	if(!istype(W))
+		return
 
 	if(!W.mob_can_equip(src, slot, disable_warning))
-		if(del_on_fail) cdel(W)
-		else
-			if(!disable_warning) to_chat(src, "<span class='warning'>You are unable to equip that.</span>")
+		if(del_on_fail)
+			cdel(W)
+		else if(!disable_warning)
+			to_chat(src, "<span class='warning'>You are unable to equip that.</span>")
 		return
 	var/start_loc = W.loc
 	if(W.time_to_equip && !ignore_delay)
@@ -158,9 +160,11 @@
 					W.flags_item |= NODROP
 				if(W.loc == start_loc && get_active_hand() != W)
 					//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
-					if(W.zoom) W.zoom(src)
-					if(W.flags_item & TWOHANDED) W.unwield(src)
-		return 1
+					if(W.zoom)
+						W.zoom(src)
+					if(W.flags_item & TWOHANDED)
+						W.unwield(src)
+		return TRUE
 	else
 		equip_to_slot(W, slot, redraw_mob) //This proc should not ever fail.
 		if(permanent)
@@ -168,9 +172,11 @@
 			W.flags_item |= NODROP
 		if(W.loc == start_loc && get_active_hand() != W)
 			//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
-			if(W.zoom) W.zoom(src)
-			if(W.flags_item & TWOHANDED) W.unwield(src)
-		return 1
+			if(W.zoom)
+				W.zoom(src)
+			if(W.flags_item & TWOHANDED)
+				W.unwield(src)
+		return TRUE
 
 //This is an UNSAFE proc. It merely handles the actual job of equipping. All the checks on whether you can or can't eqip need to be done before! Use mob_can_equip() for that task.
 //In most cases you will want to use equip_to_slot_if_possible()
@@ -189,6 +195,7 @@ var/list/slot_equipment_priority = list( \
 		WEAR_BACK,\
 		WEAR_ID,\
 		WEAR_BODY,\
+		WEAR_ACCESSORY,\
 		WEAR_JACKET,\
 		WEAR_FACE,\
 		WEAR_HEAD,\
@@ -199,19 +206,24 @@ var/list/slot_equipment_priority = list( \
 		WEAR_WAIST,\
 		WEAR_J_STORE,\
 		WEAR_L_STORE,\
-		WEAR_R_STORE\
+		WEAR_R_STORE,\
+		EQUIP_IN_BOOT,\
+		EQUIP_IN_STORAGE,\
+		EQUIP_IN_L_POUCH,\
+		EQUIP_IN_R_POUCH\
 	)
 
 //puts the item "W" into an appropriate slot in a human's inventory
 //returns 0 if it cannot, 1 if successful
-/mob/proc/equip_to_appropriate_slot(obj/item/W, ignore_delay = 1)
-	if(!istype(W)) return 0
+/mob/proc/equip_to_appropriate_slot(obj/item/W, ignore_delay = TRUE)
+	if(!istype(W))
+		return FALSE
 
 	for(var/slot in slot_equipment_priority)
 		if(equip_to_slot_if_possible(W, slot, ignore_delay, 0, 1, 1)) //del_on_fail = 0; disable_warning = 0; redraw_mob = 1
-			return 1
+			return TRUE
 
-	return 0
+	return FALSE
 
 /mob/proc/reset_view(atom/A)
 	if (client)
@@ -369,6 +381,7 @@ var/list/slot_equipment_priority = list( \
 	var/mob/M
 	if(ismob(AM))
 		M = AM
+
 	else if(istype(AM, /obj))
 		AM.add_fingerprint(src)
 
@@ -418,82 +431,6 @@ var/list/slot_equipment_priority = list( \
 		if(!M.stat)
 			to_chat(src, message)
 
-
-/*
-adds a dizziness amount to a mob
-use this rather than directly changing var/dizziness
-since this ensures that the dizzy_process proc is started
-currently only humans get dizzy
-
-value of dizziness ranges from 0 to 1000
-below 100 is not dizzy
-*/
-/mob/proc/make_dizzy(var/amount)
-	if(!istype(src, /mob/living/carbon/human)) // for the moment, only humans get dizzy
-		return
-
-	dizziness = min(1000, dizziness + amount)	// store what will be new value
-													// clamped to max 1000
-	if(dizziness > 100 && !is_dizzy)
-		spawn(0)
-			dizzy_process()
-
-
-/*
-dizzy process - wiggles the client's pixel offset over time
-spawned from make_dizzy(), will terminate automatically when dizziness gets <100
-note dizziness decrements automatically in the mob's Life() proc.
-*/
-/mob/proc/dizzy_process()
-	is_dizzy = 1
-	while(dizziness > 100)
-		if(client)
-			var/amplitude = dizziness*(sin(dizziness * 0.044 * world.time) + 1) / 70
-			client.pixel_x = amplitude * sin(0.008 * dizziness * world.time)
-			client.pixel_y = amplitude * cos(0.008 * dizziness * world.time)
-
-		sleep(1)
-	//endwhile - reset the pixel offsets to zero
-	is_dizzy = 0
-	if(client)
-		client.pixel_x = 0
-		client.pixel_y = 0
-
-// jitteriness - copy+paste of dizziness
-
-/mob/proc/make_jittery(var/amount)
-	return
-
-/mob/living/carbon/human/make_jittery(var/amount)
-	if(stat == DEAD) return //dead humans can't jitter
-	jitteriness = min(1000, jitteriness + amount)	// store what will be new value
-													// clamped to max 1000
-	if(jitteriness > 100 && !is_jittery)
-		spawn(0)
-			jittery_process()
-
-
-// Typo from the oriignal coder here, below lies the jitteriness process. So make of his code what you will, the previous comment here was just a copypaste of the above.
-/mob/proc/jittery_process()
-	//var/old_x = pixel_x
-	//var/old_y = pixel_y
-	is_jittery = 1
-	while(jitteriness > 100)
-//		var/amplitude = jitteriness*(sin(jitteriness * 0.044 * world.time) + 1) / 70
-//		pixel_x = amplitude * sin(0.008 * jitteriness * world.time)
-//		pixel_y = amplitude * cos(0.008 * jitteriness * world.time)
-
-		var/amplitude = min(4, jitteriness / 100)
-		pixel_x = old_x + rand(-amplitude, amplitude)
-		pixel_y = old_y + rand(-amplitude/3, amplitude/3)
-
-		sleep(1)
-	//endwhile - reset the pixel offsets to zero
-	is_jittery = 0
-	pixel_x = old_x
-	pixel_y = old_y
-
-
 //handles up-down floaty effect in space
 /mob/proc/make_floating(var/n)
 
@@ -541,26 +478,29 @@ note dizziness decrements automatically in the mob's Life() proc.
 	var/laid_down = (stat || knocked_down || knocked_out || !has_legs() || resting || (status_flags & FAKEDEATH) || (pulledby && pulledby.grab_level >= GRAB_NECK))
 
 	if(laid_down)
-		lying = 1
+		if(!lying)
+			lying = pick(90, 270)
 	else
 		lying = 0
 	if(buckled)
 		if(buckled.buckle_lying)
-			lying = 1
+			if(!lying)
+				lying = 90
 		else
 			lying = 0
 
 	canmove =  !(stunned || frozen || laid_down)
 
 	if(lying)
-		density = 0
+		density = FALSE
 		drop_l_hand()
 		drop_r_hand()
 	else
-		density = 1
+		density = TRUE
 
 	if(lying_prev != lying)
 		update_transform()
+		lying_prev = lying
 
 	if(lying)
 		if(layer == initial(layer)) //to avoid things like hiding larvas.
@@ -691,50 +631,14 @@ mob/proc/yank_out_object()
 	selection.loc = get_turf(src)
 	return 1
 
-/mob/living/proc/handle_statuses()
-	handle_stunned()
-	handle_knocked_down()
-	handle_stuttering()
-	handle_silent()
-	handle_drugged()
-	handle_slurring()
+/mob/proc/update_stat()
+	return
 
-/mob/living/proc/handle_stunned()
-	if(stunned)
-		AdjustStunned(-1)
-	return stunned
+/mob/proc/get_idcard(hand_first)
+	return
 
-/mob/living/proc/handle_knocked_down()
-	if(knocked_down && client)
-		knocked_down = max(knocked_down-1,0)	//before you get mad Rockdtben: I done this so update_canmove isn't called multiple times
-	return knocked_down
-
-/mob/living/proc/handle_stuttering()
-	if(stuttering)
-		stuttering = max(stuttering-1, 0)
-	return stuttering
-
-/mob/living/proc/handle_silent()
-	if(silent)
-		silent = max(silent-1, 0)
-	return silent
-
-/mob/living/proc/handle_drugged()
-	if(druggy)
-		druggy = max(druggy-1, 0)
-	return druggy
-
-/mob/living/proc/handle_slurring()
-	if(slurring)
-		slurring = max(slurring-1, 0)
-	return slurring
-
-/mob/living/proc/handle_knocked_out() // Currently only used by simple_animal.dm, treated as a special case in other mobs
-	if(knocked_out)
-		AdjustKnockedout(-1)
-	return knocked_out
-
-
+/mob/proc/update_health_hud()
+	return
 
 /mob/proc/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
@@ -746,4 +650,84 @@ mob/proc/yank_out_object()
 	if(istype(AM, /obj/item))
 		temp_drop_inv_item(AM, TRUE) //unequip before deletion to clear possible item references on the mob.
 
+/mob/forceMove(atom/destination)
+	stop_pulling()
+	if(pulledby)
+		pulledby.stop_pulling()
+	if(buckled)
+		buckled.unbuckle()
+	. = ..()
+	if(.)
+		reset_view(destination)
 
+/mob/proc/trainteleport(atom/destination)
+	if(!destination || anchored)
+		return FALSE //Gotta go somewhere and be able to move
+	if(!pulling)
+		return forceMove(destination) //No need for a special proc if there's nothing being pulled.
+	pulledby?.stop_pulling() //The leader of the choo-choo train breaks the pull
+	var/atom/movable/list/conga_line[0]
+	var/end_of_conga = FALSE
+	var/mob/S = src
+	conga_line += S
+	if(S.buckled)
+		if(S.buckled.anchored)
+			S.buckled.unbuckle() //Unbuckle the first of the line if anchored.
+		else
+			conga_line += S.buckled
+	while(!end_of_conga)
+		var/atom/movable/A = S.pulling
+		if(A in conga_line || A.anchored) //No loops, nor moving anchored things.
+			end_of_conga = TRUE
+			break
+		conga_line += A
+		var/mob/M = A
+		if(istype(M)) //Is a mob
+			if(M.buckled && !(M.buckled in conga_line))
+				if(M.buckled.anchored)
+					conga_line -= A //Remove from the conga line if on anchored buckles.
+					end_of_conga = TRUE //Party is over, they won't be dragging anyone themselves.
+					break
+				else
+					conga_line += M.buckled //Or bring the buckles along.
+			var/mob/living/L = M
+			if(istype(L))
+				L.smokecloak_off()
+			if(M.pulling)
+				S = M
+			else
+				end_of_conga = TRUE
+		else //Not a mob.
+			var/obj/O = A
+			if(istype(O) && O.buckled_mob) //But can have a mob associated.
+				conga_line += O.buckled_mob
+				if(O.buckled_mob.pulling) //Unlikely, but who knows? A train of wheelchairs?
+					S = O.buckled_mob
+					continue
+			var/obj/structure/bed/B = O
+			if(istype(B) && B.buckled_bodybag)
+				conga_line += B.buckled_bodybag
+			end_of_conga = TRUE //Only mobs can continue the cycle.
+	var/area/new_area = get_area(destination)
+	for(var/atom/movable/AM in conga_line)
+		var/oldLoc
+		if(AM.loc)
+			oldLoc = AM.loc
+			AM.loc.Exited(AM,destination)
+		AM.loc = destination
+		AM.loc.Entered(AM,oldLoc)
+		var/area/old_area
+		if(oldLoc)
+			old_area = get_area(oldLoc)
+		if(new_area && old_area != new_area)
+			new_area.Entered(AM,oldLoc)
+		for(var/atom/movable/CR in destination)
+			if(CR in conga_line)
+				continue
+			CR.Crossed(AM)
+		if(oldLoc)
+			AM.Moved(oldLoc)
+		var/mob/M = AM
+		if(istype(M))
+			M.reset_view(destination)
+	return TRUE

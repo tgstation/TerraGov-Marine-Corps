@@ -30,15 +30,9 @@
 
 /obj/item/storage/pouch/general
 	name = "light general pouch"
-	desc = "A general purpose pouch used to carry small items and ammo magazines."
+	desc = "A general purpose pouch used to carry small items."
 	icon_state = "small_drop"
 	draw_mode = 1
-	bypass_w_limit = list("/obj/item/ammo_magazine/rifle",
-					"/obj/item/ammo_magazine/smg",
-					"/obj/item/ammo_magazine/pistol",
-					"/obj/item/ammo_magazine/revolver",
-					"/obj/item/ammo_magazine/sniper",
-					)
 
 /obj/item/storage/pouch/general/medium
 	name = "medium general pouch"
@@ -102,8 +96,8 @@
 	storage_slots = 5
 	can_hold = list(
 					"/obj/item/stack/medical/ointment",
-					"/obj/item/reagent_container/hypospray/autoinjector/Tramadol",
-					"/obj/item/reagent_container/hypospray/autoinjector/tricord",
+					"/obj/item/reagent_container/hypospray/autoinjector/tramadol",
+					"/obj/item/reagent_container/hypospray/autoinjector/tricordrazine",
 					"/obj/item/stack/medical/bruise_pack",
 					"/obj/item/stack/medical/splint"
 					)
@@ -114,8 +108,8 @@
 /obj/item/storage/pouch/firstaid/full/New()
 	..()
 	new /obj/item/stack/medical/ointment (src)
-	new /obj/item/reagent_container/hypospray/autoinjector/Tramadol (src)
-	new /obj/item/reagent_container/hypospray/autoinjector/tricord (src)
+	new /obj/item/reagent_container/hypospray/autoinjector/tramadol (src)
+	new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine (src)
 	new /obj/item/stack/medical/bruise_pack (src)
 	new /obj/item/stack/medical/splint (src)
 
@@ -244,13 +238,16 @@
 	name = "explosive pouch"
 	desc = "It can contain grenades, plastiques, mine boxes, and other explosives."
 	icon_state = "large_explosive"
-	storage_slots = 3
+	storage_slots = 4
 	max_w_class = 3
 	can_hold = list(
 					"/obj/item/explosive/plastique",
 					"/obj/item/explosive/mine",
 					"/obj/item/explosive/grenade",
-					"/obj/item/storage/box/explosive_mines"
+					"/obj/item/storage/box/explosive_mines",
+					"/obj/item/ammo_magazine/rocket",
+					"/obj/item/device/radio/detpack",
+					"/obj/item/device/assembly/signaler",
 					)
 
 /obj/item/storage/pouch/explosive/full/New()
@@ -284,6 +281,11 @@
 	    "/obj/item/reagent_container/hypospray"
 	)
 
+/obj/item/storage/pouch/medical/full/New()
+	..()
+	new /obj/item/stack/medical/advanced/bruise_pack(src)
+	new /obj/item/stack/medical/advanced/ointment(src)
+	new /obj/item/stack/medical/splint(src)
 
 /obj/item/storage/pouch/autoinjector
 	name = "auto-injector pouch"
@@ -307,11 +309,13 @@
 
 /obj/item/storage/pouch/medkit
 	name = "medkit pouch"
-	max_w_class = 3
+	w_class = 4.1 //does not fit in backpack
+	max_w_class = 4
 	draw_mode = 1
 	icon_state = "medkit"
 	desc = "It's specifically made to hold a medkit."
 	can_hold = list("/obj/item/storage/firstaid")
+	bypass_w_limit = list("/obj/item/storage/firstaid")
 
 
 /obj/item/storage/pouch/medkit/full/New()
@@ -374,6 +378,33 @@
 	draw_mode = 1
 	desc = "It can contain two handheld radios."
 	can_hold = list("/obj/item/device/radio")
+
+
+/obj/item/storage/pouch/field_pouch
+	name = "field utility pouch"
+	storage_slots = 5
+	max_w_class = 3
+	icon_state = "radio"
+	draw_mode = 1
+	desc = "It can contain a motion detector, signaller, beacons, maps, flares, radios and other handy battlefield communication and detection devices."
+	can_hold = list("/obj/item/device/motiondetector",
+					"/obj/item/device/radio",
+					"/obj/item/device/assembly/signaler",
+					"/obj/item/device/megaphone",
+					"/obj/item/device/flashlight",
+					"/obj/item/device/whistle",
+					"/obj/item/device/binoculars",
+					"/obj/item/map/current_map",
+					"/obj/item/map/squad_beacon",
+					)
+
+/obj/item/storage/pouch/field_pouch/full/New()
+	.=..()
+	new /obj/item/device/motiondetector (src)
+	new /obj/item/device/whistle (src)
+	new /obj/item/device/radio (src)
+	new /obj/item/map/current_map (src)
+	new /obj/item/device/binoculars/tactical (src)
 
 
 /obj/item/storage/pouch/electronics

@@ -7,7 +7,7 @@
 /turf/closed/wall/almayer
 	name = "hull"
 	desc = "A huge chunk of metal used to seperate rooms and make up the ship."
-	icon = 'icons/turf/almayer.dmi'
+	icon = 'icons/turf/almayerwalls.dmi'
 	icon_state = "testwall0"
 	walltype = "testwall"
 
@@ -53,7 +53,7 @@
 
 
 /turf/closed/wall/almayer/research/can_be_dissolved()
-	return 0
+	return FALSE
 
 /turf/closed/wall/almayer/research/containment/wall
 	name = "cell wall"
@@ -67,7 +67,7 @@
 	icon_state = "containment_wall_divide"
 
 /turf/closed/wall/almayer/research/containment/wall/south
-	icon_state = "containment_wall_south"
+	icon_state = "containment_wall_s"
 
 /turf/closed/wall/almayer/research/containment/wall/west
 	icon_state = "containment_wall_w"
@@ -91,7 +91,6 @@
 	icon_state = "containment_wall_n"
 
 /turf/closed/wall/almayer/research/containment/wall/connect_e2
-	name = "\improper cell wall."
 	icon_state = "containment_wall_connect_e2"
 
 /turf/closed/wall/almayer/research/containment/wall/connect_s1
@@ -103,7 +102,7 @@
 /turf/closed/wall/almayer/research/containment/wall/purple
 	name = "cell window"
 	icon_state = "containment_window"
-	opacity = 0
+	opacity = FALSE
 
 
 
@@ -154,7 +153,7 @@
 	return
 
 /turf/closed/wall/sulaco/unmeltable/can_be_dissolved()
-	return 0
+	return FALSE
 
 
 
@@ -204,7 +203,7 @@
 /turf/closed/wall/indestructible/splashscreen/New()
 	..()
 	if(icon_state == "title_painting1")
-		icon_state = "title_painting[rand(1,4)]"
+		icon_state = "title_painting[rand(1,9)]"
 
 /turf/closed/wall/indestructible/other
 	icon_state = "r_wall"
@@ -385,7 +384,7 @@
 /turf/closed/wall/resin/thick
 	name = "thick resin wall"
 	desc = "Weird slime solidified into a thick wall."
-	damage_cap = 400
+	damage_cap = 300
 	icon_state = "thickresin0"
 	walltype = "thickresin"
 
@@ -411,10 +410,9 @@
 	alpha = 210
 
 /turf/closed/wall/resin/bullet_act(var/obj/item/projectile/Proj)
-	take_damage(Proj.damage/2)
+	take_damage(Proj.damage*0.5)
 	..()
-
-	return 1
+	return TRUE
 
 /turf/closed/wall/resin/ex_act(severity)
 	switch(severity)
@@ -470,7 +468,18 @@
 /turf/closed/wall/resin/attackby(obj/item/W, mob/living/user)
 	if(!(W.flags_item & NOBLUDGEON))
 		user.animation_attack_on(src)
-		take_damage(W.force)
+		var/damage = W.force
+		var/multiplier = 1
+		if(W.damtype == "fire") //Burn damage deals extra vs resin structures (mostly welders).
+			multiplier += 1
+			if(istype(W, /obj/item/tool/pickaxe/plasmacutter)) //Plasma cutters are particularly good at destroying resin structures.
+				var/obj/item/tool/pickaxe/plasmacutter/P = W
+				if(!P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, null, null, SFX = FALSE))
+					return
+				multiplier += PLASMACUTTER_RESIN_MULTIPLIER
+				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Minimal energy cost.
+		damage *= max(0,multiplier)
+		take_damage(damage)
 		playsound(src, "alien_resin_break", 25)
 	else
 		return attack_hand(user)

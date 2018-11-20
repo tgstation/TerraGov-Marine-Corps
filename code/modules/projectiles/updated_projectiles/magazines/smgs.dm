@@ -23,6 +23,7 @@
 
 /obj/item/ammo_magazine/smg/m39/extended
 	name = "\improper M39 extended magazine (10x20mm)"
+	icon_state = "m39_ext"
 	max_rounds = 72
 	bonus_overlay = "m39_ex"
 

@@ -3,7 +3,7 @@
 	desc = "Used to put holes in specific areas without too much extra hole."
 	gender = PLURAL
 	icon = 'icons/obj/items/assemblies.dmi'
-	icon_state = "plastic-explosive0"
+	icon_state = "plastic-explosive_off"
 	item_state = "plasticx"
 	flags_item = NOBLUDGEON
 	w_class = 2.0
@@ -20,7 +20,8 @@
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 		var/fumbling_time = 20
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			return
 	var/newtime = input(usr, "Please set the timer.", "Timer", 10) as num
 	if(newtime < 10)
 		newtime = 10
@@ -30,24 +31,27 @@
 	to_chat(user, "Timer set for [timer] seconds.")
 
 /obj/item/explosive/plastique/afterattack(atom/target, mob/user, flag)
-	if(!flag) return FALSE
+	if(!flag)
+		return FALSE
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use [src].</span>")
 		var/fumbling_time = 50
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			return
 	if(istype(target, /obj/structure/ladder) || istype(target, /obj/item) || istype(target, /turf/open))
 		return FALSE
 	if(istype(target, /obj/effect) || istype(target, /obj/machinery))
 		var/obj/O = target
-		if(O.unacidable) return FALSE
+		if(O.unacidable)
+			return FALSE
 	if(istype(target, /turf/closed/wall))
 		var/turf/closed/wall/W = target
 		if(W.hull)
 			return FALSE
 	if(istype(target, /obj/structure/window))
 		var/obj/structure/window/W = target
-		if(W.not_damageable)
+		if(!W.damageable)
 			to_chat(user, "<span class='warning'>[W] is much too tough for you to do anything to it with [src]</span>.")
 			return FALSE
 
@@ -65,24 +69,24 @@
 
 		if(ismob(target))
 			log_combat(user, target, "attached [src] to")
-			message_admins("[key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [key_name(target)](<A HREF='?_src_=holder;adminmoreinfo=\ref[target]'>?</A>) with [timer] second fuse",0,1)
-			log_game("[key_name(user)] planted [src.name] on [key_name(target)] with [timer] second fuse")
+			message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) planted [src.name] on [key_name(target)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[target]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[target]'>FLW</a>) with [timer] second fuse",0,1)
+			log_game("[key_name(usr)] planted [src.name] on [key_name(target)] with [timer] second fuse")
 		else
-			message_admins("[key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [target.name] at ([target.x],[target.y],[target.z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) with [timer] second fuse",0,1)
-			log_game("[key_name(user)] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) with [timer] second fuse")
+			message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) with [timer] second fuse",0,1)
+			log_game("[key_name(usr)] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) with [timer] second fuse")
 
-		target.overlays += image('icons/obj/items/assemblies.dmi', "plastic-explosive2")
+		target.overlays += image('icons/obj/items/assemblies.dmi', "plastic-explosive_set_armed")
 		user.visible_message("<span class='warning'>[user] plants [name] on [target]!</span>",
 		"<span class='warning'>You plant [name] on [target]! Timer counting down from [timer].</span>")
 		spawn(timer*10)
 			if(plant_target && !plant_target.disposed)
-				explosion(location, -1, -1, 2, 3)
-				plant_target.ex_act(1)
+				explosion(location, -1, -1, 3)
+				if(istype(plant_target,/turf/closed/wall) || istype(plant_target,/obj/machinery/door))
+					cdel(plant_target)
+				else
+					plant_target.ex_act(1)
 				if(plant_target && !plant_target.disposed)
-					if(isobj(plant_target))
-						cdel(plant_target)
-					else
-						plant_target.overlays -= image('icons/obj/items/assemblies.dmi', "plastic-explosive2")
+					plant_target.overlays -= image('icons/obj/items/assemblies.dmi', "plastic-explosive_set_armed")
 			cdel(src)
 
 /obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)

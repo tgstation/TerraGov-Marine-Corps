@@ -104,7 +104,7 @@
 				user.visible_message("<span class='warning'>[user] puts [GM] into [src].</span>",
 				"<span class='warning'>[user] puts [GM] into [src].</span>")
 				log_combat(user, GM, "placed", addition="into disposals")
-				msg_admin_attack("[user] ([user.ckey]) placed [GM] ([GM.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+				message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) placed [key_name(GM)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[GM]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[GM.x];Y=[GM.y];Z=[GM.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[GM]'>FLW</a>) in a disposals unit.")
 				flush()
 		return
 
@@ -145,7 +145,7 @@
 		"<span class ='warning'>You stuff [target] into [src]!</span>")
 
 		log_combat(user, target, "placed", addition="into disposals")
-		msg_admin_attack("[user] ([user.ckey]) placed [target] ([target.ckey]) in a disposals unit. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+		message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) placed [key_name(target)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[target]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[target]'>FLW</a>) in a disposals unit")
 
 	target.forceMove(src)
 	flush()

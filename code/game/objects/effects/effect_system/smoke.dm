@@ -349,16 +349,15 @@
 	if(istype(M.buckled, /obj/structure/bed/nest) && M.status_flags & XENO_HOST)
 		return
 
-	var/effect_amt = round(6 + amount*6)
+	var/reagent_amount = rand(4,10) + rand(4,10) //Gaussian. Target number 7.
 
 	//Gas masks protect from inhalation and face contact effects, even without internals. Breath masks don't for balance reasons
 	if(!istype(M.wear_mask, /obj/item/clothing/mask/gas))
-		M.adjustOxyLoss(15) //Causes even more oxyloss damage due to neurotoxin locking up respiratory system
-		M.ear_deaf = max(M.ear_deaf, round(effect_amt*1.5)) //Paralysis of hearing system, aka deafness
+		M.reagents.add_reagent("xeno_toxin", reagent_amount)
 		if(!M.eye_blind) //Eye exposure damage
 			to_chat(M, "<span class='danger'>Your eyes sting. You can't see!</span>")
-		M.eye_blurry = max(M.eye_blurry, effect_amt*2)
-		M.eye_blind = max(M.eye_blind, round(effect_amt))
+		M.eye_blurry = max(M.eye_blurry + 2, 1)
+		M.eye_blind = max(M.eye_blind + 2, 1)
 		if(M.coughedtime != 1 && !M.stat) //Coughing/gasping
 			M.coughedtime = 1
 			if(prob(50))
@@ -367,16 +366,12 @@
 				M.emote("gasp")
 			spawn(15)
 				M.coughedtime = 0
-
+	else
+		M.reagents.add_reagent("xeno_toxin", reagent_amount * 0.5)
 	//Topical damage (neurotoxin on exposed skin)
 	to_chat(M, "<span class='danger'>Your body is going numb, almost as if paralyzed!</span>")
-	if(prob(40 + round(amount*15))) //Highly likely to drop items due to arms/hands seizing up
-		M.drop_held_item()
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		H.temporary_slowdown = max(H.temporary_slowdown, round(effect_amt*1.5)) //One tick every two second
-
-
+	if(prob(round(reagent_amount*5))) //Likely to momentarily freeze up/fall due to arms/hands seizing up
+		M.AdjustKnockeddown(0.5)
 
 /////////////////////////////////////////////
 // Smoke spread
@@ -430,12 +425,3 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/xeno_weaken
 	smoke_type = /obj/effect/particle_effect/smoke/xeno_weak
-
-
-
-
-
-
-
-
-

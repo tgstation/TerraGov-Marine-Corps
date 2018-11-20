@@ -8,25 +8,19 @@
 		handle_mutations_and_radiation()
 
 		//Chemicals in the body
-		handle_chemicals_in_body()
-
-	//Apparently, the person who wrote this code designed it so that
-	//blinded get reset each cycle and then get activated later in the
-	//code. Very ugly. I dont care. Moving this stuff here so its easy
-	//to find it.
-	blinded = null
+		handle_organs()
 
 	//Handle temperature/pressure differences between body and environment
 	handle_environment()
 
-	//Status updates, death etc.
-	handle_regular_status_updates()
-	update_canmove()
+/mob/living/brain/blur_eyes()
+	return
 
-	if(client)
-		handle_regular_hud_updates()
+/mob/living/brain/adjust_blurriness()
+	return
 
-
+/mob/living/brain/set_blurriness()
+	return
 
 /mob/living/brain/proc/handle_mutations_and_radiation()
 
@@ -74,7 +68,8 @@
 
 
 /mob/living/brain/proc/handle_temperature_damage(body_part, exposed_temperature)
-	if(status_flags & GODMODE) return
+	if(status_flags & GODMODE)
+		return
 
 	if(exposed_temperature > bodytemperature)
 		var/discomfort = min( abs(exposed_temperature - bodytemperature)/100, 1.0)
@@ -86,36 +81,25 @@
 
 
 
-/mob/living/brain/proc/handle_chemicals_in_body()
+/mob/living/brain/handle_organs()
+	. = ..()
 
-	reagent_move_delay_modifier = 0
-	reagent_shock_modifier = 0
-	reagent_pain_modifier = 0
-
-	if(reagents) reagents.metabolize(src)
-
-	confused = max(0, confused - 1)
-	// decrement dizziness counter, clamped to 0
-	if(resting)
-		dizziness = max(0, dizziness - 5)
-	else
-		dizziness = max(0, dizziness - 1)
+	if(reagents)
+		reagents.metabolize(src, 0, can_overdose = TRUE)
 
 	updatehealth()
 
 	return //TODO: DEFERRED
 
 
-/mob/living/brain/proc/handle_regular_status_updates()	//TODO: comment out the unused bits >_>
-	updatehealth()
-
-	if(stat == DEAD)	//DEAD. BROWN BREAD. SWIMMING WITH THE SPESS CARP
-		blinded = 1
-		silent = 0
-	else				//ALIVE. LIGHTS ARE ON
-		if( !container && (health < config.health_threshold_dead || ((world.time - timeofhostdeath) > config.revival_brain_life)) )
+/mob/living/brain/update_stat()
+	.=..()
+	if(status_flags & GODMODE)
+		return
+	if(stat != DEAD)
+		if(!container && (health < config.health_threshold_dead || ((world.time - timeofhostdeath) > config.revival_brain_life)) )
 			death()
-			blinded = 1
+			blind_eyes(1)
 			silent = 0
 			return 1
 
@@ -129,8 +113,7 @@
 				if(31 to INFINITY)
 					emp_damage = 30//Let's not overdo it
 				if(21 to 30)//High level of EMP damage, unable to see, hear, or speak
-					eye_blind = 1
-					blinded = 1
+					set_blindness(2)
 					ear_deaf = 1
 					silent = 1
 					if(!alert)//Sounds an alarm, but only once per 'level'
@@ -141,13 +124,12 @@
 						emp_damage -= 1
 				if(20)
 					alert = 0
-					blinded = 0
-					eye_blind = 0
+					adjust_blindness(-1)
 					ear_deaf = 0
 					silent = 0
 					emp_damage -= 1
 				if(11 to 19)//Moderate level of EMP damage, resulting in nearsightedness and ear damage
-					eye_blurry = 1
+					blur_eyes(1)
 					ear_damage = 1
 					if(!alert)
 						emote("alert")
@@ -157,7 +139,7 @@
 						emp_damage -= 1
 				if(10)
 					alert = 0
-					eye_blurry = 0
+					set_blurriness(0)
 					ear_damage = 0
 					emp_damage -= 1
 				if(2 to 9)//Low level of EMP damage, has few effects(handled elsewhere)
@@ -172,12 +154,11 @@
 					to_chat(src, "\red All systems restored.")
 					emp_damage -= 1
 
-		//Other
-		handle_statuses()
 	return 1
 
 
-/mob/living/brain/proc/handle_regular_hud_updates()
+/mob/living/brain/handle_regular_hud_updates()
+	. = ..()
 
 	update_sight()
 
@@ -203,26 +184,6 @@
 
 
 	if(stat != DEAD) //the dead get zero fullscreens
-		if(blinded)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
-		else
-			clear_fullscreen("blind")
-
-			if (disabilities & NEARSIGHTED)
-				overlay_fullscreen("nearsighted", /obj/screen/fullscreen/impaired, 1)
-			else
-				clear_fullscreen("nearsighted")
-
-			if(eye_blurry)
-				overlay_fullscreen("blurry", /obj/screen/fullscreen/blurry)
-			else
-				clear_fullscreen("blurry")
-
-			if(druggy)
-				overlay_fullscreen("high", /obj/screen/fullscreen/high)
-			else
-				clear_fullscreen("high")
-
 
 		if (interactee)
 			interactee.check_eye(src)

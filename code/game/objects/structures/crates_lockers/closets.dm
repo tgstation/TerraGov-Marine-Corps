@@ -3,14 +3,14 @@
 	desc = "It's a basic storage unit."
 	icon = 'icons/obj/structures/closet.dmi'
 	icon_state = "closed"
-	density = 1
+	density = TRUE
 	var/icon_closed = "closed"
 	var/icon_opened = "open"
-	var/opened = 0
-	var/welded = 0
-	var/wall_mounted = 0 //never solid (You can always pass over it)
+	var/opened = FALSE
+	var/welded = FALSE
+	var/wall_mounted = FALSE //never solid (You can always pass over it)
 	var/health = 100
-	var/lastbang
+	var/lastbang = FALSE
 	var/storage_capacity = 30 //This is so that someone can't pack hundreds of items in a locker/crate
 							  //then open it in a populated area to crash clients.
 	var/open_sound = 'sound/machines/click.ogg'
@@ -19,7 +19,7 @@
 	var/store_items = TRUE
 	var/store_mobs = TRUE
 
-	anchored = 1 //Yep
+	anchored = TRUE
 
 	var/const/mob_size = 15
 
@@ -28,7 +28,8 @@
 	spawn(1)
 		if(!opened)		// if closed, any item at the crate's loc is put in the contents
 			for(var/obj/item/I in src.loc)
-				if(I.density || I.anchored || I == src) continue
+				if(I.density || I.anchored || I == src)
+					continue
 				I.loc = src
 
 /obj/structure/closet/alter_health()
@@ -36,7 +37,7 @@
 
 /obj/structure/closet/CanPass(atom/movable/mover, turf/target)
 	if(wall_mounted)
-		return 1
+		return TRUE
 	else
 		return !density
 
@@ -45,16 +46,16 @@
 
 /obj/structure/closet/proc/can_open()
 	if(src.welded)
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/structure/closet/proc/can_close()
 	for(var/obj/structure/closet/closet in get_turf(src))
 		if(closet != src && !closet.wall_mounted)
-			return 0
+			return FALSE
 	for(var/mob/living/carbon/Xenomorph/Xeno in get_turf(src))
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/structure/closet/proc/dump_contents()
 
@@ -71,24 +72,24 @@
 
 /obj/structure/closet/proc/open()
 	if(opened)
-		return 0
+		return FALSE
 
 	if(!can_open())
-		return 0
+		return FALSE
 
 	dump_contents()
 
-	opened = 1
+	opened = TRUE
 	update_icon()
 	playsound(src.loc, open_sound, 15, 1)
-	density = 0
-	return 1
+	density = FALSE
+	return TRUE
 
 /obj/structure/closet/proc/close()
 	if(!src.opened)
-		return 0
+		return FALSE
 	if(!src.can_close())
-		return 0
+		return FALSE
 
 	var/stored_units = 0
 	if(store_items)
@@ -96,16 +97,16 @@
 	if(store_mobs)
 		stored_units = store_mobs(stored_units)
 
-	opened = 0
+	opened = FALSE
 	update_icon()
 
 	playsound(src.loc, close_sound, 15, 1)
-	density = 1
-	return 1
+	density = TRUE
+	return TRUE
 
 /obj/structure/closet/proc/store_items(var/stored_units)
 	for(var/obj/item/I in src.loc)
-		var/item_size = Ceiling(I.w_class / 2)
+		var/item_size = CEILING(I.w_class / 2, 1)
 		if(stored_units + item_size > storage_capacity)
 			continue
 		if(!I.anchored)
@@ -132,7 +133,8 @@
 	user.next_move = world.time + 5
 	if(!(src.opened ? src.close() : src.open()))
 		to_chat(user, "<span class='notice'>It won't budge!</span>")
-	return
+		return FALSE
+	return TRUE
 
 // this should probably use dump_contents()
 /obj/structure/closet/ex_act(severity)
@@ -156,7 +158,8 @@
 				cdel(src)
 
 /obj/structure/closet/bullet_act(var/obj/item/projectile/Proj)
-	if(health > 999) return 1
+	if(health > 999)
+		return TRUE
 	health -= round(Proj.damage*0.3)
 	if(prob(30)) playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 	if(health <= 0)
@@ -166,7 +169,7 @@
 			playsound(loc, 'sound/effects/meteorimpact.ogg', 25, 1)
 			cdel(src)
 
-	return 1
+	return TRUE
 
 /obj/structure/closet/attack_animal(mob/living/user)
 	if(user.wall_smash)
@@ -175,16 +178,30 @@
 			A.loc = src.loc
 		cdel(src)
 
+/obj/structure/closet/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(M.a_intent == "hurt" && !unacidable)
+		M.animation_attack_on(src)
+		if(!opened && prob(70))
+			break_open()
+			M.visible_message("<span class='danger'>\The [M] smashes \the [src] open!</span>", \
+			"<span class='danger'>You smash \the [src] open!</span>", null, 5)
+		else
+			M.visible_message("<span class='danger'>\The [M] smashes \the [src]!</span>", \
+			"<span class='danger'>You smash \the [src]!</span>", null, 5)
+	else
+		return attack_paw(M)
+
 /obj/structure/closet/attackby(obj/item/W, mob/living/user)
 	if(src.opened)
 		if(istype(W, /obj/item/grab))
-			if(isXeno(user)) return
+			if(isXeno(user))
+				return
 			var/obj/item/grab/G = W
 			if(G.grabbed_thing)
 				src.MouseDrop_T(G.grabbed_thing, user)      //act like they were dragged onto the closet
 			return
 		if(W.flags_item & ITEM_ABSTRACT)
-			return 0
+			return FALSE
 		if(istype(W, /obj/item/tool/weldingtool))
 			var/obj/item/tool/weldingtool/WT = W
 			if(!WT.remove_fuel(0,user))
@@ -195,6 +212,15 @@
 				M.show_message("<span class='notice'>\The [src] has been cut apart by [user] with [WT].</span>", 3, "You hear welding.", 2)
 			cdel(src)
 			return
+		if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
+			var/obj/item/tool/pickaxe/plasmacutter/P = W
+			if(!P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD, null, null, SFX = FALSE))
+				return
+			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Window frames require half the normal power
+			P.debris(loc, 1, 0) //Generate some metal
+			cdel(src)
+			return
+
 		if(isrobot(user))
 			return
 		user.drop_inv_item_to_loc(W,loc)
@@ -244,28 +270,33 @@
 
 
 /obj/structure/closet/relaymove(mob/user)
-	if(!isturf(src.loc)) return
-	if(user.is_mob_incapacitated(TRUE)) return
+	if(!isturf(src.loc))
+		return
+	if(user.is_mob_incapacitated(TRUE))
+		return
 	user.next_move = world.time + 5
 
 	if(!src.open())
 		to_chat(user, "<span class='notice'>It won't budge!</span>")
 		if(!lastbang)
-			lastbang = 1
+			lastbang = TRUE
 			for (var/mob/M in hearers(src, null))
 				to_chat(M, text("<FONT size=[]>BANG, bang!</FONT>", max(0, 5 - get_dist(src, M))))
 			spawn(30)
-				lastbang = 0
+				lastbang = FALSE
 
 
 /obj/structure/closet/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
+/obj/structure/closet/attack_alien(mob/user as mob)
+	if(opened)
+		return FALSE // stop xeno closing things
+	return src.attack_hand(user)
+
 /obj/structure/closet/attack_hand(mob/living/user)
-	if(opened && isXeno(user))
-		return // stop xeno closing things
 	add_fingerprint(user)
-	toggle(user)
+	return toggle(user)
 
 // tk grab then use on self
 /obj/structure/closet/attack_self_tk(mob/user as mob)
@@ -305,8 +336,8 @@
 /obj/structure/closet/proc/break_open()
 	if(!opened)
 		dump_contents()
-		opened = 1
+		opened = TRUE
 		playsound(loc, open_sound, 15, 1) //Could use a more telltale sound for "being smashed open"
-		density = 0
-		welded = 0
+		density = FALSE
+		welded = FALSE
 		update_icon()

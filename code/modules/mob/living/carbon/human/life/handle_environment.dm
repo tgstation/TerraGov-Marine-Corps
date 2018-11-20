@@ -2,6 +2,24 @@
 
 /mob/living/carbon/human/proc/handle_environment()
 
+	//Homeless snowflake from the deleted handle_chemicals_in_body()
+	if(dna && dna.mutantrace == "shadow")
+		var/light_amount = 0
+		if(isturf(loc))
+			var/turf/T = loc
+			var/area/A = T.loc
+			if(A)
+				if(A.lighting_use_dynamic)
+					light_amount = T.lighting_lumcount
+				else
+					light_amount =  10
+		if(light_amount > 2) //If there's enough light, start dying
+			take_overall_damage(1, 1)
+		else if(light_amount < 2) //Heal in the dark
+			heal_overall_damage(1, 1)
+
+///////////////////////////////
+
 	if(!loc)
 		return
 
@@ -28,7 +46,7 @@
 			if(thermal_protection < 1)
 				temp_adj = (1 - thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
 
-		bodytemperature += Clamp(temp_adj, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX)
+		bodytemperature += CLAMP(temp_adj, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX)
 
 	//+/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
 	if(bodytemperature > species.heat_level_1)
@@ -50,7 +68,7 @@
 		if(status_flags & GODMODE)
 			return 1 //Godmode
 
-		if(!istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
+		if(!istype(loc, /obj/machinery/cryo_cell))
 
 			if(bodytemperature < species.cold_level_3)
 				take_overall_damage(burn = COLD_DAMAGE_LEVEL_3, used_weapon = "Low Body Temperature")

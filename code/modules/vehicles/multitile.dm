@@ -294,8 +294,8 @@ Vehicles are placed on the map by a spawner or admin verb
 		//Update coords
 		var/new_x = C.x_pos*cos(deg) - C.y_pos*sin(deg)
 		var/new_y = C.x_pos*sin(deg) + C.y_pos*cos(deg)
-		new_x = roundNearest(new_x)
-		new_y = roundNearest(new_y) //Sometimes using the rotation matrix gets you off by 1e-5 or so
+		new_x = round(new_x, 1)
+		new_y = round(new_y, 1) //Sometimes using the rotation matrix gets you off by 1e-5 or so
 		C.x_pos = new_x
 		C.y_pos = new_y
 

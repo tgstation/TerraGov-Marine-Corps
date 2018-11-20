@@ -72,7 +72,7 @@
 	else
 		to_chat(usr, text("\blue You kick the display case."))
 		for(var/mob/O in oviewers())
-			if ((O.client && !( O.blinded )))
+			if ((O.client && !( is_blind(O) )))
 				to_chat(O, text("\red [] kicks the display case.", usr))
 		src.health -= 2
 		healthcheck()

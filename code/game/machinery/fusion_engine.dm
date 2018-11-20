@@ -10,14 +10,14 @@
 	icon = 'icons/Marine/fusion_eng.dmi'
 	icon_state = "off-0"
 	desc = "A Westingland S-52 Fusion Reactor.  Takes fuels cells and converts them to power for the ship.  Also produces a large amount of heat."
-	directwired = 0     //Requires a cable directly underneath
-	unacidable = 1      //NOPE.jpg
-	anchored = 1
-	density = 1
+	directwired = FALSE     //Requires a cable directly underneath
+	unacidable = TRUE      //NOPE.jpg
+	anchored = TRUE
+	density = TRUE
 
 	var/power_gen_percent = 0 //50,000W at full capacity
 	var/buildstate = 0 //What state of building it are we on, 0-3, 1 is "broken", the default
-	var/is_on = 0  //Is this damn thing on or what?
+	var/is_on = FALSE  //Is this damn thing on or what?
 	var/fail_rate = 5 //% chance of failure each fail_tick check
 	var/cur_tick = 0 //Tick updater
 
@@ -25,8 +25,8 @@
 	var/fuel_rate = 0.00 //Rate at which fuel is used.  Based mostly on how long the generator has been running.
 
 /obj/machinery/power/fusion_engine/New()
-	buildstate = rand(0,3) //This is needed to set the state for repair interactions
-	fusion_cell.fuel_amount = rand(15,100)
+	buildstate = 0 //This is needed to set the state for repair interactions
+	fusion_cell.fuel_amount = rand(50,100)
 	update_icon()
 	connect_to_network() //Should start with a cable piece underneath, if it doesn't, something's messed up in mapping
 	..()
@@ -41,12 +41,12 @@
 			power_gen_percent = 0
 			update_icon()
 			stop_processing()
-		return 0
+		return FALSE
 	if (fusion_cell.fuel_amount <= 0)
 		visible_message("\icon[src] <b>[src]</b> flashes that the fuel cell is empty as the engine seizes.")
 		fuel_rate = 0
 		buildstate = 2  //No fuel really fucks it.
-		is_on = 0
+		is_on = FALSE
 		power_gen_percent = 0
 		fail_rate+=2 //Each time the engine is allowed to seize up it's fail rate for the future increases because reasons.
 		update_icon()
@@ -101,7 +101,7 @@
 			return FALSE
 	if(is_on)
 		visible_message("\icon[src] <span class='warning'><b>[src]</b> beeps softly and the humming stops as [usr] shuts off the generator.</span>")
-		is_on = 0
+		is_on = FALSE
 		power_gen_percent = 0
 		cur_tick = 0
 		update_icon()
@@ -121,7 +121,7 @@
 		to_chat(user, "\icon[src] <span class='warning'><b>[src]</b>: Fuel levels critically low.</span>")
 	visible_message("\icon[src] <span class='warning'><b>[src]</b> beeps loudly as [user] turns the generator on and begins the process of fusion...</span>")
 	fuel_rate = 0.01
-	is_on = 1
+	is_on = TRUE
 	cur_tick = 0
 	update_icon()
 	start_processing()
@@ -297,7 +297,7 @@
 /obj/machinery/power/fusion_engine/proc/check_failure()
 	if(cur_tick < FUSION_ENGINE_FAIL_CHECK_TICKS) //Nope, not time for it yet
 		cur_tick++
-		return 0
+		return FALSE
 	cur_tick = 0 //reset the timer
 	if(rand(1,100) < fail_rate) //Oh snap, we failed! Shut it down!
 		if(prob(25))
@@ -306,13 +306,13 @@
 		else
 			visible_message("\icon[src] <span class='notice'><b>[src]</b> beeps wildly and sprays random pieces everywhere! Use a wrench to repair it.")
 			buildstate = 3
-		is_on = 0
+		is_on = FALSE
 		power_gen_percent = 0
 		update_icon()
 		stop_processing()
-		return 1
+		return TRUE
 	else
-		return 0
+		return FALSE
 
 
 

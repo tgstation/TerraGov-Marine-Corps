@@ -19,10 +19,12 @@
 /obj/item/ammo_magazine/sniper/incendiary
 	name = "\improper M42A incendiary magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/incendiary
+	icon_state = "m42c_inc"
 
 /obj/item/ammo_magazine/sniper/flak
 	name = "\improper M42A flak magazine (10x28mm)"
 	default_ammo = /datum/ammo/bullet/sniper/flak
+	icon_state = "m42c_flak"
 
 
 //M42C magazine
@@ -83,7 +85,7 @@
 /obj/item/ammo_magazine/internal/smartgun
 	name = "integrated smartgun belt"
 	caliber = "10x28mm"
-	max_rounds = 50 //Should be 500 in total.
+	max_rounds = 100
 	default_ammo = /datum/ammo/bullet/smartgun
 
 

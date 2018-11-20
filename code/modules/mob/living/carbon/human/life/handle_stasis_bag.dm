@@ -7,4 +7,4 @@
 			if(STASIS_IN_BAG)
 				knocked_down = knocked_down? --knocked_down : knocked_down + 10 //knocked_down set.
 			if(STASIS_IN_CRYO_CELL)
-				if(sleeping < 10) sleeping += 10 //Puts the mob to sleep indefinitely.
+				knocked_down = knocked_down? --knocked_down : knocked_down + 10 //Let Bill Nye the cryo guy RP/complain/whatever

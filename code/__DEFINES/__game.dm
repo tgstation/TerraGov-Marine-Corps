@@ -92,7 +92,8 @@ These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) w
 #define CHAT_GHOSTRADIO 	512
 #define SHOW_TYPING 		1024
 #define CHAT_FFATTACKLOGS 	2048
-#define CHAT_GHOSTHIVEMIND	4096
+#define CHAT_ENDROUNDLOGS	4096
+#define CHAT_GHOSTHIVEMIND	8192
 //=================================================
 
 #define TOGGLES_CHAT_DEFAULT (CHAT_OOC|CHAT_DEAD|CHAT_GHOSTEARS|CHAT_GHOSTSIGHT|CHAT_PRAYER|CHAT_RADIO|CHAT_ATTACKLOGS|CHAT_GHOSTHIVEMIND)

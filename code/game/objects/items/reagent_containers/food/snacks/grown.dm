@@ -19,6 +19,8 @@
 		src.pixel_y = rand(-5.0, 5)
 
 /obj/item/reagent_container/food/snacks/grown/New()
+	if(!tastes)
+		tastes = list("[name]" = 1)
 	..()
 
 	//Handle some post-spawn var stuff.

@@ -1,7 +1,4 @@
 /mob/living/carbon/human/examine(mob/user)
-	if( user.sdisabilities & BLIND || user.blinded || user.stat==UNCONSCIOUS )
-		to_chat(user, "<span class='notice'>Something is there but you can't see it.</span>")
-		return
 
 	if (isXeno(user))
 		var/msg = "<span class='info'>*---------*\nThis is "
@@ -207,7 +204,7 @@
 		msg += "[t_He] [t_is] wearing \icon[wear_id] \a [wear_id].\n"
 
 	//Jitters
-	if(is_jittery)
+	if(stat != DEAD)
 		if(jitteriness >= 300)
 			msg += "<span class='warning'><B>[t_He] [t_is] convulsing violently!</B></span>\n"
 		else if(jitteriness >= 200)
@@ -233,10 +230,12 @@
 	var/distance = get_dist(user,src)
 	if(istype(user, /mob/dead/observer) || user.stat == DEAD) // ghosts can see anything
 		distance = 1
-	if (stat)
+	if(stat)
 		msg += "<span class='warning'>[t_He] [t_is]n't responding to anything around [t_him] and seems to be asleep.</span>\n"
 		if((stat == 2 || src.health < config.health_threshold_crit) && distance <= 3)
 			msg += "<span class='warning'>[t_He] does not appear to be breathing.</span>\n"
+			if(undefibbable && distance <= 1)
+				msg += "<span class='deadsay'>[t_He] [t_has] gone cold.</span>\n"
 		if(ishuman(user) && !user.stat && Adjacent(user))
 			user.visible_message("<b>[user]</b> checks [src]'s pulse.", "You check [src]'s pulse.", null, 4)
 		spawn(15)

@@ -30,6 +30,22 @@
 				update_state()
 	return 1
 
+/obj/structure/girder/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(M.mob_size != MOB_SIZE_BIG || unacidable)
+		to_chat(M, "<span class='warning'>Your claws aren't sharp enough to damage \the [src].</span>")
+		return FALSE
+	else
+		M.animation_attack_on(src)
+		health -= round(rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) / 2)
+		if(health <= 0)
+			M.visible_message("<span class='danger'>\The [M] smashes \the [src] apart!</span>", \
+			"<span class='danger'>You slice \the [src] apart!</span>", null, 5)
+			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
+			dismantle()
+		else
+			M.visible_message("<span class='danger'>[M] smashes \the [src]!</span>", \
+			"<span class='danger'>You slash \the [src]!</span>", null, 5)
+			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
 
 /obj/structure/girder/attackby(obj/item/W, mob/user)
 	for(var/obj/effect/xenomorph/acid/A in src.loc)
@@ -59,12 +75,17 @@
 
 
 		else if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
-			to_chat(user, "\blue Now slicing apart the girder")
-			if(do_after(user,30, TRUE, 5, BUSY_ICON_HOSTILE))
-				if(!src) return
-				to_chat(user, "\blue You slice apart the girder!")
+			var/obj/item/tool/pickaxe/plasmacutter/P = W
+			if(!(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD)))
+				return
+			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P) //Girders take half as long
+				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD) //Girders require half the normal power
+				P.debris(loc, 0, 2) //Generate some rods
+				if(!src)
+					return
 				health = 0
 				update_state()
+
 		else if(istype(W, /obj/item/tool/pickaxe/diamonddrill))
 			to_chat(user, "\blue You drill through the girder!")
 			dismantle()

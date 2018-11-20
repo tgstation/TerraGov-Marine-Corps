@@ -13,8 +13,8 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	siemens_coefficient = 0.9
+	tint = 2
 	var/gas_filter_strength = 1			//For gas mask filters
-	var/vision_impair = TRUE //Oh lord, the pre-alpha curse
 	var/list/filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
 
 /obj/item/clothing/mask/gas/PMC
@@ -23,7 +23,7 @@
 	item_state = "helmet"
 	icon_state = "pmc_mask"
 	anti_hug = 3
-	vision_impair = FALSE
+	tint = 0
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
 	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
@@ -42,6 +42,7 @@
 	desc = "A superior balaclava worn by the Iron Bears."
 	icon_state = "bear_mask"
 	anti_hug = 2
+	tint = 0
 
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor
@@ -57,7 +58,7 @@
 	desc = "A close-fitting tactical mask that can be connected to an air supply."
 	icon_state = "swat"
 	anti_hug = 1
-	vision_impair = FALSE
+	tint = 0
 	siemens_coefficient = 0.7
 	flags_armor_protection = FACE|EYES
 
@@ -88,7 +89,7 @@
 	desc = "A true prankster's facial attire. A clown is incomplete without his wig and mask."
 	icon_state = "clown"
 	item_state = "clown_hat"
-	vision_impair = FALSE
+	tint = 0
 
 /obj/item/clothing/mask/gas/sexyclown
 	name = "sexy-clown wig and mask"

@@ -21,6 +21,7 @@
 	icon_state = "armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
+	permeability_coefficient = 0.8
 	flags_armor_protection = UPPER_TORSO
 	armor = list(melee = 20, bullet = 30, laser = 25, energy = 10, bomb = 15, bio = 0, rad = 0)
 
@@ -50,7 +51,6 @@
 		/obj/item/storage/large_holster/machete,
 		/obj/item/storage/belt/gun/m4a3,
 		/obj/item/storage/belt/gun/m44)
-	uniform_restricted = list(/obj/item/clothing/under/marine/officer/pilot)
 	New()
 		select_gamemode_skin(/obj/item/clothing/suit/armor/vest/pilot)
 		..()
@@ -61,7 +61,6 @@
 	icon = 'icons/obj/clothing/cm_suits.dmi'
 	icon_state = "dutch_armor"
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
-	uniform_restricted = list(/obj/item/clothing/under/marine/veteran/dutch)
 
 /obj/item/clothing/suit/armor/vest/admiral
 	name = "admiral's jacket"
@@ -73,7 +72,7 @@
 
 /obj/item/clothing/suit/armor/vest/security
 	name = "security armor"
-	desc = "An armored vest that protects against some damage. This one has a Weyland-Yutani corporate badge."
+	desc = "An armored vest that protects against some damage."
 	icon_state = "armorsec"
 	item_state = "armor"
 	slowdown = SLOWDOWN_ARMOR_MEDIUM //prevents powergaming marine by swapping armor.
@@ -103,6 +102,7 @@
 	flags_armor_protection = UPPER_TORSO
 	armor = list(melee = 20, bullet = 50, laser = 25, energy = 10, bomb = 15, bio = 0, rad = 0)
 	siemens_coefficient = 0.7
+	permeability_coefficient = 0.9
 	time_to_unequip = 20
 	time_to_equip = 20
 
@@ -110,13 +110,14 @@
 	name = "riot suit"
 	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
 	icon_state = "riot"
-	item_state = "swat_suit"
+	item_state = "swat"
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	slowdown = 1
+	slowdown = SLOWDOWN_ARMOR_HEAVY
 	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEJUMPSUIT
 	siemens_coefficient = 0.5
+	permeability_coefficient = 0.7
 	time_to_unequip = 20
 	time_to_equip = 20
 
@@ -124,18 +125,15 @@
 	name = "\improper M5 riot control armor"
 	desc = "A heavily modified suit of M2 MP Armor used to supress riots from buckethead marines. Slows you down a lot."
 	icon_state = "riot"
-	item_state = "swat_suit"
+	item_state = "swat"
 	slowdown = SLOWDOWN_ARMOR_VERY_HEAVY
 	armor = list(melee = 70, bullet = 70, laser = 35, energy = 20, bomb = 35, bio = 10, rad = 10)
-	time_to_unequip = 20
-	time_to_equip = 20
-
 
 /obj/item/clothing/suit/armor/swat
 	name = "swat suit"
 	desc = "A heavily armored suit that protects against moderate damage. Used in special operations."
 	icon_state = "deathsquad"
-	item_state = "swat_suit"
+	item_state = "swat"
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS

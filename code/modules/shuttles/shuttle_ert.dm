@@ -191,3 +191,6 @@
 					break
 
 		ui_interact(usr)
+
+/obj/machinery/computer/shuttle_control/ert/centcom //Recall for the lazy
+	icon_state = "dummy"

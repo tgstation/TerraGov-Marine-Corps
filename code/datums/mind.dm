@@ -177,18 +177,16 @@ datum/mind
 
 		if (href_list["role_edit"])
 			var/new_role = input("Select new role", "Assigned role", assigned_role) as null|anything in joblist
-			if (!new_role) return
+			if (!new_role)
+				return
 			assigned_role = new_role
-			if(ishuman(current))
-				var/mob/living/carbon/human/H = current
-				if(H.mind)
-					for(var/datum/job/J in get_all_jobs())
-						if(J.title == new_role)
-							H.mind.set_cm_skills(J.skills_type) //give new role's job_knowledge to us.
-							H.mind.special_role = J.special_role
-							H.mind.role_alt_title = J.get_alternative_title(src)
-							H.mind.role_comm_title = J.comm_title
-							break
+			if(ishuman(current) && current.mind)
+				current.reset_cm_skills(new_role)
+				current.reset_special_role(new_role)
+				current.reset_comm_title(new_role)
+				current.reset_alt_title(new_role)
+				current.set_ID(new_role)
+				current.update_action_buttons()
 
 		else if (href_list["memory_edit"])
 			var/new_memo = copytext(sanitize(input("Write new memory", "Memory", memory) as null|message),1,MAX_MESSAGE_LEN)
@@ -422,13 +420,45 @@ datum/mind
 		return (duration <= world.time - brigged_since)
 
 
-
 /datum/mind/proc/set_cm_skills(skills_path)
 	if(cm_skills)
 		cdel(cm_skills)
 	cm_skills = new skills_path()
 
+/mob/living/proc/reset_cm_skills(new_job)
+	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
+	if(J)
+		mind?.set_cm_skills(J.skills_type) //give new role's job_knowledge to us.
 
+/mob/living/proc/reset_comm_title(new_job)
+	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
+	if(J && mind)
+		mind.role_comm_title = J.comm_title
+
+/mob/living/proc/reset_alt_title(new_job)
+	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
+	if(J && mind)
+		mind.role_alt_title = J.get_alternative_title(src)
+
+/mob/living/proc/reset_special_role(new_job)
+	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
+	if(J && mind)
+		mind.special_role = J.special_role
+
+
+/mob/living/proc/reset_role(new_job)
+	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
+	if(J && mind)
+		mind.assigned_role = J.title
+
+/mob/living/proc/set_everything(var/mob/living/carbon/human/H, var/new_role)
+	H.reset_cm_skills(new_role)
+	H.reset_special_role(new_role)
+	H.reset_comm_title(new_role)
+	H.reset_alt_title(new_role)
+	H.reset_role(new_role)
+	H.set_ID(new_role)
+	H.update_action_buttons()
 
 //Initialisation procs
 /mob/proc/mind_initialize()
@@ -449,14 +479,12 @@ datum/mind
 		if(wear_id)
 			var/obj/item/card/id/I = wear_id.GetID()
 			if(I && I.assignment)
-				for(var/datum/job/J in get_all_jobs())
-					if(J.title == I.rank)
-						mind.assigned_role = J.title
-						mind.set_cm_skills(J.skills_type)
-						mind.special_role = J.special_role
-						mind.role_alt_title = J.get_alternative_title(src)
-						mind.role_comm_title = J.comm_title
-						break
+				reset_role(I.rank)
+				reset_cm_skills(I.rank)
+				reset_special_role(I.rank)
+				reset_alt_title(I.rank)
+				reset_comm_title(I.rank)
+
 	//if not, we give the mind default job_knowledge and assigned_role
 	if(!mind.assigned_role)
 		mind.assigned_role = "Squad Marine"	//default

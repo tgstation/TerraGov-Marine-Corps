@@ -15,10 +15,10 @@
 
 	var/health = null
 
-	var/sharp = 0		// whether this item cuts
-	var/edge = 0		// whether this item is more likely to dismember
-	var/pry_capable = 0 //whether this item can be used to pry things open.
-	var/heat_source = 0 //whether this item is a source of heat, and how hot it is (in Kelvin).
+	var/sharp = FALSE		// whether this item cuts
+	var/edge = FALSE		// whether this item is more likely to dismember
+	var/pry_capable = FALSE //whether this item can be used to pry things open.
+	var/heat_source = FALSE //whether this item is a source of heat, and how hot it is (in Kelvin).
 
 	var/hitsound = null
 	var/w_class = 3.0
@@ -44,6 +44,7 @@
 	var/list/actions_types = list() //list of paths of action datums to give to the item on New().
 
 	//var/heat_transfer_coefficient = 1 //0 prevents all transfers, 1 is invisible
+	var/body_parts_covered = 0
 	var/gas_transfer_coefficient = 1 // for leaking gas from turf to mask and vice-versa (for masks right now, but at some point, i'd like to include space helmets)
 	var/permeability_coefficient = 1 // for chemicals/diseases
 	var/siemens_coefficient = 1 // for electrical admittance/conductance (electrocution checks and shit)
@@ -52,7 +53,7 @@
 	var/list/allowed = null //suit storage stuff.
 	var/obj/item/device/uplink/hidden/hidden_uplink = null // All items can have an uplink hidden inside, just remember to add the triggers.
 	var/zoomdevicename = null //name used for message when binoculars/scope is used
-	var/zoom = 0 //1 if item is actively being used to zoom. For scoped guns and binoculars.
+	var/zoom = FALSE //TRUE if item is actively being used to zoom. For scoped guns and binoculars.
 
 	var/list/uniform_restricted //Need to wear this uniform to equip this
 
@@ -156,28 +157,9 @@ cases. Override_icon_state should be a list.*/
 
 		item_state = icon_state
 
-
-/obj/item/examine(mob/user)
-	var/size
-	switch(w_class)
-		if(1.0)
-			size = "tiny"
-		if(2.0)
-			size = "small"
-		if(3.0)
-			size = "normal-sized"
-		if(4.0)
-			size = "bulky"
-		if(5.0)
-			size = "huge"
-		else
-	//if ((CLUMSY in usr.mutations) && prob(50)) t = "funny-looking"
-	to_chat(user, "This is a [blood_DNA ? blood_color != "#030303" ? "bloody " : "oil-stained " : ""]\icon[src][src.name]. It is a [size] item.")
-	if(desc)
-		to_chat(user, desc)
-
 /obj/item/attack_hand(mob/user as mob)
-	if (!user) return
+	if (!user)
+		return
 
 	if(anchored)
 		to_chat(user, "[src] is anchored to the ground.")
@@ -187,7 +169,7 @@ cases. Override_icon_state should be a list.*/
 		var/obj/item/storage/S = src.loc
 		S.remove_from_storage(src, user.loc)
 
-	throwing = 0
+	throwing = FALSE
 
 	if(loc == user)
 		if(!user.drop_inv_item_on_ground(src))
@@ -202,25 +184,7 @@ cases. Override_icon_state should be a list.*/
 
 
 /obj/item/attack_paw(mob/user as mob)
-
-	if(anchored)
-		to_chat(user, "[src] is anchored to the ground.")
-		return
-
-	if (istype(src.loc, /obj/item/storage))
-		var/obj/item/storage/S = src.loc
-		S.remove_from_storage(src, user.loc)
-
-	src.throwing = 0
-	if (loc == user)
-		if(!user.drop_inv_item_on_ground(src))
-			return
-	else
-		user.next_move = max(user.next_move+2,world.time + 2)
-	if(!disposed) //item may have been cdel'd by the drop above.
-		pickup(user)
-		if(!user.put_in_active_hand(src))
-			dropped(user)
+	return attack_hand(user)
 
 // Due to storage type consolidation this should get used more now.
 // I have cleaned it up a little, but it could probably use more.  -Sayu
@@ -230,17 +194,17 @@ cases. Override_icon_state should be a list.*/
 		if(S.use_to_pickup && isturf(loc))
 			if(S.collection_mode) //Mode is set to collect all items on a tile and we clicked on a valid one.
 				var/list/rejections = list()
-				var/success = 0
-				var/failure = 0
+				var/success = FALSE
+				var/failure = FALSE
 
 				for(var/obj/item/I in src.loc)
 					if(I.type in rejections) // To limit bag spamming: any given type only complains once
 						continue
 					if(!S.can_be_inserted(I))	// Note can_be_inserted still makes noise when the answer is no
 						rejections += I.type	// therefore full bags are still a little spammy
-						failure = 1
+						failure = TRUE
 						continue
-					success = 1
+					success = TRUE
 					S.handle_item_insertion(I, TRUE, user)	//The 1 stops the "You put the [src] into [S]" insertion message from being displayed.
 				if(success && !failure)
 					to_chat(user, "<span class='notice'>You put everything in [S].</span>")
@@ -310,8 +274,10 @@ cases. Override_icon_state should be a list.*/
 // Set disable_warning to 1 if you wish it to not give you outputs.
 // warning_text is used in the case that you want to provide a specific warning for why the item cannot be equipped.
 /obj/item/proc/mob_can_equip(M as mob, slot, disable_warning = 0)
-	if(!slot) return 0
-	if(!M) return 0
+	if(!slot)
+		return FALSE
+	if(!M)
+		return FALSE
 
 	if(ishuman(M))
 		//START HUMAN
@@ -370,7 +336,7 @@ cases. Override_icon_state should be a list.*/
 						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
 					return FALSE
 				if(!(flags_equip_slot & SLOT_WAIST))
-					return
+					return FALSE
 				return TRUE
 			if(WEAR_EYES)
 				if(H.glasses)
@@ -451,13 +417,26 @@ cases. Override_icon_state should be a list.*/
 				if(!istype(src, /obj/item/legcuffs))
 					return FALSE
 				return TRUE
+			if(WEAR_ACCESSORY)
+				if(!istype(src, /obj/item/clothing/tie))
+					return FALSE
+				var/obj/item/clothing/under/U = H.w_uniform
+				if(!U || U.hastie)
+					return FALSE
+				return TRUE
+			if(EQUIP_IN_BOOT)
+				if(!istype(src, /obj/item/weapon/combat_knife) && !istype(src, /obj/item/weapon/throwing_knife))
+					return FALSE
+				var/obj/item/clothing/shoes/marine/B = H.shoes
+				if(!B || !istype(B) || B.knife)
+					return FALSE
+				return TRUE
 			if(WEAR_IN_BACK)
-				if (H.back && istype(H.back, /obj/item/storage/backpack))
-					var/obj/item/storage/backpack/B = H.back
-					if(src.w_class <= B.max_w_class)
-						if(B.can_be_inserted(src))
-							return TRUE
-				return FALSE
+				if (!H.back || !istype(H.back, /obj/item/storage/backpack))
+					return FALSE
+				var/obj/item/storage/backpack/B = H.back
+				if(src.w_class <= B.max_w_class && B.can_be_inserted(src))
+					return TRUE
 			if(WEAR_IN_B_HOLSTER)
 				if (H.back && istype(H.back, /obj/item/storage/large_holster))
 					var/obj/item/storage/S = H.back
@@ -476,6 +455,24 @@ cases. Override_icon_state should be a list.*/
 					if(S.can_be_inserted(src))
 						return TRUE
 				return FALSE
+			if(EQUIP_IN_STORAGE)
+				if(!H.s_active)
+					return FALSE
+				var/obj/item/storage/S = H.s_active
+				if(S.can_be_inserted(src))
+					return TRUE
+			if(EQUIP_IN_L_POUCH)
+				if(!H.l_store || !istype(H.l_store, /obj/item/storage/pouch))
+					return FALSE
+				var/obj/item/storage/S = H.l_store
+				if(S.can_be_inserted(src))
+					return TRUE
+			if(EQUIP_IN_R_POUCH)
+				if(!H.r_store || !istype(H.r_store, /obj/item/storage/pouch))
+					return FALSE
+				var/obj/item/storage/S = H.r_store
+				if(S.can_be_inserted(src))
+					return TRUE
 		return FALSE //Unsupported slot
 		//END HUMAN
 
@@ -549,7 +546,7 @@ cases. Override_icon_state should be a list.*/
 
 
 /obj/item/proc/IsShield()
-	return 0
+	return FALSE
 
 /obj/item/proc/get_loc_turf()
 	var/atom/L = loc
@@ -577,18 +574,24 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 */
 
 /obj/item/proc/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
-	if(!user) return
+	if(!user)
+		return
 	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
+	var/mob/living/carbon/human/H = user
 
 	for(var/obj/item/I in user.contents)
 		if(I.zoom && I != src)
 			to_chat(user, "<span class='warning'>You are already looking through \the [zoom_device].</span>")
 			return //Return in the interest of not unzooming the other item. Check first in the interest of not fucking with the other clauses
 
-	if(user.eye_blind) 												to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
-	else if(user.stat || !ishuman(user)) 							to_chat(user, "<span class='warning'>You are unable to focus through \the [zoom_device].</span>")
-	else if(!zoom && user.client && user.update_tint()) 			to_chat(user, "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>")
-	else if(!zoom && user.get_active_hand() != src)					to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
+	if(is_blind(user))
+		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
+	else if(user.stat || !ishuman(user))
+		to_chat(user, "<span class='warning'>You are unable to focus through \the [zoom_device].</span>")
+	else if(!zoom && user.client && H.tinttotal >= 3)
+		to_chat(user, "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>")
+	else if(!zoom && user.get_active_hand() != src)
+		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
 	else if(zoom) //If we are zoomed out, reset that parameter.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
 		"<span class='notice'>You look up from [zoom_device].</span>")
@@ -633,3 +636,148 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		user.client.change_view(world.view)
 		user.client.pixel_x = 0
 		user.client.pixel_y = 0
+
+/obj/item/proc/eyecheck(mob/user)
+	if(!ishuman(user))
+		return TRUE
+	var/safety = user.get_eye_protection()
+	var/mob/living/carbon/human/H = user
+	var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
+	switch(safety)
+		if(1)
+			E.damage += rand(1, 2)
+		if(0)
+			E.damage += rand(2, 4)
+		if(-1)
+			H.blur_eyes(rand(12,20))
+			E.damage += rand(12, 16)
+	if(safety<2)
+		if(E.damage >= E.min_broken_damage)
+			to_chat(H, "<span class='danger'>You can't see anything!</span>")
+			H.blind_eyes(1)
+		else if (E.damage >= E.min_bruised_damage)
+			to_chat(H, "<span class='warning'>Your eyes are really starting to hurt. This can't be good for you!</span>")
+			H.blind_eyes(5)
+		else
+			switch(safety)
+				if(1)
+					to_chat(user, "<span class='warning'>Your eyes sting a little.</span>")
+				if(0)
+					to_chat(user, "<span class='warning'>Your eyes burn.</span>")
+				if(-1)
+					to_chat(user, "<span class='danger'>Your eyes itch and burn severely.</span>")
+
+
+
+
+
+//This proc is here to prevent Xenomorphs from picking up objects (default attack_hand behaviour)
+//Note that this is overriden by every proc concerning a child of obj unless inherited
+/obj/item/attack_alien(mob/living/carbon/Xenomorph/M)
+	return FALSE
+
+/obj/item/proc/update_action_button_icons()
+	for(var/X in actions)
+		var/datum/action/A = X
+		A.update_button_icon()
+
+/obj/item/proc/extinguish(atom/target, mob/user)
+
+	if (reagents.total_volume < 1)
+		to_chat(user, "\red \The [src]'s water reserves are empty.")
+		return
+
+	user.visible_message("<span class='danger'>[user] sprays water from [src]!</span>", \
+	"<span class='warning'>You spray water from [src].</span>",)
+
+	playsound(user.loc, 'sound/effects/extinguish.ogg', 52, 1, 7)
+
+	var/direction = get_dir(user,target)
+
+	if(user.buckled && isobj(user.buckled) && !user.buckled.anchored )
+		spawn(0)
+			var/obj/structure/bed/chair/C = null
+			if(istype(user.buckled, /obj/structure/bed/chair))
+				C = user.buckled
+			var/obj/B = user.buckled
+			var/movementdirection = turn(direction,180)
+			if(C)
+				C.propelled = 4
+			B.Move(get_step(user,movementdirection), movementdirection)
+			sleep(1)
+			B.Move(get_step(user,movementdirection), movementdirection)
+			if(C)
+				C.propelled = 3
+			sleep(1)
+			B.Move(get_step(user,movementdirection), movementdirection)
+			sleep(1)
+			B.Move(get_step(user,movementdirection), movementdirection)
+			if(C)
+				C.propelled = 2
+			sleep(2)
+			B.Move(get_step(user,movementdirection), movementdirection)
+			if(C)
+				C.propelled = 1
+			sleep(2)
+			B.Move(get_step(user,movementdirection), movementdirection)
+			if(C)
+				C.propelled = 0
+			sleep(3)
+			B.Move(get_step(user,movementdirection), movementdirection)
+			sleep(3)
+			B.Move(get_step(user,movementdirection), movementdirection)
+			sleep(3)
+			B.Move(get_step(user,movementdirection), movementdirection)
+
+	var/turf/T = get_turf(target)
+	var/turf/T1 = get_step(T,turn(direction, 90))
+	var/turf/T2 = get_step(T,turn(direction, -90))
+
+	var/list/the_targets = list(T,T1,T2)
+
+	for(var/a=0, a<7, a++)
+		spawn(0)
+			var/obj/effect/particle_effect/water/W = new /obj/effect/particle_effect/water( get_turf(user) )
+			var/turf/my_target = pick(the_targets)
+			var/datum/reagents/R = new/datum/reagents(5)
+			if(!W)
+				return
+			W.reagents = R
+			R.my_atom = W
+			if(!W || !src)
+				return
+			reagents.trans_to(W,1)
+			for(var/b=0, b<7, b++)
+				step_towards(W,my_target)
+				if(!(W?.reagents))
+					return
+				W.reagents.reaction(get_turf(W))
+				for(var/atom/atm in get_turf(W))
+					if(!W)
+						return
+					if(!W.reagents)
+						break
+					W.reagents.reaction(atm)
+					if(istype(atm, /obj/flamer_fire))
+						var/obj/flamer_fire/FF = atm
+						if(FF.firelevel > 20)
+							FF.firelevel -= 20
+							FF.updateicon()
+						else
+							cdel(atm)
+						continue
+					if(isliving(atm)) //For extinguishing mobs on fire
+						var/mob/living/M = atm
+						M.ExtinguishMob()
+						for(var/obj/item/clothing/mask/cigarette/C in M.contents)
+							if(C.item_state == C.icon_on)
+								C.die()
+				if(W.loc == my_target)
+					break
+				sleep(2)
+			cdel(W)
+
+	if((istype(user.loc, /turf/open/space)) || (user.lastarea.has_gravity == 0))
+		user.inertia_dir = get_dir(target, user)
+		step(user, user.inertia_dir)
+	return

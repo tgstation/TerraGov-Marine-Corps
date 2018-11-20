@@ -19,7 +19,7 @@
 /* 21st Sept 2010
 Updated by Skie -- Still not perfect but better!
 Stuff you can't do:
-Call proc /mob/proc/make_dizzy() for some player
+Call proc /mob/proc/Dizzy() for some player
 Because if you select a player mob as owner it tries to do the proc for
 /mob/living/carbon/human/ instead. And that gives a run-time error.
 But you can call procs that are of type /mob/living/carbon/human/proc/ for that player.
@@ -246,6 +246,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
+
+	if(M.disposed)
+		alert("That mob doesn't seem to exist, close the panel and try again.")
+		return
+
 	if(istype(M, /mob/living/carbon/human))
 		log_admin("[key_name(src)] has robotized [M.key].")
 		spawn(10)
@@ -262,7 +267,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("Wait until the game starts")
 		return
 
-	if(!M)
+	if(!M.disposed)
 		alert("That mob doesn't seem to exist, close the panel and try again.")
 		return
 
@@ -281,6 +286,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
+
+	if(M.disposed)
+		alert("That mob doesn't seem to exist, close the panel and try again.")
+		return
+
 	if(ishuman(M))
 		log_admin("[key_name(src)] has alienized [M.key].")
 		spawn(10)
@@ -298,6 +308,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
+
+	if(M.disposed)
+		alert("That mob doesn't seem to exist, close the panel and try again.")
+		return
+
 	if(isXeno(M))
 		log_admin("[key_name(src)] changed hivenumber of [M] to [M.hivenumber].")
 		M.hivenumber = hivenumber

@@ -1,5 +1,3 @@
-
-
 /mob/verb/mode()
 	set name = "Activate Held Object"
 	set category = "Object"
@@ -113,8 +111,8 @@
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
 		to_chat(usr, "You have been dead for[pluralcheck] [deathtimeseconds] seconds.")
 
-		if (deathtime < 18000 && !is_admin)
-			to_chat(usr, "You must wait 30 minutes to respawn!")
+		if (deathtime < (respawntime * 600) && !is_admin)
+			to_chat(usr, "You must wait [respawntime] minutes to respawn!")
 			return
 		else
 			to_chat(usr, "You can respawn now, enjoy your new life!")
@@ -261,7 +259,6 @@
 
 
 /mob/verb/stop_pulling()
-
 	set name = "Stop Pulling"
 	set category = "IC"
 
@@ -282,3 +279,37 @@
 				//so we must undo it here so the victim can move right away
 				M.client.next_movement = world.time
 			M.update_canmove()
+
+
+/mob/verb/view_notes()
+	set name = "View Admin Remarks"
+	set category = "OOC"
+
+	var/key = usr.ckey
+
+	var/dat = "<html><head><title>Info on [key]</title></head>"
+	dat += "<body>"
+
+	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/list/infos
+	info >> infos
+	if(!infos)
+		dat += "No information found on the given key.<br>"
+	else
+		var/update_file = 0
+		var/i = 0
+		for(var/datum/player_info/I in infos)
+			i += 1
+			if(!I.timestamp)
+				I.timestamp = "Pre-4/3/2012"
+				update_file = 1
+			if(!I.rank)
+				I.rank = "N/A"
+				update_file = 1
+			if(!(I.hidden))
+				dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
+				dat += "<br><br>"
+		if(update_file) to_chat(info, infos)
+
+	dat += "</body></html>"
+	usr << browse(dat, "window=adminplayerinfo;size=480x480")

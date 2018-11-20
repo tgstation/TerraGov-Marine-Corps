@@ -33,3 +33,23 @@
  * or the object is placed in an object pool (effectively out-of-play so to speak)
  */
 /datum/var/disposed
+
+#define DELTA_CALC max(max(world.tick_usage, world.cpu) / 100, 1)
+#define DS2TICKS(DS) ((DS)/world.tick_lag)
+//returns the number of ticks slept
+/proc/stoplag(initial_delay)
+	//replace with something to determine if initializations have happened
+	if (!processScheduler)
+		sleep(world.tick_lag)
+		return 1
+	if (!initial_delay)
+		initial_delay = world.tick_lag
+	. = 0
+	var/i = DS2TICKS(initial_delay) //get from _defines/math.dm
+	do
+		. += CEILING(i*DELTA_CALC, 1)
+		sleep(i*world.tick_lag*DELTA_CALC)
+		i *= 2
+	while (world.tick_usage > TICK_LIMIT_TO_RUN)
+
+#undef DELTA_CALC

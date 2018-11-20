@@ -33,5 +33,5 @@ Bonus
 				to_chat(M, "<span class='notice'>[pick("You feel dizzy.", "Your head starts spinning.")]</span>")
 			else
 				to_chat(M, "<span class='notice'>You are unable to look straight!</span>")
-				M.make_dizzy(5)
+				M.Dizzy(5)
 	return

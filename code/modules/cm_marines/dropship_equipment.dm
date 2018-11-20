@@ -19,41 +19,44 @@
 	var/ship_tag//used to associate the base to a dropship.
 	var/obj/structure/dropship_equipment/installed_equipment
 
-	Dispose()
-		if(installed_equipment)
-			cdel(installed_equipment)
-			installed_equipment = null
-		. = ..()
+/obj/effect/attach_point/Dispose()
+	if(installed_equipment)
+		cdel(installed_equipment)
+		installed_equipment = null
+	return ..()
 
-	attackby(obj/item/I, mob/user)
-		if(istype(I, /obj/item/powerloader_clamp))
-			var/obj/item/powerloader_clamp/PC = I
-			if(istype(PC.loaded, /obj/structure/dropship_equipment))
-				var/obj/structure/dropship_equipment/SE = PC.loaded
-				if(SE.equip_category != base_category)
-					to_chat(user, "<span class='warning'>[SE] doesn't fit on [src].</span>")
-					return TRUE
-				if(installed_equipment) return TRUE
-				playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
-				if(!do_after(user, 70, FALSE, 5, BUSY_ICON_BUILD)) return TRUE
-				if(installed_equipment || PC.loaded != SE) return TRUE
-				to_chat(user, "<span class='notice'>You install [SE] on [src].</span>")
-				SE.forceMove(loc)
-				PC.loaded = null
-				playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-				PC.update_icon()
-				installed_equipment = SE
-				SE.ship_base = src
+/obj/effect/attach_point/attackby(obj/item/I, mob/user)
+	if(istype(I, /obj/item/powerloader_clamp))
+		var/obj/item/powerloader_clamp/PC = I
+		if(istype(PC.loaded, /obj/structure/dropship_equipment))
+			var/obj/structure/dropship_equipment/SE = PC.loaded
+			if(SE.equip_category != base_category)
+				to_chat(user, "<span class='warning'>[SE] doesn't fit on [src].</span>")
+				return TRUE
+			if(installed_equipment)
+				return TRUE
+			playsound(loc, 'sound/machines/hydraulics_1.ogg', 40, 1)
+			if(!do_after(user, 70, FALSE, 5, BUSY_ICON_BUILD))
+				return TRUE
+			if(installed_equipment || PC.loaded != SE)
+				return TRUE
+			to_chat(user, "<span class='notice'>You install [SE] on [src].</span>")
+			SE.forceMove(loc)
+			PC.loaded = null
+			playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
+			PC.update_icon()
+			installed_equipment = SE
+			SE.ship_base = src
 
-				for(var/datum/shuttle/ferry/marine/S in shuttle_controller.process_shuttles)
-					if(S.shuttle_tag == ship_tag)
-						SE.linked_shuttle = S
-						S.equipments += SE
-						break
+			for(var/datum/shuttle/ferry/marine/S in shuttle_controller.process_shuttles)
+				if(S.shuttle_tag == ship_tag)
+					SE.linked_shuttle = S
+					S.equipments += SE
+					break
 
-				SE.update_equipment()
-			return TRUE
-		. = ..()
+			SE.update_equipment()
+		return TRUE
+	return ..()
 
 
 /obj/effect/attach_point/weapon
@@ -136,85 +139,92 @@
 	var/screen_mode = 0 //used by the dropship console code when this equipment is selected
 	var/point_cost = 0 //how many points it costs to build this with the fabricator, set to 0 if unbuildable.
 
-	Dispose()
-		if(ammo_equipped)
+/obj/structure/dropship_equipment/Dispose()
+	if(ammo_equipped)
+		cdel(ammo_equipped)
+		ammo_equipped = null
+	if(linked_shuttle)
+		linked_shuttle.equipments -= src
+		linked_shuttle = null
+	if(ship_base)
+		ship_base.installed_equipment = null
+		ship_base = null
+	if(linked_console)
+		if(linked_console.selected_equipment && linked_console.selected_equipment == src)
+			linked_console.selected_equipment = null
+		linked_console = null
+	return ..()
+
+/obj/structure/dropship_equipment/attackby(obj/item/I, mob/user)
+	if(!istype(I, /obj/item/powerloader_clamp))
+		return ..()
+	var/obj/item/powerloader_clamp/PC = I
+	if(PC.loaded)
+		if(!ship_base || !uses_ammo || ammo_equipped || !istype(PC.loaded, /obj/structure/ship_ammo))
+			return FALSE
+		var/obj/structure/ship_ammo/SA = PC.loaded
+		if(SA.equipment_type != type)
+			to_chat(user, "<span class='warning'>[SA] doesn't fit in [src].</span>")
+			return FALSE
+		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+		if(!do_after(user, 30, FALSE, 5, BUSY_ICON_BUILD))
+			return FALSE
+		if(ammo_equipped || PC.loaded != SA || !PC.linked_powerloader || PC.linked_powerloader.buckled_mob != user)
+			return FALSE
+		SA.forceMove(src)
+		PC.loaded = null
+		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+		PC.update_icon()
+		to_chat(user, "<span class='notice'>You load [SA] into [src].</span>")
+		ammo_equipped = SA
+		update_equipment()
+		return TRUE //refilled dropship ammo
+	else if(uses_ammo && ammo_equipped)
+		playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
+		if(!do_after(user, 30, FALSE, 5, BUSY_ICON_BUILD))
+			return FALSE
+		if(!ammo_equipped || !PC.linked_powerloader || PC.linked_powerloader.buckled_mob != user)
+			return FALSE
+		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+		if(!ammo_equipped.ammo_count)
+			ammo_equipped.loc = null
+			to_chat(user, "<span class='notice'>You've discarded the empty [ammo_equipped.name] in [src].</span>")
 			cdel(ammo_equipped)
-			ammo_equipped = null
-		if(linked_shuttle)
-			linked_shuttle.equipments -= src
-			linked_shuttle = null
+		else
+			ammo_equipped.forceMove(PC.linked_powerloader)
+			PC.loaded = ammo_equipped
+			PC.update_icon()
+			to_chat(user, "<span class='notice'>You've removed [ammo_equipped] from [src] and loaded it into [PC].</span>")
+		ammo_equipped = null
+		update_icon()
+		return TRUE //emptied or removed dropship ammo
+	else
+		playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
+		var/duration_time = ship_base ? 70 : 10 //uninstalling equipment takes more time
+		if(!do_after(user, duration_time, FALSE, 5, BUSY_ICON_BUILD))
+			return FALSE
+		if(!PC.linked_powerloader || PC.loaded || PC.linked_powerloader.buckled_mob != user)
+			return FALSE
+		forceMove(PC.linked_powerloader)
+		PC.loaded = src
+		playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
+		PC.update_icon()
+		to_chat(user, "<span class='notice'>You've [ship_base ? "uninstalled" : "grabbed"] [PC.loaded] with [PC].</span>")
 		if(ship_base)
 			ship_base.installed_equipment = null
 			ship_base = null
-		if(linked_console)
-			if(linked_console.selected_equipment && linked_console.selected_equipment == src)
-				linked_console.selected_equipment = null
-			linked_console = null
-		. = ..()
-
-	attackby(obj/item/I, mob/user)
-
-		if(istype(I, /obj/item/powerloader_clamp))
-			var/obj/item/powerloader_clamp/PC = I
-			if(PC.loaded)
-				if(ship_base && uses_ammo && !ammo_equipped && istype(PC.loaded, /obj/structure/ship_ammo))
-					var/obj/structure/ship_ammo/SA = PC.loaded
-					if(SA.equipment_type == type)
-						playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-						if(do_after(user, 30, FALSE, 5, BUSY_ICON_BUILD))
-							if(!ammo_equipped && PC.loaded == SA && PC.linked_powerloader && PC.linked_powerloader.buckled_mob == user)
-								SA.forceMove(src)
-								PC.loaded = null
-								playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-								PC.update_icon()
-								to_chat(user, "<span class='notice'>You load [SA] into [src].</span>")
-								ammo_equipped = SA
-								update_equipment()
-					else
-						to_chat(user, "<span class='warning'>[SA] doesn't fit in [src].</span>")
-
-			else if(uses_ammo && ammo_equipped)
-				playsound(src, 'sound/machines/hydraulics_2.ogg', 40, 1)
-				if(do_after(user, 30, FALSE, 5, BUSY_ICON_BUILD))
-					if(ammo_equipped && PC.linked_powerloader && PC.linked_powerloader.buckled_mob == user)
-						playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-						if(!ammo_equipped.ammo_count)
-							ammo_equipped.loc = null
-							to_chat(user, "<span class='notice'>You discarded the empty [ammo_equipped.name] in [src].</span>")
-							cdel(ammo_equipped)
-						else
-							ammo_equipped.forceMove(PC.linked_powerloader)
-							PC.loaded = ammo_equipped
-							PC.update_icon()
-							to_chat(user, "<span class='notice'>You've removed [ammo_equipped] from [src] and loaded it into [PC].</span>")
-						ammo_equipped = null
-						update_icon()
-			else
-				playsound(loc, 'sound/machines/hydraulics_2.ogg', 40, 1)
-				var/duration_time = 10
-				if(ship_base) duration_time = 70 //uninstalling equipment takes more time
-				if(do_after(user, duration_time, FALSE, 5, BUSY_ICON_BUILD))
-					if(PC.linked_powerloader && !PC.loaded && PC.linked_powerloader.buckled_mob == user)
-						forceMove(PC.linked_powerloader)
-						PC.loaded = src
-						playsound(src, 'sound/machines/hydraulics_1.ogg', 40, 1)
-						PC.update_icon()
-						to_chat(user, "<span class='notice'>You've [ship_base ? "uninstalled" : "grabbed"] [PC.loaded] with [PC].</span>")
-						if(ship_base)
-							ship_base.installed_equipment = null
-							ship_base = null
-							if(linked_shuttle)
-								linked_shuttle.equipments -= src
-								linked_shuttle = null
-								if(linked_console && linked_console.selected_equipment == src)
-									linked_console.selected_equipment = null
-						update_equipment()
-			return TRUE
+			if(linked_shuttle)
+				linked_shuttle.equipments -= src
+				linked_shuttle = null
+				if(linked_console && linked_console.selected_equipment == src)
+					linked_console.selected_equipment = null
+		update_equipment()
+		return TRUE //removed or uninstalled equipment
 
 
 
-	update_icon()
-		return
+/obj/structure/dropship_equipment/update_icon()
+	return
 
 /obj/structure/dropship_equipment/proc/update_equipment()
 	return
@@ -229,7 +239,8 @@
 
 /obj/structure/dropship_equipment/proc/equipment_interact(mob/user)
 	if(is_interactable)
-		if(linked_console.selected_equipment) return
+		if(linked_console.selected_equipment)
+			return
 		linked_console.selected_equipment = src
 		to_chat(user, "<span class='notice'>You select [src].</span>")
 
@@ -247,75 +258,70 @@
 	var/deployment_cooldown
 	var/obj/machinery/marine_turret/premade/dropship/deployed_turret
 
-	initialize()
-		if(!deployed_turret)
-			deployed_turret = new(src)
-			deployed_turret.deployment_system = src
-		..()
+/obj/structure/dropship_equipment/sentry_holder/New()
+	if(!deployed_turret)
+		deployed_turret = new(src)
+		deployed_turret.deployment_system = src
+	return ..()
 
-	New()
-		if(!deployed_turret)
-			deployed_turret = new(src)
-			deployed_turret.deployment_system = src
-		..()
+/obj/structure/dropship_equipment/sentry_holder/examine(mob/user)
+	. = ..()
+	if(!deployed_turret)
+		to_chat(user, "Its turret is missing.")
 
-	examine(mob/user)
-		..()
-		if(!deployed_turret)
-			to_chat(user, "Its turret is missing.")
+/obj/structure/dropship_equipment/sentry_holder/on_launch()
+	undeploy_sentry()
 
-	on_launch()
+/obj/structure/dropship_equipment/sentry_holder/equipment_interact(mob/user)
+	if(!deployed_turret)
+		to_chat(user, "<span class='warning'>[src] is unresponsive.</span>")
+		return
+	if(deployment_cooldown > world.time)
+		to_chat(user, "<span class='warning'>[src] is busy.</span>")
+		return //prevents spamming deployment/undeployment
+	if(deployed_turret.loc == src) //not deployed
+		if(z == LOW_ORBIT_Z_LEVEL)
+			to_chat(user, "<span class='warning'>[src] can't deploy mid-flight.</span>")
+		else
+			to_chat(user, "<span class='notice'>You deploy [src].</span>")
+			deploy_sentry()
+	else
+		to_chat(user, "<span class='notice'>You retract [src].</span>")
 		undeploy_sentry()
+		
 
-	equipment_interact(mob/user)
+/obj/structure/dropship_equipment/sentry_holder/update_equipment()
+	if(ship_base)
+		dir = ship_base.dir
+		icon_state = "sentry_system_installed"
 		if(deployed_turret)
-			if(deployment_cooldown > world.time)
-				to_chat(user, "<span class='warning'>[src] is busy.</span>")
-				return //prevents spamming deployment/undeployment
-			if(deployed_turret.loc == src) //not deployed
-				if(z == LOW_ORBIT_Z_LEVEL)
-					to_chat(user, "<span class='warning'>[src] can't deploy mid-flight.</span>")
+			deployed_turret.dir = dir
+			if(linked_shuttle && deployed_turret.camera)
+				if(linked_shuttle.shuttle_tag == "[MAIN_SHIP_NAME] Dropship 1")
+					deployed_turret.camera.network.Add("dropship1") //accessible via the dropship camera console
 				else
-					to_chat(user, "<span class='notice'>You deploy [src].</span>")
-					deploy_sentry()
-			else
-				to_chat(user, "<span class='notice'>You retract [src].</span>")
-				undeploy_sentry()
+					deployed_turret.camera.network.Add("dropship2")
+			switch(dir)
+				if(SOUTH) deployed_turret.pixel_y = 8
+				if(NORTH) deployed_turret.pixel_y = -8
+				if(EAST) deployed_turret.pixel_x = -8
+				if(WEST) deployed_turret.pixel_x = 8
+	else
+		dir = initial(dir)
+		if(deployed_turret)
+			if(deployed_turret.camera)
+				if(deployed_turret.camera.network.Find("dropship1"))
+					deployed_turret.camera.network.Remove("dropship1")
+				else if(deployed_turret.camera.network.Find("dropship2"))
+					deployed_turret.camera.network.Remove("dropship2")
+			icon_state = "sentry_system"
+			deployed_turret.pixel_y = 0
+			deployed_turret.pixel_x = 0
+			deployed_turret.loc = src
+			deployed_turret.dir = dir
+			deployed_turret.on = 0
 		else
-			to_chat(user, "<span class='warning'>[src] is unresponsive.</span>")
-
-	update_equipment()
-		if(ship_base)
-			dir = ship_base.dir
-			icon_state = "sentry_system_installed"
-			if(deployed_turret)
-				deployed_turret.dir = dir
-				if(linked_shuttle && deployed_turret.camera)
-					if(linked_shuttle.shuttle_tag == "[MAIN_SHIP_NAME] Dropship 1")
-						deployed_turret.camera.network.Add("dropship1") //accessible via the dropship camera console
-					else
-						deployed_turret.camera.network.Add("dropship2")
-				switch(dir)
-					if(SOUTH) deployed_turret.pixel_y = 8
-					if(NORTH) deployed_turret.pixel_y = -8
-					if(EAST) deployed_turret.pixel_x = -8
-					if(WEST) deployed_turret.pixel_x = 8
-		else
-			dir = initial(dir)
-			if(deployed_turret)
-				if(deployed_turret.camera)
-					if(deployed_turret.camera.network.Find("dropship1"))
-						deployed_turret.camera.network.Remove("dropship1")
-					else if(deployed_turret.camera.network.Find("dropship2"))
-						deployed_turret.camera.network.Remove("dropship2")
-				icon_state = "sentry_system"
-				deployed_turret.pixel_y = 0
-				deployed_turret.pixel_x = 0
-				deployed_turret.loc = src
-				deployed_turret.dir = dir
-				deployed_turret.on = 0
-			else
-				icon_state = "sentry_system_destroyed"
+			icon_state = "sentry_system_destroyed"
 
 /obj/structure/dropship_equipment/sentry_holder/proc/deploy_sentry()
 	if(deployed_turret)
@@ -345,27 +351,25 @@
 	point_cost = 300
 	var/obj/machinery/m56d_hmg/mg_turret/deployed_mg
 
-	initialize()
-		if(!deployed_mg) deployed_mg = new(src)
-		..()
+/obj/structure/dropship_equipment/mg_holder/New()
+	. = ..()
+	if(!deployed_mg)
+		deployed_mg = new(src)
 
-	New()
-		if(!deployed_mg) deployed_mg = new(src)
-		..()
+/obj/structure/dropship_equipment/mg_holder/examine(mob/user)
+	. = ..()
+	if(!deployed_mg)
+		to_chat(user, "Its machine gun is missing.")
 
-	examine(mob/user)
-		..()
-		if(!deployed_mg)
-			to_chat(user, "Its machine gun is missing.")
-
-	update_equipment()
-		if(deployed_mg)
-			if(ship_base)
-				deployed_mg.loc = loc
-				icon_state = "mg_system_deployed"
-			else
-				deployed_mg.loc = src
-				icon_state = "mg_system"
+/obj/structure/dropship_equipment/mg_holder/update_equipment()
+	if(!deployed_mg)
+		return
+	if(ship_base)
+		deployed_mg.loc = loc
+		icon_state = "mg_system_deployed"
+	else
+		deployed_mg.loc = src
+		icon_state = "mg_system"
 
 
 ////////////////////////////////// FUEL EQUIPMENT /////////////////////////////////
@@ -375,17 +379,17 @@
 	equip_category = DROPSHIP_FUEL_EQP
 
 
-	update_equipment()
-		if(ship_base)
-			pixel_x = ship_base.pixel_x
-			pixel_y = ship_base.pixel_y
-			icon_state = "[initial(icon_state)]_installed"
-		else
-			pixel_x = initial(pixel_x)
-			pixel_y = initial(pixel_y)
-			bound_width = initial(bound_width)
-			bound_height = initial(bound_height)
-			icon_state = initial(icon_state)
+/obj/structure/dropship_equipment/fuel/update_equipment()
+	if(ship_base)
+		pixel_x = ship_base.pixel_x
+		pixel_y = ship_base.pixel_y
+		icon_state = "[initial(icon_state)]_installed"
+	else
+		pixel_x = initial(pixel_x)
+		pixel_y = initial(pixel_y)
+		bound_width = initial(bound_width)
+		bound_height = initial(bound_height)
+		icon_state = initial(icon_state)
 
 
 /obj/structure/dropship_equipment/fuel/fuel_enhancer
@@ -423,40 +427,40 @@
 	var/spotlights_cooldown
 	var/brightness = 11
 
-	get_light_range()
-		return min(luminosity, LIGHTING_MAX_LUMINOSITY_SHIPLIGHTS)
+/obj/structure/dropship_equipment/electronics/spotlights/get_light_range()
+	return min(luminosity, LIGHTING_MAX_LUMINOSITY_SHIPLIGHTS)
 
-	equipment_interact(mob/user)
-		if(spotlights_cooldown > world.time)
-			to_chat(user, "<span class='warning'>[src] is busy.</span>")
-			return //prevents spamming deployment/undeployment
-		if(luminosity != brightness)
-			SetLuminosity(brightness)
-			icon_state = "spotlights_on"
-			to_chat(user, "<span class='notice'>You turn on [src].</span>")
-		else
-			SetLuminosity(0)
-			icon_state = "spotlights_off"
-			to_chat(user, "<span class='notice'>You turn off [src].</span>")
-		spotlights_cooldown = world.time + 50
-
-	update_equipment()
-		..()
-		if(ship_base)
-			if(luminosity != brightness)
-				icon_state = "spotlights_off"
-			else
-				icon_state = "spotlights_on"
-		else
-			icon_state = "spotlights"
-			if(luminosity)
-				SetLuminosity(0)
-
-	on_launch()
-		SetLuminosity(0)
-
-	on_arrival()
+/obj/structure/dropship_equipment/electronics/spotlights/equipment_interact(mob/user)
+	if(spotlights_cooldown > world.time)
+		to_chat(user, "<span class='warning'>[src] is busy.</span>")
+		return //prevents spamming deployment/undeployment
+	if(luminosity != brightness)
 		SetLuminosity(brightness)
+		icon_state = "spotlights_on"
+		to_chat(user, "<span class='notice'>You turn on [src].</span>")
+	else
+		SetLuminosity(0)
+		icon_state = "spotlights_off"
+		to_chat(user, "<span class='notice'>You turn off [src].</span>")
+	spotlights_cooldown = world.time + 50
+
+/obj/structure/dropship_equipment/electronics/spotlights/update_equipment()
+	. = ..()
+	if(ship_base)
+		if(luminosity != brightness)
+			icon_state = "spotlights_off"
+		else
+			icon_state = "spotlights_on"
+	else
+		icon_state = "spotlights"
+		if(luminosity)
+			SetLuminosity(0)
+
+/obj/structure/dropship_equipment/electronics/spotlights/on_launch()
+	SetLuminosity(0)
+
+/obj/structure/dropship_equipment/electronics/spotlights/on_arrival()
+	SetLuminosity(brightness)
 
 #undef LIGHTING_MAX_LUMINOSITY_SHIPLIGHTS
 
@@ -473,11 +477,11 @@
 	desc = "A targeting system for dropships. It improves firing accuracy on laser targets. Fits on electronics attach points. You need a powerloader to lift this."
 	point_cost = 800
 
-	update_equipment()
-		if(ship_base)
-			icon_state = "[initial(icon_state)]_installed"
-		else
-			icon_state = initial(icon_state)
+/obj/structure/dropship_equipment/electronics/targeting_system/update_equipment()
+	if(ship_base)
+		icon_state = "[initial(icon_state)]_installed"
+	else
+		icon_state = initial(icon_state)
 
 
 /obj/structure/dropship_equipment/electronics/laser_detector
@@ -487,26 +491,26 @@
 	point_cost = 400
 	var/obj/machinery/computer/security/dropship/linked_cam_console
 
-	update_equipment()
-		if(ship_base)
-			if(!linked_cam_console)
-				for(var/obj/machinery/computer/security/dropship/D in range(5, loc))
-					linked_cam_console = D
-					break
-			icon_state = "[initial(icon_state)]_installed"
-		else
-			linked_cam_console = null
-			icon_state = initial(icon_state)
-
-	Dispose()
+/obj/structure/dropship_equipment/electronics/laser_detector/update_equipment()
+	if(ship_base)
+		if(!linked_cam_console)
+			for(var/obj/machinery/computer/security/dropship/D in range(5, loc))
+				linked_cam_console = D
+				break
+		icon_state = "[initial(icon_state)]_installed"
+	else
 		linked_cam_console = null
-		. = ..()
+		icon_state = initial(icon_state)
 
-	on_launch()
-		linked_cam_console.network.Add("laser targets") //only accessible while in the air.
+/obj/structure/dropship_equipment/electronics/laser_detector/Dispose()
+	linked_cam_console = null
+	return ..()
 
-	on_arrival()
-		linked_cam_console.network.Remove("laser targets")
+/obj/structure/dropship_equipment/electronics/laser_detector/on_launch()
+	linked_cam_console.network.Add("laser targets") //only accessible while in the air.
+
+/obj/structure/dropship_equipment/electronics/laser_detector/on_arrival()
+	linked_cam_console.network.Remove("laser targets")
 
 
 
@@ -517,27 +521,27 @@
 	point_cost = 400
 	var/obj/machinery/computer/security/dropship/linked_cam_console
 
-	update_equipment()
-		if(ship_base)
-			if(!linked_cam_console)
-				for(var/obj/machinery/computer/security/dropship/D in range(5, loc))
-					linked_cam_console = D
-					break
-			icon_state = "[initial(icon_state)]_installed"
-		else
-			linked_cam_console = null
-			icon_state = initial(icon_state)
-
-
-	Dispose()
+/obj/structure/dropship_equipment/electronics/landing_zone_detector/update_equipment()
+	if(ship_base)
+		if(!linked_cam_console)
+			for(var/obj/machinery/computer/security/dropship/D in range(5, loc))
+				linked_cam_console = D
+				break
+		icon_state = "[initial(icon_state)]_installed"
+	else
 		linked_cam_console = null
-		. = ..()
+		icon_state = initial(icon_state)
 
-	on_launch()
-		linked_cam_console.network.Add("landing zones") //only accessible while in the air.
 
-	on_arrival()
-		linked_cam_console.network.Remove("landing zones")
+/obj/structure/dropship_equipment/electronics/landing_zone_detector/Dispose()
+	linked_cam_console = null
+	return ..()
+
+/obj/structure/dropship_equipment/electronics/landing_zone_detector/on_launch()
+	linked_cam_console.network.Add("landing zones") //only accessible while in the air.
+
+/obj/structure/dropship_equipment/electronics/landing_zone_detector/on_arrival()
+	linked_cam_console.network.Remove("landing zones")
 
 
 /////////////////////////////////// COMPUTERS //////////////////////////////////////
@@ -547,11 +551,11 @@
 	equip_category = DROPSHIP_COMPUTER
 	point_cost = 0
 
-	update_equipment()
-		if(ship_base)
-			icon_state = "[initial(icon_state)]_installed"
-		else
-			icon_state = initial(icon_state)
+/obj/structure/dropship_equipment/adv_comp/update_equipment()
+	if(ship_base)
+		icon_state = "[initial(icon_state)]_installed"
+	else
+		icon_state = initial(icon_state)
 
 
 /obj/structure/dropship_equipment/adv_comp/docking
@@ -577,30 +581,30 @@
 	var/firing_delay = 20 //delay between firing. 2 seconds by default
 	var/fire_mission_only = TRUE //whether the weapon can only be fire in fire mission mode.
 
-	update_equipment()
-		if(ship_base)
-			dir = ship_base.dir
-			bound_width = 32
-			bound_height = 32
-		else
-			dir = initial(dir)
-			bound_width = initial(bound_width)
-			bound_height = initial(bound_height)
-		update_icon()
+/obj/structure/dropship_equipment/weapon/update_equipment()
+	if(ship_base)
+		dir = ship_base.dir
+		bound_width = 32
+		bound_height = 32
+	else
+		dir = initial(dir)
+		bound_width = initial(bound_width)
+		bound_height = initial(bound_height)
+	update_icon()
 
-	equipment_interact(mob/user)
-		if(is_interactable)
-			if(linked_console.selected_equipment == src)
-				linked_console.selected_equipment = null
-			else
-				linked_console.selected_equipment = src
-
-	examine(mob/user)
-		..()
-		if(ammo_equipped)
-			ammo_equipped.show_loaded_desc(user)
+/obj/structure/dropship_equipment/weapon/equipment_interact(mob/user)
+	if(is_interactable)
+		if(linked_console.selected_equipment == src)
+			linked_console.selected_equipment = null
 		else
-			to_chat(user, "It's empty.")
+			linked_console.selected_equipment = src
+
+/obj/structure/dropship_equipment/weapon/examine(mob/user)
+	. = ..()
+	if(ammo_equipped)
+		ammo_equipped.show_loaded_desc(user)
+	else
+		to_chat(user, "It's empty.")
 
 
 
@@ -653,12 +657,14 @@
 	point_cost = 400
 	fire_mission_only = FALSE
 
-	update_icon()
-		if(ammo_equipped)
-			icon_state = "30mm_cannon_loaded[ammo_equipped.ammo_count?"1":"0"]"
+/obj/structure/dropship_equipment/weapon/heavygun/update_icon()
+	if(ammo_equipped)
+		icon_state = "30mm_cannon_loaded[ammo_equipped.ammo_count?"1":"0"]"
+	else
+		if(ship_base)
+			icon_state = "30mm_cannon_installed"
 		else
-			if(ship_base) icon_state = "30mm_cannon_installed"
-			else icon_state = "30mm_cannon"
+			icon_state = "30mm_cannon"
 
 
 /obj/structure/dropship_equipment/weapon/rocket_pod
@@ -669,16 +675,18 @@
 	firing_delay = 5
 	point_cost = 600
 
-	deplete_ammo()
-		ammo_equipped = null //nothing left to empty after firing
-		update_icon()
-
+/obj/structure/dropship_equipment/weapon/rocket_pod/deplete_ammo()
+	ammo_equipped = null //nothing left to empty after firing
 	update_icon()
-		if(ammo_equipped && ammo_equipped.ammo_count)
-			icon_state = "rocket_pod_loaded[ammo_equipped.ammo_id]"
+
+/obj/structure/dropship_equipment/weapon/rocket_pod/update_icon()
+	if(ammo_equipped && ammo_equipped.ammo_count)
+		icon_state = "rocket_pod_loaded[ammo_equipped.ammo_id]"
+	else
+		if(ship_base)
+			icon_state = "rocket_pod_installed"
 		else
-			if(ship_base) icon_state = "rocket_pod_installed"
-			else icon_state = "rocket_pod"
+			icon_state = "rocket_pod"
 
 
 /obj/structure/dropship_equipment/weapon/minirocket_pod
@@ -690,17 +698,19 @@
 	firing_delay = 10 //1 seconds
 	point_cost = 600
 
-	update_icon()
-		if(ammo_equipped && ammo_equipped.ammo_count)
-			icon_state = "minirocket_pod_loaded"
+/obj/structure/dropship_equipment/weapon/minirocket_pod/update_icon()
+	if(ammo_equipped && ammo_equipped.ammo_count)
+		icon_state = "minirocket_pod_loaded"
+	else
+		if(ship_base)
+			icon_state = "minirocket_pod_installed"
 		else
-			if(ship_base) icon_state = "minirocket_pod_installed"
-			else icon_state = "minirocket_pod"
+			icon_state = "minirocket_pod"
 
-	deplete_ammo()
-		..()
-		if(ammo_equipped && !ammo_equipped.ammo_count) //fired last minirocket
-			ammo_equipped = null
+/obj/structure/dropship_equipment/weapon/minirocket_pod/deplete_ammo()
+	..()
+	if(ammo_equipped && !ammo_equipped.ammo_count) //fired last minirocket
+		ammo_equipped = null
 
 /obj/structure/dropship_equipment/weapon/laser_beam_gun
 	name = "laser beam gun"
@@ -712,12 +722,14 @@
 	point_cost = 500
 	fire_mission_only = FALSE
 
-	update_icon()
-		if(ammo_equipped && ammo_equipped.ammo_count)
-			icon_state = "laser_beam_loaded"
+/obj/structure/dropship_equipment/weapon/laser_beam_gun/update_icon()
+	if(ammo_equipped && ammo_equipped.ammo_count)
+		icon_state = "laser_beam_loaded"
+	else
+		if(ship_base)
+			icon_state = "laser_beam_installed"
 		else
-			if(ship_base) icon_state = "laser_beam_installed"
-			else icon_state = "laser_beam"
+			icon_state = "laser_beam"
 
 
 /*TBD
@@ -894,7 +906,8 @@
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the medevac system.</span>",
 		"<span class='notice'>You fumble around figuring out how to use the medevac system.</span>")
 		var/fumbling_time = 60 - 20 * user.mind.cm_skills.pilot
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
+		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+			return
 
 	if(!linked_shuttle)
 		return

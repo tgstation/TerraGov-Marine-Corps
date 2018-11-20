@@ -194,6 +194,15 @@
 			return 1
 	return 0
 
+/mob/living/carbon/human/has_vision()
+	if(sdisabilities & BLIND)
+		return FALSE
+	if(!species.has_organ["eyes"]) //can see through other means
+		return TRUE
+	if(has_eyes())
+		if(tinttotal < 3)
+			return TRUE
+	return FALSE
 
 /mob/living/carbon/human/is_mob_restrained(var/check_grab = 1)
 	if(check_grab && pulledby && pulledby.grab_level >= GRAB_NECK)
@@ -241,6 +250,10 @@
 			if(W.isOn())
 				W.toggle()
 				goes_out++
+		for(var/obj/item/tool/pickaxe/plasmacutter/W in contents)
+			if(W.powered)
+				W.toggle()
+				goes_out++
 		for(var/obj/item/tool/match/M in contents)
 			M.burn_out(src)
 		for(var/obj/item/tool/lighter/Z in contents)
@@ -258,3 +271,50 @@
 			to_chat(src, "<span class='notice'>Your sources of light short out.</span>")
 		else
 			to_chat(src, "<span class='notice'>Your source of light shorts out.</span>")
+
+/mob/living/carbon/human/get_permeability_protection()
+	var/list/prot = list("hands"=0, "chest"=0, "groin"=0, "legs"=0, "feet"=0, "arms"=0, "head"=0)
+	for(var/obj/item/I in get_equipped_items())
+		if(I.body_parts_covered & HANDS)
+			prot["hands"] = max(1 - I.permeability_coefficient, prot["hands"])
+		if(I.body_parts_covered & UPPER_TORSO)
+			prot["chest"] = max(1 - I.permeability_coefficient, prot["chest"])
+		if(I.body_parts_covered & LOWER_TORSO)
+			prot["groin"] = max(1 - I.permeability_coefficient, prot["groin"])
+		if(I.body_parts_covered & LEGS)
+			prot["legs"] = max(1 - I.permeability_coefficient, prot["legs"])
+		if(I.body_parts_covered & FEET)
+			prot["feet"] = max(1 - I.permeability_coefficient, prot["feet"])
+		if(I.body_parts_covered & ARMS)
+			prot["arms"] = max(1 - I.permeability_coefficient, prot["arms"])
+		if(I.body_parts_covered & HEAD)
+			prot["head"] = max(1 - I.permeability_coefficient, prot["head"])
+	var/protection = (prot["head"] + prot["arms"] + prot["feet"] + prot["legs"] + prot["groin"] + prot["chest"] + prot["hands"])/7
+	return protection
+
+/mob/living/proc/camo_off_process(code = 0, damage = 0)
+	return
+
+/mob/living/carbon/human/camo_off_process(code = 0, damage = 0)
+	if(!code)
+		return
+	if(!istype(back, /obj/item/storage/backpack/marine/satchel/scout_cloak) )
+		return
+	var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = back
+	if(!S.camo_active)
+		return
+	switch(code)
+		if(SCOUT_CLOAK_OFF_ATTACK)
+			to_chat(src, "<span class='danger'>Your cloak shimmers from your actions!</span>")
+			S.camo_last_shimmer = world.time //Reduces transparency to 50%
+			alpha = SCOUT_CLOAK_RUN_ALPHA
+		if(SCOUT_CLOAK_OFF_DAMAGE)
+			if(damage >= 15)
+				to_chat(src, "<span class='danger'>Your cloak shimmers from the damage!</span>")
+				S.camo_last_shimmer = world.time //Reduces transparency to 50%
+				alpha = SCOUT_CLOAK_RUN_ALPHA
+
+
+/mob/living/carbon/human/throw_item(atom/target)
+	. = ..()
+	camo_off_process(SCOUT_CLOAK_OFF_ATTACK)

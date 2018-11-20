@@ -242,7 +242,7 @@ proc/populate_seed_list()
 			"ethylredoxrazine",
 			"cyanide",
 			"mindbreaker",
-			"stoxin"
+			"sleeptoxin"
 			)
 
 		for(var/x=1;x<=additional_chems;x++)
@@ -1030,7 +1030,7 @@ proc/populate_seed_list()
 	mutants = null
 	packet_icon = "mycelium-liberty"
 	plant_icon = "liberty"
-	chems = list("nutriment" = list(1), "stoxin" = list(3,3), "space_drugs" = list(1,25))
+	chems = list("nutriment" = list(1), "sleeptoxin" = list(3,3), "space_drugs" = list(1,25))
 
 	lifespan = 25
 	production = 1
@@ -1563,7 +1563,7 @@ proc/populate_seed_list()
 	products = list(/obj/item/reagent_container/food/snacks/grown/kudzupod)
 	plant_icon = "kudzu"
 	product_colour = "#96D278"
-	chems = list("nutriment" = list(1,50), "anti_toxin" = list(1,25))
+	chems = list("nutriment" = list(1,50), "dylovene" = list(1,25))
 
 	lifespan = 20
 	maturation = 6

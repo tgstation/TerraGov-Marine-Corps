@@ -59,6 +59,12 @@ datum/preferences
 	var/predator_armor_type = 1
 	var/predator_boot_type = 1
 
+	//Ghost preferences
+	var/ghost_medhud = 1
+	var/ghost_sechud = 0
+	var/ghost_squadhud = 1
+	var/ghost_xenohud = 1
+
 	//character preferences
 	var/real_name						//our character's name
 	var/be_random_name = 0				//whether we are a random name every round
@@ -1153,7 +1159,7 @@ datum/preferences
 
 					if (new_body_type)
 						body_type = new_body_type
-				
+
 				if("species")
 					var/new_species = input(user, "Choose your species:", "Character Preferences") as null|anything in get_playable_species()
 					if(new_species && is_alien_whitelisted(new_species))
@@ -1229,11 +1235,11 @@ datum/preferences
 					var/new_backbag = input(user, "Choose your character's style of bag:", "Character Preference")  as null|anything in backbaglist
 					if(new_backbag)
 						backbag = backbaglist.Find(new_backbag)
-				
+
 				if("moth_wings")
 					if(species == "Moth")
 						var/new_wings = input(user, "Choose your character's wings: ", "Character Preferences") as null|anything in (moth_wings_list - "Burnt Off")
-						
+
 						if(new_wings)
 							moth_wings = new_wings
 
@@ -1400,6 +1406,12 @@ datum/preferences
 							UI_style = "old"
 						if("old")
 							UI_style = "White"
+						if("White")
+							UI_style = "Slimecore"
+						if("Slimecore")
+							UI_style = "Operative"
+						if("Operative")
+							UI_style = "Clockwork"
 						else
 							UI_style = "Midnight"
 
@@ -1473,9 +1485,9 @@ datum/preferences
 		var/firstspace = findtext(real_name, " ")
 		var/name_length = length(real_name)
 		if(!firstspace)	//we need a surname
-			real_name += " [pick(last_names)]"
+			real_name += " " + pick(last_names)
 		else if(firstspace == name_length)
-			real_name += "[pick(last_names)]"
+			real_name += " " + pick(last_names)
 
 	character.real_name = real_name
 	character.name = character.real_name

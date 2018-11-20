@@ -63,6 +63,15 @@
 	. = ..()
 
 /obj/structure/window_frame/attackby(obj/item/W, mob/living/user)
+	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
+		var/obj/item/tool/pickaxe/plasmacutter/P = W
+		if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD))
+			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P && src) //Window frames require half the normal time
+				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD) //Window frames require half the normal power
+				P.debris(loc, 1, 1) //Generate some rods and metal
+				cdel(src)
+			return
+
 	if(istype(W, sheet_type))
 		var/obj/item/stack/sheet/sheet = W
 		if(sheet.get_amount() < 2)

@@ -88,6 +88,42 @@
 	in_use = user
 	process_state = FORCE_CRASH
 
+/datum/shuttle/ferry/marine/proc/hijack(mob/living/carbon/Xenomorph/M)
+	if(!queen_locked) //we have not hijacked it yet
+		if(world.time < SHUTTLE_LOCK_TIME_LOCK)
+			to_chat(M, "<span class='xenodanger'>You can't mobilize the strength to hijack the shuttle yet. Please wait another [round((SHUTTLE_LOCK_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
+			return
+		to_chat(M, "<span class='xenonotice'>You interact with the machine and disable remote control.</span>")
+		xeno_message("<span class='xenoannounce'>We have wrested away remote control of the metal bird! Rejoice!</span>",3,M.hivenumber)
+		last_locked = world.time
+		queen_locked = TRUE
+
+/datum/shuttle/ferry/marine/proc/door_override(mob/living/carbon/Xenomorph/M)
+	if(!door_override)
+		to_chat(M, "<span class='xenonotice'>You override the doors.</span>")
+		xeno_message("<span class='xenoannounce'>The doors of the metal bird have been overridden! Rejoice!</span>",3,M.hivenumber)
+		last_door_override = world.time
+		door_override = TRUE
+
+		var/ship_id = "sh_dropship1"
+		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
+			ship_id = "sh_dropship2"
+
+		for(var/obj/machinery/door/airlock/dropship_hatch/D in machines)
+			if(D.id == ship_id)
+				D.unlock()
+
+		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
+		switch(ship_id)
+			if("sh_dropship1")
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in machines)
+					reardoor = D
+			if("sh_dropship2")
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in machines)
+					reardoor = D
+
+		reardoor.unlock()
+
 /*
 	Please ensure that long_jump() and short_jump() are only called from here. This applies to subtypes as well.
 	Doing so will ensure that multiple jumps cannot be initiated in parallel.
@@ -375,7 +411,7 @@
 	var/list/with_queen = list()
 	for(var/mob/living/carbon/Xenomorph/xeno in living_xeno_list)
 		if(xeno.hivenumber != XENO_HIVE_NORMAL) continue
-		if(xeno.loc.z == hive.living_xeno_queen.loc.z) // yes loc because of vent crawling
+		if(xeno.loc.z == hive.living_xeno_queen.loc.z || xeno.loc.z in MAIN_SHIP_AND_DROPSHIPS_Z_LEVELS) // yes loc because of vent crawling, xeno must be with queen or on round end Z levels
 			with_queen += xeno
 		else
 			left_behind += xeno
@@ -721,7 +757,7 @@
 	for(var/obj/machinery/M in get_location_area(location))
 		if(istype(M, /obj/machinery/computer/shuttle_control))
 			controls += M
-		else if(istype(M, /obj/machinery/door/airlock/multi_tile/elevator))
+		else if(istype(M, /obj/machinery/door/airlock/multi_tile/))
 			main_doors += M
 
 //Kinda messy proc, but the best solution to prevent shearing of multitile vehicles
@@ -732,7 +768,7 @@
 //		-Issues here are that this is not atomic at all and vics get left behind unless the entirety of them is on the shuttle/elevator,
 //			plus then part of the vic would be in space since elevators leave that behind
 /datum/shuttle/ferry/elevator/preflight_checks()
-	for(var/obj/machinery/door/airlock/multi_tile/elevator/E in main_doors)
+	for(var/obj/machinery/door/airlock/multi_tile/E in main_doors)
 		//If there is part of a multitile vic in any of the turfs the door occupies, cancel
 		//An argument can be made for tanks being allowed to block the door, but
 		//	that would make this already relatively expensive and inefficent even more so

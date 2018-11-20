@@ -113,23 +113,28 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	tiles_with = list(
 		/turf/closed/wall)
 
-/obj/machinery/door/airlock/bumpopen(mob/living/user as mob) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
-	if(!issilicon(usr))
-		if(src.isElectrified())
-			if(!src.justzap)
-				if(src.shock(user, 100))
-					src.justzap = 1
-					spawn (openspeed)
-						src.justzap = 0
-					return
-			else /*if(src.justzap)*/
+/obj/machinery/door/airlock/bumpopen(mob/living/user) //Airlocks now zap you when you 'bump' them open when they're electrified. --NeoFite
+	if(issilicon(user))
+		return ..(user)
+	if(iscarbon(user) && isElectrified())
+		if(!justzap)
+			if(shock(user, 100))
+				justzap = TRUE
+				spawn (openspeed)
+					justzap = FALSE
 				return
-		else if(user.hallucination > 50 && prob(10) && src.operating == 0)
-			to_chat(user, "\red <B>You feel a powerful shock course through your body!</B>")
-			user.halloss += 10
-			user.stunned += 10
+		else /*if(justzap)*/
 			return
-	..(user)
+	else if(ishuman(user) && user.hallucination > 50 && prob(10) && !operating)
+		var/mob/living/carbon/human/H = user
+		if(H.gloves)
+			to_chat(H, "\red <B>You feel a powerful shock course through your body!</B>")
+			var/obj/item/clothing/gloves/G = H.gloves
+			if(G.siemens_coefficient)//not insulated
+				H.halloss += 10
+				H.stunned += 10
+				return
+	return ..(user)
 
 /obj/machinery/door/airlock/bumpopen(mob/living/simple_animal/user as mob)
 	..(user)
@@ -598,6 +603,60 @@ About the new airlock wires panel:
 /obj/machinery/door/airlock/attack_paw(mob/user as mob)
 	return src.attack_hand(user)
 
+//Prying open doors
+/obj/machinery/door/airlock/attack_alien(mob/living/carbon/Xenomorph/M)
+	var/turf/cur_loc = M.loc
+	if(isElectrified())
+		if(shock(M, 70))
+			return
+	if(locked)
+		to_chat(M, "<span class='warning'>\The [src] is bolted down tight.</span>")
+		return FALSE
+	if(welded)
+		to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
+		return FALSE
+	if(!istype(cur_loc))
+		return FALSE //Some basic logic here
+	if(!density)
+		to_chat(M, "<span class='warning'>\The [src] is already open!</span>")
+		return FALSE
+
+	if(M.action_busy)
+		return FALSE
+
+	playsound(loc, 'sound/effects/metal_creaking.ogg', 25, 1)
+	M.visible_message("<span class='warning'>\The [M] digs into \the [src] and begins to pry it open.</span>", \
+	"<span class='warning'>You dig into \the [src] and begin to pry it open.</span>", null, 5)
+
+	if(do_after(M, 40, FALSE, 5, BUSY_ICON_HOSTILE))
+		if(M.loc != cur_loc)
+			return FALSE //Make sure we're still there
+		if(M.lying)
+			return FALSE
+		if(locked)
+			to_chat(M, "<span class='warning'>\The [src] is bolted down tight.</span>")
+			return FALSE
+		if(welded)
+			to_chat(M, "<span class='warning'>\The [src] is welded shut.</span>")
+			return FALSE
+		if(density) //Make sure it's still closed
+			spawn(0)
+				open(1)
+				M.visible_message("<span class='danger'>\The [M] pries \the [src] open.</span>", \
+				"<span class='danger'>You pry \the [src] open.</span>", null, 5)
+
+/obj/machinery/door/airlock/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+	for(var/atom/movable/AM in get_turf(src))
+		if(AM != src && AM.density && !AM.CanPass(M, M.loc))
+			to_chat(M, "<span class='warning'>\The [AM] prevents you from squeezing under \the [src]!</span>")
+			return
+	if(locked || welded) //Can't pass through airlocks that have been bolted down or welded
+		to_chat(M, "<span class='warning'>\The [src] is locked down tight. You can't squeeze underneath!</span>")
+		return
+	M.visible_message("<span class='warning'>\The [M] scuttles underneath \the [src]!</span>", \
+	"<span class='warning'>You squeeze and scuttle underneath \the [src].</span>", null, 5)
+	M.forceMove(loc)
+
 /obj/machinery/door/airlock/attack_hand(mob/user as mob)
 	if(!istype(usr, /mob/living/silicon))
 		if(src.isElectrified())
@@ -936,6 +995,31 @@ About the new airlock wires panel:
 			src.locked = 1
 			return
 		return
+	if((istype(C, /obj/item/tool/pickaxe/plasmacutter) && !operating && density && !user.action_busy))
+		var/obj/item/tool/pickaxe/plasmacutter/P = C
+
+		if(not_weldable)
+			to_chat(user, "<span class='warning'>\The [src] would require something a lot stronger than [P] to cut!</span>")
+			return
+
+		if(!src.welded) //Cut apart the airlock if it isn't welded shut.
+			if(!(P.start_cut(user, src.name, src)))
+				return
+			if(do_after(user, P.calc_delay(user), TRUE, 5, BUSY_ICON_HOSTILE) && P)
+				P.cut_apart(user, src.name, src) //Airlocks cost as much as a wall to fully cut apart.
+				P.debris(loc, 1, 1, 0, 3) //Metal sheet, some rods and wires.
+				cdel(src)
+			return
+
+		if(!(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)))
+			return
+		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_VLOW_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P)
+			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD) //Airlocks require much less power to unweld.
+			src.welded = FALSE
+			src.update_icon()
+		return
+
+
 	if((istype(C, /obj/item/tool/weldingtool) && !operating && density))
 		var/obj/item/tool/weldingtool/W = C
 

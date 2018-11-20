@@ -22,12 +22,12 @@
 #define R_MENTOR		32768
 #define R_HOST			65536
 // 512.1430 increases maximum bit flags from 16 to 24, so the following flags should be available for future changes:
-// #define R_PERMISSION	131072	
-// #define R_PERMISSION	262144	
-// #define R_PERMISSION	524288	
-// #define R_PERMISSION	1048576	
-// #define R_PERMISSION	2097152	
-// #define R_PERMISSION	4194304	
+// #define R_PERMISSION	131072
+// #define R_PERMISSION	262144
+// #define R_PERMISSION	524288
+// #define R_PERMISSION	1048576
+// #define R_PERMISSION	2097152
+// #define R_PERMISSION	4194304
 //=================================================
 
 
@@ -123,7 +123,6 @@ var/enter_allowed = 1
 var/guests_allowed = 1
 var/shuttle_frozen = 0
 var/shuttle_left = 0
-var/tinted_weldhelh = 1
 var/midi_playing = 0
 var/heard_midi = 0
 var/total_silenced = 0
@@ -240,7 +239,6 @@ var/list/AAlarmWireColorToIndex
 #define SPEED_OF_LIGHT_SQ 9e+16
 #define FIRE_DAMAGE_MODIFIER 0.0215 //Higher values result in more external fire damage to the skin (default 0.0215)
 #define AIR_DAMAGE_MODIFIER 2.025 //More means less damage from hot air scalding lungs, less = more damage. (default 2.025)
-#define INFINITY 1.#INF
 
 	//Don't set this very much higher then 1024 unless you like inviting people in to dos your server with message spam
 #define MAX_MESSAGE_LEN 1024

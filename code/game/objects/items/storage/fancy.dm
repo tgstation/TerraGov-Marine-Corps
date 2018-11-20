@@ -139,21 +139,18 @@
 	icon_type = "cigarette"
 
 /obj/item/storage/fancy/cigarettes/New()
-	..()
-	flags_atom |= NOREACT
+	. = ..()
 	for(var/i = 1 to storage_slots)
 		new /obj/item/clothing/mask/cigarette(src)
-	create_reagents(15 * storage_slots)//so people can inject cigarettes without opening a packet, now with being able to inject the whole one
 
 /obj/item/storage/fancy/cigarettes/update_icon()
 	icon_state = "[initial(icon_state)][contents.len]"
 	return
 
-/obj/item/storage/fancy/cigarettes/remove_from_storage(obj/item/W as obj, atom/new_location)
-		var/obj/item/clothing/mask/cigarette/C = W
-		if(!istype(C)) return // what
-		reagents.trans_to(C, (reagents.total_volume/contents.len))
-		..()
+/obj/item/storage/fancy/cigarettes/remove_from_storage(obj/item/W, atom/new_location)
+	var/obj/item/clothing/mask/cigarette/C = W
+	if(istype(C))
+		return ..()
 
 /obj/item/storage/fancy/cigarettes/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M, /mob))
@@ -209,20 +206,12 @@
 
 /obj/item/storage/fancy/cigar/New()
 	..()
-	flags_atom |= NOREACT
 	for(var/i = 1 to storage_slots)
 		new /obj/item/clothing/mask/cigarette/cigar(src)
-	create_reagents(15 * storage_slots)
 
 /obj/item/storage/fancy/cigar/update_icon()
 	icon_state = "[initial(icon_state)][contents.len]"
 	return
-
-/obj/item/storage/fancy/cigar/remove_from_storage(obj/item/W as obj, atom/new_location)
-	var/obj/item/clothing/mask/cigarette/cigar/C = W
-	if(!istype(C)) return
-	reagents.trans_to(C, (reagents.total_volume/contents.len))
-	. = ..()
 
 /obj/item/storage/fancy/cigar/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 	if(!istype(M, /mob))

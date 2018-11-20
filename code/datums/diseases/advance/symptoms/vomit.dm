@@ -43,7 +43,7 @@ Bonus
 /datum/symptom/vomit/proc/Vomit(var/mob/living/M)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		H.vomit_on_floor()
+		H.vomit()
 /*
 //////////////////////////////////////
 

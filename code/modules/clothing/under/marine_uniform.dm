@@ -9,7 +9,6 @@
 	siemens_coefficient = 0.9
 	icon_state = "marine_jumpsuit"
 	armor = list(melee = 5, bullet = 5, laser = 5, energy = 5, bomb = 5, bio = 5, rad = 5)
-	suit_restricted = list(/obj/item/clothing/suit/storage/marine)
 	rollable_sleeves = TRUE
 
 /obj/item/clothing/under/marine/New(loc,expected_type 		= /obj/item/clothing/under/marine,
@@ -74,7 +73,6 @@
 	name = "military police jumpsuit"
 	desc = "A standard-issue Military Police uniform. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "MP_jumpsuit"
-	suit_restricted = list(/obj/item/clothing/suit/storage/marine, /obj/item/clothing/suit/armor/riot/marine)
 	rollable_sleeves = FALSE
 
 /obj/item/clothing/under/marine/officer
@@ -82,7 +80,6 @@
 	desc = "Softer than silk. Lighter than feather. More protective than Kevlar. Fancier than a regular jumpsuit, too. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "officertanclothes"
 	item_state = "officertanclothes"
-	suit_restricted = null //so most officers can wear whatever suit they want
 	rollable_sleeves = FALSE
 
 /obj/item/clothing/under/marine/officer/warrant
@@ -90,7 +87,6 @@
 	desc = "A uniform typically worn by a Chief MP of the USCM. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions. This uniform includes a small EMF distributor to help nullify energy-based weapon fire, along with a hazmat chemical filter woven throughout the material to ward off biological and radiation hazards."
 	icon_state = "WO_jumpsuit"
 	item_state = "WO_jumpsuit"
-	suit_restricted = list(/obj/item/clothing/suit/storage/marine, /obj/item/clothing/suit/armor/riot/marine)
 
 
 /obj/item/clothing/under/marine/officer/technical
@@ -107,7 +103,6 @@
 	desc = "A bodysuit worn by pilot officers of the USCM, and is meant for survival in inhospitable conditions. Fly the marines onwards to glory. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "pilot_flightsuit"
 	flags_cold_protection = ICE_PLANET_min_cold_protection_temperature
-	suit_restricted = list(/obj/item/clothing/suit/armor/vest/pilot)
 
 /obj/item/clothing/under/marine/officer/pilot/New()
 	select_gamemode_skin(/obj/item/clothing/under/marine/officer/pilot)
@@ -117,7 +112,6 @@
 	name = "tank crewman officer uniform"
 	desc = "A uniform worn by commissioned officers of the USCM. Do the corps proud. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "marine_tanker"
-	suit_restricted = list(/obj/item/clothing/suit/storage/marine/tanker)
 
 /obj/item/clothing/under/marine/officer/bridge
 	name = "staff officer uniform"
@@ -182,7 +176,6 @@
 	icon_state = "pmc_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
-	suit_restricted = list(/obj/item/clothing/suit/storage/marine/veteran/PMC, /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC)
 
 /obj/item/clothing/under/marine/veteran/PMC/leader
 	name = "\improper PMC command fatigues"
@@ -202,7 +195,6 @@
 	icon_state = "bear_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	has_sensor = 0
-	suit_restricted = list(/obj/item/clothing/suit/storage/marine/veteran/bear)
 
 
 /obj/item/clothing/under/marine/veteran/UPP
@@ -211,7 +203,6 @@
 	icon_state = "upp_uniform"
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	has_sensor = 0
-	suit_restricted = list(/obj/item/clothing/suit/storage/faction/UPP, /obj/item/clothing/suit/storage/marine/smartgunner/UPP)
 
 /obj/item/clothing/under/marine/veteran/UPP/medic
 	name = "\improper UPP medic fatigues"
@@ -223,7 +214,6 @@
 	icon_state = "freelancer_uniform"
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	has_sensor = 0
-	suit_restricted = list(/obj/item/clothing/suit/storage/faction/freelancer)
 
 /obj/item/clothing/under/marine/veteran/dutch
 	name = "\improper Dutch's Dozen uniform"
@@ -233,7 +223,6 @@
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS
 	icon_state = "dutch_jumpsuit"
 	has_sensor = 0
-	suit_restricted = list(/obj/item/clothing/suit/storage/marine/veteran/dutch, /obj/item/clothing/suit/armor/vest/dutch)
 
 
 /obj/item/clothing/under/marine/veteran/dutch/ranger
@@ -248,7 +237,6 @@
 	icon_state = "mercenary_heavy_uniform"
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
-	suit_restricted = list(/obj/item/clothing/suit/storage/marine/veteran/mercenary)
 
 /obj/item/clothing/under/marine/veteran/mercenary/miner
 	name = "\improper Mercenary miner fatigues"

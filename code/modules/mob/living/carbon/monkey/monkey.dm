@@ -47,7 +47,18 @@
 	greaterform = "Unathi"
 	uni_append = list(0x044,0xC5D) // 044C5D
 
+
+//-----Monkey Yeti Thing
+/mob/living/carbon/monkey/yiren
+	name = "yiren"
+	voice_name = "yiren"
+	speak_emote = list("grumbles")
+	icon_state = "yirenkey1"
+	env_low_temp_resistance = ICE_PLANET_min_cold_protection_temperature
+
+
 /mob/living/carbon/monkey/New()
+	verbs += /mob/living/proc/lay_down
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
 	R.my_atom = src
@@ -115,6 +126,17 @@
 
 	. += config.monkey_delay
 
+/mob/living/carbon/monkey/get_permeability_protection()
+	var/protection = 0
+	//if(head)
+	//	protection = 1 - head.permeability_coefficient ((no head slot in inventory for time being))
+	if(wear_mask)
+		protection = max(1 - wear_mask.permeability_coefficient, protection)
+	protection = protection/7 //the rest of the body isn't covered.
+	return protection
+
+/mob/living/carbon/monkey/reagent_check(datum/reagent/R) //can metabolize all reagents
+	return FALSE
 
 /mob/living/carbon/monkey/Topic(href, href_list)
 	if (href_list["mach_close"])
@@ -248,13 +270,13 @@
 						KnockOut(2)
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 						for(var/mob/O in viewers(src, null))
-							if ((O.client && !( O.blinded )))
+							if ((O.client && !is_blind(O)))
 								O.show_message(text("\red <B>[] has pushed down [name]!</B>", M), 1)
 					else
 						drop_held_item()
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 						for(var/mob/O in viewers(src, null))
-							if ((O.client && !( O.blinded )))
+							if ((O.client && !is_blind(O)))
 								O.show_message(text("\red <B>[] has disarmed [name]!</B>", M), 1)
 	return
 
@@ -276,6 +298,11 @@
 
 	return 1
 
+/mob/living/carbon/get_standard_pixel_y_offset()
+	if(lying)
+		return -6
+	else
+		return initial(pixel_y)
 
 /mob/living/carbon/monkey/Stat()
 	stat(null, text("Intent: []", a_intent))
@@ -297,16 +324,16 @@
 
 	switch(severity)
 		if(1.0)
-			if (stat != 2)
+			if (stat != DEAD)
 				adjustBruteLoss(200)
 				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
 		if(2.0)
-			if (stat != 2)
+			if (stat != DEAD)
 				adjustBruteLoss(60)
 				adjustFireLoss(60)
 				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
 		if(3.0)
-			if (stat != 2)
+			if (stat != DEAD)
 				adjustBruteLoss(30)
 				health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
 			if (prob(50))
@@ -353,3 +380,17 @@
 		sight &= ~SEE_OBJS
 		see_in_dark = 2
 		see_invisible = SEE_INVISIBLE_LIVING
+
+/mob/living/carbon/monkey/get_idcard(hand_first)
+	//Check hands
+	var/obj/item/card/id/id_card
+	var/obj/item/held_item
+	held_item = get_active_hand()
+	if(held_item) //Check active hand
+		id_card = held_item.GetID()
+	if(!id_card) //If there is no id, check the other hand
+		held_item = get_inactive_hand()
+		if(held_item)
+			id_card = held_item.GetID()
+	if(id_card)
+		return id_card

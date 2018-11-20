@@ -64,8 +64,8 @@ can cause issues with ammo types getting mixed up during the burst.
 			var/obj/item/ammo_magazine/handful/new_handful = retrieve_shell(ammo.type)
 			playsound(user, reload_sound, 25, 1)
 			new_handful.forceMove(get_turf(src))
-		else
-			if(user) to_chat(user, "<span class='warning'>[src] is already empty.</span>")
+		else if(user)
+			to_chat(user, "<span class='warning'>[src] is already empty.</span>")
 		return
 
 	unload_shell(user)
@@ -216,12 +216,12 @@ can cause issues with ammo types getting mixed up during the burst.
 
 
 /obj/item/weapon/gun/shotgun/combat/set_gun_config_values()
-	fire_delay = config.mhigh_fire_delay*2
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult - config.hmed_hit_accuracy_mult
+	fire_delay = config.tacshottie_fire_delay //one shot every 1.5 seconds.
+	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.max_hit_accuracy_mult //you need to wield this gun for any kind of accuracy
 	scatter = config.med_scatter_value
 	scatter_unwielded = config.max_scatter_value
-	damage_mult = config.base_hit_damage_mult - config.low_hit_damage_mult
+	damage_mult = config.base_hit_damage_mult - config.tacshottie_damage_mult  //normalizing gun for vendors; damage reduced by 25% to compensate for faster fire rate; still higher DPS than M37.
 	recoil = config.low_recoil_value
 	recoil_unwielded = config.high_recoil_value
 
@@ -368,6 +368,7 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/pump
 	name = "\improper M37A2 pump shotgun"
 	desc = "An Armat Battlefield Systems classic design, the M37A2 combines close-range firepower with long term reliability. Requires a pump, which is a Unique Action."
+	flags_equip_slot = SLOT_BACK
 	icon_state = "m37"
 	item_state = "m37"
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump
@@ -375,6 +376,8 @@ can cause issues with ammo types getting mixed up during the burst.
 	var/pump_sound = 'sound/weapons/gun_shotgun_pump.ogg'
 	var/pump_delay //Higher means longer delay.
 	var/recent_pump //world.time to see when they last pumped it.
+	var/recent_notice //world.time to see when they last got a notice.
+	var/pump_lock = FALSE //Modern shotguns normally lock after being pumped; this lock is undone by pumping or operating the slide release i.e. unloading a shell manually.
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,
@@ -426,7 +429,14 @@ can cause issues with ammo types getting mixed up during the burst.
 
 //More or less chambers the round instead of load_into_chamber(). Also ejects used casings.
 /obj/item/weapon/gun/shotgun/pump/proc/pump_shotgun(mob/user)	//We can't fire bursts with pumps.
-	if(world.time < (recent_pump + pump_delay) ) return //Don't spam it.
+	if(world.time < (recent_pump + pump_delay) ) //Don't spam it.
+		return
+	if(pump_lock)
+		if(world.time > recent_notice + config.max_fire_delay)
+			playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
+			to_chat(user,"<span class='warning'><b>[src] has already been pumped, locking the pump mechanism; fire or unload a shell to unlock it.</b></span>")
+			recent_notice = world.time
+		return
 
 	if(in_chamber) //eject the chambered round
 		in_chamber = null
@@ -435,18 +445,23 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	ready_shotgun_tube()
 
+
 	if(current_mag.used_casings)
 		current_mag.used_casings--
 		make_casing(type_of_casings)
 
+	to_chat(user, "<span class='notice'><b>You pump [src].</b></span>")
 	playsound(user, pump_sound, 25, 1)
 	recent_pump = world.time
+	if(in_chamber) //Lock only if we have ammo loaded.
+		pump_lock = TRUE
 
 
 /obj/item/weapon/gun/shotgun/pump/reload_into_chamber(mob/user)
 	if(active_attachable)
 		make_casing(active_attachable.type_of_casings)
 	else
+		pump_lock = FALSE //fired successfully; unlock the pump
 		current_mag.used_casings++ //The shell was fired successfully. Add it to used.
 		in_chamber = null
 		//Time to move the tube position.
@@ -455,6 +470,11 @@ can cause issues with ammo types getting mixed up during the burst.
 
 	return 1
 
+/obj/item/weapon/gun/shotgun/pump/unload(mob/user)
+	if(pump_lock)
+		to_chat(user, "<span class='notice'><b>You disengage [src]'s pump lock with the slide release.</b></span>")
+		pump_lock = FALSE //we're operating the slide release to unload, thus unlocking the pump
+	return ..()
 
 //-------------------------------------------------------
 //SHOTGUN FROM ISOLATION

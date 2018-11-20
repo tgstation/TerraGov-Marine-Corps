@@ -3,13 +3,13 @@
 	name = "grille"
 	icon = 'icons/obj/structures/structures.dmi'
 	icon_state = "grille"
-	density = 1
-	anchored = 1
+	density = TRUE
+	anchored = TRUE
 	flags_atom = CONDUCT
 	layer = OBJ_LAYER
 	explosion_resistance = 5
 	var/health = 10
-	var/destroyed = 0
+	var/destroyed = FALSE
 
 
 /obj/structure/grille/fence/
@@ -44,8 +44,8 @@
 
 /obj/structure/grille/fence/healthcheck()
 	if(health <= 0)
-		density = 0
-		destroyed = 1
+		density = FALSE
+		destroyed = TRUE
 		new /obj/item/stack/rods(loc)
 		cdel(src)
 	return
@@ -59,6 +59,23 @@
 
 /obj/structure/grille/attack_paw(mob/user as mob)
 	attack_hand(user)
+
+/obj/structure/grille/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
+	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
+	var/damage_dealt = 5
+	M.visible_message("<span class='danger'>\The [M] mangles [src]!</span>", \
+	"<span class='danger'>You mangle [src]!</span>", \
+	"<span class='danger'>You hear twisting metal!</span>", 5)
+
+	if(shock(M, 70))
+		M.visible_message("<span class='danger'>ZAP! \The [M] spazzes wildly amongst a smell of burnt ozone.</span>", \
+		"<span class='danger'>ZAP! You twitch and dance like a monkey on hyperzine!</span>", \
+		"<span class='danger'>You hear a sharp ZAP and a smell of ozone.</span>")
+		return FALSE //Intended apparently ?
+
+	health -= damage_dealt
+	healthcheck()
 
 /obj/structure/grille/attack_hand(mob/user as mob)
 
@@ -91,7 +108,8 @@
 
 
 /obj/structure/grille/attack_animal(var/mob/living/simple_animal/M as mob)
-	if(M.melee_damage_upper == 0)	return
+	if(M.melee_damage_upper == 0)
+		return
 
 	playsound(loc, 'sound/effects/grillehit.ogg', 25, 1)
 	M.visible_message("<span class='warning'>[M] smashes against [src].</span>", \
@@ -105,7 +123,7 @@
 
 /obj/structure/grille/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGRILLE))
-		return 1
+		return TRUE
 	else
 		if(istype(mover, /obj/item/projectile))
 			return prob(90)
@@ -116,11 +134,11 @@
 
 	//Tasers and the like should not damage grilles.
 	if(Proj.ammo.damage_type == HALLOSS)
-		return 0
+		return FALSE
 
 	src.health -= round(Proj.damage*0.3)
 	healthcheck()
-	return 1
+	return TRUE
 
 /obj/structure/grille/attackby(obj/item/W as obj, mob/user as mob)
 	if(iswirecutter(W))
@@ -211,11 +229,11 @@
 /obj/structure/grille/proc/shock(mob/user as mob, prb)
 
 	if(!anchored || destroyed)		// anchored/destroyed grilles are never connected
-		return 0
+		return FALSE
 	if(!prob(prb))
-		return 0
+		return FALSE
 	if(!in_range(src, user))//To prevent TK and mech users from getting shocked
-		return 0
+		return FALSE
 	var/turf/T = get_turf(src)
 	var/obj/structure/cable/C = T.get_cable_node()
 	if(C)
@@ -223,10 +241,10 @@
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(3, 1, src)
 			s.start()
-			return 1
+			return TRUE
 		else
-			return 0
-	return 0
+			return FALSE
+	return FALSE
 
 /obj/structure/grille/fire_act(exposed_temperature, exposed_volume)
 	if(!destroyed)

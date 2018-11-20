@@ -79,7 +79,14 @@
 
 
 /mob/living/carbon/Xenomorph/apply_damage(damage = 0, damagetype = BRUTE, def_zone = null, blocked = 0, used_weapon = null, sharp = 0, edge = 0)
-	if(!damage) return
+	if(blocked >= 1) //total negation
+		return FALSE
+
+	if(blocked)
+		damage *= CLAMP(1-blocked,0.00,1.00) //Percentage reduction
+
+	if(!damage) //no damage
+		return FALSE
 
 	//We still want to check for blood splash before we get to the damage application.
 	var/chancemod = 0
@@ -92,14 +99,13 @@
 
 	if(damage > 12) //Light damage won't splash.
 		check_blood_splash(damage, damagetype, chancemod)
+		if(damage > 15 && stealth_router(HANDLE_STEALTH_CHECK)) //Any significant damage causes us to break stealth
+			stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
-	if(stat == DEAD) return
+	if(stat == DEAD)
+		return FALSE
 
-	if(warding_aura && damage > 0) //Damage reduction. Every half point of warding decreases damage by 2.5 %. Maximum is 25 % at 5 pheromone strength.
-		damage = round(damage * ((100 - (warding_aura * 5)) / 100))
-
-	if(def_zone == "head" || def_zone == "eyes" || def_zone == "mouth") //Little more damage vs the head
-		damage = round(damage * 8 / 7)
+	damage = process_rage_damage(damage, src)
 
 	switch(damagetype)
 		if(BRUTE)
@@ -108,13 +114,34 @@
 			adjustFireLoss(damage)
 
 	updatehealth()
-	return 1
+	return TRUE
+
+
+/mob/living/carbon/Xenomorph/adjustBruteLoss(amount)
+	bruteloss = CLAMP(bruteloss + amount, 0, maxHealth - xeno_caste.crit_health)
+
+/mob/living/carbon/Xenomorph/adjustFireLoss(amount)
+	fireloss = CLAMP(fireloss + amount, 0, maxHealth - xeno_caste.crit_health)
+
+/mob/living/carbon/Xenomorph/proc/process_rage_damage(damage)
+	return damage
+
+/mob/living/carbon/Xenomorph/Ravager/process_rage_damage(damage)
+	if(!damage || world.time < last_damage)
+		return damage
+	rage += round(damage * 0.3) //Gain Rage stacks equal to 30% of damage received.
+	last_rage = world.time //We incremented rage, so bookmark this.
+	last_damage = world.time + 2 //Limit how often this proc can trigger; once per 0.2 seconds
+	damage *= rage_resist //reduce damage by rage resist %
+	rage_resist = CLAMP(1-round(rage * 0.014,0.01),0.3,1) //Update rage resistance _after_ we take damage
+	return damage
 
 /mob/living/carbon/Xenomorph/proc/check_blood_splash(damage = 0, damtype = BRUTE, chancemod = 0, radius = 1)
 	if(!damage)
-		return 0
+		return FALSE
 	var/chance = 20 //base chance
-	if(damtype == BRUTE) chance += 5
+	if(damtype == BRUTE)
+		chance += 5
 	chance += chancemod + (damage * 0.33)
 	var/turf/T = loc
 	if(!T || !istype(T))

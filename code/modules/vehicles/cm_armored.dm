@@ -368,15 +368,28 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 /obj/vehicle/multitile/hitbox/cm_armored/Bump(var/atom/A)
 	. = ..()
 	if(isliving(A))
-		if (isXenoDefender(A))
-			var/mob/living/carbon/Xenomorph/X = A
-			if (X.fortify)
-				return
-
 		var/mob/living/M = A
-		M.KnockDown(10, 1)
-		M.apply_damage(7 + rand(0, 5), BRUTE)
-		M.visible_message("<span class='danger'>[src] runs over [M]!</span>", "<span class='danger'>[src] runs you over! Get out of the way!</span>")
+		var/facing = get_dir(src, M)
+		var/turf/T = loc
+		var/turf/temp = loc
+		if (isXenoQueen(A) || isXenoCrusher (A))
+			temp = get_step(T, facing)
+			T = temp
+			T = get_step(T, pick(cardinal))
+			M.throw_at(T, 2, 1, src, 0)
+			M.visible_message("<span class='danger'>[src] bumps into [M] pushing them away!</span>", "<span class='danger'>[src] bumps into you!</span>")
+			return
+		if(M.lying==0 && !isXenoLarva(M))
+			temp = get_step(T, facing)
+			T = temp
+			T = get_step(T, pick(cardinal))
+			if(M.mob_size == MOB_SIZE_BIG)
+				M.throw_at(T, 2, 1, src, 0)
+			else
+				M.throw_at(T, 2, 1, src, 1)
+			M.KnockDown(1)
+			M.apply_damage(10 + rand(0, 5), BRUTE)
+			M.visible_message("<span class='danger'>[src] bumps into [M] throwing them away!</span>", "<span class='danger'>[src] bumps into you!</span>")
 		var/obj/vehicle/multitile/root/cm_armored/CA = root
 		var/list/slots = CA.get_activatable_hardpoints()
 		for(var/slot in slots)
@@ -439,7 +452,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	if(.)
 		for(var/mob/living/M in get_turf(A))
 			//I don't call Bump() otherwise that would encourage trampling for infinite unpunishable damage
-			M.sleeping = 1e7 //Maintain their lying-down-ness
+			M.sleeping = 5 //Maintain their lying-down-ness
 
 /obj/vehicle/multitile/hitbox/cm_armored/Uncrossed(var/atom/movable/A)
 	if(isliving(A))
@@ -519,22 +532,19 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	switch(severity)
 		if(1.0)
-			take_damage_type(rand(100, 150), "explosive")
+			take_damage_type(rand(250, 350), "explosive") //Devastation level explosives are anti-tank and do real damage.
 			take_damage_type(rand(20, 40), "slash")
 
 		if(2.0)
-			take_damage_type(rand(60,80), "explosive")
+			take_damage_type(rand(30, 40), "explosive") //Heavy explosions do some damage, but are largely deferred by the armour/bulk.
 			take_damage_type(rand(10, 15), "slash")
 
-		if(3.0)
-			take_damage_type(rand(20, 25), "explosive")
-
-	healthcheck()
+	healthcheck() //Tanks/armoured vehicles don't really take damage from light explosions, such as frag grenades. Also makes using the LTB more viable due to crush/stun chaining being removed.
 
 //Honestly copies some code from the Xeno files, just handling some special cases
 /obj/vehicle/multitile/root/cm_armored/attack_alien(var/mob/living/carbon/Xenomorph/M, var/dam_bonus)
 
-	var/damage = rand(M.melee_damage_lower, M.melee_damage_upper) + dam_bonus
+	var/damage = rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) + dam_bonus
 
 	//Frenzy auras stack in a way, then the raw value is multipled by two to get the additive modifier
 	if(M.frenzy_aura > 0)
@@ -553,7 +563,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	M.visible_message("<span class='danger'>\The [M] slashes [src]!</span>", \
 	"<span class='danger'>You slash [src]!</span>")
 
-	take_damage_type(damage * ( (M.caste == "Ravager") ? 2 : 1 ), "slash", M) //Ravs do a bitchin double damage
+	take_damage_type(damage * ( (isXenoRavager(M)) ? 2 : 1 ), "slash", M) //Ravs do a bitchin double damage
 
 	healthcheck()
 

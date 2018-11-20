@@ -86,9 +86,18 @@ Quick adjacency (to turf):
 		if(T.Adjacent(neighbor,src)) return 1
 	return 0
 
+/obj/Adjacent(var/atom/neighbor)
+	if(neighbor == loc)
+		return 1
+	var/turf/T = get_turf(loc)
+	if(!T)
+		return 0
+	return (T.Adjacent(neighbor,src))
+
 // This is necessary for storage items not on your person.
 /obj/item/Adjacent(var/atom/neighbor, var/recurse = 1)
-	if(neighbor == loc) return 1
+	if(neighbor == loc)
+		return 1
 	if(istype(loc,/obj/item))
 		if(recurse > 0)
 			return loc.Adjacent(neighbor,recurse - 1)
@@ -142,3 +151,20 @@ Quick adjacency (to turf):
 
 	Since I don't want to complicate the click code rework by messing with unrelated systems it won't be changed here.
 */
+
+/atom/proc/handle_barriers(mob/living/M)
+	for(var/obj/structure/S in M.loc)
+		if(S.flags_atom & ON_BORDER && S.dir & get_dir(M,src) || S.dir&(S.dir-1))
+			if(S.flags_barrier & HANDLE_BARRIER_CHANCE)
+				if(S.handle_barrier_chance(M))
+					return S // blocked
+	for(var/obj/structure/S in loc)
+		if(S.flags_atom & ON_BORDER && S.dir & get_dir(src,M) || S.dir&(S.dir-1))
+			if(S.flags_barrier & HANDLE_BARRIER_CHANCE)
+				if(S.handle_barrier_chance(M))
+					return S // blocked
+	return src // not blocked
+
+/turf/handle_barriers(mob/living/M)
+	return src
+	

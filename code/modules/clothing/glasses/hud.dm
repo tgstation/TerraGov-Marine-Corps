@@ -56,6 +56,15 @@
 	icon_state = "jensenshades"
 	item_state = "jensenshades"
 	vision_flags = SEE_MOBS
-	invisa_view = 2
+	see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING // the define name is just misleading, don't worry
 	toggleable = 0
 	actions_types = list()
+
+/obj/item/clothing/glasses/hud/xenohud
+	name = "XenoMate HUD"
+	desc = "A heads-up display that scans any nearby xenomorph's data."
+	icon_state = "securityhud"
+	flags_armor_protection = 0
+	toggleable = TRUE
+	hud_type = MOB_HUD_XENO_STATUS
+	actions_types = list(/datum/action/item_action/toggle)

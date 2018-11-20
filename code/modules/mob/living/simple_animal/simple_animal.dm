@@ -53,6 +53,9 @@
 	attack_sound = null
 	friendly = "nuzzles" //If the mob does no damage with it's attack
 
+	//simple_animal access
+	var/obj/item/card/id/access_card = null	//innate access uses an internal ID card
+
 /mob/living/simple_animal/New()
 	..()
 	verbs -= /mob/verb/observe
@@ -62,33 +65,37 @@
 		src.client.screen = null
 	..()
 
+/mob/living/simple_animal/handle_status_effects()
+	..()
+	if(stuttering)
+		stuttering = 0
+
 /mob/living/simple_animal/updatehealth()
-	return
+	..()
+	health = CLAMP(health, 0, maxHealth)
+
+/mob/living/simple_animal/update_stat()
+	. = ..()
+	if(status_flags & GODMODE)
+		return
+	if(stat != DEAD)
+		if(health <= 0)
+			death()
+		else
+			stat = CONSCIOUS
 
 /mob/living/simple_animal/Life()
+	..()
 
 	//Health
-	if(stat == DEAD)
+	if(stat != DEAD)
 		if(health > 0)
 			icon_state = icon_living
-			dead_mob_list -= src
-			living_mob_list += src
 			stat = CONSCIOUS
 			lying = 0
 			density = 1
 			reload_fullscreens()
 		return 0
-
-
-	if(health < 1)
-		death()
-
-	if(health > maxHealth)
-		health = maxHealth
-
-	handle_stunned()
-	handle_knocked_down()
-	handle_knocked_out()
 
 	//Movement
 	if(!client && !stop_automated_movement && wander && !anchored)
@@ -197,11 +204,27 @@
 		else
 			..()
 
+/mob/living/simple_animal/blind_eyes()
+	return
+
+/mob/living/simple_animal/adjust_blindness()
+	return
+
+/mob/living/simple_animal/set_blindness()
+	return
+
+/mob/living/simple_animal/blur_eyes()
+	return
+
+/mob/living/simple_animal/adjust_blurriness()
+	return
+
+/mob/living/simple_animal/set_blurriness()
+	return
 
 /mob/living/simple_animal/death()
 	. = ..()
-	if(!.)	return //was already dead
-	icon_state = icon_dead
+		icon_state = icon_dead
 
 
 /mob/living/simple_animal/gib()
@@ -215,7 +238,17 @@
 		new /obj/effect/overlay/temp/gib_animation/animal(loc, src, icon_gib)
 
 
+/mob/living/simple_animal/update_transform()
+	var/matrix/ntransform = matrix(transform) //aka transform.Copy()
+	var/changed = 0
 
+	if(resize != RESIZE_DEFAULT_SIZE)
+		changed++
+		ntransform.Scale(resize)
+		resize = RESIZE_DEFAULT_SIZE
+
+	if(changed)
+		animate(src, transform = ntransform, time = 2, easing = EASE_IN|EASE_OUT)
 
 
 /mob/living/simple_animal/emote(var/act, var/type, var/message, player_caused)
@@ -250,7 +283,7 @@
 		if("help")
 			if (health > 0)
 				for(var/mob/O in viewers(src, null))
-					if ((O.client && !( O.blinded )))
+					if ((O.client && !is_blind(O)))
 						O.show_message("\blue [M] [response_help] [src]")
 
 		if("grab")
@@ -263,7 +296,7 @@
 		if("hurt", "disarm")
 			adjustBruteLoss(harm_intent_damage)
 			for(var/mob/O in viewers(src, null))
-				if ((O.client && !( O.blinded )))
+				if ((O.client && !is_blind(O)))
 					O.show_message("\red [M] [response_harm] [src]")
 
 	return
@@ -279,7 +312,7 @@
 					adjustBruteLoss(-MED.heal_brute)
 					MED.use(1)
 					for(var/mob/M in viewers(src, null))
-						if ((M.client && !( M.blinded )))
+						if ((M.client && !is_blind(M)))
 							M.show_message("\blue [user] applies the [MED] on [src]")
 		else
 			to_chat(user, "\blue this [src] is dead, medical items won't bring it back to life.")
@@ -297,12 +330,12 @@
 				damage = 0
 			adjustBruteLoss(damage)
 			for(var/mob/M in viewers(src, null))
-				if ((M.client && !( M.blinded )))
+				if ((M.client && !is_blind(M)))
 					M.show_message("\red \b [src] has been attacked with the [O] by [user]. ")
 		else
 			to_chat(usr, "\red This weapon is ineffective, it does no damage.")
 			for(var/mob/M in viewers(src, null))
-				if ((M.client && !( M.blinded )))
+				if ((M.client && !is_blind(M)))
 					M.show_message("\red [user] gently taps [src] with the [O]. ")
 
 
@@ -336,7 +369,7 @@
 			adjustBruteLoss(30)
 
 /mob/living/simple_animal/adjustBruteLoss(damage)
-	health = Clamp(health - damage, 0, maxHealth)
+	health = CLAMP(health - damage, 0, maxHealth)
 
 /mob/living/simple_animal/proc/SA_attackable(target_mob)
 	if (isliving(target_mob))
@@ -380,3 +413,6 @@
 	message = capitalize(trim_left(message))
 
 	..(message, null, verb)
+
+/mob/living/simple_animal/get_idcard(hand_first)
+	return access_card

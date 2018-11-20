@@ -10,24 +10,6 @@
 	//var/obj/effect/elevator/supply/SE
 	//var/obj/effect/elevator/supply/NW
 	//var/obj/effect/elevator/supply/NE
-	var/HangarElevatorUpper_x
-	var/HangarElevatorUpper_y
-	var/HangarElevatorUpper_z
-	var/HangarElevatorLower_x
-	var/HangarElevatorLower_y
-	var/HangarElevatorLower_z
-
-/datum/shuttle/ferry/hangar/New()
-	..()
-
-	var/turf/HangarUpperElevatorLoc = get_turf(HangarUpperElevator)
-	var/turf/HangarLowerElevatorLoc = get_turf(HangarLowerElevator)
-	HangarElevatorUpper_x = HangarUpperElevatorLoc.x
-	HangarElevatorUpper_y = HangarUpperElevatorLoc.y
-	HangarElevatorUpper_z = HangarUpperElevatorLoc.z
-	HangarElevatorLower_x = HangarLowerElevatorLoc.x
-	HangarElevatorLower_y = HangarLowerElevatorLoc.y
-	HangarElevatorLower_z = HangarLowerElevatorLoc.z
 
 /datum/shuttle/ferry/hangar/process()
 
@@ -78,8 +60,8 @@
 	lower_railings(1)
 	if(!at_station())
 		moving_status = SHUTTLE_INTRANSIT
-		playsound(locate(HangarElevatorUpper_x,HangarElevatorUpper_y,HangarElevatorUpper_z), 'sound/effects/bang.ogg', 40, 0)
-		playsound(locate(HangarElevatorLower_x,HangarElevatorLower_y,HangarElevatorLower_z), 'sound/effects/bang.ogg', 20, 0)
+		playsound(HangarUpperElevator, 'sound/effects/bang.ogg', 40, 0)
+		playsound(HangarLowerElevator, 'sound/effects/bang.ogg', 20, 0)
 		lower_railings(1)
 
 		if(!destination)
@@ -116,8 +98,8 @@
 		var/area/away_area = get_location_area(away_location)
 		moving_status = SHUTTLE_INTRANSIT
 
-		playsound(locate(HangarElevatorLower_x,HangarElevatorLower_y,HangarElevatorLower_z), 'sound/machines/elevator_move.ogg', 50, 0)
-		playsound(locate(HangarElevatorUpper_x,HangarElevatorUpper_y,HangarElevatorUpper_z), 'sound/machines/elevator_move.ogg', 50, 0)
+		playsound(HangarUpperElevator, 'sound/machines/elevator_move.ogg', 50, 0)
+		playsound(HangarLowerElevator, 'sound/machines/elevator_move.ogg', 50, 0)
 
 		//If we are at the away_area then we are just pretending to move, otherwise actually do the move
 		if (origin != away_area)
@@ -158,8 +140,8 @@
 			spawn()
 				M.close()
 	if(effective)
-		playsound(locate(HangarElevatorUpper_x,HangarElevatorUpper_y,HangarElevatorUpper_z), 'sound/machines/elevator_openclose.ogg', 50, 0)
-		playsound(locate(HangarElevatorLower_x,HangarElevatorLower_y,HangarElevatorLower_z), 'sound/machines/elevator_openclose.ogg', 50, 0)
+		playsound(HangarUpperElevator, 'sound/machines/elevator_openclose.ogg', 50, 0)
+		playsound(HangarLowerElevator, 'sound/machines/elevator_openclose.ogg', 50, 0)
 
 
 /datum/shuttle/ferry/hangar/proc/lower_railings(var/force=0)
@@ -170,11 +152,11 @@
 	if(at_station())
 		railing_id = railing_lower_id
 		other_id = railing_upper_id
-		soundturf = locate(HangarElevatorLower_x,HangarElevatorLower_y,HangarElevatorLower_z)
+		soundturf = HangarLowerElevator
 	else
 		railing_id = railing_upper_id
 		other_id = railing_lower_id
-		soundturf = locate(HangarElevatorUpper_x,HangarElevatorUpper_y,HangarElevatorUpper_z)
+		soundturf = HangarUpperElevator
 	for(var/obj/machinery/door/poddoor/M in machines)
 		if(M.id == railing_id && M.density)
 			effective = 1

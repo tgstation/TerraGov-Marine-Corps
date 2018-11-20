@@ -19,6 +19,7 @@ Defined in conflicts.dm of the #defines folder.
 #define ATTACH_PROJECTILE	4
 #define ATTACH_RELOADABLE	8
 #define ATTACH_WEAPON		16
+#define ATTACH_UTILITY		32
 */
 
 /obj/item/attachable
@@ -333,7 +334,7 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 
 /obj/item/attachable/compensator
 	name = "recoil compensator"
-	desc = "A muzzle attachment that reduces recoil by diverting expelled gasses upwards. \nIncreases accuracy and reduces recoil, at the cost of a small amount of weapon damage."
+	desc = "A muzzle attachment that reduces recoil and scatter by diverting expelled gasses upwards. \nSignificantly reduces recoil and scatter, at the cost of a small amount of weapon damage."
 	slot = "muzzle"
 	icon_state = "comp"
 	attach_icon = "comp_a"
@@ -341,11 +342,11 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 
 /obj/item/attachable/compensator/New()
 	..()
-	accuracy_mod = config.med_hit_accuracy_mult
+	scatter_mod = -config.med_scatter_value
 	damage_mod = -config.min_hit_damage_mult
 	recoil_mod = -config.med_recoil_value
-	accuracy_unwielded_mod = config.med_hit_accuracy_mult
-	recoil_unwielded_mod = -config.low_recoil_value
+	scatter_unwielded_mod = -config.med_scatter_value
+	recoil_unwielded_mod = -config.med_recoil_value
 
 
 /obj/item/attachable/slavicbarrel
@@ -400,7 +401,7 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 	..()
 	accuracy_mod = config.med_hit_accuracy_mult
 	accuracy_unwielded_mod = config.min_hit_accuracy_mult
-	movement_acc_penalty_mod = 1
+	movement_acc_penalty_mod = -config.min_movement_acc_penalty
 
 
 /obj/item/attachable/flashlight
@@ -464,11 +465,11 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 
 /obj/item/attachable/quickfire/New()
 	..()
-	accuracy_mod = -config.low_hit_accuracy_mult
+	accuracy_mod = -config.med_hit_accuracy_mult
 	scatter_mod = config.min_scatter_value
 	delay_mod = -config.min_fire_delay
 	burst_mod = -config.min_burst_value
-	accuracy_unwielded_mod = -config.med_hit_accuracy_mult
+	accuracy_unwielded_mod = -config.hmed_hit_accuracy_mult
 	scatter_unwielded_mod = config.med_scatter_value
 
 
@@ -496,15 +497,14 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 
 /obj/item/attachable/scope/New()
 	..()
-	burst_delay_mod = config.mhigh_fire_delay
-	accuracy_mod = config.high_hit_accuracy_mult
-	movement_acc_penalty_mod = 2
+	movement_acc_penalty_mod = config.low_movement_acc_penalty
 	accuracy_unwielded_mod = -config.min_hit_accuracy_mult
 
 
 /obj/item/attachable/scope/activate_attachment(obj/item/weapon/gun/G, mob/living/carbon/user, turn_off)
 	if(turn_off)
 		if(G.zoom)
+			accuracy_mod = null
 			G.zoom(user, zoom_offset, zoom_viewsize)
 		return TRUE
 
@@ -513,6 +513,7 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 			to_chat(user, "<span class='warning'>You must hold [G] with two hands to use [src].</span>")
 		return FALSE
 	else
+		accuracy_mod = config.high_hit_accuracy_mult
 		G.zoom(user, zoom_offset, zoom_viewsize)
 	return TRUE
 
@@ -531,6 +532,31 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 	..()
 	burst_delay_mod = config.low_fire_delay
 
+/obj/item/attachable/scope/mini/activate_attachment(obj/item/weapon/gun/G, mob/living/carbon/user, turn_off)
+	if(turn_off)
+		if(G.zoom)
+			accuracy_mod = -config.low_hit_accuracy_mult
+			G.zoom(user, zoom_offset, zoom_viewsize)
+		return TRUE
+
+	if(!G.zoom && !(G.flags_item & WIELDED))
+		if(user)
+			to_chat(user, "<span class='warning'>You must hold [G] with two hands to use [src].</span>")
+		return FALSE
+	else
+		accuracy_mod = config.low_hit_accuracy_mult
+		G.zoom(user, zoom_offset, zoom_viewsize)
+	return TRUE
+
+/obj/item/attachable/scope/m4ra
+	name = "m4ra rail scope"
+	icon_state = "sniperscope"
+	attach_icon = "sniperscope_a"
+	desc = "A rail mounted zoom sight scope specialized for the M4RA Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
+
+/obj/item/attachable/scope/m4ra/New()
+	..()
+	burst_delay_mod = null
 
 /obj/item/attachable/scope/slavic
 	icon_state = "slavicscope"
@@ -555,19 +581,16 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 	name = "\improper M37 wooden stock"
 	desc = "A non-standard heavy wooden stock for the M37 Shotgun. Less quick and more cumbersome than the standard issue stakeout, but reduces recoil and improves accuracy. Allegedly makes a pretty good club in a fight too.."
 	slot = "stock"
-	wield_delay_mod = WIELD_DELAY_NORMAL
+	wield_delay_mod = WIELD_DELAY_FAST
 	matter = null
 	icon_state = "stock"
 
 /obj/item/attachable/stock/shotgun/New()
 	..()
-	accuracy_mod = config.min_hit_accuracy_mult
-	recoil_mod = -config.min_recoil_value
-	scatter_mod = -config.min_scatter_value
-	movement_acc_penalty_mod = -1
-	accuracy_unwielded_mod = config.min_hit_accuracy_mult
-	recoil_unwielded_mod = -config.min_recoil_value
-	scatter_unwielded_mod = -config.min_scatter_value
+	accuracy_mod = config.low_hit_accuracy_mult
+	recoil_mod = -config.med_recoil_value
+	scatter_mod = -config.med_scatter_value
+	movement_acc_penalty_mod = config.min_movement_acc_penalty
 
 	select_gamemode_skin(type)
 
@@ -579,17 +602,15 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 /obj/item/attachable/stock/tactical/New()
 	..()
 	accuracy_mod = config.min_hit_accuracy_mult
-	recoil_mod = -config.min_recoil_value
-	scatter_mod = -config.min_scatter_value
-	movement_acc_penalty_mod = -1
-	accuracy_unwielded_mod = config.min_hit_accuracy_mult
-	recoil_unwielded_mod = -config.min_recoil_value
-	scatter_unwielded_mod = -config.min_scatter_value
+	recoil_mod = -config.med_recoil_value
+	scatter_mod = -config.med_scatter_value
+	movement_acc_penalty_mod = config.min_movement_acc_penalty
 
 /obj/item/attachable/stock/slavic
 	name = "wooden stock"
 	desc = "A non-standard heavy wooden stock for Slavic firearms."
 	icon_state = "slavicstock"
+	wield_delay_mod = WIELD_DELAY_NORMAL
 	pixel_shift_x = 32
 	pixel_shift_y = 13
 	matter = null
@@ -598,14 +619,9 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 /obj/item/attachable/stock/slavic/New()
 	..()
 	accuracy_mod = config.min_hit_accuracy_mult
-	recoil_mod = -config.min_recoil_value
-	scatter_mod = -config.min_scatter_value
-	delay_mod = config.med_fire_delay
-	movement_acc_penalty_mod = -1
-	accuracy_unwielded_mod = config.min_hit_accuracy_mult
-	recoil_unwielded_mod = -config.min_recoil_value
-	scatter_unwielded_mod = -config.min_scatter_value
-
+	recoil_mod = -config.med_recoil_value
+	scatter_mod = -config.med_scatter_value
+	movement_acc_penalty_mod = config.min_movement_acc_penalty
 
 /obj/item/attachable/stock/rifle
 	name = "\improper M41A skeleton stock"
@@ -621,14 +637,10 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 
 /obj/item/attachable/stock/rifle/New()
 	..()
-	accuracy_mod = config.low_hit_accuracy_mult
-	recoil_mod = -config.min_recoil_value
-	scatter_mod = -config.min_scatter_value
-	movement_acc_penalty_mod = -1
-	accuracy_unwielded_mod = config.min_hit_accuracy_mult
-	recoil_unwielded_mod = -config.min_recoil_value
-	scatter_unwielded_mod = -config.min_scatter_value
-
+	accuracy_mod = config.min_hit_accuracy_mult
+	recoil_mod = -config.med_recoil_value
+	scatter_mod = -config.med_scatter_value
+	movement_acc_penalty_mod = config.min_movement_acc_penalty
 
 /obj/item/attachable/stock/rifle/marksman
 	name = "\improper M41A marksman stock"
@@ -651,21 +663,17 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 
 /obj/item/attachable/stock/smg/New()
 	..()
-	accuracy_mod = config.min_hit_accuracy_mult
-	recoil_mod = -config.min_recoil_value
-	scatter_mod = -config.min_scatter_value
-	movement_acc_penalty_mod = -1
-	accuracy_unwielded_mod = config.min_hit_accuracy_mult
-	recoil_unwielded_mod = -config.min_recoil_value
-	scatter_unwielded_mod = -config.low_scatter_value
-
+	accuracy_mod = config.low_hit_accuracy_mult
+	recoil_mod = -config.med_recoil_value
+	scatter_mod = -config.med_scatter_value
+	movement_acc_penalty_mod = config.min_movement_acc_penalty
 
 
 /obj/item/attachable/stock/revolver
 	name = "\improper M44 magnum sharpshooter stock"
 	desc = "A wooden stock modified for use on a 44-magnum. Increases accuracy and reduces recoil at the expense of handling and agility. Less effective in melee as well"
 	slot = "stock"
-	wield_delay_mod = WIELD_DELAY_FAST
+	wield_delay_mod = WIELD_DELAY_VERY_FAST
 	melee_mod = -5
 	size_mod = 2
 	icon_state = "44stock"
@@ -675,9 +683,10 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 
 /obj/item/attachable/stock/revolver/New()
 	..()
-	accuracy_mod = config.med_hit_accuracy_mult
-	recoil_mod = -config.min_recoil_value
-	scatter_mod = -config.min_scatter_value
+	accuracy_mod = config.low_hit_accuracy_mult
+	recoil_mod = -config.med_recoil_value
+	scatter_mod = -config.med_scatter_value
+	movement_acc_penalty_mod = config.min_movement_acc_penalty
 
 	accuracy_unwielded_mod = config.min_hit_accuracy_mult
 	recoil_unwielded_mod = -config.min_recoil_value
@@ -805,7 +814,7 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 	var/nade_type = loaded_grenades[1]
 	var/obj/item/explosive/grenade/frag/G = new nade_type (get_turf(gun))
 	playsound(user.loc, fire_sound, 50, 1)
-	message_admins("[key_name_admin(user)] fired an underslung grenade launcher (<A HREF='?_src_=holder;adminplayerobservejump=\ref[user]'>JMP</A>)")
+	message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) fired an underslung grenade launcher")
 	log_game("[key_name_admin(user)] used an underslung grenade launcher.")
 	G.det_time = 15
 	G.throw_range = max_range
@@ -895,30 +904,34 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 
 	new/obj/flamer_fire(T)
 
+	var/fire_mod
 	for(var/mob/living/carbon/M in T) //Deal bonus damage if someone's caught directly in initial stream
 		if(M.stat == DEAD)
 			continue
 
+		fire_mod = 1
+
 		if(isXeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
-			if(X.fire_immune)
+			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
+			fire_mod = X.xeno_caste.fire_resist + X.fire_resist_modifier
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 
 			if(user)
 				if(user.mind && !user.mind.special_role && H.mind && !H.mind.special_role)
 					log_combat(user, H, "shot", src)
-					msg_admin_ff("[user] ([user.ckey]) shot [H] ([H.ckey]) with \a [name] in [get_area(user)] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>) (<a href='?priv_msg=\ref[user.client]'>PM</a>)")
+					msg_admin_ff("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) shot [key_name(H)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[H]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[H.x];Y=[H.y];Z=[H.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[H]'>FLW</a>) with \a [name] in [get_area(user)]")
 				else
 					log_combat(user, H, "shot", src)
-					msg_admin_attack("[user] ([user.ckey]) shot [H] ([H.ckey]) with \a [name] in [get_area(user)] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+					msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) shot [key_name(H)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[H]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[H.x];Y=[H.y];Z=[H.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[H]'>FLW</a>) with \a [name] in [get_area(user)]")
 
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || istype(H.wear_suit,/obj/item/clothing/suit/space/rig/atmos))
 				continue
 
 		M.adjust_fire_stacks(rand(3,5))
-		M.adjustFireLoss(rand(20,40))  //fwoom!
+		M.adjustFireLoss(rand(20,40) * fire_mod) //fwoom!
 		to_chat(M, "[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
 
 /obj/item/attachable/attached_gun/shotgun
@@ -967,7 +980,7 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 
 /obj/item/attachable/verticalgrip
 	name = "vertical grip"
-	desc = "A custom-built improved foregrip for better accuracy, less recoil, and less scatter, especially during burst fire. \nHowever, it also increases weapon size."
+	desc = "A custom-built improved foregrip for better accuracy, less recoil, and less scatter when wielded especially during burst fire. \nHowever, it also increases weapon size, slightly increases wield delay and makes unwielded fire more cumbersome."
 	icon_state = "verticalgrip"
 	attach_icon = "verticalgrip_a"
 	wield_delay_mod = WIELD_DELAY_FAST
@@ -978,17 +991,17 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 /obj/item/attachable/verticalgrip/New()
 	..()
 	accuracy_mod = config.min_hit_accuracy_mult
-	recoil_mod = -config.min_recoil_value
+	recoil_mod = -config.low_recoil_value
 	scatter_mod = -config.min_scatter_value
-	burst_scatter_mod = -2
-	movement_acc_penalty_mod = 1
+	burst_scatter_mod = -config.low_burst_scatter_penalty
+	movement_acc_penalty_mod = config.min_movement_acc_penalty
 	accuracy_unwielded_mod = -config.min_hit_accuracy_mult
 	scatter_unwielded_mod = config.min_scatter_value
 
 
 /obj/item/attachable/angledgrip
 	name = "angled grip"
-	desc = "A custom-built improved foregrip for less recoil, and faster wielding time. \nHowever, it also increases weapon size."
+	desc = "A custom-built improved foregrip for less recoil, and faster wielding time. \nHowever, it also increases weapon size, and slightly hinders unwielded firing."
 	icon_state = "angledgrip"
 	attach_icon = "angledgrip_a"
 	wield_delay_mod = -WIELD_DELAY_FAST
@@ -1000,32 +1013,30 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 	..()
 	recoil_mod = -config.min_recoil_value
 	accuracy_mod = config.min_hit_accuracy_mult
-	accuracy_unwielded_mod = -config.min_hit_accuracy_mult
 	scatter_mod = -config.min_scatter_value
+	accuracy_unwielded_mod = -config.min_hit_accuracy_mult
 	scatter_unwielded_mod = config.min_scatter_value
 
 
 
 /obj/item/attachable/gyro
 	name = "gyroscopic stabilizer"
-	desc = "A set of weights and balances to stabilize the weapon when fired with one hand. Slightly decrease firing speed."
+	desc = "A set of weights and balances to stabilize the weapon when shooting one-handed, burst firing or moving. Greatly reduces movement penalties to accuracy. Significantly reduces burst scatter, and one-handed recoil and scatter."
 	icon_state = "gyro"
 	attach_icon = "gyro_a"
 	slot = "under"
 
 /obj/item/attachable/gyro/New()
 	..()
-	delay_mod = config.mlow_fire_delay
-	scatter_mod = -config.min_scatter_value
-	burst_scatter_mod = -2
-	movement_acc_penalty_mod = -3
-	scatter_unwielded_mod = -config.med_scatter_value
-	accuracy_unwielded_mod = config.low_hit_accuracy_mult
-
+	burst_scatter_mod = -config.low_burst_scatter_penalty
+	movement_acc_penalty_mod = -config.med_movement_acc_penalty
+	scatter_unwielded_mod = -config.low_scatter_value
+	accuracy_unwielded_mod = config.min_hit_accuracy_mult
+	recoil_unwielded_mod = -config.low_recoil_value
 
 /obj/item/attachable/lasersight
 	name = "laser sight"
-	desc = "A laser sight placed under the barrel. Increases accuracy, and decrease scatter when firing one-handed."
+	desc = "A laser sight placed under the barrel. Significantly increases one-handed accuracy and significantly reduces movement penalties to accuracy."
 	icon_state = "lasersight"
 	attach_icon = "lasersight_a"
 	slot = "under"
@@ -1035,8 +1046,7 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 /obj/item/attachable/lasersight/New()
 	..()
 	accuracy_mod = config.min_hit_accuracy_mult
-	movement_acc_penalty_mod = -1
-	scatter_unwielded_mod = -config.low_scatter_value
+	movement_acc_penalty_mod = -config.min_burst_scatter_penalty
 	accuracy_unwielded_mod = config.med_hit_accuracy_mult
 
 
@@ -1065,23 +1075,20 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 			bipod_deployed = FALSE
 			G.aim_slowdown -= SLOWDOWN_ADS_SCOPE
 			G.wield_delay -= WIELD_DELAY_FAST
-	else
+	else if(bipod_deployed)
+		to_chat(user, "<span class='notice'>You retract [src].</span>")
+		G.aim_slowdown -= SLOWDOWN_ADS_SCOPE
+		G.wield_delay -= WIELD_DELAY_FAST
+		bipod_deployed = !bipod_deployed
+	else if(do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD))
 		if(bipod_deployed)
-			to_chat(user, "<span class='notice'>You retract [src].</span>")
-			G.aim_slowdown -= SLOWDOWN_ADS_SCOPE
-			G.wield_delay -= WIELD_DELAY_FAST
-			bipod_deployed = !bipod_deployed
-		else
-			var/obj/support = check_bipod_support(G, user)
-			if(support)
-				if(do_after(user, 10, TRUE, 5, BUSY_ICON_BUILD))
-					bipod_deployed = !bipod_deployed
-					to_chat(user, "<span class='notice'>You deploy [src] on [support].</span>")
-					G.aim_slowdown += SLOWDOWN_ADS_SCOPE
-					G.wield_delay += WIELD_DELAY_FAST
-			else
-				to_chat(user, "<span class='notice'>There is nothing to support [src].</span>")
-				return FALSE
+			return
+		bipod_deployed = !bipod_deployed
+		to_chat(user, "<span class='notice'>You deploy [src].</span>")
+		G.aim_slowdown += SLOWDOWN_ADS_SCOPE
+		G.wield_delay += WIELD_DELAY_FAST
+	G.update_slowdown()
+		
 	//var/image/targeting_icon = image('icons/mob/mob.dmi', null, "busy_targeting", "pixel_y" = 22) //on hold until the bipod is fixed
 	if(bipod_deployed)
 		icon_state = "bipod-on"
@@ -1110,6 +1117,12 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 	for(var/obj/O in T)
 		if(O.throwpass && O.density && O.dir == user.dir && O.flags_atom & ON_BORDER)
 			return O
+	
+	T = get_step(T, user.dir) 
+	for(var/obj/O in T)
+		if((istype(O, /obj/structure/window_frame)))
+			return O
+	
 	return FALSE
 
 
@@ -1117,17 +1130,47 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 
 /obj/item/attachable/burstfire_assembly
 	name = "burst fire assembly"
-	desc = "A mechanism re-assembly kit that allows for automatic fire, or more shots per burst if the weapon already has the ability. \nJust don't mind the increased scatter."
+	desc = "A mechanism re-assembly kit that allows for automatic fire, or more shots per burst if the weapon already has the ability. \nIncreases scatter and decreases accuracy."
 	icon_state = "rapidfire"
 	attach_icon = "rapidfire_a"
 	slot = "under"
 
 /obj/item/attachable/burstfire_assembly/New()
 	..()
-	accuracy_mod = -config.low_hit_accuracy_mult
+	accuracy_mod = -config.med_hit_accuracy_mult
 	burst_mod = config.low_burst_value
 	scatter_mod = config.low_scatter_value
 
-	accuracy_unwielded_mod = -config.med_hit_accuracy_mult
+	accuracy_unwielded_mod = -config.hmed_hit_accuracy_mult
 	scatter_unwielded_mod = config.med_scatter_value
+
+
+/obj/item/attachable/hydro_cannon
+	name = "M240T Hydro Cannon"
+	desc = "An integrated component of the M240T incinerator unit, the hydro cannon fires high pressure sprays of water; mainly to extinguish any wayward allies or unintended collateral damage."
+	icon_state = "hydrocannon"
+	attach_icon = ""
+	slot = "under"
+	flags_attach_features = ATTACH_ACTIVATION|ATTACH_UTILITY
+	attachment_action_type = /datum/action/item_action/toggle
+	var/max_water = 200
+	var/last_use
+
+/obj/item/attachable/hydro_cannon/activate_attachment(obj/item/weapon/gun/G, mob/living/user, turn_off)
+	if(G.active_attachable == src)
+		if(user)
+			to_chat(user, "<span class='notice'>You are no longer using [src].</span>")
+		G.active_attachable = null
+		icon_state = initial(icon_state)
+	else if(!turn_off)
+		if(user)
+			to_chat(user, "<span class='notice'>You are now using [src].</span>")
+		G.active_attachable = src
+		icon_state += "-on"
+
+	for(var/X in G.actions)
+		var/datum/action/A = X
+		A.update_button_icon()
+	return TRUE
+
 

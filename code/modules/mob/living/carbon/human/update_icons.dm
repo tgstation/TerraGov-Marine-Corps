@@ -87,25 +87,6 @@ There are several things that need to be remembered:
 		underlays -= underlays_standing[cache_index]
 		underlays_standing[cache_index] = null
 
-//UPDATES OVERLAYS FROM OVERLAYS_LYING/OVERLAYS_STANDING
-//this proc is messy as I was forced to include some old laggy cloaking code to it so that I don't break cloakers
-//I'll work on removing that stuff by rewriting some of the cloaking stuff at a later date.
-/mob/living/carbon/human/update_transform()
-	if(lying != lying_prev )
-		lying_prev = lying	//so we don't update overlays for lying/standing unless our stance changes again
-
-		if(lying && !species.prone_icon) //Only rotate them if we're not drawing a specific icon for being prone.
-			var/matrix/M = matrix()
-			M.Turn(90)
-			M.Scale(size_multiplier)
-			M.Translate(1,-6)
-			src.transform = M
-		else
-			var/matrix/M = matrix()
-			M.Scale(size_multiplier)
-			M.Translate(0, 16*(size_multiplier-1))
-			src.transform = M
-
 var/global/list/damage_icon_parts = list()
 /mob/living/carbon/human/proc/get_damage_icon_part(damage_state, body_part)
 	if(damage_icon_parts["[damage_state]_[species.blood_color]_[body_part]"] == null)

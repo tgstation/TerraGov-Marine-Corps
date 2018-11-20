@@ -43,10 +43,10 @@
 	name = "Mysterious Medibot"
 	desc = "International Medibot of mystery."
 	skin = "bezerk"
-	treatment_oxy = "dexalinp"
+	treatment_oxy = "dexalinplus"
 	treatment_brute = "bicaridine"
 	treatment_fire = "kelotane"
-	treatment_tox = "anti_toxin"
+	treatment_tox = "dylovene"
 
 
 
@@ -61,7 +61,7 @@
 
 		src.botcard = new /obj/item/card/id(src)
 		if(isnull(src.botcard_access) || (src.botcard_access.len < 1))
-			var/datum/job/J = RoleAuthority ? RoleAuthority.roles_by_path[/datum/job/civilian/doctor] : new /datum/job/civilian/doctor
+			var/datum/job/J = RoleAuthority ? RoleAuthority.roles_by_path[/datum/job/medical/doctor] : new /datum/job/medical/doctor
 			botcard.access = J.get_access()
 		else
 			src.botcard.access = src.botcard_access
@@ -337,7 +337,7 @@
 	if(safety_checks)
 		if(C.reagents.total_volume > 0)
 			for(var/datum/reagent/R in C.reagents.reagent_list)
-				if((src.injection_amount + R.volume) >= R.overdose)
+				if((src.injection_amount + R.volume) >= R.overdose_threshold)
 					return 0 //Don't medicate if it will kill them --MadSnailDisease
 
 	//If they're injured, we're using a beaker, and don't have one of our WONDERCHEMS.

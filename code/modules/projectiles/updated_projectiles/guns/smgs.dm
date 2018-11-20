@@ -49,7 +49,8 @@
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/scope/mini,
 						/obj/item/attachable/burstfire_assembly,
-						/obj/item/attachable/magnetic_harness)
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/gyro)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 
@@ -60,12 +61,12 @@
 
 /obj/item/weapon/gun/smg/m39/set_gun_config_values()
 	fire_delay = config.low_fire_delay
-	burst_delay = config.mlow_fire_delay
-	burst_amount = config.high_burst_value
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.hmed_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.max_scatter_value
+	burst_delay = config.min_fire_delay
+	burst_amount = config.med_burst_value
+	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
+	scatter = config.low_scatter_value
+	scatter_unwielded = config.high_scatter_value
 	damage_mult = config.base_hit_damage_mult
 	recoil_unwielded = config.min_recoil_value
 

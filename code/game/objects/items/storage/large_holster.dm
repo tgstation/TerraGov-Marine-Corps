@@ -70,9 +70,10 @@
 
 /obj/item/storage/large_holster/machete
 	name = "\improper H5 pattern M2132 machete scabbard"
-	desc = "A large leather scabbard used to carry a M2132 machete. It can be strapped to the back or the armor."
+	desc = "A large leather scabbard used to carry a M2132 machete. It can be strapped to the back, waist or armor."
 	base_icon = "machete_holster"
 	icon_state = "machete_holster"
+	flags_equip_slot = SLOT_WAIST|SLOT_BACK
 	can_hold = list("/obj/item/weapon/claymore/mercsword/machete")
 
 /obj/item/storage/large_holster/machete/full/New()
@@ -82,7 +83,7 @@
 
 /obj/item/storage/large_holster/katana
 	name = "\improper katana scabbard"
-	desc = "A large, vibrantly colored katana scabbard used to carry a japanese sword. It can be strapped to the back or the armor. Because of the sturdy wood casing of the scabbard, it makes an okay defensive weapon in a pinch."
+	desc = "A large, vibrantly colored katana scabbard used to carry a japanese sword. It can be strapped to the back, waist or armor. Because of the sturdy wood casing of the scabbard, it makes an okay defensive weapon in a pinch."
 	base_icon = "katana_holster"
 	icon_state = "katana_holster"
 	force = 12

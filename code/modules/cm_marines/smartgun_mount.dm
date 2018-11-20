@@ -28,7 +28,10 @@
 	icon_state = "M56D_case" // I guess a placeholder? Not actually going to show up ingame for now.
 	w_class = 5
 	storage_slots = 6
-	can_hold = list()
+	bypass_w_limit = list("/obj/item/device/m56d_gun",
+					"/obj/item/ammo_magazine/m56d",
+					"/obj/item/device/m56d_post",
+					)
 
 	New()
 		..()
@@ -139,7 +142,7 @@
 	M.animation_attack_on(src)
 	M.flick_attack_overlay(src, "slash")
 	playsound(loc, "alien_claw_metal", 25)
-	update_health(rand(M.melee_damage_lower,M.melee_damage_upper))
+	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
 
 
 /obj/machinery/m56d_post/MouseDrop(over_object, src_location, over_location) //Drag the tripod onto you to fold it.
@@ -393,7 +396,7 @@
 	M.animation_attack_on(src)
 	M.flick_attack_overlay(src, "slash")
 	playsound(loc, "alien_claw_metal", 25)
-	update_health(rand(M.melee_damage_lower,M.melee_damage_upper))
+	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
 
 /obj/machinery/m56d_hmg/proc/load_into_chamber()
 	if(in_chamber) return 1 //Already set!

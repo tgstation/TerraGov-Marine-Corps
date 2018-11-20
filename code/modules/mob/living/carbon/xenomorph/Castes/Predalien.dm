@@ -1,41 +1,62 @@
+/datum/xeno_caste/predalien
+	caste_name = "Predalien"
+	display_name = "Abomination"
+	upgrade_name = ""
+	caste_type_path = /mob/living/carbon/Xenomorph/Predalien
+	tier = 1
+	upgrade = 0
+
+	// *** Melee Attacks *** //
+	melee_damage_lower = 65
+	melee_damage_upper = 80
+	attack_delay = -2 //Bonus or pen to time in between attacks. + makes slashes slower.
+
+	// *** Tackle *** //
+	tackle_damage = 50 //How much HALLOSS damage a xeno deals when tackling
+
+	// *** RNG Attacks *** //
+	bite_chance = 25 //Chance of doing a special bite attack in place of a claw. Set to 0 to disable.
+	tail_chance = 25 //Chance of doing a special tail attack in place of a claw. Set to 0 to disable.
+
+	// *** Speed *** //
+	speed = -2.1
+
+	// *** Plasma *** //
+	plasma_max = 300
+	plasma_gain = 25
+
+	// *** Health *** //
+	max_health = 800
+
+	hardcore = TRUE //Set to 1 in New() when Whiskey Outpost is active. Prevents healing and queen evolution
+
+	// *** Flags *** //
+	caste_flags = CASTE_IS_INTELLIGENT
+	
+	// *** Defense *** //
+	armor_deflection = 50 //Chance of deflecting projectiles.
+
+	charge_type = 4
+	pounce_delay = 4 SECONDS
+
 /mob/living/carbon/Xenomorph/Predalien
-	caste = "Predalien"
+	caste_base_type = /mob/living/carbon/Xenomorph/Predalien
 	name = "Abomination"
 	desc = "A strange looking creature with fleshy strands on its head. It appears like a mixture of armor and flesh, smooth, but well carapaced."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Predalien Walking"
-	melee_damage_lower = 65
-	melee_damage_upper = 80
 	health = 800 //A lot of health, but it doesn't regenerate.
 	maxHealth = 800
 	plasma_stored = 300
-	plasma_max = 300
 	amount_grown = 0
 	max_grown = 200
-	plasma_gain = 25
-	evolution_allowed = FALSE
-	tacklemin = 6
-	tacklemax = 10
-	tackle_chance = 80
-
 	wall_smash = TRUE
-	is_intelligent = TRUE
-	hardcore = TRUE
-
-	charge_type = 4
-	armor_deflection = 50
 	tunnel_delay = 0
-
 	pslash_delay = 0
-	bite_chance = 25
-	tail_chance = 25
 	evo_points = 0
-
 	pixel_x = -16
 	old_x = -16
-
 	mob_size = MOB_SIZE_BIG
-	attack_delay = -2
 	speed = -2.1
 	tier = 1
 	upgrade = -1 //Predaliens are already in their ultimate form, they don't get even better
@@ -130,7 +151,7 @@ Your health meter will not regenerate normally, so kill and die for the hive!</s
 			playsound(loc, 'sound/weapons/slice.ogg', 25)
 			emote("growl")
 			var/to_heal = max(1, 5 - (0.2 * (health < maxHealth ? butchered_sum++ : butchered_sum)))//So we do not heal multiple times due to the inline proc below.
-			XENO_HEAL_WOUNDS(isYautja(H)? 15 : to_heal) //Predators give far better healing.
+			heal_wounds(isYautja(H)? 15 : to_heal) //Predators give far better healing.
 		else
 			visible_message("<span class='danger'>[src] slices and dices [H]'s body like a ragdoll!</span>",
 			"<span class='xenodanger'>You fly into a frenzy and butcher [H]'s body!</span>")

@@ -87,7 +87,7 @@
 	for(var/mob/living/carbon/H in viewers(src, null))
 		if(H in shitlist)
 			continue
-		if(H.stat || H.blinded)
+		if(H.stat || is_blind(H))
 			continue
 
 		var/observed = 0
@@ -455,7 +455,7 @@
 
 /mob/living/simple_animal/shyguy/adjustBruteLoss(var/damage)
 
-	health = Clamp(health - damage, 0, maxHealth)
+	health = CLAMP(health - damage, 0, maxHealth)
 
 	if(damage > 0)
 		staggered += damage

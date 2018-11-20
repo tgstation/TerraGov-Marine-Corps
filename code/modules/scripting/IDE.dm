@@ -11,7 +11,7 @@ client/verb/tcssave()
 				var/tcscode=winget(src, "tcscode", "text")
 				var/msg="[mob.name] is adding script to server [Server]: [tcscode]"
 				log_misc(msg)
-				message_admins("[mob.name] has uploaded a NTLS script to [Machine.SelectedServer] ([mob.x],[mob.y],[mob.z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[mob.x];Y=[mob.y];Z=[mob.z]'>JMP</a>)",0,1)
+				message_admins("[key_name(mob)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[mob]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[mob.x];Y=[mob.y];Z=[mob.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[mob]'>FLW</a>) has uploaded a NTLS script to [Machine.SelectedServer]",0,1)
 				Server.setcode( tcscode ) // this actually saves the code from input to the server
 				src << output(null, "tcserror")
 			else

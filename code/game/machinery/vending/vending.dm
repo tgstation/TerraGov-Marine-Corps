@@ -148,6 +148,60 @@
 //		to_chat(world, "Added: [R.product_name]] - [R.amount] - [R.product_path]")
 	return
 
+/obj/machinery/vending/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(tipped_level)
+		to_chat(M, "<span class='warning'>There's no reason to bother with that old piece of trash.</span>")
+		return FALSE
+
+	if(M.a_intent == "hurt")
+		M.animation_attack_on(src)
+		if(prob(M.xeno_caste.melee_damage_lower))
+			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
+			M.visible_message("<span class='danger'>\The [M] smashes \the [src] beyond recognition!</span>", \
+			"<span class='danger'>You enter a frenzy and smash \the [src] apart!</span>", null, 5)
+			malfunction()
+			return TRUE
+		else
+			M.visible_message("<span class='danger'>[M] slashes \the [src]!</span>", \
+			"<span class='danger'>You slash \the [src]!</span>", null, 5)
+			playsound(loc, 'sound/effects/metalhit.ogg', 25, 1)
+		return TRUE
+
+	M.visible_message("<span class='warning'>\The [M] begins to lean against \the [src].</span>", \
+	"<span class='warning'>You begin to lean against \the [src].</span>", null, 5)
+	tipped_level = 1
+	var/shove_time = 100
+	if(M.mob_size == MOB_SIZE_BIG)
+		shove_time = 50
+	if(istype(M,/mob/living/carbon/Xenomorph/Crusher))
+		shove_time = 15
+	if(do_after(M, shove_time, FALSE, 5, BUSY_ICON_HOSTILE))
+		M.visible_message("<span class='danger'>\The [M] knocks \the [src] down!</span>", \
+		"<span class='danger'>You knock \the [src] down!</span>", null, 5)
+		tip_over()
+	else
+		tipped_level = 0
+
+/obj/structure/inflatable/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
+	deflate(1)
+
+/obj/machinery/vending/proc/tip_over()
+	var/matrix/A = matrix()
+	tipped_level = 2
+	density = FALSE
+	A.Turn(90)
+	transform = A
+	malfunction()
+
+/obj/machinery/vending/proc/flip_back()
+	icon_state = initial(icon_state)
+	tipped_level = 0
+	density = TRUE
+	var/matrix/A = matrix()
+	transform = A
+	stat &= ~BROKEN //Remove broken. MAGICAL REPAIRS
+
 /obj/machinery/vending/attackby(obj/item/W, mob/user)
 	if(tipped_level)
 		to_chat(user, "Tip it back upright first!")
@@ -218,15 +272,12 @@
 		var/obj/item/card/id/C = I
 		visible_message("<span class='info'>[usr] swipes a card through [src].</span>")
 		var/datum/money_account/CH = get_account(C.associated_account_number)
-		if (CH) // Only proceed if card contains proper account number.
+		if(CH) // Only proceed if card contains proper account number.
 			if(!CH.suspended)
 				if(CH.security_level != 0) //If card requires pin authentication (ie seclevel 1 or 2)
-					if(vendor_account)
-						var/attempt_pin = input("Enter pin code", "Vendor transaction") as num
-						var/datum/money_account/D = attempt_account_access(C.associated_account_number, attempt_pin, 2)
-						transfer_and_vend(D)
-					else
-						to_chat(usr, "\icon[src]<span class='warning'>Unable to access account. Check security settings and try again.</span>")
+					var/attempt_pin = input("Enter pin code", "Vendor transaction") as num
+					var/datum/money_account/D = attempt_account_access(C.associated_account_number, attempt_pin, 2)
+					transfer_and_vend(D)
 				else
 					//Just Vend it.
 					transfer_and_vend(CH)
@@ -242,11 +293,9 @@
 
 			//transfer the money
 			acc.money -= transaction_amount
-			vendor_account.money += transaction_amount
 
 			//create entries in the two account transaction logs
 			var/datum/transaction/T = new()
-			T.target_name = "[vendor_account.owner_name] (via [src.name])"
 			T.purpose = "Purchase of [currently_vending.product_name]"
 			if(transaction_amount > 0)
 				T.amount = "([transaction_amount])"
@@ -256,15 +305,6 @@
 			T.date = current_date_string
 			T.time = worldtime2text()
 			acc.transaction_log.Add(T)
-							//
-			T = new()
-			T.target_name = acc.owner_name
-			T.purpose = "Purchase of [currently_vending.product_name]"
-			T.amount = "[transaction_amount]"
-			T.source_terminal = src.name
-			T.date = current_date_string
-			T.time = worldtime2text()
-			vendor_account.transaction_log.Add(T)
 
 			// Vend the item
 			src.vend(src.currently_vending, usr)

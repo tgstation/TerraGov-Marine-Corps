@@ -35,7 +35,8 @@
 	name = "\improper M2132 machete"
 	desc = "Latest issue of the USCM Machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
 	icon_state = "machete"
-	force = 35
+	force = 40
+	attack_speed = 9
 	w_class = 4.0
 
 /obj/item/weapon/claymore/attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
@@ -83,6 +84,7 @@
 	throwforce = 20
 	throw_speed = 3
 	throw_range = 6
+	attack_speed = 7
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 

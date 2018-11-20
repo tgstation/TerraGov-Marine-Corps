@@ -196,8 +196,6 @@ atom/proc/SetLuminosity(new_luminosity, trueLum = FALSE)
 	trueLuminosity = new_luminosity
 	if (trueLuminosity < 1)
 		luminosity = 0
-	else if (trueLuminosity <= 100)
-		luminosity = sqrtTable[trueLuminosity]
 	else
 		luminosity = sqrt(trueLuminosity)
 

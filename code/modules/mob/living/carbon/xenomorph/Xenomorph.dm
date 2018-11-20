@@ -43,6 +43,7 @@
 	universal_speak = 0
 	health = 5
 	maxHealth = 5
+	rotate_on_lying = 0
 	mob_size = MOB_SIZE_XENO
 	hand = 1 //Make right hand active by default. 0 is left hand, mob defines it as null normally
 	see_in_dark = 8
@@ -51,13 +52,17 @@
 	hud_possible = list(HEALTH_HUD_XENO, PLASMA_HUD, PHEROMONE_HUD,QUEEN_OVERWATCH_HUD)
 	unacidable = TRUE
 	var/hivenumber = XENO_HIVE_NORMAL
+	var/list/overlays_standing[X_TOTAL_LAYERS]
 
 
 /mob/living/carbon/Xenomorph/New()
+	verbs += /mob/living/proc/lay_down
 	..()
+
+	set_datum()
 	//WO GAMEMODE
 	if(map_tag == MAP_WHISKEY_OUTPOST)
-		hardcore = 1 //Prevents healing and queen evolution
+		xeno_caste.hardcore = 1 //Prevents healing and queen evolution
 	time_of_birth = world.time
 	add_language("Xenomorph") //xenocommon
 	add_language("Hivemind") //hivemind
@@ -69,8 +74,8 @@
 	see_in_dark = 8
 
 
-	if(spit_types && spit_types.len)
-		ammo = ammo_list[spit_types[1]]
+	if(xeno_caste.spit_types?.len)
+		ammo = ammo_list[xeno_caste.spit_types[1]]
 
 	var/datum/reagents/R = new/datum/reagents(100)
 	reagents = R
@@ -80,17 +85,33 @@
 	living_xeno_list += src
 	round_statistics.total_xenos_created++
 
-	if(adjust_size_x != 1)
-		var/matrix/M = matrix()
-		M.Scale(adjust_size_x, adjust_size_y)
-		transform = M
-
 	spawn(6) //Mind has to be transferred! Hopefully this will give it enough time to do so.
 		generate_name()
 
 	regenerate_icons()
 
 	toggle_xeno_mobhud() //This is a verb, but fuck it, it just werks
+
+/mob/living/carbon/Xenomorph/proc/set_datum()
+	if(!caste_base_type)
+		error("xeno spawned without a caste_base_type set")
+		return
+	if(!xeno_caste_datums[caste_base_type])
+		error("error finding base type")
+		return
+	if(!xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)])
+		error("error finding datum")
+		return
+	var/datum/xeno_caste/X = xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
+	if(!istype(X))
+		error("error with caste datum")
+		return
+	xeno_caste = X
+
+	plasma_stored = xeno_caste.plasma_max
+	maxHealth = xeno_caste.max_health
+	health = maxHealth
+	speed = xeno_caste.speed
 
 //Off-load this proc so it can be called freely
 //Since Xenos change names like they change shoes, we need somewhere to hammer in all those legos
@@ -111,7 +132,7 @@
 
 
 	//Larvas have their own, very weird naming conventions, let's not kick a beehive, not yet
-	if(caste == "Larva")
+	if(isXenoLarva(src))
 		return
 
 	var/name_prefix = ""
@@ -131,14 +152,13 @@
 		remove_language("English") // its hacky doing it here sort of
 
 	//Queens have weird, hardcoded naming conventions based on upgrade levels. They also never get nicknumbers
-	if(caste == "Queen")
+	if(isXenoQueen(src))
 		switch(upgrade)
 			if(0) name = "\improper [name_prefix]Queen"			 //Young
-			if(1) name = "\improper [name_prefix]Elite Queen"	 //Mature
-			if(2) name = "\improper [name_prefix]Elite Empress"	 //Elite
+			if(1) name = "\improper [name_prefix]Elder Queen"	 //Mature
+			if(2) name = "\improper [name_prefix]Elder Empress"	 //Elder
 			if(3) name = "\improper [name_prefix]Ancient Empress" //Ancient
-	else if(caste == "Predalien") name = "\improper [name_prefix][name] ([nicknumber])"
-	else name = "\improper [name_prefix][upgrade_name] [caste] ([nicknumber])"
+	else name = "\improper [name_prefix][xeno_caste.upgrade_name] [xeno_caste.display_name] ([nicknumber])"
 
 	//Update linked data so they show up properly
 	real_name = name
@@ -146,8 +166,8 @@
 
 /mob/living/carbon/Xenomorph/examine(mob/user)
 	..()
-	if(isXeno(user) && caste_desc)
-		to_chat(user, caste_desc)
+	if(isXeno(user) && xeno_caste.caste_desc)
+		to_chat(user, xeno_caste.caste_desc)
 
 	if(stat == DEAD)
 		to_chat(user, "It is DEAD. Kicked the bucket. Off to that great hive in the sky.")
@@ -192,29 +212,30 @@
 /mob/living/carbon/Xenomorph/slip(slip_source_name, stun_level, weaken_level, run_only, override_noslip, slide_steps)
 	return FALSE
 
-
+/mob/living/carbon/Xenomorph/handle_knocked_out()
+	if(knocked_out)
+		AdjustKnockedout(-2)
+	return knocked_out
 
 /mob/living/carbon/Xenomorph/start_pulling(atom/movable/AM, lunge, no_msg)
 	if(!isliving(AM))
 		return FALSE
 	var/mob/living/L = AM
-	if(isSynth(L) && L.stat == DEAD) //no meta hiding synthetic bodies
-		return FALSE
 	if(L.buckled)
 		return FALSE //to stop xeno from pulling marines on roller beds.
-	/*if(ishuman(L) && L.stat == DEAD)
-		var/mob/living/carbon/human/H = L
-		if(H.status_flags & XENO_HOST)
-			if(world.time > H.timeofdeath + H.revive_grace_period)
-				return FALSE // they ain't gonna burst now
-		else
-			return FALSE // leave the dead alone*
-	*/ // this is disabled pending the results of the lighting change -spookydonut
+	if(ishuman(L))
+		pull_speed += XENO_DEADHUMAN_DRAG_SLOWDOWN
+	return ..()
+
+/mob/living/carbon/Xenomorph/stop_pulling()
+	if(pulling && ishuman(pulling))
+		pull_speed -= XENO_DEADHUMAN_DRAG_SLOWDOWN
 	return ..()
 
 /mob/living/carbon/Xenomorph/pull_response(mob/puller)
-	if(stat != DEAD && has_species(puller,"Human")) // If the Xeno is alive, fight back against a grab/pull
-		puller.KnockDown(rand(tacklemin,tacklemax))
+	var/mob/living/carbon/human/H = puller
+	if(stat == CONSCIOUS && H.species?.count_human) // If the Xeno is conscious, fight back against a grab/pull
+		puller.KnockDown(rand(xeno_caste.tacklemin,xeno_caste.tacklemax))
 		playsound(puller.loc, 'sound/weapons/pierce.ogg', 25, 1)
 		puller.visible_message("<span class='warning'>[puller] tried to pull [src] but instead gets a tail swipe to the head!</span>")
 		puller.stop_pulling()
@@ -244,7 +265,7 @@
 
 /mob/living/carbon/Xenomorph/point_to_atom(atom/A, turf/T)
 	//xeno leader get a bit arrow and less cooldown
-	if(queen_chosen_lead || caste == "Queen")
+	if(queen_chosen_lead || isXenoQueen(src))
 		recently_pointed_to = world.time + 10
 		new /obj/effect/overlay/temp/point/big(T)
 	else
@@ -253,9 +274,14 @@
 	visible_message("<b>[src]</b> points to [A]")
 	return 1
 
+/mob/living/carbon/Xenomorph/get_permeability_protection()
+	return XENO_PERM_COEFF
 
-
-///get_eye_protection()
-///Returns a number between -1 to 2
 /mob/living/carbon/Xenomorph/get_eye_protection()
 	return 2
+
+/mob/living/carbon/Xenomorph/vomit()
+	return
+
+/mob/living/carbon/Xenomorph/reagent_check(datum/reagent/R) //For the time being they can't metabolize chemicals.
+	return TRUE

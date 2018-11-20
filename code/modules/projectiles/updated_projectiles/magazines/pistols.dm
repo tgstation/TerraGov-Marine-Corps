@@ -14,6 +14,7 @@
 
 /obj/item/ammo_magazine/pistol/hp
 	name = "\improper M4A3 hollowpoint magazine (9mm)"
+	icon_state = "m4a3_HP"
 	default_ammo = /datum/ammo/bullet/pistol/hollow
 
 /obj/item/ammo_magazine/pistol/ap
@@ -29,7 +30,7 @@
 /obj/item/ammo_magazine/pistol/extended
 	name = "\improper M4A3 extended magazine (9mm)"
 	max_rounds = 22
-	icon_state = "m4a3" //PLACEHOLDER
+	icon_state = "m4a3_ext"
 	bonus_overlay = "m4a3_ex"
 
 

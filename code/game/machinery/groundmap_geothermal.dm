@@ -195,7 +195,7 @@
 //Putting these here since it's power-related
 /obj/machinery/colony_floodlight_switch
 	name = "Colony Floodlight Switch"
-	icon = 'icons/turf/ground_map.dmi'
+	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "panelnopower"
 	desc = "This switch controls the floodlights surrounding the archaeology complex. It only functions when there is power."
 	density = 0
@@ -280,7 +280,7 @@
 
 /obj/machinery/colony_floodlight
 	name = "Colony Floodlight"
-	icon = 'icons/turf/ground_map.dmi'
+	icon = 'icons/obj/machines/floodlight.dmi'
 	icon_state = "floodoff"
 	density = 1
 	anchored = 1
@@ -308,6 +308,29 @@
 		icon_state = "floodon"
 	else
 		icon_state = "floodoff"
+
+/obj/machinery/colony_floodlight/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+	M.visible_message("[M] starts biting [src]!","In a rage, you start biting [src], but with no effect!", null, 5)
+
+/obj/machinery/colony_floodlight/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(!is_lit)
+		to_chat(M, "Why bother? It's just some weird metal thing.")
+		return FALSE
+	else if(damaged)
+		to_chat(M, "It's already damaged.")
+		return FALSE
+	else
+		M.animation_attack_on(src)
+		M.visible_message("[M] slashes away at [src]!","You slash and claw at the bright light!", null, null, 5)
+		health  = max(health - rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper), 0)
+		if(!health)
+			playsound(src, "shatter", 70, 1)
+			damaged = TRUE
+			if(is_lit)
+				SetLuminosity(0)
+			update_icon()
+		else
+			playsound(loc, 'sound/effects/Glasshit.ogg', 25, 1)
 
 /obj/machinery/colony_floodlight/attackby(obj/item/I, mob/user)
 	if(damaged)

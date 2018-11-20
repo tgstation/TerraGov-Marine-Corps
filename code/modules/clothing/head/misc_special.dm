@@ -28,6 +28,7 @@
 	w_class = 3
 	anti_hug = 2
 	eye_protection = 2
+	tint = 2
 	var/hug_memory = 0 //Variable to hold the "memory" of how many anti-hugs remain.  Because people were abusing the fuck out of it.
 
 /obj/item/clothing/head/welding/attack_self()
@@ -45,6 +46,7 @@
 			flags_inv_hide |= HIDEEARS|HIDEEYES|HIDEFACE
 			icon_state = initial(icon_state)
 			eye_protection = initial(eye_protection)
+			tint = initial(tint)
 			to_chat(usr, "You flip the [src] down to protect your eyes.")
 			anti_hug = hug_memory //This will reset the hugged var, but ehh. More efficient than making a new var for it.
 		else
@@ -52,6 +54,7 @@
 			flags_inv_hide &= ~(HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = "[initial(icon_state)]up"
 			eye_protection = 0
+			tint = 0
 			to_chat(usr, "You push the [src] up out of your face.")
 			hug_memory = anti_hug
 			anti_hug = 0
@@ -64,9 +67,7 @@
 
 		update_clothing_icon()	//so our mob-overlays update
 
-		for(var/X in actions)
-			var/datum/action/A = X
-			A.update_button_icon()
+		update_action_button_icons()
 
 /*
  * Cakehat

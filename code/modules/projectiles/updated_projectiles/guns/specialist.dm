@@ -153,11 +153,17 @@
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
 	force = 16
 	attachable_allowed = list(
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
 						/obj/item/attachable/bipod,
-						/obj/item/attachable/compensator)
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/attached_gun/grenade,
+						/obj/item/attachable/attached_gun/shotgun,
+						)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
@@ -165,8 +171,8 @@
 
 /obj/item/weapon/gun/rifle/m4ra/New()
 	..()
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
-	var/obj/item/attachable/scope/S = new(src)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+	var/obj/item/attachable/scope/m4ra/S = new(src)
 	S.icon_state = null // the gun's sprite already shows a scope
 	S.attach_icon = null
 	S.flags_attach_features &= ~ATTACH_REMOVABLE //Don't want it coming off.
@@ -177,13 +183,16 @@
 
 
 /obj/item/weapon/gun/rifle/m4ra/set_gun_config_values()
-	fire_delay = config.high_fire_delay
-	burst_amount = config.med_burst_value
-	burst_delay = config.mlow_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	scatter = config.low_scatter_value
+	fire_delay = config.mhigh_fire_delay
+	burst_amount = config.low_burst_value
+	burst_delay = config.vlow_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.max_hit_accuracy_mult
+	scatter_unwielded = config.max_scatter_value
 	damage_mult = config.base_hit_damage_mult
 	recoil = config.min_recoil_value
+	recoil_unwielded = config.high_recoil_value
+	damage_falloff_mult = config.low_damage_falloff_mult
 
 //-------------------------------------------------------
 //SMARTGUN
@@ -203,22 +212,24 @@
 	wield_delay = 16
 	aim_slowdown = SLOWDOWN_ADS_SPECIALIST
 	var/datum/ammo/ammo_secondary = /datum/ammo/bullet/smartgun/lethal//Toggled ammo type
-	var/shells_fired_max = 20 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
+	var/shells_fired_max = 50 //Smartgun only; once you fire # of shells, it will attempt to reload automatically. If you start the reload, the counter resets.
 	var/shells_fired_now = 0 //The actual counter used. shells_fired_max is what it is compared to.
 	var/restriction_toggled = 1 //Begin with the safety on.
 	gun_skill_category = GUN_SKILL_SMARTGUN
 	attachable_allowed = list(
+						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/flashlight,
 						/obj/item/attachable/burstfire_assembly,
 						/obj/item/attachable/bipod)
 
-	flags_gun_features = GUN_INTERNAL_MAG|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY
-
+	flags_gun_features = GUN_INTERNAL_MAG|GUN_SPECIALIST|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
+	starting_attachment_types = list(/obj/item/attachable/flashlight)
 
 /obj/item/weapon/gun/smartgun/New()
 	..()
 	ammo_secondary = ammo_list[ammo_secondary]
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 17, "rail_y" = 19, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 17, "rail_y" = 17, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
 
 
 /obj/item/weapon/gun/smartgun/set_gun_config_values()
@@ -228,6 +239,7 @@
 	accuracy_mult = config.base_hit_accuracy_mult + config.min_hit_accuracy_mult
 	scatter = config.med_scatter_value
 	damage_mult = config.base_hit_damage_mult
+	damage_falloff_mult = config.med_damage_falloff_mult
 
 /obj/item/weapon/gun/smartgun/examine(mob/user)
 	..()
@@ -277,7 +289,7 @@
 	set waitfor = 0
 	sleep(5)
 	if(power_pack && power_pack.loc)
-		power_pack.attack_self(smart_gunner)
+		power_pack.attack_self(smart_gunner, TRUE)
 
 /obj/item/weapon/gun/smartgun/dirty
 	name = "\improper M56D 'dirty' smartgun"
@@ -566,6 +578,16 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	smoke = new()
 	smoke.attach(src)
+
+/obj/item/weapon/gun/launcher/rocket/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
+	if(!able_to_fire(user))
+		return
+	var/delay = 3
+	if(has_attachment(/obj/item/attachable/scope/mini))
+		delay = 6
+	if(!do_after(user, delay, TRUE, 3, BUSY_ICON_HOSTILE)) //slight wind up
+		return
+	return ..()
 
 /obj/item/weapon/gun/launcher/rocket/set_gun_config_values()
 	fire_delay = config.high_fire_delay*2

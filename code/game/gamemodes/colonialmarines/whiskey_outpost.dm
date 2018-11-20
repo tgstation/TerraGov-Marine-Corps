@@ -11,7 +11,7 @@
 					/datum/job/marine/specialist/equipped,
 					/datum/job/marine/smartgunner/equipped,
 					/datum/job/marine/leader/equipped,
-					/datum/job/civilian/doctor,
+					/datum/job/medical/doctor,
 					/datum/job/command/commander,
 					/datum/job/logistics/tech/maint,
 					/datum/job/command/police,
@@ -791,7 +791,7 @@
 
 
 		if(3)//Tier II versions added, but rare
-			spawnxeno += list(/mob/living/carbon/Xenomorph/Lurker,
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter,
 						/mob/living/carbon/Xenomorph/Spitter)
 
 			spawnxeno -= list(/mob/living/carbon/Xenomorph/Runner,
@@ -799,7 +799,7 @@
 						/mob/living/carbon/Xenomorph/Runner)
 
 		if(4)//Tier II more common
-			spawnxeno += list(/mob/living/carbon/Xenomorph/Lurker,
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter,
 						/mob/living/carbon/Xenomorph/Drone,
 						/mob/living/carbon/Xenomorph/Spitter)
 
@@ -807,7 +807,7 @@
 			spawn_xeno_num = (count_humans() * 0.5) //Reset
 
 		if(6)//Tier II more common
-			spawnxeno += list(/mob/living/carbon/Xenomorph/Lurker,
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter,
 						/mob/living/carbon/Xenomorph/Spitter)
 
 		if(7)
@@ -823,8 +823,8 @@
 
 		if(9)//Ravager and Praetorian Added, Tier II more common, Tier I less common
 			spawn_next_wave -= 1000 //Speed it up again. After the period of grace.
-			spawnxeno += list(/mob/living/carbon/Xenomorph/Lurker/mature,
-						/mob/living/carbon/Xenomorph/Lurker/mature,
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/mature,
+						/mob/living/carbon/Xenomorph/Hunter/mature,
 						/mob/living/carbon/Xenomorph/Spitter/mature,
 						/mob/living/carbon/Xenomorph/Runner/mature,
 						/mob/living/carbon/Xenomorph/Runner/mature,
@@ -837,15 +837,15 @@
 			spawn_xeno_num = count_humans()
 
 		if(11)
-			spawnxeno += list(/mob/living/carbon/Xenomorph/Lurker/elite,
-						/mob/living/carbon/Xenomorph/Lurker/elite,
-						/mob/living/carbon/Xenomorph/Spitter/elite,
-						/mob/living/carbon/Xenomorph/Runner/elite,
-						/mob/living/carbon/Xenomorph/Runner/elite,
-						/mob/living/carbon/Xenomorph/Drone/elite)
+			spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/elder,
+						/mob/living/carbon/Xenomorph/Hunter/elder,
+						/mob/living/carbon/Xenomorph/Spitter/elder,
+						/mob/living/carbon/Xenomorph/Runner/elder,
+						/mob/living/carbon/Xenomorph/Runner/elder,
+						/mob/living/carbon/Xenomorph/Drone/elder)
 
-			spawnxeno -= list(/mob/living/carbon/Xenomorph/Lurker/mature,
-						/mob/living/carbon/Xenomorph/Lurker/mature,
+			spawnxeno -= list(/mob/living/carbon/Xenomorph/Hunter/mature,
+						/mob/living/carbon/Xenomorph/Hunter/mature,
 						/mob/living/carbon/Xenomorph/Spitter/mature,
 						/mob/living/carbon/Xenomorph/Runner/mature,
 						/mob/living/carbon/Xenomorph/Runner/mature,
@@ -862,17 +862,17 @@
 						/mob/living/carbon/Xenomorph/Runner,
 						/mob/living/carbon/Xenomorph/Runner)
 
-		if(13)//Start the elite transition
+		if(13)//Start the elder transition
 			spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher/mature,
 						/mob/living/carbon/Xenomorph/Boiler,
-						/mob/living/carbon/Xenomorph/Ravager/elite,
-						/mob/living/carbon/Xenomorph/Runner/elite,
-						/mob/living/carbon/Xenomorph/Hivelord/elite,
-						/mob/living/carbon/Xenomorph/Spitter/elite,
-						/mob/living/carbon/Xenomorph/Praetorian/elite)
+						/mob/living/carbon/Xenomorph/Ravager/elder,
+						/mob/living/carbon/Xenomorph/Runner/elder,
+						/mob/living/carbon/Xenomorph/Hivelord/elder,
+						/mob/living/carbon/Xenomorph/Spitter/elder,
+						/mob/living/carbon/Xenomorph/Praetorian/elder)
 
 			spawnxeno -= list(/mob/living/carbon/Xenomorph/Spitter/mature,
-						/mob/living/carbon/Xenomorph/Drone/elite,
+						/mob/living/carbon/Xenomorph/Drone/elder,
 						/mob/living/carbon/Xenomorph/Hivelord)
 
 		if(14)//Start the ancient Also keeping this spawnlist the same since its suppose to be just about get fucked in the end.
@@ -881,12 +881,12 @@
 						/mob/living/carbon/Xenomorph/Boiler/ancient,
 						/mob/living/carbon/Xenomorph/Ravager/ancient,
 						/mob/living/carbon/Xenomorph/Runner/ancient,
-						/mob/living/carbon/Xenomorph/Lurker/ancient,
+						/mob/living/carbon/Xenomorph/Hunter/ancient,
 						/mob/living/carbon/Xenomorph/Spitter/ancient,
 						/mob/living/carbon/Xenomorph/Praetorian/ancient)
 
 			spawnxeno -= list(/mob/living/carbon/Xenomorph/Crusher,
-						/mob/living/carbon/Xenomorph/Lurker/mature,
+						/mob/living/carbon/Xenomorph/Hunter/mature,
 						/mob/living/carbon/Xenomorph/Praetorian)
 
 		if(15 to INFINITY)
@@ -905,7 +905,7 @@
 						if(4)//Add another Crusher
 							spawnxeno += list(/mob/living/carbon/Xenomorph/Crusher/ancient)
 						if(5)//Add another Hunter and Spitter
-							spawnxeno += list(/mob/living/carbon/Xenomorph/Lurker/ancient,
+							spawnxeno += list(/mob/living/carbon/Xenomorph/Hunter/ancient,
 										/mob/living/carbon/Xenomorph/Spitter/ancient)
 
 				if(6)//Runner madness
@@ -956,7 +956,7 @@
 				picked = pick(xeno_spawn_loc)
 				var/mob/living/carbon/Xenomorph/X = new path(picked)
 				X.away_timer = 300 //So ghosts can join instantly
-				X.plasma_stored = X.plasma_max
+				X.plasma_stored = X.xeno_caste.plasma_max
 				X.flags_pass = 0 // Runners cannot pass trough tables
 
 				//X.a_intent = "harm" This caused problems
@@ -973,7 +973,7 @@
 				picked = pick(xeno_spawn_loc)
 				var/mob/living/carbon/Xenomorph/X = new path(picked)
 				X.away_timer = 300 //So ghosts can join instantly
-				X.plasma_stored = X.plasma_max
+				X.plasma_stored = X.xeno_caste.plasma_max
 				X.flags_pass = 0 // Runners cannot pass trough tables
 
 				//X.a_intent = "harm" This caused problems
@@ -1180,17 +1180,17 @@
 								/obj/item/storage/pill_bottle/tramadol,
 								/obj/item/storage/pill_bottle/tramadol,
 								/obj/item/storage/pill_bottle/spaceacillin,
-								/obj/item/storage/pill_bottle/antitox,
+								/obj/item/storage/pill_bottle/dylovene,
 								/obj/item/storage/pill_bottle/kelotane,
 								/obj/item/stack/medical/splint,
 								/obj/item/stack/medical/splint,
-								/obj/item/reagent_container/hypospray/autoinjector/tricord,
-								/obj/item/reagent_container/hypospray/autoinjector/tricord,
-								/obj/item/reagent_container/hypospray/autoinjector/tricord,
+								/obj/item/reagent_container/hypospray/autoinjector/tricordrazine,
+								/obj/item/reagent_container/hypospray/autoinjector/tricordrazine,
+								/obj/item/reagent_container/hypospray/autoinjector/tricordrazine,
 								/obj/item/reagent_container/hypospray/autoinjector/quickclot,
-								/obj/item/reagent_container/hypospray/autoinjector/dexP,
-								/obj/item/reagent_container/hypospray/autoinjector/Bicard,
-								/obj/item/reagent_container/hypospray/autoinjector/Kelo)
+								/obj/item/reagent_container/hypospray/autoinjector/dexalinplus,
+								/obj/item/reagent_container/hypospray/autoinjector/bicaridine,
+								/obj/item/reagent_container/hypospray/autoinjector/kelotane)
 
 			if(31 to 40)//Random Attachments Crate 20% because the lord commeth and said let there be attachments.
 				crate = new /obj/structure/closet/crate/secure/weapon(T)
@@ -1463,7 +1463,7 @@
 		return 0
 
 	to_chat(user, "<span class='boldnotice'> You start lasing the target area.</span>")
-	message_admins("ALERT: [user] ([user.key]) IS CURRENTLY LAZING A TARGET: CURRENT MODE [laz_mode], at ([T.x],[T.y],[T.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>).") // Alert all the admins to this asshole. Added the jmp command from the explosion code.
+	message_admins("ALERT: [key_name(usr)]  (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) IS CURRENTLY LAZING A TARGET: CURRENT MODE [laz_mode], at ([T.x],[T.y],[T.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>).") // Alert all the admins to this asshole. Added the jmp command from the explosion code.
 	var/obj/effect/las_target/lasertarget = new(T.loc)
 	if(laz_mode == 1 && !laz_r) // Heres our IR bomb code.
 		lazing = 1

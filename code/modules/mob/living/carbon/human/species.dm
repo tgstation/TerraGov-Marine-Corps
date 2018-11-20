@@ -19,6 +19,7 @@
 	var/datum/hud_data/hud
 	var/hud_type
 	var/slowdown = 0
+	var/taste_sensitivity = TASTE_NORMAL
 	var/gluttonous        // Can eat some mobs. 1 for monkeys, 2 for people.
 	var/rarity_value = 1  // Relative rarity/collector value for this species. Only used by ninja and cultists atm.
 	var/unarmed_type =           /datum/unarmed_attack
@@ -233,6 +234,17 @@
 /datum/species/proc/update_inv_wear_suit(mob/living/carbon/human/H)
 	return
 
+/datum/species/proc/handle_chemicals(datum/reagent/chem, mob/living/carbon/human/H)
+	if(flags & NO_CHEM_METABOLIZATION) //explicit
+		H.reagents.del_reagent(chem.id) //for the time being
+		return TRUE
+	if(flags & NO_OVERDOSE) //no stacking
+		for(var/datum/reagent/R in H.reagents)
+			if(R.volume > R.overdose_threshold)
+				H.reagents.remove_reagent(R, R.volume - R.overdose_threshold)
+				return FALSE
+	return FALSE
+
 /datum/species/human
 	name = "Human"
 	name_plural = "Humans"
@@ -314,6 +326,7 @@
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
 	primitive = /mob/living/carbon/monkey/unathi
 	darksight = 3
+	taste_sensitivity = TASTE_SENSITIVE
 	gluttonous = 1
 
 	cold_level_1 = 280 //Default 260 - Lower is better
@@ -433,6 +446,7 @@
 	deform = 'icons/mob/human_races/r_def_vox.dmi'
 	default_language = "Vox-pidgin"
 	language = "English"
+	taste_sensitivity = TASTE_DULL
 	unarmed_type = /datum/unarmed_attack/claws/strong
 	secondary_unarmed_type = /datum/unarmed_attack/bite/strong
 	rarity_value = 2
@@ -627,7 +641,8 @@
 	death_message = "seizes up and falls limp... But is it dead?"
 	language = "Zombie"
 	default_language = "Zombie"
-	flags = NO_PAIN|NO_BREATHE|NO_SCAN|NO_POISON
+	taste_sensitivity = TASTE_DULL
+	flags = NO_PAIN|NO_BREATHE|NO_SCAN|NO_POISON|NO_OVERDOSE
 	brute_mod = 0.25 //EXTREME BULLET RESISTANCE
 	burn_mod = 2 //IT BURNS
 	speech_chance  = 5
@@ -688,7 +703,7 @@
 	if(H && H.loc && H.stat == DEAD && H.regenZ)
 		H.revive(TRUE)
 		H.stunned = 4
-		H.make_jittery(500)
+		H.Jitter(500)
 		H.visible_message("<span class = 'warning'>[H] rises!", "\green YOU RISE AGAIN!")
 		H.equip_to_slot(new /obj/item/clothing/glasses/zombie_eyes, WEAR_EYES, TRUE)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine, WEAR_FEET, TRUE)
@@ -725,7 +740,7 @@
 	brute_mod = 0.33 //Beefy!
 	burn_mod = 0.65
 	reagent_tag = IS_YAUTJA
-	flags = HAS_SKIN_COLOR|NO_PAIN|NO_SCAN|NO_POISON //Hmm, let's see if this does anything
+	flags = HAS_SKIN_COLOR|NO_PAIN|NO_SCAN|NO_POISON|NO_OVERDOSE
 	language = "Sainja" //"Warrior"
 	default_language = "Sainja"
 	unarmed_type = /datum/unarmed_attack/punch/strong
@@ -748,8 +763,9 @@
 		/mob/living/carbon/human/proc/butcher
 		)
 
-	knock_down_reduction = 2
-	stun_reduction = 2
+	knock_down_reduction = 4
+	stun_reduction = 4
+	knock_out_reduction = 2
 
 
 /datum/species/yautja/post_species_loss(mob/living/carbon/human/H)
@@ -901,10 +917,16 @@
 
 	if(WEAR_BACK in equip_slots)
 		equip_slots |= WEAR_IN_BACK
+		equip_slots |= WEAR_IN_B_HOLSTER	
 	if(WEAR_WAIST in equip_slots)
 		equip_slots |= WEAR_IN_HOLSTER
 	if(WEAR_JACKET in equip_slots)
 		equip_slots |= WEAR_IN_J_HOLSTER
-
-	equip_slots |= WEAR_LEGCUFFS
-	equip_slots |= WEAR_IN_B_HOLSTER
+	if(WEAR_FEET in equip_slots)
+		equip_slots |= WEAR_LEGCUFFS
+		equip_slots |= EQUIP_IN_BOOT
+	if(WEAR_BODY in equip_slots)
+		equip_slots |= EQUIP_IN_STORAGE
+		equip_slots |= EQUIP_IN_L_POUCH
+		equip_slots |= EQUIP_IN_R_POUCH
+		equip_slots |= WEAR_ACCESSORY

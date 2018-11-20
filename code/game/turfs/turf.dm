@@ -371,6 +371,9 @@
 /turf/open/snow/can_dig_xeno_tunnel()
 	return TRUE
 
+/turf/open/ice/can_dig_xeno_tunnel()
+	return TRUE
+
 /turf/open/mars/can_dig_xeno_tunnel()
 	return TRUE
 

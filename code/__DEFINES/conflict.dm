@@ -45,6 +45,7 @@
 #define ATTACH_PROJECTILE	4 //for attachments that fire bullets
 #define ATTACH_RELOADABLE	8
 #define ATTACH_WEAPON		16 //is a weapon that fires stuff
+#define ATTACH_UTILITY		32 //for attachments with utility that trigger by 'shooting'
 
 //Ammo magazine defines, for flags_magazine
 #define AMMUNITION_REFILLABLE	1
@@ -74,5 +75,12 @@
 #define WIELD_DELAY_VERY_SLOW		16
 #define WIELD_DELAY_HORRIBLE		20
 //=================================================
+
+//Define detpack
+#define DETPACK_TIMER_MIN			5
+#define DETPACK_TIMER_MAX			300
+
+//Define flamer
+#define M240T_WATER_AMOUNT 			reagents.get_reagent_amount("water")
 
 #define OVERCHARGE_AMMO_COST		2

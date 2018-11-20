@@ -27,7 +27,7 @@
 	gas_filter_strength = 3
 	eye_protection = 2
 	var/current_goggles = 0 //0: OFF. 1: NVG. 2: Thermals. 3: Mesons
-	vision_impair = 0
+	tint = 0
 	unacidable = 1
 	anti_hug = 100
 
@@ -1017,14 +1017,15 @@
 		else
 			to_chat(user, "<span class='warning'>You aren't strong enough to swing the sword properly!</span>")
 			force = round(initial(force)/2)
-			if(prob(50)) user.make_dizzy(80)
+			if(prob(50))
+				user.Dizzy(80)
 
 		return ..()
 
 	pickup(mob/living/user as mob)
 		if(!isYautja(user))
 			to_chat(user, "<span class='warning'>You struggle to pick up the huge, unwieldy sword. It makes you dizzy just trying to hold it!</span>")
-			user.make_dizzy(50)
+			user.Dizzy(50)
 
 /obj/item/weapon/yautja_scythe
 	name = "double war scythe"
@@ -1189,7 +1190,7 @@
 			return
 
 		if(user)
-			msg_admin_attack("[user.name] ([user.ckey]) primed \a [src] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[user.x];Y=[user.y];Z=[user.z]'>JMP</a>)")
+			msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) primed \a [src]")
 		icon_state = initial(icon_state) + "_active"
 		active = 1
 		if(dangerous)
@@ -1208,7 +1209,7 @@
 		return
 
 	check_eye(mob/user)
-		if (user.is_mob_incapacitated() || user.blinded )
+		if (user.is_mob_incapacitated() || is_blind(user) )
 			user.unset_interaction()
 		else if ( !current || get_turf(user) != activated_turf || src.loc != user ) //camera doesn't work, or we moved.
 			user.unset_interaction()

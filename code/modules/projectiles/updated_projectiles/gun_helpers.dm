@@ -174,10 +174,10 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 	if(user.mind)
 		switch(user.mind.assigned_role)
-			if("PMC Leader","PMC", "WY Agent", "Corporate Liaison", "Event")
+			if("WY Agent", "Corporate Liaison", "Event")
 				return TRUE
 		switch(user.mind.special_role)
-			if("DEATH SQUAD","PMC")
+			if("Deathsquad","PMC")
 				return TRUE
 	to_chat(user, "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>")
 
@@ -271,9 +271,8 @@ should be alright.
 			user.update_inv_s_store()
 
 /obj/item/weapon/gun/attack_self(mob/user)
-	..()
-	if (target)
-		lower_aim()
+	. = ..()
+	if(target)
 		return
 
 	//There are only two ways to interact here.

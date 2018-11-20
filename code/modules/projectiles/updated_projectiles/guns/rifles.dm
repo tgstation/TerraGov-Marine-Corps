@@ -75,7 +75,7 @@
 /obj/item/weapon/gun/rifle/m41a/set_gun_config_values()
 	fire_delay = config.med_fire_delay
 	burst_amount = config.med_burst_value
-	burst_delay = config.mlow_fire_delay
+	burst_delay = config.vlow_fire_delay
 	accuracy_mult = config.base_hit_accuracy_mult
 	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.high_hit_accuracy_mult
 	scatter = config.med_scatter_value

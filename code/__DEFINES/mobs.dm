@@ -5,31 +5,6 @@
 #define BORGTHERM 2
 #define BORGXRAY  4
 
-
-/*
-	reagents defines
-*/
-
-#define SOLID 1
-#define LIQUID 2
-#define GAS 3
-#define REAGENTS_OVERDOSE 30
-#define REAGENTS_OVERDOSE_CRITICAL 50
-
-// How many units of reagent are consumed per tick, by default.
-#define REAGENTS_METABOLISM 0.2
-// By defining the effect multiplier this way, it'll exactly adjust
-// all effects according to how they originally were with the 0.4 metabolism
-#define REAGENTS_EFFECT_MULTIPLIER REAGENTS_METABOLISM / 0.4
-
-#define REM REAGENTS_EFFECT_MULTIPLIER
-// Reagent metabolism defines.
-#define FOOD_METABOLISM 0.4
-#define ALCOHOL_METABOLISM 0.1
-
-// Factor of how fast mob nutrition decreases
-#define HUNGER_FACTOR 0.05
-
 //Pain or shock reduction for different reagents
 #define PAIN_REDUCTION_VERY_LIGHT	-10 //alkysine
 #define PAIN_REDUCTION_LIGHT		-25 //inaprovaline
@@ -52,6 +27,11 @@
 #define INFECTION_LEVEL_THREE	800
 
 #define MIN_ANTIBIOTICS			0
+
+
+#define LIVING_PERM_COEFF 0
+#define HELLHOUND_PERM_COEFF 0.5
+#define XENO_PERM_COEFF 0.8
 //=================================================
 
 #define HUMAN_STRIP_DELAY 40 //takes 40ds = 4s to strip someone.
@@ -345,15 +325,16 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define NO_SCAN 4
 #define NO_PAIN 8
 #define NO_SLIP 16
-#define NO_POISON 32
-#define NO_CHEM_METABOLIZATION 64 //Prevents reagents from acting on_mob_life().
-#define HAS_SKIN_TONE 128
-#define HAS_SKIN_COLOR 256
-#define HAS_LIPS 512
-#define HAS_UNDERWEAR 1024
-#define HAS_NO_HAIR	2048
-#define IS_PLANT 4096
-#define IS_SYNTHETIC 8192
+#define NO_OVERDOSE 32
+#define NO_POISON 64
+#define NO_CHEM_METABOLIZATION 128
+#define HAS_SKIN_TONE 256
+#define HAS_SKIN_COLOR 512
+#define HAS_LIPS 1024
+#define HAS_UNDERWEAR 2048
+#define HAS_NO_HAIR 4096
+#define IS_PLANT 8192
+#define IS_SYNTHETIC 16384
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
@@ -372,6 +353,12 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define MOB_SIZE_XENO			2
 #define MOB_SIZE_BIG		3
 
+//taste sensitivity defines, used in mob/living/proc/taste
+#define TASTE_HYPERSENSITIVE 5 //anything below 5% is not tasted
+#define TASTE_SENSITIVE 10 //anything below 10%
+#define TASTE_NORMAL 15 //anything below 15%
+#define TASTE_DULL 30 //anything below 30%
+#define TASTE_NUMB 101 //no taste
 
 //defines for the busy icons when the mob does something that takes time using do_after proc
 #define BUSY_ICON_GENERIC	1
@@ -420,10 +407,12 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define PAINFUL 2
 #define EXTREMELY_PAINFUL 3
 
-// xeno abilities cooldown
+// halloss defines
 
-#define CRUSHER_STOMP_COOLDOWN 200
-#define XENO_SLOWDOWN_REGEN 0.4
+#define BASE_HALLOSS_RECOVERY_RATE -4
+#define WALK_HALLOSS_RECOVERY_RATE -12
+#define DOWNED_HALLOSS_RECOVERY_RATE -16
+#define REST_HALLOSS_RECOVERY_RATE -32
 
 // Human Overlay Indexes
 #define MOTH_WINGS_LAYER		26
@@ -458,3 +447,70 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define MOTH_WINGS_BEHIND_LAYER	1
 
 #define TOTAL_UNDERLAYS			1
+
+#define ANTI_CHAINSTUN_TICKS	2
+
+//Hunter Defines
+#define HUNTER_STEALTH_COOLDOWN					50 //5 seconds
+#define HUNTER_STEALTH_WALK_PLASMADRAIN			2
+#define HUNTER_STEALTH_RUN_PLASMADRAIN			5
+#define HUNTER_STEALTH_STILL_ALPHA				13 //95% transparency
+#define HUNTER_STEALTH_WALK_ALPHA				51 //80% transparency
+#define HUNTER_STEALTH_RUN_ALPHA				128 //50% transparency
+#define HUNTER_STEALTH_STEALTH_DELAY			40 //4 seconds before 95% stealth
+#define HUNTER_STEALTH_INITIAL_DELAY			20 //2 seconds before we can increase stealth
+#define HUNTER_POUNCE_SNEAKATTACK_DELAY 		40 //4 seconds before we can sneak attack
+#define HANDLE_STEALTH_CHECK				1
+#define HANDLE_STEALTH_CODE_CANCEL		2
+#define HANDLE_SNEAK_ATTACK_CHECK		3
+
+// xeno defines
+
+#define CRUSHER_STOMP_COOLDOWN 200
+#define XENO_SLOWDOWN_REGEN 0.4
+#define XENO_HALOSS_REGEN 3
+#define QUEEN_DEATH_TIMER 300 // 5 minutes
+#define DEFENDER_CRESTDEFENSE_ARMOR 30
+#define DEFENDER_CRESTDEFENSE_SLOWDOWN 0.8
+#define DEFENDER_FORTIFY_ARMOR 60
+#define WARRIOR_AGILITY_ARMOR 30
+#define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
+
+
+#define CRITICAL_HIT_DELAY 25
+
+//Ravager defines:
+#define RAVAGER_MAX_RAGE 50
+#define RAV_CHARGESPEED					3
+#define RAV_CHARGESTRENGTH				3
+#define RAV_CHARGEDISTANCE				7
+#define RAV_CHARGECOOLDOWN				30 SECONDS
+#define RAV_CHARGE_TYPE					3
+#define RAV_SECOND_WIND_COOLDOWN		5 MINUTES
+#define RAV_RAVAGE_COOLDOWN				10 SECONDS
+#define RAV_HANDLE_CHARGE				1
+
+//defender defines
+
+#define DEFENDER_HEADBUTT_COST			20
+#define DEFENDER_TAILSWIPE_COST			30
+
+//carrier defines
+
+#define CARRIER_SPAWN_HUGGER_COST 100
+#define CARRIER_HUGGER_THROW_SPEED 2
+#define CARRIER_HUGGER_THROW_DISTANCE 5
+
+#define CANNOT_HOLD_EGGS 0
+#define CAN_HOLD_TWO_HANDS 1
+#define CAN_HOLD_ONE_HAND 2
+
+#define CASTE_CAN_HOLD_FACEHUGGERS 	(1<<0)
+#define CASTE_CAN_VENT_CRAWL		(1<<1)
+#define CASTE_CAN_BE_QUEEN_HEALED	(1<<2)
+#define CASTE_CAN_BE_GIVEN_PLASMA	(1<<3)
+#define CASTE_INNATE_HEALING		(1<<4)
+#define CASTE_FIRE_IMMUNE			(1<<5)
+#define CASTE_EVOLUTION_ALLOWED		(1<<6)
+#define CASTE_IS_INTELLIGENT		(1<<7)
+#define CASTE_IS_ROBOTIC			(1<<8)

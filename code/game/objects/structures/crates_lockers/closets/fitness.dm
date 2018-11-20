@@ -77,3 +77,37 @@
 //	new /obj/item/weapon/gun/energy/laser/bluetag(src)
 	new /obj/item/clothing/suit/bluetag(src)
 	new /obj/item/clothing/suit/bluetag(src)
+
+/obj/structure/closet/basketball
+	name = "basketball wardrobe"
+	desc = "It's a storage unit for basketball wear."
+	icon_state = "mixed"
+	icon_closed = "mixed"
+
+/obj/structure/closet/basketball/New()
+	..()
+	sleep(2)
+	new /obj/item/clothing/under/shorts/grey(src)
+	new /obj/item/clothing/under/shorts/black(src)
+	new /obj/item/clothing/under/shorts/red(src)
+	new /obj/item/clothing/under/shorts/blue(src)
+	new /obj/item/clothing/under/shorts/green(src)
+
+/obj/structure/closet/swimsuit
+	name = "swimsuit wardrobe"
+	desc = "It's a storage unit for swimsuits."
+	icon_state = "mixed"
+	icon_closed = "mixed"
+
+/obj/structure/closet/athletic_mixed/New()
+	..()
+	sleep(2)
+	new /obj/item/clothing/under/swimsuit/red(src)
+	new /obj/item/clothing/under/swimsuit/black(src)
+	new /obj/item/clothing/under/swimsuit/blue(src)
+	new /obj/item/clothing/under/swimsuit/green(src)
+	new /obj/item/clothing/under/swimsuit/purple(src)
+	new /obj/item/clothing/mask/snorkel(src)
+	new /obj/item/clothing/mask/snorkel(src)
+	new /obj/item/clothing/shoes/swimmingfins(src)
+	new /obj/item/clothing/shoes/swimmingfins(src)

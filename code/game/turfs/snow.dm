@@ -9,6 +9,32 @@
 	icon_state = "snow_0"
 	is_groundmap_turf = TRUE
 
+/turf/open/snow/attack_larva(mob/living/carbon/Xenomorph/Larva/M)
+	return //Larvae can't do shit
+
+//Xenos digging up snow
+/turf/open/snow/attack_alien(mob/living/carbon/Xenomorph/M)
+	if(M.a_intent == "grab")
+
+		if(!slayer)
+			to_chat(M, "<span class='warning'>There is nothing to clear out!</span>")
+			return FALSE
+
+		M.visible_message("<span class='notice'>\The [M] starts clearing out \the [src].</span>", \
+		"<span class='notice'>You start clearing out \the [src].</span>", null, 5)
+		playsound(M.loc, 'sound/weapons/alien_claw_swipe.ogg', 25, 1)
+		if(!do_after(M, 25, FALSE, 5, BUSY_ICON_FRIENDLY))
+			return FALSE
+
+		if(!slayer)
+			M  << "<span class='warning'>There is nothing to clear out!</span>"
+			return
+
+		M.visible_message("<span class='notice'>\The [M] clears out \the [src].</span>", \
+		"<span class='notice'>You clear out \the [src].</span>", null, 5)
+		slayer -= 1
+		update_icon(1, 0)
+
 	//PLACING/REMOVING/BUILDING
 /turf/open/snow/attackby(var/obj/item/I, var/mob/user)
 

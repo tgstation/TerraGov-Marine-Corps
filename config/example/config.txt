@@ -181,16 +181,25 @@ GUEST_BAN
 #SERVER server.net:port
 
 ## forum address
-FORUMURL https://cm-ss13.com/
+FORUMURL https://tgstation13.org/phpBB/
 
 ## Wiki address
-WIKIURL https://cm-ss13/wiki/
+WIKIURL https://tgstation13.org/wiki/
 
 ## Rules address
-RULESURL https://cm-ss13.com/viewtopic.php?f=57&t=5094
+RULESURL https://tgstation13.org/wiki/Rules
+
+## Chat address
+CHATURL https://discord.tgstation13.org/
+
+## Donation address
+DONATIONURL https://www.patreon.com/tgstation
+
+## Bug tracker address
+BUGTRACKERURL https://github.com/tgstation/tgstation/issues
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
-BANAPPEALS https://cm-ss13.com/viewforum.php?f=76
+BANAPPEALS https://tgstation13.org/phpBB/viewforum.php?f=7
 
 ## In-game features
 ## spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard

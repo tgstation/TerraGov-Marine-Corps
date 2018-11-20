@@ -27,26 +27,6 @@
 	icon_state = "shuttle"
 	fake_zlevel = 3
 
-/obj/machinery/computer/shuttle_control/almayer/hangar
-	name = "Elevator Console"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "supply"
-	unacidable = 1
-	exproof = 1
-	density = 1
-	req_access = null
-	shuttle_tag = "Hangar"
-
-/obj/machinery/computer/shuttle_control/almayer/maintenance
-	name = "Elevator Console"
-	icon = 'icons/obj/machines/computer.dmi'
-	icon_state = "shuttle"
-	unacidable = 1
-	exproof = 1
-	density = 1
-	req_access = null
-	shuttle_tag = "Maintenance"
-
 /area/almayer/command/cic
 	name = "\improper Combat Information Center"
 	icon_state = "cic"
@@ -279,7 +259,7 @@
 /area/almayer/living/basketball
 	name = "\improper Basketball Court"
 	icon_state = "basketball"
-	fake_zlevel = 1 // upperdeck
+	fake_zlevel = 2 // lowerdeck
 
 /area/almayer/living/grunt_rnr
 	name = "\improper Lounge"
@@ -312,9 +292,9 @@
 	fake_zlevel = 1 // upperdeck
 
 /area/almayer/living/offices
-	name = "\improper Office Area"
+	name = "\improper Pool Area"
 	icon_state = "briefing"
-	fake_zlevel = 2 // lowerdeck
+	fake_zlevel = 1 // upperdeck
 
 /area/almayer/living/captain_mess
 	name = "\improper Captain's Mess"

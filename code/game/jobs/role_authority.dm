@@ -22,6 +22,9 @@ var/global/datum/authority/branch/role/RoleAuthority
 
 	var/list/roles_by_path //Master list generated when role aithority is created, listing every role by path, including variable roles. Great for manually equipping with.
 	var/list/roles_by_name //Master list generated when role authority is created, listing every default role by name, including those that may not be regularly selected.
+	var/list/roles_by_name_paths
+	var/list/roles_by_equipment
+	var/list/roles_by_equipment_paths
 	var/list/roles_for_mode //Derived list of roles only for the game mode, generated when the round starts.
 	var/list/roles_whitelist //Associated list of lists, by ckey. Checks to see if a person is whitelisted for a specific role.
 
@@ -32,14 +35,7 @@ var/global/datum/authority/branch/role/RoleAuthority
 
 	//Whenever the controller is created, we want to set up the basic role lists.
 /datum/authority/branch/role/New()
-	var/list/roles_all = subtypesof(/datum/job) - list(
-							/datum/job/pmc,
-							/datum/job/command,
-							/datum/job/civilian,
-							/datum/job/logistics,
-							/datum/job/logistics/tech,
-							/datum/job/marine,
-							/datum/job/pmc/elite_responder)
+	var/list/roles_all = subtypesof(/datum/job)
 	var/list/squads_all = subtypesof(/datum/squad)
 
 	if(!roles_all.len)
@@ -52,11 +48,14 @@ var/global/datum/authority/branch/role/RoleAuthority
 		log_debug("Error setting up squads, no squad datums found.")
 		return
 
-	roles_by_path 	= new
-	roles_by_name 	= new
-	roles_for_mode  = new
-	roles_whitelist = new
-	squads 			= new
+	roles_by_path 	         = new
+	roles_by_name 	         = new
+	roles_by_name_paths      = new
+	roles_by_equipment 	     = new
+	roles_by_equipment_paths = new
+	roles_for_mode           = new
+	roles_whitelist          = new
+	squads 			         = new
 
 	var/list/L = new
 	var/datum/job/J
@@ -66,14 +65,19 @@ var/global/datum/authority/branch/role/RoleAuthority
 		J = new i
 
 		if(!J.title) //In case you forget to subtract one of those variable holder jobs
-			to_chat(world, "<span class='debug'>Error setting up jobs, blank title job: [J.type].</span>")
-			log_debug("Error setting up jobs, blank title job: [J.type].")
 			continue
 
 		roles_by_path[J.type] = J
 		if(J.flags_startup_parameters & ROLE_ADD_TO_DEFAULT)
-			roles_by_name[J.title] = J
-		if(J.flags_startup_parameters & ROLE_ADD_TO_MODE)
+			if(J.title)
+				roles_by_name[J.title] = J
+				roles_by_name_paths[J.type] = J
+			if(J.equipment)
+				roles_by_equipment[J.title] = J
+				roles_by_equipment_paths[J.type] = J
+		else
+			continue
+		if(J.flags_startup_parameters & ROLE_ADD_TO_DEFAULT)
 			roles_for_mode[J.title] = J
 
 	//	if(J.faction == FACTION_TO_JOIN)  //TODO Initialize non-faction jobs? //TODO Do we really need this?
@@ -160,10 +164,12 @@ var/global/datum/authority/branch/role/RoleAuthority
 				J = roles_by_path[i]
 				roles_for_mode -= J.title
 
-	var/roles_command[] = roles_for_mode & ROLES_COMMAND //If we have a special mode list, we only want that which is on the list.
-	var/roles_regular[] = roles_for_mode - roles_command //Two different lists, since we always want to check command first when we loop.
-	if(roles_command.len) roles_command = shuffle(roles_command, 1) //Shuffle our job lists for when we begin the loop.
-	if(roles_regular.len) roles_regular = shuffle(roles_regular, 1) //Should always have some, but who knows.
+	var/roles[] = roles_for_mode
+
+
+	if(length(roles))
+		roles = shuffle(roles, 1) //Shuffle our job lists for when we begin the loop.
+
 	//In the future, any regular role that has infinite spawn slots should be removed as well.
 
 	/*===============================================================*/
@@ -171,28 +177,19 @@ var/global/datum/authority/branch/role/RoleAuthority
 	//===============================================================\\
 	//PART II: Setting up our player variables and lists, to see if we have anyone to destribute.
 
-	unassigned_players  = new
+	unassigned_players = new
 	var/mob/new_player/M
-
-
-	var/good_age_min = 20//Best command candidates are in the 25 to 40 range.
-	var/good_age_max = 50
 
 	for(var/i in player_list) //Get all players who are ready.
 		M = i
 		if(istype(M) && M.ready && M.mind && !M.mind.assigned_role)
 			//TODO, check if mobs are already spawned as human before this triggers.
-			switch(M.client.prefs.age) //We need a weighted list for command positions.
-				if(good_age_min - 5 to good_age_min - 1)	unassigned_players[M] = 35 //Too young.
-				if(good_age_min     to good_age_min + 4)	unassigned_players[M] = 65 //Acceptable.
-				if(good_age_min + 5 to good_age_max - 10) 	unassigned_players[M] = 100 //Perfect match.
-				if(good_age_max - 9 to good_age_max + 5) 	unassigned_players[M] = 65 //Acceptable.
-				if(good_age_max + 6 to good_age_max + 10) 	unassigned_players[M] = 35 //Too old.
-				else 										unassigned_players[M] = 15 //Least chance.
+			unassigned_players += M
 
 	if(!unassigned_players.len) //If we don't have any players, the round can't start.
 		unassigned_players = null
 		return
+
 	unassigned_players = shuffle(unassigned_players, 1) //Shuffle the players.
 
 	/*===============================================================*/
@@ -239,14 +236,13 @@ var/global/datum/authority/branch/role/RoleAuthority
 	var/l = 0 //levels
 
 	while(++l < 4) //Three macro loops, from high to low.
-		assign_initial_roles(l, roles_command, 1) //Do command positions first.
-		roles_regular = assign_initial_roles(l, roles_regular) //The regular positions. We keep our unassigned pool between calls.
+		roles = assign_initial_roles(l, roles)
 
 	for(var/i in unassigned_players)
 		M = i
 		switch(M.client.prefs.alternate_option)
 			if(GET_RANDOM_JOB)
-				roles_regular = assign_random_role(M, roles_regular) //We want to keep the list between assignments.
+				roles = assign_random_role(M, roles) //We want to keep the list between assignments.
 			if(BE_ASSISTANT)
 				assign_role(M, roles_for_mode["Squad Marine"]) //Should always be available, in all game modes, as a candidate. Even if it may not be a marine.
 			if(RETURN_TO_LOBBY)
@@ -268,9 +264,11 @@ wants to play a command position, but their character doesn't fit the guidelines
 candidates should have a better shot at it first. Should that fail, they can still late join.
 More or less the point of this system, and it will safeguard new players from getting command
 roles willy nilly.
+
+^ Preserving this comment so code historians can laugh at it.
 */
 
-/datum/authority/branch/role/proc/assign_initial_roles(l, list/roles_to_iterate, weighted)
+/datum/authority/branch/role/proc/assign_initial_roles(l, list/roles_to_iterate)
 	. = roles_to_iterate
 	if(roles_to_iterate.len && unassigned_players.len)
 		var/j
@@ -288,16 +286,15 @@ roles willy nilly.
 
 			for(m in unassigned_players)
 				M = m
-				if( !(M.client.prefs.GetJobDepartment(J, l) & J.flag) ) continue //If they don't want the job. //TODO Change the name of the prefs proc?
-				//P = weighted && !(J.flags_startup_parameters & ROLE_WHITELISTED) ? unassigned_players[M] : 100 //Whitelists have no age requirement.
-				//if(prob(P) && assign_role(M, J))
+				if(!(M.client.prefs.GetJobDepartment(J, l) & J.flag)) 
+					continue //If they don't want the job. //TODO Change the name of the prefs proc?
 				if(assign_role(M, J))
 					unassigned_players -= M
 					if(J.current_positions >= J.spawn_positions)
 						roles_to_iterate -= j //Remove the position, since we no longer need it.
 						break //Maximum position is reached?
-			if(!unassigned_players.len) break //No players left to assign? Break.
-
+			if(!unassigned_players.len) 
+				break //No players left to assign? Break.
 
 /datum/authority/branch/role/proc/assign_random_role(mob/new_player/M, list/roles_to_iterate) //In case we want to pass on a list.
 	. = roles_to_iterate
@@ -306,7 +303,8 @@ roles willy nilly.
 		var/i = 0
 		var/j
 		while(++i < 3) //Get two passes.
-			if(!roles_to_iterate.len || prob(65)) break //Base chance to become a marine when being assigned randomly, or there are no roles available.
+			if(!roles_to_iterate.len) 
+				break
 			j = pick(roles_to_iterate)
 			J = roles_to_iterate[j]
 
@@ -316,7 +314,8 @@ roles willy nilly.
 				continue
 
 			if(assign_role(M, J)) //Check to see if they can actually get it.
-				if(J.current_positions >= J.spawn_positions) roles_to_iterate -= j
+				if(J.current_positions >= J.spawn_positions) 
+					roles_to_iterate -= j
 				return roles_to_iterate
 
 	//If they fail the two passes, or no regular roles are available, they become a marine regardless.
@@ -332,19 +331,23 @@ roles willy nilly.
 			M.mind.role_comm_title 		= J.comm_title
 			J.current_positions++
 			//to_chat(world, "[J.title]: [J.current_positions] current positions filled.")
-			return 1
+			return TRUE
 
 /datum/authority/branch/role/proc/check_role_entry(mob/new_player/M, datum/job/J, latejoin=0)
-	if(jobban_isbanned(M, J.title)) return //TODO standardize this
-	if(!J.player_old_enough(M.client)) return
-	if(J.flags_startup_parameters & ROLE_WHITELISTED && !(roles_whitelist[M.ckey] & J.flags_whitelist)) return
-	if(J.total_positions != -1 && J.get_total_positions(latejoin) <= J.current_positions) return
-	return 1
+	if(jobban_isbanned(M, J.title)) 
+		return //TODO standardize this
+	if(!J.player_old_enough(M.client)) 
+		return
+	if(J.flags_startup_parameters & ROLE_WHITELISTED && !(roles_whitelist[M.ckey] & J.flags_whitelist)) 
+		return
+	if(J.total_positions != -1 && J.get_total_positions(latejoin) <= J.current_positions) 
+		return
+	return TRUE
 
 /datum/authority/branch/role/proc/free_role(datum/job/J, latejoin = 1) //Want to make sure it's a job, and nothing like a MODE or special role.
 	if(istype(J) && J.total_positions != -1 && J.get_total_positions(latejoin) <= J.current_positions)
 		J.current_positions--
-		return 1
+		return TRUE
 
 //I'm not entirely sure why this proc exists. //TODO Figure this out.
 /datum/authority/branch/role/proc/reset_roles()
@@ -391,12 +394,14 @@ roles willy nilly.
 */
 
 /datum/authority/branch/role/proc/equip_role(mob/living/M, datum/job/J, turf/late_join)
-	if(!istype(M) || !istype(J)) return
+	if(!istype(M) || !istype(J)) 
+		return
 
-	J.equip(M) //Equip them with the base job gear.
+	J.generate_equipment(M) //Equip them with the base job gear.
 
 	//If they didn't join late, we want to move them to the start position for their role.
-	if(late_join) M.loc = late_join //If they late joined, we passed on the location from the parent proc.
+	if(late_join) 
+		M.loc = late_join //If they late joined, we passed on the location from the parent proc.
 	else //If they didn't, we need to find a suitable spawn location for them.
 		var/i
 		var/obj/effect/landmark/L //To iterate.
@@ -406,8 +411,10 @@ roles willy nilly.
 			if(L.name == J.title && !locate(/mob/living) in L.loc)
 				S = L
 				break
-		if(!S) S = locate("start*[J.title]") //Old type spawn.
-		if(istype(S) && istype(S.loc, /turf)) M.loc = S.loc
+		if(!S) 
+			S = locate("start*[J.title]") //Old type spawn.
+		if(istype(S) && istype(S.loc, /turf)) 
+			M.loc = S.loc
 		else
 			to_chat(world, "<span class='debug'>Error setting up character. No spawn location could be found.</span>")
 			log_debug("Error setting up character. No spawn location could be found.")
@@ -431,17 +438,6 @@ roles willy nilly.
 			H.mind.store_memory(remembered_info)
 			H.mind.initial_account = A
 
-			// If they're head, give them the account info for their department
-			if(J.head_position)
-				remembered_info = ""
-				var/datum/money_account/department_account = department_accounts[J.department]
-
-				if(department_account)
-					remembered_info += "<b>Your department's account number is:</b> #[department_account.account_number]<br>"
-					remembered_info += "<b>Your department's account pin is:</b> [department_account.remote_access_pin]<br>"
-					remembered_info += "<b>Your department's account funds are:</b> $[department_account.money]<br>"
-
-				H.mind.store_memory(remembered_info)
 
 		/*var/alt_title
 		if(H.mind)
@@ -461,7 +457,7 @@ roles willy nilly.
 		H.hud_set_special_role()
 		H.hud_set_squad()
 
-	return 1
+	return TRUE
 
 //Find which squad has the least population. If all 4 squads are equal it should just use a random one
 /datum/authority/branch/role/proc/get_lowest_squad(mob/living/carbon/human/H)
@@ -479,7 +475,7 @@ roles willy nilly.
 	var/datum/squad/lowest = pick(squads)
 
 	var/datum/pref_squad_name
-	if(H && H.client && H.client.prefs.preferred_squad && H.client.prefs.preferred_squad != "None")
+	if(H?.client?.prefs.preferred_squad && H.client.prefs.preferred_squad != "None")
 		pref_squad_name = H.client.prefs.preferred_squad
 
 	for(var/datum/squad/L in squads)
@@ -512,7 +508,7 @@ roles willy nilly.
 
 //This proc is a bit of a misnomer, since there's no actual randomization going on.
 /datum/authority/branch/role/proc/randomize_squad(var/mob/living/carbon/human/H)
-	if(!H || !H.mind) return
+	if(!H?.mind) return
 
 	if(!squads.len)
 		to_chat(H, "Something went wrong with your squad randomizer! Tell a coder!")
@@ -533,7 +529,7 @@ roles willy nilly.
 	//Ie. 8 squad medic jobs should be available, and total medics in squads should be 8.
 	if(H.mind.assigned_role != "Squad Marine")
 		var/pref_squad_name
-		if(H && H.client && H.client.prefs.preferred_squad && H.client.prefs.preferred_squad != "None")
+		if(H?.client?.prefs.preferred_squad && H.client.prefs.preferred_squad != "None")
 			pref_squad_name = H.client.prefs.preferred_squad
 
 		var/datum/squad/lowest
@@ -542,7 +538,8 @@ roles willy nilly.
 			if("Squad Engineer")
 				for(var/datum/squad/S in mixed_squads)
 					if(S.usable)
-						if(S.num_engineers >= S.max_engineers) continue
+						if(S.num_engineers >= S.max_engineers) 
+							continue
 						if(pref_squad_name && S.name == pref_squad_name)
 							S.put_marine_in_squad(H) //fav squad has a spot for us, no more searching needed.
 							return
@@ -555,7 +552,8 @@ roles willy nilly.
 			if("Squad Medic")
 				for(var/datum/squad/S in mixed_squads)
 					if(S.usable)
-						if(S.num_medics >= S.max_medics) continue
+						if(S.num_medics >= S.max_medics) 
+							continue
 						if(pref_squad_name && S.name == pref_squad_name)
 							S.put_marine_in_squad(H) //fav squad has a spot for us.
 							return
@@ -568,7 +566,8 @@ roles willy nilly.
 			if("Squad Leader")
 				for(var/datum/squad/S in mixed_squads)
 					if(S.usable)
-						if(S.num_leaders >= S.max_leaders) continue
+						if(S.num_leaders >= S.max_leaders) 
+							continue
 						if(pref_squad_name && S.name == pref_squad_name)
 							S.put_marine_in_squad(H) //fav squad has a spot for us.
 							return
@@ -594,7 +593,8 @@ roles willy nilly.
 			if("Squad Smartgunner")
 				for(var/datum/squad/S in mixed_squads)
 					if(S.usable)
-						if(S.num_smartgun >= S.max_smartgun) continue
+						if(S.num_smartgun >= S.max_smartgun) 
+							continue
 						if(pref_squad_name && S.name == pref_squad_name)
 							S.put_marine_in_squad(H) //fav squad has a spot for us.
 							return

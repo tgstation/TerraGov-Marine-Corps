@@ -6,30 +6,12 @@
 	b:attack_flag - What type of attack, bullet, laser, energy, melee
 
 	Returns
-	0 - no block
-	1 - halfblock
-	2 - fullblock
+	The armour percentage which is deducted om the damage.
 */
 /mob/living/proc/run_armor_check(var/def_zone = null, var/attack_flag = "melee", var/absorb_text = null, var/soften_text = null)
-	var/armor = getarmor(def_zone, attack_flag)
-	var/absorb = 0
-	if(prob(armor))
-		absorb += 1
-	if(prob(armor))
-		absorb += 1
-	if(absorb >= 2)
-		if(absorb_text)
-			show_message("[absorb_text]")
-		else
-			show_message("\red Your armor absorbs the blow!")
-		return 2
-	if(absorb == 1)
-		if(absorb_text)
-			show_message("[soften_text]")
-		else
-			show_message("\red Your armor softens the blow!")
-		return 1
-	return 0
+	var/armor = 0.00 //Define our float
+	armor = getarmor(def_zone, attack_flag) * 0.01 //Change the armour into a %
+	return armor
 
 
 //if null is passed for def_zone, then this should return something appropriate for all zones (e.g. area effect damage)
@@ -46,7 +28,7 @@
 		apply_effect(STUTTER, stun_amount)
 		apply_effect(EYE_BLUR, stun_amount)
 
-	if (agony_amount)
+	if(agony_amount)
 		apply_damage(agony_amount, HALLOSS, def_zone, 0, used_weapon)
 		apply_effect(STUTTER, agony_amount/10)
 		apply_effect(EYE_BLUR, agony_amount/10)
@@ -82,7 +64,7 @@
 		src.visible_message("\red [src] has been hit by [O].", null, null, 5)
 		var/armor = run_armor_check(null, "melee")
 
-		if(armor < 2)
+		if(armor < 1)
 			apply_damage(throw_damage, dtype, null, armor, is_sharp(O), has_edge(O), O)
 
 		O.throwing = 0		//it hit, so stop moving
@@ -93,7 +75,7 @@
 			if(assailant)
 				log_combat(M, src, "hit", O, "(thrown)")
 				if(!istype(src,/mob/living/simple_animal/mouse))
-					msg_admin_attack("[src.name] ([src.ckey]) was hit by a [O], thrown by [M.name] ([assailant.ckey]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>)")
+					msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) was hit by a [O], thrown by [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>)")
 
 		// Begin BS12 momentum-transfer code.
 		if(O.throw_source && speed >= 15)
@@ -136,10 +118,10 @@
 //Mobs on Fire
 /mob/living/proc/IgniteMob()
 	if(fire_stacks > 0 && !on_fire)
-		on_fire = 1
+		on_fire = TRUE
 		to_chat(src, "<span class='danger'>You are on fire! Use Resist to put yourself out!</span>")
 		update_fire()
-		return 1
+		return TRUE
 
 /mob/living/carbon/human/IgniteMob()
 	. = ..()
@@ -147,17 +129,38 @@
 		if(!stat && !(species.flags & NO_PAIN))
 			emote("scream")
 
+/mob/living/carbon/Xenomorph/IgniteMob()
+	. = ..()
+	if(.)
+		SetLuminosity(min(fire_stacks,5)) // light up xenos
+		var/obj/item/clothing/mask/facehugger/F = get_active_hand()
+		var/obj/item/clothing/mask/facehugger/G = get_inactive_hand()
+		if(istype(F))
+			F.Die()
+			drop_inv_item_on_ground(F)
+		if(istype(G))
+			G.Die()
+			drop_inv_item_on_ground(G)
+
 /mob/living/proc/ExtinguishMob()
 	if(on_fire)
-		on_fire = 0
+		on_fire = FALSE
 		fire_stacks = 0
 		update_fire()
+
+/mob/living/carbon/Xenomorph/ExtinguishMob()
+	. = ..()
+	SetLuminosity(0)
+
+/mob/living/carbon/Xenomorph/Boiler/ExtinguishMob()
+	. = ..()
+	SetLuminosity(3)
 
 /mob/living/proc/update_fire()
 	return
 
 /mob/living/proc/adjust_fire_stacks(add_fire_stacks) //Adjusting the amount of fire_stacks we have on person
-	fire_stacks = Clamp(fire_stacks + add_fire_stacks, min = -20, max = 20)
+	fire_stacks = CLAMP(fire_stacks + add_fire_stacks, -20, 20)
 	if(on_fire && fire_stacks <= 0)
 		ExtinguishMob()
 

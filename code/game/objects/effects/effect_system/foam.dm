@@ -10,14 +10,14 @@
 /obj/effect/particle_effect/foam
 	name = "foam"
 	icon_state = "foam"
-	opacity = 0
-	anchored = 1
-	density = 0
+	opacity = FALSE
+	anchored = TRUE
+	density = FALSE
 	layer = BELOW_MOB_LAYER
 	mouse_opacity = 0
 	var/amount = 3
 	var/expand = 1
-	animate_movement = 0
+	animate_movement = NO_STEPS
 	var/metal = 0
 
 
@@ -155,60 +155,71 @@
 /obj/structure/foamedmetal
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "metalfoam"
-	density = 1
-	opacity = 1 	// changed in New()
-	anchored = 1
+	density = TRUE
+	opacity = TRUE 	// changed in New()
+	anchored = TRUE
 	name = "foamed metal"
 	desc = "A lightweight foamed metal wall."
 	var/metal = 1		// 1=aluminum, 2=iron
 
-	Dispose()
-		density = 0
-		. = ..()
+/obj/structure/foamedmetal/Dispose()
+	density = FALSE
+	. = ..()
 
-	proc/updateicon()
-		if(metal == 1)
-			icon_state = "metalfoam"
-		else
-			icon_state = "ironfoam"
+/obj/structure/foamedmetal/proc/updateicon()
+	if(metal == 1)
+		icon_state = "metalfoam"
+	else
+		icon_state = "ironfoam"
 
 
-	ex_act(severity)
+/obj/structure/foamedmetal/ex_act(severity)
+	cdel(src)
+
+/obj/structure/foamedmetal/bullet_act()
+	if(metal==1 || prob(50))
 		cdel(src)
+	return TRUE
 
-	bullet_act()
-		if(metal==1 || prob(50))
-			cdel(src)
-		return 1
+/obj/structure/foamedmetal/attack_paw(var/mob/user)
+	attack_hand(user)
+	return
 
-	attack_paw(var/mob/user)
-		attack_hand(user)
-		return
+/obj/structure/foamedmetal/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
+	if(prob(33))
+		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
+		"<span class='danger'>You slice [src] apart!</span>", null, 5)
+		cdel(src)
+		return TRUE
+	else
+		M.visible_message("<span class='danger'>\The [M] tears some shreds off [src]!</span>", \
+		"<span class='danger'>You tear some shreds off [src]!</span>", null, 5)
 
-	attack_hand(var/mob/user)
-		if ((HULK in user.mutations) || (prob(75 - metal*25)))
-			to_chat(user, "\blue You smash through the metal foam wall.")
-			for(var/mob/O in oviewers(user))
-				if ((O.client && !( O.blinded )))
-					to_chat(O, "\red [user] smashes through the foamed metal.")
+/obj/structure/foamedmetal/attack_hand(var/mob/user)
+	if ((HULK in user.mutations) || (prob(75 - metal*25)))
+		to_chat(user, "\blue You smash through the metal foam wall.")
+		for(var/mob/O in oviewers(user))
+			if ((O.client && !( is_blind(O) )))
+				to_chat(O, "\red [user] smashes through the foamed metal.")
 
-			cdel(src)
-		else
-			to_chat(user, "\blue You hit the metal foam but bounce off it.")
-		return
+		cdel(src)
+	else
+		to_chat(user, "\blue You hit the metal foam but bounce off it.")
+	return
 
+/obj/structure/foamedmetal/attackby(var/obj/item/I, var/mob/user)
 
-	attackby(var/obj/item/I, var/mob/user)
+	if(prob(I.force*20 - metal*25))
+		to_chat(user, "\blue You smash through the foamed metal with \the [I].")
+		for(var/mob/O in oviewers(user))
+			if ((O.client && !( is_blind(O) )))
+				to_chat(O, "\red [user] smashes through the foamed metal.")
+		cdel(src)
+	else
+		to_chat(user, "\blue You hit the metal foam to no effect.")
 
-		if(prob(I.force*20 - metal*25))
-			to_chat(user, "\blue You smash through the foamed metal with \the [I].")
-			for(var/mob/O in oviewers(user))
-				if ((O.client && !( O.blinded )))
-					to_chat(O, "\red [user] smashes through the foamed metal.")
-			cdel(src)
-		else
-			to_chat(user, "\blue You hit the metal foam to no effect.")
-
-	CanPass(atom/movable/mover, turf/target, height = 1.5, air_group = 0)
-		if(air_group) return 0
-		return !density
+/obj/structure/foamedmetal/CanPass(atom/movable/mover, turf/target, height = 1.5, air_group = 0)
+	if(air_group)
+		return FALSE
+	return !density

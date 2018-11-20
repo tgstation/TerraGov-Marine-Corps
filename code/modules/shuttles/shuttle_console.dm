@@ -343,6 +343,17 @@
 	else
 		..()
 
+/obj/machinery/computer/shuttle_control/attack_alien(mob/living/carbon/Xenomorph/M)
+	var/datum/shuttle/ferry/marine/shuttle = shuttle_controller.shuttles[shuttle_tag]
+	if(M.xeno_caste.caste_flags & CASTE_IS_INTELLIGENT)
+		attack_hand(M)
+		if(!shuttle.iselevator)
+			shuttle.door_override(M)
+			if(onboard) //This is the shuttle's onboard console
+				shuttle.hijack(M)
+	else
+		..()
+
 /obj/machinery/computer/shuttle_control/bullet_act(var/obj/item/projectile/Proj)
 	visible_message("[Proj] ricochets off [src]!")
 	return 0
@@ -365,7 +376,7 @@
 
 	unacidable = 1
 	exproof = 1
-	req_access = list(ACCESS_MARINE_DROPSHIP)
+	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER) // TLs can only operate the remote console
 
 /obj/machinery/computer/shuttle_control/dropship1/New()
 	..()
@@ -377,6 +388,7 @@
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "console"
 	onboard = 1
+	req_access = list(ACCESS_MARINE_DROPSHIP)
 
 /obj/machinery/computer/shuttle_control/dropship2
 	name = "\improper 'Normandy' dropship console"
@@ -385,7 +397,7 @@
 	icon_state = "shuttle"
 	unacidable = 1
 	exproof = 1
-	req_access = list(ACCESS_MARINE_DROPSHIP)
+	req_one_access = list(ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LEADER)
 
 /obj/machinery/computer/shuttle_control/dropship2/New()
 	..()
@@ -397,9 +409,30 @@
 	icon = 'icons/Marine/shuttle-parts.dmi'
 	icon_state = "console"
 	onboard = 1
+	req_access = list(ACCESS_MARINE_DROPSHIP)
 
 
+//Hangar elevator console
 
+/obj/machinery/computer/shuttle_control/almayer/hangar
+	name = "Elevator Console"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "supply"
+	unacidable = 1
+	exproof = 1
+	density = 1
+	req_access = null
+	shuttle_tag = "Hangar"
+
+/obj/machinery/computer/shuttle_control/almayer/maintenance
+	name = "Elevator Console"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "shuttle"
+	unacidable = 1
+	exproof = 1
+	density = 1
+	req_access = null
+	shuttle_tag = "Maintenance"
 
 
 //Elevator control console

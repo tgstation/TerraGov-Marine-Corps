@@ -1,18 +1,15 @@
 /obj/vehicle/powerloader
-	name = "\improper Caterpillar P-5000 Work Loader"
+	name = "\improper RPL-Y Cargo Loader"
 	icon = 'icons/obj/powerloader.dmi'
-	desc = "The Caterpillar P-5000 Work Loader is a commercial mechanized exoskeleton used for lifting heavy materials and objects, first designed in January 29, 2025 by Weyland Corporation. An old but trusted design used in warehouses, constructions and military ships everywhere."
+	desc = "The RPL-Y Cargo Loader is a commercial mechanized exoskeleton used for lifting heavy materials and objects. An old but trusted design used in warehouses, constructions and military ships everywhere."
 	icon_state = "powerloader_open"
 	layer = POWERLOADER_LAYER //so the top appears above windows and wall mounts
 	anchored = 1
 	density = 1
 	luminosity = 5
 	move_delay = 8
-	buckling_y = 9
 	health = 200
 	maxhealth = 200
-	pixel_x = -16
-	pixel_y = -2
 
 	New()
 		..()
@@ -91,13 +88,8 @@
 	buckle_mob(M, usr)
 
 /obj/vehicle/powerloader/handle_rotation()
-
 	if(buckled_mob)
 		buckled_mob.dir = dir
-		switch(dir)
-			if(EAST) buckled_mob.pixel_x = 7
-			if(WEST) buckled_mob.pixel_x = -7
-			else buckled_mob.pixel_x = 0
 
 /obj/vehicle/powerloader/explode()
 	new /obj/structure/powerloader_wreckage(loc)
@@ -105,8 +97,8 @@
 	..()
 
 /obj/item/powerloader_clamp
-	name = "\improper Caterpillar P-5000 Work Loader Hydraulic Claw"
-	icon = 'icons/obj/vehicles.dmi'
+	icon = 'icons/obj/powerloader.dmi'
+	name = "\improper RPL-Y Cargo Loader Hydraulic Claw"
 	icon_state = "loader_clamp"
 	force = 20
 	flags_item = ITEM_ABSTRACT //to prevent placing the item on a table/closet.
@@ -216,12 +208,10 @@
 		linked_powerloader.unbuckle()
 
 /obj/structure/powerloader_wreckage
-	name = "\improper Caterpillar P-5000 Work Loader wreckage"
-	desc = "Remains of some unfortunate Power Loader. Completely unrepairable."
+	name = "\improper RPL-Y Cargo Loader wreckage"
+	desc = "Remains of some unfortunate Cargo Loader. Completely unrepairable."
 	icon = 'icons/obj/powerloader.dmi'
 	icon_state = "wreck"
 	density = 1
 	anchored = 0
 	opacity = 0
-	pixel_x = -18
-	pixel_y = -5

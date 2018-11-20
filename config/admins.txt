@@ -3,6 +3,7 @@ aloraydrel - Admin
 alterist - Admin
 ambassadormagikarp - Admin
 anturke - Admin
+arachnidnexus - Admin
 arianya - Admin
 atlanta-ned - Admin
 bebeyoshi - Admin
@@ -25,6 +26,7 @@ exalted12 - Admin
 excessiveuseofcobby - Admin
 feemjmeem - Admin
 forcefulcjs - Admin
+francinum - Admin
 imsxz - Admin
 incoming - Admin
 ispiria - Admin
@@ -40,6 +42,7 @@ krusvik - Admin
 laharlmontgommery - Admin
 lazengann - Admin
 lmwevil - Admin
+mattatlas - Admin
 mralphonzo - Admin
 mrstonedone - Admin
 nabski - Admin

@@ -1,6 +1,6 @@
 
 /datum/admins/proc/player_panel_new()//The new one
-	if (!usr.client.holder)
+	if(!usr.client.holder.rights & (R_ADMIN|R_MOD))
 		return
 	var/dat = "<html><head><title>Admin Player Panel</title></head>"
 
@@ -82,7 +82,8 @@
 					body += "<a href='?src=\ref[src];traitor="+ref+"'>TP</a> - "
 					body += "<a href='?src=\ref[usr];priv_msg=\ref"+ref+"'>PM</a> - "
 					body += "<a href='?src=\ref[src];subtlemessage="+ref+"'>SM</a> - "
-					body += "<a href='?src=\ref[src];adminplayerobservejump="+ref+"'>JMP</a><br>"
+					body += "<a href='?src=\ref[src];adminplayerobservejump="+ref+"'>JMP</a> - "
+					body += "<a href='?src=\ref[src];adminplayerfollow="+ref+"'>FLW</a><br>"
 					body += "<a href='?src=\ref[src];individuallog="+ref+"'>LOGS</a><br>"
 					if(antagonist > 0)
 						body += "<font size='2'><a href='?src=\ref[src];check_antagonist=1'><font color='red'><b>Antagonist</b></font></a></font>";
@@ -386,11 +387,11 @@
 
 //Extended panel with ban related things
 /datum/admins/proc/player_panel_extended()
-	if (!usr.client.holder)
+	if(!usr.client.holder.rights & (R_ADMIN|R_MOD))
 		return
 
 	var/dat = "<html><head><title>Player Menu</title></head>"
-	dat += "<body><table border=1 cellspacing=5><B><tr><th>Key</th><th>Name</th><th>Real Name</th><th>PP</th><th>CID</th><th>IP</th><th>JMP</th><th>Notes</th></tr></B>"
+	dat += "<body><table border=1 cellspacing=5><B><tr><th>Key</th><th>Name</th><th>Real Name</th><th>PP</th><th>CID</th><th>IP</th><th>JMP</th><th>FLW</th><th>Notes</th></tr></B>"
 	//add <th>IP:</th> to this if wanting to add back in IP checking
 	//add <td>(IP: [M.lastKnownIP])</td> if you want to know their ip to the lists below
 	var/list/mobs = sortmobs()
@@ -422,6 +423,7 @@
 		<td>[M.computer_id]</td>
 		<td>[M.lastKnownIP]</td>
 		<td><a href='?src=\ref[src];adminplayerobservejump=\ref[M]'>JMP</a></td>
+		<td><A HREF='?_src_=\ref[src];adminplayerfollow=\ref[M]'>FLW</a></td>
 		<td><a href='?src=\ref[src];notes=show;mob=\ref[M]'>Notes</a></td>
 		"}
 

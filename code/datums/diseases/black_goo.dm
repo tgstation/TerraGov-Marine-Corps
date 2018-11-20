@@ -39,8 +39,10 @@
 		if(2)
 			if(goo_message_cooldown < world.time)
 				if (prob(3)) to_chat(affected_mob, "\red Your throat is really dry...")
-				else if (prob(6)) to_chat(affected_mob, "\red You feel really warm...")
-				else if (prob(2)) H.vomit_on_floor()
+				else if (prob(6))
+					to_chat(affected_mob, "\red You feel really warm...")
+				else if (prob(2))
+					H.vomit()
 				goo_message_cooldown = world.time + 100
 		if(3)
 			hidden = list(0,0)
@@ -58,14 +60,14 @@
 					goo_message_cooldown = world.time + 100
 				else if(prob(5))
 					goo_message_cooldown = world.time + 100
-					H.vomit_on_floor()
+					H.vomit()
 		if(4)
 			H.next_move_slowdown = max(H.next_move_slowdown, 2)
 			if(prob(5) || age >= stage_minimum_age-1)
 				if(!zombie_transforming)
 					zombie_transform(H)
 			else if(prob(5))
-				H.vomit_on_floor()
+				H.vomit()
 		if(5)
 			if(!zombie_transforming && prob(10))
 				if(H.stat != DEAD)
@@ -84,10 +86,11 @@
 /datum/disease/black_goo/proc/zombie_transform(mob/living/carbon/human/H)
 	set waitfor = 0
 	zombie_transforming = TRUE
-	H.vomit_on_floor()
+	H.vomit()
+	sleep(50)
 	H.AdjustStunned(5)
 	sleep(20)
-	H.make_jittery(500)
+	H.Jitter(500)
 	sleep(30)
 	if(H && H.loc)
 		if(H.stat == DEAD) H.revive(TRUE)
@@ -142,7 +145,7 @@
 /obj/item/reagent_container/food/drinks/bottle/black_goo
 	name = "strange bottle"
 	desc = "A strange bottle of unknown origin."
-	icon = 'icons/obj/black_goo/black_goo_stuff.dmi'
+	icon = 'icons/obj/items/blackgoo.dmi'
 	icon_state = "blackgoo"
 	New()
 		..()
@@ -152,8 +155,8 @@
 /obj/item/reagent_container/food/drinks/bottle/black_goo_cure
 	name = "even stranger bottle"
 	desc = "A bottle of black labeled CURE..."
-	icon = 'icons/obj/black_goo/black_goo_stuff.dmi'
-	icon_state = "blackgoo"
+	icon = 'icons/obj/items/blackgoo.dmi'
+	icon_state = "antigoo"
 	New()
 		..()
 		reagents.add_reagent("antiZed", 30)
@@ -178,7 +181,7 @@
 
 
 /obj/item/storage/fancy/blackgoo
-	icon = 'icons/obj/black_goo/black_goo_stuff.dmi'
+	icon = 'icons/obj/items/blackgoo.dmi'
 	icon_state = "goobox"
 	icon_type = "goo"
 	name = "strange canister"

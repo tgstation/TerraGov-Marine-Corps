@@ -12,9 +12,6 @@
 #define X_TOTAL_LAYERS			7
 /////////////////////////////////
 
-/mob/living/carbon/Xenomorph
-	var/list/overlays_standing[X_TOTAL_LAYERS]
-
 /mob/living/carbon/Xenomorph/apply_overlay(cache_index)
 	var/image/I = overlays_standing[cache_index]
 	if(I)
@@ -27,18 +24,17 @@
 
 /mob/living/carbon/Xenomorph/update_icons()
 	if(stat == DEAD)
-		icon_state = "[caste] Dead"
+		icon_state = "[xeno_caste.caste_name] Dead"
 	else if(lying)
 		if((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
-			icon_state = "[caste] Sleeping"
+			icon_state = "[xeno_caste.caste_name] Sleeping"
 		else
-			icon_state = "[caste] Knocked Down"
+			icon_state = "[xeno_caste.caste_name] Knocked Down"
 	else
 		if(m_intent == MOVE_INTENT_RUN)
-			icon_state = "[caste] Running"
+			icon_state = "[xeno_caste.caste_name] Running"
 		else
-			icon_state = "[caste] Walking"
-
+			icon_state = "[xeno_caste.caste_name] Walking"
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
 
 /mob/living/carbon/Xenomorph/regenerate_icons()
@@ -131,12 +127,6 @@
 		overlays_standing[X_FIRE_LAYER] = I
 		apply_overlay(X_FIRE_LAYER)
 
-
-//Xeno Overlays Indexes//////////
-#undef X_HEAD_LAYER
-#undef X_SUIT_LAYER
-#undef X_L_HAND_LAYER
-#undef X_R_HAND_LAYER
-#undef X_LEGCUFF_LAYER
-#undef X_FIRE_LAYER
-#undef X_TOTAL_LAYERS
+/mob/living/carbon/Xenomorph/update_transform()
+	..()
+	return update_icons()

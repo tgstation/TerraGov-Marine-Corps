@@ -16,11 +16,11 @@
 	var/moving_diagonally = 0 //to know whether we're in the middle of a diagonal move,
 								// and if yes, are we doing the first or second move.
 
-	var/acid_damage = 0 //Counter for stomach acid damage. At ~60 ticks, dissolved
-
 //===========================================================================
 /atom/movable/Dispose()
-	for(var/atom/movable/I in contents) cdel(I)
+	for(var/atom/movable/I in contents)
+		cdel(I)
+
 	if(pulledby) pulledby.stop_pulling()
 	if(throw_source) throw_source = null
 
@@ -86,7 +86,6 @@
 		last_move_dir = get_dir(oldloc, loc)
 	if(.)
 		Moved(oldloc,direct)
-
 
 
 /atom/movable/Bump(atom/A, yes) //yes arg is to distinguish our calls of this proc from the calls native from byond.
@@ -269,7 +268,6 @@
 		src.thrower = null
 		src.throw_source = null
 
-
 //Overlays
 /atom/movable/overlay
 	var/atom/master = null
@@ -386,3 +384,17 @@
 /atom/movable/proc/handle_internal_lifeform(mob/lifeform_inside_me)
 	. = return_air()
 
+
+/atom/movable/proc/check_blocked_turf(turf/target)
+	if(target.density)
+		return TRUE //Blocked; we can't proceed further.
+
+	for(var/obj/machinery/MA in target)
+		if(MA.density)
+			return TRUE //Blocked; we can't proceed further.
+
+	for(var/obj/structure/S in target)
+		if(S.density)
+			return TRUE //Blocked; we can't proceed further.
+
+	return FALSE

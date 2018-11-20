@@ -38,7 +38,10 @@
 			var/mob/M = C
 			C = M.client
 		if(!C) return //Outdated links to logged players generate runtimes
-		if(unansweredAhelps[C.computer_id]) unansweredAhelps.Remove(C.computer_id)
+		if(unansweredMhelps[C.computer_id]) 
+			unansweredMhelps.Remove(C.computer_id)
+		if(unansweredAhelps[C.computer_id]) 
+			unansweredAhelps.Remove(C.computer_id)
 		cmd_admin_pm(C,null)
 		return
 
@@ -116,6 +119,13 @@
 	if(holder)
 		admins += src
 		holder.owner = src
+	else // If it matters put a config check for this feature on this line
+		var/static/list/localhost_addresses = list("127.0.0.1", "::1")
+		if(isnull(address) || (address in localhost_addresses))
+			var/datum/admins/rank = new("!localhost!", ALL, ckey)
+			holder = rank
+			admins += src
+			rank.owner = src
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = preferences_datums[ckey]

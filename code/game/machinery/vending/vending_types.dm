@@ -177,16 +177,16 @@
 					/obj/item/storage/belt/medical = 2,
 					/obj/item/device/defibrillator = 2,
 					/obj/item/reagent_container/hypospray/autoinjector/quickclot = 5,
-					/obj/item/reagent_container/hypospray/autoinjector/dexP = 5,
-					/obj/item/reagent_container/hypospray/autoinjector/chloralhydrate =3,
-					/obj/item/reagent_container/hypospray/autoinjector/Inaprovaline = 5,
+					/obj/item/reagent_container/hypospray/autoinjector/dexalinplus = 5,
+					/obj/item/reagent_container/hypospray/autoinjector/sleeptoxin =3,
+					/obj/item/reagent_container/hypospray/autoinjector/inaprovaline = 5,
 					/obj/item/reagent_container/hypospray/autoinjector/hypervene = 5,
-					/obj/item/reagent_container/hypospray/tricordrazine = 2,
+					/obj/item/reagent_container/hypospray/advanced/tricordrazine = 2,
 					/obj/item/reagent_container/syringe = 20,
-					/obj/item/reagent_container/glass/bottle/antitoxin = 4,
+					/obj/item/reagent_container/glass/bottle/dylovene = 4,
 					/obj/item/reagent_container/glass/bottle/bicaridine = 4,
 					/obj/item/reagent_container/glass/bottle/inaprovaline = 4,
-					/obj/item/reagent_container/glass/bottle/stoxin = 2,
+					/obj/item/reagent_container/glass/bottle/sleeptoxin = 2,
 					/obj/item/reagent_container/glass/bottle/spaceacillin = 4,
 					/obj/item/reagent_container/glass/bottle/peridaxon = 2,
 					/obj/item/reagent_container/glass/bottle/kelotane = 4,
@@ -222,13 +222,13 @@
 	icon_deny = "wallmed-deny"
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
 	wrenchable = FALSE
-	products = list(/obj/item/reagent_container/hypospray/autoinjector/tricord = 1,
-					/obj/item/reagent_container/hypospray/autoinjector/Tramadol = 1,
+	products = list(/obj/item/reagent_container/hypospray/autoinjector/tricordrazine = 1,
+					/obj/item/reagent_container/hypospray/autoinjector/tramadol = 1,
 					/obj/item/stack/medical/bruise_pack = 2,
 					/obj/item/stack/medical/ointment = 2,
 					/obj/item/device/healthanalyzer = 1,
 					/obj/item/stack/medical/splint = 1)
-	contraband = list(/obj/item/reagent_container/syringe/antitoxin = 2,
+	contraband = list(/obj/item/reagent_container/syringe/dylovene = 2,
 						/obj/item/reagent_container/syringe/antiviral = 2)
 
 /obj/machinery/vending/wallmed2
@@ -238,9 +238,9 @@
 	icon_deny = "wallmed-deny"
 	density = 0 //It is wall-mounted, and thus, not dense. --Superxpdude
 	wrenchable = FALSE
-	products = list(/obj/item/reagent_container/hypospray/autoinjector/tricord = 1,
-					/obj/item/reagent_container/hypospray/autoinjector/Tramadol = 1,
-					/obj/item/reagent_container/syringe/antitoxin = 3,
+	products = list(/obj/item/reagent_container/hypospray/autoinjector/tricordrazine = 1,
+					/obj/item/reagent_container/hypospray/autoinjector/tramadol = 1,
+					/obj/item/reagent_container/syringe/dylovene = 3,
 					/obj/item/stack/medical/bruise_pack = 3,
 					/obj/item/stack/medical/ointment =3,
 					/obj/item/device/healthanalyzer = 3,

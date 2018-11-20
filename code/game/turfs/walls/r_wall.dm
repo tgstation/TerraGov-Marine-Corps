@@ -46,6 +46,15 @@
 				thermitemelt(user)
 			return
 
+	if(istype(W, /obj/item/tool/pickaxe/plasmacutter) && !user.action_busy)
+		var/obj/item/tool/pickaxe/plasmacutter/P = W
+		if(!P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_HIGH_MOD))
+			return
+		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_HIGH_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P) //Reinforced walls take several times as long as regulars.
+			P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_HIGH_MOD)
+			dismantle_wall()
+		return
+
 	if(damage && istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0,user))

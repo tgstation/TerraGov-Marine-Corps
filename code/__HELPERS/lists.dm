@@ -31,13 +31,13 @@
 		return "[output][and_text][input[index]]"
 
 //Returns list element or null. Should prevent "index out of bounds" error.
-proc/listgetindex(var/list/list,index)
-	if(istype(list) && list.len)
-		if(isnum(index))
-			if(InRange(index,1,list.len))
-				return list[index]
-		else if(index in list)
-			return list[index]
+proc/listgetindex(var/list/L,index)
+	if(istype(L))
+		if(isnum(index) && ISINTEGER(index))
+			if(ISINRANGE(index,1,L.len))
+				return L[index]
+		else if(index in L)
+			return L[index]
 	return
 
 proc/islist(list/list)
@@ -473,3 +473,34 @@ datum/proc/dd_SortValue()
 			L.Swap(start++,end--)
 
 	return L
+
+/* Definining a counter as a series of key -> numeric value entries
+
+ * All these procs modify in place.
+*/
+
+/proc/counterlist_scale(list/L, scalar)
+	var/list/out = list()
+	for(var/key in L)
+		out[key] = L[key] * scalar
+	. = out
+
+/proc/counterlist_sum(list/L)
+	. = 0
+	for(var/key in L)
+		. += L[key]
+
+/proc/counterlist_normalise(list/L)
+	var/avg = counterlist_sum(L)
+	if(avg != 0)
+		. = counterlist_scale(L, 1 / avg)
+	else
+		. = L
+
+/proc/counterlist_combine(list/L1, list/L2)
+	for(var/key in L2)
+		var/other_value = L2[key]
+		if(key in L1)
+			L1[key] += other_value
+		else
+			L1[key] = other_value

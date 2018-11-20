@@ -17,9 +17,11 @@
 
 	health = species.total_health - oxy_l - tox_l - clone_l - total_burn - total_brute
 
-	if(((species.total_health - total_burn) < config.health_threshold_dead * 1.5))
+	if(config.husking_on && ((species.total_health - total_burn) < config.health_threshold_dead * 4))
 		ChangeToHusk()
 
+
+	update_stat()
 	med_hud_set_health()
 	med_hud_set_status()
 
@@ -33,7 +35,7 @@
 		var/datum/internal_organ/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
 			sponge.take_damage(amount)
-			sponge.damage = Clamp(sponge.damage, 0, maxHealth*2)
+			sponge.damage = CLAMP(sponge.damage, 0, maxHealth*2)
 			brainloss = sponge.damage
 		else
 			brainloss = 200
@@ -47,7 +49,7 @@
 	if(species && species.has_organ["brain"])
 		var/datum/internal_organ/brain/sponge = internal_organs_by_name["brain"]
 		if(sponge)
-			sponge.damage = Clamp(amount, 0, maxHealth*2)
+			sponge.damage = CLAMP(amount, 0, maxHealth*2)
 			brainloss = sponge.damage
 		else
 			brainloss = 200
@@ -259,6 +261,12 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	var/datum/limb/picked = pick(parts)
 	if(picked.take_damage(brute,burn,sharp,edge))
 		UpdateDamageIcon()
+
+	if(brute)
+		camo_off_process(SCOUT_CLOAK_OFF_DAMAGE, brute) //If we have the Scout cloak, check for a short out
+	if(burn)
+		camo_off_process(SCOUT_CLOAK_OFF_DAMAGE, burn) //If we have the Scout cloak, check for a short out
+
 	updatehealth()
 	speech_problem_flag = 1
 
@@ -285,8 +293,27 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 	if(update)	UpdateDamageIcon()
 
 // damage MANY limbs, in random order
-/mob/living/carbon/human/take_overall_damage(var/brute, var/burn, var/sharp = 0, var/edge = 0, var/used_weapon = null)
+/mob/living/carbon/human/take_overall_damage(var/brute, var/burn, var/sharp = 0, var/edge = 0, var/used_weapon = null, var/blocked = 0)
 	if(status_flags & GODMODE)	return	//godmode
+
+	if(blocked >= 1) //Complete negation
+		return FALSE
+
+	if(blocked)
+		if(brute)
+			brute *= CLAMP(1-blocked,0.00,1.00) //Percentage reduction
+		if(burn)
+			burn *= CLAMP(1-blocked,0.00,1.00) //Percentage reduction
+
+	if(!brute && !burn) //Complete negation
+		return FALSE
+
+	if(protection_aura)
+		if(brute)
+			brute = round(brute * ((15 - protection_aura) / 15))
+		if(burn)
+			burn = round(burn * ((15 - protection_aura) / 15))
+
 	var/list/datum/limb/parts = get_damageable_limbs()
 	var/update = 0
 	while(parts.len && (brute>0 || burn>0) )
@@ -300,6 +327,12 @@ In most cases it makes more sense to use apply_damage() instead! And make sure t
 		burn	-= (picked.burn_dam - burn_was)
 
 		parts -= picked
+
+	if(brute)
+		camo_off_process(SCOUT_CLOAK_OFF_DAMAGE, brute) //If we have the Scout cloak, check for a short out
+	if(burn)
+		camo_off_process(SCOUT_CLOAK_OFF_DAMAGE, burn) //If we have the Scout cloak, check for a short out
+
 	updatehealth()
 	if(update)	UpdateDamageIcon()
 
@@ -342,7 +375,14 @@ This function restores all limbs.
 
 /mob/living/carbon/human/apply_damage(var/damage = 0, var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/sharp = 0, var/edge = 0, var/obj/used_weapon = null)
 
-	//visible_message("Hit debug. [damage]|[damagetype]|[def_zone]|[blocked]|[sharp]|[used_weapon]")
+	if(blocked >= 1) //total negation
+		return 0
+
+	if(blocked)
+		damage *= CLAMP01(1-blocked) //Percentage reduction
+
+	if(!damage) //Complete negation
+		return 0
 
 	if(protection_aura)
 		damage = round(damage * ((15 - protection_aura) / 15))
@@ -350,7 +390,7 @@ This function restores all limbs.
 	//Handle other types of damage
 	if((damagetype != BRUTE) && (damagetype != BURN))
 		if(damagetype == HALLOSS && !(species && (species.flags & NO_PAIN)))
-			if ((damage > 25 && prob(20)) || (damage > 50 && prob(60)))
+			if ((damage > 25 && prob(20)) || (damage > 50 && prob(40)))
 				emote("pain")
 
 		..(damage, damagetype, def_zone, blocked)
@@ -359,8 +399,6 @@ This function restores all limbs.
 	//Handle BRUTE and BURN damage
 	handle_suit_punctures(damagetype, damage)
 
-	if(blocked >= 2)	return 0
-
 	var/datum/limb/organ = null
 	if(isorgan(def_zone))
 		organ = def_zone
@@ -368,9 +406,6 @@ This function restores all limbs.
 		if(!def_zone)	def_zone = ran_zone(def_zone)
 		organ = get_limb(check_zone(def_zone))
 	if(!organ)	return 0
-
-	if(blocked)
-		damage = (damage/(blocked+1))
 
 	switch(damagetype)
 		if(BRUTE)
@@ -387,5 +422,8 @@ This function restores all limbs.
 				UpdateDamageIcon()
 
 	// Will set our damageoverlay icon to the next level, which will then be set back to the normal level the next mob.Life().
+
+	camo_off_process(SCOUT_CLOAK_OFF_DAMAGE, damage) //If we have the Scout cloak, check for a short out
+
 	updatehealth()
 	return 1

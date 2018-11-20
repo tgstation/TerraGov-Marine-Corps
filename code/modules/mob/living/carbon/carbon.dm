@@ -1,8 +1,3 @@
-/mob/living/carbon/Life()
-	..()
-
-	handle_fire() //Check if we're on fire
-
 
 /mob/living/carbon/Dispose()
 	for(var/datum/disease/virus in viruses)
@@ -63,7 +58,6 @@
 	for(var/atom/movable/A in stomach_contents)
 		stomach_contents.Remove(A)
 		A.forceMove(loc)
-		A.acid_damage = 0 //Reset the acid damage
 		if(ismob(A))
 			visible_message("<span class='danger'>[A] bursts out of [src]!</span>")
 
@@ -184,6 +178,32 @@
 	if(selhand != src.hand)
 		swap_hand()
 
+/mob/living/carbon/proc/vomit()
+
+	var/mob/living/carbon/human/H = src
+	if(H.species.flags & IS_SYNTHETIC)
+		return //Machines don't throw up.
+
+	if(stat == DEAD) //Corpses don't puke
+		return
+
+	if(!lastpuke)
+		lastpuke = TRUE
+		to_chat(src, "<spawn class='warning'>You feel like you are about to throw up!")
+		spawn(50)
+			Stun(5)
+			visible_message("<spawn class='warning'>[src] throws up!","<spawn class='warning'>You throw up!", null, 5)
+			playsound(loc, 'sound/effects/splat.ogg', 25, 1, 7)
+
+			var/turf/location = loc
+			if (istype(location, /turf))
+				location.add_vomit_floor(src, 1)
+
+			nutrition = max(nutrition - 40, 0)
+			adjustToxLoss(-3)
+			spawn(350)	//wait 35 seconds before next volley
+				lastpuke = FALSE
+
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
 	if (health >= config.health_threshold_crit)
 		if(src != M)
@@ -194,12 +214,25 @@
 				t_him = "her"
 			if(lying || sleeping)
 				if(client)
-					sleeping = max(0,sleeping-5)
+					AdjustSleeping(-5)
 				if(sleeping == 0)
 					resting = 0
 					update_canmove()
 				M.visible_message("<span class='notice'>[M] shakes [src] trying to wake [t_him] up!", \
 									"<span class='notice'>You shake [src] trying to wake [t_him] up!", null, 4)
+				AdjustKnockedout(-3)
+				AdjustStunned(-3)
+				AdjustKnockeddown(-3)
+
+				if(halloss > 0)
+					var/halloss_mod = 1
+					if(ishuman(src))
+						var/mob/living/carbon/human/H = src
+						if(H.protection_aura)
+							halloss_mod += 0.5 + 0.5 * H.protection_aura //SL Hold Aura bonus: +100% of the normal recovery bonus, SO: +150%, XO/CO: +200%
+					adjustHalLoss(REST_HALLOSS_RECOVERY_RATE * halloss_mod) //UP AND AT THEM SOLDIER!!
+
+
 			else
 				var/mob/living/carbon/human/H = M
 				if(istype(H))
@@ -207,10 +240,6 @@
 				else
 					M.visible_message("<span class='notice'>[M] hugs [src] to make [t_him] feel better!</span>", \
 								"<span class='notice'>You hug [src] to make [t_him] feel better!</span>", null, 4)
-
-			AdjustKnockedout(-3)
-			AdjustStunned(-3)
-			AdjustKnockeddown(-3)
 
 			playsound(src.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 5)
 
@@ -280,7 +309,7 @@
 					var/end_T_descriptor = "tile at [end_T.x], [end_T.y], [end_T.z] in area [get_area(end_T)]"
 
 					log_combat(usr, M, "thrown", addition="from [start_T_descriptor] with the target [end_T_descriptor]")
-					msg_admin_attack("[usr.name] ([usr.ckey]) has thrown [M.name] ([M.ckey]) from [start_T_descriptor] with the target [end_T_descriptor] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>)")
+					msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) has thrown [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) from [start_T_descriptor] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[start_T.x];Y=[start_T.y];Z=[start_T.z]'>JMP</a>) with the target [end_T_descriptor] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[end_T.x];Y=[end_T.y];Z=[end_T.z]'>JMP</a>)")
 			else
 				to_chat(src, "<span class='warning'>You need a better grip!</span>")
 

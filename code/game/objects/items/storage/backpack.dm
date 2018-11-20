@@ -10,7 +10,7 @@
 	flags_equip_slot = SLOT_BACK	//ERROOOOO
 	max_w_class = 3
 	storage_slots = null
-	max_storage_space = 21
+	max_storage_space = 30
 	var/worn_accessible = FALSE //whether you can access its content while worn on the back
 
 /obj/item/storage/backpack/attack_hand(mob/user)
@@ -275,9 +275,6 @@
 	icon_state = "ert_medical"
 
 
-
-
-
 //==========================// MARINE BACKPACKS\\================================\\
 //=======================================================================\\
 
@@ -292,15 +289,100 @@
 			select_gamemode_skin(type)
 		..()
 
+/obj/item/storage/backpack/marine/standard
+	name = "\improper lightweight IMP backpack"
+	desc = "The standard-issue pack of the USCM forces. Designed to slug gear into the battlefield."
+
 /obj/item/storage/backpack/marine/medic
 	name = "\improper USCM medic backpack"
 	desc = "The standard-issue backpack worn by USCM medics."
 	icon_state = "marinepackm"
+	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
+
+/obj/item/storage/backpack/marine/medic/New()
+	. = ..()
+	cell = new /obj/item/cell/high(src)
+	update_icon()
+
+/obj/item/storage/backpack/marine/medic/proc/use_charge(mob/user, amount = 0, mention_charge = TRUE)
+	var/warning = ""
+	if(amount > cell.charge)
+		playsound(src, 'sound/machines/buzz-two.ogg', 25, 1)
+		if(cell.charge)
+			warning = "<span class='warning'>[src]'s defibrillator recharge unit buzzes a warning, its battery only having enough power to partially recharge the defibrillator for [cell.charge] amount. "
+		else
+			warning = "<span class='warning'>[src]'s defibrillator recharge unit buzzes a warning, as its battery is completely depleted of charge. "
+	else
+		playsound(src, 'sound/machines/ping.ogg', 25, 1)
+		warning = "<span class='notice'>[src]'s defibrillator recharge unit cheerfully pings as it successfully recharges the defibrillator. "
+	cell.charge -= min(cell.charge, amount)
+	if(mention_charge)
+		to_chat(user, "<span class='notice'>[warning]<b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
+	update_icon()
+	return ..()
+
+/obj/item/storage/backpack/marine/medic/examine(mob/user)
+	. = ..()
+	if(cell)
+		to_chat(user, "<span class='notice'>Its defibrillator recharge unit has a loaded power cell and its readout counter is active. <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
+	else
+		to_chat(user, "<span class='warning'>Its defibrillator recharge unit does not have a power cell installed!</span>")
+
+/obj/item/storage/backpack/marine/medic/update_icon()
+	icon_state = initial(icon_state)
+	if(cell?.charge)
+		switch(round(cell.charge * 100 / max(1,cell.maxcharge)))
+			if(75 to INFINITY)
+				icon_state += "_100"
+			if(50 to 74)
+				icon_state += "_75"
+			if(25 to 49)
+				icon_state += "_50"
+			if(1 to 24)
+				icon_state += "_25"
+	else
+		icon_state += "_0"
+
+/obj/item/storage/backpack/marine/medic/MouseDrop_T(obj/item/W, mob/living/user) //Dragging the defib/power cell onto the backpack will trigger its special functionality.
+	if(istype(W, /obj/item/device/defibrillator))
+		if(cell)
+			var/obj/item/device/defibrillator/D = W
+			var/charge_difference = D.dcell.maxcharge - D.dcell.charge
+			if(charge_difference) //If the defib has less than max charge, recharge it.
+				use_charge(user, charge_difference) //consume an appropriate amount of charge
+				D.dcell.charge += min(charge_difference, cell.charge) //Recharge the defibrillator battery with the lower of the difference between its present and max cap, or the remaining charge
+			else
+				to_chat(user, "<span class='warning'>This defibrillator is already at maximum charge!</span>")
+		else
+			to_chat(user, "<span class='warning'>[src]'s defibrillator recharge unit does not have a power cell installed!</span>")
+	else if(istype(W, /obj/item/cell))
+		if(user.drop_held_item())
+			W.loc = src
+			var/replace_install = "You replace the cell in [src]'s defibrillator recharge unit."
+			if(!cell)
+				replace_install = "You install a cell in [src]'s defibrillator recharge unit."
+			else
+				cell.updateicon()
+				user.put_in_hands(cell)
+			cell = W
+			to_chat(user, "<span class='notice'>[replace_install] <b>Charge Remaining: [cell.charge]/[cell.maxcharge]</b></span>")
+			playsound(user, 'sound/weapons/gun_rifle_reload.ogg', 25, 1, 5)
+			update_icon()
+	return ..()
+
 
 /obj/item/storage/backpack/marine/tech
 	name = "\improper USCM technician backpack"
-	desc = "The standard-issue backpack worn by USCM technicians."
+	desc = "The standard-issue backpack worn by USCM technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
 	icon_state = "marinepackt"
+	bypass_w_limit = list("/obj/item/device/m56d_gun",
+					"/obj/item/ammo_magazine/m56d",
+					"/obj/item/device/m56d_post",
+					"/obj/item/device/turret_top",
+					"/obj/item/ammo_magazine/sentry",
+					"/obj/item/ammo_magazine/sentry",
+					"/obj/item/stack/sandbags"
+					)
 
 /obj/item/storage/backpack/marine/satchel
 	name = "\improper USCM satchel"
@@ -327,8 +409,7 @@
 	icon_state = "smock"
 	worn_accessible = TRUE
 
-#define SCOUT_CLOAK_COOLDOWN 100
-#define SCOUT_CLOAK_TIMER 50
+
 // Scout Cloak
 /obj/item/storage/backpack/marine/satchel/scout_cloak
 	name = "\improper M68 Thermal Cloak"
@@ -338,14 +419,31 @@
 	has_gamemode_skin = FALSE //same sprite for all gamemode.
 	var/camo_active = 0
 	var/camo_active_timer = 0
-	var/camo_cooldown_timer = 0
-	var/camo_ready = 1
+	var/camo_cooldown_timer = null
+	var/camo_last_stealth = null
+	var/camo_last_shimmer = null
+	var/camo_energy = 100
+	var/mob/living/carbon/human/wearer = null
+	actions_types = list(/datum/action/item_action/toggle)
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/verb/camouflage()
+/obj/item/storage/backpack/marine/satchel/scout_cloak/Dispose()
+	camo_off()
+	return ..()
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/dropped(mob/user)
+	camo_off(user)
+	wearer = null
+	processing_objects.Remove(src)
+	return ..()
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/verb/use_camouflage()
 	set name = "Toggle M68 Thermal Camouflage"
 	set desc = "Activate your cloak's camouflage."
 	set category = "Scout"
 
+	camouflage()
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camouflage()
 	if (!usr || usr.is_mob_incapacitated(TRUE))
 		return
 
@@ -364,19 +462,20 @@
 		camo_off(usr)
 		return
 
-	if (!camo_ready)
-		to_chat(M, "<span class='warning'>Your thermal dampeners are still recharging!")
+	if (camo_cooldown_timer)
+		to_chat(M, "<span class='warning'>Your thermal cloak is still recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
 		return
 
-	camo_ready = 0
-	camo_active = 1
+	camo_active = TRUE
+	camo_last_stealth = world.time
 	to_chat(M, "<span class='notice'>You activate your cloak's camouflage.</span>")
+	wearer = M
 
 	for (var/mob/O in oviewers(M))
-		O.show_message("[M] vanishes into thin air!", 1)
+		O.show_message("[M] fades into thin air!", 1)
 	playsound(M.loc,'sound/effects/cloak_scout_on.ogg', 15, 1)
 
-	M.alpha = 10
+	M.alpha = SCOUT_CLOAK_STILL_ALPHA
 
 	if (M.smokecloaked)
 		M.smokecloaked = FALSE
@@ -389,12 +488,15 @@
 	spawn(1)
 		anim(M.loc,M,'icons/mob/mob.dmi',,"cloak",,M.dir)
 
-	camo_active_timer = world.timeofday + SCOUT_CLOAK_TIMER
-	process_active_camo(usr)
-	return 1
+	processing_objects.Add(src)
+
+	return TRUE
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_off(var/mob/user)
 	if (!user)
+		camo_active = FALSE
+		wearer = null
+		processing_objects.Remove(src)
 		return 0
 
 	to_chat(user, "<span class='warning'>Your cloak's camouflage has deactivated!</span>")
@@ -413,30 +515,67 @@
 	spawn(1)
 		anim(user.loc,user,'icons/mob/mob.dmi',,"uncloak",,user.dir)
 
-	camo_cooldown_timer = world.timeofday + SCOUT_CLOAK_COOLDOWN
-	process_camo_cooldown(user)
+	var/cooldown = round( (SCOUT_CLOAK_MAX_ENERGY - camo_energy) / SCOUT_CLOAK_INACTIVE_RECOVERY * 10) //Should be 20 seconds after a full depletion with inactive recovery at 5
+	camo_cooldown_timer = world.time + cooldown //recalibration and recharge time scales inversely with charge remaining
+	to_chat(user, "<span class='warning'>Your thermal cloak is recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
+	process_camo_cooldown(user, cooldown)
+	processing_objects.Remove(src)
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/process_camo_cooldown(var/mob/user)
-	set background = 1
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/process_camo_cooldown(mob/living/user, cooldown)
+	if(!camo_cooldown_timer)
+		return
+	spawn(cooldown)
+		camo_cooldown_timer = null
+		camo_energy = SCOUT_CLOAK_MAX_ENERGY
+		playsound(user.loc,'sound/effects/EMPulse.ogg', 25, 0, 1)
+		to_chat(user, "<span class='danger'>Your thermal cloak has recalibrated and is ready to cloak again.</span>")
 
-	spawn while (!camo_ready && !camo_active)
-		if (world.timeofday > camo_cooldown_timer)
-			to_chat(user, "<span class='notice'>Your cloak's thermal dampeners have recharged!")
-			camo_ready = 1
+/obj/item/storage/backpack/marine/satchel/scout_cloak/examine(mob/user)
+	. = ..()
+	var/list/details = list()
+	details +=("It has [camo_energy]/[SCOUT_CLOAK_MAX_ENERGY] charge.</br>")
 
-		sleep(10)	// Process every second.
+	details +=("Its safeties are on.</br>")
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/process_active_camo(var/mob/user)
-	set background = 1
+	if(camo_active)
+		details +=("It's currently active.</br>")
 
-	spawn while (camo_active)
-		if (world.timeofday > camo_active_timer)
-			camo_active = 0
-			camo_off(user)
+	to_chat(user, "<span class='warning'>[details.Join(" ")]</span>")
 
-		sleep(10)	// Process every second.
+/obj/item/storage/backpack/marine/satchel/scout_cloak/item_action_slot_check(mob/user, slot)
+	if(!ishuman(user))
+		return FALSE
+	if(slot != WEAR_BACK)
+		return FALSE
+	return TRUE
 
 
+/obj/item/storage/backpack/marine/satchel/scout_cloak/attack_self(mob/user)
+	. = ..()
+	camouflage()
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/proc/camo_adjust_energy(mob/user, drain = SCOUT_CLOAK_WALK_DRAIN)
+	camo_energy = CLAMP(camo_energy - drain,0,SCOUT_CLOAK_MAX_ENERGY)
+
+	if(!camo_energy) //Turn off the camo if we run out of energy.
+		to_chat(user, "<span class='danger'>Your thermal cloak lacks sufficient energy to remain active.</span>")
+		camo_off(user)
+
+/obj/item/storage/backpack/marine/satchel/scout_cloak/process()
+	if(!wearer)
+		camo_off()
+		return
+
+	var/stealth_delay = world.time - SCOUT_CLOAK_STEALTH_DELAY
+	if(camo_last_shimmer > stealth_delay) //Shimmer after taking aggressive actions; no energy regeneration
+		alpha = SCOUT_CLOAK_RUN_ALPHA //50% invisible
+	else if(camo_last_stealth > stealth_delay ) //We have an initial reprieve at max invisibility allowing us to reposition; no energy recovery during this time
+		wearer.alpha = SCOUT_CLOAK_STILL_ALPHA
+		return
+	//Stationary stealth
+	else if( (camo_last_shimmer < stealth_delay) && (wearer.last_move_intent < stealth_delay) ) //If we're standing still and haven't shimmed in the past 3 seconds we become almost completely invisible
+		wearer.alpha = SCOUT_CLOAK_STILL_ALPHA //95% invisible
+		camo_adjust_energy(wearer, SCOUT_CLOAK_ACTIVE_RECOVERY)
 
 // Welder Backpacks //
 
@@ -445,9 +584,9 @@
 	desc = "A specialized backpack worn by USCM technicians. It carries a fueltank for quick welder refueling and use,"
 	icon_state = "engineerpack"
 	var/max_fuel = 260
-	max_storage_space = 15
 	storage_slots = null
 	has_gamemode_skin = FALSE //same sprites for all gamemodes
+	max_storage_space = 15
 
 /obj/item/storage/backpack/marine/engineerpack/New()
 	var/datum/reagents/R = new/datum/reagents(max_fuel) //Lotsa refills
@@ -504,6 +643,7 @@
 	desc = "A specialized fueltank worn by USCM Pyrotechnicians for use with the M240-T incinerator unit. A small general storage compartment is installed."
 	icon_state = "flamethrower_tank"
 	max_fuel = 500
+
 
 /obj/item/storage/backpack/marine/engineerpack/flamethrower/attackby(obj/item/W, mob/living/user)
 	if (istype(W, /obj/item/ammo_magazine/flamer_tank))

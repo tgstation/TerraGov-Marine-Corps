@@ -29,6 +29,8 @@
 	else
 		health = 100 - getOxyLoss() - getToxLoss() - getFireLoss() - getBruteLoss()
 
+	update_stat()
+
 /mob/living/silicon/decoy/death(gibbed, deathmessage = "sparks up and falls silent...")
 	set waitfor = 0
 	if(stat == DEAD) return FALSE

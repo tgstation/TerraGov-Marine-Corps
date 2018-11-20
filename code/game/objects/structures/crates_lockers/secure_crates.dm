@@ -41,7 +41,7 @@
 	if(src.allowed(user))
 		src.locked = !src.locked
 		for(var/mob/O in viewers(user, 3))
-			if((O.client && !( O.blinded )))
+			if(O.client && !is_blind(O))
 				to_chat(O, "<span class='notice'>The crate has been [locked ? null : "un"]locked by [user].</span>")
 		icon_state = locked ? icon_locked : icon_unlocked
 	else

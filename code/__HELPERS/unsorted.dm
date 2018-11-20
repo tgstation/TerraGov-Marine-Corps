@@ -186,44 +186,113 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 
 //among other things, used by flamethrower and boiler spray to calculate if flame/spray can pass through.
+/proc/PostBlocksFire(turf/loc) //Will be affected by fire but not allow it to spread further.
+	if(loc.density)
+		return TRUE
+	for(var/obj/structure/window/D in loc)
+		if(!D.density)
+			continue
+		if(D.is_full_window())
+			return TRUE
+	for(var/obj/machinery/door/D in loc)
+		if(!D.density)
+			continue
+		if(!istype(D, /obj/machinery/door/window))
+			return TRUE	// it's a real, air blocking door
+	for(var/obj/structure/mineral_door/D in loc)
+		if(D.density)
+			return TRUE
+	return FALSE
+
+/proc/LinkPreBlocksFire(turf/A, turf/B) //Will cut fire, protecting the tile.
+	if(A == null || B == null)
+		return TRUE
+	var/abdir = get_dir(A,B)
+	if(abdir & (abdir-1))//is diagonal direction
+		var/turf/Y = get_step(A,abdir&(NORTH|SOUTH))
+		if(!DirPreBlockedFire(A,Y) && !DirPreBlockedFire(Y,B))
+			return FALSE // can go through the Y axis
+		var/turf/X = get_step(A,abdir&(EAST|WEST))
+		if(!DirPreBlockedFire(A,X) && !DirPreBlockedFire(X,B))
+			return FALSE // can go through the X axis
+		return TRUE // both directions blocked
+	if(DirPreBlockedFire(A,B))
+		return TRUE
+	return FALSE
+
+/proc/DirPreBlockedFire(turf/A,turf/B)
+	var/abdir = get_dir(A,B)
+	var/badir = get_dir(B,A)
+	for(var/obj/structure/window/D in A)
+		if(!D.density)
+			continue
+		if(D.dir == abdir)
+			return TRUE
+	for(var/obj/machinery/door/D in A)
+		if(!D.density)
+			continue
+		if(D.dir == abdir)
+			return TRUE
+	for(var/obj/structure/window/D in B)
+		if(!D.density)
+			continue
+		if(D.dir == badir)
+			return TRUE
+	for(var/obj/machinery/door/D in B)
+		if(!D.density)
+			continue
+		if(D.dir == badir)
+			return TRUE
+	return FALSE
+
 /proc/LinkBlocked(turf/A, turf/B)
-	if(A == null || B == null) return 1
+	if(A == null || B == null)
+		return TRUE
 	var/adir = get_dir(A,B)
 	var/rdir = get_dir(B,A)
 	if(adir & (adir-1))//is diagonal direction
 		var/turf/iStep = get_step(A,adir&(NORTH|SOUTH))
-		if(!iStep.density && !LinkBlocked(A,iStep) && !LinkBlocked(iStep,B)) return 0
+		if(!iStep.density && !LinkBlocked(A,iStep) && !LinkBlocked(iStep,B))
+			return FALSE
 
 		var/turf/pStep = get_step(A,adir&(EAST|WEST))
-		if(!pStep.density && !LinkBlocked(A,pStep) && !LinkBlocked(pStep,B)) return 0
-		return 1
+		if(!pStep.density && !LinkBlocked(A,pStep) && !LinkBlocked(pStep,B))
+			return FALSE
+		return TRUE
 
-	if(DirBlocked(A,adir)) return 1
-	if(DirBlocked(B,rdir)) return 1
-	return 0
+	if(DirBlocked(A,adir))
+		return TRUE
+	if(DirBlocked(B,rdir))
+		return TRUE
+	return FALSE
 
 /proc/DirBlocked(turf/loc,var/direction)
 	for(var/obj/structure/window/D in loc)
-		if(!D.density)			continue
-		if(D.is_full_window())	return 1
-		if(D.dir == direction) return 1
+		if(!D.density)
+			continue
+		if(D.is_full_window())
+			return TRUE
+		if(D.dir == direction)
+			return TRUE
 
 	for(var/obj/machinery/door/D in loc)
-		if(!D.density)			continue
+		if(!D.density)
+			continue
 		if(istype(D, /obj/machinery/door/window))
-			if(D.dir == direction)		return 1
-		else return 1	// it's a real, air blocking door
+			if(D.dir == direction)
+				return TRUE
+		else
+			return TRUE	// it's a real, air blocking door
 	for(var/obj/structure/mineral_door/D in loc)
-		if(D.density) return 1
-	return 0
+		if(D.density)
+			return TRUE
+	return FALSE
 
 /proc/TurfBlockedNonWindow(turf/loc)
 	for(var/obj/O in loc)
 		if(O.density && !istype(O, /obj/structure/window))
-			return 1
-	return 0
-
-
+			return TRUE
+	return FALSE
 
 /proc/sign(x)
 	return x!=0?x/abs(x):0
@@ -531,7 +600,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 			continue
 		if (M.stat == 2)
 			continue
-		if(!M.ckey || !M.client) 
+		if(!M.ckey || !M.client)
 			continue
 		var/name = M.name
 		if (name in names)
@@ -1557,10 +1626,10 @@ var/list/WALLITEMS = list(
 	var/line[] = list(locate(px,py,M.z))
 	var/dx=N.x-px	//x distance
 	var/dy=N.y-py
-	var/dxabs=abs(dx)//Absolute value of x distance
-	var/dyabs=abs(dy)
-	var/sdx=sign(dx)	//Sign of x distance (+ or -)
-	var/sdy=sign(dy)
+	var/dxabs = abs(dx)//Absolute value of x distance
+	var/dyabs = abs(dy)
+	var/sdx = SIGN(dx)	//Sign of x distance (+ or -)
+	var/sdy = SIGN(dy)
 	var/x=dxabs>>1	//Counters for steps taken, setting to distance/2
 	var/y=dyabs>>1	//Bit-shifting makes me l33t.  It also makes getline() unnessecarrily fast.
 	var/j			//Generic integer for counting
@@ -1584,7 +1653,7 @@ var/list/WALLITEMS = list(
 
 //Bresenham's algorithm. This one deals efficiently with all 8 octants.
 //Just don't ask me how it works.
-/proc/getline2(atom/from_atom,atom/to_atom)
+/proc/getline2(atom/from_atom, atom/to_atom, exclude_origin=FALSE)
 	if(!from_atom || !to_atom) return 0
 	var/list/turf/turfs = list()
 
@@ -1627,6 +1696,8 @@ var/list/WALLITEMS = list(
 			cur_x += dx2
 			cur_y += dy2
 
+	if(exclude_origin)
+		turfs -= get_turf(from_atom)
 
 	return turfs
 
@@ -1684,3 +1755,10 @@ var/list/WALLITEMS = list(
 
 /datum/proc/stack_trace(msg)
 	CRASH(msg)
+
+////// Matrices ///////
+
+/matrix/proc/TurnTo(old_angle, new_angle)
+	. = new_angle - old_angle
+	Turn(.) //BYOND handles cases such as -270, 360, 540 etc. DOES NOT HANDLE 180 TURNS WELL, THEY TWEEN AND LOOK LIKE SHIT
+

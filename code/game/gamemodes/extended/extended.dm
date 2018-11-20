@@ -23,8 +23,6 @@
 	round_time_lobby = world.time
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
-	spawn (rand(waittime_l, waittime_h)) // To reduce extended meta.
-		send_intercept()
 	..()
 
 /datum/game_mode/extended/check_finished()

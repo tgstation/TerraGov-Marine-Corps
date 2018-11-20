@@ -320,9 +320,8 @@
 	icon_state = "dogtag_taken"
 	icon = 'icons/obj/items/card.dmi'
 	w_class = 1
-	var/list/fallen_names
-	var/fallen_blood_type = ""
-	var/fallen_assgn = ""
+	var/fallen_names[0]
+	var/fallen_assignements[0]
 
 /obj/item/dogtag/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/dogtag))
@@ -333,15 +332,28 @@
 			if(!fallen_names)
 				fallen_names = list()
 			fallen_names += D.fallen_names
+		if(D.fallen_assignements)
+			if(!fallen_assignements)
+				fallen_assignements = list()
+			fallen_assignements += D.fallen_assignements
 		cdel(D)
 		return TRUE
 	else
 		. = ..()
 
 /obj/item/dogtag/examine(mob/user)
-	..()
+	. = ..()
 	if(ishuman(user) && fallen_names && fallen_names.len)
 		if(fallen_names.len == 1)
-			to_chat(user, "<span class='notice'>It reads \"[fallen_names[1]] - [fallen_assgn] - [fallen_blood_type]\"</span>")
+			to_chat(user, "<span class='notice'>It reads: \"[fallen_names[1]] - [fallen_assignements[1]]\".</span>")
 		else
-			to_chat(user, "There's multiple tags joined together.")
+			var/msg = "<span class='notice'> It reads: "
+			for(var/x = 1 to length(fallen_names))
+				if (x == length(fallen_names))
+					msg += "\"[fallen_names[x]] - [fallen_assignements[x]]\""
+				else
+					msg += "\"[fallen_names[x]] - [fallen_assignements[x]]\", "
+			 
+			msg += ".</span>"
+
+			to_chat(user, msg)

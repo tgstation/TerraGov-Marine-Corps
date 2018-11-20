@@ -4,14 +4,15 @@
 	desc = "Mirror mirror on the wall, who's the most robust of them all?"
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "mirror"
-	density = 0
-	anchored = 1
-	var/shattered = 0
+	density = FALSE
+	anchored = TRUE
+	var/shattered = FALSE
 
 
 /obj/structure/mirror/attack_hand(mob/user as mob)
 
-	if(shattered)	return
+	if(shattered)
+		return
 
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
@@ -44,7 +45,8 @@
 				species_facial_hair = facial_hair_styles_list
 
 			var/new_style = input(user, "Select a facial hair style", "Grooming")  as null|anything in species_facial_hair
-			if(userloc != H.loc) return	//no tele-grooming
+			if(userloc != H.loc)
+				return	//no tele-grooming
 			if(new_style)
 				H.f_style = new_style
 
@@ -59,16 +61,31 @@
 			species_hair = hair_styles_list
 
 		var/new_style = input(user, "Select a hair style", "Grooming")  as null|anything in species_hair
-		if(userloc != H.loc) return	//no tele-grooming
+		if(userloc != H.loc)
+			return	//no tele-grooming
 		if(new_style)
 			H.h_style = new_style
 
 		H.update_hair()
 
+/obj/structure/mirror/attack_alien(mob/living/carbon/Xenomorph/M)
+	M.animation_attack_on(src)
+	if(shattered)
+		playsound(loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
+		return TRUE
+
+	if(M.a_intent == "help")
+		M.visible_message("<span class='warning'>\The [M] oogles its own reflection in [src].</span>", \
+		"<span class='warning'>You oogle your own reflection in [src].</span>", null, 5)
+	else
+		M.visible_message("<span class='danger'>\The [M] smashes [src]!</span>", \
+		"<span class='danger'>You smash [src]!</span>", null, 5)
+		shatter()
 
 /obj/structure/mirror/proc/shatter()
-	if(shattered)	return
-	shattered = 1
+	if(shattered)
+		return
+	shattered = TRUE
 	icon_state = "mirror_broke"
 	playsound(src, "shatter", 70, 1)
 	desc = "Oh no, seven years of bad luck!"
@@ -81,7 +98,7 @@
 		else
 			playsound(src, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
 	..()
-	return 1
+	return TRUE
 
 
 /obj/structure/mirror/attackby(obj/item/I as obj, mob/user as mob)
@@ -97,9 +114,11 @@
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
 
 /obj/structure/mirror/attack_animal(mob/user as mob)
-	if(!isanimal(user)) return
+	if(!isanimal(user))
+		return
 	var/mob/living/simple_animal/M = user
-	if(M.melee_damage_upper <= 0) return
+	if(M.melee_damage_upper <= 0)
+		return
 	if(shattered)
 		playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 25, 1)
 		return

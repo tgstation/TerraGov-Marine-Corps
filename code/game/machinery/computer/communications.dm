@@ -65,14 +65,14 @@
 			var/obj/item/card/id/I = C.get_active_hand()
 			if(istype(I))
 				if(check_access(I)) authenticated = 1
-				if(ACCESS_MARINE_COMMANDER in I.access)
+				if(ACCESS_MARINE_BRIDGE in I.access)
 					authenticated = 2
 					crew_announcement.announcer = GetNameAndAssignmentFromId(I)
 			else
 				I = C.wear_id
 				if(istype(I))
 					if(check_access(I)) authenticated = 1
-					if(ACCESS_MARINE_COMMANDER in I.access)
+					if(ACCESS_MARINE_BRIDGE in I.access)
 						authenticated = 2
 						crew_announcement.announcer = GetNameAndAssignmentFromId(I)
 		if("logout")
@@ -199,27 +199,25 @@
 				//Currently only counts aliens, but this will likely need to change with human opponents.
 				//I think this should instead count human losses, so that a distress beacon is available when a certain number of dead pile up.
 				//Comment block to test
-				var/L[] = ticker.mode.count_humans_and_xenos(list(MAIN_SHIP_Z_LEVEL))
-
-				if(L[2] < round(L[1] * 0.5))
-					log_game("[key_name(usr)] has attemped to call a distress beacon, but it was denied due to lack of threat on the ship.")
-					message_admins("[key_name(usr)] has attemped to call a distress beacon, but it was denied due to lack of threat on the ship.", 1)
-					to_chat(usr, "<span class='warning'>The sensors aren't picking up enough of a threat on the ship to warrant a distress beacon.</span>")
+				var/L[] = ticker.mode.count_humans_and_xenos()
+				var/M[] = ticker.mode.count_humans_and_xenos(list(MAIN_SHIP_Z_LEVEL))
+				if((L[2] < round(L[1] * 0.8)) || (M[2] < round(M[1] * 0.5)))
+					log_game("[key_name(usr)] has attemped to call a distress beacon, but it was denied due to lack of threat.")
+					to_chat(usr, "<span class='warning'>The sensors aren't picking up enough of a threat to warrant a distress beacon.</span>")
 					return FALSE
 
 				for(var/client/C in admins)
 					if((R_ADMIN|R_MOD) & C.holder.rights)
 						C << 'sound/effects/sos-morse-code.ogg'
-				message_mods("[key_name(usr)] has requested a Distress Beacon! (<A HREF='?_src_=holder;ccmark=\ref[usr]'>Mark</A>) (<A HREF='?_src_=holder;distress=\ref[usr]'>SEND</A>) (<A HREF='?_src_=holder;ccdeny=\ref[usr]'>DENY</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>) (<A HREF='?_src_=holder;CentcommReply=\ref[usr]'>RPLY</A>)")
-				to_chat(usr, "<span class='notice'>A distress beacon request has been sent to USCM Central Command.</span>")
-						//unanswered_distress += usr
+				message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) has called a Distress Beacon. It will be sent in 60 seconds unless denied or sent early. (<A HREF='?_src_=holder;ccmark=\ref[usr]'>Mark</A>) (<A HREF='?_src_=holder;distress=\ref[usr]'>SEND</A>) (<A HREF='?_src_=holder;ccdeny=\ref[usr]'>DENY</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) (<A HREF='?_src_=holder;CentcommReply=\ref[usr]'>RPLY</A>)")
+				to_chat(usr, "<span class='notice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>")
 
-				//spawn(600) //1 minute in deciseconds
-					//if(usr in unanswered_distress)
-						//unanswered_distress -= usr
-						//ticker.mode.activate_distress()
-						//log_game("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within a minute.")
-						//message_admins("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within a minute.", 1)
+				distress_cancel = FALSE
+				spawn(600) //1 minute in deciseconds
+					if(!distress_cancel)
+						ticker.mode.activate_distress()
+						log_game("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within 60 seconds.")
+						message_admins("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within 60 seconds.", 1)
 
 				cooldown_request = world.time
 				return TRUE

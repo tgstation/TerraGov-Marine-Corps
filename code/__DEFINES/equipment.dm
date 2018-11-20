@@ -23,10 +23,13 @@
 #define ON_BORDER				4		// 'border object'. item has priority to check when entering or leaving
 #define NOBLOODY				8		// Don't want a blood overlay on this one.
 #define DIRLOCK					16		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
-#define	NOREACT					32		//Reagents dont' react inside this container.
-#define OPENCONTAINER			64		//is an open container for chemistry purposes
-#define RELAY_CLICK				128		//This is used for /obj/ that relay your clicks via handle_click(), mostly for MGs + Sentries ~Art
+#define RELAY_CLICK				32		//This is used for /obj/ that relay your clicks via handle_click(), mostly for MGs + Sentries ~Art
 //==========================================================================================
+
+//flags_barrier
+
+#define HANDLE_BARRIER_CHANCE 1
+#define HANDLE_BARRIER_BLOCK 2
 
 //flags_item
 //bitflags that were previously under flags_atom, these only apply to items.
@@ -145,12 +148,16 @@
 #define WEAR_R_HAND			"r_hand"
 #define WEAR_HANDCUFFS		"handcuffs"
 #define WEAR_LEGCUFFS		"legcuffs"
+#define EQUIP_IN_BOOT		"in_boot"
 #define WEAR_IN_BACK		"in_back"
 #define WEAR_IN_JACKET		"in_jacket"
 #define WEAR_IN_ACCESSORY	"in_accessory"
 #define WEAR_IN_HOLSTER		"in_holster"
 #define WEAR_IN_B_HOLSTER	"in_b_holster"
 #define WEAR_IN_J_HOLSTER	"in_j_holster"
+#define EQUIP_IN_STORAGE	"in_storage"
+#define EQUIP_IN_L_POUCH	"in_l_pouch"
+#define EQUIP_IN_R_POUCH	"in_r_pouch"
 //=================================================
 
 // bitflags for clothing parts

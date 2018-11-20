@@ -1,5 +1,5 @@
-#define SAVEFILE_VERSION_MIN	8
-#define SAVEFILE_VERSION_MAX	12
+#define SAVEFILE_VERSION_MIN	12
+#define SAVEFILE_VERSION_MAX	16
 
 //handles converting savefiles to new formats
 //MAKE SURE YOU KEEP THIS UP TO DATE!
@@ -20,11 +20,14 @@
 				break
 		return 0
 
-	if(savefile_version < 12) //we've split toggles into toggles_sound and toggles_chat
+	if(savefile_version < 16) //we've split toggles into toggles_sound and toggles_chat
 //		if(S["toggles"])
 //			cdel(S["toggles"])
-		S["toggles_chat"] << TOGGLES_SOUND_DEFAULT
-		S["toggles_chat"] << TOGGLES_CHAT_DEFAULT
+
+		S["ghost_medhud"]		<< 1
+		S["ghost_sechud"] 		<< 0
+		S["ghost_squadhud"] 	<< 1
+		S["ghost_xenohud"] 		<< 1
 
 	savefile_version = SAVEFILE_VERSION_MAX
 	return 1
@@ -70,10 +73,15 @@
 	S["pred_armor_type"]	>> predator_armor_type
 	S["pred_boot_type"]		>> predator_boot_type
 
+	S["ghost_medhud"]		>> ghost_medhud
+	S["ghost_sechud"] 		>> ghost_sechud
+	S["ghost_squadhud"] 	>> ghost_squadhud
+	S["ghost_xenohud"] 		>> ghost_xenohud
+
 	//Sanitize
 	ooccolor		= sanitize_hexcolor(ooccolor, initial(ooccolor))
 	lastchangelog	= sanitize_text(lastchangelog, initial(lastchangelog))
-	UI_style		= sanitize_inlist(UI_style, list("White", "Midnight","Orange","old"), initial(UI_style))
+	UI_style		= sanitize_inlist(UI_style, list("White", "Midnight","Orange","old","Slimecore","Operative","Clockwork"), initial(UI_style))
 	be_special		= sanitize_integer(be_special, 0, 65535, initial(be_special))
 	default_slot	= sanitize_integer(default_slot, 1, MAX_SAVE_SLOTS, initial(default_slot))
 	toggles_chat	= sanitize_integer(toggles_chat, 0, 65535, initial(toggles_chat))
@@ -89,6 +97,11 @@
 	predator_mask_type 	= sanitize_integer(predator_mask_type,1,1000000,initial(predator_mask_type))
 	predator_armor_type = sanitize_integer(predator_armor_type,1,1000000,initial(predator_armor_type))
 	predator_boot_type 	= sanitize_integer(predator_boot_type,1,1000000,initial(predator_boot_type))
+
+	ghost_medhud    = sanitize_integer(ghost_medhud,0,1,initial(ghost_medhud))
+	ghost_sechud    = sanitize_integer(ghost_sechud,0,1,initial(ghost_sechud))
+	ghost_squadhud  = sanitize_integer(ghost_squadhud,0,1,initial(ghost_squadhud))
+	ghost_xenohud   = sanitize_integer(ghost_xenohud,0,1,initial(ghost_xenohud))
 
 	return 1
 
@@ -117,6 +130,11 @@
 	S["pred_mask_type"] 	<< predator_mask_type
 	S["pred_armor_type"] 	<< predator_armor_type
 	S["pred_boot_type"] 	<< predator_boot_type
+
+	S["ghost_medhud"]		<< ghost_medhud
+	S["ghost_sechud"] 		<< ghost_sechud
+	S["ghost_squadhud"] 	<< ghost_squadhud
+	S["ghost_xenohud"] 		<< ghost_xenohud
 
 	return 1
 

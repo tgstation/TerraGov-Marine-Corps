@@ -10,6 +10,7 @@
 	*/
 	var/list/sprite_sheets_refit = null
 	var/eye_protection = 0 //used for headgear, masks, and glasses, to see how much they protect eyes from bright lights.
+	var/tint = 0 // headgear, mask and glasses, forvision impairment overlays
 
 //Updates the icons of the mob wearing the clothing item, if any.
 /obj/item/clothing/proc/update_clothing_icon()
@@ -127,6 +128,7 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	flags_equip_slot = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
+	var/list/supporting_limbs = null
 	siemens_coefficient = 0.9
 	w_class = 3
 
@@ -144,7 +146,7 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/clothing/under/U = H.w_uniform
 		//some uniforms prevent you from wearing any suits but certain types
-		if(U && U.suit_restricted && !is_type_in_list(src, U.suit_restricted))
+		if(U?.suit_restricted && !is_type_in_list(src, U.suit_restricted))
 			to_chat(H, "<span class='warning'>[src] can't be worn with [U].</span>")
 			return 0
 	return 1

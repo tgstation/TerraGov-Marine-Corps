@@ -9,34 +9,49 @@
 	standard 0 if fail
 */
 /mob/living/proc/apply_damage(var/damage = 0,var/damagetype = BRUTE, var/def_zone = null, var/blocked = 0, var/used_weapon = null, var/sharp = 0, var/edge = 0)
-	if(!damage || (blocked >= 2))	return 0
+	if(blocked >= 1) //total negation
+		return 0
+
+	if(blocked)
+		damage *= CLAMP(1-blocked,0.00,1.00) //Percentage reduction
+
+	if(!damage) //no damage
+		return 0
+
 	switch(damagetype)
 		if(BRUTE)
-			adjustBruteLoss(damage/(blocked+1))
+			adjustBruteLoss(damage)
 		if(BURN)
 			if(COLD_RESISTANCE in mutations)	damage = 0
-			adjustFireLoss(damage/(blocked+1))
+			adjustFireLoss(damage)
 		if(TOX)
-			adjustToxLoss(damage/(blocked+1))
+			adjustToxLoss(damage)
 		if(OXY)
-			adjustOxyLoss(damage/(blocked+1))
+			adjustOxyLoss(damage)
 		if(CLONE)
-			adjustCloneLoss(damage/(blocked+1))
+			adjustCloneLoss(damage)
 		if(HALLOSS)
-			adjustHalLoss(damage/(blocked+1))
+			adjustHalLoss(damage)
 	updatehealth()
-	return 1
+	return TRUE
 
 
 /mob/living/proc/apply_damages(var/brute = 0, var/burn = 0, var/tox = 0, var/oxy = 0, var/clone = 0, var/halloss = 0, var/def_zone = null, var/blocked = 0)
-	if(blocked >= 2)	return 0
-	if(brute)	apply_damage(brute, BRUTE, def_zone, blocked)
-	if(burn)	apply_damage(burn, BURN, def_zone, blocked)
-	if(tox)		apply_damage(tox, TOX, def_zone, blocked)
-	if(oxy)		apply_damage(oxy, OXY, def_zone, blocked)
-	if(clone)	apply_damage(clone, CLONE, def_zone, blocked)
-	if(halloss) apply_damage(halloss, HALLOSS, def_zone, blocked)
-	return 1
+	if(blocked >= 1) //Complete negation/100% reduction
+		return FALSE
+	if(brute)
+		apply_damage(brute, BRUTE, def_zone, blocked)
+	if(burn)
+		apply_damage(burn, BURN, def_zone, blocked)
+	if(tox)
+		apply_damage(tox, TOX, def_zone, blocked)
+	if(oxy)
+		apply_damage(oxy, OXY, def_zone, blocked)
+	if(clone)
+		apply_damage(clone, CLONE, def_zone, blocked)
+	if(halloss)
+		apply_damage(halloss, HALLOSS, def_zone, blocked)
+	return TRUE
 
 
 
@@ -50,7 +65,7 @@
 		if(PARALYZE)
 			KnockOut(effect/(blocked+1))
 		if(AGONY)
-			halloss += effect // Useful for objects that cause "subdual" damage. PAIN!
+			adjustHalLoss(effect/blocked+1)
 		if(IRRADIATE)
 			var/rad_protection = getarmor(null, "rad")/100
 			radiation += max((1-rad_protection)*effect/(blocked+1),0)//Rads auto check armor
@@ -58,7 +73,7 @@
 			if(status_flags & CANSTUN) // stun is usually associated with stutter
 				stuttering = max(stuttering,(effect/(blocked+1)))
 		if(EYE_BLUR)
-			eye_blurry = max(eye_blurry,(effect/(blocked+1)))
+			blur_eyes(effect/(blocked+1))
 		if(DROWSY)
 			drowsyness = max(drowsyness,(effect/(blocked+1)))
 	updatehealth()

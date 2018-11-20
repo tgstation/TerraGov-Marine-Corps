@@ -1,4 +1,4 @@
-/mob/living/carbon/
+/mob/living/carbon
 	gender = MALE
 	var/datum/species/species //Contains icon generation and language information, set during New().
 	var/list/stomach_contents = list()
@@ -15,3 +15,14 @@
 	var/pulse = PULSE_NORM	//current pulse level
 	var/butchery_progress = 0
 	var/list/internal_organs = list()
+
+	var/drunkenness = 0 //Overall drunkenness - check handle_status_effects() in life.dm for effects
+
+	var/rotate_on_lying = 1
+
+	var/halloss = 0		//Hallucination damage. 'Fake' damage obtained through hallucinating or the holodeck. Sleeping should cause it to wear off.
+
+	var/traumatic_shock = 0
+	var/shock_stage = 0
+
+	var/acid_process_cooldown = 0 //While this is true, the human is unaffected by acid damage from acid puddles; normally applied on being hit by acid spit/spray; reduced at a rate of 1/tick. Used to avoid double whammies.

@@ -79,8 +79,9 @@ REAGENT SCANNER
 	origin_tech = "magnets=1;biotech=1"
 	var/mode = 1
 	var/hud_mode = 1
+	var/skill_threshold = SKILL_MEDICAL_MEDIC
 
-/obj/item/device/healthanalyzer/attack(mob/living/M, mob/living/user)
+/obj/item/device/healthanalyzer/attack(mob/living/carbon/M, mob/living/user) //Integrated analyzers don't need special training to be used quickly.
 	var/dat = ""
 	if(( (CLUMSY in user.mutations) || user.getBrainLoss() >= 60) && prob(50))
 		to_chat(user, "<span class='warning'>You try to analyze the floor's vitals!</span>")
@@ -94,11 +95,9 @@ REAGENT SCANNER
 	if(!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_MEDIC)
+	if(!check_skill_level(skill_threshold, OBJ_SKILL_MEDICAL, user) )
 		to_chat(user, "<span class='warning'>You start fumbling around with [src]...</span>")
-		var/fduration = 60
-		if(user.mind.cm_skills.medical > 0)
-			fduration = 30
+		var/fduration = skill_delay(SKILL_TASK_AVERAGE, SKILL_MEDICAL_MEDIC, OBJ_SKILL_MEDICAL, user)
 		if(!do_after(user, fduration, TRUE, 5, BUSY_ICON_FRIENDLY) || !user.Adjacent(M))
 			return
 	if(isXeno(M))
@@ -291,7 +290,7 @@ REAGENT SCANNER
 				var/datum/reagent/R = A
 				reagents_in_body["[R.id]"] = R.volume
 				if(R.scannable)
-					if(R.overdose != 0 && R.volume >= R.overdose)
+					if(R.overdosed)
 						reagentdata["[R.id]"] = "<span class='warning'><b>OD: </b></span> <font color='#9773C4'><b>[round(R.volume, 1)]u [R.name]</b></font>"
 						overdosed++
 					else
@@ -347,7 +346,7 @@ REAGENT SCANNER
 				//Check for whether there's an appropriate ghost
 				if(H.client)
 					//Calculate revival status/time left
-					var/revive_timer = round((H.timeofdeath + H.revive_grace_period - world.time) * 0.1)
+					var/revive_timer = round((H.timeofdeath + config.revive_grace_period - world.time) * 0.1)
 					if(revive_timer < 60) //Almost out of time; urgency required.
 						death_message = "<b>CRITICAL: Brain death imminent.</b> Reduce total injury value to sub-200 and administer defibrillator to unarmoured chest <b>immediately</b>."
 					else if(revive_timer < 120) //Running out of time; increase urgency of message.
@@ -384,9 +383,9 @@ REAGENT SCANNER
 			if(fracture_detected)
 				advice += "<span class='scanner'><b>Unsecured Fracture:</b> Administer splints to specified areas.</span>\n"
 			if(internal_bleed_detected)
-				var/internal_bleed_advice = "Administer one dose of quickclot then seek surgical remedy."
+				var/internal_bleed_advice = "Administer one dose of quick-clot then seek surgical remedy."
 				if(reagents_in_body["quickclot"] > 4)
-					internal_bleed_advice = "Quickclot has been administered to patient. Seek surgical remedy."
+					internal_bleed_advice = "Quick-Clot has been administered to patient. Seek surgical remedy."
 				advice += "<span class='scanner'><b>Internal Bleeding:</b> [internal_bleed_advice]</span>\n"
 			if(H.getToxLoss() > 10)
 				var/dylovene = ""
@@ -394,7 +393,7 @@ REAGENT SCANNER
 				var/dylo_recommend = ""
 				//if(reagents_in_body["hypervene"] < 3)
 				//	hypervene = "hypervene"
-				if(reagents_in_body["anti_toxin"] < 5)
+				if(reagents_in_body["dylovene"] < 5)
 					if(synaptizine_amount)
 						dylo_recommend = "Addendum: Dylovene recommended, but conflicting synaptizine present."
 					else
@@ -420,8 +419,8 @@ REAGENT SCANNER
 				var/dexplus = ""
 				if(reagents_in_body["dexalin"] < 5)
 					dexalin = "dexalin"
-				if(reagents_in_body["dexplus"] < 1)
-					dexplus = "dexplus"
+				if(reagents_in_body["dexalinplus"] < 1)
+					dexplus = "dexalin plus"
 				advice += "<span class='scanner'><b>Oxygen Deprivation:</b> Administer one dose of: [dexalin] | [dexplus].</span>\n"
 			if(H.getFireLoss(1)  > 10)
 				var/kelotane = ""
@@ -509,6 +508,11 @@ REAGENT SCANNER
 		if(0)
 			to_chat(usr, "The scanner no longer shows results on the hud.")
 
+/obj/item/device/healthanalyzer/integrated
+	name = "\improper HF2 integrated health analyzer"
+	desc = "A body scanner able to distinguish vital signs of the subject. This model has been integrated into another object, and is simpler to use."
+	skill_threshold = 0
+
 /obj/item/device/analyzer
 	desc = "A hand-held environmental scanner which reports current gas levels."
 	name = "analyzer"
@@ -558,8 +562,9 @@ REAGENT SCANNER
 	name = "mass-spectrometer"
 	icon_state = "spectrometer"
 	item_state = "analyzer"
-	w_class = 2.0
-	flags_atom = CONDUCT|OPENCONTAINER
+	w_class = 2
+	flags_atom = CONDUCT
+	container_type = OPENCONTAINER
 	flags_equip_slot = SLOT_WAIST
 	throwforce = 5
 	throw_speed = 4

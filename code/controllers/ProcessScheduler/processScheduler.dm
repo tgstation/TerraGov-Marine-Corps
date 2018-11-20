@@ -125,6 +125,7 @@ var/global/datum/controller/processScheduler/processScheduler
 /datum/controller/processScheduler/proc/runQueuedProcesses()
 	for(var/datum/controller/process/p in queued)
 		runProcess(p)
+		sleep(world.tick_lag)
 
 /datum/controller/processScheduler/proc/addProcess(var/datum/controller/process/process)
 	processes.Add(process)

@@ -25,7 +25,7 @@
 	var/r_skin = 0
 	var/g_skin = 0
 	var/b_skin = 0
-	
+
 	//Species specific
 	var/moth_wings = "Plain"
 
@@ -67,6 +67,8 @@
 
 	var/icon/stand_icon = null
 
+	var/tinttotal = 0
+
 	var/voice = ""	//Instead of new say code calling GetVoice() over and over and over, we're just going to ask this variable, which gets updated in Life()
 
 	var/speech_problem_flag = 0
@@ -96,7 +98,6 @@
 	var/pressure_alert = 0
 	var/prev_gender = null // Debug for plural genders
 	var/temperature_alert = 0
-	var/revive_grace_period = 3000 //In deciseconds. Set to 5 minutes
 	var/undefibbable = FALSE //whether the human is dead and past the defibbrillation period.
 
 	var/holo_card_color = "" //which color type of holocard is printed on us
@@ -117,6 +118,7 @@
 	var/mobility_new = 0
 	var/protection_new = 0
 	var/marskman_new = 0
+	var/aura_recovery_multiplier = 0
 
 	var/temporary_slowdown = 0 //Stacking slowdown caused from effects, currently used by neurotoxin gas
 

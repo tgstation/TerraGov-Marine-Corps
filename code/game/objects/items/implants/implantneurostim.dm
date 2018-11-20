@@ -39,27 +39,27 @@
 
 	last_activated = world.time
 
-	if(istype(imp_in, /mob/living/))
-		var/mob/living/M = imp_in
+	if(istype(imp_in, /mob/living/carbon))
+		var/mob/living/carbon/C = imp_in
 		if(accidental) //was triggered by random chance or EMP
-			playsound(M, 'sound/machines/buzz-two.ogg', 60, 1)
+			playsound(C, 'sound/machines/buzz-two.ogg', 60, 1)
 			imp_in.visible_message("<span class='warning'>Something buzzes inside [imp_in][part ? "'s [part.display_name]" : ""].</span>")
 		else
-			playsound(M, 'sound/machines/twobeep.ogg', 60, 1)
+			playsound(C, 'sound/machines/twobeep.ogg', 60, 1)
 			imp_in.visible_message("<span class='warning'>Something beeps inside [imp_in][part ? "'s [part.display_name]" : ""].</span>")
 		sleep(10)
-		playsound(M, 'sound/effects/sparks2.ogg', 60, 1)
+		playsound(C, 'sound/effects/sparks2.ogg', 60, 1)
 		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 		s.set_up(2, 1, src)
 		s.start()
 		sleep(5)
 
-		M.visible_message("<span class='danger'>[M] convulses in pain!</span>", "<span class='danger'>Excruciating pain shoots through [part ? "your [part.display_name]" : "you"]!</span>")
-		M.flash_eyes(1, TRUE)
-		M.stunned += 10
-		M.KnockDown(10)
-		M.apply_damage(100, HALLOSS, part)
-		M.apply_damage(5, BURN, part, 0, 0, 0, src)
+		C.visible_message("<span class='danger'>[C] convulses in pain!</span>", "<span class='danger'>Excruciating pain shoots through [part ? "your [part.display_name]" : "you"]!</span>")
+		C.flash_eyes(1, TRUE)
+		C.stunned += 10
+		C.KnockDown(10)
+		C.apply_damage(100, HALLOSS, part)
+		C.apply_damage(5, BURN, part, 0, 0, 0, src)
 
 	else
 		playsound(src, 'sound/machines/twobeep.ogg', 60, 1)
