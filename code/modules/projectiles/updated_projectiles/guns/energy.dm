@@ -603,4 +603,4 @@
 // use power from a cell
 /obj/item/ammo_magazine/lasgun/proc/use(var/amount)
 
-	return 1
+	return TRUE
