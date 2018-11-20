@@ -53,8 +53,6 @@
 
 			handle_pain()
 
-			handle_medical_side_effects()
-
 			//In case we want them to do something unique every life cycle, like twitch or moan, or whatever.
 			species.handle_unique_behavior(src)
 

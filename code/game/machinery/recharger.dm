@@ -10,7 +10,7 @@ obj/machinery/recharger
 	active_power_usage = 15000	//15 kW
 	var/obj/item/charging = null
 	var/percent_charge_complete = 0
-	var/list/allowed_devices = list(/obj/item/weapon/baton, /obj/item/device/laptop, /obj/item/cell, /obj/item/weapon/gun/energy/taser, /obj/item/device/defibrillator)
+	var/list/allowed_devices = list(/obj/item/weapon/baton, /obj/item/cell, /obj/item/weapon/gun/energy/taser, /obj/item/device/defibrillator)
 
 obj/machinery/recharger/attackby(obj/item/G as obj, mob/user as mob)
 	if(istype(user,/mob/living/silicon))
@@ -29,11 +29,6 @@ obj/machinery/recharger/attackby(obj/item/G as obj, mob/user as mob)
 		if(!isarea(a) || (a.power_equip == 0 && !a.unlimited_power))
 			to_chat(user, "\red The [name] blinks red as you try to insert the item!")
 			return
-		if(istype(G, /obj/item/device/laptop))
-			var/obj/item/device/laptop/L = G
-			if(!L.stored_computer.battery)
-				to_chat(user, "There's no battery in it!")
-				return
 		if(istype(G, /obj/item/device/defibrillator))
 			var/obj/item/device/defibrillator/D = G
 			if(D.ready)
@@ -106,19 +101,6 @@ obj/machinery/recharger/process()
 					update_icon()
 			else
 				percent_charge_complete = 0
-				update_use_power(1)
-				update_icon()
-			return
-
-		if(istype(charging, /obj/item/device/laptop))
-			var/obj/item/device/laptop/L = charging
-			if(!L.stored_computer.battery.fully_charged())
-				L.stored_computer.battery.give(active_power_usage*CELLRATE)
-				percent_charge_complete = L.stored_computer.battery.percent()
-				update_use_power(2)
-				update_icon()
-			else
-				percent_charge_complete = 100
 				update_use_power(1)
 				update_icon()
 			return

@@ -147,11 +147,6 @@ var/global/list/moth_wings_list = list()
 		surgery_steps += S
 	sort_surgeries()
 
-	// Medical side effects. List all effects by their names
-	for(var/T in subtypesof(/datum/medical_effect))
-		var/datum/medical_effect/M = new T
-		side_effects[M.name] = T
-
 	// List of job. I can't believe this was calculated multiple times per tick!
 	for(var/T in subtypesof(/datum/job))
 		var/datum/job/J = new T
