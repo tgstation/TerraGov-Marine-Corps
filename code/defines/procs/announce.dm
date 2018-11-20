@@ -118,7 +118,7 @@
 	news.message = message
 	news.message_type = announcement_type
 	news.can_be_redacted = 0
-	announce_newscaster_news(news)
+	news.announce_newscaster_news()
 
 /datum/announcement/proc/PlaySound(var/message_sound, var/to_xenos = 0)
 	if(!message_sound)
@@ -147,3 +147,37 @@
 /proc/GetNameAndAssignmentFromId(var/obj/item/card/id/I)
 	// Format currently matches that of newscaster feeds: Registered Name (Assigned Rank)
 	return I.assignment ? "[I.registered_name] ([I.assignment])" : I.registered_name
+
+/datum/news_announcement
+	var/round_time // time of the round at which this should be announced, in seconds
+	var/message // body of the message
+	var/author = "NanoTrasen Editor"
+	var/channel_name = "Nyx Daily"
+	var/can_be_redacted = 0
+	var/message_type = "Story"
+
+/datum/news_announcement/proc/announce_newscaster_news()
+	var/datum/feed_channel/sendto
+	for(var/datum/feed_channel/FC in news_network.network_channels)
+		if(FC.channel_name == channel_name)
+			sendto = FC
+			break
+
+	if(!sendto)
+		sendto = new /datum/feed_channel
+		sendto.channel_name = channel_name
+		sendto.author = author
+		sendto.locked = 1
+		sendto.is_admin_channel = 1
+		news_network.network_channels += sendto
+
+	var/datum/feed_message/newMsg = new /datum/feed_message
+	newMsg.author = author ? author : sendto.author
+	newMsg.is_admin_message = !can_be_redacted
+	newMsg.body = message
+	newMsg.message_type = message_type
+
+	sendto.messages += newMsg
+
+	for(var/obj/machinery/newscaster/NEWSCASTER in allCasters)
+		NEWSCASTER.newsAlert(channel_name)
