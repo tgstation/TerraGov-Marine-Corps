@@ -6,7 +6,7 @@ See [this page](http://tgstation13.org/wiki/Reporting_Issues) for a guide and fo
 
 ## Introduction
 
-Hello and welcome to /tg/station's DMCA contributing page. You are here because you are curious or interested in contributing - thank you! Everyone is free to contribute to this project as long as they follow the simple guidelines and specifications below; at /tg/station, we strive to maintain code stability and maintainability, and to do that, we need all pull requests to hold up to those specifications. It's in everyone's best interests - including yours! - if the same bug doesn't have to be fixed twice because of duplicated code.
+Hello and welcome to /tg/station's TGMC contributing page. You are here because you are curious or interested in contributing - thank you! Everyone is free to contribute to this project as long as they follow the simple guidelines and specifications below; at /tg/station, we strive to maintain code stability and maintainability, and to do that, we need all pull requests to hold up to those specifications. It's in everyone's best interests - including yours! - if the same bug doesn't have to be fixed twice because of duplicated code.
 
 First things first, we want to make it clear how you can contribute (if you've never contributed before), as well as the kinds of powers the team has over your additions, to avoid any unpleasant surprises if your pull request is closed for a reason you didn't foresee.
 
@@ -18,7 +18,7 @@ If you want to contribute the first thing you'll need to do is [set up Git](http
 
 We have a [list of guides on the wiki](http://www.tgstation13.org/wiki/index.php/Guides#Development_and_Contribution_Guides) that will help you get started contributing to /tg/station with Git and Dream Maker. For beginners, it is recommended you work on small projects like bugfixes at first. If you need help learning to program in BYOND, check out this [repository of resources](http://www.byond.com/developer/articles/resources).
 
-You can of course, as always, ask for help at DMCA coding channel on /tg/station official discord (https://discord.tgstation13.org/). We're just here to have fun and help out, so please don't expect professional support.
+You can of course, as always, ask for help at TGMC coding channel on /tg/station official discord (https://discord.tgstation13.org/). We're just here to have fun and help out, so please don't expect professional support.
 
 ## Meet the Team
 
