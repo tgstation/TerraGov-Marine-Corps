@@ -203,9 +203,9 @@
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
 					/obj/item/ammo_magazine/shotgunbox/flechette = 3,
 					/obj/item/ammo_magazine/shotgun/flechette = 15,
-					/obj/item/smartgun_powerpack = 2
 					/obj/item/ammo_magazine/lasgun/M43 = 15,
 					/obj/item/ammo_magazine/lasgun/M43/highcap = 1,
+					/obj/item/smartgun_powerpack = 2
 					)
 
 	contraband = list(

@@ -596,8 +596,10 @@
 			sleep(delay_vending)
 		else
 			return
-	if(ispath(R.product_path,/obj/item/weapon/gun)) return = new R.product_path(get_turf(src),1)
-	else return = new R.product_path(get_turf(src))
+	if(ispath(R.product_path,/obj/item/weapon/gun))
+		return new R.product_path(get_turf(src),1)
+	else
+		return new R.product_path(get_turf(src))
 
 
 /obj/machinery/vending/MouseDrop_T(var/atom/movable/A, mob/user)
@@ -782,7 +784,7 @@
 		if (WIRE_SHOOTINV)
 			src.shoot_inventory = !src.shoot_inventory
 
-/obj/machinery/vending/proc/recharge_lasguncell(/obj/item/ammo_magazine/lasgun/A, mob/user)
+/obj/machinery/vending/proc/recharge_lasguncell(obj/item/ammo_magazine/lasgun/A, mob/user)
 	var/recharge_cost = (A.max_rounds - A.current_rounds) * 10 //10 energy per shot
 	if(recharge_cost > machine_current_charge)
 		to_chat(user, "<span class='warning'>[A] cannot be recharged; [src] has inadequate charge remaining: [machine_current_charge] of [machine_max_charge].</span>")
