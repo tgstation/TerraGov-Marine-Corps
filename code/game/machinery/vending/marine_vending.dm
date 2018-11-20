@@ -298,7 +298,7 @@
 	return ..()
 
 /obj/machinery/vending/lasgun/examine(mob/user)
-	..()
+	. = ..()
 	to_chat(user, "<b>It has [machine_current_charge] of [machine_max_charge] charge remaining.</b>")
 
 
