@@ -418,7 +418,7 @@ It is a modified Beretta 93R, and can fire three round burst or single fire. Whe
 	type_of_casings = null
 	gun_skill_category = GUN_SKILL_PISTOLS
 	attachable_allowed = list()
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WY_RESTRICTED
+	flags_gun_features = GUN_AUTO_EJECTOR
 
 /obj/item/weapon/gun/pistol/holdout/set_gun_config_values()
 	fire_delay = config.low_fire_delay

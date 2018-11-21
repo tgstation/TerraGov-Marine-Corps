@@ -74,6 +74,8 @@
 	var/charges = 0.0
 	var/nutrition = 400.0//Carbon
 
+	var/specset //Simple way to track which set has the player taken
+
 	var/overeatduration = 0		// How long this guy is overeating //Carbon
 	var/knocked_out = 0.0
 	var/stunned = 0.0
