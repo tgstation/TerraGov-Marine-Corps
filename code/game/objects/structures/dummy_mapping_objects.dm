@@ -1,0 +1,87 @@
+// This file contains legacy mapped in objects that should be replaced where possible.
+
+/obj/machinery/computer3
+	name = "computer"
+	icon = 'icons/obj/machines/computer3.dmi'
+	icon_state = "frame"
+	density = 1
+	anchored = 1.0
+
+/obj/machinery/computer3/powermonitor
+	icon_state = "frame-eng"
+
+/obj/machinery/computer3/laptop
+	name = "Laptop Computer"
+	desc = "A clamshell portable computer. It is open."
+
+	icon_state		= "laptop"
+
+/obj/machinery/computer3/laptop/secure_data
+	icon_state = "laptop"
+
+/obj/machinery/computer3/server
+	name			= "server"
+	icon			= 'icons/obj/machines/computer3.dmi'
+	icon_state		= "serverframe"
+
+/obj/machinery/computer3/server/rack
+	name = "server rack"
+	icon_state = "rackframe"
+
+/obj/item/device/laptop
+	name		= "Laptop Computer"
+	desc		= "A clamshell portable computer.  It is closed."
+	icon		= 'icons/obj/machines/computer3.dmi'
+	icon_state	=  "laptop-closed"
+	item_state	=  "laptop-inhand"
+	pixel_x		= 2
+	pixel_y		= -3
+	w_class		= 3
+
+/obj/machinery/lapvend
+	name = "Laptop Vendor"
+	desc = "A generic vending machine."
+	icon = 'icons/obj/machines/vending.dmi'
+	icon_state = "robotics"
+	layer = BELOW_OBJ_LAYER
+	anchored = 1
+	density = 1
+
+/obj/structure/computer3frame
+	density = 1
+	anchored = 0
+	name = "computer frame"
+	icon = 'icons/obj/stock_parts.dmi'
+	icon_state = "0"
+
+/obj/machinery/computer/atmoscontrol
+	name = "\improper Central Atmospherics Computer"
+	icon = 'icons/obj/machines/computer.dmi'
+	icon_state = "computer_generic"
+	density = 1
+	anchored = 1.0
+
+/obj/item/computer3_part
+	name = "computer part"
+	desc = "Holy jesus you donnit now"
+	gender = PLURAL
+	icon = 'icons/obj/stock_parts.dmi'
+	icon_state = "hdd1"
+	w_class = 2.0
+
+/obj/item/computer3_part/storage
+	name = "Storage Device"
+	desc = "A device used for storing and retrieving digital information."
+
+/obj/item/computer3_part/storage/hdd
+	name = "Hard Drive"
+	icon_state = "hdd1"
+
+/obj/item/computer3_part/storage/hdd/big
+	name = "Big Hard Drive"
+	icon_state = "hdd2"
+
+/obj/item/clothing/shoes/centcom
+	name = "dress shoes"
+	desc = "They appear impeccably polished."
+	icon_state = "laceups"

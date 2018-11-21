@@ -179,7 +179,7 @@
 	unacidable = 1
 
 /obj/structure/prop/almayer/name_stencil
-	name = "\improper The DMCA, a DMCA-Class Marine Carrier Arsenal Ship"
+	name = "\improper The TGMC, a TGMC-Class Marine Carrier Arsenal Ship"
 	desc = "The name of the ship stenciled on the hull."
 	icon = 'icons/Marine/almayer_props64.dmi'
 	icon_state = "DMCA1"

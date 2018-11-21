@@ -225,22 +225,12 @@
 
 			var/type_p = L[3]
 
-			if(type_p == /obj/item/device/radio/headset/almayer/marine)
-				type_p = headset_type
-
-			else if(type_p == /obj/item/clothing/gloves/marine)
-				type_p = gloves_type
-
-
 			var/obj/item/IT = new type_p(loc)
 			IT.add_fingerprint(usr)
 
 			if(bitf == MARINE_CAN_BUY_UNIFORM)
-				if(gives_webbing)
-					var/obj/item/clothing/under/U = IT
-					var/obj/item/clothing/tie/storage/webbing/W = new()
-					U.hastie = W
-					W.on_attached(U)
+				new headset_type(loc)
+				new gloves_type(loc)
 				//if(istype(ticker.mode, /datum/game_mode/ice_colony))//drop a coif with the uniform on ice colony
 				if(map_tag == MAP_ICE_COLONY)
 					new /obj/item/clothing/mask/rebreather/scarf(loc)
@@ -286,12 +276,7 @@
 
 	listed_products = list(
 							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
-							list("Uniform", 0, /obj/item/clothing/under/marine, MARINE_CAN_BUY_UNIFORM, "white"),
-							list("Boots", 0, /obj/item/clothing/shoes/marine, MARINE_CAN_BUY_SHOES, "white"),
-							list("Helmet", 0, /obj/item/clothing/head/helmet/marine, MARINE_CAN_BUY_HELMET, "white"),
-							list("Armor", 0, /obj/item/clothing/suit/storage/marine, MARINE_CAN_BUY_ARMOR, "white"),
-							list("Gloves", 0, /obj/item/clothing/gloves/marine, MARINE_CAN_BUY_GLOVES, "white"),
-							list("Headset", 0, /obj/item/device/radio/headset/almayer/marine, MARINE_CAN_BUY_EAR, "white"),//maybe an arg for empty line next?
+							list("Standard Kit", 0, /obj/effect/essentials_set/basic, MARINE_CAN_BUY_UNIFORM, "white"),
 							list("BACKPACK (choose 1)", 0, null, null, null),
 							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel, MARINE_CAN_BUY_BACKPACK, "orange"),
 							list("Backpack", 0, /obj/item/storage/backpack/marine/standard, MARINE_CAN_BUY_BACKPACK, "black"),
@@ -377,13 +362,7 @@
 
 	listed_products = list(
 							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
-							list("uniform", 0, /obj/item/clothing/under/marine/engineer, MARINE_CAN_BUY_UNIFORM, "white"),
-							list("boots", 0, /obj/item/clothing/shoes/marine, MARINE_CAN_BUY_SHOES, "white"),
-							list("helmet", 0, /obj/item/clothing/head/helmet/marine/tech, MARINE_CAN_BUY_HELMET, "white"),
-							list("armor", 0, /obj/item/clothing/suit/storage/marine, MARINE_CAN_BUY_ARMOR, "white"),
-							list("gloves", 0, /obj/item/clothing/gloves/marine, MARINE_CAN_BUY_GLOVES, "white"),
-							list("headset", 0, /obj/item/device/radio/headset/almayer/marine, MARINE_CAN_BUY_EAR, "white"),
-							list("Welding glasses", 0, /obj/item/clothing/glasses/welding, MARINE_CAN_BUY_GLASSES, "white"),
+							list("Standard Kit", 0, /obj/effect/essentials_set/basic_engineer, MARINE_CAN_BUY_UNIFORM, "white"),
 							list("BACKPACK (choose 1)", 0, null, null, null),
 							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel/tech, MARINE_CAN_BUY_BACKPACK, "orange"),
 							list("Backpack", 0, /obj/item/storage/backpack/marine/tech, MARINE_CAN_BUY_BACKPACK, "black"),
@@ -446,13 +425,7 @@
 
 	listed_products = list(
 							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
-							list("Uniform", 0, /obj/item/clothing/under/marine/medic, MARINE_CAN_BUY_UNIFORM, "white"),
-							list("Boots", 0, /obj/item/clothing/shoes/marine, MARINE_CAN_BUY_SHOES, "white"),
-							list("Helmet", 0, /obj/item/clothing/head/helmet/marine/medic, MARINE_CAN_BUY_HELMET, "white"),
-							list("Armor", 0, /obj/item/clothing/suit/storage/marine, MARINE_CAN_BUY_ARMOR, "white"),
-							list("Gloves", 0, /obj/item/clothing/gloves/marine, MARINE_CAN_BUY_GLOVES, "white"),
-							list("Headset", 0, /obj/item/device/radio/headset/almayer/marine, MARINE_CAN_BUY_EAR, "white"),
-							list("Medical HUD Glasses", 0, /obj/item/clothing/glasses/hud/health, MARINE_CAN_BUY_GLASSES, "white"),
+							list("Standard Kit", 0, /obj/effect/essentials_set/basic_medic, MARINE_CAN_BUY_UNIFORM, "white"),
 							list("BACKPACK (choose 1)", 0, null, null, null),
 							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel/medic, MARINE_CAN_BUY_BACKPACK, "orange"),
 							list("Backpack", 0, /obj/item/storage/backpack/marine/medic, MARINE_CAN_BUY_BACKPACK, "black"),
@@ -518,11 +491,7 @@
 
 	listed_products = list(
 							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
-							list("Uniform", 0, /obj/item/clothing/under/marine, MARINE_CAN_BUY_UNIFORM, "white"),
-							list("Boots", 0, /obj/item/clothing/shoes/marine, MARINE_CAN_BUY_SHOES, "white"),
-							list("Helmet", 0, /obj/item/clothing/head/helmet/marine, MARINE_CAN_BUY_HELMET, "white"),
-							list("Gloves", 0, /obj/item/clothing/gloves/marine, MARINE_CAN_BUY_GLOVES, "white"),
-							list("Headset", 0, /obj/item/device/radio/headset/almayer/marine, MARINE_CAN_BUY_EAR, "white"),//maybe an arg for empty line next?
+							list("Standard Kit", 0, /obj/effect/essentials_set/basic_smartgunner, MARINE_CAN_BUY_UNIFORM, "white"),
 							list("WEBBING (choose 1)", 0, null, null, null),
 							list("Tactical Vest", 0, /obj/item/clothing/tie/storage/brown_vest, MARINE_CAN_BUY_WEBBING, "orange"),
 							list("Tactical Webbing", 0, /obj/item/clothing/tie/storage/webbing, MARINE_CAN_BUY_WEBBING, "black"),
@@ -582,10 +551,7 @@
 
 	listed_products = list(
 							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
-							list("Uniform", 0, /obj/item/clothing/under/marine, MARINE_CAN_BUY_UNIFORM, "white"),
-							list("Boots", 0, /obj/item/clothing/shoes/marine, MARINE_CAN_BUY_SHOES, "white"),
-							list("Gloves", 0, /obj/item/clothing/gloves/marine, MARINE_CAN_BUY_GLOVES, "white"),
-							list("Headset", 0, /obj/item/device/radio/headset/almayer/marine, MARINE_CAN_BUY_EAR, "white"),//maybe an arg for empty line next?
+							list("Standard Kit", 0, /obj/effect/essentials_set/basic_specialist, MARINE_CAN_BUY_UNIFORM, "white"),
 							list("BACKPACK (choose 1)", 0, null, null, null),
 							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel, MARINE_CAN_BUY_BACKPACK, "black"),
 							list("Backpack", 0, /obj/item/storage/backpack/marine/standard, MARINE_CAN_BUY_BACKPACK, "black"),
@@ -651,12 +617,7 @@
 
 	listed_products = list(
 							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
-							list("Uniform", 0, /obj/item/clothing/under/marine, MARINE_CAN_BUY_UNIFORM, "white"),
-							list("Boots", 0, /obj/item/clothing/shoes/marine, MARINE_CAN_BUY_SHOES, "white"),
-							list("Helmet", 0, /obj/item/clothing/head/helmet/marine/leader, MARINE_CAN_BUY_HELMET, "white"),
-							list("Armor", 0, /obj/item/clothing/suit/storage/marine/leader, MARINE_CAN_BUY_ARMOR, "white"),
-							list("Gloves", 0, /obj/item/clothing/gloves/marine, MARINE_CAN_BUY_GLOVES, "white"),
-							list("Headset", 0, /obj/item/device/radio/headset/almayer/marine, MARINE_CAN_BUY_EAR, "white"),//maybe an arg for empty line next?
+							list("Standard Kit", 0, /obj/effect/essentials_set/basic_squadleader, MARINE_CAN_BUY_UNIFORM, "white"),
 							list("BACKPACK (choose 1)", 0, null, null, null),
 							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel, MARINE_CAN_BUY_BACKPACK, "black"),
 							list("Backpack", 0, /obj/item/storage/backpack/marine/standard, MARINE_CAN_BUY_BACKPACK, "black"),
@@ -1046,6 +1007,54 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 	cdel(src)
 
 
+/obj/effect/essentials_set/basic
+	spawned_gear_list = list(
+						/obj/item/clothing/under/marine,
+						/obj/item/clothing/shoes/marine,
+						/obj/item/clothing/head/helmet/marine,
+						/obj/item/clothing/suit/storage/marine,
+						)
+
+
+/obj/effect/essentials_set/basic_smartgunner
+	spawned_gear_list = list(
+						/obj/item/clothing/under/marine,
+						/obj/item/clothing/shoes/marine,
+						/obj/item/clothing/head/helmet/marine,
+						)
+
+/obj/effect/essentials_set/basic_specialist
+	spawned_gear_list = list(
+						/obj/item/clothing/under/marine,
+						/obj/item/clothing/shoes/marine,
+						)
+
+/obj/effect/essentials_set/basic_squadleader
+	spawned_gear_list = list(
+						/obj/item/clothing/under/marine,
+						/obj/item/clothing/shoes/marine,
+						/obj/item/clothing/head/helmet/marine/leader,
+						/obj/item/clothing/suit/storage/marine/leader,
+						/obj/item/clothing/glasses/hud/health,
+						)
+
+/obj/effect/essentials_set/basic_medic
+	spawned_gear_list = list(
+						/obj/item/clothing/under/marine/medic,
+						/obj/item/clothing/shoes/marine,
+						/obj/item/clothing/head/helmet/marine/medic,
+						/obj/item/clothing/suit/storage/marine,
+						/obj/item/clothing/glasses/hud/health,
+						)
+
+/obj/effect/essentials_set/basic_engineer
+	spawned_gear_list = list(
+						/obj/item/clothing/under/marine/engineer,
+						/obj/item/clothing/shoes/marine,
+						/obj/item/clothing/head/helmet/marine/tech,
+						/obj/item/clothing/suit/storage/marine,
+						/obj/item/clothing/glasses/welding,
+						)
 
 /obj/effect/essentials_set/medic
 	spawned_gear_list = list(
@@ -1087,7 +1096,6 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/device/motiondetector,
 						/obj/item/map/current_map,
 						/obj/item/device/binoculars/tactical,
-						/obj/item/clothing/glasses/hud/health,
 						)
 
 

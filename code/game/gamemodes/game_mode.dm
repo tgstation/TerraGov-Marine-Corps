@@ -382,7 +382,6 @@
 /datum/game_mode/New()
 	if(!map_tag)
 		to_chat(world, "MT001: No mapping tag set, tell a coder. [map_tag]")
-	newscaster_announcements = pick(newscaster_standard_feeds)
 
 //////////////////////////
 //Reports player logouts//
