@@ -183,7 +183,7 @@
 				return
 
 			if(!H.assigned_squad || (squad_tag && H.assigned_squad.name != squad_tag))
-				to_chat(H, "<span class='warning'>This machine isn't for you.</span>")
+				to_chat(H, "<span class='warning'>This machine isn't for your squad.</span>")
 				return
 
 
@@ -239,20 +239,11 @@
 			if(bitf == MARINE_CAN_BUY_ESSENTIALS)
 				if(vendor_role == "Squad Specialist" && H.mind && H.mind.assigned_role == "Squad Specialist")
 					var/p_name = L[1]
-					switch(p_name)
-						if("Scout Set")
-							H.mind.cm_skills.spec_weapons = SKILL_SPEC_SCOUT
-						if("Sniper Set")
-							H.mind.cm_skills.spec_weapons = SKILL_SPEC_SNIPER
-						if("Demolitionist Set")
-							H.mind.cm_skills.spec_weapons = SKILL_SPEC_ROCKET
-						if("Heavy Grenadier Set")
-							H.mind.cm_skills.spec_weapons = SKILL_SPEC_GRENADIER
-						if("Pyro Set")
-							H.mind.cm_skills.spec_weapons = SKILL_SPEC_PYRO
-						else
-							to_chat(H, "<span class='warning'><b>Something bad occured with [src], tell a Dev.</b></span>")
-							return
+					if(p_name)
+						H.specset = p_name
+					else
+						to_chat(H, "<span class='warning'><b>Something bad occured with [src], tell a Dev.</b></span>")
+						return
 					H.update_action_buttons()
 					available_specialist_sets -= p_name
 
