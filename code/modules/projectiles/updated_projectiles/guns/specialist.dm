@@ -49,7 +49,7 @@
 	if(!able_to_fire(user))
 		return
 	if(targetlaser_on)
-		if(istype(target,/mob) )
+		if(ismob(target))
 			if(laser_target)
 				laser_target.vis_contents -= laser
 			cdel(laser)
