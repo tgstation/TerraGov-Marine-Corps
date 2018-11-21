@@ -504,6 +504,18 @@ WEAPONS
 	containername = "\improper detpack explosives crate (WARNING)"
 	group = "Weapons"
 
+/datum/supply_packs/gun/lasrifle
+	contains = list(
+					/obj/item/weapon/gun/energy/lasgun/M43,
+					/obj/item/weapon/gun/energy/lasgun/M43,
+					/obj/item/ammo_magazine/lasgun/M43,
+					/obj/item/ammo_magazine/lasgun/M43,
+					)
+	name = "surplus lasrifle crate (M43 x2, M43 battery packs x2)"
+	cost = RO_PRICE_VERY_CHEAP
+	containertype = /obj/structure/closet/crate
+	containername = "\improper lasrifle crate"
+	group = "Weapons"
 
 /*******************************************************************************
 HARDPOINT MODULES (and their ammo)
