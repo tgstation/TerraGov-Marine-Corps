@@ -108,7 +108,7 @@
 		S.accuracy_mod = config.max_hit_accuracy_mult
 	else
 		S.accuracy_mod = 0
-			user.client.change_view(viewsize)
+		user.client?.change_view(viewsize)
 
 		var/tilesize = 32
 		var/viewoffset2 = tilesize * tileoffset
