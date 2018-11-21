@@ -103,7 +103,7 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	. = ..()
-	var/obj/item/attachable/scope/m42a/S = src.rail
+	var/obj/item/attachable/scope/m42a/S = rail
 	if(zoom)
 		S.accuracy_mod = config.max_hit_accuracy_mult
 	else
