@@ -2,7 +2,7 @@
 	anchored = TRUE
 	var/health = 25
 	var/health_max = 25
-
+ var/on_fire = FALSE
 /obj/structure/flora/ex_act(severity)
 	switch(severity)
 		if(1)
@@ -13,7 +13,9 @@
 		if(3)
 			if(prob(50))
 				cdel(src)
-
+/obj/structure/flora/Dispose()
+ processing_objects.Remove(src)
+ ..()
 /obj/structure/flora/attackby(obj/item/W, mob/living/user)
 	if(!W || !user || isnull(W) || (W.flags_item & NOBLUDGEON))
 		return 0
@@ -40,11 +42,19 @@
 /obj/structure/flora/update_icon()
 	return
 
-/obj/structure/flora/fire_act()
-	if(!disposed)
+/obj/structure/flora/flamer_fire_act()
+	if(on_fire)
+		return
+	on_fire = TRUE
+	processing_objects.Add(src)
 		spawn(rand(100,175))
 			cdel(src)
-
+/obj/structure/flora/process()
+ if(health <= 0)
+  cdel(src)
+ if(!on_fire)
+  processing_objects.Remove(src)
+ health -= somevalue
 //TREES
 
 /obj/structure/flora/tree
