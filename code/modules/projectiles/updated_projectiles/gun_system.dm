@@ -213,7 +213,6 @@
 		to_chat(user, dat)
 
 /obj/item/weapon/gun/wield(var/mob/user)
-
 	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
 		return
 
@@ -260,6 +259,8 @@
 					skill_value = user.mind.cm_skills.heavy_weapons
 				if(GUN_SKILL_SMARTGUN)
 					skill_value = user.mind.cm_skills.smartgun
+				if(GUN_SKILL_SPEC)
+					skill_value = user.mind.cm_skills.spec_weapons
 			if(skill_value)
 				wield_time -= 2*skill_value
 	do_wield(user, wield_time)
@@ -825,13 +826,7 @@ and you're good to go.
 			to_chat(user, "<span class='warning'>You need a more secure grip to fire this weapon!")
 			return
 
-		if( (flags_gun_features & GUN_WY_RESTRICTED) && !wy_allowed_check(user) )
-			return
-
-		if( (flags_gun_features & GUN_SPECIALIST) && !spec_allowed_check(user) )
-			return
-
-		if( (flags_gun_features & GUN_POLICE) && !police_allowed_check(user) )
+		if((flags_gun_features & GUN_POLICE) && !police_allowed_check(user))
 			return
 
 		//Has to be on the bottom of the stack to prevent delay when failing to fire the weapon for the first time.
@@ -842,7 +837,7 @@ and you're good to go.
 			if(active_attachable.attachment_firing_delay)
 				added_delay = active_attachable.attachment_firing_delay
 		else
-			if(user && user.mind && user.mind.cm_skills)
+			if(user?.mind?.cm_skills)
 				if(user.mind.cm_skills.firearms == 0) //no training in any firearms
 					added_delay += config.low_fire_delay //untrained humans fire more slowly.
 				else
@@ -852,12 +847,15 @@ and you're good to go.
 								added_delay = max(fire_delay - 3*user.mind.cm_skills.heavy_weapons, 6)
 						if(GUN_SKILL_SMARTGUN)
 							if(user.mind.cm_skills.smartgun < 0)
-								added_delay += 2*user.mind.cm_skills.smartgun
+								added_delay -= 2*user.mind.cm_skills.smartgun
+						if(GUN_SKILL_SPEC)
+							if(user.mind.cm_skills.spec_weapons < 0)
+								added_delay -= 2*user.mind.cm_skills.spec_weapons
 
 		if(world.time >= last_fired + added_delay + extra_delay) //check the last time it was fired.
 			extra_delay = 0
 		else
-			if (world.time % 3)
+			if(world.time % 3)
 				to_chat(user, "<span class='warning'>[src] is not ready to fire again!</span>")
 			return
 	return TRUE
@@ -895,7 +893,7 @@ and you're good to go.
 			gun_scatter += 10*rand(3,5)
 
 	// Apply any skill-based bonuses to accuracy
-	if(user && user.mind && user.mind.cm_skills)
+	if(user?.mind?.cm_skills)
 		var/skill_accuracy = 0
 		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
 			skill_accuracy = -1
@@ -913,6 +911,8 @@ and you're good to go.
 					skill_accuracy = user.mind.cm_skills.heavy_weapons
 				if(GUN_SKILL_SMARTGUN)
 					skill_accuracy = user.mind.cm_skills.smartgun
+				if(GUN_SKILL_SPEC)
+					skill_accuracy = user.mind.cm_skills.spec_weapons
 		if(skill_accuracy)
 			gun_accuracy_mult += skill_accuracy * config.low_hit_accuracy_mult // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
 
@@ -989,6 +989,8 @@ and you're good to go.
 						scatter_tweak = user.mind.cm_skills.heavy_weapons
 					if(GUN_SKILL_SMARTGUN)
 						scatter_tweak = user.mind.cm_skills.smartgun
+					if(GUN_SKILL_SPEC)
+						scatter_tweak = user.mind.cm_skills.spec_weapons
 				if(scatter_tweak)
 					total_scatter_chance -= scatter_tweak*config.low_scatter_value
 
@@ -1030,7 +1032,8 @@ and you're good to go.
 					recoil_tweak = user.mind.cm_skills.heavy_weapons
 				if(GUN_SKILL_SMARTGUN)
 					recoil_tweak = user.mind.cm_skills.smartgun
-
+				if(GUN_SKILL_SPEC)
+					recoil_tweak = user.mind.cm_skills.spec_weapons
 			if(recoil_tweak)
 				total_recoil -= recoil_tweak*config.min_recoil_value
 	if(total_recoil > 0 && ishuman(user))

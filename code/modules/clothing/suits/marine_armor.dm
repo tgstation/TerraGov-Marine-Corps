@@ -295,7 +295,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	var/obj/item/device/healthanalyzer/integrated/B18_analyzer = null
 	supporting_limbs = list(UPPER_TORSO, LOWER_TORSO, ARMS, LEGS, FEET) //B18 effectively auto-splints these.
 	unacidable = TRUE
-	req_access = list(ACCESS_MARINE_SPECPREP)
 
 	New(loc,expected_type 	= type,
 		new_name[] 		= list(MAP_ICE_COLONY = "\improper B18 defensive snow armor"))
@@ -321,13 +320,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	if(slot == WEAR_JACKET)
 		wearer = user
 		b18automed_turn_on(user)
-
-/obj/item/clothing/suit/storage/marine/specialist/mob_can_equip(mob/M, slot, disable_warning = 0)
-	. = ..()
-	if(.)
-		if(!allowed(M))
-			to_chat(M, "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>")
-			return 0
 
 /obj/item/clothing/suit/storage/marine/specialist/proc/b18automed_turn_off(mob/living/carbon/human/user, silent = FALSE)
 	B18_automed_on = FALSE
@@ -571,7 +563,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	armor = list(melee = 65, bullet = 50, laser = 40, energy = 25, bomb = 50, bio = 0, rad = 0)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
 	allowed = list(/obj/item/weapon/gun/launcher/rocket)
-	req_access = list(ACCESS_MARINE_SPECPREP)
 
 	New()
 		select_gamemode_skin(type)
@@ -583,18 +574,11 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	icon_state = "scout_armor"
 	armor = list(melee = 65, bullet = 80, laser = 40, energy = 25, bomb = 35, bio = 0, rad = 0)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-	req_access = list(ACCESS_MARINE_SPECPREP)
 
 	New()
 		select_gamemode_skin(type)
 		..()
 
-/obj/item/clothing/suit/storage/marine/M3S/mob_can_equip(mob/M, slot, disable_warning = 0)
-	. = ..()
-	if(.)
-		if(!allowed(M))
-			to_chat(M, "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>")
-			return 0
 
 /obj/item/clothing/suit/storage/marine/M35
 	name = "\improper M35 armor"
@@ -605,18 +589,11 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS|FEET
-	req_access = list(ACCESS_MARINE_SPECPREP)
 
 	New()
 		select_gamemode_skin(type)
 		..()
 
-/obj/item/clothing/suit/storage/marine/M35/mob_can_equip(mob/M, slot, disable_warning = 0)
-	. = ..()
-	if(.)
-		if(!allowed(M))
-			to_chat(M, "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>")
-			return 0
 
 /obj/item/clothing/suit/storage/marine/sniper
 	name = "\improper M3 pattern recon armor"
