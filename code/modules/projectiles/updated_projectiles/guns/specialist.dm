@@ -98,7 +98,7 @@
 		cdel(laser)
 		laser = null
 		processing_objects.Remove(src)
-		to_chat(world, "<span class='danger'>You lose sight of your target!</span>")
+		to_chat(user, "<span class='danger'>You lose sight of your target!</span>")
 		return
 
 /obj/item/weapon/gun/rifle/sniper/M42A/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
