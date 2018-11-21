@@ -35,7 +35,7 @@
 #define GUN_HAS_FULL_AUTO		4096
 #define GUN_FULL_AUTO_ON		8192
 #define GUN_POLICE				16384
-
+#define GUN_ENERGY				32768
 
 //Gun attachable related flags.
 #define ATTACH_REMOVABLE	1
