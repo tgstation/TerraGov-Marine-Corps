@@ -83,7 +83,7 @@
 	if(!zoom)
 		laser_off()
 		return
-	if(!istype(loc,/mob/living) )
+	if(!isliving(loc) )
 		laser_off()
 		return
 	var/mob/living/user = loc
