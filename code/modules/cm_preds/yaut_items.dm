@@ -803,7 +803,7 @@
 /obj/structure/campfire
 	name = "fire"
 	desc = "A crackling fire. What is it even burning?"
-	icon = 'code/WorkInProgress/Cael_Aislinn/Jungle/jungle.dmi'
+	icon = 'icons/obj/structures/jungle.dmi'
 	icon_state = "campfire"
 	density = 0
 	layer = TURF_LAYER

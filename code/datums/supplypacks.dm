@@ -9,6 +9,7 @@
 #define RO_PRICE_CHEAP			30
 #define RO_PRICE_NORMAL			40
 #define RO_PRICE_PRICY			60
+#define RO_PRICE_KINDA_PRICY	50
 #define RO_PRICE_PRETTY_PRICY	80
 #define RO_PRICE_VERY_PRICY		100
 #define RO_PRICE_MAX_PRICY		120
@@ -470,7 +471,7 @@ WEAPONS
 					/obj/item/explosive/plastique,
 					/obj/item/explosive/plastique
 					)
-	cost = RO_PRICE_PRICY
+	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/explosives
 	containername = "\improper plastic explosives crate (WARNING)"
 	group = "Weapons"
@@ -484,6 +485,25 @@ WEAPONS
 	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper M402 mortar crate"
 	group = "Weapons"
+
+/datum/supply_packs/detpack
+	name = "detpack explosives crate (x6)"
+	contains = list(
+					/obj/item/device/radio/detpack,
+					/obj/item/device/radio/detpack,
+					/obj/item/device/radio/detpack,
+					/obj/item/device/radio/detpack,
+					/obj/item/device/radio/detpack,
+					/obj/item/device/radio/detpack,
+					/obj/item/device/assembly/signaler,
+					/obj/item/device/assembly/signaler,
+					/obj/item/device/assembly/signaler,
+					)
+	cost = RO_PRICE_KINDA_PRICY
+	containertype = /obj/structure/closet/crate/explosives
+	containername = "\improper detpack explosives crate (WARNING)"
+	group = "Weapons"
+
 
 /*******************************************************************************
 HARDPOINT MODULES (and their ammo)

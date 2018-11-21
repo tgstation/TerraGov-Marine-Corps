@@ -5,7 +5,7 @@
 	desc = "M240A1 incinerator unit has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
 	origin_tech = "combat=4;materials=3"
 	icon_state = "m240"
-	item_state = "flamer"
+	item_state = "m240"
 	flags_equip_slot = SLOT_BACK
 	w_class = 4
 	force = 15
@@ -318,8 +318,10 @@
 
 /obj/item/weapon/gun/flamer/M240T
 	name = "\improper M240-T incinerator unit"
-	desc = "An improved version of the M240A1 incinerator unit, the M240-T model is capable of dispersing a larger variety of fuel types."
+	desc = "An improved version of the M240A1 incinerator unit, the M240-T model is capable of dispersing a larger variety of fuel types. Contains an underbarrel fire extinguisher!"
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
+	icon_state = "m240t"
+	item_state = "m240t"
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_SPECIALIST
 	req_access = list(ACCESS_MARINE_SPECPREP)
 	var/max_water = 200
