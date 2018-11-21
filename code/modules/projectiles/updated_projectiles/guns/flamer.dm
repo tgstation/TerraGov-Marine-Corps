@@ -326,8 +326,7 @@
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
 	icon_state = "m240t"
 	item_state = "m240t"
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_SPECIALIST
-	req_access = list(ACCESS_MARINE_SPECPREP)
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
 	var/max_water = 200
 	var/last_use
 
