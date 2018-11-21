@@ -293,12 +293,12 @@
 
 /obj/item/storage/box/spec/demolitionist
 	name = "\improper Demolitionist equipment crate"
-	desc = "A large case containing light armor, a heavy-caliber antitank missile launcher, missiles, C4, and claymore mines. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
+	desc = "A large case containing light armor, a heavy-caliber antitank missile launcher, missiles, C4, detpacks, and claymore mines. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "rocket_case"
 	spec_set = "demolitionist"
 	w_class = 5
-	storage_slots = 12
+	storage_slots = 15
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -318,6 +318,9 @@
 			new /obj/item/explosive/mine(src)
 			new /obj/item/explosive/plastique(src)
 			new /obj/item/explosive/plastique(src)
+			new /obj/item/device/radio/detpack(src)
+			new /obj/item/device/radio/detpack(src)
+			new /obj/item/device/assembly/signaler(src)
 
 
 
@@ -459,9 +462,6 @@
 	icon_state = "deliverycrate"
 
 /obj/item/spec_kit/attack_self(mob/user as mob)
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED)
-		to_chat(user, "<span class='notice'>This box is not for you, give it to a specialist!</span>")
-		return
 	var/choice = input(user, "Please pick a specalist kit!","Selection") in list("Pyro","Grenadier","Sniper","Scout","Demo")
 	var/obj/item/storage/box/spec/S = null
 	switch(choice)

@@ -51,7 +51,7 @@
 	if(affected_mob.stat == DEAD)
 		if(ishuman(affected_mob))
 			var/mob/living/carbon/human/H = affected_mob
-			if(world.time > H.timeofdeath + H.revive_grace_period) //Can't be defibbed.
+			if(H.check_tod()) //Can't be defibbed.
 				var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
 				if(L)
 					L.chest_burst(affected_mob)

@@ -46,14 +46,10 @@
 
 
 //spec_weapons skill
-//hidden. who can and can't use specialist weapons
-#define SKILL_SPEC_DEFAULT		0
-#define SKILL_SPEC_ROCKET		1 //can use the demolitionist specialist gear
-#define SKILL_SPEC_SCOUT		2
-#define SKILL_SPEC_SNIPER		3
-#define SKILL_SPEC_GRENADIER	4
-#define SKILL_SPEC_PYRO			5
-#define SKILL_SPEC_TRAINED		6 //can use all specialist gear
+//increase or decrase accuracy, recoil, and firing delay of spec weapons
+#define SKILL_SPEC_DEFAULT		-2 //marines
+#define SKILL_SPEC_TRAINED		1 //special training
+
 
 
 

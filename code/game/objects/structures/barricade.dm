@@ -123,7 +123,7 @@
 
 /obj/structure/barricade/attack_alien(mob/living/carbon/Xenomorph/M)
 	M.animation_attack_on(src)
-	health -= rand(M.melee_damage_lower, M.melee_damage_upper)
+	health -= rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper)
 	if(barricade_hitsound)
 		playsound(src, barricade_hitsound, 25, 1)
 	if(health <= 0)

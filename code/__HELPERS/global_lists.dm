@@ -2,7 +2,7 @@ var/list/clients = list()								//list of all clients
 var/list/admins = list()								//list of all clients whom are admins
 var/list/directory = list()							//list of all ckeys with associated client
 var/list/unansweredAhelps = list()			//This feels inefficient, but I can't think of a better way. Stores the message indexed by CID
-var/list/unansweredMhelps = list()	
+var/list/unansweredMhelps = list()
 var/list/CLFaxes = list()								//List of all CL faxes sent this round
 var/list/fax_contents = list() 					//List of fax contents to maintain it even if source paper is deleted
 var/list/USCMFaxes = list()							//List of all USCM faxes sent this round
@@ -50,6 +50,7 @@ var/global/list/cargo_guns_vendors = list() //Used by our gamemode code
 var/global/list/processing_objects = list()
 var/global/list/active_diseases = list()
 var/global/list/events = list()
+var/global/list/processing_second = list()
 
 //used by binoculars for dropship bombardment
 var/global/list/active_laser_targets = list()
@@ -66,6 +67,8 @@ var/global/list/all_species[0]
 var/global/list/all_languages[0]
 var/global/list/language_keys[0]					//table of say codes for all languages
 var/global/list/synth_types = list("Synthetic","Early Synthetic")
+
+var/global/list/xeno_caste_datums = list()
 
 // Posters
 var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
@@ -122,7 +125,7 @@ var/global/list/moth_wings_list = list()
 			else
 				facial_hair_styles_male_list += H.name
 				facial_hair_styles_female_list += H.name
-	
+
 	// Species specific
 	for(var/path in subtypesof(/datum/sprite_accessory/moth_wings))
 		var/datum/sprite_accessory/moth_wings/wings = new path()
@@ -143,11 +146,6 @@ var/global/list/moth_wings_list = list()
 		var/datum/surgery_step/S = new T
 		surgery_steps += S
 	sort_surgeries()
-
-	// Medical side effects. List all effects by their names
-	for(var/T in subtypesof(/datum/medical_effect))
-		var/datum/medical_effect/M = new T
-		side_effects[M.name] = T
 
 	// List of job. I can't believe this was calculated multiple times per tick!
 	for(var/T in subtypesof(/datum/job))
@@ -178,6 +176,14 @@ var/global/list/moth_wings_list = list()
 	for(var/t in subtypesof(/datum/ammo) - blacklist)
 		var/datum/ammo/A = new t
 		ammo_list[A.type] = A
+
+	for(var/X in subtypesof(/datum/xeno_caste))
+		var/datum/xeno_caste/C = new X
+		if(!(C.caste_type_path in xeno_caste_datums))
+			xeno_caste_datums[C.caste_type_path] = list(1,2,3,4)
+		var/upgrade_level = CLAMP(C.upgrade + 1, 1, 4)
+		xeno_caste_datums[C.caste_type_path][upgrade_level] = C
+
 	return 1
 
 /* // Uncomment to debug chemical reaction list.

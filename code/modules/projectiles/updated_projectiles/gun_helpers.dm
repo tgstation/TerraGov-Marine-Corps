@@ -19,8 +19,6 @@ DEFINES in setup.dm, referenced here.
 #define GUN_BURST_ON			256
 #define GUN_BURST_FIRING		512
 #define GUN_FLASHLIGHT_ON		1024
-#define GUN_WY_RESTRICTED		2048
-#define GUN_SPECIALIST			4096
 
 	NOTES
 
@@ -113,10 +111,11 @@ DEFINES in setup.dm, referenced here.
 //----------------------------------------------------------
 
 /obj/item/weapon/gun/clicked(var/mob/user, var/list/mods)
-	if (mods["alt"])
+	if(mods["alt"])
 		toggle_gun_safety()
 		return TRUE
-	return (..())
+	return ..()
+
 
 /obj/item/weapon/gun/mob_can_equip(mob/user)
 	//Cannot equip wielded items or items burst firing.
@@ -125,26 +124,30 @@ DEFINES in setup.dm, referenced here.
 	unwield(user)
 	return ..()
 
+
 /obj/item/weapon/gun/attack_hand(mob/user)
 	var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
-	if( in_hand == src && (flags_item & TWOHANDED) )
+	if(in_hand == src && (flags_item & TWOHANDED))
 		unload(user)//It has to be held if it's a two hander.
-	else ..()
+	else 
+		return ..()
+
 
 /obj/item/weapon/gun/throw_at(atom/target, range, speed, thrower)
 	if( harness_check(thrower) )
 		to_chat(usr, "<span class='warning'>\The [src] clanks on the ground.</span>")
-	else ..()
+	else 
+		return ..()
 
 /*
 Note: pickup and dropped on weapons must have both the ..() to update zoom AND twohanded,
 As sniper rifles have both and weapon mods can change them as well. ..() deals with zoom only.
 */
 /obj/item/weapon/gun/dropped(mob/user)
-	..()
+	. = ..()
 
 	stop_aim()
-	if (user && user.client)
+	if(user?.client)
 		user.update_gun_icons()
 
 	turn_off_light(user)
@@ -152,12 +155,14 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	unwield(user)
 	harness_check(user)
 
+
 /obj/item/weapon/gun/proc/turn_off_light(mob/bearer)
 	if(flags_gun_features & GUN_FLASHLIGHT_ON)
 		bearer.SetLuminosity(-rail.light_mod)
 		SetLuminosity(rail.light_mod)
 		return TRUE
 	return FALSE
+
 
 /obj/item/weapon/gun/pickup(mob/user)
 	..()
@@ -168,29 +173,6 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 	unwield(user)
 
-/obj/item/weapon/gun/proc/wy_allowed_check(mob/living/carbon/human/user)
-	if(config && config.remove_gun_restrictions)
-		return TRUE //Not if the config removed it.
-
-	if(user.mind)
-		switch(user.mind.assigned_role)
-			if("WY Agent", "Corporate Liaison", "Event")
-				return TRUE
-		switch(user.mind.special_role)
-			if("Deathsquad","PMC")
-				return TRUE
-	to_chat(user, "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>")
-
-/obj/item/weapon/gun/proc/spec_allowed_check(mob/living/carbon/human/user)
-	if(config && config.remove_gun_restrictions)
-		return TRUE //Not if the config removed it.
-
-	if(user.mind)
-		if(user.mind.cm_skills && user.mind.cm_skills.spec_weapons > SKILL_SPEC_DEFAULT)
-			return TRUE
-		if(allowed(user))
-			return TRUE
-	to_chat(user, "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>")
 
 /obj/item/weapon/gun/proc/police_allowed_check(mob/living/carbon/human/user)
 	if(config && config.remove_gun_restrictions)
@@ -203,11 +185,13 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 			return TRUE
 	to_chat(user, "<span class='warning'>[src] flashes a warning sign indicating unauthorized use!</span>")
 
+
 /obj/item/weapon/gun/proc/wielded_stable() //soft wield-delay
 	if(world.time > wield_time)
 		return TRUE
 	else
 		return FALSE
+
 
 /obj/item/weapon/gun/proc/do_wield(mob/user, wield_time) //a poor way to make timed actions show an icon without affecting them until /tg/'s do_mob is ported.
 	var/delay = wield_time - world.time
@@ -245,6 +229,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		user.overlays -= busy_icon
 	user.action_busy = FALSE
 
+
 /*
 Here we have throwing and dropping related procs.
 This should fix some issues with throwing mag harnessed guns when
@@ -260,6 +245,7 @@ should be alright.
 				harness_return(user)
 				return 1
 
+
 /obj/item/weapon/gun/proc/harness_return(mob/living/carbon/human/user)
 	set waitfor = 0
 	sleep(3)
@@ -267,8 +253,10 @@ should be alright.
 		if(isnull(user.s_store) && isturf(loc))
 			var/obj/item/I = user.wear_suit
 			user.equip_to_slot_if_possible(src,WEAR_J_STORE)
-			if(user.s_store == src) to_chat(user, "<span class='warning'>[src] snaps into place on [I].</span>")
+			if(user.s_store == src) 
+				to_chat(user, "<span class='warning'>[src] snaps into place on [I].</span>")
 			user.update_inv_s_store()
+
 
 /obj/item/weapon/gun/attack_self(mob/user)
 	. = ..()
@@ -283,6 +271,7 @@ should be alright.
 			wield(user)//Trying to wield it
 	else
 		unload(user)//We just unload it.
+
 
 //Clicking stuff onto the gun.
 //Attachables & Reloading
@@ -356,6 +345,7 @@ should be alright.
 /obj/item/weapon/gun/proc/unique_action(mob/M) //Anything unique the gun can do, like pump or spin or whatever.
 	return
 
+
 /obj/item/weapon/gun/proc/check_inactive_hand(mob/user)
 	if(user)
 		var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
@@ -363,6 +353,7 @@ should be alright.
 			to_chat(user, "<span class='warning'>You have to hold [src] to do that!</span>")
 			return
 	return TRUE
+
 
 /obj/item/weapon/gun/proc/check_both_hands(mob/user)
 	if(user)
@@ -372,6 +363,7 @@ should be alright.
 			to_chat(user, "<span class='warning'>You have to hold [src] to do that!</span>")
 			return
 	return 1
+
 
 /obj/item/weapon/gun/proc/has_attachment(A)
 	if(!A)
@@ -384,6 +376,7 @@ should be alright.
 		return TRUE
 	if(istype(stock,A))
 		return TRUE
+
 
 /obj/item/weapon/gun/proc/attach_to_gun(mob/user, obj/item/attachable/attachment)
 	if(attachable_allowed && !(attachment.type in attachable_allowed) )
@@ -430,6 +423,7 @@ should be alright.
 			update_attachable(attachment.slot)
 			playsound(user, 'sound/machines/click.ogg', 15, 1, 4)
 
+
 /obj/item/weapon/gun/proc/update_attachables() //Updates everything. You generally don't need to use this.
 	//overlays.Cut()
 	if(attachable_offset) //Even if the attachment doesn't exist, we're going to try and remove it.
@@ -438,6 +432,7 @@ should be alright.
 		update_overlays(under, "under")
 		update_overlays(rail, "rail")
 
+
 /obj/item/weapon/gun/proc/update_attachable(attachable) //Updates individually.
 	if(attachable_offset)
 		switch(attachable)
@@ -445,6 +440,7 @@ should be alright.
 			if("stock") update_overlays(stock, attachable)
 			if("under") update_overlays(under, attachable)
 			if("rail") update_overlays(rail, attachable)
+
 
 /obj/item/weapon/gun/proc/update_overlays(obj/item/attachable/A, slot)
 	var/image/reusable/I = attachable_overlays[slot]
@@ -462,6 +458,7 @@ should be alright.
 	else
 		attachable_overlays[slot] = null
 
+
 /obj/item/weapon/gun/proc/update_mag_overlay()
 	var/image/reusable/I = attachable_overlays["mag"]
 	overlays -= I
@@ -473,12 +470,14 @@ should be alright.
 	else
 		attachable_overlays["mag"] = null
 
+
 /obj/item/weapon/gun/proc/update_special_overlay(new_icon_state)
 	overlays -= attachable_overlays["special"]
 	cdel(attachable_overlays["special"])
 	var/image/reusable/I = rnew(/image/reusable, list(icon,src,new_icon_state))
 	attachable_overlays["special"] = I
 	overlays += I
+
 
 /obj/item/weapon/gun/proc/update_force_list()
 	switch(force)
@@ -488,6 +487,7 @@ should be alright.
 			attack_verb = list("smashed", "struck", "whacked", "beaten", "cracked")
 		else
 			attack_verb = list("slashed", "stabbed", "speared", "torn", "punctured", "pierced", "gored") //Greater than 35
+
 
 /obj/item/weapon/gun/proc/get_active_firearm(mob/user)
 	if(!ishuman(usr))

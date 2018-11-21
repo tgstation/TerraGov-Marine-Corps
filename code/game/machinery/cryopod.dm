@@ -339,23 +339,9 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 							S.num_medics--
 						if("Squad Specialist")
 							S.num_specialists--
-							//we make the set this specialist took if any available again
-							if(H.mind.cm_skills)
-								var/set_name
-								switch(H.mind.cm_skills.spec_weapons)
-									if(SKILL_SPEC_ROCKET)
-										set_name = "Demolitionist Set"
-									if(SKILL_SPEC_GRENADIER)
-										set_name = "Heavy Grenadier Set"
-									if(SKILL_SPEC_PYRO)
-										set_name = "Pyro Set"
-									if(SKILL_SPEC_SCOUT)
-										set_name = "Scout Set"
-									if(SKILL_SPEC_SNIPER)
-										set_name = "Sniper Set"
+							if(H.specset && !available_specialist_sets.Find(H.specset))
+								available_specialist_sets += H.specset //we make the set this specialist took if any available again
 
-								if(set_name && !available_specialist_sets.Find(set_name))
-									available_specialist_sets += set_name
 						if("Squad Smartgunner")
 							S.num_smartgun--
 						if("Squad Leader")

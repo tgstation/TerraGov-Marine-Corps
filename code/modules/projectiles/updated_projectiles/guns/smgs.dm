@@ -83,7 +83,7 @@
 	item_state = "m39b2"
 	origin_tech = "combat=6;materials=5"
 	current_mag = /obj/item/ammo_magazine/smg/m39/ap
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WY_RESTRICTED
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 
 /obj/item/weapon/gun/smg/m39/elite/set_gun_config_values()
 	fire_delay = config.low_fire_delay

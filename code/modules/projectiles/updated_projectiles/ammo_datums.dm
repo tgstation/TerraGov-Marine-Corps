@@ -47,6 +47,7 @@
 	var/bonus_projectiles_type 					// Type path of the extra projectiles
 	var/bonus_projectiles_amount 	= 0 		// How many extra projectiles it shoots out. Works kind of like firing on burst, but all of the projectiles travel together
 	var/debilitate[]				= null 		// Stun,knockdown,knockout,irradiate,stutter,eyeblur,drowsy,agony
+	var/list/ammo_reagents			= null		// Type of reagent transmitted by the projectile on hit.
 	var/barricade_clear_distance	= 1			// How far the bullet can travel before incurring a chance of hitting barricades; normally 1.
 
 	New()
@@ -964,10 +965,8 @@
 		return
 	smoke.set_up(1, T)
 	smoke.start()
-	for(var/obj/flamer_fire/F in range(radius,T)) // No stacking flames!
-		cdel(F)
 	playsound(T, 'sound/weapons/gun_flamethrower2.ogg', 50, 1, 4)
-	flame_radius(radius, 25, 25, 25, 15)
+	flame_radius(radius, T, 25, 25, 25, 15)
 
 
 /datum/ammo/rocket/wp/on_hit_mob(mob/M,obj/item/projectile/P)
@@ -1146,42 +1145,69 @@
 	var/spit_cost
 
 /datum/ammo/xeno/New()
-	..()
-	accuracy = config.med_hit_accuracy
+	. = ..()
+	accuracy = config.max_hit_accuracy
+	accurate_range = config.short_shell_range
+	shell_speed = config.reg_shell_speed
+	max_range = config.short_shell_range
 	accuracy_var_low = config.low_proj_variance
 	accuracy_var_high = config.low_proj_variance
-	max_range = config.short_shell_range
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
-	damage_falloff = 0
-	debilitate = list(1,2,0,0,0,0,0,0)
+	ammo_reagents = list("xeno_toxin" = 5)
+	debilitate = list(0.5,0.5,0,0,0,0,0,0)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_IGNORE_RESIST
 	spit_cost = 50
 
-/datum/ammo/xeno/toxin/New()
-	..()
-	shell_speed = config.reg_shell_speed
-	max_range = config.close_shell_range
+/datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/M, obj/item/projectile/P)
+	if(!istype(M))
+		return ..()
+		var/mob/living/carbon/C = M
+		if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
+			return
+	return ..()
+
+/datum/ammo/xeno/toxin/upgrade1
+	name = "neurotoxic spit"
+	ammo_reagents = list("xeno_toxin" = 5.75)
+
+/datum/ammo/xeno/toxin/upgrade2
+	ammo_reagents = list("xeno_toxin" = 6.5)
+
+/datum/ammo/xeno/toxin/upgrade3
+	ammo_reagents = list("xeno_toxin" = 7.25)
+
 
 /datum/ammo/xeno/toxin/medium //Spitter
 	name = "neurotoxic spatter"
-	debilitate = list(2,3,0,0,1,2,0,0)
+	ammo_reagents = list("xeno_toxin" = 8)
+	added_spit_delay = 5
+	spit_cost = 75
 
-/datum/ammo/xeno/toxin/medium/New()
-	..()
-	shell_speed = config.fast_shell_speed
-	accuracy_var_low = config.high_proj_variance
-	accuracy_var_high = config.high_proj_variance
+/datum/ammo/xeno/toxin/medium/upgrade1
+	ammo_reagents = list("xeno_toxin" = 9.2)
+
+/datum/ammo/xeno/toxin/medium/upgrade2
+	ammo_reagents = list("xeno_toxin" = 10.4)
+
+/datum/ammo/xeno/toxin/medium/upgrade3
+	ammo_reagents = list("xeno_toxin" = 11.6)
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
-	debilitate = list(3,4,0,0,3,5,0,0)
+	ammo_reagents = list("xeno_toxin" = 10)
+	added_spit_delay = 8
+	spit_cost = 100
 
-/datum/ammo/xeno/toxin/heavy/New()
-	..()
-	max_range = config.min_shell_range
-	shell_speed = config.reg_shell_speed
+/datum/ammo/xeno/toxin/heavy/upgrade1
+	ammo_reagents = list("xeno_toxin" = 11.5)
+
+/datum/ammo/xeno/toxin/heavy/upgrade2
+	ammo_reagents = list("xeno_toxin" = 13)
+
+/datum/ammo/xeno/toxin/heavy/upgrade3
+	ammo_reagents = list("xeno_toxin" = 14.5)
 
 /datum/ammo/xeno/sticky
 	name = "sticky resin spit"
@@ -1229,13 +1255,14 @@
 	sound_hit 	 = "acid_hit"
 	sound_bounce	= "acid_bounce"
 	damage_type = BURN
-	added_spit_delay = 10
-	spit_cost = 100
+	added_spit_delay = 5
+	spit_cost = 75
 
 /datum/ammo/xeno/acid/New()
-	..()
+	. = ..()
 	damage = config.llow_hit_damage
-	shell_speed = config.reg_shell_speed
+	damage_var_low = config.low_proj_variance
+	damage_var_high = config.med_proj_variance
 
 /datum/ammo/xeno/acid/on_shield_block(mob/M, obj/item/projectile/P)
 	burst(M,P,damage_type)
@@ -1251,23 +1278,38 @@
 	name = "acid spatter"
 
 /datum/ammo/xeno/acid/medium/New()
-	..()
-	damage = config.low_hit_damage
-	damage_var_low = config.low_proj_variance
-	damage_var_high = config.med_proj_variance
-	shell_speed = config.fast_shell_speed
+	. = ..()
+	damage = config.mlow_hit_damage
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
-	added_spit_delay = 20
+	added_spit_delay = 8
+	spit_cost = 100
+	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_EXPLOSIVE
 
 /datum/ammo/xeno/acid/heavy/New()
-	..()
-	max_range = config.min_shell_range
-	damage = config.med_hit_damage
-	damage_var_low = config.med_proj_variance
-	damage_var_high = config.high_proj_variance
-	shell_speed = config.reg_shell_speed
+	. = ..()
+	damage = config.low_hit_damage
+
+/datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/item/projectile/P)
+	drop_acid(get_turf(M))
+	if(istype(M,/mob/living/carbon))
+		var/mob/living/carbon/C = M
+		C.acid_process_cooldown = 2
+
+/datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/item/projectile/P)
+	drop_acid(get_turf(P))
+
+/datum/ammo/xeno/acid/heavy/on_hit_turf(turf/T,obj/item/projectile/P)
+	drop_acid(T)
+
+/datum/ammo/xeno/acid/heavy/do_at_max_range(obj/item/projectile/P)
+	drop_acid(get_turf(P))
+
+/datum/ammo/xeno/acid/proc/drop_acid(turf/T) //Leaves behind a short lived acid pool; lasts for 1-3 seconds.
+	if(T.density)
+		return
+	new /obj/effect/xenomorph/spray(T, 10)
 
 /datum/ammo/xeno/boiler_gas
 	name = "glob of gas"
