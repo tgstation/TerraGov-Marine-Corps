@@ -2,7 +2,8 @@
 	anchored = TRUE
 	var/health = 25
 	var/health_max = 25
- var/on_fire = FALSE
+	var/on_fire = FALSE
+
 /obj/structure/flora/ex_act(severity)
 	switch(severity)
 		if(1)
@@ -13,9 +14,11 @@
 		if(3)
 			if(prob(50))
 				cdel(src)
+
 /obj/structure/flora/Dispose()
- processing_objects.Remove(src)
- ..()
+	processing_objects.Remove(src)
+	return ..()
+
 /obj/structure/flora/attackby(obj/item/W, mob/living/user)
 	if(!W || !user || isnull(W) || (W.flags_item & NOBLUDGEON))
 		return 0
@@ -47,14 +50,15 @@
 		return
 	on_fire = TRUE
 	processing_objects.Add(src)
-		spawn(rand(100,175))
-			cdel(src)
+
 /obj/structure/flora/process()
- if(health <= 0)
-  cdel(src)
- if(!on_fire)
-  processing_objects.Remove(src)
- health -= somevalue
+	if(health <= 0)
+		cdel(src)
+	if(!on_fire)
+		processing_objects.Remove(src)
+	else
+		health -= 25
+
 //TREES
 
 /obj/structure/flora/tree
@@ -65,7 +69,6 @@
 	health = 500
 	health_max = 500
 	layer = ABOVE_FLY_LAYER
-	var/on_fire = FALSE
 	var/log_amount = 10
 
 /obj/structure/flora/tree/ex_act(severity)
@@ -76,13 +79,13 @@
 			health -= (rand(140, 300))
 		if(3.0)
 			health -= (rand(50, 100))
-	healthcheck()
+	processing_objects.Add(src)
 	return
 
 /obj/structure/flora/tree/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage * 0.5
-	..()
-	healthcheck()
+	. = ..()
+	processing_objects.Add(src)
 	return TRUE
 
 /obj/structure/flora/tree/attackby(obj/item/W, mob/user, params)
@@ -108,20 +111,26 @@
 	if(on_fire == FALSE)
 		on_fire = TRUE
 		SetLuminosity(5)
-	healthcheck()
+	processing_objects.Add(src)
 	update_icon()
+
 
 /obj/structure/flora/tree/update_icon()
 	overlays.Cut()
 	if(on_fire)
 		overlays += "fire"
 
-/obj/structure/flora/tree/proc/healthcheck()
+/obj/structure/flora/tree/process()
 	if(health <= 0)
 		density = 0
 		var/obj/structure/flora/stump/S = new(loc)
 		S.name = "[name] stump"
+		processing_objects.Remove(src)
 		cdel(src)
+	if(!on_fire)
+		processing_objects.Remove(src)
+	else
+		health -= 25
 	return ..()
 
 /obj/structure/flora/stump
