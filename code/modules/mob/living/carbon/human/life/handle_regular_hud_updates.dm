@@ -56,7 +56,7 @@
 			else
 				clear_fullscreen("brute")
 
-		if(hud_used.locate_leader && hud_used.locate_leader.alpha && world.time > (sl_locator_next_update + HUD_SL_LOCATOR_PROCESS_COOLDOWN) ) //not invisible
+		if(world.time > (sl_locator_next_update + HUD_SL_LOCATOR_PROCESS_COOLDOWN))
 			Process_SL_Locator()
 
 		if(hud_used.healths)

@@ -610,6 +610,7 @@
 	icon_state = "SL_locator"
 	alpha = 0 //invisible
 	mouse_opacity = 0
+	screen_loc = ui_sl_dir
 
 /obj/screen/toggle_inv/clicked(var/mob/user)
 	if (..())

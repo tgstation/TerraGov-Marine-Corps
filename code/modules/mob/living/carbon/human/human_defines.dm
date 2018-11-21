@@ -126,3 +126,6 @@
 
 	var/sl_locator_next_update
 	var/sl_headset_active = null
+	var/sl_indicator_active = null
+	var/sl_direction_active = null
+	var/image/SL_directional = null

@@ -82,8 +82,9 @@
 
 	. += config.human_delay
 
-	Process_SL_Locator() //Adjust the angle of the overlay
-
+/mob/living/carbon/human/Move()
+	. = ..()
+	Process_SL_Locator()
 
 /mob/living/carbon/human/proc/Process_SL_Locator()
 	if(!sl_headset_active)
@@ -92,24 +93,25 @@
 		return
 	if(!assigned_squad)
 		return
+	if(!sl_direction_active && !sl_indicator_active)
+		return
 	var/mob/living/carbon/human/H = assigned_squad.squad_leader
-	var/obj/screen/SL = hud_used.SL_locator
 	var/obj/screen/SL_dial = hud_used.locate_leader
+	var/obj/screen/SL_dir = hud_used.SL_locator
 
 	if(!H)
 		SL_dial.icon_state = "trackoff"
-		SL.icon_state = "SL_locator_null"
+		SL_dir.icon_state = "SL_locator_null"
 		return
-
 	if(H.z != src.z || get_dist(src,H) < 1 || src == H)
 		SL_dial.icon_state = "trackondirect"
-		SL.icon_state = "SL_locator_null"
+		SL_dir.icon_state = "SL_locator_null"
 	else
 		SL_dial.dir = get_dir(src,H)
 		SL_dial.icon_state = "trackon"
-		SL.icon_state = "SL_locator" //Reset and 0 out.
-		SL.transform = 0 //Reset and 0 out
-		SL.transform = turn(SL.transform, Get_Angle(src,H))
+		SL_dir.icon_state = "SL_locator"
+		SL_dir.transform = 0 //Reset and 0 out
+		SL_dir.transform = turn(SL_dir.transform, Get_Angle(src,H))
 
 	sl_locator_next_update = world.time + HUD_SL_LOCATOR_COOLDOWN
 
