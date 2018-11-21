@@ -157,7 +157,7 @@
 
 /obj/effect/overlay/temp/blinking_laser/Dispose()
 	SetLuminosity(0)
-	. = ..()
+	return ..()
 
 /obj/effect/overlay/temp/emp_sparks
 	icon = 'icons/effects/effects.dmi'
