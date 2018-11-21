@@ -22,7 +22,7 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 
 /obj/item/weapon/gun/flamer/New()
-	..()
+	. = ..()
 	fire_delay = config.max_fire_delay * 5
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 
@@ -30,7 +30,7 @@
 	toggle_flame(user)
 
 /obj/item/weapon/gun/flamer/examine(mob/user)
-	..()
+	. = ..()
 	to_chat(user, "It's turned [lit? "on" : "off"].")
 	if(current_mag)
 		to_chat(user, "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!")
@@ -58,11 +58,13 @@
 
 /obj/item/weapon/gun/flamer/Fire(atom/target, mob/living/user, params, reflex)
 	set waitfor = 0
+
 	if(!able_to_fire(user))
 		return
+
 	var/turf/curloc = get_turf(user) //In case the target or we are expired.
 	var/turf/targloc = get_turf(target)
-	if (!targloc || !curloc)
+	if(!targloc || !curloc)
 		return //Something has gone wrong...
 
 	if(!lit)
@@ -71,6 +73,7 @@
 
 	if(!current_mag)
 		return
+
 	if(current_mag.current_rounds <= 0)
 		click_empty(user)
 	else
@@ -89,7 +92,7 @@
 		to_chat(user, "<span class='warning'>That magazine doesn't fit in there!</span>")
 		return
 
-	if (istype(magazine, /obj/item/ammo_magazine/flamer_tank/large))
+	if(istype(magazine, /obj/item/ammo_magazine/flamer_tank/large))
 		to_chat(user, "<span class='warning'>That tank is too large for this model!</span>")
 		return
 
@@ -134,6 +137,7 @@
 
 /obj/item/weapon/gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
 	set waitfor = 0
+
 	last_fired = world.time
 	var/burnlevel
 	var/burntime
@@ -200,7 +204,7 @@
 	new /obj/flamer_fire(T, heat, burn, f_color)
 
 	// Melt a single layer of snow
-	if (istype(T, /turf/open/snow))
+	if(istype(T, /turf/open/snow))
 		var/turf/open/snow/S = T
 
 		if (S.slayer > 0)
@@ -362,6 +366,7 @@
 	update_icon()
 	return TRUE
 
+
 /obj/item/weapon/gun/flamer/M240T/able_to_fire(mob/user)
 	. = ..()
 	if(.)
@@ -392,17 +397,19 @@
 		last_fired = world.time
 		last_use = world.time
 		return
+	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
+		if(!do_after(user, 10, TRUE, 5, BUSY_ICON_HOSTILE))
+			return
 	return ..()
 
 /obj/item/weapon/gun/flamer/M240T/afterattack(atom/target, mob/user)
 	. = ..()
-	if( istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(user,target) <= 1)
+	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(user,target) <= 1)
 		var/obj/o = target
 		o.reagents.trans_to(src, max_water)
 		to_chat(user, "\blue \The [src]'s hydro cannon is refilled with water.")
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //Time to redo part of abby's code.

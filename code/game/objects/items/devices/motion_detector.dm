@@ -50,6 +50,7 @@
 	var/detect_revivable = TRUE
 	var/detect_fubar = TRUE
 	var/ping = TRUE
+	var/mob/living/carbon/human/operator
 
 /obj/item/device/motiondetector/examine(mob/user as mob)
 	if(get_dist(user,src) > 2)
@@ -71,6 +72,11 @@
 	blip_pool = list()
 	..()
 
+/obj/item/device/motiondetector/dropped(mob/user)
+	. = ..()
+	operator = null
+
+
 /obj/item/device/motiondetector/update_icon()
 	if(active)
 		icon_state = "detector_on_[detector_mode]"
@@ -78,19 +84,31 @@
 		icon_state = "detector_off"
 	return ..()
 
+/obj/item/device/motiondetector/proc/deactivate()
+	active = FALSE
+	operator = null
+	update_icon()
+	processing_objects.Remove(src)
+
 /obj/item/device/motiondetector/process()
 	if(!active)
-		update_icon()
-		processing_objects.Remove(src)
+		deactivate()
 		return
 
-	var/mob/living/carbon/human/human_user
-	if(ishuman(loc))
-		human_user = loc
-	else
-		active = FALSE
-		update_icon()
-		processing_objects.Remove(src)
+	if(!operator)
+		deactivate()
+		return
+
+	if(get_turf(src) != get_turf(operator))
+		deactivate()
+		return
+
+	if(operator.stat == DEAD)
+		deactivate()
+		return
+
+	if(!operator.client)
+		deactivate()
 		return
 
 	recycletime--
@@ -111,7 +129,7 @@
 
 	var/detected
 	var/status
-	for(var/mob/living/M in orange(detector_range, human_user))
+	for(var/mob/living/M in orange(detector_range, operator))
 		if(!isturf(M.loc))
 			continue
 		if(isrobot(M))
@@ -141,8 +159,7 @@
 
 		detected = TRUE
 
-		if(human_user)
-			show_blip(human_user, M, status)
+		show_blip(operator, M, status)
 
 		if(detected && ping)
 			playsound(loc, 'sound/items/tick.ogg', 50, 0, 7, 2)
@@ -229,6 +246,7 @@
 			active = !active
 			if(active)
 				to_chat(usr, "<span class='notice'>You activate [src].</span>")
+				operator = usr
 				processing_objects.Add(src)
 			else
 				to_chat(usr, "<span class='notice'>You deactivate [src].</span>")

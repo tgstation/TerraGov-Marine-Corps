@@ -98,7 +98,7 @@
 	item_state = "m41a2"
 	origin_tech = "combat=7;materials=5"
 	current_mag = /obj/item/ammo_magazine/rifle/ap
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WY_RESTRICTED
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 
 
 /obj/item/weapon/gun/rifle/m41a/elite/set_gun_config_values()

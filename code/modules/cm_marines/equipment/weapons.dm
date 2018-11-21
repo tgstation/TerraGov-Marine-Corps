@@ -458,9 +458,6 @@
 	icon_state = "deliverycrate"
 
 /obj/item/spec_kit/attack_self(mob/user as mob)
-	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.spec_weapons < SKILL_SPEC_TRAINED)
-		to_chat(user, "<span class='notice'>This box is not for you, give it to a specialist!</span>")
-		return
 	var/choice = input(user, "Please pick a specalist kit!","Selection") in list("Pyro","Grenadier","Sniper","Scout","Demo")
 	var/obj/item/storage/box/spec/S = null
 	switch(choice)
