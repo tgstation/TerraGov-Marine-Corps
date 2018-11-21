@@ -108,7 +108,6 @@
 		S.accuracy_mod = config.max_hit_accuracy_mult
 	else
 		S.accuracy_mod = 0
-		if(user.client)
 			user.client.change_view(viewsize)
 
 		var/tilesize = 32
