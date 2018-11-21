@@ -1147,7 +1147,7 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 
 /obj/item/weapon/gun/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //this is so the accuracy modifiers for the scopes apply correctly
 	. = ..()
-	if(istype(src.rail,/obj/item/attachable/scope))
+	if(istype(rail,/obj/item/attachable/scope))
 		var/obj/item/attachable/scope/m42a/S = src.rail
 		if(zoom)
 			S.accuracy_mod = S.zoom_accuracy
