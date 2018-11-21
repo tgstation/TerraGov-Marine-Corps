@@ -937,7 +937,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 						/obj/item/ammo_magazine/shotgunbox/flechette = round(scale * 3),
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 15),
 						/obj/item/ammo_magazine/lasgun/M43 = round(scale * 30),
-						/obj/item/ammo_magazine/lasgun/M43/highcap = round(scale * 10),
+						/obj/item/ammo_magazine/lasgun/M43/highcap = round(scale * 5),
 						/obj/item/smartgun_powerpack = round(scale * 2)
 						)
 
@@ -1064,7 +1064,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 10),
 						/obj/item/ammo_magazine/lasgun/M43 = round(scale * 25),
-						/obj/item/ammo_magazine/lasgun/M43/highcap = round(scale * 10),
+						/obj/item/ammo_magazine/lasgun/M43/highcap = 0,
 
 						/obj/item/weapon/combat_knife = round(scale * 30),
 						/obj/item/weapon/throwing_knife = round(scale * 10),

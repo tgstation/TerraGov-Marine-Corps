@@ -634,10 +634,7 @@
 
 			if(istype(item_to_stock, /obj/item/ammo_magazine))
 				var/obj/item/ammo_magazine/A = item_to_stock
-				//to_chat(user, "<span class='warning'>DEBUG: Magazine Name: [A]. Recharge?: [recharge]. Current Charge: [machine_current_charge].</span>")
-				if(istype(A, /obj/item/ammo_magazine/lasgun) && recharge)
-					recharge_lasguncell(A, user)
-				else if(A.current_rounds < A.max_rounds)
+				if(A.current_rounds < A.max_rounds)
 					to_chat(user, "<span class='warning'>[A] isn't full. Fill it before you can restock it.</span>")
 					return
 			if(item_to_stock.loc == user) //Inside the mob's inventory
@@ -784,17 +781,5 @@
 		if (WIRE_SHOOTINV)
 			src.shoot_inventory = !src.shoot_inventory
 
-/obj/machinery/vending/proc/recharge_lasguncell(obj/item/ammo_magazine/lasgun/A, mob/user)
-	var/recharge_cost = (A.max_rounds - A.current_rounds) * 10 //10 energy per shot
-	if(recharge_cost > machine_current_charge)
-		to_chat(user, "<span class='warning'>[A] cannot be recharged; [src] has inadequate charge remaining: [machine_current_charge] of [machine_max_charge].</span>")
-		return
-	else
-		to_chat(user, "<span class='warning'>You insert [A] into [src] to be recharged.</span>")
-		if (icon_vend)
-			flick(icon_vend,src)
-		playsound(src.loc, 'sound/machines/hydraulics_1.ogg', 25, 1)
-		machine_current_charge -= min(machine_current_charge, recharge_cost)
-		to_chat(user, "<span class='notice'>This dispenser has [machine_current_charge] of [machine_max_charge] remaining.</span>")
-		update_icon()
+
 	//to_chat(user, "<span class='warning'>DEBUG: Recharge Cost: [recharge_cost]. Current Charge: [machine_current_charge].</span>")

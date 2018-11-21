@@ -495,25 +495,25 @@
 			item_state = "m43_0"
 	else
 		switch(current_mag.current_rounds / max(current_mag.max_rounds, 1))
-			if(1 to 0.76)
+			if(0.76 to 1)
 				icon_state = base_gun_icon + "_100"
 				if(flags_item & WIELDED)
 					item_state = "m43_100_w"
 				else
 					item_state = "m43_100"
-			if(0.75 to 0.51)
+			if(0.51 to 0.75)
 				icon_state = base_gun_icon + "_75"
 				if(flags_item & WIELDED)
 					item_state = "m43_75_w"
 				else
 					item_state = "m43_75"
-			if(0.5 to 0.26)
+			if(0.26 to 0.5)
 				icon_state = base_gun_icon + "_50"
 				if(flags_item & WIELDED)
 					item_state = "m43_50_w"
 				else
 					item_state = "m43_50"
-			if(0.25 to 0.01)
+			if(0.01 to 0.25)
 				icon_state = base_gun_icon + "_25"
 				if(flags_item & WIELDED)
 					item_state = "m43_25_w"

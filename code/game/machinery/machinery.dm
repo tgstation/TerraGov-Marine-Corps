@@ -192,7 +192,7 @@ Class Procs:
 			return FALSE
 
 	if(use_power)
-		if(machine_current_charge < machine_max_charge) //here we handle recharging the internal battery of machines
+		if((machine_current_charge < machine_max_charge) && anchored) //here we handle recharging the internal battery of machines
 			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Machine Current Charge: [machine_current_charge] .</span>")
 			var/power_usage = (min(500,max(0,machine_max_charge - machine_current_charge)))
 			machine_current_charge += power_usage //recharge internal cell at max rate of 500

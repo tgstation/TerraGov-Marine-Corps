@@ -51,13 +51,13 @@
 	switch(current_rounds / max(1,max_rounds))
 		if(0)
 			icon_state = base_ammo_icon + "_0"
-		if(1 to 0.76)
+		if(0.76 to 1)
 			icon_state = base_ammo_icon + "_100"
-		if(0.75 to 0.51)
+		if(0.51 to 0.75)
 			icon_state = base_ammo_icon + "_75"
-		if(0.5 to 0.26)
+		if(0.26 to 0.5 )
 			icon_state = base_ammo_icon + "_50"
-		if(0.25 to 0.01)
+		if(0.01 to 0.25)
 			icon_state = base_ammo_icon + "_25"
 	//to_chat(world, "<span class='warning'>DEBUG: Lasgun Magazine Icon Update. Icon State: [icon_state] Current Rounds: [current_rounds]</span>")
 
