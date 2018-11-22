@@ -303,7 +303,7 @@
 
 
 /obj/machinery/vending/lasgun/MouseDrop_T(var/atom/movable/A, mob/user)
-	..()
+	. = ..()
 
 	var/obj/item/I = A
 	if(istype(I, /obj/item/ammo_magazine/lasgun))
