@@ -318,7 +318,6 @@
 		if(item_to_stock.type == R.product_path && !istype(item_to_stock,/obj/item/storage)) //Nice try, specialists/engis
 			if(istype(item_to_stock, /obj/item/ammo_magazine))
 				var/obj/item/ammo_magazine/A = item_to_stock
-				//to_chat(user, "<span class='warning'>DEBUG: Magazine Name: [A]. Recharge?: [recharge]. Current Charge: [machine_current_charge].</span>")
 				if(istype(A, /obj/item/ammo_magazine/lasgun) && recharge)
 					if(!recharge_lasguncell(A, user))
 						return //Can't recharge so cancel out
@@ -338,7 +337,7 @@
 				"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
 			R.amount++
 			updateUsrDialog()
-			return //We found our item, no reason to go on.
+			break //We found our item, no reason to go on.
 
 /obj/machinery/vending/lasgun/proc/recharge_lasguncell(obj/item/ammo_magazine/lasgun/A, mob/user)
 	var/recharge_cost = (A.max_rounds - A.current_rounds) * 10 //10 energy per shot

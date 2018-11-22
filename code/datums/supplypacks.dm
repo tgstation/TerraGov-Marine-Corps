@@ -1894,6 +1894,7 @@ AMMO
 	containertype = /obj/machinery/vending/lasgun
 	containername = "ColMarTech Lasgun Field Charger"
 	group = "Ammo"
+
  /datum/supply_packs/ammo_M43lasgun
 	name = "M43 lasgun battery crate (M43 x15 each)"
 	contains = list(
@@ -1917,6 +1918,7 @@ AMMO
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "lasgun battery crate"
 	group = "Ammo"
+
  /datum/supply_packs/ammo_M43lasgun_highcap
 	name = "M43 lasgun highcap battery crate (M43 highcap x7 each)"
 	contains = list(

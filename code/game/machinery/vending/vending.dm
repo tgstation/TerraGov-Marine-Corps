@@ -18,6 +18,7 @@
 	anchored = 1
 	density = 1
 	layer = BELOW_OBJ_LAYER
+	can_supply_drop = TRUE
 
 	use_power = 1
 	idle_power_usage = 10
@@ -780,6 +781,3 @@
 			src.seconds_electrified = 30
 		if (WIRE_SHOOTINV)
 			src.shoot_inventory = !src.shoot_inventory
-
-
-	//to_chat(user, "<span class='warning'>DEBUG: Recharge Cost: [recharge_cost]. Current Charge: [machine_current_charge].</span>")

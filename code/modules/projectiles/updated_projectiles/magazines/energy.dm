@@ -1,17 +1,5 @@
 //Energy weapons
 
-/*
-/obj/item/weapon_cell
-	name = "\improper Weapon Power Cell"
-	desc = "A specialized high density battery used to power weapons."
-	icon_state = "flametank"
-	var/default_ammo = /datum/ammo/energy/lasgun
-	var/maxcharge = 50
-	var/charge = 50
-	var/reload_delay
-	w_class = 3.0
-	var/gun_type = /obj/item/weapon/gun/energy/lasgun/M43*/
-
 /obj/item/ammo_magazine/lasgun
 	name = "\improper Lasgun Battery"
 	desc = "A specialized high density battery used to power Lasguns."
@@ -48,18 +36,8 @@
 	return ..()
 
 /obj/item/ammo_magazine/lasgun/M43/update_icon()
-	switch(current_rounds / max(1,max_rounds))
-		if(0)
-			icon_state = base_ammo_icon + "_0"
-		if(0.76 to 1)
-			icon_state = base_ammo_icon + "_100"
-		if(0.51 to 0.75)
-			icon_state = base_ammo_icon + "_75"
-		if(0.26 to 0.5 )
-			icon_state = base_ammo_icon + "_50"
-		if(0.01 to 0.25)
-			icon_state = base_ammo_icon + "_25"
-	//to_chat(world, "<span class='warning'>DEBUG: Lasgun Magazine Icon Update. Icon State: [icon_state] Current Rounds: [current_rounds]</span>")
+	var/remaining = CEILING((current_rounds / max(1,max_rounds)) * 100, 25)
+	icon_state = "[base_ammo_icon]_[remaining]"
 
 /obj/item/ammo_magazine/lasgun/M43/highcap// Large battery
 	name = "M43 highcap lasgun battery"

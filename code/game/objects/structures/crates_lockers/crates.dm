@@ -11,6 +11,7 @@
 	climb_delay = 20 //Doesn't need as long to climb over a crate
 	anchored = 0
 	store_mobs = FALSE
+	can_supply_drop = TRUE
 	var/rigged = 0
 
 /obj/structure/closet/crate/can_open()

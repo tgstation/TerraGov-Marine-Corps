@@ -703,10 +703,6 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 	pixel_shift_x = 41
 	pixel_shift_y = 10
 
- /obj/item/attachable/stock/lasgun/New()
-	..() //Cosmetic; properties are now all baked in.
-
-
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
 
@@ -1088,7 +1084,7 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 		G.aim_slowdown += SLOWDOWN_ADS_SCOPE
 		G.wield_delay += WIELD_DELAY_FAST
 	G.update_slowdown()
-		
+
 	//var/image/targeting_icon = image('icons/mob/mob.dmi', null, "busy_targeting", "pixel_y" = 22) //on hold until the bipod is fixed
 	if(bipod_deployed)
 		icon_state = "bipod-on"
@@ -1117,12 +1113,12 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 	for(var/obj/O in T)
 		if(O.throwpass && O.density && O.dir == user.dir && O.flags_atom & ON_BORDER)
 			return O
-	
-	T = get_step(T, user.dir) 
+
+	T = get_step(T, user.dir)
 	for(var/obj/O in T)
 		if((istype(O, /obj/structure/window_frame)))
 			return O
-	
+
 	return FALSE
 
 
