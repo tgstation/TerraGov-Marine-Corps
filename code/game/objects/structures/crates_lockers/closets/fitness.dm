@@ -99,7 +99,7 @@
 	icon_state = "mixed"
 	icon_closed = "mixed"
 
-/obj/structure/closet/athletic_mixed/New()
+/obj/structure/closet/swimsuit/New()
 	..()
 	sleep(2)
 	new /obj/item/clothing/under/swimsuit/red(src)
