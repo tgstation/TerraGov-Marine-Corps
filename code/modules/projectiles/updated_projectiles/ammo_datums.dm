@@ -864,7 +864,7 @@
 	accuracy = config.max_hit_accuracy
 	accurate_range = config.norm_shell_range
 	max_range = config.long_shell_range
-	damage = config.med_hit_damage
+	damage = config.high_hit_damage
 	penetration = config.max_armor_penetration
 	shell_speed = config.slow_shell_speed
 
@@ -893,9 +893,28 @@
 	smoke.set_up(1, get_turf(P))
 	smoke.start()
 
+/datum/ammo/rocket/frag
+	name = "fragmentation rocket"
+
+/datum/ammo/rocket/on_hit_mob(mob/M, obj/item/projectile/P)
+	explosion(get_turf(M), -1, -1, 1, 2)
+	frag_blast(get_turf(M), src, 32)
+
+/datum/ammo/rocket/on_hit_obj(obj/O, obj/item/projectile/P)
+	explosion(get_turf(O), -1, -1, 1, 2)
+	frag_blast(get_turf(O), src, 32)
+
+/datum/ammo/rocket/on_hit_turf(turf/T, obj/item/projectile/P)
+	explosion(T, -1, -1, 1, 2)
+	frag_blast(T, src, 32)
+
+/datum/ammo/rocket/do_at_max_range(obj/item/projectile/P)
+	explosion(get_turf(P), -1, -1, 1, 2)
+	frag_blast(get_turf(P), src, 32)
+
+
 /datum/ammo/rocket/ap
 	name = "anti-armor rocket"
-	damage_falloff = 0
 
 /datum/ammo/rocket/ap/New()
 	. = ..()
@@ -1531,3 +1550,21 @@
 	name = "smoke grenade shell"
 	nade_type = /obj/item/explosive/grenade/smokebomb
 	icon_state = "smoke_shell"
+
+
+/datum/ammo/bullet/shrapnel/flechette
+	name = "fragmentation flechette"
+	icon_state = "flechette"
+
+/datum/ammo/bullet/shrapnel/flechette/New()
+	..()
+	accuracy = config.max_hit_accuracy
+	accurate_range = config.min_shell_range
+	accuracy_var_low = config.med_proj_variance
+	accuracy_var_high = config.med_proj_variance
+	max_range = config.close_shell_range
+	damage = config.low_hit_damage
+	damage_var_low = -config.low_proj_variance
+	damage_var_high = config.low_proj_variance
+	damage_falloff *= 0.5
+	penetration = config.high_armor_penetration

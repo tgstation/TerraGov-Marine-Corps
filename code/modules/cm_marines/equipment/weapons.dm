@@ -298,7 +298,7 @@
 	icon_state = "rocket_case"
 	spec_set = "demolitionist"
 	w_class = 5
-	storage_slots = 15
+	storage_slots = 16
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -314,6 +314,7 @@
 			new /obj/item/ammo_magazine/rocket/ap(src)
 			new /obj/item/ammo_magazine/rocket/ap(src)
 			new /obj/item/ammo_magazine/rocket/wp(src)
+			new /obj/item/ammo_magazine/rocket/frag(src)
 			new /obj/item/explosive/mine(src)
 			new /obj/item/explosive/mine(src)
 			new /obj/item/explosive/plastique(src)

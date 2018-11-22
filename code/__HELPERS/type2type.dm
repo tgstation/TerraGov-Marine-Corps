@@ -301,7 +301,7 @@ proc/tg_list2text(list/list, glue=",")
 	if(degree < 225)	return SOUTH
 	if(degree < 270)	return SOUTHWEST
 	if(degree < 315)	return WEST
-	return NORTH|WEST
+	return NORTHWEST
 
 //returns the north-zero clockwise angle in degrees, given a direction
 
