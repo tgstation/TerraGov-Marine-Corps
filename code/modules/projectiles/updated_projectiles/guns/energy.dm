@@ -574,7 +574,7 @@
 
 
 /obj/item/weapon/gun/energy/lasgun/ready_in_chamber(mob/user, switch_modes = FALSE)
-	if(current_mag && current_mag.current_rounds > 0)
+	if(current_mag?.current_rounds > 0)
 		if(current_mag.current_rounds < ammo_per_shot && overcharge)
 			if(istype(src, /obj/item/weapon/gun/energy/lasgun))
 				var/obj/item/weapon/gun/energy/lasgun/L = src
