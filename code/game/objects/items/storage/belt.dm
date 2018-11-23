@@ -481,20 +481,6 @@
 				return
 		return 1
 
-/obj/item/weapon/gun/on_enter_storage(obj/item/storage/belt/gun/gun_belt)
-	if(istype(gun_belt))
-		gun_belt.holds_guns_now++ //Slide it in.
-		if(!gun_belt.current_gun)
-			gun_belt.current_gun = src //If there's no active gun, we want to make this our icon.
-			gun_belt.update_gun_icon()
-
-/obj/item/weapon/gun/on_exit_storage(obj/item/storage/belt/gun/gun_belt)
-	if(istype(gun_belt))
-		gun_belt.holds_guns_now--
-		if(gun_belt.current_gun == src)
-			gun_belt.current_gun = null
-			gun_belt.update_gun_icon()
-
 /obj/item/storage/belt/gun/m4a3
 	name = "\improper M276 pattern M4A3 holster rig"
 	desc = "The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version has a holster assembly that allows one to carry the M4A3 comfortably secure. It also contains side pouches that can store 9mm or .45 magazines."

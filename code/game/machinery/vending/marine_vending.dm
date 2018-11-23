@@ -7,9 +7,7 @@
 	icon_vend = "marinearmory-vend"
 	icon_deny = "marinearmory"
 	req_access = null
-	req_access_txt = "0"
-	req_one_access = null
-	req_one_access_txt = "9;2;21"
+	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
 	wrenchable = FALSE
 	tokensupport = TOKEN_MARINE
 
@@ -541,34 +539,34 @@
 	wrenchable = FALSE
 
 	products = list(
-						/obj/item/attachable/suppressor = 8,
 						/obj/item/attachable/bayonet = 15,
 						/obj/item/attachable/compensator = 4,
 						/obj/item/attachable/extended_barrel = 8,
 						/obj/item/attachable/heavy_barrel = 2,
+						/obj/item/attachable/suppressor = 8,
 
-						/obj/item/attachable/scope = 1,
 						/obj/item/attachable/flashlight = 20,
-						/obj/item/attachable/reddot = 10,
 						/obj/item/attachable/magnetic_harness = 8,
 						/obj/item/attachable/quickfire = 2,
+						/obj/item/attachable/reddot = 10,
+						/obj/item/attachable/scope = 1,
 
-						/obj/item/attachable/verticalgrip = 10,
 						/obj/item/attachable/angledgrip = 10,
-						/obj/item/attachable/lasersight = 10,
-						/obj/item/attachable/gyro = 4,
 						/obj/item/attachable/bipod = 4,
 						/obj/item/attachable/burstfire_assembly = 2,
+						/obj/item/attachable/gyro = 4,
+						/obj/item/attachable/lasersight = 10,
+						/obj/item/attachable/verticalgrip = 10,
 
+						/obj/item/attachable/stock/smg = 3,
+						/obj/item/attachable/stock/revolver = 3,
 						/obj/item/attachable/stock/shotgun = 3,
 						/obj/item/attachable/stock/rifle = 3 ,
-						/obj/item/attachable/stock/revolver = 3,
-						/obj/item/attachable/stock/smg = 3,
 						/obj/item/attachable/stock/tactical = 3,
 
-						/obj/item/attachable/attached_gun/grenade = 5,
+						/obj/item/attachable/attached_gun/flamer = 3,
 						/obj/item/attachable/attached_gun/shotgun = 3,
-						/obj/item/attachable/attached_gun/flamer = 3
+						/obj/item/attachable/attached_gun/grenade = 5
 					)
 
 /obj/machinery/vending/attachments/New()
@@ -588,23 +586,47 @@
 	icon_vend = "marineuniform_vend"
 	icon_deny = "marineuniform"
 	req_access = null
-	req_access_txt = "0"
-	req_one_access = null
-	req_one_access_txt = "9;2;21"
+	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
 	var/squad_tag = ""
 
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	products = list(
-					/obj/item/storage/backpack/marine/standard = 10,
-					/obj/item/storage/backpack/marine/satchel = 10,
-					/obj/item/storage/belt/marine = 10,
-					/obj/item/storage/belt/shotgun = 10,
 					/obj/item/clothing/shoes/marine = 20,
 					/obj/item/clothing/under/marine = 20,
-					/obj/item/clothing/suit/storage/marine = 20,
+					/obj/item/storage/backpack/marine/standard = 10,
+					/obj/item/storage/backpack/marine/satchel = 10,
+					/obj/item/clothing/suit/storage/marine = 10,
+					/obj/item/clothing/suit/storage/marine/M3HB = 10,
+					/obj/item/clothing/suit/storage/marine/M3LB = 10,
+					/obj/item/clothing/suit/storage/marine/M3P = 10,
+					/obj/item/clothing/suit/storage/marine/M3IS = 10,
+					/obj/item/clothing/suit/storage/marine/M3E = 10,
 					/obj/item/clothing/head/helmet/marine = 20,
 					/obj/item/clothing/mask/rebreather/scarf = 10,
-					/obj/item/clothing/mask/rebreather = 10
+					/obj/item/clothing/mask/rebreather = 10,
+					/obj/item/clothing/mask/breath = 10,
+					/obj/item/tank/emergency_oxygen = 10,
+					/obj/item/storage/belt/marine = 10,
+					/obj/item/storage/belt/shotgun = 10,
+					/obj/item/storage/belt/knifepouch = 10,
+					/obj/item/storage/belt/utility/full = 10,
+					/obj/item/storage/belt/gun/m4a3 = 10,
+					/obj/item/storage/belt/gun/m44 = 10,
+					/obj/item/storage/large_holster/m39 = 10,
+					/obj/item/storage/large_holster/machete/full = 10,
+					/obj/item/storage/sparepouch = 10,
+					/obj/item/storage/pouch/pistol = 10,
+					/obj/item/storage/pouch/magazine = 10,
+					/obj/item/storage/pouch/magazine/pistol = 10,
+					/obj/item/storage/pouch/shotgun = 10,
+					/obj/item/storage/pouch/firstaid = 10,
+					/obj/item/storage/pouch/medkit = 10,
+					/obj/item/storage/pouch/flare = 10,
+					/obj/item/storage/pouch/construction = 10,
+					/obj/item/storage/pouch/tools/full = 10,
+					/obj/item/clothing/tie/storage/brown_vest = 10,
+					/obj/item/clothing/tie/storage/webbing = 10,
+					/obj/item/clothing/tie/holster = 10
 					)
 
 	prices = list()

@@ -1060,3 +1060,19 @@ and you're good to go.
 		I.transform = rotate
 
 		I.flick_overlay(user, 3)
+
+/obj/item/weapon/gun/on_enter_storage(obj/item/I)
+	if(istype(I,/obj/item/storage/belt/gun))
+		var/obj/item/storage/belt/gun/GB = I
+		GB.holds_guns_now++ //Slide it in.
+		if(!GB.current_gun)
+			GB.current_gun = src //If there's no active gun, we want to make this our icon.
+			GB.update_gun_icon()
+
+/obj/item/weapon/gun/on_exit_storage(obj/item/I)
+	if(istype(I,/obj/item/storage/belt/gun))
+		var/obj/item/storage/belt/gun/GB = I
+		GB.holds_guns_now--
+		if(GB.current_gun == src)
+			GB.current_gun = null
+			GB.update_gun_icon()
