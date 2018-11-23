@@ -876,7 +876,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	// This is mostly for the ninja suit to stop ninja being so crippled by breaks.
 	// TODO: consider moving this to a suit proc or process() or something during
 	// hardsuit rewrite.
-	if(istype(owner,/mob/living/carbon/human))
+	if(ishuman(owner))
 
 		var/mob/living/carbon/human/H = owner
 		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit))
