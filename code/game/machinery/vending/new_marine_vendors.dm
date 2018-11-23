@@ -268,13 +268,21 @@
 	listed_products = list(
 							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
 							list("Standard Kit", 0, /obj/effect/essentials_set/basic, MARINE_CAN_BUY_UNIFORM, "white"),
+							list("ARMOR (choose 1)", 0, null, null, null),
+							list("Regular Armor", 0, /obj/item/clothing/suit/storage/marine, MARINE_CAN_BUY_ARMOR, "orange"),
+							list("Heavy Armor", 0, /obj/item/clothing/suit/storage/marine/M3HB, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Light Armor", 0, /obj/item/clothing/suit/storage/marine/M3LB, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Ballistic Armor", 0, /obj/item/clothing/suit/storage/marine/M3P, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Integrated Storage Armor", 0, /obj/item/clothing/suit/storage/marine/M3IS, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Edge Melee Armor", 0, /obj/item/clothing/suit/storage/marine/M3E, MARINE_CAN_BUY_ARMOR, "black"),
 							list("BACKPACK (choose 1)", 0, null, null, null),
 							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel, MARINE_CAN_BUY_BACKPACK, "orange"),
 							list("Backpack", 0, /obj/item/storage/backpack/marine/standard, MARINE_CAN_BUY_BACKPACK, "black"),
 							list("Shotgun scabbard", 0, /obj/item/storage/large_holster/m37, MARINE_CAN_BUY_BACKPACK, "black"),
 							list("WEBBING (choose 1)", 0, null, null, null),
-							list("Tactical Vest", 0, /obj/item/clothing/tie/storage/brown_vest, MARINE_CAN_BUY_WEBBING, "orange"),
+							list("Tactical Black Vest", 0, /obj/item/clothing/tie/storage/black_vest, MARINE_CAN_BUY_WEBBING, "orange"),
 							list("Tactical Webbing", 0, /obj/item/clothing/tie/storage/webbing, MARINE_CAN_BUY_WEBBING, "black"),
+							list("Shoulder Handgun Holster", 0, /obj/item/clothing/tie/holster, MARINE_CAN_BUY_WEBBING, "black"),
 							list("BELT (choose 1)", 0, null, null, null),
 							list("Standard ammo belt", 0, /obj/item/storage/belt/marine, MARINE_CAN_BUY_BELT, "orange"),
 							list("Shotgun ammo belt", 0, /obj/item/storage/belt/shotgun, MARINE_CAN_BUY_BELT, "black"),
@@ -354,6 +362,13 @@
 	listed_products = list(
 							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
 							list("Standard Kit", 0, /obj/effect/essentials_set/basic_engineer, MARINE_CAN_BUY_UNIFORM, "white"),
+							list("ARMOR (choose 1)", 0, null, null, null),
+							list("Regular Armor", 0, /obj/item/clothing/suit/storage/marine, MARINE_CAN_BUY_ARMOR, "orange"),
+							list("Heavy Armor", 0, /obj/item/clothing/suit/storage/marine/M3HB, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Light Armor", 0, /obj/item/clothing/suit/storage/marine/M3LB, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Ballistic Armor", 0, /obj/item/clothing/suit/storage/marine/M3P, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Integrated Storage Armor", 0, /obj/item/clothing/suit/storage/marine/M3IS, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Edge Melee Armor", 0, /obj/item/clothing/suit/storage/marine/M3E, MARINE_CAN_BUY_ARMOR, "black"),
 							list("BACKPACK (choose 1)", 0, null, null, null),
 							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel/tech, MARINE_CAN_BUY_BACKPACK, "orange"),
 							list("Backpack", 0, /obj/item/storage/backpack/marine/tech, MARINE_CAN_BUY_BACKPACK, "black"),
@@ -361,8 +376,9 @@
 							list("Machete scabbard", 0, /obj/item/storage/large_holster/machete/full, MARINE_CAN_BUY_BACKPACK, "black"),
 							list("Welderpack", 0, /obj/item/storage/backpack/marine/engineerpack, MARINE_CAN_BUY_BACKPACK, "black"),
 							list("WEBBING (choose 1)", 0, null, null, null),
-							list("Tactical Vest", 0, /obj/item/clothing/tie/storage/brown_vest, MARINE_CAN_BUY_WEBBING, "orange"),
+							list("Tactical Brown Vest", 0, /obj/item/clothing/tie/storage/brown_vest, MARINE_CAN_BUY_WEBBING, "orange"),
 							list("Tactical Webbing", 0, /obj/item/clothing/tie/storage/webbing, MARINE_CAN_BUY_WEBBING, "black"),
+							list("Shoulder Handgun Holster", 0, /obj/item/clothing/tie/holster, MARINE_CAN_BUY_WEBBING, "black"),
 							list("BELT (choose 1)", 0, null, null, null),
 							list("Tool belt", 0, /obj/item/storage/belt/utility/full, MARINE_CAN_BUY_BELT, "orange"),
 							list("POUCHES (choose 2)", 0, null, null, null),
@@ -417,12 +433,20 @@
 	listed_products = list(
 							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
 							list("Standard Kit", 0, /obj/effect/essentials_set/basic_medic, MARINE_CAN_BUY_UNIFORM, "white"),
+							list("ARMOR (choose 1)", 0, null, null, null),
+							list("Regular Armor", 0, /obj/item/clothing/suit/storage/marine, MARINE_CAN_BUY_ARMOR, "orange"),
+							list("Heavy Armor", 0, /obj/item/clothing/suit/storage/marine/M3HB, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Light Armor", 0, /obj/item/clothing/suit/storage/marine/M3LB, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Ballistic Armor", 0, /obj/item/clothing/suit/storage/marine/M3P, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Integrated Storage Armor", 0, /obj/item/clothing/suit/storage/marine/M3IS, MARINE_CAN_BUY_ARMOR, "black"),
+							list("Edge Melee Armor", 0, /obj/item/clothing/suit/storage/marine/M3E, MARINE_CAN_BUY_ARMOR, "black"),
 							list("BACKPACK (choose 1)", 0, null, null, null),
 							list("Satchel", 0, /obj/item/storage/backpack/marine/satchel/medic, MARINE_CAN_BUY_BACKPACK, "orange"),
 							list("Backpack", 0, /obj/item/storage/backpack/marine/medic, MARINE_CAN_BUY_BACKPACK, "black"),
 							list("WEBBING (choose 1)", 0, null, null, null),
-							list("Tactical Vest", 0, /obj/item/clothing/tie/storage/brown_vest, MARINE_CAN_BUY_WEBBING, "orange"),
+							list("Tactical Brown Vest", 0, /obj/item/clothing/tie/storage/brown_vest, MARINE_CAN_BUY_WEBBING, "orange"),
 							list("Tactical Webbing", 0, /obj/item/clothing/tie/storage/webbing, MARINE_CAN_BUY_WEBBING, "black"),
+							list("Shoulder Handgun Holster", 0, /obj/item/clothing/tie/holster, MARINE_CAN_BUY_WEBBING, "black"),
 							list("BELT (choose 1)", 0, null, null, null),
 							list("Lifesaver belt", 0, /obj/item/storage/belt/combatLifesaver, MARINE_CAN_BUY_BELT, "orange"),
 							list("Medical belt", 0, /obj/item/storage/belt/medical, MARINE_CAN_BUY_BELT, "black"),
@@ -484,8 +508,9 @@
 							list("STANDARD EQUIPMENT (take all)", 0, null, null, null),
 							list("Standard Kit", 0, /obj/effect/essentials_set/basic_smartgunner, MARINE_CAN_BUY_UNIFORM, "white"),
 							list("WEBBING (choose 1)", 0, null, null, null),
-							list("Tactical Vest", 0, /obj/item/clothing/tie/storage/brown_vest, MARINE_CAN_BUY_WEBBING, "orange"),
+							list("Tactical Black Vest", 0, /obj/item/clothing/tie/storage/black_vest, MARINE_CAN_BUY_WEBBING, "orange"),
 							list("Tactical Webbing", 0, /obj/item/clothing/tie/storage/webbing, MARINE_CAN_BUY_WEBBING, "black"),
+							list("Shoulder Handgun Holster", 0, /obj/item/clothing/tie/holster, MARINE_CAN_BUY_WEBBING, "black"),
 							list("BELT (choose 1)", 0, null, null, null),
 							list("M39 holster belt", 0, /obj/item/storage/large_holster/m39, MARINE_CAN_BUY_BELT, "orange"),
 							list("Standard ammo belt", 0, /obj/item/storage/belt/marine, MARINE_CAN_BUY_BELT, "black"),
@@ -548,8 +573,9 @@
 							list("Backpack", 0, /obj/item/storage/backpack/marine/standard, MARINE_CAN_BUY_BACKPACK, "black"),
 							list("Shotgun scabbard", 0, /obj/item/storage/large_holster/m37, MARINE_CAN_BUY_BACKPACK, "black"),
 							list("WEBBING (choose 1)", 0, null, null, null),
-							list("Tactical Vest", 0, /obj/item/clothing/tie/storage/brown_vest, MARINE_CAN_BUY_WEBBING, "black"),
+							list("Tactical Black Vest", 0, /obj/item/clothing/tie/storage/black_vest, MARINE_CAN_BUY_WEBBING, "black"),
 							list("Tactical Webbing", 0, /obj/item/clothing/tie/storage/webbing, MARINE_CAN_BUY_WEBBING, "black"),
+							list("Shoulder Handgun Holster", 0, /obj/item/clothing/tie/holster, MARINE_CAN_BUY_WEBBING, "black"),
 							list("BELT (choose 1)", 0, null, null, null),
 							list("M39 holster belt", 0, /obj/item/storage/large_holster/m39, MARINE_CAN_BUY_BELT, "black"),
 							list("Standard ammo belt", 0, /obj/item/storage/belt/marine, MARINE_CAN_BUY_BELT, "black"),
@@ -615,8 +641,9 @@
 							list("Shotgun scabbard", 0, /obj/item/storage/large_holster/m37, MARINE_CAN_BUY_BACKPACK, "black"),
 							list("Machete scabbard", 0, /obj/item/storage/large_holster/machete/full, MARINE_CAN_BUY_BACKPACK, "black"),
 							list("WEBBING (choose 1)", 0, null, null, null),
-							list("Tactical Vest", 0, /obj/item/clothing/tie/storage/brown_vest, MARINE_CAN_BUY_WEBBING, "black"),
+							list("Tactical Black Vest", 0, /obj/item/clothing/tie/storage/black_vest, MARINE_CAN_BUY_WEBBING, "black"),
 							list("Tactical Webbing", 0, /obj/item/clothing/tie/storage/webbing, MARINE_CAN_BUY_WEBBING, "black"),
+							list("Shoulder Handgun Holster", 0, /obj/item/clothing/tie/holster, MARINE_CAN_BUY_WEBBING, "black"),
 							list("BELT (choose 1)", 0, null, null, null),
 							list("Standard ammo belt", 0, /obj/item/storage/belt/marine, MARINE_CAN_BUY_BELT, "black"),
 							list("Shotgun ammo belt", 0, /obj/item/storage/belt/shotgun, MARINE_CAN_BUY_BELT, "black"),
@@ -1000,64 +1027,59 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 
 /obj/effect/essentials_set/basic
 	spawned_gear_list = list(
-						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine,
 						/obj/item/clothing/head/helmet/marine,
-						/obj/item/clothing/suit/storage/marine,
+						/obj/item/clothing/under/marine,
+						/obj/item/clothing/shoes/marine
 						)
 
 
 /obj/effect/essentials_set/basic_smartgunner
 	spawned_gear_list = list(
-						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine,
 						/obj/item/clothing/head/helmet/marine,
+						/obj/item/clothing/under/marine,
+						/obj/item/clothing/shoes/marine
 						)
 
 /obj/effect/essentials_set/basic_specialist
 	spawned_gear_list = list(
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine,
+						/obj/item/clothing/shoes/marine
 						)
 
 /obj/effect/essentials_set/basic_squadleader
 	spawned_gear_list = list(
-						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine,
-						/obj/item/clothing/head/helmet/marine/leader,
 						/obj/item/clothing/suit/storage/marine/leader,
+						/obj/item/clothing/head/helmet/marine/leader,
 						/obj/item/clothing/glasses/hud/health,
+						/obj/item/clothing/under/marine,
+						/obj/item/clothing/shoes/marine
 						)
 
 /obj/effect/essentials_set/basic_medic
 	spawned_gear_list = list(
-						/obj/item/clothing/under/marine/medic,
-						/obj/item/clothing/shoes/marine,
 						/obj/item/clothing/head/helmet/marine/medic,
-						/obj/item/clothing/suit/storage/marine,
 						/obj/item/clothing/glasses/hud/health,
+						/obj/item/clothing/under/marine/medic,
+						/obj/item/clothing/shoes/marine
 						)
 
 /obj/effect/essentials_set/basic_engineer
 	spawned_gear_list = list(
-						/obj/item/clothing/under/marine/engineer,
-						/obj/item/clothing/shoes/marine,
 						/obj/item/clothing/head/helmet/marine/tech,
-						/obj/item/clothing/suit/storage/marine,
 						/obj/item/clothing/glasses/welding,
+						/obj/item/clothing/under/marine/engineer,
+						/obj/item/clothing/shoes/marine
 						)
 
 /obj/effect/essentials_set/medic
 	spawned_gear_list = list(
 						/obj/item/bodybag/cryobag,
 						/obj/item/device/defibrillator,
-						/obj/item/storage/firstaid/adv,
 						/obj/item/device/healthanalyzer,
 						/obj/item/roller/medevac,
 						/obj/item/device/medevac_beacon,
 						/obj/item/roller,
-						/obj/item/reagent_container/hypospray/advanced/oxycodone,
-						/obj/item/reagent_container/syringe
+						/obj/item/reagent_container/hypospray/advanced/oxycodone
 						)
 
 /obj/effect/essentials_set/engi
@@ -1068,8 +1090,7 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/cell/high,
 						/obj/item/tool/shovel/etool,
 						/obj/item/device/lightreplacer,
-						/obj/item/circuitboard/apc,
-						/obj/item/device/assembly/signaler,
+						/obj/item/circuitboard/apc
 						)
 
 
@@ -1078,15 +1099,12 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/explosive/plastique,
 						/obj/item/device/squad_beacon,
 						/obj/item/device/squad_beacon,
-						/obj/item/device/squad_beacon,
-						/obj/item/device/squad_beacon,
 						/obj/item/device/squad_beacon/bomb,
-						/obj/item/device/assembly/signaler,
 						/obj/item/device/whistle,
 						/obj/item/device/radio,
 						/obj/item/device/motiondetector,
 						/obj/item/map/current_map,
-						/obj/item/device/binoculars/tactical,
+						/obj/item/device/binoculars/tactical
 						)
 
 

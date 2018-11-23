@@ -26,7 +26,7 @@
 
 /obj/item/weapon/claymore/mercsword/commander
 	name = "Ceremonial Sword"
-	desc = "A fancy ceremonial sword passed down from generation to generation. Despite this, it has been very well cared for, and is in top condition. Has the name 'Chang' printed along the blade."
+	desc = "A fancy ceremonial sword passed down from generation to generation. Despite this, it has been very well cared for, and is in top condition."
 	icon_state = "mercsword"
 	item_state = "machete"
 	force = 65
