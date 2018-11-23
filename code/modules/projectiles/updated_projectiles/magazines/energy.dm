@@ -41,8 +41,8 @@
 
 /obj/item/ammo_magazine/lasgun/M43/highcap// Large battery
 	name = "M43 highcap lasgun battery"
-	desc = "An advanced, ultrahigh capacity battery used to power the M43 Lasgun; has twice the charge capacity of standard models."
+	desc = "An advanced, ultrahigh capacity battery used to power the M43 Lasgun; has nearly fifty percent more charge capacity than standard laspacks."
 	base_ammo_icon = "m43_e"
 	icon_state = "m43_e"
-	max_rounds = 100
-	current_rounds = 100
+	max_rounds = 80
+	current_rounds = 80
