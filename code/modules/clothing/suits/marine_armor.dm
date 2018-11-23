@@ -44,14 +44,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 		helmet.color = squad_colors[i]
 		helmetmarkings_sql += helmet
 
-
 // MARINE STORAGE ARMOR
 
 /obj/item/clothing/suit/storage/marine
 	name = "\improper M3 pattern marine armor"
 	desc = "A standard Colonial Marines M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon = 'icons/obj/clothing/cm_suits.dmi'
-	icon_state = "1"
+	icon_state = "6"
 	item_state = "armor"
 	sprite_sheet_id = 1
 	flags_atom = CONDUCT
@@ -88,24 +87,17 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	actions_types = list(/datum/action/item_action/toggle)
 	var/flags_marine_armor = ARMOR_SQUAD_OVERLAY|ARMOR_LAMP_OVERLAY
 	w_class = 5
-	time_to_unequip = 20
-	time_to_equip = 20
+	time_to_unequip = 2 SECONDS
+	time_to_equip = 2 SECONDS
 
-/obj/item/clothing/suit/storage/marine/New(loc,expected_type 		= /obj/item/clothing/suit/storage/marine,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper M3 pattern marine snow armor"))
-	if(type == /obj/item/clothing/suit/storage/marine)
-		var/armor_variation = rand(1,6)
-		icon_state = "[armor_variation]"
-
+/obj/item/clothing/suit/storage/marine/New(loc, expected_type = /obj/item/clothing/suit/storage/marine, new_name[] = list(MAP_ICE_COLONY = "\improper M3 pattern marine snow armor"))
 	select_gamemode_skin(expected_type,,new_name)
-	..()
+	. = ..()
 	armor_overlays = list("lamp") //Just one for now, can add more later.
 	update_icon()
 	pockets.max_w_class = 2 //Can contain small items AND rifle magazines.
 	pockets.bypass_w_limit = list(
-	"/obj/item/ammo_magazine/rifle",
-	"/obj/item/ammo_magazine/smg",
-	"/obj/item/ammo_magazine/sniper",
+	"/obj/item/ammo_magazine"
 	 )
 	pockets.max_storage_space = 6
 
@@ -119,71 +111,117 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 		I = rnew(/image/reusable, flags_marine_armor & ARMOR_LAMP_ON? list('icons/obj/clothing/cm_suits.dmi', src, "lamp-on") : list('icons/obj/clothing/cm_suits.dmi', src, "lamp-off"))
 		armor_overlays["lamp"] = I
 		overlays += I
-	else armor_overlays["lamp"] = null
-	if(user) user.update_inv_wear_suit()
+	else
+		armor_overlays["lamp"] = null
+	user?.update_inv_wear_suit()
 
 /obj/item/clothing/suit/storage/marine/pickup(mob/user)
 	if(flags_marine_armor & ARMOR_LAMP_ON && src.loc != user)
 		user.SetLuminosity(brightness_on)
 		SetLuminosity(0)
-	..()
+	return ..()
 
 /obj/item/clothing/suit/storage/marine/dropped(mob/user)
 	if(loc != user)
 		turn_off_light(user)
-	..()
+	return ..()
 
 /obj/item/clothing/suit/storage/marine/proc/turn_off_light(mob/wearer)
 	if(flags_marine_armor & ARMOR_LAMP_ON)
 		wearer.SetLuminosity(-brightness_on)
 		SetLuminosity(brightness_on)
 		toggle_armor_light() //turn the light off
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 /obj/item/clothing/suit/storage/marine/Dispose()
-	if(ismob(src.loc))
-		src.loc.SetLuminosity(-brightness_on)
+	if(ismob(loc))
+		loc.SetLuminosity(-brightness_on)
 	else
 		SetLuminosity(0)
-	. = ..()
+	if(pockets)
+		cdel(pockets)
+	return ..()
 
 /obj/item/clothing/suit/storage/marine/attack_self(mob/user)
 	if(!isturf(user.loc))
 		to_chat(user, "<span class='warning'>You cannot turn the light on while in [user.loc].</span>")
 		return
-
 	if(flashlight_cooldown > world.time)
 		return
-
-	if(!ishuman(user)) return
+	if(!ishuman(user))
+		return
 	var/mob/living/carbon/human/H = user
-	if(H.wear_suit != src) return
-
+	if(H.wear_suit != src)
+		return
 	toggle_armor_light(user)
-	return 1
+	return TRUE
 
 /obj/item/clothing/suit/storage/marine/item_action_slot_check(mob/user, slot)
-	if(!ishuman(user)) return FALSE
-	if(slot != WEAR_JACKET) return FALSE
+	if(!ishuman(user))
+		return FALSE
+	if(slot != WEAR_JACKET)
+		return FALSE
 	return TRUE //only give action button when armor is worn.
 
 /obj/item/clothing/suit/storage/marine/proc/toggle_armor_light(mob/user)
-	flashlight_cooldown = world.time + 20 //2 seconds cooldown every time the light is toggled
+	flashlight_cooldown = world.time + 2 SECONDS //2 seconds cooldown every time the light is toggled
 	if(flags_marine_armor & ARMOR_LAMP_ON) //Turn it off.
-		if(user) user.SetLuminosity(-brightness_on)
-		else SetLuminosity(0)
+		if(user)
+			user.SetLuminosity(-brightness_on)
+		else
+			SetLuminosity(0)
 	else //Turn it on.
-		if(user) user.SetLuminosity(brightness_on)
-		else SetLuminosity(brightness_on)
-
+		if(user)
+			user.SetLuminosity(brightness_on)
+		else
+			SetLuminosity(brightness_on)
 	flags_marine_armor ^= ARMOR_LAMP_ON
-
 	playsound(src,'sound/machines/click.ogg', 15, 1)
 	update_icon(user)
-
 	update_action_button_icons()
 
+/obj/item/clothing/suit/storage/marine/M3HB
+	name = "\improper M3-H pattern marine armor"
+	desc = "A standard Marine M3 Heavy Build Pattern Chestplate. Increased protection at the cost of a slowdown."
+	icon_state = "1"
+	armor = list(melee = 60, bullet = 70, laser = 35, energy = 20, bomb = 50, bio = 0, rad = 0)
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+
+/obj/item/clothing/suit/storage/marine/M3LB
+	name = "\improper M3-LB pattern marine armor"
+	desc = "A standard Marine M3 Light Build Pattern Chestplate. Lesser encumbrance and protection."
+	icon_state = "2"
+	armor = list(melee = 30, bullet = 20, laser = 35, energy = 20, bomb = 15, bio = 0, rad = 0)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+
+/obj/item/clothing/suit/storage/marine/M3P
+	name = "\improper M3-P pattern marine armor"
+	desc = "A standard Marine M3 Padded Pattern Chestplate. Better protection against bullets and explosions, but worse against melee."
+	icon_state = "3"
+	armor = list(melee = 30, bullet = 60, laser = 35, energy = 20, bomb = 60, bio = 0, rad = 0)
+
+/obj/item/clothing/suit/storage/marine/M3IS
+	name = "\improper M3-IS pattern marine armor"
+	desc = "A standard Marine M3 Integrated Storage Pattern Chestplate. Increased encumbrance and carrying capacity."
+	icon_state = "4"
+	slowdown = SLOWDOWN_ARMOR_HEAVY
+	var/obj/item/weapon/gun/current_gun
+	var/sheatheSound = 'sound/weapons/gun_pistol_sheathe.ogg'
+	var/drawSound = 'sound/weapons/gun_pistol_draw.ogg'
+
+/obj/item/clothing/suit/storage/marine/M3IS/New(loc, expected_type = /obj/item/clothing/suit/storage/marine, new_name[] = list(MAP_ICE_COLONY = "\improper M3 pattern marine snow armor"))
+	. = ..()
+	pockets.bypass_w_limit = list()
+	pockets.storage_slots = null
+	pockets.max_w_class = 3 //Can fit larger items
+	pockets.max_storage_space = 14
+
+/obj/item/clothing/suit/storage/marine/M3E
+	name = "\improper M3-E pattern marine armor"
+	desc = "A standard Marine M3 Edge Pattern Chestplate. High protection against cuts and slashes, but very little padding against bullets or explosions."
+	icon_state = "5"
+	armor = list(melee = 70, bullet = 20, laser = 35, energy = 20, bomb = 15, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/marine/MP
 	name = "\improper M2 pattern MP armor"
@@ -262,7 +300,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 		new_name[] 		= list(MAP_ICE_COLONY = "\improper B12 pattern leader snow armor"))
 		..(loc,expected_type,new_name)
 
-/obj/item/clothing/suit/storage/marine/tanker
+/obj/item/clothing/suit/storage/marine/M3P/tanker
 	name = "\improper M3 pattern tanker armor"
 	desc = "A modified and refashioned suit of M3 Pattern armor designed to be worn by the loader of a USCM vehicle crew. While the suit is a bit more encumbering to wear with the crewman uniform, it offers the loader a degree of protection that would otherwise not be enjoyed."
 	icon_state = "tanker"
