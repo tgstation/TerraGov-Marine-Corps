@@ -135,10 +135,8 @@
 		return
 
 	if(distress.add_candidate(usr))
-		message_admins("DEBUG: Valid candidate attempting to join: [usr]")
 		to_chat(usr, "<span class='boldnotice'>You are now a candidate in the emergency response team! If there are enough candidates, you may be picked to be part of the team.</span>")
 	else
-		message_admins("DEBUG: Something went wrong while trying to add candidate [usr]")
 		to_chat(usr, "<span class='warning'>You did not get enlisted in the response team. Better luck next time!</span>")
 
 /datum/emergency_call/proc/activate(announce = TRUE)
@@ -179,32 +177,26 @@
 			//Trim down the list
 			var/datum/mind/picked_candidates[0]
 			if(mob_max > 0)
-				message_admins("DEBUG: Starting Distress Loop, max: [mob_max]")
 				for(var/i = 1 to mob_max)
 					if(!candidates.len)
-						message_admins("DEBUG: Distress ran out of candidates")
 						break//We ran out of candidates, maybe they alienized. Use what we have.
 					var/datum/mind/M = pick(candidates) //Get a random candidate, then remove it from the candidates list.
 					if(M.current.stat != DEAD)
 						candidates -= M //Strip them from the list, they aren't dead anymore.
 						if(!candidates.len)
-							message_admins("DEBUG: Distress ran out of candidates after removing xenos") 
 							break //NO picking from empty lists
 						M = pick(candidates)
 					if(!istype(M))//Something went horrifically wrong
 						candidates -= M
 						if(!candidates.len)
-							message_admins("DEBUG: Distress ran out of candidates after removing wrong types") 
 							break //No empty lists!!
 						M = pick(candidates) //Lets try this again
-					message_admins("DEBUG: Adding to picked candadites: [M]")
 					picked_candidates += M
 					candidates -= M
 				spawn(10) //Wait for all the above to be done
 					if(candidates.len)
 						for(var/datum/mind/I in candidates)
 							if(I.current)
-								message_admins("DEBUG: [I.current] didn't get picked.")
 								to_chat(I.current, "<span class='warning'>You didn't get selected to join the distress team. Better luck next time!</span>")
 
 			if(announce)
@@ -223,7 +215,6 @@
 			if(picked_candidates.len)
 				var/i = 0
 				for(var/datum/mind/M in picked_candidates)
-					message_admins("DEBUG: Adding to members: [M]")
 					members += M
 					i++
 					if(i > mob_max) 
@@ -244,12 +235,10 @@
 	if(M.stat != DEAD)
 		return FALSE  //Alive, could have been drafted into xenos or something else.
 	if(M.mind)
-		message_admins("DEBUG: Adding to candidates: [M]")
 		candidates += M.mind
 	else
 		if(M.key)
 			M.mind = new /datum/mind(M.key)
-			message_admins("DEBUG: Adding mindless to candidates: [M]")
 			candidates += M.mind
 	return TRUE
 
