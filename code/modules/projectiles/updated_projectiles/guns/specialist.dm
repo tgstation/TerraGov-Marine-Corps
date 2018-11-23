@@ -49,18 +49,22 @@
 	if(!able_to_fire(user))
 		return
 	if(targetlaser_on)
-		if(ismob(target))
-			if(laser_target)
-				laser_target.vis_contents -= laser
-			cdel(laser)
-			to_chat(user, "<span class='danger'>You focus your targeting laser on [target]!</span>")
-			laser_target = target
-			var/obj/effect/overlay/temp/sniper_laser/LT = new (laser_target, "targeting laser")
-			laser = LT
-			targetlaser_on = FALSE
-			laser_target.vis_contents += laser
-			processing_objects.Remove(src) //So we don't accumulate additional processing.
-			processing_objects.Add(src)
+		if(!ismob(target))
+			return
+		if(target == laser_target)
+			to_chat(user, "<span class='warning'>You're already focused on that target!</span>")
+			return
+		if(laser_target)
+			laser_target.vis_contents -= laser
+		cdel(laser)
+		to_chat(user, "<span class='danger'>You focus your targeting laser on [target]!</span>")
+		laser_target = target
+		var/obj/effect/overlay/temp/sniper_laser/LT = new (laser_target, "targeting laser")
+		laser = LT
+		targetlaser_on = FALSE
+		laser_target.vis_contents += laser
+		processing_objects.Remove(src) //So we don't accumulate additional processing.
+		processing_objects.Add(src)
 		return
 	return ..()
 
