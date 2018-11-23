@@ -602,3 +602,49 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	max_rounds = 100
 	current_rounds = 100
 	base = /obj/item/ammo_magazine/shotgunbox/buckshot
+
+/obj/item/ammo_magazine/shotgunbox/flechette
+	name = "Flechette Ammo Box"
+	icon_state = "ammoboxflechette"
+	item_state = "ammoboxflechette"
+	base_icon_state = "ammoboxflechette"
+	default_ammo = /datum/ammo/bullet/shotgun/flechette
+	max_rounds = 100
+	current_rounds = 100
+	base = /obj/item/ammo_magazine/shotgunbox/flechette
+
+/obj/item/ammobox/m4a3
+	name = "M4A3 Ammo Box"
+	icon = 'icons/obj/items/ammo.dmi'
+	icon_state = "ammoboxm4a3"
+	item_state = "ammoboxm4a3"
+	base_icon_state = "ammoboxm4a3"
+	max_magazine_amount = 10
+	max_magazine_rounds = 12
+	ammo_type = /datum/ammo/bullet/pistol
+	magazine_type = /obj/item/ammo_magazine/pistol
+	base = /obj/item/ammobox/m4a3
+
+/obj/item/ammobox/m4a3ext
+	name = "M4A3 Extended Ammo Box"
+	icon = 'icons/obj/items/ammo.dmi'
+	icon_state = "ammoboxm4a3ext"
+	item_state = "ammoboxm4a3ext"
+	base_icon_state = "ammoboxm4a3ext"
+	max_magazine_amount = 10
+	max_magazine_rounds = 22
+	ammo_type = /datum/ammo/bullet/pistol
+	magazine_type = /obj/item/ammo_magazine/pistol/extended
+	base = /obj/item/ammobox/m4a3ext
+
+/obj/item/ammobox/m4a3ap
+	name = "M4A3 AP Ammo Box"
+	icon = 'icons/obj/items/ammo.dmi'
+	icon_state = "ammoboxm4a3ap"
+	item_state = "ammoboxm4a3ap"
+	base_icon_state = "ammoboxm4a3ap"
+	max_magazine_amount = 10
+	max_magazine_rounds = 12
+	ammo_type = /datum/ammo/bullet/pistol/ap
+	magazine_type = /obj/item/ammo_magazine/pistol/ap
+	base = /obj/item/ammobox/m4a3ap

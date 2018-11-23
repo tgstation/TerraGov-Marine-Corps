@@ -36,7 +36,7 @@
 		return FALSE
 	else
 		M.animation_attack_on(src)
-		health -= round(rand(M.melee_damage_lower, M.melee_damage_upper) / 2)
+		health -= round(rand(M.xeno_caste.melee_damage_lower, M.xeno_caste.melee_damage_upper) / 2)
 		if(health <= 0)
 			M.visible_message("<span class='danger'>\The [M] smashes \the [src] apart!</span>", \
 			"<span class='danger'>You slice \the [src] apart!</span>", null, 5)

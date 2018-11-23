@@ -142,7 +142,7 @@
 	M.animation_attack_on(src)
 	M.flick_attack_overlay(src, "slash")
 	playsound(loc, "alien_claw_metal", 25)
-	update_health(rand(M.melee_damage_lower,M.melee_damage_upper))
+	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
 
 
 /obj/machinery/m56d_post/MouseDrop(over_object, src_location, over_location) //Drag the tripod onto you to fold it.
@@ -396,7 +396,7 @@
 	M.animation_attack_on(src)
 	M.flick_attack_overlay(src, "slash")
 	playsound(loc, "alien_claw_metal", 25)
-	update_health(rand(M.melee_damage_lower,M.melee_damage_upper))
+	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
 
 /obj/machinery/m56d_hmg/proc/load_into_chamber()
 	if(in_chamber) return 1 //Already set!

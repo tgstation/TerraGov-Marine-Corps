@@ -74,6 +74,8 @@
 	var/charges = 0.0
 	var/nutrition = 400.0//Carbon
 
+	var/specset //Simple way to track which set has the player taken
+
 	var/overeatduration = 0		// How long this guy is overeating //Carbon
 	var/knocked_out = 0.0
 	var/stunned = 0.0
@@ -165,5 +167,8 @@
 	var/list/hud_possible //HUD images that this mob can provide.
 
 	var/action_busy //whether the mob is currently doing an action that takes time (do_after or do_mob procs)
+
+	var/accuracy_modifier = 0 //Applies a penalty or bonus to projectile accuracy in projectile.dm
+	var/scatter_modifier = 0 //Applies a penalty or bonus to scatter probability in gun_system.dm
 
 	var/list/fullscreens = list()

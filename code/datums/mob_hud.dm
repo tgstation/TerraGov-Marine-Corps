@@ -265,18 +265,20 @@ var/datum/mob_hud/huds = list(
 		holder2.icon_state = "hudsynth"
 		holder3.icon_state = "hudsynth"
 	else
-		var/datum/limb/head = get_limb("head")
-		var/datum/internal_organ/heart/heart = internal_organs_by_name["heart"]
-		var/revive_enabled = 1
-		if(world.time - timeofdeath > revive_grace_period || undefibbable)
-			revive_enabled = 0
-		else
-			if(suiciding || !head || !head.is_usable() || !heart || heart.is_broken() || !has_brain() || chestburst || (HUSK in mutations) || !mind)
-				revive_enabled = 0
-			else if(!client)
-				var/mob/dead/observer/G = get_ghost()
-				if(!istype(G))
-					revive_enabled = 0
+		var/revive_enabled = TRUE
+		var/stage = 1
+		if(!check_tod() || !is_revivable())
+			revive_enabled = FALSE
+		else if(!client)
+			var/mob/dead/observer/G = get_ghost()
+			if(!istype(G))
+				revive_enabled = FALSE
+
+		if(stat == DEAD && !undefibbable)
+			if((world.time - timeofdeath) > (config.revive_grace_period * 0.4) && (world.time - timeofdeath) < (config.revive_grace_period * 0.8))
+				stage = 2
+			else if((world.time - timeofdeath) > (config.revive_grace_period * 0.8))
+				stage = 3
 
 		var/holder2_set = 0
 		if(status_flags & XENO_HOST)
@@ -290,14 +292,14 @@ var/datum/mob_hud/huds = list(
 
 		if(stat == DEAD)
 			if(revive_enabled)
-				holder.icon_state = "huddeaddefib"
+				holder.icon_state = "huddeaddefib[stage]"
 				if(!holder2_set)
-					holder2.icon_state = "huddeaddefib"
+					holder2.icon_state = "huddeaddefib[stage]"
 					holder3.icon_state = "huddead"
 					holder2_set = 1
 			else
 				holder.icon_state = "huddead"
-				if(!holder2_set || world.time - timeofdeath > revive_grace_period || undefibbable)
+				if(!holder2_set || check_tod())
 					holder2.icon_state = "huddead"
 					holder3.icon_state = "huddead"
 					holder2_set = 1
@@ -322,11 +324,13 @@ var/datum/mob_hud/huds = list(
 //xeno status HUD
 
 /mob/living/carbon/Xenomorph/proc/hud_set_plasma()
+	if(!xeno_caste) // usually happens because hud ticks before New() finishes.
+		return
 	var/image/holder = hud_list[PLASMA_HUD]
 	if(stat == DEAD)
 		holder.icon_state = "plasma0"
 	else
-		var/amount = round(plasma_stored * 100 / plasma_max, 10)
+		var/amount = round(plasma_stored * 100 / xeno_caste.plasma_max, 10)
 		holder.icon_state = "plasma[amount]"
 
 

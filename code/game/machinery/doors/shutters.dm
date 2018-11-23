@@ -6,7 +6,12 @@
 
 /obj/machinery/door/poddoor/shutters/New()
 	..()
-	layer = PODDOOR_CLOSED_LAYER
+	if(density && closed_layer)
+		layer = closed_layer
+	else if(!density && open_layer)
+		layer = open_layer
+	else
+		layer = PODDOOR_CLOSED_LAYER
 
 /obj/machinery/door/poddoor/shutters/attackby(obj/item/C as obj, mob/user as mob)
 	add_fingerprint(user)
@@ -99,12 +104,14 @@
 	density = FALSE
 	opacity = FALSE
 	unacidable = TRUE
+	layer = PODDOOR_OPEN_LAYER
 	icon_state = "shutter0"
 
 /obj/machinery/door/poddoor/shutters/transit/open
 	density = FALSE
 	opacity = FALSE
 	unacidable = TRUE
+	layer = PODDOOR_OPEN_LAYER
 	icon_state = "shutter0"
 
 /obj/machinery/door/poddoor/shutters/almayer/pressure

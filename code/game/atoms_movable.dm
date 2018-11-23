@@ -18,7 +18,9 @@
 
 //===========================================================================
 /atom/movable/Dispose()
-	for(var/atom/movable/I in contents) cdel(I)
+	for(var/atom/movable/I in contents)
+		cdel(I)
+
 	if(pulledby) pulledby.stop_pulling()
 	if(throw_source) throw_source = null
 
@@ -84,7 +86,6 @@
 		last_move_dir = get_dir(oldloc, loc)
 	if(.)
 		Moved(oldloc,direct)
-
 
 
 /atom/movable/Bump(atom/A, yes) //yes arg is to distinguish our calls of this proc from the calls native from byond.

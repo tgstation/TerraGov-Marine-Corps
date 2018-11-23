@@ -76,7 +76,7 @@
 	M.animation_attack_on(src)
 	M.flick_attack_overlay(src, "slash")
 	playsound(loc, "alien_claw_metal", 25)
-	update_health(rand(M.melee_damage_lower,M.melee_damage_upper))
+	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
 
 /obj/machinery/marine_turret_frame/examine(mob/user as mob)
 	..()
@@ -551,7 +551,6 @@
 				user.visible_message("<span class='notice'>[user] deactivates [src].</span>",
 				"<span class='notice'>You deactivate [src].</span>")
 				state("<span class='notice'>The [name] powers down and goes silent.</span>")
-				processing_objects.Remove(src)
 				update_icon()
 
 		if("toggle_alert")
@@ -765,27 +764,30 @@
 		on = FALSE
 		density = FALSE
 		icon_state = "sentry_fallen"
+		stop_processing()
 		return
 	else
 		density = initial(density)
 
 	if(!cell)
 		on = FALSE
+		stop_processing()
 		icon_state = "sentry_battery_none"
 		return
 
 	if(cell.charge <= 0)
 		on = FALSE
+		stop_processing()
 		icon_state = "sentry_battery_dead"
-		return
-
-	if(!rounds)
-		icon_state = "sentry_ammo_none"
 		return
 
 	if(on)
 		start_processing()
-		icon_state = "sentry_on[radial_mode ? "_radial" : null]"
+		if(!rounds)
+			icon_state = "sentry_ammo_none"
+		else
+			icon_state = "sentry_on[radial_mode ? "_radial" : null]"
+
 	else
 		icon_state = "sentry_off"
 		stop_processing()
@@ -824,7 +826,6 @@
 			stat = 1
 			if(alerts_on && on)
 				sentry_alert(SENTRY_ALERT_FALLEN)
-			on = FALSE
 	update_icon()
 
 /obj/machinery/marine_turret/proc/check_power(var/power)
@@ -882,7 +883,7 @@
 	if(prob(10))
 		if(!locate(/obj/effect/decal/cleanable/blood/oil) in loc)
 			new /obj/effect/decal/cleanable/blood/oil(loc)
-	update_health(rand(M.melee_damage_lower,M.melee_damage_upper))
+	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
 
 /obj/machinery/marine_turret/bullet_act(var/obj/item/projectile/Proj) //Nope.
 	visible_message("[src] is hit by the [Proj.name]!")
@@ -1345,30 +1346,30 @@
 		on = FALSE
 		density = FALSE
 		icon_state = "minisentry_fallen"
+		stop_processing()
 		return
 	else
 		density = initial(density)
 
 	if(!cell)
 		on = FALSE
+		stop_processing()
 		icon_state = "minisentry_nobat"
 		return
 
 	if(cell.charge <= 0)
 		on = FALSE
+		stop_processing()
 		icon_state = "minisentry_nobat"
-		return
-
-	if(!rounds)
-		icon_state = "minisentry_noammo"
 		return
 
 	if(on)
 		start_processing()
-		if(!radial_mode)
-			icon_state = "minisentry_on"
+		if(!rounds)
+			icon_state = "minisentry_noammo"
 		else
-			icon_state = "minisentry_on_radial"
+			icon_state = "minisentry_on[radial_mode ? "_radial" : null]"
+
 	else
 		icon_state = "minisentry_off"
 		stop_processing()

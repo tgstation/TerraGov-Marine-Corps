@@ -5,7 +5,7 @@
 	desc = "M240A1 incinerator unit has proven to be one of the most effective weapons at clearing out soft-targets. This is a weapon to be feared and respected as it is quite deadly."
 	origin_tech = "combat=4;materials=3"
 	icon_state = "m240"
-	item_state = "flamer"
+	item_state = "m240"
 	flags_equip_slot = SLOT_BACK
 	w_class = 4
 	force = 15
@@ -22,7 +22,7 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 
 /obj/item/weapon/gun/flamer/New()
-	..()
+	. = ..()
 	fire_delay = config.max_fire_delay * 5
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 
@@ -30,7 +30,7 @@
 	toggle_flame(user)
 
 /obj/item/weapon/gun/flamer/examine(mob/user)
-	..()
+	. = ..()
 	to_chat(user, "It's turned [lit? "on" : "off"].")
 	if(current_mag)
 		to_chat(user, "The fuel gauge shows the current tank is [round(current_mag.get_ammo_percent())]% full!")
@@ -58,11 +58,13 @@
 
 /obj/item/weapon/gun/flamer/Fire(atom/target, mob/living/user, params, reflex)
 	set waitfor = 0
+
 	if(!able_to_fire(user))
 		return
+
 	var/turf/curloc = get_turf(user) //In case the target or we are expired.
 	var/turf/targloc = get_turf(target)
-	if (!targloc || !curloc)
+	if(!targloc || !curloc)
 		return //Something has gone wrong...
 
 	if(!lit)
@@ -71,6 +73,7 @@
 
 	if(!current_mag)
 		return
+
 	if(current_mag.current_rounds <= 0)
 		click_empty(user)
 	else
@@ -89,7 +92,7 @@
 		to_chat(user, "<span class='warning'>That magazine doesn't fit in there!</span>")
 		return
 
-	if (istype(magazine, /obj/item/ammo_magazine/flamer_tank/large))
+	if(istype(magazine, /obj/item/ammo_magazine/flamer_tank/large))
 		to_chat(user, "<span class='warning'>That tank is too large for this model!</span>")
 		return
 
@@ -134,6 +137,7 @@
 
 /obj/item/weapon/gun/flamer/proc/unleash_flame(atom/target, mob/living/user)
 	set waitfor = 0
+
 	last_fired = world.time
 	var/burnlevel
 	var/burntime
@@ -200,7 +204,7 @@
 	new /obj/flamer_fire(T, heat, burn, f_color)
 
 	// Melt a single layer of snow
-	if (istype(T, /turf/open/snow))
+	if(istype(T, /turf/open/snow))
 		var/turf/open/snow/S = T
 
 		if (S.slayer > 0)
@@ -219,9 +223,9 @@
 
 		if(isXeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
-			if(X.fire_immune)
+			if(X.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
 				continue
-			fire_mod = X.fire_resist
+			fire_mod = X.xeno_caste.fire_resist + X.fire_resist_modifier
 		else if(ishuman(M))
 			var/mob/living/carbon/human/H = M //fixed :s
 
@@ -236,9 +240,17 @@
 			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
 				continue
 
+		var/armor_block = M.run_armor_check(null, "energy")
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
+				H.show_message(text("Your suit protects you from the flames."),1)
+				armor_block = CLAMP(armor_block * 1.5, 0.75, 1) //Min 75% resist, max 100%
+		M.apply_damage(rand(burn,(burn*2))* fire_mod, BURN, null, armor_block) // Make it so its the amount of heat or twice it for the initial blast.
+
 		M.adjust_fire_stacks(rand(5,burn*2))
 		M.IgniteMob()
-		M.adjustFireLoss(rand(burn,(burn*2))* fire_mod)  // Make it so its the amount of heat or twice it for the initial blast.
+
 		to_chat(M, "[isXeno(M)?"<span class='xenodanger'>":"<span class='highdanger'>"]Augh! You are roasted by the flames!")
 
 /obj/item/weapon/gun/flamer/proc/triangular_flame(var/atom/target, var/mob/living/user, var/burntime, var/burnlevel)
@@ -310,10 +322,11 @@
 
 /obj/item/weapon/gun/flamer/M240T
 	name = "\improper M240-T incinerator unit"
-	desc = "An improved version of the M240A1 incinerator unit, the M240-T model is capable of dispersing a larger variety of fuel types."
+	desc = "An improved version of the M240A1 incinerator unit, the M240-T model is capable of dispersing a larger variety of fuel types. Contains an underbarrel fire extinguisher!"
 	current_mag = /obj/item/ammo_magazine/flamer_tank/large
-	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY|GUN_SPECIALIST
-	req_access = list(ACCESS_MARINE_SPECPREP)
+	icon_state = "m240t"
+	item_state = "m240t"
+	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
 	var/max_water = 200
 	var/last_use
 
@@ -352,6 +365,7 @@
 	update_icon()
 	return TRUE
 
+
 /obj/item/weapon/gun/flamer/M240T/able_to_fire(mob/user)
 	. = ..()
 	if(.)
@@ -382,17 +396,19 @@
 		last_fired = world.time
 		last_use = world.time
 		return
+	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
+		if(!do_after(user, 10, TRUE, 5, BUSY_ICON_HOSTILE))
+			return
 	return ..()
 
 /obj/item/weapon/gun/flamer/M240T/afterattack(atom/target, mob/user)
 	. = ..()
-	if( istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(user,target) <= 1)
+	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(user,target) <= 1)
 		var/obj/o = target
 		o.reagents.trans_to(src, max_water)
 		to_chat(user, "\blue \The [src]'s hydro cannon is refilled with water.")
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
-
 
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //Time to redo part of abby's code.
@@ -409,7 +425,7 @@
 	var/burnlevel = 10 //Tracks how HOT the fire is. This is basically the heat level of the fire and determines the temperature.
 	var/flame_color = "red"
 
-/obj/flamer_fire/New(loc, fire_lvl, burn_lvl, f_color, fire_spread_amount)
+/obj/flamer_fire/New(loc, fire_lvl, burn_lvl, f_color, fire_spread_amount, fire_stacks = 0, fire_damage = 0)
 	..()
 	if (f_color)
 		flame_color = f_color
@@ -427,8 +443,9 @@
 			T = get_step(loc, dirn)
 			if(istype(T,/turf/open/space))
 				continue
-			if(locate(/obj/flamer_fire) in T)
-				continue //No stacking
+			var/obj/flamer_fire/F
+			if(locate(F) in T)
+				cdel(F) //No stacking
 			var/new_spread_amt = T.density ? 0 : fire_spread_amount - 1 //walls stop the spread
 			if(new_spread_amt)
 				for(var/obj/O in T)
@@ -436,7 +453,18 @@
 						new_spread_amt = 0
 						break
 			spawn(0) //delay so the newer flame don't block the spread of older flames
-				new /obj/flamer_fire(T, fire_lvl, burn_lvl, f_color, new_spread_amt)
+				new /obj/flamer_fire(T, fire_lvl, burn_lvl, f_color, new_spread_amt, fire_stacks, fire_damage)
+				var/mob/living/C
+				if(fire_stacks || fire_damage)
+					for(C in T)
+						if(C.fire_immune)
+							continue
+						else
+							C.adjust_fire_stacks(fire_stacks)
+							var/armor_block = C.run_armor_check("chest", "energy")
+							C.apply_damage(fire_damage, BURN, null, armor_block)
+							C.IgniteMob()
+							C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isXeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
 
 /obj/flamer_fire/Dispose()
@@ -448,17 +476,6 @@
 /obj/flamer_fire/Crossed(mob/living/M) //Only way to get it to reliable do it when you walk into it.
 	if(istype(M))
 		var/fire_mod = 1
-		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			if(isXeno(H.pulledby))
-				var/mob/living/carbon/Xenomorph/Z = H.pulledby
-				if(!Z.fire_immune)
-					Z.adjust_fire_stacks(burnlevel)
-					Z.IgniteMob()
-			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
-				H.show_message(text("Your suit protects you from the flames."),1)
-				H.adjustFireLoss(burnlevel*0.25) //Does small burn damage to a person wearing one of the suits.
-				return
 		if(isXeno(M))
 			var/mob/living/carbon/Xenomorph/X = M
 			if(X.fire_immune)
@@ -468,7 +485,19 @@
 		if (prob(firelevel + 2*M.fire_stacks)) //the more soaked in fire you are, the likelier to be ignited
 			M.IgniteMob()
 
-		M.adjustFireLoss(round(burnlevel*0.5)* fire_mod) //This makes fire stronk.
+		var/armor_block = M.run_armor_check(null, "energy")
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			if(isXeno(H.pulledby))
+				var/mob/living/carbon/Xenomorph/Z = H.pulledby
+				if(!Z.xeno_caste.caste_flags & CASTE_FIRE_IMMUNE)
+					Z.adjust_fire_stacks(burnlevel)
+					Z.IgniteMob()
+			if(istype(H.wear_suit, /obj/item/clothing/suit/fire) || (istype(H.wear_suit, /obj/item/clothing/suit/storage/marine/M35) && istype(H.head, /obj/item/clothing/head/helmet/marine/pyro)))
+				H.show_message(text("Your suit protects you from the flames."),1)
+				armor_block = CLAMP(armor_block * 1.5, 0.75, 1) //Min 75% resist, max 100%
+		M.apply_damage(round(burnlevel*0.5)* fire_mod, BURN, null, armor_block)
+
 		to_chat(M, "<span class='danger'>You are burned!</span>")
 		if(isXeno(M))
 			M.updatehealth()
@@ -523,12 +552,14 @@
 			if(istype(I,/mob/living/carbon/Xenomorph/Ravager))
 				if(!I.stat)
 					var/mob/living/carbon/Xenomorph/Ravager/X = I
-					X.plasma_stored = X.plasma_max
+					X.plasma_stored = X.xeno_caste.plasma_max
 					X.usedcharge = 0 //Reset charge cooldown
 					X.show_message(text("<span class='danger'>The heat of the fire roars in your veins! KILL! CHARGE! DESTROY!</span>"),1)
 					if(rand(1,100) < 70)
 						X.emote("roar")
 				continue
+
+
 			I.adjust_fire_stacks(burnlevel) //If i stand in the fire i deserve all of this. Also Napalm stacks quickly.
 			if(prob(firelevel))
 				I.IgniteMob()

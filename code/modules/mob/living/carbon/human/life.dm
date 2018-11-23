@@ -53,15 +53,17 @@
 
 			handle_pain()
 
-			handle_medical_side_effects()
-
 			//In case we want them to do something unique every life cycle, like twitch or moan, or whatever.
 			species.handle_unique_behavior(src)
 
 		else //Dead
-			if(!undefibbable)
-				if(life_tick > 5 && timeofdeath && (timeofdeath < 5 || world.time - timeofdeath > revive_grace_period))	//We are dead beyond revival, or we're junk mobs spawned like the clowns on the clown shuttle
+			if(!undefibbable && timeofdeath && life_tick > 5 && life_tick % 2 == 0)
+				if(timeofdeath < 5 || !check_tod())	//We are dead beyond revival, or we're junk mobs spawned like the clowns on the clown shuttle
 					undefibbable = TRUE
+					med_hud_set_status()
+				else if((world.time - timeofdeath) > (config.revive_grace_period * 0.4) && (world.time - timeofdeath) < (config.revive_grace_period * 0.8))
+					med_hud_set_status()
+				else if((world.time - timeofdeath) > (config.revive_grace_period * 0.8))
 					med_hud_set_status()
 
 	else

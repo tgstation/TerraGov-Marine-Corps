@@ -9,6 +9,7 @@
 #define RO_PRICE_CHEAP			30
 #define RO_PRICE_NORMAL			40
 #define RO_PRICE_PRICY			60
+#define RO_PRICE_KINDA_PRICY	50
 #define RO_PRICE_PRETTY_PRICY	80
 #define RO_PRICE_VERY_PRICY		100
 #define RO_PRICE_MAX_PRICY		120
@@ -470,7 +471,7 @@ WEAPONS
 					/obj/item/explosive/plastique,
 					/obj/item/explosive/plastique
 					)
-	cost = RO_PRICE_PRICY
+	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/explosives
 	containername = "\improper plastic explosives crate (WARNING)"
 	group = "Weapons"
@@ -484,6 +485,25 @@ WEAPONS
 	containertype = /obj/structure/closet/crate/weapon
 	containername = "\improper M402 mortar crate"
 	group = "Weapons"
+
+/datum/supply_packs/detpack
+	name = "detpack explosives crate (x6)"
+	contains = list(
+					/obj/item/device/radio/detpack,
+					/obj/item/device/radio/detpack,
+					/obj/item/device/radio/detpack,
+					/obj/item/device/radio/detpack,
+					/obj/item/device/radio/detpack,
+					/obj/item/device/radio/detpack,
+					/obj/item/device/assembly/signaler,
+					/obj/item/device/assembly/signaler,
+					/obj/item/device/assembly/signaler,
+					)
+	cost = RO_PRICE_KINDA_PRICY
+	containertype = /obj/structure/closet/crate/explosives
+	containername = "\improper detpack explosives crate (WARNING)"
+	group = "Weapons"
+
 
 /*******************************************************************************
 HARDPOINT MODULES (and their ammo)
@@ -1153,6 +1173,36 @@ AMMO
 	containername = "\improper M39 Ext ammo box crate"
 	group = "Ammo"
 
+/datum/supply_packs/ammoboxm4a3
+	name = "M4A3 Ammo Box Crate"
+	contains = list(
+					/obj/item/ammobox/m4a3
+					)
+	cost = RO_PRICE_VERY_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper M4A3 ammo box crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammoboxm4a3ap
+	name = "M4A3 AP Ammo Box Crate"
+	contains = list(
+					/obj/item/ammobox/m4a3ap
+					)
+	cost = RO_PRICE_NORMAL
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper M4A3 AP ammo box crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammoboxm4a3ext
+	name = "M4A3 Ext Ammo Box Crate"
+	contains = list(
+					/obj/item/ammobox/m4a3ext
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper M4A3 Ext ammo box crate"
+	group = "Ammo"
+
 /datum/supply_packs/ammoboxslug
 	name = "Slug Ammo Box Crate"
 	contains = list(
@@ -1171,6 +1221,16 @@ AMMO
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper Buckshot ammo box crate"
+	group = "Ammo"
+
+/datum/supply_packs/ammoboxflechette
+	name = "Flechette Ammo Box Crate"
+	contains = list(
+					/obj/item/ammo_magazine/shotgunbox/flechette
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper Flechette ammo box crate"
 	group = "Ammo"
 
 /datum/supply_packs/ammo_regular

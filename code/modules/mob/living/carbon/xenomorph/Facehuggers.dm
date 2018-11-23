@@ -80,11 +80,10 @@
 /obj/item/clothing/mask/facehugger/attack_hand(user as mob)
 	if(isXeno(user))
 		var/mob/living/carbon/Xenomorph/X = user
-		switch(X.caste)
-			if("Queen","Drone","Hivelord","Carrier")
-				return ..() // These can pick up huggers.
-			else
-				return FALSE // The rest can't.
+		if(X.xeno_caste.caste_flags & CASTE_CAN_HOLD_FACEHUGGERS)
+			return ..() // These can pick up huggers.
+		else
+			return FALSE // The rest can't.
 	if(stat == DEAD || sterile)
 		return ..() // Dead or sterile (lamarr) can be picked.
 	else if(stat == CONSCIOUS && CanHug(user)) // If you try to take a healthy one it will try to hug you.
