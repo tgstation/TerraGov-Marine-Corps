@@ -41,7 +41,7 @@
 
 
 /obj/item/clothing/suit/proc/secure_limb(datum/limb/E, mob/living/carbon/human/user)
-	if(!supporting_limbs?.len || !user || !E)
+	if(!length(supporting_limbs) || !user || !E)
 		return
 
 	// If the holder isn't human, or the holder IS and is wearing the suit, it keeps supporting the limbs.
