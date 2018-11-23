@@ -460,11 +460,11 @@
 /obj/item/weapon/gun/energy/lasgun/proc/toggle_chargemode(mob/user)
 	if(overcharge == FALSE)
 		if(current_mag.current_rounds < 1)
-			playsound(user, 'sound/machines/buzz-two.ogg', 15, 1)
+			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
 			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s overcharge mode but your battery pack lacks adequate charge to do so.</span>")
 			return
 		//While overcharge is active, double ammo consumption, and
-		playsound(user, 'sound/weapons/emitter.ogg', 15, 1)
+		playsound(user, 'sound/weapons/emitter.ogg', 15, 0, 2)
 		ammo_per_shot = OVERCHARGE_AMMO_COST
 		fire_delay = config.med_fire_delay * 2 // 1 shot per second fire rate
 		damage_falloff_mult = config.low_damage_falloff_mult
@@ -472,7 +472,7 @@
 		to_chat(user, "\icon[src] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = TRUE
 	else
-		playsound(user, 'sound/weapons/emitter2.ogg', 15, 1)
+		playsound(user, 'sound/weapons/emitter2.ogg', 15, 0, 2)
 		ammo_per_shot = 1
 		fire_delay = config.low_fire_delay
 		damage_falloff_mult = config.med_damage_falloff_mult

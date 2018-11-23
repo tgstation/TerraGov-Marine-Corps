@@ -283,13 +283,13 @@
 	update_slowdown()
 	remove_offhand(user)
 	return TRUE
-	
+
 /obj/item/weapon/gun/proc/update_slowdown()
 	if(flags_item & WIELDED)
 		slowdown = initial(slowdown) + aim_slowdown
 	else
 		slowdown = initial(slowdown)
-	
+
 
 //----------------------------------------------------------
 			//							        \\
@@ -950,7 +950,7 @@ and you're good to go.
 				playsound(user, actual_sound, 60)
 				if(bullets_fired == 1)
 					user.visible_message(
-					"<span class='danger'>[user] [src][reflex ? " by reflex":""]!</span>", \
+					"<span class='danger'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
 					"<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[max(0,current_mag.current_rounds - ammo_per_shot)]</b>/[current_mag.max_rounds]" : ""]</span>", \
 					"<span class='warning'>You hear a [istype(projectile_to_fire.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!</span>", 4
 					)
