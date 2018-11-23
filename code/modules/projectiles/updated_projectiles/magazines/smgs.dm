@@ -12,7 +12,7 @@
 	desc = "A 10x20mm caseless submachinegun magazine."
 	caliber = "10x20mm"
 	icon_state = "m39"
-	max_rounds = 48
+	max_rounds = 60
 	w_class = 3
 	gun_type = /obj/item/weapon/gun/smg/m39
 
@@ -24,7 +24,7 @@
 /obj/item/ammo_magazine/smg/m39/extended
 	name = "\improper M39 extended magazine (10x20mm)"
 	icon_state = "m39_ext"
-	max_rounds = 72
+	max_rounds = 90
 	bonus_overlay = "m39_ex"
 
 
