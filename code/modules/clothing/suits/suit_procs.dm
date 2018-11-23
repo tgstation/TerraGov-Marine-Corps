@@ -24,7 +24,7 @@
 		H = loc
 
 	// If the holder isn't human, or the holder IS and is wearing the suit, it keeps supporting the limbs.
-	if(!istype(H, /mob/living/carbon/human))
+	if(!ishuman(H))
 		return
 
 	for(var/datum/limb/E in H.limbs)
