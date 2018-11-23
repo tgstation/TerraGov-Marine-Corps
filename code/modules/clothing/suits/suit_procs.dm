@@ -45,7 +45,7 @@
 		return
 
 	// If the holder isn't human, or the holder IS and is wearing the suit, it keeps supporting the limbs.
-	if(!istype(user, /mob/living/carbon/human))
+	if(!ishuman(user))
 		return
 
 	if((E.status & LIMB_BROKEN) && !(E.status & LIMB_STABILIZED) && supporting_limbs.Find(E.body_part))
