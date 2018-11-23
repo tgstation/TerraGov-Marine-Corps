@@ -18,6 +18,7 @@
 #define AMMO_IGNORE_ARMOR		1024
 #define AMMO_IGNORE_RESIST		2048
 #define AMMO_BALLISTIC			4096
+#define AMMO_SHRAPNEL			8192
 
 //Gun defines for gun related thing. More in the projectile folder.
 #define GUN_CAN_POINTBLANK		1

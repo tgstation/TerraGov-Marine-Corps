@@ -137,7 +137,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 		cdel(F)
 	new /obj/flamer_fire(T, rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, radius, burn_damage, fire_stacks) //Gaussian.
 
-/proc/frag_blast(turf/T, atom/source = null, projectiles = 16, datum/ammo/bullet/P = /datum/ammo/bullet/shrapnel/flechette) //~Art updated fire.
+/proc/frag_blast(turf/T, atom/source = null, projectiles = 16, datum/ammo/bullet/P = /datum/ammo/bullet/shrapnel/flechette) //Projectile count should generally be some multiple of 8.
 	if(!T || !isturf(T))
 		return
 	var/turf/initial_turf = T
@@ -145,7 +145,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	var/current_angle = angle_increment
 	var/obj/item/projectile/A
 	var/datum/ammo/ammo = ammo_list[P]
-	while(projectiles)
+	for(var/i = 1 to projectiles)
 		A = rnew(/obj/item/projectile, initial_turf)
 		A.generate_bullet(ammo)
 		T = get_step(initial_turf, angle2dir(current_angle)) //First get the basic cardinal
@@ -155,7 +155,6 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 			T = get_step_rand(T)
 		A.fire_at(T, source, initial_turf, ammo.max_range, ammo.shell_speed)
 		current_angle += angle_increment
-		projectiles = max(projectiles - 1, 0)
 
 
 /obj/item/explosive/grenade/incendiary/molotov

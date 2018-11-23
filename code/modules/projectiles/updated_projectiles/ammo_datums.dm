@@ -1555,6 +1555,7 @@
 /datum/ammo/bullet/shrapnel/flechette
 	name = "fragmentation flechette"
 	icon_state = "flechette"
+	flags_ammo_behavior = AMMO_SHRAPNEL
 
 /datum/ammo/bullet/shrapnel/flechette/New()
 	..()
