@@ -516,5 +516,5 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CASTE_IS_ROBOTIC			(1<<8)
 
 //shrapnel handling
-#define LIVING_MAX_SHRAPNEL			7 //Cannot be hit by more than 7 instances of shrapnel per 0.5 seconds
+#define LIVING_MAX_SHRAPNEL			5 //Cannot be hit by more than 5 instances of shrapnel per 0.5 seconds
 #define LIVING_LAST_SHRAPNEL_MOD	5
