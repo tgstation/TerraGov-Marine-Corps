@@ -293,7 +293,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	var/B18_automed_damage = 50
 	var/B18_automed_pain = 70
 	var/obj/item/device/healthanalyzer/integrated/B18_analyzer = null
-	supporting_limbs = list(UPPER_TORSO, LOWER_TORSO, ARMS, LEGS, FEET) //B18 effectively auto-splints these.
+	supporting_limbs = list(UPPER_TORSO, LOWER_TORSO, ARM_LEFT, ARM_RIGHT, HAND_LEFT, HAND_RIGHT, LEG_LEFT, LEG_RIGHT, FOOT_LEFT, FOOT_RIGHT) //B18 effectively auto-splints these.
 	unacidable = TRUE
 
 	New(loc,expected_type 	= type,
@@ -303,6 +303,28 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 /obj/item/clothing/suit/storage/marine/specialist/New()
 	. = ..()
 	B18_analyzer = new /obj/item/device/healthanalyzer/integrated
+
+/obj/item/clothing/suit/storage/marine/specialist/examine(mob/user)
+	. = ..()
+	if(user != wearer) //Only the wearer can see these details.
+		return
+	var/list/details = list()
+	if(B18_burn_cooldown)
+		details +=("Its burn treatment injector is currently refilling. It will resupply in [(B18_burn_cooldown - world.time) * 0.1] seconds.</br>")
+
+	if(B18_brute_cooldown)
+		details +=("Its trauma treatment injector is currently refilling. It will resupply in [(B18_brute_cooldown - world.time) * 0.1] seconds.</br>")
+
+	if(B18_oxy_cooldown)
+		details +=("Its oxygenating injector is currently refilling. It will resupply in [(B18_oxy_cooldown - world.time) * 0.1] seconds.</br>")
+
+	if(B18_tox_cooldown)
+		details +=("Its anti-toxin injector is currently refilling. It will resupply in [(B18_tox_cooldown - world.time) * 0.1] seconds.</br>")
+
+	if(B18_pain_cooldown)
+		details +=("Its painkiller injector is currently refilling. It will resupply in [(B18_pain_cooldown - world.time) * 0.1] seconds.</br>")
+
+	to_chat(user, "<span class='danger'>[details.Join(" ")]</span>")
 
 /obj/item/clothing/suit/storage/marine/specialist/Dispose()
 	b18automed_turn_off(wearer, TRUE)
@@ -487,8 +509,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	var/dat = {"<TT>
 	<A href='?src=\ref[src];B18_automed_on=1'>Turn Automed System: [B18_automed_on ? "Off" : "On"]</A><BR>
 	<BR>
-	<B>Use Integrated Health Analyzer:</B><BR>
+	<B>Integrated Health Analyzer:</B><BR>
 	<A href='byond://?src=\ref[src];B18_analyzer=1'>Scan Wearer</A><BR>
+	<A href='byond://?src=\ref[src];B18_toggle_mode=1'>Turn Scanner HUD Mode: [B18_analyzer.hud_mode ? "Off" : "On"]</A><BR>
 	<BR>
 	<B>Damage Trigger Threshold (Max 150, Min 50):</B><BR>
 	<A href='byond://?src=\ref[src];B18_automed_damage=-50'>-50</A>
@@ -530,6 +553,14 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 		else if(href_list["B18_analyzer"] && B18_analyzer && usr == wearer) //Integrated scanner
 			B18_analyzer.attack(usr, usr, TRUE)
+
+		else if(href_list["B18_toggle_mode"] && B18_analyzer && usr == wearer) //Integrated scanner
+			B18_analyzer.hud_mode = !B18_analyzer.hud_mode
+			switch (B18_analyzer.hud_mode)
+				if(TRUE)
+					to_chat(usr, "<span class='notice'>The scanner now shows results on the hud.</span>")
+				if(FALSE)
+					to_chat(usr, "<span class='notice'>The scanner no longer shows results on the hud.</span>")
 
 		else if(href_list["B18_automed_damage"])
 			B18_automed_damage += text2num(href_list["B18_automed_damage"])

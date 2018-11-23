@@ -227,6 +227,8 @@
 
 				if(org.status & LIMB_SPLINTED)
 					status += " <b>(SPLINTED)</b>"
+				if(org.status & LIMB_STABILIZED)
+					status += " <b>(STABILIZED)</b>"
 				if(org.status & LIMB_MUTATED)
 					status = "weirdly shapen."
 				if(org.status & LIMB_DESTROYED)
