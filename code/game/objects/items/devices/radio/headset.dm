@@ -379,7 +379,7 @@
 					if(M.client)
 						handle_interface(M)
 		else
-			if(istype(master.loc, /mob/living/carbon/human))
+			if(ishuman(master.loc))
 				handle_interface(master.loc)
 			else
 				for(var/mob/living/carbon/human/M in viewers(1, master))
