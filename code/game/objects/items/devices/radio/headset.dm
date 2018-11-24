@@ -299,7 +299,7 @@
 			user.sl_indicator_active = FALSE
 			sl_indicator = FALSE
 			to_chat(user, "<span class='notice'>You toggle the SL indicator display off.</span>")
-			playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
+			playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 	else
 		if(user.mind && user.assigned_squad && user.hud_used?.locate_leader)
 			user.hud_used.locate_leader.alpha = 255
