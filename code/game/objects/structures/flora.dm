@@ -21,7 +21,7 @@
 
 /obj/structure/flora/attackby(obj/item/W, mob/living/user)
 	if(!W || !user || (W.flags_item & NOBLUDGEON))
-		return 0
+		return FALSE
 
 	var/damage = W.force
 	if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
