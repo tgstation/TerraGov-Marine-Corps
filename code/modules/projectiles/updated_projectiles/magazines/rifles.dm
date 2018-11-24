@@ -102,3 +102,31 @@
 	gun_type = /obj/item/weapon/gun/rifle/type71
 
 
+//-------------------------------------------------------
+//MK224 TACTICAL SHOTGUN
+/obj/item/ammo_magazine/rifle/mk224slug
+	name = "\improper MK224 Slug Magazine (12g)"
+	desc = "A 12g Slug shotgun magazine"
+	caliber = "12g"
+	icon_state = "mk224_slug"
+	default_ammo = /datum/ammo/bullet/shotgun/slug
+	max_rounds = 12
+	gun_type = /obj/item/weapon/gun/rifle/mk224
+
+/obj/item/ammo_magazine/rifle/mk224buckshot
+	name = "\improper MK224 Buckshot Magazine (12g)"
+	desc = "A 12g Buckshot shotgun magazine"
+	caliber = "12g"
+	icon_state = "mk224_buckshot"
+	default_ammo = /datum/ammo/bullet/shotgun/buckshot
+	max_rounds = 12
+	gun_type = /obj/item/weapon/gun/rifle/mk224
+
+/obj/item/ammo_magazine/rifle/mk224flechette
+	name = "\improper MK224 Flechette Magazine (12g)"
+	desc = "A 12g Flechette shotgun magazine"
+	caliber = "12g"
+	icon_state = "mk224_flechette"
+	default_ammo = /datum/ammo/bullet/shotgun/flechette
+	max_rounds = 12
+	gun_type = /obj/item/weapon/gun/rifle/mk224

@@ -406,3 +406,39 @@
 	recoil_unwielded = config.high_recoil_value
 
 //-------------------------------------------------------
+//MK224 TACTICAL SHOTGUN
+
+/obj/item/weapon/gun/rifle/mk224
+	name = "\improper MK224 Tactical Shotgun"
+	desc = "The Nanotrasen MK224 Shotgun, now featuring a magazine!!!"
+	icon_state = "mk224"
+	item_state = "mk221"
+	fire_sound = "sound/weapons/gun_shotgun_automatic.ogg"
+	current_mag = /obj/item/ammo_magazine/rifle/mk224slug
+	attachable_allowed = list(
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/stock/tactical,
+						/obj/item/attachable/scope/mini,
+						/obj/item/attachable/attached_gun/grenade,
+						/obj/item/attachable/attached_gun/flamer)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+
+/obj/item/weapon/gun/rifle/mk224/New()
+	..()
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 21, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
+
+/obj/item/weapon/gun/rifle/mk224/set_gun_config_values()
+	fire_delay = config.high_fire_delay + config.med_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.max_hit_accuracy_mult
+	scatter = config.mhigh_scatter_value
+	scatter_unwielded = config.max_scatter_value
+	damage_mult = config.base_hit_damage_mult - config.tacshottie_damage_mult
+	recoil = config.low_recoil_value + config.low_recoil_value
+	recoil_unwielded = config.high_recoil_value
