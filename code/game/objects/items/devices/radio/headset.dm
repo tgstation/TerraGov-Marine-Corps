@@ -265,7 +265,7 @@
 /obj/item/device/radio/headset/almayer/proc/toggle_squadhud(mob/living/carbon/human/user)
 	if(headset_hud_on)
 		squadhud.remove_hud_from(user)
-		if(user.hud_used && user.hud_used.locate_leader)
+		if(user.hud_used?.locate_leader)
 			user.sl_headset_active = FALSE
 			if(sl_direction)
 				toggle_sl_direction(user)
