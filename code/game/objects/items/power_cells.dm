@@ -23,7 +23,7 @@
 		return (FIRELOSS)
 
 /obj/item/cell/crap
-	name = "\improper Yutani brand rechargable AA battery"
+	name = "\improper Nanotrasen brand rechargable AA battery"
 	desc = "You can't top the plasma top." //TOTALLY TRADEMARK INFRINGEMENT
 	origin_tech = "powerstorage=0"
 	maxcharge = 500

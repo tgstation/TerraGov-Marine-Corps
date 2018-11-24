@@ -39,7 +39,7 @@
 			to_chat(C, mentor_msg)
 
 	if(liaison)
-		to_chat(usr, "Your corporate overlords at Weyland-Yutani have received your message.")
+		to_chat(usr, "Your corporate overlords at Nanotrasen have received your message.")
 	else
 		to_chat(usr, "Your prayers have been received by the gods.")
 

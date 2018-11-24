@@ -40,7 +40,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 /datum/job/command/commander/generate_entry_message()
 		return {"As the commander of the USS Almayer you are held by higher standard and are expected to act competently.
-While you may support Weyland-Yutani, you report to the USCM High Command, not the corporate office.
+While you may support Nanotrasen, you report to the USCM High Command, not the corporate office.
 Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
 Your first order of business should be briefing the marines on the mission they are about to undertake.
 If you require any help, use adminhelp to ask mentors about what you're supposed to do.
@@ -562,15 +562,15 @@ Your role involves some roleplaying and gimmickry, but you can perform the funct
 /datum/job/civilian/liaison
 	title = "Corporate Liaison"
 	comm_title = "CL"
-	paygrade = "WY1"
+	paygrade = "NT"
 	flag = ROLE_CORPORATE_LIAISON
 	department_flag = ROLEGROUP_MARINE_COMMAND
 	total_positions = 1
 	spawn_positions = 1
 	supervisors = "the W-Y corporate office"
 	selection_color = "#ffeedd"
-	access = list(ACCESS_IFF_MARINE, ACCESS_WY_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
-	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_WY_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
+	access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
+	minimal_access = list(ACCESS_IFF_MARINE, ACCESS_NT_CORPORATE, ACCESS_ILLEGAL_PIRATE, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_RESEARCH, ACCESS_MARINE_LOGISTICS)
 	idtype = /obj/item/card/id/silver
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE
 	skills_type = /datum/skills/civilian
@@ -586,21 +586,21 @@ Your role involves some roleplaying and gimmickry, but you can perform the funct
 		H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
 
 /datum/job/civilian/liaison/generate_entry_message(mob/living/carbon/human/H)
-		return {"As a representative of Weyland-Yutani Corporation you are expected to stay professional and loyal to the corporation at all times.
+		return {"As a representative of Nanotrasen Corporation you are expected to stay professional and loyal to the corporation at all times.
 You are not required to follow military orders; however, you cannot give military orders.
-Your primary job is to observe and report back your findings to Weyland-Yutani. Follow regular game rules unless told otherwise by your superiors.
+Your primary job is to observe and report back your findings to Nanotrasen. Follow regular game rules unless told otherwise by your superiors.
 Use your office fax machine to communicate with corporate headquarters or to acquire new directives. You may not receive anything back (especially if the game staff is absent or otherwise busy), and this is normal."}
 
 
 //Nightmare event verison
 /datum/job/civilian/liaison/nightmare
-	access = list(ACCESS_IFF_PMC, ACCESS_WY_PMC_GREEN, ACCESS_WY_PMC_ORANGE, ACCESS_WY_PMC_RED, ACCESS_WY_PMC_BLACK, ACCESS_WY_PMC_WHITE, ACCESS_WY_CORPORATE)
-	minimal_access = list(ACCESS_IFF_PMC, ACCESS_WY_PMC_GREEN, ACCESS_WY_PMC_ORANGE, ACCESS_WY_PMC_RED, ACCESS_WY_PMC_BLACK, ACCESS_WY_PMC_WHITE, ACCESS_WY_CORPORATE)
+	access = list(ACCESS_IFF_PMC, ACCESS_NT_PMC_GREEN, ACCESS_NT_PMC_ORANGE, ACCESS_NT_PMC_RED, ACCESS_NT_PMC_BLACK, ACCESS_NT_PMC_WHITE, ACCESS_NT_CORPORATE)
+	minimal_access = list(ACCESS_IFF_PMC, ACCESS_NT_PMC_GREEN, ACCESS_NT_PMC_ORANGE, ACCESS_NT_PMC_RED, ACCESS_NT_PMC_BLACK, ACCESS_NT_PMC_WHITE, ACCESS_NT_CORPORATE)
 	flags_startup_parameters = NOFLAGS
 
 /datum/job/civilian/liaison/nightmare/generate_entry_message(mob/living/carbon/human/H)
 		return {"It was just a regular day in the office when the higher up decided to send you in to this hot mess. If only you called in sick that day...
-The W-Y mercs were hired to protect some important science experiment, and W-Y expects you to keep them in line.
+The NT mercs were hired to protect some important science experiment, and NT expects you to keep them in line.
 These are hardened killers, and you write on paper for a living. It won't be easy, that's for damn sure.
 Best to let the mercs do the killing and the dying, but remind them who pays the bills."}
 

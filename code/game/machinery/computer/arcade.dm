@@ -5,7 +5,7 @@
 	icon_state = "arcade"
 	circuit = "/obj/item/circuitboard/computer/arcade"
 	var/enemy_name = "Fury Fuhrer"
-	var/temp = "Sponsored by Weyland-Yutani and the United States Colonial Marines" //Temporary message, for attack messages, etc
+	var/temp = "Sponsored by Nanotrasen and the United States Colonial Marines" //Temporary message, for attack messages, etc
 	var/player_hp = 30 //Player health/attack points
 	var/player_mp = 10
 	var/enemy_hp = 45 //Enemy health/attack points

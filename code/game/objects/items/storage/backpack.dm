@@ -666,7 +666,7 @@
 
 /obj/item/storage/backpack/commando
 	name = "commando bag"
-	desc = "A heavy-duty bag carried by Weyland Yutani commandos."
+	desc = "A heavy-duty bag carried by Nanotrasen commandos."
 	icon_state = "commandopack"
 	storage_slots = null
 	max_storage_space = 30

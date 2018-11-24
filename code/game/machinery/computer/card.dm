@@ -295,7 +295,7 @@
 /obj/machinery/computer/card/centcom
 	name = "CentCom Identification Computer"
 	circuit = "/obj/item/circuitboard/computer/card/centcom"
-	req_access = list(ACCESS_WY_CORPORATE)
+	req_access = list(ACCESS_NT_CORPORATE)
 
 
 /obj/machinery/computer/card/centcom/is_centcom()

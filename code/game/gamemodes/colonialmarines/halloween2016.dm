@@ -1289,7 +1289,7 @@
 	supply_manifest=list(
 		/obj/item/storage/box/wy_mre = 12
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"\improper W-Y MRE crate", "A crate containing Weyland-Yutani MREs. An army marches on its stomach, right?")
+	generate_supply_crate(supply_spawn,supply_manifest,"\improper W-Y MRE crate", "A crate containing Nanotrasen MREs. An army marches on its stomach, right?")
 
 	supply_manifest=list(
 		/obj/item/storage/firstaid/regular = 1,

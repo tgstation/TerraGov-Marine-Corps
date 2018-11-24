@@ -21,7 +21,7 @@ var/list/alldepartments = list()
 
 	var/department = "Liaison" // our department
 
-	var/dpt = "Weyland Yutani" // the department we're sending to
+	var/dpt = "Nanotrasen" // the department we're sending to
 
 
 /obj/machinery/faxmachine/New()
@@ -30,8 +30,8 @@ var/list/alldepartments = list()
 
 	if( !("[department]" in alldepartments) ) //Initialize departments. This will work with multiple fax machines.
 		alldepartments += department
-	if(!("Weyland Yutani" in alldepartments))
-		alldepartments += "Weyland Yutani"
+	if(!("Nanotrasen" in alldepartments))
+		alldepartments += "Nanotrasen"
 	if(!("USCM High Command" in alldepartments))
 		alldepartments += "USCM High Command"
 
@@ -65,7 +65,7 @@ var/list/alldepartments = list()
 	dat += "<hr>"
 
 	if(authenticated)
-		dat += "<b>Logged in to:</b> Weyland-Yutani Private Corporate Network<br><br>"
+		dat += "<b>Logged in to:</b> Nanotrasen Private Corporate Network<br><br>"
 
 		if(tofax)
 			dat += "<a href='byond://?src=\ref[src];remove=1'>Remove Paper</a><br><br>"
@@ -103,7 +103,7 @@ var/list/alldepartments = list()
 				Centcomm_fax(src, tofax.info, tofax.name, usr)
 				sendcooldown = 1200
 
-			else if(dpt == "Weyland Yutani")
+			else if(dpt == "Nanotrasen")
 				Solgov_fax(src, tofax.info, tofax.name, usr)
 				sendcooldown = 1200
 			else
@@ -193,7 +193,7 @@ var/list/alldepartments = list()
 /proc/Solgov_fax(var/originfax, var/sent, var/sentname, var/mob/Sender)
 	var/faxcontents = "[sent]"
 	fax_contents += faxcontents
-	var/msg = "\blue <b><font color='#1F66A0'>WEYLAND-YUTANI FAX: </font>[key_name(Sender, 1)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[Sender]'>?</A>) (<A HREF='?_src_=holder;ccmark=\ref[Sender]'>Mark</A>) (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[Sender]'>FLW</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='?_src_=holder;CLFaxReply=\ref[Sender];originfax=\ref[originfax]'>RPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>view message</a>"
+	var/msg = "\blue <b><font color='#1F66A0'>NANOTRASEN FAX: </font>[key_name(Sender, 1)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[Sender]'>?</A>) (<A HREF='?_src_=holder;ccmark=\ref[Sender]'>Mark</A>) (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[Sender]'>FLW</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='?_src_=holder;CLFaxReply=\ref[Sender];originfax=\ref[originfax]'>RPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>view message</a>"
 	CLFaxes.Add("<a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>\[view message at [world.timeofday]\]</a> <a href='?_src_=holder;CLFaxReply=\ref[Sender];originfax=\ref[originfax]'>REPLY</a>")
 	for(var/client/C in admins)
 		if((R_ADMIN|R_MOD) & C.holder.rights)

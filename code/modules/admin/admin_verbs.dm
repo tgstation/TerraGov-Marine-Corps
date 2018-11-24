@@ -882,19 +882,19 @@ var/list/admin_verbs_mentor = list(
 
 /client/proc/toggle_gun_restrictions()
 	set name = "Toggle Gun Restrictions"
-	set desc = "Toggling to on will allow anyone to use restricted WY superguns. Leave this alone unless you know what you're doing."
+	set desc = "Toggling to on will allow anyone to use restricted NT superguns. Leave this alone unless you know what you're doing."
 	set category = "Server"
 
 	if(!holder)	return
 	if(config)
 		if(config.remove_gun_restrictions)
 			to_chat(src, "<b>Enabled gun restrictions.</b>")
-			message_admins("Admin [key_name_admin(usr)] has enabled WY gun restrictions.", 1)
-			log_admin("[key_name(src)] enabled WY gun restrictions.")
+			message_admins("Admin [key_name_admin(usr)] has enabled NT gun restrictions.", 1)
+			log_admin("[key_name(src)] enabled NT gun restrictions.")
 		else
 			to_chat(src, "<b>Disabled gun restrictions.</b>")
-			message_admins("Admin [key_name_admin(usr)] has disabled WY gun restrictions.", 1)
-			log_admin("[key_name(src)] disabled WY gun restrictions.")
+			message_admins("Admin [key_name_admin(usr)] has disabled NT gun restrictions.", 1)
+			log_admin("[key_name(src)] disabled NT gun restrictions.")
 		config.remove_gun_restrictions = !config.remove_gun_restrictions
 
 /client/proc/toggle_synthetic_restrictions()

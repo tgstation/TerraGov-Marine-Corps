@@ -135,6 +135,7 @@
 	bound_height = 96
 	unacidable = 1
 
+
 /obj/structure/prop/almayer/ship_memorial
 	name = "slab of victory"
 	desc = "A ship memorial dedicated to the triumphs of the USCM and the fallen marines of this ship. On the left there are grand tales of victory etched into the slab. On the right there is a list of famous marines who have fallen in combat serving the USCM."
@@ -144,7 +145,6 @@
 	bound_height = 32
 	unacidable = 1
 	var/list/fallen_list
-
 
 /obj/structure/prop/almayer/ship_memorial/attackby(obj/item/I, mob/user)
 	if(istype(I, /obj/item/dogtag))
@@ -160,7 +160,7 @@
 		. = ..()
 
 /obj/structure/prop/almayer/ship_memorial/examine(mob/user)
-	..()
+	. = ..()
 	if((isobserver(user) || ishuman(user)) && fallen_list)
 		var/faltext = ""
 		for(var/i = 1 to fallen_list.len)
@@ -178,17 +178,19 @@
 	icon_state = "1"
 	unacidable = 1
 
+
 /obj/structure/prop/almayer/name_stencil
 	name = "\improper The TGMC, a TGMC-Class Marine Carrier Arsenal Ship"
 	desc = "The name of the ship stenciled on the hull."
 	icon = 'icons/Marine/almayer_props64.dmi'
-	icon_state = "DMCA1"
-	density = 0 //dunno who would walk on it, but you know.
+	icon_state = "TGMC1"
+	density = 0
 	unacidable = 1
 
-	New()
-		..()
-		name = MAIN_SHIP_NAME
+/obj/structure/prop/almayer/name_stencil/New()
+	. = ..()
+	name = MAIN_SHIP_NAME
+
 
 /obj/structure/prop/almayer/hangar_stencil
 	name = "floor"

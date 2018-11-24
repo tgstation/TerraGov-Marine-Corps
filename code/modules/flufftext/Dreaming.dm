@@ -11,7 +11,7 @@
 "acid","jaws","a meeting","welding","the vents","being trapped","a survivor", \
 "a power loader","cyrostasis","a meeting room","an engineer","a severed head","a motion scanner","a dropship","a uniform", \
 "a ruined station","fire","a smokey room","a voice","the cold","dimness","an operating table","teeth","flowers","graves", \
-"a synthetic man","meat","a planet","the U.P.P.","Weyland Yutani","tools" \
+"a synthetic man","meat","a planet","the U.P.P.","Nanotrasen","tools" \
 )
 
 mob/living/carbon/proc/dream()

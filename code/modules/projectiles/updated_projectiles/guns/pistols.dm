@@ -322,7 +322,7 @@
 
 /obj/item/weapon/gun/pistol/vp70
 	name = "\improper 88 Mod 4 combat pistol"
-	desc = "A powerful sidearm issued mainly to Weyland Yutani response teams, but issued to the USCM in small numbers, based on the original VP70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst."
+	desc = "A powerful sidearm issued mainly to Nanotrasen response teams, but issued to the USCM in small numbers, based on the original VP70 more than a century ago. Fires 9mm armor piercing rounds and is capable of 3-round burst."
 	icon_state = "88m4"
 	item_state = "88m4"
 	origin_tech = "combat=4;materials=3"
@@ -330,9 +330,9 @@
 	current_mag = /obj/item/ammo_magazine/pistol/vp70
 	force = 8
 
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
+/obj/item/weapon/gun/pistol/vp70/New()
+	. = ..()
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
 /obj/item/weapon/gun/pistol/vp70/set_gun_config_values()
 	fire_delay = config.mhigh_fire_delay
@@ -349,7 +349,7 @@
 
 /obj/item/weapon/gun/pistol/vp78
 	name = "\improper VP78 pistol"
-	desc = "A massive, formidable automatic handgun chambered in 9mm squash-head rounds. Commonly seen in the hands of wealthy Weyland Yutani members."
+	desc = "A massive, formidable automatic handgun chambered in 9mm squash-head rounds. Commonly seen in the hands of wealthy Nanotrasen members."
 	icon_state = "vp78"
 	item_state = "vp78"
 	origin_tech = "combat=4;materials=4"
@@ -357,9 +357,9 @@
 	current_mag = /obj/item/ammo_magazine/pistol/vp78
 	force = 8
 
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 24, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
+/obj/item/weapon/gun/pistol/vp78/New()
+	. = ..()
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 24, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
 
 /obj/item/weapon/gun/pistol/vp78/set_gun_config_values()
 	fire_delay = config.max_fire_delay
