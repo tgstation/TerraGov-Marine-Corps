@@ -743,15 +743,21 @@ var/global/respawntime = 15
 /datum/admins/proc/announce()
 	set category = "Special Verbs"
 	set name = "Announce"
-	set desc="Announce your desires to the world"
-	if(!check_rights(0))	return
+	set desc= "Announce your desires to the world."
 
-	var/message = input("Global message to send:", "Admin Announce", null, null)  as message
-	if(message)
-		if(!check_rights(R_SERVER,0))
-			message = adminscrub(message,500)
-		to_chat(world, "\blue <b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b>\n \t [message]")
-		log_admin("Announce: [key_name(usr)] : [message]")
+	if(!check_rights(0))	
+		return
+
+	var/message = input("Global message to send:", "Admin Announce") as message|null
+
+	if(!message)
+		return
+
+	if(!check_rights(R_SERVER,0))
+		message = adminscrub(message,500)
+
+	to_chat(world, "\blue <b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b>\n \t [message]")
+	log_admin("Announce: [key_name(usr)] : [message]")
 	feedback_add_details("admin_verb","A") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleooc()
@@ -1198,7 +1204,6 @@ var/global/respawntime = 15
 		ticker.mode.picked_call.members = list()
 		ticker.mode.picked_call.candidates = list()
 		ticker.mode.waiting_for_candidates = 0
-		ticker.mode.has_called_emergency = 0
 		ticker.mode.picked_call = null
 
 	var/list/list_of_calls = list()

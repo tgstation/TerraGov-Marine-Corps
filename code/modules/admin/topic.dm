@@ -2617,7 +2617,6 @@
 			if((R_ADMIN|R_MOD) & X.holder.rights)
 				to_chat(X, msg)
 
-		//unanswered_distress -= ref_person
 
 	if(href_list["ccdeny"]) // CentComm-deny. The distress call is denied, without any further conditions
 		var/mob/ref_person = locate(href_list["ccdeny"])
@@ -2626,7 +2625,6 @@
 		log_game("[key_name_admin(usr)] has denied a distress beacon, requested by [key_name_admin(ref_person)]")
 		message_admins("[key_name_admin(usr)] has denied a distress beacon, requested by [key_name_admin(ref_person)]", 1)
 
-		//unanswered_distress -= ref_person
 
 	if(href_list["distresscancel"])
 		if(distress_cancel)
@@ -2640,6 +2638,7 @@
 		distress_cancel = TRUE
 		return
 
+
 	if(href_list["distress"]) //Distress Beacon, sends a random distress beacon when pressed
 		distress_cancel = FALSE
 		message_admins("[key_name_admin(usr)] has opted to SEND a distress beacon! Launching in 10 seconds... (<A HREF='?_src_=holder;distresscancel=\ref[usr]'>CANCEL</A>)")
@@ -2648,7 +2647,5 @@
 				return
 			var/mob/ref_person = locate(href_list["distress"])
 			ticker.mode.activate_distress()
-			distress_cancel = TRUE
 			log_game("[key_name_admin(usr)] has sent a randomized distress beacon, requested by [key_name_admin(ref_person)]")
 			message_admins("[key_name_admin(usr)] has sent a randomized distress beacon, requested by [key_name_admin(ref_person)]", 1)
-		//unanswered_distress -= ref_person
