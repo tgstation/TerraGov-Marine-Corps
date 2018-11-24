@@ -540,22 +540,22 @@
 /obj/item/weapon/gun/energy/lasgun/load_into_chamber(mob/user, overcharge_check = FALSE)
 	//The workhorse of the bullet procs.
  	//If we have a round chambered and no active attachable, we're good to go.
-	if(in_chamber && !active_attachable)
+	if(in_chamber && (!active_attachable || overcharge_check) )
 		if(overcharge_check) //Check to see if we have the proper ammo in chamber to match the overcharge fire mode
 			var/reg_ammo = ammo_list[current_mag.default_ammo].name
 			var/over_ammo = ammo_list[current_mag.overcharge_ammo].name
 			if(overcharge && in_chamber.name == reg_ammo)
 				in_chamber = null //clean the chamber of the erroneous round
-				current_mag.current_rounds += 1 //refund cost of a standard shot.
+				current_mag.current_rounds = min(1 + current_mag.current_rounds, current_mag.max_rounds) //refund cost of a standard shot.
 				return ready_in_chamber(user, TRUE)
 			else if (!overcharge && in_chamber.name == over_ammo)
 				in_chamber = null //clean the chamber of the erroneous round
-				current_mag.current_rounds += OVERCHARGE_AMMO_COST //refund cost of an overcharge shot.
+				current_mag.current_rounds = min(OVERCHARGE_AMMO_COST + current_mag.current_rounds, current_mag.max_rounds) //refund cost of an overcharge shot.
 				return ready_in_chamber(user, TRUE)
 
 		return in_chamber //Already set!
 	//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
-	if(active_attachable)
+	if(active_attachable && !overcharge_check)
 		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
 			active_attachable.current_rounds--
 			return create_bullet(active_attachable.ammo)
