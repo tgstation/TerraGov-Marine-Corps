@@ -7,7 +7,7 @@
 #define	IMPRINTER	1	//For circuits. Uses glass/chemicals.
 #define PROTOLATHE	2	//New stuff. Uses glass/metal/chemicals
 
-/obj/machinery/computer/nanotrasenresearch
+/obj/machinery/computer/NTresearch
 	name = "R&D Console"
 	icon = 'icons/obj/mainframe.dmi'
 	icon_state = "aimainframe"
