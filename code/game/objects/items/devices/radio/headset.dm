@@ -369,7 +369,7 @@
 		else if(href_list["sl_indicator"])
 			toggle_sl_indicator(user)
 
-		if(!( master ))
+		if(!master)
 			if(istype(loc, /mob/living/carbon/human))
 				handle_interface(loc)
 			else
