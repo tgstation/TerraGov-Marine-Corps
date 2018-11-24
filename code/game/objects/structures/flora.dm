@@ -20,7 +20,7 @@
 	return ..()
 
 /obj/structure/flora/attackby(obj/item/W, mob/living/user)
-	if(!W || !user || isnull(W) || (W.flags_item & NOBLUDGEON))
+	if(!W || !user || (W.flags_item & NOBLUDGEON))
 		return 0
 
 	var/damage = W.force
