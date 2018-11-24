@@ -8,8 +8,8 @@
 	upgrade = 0
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 15
-	melee_damage_upper = 25
+	melee_damage_lower = 18
+	melee_damage_upper = 28
 
 	// *** Tackle *** //
 	tackle_damage = 30
@@ -35,7 +35,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
-	armor_deflection = 20
+	armor_deflection = 10
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
@@ -70,7 +70,7 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor_deflection = 25
+	armor_deflection = 15
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
@@ -84,8 +84,8 @@
 	upgrade = 2
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 30
-	melee_damage_upper = 35
+	melee_damage_lower = 28
+	melee_damage_upper = 38
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -104,7 +104,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 30
+	armor_deflection = 18
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
@@ -138,7 +138,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 45
+	armor_deflection = 20
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
