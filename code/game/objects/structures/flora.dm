@@ -30,7 +30,7 @@
 	if(istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
 
-		if(WT.remove_fuel(0))
+		if(WT.remove_fuel(5))
 			damage = 25
 			playsound(loc, 'sound/items/Welder.ogg', 25, 1)
 
