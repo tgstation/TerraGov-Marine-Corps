@@ -307,7 +307,7 @@
 			user.sl_indicator_active = TRUE
 			sl_indicator = TRUE
 			to_chat(user, "<span class='notice'>You toggle the SL indicator display on.</span>")
-			playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
+			playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 /obj/item/device/radio/headset/almayer/proc/toggle_sl_direction(mob/living/carbon/human/user)
 	if(!headset_hud_on)
