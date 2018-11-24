@@ -20,8 +20,8 @@
 	return ..()
 
 /obj/structure/flora/attackby(obj/item/W, mob/living/user)
-	if(!W || !user || isnull(W) || (W.flags_item & NOBLUDGEON))
-		return 0
+	if(!W || !user || (W.flags_item & NOBLUDGEON))
+		return FALSE
 
 	var/damage = W.force
 	if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
@@ -30,7 +30,7 @@
 	if(istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
 
-		if(WT.remove_fuel(0))
+		if(WT.remove_fuel(5))
 			damage = 25
 			playsound(loc, 'sound/items/Welder.ogg', 25, 1)
 
