@@ -285,7 +285,7 @@
 				toggle_sl_indicator(user)
 			user.Process_SL_Locator()
 			to_chat(user, "<span class='notice'>You toggle the Squad HUD on.</span>")
-			playsound(src.loc, 'sound/machines/click.ogg', 15, 0, 1)
+			playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
 /obj/item/device/radio/headset/almayer/proc/toggle_sl_indicator(mob/living/carbon/human/user)
 	if(!headset_hud_on)
