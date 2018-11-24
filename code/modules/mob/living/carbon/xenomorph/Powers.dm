@@ -1958,7 +1958,7 @@
 		to_chat(src, "<span class='xenowarning'>You're not yet ready to spray again! You can do so in [( (last_spray_used + acid_d) - world.time) * 0.1] seconds.</span>")
 		return
 
-	if(!do_after(src, 3, TRUE, 3, BUSY_ICON_HOSTILE))
+	if(!do_after(src, 5, TRUE, 5, BUSY_ICON_HOSTILE))
 		return
 
 	var/turf/target

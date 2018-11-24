@@ -12,7 +12,7 @@
 	melee_damage_upper = 25
 
 	// *** Tackle *** //
-	tackle_damage = 30 
+	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = -0.5
@@ -29,17 +29,19 @@
 	upgrade_threshold = 200
 
 	evolves_to = list(/mob/living/carbon/Xenomorph/Boiler)
-	deevolves_to = /mob/living/carbon/Xenomorph/Sentinel 
+	deevolves_to = /mob/living/carbon/Xenomorph/Sentinel
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
-	armor_deflection = 20 
+	armor_deflection = 20
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 1.5 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/heavy) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
+
+	acid_delay = 30 SECONDS //30 second delay on acid spray.
 
 /datum/xeno_caste/spitter/mature
 	upgrade_name = "Mature"
@@ -52,7 +54,7 @@
 	melee_damage_upper = 35
 
 	// *** Tackle *** //
-	tackle_damage = 35 
+	tackle_damage = 35
 
 	// *** Speed *** //
 	speed = -0.6
@@ -71,9 +73,9 @@
 	armor_deflection = 25
 
 	// *** Ranged Attack *** //
-	spit_delay = 2.0 SECONDS
+	spit_delay = 1.5 SECONDS
 
-	acid_delay = 30 SECONDS //30 second delay on acid spray. Reduced by -3/-2/-1 per upgrade.
+	acid_delay = 30 SECONDS //30 second delay on acid spray.
 
 /datum/xeno_caste/spitter/elder
 	upgrade_name = "Elder"
@@ -107,6 +109,8 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
 
+	acid_delay = 30 SECONDS //30 second delay on acid spray.
+
 /datum/xeno_caste/spitter/ancient
 	upgrade_name = "Ancient"
 	caste_desc = "A ranged destruction machine."
@@ -139,6 +143,8 @@
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
 
+	acid_delay = 30 SECONDS //30 second delay on acid spray.
+
 /mob/living/carbon/Xenomorph/Spitter
 	caste_base_type = /mob/living/carbon/Xenomorph/Spitter
 	name = "Spitter"
@@ -154,7 +160,7 @@
 	tier = 2
 	upgrade = 0
 	acid_cooldown = 0
-	
+
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,

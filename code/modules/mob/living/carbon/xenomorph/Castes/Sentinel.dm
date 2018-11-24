@@ -136,7 +136,7 @@
 	armor_deflection = 20
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.5 SECONDS
+	spit_delay = 1 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/upgrade3)
 
 /mob/living/carbon/Xenomorph/Sentinel
