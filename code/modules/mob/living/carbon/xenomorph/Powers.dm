@@ -1863,9 +1863,9 @@
 
 	second_wind_used = TRUE
 
-	second_wind_delay = world.time + (RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.01) )
+	second_wind_delay = world.time + (RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.015) )
 
-	spawn(RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.01) ) //1 minute cooldown, minus 0.5 seconds per rage to minimum 30 seconds.
+	spawn(RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.015) ) //4 minute cooldown, minus 0.75 seconds per rage to minimum 60 seconds.
 		second_wind_used = FALSE
 		to_chat(src, "<span class='xenodanger'>You gather enough strength to use Second Wind again.</span>")
 		playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
