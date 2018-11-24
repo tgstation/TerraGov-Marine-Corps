@@ -247,7 +247,7 @@
 	..()
 
 /obj/item/device/radio/headset/almayer/Dispose()
-	if(istype(wearer) && headset_hud_on)
+	if(wearer && headset_hud_on)
 		if(wearer.wear_ear == src)
 			squadhud.remove_hud_from(wearer)
 			wearer.SL_directional = null
