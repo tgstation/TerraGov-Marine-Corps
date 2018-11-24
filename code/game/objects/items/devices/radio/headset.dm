@@ -354,7 +354,6 @@
 	onclose(user, "radio")
 	return
 
-//Interface for the B18
 /obj/item/device/radio/headset/almayer/Topic(href, href_list)
 	//..()
 	if(usr.is_mob_incapacitated() || usr != wearer || !ishuman(usr))
