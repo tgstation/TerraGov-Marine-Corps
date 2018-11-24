@@ -355,7 +355,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	processing_objects.Add(src)
 	if(!silent)
 		to_chat(user, "<span class='notice'>[src] lets out a hum as its automedical suite activates.</span>")
-		playsound(src,'sound/mecha/nominal.ogg', 15, 0, 1)
+		playsound(src,'sound/voice/b18_activate.ogg', 15, 0, 1)
 
 /obj/item/clothing/suit/storage/marine/specialist/process()
 	if(!B18_automed_on)
@@ -397,6 +397,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 			details +=("Significant physical trauma detected. Regenerative formula administered. <b>Dosage:[bicaridine ? " Bicaridine: [bicaridine]U |" : ""][quickclot ? " Quickclot: [quickclot]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
 			B18_brute_cooldown = world.time + B18_CHEM_COOLDOWN
 			handle_chem_cooldown(B18_BRUTE_CODE)
+			playsound(src,'sound/voice/b18_brute.ogg', 15, 0, 1)
 			dose_administered = TRUE
 
 	if(wearer.getOxyLoss() > B18_automed_damage && !B18_oxy_cooldown)
@@ -426,6 +427,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 		if(dylovene || spaceacillin || tricordrazine) //Only report if we actually administer something
 			details +=("Significant blood toxicity detected. Chelating agents and curatives administered. <b>Dosage:[dylovene ? " Dylovene: [dylovene]U |" : ""][spaceacillin ? " Spaceacillin: [spaceacillin]U |" : ""][tricordrazine ? " Tricordrazine: [tricordrazine]U" : ""]</b></br>")
 			B18_tox_cooldown = world.time + B18_CHEM_COOLDOWN
+			playsound(src,pick('sound/voice/b18_antitoxin.ogg','sound/voice/b18_antitoxin2.ogg'), 15, 0, 1)
 			handle_chem_cooldown(B18_TOX_CODE)
 			dose_administered = TRUE
 
@@ -440,6 +442,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 			details +=("User pain at performance impeding levels. Painkillers administered. <b>Dosage:[oxycodone ? " Oxycodone: [oxycodone]U |" : ""][tramadol ? " Tramadol: [tramadol]U" : ""]</b></br>")
 			B18_pain_cooldown = world.time + B18_CHEM_COOLDOWN
 			handle_chem_cooldown(B18_PAIN_CODE)
+			playsound(src,'sound/voice/b18_pain_suppress.ogg', 15, 0, 1)
 			dose_administered = TRUE
 
 	if(dose_administered)

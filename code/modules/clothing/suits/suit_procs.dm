@@ -31,6 +31,7 @@
 		if(equip)
 			if((E.status & LIMB_BROKEN) && !(E.status & LIMB_STABILIZED) && supporting_limbs.Find(E.body_part))
 				E.status |= LIMB_STABILIZED
+				playsound(src,'sound/voice/b18_fracture.ogg', 15, 0, 1)
 				to_chat(H, "<span class='notice'><b>You feel [src] constrict about your [E.display_name], stabilizing it.</b></span>")
 				playsound(loc, 'sound/machines/hydraulics_1.ogg', 15, 0, 1)
 		else
@@ -50,5 +51,6 @@
 
 	if((E.status & LIMB_BROKEN) && !(E.status & LIMB_STABILIZED) && supporting_limbs.Find(E.body_part))
 		E.status |= LIMB_STABILIZED
+		playsound(src,'sound/voice/b18_fracture.ogg', 15, 0, 1)
 		playsound(loc, 'sound/machines/hydraulics_1.ogg', 15, 0, 1)
 		to_chat(user, "<span class='notice'><b>You feel [src] constrict about your [E.display_name], stabilizing it.</b></span>")
