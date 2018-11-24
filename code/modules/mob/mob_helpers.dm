@@ -572,7 +572,7 @@ var/list/intents = list("help","disarm","grab","hurt")
 	set name = "a-select-zone"
 	set hidden = 1
 
-	if(!istype(usr, /mob/living/carbon))
+	if(!iscarbon(usr))
 		return
 
 	var/num = 21
