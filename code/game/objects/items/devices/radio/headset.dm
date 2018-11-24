@@ -370,7 +370,7 @@
 			toggle_sl_indicator(user)
 
 		if(!master)
-			if(istype(loc, /mob/living/carbon/human))
+			if(ishuman(loc))
 				handle_interface(loc)
 			else
 				for(var/mob/living/carbon/human/M in viewers(1, src))
