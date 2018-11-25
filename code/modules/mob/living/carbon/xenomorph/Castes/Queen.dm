@@ -25,7 +25,7 @@
 	max_health = 300
 
 	// *** Evolution *** //
-	upgrade_threshold = 800
+	upgrade_threshold = 600
 
 	// *** Flags *** //
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_FIRE_IMMUNE
@@ -69,7 +69,7 @@
 	max_health = 325
 
 	// *** Evolution *** //
-	upgrade_threshold = 1600
+	upgrade_threshold = 1200
 
 	// *** Defense *** //
 	armor_deflection = 50
@@ -106,7 +106,7 @@
 	max_health = 350
 
 	// *** Evolution *** //
-	upgrade_threshold = 3200
+	upgrade_threshold = 2400
 
 	// *** Defense *** //
 	armor_deflection = 55
