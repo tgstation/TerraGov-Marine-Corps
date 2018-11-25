@@ -439,6 +439,6 @@
 	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.max_hit_accuracy_mult
 	scatter = config.mhigh_scatter_value
 	scatter_unwielded = config.max_scatter_value
-	damage_mult = config.base_hit_damage_mult - config.tacshottie_damage_mult
+	damage_mult = config.base_hit_damage_mult - config.tacshottie_damage_mult - config.low_hit_damage_mult
 	recoil = config.low_recoil_value + config.low_recoil_value
 	recoil_unwielded = config.high_recoil_value
