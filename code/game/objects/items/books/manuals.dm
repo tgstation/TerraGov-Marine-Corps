@@ -1228,10 +1228,10 @@
 
 
 /obj/item/book/manual/orbital_cannon_manual
-	name = "USCM Orbital Bombardment System Manual"
+	name = "TGMC Orbital Bombardment System Manual"
 	icon_state = "bookEngineering"
-	author = "USCM R&D"
-	title = "USCM Orbital Bombardment System Manual"
+	author = "TGMC R&D"
+	title = "TGMC Orbital Bombardment System Manual"
 
 	dat = {"<html>
 				<head>
@@ -1246,7 +1246,7 @@
 				</head>
 				<body>
 
-				<h1>Guide to the USCM Orbital Bombardment System</h1>
+				<h1>Guide to the TGMC Orbital Bombardment System</h1>
 
 				<h2>Step by step instructions:</h2>
 				<ol>
@@ -1266,12 +1266,12 @@
 					<li>If you've loaded a tray with an incorrect payload, you can still unload the tray's payload as long as it hasn't been chambered.</li>
 					<li>If an incorrect payload is chambered, it can only be removed by firing it.</li>
 					<li>If the Orbital Cannon Console has no power, check the Weapon Control Room's APC.</li>
-					<li>If the Orbital Cannon Console is broken, contact USCM HQ for a replacement.</li>
+					<li>If the Orbital Cannon Console is broken, contact TGMC HQ for a replacement.</li>
 					<li>In case of direct damage to the Orbital Cannon itself, do not attempt to use or repair the cannon.</li>
 					<li>In case of hull breach or fire, make sure to remove the Cannon's payload and move it to a safe location.</li>
 					<li>If the Orbital Tray jams, apply lubricant to the  conveyor belt.</li>
-					<li>If a cable of the Orbital Cannon System is severed, contact USCM HQ for a replacement.</li>
-					<li>If Cannon's cable connector breaks, turn off the Orbital Cannon Console and contact USCM HQ for a replacement.</li>
+					<li>If a cable of the Orbital Cannon System is severed, contact TGMC HQ for a replacement.</li>
+					<li>If Cannon's cable connector breaks, turn off the Orbital Cannon Console and contact TGMC HQ for a replacement.</li>
 				</ul>
 
 			</body>

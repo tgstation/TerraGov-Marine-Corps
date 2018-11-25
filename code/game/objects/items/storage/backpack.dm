@@ -280,7 +280,7 @@
 
 /obj/item/storage/backpack/marine
 	name = "\improper lightweight IMP backpack"
-	desc = "The standard-issue pack of the USCM forces. Designed to slug gear into the battlefield."
+	desc = "The standard-issue pack of the TGMC forces. Designed to slug gear into the battlefield."
 	icon_state = "marinepack"
 	var/has_gamemode_skin = TRUE
 
@@ -291,11 +291,11 @@
 
 /obj/item/storage/backpack/marine/standard
 	name = "\improper lightweight IMP backpack"
-	desc = "The standard-issue pack of the USCM forces. Designed to slug gear into the battlefield."
+	desc = "The standard-issue pack of the TGMC forces. Designed to slug gear into the battlefield."
 
 /obj/item/storage/backpack/marine/medic
-	name = "\improper USCM medic backpack"
-	desc = "The standard-issue backpack worn by USCM medics."
+	name = "\improper TGMC medic backpack"
+	desc = "The standard-issue backpack worn by TGMC medics."
 	icon_state = "marinepackm"
 	var/obj/item/cell/high/cell //Starts with a high capacity energy cell.
 
@@ -372,8 +372,8 @@
 
 
 /obj/item/storage/backpack/marine/tech
-	name = "\improper USCM technician backpack"
-	desc = "The standard-issue backpack worn by USCM technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
+	name = "\improper TGMC technician backpack"
+	desc = "The standard-issue backpack worn by TGMC technicians. Specially equipped to hold sentry gun and M56D emplacement parts."
 	icon_state = "marinepackt"
 	bypass_w_limit = list("/obj/item/device/m56d_gun",
 					"/obj/item/ammo_magazine/m56d",
@@ -385,8 +385,8 @@
 					)
 
 /obj/item/storage/backpack/marine/satchel
-	name = "\improper USCM satchel"
-	desc = "A heavy-duty satchel carried by some USCM soldiers and support personnel."
+	name = "\improper TGMC satchel"
+	desc = "A heavy-duty satchel carried by some TGMC soldiers and support personnel."
 	icon_state = "marinesat"
 	worn_accessible = TRUE
 	storage_slots = null
@@ -394,13 +394,13 @@
 
 
 /obj/item/storage/backpack/marine/satchel/medic
-	name = "\improper USCM medic satchel"
-	desc = "A heavy-duty satchel carried by some USCM medics."
+	name = "\improper TGMC medic satchel"
+	desc = "A heavy-duty satchel carried by some TGMC medics."
 	icon_state = "marinesatm"
 
 /obj/item/storage/backpack/marine/satchel/tech
-	name = "\improper USCM technician satchel"
-	desc = "A heavy-duty satchel carried by some USCM technicians."
+	name = "\improper TGMC technician satchel"
+	desc = "A heavy-duty satchel carried by some TGMC technicians."
 	icon_state = "marinesatt"
 
 /obj/item/storage/backpack/marine/smock
@@ -413,7 +413,7 @@
 // Scout Cloak
 /obj/item/storage/backpack/marine/satchel/scout_cloak
 	name = "\improper M68 Thermal Cloak"
-	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard USCM ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high manueverability and adaptability to many environments."
+	desc = "The lightweight thermal dampeners and optical camouflage provided by this cloak are weaker than those found in standard TGMC ghillie suits. In exchange, the cloak can be worn over combat armor and offers the wearer high manueverability and adaptability to many environments."
 	icon_state = "scout_cloak"
 	uniform_restricted = list(/obj/item/clothing/suit/storage/marine/M3S, /obj/item/clothing/head/helmet/marine/scout) //Need to wear Scout armor and helmet to equip this.
 	has_gamemode_skin = FALSE //same sprite for all gamemode.
@@ -580,8 +580,8 @@
 // Welder Backpacks //
 
 /obj/item/storage/backpack/marine/engineerpack
-	name = "\improper USCM technician welderpack"
-	desc = "A specialized backpack worn by USCM technicians. It carries a fueltank for quick welder refueling and use,"
+	name = "\improper TGMC technician welderpack"
+	desc = "A specialized backpack worn by TGMC technicians. It carries a fueltank for quick welder refueling and use,"
 	icon_state = "engineerpack"
 	var/max_fuel = 260
 	storage_slots = null
@@ -639,8 +639,8 @@
 
 // Pyrotechnician Spec backpack fuel tank
 /obj/item/storage/backpack/marine/engineerpack/flamethrower
-	name = "\improper USCM Pyrotechnician fueltank"
-	desc = "A specialized fueltank worn by USCM Pyrotechnicians for use with the M240-T incinerator unit. A small general storage compartment is installed."
+	name = "\improper TGMC Pyrotechnician fueltank"
+	desc = "A specialized fueltank worn by TGMC Pyrotechnicians for use with the M240-T incinerator unit. A small general storage compartment is installed."
 	icon_state = "flamethrower_tank"
 	max_fuel = 500
 

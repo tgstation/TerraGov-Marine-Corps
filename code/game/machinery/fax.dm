@@ -32,8 +32,8 @@ var/list/alldepartments = list()
 		alldepartments += department
 	if(!("Nanotrasen" in alldepartments))
 		alldepartments += "Nanotrasen"
-	if(!("USCM High Command" in alldepartments))
-		alldepartments += "USCM High Command"
+	if(!("TGMC High Command" in alldepartments))
+		alldepartments += "TGMC High Command"
 
 /obj/machinery/faxmachine/process()
 	return 0
@@ -99,7 +99,7 @@ var/list/alldepartments = list()
 	if(href_list["send"])
 		if(tofax)
 
-			if(dpt == "USCM High Command")
+			if(dpt == "TGMC High Command")
 				Centcomm_fax(src, tofax.info, tofax.name, usr)
 				sendcooldown = 1200
 
@@ -185,8 +185,8 @@ var/list/alldepartments = list()
 /proc/Centcomm_fax(var/originfax, var/sent, var/sentname, var/mob/Sender)
 	var/faxcontents = "[sent]"
 	fax_contents += faxcontents
-	var/msg = "\blue <b><font color='#006100'>USCM FAX: </font>[key_name(Sender, 1)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[Sender]'>?</A>) (<A HREF='?_src_=holder;mark=\ref[src]'>Mark</A>) (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[Sender]'>FLW</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='?_src_=holder;USCMFaxReply=\ref[Sender];originfax=\ref[originfax]'>RPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>view message</a>"
-	USCMFaxes.Add("<a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>\[view message at [world.timeofday]\]</a> <a href='?_src_=holder;USCMFaxReply=\ref[Sender];originfax=\ref[originfax]'>REPLY</a>")
+	var/msg = "\blue <b><font color='#006100'>TGMC FAX: </font>[key_name(Sender, 1)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[Sender]'>?</A>) (<A HREF='?_src_=holder;mark=\ref[src]'>Mark</A>) (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[Sender]'>FLW</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='?_src_=holder;TGMCFaxReply=\ref[Sender];originfax=\ref[originfax]'>RPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>view message</a>"
+	TGMCFaxes.Add("<a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>\[view message at [world.timeofday]\]</a> <a href='?_src_=holder;TGMCFaxReply=\ref[Sender];originfax=\ref[originfax]'>REPLY</a>")
 	for(var/client/C in admins)
 		to_chat(C, msg)
 

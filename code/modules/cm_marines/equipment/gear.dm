@@ -13,7 +13,7 @@
 
 /obj/item/bodybag/tarp
 	name = "\improper V1 thermal-dapening tarp (folded)"
-	desc = "A tarp carried by USCM Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
+	desc = "A tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camoflauge, and smell dampening."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_folded"
 	w_class = 3.0
@@ -28,7 +28,7 @@
 
 /obj/structure/closet/bodybag/tarp
 	name = "\improper V1 thermal-dampening tarp"
-	desc = "A tarp carried by USCM Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camouflage, and smell dampening."
+	desc = "A tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camouflage, and smell dampening."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_closed"
 	icon_closed = "jungletarp_closed"
@@ -70,7 +70,7 @@
 
 
 /obj/item/storage/box/uscm_mre
-	name = "\improper USCM meal ready to eat"
+	name = "\improper TGMC meal ready to eat"
 	desc = "<B>Instructions:</B> Extract food using maximum firepower. Eat.\n\nOn the box is a picture of a shouting Squad Leader. \n\"YOU WILL EAT YOUR NUTRIENT GOO AND YOU WILL ENJOY IT, MAGGOT.\""
 	icon_state = "mre1"
 
@@ -98,7 +98,7 @@
 
 
 /obj/item/reagent_container/food/snacks/protein_pack
-	name = "stale USCM protein bar"
+	name = "stale TGMC protein bar"
 	desc = "The most fake looking protein bar you have ever laid eyes on, covered in the a subtitution chocolate. The powder used to make these is a subsitute of a substitute of whey substitute."
 	icon_state = "yummers"
 	filling_color = "#ED1169"
@@ -110,12 +110,12 @@
 
 /obj/item/reagent_container/food/snacks/mre_pack
 	name = "\improper generic MRE pack"
-	//trash = /obj/item/trash/USCMtray
+	//trash = /obj/item/trash/TGMCtray
 	trash = null
 	w_class = 2
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal1
-	name = "\improper USCM Prepared Meal (bread)"
+	name = "\improper TGMC Prepared Meal (bread)"
 	desc = "A staple of the Clown Planet, every clown baby's first solid food is a slice of banana bread with cream pie spread."
 	icon_state = "MREa"
 	filling_color = "#ED1169"
@@ -124,7 +124,7 @@
 	tastes = list("something funny" = 2, "bread" = 4)
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal2
-	name = "\improper USCM Prepared Meal (pork)"
+	name = "\improper TGMC Prepared Meal (pork)"
 	desc = "It's hard to go wrong with rice and pork."
 	icon_state = "MREb"
 	list_reagents = list("nutriment" = 9)
@@ -132,7 +132,7 @@
 	tastes = list("rice and pork" = 1)
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal3
-	name = "\improper USCM Prepared Meal (spag)"
+	name = "\improper TGMC Prepared Meal (spag)"
 	desc = "That's-a spicy meat-aball!"
 	icon_state = "MREc"
 	list_reagents = list("nutriment" = 9)
@@ -140,7 +140,7 @@
 	bitesize = 3
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal4
-	name = "\improper USCM Prepared Meal (pizza)"
+	name = "\improper TGMC Prepared Meal (pizza)"
 	desc = "Aubergine, carrot and sweetcorn, all on a bed of cheese and tomato sauce."
 	icon_state = "MREd"
 	list_reagents = list("nutriment" = 8)
@@ -148,7 +148,7 @@
 	bitesize = 1
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal5
-	name = "\improper USCM Prepared Meal (monkey)"
+	name = "\improper TGMC Prepared Meal (monkey)"
 	desc = "Sopa de Macaco, Uma Delicia."
 	icon_state = "MREe"
 	list_reagents = list("nutriment" = 10)
@@ -156,7 +156,7 @@
 	bitesize = 3
 
 /obj/item/reagent_container/food/snacks/mre_pack/meal6
-	name = "\improper USCM Prepared Meal (tofu)"
+	name = "\improper TGMC Prepared Meal (tofu)"
 	desc = "BBQ sticky tofu in a bun, hand crafted by Hungarian children who believe in a galaxy with soldiers that kill people, not animals."
 	icon_state = "MREf"
 	list_reagents = list("nutriment" = 8)

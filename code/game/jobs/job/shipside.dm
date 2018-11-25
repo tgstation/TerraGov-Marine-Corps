@@ -16,7 +16,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	comm_title = "CO"
 	paygrade = "O4"
 	flag = ROLE_COMMANDING_OFFICER
-	supervisors = "USCM high command"
+	supervisors = "TGMC high command"
 	selection_color = "#ccccff"
 	idtype = /obj/item/card/id/gold
 	minimal_player_age = 7
@@ -89,7 +89,7 @@ Come hell or high water, you are going to be there for them."}
 /datum/job/command/executive/generate_entry_message(mob/living/carbon/human/H)
 		. = {"You are second in command aboard the ship, and are in next in the chain of command after the commander.
 You may need to fill in for other duties if areas are understaffed, and you are given access to do so.
-Make the USCM proud!"}
+Make the TGMC proud!"}
 
 
 //Staff Officer
@@ -465,7 +465,7 @@ Listen to the radio in case someone requests a supply drop via the overwatch sys
 
 
 /datum/job/medical/professor/generate_entry_message()
-	return {"You are a civilian, and are not subject to follow military chain of command, but you do work for the USCM.
+	return {"You are a civilian, and are not subject to follow military chain of command, but you do work for the TGMC.
 You have final authority over the medical department, medications, and treatments.
 Make sure that the doctors and nurses are doing their jobs and keeping the marines healthy and strong."}
 
@@ -508,7 +508,7 @@ Make sure that the doctors and nurses are doing their jobs and keeping the marin
 	return (latejoin ? doc_slot_formula(get_total_marines()) : spawn_positions)
 
 /datum/job/medical/doctor/generate_entry_message(mob/living/carbon/human/H)
-	return {"You are a civilian, and are not subject to follow military chain of command, but you do work for the USCM.
+	return {"You are a civilian, and are not subject to follow military chain of command, but you do work for the TGMC.
 You are tasked with keeping the marines healthy and strong, usually in the form of surgery.
 You are also an expert when it comes to medication and treatment. If you do not know what you are doing, adminhelp so a mentor can assist you."}
 
@@ -553,7 +553,7 @@ You are also an expert when it comes to medication and treatment. If you do not 
 	return (latejoin ? rsc_slot_formula(get_total_marines()) : spawn_positions)
 
 /datum/job/medical/researcher/generate_entry_message(mob/living/carbon/human/H)
-	return {"You are a civilian, and are not subject to follow military chain of command, but you do work for the USCM.
+	return {"You are a civilian, and are not subject to follow military chain of command, but you do work for the TGMC.
 You are tasked with researching and developing new medical treatments, helping your fellow doctors, and generally learning new things.
 Your role involves some roleplaying and gimmickry, but you can perform the function of a regular doctor."}
 
@@ -657,6 +657,6 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 
 /datum/job/civilian/synthetic/generate_entry_message()
 		return {"You are a Synthetic!
-Your primary job is to support and assist all USCM Departments and Personnel on-board.
+Your primary job is to support and assist all TGMC Departments and Personnel on-board.
 In addition, being a Synthetic gives you knowledge in every field and specialization possible on-board the ship.
 As a Synthetic you answer to the acting commander. Special circumstances may change this!"}

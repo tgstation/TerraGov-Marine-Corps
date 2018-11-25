@@ -1,4 +1,4 @@
-//Randomly-equipped mercenaries. May be friendly or hostile to the USCM, hostile to xenos.
+//Randomly-equipped mercenaries. May be friendly or hostile to the TGMC, hostile to xenos.
 /datum/emergency_call/mercs
 	name = "Freelancers"
 	probability = 25

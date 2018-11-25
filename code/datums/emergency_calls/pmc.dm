@@ -1,4 +1,4 @@
-//Nanotrasen commandos. Friendly to USCM, hostile to xenos.
+//Nanotrasen commandos. Friendly to TGMC, hostile to xenos.
 /datum/emergency_call/pmc
 	name = "PMC"
 	probability = 25
@@ -78,4 +78,4 @@
 	to_chat(M, "")
 	to_chat(M, "")
 	to_chat(M, "<B>Ensure no damage is incurred against Nanotrasen. Make sure the CL is safe.</b>")
-	to_chat(M, "<B>Deny Nanotrasen's involvement and do not trust the UA/USCM forces.</b>")
+	to_chat(M, "<B>Deny Nanotrasen's involvement and do not trust the UA/TGMC forces.</b>")

@@ -1561,15 +1561,15 @@
 			to_chat(usr, "The person you are trying to contact is not wearing a headset")
 			return
 
-		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from USCM", "")
+		var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via their headset.","Outgoing message from TGMC", "")
 		if(!input)	return
 
 		to_chat(src.owner, "You sent [input] to [H] via a secure channel.")
-		log_admin("[src.owner] replied to [key_name(H)]'s USCM message with the message [input].")
+		log_admin("[src.owner] replied to [key_name(H)]'s TGMC message with the message [input].")
 		for(var/client/X in admins)
 			if((R_ADMIN|R_MOD) & X.holder.rights)
-				to_chat(X, "<b>ADMINS/MODS: \red [src.owner] replied to [key_name(H)]'s USCM message with: \blue \"[input]\"</b>")
-		to_chat(H, "\red You hear something crackle in your headset before a voice speaks, \"Please stand by for a message from USCM:\" \blue <b>\"[input]\"</b>")
+				to_chat(X, "<b>ADMINS/MODS: \red [src.owner] replied to [key_name(H)]'s TGMC message with: \blue \"[input]\"</b>")
+		to_chat(H, "\red You hear something crackle in your headset before a voice speaks, \"Please stand by for a message from TGMC:\" \blue <b>\"[input]\"</b>")
 
 	else if(href_list["SyndicateReply"])
 		var/mob/living/carbon/human/H = locate(href_list["SyndicateReply"])
@@ -1592,44 +1592,44 @@
 
 		usr << browse("<HTML><HEAD><TITLE>Liaison Fax Message</TITLE></HEAD><BODY>[info]</BODY></HTML>", "window=Fax Message")
 
-	else if(href_list["USCMFaxReply"])
-		var/mob/living/carbon/human/H = locate(href_list["USCMFaxReply"])
+	else if(href_list["TGMCFaxReply"])
+		var/mob/living/carbon/human/H = locate(href_list["TGMCFaxReply"])
 		var/obj/machinery/faxmachine/fax = locate(href_list["originfax"])
 
-		var/template_choice = input("Use which template or roll your own?") in list("USCM High Command", "USCM Provost General", "Custom")
+		var/template_choice = input("Use which template or roll your own?") in list("TGMC High Command", "TGMC Provost General", "Custom")
 		var/fax_message = ""
 		switch(template_choice)
 			if("Custom")
-				var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from USCM", "") as message|null
+				var/input = input(src.owner, "Please enter a message to reply to [key_name(H)] via secure connection. NOTE: BBCode does not work, but HTML tags do! Use <br> for line breaks.", "Outgoing message from TGMC", "") as message|null
 				if(!input)	return
 				fax_message = "[input]"
-			if("USCM High Command", "USCM Provost General")
-				var/subject = input(src.owner, "Enter subject line", "Outgoing message from USCM", "") as message|null
+			if("TGMC High Command", "TGMC Provost General")
+				var/subject = input(src.owner, "Enter subject line", "Outgoing message from TGMC", "") as message|null
 				if(!subject) return
 				var/addressed_to = ""
 				var/address_option = input("Address it to the sender or custom?") in list("Sender", "Custom")
 				if(address_option == "Sender")
 					addressed_to = "[H.real_name]"
 				else if(address_option == "Custom")
-					addressed_to = input(src.owner, "Enter Addressee Line", "Outgoing message from USCM", "") as message|null
+					addressed_to = input(src.owner, "Enter Addressee Line", "Outgoing message from TGMC", "") as message|null
 					if(!addressed_to) return
 				else
 					return
-				var/message_body = input(src.owner, "Enter Message Body, use <p></p> for paragraphs", "Outgoing message from Nanotrasen USCM", "") as message|null
+				var/message_body = input(src.owner, "Enter Message Body, use <p></p> for paragraphs", "Outgoing message from Nanotrasen TGMC", "") as message|null
 				if(!message_body) return
-				var/sent_by = input(src.owner, "Enter the name and rank you are sending from.", "Outgoing message from USCM", "") as message|null
+				var/sent_by = input(src.owner, "Enter the name and rank you are sending from.", "Outgoing message from TGMC", "") as message|null
 				if(!sent_by) return
 				var/sent_title = "Office of the Provost General"
-				if(template_choice == "USCM High Command")
-					sent_title = "USCM High Command"
+				if(template_choice == "TGMC High Command")
+					sent_title = "TGMC High Command"
 
-				fax_message = generate_templated_fax(0,"USCM CENTRAL COMMAND",subject,addressed_to,message_body,sent_by,sent_title,"United States Colonial Marine Corps")
+				fax_message = generate_templated_fax(0,"TGMC CENTRAL COMMAND",subject,addressed_to,message_body,sent_by,sent_title,"TerraGov Marine Corps")
 		usr << browse(fax_message, "window=uscmfaxpreview;size=600x600")
 		var/send_choice = input("Send this fax?") in list("Send", "Cancel")
 		if(send_choice == "Cancel") return
 		fax_contents += fax_message // save a copy
 
-		USCMFaxes.Add("<a href='?_src_=holder;CentcommFaxView=\ref[fax_message]'>\[view reply at [world.timeofday]\]</a>")
+		TGMCFaxes.Add("<a href='?_src_=holder;CentcommFaxView=\ref[fax_message]'>\[view reply at [world.timeofday]\]</a>")
 
 		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
 
@@ -1643,7 +1643,7 @@
 					// give the sprite some time to flick
 					spawn(20)
 						var/obj/item/paper/P = new /obj/item/paper( F.loc )
-						P.name = "USCM High Command - [customname]"
+						P.name = "TGMC High Command - [customname]"
 						P.info = fax_message
 						P.update_icon()
 
