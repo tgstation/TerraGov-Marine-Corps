@@ -40,7 +40,7 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 /datum/job/command/commander/generate_entry_message()
 		return {"As the commander of the USS Almayer you are held by higher standard and are expected to act competently.
-While you may support Nanotrasen, you report to the USCM High Command, not the corporate office.
+While you may support Nanotrasen, you report to the TGMC High Command, not the corporate office.
 Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
 Your first order of business should be briefing the marines on the mission they are about to undertake.
 If you require any help, use adminhelp to ask mentors about what you're supposed to do.

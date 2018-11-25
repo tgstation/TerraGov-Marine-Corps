@@ -4,14 +4,12 @@
 	icon = 'icons/obj/machines/vending.dmi'
 	icon_state = "robotics"
 	layer = BELOW_OBJ_LAYER
-	anchored = 1
+	anchored = TRUE
 	density = 1
 	var/datum/browser/popup = null
 	var/obj/machinery/computer3/laptop/vended/newlap = null
 	var/obj/item/device/laptop/relap = null
 	var/vendmode = 0
-
-
 	var/cardreader = 0
 	var/floppy = 0
 	var/radionet = 0
@@ -19,36 +17,35 @@
 	var/network = 0
 	var/power = 0
 
-
 /obj/machinery/lapvend/New()
-	..()
+	. = ..()
 	spawn(4)
 		power_change()
 		return
 	return
 
 /obj/machinery/lapvend/attackby(obj/item/W as obj, mob/user as mob)
-	if(vendmode == 1)
-		if(istype(W, /obj/item/card))
-			var/obj/item/card/I = W
-			scan_card(I)
-			vendmode = 0
-	if(vendmode == 3)
-		if(istype(W,/obj/item/card))
-			var/obj/item/card/I = W
-			reimburse(I)
-			vendmode = 0
-	if(vendmode == 0)
-		if(istype(W, /obj/item/device/laptop))
-			var/obj/item/device/laptop/L = W
-			relap = L
-			calc_reimburse(L)
-			usr.drop_inv_item_to_loc(L, src)
-			vendmode = 3
-			to_chat(usr, "<span class='notice'>You slot your [L.name] into \The [src.name]</span>")
-	else
-		..()
-
+	switch(vendmode)
+		if(1)
+			if(istype(W, /obj/item/card))
+				var/obj/item/card/I = W
+				scan_card(I)
+				vendmode = 0
+		if(3)
+			if(istype(W,/obj/item/card))
+				var/obj/item/card/I = W
+				reimburse(I)
+				vendmode = 0
+		if(3)
+			if(istype(W, /obj/item/device/laptop))
+				var/obj/item/device/laptop/L = W
+				relap = L
+				calc_reimburse(L)
+				usr.drop_inv_item_to_loc(L, src)
+				vendmode = 3
+				to_chat(usr, "<span class='notice'>You slot your [L.name] into \The [src.name]</span>")
+		else
+			return ..()
 
 /obj/machinery/lapvend/attack_hand(mob/user as mob)
 	user.set_interaction(src)
@@ -101,25 +98,18 @@
 			dat += "<A href='?src=\ref[src];choice=high_rem'>Power source: Extended (175)</a><br>"
 		else
 			dat += "<A href='?src=\ref[src];choice=super_rem'>Power source: Unreal (250)</a><br>"
-
-	if(vendmode == 0)
-		dat += "<br><A href='?src=\ref[src];choice=vend'>Vend Laptop</a>"
-
-	if(vendmode == 1)
-		dat += "Please swipe your card and enter your PIN to complete the transaction"
-
-	if(vendmode == 3)
-		dat += "Please swipe your card and enter your PIN to be finish returning your computer<br>"
-		dat += "<a href='?src=\ref[src];choice=cancel'>Cancel</a>"
-
-
-
-
+	switch(vendmode)
+		if(0)
+			dat += "<br><A href='?src=\ref[src];choice=vend'>Vend Laptop</a>"
+		if(1)
+			dat += "Please swipe your card and enter your PIN to complete the transaction"
+		if(3)
+			dat += "Please swipe your card and enter your PIN to be finish returning your computer<br>"
+			dat += "<a href='?src=\ref[src];choice=cancel'>Cancel</a>"
 	popup = new(user, "lapvend", name, 450, 500)
 	popup.set_content(dat)
 	popup.open()
 	return
-
 
 /obj/machinery/lapvend/Topic(href, href_list)
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
@@ -127,49 +117,44 @@
 	switch(href_list["choice"])
 		if("single_add")
 			cardreader = 1
-		if ("dual_add")
+		if("dual_add")
 			cardreader = 2
-		if ("floppy_add")
+		if("floppy_add")
 			floppy = 1
-		if ("radio_add")
+		if("radio_add")
 			radionet = 1
-		if ("camnet_add")
+		if("camnet_add")
 			camera = 1
-		if ("area_add")
+		if("area_add")
 			network = 1
-		if ("prox_add")
+		if("prox_add")
 			network = 2
-		if ("cable_add")
+		if("cable_add")
 			network = 3
-		if ("high_add")
+		if("high_add")
 			power = 1
-		if ("super_add")
+		if("super_add")
 			power = 2
-
-		if ("single_rem" || "dual_rem")
+		if("single_rem" || "dual_rem")
 			cardreader = 0
-		if ("floppy_rem")
+		if("floppy_rem")
 			floppy = 0
-		if ("radio_rem")
+		if("radio_rem")
 			radionet = 0
-		if ("camnet_rem")
+		if("camnet_rem")
 			camera = 0
-		if ("area_rem" || "prox_rem" || "cable_rem")
+		if("area_rem" || "prox_rem" || "cable_rem")
 			network = 0
-		if ("high_rem" || "super_rem")
+		if("high_rem" || "super_rem")
 			power = 0
-
 		if("vend")
 			vendmode = 1
-
 		if("cancel")
 			relap.loc = src.loc
 			relap = null
 			vendmode = 0
-
 	src.updateUsrDialog()
 	return
-
 
 /obj/machinery/lapvend/proc/vend()
 	if(cardreader > 0)
@@ -183,23 +168,23 @@
 		newlap.spawn_parts += (/obj/item/computer3_part/networking/radio)
 	if(camera == 1)
 		newlap.spawn_parts += (/obj/item/computer3_part/networking/cameras)
-	if (network == 1)
-		newlap.spawn_parts += (/obj/item/computer3_part/networking/area)
-	if (network == 2)
-		newlap.spawn_parts += (/obj/item/computer3_part/networking/prox)
-	if (network == 3)
-		newlap.spawn_parts += (/obj/item/computer3_part/networking/cable)
-	if (power == 1)
+	switch(network)
+		if(1)
+			newlap.spawn_parts += (/obj/item/computer3_part/networking/area)
+		if(2)
+			newlap.spawn_parts += (/obj/item/computer3_part/networking/prox)
+		if(3)
+			newlap.spawn_parts += (/obj/item/computer3_part/networking/cable)
+	if(power == 1)
 		cdel(newlap.battery)
 		newlap.battery = new /obj/item/cell/high(newlap)
-	if (power == 2)
+	else if(power == 2)
 		cdel(newlap.battery)
 		newlap.battery = new /obj/item/cell/super(newlap)
-
 	newlap.spawn_parts()
 
 /obj/machinery/lapvend/proc/scan_card(var/obj/item/card/I)
-	if (istype(I, /obj/item/card/id))
+	if(istype(I, /obj/item/card/id))
 		var/obj/item/card/id/C = I
 		visible_message("<span class='info'>[usr] swipes a card through [src].</span>")
 		var/datum/money_account/CH = get_account(C.associated_account_number)
@@ -219,12 +204,10 @@
 		else
 			transfer_and_vend(CH, C)
 
-
 // Transfers money and vends the laptop.
 /obj/machinery/lapvend/proc/transfer_and_vend(var/datum/money_account/D, var/obj/item/card/C)
 	var/transaction_amount = total()
 	if(transaction_amount <= D.money)
-
 		//transfer the money
 		D.money -= transaction_amount
 		vendor_account.money += transaction_amount
@@ -268,10 +251,9 @@
 
 /obj/machinery/lapvend/proc/total()
 	var/total = 0
-
 	if(cardreader == 1)
 		total += 50
-	if(cardreader == 2)
+	else if(cardreader == 2)
 		total += 125
 	if(floppy == 1)
 		total += 50
@@ -281,13 +263,13 @@
 		total += 100
 	if(network == 1)
 		total += 75
-	if(network == 2)
+	else if(network == 2)
 		total += 50
-	if(network == 3)
+	else if(network == 3)
 		total += 25
 	if(power == 1)
 		total += 175
-	if(power == 2)
+	else if(power == 2)
 		total += 250
 
 	return total
@@ -346,7 +328,7 @@
 
 
 /obj/machinery/lapvend/proc/reimburse(var/obj/item/card/I)
-	if (istype(I, /obj/item/card/id))
+	if(istype(I, /obj/item/card/id))
 		var/obj/item/card/id/C = I
 		visible_message("<span class='info'>[usr] swipes a card through [src].</span>")
 		var/datum/money_account/CH = get_account(C.associated_account_number)
