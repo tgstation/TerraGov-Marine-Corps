@@ -1191,10 +1191,11 @@ var/global/respawntime = 15
 	set name = "Distress Beacon"
 	set desc = "Call a distress beacon. This should not be done if the shuttle's already been called."
 
-	if (!ticker  || !ticker.mode)
+	if(!ticker || !ticker.mode)
 		return
 
-	if(!check_rights(R_ADMIN))	return
+	if(!check_rights(R_ADMIN))	
+		return
 
 	if(ticker.mode.picked_call)
 		var/confirm = alert(src, "There's already been a distress call sent. Are you sure you want to send another one? This will probably break things.", "Send a distress call?", "Yes", "No")
@@ -1203,7 +1204,8 @@ var/global/respawntime = 15
 		//Reset the distress call
 		ticker.mode.picked_call.members = list()
 		ticker.mode.picked_call.candidates = list()
-		ticker.mode.waiting_for_candidates = 0
+		ticker.mode.waiting_for_candidates = FALSE
+		ticker.mode.on_distress_cooldown = FALSE
 		ticker.mode.picked_call = null
 
 	var/list/list_of_calls = list()

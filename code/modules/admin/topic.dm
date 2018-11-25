@@ -1,5 +1,5 @@
 /datum/admins/Topic(href, href_list)
-	..()
+	. = ..()
 
 	if(usr.client != src.owner || !check_rights(0))
 		log_admin("[key_name(usr)] tried to use the admin panel without authorization.")
@@ -2626,26 +2626,8 @@
 		message_admins("[key_name_admin(usr)] has denied a distress beacon, requested by [key_name_admin(ref_person)]", 1)
 
 
-	if(href_list["distresscancel"])
-		if(distress_cancel)
-			to_chat(usr, "The distress beacon was already canceled.")
-			return
-		if(ticker.mode.waiting_for_candidates)
-			to_chat(usr, "Too late! The distress beacon was launched.")
-			return
-		log_game("[key_name_admin(usr)] has canceled the distress beacon.")
-		message_admins("[key_name_admin(usr)] has canceled the distress beacon.")
-		distress_cancel = TRUE
-		return
-
-
 	if(href_list["distress"]) //Distress Beacon, sends a random distress beacon when pressed
-		distress_cancel = FALSE
-		message_admins("[key_name_admin(usr)] has opted to SEND a distress beacon! Launching in 10 seconds... (<A HREF='?_src_=holder;distresscancel=\ref[usr]'>CANCEL</A>)")
-		spawn(100)
-			if(distress_cancel) 
-				return
-			var/mob/ref_person = locate(href_list["distress"])
-			ticker.mode.activate_distress()
-			log_game("[key_name_admin(usr)] has sent a randomized distress beacon, requested by [key_name_admin(ref_person)]")
-			message_admins("[key_name_admin(usr)] has sent a randomized distress beacon, requested by [key_name_admin(ref_person)]", 1)
+		var/mob/ref_person = locate(href_list["distress"])
+		ticker.mode.activate_distress()
+		log_game("[key_name_admin(usr)] has sent a randomized distress beacon, requested by [key_name_admin(ref_person)]")
+		message_admins("[key_name_admin(usr)] has sent a randomized distress beacon, requested by [key_name_admin(ref_person)]", 1)

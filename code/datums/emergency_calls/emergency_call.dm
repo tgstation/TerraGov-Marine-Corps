@@ -171,10 +171,9 @@
 			ticker.mode.on_distress_cooldown = TRUE
 
 			spawn(COOLDOWN_COMM_REQUEST)
-				ticker.mode.on_distress_cooldown = TRUE
+				ticker.mode.on_distress_cooldown = FALSE
 			
-		else //We've got enough!
-			//Trim down the list
+		else
 			var/datum/mind/picked_candidates[0]
 			if(mob_max > 0)
 				for(var/i = 1 to mob_max)
@@ -183,14 +182,10 @@
 					var/datum/mind/M = pick(candidates) //Get a random candidate, then remove it from the candidates list.
 					if(M.current.stat != DEAD)
 						candidates -= M //Strip them from the list, they aren't dead anymore.
-						if(!candidates.len)
-							break //NO picking from empty lists
-						M = pick(candidates)
-					if(!istype(M))//Something went horrifically wrong
+						continue
+					if(!istype(M)) //Something went horrifically wrong
 						candidates -= M
-						if(!candidates.len)
-							break //No empty lists!!
-						M = pick(candidates) //Lets try this again
+						continue
 					picked_candidates += M
 					candidates -= M
 				spawn(10) //Wait for all the above to be done
@@ -241,7 +236,6 @@
 			M.mind = new /datum/mind(M.key)
 			candidates += M.mind
 	return TRUE
-
 
 /datum/emergency_call/proc/get_spawn_point(is_for_items)
 	var/list/spawn_list = list()
