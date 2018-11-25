@@ -391,7 +391,8 @@
 /obj/item/storage/sparepouch
 	name="\improper G8 general utility pouch"
 	desc="A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor to provide additional storage. Unfortunately, this pouch uses the same securing system as most Armat platform weaponry, and thus only one can be clipped to the M3 Pattern Armor."
-	storage_slots = 3
+	storage_slots = null
+	max_storage_space = 15
 	w_class = 4
 	max_w_class = 3
 	icon = 'icons/obj/clothing/belts.dmi'
