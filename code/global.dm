@@ -1,6 +1,6 @@
 //#define TESTING
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-#define MAIN_SHIP_NAME "TGMC Theseus"
+#define MAIN_SHIP_NAME "TGS Theseus"
 //=================================================
 //Please don't edit these values without speaking to Errorage first	~Carn
 //Admin Permissions
