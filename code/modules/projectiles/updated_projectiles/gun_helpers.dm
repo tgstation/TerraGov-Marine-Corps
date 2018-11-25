@@ -739,10 +739,25 @@ should be alright.
 		A.ui_action_click(usr, src)
 
 
+/obj/item/weapon/gun/verb/toggle_rail_attachment()
+	set category = "Weapons"
+	set name = "Toggle Rail Attachment"
+	set desc = "Uses the rail attachement currently attached to the gun."
+	set src = usr.contents
+
+	if(!usr)
+		return
+
+	var/obj/item/weapon/gun/G = get_active_firearm(usr)
+	if(!G)
+		return
+
+	var/obj/item/attachable/A = G.rail
+
+	A.activate_attachment(G, usr)
 
 
-
-obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
+/obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
 	if(slot != WEAR_L_HAND && slot != WEAR_R_HAND)
 		return FALSE
 	return TRUE
