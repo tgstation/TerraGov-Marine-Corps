@@ -11,15 +11,16 @@
 
 /obj/item/explosive/grenade/frag/prime()
 	spawn(0)
-		explosion(loc, -1, -1, 3)
+		explosion(loc, -1, -1, 1)
+		frag_blast(get_turf(src), src)
 		cdel(src)
 	return
 
 /obj/item/explosive/grenade/frag/flamer_fire_act()
 	var/turf/T = loc
 	cdel(src)
-	explosion(T, -1, -1, 3)
-
+	explosion(T, -1, -1, 1)
+	frag_blast(get_turf(src), src)
 
 
 /obj/item/explosive/grenade/frag/training
@@ -53,7 +54,8 @@
 
 	prime()
 		spawn(0)
-			explosion(loc, -1, -1, 4)
+			explosion(loc, -1, -1, 1)
+			frag_blast(get_turf(src), src, 24)
 			cdel(src)
 		return
 
@@ -66,7 +68,8 @@
 
 	prime()
 		spawn(0)
-			explosion(loc, -1, -1, 4)
+			explosion(get_turf(src), -1, -1, 1)
+			frag_blast(get_turf(src), src, 24)
 			cdel(src)
 		return
 
@@ -84,8 +87,9 @@
 
 	prime()
 		spawn(0)
-			explosion(src.loc,-1,-1,3)
-			del(src)
+			explosion(get_turf(src), -1, -1, 1)
+			frag_blast(get_turf(src), src)
+			cdel(src)
 		return
 
 /obj/item/explosive/grenade/frag/upp
@@ -99,8 +103,9 @@
 
 	prime()
 		spawn(0)
-			explosion(src.loc,-1,-1,3)
-			del(src)
+			explosion(get_turf(src), -1, -1, 1)
+			frag_blast(get_turf(src), src)
+			cdel(src)
 		return
 
 /obj/item/explosive/grenade/incendiary
@@ -131,6 +136,26 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	for(var/obj/flamer_fire/F in range(radius,T)) // No stacking flames!
 		cdel(F)
 	new /obj/flamer_fire(T, rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)) + rand(burn_intensity*(0.5-int_var), burn_intensity*(0.5+int_var)), rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)) + rand(burn_duration*(0.5-int_var), burn_duration*(0.5-int_var)), colour, radius, burn_damage, fire_stacks) //Gaussian.
+
+/proc/frag_blast(turf/T, atom/source = null, projectiles = 16, datum/ammo/bullet/P = /datum/ammo/bullet/shrapnel/flechette) //Projectile count should generally be some multiple of 8.
+	if(!T || !isturf(T))
+		return
+	var/turf/initial_turf = T
+	var/angle_increment = 360 / max(1,projectiles)
+	var/current_angle = angle_increment
+	var/obj/item/projectile/A
+	var/datum/ammo/ammo = ammo_list[P]
+	for(var/i = 1 to projectiles)
+		A = rnew(/obj/item/projectile, initial_turf)
+		A.generate_bullet(ammo)
+		T = get_step(initial_turf, angle2dir(current_angle)) //First get the basic cardinal
+		if(angle_increment < 45)
+			T = get_step(T, angle2dir(current_angle + rand(-angle_increment,angle_increment))) //Repeat so we get an appropriate target for projectiles above 8
+		if(T == initial_turf) //Failsafe to prevent the projectiles from settling invisibly on the origin tile.
+			T = get_step_rand(T)
+		A.fire_at(T, source, initial_turf, ammo.max_range, ammo.shell_speed)
+		current_angle += angle_increment
+
 
 /obj/item/explosive/grenade/incendiary/molotov
 	name = "\improper improvised firebomb"

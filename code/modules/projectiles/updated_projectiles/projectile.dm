@@ -267,9 +267,18 @@
 								mob_is_hit = TRUE
 								break
 				if(mob_is_hit)
+					if(ammo.flags_ammo_behavior & AMMO_SHRAPNEL)
+						if(world.time > L.last_shrapnel)
+							L.shrapnel_counter = 0
+						L.shrapnel_counter++
+						L.last_shrapnel = world.time + LIVING_LAST_SHRAPNEL_MOD
+						if(L.shrapnel_counter > LIVING_MAX_SHRAPNEL)
+							return FALSE
 					ammo.on_hit_mob(L,src)
 					if(L?.loc)
 						L.bullet_act(src)
+
+
 					return TRUE
 				else if (!L.lying)
 					animatation_displace_reset(L)

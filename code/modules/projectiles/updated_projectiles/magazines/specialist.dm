@@ -141,6 +141,12 @@
 	default_ammo = /datum/ammo/rocket/wp
 	desc = "A highly destructive warhead that bursts into deadly flames on impact. Use this in hand to deconstruct it."
 
+/obj/item/ammo_magazine/rocket/frag
+	name = "\improper 84mm fragmentation rocket"
+	icon_state = "frag_rocket"
+	default_ammo = /datum/ammo/rocket/frag
+	desc = "A deadly anti-personnel warhead that explodes into mono-tipped flechette shrapnel on impact. Use this in hand to deconstruct it."
+
 /obj/item/ammo_magazine/internal/launcher/rocket
 	name = "\improper 84mm internal tube"
 	desc = "The internal tube of a M5 RPG."
