@@ -151,6 +151,7 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	xeno_explosion_resistance = 3 //no stuns from explosions, ignore damages except devastation range.
 	mob_size = MOB_SIZE_BIG
+	var/stomp_delay = null
 
 	is_charging = 1 //Crushers start with charging enabled
 
@@ -171,9 +172,9 @@
 
 	if(!check_state()) return
 
-	if(world.time < has_screeched + CRUSHER_STOMP_COOLDOWN) //Sure, let's use this.
-		to_chat(src, "<span class='xenowarning'>You are not ready to stomp again.</span>")
-		return FALSE
+	if(world.time < stomp_delay)
+		to_chat(src, "<span class='xenowarning'>You must gather your strength before Stomping again. It can be used in: [(stomp_delay - world.time) * 0.1] seconds.</span>")
+		return
 
 	if(legcuffed)
 		to_chat(src, "<span class='xenodanger'>You can't rear up to stomp with that thing on your leg!</span>")
@@ -222,6 +223,12 @@
 			M.Stun(1) //Otherwise we just get stunned.
 		M.apply_damage(rand(damage * 0.75 , damage * 1.25), HALLOSS) //Armour ignoring Halloss
 
+	stomp_delay = world.time + CRUSHER_STOMP_COOLDOWN
+
+	spawn(stomp_delay) //10 second cooldown base, minus 2 per victim
+		to_chat(src, "<span class='xenodanger'>You gather enough strength to Stomp again.</span>")
+		playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
+		update_action_button_icons()
 
 //The atom collided with is passed to this proc, all types of collisions are dealt with here.
 //The atom does not tell the Crusher how to handle a collision, the Crusher is an independant

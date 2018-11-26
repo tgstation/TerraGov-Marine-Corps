@@ -501,6 +501,8 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CARRIER_HUGGER_THROW_SPEED 2
 #define CARRIER_HUGGER_THROW_DISTANCE 5
 
+#define CRUSHER_STOMP_COOLDOWN		300
+
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1
 #define CAN_HOLD_ONE_HAND 2

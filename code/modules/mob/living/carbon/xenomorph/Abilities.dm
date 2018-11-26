@@ -570,7 +570,7 @@
 
 /datum/action/xeno_action/activable/stomp/action_cooldown_check()
 	var/mob/living/carbon/Xenomorph/Crusher/X = owner
-	if(world.time >= X.has_screeched + CRUSHER_STOMP_COOLDOWN)
+	if(world.time >= X.stomp_delay)
 		return TRUE
 
 /datum/action/xeno_action/activable/stomp/use_ability(atom/A)
