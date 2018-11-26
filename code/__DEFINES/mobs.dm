@@ -200,7 +200,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define LIMB_MUTATED 64 //limb is deformed by mutations
 #define LIMB_AMPUTATED 128 //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
 #define LIMB_REPAIRED 256 //we just repaired the bone, stops the gelling after setting
-#define LIMB_STABILIZED 512 //certain suits will support a broken limb while worn such as the b18
+#define LIMB_STABILIZED (1<<9) //certain suits will support a broken limb while worn such as the b18
 
 /////////////////MOVE DEFINES//////////////////////
 #define MOVE_INTENT_WALK        1
