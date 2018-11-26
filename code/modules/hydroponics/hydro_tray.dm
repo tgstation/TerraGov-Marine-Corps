@@ -4,7 +4,7 @@
 	name = "hydroponics tray"
 	icon = 'icons/obj/machines/hydroponics.dmi'
 	icon_state = "hydrotray3"
-	density = 1
+	density = 0
 	anchored = 1
 	container_type = AMOUNT_VISIBLE|REFILLABLE
 	volume = 100
