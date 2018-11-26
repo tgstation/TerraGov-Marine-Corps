@@ -8,8 +8,9 @@
 	layer = LOWER_ITEM_LAYER
 	var/turf/closed/wall/holed_wall
 
+
 /obj/effect/acid_hole/New(loc)
-	..()
+	. = ..()
 	if(istype(loc, /turf/closed/wall))
 		var/turf/closed/wall/W = loc
 		W.acided_hole = src
@@ -26,7 +27,8 @@
 		holed_wall.opacity = initial(holed_wall.opacity)
 		holed_wall.acided_hole = null
 		holed_wall = null
-	. = ..()
+		cdel(holed_wall)
+	return ..()
 
 /obj/effect/acid_hole/ex_act(severity)
 	return
