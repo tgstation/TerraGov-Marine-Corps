@@ -532,10 +532,13 @@
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/examine(mob/user)
 	. = ..()
+	if(user != wearer) //Only the wearer can see these details.
+		return
 	var/list/details = list()
-	details +=("It has [camo_energy]/[SCOUT_CLOAK_MAX_ENERGY] charge.</br>")
+	details +=("It has [camo_energy]/[SCOUT_CLOAK_MAX_ENERGY] charge. </br>")
 
-	details +=("Its safeties are on.</br>")
+	if(camo_cooldown_timer)
+		details +=("It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds. </br>")
 
 	if(camo_active)
 		details +=("It's currently active.</br>")

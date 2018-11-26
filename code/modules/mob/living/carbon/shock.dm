@@ -65,7 +65,7 @@
 			if((O.status & LIMB_DESTROYED) && !(O.status & LIMB_AMPUTATED))
 				traumatic_shock += 40
 			else if(O.status & LIMB_BROKEN || O.surgery_open_stage)
-				if(O.status & LIMB_SPLINTED)
+				if(O.status & LIMB_SPLINTED || O.status & LIMB_STABILIZED)
 					traumatic_shock += 15
 				else
 					traumatic_shock += 30
