@@ -604,6 +604,14 @@
 	icon_state = "other"
 	screen_loc = ui_inventory
 
+/obj/screen/SL_locator
+	name = "sl locator"
+	icon = 'icons/Marine/marine-items.dmi'
+	icon_state = "SL_locator"
+	alpha = 0 //invisible
+	mouse_opacity = 0
+	screen_loc = ui_sl_dir
+
 /obj/screen/toggle_inv/clicked(var/mob/user)
 	if (..())
 		return TRUE
