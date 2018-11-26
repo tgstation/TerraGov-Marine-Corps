@@ -60,7 +60,11 @@
 	//Burst fire.
 	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
 	var/burst_delay 	= 1						//The delay in between shots. Lower = less delay = faster.
-	var/extra_delay 	= 0						//When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
+	var/extra_delay		= 0						//When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
+
+	//Energy Weapons
+	var/ammo_per_shot	= 1						//How much ammo consumed per shot; normally 1.
+	var/overcharge		= 0						//In overcharge mode?
 
 	//Targeting.
 	var/tmp/list/mob/living/target				//List of who yer targeting.
@@ -70,6 +74,7 @@
 	var/tmp/told_cant_shoot = 0					//So that it doesn't spam them with the fact they cannot hit them.
 	var/firerate 			= 0					//0 for keep shooting until aim is lowered
 												//1 for one bullet after target moves and aim is lowered
+
 	//Attachments.
 	var/attachable_overlays[] 		= null		//List of overlays so we can switch them in an out, instead of using Cut() on overlays.
 	var/attachable_offset[] 		= null		//Is a list, see examples of from the other files. Initiated on New() because lists don't initial() properly.
@@ -216,8 +221,8 @@
 	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
 		return
 
-	var/obj/item/offhand = user.get_inactive_hand()
-	if(offhand)
+	var/obj/item/offhand
+	if(offhand == user.get_inactive_hand())
 		if(offhand == user.r_hand)
 			user.drop_r_hand()
 		else if(offhand == user.l_hand)
@@ -278,13 +283,13 @@
 	update_slowdown()
 	remove_offhand(user)
 	return TRUE
-	
+
 /obj/item/weapon/gun/proc/update_slowdown()
 	if(flags_item & WIELDED)
 		slowdown = initial(slowdown) + aim_slowdown
 	else
 		slowdown = initial(slowdown)
-	
+
 
 //----------------------------------------------------------
 			//							        \\
@@ -299,7 +304,8 @@
 		log_debug("ERROR CODE A1: null ammo while reloading. User: <b>[user]</b>")
 		ammo = ammo_list[/datum/ammo/bullet] //Looks like we're defaulting it.
 	else
-		ammo = ammo_list[magazine.default_ammo]
+		ammo = ammo_list[overcharge? magazine.overcharge_ammo : magazine.default_ammo]
+		//to_chat(user, "DEBUG: REPLACE AMMO. Ammo: [ammo]")
 
 //Hardcoded and horrible
 /obj/item/weapon/gun/proc/cock_gun(mob/user)
@@ -357,7 +363,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		if(!in_chamber)
 			load_into_chamber()
 
-	update_icon()
+	update_icon(user)
 	return TRUE
 
 /obj/item/weapon/gun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
@@ -365,12 +371,14 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	current_mag = magazine
 	replace_ammo(user,magazine)
 	if(!in_chamber)
-		ready_in_chamber()
-		cock_gun(user)
+		ready_in_chamber(user)
+		if(!flags_gun_features & GUN_ENERGY)
+			cock_gun(user)
 	user.visible_message("<span class='notice'>[user] loads [magazine] into [src]!</span>",
 	"<span class='notice'>You load [magazine] into [src]!</span>", null, 3)
 	if(reload_sound)
 		playsound(user, reload_sound, 25, 1, 5)
+	update_icon()
 
 
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
@@ -379,7 +387,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)))
 		return
 
-	if(!current_mag || isnull(current_mag) || current_mag.loc != src)
+	if(!current_mag || isnull(current_mag) || current_mag.loc != src || !flags_gun_features & GUN_ENERGY)
 		cock(user)
 		return
 
@@ -394,13 +402,13 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	current_mag.update_icon()
 	current_mag = null
 
-	update_icon()
+	update_icon(user)
 
 //Manually cock the gun
-//This only works on weapons NOT marked with UNUSUAL_DESIGN or INTERNAL_MAG
+//This only works on weapons NOT marked with UNUSUAL_DESIGN or INTERNAL_MAG or ENERGY
 /obj/item/weapon/gun/proc/cock(mob/user)
 
-	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG))
+	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG|GUN_ENERGY))
 		return
 	if(cock_cooldown > world.time)
 		return
@@ -525,7 +533,7 @@ and you're good to go.
 
 	if(!active_attachable) //We don't need to check for the mag if an attachment was used to shoot.
 		if(current_mag) //If there is no mag, we can't reload.
-			ready_in_chamber()
+			ready_in_chamber(user)
 			if(current_mag.current_rounds <= 0 && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
 				unload(user,1,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
 				playsound(src, empty_sound, 25, 1)
@@ -536,7 +544,7 @@ and you're good to go.
 	if(active_attachable) //Attachables don't chamber rounds, so we want to delete it right away.
 		cdel(projectile_to_fire) //Getting rid of it. Attachables only use ammo after the cycle is over.
 		if(refund)
-			active_attachable.current_rounds++ //Refund the bullet.
+			active_attachable.current_rounds += ammo_per_shot //Refund the bullet.
 		return TRUE
 
 /obj/item/weapon/gun/proc/clear_jam(var/obj/item/projectile/projectile_to_fire, mob/user as mob) //Guns jamming, great.
@@ -790,8 +798,7 @@ and you're good to go.
 							cdel(projectile_to_fire)
 						reload_into_chamber(user) //Reload into the chamber if the gun supports it.
 						return TRUE
-					else
-						return FALSE
+
 	return ..() //Pistolwhippin'
 
 //----------------------------------------------------------
@@ -944,13 +951,13 @@ and you're good to go.
 				if(bullets_fired == 1)
 					user.visible_message(
 					"<span class='danger'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
-					"<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]" : ""]</span>", \
+					"<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[max(0,current_mag.current_rounds - ammo_per_shot)]</b>/[current_mag.max_rounds]" : ""]</span>", \
 					"<span class='warning'>You hear a [istype(projectile_to_fire.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!</span>", 4
 					)
 			else
 				playsound(user, actual_sound, 25)
 				if(bullets_fired == 1)
-					to_chat(user, "<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]" : ""]</span>")
+					to_chat(user, "<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[max(0,current_mag.current_rounds - ammo_per_shot)]</b>/[current_mag.max_rounds]" : ""]</span>")
 	return TRUE
 
 /obj/item/weapon/gun/proc/simulate_scatter(obj/item/projectile/projectile_to_fire, atom/target, turf/targloc, total_scatter_chance = 0, mob/user, burst_scatter_bonus = 0)

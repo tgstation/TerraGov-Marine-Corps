@@ -1131,6 +1131,39 @@
 	..()
 	shell_speed = config.super_shell_speed
 
+/datum/ammo/energy/lasgun
+	name = "laser bolt"
+	icon_state = "laser"
+
+/datum/ammo/energy/lasgun/New()
+	..()
+	accurate_range = config.norm_shell_range
+	damage = config.mlow_hit_damage
+	penetration = config.mlow_armor_penetration
+	max_range = config.long_shell_range
+	shell_speed = config.ultra_shell_speed
+	accuracy_var_low = config.low_proj_variance
+	accuracy_var_high = config.low_proj_variance
+	damage_var_low = config.low_proj_variance
+	damage_var_high = config.low_proj_variance
+
+/datum/ammo/energy/lasgun/M43
+	name = "M43 laser bolt"
+
+/datum/ammo/energy/lasgun/M43/New()
+	..()
+	penetration = config.med_armor_penetration
+
+/datum/ammo/energy/lasgun/M43/overcharge
+	name = "M43 overcharged laser bolt"
+	icon_state = "heavylaser"
+
+/datum/ammo/energy/lasgun/M43/overcharge/New()
+	..()
+	damage = config.hmed_hit_damage
+	max_range = config.max_shell_range
+	penetration = config.mhigh_armor_penetration
+
 /*
 //================================================
 					Xeno Spits

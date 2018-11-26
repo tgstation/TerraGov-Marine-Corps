@@ -433,6 +433,7 @@
 		"/obj/item/ammo_magazine/rifle",
 		"/obj/item/ammo_magazine/smg",
 		"/obj/item/ammo_magazine/sniper",
+		"/obj/item/ammo_magazine/lasgun",
 		 )
 
 /obj/item/clothing/tie/storage/black_vest

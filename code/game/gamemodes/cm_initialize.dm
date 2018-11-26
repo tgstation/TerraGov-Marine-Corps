@@ -292,7 +292,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	while(i > 0) //While we can still pick someone for the role.
 		if(length(possible_xenomorphs)) //We still have candidates
 			new_xeno = pick(possible_xenomorphs)
-			if(!new_xeno) 
+			if(!new_xeno)
 				break  //Looks like we didn't get anyone. Back out.
 			new_xeno.assigned_role = "MODE"
 			new_xeno.special_role = "Xenomorph"
@@ -486,7 +486,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 	new_xeno.update_icons()
 
-	if(original) 
+	if(original)
 		cdel(original) //Just to be sure.
 
 /datum/game_mode/proc/transform_queen(datum/mind/ghost_mind)
@@ -506,7 +506,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 	new_queen.update_icons()
 
-	if(original) 
+	if(original)
 		cdel(original) //Just to be sure.
 
 //===================================================\\
@@ -527,10 +527,10 @@ datum/game_mode/proc/initialize_post_queen_list()
 			var/i = surv_starting_num
 			var/datum/mind/new_survivor
 			while(i > 0)
-				if(!length(possible_survivors)) 
+				if(!length(possible_survivors))
 					break  //Ran out of candidates! Can't have a null pick(), so just stick with what we have.
 				new_survivor = pick(possible_survivors)
-				if(!new_survivor) 
+				if(!new_survivor)
 					break  //We ran out of survivors!
 				new_survivor.assigned_role = "MODE"
 				new_survivor.special_role = "Survivor"
@@ -936,6 +936,8 @@ datum/game_mode/proc/initialize_post_queen_list()
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
 						/obj/item/ammo_magazine/shotgunbox/flechette = round(scale * 3),
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 15),
+						/obj/item/ammo_magazine/lasgun/M43 = round(scale * 30),
+						/obj/item/ammo_magazine/lasgun/M43/highcap = round(scale * 5),
 						/obj/item/smartgun_powerpack = round(scale * 2)
 						)
 
@@ -1001,6 +1003,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 						/obj/item/weapon/gun/rifle/m41a = round(scale * 20),
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 10),
 						// /obj/item/weapon/gun/shotgun/combat = round(scale * 1),
+						/obj/item/weapon/gun/energy/lasgun/M43 = round(scale * 10),
 						/obj/item/explosive/mine = round(scale * 2),
 						/obj/item/storage/box/nade_box = round(scale * 2),
 						/obj/item/explosive/grenade/frag/m15 = round(scale * 2),
@@ -1050,6 +1053,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 						/obj/item/weapon/gun/smg/m39 = round(scale * 30),
 						/obj/item/weapon/gun/rifle/m41a = round(scale * 30),
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 15),
+						/obj/item/weapon/gun/energy/lasgun/M43 = round(scale * 15),
 
 						/obj/item/ammo_magazine/pistol = round(scale * 30),
 						/obj/item/ammo_magazine/revolver = round(scale * 20),
@@ -1059,6 +1063,8 @@ datum/game_mode/proc/initialize_post_queen_list()
 						/obj/item/ammo_magazine/shotgun = round(scale * 10),
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 10),
+						/obj/item/ammo_magazine/lasgun/M43 = round(scale * 25),
+						/obj/item/ammo_magazine/lasgun/M43/highcap = 0,
 
 						/obj/item/weapon/combat_knife = round(scale * 30),
 						/obj/item/weapon/throwing_knife = round(scale * 10),
