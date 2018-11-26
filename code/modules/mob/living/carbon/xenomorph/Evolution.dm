@@ -1,4 +1,4 @@
-//Xenomorph Evolution Code - Colonial Marines - Apophis775 - Last Edit: 11JUN16
+//Xenomorph Evolution Code - Apophis775 - Last Edit: 11JUN16
 
 //Recoded and consolidated by Abby -- ALL evolutions come from here now. It should work with any caste, anywhere
 // refactored by spookydonut because the above two were shitcoders and i'm sure in time my code too will be considered shit.
