@@ -21,24 +21,227 @@
 	force = 12
 	wield_delay = 12 //Ends up being 1.6 seconds due to scope
 	zoomdevicename = "scope"
-	attachable_allowed = list(/obj/item/attachable/bipod)
+	var/targetlaser_on = FALSE
+	var/mob/laser_target = null
+	var/obj/effect/overlay/temp/sniper_laser/laser
+	attachable_allowed = list(
+                        /obj/item/attachable/bipod,
+                        /obj/item/attachable/lasersight,
+                        )
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 
-/obj/item/weapon/gun/rifle/sniper/M42A/New()
-	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a"))
-	. = ..()
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
-	var/obj/item/attachable/scope/S = new(src)
-	S.attach_icon = "" //Let's make it invisible. The sprite already has one.
-	S.icon_state = ""
-	S.flags_attach_features &= ~ATTACH_REMOVABLE
-	S.Attach(src)
-	var/obj/item/attachable/sniperbarrel/Q = new(src)
-	Q.Attach(src)
-	update_attachables()
-	S.icon_state = initial(S.icon_state)
+	New()
+		select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a") )
+		..()
+		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+		var/obj/item/attachable/scope/m42a/S = new(src)
+		S.attach_icon = "" //Let's make it invisible. The sprite already has one.
+		S.icon_state = ""
+		S.flags_attach_features &= ~ATTACH_REMOVABLE
+		S.Attach(src)
+		var/obj/item/attachable/sniperbarrel/Q = new(src)
+		Q.Attach(src)
+		update_attachables()
+		S.icon_state = initial(S.icon_state)
 
+/obj/item/weapon/gun/rifle/sniper/M42A/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
+	if(!able_to_fire(user))
+		return
+	if(targetlaser_on)
+		if(!ismob(target))
+			return
+		if(target == laser_target)
+			to_chat(user, "<span class='warning'>You're already focused on that target!</span>")
+			return
+		if(laser_target)
+			laser_target.vis_contents -= laser
+		cdel(laser)
+		to_chat(user, "<span class='danger'>You focus your targeting laser on [target]!</span>")
+		laser_target = target
+		var/obj/effect/overlay/temp/sniper_laser/LT = new (laser_target, "targeting laser")
+		laser = LT
+		targetlaser_on = FALSE
+		laser_target.vis_contents += laser
+		processing_objects.Remove(src) //So we don't accumulate additional processing.
+		processing_objects.Add(src)
+		return
+	return ..()
+
+/obj/item/weapon/gun/rifle/sniper/M42A/unique_action(mob/user)
+	if(!targetlaser_on)
+		laser_on(user)
+
+	else if(zoom)
+		laser_off(user)
+
+/obj/item/weapon/gun/rifle/sniper/M42A/Dispose()
+	laser_off()
+	. = ..()
+
+/obj/item/weapon/gun/rifle/sniper/M42A/dropped()
+	laser_off()
+	. = ..()
+
+/obj/item/weapon/gun/rifle/sniper/M42A/process()
+	if(!zoom)
+		laser_off()
+		return
+	if(!isliving(loc) )
+		laser_off()
+		return
+	var/mob/living/user = loc
+	if(!laser_target)
+		cdel(laser)
+		laser = null
+		processing_objects.Remove(src)
+		return
+	if(!can_see(user, laser_target, length=23))
+		laser_target.vis_contents -= laser
+		laser_target = null
+		cdel(laser)
+		laser = null
+		processing_objects.Remove(src)
+		to_chat(user, "<span class='danger'>You lose sight of your target!</span>")
+		return
+
+/obj/item/weapon/gun/rifle/sniper/M42A/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+	. = ..()
+	var/obj/item/attachable/scope/m42a/S = rail
+	if(zoom)
+		S.accuracy_mod = config.max_hit_accuracy_mult
+	else
+		S.accuracy_mod = 0
+		user.client?.change_view(viewsize)
+
+		var/tilesize = 32
+		var/viewoffset2 = tilesize * tileoffset
+
+		switch(user.dir)
+			if(NORTH)
+				user.client.pixel_x = 0
+				user.client.pixel_y = viewoffset2
+			if(SOUTH)
+				user.client.pixel_x = 0
+				user.client.pixel_y = -viewoffset2
+			if(EAST)
+				user.client.pixel_x = viewoffset2
+				user.client.pixel_y = 0
+			if(WEST)
+				user.client.pixel_x = -viewoffset2
+				user.client.pixel_y = 0
+
+		laser_off(user)
+
+		spawn(1) //Don't ask me why I have to do this meddling with the client viewing; I just do, otherwise the laser decal won't get properly deleted; a retarded solution for a retarded problem.
+			if(user.client)
+				user.client.change_view(world.view)
+				user.client.pixel_x = 0
+				user.client.pixel_y = 0
+
+	/*if(!user)
+		return
+	var/zoom_device = zoomdevicename ? "\improper [zoomdevicename] of [src]" : "\improper [src]"
+	var/mob/living/carbon/human/H = user
+	var/obj/item/attachable/scope/m42a/S = src.rail
+	for(var/obj/item/I in user.contents)
+		if(I.zoom && I != src)
+			to_chat(user, "<span class='warning'>You are already looking through \the [zoom_device].</span>")
+			return //Return in the interest of not unzooming the other item. Check first in the interest of not fucking with the other clauses
+
+	if(is_blind(user))
+		to_chat(user, "<span class='warning'>You are too blind to see anything.</span>")
+	else if(user.stat || !ishuman(user))
+		to_chat(user, "<span class='warning'>You are unable to focus through \the [zoom_device].</span>")
+	else if(!zoom && user.client && H.tinttotal >= 3)
+		to_chat(user, "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>")
+	else if(!zoom && user.get_active_hand() != src)
+		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
+	else if(zoom) //If we are zoomed out, reset that parameter.
+		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
+		"<span class='notice'>You look up from [zoom_device].</span>")
+		zoom = !zoom
+		user.zoom_cooldown = world.time + 20
+		S.accuracy_mod = 0
+		laser_off(user)
+	else //Otherwise we want to zoom in.
+		if(world.time <= user.zoom_cooldown) //If we are spamming the zoom, cut it out
+			return
+		user.zoom_cooldown = world.time + 20
+
+		if(user.client)
+			user.client.change_view(viewsize)
+
+			var/tilesize = 32
+			var/viewoffset = tilesize * tileoffset
+
+			switch(user.dir)
+				if(NORTH)
+					user.client.pixel_x = 0
+					user.client.pixel_y = viewoffset
+				if(SOUTH)
+					user.client.pixel_x = 0
+					user.client.pixel_y = -viewoffset
+				if(EAST)
+					user.client.pixel_x = viewoffset
+					user.client.pixel_y = 0
+				if(WEST)
+					user.client.pixel_x = -viewoffset
+					user.client.pixel_y = 0
+
+		user.visible_message("<span class='notice'>[user] peers through \the [zoom_device].</span>",
+		"<span class='notice'>You peer through \the [zoom_device].</span>")
+		zoom = !zoom
+		S.accuracy_mod = config.max_hit_accuracy_mult
+		if(user.interactee)
+			user.unset_interaction()
+		else
+			user.set_interaction(src)
+		return
+
+	//General reset in case anything goes wrong, the view will always reset to default unless zooming in.
+	if(user.client)
+		user.client.change_view(world.view)
+		user.client.pixel_x = 0
+		user.client.pixel_y = 0*/
+
+
+/atom/proc/sniper_target(atom/A)
+	return FALSE
+
+/obj/item/weapon/gun/rifle/sniper/M42A/sniper_target(atom/A)
+	if(!laser_target)
+		return FALSE
+	if(A == laser_target)
+		return laser_target
+	else
+		return TRUE
+
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_on(mob/user, silent = FALSE)
+	if(targetlaser_on)
+		return
+	if(!zoom)
+		if(!silent)
+			to_chat(user, "<span class='warning'>You must be zoomed in to use your targeting laser!</span>")
+		return
+	targetlaser_on = TRUE
+	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
+	if(!silent && user)
+		to_chat(user, "<span class='notice'><b>You activate your targeting laser and take careful aim.</b></span>")
+		playsound(user,'sound/machines/click.ogg', 25, 1)
+
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_off(mob/user, silent = FALSE)
+	if(laser_target)
+		laser_target.vis_contents -= laser
+	laser_target = null
+	accuracy_mult = config.base_hit_accuracy_mult
+	cdel(laser)
+	laser = null
+	processing_objects.Remove(src)
+	targetlaser_on = FALSE
+	if(!silent && user)
+		to_chat(user, "<span class='notice'><b>You deactivate your targeting laser.</b></span>")
+		playsound(user,'sound/machines/click.ogg', 25, 1)
 
 /obj/item/weapon/gun/rifle/sniper/M42A/set_gun_config_values()
 	fire_delay = config.high_fire_delay*5
@@ -156,17 +359,11 @@
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
 	force = 16
 	attachable_allowed = list(
-						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
 						/obj/item/attachable/bipod,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/lasersight,
-						/obj/item/attachable/attached_gun/grenade,
-						/obj/item/attachable/attached_gun/shotgun,
-						)
+						/obj/item/attachable/compensator)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
@@ -185,16 +382,13 @@
 
 
 /obj/item/weapon/gun/rifle/m4ra/set_gun_config_values()
-	fire_delay = config.mhigh_fire_delay
-	burst_amount = config.low_burst_value
-	burst_delay = config.vlow_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.max_hit_accuracy_mult
-	scatter_unwielded = config.max_scatter_value
+	fire_delay = config.high_fire_delay
+	burst_amount = config.med_burst_value
+	burst_delay = config.mlow_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	scatter = config.low_scatter_value
 	damage_mult = config.base_hit_damage_mult
 	recoil = config.min_recoil_value
-	recoil_unwielded = config.high_recoil_value
-	damage_falloff_mult = config.low_damage_falloff_mult
 
 //-------------------------------------------------------
 //SMARTGUN

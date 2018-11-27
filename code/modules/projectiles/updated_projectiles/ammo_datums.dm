@@ -688,7 +688,7 @@
 
 /datum/ammo/bullet/sniper/New()
 	..()
-	accurate_range = config.min_shell_range
+	accurate_range = config.norm_shell_range
 	max_range = config.max_shell_range
 	scatter = -config.med_scatter_value
 	damage = config.mhigh_hit_damage

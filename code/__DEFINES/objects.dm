@@ -209,3 +209,8 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define OBJ_SKILL_CONSTRUCTION	17
 #define OBJ_SKILL_POLICE		18
 #define OBJ_SKILL_POWERLOADER	19
+
+//Scope accuracy defines
+#define SCOPE_RAIL				0.4
+#define SCOPE_RAIL_MINI			0.2
+#define SCOPE_RAIL_SNIPER		0.5
