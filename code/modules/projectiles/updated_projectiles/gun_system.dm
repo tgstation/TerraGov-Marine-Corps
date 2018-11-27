@@ -221,8 +221,8 @@
 	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
 		return
 
-	var/obj/item/offhand
-	if(offhand == user.get_inactive_hand())
+	var/obj/item/offhand = user.get_inactive_hand()
+	if(offhand)
 		if(offhand == user.r_hand)
 			user.drop_r_hand()
 		else if(offhand == user.l_hand)
