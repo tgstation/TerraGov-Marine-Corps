@@ -1617,6 +1617,21 @@ AMMO
 	containername = "\improper white phosphorus M5 RPG ammo crate"
 	group = "Ammo"
 
+/datum/supply_packs/ammo_rpg_frag
+	name = "M5 RPG Fragmentation rockets crate (x6)"
+	contains = list(
+					/obj/item/ammo_magazine/rocket/frag,
+					/obj/item/ammo_magazine/rocket/frag,
+					/obj/item/ammo_magazine/rocket/frag,
+					/obj/item/ammo_magazine/rocket/frag,
+					/obj/item/ammo_magazine/rocket/frag,
+					/obj/item/ammo_magazine/rocket/frag
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/explosives
+	containername = "\improper fragmentation M5 RPG ammo crate"
+	group = "Ammo"
+
 /datum/supply_packs/ammo_box_rifle
 	name = "large M41A ammo box crate (x400 rounds)"
 	contains = list(
