@@ -123,3 +123,9 @@
 	var/temporary_slowdown = 0 //Stacking slowdown caused from effects, currently used by neurotoxin gas
 
 	var/datum/squad/assigned_squad //the squad this human is assigned to
+
+	var/sl_locator_next_update
+	var/sl_headset_active = null
+	var/sl_indicator_active = null
+	var/sl_direction_active = null
+	var/image/SL_directional = null

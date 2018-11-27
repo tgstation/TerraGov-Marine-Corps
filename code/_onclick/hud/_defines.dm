@@ -100,3 +100,5 @@
 #define ui_mask "WEST+1:8,3:9"
 #define ui_wear_ear "WEST+2:10,3:9"
 #define ui_head "WEST+1:8,4:11"
+
+#define ui_sl_dir "CENTER,CENTER"
