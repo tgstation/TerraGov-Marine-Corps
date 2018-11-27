@@ -12,6 +12,7 @@
 	var/max_damage = 0
 	var/max_size = 0
 	var/last_dam = -1
+	var/supported = FALSE
 
 	var/display_name
 	var/list/wounds = list()
@@ -875,26 +876,21 @@ Note that amputating the affected organ does in fact remove the infection from t
 	// This is mostly for the ninja suit to stop ninja being so crippled by breaks.
 	// TODO: consider moving this to a suit proc or process() or something during
 	// hardsuit rewrite.
-	if(!(status & LIMB_SPLINTED) && istype(owner,/mob/living/carbon/human))
+	if(ishuman(owner))
 
 		var/mob/living/carbon/human/H = owner
-
 		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit))
 
 			var/obj/item/clothing/suit/suit = H.wear_suit
 
-			if(isnull(suit.supporting_limbs))
-				return
-
-			to_chat(owner, "You feel [suit] constrict about your [display_name], supporting it.")
-			status |= LIMB_SPLINTED
-			suit.supporting_limbs |= src
+			suit.secure_limb(src, H)
 	return
 
 /datum/limb/proc/robotize()
 	status &= ~LIMB_BROKEN
 	status &= ~LIMB_BLEEDING
 	status &= ~LIMB_SPLINTED
+	status &= ~LIMB_STABILIZED
 	status &= ~LIMB_AMPUTATED
 	status &= ~LIMB_DESTROYED
 	status &= ~LIMB_NECROTIZED
@@ -960,7 +956,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return !(status & (LIMB_DESTROYED|LIMB_MUTATED|LIMB_NECROTIZED))
 
 /datum/limb/proc/is_broken()
-	return ((status & LIMB_BROKEN) && !(status & LIMB_SPLINTED))
+	return ((status & LIMB_BROKEN) && !(status & LIMB_SPLINTED) && !(status & LIMB_STABILIZED))
 
 /datum/limb/proc/is_malfunctioning()
 	return ((status & LIMB_ROBOT) && prob(brute_dam + burn_dam))
