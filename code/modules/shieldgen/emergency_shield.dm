@@ -8,7 +8,7 @@
 	anchored = 1
 	unacidable = 1
 	var/const/max_health = 200
-	var/health = max_health //The shield can only take so much beating (prevents perma-prisons)
+	var/s_health = max_health //The shield can only take so much beating (prevents perma-prisons)
 	var/shield_generate_power = 7500	//how much power we use when regenerating
 	var/shield_idle_power = 1500		//how much power we use when just being sustained.
 
@@ -27,13 +27,13 @@
 	//Calculate damage
 	var/aforce = W.force
 	if(W.damtype == BRUTE || W.damtype == BURN)
-		src.health -= aforce
+		s_health -= aforce
 
 	//Play a fitting sound
 	playsound(src.loc, 'sound/effects/EMPulse.ogg', 25, 1)
 
 
-	if (src.health <= 0)
+	if (src.s_health <= 0)
 		visible_message("\blue The [src] dissipates!")
 		cdel(src)
 		return
@@ -44,9 +44,9 @@
 	..()
 
 /obj/machinery/shield/bullet_act(var/obj/item/projectile/Proj)
-	health -= Proj.damage
+	s_health -= Proj.damage
 	..()
-	if(health <=0)
+	if(s_health <=0)
 		visible_message("\blue The [src] dissipates!")
 		cdel(src)
 		return 1
@@ -86,13 +86,13 @@
 	else
 		tforce = AM:throwforce
 
-	src.health -= tforce
+	s_health -= tforce
 
 	//This seemed to be the best sound for hitting a force field.
 	playsound(src.loc, 'sound/effects/EMPulse.ogg', 25, 1)
 
 	//Handle the destruction of the shield
-	if (src.health <= 0)
+	if (s_health <= 0)
 		visible_message("\blue The [src] dissipates!")
 		cdel(src)
 		return
@@ -116,7 +116,7 @@
 	anchored = 0
 	req_access = list(ACCESS_MARINE_ENGINEERING, ACCESS_MARINE_CE)
 	var/const/max_health = 100
-	var/health = max_health
+	var/s_health = max_health
 	var/active = 0
 	var/malfunction = 0 //Malfunction causes parts of the shield to slowly dissapate
 	var/list/deployed_shields = list()
@@ -205,9 +205,9 @@
 			check_delay--
 
 /obj/machinery/shieldgen/proc/checkhp()
-	if(health <= 30)
+	if(s_health <= 30)
 		src.malfunction = 1
-	if(health <= 0)
+	if(s_health <= 0)
 		spawn(0)
 			explosion(get_turf(src.loc), 0, 0, 1, 0, 0, 0)
 		cdel(src)
@@ -217,27 +217,27 @@
 /obj/machinery/shieldgen/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			src.health -= 75
+			s_health -= 75
 			src.checkhp()
 		if(2.0)
-			src.health -= 30
+			s_health -= 30
 			if (prob(15))
 				src.malfunction = 1
 			src.checkhp()
 		if(3.0)
-			src.health -= 10
+			s_health -= 10
 			src.checkhp()
 	return
 
 /obj/machinery/shieldgen/emp_act(severity)
 	switch(severity)
 		if(1)
-			src.health /= 2 //cut health in half
+			s_health /= 2 //cut health in half
 			malfunction = 1
 			locked = pick(0,1)
 		if(2)
 			if(prob(50))
-				src.health *= 0.3 //chop off a third of the health
+				s_health *= 0.3 //chop off a third of the health
 				malfunction = 1
 	checkhp()
 
@@ -281,10 +281,10 @@
 	else if(istype(W, /obj/item/stack/cable_coil) && malfunction && is_open)
 		var/obj/item/stack/cable_coil/coil = W
 		to_chat(user, "<span class='notice'>You begin to replace the wires.</span>")
-		//if(do_after(user, min(60, round( ((maxhealth/health)*10)+(malfunction*10) ))) //Take longer to repair heavier damage
+		//if(do_after(user, min(60, round( ((maxhealth/s_health)*10)+(malfunction*10) ))) //Take longer to repair heavier damage
 		if(do_after(user, 30, TRUE, 5, BUSY_ICON_FRIENDLY))
 			if (coil.use(1))
-				health = max_health
+				s_health = max_health
 				malfunction = 0
 				to_chat(user, "<span class='notice'>You repair the [src]!</span>")
 				update_icon()

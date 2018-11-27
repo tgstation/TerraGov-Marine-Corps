@@ -111,6 +111,11 @@ Class Procs:
 	var/uid
 	var/manual = 0
 	var/global/gl_uid = 1
+	var/health = 200 //Health before being destroyed.
+	var/soak = 10 //Flat reduction applied to all damage.
+	var/proj_resist = 0.25 //% resistance applied to projectile damage.
+	var/melee_resist = 0.5
+	var/no_damage = TRUE
 	layer = OBJ_LAYER
 	var/machine_processing = 0 // whether the machine is busy and requires process() calls in scheduler.
 
@@ -124,6 +129,62 @@ Class Procs:
 			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD)
 			cdel()
 		return
+
+/obj/machinery/proc/update_health(var/damage, explode = FALSE) //Negative damage restores health.
+	if(no_damage)
+		return
+
+	health -= damage
+
+	if(health > initial(health))
+		health = initial(health)
+
+	if(health <= 0 && stat != 2)
+		stat = 2
+		if(prob(explode))
+			explosion(loc, -1, -1, 2, 0)
+		if(!disposed)
+			cdel(src)
+			return
+	update_icon()
+	return
+
+/obj/machinery/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			cdel(src)
+		if(2.0)
+			if(no_damage)
+				if(prob(50))
+					cdel(src)
+			else
+				update_health(0.5 * initial(health) - soak)
+		if(3.0)
+			if(no_damage)
+				if(prob(25))
+					cdel(src)
+			else
+				update_health(0.25 * initial(health) - soak)
+		else
+	return
+
+/obj/machinery/bullet_act(var/obj/item/projectile/Proj) //Nope.
+	if(no_damage)
+		return
+	var/resist = proj_resist
+	var/damage = (Proj.damage - max(0,soak-Proj.ammo.penetration) ) * resist
+	if(Proj.ammo.flags_ammo_behavior & AMMO_XENO_ACID) //Acid more effective against structures
+		damage *= 3
+	if(damage)
+		visible_message("<span class='warning'>[src] is hit by the [Proj.name]!</span>")
+		update_health(round(damage))
+	return 1
+
+/obj/machinery/attackby(var/obj/item/O as obj, mob/user as mob)
+	if(O.force && !no_damage)
+		update_health(O.force - soak * melee_resist)
+	return ..()
+
 
 /obj/machinery/New()
 	. = ..()
@@ -158,23 +219,6 @@ Class Procs:
 		use_power(7500/severity)
 	new /obj/effect/overlay/temp/emp_sparks (loc)
 	..()
-
-
-/obj/machinery/ex_act(severity)
-	switch(severity)
-		if(1.0)
-			cdel(src)
-			return
-		if(2.0)
-			if (prob(50))
-				cdel(src)
-				return
-		if(3.0)
-			if (prob(25))
-				cdel(src)
-				return
-		else
-	return
 
 //sets the use_power var and then forces an area power update
 /obj/machinery/proc/update_use_power(var/new_use_power, var/force_update = 0)
@@ -251,9 +295,27 @@ Class Procs:
 	return src.attack_hand(user)
 
 //Xenomorphs can't use machinery, not even the "intelligent" ones
-//Exception is Queen and shuttles, because plot power
+//Exception is Queen and shuttles, because plot power. They can slash the shit out of them though
 /obj/machinery/attack_alien(mob/living/carbon/Xenomorph/M)
-	to_chat(M, "<span class='warning'>You stare at \the [src] cluelessly.</span>")
+	if(no_damage)
+		to_chat(M, "<span class='warning'>You stare at \the [src] cluelessly.</span>")
+	else
+		if(isXenoLarva(M))
+			return //Larvae can't do shit
+		M.animation_attack_on(src)
+		M.flick_attack_overlay(src, "slash")
+		playsound(loc, "alien_claw_metal", 25)
+		if(prob(5))
+			if(!locate(/obj/effect/decal/cleanable/blood/oil) in loc)
+				new /obj/effect/decal/cleanable/blood/oil(loc)
+		var/damage = max(0,rand(M.melee_damage_lower,M.melee_damage_upper) - soak)
+		if(damage)
+			M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
+			"<span class='danger'>You slash [src]!</span>")
+			update_health(damage)
+		else
+			M.visible_message("<span class='warning'>[M] has slashed the [src] ineffectually.</span>",
+			"<span class='warning'>You slash [src] ineffectually.</span>")
 
 /obj/machinery/attack_hand(mob/user as mob)
 	if(inoperable(MAINT))

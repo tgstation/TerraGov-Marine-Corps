@@ -14,7 +14,7 @@
 	anchored = 0.0
 	density = 1.0
 	icon_state = "barrier0"
-	var/health = 100.0
+	health = 100.0
 	var/maxhealth = 100.0
 	var/locked = 0.0
 //	req_access = list(access_maint_tunnels)

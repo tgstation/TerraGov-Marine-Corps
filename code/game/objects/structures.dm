@@ -5,7 +5,67 @@
 	var/breakable
 	var/parts
 	var/flags_barrier = 0
+	var/health = 200 //Health before being destroyed.
+	var/soak = 10 //Flat reduction applied to all damage.
+	var/proj_resist = 0.25 //% resistance applied to projectile damage.
+	var/melee_resist = 0.5
 	anchored = TRUE
+
+/obj/structure/proc/update_health(var/damage, explode = FALSE) //Negative damage restores health.
+	if(breakable)
+		return
+
+	health -= damage
+
+	if(health > initial(health))
+		health = initial(health)
+
+	if(health <= 0)
+		if(prob(explode))
+			explosion(loc, -1, -1, 2, 0)
+		if(!disposed)
+			cdel(src)
+			return
+	update_icon()
+	return
+
+/obj/structure/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			cdel(src)
+		if(2.0)
+			if(!breakable)
+				if(prob(50))
+					cdel(src)
+			else
+				update_health(0.5 * initial(health) - soak)
+		if(3.0)
+			if(!breakable)
+				if(prob(25))
+					cdel(src)
+			else
+				update_health(0.25 * initial(health) - soak)
+		else
+	return
+
+/obj/structure/bullet_act(var/obj/item/projectile/Proj) //Nope.
+	if(!breakable)
+		return
+	var/resist = proj_resist
+	var/damage = (Proj.damage - max(0,soak-Proj.ammo.penetration) ) * resist
+	if(Proj.ammo.flags_ammo_behavior & AMMO_XENO_ACID) //Acid more effective against structures
+		damage *= 3
+	if(damage)
+		visible_message("<span class='warning'>[src] is hit by the [Proj.name]!</span>")
+		update_health(round(damage))
+	return 1
+
+/obj/structure/attackby(var/obj/item/O as obj, mob/user as mob)
+	if(O.force && breakable)
+		update_health(O.force - soak * melee_resist)
+	return ..()
+
+
 
 /obj/structure/New()
 	..()

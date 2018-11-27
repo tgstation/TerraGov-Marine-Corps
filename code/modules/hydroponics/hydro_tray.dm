@@ -32,7 +32,7 @@
 	var/mutation_level = 0     // When it hits 100, the plant mutates.
 
 	// Mechanical concerns.
-	var/health = 0             // Plant health.
+	var/p_health = 0             // Plant health.
 	var/lastproduce = 0        // Last time tray was harvested
 	var/lastcycle = 0          // Cycle timing/tracking var.
 	var/cycledelay = 150       // Delay per cycle.
@@ -204,9 +204,9 @@
 	// water and nutrients will cause a plant to become healthier.
 	var/healthmod = rand(1,3) * HYDRO_SPEED_MULTIPLIER
 	if(seed.requires_nutrients && prob(35))
-		health += (nutrilevel < 2 ? -healthmod : healthmod)
+		p_health += (nutrilevel < 2 ? -healthmod : healthmod)
 	if(seed.requires_water && prob(35))
-		health += (waterlevel < 10 ? -healthmod : healthmod)
+		p_health += (waterlevel < 10 ? -healthmod : healthmod)
 
 	// Check that pressure, heat and light are all within bounds.
 	// First, handle an open system or an unconnected closed system.
@@ -215,10 +215,10 @@
 
 	// Process it.
 	if(pressure < seed.lowkpa_tolerance || pressure > seed.highkpa_tolerance)
-		health -= healthmod
+		p_health -= healthmod
 
 	if(abs(temperature - seed.ideal_heat) > seed.heat_tolerance)
-		health -= healthmod
+		p_health -= healthmod
 
 	// If we're attached to a pipenet, then we should let the pipenet know we might have modified some gasses
 	if (closed_system && connected_port)
@@ -233,40 +233,40 @@
 		else
 			light_available =  5
 		if(abs(light_available - seed.ideal_light) > seed.light_tolerance)
-			health -= healthmod
+			p_health -= healthmod
 
 	// Toxin levels beyond the plant's tolerance cause damage, but
 	// toxins are sucked up each tick and slowly reduce over time.
 	if(toxins > 0)
 		var/toxin_uptake = max(1,round(toxins/10))
 		if(toxins > seed.toxins_tolerance)
-			health -= toxin_uptake
+			p_health -= toxin_uptake
 		toxins -= toxin_uptake
 
 	// Check for pests and weeds.
 	// Some carnivorous plants happily eat pests.
 	if(pestlevel > 0)
 		if(seed.carnivorous)
-			health += HYDRO_SPEED_MULTIPLIER
+			p_health += HYDRO_SPEED_MULTIPLIER
 			pestlevel -= HYDRO_SPEED_MULTIPLIER
 		else if (pestlevel >= seed.pest_tolerance)
-			health -= HYDRO_SPEED_MULTIPLIER
+			p_health -= HYDRO_SPEED_MULTIPLIER
 
 	// Some plants thrive and live off of weeds.
 	if(weedlevel > 0)
 		if(seed.parasite)
-			health += HYDRO_SPEED_MULTIPLIER
+			p_health += HYDRO_SPEED_MULTIPLIER
 			weedlevel -= HYDRO_SPEED_MULTIPLIER
 		else if (weedlevel >= seed.weed_tolerance)
-			health -= HYDRO_SPEED_MULTIPLIER
+			p_health -= HYDRO_SPEED_MULTIPLIER
 
 	// Handle life and death.
 	// If the plant is too old, it loses health fast.
 	if(age > seed.lifespan)
-		health -= rand(3,5) * HYDRO_SPEED_MULTIPLIER
+		p_health -= rand(3,5) * HYDRO_SPEED_MULTIPLIER
 
 	// When the plant dies, weeds thrive and pests die off.
-	if(health <= 0)
+	if(p_health <= 0)
 		dead = 1
 		mutation_level = 0
 		harvest = 0
@@ -311,7 +311,7 @@
 
 			// Beneficial reagents have a few impacts along with health buffs.
 			if(beneficial_reagents[R.id])
-				health += beneficial_reagents[R.id][1]       * reagent_total
+				p_health += beneficial_reagents[R.id][1]       * reagent_total
 				yield_mod += beneficial_reagents[R.id][2]    * reagent_total
 				mutation_mod += beneficial_reagents[R.id][3] * reagent_total
 
@@ -395,7 +395,7 @@
 	// Updates the plant overlay.
 	if(!isnull(seed))
 
-		if(draw_warnings && health <= (seed.endurance / 2))
+		if(draw_warnings && p_health <= (seed.endurance / 2))
 			overlays += "over_lowhealth3"
 
 		if(dead)
@@ -453,7 +453,7 @@
 
 	dead = 0
 	age = 0
-	health = seed.endurance
+	p_health = seed.endurance
 	lastcycle = world.time
 	harvest = 0
 	weedlevel = 0
@@ -487,9 +487,9 @@
 /obj/machinery/portable_atmospherics/hydroponics/proc/check_level_sanity()
 	//Make sure various values are sane.
 	if(seed)
-		health =     max(0,min(seed.endurance,health))
+		p_health =     max(0,min(seed.endurance,p_health))
 	else
-		health = 0
+		p_health = 0
 		dead = 0
 
 	mutation_level = max(0,min(mutation_level,100))
@@ -511,7 +511,7 @@
 	dead = 0
 	mutate(1)
 	age = 0
-	health = seed.endurance
+	p_health = seed.endurance
 	lastcycle = world.time
 	harvest = 0
 	weedlevel = 0
@@ -542,7 +542,7 @@
 
 		// Create a sample.
 		seed.harvest(user,yield_mod,1)
-		health -= (rand(3,5)*10)
+		p_health -= (rand(3,5)*10)
 
 		if(prob(30))
 			sampled = 1
@@ -601,7 +601,7 @@
 				dead = 0
 				age = 1
 				//Snowflakey, maybe move this to the seed datum
-				health = (istype(S, /obj/item/seeds/cutting) ? round(seed.endurance/rand(2,5)) : seed.endurance)
+				p_health = (istype(S, /obj/item/seeds/cutting) ? round(seed.endurance/rand(2,5)) : seed.endurance)
 
 				lastcycle = world.time
 
@@ -692,7 +692,7 @@
 	else
 		if(seed && !dead)
 			to_chat(usr, "[src] has \blue [seed.display_name] \black planted.")
-			if(health <= (seed.endurance / 2))
+			if(p_health <= (seed.endurance / 2))
 				to_chat(usr, "The plant looks \red unhealthy.")
 		else
 			to_chat(usr, "[src] is empty.")

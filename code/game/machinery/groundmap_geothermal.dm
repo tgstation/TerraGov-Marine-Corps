@@ -292,7 +292,7 @@
 	var/obj/machinery/colony_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
 	var/lum_value = 7
 	var/repair_state = 0
-	var/health = 120
+	health = 120
 
 /obj/machinery/colony_floodlight/Dispose()
 	SetLuminosity(0)

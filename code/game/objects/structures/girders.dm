@@ -7,7 +7,7 @@
 	var/state = 0
 	var/dismantlectr = 0
 	var/buildctr = 0
-	var/health = 125
+	health = 125
 	var/repair_state = 0
 	// To store what type of wall it used to be
 	var/original

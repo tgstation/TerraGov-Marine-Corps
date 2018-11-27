@@ -8,7 +8,7 @@
 	layer = WINDOW_LAYER
 	flags_atom = ON_BORDER
 	var/dismantle = FALSE //If we're dismantling the window properly no smashy smashy
-	var/health = 15
+	health = 15
 	var/state = 2
 	var/reinf = FALSE
 	var/basestate = "window"

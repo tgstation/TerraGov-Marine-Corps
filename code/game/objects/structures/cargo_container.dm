@@ -6,7 +6,9 @@
 	bound_width = 32
 	bound_height = 64
 	density = 1
-	var/health = 200
+	health = 200
+	soak = 20
+	breakable = TRUE
 	opacity = 1
 	anchored = 1
 
