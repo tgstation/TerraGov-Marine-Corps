@@ -371,3 +371,230 @@
 		var/mob/living/carbon/human/user = usr //Hacky...
 		user.update_power_display(perc)
 	return 1
+
+//-------------------------------------------------------
+//Lasguns
+
+/obj/item/weapon/gun/energy/lasgun
+	name = "\improper Lasgun"
+	desc = "A laser based firearm. Uses power cells."
+	origin_tech = "combat=5;materials=4"
+	reload_sound = 'sound/weapons/gun_rifle_reload.ogg'
+	fire_sound = 'sound/weapons/Laser.ogg'
+	matter = list("metal" = 2000)
+	flags_equip_slot = SLOT_BACK
+	w_class = 4
+	force = 15
+	overcharge = FALSE
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_ENERGY
+	aim_slowdown = SLOWDOWN_ADS_RIFLE
+	wield_delay = WIELD_DELAY_SLOW
+	gun_skill_category = GUN_SKILL_RIFLES
+
+
+/obj/item/weapon/gun/energy/lasgun/set_gun_config_values()
+	fire_delay = config.low_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.high_hit_accuracy_mult
+	damage_mult = config.base_hit_damage_mult
+	scatter_unwielded = config.max_scatter_value * 2 //Heavy and unwieldy
+	damage_falloff_mult = config.med_damage_falloff_mult
+
+
+//-------------------------------------------------------
+//M43 Sunfury Lasgun MK1
+
+/obj/item/weapon/gun/energy/lasgun/M43
+	name = "\improper M43 Sunfury Lasgun MK1"
+	desc = "An accurate, recoilless laser based battle rifle with an integrated charge selector. Ideal for longer range engagements. Uses power cells."
+	force = 20 //Large and hefty! Includes stock bonus.
+	icon_state = "m43"
+	item_state = "m43"
+	attachable_allowed = list(
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/bipod,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/attached_gun/grenade,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/scope,
+						/obj/item/attachable/scope/mini)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY
+	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
+
+/obj/item/weapon/gun/energy/lasgun/M43/New()
+	..()
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 24, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
+	var/obj/item/attachable/stock/lasgun/S = new(src)
+	S.flags_attach_features &= ~ATTACH_REMOVABLE
+	S.Attach(src)
+	update_attachables()
+	update_icon()
+	S.icon_state = initial(S.icon_state)
+
+
+/obj/item/weapon/gun/energy/lasgun/M43/set_gun_config_values()
+	fire_delay = config.low_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.max_hit_accuracy_mult //Heavy and unwieldy; you don't one hand this.
+	damage_mult = config.base_hit_damage_mult
+	scatter_unwielded = config.max_scatter_value * 2.5 //Heavy and unwieldy; you don't one hand this.
+	damage_falloff_mult = config.med_damage_falloff_mult
+
+//variant without ugl attachment
+/obj/item/weapon/gun/energy/lasgun/M43/stripped
+	starting_attachment_types = list()
+
+/obj/item/weapon/gun/energy/lasgun/M43/unique_action(mob/user)
+	toggle_chargemode(user)
+
+
+//Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.
+/obj/item/weapon/gun/energy/lasgun/proc/toggle_chargemode(mob/user)
+	if(overcharge == FALSE)
+		if(current_mag.current_rounds < 1)
+			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
+			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s overcharge mode but your battery pack lacks adequate charge to do so.</span>")
+			return
+		//While overcharge is active, double ammo consumption, and
+		playsound(user, 'sound/weapons/emitter.ogg', 15, 0, 2)
+		ammo_per_shot = OVERCHARGE_AMMO_COST
+		fire_delay = config.med_fire_delay * 2 // 1 shot per second fire rate
+		damage_falloff_mult = config.low_damage_falloff_mult
+		fire_sound = 'sound/weapons/Laser3.ogg'
+		to_chat(user, "\icon[src] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
+		overcharge = TRUE
+	else
+		playsound(user, 'sound/weapons/emitter2.ogg', 15, 0, 2)
+		ammo_per_shot = 1
+		fire_delay = config.low_fire_delay
+		damage_falloff_mult = config.med_damage_falloff_mult
+		fire_sound = 'sound/weapons/Laser.ogg'
+		to_chat(user, "\icon[src] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
+		overcharge = FALSE
+	replace_ammo(user,current_mag)
+	load_into_chamber(user, TRUE)
+
+//Ammo/Charge functions
+/obj/item/weapon/gun/energy/lasgun/update_icon(mob/user)
+	if(!current_mag || current_mag.current_rounds <= 0)
+		icon_state = base_gun_icon + "_0"
+		if(flags_item & WIELDED)
+			item_state = "m43_0_w"
+		else
+			item_state = "m43_0"
+	else
+		var/remaining = CEILING((current_mag.current_rounds / max(current_mag.max_rounds, 1)) * 100, 25)
+		icon_state = "[base_gun_icon]_[remaining]"
+		item_state = "m43_[remaining][flags_item & WIELDED ? "_w" : ""]"
+		/*
+		switch(current_mag.current_rounds / max(current_mag.max_rounds, 1))
+			if(0.76 to 1)
+				icon_state = base_gun_icon + "_100"
+				if(flags_item & WIELDED)
+					item_state = "m43_100_w"
+				else
+					item_state = "m43_100"
+			if(0.51 to 0.75)
+				icon_state = base_gun_icon + "_75"
+				item_state = "m43_75[flags_item & WIELDED ? "_w" : ""]"
+				else
+					item_state = "m43_75"
+			if(0.26 to 0.5)
+				icon_state = base_gun_icon + "_50"
+				if(flags_item & WIELDED)
+					item_state = "m43_50_w"
+				else
+					item_state = "m43_50"
+			if(0.01 to 0.25)
+				icon_state = base_gun_icon + "_25"
+				if(flags_item & WIELDED)
+					item_state = "m43_25_w"
+				else
+					item_state = "m43_25"*/
+	if(current_mag)
+		update_mag_overlay()
+	if(ishuman(user))
+		var/mob/living/carbon/human/M = user
+		if(src == M.l_hand)
+			M.update_inv_l_hand()
+		else if (src == user.r_hand)
+			M.update_inv_r_hand()
+
+
+/obj/item/weapon/gun/energy/lasgun/replace_ammo(mob/user = null, var/obj/item/ammo_magazine/magazine)
+	if(!magazine.default_ammo)
+		log_debug("ERROR CODE A1: null ammo while reloading. User: <b>[user]</b>")
+		ammo = ammo_list[/datum/ammo/bullet] //Looks like we're defaulting it.
+	else
+		ammo = ammo_list[overcharge? magazine.overcharge_ammo : magazine.default_ammo]
+
+
+/obj/item/weapon/gun/energy/lasgun/load_into_chamber(mob/user, overcharge_check = FALSE)
+	//The workhorse of the bullet procs.
+ 	//If we have a round chambered and no active attachable, we're good to go.
+	if(in_chamber && (!active_attachable || overcharge_check) )
+		if(overcharge_check) //Check to see if we have the proper ammo in chamber to match the overcharge fire mode
+			var/reg_ammo = ammo_list[current_mag.default_ammo].name
+			var/over_ammo = ammo_list[current_mag.overcharge_ammo].name
+			if(overcharge && in_chamber.name == reg_ammo)
+				in_chamber = null //clean the chamber of the erroneous round
+				current_mag.current_rounds = min(1 + current_mag.current_rounds, current_mag.max_rounds) //refund cost of a standard shot.
+				return ready_in_chamber(user, TRUE)
+			else if (!overcharge && in_chamber.name == over_ammo)
+				in_chamber = null //clean the chamber of the erroneous round
+				current_mag.current_rounds = min(OVERCHARGE_AMMO_COST + current_mag.current_rounds, current_mag.max_rounds) //refund cost of an overcharge shot.
+				return ready_in_chamber(user, TRUE)
+
+		return in_chamber //Already set!
+	//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
+	if(active_attachable && !overcharge_check)
+		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
+			active_attachable.current_rounds--
+			return create_bullet(active_attachable.ammo)
+		else
+			to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
+			to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
+			playsound(user, active_attachable.activation_sound, 15, 1)
+			active_attachable.activate_attachment(src, null, TRUE)
+	else
+		return ready_in_chamber(user)//We're not using the active attachable, we must use the active mag if there is one.
+
+
+/obj/item/weapon/gun/energy/lasgun/ready_in_chamber(mob/user, switch_modes = FALSE)
+	if(current_mag?.current_rounds > 0)
+		if(current_mag.current_rounds < ammo_per_shot && overcharge)
+			toggle_chargemode(user)
+			to_chat(user, "<span class='warning'>With a whine, [src]'s overcharge mode automatically toggles off due to a lack of power.</span>")
+		if(switch_modes) //Let the player know wtf is going on with his ammo count if he switches charge modes with mismatched ammo types in the chamber
+			if(overcharge)
+				to_chat(user, "<span class='warning'>With a hum, [src]'s capacitors draw additional charge as you switch to overcharge mode. [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[max(0,current_mag.current_rounds - ammo_per_shot)]</b>/[current_mag.max_rounds]" : ""]</span>")
+			else
+				to_chat(user, "<span class='warning'>With a whine, [src]'s capacitors discharge back into the battery as you switch from overcharge mode. [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[max(0,current_mag.current_rounds - ammo_per_shot)]</b>/[current_mag.max_rounds]" : ""]</span>")
+		in_chamber = create_bullet(ammo)
+		current_mag.current_rounds -= ammo_per_shot //Subtract the round from the mag.
+		update_icon(user)
+		return in_chamber
+
+
+//EMPs will fuck with remaining charge
+/obj/item/weapon/gun/energy/lasgun/emp_act(severity)
+	. = ..()
+	var/amount = round(current_mag.max_rounds * rand(2,severity) * 0.1)
+	if(current_mag.current_rounds < amount)
+		return FALSE
+	current_mag.current_rounds = max(0,current_mag.current_rounds - amount)
+	update_icon()
+	current_mag.update_icon()
+
+// use power from a cell
+/obj/item/ammo_magazine/lasgun/proc/use(var/amount)
+
+	return TRUE

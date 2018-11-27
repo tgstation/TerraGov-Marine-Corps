@@ -18,6 +18,7 @@
 	anchored = 1
 	density = 1
 	layer = BELOW_OBJ_LAYER
+	can_supply_drop = TRUE
 
 	use_power = 1
 	idle_power_usage = 10
@@ -583,11 +584,24 @@
 /obj/machinery/vending/proc/release_item(datum/data/vending_product/R, delay_vending = 0, dump_product = 0)
 	set waitfor = 0
 	if(delay_vending)
-		use_power(vend_power_usage)	//actuators and stuff
-		if (icon_vend) flick(icon_vend,src) //Show the vending animation if needed
-		sleep(delay_vending)
-	if(ispath(R.product_path,/obj/item/weapon/gun)) . = new R.product_path(get_turf(src),1)
-	else . = new R.product_path(get_turf(src))
+		if(powered(power_channel))
+			use_power(vend_power_usage)	//actuators and stuff
+			if (icon_vend)
+				flick(icon_vend,src) //Show the vending animation if needed
+			sleep(delay_vending)
+		else if(machine_current_charge > vend_power_usage) //if no power, use the machine's battery.
+			machine_current_charge -= min(machine_current_charge, vend_power_usage) //Sterilize with min; no negatives allowed.
+			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Vend Power Usage: [vend_power_usage] Machine Current Charge: [machine_current_charge].</span>")
+			if (icon_vend)
+				flick(icon_vend,src) //Show the vending animation if needed
+			sleep(delay_vending)
+		else
+			return
+	if(ispath(R.product_path,/obj/item/weapon/gun))
+		return new R.product_path(get_turf(src),1)
+	else
+		return new R.product_path(get_turf(src))
+
 
 /obj/machinery/vending/MouseDrop_T(var/atom/movable/A, mob/user)
 
@@ -604,7 +618,7 @@
 		var/obj/item/I = A
 		stock(I, user)
 
-/obj/machinery/vending/proc/stock(obj/item/item_to_stock, mob/user)
+/obj/machinery/vending/proc/stock(obj/item/item_to_stock, mob/user, recharge = FALSE)
 	var/datum/data/vending_product/R //Let's try with a new datum.
 	 //More accurate comparison between absolute paths.
 	for(R in (product_records + hidden_records + coin_records))
@@ -634,8 +648,9 @@
 				S.remove_from_storage(item_to_stock, user.loc)
 
 			cdel(item_to_stock)
-			user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
-			"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
+			if(!recharge)
+				user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
+				"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
 			R.amount++
 			updateUsrDialog()
 			return //We found our item, no reason to go on.

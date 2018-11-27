@@ -94,7 +94,7 @@
 						dat += "<A href='?src=\ref[src];operation=change_lead'>\[CHANGE SQUAD LEADER\]</a><BR><BR>"
 					else
 						dat += "<B>Squad Leader:</B> <font color=red>NONE</font> <A href='?src=\ref[src];operation=change_lead'>\[ASSIGN SQUAD LEADER\]</a><BR><BR>"
-		
+
 					dat += "<B>Primary Objective:</B> "
 					if(current_squad.primary_objective)
 						dat += "[current_squad.primary_objective] <a href='?src=\ref[src];operation=set_primary'>\[Set\]</a><br>"
@@ -143,7 +143,7 @@
 						dat += "<span class='warning'>None</span><br>"
 						selected_target = null
 					else
-						dat += "<font color='green'>[selected_target.name]</font><br>"		
+						dat += "<font color='green'>[selected_target.name]</font><br>"
 					dat += "<A href='?src=\ref[src];operation=shootrailgun'>\[FIRE!\]</a><br>"
 					dat += "----------------------<br></body>"
 					dat += "<br><br><a href='?src=\ref[src];operation=refresh'>{Refresh}</a></body>"
@@ -161,7 +161,9 @@
 					else
 						dat += "<font color='green'>Ready!</font><br>"
 					dat += "<B>Launch Pad Status:</b> "
-					var/obj/structure/closet/crate/C = locate() in current_squad.drop_pad.loc
+					var/obj/C = locate() in current_squad.drop_pad.loc //This thing should ALWAYS exist.
+					if(!C.can_supply_drop) //Can only send supply droppable items
+						C = null
 					if(C)
 						dat += "<font color='green'>Supply crate loaded</font><BR>"
 					else
@@ -456,7 +458,7 @@
 					dat += "<span class='warning'>None</span><br>"
 					selected_target = null
 				else
-					dat += "<font color='green'>[selected_target.name]</font><br>"		
+					dat += "<font color='green'>[selected_target.name]</font><br>"
 				dat += "<A href='?src=\ref[src];operation=dropbomb'>\[FIRE!\]</a><br>"
 				dat += "----------------------<BR></Body>"
 				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a></Body>"
@@ -752,7 +754,10 @@
 		to_chat(usr, "\icon[src] <span class='warning'>No supply beacon detected!</span>")
 		return
 
-	var/obj/structure/closet/crate/C = locate() in current_squad.drop_pad.loc //This thing should ALWAYS exist.
+	var/obj/C = locate() in current_squad.drop_pad.loc //This thing should ALWAYS exist.
+	if(!C.can_supply_drop) //Can only send vendors and crates
+		C = null
+
 	if(!istype(C))
 		to_chat(usr, "\icon[src] <span class='warning'>No crate was detected on the drop pad. Get Requisitions on the line!</span>")
 		return
@@ -1011,7 +1016,7 @@
 		H.visible_message("[H] deactivates [src]",
 		"You deactivate [src]")
 		H.put_in_active_hand(src)
-	
+
 
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
 
@@ -1250,7 +1255,7 @@
 		dat += "<b><font color=red>NONE!</font></b><br>"
 	dat += get_squad_info_ending()
 	return dat
-	
+
 /obj/machinery/computer/overwatch/proc/get_squad_info_ending()
 	var/dat = ""
 	dat += "----------------------<br>"
