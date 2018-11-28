@@ -725,7 +725,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	switch(P.ammo.damage_type)
 		if(BRUTE) 	damage = P.ammo.flags_ammo_behavior & AMMO_ROCKET ? round(damage * 10) : damage //Bullets do much less to walls and such.
-		if(BURN)	damage = P.ammo.flags_ammo_behavior & (AMMO_ENERGY) ? round(damage * 7) : damage
+		if(BURN)	damage = P.ammo.flags_ammo_behavior & (AMMO_ENERGY) ? round(damage * 1.5) : damage
 		else return
 	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC) current_bulletholes++
 	take_damage(damage)
