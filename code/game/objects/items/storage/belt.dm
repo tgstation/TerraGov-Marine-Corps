@@ -71,7 +71,15 @@
 		"/obj/item/stack/cable_coil",
 		"/obj/item/device/t_scanner",
 		"/obj/item/device/analyzer",
-		"/obj/item/tool/taperoll/engineering")
+		"/obj/item/tool/taperoll/engineering",
+		"/obj/item/clothing/glasses/welding",
+		"/obj/item/clothing/glasses/meson",
+		"/obj/item/clothing/gloves/yellow",
+		"/obj/item/clothing/gloves/marine/alpha/insulated",
+		"/obj/item/clothing/gloves/marine/bravo/insulated",
+		"/obj/item/clothing/gloves/marine/charlie/insulated",
+		"/obj/item/clothing/gloves/marine/delta/insulated"
+		)
 
 
 /obj/item/storage/belt/utility/full/New()
@@ -317,19 +325,25 @@
 
 /obj/item/storage/belt/knifepouch
 	name="\improper M276 pattern knife rig"
-	desc="The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is specially designed with four holsters to store throwing knives. Not commonly issued, but kept in service."
+	desc="The M276 is the standard load-bearing equipment of the USCM. It consists of a modular belt with various clips. This version is specially designed with holsters to store throwing knives, but can fit any combat knife or bayonet as well. Not commonly issued, but kept in service."
 	icon_state="knifebelt"
 	item_state="marine" // aslo temp, maybe somebody update these icons with better ones?
 	w_class = 3
-	storage_slots = 6
-	max_w_class = 1
-	max_storage_space = 6
+	storage_slots = 8
+	max_w_class = 2
+	max_storage_space = 16
+	can_hold=list(
+		"/obj/item/weapon/throwing_knife",
+		"/obj/item/weapon/combat_knife",
+		"/obj/item/attachable/bayonet"
+		)
 
-	can_hold=list("/obj/item/weapon/throwing_knife")
 	New()
 		select_gamemode_skin(type)
 		..()
 		item_state = "marinebelt" //PLACEHOLDER. Override, since it has no unique state.
+		new /obj/item/weapon/throwing_knife(src)
+		new /obj/item/weapon/throwing_knife(src)
 		new /obj/item/weapon/throwing_knife(src)
 		new /obj/item/weapon/throwing_knife(src)
 		new /obj/item/weapon/throwing_knife(src)
@@ -391,7 +405,8 @@
 /obj/item/storage/sparepouch
 	name="\improper G8 general utility pouch"
 	desc="A small, lightweight pouch that can be clipped onto Armat Systems M3 Pattern armor to provide additional storage. Unfortunately, this pouch uses the same securing system as most Armat platform weaponry, and thus only one can be clipped to the M3 Pattern Armor."
-	storage_slots = 3
+	storage_slots = null
+	max_storage_space = 15
 	w_class = 4
 	max_w_class = 3
 	icon = 'icons/obj/clothing/belts.dmi'

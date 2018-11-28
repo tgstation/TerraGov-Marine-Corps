@@ -255,10 +255,11 @@
 	new /obj/item/explosive/grenade/frag (src)
 	new /obj/item/explosive/grenade/frag (src)
 	new /obj/item/explosive/grenade/frag (src)
-
+	new /obj/item/explosive/grenade/frag (src)
 
 /obj/item/storage/pouch/explosive/upp/New()
 	..()
+	new /obj/item/explosive/plastique(src)
 	new /obj/item/explosive/plastique(src)
 	new /obj/item/explosive/plastique(src)
 	new /obj/item/explosive/plastique(src)
@@ -403,7 +404,7 @@
 	new /obj/item/device/motiondetector (src)
 	new /obj/item/device/whistle (src)
 	new /obj/item/device/radio (src)
-	new /obj/item/map/current_map (src)
+	new /obj/item/device/megaphone (src)
 	new /obj/item/device/binoculars/tactical (src)
 
 
