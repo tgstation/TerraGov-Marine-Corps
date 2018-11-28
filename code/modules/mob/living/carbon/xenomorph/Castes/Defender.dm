@@ -190,3 +190,4 @@
 			icon_state = "Defender Walking"
 
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
+	update_wounds()

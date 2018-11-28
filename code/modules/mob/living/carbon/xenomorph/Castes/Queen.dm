@@ -720,6 +720,7 @@
 			icon_state = "Queen Walking"
 
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
+	update_wounds()
 
 /mob/living/carbon/Xenomorph/Queen/Topic(href, href_list)
 

@@ -11,10 +11,10 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
 	melee_damage_upper = 35
-	attack_delay = 0.5 
+	attack_delay = 0.5
 
 	// *** Tackle *** //
-	tackle_damage = 55 
+	tackle_damage = 55
 
 	// *** RNG Attacks *** //
 	tail_chance = 0 //Inherited from old code. Tail's too big
@@ -49,7 +49,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
 	melee_damage_upper = 35
-	attack_delay = 0.5 
+	attack_delay = 0.5
 
 	// *** Tackle *** //
 	tackle_damage = 60
@@ -70,7 +70,7 @@
 	deevolves_to = /mob/living/carbon/Xenomorph/Warrior
 
 	// *** Defense *** //
-	armor_deflection = 90 
+	armor_deflection = 90
 
 /datum/xeno_caste/crusher/elder
 	upgrade_name = "Elder"
@@ -81,7 +81,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 30
 	melee_damage_upper = 40
-	attack_delay = 0.5 
+	attack_delay = 0.5
 
 	// *** Tackle *** //
 	tackle_damage = 65
@@ -102,7 +102,7 @@
 	deevolves_to = /mob/living/carbon/Xenomorph/Warrior
 
 	// *** Defense *** //
-	armor_deflection = 95 
+	armor_deflection = 95
 
 /datum/xeno_caste/crusher/ancient
 	upgrade_name = "Ancient"
@@ -113,7 +113,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 35
 	melee_damage_upper = 45
-	attack_delay = 0.5 
+	attack_delay = 0.5
 
 	// *** Tackle *** //
 	tackle_damage = 70
@@ -502,3 +502,4 @@
 			icon_state = "Crusher Walking"
 
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
+	update_wounds()
