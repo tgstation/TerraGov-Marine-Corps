@@ -195,23 +195,23 @@ can cause issues with ammo types getting mixed up during the burst.
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/combat
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
-						/obj/item/attachable/reddot,
-						/obj/item/attachable/flashlight,
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/compensator,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/flashlight,
 						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/attached_gun/grenade,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/stock/tactical)
+
+	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
 
 /obj/item/weapon/gun/shotgun/combat/New()
 	..()
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
-	var/obj/item/attachable/attached_gun/grenade/G = new(src)
-	G.flags_attach_features &= ~ATTACH_REMOVABLE
-	G.attach_icon = "" //gun already has a better one
-	G.icon_state = ""
-	G.Attach(src)
-	update_attachable(G.slot)
-	G.icon_state = initial(G.icon_state)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 22, "under_y" = 14, "stock_x" = 14, "stock_y" = 16)
 	if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
 
 
