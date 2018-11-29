@@ -204,7 +204,7 @@
 	to_chat(H, "<span class='danger'>You feel a tiny prick.</span>")
 	to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with neurotoxin!</span>")
 	playsound(H, 'sound/effects/spray3.ogg', 15, 1)
-	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 10, 1)
+	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 	if(do_after(src, NEUROTOXIN_STING_INJECT_DELAY, TRUE, 5, BUSY_ICON_HOSTILE)) //First follow up injection
 		if(!neurotoxin_recurring_injection(H))
 			return
@@ -212,7 +212,6 @@
 		if(do_after(src, NEUROTOXIN_STING_INJECT_DELAY, TRUE, 5, BUSY_ICON_HOSTILE)) //Second follow up injection
 			if(!neurotoxin_recurring_injection(H))
 				return
-			playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 10, 1)
 			to_chat(src, "<span class='xenowarning'>Your stinger retracts as it finishes discharging the neurotoxin.</span>")
 
 
@@ -227,5 +226,6 @@
 		return FALSE
 	face_atom(H)
 	animation_attack_on(H)
+	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 	H.reagents.add_reagent("xeno_toxin", NEUROTOXIN_STING_AMOUNT_RECURRING) //10 units transferred.
 	return TRUE
