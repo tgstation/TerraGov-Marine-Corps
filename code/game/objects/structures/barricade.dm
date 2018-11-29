@@ -901,6 +901,21 @@
 				"<span class='notice'>You disassemble [src].</span>")
 				destroy(TRUE)
 		return TRUE
+
+	if(istype(W, /obj/item/stack/sandbags) )
+		if(health == maxhealth)
+			to_chat(user, "<span class='warning'>[src] isn't in need of repairs!</span>")
+			return
+		var/obj/item/stack/sandbags/D = W
+		if(D.get_amount() < 1)
+			to_chat(user, "<span class='warning'>You need a sandbag to repair [src].</span>")
+			return
+		visible_message("<span class='notice'>[user] begins to replace [src]'s damaged sandbags...</span>")
+		if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD) && health < maxhealth)
+			if(D.use(1))
+				health = min(health + (maxhealth * 0.2), maxhealth) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
+				user.visible_message("<span class='notice'>[user] replaces a damaged sandbag, repairing [src].</span>",
+				"<span class='notice'>You replace a damaged sandbag, repairing it [src].</span>")
 	else
 		. = ..()
 
