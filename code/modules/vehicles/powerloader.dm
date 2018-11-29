@@ -10,16 +10,18 @@
 	move_delay = 8
 	health = 200
 	maxhealth = 200
+	var/panel_open = FALSE
 
-	New()
-		..()
-		cell = new /obj/item/cell/apc
-		for(var/i = 1, i <= 2, i++)
-			var/obj/item/powerloader_clamp/PC = new(src)
-			PC.linked_powerloader = src
+/obj/vehicle/powerloader/New()
+	. = ..()
+	cell = new /obj/item/cell/apc(src)
+	for(var/i = 1, i <= 2, i++)
+		var/obj/item/powerloader_clamp/PC = new(src)
+		PC.linked_powerloader = src
 
 /obj/vehicle/powerloader/relaymove(mob/user, direction)
-	if(user.is_mob_incapacitated()) return
+	if(user.is_mob_incapacitated()) 
+		return
 	if(world.time > l_move_time + move_delay)
 		if(dir != direction)
 			l_move_time = world.time
@@ -42,6 +44,15 @@
 		if(do_after(user, 30, TRUE, 5, BUSY_ICON_HOSTILE) && dir == olddir && loc == oldloc && buckled_mob == old_buckled_mob)
 			manual_unbuckle(user)
 			playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
+	if(panel_open)
+		if(cell)
+			usr.put_in_hands(cell)
+			playsound(src,'sound/machines/click.ogg', 25, 1)
+			to_chat(usr, "You take out the [cell] out of the [src].")
+			src.cell = null
+		else
+			to_chat(usr, "There is no cell in the [src].")
+
 
 /obj/vehicle/powerloader/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/powerloader_clamp))
@@ -49,8 +60,30 @@
 		if(PC.linked_powerloader == src)
 			unbuckle() //clicking the powerloader with its own clamp unbuckles the pilot.
 			playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
-			return 1
+			return TRUE
+	else if(istype(W, /obj/item/tool/screwdriver))
+		to_chat(user, "<span class='notice'>You screw the panel [panel_open ? "closed" : "open"].</span>")
+		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
+		panel_open = !panel_open
+	else if(istype(W, /obj/item/cell) && panel_open)
+		if(!cell)
+			var/obj/item/cell/C = W
+			src.cell = C
+			cdel(C)
+			visible_message("[user] puts a new power cell in the [src].")
+			to_chat(user, "You put a new cell in the [src] containing [cell.charge] charge.")
+			playsound(src,'sound/machines/click.ogg', 25, 1)
+		else
+			to_chat(user, "There already is a power cell in the [src].")
+	else
+		return ..()
+
+/obj/vehicle/powerloader/examine(mob/user)
 	. = ..()
+	if(cell)
+		to_chat(user, "There is a [cell] in the [src] containing [cell.charge] charge.")
+	else
+		to_chat(user, "There is no power cell in the [src].")
 
 /obj/vehicle/powerloader/afterbuckle(mob/M)
 	. = ..()
@@ -63,8 +96,10 @@
 			move_delay = max(4, move_delay - M.mind.cm_skills.powerloader)
 		var/clamp_equipped = 0
 		for(var/obj/item/powerloader_clamp/PC in contents)
-			if(!M.put_in_hands(PC)) PC.forceMove(src)
-			else clamp_equipped++
+			if(!M.put_in_hands(PC)) 
+				PC.forceMove(src)
+			else 
+				clamp_equipped++
 		if(clamp_equipped != 2) unbuckle() //can't use the powerloader without both clamps equipped
 	else
 		move_delay = initial(move_delay)
@@ -72,8 +107,10 @@
 		M.drop_held_items() //drop the clamp when unbuckling
 
 /obj/vehicle/powerloader/buckle_mob(mob/M, mob/user)
-	if(M != user) return
-	if(!ishuman(M))	return
+	if(M != user) 
+		return
+	if(!ishuman(M))	
+		return
 	var/mob/living/carbon/human/H = M
 	if(H.r_hand || H.l_hand)
 		to_chat(H, "<span class='warning'>You need your two hands to use [src].</span>")
@@ -200,8 +237,10 @@
 			to_chat(user, "<span class='warning'>Can't grab [loaded].</span>")
 
 /obj/item/powerloader_clamp/update_icon()
-	if(loaded) icon_state = "loader_clamp_full"
-	else icon_state = "loader_clamp"
+	if(loaded) 
+		icon_state = "loader_clamp_full"
+	else 
+		icon_state = "loader_clamp"
 
 /obj/item/powerloader_clamp/attack_self(mob/user)
 	if(linked_powerloader)

@@ -94,6 +94,8 @@
 		playsound(src,'sound/machines/click.ogg', 25, 1)
 		to_chat(usr, "You take out the [pcell] out of the [src].")
 		src.pcell = null
+	else if(!pcell)
+		to_chat(usr, "There is no cell in the [src].")
 	else
 		return ..()
 
@@ -103,7 +105,7 @@
 		src.pcell = C
 		cdel(C)
 		visible_message("[user] puts a new power cell in the [src].")
-		to_chat(user, "You put a new cell in the [src] containing [pcell.charge] power.")
+		to_chat(user, "You put a new cell in the [src] containing [pcell.charge] charge.")
 		playsound(src,'sound/machines/click.ogg', 25, 1)
 	else if(pcell)
 		to_chat(user, "There already is a cell in the [src].")
