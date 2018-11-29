@@ -87,11 +87,11 @@
 	if (!isturf(loc))
 		return
 
-	if (world.time <= next_move)	// Attack click cooldown check
+	//if (world.time <= next_move)	// Attack click cooldown check
 		//DEBUG: to_chat(world, "FAIL! TIME:[world.time]   NEXT_CLICK:[next_click]    NEXT_MOVE: [next_move]")
-		return
+	//	return
 
-	next_move = world.time
+	//next_move = world.time
 	// If standing next to the atom clicked.
 	if (A.Adjacent(src))
 		if (W)
