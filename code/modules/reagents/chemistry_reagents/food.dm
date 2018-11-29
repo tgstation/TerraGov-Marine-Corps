@@ -21,9 +21,8 @@
 		if(adj_temp < 0)
 			if(M.bodytemperature > targ_temp + adj_temp)
 				M.bodytemperature += temperature_step
-		else
-			if(M.bodytemperature < targ_temp + adj_temp)
-				M.bodytemperature += temperature_step
+		else if(M.bodytemperature < targ_temp + adj_temp)
+			M.bodytemperature += temperature_step
 	holder.remove_reagent(src.id, custom_metabolism)
 
 /datum/reagent/consumable/nutriment
