@@ -26,7 +26,6 @@
 	if(holed_wall)
 		holed_wall.opacity = initial(holed_wall.opacity)
 		holed_wall.acided_hole = null
-		holed_wall = null
 		cdel(holed_wall)
 	return ..()
 
