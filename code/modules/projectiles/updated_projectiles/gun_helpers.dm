@@ -743,18 +743,11 @@ should be alright.
 	set category = "Weapons"
 	set name = "Toggle Rail Attachment"
 	set desc = "Uses the rail attachement currently attached to the gun."
-	set src = usr.contents
 
-	if(!usr)
+	if(!usr || !src)
 		return
 
-	var/obj/item/weapon/gun/G = get_active_firearm(usr)
-	if(!G)
-		return
-
-	var/obj/item/attachable/A = G.rail
-
-	A.activate_attachment(G, usr)
+	rail.activate_attachment(src, usr)
 
 
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
