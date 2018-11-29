@@ -414,8 +414,8 @@ Start with the ship's engine, and don't forget radiation equipment."}
 	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(H), WEAR_WAIST)
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/medium(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/pistol/large(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/clothing/tie/holster(H), WEAR_ACCESSORY)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/pistol/large/full(H), WEAR_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/clothing/tie/holster/m4a3(H), WEAR_ACCESSORY)
 
 /datum/job/logistics/tech/cargo/set_spawn_positions(var/count)
 	spawn_positions = ct_slot_formula(count)
