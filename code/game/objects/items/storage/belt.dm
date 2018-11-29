@@ -310,9 +310,37 @@
 	max_storage_space = 20
 	can_hold = list("/obj/item/ammo_magazine/handful")
 
-	New()
-		select_gamemode_skin(type)
-		..()
+/obj/item/storage/belt/shotgun/New()
+	select_gamemode_skin(type)
+	..()
+
+/obj/item/storage/belt/shotgun/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/ammo_magazine/shotgun))
+		var/obj/item/ammo_magazine/shotgun/M = W
+		if(M.current_rounds)
+			if(contents.len < storage_slots)
+				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
+				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC)) 
+					return
+
+				for(var/x = 1 to storage_slots)
+					if(M.current_rounds > 0)
+						var/obj/item/ammo_magazine/handful/new_handful = rnew(/obj/item/ammo_magazine/handful)
+						var/R = min(M.current_rounds, 5)
+						new_handful.generate_handful(M.default_ammo, M.caliber, 5, R, M.gun_type)
+						M.current_rounds -= R
+						handle_item_insertion(new_handful, 1, user)
+					else
+						break
+				M.update_icon()
+				playsound(user.loc, "rustle", 15, 1, 6)
+			else
+				to_chat(user, "<span class='warning'>[src] is full.</span>")
+		else
+			to_chat(user, "<span class='warning'>[M] is empty.</span>")
+		return TRUE
+	else
+		return ..()
 
 
 /obj/item/storage/belt/knifepouch

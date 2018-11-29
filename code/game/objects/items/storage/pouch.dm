@@ -505,11 +505,10 @@
 						var/R = min(M.current_rounds, 5)
 						new_handful.generate_handful(M.default_ammo, M.caliber, 5, R, M.gun_type)
 						M.current_rounds -= R
-						M.update_icon()
 						handle_item_insertion(new_handful, 1, user)
 					else
 						break
-
+				M.update_icon()
 				playsound(user.loc, "rustle", 15, 1, 6)
 			else
 				to_chat(user, "<span class='warning'>[src] is full.</span>")
