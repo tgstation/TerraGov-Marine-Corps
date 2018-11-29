@@ -801,13 +801,13 @@
 	var/halloss_damage = volume * 2 * REM
 	M.apply_damage(halloss_damage, HALLOSS) //1st level neurotoxin effects: halloss/pain
 	if(volume > 5) //2nd level neurotoxin effects: screen shake, drug overlay, stuttering, minor toxin damage
-		M.druggy += 1.5
-		M.stuttering += 1.5
+		M.druggy += 1.1
+		M.stuttering += 1.1
 	if(volume > 15) //3rd level neurotoxin effects: eye blur
-		M.eye_blurry += 1.5
+		M.eye_blurry += 1.1
 	if(volume > 20) //4th level neurotoxin effects: blindness, deafness
-		M.ear_deaf += 1.5
-		M.eye_blind += 1.5
+		M.ear_deaf += 1.1
+		M.eye_blind += 1.1
 	if(volume > 25) //5th level neurotoxin effects: paralysis
 		M.stunned += 1.1
 		M.KnockDown(1.1)

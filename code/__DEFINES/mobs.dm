@@ -504,7 +504,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 //sentinel defines
 
 #define NEUROTOXIN_STING_COOLDOWN				30 SECONDS
-#define NEUROTOXIN_STING_INJECT_DELAY			2 SECONDS
+#define NEUROTOXIN_STING_INJECT_DELAY			1.5 SECONDS
 #define NEUROTOXIN_STING_AMOUNT_INITIAL			15
 #define NEUROTOXIN_STING_AMOUNT_RECURRING		10
 
