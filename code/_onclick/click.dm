@@ -1,6 +1,6 @@
 
 // 1 decisecond click delay (above and beyond mob/next_move)
-/mob/var/next_click = 0
+///mob/var/next_click = 0
 /*
 	client/Click is called every time a client clicks anywhere, it should never be overridden.
 
@@ -30,11 +30,11 @@
 				do_click(TU, location, params)
 		return
 
-	if (world.time <= next_click)
+	//if (world.time <= next_click)
 		//DEBUG: to_chat(world, "FAIL! TIME:[world.time]   NEXT_CLICK:[next_click]    NEXT_MOVE: [next_move]")
-		return
+	//	return
 
-	next_click = world.time + 1
+	//next_click = world.time + 1
 	//DEBUG: to_chat(world, "SUCCESS! TIME:[world.time]   NEXT_CLICK:[next_click]     NEXT_MOVE: [next_move]")
 
 	var/list/mods = params2list(params)
