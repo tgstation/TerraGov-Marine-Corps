@@ -809,8 +809,8 @@
 		M.ear_deaf += 1.5
 		M.eye_blind += 1.5
 	if(volume > 25) //5th level neurotoxin effects: paralysis
-		M.stunned += 1
-		M.KnockDown(1)
+		M.stunned += 1.1
+		M.KnockDown(1.1)
 
 /datum/reagent/xeno_neurotoxin/overdose_process(mob/living/M)
 		M.adjustOxyLoss(min(2,volume * 0.1 * REM)) //Overdose starts applying more oxy damage
