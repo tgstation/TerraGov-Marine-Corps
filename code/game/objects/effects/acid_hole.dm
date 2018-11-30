@@ -26,7 +26,7 @@
 	if(holed_wall)
 		holed_wall.opacity = initial(holed_wall.opacity)
 		holed_wall.acided_hole = null
-		cdel(holed_wall)
+		holed_wall = null
 	return ..()
 
 /obj/effect/acid_hole/ex_act(severity)
