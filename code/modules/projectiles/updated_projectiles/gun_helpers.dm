@@ -744,7 +744,7 @@ should be alright.
 	set name = "Toggle Rail Attachment"
 	set desc = "Uses the rail attachement currently attached to the gun."
 
-	if(!usr || !src)
+	if(!usr)
 		return
 
 	rail.activate_attachment(src, usr)
