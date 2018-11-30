@@ -23,7 +23,7 @@
 	if(stat == DEAD) 
 		return FALSE
 	if(health <= config.health_threshold_dead && stat != DEAD) 
-		death(FALSE, "<b>\The [src.name]</b> sparks up and falls silent...")
+		death(FALSE, "<b>\The [name]</b> sparks up and falls silent...")
 
 /mob/living/silicon/decoy/updatehealth()
 	if(status_flags & GODMODE)
