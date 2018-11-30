@@ -215,7 +215,7 @@
 
 /obj/item/device/radio/headset/almayer
 	name = "marine radio headset"
-	desc = "A standard military radio headset."
+	desc = "A standard military radio headset. Has a small built in camera."
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	frequency = PUB_FREQ
@@ -224,6 +224,12 @@
 	var/headset_hud_on = FALSE
 	var/sl_direction = FALSE
 	var/sl_indicator = FALSE
+	var/obj/machinery/camera/camera
+
+/obj/item/device/radio/headset/almayer/New()
+	..()
+	camera = new /obj/machinery/camera(src)
+	camera.network = list("LEADER")
 
 /obj/item/device/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
 	if(slot == WEAR_EAR)
@@ -233,6 +239,8 @@
 		sl_direction = FALSE
 		sl_indicator = FALSE
 		toggle_squadhud(wearer)
+	if(camera)
+		camera.c_tag = user.name
 	..()
 
 /obj/item/device/radio/headset/almayer/dropped(mob/living/carbon/human/user)
@@ -244,6 +252,8 @@
 			user.hud_used.SL_locator.alpha = 0
 			wearer = null
 			squadhud = null
+	if(camera)
+		camera.c_tag = "Unknown"
 	..()
 
 /obj/item/device/radio/headset/almayer/Dispose()
@@ -256,10 +266,10 @@
 			wearer.sl_direction_active = null
 			wearer = null
 	squadhud = null
-	headset_hud_on = null
+	headset_hud_on = FALSE
 	sl_direction = null
 	sl_indicator = null
-	..()
+	return ..()
 
 
 /obj/item/device/radio/headset/almayer/proc/toggle_squadhud(mob/living/carbon/human/user)
@@ -283,7 +293,6 @@
 				toggle_sl_direction(user)
 			if(!sl_indicator)
 				toggle_sl_indicator(user)
-			user.Process_SL_Locator()
 			to_chat(user, "<span class='notice'>You toggle the Squad HUD on.</span>")
 			playsound(loc, 'sound/machines/click.ogg', 15, 0, 1)
 
@@ -303,7 +312,7 @@
 	else
 		if(user.mind && user.assigned_squad && user.hud_used?.locate_leader)
 			user.hud_used.locate_leader.alpha = 255
-			user.hud_used.locate_leader.mouse_opacity = 1
+			user.hud_used.locate_leader.mouse_opacity = 0
 			user.sl_indicator_active = TRUE
 			sl_indicator = TRUE
 			to_chat(user, "<span class='notice'>You toggle the SL indicator display on.</span>")
@@ -372,17 +381,9 @@
 		if(!master)
 			if(ishuman(loc))
 				handle_interface(loc)
-			else
-				for(var/mob/living/carbon/human/M in viewers(1, src))
-					if(M.client)
-						handle_interface(M)
 		else
 			if(ishuman(master.loc))
 				handle_interface(master.loc)
-			else
-				for(var/mob/living/carbon/human/M in viewers(1, master))
-					if(M.client)
-						handle_interface(M)
 	else
 		usr << browse(null, "window=radio")
 

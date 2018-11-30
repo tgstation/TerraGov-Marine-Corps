@@ -94,7 +94,7 @@
 						dat += "<A href='?src=\ref[src];operation=change_lead'>\[CHANGE SQUAD LEADER\]</a><BR><BR>"
 					else
 						dat += "<B>Squad Leader:</B> <font color=red>NONE</font> <A href='?src=\ref[src];operation=change_lead'>\[ASSIGN SQUAD LEADER\]</a><BR><BR>"
-		
+
 					dat += "<B>Primary Objective:</B> "
 					if(current_squad.primary_objective)
 						dat += "[current_squad.primary_objective] <a href='?src=\ref[src];operation=set_primary'>\[Set\]</a><br>"
@@ -143,7 +143,7 @@
 						dat += "<span class='warning'>None</span><br>"
 						selected_target = null
 					else
-						dat += "<font color='green'>[selected_target.name]</font><br>"		
+						dat += "<font color='green'>[selected_target.name]</font><br>"
 					dat += "<A href='?src=\ref[src];operation=shootrailgun'>\[FIRE!\]</a><br>"
 					dat += "----------------------<br></body>"
 					dat += "<br><br><a href='?src=\ref[src];operation=refresh'>{Refresh}</a></body>"
@@ -456,7 +456,7 @@
 					dat += "<span class='warning'>None</span><br>"
 					selected_target = null
 				else
-					dat += "<font color='green'>[selected_target.name]</font><br>"		
+					dat += "<font color='green'>[selected_target.name]</font><br>"
 				dat += "<A href='?src=\ref[src];operation=dropbomb'>\[FIRE!\]</a><br>"
 				dat += "----------------------<BR></Body>"
 				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a></Body>"
@@ -484,7 +484,7 @@
 		return
 	var/mob/living/carbon/human/H = cam_target
 	if(istype(H) && current_squad)
-		var/obj/item/clothing/head/helmet/marine/helm = H.head
+		var/obj/item/device/radio/headset/almayer/helm = H.head
 		return helm?.camera
 	var/obj/effect/overlay/temp/laser_target/LT = cam_target
 	if(istype(LT))
@@ -1011,7 +1011,7 @@
 		H.visible_message("[H] deactivates [src]",
 		"You deactivate [src]")
 		H.put_in_active_hand(src)
-	
+
 
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
 
@@ -1250,7 +1250,7 @@
 		dat += "<b><font color=red>NONE!</font></b><br>"
 	dat += get_squad_info_ending()
 	return dat
-	
+
 /obj/machinery/computer/overwatch/proc/get_squad_info_ending()
 	var/dat = ""
 	dat += "----------------------<br>"
