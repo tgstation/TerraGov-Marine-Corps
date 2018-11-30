@@ -261,9 +261,8 @@
 		var/obj/item/storage/S = master
 		var/obj/item/I = user.get_active_hand()
 		if(I)
-			if (master.attackby(I, user))
-				user.next_move = world.time + 0.1
-			return 1
+			master.attackby(I, user)
+			return TRUE
 
 		// Taking something out of the storage screen (including clicking on item border overlay)
 		var/list/screen_loc_params = splittext(mods["screen-loc"], ",")
@@ -275,11 +274,11 @@
 				I = S.contents[i]
 				if (I)
 					if (I.clicked(user, mods))
-						return 1
+						return TRUE
 
 					I.attack_hand(user)
-					return 1
-	return 0
+					return TRUE
+	return FALSE
 
 
 /datum/numbered_display
