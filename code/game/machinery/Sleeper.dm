@@ -174,7 +174,7 @@
 	anchored = 1
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 	var/mob/living/carbon/human/occupant = null
-	var/available_chemicals = list("inaprovaline" = "Inaprovaline", "sleeptoxin" = "Soporific", "paracetamol" = "Paracetamol", "dylovene" = "Dylovene", "dexalin" = "Dexalin", "tricordrazine" = "Tricordrazine")
+	var/available_chemicals = list("inaprovaline" = "Inaprovaline", "sleeptoxin" = "Soporific", "paracetamol" = "Paracetamol", "bicaridine" = "Bicaridine", "kelotane" = "Kelotane", "dylovene" = "Dylovene", "dexalin" = "Dexalin", "tricordrazine" = "Tricordrazine", "spaceacillin" = "Spaceacillin")
 	var/amounts = list(5, 10)
 	var/obj/item/reagent_container/glass/beaker = null
 	var/filtering = FALSE
@@ -261,6 +261,11 @@
 		filtering = FALSE
 		stop_processing() //Shut down; stasis off, filtering off, stop processing.
 		return
+
+	//Life support
+	if(occupant)
+		occupant.adjustToxLoss(-1 * REM) // pretend they get IV dylovene
+		occupant.adjustOxyLoss(-occupant.getOxyLoss()) // keep them breathing, pretend they get IV dexalinplus
 
 	if(filtering)
 		if(beaker)
