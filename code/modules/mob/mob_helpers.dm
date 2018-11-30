@@ -575,10 +575,16 @@ var/list/intents = list("help","disarm","grab","hurt")
 	if(!iscarbon(usr))
 		return
 
-	var/num = 21
+	var/num
 
-	if(istype(usr, /mob/living/carbon/Xenomorph))
+	if(isXeno(usr))
 		num = 9
+
+	if(ishuman(usr))
+		num = 21
+
+	if(!num)
+		return
 
 	switch(input)
 		if("head")
