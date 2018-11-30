@@ -12,8 +12,8 @@
 	icon = 'icons/Marine/ai.dmi'
 	icon_state = "hydra"
 	anchored = 1
-	canmove = 0
-	density = 1 //Do not want to see past it.
+	canmove = FALSE
+	density = TRUE //Do not want to see past it.
 	bound_height = 64 //putting this in so we can't walk through our machine.
 	bound_width = 96
 	var/obj/item/device/radio/headset/almayer/mcom/ai/ai_headset //The thing it speaks into.
@@ -23,7 +23,7 @@
 	if(stat == DEAD) 
 		return FALSE
 	if(health <= config.health_threshold_dead && stat != DEAD) 
-		death()
+		death(FALSE, "<b>\The [src.name]</b> sparks up and falls silent...")
 
 /mob/living/silicon/decoy/updatehealth()
 	if(status_flags & GODMODE)
@@ -34,15 +34,12 @@
 
 	update_stat()
 
-/mob/living/silicon/decoy/death()
-	set waitfor = 0
-	if(stat == DEAD) 
-		return FALSE
+/mob/living/silicon/decoy/death(gibbed, deathmessage)
+	. = ..(gibbed, deathmessage)
+	density = TRUE
 	icon_state = "hydra-off"
-	src.visible_message("<b>\The [src.name]</b> sparks up and falls silent...")
 	sleep(20)
 	explosion(loc, -1, 0, 8, 12)
-	stat = DEAD
 
 /mob/living/silicon/decoy/say(message, new_sound) //General communication across the ship.
 	if(stat || !message) 
