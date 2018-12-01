@@ -897,3 +897,24 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(href_list["preference"])
 		if(client)
 			client.prefs.process_link(src, href_list)
+
+
+/mob/dead/observer/verb/observe()
+	set name = "Observe"
+	set category = "Ghost"
+
+	if(client.eye != client.mob)
+		client.perspective = MOB_PERSPECTIVE
+		client.eye = client.mob
+		return
+
+	var/list/mobs = getmobs()
+	var/input = input("Please select a mob:", "Observe", null, null) as null|anything in mobs
+	var/mob/target = mobs[input]
+
+	if(!target)
+		return
+
+	if(client && target)
+		client.perspective = EYE_PERSPECTIVE
+		client.eye = target
