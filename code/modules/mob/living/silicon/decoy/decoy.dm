@@ -35,7 +35,7 @@
 	update_stat()
 
 /mob/living/silicon/decoy/death(gibbed, deathmessage)
-	. = ..(gibbed, deathmessage)
+	. = ..()
 	density = TRUE
 	icon_state = "hydra-off"
 	sleep(20)
