@@ -17,12 +17,10 @@
 	current_cycle++
 	M.nutrition += nutriment_factor * REAGENTS_METABOLISM
 	if(adj_temp != 0)
-		var/temperature_step = adj_temp * 0.1
-		if(adj_temp < 0)
-			if(M.bodytemperature > targ_temp + adj_temp)
-				M.bodytemperature += temperature_step
-		else if(M.bodytemperature < targ_temp + adj_temp)
-			M.bodytemperature += temperature_step
+		if(targ_temp > M.bodytemperature)
+			M.bodytemperature = min(targ_temp, M.bodytemperature + adj_temp)
+		else
+			M.bodytemperature = max(targ_temp, M.bodytemperature - adj_temp)
 	holder.remove_reagent(src.id, custom_metabolism)
 
 /datum/reagent/consumable/nutriment
