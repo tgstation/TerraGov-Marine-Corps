@@ -622,7 +622,6 @@
 	name = "ammo"
 	icon = 'icons/mob/ammoHUD.dmi'
 	icon_state = "ammo"
-	var/icon/cache = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "ammo")
 	screen_loc = ui_ammo
 
 /obj/screen/ammo/proc/add_hud(var/mob/user)
@@ -649,7 +648,9 @@
 
 	var/obj/item/weapon/gun/G = user.get_active_hand()
 
-	var/icon/type
+	if(!G)
+		return
+
 	var/hud_state
 
 	if(G.in_chamber?.ammo)
@@ -657,16 +658,14 @@
 	else if(G.ammo)
 		hud_state = G.ammo.hud_state
 	else
-		var/cache = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "ammo")
-		icon = cache
+		overlays.Cut()
 		to_chat(user, "Something fucky with your ammo fam.")
+		return
 
-	type = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "[hud_state]")
+	overlays.Cut()
+	overlays += image('icons/mob/ammoHUD.dmi', src, "[hud_state]")
 
-	to_chat(user, "[hud_state] hud_state")
-
-	cache = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "ammo")
-	cache.Blend(type, ICON_OVERLAY)
+	to_chat(user, "hud_state [hud_state]")
 
 	var/rounds = 0
 
@@ -680,33 +679,23 @@
 
 	to_chat(user, "[rounds] rounds")
 
-	var/icon/first
-	var/icon/second
-	var/icon/third
 
 	switch(length(rounds))
 		if(1)
+			overlays += image('icons/mob/ammoHUD.dmi', src, "o[rounds[1]]")
 			to_chat(user, "1 digit")
-			first = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "o[rounds[1]]")
 			to_chat(user, "o[rounds[1]]")
-			cache.Blend(first, ICON_OVERLAY)
 		if(2)
+			overlays += image('icons/mob/ammoHUD.dmi', src, "o[rounds[2]]")
+			overlays += image('icons/mob/ammoHUD.dmi', src, "t[rounds[1]]")
 			to_chat(user, "2 digits")
-			first = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "o[rounds[2]]")
-			second = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "t[rounds[1]]")
 			to_chat(user, "t[rounds[1]] o[rounds[2]]")
-			cache.Blend(first, ICON_OVERLAY)
-			cache.Blend(second, ICON_OVERLAY)
 		if(3)
+			overlays += image('icons/mob/ammoHUD.dmi', src, "o[rounds[3]]")
+			overlays += image('icons/mob/ammoHUD.dmi', src, "t[rounds[2]]")
+			overlays += image('icons/mob/ammoHUD.dmi', src, "h[rounds[1]]")
 			to_chat(user, "3 digits")
-			first = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "o[rounds[3]]")
-			second = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "t[rounds[2]]")
-			third = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "h[rounds[1]]")
 			to_chat(user, "h[rounds[1]] t[rounds[2]] o[rounds[3]]")
-			cache.Blend(first, ICON_OVERLAY)
-			cache.Blend(second, ICON_OVERLAY)
-			cache.Blend(third, ICON_OVERLAY)
 		else
 			to_chat(user, "What the fuck?")
 			return
-	icon = cache
