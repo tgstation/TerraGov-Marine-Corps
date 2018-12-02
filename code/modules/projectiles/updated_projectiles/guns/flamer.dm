@@ -78,6 +78,8 @@
 		click_empty(user)
 	else
 		unleash_flame(target, user)
+		var/obj/screen/ammo/A = user.hud_used.ammo
+		A.update_hud(user)
 
 /obj/item/weapon/gun/flamer/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))

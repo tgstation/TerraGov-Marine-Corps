@@ -21,6 +21,7 @@
 	var/name 		= "generic bullet"
 	var/icon 		= 'icons/obj/items/projectiles.dmi'
 	var/icon_state 	= "bullet"
+	var/hud_state   = "rifle"  //Bullet type on the Ammo HUD
 	var/ping 		= "ping_b" //The icon that is displayed when the bullet bounces off something.
 	var/sound_hit //When it deals damage.
 	var/sound_armor //When it's blocked by human armor.
@@ -251,6 +252,7 @@
 
 /datum/ammo/bullet/pistol
 	name = "pistol bullet"
+	hud_state = "pistol"
 
 /datum/ammo/bullet/pistol/New()
 	..()
@@ -262,10 +264,12 @@
 
 /datum/ammo/bullet/pistol/tranq
 	name = "tranq bullet"
+	hud_state = "pistolSpecial"
 	debilitate = list(0,0,0,0,5,3,30,0)
 
 /datum/ammo/bullet/pistol/hollow
 	name = "hollowpoint pistol bullet"
+	hud_state = "pistolAP"
 
 
 /datum/ammo/bullet/pistol/hollow/New()
@@ -278,6 +282,7 @@
 
 /datum/ammo/bullet/pistol/ap
 	name = "armor-piercing pistol bullet"
+	hud_state = "pistolAP"
 
 /datum/ammo/bullet/pistol/ap/New()
 	..()
@@ -288,6 +293,7 @@
 
 /datum/ammo/bullet/pistol/heavy
 	name = "heavy pistol bullet"
+	hud_state = "pistolSpecial"
 
 /datum/ammo/bullet/pistol/heavy/New()
 	..()
@@ -299,6 +305,7 @@
 
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
+	hud_state = "pistolFire"
 	damage_type = BURN
 	shrapnel_chance = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
@@ -310,6 +317,7 @@
 
 /datum/ammo/bullet/pistol/squash
 	name = "squash-head pistol bullet"
+	hud_state = "pistolSpecial"
 	debilitate = list(0,0,0,0,0,0,0,2)
 
 /datum/ammo/bullet/pistol/squash/New()
@@ -322,6 +330,7 @@
 /datum/ammo/bullet/pistol/mankey
 	name = "live monkey"
 	icon_state = "monkey1"
+	hud_state = "pistolSpecial"
 	ping = null //no bounce off.
 	damage_type = BURN
 	debilitate = list(4,4,0,0,0,0,0,0)
@@ -346,6 +355,7 @@
 
 /datum/ammo/bullet/revolver
 	name = "revolver bullet"
+	hud_state = "pistol"
 
 /datum/ammo/bullet/revolver/New()
 	..()
@@ -363,6 +373,7 @@
 
 /datum/ammo/bullet/revolver/marksman
 	name = "slimline revolver bullet"
+	hud_state = "pistolSpecial"
 	shrapnel_chance = 0
 	damage_falloff = 0
 
@@ -376,6 +387,7 @@
 
 /datum/ammo/bullet/revolver/heavy
 	name = "heavy revolver bullet"
+	hud_state = "pistolAP"
 
 /datum/ammo/bullet/revolver/heavy/New()
 	..()
@@ -388,6 +400,7 @@
 
 /datum/ammo/bullet/revolver/highimpact
 	name = "high-impact revolver bullet"
+	hud_state = "pistolAP"
 
 /datum/ammo/bullet/revolver/highimpact/New()
 	..()
@@ -408,6 +421,7 @@
 
 /datum/ammo/bullet/smg
 	name = "submachinegun bullet"
+	hud_state = "smg"
 
 /datum/ammo/bullet/smg/New()
 	..()
@@ -421,6 +435,7 @@
 
 /datum/ammo/bullet/smg/ap
 	name = "armor-piercing submachinegun bullet"
+	hud_state = "smgAP"
 
 /datum/ammo/bullet/smg/ap/New()
 	..()
@@ -429,6 +444,7 @@
 
 /datum/ammo/bullet/smg/ppsh
 	name = "submachinegun light bullet"
+	hud_state = "smgSpecial"
 
 /datum/ammo/bullet/smg/ppsh/New()
 	..()
@@ -453,6 +469,7 @@
 
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
+	hud_state = "rifleAP"
 
 /datum/ammo/bullet/rifle/ap/New()
 	..()
@@ -461,6 +478,7 @@
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
+	hud_state = "rifleFire"
 	damage_type = BURN
 	shrapnel_chance = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
@@ -485,6 +503,7 @@
 
 /datum/ammo/bullet/rifle/m4ra/incendiary
 	name = "A19 high velocity incendiary bullet"
+	hud_state = "rifleFire"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 
 /datum/ammo/bullet/rifle/m4ra/incendiary/New()
@@ -497,6 +516,7 @@
 
 /datum/ammo/bullet/rifle/m4ra/impact
 	name = "A19 high velocity impact bullet"
+	hud_state = "rifleSpecial"
 	flags_ammo_behavior = AMMO_BALLISTIC
 
 /datum/ammo/bullet/rifle/m4ra/impact/New()
@@ -512,6 +532,7 @@
 
 /datum/ammo/bullet/rifle/mar40
 	name = "heavy rifle bullet"
+	hud_state = "rifleSpecial"
 
 /datum/ammo/bullet/rifle/mar40/New()
 	..()
@@ -529,6 +550,7 @@
 
 /datum/ammo/bullet/shotgun/slug
 	name = "shotgun slug"
+	hud_state = "shotgunSlugs"
 
 /datum/ammo/bullet/shotgun/slug/New()
 	..()
@@ -543,6 +565,7 @@
 /datum/ammo/bullet/shotgun/beanbag
 	name = "beanbag slug"
 	icon_state = "beanbag"
+	hud_state = "shotgunBeanbag"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_IGNORE_RESIST
 
 /datum/ammo/bullet/shotgun/beanbag/New()
@@ -566,6 +589,7 @@
 
 /datum/ammo/bullet/shotgun/incendiary
 	name = "incendiary slug"
+	hud_state = "shotgunFire"
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 
@@ -590,6 +614,7 @@
 /datum/ammo/bullet/shotgun/flechette
 	name = "shotgun flechette shell"
 	icon_state = "flechette"
+	hud_state = "shotgunFletchettes"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette_spread
 
 /datum/ammo/bullet/shotgun/flechette/New()
@@ -623,6 +648,7 @@
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
 	icon_state = "buckshot"
+	hud_state = "shotgunBuckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
 
 /datum/ammo/bullet/shotgun/buckshot/New()
@@ -681,6 +707,7 @@
 
 /datum/ammo/bullet/sniper
 	name = "sniper bullet"
+	hud_state = "sniper"
 	damage_falloff = 0
 	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_SKIPS_HUMANS
@@ -697,6 +724,7 @@
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
+	hud_state = "sniperFire"
 	accuracy = 0
 	damage_type = BURN
 	iff_signal = ACCESS_IFF_MARINE
@@ -712,6 +740,7 @@
 
 /datum/ammo/bullet/sniper/flak
 	name = "flak sniper bullet"
+	hud_state = "sniperFlak"
 	iff_signal = ACCESS_IFF_MARINE
 
 /datum/ammo/bullet/sniper/flak/New()
@@ -729,6 +758,7 @@
 
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"
+	hud_state = "sniperFlak"
 	iff_signal = ACCESS_IFF_PMC
 
 /datum/ammo/bullet/sniper/elite/New()
@@ -746,6 +776,7 @@
 /datum/ammo/bullet/smartgun
 	name = "smartgun bullet"
 	icon_state = "redbullet" //Red bullets to indicate friendly fire restriction
+	hud_state = "smartgun"
 	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS
 
@@ -832,6 +863,7 @@
 
 /datum/ammo/bullet/minigun
 	name = "minigun bullet"
+	hud_state = "smartgun"
 
 /datum/ammo/bullet/minigun/New()
 	..()
@@ -852,6 +884,7 @@
 /datum/ammo/rocket
 	name = "high explosive rocket"
 	icon_state = "missile"
+	hud_state = "rocketHE"
 	ping = null //no bounce off.
 	sound_bounce	= "rocket_bounce"
 	damage_falloff = 0
@@ -895,6 +928,7 @@
 
 /datum/ammo/rocket/ap
 	name = "anti-armor rocket"
+	hud_state = "rocketAP"
 	damage_falloff = 0
 
 /datum/ammo/rocket/ap/New()
@@ -951,6 +985,7 @@
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
+	hud_state = "rocketFire"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_INCENDIARY|AMMO_EXPLOSIVE
 	damage_type = BURN
 /datum/ammo/rocket/wp/New()
@@ -983,6 +1018,7 @@
 
 /datum/ammo/rocket/wp/quad
 	name = "thermobaric rocket"
+	hud_state = "rocketHE"
 	flags_ammo_behavior = AMMO_ROCKET
 /datum/ammo/rocket/wp/quad/New()
 	..()
@@ -1419,6 +1455,7 @@
 /datum/ammo/flamethrower
 	name = "flame"
 	icon_state = "pulse0"
+	hud_state = "flame"
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
 
@@ -1448,9 +1485,11 @@
 
 /datum/ammo/flamethrower/green
 	name = "green flame"
+	hud_state = "flameGreen"
 
 /datum/ammo/flamethrower/blue
 	name = "blue flame"
+	hud_state = "flameBlue"
 
 /datum/ammo/flare
 	name = "flare"
