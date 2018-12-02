@@ -394,6 +394,8 @@
 			return
 		if(grenades.len)
 			fire_grenade(target,user)
+			var/obj/screen/ammo/A = user.hud_used.ammo
+			A.update_hud(user)
 		else
 			to_chat(user, "<span class='warning'>The grenade launcher is empty.</span>")
 

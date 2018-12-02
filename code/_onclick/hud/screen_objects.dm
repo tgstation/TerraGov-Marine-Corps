@@ -653,12 +653,25 @@
 
 	var/hud_state
 
+	var/rounds = 0
+
+	if(G.current_mag)
+		rounds += G.current_mag.current_rounds
+
+	if(G.in_chamber && !istype(G, /obj/item/weapon/gun/launcher) && !istype(G, /obj/item/weapon/gun/revolver))
+		rounds++
+
 	if(G.in_chamber?.ammo)
 		hud_state = G.in_chamber.ammo.hud_state
 	else if(G.ammo)
 		hud_state = G.ammo.hud_state
+	else if(istype(G, /obj/item/weapon/gun/launcher/m92))
+		var/obj/item/weapon/gun/launcher/m92/L = G
+		hud_state = L.grenades[1].hud_state	
+		rounds += length(L.grenades)
 	else
 		overlays.Cut()
+		remove_hud()
 		to_chat(user, "Something fucky with your ammo fam.")
 		return
 
@@ -667,18 +680,9 @@
 
 	to_chat(user, "hud_state [hud_state]")
 
-	var/rounds = 0
-
-	if(G.current_mag)
-		rounds += G.current_mag.current_rounds
-
-	if(G.in_chamber)
-		rounds++
-
 	rounds = num2text(rounds)
 
 	to_chat(user, "[rounds] rounds")
-
 
 	switch(length(rounds))
 		if(1)
