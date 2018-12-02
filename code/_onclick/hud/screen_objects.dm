@@ -617,3 +617,186 @@
 
 	user.hud_used.hidden_inventory_update()
 	return TRUE
+
+/obj/screen/ammo
+	name = "ammo"
+	icon = 'icons/mob/ammoHUD.dmi'
+	icon_state = "ammo"
+	screen_loc = ui_ammo
+	var/icon/cached_base = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "ammo")
+	var/list/cached_types = list("rifle bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "rifle"),
+							"armor-piercing rifle bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "rifleAP"),
+							"incendiary rifle bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "rifleFire"),
+							"A19 high velocity bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "rifle"),
+							"A19 high velocity incendiary bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "rifleFire"),
+							"A19 high velocity impact bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "rifleSpecial"),
+							"heavy rifle bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "rifleSpecial"),
+							"shotgun slug" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "shotgunSlugs"),
+							"beanbag slug" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "shotgunBeanbag"),
+							"incendiary slug" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "shotgunFire"),
+							"shotgun flechette shell" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "shotgunFletchettes"),
+							"shotgun buckshot shell" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "shotgunBuckshot"),
+							"sniper bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "sniper"),
+							"incendiary sniper bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "sniperFire"),
+							"flak sniper bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "sniperFlak"),
+							"crude sniper bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "sniper"),
+							"supersonic sniper bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "sniperFlak"),
+							"smartgun bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "smartgun"),
+							"irradiated smartgun bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "smartgun"),
+							"minigun bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "smartgun"),
+							"high explosive rocket" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "rocketHE"),
+							"anti-armor rocket" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "rocketAP"),
+							"white phosphorous rocket" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "rocketFire"),
+							"thermobaric rocket" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "rocketHE"),
+							"flame" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "flame"),
+							"green flame" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "flameGreen"),
+							"blue flame" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "flameBlue"),
+							"pistol bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "pistol"),
+							"light pistol bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "pistol"),
+							"tranq bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "pistolSpecial"),
+							"hollowpoint pistol bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "pistolAP"),
+							"armor-piercing pistol bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "pistolAP"),
+							"heavy pistol bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "pistolSpecial"),
+							"incendiary pistol bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "pistolFire"),
+							"squash-head pistol bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "pistolSpecial"),
+							"live monkey" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "pistolFire"),
+							"revolver bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "pistol"),
+							"small revolver bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "pistol"),
+							"slimline revolver bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "pistolSpecial"),
+							"heavy revolver bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "pistolAP"),
+							"high-impact revolver bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "pistolAP"),
+							"submachinegun bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "smg"),
+							"armor-piercing submachinegun bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "smgAP"),
+							"submachinegun light bullet" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "smgSpecial")
+							)
+	var/list/cached_numbers = list("o0" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "o0"),
+								"o1" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "o1"),
+								"o2" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "o2"),
+								"o3" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "o3"),
+								"o4" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "o4"),
+								"o5" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "o5"),
+								"o6" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "o6"),
+								"o7" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "o7"),
+								"o8" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "o8"),
+								"o9" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "o9"),
+								"t0" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "t0"),
+								"t1" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "t1"),
+								"t2" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "t2"),
+								"t3" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "t3"),
+								"t4" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "t4"),
+								"t5" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "t5"),
+								"t6" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "t6"),
+								"t7" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "t7"),
+								"t8" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "t8"),
+								"t9" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "t9"),
+								"h0" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "h0"),
+								"h1" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "h1"),
+								"h2" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "h2"),
+								"h3" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "h3"),
+								"h4" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "h4"),
+								"h5" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "h5"),
+								"h6" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "h6"),
+								"h7" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "h7"),
+								"h8" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "h8"),
+								"h9" = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "h9")
+								)
+
+/obj/screen/ammo/proc/add_hud(var/mob/user)
+	if(!user?.client)
+		return
+
+	if(user.client.screen.Find(src))
+		return
+	else
+		user.client.screen += src
+
+/obj/screen/ammo/proc/remove_hud(var/mob/user)
+	if(!user?.client)
+		return
+
+	if(!user.client.screen.Find(src))
+		return
+	else
+		user.client.screen -= src
+
+/obj/screen/ammo/proc/update_hud(var/mob/user)
+	if(!user?.client)
+		return
+
+	if(!user.client.screen.Find(src))
+		return
+
+	var/obj/item/weapon/gun/G = user.get_active_hand()
+
+	if(!G?.in_chamber)
+		cached_base = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "ammo")
+		icon = cached_base
+		to_chat(user, "No gun or nothing in chamber")
+		return
+
+	var/type = G.in_chamber.ammo.name ? G.in_chamber.ammo.name : G.ammo.name
+	var/icon/bulleticon = cached_types[type]
+
+	if(!bulleticon)
+		cached_base = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "ammo")
+		icon = cached_base
+		to_chat(user, "No bullet icon")
+		return
+
+	to_chat(user, "[type] type")
+
+	cached_base = new /icon("icon" = 'icons/mob/ammoHUD.dmi', "icon_state" = "ammo")
+	cached_base.Blend(bulleticon, ICON_OVERLAY)
+
+	var/rounds = 0
+
+	if(G.current_mag)
+		rounds += G.current_mag.current_rounds
+
+	if(G.in_chamber)
+		rounds++
+
+	rounds = num2text(rounds)
+
+	to_chat(user, "[rounds] rounds")
+
+	var/first
+	var/second
+	var/third
+	var/firsticon
+	var/secondicon
+	var/thirdicon
+
+	switch(length(rounds))
+		if(1)
+			to_chat(user, "1 digit")
+			first = "o" + rounds[1]
+			to_chat(user, "[first]")
+			firsticon = cached_numbers[first]
+			cached_base.Blend(firsticon, ICON_OVERLAY)
+		if(2)
+			to_chat(user, "2 digits")
+			first = "o" + rounds[2]
+			second = "t" + rounds[1]
+			to_chat(user, "[first] [second]")
+			firsticon = cached_numbers[first]
+			secondicon = cached_numbers[second]
+			cached_base.Blend(firsticon, ICON_OVERLAY)
+			cached_base.Blend(secondicon, ICON_OVERLAY)
+		if(3)
+			to_chat(user, "3 digits")
+			first = "o" + rounds[3]
+			second = "t" + rounds[2]
+			third = "h" + rounds[1]
+			to_chat(user, "[first] [second] [third]")
+			firsticon = cached_numbers[first]
+			secondicon = cached_numbers[second]
+			thirdicon = cached_numbers[third]
+			cached_base.Blend(firsticon, ICON_OVERLAY)
+			cached_base.Blend(secondicon, ICON_OVERLAY)
+			cached_base.Blend(thirdicon, ICON_OVERLAY)
+		else
+			to_chat(user, "What the fuck?")
+			return
+
+	icon = cached_base

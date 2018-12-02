@@ -1446,6 +1446,12 @@
 		return
 	new /obj/flamer_fire(T, 20, 20, fire_spread_amount = 2)
 
+/datum/ammo/flamethrower/green
+	name = "green flame"
+
+/datum/ammo/flamethrower/blue
+	name = "blue flame"
+
 /datum/ammo/flare
 	name = "flare"
 	ping = null //no bounce off.
