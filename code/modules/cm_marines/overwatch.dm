@@ -1145,7 +1145,7 @@
 				dist = "<b>N/A</b>"
 				if(H.mind && H.mind.assigned_role != "Squad Leader")
 					act_sl = " (acting SL)"
-			else if(M_turf.z == SL_z)
+			else if(M_turf && SL_z && M_turf.z == SL_z)
 				dist = "[get_dist(H, current_squad.squad_leader)] ([dir2text_short(get_dir(current_squad.squad_leader, H))])"
 		switch(H.stat)
 			if(CONSCIOUS)
