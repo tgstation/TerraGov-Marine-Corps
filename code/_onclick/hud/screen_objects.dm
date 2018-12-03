@@ -660,8 +660,12 @@
 	if(G.current_mag)
 		rounds += G.current_mag.current_rounds
 
-	if(G.in_chamber && !istype(G, /obj/item/weapon/gun/launcher) && !istype(G, /obj/item/weapon/gun/revolver) !istype(G, /obj/item/weapon/gun/smartgun))
+	if(G.in_chamber && !istype(G, /obj/item/weapon/gun/launcher) && !istype(G, /obj/item/weapon/gun/revolver) && !istype(G, /obj/item/weapon/gun/smartgun) && !istype(G, /obj/item/weapon/gun/energy))
 		rounds++
+
+	if(istype(G, /obj/item/weapon/gun/energy/taser))
+		var/obj/item/weapon/gun/energy/taser/T = G
+		rounds += (T.cell.charge / T.charge_cost)
 
 	if(G.in_chamber?.ammo)
 		hud_state = G.in_chamber.ammo.hud_state
@@ -703,6 +707,9 @@
 			to_chat(user, "3 digits")
 			to_chat(user, "h[rounds[1]] t[rounds[2]] o[rounds[3]]")
 		else
+			overlays += image('icons/mob/ammoHUD.dmi', src, "o9")
+			overlays += image('icons/mob/ammoHUD.dmi', src, "t9")
+			overlays += image('icons/mob/ammoHUD.dmi', src, "h9")
 			to_chat(user, "What the fuck?")
 			return
 
