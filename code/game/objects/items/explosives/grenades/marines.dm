@@ -27,7 +27,7 @@
 	desc = "A harmless reusable version of the M40 HEDP, used for training. Capable of being loaded in the M92 Launcher, or thrown by hand."
 	icon_state = "training_grenade"
 	item_state = "grenade"
-	hud_state = "grenadeDummy"
+	hud_state = "grenade_dummy"
 	dangerous = 0
 
 /obj/item/explosive/grenade/frag/training/prime()
@@ -49,7 +49,7 @@
 	desc = "A fragmentation grenade produced for private security firms. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_pmc"
 	item_state = "grenade_ex"
-	hud_state = "grenadeFrag"
+	hud_state = "grenade_frag"
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/PMC/prime()
@@ -72,7 +72,7 @@
 	desc = "An outdated TGMC Fragmentation Grenade. With decades of service in the TGMC, the old M15 Fragmentation Grenade is slowly being replaced with the slightly safer M40 HEDP. It is set to detonate in 4 seconds."
 	icon_state = "grenade_ex"
 	item_state = "grenade_ex"
-	hud_state = "grenadeFrag"
+	hud_state = "grenade_frag"
 	underslug_launchable = FALSE
 
 /obj/item/explosive/grenade/frag/m15/prime()
@@ -87,7 +87,7 @@
 	desc = "A fragmentation grenade produced in the colonies, most commonly using old designs and schematics. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_stick"
 	item_state = "grenade_stick"
-	hud_state = "grenadeFrag"
+	hud_state = "greande_frag"
 	force = 10
 	w_class = 2
 	throwforce = 15
@@ -107,7 +107,7 @@
 	desc = "A fragmentation grenade found within the ranks of the UPP. Designed to explode into shrapnel and rupture the bodies of opponents. It explodes 3 seconds after the pin has been pulled."
 	icon_state = "grenade_upp"
 	item_state = "grenade_upp"
-	hud_state = "grenadeFrag"
+	hud_state = "greande_frag"
 	throw_speed = 2
 	throw_range = 6
 	underslug_launchable = FALSE
@@ -125,7 +125,7 @@
 	icon_state = "grenade_fire"
 	det_time = 40
 	item_state = "grenade_fire"
-	hud_state = "grenadeFire"
+	hud_state = "grenade_fire"
 	flags_equip_slot = SLOT_WAIST
 	dangerous = 1
 	underslug_launchable = TRUE
@@ -178,7 +178,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	icon_state = "grenade_smoke"
 	det_time = 20
 	item_state = "grenade_smoke"
-	hud_state = "grenadeSmoke"
+	hud_state = "grenade_smoke"
 	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/bad/smoke
 
@@ -200,7 +200,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	icon_state = "grenade_cloak"
 	det_time = 20
 	item_state = "grenade_cloak"
-	hud_state = "grenade_Hide"
+	hud_state = "grenade_hide"
 	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/tactical/smoke
 
@@ -222,7 +222,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	icon_state = "grenade_phos"
 	det_time = 20
 	item_state = "grenade_phos"
-	hud_state = "grenadeSmoke"
+	hud_state = "grenade_hide"
 	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/phosphorus/smoke
 	dangerous = 1

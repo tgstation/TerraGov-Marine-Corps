@@ -623,6 +623,7 @@
 	icon = 'icons/mob/ammoHUD.dmi'
 	icon_state = "ammo"
 	screen_loc = ui_ammo
+	var/warned = FALSE
 
 /obj/screen/ammo/proc/add_hud(var/mob/user)
 	if(!user?.client)
@@ -652,22 +653,26 @@
 		return
 
 	var/hud_state
+	var/hud_state_empty
 
 	var/rounds = 0
 
 	if(G.current_mag)
 		rounds += G.current_mag.current_rounds
 
-	if(G.in_chamber && !istype(G, /obj/item/weapon/gun/launcher) && !istype(G, /obj/item/weapon/gun/revolver))
+	if(G.in_chamber && !istype(G, /obj/item/weapon/gun/launcher) && !istype(G, /obj/item/weapon/gun/revolver) !istype(G, /obj/item/weapon/gun/smartgun))
 		rounds++
 
 	if(G.in_chamber?.ammo)
 		hud_state = G.in_chamber.ammo.hud_state
+		hud_state_empty = G.in_chamber.ammo.hud_state_empty
 	else if(G.ammo)
 		hud_state = G.ammo.hud_state
+		hud_state_empty = G.ammo.hud_state_empty
 	else if(istype(G, /obj/item/weapon/gun/launcher/m92))
 		var/obj/item/weapon/gun/launcher/m92/L = G
-		hud_state = L.grenades[1].hud_state	
+		hud_state = L.grenades[1].hud_state
+		hud_state_empty = L.grenades[1].hud_state_empty
 		rounds += length(L.grenades)
 	else
 		overlays.Cut()
@@ -676,9 +681,6 @@
 		return
 
 	overlays.Cut()
-	overlays += image('icons/mob/ammoHUD.dmi', src, "[hud_state]")
-
-	to_chat(user, "hud_state [hud_state]")
 
 	rounds = num2text(rounds)
 
@@ -703,3 +705,26 @@
 		else
 			to_chat(user, "What the fuck?")
 			return
+
+	rounds = text2num(rounds)
+	var/empty = image('icons/mob/ammoHUD.dmi', src, "[hud_state_empty]")
+
+	if(rounds == 0)
+		if(warned)
+			overlays += empty
+		else
+			warned = TRUE
+			overlays += empty
+			spawn(4)
+				overlays -= empty
+			spawn(4*2)
+				overlays += empty
+			spawn(4*3)
+				overlays -= empty
+			spawn(4*4)
+				overlays += empty
+		to_chat(user, "warning, hud_state_empty [hud_state_empty]")
+	else
+		warned = FALSE
+		overlays += image('icons/mob/ammoHUD.dmi', src, "[hud_state]")
+		to_chat(user, "hud_state [hud_state]")
