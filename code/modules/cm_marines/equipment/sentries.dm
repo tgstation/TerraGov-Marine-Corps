@@ -1,16 +1,17 @@
 //Deployable turrets. They can be either automated, manually fired, or installed with a pAI.
 //They are built in stages, and only engineers have access to them.
-
 /obj/item/ammo_magazine/sentry
 	name = "M30 box magazine (10x28mm Caseless)"
 	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = 4
-	icon_state = "ua571c"
+	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon_state = "ammo_can"
 	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
 	caliber = "10x28mm"
 	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/turret
 	gun_type = null
+
 
 /obj/item/storage/box/sentry
 	name = "\improper UA 571-C sentry crate"
@@ -28,7 +29,6 @@
 					/obj/item/ammo_magazine/sentry,
 					)
 
-
 /obj/item/storage/box/sentry/New()
 	. = ..()
 	new /obj/item/stack/sheet/plasteel/sentry_stack(src)
@@ -37,6 +37,7 @@
 	new /obj/item/device/turret_sensor(src)
 	new /obj/item/cell/high(src)
 	new /obj/item/ammo_magazine/sentry(src)
+
 
 /obj/machinery/marine_turret_frame
 	name = "\improper UA 571-C turret frame"
@@ -55,7 +56,6 @@
 	var/has_sensor = FALSE
 	var/frame_hp = 100
 
-
 /obj/machinery/marine_turret_frame/proc/update_health(damage)
 	frame_hp -= damage
 	if(frame_hp <= 0)
@@ -66,7 +66,6 @@
 		if(has_sensor)
 			new /obj/item/device/turret_sensor(loc)
 		cdel(src)
-
 
 /obj/machinery/marine_turret_frame/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M))
@@ -79,7 +78,7 @@
 	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
 
 /obj/machinery/marine_turret_frame/examine(mob/user as mob)
-	..()
+	. = ..()
 	if(!anchored)
 		to_chat(user, "<span class='info'>It must be <B>wrenched</B> to the floor.</span>")
 	if(!has_cable)
@@ -262,14 +261,14 @@
 	desc = "The turret part of an automated sentry turret. This must be installed on a turret frame and welded together for it to do anything."
 	unacidable = TRUE
 	w_class = 5
-	icon = 'icons/Marine/turret.dmi'
+	icon = 'icons/Marine/new_sentry_alt.dmi'
 	icon_state = "sentry_head"
 
 /obj/machinery/marine_turret
 	name = "\improper UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
-	icon = 'icons/Marine/turret.dmi'
-	icon_state = "sentry_off"
+	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon_state = "sentry_base"
 	anchored = TRUE
 	unacidable = TRUE
 	density = TRUE
@@ -760,6 +759,16 @@
 	return ..()
 
 /obj/machinery/marine_turret/update_icon()
+	var/image/battery_green = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_green")
+	var/image/battery_yellow = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_yellow")
+	var/image/battery_orange = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_orange")
+	var/image/battery_red = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_red")
+	var/image/battery_black = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_black")
+	var/image/active = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_active")
+	var/image/ammo_full = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_ammo")
+	var/image/ammo_empty = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_ammo_empty")
+
+	overlays.Cut()
 	if(stat && health > 0) //Knocked over
 		on = FALSE
 		density = FALSE
@@ -769,27 +778,33 @@
 	else
 		density = initial(density)
 
-	if(!cell)
+	if(rounds)
+		overlays += ammo_full
+	else
+		overlays += ammo_empty
+
+	if(!cell || cell.charge <= 0)
 		on = FALSE
 		stop_processing()
-		icon_state = "sentry_battery_none"
+		overlays += battery_black
 		return
 
-	if(cell.charge <= 0)
-		on = FALSE
-		stop_processing()
-		icon_state = "sentry_battery_dead"
-		return
+	to_chat(world, "[cell.charge / cell.maxcharge]")
+	switch(cell.charge / cell.maxcharge)
+		if(1 to 0.75)
+			overlays += battery_green
+		if(0.74 to 0.5)
+			overlays += battery_yellow
+		if(0.49 to 0.25)
+			overlays += battery_orange
+		if(0.24 to 0)
+			overlays += battery_red
 
 	if(on)
 		start_processing()
-		if(!rounds)
-			icon_state = "sentry_ammo_none"
-		else
-			icon_state = "sentry_on[radial_mode ? "_radial" : null]"
+		overlays += active
 
 	else
-		icon_state = "sentry_off"
 		stop_processing()
 
 /obj/machinery/marine_turret/proc/update_health(var/damage) //Negative damage restores health.
@@ -1191,7 +1206,7 @@
 	burst_fire = TRUE
 	rounds = 500
 	rounds_max = 500
-	icon_state = "sentry_on"
+	icon_state = "sentry_base"
 
 /obj/machinery/marine_turret/premade/New()
 	spark_system = new /datum/effect_system/spark_spread
