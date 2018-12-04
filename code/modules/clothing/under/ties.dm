@@ -375,7 +375,6 @@
 	w_class = 3
 	var/slots = 3
 	var/obj/item/storage/internal/hold
-	var/draw_mode = FALSE
 
 /obj/item/clothing/tie/storage/New()
 	..()
@@ -388,23 +387,47 @@
 		hold = null
 	. = ..()
 
+/obj/item/clothing/tie/storage/on_attached(obj/item/clothing/under/S, mob/user)
+	..()
+	has_suit.verbs += /obj/item/clothing/tie/storage/verb/toggle_draw_mode
+
+/obj/item/clothing/tie/storage/on_removed()
+	has_suit.verbs -= /obj/item/clothing/tie/storage/verb/toggle_draw_mode
+	..()
+
 /obj/item/clothing/tie/storage/verb/toggle_draw_mode()
 	set name = "Switch Storage Drawing Method"
 	set category = "Object"
-	draw_mode = !draw_mode
-	if(draw_mode)
-		to_chat(usr, "Clicking [src] with an empty hand now puts the last stored item in your hand.")
-	else
-		to_chat(usr, "Clicking [src] with an empty hand now opens the pouch storage menu.")
+	set src in usr
+	if(!istype(usr, /mob/living))
+		return
+	if(usr.stat)
+		return
 
+	var/obj/item/clothing/tie/storage/H = null
+	if (istype(src, /obj/item/clothing/tie/storage/))
+		H = src
+	else if (istype(src, /obj/item/clothing/under))
+		var/obj/item/clothing/under/S = src
+		if (S.hastie)
+			H = S.hastie
 
-/obj/item/clothing/tie/storage/attack_hand(mob/user as mob)
-	if(has_suit)	//if we are part of a suit
-		if(draw_mode && ishuman(user) && contents.len)
-			var/obj/item/I = contents[contents.len]
-			I.attack_hand(user)
+	if(H.hold)
+		H.hold.draw_mode = !H.hold.draw_mode
+		if(H.hold.draw_mode)
+			to_chat(usr, "Clicking [H] with an empty hand now puts the last stored item in your hand.")
 		else
-			hold.open(user)
+			to_chat(usr, "Clicking [H] with an empty hand now opens the pouch storage menu.")
+
+
+/obj/item/clothing/tie/storage/attack_hand(mob/user)
+	if(hold.draw_mode && ishuman(user) && hold.contents.len)
+		var/obj/item/I = hold.contents[contents.len]
+		I.attack_hand(user)
+		return
+
+	if(has_suit)	//if we are part of a suit
+		hold.open(user)
 		return
 
 	if (hold.handle_attack_hand(user))	//otherwise interact as a regular storage item
