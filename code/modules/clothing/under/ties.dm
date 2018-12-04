@@ -375,6 +375,7 @@
 	w_class = 3
 	var/slots = 3
 	var/obj/item/storage/internal/hold
+	var/draw_mode = FALSE
 
 /obj/item/clothing/tie/storage/New()
 	..()
@@ -387,9 +388,23 @@
 		hold = null
 	. = ..()
 
+/obj/item/clothing/tie/storage/verb/toggle_draw_mode()
+	set name = "Switch Storage Drawing Method"
+	set category = "Object"
+	draw_mode = !draw_mode
+	if(draw_mode)
+		to_chat(usr, "Clicking [src] with an empty hand now puts the last stored item in your hand.")
+	else
+		to_chat(usr, "Clicking [src] with an empty hand now opens the pouch storage menu.")
+
+
 /obj/item/clothing/tie/storage/attack_hand(mob/user as mob)
-	if (has_suit)	//if we are part of a suit
-		hold.open(user)
+	if(has_suit)	//if we are part of a suit
+		if(draw_mode && ishuman(user) && contents.len)
+			var/obj/item/I = contents[contents.len]
+			I.attack_hand(user)
+		else
+			hold.open(user)
 		return
 
 	if (hold.handle_attack_hand(user))	//otherwise interact as a regular storage item
