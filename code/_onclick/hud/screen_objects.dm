@@ -663,9 +663,9 @@
 	if(G.in_chamber && !istype(G, /obj/item/weapon/gun/launcher) && !istype(G, /obj/item/weapon/gun/revolver) && !istype(G, /obj/item/weapon/gun/smartgun) && !istype(G, /obj/item/weapon/gun/energy))
 		rounds++
 
-	if(istype(G, /obj/item/weapon/gun/energy/taser))
-		var/obj/item/weapon/gun/energy/taser/T = G
-		rounds += (T.cell.charge / T.charge_cost)
+	if(istype(G, /obj/item/weapon/gun/energy))
+		var/obj/item/weapon/gun/energy/E = G
+		rounds += (E.cell.charge / E.charge_cost)
 
 	if(G.in_chamber?.ammo)
 		hud_state = G.in_chamber.ammo.hud_state

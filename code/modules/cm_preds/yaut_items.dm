@@ -496,7 +496,6 @@
 
 		var/obj/item/weapon/gun/energy/plasma_caster/W = new(usr)
 		usr.put_in_active_hand(W)
-		W.source = src
 		caster_active = 1
 		to_chat(usr, "<span class='notice'>You activate your plasma caster.</span>")
 		playsound(src,'sound/weapons/pred_plasmacaster_on.ogg', 15, 1)
