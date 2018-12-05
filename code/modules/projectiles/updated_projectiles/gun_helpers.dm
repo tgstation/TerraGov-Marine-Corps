@@ -747,7 +747,7 @@ should be alright.
 	if(!usr)
 		return
 
-	rail.activate_attachment(src, usr)
+	rail?.activate_attachment(src, usr)
 
 
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
