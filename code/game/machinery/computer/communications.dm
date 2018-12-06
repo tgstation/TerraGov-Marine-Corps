@@ -10,10 +10,6 @@
 #define STATE_ALERT_LEVEL 9
 #define STATE_CONFIRM_LEVEL 10
 
-#define COOLDOWN_COMM_MESSAGE 600
-#define COOLDOWN_COMM_REQUEST 3000
-#define COOLDOWN_COMM_CENTRAL 300
-
 //Note: Commented out procs are things I left alone and did not revise. Usually AI-related interactions.
 
 // The communications computer
@@ -23,7 +19,7 @@
 	icon_state = "comm"
 	req_access = list(ACCESS_MARINE_BRIDGE)
 	circuit = "/obj/item/circuitboard/computer/communications"
-	var/prints_intercept = 1
+	var/prints_intercept = TRUE
 	var/authenticated = 0
 	var/list/messagetitle = list()
 	var/list/messagetext = list()
@@ -31,10 +27,11 @@
 	var/aicurrmsg = 0
 	var/state = STATE_DEFAULT
 	var/aistate = STATE_DEFAULT
-	var/cooldown_message = 0 //Based on world.time.
-	var/cooldown_request = 0
-	var/cooldown_central = 0
-	var/tmp_alertlevel = 0
+	var/cooldown_message = FALSE //Based on world.time.
+	var/cooldown_request = FALSE
+	var/cooldown_central = FALSE
+	var/just_called = FALSE
+	var/tmp_alertlevel = SEC_LEVEL_GREEN
 
 	var/status_display_freq = "1435"
 	var/stat_msg1
@@ -43,8 +40,8 @@
 	var/datum/announcement/priority/command/crew_announcement = new
 
 /obj/machinery/computer/communications/New()
-	..()
-	crew_announcement.newscast = 1
+	. = ..()
+	crew_announcement.newscast = TRUE
 	start_processing()
 
 /obj/machinery/computer/communications/process()
@@ -53,25 +50,30 @@
 			updateDialog()
 
 /obj/machinery/computer/communications/Topic(href, href_list)
-	if(..()) return FALSE
+	. = ..()
+	if(.)
+		return FALSE
 
 	usr.set_interaction(src)
 
 	switch(href_list["operation"])
-		if("main") state = STATE_DEFAULT
+		if("main") 
+			state = STATE_DEFAULT
 
 		if("login")
 			var/mob/living/carbon/human/C = usr
 			var/obj/item/card/id/I = C.get_active_hand()
 			if(istype(I))
-				if(check_access(I)) authenticated = 1
+				if(check_access(I)) 
+					authenticated = 1
 				if(ACCESS_MARINE_BRIDGE in I.access)
 					authenticated = 2
 					crew_announcement.announcer = GetNameAndAssignmentFromId(I)
 			else
 				I = C.wear_id
 				if(istype(I))
-					if(check_access(I)) authenticated = 1
+					if(check_access(I)) 
+						authenticated = 1
 					if(ACCESS_MARINE_BRIDGE in I.access)
 						authenticated = 2
 						crew_announcement.announcer = GetNameAndAssignmentFromId(I)
@@ -85,8 +87,10 @@
 			if(istype(I))
 				if(ACCESS_MARINE_COMMANDER in I.access || ACCESS_MARINE_BRIDGE in I.access) //Let heads change the alert level.
 					switch(tmp_alertlevel)
-						if(-INFINITY to SEC_LEVEL_GREEN) tmp_alertlevel = SEC_LEVEL_GREEN //Cannot go below green.
-						if(SEC_LEVEL_BLUE to INFINITY) tmp_alertlevel = SEC_LEVEL_BLUE //Cannot go above blue.
+						if(-INFINITY to SEC_LEVEL_GREEN) 
+							tmp_alertlevel = SEC_LEVEL_GREEN //Cannot go below green.
+						if(SEC_LEVEL_BLUE to INFINITY) 
+							tmp_alertlevel = SEC_LEVEL_BLUE //Cannot go above blue.
 
 					var/old_level = security_level
 					set_security_level(tmp_alertlevel)
@@ -95,8 +99,10 @@
 						log_game("[key_name(usr)] has changed the security level to [get_security_level()].")
 						message_admins("[key_name_admin(usr)] has changed the security level to [get_security_level()].")
 						switch(security_level)
-							if(SEC_LEVEL_GREEN) feedback_inc("alert_comms_green",1)
-							if(SEC_LEVEL_BLUE) feedback_inc("alert_comms_blue",1)
+							if(SEC_LEVEL_GREEN) 
+								feedback_inc("alert_comms_green",1)
+							if(SEC_LEVEL_BLUE) 
+								feedback_inc("alert_comms_blue",1)
 				else
 					to_chat(usr, "<span class='warning'>You are not authorized to do this.</span>")
 				tmp_alertlevel = SEC_LEVEL_GREEN //Reset to green.
@@ -109,8 +115,10 @@
 				if(world.time < cooldown_message + COOLDOWN_COMM_MESSAGE)
 					to_chat(usr, "<span class='warning'>Please allow at least [COOLDOWN_COMM_MESSAGE*0.1] second\s to pass between announcements.</span>")
 					return FALSE
+
 				var/input = input(usr, "Please write a message to announce to the station crew.", "Priority Announcement", "") as message|null
-				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_message + COOLDOWN_COMM_MESSAGE) return FALSE
+				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_message + COOLDOWN_COMM_MESSAGE) 
+					return FALSE
 
 				crew_announcement.Announce(input, to_xenos = 0)
 				cooldown_message = world.time
@@ -119,17 +127,17 @@
 			if(!usr.mind || usr.mind.assigned_role != "Commander")
 				to_chat(usr, "<span class='warning'>Only the Commander can award medals.</span>")
 				return
+
 			if(give_medal_award(loc))
 				visible_message("<span class='notice'>[src] prints a medal.</span>")
 
 		if("evacuation_start")
 			if(state == STATE_EVACUATION)
-
 				if(world.time < EVACUATION_TIME_LOCK) //Cannot call it early in the round.
 					to_chat(usr, "<span class='warning'>USCM protocol does not allow immediate evacuation. Please wait another [round((EVACUATION_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
 					return FALSE
 
-				if(!ticker || !ticker.mode || !ticker.mode.has_called_emergency)
+				if(!ticker?.mode)
 					to_chat(usr, "<span class='warning'>The [MAIN_SHIP_NAME]'s distress beacon must be activated prior to evacuation taking place.</span>")
 					return FALSE
 
@@ -175,33 +183,25 @@
 
 		if("distress")
 			if(state == STATE_DISTRESS)
-
 				//Comment to test
 				if(world.time < DISTRESS_TIME_LOCK)
 					to_chat(usr, "<span class='warning'>The distress beacon cannot be launched this early in the operation. Please wait another [round((DISTRESS_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
 					return FALSE
 
-				if(!ticker || !ticker.mode) return FALSE //Not a game mode?
+				if(!ticker?.mode) 
+					return FALSE //Not a game mode?
 
-				if(ticker.mode.has_called_emergency)
-					to_chat(usr, "<span class='warning'>The [MAIN_SHIP_NAME]'s distress beacon is already broadcasting.</span>")
+				if(just_called || ticker.mode.waiting_for_candidates)
+					to_chat(usr, "<span class='warning'>The distress beacon has been just launched.</span>")
 					return FALSE
 
-				if(ticker.mode.distress_cooldown)
+				if(ticker.mode.on_distress_cooldown)
 					to_chat(usr, "<span class='warning'>The distress beacon is currently recalibrating.</span>")
 					return FALSE
 
-				 //Comment block to test
-				if(world.time < cooldown_request + COOLDOWN_COMM_REQUEST)
-					to_chat(usr, "<span class='warning'>The distress beacon has recently broadcast a message. Please wait.</span>")
-					return FALSE
-
-				//Currently only counts aliens, but this will likely need to change with human opponents.
-				//I think this should instead count human losses, so that a distress beacon is available when a certain number of dead pile up.
-				//Comment block to test
 				var/L[] = ticker.mode.count_humans_and_xenos()
 				var/M[] = ticker.mode.count_humans_and_xenos(list(MAIN_SHIP_Z_LEVEL))
-				if((L[2] < round(L[1] * 0.8)) || (M[2] < round(M[1] * 0.5)))
+				if((L[2] < round(L[1] * 0.8)) && (M[2] < round(M[1] * 0.5))) //If there's less humans (weighted) than xenos, humans get home-turf advantage
 					log_game("[key_name(usr)] has attemped to call a distress beacon, but it was denied due to lack of threat.")
 					to_chat(usr, "<span class='warning'>The sensors aren't picking up enough of a threat to warrant a distress beacon.</span>")
 					return FALSE
@@ -213,11 +213,13 @@
 				to_chat(usr, "<span class='notice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>")
 
 				distress_cancel = FALSE
-				spawn(600) //1 minute in deciseconds
+				just_called = TRUE
+				spawn(1 MINUTE)
 					if(!distress_cancel)
 						ticker.mode.activate_distress()
 						log_game("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within 60 seconds.")
 						message_admins("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within 60 seconds.", 1)
+					just_called = FALSE
 
 				cooldown_request = world.time
 				return TRUE
@@ -230,9 +232,11 @@
 
 		if("viewmessage")
 			state = STATE_VIEWMESSAGE
-			if (!currmsg)
-				if(href_list["message-num"]) 	currmsg = text2num(href_list["message-num"])
-				else 							state = STATE_MESSAGELIST
+			if(!currmsg)
+				if(href_list["message-num"]) 	
+					currmsg = text2num(href_list["message-num"])
+				else 							
+					state = STATE_MESSAGELIST
 
 		if("delmessage")
 			state = (currmsg) ? STATE_DELMESSAGE : STATE_MESSAGELIST
@@ -244,10 +248,12 @@
 					var/text  = messagetext[currmsg]
 					messagetitle.Remove(title)
 					messagetext.Remove(text)
-					if(currmsg == aicurrmsg) aicurrmsg = 0
+					if(currmsg == aicurrmsg) 
+						aicurrmsg = 0
 					currmsg = 0
 				state = STATE_MESSAGELIST
-			else state = STATE_VIEWMESSAGE
+			else 
+				state = STATE_VIEWMESSAGE
 
 
 		if("status")
@@ -277,7 +283,8 @@
 					to_chat(usr, "<span class='warning'>Arrays recycling.  Please stand by.</span>")
 					return FALSE
 				var/input = stripped_input(usr, "Please choose a message to transmit to USCM.  Please be aware that this process is very expensive, and abuse will lead to termination.  Transmission does not guarantee a response. There is a small delay before you may send another message. Be clear and concise.", "To abort, send an empty message.", "")
-				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_central + COOLDOWN_COMM_CENTRAL) return FALSE
+				if(!input || !(usr in view(1,src)) || authenticated != 2 || world.time < cooldown_central + COOLDOWN_COMM_CENTRAL) 
+					return FALSE
 
 				Centcomm_announce(input, usr)
 				to_chat(usr, "<span class='notice'>Message transmitted.</span>")
@@ -286,7 +293,8 @@
 
 		if("securitylevel")
 			tmp_alertlevel = text2num( href_list["newalertlevel"] )
-			if(!tmp_alertlevel) tmp_alertlevel = 0
+			if(!tmp_alertlevel) 
+				tmp_alertlevel = 0
 			state = STATE_CONFIRM_LEVEL
 
 		if("changeseclevel")
@@ -303,7 +311,8 @@
 	return attack_hand(user)
 
 /obj/machinery/computer/communications/attack_hand(var/mob/user as mob)
-	if(..()) return FALSE
+	if(..()) 
+		return FALSE
 
 	//Should be refactored later, if there's another ship that can appear during a mode with a comm console.
 	if(!istype(loc.loc, /area/almayer/command/cic)) //Has to be in the CIC. Can also be a generic CIC area to communicate, if wanted.
@@ -492,6 +501,3 @@
 #undef STATE_STATUSDISPLAY
 #undef STATE_ALERT_LEVEL
 #undef STATE_CONFIRM_LEVEL
-#undef COOLDOWN_COMM_MESSAGE
-#undef COOLDOWN_COMM_REQUEST
-#undef COOLDOWN_COMM_CENTRAL
