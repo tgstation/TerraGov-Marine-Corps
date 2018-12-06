@@ -93,7 +93,7 @@
 		usr.put_in_hands(pcell)
 		playsound(src,'sound/machines/click.ogg', 25, 1)
 		to_chat(usr, "You take out the [pcell] out of the [src].")
-		src.pcell = null
+		pcell = null
 	else if(!pcell)
 		to_chat(usr, "There is no cell in the [src].")
 	else
@@ -102,7 +102,7 @@
 /obj/item/smartgun_powerpack/attackby(var/obj/item/A as obj, mob/user as mob)
 	if(istype(A, /obj/item/cell) && !pcell)
 		var/obj/item/cell/C = A
-		src.pcell = C
+		pcell = C
 		cdel(C)
 		visible_message("[user] puts a new power cell in the [src].")
 		to_chat(user, "You put a new cell in the [src] containing [pcell.charge] charge.")
