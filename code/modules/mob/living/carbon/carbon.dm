@@ -280,7 +280,6 @@
 	return
 
 /mob/living/carbon/throw_item(atom/target)
-	src.throw_mode_off()
 	if(is_ventcrawling) //NOPE
 		return
 	if(usr.stat || !target)
@@ -291,11 +290,18 @@
 	var/atom/movable/thrown_thing
 	var/obj/item/I = get_active_hand()
 
-	if(!I || (I.flags_item & NODROP)) return
+	if(!I || (I.flags_item & NODROP)) 
+		return
+
+	if(usr.next_move > world.time)
+		to_chat(usr, "<span class='warning'>You need to wait before throwing again!</span>")
+		return FALSE
+
+	throw_mode_off()
 
 	var/spin_throw = TRUE
 
-	if (istype(I, /obj/item/grab))
+	if(istype(I, /obj/item/grab))
 		var/obj/item/grab/G = I
 		if(ismob(G.grabbed_thing))
 			if(grab_level >= GRAB_NECK)
@@ -318,7 +324,7 @@
 		drop_inv_item_on_ground(I, TRUE)
 
 	//actually throw it!
-	if (thrown_thing)
+	if(thrown_thing)
 		visible_message("<span class='warning'>[src] has thrown [thrown_thing].</span>", null, null, 5)
 
 		if(!lastarea)
@@ -328,6 +334,7 @@
 			step(src, inertia_dir)
 
 		thrown_thing.throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src, spin_throw)
+		usr.next_move = world.time + 5
 
 /mob/living/carbon/fire_act(exposed_temperature, exposed_volume)
 	. = ..()
