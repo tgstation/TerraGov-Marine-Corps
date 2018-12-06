@@ -334,7 +334,7 @@
 			step(src, inertia_dir)
 
 		thrown_thing.throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src, spin_throw)
-		usr.next_move = world.time + 5
+		usr.next_move = world.time + 1
 
 /mob/living/carbon/fire_act(exposed_temperature, exposed_volume)
 	. = ..()
