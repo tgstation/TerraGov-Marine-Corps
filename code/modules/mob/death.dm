@@ -35,10 +35,9 @@
 
 
 
-/mob/proc/death(gibbed,deathmessage="seizes up and falls limp...")
-
+/mob/proc/death(gibbed, deathmessage="seizes up and falls limp...")
 	if(stat == DEAD)
-		return 0
+		return FALSE
 
 	if(!gibbed)
 		src.visible_message("<b>\The [src.name]</b> [deathmessage]")
@@ -64,7 +63,8 @@
 		hud_used.healths.icon_state = "health7"
 
 	timeofdeath = world.time
-	if(mind) mind.store_memory("Time of death: [worldtime2text()]", 0)
+	mind?.store_memory("Time of death: [worldtime2text()]", 0)
+
 	living_mob_list -= src
 	dead_mob_list |= src
 
@@ -73,9 +73,4 @@
 
 	update_icons()
 
-//This is an expensive proc, let's not fire it on EVERY death. It already gets checked in gamemodes.
-//	if(ticker && ticker.mode)
-//		ticker.mode.check_win()
-
-
-	return 1
+	return TRUE

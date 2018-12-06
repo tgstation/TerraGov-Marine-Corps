@@ -1015,8 +1015,7 @@
 
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
 
-/mob/living/carbon/human/verb/issue_order()
-
+/mob/living/carbon/human/verb/issue_order(which as null|text)
 	set name = "Issue Order"
 	set desc = "Issue an order to nearby humans, using your authority to strengthen their resolve."
 	set category = "IC"
@@ -1033,12 +1032,16 @@
 		to_chat(src, "<span class='warning'>You have recently given an order. Calm down.</span>")
 		return
 
-	var/choice = input(src, "Choose an order") in command_aura_allowed + "help" + "cancel"
-	if(choice == "help")
-		to_chat(src, "<span class='notice'><br>Orders give a buff to nearby soldiers for a short period of time, followed by a cooldown, as follows:<br><B>Move</B> - Increased mobility and chance to dodge projectiles.<br><B>Hold</B> - Increased resistance to pain and combat wounds.<br><B>Focus</B> - Increased gun accuracy and effective range.<br></span>")
-		return
-	if(choice == "cancel") return
-	command_aura = choice
+	if(!which)
+		var/choice = input(src, "Choose an order") in command_aura_allowed + "help" + "cancel"
+		if(choice == "help")
+			to_chat(src, "<span class='notice'><br>Orders give a buff to nearby soldiers for a short period of time, followed by a cooldown, as follows:<br><B>Move</B> - Increased mobility and chance to dodge projectiles.<br><B>Hold</B> - Increased resistance to pain and combat wounds.<br><B>Focus</B> - Increased gun accuracy and effective range.<br></span>")
+			return
+		if(choice == "cancel") 
+			return
+		command_aura = choice
+	else
+		command_aura = which
 	command_aura_cooldown = 45 //45 ticks
 	command_aura_tick = 10 //10 ticks
 	var/message = ""
@@ -1053,6 +1056,7 @@
 			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!")
 			say(message)
 	update_action_buttons()
+
 
 /datum/action/skill/issue_order
 	name = "Issue Order"

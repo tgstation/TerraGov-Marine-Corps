@@ -451,6 +451,7 @@
 		new /obj/item/clothing/mask/surgical(src)
 		new /obj/item/clothing/head/surgery/green(src)
 		new /obj/item/clothing/glasses/hud/health(src)
+		new /obj/item/clothing/suit/surgical(src)
 
 	select_gamemode_equipment(gamemode)
 		switch(map_tag)

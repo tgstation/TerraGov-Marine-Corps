@@ -497,6 +497,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
 
+/mob/dead/observer/verb/hive_status()
+	set name = "Show Hive Status"
+	set desc = "Check the status of the hive."
+	set category = "Ghost"
+
+	check_hive_status()
+
+
 /*/mob/dead/observer/verb/become_mouse()
 	set name = "Become mouse"
 	set category = "Ghost"
@@ -897,3 +905,24 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(href_list["preference"])
 		if(client)
 			client.prefs.process_link(src, href_list)
+
+
+/mob/dead/observer/verb/observe()
+	set name = "Observe"
+	set category = "Ghost"
+
+	if(client.eye != client.mob)
+		client.perspective = MOB_PERSPECTIVE
+		client.eye = client.mob
+		return
+
+	var/list/mobs = getmobs()
+	var/input = input("Please select a mob:", "Observe", null, null) as null|anything in mobs
+	var/mob/target = mobs[input]
+
+	if(!target)
+		return
+
+	if(client && target)
+		client.perspective = EYE_PERSPECTIVE
+		client.eye = target

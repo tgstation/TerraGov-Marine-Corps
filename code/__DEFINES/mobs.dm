@@ -424,9 +424,9 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define ID_LAYER				20
 #define SHOES_LAYER				19
 #define GLOVES_LAYER			18
-#define SUIT_LAYER				17
+#define BELT_LAYER   			17
 #define GLASSES_LAYER			16
-#define BELT_LAYER				15		//Possible make this an overlay of somethign required to wear a belt?
+#define SUIT_LAYER				15		//Possible make this an overlay of somethign required to wear a belt?
 #define SUIT_STORE_LAYER		14
 #define BACK_LAYER				13
 #define HAIR_LAYER				12		//TODO: make part of head layer?
