@@ -49,7 +49,7 @@
 			usr.put_in_hands(cell)
 			playsound(src,'sound/machines/click.ogg', 25, 1)
 			to_chat(usr, "You take out the [cell] out of the [src].")
-			src.cell = null
+			cell = null
 		else
 			to_chat(usr, "There is no cell in the [src].")
 
@@ -68,7 +68,7 @@
 	else if(istype(W, /obj/item/cell) && panel_open)
 		if(!cell)
 			var/obj/item/cell/C = W
-			src.cell = C
+			cell = C
 			cdel(C)
 			visible_message("[user] puts a new power cell in the [src].")
 			to_chat(user, "You put a new cell in the [src] containing [cell.charge] charge.")
