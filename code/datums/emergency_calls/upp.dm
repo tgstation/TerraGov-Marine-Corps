@@ -74,27 +74,27 @@
 			mob.set_everything(mob, "UPP Leader")
 			J.generate_equipment(mob)
 			J.generate_entry_conditions(mob)
-			to_chat(mob, "<font size='3'>\red You are an officer of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>")
+			to_chat(mob, "<font size='3'>\red You are an officer of the Union of Progressive People, a powerful socialist state that rivals the TerraGov. </B>")
 		else if(medics < max_medics)
 			var/datum/job/J = new /datum/job/upp/medic
 			mob.set_everything(mob, "UPP Medic")
 			J.generate_equipment(mob)
 			J.generate_entry_conditions(mob)
-			to_chat(mob, "<font size='3'>\red You are a medic of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>")
+			to_chat(mob, "<font size='3'>\red You are a medic of the Union of Progressive People, a powerful socialist state that rivals the TerraGov. </B>")
 			medics++
 		else if(heavies < max_heavies)
 			var/datum/job/J = new /datum/job/upp/heavy
 			mob.set_everything(mob, "UPP Heavy")
 			J.generate_equipment(mob)
 			J.generate_entry_conditions(mob)
-			to_chat(mob, "<font size='3'>\red You are a soldier of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>")
+			to_chat(mob, "<font size='3'>\red You are a soldier of the Union of Progressive People, a powerful socialist state that rivals the TerraGov. </B>")
 			heavies++
 		else
 			var/datum/job/J = new /datum/job/upp/standard
 			mob.set_everything(mob, "UPP Standard")
 			J.generate_equipment(mob)
 			J.generate_entry_conditions(mob)
-			to_chat(mob, "<font size='3'>\red You are a soldier of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>")
+			to_chat(mob, "<font size='3'>\red You are a soldier of the Union of Progressive People, a powerful socialist state that rivals the TerraGov . </B>")
 
 		print_backstory(mob)
 

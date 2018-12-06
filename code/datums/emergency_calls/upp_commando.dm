@@ -69,20 +69,20 @@
 			mob.set_everything(mob, "UPP Commando Leader")
 			J.generate_equipment(mob)
 			J.generate_entry_conditions(mob)
-			to_chat(mob, "<font size='3'>\red You are a commando officer of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>")
+			to_chat(mob, "<font size='3'>\red You are a commando officer of the Union of Progressive People, a powerful socialist state that rivals the TerraGov. </B>")
 		else if(medics < max_medics)
 			var/datum/job/J = new /datum/job/upp/commando/medic
 			mob.set_everything(mob, "UPP Commando Medic")
 			J.generate_equipment(mob)
 			J.generate_entry_conditions(mob)
-			to_chat(mob, "<font size='3'>\red You are a commando medic of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>")
+			to_chat(mob, "<font size='3'>\red You are a commando medic of the Union of Progressive People, a powerful socialist state that rivals the TerraGov. </B>")
 			medics++
 		else
 			var/datum/job/J = new /datum/job/upp/commando/leader
 			mob.set_everything(mob, "UPP Commando Standard")
 			J.generate_equipment(mob)
 			J.generate_entry_conditions(mob)
-			to_chat(mob, "<font size='3'>\red You are a commando of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>")
+			to_chat(mob, "<font size='3'>\red You are a commando of the Union of Progressive People, a powerful socialist state that rivals the TerraGov. </B>")
 		print_backstory(mob)
 
 	spawn(10)

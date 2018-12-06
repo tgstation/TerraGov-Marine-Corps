@@ -101,7 +101,7 @@ datum/preferences
 
 		//Some faction information.
 	var/home_system = "Unset"           //System of birth.
-	var/citizenship = "United Americas (United States)" //Current home system.
+	var/citizenship = "TerraGov" //Current home system.
 	var/faction = "None"                //Antag faction/general associated faction.
 	var/religion = "None"               //Religious association.
 

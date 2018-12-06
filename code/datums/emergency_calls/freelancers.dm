@@ -12,7 +12,7 @@
 
 /datum/emergency_call/mercs/print_backstory(mob/living/carbon/human/mob)
 	to_chat(mob, "<B> You started off in Tychon's Rift system as a colonist seeking work at one of the established colonies.</b>")
-	to_chat(mob, "<B> The withdrawl of United American forces in the early 2180s, the system fell into disarray.</b>")
+	to_chat(mob, "<B> The withdrawl of TerraGov forces in the early 2180s, the system fell into disarray.</b>")
 	to_chat(mob, "<B> Taking up arms as a mercenary, the Freelancers have become a powerful force of order in the system.</b>")
 	to_chat(mob, "<B> While they are motivated primarily by money, many colonists see the Freelancers as the main forces of order in Tychon's Rift.</b>")
 	if(hostility)
