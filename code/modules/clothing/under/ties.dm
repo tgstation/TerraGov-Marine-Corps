@@ -351,6 +351,10 @@
 	else
 		H.unholster(usr)
 
+/obj/item/clothing/tie/holster/m4a3/New()
+	. = ..()
+	holstered = new /obj/item/weapon/gun/pistol/m4a3(src)
+
 /obj/item/clothing/tie/holster/armpit
 	name = "shoulder holster"
 	desc = "A worn-out handgun holster. Perfect for concealed carry"
