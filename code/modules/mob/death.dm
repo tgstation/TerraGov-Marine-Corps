@@ -63,8 +63,7 @@
 		hud_used.healths.icon_state = "health7"
 
 	timeofdeath = world.time
-	if(mind) 
-		mind.store_memory("Time of death: [worldtime2text()]", 0)
+	mind?.store_memory("Time of death: [worldtime2text()]", 0)
 
 	living_mob_list -= src
 	dead_mob_list |= src
