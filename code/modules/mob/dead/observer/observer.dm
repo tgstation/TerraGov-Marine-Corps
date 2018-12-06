@@ -497,6 +497,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
 
+/mob/dead/observer/verb/hive_status()
+	set name = "Show Hive Status"
+	set desc = "Check the status of the hive."
+	set category = "Ghost"
+
+	check_hive_status()
+
+
 /*/mob/dead/observer/verb/become_mouse()
 	set name = "Become mouse"
 	set category = "Ghost"
