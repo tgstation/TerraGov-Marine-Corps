@@ -137,7 +137,7 @@
 					to_chat(usr, "<span class='warning'>USCM protocol does not allow immediate evacuation. Please wait another [round((EVACUATION_TIME_LOCK-world.time)/600)] minutes before trying again.</span>")
 					return FALSE
 
-				if(!ticker || !ticker.mode)
+				if(!ticker?.mode)
 					to_chat(usr, "<span class='warning'>The [MAIN_SHIP_NAME]'s distress beacon must be activated prior to evacuation taking place.</span>")
 					return FALSE
 

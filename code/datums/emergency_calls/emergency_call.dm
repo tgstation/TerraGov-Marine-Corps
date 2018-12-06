@@ -5,8 +5,8 @@
 /datum/game_mode
 	var/list/datum/emergency_call/all_calls = list() //initialized at round start and stores the datums.
 	var/datum/emergency_call/picked_call = null //Which distress call is currently active
-	var/on_distress_cooldown = 0
-	var/waiting_for_candidates = 0
+	var/on_distress_cooldown = FALSE
+	var/waiting_for_candidates = FALSE
 
 //The distress call parent.
 /datum/emergency_call
@@ -43,9 +43,7 @@
 
 	for(var/S in total_calls)
 		var/datum/emergency_call/C = new S()
-		if(!C)	
-			continue
-		if(!C.name) 
+		if(!C?.name) 
 			continue //The default parent, don't add it
 		all_calls += C
 

@@ -1191,7 +1191,7 @@ var/global/respawntime = 15
 	set name = "Distress Beacon"
 	set desc = "Call a distress beacon. This should not be done if the shuttle's already been called."
 
-	if(!ticker || !ticker.mode)
+	if(!ticker?.mode)
 		return
 
 	if(!check_rights(R_ADMIN))	

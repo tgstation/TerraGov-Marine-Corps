@@ -68,7 +68,8 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		to_chat(world, "<span class='debuginfo'>ERROR CODE SD1: could not find master self-destruct console</span>")
 		return FALSE
 	dest_rods = new
-	for(var/obj/machinery/self_destruct/rod/I in dest_master.loc.loc) dest_rods += I
+	for(var/obj/machinery/self_destruct/rod/I in dest_master.loc.loc) 
+		dest_rods += I
 	if(!dest_rods.len)
 		log_debug("ERROR CODE SD2: could not find any self destruct rods")
 		to_chat(world, "<span class='debuginfo'>ERROR CODE SD2: could not find any self destruct rods</span>")
@@ -228,7 +229,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		var/mob/M
 		var/turf/T
 		for(M in player_list) //This only does something cool for the people about to die, but should prove pretty interesting.
-			if(!M || !M.loc) 
+			if(!M?.loc) 
 				continue //In case something changes when we sleep().
 			T = get_turf(M)
 			if(T.z in z_levels)
@@ -342,7 +343,8 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		ui_interact(user)
 
 /obj/machinery/self_destruct/console/Topic(href, href_list)
-	if(..()) 
+	. = ..()
+	if(.) 
 		return TRUE
 	switch(href_list["command"])
 		if("dest_start")
@@ -401,7 +403,8 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		layer = ABOVE_OBJ_LAYER
 
 /obj/machinery/self_destruct/rod/attack_hand(mob/user)
-	if(..())
+	. = ..()
+	if(.)
 		switch(active_state)
 			if(SELF_DESTRUCT_MACHINE_ACTIVE)
 				to_chat(user, "<span class='notice'>You twist and release the control rod, arming it.</span>")

@@ -35,9 +35,11 @@
 						SD.set_picture("default")
 			if(SEC_LEVEL_BLUE)
 				if(security_level < SEC_LEVEL_BLUE)
-					if(announce) command_announcement.Announce("Attention: Security level elevated to BLUE - potentially hostile activity on board.", "Priority Alert", no_sound ? null : 'sound/AI/code_blue_elevated.ogg')
+					if(announce) 
+						command_announcement.Announce("Attention: Security level elevated to BLUE - potentially hostile activity on board.", "Priority Alert", no_sound ? null : 'sound/AI/code_blue_elevated.ogg')
 				else
-					if(announce) command_announcement.Announce("Attention: Security level lowered to BLUE - potentially hostile activity on board.", "Priority Alert", no_sound ? null : 'sound/AI/code_blue_lowered.ogg')
+					if(announce) 
+						command_announcement.Announce("Attention: Security level lowered to BLUE - potentially hostile activity on board.", "Priority Alert", no_sound ? null : 'sound/AI/code_blue_lowered.ogg')
 				security_level = SEC_LEVEL_BLUE
 				for(var/obj/machinery/firealarm/FA in machines)
 					if(FA.z == MAIN_SHIP_Z_LEVEL)
@@ -48,9 +50,11 @@
 						SD.set_picture("default")
 			if(SEC_LEVEL_RED)
 				if(security_level < SEC_LEVEL_RED)
-					if(announce) command_announcement.Announce("Attention: Security level elevated to RED - there is an immediate threat to the ship.", "Priority Alert", no_sound ? null : 'sound/AI/code_red_elevated.ogg')
+					if(announce) 
+						command_announcement.Announce("Attention: Security level elevated to RED - there is an immediate threat to the ship.", "Priority Alert", no_sound ? null : 'sound/AI/code_red_elevated.ogg')
 				else
-					if(announce) command_announcement.Announce("Attention: Security level lowered to RED - there is an immediate threat to the ship.", "Priority Alert", no_sound ? null : 'sound/AI/code_red_lowered.ogg')
+					if(announce) 
+						command_announcement.Announce("Attention: Security level lowered to RED - there is an immediate threat to the ship.", "Priority Alert", no_sound ? null : 'sound/AI/code_red_lowered.ogg')
 					/*
 					var/area/A
 					for(var/obj/machinery/power/apc/O in machines)
