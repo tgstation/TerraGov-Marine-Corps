@@ -12,6 +12,18 @@
 	flags_armor_protection = 0
 	allowed = list (/obj/item/reagent_container/spray/plantbgone,/obj/item/device/analyzer/plant_analyzer,/obj/item/seeds,/obj/item/reagent_container/glass/fertilizer,/obj/item/tool/minihoe)
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
+
+
+/obj/item/clothing/suit/surgical
+	name = "surgical apron"
+	desc = "A plastic covering to prevent the passage of bodily fluids during surgery."
+	icon_state = "surgical"
+	item_state = "surgical"
+	flags_armor_protection = UPPER_TORSO
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 10, rad = 0)
+	sprite_sheets = list("Vox" = 'icons/mob/species/vox/suit.dmi')
+	
+
 //Captain
 /obj/item/clothing/suit/captunic
 	name = "captain's parade tunic"

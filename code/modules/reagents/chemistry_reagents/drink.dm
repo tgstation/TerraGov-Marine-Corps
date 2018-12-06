@@ -255,7 +255,8 @@
 	description = "Coffee and ice, refreshing and cool."
 	color = "#102838" // rgb: 16, 40, 56
 	taste_description = "bitter coldness"
-	adj_temp = -5
+	adj_temp = 5
+	targ_temp = 305
 
 /datum/reagent/consumable/drink/coffee/soy_latte
 	name = "Soy Latte"
@@ -308,11 +309,13 @@
 	description = "No relation to a certain rap artist/ actor."
 	color = "#104038" // rgb: 16, 64, 56
 	taste_description = "sweet tea"
-	adj_temp = -5
+	adj_temp = 5
+	targ_temp = 305
 
 /datum/reagent/consumable/drink/cold
 	name = "Cold drink"
-	adj_temp = -5
+	adj_temp = 5
+	targ_temp = 305
 	taste_description = "refreshment"
 
 /datum/reagent/consumable/drink/cold/tonic
@@ -341,7 +344,8 @@
 	reagent_state = SOLID
 	color = "#619494" // rgb: 97, 148, 148
 	taste_description = "ice"
-	adj_temp = -15
+	adj_temp = 15
+	targ_temp = 295
 
 /datum/reagent/consumable/drink/cold/space_cola
 	name = "Space Cola"
@@ -390,7 +394,8 @@
 	description = "Tastes like a hull breach in your mouth."
 	color = "#202800" // rgb: 32, 40, 0
 	taste_description = "cherry soda"
-	adj_temp = -8
+	adj_temp = 8
+	targ_temp = 302
 
 /datum/reagent/consumable/drink/cold/lemon_lime
 	name = "Lemon Lime"
@@ -398,7 +403,8 @@
 	id = "lemon_lime"
 	color = "#878F00" // rgb: 135, 40, 0
 	taste_description = "tangy lime and lemon soda"
-	adj_temp = -8
+	adj_temp = 8
+	targ_temp = 302
 
 /datum/reagent/consumable/drink/cold/lemonade
 	name = "Lemonade"
@@ -420,7 +426,8 @@
 	id = "brownstar"
 	color = "#9F3400" // rgb: 159, 052, 000
 	taste_description = "orange and cola soda"
-	adj_temp = - 2
+	adj_temp = 2
+	targ_temp = 308
 
 /datum/reagent/consumable/drink/cold/milkshake
 	name = "Milkshake"
@@ -428,7 +435,8 @@
 	id = "milkshake"
 	color = "#AEE5E4" // rgb" 174, 229, 228
 	taste_description = "creamy vanilla"
-	adj_temp = -9
+	adj_temp = 9
+	targ_temp = 301
 
 /datum/reagent/consumable/drink/cold/milkshake/on_mob_life(mob/living/M)
 	if(prob(1))
