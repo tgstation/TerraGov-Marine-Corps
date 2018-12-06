@@ -45,7 +45,7 @@
 				broadcast_request() //This is the device making the initial event request. It needs to broadcast to other devices
 
 /obj/machinery/keycard_auth/power_change()
-	..()
+	. = ..()
 	if(stat &NOPOWER)
 		icon_state = "auth_off"
 
@@ -82,7 +82,7 @@
 
 
 /obj/machinery/keycard_auth/Topic(href, href_list)
-	..()
+	. = ..()
 	if(busy)
 		to_chat(usr, "This device is busy.")
 		return

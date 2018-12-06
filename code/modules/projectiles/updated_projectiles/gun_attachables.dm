@@ -91,7 +91,8 @@ Defined in conflicts.dm of the #defines folder.
 	else
 		return ..()
 
-obj/item/attachable/attack_hand(var/mob/user as mob)
+
+/obj/item/attachable/attack_hand(var/mob/user as mob)
 	if(src.attach_applied == TRUE)
 		return
 	else
@@ -845,20 +846,57 @@ obj/item/attachable/attack_hand(var/mob/user as mob)
 	else
 		to_chat(user, "It's empty.")
 
-/obj/item/attachable/attached_gun/flamer/reload_attachment(obj/item/ammo_magazine/flamer_tank/FT, mob/user)
-	if(istype(FT))
+/obj/item/attachable/attached_gun/flamer/reload_attachment(object, mob/user)
+	if(istype(object, /obj/item/ammo_magazine/flamer_tank))
+		var/obj/item/ammo_magazine/flamer_tank/I = object
 		if(current_rounds >= max_rounds)
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
-		else if(FT.current_rounds <= 0)
-			to_chat(user, "<span class='warning'>[FT] is empty!</span>")
+		else if(I.current_rounds <= 0)
+			to_chat(user, "<span class='warning'>[I] is empty!</span>")
 		else
-			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
-			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
-			var/transfered_rounds = min(max_rounds - current_rounds, FT.current_rounds)
+			var/transfered_rounds = min(max_rounds - current_rounds, I.current_rounds)
 			current_rounds += transfered_rounds
-			FT.current_rounds -= transfered_rounds
+			I.current_rounds -= transfered_rounds
+			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
+			to_chat(user, "<span class='notice'>You refill [src] with [I].</span>")
+	else if(istype(object, /obj/item/tool/weldpack))
+		var/obj/item/tool/weldpack/FT = object
+		if(current_rounds >= max_rounds)
+			to_chat(user, "<span class='warning'>[src] is full.</span>")
+		else if(!FT.reagents.get_reagent_amount("fuel"))
+			to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
+		else
+			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount("fuel"))
+			current_rounds += transfered_rounds
+			FT.reagents.remove_reagent("fuel", transfered_rounds)
+			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
+			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
+	else if(istype(object, /obj/item/storage/backpack/marine/engineerpack))
+		var/obj/item/storage/backpack/marine/engineerpack/FT = object
+		if(current_rounds >= max_rounds)
+			to_chat(user, "<span class='warning'>[src] is full.</span>")
+		else if(!FT.reagents.get_reagent_amount("fuel"))
+			to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
+		else
+			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount("fuel"))
+			current_rounds += transfered_rounds
+			FT.reagents.remove_reagent("fuel", transfered_rounds)
+			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
+			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
+	else if(istype(object, /obj/item/reagent_container))
+		var/obj/item/reagent_container/FT = object
+		if(current_rounds >= max_rounds)
+			to_chat(user, "<span class='warning'>[src] is full.</span>")
+		else if(!FT.reagents.get_reagent_amount("fuel"))
+			to_chat(user, "<span class='warning'>The [FT] doesn't have any welding fuel!</span>")
+		else
+			var/transfered_rounds = min(max_rounds - current_rounds, FT.reagents.get_reagent_amount("fuel"))
+			current_rounds += transfered_rounds
+			FT.reagents.remove_reagent("fuel", transfered_rounds)
+			to_chat(user, "<span class='notice'>You refill [src] with [FT].</span>")
+			playsound(user, 'sound/effects/refill.ogg', 25, 1, 3)
 	else
-		to_chat(user, "<span class='warning'>[src] can only be refilled with an incinerator tank.</span>")
+		to_chat(user, "<span class='warning'>[src] can be refilled only with welding fuel.</span>")
 
 /obj/item/attachable/attached_gun/flamer/fire_attachment(atom/target, obj/item/weapon/gun/gun, mob/living/user)
 	if(get_dist(user,target) > max_range+3)
