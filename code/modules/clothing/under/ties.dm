@@ -351,6 +351,10 @@
 	else
 		H.unholster(usr)
 
+/obj/item/clothing/tie/holster/m4a3/New()
+	. = ..()
+	holstered = new /obj/item/weapon/gun/pistol/m4a3(src)
+
 /obj/item/clothing/tie/holster/armpit
 	name = "shoulder holster"
 	desc = "A worn-out handgun holster. Perfect for concealed carry"
@@ -446,6 +450,16 @@
 	desc = "Worn brownish synthcotton vest with lots of pockets to unload your hands."
 	icon_state = "vest_brown"
 	slots = 5
+
+/obj/item/clothing/tie/storage/white_vest
+	name = "white webbing vest"
+	desc = "A clean white Nylon vest with large pockets specially designed for medical supplies"
+	icon_state = "vest_white"
+	slots = 8
+
+/obj/item/clothing/tie/storage/white_vest/New()
+	. = ..()
+	hold.can_hold = list("/obj/item/tool/surgery", "/obj/item/stack/medical/advanced/bruise_pack", "/obj/item/stack/medical/advanced/ointment", "/obj/item/stack/nanopaste")
 
 
 /obj/item/clothing/tie/storage/knifeharness

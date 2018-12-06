@@ -38,9 +38,9 @@
 			continue
 
 		if(M.client?.holder && (M.client.holder.rights & (R_ADMIN|R_MOD)) && (M.client.prefs.toggles_chat & CHAT_DEAD)) // show the message to admins who have deadchat toggled on
-			M.show_message(rendered, 2)
+			to_chat(M, rendered)
 
 		else if(M.stat == DEAD && (M.client.prefs.toggles_chat & CHAT_DEAD)) // show the message to regular ghosts who have deadchat toggled on
-			M.show_message(rendered, 2)
+			to_chat(M, rendered)
 
 	feedback_add_details("admin_verb","D") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

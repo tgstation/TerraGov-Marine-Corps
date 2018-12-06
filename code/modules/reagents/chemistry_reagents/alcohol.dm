@@ -134,7 +134,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 80
 	nutriment_factor = 1 * FOOD_METABOLISM
 	taste_description = "jitters and death"
-	adj_temp = -5
+	adj_temp = 5
+	targ_temp = 305
 
 /datum/reagent/consumable/ethanol/thirteenloko/on_mob_life(mob/living/carbon/M)
 	M.drowsyness = max(0,M.drowsyness-7)
@@ -695,7 +696,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "refreshingly cold"
 	boozepwr = 15
 	targ_temp = 270
-	adj_temp = -20
+	adj_temp = 20
 
 /datum/reagent/consumable/ethanol/grog
 	name = "Grog"

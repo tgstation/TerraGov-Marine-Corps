@@ -56,9 +56,6 @@
 	//simple_animal access
 	var/obj/item/card/id/access_card = null	//innate access uses an internal ID card
 
-/mob/living/simple_animal/New()
-	..()
-	verbs -= /mob/verb/observe
 
 /mob/living/simple_animal/Login()
 	if(src && src.client)
