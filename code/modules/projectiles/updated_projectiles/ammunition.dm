@@ -100,7 +100,7 @@ They're all essentially identical when it comes to getting the job done.
 //This will attempt to place the ammo in the user's hand if possible.
 /obj/item/ammo_magazine/proc/create_handful(mob/user, transfer_amount)
 	var/R
-	if (current_rounds > 0)
+	if(current_rounds > 0)
 		var/obj/item/ammo_magazine/handful/new_handful = rnew(/obj/item/ammo_magazine/handful)
 		var/MR = caliber == "12g" ? 5 : 8
 		R = transfer_amount ? min(current_rounds, transfer_amount) : min(current_rounds, MR)
@@ -110,8 +110,9 @@ They're all essentially identical when it comes to getting the job done.
 		if(user)
 			user.put_in_hands(new_handful)
 			to_chat(user, "<span class='notice'>You grab <b>[R]</b> round\s from [src].</span>")
+		else 
+			return new_handful
 
-		else new_handful.loc = get_turf(src)
 		update_icon(-R) //Update the other one.
 	return R //Give the number created.
 
