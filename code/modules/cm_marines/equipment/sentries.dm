@@ -351,6 +351,7 @@
 		stat = 0
 	//processing_objects.Add(src)
 	ammo = ammo_list[ammo]
+	update_icon()
 
 
 /obj/machinery/marine_turret/Dispose() //Clear these for safety's sake.
@@ -789,15 +790,14 @@
 		overlays += battery_black
 		return
 
-	to_chat(world, "[cell.charge / cell.maxcharge]")
-	switch(cell.charge / cell.maxcharge)
-		if(1 to 0.75)
+	switch(CEILING(((cell.charge / max(cell.maxcharge, 1)) * 100), 25))
+		if(100)
 			overlays += battery_green
-		if(0.74 to 0.5)
+		if(75)
 			overlays += battery_yellow
-		if(0.49 to 0.25)
+		if(50)
 			overlays += battery_orange
-		if(0.24 to 0)
+		if(25)
 			overlays += battery_red
 
 	if(on)
