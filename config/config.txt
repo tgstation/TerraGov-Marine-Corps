@@ -125,7 +125,7 @@ ERT_ADMIN_ONLY
 #PROTECT_ROLES_FROM_ANTAGONIST
 
 ## Comment this out to stop admins being able to choose their personal ooccolor
-ALLOW_ADMIN_OOCCOLOR
+#ALLOW_ADMIN_OOCCOLOR
 
 ## If metadata is supported
 # ALLOW_METADATA
