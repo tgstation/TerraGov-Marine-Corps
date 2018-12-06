@@ -580,10 +580,10 @@ var/list/intents = list("help","disarm","grab","hurt")
 	if(isXeno(usr))
 		num = 9
 
-	if(ishuman(usr))
+	else if(ishuman(usr))
 		num = 21
 
-	if(!num)
+	else
 		return
 
 	switch(input)
