@@ -6,7 +6,7 @@ spawns for the various factions. It's also a bit more robust with some added par
 is 0, you don't need aliens at the start of the game. If aliens are required for win conditions, tick it to 1 or more.
 
 This is a basic outline of how things should function in code.
-You can see a working example in the Colonial Marines game mode.
+You can see a working example in the TerraGov Marine Corps game mode.
 
 	//Minds are not transferred/made at this point, so we have to check for them so we don't double dip.
 	can_start() //This should have the following in order:

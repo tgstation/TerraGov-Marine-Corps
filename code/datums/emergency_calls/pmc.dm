@@ -1,4 +1,4 @@
-//Nanotrasen commandos. Friendly to USCM, hostile to xenos.
+//Nanotrasen commandos. Friendly to TGMC, hostile to xenos.
 /datum/emergency_call/pmc
 	name = "PMC"
 	probability = 25
@@ -71,11 +71,11 @@
 	to_chat(M, "<B>You are well-informed of the xenomorph threat.</b>")
 	to_chat(M, "")
 	to_chat(M, "")
-	to_chat(M, "<B>You are part of  Nanotrasen Task Force Oberon that arrived in 2182 following the UA withdrawl of the Tychon's Rift sector.</b>")
+	to_chat(M, "<B>You are part of Nanotrasen Task Force Oberon that arrived in 2182 following the TGMC withdrawl of the Tychon's Rift sector.</b>")
 	to_chat(M, "<B>Task-force Oberon is stationed aboard the USCSS Royce, a powerful Nanotrasen cruiser that patrols the outer edges of Tychon's Rift. </b>")
 	to_chat(M, "<B>Under the directive of Nanotrasen board member Johan Almric, you act as private security for Nanotrasen science teams.</b>")
 	to_chat(M, "<B>The USCSS Royce contains a crew of roughly two hundred PMCs, and one hundred scientists and support personnel.</b>")
 	to_chat(M, "")
 	to_chat(M, "")
 	to_chat(M, "<B>Ensure no damage is incurred against Nanotrasen. Make sure the CL is safe.</b>")
-	to_chat(M, "<B>Deny Nanotrasen's involvement and do not trust the UA/USCM forces.</b>")
+	to_chat(M, "<B>Deny Nanotrasen's involvement and do not trust the TGMC forces.</b>")

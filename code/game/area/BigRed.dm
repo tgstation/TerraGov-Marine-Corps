@@ -320,13 +320,13 @@
 	icon_state = "bluenew"
 	ceiling = CEILING_UNDERGROUND
 
-/area/bigredv2/outside/weyland_lab/outside
-	name = "\improper Weyland Yutani Compound"
+/area/bigredv2/outside/nanotrasen_lab/outside
+	name = "\improper Nanotrasen Compound"
 	icon_state = "yellow"
 	ceiling = CEILING_NONE
 
-/area/bigredv2/outside/weyland_lab/inside
-	name = "\improper Weyland Yutani Research Lab"
+/area/bigredv2/outside/nanotrasen_lab/inside
+	name = "\improper Nanotrasen Research Lab"
 	icon_state = "engine"
 	ceiling = CEILING_UNDERGROUND_METAL
 

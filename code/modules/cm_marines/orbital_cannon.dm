@@ -8,7 +8,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 
 /obj/structure/orbital_cannon
 	name = "\improper Orbital Cannon"
-	desc = "The USCM Orbital Cannon System. Used for shooting large targets on the planet that is orbited. It accelerates its payload with solid fuel for devastating results upon impact."
+	desc = "The TGMC Orbital Cannon System. Used for shooting large targets on the planet that is orbited. It accelerates its payload with solid fuel for devastating results upon impact."
 	icon = 'icons/obj/machines/artillery.dmi'
 	icon_state = "OBC_unloaded"
 	density = TRUE
