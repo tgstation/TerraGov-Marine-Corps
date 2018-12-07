@@ -98,7 +98,7 @@
     <EmbeddedResource Include="bugfix.png" />
     <EmbeddedResource Include="experiment.png" />
     <Content Include="changelog.ico" />
-    <EmbeddedResource Include="rscdel.png" />
+    <EmbeddedResource Include="rsqdel.png" />
     <EmbeddedResource Include="wip.png" />
     <EmbeddedResource Include="imagedel.png" />
     <EmbeddedResource Include="imageadd.png" />

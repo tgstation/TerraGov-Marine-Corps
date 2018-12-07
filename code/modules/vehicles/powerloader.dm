@@ -69,7 +69,7 @@
 		if(!cell)
 			var/obj/item/cell/C = W
 			cell = C
-			cdel(C)
+			qdel(C)
 			visible_message("[user] puts a new power cell in the [src].")
 			to_chat(user, "You put a new cell in the [src] containing [cell.charge] charge.")
 			playsound(src,'sound/machines/click.ogg', 25, 1)

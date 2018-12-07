@@ -97,7 +97,7 @@
 			pixel_x = rand(-6,6)
 			pixel_y = rand(-6,6)
 		else
-			cdel(src)
+			qdel(src)
 
 /obj/structure/bush/flamer_fire_act(heat)
 	health -= 30

@@ -205,7 +205,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	for(var/datum/coords/C in linked_objs)
 		var/atom/movable/A = linked_objs[C]
 		//Shit, something killed it, now we hope it was a hitbox and redraw it
-		//Check for turfs since cdel changes the loc but doesn't make it null
+		//Check for turfs since qdel changes the loc but doesn't make it null
 		if(!istype(A.loc, /turf))
 			var/turf/T = locate(src.x + C.x_pos, src.y + C.y_pos, src.z + C.z_pos)
 			A = new hitbox_type(T)
