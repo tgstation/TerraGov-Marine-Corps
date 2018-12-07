@@ -61,27 +61,27 @@
 	mymob = owner
 	hide_actions_toggle = new
 
-/datum/hud/Dispose()
+/datum/hud/Destroy()
 	if(mymob.hud_used == src)
 		mymob.hud_used = null
 	if(static_inventory.len)
 		for(var/thing in static_inventory)
-			cdel(thing)
+			qdel(thing)
 		static_inventory.Cut()
 	if(toggleable_inventory.len)
 		for(var/thing in toggleable_inventory)
-			cdel(thing)
+			qdel(thing)
 		toggleable_inventory.Cut()
 	if(hotkeybuttons.len)
 		for(var/thing in hotkeybuttons)
-			cdel(thing)
+			qdel(thing)
 		hotkeybuttons.Cut()
 	if(infodisplay.len)
 		for(var/thing in infodisplay)
-			cdel(thing)
+			qdel(thing)
 		infodisplay.Cut()
 
- 	cdel(hide_actions_toggle)
+ 	qdel(hide_actions_toggle)
 	hide_actions_toggle = null
 
 	r_hand_hud_object = null

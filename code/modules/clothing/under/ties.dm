@@ -13,11 +13,11 @@
 	inv_overlay = image("icon" = 'icons/obj/clothing/ties_overlay.dmi', "icon_state" = "[item_state? "[item_state]" : "[icon_state]"]")
 
 
-/obj/item/clothing/tie/Dispose()
+/obj/item/clothing/tie/Destroy()
 	if(has_suit)
 		has_suit.remove_accessory()
 	if(inv_overlay)
-		cdel(inv_overlay)
+		qdel(inv_overlay)
 		inv_overlay = null
 	. = ..()
 
@@ -245,9 +245,9 @@
 	icon_state = "holster"
 	var/obj/item/weapon/gun/holstered = null
 
-/obj/item/clothing/tie/holster/Dispose()
+/obj/item/clothing/tie/holster/Destroy()
 	if(holstered)
-		cdel(holstered)
+		qdel(holstered)
 		holstered = null
 	. = ..()
 
@@ -385,9 +385,9 @@
 	hold = new/obj/item/storage/internal(src)
 	hold.storage_slots = slots
 
-/obj/item/clothing/tie/storage/Dispose()
+/obj/item/clothing/tie/storage/Destroy()
 	if(hold)
-		cdel(hold)
+		qdel(hold)
 		hold = null
 	. = ..()
 

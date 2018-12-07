@@ -24,12 +24,12 @@
 	switch(severity)
 		if(1.0)
 			//SN src = null
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(50))
 				//SN src = null
-				cdel(src)
+				qdel(src)
 				return
 		else
 	return
@@ -195,10 +195,9 @@
 		return
 	return
 
-/obj/machinery/sleeper/Dispose()
+/obj/machinery/sleeper/Destroy()
 	occupant.in_stasis = FALSE //clean up; end stasis; remove from processing
 	occupant = null
-	processing_objects.Remove(src)
 	stop_processing()
 	return ..()
 
@@ -322,13 +321,13 @@
 		toggle_filter()
 	switch(severity)
 		if(1)
-			cdel(src)
+			qdel(src)
 		if(2)
 			if(prob(50))
-				cdel(src)
+				qdel(src)
 		if(3)
 			if(prob(25))
-				cdel(src)
+				qdel(src)
 
 
 /obj/machinery/sleeper/emp_act(severity)
@@ -475,5 +474,5 @@
 		icon_state = "sleeper_1-r"
 
 	for(var/obj/O in src)
-		cdel(O)
+		qdel(O)
 	add_fingerprint(usr)

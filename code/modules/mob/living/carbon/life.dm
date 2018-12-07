@@ -100,7 +100,7 @@
 	else
 		for(var/atom/a in hallucinations)
 			hallucinations -=a
-			cdel(a)
+			qdel(a)
 
 	if(halloss > maxHealth*2) //Re-adding, but doubling the allowance to 200, and making it a knockdown so the victim can still interact somewhat
 		if(prob(20))

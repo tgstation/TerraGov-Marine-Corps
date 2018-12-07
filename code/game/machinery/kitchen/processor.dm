@@ -17,11 +17,11 @@
 	var/input
 	var/output
 	var/time = 40
-	proc/process(loc, what)
+	process(loc, what)
 		if (src.output && loc)
 			new src.output(loc)
 		if (what)
-			cdel(what)
+			qdel(what)
 
 	/* objs */
 	meat

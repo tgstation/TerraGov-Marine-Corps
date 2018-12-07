@@ -22,9 +22,8 @@
 	component_parts += new /obj/item/stack/cable_coil(src)
 	component_parts += new /obj/item/stack/cable_coil(src)
 	RefreshParts()
-	src.initialize(); //Agouri
 
-/obj/machinery/r_n_d/server/Dispose()
+/obj/machinery/r_n_d/server/Destroy()
 	griefProtection()
 	. = ..()
 
@@ -34,7 +33,8 @@
 		tot_rating += SP.rating
 	idle_power_usage /= max(1, tot_rating)
 
-/obj/machinery/r_n_d/server/initialize()
+/obj/machinery/r_n_d/server/Initialize()
+	. = ..()
 	if(!files) files = new /datum/research(src)
 	var/list/temp_list
 	if(!id_with_upload.len)
@@ -119,7 +119,7 @@
 				if(I.reliability != 100 && crit_fail)
 					I.crit_fail = 1
 				I.loc = src.loc
-			cdel(src)
+			qdel(src)
 			return 1
 
 /obj/machinery/r_n_d/server/attack_hand(mob/user as mob)
@@ -136,8 +136,8 @@
 	name = "Centcom Central R&D Database"
 	server_id = -1
 
-/obj/machinery/r_n_d/server/centcom/initialize()
-	..()
+/obj/machinery/r_n_d/server/centcom/Initialize()
+	. = ..()
 	var/list/no_id_servers = list()
 	var/list/server_ids = list()
 	for(var/obj/machinery/r_n_d/server/S in machines)

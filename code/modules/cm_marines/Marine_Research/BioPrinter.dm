@@ -80,7 +80,7 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 				new /obj/item/XenoBio/Chitin(src.loc)
 			while(resin_amount>0)
 				new /obj/item/XenoBio/Resin(src.loc)
-			cdel(src)
+			qdel(src)
 			return 1
 		else
 			to_chat(user, "\red You can't load the [src.name] while it's opened.")
@@ -107,13 +107,13 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 		icon_state = "protolathe"
 		if(istype(O, /obj/item/XenoBio/Blood))
 			blood_amount++
-			cdel(O)
+			qdel(O)
 		if(istype(O, /obj/item/XenoBio/Chitin))
 			chitin_amount++
-			cdel(O)
+			qdel(O)
 		if(istype(O, /obj/item/XenoBio/Resin))
 			resin_amount++
-			cdel(O)
+			qdel(O)
 	busy = 0
 	src.updateUsrDialog()
 	return

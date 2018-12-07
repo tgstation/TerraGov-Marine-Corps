@@ -21,7 +21,7 @@
 /obj/effect/xenomorph/splatter/New() //Self-deletes after creation & animation
 	..()
 	spawn(8)
-		cdel(src)
+		qdel(src)
 
 
 /obj/effect/xenomorph/splatterblob
@@ -35,7 +35,7 @@
 /obj/effect/xenomorph/splatterblob/New() //Self-deletes after creation & animation
 	..()
 	spawn(40)
-		cdel(src)
+		qdel(src)
 
 
 /obj/effect/xenomorph/spray
@@ -52,11 +52,11 @@
 	var/duration = 100
 
 /obj/effect/xenomorph/spray/New(loc, duration = 100) //Self-deletes
-	. = ..()
-	processing_objects.Add(src)
-	spawn(duration + rand(0, 20))
-		processing_objects.Remove(src)
-		cdel(src)
+	..()
+	START_PROCESSING(SSobj, src)
+	spawn(100 + rand(0, 20))
+		STOP_PROCESSING(SSobj, src)
+		qdel(src)
 		return
 
 /obj/effect/xenomorph/spray/Crossed(AM as mob|obj)
@@ -85,8 +85,8 @@
 /obj/effect/xenomorph/spray/process()
 	var/turf/T = loc
 	if(!istype(T))
-		processing_objects.Remove(src)
-		cdel(src)
+		STOP_PROCESSING(SSobj, src)
+		qdel(src)
 		return
 
 	for(var/mob/living/carbon/M in loc)
@@ -128,14 +128,14 @@
 	var/strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
 	tick(strength_t)
 
-/obj/effect/xenomorph/acid/Dispose()
+/obj/effect/xenomorph/acid/Destroy()
 	acid_t = null
 	. = ..()
 
 /obj/effect/xenomorph/acid/proc/tick(strength_t)
 	set waitfor = 0
 	if(!acid_t || !acid_t.loc)
-		cdel(src)
+		qdel(src)
 		return
 	if(++ticks >= strength_t)
 		visible_message("<span class='xenodanger'>[acid_t] collapses under its own weight into a puddle of goop and undigested debris!</span>")
@@ -159,10 +159,10 @@
 			if(acid_t.contents.len) //Hopefully won't auto-delete things inside melted stuff..
 				for(var/mob/M in acid_t.contents)
 					if(acid_t.loc) M.forceMove(acid_t.loc)
-			cdel(acid_t)
+			qdel(acid_t)
 			acid_t = null
 
-		cdel(src)
+		qdel(src)
 		return
 
 	switch(strength_t - ticks)

@@ -34,7 +34,7 @@
 			if(WEST)
 				initialize_directions = NORTH|SOUTH
 
-	Dispose()
+	Destroy()
 		if(node1)
 			node1.disconnect(src)
 			del(network1)

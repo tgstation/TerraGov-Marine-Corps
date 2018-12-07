@@ -165,7 +165,7 @@
 		else if(istype(O, /obj/item/device/toner))
 			if(toner == 0)
 				if(user.temp_drop_inv_item(O))
-					cdel(O)
+					qdel(O)
 					toner = 30
 					to_chat(user, "<span class='notice'>You insert the toner cartridge into \the [src].</span>")
 					updateUsrDialog()
@@ -180,10 +180,10 @@
 	ex_act(severity)
 		switch(severity)
 			if(1.0)
-				cdel(src)
+				qdel(src)
 			if(2.0)
 				if(prob(50))
-					cdel(src)
+					qdel(src)
 				else
 					if(toner > 0)
 						new /obj/effect/decal/cleanable/blood/oil(get_turf(src))

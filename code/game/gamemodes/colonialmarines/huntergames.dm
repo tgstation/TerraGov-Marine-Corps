@@ -128,28 +128,28 @@ var/waiting_for_drop_votes = 0
 		switch(L.name)
 			if("hunter_primary")
 				primary_spawns += L.loc
-				cdel(L)
+				qdel(L)
 			if("hunter_secondary")
 				secondary_spawns += L.loc
-				cdel(L)
+				qdel(L)
 			if("crap_item")
 				crap_spawns += L.loc
 				place_drop(L.loc, "crap")
-				cdel(L)
+				qdel(L)
 			if("good_item")
 				good_spawns += L.loc
 				place_drop(L.loc, "good")
-				cdel(L)
+				qdel(L)
 			if("block_hellhound")
 				new /obj/effect/step_trigger/hell_hound_blocker(L.loc)
-				cdel(L)
+				qdel(L)
 			if("fog blocker")
-				cdel(L)
+				qdel(L)
 			if("xeno tunnel")
-				cdel(L)
+				qdel(L)
 
-	for(var/obj/item/weapon/gun/G in item_list) cdel(G) //No guns or ammo allowed.
-	for(var/obj/item/ammo_magazine/M in item_list) cdel(M)
+	for(var/obj/item/weapon/gun/G in item_list) qdel(G) //No guns or ammo allowed.
+	for(var/obj/item/ammo_magazine/M in item_list) qdel(M)
 
 	for(var/mob/new_player/player in player_list)
 		if(player && player.ready)
@@ -203,7 +203,7 @@ var/waiting_for_drop_votes = 0
 		H = M
 		if(H.contents.len)
 			for(var/I in H.contents)
-				cdel(I)
+				qdel(I)
 		H.loc = picked
 	else
 		H = new(picked)

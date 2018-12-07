@@ -1022,8 +1022,30 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 			new typepath(loc, spawned_gear_list[typepath])
 		else
 			new typepath(loc)
-	cdel(src)
+	qdel(src)
 
+
+/obj/effect/essentials_set/basic
+	spawned_gear_list = list(
+						/obj/item/clothing/under/marine,
+						/obj/item/clothing/shoes/marine,
+						/obj/item/clothing/head/helmet/marine,
+						/obj/item/clothing/suit/storage/marine,
+						)
+
+
+/obj/effect/essentials_set/basic_smartgunner
+	spawned_gear_list = list(
+						/obj/item/clothing/under/marine,
+						/obj/item/clothing/shoes/marine,
+						/obj/item/clothing/head/helmet/marine,
+						)
+
+/obj/effect/essentials_set/basic_specialist
+	spawned_gear_list = list(
+						/obj/item/clothing/under/marine,
+						/obj/item/clothing/shoes/marine,
+						)
 
 /obj/effect/essentials_set/basic
 	spawned_gear_list = list(
@@ -1090,7 +1112,8 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/cell/high,
 						/obj/item/tool/shovel/etool,
 						/obj/item/device/lightreplacer,
-						/obj/item/circuitboard/apc
+						/obj/item/circuitboard/apc,
+						/obj/item/device/assembly/signaler,
 						)
 
 
@@ -1100,6 +1123,7 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/device/squad_beacon,
 						/obj/item/device/squad_beacon,
 						/obj/item/device/squad_beacon/bomb,
+						/obj/item/device/assembly/signaler,
 						/obj/item/device/whistle,
 						/obj/item/device/radio,
 						/obj/item/device/motiondetector,

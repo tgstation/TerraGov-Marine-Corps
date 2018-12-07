@@ -7,7 +7,8 @@
 	density = 1
 	opacity = 1
 
-/obj/structure/bookcase/initialize()
+/obj/structure/bookcase/Initialize()
+	..()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/book))
 			I.loc = src
@@ -44,20 +45,20 @@
 	switch(severity)
 		if(1.0)
 			for(var/obj/item/book/b in contents)
-				cdel(b)
-			cdel(src)
+				qdel(b)
+			qdel(src)
 			return
 		if(2.0)
 			for(var/obj/item/book/b in contents)
 				if (prob(50)) b.loc = (get_turf(src))
-				else cdel(b)
-			cdel(src)
+				else qdel(b)
+			qdel(src)
 			return
 		if(3.0)
 			if (prob(50))
 				for(var/obj/item/book/b in contents)
 					b.loc = (get_turf(src))
-				cdel(src)
+				qdel(src)
 			return
 		else
 	return

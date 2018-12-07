@@ -10,7 +10,7 @@ var/list/doppler_arrays = list()
 	..()
 	doppler_arrays += src
 
-/obj/machinery/doppler_array/Dispose()
+/obj/machinery/doppler_array/Destroy()
 	doppler_arrays -= src
 	. = ..()
 

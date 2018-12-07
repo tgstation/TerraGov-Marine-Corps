@@ -248,7 +248,7 @@
 
 		var/mob/M = locate(href_list["mob"])
 
-		if(M.disposed)
+		if(M.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -789,7 +789,7 @@
 			log_admin("[key_name(usr)] booted [key_name(M)].")
 			message_admins("\blue [key_name_admin(usr)] booted [key_name_admin(M)].", 1)
 			//M.client = null
-			cdel(M.client)
+			qdel(M.client)
 /*
 	//Player Notes
 	else if(href_list["notes"])
@@ -862,7 +862,7 @@
 		message_admins("\blue[usr.client.ckey] has banned [mob_key].\nReason: [sanitize(reason)]\nThis will be removed in [mins] minutes.")
 		notes_add(mob_key, "Banned by [usr.client.ckey]|Duration: [mins] minutes|Reason: [sanitize(reason)]", usr)
 
-		cdel(mob_client)
+		qdel(mob_client)
 
 	else if(href_list["lazyban"])
 		if(!check_rights(R_MOD,0) && !check_rights(R_BAN))  return
@@ -905,7 +905,7 @@
 		log_admin("[usr.client.ckey] has banned [M.ckey]|Duration: [mins] minutes|Reason: [reason]")
 		message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 		notes_add(M.ckey, "Banned by [usr.client.ckey]|Duration: [mins] minutes|Reason: [reason]", usr)
-		cdel(M.client)
+		qdel(M.client)
 
 
 	else if(href_list["mute"])
@@ -979,7 +979,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["monkeyone"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -996,7 +996,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["corgione"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -1085,7 +1085,7 @@
 		var/mob/new_player/NP = new()
 		NP.ckey = M.ckey
 		if(NP.client) NP.client.change_view(world.view)
-		cdel(M)
+		qdel(M)
 
 	else if(href_list["tdome1"])
 		if(!check_rights(R_FUN))	return
@@ -1209,7 +1209,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["makeai"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -1226,7 +1226,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["makealien"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -1254,7 +1254,7 @@
 
 		var/mob/H = locate(href_list["makeyautja"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -1287,7 +1287,7 @@
 			if(H.mind)
 				H.mind.transfer_to(M, TRUE)
 				if(M.mind.cm_skills)
-					cdel(M.mind.cm_skills)
+					qdel(M.mind.cm_skills)
 				M.mind.cm_skills = null //no skill restriction
 			else
 				M.key = H.key
@@ -1297,7 +1297,7 @@
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), WEAR_JACKET)
 				H.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), WEAR_L_HAND)
 
-			cdel(H) //May have to clear up round-end vars and such....
+			qdel(H) //May have to clear up round-end vars and such....
 
 		return
 
@@ -1306,7 +1306,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["makerobot"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -1321,7 +1321,7 @@
 
 		var/mob/M = locate(href_list["makeanimal"])
 
-		if(M.disposed)
+		if(M.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -1336,7 +1336,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["togmutate"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 

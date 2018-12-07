@@ -27,16 +27,13 @@ Make sure the return value equals the return value of the parent so that the
 directive is properly returned.
 */
 //===========================================================================
-/atom/Dispose()
+/atom/Destroy()
 	if(reagents)
-		cdel(reagents)
+		qdel(reagents)
 	if(light)
-		cdel(light)
+		qdel(light)
 		light = null
 	. = ..()
-
-/atom/Recycle()
-	return
 
 //===========================================================================
 
@@ -191,7 +188,7 @@ its easier to just keep the beam vertical.
 
 		for(var/obj/effect/overlay/beam/O in orange(10,src))	//This section erases the previously drawn beam because I found it was easier to
 			if(O.BeamSource==src)				//just draw another instance of the beam instead of trying to manipulate all the
-				cdel(O)							//pieces to a new orientation.
+				qdel(O)							//pieces to a new orientation.
 		var/Angle=round(Get_Angle(src,BeamTarget))
 		var/icon/I=new(icon,icon_state)
 		I.Turn(Angle)
@@ -232,7 +229,7 @@ its easier to just keep the beam vertical.
 			X.pixel_y=Pixel_y
 		sleep(3)	//Changing this to a lower value will cause the beam to follow more smoothly with movement, but it will also be more laggy.
 					//I've found that 3 ticks provided a nice balance for my use.
-	for(var/obj/effect/overlay/beam/O in orange(10,src)) if(O.BeamSource==src) cdel(O)
+	for(var/obj/effect/overlay/beam/O in orange(10,src)) if(O.BeamSource==src) qdel(O)
 
 
 //mob verbs are faster than object verbs. See https://secure.byond.com/forum/?post=1326139&page=2#comment8198716 for why this isn't atom/verb/examine()
@@ -453,7 +450,7 @@ its easier to just keep the beam vertical.
 
 	//Cleaning up shit.
 	if(fingerprints && !fingerprints.len)
-		cdel(fingerprints)
+		qdel(fingerprints)
 		fingerprints = null
 	return
 
@@ -601,3 +598,33 @@ Proc for attack log creation, because really why not
 	if(user != target)
 		var/reverse_message = "has been [what_done] by [ssource][postfix]"
 		target.log_message(reverse_message, LOG_ATTACK, color="orange", log_globally=FALSE)
+
+/atom/New(loc, ...)
+	var/do_initialize = SSatoms.initialized
+	if(do_initialize != INITIALIZATION_INSSATOMS)
+		args[1] = do_initialize == INITIALIZATION_INNEW_MAPLOAD
+		if(SSatoms.InitAtom(src, args))
+			//we were deleted
+			return
+
+//Called after New if the map is being loaded. mapload = TRUE
+//Called from base of New if the map is not being loaded. mapload = FALSE
+//This base must be called or derivatives must set initialized to TRUE
+//must not sleep
+//Other parameters are passed from New (excluding loc), this does not happen if mapload is TRUE
+//Must return an Initialize hint. Defined in __DEFINES/subsystems.dm
+
+//Note: the following functions don't call the base for optimization and must copypasta:
+// /turf/Initialize
+// /turf/open/space/Initialize
+
+/atom/proc/Initialize(mapload, ...)
+	if(flags_atom & INITIALIZED)
+		stack_trace("Warning: [src]([type]) initialized multiple times!")
+	flags_atom |= INITIALIZED
+
+	return INITIALIZE_HINT_NORMAL
+
+//called if Initialize returns INITIALIZE_HINT_LATELOAD
+/atom/proc/LateInitialize()
+	return

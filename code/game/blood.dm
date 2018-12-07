@@ -121,7 +121,7 @@
 /atom/proc/clean_blood()
 	germ_level = 0
 	if(istype(blood_DNA, /list))
-		cdel(blood_DNA)
+		qdel(blood_DNA)
 		blood_DNA = null
 		blood_color = null
 		return 1
@@ -144,7 +144,7 @@
 		gloves.germ_level = 0
 	else
 		if(istype(blood_DNA, /list))
-			cdel(blood_DNA)
+			qdel(blood_DNA)
 			blood_DNA = null
 		blood_color = null
 		bloody_hands = 0
@@ -152,7 +152,7 @@
 
 	if(clean_feet && !shoes && istype(feet_blood_DNA, /list))
 		feet_blood_color = null
-		cdel(feet_blood_DNA)
+		qdel(feet_blood_DNA)
 		feet_blood_DNA = null
 		update_inv_shoes()
 		return 1

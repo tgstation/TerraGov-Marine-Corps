@@ -154,8 +154,8 @@
 	Trigger(var/atom/movable/A)
 		if(istype(A, /obj)) //mobs and objects only.
 			if(istype(A, /obj/effect)) return
-			cdel(A)
+			qdel(A)
 		else if(isliving(A)) //Hacked it up so it just deletes it
 			to_chat(A, "<span class='danger'>You get lost into the depths of space, never to be seen again.</span>")
-			cdel(A)
+			qdel(A)
 

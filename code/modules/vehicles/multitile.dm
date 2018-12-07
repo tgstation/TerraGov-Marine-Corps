@@ -32,7 +32,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	var/obj/vehicle/multitile/root/master
 	invisibility = 101
 
-/obj/effect/multitile_entrance/Dispose(var/override = 0)
+/obj/effect/multitile_entrance/Destroy(var/override = 0)
 	if(!override) return TA_IGNORE_ME
 	. = ..()
 

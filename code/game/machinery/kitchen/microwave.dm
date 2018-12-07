@@ -309,7 +309,7 @@
 	src.icon_state = "mw"
 	src.updateUsrDialog()
 
-/obj/machinery/microwave/proc/dispose()
+/obj/machinery/microwave/proc/destroy_contents()
 	for (var/obj/O in contents)
 		O.loc = src.loc
 	if (src.reagents.total_volume)
@@ -351,7 +351,7 @@
 			var/id = O.reagents.get_master_reagent_id()
 			if (id)
 				amount+=O.reagents.get_reagent_amount(id)
-		cdel(O)
+		qdel(O)
 	src.reagents.clear_reagents()
 	ffuu.reagents.add_reagent("carbon", amount)
 	ffuu.reagents.add_reagent("toxin", amount/10)
@@ -371,5 +371,5 @@
 			cook()
 
 		if ("dispose")
-			dispose()
+			destroy_contents()
 	return

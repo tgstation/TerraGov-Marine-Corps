@@ -11,7 +11,7 @@
 	if(ticker)
 		cameranet.updateVisibility(src)
 
-/turf/Dispose()
+/turf/Destroy()
 	visibilityChanged()
 	. = ..()
 
@@ -23,7 +23,7 @@
 
 // STRUCTURES
 
-/obj/structure/Dispose()
+/obj/structure/Destroy()
 	if(ticker)
 		cameranet.updateVisibility(src)
 	. = ..()
@@ -35,7 +35,7 @@
 
 // EFFECTS
 
-/obj/effect/Dispose()
+/obj/effect/Destroy()
 	if(ticker)
 		cameranet.updateVisibility(src)
 	. = ..()
@@ -84,7 +84,7 @@
 	if(open_networks.len) //If there is at least one open network, chunk is available for AI usage.
 		cameranet.addCamera(src)
 
-/obj/machinery/camera/Dispose()
+/obj/machinery/camera/Destroy()
 	cameranet.cameras -= src
 	var/list/open_networks = difflist(network,RESTRICTED_CAMERA_NETWORKS)
 	if(open_networks.len)

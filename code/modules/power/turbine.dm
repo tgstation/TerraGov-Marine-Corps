@@ -231,7 +231,7 @@
 				A.state = 3
 				A.icon_state = "3"
 				A.anchored = 1
-				cdel(src)
+				qdel(src)
 			else
 				to_chat(user, "\blue You disconnect the monitor.")
 				var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
@@ -243,7 +243,7 @@
 				A.state = 4
 				A.icon_state = "4"
 				A.anchored = 1
-				cdel(src)
+				qdel(src)
 	else
 		src.attack_hand(user)
 	return

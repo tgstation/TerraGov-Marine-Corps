@@ -77,7 +77,7 @@
 /obj/effect/particle_effect/expl_particles/New()
 	..()
 	spawn(15)
-		cdel(src)
+		qdel(src)
 
 /datum/effect_system/expl_particles
 	number = 10
@@ -114,7 +114,7 @@
 /obj/effect/particle_effect/explosion/New()
 	..()
 	spawn(10)
-		cdel(src)
+		qdel(src)
 
 
 

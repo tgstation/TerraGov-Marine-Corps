@@ -11,7 +11,7 @@
 	..()
 	structure_list += src
 
-/obj/structure/Dispose()
+/obj/structure/Destroy()
 	. = ..()
 	structure_list -= src
 
@@ -19,7 +19,7 @@
 	if(parts)
 		new parts(loc)
 	density = FALSE
-	cdel(src)
+	qdel(src)
 
 /obj/structure/proc/handle_barrier_chance(mob/living/M)
 	return FALSE
@@ -40,7 +40,7 @@
 			return
 		if(do_after(user, P.calc_delay(user), TRUE, 5, BUSY_ICON_HOSTILE) && P)
 			P.cut_apart(user, name, src)
-			cdel()
+			qdel()
 		return
 
 //Default "structure" proc. This should be overwritten by sub procs.
@@ -63,11 +63,11 @@
 /obj/structure/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			if(prob(50))
-				cdel(src)
+				qdel(src)
 				return
 		if(3.0)
 			return

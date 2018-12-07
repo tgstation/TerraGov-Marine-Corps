@@ -837,7 +837,7 @@ proc/anim(turf/location,atom/target,a_icon,a_icon_state as text,flick_anim as te
 		animation.master = target
 		flick(flick_anim, animation)
 	sleep(max(sleeptime, 15))
-	cdel(animation)
+	qdel(animation)
 
 //Will return the contents of an atom recursivly to a depth of 'searchDepth'
 /atom/proc/GetAllContents(searchDepth = 5)
@@ -1188,7 +1188,7 @@ var/global/image/busy_indicator_hostile
 							X.icon = 'icons/turf/shuttle.dmi'
 							X.icon_state = oldreplacetext(O.icon_state, "_f", "_s") // revert the turf to the old icon_state
 							X.name = "wall"
-							cdel(O) // prevents multiple shuttle corners from stacking
+							qdel(O) // prevents multiple shuttle corners from stacking
 							continue
 						if(!istype(O,/obj)) continue
 						O.loc = X
@@ -1767,3 +1767,53 @@ var/list/WALLITEMS = list(
 	. = new_angle - old_angle
 	Turn(.) //BYOND handles cases such as -270, 360, 540 etc. DOES NOT HANDLE 180 TURNS WELL, THEY TWEEN AND LOOK LIKE SHIT
 
+//Key thing that stops lag. Cornerstone of performance in ss13, Just sitting here, in unsorted.dm.
+
+//Increases delay as the server gets more overloaded,
+//as sleeps aren't cheap and sleeping only to wake up and sleep again is wasteful
+#define DELTA_CALC max(((max(TICK_USAGE, world.cpu) / 100) * max(Master.sleep_delta-1,1)), 1)
+
+//returns the number of ticks slept
+/proc/stoplag(initial_delay)
+	if (!Master || !(Master.current_runlevel & RUNLEVELS_DEFAULT))
+		sleep(world.tick_lag)
+		return 1
+	if (!initial_delay)
+		initial_delay = world.tick_lag
+	. = 0
+	var/i = DS2TICKS(initial_delay)
+	do
+		. += CEILING(i*DELTA_CALC, 1)
+		sleep(i*world.tick_lag*DELTA_CALC)
+		i *= 2
+	while (TICK_USAGE > min(TICK_LIMIT_TO_RUN, Master.current_ticklimit))
+
+#undef DELTA_CALC
+
+//datum may be null, but it does need to be a typed var
+#define NAMEOF(datum, X) (#X || ##datum.##X)
+
+// \ref behaviour got changed in 512 so this is necesary to replicate old behaviour.
+// If it ever becomes necesary to get a more performant REF(), this lies here in wait
+// #define REF(thing) (thing && istype(thing, /datum) && (thing:datum_flags & DF_USE_TAG) && thing:tag ? "[thing:tag]" : "\ref[thing]")
+/proc/REF(input)
+	if(istype(input, /datum))
+		var/datum/thing = input
+		if(thing.datum_flags & DF_USE_TAG)
+			if(!thing.tag)
+				stack_trace("A ref was requested of an object with DF_USE_TAG set but no tag: [thing]")
+				thing.datum_flags &= ~DF_USE_TAG
+			else
+				return "\[[url_encode(thing.tag)]\]"
+	return "\ref[input]"
+
+// Makes a call in the context of a different usr
+// Use sparingly
+/world/proc/PushUsr(mob/M, datum/callback/CB, ...)
+	var/temp = usr
+	usr = M
+	if (length(args) > 2)
+		. = CB.Invoke(arglist(args.Copy(3)))
+	else
+		. = CB.Invoke()
+	usr = temp

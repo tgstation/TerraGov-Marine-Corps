@@ -114,7 +114,7 @@ display round(lastgen) and phorontank amount
 	power_gen = 20000
 	drag_delay = 1 //They got them rollers
 
-/obj/machinery/power/port_gen/pacman/initialize()
+/obj/machinery/power/port_gen/pacman/Initialize()
 	..()
 	if(anchored)
 		connect_to_network()
@@ -132,7 +132,7 @@ display round(lastgen) and phorontank amount
 	sheet_name = sheet.name
 	RefreshParts()
 
-/obj/machinery/power/port_gen/pacman/Dispose()
+/obj/machinery/power/port_gen/pacman/Destroy()
 	DropFuel()
 	. = ..()
 
@@ -197,7 +197,7 @@ display round(lastgen) and phorontank amount
 
 	if (heat > 300)
 		overheat()
-		cdel(src)
+		qdel(src)
 	return
 
 /obj/machinery/power/port_gen/pacman/handleInactive()
@@ -263,7 +263,7 @@ display round(lastgen) and phorontank amount
 
 			new_frame.state = 2
 			new_frame.icon_state = "box_1"
-			cdel(src)
+			qdel(src)
 
 /obj/machinery/power/port_gen/pacman/attack_hand(mob/user as mob)
 	..()

@@ -179,7 +179,7 @@
 		set waitfor = 0
 		var/i
 		for(i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
-			var/obj/item/projectile/P = rnew(/obj/item/projectile, original_P.shot_from)
+			var/obj/item/projectile/P = new /obj/item/projectile(original_P.shot_from)
 			P.generate_bullet(ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
 			var/turf/new_target = null
 			if(prob(P.scatter))
@@ -216,7 +216,7 @@
 		if(!istype(T))
 			return
 		for(var/obj/flamer_fire/F in T) // No stacking flames!
-			cdel(F)
+			qdel(F)
 		new /obj/flamer_fire(T, 20, 20)
 
 
@@ -868,8 +868,8 @@
 	penetration = config.max_armor_penetration
 	shell_speed = config.slow_shell_speed
 
-/datum/ammo/rocket/Dispose()
-	cdel(smoke)
+/datum/ammo/rocket/Destroy()
+	qdel(smoke)
 	smoke = null
 	. = ..()
 
@@ -1324,8 +1324,8 @@
 	accuracy_var_high = config.max_proj_variance
 	max_range = config.long_shell_range
 
-/datum/ammo/xeno/boiler_gas/Dispose()
-	cdel(smoke_system)
+/datum/ammo/xeno/boiler_gas/Destroy()
+	qdel(smoke_system)
 	smoke_system = null
 	. = ..()
 
@@ -1474,7 +1474,7 @@
 	var/obj/item/device/flashlight/flare/G = new (T)
 	G.visible_message("<span class='warning'>\A [G] bursts into brilliant light nearby!</span>")
 	G.on = 1
-	processing_objects += G
+	START_PROCESSING(SSobj, G)
 	G.icon_state = "flare-on"
 	G.damtype = "fire"
 	G.SetLuminosity(G.brightness_on)

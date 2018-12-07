@@ -71,7 +71,7 @@ var/list/advance_cures = 	list(
 	..()
 
 
-/datum/disease/advance/Dispose()
+/datum/disease/advance/Destroy()
 	if(processing)
 		for(var/datum/symptom/S in symptoms)
 			S.End(src)
@@ -109,7 +109,7 @@ var/list/advance_cures = 	list(
 		if(resistance && !(id in affected_mob.resistances))
 			affected_mob.resistances[id] = id
 		remove_virus()
-	cdel(src)	//delete the datum to stop it processing
+	qdel(src)	//delete the datum to stop it processing
 	return
 
 // Returns the advance disease with a different reference memory.
