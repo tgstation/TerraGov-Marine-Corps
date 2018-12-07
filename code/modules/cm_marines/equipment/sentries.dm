@@ -138,7 +138,7 @@
 				user.visible_message("<span class='notice'>[user] unsecures \the [src] from the ground.</span>",
 				"<span class='notice'>You unsecure \the [src] from the ground.</span>")
 				anchored = FALSE
-				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
+				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 			return
 		else
 			user.visible_message("<span class='notice'>[user] begins securing \the [src] to the ground.</span>",
@@ -177,8 +177,8 @@
 			"<span class='notice'>You begin finalizing \the [src].</span>")
 
 			if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-				var/obj/machinery/marine_turret/S = new /obj/machinery/marine_turret(src.loc)
-				S.dir = src.dir
+				var/obj/machinery/marine_turret/S = new /obj/machinery/marine_turret(loc)
+				S.dir = dir
 				user.visible_message("<span class='notice'>[user] finishes \the [S].</span>",
 					"<span class='notice'>You finish \the [S].</span>")
 				playsound(S.loc, 'sound/weapons/mine_armed.ogg', 25)
@@ -196,7 +196,7 @@
 				"<span class='notice'>You remove the turret top from \the [src].</span>")
 				has_top = FALSE
 				icon_state = "sentry_tripod"
-				new /obj/item/device/turret_top(src.loc)
+				new /obj/item/device/turret_top(loc)
 				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
 	else
 		return ..()
