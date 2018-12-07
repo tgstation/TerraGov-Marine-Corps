@@ -172,7 +172,7 @@
 	if(!check_state()) return
 
 	if(world.time < last_neurotoxin_sting + NEUROTOXIN_STING_COOLDOWN) //Sure, let's use this.
-		to_chat(src, "<span class='xenowarning'>You are not ready to use the sting again. It will be ready in [(last_neurotoxin_sting + NEUROTOXIN_STING_COOLDOWN - world.time) * 0.1] seconds.</span>")
+		to_chat(src, "<span class='xenowarning'>You are not ready to use the sting again. It will be ready in [(last_neurotoxin_sting + NEUROTOXIN_STING_COOLDOWN - world.time) SECONDS] seconds.</span>")
 		return
 
 	if(stagger)
