@@ -179,7 +179,7 @@
 		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
 		return
 
-	if(!istype(H) || isXeno() || isrobot())
+	if(!istype(H) || isXeno(H) || isrobot(H))
 		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
 		return
 
