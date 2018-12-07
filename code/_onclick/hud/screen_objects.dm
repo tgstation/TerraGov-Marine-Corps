@@ -634,22 +634,13 @@
 	if(!G || !G.has_ammo_counter())
 		return
 
-	if(user.client.screen.Find(src))
-		return
-	else
-		user.client.screen += src
+	user.client.screen += src
 
 /obj/screen/ammo/proc/remove_hud(var/mob/user)
-	if(!user?.client)
-		return
-
-	if(!user.client.screen.Find(src))
-		return
-	else
-		user.client.screen -= src
+	user?.client?.screen -= src
 
 /obj/screen/ammo/proc/update_hud(var/mob/user)
-	if(!user?.client || !user.client.screen.Find(src))
+	if(!user?.client?.screen.Find(src))
 		return
 
 	var/obj/item/weapon/gun/G = user.get_active_hand()
@@ -702,4 +693,3 @@
 			overlays += image('icons/mob/ammoHUD.dmi', src, "o9")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "t9")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "h9")
-			return	
