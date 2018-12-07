@@ -213,7 +213,7 @@
 
 
 /obj/structure/largecrate/guns
-	name = "\improper USCM firearms crate (x3)"
+	name = "\improper TGMC firearms crate (x3)"
 	var/num_guns = 3
 	var/num_mags = 0
 	var/list/stuff = list(
