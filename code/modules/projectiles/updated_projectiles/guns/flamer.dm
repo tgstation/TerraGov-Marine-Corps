@@ -317,6 +317,20 @@
 
 		distance++
 
+/obj/item/weapon/gun/flamer/has_ammo_counter()
+	return TRUE
+
+/obj/item/weapon/gun/flamer/get_ammo_type()
+	if(!ammo)
+		return list("unknown", "unknown")
+	else
+		return list(ammo.hud_state, ammo.hud_state_empty)
+
+/obj/item/weapon/gun/flamer/get_ammo_count()
+	if(!current_mag)
+		return 0
+	else
+		return current_mag.current_rounds
 
 
 /obj/item/weapon/gun/flamer/M240T

@@ -701,7 +701,7 @@ and you're good to go.
 
 	flags_gun_features &= ~GUN_BURST_FIRING // We always want to turn off bursting when we're done.
 
-	var/obj/screen/ammo/A = user.hud_used.ammo
+	var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
 	A.update_hud(user)
 
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
@@ -872,6 +872,8 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/click_empty(mob/user)
 	if(user)
+		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
+		A.update_hud(user)
 		to_chat(user, "<span class='warning'><b>*click*</b></span>")
 		playsound(user, 'sound/weapons/gun_empty.ogg', 25, 1, 5) //5 tile range
 	else

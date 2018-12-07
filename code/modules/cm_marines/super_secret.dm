@@ -56,12 +56,12 @@
 							for(var/mob/living/carbon/human/H in range(12))
 								if(!H || isnull(H) || H.stat) continue
 								to_chat(H, "<font size=8 color=red><b>NO<br><br>BUGS</b></font>")
-							new /obj/item/weapon/gun/launcher/rocket/nobugs(get_turf(src.loc))
-							new /obj/item/ammo_magazine/rocket/nobugs(get_turf(src.loc))
-							new /obj/item/ammo_magazine/rocket/nobugs(get_turf(src.loc))
-							new /obj/item/ammo_magazine/rocket/nobugs(get_turf(src.loc))
-							new /obj/item/ammo_magazine/rocket/nobugs(get_turf(src.loc))
-							new /obj/item/ammo_magazine/rocket/nobugs(get_turf(src.loc))
+							new /obj/item/weapon/gun/launcher/rocket/toy(get_turf(src.loc))
+							new /obj/item/ammo_magazine/rocket/toy(get_turf(src.loc))
+							new /obj/item/ammo_magazine/rocket/toy(get_turf(src.loc))
+							new /obj/item/ammo_magazine/rocket/toy(get_turf(src.loc))
+							new /obj/item/ammo_magazine/rocket/toy(get_turf(src.loc))
+							new /obj/item/ammo_magazine/rocket/toy(get_turf(src.loc))
 
 					icon = 'icons/obj/decals.dmi'
 					icon_state = "nobugs"

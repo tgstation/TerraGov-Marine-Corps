@@ -1551,20 +1551,20 @@
 	G.damtype = "fire"
 	G.SetLuminosity(G.brightness_on)
 
-/datum/ammo/rocket/nobugs
-	name = "\improper NO BUGS rocket"
+/datum/ammo/rocket/toy
+	name = "\improper toy rocket"
 	damage = 1
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		to_chat(M, "<font size=6 color=red>NO BUGS</font>")
 
-/datum/ammo/rocket/nobugs/on_hit_obj(obj/O,obj/item/projectile/P)
+/datum/ammo/rocket/toy/on_hit_obj(obj/O,obj/item/projectile/P)
 	return
 
-/datum/ammo/rocket/nobugs/on_hit_turf(turf/T,obj/item/projectile/P)
+/datum/ammo/rocket/toy/on_hit_turf(turf/T,obj/item/projectile/P)
 	return
 
-/datum/ammo/rocket/nobugs/do_at_max_range(obj/item/projectile/P)
+/datum/ammo/rocket/toy/do_at_max_range(obj/item/projectile/P)
 	return
 
 /datum/ammo/grenade_container

@@ -3,7 +3,6 @@
 //ENERGY GUNS/ETC
 
 /obj/item/weapon/gun/energy
-	hud_state_base
 	attachable_allowed = list()
 	var/obj/item/cell/cell //1000 power.
 	var/charge_cost = 10 //100 shots.
@@ -42,6 +41,21 @@
 	cell.use(round(cell.maxcharge / severity))
 	update_icon()
 	return ..()
+
+/obj/item/weapon/gun/energy/has_ammo_counter()
+	return TRUE
+
+/obj/item/weapon/gun/energy/get_ammo_type()
+	if(!ammo)
+		return list("unknown", "unknown")
+	else
+		return list(ammo.hud_state, ammo.hud_state_empty)
+
+/obj/item/weapon/gun/energy/get_ammo_count()
+	if(!cell)
+		return 0
+	else
+		return (cell.charge / max(charge_cost, 1))
 
 
 /obj/item/weapon/gun/energy/taser

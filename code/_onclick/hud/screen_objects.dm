@@ -629,6 +629,11 @@
 	if(!user?.client)
 		return
 
+	var/obj/item/weapon/gun/G = user.get_active_hand()
+
+	if(!G || !G.has_ammo_counter())
+		return
+
 	if(user.client.screen.Find(src))
 		return
 	else
@@ -649,71 +654,18 @@
 
 	var/obj/item/weapon/gun/G = user.get_active_hand()
 
-	if(!G)
-		return
-
-	var/hud_state
-	var/hud_state_empty
-
-	var/rounds = 0
-
-	if(G.current_mag)
-		rounds += G.current_mag.current_rounds
-
-	if(G.in_chamber && !istype(G, /obj/item/weapon/gun/launcher) && !istype(G, /obj/item/weapon/gun/revolver) && !istype(G, /obj/item/weapon/gun/smartgun) && !istype(G, /obj/item/weapon/gun/energy))
-		rounds++
-
-	if(istype(G, /obj/item/weapon/gun/energy))
-		var/obj/item/weapon/gun/energy/E = G
-		rounds += (E.cell.charge / E.charge_cost)
-
-	if(G.in_chamber?.ammo)
-		hud_state = G.in_chamber.ammo.hud_state
-		hud_state_empty = G.in_chamber.ammo.hud_state_empty
-	else if(G.ammo)
-		hud_state = G.ammo.hud_state
-		hud_state_empty = G.ammo.hud_state_empty
-	else if(istype(G, /obj/item/weapon/gun/launcher/m92))
-		var/obj/item/weapon/gun/launcher/m92/L = G
-		hud_state = L.grenades[1].hud_state
-		hud_state_empty = L.grenades[1].hud_state_empty
-		rounds += length(L.grenades)
-	else
-		overlays.Cut()
+	if(!G || !istype(G) || !G.has_ammo_counter() || !G.get_ammo_type() || isnull(G.get_ammo_count()))
 		remove_hud()
-		to_chat(user, "Something fucky with your ammo fam.")
 		return
+
+	var/list/ammo_type = G.get_ammo_type()
+	var/rounds = G.get_ammo_count()
+
+	var/hud_state = ammo_type[1]
+	var/hud_state_empty = ammo_type[2]
 
 	overlays.Cut()
 
-	rounds = num2text(rounds)
-
-	to_chat(user, "[rounds] rounds")
-
-	switch(length(rounds))
-		if(1)
-			overlays += image('icons/mob/ammoHUD.dmi', src, "o[rounds[1]]")
-			to_chat(user, "1 digit")
-			to_chat(user, "o[rounds[1]]")
-		if(2)
-			overlays += image('icons/mob/ammoHUD.dmi', src, "o[rounds[2]]")
-			overlays += image('icons/mob/ammoHUD.dmi', src, "t[rounds[1]]")
-			to_chat(user, "2 digits")
-			to_chat(user, "t[rounds[1]] o[rounds[2]]")
-		if(3)
-			overlays += image('icons/mob/ammoHUD.dmi', src, "o[rounds[3]]")
-			overlays += image('icons/mob/ammoHUD.dmi', src, "t[rounds[2]]")
-			overlays += image('icons/mob/ammoHUD.dmi', src, "h[rounds[1]]")
-			to_chat(user, "3 digits")
-			to_chat(user, "h[rounds[1]] t[rounds[2]] o[rounds[3]]")
-		else
-			overlays += image('icons/mob/ammoHUD.dmi', src, "o9")
-			overlays += image('icons/mob/ammoHUD.dmi', src, "t9")
-			overlays += image('icons/mob/ammoHUD.dmi', src, "h9")
-			to_chat(user, "What the fuck?")
-			return
-
-	rounds = text2num(rounds)
 	var/empty = image('icons/mob/ammoHUD.dmi', src, "[hud_state_empty]")
 
 	if(rounds == 0)
@@ -735,3 +687,30 @@
 		warned = FALSE
 		overlays += image('icons/mob/ammoHUD.dmi', src, "[hud_state]")
 		to_chat(user, "hud_state [hud_state]")
+
+	rounds = num2text(rounds)
+
+	to_chat(user, "[rounds] rounds")
+
+	//Handle the amount of rounds
+	switch(length(rounds))
+		if(1)
+			overlays += image('icons/mob/ammoHUD.dmi', src, "o[rounds[1]]")
+			to_chat(user, "1 digit")
+			to_chat(user, "o[rounds[1]]")
+		if(2)
+			overlays += image('icons/mob/ammoHUD.dmi', src, "o[rounds[2]]")
+			overlays += image('icons/mob/ammoHUD.dmi', src, "t[rounds[1]]")
+			to_chat(user, "2 digits")
+			to_chat(user, "t[rounds[1]] o[rounds[2]]")
+		if(3)
+			overlays += image('icons/mob/ammoHUD.dmi', src, "o[rounds[3]]")
+			overlays += image('icons/mob/ammoHUD.dmi', src, "t[rounds[2]]")
+			overlays += image('icons/mob/ammoHUD.dmi', src, "h[rounds[1]]")
+			to_chat(user, "3 digits")
+			to_chat(user, "h[rounds[1]] t[rounds[2]] o[rounds[3]]")
+		else //"0" is still length 1 so this means it's over 999
+			overlays += image('icons/mob/ammoHUD.dmi', src, "o9")
+			overlays += image('icons/mob/ammoHUD.dmi', src, "t9")
+			overlays += image('icons/mob/ammoHUD.dmi', src, "h9")
+			return	
