@@ -39,7 +39,7 @@
 	pcell = new /obj/item/cell(src)
 
 /obj/item/smartgun_powerpack/attack_self(mob/user, automatic = FALSE)
-	if(!ishuman(user) || user.stat) 
+	if(!ishuman(user) || user.stat)
 		return FALSE
 
 	var/obj/item/weapon/gun/smartgun/mygun = user.get_active_hand()
@@ -75,7 +75,6 @@
 			reload(user, mygun)
 		else
 			user.visible_message("[user.name]'s powerpack servos begin automatically feeding an ammo belt into the M56 Smartgun.","The powerpack servos begin automatically feeding a fresh ammo belt into the M56 Smartgun.")
-		var/reload_duration = 50
 		if(!automatic)
 			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.smartgun>0)
 				reload_duration = max(reload_duration - 10*user.mind.cm_skills.smartgun,30)
@@ -139,9 +138,9 @@
 	mygun.current_mag.current_rounds += rounds_to_reload
 	rounds_remaining -= rounds_to_reload
 
-	if(!automatic)	
+	if(!automatic)
 		to_chat(user, "You finish loading [rounds_to_reload] shells into the M56 Smartgun. Ready to rumble!")
-	else	
+	else
 		to_chat(user, "The powerpack servos finish loading [rounds_to_reload] shells into the M56 Smartgun. Ready to rumble!")
 	playsound(user, 'sound/weapons/unload.ogg', 25, 1)
 
