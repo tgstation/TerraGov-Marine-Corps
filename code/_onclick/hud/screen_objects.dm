@@ -673,42 +673,31 @@
 			overlays += empty
 		else
 			warned = TRUE
-			overlays += empty
-			spawn(4)
-				overlays -= empty
-			spawn(4*2)
+			var/obj/screen/ammo/F = new /obj/screen/ammo(src)
+			F.icon_state = "frame"
+			user.client.screen += F
+			flick("[hud_state_empty]_flash", F)
+			spawn(20)
+				user.client.screen -= F
+				cdel(F)
 				overlays += empty
-			spawn(4*3)
-				overlays -= empty
-			spawn(4*4)
-				overlays += empty
-		to_chat(user, "warning, hud_state_empty [hud_state_empty]")
 	else
 		warned = FALSE
 		overlays += image('icons/mob/ammoHUD.dmi', src, "[hud_state]")
-		to_chat(user, "hud_state [hud_state]")
 
 	rounds = num2text(rounds)
-
-	to_chat(user, "[rounds] rounds")
 
 	//Handle the amount of rounds
 	switch(length(rounds))
 		if(1)
 			overlays += image('icons/mob/ammoHUD.dmi', src, "o[rounds[1]]")
-			to_chat(user, "1 digit")
-			to_chat(user, "o[rounds[1]]")
 		if(2)
 			overlays += image('icons/mob/ammoHUD.dmi', src, "o[rounds[2]]")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "t[rounds[1]]")
-			to_chat(user, "2 digits")
-			to_chat(user, "t[rounds[1]] o[rounds[2]]")
 		if(3)
 			overlays += image('icons/mob/ammoHUD.dmi', src, "o[rounds[3]]")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "t[rounds[2]]")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "h[rounds[1]]")
-			to_chat(user, "3 digits")
-			to_chat(user, "h[rounds[1]] t[rounds[2]] o[rounds[3]]")
 		else //"0" is still length 1 so this means it's over 999
 			overlays += image('icons/mob/ammoHUD.dmi', src, "o9")
 			overlays += image('icons/mob/ammoHUD.dmi', src, "t9")
