@@ -27,7 +27,7 @@
 	to_chat(M, "")
 	to_chat(M, "")
 	to_chat(M, "<B>With the recent arrival of the enemy TGMC battalion the 'Falling Falcons' and their flagship, the [MAIN_SHIP_NAME], the UPP has felt threatened in the sector. </B>")
-	to_chat(M, "<B>In an effort to protect the vunerable MV-35 from the emproaching UA/TGMC imperialists, the leadership of your battalion has opted this the best opportunity to strike at the Falling Falcons to catch them off guard. </B>")
+	to_chat(M, "<B>In an effort to protect the vunerable MV-35 from the emproaching TGMC imperialists, the leadership of your battalion has opted this the best opportunity to strike at the Falling Falcons to catch them off guard. </B>")
 	to_chat(M, "")
 	to_chat(M, "")
 	to_chat(M, "<font size='3'>\red Glory to Colonel Ganbaatar.</font>")

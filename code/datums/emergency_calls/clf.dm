@@ -7,8 +7,8 @@
 
 
 /datum/emergency_call/clf/print_backstory(mob/living/carbon/human/mob)
-	to_chat(mob, "<B>You grew up [pick(5;"on the UA prison station", 10;"in the LV-624 jungle", 25;"on the farms of LV-771", 25;"in the slums of LV-221", 20;"the red wastes of LV-361", 15;"the icy tundra of LV-571")] to a [pick(50;"poor", 15;"well-off", 35;"average")] family.</B>")
-	to_chat(mob, "<B>As a native of the Tychon's Rift sector, you joined the CLF because [pick(20;"the Dust Raiders killed someone close to you in 2181", 20;"you harbor a strong hatred of the TerraGov", 10;"you are a wanted criminal in the TerraGov", 5;"have UPP sympathies and want to see the UA driven out of the secor", 10;"you believe the TGMC occupation will hurt your quality of life", 5;"are a violent person and want to kill someone for the sake of killing", 20;"want the Tychon's Rift to be free from outsiders", 10;"your militia was absorbed into the CLF")] and are considered a terrorist by the UA.</B>")
+	to_chat(mob, "<B>You grew up [pick(5;"on the TGMC prison station", 10;"in the LV-624 jungle", 25;"on the farms of LV-771", 25;"in the slums of LV-221", 20;"the red wastes of LV-361", 15;"the icy tundra of LV-571")] to a [pick(50;"poor", 15;"well-off", 35;"average")] family.</B>")
+	to_chat(mob, "<B>As a native of the Tychon's Rift sector, you joined the CLF because [pick(20;"the Dust Raiders killed someone close to you in 2181", 20;"you harbor a strong hatred of the TerraGov", 10;"you are a wanted criminal in the TerraGov", 5;"have UPP sympathies and want to see the TGMC driven out of the secor", 10;"you believe the TGMC occupation will hurt your quality of life", 5;"are a violent person and want to kill someone for the sake of killing", 20;"want the Tychon's Rift to be free from outsiders", 10;"your militia was absorbed into the CLF")] and are considered a terrorist by the TGMC.</B>")
 
 	to_chat(mob, "<B>The Tychon's Rift sector has largely enjoyed its indepdendence..</B>")
 	to_chat(mob, "<B>Though technically part of the TerraGov frontier, many colonists in the Tychon's Rift have enjoyed their freedoms.</B>")
