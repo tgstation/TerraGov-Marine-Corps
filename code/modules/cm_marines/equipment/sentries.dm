@@ -97,9 +97,9 @@
 	. = ..()
 	if(!anchored)
 		to_chat(user, "<span class='info'>It must be <B>wrenched</B> to the floor.</span>")
-	if(!has_top)
+	else if(!has_top)
 		to_chat(user, "<span class='info'>The <B>main turret</B> is not installed.</span>")
-	if(has_top && anchored)
+	else if(has_top && anchored)
 		to_chat(user, "<span class='info'>It must be <B>screwed</B> to finish it.</span>")
 
 /obj/machinery/turret_tripod_deployed/MouseDrop(over_object, src_location, over_location) //Drag the tripod onto you to fold it.
@@ -113,7 +113,7 @@
 		to_chat(user, "<span class='warning'>You must unanchor \the [src] to retrieve it!</span>")
 		return
 
-	if(has_top)
+	else if(has_top)
 		to_chat(user, "<span class='warning'>You must remove the turret top first!</span>")
 		return
 
