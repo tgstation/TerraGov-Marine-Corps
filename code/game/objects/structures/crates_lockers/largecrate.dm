@@ -140,8 +140,8 @@
 	desc = "Two small black storage cases."
 	icon_state = "case_small"
 
-/obj/structure/largecrate/random/barrel/attackby(obj/item/tool/weldingtool/W as obj, mob/user as mob)
-	if(W.welding == 1)
+/obj/structure/largecrate/random/barrel/attackby(obj/item/tool/weldingtool/W, mob/user as mob)
+	if(istype(W) && W.welding == 1)
 		if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 			new /obj/item/stack/sheet/metal/small_stack(src)
 			W.remove_fuel(1,user)
