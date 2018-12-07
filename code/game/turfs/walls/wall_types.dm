@@ -494,7 +494,7 @@
 		ChangeTurf(text2path(oldTurf), TRUE)
 	else
 		ChangeTurf(/turf/open/floor/plating, TRUE)
-	//cdel(src) //ChangeTurf is called by Destroy()
+	//qdel(src) //ChangeTurf is called by Destroy()
 
 
 

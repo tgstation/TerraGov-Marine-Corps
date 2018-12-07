@@ -101,7 +101,7 @@
 
 /proc/makepowernets()
 	for(var/datum/powernet/PN in powernets)
-		del(PN) //not cdel on purpose, powernet is still using del.
+		del(PN) //not qdel on purpose, powernet is still using del.
 	powernets.Cut()
 
 	for(var/obj/structure/cable/PC in cable_list)

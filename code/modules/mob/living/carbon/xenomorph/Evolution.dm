@@ -79,7 +79,7 @@
 		to_chat(src, "EVO8: Something went wrong with evolving")
 		return 
 
-	if(!isturf(loc)) //cdel'd or inside something
+	if(!isturf(loc)) //qdel'd or inside something
 		return
 
 	if(is_mob_incapacitated(TRUE))
@@ -182,7 +182,7 @@
 		to_chat(src, "<span class='warning'>You quiver, but nothing happens. Hold still while evolving.</span>")
 		return
 
-	if(!isturf(loc)) //cdel'd or moved into something
+	if(!isturf(loc)) //qdel'd or moved into something
 		return
 	if(new_caste_type == /mob/living/carbon/Xenomorph/Queen && hive.living_xeno_queen) //Do another check after the tick.
 		to_chat(src, "<span class='warning'>There already is a Queen.</span>")

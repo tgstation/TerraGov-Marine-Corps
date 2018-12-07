@@ -23,7 +23,7 @@ namespace AddToChangelog
         public Dictionary<string, string> ItemList = new Dictionary<string, string>()
         {
             { "Added feature", "rscadd" },
-            { "Removed feature", "rscdel" },
+            { "Removed feature", "rsqdel" },
             { "Bugfix", "bugfix" },
             { "Work in progress", "wip" },
             { "Tweak", "tweak" },

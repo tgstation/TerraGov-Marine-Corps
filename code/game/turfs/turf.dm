@@ -165,7 +165,7 @@
 			O.hide(intact_tile)
 
 
-//Creates a new turf. this is called by every code that changes a turf ("spawn atom" verb, cdel, build mode stuff, etc)
+//Creates a new turf. this is called by every code that changes a turf ("spawn atom" verb, qdel, build mode stuff, etc)
 /turf/proc/ChangeTurf(new_turf_path, forget_old_turf)
 	if (!new_turf_path)
 		return

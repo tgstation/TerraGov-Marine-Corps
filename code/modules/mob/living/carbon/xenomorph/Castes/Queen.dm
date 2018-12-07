@@ -759,7 +759,7 @@
 		observed_xeno = target
 		if(old_xeno)
 			old_xeno.hud_set_queen_overwatch()
-	if(!target.gc_destroyed) //not cdel'd
+	if(!target.gc_destroyed) //not qdel'd
 		target.hud_set_queen_overwatch()
 	reset_view()
 

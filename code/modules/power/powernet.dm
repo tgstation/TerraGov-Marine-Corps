@@ -261,5 +261,5 @@
 			Cable.powernet = net1
 			net1.cables += Cable
 
-	del(net2) //not cdel on purpose
+	del(net2) //not qdel on purpose
 	return net1
