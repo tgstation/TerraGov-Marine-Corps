@@ -15,7 +15,7 @@
 		for (var/obj/item/I in H)
 			if (istype(I, /obj/item/implant))
 				continue
-			cdel(I)
+			qdel(I)
 
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/kilt(H), WEAR_BODY)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret(H), WEAR_HEAD)

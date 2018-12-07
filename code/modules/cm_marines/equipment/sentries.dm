@@ -65,7 +65,7 @@
 			new /obj/item/device/turret_top(loc)
 		if(has_sensor)
 			new /obj/item/device/turret_sensor(loc)
-		cdel(src)
+		qdel(src)
 
 
 /obj/machinery/marine_turret_frame/attack_alien(mob/living/carbon/Xenomorph/M)
@@ -166,7 +166,7 @@
 			has_top = TRUE
 			icon_state = "sentry_armorless"
 			user.drop_held_item()
-			cdel(O)
+			qdel(O)
 			return
 
 	//Install plating
@@ -240,11 +240,11 @@
 			"<span class='notice'>You install [O] on [src].</span>")
 			icon_state = "sentry_off"
 			user.drop_held_item()
-			cdel(O)
+			qdel(O)
 
 			var/obj/machinery/marine_turret/T = new(loc)  //Bing! Create a new turret.
 			T.dir = dir
-			cdel(src)
+			qdel(src)
 			return
 
 	return ..() //Just do normal stuff.
@@ -350,19 +350,18 @@
 	camera.c_tag = "[name] ([rand(0, 1000)])"
 	spawn(2)
 		stat = 0
-	//processing_objects.Add(src)
 	ammo = ammo_list[ammo]
 
 
-/obj/machinery/marine_turret/Dispose() //Clear these for safety's sake.
+/obj/machinery/marine_turret/Destroy() //Clear these for safety's sake.
 	if(operator)
 		operator.unset_interaction()
 		operator = null
 	if(camera)
-		cdel(camera)
+		qdel(camera)
 		camera = null
 	if(cell)
-		cdel(cell)
+		qdel(cell)
 		cell = null
 	if(target)
 		target = null
@@ -551,6 +550,7 @@
 				user.visible_message("<span class='notice'>[user] deactivates [src].</span>",
 				"<span class='notice'>You deactivate [src].</span>")
 				state("<span class='notice'>The [name] powers down and goes silent.</span>")
+				STOP_PROCESSING(SSobj, src)
 				update_icon()
 
 		if("toggle_alert")
@@ -752,7 +752,7 @@
 			var/obj/item/ammo_magazine/S = new magazine_type(user.loc)
 			S.current_rounds = rounds
 		rounds = min(M.current_rounds, rounds_max)
-		cdel(O)
+		qdel(O)
 		return
 
 	if(O.force)
@@ -814,8 +814,8 @@
 		spawn(10)
 			if(src && loc)
 				explosion(loc, -1, -1, 2, 0)
-				if(!disposed)
-					cdel(src)
+				if(!gc_destroyed)
+					qdel(src)
 		return
 
 	if(!stat && damage > 0 && !immobile)
@@ -932,7 +932,7 @@
 	if(in_chamber) return 1 //Already set!
 	if(!on || !cell || rounds == 0 || stat == 1) return 0
 
-	in_chamber = rnew(/obj/item/projectile, loc) //New bullet!
+	in_chamber = new /obj/item/projectile(loc) //New bullet!
 	in_chamber.generate_bullet(ammo)
 	return 1
 
@@ -1040,12 +1040,12 @@
 	if(prob(65))
 		var/layer = MOB_LAYER - 0.1
 
-		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/items/projectiles.dmi',src,"muzzle_flash",layer))
+		var/image/I = image('icons/obj/items/projectiles.dmi',src,"muzzle_flash",layer)
 		var/matrix/rotate = matrix() //Change the flash angle.
 		rotate.Translate(0, 5)
 		rotate.Turn(angle)
 		I.transform = rotate
-		I.flick_overlay(src, 3)
+		flick_overlay_view(I, src, 3)
 
 /obj/machinery/marine_turret/proc/get_target()
 	var/list/targets = list()
@@ -1258,7 +1258,7 @@
 	burst_delay = 15
 	var/obj/structure/dropship_equipment/sentry_holder/deployment_system
 
-/obj/machinery/marine_turret/premade/dropship/Dispose()
+/obj/machinery/marine_turret/premade/dropship/Destroy()
 	if(deployment_system)
 		deployment_system.deployed_turret = null
 		deployment_system = null
@@ -1287,7 +1287,7 @@
 	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 	AI.SetName("Sentry Alert System")
 	AI.aiRadio.talk_into(AI,"[notice]","Almayer","announces")
-	cdel(AI)
+	qdel(AI)
 
 /obj/machinery/marine_turret/mini
 	name = "\improper UA-580 Point Defense Sentry"
@@ -1339,7 +1339,7 @@
 		var/obj/item/device/marine_turret/mini/P = new(loc)
 		user.put_in_hands(P)
 		P.health = health //track the health
-		cdel(src)
+		qdel(src)
 
 /obj/machinery/marine_turret/mini/update_icon()
 	if(stat && health > 0) //Knocked over
@@ -1405,7 +1405,7 @@
 		playsound(target, 'sound/weapons/mine_armed.ogg', 25)
 		M.health = health
 		M.update_icon()
-		cdel(src)
+		qdel(src)
 
 /obj/item/ammo_magazine/minisentry
 	name = "M30 box magazine (10x28mm Caseless)"

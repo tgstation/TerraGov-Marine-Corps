@@ -18,6 +18,7 @@
 	var/atom/plant_target = null //which atom the detpack is planted on
 	var/target_drag_delay = null //store this for restoration later
 	var/boom = FALSE //confirms whether we actually detted.
+	var/process_count = 0
 
 
 /obj/item/device/radio/detpack/examine(mob/user)
@@ -36,8 +37,8 @@
 	to_chat(user, "<span class='warning'>[details.Join(" ")]</span>")
 
 
-/obj/item/device/radio/detpack/Dispose()
-	processing_second.Remove(src)
+/obj/item/device/radio/detpack/Destroy()
+	STOP_PROCESSING(SSfastprocess, src)
 	if(plant_target && !boom) //whatever name you give it
 		loc = get_turf(src)
 		nullvars()
@@ -108,7 +109,7 @@
 			return
 		armed = TRUE
 		//bombtick()
-		processing_second.Add(src)
+		START_PROCESSING(SSfastprocess, src)
 		update_icon()
 	else
 		armed = FALSE
@@ -265,14 +266,17 @@
 
 
 /obj/item/device/radio/detpack/process()
+	if(++process_count < 5)
+		return
+	process_count = 0
 	if(plant_target == null || !plant_target.loc) //need a target to be attached to
-		processing_second.Remove(src)
+		STOP_PROCESSING(SSfastprocess, src)
 		if(timer < DETPACK_TIMER_MIN) //reset to minimum 10 seconds; no 'cooking' with aborted detonations.
 			timer = DETPACK_TIMER_MIN
 		nullvars()
 		return
 	if(!on) //need to be active and armed.
-		processing_second.Remove(src)
+		STOP_PROCESSING(SSfastprocess, src)
 		armed = FALSE
 		if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
 			timer = DETPACK_TIMER_MIN
@@ -281,7 +285,7 @@
 	if(!armed)
 		if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
 			timer = DETPACK_TIMER_MIN
-		processing_second.Remove(src)
+		STOP_PROCESSING(SSfastprocess, src)
 		update_icon()
 		return
 	if(timer) //Timer is still counting down to armaggedon...
@@ -302,8 +306,8 @@
 		if(isobj(plant_target))
 			plant_target = null
 			if(!istype(plant_target,/obj/vehicle/multitile/root/cm_armored))
-				cdel(plant_target)
-	cdel(src)
+				qdel(plant_target)
+	qdel(src)
 
 
 /obj/item/device/radio/detpack/attack(mob/M as mob, mob/user as mob, def_zone)

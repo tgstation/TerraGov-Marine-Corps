@@ -92,5 +92,5 @@
 		for (var/obj/item/ore/O in contents)
 			O.loc = src.loc
 			O.ex_act(severity++)
-		cdel(src)
+		qdel(src)
 		return

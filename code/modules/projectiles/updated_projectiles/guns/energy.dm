@@ -67,7 +67,7 @@
 	return 1
 
 /obj/item/weapon/gun/energy/taser/delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
-	cdel(projectile_to_fire)
+	qdel(projectile_to_fire)
 	if(refund) cell.charge += charge_cost
 	return 1
 
@@ -94,7 +94,7 @@
 
 /obj/item/weapon/gun/energy/plasmarifle/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	last_regen = world.time
 	update_icon()
 	verbs -= /obj/item/weapon/gun/verb/field_strip
@@ -103,9 +103,9 @@
 
 
 
-/obj/item/weapon/gun/energy/plasmarifle/Dispose()
+/obj/item/weapon/gun/energy/plasmarifle/Destroy()
 	. = ..()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 
 
 /obj/item/weapon/gun/energy/plasmarifle/process()
@@ -165,7 +165,7 @@
 	return 1
 
 /obj/item/weapon/gun/energy/plasmarifle/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
-	cdel(projectile_to_fire)
+	qdel(projectile_to_fire)
 	if(refund) charge_time *= 2
 	return 1
 
@@ -208,16 +208,16 @@
 
 /obj/item/weapon/gun/energy/plasmapistol/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	verbs -= /obj/item/weapon/gun/verb/field_strip
 	verbs -= /obj/item/weapon/gun/verb/toggle_burst
 	verbs -= /obj/item/weapon/gun/verb/empty_mag
 
 
 
-/obj/item/weapon/gun/energy/plasmapistol/Dispose()
+/obj/item/weapon/gun/energy/plasmapistol/Destroy()
 	. = ..()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 
 
 /obj/item/weapon/gun/energy/plasmapistol/process()
@@ -265,7 +265,7 @@
 	return 1
 
 /obj/item/weapon/gun/energy/plasmapistol/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
-	cdel(projectile_to_fire)
+	qdel(projectile_to_fire)
 	if(refund) charge_time *= 2
 	return 1
 
@@ -306,7 +306,7 @@
 	verbs -= /obj/item/weapon/gun/verb/empty_mag
 	verbs -= /obj/item/weapon/gun/verb/use_unique_action
 
-/obj/item/weapon/gun/energy/plasma_caster/Dispose()
+/obj/item/weapon/gun/energy/plasma_caster/Destroy()
 	. = ..()
 	source = null
 
@@ -364,7 +364,7 @@
 	return 1
 
 /obj/item/weapon/gun/energy/plasma_caster/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
-	cdel(projectile_to_fire)
+	qdel(projectile_to_fire)
 	if(refund)
 		source.charge += charge_cost
 		var/perc = source.charge / source.charge_max * 100

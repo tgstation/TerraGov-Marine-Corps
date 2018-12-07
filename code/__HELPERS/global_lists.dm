@@ -8,6 +8,8 @@ var/list/fax_contents = list() 					//List of fax contents to maintain it even i
 var/list/TGMCFaxes = list()							//List of all TGMC faxes sent this round
 var/list/active_tracking_beacons = list()			//List of all active squad tracking beacons
 
+var/global/world_qdel_log
+
 //Names of maps that can be compiled on
 var/list/DEFAULT_NEXT_MAP_CANDIDATES = list("LV-624", "Ice Colony", "Big-Red", "Prison Station")
 var/list/NEXT_MAP_CANDIDATES = DEFAULT_NEXT_MAP_CANDIDATES.Copy()
@@ -47,7 +49,6 @@ var/global/list/attachment_vendors = list() //Used by our gamemode code
 var/global/list/marine_vendors = list() //Used by our gamemode code
 var/global/list/cargo_ammo_vendors = list() //Used by our gamemode code
 var/global/list/cargo_guns_vendors = list() //Used by our gamemode code
-var/global/list/processing_objects = list()
 var/global/list/active_diseases = list()
 var/global/list/events = list()
 var/global/list/processing_second = list()
@@ -197,3 +198,12 @@ var/global/list/moth_wings_list = list()
 				. += "    has: [t]\n"
 	to_chat(world, .)
 */
+
+//creates every subtype of prototype (excluding prototype) and adds it to list L.
+//if no list/L is provided, one is created.
+/proc/init_subtypes(prototype, list/L)
+	if(!istype(L))
+		L = list()
+	for(var/path in subtypesof(prototype))
+		L += new path()
+	return L

@@ -9,7 +9,7 @@
 	var/icon/virtualIcon
 	var/list/bulletholes = list()
 
-	Dispose()
+	Destroy()
 		// if a target is deleted and associated with a stake, force stake to forget
 		for(var/obj/structure/target_stake/T in view(3,src))
 			if(T.pinned_target == src)
@@ -96,7 +96,7 @@
 			for(var/mob/O in oviewers())
 				if (O.client && !is_blind(O))
 					to_chat(O, "\red [src] breaks into tiny pieces and collapses!")
-			cdel(src)
+			qdel(src)
 
 		// Create a temporary object to represent the damage
 		var/obj/bmark = new

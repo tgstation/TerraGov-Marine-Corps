@@ -29,7 +29,7 @@
 					if(!src || !WT.remove_fuel(0, user)) return
 					to_chat(user, "\blue You deconstruct the frame.")
 					new /obj/item/stack/sheet/plasteel( loc, 4)
-					cdel(src)
+					qdel(src)
 		if(1)
 			if(istype(P, /obj/item/tool/wrench))
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
@@ -167,7 +167,7 @@
 				if(A) //if there's no brain, the mob is deleted and a structure/AIcore is created
 					A.rename_self("ai", 1)
 				feedback_inc("cyborg_ais_created",1)
-				cdel(src)
+				qdel(src)
 
 /obj/structure/AIcore/deactivated
 	name = "Inactive AI"
@@ -227,7 +227,7 @@ That prevents a few funky behaviors.
 							A.cancel_camera()
 							to_chat(A, "You have been uploaded to a stationary terminal. Remote device connection restored.")
 							to_chat(U, "\blue <b>Transfer successful</b>: \black [A.name] ([rand(1000,9999)].exe) installed and executed succesfully. Local copy has been removed.")
-							cdel(T)
+							qdel(T)
 			if("AIFIXER")//AI Fixer terminal.
 				var/obj/machinery/computer/aifixer/T = target
 				switch(interaction)

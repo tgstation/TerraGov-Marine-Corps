@@ -6,7 +6,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	var/list/process_shuttles	//simple list of shuttles, for processing
 	var/list/locs_crash
 
-/datum/shuttle_controller/proc/process()
+/datum/shuttle_controller/process()
 	//process ferry shuttles
 	for (var/datum/shuttle/ferry/shuttle in process_shuttles)
 

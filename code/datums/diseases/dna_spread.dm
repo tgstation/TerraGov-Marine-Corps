@@ -56,7 +56,7 @@
 
 	return
 
-/datum/disease/dnaspread/Dispose()
+/datum/disease/dnaspread/Destroy()
 	if ((original_dna["name"]) && (original_dna["UI"]) && (original_dna["SE"]))
 		var/list/newUI=original_dna["UI"]
 		var/list/newSE=original_dna["SE"]

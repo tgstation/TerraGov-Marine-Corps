@@ -143,7 +143,7 @@
 			update_attachable(A.slot)
 
 
-/obj/item/weapon/gun/Dispose()
+/obj/item/weapon/gun/Destroy()
 	in_chamber 		= null
 	ammo 			= null
 	current_mag 	= null
@@ -419,7 +419,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 					H.update_icon()
 					break
 			if(!found_handful)
-				var/obj/item/ammo_magazine/handful/new_handful = rnew(/obj/item/ammo_magazine/handful)
+				var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
 				new_handful.generate_handful(current_mag.default_ammo, current_mag.caliber, 8, 1, type)
 				new_handful.loc = get_turf(src)
 		else
@@ -506,7 +506,7 @@ and you're good to go.
 		log_debug("ERROR CODE I2: null ammo while create_bullet(). User: <b>[usr]</b>")
 		chambered = ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
 
-	var/obj/item/projectile/P = rnew(/obj/item/projectile, src)
+	var/obj/item/projectile/P = new /obj/item/projectile(src)
 	P.generate_bullet(chambered)
 	return P
 
@@ -534,7 +534,7 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/delete_bullet(var/obj/item/projectile/projectile_to_fire, var/refund = 0)
 	if(active_attachable) //Attachables don't chamber rounds, so we want to delete it right away.
-		cdel(projectile_to_fire) //Getting rid of it. Attachables only use ammo after the cycle is over.
+		qdel(projectile_to_fire) //Getting rid of it. Attachables only use ammo after the cycle is over.
 		if(refund)
 			active_attachable.current_rounds++ //Refund the bullet.
 		return TRUE
@@ -740,7 +740,7 @@ and you're good to go.
 
 						projectile_to_fire.play_damage_effect(user)
 						if(!delete_bullet(projectile_to_fire))
-							cdel(projectile_to_fire) //If this proc DIDN'T delete the bullet, we're going to do so here.
+							qdel(projectile_to_fire) //If this proc DIDN'T delete the bullet, we're going to do so here.
 
 						reload_into_chamber(user) //Reload the sucker.
 
@@ -774,20 +774,20 @@ and you're good to go.
 						if(projectile_to_fire.ammo.bonus_projectiles_amount)
 							var/obj/item/projectile/BP
 							for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
-								BP = rnew(/obj/item/projectile, M.loc)
+								BP = new /obj/item/projectile(M.loc)
 								BP.generate_bullet(ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
 								BP.dir = get_dir(user, M)
 								BP.distance_travelled = get_dist(user, M)
 								BP.ammo.on_hit_mob(M, BP)
 								M.bullet_act(BP)
-								cdel(BP)
+								qdel(BP)
 
 						projectile_to_fire.ammo.on_hit_mob(M, projectile_to_fire)
 						M.bullet_act(projectile_to_fire)
 						last_fired = world.time
 
 						if(!delete_bullet(projectile_to_fire))
-							cdel(projectile_to_fire)
+							qdel(projectile_to_fire)
 						reload_into_chamber(user) //Reload into the chamber if the gun supports it.
 						return TRUE
 					else
@@ -1053,13 +1053,13 @@ and you're good to go.
 
 	if(prob(65)) //Not all the time.
 		var/image_layer = (user && user.dir == SOUTH) ? MOB_LAYER+0.1 : MOB_LAYER-0.1
-		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/items/projectiles.dmi',user,muzzle_flash,image_layer))
+		var/image/I = image('icons/obj/items/projectiles.dmi',user,muzzle_flash,image_layer)
 		var/matrix/rotate = matrix() //Change the flash angle.
 		rotate.Translate(x,y)
 		rotate.Turn(angle)
 		I.transform = rotate
 
-		I.flick_overlay(user, 3)
+		flick_overlay_view(I, user, 3)
 
 /obj/item/weapon/gun/on_enter_storage(obj/item/I)
 	if(istype(I,/obj/item/storage/belt/gun))

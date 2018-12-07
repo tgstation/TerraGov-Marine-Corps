@@ -383,7 +383,7 @@ proc/get_id_photo(var/mob/living/carbon/human/H)
 	preview_icon.Blend(eyes_s, ICON_OVERLAY)
 	if(clothes_s)
 		preview_icon.Blend(clothes_s, ICON_OVERLAY)
-	cdel(eyes_s)
-	cdel(clothes_s)
+	qdel(eyes_s)
+	qdel(clothes_s)
 
 	return preview_icon

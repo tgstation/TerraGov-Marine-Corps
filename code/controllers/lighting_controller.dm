@@ -22,7 +22,7 @@ datum/controller/lighting/New()
 	if(lighting_controller != src)
 		if(istype(lighting_controller,/datum/controller/lighting))
 			Recover()	//if we are replacing an existing lighting_controller (due to a crash) we attempt to preserve as much as we can
-			cdel(lighting_controller)
+			qdel(lighting_controller)
 		lighting_controller = src
 
 
@@ -32,7 +32,7 @@ datum/controller/lighting/New()
 //than deleting them). Processing interval should be roughly half a second for best results.
 //By using queues we are ensuring we don't perform more updates than are necessary
 /*
-datum/controller/lighting/proc/process()
+datum/controller/lighting/process()
 	processing = 1
 	spawn(0)
 		set background = 1
@@ -63,7 +63,7 @@ datum/controller/lighting/proc/process()
 			sleep(processing_interval)
 */
 
-datum/controller/lighting/proc/process()
+datum/controller/lighting/process()
 	while(processing)
 		iteration++
 		var/thing
@@ -91,7 +91,7 @@ datum/controller/lighting/proc/process()
 //Does not loop. Should be run prior to process() being called for the first time.
 //Note: if we get additional z-levels at runtime (e.g. if the gateway thin ever gets finished) we can initialize specific
 //z-levels with the z_level argument
-datum/controller/lighting/proc/Initialize(var/z_level)
+datum/controller/lighting/Initialize(var/z_level)
 	processing = 0
 
 	for(var/thing in changed_lights)
@@ -127,7 +127,7 @@ datum/controller/lighting/proc/Initialize(var/z_level)
 //Used to strip valid information from an existing controller and transfer it to a replacement
 //It works by using spawn(-1) to transfer the data, if there is a runtime the data does not get transfered but the loop
 //does not crash
-datum/controller/lighting/proc/Recover()
+datum/controller/lighting/Recover()
 	if(!istype(lighting_controller.changed_turfs,/list))
 		lighting_controller.changed_turfs = null
 		lighting_controller.changed_turfs = list()

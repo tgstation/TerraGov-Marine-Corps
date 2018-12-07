@@ -28,17 +28,18 @@
 	else
 		organ_data = new organ_type()
 	if(!robotic)
-		processing_objects += src
+		START_PROCESSING(SSobj, src)
 
 
-/obj/item/organ/Dispose()
-	if(!robotic) processing_objects -= src
+/obj/item/organ/Destroy()
+	if(!robotic) 
+		STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/item/organ/process()
 
 	if(robotic)
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 		return
 
 	// Don't process if we're in a freezer, an MMI or a stasis bag. //TODO: ambient temperature?
@@ -64,7 +65,7 @@
 	name = "dead [initial(name)]"
 	if(dead_icon) icon_state = dead_icon
 	health = 0
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	//TODO: Grey out the icon state.
 	//TODO: Inject an organ with peridaxon to make it alive again.
 
@@ -236,4 +237,4 @@
 	if(fingerprintslast) O.fingerprintslast = fingerprintslast
 
 	user.put_in_active_hand(O)
-	cdel(src)
+	qdel(src)

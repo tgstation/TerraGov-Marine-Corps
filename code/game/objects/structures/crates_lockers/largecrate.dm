@@ -16,7 +16,7 @@
 	M.visible_message("<span class='danger'>\The [M] smashes \the [src] apart!</span>", \
 	"<span class='danger'>You smash \the [src] apart!</span>", \
 	"<span class='danger'>You hear splitting wood!</span>", 5)
-	cdel(src)
+	qdel(src)
 
 /obj/structure/largecrate/attack_hand(mob/user as mob)
 	to_chat(user, "<span class='notice'>You need a crowbar to pry this open!</span>")
@@ -31,7 +31,7 @@
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
 							 "<span class='notice'>You pry open \the [src].</span>", \
 							 "<span class='notice'>You hear splitting wood.</span>")
-		cdel(src)
+		qdel(src)
 	else
 		return attack_hand(user)
 
@@ -152,7 +152,7 @@
 								 "<span class='notice'>You weld open \the [src].</span>", \
 								 "<span class='notice'>You hear loud hissing and the sound of metal falling over.</span>")
 			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-			cdel(src)
+			qdel(src)
 		else
 			return FALSE
 	else

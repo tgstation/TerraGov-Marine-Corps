@@ -27,11 +27,6 @@
 	flags_inventory = COVEREYES
 	flags_item = NODROP|DELONDROP
 
-	Dispose()
+	Destroy()
 		..()
 		return TA_REVIVE_ME
-
-	Recycle()
-		var/blacklist[] = list("icon_state","item_state","name","desc","vision_flags","can_remove")
-		. = ..() + blacklist
-

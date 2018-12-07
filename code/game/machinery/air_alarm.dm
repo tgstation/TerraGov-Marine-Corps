@@ -123,9 +123,6 @@
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 		update_icon()
-		if(ticker && ticker.current_state == 3)//if the game is running
-			src.initialize()
-		return
 
 	switch(dir)
 		if(NORTH) pixel_y = 25
@@ -154,7 +151,8 @@
 	TLV["temperature"] =	list(T0C-26, T0C, T0C+40, T0C+66) // K
 
 
-/obj/machinery/alarm/initialize()
+/obj/machinery/alarm/Initialize()
+	. = ..()
 	set_frequency(frequency)
 	if (!master_is_operating())
 		elect_master()
@@ -1048,7 +1046,7 @@ table tr:first-child th:first-child { border: none;}
 		if(0)
 			if(istype(W, /obj/item/circuitboard/airalarm))
 				to_chat(user, "You insert the circuit!")
-				cdel(W)
+				qdel(W)
 				buildstage = 1
 				update_icon()
 				return
@@ -1058,7 +1056,7 @@ table tr:first-child th:first-child { border: none;}
 				var/obj/item/frame/air_alarm/frame = new /obj/item/frame/air_alarm()
 				frame.loc = user.loc
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-				cdel(src)
+				qdel(src)
 
 	return ..()
 

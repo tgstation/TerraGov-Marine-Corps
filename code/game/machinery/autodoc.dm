@@ -478,14 +478,14 @@
 									else
 										A.forceMove(occupant.loc)
 										occupant.status_flags &= ~XENO_HOST
-									cdel(A)
+									qdel(A)
 						if(S.limb_ref.implants.len)
 							for(var/obj/item/I in S.limb_ref.implants)
 								if(!surgery) break
 								if(!is_type_in_list(I,known_implants))
 									sleep(HEMOSTAT_REMOVE_MAX_DURATION*surgery_mod)
 									S.limb_ref.implants -= I
-									cdel(I)
+									qdel(I)
 						if(S.limb_ref.name == "chest" || S.limb_ref.name == "head")
 							close_encased(H,S.limb_ref)
 						if(!surgery) break
@@ -680,7 +680,7 @@
 		connected.start_processing()
 
 		for(var/obj/O in src)
-			cdel(O)
+			qdel(O)
 		add_fingerprint(usr)
 
 /obj/machinery/autodoc/proc/go_out(notice_code = FALSE)
@@ -710,7 +710,7 @@
 		var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 		AI.SetName("Autodoc Notification System")
 		AI.aiRadio.talk_into(AI,"<b>Patient: [occupant] has been released from [src] at: [get_area(src)]. [reason]</b>","MedSci","announces")
-		cdel(AI)
+		qdel(AI)
 	occupant = null
 	surgery_todo_list = list()
 	update_use_power(1)
@@ -730,7 +730,7 @@
 		stored_metal = min(stored_metal_max,stored_metal + M.amount * 100)
 		to_chat(user, "<span class='notice'>\ [src] processes \the [W]. Its metal reservoir now contains [stored_metal] of [stored_metal_max] units.</span>")
 		user.drop_held_item()
-		cdel(W)
+		qdel(W)
 		return
 
 	if(istype(W, /obj/item/device/healthanalyzer) && occupant) //Allows us to use the analyzer on the occupant without taking him out.

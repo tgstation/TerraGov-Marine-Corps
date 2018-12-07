@@ -53,7 +53,8 @@
 	var/datum/radio_frequency/radio_connection
 	unacidable = 1
 
-/obj/machinery/embedded_controller/radio/initialize()
+/obj/machinery/embedded_controller/radio/Initialize()
+	. = ..()
 	set_frequency(frequency)
 
 /obj/machinery/embedded_controller/radio/update_icon()
@@ -71,7 +72,7 @@
 		//use_power(radio_power_use)	//neat idea, but causes way too much lag.
 		return radio_connection.post_signal(src, signal, filter)
 	else
-		cdel(signal)
+		qdel(signal)
 
 /obj/machinery/embedded_controller/radio/proc/set_frequency(new_frequency)
 	radio_controller.remove_object(src, frequency)

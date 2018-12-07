@@ -407,6 +407,6 @@ var/list/obj/machinery/requests_console/allConsoles = list()
 	message = ""
 	announcement.announcer = ""
 
-/obj/machinery/requests_console/Dispose()
+/obj/machinery/requests_console/Destroy()
 	SetLuminosity(0)
 	. = ..()

@@ -308,7 +308,7 @@
 			T.use(i)
 		else
 			src.amount += T.get_amount()
-			cdel(T)
+			qdel(T)
 		src.updateicon()
 		src.target = null
 		src.repairing = 0
@@ -328,7 +328,7 @@
 		var/obj/item/stack/tile/plasteel/T = new /obj/item/stack/tile/plasteel
 		T.amount = 4
 		T.loc = M.loc
-		cdel(M)
+		qdel(M)
 		src.target = null
 		src.repairing = 0
 
@@ -364,7 +364,7 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	cdel(src)
+	qdel(src)
 	return
 
 
@@ -382,7 +382,7 @@
 		user.put_in_hands(B)
 		to_chat(user, "<span class='notice'>You add the tiles into the empty toolbox. They protrude from the top.</span>")
 		user.temp_drop_inv_item(src)
-		cdel(src)
+		qdel(src)
 	else
 		to_chat(user, "<span class='warning'>You need 10 floortiles for a floorbot.</span>")
 	return

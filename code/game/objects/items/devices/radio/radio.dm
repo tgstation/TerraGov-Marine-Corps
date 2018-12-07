@@ -46,14 +46,10 @@
 		frequency = new_frequency
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
 
-/obj/item/device/radio/New()
-	..()
-	if(radio_controller)
-		initialize()
-
-
-/obj/item/device/radio/initialize()
-
+/obj/item/device/radio/Initialize()
+	. = ..()
+	if(!radio_controller)
+		return
 	if(freerange)
 		if(frequency < 1200 || frequency > 1600)
 			frequency = sanitize_frequency(frequency, maxf)
@@ -196,7 +192,7 @@
 						0, "*garbled automated announcement*", src,
 						message, from, "Automated Announcement", from, "synthesized voice",
 						4, 0, list(1), PUB_FREQ)
-	cdel(A)
+	qdel(A)
 	return
 
 // Interprets the message mode when talking into a radio, possibly returning a connection datum

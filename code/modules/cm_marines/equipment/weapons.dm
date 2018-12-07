@@ -485,7 +485,7 @@
 			S = /obj/item/storage/box/spec/demolitionist
 	new S(loc)
 	user.put_in_hands(S)
-	cdel()
+	qdel()
 
 /obj/item/spec_kit/attack_self(mob/user)
 	var/selection = input(user, "Pick your equipment", "Specialist Kit Selection") as null|anything in list("Pyro","Grenadier","Sniper","Scout","Demo")
@@ -503,4 +503,4 @@
 			new /obj/item/storage/box/spec/scout (T)
 		if("Demo")
 			new /obj/item/storage/box/spec/demolitionist (T)
-	cdel(src)
+	qdel(src)

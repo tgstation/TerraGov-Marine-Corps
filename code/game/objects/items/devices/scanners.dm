@@ -28,12 +28,12 @@ REAGENT SCANNER
 	icon_state = "t-ray[on]"
 
 	if(on)
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 
 
 /obj/item/device/t_scanner/process()
 	if(!on)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return null
 
 	for(var/turf/T in range(1, src.loc) )
@@ -50,7 +50,7 @@ REAGENT SCANNER
 				O.invisibility = 0
 				O.alpha = 128
 				spawn(10)
-					if(O && !O.disposed)
+					if(O && !O.gc_destroyed)
 						var/turf/U = O.loc
 						if(U.intact_tile)
 							O.invisibility = 101

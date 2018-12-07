@@ -40,9 +40,9 @@
 /obj/structure/fence/ex_act(severity)
 	switch(severity)
 		if(1)
-			cdel(src) //Nope
+			qdel(src) //Nope
 		if(2)
-			cdel(src)
+			qdel(src)
 		if(3)
 			health -= rand(25, 55)
 			healthcheck(0, 1)
@@ -198,7 +198,7 @@
 
 	update_nearby_icons()
 
-/obj/structure/fence/Dispose()
+/obj/structure/fence/Destroy()
 	density = 0
 	update_nearby_icons()
 	. = ..()

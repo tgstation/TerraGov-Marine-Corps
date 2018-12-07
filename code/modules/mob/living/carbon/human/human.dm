@@ -155,7 +155,7 @@
 
 
 
-/mob/living/carbon/human/Dispose()
+/mob/living/carbon/human/Destroy()
 	assigned_squad?.clean_marine_from_squad(src,FALSE)
 	remove_from_all_mob_huds()
 	return ..()
@@ -1082,7 +1082,7 @@
 	for(var/x in subtypesof(/datum/sprite_accessory/hair))
 		var/datum/sprite_accessory/hair/H = new x // create new hair datum based on type x
 		hairs.Add(H.name) // add hair name to hairs
-		cdel(H) // delete the hair after it's all done
+		qdel(H) // delete the hair after it's all done
 
 	var/new_style = input("Please select hair style", "Character Generation",h_style)  as null|anything in hairs
 
@@ -1096,7 +1096,7 @@
 	for(var/x in subtypesof(/datum/sprite_accessory/facial_hair))
 		var/datum/sprite_accessory/facial_hair/H = new x
 		fhairs.Add(H.name)
-		cdel(H)
+		qdel(H)
 
 	new_style = input("Please select facial style", "Character Generation",f_style)  as null|anything in fhairs
 
@@ -1218,7 +1218,7 @@
 				if(H.brainmob.real_name == src.real_name)
 					if(H.brainmob.mind)
 						H.brainmob.mind.transfer_to(src)
-						cdel(H)
+						qdel(H)
 
 	for(var/datum/internal_organ/I in internal_organs)
 		I.damage = 0

@@ -39,9 +39,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	else i = 3
 	icon_state = "candle[i][heat_source ? "_lit" : ""]"
 
-/obj/item/tool/candle/Dispose()
+/obj/item/tool/candle/Destroy()
 	if(heat_source)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 	if(ismob(src.loc))
 		src.loc.SetLuminosity(-CANDLE_LUM)
 	else
@@ -67,16 +67,16 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			O.show_message(flavor_text, 1)
 		SetLuminosity(CANDLE_LUM)
 		update_icon()
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 
 /obj/item/tool/candle/process()
 	if(!heat_source)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return
 	wax--
 	if(!wax)
 		new/obj/item/trash/candle(src.loc)
-		cdel(src)
+		qdel(src)
 		return
 	update_icon()
 
@@ -88,7 +88,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		update_icon()
 		SetLuminosity(0)
 		user.SetLuminosity(-CANDLE_LUM)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 
 
 /obj/item/tool/candle/pickup(mob/user)
@@ -127,9 +127,9 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 
 
-/obj/item/tool/match/Dispose()
+/obj/item/tool/match/Destroy()
 	if(heat_source)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/item/tool/match/dropped(mob/user)
@@ -146,7 +146,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		loc.SetLuminosity(2)
 	else
 		SetLuminosity(2)
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	update_icon()
 
 /obj/item/tool/match/proc/burn_out(mob/user)
@@ -160,7 +160,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	SetLuminosity(0)
 	name = "burnt match"
 	desc = "A match. This one has seen better days."
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 
 /obj/item/tool/lighter/dropped(mob/user)
 	if(heat_source && src.loc != user)
@@ -291,13 +291,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		var/datum/effect_system/reagents_explosion/e = new()
 		e.set_up(round(reagents.get_reagent_amount("phoron") / 2.5, 1), get_turf(src), 0, 0)
 		e.start()
-		cdel(src)
+		qdel(src)
 		return
 	if(reagents.get_reagent_amount("fuel")) // the fuel explodes, too, but much less violently
 		var/datum/effect_system/reagents_explosion/e = new()
 		e.set_up(round(reagents.get_reagent_amount("fuel") / 5, 1), get_turf(src), 0, 0)
 		e.start()
-		cdel(src)
+		qdel(src)
 		return
 	reagents.set_reacting(TRUE)
 	reagents.handle_reactions()
@@ -316,7 +316,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			var/mob/living/carbon/human/H = loc
 			if(H.wear_mask == src)
 				H.update_inv_wear_mask()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/cigarette/process()
 	var/mob/living/M = loc
@@ -383,8 +383,8 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		var/mob/living/M = loc
 		M.temp_drop_inv_item(src)	//un-equip it so the overlays can update
 		M.update_inv_wear_mask()
-	processing_objects.Remove(src)
-	cdel(src)
+	STOP_PROCESSING(SSobj, src)
+	qdel(src)
 
 ////////////
 // CIGARS //
@@ -438,7 +438,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 			icon_state = icon_off
 			item_state = icon_off
 			M.update_inv_wear_mask(0)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return
 
 /obj/item/clothing/mask/cigarette/pipe/attack_self(mob/user as mob) //Refills the pipe. Can be changed to an attackby later, if loose tobacco is added to vendors or something.
@@ -448,7 +448,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		lit = FALSE
 		icon_state = icon_off
 		item_state = icon_off
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return
 	if(smoketime <= 0)
 		to_chat(user, "<span class='notice'>You refill the pipe with tobacco.</span>")
@@ -499,7 +499,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		icon_off = "lighter-[clr]"
 		icon_state = icon_off
 
-/obj/item/tool/lighter/Dispose()
+/obj/item/tool/lighter/Destroy()
 	if(ismob(src.loc))
 		src.loc.SetLuminosity(-2)
 	else
@@ -526,7 +526,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 					user.visible_message("<span class='notice'>After a few attempts, [user] manages to light the [src], they however burn their finger in the process.</span>")
 
 			user.SetLuminosity(2)
-			processing_objects.Add(src)
+			START_PROCESSING(SSobj, src)
 		else
 			turn_off(user, 0)
 	else
@@ -545,7 +545,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 				bearer.visible_message("<span class='notice'>[bearer] quietly shuts off the [src].")
 
 		bearer.SetLuminosity(-2)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return 1
 	return 0
 
