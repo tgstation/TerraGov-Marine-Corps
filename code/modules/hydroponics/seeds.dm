@@ -17,14 +17,12 @@
 //Grabs the appropriate seed datum from the global list.
 /obj/item/seeds/proc/update_seed()
 	if(!seed && seed_type && !isnull(seed_types) && seed_types[seed_type])
-		to_chat(world, "Seed found!")
 		seed = seed_types[seed_type]
 	update_appearance()
 
 //Updates strings and icon appropriately based on seed datum.
 /obj/item/seeds/proc/update_appearance()
 	if(!seed) 
-		to_chat(world, "no seed?")
 		return
 	icon_state = seed.packet_icon
 	name = "packet of [seed.seed_name] [seed.seed_noun]"
