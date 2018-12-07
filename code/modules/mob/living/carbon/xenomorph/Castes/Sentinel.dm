@@ -169,7 +169,8 @@
 
 /mob/living/carbon/Xenomorph/Sentinel/proc/neurotoxin_sting(var/mob/living/H)
 
-	if(!check_state()) return
+	if(!check_state())
+		return
 
 	if(world.time < last_neurotoxin_sting + NEUROTOXIN_STING_COOLDOWN) //Sure, let's use this.
 		to_chat(src, "<span class='xenowarning'>You are not ready to use the sting again. It will be ready in [(last_neurotoxin_sting + NEUROTOXIN_STING_COOLDOWN - world.time) SECONDS] seconds.</span>")
@@ -184,7 +185,9 @@
 		return
 
 	if(!Adjacent(H))
-		to_chat(src, "<span class='xenowarning'>You're too far away to sting this target!</span>")
+		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
+			to_chat(src, "<span class='xenowarning'>You're too far away to sting this target!</span>")
+			recent_notice = world.time //anti-notice spam
 		return
 
 	if ((H.status_flags & XENO_HOST) && istype(H.buckled, /obj/structure/bed/nest))
@@ -222,8 +225,6 @@
 
 
 /mob/living/carbon/Xenomorph/Sentinel/proc/neurotoxin_recurring_injection(var/mob/living/H)
-	if(!Adjacent(H))
-		return FALSE
 	face_atom(H)
 	animation_attack_on(H)
 	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
