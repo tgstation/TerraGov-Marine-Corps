@@ -69,17 +69,17 @@
 /obj/item/trash/burger
 	name = "Burger wrapper"
 	icon_state = "burger"
-	desc = "A greasy plastic film that once held a Cheeseburger. Packaged by the Weyland-Yutani Corporation."
+	desc = "A greasy plastic film that once held a Cheeseburger. Packaged by the Nanotrasen Corporation."
 
 /obj/item/trash/buritto
 	name = "Burrito wrapper"
 	icon_state = "burrito"
-	desc = "A foul smelling plastic film that once held a microwave burrito. Packaged by the Weyland-Yutani Corporation."
+	desc = "A foul smelling plastic film that once held a microwave burrito. Packaged by the Nanotrasen Corporation."
 
 /obj/item/trash/hotdog
 	name = "Hotdog wrapper"
 	icon_state = "hotdog"
-	desc = "A musty plastic film that once held a hotdog. Packaged by the Weyland-Yutani Corporation."
+	desc = "A musty plastic film that once held a hotdog. Packaged by the Nanotrasen Corporation."
 
 /obj/item/trash/kepler
 	name = "Kepler wrapper"
@@ -121,7 +121,7 @@
 
 
 /obj/item/trash/USCMtray
-	name = "\improper USCM Tray"
+	name = "\improper TGMC Tray"
 	desc = "Finished with its tour of duty"
 	icon_state = "MREtray"
 
@@ -141,7 +141,7 @@
 	icon_state = "barcardine_trash"
 
 /obj/item/trash/uscm_mre
-	name = "\improper crumbled USCM MRE"
-	desc = "It has done its part for the USCM. Have you?"
+	name = "\improper crumbled TGMC MRE"
+	desc = "It has done its part for the TGMC. Have you?"
 	icon = 'icons/obj/items/trash.dmi'
 	icon_state = "mealpackempty"

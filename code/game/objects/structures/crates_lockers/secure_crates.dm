@@ -141,10 +141,10 @@
 /obj/structure/closet/crate/secure/gear
 	name = "gear crate"
 	desc = "A secure gear crate."
-	icon_state = "secure_locked_weyland"
-	icon_opened = "secure_open_weyland"
-	icon_locked = "secure_locked_weyland"
-	icon_unlocked = "secure_unlocked_weyland"
+	icon_state = "secure_locked_nanotrasen"
+	icon_opened = "secure_open_nanotrasen"
+	icon_locked = "secure_locked_nanotrasen"
+	icon_unlocked = "secure_unlocked_nanotrasen"
 
 /obj/structure/closet/crate/secure/hydrosec
 	name = "secure hydroponics crate"
@@ -170,10 +170,10 @@
 	icon_locked = "secure_locked_weapons"
 	icon_unlocked = "secure_unlocked_weapons"
 
-/obj/structure/closet/crate/secure/weyland
-	name = "secure Weyland-Armat crate"
-	desc = "A secure crate with a Weyland-Armat insignia on it."
-	icon_state = "secure_locked_weyland"
-	icon_opened = "secure_open_weyland"
-	icon_locked = "secure_locked_weyland"
-	icon_unlocked = "secure_unlocked_weyland"
+/obj/structure/closet/crate/secure/nanotrasen
+	name = "secure Nanotrasen crate"
+	desc = "A secure crate with a Nanotrasen insignia on it."
+	icon_state = "secure_locked_nanotrasen"
+	icon_opened = "secure_open_nanotrasen"
+	icon_locked = "secure_locked_nanotrasen"
+	icon_unlocked = "secure_unlocked_nanotrasen"

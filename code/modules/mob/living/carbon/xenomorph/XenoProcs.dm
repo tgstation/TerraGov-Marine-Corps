@@ -1,4 +1,4 @@
-//Xenomorph General Procs And Functions - Colonial Marines
+//Xenomorph General Procs And Functions
 //LAST EDIT: APOPHIS 22MAY16
 
 

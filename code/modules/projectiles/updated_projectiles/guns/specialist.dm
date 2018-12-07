@@ -57,7 +57,7 @@
 
 /obj/item/weapon/gun/rifle/sniper/elite
 	name = "\improper M42C anti-tank sniper rifle"
-	desc = "A high end mag-rail heavy sniper rifle from Weyland-Armat chambered in the heaviest ammo available, 10x99mm Caseless."
+	desc = "A high end mag-rail heavy sniper rifle from Nanotrasen chambered in the heaviest ammo available, 10x99mm Caseless."
 	icon_state = "m42c"
 	item_state = "m42c" //NEEDS A TWOHANDED STATE
 	origin_tech = "combat=7;materials=5"
@@ -148,7 +148,7 @@
 
 /obj/item/weapon/gun/rifle/m4ra
 	name = "\improper M4RA battle rifle"
-	desc = "The M4RA battle rifle is a designated marksman rifle in service with the USCM. Only fielded in small numbers, and sporting a bullpup configuration, the M4RA battle rifle is perfect for reconnaissance and fire support teams.\nIt is equipped with rail scope and takes 10x24mm A19 high velocity magazines."
+	desc = "The M4RA battle rifle is a designated marksman rifle in service with the TGMC. Only fielded in small numbers, and sporting a bullpup configuration, the M4RA battle rifle is perfect for reconnaissance and fire support teams.\nIt is equipped with rail scope and takes 10x24mm A19 high velocity magazines."
 	icon_state = "m41b"
 	item_state = "m4ra" //PLACEHOLDER
 	origin_tech = "combat=5;materials=4"
@@ -317,7 +317,7 @@
 
 /obj/item/weapon/gun/launcher/m92
 	name = "\improper M92 grenade launcher"
-	desc = "A heavy, 6-shot grenade launcher used by the Colonial Marines for area denial and big explosions."
+	desc = "A heavy, 6-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
 	icon_state = "m92"
 	item_state = "m92" //NEED TWO HANDED SPRITE
 	origin_tech = "combat=5;materials=5"
@@ -446,7 +446,7 @@
 
 /obj/item/weapon/gun/launcher/m81
 	name = "\improper M81 grenade launcher"
-	desc = "A lightweight, single-shot grenade launcher used by the Colonial Marines for area denial and big explosions."
+	desc = "A lightweight, single-shot grenade launcher used by the TerraGov Marine Corps for area denial and big explosions."
 	icon_state = "m81"
 	item_state = "m81"
 	origin_tech = "combat=5;materials=5"
@@ -565,7 +565,7 @@
 
 /obj/item/weapon/gun/launcher/m81/riot
 	name = "\improper M81 riot grenade launcher"
-	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by the Colonial Marines Military Police during riots."
+	desc = "A lightweight, single-shot grenade launcher to launch tear gas grenades. Used by the TerraGov Marine Corps Military Police during riots."
 	grenade_type_allowed = /obj/item/explosive/grenade/chem_grenade
 	riot_version = TRUE
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_POLICE|GUN_WIELDED_FIRING_ONLY
@@ -579,7 +579,7 @@
 
 /obj/item/weapon/gun/launcher/rocket
 	name = "\improper M5 RPG"
-	desc = "The M5 RPG is the primary anti-armor weapon of the USCM. Used to take out light-tanks and enemy structures, the M5 RPG is a dangerous weapon with a variety of combat uses."
+	desc = "The M5 RPG is the primary anti-armor weapon of the TGMC. Used to take out light-tanks and enemy structures, the M5 RPG is a dangerous weapon with a variety of combat uses."
 	icon_state = "m5"
 	item_state = "m5"
 	origin_tech = "combat=6;materials=5"

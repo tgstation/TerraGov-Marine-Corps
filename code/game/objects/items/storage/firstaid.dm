@@ -395,6 +395,6 @@
 	max_storage_space = 5
 	pill_type_to_fill = /obj/item/reagent_container/pill/ultrazine
 
-	req_access = list(ACCESS_WY_CORPORATE)
+	req_access = list(ACCESS_NT_CORPORATE)
 	req_id_role = "Corporate Liaison"
 	scan_name = TRUE
