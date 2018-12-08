@@ -136,7 +136,7 @@ var/list/diseases = subtypesof(/datum/disease)
 	return
 
 
-/datum/disease/proc/process()
+/datum/disease/process()
 	if(!holder)
 		active_diseases -= src
 		return

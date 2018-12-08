@@ -74,7 +74,7 @@
 	return icon('icons/mob/human.dmi',"blank")
 */
 
-/datum/limb/proc/process()
+/datum/limb/process()
 		return 0
 
 //Germs
