@@ -1248,6 +1248,7 @@
 /mob/living/carbon/human/proc/handle_embedded_objects()
 
 	for(var/datum/limb/organ in limbs)
+		if(organ.status & LIMB_SPLINTED || (m_intent == MOVE_INTENT_WALK && !pulledby) ) //Splints prevent movement. Walking stops shrapnel from harming organs unless being pulled.
 		if(organ.status & LIMB_SPLINTED || organ.status & LIMB_STABILIZED) //Splints prevent movement.
 			continue
 		for(var/obj/item/O in organ.implants)
@@ -1586,3 +1587,8 @@
 	if(istype(glasses, /obj/item/clothing/glasses))
 		C = glasses
 		. += C.tint
+
+
+/mob/living/carbon/human/a_select_zone(input as text, screen_num as null|num)
+	screen_num = 21
+	return ..()

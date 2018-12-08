@@ -38,7 +38,7 @@
 
 /obj/item/XenoItem/
 	name = "Strange Item"
-	desc = "Some sort of fucked up item from the Weyland Yutani brand 3D Biometric Printer...  Probably should make a bug report if you got this..."
+	desc = "Some sort of fucked up item from the Nanotrasen brand 3D Biometric Printer...  Probably should make a bug report if you got this..."
 	icon_state = "chitin-chunk"
 	icon = 'icons/Marine/Research/Marine_Research.dmi'
 

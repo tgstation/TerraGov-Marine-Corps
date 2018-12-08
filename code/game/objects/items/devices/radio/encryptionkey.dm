@@ -130,8 +130,8 @@
 	channels = list("Colonist" = TRUE)
 
 /obj/item/device/encryptionkey/PMC
-	name = "\improper Weyland Yutani encryption key"
-	channels = list("WY PMC" = TRUE)
+	name = "\improper Nanotrasen encryption key"
+	channels = list("NT PMC" = TRUE)
 
 /obj/item/device/encryptionkey/bears
 	name = "\improper UPP encryption key"
@@ -139,5 +139,5 @@
 	channels = list("UPP" = TRUE)
 
 /obj/item/device/encryptionkey/commando
-	name = "\improper WY commando encryption key"
+	name = "\improper NT commando encryption key"
 	channels = list("SpecOps" = TRUE)

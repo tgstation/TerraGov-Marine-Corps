@@ -4,7 +4,7 @@
 	name = "Medical Records"
 	desc = "This can be used to check medical records."
 	icon_state = "medcomp"
-	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_WY_CORPORATE)
+	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_NT_CORPORATE)
 	circuit = "/obj/item/circuitboard/computer/med_data"
 	var/obj/item/card/id/scan = null
 	var/authenticated = null
@@ -514,6 +514,6 @@
 
 /obj/machinery/computer/med_data/laptop
 	name = "Medical Laptop"
-	desc = "Cheap Weyland Yutani Laptop."
+	desc = "Cheap Nanotrasen Laptop."
 	icon_state = "medlaptop"
 	density = 0
