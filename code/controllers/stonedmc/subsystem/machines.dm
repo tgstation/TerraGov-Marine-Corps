@@ -24,7 +24,7 @@ SUBSYSTEM_DEF(machines)
 			propagate_network(PC,PC.powernet)*/
 
 /datum/controller/subsystem/machines/stat_entry()
-	..("M:[processing.len]|PN:[powernets.len]")
+	..("M:[processing.len]|PN:[powernets.len]|PM:[processing_machines.len]")
 
 
 /datum/controller/subsystem/machines/fire(resumed = 0)
