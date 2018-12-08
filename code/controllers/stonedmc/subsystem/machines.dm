@@ -2,40 +2,42 @@ SUBSYSTEM_DEF(machines)
 	name = "Machines"
 	init_order = INIT_ORDER_MACHINES
 	flags = SS_KEEP_TIMING
-	var/list/processing = list()
-	var/list/currentrun = list()
-	var/list/powernets = list()
+	var/list/currentrunmachines
+	var/list/currentrunpowernets
+	var/list/currentrunareas
 
 /datum/controller/subsystem/machines/Initialize()
 	makepowernets()
 	fire()
 	return ..()
 
-// CM codebase has a global proc for this.
-/*/datum/controller/subsystem/machines/proc/makepowernets()
-	for(var/datum/powernet/PN in powernets)
-		qdel(PN)
-	powernets.Cut()
-
-	for(var/obj/structure/cable/PC in GLOB.cable_list)
-		if(!PC.powernet)
-			var/datum/powernet/NewPN = new()
-			NewPN.add_cable(PC)
-			propagate_network(PC,PC.powernet)*/
-
 /datum/controller/subsystem/machines/stat_entry()
-	..("M:[processing.len]|PN:[powernets.len]|PM:[processing_machines.len]")
+	..("AA:[active_areas.len]|PN:[powernets.len]|PM:[processing_machines.len]")
 
 
 /datum/controller/subsystem/machines/fire(resumed = 0)
-	for(var/obj/machinery/M in processing_machines)
-		if(istype(M) && M.process())// != PROCESS_KILL) //Doesn't actually have a process, just remove it.
+	if (!resumed)
+		currentrunmachines = processing_machines.Copy()
+		currentrunpowernets = powernets.Copy()
+		currentrunareas = active_areas.Copy()
+
+	while (currentrunmachines.len)
+		var/obj/machinery/M = currentrunmachines[currentrunmachines.len]
+		currentrunmachines.len--
+
+		if (!M || M.gc_destroyed) // should never happen
+			processing_machines -= M
 			continue
 
-	// O(n^3) complexity. No wonder this is slower than shit. TODO: Get rid of one of these loops somehow. ~Bmc777
-	var/i=1
-	while(i<=active_areas.len)
-		var/area/A = active_areas[i]
+		M.process()
+
+		if (MC_TICK_CHECK)
+			return
+
+	while (currentrunareas.len)
+		var/area/A = currentrunareas[currentrunareas.len]
+		currentrunareas.len--
+
 		if(A.master == A)
 			if(A.powerupdate)
 				A.powerupdate -= 1
@@ -50,17 +52,19 @@ SUBSYSTEM_DEF(machines)
 							M.auto_use_power()
 
 			if(A.apc.len)
-				i++
+				if (MC_TICK_CHECK)
+					return
 				continue
 
 		A.powerupdate = 0
-		active_areas.Cut(i,i+1)
 
-	i = 1
-	while(i<=powernets.len)
-		var/datum/powernet/Powernet = powernets[i]
+		if (MC_TICK_CHECK)
+			return
+
+	while(currentrunpowernets.len)
+		var/datum/powernet/Powernet = currentrunpowernets[currentrunpowernets.len]
+		currentrunpowernets.len--
 		if(Powernet)
 			Powernet.process()
-			i++
-			continue
-		powernets.Cut(i,i+1)
+		if (MC_TICK_CHECK)
+			return
