@@ -1,4 +1,4 @@
-#define ROUND_START_MUSIC_LIST "strings/round_start_sounds.txt"
+var/global/datum/global_init/init
 
 SUBSYSTEM_DEF(ticker)
 	name = "Ticker"
@@ -9,6 +9,7 @@ SUBSYSTEM_DEF(ticker)
 	runlevels = RUNLEVEL_LOBBY | RUNLEVEL_SETUP | RUNLEVEL_GAME
 
 /datum/controller/subsystem/ticker/Initialize(timeofday)
+	init = new ()
 	if(!ticker)
 		ticker = new /datum/controller/gameticker()
 

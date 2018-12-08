@@ -89,7 +89,7 @@
 
 	var/debugparanoid = 0
 
-	var/tick_limit_mc_init = 0
+	var/tick_limit_mc_init = 98
 	var/ticklag = 0.9
 	var/fps = 20
 	var/resume_after_initializations = 0
