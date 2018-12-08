@@ -68,36 +68,28 @@
 	else
 		user.visible_message("[user.name]'s powerpack servos begin automatically feeding an ammo belt into the M56 Smartgun.","The powerpack servos begin automatically feeding a fresh ammo belt into the M56 Smartgun.")
 	var/reload_duration = 50
+	var/obj/screen/ammo/A = user.hud_used.ammo
 	if(!automatic)
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.smartgun>0)
 			reload_duration = max(reload_duration - 10*user.mind.cm_skills.smartgun,30)
 		if(do_after(user,reload_duration, TRUE, 5, BUSY_ICON_FRIENDLY))
 			reload(user, mygun)
+			A.update_hud(user)
 		else
-			user.visible_message("[user.name]'s powerpack servos begin automatically feeding an ammo belt into the M56 Smartgun.","The powerpack servos begin automatically feeding a fresh ammo belt into the M56 Smartgun.")
-		if(!automatic)
-			if(user.mind && user.mind.cm_skills && user.mind.cm_skills.smartgun>0)
-				reload_duration = max(reload_duration - 10*user.mind.cm_skills.smartgun,30)
-			if(do_after(user,reload_duration, TRUE, 5, BUSY_ICON_FRIENDLY))
-				reload(user, mygun)
-				var/obj/screen/ammo/A = user.hud_used.ammo
-				A.update_hud(user)
-			else
-				to_chat(user, "Your reloading was interrupted!")
-				playsound(src,'sound/machines/buzz-two.ogg', 25, 1)
-				reloading = FALSE
-				return
+			to_chat(user, "Your reloading was interrupted!")
+			playsound(src,'sound/machines/buzz-two.ogg', 25, 1)
+			reloading = FALSE
+			return
+	else
+		if(autoload_check(user, reload_duration, mygun, src))
+			reload(user, mygun, TRUE)
+			A.update_hud(user)
 		else
-			if(autoload_check(user, reload_duration, mygun, src))
-				reload(user, mygun, TRUE)
-				var/obj/screen/ammo/A = user.hud_used.ammo
-				A.update_hud(user)
-			else
-				to_chat(user, "The automated reload process was interrupted!")
-				playsound(src,'sound/machines/buzz-two.ogg', 25, 1)
-				reloading = FALSE
-				return
-		return 1
+			to_chat(user, "The automated reload process was interrupted!")
+			playsound(src,'sound/machines/buzz-two.ogg', 25, 1)
+			reloading = FALSE
+			return
+	return TRUE
 
 /obj/item/smartgun_powerpack/attack_hand()
 	if(usr.get_inactive_hand() == src && pcell)
