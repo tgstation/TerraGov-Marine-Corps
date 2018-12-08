@@ -135,12 +135,9 @@
 	remove_overlay(X_WOUND_LAYER)
 	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
 		var/image/I
-		var/is_dead = FALSE
-		if(stat == DEAD)
-			is_dead = TRUE
 		if(resting)
 			I = image("icon"='icons/Xeno/1x1_wound_overlays.dmi', "icon_state"="alien_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || is_dead)
+		else if(sleeping || stat == DEAD)
 			I = image("icon"='icons/Xeno/1x1_wound_overlays.dmi', "icon_state"="alien_wounded_sleeping", "layer"=-X_WOUND_LAYER)
 		else
 			I = image("icon"='icons/Xeno/1x1_wound_overlays.dmi', "icon_state"="alien_wounded", "layer"=-X_WOUND_LAYER)
@@ -153,12 +150,9 @@
 	remove_overlay(X_WOUND_LAYER)
 	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
 		var/image/I
-		var/is_dead = FALSE
-		if(stat == DEAD)
-			is_dead = TRUE
 		if(resting)
 			I = image("icon"='icons/Xeno/1x1_wound_overlays.dmi', "icon_state"="alien_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || is_dead)
+		else if(sleeping || stat == DEAD)
 			I = image("icon"='icons/Xeno/1x1_wound_overlays.dmi', "icon_state"="alien_wounded_sleeping", "layer"=-X_WOUND_LAYER)
 		else
 			I = image("icon"='icons/Xeno/1x1_wound_overlays.dmi', "icon_state"="alien_wounded", "layer"=-X_WOUND_LAYER)
@@ -171,12 +165,9 @@
 	remove_overlay(X_WOUND_LAYER)
 	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
 		var/image/I
-		var/is_dead = FALSE
-		if(stat == DEAD)
-			is_dead = TRUE
 		if(resting)
 			I = image("icon"='icons/Xeno/1x1_wound_overlays.dmi', "icon_state"="alien_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || is_dead)
+		else if(sleeping || stat == DEAD)
 			I = image("icon"='icons/Xeno/1x1_wound_overlays.dmi', "icon_state"="alien_wounded_sleeping", "layer"=-X_WOUND_LAYER)
 		else
 			I = image("icon"='icons/Xeno/1x1_wound_overlays.dmi', "icon_state"="alien_wounded", "layer"=-X_WOUND_LAYER)
@@ -189,12 +180,9 @@
 	remove_overlay(X_WOUND_LAYER)
 	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
 		var/image/I
-		var/is_dead = FALSE
-		if(stat == DEAD)
-			is_dead = TRUE
 		if(resting)
 			I = image("icon"='icons/Xeno/1x1_wound_overlays.dmi', "icon_state"="alien_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || is_dead)
+		else if(sleeping || stat == DEAD)
 			I = image("icon"='icons/Xeno/1x1_wound_overlays.dmi', "icon_state"="alien_wounded_sleeping", "layer"=-X_WOUND_LAYER)
 		else
 			I = image("icon"='icons/Xeno/1x1_wound_overlays.dmi', "icon_state"="alien_wounded", "layer"=-X_WOUND_LAYER)
@@ -207,12 +195,9 @@
 	remove_overlay(X_WOUND_LAYER)
 	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
 		var/image/I
-		var/is_dead = FALSE
-		if(stat == DEAD)
-			is_dead = TRUE
 		if(resting)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="runner_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || is_dead)
+		else if(sleeping || stat == DEAD)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="runner_wounded_sleeping", "layer"=-X_WOUND_LAYER)
 		else
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="runner_wounded", "layer"=-X_WOUND_LAYER)
@@ -225,12 +210,9 @@
 	remove_overlay(X_WOUND_LAYER)
 	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
 		var/image/I
-		var/is_dead = FALSE
-		if(stat == DEAD)
-			is_dead = TRUE
 		if(resting)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="defender_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || is_dead)
+		else if(sleeping || stat == DEAD)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="defender_wounded_sleeping", "layer"=-X_WOUND_LAYER)
 		else
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="defender_wounded", "layer"=-X_WOUND_LAYER)
@@ -243,12 +225,9 @@
 	remove_overlay(X_WOUND_LAYER)
 	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
 		var/image/I
-		var/is_dead = FALSE
-		if(stat == DEAD)
-			is_dead = TRUE
 		if(resting)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="crusher_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || is_dead)
+		else if(sleeping || stat == DEAD)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="crusher_wounded_sleeping", "layer"=-X_WOUND_LAYER)
 		else
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="crusher_wounded", "layer"=-X_WOUND_LAYER)
@@ -261,12 +240,9 @@
 	remove_overlay(X_WOUND_LAYER)
 	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
 		var/image/I
-		var/is_dead = FALSE
-		if(stat == DEAD)
-			is_dead = TRUE
 		if(resting)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="warrior_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || is_dead)
+		else if(sleeping || stat == DEAD)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="warrior_wounded_sleeping", "layer"=-X_WOUND_LAYER)
 		else if(agility)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="warrior_wounded_agility", "layer"=-X_WOUND_LAYER)
@@ -281,12 +257,9 @@
 	remove_overlay(X_WOUND_LAYER)
 	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
 		var/image/I
-		var/is_dead = FALSE
-		if(stat == DEAD)
-			is_dead = TRUE
 		if(resting)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="predalien_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || is_dead)
+		else if(sleeping || stat == DEAD)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="predalien_wounded_sleeping", "layer"=-X_WOUND_LAYER)
 		else
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="predalien_wounded", "layer"=-X_WOUND_LAYER)
@@ -299,12 +272,9 @@
 	remove_overlay(X_WOUND_LAYER)
 	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
 		var/image/I
-		var/is_dead = FALSE
-		if(stat == DEAD)
-			is_dead = TRUE
 		if(resting)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="ravager_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || is_dead)
+		else if(sleeping || stat == DEAD)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="ravager_wounded_sleeping", "layer"=-X_WOUND_LAYER)
 		else
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="ravager_wounded", "layer"=-X_WOUND_LAYER)
@@ -317,12 +287,9 @@
 	remove_overlay(X_WOUND_LAYER)
 	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
 		var/image/I
-		var/is_dead = FALSE
-		if(stat == DEAD)
-			is_dead = TRUE
 		if(resting)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="ravager_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || is_dead)
+		else if(sleeping || stat == DEAD)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="ravager_wounded_sleeping", "layer"=-X_WOUND_LAYER)
 		else
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="ravager_wounded", "layer"=-X_WOUND_LAYER)
@@ -335,12 +302,9 @@
 	remove_overlay(X_WOUND_LAYER)
 	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
 		var/image/I
-		var/is_dead = FALSE
-		if(stat == DEAD)
-			is_dead = TRUE
 		if(resting)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="ravager_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || is_dead)
+		else if(sleeping || stat == DEAD)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="ravager_wounded_sleeping", "layer"=-X_WOUND_LAYER)
 		else
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="ravager_wounded", "layer"=-X_WOUND_LAYER)
@@ -353,12 +317,9 @@
 	remove_overlay(X_WOUND_LAYER)
 	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
 		var/image/I
-		var/is_dead = FALSE
-		if(stat == DEAD)
-			is_dead = TRUE
 		if(resting)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="ravager_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || is_dead)
+		else if(sleeping || stat == DEAD)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="ravager_wounded_sleeping", "layer"=-X_WOUND_LAYER)
 		else
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="ravager_wounded", "layer"=-X_WOUND_LAYER)
@@ -371,12 +332,9 @@
 	remove_overlay(X_WOUND_LAYER)
 	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
 		var/image/I
-		var/is_dead = FALSE
-		if(stat == DEAD)
-			is_dead = TRUE
 		if(resting)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="ravager_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || is_dead)
+		else if(sleeping || stat == DEAD)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="ravager_wounded_sleeping", "layer"=-X_WOUND_LAYER)
 		else
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="ravager_wounded", "layer"=-X_WOUND_LAYER)
@@ -389,12 +347,9 @@
 	remove_overlay(X_WOUND_LAYER)
 	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
 		var/image/I
-		var/is_dead = FALSE
-		if(stat == DEAD)
-			is_dead = TRUE
 		if(resting)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="ravager_wounded_resting", "layer"=-X_WOUND_LAYER)
-		else if(sleeping || is_dead)
+		else if(sleeping || stat == DEAD)
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="ravager_wounded_sleeping", "layer"=-X_WOUND_LAYER)
 		else
 			I = image("icon"='icons/Xeno/2x2_wound_overlays.dmi', "icon_state"="ravager_wounded", "layer"=-X_WOUND_LAYER)
