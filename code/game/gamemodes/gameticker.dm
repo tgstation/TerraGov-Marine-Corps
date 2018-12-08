@@ -246,6 +246,7 @@ var/global/datum/controller/gameticker/ticker
 
 			spawn(50)
 				callHook("roundend")
+				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 				if (EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED)
 					feedback_set_details("end_proper","nuke")
