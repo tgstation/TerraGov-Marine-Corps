@@ -43,6 +43,7 @@
 	item_state = "m41a"
 	fire_sound = "gun_pulse"
 	current_mag = /obj/item/ammo_magazine/rifle
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	attachable_allowed = list(
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/suppressor,
@@ -68,11 +69,10 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
 
-/obj/item/weapon/gun/rifle/m41a/New()
+/obj/item/weapon/gun/rifle/m41a/Initialize()
 	select_gamemode_skin(/obj/item/weapon/gun/rifle/m41a)
-	..()
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
-
+	. = ..()
+	
 /obj/item/weapon/gun/rifle/m41a/set_gun_config_values()
 	fire_delay = config.med_fire_delay
 	burst_amount = config.med_burst_value
@@ -124,6 +124,7 @@
 	item_state = "m41amk1" //Placeholder.
 	fire_sound = "gun_pulse"
 	current_mag = /obj/item/ammo_magazine/rifle/m41aMK1
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
 						/obj/item/attachable/reddot,
@@ -132,10 +133,6 @@
 						/obj/item/attachable/attached_gun/shotgun)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-
-/obj/item/weapon/gun/rifle/m41aMK1/New()
-	..()
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
 /obj/item/weapon/gun/rifle/m41aMK1/set_gun_config_values()
 	fire_delay = config.mhigh_fire_delay
@@ -162,6 +159,7 @@
 	origin_tech = "combat=4;materials=2;syndicate=4"
 	fire_sound = 'sound/weapons/gun_mar40.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/mar40
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -181,10 +179,6 @@
 						/obj/item/attachable/scope/slavic)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
-
-/obj/item/weapon/gun/rifle/mar40/New()
-	..()
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
 /obj/item/weapon/gun/rifle/mar40/set_gun_config_values()
 	fire_delay = config.mhigh_fire_delay
@@ -228,6 +222,7 @@
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/gun_mar40.ogg'
 	current_mag = /obj/item/ammo_magazine/rifle/m16
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 22, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 13)
 	type_of_casings = "cartridge"
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
@@ -247,11 +242,6 @@
 						)
 
 	flags_gun_features = GUN_CAN_POINTBLANK
-
-/obj/item/weapon/gun/rifle/m16/New()
-	..()
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 22, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 13)
-
 
 /obj/item/weapon/gun/rifle/m16/set_gun_config_values()
 	fire_delay = config.mhigh_fire_delay
@@ -276,6 +266,7 @@
 	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/gun_rifle.ogg' //Change
 	current_mag = /obj/item/ammo_magazine/rifle/lmg
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 12)
 	attachable_allowed = list(
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/reddot,
@@ -293,10 +284,6 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
-
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 12)
 
 /obj/item/weapon/gun/rifle/lmg/set_gun_config_values()
 	fire_delay = config.high_fire_delay
@@ -349,13 +336,14 @@
 /obj/item/weapon/gun/rifle/type71/flamer
 	name = "\improper Type 71 pulse rifle"
 	desc = " This appears to be a less common variant of the usual Type 71, with an undermounted flamethrower and improved iron sights."
-	New()
-		..()
-		var/obj/item/attachable/attached_gun/flamer/S = new(src)
-		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
-		S.flags_attach_features &= ~ATTACH_REMOVABLE
-		S.Attach(src)
-		update_attachable(S.slot)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+
+/obj/item/weapon/gun/rifle/type71/flamer/Initialize()
+	. = ..()
+	var/obj/item/attachable/attached_gun/flamer/S = new(src)
+	S.flags_attach_features &= ~ATTACH_REMOVABLE
+	S.Attach(src)
+	update_attachable(S.slot)
 
 
 
@@ -372,10 +360,10 @@
 	icon_state = "type73"
 	item_state = "type73"
 	wield_delay = 0 //Ends up being .5 seconds due to scope
-
-/obj/item/weapon/gun/rifle/type71/carbine/commando/New()//Making the gun have an invisible silencer since it's supposed to have one.
-	..()
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
+
+/obj/item/weapon/gun/rifle/type71/carbine/commando/Initialize()//Making the gun have an invisible silencer since it's supposed to have one.
+	. = ..()
 	//supressor
 	var/obj/item/attachable/suppressor/S = new(src)
 	S.attach_icon = ""
