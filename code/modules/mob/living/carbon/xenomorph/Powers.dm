@@ -1921,7 +1921,7 @@
 		return
 
 	for(var/obj/effect/xenomorph/spray/S in target) //No stacking spray!
-		cdel(S)
+		qdel(S)
 	new /obj/effect/xenomorph/spray(target)
 	for(var/mob/living/carbon/M in target)
 		if( isXeno(M) ) //Xenos immune to acid

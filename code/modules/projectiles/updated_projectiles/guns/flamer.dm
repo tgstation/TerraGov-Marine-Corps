@@ -445,7 +445,7 @@
 				continue
 			var/obj/flamer_fire/F
 			if(locate(F) in T)
-				cdel(F) //No stacking
+				qdel(F) //No stacking
 			var/new_spread_amt = T.density ? 0 : fire_spread_amount - 1 //walls stop the spread
 			if(new_spread_amt)
 				for(var/obj/O in T)

@@ -130,7 +130,7 @@
 			S.initialize()
 			break*/  //THIS TOO!
 
-/obj/machinery/computer/WYresearch/Initialize()
+/obj/machinery/computer/NTresearch/Initialize()
 	. = ..()
 	SyncRDevices()
 
