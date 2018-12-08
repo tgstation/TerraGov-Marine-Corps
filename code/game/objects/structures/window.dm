@@ -252,8 +252,8 @@
 			update_nearby_icons()
 			step(src, get_dir(user, src))
 		healthcheck(1, 1, 1, user, W)
+		. = ..() // Do the attack animation.
 	dismantle = FALSE
-	return ..()
 
 
 /obj/structure/window/proc/disassemble_window()

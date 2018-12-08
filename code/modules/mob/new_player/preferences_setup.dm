@@ -519,7 +519,6 @@ datum/preferences
 					else if(backbag == 3 || backbag == 4)
 						clothes_s.Blend(new /icon('icons/mob/back.dmi', "satchel"), ICON_OVERLAY)
 
-				// Colonial Marines
 				if(MPOLICE)
 					clothes_s = new /icon('icons/mob/uniform_0.dmi', "sec_corporate")
 					clothes_s.Blend(new /icon('icons/mob/feet.dmi', "jackboots"), ICON_UNDERLAY)

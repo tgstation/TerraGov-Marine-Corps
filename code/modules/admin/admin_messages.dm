@@ -71,16 +71,16 @@
 	src << browse(body, "window=clfaxviewer;size=300x600")
 
 //While I'm at it
-/datum/admins/proc/viewUSCMFaxes()
-	set name = "View USCM Faxes"
-	set desc = "View all faxes to USCM this round"
+/datum/admins/proc/viewTGMCFaxes()
+	set name = "View TGMC Faxes"
+	set desc = "View all faxes to TGMC this round"
 	set category = "Admin"
 
 	var/body = "<html><head><title>Faxes</title></head>"
 	body += "<body><B>Faxes:</B>"
 	body += "<br><br>"
 
-	for(var/text in USCMFaxes)
+	for(var/text in TGMCFaxes)
 		body += text
 		body += "<br><br>"
 

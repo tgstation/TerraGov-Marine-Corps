@@ -2126,7 +2126,8 @@ MEDICAL
 /datum/supply_packs/surgery
 	name = "surgery crate (x1 surgical tray)"
 	contains = list(
-					/obj/item/storage/surgical_tray
+					/obj/item/storage/surgical_tray,
+					/obj/item/clothing/tie/storage/white_vest
 					)
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate/secure/surgery
@@ -2379,7 +2380,7 @@ SUPPLIES
 
 
 /datum/supply_packs/mre
-	name = "USCM MRE crate (x40)"
+	name = "TGMC MRE crate (x40)"
 	contains = list(
 					/obj/item/storage/box/MRE,
 					/obj/item/storage/box/MRE,
