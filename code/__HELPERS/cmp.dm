@@ -41,15 +41,6 @@ var/cmp_field = "name"
 /proc/cmp_timer(datum/timedevent/a, datum/timedevent/b)
 	return a.timeToRun - b.timeToRun
 
-/proc/cmp_clientcolour_priority(datum/client_colour/A, datum/client_colour/B)
-	return B.priority - A.priority
-
-/proc/cmp_clockscripture_priority(datum/clockwork_scripture/A, datum/clockwork_scripture/B)
-	return initial(A.sort_priority) - initial(B.sort_priority)
-
-/proc/cmp_ruincost_priority(datum/map_template/ruin/A, datum/map_template/ruin/B)
-	return initial(A.cost) - initial(B.cost)
-
 /proc/cmp_qdel_item_time(datum/qdel_item/A, datum/qdel_item/B)
 	. = B.hard_delete_time - A.hard_delete_time
 	if (!.)
@@ -63,13 +54,3 @@ var/cmp_field = "name"
 	. = B[STAT_ENTRY_TIME] - A[STAT_ENTRY_TIME]
 	if (!.)
 		. = B[STAT_ENTRY_COUNT] - A[STAT_ENTRY_COUNT]
-
-/proc/cmp_profile_avg_time_dsc(list/A, list/B)
-	return (B[PROFILE_ITEM_TIME]/(B[PROFILE_ITEM_COUNT] || 1)) - (A[PROFILE_ITEM_TIME]/(A[PROFILE_ITEM_COUNT] || 1))
-
-/proc/cmp_profile_time_dsc(list/A, list/B)
-	return B[PROFILE_ITEM_TIME] - A[PROFILE_ITEM_TIME]
-
-/proc/cmp_profile_count_dsc(list/A, list/B)
-	return B[PROFILE_ITEM_COUNT] - A[PROFILE_ITEM_COUNT]
-	
