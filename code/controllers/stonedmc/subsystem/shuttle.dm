@@ -9,5 +9,8 @@ SUBSYSTEM_DEF(shuttle)
 	if(!shuttle_controller)
 		shuttle_controller = new /datum/shuttle_controller()
 
+	for(var/obj/effect/landmark/shuttle_loc/L in landmarks_list)
+		L.link_location() // hacky fix for the out of order init.
+
 /datum/controller/subsystem/shuttle/fire()
 	shuttle_controller.process()

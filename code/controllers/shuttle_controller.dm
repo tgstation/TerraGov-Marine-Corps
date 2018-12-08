@@ -339,9 +339,6 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttles["Elevator 4"] = shuttle
 	process_shuttles += shuttle
 
-	for(var/obj/effect/landmark/shuttle_loc/L in landmarks_list)
-		L.link_location() // hacky fix for the out of order init.
-
 //This is called by gameticker after all the machines and radio frequencies have been properly initialized
 /datum/shuttle_controller/proc/setup_shuttle_docks()
 	var/datum/shuttle/shuttle
