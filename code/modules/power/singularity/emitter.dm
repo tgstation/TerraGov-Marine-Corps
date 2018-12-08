@@ -131,7 +131,7 @@
 		//need to calculate the power per shot as the emitter doesn't fire continuously.
 		var/burst_time = (min_burst_delay + max_burst_delay)/2 + 2*(burst_shots-1)
 		var/power_per_shot = active_power_usage * (burst_time/10) / burst_shots
-		var/obj/item/projectile/A = rnew(/obj/item/projectile, loc)
+		var/obj/item/projectile/A = new /obj/item/projectile(loc)
 		A.generate_bullet(ammo, round(power_per_shot/EMITTER_DAMAGE_POWER_TRANSFER))
 
 		playsound(src.loc, 'sound/weapons/emitter.ogg', 25, 1)

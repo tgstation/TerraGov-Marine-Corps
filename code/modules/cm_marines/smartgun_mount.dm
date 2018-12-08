@@ -404,7 +404,7 @@
 		update_icon() //make sure the user can see the lack of ammo.
 		return 0 //Out of ammo.
 
-	in_chamber = rnew(/obj/item/projectile, loc) //New bullet!
+	in_chamber = new /obj/item/projectile(loc) //New bullet!
 	in_chamber.generate_bullet(ammo)
 	return 1
 

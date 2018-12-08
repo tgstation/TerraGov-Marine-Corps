@@ -261,7 +261,7 @@
 		visible_message("<span class='xenowarning'>\The [src] launches a huge glob of acid hurling into the distance!</span>", \
 		"<span class='xenowarning'>You launch a huge glob of acid hurling into the distance!</span>", null, 5)
 
-		var/obj/item/projectile/P = rnew(/obj/item/projectile, loc)
+		var/obj/item/projectile/P = new /obj/item/projectile(loc)
 		P.generate_bullet(ammo)
 		P.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
 		playsound(src, 'sound/effects/blobattack.ogg', 25, 1)
