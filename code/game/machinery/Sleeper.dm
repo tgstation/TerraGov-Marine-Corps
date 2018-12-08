@@ -263,8 +263,7 @@
 		return
 
 	//Life support
-	if(occupant)
-		occupant.adjustOxyLoss(-occupant.getOxyLoss()) // keep them breathing, pretend they get IV dexalinplus
+	occupant?.adjustOxyLoss(-occupant.getOxyLoss()) // keep them breathing, pretend they get IV dexalinplus
 
 	if(filtering)
 		if(beaker)
