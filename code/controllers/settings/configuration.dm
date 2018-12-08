@@ -89,6 +89,16 @@
 
 	var/debugparanoid = 0
 
+	var/tick_limit_mc_init = 0
+	var/ticklag = 0.9
+	var/fps = 20
+	var/resume_after_initializations = 0
+
+	var/base_mc_tick_rate = 1
+	var/high_pop_mc_tick_rate = 1.1
+	var/high_pop_mc_mode_amount = 65
+	var/disable_high_pop_mc_mode_amount = 60
+
 	var/server
 	var/banappeals
 	var/wikiurl
@@ -551,6 +561,30 @@
 
 		if("whiskeyoutpost_url")
 			config.whiskeyoutpost_url = value
+
+		if("tick_limit_mc_init")
+			config.tick_limit_mc_init = value
+
+		if("fps")
+			config.fps = value
+
+		if("ticklag")
+			config.ticklag = value
+
+		if("resume_after_initializations")
+			config.resume_after_initializations = 1
+
+		if("base_mc_tick_rate")
+			config.base_mc_tick_rate = value
+
+		if("high_pop_mc_tick_rate")
+			config.high_pop_mc_tick_rate = value
+
+		if("high_pop_mc_mode_amount")
+			config.high_pop_mc_mode_amount = value
+
+		if("disable_high_pop_mc_mode_amount")
+			config.disable_high_pop_mc_mode_amount = value
 
 		else
 			log_misc("Unknown setting in configuration: '[name]'")

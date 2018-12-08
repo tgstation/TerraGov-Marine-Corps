@@ -54,22 +54,7 @@ var/global/datum/global_init/init = new ()
 
 	world.tick_lag = config.Ticklag
 
-	// Process Scheduler
-	to_chat(src, "\red \b Scheduler initialized.")
-	processScheduler = new
-
-	spawn(0)
-		processScheduler.setup()
-
-	to_chat(src, "\red \b Scheduler setup complete.")
-
-	spawn(0)
-		processScheduler.start()
-
-//	master_controller = new /datum/controller/game_controller()
-
-	//spawn(1)
-		//master_controller.setup()
+	Master.Initialize(10, FALSE, TRUE)
 
 	spawn(3000)		//so we aren't adding to the round-start lag
 		if(config.ToRban)

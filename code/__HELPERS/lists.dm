@@ -504,3 +504,9 @@ datum/proc/dd_SortValue()
 			L1[key] += other_value
 		else
 			L1[key] = other_value
+
+/*
+ * Misc
+ */
+
+#define LAZYINITLIST(L) if (!L) L = list()

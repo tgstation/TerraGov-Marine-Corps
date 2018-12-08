@@ -54,7 +54,7 @@ proc/explosion_rec(turf/epicenter, power)
 			T = locate(x,y,z)
 		for(var/atom/A in T)
 			A.ex_act(severity)
-		LAGCHECK(TICK_LIMIT_MC)
+		CHECK_TICK
 	explosion_in_progress = 0
 
 /turf
