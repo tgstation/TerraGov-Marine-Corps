@@ -101,7 +101,7 @@
 				if (O.amount > 1)
 					O.amount--
 				else
-					cdel(O)
+					qdel(O)
 				return
 
 		if(2)

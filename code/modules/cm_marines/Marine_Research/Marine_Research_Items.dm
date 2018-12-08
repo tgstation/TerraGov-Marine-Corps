@@ -58,7 +58,7 @@
 	to_chat(usr, "You reinforce the Helmet...")
 	A.anti_hug++
 	user.temp_drop_inv_item(src)
-	cdel(src)
+	qdel(src)
 	..()
 	return
 
@@ -80,7 +80,7 @@
 	A.slowdown++
 	A.flags_marine_armor |= ARMOR_IS_REINFORCED
 	user.temp_drop_inv_item(src)
-	cdel(src)
+	qdel(src)
 	..()
 	return
 
@@ -105,7 +105,7 @@
 	to_chat(usr, "You spray [A] with the Anti-Acid spray making it unacidable...")
 	A.unacidable = 1
 	user.temp_drop_inv_item(src)
-	cdel(src)
+	qdel(src)
 	..()
 	return
 

@@ -3,7 +3,7 @@
 	if(istype(W,/obj/item/shard) || istype(W,/obj/item/reagent_container/food/snacks))
 		var/obj/item/reagent_container/food/snacks/csandwich/S = new(get_turf(src))
 		S.attackby(W,user)
-		cdel(src)
+		qdel(src)
 	..()
 
 /obj/item/reagent_container/food/snacks/csandwich
@@ -73,7 +73,7 @@
 
 /obj/item/reagent_container/food/snacks/csandwich/Dispose()
 	for(var/obj/item/O in ingredients)
-		cdel(O)
+		qdel(O)
 	. = ..()
 
 /obj/item/reagent_container/food/snacks/csandwich/examine(mob/user)

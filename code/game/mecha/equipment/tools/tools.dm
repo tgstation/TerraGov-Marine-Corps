@@ -190,7 +190,7 @@
 							W.reagents.reaction(atm)
 						if(W.loc == my_target) break
 						sleep(2)
-					cdel(W)
+					qdel(W)
 			return 1
 
 	get_equip_info()
@@ -372,7 +372,7 @@
 		do_after_cooldown()
 		src = null
 		spawn(rand(150,300))
-			cdel(P)
+			qdel(P)
 		return
 
 /obj/item/mecha_parts/mecha_equipment/gravcatapult

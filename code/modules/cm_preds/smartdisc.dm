@@ -49,7 +49,7 @@
 			var/atom/movable/x = new spawner_type
 			x.loc = T
 
-		cdel(src)
+		qdel(src)
 		return
 
 	throw_impact(atom/hit_atom)
@@ -130,14 +130,14 @@
 		new /obj/item/explosive/grenade/spawnergrenade/smartdisc(src.loc)
 		..()
 		spawn(1)
-			if(src) cdel(src)
+			if(src) qdel(src)
 
 	gib()
 		visible_message("\The [src] explodes!")
 		..(icon_gib,1)
 		spawn(1)
 			if(src)
-				cdel(src)
+				qdel(src)
 
 	FindTarget()
 		var/atom/T = null
@@ -185,7 +185,7 @@
 		if(lifetime <= 0 || time_idle > 3)
 			visible_message("\The [src] stops whirring and spins out onto the floor.")
 			new /obj/item/explosive/grenade/spawnergrenade/smartdisc(src.loc)
-			cdel(src)
+			qdel(src)
 			return
 
 		for(var/mob/living/carbon/C in range(6))

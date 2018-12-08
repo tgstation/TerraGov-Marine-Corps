@@ -30,7 +30,7 @@
 		for(var/datum/playingcard/P in H.cards)
 			cards += P
 		update_icon()
-		cdel(O)
+		qdel(O)
 		to_chat(user, "You place your cards on the bottom of the deck.")
 		return
 	..()
@@ -163,7 +163,7 @@
 		for(var/datum/playingcard/P in H.cards)
 			cards += P
 		src.concealed = H.concealed
-		cdel(O)
+		qdel(O)
 		if(loc != user)
 			user.put_in_hands(src)
 		update_icon()
@@ -193,7 +193,7 @@
 			break
 	if(!found)
 		return
-	cdel(to_discard)
+	qdel(to_discard)
 
 	var/obj/item/toy/handcard/H = new(src.loc)
 	H.cards += card
@@ -205,7 +205,7 @@
 	H.loc = get_step(usr,usr.dir)
 
 	if(!cards.len)
-		cdel(src)
+		qdel(src)
 
 /obj/item/toy/handcard/attack_self(var/mob/user as mob)
 	concealed = !concealed

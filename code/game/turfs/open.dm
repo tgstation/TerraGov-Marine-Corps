@@ -549,7 +549,7 @@
 /turf/open/jungle/path/New()
 	..()
 	for(var/obj/structure/bush/B in src)
-		cdel(B)
+		qdel(B)
 
 /turf/open/jungle/impenetrable
 	bushes_spawn = 0
@@ -574,7 +574,7 @@
 /turf/open/jungle/water/New()
 	..()
 	for(var/obj/structure/bush/B in src)
-		cdel(B)
+		qdel(B)
 
 /turf/open/jungle/water/Entered(atom/movable/O)
 	..()

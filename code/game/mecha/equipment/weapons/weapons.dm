@@ -114,7 +114,7 @@
 		A.bullet_act(src)
 		src.life -= 10
 		if(life <= 0)
-			cdel(src)
+			qdel(src)
 		return
 */
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/taser

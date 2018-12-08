@@ -129,7 +129,7 @@
 			ae.icon_state = "door_electronics_smoked"
 			operating = 0
 		src.density = FALSE
-		cdel(src)
+		qdel(src)
 		return
 
 /obj/machinery/door/window/bullet_act(var/obj/item/projectile/Proj)
@@ -227,7 +227,7 @@
 			ae.icon_state = "door_electronics_smoked"
 
 			operating = 0
-			cdel(src)
+			qdel(src)
 			return
 
 	if(!(I.flags_item & NOBLUDGEON) && I.force && density) //trying to smash windoor with item

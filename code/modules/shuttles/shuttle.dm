@@ -198,7 +198,7 @@
 		for(var/obj/O in T)
 			if(istype(O, /obj/effect/landmark))
 				continue
-			cdel(O)
+			qdel(O)
 		cdel(T)
 
 	for(var/mob/living/carbon/bug in destination)

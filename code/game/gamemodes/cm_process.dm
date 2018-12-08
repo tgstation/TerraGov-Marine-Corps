@@ -192,7 +192,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	var/i
 	for(i in round_fog)
 		round_fog -= i
-		cdel(i)
+		qdel(i)
 		sleep(1)
 	round_fog = null
 

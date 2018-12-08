@@ -21,7 +21,7 @@
 
 	Dispose()
 		if(first)
-			cdel(first)
+			qdel(first)
 			first = null
 		processing_objects.Remove(src)
 		. = ..()
@@ -40,7 +40,7 @@
 		else
 			on = 0
 			if(first)
-				cdel(first)
+				qdel(first)
 				first = null
 			processing_objects.Remove(src)
 		update_icon()
@@ -62,7 +62,7 @@
 	process()//Old code
 		if(!on)
 			if(first)
-				cdel(first)
+				qdel(first)
 				first = null
 				return
 
@@ -88,7 +88,7 @@
 
 	attack_hand()
 		if(first)
-			cdel(first)
+			qdel(first)
 			first = null
 		..()
 
@@ -97,7 +97,7 @@
 		var/t = dir
 		..()
 		dir = t
-		cdel(first)
+		qdel(first)
 		first = null
 		return
 
@@ -105,7 +105,7 @@
 	holder_movement()
 		if(!holder)	return 0
 //		dir = holder.dir
-		cdel(first)
+		qdel(first)
 		first = null
 		return 1
 
@@ -188,7 +188,7 @@
 	if(master)
 		//to_chat(world, "beam hit \ref[src]: calling master \ref[master].hit")
 		master.trigger_beam()
-	cdel(src)
+	qdel(src)
 	return
 
 /obj/effect/beam/i_beam/proc/vis_spread(v)
@@ -210,7 +210,7 @@
 
 	if((!loc || loc.density || !(master)))
 	//	to_chat(world, "beam hit loc [loc] or no master [master], deleting")
-		cdel(src)
+		qdel(src)
 		return
 	//to_chat(world, "proccess: [src.left] left")
 
@@ -250,10 +250,10 @@
 				return
 		else
 			//to_chat(world, "is a next: \ref[next], deleting beam \ref[I]")
-			cdel(I)
+			qdel(I)
 	else
 		//to_chat(world, "step failed, deleting \ref[next]")
-		cdel(next)
+		qdel(next)
 		next = null
 	spawn(10)
 		process()
@@ -261,7 +261,7 @@
 	return
 
 /obj/effect/beam/i_beam/Bump()
-	cdel(src)
+	qdel(src)
 	return
 
 /obj/effect/beam/i_beam/Bumped()
@@ -280,7 +280,7 @@
 	if(master)
 		master = null
 	if(next)
-		cdel(next)
+		qdel(next)
 		next = null
 	. = ..()
 

@@ -139,7 +139,7 @@
 				if(M.client) M.client.images -= speech_bubble
 			for(var/mob/M in eavesdropping)
 				if(M.client) M.client.images -= speech_bubble
-		cdel(speech_bubble)
+		qdel(speech_bubble)
 
 
 	if (watching.len)

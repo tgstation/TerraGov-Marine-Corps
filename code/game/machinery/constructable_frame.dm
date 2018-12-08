@@ -53,7 +53,7 @@
 						playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 						to_chat(user, "\blue You dismantle the frame")
 						new /obj/item/stack/sheet/metal(src.loc, 5)
-						cdel(src)
+						qdel(src)
 			if(2)
 				if(istype(P, /obj/item/circuitboard/machine))
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
@@ -119,7 +119,7 @@
 								new_machine.component_parts += O
 							circuit.loc = new_machine
 							new_machine.RefreshParts()
-							cdel(src)
+							qdel(src)
 					else
 						if(istype(P, /obj/item))
 							for(var/I in req_components)

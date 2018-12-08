@@ -88,7 +88,7 @@ var/const/tk_maxrange = 15
 	equipped(var/mob/user, var/slot)
 		if( (slot == WEAR_L_HAND) || (slot== WEAR_R_HAND) )	return
 		if(!disposed)
-			cdel(src)
+			qdel(src)
 
 
 
@@ -100,10 +100,10 @@ var/const/tk_maxrange = 15
 		if(!target || !user)	return
 		if(last_throw+3 > world.time)	return
 		if(!host || host != user)
-			cdel(src)
+			qdel(src)
 			return
 		if(!(TK in host.mutations))
-			cdel(src)
+			qdel(src)
 			return
 		if(isobj(target) && !isturf(target.loc))
 			return
@@ -153,7 +153,7 @@ var/const/tk_maxrange = 15
 	proc/focus_object(var/obj/target, var/mob/living/user)
 		if(!istype(target,/obj))	return//Cant throw non objects atm might let it do mobs later
 		if(target.anchored || !isturf(target.loc))
-			cdel(src)
+			qdel(src)
 			return
 		focus = target
 		update_icon()
@@ -173,7 +173,7 @@ var/const/tk_maxrange = 15
 		O.icon_state = "nothing"
 		flick("empdisable",O)
 		spawn(5)
-			cdel(O)
+			qdel(O)
 		return
 
 

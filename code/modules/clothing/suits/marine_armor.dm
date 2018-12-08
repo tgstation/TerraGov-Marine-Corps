@@ -106,7 +106,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	var/image/reusable/I
 	I = armor_overlays["lamp"]
 	overlays -= I
-	cdel(I)
+	qdel(I)
 	if(flags_marine_armor & ARMOR_LAMP_OVERLAY)
 		I = rnew(/image/reusable, flags_marine_armor & ARMOR_LAMP_ON? list('icons/obj/clothing/cm_suits.dmi', src, "lamp-on") : list('icons/obj/clothing/cm_suits.dmi', src, "lamp-off"))
 		armor_overlays["lamp"] = I
@@ -775,7 +775,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	var/image/reusable/I
 	I = armor_overlays["lamp"]
 	overlays -= I
-	cdel(I)
+	qdel(I)
 	if(flags_faction_armor & ARMOR_LAMP_OVERLAY)
 		I = rnew(/image/reusable, flags_faction_armor & ARMOR_LAMP_ON? list('icons/obj/clothing/cm_suits.dmi', src, "lamp-on") : list('icons/obj/clothing/cm_suits.dmi', src, "lamp-off"))
 		armor_overlays["lamp"] = I

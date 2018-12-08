@@ -65,7 +65,7 @@
 			new /obj/item/device/turret_top(loc)
 		if(has_sensor)
 			new /obj/item/device/turret_sensor(loc)
-		cdel(src)
+		qdel(src)
 
 
 /obj/machinery/marine_turret_frame/attack_alien(mob/living/carbon/Xenomorph/M)
@@ -166,7 +166,7 @@
 			has_top = TRUE
 			icon_state = "sentry_armorless"
 			user.drop_held_item()
-			cdel(O)
+			qdel(O)
 			return
 
 	//Install plating
@@ -240,11 +240,11 @@
 			"<span class='notice'>You install [O] on [src].</span>")
 			icon_state = "sentry_off"
 			user.drop_held_item()
-			cdel(O)
+			qdel(O)
 
 			var/obj/machinery/marine_turret/T = new(loc)  //Bing! Create a new turret.
 			T.dir = dir
-			cdel(src)
+			qdel(src)
 			return
 
 	return ..() //Just do normal stuff.
@@ -359,10 +359,10 @@
 		operator.unset_interaction()
 		operator = null
 	if(camera)
-		cdel(camera)
+		qdel(camera)
 		camera = null
 	if(cell)
-		cdel(cell)
+		qdel(cell)
 		cell = null
 	if(target)
 		target = null
@@ -752,7 +752,7 @@
 			var/obj/item/ammo_magazine/S = new magazine_type(user.loc)
 			S.current_rounds = rounds
 		rounds = min(M.current_rounds, rounds_max)
-		cdel(O)
+		qdel(O)
 		return
 
 	if(O.force)
@@ -815,7 +815,7 @@
 			if(src && loc)
 				explosion(loc, -1, -1, 2, 0)
 				if(!disposed)
-					cdel(src)
+					qdel(src)
 		return
 
 	if(!stat && damage > 0 && !immobile)
@@ -1287,7 +1287,7 @@
 	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 	AI.SetName("Sentry Alert System")
 	AI.aiRadio.talk_into(AI,"[notice]","Almayer","announces")
-	cdel(AI)
+	qdel(AI)
 
 /obj/machinery/marine_turret/mini
 	name = "\improper UA-580 Point Defense Sentry"
@@ -1339,7 +1339,7 @@
 		var/obj/item/device/marine_turret/mini/P = new(loc)
 		user.put_in_hands(P)
 		P.health = health //track the health
-		cdel(src)
+		qdel(src)
 
 /obj/machinery/marine_turret/mini/update_icon()
 	if(stat && health > 0) //Knocked over
@@ -1405,7 +1405,7 @@
 		playsound(target, 'sound/weapons/mine_armed.ogg', 25)
 		M.health = health
 		M.update_icon()
-		cdel(src)
+		qdel(src)
 
 /obj/item/ammo_magazine/minisentry
 	name = "M30 box magazine (10x28mm Caseless)"

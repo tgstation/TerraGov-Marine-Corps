@@ -46,12 +46,12 @@
 	for(var/obj/item/explosive/mine/M in src)
 		if(M)
 			visible_message("<span class='warning'>\The [M] is sealed inside the wall as it is built</span>")
-			cdel(M)
+			qdel(M)
 
 
 /turf/closed/wall/ChangeTurf(newtype)
 	if(acided_hole)
-		cdel(acided_hole)
+		qdel(acided_hole)
 		acided_hole = null
 
 	. = ..()
@@ -78,7 +78,7 @@
 				var/obj/structure/sign/poster/P = O
 				P.roll_and_drop(src)
 			if(istype(O, /obj/effect/alien/weeds))
-				cdel(O)
+				qdel(O)
 
 
 
@@ -153,7 +153,7 @@
 		current_bulletholes = initial(current_bulletholes)
 		bullethole_increment = initial(current_bulletholes)
 		bullethole_state = initial(current_bulletholes)
-		cdel(bullethole_overlay)
+		qdel(bullethole_overlay)
 		bullethole_overlay = null
 		return
 
@@ -276,7 +276,7 @@
 		dismantle_wall()
 
 	spawn(50)
-		if(O) cdel(O)
+		if(O) qdel(O)
 	return
 
 

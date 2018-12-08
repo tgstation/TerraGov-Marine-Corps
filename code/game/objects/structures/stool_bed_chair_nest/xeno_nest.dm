@@ -173,7 +173,7 @@
 /obj/structure/bed/nest/proc/healthcheck()
 	if(health <= 0)
 		density = 0
-		cdel(src)
+		qdel(src)
 
 /obj/structure/bed/nest/flamer_fire_act()
 	health -= 50

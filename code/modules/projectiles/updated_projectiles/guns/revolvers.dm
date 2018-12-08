@@ -182,7 +182,7 @@
 	return TRUE
 
 /obj/item/weapon/gun/revolver/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
-	cdel(projectile_to_fire)
+	qdel(projectile_to_fire)
 	if(refund) current_mag.current_rounds++
 	return TRUE
 

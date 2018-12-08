@@ -106,7 +106,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 				copy.data["original"] = signal.data["original"]
 
 		else
-			cdel(copy)
+			qdel(copy)
 
 
 		send_count++

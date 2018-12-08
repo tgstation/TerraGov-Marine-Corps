@@ -40,7 +40,7 @@
 		return 1
 
 	delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
-		cdel(projectile_to_fire)
+		qdel(projectile_to_fire)
 		if(refund) num_flares++
 		return 1
 
@@ -58,7 +58,7 @@
 			num_flares++
 			user.temp_drop_inv_item(flare)
 			sleep(-1)
-			cdel(flare)
+			qdel(flare)
 			to_chat(user, "<span class='notice'>You insert the flare.</span>")
 			update_icon()
 			return
@@ -199,7 +199,7 @@
 	return 1
 
 /obj/item/weapon/gun/launcher/spike/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
-	cdel(projectile_to_fire)
+	qdel(projectile_to_fire)
 	if(refund) spikes++
 	return 1
 
@@ -273,7 +273,7 @@
 		S.reagents.trans_to(D, S.reagents.total_volume)
 		syringes -= S
 		update_icon()
-		cdel(S)
+		qdel(S)
 		D.icon_state = "syringeproj"
 		D.name = "syringe"
 		playsound(user.loc, 'sound/items/syringeproj.ogg', 50, 1)
@@ -309,16 +309,16 @@
 					else
 						M.visible_message("<span class='danger'>The syringe bounces off [M]!</span>")
 
-					cdel(D)
+					qdel(D)
 					break
 			if(D)
 				for(var/atom/A in D.loc)
 					if(A == user) continue
-					if(A.density) cdel(D)
+					if(A.density) qdel(D)
 
 			sleep(1)
 
-		if (D) spawn(10) cdel(D)
+		if (D) spawn(10) qdel(D)
 
 		return
 
