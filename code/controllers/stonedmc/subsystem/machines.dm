@@ -11,7 +11,8 @@ SUBSYSTEM_DEF(machines)
 	fire()
 	return ..()
 
-/datum/controller/subsystem/machines/proc/makepowernets()
+// CM codebase has a global proc for this.
+/*/datum/controller/subsystem/machines/proc/makepowernets()
 	for(var/datum/powernet/PN in powernets)
 		qdel(PN)
 	powernets.Cut()
@@ -20,7 +21,7 @@ SUBSYSTEM_DEF(machines)
 		if(!PC.powernet)
 			var/datum/powernet/NewPN = new()
 			NewPN.add_cable(PC)
-			propagate_network(PC,PC.powernet)
+			propagate_network(PC,PC.powernet)*/
 
 /datum/controller/subsystem/machines/stat_entry()
 	..("M:[processing.len]|PN:[powernets.len]")
@@ -49,13 +50,14 @@ SUBSYSTEM_DEF(machines)
 		if (MC_TICK_CHECK)
 			return
 
-/datum/controller/subsystem/machines/proc/setup_template_powernets(list/cables)
+// Unused
+/*/datum/controller/subsystem/machines/proc/setup_template_powernets(list/cables)
 	for(var/A in cables)
 		var/obj/structure/cable/PC = A
 		if(!PC.powernet)
 			var/datum/powernet/NewPN = new()
 			NewPN.add_cable(PC)
-			propagate_network(PC,PC.powernet)
+			propagate_network(PC,PC.powernet)*/
 
 /datum/controller/subsystem/machines/Recover()
 	if (istype(SSmachines.processing))

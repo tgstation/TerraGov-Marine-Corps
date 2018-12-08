@@ -16,7 +16,7 @@ SUBSYSTEM_DEF(atoms)
 
 /datum/controller/subsystem/atoms/Initialize(timeofday)
 	GLOB.fire_overlay.appearance_flags = RESET_COLOR
-	setupGenetics() //to set the mutations' place in structural enzymes, so monkey.initialize() knows where to put the monkey mutation.
+	//setupGenetics() //to set the mutations' place in structural enzymes, so monkey.initialize() knows where to put the monkey mutation.
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
 	return ..()
@@ -47,7 +47,6 @@ SUBSYSTEM_DEF(atoms)
 				CHECK_TICK
 
 	testing("Initialized [count] atoms")
-	pass(count)
 
 	initialized = INITIALIZATION_INNEW_REGULAR
 
@@ -107,7 +106,7 @@ SUBSYSTEM_DEF(atoms)
 	old_initialized = SSatoms.old_initialized
 	BadInitializeCalls = SSatoms.BadInitializeCalls
 
-/datum/controller/subsystem/atoms/proc/setupGenetics()
+/*/datum/controller/subsystem/atoms/proc/setupGenetics()
 	var/list/avnums = new /list(DNA_STRUC_ENZYMES_BLOCKS)
 	for(var/i=1, i<=DNA_STRUC_ENZYMES_BLOCKS, i++)
 		avnums[i] = i
@@ -124,7 +123,7 @@ SUBSYSTEM_DEF(atoms)
 			GLOB.bad_mutations |= B
 		else if(B.quality == MINOR_NEGATIVE)
 			GLOB.not_good_mutations |= B
-		CHECK_TICK
+		CHECK_TICK*/
 
 /datum/controller/subsystem/atoms/proc/InitLog()
 	. = ""

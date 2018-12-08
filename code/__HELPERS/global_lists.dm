@@ -206,3 +206,6 @@ var/global/list/moth_wings_list = list()
 	for(var/path in subtypesof(prototype))
 		L += new path()
 	return L
+
+GLOBAL_VAR(world_qdel_log)
+GLOBAL_PROTECT(world_qdel_log)
