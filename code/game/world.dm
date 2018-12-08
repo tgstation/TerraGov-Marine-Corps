@@ -3,8 +3,6 @@
 */
 /datum/global_init/New()
 	world.log = config_error_log = world_pda_log = sql_error_log = world_runtime_log = world_attack_log = world_game_log = "data/logs/config_error.log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
-	load_configuration()
-	makeDatumRefLists()
 	qdel(src)
 
 /world/New()
@@ -12,8 +10,12 @@
 	hub_password = "[config.hub_password]"
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
+	makeDatumRefLists()
+
 	TgsNew(null, TGS_SECURITY_TRUSTED)
 	TgsInitializationComplete()
+
+	load_configuration()
 
 	if(byond_version < RECOMMENDED_VERSION)
 		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")

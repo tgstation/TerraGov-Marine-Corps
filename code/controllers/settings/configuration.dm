@@ -562,7 +562,7 @@
 			config.whiskeyoutpost_url = value
 
 		if("tick_limit_mc_init")
-			config.tick_limit_mc_init = value
+			config.tick_limit_mc_init = text2num(value)
 
 		if("fps")
 			config.fps = value

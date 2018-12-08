@@ -18,7 +18,7 @@ SUBSYSTEM_DEF(atoms)
 	populate_spawn_points()
 
 	setupgenetics()
-	setupfactions()
+	//setupfactions() Unused and also causes runtimes due to t i c k e r
 	setup_economy()
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
