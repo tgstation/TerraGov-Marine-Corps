@@ -79,8 +79,8 @@ var/global/normal_ooc_colour = "#002eb8"
 
 	for(var/client/C in clients)
 		if(C.prefs.toggles_chat & CHAT_OOC)
-			var/display_name = src.key
-			if(holder && holder.fakekey)
+			var/display_name = key
+			if(holder?.fakekey)
 				if(C.holder)
 					display_name = "[holder.fakekey]/([src.key])"
 				else
