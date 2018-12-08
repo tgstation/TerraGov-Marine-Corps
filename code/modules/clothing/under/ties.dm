@@ -432,7 +432,7 @@
 	slots = 3
 
 /obj/item/clothing/tie/storage/webbing/New()
-	..()
+	. = ..()
 	hold.bypass_w_limit = list(
 		"/obj/item/ammo_magazine"
 		 )//Rifle, SMG, and Sniper as stated previously
