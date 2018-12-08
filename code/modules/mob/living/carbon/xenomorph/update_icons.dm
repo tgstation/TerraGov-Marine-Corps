@@ -359,7 +359,7 @@
 
 
 /mob/living/carbon/Xenomorph/proc/update_wounds()
-	remove_overlay(X_WOUND_LAYER)
+	return FALSE
 
 /mob/living/carbon/Xenomorph/update_transform()
 	..()
