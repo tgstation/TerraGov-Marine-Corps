@@ -1059,7 +1059,7 @@ and you're good to go.
 		rotate.Turn(angle)
 		I.transform = rotate
 
-		I.flick_overlay(user, 3)
+		flick_overlay_view(I, user, 3)
 
 /obj/item/weapon/gun/on_enter_storage(obj/item/I)
 	if(istype(I,/obj/item/storage/belt/gun))

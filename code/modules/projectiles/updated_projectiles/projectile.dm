@@ -777,8 +777,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		var/matrix/rotate = matrix()
 		rotate.Turn(angle)
 		I.transform = rotate
-
-		I.flick_overlay(src, 3)
+		flick_overlay_view(I, src, 3)
 
 /mob/proc/bullet_message(obj/item/projectile/P)
 	if(!P) return
