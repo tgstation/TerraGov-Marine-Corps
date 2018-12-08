@@ -132,6 +132,7 @@
 
 
 /mob/living/carbon/Xenomorph/proc/update_wounds()
+	remove_overlay(X_WOUND_LAYER)
 	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
 		var/image/I
 		if(resting)
@@ -143,10 +144,9 @@
 
 		overlays_standing[X_WOUND_LAYER] = I
 		apply_overlay(X_WOUND_LAYER)
-	else
-		remove_overlay(X_WOUND_LAYER)
 
 /mob/living/carbon/Xenomorph/Warrior/update_wounds()
+	remove_overlay(X_WOUND_LAYER)
 	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
 		var/image/I
 		if(resting)
@@ -160,8 +160,6 @@
 
 		overlays_standing[X_WOUND_LAYER] = I
 		apply_overlay(X_WOUND_LAYER)
-	else
-		remove_overlay(X_WOUND_LAYER)
 
 /mob/living/carbon/Xenomorph/update_transform()
 	..()
