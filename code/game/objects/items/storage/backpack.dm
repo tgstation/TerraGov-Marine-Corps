@@ -565,7 +565,7 @@
 		camo_off(user)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/process()
-	if(!wearer)
+	if(!wearer || wearer.stat == DEAD)
 		camo_off()
 		return
 
