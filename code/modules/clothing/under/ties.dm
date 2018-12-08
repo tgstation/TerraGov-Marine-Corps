@@ -436,6 +436,7 @@
 	hold.bypass_w_limit = list(
 		"/obj/item/ammo_magazine"
 		 )//Rifle, SMG, and Sniper as stated previously
+	hold.max_storage_space = 9
 
 /obj/item/clothing/tie/storage/black_vest
 	name = "black webbing vest"
