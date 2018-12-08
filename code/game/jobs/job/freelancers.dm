@@ -16,17 +16,31 @@
 	equipment = TRUE
 
 /datum/job/freelancer/standard/generate_equipment(mob/living/carbon/human/H)
+	var/obj/item/storage/belt/marine/W = new /obj/item/storage/belt/marine(H)
+	W.contents += new /obj/item/ammo_magazine/rifle/mar40
+	W.contents += new /obj/item/ammo_magazine/rifle/mar40
+	W.contents += new /obj/item/ammo_magazine/rifle/mar40
+	W.contents += new /obj/item/ammo_magazine/rifle/mar40
+	W.contents += new /obj/item/ammo_magazine/rifle/mar40
+
+	var/obj/item/storage/pouch/general/RS = new /obj/item/storage/pouch/general(H)
+	RS.contents += new /obj/item/weapon/throwing_knife
+
+	var/obj/item/clothing/suit/storage/faction/freelancer/J = new /obj/item/clothing/suit/storage/faction/freelancer(H)
+
+
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), WEAR_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/freelancer(H), WEAR_BODY)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/faction/freelancer(H), WEAR_JACKET)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/frelancer(H), WEAR_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/marine(H), WEAR_WAIST)
+	H.equip_to_slot_or_del(W, WEAR_WAIST)
 	H.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack(H), WEAR_BACK)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), WEAR_HANDS)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick(H.back), WEAR_IN_BACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick(H.back), WEAR_IN_BACK)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general(H), WEAR_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), WEAR_L_STORE)
+	H.equip_to_slot_or_del(RS, WEAR_R_STORE)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/mar40(H), WEAR_J_STORE)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40(H.back), WEAR_IN_BACK)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40(H.back), WEAR_IN_BACK)
@@ -40,11 +54,18 @@
 	skills_type = /datum/skills/combat_medic
 
 /datum/job/freelancer/medic/generate_equipment(mob/living/carbon/human/H)
+	var/obj/item/storage/belt/marine/W = new /obj/item/storage/belt/marine(H)
+	W.contents += new /obj/item/ammo_magazine/smg/p90
+	W.contents += new /obj/item/ammo_magazine/smg/p90
+	W.contents += new /obj/item/ammo_magazine/smg/p90
+	W.contents += new /obj/item/ammo_magazine/smg/p90
+	W.contents += new /obj/item/ammo_magazine/smg/p90
+
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), WEAR_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/freelancer(H), WEAR_BODY)
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/faction/freelancer(H), WEAR_JACKET)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/frelancer(H), WEAR_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/marine(H), WEAR_WAIST)
+	H.equip_to_slot_or_del(W, WEAR_WAIST)
 	H.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack(H), WEAR_BACK)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), WEAR_HANDS)
@@ -70,16 +91,27 @@
 	skills_type = /datum/skills/SL
 
 /datum/job/freelancer/leader/generate_equipment(mob/living/carbon/human/H)
+	var/obj/item/storage/belt/marine/W = new /obj/item/storage/belt/marine(H)
+	W.contents += new /obj/item/ammo_magazine/rifle/mar40
+	W.contents += new /obj/item/ammo_magazine/rifle/mar40
+	W.contents += new /obj/item/ammo_magazine/rifle/mar40
+	W.contents += new /obj/item/ammo_magazine/rifle/mar40
+	W.contents += new /obj/item/ammo_magazine/rifle/mar40
+
+	var/obj/item/clothing/suit/storage/faction/freelancer/J = new /obj/item/clothing/suit/storage/faction/freelancer(H)
+
+
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/dutch(H), WEAR_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/freelancer(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/faction/freelancer(H), WEAR_JACKET)
+	H.equip_to_slot_or_del(J, WEAR_JACKET)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/frelancer/beret(H), WEAR_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/storage/belt/marine(H), WEAR_WAIST)
+	H.equip_to_slot_or_del(W, WEAR_WAIST)
 	H.equip_to_slot_or_del(new /obj/item/storage/backpack/lightpack(H), WEAR_BACK)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), WEAR_HANDS)
 	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/frag/stick(H.back), WEAR_IN_BACK)
 	H.equip_to_slot_or_del(new /obj/item/explosive/plastique(H.back), WEAR_IN_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), WEAR_L_STORE)
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/medium(H), WEAR_R_STORE)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/mar40/carbine(H), WEAR_J_STORE)
 	H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle/mar40(H.back), WEAR_IN_BACK)
