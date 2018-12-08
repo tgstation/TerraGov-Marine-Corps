@@ -23,8 +23,8 @@
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 3
 
-/obj/item/weapon/gun/revolver/New()
-	..() //Do all that other stuff.
+/obj/item/weapon/gun/revolver/Initialize()
+	. = ..() //Do all that other stuff.
 	replace_cylinder(current_mag.current_rounds)
 
 /obj/item/weapon/gun/revolver/set_gun_config_values()

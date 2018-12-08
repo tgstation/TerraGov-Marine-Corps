@@ -22,6 +22,8 @@ SUBSYSTEM_DEF(atoms)
 	setup_economy()
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
+
+	setup_gamemode_list()
 	return ..()
 
 /datum/controller/subsystem/atoms/proc/InitializeAtoms(list/atoms)
@@ -127,6 +129,24 @@ SUBSYSTEM_DEF(atoms)
 		else if(B.quality == MINOR_NEGATIVE)
 			GLOB.not_good_mutations |= B
 		CHECK_TICK*/
+
+/datum/controller/subsystem/atoms/proc/setup_gamemode_list()
+	var/list/L = subtypesof(/datum/game_mode)
+	for(var/T in L)
+		// I wish I didn't have to instance the game modes in order to look up
+		// their information, but it is the only way (at least that I know of).
+		var/datum/game_mode/M = new T()
+
+		if (M.config_tag)
+			if(!(M.config_tag in config.modes))		// ensure each mode is added only once
+				log_misc("Adding game mode [M.name] ([M.config_tag]) to configuration.")
+				config.modes += M.config_tag
+				config.mode_names[M.config_tag] = M.name
+				config.probabilities[M.config_tag] = M.probability
+				if (M.votable)
+					config.votable_modes += M.config_tag
+		qdel(M)
+	config.votable_modes += "secret"
 
 /datum/controller/subsystem/atoms/proc/InitLog()
 	. = ""

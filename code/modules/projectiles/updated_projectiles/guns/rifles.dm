@@ -12,9 +12,10 @@
 	wield_delay = WIELD_DELAY_NORMAL
 	gun_skill_category = GUN_SKILL_RIFLES
 
-/obj/item/weapon/gun/rifle/New()
-	..()
-	if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
+/obj/item/weapon/gun/rifle/Initialize()
+	. = ..()
+	if(current_mag && current_mag.current_rounds > 0) 
+		load_into_chamber()
 
 /obj/item/weapon/gun/rifle/set_gun_config_values()
 	fire_delay = config.mhigh_fire_delay
