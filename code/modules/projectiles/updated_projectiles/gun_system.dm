@@ -87,6 +87,8 @@
 
 	var/base_gun_icon //the default gun icon_state. change to reskin the gun
 
+	var/hud_enabled = TRUE //If the Ammo HUD is enabled for this gun or not.
+
 
 //----------------------------------------------------------
 				//				    \\
