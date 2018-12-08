@@ -1248,8 +1248,7 @@
 /mob/living/carbon/human/proc/handle_embedded_objects()
 
 	for(var/datum/limb/organ in limbs)
-		if(organ.status & LIMB_SPLINTED || (m_intent == MOVE_INTENT_WALK && !pulledby) ) //Splints prevent movement. Walking stops shrapnel from harming organs unless being pulled.
-		if(organ.status & LIMB_SPLINTED || organ.status & LIMB_STABILIZED) //Splints prevent movement.
+		if(organ.status & LIMB_SPLINTED || organ.status & LIMB_STABILIZED || (m_intent == MOVE_INTENT_WALK && !pulledby) ) //Splints prevent movement. Walking stops shrapnel from harming organs unless being pulled.
 			continue
 		for(var/obj/item/O in organ.implants)
 			if(!istype(O,/obj/item/implant) && prob(4)) //Moving with things stuck in you could be bad.
