@@ -13,7 +13,7 @@
 	var/perapc_excess = 0
 	var/netexcess = 0
 
-/datum/powernet/proc/process()
+/datum/powernet/process()
 	load = newload
 	newload = 0
 	avail = newavail
