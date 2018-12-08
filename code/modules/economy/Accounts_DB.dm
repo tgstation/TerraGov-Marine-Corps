@@ -15,7 +15,7 @@
 	proc/get_access_level()
 		if (!held_card)
 			return 0
-		if(ACCESS_WY_CORPORATE in held_card.access)
+		if(ACCESS_NT_CORPORATE in held_card.access)
 			return 2
 		else if(ACCESS_MARINE_BRIDGE in held_card.access || ACCESS_MARINE_COMMANDER in held_card.access)
 			return 1

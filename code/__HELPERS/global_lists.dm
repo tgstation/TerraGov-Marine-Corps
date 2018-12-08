@@ -5,7 +5,7 @@ var/list/unansweredAhelps = list()			//This feels inefficient, but I can't think
 var/list/unansweredMhelps = list()
 var/list/CLFaxes = list()								//List of all CL faxes sent this round
 var/list/fax_contents = list() 					//List of fax contents to maintain it even if source paper is deleted
-var/list/USCMFaxes = list()							//List of all USCM faxes sent this round
+var/list/TGMCFaxes = list()							//List of all TGMC faxes sent this round
 var/list/active_tracking_beacons = list()			//List of all active squad tracking beacons
 
 //Names of maps that can be compiled on

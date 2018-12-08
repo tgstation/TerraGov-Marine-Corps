@@ -9,7 +9,7 @@
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
 
 /obj/item/clothing/under/rank/research_director/rdalt
-	desc = "A simple blue utilitarian jumpsuit that serves as the standard issue service uniform of support synthetics onboard USCM facilities. While commonly associated with the staple Bishop units, reduced funding to the Colonial Marines has led to a wide range of models filling these uniforms, especially in battalions operating in the edge frontier."
+	desc = "A simple blue utilitarian jumpsuit that serves as the standard issue service uniform of support synthetics onboard TGMC facilities. While commonly associated with the staple Bishop units, reduced funding to the TerraGov Marine Corps has led to a wide range of models filling these uniforms, especially in battalions operating in the edge frontier."
 	name = "synthetic service uniform"
 	icon_state = "rdalt"
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 10, rad = 0)
