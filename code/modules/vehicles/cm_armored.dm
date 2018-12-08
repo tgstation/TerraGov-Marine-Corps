@@ -92,7 +92,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_engine"
 
-/obj/vehicle/multitile/root/cm_armored/Dispose()
+/obj/vehicle/multitile/root/cm_armored/Destroy()
 	for(var/i in linked_objs)
 		var/obj/O = linked_objs[i]
 		if(O == src) continue
@@ -359,7 +359,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //If it's an admin, they want to disable this
 //If it's the shuttle, it should do damage
 //If fully repaired and moves at least once, the broken hitboxes will respawn according to multitile.dm
-/obj/vehicle/multitile/hitbox/cm_armored/Dispose()
+/obj/vehicle/multitile/hitbox/cm_armored/Destroy()
 	var/obj/vehicle/multitile/root/cm_armored/C = root
 	if(C) C.take_damage_type(1000000, "abstract")
 	..()
@@ -432,7 +432,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	else if(istype(A, /obj/structure/window_frame))
 		var/obj/structure/window_frame/WF = A
 		WF.visible_message("<span class='danger'>[root] runs over the [WF]!</span>")
-		WF.Dispose()
+		WF.Destroy()
 	else if(istype(A, /obj/structure/girder))
 		var/obj/structure/girder/G = A
 		G.dismantle()

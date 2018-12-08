@@ -257,7 +257,7 @@
 	if(ismob(A))
 		HasProximity(A)
 
-/obj/effect/alien/resin/trap/Dispose()
+/obj/effect/alien/resin/trap/Destroy()
 	if(hugger && loc)
 		drop_hugger()
 	return ..()
@@ -393,7 +393,7 @@
 	playsound(loc, "alien_resin_move", 25)
 	..()
 
-/obj/structure/mineral_door/resin/Dispose()
+/obj/structure/mineral_door/resin/Destroy()
 	relativewall_neighbours()
 	var/turf/U = loc
 	spawn(0)
@@ -463,7 +463,7 @@
 	create_egg_triggers()
 	Grow()
 
-/obj/effect/alien/egg/Dispose()
+/obj/effect/alien/egg/Destroy()
 	. = ..()
 	delete_egg_triggers()
 
@@ -694,7 +694,7 @@ TUNNEL
 						other = T //Link them!
 						break
 
-/obj/structure/tunnel/Dispose()
+/obj/structure/tunnel/Destroy()
 	if(other)
 		other.other = null
 		other = null

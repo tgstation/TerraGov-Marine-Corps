@@ -406,6 +406,6 @@ var/global/list/uneatable = list(
 		if(get_dist(R, src) <= 15) // Better than using orange() every process
 			R.receive_pulse(energy)
 
-/obj/machinery/singularity/Dispose()
+/obj/machinery/singularity/Destroy()
 	SetLuminosity(0)
 	. = ..()

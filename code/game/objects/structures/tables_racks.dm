@@ -64,7 +64,7 @@
 			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
 			destroy()
 
-/obj/structure/table/Dispose()
+/obj/structure/table/Destroy()
 	var/tableloc = loc
 	. = ..()
 	update_adjacent(tableloc) //so neighbouring tables get updated correctly

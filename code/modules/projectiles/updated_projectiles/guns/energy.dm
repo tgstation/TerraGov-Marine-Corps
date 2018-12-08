@@ -103,7 +103,7 @@
 
 
 
-/obj/item/weapon/gun/energy/plasmarifle/Dispose()
+/obj/item/weapon/gun/energy/plasmarifle/Destroy()
 	. = ..()
 	processing_objects.Remove(src)
 
@@ -215,7 +215,7 @@
 
 
 
-/obj/item/weapon/gun/energy/plasmapistol/Dispose()
+/obj/item/weapon/gun/energy/plasmapistol/Destroy()
 	. = ..()
 	processing_objects.Remove(src)
 
@@ -306,7 +306,7 @@
 	verbs -= /obj/item/weapon/gun/verb/empty_mag
 	verbs -= /obj/item/weapon/gun/verb/use_unique_action
 
-/obj/item/weapon/gun/energy/plasma_caster/Dispose()
+/obj/item/weapon/gun/energy/plasma_caster/Destroy()
 	. = ..()
 	source = null
 

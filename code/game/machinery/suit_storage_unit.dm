@@ -220,7 +220,7 @@
 
 	sleep(150)
 
-	if(disposed)
+	if(gc_destroyed)
 		return
 	if(inserted_helmet)
 		inserted_helmet.clean_blood()

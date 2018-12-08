@@ -48,7 +48,7 @@
 
 	return null
 
-/obj/machinery/atmospherics/trinary/Dispose()
+/obj/machinery/atmospherics/trinary/Destroy()
 	if(node1)
 		node1.disconnect(src)
 		del(network1)

@@ -49,7 +49,7 @@ Class Variables:
 Class Procs:
    New()                     'game/machinery/machine.dm'
 
-   Dispose()                     'game/machinery/machine.dm'
+   Destroy()                     'game/machinery/machine.dm'
 
    auto_use_power()            'game/machinery/machine.dm'
       This proc determines how power mode power is deducted by the machine.
@@ -132,7 +132,7 @@ Class Procs:
 	if(A)
 		A.master.area_machines += src
 
-/obj/machinery/Dispose()
+/obj/machinery/Destroy()
 	machines -= src
 	processing_machines -= src
 	var/area/A = get_area(src)

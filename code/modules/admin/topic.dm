@@ -248,7 +248,7 @@
 
 		var/mob/M = locate(href_list["mob"])
 
-		if(M.disposed)
+		if(M.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -979,7 +979,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["monkeyone"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -996,7 +996,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["corgione"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -1209,7 +1209,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["makeai"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -1226,7 +1226,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["makealien"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -1254,7 +1254,7 @@
 
 		var/mob/H = locate(href_list["makeyautja"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -1306,7 +1306,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["makerobot"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -1321,7 +1321,7 @@
 
 		var/mob/M = locate(href_list["makeanimal"])
 
-		if(M.disposed)
+		if(M.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -1336,7 +1336,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["togmutate"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 

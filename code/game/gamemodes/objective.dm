@@ -13,7 +13,7 @@ datum/objective
 		if(text)
 			explanation_text = text
 
-	Dispose()
+	Destroy()
 		all_objectives -= src
 		. = ..()
 

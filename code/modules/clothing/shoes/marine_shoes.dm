@@ -15,7 +15,7 @@
 	var/obj/item/knife
 	var/armor_stage = 0
 
-/obj/item/clothing/shoes/marine/Dispose()
+/obj/item/clothing/shoes/marine/Destroy()
 	if(knife)
 		qdel(knife)
 		knife = null

@@ -31,7 +31,7 @@
 		processing_objects += src
 
 
-/obj/item/organ/Dispose()
+/obj/item/organ/Destroy()
 	if(!robotic) processing_objects -= src
 	. = ..()
 

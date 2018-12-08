@@ -382,7 +382,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 	EvacuationAuthority.trigger_self_destruct(list(z), src) //The round ends as soon as this happens, or it should.
 	return TRUE
 
-/obj/item/disk/nuclear/Dispose()
+/obj/item/disk/nuclear/Destroy()
 	if(blobstart.len > 0)
 		var/obj/D = new /obj/item/disk/nuclear(pick(blobstart))
 		message_admins("[src] has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")

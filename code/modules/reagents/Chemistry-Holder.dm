@@ -46,7 +46,7 @@
 				break // Don't bother adding ourselves to other reagent ids, it is redundant.
 
 
-/datum/reagents/Dispose()
+/datum/reagents/Destroy()
 	. = ..()
 	var/list/cached_reagents = reagent_list
 	for(var/reagent in cached_reagents)
@@ -244,7 +244,7 @@
 	var/need_mob_update = 0
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/R = reagent
-		if(R.holder.disposed)
+		if(R.holder.gc_destroyed)
 			continue
 		if(liverless && !R.self_consuming) //need to be metabolized
 			continue

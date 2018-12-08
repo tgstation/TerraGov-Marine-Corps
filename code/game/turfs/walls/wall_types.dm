@@ -490,7 +490,7 @@
 	return !density
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)
-	cdel(src) //ChangeTurf is called by Dispose()
+	cdel(src) //ChangeTurf is called by Destroy()
 
 
 

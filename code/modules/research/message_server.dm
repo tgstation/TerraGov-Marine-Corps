@@ -76,7 +76,7 @@ var/global/list/obj/machinery/message_server/message_servers = list()
 	start_processing()
 	return
 
-/obj/machinery/message_server/Dispose()
+/obj/machinery/message_server/Destroy()
 	message_servers -= src
 	. = ..()
 
@@ -227,7 +227,7 @@ var/obj/machinery/blackbox_recorder/blackbox
 			qdel(src)
 	blackbox = src
 
-/obj/machinery/blackbox_recorder/Dispose()
+/obj/machinery/blackbox_recorder/Destroy()
 	var/turf/T = locate(1,1,2)
 	if(T)
 		blackbox = null

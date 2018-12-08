@@ -26,7 +26,7 @@
 	time_to_live += rand(-1,1)
 	processing_objects.Add(src)
 
-/obj/effect/particle_effect/smoke/Dispose()
+/obj/effect/particle_effect/smoke/Destroy()
 	if(opacity)
 		SetOpacity(0)
 	processing_objects.Remove(src)
@@ -58,7 +58,7 @@
 /obj/effect/particle_effect/smoke/proc/spread_smoke(direction)
 	set waitfor = 0
 	sleep(spread_speed)
-	if(disposed) return
+	if(gc_destroyed) return
 	var/turf/U = get_turf(src)
 	if(!U) return
 	for(var/i in cardinal)
@@ -140,7 +140,7 @@
 	for(var/mob/living/M in get_turf(src))
 		affect(M)
 
-/obj/effect/particle_effect/smoke/tactical/Dispose()
+/obj/effect/particle_effect/smoke/tactical/Destroy()
 	for(var/mob/living/M in get_turf(src))
 		uncloak_smoke_act(M)
 	..()

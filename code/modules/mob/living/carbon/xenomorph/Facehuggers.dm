@@ -36,7 +36,7 @@
 	..()
 	GoActive()
 
-/obj/item/clothing/mask/facehugger/Dispose()
+/obj/item/clothing/mask/facehugger/Destroy()
 	. = ..()
 	if(iscarbon(loc))
 		var/mob/living/carbon/M = loc

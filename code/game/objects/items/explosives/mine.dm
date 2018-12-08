@@ -30,7 +30,7 @@
 	ex_act() trigger_explosion() //We don't care about how strong the explosion was.
 	emp_act() trigger_explosion() //Same here. Don't care about the effect strength.
 
-/obj/item/explosive/mine/Dispose()
+/obj/item/explosive/mine/Destroy()
 	if(tripwire)
 		qdel(tripwire)
 		tripwire = null
@@ -155,7 +155,7 @@
 	unacidable = 1 //You never know
 	var/obj/item/explosive/mine/linked_claymore
 
-/obj/effect/mine_tripwire/Dispose()
+/obj/effect/mine_tripwire/Destroy()
 	if(linked_claymore)
 		linked_claymore = null
 	. = ..()

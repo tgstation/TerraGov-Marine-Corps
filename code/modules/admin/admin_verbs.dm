@@ -145,11 +145,6 @@ var/list/admin_verbs_debug = list(
 	/client/proc/callproc,
 	/client/proc/callatomproc,
 	/client/proc/toggledebuglogs,
-	/datum/proc/ta_diagnose,
-	/datum/proc/ra_diagnose,
-	/datum/proc/ta_purge,
-	/datum/proc/ra_purge,
-	/client/proc/scheduler,
 	/client/proc/cmd_admin_change_hivenumber
 	)
 

@@ -36,7 +36,7 @@
 	start_processing()
 
 
-/obj/machinery/power/am_control_unit/Dispose()//Perhaps damage and run stability checks rather than just del on the others
+/obj/machinery/power/am_control_unit/Destroy()//Perhaps damage and run stability checks rather than just del on the others
 	for(var/obj/machinery/am_shielding/AMS in linked_shielding)
 		linked_shielding -= AMS
 		qdel(AMS)

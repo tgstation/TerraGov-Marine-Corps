@@ -28,7 +28,7 @@
 	processing_objects.Add(src)
 
 
-/obj/item/reagent_container/borghypo/Dispose()
+/obj/item/reagent_container/borghypo/Destroy()
 	processing_objects.Remove(src)
 	. = ..()
 

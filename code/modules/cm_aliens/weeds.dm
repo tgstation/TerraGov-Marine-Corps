@@ -23,7 +23,7 @@
 				weed_expand(node)
 
 
-/obj/effect/alien/weeds/Dispose()
+/obj/effect/alien/weeds/Destroy()
 	var/oldloc = loc
 	. = ..()
 	update_neighbours(oldloc)
@@ -174,7 +174,7 @@
 	return
 
 /obj/effect/alien/weeds/fire_act()
-	if(!disposed)
+	if(!gc_destroyed)
 		spawn(rand(100,175))
 			qdel(src)
 

@@ -354,7 +354,7 @@
 	ammo = ammo_list[ammo]
 
 
-/obj/machinery/marine_turret/Dispose() //Clear these for safety's sake.
+/obj/machinery/marine_turret/Destroy() //Clear these for safety's sake.
 	if(operator)
 		operator.unset_interaction()
 		operator = null
@@ -814,7 +814,7 @@
 		spawn(10)
 			if(src && loc)
 				explosion(loc, -1, -1, 2, 0)
-				if(!disposed)
+				if(!gc_destroyed)
 					qdel(src)
 		return
 
@@ -1258,7 +1258,7 @@
 	burst_delay = 15
 	var/obj/structure/dropship_equipment/sentry_holder/deployment_system
 
-/obj/machinery/marine_turret/premade/dropship/Dispose()
+/obj/machinery/marine_turret/premade/dropship/Destroy()
 	if(deployment_system)
 		deployment_system.deployed_turret = null
 		deployment_system = null

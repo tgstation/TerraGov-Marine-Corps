@@ -155,7 +155,7 @@
 
 
 
-/mob/living/carbon/human/Dispose()
+/mob/living/carbon/human/Destroy()
 	assigned_squad?.clean_marine_from_squad(src,FALSE)
 	remove_from_all_mob_huds()
 	return ..()

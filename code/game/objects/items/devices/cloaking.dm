@@ -23,7 +23,7 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 
-/obj/item/device/chameleon/Dispose()
+/obj/item/device/chameleon/Destroy()
 	if(spark_system)
 		qdel(spark_system)
 		spark_system = null

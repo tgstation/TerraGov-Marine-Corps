@@ -64,8 +64,8 @@
 
 	return parent.return_network(reference)
 
-/obj/machinery/atmospherics/pipe/Dispose()
-	if(!disposed) //not already cdel'd
+/obj/machinery/atmospherics/pipe/Destroy()
+	if(!gc_destroyed) //not already cdel'd
 		if(parent)
 			qdel(parent)
 	return ..()
@@ -212,7 +212,7 @@
 	else if(dir==12)
 		dir = 4
 
-/obj/machinery/atmospherics/pipe/simple/Dispose()
+/obj/machinery/atmospherics/pipe/simple/Destroy()
 	var/obj/machinery/atmospherics/n1 = node1
 	var/obj/machinery/atmospherics/n2 = node2
 	n1?.disconnect(src)
@@ -438,7 +438,7 @@
 		//. = PROCESS_KILL
 		stop_processing()
 
-/obj/machinery/atmospherics/pipe/manifold/Dispose()
+/obj/machinery/atmospherics/pipe/manifold/Destroy()
 	var/obj/machinery/atmospherics/n1 = node1
 	var/obj/machinery/atmospherics/n2 = node2
 	var/obj/machinery/atmospherics/n3 = node3
@@ -678,7 +678,7 @@
 		//. = PROCESS_KILL
 		stop_processing()
 
-/obj/machinery/atmospherics/pipe/manifold4w/Dispose()
+/obj/machinery/atmospherics/pipe/manifold4w/Destroy()
 	var/obj/machinery/atmospherics/n1 = node1
 	var/obj/machinery/atmospherics/n2 = node2
 	var/obj/machinery/atmospherics/n3 = node3
@@ -939,7 +939,7 @@
 		//. = PROCESS_KILL
 		stop_processing()
 
-/obj/machinery/atmospherics/pipe/cap/Dispose()
+/obj/machinery/atmospherics/pipe/cap/Destroy()
 	if(node)
 		node.disconnect(src)
 	. = ..()
@@ -1058,7 +1058,7 @@
 		//. = PROCESS_KILL
 		stop_processing()
 
-/obj/machinery/atmospherics/pipe/tank/Dispose()
+/obj/machinery/atmospherics/pipe/tank/Destroy()
 	if(node1)
 		node1.disconnect(src)
 	. = ..()
@@ -1203,7 +1203,7 @@
 	else
 		parent.mingle_with_turf(loc, volume)
 
-/obj/machinery/atmospherics/pipe/vent/Dispose()
+/obj/machinery/atmospherics/pipe/vent/Destroy()
 	if(node1)
 		node1.disconnect(src)
 	. = ..()

@@ -143,7 +143,7 @@
 //			user.UpdateLuminosity()
 			SetLuminosity(brightness_on)
 
-	Dispose()
+	Destroy()
 		if(ismob(src.loc))
 			src.loc.SetLuminosity(-brightness_on)
 		else

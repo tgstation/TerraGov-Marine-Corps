@@ -58,7 +58,7 @@
 
 	return null
 
-/obj/machinery/atmospherics/portables_connector/Dispose()
+/obj/machinery/atmospherics/portables_connector/Destroy()
 	if(connected_device)
 		connected_device.disconnect()
 	if(node)

@@ -27,16 +27,13 @@ Make sure the return value equals the return value of the parent so that the
 directive is properly returned.
 */
 //===========================================================================
-/atom/Dispose()
+/atom/Destroy()
 	if(reagents)
 		qdel(reagents)
 	if(light)
 		qdel(light)
 		light = null
 	. = ..()
-
-/atom/Recycle()
-	return
 
 //===========================================================================
 

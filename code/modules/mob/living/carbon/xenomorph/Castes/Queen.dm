@@ -248,7 +248,7 @@
 			xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3,hivenumber)
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
 
-/mob/living/carbon/Xenomorph/Queen/Dispose()
+/mob/living/carbon/Xenomorph/Queen/Destroy()
 	. = ..()
 	if(observed_xeno)
 		set_queen_overwatch(observed_xeno, TRUE)
@@ -266,7 +266,7 @@
 			breathing_counter = 0 //Reset the counter
 
 		if(observed_xeno)
-			if(observed_xeno.stat == DEAD || observed_xeno.disposed)
+			if(observed_xeno.stat == DEAD || observed_xeno.gc_destroyed)
 				set_queen_overwatch(observed_xeno, TRUE)
 
 		if(ovipositor && !is_mob_incapacitated(TRUE))
@@ -762,7 +762,7 @@
 		observed_xeno = target
 		if(old_xeno)
 			old_xeno.hud_set_queen_overwatch()
-	if(!target.disposed) //not cdel'd
+	if(!target.gc_destroyed) //not cdel'd
 		target.hud_set_queen_overwatch()
 	reset_view()
 

@@ -202,7 +202,7 @@
 		if(8)
 			pixel_x = -10
 
-/obj/machinery/light/Dispose()
+/obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
 	if(A)
 		on = FALSE

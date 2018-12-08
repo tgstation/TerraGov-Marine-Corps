@@ -223,7 +223,7 @@
 
 	return
 
-/obj/item/reagent_container/food/snacks/Dispose()
+/obj/item/reagent_container/food/snacks/Destroy()
 	if(contents)
 		for(var/atom/movable/something in contents)
 			something.loc = get_turf(src)
@@ -678,7 +678,7 @@
 /obj/item/reagent_container/food/snacks/donkpocket/proc/cooltime()
 	if(warm)
 		spawn( 4200 )
-			if(!disposed) //not cdel'd
+			if(!gc_destroyed) //not cdel'd
 				warm = 0
 				reagents.del_reagent("tricordrazine")
 				name = "donk-pocket"

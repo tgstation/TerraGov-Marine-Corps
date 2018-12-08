@@ -28,7 +28,7 @@
 	var/color = "#000000" // rgb: 0, 0, 0
 	var/can_synth = TRUE // can this reagent be synthesized? (example: odysseus syringe gun)
 
-/datum/reagent/Dispose() // This should only be called by the holder, so it's already handled clearing its references
+/datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	. = ..()
 	holder = null
 

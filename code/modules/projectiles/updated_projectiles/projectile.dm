@@ -56,7 +56,7 @@
 		path = list()
 		permutated = list()
 
-	Dispose()
+	Destroy()
 		..()
 		in_flight = 0
 		ammo = null
@@ -68,10 +68,6 @@
 		path = null
 		list_reagents = null
 		return TA_REVIVE_ME
-
-	Recycle()
-		var/blacklist[] = list("ammo","name","desc","icon_state","damage","in_flight","shot_from","original","target_turf","starting", "permutated","path")
-		. = ..() + blacklist
 
 	Bumped(atom/A as mob|obj|turf|area)
 		if(A && !A in permutated)
@@ -159,7 +155,7 @@
 	var/this_iteration = 0
 	in_flight = 1
 	for(next_turf in path)
-		if(!loc || disposed || !in_flight) return
+		if(!loc || gc_destroyed || !in_flight) return
 
 		if(distance_travelled >= range)
 			ammo.do_at_max_range(src)

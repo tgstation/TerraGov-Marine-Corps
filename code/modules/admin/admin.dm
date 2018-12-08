@@ -58,7 +58,7 @@ var/global/respawntime = 15
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
-	if(M.disposed)
+	if(M.gc_destroyed)
 		to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 		return
 

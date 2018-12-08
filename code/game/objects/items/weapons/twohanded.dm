@@ -107,13 +107,9 @@
 	wield()
 		qdel(src) //This shouldn't even happen.
 
-	Dispose()
+	Destroy()
 		..()
 		return TA_REVIVE_ME //So we can recycle this garbage.
-
-	Recycle()
-		var/blacklist[] = list("name","w_class","desc","flags","icon_state")
-		. = ..() + blacklist
 
 	dropped(mob/user)
 		..()

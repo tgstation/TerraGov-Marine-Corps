@@ -988,7 +988,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				spark_system = null
 
 /datum/limb/proc/embed(var/obj/item/W, var/silent = 0)
-	if(!W || W.disposed || (W.flags_item & (NODROP|DELONDROP)))
+	if(!W || W.gc_destroyed || (W.flags_item & (NODROP|DELONDROP)))
 		return
 	if(!silent)
 		owner.visible_message("<span class='danger'>\The [W] sticks in the wound!</span>")

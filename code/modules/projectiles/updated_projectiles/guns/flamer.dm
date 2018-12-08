@@ -467,7 +467,7 @@
 							C.visible_message("<span class='danger'>[C] bursts into flames!</span>","[isXeno(C)?"<span class='xenodanger'>":"<span class='highdanger'>"]You burst into flames!</span>")
 
 
-/obj/flamer_fire/Dispose()
+/obj/flamer_fire/Destroy()
 	SetLuminosity(0)
 	processing_objects.Remove(src)
 	return ..()

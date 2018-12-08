@@ -868,7 +868,7 @@
 	penetration = config.max_armor_penetration
 	shell_speed = config.slow_shell_speed
 
-/datum/ammo/rocket/Dispose()
+/datum/ammo/rocket/Destroy()
 	qdel(smoke)
 	smoke = null
 	. = ..()
@@ -1324,7 +1324,7 @@
 	accuracy_var_high = config.max_proj_variance
 	max_range = config.long_shell_range
 
-/datum/ammo/xeno/boiler_gas/Dispose()
+/datum/ammo/xeno/boiler_gas/Destroy()
 	qdel(smoke_system)
 	smoke_system = null
 	. = ..()

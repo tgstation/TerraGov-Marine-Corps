@@ -16,7 +16,7 @@
 	src.target = locate(/obj/machinery/atmospherics/pipe) in loc
 	return 1
 
-/obj/machinery/meter/Dispose()
+/obj/machinery/meter/Destroy()
 	target = null
 	. = ..()
 

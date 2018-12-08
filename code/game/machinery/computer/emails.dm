@@ -21,7 +21,7 @@
 		var/path = pick_n_take(L)
 		email_list += new path()
 
-/obj/machinery/computer/emails/Dispose()
+/obj/machinery/computer/emails/Destroy()
 	email_list = null
 	. = ..()
 

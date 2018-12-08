@@ -292,7 +292,7 @@
 		sample_object = sample
 		number = 1
 
-	Dispose()
+	Destroy()
 		sample_object = null
 		. = ..()
 
@@ -568,7 +568,7 @@
 	closer = new
 	closer.master = src
 
-/obj/item/storage/Dispose()
+/obj/item/storage/Destroy()
 	for(var/atom/movable/I in contents)
 		qdel(I)
 	for(var/mob/M in content_watchers)
