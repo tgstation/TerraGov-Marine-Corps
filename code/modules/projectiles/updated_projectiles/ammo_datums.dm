@@ -179,7 +179,7 @@
 		set waitfor = 0
 		var/i
 		for(i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
-			var/obj/item/projectile/P = rnew(/obj/item/projectile, original_P.shot_from)
+			var/obj/item/projectile/P = new /obj/item/projectile(original_P.shot_from)
 			P.generate_bullet(ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
 			var/turf/new_target = null
 			if(prob(P.scatter))

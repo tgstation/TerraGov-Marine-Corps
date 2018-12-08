@@ -172,16 +172,16 @@
 		if(!blip_pool[target])
 			switch(status)
 				if(MOTION_DETECTOR_HOSTILE)
-					blip_pool[target] = rnew(/obj/effect/detector_blip)
+					blip_pool[target] = new /obj/effect/detector_blip()
 					//blip_pool[target].icon_state = "detector_blip_friendly"
 				if(MOTION_DETECTOR_FRIENDLY)
-					blip_pool[target] = rnew(/obj/effect/detector_blip/friendly)
+					blip_pool[target] = new /obj/effect/detector_blip/friendly()
 					//blip_pool[target].icon_state = "detector_blip_friendly"
 				if(MOTION_DETECTOR_DEAD)
-					blip_pool[target] = rnew(/obj/effect/detector_blip/dead)
+					blip_pool[target] = new /obj/effect/detector_blip/dead()
 					//blip_pool[target].icon_state = "detector_blip_dead"
 				if(MOTION_DETECTOR_FUBAR)
-					blip_pool[target] = rnew(/obj/effect/detector_blip/fubar)
+					blip_pool[target] = new /obj/effect/detector_blip/fubar()
 					//blip_pool[target].icon_state = "detector_blip_fubar"
 
 		var/obj/effect/detector_blip/DB = blip_pool[target]
