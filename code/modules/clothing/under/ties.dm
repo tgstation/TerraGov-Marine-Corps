@@ -434,10 +434,8 @@
 /obj/item/clothing/tie/storage/webbing/New()
 	..()
 	hold.bypass_w_limit = list(
-		"/obj/item/ammo_magazine/rifle",
-		"/obj/item/ammo_magazine/smg",
-		"/obj/item/ammo_magazine/sniper",
-		 )
+		"/obj/item/ammo_magazine"
+		 )//Rifle, SMG, and Sniper as stated previously
 
 /obj/item/clothing/tie/storage/black_vest
 	name = "black webbing vest"
