@@ -243,7 +243,7 @@
 	else
 		make_girder(FALSE)
 
-	cdel(src)
+	ChangeTurf(/turf/open/floor/plating)
 
 /turf/closed/wall/ex_act(severity)
 	if(hull)
