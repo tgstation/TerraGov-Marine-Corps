@@ -13,7 +13,9 @@ SUBSYSTEM_DEF(ticker)
 	if(!ticker)
 		ticker = new /datum/controller/gameticker()
 
-	ticker.pregame()
+	spawn(0)
+		if(ticker)
+			ticker.pregame()
 
 	return ..()
 

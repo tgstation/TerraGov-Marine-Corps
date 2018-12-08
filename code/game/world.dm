@@ -34,8 +34,8 @@
 
 	. = ..()
 
-	TgsInitializationComplete()
-	sleep_offline = 1
+	//TgsInitializationComplete()
+	//sleep_offline = 1
 
 	// Set up roundstart seed list. This is here because vendors were
 	// bugging out and not populating with the correct packet names

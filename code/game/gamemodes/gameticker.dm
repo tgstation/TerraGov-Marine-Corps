@@ -170,6 +170,8 @@ var/global/datum/controller/gameticker/ticker
 
 	//for(var/obj/multiz/ladder/L in object_list) L.connect() //Lazy hackfix for ladders. TODO: move this to an actual controller. ~ Z
 
+	Master.SetRunLevel(RUNLEVEL_GAME)
+
 	if(config.sql_enabled)
 		spawn(3000)
 		statistic_cycle() // Polls population totals regularly and stores them in an SQL DB -- TLE

@@ -90,7 +90,6 @@
 	var/debugparanoid = 0
 
 	var/tick_limit_mc_init = 98
-	var/ticklag = 0.9
 	var/fps = 20
 	var/resume_after_initializations = 0
 
@@ -567,9 +566,6 @@
 
 		if("fps")
 			config.fps = value
-
-		if("ticklag")
-			config.ticklag = value
 
 		if("resume_after_initializations")
 			config.resume_after_initializations = 1
