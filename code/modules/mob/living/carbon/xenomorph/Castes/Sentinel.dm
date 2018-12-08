@@ -186,12 +186,12 @@
 
 	if(!Adjacent(H))
 		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
-			to_chat(src, "<span class='xenowarning'>You're too far away to sting this target!</span>")
+			to_chat(src, "<span class='xenowarning'>You can't reach this target!</span>")
 			recent_notice = world.time //anti-notice spam
 		return
 
 	if ((H.status_flags & XENO_HOST) && istype(H.buckled, /obj/structure/bed/nest))
-		to_chat(src, "<span class='xenowarning'>You reconsider bullying the poor, nested host with your stinger.</span>")
+		to_chat(src, "<span class='xenowarning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
 		return
 
 	if(!check_plasma(150))
