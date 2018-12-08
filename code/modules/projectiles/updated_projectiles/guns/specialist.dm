@@ -228,7 +228,7 @@
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/flashlight)
 
-/obj/item/weapon/gun/smartgun/New()
+/obj/item/weapon/gun/smartgun/Initialize()
 	. = ..()
 	ammo_secondary = ammo_list[ammo_secondary]
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 17, "rail_y" = 17, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
@@ -356,11 +356,9 @@
 	var/datum/effect_system/smoke_spread/smoke
 
 
-/obj/item/weapon/gun/launcher/m92/New()
-	set waitfor = 0
+/obj/item/weapon/gun/launcher/m92/Initialize()
 	. = ..()
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
-	sleep(1)
 	grenades += new /obj/item/explosive/grenade/frag(src)
 	grenades += new /obj/item/explosive/grenade/frag(src)
 	grenades += new /obj/item/explosive/grenade/incendiary(src)
@@ -497,7 +495,7 @@
 	var/riot_version
 
 
-/obj/item/weapon/gun/launcher/m81/New(loc, spawn_empty)
+/obj/item/weapon/gun/launcher/m81/Initialize(loc, spawn_empty)
 	set waitfor = 0
 	. = ..()
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
@@ -629,7 +627,7 @@
 	var/datum/effect_system/smoke_spread/smoke
 
 
-/obj/item/weapon/gun/launcher/rocket/New()
+/obj/item/weapon/gun/launcher/rocket/Initialize()
 	. = ..()
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	smoke = new()

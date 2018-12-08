@@ -91,7 +91,7 @@
 	force = 20
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_WIELDED_FIRING_ONLY
 
-/obj/item/weapon/gun/minigun/New(loc, spawn_empty)
+/obj/item/weapon/gun/minigun/Initialize(loc, spawn_empty)
 	. = ..()
 	if(current_mag && current_mag.current_rounds > 0) 
 		load_into_chamber()
@@ -165,7 +165,7 @@
 		last_regen = world.time
 		update_icon()
 
-/obj/item/weapon/gun/launcher/spike/New()
+/obj/item/weapon/gun/launcher/spike/Initialize()
 	. = ..()
 	processing_objects.Add(src)
 	last_regen = world.time
@@ -348,6 +348,6 @@
 	anchored = 1
 	density = 0
 
-/obj/effect/syringe_gun_dummy/New()
+/obj/effect/syringe_gun_dummy/Initialize()
 	create_reagents(15)
 	return ..()

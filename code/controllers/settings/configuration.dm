@@ -137,24 +137,6 @@
 	var/prisonstation_url
 	var/whiskeyoutpost_url
 
-/datum/configuration/New()
-	var/list/L = subtypesof(/datum/game_mode)
-	for(var/T in L)
-		// I wish I didn't have to instance the game modes in order to look up
-		// their information, but it is the only way (at least that I know of).
-		var/datum/game_mode/M = new T()
-
-		if (M.config_tag)
-			if(!(M.config_tag in modes))		// ensure each mode is added only once
-				log_misc("Adding game mode [M.name] ([M.config_tag]) to configuration.")
-				src.modes += M.config_tag
-				src.mode_names[M.config_tag] = M.name
-				src.probabilities[M.config_tag] = M.probability
-				if (M.votable)
-					src.votable_modes += M.config_tag
-		qdel(M)
-	src.votable_modes += "secret"
-
 /datum/configuration/proc/load(filename, type = "config") //the type can also be game_options, in which case it uses a different switch. not making it separate to not copypaste code - Urist
 	var/list/Lines = file2list(filename)
 
