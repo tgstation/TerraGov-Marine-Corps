@@ -261,7 +261,8 @@
 		var/obj/item/storage/S = master
 		var/obj/item/I = user.get_active_hand()
 		if(I)
-			master.attackby(I, user)
+			if(master.attackby(I, user))
+				user.next_move = world.time + 1
 			return TRUE
 
 		// Taking something out of the storage screen (including clicking on item border overlay)

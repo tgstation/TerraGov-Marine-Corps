@@ -30,12 +30,14 @@
 				do_click(TU, location, params)
 		return
 
-	//if (world.time <= next_click)
-		//DEBUG: to_chat(world, "FAIL! TIME:[world.time]   NEXT_CLICK:[next_click]    NEXT_MOVE: [next_move]")
-	//	return
+	/*
+	if (world.time <= next_click)
+		to_chat(world, "FAIL! TIME:[world.time]   NEXT_CLICK:[next_click]    NEXT_MOVE: [next_move]")
+		return
 
-	//next_click = world.time + 1
-	//DEBUG: to_chat(world, "SUCCESS! TIME:[world.time]   NEXT_CLICK:[next_click]     NEXT_MOVE: [next_move]")
+	next_click = world.time + 1
+	to_chat(world, "SUCCESS! TIME:[world.time]   NEXT_CLICK:[next_click]     NEXT_MOVE: [next_move]")
+	*/
 
 	var/list/mods = params2list(params)
 
@@ -84,18 +86,17 @@
 		return
 
 	// Don't allow doing anything else if inside a container of some sort, like a locker.
-	if (!isturf(loc))
+	if(!isturf(loc))
 		return
 
-	//if (world.time <= next_move)	// Attack click cooldown check
-		//DEBUG: to_chat(world, "FAIL! TIME:[world.time]   NEXT_CLICK:[next_click]    NEXT_MOVE: [next_move]")
-	//	return
+	if(world.time <= next_move)	// Attack click cooldown check
+		return
 
-	//next_move = world.time
-	// If standing next to the atom clicked.
-	if (A.Adjacent(src))
-		if (W)
-			if (W.attack_speed)
+	next_move = world.time
+
+	if(A.Adjacent(src))
+		if(W)
+			if(W.attack_speed && !istype(A, /obj/item/storage))
 				next_move += W.attack_speed
 			if (!A.attackby(W, src) && A && !A.gc_destroyed)
 				W?.afterattack(A, src, 1, mods) //The attackby could have made W dissappear, such as refilling mags on an ammo box.
@@ -106,7 +107,7 @@
 		return
 
 	// If not standing next to the atom clicked.
-	if (W)
+	if(W)
 		W.afterattack(A, src, 0, mods)
 		return
 
