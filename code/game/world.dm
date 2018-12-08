@@ -25,17 +25,12 @@
 		config.server_name += " #[(world.port % 1000) / 100]"
 
 	SetupLogs()
-
+	
 	callHook("startup")
-	//Emergency Fix
-	//end-emergency fix
 
 	src.update_status()
 
 	. = ..()
-
-	//TgsInitializationComplete()
-	//sleep_offline = 1
 
 	// Set up roundstart seed list. This is here because vendors were
 	// bugging out and not populating with the correct packet names
