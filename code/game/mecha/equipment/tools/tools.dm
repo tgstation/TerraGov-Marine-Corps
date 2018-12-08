@@ -250,7 +250,7 @@
 						if(disabled) return
 						chassis.spark_system.start()
 						playsound(target, 'sound/items/Deconstruct.ogg', 25, 1)
-						cdel(target)
+						qdel(target)
 						chassis.use_power(energy_drain)
 			if(1)
 				if(istype(target, /turf/open/space))

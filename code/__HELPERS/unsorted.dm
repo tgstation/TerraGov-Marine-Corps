@@ -1188,7 +1188,7 @@ var/global/image/busy_indicator_hostile
 							X.icon = 'icons/turf/shuttle.dmi'
 							X.icon_state = oldreplacetext(O.icon_state, "_f", "_s") // revert the turf to the old icon_state
 							X.name = "wall"
-							cdel(O) // prevents multiple shuttle corners from stacking
+							qdel(O) // prevents multiple shuttle corners from stacking
 							continue
 						if(!istype(O,/obj)) continue
 						O.loc = X

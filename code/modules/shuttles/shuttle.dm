@@ -199,7 +199,6 @@
 			if(istype(O, /obj/effect/landmark))
 				continue
 			qdel(O)
-		cdel(T)
 
 	for(var/mob/living/carbon/bug in destination)
 		bug.gib()
@@ -226,11 +225,11 @@
 		if(iselevator)
 			if(istype(T,/turf/open/space))
 				if(T.z == 3)
-					new /turf/open/floor/almayer/empty(T)
+					T.ChangeTurf(/turf/open/floor/almayer/empty)
 				else
-					new /turf/open/gm/empty(T)
+					T.ChangeTurf(/turf/open/gm/empty)
 		else if(istype(T,/turf/open/space))
-			new /turf/open/floor/plating(T)
+			T.ChangeTurf(/turf/open/floor/plating)
 
 	return
 
