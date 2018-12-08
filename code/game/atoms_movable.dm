@@ -34,9 +34,6 @@
 
 //===========================================================================
 
-/atom/movable/proc/initialize()
-	return
-
 /atom/movable/Move(NewLoc, direct)
 	/*
 	if (direct & (direct - 1)) //Diagonal move, split it into cardinal moves

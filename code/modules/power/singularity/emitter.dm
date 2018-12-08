@@ -46,7 +46,7 @@
 	src.dir = turn(src.dir, 90)
 	return 1
 
-/obj/machinery/power/emitter/initialize()
+/obj/machinery/power/emitter/Initialize()
 	..()
 	if(state == 2 && anchored)
 		connect_to_network()
