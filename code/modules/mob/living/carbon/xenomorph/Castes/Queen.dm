@@ -36,7 +36,7 @@
 	armor_deflection = 45
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 1.5 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/medium, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
@@ -75,7 +75,8 @@
 	armor_deflection = 50
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 1.5 SECONDS
+	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
 	aura_strength = 3
@@ -112,7 +113,8 @@
 	armor_deflection = 55
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 1.5 SECONDS
+	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade3, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
 	aura_strength = 4
@@ -149,7 +151,8 @@
 	armor_deflection = 60
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 1.5 SECONDS
+	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
 
 	// *** Pheromones *** //
 	aura_strength = 5

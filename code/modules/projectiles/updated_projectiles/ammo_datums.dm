@@ -1214,7 +1214,6 @@
 	icon_state = "sticky"
 	ping = null
 	flags_ammo_behavior = AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
-	added_spit_delay = 5
 	spit_cost = 40
 
 /datum/ammo/xeno/sticky/New()

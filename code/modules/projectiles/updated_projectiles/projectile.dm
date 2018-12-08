@@ -632,7 +632,10 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 					armor = max(0, armor - (xeno_caste.armor_deflection * config.xeno_armor_resist_low)) //Both facing same way -- ie. shooting from behind; armour reduced by 50% of base.
 				else
 					armor = max(0, armor - (xeno_caste.armor_deflection * config.xeno_armor_resist_lmed)) //Both facing same way -- ie. shooting from behind; armour reduced by 75% of base.
-			else if(P.dir == reverse_direction(charger.dir)) armor += round(xeno_caste.armor_deflection * config.xeno_armor_resist_low) //We are facing the bullet.
+			else if(P.dir == reverse_direction(charger.dir))
+				armor += round(xeno_caste.armor_deflection * config.xeno_armor_resist_low) //We are facing the bullet.
+			else if(isXenoCrusher(src))
+				armor = max(0, armor - (xeno_caste.armor_deflection * config.xeno_armor_resist_vlow)) //side armour eats a bit of shit if we're a Crusher
 			//Otherwise use the standard armor deflection for crushers.
 			#if DEBUG_XENO_DEFENSE
 			to_chat(world, "<span class='debuginfo'>Adjusted crest armor is: <b>[armor]</b></span>")
