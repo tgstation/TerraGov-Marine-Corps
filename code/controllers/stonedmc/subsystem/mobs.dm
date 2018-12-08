@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(mobs)
 	var/static/list/cubemonkeys = list()
 
 /datum/controller/subsystem/mobs/stat_entry()
-	..("P:[GLOB.mob_living_list.len]")
+	..("P:[living_mob_list.len]")
 
 /datum/controller/subsystem/mobs/proc/MaxZChanged()
 	if (!islist(clients_by_zlevel))
@@ -25,9 +25,7 @@ SUBSYSTEM_DEF(mobs)
 /datum/controller/subsystem/mobs/fire(resumed = 0)
 	var/seconds = wait * 0.1
 	if (!resumed)
-		src.currentrun = GLOB.mob_living_list.Copy()
-		if (GLOB.living_cameras.len)
-			src.currentrun += GLOB.living_cameras
+		src.currentrun = living_mob_list.Copy()
 
 	//cache for sanic speed (lists are references anyways)
 	var/list/currentrun = src.currentrun
@@ -38,6 +36,6 @@ SUBSYSTEM_DEF(mobs)
 		if(M)
 			M.Life(seconds, times_fired)
 		else
-			GLOB.mob_living_list.Remove(M)
+			living_mob_list.Remove(M)
 		if (MC_TICK_CHECK)
 			return

@@ -15,7 +15,7 @@ SUBSYSTEM_DEF(atoms)
 	var/list/BadInitializeCalls = list()
 
 /datum/controller/subsystem/atoms/Initialize(timeofday)
-	GLOB.fire_overlay.appearance_flags = RESET_COLOR
+	//GLOB.fire_overlay.appearance_flags = RESET_COLOR
 	//setupGenetics() //to set the mutations' place in structural enzymes, so monkey.initialize() knows where to put the monkey mutation.
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
@@ -142,7 +142,7 @@ SUBSYSTEM_DEF(atoms)
 /datum/controller/subsystem/atoms/Shutdown()
 	var/initlog = InitLog()
 	if(initlog)
-		text2file(initlog, "[GLOB.log_directory]/initialize.log")
+		text2file(initlog, "[log_directory]/initialize.log")
 
 #undef BAD_INIT_QDEL_BEFORE
 #undef BAD_INIT_DIDNT_INIT
