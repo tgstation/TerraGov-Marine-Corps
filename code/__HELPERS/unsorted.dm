@@ -997,10 +997,9 @@ var/global/image/busy_indicator_hostile
 	if(!istype(user) || delay <= 0)
 		return FALSE
 
-	if(busy_check)
-		if(user.action_busy)
-			to_chat(user, "<span class='warning'>You're already busy doing something!</span>")
-			return FALSE
+	if(busy_check && user.action_busy)
+		to_chat(user, "<span class='warning'>You're already busy doing something!</span>")
+		return FALSE
 
 	var/mob/living/L
 	if(istype(user, /mob/living)) L = user //No more doing things while you're in crit
