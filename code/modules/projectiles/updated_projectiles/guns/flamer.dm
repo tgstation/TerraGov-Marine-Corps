@@ -435,7 +435,7 @@
 		firelevel = fire_lvl
 	if(burn_lvl)
 		burnlevel = burn_lvl
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 	if(fire_spread_amount > 0)
 		var/turf/T
@@ -469,7 +469,7 @@
 
 /obj/flamer_fire/Destroy()
 	SetLuminosity(0)
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 

@@ -53,7 +53,7 @@
 	sleep(1)
 /obj/structure/machinegun/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 /obj/structure/machinegun/proc/shoot(var/turf/T)
 	if(ammo <= 0)

@@ -288,7 +288,7 @@
 		if(operator)
 			operator.unset_interaction()
 		SetLuminosity(0)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		. = ..()
 
 /obj/machinery/m56d_hmg/examine(mob/user) //Let us see how much ammo we got in this thing.

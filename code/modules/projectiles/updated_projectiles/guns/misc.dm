@@ -143,7 +143,7 @@
 
 /obj/item/weapon/gun/launcher/spike/Destroy()
 	. = ..()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 
 /obj/item/weapon/gun/launcher/spike/process()
 	if(spikes < max_spikes && world.time > last_regen + 100 && prob(70))
@@ -153,7 +153,7 @@
 
 /obj/item/weapon/gun/launcher/spike/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	last_regen = world.time
 	update_icon()
 	verbs -= /obj/item/weapon/gun/verb/field_strip //We don't want these to show since they're useless.

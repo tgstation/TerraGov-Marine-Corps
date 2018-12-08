@@ -28,7 +28,7 @@
 /obj/item/proc/is_used_on(obj/O, mob/user)
 
 /obj/process()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	return 0
 
 

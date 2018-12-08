@@ -94,7 +94,7 @@
 
 /obj/item/weapon/gun/energy/plasmarifle/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	last_regen = world.time
 	update_icon()
 	verbs -= /obj/item/weapon/gun/verb/field_strip
@@ -105,7 +105,7 @@
 
 /obj/item/weapon/gun/energy/plasmarifle/Destroy()
 	. = ..()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 
 
 /obj/item/weapon/gun/energy/plasmarifle/process()
@@ -208,7 +208,7 @@
 
 /obj/item/weapon/gun/energy/plasmapistol/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	verbs -= /obj/item/weapon/gun/verb/field_strip
 	verbs -= /obj/item/weapon/gun/verb/toggle_burst
 	verbs -= /obj/item/weapon/gun/verb/empty_mag
@@ -217,7 +217,7 @@
 
 /obj/item/weapon/gun/energy/plasmapistol/Destroy()
 	. = ..()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 
 
 /obj/item/weapon/gun/energy/plasmapistol/process()
