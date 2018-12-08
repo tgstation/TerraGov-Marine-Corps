@@ -51,13 +51,13 @@ Instead of being uniform, it starts out a littler slower, goes fast in the middl
 /proc/animation_horror_flick(atom/A, flash_color = "#000000", speed = 4)
 	animate(A, color = flash_color, time = speed)
 	animate(color = "#FFFFFF", time = speed)
-	var/image/reusable/I = rnew(/image/reusable, list('icons/mob/mob.dmi',A,"spook"))
+	var/image/I = image('icons/mob/mob.dmi',A,"spook")
 	I.flick_overlay(A,7)
 
 /proc/animation_blood_spatter(atom/A, flash_color = "#8A0707", speed = 4)
 	animate(A, color = flash_color, time = speed)
 	animate(color = "#FFFFFF", time = speed)
-	var/image/reusable/I = rnew(/image/reusable, list('icons/mob/mob.dmi',A,"blood_spatter"))
+	var/image/I = image('icons/mob/mob.dmi',A,"blood_spatter")
 	if(prob(50))
 		I.transform = matrix(rand(0,45), MATRIX_ROTATE)
 		I.pixel_x += rand(0,5)
@@ -93,7 +93,7 @@ proc/animation_teleport_magic_out(atom/A, speed = 6)
 	animate(A, transform = matrix(1.5, 0, MATRIX_SCALE), time = speed, easing = BACK_EASING)
 	animate(transform = matrix(0, 4, MATRIX_SCALE) * matrix(0, 6, MATRIX_TRANSLATE), color = "#FFFF00", time = speed, alpha = 100, easing = BOUNCE_EASING|EASE_IN)
 	animate(alpha = 0, time = speed)
-	var/image/reusable/I = rnew(/image/reusable, list('icons/effects/effects.dmi',A,"sparkle"))
+	var/image/I = image('icons/effects/effects.dmi',A,"sparkle")
 	I.flick_overlay(A,9)
 	return speed*3
 
@@ -103,7 +103,7 @@ proc/animation_teleport_magic_in(atom/A, speed = 6)
 	animate(A, alpha = 255, color = "#FFFF00", time = speed, easing = BACK_EASING)
 	animate(transform = matrix(1.5, 0, MATRIX_SCALE), color = "#FFFFFF", time = speed, easing = CIRCULAR_EASING|EASE_OUT)
 	animate(transform = null, time = speed-1)
-	var/image/reusable/I = rnew(/image/reusable, list('icons/effects/effects.dmi',A,"sparkle"))
+	var/image/I = image('icons/effects/effects.dmi',A,"sparkle")
 	I.flick_overlay(A,10)
 
 //A spooky teleport for evil dolls, horrors, and whatever else. Halloween type stuff.
@@ -111,7 +111,7 @@ proc/animation_teleport_spooky_out(atom/A, speed = 6, sleep_duration = 0)
 	animate(A, transform = matrix() * 1.5, color = "#551a8b", time = speed, easing = BACK_EASING)
 	animate(transform = matrix() * 0.2, alpha = 100, color = "#000000", time = speed, easing = BACK_EASING)
 	animate(alpha = 0, time = speed)
-	var/image/reusable/I = rnew(/image/reusable, list('icons/effects/effects.dmi',A,"spooky"))
+	var/image/I = image('icons/effects/effects.dmi',A,"spooky")
 	I.flick_overlay(A,9,RESET_COLOR|RESET_ALPHA|TILE_BOUND)
 	return speed*3
 
@@ -120,7 +120,7 @@ proc/animation_teleport_spooky_in(atom/A, speed = 4)
 	A.alpha = 0
 	animate(A, alpha = 255, color = "#551a8b", time = speed)
 	animate(transform = null, color = "#FFFFFF", time = speed, easing = QUAD_EASING|EASE_OUT)
-	var/image/reusable/I = rnew(/image/reusable, list('icons/effects/effects.dmi',A,"spooky"))
+	var/image/I = image('icons/effects/effects.dmi',A,"spooky")
 	I.flick_overlay(A,10)
 
 //Regular fadeout disappear, for most objects.
@@ -160,7 +160,7 @@ proc/animation_destruction_long_fade(atom/A, speed = 4, x_n = 4, y_n = 4)
 	animate(pixel_x = x_o+rand(-x_n, x_n), pixel_y = y_o+rand(-y_n, y_n), time = speed, easing = ELASTIC_EASING|EASE_IN)
 	animate(pixel_x = x_o, pixel_y = y_o, time = speed, easing = CIRCULAR_EASING|EASE_OUT)
 	animate(alpha = 0, color = "#808080", time = speed)
-	var/image/reusable/I = rnew(/image/reusable, list('icons/effects/effects.dmi',A,"red_particles"))
+	var/image/I = image('icons/effects/effects.dmi',A,"red_particles")
 	I.flick_overlay(A,25)
 	return speed*9
 

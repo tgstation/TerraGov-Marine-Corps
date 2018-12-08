@@ -55,7 +55,7 @@
 
 /obj/item/proc/place_offhand(var/mob/user,item_name)
 	to_chat(user, "<span class='notice'>You grab [item_name] with both hands.</span>")
-	var/obj/item/weapon/twohanded/offhand/offhand = rnew(/obj/item/weapon/twohanded/offhand, user)
+	var/obj/item/weapon/twohanded/offhand/offhand = new /obj/item/weapon/twohanded/offhand(user)
 	offhand.name = "[item_name] - offhand"
 	offhand.desc = "Your second grip on the [item_name]."
 	offhand.flags_item |= WIELDED

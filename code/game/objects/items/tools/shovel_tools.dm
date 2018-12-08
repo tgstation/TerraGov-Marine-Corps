@@ -27,7 +27,7 @@
 
 
 /obj/item/tool/shovel/update_icon()
-	var/image/reusable/I = rnew(/image/reusable, list(icon,src,dirt_overlay))
+	var/image/I = image(icon,src,dirt_overlay)
 	switch(dirt_type) // We can actually shape the color for what enviroment we dig up our dirt in.
 		if(DIRT_TYPE_GROUND) I.color = "#512A09"
 		if(DIRT_TYPE_MARS) I.color = "#FF5500"

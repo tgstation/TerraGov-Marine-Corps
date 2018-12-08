@@ -50,7 +50,7 @@
 		update_turf_overlay()
 
 /turf/open/floor/plating/plating_catwalk/proc/update_turf_overlay()
-	var/image/reusable/I = rnew(/image/reusable, list(icon, src, "catwalk", CATWALK_LAYER))
+	var/image/I = image(icon, src, "catwalk", CATWALK_LAYER)
 	switch(covered)
 		if(0)
 			overlays -= I

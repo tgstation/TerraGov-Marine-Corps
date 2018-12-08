@@ -47,7 +47,7 @@
 	playsound(user,'sound/weapons/flipblade.ogg', 25, 1)
 	lit = !lit
 
-	var/image/reusable/I = rnew(/image/reusable, list('icons/obj/items/gun.dmi', src, "+lit"))
+	var/image/I = image('icons/obj/items/gun.dmi', src, "+lit")
 	I.pixel_x += 3
 
 	if (lit)
