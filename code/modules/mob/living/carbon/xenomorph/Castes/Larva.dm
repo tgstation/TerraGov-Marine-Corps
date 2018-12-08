@@ -4,7 +4,6 @@
 	upgrade_name = ""
 	caste_desc = "D'awwwww, so cute!"
 	caste_type_path = /mob/living/carbon/Xenomorph/Larva
-	wound_type = "alien" //used to match appropriate wound overlays
 	tier = 0
 	upgrade = -1
 
@@ -42,6 +41,7 @@
 	tier = 0  //Larva's don't count towards Pop limits
 	upgrade = -1
 	gib_chance = 25
+	wound_type = "alien" //used to match appropriate wound overlays
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/xenohide,

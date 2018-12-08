@@ -71,7 +71,7 @@
 	var/acid_spray_range = 0
 	var/acid_spray_cooldown = 0
 
-	// *** Pheromones *** //	
+	// *** Pheromones *** //
 	var/aura_strength = 0 //The strength of our aura. Zero means we can't emit one
 	var/aura_allowed = list("frenzy", "warding", "recovery") //"Evolving" removed for the time being
 
@@ -83,7 +83,7 @@
 	var/toggle_agility_cooldown = 0
 
 	// *** Boiler Abilities *** //
-	var/bomb_strength = 0 
+	var/bomb_strength = 0
 	var/acid_delay = 0
 	var/bomb_delay = 0
 
@@ -244,7 +244,7 @@
 
 	var/cresttoss_used = FALSE
 
-	var/wound_type "ravager" //used to match appropriate wound overlays
+	var/wound_type = "ravager" //used to match appropriate wound overlays
 
 /datum/hive_status
 	var/hivenumber = XENO_HIVE_NORMAL

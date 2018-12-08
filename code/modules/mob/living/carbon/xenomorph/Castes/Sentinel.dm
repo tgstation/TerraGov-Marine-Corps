@@ -6,7 +6,6 @@
 	caste_type_path = /mob/living/carbon/Xenomorph/Sentinel
 	tier = 1
 	upgrade = 0
-	wound_type = "alien" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 15
@@ -155,6 +154,7 @@
 	upgrade = 0
 	speed = -0.8
 	pull_speed = -2
+	wound_type = "alien" //used to match appropriate wound overlays
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,

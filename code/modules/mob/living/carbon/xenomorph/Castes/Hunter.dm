@@ -3,7 +3,6 @@
 	display_name = "Hunter"
 	upgrade_name = "Young"
 	caste_desc = "A fast, powerful front line combatant."
-	wound_type = "alien" //used to match appropriate wound overlays
 
 	caste_type_path = /mob/living/carbon/Xenomorph/Hunter
 
@@ -13,7 +12,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
 	melee_damage_upper = 30
-	attack_delay = -1 
+	attack_delay = -1
 
 	// *** Tackle *** //
 	tackle_damage = 35
@@ -39,7 +38,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
-	armor_deflection = 10 
+	armor_deflection = 10
 
 	// *** Ranged Attack *** //
 	charge_type = 2 //Pounce - Hunter
@@ -140,7 +139,7 @@
 	armor_deflection = 20
 
 	// *** Ranged Attack *** //
-	pounce_delay = 10.0 SECONDS	
+	pounce_delay = 10.0 SECONDS
 
 /mob/living/carbon/Xenomorph/Hunter
 	caste_base_type = /mob/living/carbon/Xenomorph/Hunter
@@ -158,6 +157,7 @@
 	var/used_stealth = FALSE
 	var/stealth = FALSE
 	var/can_sneak_attack = FALSE
+	wound_type = "alien" //used to match appropriate wound overlays
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,

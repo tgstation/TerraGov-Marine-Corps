@@ -6,7 +6,6 @@
 	caste_type_path = /mob/living/carbon/Xenomorph/Runner
 	tier = 1
 	upgrade = 0
-	wound_type = "runner" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 10
@@ -32,7 +31,7 @@
 	evolution_threshold = 100
 	upgrade_threshold = 100
 
-	evolves_to = list(/mob/living/carbon/Xenomorph/Hunter) 
+	evolves_to = list(/mob/living/carbon/Xenomorph/Hunter)
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA
@@ -53,7 +52,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
 	melee_damage_upper = 30
-	attack_delay = -4 
+	attack_delay = -4
 
 	savage_cooldown = 30 SECONDS
 
@@ -88,7 +87,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 20
 	melee_damage_upper = 35
-	attack_delay = -4 
+	attack_delay = -4
 
 	savage_cooldown = 30 SECONDS
 
@@ -123,7 +122,7 @@
 	// *** Melee Attacks *** //
 	melee_damage_lower = 25
 	melee_damage_upper = 35
-	attack_delay = -4 
+	attack_delay = -4
 
 	savage_cooldown = 30 SECONDS
 
@@ -164,6 +163,7 @@
 	upgrade = 0
 	pixel_x = -16  //Needed for 2x2
 	old_x = -16
+	wound_type = "runner" //used to match appropriate wound overlays
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,

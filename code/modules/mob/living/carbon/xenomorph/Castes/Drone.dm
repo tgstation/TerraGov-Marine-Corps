@@ -4,7 +4,6 @@
 	upgrade_name = "Young"
 	caste_desc = "A builder of hives. Only drones may evolve into Queens."
 	caste_type_path = /mob/living/carbon/Xenomorph/Drone
-	wound_type = "alien" //used to match appropriate wound overlays
 
 	tier = 1
 	upgrade = 0
@@ -14,7 +13,7 @@
 	melee_damage_upper = 16
 
 	// *** Tackle *** //
-	tackle_damage = 25 
+	tackle_damage = 25
 
 	// *** Speed *** //
 	speed = -0.8
@@ -27,7 +26,7 @@
 	max_health = 120
 
 	// *** Evolution *** //
-	evolution_threshold = 100 
+	evolution_threshold = 100
 	upgrade_threshold = 100
 
 	evolves_to = list(/mob/living/carbon/Xenomorph/Queen, /mob/living/carbon/Xenomorph/Carrier, /mob/living/carbon/Xenomorph/Hivelord)
@@ -40,7 +39,7 @@
 	// *** Defense *** //
 	armor_deflection = 0
 
-	// *** Pheromones *** //	
+	// *** Pheromones *** //
 	aura_strength = 0.5 //Drone's aura is the weakest. At the top of their evolution, it's equivalent to a Young Queen Climbs by 0.5 to 2
 	aura_allowed = list("frenzy", "warding", "recovery")
 
@@ -73,8 +72,8 @@
 	// *** Defense *** //
 	armor_deflection = 5
 
-	// *** Pheromones *** //	
-	aura_strength = 1 
+	// *** Pheromones *** //
+	aura_strength = 1
 
 /datum/xeno_caste/drone/elite
 	upgrade_name = "Elite"
@@ -105,7 +104,7 @@
 	// *** Defense *** //
 	armor_deflection = 10
 
-	// *** Pheromones *** //	
+	// *** Pheromones *** //
 	aura_strength = 1.5
 
 /datum/xeno_caste/drone/ancient
@@ -134,9 +133,9 @@
 	// *** Defense *** //
 	armor_deflection = 15
 
-	// *** Pheromones *** //	
+	// *** Pheromones *** //
 	aura_strength = 2
-					
+
 /mob/living/carbon/Xenomorph/Drone
 	caste_base_type = /mob/living/carbon/Xenomorph/Drone
 	name = "Drone"
@@ -152,6 +151,7 @@
 	pixel_x = 0
 	old_x = 0
 	pull_speed = -2
+	wound_type = "alien" //used to match appropriate wound overlays
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
