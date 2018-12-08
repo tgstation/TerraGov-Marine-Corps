@@ -171,7 +171,7 @@
 			var/xenos = total[2]
 			var/bioscan_scaling_factor = xenos / max(marines, 1)
 			bioscan_scaling_factor = max(bioscan_scaling_factor, 0.25)
-			bioscan_scaling_factor = min(bioscan_scaling_factor, 1) //We don't want it to take super-long
+			bioscan_scaling_factor = min(bioscan_scaling_factor, 1.5) //We don't want it to take super-long
 			bioscan_current_interval += bioscan_ongoing_interval * bioscan_scaling_factor //Add to the interval based on our set interval time.
 
 		if(++round_checkwin >= 5) //Only check win conditions every 5 ticks.
