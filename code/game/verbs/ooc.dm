@@ -69,7 +69,7 @@ var/global/normal_ooc_colour = "#002eb8"
 			if("Maintainer")
 				display_colour = "#0064ff"	//different light blue
 			if("Contributor")
-				display_colour = "#0042c7"	//VERY slightly different light blue
+				display_colour = "#1e4cd6"	//VERY slightly different light blue
 			else
 				display_colour = "#643200"	//brown, mostly /tg/ folks
 
