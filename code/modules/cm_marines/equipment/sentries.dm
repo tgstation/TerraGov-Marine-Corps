@@ -998,7 +998,7 @@
 		rotate.Translate(0, 5)
 		rotate.Turn(angle)
 		I.transform = rotate
-		I.flick_overlay(src, 3)
+		flick_overlay_view(I, src, 3)
 
 /obj/machinery/marine_turret/proc/get_target()
 	var/list/targets = list()

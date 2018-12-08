@@ -524,8 +524,7 @@
 		rotate.Translate(0,5)
 		rotate.Turn(angle)
 		I.transform = rotate
-
-		I.flick_overlay(src, 3)
+		flick_overlay_view(I, src, 3)
 
 /obj/machinery/m56d_hmg/MouseDrop(over_object, src_location, over_location) //Drag the MG to us to man it.
 	if(!ishuman(usr)) return
