@@ -28,39 +28,39 @@ SUBSYSTEM_DEF(machines)
 
 
 /datum/controller/subsystem/machines/fire(resumed = 0)
-	if (!resumed)
-		for(var/datum/powernet/Powernet in powernets)
-			Powernet.reset() //reset the power state.
-		src.currentrun = processing.Copy()
+	for(var/obj/machinery/M in processing_machines)
+		if(istype(M) && M.process())// != PROCESS_KILL) //Doesn't actually have a process, just remove it.
+			continue
 
-	//cache for sanic speed (lists are references anyways)
-	var/list/currentrun = src.currentrun
+	// O(n^3) complexity. No wonder this is slower than shit. TODO: Get rid of one of these loops somehow. ~Bmc777
+	var/i=1
+	while(i<=active_areas.len)
+		var/area/A = active_areas[i]
+		if(A.master == A)
+			if(A.powerupdate)
+				A.powerupdate -= 1
+				A.clear_usage()
+				for(var/obj/machinery/M in A.area_machines) // should take it to O(n^2) and hopefully less expensive.
+					if(M)
+						//check if the area has power for M's channel
+						//this will keep stat updated in case the machine is moved from one area to another.
+						M.power_change(A)	//we've already made sure A is a master area, above.
 
-	var/seconds = wait * 0.1
-	while(currentrun.len)
-		var/obj/machinery/thing = currentrun[currentrun.len]
-		currentrun.len--
-		if(!QDELETED(thing) && thing.process(seconds) != PROCESS_KILL)
-			if(thing.use_power)
-				thing.auto_use_power() //add back the power state
-		else
-			processing -= thing
-			if (!QDELETED(thing))
-				thing.datum_flags &= ~DF_ISPROCESSING
-		if (MC_TICK_CHECK)
-			return
+						if(!(M.stat & NOPOWER) && M.use_power)
+							M.auto_use_power()
 
-// Unused
-/*/datum/controller/subsystem/machines/proc/setup_template_powernets(list/cables)
-	for(var/A in cables)
-		var/obj/structure/cable/PC = A
-		if(!PC.powernet)
-			var/datum/powernet/NewPN = new()
-			NewPN.add_cable(PC)
-			propagate_network(PC,PC.powernet)*/
+			if(A.apc.len)
+				i++
+				continue
 
-/datum/controller/subsystem/machines/Recover()
-	if (istype(SSmachines.processing))
-		processing = SSmachines.processing
-	if (istype(SSmachines.powernets))
-		powernets = SSmachines.powernets
+		A.powerupdate = 0
+		active_areas.Cut(i,i+1)
+
+	i = 1
+	while(i<=powernets.len)
+		var/datum/powernet/Powernet = powernets[i]
+		if(Powernet)
+			Powernet.process()
+			i++
+			continue
+		powernets.Cut(i,i+1)

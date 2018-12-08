@@ -1,6 +1,6 @@
 //TODO: rewrite and standardise all controller datums to the datum/controller type
 //TODO: allow all controllers to be deleted for clean restarts (see WIP master controller stuff) - MC done - lighting done
-
+/*
 /client/proc/restart_controller(controller in list("Lighting","Supply"))
 	set category = "Debug"
 	set name = "Restart Controller"
@@ -18,7 +18,7 @@
 			supply_controller.process()
 			feedback_add_details("admin_verb","RSupply")
 	message_admins("Admin [key_name_admin(usr)] has restarted the [controller] controller.")
-	return
+	return*/
 
 /client/proc/debug_controller(controller in list("Ticker","Lighting","Air","Jobs","Sun","Radio","Supply","Shuttles","Configuration","Cameras", "Transfer Controller", "Gas Data"))
 	set category = "Debug"

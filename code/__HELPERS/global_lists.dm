@@ -59,6 +59,8 @@ var/global/list/active_laser_targets = list()
 var/global/list/active_orbital_beacons = list()
 var/global/list/active_supply_beacons = list()
 
+var/global/world_qdel_log
+
 //Used by Queen overwatch
 //var/global/list/xeno_leader_list = list() - moved to hive_datum
 
@@ -206,6 +208,3 @@ var/global/list/moth_wings_list = list()
 	for(var/path in subtypesof(prototype))
 		L += new path()
 	return L
-
-GLOBAL_VAR(world_qdel_log)
-GLOBAL_PROTECT(world_qdel_log)
