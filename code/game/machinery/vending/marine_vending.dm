@@ -267,7 +267,7 @@
 
 /obj/machinery/vending/MarineMed
 	name = "\improper MarineMed"
-	desc = "Marine Medical Drug Dispenser - Provided by Weyland-Yutani Pharmaceuticals Division(TM)"
+	desc = "Marine Medical Drug Dispenser - Provided by Nanotrasen Pharmaceuticals Division(TM)"
 	icon_state = "marinemed"
 	icon_deny = "marinemed-deny"
 	product_ads = "Go save some lives!;The best stuff for your medbay.;Only the finest tools.;All natural chemicals!;This stuff saves lives.;Don't you want some?;Ping!"
@@ -531,7 +531,6 @@
 /obj/machinery/vending/attachments
 	name = "\improper Armat Systems Attachments Vendor"
 	desc = "A subsidiary-owned vendor of weapon attachments. This can only be accessed by the Requisitions Officer and Cargo Techs."
-	hacking_safety = 1
 	product_ads = "If it moves, it's hostile!;How many enemies have you killed today?;Shoot first, perform autopsy later!;Your ammo is right here.;Guns!;Die, scumbag!;Don't shoot me bro!;Shoot them, bro.;Why not have a donut?"
 	req_access = list(ACCESS_MARINE_CARGO)
 	icon_state = "robotics"

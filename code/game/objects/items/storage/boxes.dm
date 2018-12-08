@@ -543,7 +543,7 @@
 
 /obj/item/storage/box/m94
 	name = "\improper M94 marking flare pack"
-	desc = "A packet of five M94 Marking Flares. Carried by USCM soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp."
+	desc = "A packet of five M94 Marking Flares. Carried by TGMC soldiers to light dark areas that cannot be reached with the usual TNR Shoulder Lamp."
 	icon_state = "m94"
 	w_class = 3
 	max_storage_space = 10
@@ -647,7 +647,7 @@
 
 
 /obj/item/storage/box/MRE
-	name = "\improper USCM MRE"
+	name = "\improper TGMC MRE"
 	desc = "Meal Ready-to-Eat, meant to be consumed in the field, and has an expiration that is two decades past a marine's average combat life expectancy."
 	icon_state = "mealpack"
 	w_class = 2

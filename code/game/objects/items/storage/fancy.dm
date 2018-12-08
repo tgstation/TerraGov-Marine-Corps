@@ -167,8 +167,8 @@
 		..()
 
 /obj/item/storage/fancy/cigarettes/dromedaryco
-	name = "\improper Weyland Yutani Gold packet"
-	desc = "Building better worlds, and rolling better cigarettes. These fancy cigarettes are Weyland Yutani's entry into the market. Comes backed by a fierce legal team."
+	name = "\improper Nanotrasen Gold packet"
+	desc = "Building better worlds, and rolling better cigarettes. These fancy cigarettes are Nanotrasen's entry into the market. Comes backed by a fierce legal team."
 	icon_state = "wypacket"
 	item_state = "wypacket"
 
