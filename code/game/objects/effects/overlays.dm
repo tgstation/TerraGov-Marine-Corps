@@ -219,4 +219,4 @@
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
-	..()
+	return ..()
