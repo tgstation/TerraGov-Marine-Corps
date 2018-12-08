@@ -59,6 +59,9 @@ Pipelines + Other Objects -> Pipe network
 	stop_processing()
 	. = ..()
 
+/obj/machinery/atmospherics/proc/initialize() // temporary until someone unfucks atmos
+	return
+
 /obj/machinery/atmospherics/power_change()
 	return // overriding this for pipes etc, powered stuff overrides this.
 
