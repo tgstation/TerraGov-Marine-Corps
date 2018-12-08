@@ -199,10 +199,12 @@
 	set name = "View Admin Remarks"
 	set category = "OOC"
 
-	var/key = usr.ckey
+	var/key = usr.key
 
 	var/dat = "<html><head><title>Info on [key]</title></head>"
 	dat += "<body>"
+
+	key = ckey(key)
 
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos

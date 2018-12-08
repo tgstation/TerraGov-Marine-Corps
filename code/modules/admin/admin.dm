@@ -222,16 +222,19 @@ var/global/respawntime = 15
 /datum/admins/proc/player_notes_list()
 	set category = "Admin"
 	set name = "Player Notes List"
-	if (!istype(src,/datum/admins))
+
+	if(!istype(src,/datum/admins))
 		src = usr.client.holder
-	if (!istype(src,/datum/admins))
+
+	if(!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
+
 	PlayerNotesPage(1)
 
 /datum/admins/proc/PlayerNotesPage(page)
 	var/dat = "<B>Player notes</B><HR>"
-	var/savefile/S=new("data/player_notes.sav")
+	var/savefile/S = new("data/player_notes.sav")
 	var/list/note_keys
 	S >> note_keys
 	if(!note_keys)
@@ -280,13 +283,18 @@ var/global/respawntime = 15
 /datum/admins/proc/player_notes_show(var/key as text)
 	set category = "Admin"
 	set name = "Player Notes Show"
-	if (!istype(src,/datum/admins))
+
+	if(!istype(src, /datum/admins))
 		src = usr.client.holder
-	if (!istype(src,/datum/admins))
+
+	if(!istype(src, /datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
+
 	var/dat = "<html><head><title>Info on [key]</title></head>"
 	dat += "<body>"
+
+	key = ckey(key)
 
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos

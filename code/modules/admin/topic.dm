@@ -2459,7 +2459,7 @@
 		if(!ckey)
 			var/mob/M = locate(href_list["mob"])
 			if(ismob(M))
-				ckey = M.ckey
+				ckey = M.key
 
 		switch(href_list["notes"])
 			if("show")
