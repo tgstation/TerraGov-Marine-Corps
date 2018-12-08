@@ -26,8 +26,8 @@
 	//to_chat(M, "<B>you have spent most of your military career holed up in crammed quarters in near darkness, waiting for supply shipments and transport escort deployments.</B>")
 	to_chat(M, "")
 	to_chat(M, "")
-	to_chat(M, "<B>With the recent arrival of the enemy USCM battalion the 'Falling Falcons' and their flagship, the [MAIN_SHIP_NAME], the UPP has felt threatened in the sector. </B>")
-	to_chat(M, "<B>In an effort to protect the vunerable MV-35 from the emproaching UA/USCM imperialists, the leadership of your battalion has opted this the best opportunity to strike at the Falling Falcons to catch them off guard. </B>")
+	to_chat(M, "<B>With the recent arrival of the enemy TGMC battalion the 'Falling Falcons' and their flagship, the [MAIN_SHIP_NAME], the UPP has felt threatened in the sector. </B>")
+	to_chat(M, "<B>In an effort to protect the vunerable MV-35 from the emproaching TGMC imperialists, the leadership of your battalion has opted this the best opportunity to strike at the Falling Falcons to catch them off guard. </B>")
 	to_chat(M, "")
 	to_chat(M, "")
 	to_chat(M, "<font size='3'>\red Glory to Colonel Ganbaatar.</font>")
@@ -69,20 +69,20 @@
 			mob.set_everything(mob, "UPP Commando Leader")
 			J.generate_equipment(mob)
 			J.generate_entry_conditions(mob)
-			to_chat(mob, "<font size='3'>\red You are a commando officer of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>")
+			to_chat(mob, "<font size='3'>\red You are a commando officer of the Union of Progressive People, a powerful socialist state that rivals the TerraGov. </B>")
 		else if(medics < max_medics)
 			var/datum/job/J = new /datum/job/upp/commando/medic
 			mob.set_everything(mob, "UPP Commando Medic")
 			J.generate_equipment(mob)
 			J.generate_entry_conditions(mob)
-			to_chat(mob, "<font size='3'>\red You are a commando medic of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>")
+			to_chat(mob, "<font size='3'>\red You are a commando medic of the Union of Progressive People, a powerful socialist state that rivals the TerraGov. </B>")
 			medics++
 		else
 			var/datum/job/J = new /datum/job/upp/commando/leader
 			mob.set_everything(mob, "UPP Commando Standard")
 			J.generate_equipment(mob)
 			J.generate_entry_conditions(mob)
-			to_chat(mob, "<font size='3'>\red You are a commando of the Union of Progressive People, a powerful socialist state that rivals the United Americas. </B>")
+			to_chat(mob, "<font size='3'>\red You are a commando of the Union of Progressive People, a powerful socialist state that rivals the TerraGov. </B>")
 		print_backstory(mob)
 
 	spawn(10)
