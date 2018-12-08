@@ -1163,9 +1163,9 @@
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/M, obj/item/projectile/P)
 	if(!istype(M))
 		return ..()
-		var/mob/living/carbon/C = M
-		if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
-			return
+	var/mob/living/carbon/C = M
+	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
+		return
 	return ..()
 
 /datum/ammo/xeno/toxin/upgrade1
