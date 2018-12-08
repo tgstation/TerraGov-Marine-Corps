@@ -27,7 +27,7 @@
 	var/current_bulletholes = 0
 	var/bullethole_increment = 1
 	var/bullethole_state = 0
-	var/image/reusable/bullethole_overlay
+	var/image/bullethole_overlay
 
 	var/max_temperature = 1800 //K, walls will take damage if they're next to a fire hotter than this
 
@@ -173,7 +173,7 @@
 		overlays -= bullethole_overlay
 		if(!bullethole_overlay)
 			bullethole_state = rand(1, BULLETHOLE_STATES)
-			bullethole_overlay = rnew(/image/reusable, list('icons/effects/bulletholes.dmi', src, "bhole_[bullethole_state]_[bullethole_increment]"))
+			bullethole_overlay = image('icons/effects/bulletholes.dmi', src, "bhole_[bullethole_state]_[bullethole_increment]")
 			//for(var/mob/M in view(7)) to_chat(M, bullethole_overlay)
 		if(cur_increment(current_bulletholes) > bullethole_increment) bullethole_overlay.icon_state = "bhole_[bullethole_state]_[++bullethole_increment]"
 

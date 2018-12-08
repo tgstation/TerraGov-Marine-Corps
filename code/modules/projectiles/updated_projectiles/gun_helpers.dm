@@ -443,14 +443,14 @@ should be alright.
 
 
 /obj/item/weapon/gun/proc/update_overlays(obj/item/attachable/A, slot)
-	var/image/reusable/I = attachable_overlays[slot]
+	var/image/I = attachable_overlays[slot]
 	overlays -= I
 	cdel(I)
 	if(A) //Only updates if the attachment exists for that slot.
 		var/item_icon = A.icon_state
 		if(A.attach_icon)
 			item_icon = A.attach_icon
-		I = rnew(/image/reusable, list(A.icon,src, item_icon))
+		I = image(A.icon,src, item_icon)
 		I.pixel_x = attachable_offset["[slot]_x"] - A.pixel_shift_x
 		I.pixel_y = attachable_offset["[slot]_y"] - A.pixel_shift_y
 		attachable_overlays[slot] = I
@@ -460,11 +460,11 @@ should be alright.
 
 
 /obj/item/weapon/gun/proc/update_mag_overlay()
-	var/image/reusable/I = attachable_overlays["mag"]
+	var/image/I = attachable_overlays["mag"]
 	overlays -= I
 	cdel(I)
 	if(current_mag && current_mag.bonus_overlay)
-		I = rnew(/image/reusable, list(current_mag.icon,src,current_mag.bonus_overlay))
+		I = image(current_mag.icon,src,current_mag.bonus_overlay)
 		attachable_overlays["mag"] = I
 		overlays += I
 	else
@@ -474,7 +474,7 @@ should be alright.
 /obj/item/weapon/gun/proc/update_special_overlay(new_icon_state)
 	overlays -= attachable_overlays["special"]
 	cdel(attachable_overlays["special"])
-	var/image/reusable/I = rnew(/image/reusable, list(icon,src,new_icon_state))
+	var/image/I = image(icon,src,new_icon_state)
 	attachable_overlays["special"] = I
 	overlays += I
 
