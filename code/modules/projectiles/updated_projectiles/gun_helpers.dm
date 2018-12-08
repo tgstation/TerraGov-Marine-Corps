@@ -241,7 +241,7 @@ should be alright.
 		var/mob/living/carbon/human/owner = user
 		if(has_attachment(/obj/item/attachable/magnetic_harness) || istype(src,/obj/item/weapon/gun/smartgun))
 			var/obj/item/I = owner.wear_suit
-			if(istype(I,/obj/item/clothing/suit/storage/marine))
+			if(istype(I,/obj/item/clothing/suit/storage/marine) || istype(I, /obj/item/clothing/suit/armor))
 				harness_return(user)
 				return 1
 
@@ -739,10 +739,18 @@ should be alright.
 		A.ui_action_click(usr, src)
 
 
+/obj/item/weapon/gun/verb/toggle_rail_attachment()
+	set category = "Weapons"
+	set name = "Toggle Rail Attachment"
+	set desc = "Uses the rail attachement currently attached to the gun."
+
+	if(!usr)
+		return
+
+	rail?.activate_attachment(src, usr)
 
 
-
-obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
+/obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
 	if(slot != WEAR_L_HAND && slot != WEAR_R_HAND)
 		return FALSE
 	return TRUE

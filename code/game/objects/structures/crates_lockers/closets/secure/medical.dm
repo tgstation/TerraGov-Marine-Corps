@@ -73,6 +73,9 @@
 		new /obj/item/storage/pouch/syringe(src)
 		new /obj/item/storage/pouch/medkit(src)
 		new /obj/item/storage/pouch/medkit(src)
+		new /obj/item/clothing/suit/surgical(src)
+		new /obj/item/clothing/suit/surgical(src)
+		new /obj/item/clothing/tie/storage/white_vest(src)
 		if(z == MAIN_SHIP_Z_LEVEL)
 			new /obj/item/device/radio/headset/almayer/doc(src)
 		return
@@ -106,6 +109,8 @@
 		new /obj/item/storage/pouch/medical(src)
 		new /obj/item/storage/pouch/syringe(src)
 		new /obj/item/storage/pouch/medkit(src)
+		new /obj/item/clothing/suit/surgical(src)
+		new /obj/item/clothing/tie/storage/white_vest(src)
 
 
 

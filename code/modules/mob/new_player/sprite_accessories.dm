@@ -103,10 +103,6 @@
 	name = "Shoulder-length Hair Alt"
 	icon_state = "hair_longfringe"
 
-/datum/sprite_accessory/hair/longish
-	name = "Longer Hair"
-	icon_state = "hair_b2"
-
 /datum/sprite_accessory/hair/longer
 	name = "Long Hair"
 	icon_state = "hair_vlong"

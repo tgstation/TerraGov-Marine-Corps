@@ -1,7 +1,7 @@
 /datum/job/pmc
 	special_role = "PMC"
-	comm_title = "WY"
-	faction = "Weyland-Yutani"
+	comm_title = "NT"
+	faction = "Nanotrasen"
 	supervisors = "the team leader"
 	idtype = /obj/item/card/id/centcom
 	skills_type = /datum/skills/pfc/crafty

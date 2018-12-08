@@ -407,7 +407,7 @@ var/list/slot_equipment_priority = list( \
 		msg_admin_attack("[key_name(src)] grabbed [key_name(M)]" )
 
 		if(!no_msg)
-			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>", null, null, 5)
+			visible_message("<span class='warning'>[src] has grabbed [M] [((istype(src, /mob/living/carbon/human) && istype(M, /mob/living/carbon/human)) && (zone_selected == "l_hand" || zone_selected == "r_hand")) ? "by their hands":"passively"]!</span>", null, null, 5)
 
 		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))
 			G.icon_state = "!reinforce"

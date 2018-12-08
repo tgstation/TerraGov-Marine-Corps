@@ -34,7 +34,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA
-	
+
 	// *** Defense *** //
 	armor_deflection = 20
 
@@ -48,14 +48,13 @@
 	fortify_cooldown = 200
 	crest_defense_armor = 35
 	fortify_armor = 70
-	cresttoss_cooldown = 6 SECONDS
 
 /datum/xeno_caste/defender/mature
 	upgrade_name = "Mature"
 	caste_desc = "An alien with an armored head crest. It looks a little more dangerous."
 	upgrade = 1
 
-	// *** Melee Attacks *** //	
+	// *** Melee Attacks *** //
 	melee_damage_lower = 20
 	melee_damage_upper = 30
 
@@ -87,7 +86,7 @@
 	caste_desc = "An alien with an armored head crest. It looks pretty strong."
 	upgrade = 2
 
-	// *** Melee Attacks *** //	
+	// *** Melee Attacks *** //
 	melee_damage_lower = 23
 	melee_damage_upper = 33
 
@@ -120,7 +119,7 @@
 	upgrade = 3
 	ancient_message = "You are a incredibly resilient, you can control the battle through sheer force."
 
-	// *** Melee Attacks *** //	
+	// *** Melee Attacks *** //
 	melee_damage_lower = 26
 	melee_damage_upper = 36
 

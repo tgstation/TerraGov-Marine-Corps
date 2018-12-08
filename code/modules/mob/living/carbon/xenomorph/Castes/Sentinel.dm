@@ -9,8 +9,8 @@
 	wound_type = "alien" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 10
-	melee_damage_upper = 20
+	melee_damage_lower = 15
+	melee_damage_upper = 25
 
 	// *** Tackle *** //
 	tackle_damage = 25
@@ -38,7 +38,7 @@
 	armor_deflection = 15
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin)
 
 /datum/xeno_caste/sentinel/mature
@@ -55,11 +55,11 @@
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = -0.9
+	speed = -0.95
 
 	// *** Plasma *** //
-	plasma_max = 400
-	plasma_gain = 12
+	plasma_max = 450
+	plasma_gain = 15
 
 	// *** Health *** //
 	max_health = 180
@@ -68,10 +68,10 @@
 	upgrade_threshold = 200
 
 	// *** Defense *** //
-	armor_deflection = 15
+	armor_deflection = 20
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/upgrade1)
 
 /datum/xeno_caste/sentinel/elder
@@ -81,18 +81,18 @@
 	upgrade = 2
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 25
-	melee_damage_upper = 30
+	melee_damage_lower = 23
+	melee_damage_upper = 33
 
 	// *** Tackle *** //
 	tackle_damage = 35
 
 	// *** Speed *** //
-	speed = -1.0
+	speed = -1.05
 
 	// *** Plasma *** //
-	plasma_max = 500
-	plasma_gain = 15
+	plasma_max = 550
+	plasma_gain = 18
 
 	// *** Health *** //
 	max_health = 190
@@ -101,10 +101,10 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor_deflection = 20
+	armor_deflection = 23
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/upgrade2)
 
 /datum/xeno_caste/sentinel/ancient
@@ -134,10 +134,10 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor_deflection = 20
+	armor_deflection = 25
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.5 SECONDS
+	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/upgrade3)
 
 /mob/living/carbon/Xenomorph/Sentinel

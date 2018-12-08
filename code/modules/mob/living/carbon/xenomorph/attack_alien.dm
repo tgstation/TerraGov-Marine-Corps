@@ -209,6 +209,8 @@
 				M.visible_message("<span class='danger'>\The [M] slams [src] to the ground!</span>", \
 				"<span class='danger'>You slam [src] to the ground!</span>", null, 5)
 
+			var/armor_block = run_armor_check("chest", "melee")
+
 			playsound(loc, 'sound/weapons/alien_knockdown.ogg', 25, 1)
 
 			var/tackle_pain = (rand(M.xeno_caste.tackle_damage * 0.20, M.xeno_caste.tackle_damage * 0.80) + rand(M.xeno_caste.tackle_damage * 0.20, M.xeno_caste.tackle_damage * 0.80))
@@ -219,13 +221,13 @@
 			if(M.stealth_router(HANDLE_STEALTH_CHECK))
 				if(M.stealth_router(HANDLE_SNEAK_ATTACK_CHECK))
 					KnockOut(2)
-					tackle_pain *= 2 //Halloss multiplied by 2.
+					tackle_pain *= 3 //Halloss multiplied by 3.
 					M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
 					"<span class='danger'>You strike [src] with vicious precision!</span>")
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 			if(dam_bonus)
 				tackle_pain += dam_bonus
-			apply_damage(tackle_pain, HALLOSS)
+			apply_damage(tackle_pain, HALLOSS, "chest", armor_block * 0.5) //Only half armour applies vs tackle
 			updatehealth()
 			updateshock()
 			var/throttle_message = "<span class='danger'>The [M] throttles [src]!</span>"

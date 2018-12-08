@@ -321,12 +321,12 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	get_data()
 		var/dat = {"
 <b>Implant Specifications:</b><BR>
-<b>Name:</b> Weyland Yutani Employee Management Implant<BR>
+<b>Name:</b> Nanotrasen Employee Management Implant<BR>
 <b>Life:</b> Ten years.<BR>
-<b>Important Notes:</b> Personnel injected are marked as WY property and are subject to WY overwatch.<BR>
+<b>Important Notes:</b> Personnel injected are marked as NT property and are subject to NT overwatch.<BR>
 <HR>
 <b>Implant Details:</b><BR>
-<b>Function:</b> Marks the host as WY property and allow special monitoring functions.<BR>
+<b>Function:</b> Marks the host as NT property and allow special monitoring functions.<BR>
 <b>Special Features:</b> Will make the host more resistent to brainwashing techniques.<BR>
 <b>Integrity:</b> Implant will last approximately ten years."}
 		return dat
@@ -335,7 +335,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 		if(!ishuman(M))	return
 		if(isYautja(M)) return
 		var/mob/living/carbon/human/H = M
-		to_chat(H, "<span class='notice'>You are now tagged as a WY loyalist and will be monitored by their central headquarters. You retain your free will and mental faculties.</span>")
+		to_chat(H, "<span class='notice'>You are now tagged as a NT loyalist and will be monitored by their central headquarters. You retain your free will and mental faculties.</span>")
 		return 1
 
 /obj/item/implant/adrenalin

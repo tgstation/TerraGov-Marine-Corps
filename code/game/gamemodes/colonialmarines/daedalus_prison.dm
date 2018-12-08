@@ -108,7 +108,7 @@
 	defer_powernet_rebuild = 2 //Build powernets a little bit later, it lags pretty hard.
 
 	spawn (50)
-		command_announcement.Announce("Weyland-Yutani have requested we investigate their Daedalus Prison Facility after  communications were lost recently. [MAIN_SHIP_NAME] has been dispatched to investigate.", "[MAIN_SHIP_NAME]")
+		command_announcement.Announce("Nanotrasen have requested we investigate their Daedalus Prison Facility after  communications were lost recently. [MAIN_SHIP_NAME] has been dispatched to investigate.", "[MAIN_SHIP_NAME]")
 
 
 /datum/game_mode/prison_rescue/proc/transform_xeno(var/datum/mind/ghost)

@@ -40,6 +40,9 @@
 	// *** Defense *** //
 	armor_deflection = 80
 
+	// *** Crusher Abilities *** //
+	cresttoss_cooldown = 6 SECONDS
+
 /datum/xeno_caste/crusher/mature
 	upgrade_name = "Mature"
 	caste_desc = "A huge tanky xenomorph. It looks a little more dangerous."
