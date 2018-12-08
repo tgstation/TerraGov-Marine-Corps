@@ -6,11 +6,12 @@
 	caste_type_path = /mob/living/carbon/Xenomorph/Runner
 	tier = 1
 	upgrade = 0
+	wound_type = "runner" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 10
 	melee_damage_upper = 20
-	attack_delay = -4 
+	attack_delay = -4
 
 	savage_cooldown = 30 SECONDS
 

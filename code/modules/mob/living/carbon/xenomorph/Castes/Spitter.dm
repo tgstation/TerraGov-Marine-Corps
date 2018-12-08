@@ -6,13 +6,14 @@
 	caste_type_path = /mob/living/carbon/Xenomorph/Spitter
 	tier = 2
 	upgrade = 0
+	wound_type = "alien" //used to match appropriate wound overlays
 
 	// *** Melee Attacks *** //
 	melee_damage_lower = 15
 	melee_damage_upper = 25
 
 	// *** Tackle *** //
-	tackle_damage = 30 
+	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = -0.5

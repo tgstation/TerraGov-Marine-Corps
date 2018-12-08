@@ -162,6 +162,7 @@
 	tier = 1
 	upgrade = 0
 	pull_speed = -2
+	wound_type = "defender" //used to match appropriate wound overlays
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,

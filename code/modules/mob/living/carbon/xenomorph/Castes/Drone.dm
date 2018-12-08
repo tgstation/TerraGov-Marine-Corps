@@ -4,6 +4,7 @@
 	upgrade_name = "Young"
 	caste_desc = "A builder of hives. Only drones may evolve into Queens."
 	caste_type_path = /mob/living/carbon/Xenomorph/Drone
+	wound_type = "alien" //used to match appropriate wound overlays
 
 	tier = 1
 	upgrade = 0

@@ -244,6 +244,8 @@
 
 	var/cresttoss_used = FALSE
 
+	var/wound_type "ravager" //used to match appropriate wound overlays
+
 /datum/hive_status
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen

@@ -4,6 +4,7 @@
 	upgrade_name = ""
 	caste_desc = "D'awwwww, so cute!"
 	caste_type_path = /mob/living/carbon/Xenomorph/Larva
+	wound_type = "alien" //used to match appropriate wound overlays
 	tier = 0
 	upgrade = -1
 
