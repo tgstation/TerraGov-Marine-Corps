@@ -124,7 +124,7 @@
 					to_chat(user, "<span class='warning'>[target] is empty.")
 					return
 
-				if(!target.is_drainable())
+				if(!target.is_drawable())
 					to_chat(user, "<span class='warning'>You cannot directly remove reagents from this object.</span>")
 					return
 
@@ -142,7 +142,7 @@
 			if(istype(target, /obj/item/implantcase/chem))
 				return
 
-			if(!target.is_refillable() && !ismob(target))
+			if(!target.is_injectable() && !ismob(target))
 				to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
 				return
 			if(target.reagents.holder_full())
@@ -308,7 +308,7 @@
 					to_chat(user, "<span class='warning'>[target] is empty.</span>")
 					return
 
-				if(!target.is_drainable())
+				if(!target.is_drawable())
 					to_chat(user, "<span class='warning'>You cannot directly remove reagents from this object.</span>")
 					return
 
@@ -325,7 +325,7 @@
 				return
 			if(istype(target, /obj/item/implantcase/chem))
 				return
-			if(!target.is_refillable() && !ismob(target))
+			if(!target.is_injectable() && !ismob(target))
 				to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
 				return
 			if(target.reagents.holder_full())
