@@ -416,6 +416,25 @@
 	transfer_delay = 5
 	max_range = 7
 
+/datum/action/xeno_action/activable/salvage_plasma
+	name = "Salvage Plasma"
+	action_icon_state = "salvage_plasma"
+	ability_name = "salvage plasma"
+	var/plasma_salvage_amount = 40
+	var/salvage_delay = 5 SECONDS
+	var/max_range = 1
+
+datum/action/xeno_action/activable/salvage_plasma/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(owner.action_busy)
+		return
+	X.xeno_salvage_plasma(A, plasma_salvage_amount, salvage_delay, max_range)
+
+datum/action/xeno_action/activable/salvage_plasma/hivelord
+	plasma_salvage_amount = 80
+	salvage_delay = 3 SECONDS
+	max_range = 4
+
 //Boiler abilities
 
 /datum/action/xeno_action/toggle_long_range
@@ -1001,7 +1020,7 @@
 	if(!X.observed_xeno)
 		to_chat(X, "<span class='warning'>You must overwatch the xeno you want to de-evolve.</span>")
 		return
-	
+
 	var/mob/living/carbon/Xenomorph/T = X.observed_xeno
 	if(!X.check_plasma(600)) // check plasma gives an error message itself
 		return
@@ -1021,7 +1040,7 @@
 	if(!T.xeno_caste.deevolves_to)
 		to_chat(X, "<span class='xenowarning'>[T] can't be deevolved.</span>")
 		return
-	
+
 	var/datum/xeno_caste/new_caste = xeno_caste_datums[T.xeno_caste.deevolves_to][1]
 
 	var/confirm = alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", , "Yes", "No")
@@ -1105,7 +1124,7 @@
 	cdel(T)
 	X.use_plasma(600)
 
-	
+
 
 //Ravager Abilities
 

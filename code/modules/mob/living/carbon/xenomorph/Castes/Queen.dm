@@ -46,6 +46,10 @@
 	// *** Queen Abilities *** //
 	queen_leader_limit = 1 //Amount of leaders allowed
 
+/datum/xeno_caste/predalien/handle_decay()
+	if(prob(20+abs(3*upgrade)))
+		owner.use_plasma(min(rand(1,2), owner.plasma_stored))
+
 /datum/xeno_caste/queen/mature
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 

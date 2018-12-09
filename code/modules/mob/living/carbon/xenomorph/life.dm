@@ -11,6 +11,9 @@
 	..()
 
 	if(stat == DEAD) //Dead, nothing else to do.
+		if(stat == DEAD) //Dead, nothing else to do but this.
+			if(plasma_stored && !(xeno_caste.caste_flags & CASTE_NO_DECAY))
+				xeno_caste.handle_decay()
 		return
 	if(stat == UNCONSCIOUS)
 		if(is_zoomed)

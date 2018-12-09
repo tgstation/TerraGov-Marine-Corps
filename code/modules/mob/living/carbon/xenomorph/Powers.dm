@@ -982,22 +982,26 @@
 
 
 /mob/living/carbon/Xenomorph/proc/xeno_transfer_plasma(atom/A, amount = 50, transfer_delay = 20, max_range = 2)
-	if(!isXeno(A))
+	if(!isXeno(A) || !check_state())
 		return
-	var/mob/living/carbon/Xenomorph/target = A
 
-	if(!check_state())
-		return
+	var/mob/living/carbon/Xenomorph/target = A
+	var/is_silicon = xeno_caste & CASTE_IS_ROBOTIC ? TRUE : FALSE
+	var/energy = is_silicon ? "power" : "plasma"
 
 	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>You can't transfer plasma from here!</span>")
+		to_chat(src, "<span class='warning'>You can't transfer  [energy] from here!</span>")
+		return
+
+	if(is_silicon ? !(target.xeno_caste & CASTE_IS_ROBOTIC) : target.xeno_caste & CASTE_IS_ROBOTIC)
+		to_chat(src, "<span class='warning'>[target]'s energy sources are incompatible with ours.</span>")
 		return
 
 	if(get_dist(src, target) > max_range)
 		to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
 		return
 
-	to_chat(src, "<span class='notice'>You start focusing your plasma towards [target].</span>")
+	to_chat(src, "<span class='notice'>You start focusing your [energy] towards [target].</span>")
 	if(!do_after(src, transfer_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
 		return
 
@@ -1005,7 +1009,7 @@
 		return
 
 	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>You can't transfer plasma from here!</span>")
+		to_chat(src, "<span class='warning'>You can't transfer [energy] from here!</span>")
 		return
 
 	if(get_dist(src, target) > max_range)
@@ -1020,9 +1024,69 @@
 		amount = plasma_stored //Just use all of it
 	use_plasma(amount)
 	target.gain_plasma(amount)
-	to_chat(target, "<span class='xenowarning'>\The [src] has transfered [amount] plasma to you. You now have [target.plasma_stored].</span>")
-	to_chat(src, "<span class='xenowarning'>You have transferred [amount] plasma to \the [target]. You now have [plasma_stored].</span>")
+	to_chat(target, "<span class='xenowarning'>[src] has transfered [amount] units of [energy] to you. You now have [target.plasma_stored]/[target.xeno_caste.plasma_max].</span>")
+	to_chat(src, "<span class='xenowarning'>You have transferred [amount] units of [energy] to [target]. You now have [plasma_stored]/[xeno_caste.plasma_max].</span>")
 	playsound(src, "alien_drool", 25)
+
+/mob/living/carbon/Xenomorph/proc/xeno_salvage_plasma(atom/A, amount, salvage_delay, max_range)
+	if(!isXeno(A) || !check_state())
+		return
+
+	var/mob/living/carbon/Xenomorph/target = A
+	var/is_silicon = xeno_caste & CASTE_IS_ROBOTIC ? TRUE : FALSE
+	var/energy = is_silicon ? "power" : "plasma"
+
+	if(!isturf(loc))
+		to_chat(src, "<span class='warning'>You can't salvage [energy] from here!</span>")
+		return
+
+	if(is_silicon ? !(target.xeno_caste & CASTE_IS_ROBOTIC) : target.xeno_caste & CASTE_IS_ROBOTIC)
+		to_chat(src, "<span class='warning'>[target]'s energy sources are incompatible with ours.</span>")
+		return
+
+	if(target.stat != DEAD)
+		to_chat(src, "<span class='warning'>You can't steal [energy] from living sisters, ask for some to a drone or a hivelord instead!</span>")
+		return
+
+	if(get_dist(src, target) > max_range)
+		to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
+		return
+
+	if(!(target.plasma_stored))
+		to_chat(src, "<span class='notice'>[target] doesn't have any [energy] left to salvage.</span>")
+		return
+
+	to_chat(src, "<span class='notice'>You start salvaging [energy] from [target].</span>")
+
+	while(target.plasma_stored)
+		if(!do_after(src, salvage_delay, TRUE, 5, BUSY_ICON_HOSTILE) || !check_state())
+			break
+
+		if(!isturf(loc))
+			to_chat(src, "<span class='warning'>You can't absorb [energy] from here!</span>")
+			break
+
+		if(get_dist(src, target) > max_range)
+			to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
+			break
+
+		if(stagger)
+			to_chat(src, "<span class='xenowarning'>Your muscles fail to respond as you try to shake up the shock!</span>")
+			break
+
+		if(!(target.plasma_stored))
+			to_chat(src, "<span class='notice'>\The [target] doesn't have any [energy] left to salvage.</span>")
+			break
+
+		if(target.plasma_stored < amount)
+			amount = target.plasma_stored //Just take it all.
+
+		var/absorbed_amount = round(amount/2)
+		target.use_plasma(amount)
+		gain_plasma(absorbed_amount)
+		to_chat(src, "<span class='xenowarning'>You salvage [absorbed_amount] units of [energy] from [target]. You have [plasma_stored]/[xeno_caste.plasma_max] stored now.</span>")
+		if(prob(50))
+			playsound(src, "alien_drool", 25)
 
 //Note: All the neurotoxin projectile items are stored in XenoProcs.dm
 /mob/living/carbon/Xenomorph/proc/xeno_spit(atom/T)

@@ -25,8 +25,8 @@
 	max_health = 300
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_ROBOTIC|CASTE_FIRE_IMMUNE
-	
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_ROBOTIC|CASTE_FIRE_IMMUNE|CASTE_NO_DECAY
+
 	// *** Defense *** //
 	armor_deflection = 90 //Chance of deflecting projectiles.
 
@@ -131,7 +131,7 @@
 				return
 			src.visible_message("<span class='notice'>\The [user] carefully inserts \the [C] into \the [src]'s power supply port.")
 			plasma_stored += C.charge
-			if(plasma_stored > xeno_caste.plasma_max) 
+			if(plasma_stored > xeno_caste.plasma_max)
 				plasma_stored = xeno_caste.plasma_max
 			to_chat(src, "<span class='notice'>Your power supply suddenly updates. New charge: [plasma_stored]/[xeno_caste.plasma_max]")
 			cdel(O)

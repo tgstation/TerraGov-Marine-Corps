@@ -77,9 +77,7 @@
 	if(xeno_caste.spit_types?.len)
 		ammo = ammo_list[xeno_caste.spit_types[1]]
 
-	var/datum/reagents/R = new/datum/reagents(100)
-	reagents = R
-	R.my_atom = src
+	create_reagents(1000)
 	gender = NEUTER
 
 	living_xeno_list += src
@@ -102,11 +100,12 @@
 	if(!xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)])
 		error("error finding datum")
 		return
-	var/datum/xeno_caste/X = xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
+	var/datum/xeno_caste/X = new xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
 	if(!istype(X))
 		error("error with caste datum")
 		return
 	xeno_caste = X
+	X.owner = src
 
 	plasma_stored = xeno_caste.plasma_max
 	maxHealth = xeno_caste.max_health

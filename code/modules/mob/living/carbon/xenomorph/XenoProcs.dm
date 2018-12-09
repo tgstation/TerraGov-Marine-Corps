@@ -293,7 +293,7 @@
 					frozen = TRUE
 					if(xeno_caste.charge_type == 2)
 						M.attack_alien(src, null, "disarm") //Hunters get a free throttle in exchange for lower initial stun.
-					if(!(xeno_caste.caste_flags & CASTE_IS_ROBOTIC)) 
+					if(!(xeno_caste.caste_flags & CASTE_IS_ROBOTIC))
 						playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
 					spawn(xeno_caste.charge_type == 1 ? 5 : 15)
 						frozen = FALSE
@@ -557,3 +557,9 @@
 		rage = 0
 	else
 		rage *= 0.5 //Halve rage instead of 0ing it out if we miss.
+
+//////////// XENO CASTE PROCS //////////////////
+
+/datum/xeno_caste/proc/handle_decay()
+	if(prob(7+(3*tier)+(3*upgrade))) // higher level xenos decay faster, higher plasma storage.
+		owner.use_plasma(min(rand(1,2), owner.plasma_stored))
