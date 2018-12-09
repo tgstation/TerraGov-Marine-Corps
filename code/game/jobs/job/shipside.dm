@@ -155,7 +155,7 @@ Good luck."}
 
 /datum/job/command/bridge/generate_entry_message(mob/living/carbon/human/H)
 	return {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
-You are in charge of logistics and the overwatch system. You also act to provide a better picture of the battlefield to your surperiors."}
+You are in charge of logistics and the overwatch system. You also act to provide a better picture of the battlefield to your superiors."}
 
 
 //Pilot Officer
