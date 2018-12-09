@@ -404,10 +404,8 @@
 	if(usr.stat)
 		return
 
-	var/obj/item/clothing/tie/storage/H = null
-	if (istype(src, /obj/item/clothing/tie/storage/))
-		H = src
-	else if (istype(src, /obj/item/clothing/under))
+	var/obj/item/clothing/tie/storage/H = src
+	if(istype(src, /obj/item/clothing/under))
 		var/obj/item/clothing/under/S = src
 		if (S.hastie)
 			H = S.hastie
