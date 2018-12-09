@@ -98,6 +98,7 @@ var/list/be_special_flags = list(
 #define ROLE_CHIEF_MP					128
 #define ROLE_SYNTHETIC					256
 #define ROLE_TANK_OFFICER				512
+#define ROLE_FIELD_OFFICER				1024
 //=================================================
 
 #define ROLEGROUP_MARINE_ENGINEERING 	2
