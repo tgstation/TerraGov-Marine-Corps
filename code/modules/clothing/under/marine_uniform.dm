@@ -132,6 +132,15 @@
 	select_gamemode_skin(/obj/item/clothing/under/marine/officer/exec)
 	..()
 
+/obj/item/clothing/under/marine/officer/field
+	name = "executive officer uniform"
+	desc = "A uniform typically worn by TGMC Field Officers. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	icon_state = "BO_jumpsuit" //TBD: Unique Field Officer Jumpsuit
+
+/obj/item/clothing/under/marine/officer/exec/New()
+	select_gamemode_skin(/obj/item/clothing/under/marine/officer/field)
+	..()
+
 /obj/item/clothing/under/marine/officer/command
 	name = "commander uniform"
 	desc = "The well-ironed uniform of a TGMC commander. Even looking at it the wrong way could result in being court-marshalled. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."

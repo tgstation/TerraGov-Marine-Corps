@@ -49,7 +49,7 @@ Godspeed, commander! And remember, you are not above the law."}
 /datum/job/command/commander/announce_entry_message(mob/living/carbon/human/H)
 	. = ..()
 	sleep(15)
-	if(H?.loc && flags_startup_parameters & ROLE_ADD_TO_MODE) 
+	if(H?.loc && flags_startup_parameters & ROLE_ADD_TO_MODE)
 		captain_announcement.Announce("All hands, Commander [H.real_name] on deck!")
 
 
@@ -105,7 +105,7 @@ Make the TGMC proud!"}
 
 /datum/job/command/field/generate_equipment(mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/exec(H), WEAR_BODY)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/field(H), WEAR_BODY)
 	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap(H), WEAR_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
 	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
@@ -113,9 +113,10 @@ Make the TGMC proud!"}
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), WEAR_R_STORE)
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), WEAR_L_STORE)
 	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), WEAR_L_HAND)
+	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/MP/RO(H), WEAR_JACKET)
 
 /datum/job/command/executive/generate_entry_message(mob/living/carbon/human/H)
-		. = {"You are the commander's right hand man, and often act on his behalf while planetside.
+		. = {"You are the commander's 'man on the ground,' and often act on his behalf while planetside.
 Reign in marines when they go charging in, push them forward when they shirk back.
 CIC may direct the squads, but someone has to stand with them and fight.
 Good luck."}
@@ -659,7 +660,7 @@ Best to let the mercs do the killing and the dying, but remind them who pays the
 	if(H.client.prefs.synthetic_type == "Early Synthetic")
 		skills_type = /datum/skills/early_synthetic
 	//Most of the code below is copypasted from transform_predator().
-	if(!H.client.prefs) 
+	if(!H.client.prefs)
 		H.client.prefs = new /datum/preferences(H.client) //Let's give them one.
 	//They should have these set, but it's possible they don't have them.
 	H.real_name = H.client.prefs.synthetic_name
