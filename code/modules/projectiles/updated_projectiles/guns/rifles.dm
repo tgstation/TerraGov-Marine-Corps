@@ -84,7 +84,6 @@
 
 /obj/item/weapon/gun/rifle/m41a/New()
 	. = ..()
-	select_gamemode_skin(/obj/item/weapon/gun/rifle/m41a)
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
 /obj/item/weapon/gun/rifle/m41a/set_gun_config_values()
