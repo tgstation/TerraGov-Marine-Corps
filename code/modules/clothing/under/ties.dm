@@ -388,7 +388,7 @@
 	. = ..()
 
 /obj/item/clothing/tie/storage/on_attached(obj/item/clothing/under/S, mob/user)
-	..()
+	. = ..()
 	has_suit.verbs += /obj/item/clothing/tie/storage/verb/toggle_draw_mode
 
 /obj/item/clothing/tie/storage/on_removed()
