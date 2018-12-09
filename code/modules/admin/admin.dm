@@ -37,7 +37,7 @@ var/global/respawntime = 15
 /proc/msg_admin_ff(var/text)
 	log_attack(text) //Do everything normally BUT IN GREEN SO THEY KNOW
 	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ATTACK:</span> <font color=#00ff00><b>[text]</b></font></span>" //I used <font> because I never learned html correctly, fix this if you want
-		
+
 	for(var/client/C in admins)
 		if(R_MOD & C.holder.rights)
 			if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) && !((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
@@ -753,7 +753,7 @@ var/global/respawntime = 15
 	set name = "Announce"
 	set desc= "Announce your desires to the world."
 
-	if(!check_rights(0))	
+	if(!check_rights(0))
 		return
 
 	var/message = input("Global message to send:", "Admin Announce") as message|null
@@ -1202,13 +1202,13 @@ var/global/respawntime = 15
 	if(!ticker?.mode)
 		return
 
-	if(!check_rights(R_ADMIN))	
+	if(!check_rights(R_ADMIN))
 		return
 
 	if(ticker.mode.waiting_for_candidates)
-		to_chat(src "<span class='warning'>Please wait for the current beacon to be finalized.</span>")
+		to_chat(src, "<span class='warning'>Please wait for the current beacon to be finalized.</span>")
 		return
-		
+
 	ticker.mode.picked_call.members = list()
 	ticker.mode.picked_call.candidates = list()
 	ticker.mode.waiting_for_candidates = FALSE
