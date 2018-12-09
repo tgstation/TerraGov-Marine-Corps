@@ -240,10 +240,10 @@
 
 		if(hit_chance)
 			if(isliving(A))
-				if(shot_from.sniper_target(A)) //First check to see if we've actually got anyone targeted
-					if(A != shot_from.sniper_target(A)) //If we've singled out someone with a targeting laser, forsake all others
-						continue
-
+				if(shot_from) //Check
+					if(shot_from.sniper_target(A)) //First check to see if we've actually got anyone targeted
+						if(A != shot_from.sniper_target(A)) //If we've singled out someone with a targeting laser, forsake all others
+							continue
 				var/mob_is_hit = FALSE
 				var/mob/living/L = A
 
