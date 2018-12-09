@@ -96,7 +96,7 @@ Make the TGMC proud!"}
 /datum/job/command/field
 	title = "Field Officer"
 	comm_title = "FO"
-	paygrade = "O3"
+	paygrade = "O2"
 	flag = ROLE_FIELD_OFFICER
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADMIN_NOTIFY
 	skills_type = /datum/skills/FO
@@ -127,7 +127,7 @@ Good luck."}
 	title = "Staff Officer"
 	disp_title = "Intelligence Officer"
 	comm_title = "SO"
-	paygrade = "O2"
+	paygrade = "O2J"
 	flag = ROLE_BRIDGE_OFFICER
 	total_positions = 5
 	spawn_positions = 5
@@ -275,7 +275,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 /datum/job/command/warrant
 	title = "Chief MP"
 	comm_title = "CMP"
-	paygrade = "E8E"
+	paygrade = "O3"
 	flag = ROLE_CHIEF_MP
 	selection_color = "#ffaaaa"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
