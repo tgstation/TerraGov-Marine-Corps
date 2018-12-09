@@ -229,8 +229,8 @@
 
 
 /obj/item/device/portable_vendor/corporate
-	name = "\improper Weyland-Yutani Automated Storage Briefcase"
-	desc = "A suitcase-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense small items. This one has the Weyland-Yutani logo stamped on its side."
+	name = "\improper Nanotrasen Automated Storage Briefcase"
+	desc = "A suitcase-sized automated storage and retrieval system. Designed to efficiently store and selectively dispense small items. This one has the Nanotrasen logo stamped on its side."
 
 	req_access_txt = "200"
 	req_role = "Corporate Liaison"

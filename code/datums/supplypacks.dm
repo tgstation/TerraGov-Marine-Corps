@@ -2440,7 +2440,7 @@ SUPPLIES
 
 
 /datum/supply_packs/mre
-	name = "USCM MRE crate (x40)"
+	name = "TGMC MRE crate (x40)"
 	contains = list(
 					/obj/item/storage/box/MRE,
 					/obj/item/storage/box/MRE,

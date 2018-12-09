@@ -1,5 +1,5 @@
 
-/proc/generate_templated_fax(var/show_wy_logo,var/fax_header,var/fax_subject,var/addressed_to,var/message_body,var/sent_by,var/sent_title,var/sent_department)
+/proc/generate_templated_fax(var/show_nt_logo,var/fax_header,var/fax_subject,var/addressed_to,var/message_body,var/sent_by,var/sent_title,var/sent_department)
 	var/dat = ""
 	dat += "<style>"
 	dat += "body {"
@@ -61,9 +61,9 @@
 	dat += "<body>"
 	dat += "<div id='width-container'>"
 
-	if(show_wy_logo)
+	if(show_nt_logo)
 		dat += "<div id='fax-logo'>"
-		dat += "<img src='https://i.imgur.com/B7uWh5Y.png' />"
+		dat += "<img src='https://i.imgur.com/mEUy6g9.png'/>"
 		dat += "</div>"
 
 	dat += "<div class='message-header-text'>"

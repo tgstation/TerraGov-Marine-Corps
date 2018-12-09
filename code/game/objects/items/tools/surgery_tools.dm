@@ -235,8 +235,8 @@
 
 //XENO AUTOPSY TOOL
 
-/obj/item/tool/surgery/WYautopsy
-	name = "Weyland Brand Automatic Autopsy System(TM)"
+/obj/item/tool/surgery/NTautopsy
+	name = "Nanotrasen Brand Automatic Autopsy System(TM)"
 	desc = "Putting the FUN back in Autopsy.  This little gadget performs an entire autopsy of whatever strange life form you've found in about 30 seconds."
 	icon_state = "scalpel_laser2_on"
 	damtype = "fire"
@@ -244,10 +244,10 @@
 	var/active = 0
 	var/resetting = 0//For the reset, to prevent macro-spam abuse
 
-/obj/item/tool/surgery/WYautopsy/verb/reset()
+/obj/item/tool/surgery/NTautopsy/verb/reset()
 	set category = "IC"
-	set name = "Reset WY Autopsy tool"
-	set desc = "Reset the WY Tool in case it breaks."
+	set name = "Reset NT Autopsy tool"
+	set desc = "Reset the NT Tool in case it breaks."
 	set src in usr
 
 	if(!active)
@@ -264,7 +264,7 @@
 					to_chat(usr, "System Reset completed")
 					resetting = 0
 
-/obj/item/tool/surgery/WYautopsy/attack(mob/living/carbon/Xenomorph/T as mob, mob/living/user as mob)
+/obj/item/tool/surgery/NTautopsy/attack(mob/living/carbon/Xenomorph/T as mob, mob/living/user as mob)
 /*	set category = "Autopsy"
 	set name = "Perform Alien Autopsy"
 	set src in usr*/

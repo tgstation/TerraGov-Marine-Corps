@@ -463,6 +463,7 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 		var/splint = ""
 		var/internal_bleeding = ""
 		var/lung_ruptured = ""
+		var/stabilized = ""
 
 		dat += "<tr>"
 
@@ -474,6 +475,8 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 			lung_ruptured = "Lung ruptured:<br>"
 		if(e.status & LIMB_SPLINTED)
 			splint = "Splinted:<br>"
+		if(e.status & LIMB_STABILIZED)
+			stabilized = "Stabilized:<br>"
 		if(e.status & LIMB_BLEEDING)
 			bled = "Bleeding:<br>"
 		if(e.status & LIMB_BROKEN)
@@ -526,7 +529,7 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 		if(!AN && !open && !infected & !imp && !necrosis && !bled && !internal_bleeding && !lung_ruptured)
 			AN = "None:"
 		if(!(e.status & LIMB_DESTROYED))
-			dat += "<td>[e.display_name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][open][infected][necrosis][imp][internal_bleeding][lung_ruptured]</td>"
+			dat += "<td>[e.display_name]</td><td>[e.burn_dam]</td><td>[e.brute_dam]</td><td>[robot][bled][AN][splint][stabilized][open][infected][necrosis][imp][internal_bleeding][lung_ruptured]</td>"
 		else
 			dat += "<td>[e.display_name]</td><td>-</td><td>-</td><td>Not Found</td>"
 		dat += "</tr>"

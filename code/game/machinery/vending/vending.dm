@@ -633,10 +633,18 @@
 						to_chat(user, "<span class='warning'>[G] has non-standard attachments equipped. Detach them before you can restock it.</span>")
 						return
 
-			if(istype(item_to_stock, /obj/item/ammo_magazine))
+			else if(istype(item_to_stock, /obj/item/ammo_magazine))
 				var/obj/item/ammo_magazine/A = item_to_stock
 				if(A.current_rounds < A.max_rounds)
 					to_chat(user, "<span class='warning'>[A] isn't full. Fill it before you can restock it.</span>")
+					return
+			else if(istype(item_to_stock, /obj/item/smartgun_powerpack))
+				var/obj/item/smartgun_powerpack/P = item_to_stock
+				if(!P.pcell)
+					to_chat(user, "<span class='warning'>The [P] doesn't have a cell. You must put one in before you can restock it.</span>")
+					return
+				if(P.pcell.charge < P.pcell.maxcharge)
+					to_chat(user, "<span class='warning'>The [P] cell isn't full. You must recharge it before you can restock it.</span>")
 					return
 			if(item_to_stock.loc == user) //Inside the mob's inventory
 				if(item_to_stock.flags_item & WIELDED)

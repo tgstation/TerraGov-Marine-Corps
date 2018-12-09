@@ -28,6 +28,7 @@
 	var/base_hit_accuracy_mult = 1
 	var/min_hit_accuracy_mult = 0.05
 	var/low_hit_accuracy_mult = 0.10
+	var/mlow_hit_accuracy_mult = 0.15
 	var/med_hit_accuracy_mult = 0.20
 	var/hmed_hit_accuracy_mult = 0.30
 	var/high_hit_accuracy_mult = 0.40
@@ -227,6 +228,8 @@
 			min_hit_accuracy_mult = value
 		if("low_hit_accuracy_mult")
 			low_hit_accuracy_mult = value
+		if("mlow_hit_accuracy_mult")
+			mlow_hit_accuracy_mult = value
 		if("med_hit_accuracy_mult")
 			med_hit_accuracy_mult = value
 		if("hmed_hit_accuracy_mult")

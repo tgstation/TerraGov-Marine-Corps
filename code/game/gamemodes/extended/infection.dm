@@ -87,5 +87,5 @@
 	initialize_post_survivor_list()
 
 	spawn (50)
-		command_announcement.Announce("We've lost contact with the Weyland-Yutani's research facility, [name]. The [MAIN_SHIP_NAME] has been dispatched to assist.", "[MAIN_SHIP_NAME]")
+		command_announcement.Announce("We've lost contact with the Nanotrasen's research facility, [name]. The [MAIN_SHIP_NAME] has been dispatched to assist.", "[MAIN_SHIP_NAME]")
 

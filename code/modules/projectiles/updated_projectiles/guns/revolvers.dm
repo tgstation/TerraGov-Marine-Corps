@@ -278,7 +278,7 @@
 
 /obj/item/weapon/gun/revolver/m44
 	name = "\improper M44 combat revolver"
-	desc = "A bulky revolver, occasionally carried by assault troops and officers in the Colonial Marines, as well civilian law enforcement. Uses .44 Magnum rounds."
+	desc = "A bulky revolver, occasionally carried by assault troops and officers in the Marine Corps, as well civilian law enforcement. Uses .44 Magnum rounds."
 	icon_state = "m44"
 	item_state = "m44"
 	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
@@ -408,7 +408,7 @@
 
 /obj/item/weapon/gun/revolver/mateba/cmateba
 	name = "\improper Mateba autorevolver special"
-	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds. This version is a limited edition produced for the USCM, and issued in extremely small amounts. Was a mail-order item back in 2172, and is highly sought after by officers across many different battalions. This one is stamped 'Major Ike Saker, 7th 'Falling Falcons' Battalion.'"
+	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds. This version is a limited edition produced for the TGMC, and issued in extremely small amounts. Was a mail-order item back in 2172, and is highly sought after by officers across many different battalions. This one is stamped 'Major Ike Saker, 7th 'Falling Falcons' Battalion.'"
 	icon_state = "cmateba"
 	item_state = "cmateba"
 	New()

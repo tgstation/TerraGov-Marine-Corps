@@ -254,8 +254,8 @@
 	center_of_mass = list("x"=17, "y"=8)
 
 /obj/item/reagent_container/food/drinks/flask/marine
-	name = "\improper USCM flask"
-	desc = "A metal flask embossed with the USCM logo and probably filled with a slurry of water, motor oil, and medicinal alcohol."
+	name = "\improper TGMC flask"
+	desc = "A metal flask embossed with the TGMC logo and probably filled with a slurry of water, motor oil, and medicinal alcohol."
 	icon_state = "flask_uscm"
 	center_of_mass = list("x"=17, "y"=8)
 	list_reagents = list("water" = 51, "hooch" = 9)
