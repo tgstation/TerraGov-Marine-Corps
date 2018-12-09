@@ -393,7 +393,7 @@
 
 /obj/item/clothing/tie/storage/on_removed()
 	has_suit.verbs -= /obj/item/clothing/tie/storage/verb/toggle_draw_mode
-	..()
+	return ..()
 
 /obj/item/clothing/tie/storage/verb/toggle_draw_mode()
 	set name = "Switch Storage Drawing Method"
