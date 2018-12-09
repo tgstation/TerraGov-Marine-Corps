@@ -429,7 +429,7 @@
 		return
 
 	if (has_suit)    //if we are part of a suit
-		user.attack_hand(hold)
+		hold.open(user)
 		return
 
 	if (hold.handle_attack_hand(user))	//otherwise interact as a regular storage item
