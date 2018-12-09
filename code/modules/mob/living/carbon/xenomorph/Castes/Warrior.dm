@@ -39,7 +39,7 @@
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
-	lunge_cooldown = 4 SECONDS
+	lunge_cooldown = 10 SECONDS
 	fling_cooldown = 4 SECONDS
 	punch_cooldown = 4 SECONDS
 	toggle_agility_cooldown = 0.5 SECONDS
@@ -75,7 +75,7 @@
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
-	lunge_cooldown = 4 SECONDS
+	lunge_cooldown = 10 SECONDS
 	fling_cooldown = 4 SECONDS
 	punch_cooldown = 4 SECONDS
 	toggle_agility_cooldown = 0.5 SECONDS
@@ -111,7 +111,7 @@
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
-	lunge_cooldown = 4 SECONDS
+	lunge_cooldown = 10 SECONDS
 	fling_cooldown = 4 SECONDS
 	punch_cooldown = 4 SECONDS
 	toggle_agility_cooldown = 0.5 SECONDS
@@ -147,7 +147,7 @@
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
-	lunge_cooldown = 4 SECONDS
+	lunge_cooldown = 10 SECONDS
 	fling_cooldown = 4 SECONDS
 	punch_cooldown = 4 SECONDS
 	toggle_agility_cooldown = 0.5 SECONDS
