@@ -12,9 +12,9 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 //Commander
 /datum/job/command/commander
-	title = "Commander"
+	title = "Captain"
 	comm_title = "CO"
-	paygrade = "O4"
+	paygrade = "O5"
 	flag = ROLE_COMMANDING_OFFICER
 	supervisors = "TGMC high command"
 	selection_color = "#ccccff"
@@ -39,8 +39,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), WEAR_L_HAND)
 
 /datum/job/command/commander/generate_entry_message()
-		return {"As the commander of the USS Almayer you are held by higher standard and are expected to act competently.
-While you may support Nanotrasen, you report to the TGMC High Command, not the corporate office.
+		return {"As the captain of the TGNS Theseus you are held by higher standard and are expected to act competently.
+You report to the TGMC High Command, and noone else.
 Your primary task is the safety of the ship and her crew, and ensuring the survival and success of the marines.
 Your first order of business should be briefing the marines on the mission they are about to undertake.
 If you require any help, use adminhelp to ask mentors about what you're supposed to do.
@@ -68,7 +68,7 @@ Come hell or high water, you are going to be there for them."}
 /datum/job/command/executive
 	title = "Executive Officer"
 	comm_title = "XO"
-	paygrade = "O3"
+	paygrade = "O4"
 	flag = ROLE_EXECUTIVE_OFFICER
 	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADMIN_NOTIFY
 	skills_type = /datum/skills/XO
@@ -91,6 +91,34 @@ Come hell or high water, you are going to be there for them."}
 You may need to fill in for other duties if areas are understaffed, and you are given access to do so.
 Make the TGMC proud!"}
 
+//Field Officer
+/datum/job/command/field
+	title = "Field Officer"
+	comm_title = "FO"
+	paygrade = "O3"
+	flag = ROLE_FIELD_OFFICER
+	flags_startup_parameters = ROLE_ADD_TO_DEFAULT|ROLE_ADD_TO_MODE|ROLE_ADMIN_NOTIFY
+	skills_type = /datum/skills/FO
+	access = ALL_MARINE_ACCESS
+	minimal_access = ALL_MARINE_ACCESS
+	equipment = TRUE
+
+/datum/job/command/field/generate_equipment(mob/living/carbon/human/H)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/exec(H), WEAR_BODY)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap(H), WEAR_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
+	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
+	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(H), WEAR_WAIST)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), WEAR_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general/large(H), WEAR_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/device/binoculars(H), WEAR_L_HAND)
+
+/datum/job/command/executive/generate_entry_message(mob/living/carbon/human/H)
+		. = {"You are the commander's right hand man, and often act on his behalf while planetside.
+Reign in marines when they go charging in, push them forward when they shirk back.
+CIC may direct the squads, but someone has to stand with them and fight.
+Good luck."}
 
 //Staff Officer
 /datum/job/command/bridge
@@ -172,7 +200,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 /datum/job/command/tank_crew
 	title = "Tank Crewman"
 	comm_title = "TC"
-	paygrade = "O1"
+	paygrade = "E6G"
 	flag = ROLE_TANK_OFFICER
 	total_positions = 2
 	spawn_positions = 2
@@ -196,14 +224,14 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 
 /datum/job/command/tank_crew/generate_entry_message(mob/living/carbon/human/H)
 	return {"Your job is to operate and maintain thee ship's armored vehicles.
-While you are an officer, your authority is limited to your own vehicle, where you have authority over the enlisted personnel. You will need MTs to repair and replace hardpoints."}
+While you are an officer, your authority is limited to your own vehicle, where you have authority over the enlisted personnel."}
 
 
 //Military Police
 /datum/job/command/police
 	title = "Military Police"
 	comm_title = "MP"
-	paygrade = "E6"
+	paygrade = "E8"
 	flag = ROLE_MILITARY_POLICE
 	total_positions = 5
 	spawn_positions = 5
@@ -245,7 +273,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 /datum/job/command/warrant
 	title = "Chief MP"
 	comm_title = "CMP"
-	paygrade = "WO"
+	paygrade = "E8E"
 	flag = ROLE_CHIEF_MP
 	selection_color = "#ffaaaa"
 	access = list(ACCESS_IFF_MARINE, ACCESS_MARINE_BRIG, ACCESS_MARINE_BRIDGE, ACCESS_MARINE_DROPSHIP, ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_WO)
@@ -284,7 +312,7 @@ In addition, you are tasked with the security of high-ranking personnel, includi
 //Chief Engineer
 /datum/job/logistics/engineering
 	title = "Chief Engineer"
-	comm_title = "CE"
+	comm_title = "WO"
 	paygrade = "O3"
 	flag = ROLE_CHIEF_ENGINEER
 	department_flag = ROLEGROUP_MARINE_ENGINEERING
@@ -315,7 +343,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 /datum/job/logistics/requisition
 	title = "Requisitions Officer"
 	comm_title = "RO"
-	paygrade = "O1"
+	paygrade = "O2"
 	flag = ROLE_REQUISITION_OFFICER
 	department_flag = ROLEGROUP_MARINE_ENGINEERING
 	selection_color = "#9990B2"

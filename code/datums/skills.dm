@@ -167,6 +167,7 @@
 	surgery = SKILL_SURGERY_AMATEUR
 	police = SKILL_POLICE_FLASH
 	powerloader = SKILL_POWERLOADER_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
 
 /datum/skills/XO
 	name = "Executive Officer"
@@ -177,7 +178,20 @@
 	surgery = SKILL_SURGERY_AMATEUR
 	police = SKILL_POLICE_FLASH
 	powerloader = SKILL_POWERLOADER_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
 
+/datum/skills/FO
+	name = "Field Officer"
+	engineer = SKILL_ENGINEER_ENGI //to fix CIC apc.
+	construction = SKILL_CONSTRUCTION_PLASTEEL
+	leadership = SKILL_LEAD_MASTER
+	medical = SKILL_MEDICAL_MEDIC
+	surgery = SKILL_SURGERY_AMATEUR
+	police = SKILL_POLICE_FLASH
+	powerloader = SKILL_POWERLOADER_TRAINED
+	cqc = SKILL_CQC_TRAINED
+	smartgun = SKILL_SMART_TRAINED
+	melee_weapons = SKILL_MELEE_TRAINED
 
 /datum/skills/SO
 	name = "Staff Officer"
