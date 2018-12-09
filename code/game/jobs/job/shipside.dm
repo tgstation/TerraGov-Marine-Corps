@@ -106,7 +106,7 @@ Make the TGMC proud!"}
 /datum/job/command/field/generate_equipment(mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/field(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap(H), WEAR_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/cmcap/ro(H), WEAR_HEAD)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
 	H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
 	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(H), WEAR_WAIST)
@@ -123,8 +123,8 @@ Good luck."}
 
 //Staff Officer
 /datum/job/command/bridge
-	title = "Staff Officer"
-	disp_title = "Staff Officer"
+	title = "Intelligence Officer"
+	disp_title = "Intelligence Officer"
 	comm_title = "SO"
 	paygrade = "O2"
 	flag = ROLE_BRIDGE_OFFICER
@@ -155,7 +155,7 @@ Good luck."}
 
 /datum/job/command/bridge/generate_entry_message(mob/living/carbon/human/H)
 	return {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
-You are in charge of logistics and the overwatch system. You are also in line to take command after the executive officer."}
+You are in charge of logistics and the overwatch system. You also act to provide a better picture of the battlefield to your surperiors."}
 
 
 //Pilot Officer
@@ -344,7 +344,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 /datum/job/logistics/requisition
 	title = "Requisitions Officer"
 	comm_title = "RO"
-	paygrade = "O2"
+	paygrade = "O1"
 	flag = ROLE_REQUISITION_OFFICER
 	department_flag = ROLEGROUP_MARINE_ENGINEERING
 	selection_color = "#9990B2"
