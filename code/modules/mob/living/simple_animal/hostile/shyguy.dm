@@ -281,7 +281,7 @@
 	var/target_level = 0
 
 	switch(z)
-		if(MAIN_SHIP_Z_LEVEL) //on the Almayer
+		if(MAIN_SHIP_Z_LEVEL) //on the Theseus
 			switch(y)
 				if(0 to 100)
 					source_level = 0

@@ -1239,7 +1239,7 @@
 			notice = "<b>ALERT! [src]'s battery depleted at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
 	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 	AI.SetName("Sentry Alert System")
-	AI.aiRadio.talk_into(AI,"[notice]","Almayer","announces")
+	AI.aiRadio.talk_into(AI,"[notice]","Theseus","announces")
 	qdel(AI)
 
 /obj/machinery/marine_turret/mini

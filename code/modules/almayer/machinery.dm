@@ -1,19 +1,19 @@
-//-----USS Almayer Machinery file -----//
+//-----TGS Theseus Machinery file -----//
 // Put any new machines in here before map is released and everything moved to their proper positions.
 
 
 
-//-----USS Almayer Props -----//
+//-----TGS Theseus Props -----//
 //Put any props that don't function properly, they could function in the future but for now are for looks. This system could be expanded for other maps too. ~Art
 
 /obj/item/prop/almayer
-	name = "GENERIC USS ALMAYER PROP"
+	name = "GENERIC THESEUS PROP"
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P03' IF SEEN IN ROUND WITH LOCATION"
 	icon = 'icons/Marine/almayer_props.dmi'
 	icon_state = "hangarbox"
 
 /obj/machinery/prop/almayer
-	name = "GENERIC USS ALMAYER PROP"
+	name = "GENERIC THESEUS PROP"
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P01' IF SEEN IN ROUND WITH LOCATION"
 
 /obj/machinery/prop/almayer/hangar/dropship_part_fabricator
@@ -84,7 +84,7 @@
 //Nonpower using props
 
 /obj/structure/prop/almayer
-	name = "GENERIC USS ALMAYER PROP"
+	name = "GENERIC THESEUS PROP"
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P02' IF SEEN IN ROUND WITH LOCATION"
 	density = 1
 	anchored = 1
