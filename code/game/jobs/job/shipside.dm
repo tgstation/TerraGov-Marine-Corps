@@ -12,7 +12,8 @@ var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 //Commander
 /datum/job/command/commander
-	title = "Captain"
+	title = "Commander"
+	disp_title = "Captain"
 	comm_title = "CO"
 	paygrade = "O5"
 	flag = ROLE_COMMANDING_OFFICER
@@ -123,7 +124,7 @@ Good luck."}
 
 //Staff Officer
 /datum/job/command/bridge
-	title = "Intelligence Officer"
+	title = "Staff Officer"
 	disp_title = "Intelligence Officer"
 	comm_title = "SO"
 	paygrade = "O2"
@@ -155,7 +156,7 @@ Good luck."}
 
 /datum/job/command/bridge/generate_entry_message(mob/living/carbon/human/H)
 	return {"Your job is to monitor the marines, man the CIC, and listen to your superior officers.
-You are in charge of logistics and the overwatch system. You also act to provide a better picture of the battlefield to your superiors."}
+You are in charge of logistics and the overwatch system. You also act to provide a better picture of the battlefield to your surperiors."}
 
 
 //Pilot Officer

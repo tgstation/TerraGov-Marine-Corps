@@ -229,7 +229,8 @@ proc/get_all_job_icons()
 		return list(
 				"Commander",
 				"Executive Officer",
-				"Staff Officer",
+				"Field Officer",
+				"Intelligence Officer",
 				"Pilot Officer",
 				"Tank Crewman",
 				"Corporate Liaison",
