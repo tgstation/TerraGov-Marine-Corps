@@ -1,19 +1,17 @@
-
-
-//Supply drop. Just docks and has a crapload of stuff inside.
+//Supply drop. Just crates, no members.
 /datum/emergency_call/supplies
 	name = "Supply Drop"
 	mob_max = 0
 	mob_min = 0
-	arrival_message = "Nanotrasen Automated Supply Drop 334-Q signal received. Docking procedures have commenced."
 	probability = 5
 	auto_shuttle_launch = TRUE
+
 
 /datum/emergency_call/supplies/spawn_items()
 	var/turf/drop_spawn
 	var/list/choices = list(0,1,2,3,4,5,6)
 
-	for(var/i = 1 to 4) //Spawns 4 random things.
+	for(var/i = 1 to 4)
 		drop_spawn = get_spawn_point(1)
 		if(istype(drop_spawn))
 			var/obj/structure/closet/crate/weapon/W = new(drop_spawn)
@@ -29,7 +27,6 @@
 					new /obj/item/attachable/burstfire_assembly(W)
 					new /obj/item/attachable/compensator(W)
 					new /obj/item/attachable/extended_barrel(W)
-
 				if(1)
 					new /obj/item/weapon/gun/smg/m39(W)
 					new /obj/item/weapon/gun/smg/m39(W)

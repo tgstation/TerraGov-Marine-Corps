@@ -1205,16 +1205,15 @@ var/global/respawntime = 15
 	if(!check_rights(R_ADMIN))	
 		return
 
-	if(ticker.mode.picked_call)
-		var/confirm = alert(src, "There's already been a distress call sent. Are you sure you want to send another one? This will probably break things.", "Send a distress call?", "Yes", "No")
-		if(confirm != "Yes") return
-
-		//Reset the distress call
-		ticker.mode.picked_call.members = list()
-		ticker.mode.picked_call.candidates = list()
-		ticker.mode.waiting_for_candidates = FALSE
-		ticker.mode.on_distress_cooldown = FALSE
-		ticker.mode.picked_call = null
+	if(ticker.mode.waiting_for_candidates)
+		to_chat(src "<span class='warning'>Please wait for the current beacon to be finalized.</span>")
+		return
+		
+	ticker.mode.picked_call.members = list()
+	ticker.mode.picked_call.candidates = list()
+	ticker.mode.waiting_for_candidates = FALSE
+	ticker.mode.on_distress_cooldown = FALSE
+	ticker.mode.picked_call = null
 
 	var/list/list_of_calls = list()
 	for(var/datum/emergency_call/L in ticker.mode.all_calls)
