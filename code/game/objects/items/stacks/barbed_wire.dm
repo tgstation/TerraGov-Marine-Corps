@@ -37,7 +37,7 @@
 	R.use(4)
 	use(1)
 	var/obj/structure/razorwire/M = new/obj/item/stack/razorwire(user.loc, 1)
-	to_chat(user, "<span class='notice'>You combine the rods and barbed wire into a [M]!</span>")
+	to_chat(user, "<span class='notice'>You combine the rods and barbed wire into [M]!</span>")
 
 /obj/item/stack/razorwire
 	name = "razor wire assembly"
@@ -55,15 +55,15 @@
 
 //small stack
 /obj/item/stack/razorwire/small_stack
-	amount = 3
+	amount = 5
 
 //medium stack
 /obj/item/stack/razorwire/half_stack
-	amount = 5
+	amount = 10
 
  //full stack
 /obj/item/stack/razorwire/full
-	amount = 10
+	amount = 20
 
 /obj/item/stack/razorwire/attack_self(mob/user) //use barbed wire to deploy it
 	if(!ishuman(usr))

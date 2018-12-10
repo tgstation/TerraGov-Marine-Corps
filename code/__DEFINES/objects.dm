@@ -217,3 +217,9 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define RAZORWIRE_SOAK				5
 #define RAZORWIRE_MAX_HEALTH		200
 #define RAZORWIRE_SLOWDOWN			10
+#define RAZORWIRE_MIN_DAMAGE_MULT_LOW	0.4 //attacking
+#define RAZORWIRE_MAX_DAMAGE_MULT_LOW	0.6
+#define RAZORWIRE_MIN_DAMAGE_MULT_MED	0.8 //climbing into, disentangling or crusher charging it
+#define RAZORWIRE_MAX_DAMAGE_MULT_MED	1.2
+#define RAZORWIRE_MIN_DAMAGE_MULT_HIGH	1.6 //pouncing into it
+#define RAZORWIRE_MAX_DAMAGE_MULT_HIGH	2.4

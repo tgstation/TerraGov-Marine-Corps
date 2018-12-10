@@ -24,7 +24,7 @@
 		use(4)
 		B.use(1)
 		var/obj/structure/razorwire/M = new/obj/item/stack/razorwire(user.loc, 1)
-		to_chat(user, "<span class='notice'>You combine the rods and barbed wire into a [M]!</span>")
+		to_chat(user, "<span class='notice'>You combine the rods and barbed wire into [M]!</span>")
 
 	if (istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
