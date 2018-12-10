@@ -24,7 +24,7 @@
 		return FALSE
 
 	var/damage = W.force
-	if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
+	if(W.w_class < 3 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
 		damage *= 0.25
 
 	if(istype(W, /obj/item/tool/weldingtool))
@@ -93,7 +93,7 @@
 		if(W.hitsound)
 			playsound(get_turf(src), W.hitsound, 100, 0, 0)
 		user.visible_message("<span class='notice'>[user] begins to cut down [src] with [W].</span>","<span class='notice'>You begin to cut down [src] with [W].</span>", "You hear the sound of sawing.")
-		if(do_after(user, 1000/W.force, target = src)) //5 seconds with 20 force, 8 seconds with a hatchet, 20 seconds with a shard.
+		if(!do_after(usr, 100, TRUE, 5, BUSY_ICON_BUILD)) //5 seconds with 20 force, 8 seconds with a hatchet, 20 seconds with a shard.
 			user.visible_message("<span class='notice'>[user] fells [src] with the [W].</span>","<span class='notice'>You fell [src] with the [W].</span>", "You hear the sound of a tree falling.")
 			playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 100 , 0, 0)
 			for(var/i=1 to log_amount)
@@ -130,7 +130,7 @@
 	if(!on_fire)
 		processing_objects.Remove(src)
 	else
-		health -= 25
+		health -= 5
 	return ..()
 
 /obj/structure/flora/stump
@@ -141,6 +141,9 @@
 	density = FALSE
 	pixel_x = -16
 
+/obj/structure/flora/stump/flamer_fire_act()
+	return ..()
+
 /obj/structure/flora/tree/pine
 	name = "pine tree"
 	icon = 'icons/obj/flora/pinetrees.dmi'
@@ -150,18 +153,18 @@
 	..()
 	icon_state = "[icon_state][rand(1, 3)]"
 
-/obj/structure/flora/tree/pine/xmas
-	name = "xmas tree"
+/obj/structure/flora/tree/xmas
 	icon = 'icons/obj/flora/pinetrees.dmi'
+	name = "xmas tree"
 	icon_state = "pine_c"
 
-/obj/structure/flora/tree/pine/xmas/presents
+/obj/structure/flora/tree/xmas/presents
 	icon_state = "pinepresents"
 	desc = "A wondrous decorated Christmas tree. It has presents!"
-	var/gift_type = /obj/item/gift
+	var/gift_type = /obj/item/m_gift
 	var/list/ckeys_that_took = list()
 
-/obj/structure/flora/tree/pine/xmas/presents/attack_hand(mob/living/user)
+/obj/structure/flora/tree/xmas/presents/attack_hand(mob/living/user)
 	. = ..()
 	if(.)
 		return
