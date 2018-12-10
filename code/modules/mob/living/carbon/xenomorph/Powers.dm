@@ -1606,7 +1606,7 @@
 			T = temp
 	else
 		facing = get_dir(M, src)
-		if(check_blocked_turf(get_step(T, facing) ) ) //Make sure we can actually go to the target turf
+		if(!check_blocked_turf(get_step(T, facing) ) ) //Make sure we can actually go to the target turf
 			M.loc = get_step(T, facing) //Move the target behind us before flinging
 			for (var/x = 0, x < toss_distance, x++)
 				temp = get_step(T, facing)
@@ -1863,9 +1863,9 @@
 
 	second_wind_used = TRUE
 
-	second_wind_delay = world.time + (RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.01) )
+	second_wind_delay = world.time + (RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.015) )
 
-	spawn(RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.01) ) //1 minute cooldown, minus 0.5 seconds per rage to minimum 30 seconds.
+	spawn(RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.015) ) //4 minute cooldown, minus 0.75 seconds per rage to minimum 60 seconds.
 		second_wind_used = FALSE
 		to_chat(src, "<span class='xenodanger'>You gather enough strength to use Second Wind again.</span>")
 		playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
@@ -1958,7 +1958,7 @@
 		to_chat(src, "<span class='xenowarning'>You're not yet ready to spray again! You can do so in [( (last_spray_used + acid_d) - world.time) * 0.1] seconds.</span>")
 		return
 
-	if(!do_after(src, 3, TRUE, 3, BUSY_ICON_HOSTILE))
+	if(!do_after(src, 5, TRUE, 5, BUSY_ICON_HOSTILE, TRUE, TRUE))
 		return
 
 	var/turf/target

@@ -662,8 +662,8 @@
 			if(H)
 				to_chat(H, "________________________")
 				to_chat(H, "\red <b>You are the [H.mind.assigned_role]!<b>")
-				to_chat(H, "We have a new mission for you. The USCM is coming to investigate one of our blacksites, and we require your services.")
-				to_chat(H, "Make sure you keep the Colonial Marines from tampering with our equipment. It is very, very expensive, and will be hard to replace.")
+				to_chat(H, "We have a new mission for you. The TGMC is coming to investigate one of our blacksites, and we require your services.")
+				to_chat(H, "Make sure you keep the TerraGov Marine Corps from tampering with our equipment. It is very, very expensive, and will be hard to replace.")
 				to_chat(H, "As usual, you will be handsomely rewarded upon completion of this mission. Should you fail, we will deny our involvement.")
 				to_chat(H, "Hold out for an hour, and your job is finished. It goes without saying, <b>do not let us down.</b>")
 				to_chat(H, "________________________")*/
@@ -1289,7 +1289,7 @@
 	supply_manifest=list(
 		/obj/item/storage/box/wy_mre = 12
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"\improper W-Y MRE crate", "A crate containing Weyland-Yutani MREs. An army marches on its stomach, right?")
+	generate_supply_crate(supply_spawn,supply_manifest,"\improper W-Y MRE crate", "A crate containing Nanotrasen MREs. An army marches on its stomach, right?")
 
 	supply_manifest=list(
 		/obj/item/storage/firstaid/regular = 1,
@@ -1435,7 +1435,7 @@
 	supply_manifest=list(
 		/obj/item/storage/box/uscm_mre = 12
 		)
-	generate_supply_crate(supply_spawn,supply_manifest,"\improper MRE crate", "A crate containing USCM MREs. Yuck.")
+	generate_supply_crate(supply_spawn,supply_manifest,"\improper MRE crate", "A crate containing TGMC MREs. Yuck.")
 
 	supply_manifest=list(
 		/obj/item/storage/firstaid/regular = 6,

@@ -1,16 +1,17 @@
 //Deployable turrets. They can be either automated, manually fired, or installed with a pAI.
 //They are built in stages, and only engineers have access to them.
-
 /obj/item/ammo_magazine/sentry
 	name = "M30 box magazine (10x28mm Caseless)"
 	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = 4
-	icon_state = "ua571c"
+	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon_state = "ammo_can"
 	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
 	caliber = "10x28mm"
 	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/turret
 	gun_type = null
+
 
 /obj/item/storage/box/sentry
 	name = "\improper UA 571-C sentry crate"
@@ -18,258 +19,194 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sentry_case"
 	w_class = 5
-	storage_slots = 6
-	can_hold = list(
-					/obj/item/stack/sheet/plasteel/sentry_stack,
-					/obj/item/stack/sheet/metal/small_stack,
+	max_w_class = 5
+	storage_slots = 4
+	max_storage_space = 16
+	bypass_w_limit = list(
 					/obj/item/device/turret_top,
-					/obj/item/device/turret_sensor,
+					/obj/item/device/turret_tripod,
 					/obj/item/cell,
 					/obj/item/ammo_magazine/sentry,
 					)
 
-
 /obj/item/storage/box/sentry/New()
 	. = ..()
-	new /obj/item/stack/sheet/plasteel/sentry_stack(src)
-	new /obj/item/stack/sheet/metal/small_stack(src)
 	new /obj/item/device/turret_top(src)
-	new /obj/item/device/turret_sensor(src)
+	new /obj/item/device/turret_tripod(src)
 	new /obj/item/cell/high(src)
 	new /obj/item/ammo_magazine/sentry(src)
 
-/obj/machinery/marine_turret_frame
-	name = "\improper UA 571-C turret frame"
-	desc = "An unfinished turret frame. It requires wrenching, cable coil, a turret piece, a sensor, and metal plating."
-	icon = 'icons/Marine/turret.dmi'
-	icon_state = "sentry_base"
-	anchored = FALSE
-	density = TRUE
-	throwpass = TRUE //You can throw objects over this, despite it's density.
-	flags_atom = ON_BORDER
-	layer = ABOVE_OBJ_LAYER
-	var/has_cable = FALSE
-	var/has_top = FALSE
-	var/has_plates = FALSE
-	var/is_welded = FALSE
-	var/has_sensor = FALSE
-	var/frame_hp = 100
-
-
-/obj/machinery/marine_turret_frame/proc/update_health(damage)
-	frame_hp -= damage
-	if(frame_hp <= 0)
-		if(has_cable)
-			new /obj/item/stack/cable_coil(loc, 10)
-		if(has_top)
-			new /obj/item/device/turret_top(loc)
-		if(has_sensor)
-			new /obj/item/device/turret_sensor(loc)
-		cdel(src)
-
-
-/obj/machinery/marine_turret_frame/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(isXenoLarva(M))
-		return //Larvae can't do shit
-	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
-	"<span class='danger'>You slash [src]!</span>")
-	M.animation_attack_on(src)
-	M.flick_attack_overlay(src, "slash")
-	playsound(loc, "alien_claw_metal", 25)
-	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
-
-/obj/machinery/marine_turret_frame/examine(mob/user as mob)
-	..()
-	if(!anchored)
-		to_chat(user, "<span class='info'>It must be <B>wrenched</B> to the floor.</span>")
-	if(!has_cable)
-		to_chat(user, "<span class='info'>It requires <B>cable coil</B> for wiring.</span>")
-	if(!has_top)
-		to_chat(user, "<span class='info'>The <B>main turret</B> is not installed.</span>")
-	if(!has_plates)
-		to_chat(user, "<span class='info'>It does not have <B>metal</B> plating installed.</span>")
-	if(!is_welded)
-		to_chat(user, "<span class='info'>It requires the metal plating to be <B>welded</B>.</span>")
-	if(!has_sensor)
-		to_chat(user, "<span class='info'>It does not have a <b>turret sensor</B> installed.</span>")
-
-/obj/machinery/marine_turret_frame/attackby(var/obj/item/O as obj, mob/user as mob)
-	if(!ishuman(user))
-		return
-	//Rotate/Secure Sentry
-	if(istype(O,/obj/item/tool/wrench))
-		if(anchored)
-			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-			user.visible_message("<span class='notice'>[user] rotates [src].</span>",
-			"<span class='notice'>You rotate [src].</span>")
-			switch(dir)
-				if(SOUTH)
-					dir = WEST
-				if(NORTH)
-					dir = EAST
-				if(EAST)
-					dir = SOUTH
-				if(WEST)
-					dir = NORTH
-		else
-			if(locate(/obj/machinery/marine_turret) in loc)
-				to_chat(user, "<span class='warning'>There already is a turret in this position.</span>")
-				return
-
-			user.visible_message("<span class='notice'>[user] begins securing [src] to the ground.</span>",
-			"<span class='notice'>You begin securing [src] to the ground.</span>")
-			if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-				user.visible_message("<span class='notice'>[user] secures [src] to the ground.</span>",
-				"<span class='notice'>You secure [src] to the ground.</span>")
-				anchored = TRUE
-		return
-
-
-	//Install wiring
-	if(istype(O,/obj/item/stack/cable_coil))
-		if(!anchored)
-			to_chat(user, "<span class='warning'>You must secure [src] to the ground first.</span>")
-			return
-
-		var/obj/item/stack/cable_coil/CC = O
-		if(has_cable)
-			to_chat(user, "<span class='warning'>[src]'s wiring is already installed.</span>")
-			return
-		user.visible_message("<span class='notice'>[user] begins installing [src]'s wiring.</span>",
-		"<span class='notice'>You begin installing [src]'s wiring.</span>")
-		if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-			if(CC.use(10))
-				has_cable = TRUE
-				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-				user.visible_message("<span class='notice'>[user] installs [src]'s wiring.</span>",
-				"<span class='notice'>You install [src]'s wiring.</span>")
-				icon_state = "sentry_base_wired"
-				return
-			else
-				to_chat(user, "<span class='warning'>You will need at least ten cable lengths to finish [src]'s wiring.</span>")
-
-	//Install turret head
-	if(istype(O, /obj/item/device/turret_top))
-		if(!has_cable)
-			to_chat(user, "<span class='warning'>You must install [src]'s wiring first.</span>")
-			return
-		if(has_top)
-			to_chat(user, "<span class='warning'>[src] already has a turret installed.</span>")
-			return
-		user.visible_message("<span class='notice'>[user] begins installing [O] on [src].</span>",
-		"<span class='notice'>You begin installing [O] on [src].</span>")
-		if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-			playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-			user.visible_message("<span class='notice'>[user] installs [O] on [src].</span>",
-			"<span class='notice'>You install [O] on [src].</span>")
-			has_top = TRUE
-			icon_state = "sentry_armorless"
-			user.drop_held_item()
-			cdel(O)
-			return
-
-	//Install plating
-	if(istype(O, /obj/item/stack/sheet/metal))
-		var/obj/item/stack/sheet/metal/M = O
-		if(!has_top)
-			to_chat(user, "<span class='warning'>You must install [src]'s turret first.</span>")
-			return
-
-		if(has_plates)
-			to_chat(user, "<span class='warning'>[src] already has plates installed.</span>")
-			return
-
-		if(M.amount < 10)
-			to_chat(user, "<span class='warning'>[src]'s plating will require at least ten sheets of metal.</span>")
-			return
-
-		user.visible_message("<span class='notice'>[user] begins installing [src]'s reinforced plating.</span>",
-		"<span class='notice'>You begin installing [src]'s reinforced plating.</span>")
-		if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
-			if(!M) return
-			if(M.amount >= 10)
-				has_plates = TRUE
-				playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-				user.visible_message("<span class='notice'>[user] installs [src]'s reinforced plating.</span>",
-				"<span class='notice'>You install [src]'s reinforced plating.</span>")
-				M.use(10)
-				return
-			else
-				to_chat(user, "<span class='warning'>[src]'s plating will require at least ten sheets of metal.</span>")
-				return
-
-	//Weld plating
-	if(istype(O, /obj/item/tool/weldingtool))
-		if(!has_plates)
-			to_chat(user, "<span class='warning'>You must install [src]'s plating first.</span>")
-			return
-		var/obj/item/tool/weldingtool/WT = O
-		playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-		user.visible_message("<span class='notice'>[user] begins welding [src]'s parts together.</span>",
-		"<span class='notice'>You begin welding [src]'s parts together.</span>")
-		if(do_after(user,60, TRUE, 5, BUSY_ICON_BUILD))
-			if(!src || !WT || !WT.isOn()) return
-			if(WT.remove_fuel(0, user))
-				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-				user.visible_message("<span class='notice'>[user] welds [src]'s plating to the frame.</span>",
-				"<span class='notice'>You weld [src]'s plating to the frame.</span>")
-				is_welded = TRUE
-				icon_state = "sentry_sensor_none"
-				return
-			else
-				to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
-				return
-
-	//Install sensor
-	if(istype(O, /obj/item/device/turret_sensor))
-		if(!is_welded)
-			to_chat(user, "<span class='warning'>You must weld the plating on the [src] first!</span>")
-			return
-
-		if(has_sensor)
-			to_chat(user, "<span class='warning'>[src] already has a sensor installed.</span>")
-			return
-
-		user.visible_message("<span class='notice'>[user] begins installing [O] on [src].</span>",
-		"<span class='notice'>You begin installing [O] on [src].</span>")
-		if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-			has_sensor = TRUE
-			playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-			user.visible_message("<span class='notice'>[user] installs [O] on [src].</span>",
-			"<span class='notice'>You install [O] on [src].</span>")
-			icon_state = "sentry_off"
-			user.drop_held_item()
-			cdel(O)
-
-			var/obj/machinery/marine_turret/T = new(loc)  //Bing! Create a new turret.
-			T.dir = dir
-			cdel(src)
-			return
-
-	return ..() //Just do normal stuff.
-
-/obj/item/device/turret_sensor
-	name = "\improper UA 571-C turret sensor"
-	desc = "An AI control and locking sensor for an automated sentry. This must be installed on the final product for it to work."
-	unacidable = TRUE
-	w_class = 1
-	icon = 'icons/Marine/turret.dmi'
-	icon_state = "sentry_sensor"
 
 /obj/item/device/turret_top
 	name = "\improper UA 571-C turret"
-	desc = "The turret part of an automated sentry turret. This must be installed on a turret frame and welded together for it to do anything."
+	desc = "The turret part of an automated sentry turret."
 	unacidable = TRUE
 	w_class = 5
-	icon = 'icons/Marine/turret.dmi'
+	icon = 'icons/Marine/new_sentry_alt.dmi'
 	icon_state = "sentry_head"
+
+
+/obj/item/device/turret_tripod
+	name = "\improper UA 571-C turret tripod"
+	desc = "The tripod part of an automated sentry turret. You should deploy it first."
+	unacidable = TRUE
+	w_class = 5
+	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon_state = "sentry_tripod_folded"
+
+/obj/item/device/turret_tripod/attack_self(mob/user)
+	if(!ishuman(user))
+		return
+	var/turf/target = get_step(user.loc,user.dir)
+	if(!target)
+		return
+
+	if(check_blocked_turf(target)) //check if blocked
+		to_chat(user, "<span class='warning'>There is insufficient room to deploy [src]!</span>")
+		return
+
+	user.visible_message("<span class='notice'>[user] starts unfolding \the [src].</span>",
+			"<span class='notice'>You start unfolding \the [src].</span>")
+
+	if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
+		if(!src) //Make sure the sentry still exists
+			return
+		var/obj/machinery/turret_tripod_deployed/S = new /obj/machinery/turret_tripod_deployed/(target)
+		S.dir = user.dir
+		user.visible_message("<span class='notice'>[user] unfolds \the [S].</span>",
+			"<span class='notice'>You unfold \the [S].</span>")
+		playsound(target, 'sound/weapons/mine_armed.ogg', 25)
+		S.update_icon()
+		cdel(src)
+
+	
+/obj/machinery/turret_tripod_deployed
+	name = "\improper UA 571-C turret tripod"
+	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
+	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon_state = "sentry_tripod"
+	anchored = FALSE
+	unacidable = TRUE
+	density = TRUE
+	layer = ABOVE_MOB_LAYER //So you can't hide it under corpses
+	use_power = 0
+	flags_atom = RELAY_CLICK
+	var/has_top = FALSE
+
+/obj/machinery/turret_tripod_deployed/examine(mob/user as mob)
+	. = ..()
+	if(!anchored)
+		to_chat(user, "<span class='info'>It must be <B>wrenched</B> to the floor.</span>")
+	else if(!has_top)
+		to_chat(user, "<span class='info'>The <B>main turret</B> is not installed.</span>")
+	else if(has_top && anchored)
+		to_chat(user, "<span class='info'>It must be <B>screwed</B> to finish it.</span>")
+
+/obj/machinery/turret_tripod_deployed/MouseDrop(over_object, src_location, over_location) //Drag the tripod onto you to fold it.
+	if(!ishuman(usr))
+		return
+	var/mob/living/carbon/human/user = usr //this is us
+	if(!over_object == user || !in_range(src, user))
+		return
+
+	if(anchored)
+		to_chat(user, "<span class='warning'>You must unanchor \the [src] to retrieve it!</span>")
+		return
+
+	else if(has_top)
+		to_chat(user, "<span class='warning'>You must remove the turret top first!</span>")
+		return
+
+	user.visible_message("<span class='notice'>[user] begins to fold up and retrieve \the [src].</span>",
+	"<span class='notice'>You begin to fold up and retrieve \the [src].</span>")
+	if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+		if(!src || anchored)//Check if we got exploded
+			return
+		user.visible_message("<span class='notice'>[user] folds up and retrieves \the [src].</span>",
+		"<span class='notice'>You fold up and retrieve \the [src].</span>")
+		var/obj/item/device/turret_tripod/T = new(loc)
+		user.put_in_hands(T)
+		cdel(src)
+
+/obj/machinery/turret_tripod_deployed/attackby(var/obj/item/O as obj, mob/user as mob)
+	if(iswrench(O))
+		if(anchored)
+			user.visible_message("<span class='notice'>[user] begins unsecuring \the [src] from the ground.</span>",
+			"<span class='notice'>You begin unsecuring \the [src] from the ground.</span>")
+
+			if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+				user.visible_message("<span class='notice'>[user] unsecures \the [src] from the ground.</span>",
+				"<span class='notice'>You unsecure \the [src] from the ground.</span>")
+				anchored = FALSE
+				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+			return
+		else
+			user.visible_message("<span class='notice'>[user] begins securing \the [src] to the ground.</span>",
+			"<span class='notice'>You begin securing \the [src] to the ground.</span>")
+
+			if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+				user.visible_message("<span class='notice'>[user] secures \the [src] to the ground.</span>",
+				"<span class='notice'>You secure \the [src] to the ground.</span>")
+				anchored = TRUE
+				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+			return
+	else if(istype(O, /obj/item/device/turret_top))
+		var/obj/item/device/turret_top/I = O
+		if(!anchored)
+			to_chat(user, "<span class='warning'>You must wrench \the [src] to the ground first!</span>")
+		else if(has_top)
+			to_chat(user, "<span class='warning'>\The [src] already has a top attached! Use a screwdriver to secure it.</span>")
+		else
+			user.visible_message("<span class='notice'>[user] begins attaching the turret top to \the [src].</span>",
+			"<span class='notice'>You begin attaching the turret top to \the [src].</span>")
+
+			if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+				user.visible_message("<span class='notice'>[user] attaches the turret top to \the [src].</span>",
+				"<span class='notice'>You attach the turret top to \the [src].</span>")
+				has_top = TRUE
+				icon_state = "sentry_base"
+				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
+				cdel(I)
+	else if(isscrewdriver(O))
+		if(!anchored)
+			to_chat(user, "<span class='warning'>You must wrench \the [src] to the ground first!</span>")
+		else if(!has_top)
+			to_chat(user, "<span class='warning'>You must attach a top to \the [src] first!.</span>")
+		else
+			user.visible_message("<span class='notice'>[user] begins finalizing \the [src].</span>",
+			"<span class='notice'>You begin finalizing \the [src].</span>")
+
+			if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+				var/obj/machinery/marine_turret/S = new /obj/machinery/marine_turret(loc)
+				S.dir = dir
+				user.visible_message("<span class='notice'>[user] finishes \the [S].</span>",
+					"<span class='notice'>You finish \the [S].</span>")
+				playsound(S.loc, 'sound/weapons/mine_armed.ogg', 25)
+				S.update_icon()
+				cdel(src)
+	else if(iscrowbar(O))
+		if(!has_top)
+			to_chat(user, "<span class='warning'>You cannot remove the top if \the [src] doesn't have any yet!</span>")
+		else
+			user.visible_message("<span class='notice'>[user] begins removing the turret top from \the [src].</span>",
+			"<span class='notice'>You begin removing the turret top from \the [src].</span>")
+
+			if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
+				user.visible_message("<span class='notice'>[user] removes turret top from \the [src].</span>",
+				"<span class='notice'>You remove the turret top from \the [src].</span>")
+				has_top = FALSE
+				icon_state = "sentry_tripod"
+				new /obj/item/device/turret_top(loc)
+				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
+	else
+		return ..()
+
 
 /obj/machinery/marine_turret
 	name = "\improper UA 571-C sentry gun"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
-	icon = 'icons/Marine/turret.dmi'
-	icon_state = "sentry_off"
+	icon = 'icons/Marine/new_sentry_alt.dmi'
+	icon_state = "sentry_base"
 	anchored = TRUE
 	unacidable = TRUE
 	density = TRUE
@@ -352,6 +289,7 @@
 		stat = 0
 	//processing_objects.Add(src)
 	ammo = ammo_list[ammo]
+	update_icon()
 
 
 /obj/machinery/marine_turret/Dispose() //Clear these for safety's sake.
@@ -760,6 +698,16 @@
 	return ..()
 
 /obj/machinery/marine_turret/update_icon()
+	var/image/battery_green = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_green")
+	var/image/battery_yellow = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_yellow")
+	var/image/battery_orange = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_orange")
+	var/image/battery_red = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_red")
+	var/image/battery_black = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_batt_black")
+	var/image/active = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_active")
+	var/image/ammo_full = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_ammo")
+	var/image/ammo_empty = image('icons/Marine/new_sentry_alt.dmi', src, "sentry_ammo_empty")
+
+	overlays.Cut()
 	if(stat && health > 0) //Knocked over
 		on = FALSE
 		density = FALSE
@@ -769,27 +717,32 @@
 	else
 		density = initial(density)
 
-	if(!cell)
+	if(rounds)
+		overlays += ammo_full
+	else
+		overlays += ammo_empty
+
+	if(!cell || cell.charge <= 0)
 		on = FALSE
 		stop_processing()
-		icon_state = "sentry_battery_none"
+		overlays += battery_black
 		return
 
-	if(cell.charge <= 0)
-		on = FALSE
-		stop_processing()
-		icon_state = "sentry_battery_dead"
-		return
+	switch(CEILING(((cell.charge / max(cell.maxcharge, 1)) * 100), 25))
+		if(100)
+			overlays += battery_green
+		if(75)
+			overlays += battery_yellow
+		if(50)
+			overlays += battery_orange
+		if(25)
+			overlays += battery_red
 
 	if(on)
 		start_processing()
-		if(!rounds)
-			icon_state = "sentry_ammo_none"
-		else
-			icon_state = "sentry_on[radial_mode ? "_radial" : null]"
+		overlays += active
 
 	else
-		icon_state = "sentry_off"
 		stop_processing()
 
 /obj/machinery/marine_turret/proc/update_health(var/damage) //Negative damage restores health.
@@ -1191,7 +1144,7 @@
 	burst_fire = TRUE
 	rounds = 500
 	rounds_max = 500
-	icon_state = "sentry_on"
+	icon_state = "sentry_base"
 
 /obj/machinery/marine_turret/premade/New()
 	spark_system = new /datum/effect_system/spark_spread
