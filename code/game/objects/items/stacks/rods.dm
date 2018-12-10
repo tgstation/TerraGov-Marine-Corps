@@ -16,6 +16,16 @@
 
 /obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
 	..()
+	if(istype(W, /obj/item/stack/barbed_wire)) //making razorwire obstacles
+		var/obj/item/stack/barbed_wire/B = W
+		if(amount < 4)
+			to_chat(user, "<span class='warning'>You need [4 - amount] more [src] to make a razor wire obstacle!</span>")
+			return
+		use(4)
+		B.use(1)
+		var/obj/structure/razorwire/M = new/obj/item/stack/razorwire(user.loc, 1)
+		to_chat(user, "<span class='notice'>You combine the rods and barbed wire into a [M]!</span>")
+
 	if (istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
 

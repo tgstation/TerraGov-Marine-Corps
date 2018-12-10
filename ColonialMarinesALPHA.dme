@@ -740,6 +740,7 @@
 #include "code\game\objects\structures\noticeboard.dm"
 #include "code\game\objects\structures\plants.dm"
 #include "code\game\objects\structures\platforms.dm"
+#include "code\game\objects\structures\razorwire.dm"
 #include "code\game\objects\structures\reagent_dispensers.dm"
 #include "code\game\objects\structures\safe.dm"
 #include "code\game\objects\structures\signs.dm"
