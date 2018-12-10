@@ -63,7 +63,7 @@
 	J.pockets.contents += new /obj/item/explosive/grenade/frag/PMC
 	J.pockets.contents += new /obj/item/explosive/grenade/frag/PMC
 
-	var/obj/item/clothing/head/helmet/marine/veteran/PMC/D = new /obj/item/clothing/head/helmet/marine/veteran/PMC(H)
+	var/obj/item/clothing/head/helmet/marine/veteran/PMC/gunner/D = new /obj/item/clothing/head/helmet/marine/veteran/PMC/gunner(H)
 	D.pockets.contents += new /obj/item/reagent_container/food/snacks/eat_bar
 	D.pockets.contents += new /obj/item/reagent_container/food/snacks/eat_bar
 

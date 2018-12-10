@@ -5,12 +5,12 @@
 	recommended_enemies 	= 0 //Leaving this relic code incase we want to do some extra things with it in the future.
 	xeno_bypass_timer 		= 1
 	role_instruction		= 1
-	roles_for_mode = list(/datum/job/marine/standard/equipped,
-					/datum/job/marine/medic/equipped,
-					/datum/job/marine/engineer/equipped,
-					/datum/job/marine/specialist/equipped,
-					/datum/job/marine/smartgunner/equipped,
-					/datum/job/marine/leader/equipped,
+	roles_for_mode = list(/datum/job/marine/standard,
+					/datum/job/marine/medic,
+					/datum/job/marine/engineer,
+					/datum/job/marine/specialist,
+					/datum/job/marine/smartgunner,
+					/datum/job/marine/leader,
 					/datum/job/medical/doctor,
 					/datum/job/command/commander,
 					/datum/job/logistics/tech/maint,
