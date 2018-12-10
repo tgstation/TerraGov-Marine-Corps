@@ -466,9 +466,6 @@
 		burst_fire = !burst_fire
 		burst_fire_toggled = TRUE
 
-	if(mods["ctrl"])
-		burst_fire = 1
-
 	var/angle = get_dir(src,target)
 	//we can only fire in a 90 degree cone
 	if((dir & angle) && target.loc != src.loc && target.loc != operator.loc)
