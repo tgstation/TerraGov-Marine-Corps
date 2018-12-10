@@ -76,7 +76,13 @@
 		to_chat(user, "<span class='warning'>There is insufficient room to deploy [src]!</span>")
 		return
 
-	if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD))
+	user.visible_message("<span class='notice'>[user] starts assembling [src].</span>",
+	"<span class='notice'>You start assembling [src].</span>")
+	var/delay_assembly = SKILL_TASK_EASY
+	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer) //Higher skill lowers the delay.
+		delay_assembly -= 5 + user.mind.cm_skills.engineer * 2
+
+	if(do_after(user, delay_assembly, TRUE, 5, BUSY_ICON_BUILD))
 		if(!src) //Make sure the stack still exists
 			return
 		var/obj/structure/razorwire/M = new /obj/structure/razorwire(target)
