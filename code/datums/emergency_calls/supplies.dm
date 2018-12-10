@@ -1,4 +1,42 @@
 //Supply drop. Just crates, no members.
+#define ERT_CRATES  pick(list(/obj/item/weapon/gun/smg/m39, \
+							/obj/item/weapon/gun/smg/m39, \
+							/obj/item/ammo_magazine/smg/m39/extended, \
+							/obj/item/ammo_magazine/smg/m39/extended, \
+							/obj/item/ammo_magazine/smg/m39/ap, \
+							/obj/item/ammo_magazine/smg/m39/ap \
+							), \
+						list(/obj/item/weapon/gun/flamer, \
+							/obj/item/weapon/gun/flamer, \
+							/obj/item/ammo_magazine/flamer_tank, \
+							/obj/item/ammo_magazine/flamer_tank \
+							 ), \
+						list(/obj/item/weapon/gun/rifle/lmg, \
+							/obj/item/ammo_magazine/rifle/lmg, \
+							/obj/item/ammo_magazine/rifle/lmg, \
+							), \
+						list(/obj/item/weapon/gun/shotgun/combat, \
+							/obj/item/weapon/gun/shotgun/combat, \
+							/obj/item/ammo_magazine/shotgun/incendiary, \
+							/obj/item/ammo_magazine/shotgun/incendiary \
+							), \
+						list(/obj/item/explosive/plastique, \
+							/obj/item/explosive/plastique, \
+							/obj/item/explosive/plastique, \
+							/obj/item/device/radio/detpack, \
+							/obj/item/device/radio/detpack, \
+							/obj/item/device/assembly/signaler \
+							), \
+						list(/obj/item/weapon/gun/rifle/m41a, \
+							/obj/item/weapon/gun/rifle/m41a, \
+							/obj/item/ammo_magazine/rifle/incendiary, \
+							/obj/item/ammo_magazine/rifle/incendiary, \
+							/obj/item/ammo_magazine/rifle/incendiary, \
+							/obj/item/ammo_magazine/rifle/ap, \
+							/obj/item/ammo_magazine/rifle/ap \
+							))
+
+
 /datum/emergency_call/supplies
 	name = "Supply Drop"
 	mob_max = 0
@@ -9,70 +47,19 @@
 
 /datum/emergency_call/supplies/spawn_items()
 	var/turf/drop_spawn
-	var/list/choices = list(0,1,2,3,4,5,6)
-
-	for(var/i = 1 to 4)
+	var/total = rand(3,6)
+	
+	for(var/i = 1 to total)
 		drop_spawn = get_spawn_point(1)
-		if(istype(drop_spawn))
-			var/obj/structure/closet/crate/weapon/W = new(drop_spawn)
-			switch(pick_n_take(choices))
-				if(0)
-					new /obj/item/weapon/gun/pistol/m4a3(W)
-					new /obj/item/weapon/gun/pistol/m1911(W)
-					new /obj/item/ammo_magazine/pistol/extended(W)
-					new /obj/item/ammo_magazine/pistol/extended(W)
-					new /obj/item/ammo_magazine/pistol/ap(W)
-					new /obj/item/ammo_magazine/pistol/incendiary(W)
-					new /obj/item/attachable/quickfire(W)
-					new /obj/item/attachable/burstfire_assembly(W)
-					new /obj/item/attachable/compensator(W)
-					new /obj/item/attachable/extended_barrel(W)
-				if(1)
-					new /obj/item/weapon/gun/smg/m39(W)
-					new /obj/item/weapon/gun/smg/m39(W)
-					new /obj/item/ammo_magazine/smg/m39/extended(W)
-					new /obj/item/ammo_magazine/smg/m39/extended(W)
-					new /obj/item/ammo_magazine/smg/m39/ap(W)
-					new /obj/item/ammo_magazine/smg/m39/ap(W)
-					new /obj/item/attachable/stock/smg(W)
-					new /obj/item/attachable/stock/smg(W)
-					new /obj/item/attachable/verticalgrip(W)
-					new /obj/item/attachable/verticalgrip(W)
-				if(2)
-					new /obj/item/weapon/gun/flamer(W)
-					new /obj/item/weapon/gun/flamer(W)
-					new /obj/item/ammo_magazine/flamer_tank(W)
-					new /obj/item/ammo_magazine/flamer_tank(W)
-				if(3)
-					new /obj/item/explosive/plastique(W)
-					new /obj/item/explosive/plastique(W)
-					new /obj/item/explosive/plastique(W)
-					new /obj/item/explosive/grenade/frag/PMC(W)
-					new /obj/item/explosive/grenade/frag/PMC(W)
-					new /obj/item/explosive/grenade/incendiary(W)
-					new /obj/item/explosive/grenade/incendiary(W)
-				if(4)
-					new /obj/item/weapon/gun/rifle/m41a(W)
-					new /obj/item/weapon/gun/rifle/m41a(W)
-					new /obj/item/ammo_magazine/rifle/extended(W)
-					new /obj/item/ammo_magazine/rifle/extended(W)
-					new /obj/item/ammo_magazine/rifle/incendiary(W)
-					new /obj/item/ammo_magazine/rifle/incendiary(W)
-					new /obj/item/ammo_magazine/rifle/ap(W)
-					new /obj/item/ammo_magazine/rifle/ap(W)
-					new /obj/item/attachable/stock/rifle(W)
-					new /obj/item/attachable/stock/rifle(W)
-				if(5)
-					new /obj/item/weapon/gun/shotgun/combat(W)
-					new /obj/item/weapon/gun/shotgun/combat(W)
-					new /obj/item/ammo_magazine/shotgun/incendiary(W)
-					new /obj/item/ammo_magazine/shotgun/incendiary(W)
-					new /obj/item/ammo_magazine/shotgun/flechette(W)
-					new /obj/item/ammo_magazine/shotgun/flechette(W)
-					new /obj/item/attachable/stock/tactical(W)
-					new /obj/item/attachable/stock/tactical(W)
-				if(6)
-					new /obj/item/weapon/gun/rifle/lmg(W)
-					new /obj/item/ammo_magazine/rifle/lmg(W)
-					new /obj/item/ammo_magazine/rifle/lmg(W)
-					new /obj/item/attachable/verticalgrip (W)
+
+		if(!istype(drop_spawn))
+			return
+
+		var/atom/location = new /obj/structure/closet/crate(drop_spawn)
+
+		var/L[] = ERT_CRATES
+		for(var/item in L)
+			new item(location)
+
+
+#undef ERT_CRATES

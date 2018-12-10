@@ -1200,9 +1200,11 @@ var/global/respawntime = 15
 	set desc = "Call a distress beacon. This should not be done if the shuttle's already been called."
 
 	if(!ticker?.mode)
+		to_chat(src, "<span class='warning'>Please wait for the round to begin first.</span>")
 		return
 
 	if(!check_rights(R_ADMIN))
+		to_chat(src, "<span class='warning'>Insufficient permissions.</span>")
 		return
 
 	if(ticker.mode.waiting_for_candidates)
@@ -1219,12 +1221,12 @@ var/global/respawntime = 15
 
 	var/list/list_of_calls = list()
 	for(var/datum/emergency_call/L in ticker.mode.all_calls)
-		if(L && L.name != "name")
+		if(L?.name)
 			list_of_calls += L.name
 
 	list_of_calls += "Randomize"
 
-	var/choice = input("Which distress call?") as null|anything in list_of_calls
+	var/choice = input("Which distress do you want to call?") as null|anything in list_of_calls
 	if(!choice)
 		return
 
@@ -1232,13 +1234,12 @@ var/global/respawntime = 15
 		ticker.mode.picked_call	= ticker.mode.get_random_call()
 	else
 		for(var/datum/emergency_call/C in ticker.mode.all_calls)
-			if(C && C.name == choice)
+			if(C?.name == choice)
 				ticker.mode.picked_call = C
 				break
 
 	if(!istype(ticker.mode.picked_call))
 		return
-
 
 	var/is_announcing = TRUE
 	var/announce = alert(src, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No")
