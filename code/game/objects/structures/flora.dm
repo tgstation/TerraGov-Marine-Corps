@@ -142,7 +142,7 @@
 	pixel_x = -16
 
 /obj/structure/flora/stump/flamer_fire_act()
-	return ..()
+	return
 
 /obj/structure/flora/tree/pine
 	name = "pine tree"
