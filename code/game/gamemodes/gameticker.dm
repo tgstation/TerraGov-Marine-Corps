@@ -68,6 +68,7 @@ var/global/datum/controller/gameticker/ticker
 							vote.process()
 			if(pregame_timeleft <= 0)
 				current_state = GAME_STATE_SETTING_UP
+				Master.SetRunLevel(RUNLEVEL_SETUP)
 	while (!setup())
 
 
@@ -80,6 +81,7 @@ var/global/datum/controller/gameticker/ticker
 		runnable_modes = config.get_runnable_modes()
 		if (runnable_modes.len==0)
 			current_state = GAME_STATE_PREGAME
+			Master.SetRunLevel(RUNLEVEL_LOBBY)
 			to_chat(world, "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby.")
 			return 0
 		if(secret_force_mode != "secret")
@@ -99,6 +101,7 @@ var/global/datum/controller/gameticker/ticker
 		qdel(mode)
 		mode = null
 		current_state = GAME_STATE_PREGAME
+		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		RoleAuthority.reset_roles()
 		return 0
 
@@ -107,6 +110,7 @@ var/global/datum/controller/gameticker/ticker
 		qdel(mode)
 		mode = null
 		current_state = GAME_STATE_PREGAME
+		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		to_chat(world, "<B>Error setting up [master_mode].</B> Reverting to pre-game lobby.")
 		RoleAuthority.reset_roles()
 		return 0
@@ -132,6 +136,7 @@ var/global/datum/controller/gameticker/ticker
 
 
 	current_state = GAME_STATE_PLAYING
+	Master.SetRunLevel(RUNLEVEL_GAME)
 
 	callHook("roundstart")
 
@@ -169,8 +174,6 @@ var/global/datum/controller/gameticker/ticker
 	supply_controller.process() 		//Start the supply shuttle regenerating points -- TLE
 
 	//for(var/obj/multiz/ladder/L in object_list) L.connect() //Lazy hackfix for ladders. TODO: move this to an actual controller. ~ Z
-
-	Master.SetRunLevel(RUNLEVEL_GAME)
 
 	if(config.sql_enabled)
 		spawn(3000)
@@ -240,13 +243,13 @@ var/global/datum/controller/gameticker/ticker
 
 		if(!EvacuationAuthority.dest_status != NUKE_EXPLOSION_IN_PROGRESS && game_finished && (mode_finished || post_game))
 			current_state = GAME_STATE_FINISHED
+			Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 			spawn(1)
 				declare_completion()
 
 			spawn(50)
 				callHook("roundend")
-				Master.SetRunLevel(RUNLEVEL_POSTGAME)
 
 				if (EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED)
 					feedback_set_details("end_proper","nuke")
