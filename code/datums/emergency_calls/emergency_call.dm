@@ -169,11 +169,11 @@
 						break
 					var/datum/mind/M = pick(candidates) //Get a random candidate, then remove it from the candidates list.
 					if(M.current.stat != DEAD)
-						message_admins("DEBUG: Removing alive candidate.")
+						message_admins("DEBUG: Removing alive candidate [M.key].")
 						candidates -= M //Strip them from the list, they aren't dead anymore.
 						continue
 					if(!istype(M)) //Something went horrifically wrong
-						message_admins("DEBUG: Wrong type.")
+						message_admins("DEBUG: Wrong type [M.key].")
 						candidates -= M
 						continue
 					message_admins("DEBUG: Picked candidate [M.key] correctly.")
