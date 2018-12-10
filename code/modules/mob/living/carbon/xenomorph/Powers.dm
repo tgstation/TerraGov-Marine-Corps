@@ -987,10 +987,10 @@
 
 	var/mob/living/carbon/Xenomorph/target = A
 	var/is_silicon = xeno_caste & CASTE_IS_ROBOTIC ? TRUE : FALSE
-	var/energy = is_silicon ? "power" : "plasma"
+	var/energy = is_silicon ? "charge" : "plasma"
 
 	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>You can't transfer  [energy] from here!</span>")
+		to_chat(src, "<span class='warning'>You can't transfer [energy] from here!</span>")
 		return
 
 	if(is_silicon ? !(target.xeno_caste & CASTE_IS_ROBOTIC) : target.xeno_caste & CASTE_IS_ROBOTIC)
@@ -1034,7 +1034,7 @@
 
 	var/mob/living/carbon/Xenomorph/target = A
 	var/is_silicon = xeno_caste & CASTE_IS_ROBOTIC ? TRUE : FALSE
-	var/energy = is_silicon ? "power" : "plasma"
+	var/energy = is_silicon ? "charge" : "plasma"
 
 	if(!isturf(loc))
 		to_chat(src, "<span class='warning'>You can't salvage [energy] from here!</span>")
