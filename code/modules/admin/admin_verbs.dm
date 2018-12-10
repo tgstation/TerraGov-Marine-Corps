@@ -905,12 +905,12 @@ var/list/admin_verbs_mentor = list(
 	if(!holder)	return
 	if(config)
 		if(config.allow_synthetic_gun_use)
-			to_chat(src, "<b>Synthetic gun use allowed.</b>")
+			to_chat(src, "<b>Synthetic gun use disallowed.</b>")
 			message_admins("Admin [key_name_admin(usr)] has disabled synthetic gun use.", 1)
 			log_admin("[key_name(src)] disabled synthetic gun use.")
 		else
-			to_chat(src, "<b>Synthetic gun use disallowed.</b>")
-			message_admins("Admin [key_name_admin(usr)] has synthetic gun use.", 1)
+			to_chat(src, "<b>Synthetic gun use allowed.</b>")
+			message_admins("Admin [key_name_admin(usr)] has enabled synthetic gun use.", 1)
 			log_admin("[key_name(src)] allowed synthetic gun use.")
 		config.allow_synthetic_gun_use = !config.allow_synthetic_gun_use
 

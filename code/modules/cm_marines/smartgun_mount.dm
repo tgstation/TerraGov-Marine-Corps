@@ -47,7 +47,7 @@
 /obj/item/device/m56d_gun
 	name = "\improper M56D Mounted Smartgun"
 	desc = "The top half of a M56D Machinegun post. However it ain't much use without the tripod."
-	unacidable = 1
+	unacidable = TRUE
 	w_class = 5
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D_gun_e"
@@ -88,9 +88,9 @@
 		return
 
 /obj/item/device/m56d_post //Adding this because I was fucken stupid and put a obj/machinery in a box. Realized I couldn't take it out
-	name = "\improper M56D folded mount"
+	name = "M56D folded mount"
 	desc = "The folded, foldable tripod mount for the M56D.  (Place on ground and drag to you to unfold)."
-	unacidable = 1
+	unacidable = TRUE
 	w_class = 5
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "folded_mount"
@@ -98,9 +98,10 @@
 /obj/item/device/m56d_post/attack_self(mob/user) //click the tripod to unfold it.
 	if(!ishuman(usr)) return
 	to_chat(user, "<span class='notice'>You deploy [src].</span>")
-	new /obj/machinery/m56d_post(user.loc)
+	var/obj/machinery/m56d_post/P = new(user.loc)
+	P.dir = user.dir
+	P.update_icon()
 	cdel(src)
-
 
 
 //The mount for the weapon.
@@ -109,10 +110,10 @@
 	desc = "A foldable tripod mount for the M56D, provides stability to the M56D."
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D_mount"
-	anchored = 0
-	density = 1
+	anchored = TRUE
+	density = TRUE
 	layer = ABOVE_MOB_LAYER
-	var/gun_mounted = 0 //Has the gun been mounted?
+	var/gun_mounted = FALSE //Has the gun been mounted?
 	var/gun_rounds = 0 //Did the gun come with any ammo?
 	var/health = 100
 
@@ -128,15 +129,12 @@
 
 /obj/machinery/m56d_post/examine(mob/user)
 	..()
-	if(!anchored)
-		to_chat(user, "It must be <B>screwed</b> to the floor.")
-	else if(!gun_mounted)
+	if(!gun_mounted)
 		to_chat(user, "The <b>M56D Mounted Smartgun</b> is not yet mounted.")
-	else
-		to_chat(user, "The M56D isn't screwed into the mount. Use a <b>screwdriver</b> to finish the job.")
 
 /obj/machinery/m56d_post/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(isXenoLarva(M)) return //Larvae can't do shit
+	if(isXenoLarva(M))
+		return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
 	"<span class='danger'>You slash [src]!</span>")
 	M.animation_attack_on(src)
@@ -146,18 +144,14 @@
 
 
 /obj/machinery/m56d_post/MouseDrop(over_object, src_location, over_location) //Drag the tripod onto you to fold it.
-	if(!ishuman(usr)) return
+	if(!ishuman(usr))
+		return
 	var/mob/living/carbon/human/user = usr //this is us
 	if(over_object == user && in_range(src, user))
-		if(anchored)
-			to_chat(user, "<span class='warning'>[src] can't be folded while screwed to the floor. Unscrew it first.</span>")
-			return
 		to_chat(user, "<span class='notice'>You fold [src].</span>")
 		var/obj/item/device/m56d_post/P = new(loc)
 		user.put_in_hands(P)
 		cdel(src)
-
-
 
 /obj/machinery/m56d_post/attackby(obj/item/O, mob/user)
 	if(!ishuman(user)) //first make sure theres no funkiness
@@ -166,27 +160,16 @@
 	if(istype(O,/obj/item/tool/wrench)) //rotate the mount
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		user.visible_message("<span class='notice'>[user] rotates [src].</span>","<span class='notice'>You rotate [src].</span>")
-		switch(dir)
-			if(NORTH)
-				dir = EAST
-			if(EAST)
-				dir = SOUTH
-			if(SOUTH)
-				dir = WEST
-			if(WEST)
-				dir = NORTH
+		dir = turn(dir, -90)
 		return
 
 	if(istype(O,/obj/item/device/m56d_gun)) //lets mount the MG onto the mount.
 		var/obj/item/device/m56d_gun/MG = O
-		if(!anchored)
-			to_chat(user, "<span class='warning'>[src] must be anchored! Use a screwdriver!</span>")
-			return
 		to_chat(user, "You begin mounting [MG]..")
 		if(do_after(user,30, TRUE, 5, BUSY_ICON_BUILD) && !gun_mounted && anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("\blue [user] installs [MG] into place.","\blue You install [MG] into place.")
-			gun_mounted = 1
+			gun_mounted = TRUE
 			gun_rounds = MG.rounds
 			if(!gun_rounds)
 				icon_state = "M56D_e"
@@ -205,7 +188,7 @@
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			user.visible_message("\blue [user] removes [src]'s gun.","\blue You remove [src]'s gun.")
 			new /obj/item/device/m56d_gun(loc)
-			gun_mounted = 0
+			gun_mounted = FALSE
 			gun_rounds = 0
 			icon_state = "M56D_mount"
 		return
@@ -220,35 +203,8 @@
 				G.visible_message("\icon[G] <B>[G] is now complete!</B>") //finished it for everyone to
 				G.dir = src.dir //make sure we face the right direction
 				G.rounds = src.gun_rounds //Inherent the amount of ammo we had.
+				G.update_icon()
 				cdel(src)
-		else
-
-			if(!anchored)
-				var/turf/T = get_turf(src)
-				var/fail = 0
-				if(T.density)
-					fail = 1
-				else
-					for(var/obj/X in T)
-						if(X.density  && X != src && !(X.flags_atom & ON_BORDER))
-							fail = 1
-							break
-				if(fail)
-					to_chat(user, "<span class='warning'>Can't install [src] here, something is in the way.</span>")
-					return
-			if(anchored)
-				to_chat(user, "You begin unscrewing [src] from the ground..")
-			else
-				to_chat(user, "You begin screwing [src] into place..")
-			var/old_anchored = anchored
-			if(do_after(user,20, TRUE, 5, BUSY_ICON_BUILD) && anchored == old_anchored)
-				anchored = !anchored
-				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				if(anchored)
-					user.visible_message("\blue [user] anchors [src] into place.","\blue You anchor [src] into place.")
-				else
-					user.visible_message("\blue [user] unanchors [src].","\blue You unanchor [src].")
-		return
 
 	return ..()
 
@@ -258,17 +214,18 @@
 	desc = "A deployable, mounted smartgun. While it is capable of taking the same rounds as the M56, it fires specialized tungsten rounds for increased armor penetration.\n<span class='notice'>  Use (ctrl-click) to shoot in bursts.</span>\n<span class='notice'> !!DANGER: M56D DOES NOT HAVE IFF FEATURES!!</span>"
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_state = "M56D"
-	anchored = 1
-	unacidable = 1 //stop the xeno me(l)ta.
-	density = 1
+	anchored = TRUE
+	unacidable = TRUE //stop the xeno me(l)ta.
+	density = TRUE
 	layer = ABOVE_MOB_LAYER //no hiding the hmg beind corpse
 	use_power = 0
 	var/rounds = 0 //Have it be empty upon spawn.
 	var/rounds_max = 700
 	var/fire_delay = 4 //Gotta have rounds down quick.
 	var/last_fired = 0
-	var/burst_fire = 0 //0 is non-burst mode, 1 is burst.
-	var/safety = 0 //Weapon safety, 0 is weapons hot, 1 is safe.
+	var/burst_fire = FALSE//0 is non-burst mode, 1 is burst.
+	var/burst_fire_toggled = FALSE
+	var/safety = FALSE //Weapon safety, 0 is weapons hot, 1 is safe.
 	var/health = 200
 	var/health_max = 200 //Why not just give it sentry-tier health for now.
 	var/atom/target = null // required for shooting at things.
@@ -278,7 +235,8 @@
 	var/is_bursting = 0.
 	var/icon_full = "M56D" // Put this system in for other MGs or just other mounted weapons in general, future proofing.
 	var/icon_empty = "M56D_e" //Empty
-	var/zoom = 0 // 0 is it doesn't zoom, 1 is that it zooms.
+	var/view_tile_offset = 3	//this is amount of tiles we shift our vision towards MG direction
+	var/view_tiles = 7		//this is amount of tiles we want person to see in each direction (7 by default)
 
 	New()
 		ammo = ammo_list[ammo] //dunno how this works but just sliding this in from sentry-code.
@@ -319,15 +277,7 @@
 		else
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("[user] rotates the [src].","You rotate the [src].")
-			switch(dir)
-				if(NORTH)
-					dir = EAST
-				if(EAST)
-					dir = SOUTH
-				if(SOUTH)
-					dir = WEST
-				if(WEST)
-					dir = NORTH
+			dir = turn(dir, -90)
 		return
 
 	if(istype(O, /obj/item/tool/screwdriver)) // Lets take it apart.
@@ -390,7 +340,8 @@
 	return 1
 
 /obj/machinery/m56d_hmg/attack_alien(mob/living/carbon/Xenomorph/M) // Those Ayy lmaos.
-	if(isXenoLarva(M)) return //Larvae can't do shit
+	if(isXenoLarva(M))
+		return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
 	"<span class='danger'>You slash [src]!</span>")
 	M.animation_attack_on(src)
@@ -399,7 +350,8 @@
 	update_health(rand(M.xeno_caste.melee_damage_lower,M.xeno_caste.melee_damage_upper))
 
 /obj/machinery/m56d_hmg/proc/load_into_chamber()
-	if(in_chamber) return 1 //Already set!
+	if(in_chamber)
+		return 1 //Already set!
 	if(rounds == 0)
 		update_icon() //make sure the user can see the lack of ammo.
 		return 0 //Out of ammo.
@@ -411,7 +363,8 @@
 /obj/machinery/m56d_hmg/proc/process_shot()
 	set waitfor = 0
 
-	if(isnull(target)) return //Acqure our victim.
+	if(isnull(target))
+		return //Acqure our victim.
 
 	if(!ammo)
 		update_icon() //safeguard.
@@ -432,13 +385,16 @@
 
 	if(!burst_fire && target && !last_fired)
 		fire_shot()
-
-	burst_fire = 0
+	if(burst_fire_toggled)
+		burst_fire = !burst_fire
+		burst_fire_toggled = FALSE
 	target = null
 
 /obj/machinery/m56d_hmg/proc/fire_shot() //Bang Bang
-	if(!ammo) return //No ammo.
-	if(last_fired) return //still shooting.
+	if(!ammo)
+		return //No ammo.
+	if(last_fired)
+		return //still shooting.
 
 	if(!is_bursting)
 		last_fired = 1
@@ -452,7 +408,8 @@
 		return
 
 	var/scatter_chance = 5
-	if(burst_fire) scatter_chance = 10 //Make this sucker more accurate than the actual Sentry, gives it a better role.
+	if(burst_fire)
+		scatter_chance = 10 //Make this sucker more accurate than the actual Sentry, gives it a better role.
 
 	if(prob(scatter_chance) && get_dist(T,U) > 2) //scatter at point blank could make us fire sideways.
 		U = locate(U.x + rand(-1,1),U.y + rand(-1,1),U.z)
@@ -478,31 +435,36 @@
 
 // New proc for MGs and stuff replaced handle_manual_fire(). Same arguements though, so alls good.
 /obj/machinery/m56d_hmg/handle_click(mob/living/carbon/human/user, atom/A, var/list/mods)
-	if(!operator) return 0
-	if(operator != user) return 0
-	if(istype(A,/obj/screen)) return 0
-	if(is_bursting) return
-	if(user.lying || get_dist(user,src) > 1 || user.is_mob_incapacitated())
+	if(!operator)
+		return FALSE
+	if(operator != user)
+		return FALSE
+	if(istype(A,/obj/screen))
+		return FALSE
+	if(is_bursting)
+		return
+	if(user.lying || !Adjacent(user) || user.is_mob_incapacitated())
 		user.unset_interaction()
-		return 0
+		return FALSE
 	if(user.get_active_hand())
 		to_chat(usr, "<span class='warning'>You need a free hand to shoot the [src].</span>")
-		return 0
-
+		return FALSE
 	target = A
 	if(!istype(target))
-		return 0
+		return FALSE
 
 	if(target.z != src.z || target.z == 0 || src.z == 0 || isnull(operator.loc) || isnull(src.loc))
-		return 0
+		return FALSE
 
 	if(get_dist(target,src.loc) > 15)
+		return FALSE
+
+	if(mods["middle"] || mods["shift"] || mods["alt"])
 		return 0
 
-	if(mods["middle"] || mods["shift"] || mods["alt"])	return 0
-
 	if(mods["ctrl"])
-		burst_fire = 1
+		burst_fire = !burst_fire
+		burst_fire_toggled = TRUE
 
 	var/angle = get_dir(src,target)
 	//we can only fire in a 90 degree cone
@@ -515,10 +477,13 @@
 			process_shot()
 		return 1
 
+	burst_fire = !burst_fire
+	burst_fire_toggled = FALSE
 	return 0
 
 /obj/machinery/m56d_hmg/proc/muzzle_flash(var/angle) // Might as well keep this too.
-	if(isnull(angle)) return
+	if(isnull(angle))
+		return
 
 	if(prob(65))
 		var/img_layer = layer + 0.1
@@ -532,7 +497,8 @@
 		I.flick_overlay(src, 3)
 
 /obj/machinery/m56d_hmg/MouseDrop(over_object, src_location, over_location) //Drag the MG to us to man it.
-	if(!ishuman(usr)) return
+	if(!ishuman(usr))
+		return
 	var/mob/living/carbon/human/user = usr //this is us
 	src.add_fingerprint(usr)
 	if((over_object == user && (in_range(src, user) || locate(src) in user))) //Make sure its on ourselves
@@ -540,6 +506,12 @@
 			user.unset_interaction()
 			visible_message("\icon[src] <span class='notice'>[user] decided to let someone else have a go </span>")
 			to_chat(usr, "<span class='notice'>You decided to let someone else have a go on the MG </span>")
+			return
+		if(!Adjacent(user))
+			to_chat(usr, "<span class='warning'>Something is between you and [src].</span>")
+			return
+		if(get_step(src,reverse_direction(dir)) != user.loc)
+			to_chat(user, "<span class='warning'>You should be behind [src] to man it!</span>")
 			return
 		if(operator) //If there is already a operator then they're manning it.
 			if(operator.interactee == null)
@@ -564,35 +536,59 @@
 
 /obj/machinery/m56d_hmg/on_set_interaction(mob/user)
 	flags_atom |= RELAY_CLICK
-	if(zoom)
-		user.client.change_view(12)
+	user.client.change_view(view_tiles)
+	switch(src.dir)
+		if(NORTH)
+			user.client.pixel_x = 0
+			user.client.pixel_y = view_tile_offset * 32
+		if(SOUTH)
+			user.client.pixel_x = 0
+			user.client.pixel_y = -1 * view_tile_offset * 32
+		if(EAST)
+			user.client.pixel_x = view_tile_offset * 32
+			user.client.pixel_y = 0
+		if(WEST)
+			user.client.pixel_x = -1 * view_tile_offset * 32
+			user.client.pixel_y = 0
 	operator = user
 
 /obj/machinery/m56d_hmg/on_unset_interaction(mob/user)
 	flags_atom &= ~RELAY_CLICK
-	if(zoom && user.client)
+	if(user.client)
 		user.client.change_view(world.view)
+		user.client.pixel_x = 0
+		user.client.pixel_y = 0
 	if(operator == user)
 		operator = null
 
 /obj/machinery/m56d_hmg/check_eye(mob/user)
-	if(user.lying || get_dist(user,src) > 1 || user.is_mob_incapacitated() || !user.client)
+	if(user.lying || !Adjacent(user) || user.is_mob_incapacitated() || !user.client)
 		user.unset_interaction()
 
-/obj/machinery/m56d_hmg/clicked(var/mob/user, var/list/mods) //Making it possible to toggle burst fire. Perhaps have altclick be the safety on the gun?
-	if (isobserver(user)) return
+/obj/machinery/m56d_hmg/verb/toggle_mg_burst_fire()
+	set name = "Toggle MG Burst Fire"
+	set category = "Weapons"
+	set src in orange(1)
 
-	return ..()
+	if (operator != usr)
+		return
+
+	burst_fire = !burst_fire
+	to_chat(usr, "<span class='notice'>You set [src] to [burst_fire ? "burst fire" : "single fire"] mode.</span>")
+	playsound(src.loc, 'sound/items/Deconstruct.ogg',25,1)
 
 /obj/machinery/m56d_hmg/mg_turret //Our mapbound version with stupid amounts of ammo.
 	name = "M56D Smartgun Nest"
 	desc = "A M56D smartgun mounted upon a small reinforced post with sandbags to provide a small machinegun nest for all your defense purpose needs.\n<span class='notice'>  Use (ctrl-click) to shoot in bursts.</span>\n<span class='notice'>!!DANGER: M56D DOES NOT HAVE IFF FEATURES!!</span>"
-	burst_fire = 0
+	burst_fire = FALSE
+	burst_fire_toggled = FALSE
 	fire_delay = 2
 	rounds = 1500
 	rounds_max = 1500
-	locked = 1
+	locked = TRUE
 	icon = 'icons/turf/whiskeyoutpost.dmi'
 	icon_full = "towergun"
 	icon_empty = "towergun"
-	zoom = 1
+	view_tile_offset = 6
+	view_tiles = 7
+
