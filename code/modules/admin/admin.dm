@@ -1251,6 +1251,7 @@ var/global/respawntime = 15
 	log_admin("[key_name(usr)] admin-called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]")
 	message_admins("\blue [key_name_admin(usr)] admin-called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]", 1)
 
+
 /datum/admins/proc/admin_force_ERT_shuttle()
 	set category = "Admin"
 	set name = "Force ERT Shuttle"

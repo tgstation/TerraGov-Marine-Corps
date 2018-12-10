@@ -161,6 +161,7 @@
 				ticker.mode.on_distress_cooldown = FALSE
 		else
 			message_admins("Found [length(candidates)] candidates.")
+			ticker.mode.waiting_for_candidates = FALSE
 			var/datum/mind/picked_candidates = list()
 			if(mob_max > 0)
 				for(var/i = 1 to mob_max)
