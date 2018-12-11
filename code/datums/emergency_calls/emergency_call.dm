@@ -89,16 +89,6 @@
 	set category = "Ghost"
 	set desc = "Join an ongoing distress call response. You must be ghosted to do this."
 
-	if(!usr.mind) //How? Give them a new one anyway.
-		message_admins("DEBUG: No mind, creating new one.")
-		usr.mind = new /datum/mind(usr.key)
-		usr.mind.active = 1
-		usr.mind.current = usr
-
-	if(usr.mind.key != usr.key) //This can happen when admin-switching people into afking people, leading to runtime errors for a clientless key.
-		message_admins("DEBUG: Keyless mind, transfering.")
-		usr.mind.key = usr.key 
-
 	var/datum/emergency_call/distress = ticker?.mode?.picked_call //Just to simplify things a bit
 
 	if(jobban_isbanned(usr, "Syndicate") || jobban_isbanned(usr, "Emergency Response Team"))
@@ -114,6 +104,16 @@
 	if(deathtime < 600) //They have ghosted after the announcement.
 		to_chat(usr, "<span class='warning'>You ghosted too recently. Try again later.</span>")
 		return
+
+	if(!usr.mind) //How? Give them a new one anyway.
+		message_admins("DEBUG: No mind, creating new one [usr.key].")
+		usr.mind = new /datum/mind(usr.key)
+		usr.mind.active = 1
+		usr.mind.current = usr
+
+	if(usr.mind.key != usr.key) //This can happen when admin-switching people into afking people, leading to runtime errors for a clientless key.
+		message_admins("DEBUG: Keyless mind, transfering [usr.key].")
+		usr.mind.key = usr.key 
 
 	if(usr.mind in distress.candidates)
 		to_chat(usr, "<span class='warning'>You are already a candidate for this emergency response team.</span>")
