@@ -1606,7 +1606,7 @@
 			T = temp
 	else
 		facing = get_dir(M, src)
-		if(check_blocked_turf(get_step(T, facing) ) ) //Make sure we can actually go to the target turf
+		if(!check_blocked_turf(get_step(T, facing) ) ) //Make sure we can actually go to the target turf
 			M.loc = get_step(T, facing) //Move the target behind us before flinging
 			for (var/x = 0, x < toss_distance, x++)
 				temp = get_step(T, facing)

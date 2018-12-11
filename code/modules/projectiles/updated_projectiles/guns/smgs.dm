@@ -31,7 +31,7 @@
 
 /obj/item/weapon/gun/smg/m39
 	name = "\improper M39 submachinegun"
-	desc = "Armat Battlefield Systems M-39 submachinegun. Occasionally carried by light-infantry, scouts, engineers or medics. Uses 10x20mm rounds in a 48 round magazine."
+	desc = "Armat Battlefield Systems M-39 submachinegun. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements. Uses 10x20mm rounds in a high capacity magazine."
 	icon_state = "m39"
 	item_state = "m39"
 	current_mag = /obj/item/ammo_magazine/smg/m39
@@ -64,7 +64,7 @@
 	burst_delay = config.min_fire_delay
 	burst_amount = config.med_burst_value
 	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.mlow_hit_accuracy_mult
 	scatter = config.low_scatter_value
 	scatter_unwielded = config.high_scatter_value
 	damage_mult = config.base_hit_damage_mult
