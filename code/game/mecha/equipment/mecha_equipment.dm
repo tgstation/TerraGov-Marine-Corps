@@ -45,7 +45,7 @@
 		return 1
 	return
 
-/obj/item/mecha_parts/mecha_equipment/proc/destroy()//missiles detonating, teleporter creating singularity?
+/obj/item/mecha_parts/mecha_equipment/proc/destroy_mecha()//missiles detonating, teleporter creating singularity?
 	if(chassis)
 		chassis.equipment -= src
 		listclearnulls(chassis.equipment)
