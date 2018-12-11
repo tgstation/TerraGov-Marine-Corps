@@ -84,12 +84,12 @@
 	mechas_list += src //global mech list
 	return
 
-/obj/mecha/Dispose()
+/obj/mecha/Destroy()
 	go_out()
 	mechas_list -= src //global mech list
 	SetLuminosity(0)
 
-/obj/mecha/Dispose()
+/obj/mecha/Destroy()
 	go_out()
 	mechas_list -= src //global mech list
 	SetLuminosity(0)

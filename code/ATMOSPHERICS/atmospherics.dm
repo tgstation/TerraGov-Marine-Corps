@@ -49,7 +49,7 @@ Pipelines + Other Objects -> Pipe network
 	start_processing()
 	..()
 
-/obj/machinery/atmospherics/Dispose()
+/obj/machinery/atmospherics/Destroy()
 	for(var/mob/living/M in src) //ventcrawling is serious business
 		M.remove_ventcrawl()
 		M.forceMove(loc)

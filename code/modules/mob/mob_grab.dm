@@ -21,7 +21,7 @@
 	user.stop_pulling()
 	. = ..()
 
-/obj/item/grab/Dispose()
+/obj/item/grab/Destroy()
 	grabbed_thing = null
 	if(ismob(loc))
 		var/mob/M = loc

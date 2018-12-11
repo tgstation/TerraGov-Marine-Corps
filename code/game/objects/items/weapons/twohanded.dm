@@ -107,7 +107,7 @@
 	wield()
 		cdel(src) //This shouldn't even happen.
 
-	Dispose()
+	Destroy()
 		..()
 		return TA_REVIVE_ME //So we can recycle this garbage.
 

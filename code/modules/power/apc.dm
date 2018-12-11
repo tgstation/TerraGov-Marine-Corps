@@ -1352,7 +1352,7 @@
 					L.broken()
 					sleep(1)
 
-/obj/machinery/power/apc/Dispose()
+/obj/machinery/power/apc/Destroy()
 	area.power_light = 0
 	area.power_equip = 0
 	area.power_environ = 0

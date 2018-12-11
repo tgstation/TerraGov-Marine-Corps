@@ -26,7 +26,7 @@
 
 
 
-/obj/item/clothing/under/Dispose()
+/obj/item/clothing/under/Destroy()
 	if(hastie)
 		cdel(hastie)
 		hastie = null

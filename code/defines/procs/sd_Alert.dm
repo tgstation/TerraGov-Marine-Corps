@@ -93,7 +93,7 @@ sd_alert
 		response
 		list/validation
 
-	Dispose()
+	Destroy()
 		target << browse(null,"window=\ref[src]")
 		. = ..()
 

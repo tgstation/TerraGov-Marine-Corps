@@ -99,7 +99,7 @@
 	..()
 	attack_icon = image("icon" = 'icons/effects/attacks.dmi',"icon_state" = "", "layer" = 0)
 
-/mob/living/Dispose()
+/mob/living/Destroy()
 	if(attack_icon)
 		cdel(attack_icon)
 		attack_icon = null

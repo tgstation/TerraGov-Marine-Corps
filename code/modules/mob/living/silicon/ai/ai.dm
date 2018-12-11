@@ -161,7 +161,7 @@ var/list/ai_verbs_default = list(
 	..()
 	return
 
-/mob/living/silicon/ai/Dispose()
+/mob/living/silicon/ai/Destroy()
 	ai_list -= src
 	. = ..()
 

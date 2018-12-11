@@ -14,7 +14,7 @@
 	var/identifier = MOTION_DETECTOR_HOSTILE
 	layer = BELOW_FULLSCREEN_LAYER
 
-	Dispose()
+	Destroy()
 		..()
 		return TA_REVIVE_ME
 
@@ -65,7 +65,7 @@
 	return ..()
 
 
-/obj/item/device/motiondetector/Dispose()
+/obj/item/device/motiondetector/Destroy()
 	processing_objects.Remove(src)
 	for(var/obj/X in blip_pool)
 		cdel(X)

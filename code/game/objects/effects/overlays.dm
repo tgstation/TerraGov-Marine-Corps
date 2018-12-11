@@ -78,7 +78,7 @@
 	effect_duration = 600
 	var/obj/item/device/binoculars/tactical/source_binoc
 
-/obj/effect/overlay/temp/laser_coordinate/Dispose()
+/obj/effect/overlay/temp/laser_coordinate/Destroy()
 	if(source_binoc)
 		source_binoc.laser_cooldown = world.time + source_binoc.cooldown_duration
 		source_binoc.coord = null
@@ -110,7 +110,7 @@
 		squad.squad_laser_targets += src
 	linked_cam = new(loc, name)
 
-/obj/effect/overlay/temp/laser_target/Dispose()
+/obj/effect/overlay/temp/laser_target/Destroy()
 	active_laser_targets -= src
 	if(squad)
 		squad.squad_laser_targets -= src
@@ -144,7 +144,7 @@
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target3"
 
-/obj/effect/overlay/temp/blinking_laser/Dispose()
+/obj/effect/overlay/temp/blinking_laser/Destroy()
 	SetLuminosity(0)
 	. = ..()
 

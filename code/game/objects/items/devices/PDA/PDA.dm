@@ -270,7 +270,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		SetLuminosity(0)
 		user.SetLuminosity(f_lum)
 
-/obj/item/device/pda/Dispose()
+/obj/item/device/pda/Destroy()
 	if(ismob(src.loc))
 		src.loc.SetLuminosity(-f_lum)
 	else

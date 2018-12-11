@@ -241,7 +241,7 @@
 		M.pixel_y = initial(buckled_mob.pixel_y)
 		M.old_y = initial(buckled_mob.pixel_y)
 
-/obj/vehicle/Dispose()
+/obj/vehicle/Destroy()
 	SetLuminosity(0)
 	. = ..()
 

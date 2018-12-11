@@ -284,7 +284,7 @@
 		ammo = ammo_list[ammo] //dunno how this works but just sliding this in from sentry-code.
 		update_icon()
 
-	Dispose() //Make sure we pick up our trash.
+	Destroy() //Make sure we pick up our trash.
 		if(operator)
 			operator.unset_interaction()
 		SetLuminosity(0)

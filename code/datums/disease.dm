@@ -199,7 +199,7 @@ var/list/diseases = subtypesof(/datum/disease)
 	return new type(process, src)
 
 
-/datum/disease/Dispose()
+/datum/disease/Destroy()
 	affected_mob = null
 	holder = null
 	active_diseases -= src

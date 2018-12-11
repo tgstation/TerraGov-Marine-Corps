@@ -61,7 +61,7 @@
 	mymob = owner
 	hide_actions_toggle = new
 
-/datum/hud/Dispose()
+/datum/hud/Destroy()
 	if(mymob.hud_used == src)
 		mymob.hud_used = null
 	if(static_inventory.len)

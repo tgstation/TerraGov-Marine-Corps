@@ -448,7 +448,7 @@
 		"/obj/item/ammo_magazine/pistol"
 		)
 
-/obj/item/storage/belt/gun/Dispose()
+/obj/item/storage/belt/gun/Destroy()
 	if(gun_underlay)
 		cdel(gun_underlay)
 		gun_underlay = null

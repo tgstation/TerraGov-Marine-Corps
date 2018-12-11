@@ -162,7 +162,7 @@
 	desc = "A lightweight foamed metal wall."
 	var/metal = 1		// 1=aluminum, 2=iron
 
-/obj/structure/foamedmetal/Dispose()
+/obj/structure/foamedmetal/Destroy()
 	density = FALSE
 	. = ..()
 

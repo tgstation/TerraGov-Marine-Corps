@@ -56,7 +56,7 @@
 		path = list()
 		permutated = list()
 
-	Dispose()
+	Destroy()
 		..()
 		in_flight = 0
 		ammo = null

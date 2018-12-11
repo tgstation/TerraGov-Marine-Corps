@@ -37,7 +37,7 @@ obj/structure/windoor_assembly/New(Loc, start_dir=NORTH, constructed=0)
 			dir = NORTH
 
 
-obj/structure/windoor_assembly/Dispose()
+obj/structure/windoor_assembly/Destroy()
 	density = 0
 	. = ..()
 

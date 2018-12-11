@@ -50,7 +50,7 @@
 		playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
 
 	//Remove lightsource
-	Dispose()
+	Destroy()
 		SetLuminosity(0)
 		. = ..()
 

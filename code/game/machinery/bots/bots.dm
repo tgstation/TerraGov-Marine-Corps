@@ -34,7 +34,7 @@
 	if(health <= 0)
 		explode()
 
-/obj/machinery/bot/Dispose()
+/obj/machinery/bot/Destroy()
 	SetLuminosity(0)
 	. = ..()
 

@@ -128,7 +128,7 @@
 	var/strength_t = isturf(acid_t) ? 8:4 // Turf take twice as long to take down.
 	tick(strength_t)
 
-/obj/effect/xenomorph/acid/Dispose()
+/obj/effect/xenomorph/acid/Destroy()
 	acid_t = null
 	. = ..()
 

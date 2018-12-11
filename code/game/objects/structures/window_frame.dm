@@ -55,7 +55,7 @@
 /obj/structure/window_frame/update_icon()
 	relativewall()
 
-/obj/structure/window_frame/Dispose()
+/obj/structure/window_frame/Destroy()
 	density = 0
 	update_nearby_icons()
 	for(var/obj/effect/alien/weeds/weedwall/frame/WF in loc)

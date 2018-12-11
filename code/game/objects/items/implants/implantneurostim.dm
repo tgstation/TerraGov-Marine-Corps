@@ -110,7 +110,7 @@
 	. = ..()
 
 
-/obj/item/implant/neurostim/Dispose()
+/obj/item/implant/neurostim/Destroy()
 	processing_objects.Remove(src)
 	. = ..()
 

@@ -39,7 +39,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	else i = 3
 	icon_state = "candle[i][heat_source ? "_lit" : ""]"
 
-/obj/item/tool/candle/Dispose()
+/obj/item/tool/candle/Destroy()
 	if(heat_source)
 		processing_objects.Remove(src)
 	if(ismob(src.loc))
@@ -127,7 +127,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 
 
-/obj/item/tool/match/Dispose()
+/obj/item/tool/match/Destroy()
 	if(heat_source)
 		processing_objects.Remove(src)
 	. = ..()
@@ -499,7 +499,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		icon_off = "lighter-[clr]"
 		icon_state = icon_off
 
-/obj/item/tool/lighter/Dispose()
+/obj/item/tool/lighter/Destroy()
 	if(ismob(src.loc))
 		src.loc.SetLuminosity(-2)
 	else

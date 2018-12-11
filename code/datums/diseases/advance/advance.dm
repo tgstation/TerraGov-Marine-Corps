@@ -71,7 +71,7 @@ var/list/advance_cures = 	list(
 	..()
 
 
-/datum/disease/advance/Dispose()
+/datum/disease/advance/Destroy()
 	if(processing)
 		for(var/datum/symptom/S in symptoms)
 			S.End(src)

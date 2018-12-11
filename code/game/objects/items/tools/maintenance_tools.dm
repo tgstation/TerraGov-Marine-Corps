@@ -160,7 +160,7 @@
 	return
 
 
-/obj/item/tool/weldingtool/Dispose()
+/obj/item/tool/weldingtool/Destroy()
 	if(welding)
 		if(ismob(loc))
 			loc.SetLuminosity(-2)

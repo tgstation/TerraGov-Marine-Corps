@@ -48,7 +48,7 @@ var/global/datum/authority/branch/trash/TrashAuthority = new() //This is the act
 	//get directive here from the atom.
 	//If it's already set, that means that it's either going to be revived, or it's already in queue for soft/hard deletion.
 	if(!garbage.ta_directive) // <---- This should always be 0 or null on anything not processed.
-		var/directive = garbage.Dispose(override)
+		var/directive = garbage.Destroy(override)
 		if(!directive) directive = TA_TRASH_ME
 		switch(directive)
 			if(TA_IGNORE_ME)   //Nothing.
@@ -129,7 +129,7 @@ Otherwise it will add it to queue for later hard deletion.
 	if(!garbage) return //How did this happen? Maybe it was already deleted.
 
 	if(garbage.ta_directive == TA_PURGE_ME_NOW)
-		garbage.Dispose() //We're going to give it one more chance to clean up any references.
+		garbage.Destroy() //We're going to give it one more chance to clean up any references.
 		cannot_trash["\ref[garbage]"] = world.time
 		del(garbage)
 		hard_del_count++
@@ -142,14 +142,14 @@ This makes sure the BYOND garbage collector does its job properly. As mentioned 
 default action is to add to queue, you may want to hard delete instead. Like the case with turfs. You don't need to call
 cdel on anything in contents, like gun attachments. They are automtically cdel'd, so just null references instead and do
 anything additional that may be required.
-You will find the individual Dispose() calls in the various /atom  /atom/movable /obj /turf /mob files.
+You will find the individual Destroy() calls in the various /atom  /atom/movable /obj /turf /mob files.
 
 Override exists for any specific behavior you may want to happen. For example, you may want to force delete something instead
 of adding it queue in some circumstances but not others.
 
 TO DO: Implement more support for /mob.
 */
-/datum/proc/Dispose(override = 0) //This is the proc parent of how atoms get rid of trash.
+/datum/proc/Destroy(override = 0) //This is the proc parent of how atoms get rid of trash.
 	tag = null //Can't have one of these and still be garbage collected. Same for key in mobs, which will be added to that subtype.
 	disposed = TRUE
 	return TA_TRASH_ME

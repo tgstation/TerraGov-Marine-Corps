@@ -205,7 +205,7 @@
 	New()
 		icon_state = pick("cocoon1","cocoon2","cocoon3")
 
-/obj/effect/spider/cocoon/Dispose()
+/obj/effect/spider/cocoon/Destroy()
 	visible_message("\red [src] splits open.")
 	for(var/atom/movable/A in contents)
 		A.forceMove(loc)

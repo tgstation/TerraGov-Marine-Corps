@@ -71,7 +71,7 @@
 
 /obj/item/reagent_container/food/snacks/grown/harebell
 	name = "harebell"
-	desc = "\"I'll sweeten thy sad grave: thou shalt not lack the flower that's like thy face, pale primrose, nor the azured hare-bell, like thy veins; no, nor the leaf of eglantine, whom not to slander, out-sweeten’d not thy breath.\""
+	desc = "\"I'll sweeten thy sad grave: thou shalt not lack the flower that's like thy face, pale primrose, nor the azured hare-bell, like thy veins; no, nor the leaf of eglantine, whom not to slander, out-sweetenï¿½d not thy breath.\""
 	icon_state = "harebell"
 	potency = 1
 	filling_color = "#D4B2C9"
@@ -185,7 +185,7 @@
 	icon_state = "glowberrypile"
 	plantname = "glowberries"
 
-/obj/item/reagent_container/food/snacks/grown/glowberries/Dispose()
+/obj/item/reagent_container/food/snacks/grown/glowberries/Destroy()
 	if(istype(loc,/mob))
 		loc.SetLuminosity(round(-potency/5,1))
 	. = ..()
@@ -556,7 +556,7 @@
 
 	to_chat(user, "<span class='notice'>You plant the glowshroom.</span>")
 
-/obj/item/reagent_container/food/snacks/grown/mushroom/glowshroom/Dispose()
+/obj/item/reagent_container/food/snacks/grown/mushroom/glowshroom/Destroy()
 	if(istype(loc,/mob))
 		loc.SetLuminosity(round(-potency/10,1))
 	. = ..()

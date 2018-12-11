@@ -299,7 +299,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	. = ..()
 	icon_state += "_1"
 
-/obj/machinery/self_destruct/Dispose()
+/obj/machinery/self_destruct/Destroy()
 	. = ..()
 	machines -= src
 	operator = null
@@ -327,7 +327,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	name = "self destruct control panel"
 	icon_state = "console"
 
-/obj/machinery/self_destruct/console/Dispose()
+/obj/machinery/self_destruct/console/Destroy()
 	. = ..()
 	EvacuationAuthority.dest_master = null
 	EvacuationAuthority.dest_rods = null
@@ -387,7 +387,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	layer = BELOW_OBJ_LAYER
 	var/activate_time
 
-/obj/machinery/self_destruct/rod/Dispose()
+/obj/machinery/self_destruct/rod/Destroy()
 	. = ..()
 	EvacuationAuthority.dest_rods -= src
 

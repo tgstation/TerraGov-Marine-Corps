@@ -223,7 +223,7 @@
 
 	return
 
-/obj/item/reagent_container/food/snacks/Dispose()
+/obj/item/reagent_container/food/snacks/Destroy()
 	if(contents)
 		for(var/atom/movable/something in contents)
 			something.loc = get_turf(src)

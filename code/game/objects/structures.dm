@@ -11,7 +11,7 @@
 	..()
 	structure_list += src
 
-/obj/structure/Dispose()
+/obj/structure/Destroy()
 	. = ..()
 	structure_list -= src
 

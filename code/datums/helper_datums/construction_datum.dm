@@ -16,7 +16,7 @@
 		set_desc(steps.len)
 		return
 
-	Dispose()
+	Destroy()
 		holder = null
 		. = ..()
 

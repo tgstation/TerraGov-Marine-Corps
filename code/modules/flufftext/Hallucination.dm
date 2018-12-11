@@ -266,7 +266,7 @@ proc/check_panel(mob/M)
 		step_away(src,my_target,2)
 		spawn attack_loop()
 
-	Dispose()
+	Destroy()
 		if(my_target)
 			my_target.hallucinations -= src
 			my_target = null

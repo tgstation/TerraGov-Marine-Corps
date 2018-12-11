@@ -29,7 +29,7 @@
 				if (prob(5))
 					cdel(src)
 
-	Dispose()
+	Destroy()
 		if(hologram)
 			clear_holo()
 		. = ..()

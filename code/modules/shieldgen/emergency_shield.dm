@@ -16,7 +16,7 @@
 	src.dir = pick(1,2,3,4)
 	..()
 
-/obj/machinery/shield/Dispose()
+/obj/machinery/shield/Destroy()
 	opacity = 0
 	density = 0
 	. = ..()
@@ -131,7 +131,7 @@
 	..()
 	start_processing()
 
-/obj/machinery/shieldgen/Dispose()
+/obj/machinery/shieldgen/Destroy()
 	collapse_shields()
 	. = ..()
 
