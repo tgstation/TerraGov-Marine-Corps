@@ -343,9 +343,9 @@
 /obj/item/device/omega_array/proc/update_health()
 	if(health <= 0)
 		visible_message("<span class='warning'>[src] sparks and begins to violently shake!</span>")
-		destroy()
+		destroy_array()
 
-/obj/item/device/omega_array/proc/destroy()
+/obj/item/device/omega_array/proc/destroy_array()
 	if(ticker && ticker.mode && ticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
 		var/datum/game_mode/colonialmarines_halloween_2016/M = ticker.mode
 		M.mcguffin = null
