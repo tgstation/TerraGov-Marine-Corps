@@ -449,6 +449,13 @@ var/list/ghostteleportlocs = list()
 	name = "\improper abandoned  Thunderdome (Observer.)"
 	icon_state = "purple"
 
+
+
+/area/eorg
+	name = "\improper EORG Arena"
+	icon_state = "green"
+	requires_power = 0
+
 //ENEMY
 
 //names are used

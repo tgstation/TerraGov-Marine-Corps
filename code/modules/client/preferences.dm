@@ -6,7 +6,7 @@ var/global/list/special_roles = list(
 	"Xenomorph" = 1,
 	"Xenomorph Queen" = 1,
 	"Survivor" = 1,
-	"Responder" = 1,
+	"EORG" = 1,
 	"Predator" = 1,
 	"WO Commander" = 1
 
@@ -349,9 +349,9 @@ datum/preferences
 				ban_check_name = "WO Commander"
 
 		if(jobban_isbanned(user, ban_check_name))
-			dat += "<b>Be [i]:</b> <font color=red><b> \[BANNED]</b></font><br>"
+			dat += "<font color=red><b> \[BANNED]</b></font><br>"
 		else
-			dat += "<b>Be [i]:</b> <a href='?_src_=prefs;preference=be_special;num=[n]'><b>[src.be_special&(1<<n) ? "Yes" : "No"]</b></a><br>"
+			dat += "<a href='?_src_=prefs;preference=be_special;num=[n]'><b>[src.be_special&(1<<n) ? "Yes" : "No"]</b></a><br>"
 		n++
 
 	dat += "\t<a href='?_src_=prefs;preference=job;task=menu'><b>Set Marine Role Preferences</b></a><br>"

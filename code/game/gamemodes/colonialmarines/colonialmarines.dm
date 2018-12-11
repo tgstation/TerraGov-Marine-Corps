@@ -243,4 +243,5 @@
 	declare_completion_announce_xenomorphs()
 	declare_completion_announce_survivors()
 	declare_completion_announce_medal_awards()
-	return 1
+	battle_royale()
+	return TRUE

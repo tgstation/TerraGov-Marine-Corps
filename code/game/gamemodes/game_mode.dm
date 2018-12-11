@@ -268,7 +268,7 @@
 
 	var/roletext
 	switch(role)
-		if(BE_RESPONDER)	roletext = "Responder"
+		if(BE_EORG)			roletext = "EORG"
 		if(BE_ALIEN)		roletext = "Alien"
 		if(BE_QUEEN)		roletext = "Queen"
 		if(BE_SURVIVOR)		roletext = "Survivor"

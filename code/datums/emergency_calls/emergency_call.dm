@@ -21,7 +21,6 @@
 	var/list/datum/mind/members = list() //Currently-joined members.
 	var/list/datum/mind/candidates = list() //Potential candidates for enlisting.
 //	var/waiting_for_candidates = 0 //Are we waiting on people to join?
-	var/role_needed = BE_RESPONDER //Obsolete
 	var/name_of_spawn = "Distress" //If we want to set up different spawn locations
 	var/mob/living/carbon/leader = null //Who's leading these miscreants
 	var/medics = 0
