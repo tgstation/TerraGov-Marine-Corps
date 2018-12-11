@@ -21,13 +21,13 @@
 	ex_act(severity)
 		switch(severity)
 			if(1.0)
-				cdel(src)
+				qdel(src)
 			if(2.0)
 				if (prob(50))
-					cdel(src)
+					qdel(src)
 			if(3.0)
 				if (prob(5))
-					cdel(src)
+					qdel(src)
 
 	Dispose()
 		if(hologram)
@@ -36,7 +36,7 @@
 
 /obj/machinery/hologram/proc/clear_holo()
 	if(hologram)
-		cdel(hologram)
+		qdel(hologram)
 		hologram = null
 
 
@@ -145,7 +145,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 /obj/machinery/hologram/holopad/clear_holo()
 //	hologram.SetLuminosity(0)//Clear lighting.	//handled by the lighting controller when its ower is deleted
 	if(hologram)
-		cdel(hologram)//Get rid of hologram.
+		qdel(hologram)//Get rid of hologram.
 		hologram = null
 	if(master.holo == src)
 		master.holo = null

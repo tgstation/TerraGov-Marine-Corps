@@ -21,7 +21,7 @@
 			var/mob/living/carbon/C = affected_mob
 			C.med_hud_set_status()
 	else
-		cdel(src)
+		qdel(src)
 
 /obj/item/alien_embryo/Dispose()
 	if(affected_mob)
@@ -36,7 +36,7 @@
 /obj/item/alien_embryo/process()
 	if(!affected_mob) //The mob we were gestating in is straight up gone, we shouldn't be here
 		processing_objects.Remove(src)
-		cdel(src)
+		qdel(src)
 		return FALSE
 
 	if(loc != affected_mob) //Our location is not the host
@@ -194,7 +194,7 @@
 	round_statistics.total_larva_burst++
 	var/obj/item/alien_embryo/AE = locate() in victim
 	if(AE)
-		cdel(AE)
+		qdel(AE)
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
 		var/datum/internal_organ/O
@@ -212,4 +212,4 @@
 		visible_message("<span class='xenodanger'>[src] quickly burrows into the ground.</span>")
 		round_statistics.total_xenos_created-- // keep stats sane
 		ticker.mode.stored_larva++
-		cdel(src)
+		qdel(src)

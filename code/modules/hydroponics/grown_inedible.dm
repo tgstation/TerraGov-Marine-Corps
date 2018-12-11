@@ -60,7 +60,7 @@
 						continue
 					G.attackby(NG, user)
 					to_chat(usr, "You add the newly-formed wood to the stack. It now contains [NG.amount] planks.")
-			cdel(src)
+			qdel(src)
 			return
 
 /obj/item/grown/sunflower // FLOWER POWER!
@@ -129,7 +129,7 @@
 		if(user)
 			to_chat(user, "All the leaves have fallen off \the [src] from violent whacking.")
 			user.temp_drop_inv_item(src)
-		cdel(src)
+		qdel(src)
 
 /obj/item/grown/nettle/death // -- Skie
 	plantname = "deathnettle"
@@ -182,6 +182,6 @@
 	if(W.sharp == IS_SHARP_ITEM_ACCURATE)
 		to_chat(user, "<span class='notice'>You use [W] to fashion a pipe out of the corn cob!</span>")
 		new /obj/item/clothing/mask/cigarette/pipe/cobpipe (user.loc)
-		cdel(src)
+		qdel(src)
 	else
 		return ..()

@@ -59,7 +59,7 @@
 	density = 0
 	update_nearby_icons()
 	for(var/obj/effect/alien/weeds/weedwall/frame/WF in loc)
-		cdel(WF)
+		qdel(WF)
 	. = ..()
 
 /obj/structure/window_frame/attackby(obj/item/W, mob/living/user)
@@ -69,7 +69,7 @@
 			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P && src) //Window frames require half the normal time
 				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD) //Window frames require half the normal power
 				P.debris(loc, 1, 1) //Generate some rods and metal
-				cdel(src)
+				qdel(src)
 			return
 
 	if(istype(W, sheet_type))
@@ -85,7 +85,7 @@
 			"<span class='notice'>You install a new window on the frame.</span>")
 			sheet.use(2)
 			new window_type(loc) //This only works on Almayer windows!
-			cdel(src)
+			qdel(src)
 
 	else if(istype(W, /obj/item/grab))
 		var/obj/item/grab/G = W

@@ -94,19 +94,19 @@
 	mechas_list -= src //global mech list
 	SetLuminosity(0)
 	if(cell)
-		cdel(cell)
+		qdel(cell)
 		cell = null
 	if(spark_system)
-		cdel(spark_system)
+		qdel(spark_system)
 		spark_system = null
 	if(internal_tank)
-		cdel(internal_tank)
+		qdel(internal_tank)
 		internal_tank = null
 	if(connected_port)
-		cdel(connected_port)
+		qdel(connected_port)
 		connected_port = null
 	if(radio)
-		cdel(radio)
+		qdel(radio)
 		radio = null
 	if(pr_inertial_movement)
 		del(pr_inertial_movement)
@@ -561,7 +561,7 @@
 						E.forceMove(T)
 						E.destroy()
 		spawn(0)
-			cdel(src)
+			qdel(src)
 	return
 
 /obj/mecha/ex_act(severity)

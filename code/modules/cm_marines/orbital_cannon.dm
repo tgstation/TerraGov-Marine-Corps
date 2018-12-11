@@ -221,7 +221,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	chambered_tray = FALSE
 	tray.fuel_amt = 0
 	if(tray.warhead)
-		cdel(tray.warhead)
+		qdel(tray.warhead)
 		tray.warhead = null
 	tray.update_icon()
 
@@ -252,7 +252,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 
 /obj/structure/orbital_tray/Dispose()
 	if(warhead)
-		cdel(warhead)
+		qdel(warhead)
 		warhead = null
 	if(linked_ob)
 		linked_ob.tray = null
@@ -294,7 +294,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 							fuel_amt++
 							PC.loaded = null
 							PC.update_icon()
-							cdel(OA)
+							qdel(OA)
 							update_icon()
 					else
 						if(warhead)
@@ -388,7 +388,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	var/range_num = max(8 - inaccuracy_amt*2, 3)
 	for(var/turf/TU in range(range_num,target))
 		for(var/obj/flamer_fire/F in TU) // No stacking flames!
-			cdel(F)
+			qdel(F)
 		new/obj/flamer_fire(TU, 10, 50) //super hot flames
 
 

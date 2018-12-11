@@ -21,7 +21,7 @@
 /obj/structure/morgue/Dispose()
 	. = ..()
 	if(connected)
-		cdel(connected)
+		qdel(connected)
 		connected = null
 
 /obj/structure/morgue/update_icon()
@@ -44,7 +44,7 @@
 	for(var/atom/movable/A in src)
 		A.forceMove(loc)
 		ex_act(severity)
-	cdel(src)
+	qdel(src)
 
 /obj/structure/morgue/attack_paw(mob/user)
 	toggle_morgue(user)
@@ -203,11 +203,11 @@
 			log_combat(user, M, "creamated", src)
 			M.death(1)
 			M.ghostize()
-			cdel(M)
+			qdel(M)
 
 		for(var/obj/O in contents)
 			if(istype(O, /obj/structure/morgue_tray)) continue
-			cdel(O)
+			qdel(O)
 
 		new /obj/effect/decal/cleanable/ash(src)
 		sleep(30)

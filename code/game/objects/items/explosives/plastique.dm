@@ -82,12 +82,12 @@
 			if(plant_target && !plant_target.disposed)
 				explosion(location, -1, -1, 3)
 				if(istype(plant_target,/turf/closed/wall) || istype(plant_target,/obj/machinery/door))
-					cdel(plant_target)
+					qdel(plant_target)
 				else
 					plant_target.ex_act(1)
 				if(plant_target && !plant_target.disposed)
 					plant_target.overlays -= image('icons/obj/items/assemblies.dmi', "plastic-explosive_set_armed")
-			cdel(src)
+			qdel(src)
 
 /obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return

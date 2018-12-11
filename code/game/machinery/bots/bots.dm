@@ -28,7 +28,7 @@
 	SetLuminosity(0)
 
 /obj/machinery/bot/proc/explode()
-	cdel(src)
+	qdel(src)
 
 /obj/machinery/bot/proc/healthcheck()
 	if(health <= 0)

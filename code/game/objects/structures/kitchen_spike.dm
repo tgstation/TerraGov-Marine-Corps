@@ -27,9 +27,9 @@
 				meattype = 1
 				visible_message("\red [user] has forced [M] onto the spike, killing them instantly!")
 				M.death()
-				cdel(M)
+				qdel(M)
 				G.grabbed_thing = null
-				cdel(G)
+				qdel(G)
 
 			else
 				to_chat(user, "\red The spike already has something on it, finish collecting its meat first!")

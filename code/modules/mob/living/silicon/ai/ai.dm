@@ -138,7 +138,7 @@ var/list/ai_verbs_default = list(
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
 			new/obj/structure/AIcore/deactivated(loc)//New empty terminal.
-			cdel(src)//Delete AI.
+			qdel(src)//Delete AI.
 			return
 		else
 			if (B.brainmob.mind)
@@ -193,7 +193,7 @@ var/list/ai_verbs_default = list(
 /obj/machinery/ai_powersupply/New(var/mob/living/silicon/ai/ai=null)
 	powered_ai = ai
 	if(isnull(powered_ai))
-		cdel(src)
+		qdel(src)
 		return
 	loc = powered_ai.loc
 	use_power(1) // Just incase we need to wake up the power system.
@@ -202,7 +202,7 @@ var/list/ai_verbs_default = list(
 
 /obj/machinery/ai_powersupply/process()
 	if(!powered_ai || powered_ai.stat & DEAD)
-		cdel(src)
+		qdel(src)
 		return
 	if(!powered_ai.anchored)
 		loc = powered_ai.loc
@@ -525,7 +525,7 @@ var/list/ai_verbs_default = list(
 			input = input("Select a crew member:") as null|anything in personnel_list
 			var/icon/character_icon = personnel_list[input]
 			if(character_icon)
-				cdel(holo_icon)//Clear old icon so we're not storing it in memory.
+				qdel(holo_icon)//Clear old icon so we're not storing it in memory.
 				holo_icon = getHologramIcon(icon(character_icon))
 		else
 			alert("No suitable records found. Aborting.")
@@ -538,7 +538,7 @@ var/list/ai_verbs_default = list(
 		)
 		input = input("Please select a hologram:") as null|anything in icon_list
 		if(input)
-			cdel(holo_icon)
+			qdel(holo_icon)
 			holo_icon = null
 			switch(input)
 				if("default")

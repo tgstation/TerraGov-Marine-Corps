@@ -254,7 +254,7 @@
 			for(var/mob/O in viewers(world.view, user))
 				O.show_message(text("<span class='danger'>[user] tries to stab [target] in \the [hit_area] with [src.name], but the attack is deflected by armor!</span>"), 1)
 			user.temp_drop_inv_item(src)
-			cdel(src)
+			qdel(src)
 			return
 
 		for(var/mob/O in viewers(world.view, user))

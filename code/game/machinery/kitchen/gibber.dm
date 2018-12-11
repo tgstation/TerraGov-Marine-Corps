@@ -26,7 +26,7 @@
 				if(input_obj)
 					if(isturf(input_obj.loc))
 						input_plate = input_obj.loc
-						cdel(input_obj)
+						qdel(input_obj)
 						break
 
 			if(!input_plate)
@@ -203,7 +203,7 @@
 		occupant.death(1)
 		occupant.ghostize()
 
-	cdel(occupant)
+	qdel(occupant)
 	occupant = null
 
 	spawn(src.gibtime)

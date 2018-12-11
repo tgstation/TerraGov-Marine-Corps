@@ -21,7 +21,7 @@
 		if (equip_to_slot_if_possible(W, slots[slot], 1, del_on_fail = 0))
 			return slot
 	if (del_on_fail)
-		cdel(W)
+		qdel(W)
 	return null
 
 

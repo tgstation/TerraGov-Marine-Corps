@@ -80,7 +80,7 @@
 	if(istype(O,/obj/item/ammo_magazine/m56d)) //lets equip it with ammo
 		if(!rounds)
 			rounds = 700
-			cdel(O)
+			qdel(O)
 			update_icon()
 			return
 		else
@@ -99,7 +99,7 @@
 	if(!ishuman(usr)) return
 	to_chat(user, "<span class='notice'>You deploy [src].</span>")
 	new /obj/machinery/m56d_post(user.loc)
-	cdel(src)
+	qdel(src)
 
 
 
@@ -122,7 +122,7 @@
 	if(health <= 0)
 		if(prob(30))
 			new /obj/item/device/m56d_post (src)
-		cdel(src)
+		qdel(src)
 
 
 
@@ -155,7 +155,7 @@
 		to_chat(user, "<span class='notice'>You fold [src].</span>")
 		var/obj/item/device/m56d_post/P = new(loc)
 		user.put_in_hands(P)
-		cdel(src)
+		qdel(src)
 
 
 
@@ -193,7 +193,7 @@
 			else
 				icon_state = "M56D" // otherwise we're a empty gun on a mount.
 			user.temp_drop_inv_item(MG)
-			cdel(MG)
+			qdel(MG)
 		return
 
 	if(istype(O,/obj/item/tool/crowbar))
@@ -220,7 +220,7 @@
 				G.visible_message("\icon[G] <B>[G] is now complete!</B>") //finished it for everyone to
 				G.dir = src.dir //make sure we face the right direction
 				G.rounds = src.gun_rounds //Inherent the amount of ammo we had.
-				cdel(src)
+				qdel(src)
 		else
 
 			if(!anchored)
@@ -341,7 +341,7 @@
 				var/obj/item/device/m56d_gun/HMG = new(src.loc) //Here we generate our disassembled mg.
 				new /obj/item/device/m56d_post(src.loc)
 				HMG.rounds = src.rounds //Inherent the amount of ammo we had.
-				cdel(src) //Now we clean up the constructed gun.
+				qdel(src) //Now we clean up the constructed gun.
 				return
 
 	if(istype(O, /obj/item/ammo_magazine/m56d)) // RELOADING DOCTOR FREEMAN.
@@ -361,7 +361,7 @@
 		rounds = min(rounds + M.current_rounds, rounds_max)
 		update_icon()
 		user.temp_drop_inv_item(O)
-		cdel(O)
+		qdel(O)
 		return
 	return ..()
 
@@ -374,7 +374,7 @@
 		else
 			var/obj/item/device/m56d_gun/HMG = new(loc)
 			HMG.rounds = src.rounds //Inherent the amount of ammo we had.
-		cdel(src)
+		qdel(src)
 		return
 
 	if(health > health_max)

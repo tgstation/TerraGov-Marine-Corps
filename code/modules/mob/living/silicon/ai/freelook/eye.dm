@@ -78,7 +78,7 @@
 /mob/living/silicon/ai/Dispose()
 	if(eyeobj)
 		eyeobj.ai = null
-		cdel(eyeobj) // No AI, no Eye
+		qdel(eyeobj) // No AI, no Eye
 		eyeobj = null
 	. = ..()
 

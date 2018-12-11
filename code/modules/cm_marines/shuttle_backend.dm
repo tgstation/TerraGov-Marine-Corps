@@ -319,7 +319,7 @@ var/datum/shuttle/ferry/marine/S = shuttle_controller.shuttles["[MAIN_SHIP_NAME]
 if(!S) {log_debug("ERROR CODE SO1: unable to find shuttle with the tag of: ["[MAIN_SHIP_NAME] [T] [name]"]."); \
 return FALSE}; \
 L[get_turf(src)] = rotation; \
-cdel(src)
+qdel(src)
 
 /obj/effect/landmark/shuttle_loc/marine_src/dropship //Name these "1" or "2", etc.
 	New()
@@ -335,7 +335,7 @@ cdel(src)
 			return FALSE
 		S.locs_dock[get_turf(src)] = rotation
 		S.link_support_units(get_turf(src)) //Process links.
-		cdel(src)
+		qdel(src)
 
 /obj/effect/landmark/shuttle_loc/marine_int/dropship
 	New()
@@ -354,7 +354,7 @@ cdel(src)
 		sleep(50)
 		..()
 		shuttle_controller.locs_crash[get_turf(src)] = rotation
-		cdel(src)
+		qdel(src)
 
 #undef SHUTTLE_LINK_LOCATIONS
 
@@ -431,7 +431,7 @@ cdel(src)
 		// Delete objects and gib living things in the destination
 		for (var/atom/A in target)
 			if (isobj(A) && A.loc == target)
-				cdel(A)
+				qdel(A)
 				continue
 
 			if (isliving(A))

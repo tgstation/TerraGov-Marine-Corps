@@ -104,7 +104,7 @@
 
 
 /obj/machinery/power/supermatter/Dispose()
-	cdel(radio)
+	qdel(radio)
 	radio = null
 	SetLuminosity(0)
 	. = ..()
@@ -114,7 +114,7 @@
 	grav_pulling = 1
 	spawn(200) // Breaking apart and sucking everything in before the final explosion. Increasing this might decrease lag since the explosion doesn't need to destroy as much
 		explosion(get_turf(src), explosion_power, explosion_power * 2, explosion_power * 3, explosion_power * 4, 1)
-		cdel(src)
+		qdel(src)
 		return
 
 //Changes color and luminosity of the light to these values if they were not already set
@@ -309,7 +309,7 @@
 		user.dust()
 		power += 200
 	else
-		cdel(user)
+		qdel(user)
 
 	power += 200
 

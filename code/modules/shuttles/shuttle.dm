@@ -198,8 +198,8 @@
 		for(var/obj/O in T)
 			if(istype(O, /obj/effect/landmark))
 				continue
-			cdel(O)
-		cdel(T)
+			qdel(O)
+		qdel(T)
 
 	for(var/mob/living/carbon/bug in destination)
 		bug.gib()
