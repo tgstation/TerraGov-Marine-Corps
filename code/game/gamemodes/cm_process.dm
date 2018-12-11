@@ -170,6 +170,20 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		to_chat(world, dat)
 
 
+/datum/game_mode/proc/declare_completion_announce_round_stats()
+	set waitfor = 0
+	sleep(140)
+	to_chat(world, "<span class='round_body'>The end of round statistics are:</span>")
+	to_chat(world, "There were [round_statistics.total_bullets_fired] total bullets fired.")
+	to_chat(world, "There were [round_statistics.total_bullet_hits_on_humans] bullets that hit marines. For a [(round_statistics.total_bullet_hits_on_humans / max(round_statistics.total_bullets_fired, 1)) * 100]% friendly fire rate!")
+	to_chat(world, "There were [round_statistics.total_bullet_hits_on_xenos] bullets that hit xenomorphs. For a [(round_statistics.total_bullet_hits_on_xenos / max(round_statistics.total_bullets_fired, 1)) * 100]% accuracy total!")
+	to_chat(world, "There were [round_statistics.ravager_ravage_victims] people taken down by Ravagers.")
+	to_chat(world, "There were [round_statistics.warrior_limb_rips] limbs ripped off by Warriors.")
+	to_chat(world, "There were [round_statistics.crusher_stomp_victims] people crushed by crushers.")
+	to_chat(world, "There were [round_statistics.praetorian_spray_direct_hits] people hit directly by acid sprays.")
+		
+
+
 
 //===================================================\\
 
