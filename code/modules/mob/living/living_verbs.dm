@@ -39,6 +39,17 @@
 		resist_grab()
 		return
 
+	//untangling
+	if(entangled_by)
+		if(world.time < entangle_delay)
+			visible_message("<span class='danger'>[src] attempts to disentangle itself from [entangled_by] but was unsuccessful!</span>")
+			to_chat(src, "<span class='warning'>You will be able to disentangle yourself after [(entangle_delay - world.time) * 0.1] more seconds!</span>")
+			return
+		if(istype(entangled_by, /obj/structure/razorwire) )
+			var/obj/structure/razorwire/R = entangled_by
+			R.razorwire_untangle(src)
+		return
+
 	//unbuckling yourself
 	if(L.buckled && (L.last_special <= world.time) )
 		if(iscarbon(L))
