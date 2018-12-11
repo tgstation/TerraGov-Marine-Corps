@@ -159,7 +159,7 @@ obj/structure/bed/Dispose()
 		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",
 		"<span class='danger'>You slice [src] apart!</span>", null, 5)
 		unbuckle()
-		destroy()
+		destroy_structure()
 	else attack_hand(M)
 
 /obj/structure/bed/attackby(obj/item/W, mob/user)

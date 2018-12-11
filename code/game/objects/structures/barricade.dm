@@ -74,7 +74,7 @@
 
 		else if(!C.stat)
 			visible_message("<span class='danger'>[C] smashes through [src]!</span>")
-			destroy()
+			destroy_structure()
 
 /obj/structure/barricade/CheckExit(atom/movable/O, turf/target)
 	if(closed)
@@ -103,7 +103,7 @@
 
 	if(istype(mover, /obj/vehicle/multitile))
 		visible_message("<span class='danger'>[mover] drives over and destroys [src]!</span>")
-		destroy(0)
+		destroy_structure(0)
 		return FALSE
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
@@ -199,7 +199,7 @@
 			playsound(src, barricade_hitsound, 25, 1)
 		hit_barricade(W)
 
-/obj/structure/barricade/destroy(deconstruct)
+/obj/structure/barricade/destroy_structure(deconstruct)
 	if(deconstruct && is_wired)
 		new /obj/item/stack/barbed_wire(loc)
 	if(stack_type)
@@ -267,7 +267,7 @@
 	if(!health)
 		if(!nomessage)
 			visible_message("<span class='danger'>[src] falls apart!</span>")
-		destroy()
+		destroy_structure()
 		return
 
 	update_damage_state()
@@ -355,7 +355,7 @@
 			return
 		if(!ET.folded)
 			user.visible_message("\blue \The [user] removes \the [src].")
-			destroy(TRUE)
+			destroy_structure(TRUE)
 		return
 	else
 		. = ..()
@@ -600,7 +600,7 @@
 					user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 					"<span class='notice'>You take [src]'s panels apart.</span>")
 					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-					destroy(TRUE) //Note : Handles deconstruction too !
+					destroy_structure(TRUE) //Note : Handles deconstruction too !
 				return
 
 	. = ..()
@@ -812,7 +812,7 @@
 					user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 					"<span class='notice'>You take [src]'s panels apart.</span>")
 					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-					destroy(TRUE) //Note : Handles deconstruction too !
+					destroy_structure(TRUE) //Note : Handles deconstruction too !
 				else busy = FALSE
 				return
 
@@ -899,7 +899,7 @@
 			if(do_after(user, ET.shovelspeed, TRUE, 5, BUSY_ICON_BUILD))
 				user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 				"<span class='notice'>You disassemble [src].</span>")
-				destroy(TRUE)
+				destroy_structure(TRUE)
 		return TRUE
 
 	if(istype(W, /obj/item/stack/sandbags) )
