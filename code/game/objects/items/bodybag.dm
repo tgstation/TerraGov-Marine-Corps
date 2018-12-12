@@ -222,7 +222,7 @@
 		"<span class='danger'>You slash \the [src] open!</span>", null, 5)
 	return TRUE
 
-/obj/structure/closet/bodybag/cryobag/Dispose()
+/obj/structure/closet/bodybag/cryobag/Destroy()
 	var/mob/living/L = locate() in contents
 	if(L)
 		L.in_stasis = FALSE

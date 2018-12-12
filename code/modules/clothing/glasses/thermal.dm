@@ -69,7 +69,7 @@
 	flags_item = NODROP|DELONDROP
 	toggleable = 0
 
-	Dispose()
+	Destroy()
 		..()
 		return TA_REVIVE_ME
 

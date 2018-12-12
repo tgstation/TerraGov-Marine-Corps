@@ -30,7 +30,7 @@
 	var/flip_cooldown = 0 //If flip cooldown exists, don't allow flipping or putting back. This carries a WORLD.TIME value
 	var/health = 100
 
-/obj/structure/table/destroy(deconstruct)
+/obj/structure/table/destroy_structure(deconstruct)
 	if(deconstruct)
 		if(parts)
 			new parts(loc)
@@ -62,9 +62,9 @@
 		var/mob/living/carbon/Xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
 			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
-			destroy()
+			destroy_structure()
 
-/obj/structure/table/Dispose()
+/obj/structure/table/Destroy()
 	var/tableloc = loc
 	. = ..()
 	update_adjacent(tableloc) //so neighbouring tables get updated correctly
@@ -265,7 +265,7 @@
 		if(health <= 0)
 			M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
 			"<span class='danger'>You slice [src] apart!</span>", null, 5)
-			destroy()
+			destroy_structure()
 		else
 			M.visible_message("<span class='danger'>[M] slashes [src]!</span>", \
 			"<span class='danger'>You slash [src]!</span>", null, 5)
@@ -306,7 +306,7 @@
 		if(do_after(user,50, TRUE, 5, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 			"<span class='notice'>You disassemble [src].</span>")
-			destroy(1)
+			destroy_structure(1)
 		return
 
 	if((W.flags_item & ITEM_ABSTRACT) || isrobot(user))
@@ -317,7 +317,7 @@
 			playsound(src.loc, 'sound/weapons/wristblades_hit.ogg', 25, 1)
 			user.visible_message("<span class='danger'>[user] slices [src] apart!",
 			"<span class='danger'>You slice [src] apart!")
-			destroy()
+			destroy_structure()
 		else
 			to_chat(user, "<span class='warning'>You slice at the table, but only claw it up a little.</span>")
 		return
@@ -576,11 +576,11 @@
 	playsound(src, 'sound/effects/metalhit.ogg', 25, 1)
 	M.visible_message("<span class='danger'>[M] slices [src] apart!</span>", \
 	"<span class='danger'>You slice [src] apart!</span>", null, 5)
-	destroy()
+	destroy_structure()
 
 /obj/structure/rack/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/tool/wrench))
-		destroy(1)
+		destroy_structure(1)
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		return
 	if((W.flags_item & ITEM_ABSTRACT) || isrobot(user))
@@ -594,9 +594,9 @@
 		var/mob/living/carbon/Xenomorph/M = O
 		if(!M.stat) //No dead xenos jumpin on the bed~
 			visible_message("<span class='danger'>[O] plows straight through [src]!</span>")
-			destroy()
+			destroy_structure()
 
-/obj/structure/rack/destroy(deconstruct)
+/obj/structure/rack/destroy_structure(deconstruct)
 	if(deconstruct)
 		if(parts)
 			new parts(loc)

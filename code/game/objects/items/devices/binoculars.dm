@@ -42,7 +42,7 @@
 	..()
 	to_chat(usr, "<span class='notice'>They are currently set to [mode ? "range finder" : "CAS marking"] mode.</span>")
 
-/obj/item/device/binoculars/tactical/Dispose()
+/obj/item/device/binoculars/tactical/Destroy()
 	if(laser)
 		qdel(laser)
 		laser = null

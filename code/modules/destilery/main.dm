@@ -25,7 +25,7 @@
 	idle_power_usage = 10
 	active_power_usage = 1000
 
-	Dispose()
+	Destroy()
 		if(milled_item)
 			qdel(milled_item)
 			milled_item = null
@@ -99,7 +99,7 @@
 	idle_power_usage = 10
 	active_power_usage = 500
 
-	Dispose()
+	Destroy()
 		if(fermenting_item)
 			qdel(fermenting_item)
 			fermenting_item = null
@@ -171,7 +171,7 @@
 	idle_power_usage = 10
 	active_power_usage = 10000
 
-	Dispose()
+	Destroy()
 		if(destilling_item)
 			qdel(destilling_item)
 			destilling_item = null

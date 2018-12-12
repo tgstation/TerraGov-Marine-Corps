@@ -24,7 +24,7 @@
 		src.amount = amount
 
 
-/obj/item/stack/Dispose()
+/obj/item/stack/Destroy()
 	if (usr && usr.interactee == src)
 		usr << browse(null, "window=stack")
 	. = ..()

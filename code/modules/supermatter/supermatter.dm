@@ -103,7 +103,7 @@
 	start_processing()
 
 
-/obj/machinery/power/supermatter/Dispose()
+/obj/machinery/power/supermatter/Destroy()
 	qdel(radio)
 	radio = null
 	SetLuminosity(0)

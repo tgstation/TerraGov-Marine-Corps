@@ -11,7 +11,7 @@
 	var/timer = 10
 	var/atom/plant_target = null //which atom the plstique explosive is planted on
 
-/obj/item/explosive/plastique/Dispose()
+/obj/item/explosive/plastique/Destroy()
 	plant_target = null
 	. = ..()
 

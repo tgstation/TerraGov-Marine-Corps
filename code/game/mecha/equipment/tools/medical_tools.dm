@@ -24,7 +24,7 @@
 	allow_drop()
 		return 0
 
-	destroy()
+	destroy_mecha()
 		for(var/atom/movable/AM in src)
 			AM.forceMove(get_turf(src))
 		return ..()
@@ -252,7 +252,7 @@
 		chassis.events.clearEvent("onMove",event)
 		return ..()
 
-	destroy()
+	destroy_mecha()
 		chassis.events.clearEvent("onMove",event)
 		return ..()
 

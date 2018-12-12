@@ -250,7 +250,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	var/fuel_amt = 0
 
 
-/obj/structure/orbital_tray/Dispose()
+/obj/structure/orbital_tray/Destroy()
 	if(warhead)
 		qdel(warhead)
 		warhead = null

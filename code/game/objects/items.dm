@@ -85,7 +85,7 @@
 		drag_delay = 1
 
 
-/obj/item/Dispose()
+/obj/item/Destroy()
 	flags_item &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
 	flags_item &= ~NODROP //so the item is properly unequipped if on a mob.
 	for(var/X in actions)

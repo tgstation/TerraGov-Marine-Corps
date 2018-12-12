@@ -141,7 +141,7 @@
 	var/last_regen
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 
-/obj/item/weapon/gun/launcher/spike/Dispose()
+/obj/item/weapon/gun/launcher/spike/Destroy()
 	. = ..()
 	processing_objects.Remove(src)
 

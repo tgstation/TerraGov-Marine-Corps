@@ -185,7 +185,7 @@
 	icon_state = "glowberrypile"
 	plantname = "glowberries"
 
-/obj/item/reagent_container/food/snacks/grown/glowberries/Dispose()
+/obj/item/reagent_container/food/snacks/grown/glowberries/Destroy()
 	if(istype(loc,/mob))
 		loc.SetLuminosity(round(-potency/5,1))
 	. = ..()
@@ -556,7 +556,7 @@
 
 	to_chat(user, "<span class='notice'>You plant the glowshroom.</span>")
 
-/obj/item/reagent_container/food/snacks/grown/mushroom/glowshroom/Dispose()
+/obj/item/reagent_container/food/snacks/grown/mushroom/glowshroom/Destroy()
 	if(istype(loc,/mob))
 		loc.SetLuminosity(round(-potency/10,1))
 	. = ..()

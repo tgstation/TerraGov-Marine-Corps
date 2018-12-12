@@ -23,7 +23,7 @@
 	else
 		qdel(src)
 
-/obj/item/alien_embryo/Dispose()
+/obj/item/alien_embryo/Destroy()
 	if(affected_mob)
 		affected_mob.status_flags &= ~(XENO_HOST)
 		if(iscarbon(affected_mob))

@@ -17,7 +17,7 @@
 								// and if yes, are we doing the first or second move.
 
 //===========================================================================
-/atom/movable/Dispose()
+/atom/movable/Destroy()
 	for(var/atom/movable/I in contents)
 		qdel(I)
 

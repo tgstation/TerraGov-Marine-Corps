@@ -211,7 +211,7 @@
 			if(!G.active)
 				break
 
-/obj/machinery/shieldwallgen/Dispose()
+/obj/machinery/shieldwallgen/Destroy()
 	src.cleanup(1)
 	src.cleanup(2)
 	src.cleanup(4)
@@ -259,7 +259,7 @@
 	else
 		qdel(src) //need at least two generator posts
 
-/obj/machinery/shieldwall/Dispose()
+/obj/machinery/shieldwall/Destroy()
 	SetLuminosity(0)
 	. = ..()
 

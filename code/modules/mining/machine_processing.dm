@@ -234,6 +234,6 @@
 
 	console.updateUsrDialog()
 
-/obj/machinery/mineral/processing_unit/Dispose()
+/obj/machinery/mineral/processing_unit/Destroy()
 	SetLuminosity(0)
 	. = ..()

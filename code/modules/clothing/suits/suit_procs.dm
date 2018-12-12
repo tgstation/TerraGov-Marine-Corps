@@ -7,7 +7,7 @@
 	. = ..()
 	check_limb_support(FALSE, user)
 
-/obj/item/clothing/suit/Dispose(mob/living/carbon/human/user)
+/obj/item/clothing/suit/Destroy(mob/living/carbon/human/user)
 	check_limb_support(FALSE, user)
 	return ..()
 

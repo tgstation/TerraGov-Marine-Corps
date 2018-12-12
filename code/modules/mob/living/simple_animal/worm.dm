@@ -98,7 +98,7 @@
 
 		return
 
-	Dispose() //if a chunk a destroyed, make a new worm out of the split halves
+	Destroy() //if a chunk a destroyed, make a new worm out of the split halves
 		if(previous)
 			previous.Detach()
 		. = ..()

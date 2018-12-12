@@ -29,7 +29,7 @@
 				if (prob(5))
 					qdel(src)
 
-	Dispose()
+	Destroy()
 		if(hologram)
 			clear_holo()
 		. = ..()

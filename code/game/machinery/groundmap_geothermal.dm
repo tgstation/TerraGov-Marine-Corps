@@ -294,7 +294,7 @@
 	var/repair_state = 0
 	var/health = 120
 
-/obj/machinery/colony_floodlight/Dispose()
+/obj/machinery/colony_floodlight/Destroy()
 	SetLuminosity(0)
 	if(fswitch)
 		fswitch.floodlist -= src

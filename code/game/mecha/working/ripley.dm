@@ -96,7 +96,7 @@
 	output += "</div>"
 	return output
 
-/obj/mecha/working/ripley/Dispose()
+/obj/mecha/working/ripley/Destroy()
 	for(var/mob/M in src)
 		if(M == occupant)
 			continue

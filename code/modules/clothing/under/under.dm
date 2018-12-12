@@ -26,7 +26,7 @@
 
 
 
-/obj/item/clothing/under/Dispose()
+/obj/item/clothing/under/Destroy()
 	if(hastie)
 		qdel(hastie)
 		hastie = null

@@ -198,7 +198,7 @@
 
 	update_nearby_icons()
 
-/obj/structure/fence/Dispose()
+/obj/structure/fence/Destroy()
 	density = 0
 	update_nearby_icons()
 	. = ..()

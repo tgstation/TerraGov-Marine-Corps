@@ -872,7 +872,7 @@
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 
 
-/obj/item/weapon/wristblades/Dispose()
+/obj/item/weapon/wristblades/Destroy()
 	. = ..()
 	return TA_REVIVE_ME
 

@@ -8,7 +8,7 @@
 
 	var/alert_pressure = 0
 
-/datum/pipeline/Dispose()
+/datum/pipeline/Destroy()
 	if(network)
 		qdel(network)
 

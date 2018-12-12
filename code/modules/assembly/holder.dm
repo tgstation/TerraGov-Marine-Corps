@@ -14,7 +14,7 @@
 	var/obj/item/device/assembly/a_right = null
 	var/obj/special_assembly = null
 
-/obj/item/device/assembly_holder/Dispose()
+/obj/item/device/assembly_holder/Destroy()
 	if(a_left)
 		qdel(a_left)
 		a_left = null

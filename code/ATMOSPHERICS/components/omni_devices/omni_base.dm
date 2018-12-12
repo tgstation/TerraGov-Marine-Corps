@@ -223,7 +223,7 @@
 
 	return null
 
-/obj/machinery/atmospherics/omni/Dispose()
+/obj/machinery/atmospherics/omni/Destroy()
 	for(var/datum/omni_port/P in ports)
 		if(P.node)
 			P.node.disconnect(src)

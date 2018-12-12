@@ -46,7 +46,7 @@
 				break // Don't bother adding ourselves to other reagent ids, it is redundant.
 
 
-/datum/reagents/Dispose()
+/datum/reagents/Destroy()
 	. = ..()
 	var/list/cached_reagents = reagent_list
 	for(var/reagent in cached_reagents)

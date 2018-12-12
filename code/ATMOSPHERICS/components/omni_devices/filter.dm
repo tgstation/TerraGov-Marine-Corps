@@ -22,7 +22,7 @@
 	..()
 	rebuild_filtering_list()
 
-/obj/machinery/atmospherics/omni/filter/Dispose()
+/obj/machinery/atmospherics/omni/filter/Destroy()
 	input = null
 	output = null
 	filter_list.Cut()

@@ -713,7 +713,7 @@ Defined in conflicts.dm of the #defines folder.
 		ammo = ammo_list[ammo]
 
 
-/obj/item/attachable/attached_gun/Dispose()
+/obj/item/attachable/attached_gun/Destroy()
 	ammo = null
 	return ..()
 

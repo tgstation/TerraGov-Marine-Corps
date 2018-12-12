@@ -27,7 +27,7 @@
 	flags_inventory = COVEREYES
 	flags_item = NODROP|DELONDROP
 
-	Dispose()
+	Destroy()
 		..()
 		return TA_REVIVE_ME
 

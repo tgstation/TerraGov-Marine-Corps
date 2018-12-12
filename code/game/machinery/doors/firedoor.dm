@@ -65,7 +65,7 @@
 			areas_added += A
 	start_processing()
 
-/obj/machinery/door/firedoor/Dispose()
+/obj/machinery/door/firedoor/Destroy()
 	for(var/area/A in areas_added)
 		A.all_doors.Remove(src)
 	. = ..()

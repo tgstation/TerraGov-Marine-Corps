@@ -289,7 +289,7 @@
 	if(welded)
 		to_chat(user, "<span class='info'>It seems welded shut.</span>")
 
-/obj/machinery/atmospherics/unary/vent_scrubber/Dispose()
+/obj/machinery/atmospherics/unary/vent_scrubber/Destroy()
 	if(initial_loc)
 		initial_loc.air_scrub_info -= id_tag
 		initial_loc.air_scrub_names -= id_tag

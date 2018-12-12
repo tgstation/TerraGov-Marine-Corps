@@ -1,9 +1,9 @@
 
-/mob/living/carbon/Dispose()
+/mob/living/carbon/Destroy()
 	for(var/datum/disease/virus in viruses)
 		virus.cure()
 	. = ..()
-	stomach_contents.Cut() //movable atom's Dispose() deletes all content, we clear stomach_contents to be safe.
+	stomach_contents.Cut() //movable atom's Destroy() deletes all content, we clear stomach_contents to be safe.
 
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()

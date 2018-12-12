@@ -11,11 +11,11 @@
 	..()
 	structure_list += src
 
-/obj/structure/Dispose()
+/obj/structure/Destroy()
 	. = ..()
 	structure_list -= src
 
-/obj/structure/proc/destroy(deconstruct)
+/obj/structure/proc/destroy_structure(deconstruct)
 	if(parts)
 		new parts(loc)
 	density = FALSE
@@ -30,7 +30,7 @@
 		if(HULK in user.mutations)
 			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 			visible_message("<span class='danger'>[user] smashes the [src] apart!</span>")
-			destroy()
+			destroy_structure()
 
 /obj/structure/attackby(obj/item/C as obj, mob/user as mob)
 	. = ..()
@@ -51,7 +51,7 @@
 	if(breakable)
 		if(user.wall_smash)
 			visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
-			destroy()
+			destroy_structure()
 
 /obj/structure/attack_paw(mob/user)
 	if(breakable)

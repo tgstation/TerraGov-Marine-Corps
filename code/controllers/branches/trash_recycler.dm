@@ -21,7 +21,7 @@ Calling on new() is faster, obviously, if the item doesn't exist in the recycle 
 But as things are stored and called on this becomes more and more useful.
 
 Do NOT call this through RecycleTrash(). The idea is to use qdel() instead, and the atom/whatever should return
-a TA_REVIVE_ME through Dispose(), telling the Trash Authority to send the object to the recycler instead of
+a TA_REVIVE_ME through Destroy(), telling the Trash Authority to send the object to the recycler instead of
 adding it to the trash queue. This gives the object time to null any references and such, and its location will
 be nulled so it doesn't appear anywhere. Once it's added to the recycle list, it won't be deleted because the
 list will reference it. Even if it's somehow deleted in the interim, it doesn't honestly matter too much.
@@ -104,7 +104,7 @@ so there's honestly not too much to do here.
 		#endif
 
 	//Time to reset its variables.
-	for(i in gathered_variables[product.type]) //We still need to empty lists here. Sigh. Better to just empty them on Dispose().
+	for(i in gathered_variables[product.type]) //We still need to empty lists here. Sigh. Better to just empty them on Destroy().
 		product.vars[i] = islist(product.vars[i]) ? list() : gathered_variables[product.type][i]
 
 	recycling[product.type] += product //Adds it to the list.
@@ -118,7 +118,7 @@ You can also just return a single variable, it won't make a difference. If the v
 need to return the whole list, just the variable name. Lists are reset to = list().
 
 Unless you know what you are doing, you can probably leave this as it is and not bother. However, if you do
-reset a bunch of referencing with Dispose(), you can pass those through so they aren't checked along with
+reset a bunch of referencing with Destroy(), you can pass those through so they aren't checked along with
 the other vars that are read only or somesuch.
 You can also return the entire list of variables if you reset them manually. Not sure why you'd want to do that though.
 */
@@ -171,7 +171,7 @@ overhead only applies when the image is first created.*/
 		layer = L
 		dir = D
 
-	Dispose()
+	Destroy()
 		..()
 		loc = null
 		return TA_REVIVE_ME

@@ -426,7 +426,7 @@
 	var/mob/living/carbon/human/wearer = null
 	actions_types = list(/datum/action/item_action/toggle)
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/Dispose()
+/obj/item/storage/backpack/marine/satchel/scout_cloak/Destroy()
 	camo_off()
 	return ..()
 

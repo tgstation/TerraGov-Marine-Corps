@@ -343,9 +343,9 @@
 /obj/item/device/omega_array/proc/update_health()
 	if(health <= 0)
 		visible_message("<span class='warning'>[src] sparks and begins to violently shake!</span>")
-		destroy()
+		destroy_array()
 
-/obj/item/device/omega_array/proc/destroy()
+/obj/item/device/omega_array/proc/destroy_array()
 	if(ticker && ticker.mode && ticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
 		var/datum/game_mode/colonialmarines_halloween_2016/M = ticker.mode
 		M.mcguffin = null
@@ -427,7 +427,7 @@
 	l_color = "#ff0000"
 	luminosity = 5
 
-	Dispose()
+	Destroy()
 		. = ..()
 		SetLuminosity(0)
 		if(ticker && ticker.mode && ticker.mode.type == /datum/game_mode/colonialmarines_halloween_2016)
@@ -1486,7 +1486,7 @@
 	var/interval_consume = 35
 	var/shadow_wights[]
 
-	Dispose()
+	Destroy()
 		. = ..()
 		for(var/mob/W in shadow_wights) qdel(W)
 		shadow_wights = null
@@ -1606,7 +1606,7 @@
 		processing_objects += src
 		loc_last_process = loc
 
-	Dispose()
+	Destroy()
 		animation_destruction_fade(src)
 		. = ..()
 		processing_objects -= src
@@ -1635,7 +1635,7 @@
 	mouse_opacity = 0
 	var/obj/item/vampiric/master_doll
 
-	Dispose()
+	Destroy()
 		. = ..()
 		processing_objects -= src
 		if(master_doll && master_doll.loc) master_doll.shadow_wights -= src

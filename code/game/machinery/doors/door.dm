@@ -41,7 +41,7 @@
 
 		handle_multidoor()
 
-	Dispose()
+	Destroy()
 		. = ..()
 		if(filler && width > 1)
 			filler.SetOpacity(0)// Ehh... let's hope there are no walls there. Must fix this

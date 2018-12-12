@@ -31,7 +31,7 @@
 		else
 			icon_state = "[base_bed_icon]_down"
 
-obj/structure/bed/Dispose()
+obj/structure/bed/Destroy()
 	if(buckled_bodybag)
 		unbuckle()
 	. = ..()
@@ -159,7 +159,7 @@ obj/structure/bed/Dispose()
 		M.visible_message("<span class='danger'>[M] slices [src] apart!</span>",
 		"<span class='danger'>You slice [src] apart!</span>", null, 5)
 		unbuckle()
-		destroy()
+		destroy_structure()
 	else attack_hand(M)
 
 /obj/structure/bed/attackby(obj/item/W, mob/user)
@@ -304,7 +304,7 @@ var/global/list/activated_medevac_stretchers = list()
 /obj/structure/bed/medevac_stretcher/attack_alien(mob/living/carbon/Xenomorph/M)
 	unbuckle()
 
-/obj/structure/bed/medevac_stretcher/Dispose()
+/obj/structure/bed/medevac_stretcher/Destroy()
 	if(stretcher_activated)
 		stretcher_activated = FALSE
 		activated_medevac_stretchers -= src

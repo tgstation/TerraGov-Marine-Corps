@@ -75,7 +75,7 @@
 		if(eyeobj)
 			eyeobj.loc = src.loc
 
-/mob/living/silicon/ai/Dispose()
+/mob/living/silicon/ai/Destroy()
 	if(eyeobj)
 		eyeobj.ai = null
 		qdel(eyeobj) // No AI, no Eye

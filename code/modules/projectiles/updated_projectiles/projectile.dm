@@ -56,7 +56,7 @@
 		path = list()
 		permutated = list()
 
-	Dispose()
+	Destroy()
 		..()
 		in_flight = 0
 		ammo = null
@@ -756,7 +756,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	health -= round(P.damage/2)
 	if (health < 0)
 		visible_message("<span class='warning'>[src] breaks down!</span>")
-		destroy()
+		destroy_structure()
 	return 1
 
 

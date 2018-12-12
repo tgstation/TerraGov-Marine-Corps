@@ -143,7 +143,7 @@
 			update_attachable(A.slot)
 
 
-/obj/item/weapon/gun/Dispose()
+/obj/item/weapon/gun/Destroy()
 	in_chamber 		= null
 	ammo 			= null
 	current_mag 	= null

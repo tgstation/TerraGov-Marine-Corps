@@ -195,7 +195,7 @@
 		return
 	return
 
-/obj/machinery/sleeper/Dispose()
+/obj/machinery/sleeper/Destroy()
 	occupant.in_stasis = FALSE //clean up; end stasis; remove from processing
 	occupant = null
 	processing_objects.Remove(src)
