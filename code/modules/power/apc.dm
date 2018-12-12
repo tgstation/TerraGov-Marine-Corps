@@ -588,7 +588,7 @@
 			new /obj/item/stack/cable_coil(loc,10)
 			user.visible_message("<span class='notice'>[user] removes [src]'s wiring and terminal.</span>",
 			"<span class='notice'>You remove [src]'s wiring and terminal.</span>")
-			cdel(terminal)
+			qdel(terminal)
 			terminal = null
 	else if(istype(W, /obj/item/circuitboard/apc) && opened && has_electronics == 0 && !(stat & BROKEN))
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
@@ -603,7 +603,7 @@
 			has_electronics = 1
 			user.visible_message("<span class='notice'>[user] inserts the power control board into [src].</span>",
 			"<span class='notice'>You insert the power control board into [src].</span>")
-			cdel(W)
+			qdel(W)
 	else if(istype(W, /obj/item/circuitboard/apc) && opened && has_electronics == 0 && (stat & BROKEN))
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out what to do with [W].</span>",
@@ -635,7 +635,7 @@
 				new /obj/item/frame/apc(loc)
 				user.visible_message("<span class='notice'>[user] welds [src]'s frame off the wall.</span>",
 				"<span class='notice'>You weld [src]'s frame off the wall.</span>")
-			cdel(src)
+			qdel(src)
 			return
 	else if(istype(W, /obj/item/frame/apc) && opened && emagged)
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
@@ -648,7 +648,7 @@
 			opened = 1
 		user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
 		"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
-		cdel(W)
+		qdel(W)
 		update_icon()
 	else if(istype(W, /obj/item/frame/apc) && opened && (stat & BROKEN))
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
@@ -664,7 +664,7 @@
 		if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] replaces [src]'s damaged frontal panel with a new one.</span>",
 			"<span class='notice'>You replace [src]'s damaged frontal panel with a new one.</span>")
-			cdel(W)
+			qdel(W)
 			stat &= ~BROKEN
 			if(opened == 2)
 				opened = 1
@@ -1315,7 +1315,7 @@
 		if(1)
 			if(cell)
 				cell.ex_act(1) //More lags woohoo
-			cdel(src)
+			qdel(src)
 			return
 		if(2)
 			if(prob(50))

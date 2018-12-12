@@ -113,7 +113,7 @@
 		user.drop_held_item()
 		var/obj/item/card/emag_broken/junk = new(user.loc)
 		junk.add_fingerprint(user)
-		cdel(src)
+		qdel(src)
 		return
 
 	..()
@@ -335,7 +335,7 @@
 			if(!fallen_assignements)
 				fallen_assignements = list()
 			fallen_assignements += D.fallen_assignements
-		cdel(D)
+		qdel(D)
 		return TRUE
 	else
 		. = ..()

@@ -65,7 +65,7 @@
 				if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
 					to_chat(user, "\blue You secured the girder!")
 					new/obj/structure/girder( src.loc )
-					cdel(src)
+					qdel(src)
 			else if (dismantlectr %2 == 0)
 				if(do_after(user,15, TRUE, 5, BUSY_ICON_BUILD))
 					dismantlectr++
@@ -105,7 +105,7 @@
 				if(!src) return
 				to_chat(user, "\blue You removed the support struts!")
 				new/obj/structure/girder( src.loc )
-				cdel(src)
+				qdel(src)
 
 		else if(istype(W, /obj/item/tool/crowbar) && state == 0 && anchored )
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
@@ -114,7 +114,7 @@
 				if(!src) return
 				to_chat(user, "\blue You dislodged the girder!")
 				new/obj/structure/girder/displaced( src.loc )
-				cdel(src)
+				qdel(src)
 
 		else if(istype(W, /obj/item/stack/sheet) && buildctr %2 == 0)
 			if(istype(get_area(src.loc),/area/shuttle || istype(get_area(src.loc),/area/sulaco/hangar)))
@@ -153,7 +153,7 @@
 						Tsrc.ChangeTurf(text2path("/turf/closed/wall/mineral/[M]"))
 						for(var/turf/closed/wall/mineral/X in Tsrc.loc)
 							if(X)	X.add_hiddenprint(usr)
-						cdel(src)
+						qdel(src)
 					return
 
 			add_hiddenprint(usr)
@@ -220,7 +220,7 @@
 			Tsrc.ChangeTurf(/turf/closed/wall)
 		for(var/turf/closed/wall/X in Tsrc.loc)
 			if(X)	X.add_hiddenprint(usr)
-		cdel(src)
+		qdel(src)
 
 /obj/structure/girder/examine(mob/user)
 	..()
@@ -252,7 +252,7 @@
 
 /obj/structure/girder/proc/dismantle()
 	new /obj/item/stack/sheet/metal(src)
-	cdel(src)
+	qdel(src)
 
 /obj/structure/girder/proc/repair()
 	health = 200

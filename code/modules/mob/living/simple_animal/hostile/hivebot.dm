@@ -49,7 +49,7 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	cdel(src)
+	qdel(src)
 	return
 
 /mob/living/simple_animal/hostile/hivebot/tele//this still needs work
@@ -93,7 +93,7 @@
 				if("rapid")
 					new /mob/living/simple_animal/hostile/hivebot/rapid(get_turf(src))
 		spawn(100)
-			cdel(src)
+			qdel(src)
 		return
 
 

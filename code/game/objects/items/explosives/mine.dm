@@ -32,7 +32,7 @@
 
 /obj/item/explosive/mine/Dispose()
 	if(tripwire)
-		cdel(tripwire)
+		qdel(tripwire)
 		tripwire = null
 	. = ..()
 
@@ -91,7 +91,7 @@
 			armed = 0
 			icon_state = copytext(icon_state,1,-6)
 			if(tripwire)
-				cdel(tripwire)
+				qdel(tripwire)
 				tripwire = null
 
 //Mine can also be triggered if you "cross right in front of it" (same tile)
@@ -122,7 +122,7 @@
 		if("explosive")
 			if(tripwire)
 				explosion(tripwire.loc, -1, -1, 2)
-				cdel(src)
+				qdel(src)
 
 /obj/item/explosive/mine/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(triggered) //Mine is already set to go off
@@ -143,7 +143,7 @@
 
 /obj/item/explosive/mine/flamer_fire_act() //adding mine explosions
 	var/turf/T = loc
-	cdel(src)
+	qdel(src)
 	explosion(T, -1, -1, 2)
 
 
@@ -162,7 +162,7 @@
 
 /obj/effect/mine_tripwire/Crossed(atom/A)
 	if(!linked_claymore)
-		cdel(src)
+		qdel(src)
 		return
 
 	if(linked_claymore.triggered) //Mine is already set to go off

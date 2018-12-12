@@ -51,7 +51,7 @@
 	var/list/cached_reagents = reagent_list
 	for(var/reagent in cached_reagents)
 		var/datum/reagent/R = reagent
-		cdel(R)
+		qdel(R)
 	cached_reagents.Cut()
 	cached_reagents = null
 	if(my_atom && my_atom.reagents == src)
@@ -450,7 +450,7 @@
 			if(my_atom && isliving(my_atom))
 				var/mob/living/M = my_atom
 				R.on_mob_delete(M)
-			cdel(R)
+			qdel(R)
 			reagent_list -= R
 			update_total()
 			if(my_atom)
@@ -779,7 +779,7 @@
 // Max vol is maximum volume of holder
 /atom/proc/create_reagents(max_vol)
 	if(reagents)
-		cdel(reagents)
+		qdel(reagents)
 	reagents = new/datum/reagents(max_vol)
 	reagents.my_atom = src
 

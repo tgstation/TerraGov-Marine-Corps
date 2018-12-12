@@ -216,7 +216,7 @@
 		if(!istype(T))
 			return
 		for(var/obj/flamer_fire/F in T) // No stacking flames!
-			cdel(F)
+			qdel(F)
 		new /obj/flamer_fire(T, 20, 20)
 
 
@@ -869,7 +869,7 @@
 	shell_speed = config.slow_shell_speed
 
 /datum/ammo/rocket/Dispose()
-	cdel(smoke)
+	qdel(smoke)
 	smoke = null
 	. = ..()
 
@@ -1325,7 +1325,7 @@
 	max_range = config.long_shell_range
 
 /datum/ammo/xeno/boiler_gas/Dispose()
-	cdel(smoke_system)
+	qdel(smoke_system)
 	smoke_system = null
 	. = ..()
 

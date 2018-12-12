@@ -69,7 +69,7 @@
 		if(!cell)
 			var/obj/item/cell/C = W
 			cell = C
-			cdel(C)
+			qdel(C)
 			visible_message("[user] puts a new power cell in the [src].")
 			to_chat(user, "You put a new cell in the [src] containing [cell.charge] charge.")
 			playsound(src,'sound/machines/click.ogg', 25, 1)
@@ -148,7 +148,7 @@
 		forceMove(linked_powerloader)
 		if(linked_powerloader.buckled_mob && linked_powerloader.buckled_mob == user)
 			linked_powerloader.unbuckle() //drop a clamp, you auto unbuckle from the powerloader.
-	else cdel(src)
+	else qdel(src)
 
 
 /obj/item/powerloader_clamp/attack(mob/living/M, mob/living/user, def_zone)

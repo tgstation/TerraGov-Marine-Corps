@@ -106,6 +106,7 @@
 	qdel(src)
 
 
+
 //The mount for the weapon.
 /obj/machinery/m56d_post
 	name = "\improper M56D mount"

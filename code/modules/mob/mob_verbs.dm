@@ -132,7 +132,7 @@
 	var/mob/new_player/M = new /mob/new_player()
 	if(!client)
 		log_game("[usr.key] AM failed due to disconnect.")
-		cdel(M)
+		qdel(M)
 		return
 
 	M.key = key

@@ -179,7 +179,7 @@
 
 	//Deal with the head item properly
 	user.temp_drop_inv_item(B)
-	cdel(B)
+	qdel(B)
 
 /datum/surgery_step/head/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)
 	user.visible_message("<span class='warning'>[user]'s hand slips, damaging connectors on [target]'s neck!</span>", \

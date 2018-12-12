@@ -19,7 +19,7 @@
 
 /obj/effect/particle_effect/fire/New()
 	if(!istype(loc, /turf))
-		cdel(src)
+		qdel(src)
 	extinguish()
 
 	dir = pick(cardinal)
@@ -38,7 +38,7 @@
 	spawn(life * 10)
 		if (istype(loc, /turf))
 			SetLuminosity(0)
-		cdel(src)
+		qdel(src)
 
 /obj/effect/particle_effect/fire/Crossed(mob/living/L)
 	..()
@@ -60,7 +60,7 @@
 	//	T.firelevel = 0 //TODO: FIX
 	if (--src.life < 1)
 		//SN src = null
-		cdel(src)
+		qdel(src)
 	if(newloc.density)
 		return 0
 	.=..()

@@ -17,7 +17,7 @@ obj/effect/decal/cleanable/liquid_fuel
 			if(other != src)
 				other.amount += src.amount
 				spawn other.Spread()
-				cdel(src)
+				qdel(src)
 
 		Spread()
 		. = ..()

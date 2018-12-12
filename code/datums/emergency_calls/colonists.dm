@@ -24,5 +24,5 @@
 		to_chat(mob, "<span class='role_header'>You are a colonist!</span>")
 
 	if(original)
-		cdel(original)
+		qdel(original)
 	return

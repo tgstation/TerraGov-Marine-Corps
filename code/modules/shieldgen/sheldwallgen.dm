@@ -204,7 +204,7 @@
 		T2 = T
 		if(locate(/obj/machinery/shieldwall) in T)
 			F = (locate(/obj/machinery/shieldwall) in T)
-			cdel(F)
+			qdel(F)
 
 		if(locate(/obj/machinery/shieldwallgen) in T)
 			G = (locate(/obj/machinery/shieldwallgen) in T)
@@ -257,7 +257,7 @@
 			B.storedpower -= generate_power_usage
 		start_processing()
 	else
-		cdel(src) //need at least two generator posts
+		qdel(src) //need at least two generator posts
 
 /obj/machinery/shieldwall/Dispose()
 	SetLuminosity(0)
@@ -270,11 +270,11 @@
 /obj/machinery/shieldwall/process()
 	if(needs_power)
 		if(isnull(gen_primary)||isnull(gen_secondary))
-			cdel(src)
+			qdel(src)
 			return
 
 		if(!(gen_primary.active)||!(gen_secondary.active))
-			cdel(src)
+			qdel(src)
 			return
 
 		if(prob(50))

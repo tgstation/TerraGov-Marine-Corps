@@ -101,7 +101,7 @@
 
 /mob/living/Dispose()
 	if(attack_icon)
-		cdel(attack_icon)
+		qdel(attack_icon)
 		attack_icon = null
 	. = ..()
 

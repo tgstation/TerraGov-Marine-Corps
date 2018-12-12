@@ -241,11 +241,11 @@
 		if(helmet_overlays["item"])
 			var/image/reusable/RI = helmet_overlays["item"]
 			helmet_overlays["item"] = null
-			cdel(RI)
+			qdel(RI)
 		if(helmet_overlays["band"])
 			var/image/reusable/J = helmet_overlays["band"]
 			helmet_overlays["band"] = null
-			cdel(J)
+			qdel(J)
 
 	if(ismob(loc))
 		var/mob/M = loc

@@ -20,7 +20,7 @@
 /*
 Trash Authority Directives
 Defines for when we need to give commands to the trash authority in how to handle trash.
-These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) would tell the TA to throw the atom into the recycler.
+These are used with cdel (clean delete). For example, qdel(atom, TA_REVIVE_ME) would tell the TA to throw the atom into the recycler.
 */
 #define TA_TRASH_ME		1 //Trash it.
 #define TA_REVIVE_ME	2 //Not killing this one, instead adding it to the recycler. Call this on bullets, for example.

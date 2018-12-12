@@ -21,7 +21,7 @@
 
 /obj/effect/attach_point/Dispose()
 	if(installed_equipment)
-		cdel(installed_equipment)
+		qdel(installed_equipment)
 		installed_equipment = null
 	return ..()
 
@@ -141,7 +141,7 @@
 
 /obj/structure/dropship_equipment/Dispose()
 	if(ammo_equipped)
-		cdel(ammo_equipped)
+		qdel(ammo_equipped)
 		ammo_equipped = null
 	if(linked_shuttle)
 		linked_shuttle.equipments -= src
@@ -189,7 +189,7 @@
 		if(!ammo_equipped.ammo_count)
 			ammo_equipped.loc = null
 			to_chat(user, "<span class='notice'>You've discarded the empty [ammo_equipped.name] in [src].</span>")
-			cdel(ammo_equipped)
+			qdel(ammo_equipped)
 		else
 			ammo_equipped.forceMove(PC.linked_powerloader)
 			PC.loaded = ammo_equipped

@@ -348,7 +348,7 @@
 			var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 			AI.SetName("Cryotube Notification System")
 			AI.aiRadio.talk_into(AI,"Patient [occupant] has been automatically released from [src] at: [get_area(occupant)]. [reason]","MedSci","announces")
-			cdel(AI)
+			qdel(AI)
 	occupant = null
 	update_use_power(1)
 	update_icon()

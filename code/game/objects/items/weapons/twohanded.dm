@@ -102,10 +102,10 @@
 		if(flags_item & WIELDED)
 			flags_item &= ~WIELDED
 			user.temp_drop_inv_item(src)
-			cdel(src)
+			qdel(src)
 
 	wield()
-		cdel(src) //This shouldn't even happen.
+		qdel(src) //This shouldn't even happen.
 
 	Dispose()
 		..()
@@ -154,7 +154,7 @@
 	if(!proximity) return
 	..()
 	if(A && (flags_item & WIELDED) && istype(A,/obj/structure/grille)) //destroys grilles in one hit
-		cdel(A)
+		qdel(A)
 
 /*
  * Double-Bladed Energy Swords - Cheridan

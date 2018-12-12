@@ -30,7 +30,7 @@
 	user.put_in_active_hand(B)
 	src.transfer_fingerprints_to(B)
 
-	cdel(src)
+	qdel(src)
 
 /obj/item/reagent_container/food/drinks/bottle/attack(mob/living/target as mob, mob/living/user as mob)
 

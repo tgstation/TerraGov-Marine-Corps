@@ -185,9 +185,9 @@ datum/preferences
 		if(updating_icon)
 			return
 		updating_icon = 1
-		cdel(preview_icon_front)
-		cdel(preview_icon_side)
-		cdel(preview_icon)
+		qdel(preview_icon_front)
+		qdel(preview_icon_side)
+		qdel(preview_icon)
 
 		var/g = "m"
 		if(gender == FEMALE)	g = "f"
@@ -588,10 +588,10 @@ datum/preferences
 		preview_icon_front = new(preview_icon, dir = SOUTH)
 		preview_icon_side = new(preview_icon, dir = WEST)
 
-		cdel(eyes_s)
-		cdel(underwear_s)
-		cdel(undershirt_s)
-		cdel(clothes_s)
+		qdel(eyes_s)
+		qdel(underwear_s)
+		qdel(undershirt_s)
+		qdel(clothes_s)
 		updating_icon = 0
 
 /datum/preferences/proc/randomize_species_specific()
