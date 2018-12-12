@@ -106,13 +106,11 @@
 		return
 
 	if(!usr.mind) //How? Give them a new one anyway.
-		message_admins("DEBUG: No mind, creating new one [usr.key].")
 		usr.mind = new /datum/mind(usr.key)
 		usr.mind.active = 1
 		usr.mind.current = usr
 
 	if(usr.mind.key != usr.key) //This can happen when admin-switching people into afking people, leading to runtime errors for a clientless key.
-		message_admins("DEBUG: Keyless mind, transfering [usr.key].")
 		usr.mind.key = usr.key 
 
 	if(usr.mind in distress.candidates)
@@ -122,7 +120,6 @@
 	if(distress.add_candidate(usr))
 		to_chat(usr, "<span class='boldnotice'>You are now a candidate in the emergency response team! If there are enough candidates, you may be picked to be part of the team.</span>")
 	else
-		message_admins("DEBUG: Failed to add [usr.key] to candidates.")
 		to_chat(usr, "<span class='warning'>Something went wrong while adding you into the candidate list!</span>")
 
 
@@ -146,7 +143,7 @@
 
 	spawn(1 MINUTE)
 		if(length(candidates) < mob_min)
-			message_admins("Aborting distress beacon [src.name], not enough candidates. Found [length(candidates)].", 1)
+			message_admins("Aborting distress beacon [name], not enough candidates. Found [length(candidates)].", 1)
 			ticker.mode.waiting_for_candidates = FALSE
 			members = list() //Empty the members list.
 			candidates = list()
@@ -160,37 +157,32 @@
 			spawn(COOLDOWN_COMM_REQUEST)
 				ticker.mode.on_distress_cooldown = FALSE
 		else
-			message_admins("Found [length(candidates)] candidates.")
 			ticker.mode.waiting_for_candidates = FALSE
 			var/datum/mind/picked_candidates = list()
 			if(mob_max > 0)
 				for(var/i = 1 to mob_max)
 					if(!length(candidates)) //We ran out of candidates.
-						message_admins("DEBUG: Ran out of candidates.")
 						break
 					var/datum/mind/M = pick(candidates) //Get a random candidate, then remove it from the candidates list.
 					if(M.current.stat != DEAD)
-						message_admins("DEBUG: Removing alive candidate [M.key].")
 						candidates -= M //Strip them from the list, they aren't dead anymore.
 						continue
 					if(!istype(M)) //Something went horrifically wrong
-						message_admins("DEBUG: Wrong type [M.key].")
 						candidates -= M
 						continue
-					message_admins("DEBUG: Picked candidate [M.key] correctly.")
 					picked_candidates += M
 					candidates -= M
 
 				if(length(candidates))
 					for(var/datum/mind/M in candidates)
 						if(M.current)
-							message_admins("DEBUG: [M.key] didn't get pick even though they are in candidates.")
+							message_admins("ERROR: [M.key] didn't get pick even though they are in candidates.")
 							to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team. Better luck next time!</span>")
 
 			if(announce)
 				command_announcement.Announce(dispatch_message, "Distress Beacon", new_sound='sound/AI/distressreceived.ogg') //Announcement that the Distress Beacon has been answered, does not hint towards the chosen ERT
 
-			message_admins("Distress beacon: [src.name] finalized, setting up candidates.", 1)
+			message_admins("Distress beacon: [name] finalized, setting up candidates.", 1)
 			var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_id]
 
 			if(!shuttle || !istype(shuttle))
@@ -206,7 +198,6 @@
 			if(length(picked_candidates))
 				max_medics = max(round(length(members) * 0.25), 1)
 				for(var/datum/mind/M in picked_candidates)
-					message_admins("DEBUG: Spawning candidate [M.key].")
 					members += M
 					create_member(M)
 
@@ -230,7 +221,6 @@
 		return FALSE
 
 	candidates += M.mind
-	message_admins("DEBUG: Adding [M.mind.key] to candidates.")
 	return TRUE
 
 
