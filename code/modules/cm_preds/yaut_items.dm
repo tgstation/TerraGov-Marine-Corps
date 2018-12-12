@@ -879,10 +879,6 @@
 	. = ..()
 	return TA_REVIVE_ME
 
-/obj/item/weapon/wristblades/Recycle()
-	var/blacklist[] = list("attack_verb")
-	. = ..() + blacklist
-
 /obj/item/weapon/wristblades/dropped(mob/living/carbon/human/M)
 	playsound(M,'sound/weapons/wristblades_off.ogg', 15, 1)
 	if(M)
