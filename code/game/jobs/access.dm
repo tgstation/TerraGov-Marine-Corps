@@ -265,6 +265,7 @@ proc/get_all_job_icons()
 		if("PMCDS") . = size ? "PMCDS " : "PMC Deathsquad"
 		if("PMCDSL") . = size ? "PMCDS " : "PMC Deathsquad Leader"
 		if("WY1") . = size ? (gender == "female" ? "Ms. " : "Mr. ") : "Junior Executive"
+		if("C1") . = size ? "Con. " : "Conscript"
 		if("E1") . = size ? "Pvt. " : "Private"
 		if("E2") . = size ? "PFC. " : "Private First Class"
 		if("E3") . = size ? "LCpl. " : "Lance Corporal"
