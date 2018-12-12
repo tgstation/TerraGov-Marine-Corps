@@ -228,22 +228,22 @@
 /obj/item/clothing/head/helmet/marine/update_icon()
 	if(pockets.contents.len && (flags_marine_helmet & HELMET_GARB_OVERLAY))
 		if(!helmet_overlays["band"])
-			var/image/reusable/I = rnew(/image/reusable, list('icons/obj/clothing/cm_hats.dmi', src, "helmet_band"))
+			var/image/I = image('icons/obj/clothing/cm_hats.dmi', src, "helmet_band")
 			helmet_overlays["band"] = I
 
 		if(!helmet_overlays["item"])
 			var/obj/O = pockets.contents[1]
 			if(O.type in allowed_helmet_items)
-				var/image/reusable/I = rnew(/image/reusable, list('icons/obj/clothing/cm_hats.dmi', src, "[allowed_helmet_items[O.type]][O.type == /obj/item/tool/lighter/random ? O:clr : ""]"))
+				var/image/I = image('icons/obj/clothing/cm_hats.dmi', src, "[allowed_helmet_items[O.type]][O.type == /obj/item/tool/lighter/random ? O:clr : ""]")
 				helmet_overlays["item"] = I
 
 	else
 		if(helmet_overlays["item"])
-			var/image/reusable/RI = helmet_overlays["item"]
+			var/image/RI = helmet_overlays["item"]
 			helmet_overlays["item"] = null
 			qdel(RI)
 		if(helmet_overlays["band"])
-			var/image/reusable/J = helmet_overlays["band"]
+			var/image/J = helmet_overlays["band"]
 			helmet_overlays["band"] = null
 			qdel(J)
 

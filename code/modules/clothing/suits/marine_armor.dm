@@ -103,12 +103,12 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 
 /obj/item/clothing/suit/storage/marine/update_icon(mob/user)
-	var/image/reusable/I
+	var/image/I
 	I = armor_overlays["lamp"]
 	overlays -= I
 	qdel(I)
 	if(flags_marine_armor & ARMOR_LAMP_OVERLAY)
-		I = rnew(/image/reusable, flags_marine_armor & ARMOR_LAMP_ON? list('icons/obj/clothing/cm_suits.dmi', src, "lamp-on") : list('icons/obj/clothing/cm_suits.dmi', src, "lamp-off"))
+		I = image('icons/obj/clothing/cm_suits.dmi', src, flags_marine_armor & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
 		armor_overlays["lamp"] = I
 		overlays += I
 	else
@@ -806,12 +806,12 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	update_icon()
 
 /obj/item/clothing/suit/storage/faction/update_icon(mob/user)
-	var/image/reusable/I
+	var/image/I
 	I = armor_overlays["lamp"]
 	overlays -= I
 	qdel(I)
 	if(flags_faction_armor & ARMOR_LAMP_OVERLAY)
-		I = rnew(/image/reusable, flags_faction_armor & ARMOR_LAMP_ON? list('icons/obj/clothing/cm_suits.dmi', src, "lamp-on") : list('icons/obj/clothing/cm_suits.dmi', src, "lamp-off"))
+		I = image('icons/obj/clothing/cm_suits.dmi', src, flags_faction_armor & ARMOR_LAMP_ON? "lamp-on" : "lamp-off")
 		armor_overlays["lamp"] = I
 		overlays += I
 	else armor_overlays["lamp"] = null

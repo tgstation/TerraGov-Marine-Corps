@@ -404,7 +404,7 @@
 		update_icon() //make sure the user can see the lack of ammo.
 		return 0 //Out of ammo.
 
-	in_chamber = rnew(/obj/item/projectile, loc) //New bullet!
+	in_chamber = new /obj/item/projectile(loc) //New bullet!
 	in_chamber.generate_bullet(ammo)
 	return 1
 
@@ -519,13 +519,12 @@
 	if(prob(65))
 		var/img_layer = layer + 0.1
 
-		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/items/projectiles.dmi', src, "muzzle_flash",img_layer))
+		var/image/I = image('icons/obj/items/projectiles.dmi', src, "muzzle_flash",img_layer)
 		var/matrix/rotate = matrix() //Change the flash angle.
 		rotate.Translate(0,5)
 		rotate.Turn(angle)
 		I.transform = rotate
-
-		I.flick_overlay(src, 3)
+		flick_overlay_view(I, src, 3)
 
 /obj/machinery/m56d_hmg/MouseDrop(over_object, src_location, over_location) //Drag the MG to us to man it.
 	if(!ishuman(usr)) return

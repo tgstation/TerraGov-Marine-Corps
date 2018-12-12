@@ -440,7 +440,7 @@
 	var/holds_guns_now = 0 //Generic variable to determine if the holster already holds a gun.
 	var/holds_guns_max = 1 //How many guns can it hold? I think this can be any thing from 1 to whatever. Should calculate properly.
 	var/obj/item/weapon/gun/current_gun //The gun it holds, used for referencing later so we can update the icon.
-	var/image/reusable/gun_underlay //The underlay we will use.
+	var/image/gun_underlay //The underlay we will use.
 	var/sheatheSound = 'sound/weapons/gun_pistol_sheathe.ogg'
 	var/drawSound = 'sound/weapons/gun_pistol_draw.ogg'
 	can_hold = list(
@@ -476,7 +476,7 @@
 		sure that we don't have to do any extra calculations.
 		*/
 		playsound(src,drawSound, 15, 1)
-		gun_underlay = rnew(/image/reusable,list(icon, src, current_gun.icon_state))
+		gun_underlay = image(icon, src, current_gun.icon_state)
 		icon_state += "_g"
 		item_state = icon_state
 		underlays += gun_underlay

@@ -773,7 +773,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(!P || !P.ammo.ping) return
 	if(prob(65))
 		if(P.ammo.sound_bounce) playsound(src, P.ammo.sound_bounce, 50, 1)
-		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10))
+		var/image/I = image('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10)
 		var/angle = (P.firer && prob(60)) ? round(Get_Angle(P.firer,src)) : round(rand(1,359))
 		I.pixel_x += rand(-6,6)
 		I.pixel_y += rand(-6,6)
@@ -781,8 +781,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		var/matrix/rotate = matrix()
 		rotate.Turn(angle)
 		I.transform = rotate
-
-		I.flick_overlay(src, 3)
+		flick_overlay_view(I, src, 3)
 
 /mob/proc/bullet_message(obj/item/projectile/P)
 	if(!P) return

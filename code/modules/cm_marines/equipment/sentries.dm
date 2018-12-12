@@ -885,7 +885,7 @@
 	if(in_chamber) return 1 //Already set!
 	if(!on || !cell || rounds == 0 || stat == 1) return 0
 
-	in_chamber = rnew(/obj/item/projectile, loc) //New bullet!
+	in_chamber = new /obj/item/projectile(loc) //New bullet!
 	in_chamber.generate_bullet(ammo)
 	return 1
 
@@ -993,12 +993,12 @@
 	if(prob(65))
 		var/layer = MOB_LAYER - 0.1
 
-		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/items/projectiles.dmi',src,"muzzle_flash",layer))
+		var/image/I = image('icons/obj/items/projectiles.dmi',src,"muzzle_flash",layer)
 		var/matrix/rotate = matrix() //Change the flash angle.
 		rotate.Translate(0, 5)
 		rotate.Turn(angle)
 		I.transform = rotate
-		I.flick_overlay(src, 3)
+		flick_overlay_view(I, src, 3)
 
 /obj/machinery/marine_turret/proc/get_target()
 	var/list/targets = list()

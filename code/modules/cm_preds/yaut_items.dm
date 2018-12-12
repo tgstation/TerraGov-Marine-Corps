@@ -76,15 +76,15 @@
 		qdel(G)
 	switch(current_goggles)
 		if(0)
-			M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/night/yautja,M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/yautja(M), WEAR_EYES)
 			to_chat(M, "<span class='notice'>Low-light vision module: activated.</span>")
 			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 		if(1)
-			M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/thermal/yautja,M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/yautja(M), WEAR_EYES)
 			to_chat(M, "<span class='notice'>Thermal sight module: activated.</span>")
 			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 		if(2)
-			M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/meson/yautja,M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/meson/yautja(M), WEAR_EYES)
 			to_chat(M, "<span class='notice'>Material vision module: activated.</span>")
 			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 		if(3)
@@ -378,7 +378,10 @@
 			return
 
 		var/obj/item/weapon/wristblades/W
-		W =  rnew(upgrades > 2 ? /obj/item/weapon/wristblades/scimitar : /obj/item/weapon/wristblades, user)
+		if(upgrades > 2)
+			W = new /obj/item/weapon/wristblades/scimitar(user)
+		else
+			W = new /obj/item/weapon/wristblades(user)
 
 		user.put_in_active_hand(W)
 		blades_active = 1
