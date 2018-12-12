@@ -73,7 +73,3 @@
 		..()
 		return TA_REVIVE_ME
 
-	Recycle()
-		var/blacklist[] = list("icon_state","item_state","name","desc","vision_flags","invisa_view","can_remove")
-		. = ..() + blacklist
-

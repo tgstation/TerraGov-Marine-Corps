@@ -69,10 +69,6 @@
 		list_reagents = null
 		return TA_REVIVE_ME
 
-	Recycle()
-		var/blacklist[] = list("ammo","name","desc","icon_state","damage","in_flight","shot_from","original","target_turf","starting", "permutated","path")
-		. = ..() + blacklist
-
 	Bumped(atom/A as mob|obj|turf|area)
 		if(A && !A in permutated)
 			scan_a_turf(A.loc)
