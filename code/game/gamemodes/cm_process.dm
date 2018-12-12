@@ -283,6 +283,8 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 
 		// Extra information for all ghosts
 	for(var/mob/M in observers)
+		if(istype(M, /mob/new_player))
+			continue
 		to_chat(M, "<h2 class='alert'>Detailed Information</h2>")
 		to_chat(M, "<span class='alert'>[numXenosPlanetr] xenos on the planet, including [numLarvaPlanet] larva.<br>[numXenosShip] xenos on the ship, [numLarvaShip] larva.<br>[numHostsPlanet] humans on the planet.<br>[numHostsShip] humans on the ship.</span>")
 
