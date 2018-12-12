@@ -65,7 +65,7 @@
 	return parent.return_network(reference)
 
 /obj/machinery/atmospherics/pipe/Destroy()
-	if(!disposed) //not already cdel'd
+	if(!gc_destroyed) //not already cdel'd
 		if(parent)
 			qdel(parent)
 	return ..()

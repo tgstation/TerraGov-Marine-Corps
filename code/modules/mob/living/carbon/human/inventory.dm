@@ -472,7 +472,7 @@
 			if(I == get_active_hand() && !M.get_item_by_slot(slot_to_process) && Adjacent(M))
 				if(I.mob_can_equip(M, slot_to_process, TRUE))//Placing an item on the mob
 					drop_inv_item_on_ground(I)
-					if(I && !I.disposed) //Might be self-deleted?
+					if(I && !I.gc_destroyed) //Might be self-deleted?
 						M.equip_to_slot_if_possible(I, slot_to_process, 1, 0, 1, 1)
 
 	if(M)
