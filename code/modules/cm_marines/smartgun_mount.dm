@@ -58,6 +58,8 @@
 
 /obj/item/device/m56d_gun/examine(mob/user as mob) //Let us see how much ammo we got in this thing.
 	..()
+	if(!ishuman(user))
+		return
 	if(rounds)
 		to_chat(usr, "It has [rounds] out of 700 rounds.")
 	else
@@ -80,7 +82,7 @@
 	if(istype(O,/obj/item/ammo_magazine/m56d)) //lets equip it with ammo
 		if(!rounds)
 			rounds = 700
-			cdel(O)
+			qdel(O)
 			update_icon()
 			return
 		else
@@ -101,7 +103,7 @@
 	var/obj/machinery/m56d_post/P = new(user.loc)
 	P.dir = user.dir
 	P.update_icon()
-	cdel(src)
+	qdel(src)
 
 
 //The mount for the weapon.
@@ -123,7 +125,7 @@
 	if(health <= 0)
 		if(prob(30))
 			new /obj/item/device/m56d_post (src)
-		cdel(src)
+		qdel(src)
 
 
 
@@ -151,7 +153,7 @@
 		to_chat(user, "<span class='notice'>You fold [src].</span>")
 		var/obj/item/device/m56d_post/P = new(loc)
 		user.put_in_hands(P)
-		cdel(src)
+		qdel(src)
 
 /obj/machinery/m56d_post/attackby(obj/item/O, mob/user)
 	if(!ishuman(user)) //first make sure theres no funkiness
@@ -176,7 +178,7 @@
 			else
 				icon_state = "M56D" // otherwise we're a empty gun on a mount.
 			user.temp_drop_inv_item(MG)
-			cdel(MG)
+			qdel(MG)
 		return
 
 	if(istype(O,/obj/item/tool/crowbar))
@@ -204,7 +206,7 @@
 				G.dir = src.dir //make sure we face the right direction
 				G.rounds = src.gun_rounds //Inherent the amount of ammo we had.
 				G.update_icon()
-				cdel(src)
+				qdel(src)
 
 	return ..()
 
@@ -291,7 +293,7 @@
 				var/obj/item/device/m56d_gun/HMG = new(src.loc) //Here we generate our disassembled mg.
 				new /obj/item/device/m56d_post(src.loc)
 				HMG.rounds = src.rounds //Inherent the amount of ammo we had.
-				cdel(src) //Now we clean up the constructed gun.
+				qdel(src) //Now we clean up the constructed gun.
 				return
 
 	if(istype(O, /obj/item/ammo_magazine/m56d)) // RELOADING DOCTOR FREEMAN.
@@ -311,7 +313,7 @@
 		rounds = min(rounds + M.current_rounds, rounds_max)
 		update_icon()
 		user.temp_drop_inv_item(O)
-		cdel(O)
+		qdel(O)
 		return
 	return ..()
 
@@ -324,7 +326,7 @@
 		else
 			var/obj/item/device/m56d_gun/HMG = new(loc)
 			HMG.rounds = src.rounds //Inherent the amount of ammo we had.
-		cdel(src)
+		qdel(src)
 		return
 
 	if(health > health_max)
