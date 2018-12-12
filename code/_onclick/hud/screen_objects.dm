@@ -670,7 +670,7 @@
 			flick("[hud_state_empty]_flash", F)
 			spawn(20)
 				user.client.screen -= F
-				cdel(F)
+				qdel(F)
 				overlays += empty
 	else
 		warned = FALSE

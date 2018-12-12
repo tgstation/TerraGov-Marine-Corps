@@ -17,7 +17,7 @@
 		return
 
 /obj/item/weapon/gun/energy/load_into_chamber()
-	if(!cell || cell.charge - charge_cost < 0) 
+	if(!cell || cell.charge - charge_cost < 0)
 		return
 
 	cell.charge -= charge_cost
@@ -33,7 +33,7 @@
 
 /obj/item/weapon/gun/energy/delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
-	if(refund) 
+	if(refund)
 		cell.charge += charge_cost
 	return TRUE
 
@@ -117,20 +117,6 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 
 /obj/item/weapon/gun/energy/plasmarifle/New()
-<<<<<<< master
-	..()
-	processing_objects.Add(src)
-	last_regen = world.time
-	update_icon()
-	verbs -= /obj/item/weapon/gun/verb/field_strip
-	verbs -= /obj/item/weapon/gun/verb/toggle_burst
-	verbs -= /obj/item/weapon/gun/verb/empty_mag
-
-
-
-/obj/item/weapon/gun/energy/plasmarifle/Destroy()
-=======
->>>>>>> Energy!
 	. = ..()
 	cell = new /obj/item/cell/high(src)
 
@@ -162,45 +148,6 @@
 		return
 	return ..()
 
-<<<<<<< master
-/obj/item/weapon/gun/energy/plasmarifle/load_into_chamber()
-	ammo = ammo_list[charge_time < 15? /datum/ammo/energy/yautja/rifle/bolt : /datum/ammo/energy/yautja/rifle/blast]
-	var/obj/item/projectile/P = create_bullet(ammo)
-	P.SetLuminosity(1)
-	in_chamber = P
-	charge_time = round(charge_time / 2)
-	return in_chamber
-
-/obj/item/weapon/gun/energy/plasmarifle/reload_into_chamber()
-	update_icon()
-	return 1
-
-/obj/item/weapon/gun/energy/plasmarifle/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
-	qdel(projectile_to_fire)
-	if(refund) charge_time *= 2
-	return 1
-
-/obj/item/weapon/gun/energy/plasmarifle/attack_self(mob/living/user)
-	if(!isYautja(user))
-		return ..()
-
-	if(charge_time > 10)
-		user.visible_message("<span class='notice'>You feel a strange surge of energy in the area.</span>","<span class='notice'>You release the rifle battery's energy.</span>")
-		var/obj/item/clothing/gloves/yautja/Y = user:gloves
-		if(Y && Y.charge < Y.charge_max)
-			Y.charge += charge_time * 2
-			if(Y.charge > Y.charge_max) Y.charge = Y.charge_max
-			charge_time = 0
-			to_chat(user, "<span class='notice'>Your bracers absorb some of the released energy.</span>")
-			update_icon()
-	else
-		to_chat(user, "<span class='warning'>The weapon's not charged enough with ambient energy!</span>")
-
-
-
-
-=======
->>>>>>> Energy!
 
 /obj/item/weapon/gun/energy/plasmapistol
 	name = "plasma pistol"
@@ -217,32 +164,6 @@
 	w_class = 3
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 
-<<<<<<< master
-
-/obj/item/weapon/gun/energy/plasmapistol/New()
-	..()
-	processing_objects.Add(src)
-	verbs -= /obj/item/weapon/gun/verb/field_strip
-	verbs -= /obj/item/weapon/gun/verb/toggle_burst
-	verbs -= /obj/item/weapon/gun/verb/empty_mag
-
-
-
-/obj/item/weapon/gun/energy/plasmapistol/Destroy()
-	. = ..()
-	processing_objects.Remove(src)
-
-
-/obj/item/weapon/gun/energy/plasmapistol/process()
-	if(charge_time < 40)
-		charge_time++
-		if(charge_time == 39)
-			if(ismob(loc)) to_chat(loc, "<span class='notice'>[src] hums as it achieves maximum charge.</span>")
-
-
-
-=======
->>>>>>> Energy!
 /obj/item/weapon/gun/energy/plasmapistol/set_gun_config_values()
 	fire_delay = config.med_fire_delay
 	accuracy_mult = config.base_hit_accuracy_mult + config.med_hit_accuracy_mult
@@ -262,37 +183,7 @@
 	if(!isYautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
-<<<<<<< master
-	else
-		return ..()
-
-/obj/item/weapon/gun/energy/plasmapistol/load_into_chamber()
-	if(charge_time < 1) return
-	var/obj/item/projectile/P = create_bullet(ammo)
-	P.SetLuminosity(1)
-	in_chamber = P
-	charge_time -= 1
-	return in_chamber
-
-/obj/item/weapon/gun/energy/plasmapistol/reload_into_chamber()
-	return 1
-
-/obj/item/weapon/gun/energy/plasmapistol/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
-	qdel(projectile_to_fire)
-	if(refund) charge_time *= 2
-	return 1
-
-
-
-
-
-
-
-
-
-=======
 	return ..()
->>>>>>> Energy!
 
 
 /obj/item/weapon/gun/energy/plasma_caster
@@ -314,21 +205,6 @@
 	flags_item = NOBLUDGEON|DELONDROP //Can't bludgeon with this.
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 
-<<<<<<< master
-/obj/item/weapon/gun/energy/plasma_caster/New()
-	..()
-	verbs -= /obj/item/weapon/gun/verb/field_strip
-	verbs -= /obj/item/weapon/gun/verb/toggle_burst
-	verbs -= /obj/item/weapon/gun/verb/empty_mag
-	verbs -= /obj/item/weapon/gun/verb/use_unique_action
-
-/obj/item/weapon/gun/energy/plasma_caster/Destroy()
-	. = ..()
-	source = null
-
-
-=======
->>>>>>> Energy!
 /obj/item/weapon/gun/energy/plasma_caster/set_gun_config_values()
 	fire_delay = config.high_fire_delay
 	accuracy_mult = config.base_hit_accuracy_mult
@@ -369,26 +245,4 @@
 	if(!isYautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how this thing works!</span>")
 		return
-<<<<<<< master
-
 	return ..()
-
-/obj/item/weapon/gun/energy/plasma_caster/load_into_chamber()
-	if(source.drain_power(usr,charge_cost))
-		in_chamber = create_bullet(ammo)
-		return in_chamber
-
-/obj/item/weapon/gun/energy/plasma_caster/reload_into_chamber()
-	return 1
-
-/obj/item/weapon/gun/energy/plasma_caster/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
-	qdel(projectile_to_fire)
-	if(refund)
-		source.charge += charge_cost
-		var/perc = source.charge / source.charge_max * 100
-		var/mob/living/carbon/human/user = usr //Hacky...
-		user.update_power_display(perc)
-	return 1
-=======
-	return ..()
->>>>>>> Energy!

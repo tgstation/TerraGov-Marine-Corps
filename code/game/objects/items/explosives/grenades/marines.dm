@@ -58,14 +58,6 @@
 		qdel(src)
 	return
 
-<<<<<<< master
-	prime()
-		spawn(0)
-			explosion(loc, -1, -1, 4)
-			qdel(src)
-		return
-=======
->>>>>>> Grenade support
 
 /obj/item/explosive/grenade/frag/m15
 	name = "\improper M15 fragmentation grenade"
