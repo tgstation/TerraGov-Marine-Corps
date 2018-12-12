@@ -178,7 +178,7 @@
 			soundplaycooldown = 3
 		soundplaycooldown--
 
-	if(!ammo_count && !disposed)
+	if(!ammo_count && !gc_destroyed)
 		qdel(src) //deleted after last laser beam is fired and impact the ground.
 
 

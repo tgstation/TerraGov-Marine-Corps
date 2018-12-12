@@ -673,7 +673,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	if(O.disposed) return //mob was garbage collected
+	if(O.gc_destroyed) return //mob was garbage collected
 
 	new_ckey = input("Enter new ckey:","CKey") as null|text
 

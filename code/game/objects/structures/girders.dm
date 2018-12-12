@@ -129,7 +129,7 @@
 					if(S.get_amount() < 1) return ..()
 					to_chat(user, "<span class='notice'>Now adding plating...</span>")
 					if (do_after(user,60, TRUE, 5, BUSY_ICON_BUILD))
-						if(disposed || buildctr != old_buildctr) return
+						if(gc_destroyed || buildctr != old_buildctr) return
 						if (S.use(1))
 							to_chat(user, "<span class='notice'>You added the plating!</span>")
 							buildctr++
@@ -146,7 +146,7 @@
 						return ..()
 					to_chat(user, "<span class='notice'>Now adding plating...</span>")
 					if (do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))
-						if(disposed || buildctr != old_buildctr || S.amount < 2) return
+						if(gc_destroyed || buildctr != old_buildctr || S.amount < 2) return
 						S.use(2)
 						to_chat(user, "<span class='notice'>You added the plating!</span>")
 						var/turf/Tsrc = get_turf(src)
@@ -197,7 +197,7 @@
 					return ..()
 				to_chat(user, "<span class='notice'>Now adding plating...</span>")
 				if (do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))
-					if(disposed || repair_state != 0 || !M || M.amount < 2) return
+					if(gc_destroyed || repair_state != 0 || !M || M.amount < 2) return
 					M.use(2)
 					to_chat(user, "<span class='notice'>You added the metal to the girder!</span>")
 					repair_state = 1
@@ -205,7 +205,7 @@
 		if (repair_state == 1)
 			if(istype(W, /obj/item/tool/weldingtool))
 				if(do_after(user,30, TRUE, 5, BUSY_ICON_BUILD))
-					if(disposed || repair_state != 1) return
+					if(gc_destroyed || repair_state != 1) return
 					to_chat(user, "\blue You weld the girder together!")
 					repair()
 				return

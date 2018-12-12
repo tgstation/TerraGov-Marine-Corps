@@ -829,7 +829,7 @@
 			possible_xenos += T
 
 	var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
-	if(!selected_xeno || selected_xeno.disposed || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z == ADMIN_Z_LEVEL || !X.check_state())
+	if(!selected_xeno || selected_xeno.gc_destroyed || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z == ADMIN_Z_LEVEL || !X.check_state())
 		if(X.observed_xeno)
 			X.set_queen_overwatch(X.observed_xeno, TRUE)
 	else
