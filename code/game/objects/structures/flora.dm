@@ -93,7 +93,7 @@
 		if(W.hitsound)
 			playsound(get_turf(src), W.hitsound, 100, 0, 0)
 		user.visible_message("<span class='notice'>[user] begins to cut down [src] with [W].</span>","<span class='notice'>You begin to cut down [src] with [W].</span>", "You hear the sound of sawing.")
-		if(!do_after(usr, 100, TRUE, 5, BUSY_ICON_BUILD)) //5 seconds with 20 force, 8 seconds with a hatchet, 20 seconds with a shard.
+		if(!do_after(usr, 100, TRUE, 5, BUSY_ICON_BUILD)) //10 seconds to cut down a tree
 			user.visible_message("<span class='notice'>[user] fells [src] with the [W].</span>","<span class='notice'>You fell [src] with the [W].</span>", "You hear the sound of a tree falling.")
 			playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 100 , 0, 0)
 			for(var/i=1 to log_amount)
@@ -135,7 +135,7 @@
 
 /obj/structure/flora/stump
 	name = "stump"
-	desc = "This represents our promise to cut down as many trees as possible." //running naked through the trees
+	desc = "This represents our promise to cut down as many trees as possible."
 	icon = 'icons/obj/flora/deadtrees.dmi'
 	icon_state = "tree_stump"
 	density = FALSE
