@@ -12,6 +12,7 @@
 /obj/item/explosive/grenade/frag/prime()
 	spawn(0)
 		explosion(loc, -1, -1, 3)
+		round_statistics.grenades_thrown++
 		cdel(src)
 	return
 
@@ -54,6 +55,7 @@
 	prime()
 		spawn(0)
 			explosion(loc, -1, -1, 4)
+			round_statistics.grenades_thrown++
 			cdel(src)
 		return
 
@@ -67,6 +69,7 @@
 	prime()
 		spawn(0)
 			explosion(loc, -1, -1, 4)
+			round_statistics.grenades_thrown++
 			cdel(src)
 		return
 
@@ -85,6 +88,7 @@
 	prime()
 		spawn(0)
 			explosion(src.loc,-1,-1,3)
+			round_statistics.grenades_thrown++
 			del(src)
 		return
 
@@ -100,6 +104,7 @@
 	prime()
 		spawn(0)
 			explosion(src.loc,-1,-1,3)
+			round_statistics.grenades_thrown++
 			del(src)
 		return
 
@@ -117,6 +122,7 @@
 		spawn(0)
 			flame_radius(2, get_turf(src))
 			playsound(src.loc, 'sound/weapons/gun_flamethrower2.ogg', 35, 1, 4)
+			round_statistics.grenades_thrown++
 			cdel(src)
 		return
 
@@ -148,6 +154,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 			playsound(src.loc, 'sound/effects/hit_on_shattered_glass.ogg', 35, 1, 4)
 			flame_radius(2, get_turf(src))
 			playsound(src.loc, 'sound/weapons/gun_flamethrower2.ogg', 30, 1, 4)
+			round_statistics.grenades_thrown++
 			cdel(src)
 		return
 

@@ -38,3 +38,4 @@ var/datum/round_statistics/round_statistics = new()
 	var/ravager_second_winds = 0
 	var/weeds_planted = 0
 	var/weeds_destroyed = 0
+	var/grenades_thrown = 0
