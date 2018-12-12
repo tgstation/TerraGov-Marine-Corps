@@ -176,7 +176,7 @@
 							return
 						CM.visible_message("<span class='danger'>[CM] tears [HC] in half!</span>", \
 							"<span class='notice'>You tear [HC] in half!</span>")
-						cdel(CM.handcuffed)
+						qdel(CM.handcuffed)
 						CM.handcuffed = null
 						CM.handcuff_update()
 				return
@@ -198,7 +198,7 @@
 							O.show_message(text("\red <B>[] manages to break [HC]!</B>", CM), 1)
 						to_chat(CM, "\red You successfully break [HC].")
 						CM.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-						cdel(CM.handcuffed)
+						qdel(CM.handcuffed)
 						CM.handcuffed = null
 						CM.handcuff_update()
 			else
@@ -255,7 +255,7 @@
 						to_chat(CM, "\red You successfully break your legcuffs.")
 						CM.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 						CM.temp_drop_inv_item(CM.legcuffed)
-						cdel(CM.legcuffed)
+						qdel(CM.legcuffed)
 						CM.legcuffed = null
 			else
 				var/breakouttime = 1200 //A default in case you are somehow legcuffed with something that isn't an obj/item/legcuffs type

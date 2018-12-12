@@ -6,22 +6,21 @@
 /datum/reagent/consumable
 	name = "Consumable"
 	id = "consumable"
+	custom_metabolism = FOOD_METABOLISM
 	taste_description = "generic food"
 	taste_multi = 4
 	var/nutriment_factor = 1
 	var/adj_temp = 0
-	var/targ_temp = 310
+	var/targ_temp = BODYTEMP_NORMAL
 	taste_description = "generic food"
 
 /datum/reagent/consumable/on_mob_life(mob/living/carbon/M)
 	current_cycle++
-	M.nutrition += nutriment_factor * REAGENTS_METABOLISM
-	if(adj_temp != 0)
-		if(targ_temp > M.bodytemperature)
-			M.bodytemperature = min(targ_temp, M.bodytemperature + adj_temp)
-		else
-			M.bodytemperature = max(targ_temp, M.bodytemperature - adj_temp)
+	M.nutrition += nutriment_factor * REM
+	if(adj_temp)
+		M.adjust_bodytemperature(adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT, (adj_temp < 0 ? targ_temp : 0), (adj_temp > 0 ? targ_temp : INFINITY))
 	holder.remove_reagent(src.id, custom_metabolism)
+	return TRUE
 
 /datum/reagent/consumable/nutriment
 	name = "Nutriment"
@@ -83,6 +82,7 @@
 	id = "sugar"
 	description = "The organic compound commonly known as table sugar and sometimes called saccharose. This white, odorless, crystalline powder has a pleasing, sweet taste."
 	color = "#FFFFFF" // rgb: 255, 255, 255
+	taste_multi = 1.5 // stop sugar drowning out other flavours
 	nutriment_factor = 10
 	taste_description = "sweetness"
 
@@ -120,34 +120,45 @@
 	reagent_state = LIQUID
 	color = "#B31008" // rgb: 179, 16, 8
 	taste_description = "hot peppers"
+	taste_multi = 1.5
+	targ_temp = BODYTEMP_NORMAL + 15
+	adj_temp = 5
+	var/discomfort_message = "<span class='danger'>Your insides feel uncomfortably hot!</span>"
+	var/agony_start = 20
+	var/agony_amount = 2
 
 /datum/reagent/consumable/capsaicin/on_mob_life(mob/living/M)
+	if(holder.has_reagent("frostoil"))
+		holder.remove_reagent("frostoil", 5)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		if(!(H.species.flags & NO_PAIN))
-			switch(current_cycle)
-				if(1 to 2)
-					to_chat(H, "\red <b>Your insides feel uncomfortably hot !</b>")
-				if(2 to 20)
-					if(prob(5))
-						to_chat(H, "\red <b>Your insides feel uncomfortably hot !</b>")
-				if(20 to INFINITY)
-					H.apply_effect(2,AGONY,0)
-					if(prob(5))
-						H.visible_message("<span class='warning'>[H] [pick("dry heaves!","coughs!","splutters!")]</span>")
-						to_chat(H, "\red <b>You feel like your insides are burning !</b>")
-	holder.remove_reagent("frostoil", 5)
-	..()
+		if((H.species.flags & NO_PAIN))
+			return ..()
+	switch(current_cycle)
+		if(1 to agony_start - 1)
+			if(prob(5))
+				to_chat(M, discomfort_message)
+		if(agony_start to INFINITY)
+			M.apply_effect(agony_amount,AGONY,0)
+			if(prob(5))
+				M.custom_emote(2, "[pick("dry heaves!","coughs!","splutters!")]")
+				to_chat(M, discomfort_message)
+	return ..()
 
-/datum/reagent/consumable/condensedcapsaicin
+/datum/reagent/consumable/capsaicin/condensed
 	name = "Condensed Capsaicin"
 	id = "condensedcapsaicin"
 	description = "A chemical agent used for self-defense and in police work."
 	reagent_state = LIQUID
 	color = "#B31008" // rgb: 179, 16, 8
 	taste_description = "scorching agony"
+	taste_multi = 10
+	targ_temp = BODYTEMP_HEAT_DAMAGE_LIMIT + 5
+	discomfort_message = "<span class='danger'>You feel like your insides are burning!</span>"
+	agony_start = 3
+	agony_amount = 4
 
-/datum/reagent/consumable/condensedcapsaicin/reaction_mob(mob/living/M, method=TOUCH, var/volume)
+/datum/reagent/consumable/capsaicin/condensed/reaction_mob(mob/living/M, method=TOUCH, volume)
 	if(method in list(TOUCH, VAPOR, PATCH))
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/victim = M
@@ -203,21 +214,6 @@
 				//victim.KnockOut(10)
 				//victim.drop_held_item()
 
-/datum/reagent/consumable/condensedcapsaicin/on_mob_life(mob/living/M)
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		if(H.species && !(H.species.flags & (NO_PAIN|IS_SYNTHETIC)) )
-			switch(current_cycle)
-				if(1)
-					to_chat(H, "\red <b>You feel like your insides are burning !</b>")
-				if(2 to INFINITY)
-					H.apply_effect(4,AGONY,0)
-					if(prob(5))
-						H.visible_message("<span class='warning'>[H] [pick("dry heaves!","coughs!","splutters!")]</span>")
-						to_chat(H, "\red <b>You feel like your insides are burning !</b>")
-	holder.remove_reagent("frostoil", 5)
-	..()
-
 
 /datum/reagent/consumable/frostoil
 	name = "Frost Oil"
@@ -226,14 +222,15 @@
 	reagent_state = LIQUID
 	color = "#B31008" // rgb: 139, 166, 233
 	taste_description = "mint"
-	targ_temp = 50
+	targ_temp = - 50
 	adj_temp = 10
 
 /datum/reagent/consumable/frostoil/on_mob_life(mob/living/M)
 	if(prob(1))
 		M.emote("shiver")
-	holder.remove_reagent("capsaicin", 5)
-	..()
+	if(holder.has_reagent("capsaicin"))
+		holder.remove_reagent("capsaicin", 5)
+	return ..()
 
 /datum/reagent/consumable/sodiumchloride
 	name = "Table Salt"
@@ -312,7 +309,7 @@
 			M.set_drugginess(40)
 			if(prob(30))
 				M.emote(pick("twitch","giggle"))
-	..()
+	return ..()
 
 /datum/reagent/consumable/psilocybin/overdose_process(mob/living/M, alien)
 	M.apply_damage(1, TOX)

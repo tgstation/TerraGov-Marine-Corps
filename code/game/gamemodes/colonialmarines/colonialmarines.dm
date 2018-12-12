@@ -51,28 +51,28 @@
 	for(var/obj/effect/landmark/L in landmarks_list)
 		switch(L.name)
 			if("hunter_primary")
-				cdel(L)
+				qdel(L)
 			if("hunter_secondary")
-				cdel(L)
+				qdel(L)
 			if("crap_item")
-				cdel(L)
+				qdel(L)
 			if("good_item")
-				cdel(L)
+				qdel(L)
 			if("block_hellhound")
-				cdel(L)
+				qdel(L)
 			if("fog blocker")
 				F = new(L.loc)
 				round_fog += F
-				cdel(L)
+				qdel(L)
 			if("xeno tunnel")
 				xeno_tunnels += L.loc
-				cdel(L)
+				qdel(L)
 			if("monkey_spawn")
 				monkey_spawns += L.loc
-				cdel(L)
+				qdel(L)
 			if("map item")
 				map_items += L.loc
-				cdel(L)
+				qdel(L)
 
 	// Spawn gamemode-specific map items
 	for(var/turf/T in map_items)

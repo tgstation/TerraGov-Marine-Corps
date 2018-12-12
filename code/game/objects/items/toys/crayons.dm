@@ -85,7 +85,7 @@
 				uses--
 				if(!uses)
 					to_chat(user, "\red You used up your crayon!")
-					cdel(src)
+					qdel(src)
 	return
 
 /obj/item/toy/crayon/attack(mob/M as mob, mob/user as mob)
@@ -96,6 +96,6 @@
 			uses -= 5
 			if(uses <= 0)
 				to_chat(user, "\red You ate your crayon!")
-				cdel(src)
+				qdel(src)
 	else
 		..()

@@ -18,7 +18,7 @@
 		if (machine)
 			machine.console = src
 		else
-			cdel(src)
+			qdel(src)
 
 /obj/machinery/mineral/processing_unit_console/attack_hand(mob/user)
 	add_fingerprint(user)
@@ -234,6 +234,6 @@
 
 	console.updateUsrDialog()
 
-/obj/machinery/mineral/processing_unit/Dispose()
+/obj/machinery/mineral/processing_unit/Destroy()
 	SetLuminosity(0)
 	. = ..()

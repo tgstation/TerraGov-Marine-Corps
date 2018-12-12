@@ -27,12 +27,12 @@
 		to_chat(world, "Log: \[[type]] [text]")
 
 /**
- * var/disposed
+ * var/gc_destroyed
  *
- * In goonstation, disposed is set to 1 after an object enters the delete queue
+ * In goonstation, gc_destroyed is set to 1 after an object enters the delete queue
  * or the object is placed in an object pool (effectively out-of-play so to speak)
  */
-/datum/var/disposed
+/datum/var/gc_destroyed
 
 #define DELTA_CALC max(max(world.tick_usage, world.cpu) / 100, 1)
 #define DS2TICKS(DS) ((DS)/world.tick_lag)

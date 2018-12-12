@@ -159,9 +159,9 @@
 
 /mob/living/simple_animal/hostile/retaliate/malf_drone/death()
 	..(null,"suddenly breaks apart.")
-	cdel(src)
+	qdel(src)
 
-/mob/living/simple_animal/hostile/retaliate/malf_drone/Dispose()
+/mob/living/simple_animal/hostile/retaliate/malf_drone/Destroy()
 	//some random debris left behind
 	if(has_loot)
 		var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread

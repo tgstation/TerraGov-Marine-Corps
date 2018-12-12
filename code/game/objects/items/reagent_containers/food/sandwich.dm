@@ -3,7 +3,7 @@
 	if(istype(W,/obj/item/shard) || istype(W,/obj/item/reagent_container/food/snacks))
 		var/obj/item/reagent_container/food/snacks/csandwich/S = new(get_turf(src))
 		S.attackby(W,user)
-		cdel(src)
+		qdel(src)
 	..()
 
 /obj/item/reagent_container/food/snacks/csandwich
@@ -71,9 +71,9 @@
 	if(length(name) > 80) name = "[pick(list("absurd","colossal","enormous","ridiculous"))] sandwich"
 	w_class = n_ceil(CLAMP((ingredients.len/2),1,3))
 
-/obj/item/reagent_container/food/snacks/csandwich/Dispose()
+/obj/item/reagent_container/food/snacks/csandwich/Destroy()
 	for(var/obj/item/O in ingredients)
-		cdel(O)
+		qdel(O)
 	. = ..()
 
 /obj/item/reagent_container/food/snacks/csandwich/examine(mob/user)

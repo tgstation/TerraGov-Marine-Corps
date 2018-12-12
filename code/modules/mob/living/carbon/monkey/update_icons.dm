@@ -102,7 +102,7 @@
 	if (targeted_by && target_locked)
 		overlays_standing[M_TARGETED_LAYER]	= image("icon"=target_locked, "layer" =-M_TARGETED_LAYER)
 	else if (!targeted_by && target_locked)
-		cdel(target_locked)
+		qdel(target_locked)
 		target_locked = null
 	apply_overlay(M_TARGETED_LAYER)
 

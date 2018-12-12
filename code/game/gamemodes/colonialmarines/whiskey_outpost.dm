@@ -141,18 +141,18 @@
 			if("Doctor") //Only get rid of some of the stuff
 				for(var/I in H.contents)
 					if(istype(I,/obj/item/device/pda/medical))
-						cdel(I)
+						qdel(I)
 					if(istype(I,/obj/item/clothing/shoes/laceup))
-						cdel(I)
+						qdel(I)
 			if("Executive Officer") //Wipe their stuff clean. Reequip them later
 				for(var/I in H.contents)
-					cdel(I)
+					qdel(I)
 			if("Military Police")
 				for(var/I in H.contents)
-					cdel(I)
+					qdel(I)
 			if("Maintenance Tech")
 				for(var/I in H.contents)
-					cdel(I)
+					qdel(I)
 		H.loc = picked
 	else //Else if we spawned as doctor or commander
 		H = new(picked)
@@ -1495,7 +1495,7 @@
 		flame_radius(3,target_4)
 		explosion(target_4,  -1, 2, 3, 5)
 		sleep(1)
-		cdel(lasertarget)
+		qdel(lasertarget)
 		lazing = 0
 		laz_r = 1
 		sleep(6000)
@@ -1523,7 +1523,7 @@
 		var/turf/target_2 = locate(T.x + rand(-2,2),T.y + rand(-2,2),T.z)
 		var/turf/target_3 = locate(T.x + rand(-2,2),T.y + rand(-2,2),T.z)
 		if(target && istype(target))
-			cdel(lasertarget)
+			qdel(lasertarget)
 			explosion(target, -1, HE_power, con_power, con_power) //Kaboom!
 			sleep(rand(15,30)) //This is all better done in a for loop, but I am mad lazy
 			explosion(target_2, -1, HE_power, con_power, con_power)
@@ -1588,7 +1588,7 @@
 	var/turf/T = get_turf(src) //Make sure we get the turf we're tossing this on.
 	drop_supplies(T, supply_drop)
 	playsound(src,'sound/effects/bamf.ogg', 50, 1)
-	cdel(src)
+	qdel(src)
 	return
 
 /obj/item/device/whiskey_supply_beacon/verb/switch_supplies()
@@ -1726,7 +1726,7 @@
 		num ++
 	sleep(5)
 	message_admins("[num] [src]\s were spawned in at [loc.loc.name] ([loc.x],[loc.y],[loc.z]). (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>)")
-	cdel()
+	qdel()
 
 /obj/effect/landmark/wo_spawners/marines
 	name = "marine spawner"

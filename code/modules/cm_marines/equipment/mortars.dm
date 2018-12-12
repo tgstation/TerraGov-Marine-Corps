@@ -164,7 +164,7 @@
 				spawn(45) //Must go down //This should always be 45 ticks!
 					T.ceiling_debris_check(2)
 					mortar_shell.detonate(T)
-					cdel(mortar_shell)
+					qdel(mortar_shell)
 					firing = 0
 		else
 			busy = 0
@@ -192,7 +192,7 @@
 			"<span class='notice'>You undeploy [src].")
 			playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
 			new /obj/item/mortar_kit(loc)
-			cdel(src)
+			qdel(src)
 
 //Don't allow blowing those up, so Marine nades don't fuck them
 /obj/structure/mortar/ex_act(severity)
@@ -238,7 +238,7 @@
 		playsound(loc, 'sound/weapons/gun_mortar_unpack.ogg', 25, 1)
 		var/obj/structure/mortar/M = new /obj/structure/mortar(get_turf(user))
 		M.dir = user.dir
-		cdel(src)
+		qdel(src)
 
 /obj/item/mortal_shell
 	name = "\improper 80mm mortar shell"
@@ -291,7 +291,7 @@
 	smoke.set_up(6, 0, T, null, 6)
 	smoke.start()
 	smoke = null
-	cdel(src)
+	qdel(src)
 
 /obj/item/mortal_shell/flash
 	name = "\improper 80mm flash mortar shell"
@@ -335,7 +335,7 @@
 /obj/item/device/flashlight/flare/on/illumination/turn_off()
 
 	..()
-	cdel(src)
+	qdel(src)
 
 /obj/item/device/flashlight/flare/on/illumination/ex_act(severity)
 

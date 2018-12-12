@@ -90,4 +90,4 @@
 	else
 		icon_state = icon_state_off
 		for(var/obj/structure/cable/C in src.loc)
-			cdel(C)
+			qdel(C)

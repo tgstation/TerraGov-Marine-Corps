@@ -58,7 +58,7 @@
 				if(O.reagents.has_reagent("pacid", 1))
 					to_chat(user, "The acid chews through the balloon!")
 					O.reagents.reaction(user, TOUCH)
-					cdel(src)
+					qdel(src)
 				else
 					src.desc = "A translucent balloon with some form of liquid sloshing around in it."
 					to_chat(user, "\blue You fill the balloon with the contents of [O].")
@@ -75,7 +75,7 @@
 		src.icon_state = "burst"
 		spawn(5)
 			if(src)
-				cdel(src)
+				qdel(src)
 	return
 
 /obj/item/toy/balloon/update_icon()
@@ -157,7 +157,7 @@
 		new /obj/effect/decal/cleanable/ash(src.loc)
 		src.visible_message("\red The [src.name] explodes!","\red You hear a snap!")
 		playsound(src, 'sound/effects/snap.ogg', 25, 1)
-		cdel(src)
+		qdel(src)
 
 /obj/item/toy/snappop/Crossed(H as mob|obj)
 	if((ishuman(H))) //i guess carp and shit shouldn't set them off
@@ -171,7 +171,7 @@
 			new /obj/effect/decal/cleanable/ash(src.loc)
 			src.visible_message("\red The [src.name] explodes!","\red You hear a snap!")
 			playsound(src, 'sound/effects/snap.ogg', 25, 1)
-			cdel(src)
+			qdel(src)
 
 /*
  * Water flower
@@ -233,7 +233,7 @@
 					if(ismob(T) && T:client)
 						to_chat(T:client, "\red [user] has sprayed you with water!")
 				sleep(4)
-			cdel(D)
+			qdel(D)
 
 		return
 

@@ -269,7 +269,7 @@
 	var/env_pressure = return_pressure()
 	var/env_temperature = return_temperature()
 
-	if(env_pressure < WARNING_HIGH_PRESSURE && env_pressure > WARNING_LOW_PRESSURE && abs(env_temperature - 293.15) < 20 && abs(bodytemperature - 310.14) < 0.5)
+	if(env_pressure < WARNING_HIGH_PRESSURE && env_pressure > WARNING_LOW_PRESSURE && abs(env_temperature - 293.15) < 20 && abs(bodytemperature - BODYTEMP_NORMAL) < 0.5)
 
 		//Hopefully should fix the walk-inside-still-pressure-warning issue.
 		if(pressure_alert)

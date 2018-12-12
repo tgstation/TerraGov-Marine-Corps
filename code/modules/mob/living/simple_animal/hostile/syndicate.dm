@@ -43,7 +43,7 @@
 		new weapon1 (src.loc)
 	if(weapon2)
 		new weapon2 (src.loc)
-	cdel(src)
+	qdel(src)
 	return
 
 ///////////////Sword and shield////////////
@@ -159,4 +159,4 @@
 
 /mob/living/simple_animal/hostile/viscerator/death()
 	..(null,"is smashed into pieces!")
-	cdel(src)
+	qdel(src)

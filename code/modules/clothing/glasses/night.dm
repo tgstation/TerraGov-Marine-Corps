@@ -79,7 +79,7 @@
 	fullscreen_vision = null
 
 
-/obj/item/clothing/glasses/night/yautja/Dispose()
+/obj/item/clothing/glasses/night/yautja/Destroy()
 	..()
 	return TA_REVIVE_ME
 

@@ -9,10 +9,10 @@
 /obj/structure/showcase/ex_act(severity)
 	switch(severity)
 		if(1)
-			cdel(src)
+			qdel(src)
 		if(2)
 			if(prob(50))
-				cdel(src)
+				qdel(src)
 
 /obj/structure/monorail
 	name = "monorail track"

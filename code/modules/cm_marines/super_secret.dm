@@ -13,7 +13,7 @@
 			if(coins < 4 && !state)
 				user.visible_message("[user] inserts \the [W] into \the [src].","\blue You insert \the [W] inside \the [src].")
 				coins++
-				cdel(W)
+				qdel(W)
 			else
 				to_chat(user, "\red \the [W] does not fit anymore.")
 		else

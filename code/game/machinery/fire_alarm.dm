@@ -107,7 +107,7 @@ FIRE ALARM
 			if(0)
 				if(istype(W, /obj/item/circuitboard/firealarm))
 					to_chat(user, "You insert the circuit!")
-					cdel(W)
+					qdel(W)
 					buildstage = 1
 					update_icon()
 
@@ -116,7 +116,7 @@ FIRE ALARM
 					var/obj/item/frame/fire_alarm/frame = new /obj/item/frame/fire_alarm()
 					frame.loc = user.loc
 					playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-					cdel(src)
+					qdel(src)
 		return
 
 	//src.alarm() // why was this even a thing?

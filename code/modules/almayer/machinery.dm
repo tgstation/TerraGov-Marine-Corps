@@ -38,11 +38,11 @@
 /obj/machinery/prop/almayer/computer/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(25))
-				cdel(src)
+				qdel(src)
 				return
 			if (prob(50))
 				set_broken()
@@ -154,7 +154,7 @@
 			if(!fallen_list)
 				fallen_list = list()
 			fallen_list += D.fallen_names
-			cdel(D)
+			qdel(D)
 		return TRUE
 	else
 		. = ..()
@@ -253,7 +253,7 @@
 			var/obj/item/bodybag/cryobag/R = new /obj/item/bodybag/cryobag //lets give them the bag considering having it unfolded would be a pain in the ass.
 			R.add_fingerprint(user)
 			user.temp_drop_inv_item(W)
-			cdel(W)
+			qdel(W)
 			user.put_in_hands(R)
 			return TRUE
 	..()

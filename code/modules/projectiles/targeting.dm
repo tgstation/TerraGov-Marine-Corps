@@ -4,7 +4,7 @@
 		for(var/mob/living/M in target)
 			if(M)
 				M.NotTargeted(src) //Untargeting people.
-		cdel(target)
+		qdel(target)
 		target = null
 
 //Compute how to fire.....
@@ -30,7 +30,7 @@
 			for(var/mob/living/L in target)
 				if(L)
 					L.NotTargeted(src)
-			cdel(target)
+			qdel(target)
 			target = null
 			usr.visible_message("\red <b>[usr] turns \the [src] on [M]!</b>")
 		else
@@ -186,16 +186,16 @@
 	if(I.target)//To prevent runtimes. This whole thing is such an awful mess. Might come back to later, sigh. ~N
 		I.target.Remove(src) //De-target them
 		if(!I.target.len)
-			cdel(I.target) //What the hell.
+			qdel(I.target) //What the hell.
 			I.target = null
 
 	var/mob/living/T = I.loc //Remove the targeting icons
 	if(istype(T) && T.client && !I.target)
 		T.update_gun_icons()
 	if(!targeted_by.len)
-		cdel(target_locked) //Remove the overlay
+		qdel(target_locked) //Remove the overlay
 		target_locked = null
-		cdel(targeted_by)
+		qdel(targeted_by)
 		targeted_by = null
 	spawn(1) update_targeted()
 
