@@ -117,7 +117,7 @@ Make the TGMC proud!"}
 	H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/MP/RO(H), WEAR_JACKET)
 
 /datum/job/command/executive/generate_entry_message(mob/living/carbon/human/H)
-		. = {"You are the commander's 'man on the ground,' and often act on his behalf while planetside.
+		. = {"You are the captain's 'man on the ground,' and often act on his behalf while planetside.
 Reign in marines when they go charging in, push them forward when they shirk back.
 CIC may direct the squads, but someone has to stand with them and fight.
 Good luck."}
