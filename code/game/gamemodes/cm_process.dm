@@ -170,11 +170,11 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		to_chat(world, dat)
 
 
-/datum/game_mode/proc/battle_royale()
+/datum/game_mode/proc/end_of_round_deathmatch()
 	var/list/spawns = list()
 
 	for(var/obj/effect/landmark/L in landmarks_list)
-		if(L.name == "eorg")
+		if(L.name == "deathmatch")
 			spawns += L.loc
 
 	for(var/x in mob_list)
@@ -183,7 +183,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 
 		var/mob/living/carbon/human/H = x
 
-		if(!(H.client?.prefs?.be_special & BE_EORG))
+		if(!(H.client?.prefs?.be_special & BE_DEATHMATCH))
 			continue
 
 		var/turf/picked
@@ -193,7 +193,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		else
 			for(var/obj/effect/landmark/L in landmarks_list)
 				switch(L.name)
-					if("eorg")
+					if("deathmatch")
 						spawns += L.loc
 			picked = pick(spawns)
 			spawns -= picked
@@ -201,9 +201,9 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		
 		if(picked)
 			H.loc = picked
-			to_chat(H, "<br><h1><span class='warning'>Fight for your life!</span></h1>")
+			to_chat(H, "<br><br><h1><span class='warning'>Fight for your life!</span></h1><br><br>")
 		else
-			to_chat(H, "<br><h1><span class='warning'>Failed to find a valid location for EORG. Please do not grief.</span></h1>")
+			to_chat(H, "<br><br><h1><span class='warning'>Failed to find a valid location for End of Round Deathmatch. Please do not grief.</span></h1><br><br>")
 
 
 

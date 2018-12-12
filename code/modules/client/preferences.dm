@@ -6,7 +6,7 @@ var/global/list/special_roles = list(
 	"Xenomorph" = 1,
 	"Xenomorph Queen" = 1,
 	"Survivor" = 1,
-	"EORG" = 1,
+	"End of Round Deathmatch" = 1,
 	"Predator" = 1,
 	"WO Commander" = 1
 

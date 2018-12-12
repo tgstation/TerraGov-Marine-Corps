@@ -780,9 +780,9 @@
 "oZ" = (/obj/machinery/door/poddoor/shutters/almayer/open{dir = 4; id = "CC_BigshuttleHallway"; name = "\improper Hangar Shutters"},/turf/open/floor/almayer{tag = "icon-orangecorner (EAST)"; icon_state = "orangecorner"; dir = 4},/area/centcom)
 "pa" = (/obj/machinery/door_control{id = "CC_BigshuttleHallway"; name = "Big Shuttle Lockdown"; pixel_y = -32},/turf/open/floor/almayer,/area/centcom)
 "pb" = (/obj/machinery/hologram/holopad,/obj/structure/prop/almayer/valmoric,/turf/open/floor/carpet,/area/centcom)
-"pc" = (/turf/closed/wall/almayer/outer,/area/eorg)
-"pd" = (/turf/open/floor/almayer,/area/eorg)
-"pe" = (/obj/effect/landmark{name = "eorg"},/turf/open/floor/almayer,/area/eorg)
+"pc" = (/turf/closed/wall/almayer/outer,/area/deathmatch)
+"pd" = (/turf/open/floor/almayer,/area/deathmatch)
+"pe" = (/obj/effect/landmark{name = "eorg"},/turf/open/floor/almayer,/area/deathmatch)
 
 (1,1,1) = {"
 aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa

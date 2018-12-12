@@ -39,7 +39,7 @@
 #define BE_ALIEN		1
 #define BE_QUEEN		2
 #define BE_SURVIVOR		4
-#define BE_EORG			8
+#define BE_DEATHMATCH	(1 << 3)
 #define BE_PREDATOR		16
 
 
@@ -60,7 +60,7 @@
 var/list/be_special_flags = list(
 	"Xenomorph" = BE_ALIEN,
 	"Survivor" = BE_SURVIVOR,
-	"EORG" = BE_EORG,
+	"End of Round Deathmatch" = BE_DEATHMATCH,
 	"Predator" = BE_PREDATOR,
 	"Queen" = BE_QUEEN
 

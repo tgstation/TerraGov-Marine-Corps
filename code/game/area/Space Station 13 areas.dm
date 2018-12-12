@@ -451,8 +451,8 @@ var/list/ghostteleportlocs = list()
 
 
 
-/area/eorg
-	name = "\improper EORG Arena"
+/area/deathmatch
+	name = "\improper End of Round Deathmatch Arena"
 	icon_state = "green"
 	requires_power = 0
 
