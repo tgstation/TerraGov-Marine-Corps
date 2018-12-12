@@ -329,12 +329,11 @@
 		var/mob/living/carbon/C = M
 
 		if(watertemp == "freezing")
-			C.bodytemperature = max(80, C.bodytemperature - 80)
+			C.adjust_bodytemperature(C.bodytemperature - 80, 80)
 			to_chat(C, "<span class='warning'>The water is freezing!</span>")
 			return
 		if(watertemp == "boiling")
-			C.bodytemperature = min(500, C.bodytemperature + 35)
-			C.adjustFireLoss(5)
+			C.adjust_bodytemperature(C.bodytemperature + 35, 0, 500)
 			to_chat(C, "<span class='danger'>The water is searing!</span>")
 			return
 

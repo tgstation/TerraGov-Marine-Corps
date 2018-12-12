@@ -150,7 +150,7 @@
 		var/env_gas = T.return_gas()
 
 		if( abs(env_temp - bodytemperature) > 40 )
-			bodytemperature += ((env_temp - bodytemperature) / 5)
+			adjust_bodytemperature((env_temp - bodytemperature) / 5)
 
 		if(min_oxy)
 			if(env_gas != GAS_TYPE_AIR && env_gas != GAS_TYPE_OXYGEN)

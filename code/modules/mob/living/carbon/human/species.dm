@@ -59,7 +59,7 @@
 	var/heat_level_2 = 400  // Heat damage level 2 above this point.
 	var/heat_level_3 = 1000 // Heat damage level 2 above this point.
 
-	var/body_temperature = 310.15	//non-IS_SYNTHETIC species will try to stabilize at this temperature. (also affects temperature processing)
+	var/body_temperature = BODYTEMP_NORMAL 	//non-IS_SYNTHETIC species will try to stabilize at this temperature. (also affects temperature processing)
 	var/reagent_tag                 //Used for metabolizing reagents.
 
 	var/darksight = 2
@@ -917,7 +917,7 @@
 
 	if(WEAR_BACK in equip_slots)
 		equip_slots |= WEAR_IN_BACK
-		equip_slots |= WEAR_IN_B_HOLSTER	
+		equip_slots |= WEAR_IN_B_HOLSTER
 	if(WEAR_WAIST in equip_slots)
 		equip_slots |= WEAR_IN_HOLSTER
 	if(WEAR_JACKET in equip_slots)
