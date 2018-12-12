@@ -176,7 +176,7 @@
 
 
 /obj/item/tool/weldingtool/process()
-	if(disposed)
+	if(gc_destroyed)
 		processing_objects.Remove(src)
 		return
 	if(welding)

@@ -58,7 +58,7 @@
 /obj/effect/particle_effect/smoke/proc/spread_smoke(direction)
 	set waitfor = 0
 	sleep(spread_speed)
-	if(disposed) return
+	if(gc_destroyed) return
 	var/turf/U = get_turf(src)
 	if(!U) return
 	for(var/i in cardinal)

@@ -108,7 +108,7 @@ so there's honestly not too much to do here.
 		product.vars[i] = islist(product.vars[i]) ? list() : gathered_variables[product.type][i]
 
 	recycling[product.type] += product //Adds it to the list.
-	product.ta_directive = TA_REVIVE_ME //It won't be collected and disposed of later.
+	product.ta_directive = TA_REVIVE_ME //It won't be collected and gc_destroyed of later.
 
 /*
 This is the opposite of Dispose. You can override this proc for certain things if you want to preserve

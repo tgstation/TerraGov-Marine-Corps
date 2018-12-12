@@ -50,7 +50,7 @@ REAGENT SCANNER
 				O.invisibility = 0
 				O.alpha = 128
 				spawn(10)
-					if(O && !O.disposed)
+					if(O && !O.gc_destroyed)
 						var/turf/U = O.loc
 						if(U.intact_tile)
 							O.invisibility = 101

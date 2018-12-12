@@ -79,7 +79,7 @@
 		user.visible_message("<span class='warning'>[user] plants [name] on [target]!</span>",
 		"<span class='warning'>You plant [name] on [target]! Timer counting down from [timer].</span>")
 		spawn(timer*10)
-			if(plant_target && !plant_target.disposed)
+			if(plant_target && !plant_target.gc_destroyed)
 				explosion(location, -1, -1, 3)
 				if(istype(plant_target,/turf/closed/wall))
 					var/turf/closed/wall/W = plant_target
@@ -88,7 +88,7 @@
 					qdel(plant_target)
 				else
 					plant_target.ex_act(1)
-				if(plant_target && !plant_target.disposed)
+				if(plant_target && !plant_target.gc_destroyed)
 					plant_target.overlays -= image('icons/obj/items/assemblies.dmi', "plastic-explosive_set_armed")
 			qdel(src)
 

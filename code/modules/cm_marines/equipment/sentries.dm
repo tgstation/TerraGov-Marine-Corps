@@ -767,7 +767,7 @@
 		spawn(10)
 			if(src && loc)
 				explosion(loc, -1, -1, 2, 0)
-				if(!disposed)
+				if(!gc_destroyed)
 					qdel(src)
 		return
 

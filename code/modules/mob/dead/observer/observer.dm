@@ -235,7 +235,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	set name = "Re-enter Corpse"
 	if(!client)	return
-	if(!mind || !mind.current || mind.current.disposed || !can_reenter_corpse)
+	if(!mind || !mind.current || mind.current.gc_destroyed || !can_reenter_corpse)
 		to_chat(src, "<span class='warning'>You have no body.</span>")
 		return
 	if(mind.current.key && copytext(mind.current.key,1,2)!="@")	//makes sure we don't accidentally kick any clients
@@ -712,7 +712,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	for(var/mob/living/carbon/human/Z in living_mob_list)
 		if(choice == Z.real_name)
-			if(Z.disposed) //should never occur,just to be sure.
+			if(Z.gc_destroyed) //should never occur,just to be sure.
 				return
 			if(!Z.regenZ)
 				to_chat(src, "<span class='warning'>That zombie has been cured!</span>")
@@ -790,7 +790,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			L = X
 			break
 
-	if(!L || L.disposed)
+	if(!L || L.gc_destroyed)
 		to_chat(usr, "Not a valid mob!")
 		return
 
