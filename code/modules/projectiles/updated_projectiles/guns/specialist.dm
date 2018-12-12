@@ -9,7 +9,8 @@
 	gun_skill_category = GUN_SKILL_SPEC
 	wield_delay = WIELD_DELAY_SLOW
 
-//Pow! Headshot.
+//Pow! Headshot
+
 /obj/item/weapon/gun/rifle/sniper/M42A
 	name = "\improper M42A scoped rifle"
 	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 15-round magazine.\n'Peace Through Superior Firepower'"
@@ -22,8 +23,8 @@
 	wield_delay = 12 //Ends up being 1.6 seconds due to scope
 	zoomdevicename = "scope"
 	var/targetlaser_on = FALSE
-	var/mob/laser_target = null
-	var/obj/effect/overlay/temp/sniper_laser/laser
+	var/mob/living/carbon/laser_target = null
+	var/image/LT = null
 	attachable_allowed = list(
                         /obj/item/attachable/bipod,
                         /obj/item/attachable/lasersight,
@@ -44,29 +45,54 @@
 	Q.Attach(src)
 	update_attachables()
 	S.icon_state = initial(S.icon_state)
+	LT = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-LASER_LAYER)
 
 /obj/item/weapon/gun/rifle/sniper/M42A/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	if(!able_to_fire(user))
 		return
 	if(targetlaser_on)
-		if(!ismob(target))
-			return
-		if(target == laser_target)
-			to_chat(user, "<span class='warning'>You're already focused on that target!</span>")
+		if(!iscarbon(target))
 			return
 		if(laser_target)
-			laser_target.vis_contents -= laser
-		cdel(laser)
+			remove_laser()
 		to_chat(user, "<span class='danger'>You focus your targeting laser on [target]!</span>")
 		laser_target = target
-		var/obj/effect/overlay/temp/sniper_laser/LT = new (laser_target, "targeting laser")
-		laser = LT
 		targetlaser_on = FALSE
-		laser_target.vis_contents += laser
+		apply_laser()
 		processing_objects.Remove(src) //So we don't accumulate additional processing.
 		processing_objects.Add(src)
 		return
 	return ..()
+
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/apply_laser()
+	if(ishuman(laser_target))
+		var/mob/living/carbon/human/H = laser_target
+		H.overlays_standing[LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-LASER_LAYER)
+		laser_target.apply_overlay(LASER_LAYER)
+	else if(isXeno(laser_target))
+		var/mob/living/carbon/Xenomorph/X = laser_target
+		X.overlays_standing[X_LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-X_LASER_LAYER)
+		laser_target.apply_overlay(X_LASER_LAYER)
+	else if(ismonkey(laser_target))
+		var/mob/living/carbon/monkey/M = laser_target
+		M.overlays_standing[M_LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-M_LASER_LAYER)
+		laser_target.apply_overlay(M_LASER_LAYER)
+	else
+		return
+
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/remove_laser()
+	if(ishuman(laser_target))
+		var/mob/living/carbon/human/H = laser_target
+		H.remove_overlay(LASER_LAYER)
+	else if(isXeno(laser_target))
+		var/mob/living/carbon/Xenomorph/X = laser_target
+		X.remove_overlay(X_LASER_LAYER)
+	else if(ismonkey(laser_target))
+		var/mob/living/carbon/monkey/M = laser_target
+		M.remove_overlay(M_LASER_LAYER)
+	else
+		return
+
 
 /obj/item/weapon/gun/rifle/sniper/M42A/unique_action(mob/user)
 	if(!targetlaser_on)
@@ -87,23 +113,16 @@
 	if(!zoom)
 		laser_off()
 		return
-	if(!isliving(loc) )
+	var/mob/living/user = loc
+	if(!isliving(user) )
 		laser_off()
 		return
-	var/mob/living/user = loc
 	if(!laser_target)
-		cdel(laser)
-		laser = null
-		processing_objects.Remove(src)
+		laser_off(user, FALSE)
 		return
 	if(!can_see(user, laser_target, length=23))
-		laser_target.vis_contents -= laser
-		laser_target = null
-		cdel(laser)
-		laser = null
-		processing_objects.Remove(src)
+		laser_off(user, FALSE)
 		to_chat(user, "<span class='danger'>You lose sight of your target!</span>")
-		return
 
 /obj/item/weapon/gun/rifle/sniper/M42A/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	. = ..()
@@ -163,18 +182,17 @@
 		to_chat(user, "<span class='notice'><b>You activate your targeting laser and take careful aim.</b></span>")
 		playsound(user,'sound/machines/click.ogg', 25, 1)
 
-/obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_off(mob/user, silent = FALSE)
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_off(mob/user, toggle_off = TRUE, silent = FALSE)
 	if(laser_target)
-		laser_target.vis_contents -= laser
+		remove_laser()
 	laser_target = null
 	accuracy_mult = config.base_hit_accuracy_mult
-	cdel(laser)
-	laser = null
 	processing_objects.Remove(src)
-	targetlaser_on = FALSE
-	if(!silent && user)
-		to_chat(user, "<span class='notice'><b>You deactivate your targeting laser.</b></span>")
-		playsound(user,'sound/machines/click.ogg', 25, 1)
+	if(toggle_off)
+		targetlaser_on = FALSE
+		if(!silent && user)
+			to_chat(user, "<span class='notice'><b>You deactivate your targeting laser.</b></span>")
+			playsound(user,'sound/machines/click.ogg', 25, 1)
 
 /obj/item/weapon/gun/rifle/sniper/M42A/set_gun_config_values()
 	fire_delay = config.high_fire_delay*5

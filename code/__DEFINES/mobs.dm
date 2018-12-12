@@ -415,6 +415,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define REST_HALLOSS_RECOVERY_RATE -32
 
 // Human Overlay Indexes
+#define LASER_LAYER				27		//For sniper targeting laser
 #define MOTH_WINGS_LAYER		26
 #define MUTANTRACE_LAYER		25
 #define MUTATIONS_LAYER			24
@@ -442,7 +443,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define TARGETED_LAYER			2	//for target sprites when held at gun point, and holo cards.
 #define FIRE_LAYER				1		//If you're on fire		//BS12: Layer for the target overlay from weapon targeting system
 
-#define TOTAL_LAYERS			26
+#define TOTAL_LAYERS			27
 
 #define MOTH_WINGS_BEHIND_LAYER	1
 
