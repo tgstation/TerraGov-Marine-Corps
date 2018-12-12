@@ -345,7 +345,7 @@ You are also next in the chain of command, should the bridge crew fall in the li
 /datum/job/logistics/requisition
 	title = "Requisitions Officer"
 	comm_title = "RO"
-	paygrade = "O1"
+	paygrade = "CPO"
 	flag = ROLE_REQUISITION_OFFICER
 	department_flag = ROLEGROUP_MARINE_ENGINEERING
 	selection_color = "#9990B2"
@@ -380,7 +380,7 @@ A happy ship is a well-functioning ship."}
 /datum/job/logistics/tech/maint
 	title = "Maintenance Tech"
 	comm_title = "MT"
-	paygrade = "E6E"
+	paygrade = "PO"
 	flag = ROLE_MAINTENANCE_TECH
 	department_flag = ROLEGROUP_MARINE_ENGINEERING
 	faction = "Station"
@@ -421,7 +421,7 @@ Start with the ship's engine, and don't forget radiation equipment."}
 /datum/job/logistics/tech/cargo
 	title = "Cargo Technician"
 	comm_title = "CT"
-	paygrade = "E5"
+	paygrade = "PO"
 	flag = ROLE_REQUISITION_TECH
 	department_flag = ROLEGROUP_MARINE_ENGINEERING
 	total_positions = 2
