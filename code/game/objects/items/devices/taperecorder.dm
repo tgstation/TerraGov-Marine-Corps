@@ -44,7 +44,7 @@
 		to_chat(M, "<span class='danger'>[src] explodes!</span>")
 	if(T)
 		explosion(T, -1, -1, 0, 4)
-	cdel(src)
+	qdel(src)
 	return
 
 /obj/item/device/taperecorder/verb/record()

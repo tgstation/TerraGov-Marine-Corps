@@ -325,7 +325,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		current_mag.used_casings = 0
 
 /obj/item/weapon/gun/shotgun/double/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
-	cdel(projectile_to_fire)
+	qdel(projectile_to_fire)
 	if(refund) current_mag.current_rounds++
 	return 1
 

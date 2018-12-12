@@ -73,7 +73,7 @@ var/list/solars_list = list()
 				S.give_glass()
 			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 			user.visible_message("<span class='notice'>[user] takes the glass off the solar panel.</span>")
-			cdel(src)
+			qdel(src)
 		return
 	else if (W)
 		src.add_fingerprint(user)
@@ -88,7 +88,7 @@ var/list/solars_list = list()
 		else
 			new /obj/item/shard(src.loc)
 			new /obj/item/shard(src.loc)
-			cdel(src)
+			qdel(src)
 			return
 	return
 
@@ -143,14 +143,14 @@ var/list/solars_list = list()
 /obj/machinery/power/solar/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 			if(prob(15))
 				new /obj/item/shard( src.loc )
 			return
 		if(2.0)
 			if (prob(25))
 				new /obj/item/shard( src.loc )
-				cdel(src)
+				qdel(src)
 				return
 			if (prob(50))
 				broken()
@@ -227,7 +227,7 @@ var/list/solars_list = list()
 		if(istype(W, /obj/item/circuitboard/solar_tracker))
 			tracker = 1
 			if(user.temp_drop_inv_item(W))
-				cdel(W)
+				qdel(W)
 				user.visible_message("<span class='notice'>[user] inserts the electronics into the solar assembly.</span>")
 			return 1
 	else
@@ -326,7 +326,7 @@ var/list/solars_list = list()
 				A.state = 3
 				A.icon_state = "3"
 				A.anchored = 1
-				cdel(src)
+				qdel(src)
 			else
 				to_chat(user, "\blue You disconnect the monitor.")
 				var/obj/structure/computerframe/A = new( src.loc )
@@ -337,7 +337,7 @@ var/list/solars_list = list()
 				A.state = 4
 				A.icon_state = "4"
 				A.anchored = 1
-				cdel(src)
+				qdel(src)
 	else
 		src.attack_hand(user)
 	return
@@ -484,7 +484,7 @@ var/list/solars_list = list()
 	switch(severity)
 		if(1.0)
 			//SN src = null
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(50))

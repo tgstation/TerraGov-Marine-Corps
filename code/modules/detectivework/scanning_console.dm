@@ -271,7 +271,7 @@
 			if(istype(I, /obj/item/f_card))
 				if(process_card(I))
 					M.drop_held_item()
-					cdel(I)
+					qdel(I)
 			else
 				to_chat(usr, "<spawn class='warning'>Invalid fingerprint card, rejected.</span>")
 		if("print")

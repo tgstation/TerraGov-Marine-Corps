@@ -103,7 +103,7 @@
 	if(istype(A, /obj/item/cell) && !pcell)
 		var/obj/item/cell/C = A
 		pcell = C
-		cdel(C)
+		qdel(C)
 		visible_message("[user] puts a new power cell in the [src].")
 		to_chat(user, "You put a new cell in the [src] containing [pcell.charge] charge.")
 		playsound(src,'sound/machines/click.ogg', 25, 1)
@@ -484,7 +484,7 @@
 			S = /obj/item/storage/box/spec/demolitionist
 	new S(loc)
 	user.put_in_hands(S)
-	cdel()
+	qdel()
 
 /obj/item/spec_kit/attack_self(mob/user)
 	var/selection = input(user, "Pick your equipment", "Specialist Kit Selection") as null|anything in list("Pyro","Grenadier","Sniper","Scout","Demo")
@@ -502,4 +502,4 @@
 			new /obj/item/storage/box/spec/scout (T)
 		if("Demo")
 			new /obj/item/storage/box/spec/demolitionist (T)
-	cdel(src)
+	qdel(src)

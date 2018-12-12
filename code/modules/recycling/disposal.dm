@@ -79,7 +79,7 @@
 					C.anchored = 1
 					C.density = 1
 					C.update()
-					cdel(src)
+					qdel(src)
 			else
 				to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return
@@ -286,15 +286,15 @@
 /obj/machinery/disposal/ex_act(severity)
 	switch(severity)
 		if(1)
-			cdel(src)
+			qdel(src)
 			return
 		if(2)
 			if(prob(60))
-				cdel(src)
+				qdel(src)
 			return
 		if(3)
 			if(prob(25))
-				cdel(src)
+				qdel(src)
 
 /obj/machinery/disposal/Dispose()
 	if(contents.len)
@@ -419,7 +419,7 @@
 				spawn(1)
 					if(AM)
 						AM.throw_at(target, 5, 1)
-		cdel(H)
+		qdel(H)
 
 /obj/machinery/disposal/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/item) && mover.throwing)
@@ -559,7 +559,7 @@
 
 	if(other.has_fat_guy)
 		has_fat_guy = 1
-	cdel(other)
+	qdel(other)
 
 /obj/structure/disposalholder/proc/settag(var/new_tag)
 	destinationTag = new_tag
@@ -624,7 +624,7 @@
 			for(var/atom/movable/AM in H)
 				AM.loc = T
 				AM.pipe_eject(0)
-			cdel(H)
+			qdel(H)
 			..()
 			return
 
@@ -702,7 +702,7 @@
 				spawn(1)
 					if(AM)
 						AM.throw_at(target, 100, 1)
-			cdel(H)
+			qdel(H)
 
 	else //No specified direction, so throw in random direction
 
@@ -717,7 +717,7 @@
 					if(AM)
 						AM.throw_at(target, 5, 1)
 
-			cdel(H)
+			qdel(H)
 
 //Call to break the pipe, will expel any holder inside at the time then delete the pipe
 //Remains : set to leave broken pipe pieces in place
@@ -740,7 +740,7 @@
 			for(var/atom/movable/AM in H)
 				AM.loc = T
 				AM.pipe_eject(0)
-			cdel(H)
+			qdel(H)
 			return
 
 		//Otherwise, do normal expel from turf
@@ -748,7 +748,7 @@
 			expel(H, T, 0)
 
 	spawn(2) //Delete pipe after 2 ticks to ensure expel proc finished
-		cdel(src)
+		qdel(src)
 
 //Pipe affected by explosion
 /obj/structure/disposalpipe/ex_act(severity)
@@ -835,7 +835,7 @@
 	C.density = 0
 	C.anchored = 1
 	C.update()
-	cdel(src)
+	qdel(src)
 
 //A straight or bent segment
 /obj/structure/disposalpipe/segment
@@ -1297,7 +1297,7 @@
 
 //Called when welded, for broken pipe, remove and turn into scrap
 /obj/structure/disposalpipe/broken/welded()
-	cdel(src)
+	qdel(src)
 
 //The disposal outlet machine
 /obj/structure/disposaloutlet
@@ -1335,7 +1335,7 @@
 			if(!istype(AM, /mob/living/silicon/robot/drone)) //Drones keep smashing windows from being fired out of chutes. Bad for the station. ~Z
 				spawn(5)
 					AM.throw_at(target, 3, 1)
-		cdel(H)
+		qdel(H)
 
 /obj/structure/disposaloutlet/attackby(var/obj/item/I, var/mob/user)
 	if(!I || !user)
@@ -1364,7 +1364,7 @@
 				C.update()
 				C.anchored = 1
 				C.density = 1
-				cdel(src)
+				qdel(src)
 		else
 			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 

@@ -146,7 +146,7 @@
 			else 		target = locate(T.x,T.y+3,T.z)
 
 		if(!target) //Off the edge of the map somehow.
-			cdel(A)
+			qdel(A)
 			return
 
 		A.fire_at(target,src,src,A.ammo.max_range,A.ammo.shell_speed) //Range, speed. Emitter shots are slow.

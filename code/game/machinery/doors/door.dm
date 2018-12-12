@@ -173,10 +173,10 @@
 
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 		if(2.0)
 			if(prob(25))
-				cdel(src)
+				qdel(src)
 		if(3.0)
 			if(prob(80))
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread

@@ -60,7 +60,7 @@
 	. = ..()
 	if(istype(I, /obj/item/paper))
 		to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
-		cdel(I)
+		qdel(I)
 		labels_left = min(labels_left+5, initial(labels_left))
 
 

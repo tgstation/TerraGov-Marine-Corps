@@ -73,12 +73,12 @@
 		if(1)
 			if(prob(50))
 				dump_everything() //So suits dont survive all the time
-			cdel(src)
+			qdel(src)
 
 		if(2)
 			if(prob(50))
 				dump_everything()
-				cdel(src)
+				qdel(src)
 
 
 

@@ -288,7 +288,7 @@
 
 	New(obj/item/sample)
 		if(!istype(sample))
-			cdel(src)
+			qdel(src)
 		sample_object = sample
 		number = 1
 
@@ -570,32 +570,32 @@
 
 /obj/item/storage/Dispose()
 	for(var/atom/movable/I in contents)
-		cdel(I)
+		qdel(I)
 	for(var/mob/M in content_watchers)
 		hide_from(M)
 	if(boxes)
-		cdel(boxes)
+		qdel(boxes)
 		boxes = null
 	if(storage_start)
-		cdel(storage_start)
+		qdel(storage_start)
 		storage_start = null
 	if(storage_continue)
-		cdel(storage_continue)
+		qdel(storage_continue)
 		storage_continue = null
 	if(storage_end)
-		cdel(storage_end)
+		qdel(storage_end)
 		storage_end = null
 	if(stored_start)
-		cdel(stored_start)
+		qdel(stored_start)
 		stored_start = null
 	if(src.stored_continue)
-		cdel(src.stored_continue)
+		qdel(src.stored_continue)
 		src.stored_continue = null
 	if(stored_end)
-		cdel(stored_end)
+		qdel(stored_end)
 		stored_end = null
 	if(closer)
-		cdel(closer)
+		qdel(closer)
 		closer = null
 	. = ..()
 
@@ -628,7 +628,7 @@
 	// Now make the cardboard
 	to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
 	new foldable(get_turf(src))
-	cdel(src)
+	qdel(src)
 //BubbleWrap END
 
 /obj/item/storage/hear_talk(mob/M as mob, text)

@@ -39,7 +39,7 @@
 			if(prob(50))
 				new /obj/item/stack/rods(loc)
 		new sheet_type(src)
-	cdel(src)
+	qdel(src)
 
 /obj/structure/table/proc/update_adjacent(location)
 	if(!location) location = src //location arg is used to correctly update neighbour tables when deleting a table.
@@ -52,7 +52,7 @@
 	..()
 	for(var/obj/structure/table/T in src.loc)
 		if(T != src)
-			cdel(T)
+			qdel(T)
 	update_icon()
 	update_adjacent()
 
@@ -603,4 +603,4 @@
 	else
 		new /obj/item/stack/sheet/metal(loc)
 	density = 0
-	cdel(src)
+	qdel(src)

@@ -20,7 +20,7 @@
 	..()
 	if (istype(W, /obj/item/tool/wrench))
 		new /obj/item/stack/sheet/metal( get_turf(src.loc), 2 )
-		cdel(src)
+		qdel(src)
 
 /obj/item/frame/apc/proc/try_build(turf/on_wall)
 	if (get_dist(on_wall,usr)>1)
@@ -50,9 +50,9 @@
 			var/obj/item/stack/cable_coil/C = new /obj/item/stack/cable_coil(loc)
 			C.amount = 10
 			to_chat(usr, "You cut the cables and disassemble the unused power terminal.")
-			cdel(T)
+			qdel(T)
 	new /obj/machinery/power/apc(loc, ndir, 1)
-	cdel(src)
+	qdel(src)
 
 
 

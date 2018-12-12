@@ -54,7 +54,7 @@
 	switch(covered)
 		if(0)
 			overlays -= I
-			cdel(I)
+			qdel(I)
 		if(1) overlays += I
 
 /turf/open/floor/plating/plating_catwalk/attackby(obj/item/W as obj, mob/user as mob)
@@ -159,15 +159,15 @@
 					for(var/mob/living/M in H)
 						M.take_overall_damage(20, 0, "Blunt Trauma")
 					for(var/obj/effect/decal/cleanable/C in contents) //get rid of blood
-						cdel(C)
+						qdel(C)
 					R.expel(H)
 					return
 
-				cdel(AM)
+				qdel(AM)
 
 		else
 			for(var/obj/effect/decal/cleanable/C in contents) //for the off chance of someone bleeding mid=flight
-				cdel(C)
+				qdel(C)
 
 
 //Others

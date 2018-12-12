@@ -534,7 +534,7 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/delete_bullet(var/obj/item/projectile/projectile_to_fire, var/refund = 0)
 	if(active_attachable) //Attachables don't chamber rounds, so we want to delete it right away.
-		cdel(projectile_to_fire) //Getting rid of it. Attachables only use ammo after the cycle is over.
+		qdel(projectile_to_fire) //Getting rid of it. Attachables only use ammo after the cycle is over.
 		if(refund)
 			active_attachable.current_rounds++ //Refund the bullet.
 		return TRUE
@@ -740,7 +740,7 @@ and you're good to go.
 
 						projectile_to_fire.play_damage_effect(user)
 						if(!delete_bullet(projectile_to_fire))
-							cdel(projectile_to_fire) //If this proc DIDN'T delete the bullet, we're going to do so here.
+							qdel(projectile_to_fire) //If this proc DIDN'T delete the bullet, we're going to do so here.
 
 						reload_into_chamber(user) //Reload the sucker.
 
@@ -780,14 +780,14 @@ and you're good to go.
 								BP.distance_travelled = get_dist(user, M)
 								BP.ammo.on_hit_mob(M, BP)
 								M.bullet_act(BP)
-								cdel(BP)
+								qdel(BP)
 
 						projectile_to_fire.ammo.on_hit_mob(M, projectile_to_fire)
 						M.bullet_act(projectile_to_fire)
 						last_fired = world.time
 
 						if(!delete_bullet(projectile_to_fire))
-							cdel(projectile_to_fire)
+							qdel(projectile_to_fire)
 						reload_into_chamber(user) //Reload into the chamber if the gun supports it.
 						return TRUE
 					else
