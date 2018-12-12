@@ -97,7 +97,7 @@
 			return
 		if(istype(W, /obj/item/storage/backpack/holding) && !W.crit_fail)
 			to_chat(user, "\red The Bluespace interfaces of the two devices conflict and malfunction.")
-			cdel(W)
+			qdel(W)
 			return
 		..()
 
@@ -108,7 +108,7 @@
 		else
 			to_chat(user, "\red The Bluespace generator malfunctions!")
 			for (var/obj/O in src.contents) //it broke, delete what was in it
-				cdel(O)
+				qdel(O)
 			crit_fail = 1
 			icon_state = "brokenpack"
 
@@ -426,7 +426,7 @@
 	var/mob/living/carbon/human/wearer = null
 	actions_types = list(/datum/action/item_action/toggle)
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/Dispose()
+/obj/item/storage/backpack/marine/satchel/scout_cloak/Destroy()
 	camo_off()
 	return ..()
 
@@ -532,10 +532,13 @@
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/examine(mob/user)
 	. = ..()
+	if(user != wearer) //Only the wearer can see these details.
+		return
 	var/list/details = list()
-	details +=("It has [camo_energy]/[SCOUT_CLOAK_MAX_ENERGY] charge.</br>")
+	details +=("It has [camo_energy]/[SCOUT_CLOAK_MAX_ENERGY] charge. </br>")
 
-	details +=("Its safeties are on.</br>")
+	if(camo_cooldown_timer)
+		details +=("It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds. </br>")
 
 	if(camo_active)
 		details +=("It's currently active.</br>")
@@ -562,7 +565,7 @@
 		camo_off(user)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/process()
-	if(!wearer)
+	if(!wearer || wearer.stat == DEAD)
 		camo_off()
 		return
 

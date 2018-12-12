@@ -67,7 +67,7 @@
 	return 1
 
 /obj/item/weapon/gun/energy/taser/delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
-	cdel(projectile_to_fire)
+	qdel(projectile_to_fire)
 	if(refund) cell.charge += charge_cost
 	return 1
 
@@ -103,7 +103,7 @@
 
 
 
-/obj/item/weapon/gun/energy/plasmarifle/Dispose()
+/obj/item/weapon/gun/energy/plasmarifle/Destroy()
 	. = ..()
 	processing_objects.Remove(src)
 
@@ -165,7 +165,7 @@
 	return 1
 
 /obj/item/weapon/gun/energy/plasmarifle/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
-	cdel(projectile_to_fire)
+	qdel(projectile_to_fire)
 	if(refund) charge_time *= 2
 	return 1
 
@@ -215,7 +215,7 @@
 
 
 
-/obj/item/weapon/gun/energy/plasmapistol/Dispose()
+/obj/item/weapon/gun/energy/plasmapistol/Destroy()
 	. = ..()
 	processing_objects.Remove(src)
 
@@ -265,7 +265,7 @@
 	return 1
 
 /obj/item/weapon/gun/energy/plasmapistol/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
-	cdel(projectile_to_fire)
+	qdel(projectile_to_fire)
 	if(refund) charge_time *= 2
 	return 1
 
@@ -306,7 +306,7 @@
 	verbs -= /obj/item/weapon/gun/verb/empty_mag
 	verbs -= /obj/item/weapon/gun/verb/use_unique_action
 
-/obj/item/weapon/gun/energy/plasma_caster/Dispose()
+/obj/item/weapon/gun/energy/plasma_caster/Destroy()
 	. = ..()
 	source = null
 
@@ -364,7 +364,7 @@
 	return 1
 
 /obj/item/weapon/gun/energy/plasma_caster/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
-	cdel(projectile_to_fire)
+	qdel(projectile_to_fire)
 	if(refund)
 		source.charge += charge_cost
 		var/perc = source.charge / source.charge_max * 100

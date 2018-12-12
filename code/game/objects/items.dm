@@ -85,12 +85,12 @@
 		drag_delay = 1
 
 
-/obj/item/Dispose()
+/obj/item/Destroy()
 	flags_item &= ~DELONDROP //to avoid infinite loop of unequip, delete, unequip, delete.
 	flags_item &= ~NODROP //so the item is properly unequipped if on a mob.
 	for(var/X in actions)
 		actions -= X
-		cdel(X)
+		qdel(X)
 	master = null
 	item_list -= src
 	. = ..()
@@ -100,13 +100,13 @@
 /obj/item/ex_act(severity)
 	switch(severity)
 		if(1)
-			cdel(src)
+			qdel(src)
 		if(2)
 			if(prob(50))
-				cdel(src)
+				qdel(src)
 		if(3)
 			if(prob(5))
-				cdel(src)
+				qdel(src)
 
 
 //user: The mob that is suiciding
@@ -236,7 +236,7 @@ cases. Override_icon_state should be a list.*/
 		A.remove_action(user)
 
 	if(flags_item & DELONDROP)
-		cdel(src)
+		qdel(src)
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
@@ -764,7 +764,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 							FF.firelevel -= 20
 							FF.updateicon()
 						else
-							cdel(atm)
+							qdel(atm)
 						continue
 					if(isliving(atm)) //For extinguishing mobs on fire
 						var/mob/living/M = atm
@@ -775,7 +775,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				if(W.loc == my_target)
 					break
 				sleep(2)
-			cdel(W)
+			qdel(W)
 
 	if((istype(user.loc, /turf/open/space)) || (user.lastarea.has_gravity == 0))
 		user.inertia_dir = get_dir(target, user)

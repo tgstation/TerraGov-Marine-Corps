@@ -58,7 +58,7 @@
 	..()
 	marine_vendors.Add(src)
 
-/obj/machinery/vending/marine/Dispose()
+/obj/machinery/vending/marine/Destroy()
 	. = ..()
 	marine_vendors.Remove(src)
 
@@ -154,7 +154,7 @@
 	cargo_guns_vendors.Add(src)
 	marine_vendors.Remove(src)
 
-/obj/machinery/vending/marine/cargo_guns/Dispose()
+/obj/machinery/vending/marine/cargo_guns/Destroy()
 	. = ..()
 	cargo_guns_vendors.Remove(src)
 
@@ -234,7 +234,7 @@
 	cargo_ammo_vendors.Add(src)
 	marine_vendors.Remove(src)
 
-/obj/machinery/vending/marine/cargo_ammo/Dispose()
+/obj/machinery/vending/marine/cargo_ammo/Destroy()
 	. = ..()
 	cargo_ammo_vendors.Remove(src)
 
@@ -572,7 +572,7 @@
 	..()
 	attachment_vendors.Add(src)
 
-/obj/machinery/vending/attachments/Dispose()
+/obj/machinery/vending/attachments/Destroy()
 	. = ..()
 	attachment_vendors.Remove(src)
 
@@ -654,7 +654,7 @@
 	marine_vendors.Add(src)
 
 
-/obj/machinery/vending/uniform_supply/Dispose()
+/obj/machinery/vending/uniform_supply/Destroy()
 	. = ..()
 	marine_vendors.Remove(src)
 

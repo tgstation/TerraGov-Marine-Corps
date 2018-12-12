@@ -17,9 +17,9 @@
 								// and if yes, are we doing the first or second move.
 
 //===========================================================================
-/atom/movable/Dispose()
+/atom/movable/Destroy()
 	for(var/atom/movable/I in contents)
-		cdel(I)
+		qdel(I)
 
 	if(pulledby) pulledby.stop_pulling()
 	if(throw_source) throw_source = null

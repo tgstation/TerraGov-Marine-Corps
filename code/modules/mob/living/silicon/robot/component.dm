@@ -23,13 +23,13 @@
 /datum/robot_component/proc/install()
 /datum/robot_component/proc/uninstall()
 
-/datum/robot_component/proc/destroy()
+/datum/robot_component/proc/destroy_component()
 	var/brokenstate = "broken" // Generic icon
 	if (istype(wrapped, /obj/item/robot_parts/robot_component))
 		var/obj/item/robot_parts/robot_component/comp = wrapped
 		brokenstate = comp.icon_state_broken
 	if(wrapped)
-		cdel(wrapped)
+		qdel(wrapped)
 
 
 	wrapped = new/obj/item/broken_device
@@ -45,7 +45,7 @@
 	brute_damage += brute
 	electronics_damage += electronics
 
-	// if(brute_damage + electronics_damage >= max_damage) destroy()
+	// if(brute_damage + electronics_damage >= max_damage) destroy_component()
 
 /datum/robot_component/proc/heal_damage(brute, electronics)
 	if(installed != 1)
@@ -101,7 +101,7 @@
 	name = "power cell"
 	max_damage = 50
 
-/datum/robot_component/cell/destroy()
+/datum/robot_component/cell/destroy_component()
 	..()
 	owner.cell = null
 
@@ -159,7 +159,7 @@
 		camera.status = 0
 		camera.kick_viewers()
 
-/datum/robot_component/camera/destroy()
+/datum/robot_component/camera/destroy_component()
 	if (camera)
 		camera.status = 0
 		camera.kick_viewers()

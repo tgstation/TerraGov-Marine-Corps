@@ -379,7 +379,7 @@ datum/mind
 	proc/take_uplink()
 		var/obj/item/device/uplink/hidden/H = find_syndicate_uplink()
 		if(H)
-			cdel(H)
+			qdel(H)
 
 	proc/make_Traitor()
 		if(!(src in ticker.mode.traitors))
@@ -422,7 +422,7 @@ datum/mind
 
 /datum/mind/proc/set_cm_skills(skills_path)
 	if(cm_skills)
-		cdel(cm_skills)
+		qdel(cm_skills)
 	cm_skills = new skills_path()
 
 /mob/living/proc/reset_cm_skills(new_job)
@@ -489,7 +489,7 @@ datum/mind
 	if(!mind.assigned_role)
 		mind.assigned_role = "Squad Marine"	//default
 		if(mind.cm_skills)
-			cdel(mind.cm_skills)
+			qdel(mind.cm_skills)
 		mind.cm_skills = null //no restriction on what we can do.
 
 //MONKEY

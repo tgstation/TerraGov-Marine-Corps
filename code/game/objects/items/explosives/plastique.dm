@@ -11,7 +11,7 @@
 	var/timer = 10
 	var/atom/plant_target = null //which atom the plstique explosive is planted on
 
-/obj/item/explosive/plastique/Dispose()
+/obj/item/explosive/plastique/Destroy()
 	plant_target = null
 	. = ..()
 
@@ -81,13 +81,16 @@
 		spawn(timer*10)
 			if(plant_target && !plant_target.disposed)
 				explosion(location, -1, -1, 3)
-				if(istype(plant_target,/turf/closed/wall) || istype(plant_target,/obj/machinery/door))
-					cdel(plant_target)
+				if(istype(plant_target,/turf/closed/wall))
+					var/turf/closed/wall/W = plant_target
+					W.ChangeTurf(/turf/open/floor/plating)
+				else if(istype(plant_target,/obj/machinery/door))
+					qdel(plant_target)
 				else
 					plant_target.ex_act(1)
 				if(plant_target && !plant_target.disposed)
 					plant_target.overlays -= image('icons/obj/items/assemblies.dmi', "plastic-explosive_set_armed")
-			cdel(src)
+			qdel(src)
 
 /obj/item/explosive/plastique/attack(mob/M as mob, mob/user as mob, def_zone)
 	return

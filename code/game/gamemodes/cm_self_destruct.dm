@@ -73,7 +73,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	if(!dest_rods.len)
 		log_debug("ERROR CODE SD2: could not find any self destruct rods")
 		to_chat(world, "<span class='debuginfo'>ERROR CODE SD2: could not find any self destruct rods</span>")
-		cdel(dest_master)
+		qdel(dest_master)
 		dest_master = null
 		return FALSE
 	dest_cooldown = SELF_DESTRUCT_ROD_STARTUP_TIME / dest_rods.len
@@ -299,7 +299,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	. = ..()
 	icon_state += "_1"
 
-/obj/machinery/self_destruct/Dispose()
+/obj/machinery/self_destruct/Destroy()
 	. = ..()
 	machines -= src
 	operator = null
@@ -327,7 +327,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	name = "self destruct control panel"
 	icon_state = "console"
 
-/obj/machinery/self_destruct/console/Dispose()
+/obj/machinery/self_destruct/console/Destroy()
 	. = ..()
 	EvacuationAuthority.dest_master = null
 	EvacuationAuthority.dest_rods = null
@@ -387,7 +387,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	layer = BELOW_OBJ_LAYER
 	var/activate_time
 
-/obj/machinery/self_destruct/rod/Dispose()
+/obj/machinery/self_destruct/rod/Destroy()
 	. = ..()
 	EvacuationAuthority.dest_rods -= src
 

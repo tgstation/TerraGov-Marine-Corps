@@ -797,7 +797,7 @@
 		S.supply_cooldown = world.time
 
 		if(S.sbeacon)
-			cdel(S.sbeacon) //Wipe the beacon. It's only good for one use.
+			qdel(S.sbeacon) //Wipe the beacon. It's only good for one use.
 			S.sbeacon = null
 		playsound(C.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehh
 		C.anchored = FALSE
@@ -861,7 +861,7 @@
 	var/icon_activated = "motion2"
 	var/obj/machinery/camera/beacon_cam = null
 
-/obj/item/device/squad_beacon/Dispose()
+/obj/item/device/squad_beacon/Destroy()
 	if(src in active_orbital_beacons)
 		active_orbital_beacons -= src
 	if(squad)
@@ -871,7 +871,7 @@
 			squad.squad_orbital_beacons -= src
 		squad = null
 	if(beacon_cam)
-		cdel(beacon_cam)
+		qdel(beacon_cam)
 		beacon_cam = null
 	SetLuminosity(0)
 	return ..()
@@ -998,7 +998,7 @@
 			squad = null
 		if(src in active_orbital_beacons)
 			active_orbital_beacons -= src
-		cdel(beacon_cam)
+		qdel(beacon_cam)
 		beacon_cam = null
 		activated = FALSE
 		anchored = FALSE

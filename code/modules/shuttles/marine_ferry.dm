@@ -419,14 +419,14 @@
 		ticker.mode.stored_larva = 0
 		for(var/mob/living/carbon/Xenomorph/about_to_die in left_behind)
 			to_chat(about_to_die, "<span class='xenoannounce'>The Queen has left without you, you quickly find a hiding place to enter hibernation as you lose touch with the hive mind.</span>")
-			cdel(about_to_die) // just delete them
+			qdel(about_to_die) // just delete them
 	for(var/mob/living/carbon/potential_host in living_mob_list)
 		if(potential_host.loc.z != 1) continue // ground level
 		if(potential_host.status_flags & XENO_HOST) // a host
 			for(var/obj/item/alien_embryo/embryo in potential_host)
-				cdel(embryo)
+				qdel(embryo)
 			for(var/mob/living/carbon/Xenomorph/Larva/larva in potential_host)
-				cdel(larva)
+				qdel(larva)
 
 	sleep(travel_time) //Wait while we fly, but give extra time for crashing announcements etc
 
@@ -686,14 +686,14 @@
 
 		for(var/obj/structure/mineral_door/resin/R in T)
 			if(istype(R))
-				cdel(R) //This is all that it's dismantle() does so this is okay
+				qdel(R) //This is all that it's dismantle() does so this is okay
 				break
 
 		for(var/obj/machinery/door/airlock/dropship_hatch/M in T)
-			cdel(M)
+			qdel(M)
 
 		for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/D in T)
-			cdel(D)
+			qdel(D)
 
 /datum/shuttle/ferry/marine/proc/shake_cameras(var/list/L)
 
