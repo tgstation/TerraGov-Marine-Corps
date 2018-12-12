@@ -51,7 +51,7 @@ Godspeed, commander! And remember, you are not above the law."}
 	. = ..()
 	sleep(15)
 	if(H?.loc && flags_startup_parameters & ROLE_ADD_TO_MODE)
-		captain_announcement.Announce("All hands, Commander [H.real_name] on deck!")
+		captain_announcement.Announce("All hands, Captain [H.real_name] on deck!")
 
 
 //Event version
