@@ -354,7 +354,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 						for(var/atom/O in world)
 							if(istype(O, hsbitem))
 								del_amt++
-								cdel(O)
+								qdel(O)
 						log_admin("[key_name(src)] has deleted all instances of [hsbitem] ([del_amt]).")
 						message_admins("[key_name_admin(src)] has deleted all instances of [hsbitem] ([del_amt]).", 0)
 		else
@@ -444,7 +444,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	M.ckey = src.ckey
 	if(M.client) M.client.change_view(world.view)
 	if( isobserver(adminmob) )
-		cdel(adminmob)
+		qdel(adminmob)
 	feedback_add_details("admin_verb","ADC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
@@ -561,7 +561,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			if(G.anchored)
 				var/obj/machinery/singularity/S = new /obj/machinery/singularity(get_turf(G), 50)
 				spawn(0)
-					cdel(G)
+					qdel(G)
 				S.energy = 1750
 				S.current_size = 7
 				S.icon = 'icons/effects/224x224.dmi'

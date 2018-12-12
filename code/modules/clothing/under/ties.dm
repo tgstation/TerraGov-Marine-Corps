@@ -17,7 +17,7 @@
 	if(has_suit)
 		has_suit.remove_accessory()
 	if(inv_overlay)
-		cdel(inv_overlay)
+		qdel(inv_overlay)
 		inv_overlay = null
 	. = ..()
 
@@ -247,7 +247,7 @@
 
 /obj/item/clothing/tie/holster/Dispose()
 	if(holstered)
-		cdel(holstered)
+		qdel(holstered)
 		holstered = null
 	. = ..()
 
@@ -387,7 +387,7 @@
 
 /obj/item/clothing/tie/storage/Dispose()
 	if(hold)
-		cdel(hold)
+		qdel(hold)
 		hold = null
 	. = ..()
 

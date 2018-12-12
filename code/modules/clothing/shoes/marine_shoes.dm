@@ -17,7 +17,7 @@
 
 /obj/item/clothing/shoes/marine/Dispose()
 	if(knife)
-		cdel(knife)
+		qdel(knife)
 		knife = null
 	. = ..()
 

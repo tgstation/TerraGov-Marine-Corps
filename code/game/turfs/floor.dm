@@ -282,7 +282,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 						FF.update_icon() //So siding get updated properly
 
 	if(!floor_tile) return
-	cdel(floor_tile)
+	qdel(floor_tile)
 	floor_tile = null
 	icon_plating = "plating"
 	SetLuminosity(0)
@@ -394,7 +394,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 			var/obj/item/stack/tile/light/T = floor_tile
 			if(T.state)
 				user.drop_held_item(C)
-				cdel(C)
+				qdel(C)
 				T.state = C //Fixing it by bashing it with a light bulb, fun eh?
 				update_icon()
 				to_chat(user, "<span class='notice'>You replace the light bulb.</span>")

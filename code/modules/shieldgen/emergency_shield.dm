@@ -35,7 +35,7 @@
 
 	if (src.health <= 0)
 		visible_message("\blue The [src] dissipates!")
-		cdel(src)
+		qdel(src)
 		return
 
 	opacity = 1
@@ -48,7 +48,7 @@
 	..()
 	if(health <=0)
 		visible_message("\blue The [src] dissipates!")
-		cdel(src)
+		qdel(src)
 		return 1
 	opacity = 1
 	spawn(20) if(src) opacity = 0
@@ -58,22 +58,22 @@
 	switch(severity)
 		if(1.0)
 			if (prob(75))
-				cdel(src)
+				qdel(src)
 		if(2.0)
 			if (prob(50))
-				cdel(src)
+				qdel(src)
 		if(3.0)
 			if (prob(25))
-				cdel(src)
+				qdel(src)
 	return
 
 /obj/machinery/shield/emp_act(severity)
 	switch(severity)
 		if(1)
-			cdel(src)
+			qdel(src)
 		if(2)
 			if(prob(50))
-				cdel(src)
+				qdel(src)
 
 /obj/machinery/shield/hitby(AM as mob|obj)
 	//Let everyone know we've been hit!
@@ -94,7 +94,7 @@
 	//Handle the destruction of the shield
 	if (src.health <= 0)
 		visible_message("\blue The [src] dissipates!")
-		cdel(src)
+		qdel(src)
 		return
 
 	//The shield becomes dense to absorb the blow.. purely asthetic.
@@ -170,7 +170,7 @@
 /obj/machinery/shieldgen/proc/collapse_shields()
 	for(var/obj/machinery/shield/shield_tile in deployed_shields)
 		deployed_shields -= shield_tile
-		cdel(shield_tile)
+		qdel(shield_tile)
 
 /obj/machinery/shieldgen/power_change()
 	..()
@@ -187,7 +187,7 @@
 
 	if(malfunction)
 		if(deployed_shields.len && prob(5))
-			cdel(pick(deployed_shields))
+			qdel(pick(deployed_shields))
 	else
 		if (check_delay <= 0)
 			create_shields()
@@ -210,7 +210,7 @@
 	if(health <= 0)
 		spawn(0)
 			explosion(get_turf(src.loc), 0, 0, 1, 0, 0, 0)
-		cdel(src)
+		qdel(src)
 	update_icon()
 	return
 

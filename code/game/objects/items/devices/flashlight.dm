@@ -77,7 +77,7 @@
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		to_chat(user, "<span class='notice'>You modify [src]. It can now be mounted on a weapon.</span>")
 		to_chat(user, "<span class='notice'>Use a screwdriver on [F] to change it back.</span>")
-		cdel(src) //Delete da old flashlight
+		qdel(src) //Delete da old flashlight
 		return
 	else
 		..()

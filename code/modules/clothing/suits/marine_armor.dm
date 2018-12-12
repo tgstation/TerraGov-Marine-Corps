@@ -106,7 +106,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	var/image/reusable/I
 	I = armor_overlays["lamp"]
 	overlays -= I
-	cdel(I)
+	qdel(I)
 	if(flags_marine_armor & ARMOR_LAMP_OVERLAY)
 		I = rnew(/image/reusable, flags_marine_armor & ARMOR_LAMP_ON? list('icons/obj/clothing/cm_suits.dmi', src, "lamp-on") : list('icons/obj/clothing/cm_suits.dmi', src, "lamp-off"))
 		armor_overlays["lamp"] = I
@@ -140,7 +140,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	else
 		SetLuminosity(0)
 	if(pockets)
-		cdel(pockets)
+		qdel(pockets)
 	return ..()
 
 /obj/item/clothing/suit/storage/marine/attack_self(mob/user)
@@ -367,7 +367,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 /obj/item/clothing/suit/storage/marine/specialist/Dispose()
 	b18automed_turn_off(wearer, TRUE)
 	wearer = null
-	cdel(B18_analyzer)
+	qdel(B18_analyzer)
 	. = ..()
 
 /obj/item/clothing/suit/storage/marine/specialist/dropped(mob/user)
@@ -809,7 +809,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	var/image/reusable/I
 	I = armor_overlays["lamp"]
 	overlays -= I
-	cdel(I)
+	qdel(I)
 	if(flags_faction_armor & ARMOR_LAMP_OVERLAY)
 		I = rnew(/image/reusable, flags_faction_armor & ARMOR_LAMP_ON? list('icons/obj/clothing/cm_suits.dmi', src, "lamp-on") : list('icons/obj/clothing/cm_suits.dmi', src, "lamp-off"))
 		armor_overlays["lamp"] = I

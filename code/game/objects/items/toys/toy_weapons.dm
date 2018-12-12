@@ -103,7 +103,7 @@
 		if(istype(I, /obj/item/toy/crossbow_ammo))
 			if(bullets <= 4)
 				if(user.drop_held_item())
-					cdel(I)
+					qdel(I)
 					bullets++
 					to_chat(user, "\blue You load the foam dart into the crossbow.")
 			else
@@ -135,21 +135,21 @@
 						for(var/mob/O in viewers(world.view, D))
 							O.show_message(text("\red [] was hit by the foam dart!", M), 1)
 						new /obj/item/toy/crossbow_ammo(M.loc)
-						cdel(D)
+						qdel(D)
 						return
 
 					for(var/atom/A in D.loc)
 						if(A == user) continue
 						if(A.density)
 							new /obj/item/toy/crossbow_ammo(A.loc)
-							cdel(D)
+							qdel(D)
 
 				sleep(1)
 
 			spawn(10)
 				if(D)
 					new /obj/item/toy/crossbow_ammo(D.loc)
-					cdel(D)
+					qdel(D)
 
 			return
 		else if (bullets == 0)

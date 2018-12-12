@@ -62,7 +62,7 @@
 				total_material *= stack.get_amount()
 
 			stored_matter[material] += total_material
-	cdel(I)
+	qdel(I)
 	if(last_recycle_sound < world.time)
 		playsound(loc, 'sound/items/Welder.ogg', 30, 1)
 		last_recycle_sound = world.time + 50

@@ -25,7 +25,7 @@
 			mob_container.forceMove(get_turf(src))
 			M.reset_view()
 
-		cdel(src)
+		qdel(src)
 
 /obj/item/holder/attackby(obj/item/W as obj, mob/user as mob)
 	for(var/mob/M in src.contents)

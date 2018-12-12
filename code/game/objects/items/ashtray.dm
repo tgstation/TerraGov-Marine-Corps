@@ -30,7 +30,7 @@
 				processing_objects.Remove(cig)
 				var/obj/item/butt = new cig.type_butt(src)
 				cig.transfer_fingerprints_to(butt)
-				cdel(cig)
+				qdel(cig)
 				W = butt
 			else if (cig.heat_source == 0)
 				to_chat(user, "You place [cig] in [src] without even smoking it. Why would you do that?")

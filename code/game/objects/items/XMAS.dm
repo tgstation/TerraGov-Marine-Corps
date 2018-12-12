@@ -29,7 +29,7 @@
 			M.temp_drop_inv_item(src)
 			M.put_in_hands(I)
 			I.add_fingerprint(M)
-			cdel(src)
+			qdel(src)
 			return
 		else if(exFancy == 10)
 			to_chat(M, "\blue It's a brand new, un-restricted, ANTI-MATERIAL SNIPER RIFLE!!!!!!  What are the chances???")
@@ -38,7 +38,7 @@
 			M.temp_drop_inv_item(src)
 			M.put_in_hands(I)
 			I.add_fingerprint(M)
-			cdel(src)
+			qdel(src)
 			return
 		else if(exFancy == 20)
 			to_chat(M, "\blue Just what the fuck is it???")
@@ -47,7 +47,7 @@
 			M.temp_drop_inv_item(src)
 			M.put_in_hands(I)
 			I.add_fingerprint(M)
-			cdel(src)
+			qdel(src)
 			return
 		else
 			gift_type = pick(
@@ -65,12 +65,12 @@
 			M.temp_drop_inv_item(src)
 			M.put_in_hands(I)
 			I.add_fingerprint(M)
-			cdel(src)
+			qdel(src)
 			return
 	else if (fancy <=5)
 		to_chat(M, "\blue It's fucking EMPTY.  Man, Fuck CM.")
 		M.temp_drop_inv_item(src)
-		cdel(src)
+		qdel(src)
 		return
 
 
@@ -117,7 +117,7 @@
 	M.temp_drop_inv_item(src)
 	M.put_in_hands(I)
 	I.add_fingerprint(M)
-	cdel(src)
+	qdel(src)
 	return
 
 

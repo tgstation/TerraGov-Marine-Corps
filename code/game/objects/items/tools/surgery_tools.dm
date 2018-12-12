@@ -335,7 +335,7 @@
 				active = 0
 				new /obj/item/XenoBio/Resin(T.loc)
 				new /obj/effect/decal/remains/xeno(T.loc)
-				cdel(T)
+				qdel(T)
 
 
 

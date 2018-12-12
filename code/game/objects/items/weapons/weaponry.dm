@@ -145,8 +145,8 @@
 
 		user.put_in_hands(S)
 		to_chat(user, "<span class='notice'>You fasten the glass shard to the top of the rod with the cable.</span>")
-		cdel(I)
-		cdel(src)
+		qdel(I)
+		qdel(src)
 		update_icon(user)
 
 	else if(istype(I, /obj/item/tool/wirecutters))
@@ -154,7 +154,7 @@
 
 		user.put_in_hands(P)
 		to_chat(user, "<span class='notice'>You fasten the wirecutters to the top of the rod with the cable, prongs outward.</span>")
-		cdel(I)
-		cdel(src)
+		qdel(I)
+		qdel(src)
 		update_icon(user)
 	update_icon(user)

@@ -31,11 +31,11 @@
 		gift.add_fingerprint(user)
 	else
 		to_chat(user, "\blue The gift was empty!")
-	cdel(src)
+	qdel(src)
 	return
 
 /obj/item/a_gift/ex_act()
-	cdel(src)
+	qdel(src)
 	return
 
 /obj/effect/spresent/relaymove(mob/user)
@@ -58,7 +58,7 @@
 			M.client.eye = M.client.mob
 			M.client.perspective = MOB_PERSPECTIVE
 
-	cdel(src)
+	qdel(src)
 
 /obj/item/a_gift/attack_self(mob/M as mob)
 	var/gift_type = pick(
@@ -108,7 +108,7 @@
 	M.temp_drop_inv_item(src)
 	M.put_in_hands(I)
 	I.add_fingerprint(M)
-	cdel(src)
+	qdel(src)
 	return
 
 /*
@@ -148,7 +148,7 @@
 					add_fingerprint(user)
 			if (src.amount <= 0)
 				new /obj/item/trash/c_tube( src.loc )
-				cdel(src)
+				qdel(src)
 				return
 		else
 			to_chat(user, "\blue You need scissors!")

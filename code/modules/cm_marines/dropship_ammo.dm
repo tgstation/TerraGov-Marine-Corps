@@ -42,7 +42,7 @@
 								if(!SA.ammo_count)
 									PC.loaded = null
 									PC.update_icon()
-									cdel(SA)
+									qdel(SA)
 				else
 					forceMove(PC.linked_powerloader)
 					PC.loaded = src
@@ -179,7 +179,7 @@
 		soundplaycooldown--
 
 	if(!ammo_count && !disposed)
-		cdel(src) //deleted after last laser beam is fired and impact the ground.
+		qdel(src) //deleted after last laser beam is fired and impact the ground.
 
 
 
@@ -189,7 +189,7 @@
 		L.adjust_fire_stacks(20)
 		L.IgniteMob()
 	for(var/obj/flamer_fire/F in T) // No stacking flames!
-		cdel(F)
+		qdel(F)
 	new/obj/flamer_fire(T, 5, 30) //short but intense
 
 
@@ -211,7 +211,7 @@
 	point_cost = 0
 
 	detonate_on(turf/impact)
-		cdel(src)
+		qdel(src)
 
 
 //this one is air-to-air only
@@ -227,7 +227,7 @@
 		impact.ceiling_debris_check(3)
 		spawn(5)
 			explosion(impact,1,3,5)
-			cdel(src)
+			qdel(src)
 
 /obj/structure/ship_ammo/rocket/banshee
 	name = "\improper AGM-227 'Banshee'"
@@ -240,7 +240,7 @@
 		impact.ceiling_debris_check(3)
 		spawn(5)
 			explosion(impact,1,3,6,6,1,0,7) //more spread out, with flames
-			cdel(src)
+			qdel(src)
 
 /obj/structure/ship_ammo/rocket/keeper
 	name = "\improper GBU-67 'Keeper II'"
@@ -253,7 +253,7 @@
 		impact.ceiling_debris_check(3)
 		spawn(5)
 			explosion(impact,3,4,4,6) //tighter blast radius, but more devastating near center
-			cdel(src)
+			qdel(src)
 
 
 /obj/structure/ship_ammo/rocket/fatty
@@ -280,7 +280,7 @@
 			T.ceiling_debris_check(2)
 			spawn(5)
 				explosion(T,1,2,3)
-		cdel(src)
+		qdel(src)
 
 /obj/structure/ship_ammo/rocket/napalm
 	name = "\improper XN-99 'Napalm'"
@@ -295,9 +295,9 @@
 			explosion(impact,1,2,3,6,1,0) //relatively weak
 			for(var/turf/T in range(4,impact))
 				for(var/obj/flamer_fire/F in T) // No stacking flames!
-					cdel(F)
+					qdel(F)
 				new/obj/flamer_fire(T, 60, 30) //cooking for a long time
-			cdel(src)
+			qdel(src)
 
 
 
@@ -328,7 +328,7 @@
 				S.set_up(1,0,impact,null)
 				S.start()
 			if(!ammo_count && loc)
-				cdel(src) //deleted after last minirocket is fired and impact the ground.
+				qdel(src) //deleted after last minirocket is fired and impact the ground.
 
 	show_loaded_desc(mob/user)
 		if(ammo_count)
@@ -349,7 +349,7 @@
 		..()
 		spawn(5)
 			for(var/obj/flamer_fire/F in impact) // No stacking flames!
-				cdel(F)
+				qdel(F)
 			new/obj/flamer_fire(impact)
 
 /obj/structure/ship_ammo/minirocket/illumination
@@ -373,7 +373,7 @@
 		spawn(10)
 			new/obj/item/device/flashlight/flare/on/cas(T)
 		if(!ammo_count && loc)
-			cdel(src) //deleted after last minirocket is fired and impact the ground.
+			qdel(src) //deleted after last minirocket is fired and impact the ground.
 
 /obj/item/device/flashlight/flare/on/cas
 	name = "illumination flare"

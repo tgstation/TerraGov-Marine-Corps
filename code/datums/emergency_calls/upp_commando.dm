@@ -89,4 +89,4 @@
 		to_chat(mob, "<B>Objectives:</b> [objectives]")
 
 	if(original)
-		cdel(original)
+		qdel(original)
