@@ -1,7 +1,6 @@
 // PRESETS
 
 // EMP
-
 /obj/machinery/camera/emp_proof/New()
 	..()
 	upgradeEmpProof()
