@@ -25,7 +25,7 @@
 
 /obj/item/device/chameleon/Dispose()
 	if(spark_system)
-		cdel(spark_system)
+		qdel(spark_system)
 		spark_system = null
 	. = ..()
 

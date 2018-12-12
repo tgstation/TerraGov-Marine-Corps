@@ -261,7 +261,7 @@
 		new /obj/item/stack/sheet/glass/reinforced(loc, 2)
 	else
 		new /obj/item/stack/sheet/glass/reinforced(loc, 2)
-	cdel(src)
+	qdel(src)
 
 
 /obj/structure/window/proc/shatter_window(create_debris)
@@ -271,7 +271,7 @@
 			new shardtype(loc)
 		if(reinf)
 			new /obj/item/stack/rods(loc)
-	cdel(src)
+	qdel(src)
 
 
 /obj/structure/window/verb/rotate()
@@ -466,7 +466,7 @@
 
 /obj/structure/window/framed/Dispose()
 	for(var/obj/effect/alien/weeds/weedwall/window/WW in loc)
-		cdel(WW)
+		qdel(WW)
 	. = ..()
 
 
@@ -500,7 +500,7 @@
 		var/obj/structure/window_frame/new_window_frame = new window_frame(loc, TRUE)
 		new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
 		new_window_frame.dir = dir
-	cdel(src)
+	qdel(src)
 
 /obj/structure/window/framed/almayer
 	name = "reinforced window"

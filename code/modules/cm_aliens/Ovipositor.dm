@@ -39,7 +39,7 @@
 	if (T)
 		T.overlays += image('icons/Xeno/Ovipositor.dmi', "ovipositor_molted")
 
-	cdel(src)
+	qdel(src)
 
 /obj/ovipositor/proc/explode()
 	icon_state = "ovipositor_gibbed"
@@ -50,7 +50,7 @@
 	if (T)
 		T.overlays += image('icons/Xeno/Ovipositor.dmi', "ovipositor_gibbed")
 
-	cdel(src)
+	qdel(src)
 
 /obj/ovipositor/ex_act(severity)
 	if (3)

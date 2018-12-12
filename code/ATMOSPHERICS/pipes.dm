@@ -26,7 +26,7 @@
 
 /obj/machinery/atmospherics/pipe/proc/check_pressure(pressure)
 	//Return 1 if parent should continue checking other pipes
-	//Return null if parent should stop checking other pipes. Recall: cdel(src) will by default return null
+	//Return null if parent should stop checking other pipes. Recall: qdel(src) will by default return null
 
 	return 1
 
@@ -67,7 +67,7 @@
 /obj/machinery/atmospherics/pipe/Dispose()
 	if(!disposed) //not already cdel'd
 		if(parent)
-			cdel(parent)
+			qdel(parent)
 	return ..()
 	//build_network()
 
@@ -98,8 +98,8 @@
 		for(var/obj/machinery/meter/meter in T)
 			if(meter.target == src)
 				new /obj/item/pipe_meter(T)
-				cdel(meter)
-		cdel(src)
+				qdel(meter)
+		qdel(src)
 
 /obj/machinery/atmospherics/proc/change_color(var/new_color)
 	//only pass valid pipe colors please ~otherwise your pipe will turn invisible
@@ -204,7 +204,7 @@
 	var/datum/effect_system/smoke_spread/smoke = new
 	smoke.set_up(0,0, src.loc, 0)
 	smoke.start()
-	cdel(src)
+	qdel(src)
 
 /obj/machinery/atmospherics/pipe/simple/proc/normalize_dir()
 	if(dir==3)
@@ -246,8 +246,8 @@
 		for (var/obj/machinery/meter/meter in T)
 			if (meter.target == src)
 				new /obj/item/pipe_meter(T)
-				cdel(meter)
-		cdel(src)
+				qdel(meter)
+		qdel(src)
 	else if(node1 && node2)
 		overlays += icon_manager.get_atmos_icon("pipe", , pipe_color, "[pipe_icon]intact[icon_connect_type]")
 	else
@@ -286,7 +286,7 @@
 				break
 
 	if(!node1 && !node2)
-		cdel(src)
+		qdel(src)
 		return
 
 	var/turf/T = get_turf(src)
@@ -492,8 +492,8 @@
 		for (var/obj/machinery/meter/meter in T)
 			if (meter.target == src)
 				new /obj/item/pipe_meter(T)
-				cdel(meter)
-		cdel(src)
+				qdel(meter)
+		qdel(src)
 	else
 		overlays.Cut()
 		overlays += icon_manager.get_atmos_icon("manifold", , pipe_color, "core" + icon_connect_type)
@@ -568,7 +568,7 @@
 				break
 
 	if(!node1 && !node2 && !node3)
-		cdel(src)
+		qdel(src)
 		return
 
 	var/turf/T = get_turf(src)
@@ -742,8 +742,8 @@
 		for (var/obj/machinery/meter/meter in T)
 			if (meter.target == src)
 				new /obj/item/pipe_meter(T)
-				cdel(meter)
-		cdel(src)
+				qdel(meter)
+		qdel(src)
 	else
 		overlays.Cut()
 		overlays += icon_manager.get_atmos_icon("manifold", , pipe_color, "4way" + icon_connect_type)
@@ -829,7 +829,7 @@
 				break
 
 	if(!node1 && !node2 && !node3 && !node4)
-		cdel(src)
+		qdel(src)
 		return
 
 	var/turf/T = get_turf(src)

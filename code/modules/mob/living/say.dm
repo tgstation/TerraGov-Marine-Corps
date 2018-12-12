@@ -126,7 +126,7 @@ var/list/department_radio_keys = list(
 		if(not_dead_speaker)
 			for(var/mob/M in listening)
 				if(M.client) M.client.images -= speech_bubble
-		cdel(speech_bubble)
+		qdel(speech_bubble)
 
 
 	for(var/obj/O in listening_obj)

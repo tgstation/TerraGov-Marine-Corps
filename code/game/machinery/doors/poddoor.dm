@@ -292,9 +292,9 @@
 		f2.SetOpacity(opacity)
 
 	Dispose()
-		cdel(f1)
+		qdel(f1)
 		f1 = null
-		cdel(f2)
+		qdel(f2)
 		f2 = null
 		. = ..()
 
@@ -313,9 +313,9 @@
 		f2.SetOpacity(opacity)
 
 	Dispose()
-		cdel(f1)
+		qdel(f1)
 		f1 = null
-		cdel(f2)
+		qdel(f2)
 		f2 = null
 		. = ..()
 
@@ -342,13 +342,13 @@
 		f3.SetOpacity(opacity)
 
 	Dispose()
-		cdel(f1)
+		qdel(f1)
 		f1 = null
-		cdel(f2)
+		qdel(f2)
 		f2 = null
-		cdel(f3)
+		qdel(f3)
 		f3 = null
-		cdel(f4)
+		qdel(f4)
 		f4 = null
 		. = ..()
 
@@ -375,13 +375,13 @@
 		f3.SetOpacity(opacity)
 
 	Dispose()
-		cdel(f1)
+		qdel(f1)
 		f1 = null
-		cdel(f2)
+		qdel(f2)
 		f2 = null
-		cdel(f3)
+		qdel(f3)
 		f3 = null
-		cdel(f4)
+		qdel(f4)
 		f4 = null
 		. = ..()
 

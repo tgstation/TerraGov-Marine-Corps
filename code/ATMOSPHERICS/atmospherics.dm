@@ -43,7 +43,7 @@ Pipelines + Other Objects -> Pipe network
 		pipe_color = null
 
 	if(pipe_vision_img)
-		cdel(pipe_vision_img)
+		qdel(pipe_vision_img)
 		pipe_vision_img = null
 
 	start_processing()

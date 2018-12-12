@@ -182,7 +182,7 @@ var/global/list/holodeck_programs = list(
 	if(!silent)
 		var/obj/oldobj = obj
 		visible_message("The [oldobj.name] fades away!")
-	cdel(obj)
+	qdel(obj)
 
 /obj/machinery/computer/HolodeckControl/proc/checkInteg(var/area/A)
 	for(var/turf/T in A)
@@ -236,11 +236,11 @@ var/global/list/holodeck_programs = list(
 
 	for(var/obj/effect/decal/cleanable/blood/B in linkedholodeck)
 		linkedholodeck -= B
-		cdel(B)
+		qdel(B)
 
 	for(var/mob/living/simple_animal/hostile/carp/C in linkedholodeck)
 		linkedholodeck -= C
-		cdel(C)
+		qdel(C)
 
 	holographic_items = A.copy_contents_to(linkedholodeck , 1)
 
@@ -491,7 +491,7 @@ var/global/list/holodeck_programs = list(
 
 	currentarea = get_area(src.loc)
 	if(!currentarea)
-		cdel(src)
+		qdel(src)
 
 	if(eventstarted)
 		to_chat(usr, "The event has already begun!")
@@ -523,7 +523,7 @@ var/global/list/holodeck_programs = list(
 
 	for(var/obj/structure/holowindow/W in currentarea)
 		currentarea -= W
-		cdel(W)
+		qdel(W)
 
 	for(var/mob/M in currentarea)
 		to_chat(M, "FIGHT!")

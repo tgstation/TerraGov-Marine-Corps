@@ -155,7 +155,7 @@
 			if("blood idol")
 				blood_idol_spawns += L.loc
 			else L = null //So we are not deleting all landmarks that still may exist, like observer spawn.
-		cdel(L)
+		qdel(L)
 
 	to_chat(world, "<span class='round_setup'>Generating treasures...</span>")
 
@@ -218,7 +218,7 @@
 			var/obj/O
 			for(O in fog_blockers)
 				fog_blockers -= O
-				cdel(O)
+				qdel(O)
 		if(world.time <= FOG_DELAY_INTERVAL && world.time >= (event_time_minor + lobby_time) )
 			handle_event_minor_spooky()
 			event_time_minor = world.time + EVENT_MINOR_INTERVAL
@@ -350,7 +350,7 @@
 		var/datum/game_mode/colonialmarines_halloween_2016/M = ticker.mode
 		M.mcguffin = null
 	var/detonate_location = get_turf(src)
-	cdel(src)
+	qdel(src)
 	explosion(detonate_location,2,3,4)
 
 /obj/item/device/omega_array/control
@@ -393,7 +393,7 @@
 				var/obj/effect/step_trigger/jason/J
 				for(J in T.jason_triggers)
 					T.jason_triggers -= J
-					cdel(J)
+					qdel(J)
 				T.jason_triggers = null
 				T.handle_event_major_spooky(0,0,1)
 
@@ -439,7 +439,7 @@
 	user.dna.SetSEState(pick(HULKBLOCK,XRAYBLOCK,FIREBLOCK,TELEBLOCK,NOBREATHBLOCK,REMOTEVIEWBLOCK), 1)
 	domutcheck(user,null,MUTCHK_FORCED)
 	user.update_mutations()
-	cdel(src)
+	qdel(src)
 
 /datum/game_mode/colonialmarines_halloween_2016/proc/spawn_battlefield_player(mob/M,given_role,shuffle_override1,shuffle_override2)
 	var/mob/living/carbon/human/H
@@ -494,7 +494,7 @@
 		for(var/i in H.contents)
 			if(istype(i,/obj/item))
 				H.temp_drop_inv_item(i)
-				cdel(i)
+				qdel(i)
 	if(I) H.equip_to_slot_or_del(ID, WEAR_ID) //Put it back on.
 
 	//PMC. We want to set up these guys first.
@@ -702,7 +702,7 @@
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
 				I = H.gloves
 				H.temp_drop_inv_item(I)
-				cdel(I)
+				qdel(I)
 				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
 				H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(H), WEAR_WAIST)
 				if(prob(50)) H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/tech(H), WEAR_BACK)
@@ -810,7 +810,7 @@
 						H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/specialist(H), WEAR_JACKET)
 						I = H.gloves
 						H.temp_drop_inv_item(I)
-						cdel(I)
+						qdel(I)
 						H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/specialist(H), WEAR_HANDS)
 						H.equip_to_slot_or_del(new /obj/item/storage/large_holster/machete/full(H), WEAR_BACK)
 						H.equip_to_slot_or_del(new /obj/item/storage/belt/grenade(H), WEAR_WAIST)
@@ -1198,7 +1198,7 @@
 			if(!G.can_reenter_corpse || !(G.mind && G.mind.current && G.mind.current.stat != DEAD)) candidates += G
 
 	if(!candidates.len)
-		cdel(horror)
+		qdel(horror)
 		return
 	candidates = shuffle(candidates)
 
@@ -1209,7 +1209,7 @@
 		else candidates -= candidate_mob
 
 	if(!horror_key)
-		cdel(horror)
+		qdel(horror)
 		return
 
 	horror.key = horror_key
@@ -1488,7 +1488,7 @@
 
 	Dispose()
 		. = ..()
-		for(var/mob/W in shadow_wights) cdel(W)
+		for(var/mob/W in shadow_wights) qdel(W)
 		shadow_wights = null
 		processing_objects -= src
 
@@ -1530,7 +1530,7 @@
 			stored_blood += blood_absorbed
 			maximum_blood += blood_absorbed
 			current_consume = world.time
-			cdel(B,,animation_destruction_fade(B))
+			qdel(B,,animation_destruction_fade(B))
 
 	switch(stored_blood)
 		if(10 to INFINITY)
@@ -1556,9 +1556,9 @@
 	//Check the shadow wights and auto-remove them if they get too far.
 	for(var/mob/W in shadow_wights)
 		if(get_dist(W, src) > 10)
-			cdel(W)
+			qdel(W)
 
-	if(maximum_blood >= 100) cdel(src,,animation_destruction_long_fade(src))
+	if(maximum_blood >= 100) qdel(src,,animation_destruction_long_fade(src))
 
 /obj/item/vampiric/proc/get_teleport_loc()
 	var/i = 1
@@ -1664,7 +1664,7 @@
 			'sound/hallucinations/turn_around2.ogg',\
 			), 25, 1, 12)
 			M.sleeping = max(M.sleeping,rand(5,10))
-			cdel(src,,animation_destruction_fade(src))
+			qdel(src,,animation_destruction_fade(src))
 
 /obj/effect/shadow_wight/Bump(atom/A)
 	to_chat(A, "<span class='warning'>You feel a chill run down your spine!</span>")

@@ -26,7 +26,7 @@
 			user.temp_drop_inv_item(cash)
 			bundle = new (src.loc)
 			bundle.worth += cash.worth
-			cdel(cash)
+			qdel(cash)
 		else //is bundle
 			bundle = W
 		bundle.worth += src.worth
@@ -37,7 +37,7 @@
 			h_user.temp_drop_inv_item(bundle)
 			h_user.put_in_hands(bundle)
 		to_chat(user, "<span class='notice'>You add [src.worth] dollars worth of money to the bundles.<br>It holds [bundle.worth] dollars now.</span>")
-		cdel(src)
+		qdel(src)
 
 /obj/item/spacecash/bundle
 	name = "stack of dollars"
@@ -89,7 +89,7 @@
 		bundle.update_icon()
 		user.put_in_hands(bundle)
 	if(!worth)
-		cdel(src)
+		qdel(src)
 
 /obj/item/spacecash/c1
 	name = "1 dollar bill"

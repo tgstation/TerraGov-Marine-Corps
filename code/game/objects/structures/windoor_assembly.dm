@@ -77,7 +77,7 @@ obj/structure/windoor_assembly/Dispose()
 						new /obj/item/stack/sheet/glass/reinforced(get_turf(src), 5)
 						if(secure)
 							new /obj/item/stack/rods(get_turf(src), 4)
-						cdel(src)
+						qdel(src)
 				else
 					to_chat(user, "\blue You need more welding fuel to dissassemble the windoor assembly.")
 					return
@@ -247,7 +247,7 @@ obj/structure/windoor_assembly/Dispose()
 						src.electronics.loc = windoor
 
 
-					cdel(src)
+					qdel(src)
 
 
 			else

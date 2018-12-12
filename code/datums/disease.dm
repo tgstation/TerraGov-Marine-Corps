@@ -148,7 +148,7 @@ var/list/diseases = subtypesof(/datum/disease)
 			if(D != src)
 				if(IsSame(D))
 					//error("Deleting [D.name] because it's the same as [src.name].")
-					cdel(D) // if there are somehow two viruses of the same kind in the system, delete the other one
+					qdel(D) // if there are somehow two viruses of the same kind in the system, delete the other one
 
 	if(holder == affected_mob)
 		if(affected_mob.stat != DEAD || survive_mob_death) //he's alive or disease transcends death.
@@ -171,7 +171,7 @@ var/list/diseases = subtypesof(/datum/disease)
 			var/saved_type = "[type]"
 			affected_mob.resistances += text2path(saved_type)
 		remove_virus()
-	cdel(src)	//delete the datum to stop it processing
+	qdel(src)	//delete the datum to stop it processing
 	return
 
 
