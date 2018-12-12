@@ -103,7 +103,7 @@
 				user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 				if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
 					F.loc = get_turf(src)
-				cdel(src) //Delete da old knife
+				qdel(src) //Delete da old knife
 			else
 				to_chat(user, "<span class='notice'>You don't have enough cable for that.</span>")
 				return

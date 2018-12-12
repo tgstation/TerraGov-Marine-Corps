@@ -211,13 +211,13 @@
 
 		if(stack_amt)
 			new stack_type (loc, stack_amt)
-	cdel(src)
+	qdel(src)
 
 /obj/structure/barricade/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			visible_message("<span class='danger'>[src] is blown apart!</span>")
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			health -= rand(33, 66)

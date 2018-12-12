@@ -33,7 +33,7 @@
 
 	if(client)
 		client.screen -= FS
-	cdel(FS)
+	qdel(FS)
 
 
 /mob/proc/clear_fullscreens()

@@ -236,4 +236,4 @@
 	if(fingerprintslast) O.fingerprintslast = fingerprintslast
 
 	user.put_in_active_hand(O)
-	cdel(src)
+	qdel(src)

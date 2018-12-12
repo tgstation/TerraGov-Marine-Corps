@@ -34,17 +34,17 @@
 /obj/structure/reagent_dispensers/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(50))
 				new /obj/effect/particle_effect/water(src.loc)
-				cdel(src)
+				qdel(src)
 				return
 		if(3.0)
 			if (prob(5))
 				new /obj/effect/particle_effect/water(src.loc)
-				cdel(src)
+				qdel(src)
 				return
 		else
 	return
@@ -160,7 +160,7 @@
 	else
 		explosion(src.loc,0,0,1, flame_range = 2)
 	if(src)
-		cdel(src)
+		qdel(src)
 
 /obj/structure/reagent_dispensers/fueltank/fire_act(temperature, volume)
 	if(temperature > T0C+500)

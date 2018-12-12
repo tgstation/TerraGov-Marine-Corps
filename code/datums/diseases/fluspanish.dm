@@ -15,7 +15,7 @@
 	..()
 	switch(stage)
 		if(2)
-			affected_mob.bodytemperature += 10
+			affected_mob.adjust_bodytemperature(10 * TEMPERATURE_DAMAGE_COEFFICIENT)
 			if(prob(5))
 				affected_mob.emote("sneeze")
 			if(prob(5))
@@ -25,7 +25,7 @@
 				affected_mob.take_limb_damage(0,5)
 
 		if(3)
-			affected_mob.bodytemperature += 20
+			affected_mob.adjust_bodytemperature(20 * TEMPERATURE_DAMAGE_COEFFICIENT)
 			if(prob(5))
 				affected_mob.emote("sneeze")
 			if(prob(5))

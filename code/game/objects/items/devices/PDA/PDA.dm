@@ -804,7 +804,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			message += "It melts in a puddle of plastic."
 		else
 			message += "Your [P] shatters in a thousand pieces!"
-		cdel(P)
+		qdel(P)
 
 	if(M && isliving(M))
 		message = "\red" + message
@@ -1057,7 +1057,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				if (!C.blood_DNA || !C.blood_DNA.len)
 					to_chat(user, "\blue No blood found on [C]")
 					if(C.blood_DNA)
-						cdel(C.blood_DNA)
+						qdel(C.blood_DNA)
 						C.blood_DNA = null
 				else
 					to_chat(user, "\blue Blood found on [C]. Analysing...")

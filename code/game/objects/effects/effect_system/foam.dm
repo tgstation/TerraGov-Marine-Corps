@@ -40,7 +40,7 @@
 
 		flick("[icon_state]-disolve", src)
 		sleep(5)
-		cdel(src)
+		qdel(src)
 
 
 // transfer any reagents to the floor
@@ -85,7 +85,7 @@
 		flick("[icon_state]-disolve", src)
 
 		spawn(5)
-			cdel(src)
+			qdel(src)
 
 
 /obj/effect/particle_effect/foam/Crossed(var/atom/movable/AM)
@@ -174,11 +174,11 @@
 
 
 /obj/structure/foamedmetal/ex_act(severity)
-	cdel(src)
+	qdel(src)
 
 /obj/structure/foamedmetal/bullet_act()
 	if(metal==1 || prob(50))
-		cdel(src)
+		qdel(src)
 	return TRUE
 
 /obj/structure/foamedmetal/attack_paw(var/mob/user)
@@ -190,7 +190,7 @@
 	if(prob(33))
 		M.visible_message("<span class='danger'>\The [M] slices [src] apart!</span>", \
 		"<span class='danger'>You slice [src] apart!</span>", null, 5)
-		cdel(src)
+		qdel(src)
 		return TRUE
 	else
 		M.visible_message("<span class='danger'>\The [M] tears some shreds off [src]!</span>", \
@@ -203,7 +203,7 @@
 			if ((O.client && !( is_blind(O) )))
 				to_chat(O, "\red [user] smashes through the foamed metal.")
 
-		cdel(src)
+		qdel(src)
 	else
 		to_chat(user, "\blue You hit the metal foam but bounce off it.")
 	return
@@ -215,7 +215,7 @@
 		for(var/mob/O in oviewers(user))
 			if ((O.client && !( is_blind(O) )))
 				to_chat(O, "\red [user] smashes through the foamed metal.")
-		cdel(src)
+		qdel(src)
 	else
 		to_chat(user, "\blue You hit the metal foam to no effect.")
 

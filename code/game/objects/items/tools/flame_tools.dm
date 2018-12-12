@@ -76,7 +76,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	wax--
 	if(!wax)
 		new/obj/item/trash/candle(src.loc)
-		cdel(src)
+		qdel(src)
 		return
 	update_icon()
 
@@ -291,13 +291,13 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		var/datum/effect_system/reagents_explosion/e = new()
 		e.set_up(round(reagents.get_reagent_amount("phoron") / 2.5, 1), get_turf(src), 0, 0)
 		e.start()
-		cdel(src)
+		qdel(src)
 		return
 	if(reagents.get_reagent_amount("fuel")) // the fuel explodes, too, but much less violently
 		var/datum/effect_system/reagents_explosion/e = new()
 		e.set_up(round(reagents.get_reagent_amount("fuel") / 5, 1), get_turf(src), 0, 0)
 		e.start()
-		cdel(src)
+		qdel(src)
 		return
 	reagents.set_reacting(TRUE)
 	reagents.handle_reactions()
@@ -384,7 +384,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 		M.temp_drop_inv_item(src)	//un-equip it so the overlays can update
 		M.update_inv_wear_mask()
 	processing_objects.Remove(src)
-	cdel(src)
+	qdel(src)
 
 ////////////
 // CIGARS //

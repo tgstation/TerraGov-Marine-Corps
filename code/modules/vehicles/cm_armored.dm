@@ -96,7 +96,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	for(var/i in linked_objs)
 		var/obj/O = linked_objs[i]
 		if(O == src) continue
-		cdel(O, 1) //Delete all of the hitboxes etc
+		qdel(O, 1) //Delete all of the hitboxes etc
 
 	. = ..()
 
@@ -841,7 +841,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		old.loc = entrance.loc
 	old.remove_buff()
 	if(old.health <= 0)
-		cdel(old)
+		qdel(old)
 
 	hardpoints[old.slot] = null
 	update_icon()

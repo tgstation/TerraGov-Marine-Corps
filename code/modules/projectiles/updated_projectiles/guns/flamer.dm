@@ -54,7 +54,7 @@
 		overlays += I
 	else
 		overlays -= I
-		cdel(I)
+		qdel(I)
 
 /obj/item/weapon/gun/flamer/Fire(atom/target, mob/living/user, params, reflex)
 	set waitfor = 0
@@ -199,7 +199,7 @@
 		return
 
 	for(var/obj/flamer_fire/F in T) // No stacking flames!
-		cdel(F)
+		qdel(F)
 
 	new /obj/flamer_fire(T, heat, burn, f_color)
 
@@ -212,7 +212,7 @@
 			S.update_icon(1, 0)
 
 	for(var/obj/structure/jungle/vines/V in T)
-		cdel(V)
+		qdel(V)
 
 	var/fire_mod
 	for(var/mob/living/M in T) //Deal bonus damage if someone's caught directly in initial stream
@@ -445,7 +445,7 @@
 				continue
 			var/obj/flamer_fire/F
 			if(locate(F) in T)
-				cdel(F) //No stacking
+				qdel(F) //No stacking
 			var/new_spread_amt = T.density ? 0 : fire_spread_amount - 1 //walls stop the spread
 			if(new_spread_amt)
 				for(var/obj/O in T)
@@ -522,13 +522,13 @@
 	var/turf/T = loc
 	firelevel = max(0, firelevel)
 	if(!istype(T)) //Is it a valid turf?
-		cdel(src)
+		qdel(src)
 		return
 
 	updateicon()
 
 	if(!firelevel)
-		cdel(src)
+		qdel(src)
 		return
 
 	T.flamer_fire_act()

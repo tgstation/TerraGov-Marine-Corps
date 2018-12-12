@@ -36,19 +36,19 @@
 	if(istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
-			cdel(src)
+			qdel(src)
 	else if(W.heat_source >= 3500)
-		cdel(src)
+		qdel(src)
 	else if(W.sharp)
 		switch(W.sharp)
 			if(IS_SHARP_ITEM_BIG)
-				cdel(src)
+				qdel(src)
 			if(IS_SHARP_ITEM_ACCURATE)
 				if(prob(60))
-					cdel(src)
+					qdel(src)
 			if(IS_SHARP_ITEM_SIMPLE)
 				if(prob(25))
-					cdel(src)
+					qdel(src)
 	else
 		manual_unbuckle(user)
 		return
@@ -224,12 +224,12 @@
 
 // Hotspots kill vines.
 /obj/effect/plantsegment/fire_act(null, temp, volume)
-	cdel(src)
+	qdel(src)
 
 /obj/effect/plantsegment/proc/die()
 	if(seed && harvest && rand(5))
 		seed.harvest(src,1)
-		cdel(src)
+		qdel(src)
 
 /obj/effect/plantsegment/proc/life()
 
@@ -266,7 +266,7 @@
 			return
 
 /obj/effect/plantsegment/flamer_fire_act()
-	cdel(src)
+	qdel(src)
 	return
 
 /obj/effect/plant_controller
@@ -291,7 +291,7 @@
 
 /obj/effect/plant_controller/New()
 	if(!istype(src.loc,/turf/open/floor))
-		cdel(src)
+		qdel(src)
 
 	spawn(0)
 		spawn_piece(src.loc)
@@ -317,12 +317,12 @@
 
 	// Space vines exterminated. Remove the controller
 	if(!vines)
-		cdel(src)
+		qdel(src)
 		return
 
 	// Sanity check.
 	if(!growth_queue)
-		cdel(src)
+		qdel(src)
 		return
 
 	// Check if we're too big for our own good.

@@ -302,8 +302,8 @@
 		if(isobj(plant_target))
 			plant_target = null
 			if(!istype(plant_target,/obj/vehicle/multitile/root/cm_armored))
-				cdel(plant_target)
-	cdel(src)
+				qdel(plant_target)
+	qdel(src)
 
 
 /obj/item/device/radio/detpack/attack(mob/M as mob, mob/user as mob, def_zone)

@@ -51,7 +51,7 @@
 			user.visible_message("[user.name] deconstructs [src].", \
 				"You deconstruct [src].", "You hear a noise.")
 			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-			cdel(src)
+			qdel(src)
 		if (src.stage == 2)
 			to_chat(usr, "You have to remove the wires first.")
 			return
@@ -111,7 +111,7 @@
 
 			newlight.dir = src.dir
 			src.transfer_fingerprints_to(newlight)
-			cdel(src)
+			qdel(src)
 			return
 	..()
 
@@ -315,7 +315,7 @@
 				update()
 
 				if(user.temp_drop_inv_item(L))
-					cdel(L)
+					qdel(L)
 
 					if(on && rigged)
 
@@ -369,7 +369,7 @@
 			newlight.fingerprints = src.fingerprints
 			newlight.fingerprintshidden = src.fingerprintshidden
 			newlight.fingerprintslast = src.fingerprintslast
-			cdel(src)
+			qdel(src)
 			return
 
 		to_chat(user, "You stick \the [W] into the light socket!")
@@ -549,7 +549,7 @@
 /obj/machinery/light/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(75))
@@ -592,7 +592,7 @@
 		sleep(2)
 		explosion(T, 0, 0, 2, 2)
 		sleep(1)
-		cdel(src)
+		qdel(src)
 
 // the light item
 // can be tube or bulb subtypes

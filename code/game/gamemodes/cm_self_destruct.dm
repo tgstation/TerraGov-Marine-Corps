@@ -73,7 +73,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	if(!dest_rods.len)
 		log_debug("ERROR CODE SD2: could not find any self destruct rods")
 		to_chat(world, "<span class='debuginfo'>ERROR CODE SD2: could not find any self destruct rods</span>")
-		cdel(dest_master)
+		qdel(dest_master)
 		dest_master = null
 		return FALSE
 	dest_cooldown = SELF_DESTRUCT_ROD_STARTUP_TIME / dest_rods.len

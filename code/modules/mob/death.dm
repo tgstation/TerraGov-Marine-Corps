@@ -4,7 +4,7 @@
 	death(1)
 	gib_animation()
 	spawn_gibs()
-	cdel(src)
+	qdel(src)
 
 
 /mob/proc/gib_animation()
@@ -24,7 +24,7 @@
 	death(1)
 	dust_animation()
 	spawn_dust_remains()
-	cdel(src)
+	qdel(src)
 
 
 /mob/proc/spawn_dust_remains()

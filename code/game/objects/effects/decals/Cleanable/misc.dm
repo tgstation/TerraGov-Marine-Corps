@@ -18,14 +18,14 @@
 
 /obj/effect/decal/cleanable/ash/attack_hand(mob/user as mob)
 	to_chat(user, "<span class='notice'>[src] sifts through your fingers.</span>")
-	cdel(src)
+	qdel(src)
 
 /obj/effect/decal/cleanable/greenglow
 
 	New()
 		..()
 		spawn(1200)// 2 minutes
-			cdel(src)
+			qdel(src)
 
 /obj/effect/decal/cleanable/dirt
 	name = "dirt"

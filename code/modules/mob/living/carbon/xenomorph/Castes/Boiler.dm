@@ -194,7 +194,7 @@
 /mob/living/carbon/Xenomorph/Boiler/Destroy()
 	SetLuminosity(0)
 	if(smoke)
-		cdel(smoke)
+		qdel(smoke)
 		smoke = null
 	return ..()
 

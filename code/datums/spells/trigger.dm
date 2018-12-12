@@ -14,7 +14,7 @@
 
 /obj/effect/proc_holder/spell/targeted/trigger/Destroy()
 	for(var/spell in contents)
-		cdel(spell)
+		qdel(spell)
 	. = ..()
 
 /obj/effect/proc_holder/spell/targeted/trigger/cast(list/targets)

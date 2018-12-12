@@ -22,7 +22,7 @@
 
 	Destroy()
 		if(Beacon)
-			cdel(Beacon)
+			qdel(Beacon)
 			Beacon = null
 		. = ..()
 

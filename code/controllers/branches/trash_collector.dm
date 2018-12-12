@@ -34,7 +34,7 @@ var/global/datum/authority/branch/trash/TrashAuthority = new() //This is the act
 
 //This is the proc you should be called on to trash something, not calling on the other procs directly. This is a replacement for del().
 //cdel stands for clean delete.
-/proc/cdel(datum/garbage, override = null, countdown)
+/proc/qdel(datum/garbage, override = null, countdown)
 	if(countdown)
 		set waitfor = 0
 		sleep(countdown)//What if we don't want to delete it right away? This will allow other procs to run while this one sleeps.

@@ -36,7 +36,7 @@
 /obj/effect/particle_effect/smoke/process()
 	time_to_live--
 	if(time_to_live <= 0)
-		cdel(src)
+		qdel(src)
 	else if(time_to_live == 1)
 		alpha -= 75
 		amount = 0

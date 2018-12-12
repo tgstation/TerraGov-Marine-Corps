@@ -316,7 +316,7 @@ field_generator power level display
 	for (var/obj/machinery/containment_field/F in fields)
 		if (isnull(F))
 			continue
-		cdel(F)
+		qdel(F)
 	fields = list()
 	for(var/obj/machinery/field_generator/FG in connected_gens)
 		if (isnull(FG))

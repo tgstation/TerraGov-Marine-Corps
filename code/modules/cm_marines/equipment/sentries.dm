@@ -77,7 +77,7 @@
 			"<span class='notice'>You unfold \the [S].</span>")
 		playsound(target, 'sound/weapons/mine_armed.ogg', 25)
 		S.update_icon()
-		cdel(src)
+		qdel(src)
 
 	
 /obj/machinery/turret_tripod_deployed
@@ -126,7 +126,7 @@
 		"<span class='notice'>You fold up and retrieve \the [src].</span>")
 		var/obj/item/device/turret_tripod/T = new(loc)
 		user.put_in_hands(T)
-		cdel(src)
+		qdel(src)
 
 /obj/machinery/turret_tripod_deployed/attackby(var/obj/item/O as obj, mob/user as mob)
 	if(iswrench(O))
@@ -166,7 +166,7 @@
 				has_top = TRUE
 				icon_state = "sentry_base"
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
-				cdel(I)
+				qdel(I)
 	else if(isscrewdriver(O))
 		if(!anchored)
 			to_chat(user, "<span class='warning'>You must wrench \the [src] to the ground first!</span>")
@@ -183,7 +183,7 @@
 					"<span class='notice'>You finish \the [S].</span>")
 				playsound(S.loc, 'sound/weapons/mine_armed.ogg', 25)
 				S.update_icon()
-				cdel(src)
+				qdel(src)
 	else if(iscrowbar(O))
 		if(!has_top)
 			to_chat(user, "<span class='warning'>You cannot remove the top if \the [src] doesn't have any yet!</span>")
@@ -297,10 +297,10 @@
 		operator.unset_interaction()
 		operator = null
 	if(camera)
-		cdel(camera)
+		qdel(camera)
 		camera = null
 	if(cell)
-		cdel(cell)
+		qdel(cell)
 		cell = null
 	if(target)
 		target = null
@@ -690,7 +690,7 @@
 			var/obj/item/ammo_magazine/S = new magazine_type(user.loc)
 			S.current_rounds = rounds
 		rounds = min(M.current_rounds, rounds_max)
-		cdel(O)
+		qdel(O)
 		return
 
 	if(O.force)
@@ -768,7 +768,7 @@
 			if(src && loc)
 				explosion(loc, -1, -1, 2, 0)
 				if(!disposed)
-					cdel(src)
+					qdel(src)
 		return
 
 	if(!stat && damage > 0 && !immobile)
@@ -1240,7 +1240,7 @@
 	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 	AI.SetName("Sentry Alert System")
 	AI.aiRadio.talk_into(AI,"[notice]","Almayer","announces")
-	cdel(AI)
+	qdel(AI)
 
 /obj/machinery/marine_turret/mini
 	name = "\improper UA-580 Point Defense Sentry"
@@ -1292,7 +1292,7 @@
 		var/obj/item/device/marine_turret/mini/P = new(loc)
 		user.put_in_hands(P)
 		P.health = health //track the health
-		cdel(src)
+		qdel(src)
 
 /obj/machinery/marine_turret/mini/update_icon()
 	if(stat && health > 0) //Knocked over
@@ -1358,7 +1358,7 @@
 		playsound(target, 'sound/weapons/mine_armed.ogg', 25)
 		M.health = health
 		M.update_icon()
-		cdel(src)
+		qdel(src)
 
 /obj/item/ammo_magazine/minisentry
 	name = "M30 box magazine (10x28mm Caseless)"

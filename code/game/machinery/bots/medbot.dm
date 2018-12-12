@@ -484,7 +484,7 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	cdel(src)
+	qdel(src)
 	return
 
 /obj/machinery/bot/medbot/Bump(M as mob|obj) //Leave no door unopened!
@@ -531,8 +531,8 @@
 	else if(istype(src,/obj/item/storage/firstaid/o2))
 		A.skin = "o2"
 
-	cdel(S)
+	qdel(S)
 	user.put_in_hands(A)
 	to_chat(user, "<span class='notice'>You add the robot arm to the first aid kit.</span>")
 	user.temp_drop_inv_item(src)
-	cdel(src)
+	qdel(src)

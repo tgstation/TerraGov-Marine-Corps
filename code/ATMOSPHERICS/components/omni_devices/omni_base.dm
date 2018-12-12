@@ -90,7 +90,7 @@
 		user.visible_message("<span class='notice'>[user] unfastens [src].</span>",
 		"<span class='notice'>You unfasten [src].</span>")
 		new /obj/item/pipe(loc, make_from = src)
-		cdel(src)
+		qdel(src)
 
 /obj/machinery/atmospherics/omni/attack_hand(user as mob)
 	if(..())
@@ -227,7 +227,7 @@
 	for(var/datum/omni_port/P in ports)
 		if(P.node)
 			P.node.disconnect(src)
-			cdel(P.network)
+			qdel(P.network)
 			P.network = null
 			P.node = null
 	. = ..()
@@ -280,7 +280,7 @@
 /obj/machinery/atmospherics/omni/disconnect(obj/machinery/atmospherics/reference)
 	for(var/datum/omni_port/P in ports)
 		if(reference == P.node)
-			cdel(P.network)
+			qdel(P.network)
 			P.network = null
 			P.node = null
 			P.update = 1

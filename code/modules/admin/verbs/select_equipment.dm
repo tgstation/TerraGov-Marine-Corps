@@ -91,7 +91,7 @@
 	for(var/obj/item/I in M)
 		if(istype(I, /obj/item/implant) || istype(I, /obj/item/card/id))
 			continue
-		cdel(I)
+		qdel(I)
 
 	var/datum/job/J = new path
 	J.generate_equipment(M)

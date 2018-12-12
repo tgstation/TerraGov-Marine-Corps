@@ -135,22 +135,22 @@ obj/structure/bed/Destroy()
 						M.linked_beacon.linked_bed = M
 				H.visible_message("<span class='warning'>[H] grabs [src] from the floor!</span>",
 				"<span class='warning'>You grab [src] from the floor!</span>")
-				cdel(src)
+				qdel(src)
 
 /obj/structure/bed/ex_act(severity)
 	switch(severity)
 		if(1)
-			cdel(src)
+			qdel(src)
 		if(2)
 			if(prob(50))
 				if(buildstacktype)
 					new buildstacktype (loc, buildstackamount)
-				cdel(src)
+				qdel(src)
 		if(3)
 			if(prob(5))
 				if(buildstacktype)
 					new buildstacktype (loc, buildstackamount)
-				cdel(src)
+				qdel(src)
 
 /obj/structure/bed/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(M.a_intent == "hurt")
@@ -167,7 +167,7 @@ obj/structure/bed/Destroy()
 		if(buildstacktype)
 			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 			new buildstacktype(loc, buildstackamount)
-			cdel(src)
+			qdel(src)
 
 	else if(istype(W, /obj/item/grab) && !buckled_mob)
 		var/obj/item/grab/G = W
@@ -210,7 +210,7 @@ obj/structure/bed/Destroy()
 		else
 			visible_message("<span class='notice'>[user] collapses [name].</span>")
 			new/obj/item/roller(get_turf(src))
-			cdel(src)
+			qdel(src)
 		return
 	. = ..()
 
@@ -255,7 +255,7 @@ obj/structure/bed/Destroy()
 		B.linked_beacon = I.linked_beacon
 		if(B.linked_beacon.linked_bed == src)
 			B.linked_beacon.linked_bed_deployed = B
-	cdel(src)
+	qdel(src)
 
 /obj/item/roller_holder
 	name = "roller bed rack"
@@ -277,7 +277,7 @@ obj/structure/bed/Destroy()
 	var/obj/structure/bed/roller/R = new(user.loc)
 	to_chat(user, "<span class='notice'>You deploy [R].</span>")
 	R.add_fingerprint(user)
-	cdel(held)
+	qdel(held)
 	held = null
 
 ////////////////////////////////////////////
@@ -481,7 +481,7 @@ var/global/list/activated_medevac_stretchers = list()
 	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 	AI.SetName("Medevac Notification System")
 	AI.aiRadio.talk_into(AI,"Patient [M] has been tele-vaced to medvac beacon at: [get_area(linked_beacon)]. Coordinates: (X: [linked_beacon.x], Y: [linked_beacon.y])","MedSci","announces")
-	cdel(AI)
+	qdel(AI)
 
 /obj/structure/bed/medevac_stretcher/examine(mob/user)
 	. = ..()
@@ -574,7 +574,7 @@ var/global/list/activated_medevac_stretchers = list()
 	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 	AI.SetName("Medevac Notification System")
 	AI.aiRadio.talk_into(AI,"Patient [M] has been tele-vaced to medvac beacon at: [get_area(src)]. Coordinates: (X: [src.x], Y: [src.y])","MedSci","announces")
-	cdel(AI)
+	qdel(AI)
 
 /obj/item/device/medevac_beacon/attack_self(mob/user)
 	if(locked)
@@ -641,6 +641,6 @@ var/global/list/activated_medevac_stretchers = list()
 		else
 			visible_message("<span class='notice'>[user] collapses [name].</span>")
 			new/obj/item/roller(get_turf(src))
-			cdel(src)
+			qdel(src)
 		return
 	. = ..()

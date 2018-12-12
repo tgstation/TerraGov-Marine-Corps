@@ -67,13 +67,13 @@ var/list/mechtoys = list(
 /obj/structure/plasticflaps/ex_act(severity)
 	switch(severity)
 		if (1)
-			cdel(src)
+			qdel(src)
 		if (2)
 			if (prob(50))
-				cdel(src)
+				qdel(src)
 		if (3)
 			if (prob(5))
-				cdel(src)
+				qdel(src)
 
 /obj/structure/plasticflaps/mining //A specific type for mining that doesn't allow airflow because of them damn crates
 	name = "\improper Airtight plastic flaps"
@@ -227,7 +227,7 @@ var/list/mechtoys = list(
 				points += cost
 
 
-			cdel(MA)
+			qdel(MA)
 
 		if(phoron_count)
 			points += phoron_count * points_per_phoron

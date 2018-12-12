@@ -144,7 +144,7 @@
 		log_admin("[key_name(user)] cut a wire at ([x],[y],[z])")
 		message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) cut a wire at ([x],[y],[z])")
 
-		cdel(src)
+		qdel(src)
 
 		return	// not needed, but for clarity
 
@@ -196,16 +196,16 @@
 
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 		if(2.0)
 			if (prob(50))
 				new/obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, color)
-				cdel(src)
+				qdel(src)
 
 		if(3.0)
 			if (prob(25))
 				new/obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, color)
-				cdel(src)
+				qdel(src)
 	return
 
 

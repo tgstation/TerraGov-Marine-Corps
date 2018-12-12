@@ -15,85 +15,85 @@
 
 		if("start")
 			newplayer_start += loc
-			cdel(src)
+			qdel(src)
 
 		if("JoinLate")
 			latejoin += loc
-			cdel(src)
+			qdel(src)
 
 		if("JoinLateGateway")
 			latejoin_gateway += loc
-			cdel(src)
+			qdel(src)
 
 		if("JoinLateCryo")
 			latejoin_cryo += loc
-			cdel(src)
+			qdel(src)
 
 		if("SupplyElevator")
 			SupplyElevator = loc
-			cdel(src)
+			qdel(src)
 
 		if("HangarUpperElevator")
 			HangarUpperElevator = loc
-			cdel(src)
+			qdel(src)
 
 		if("HangarLowerElevator")
 			HangarLowerElevator = loc
-			cdel(src)
+			qdel(src)
 
 		//prisoners
 		if("prisonwarp")
 			prisonwarp += loc
-			cdel(src)
+			qdel(src)
 
 		if("Holding Facility")
 			holdingfacility += loc
-			cdel(src)
+			qdel(src)
 
 		if("tdome1")
 			tdome1	+= loc
-			cdel(src)
+			qdel(src)
 
 		if("tdome2")
 			tdome2 += loc
-			cdel(src)
+			qdel(src)
 
 		if("tdomeadmin")
 			tdomeadmin	+= loc
-			cdel(src)
+			qdel(src)
 
 		if("tdomeobserve")
 			tdomeobserve += loc
-			cdel(src)
+			qdel(src)
 
 		//not prisoners
 		if("prisonsecuritywarp")
 			prisonsecuritywarp += loc
-			cdel(src)
+			qdel(src)
 
 		if("blobstart")
 			blobstart += loc
-			cdel(src)
+			qdel(src)
 
 		if("xeno_spawn")
 			xeno_spawn += loc
-			cdel(src)
+			qdel(src)
 
 		if("surv_spawn")
 			surv_spawn += loc
-			cdel(src)
+			qdel(src)
 
 		if("pred_spawn")
 			pred_spawn += loc
-			cdel(src)
+			qdel(src)
 
 		if("pred_elder_spawn")
 			pred_elder_spawn += loc
-			cdel(src)
+			qdel(src)
 
 		if("yautja_teleport_loc")
 			yautja_teleport_loc += loc
-			cdel(src)
+			qdel(src)
 
 
 	landmarks_list += src
@@ -121,5 +121,5 @@
 
 /obj/effect/landmark/map_tag/New()
 	map_tag = name
-	cdel(src)
+	qdel(src)
 	return

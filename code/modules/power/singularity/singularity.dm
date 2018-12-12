@@ -41,7 +41,7 @@ var/global/list/uneatable = list(
 	src.energy = starting_energy
 	if(temp)
 		spawn(temp)
-			cdel(src)
+			qdel(src)
 	..()
 	start_processing()
 
@@ -53,7 +53,7 @@ var/global/list/uneatable = list(
 	switch(severity)
 		if(1.0)
 			if(prob(25))
-				cdel(src)
+				qdel(src)
 				return
 			else
 				energy += 50
@@ -170,7 +170,7 @@ var/global/list/uneatable = list(
 
 /obj/machinery/singularity/proc/check_energy()
 	if(energy <= 0)
-		cdel(src)
+		qdel(src)
 		return 0
 	switch(energy)//Some of these numbers might need to be changed up later -Mport
 		if(1 to 199)
@@ -238,7 +238,7 @@ var/global/list/uneatable = list(
 		if(istype(A, /obj/machinery/singularity))//Welp now you did it
 			var/obj/machinery/singularity/S = A
 			src.energy += (S.energy/2)//Absorb most of it
-			cdel(S)
+			qdel(S)
 			var/dist = max((current_size - 2),1)
 			explosion(src.loc,(dist),(dist*2),(dist*4))
 			return//Quits here, the obj should be gone, hell we might be
@@ -250,7 +250,7 @@ var/global/list/uneatable = list(
 			O.z = 2
 		else
 			A.ex_act(1.0)
-			if(A) cdel(A)
+			if(A) qdel(A)
 		gain = 2
 	else if(isturf(A))
 		var/turf/T = A

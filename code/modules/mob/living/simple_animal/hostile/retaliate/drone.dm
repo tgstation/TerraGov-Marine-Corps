@@ -159,7 +159,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/malf_drone/death()
 	..(null,"suddenly breaks apart.")
-	cdel(src)
+	qdel(src)
 
 /mob/living/simple_animal/hostile/retaliate/malf_drone/Destroy()
 	//some random debris left behind

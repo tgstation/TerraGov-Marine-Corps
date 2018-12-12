@@ -20,7 +20,7 @@ don't specifically know what to return, we'll be using . = whatever a lot.
 Calling on new() is faster, obviously, if the item doesn't exist in the recycle list since there is no overhead.
 But as things are stored and called on this becomes more and more useful.
 
-Do NOT call this through RecycleTrash(). The idea is to use cdel() instead, and the atom/whatever should return
+Do NOT call this through RecycleTrash(). The idea is to use qdel() instead, and the atom/whatever should return
 a TA_REVIVE_ME through Destroy(), telling the Trash Authority to send the object to the recycler instead of
 adding it to the trash queue. This gives the object time to null any references and such, and its location will
 be nulled so it doesn't appear anywhere. Once it's added to the recycle list, it won't be deleted because the
@@ -187,7 +187,7 @@ overhead only applies when the image is first created.*/
 	A.overlays += src
 	sleep(time)
 	if(A && A.loc) A.overlays -= src
-	cdel(src)
+	qdel(src)
 
 //======================================================
 //======================================================

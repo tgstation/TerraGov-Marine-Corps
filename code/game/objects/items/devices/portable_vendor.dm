@@ -215,11 +215,11 @@
 /obj/item/device/portable_vendor/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			if(prob(50))
-				cdel(src)
+				qdel(src)
 				return
 			else
 				malfunction()

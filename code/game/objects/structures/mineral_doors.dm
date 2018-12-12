@@ -147,7 +147,7 @@
 			var/ore = text2path("/obj/item/stack/sheet/mineral/[mineralType]")
 			for(var/i = 3, i <= oreAmount, i++)
 				new ore(get_turf(src))
-	cdel(src)
+	qdel(src)
 
 /obj/structure/mineral_door/ex_act(severity = 1)
 	switch(severity)
@@ -246,7 +246,7 @@
 	if(!devastated)
 		for(var/i = 1, i <= oreAmount, i++)
 			new/obj/item/stack/sheet/wood(get_turf(src))
-	cdel(src)
+	qdel(src)
 
 //Mapping instance
 /obj/structure/mineral_door/wood/open

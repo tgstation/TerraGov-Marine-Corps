@@ -11,13 +11,13 @@
 /obj/effect/spider/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 		if(2.0)
 			if (prob(50))
-				cdel(src)
+				qdel(src)
 		if(3.0)
 			if (prob(5))
-				cdel(src)
+				qdel(src)
 	return
 
 /obj/effect/spider/attackby(var/obj/item/W, var/mob/user)
@@ -46,7 +46,7 @@
 
 /obj/effect/spider/proc/healthcheck()
 	if(health <= 0)
-		cdel(src)
+		qdel(src)
 
 /obj/effect/spider/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)
@@ -86,7 +86,7 @@
 		var/num = rand(6,24)
 		for(var/i=0, i<num, i++)
 			new /obj/effect/spider/spiderling(src.loc)
-		cdel(src)
+		qdel(src)
 
 /obj/effect/spider/spiderling
 	name = "spiderling"
@@ -115,7 +115,7 @@
 /obj/effect/spider/spiderling/proc/die()
 	visible_message("<span class='alert'>[src] dies!</span>")
 	new /obj/effect/decal/cleanable/spiderling_remains(src.loc)
-	cdel(src)
+	qdel(src)
 
 /obj/effect/spider/spiderling/healthcheck()
 	if(health <= 0)
@@ -188,7 +188,7 @@
 		if(amount_grown >= 100)
 			var/spawn_type = pick(typesof(/mob/living/simple_animal/hostile/giant_spider))
 			new spawn_type(src.loc)
-			cdel(src)
+			qdel(src)
 
 /obj/effect/decal/cleanable/spiderling_remains
 	name = "spiderling remains"

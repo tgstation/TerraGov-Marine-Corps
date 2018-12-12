@@ -157,14 +157,14 @@ var/waiting_for_drop_votes = 0
 			if("block_hellhound")
 				new /obj/effect/step_trigger/hell_hound_blocker(L.loc)
 			if("fog blocker")
-				cdel(L)
+				qdel(L)
 			if("xeno tunnel")
-				cdel(L)
+				qdel(L)
 
 	for(var/obj/item/weapon/gun/G in item_list) 
-		cdel(G) //No guns or ammo allowed.
+		qdel(G) //No guns or ammo allowed.
 	for(var/obj/item/ammo_magazine/M in item_list) 
-		cdel(M)
+		qdel(M)
 
 	for(var/mob/new_player/player in player_list)
 		if(player && player.ready)
@@ -205,7 +205,7 @@ var/waiting_for_drop_votes = 0
 
 	if(H.contents.len)
 		for(var/I in H.contents)
-			cdel(I)
+			qdel(I)
 
 	H.loc = picked
 

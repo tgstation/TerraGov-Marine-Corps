@@ -47,7 +47,7 @@
 	if(hasShocked)
 		return 0
 	if(!FG1 || !FG2)
-		cdel(src)
+		qdel(src)
 		return 0
 	if(isliving(user))
 		hasShocked = 1

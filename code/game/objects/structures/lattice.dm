@@ -11,10 +11,10 @@
 /obj/structure/lattice/New()
 	..()
 	if(!istype(src.loc, /turf/open/space))
-		cdel(src)
+		qdel(src)
 	for(var/obj/structure/lattice/LAT in src.loc)
 		if(LAT != src)
-			cdel(LAT)
+			qdel(LAT)
 	icon = 'icons/obj/smoothlattice.dmi'
 	icon_state = "latticeblank"
 	updateOverlays()
@@ -35,10 +35,10 @@
 /obj/structure/lattice/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
-			cdel(src)
+			qdel(src)
 			return
 		if(3.0)
 			return
@@ -56,13 +56,13 @@
 		if(WT.remove_fuel(0, user))
 			to_chat(user, "\blue Slicing lattice joints ...")
 		new /obj/item/stack/rods(src.loc)
-		cdel(src)
+		qdel(src)
 
 	return
 
 /obj/structure/lattice/proc/updateOverlays()
 	//if(!(istype(src.loc, /turf/open/space)))
-	//	cdel(src)
+	//	qdel(src)
 	spawn(1)
 		overlays = list()
 

@@ -165,7 +165,7 @@
 		if(istype(M,/mob/living/simple_animal/lizard) || istype(M,/mob/living/simple_animal/mouse))
 			src.loc.visible_message("\red [src.loc] sucks [M] into its decompiler. There's a horrible crunching noise.","\red It's a bit of a struggle, but you manage to suck [M] into your decompiler. It makes a series of visceral crunching noises.")
 			new/obj/effect/decal/cleanable/blood/splatter(get_turf(src))
-			cdel(M)
+			qdel(M)
 			stored_comms["wood"]++
 			stored_comms["wood"]++
 			stored_comms["plastic"]++
@@ -189,7 +189,7 @@
 
 			to_chat(D, "\red You carefully and thoroughly decompile your downed fellow, storing as much of its resources as you can within yourself.")
 
-			cdel(M)
+			qdel(M)
 			new/obj/effect/decal/cleanable/blood/oil(get_turf(src))
 
 			stored_comms["metal"] += 15
@@ -256,7 +256,7 @@
 		else
 			continue
 
-		cdel(W)
+		qdel(W)
 		grabbed_something = 1
 
 	if(grabbed_something)

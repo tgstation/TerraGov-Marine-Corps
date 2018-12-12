@@ -122,7 +122,7 @@ Class Procs:
 			return
 		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P)
 			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD)
-			cdel()
+			qdel()
 		return
 
 /obj/machinery/New()
@@ -163,15 +163,15 @@ Class Procs:
 /obj/machinery/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(50))
-				cdel(src)
+				qdel(src)
 				return
 		if(3.0)
 			if (prob(25))
-				cdel(src)
+				qdel(src)
 				return
 		else
 	return
@@ -328,7 +328,7 @@ Class Procs:
 		if(I.reliability != 100 && crit_fail)
 			I.crit_fail = 1
 		I.loc = loc
-	cdel(src)
+	qdel(src)
 	return 1
 
 obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_implants)

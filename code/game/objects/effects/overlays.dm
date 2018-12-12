@@ -10,7 +10,7 @@
 	var/tmp/atom/BeamSource
 	New()
 		..()
-		spawn(10) cdel(src)
+		spawn(10) qdel(src)
 
 /obj/effect/overlay/palmtree_r
 	name = "Palm tree"
@@ -53,7 +53,7 @@
 /obj/effect/overlay/temp/proc/start_countdown()
 	set waitfor = 0
 	sleep(effect_duration)
-	cdel(src)
+	qdel(src)
 
 /obj/effect/overlay/temp/point
 	name = "arrow"
@@ -120,7 +120,7 @@
 		source_binoc.laser = null
 		source_binoc = null
 	if(linked_cam)
-		cdel(linked_cam)
+		qdel(linked_cam)
 		linked_cam = null
 	SetLuminosity(0)
 	. = ..()

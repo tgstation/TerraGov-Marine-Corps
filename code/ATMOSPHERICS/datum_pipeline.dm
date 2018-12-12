@@ -10,7 +10,7 @@
 
 /datum/pipeline/Destroy()
 	if(network)
-		cdel(network)
+		qdel(network)
 
 	..()
 
