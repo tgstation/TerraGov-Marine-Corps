@@ -28,7 +28,7 @@
 				weed_expand(node)
 
 
-/obj/effect/alien/weeds/Destroy()
+/obj/effect/alien/weeds/Dispose()
 	var/oldloc = loc
 	. = ..()
 	update_neighbours(oldloc)
