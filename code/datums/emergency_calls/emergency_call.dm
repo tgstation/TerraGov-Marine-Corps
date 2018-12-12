@@ -204,7 +204,7 @@
 				shuttle.launch()
 
 			if(length(picked_candidates))
-				max_medics = max(round(length(members) / 4), 1)
+				max_medics = max(round(length(members) * 0.25), 1)
 				for(var/datum/mind/M in picked_candidates)
 					message_admins("DEBUG: Spawning candidate [M.key].")
 					members += M
