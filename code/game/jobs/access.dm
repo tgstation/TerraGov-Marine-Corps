@@ -290,6 +290,8 @@ proc/get_all_job_icons()
 		if("O9") . = size ? "Adm. " : "Admiral"
 		if("O9") . = size ? "F/Adm. " : "Fleet Marshal"
 		if("WO") . = size ? "WO. " : "Warrant Officer"
+		if("PO") . = size ? "PO. " : "Petty Officer"
+		if("CPO") . = size ? "CPO. " : "Chief Petty Officer"
 		if("UPP1") . = size ? "UPVT " : "UPP Private"
 		if("UPP2") . = size ? "UPFC " : "UPP Private First Class"
 		if("UPP3") . = size ? "UCPL " : "UPP Corporal"

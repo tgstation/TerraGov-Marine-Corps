@@ -126,7 +126,7 @@ Good luck."}
 /datum/job/command/bridge
 	title = "Staff Officer"
 	disp_title = "Intelligence Officer"
-	comm_title = "SO"
+	comm_title = "IO"
 	paygrade = "O2J"
 	flag = ROLE_BRIDGE_OFFICER
 	total_positions = 5
@@ -163,7 +163,7 @@ You are in charge of logistics and the overwatch system. You also act to provide
 /datum/job/command/pilot
 	title = "Pilot Officer"
 	comm_title = "PO"
-	paygrade = "O1" //Technically Second Lieutenant equivalent, but 2ndLT doesn't exist in Marine pay grade, so Ensign
+	paygrade = "O1"
 	flag = ROLE_PILOT_OFFICER
 	total_positions = 4
 	spawn_positions = 4

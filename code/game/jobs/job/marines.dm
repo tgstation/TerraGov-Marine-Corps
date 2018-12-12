@@ -77,7 +77,7 @@ Your squaddies will look to you when it comes to construction in the field of ba
 /datum/job/marine/medic
 	title = "Squad Medic"
 	comm_title = "Med"
-	paygrade = "E4"
+	paygrade = "E3" //Scaling: E3-E4
 	total_positions = 16
 	spawn_positions = 16
 	flag = ROLE_MARINE_MEDIC
@@ -108,7 +108,7 @@ You may not be a fully-fledged doctor, but you stand between life and death when
 /datum/job/marine/specialist
 	title = "Squad Specialist"
 	comm_title = "Spc"
-	paygrade = "E5"
+	paygrade = "E4" //Scaling: E4-E5
 	flag = ROLE_MARINE_SPECIALIST
 	total_positions = 4
 	spawn_positions = 4
@@ -134,8 +134,8 @@ You can serve a variety of roles, so choose carefully."}
 
 /datum/job/marine/smartgunner
 	title = "Squad Smartgunner"
-	comm_title = "LCpl"
-	paygrade = "E3"
+	comm_title = "SGnr"
+	paygrade = "E2" //Scaling: E2-E4
 	flag = ROLE_MARINE_SMARTGUN
 	total_positions = 4
 	spawn_positions = 4
@@ -158,7 +158,7 @@ You can serve a variety of roles, so choose carefully."}
 /datum/job/marine/standard
 	title = "Squad Marine"
 	comm_title = "Mar"
-	paygrade = "E2"
+	paygrade = "E1" //Scaling: E1-E3
 	flag = ROLE_MARINE_STANDARD
 	department_flag = ROLEGROUP_MARINE_SQUAD_MARINES
 	faction = "Station"
