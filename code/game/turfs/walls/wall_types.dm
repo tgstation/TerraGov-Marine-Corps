@@ -490,8 +490,10 @@
 	return !density
 
 /turf/closed/wall/resin/dismantle_wall(devastated = 0, explode = 0)
-	qdel(src) //ChangeTurf is called by Dispose()
-
+	if(oldTurf != "")
+		ChangeTurf(text2path(oldTurf), TRUE)
+	else
+		ChangeTurf(/turf/open/floor/plating, TRUE)
 
 
 /turf/closed/wall/resin/ChangeTurf(newtype)
