@@ -133,7 +133,7 @@
 /obj/machinery/m56d_post/examine(mob/user)
 	..()
 	if(!gun_mounted)
-		to_chat(user, "The <b>M56D Mounted Smartgun</b> is not yet mounted.")
+		to_chat(user, "The <b>M56D Smartgun</b> is not yet mounted.")
 
 /obj/machinery/m56d_post/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(isXenoLarva(M))
