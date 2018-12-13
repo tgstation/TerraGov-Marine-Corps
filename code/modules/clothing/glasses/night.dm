@@ -82,3 +82,4 @@
 /obj/item/clothing/glasses/night/yautja/Destroy()
 	..()
 	return TA_REVIVE_ME
+
