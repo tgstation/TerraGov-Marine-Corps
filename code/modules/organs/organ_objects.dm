@@ -31,7 +31,7 @@
 		processing_objects += src
 
 
-/obj/item/organ/Dispose()
+/obj/item/organ/Destroy()
 	if(!robotic) processing_objects -= src
 	. = ..()
 
@@ -236,4 +236,4 @@
 	if(fingerprintslast) O.fingerprintslast = fingerprintslast
 
 	user.put_in_active_hand(O)
-	cdel(src)
+	qdel(src)

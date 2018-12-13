@@ -287,7 +287,7 @@
 							src.transfer_fingerprints_to(P)
 							P.dir = dir
 
-						cdel(src)
+						qdel(src)
 						return
 				else
 					to_chat(user, "You need more welding fuel to complete this task.")

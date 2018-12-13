@@ -462,8 +462,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		//having an infection raises your body temperature
 		var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + owner.species.body_temperature
 		//need to make sure we raise temperature fast enough to get around environmental cooling preventing us from reaching fever_temperature
-		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
-
+		owner.adjust_bodytemperature((fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, 0, fever_temperature - owner.bodytemperature)
 		if(prob(round(germ_level/10)))
 			if (antibiotics < MIN_ANTIBIOTICS)
 				germ_level++
@@ -690,7 +689,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			status = LIMB_DESTROYED
 		for(var/i in implants)
 			implants -= i
-			cdel(i)
+			qdel(i)
 
 		germ_level = 0
 		if(hidden)
@@ -753,7 +752,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				owner.drop_inv_item_on_ground(owner.shoes, null, TRUE)
 
 		if(delete_limb)
-			cdel(organ)
+			qdel(organ)
 		else
 			owner.visible_message("<span class='warning'>[owner.name]'s [display_name] flies off in an arc!</span>",
 			"<span class='highdanger'><b>Your [display_name] goes flying off!</b></span>",
@@ -980,11 +979,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 			spark_system.attach(owner)
 			spark_system.start()
 			spawn(10)
-				cdel(spark_system)
+				qdel(spark_system)
 				spark_system = null
 
 /datum/limb/proc/embed(var/obj/item/W, var/silent = 0)
-	if(!W || W.disposed || (W.flags_item & (NODROP|DELONDROP)))
+	if(!W || W.gc_destroyed || (W.flags_item & (NODROP|DELONDROP)))
 		return
 	if(!silent)
 		owner.visible_message("<span class='danger'>\The [W] sticks in the wound!</span>")

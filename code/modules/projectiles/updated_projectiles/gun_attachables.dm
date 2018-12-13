@@ -212,7 +212,7 @@ Defined in conflicts.dm of the #defines folder.
 	for(var/X in G.actions)
 		var/datum/action/DA = X
 		if(DA.target == src)
-			cdel(X)
+			qdel(X)
 			break
 
 	loc = get_turf(G)
@@ -291,7 +291,7 @@ Defined in conflicts.dm of the #defines folder.
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
 			F.loc = src.loc
-		cdel(src) //Delete da old bayonet
+		qdel(src) //Delete da old bayonet
 	else
 		return ..()
 
@@ -451,7 +451,7 @@ Defined in conflicts.dm of the #defines folder.
 			user.temp_drop_inv_item(src)
 		var/obj/item/device/flashlight/F = new(user)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
-		cdel(src) //Delete da old flashlight
+		qdel(src) //Delete da old flashlight
 	else
 		return ..()
 
@@ -699,7 +699,7 @@ Defined in conflicts.dm of the #defines folder.
 		ammo = ammo_list[ammo]
 
 
-/obj/item/attachable/attached_gun/Dispose()
+/obj/item/attachable/attached_gun/Destroy()
 	ammo = null
 	return ..()
 
@@ -771,7 +771,7 @@ Defined in conflicts.dm of the #defines folder.
 			loaded_grenades += G.type
 			to_chat(user, "<span class='notice'>You load [G] in [src].</span>")
 			user.temp_drop_inv_item(G)
-			cdel(G)
+			qdel(G)
 
 /obj/item/attachable/attached_gun/grenade/fire_attachment(atom/target,obj/item/weapon/gun/gun,mob/living/user)
 	if(get_dist(user,target) > max_range)
@@ -909,7 +909,7 @@ Defined in conflicts.dm of the #defines folder.
 		return
 
 	for(var/obj/flamer_fire/F in T) // No stacking flames!
-		cdel(F)
+		qdel(F)
 
 	new/obj/flamer_fire(T)
 
@@ -981,7 +981,7 @@ Defined in conflicts.dm of the #defines folder.
 				playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
 				if(mag.current_rounds <= 0)
 					user.temp_drop_inv_item(mag)
-					cdel(mag)
+					qdel(mag)
 			return
 	to_chat(user, "<span class='warning'>[src] only accepts shotgun buckshot.</span>")
 

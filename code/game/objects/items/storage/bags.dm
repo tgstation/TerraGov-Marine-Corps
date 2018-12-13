@@ -160,7 +160,7 @@
 		if(user && W.loc == user)
 			user.temp_drop_inv_item(S)
 		if(!S.amount)
-			cdel(S)
+			qdel(S)
 		else
 			S.forceMove(src)
 
@@ -206,7 +206,7 @@
 			N.amount = stacksize
 			S.amount -= stacksize
 		if(!S.amount)
-			cdel(S) // todo: there's probably something missing here
+			qdel(S) // todo: there's probably something missing here
 	orient2hud(usr)
 	if(usr.s_active)
 		usr.s_active.show_to(usr)

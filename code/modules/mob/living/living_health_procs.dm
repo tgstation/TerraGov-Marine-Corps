@@ -149,7 +149,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	// shut down ongoing problems
 	radiation = 0
 	nutrition = 400
-	bodytemperature = T20C
+	bodytemperature = get_standard_bodytemperature()
 	sdisabilities = 0
 	disabilities = 0
 
@@ -183,6 +183,7 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 	setHalLoss(0)
 	setTraumatic_Shock(0)
 	setShock_Stage(0)
+	drunkenness = 0
 	return ..()
 
 /mob/living/carbon/human/rejuvenate()

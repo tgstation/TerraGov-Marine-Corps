@@ -19,9 +19,9 @@
 	var/ship_tag//used to associate the base to a dropship.
 	var/obj/structure/dropship_equipment/installed_equipment
 
-/obj/effect/attach_point/Dispose()
+/obj/effect/attach_point/Destroy()
 	if(installed_equipment)
-		cdel(installed_equipment)
+		qdel(installed_equipment)
 		installed_equipment = null
 	return ..()
 
@@ -65,10 +65,10 @@
 	base_category = DROPSHIP_WEAPON
 
 /obj/effect/attach_point/weapon/dropship1
-	ship_tag = "USS Almayer Dropship 1"
+	ship_tag = "TGS Theseus Dropship 1"
 
 /obj/effect/attach_point/weapon/dropship2
-	ship_tag = "USS Almayer Dropship 2"
+	ship_tag = "TGS Theseus Dropship 2"
 
 
 /obj/effect/attach_point/crew_weapon
@@ -76,10 +76,10 @@
 	base_category = DROPSHIP_CREW_WEAPON
 
 /obj/effect/attach_point/crew_weapon/dropship1
-	ship_tag = "USS Almayer Dropship 1"
+	ship_tag = "TGS Theseus Dropship 1"
 
 /obj/effect/attach_point/crew_weapon/dropship2
-	ship_tag = "USS Almayer Dropship 2"
+	ship_tag = "TGS Theseus Dropship 2"
 
 
 /obj/effect/attach_point/electronics
@@ -88,10 +88,10 @@
 	icon_state = "equip_base_front"
 
 /obj/effect/attach_point/electronics/dropship1
-	ship_tag = "USS Almayer Dropship 1"
+	ship_tag = "TGS Theseus Dropship 1"
 
 /obj/effect/attach_point/electronics/dropship2
-	ship_tag = "USS Almayer Dropship 2"
+	ship_tag = "TGS Theseus Dropship 2"
 
 
 /obj/effect/attach_point/fuel
@@ -101,20 +101,20 @@
 	base_category = DROPSHIP_FUEL_EQP
 
 /obj/effect/attach_point/fuel/dropship1
-	ship_tag = "USS Almayer Dropship 1"
+	ship_tag = "TGS Theseus Dropship 1"
 
 /obj/effect/attach_point/fuel/dropship2
-	ship_tag = "USS Almayer Dropship 2"
+	ship_tag = "TGS Theseus Dropship 2"
 
 
 /obj/effect/attach_point/computer
 	base_category = DROPSHIP_COMPUTER
 
 /obj/effect/attach_point/computer/dropship1
-	ship_tag = "USS Almayer Dropship 1"
+	ship_tag = "TGS Theseus Dropship 1"
 
 /obj/effect/attach_point/computer/dropship2
-	ship_tag = "USS Almayer Dropship 2"
+	ship_tag = "TGS Theseus Dropship 2"
 
 
 
@@ -139,9 +139,9 @@
 	var/screen_mode = 0 //used by the dropship console code when this equipment is selected
 	var/point_cost = 0 //how many points it costs to build this with the fabricator, set to 0 if unbuildable.
 
-/obj/structure/dropship_equipment/Dispose()
+/obj/structure/dropship_equipment/Destroy()
 	if(ammo_equipped)
-		cdel(ammo_equipped)
+		qdel(ammo_equipped)
 		ammo_equipped = null
 	if(linked_shuttle)
 		linked_shuttle.equipments -= src
@@ -189,7 +189,7 @@
 		if(!ammo_equipped.ammo_count)
 			ammo_equipped.loc = null
 			to_chat(user, "<span class='notice'>You've discarded the empty [ammo_equipped.name] in [src].</span>")
-			cdel(ammo_equipped)
+			qdel(ammo_equipped)
 		else
 			ammo_equipped.forceMove(PC.linked_powerloader)
 			PC.loaded = ammo_equipped
@@ -288,7 +288,7 @@
 	else
 		to_chat(user, "<span class='notice'>You retract [src].</span>")
 		undeploy_sentry()
-		
+
 
 /obj/structure/dropship_equipment/sentry_holder/update_equipment()
 	if(ship_base)
@@ -502,7 +502,7 @@
 		linked_cam_console = null
 		icon_state = initial(icon_state)
 
-/obj/structure/dropship_equipment/electronics/laser_detector/Dispose()
+/obj/structure/dropship_equipment/electronics/laser_detector/Destroy()
 	linked_cam_console = null
 	return ..()
 
@@ -533,7 +533,7 @@
 		icon_state = initial(icon_state)
 
 
-/obj/structure/dropship_equipment/electronics/landing_zone_detector/Dispose()
+/obj/structure/dropship_equipment/electronics/landing_zone_detector/Destroy()
 	linked_cam_console = null
 	return ..()
 
@@ -768,7 +768,7 @@
 	var/medevac_cooldown
 	var/busy_winch
 
-/obj/structure/dropship_equipment/medevac_system/Dispose()
+/obj/structure/dropship_equipment/medevac_system/Destroy()
 	if(linked_stretcher)
 		linked_stretcher.linked_medevac = null
 		linked_stretcher = null

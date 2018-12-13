@@ -44,7 +44,7 @@
 	levelupdate()
 
 
-/turf/Dispose()
+/turf/Destroy()
 	if(oldTurf != "")
 		ChangeTurf(text2path(oldTurf), TRUE)
 	else

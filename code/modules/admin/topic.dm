@@ -211,14 +211,14 @@
 
 			if("use_dest")
 
-				var/confirm = alert("Are you sure you want to self-destruct the Almayer?", "Self-Destruct", "Yes", "Cancel")
+				var/confirm = alert("Are you sure you want to self-destruct the [MAIN_SHIP_NAME]?", "Self-Destruct", "Yes", "Cancel")
 				if(confirm != "Yes")
 					return
 
 				if(!EvacuationAuthority.initiate_self_destruct(1))
 					to_chat(usr, "<span class='warning'>You are unable to trigger the self-destruct right now!</span>")
 					return
-				if(alert("Are you sure you want to destroy the Almayer right now?",, "Yes", "Cancel") == "Cancel") return
+				if(alert("Are you sure you want to destroy the [MAIN_SHIP_NAME] right now?",, "Yes", "Cancel") == "Cancel") return
 
 				log_admin("[key_name(usr)] forced the self-destruct system, destroying the [MAIN_SHIP_NAME].")
 				message_admins("\blue [key_name_admin(usr)] forced the self-destrust system, destroying the [MAIN_SHIP_NAME].", 1)
@@ -248,7 +248,7 @@
 
 		var/mob/M = locate(href_list["mob"])
 
-		if(M.disposed)
+		if(M.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -789,7 +789,7 @@
 			log_admin("[key_name(usr)] booted [key_name(M)].")
 			message_admins("\blue [key_name_admin(usr)] booted [key_name_admin(M)].", 1)
 			//M.client = null
-			cdel(M.client)
+			qdel(M.client)
 /*
 	//Player Notes
 	else if(href_list["notes"])
@@ -862,7 +862,7 @@
 		message_admins("\blue[usr.client.ckey] has banned [mob_key].\nReason: [sanitize(reason)]\nThis will be removed in [mins] minutes.")
 		notes_add(mob_key, "Banned by [usr.client.ckey]|Duration: [mins] minutes|Reason: [sanitize(reason)]", usr)
 
-		cdel(mob_client)
+		qdel(mob_client)
 
 	else if(href_list["lazyban"])
 		if(!check_rights(R_MOD,0) && !check_rights(R_BAN))  return
@@ -905,7 +905,7 @@
 		log_admin("[usr.client.ckey] has banned [M.ckey]|Duration: [mins] minutes|Reason: [reason]")
 		message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 		notes_add(M.ckey, "Banned by [usr.client.ckey]|Duration: [mins] minutes|Reason: [reason]", usr)
-		cdel(M.client)
+		qdel(M.client)
 
 
 	else if(href_list["mute"])
@@ -979,7 +979,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["monkeyone"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -996,7 +996,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["corgione"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -1085,7 +1085,7 @@
 		var/mob/new_player/NP = new()
 		NP.ckey = M.ckey
 		if(NP.client) NP.client.change_view(world.view)
-		cdel(M)
+		qdel(M)
 
 	else if(href_list["tdome1"])
 		if(!check_rights(R_FUN))	return
@@ -1209,7 +1209,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["makeai"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -1226,7 +1226,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["makealien"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -1254,7 +1254,7 @@
 
 		var/mob/H = locate(href_list["makeyautja"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -1287,7 +1287,7 @@
 			if(H.mind)
 				H.mind.transfer_to(M, TRUE)
 				if(M.mind.cm_skills)
-					cdel(M.mind.cm_skills)
+					qdel(M.mind.cm_skills)
 				M.mind.cm_skills = null //no skill restriction
 			else
 				M.key = H.key
@@ -1297,7 +1297,7 @@
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), WEAR_JACKET)
 				H.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), WEAR_L_HAND)
 
-			cdel(H) //May have to clear up round-end vars and such....
+			qdel(H) //May have to clear up round-end vars and such....
 
 		return
 
@@ -1306,7 +1306,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["makerobot"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -1321,7 +1321,7 @@
 
 		var/mob/M = locate(href_list["makeanimal"])
 
-		if(M.disposed)
+		if(M.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -1336,7 +1336,7 @@
 
 		var/mob/living/carbon/human/H = locate(href_list["togmutate"])
 
-		if(H.disposed)
+		if(H.gc_destroyed)
 			to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 			return
 
@@ -1691,7 +1691,7 @@
 				if(!message_body) return
 				var/sent_by = input(src.owner, "Enter JUST the name you are sending this from", "Outgoing message from Nanotrasen", "") as message|null
 				if(!sent_by) return
-				fax_message = generate_templated_fax(1,"NANOTRASEN CORPORATE AFFAIRS - USS ALMAYER",subject,addressed_to,message_body,sent_by,"Corporate Affairs Director","Nanotrasen")
+				fax_message = generate_templated_fax(1,"NANOTRASEN CORPORATE AFFAIRS - [MAIN_SHIP_NAME]",subject,addressed_to,message_body,sent_by,"Corporate Affairs Director","Nanotrasen")
 		usr << browse(fax_message, "window=clfaxpreview;size=600x600")
 		var/send_choice = input("Send this fax?") in list("Send", "Cancel")
 		if(send_choice == "Cancel") return
@@ -2459,7 +2459,7 @@
 		if(!ckey)
 			var/mob/M = locate(href_list["mob"])
 			if(ismob(M))
-				ckey = M.ckey
+				ckey = M.key
 
 		switch(href_list["notes"])
 			if("show")

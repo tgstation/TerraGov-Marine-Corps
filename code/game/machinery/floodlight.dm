@@ -19,7 +19,7 @@
 		spawn(1)
 			cell = new /obj/item/cell(src)
 
-	Dispose()
+	Destroy()
 		SetLuminosity(0)
 		. = ..()
 
