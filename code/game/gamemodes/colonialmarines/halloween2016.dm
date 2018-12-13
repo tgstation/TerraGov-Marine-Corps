@@ -1053,9 +1053,8 @@
 			domutcheck(H,null,MUTCHK_FORCED)
 			H.update_mutations()
 			horror = H
-			special_role = BE_SURVIVOR|BE_RESPONDER
+			special_role = BE_SURVIVOR
 			recruit_msg = "a horror and kill the living?"
-			//BE_RESPONDER
 			animation_teleport_spooky_in(H)
 		else
 			var/mob/living/carbon/human/H = new(pick(horror_spawns))
@@ -1186,7 +1185,7 @@
 			H.update_body(0)
 			H.update_hair()
 			horror = H
-			special_role = BE_SURVIVOR|BE_RESPONDER
+			special_role = BE_SURVIVOR
 			recruit_msg = "a hero and fight together with the remaining mortal souls?"
 			animation_teleport_magic_in(H)
 

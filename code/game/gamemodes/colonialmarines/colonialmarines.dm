@@ -249,4 +249,5 @@
 	declare_completion_announce_xenomorphs()
 	declare_completion_announce_survivors()
 	declare_completion_announce_medal_awards()
-	return 1
+	end_of_round_deathmatch()
+	return TRUE
