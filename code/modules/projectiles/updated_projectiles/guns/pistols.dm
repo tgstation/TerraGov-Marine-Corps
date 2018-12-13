@@ -36,6 +36,21 @@
 /obj/item/weapon/gun/pistol/unique_action(mob/user)
 	cock(user)
 
+/obj/item/weapon/gun/pistol/has_ammo_counter()
+	return TRUE
+
+/obj/item/weapon/gun/pistol/get_ammo_type()
+	if(!ammo)
+		return list("unknown", "unknown")
+	else
+		return list(ammo.hud_state, ammo.hud_state_empty)
+
+/obj/item/weapon/gun/pistol/get_ammo_count()
+	if(!current_mag)
+		return in_chamber ? 1 : 0
+	else
+		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
+
 //-------------------------------------------------------
 //M4A3 PISTOL
 
@@ -48,8 +63,9 @@
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
 /obj/item/weapon/gun/pistol/m4a3/Initialize()
-	select_gamemode_skin(/obj/item/weapon/gun/pistol/m4a3)
 	. = ..()
+	select_gamemode_skin(/obj/item/weapon/gun/pistol/m4a3)
+	
 		
 /obj/item/weapon/gun/pistol/m4a3/set_gun_config_values()
 	fire_delay = config.mlow_fire_delay
@@ -156,6 +172,7 @@
 	var/skin = pick("","g_","c_")
 	icon_state = skin + icon_state
 	item_state = skin + item_state
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 23, "under_x" = 20, "under_y" = 17, "stock_x" = 20, "stock_y" = 17)
 
 /obj/item/weapon/gun/pistol/heavy/set_gun_config_values()
 	fire_delay = config.max_fire_delay

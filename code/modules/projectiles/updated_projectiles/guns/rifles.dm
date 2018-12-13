@@ -32,6 +32,20 @@
 /obj/item/weapon/gun/rifle/unique_action(mob/user)
 	cock(user)
 
+/obj/item/weapon/gun/rifle/has_ammo_counter()
+	return TRUE
+
+/obj/item/weapon/gun/rifle/get_ammo_type()
+	if(!ammo)
+		return list("unknown", "unknown")
+	else
+		return list(ammo.hud_state, ammo.hud_state_empty)
+
+/obj/item/weapon/gun/rifle/get_ammo_count()
+	if(!current_mag)
+		return in_chamber ? 1 : 0
+	else
+		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 //-------------------------------------------------------
 //M41A PULSE RIFLE
@@ -70,8 +84,8 @@
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
 
 /obj/item/weapon/gun/rifle/m41a/Initialize()
-	select_gamemode_skin(/obj/item/weapon/gun/rifle/m41a)
 	. = ..()
+	select_gamemode_skin(/obj/item/weapon/gun/rifle/m41a)
 	
 /obj/item/weapon/gun/rifle/m41a/set_gun_config_values()
 	fire_delay = config.med_fire_delay

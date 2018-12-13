@@ -1092,7 +1092,7 @@ table tr:first-child th:first-child { border: none;}
 	target_temperature = 90
 
 
-//Almayer version
+//Theseus version
 /obj/machinery/alarm/almayer
 
 

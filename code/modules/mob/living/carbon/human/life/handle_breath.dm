@@ -239,6 +239,6 @@
 			temp_adj = BODYTEMP_HEATING_MAX
 		if(temp_adj < BODYTEMP_COOLING_MAX)
 			temp_adj = BODYTEMP_COOLING_MAX
-		bodytemperature += temp_adj
+		adjust_bodytemperature(temp_adj)
 
 	return 1

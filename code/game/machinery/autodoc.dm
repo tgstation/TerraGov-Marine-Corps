@@ -393,6 +393,7 @@
 						if(!surgery) break
 						S.limb_ref.status &= ~LIMB_BROKEN
 						S.limb_ref.status &= ~LIMB_SPLINTED
+						S.limb_ref.status &= ~LIMB_STABILIZED
 						S.limb_ref.status |= LIMB_REPAIRED
 						S.limb_ref.perma_injury = 0
 						close_incision(H,S.limb_ref)

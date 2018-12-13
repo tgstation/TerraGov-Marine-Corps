@@ -1,39 +1,46 @@
-
-//Xenomorphs, hostile to everyone.
-/datum/emergency_call/xenos
+/datum/emergency_call/xenomorphs
 	name = "Xenomorphs"
 	probability = 10
-	role_needed = BE_ALIEN
-	auto_shuttle_launch = TRUE //because xenos can't use the shuttle console.
+	auto_shuttle_launch = TRUE
+	
 
-/datum/emergency_call/xenos/New()
-	..()
-	arrival_message = "[MAIN_SHIP_NAME], this is USS Vriess respond-- #&...*#&^#.. signal.. oh god, they're in the vent---... Priority Warning: Signal lost."
-	objectives = "For the Empress!"
+/datum/emergency_call/xenomorphs/print_backstory(mob/living/carbon/Xenomorph/X)
+	to_chat(X, "<B>You are Xenomorph from a distant hive.</b>")
+	to_chat(X, "<B>You've been cruising in space for years until a new Queen reached out to you and took over the control of your shuttle.</b>")
+	to_chat(X, "<B>Help the new Queen take over this sector. For the new Hive!</b>")
 
 
-/datum/emergency_call/xenos/spawn_items()
+/datum/emergency_call/xenomorphs/spawn_items()
 	var/turf/drop_spawn	= get_spawn_point(TRUE)
 	if(istype(drop_spawn))
-		new /obj/effect/alien/weeds/node(drop_spawn) //drop some weeds for xeno plasma regen.
+		new /obj/effect/alien/weeds/node(drop_spawn) //Drop some weeds for xeno plasma regen.
 
-/datum/emergency_call/xenos/create_member(datum/mind/M)
+
+/datum/emergency_call/xenomorphs/create_member(datum/mind/M)
 	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
 
-	if(!istype(spawn_loc)) return //Didn't find a useable spawn point.
-	var/chance = rand(0,3)
-	var/mob/living/carbon/Xenomorph/new_xeno
+	if(!istype(spawn_loc)) 
+		return
+
+	var/mob/living/carbon/Xenomorph/new_xeno = new /mob/living/carbon/Xenomorph/Hunter/mature(spawn_loc)
+
+	new_xeno.key = M.key
+
+	if(original)
+		qdel(original)
+
+	print_backstory(new_xeno)
+
 	if(!leader)
 		new_xeno = new /mob/living/carbon/Xenomorph/Ravager(spawn_loc)
 		leader = new_xeno
-	else if(chance == 0)
-		new_xeno = new /mob/living/carbon/Xenomorph/Drone/elder(spawn_loc)
-	else if(chance == 1)
-		new_xeno = new /mob/living/carbon/Xenomorph/Spitter/mature(spawn_loc)
-	else
-		new_xeno = new /mob/living/carbon/Xenomorph/Hunter/mature(spawn_loc)
-	new_xeno.key  = M.key
+		return
 
-	if(original) //Just to be sure.
-		qdel(original)
+	if(prob(35))
+		new_xeno = new /mob/living/carbon/Xenomorph/Drone/elder(spawn_loc)
+		return
+
+
+	if(prob(35))
+		new_xeno = new /mob/living/carbon/Xenomorph/Spitter/mature(spawn_loc)

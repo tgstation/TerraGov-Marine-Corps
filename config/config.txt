@@ -125,7 +125,7 @@ ERT_ADMIN_ONLY
 #PROTECT_ROLES_FROM_ANTAGONIST
 
 ## Comment this out to stop admins being able to choose their personal ooccolor
-ALLOW_ADMIN_OOCCOLOR
+#ALLOW_ADMIN_OOCCOLOR
 
 ## If metadata is supported
 # ALLOW_METADATA
@@ -297,7 +297,7 @@ REQ_CULT_GHOSTWRITER 6
 #DEBUG_PARANOID
 
 ## Automute the OOC channel. OOC mutes itself at round-start and unmutes itself at round-end.
-AUTOOOCMUTE
+#AUTOOOCMUTE
 
 # MAP URLS
 ALMAYER_URL https://affectedarc07.github.io/SS13WebMap/TGMC/Almayer/index.html

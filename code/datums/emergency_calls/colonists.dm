@@ -1,28 +1,28 @@
-//Colonist ERT for admin stuff.
+//Colonist ERT with only basic items for events.
 /datum/emergency_call/colonist
 	name = "Colonists"
-	arrival_message = "Incoming Transmission: 'This is the *static*. We are *static*.'"
-	objectives = "Follow the orders given to you."
-	probability = 0
 
 
-/datum/emergency_call/colonist/create_member(datum/mind/M) //Blank ERT with only basic items.
+/datum/emergency_call/colonist/print_backstory(mob/living/carbon/human/H)
+	to_chat(H, "<B>You are a colonist!</b>")
+
+
+/datum/emergency_call/colonist/create_member(datum/mind/M)
 	var/turf/spawn_loc = get_spawn_point()
 	var/mob/original = M.current
 
-	if(!istype(spawn_loc)) 
-		return //Didn't find a useable spawn point.
+	if(!istype(spawn_loc))
+		return
 
-	var/mob/living/carbon/human/mob = new /mob/living/carbon/human(spawn_loc)
+	var/mob/living/carbon/human/H = new /mob/living/carbon/human(spawn_loc)
 
-	mob.key = M.key
-	mob.client?.change_view(world.view)
-	spawn(0)
-		var/datum/job/J = new /datum/job/other/colonist
-		mob.set_everything(mob, "Colonist")
-		J.generate_equipment(mob)
-		to_chat(mob, "<span class='role_header'>You are a colonist!</span>")
+	H.key = M.key
 
 	if(original)
 		qdel(original)
-	return
+
+	print_backstory(H)
+
+	var/datum/job/J = new /datum/job/other/colonist
+	H.set_everything(H, "Colonist")
+	J.generate_equipment(H)

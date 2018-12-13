@@ -53,7 +53,7 @@
 /datum/reagent/proc/on_mob_life(mob/living/carbon/M, alien)
 	current_cycle++
 	holder.remove_reagent(id, custom_metabolism * M.metabolism_efficiency) //By default it slowly disappears.
-	return 1
+	return TRUE
 
 
 // Called when this reagent is first added to a mob

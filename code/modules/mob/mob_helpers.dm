@@ -603,6 +603,9 @@ var/list/intents = list("help","disarm","grab","hurt")
 /mob/proc/get_eye_protection()
 	return 0
 
+mob/proc/get_standard_bodytemperature()
+	return BODYTEMP_NORMAL
+
 /mob/log_message(message, message_type, color=null, log_globally = TRUE)
 	if(!length(message))
 		stack_trace("Empty message")

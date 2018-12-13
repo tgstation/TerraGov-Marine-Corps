@@ -1361,7 +1361,7 @@
 
 
 
-//------Almayer APCs ------//
+//------Theseus APCs ------//
 
 /obj/machinery/power/apc/almayer
 	cell_type = /obj/item/cell/high

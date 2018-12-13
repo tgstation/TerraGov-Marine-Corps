@@ -1,4 +1,3 @@
-
 /obj/item/weapon/gun/smg
 	reload_sound = 'sound/weapons/gun_rifle_reload.ogg' //Could use a unique sound.
 	cocked_sound = 'sound/weapons/gun_cocked2.ogg'
@@ -26,13 +25,27 @@
 /obj/item/weapon/gun/smg/unique_action(mob/user)
 	cock(user)
 
+/obj/item/weapon/gun/smg/has_ammo_counter()
+	return TRUE
+
+/obj/item/weapon/gun/smg/get_ammo_type()
+	if(!ammo)
+		return list("unknown", "unknown")
+	else
+		return list(ammo.hud_state, ammo.hud_state_empty)
+
+/obj/item/weapon/gun/smg/get_ammo_count()
+	if(!current_mag)
+		return in_chamber ? 1 : 0
+	else
+		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 //-------------------------------------------------------
 //M39 SMG
 
 /obj/item/weapon/gun/smg/m39
 	name = "\improper M39 submachinegun"
-	desc = "Armat Battlefield Systems M-39 submachinegun. Occasionally carried by light-infantry, scouts, engineers or medics. Uses 10x20mm rounds in a 48 round magazine."
+	desc = "Armat Battlefield Systems M-39 submachinegun. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements. Uses 10x20mm rounds in a high capacity magazine."
 	icon_state = "m39"
 	item_state = "m39"
 	current_mag = /obj/item/ammo_magazine/smg/m39
@@ -57,15 +70,15 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 
 /obj/item/weapon/gun/smg/m39/Initialize()
-	select_gamemode_skin(/obj/item/weapon/gun/smg/m39, list(MAP_ICE_COLONY = "m39b2") )
 	. = ..()
+	select_gamemode_skin(/obj/item/weapon/gun/smg/m39, list(MAP_ICE_COLONY = "m39b2") )
 
 /obj/item/weapon/gun/smg/m39/set_gun_config_values()
 	fire_delay = config.low_fire_delay
 	burst_delay = config.min_fire_delay
 	burst_amount = config.med_burst_value
 	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.mlow_hit_accuracy_mult
 	scatter = config.low_scatter_value
 	scatter_unwielded = config.high_scatter_value
 	damage_mult = config.base_hit_damage_mult

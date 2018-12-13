@@ -354,7 +354,7 @@
 		if(ignore_threshold || src.health*100/initial(src.health)<src.internal_damage_threshold)
 			var/obj/item/mecha_parts/mecha_equipment/destr = safepick(equipment)
 			if(destr)
-				destr.destroy()
+				destr.destroy_mecha()
 	return
 
 /obj/mecha/proc/hasInternalDamage(int_dam_flag=null)
@@ -396,7 +396,7 @@
 	if(src.health > 0)
 		src.spark_system.start()
 	else
-		src.destroy()
+		src.destroy_mecha()
 	return
 
 /obj/mecha/attack_alien(mob/living/carbon/Xenomorph/M)
@@ -516,7 +516,7 @@
 	//Proj.on_hit(src)
 	return
 
-/obj/mecha/proc/destroy()
+/obj/mecha/proc/destroy_mecha()
 	spawn()
 		go_out()
 		var/turf/T = get_turf(src)
@@ -546,7 +546,7 @@
 							E.reliability = round(rand(E.reliability/3,E.reliability))
 						else
 							E.forceMove(T)
-							E.destroy()
+							E.destroy_mecha()
 					if(cell)
 						WR.crowbar_salvage += cell
 						cell.forceMove(WR)
@@ -559,7 +559,7 @@
 				else
 					for(var/obj/item/mecha_parts/mecha_equipment/E in equipment)
 						E.forceMove(T)
-						E.destroy()
+						E.destroy_mecha()
 		spawn(0)
 			qdel(src)
 	return
@@ -571,16 +571,16 @@
 		src.log_append_to_last("Armor saved, changing severity to [severity].")
 	switch(severity)
 		if(1.0)
-			src.destroy()
+			src.destroy_mecha()
 		if(2.0)
 			if (prob(30))
-				src.destroy()
+				src.destroy_mecha()
 			else
 				src.take_damage(initial(src.health)/2)
 				src.check_for_internal_damage(list(MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),1)
 		if(3.0)
 			if (prob(5))
-				src.destroy()
+				src.destroy_mecha()
 			else
 				src.take_damage(initial(src.health)/5)
 				src.check_for_internal_damage(list(MECHA_INT_CONTROL_LOST,MECHA_INT_SHORT_CIRCUIT),1)

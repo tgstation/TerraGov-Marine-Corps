@@ -1,7 +1,6 @@
 // PRESETS
 
 // EMP
-
 /obj/machinery/camera/emp_proof/New()
 	..()
 	upgradeEmpProof()
@@ -87,7 +86,7 @@
 						number = max(number, C.number+1)
 			c_tag = "[A.name] #[number]"
 
-//cameras installed inside the dropships, accessible via both cockpit monitor and Almayer camera computers
+//cameras installed inside the dropships, accessible via both cockpit monitor and Theseus camera computers
 /obj/machinery/camera/autoname/almayer/dropship_one
 	network = list("almayer", "dropship1")
 

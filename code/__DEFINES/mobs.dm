@@ -200,7 +200,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define LIMB_MUTATED 64 //limb is deformed by mutations
 #define LIMB_AMPUTATED 128 //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
 #define LIMB_REPAIRED 256 //we just repaired the bone, stops the gelling after setting
-
+#define LIMB_STABILIZED (1<<9) //certain suits will support a broken limb while worn such as the b18
 
 /////////////////MOVE DEFINES//////////////////////
 #define MOVE_INTENT_WALK        1
@@ -500,6 +500,14 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CARRIER_SPAWN_HUGGER_COST 100
 #define CARRIER_HUGGER_THROW_SPEED 2
 #define CARRIER_HUGGER_THROW_DISTANCE 5
+
+//Warrior defines
+
+#define WARRIOR_LUNGE_COOLDOWN 10 SECONDS
+#define WARRIOR_PUNCH_COOLDOWN 6 SECONDS
+#define WARRIOR_FLING_COOLDOWN 6 SECONDS
+#define WARRIOR_AGILITY_COOLDOWN 0.5 SECONDS
+
 
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1

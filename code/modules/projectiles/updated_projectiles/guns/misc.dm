@@ -16,65 +16,63 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
 
-	examine(mob/user)
-		..()
-		fire_delay = config.low_fire_delay*3
-		if(num_flares)
-			to_chat(user, "<span class='warning'>It has a flare loaded!</span>")
+/obj/item/weapon/gun/flare/examine(mob/user)
+	. = ..()
+	fire_delay = config.low_fire_delay*3
+	if(num_flares)
+		to_chat(user, "<span class='warning'>It has a flare loaded!</span>")
 
+/obj/item/weapon/gun/flare/update_icon()
+	if(num_flares)
+		icon_state = base_gun_icon
+	else
+		icon_state = base_gun_icon + "_e"
+
+/obj/item/weapon/gun/flare/load_into_chamber()
+	if(num_flares)
+		in_chamber = create_bullet(ammo)
+		in_chamber.SetLuminosity(4)
+		num_flares--
+		return in_chamber
+
+/obj/item/weapon/gun/flare/reload_into_chamber()
 	update_icon()
-		if(num_flares)
-			icon_state = base_gun_icon
-		else
-			icon_state = base_gun_icon + "_e"
+	return TRUE
 
-	load_into_chamber()
-		if(num_flares)
-			in_chamber = create_bullet(ammo)
-			in_chamber.SetLuminosity(4)
-			num_flares--
-			return in_chamber
+/obj/item/weapon/gun/flare/delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
+	qdel(projectile_to_fire)
+	if(refund) 
+		num_flares++
+	return TRUE
 
-	reload_into_chamber()
-		update_icon()
-		return 1
-
-	delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
-		qdel(projectile_to_fire)
-		if(refund) num_flares++
-		return 1
-
-	attackby(obj/item/I, mob/user)
-		if(istype(I,/obj/item/device/flashlight/flare))
-			var/obj/item/device/flashlight/flare/flare = I
-			if(num_flares >= max_flares)
-				to_chat(user, "It's already full.")
-				return
-
-			if(flare.on)
-				to_chat(user, "<span class='warning'>[flare] is already active. Can't load it now!</span>")
-				return
-
-			num_flares++
-			user.temp_drop_inv_item(flare)
-			sleep(-1)
-			qdel(flare)
-			to_chat(user, "<span class='notice'>You insert the flare.</span>")
-			update_icon()
+/obj/item/weapon/gun/flare/attackby(obj/item/I, mob/user)
+	if(istype(I,/obj/item/device/flashlight/flare))
+		var/obj/item/device/flashlight/flare/flare = I
+		if(num_flares >= max_flares)
+			to_chat(user, "It's already full.")
 			return
+		num_flares++
+		user.temp_drop_inv_item(flare)
+		sleep(-1)
+		qdel(flare)
+		to_chat(user, "<span class='notice'>You insert the flare.</span>")
+		update_icon()
+		return
 
-		return ..()
+	return ..()
 
-	unload(mob/user)
-		if(num_flares)
-			var/obj/item/device/flashlight/flare/new_flare = new()
-			if(user) user.put_in_hands(new_flare)
-			else new_flare.loc = get_turf(src)
-			num_flares--
-			if(user) to_chat(user, "<span class='notice'>You unload a flare from [src].</span>")
-			update_icon()
-		else
-			to_chat(user, "<span class='warning'>It's empty!</span>")
+/obj/item/weapon/gun/flare/unload(mob/user)
+	if(num_flares)
+		var/obj/item/device/flashlight/flare/new_flare = new()
+		if(user) 
+			user.put_in_hands(new_flare)
+		else 
+			new_flare.loc = get_turf(src)
+		num_flares--
+		to_chat(user, "<span class='notice'>You unload a flare from [src].</span>")
+		update_icon()
+	else
+		to_chat(user, "<span class='warning'>It's empty!</span>")
 
 //-------------------------------------------------------
 //This gun is very powerful, but also has a kick.
@@ -112,13 +110,28 @@
 /obj/item/weapon/gun/minigun/toggle_burst()
 	to_chat(usr, "<span class='warning'>This weapon can only fire in bursts!</span>")
 
+/obj/item/weapon/gun/minigun/has_ammo_counter()
+	return TRUE
+
+/obj/item/weapon/gun/minigun/get_ammo_type()
+	if(!ammo)
+		return list("unknown", "unknown")
+	else
+		return list(ammo.hud_state, ammo.hud_state_empty)
+
+/obj/item/weapon/gun/minigun/get_ammo_count()
+	if(!current_mag)
+		return in_chamber ? 1 : 0
+	else
+		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
+
 //-------------------------------------------------------
 //Toy rocket launcher.
 
-/obj/item/weapon/gun/launcher/rocket/nobugs //Fires dummy rockets, like a toy gun
-	name = "\improper BUG ROCKER rocket launcher"
-	desc = "Where did this come from? <b>NO BUGS</b>"
-	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket/nobugs
+/obj/item/weapon/gun/launcher/rocket/toy //Fires dummy rockets, like a toy gun
+	name = "\improper toy rocket launcher"
+	desc = "Where did this come from?"
+	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket/toy
 	gun_skill_category = GUN_SKILL_FIREARMS
 
 
@@ -197,16 +210,13 @@
 
 /obj/item/weapon/gun/launcher/spike/reload_into_chamber()
 	update_icon()
-	return 1
+	return TRUE
 
 /obj/item/weapon/gun/launcher/spike/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
-	if(refund) spikes++
-	return 1
-
-
-
-
+	if(refund) 
+		spikes++
+	return TRUE
 
 //Syringe Gun
 
@@ -340,5 +350,5 @@
 
 /obj/effect/syringe_gun_dummy/Initialize()
 	create_reagents(15)
-	. = ..()
+	return ..()
 

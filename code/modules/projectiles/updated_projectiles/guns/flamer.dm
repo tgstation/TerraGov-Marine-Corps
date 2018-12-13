@@ -78,6 +78,8 @@
 		click_empty(user)
 	else
 		unleash_flame(target, user)
+		var/obj/screen/ammo/A = user.hud_used.ammo
+		A.update_hud(user)
 
 /obj/item/weapon/gun/flamer/reload(mob/user, obj/item/ammo_magazine/magazine)
 	if(!magazine || !istype(magazine))
@@ -142,14 +144,14 @@
 	var/burnlevel
 	var/burntime
 	var/fire_color = "red"
-	switch(current_mag.caliber)
-		if("UT-Napthal Fuel") //This isn't actually Napalm actually
+	switch(ammo.name)
+		if("flame")
 			burnlevel = 24
 			burntime = 17
 			max_range = 6
 
 		// Area denial, light damage, large AOE, long burntime
-		if("Napalm B")
+		if("green flame")
 			burnlevel = 10
 			burntime = 50
 			max_range = 4
@@ -157,15 +159,12 @@
 			triangular_flame(target, user, burntime, burnlevel)
 			return
 
-		if("Napalm X") //Probably can end up as a spec fuel or DS flamer fuel. Also this was the original fueltype, the madman i am.
+		if("blue flame") //Probably can end up as a spec fuel or DS flamer fuel. Also this was the original fueltype, the madman i am.
 			burnlevel = 45
 			burntime = 40
 			max_range = 7
 			fire_color = "blue"
-		if("Fuel") //This is welding fuel and thus pretty weak. Not ment to be exactly used for flamers either.
-			burnlevel = 12
-			burntime = 10
-			max_range = 5
+
 		else
 			return
 
@@ -318,6 +317,20 @@
 
 		distance++
 
+/obj/item/weapon/gun/flamer/has_ammo_counter()
+	return TRUE
+
+/obj/item/weapon/gun/flamer/get_ammo_type()
+	if(!ammo)
+		return list("unknown", "unknown")
+	else
+		return list(ammo.hud_state, ammo.hud_state_empty)
+
+/obj/item/weapon/gun/flamer/get_ammo_count()
+	if(!current_mag)
+		return 0
+	else
+		return current_mag.current_rounds
 
 
 /obj/item/weapon/gun/flamer/M240T

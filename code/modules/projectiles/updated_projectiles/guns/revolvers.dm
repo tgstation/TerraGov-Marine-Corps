@@ -39,7 +39,7 @@
 
 
 /obj/item/weapon/gun/revolver/examine(mob/user)
-	..()
+	. = ..()
 	to_chat(user, "[current_mag.chamber_closed? "It's closed.": "It's open with [current_mag.current_rounds] round\s loaded."]")
 
 /obj/item/weapon/gun/revolver/update_icon() //Special snowflake update icon.
@@ -49,7 +49,7 @@
 	if(istype(P, /obj/item/tool/screwdriver))
 		to_chat(user, "[catchworking? "You adjust the cylinder lock to allow the cylinder to be spun.": "You adjust the cylinder lock to the correct depth."]")
 		catchworking = !catchworking
-	..()
+	return ..()
 
 /obj/item/weapon/gun/revolver/proc/rotate_cylinder(mob/user) //Cylinder moves backward.
 	current_mag.chamber_position = current_mag.chamber_position == 1 ? current_mag.max_rounds : current_mag.chamber_position - 1
@@ -77,7 +77,8 @@
 //The cylinder is always emptied out before a reload takes place.
 /obj/item/weapon/gun/revolver/proc/add_to_cylinder(mob/user) //Bullets are added forward.
 	//First we're going to try and replace the current bullet.
-	if(!current_mag.current_rounds) current_mag.chamber_contents[current_mag.chamber_position] = "bullet"
+	if(!current_mag.current_rounds) 
+		current_mag.chamber_contents[current_mag.chamber_position] = "bullet"
 	else//Failing that, we'll try to replace the next bullet in line.
 		if( (current_mag.chamber_position + 1) > current_mag.max_rounds)
 			current_mag.chamber_contents[1] = "bullet"
@@ -272,6 +273,19 @@
 		else user.visible_message("<span class='info'><b>[user]</b> fumbles with [src] like a huge idiot!</span>")
 
 	recent_trick = world.time //Turn on the delay for the next trick.
+
+
+/obj/item/weapon/gun/revolver/has_ammo_counter()
+	return TRUE
+
+/obj/item/weapon/gun/revolver/get_ammo_type()
+	if(!ammo)
+		return list("unknown", "unknown")
+	else
+		return list(ammo.hud_state, ammo.hud_state_empty)
+
+/obj/item/weapon/gun/revolver/get_ammo_count()
+	return current_mag ? current_mag.current_rounds : 0
 
 //-------------------------------------------------------
 //M44 MAGNUM REVOLVER //Not actually cannon, but close enough.

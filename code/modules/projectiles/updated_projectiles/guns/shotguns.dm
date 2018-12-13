@@ -37,7 +37,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = config.high_recoil_value
 
 /obj/item/weapon/gun/shotgun/update_icon() //Shotguns do not currently have empty states, as they look exactly the same. Other than double barrel.
-		return
+	return
 
 /obj/item/weapon/gun/shotgun/proc/replace_tube(number_to_replace)
 	current_mag.chamber_contents = list()
@@ -54,8 +54,9 @@ can cause issues with ammo types getting mixed up during the burst.
 		update_icon()	//This is not needed for now. Maybe we'll have loaded sprites at some point, but I doubt it. Also doesn't play well with double barrel.
 		ready_in_chamber()
 		cock_gun(user)
-	if(user) playsound(user, reload_sound, 25, 1)
-	return 1
+	if(user) 
+		playsound(user, reload_sound, 25, 1)
+	return TRUE
 
 /obj/item/weapon/gun/shotgun/proc/empty_chamber(mob/user)
 	if(current_mag.current_rounds <= 0)
@@ -96,7 +97,8 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun
 	reload(mob/user, var/obj/item/ammo_magazine/magazine)
-		if(flags_gun_features & GUN_BURST_FIRING) return
+		if(flags_gun_features & GUN_BURST_FIRING) 
+			return
 
 		if(!magazine || !istype(magazine,/obj/item/ammo_magazine/handful)) //Can only reload with handfuls.
 			to_chat(user, "<span class='warning'>You can't use that to reload!</span>")
@@ -114,7 +116,8 @@ can cause issues with ammo types getting mixed up during the burst.
 			add_to_tube(user,mag_caliber) //This will check the other conditions.
 
 	unload(mob/user)
-		if(flags_gun_features & GUN_BURST_FIRING) return
+		if(flags_gun_features & GUN_BURST_FIRING) 
+			return
 		empty_chamber(user)
 
 /obj/item/weapon/gun/shotgun/proc/ready_shotgun_tube()
@@ -142,7 +145,22 @@ can cause issues with ammo types getting mixed up during the burst.
 		if(!current_mag.current_rounds && !in_chamber) //No rounds, nothing chambered.
 			update_icon()
 
-	return 1
+	return TRUE
+
+/obj/item/weapon/gun/shotgun/has_ammo_counter()
+	return TRUE
+
+/obj/item/weapon/gun/shotgun/get_ammo_type()
+	if(!ammo)
+		return list("unknown", "unknown")
+	else
+		return list(ammo.hud_state, ammo.hud_state_empty)
+
+/obj/item/weapon/gun/shotgun/get_ammo_count()
+	if(!current_mag)
+		return in_chamber ? 1 : 0
+	else
+		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 //-------------------------------------------------------
 //GENERIC MERC SHOTGUN //Not really based on anything.
@@ -180,8 +198,9 @@ can cause issues with ammo types getting mixed up during the burst.
 
 
 /obj/item/weapon/gun/shotgun/merc/examine(mob/user)
-	..()
-	if(in_chamber) to_chat(user, "It has a chambered round.")
+	. = ..()
+	if(in_chamber) 
+		to_chat(user, "It has a chambered round.")
 
 //-------------------------------------------------------
 //TACTICAL SHOTGUN
@@ -229,8 +248,9 @@ can cause issues with ammo types getting mixed up during the burst.
 
 
 /obj/item/weapon/gun/shotgun/combat/examine(mob/user)
-	..()
-	if(in_chamber) to_chat(user, "It has a chambered round.")
+	. = ..()
+	if(in_chamber) 
+		to_chat(user, "It has a chambered round.")
 
 //-------------------------------------------------------
 //DOUBLE SHOTTY
@@ -254,7 +274,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
 
 /obj/item/weapon/gun/shotgun/double/New()
-	..()
+	. = ..()
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 21,"rail_x" = 15, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
 /obj/item/weapon/gun/shotgun/double/set_gun_config_values()
@@ -268,7 +288,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = config.high_recoil_value
 
 /obj/item/weapon/gun/shotgun/double/examine(mob/user)
-	..()
+	. = ..()
 	if(current_mag.chamber_closed)
 		to_chat(user, "It's closed.")
 	else
@@ -282,14 +302,15 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_o"
 
 /obj/item/weapon/gun/shotgun/double/check_chamber_position()
-	if(current_mag.chamber_closed) return
-	return 1
+	if(current_mag.chamber_closed) 
+		return
+	return TRUE
 
 /obj/item/weapon/gun/shotgun/double/add_to_tube(mob/user,selection) //Load it on the go, nothing chambered.
 	current_mag.chamber_position++
 	current_mag.chamber_contents[current_mag.chamber_position] = selection
 	playsound(user, reload_sound, 25, 1)
-	return 1
+	return TRUE
 
 /obj/item/weapon/gun/shotgun/double/able_to_fire(mob/user)
 	. = ..()
@@ -323,20 +344,21 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/double/make_casing()
 	if(current_mag.used_casings)
-		..()
+		. = ..()
 		current_mag.used_casings = 0
 
 /obj/item/weapon/gun/shotgun/double/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
-	if(refund) current_mag.current_rounds++
-	return 1
+	if(refund) 
+		current_mag.current_rounds++
+	return TRUE
 
 /obj/item/weapon/gun/shotgun/double/reload_into_chamber(mob/user)
 	in_chamber = null
 	current_mag.chamber_contents[current_mag.chamber_position] = "empty"
 	current_mag.chamber_position--
 	current_mag.used_casings++
-	return 1
+	return TRUE
 
 
 /obj/item/weapon/gun/shotgun/double/sawn
@@ -349,7 +371,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
 
 /obj/item/weapon/gun/shotgun/double/sawn/New()
-	..()
+	. = ..()
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 18, "under_y" = 16, "stock_x" = 18, "stock_y" = 16)
 
 /obj/item/weapon/gun/shotgun/double/sawn/set_gun_config_values()
@@ -396,8 +418,8 @@ can cause issues with ammo types getting mixed up during the burst.
 						/obj/item/attachable/stock/shotgun)
 
 /obj/item/weapon/gun/shotgun/pump/Initialize()
-	select_gamemode_skin(/obj/item/weapon/gun/shotgun/pump)
 	. = ..()
+	select_gamemode_skin(/obj/item/weapon/gun/shotgun/pump)
 	pump_delay = config.max_fire_delay*2
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 10, "rail_y" = 21, "under_x" = 20, "under_y" = 14, "stock_x" = 20, "stock_y" = 14)
 
@@ -422,7 +444,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	current_mag.chamber_position++
 	current_mag.chamber_contents[current_mag.chamber_position] = selection
 	playsound(user, reload_sound, 25, 1)
-	return 1
+	return TRUE
 	/*
 	Moves the ready_in_chamber to it's own proc.
 	If the Fire() cycle doesn't find a chambered round with no active attachable, it will return null.
@@ -470,7 +492,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		if(!current_mag.current_rounds && !in_chamber)
 			update_icon()//No rounds, nothing chambered.
 
-	return 1
+	return TRUE
 
 /obj/item/weapon/gun/shotgun/pump/unload(mob/user)
 	if(pump_lock)

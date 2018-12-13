@@ -2,7 +2,7 @@
 
 
 
-//-----USS Almayer Walls ---//
+//-----TGS Theseus Walls ---//
 
 /turf/closed/wall/almayer
 	name = "hull"
@@ -494,8 +494,6 @@
 		ChangeTurf(text2path(oldTurf), TRUE)
 	else
 		ChangeTurf(/turf/open/floor/plating, TRUE)
-	//cdel(src) //ChangeTurf is called by Destroy()
-
 
 
 /turf/closed/wall/resin/ChangeTurf(newtype)
