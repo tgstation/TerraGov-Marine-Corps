@@ -57,7 +57,7 @@
 		update_icon()
 
 /obj/item/device/m56d_gun/examine(mob/user as mob) //Let us see how much ammo we got in this thing.
-	..()
+	. = ..()
 	if(!ishuman(user))
 		return
 	if(rounds)
