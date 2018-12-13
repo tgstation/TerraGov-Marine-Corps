@@ -49,11 +49,11 @@
 	latejoin_larva_drop		= 0
 	flags_round_type		= MODE_PREDATOR|MODE_NO_LATEJOIN
 	role_instruction		= 1
-	roles_for_mode = list(/datum/job/marine/standard/equipped,
-							/datum/job/marine/medic/equipped,
-							/datum/job/marine/engineer/equipped,
-							/datum/job/marine/specialist/equipped,
-							/datum/job/marine/leader/equipped,
+	roles_for_mode = list(/datum/job/marine/standard,
+							/datum/job/marine/medic,
+							/datum/job/marine/engineer,
+							/datum/job/marine/specialist,
+							/datum/job/marine/leader,
 							/datum/job/civilian/liaison/nightmare,
 							/datum/job/command/commander/nightmare
 							)
