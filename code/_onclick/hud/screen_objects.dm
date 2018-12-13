@@ -617,3 +617,79 @@
 
 	user.hud_used.hidden_inventory_update()
 	return TRUE
+
+/obj/screen/ammo
+	name = "ammo"
+	icon = 'icons/mob/ammoHUD.dmi'
+	icon_state = "ammo"
+	screen_loc = ui_ammo
+	var/warned = FALSE
+
+/obj/screen/ammo/proc/add_hud(var/mob/user)
+	if(!user?.client)
+		return
+
+	var/obj/item/weapon/gun/G = user.get_active_hand()
+
+	if(!G || !G.has_ammo_counter() || !G.hud_enabled)
+		return
+
+	user.client.screen += src
+
+/obj/screen/ammo/proc/remove_hud(var/mob/user)
+	user?.client?.screen -= src
+
+/obj/screen/ammo/proc/update_hud(var/mob/user)
+	if(!user?.client?.screen.Find(src))
+		return
+
+	var/obj/item/weapon/gun/G = user.get_active_hand()
+
+	if(!G || !istype(G) || !G.has_ammo_counter() || !G.hud_enabled || !G.get_ammo_type() || isnull(G.get_ammo_count()))
+		remove_hud()
+		return
+
+	var/list/ammo_type = G.get_ammo_type()
+	var/rounds = G.get_ammo_count()
+
+	var/hud_state = ammo_type[1]
+	var/hud_state_empty = ammo_type[2]
+
+	overlays.Cut()
+
+	var/empty = image('icons/mob/ammoHUD.dmi', src, "[hud_state_empty]")
+
+	if(rounds == 0)
+		if(warned)
+			overlays += empty
+		else
+			warned = TRUE
+			var/obj/screen/ammo/F = new /obj/screen/ammo(src)
+			F.icon_state = "frame"
+			user.client.screen += F
+			flick("[hud_state_empty]_flash", F)
+			spawn(20)
+				user.client.screen -= F
+				qdel(F)
+				overlays += empty
+	else
+		warned = FALSE
+		overlays += image('icons/mob/ammoHUD.dmi', src, "[hud_state]")
+
+	rounds = num2text(rounds)
+
+	//Handle the amount of rounds
+	switch(length(rounds))
+		if(1)
+			overlays += image('icons/mob/ammoHUD.dmi', src, "o[rounds[1]]")
+		if(2)
+			overlays += image('icons/mob/ammoHUD.dmi', src, "o[rounds[2]]")
+			overlays += image('icons/mob/ammoHUD.dmi', src, "t[rounds[1]]")
+		if(3)
+			overlays += image('icons/mob/ammoHUD.dmi', src, "o[rounds[3]]")
+			overlays += image('icons/mob/ammoHUD.dmi', src, "t[rounds[2]]")
+			overlays += image('icons/mob/ammoHUD.dmi', src, "h[rounds[1]]")
+		else //"0" is still length 1 so this means it's over 999
+			overlays += image('icons/mob/ammoHUD.dmi', src, "o9")
+			overlays += image('icons/mob/ammoHUD.dmi', src, "t9")
+			overlays += image('icons/mob/ammoHUD.dmi', src, "h9")

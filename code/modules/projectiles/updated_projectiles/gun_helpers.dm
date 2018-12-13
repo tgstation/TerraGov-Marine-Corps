@@ -750,10 +750,36 @@ should be alright.
 	rail?.activate_attachment(src, usr)
 
 
+/obj/item/weapon/gun/verb/toggle_ammo_hud()
+	set category = "Weapons"
+	set name = "Toggle Ammo HUD"
+	set desc = "Toggles the Ammo HUD for this weapon."
+
+	if(!usr)
+		return
+
+	hud_enabled = !hud_enabled
+	var/obj/screen/ammo/A = usr.hud_used.ammo
+	hud_enabled ? A.add_hud(usr) : A.remove_hud(usr)
+	A.update_hud(usr)
+	to_chat(usr, "<span class='notice'>[hud_enabled ? "You enable the Ammo HUD for this weapon." : "You disable the Ammo HUD for this weapon."]</span>")
+
+
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
 	if(slot != WEAR_L_HAND && slot != WEAR_R_HAND)
 		return FALSE
 	return TRUE
+
+
+/obj/item/weapon/gun/proc/has_ammo_counter()
+	return FALSE
+
+/obj/item/weapon/gun/proc/get_ammo_type()
+	return FALSE
+
+/obj/item/weapon/gun/proc/get_ammo_count()
+	return FALSE
+
 
 
 //----------------------------------------------------------

@@ -82,6 +82,8 @@
 #define ui_health "EAST-1:28,7:15"
 #define ui_internal "EAST-1:28,8:17"
 #define ui_sl_locator "EAST-1:28,9:13"
+#define ui_ammo "EAST-1:28,10:14"
+
 									//borgs
 #define ui_borg_health "EAST-1:28,6:13" //borgs have the health display where humans have the bodytemp indicator.
 #define ui_borg_temp "EAST-1:28,10:21"	//borgs have the bodytemp display where humans have the pressure indicator.

@@ -87,6 +87,8 @@
 
 	var/base_gun_icon //the default gun icon_state. change to reskin the gun
 
+	var/hud_enabled = TRUE //If the Ammo HUD is enabled for this gun or not.
+
 
 //----------------------------------------------------------
 				//				    \\
@@ -95,23 +97,23 @@
 				//					\\
 //----------------------------------------------------------
 
-	New(loc, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
-		..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
-		base_gun_icon = icon_state
-		attachable_overlays = list("muzzle", "rail", "under", "stock", "mag", "special")
-		if(current_mag)
-			if(spawn_empty && !(flags_gun_features & GUN_INTERNAL_MAG)) //Internal mags will still spawn, but they won't be filled.
-				current_mag = null
-				update_icon()
-			else
-				current_mag = new current_mag(src, spawn_empty ? 1 : 0)
-				ammo = current_mag.default_ammo ? ammo_list[current_mag.default_ammo] : ammo_list[/datum/ammo/bullet] //Latter should never happen, adding as a precaution.
+/obj/item/weapon/gun/New(loc, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
+	. = ..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
+	base_gun_icon = icon_state
+	attachable_overlays = list("muzzle", "rail", "under", "stock", "mag", "special")
+	if(current_mag)
+		if(spawn_empty && !(flags_gun_features & GUN_INTERNAL_MAG)) //Internal mags will still spawn, but they won't be filled.
+			current_mag = null
+			update_icon()
 		else
-			ammo = ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
-		set_gun_config_values()
-		update_force_list() //This gives the gun some unique verbs for attacking.
+			current_mag = new current_mag(src, spawn_empty ? 1 : 0)
+			ammo = current_mag.default_ammo ? ammo_list[current_mag.default_ammo] : ammo_list[/datum/ammo/bullet] //Latter should never happen, adding as a precaution.
+	else
+		ammo = ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
+	set_gun_config_values()
+	update_force_list() //This gives the gun some unique verbs for attacking.
 
-		handle_starting_attachment()
+	handle_starting_attachment()
 
 
 //Called by the gun's New(), set the gun variables' values.
@@ -263,6 +265,9 @@
 					skill_value = user.mind.cm_skills.spec_weapons
 			if(skill_value)
 				wield_time -= 2*skill_value
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.add_hud(user)
+	A.update_hud(user)
 	do_wield(user, wield_time)
 	return TRUE
 
@@ -277,6 +282,10 @@
 	item_state  = copytext(item_state, 1, -2)
 	update_slowdown()
 	remove_offhand(user)
+
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.remove_hud(user)
+
 	return TRUE
 	
 /obj/item/weapon/gun/proc/update_slowdown()
@@ -694,6 +703,9 @@ and you're good to go.
 
 	flags_gun_features &= ~GUN_BURST_FIRING // We always want to turn off bursting when we're done.
 
+	var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
+	A.update_hud(user)
+
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
 	if(flags_gun_features & GUN_CAN_POINTBLANK) // If it can't point blank, you can't suicide and such.
 		if(M == user && user.zone_selected == "mouth")
@@ -862,6 +874,8 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/click_empty(mob/user)
 	if(user)
+		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
+		A.update_hud(user)
 		to_chat(user, "<span class='warning'><b>*click*</b></span>")
 		playsound(user, 'sound/weapons/gun_empty.ogg', 25, 1, 5) //5 tile range
 	else
