@@ -155,7 +155,7 @@
 
 
 
-/mob/living/carbon/human/Dispose()
+/mob/living/carbon/human/Destroy()
 	assigned_squad?.clean_marine_from_squad(src,FALSE)
 	remove_from_all_mob_huds()
 	return ..()
@@ -600,23 +600,15 @@
 				log_combat(usr, src, "attempted to remove splints")
 
 				if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
-					var/can_reach_splints = 1
-					if(wear_suit && istype(wear_suit,/obj/item/clothing/suit))
-						var/obj/item/clothing/suit/suit = wear_suit
-						if(suit.supporting_limbs?.len)
-							to_chat(usr, "You cannot remove the splints, [src]'s [suit] is supporting some of the breaks.")
-							can_reach_splints = 0
-
-					if(can_reach_splints)
-						var/limbcount = 0
-						for(var/organ in list("l_leg","r_leg","l_arm","r_arm","r_hand","l_hand","r_foot","l_foot","chest","head","groin"))
-							var/datum/limb/o = get_limb(organ)
-							if (o && o.status & LIMB_SPLINTED)
-								o.status &= ~LIMB_SPLINTED
-								limbcount++
-						if(limbcount)
-							var/obj/item/W = new /obj/item/stack/medical/splint(loc, limbcount)
-							W.add_fingerprint(usr)
+					var/limbcount = 0
+					for(var/organ in list("l_leg","r_leg","l_arm","r_arm","r_hand","l_hand","r_foot","l_foot","chest","head","groin"))
+						var/datum/limb/o = get_limb(organ)
+						if (o && o.status & LIMB_SPLINTED)
+							o.status &= ~LIMB_SPLINTED
+							limbcount++
+					if(limbcount)
+						var/obj/item/W = new /obj/item/stack/medical/splint(loc, limbcount)
+						W.add_fingerprint(usr)
 
 	if(href_list["tie"])
 		if(!usr.action_busy)
@@ -1082,7 +1074,7 @@
 	for(var/x in subtypesof(/datum/sprite_accessory/hair))
 		var/datum/sprite_accessory/hair/H = new x // create new hair datum based on type x
 		hairs.Add(H.name) // add hair name to hairs
-		cdel(H) // delete the hair after it's all done
+		qdel(H) // delete the hair after it's all done
 
 	var/new_style = input("Please select hair style", "Character Generation",h_style)  as null|anything in hairs
 
@@ -1096,7 +1088,7 @@
 	for(var/x in subtypesof(/datum/sprite_accessory/facial_hair))
 		var/datum/sprite_accessory/facial_hair/H = new x
 		fhairs.Add(H.name)
-		cdel(H)
+		qdel(H)
 
 	new_style = input("Please select facial style", "Character Generation",f_style)  as null|anything in fhairs
 
@@ -1218,7 +1210,7 @@
 				if(H.brainmob.real_name == src.real_name)
 					if(H.brainmob.mind)
 						H.brainmob.mind.transfer_to(src)
-						cdel(H)
+						qdel(H)
 
 	for(var/datum/internal_organ/I in internal_organs)
 		I.damage = 0
@@ -1256,7 +1248,7 @@
 /mob/living/carbon/human/proc/handle_embedded_objects()
 
 	for(var/datum/limb/organ in limbs)
-		if(organ.status & LIMB_SPLINTED || (m_intent == MOVE_INTENT_WALK && !pulledby) ) //Splints prevent movement. Walking stops shrapnel from harming organs unless being pulled.
+		if(organ.status & LIMB_SPLINTED || organ.status & LIMB_STABILIZED || (m_intent == MOVE_INTENT_WALK && !pulledby) ) //Splints prevent movement. Walking stops shrapnel from harming organs unless being pulled.
 			continue
 		for(var/obj/item/O in organ.implants)
 			if(!istype(O,/obj/item/implant) && prob(4)) //Moving with things stuck in you could be bad.
@@ -1594,3 +1586,8 @@
 	if(istype(glasses, /obj/item/clothing/glasses))
 		C = glasses
 		. += C.tint
+
+
+/mob/living/carbon/human/a_select_zone(input as text, screen_num as null|num)
+	screen_num = 21
+	return ..()

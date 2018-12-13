@@ -37,7 +37,7 @@ var/global/respawntime = 15
 /proc/msg_admin_ff(var/text)
 	log_attack(text) //Do everything normally BUT IN GREEN SO THEY KNOW
 	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ATTACK:</span> <font color=#00ff00><b>[text]</b></font></span>" //I used <font> because I never learned html correctly, fix this if you want
-		
+
 	for(var/client/C in admins)
 		if(R_MOD & C.holder.rights)
 			if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) && !((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
@@ -58,7 +58,7 @@ var/global/respawntime = 15
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
-	if(M.disposed)
+	if(M.gc_destroyed)
 		to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 		return
 
@@ -222,16 +222,19 @@ var/global/respawntime = 15
 /datum/admins/proc/player_notes_list()
 	set category = "Admin"
 	set name = "Player Notes List"
-	if (!istype(src,/datum/admins))
+
+	if(!istype(src,/datum/admins))
 		src = usr.client.holder
-	if (!istype(src,/datum/admins))
+
+	if(!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
+
 	PlayerNotesPage(1)
 
 /datum/admins/proc/PlayerNotesPage(page)
 	var/dat = "<B>Player notes</B><HR>"
-	var/savefile/S=new("data/player_notes.sav")
+	var/savefile/S = new("data/player_notes.sav")
 	var/list/note_keys
 	S >> note_keys
 	if(!note_keys)
@@ -280,13 +283,18 @@ var/global/respawntime = 15
 /datum/admins/proc/player_notes_show(var/key as text)
 	set category = "Admin"
 	set name = "Player Notes Show"
-	if (!istype(src,/datum/admins))
+
+	if(!istype(src, /datum/admins))
 		src = usr.client.holder
-	if (!istype(src,/datum/admins))
+
+	if(!istype(src, /datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
+
 	var/dat = "<html><head><title>Info on [key]</title></head>"
 	dat += "<body>"
+
+	key = ckey(key)
 
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
@@ -743,15 +751,21 @@ var/global/respawntime = 15
 /datum/admins/proc/announce()
 	set category = "Special Verbs"
 	set name = "Announce"
-	set desc="Announce your desires to the world"
-	if(!check_rights(0))	return
+	set desc= "Announce your desires to the world."
 
-	var/message = input("Global message to send:", "Admin Announce", null, null)  as message
-	if(message)
-		if(!check_rights(R_SERVER,0))
-			message = adminscrub(message,500)
-		to_chat(world, "\blue <b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b>\n \t [message]")
-		log_admin("Announce: [key_name(usr)] : [message]")
+	if(!check_rights(0))
+		return
+
+	var/message = input("Global message to send:", "Admin Announce") as message|null
+
+	if(!message)
+		return
+
+	if(!check_rights(R_SERVER,0))
+		message = adminscrub(message,500)
+
+	to_chat(world, "\blue <b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b>\n \t [message]")
+	log_admin("Announce: [key_name(usr)] : [message]")
 	feedback_add_details("admin_verb","A") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/toggleooc()
@@ -1185,30 +1199,34 @@ var/global/respawntime = 15
 	set name = "Distress Beacon"
 	set desc = "Call a distress beacon. This should not be done if the shuttle's already been called."
 
-	if (!ticker  || !ticker.mode)
+	if(!ticker?.mode)
+		to_chat(src, "<span class='warning'>Please wait for the round to begin first.</span>")
 		return
 
-	if(!check_rights(R_ADMIN))	return
+	if(!check_rights(R_ADMIN))
+		to_chat(src, "<span class='warning'>Insufficient permissions.</span>")
+		return
+
+	if(ticker.mode.waiting_for_candidates)
+		to_chat(src, "<span class='warning'>Please wait for the current beacon to be finalized.</span>")
+		return
 
 	if(ticker.mode.picked_call)
-		var/confirm = alert(src, "There's already been a distress call sent. Are you sure you want to send another one? This will probably break things.", "Send a distress call?", "Yes", "No")
-		if(confirm != "Yes") return
-
-		//Reset the distress call
+		ticker.mode.picked_call = null
 		ticker.mode.picked_call.members = list()
 		ticker.mode.picked_call.candidates = list()
-		ticker.mode.waiting_for_candidates = 0
-		ticker.mode.has_called_emergency = 0
-		ticker.mode.picked_call = null
+		ticker.mode.waiting_for_candidates = FALSE
+		ticker.mode.on_distress_cooldown = FALSE
+	
 
 	var/list/list_of_calls = list()
 	for(var/datum/emergency_call/L in ticker.mode.all_calls)
-		if(L && L.name != "name")
+		if(L?.name)
 			list_of_calls += L.name
 
 	list_of_calls += "Randomize"
 
-	var/choice = input("Which distress call?") as null|anything in list_of_calls
+	var/choice = input("Which distress do you want to call?") as null|anything in list_of_calls
 	if(!choice)
 		return
 
@@ -1216,13 +1234,12 @@ var/global/respawntime = 15
 		ticker.mode.picked_call	= ticker.mode.get_random_call()
 	else
 		for(var/datum/emergency_call/C in ticker.mode.all_calls)
-			if(C && C.name == choice)
+			if(C?.name == choice)
 				ticker.mode.picked_call = C
 				break
 
 	if(!istype(ticker.mode.picked_call))
 		return
-
 
 	var/is_announcing = TRUE
 	var/announce = alert(src, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No")
@@ -1234,6 +1251,7 @@ var/global/respawntime = 15
 	feedback_add_details("admin_verb","DISTR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] admin-called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]")
 	message_admins("\blue [key_name_admin(usr)] admin-called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]", 1)
+
 
 /datum/admins/proc/admin_force_ERT_shuttle()
 	set category = "Admin"

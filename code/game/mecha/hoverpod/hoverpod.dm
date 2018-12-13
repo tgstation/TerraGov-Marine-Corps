@@ -89,7 +89,7 @@
 	output += "</div>"
 	return output
 
-/obj/mecha/hoverpod/Dispose()
+/obj/mecha/hoverpod/Destroy()
 	for(var/mob/M in src)
 		if(M == occupant)
 			continue

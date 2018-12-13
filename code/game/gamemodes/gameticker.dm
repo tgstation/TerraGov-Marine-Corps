@@ -51,7 +51,7 @@ var/global/datum/controller/gameticker/ticker
 
 	do
 		pregame_timeleft = 180
-		to_chat(world, "<B><FONT color='blue'>Welcome to the pre-game lobby of Colonial Marines!</FONT></B>")
+		to_chat(world, "<B><FONT color='blue'>Welcome to the pre-game lobby of TerraGov Marine Corps!</FONT></B>")
 		to_chat(world, "Please, setup your character and select ready. Game will start in [pregame_timeleft] seconds")
 		while(current_state == GAME_STATE_PREGAME)
 			for(var/i=0, i<10, i++)
@@ -96,7 +96,7 @@ var/global/datum/controller/gameticker/ticker
 		src.mode = config.pick_mode(master_mode)
 	if (!src.mode.can_start())
 		to_chat(world, "<B>Unable to start [mode.name].</B> Not enough players, [mode.required_players] players needed. Reverting to pre-game lobby.")
-		cdel(mode)
+		qdel(mode)
 		mode = null
 		current_state = GAME_STATE_PREGAME
 		RoleAuthority.reset_roles()
@@ -104,7 +104,7 @@ var/global/datum/controller/gameticker/ticker
 
 	var/can_continue = src.mode.pre_setup()//Setup special modes
 	if(!can_continue)
-		cdel(mode)
+		qdel(mode)
 		mode = null
 		current_state = GAME_STATE_PREGAME
 		to_chat(world, "<B>Error setting up [master_mode].</B> Reverting to pre-game lobby.")
@@ -146,7 +146,7 @@ var/global/datum/controller/gameticker/ticker
 		for(var/obj/effect/landmark/start/S in landmarks_list)
 			//Deleting Startpoints but we need the ai point to AI-ize people later
 			if (S.name != "AI")
-				cdel(S)
+				qdel(S)
 		to_chat(world, "<FONT color='blue'><B>Enjoy the game!</B></FONT>")
 		//world << sound('sound/AI/welcome.ogg') // Skie
 		//Holiday Round-start stuff	~Carn
@@ -190,7 +190,7 @@ var/global/datum/controller/gameticker/ticker
 					continue
 				else
 					player.create_character()
-					cdel(player)
+					qdel(player)
 
 
 	proc/collect_minds()

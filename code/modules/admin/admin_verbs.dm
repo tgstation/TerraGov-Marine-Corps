@@ -29,7 +29,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/jumptoturf,			/*allows us to jump to a specific turf*/
 	/client/proc/cmd_admin_direct_narrate,	/*send text directly to a player with no padding. Useful for narratives and fluff-text*/
 	/client/proc/cmd_admin_world_narrate,	/*sends text to all players with no padding*/
-	/client/proc/cmd_admin_create_centcom_report, //Messages from USCM command.
+	/client/proc/cmd_admin_create_centcom_report, //Messages from TGMC command.
 	/client/proc/cmd_admin_create_AI_report,  //Allows creation of IC reports by the ships AI
 	/client/proc/cmd_admin_xeno_report,  //Allows creation of IC reports by the Queen Mother
 	/client/proc/show_hive_status,
@@ -68,7 +68,7 @@ var/list/admin_verbs_admin = list(
 	// /client/proc/response_team, // Response Teams admin verb
 	/client/proc/allow_character_respawn,    /* Allows a ghost to respawn */
 	/datum/admins/proc/viewCLFaxes,
-	/datum/admins/proc/viewUSCMFaxes,
+	/datum/admins/proc/viewTGMCFaxes,
 	/datum/admins/proc/force_predator_round, //Force spawns a predator round.
 	/client/proc/check_round_statistics,
 	/client/proc/award_medal,
@@ -265,7 +265,7 @@ var/list/admin_verbs_mod = list(
 	/datum/admins/proc/viewUnheardMhelps,
 	/datum/admins/proc/viewUnheardAhelps, //Why even have it as a client proc anyway?
 	/datum/admins/proc/viewCLFaxes,
-	/datum/admins/proc/viewUSCMFaxes
+	/datum/admins/proc/viewTGMCFaxes
 )
 
 var/list/admin_verbs_mentor = list(
@@ -521,7 +521,7 @@ var/list/admin_verbs_mentor = list(
 		if(C)
 			message_admins("[key_name_admin(src)] has warned [key_name_admin(C)] resulting in a [AUTOBANTIME] minute ban.")
 			to_chat(C, "<font color='red'><BIG><B>You have been autobanned due to a warning by [ckey].</B></BIG><br>This is a temporary ban, it will be removed in [AUTOBANTIME] minutes.")
-			cdel(C)
+			qdel(C)
 		else
 			message_admins("[key_name_admin(src)] has warned [warned_ckey] resulting in a [AUTOBANTIME] minute ban.")
 		AddBan(warned_ckey, D.last_id, "Autobanning due to too many formal warnings", ckey, 1, AUTOBANTIME)
@@ -882,19 +882,19 @@ var/list/admin_verbs_mentor = list(
 
 /client/proc/toggle_gun_restrictions()
 	set name = "Toggle Gun Restrictions"
-	set desc = "Toggling to on will allow anyone to use restricted WY superguns. Leave this alone unless you know what you're doing."
+	set desc = "Toggling to on will allow anyone to use restricted NT superguns. Leave this alone unless you know what you're doing."
 	set category = "Server"
 
 	if(!holder)	return
 	if(config)
 		if(config.remove_gun_restrictions)
 			to_chat(src, "<b>Enabled gun restrictions.</b>")
-			message_admins("Admin [key_name_admin(usr)] has enabled WY gun restrictions.", 1)
-			log_admin("[key_name(src)] enabled WY gun restrictions.")
+			message_admins("Admin [key_name_admin(usr)] has enabled NT gun restrictions.", 1)
+			log_admin("[key_name(src)] enabled NT gun restrictions.")
 		else
 			to_chat(src, "<b>Disabled gun restrictions.</b>")
-			message_admins("Admin [key_name_admin(usr)] has disabled WY gun restrictions.", 1)
-			log_admin("[key_name(src)] disabled WY gun restrictions.")
+			message_admins("Admin [key_name_admin(usr)] has disabled NT gun restrictions.", 1)
+			log_admin("[key_name(src)] disabled NT gun restrictions.")
 		config.remove_gun_restrictions = !config.remove_gun_restrictions
 
 /client/proc/toggle_synthetic_restrictions()

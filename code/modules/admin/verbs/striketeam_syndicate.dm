@@ -170,7 +170,7 @@ var/global/sent_syndicate_strike_team = 0
 	W.name = "[real_name]'s ID Card"
 	W.icon_state = "id"
 	W.access = get_all_accesses()//They get full station access because obviously the syndicate has HAAAX, and can make special IDs for their most elite members.
-	W.access += list(ACCESS_WY_CORPORATE, ACCESS_ILLEGAL_PIRATE)
+	W.access += list(ACCESS_NT__CORPORATE, ACCESS_ILLEGAL_PIRATE)
 	W.assignment = "Syndicate Commando"
 	W.registered_name = real_name
 	equip_to_slot_or_del(W, WEAR_ID)

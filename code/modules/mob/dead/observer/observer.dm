@@ -235,7 +235,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	set name = "Re-enter Corpse"
 	if(!client)	return
-	if(!mind || !mind.current || mind.current.disposed || !can_reenter_corpse)
+	if(!mind || !mind.current || mind.current.gc_destroyed || !can_reenter_corpse)
 		to_chat(src, "<span class='warning'>You have no body.</span>")
 		return
 	if(mind.current.key && copytext(mind.current.key,1,2)!="@")	//makes sure we don't accidentally kick any clients
@@ -497,6 +497,14 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	else
 		see_invisible = SEE_INVISIBLE_OBSERVER_NOLIGHTING
 
+/mob/dead/observer/verb/hive_status()
+	set name = "Show Hive Status"
+	set desc = "Check the status of the hive."
+	set category = "Ghost"
+
+	check_hive_status()
+
+
 /*/mob/dead/observer/verb/become_mouse()
 	set name = "Become mouse"
 	set category = "Ghost"
@@ -704,7 +712,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	for(var/mob/living/carbon/human/Z in living_mob_list)
 		if(choice == Z.real_name)
-			if(Z.disposed) //should never occur,just to be sure.
+			if(Z.gc_destroyed) //should never occur,just to be sure.
 				return
 			if(!Z.regenZ)
 				to_chat(src, "<span class='warning'>That zombie has been cured!</span>")
@@ -733,7 +741,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			log_admin("[ckey] has joined as a [Z].")
 
 			if(isobserver(ghostmob) )
-				cdel(ghostmob)
+				qdel(ghostmob)
 			return
 
 
@@ -782,7 +790,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			L = X
 			break
 
-	if(!L || L.disposed)
+	if(!L || L.gc_destroyed)
 		to_chat(usr, "Not a valid mob!")
 		return
 
@@ -811,7 +819,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if(L.client) L.client.change_view(world.view)
 
 		if( isobserver(ghostmob) )
-			cdel(ghostmob)
+			qdel(ghostmob)
 		spawn(15)
 			to_chat(L, "\red <B>Attention!! You are playing as a hellhound. You can get server banned if you are shitty so listen up!</b>")
 			to_chat(L, "\red You MUST listen to and obey the Predator's commands at all times. Die if they demand it. Not following them is unthinkable to a hellhound.")
@@ -897,3 +905,24 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(href_list["preference"])
 		if(client)
 			client.prefs.process_link(src, href_list)
+
+
+/mob/dead/observer/verb/observe()
+	set name = "Observe"
+	set category = "Ghost"
+
+	if(client.eye != client.mob)
+		client.perspective = MOB_PERSPECTIVE
+		client.eye = client.mob
+		return
+
+	var/list/mobs = getmobs()
+	var/input = input("Please select a mob:", "Observe", null, null) as null|anything in mobs
+	var/mob/target = mobs[input]
+
+	if(!target)
+		return
+
+	if(client && target)
+		client.perspective = EYE_PERSPECTIVE
+		client.eye = target

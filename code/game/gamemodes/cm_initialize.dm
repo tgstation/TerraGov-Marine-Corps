@@ -6,7 +6,7 @@ spawns for the various factions. It's also a bit more robust with some added par
 is 0, you don't need aliens at the start of the game. If aliens are required for win conditions, tick it to 1 or more.
 
 This is a basic outline of how things should function in code.
-You can see a working example in the Colonial Marines game mode.
+You can see a working example in the TerraGov Marine Corps game mode.
 
 	//Minds are not transferred/made at this point, so we have to check for them so we don't double dip.
 	can_start() //This should have the following in order:
@@ -77,8 +77,8 @@ Additional game mode variables.
 	var/roles_for_mode[] //Won't have a list if the instruction is set to 0.
 
 	//Bioscan related.
-	var/bioscan_current_interval = 36000
-	var/bioscan_ongoing_interval = 18000
+	var/bioscan_current_interval = 45 MINUTES
+	var/bioscan_ongoing_interval = 20 MINUTES
 
 	var/flags_round_type = NOFLAGS
 
@@ -487,7 +487,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	new_xeno.update_icons()
 
 	if(original) 
-		cdel(original) //Just to be sure.
+		qdel(original) //Just to be sure.
 
 /datum/game_mode/proc/transform_queen(datum/mind/ghost_mind)
 	var/mob/original = ghost_mind.current
@@ -507,7 +507,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	new_queen.update_icons()
 
 	if(original) 
-		cdel(original) //Just to be sure.
+		qdel(original) //Just to be sure.
 
 //===================================================\\
 

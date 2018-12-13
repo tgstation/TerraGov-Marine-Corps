@@ -26,7 +26,7 @@
 			user.temp_drop_inv_item(cash)
 			bundle = new (src.loc)
 			bundle.worth += cash.worth
-			cdel(cash)
+			qdel(cash)
 		else //is bundle
 			bundle = W
 		bundle.worth += src.worth
@@ -37,7 +37,7 @@
 			h_user.temp_drop_inv_item(bundle)
 			h_user.put_in_hands(bundle)
 		to_chat(user, "<span class='notice'>You add [src.worth] dollars worth of money to the bundles.<br>It holds [bundle.worth] dollars now.</span>")
-		cdel(src)
+		qdel(src)
 
 /obj/item/spacecash/bundle
 	name = "stack of dollars"
@@ -73,7 +73,7 @@
 	var/amount = input(user, "How many dollars do you want to take? (0 to [src.worth])", "Take Money", 20) as num
 	amount = round(CLAMP(amount, 0, src.worth))
 	if(amount==0) return 0
-	if(disposed || loc != oldloc) return
+	if(gc_destroyed || loc != oldloc) return
 
 	src.worth -= amount
 	src.update_icon()
@@ -89,7 +89,7 @@
 		bundle.update_icon()
 		user.put_in_hands(bundle)
 	if(!worth)
-		cdel(src)
+		qdel(src)
 
 /obj/item/spacecash/c1
 	name = "1 dollar bill"
@@ -154,12 +154,12 @@ proc/spawn_money(var/sum, spawnloc, mob/living/carbon/human/human_user as mob)
 	return
 
 /obj/item/spacecash/ewallet
-	name = "\improper Weyland Yutani cash card"
+	name = "\improper Nanotrasen cash card"
 	icon_state = "efundcard"
-	desc = "A Weyland Yutani backed cash card that holds an amount of money."
+	desc = "A Nanotrasen backed cash card that holds an amount of money."
 	var/owner_name = "" //So the ATM can set it so the EFTPOS can put a valid name on transactions.
 
 /obj/item/spacecash/ewallet/examine(mob/user)
-	..()
+	. = ..()
 	if(user == loc)
 		to_chat(user, "<span class='notice'>Charge card's owner: [owner_name]. Dollars remaining: [worth].</span>")

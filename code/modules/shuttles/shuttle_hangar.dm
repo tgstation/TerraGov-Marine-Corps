@@ -56,7 +56,7 @@
 		return
 
 	for(var/obj/machinery/computer/shuttle_control/almayer/hangar/H in machines)
-		cdel(H)
+		qdel(H)
 	lower_railings(1)
 	if(!at_station())
 		moving_status = SHUTTLE_INTRANSIT

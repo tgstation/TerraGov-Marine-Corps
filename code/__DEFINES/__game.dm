@@ -6,7 +6,7 @@
 #define MAIN_SHIP_Z_LEVEL 3 //the main ship
 #define MAIN_SHIP_AND_DROPSHIPS_Z_LEVELS list(3,4) //the main ship and the z level where dropships transit
 #define ADMIN_Z_LEVEL 2
-#define LOW_ORBIT_Z_LEVEL 4 //where the Almayer dropships stand when in transit.
+#define LOW_ORBIT_Z_LEVEL 4 //where the Theseus dropships stand when in transit.
 #define GAME_PLAY_Z_LEVELS list(1,3,4)
 #define MAIN_AI_SYSTEM "ARES v3.2"
 #define MAIN_SHIP_ESCAPE_POD_NUMBER 11
@@ -20,7 +20,7 @@
 /*
 Trash Authority Directives
 Defines for when we need to give commands to the trash authority in how to handle trash.
-These are used with cdel (clean delete). For example, cdel(atom, TA_REVIVE_ME) would tell the TA to throw the atom into the recycler.
+These are used with cdel (clean delete). For example, qdel(atom, TA_REVIVE_ME) would tell the TA to throw the atom into the recycler.
 */
 #define TA_TRASH_ME		1 //Trash it.
 #define TA_REVIVE_ME	2 //Not killing this one, instead adding it to the recycler. Call this on bullets, for example.

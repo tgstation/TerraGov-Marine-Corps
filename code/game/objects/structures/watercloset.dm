@@ -126,7 +126,7 @@
 
 /obj/machinery/shower
 	name = "shower"
-	desc = "The HS-451. Installed in the 2050s by the Weyland Hygiene Division."
+	desc = "The HS-451. Installed in the 2050s by the Nanotrasen Hygiene Division."
 	icon = 'icons/obj/watercloset.dmi'
 	icon_state = "shower"
 	density = 0
@@ -185,7 +185,7 @@
 /obj/machinery/shower/update_icon()	//this is terribly unreadable, but basically it makes the shower mist up
 	overlays.Cut()					//once it's been on for a while, in addition to handling the water overlay.
 	if(mymist)
-		cdel(mymist)
+		qdel(mymist)
 		mymist = null
 
 	if(on)
@@ -205,7 +205,7 @@
 		mymist = new /obj/effect/mist(loc)
 		spawn(250)
 			if(src && !on)
-				cdel(mymist)
+				qdel(mymist)
 				mymist = null
 				ismist = 0
 
@@ -304,7 +304,7 @@
 		loc.clean_blood()
 		for(var/obj/effect/E in tile)
 			if(istype(E,/obj/effect/rune) || istype(E,/obj/effect/decal/cleanable) || istype(E,/obj/effect/overlay))
-				cdel(E)
+				qdel(E)
 
 /obj/machinery/shower/process()
 	if(!on) return
@@ -329,12 +329,11 @@
 		var/mob/living/carbon/C = M
 
 		if(watertemp == "freezing")
-			C.bodytemperature = max(80, C.bodytemperature - 80)
+			C.adjust_bodytemperature(C.bodytemperature - 80, 80)
 			to_chat(C, "<span class='warning'>The water is freezing!</span>")
 			return
 		if(watertemp == "boiling")
-			C.bodytemperature = min(500, C.bodytemperature + 35)
-			C.adjustFireLoss(5)
+			C.adjust_bodytemperature(C.bodytemperature + 35, 0, 500)
 			to_chat(C, "<span class='danger'>The water is searing!</span>")
 			return
 

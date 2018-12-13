@@ -215,8 +215,11 @@
 	//splints
 	for(var/organ in list("l_leg","r_leg","l_arm","r_arm","l_foot","r_foot","l_hand","r_hand","chest","groin","head"))
 		var/datum/limb/o = get_limb(organ)
-		if(o && o.status & LIMB_SPLINTED)
-			msg += "<span class='warning'>[t_He] [t_has] a splint on [t_his] [o.display_name]!</span>\n"
+		if(o)
+			if(o.status & LIMB_SPLINTED)
+				msg += "<span class='warning'>[t_He] [t_has] a splint on [t_his] [o.display_name]!</span>\n"
+			if(o.status & LIMB_STABILIZED)
+				msg += "<span class='warning'>[t_He] [t_has] a suit brace stabilizing [t_his] [o.display_name]!</span>\n"
 
 	if(holo_card_color)
 		msg += "[t_He] has a [holo_card_color] holo card on [t_his] chest.\n"

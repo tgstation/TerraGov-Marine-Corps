@@ -56,9 +56,6 @@
 	//simple_animal access
 	var/obj/item/card/id/access_card = null	//innate access uses an internal ID card
 
-/mob/living/simple_animal/New()
-	..()
-	verbs -= /mob/verb/observe
 
 /mob/living/simple_animal/Login()
 	if(src && src.client)
@@ -153,7 +150,7 @@
 		var/env_gas = T.return_gas()
 
 		if( abs(env_temp - bodytemperature) > 40 )
-			bodytemperature += ((env_temp - bodytemperature) / 5)
+			adjust_bodytemperature((env_temp - bodytemperature) / 5)
 
 		if(min_oxy)
 			if(env_gas != GAS_TYPE_AIR && env_gas != GAS_TYPE_OXYGEN)
@@ -320,7 +317,7 @@
 		if(istype(O, /obj/item/tool/kitchen/knife) || istype(O, /obj/item/tool/kitchen/knife/butcher))
 			new meat_type (get_turf(src))
 			if(prob(95))
-				cdel(src)
+				qdel(src)
 				return
 			gib()
 	else
@@ -389,7 +386,7 @@
 //Call when target overlay should be added/removed
 /mob/living/simple_animal/update_targeted()
 	if(!targeted_by && target_locked)
-		cdel(target_locked)
+		qdel(target_locked)
 		target_locked = null
 	overlays = null
 	if (targeted_by && target_locked)

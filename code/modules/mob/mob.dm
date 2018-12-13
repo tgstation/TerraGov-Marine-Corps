@@ -1,5 +1,5 @@
 
-/mob/Dispose()//This makes sure that mobs with clients/keys are not just deleted from the game.
+/mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
 	mob_list -= src
 	dead_mob_list -= src
 	living_mob_list -= src
@@ -144,7 +144,7 @@
 
 	if(!W.mob_can_equip(src, slot, disable_warning))
 		if(del_on_fail)
-			cdel(W)
+			qdel(W)
 		else if(!disable_warning)
 			to_chat(src, "<span class='warning'>You are unable to equip that.</span>")
 		return
@@ -407,7 +407,7 @@ var/list/slot_equipment_priority = list( \
 		msg_admin_attack("[key_name(src)] grabbed [key_name(M)]" )
 
 		if(!no_msg)
-			visible_message("<span class='warning'>[src] has grabbed [M] passively!</span>", null, null, 5)
+			visible_message("<span class='warning'>[src] has grabbed [M] [((istype(src, /mob/living/carbon/human) && istype(M, /mob/living/carbon/human)) && (zone_selected == "l_hand" || zone_selected == "r_hand")) ? "by their hands":"passively"]!</span>", null, null, 5)
 
 		if(M.mob_size > MOB_SIZE_HUMAN || !(M.status_flags & CANPUSH))
 			G.icon_state = "!reinforce"

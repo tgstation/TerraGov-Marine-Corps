@@ -7,7 +7,7 @@
 #define	IMPRINTER	1	//For circuits. Uses glass/chemicals.
 #define PROTOLATHE	2	//New stuff. Uses glass/metal/chemicals
 
-/obj/machinery/computer/WYresearch
+/obj/machinery/computer/NTresearch
 	name = "R&D Console"
 	icon = 'icons/obj/mainframe.dmi'
 	icon_state = "aimainframe"
@@ -33,7 +33,7 @@
 
 
 
-/obj/machinery/computer/WYresearch/proc/CallTechName(var/ID) //A simple helper proc to find the name of a tech with a given ID.
+/obj/machinery/computer/NTresearch/proc/CallTechName(var/ID) //A simple helper proc to find the name of a tech with a given ID.
 	var/datum/tech/check_tech
 	var/return_name = null
 	for(var/T in subtypesof(/datum/tech))
@@ -41,13 +41,13 @@
 		check_tech = new T()
 		if(check_tech.id == ID)
 			return_name = check_tech.name
-			cdel(check_tech)
+			qdel(check_tech)
 			check_tech = null
 			break
 
 	return return_name
 
-/obj/machinery/computer/WYresearch/proc/CallMaterialName(var/ID)
+/obj/machinery/computer/NTresearch/proc/CallMaterialName(var/ID)
 	var/datum/reagent/temp_reagent
 	var/return_name = null
 	if (copytext(ID, 1, 2) == "$")
@@ -79,12 +79,12 @@
 			temp_reagent = new R()
 			if(temp_reagent.id == ID)
 				return_name = temp_reagent.name
-				cdel(temp_reagent)
+				qdel(temp_reagent)
 				temp_reagent = null
 				break
 	return return_name
 
-/obj/machinery/computer/WYresearch/proc/SyncRDevices() //Makes sure it is properly sync'ed up with the devices attached to it (if any).
+/obj/machinery/computer/NTresearch/proc/SyncRDevices() //Makes sure it is properly sync'ed up with the devices attached to it (if any).
 			//These are the old consoles.  This will need to be rewritten for the new ones.
 
 	for(var/obj/machinery/r_n_d/D in oview(3,src))
@@ -113,7 +113,7 @@
 
 	return
 
-/obj/machinery/computer/WYresearch/proc/griefProtection()
+/obj/machinery/computer/NTresearch/proc/griefProtection()
 //this should be fine.  The RND server will get adjusted to work so that we can support legacy as well.
 	for(var/obj/machinery/r_n_d/server/centcom/C in machines)
 		for(var/datum/tech/T in files.known_tech)
@@ -122,7 +122,7 @@
 			C.files.AddDesign2Known(D)
 		C.files.RefreshResearch()
 
-/obj/machinery/computer/WYresearch/New()
+/obj/machinery/computer/NTresearch/New()
 	..()
 	files = new /datum/XenoResearch(src) //Setup the research data holder.
 	/*if(!id)
@@ -130,7 +130,7 @@
 			S.initialize()
 			break*/  //THIS TOO!
 
-/obj/machinery/computer/WYresearch/initialize()
+/obj/machinery/computer/NTresearch/initialize()
 	SyncRDevices()
 
 /*  //LEAVING THIS FOR NOW.  Eventually, they'll be able to use a W-Y DATACUBE to copy the entire system.  Either for merc theft, Russian shenanigans, or W-Y retreival.
@@ -162,7 +162,7 @@
 
 
 	//THIS IS A BIG'UN.  Also, I've temporarily brutalized it, but we can fix the syntax/formatting later.
-/obj/machinery/computer/WYresearch/Topic(href, href_list)
+/obj/machinery/computer/NTresearch/Topic(href, href_list)
 	if(..())
 		return
 
@@ -231,11 +231,11 @@
 									S.use(1)
 									linked_destroy.loaded_item = S
 								else
-									cdel(S)
+									qdel(S)
 									linked_destroy.icon_state = "d_analyzer"
 							else
 								if(!(I in linked_destroy.component_parts))
-									cdel(I)
+									qdel(I)
 									linked_destroy.icon_state = "d_analyzer"
 						use_power(linked_destroy.active_power_usage)
 						screen = 1.0
@@ -422,7 +422,7 @@
 				sheet.amount = min(available_num_sheets, desired_num_sheets)
 				linked_lathe.vars[res_amount] = max(0, (linked_lathe.vars[res_amount]-sheet.amount * sheet.perunit))
 			else
-				cdel(sheet)
+				qdel(sheet)
 	else if(href_list["imprinter_ejectsheet"] && linked_imprinter) //Causes the protolathe to eject a sheet of material
 		var/desired_num_sheets = text2num(href_list["imprinter_ejectsheet_amt"])
 		var/res_amount, type
@@ -446,7 +446,7 @@
 				sheet.amount = min(available_num_sheets, desired_num_sheets)
 				linked_imprinter.vars[res_amount] = max(0, (linked_imprinter.vars[res_amount]-sheet.amount * sheet.perunit))
 			else
-				cdel(sheet)
+				qdel(sheet)
 
 	else if(href_list["find_device"]) //The R&D console looks for devices nearby to link up with.
 		screen = 0.0
@@ -475,7 +475,7 @@
 		var/choice = alert("R&D Console Database Reset", "Are you sure you want to reset the R&D console's database? Data lost cannot be recovered.", "Continue", "Cancel")
 		if(choice == "Continue")
 			screen = 0.0
-			cdel(files)
+			qdel(files)
 			files = new /datum/research(src)
 			spawn(20)
 				screen = 1.6
@@ -484,7 +484,7 @@
 	else if (href_list["organScan"])//initiate an organic scan - CM
 		if(linked_organic)
 			if(linked_organic.busy)
-				to_chat(usr, "\red The Weyland Brand Organic Analyzer(TM) is busy at the moment.")
+				to_chat(usr, "\red The Nanotrasen Brand Organic Analyzer(TM) is busy at the moment.")
 			else
 				var/choice = input("Proceeding will destroy loaded item, preventing it's use for biomass.") in list("Proceed", "Cancel")
 				if(choice == "Cancel" || !linked_organic) return
@@ -497,7 +497,7 @@
 						linked_organic.busy = 0
 						if(!linked_organic.hacked)
 							if(!linked_organic.loaded_item)
-								to_chat(usr, "\red The Weyland Brand Organic Analyzer(TM) appears to be empty.")
+								to_chat(usr, "\red The Nanotrasen Brand Organic Analyzer(TM) appears to be empty.")
 								screen = 1.0
 								return
 							if(linked_organic.loaded_item.reliability >= 90)
@@ -511,7 +511,7 @@
 							for(var/mob/M in I.contents)
 								M.death()
 							if(!(I in linked_organic.component_parts))
-								cdel(I)
+								qdel(I)
 								linked_organic.icon_state = "d_analyzer"
 						use_power(linked_organic.active_power_usage)
 						screen = 1.0
@@ -519,7 +519,7 @@
 	else if(href_list["eject_organ"]) //Eject the item inside the destructive analyzer.
 		if(linked_organic)
 			if(linked_organic.busy)
-				to_chat(usr, "\red The Weyland Brand Organic Analyzer(TM) is busy at the moment.")
+				to_chat(usr, "\red The Nanotrasen Brand Organic Analyzer(TM) is busy at the moment.")
 
 			else if(linked_organic.loaded_item)
 				linked_organic.loaded_item.loc = linked_organic.loc
@@ -573,7 +573,7 @@
 
 
 
-/obj/machinery/computer/WYresearch/attack_hand(mob/user as mob)
+/obj/machinery/computer/NTresearch/attack_hand(mob/user as mob)
 	if(stat & (BROKEN|NOPOWER))
 		return
 
@@ -631,10 +631,10 @@
 			dat += "Main Menu:<BR><BR>"
 			dat += "<A href='?src=\ref[src];menu=1.1'>Current Research Levels</A><BR>"
 			if(linked_destroy != null) dat += "<A href='?src=\ref[src];menu=2.2'>Destructive Analyzer Menu</A><BR>"
-			if(linked_organic != null) dat += "<A href='?src=\ref[src];menu=5.2'>Weyland Brand Organic Analyzer(TM) Menu</A><BR>"
+			if(linked_organic != null) dat += "<A href='?src=\ref[src];menu=5.2'>Nanotrasen Brand Organic Analyzer(TM) Menu</A><BR>"
 			if(linked_lathe != null) dat += "<A href='?src=\ref[src];menu=3.1'>Protolathe Construction Menu</A><BR>"
 			if(linked_imprinter != null) dat += "<A href='?src=\ref[src];menu=4.1'>Circuit Construction Menu</A><BR>"
-			if(linked_bioprinter != null) dat += "<A href='?src=\ref[src];menu=6.1'>Weyland Yutani Brand Bioprinter(TM) menu</A><BR>"
+			if(linked_bioprinter != null) dat += "<A href='?src=\ref[src];menu=6.1'>Nanotrasen Brand Bioprinter(TM) menu</A><BR>"
 			dat += "<A href='?src=\ref[src];menu=1.6'>Settings</A>"
 
 		if(1.1) //Research viewer
@@ -677,13 +677,13 @@
 				dat += "* (No Circuit Imprinter Linked)<BR>"
 
 			if(linked_organic)
-				dat += "* Weyland Brand Organic Analyzer(TM) <A href='?src=\ref[src];disconnect=organic'>(Disconnect)</A><BR>"
+				dat += "* Nanotrasen Brand Organic Analyzer(TM) <A href='?src=\ref[src];disconnect=organic'>(Disconnect)</A><BR>"
 			else
-				dat += "* (No Weyland Brand Organic Analyzer(TM) linked)<BR>"
+				dat += "* (No Nanotrasen Brand Organic Analyzer(TM) linked)<BR>"
 			if(linked_bioprinter)
-				dat += "* Weyland Yutanii Brand Bioprinter(TM) <A href='?src=\ref[src];disconnect=bioprinter'>(Disconnect)</A><BR>"
+				dat += "* Nanotrasen Brand Bioprinter(TM) <A href='?src=\ref[src];disconnect=bioprinter'>(Disconnect)</A><BR>"
 			else
-				dat += "* (No Weyland Yutani Brand Bioprinter(TM) linked)<BR>"
+				dat += "* (No Nanotrasen Brand Bioprinter(TM) linked)<BR>"
 		////////////////////DESTRUCTIVE ANALYZER SCREENS////////////////////////////
 		if(2.0)
 			dat += "NO DESTRUCTIVE ANALYZER LINKED TO CONSOLE<BR><BR>"
@@ -889,7 +889,7 @@
 
 				////////////////////ORGANIC ANALYZER SCREENS////////////////////////////
 		if(5.0)
-			dat += "NO WEYLAND BRAND ORGANIC ANALYZER(TM) LINKED TO CONSOLE<BR><BR>"
+			dat += "NO NANOTRASEN BRAND ORGANIC ANALYZER(TM) LINKED TO CONSOLE<BR><BR>"
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A>"
 
 		if(5.1)
@@ -959,6 +959,6 @@
 	onclose(user, "rdconsole")
 
 
-/obj/machinery/computer/WYresearch/core
-	name = "Core Weyland Research Console"
+/obj/machinery/computer/NTresearch/core
+	name = "Core Nanotrasen Research Console"
 	id = 1

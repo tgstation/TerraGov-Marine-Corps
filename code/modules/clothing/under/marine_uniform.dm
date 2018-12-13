@@ -4,7 +4,7 @@
 
 
 /obj/item/clothing/under/marine
-	name = "\improper USCM uniform"
+	name = "\improper TGMC uniform"
 	desc = "A standard-issue Marine uniform. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	siemens_coefficient = 0.9
 	icon_state = "marine_jumpsuit"
@@ -12,7 +12,7 @@
 	rollable_sleeves = TRUE
 
 /obj/item/clothing/under/marine/New(loc,expected_type 		= /obj/item/clothing/under/marine,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper USCM snow uniform"),
+	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC snow uniform"),
 	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature),
 	override_icon_state[] 	= null
 	)
@@ -24,44 +24,44 @@
 	return
 
 /obj/item/clothing/under/marine/medic
-	name = "\improper USCM medic fatigues"
+	name = "\improper TGMC medic fatigues"
 	desc = "A standard-issue Marine Medic fatigues It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "marine_medic"
 
 /obj/item/clothing/under/marine/medic/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper USCM medic snow uniform"),
+	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC medic snow uniform"),
 	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	..(loc,expected_type, new_name, new_protection)
 
 /obj/item/clothing/under/marine/engineer
-	name = "\improper USCM engineer fatigues"
+	name = "\improper TGMC engineer fatigues"
 	desc = "A standard-issue Marine Engineer fatigues It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "marine_engineer"
 
 /obj/item/clothing/under/marine/engineer/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper USCM engineer snow uniform"),
+	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC engineer snow uniform"),
 	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature))
 	..(loc,expected_type, new_name, new_protection)
 
 /obj/item/clothing/under/marine/sniper
-	name = "\improper USCM sniper uniform"
+	name = "\improper TGMC sniper uniform"
 	rollable_sleeves = FALSE
 
 /obj/item/clothing/under/marine/sniper/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper USCM sniper snow uniform"),
+	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC sniper snow uniform"),
 	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature),
 	override_icon_state[]		= list(MAP_ICE_COLONY = "s_marine_sniper")
 	)
 	..(loc,expected_type, override_icon_state, new_name, new_protection)
 
 /obj/item/clothing/under/marine/tanker
-	name = "\improper USCM tanker uniform"
+	name = "\improper TGMC tanker uniform"
 	icon_state = "marine_tanker"
 	rollable_sleeves = FALSE
 
 /*
 /obj/item/clothing/under/marine/tanker/New(loc,expected_type 		= type,
-	new_name[] 			= list(MAP_ICE_COLONY = "\improper USCM tanker snow uniform"),
+	new_name[] 			= list(MAP_ICE_COLONY = "\improper TGMC tanker snow uniform"),
 	new_protection[] 	= list(MAP_ICE_COLONY = ICE_PLANET_min_cold_protection_temperature),
 	override_icon_state[]		= list(MAP_ICE_COLONY = "s_marine_tanker")
 	)
@@ -84,7 +84,7 @@
 
 /obj/item/clothing/under/marine/officer/warrant
 	name = "\improper chief MP uniform"
-	desc = "A uniform typically worn by a Chief MP of the USCM. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions. This uniform includes a small EMF distributor to help nullify energy-based weapon fire, along with a hazmat chemical filter woven throughout the material to ward off biological and radiation hazards."
+	desc = "A uniform typically worn by a Chief MP of the TGMC. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions. This uniform includes a small EMF distributor to help nullify energy-based weapon fire, along with a hazmat chemical filter woven throughout the material to ward off biological and radiation hazards."
 	icon_state = "WO_jumpsuit"
 	item_state = "WO_jumpsuit"
 
@@ -95,12 +95,12 @@
 
 /obj/item/clothing/under/marine/officer/logistics
 	name = "marine officer uniform"
-	desc = "A uniform worn by commissioned officers of the USCM. Do the corps proud. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	desc = "A uniform worn by commissioned officers of the TGMC. Do the corps proud. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "BO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/pilot
 	name = "pilot officer bodysuit"
-	desc = "A bodysuit worn by pilot officers of the USCM, and is meant for survival in inhospitable conditions. Fly the marines onwards to glory. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	desc = "A bodysuit worn by pilot officers of the TGMC, and is meant for survival in inhospitable conditions. Fly the marines onwards to glory. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "pilot_flightsuit"
 	flags_cold_protection = ICE_PLANET_min_cold_protection_temperature
 
@@ -110,12 +110,12 @@
 
 /obj/item/clothing/under/marine/officer/tanker
 	name = "tank crewman officer uniform"
-	desc = "A uniform worn by commissioned officers of the USCM. Do the corps proud. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	desc = "A uniform worn by commissioned officers of the TGMC. Do the corps proud. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "marine_tanker"
 
 /obj/item/clothing/under/marine/officer/bridge
 	name = "staff officer uniform"
-	desc = "A uniform worn by commissioned officers of the USCM. Do the corps proud. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	desc = "A uniform worn by commissioned officers of the TGMC. Do the corps proud. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "BO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/bridge/New()
@@ -125,7 +125,7 @@
 
 /obj/item/clothing/under/marine/officer/exec
 	name = "executive officer uniform"
-	desc = "A uniform typically worn by a first-lieutenant Executive Officer in the USCM. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	desc = "A uniform typically worn by a first-lieutenant Executive Officer in the TGMC. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "XO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/exec/New()
@@ -134,7 +134,7 @@
 
 /obj/item/clothing/under/marine/officer/command
 	name = "commander uniform"
-	desc = "The well-ironed uniform of a USCM commander. Even looking at it the wrong way could result in being court-marshalled. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
+	desc = "The well-ironed uniform of a TGMC commander. Even looking at it the wrong way could result in being court-marshalled. It has shards of light Kevlar to help protect against stabbing weapons, bullets, and shrapnel from explosions, a small EMF distributor to help null energy-based weapons, and a hazmat chemical filter weave to ward off biological and radiation hazards."
 	icon_state = "CO_jumpsuit"
 
 /obj/item/clothing/under/marine/officer/command/New()
@@ -172,19 +172,19 @@
 
 /obj/item/clothing/under/marine/veteran/PMC
 	name = "\improper PMC fatigues"
-	desc = "A white set of fatigues, designed for private security operators. The symbol of the Weyland-Yutani corporation is emblazed on the suit."
+	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit."
 	icon_state = "pmc_jumpsuit"
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
 
 /obj/item/clothing/under/marine/veteran/PMC/leader
 	name = "\improper PMC command fatigues"
-	desc = "A white set of fatigues, designed for private security operators. The symbol of the Weyland-Yutani corporation is emblazed on the suit. This particular suit looks like it belongs to a high-ranking officer."
+	desc = "A white set of fatigues, designed for private security operators. The symbol of the Nanotrasen corporation is emblazed on the suit. This particular suit looks like it belongs to a high-ranking officer."
 	icon_state = "officer_jumpsuit"
 
 /obj/item/clothing/under/marine/veteran/PMC/commando
 	name = "\improper PMC commando uniform"
-	desc = "An armored uniform worn by Weyland Yutani elite commandos. It is well protected while remaining light and comfortable."
+	desc = "An armored uniform worn by Nanotrasen elite commandos. It is well protected while remaining light and comfortable."
 	icon_state = "commando_jumpsuit"
 	armor = list(melee = 10, bullet = 10, laser = 10, energy = 20, bomb = 10, bio = 10, rad = 10)
 	has_sensor = 0
@@ -275,7 +275,7 @@
 
 /obj/item/clothing/under/liaison_suit
 	name = "liaison's tan suit"
-	desc = "A stiff, stylish tan suit commonly worn by businessmen from the Weyland Yutani corporation. Expertly crafted to make you look like a prick."
+	desc = "A stiff, stylish tan suit commonly worn by businessmen from the Nanotrasen corporation. Expertly crafted to make you look like a prick."
 	icon_state = "liaison_regular"
 
 /obj/item/clothing/under/liaison_suit/outing
@@ -285,18 +285,18 @@
 
 /obj/item/clothing/under/liaison_suit/formal
 	name = "liaison's white suit"
-	desc = "A formal, white suit. Looks like something you'd wear to a funeral, a Weyland-Yutani corporate dinner, or both. Stiff as a board, but makes you feel like rolling out of a Rolls-Royce."
+	desc = "A formal, white suit. Looks like something you'd wear to a funeral, a Nanotrasen corporate dinner, or both. Stiff as a board, but makes you feel like rolling out of a Rolls-Royce."
 	icon_state = "liaison_formal"
 
 /obj/item/clothing/under/liaison_suit/suspenders
 	name = "liaison's attire"
-	desc = "A collared shirt, complimented by a pair of suspenders. Worn by Weyland-Yutani employees who ask the tough questions. Smells faintly of cigars and bad acting."
+	desc = "A collared shirt, complimented by a pair of suspenders. Worn by Nanotrasen employees who ask the tough questions. Smells faintly of cigars and bad acting."
 	icon_state = "liaison_suspenders"
 
 
 
 /obj/item/clothing/under/rank/chef/exec
-	name = "\improper Weyland Yutani suit"
+	name = "\improper Nanotrasen suit"
 	desc = "A formal white undersuit."
 	rollable_sleeves = FALSE
 
@@ -307,7 +307,7 @@
 	rollable_sleeves = FALSE
 
 /obj/item/clothing/under/rank/synthetic
-	name = "\improper USCM Support Uniform"
+	name = "\improper TGMC Support Uniform"
 	desc = "A simple uniform made for Synthetic crewmembers."
 	icon_state = "rdalt"
 	rollable_sleeves = FALSE

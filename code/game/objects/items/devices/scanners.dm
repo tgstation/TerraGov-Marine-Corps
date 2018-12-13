@@ -50,7 +50,7 @@ REAGENT SCANNER
 				O.invisibility = 0
 				O.alpha = 128
 				spawn(10)
-					if(O && !O.disposed)
+					if(O && !O.gc_destroyed)
 						var/turf/U = O.loc
 						if(U.intact_tile)
 							O.invisibility = 101
@@ -158,14 +158,14 @@ REAGENT SCANNER
 				dat += "\t\t [capitalize(org.display_name)]: <span class='scannerb'>Missing!</span>\n"
 				continue
 
-			var/show_limb = (org.burn_dam > 0 || org.brute_dam > 0 || (org.status & (LIMB_BLEEDING | LIMB_NECROTIZED | LIMB_SPLINTED)) || open_incision)
+			var/show_limb = (org.burn_dam > 0 || org.brute_dam > 0 || (org.status & (LIMB_BLEEDING | LIMB_NECROTIZED | LIMB_SPLINTED | LIMB_STABILIZED)) || open_incision)
 			var/org_name = "[capitalize(org.display_name)][org.status & LIMB_ROBOT ? " (Cybernetic)" : ""]"
 			var/burn_info = org.burn_dam > 0 ? "<span class='scannerburnb'> [round(org.burn_dam)]</span>" : "<span class='scannerburn'>0</span>"
 			burn_info += "[((burn_treated)?"":"{B}")]"
 			var/brute_info =  org.brute_dam > 0 ? "<span class='scannerb'> [round(org.brute_dam)]</span>" : "<span class='scanner'>0</span>"
 			brute_info += "[(brute_treated && org.brute_dam >= 1?"":"{T}")]"
 			var/fracture_info = ""
-			if((org.status & LIMB_BROKEN) && !(org.status & LIMB_SPLINTED))
+			if((org.status & LIMB_BROKEN) && !(org.status & LIMB_SPLINTED) && !(org.status & LIMB_STABILIZED))
 				fracture_info = "{F}"
 				show_limb = 1
 			var/infection_info = ""
@@ -199,6 +199,8 @@ REAGENT SCANNER
 				dat += "\t\t [org_name]: \t [burn_info] - [brute_info] [fracture_info][infection_info][org_bleed][org_necro][org_incision][org_advice]"
 				if(org.status & LIMB_SPLINTED)
 					dat += "(Splinted)"
+				else if(org.status & LIMB_STABILIZED)
+					dat += "(Stabilized)"
 				dat += "\n"
 
 	// Show red messages - broken bokes, infection, etc
@@ -243,12 +245,12 @@ REAGENT SCANNER
 					break
 			if((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg") || (e.name == "l_hand") || (e.name == "r_hand") || (e.name == "l_foot") || (e.name == "r_foot"))
 				can_amputate = "or amputation"
-				if((e.status & LIMB_BROKEN) && !(e.status & LIMB_SPLINTED))
+				if((e.status & LIMB_BROKEN) && !(e.status & LIMB_SPLINTED) && !(e.status & LIMB_STABILIZED))
 					if(!fracture_detected)
 						fracture_detected = TRUE
 					dat += "\t<span class='scanner'> *<b>Bone Fracture:</b> Unsecured fracture in subject's <b>[limb]</b>. Splinting recommended.</span>\n"
 			else
-				if((e.status & LIMB_BROKEN) && !(e.status & LIMB_SPLINTED))
+				if((e.status & LIMB_BROKEN) && !(e.status & LIMB_SPLINTED) && !(e.status & LIMB_STABILIZED))
 					if(!fracture_detected)
 						fracture_detected = TRUE
 					core_fracture = TRUE

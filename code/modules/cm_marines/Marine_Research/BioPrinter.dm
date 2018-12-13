@@ -4,7 +4,7 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 
 */
 /obj/machinery/r_n_d/bioprinter
-	name = "Weyland Yutani Brand Bio-Organic Printer(TM)"
+	name = "Nanotrasen Brand Bio-Organic Printer(TM)"
 	icon_state = "protolathe"
 	container_type = REFILLABLE
 
@@ -80,7 +80,7 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 				new /obj/item/XenoBio/Chitin(src.loc)
 			while(resin_amount>0)
 				new /obj/item/XenoBio/Resin(src.loc)
-			cdel(src)
+			qdel(src)
 			return 1
 		else
 			to_chat(user, "\red You can't load the [src.name] while it's opened.")
@@ -88,10 +88,10 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 	if (disabled)
 		return
 	if (!linked_console)
-		to_chat(user, "\The Weyland Yutani Brand Bioprinter(TM) must be linked to an R&D console first!")
+		to_chat(user, "\The Nanotrasen Brand Bioprinter(TM) must be linked to an R&D console first!")
 		return 1
 	if (busy)
-		to_chat(user, "\red The Weyland Yutani Brand Bioprinter(TM) is busy. Please wait for completion of previous operation.")
+		to_chat(user, "\red The Nanotrasen Brand Bioprinter(TM) is busy. Please wait for completion of previous operation.")
 		return 1
 	if (!istype(O, /obj/item/XenoBio))
 		to_chat(user, "\red You cannot insert this item into the protolathe!")
@@ -107,13 +107,13 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 		icon_state = "protolathe"
 		if(istype(O, /obj/item/XenoBio/Blood))
 			blood_amount++
-			cdel(O)
+			qdel(O)
 		if(istype(O, /obj/item/XenoBio/Chitin))
 			chitin_amount++
-			cdel(O)
+			qdel(O)
 		if(istype(O, /obj/item/XenoBio/Resin))
 			resin_amount++
-			cdel(O)
+			qdel(O)
 	busy = 0
 	src.updateUsrDialog()
 	return

@@ -28,7 +28,7 @@
 	var/color = "#000000" // rgb: 0, 0, 0
 	var/can_synth = TRUE // can this reagent be synthesized? (example: odysseus syringe gun)
 
-/datum/reagent/Dispose() // This should only be called by the holder, so it's already handled clearing its references
+/datum/reagent/Destroy() // This should only be called by the holder, so it's already handled clearing its references
 	. = ..()
 	holder = null
 
@@ -53,7 +53,7 @@
 /datum/reagent/proc/on_mob_life(mob/living/carbon/M, alien)
 	current_cycle++
 	holder.remove_reagent(id, custom_metabolism * M.metabolism_efficiency) //By default it slowly disappears.
-	return 1
+	return TRUE
 
 
 // Called when this reagent is first added to a mob

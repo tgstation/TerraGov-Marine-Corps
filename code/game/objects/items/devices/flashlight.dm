@@ -22,7 +22,7 @@
 		icon_state = initial(icon_state)
 		SetLuminosity(0)
 
-/obj/item/device/flashlight/Dispose()
+/obj/item/device/flashlight/Destroy()
 	if(ismob(src.loc))
 		src.loc.SetLuminosity(-brightness_on)
 	else
@@ -77,7 +77,7 @@
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		to_chat(user, "<span class='notice'>You modify [src]. It can now be mounted on a weapon.</span>")
 		to_chat(user, "<span class='notice'>Use a screwdriver on [F] to change it back.</span>")
-		cdel(src) //Delete da old flashlight
+		qdel(src) //Delete da old flashlight
 		return
 	else
 		..()
@@ -196,7 +196,7 @@
 
 /obj/item/device/flashlight/flare
 	name = "flare"
-	desc = "A red USCM issued flare. There are instructions on the side, it reads 'pull cord, make light'."
+	desc = "A red TGMC issued flare. There are instructions on the side, it reads 'pull cord, make light'."
 	w_class = 2
 	brightness_on = 5 //As bright as a flashlight, but more disposable. Doesn't burn forever though
 	icon_state = "flare"
@@ -210,7 +210,7 @@
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 	..()
 
-/obj/item/device/flashlight/flare/Dispose()
+/obj/item/device/flashlight/flare/Destroy()
 	processing_objects -= src
 	..()
 

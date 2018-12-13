@@ -23,9 +23,7 @@ var/global/list/citizenship_choices = list(
 */
 
 var/global/list/citizenship_choices = list(
-	"United Americas (United States)",
-	"United Americas (Luna)",
-	"United Americas (Other)",
+	"TerraGov",
 	"Limited Service (Colony)",
 	"Green Card (Foreign)"
 	)

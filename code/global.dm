@@ -1,6 +1,6 @@
 //#define TESTING
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-#define MAIN_SHIP_NAME "USS Almayer"
+#define MAIN_SHIP_NAME "TGS Theseus"
 //=================================================
 //Please don't edit these values without speaking to Errorage first	~Carn
 //Admin Permissions
@@ -98,7 +98,7 @@ var/blobevent = 0
 
 var/diaryofmeanpeople = null
 var/station_name = "[MAIN_SHIP_NAME]"
-var/game_version = "Colonial Marines"
+var/game_version = "TerraGov Marine Corps"
 var/changelog_hash = ""
 var/game_year = 2186
 
@@ -160,6 +160,7 @@ var/list/surv_spawn = list()//Survivors spawn at these
 var/list/pred_spawn = list()//Predators spawn at these
 var/list/pred_elder_spawn = list() //For elder preds.
 var/list/yautja_teleport_loc = list() //Yautja teleporter target location.
+var/list/deathmatch = list()
 //	list/mazewarp = list()
 var/list/tdome1 = list()
 var/list/tdome2 = list()

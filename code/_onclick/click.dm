@@ -97,8 +97,8 @@
 		if (W)
 			if (W.attack_speed)
 				next_move += W.attack_speed
-			if (!A.attackby(W, src) && A && !A.disposed)
-				W.afterattack(A, src, 1, mods)
+			if (!A.attackby(W, src) && A && !A.gc_destroyed)
+				W?.afterattack(A, src, 1, mods) //The attackby could have made W dissappear, such as refilling mags on an ammo box.
 		else
 			next_move += 4
 			UnarmedAttack(A, 1)

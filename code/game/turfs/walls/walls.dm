@@ -27,7 +27,7 @@
 	var/current_bulletholes = 0
 	var/bullethole_increment = 1
 	var/bullethole_state = 0
-	var/image/reusable/bullethole_overlay
+	var/image/bullethole_overlay
 
 	var/max_temperature = 1800 //K, walls will take damage if they're next to a fire hotter than this
 
@@ -46,12 +46,12 @@
 	for(var/obj/item/explosive/mine/M in src)
 		if(M)
 			visible_message("<span class='warning'>\The [M] is sealed inside the wall as it is built</span>")
-			cdel(M)
+			qdel(M)
 
 
 /turf/closed/wall/ChangeTurf(newtype)
 	if(acided_hole)
-		cdel(acided_hole)
+		qdel(acided_hole)
 		acided_hole = null
 
 	. = ..()
@@ -78,7 +78,7 @@
 				var/obj/structure/sign/poster/P = O
 				P.roll_and_drop(src)
 			if(istype(O, /obj/effect/alien/weeds))
-				cdel(O)
+				qdel(O)
 
 
 
@@ -153,7 +153,7 @@
 		current_bulletholes = initial(current_bulletholes)
 		bullethole_increment = initial(current_bulletholes)
 		bullethole_state = initial(current_bulletholes)
-		cdel(bullethole_overlay)
+		qdel(bullethole_overlay)
 		bullethole_overlay = null
 		return
 
@@ -173,7 +173,7 @@
 		overlays -= bullethole_overlay
 		if(!bullethole_overlay)
 			bullethole_state = rand(1, BULLETHOLE_STATES)
-			bullethole_overlay = rnew(/image/reusable, list('icons/effects/bulletholes.dmi', src, "bhole_[bullethole_state]_[bullethole_increment]"))
+			bullethole_overlay = image('icons/effects/bulletholes.dmi', src, "bhole_[bullethole_state]_[bullethole_increment]")
 			//for(var/mob/M in view(7)) to_chat(M, bullethole_overlay)
 		if(cur_increment(current_bulletholes) > bullethole_increment) bullethole_overlay.icon_state = "bhole_[bullethole_state]_[++bullethole_increment]"
 
@@ -243,7 +243,7 @@
 	else
 		make_girder(FALSE)
 
-	cdel(src)
+	ChangeTurf(/turf/open/floor/plating)
 
 /turf/closed/wall/ex_act(severity)
 	if(hull)
@@ -276,7 +276,7 @@
 		dismantle_wall()
 
 	spawn(50)
-		if(O) cdel(O)
+		if(O) qdel(O)
 	return
 
 

@@ -43,7 +43,7 @@ RCD
 				to_chat(user, "<span class='notice'>The RCD cant hold any more matter-units.</span>")
 				return
 			user.drop_held_item()
-			cdel(W)
+			qdel(W)
 			stored_matter += 10
 			playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 			to_chat(user, "<span class='notice'>The RCD now holds [stored_matter]/30 matter-units.</span>")
@@ -157,7 +157,7 @@ RCD
 						if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 							if(!useResource(10, user)) return 0
 							activate()
-							cdel(A)
+							qdel(A)
 							return 1
 					return	0
 				return 0
