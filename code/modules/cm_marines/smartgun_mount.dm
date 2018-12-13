@@ -228,7 +228,7 @@
 	var/last_fired = 0
 	var/burst_fire = FALSE
 	var/burst_fire_toggled = FALSE
-	var/safety = FALSE //Weapon safety, 0 is weapons hot, 1 is safe.
+	var/safety = FALSE
 	var/health = 200
 	var/health_max = 200 //Why not just give it sentry-tier health for now.
 	var/atom/target = null // required for shooting at things.
