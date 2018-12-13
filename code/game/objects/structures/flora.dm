@@ -314,7 +314,7 @@
 		to_chat(user, "<span class='warning'>You cut \the [src] away with \the [W].</span>")
 		user.animation_attack_on(src)
 		playsound(src, 'sound/effects/vegetation_hit.ogg', 25, 1)
-		cdel(src)
+		qdel(src)
 	else
 		. = ..()
 

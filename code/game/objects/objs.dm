@@ -21,7 +21,7 @@
 	..()
 	object_list += src
 
-/obj/Dispose()
+/obj/Destroy()
 	. = ..()
 	object_list -= src
 
@@ -95,7 +95,7 @@
 /obj/proc/hear_talk(mob/M, text)
 	return
 
-/obj/Dispose()
+/obj/Destroy()
 	if(buckled_mob) unbuckle()
 	. = ..()
 

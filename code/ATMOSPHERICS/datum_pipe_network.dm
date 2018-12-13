@@ -13,7 +13,7 @@ var/global/list/datum/pipe_network/pipe_networks = list()
 	//Notes: Assuming that members will add themselves to appropriate roster in network_expand()
 
 	if(!start_normal)
-		cdel(src)
+		qdel(src)
 
 	start_normal.network_expand(src, reference)
 
@@ -22,7 +22,7 @@ var/global/list/datum/pipe_network/pipe_networks = list()
 	if((normal_members.len>0)||(line_members.len>0))
 		pipe_networks += src
 	else
-		cdel(src)
+		qdel(src)
 
 /datum/pipe_network/proc/merge(datum/pipe_network/giver)
 	if(giver==src) return 0

@@ -85,7 +85,7 @@
 		user.visible_message("<span class='notice'>[user] unfastens [src].</span>",
 		"<span class='notice'>You unfasten [src].</span>")
 		new /obj/item/pipe(loc, make_from = src)
-		cdel(src)
+		qdel(src)
 
 /obj/machinery/atmospherics/trinary/mixer/attack_hand(user as mob)
 	if(..())

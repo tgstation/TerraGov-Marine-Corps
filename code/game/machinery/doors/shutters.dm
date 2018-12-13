@@ -23,7 +23,7 @@
 			return
 		if(do_after(user, P.calc_delay(user), TRUE, 5, BUSY_ICON_HOSTILE) && P)
 			P.cut_apart(user, name, src)
-			cdel()
+			qdel()
 		return
 
 	if(density && (stat & NOPOWER) && !operating && !unacidable)

@@ -37,7 +37,7 @@
 			health = 10
 			nutrilevel += 10
 			if(user.temp_drop_inv_item(O))
-				cdel(O)
+				qdel(O)
 				to_chat(user, "\blue You carefully insert the queen into [src], she gets busy making a hive.")
 				bees_in_hive = 0
 	else if(istype(O, /obj/item/beezeez))
@@ -48,7 +48,7 @@
 				to_chat(user, "\blue You insert [O] into [src]. A relaxed humming appears to pick up.")
 			else
 				to_chat(user, "\blue You insert [O] into [src]. Now it just needs some bees.")
-			cdel(O)
+			qdel(O)
 	else if(istype(O, /obj/item/tool/minihoe))
 		if(health > 0)
 			to_chat(user, "\red <b>You begin to dislodge the apiary from the tray, the bees don't like that.</b>")
@@ -59,7 +59,7 @@
 			new hydrotray_type(src.loc)
 			new /obj/item/frame/apiary(src.loc)
 			to_chat(user, "\red You dislodge the apiary from the tray.")
-			cdel(src)
+			qdel(src)
 	else if(istype(O, /obj/item/tool/bee_net))
 		var/obj/item/tool/bee_net/N = O
 		if(N.caught_bees > 0)
@@ -99,11 +99,11 @@
 		if(swarming <= 0)
 			for(var/mob/living/simple_animal/bee/B in src.loc)
 				bees_in_hive += B.strength
-				cdel(B)
+				qdel(B)
 	else if(bees_in_hive < 10)
 		for(var/mob/living/simple_animal/bee/B in src.loc)
 			bees_in_hive += B.strength
-			cdel(B)
+			qdel(B)
 
 	if(world.time > (lastcycle + cycledelay))
 		lastcycle = world.time
@@ -185,7 +185,7 @@
 		B.target_turf = get_turf(src)
 		B.strength -= 1
 		if(B.strength <= 0)
-			cdel(B)
+			qdel(B)
 		else if(B.strength <= 5)
 			B.icon_state = "bees[B.strength]"
 	bees_in_hive = 0

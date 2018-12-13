@@ -42,12 +42,12 @@
 	..()
 	to_chat(usr, "<span class='notice'>They are currently set to [mode ? "range finder" : "CAS marking"] mode.</span>")
 
-/obj/item/device/binoculars/tactical/Dispose()
+/obj/item/device/binoculars/tactical/Destroy()
 	if(laser)
-		cdel(laser)
+		qdel(laser)
 		laser = null
 	if(coord)
-		cdel(coord)
+		qdel(coord)
 		coord = null
 	. = ..()
 
@@ -57,9 +57,9 @@
 	if (user && (laser || coord))
 		if (!zoom)
 			if(laser)
-				cdel(laser)
+				qdel(laser)
 			if(coord)
-				cdel(coord)
+				qdel(coord)
 
 /obj/item/device/binoculars/tactical/update_icon()
 	..()
@@ -148,7 +148,7 @@
 		while(coord)
 			if(!do_after(user, 50, TRUE, 5, BUSY_ICON_GENERIC))
 				if(coord)
-					cdel(coord)
+					qdel(coord)
 					coord = null
 				break
 	else
@@ -159,7 +159,7 @@
 		while(laser)
 			if(!do_after(user, 50, TRUE, 5, BUSY_ICON_GENERIC))
 				if(laser)
-					cdel(laser)
+					qdel(laser)
 					laser = null
 				break
 

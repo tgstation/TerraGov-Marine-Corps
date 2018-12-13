@@ -40,7 +40,7 @@
 			for(var/obj/O in W)
 				attach_doc(O, user, TRUE)
 			to_chat(user, "<span class='notice'>You add \the [W.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name].</span>")
-			cdel(W)
+			qdel(W)
 	else
 		if(istype(W, /obj/item/tool/pen) || istype(W, /obj/item/toy/crayon))
 			usr << browse("", "window=[name]") //Closes the dialog
@@ -70,7 +70,7 @@
 					user.drop_inv_item_on_ground(src)
 
 				new /obj/effect/decal/cleanable/ash(src.loc)
-				cdel(src)
+				qdel(src)
 
 			else
 				to_chat(user, "\red You must hold \the [P] steady to burn \the [src].")
@@ -150,7 +150,7 @@
 				var/obj/item/paper/P = contents[1]
 				P.loc = usr.loc
 				usr.drop_inv_item_on_ground(src)
-				cdel(src)
+				qdel(src)
 				usr.put_in_hands(P)
 				return
 			else if(page >= amount)
@@ -185,7 +185,7 @@
 		O.forceMove(usr.loc)
 		O.add_fingerprint(usr)
 	usr.drop_inv_item_on_ground(src)
-	cdel(src)
+	qdel(src)
 
 /obj/item/paper_bundle/update_icon()
 	if(contents.len)

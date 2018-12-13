@@ -443,14 +443,14 @@ should be alright.
 
 
 /obj/item/weapon/gun/proc/update_overlays(obj/item/attachable/A, slot)
-	var/image/reusable/I = attachable_overlays[slot]
+	var/image/I = attachable_overlays[slot]
 	overlays -= I
-	cdel(I)
+	qdel(I)
 	if(A) //Only updates if the attachment exists for that slot.
 		var/item_icon = A.icon_state
 		if(A.attach_icon)
 			item_icon = A.attach_icon
-		I = rnew(/image/reusable, list(A.icon,src, item_icon))
+		I = image(A.icon,src, item_icon)
 		I.pixel_x = attachable_offset["[slot]_x"] - A.pixel_shift_x
 		I.pixel_y = attachable_offset["[slot]_y"] - A.pixel_shift_y
 		attachable_overlays[slot] = I
@@ -460,11 +460,11 @@ should be alright.
 
 
 /obj/item/weapon/gun/proc/update_mag_overlay()
-	var/image/reusable/I = attachable_overlays["mag"]
+	var/image/I = attachable_overlays["mag"]
 	overlays -= I
-	cdel(I)
+	qdel(I)
 	if(current_mag && current_mag.bonus_overlay)
-		I = rnew(/image/reusable, list(current_mag.icon,src,current_mag.bonus_overlay))
+		I = image(current_mag.icon,src,current_mag.bonus_overlay)
 		attachable_overlays["mag"] = I
 		overlays += I
 	else
@@ -473,8 +473,8 @@ should be alright.
 
 /obj/item/weapon/gun/proc/update_special_overlay(new_icon_state)
 	overlays -= attachable_overlays["special"]
-	cdel(attachable_overlays["special"])
-	var/image/reusable/I = rnew(/image/reusable, list(icon,src,new_icon_state))
+	qdel(attachable_overlays["special"])
+	var/image/I = image(icon,src,new_icon_state)
 	attachable_overlays["special"] = I
 	overlays += I
 
@@ -750,10 +750,36 @@ should be alright.
 	rail?.activate_attachment(src, usr)
 
 
+/obj/item/weapon/gun/verb/toggle_ammo_hud()
+	set category = "Weapons"
+	set name = "Toggle Ammo HUD"
+	set desc = "Toggles the Ammo HUD for this weapon."
+
+	if(!usr)
+		return
+
+	hud_enabled = !hud_enabled
+	var/obj/screen/ammo/A = usr.hud_used.ammo
+	hud_enabled ? A.add_hud(usr) : A.remove_hud(usr)
+	A.update_hud(usr)
+	to_chat(usr, "<span class='notice'>[hud_enabled ? "You enable the Ammo HUD for this weapon." : "You disable the Ammo HUD for this weapon."]</span>")
+
+
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
 	if(slot != WEAR_L_HAND && slot != WEAR_R_HAND)
 		return FALSE
 	return TRUE
+
+
+/obj/item/weapon/gun/proc/has_ammo_counter()
+	return FALSE
+
+/obj/item/weapon/gun/proc/get_ammo_type()
+	return FALSE
+
+/obj/item/weapon/gun/proc/get_ammo_count()
+	return FALSE
+
 
 
 //----------------------------------------------------------

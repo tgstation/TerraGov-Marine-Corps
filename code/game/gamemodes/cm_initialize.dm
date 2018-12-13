@@ -77,8 +77,8 @@ Additional game mode variables.
 	var/roles_for_mode[] //Won't have a list if the instruction is set to 0.
 
 	//Bioscan related.
-	var/bioscan_current_interval = 36000
-	var/bioscan_ongoing_interval = 18000
+	var/bioscan_current_interval = 45 MINUTES
+	var/bioscan_ongoing_interval = 20 MINUTES
 
 	var/flags_round_type = NOFLAGS
 
@@ -486,8 +486,8 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 	new_xeno.update_icons()
 
-	if(original)
-		cdel(original) //Just to be sure.
+	if(original) 
+		qdel(original) //Just to be sure.
 
 /datum/game_mode/proc/transform_queen(datum/mind/ghost_mind)
 	var/mob/original = ghost_mind.current
@@ -506,8 +506,8 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 	new_queen.update_icons()
 
-	if(original)
-		cdel(original) //Just to be sure.
+	if(original) 
+		qdel(original) //Just to be sure.
 
 //===================================================\\
 

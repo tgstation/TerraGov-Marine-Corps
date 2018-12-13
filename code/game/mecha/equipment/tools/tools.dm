@@ -190,7 +190,7 @@
 							W.reagents.reaction(atm)
 						if(W.loc == my_target) break
 						sleep(2)
-					cdel(W)
+					qdel(W)
 			return 1
 
 	get_equip_info()
@@ -250,7 +250,7 @@
 						if(disabled) return
 						chassis.spark_system.start()
 						playsound(target, 'sound/items/Deconstruct.ogg', 25, 1)
-						cdel(target)
+						qdel(target)
 						chassis.use_power(energy_drain)
 			if(1)
 				if(istype(target, /turf/open/space))
@@ -372,7 +372,7 @@
 		do_after_cooldown()
 		src = null
 		spawn(rand(150,300))
-			cdel(P)
+			qdel(P)
 		return
 
 /obj/item/mecha_parts/mecha_equipment/gravcatapult
@@ -597,7 +597,7 @@
 		M.overlays += droid_overlay
 		return
 
-	destroy()
+	destroy_mecha()
 		chassis.overlays -= droid_overlay
 		..()
 		return
@@ -1013,7 +1013,7 @@
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/allow_drop()
 	return 0
 
-/obj/item/mecha_parts/mecha_equipment/tool/passenger/destroy()
+/obj/item/mecha_parts/mecha_equipment/tool/passenger/destroy_mecha()
 	for(var/atom/movable/AM in src)
 		AM.forceMove(get_turf(src))
 	return ..()

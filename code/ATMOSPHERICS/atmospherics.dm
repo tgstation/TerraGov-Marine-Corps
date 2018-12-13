@@ -43,13 +43,13 @@ Pipelines + Other Objects -> Pipe network
 		pipe_color = null
 
 	if(pipe_vision_img)
-		cdel(pipe_vision_img)
+		qdel(pipe_vision_img)
 		pipe_vision_img = null
 
 	start_processing()
 	..()
 
-/obj/machinery/atmospherics/Dispose()
+/obj/machinery/atmospherics/Destroy()
 	for(var/mob/living/M in src) //ventcrawling is serious business
 		M.remove_ventcrawl()
 		M.forceMove(loc)

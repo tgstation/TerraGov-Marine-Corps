@@ -160,7 +160,7 @@
 	return
 
 
-/obj/item/tool/weldingtool/Dispose()
+/obj/item/tool/weldingtool/Destroy()
 	if(welding)
 		if(ismob(loc))
 			loc.SetLuminosity(-2)
@@ -176,7 +176,7 @@
 
 
 /obj/item/tool/weldingtool/process()
-	if(disposed)
+	if(gc_destroyed)
 		processing_objects.Remove(src)
 		return
 	if(welding)
@@ -445,7 +445,7 @@
 			to_chat(user, "\red That was stupid of you.")
 			explosion(get_turf(src),-1,0,2)
 			if(src)
-				cdel(src)
+				qdel(src)
 			return
 		else
 			if(T.welding)

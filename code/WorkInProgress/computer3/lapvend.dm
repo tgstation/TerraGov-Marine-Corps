@@ -176,10 +176,10 @@
 		if(3)
 			newlap.spawn_parts += (/obj/item/computer3_part/networking/cable)
 	if(power == 1)
-		cdel(newlap.battery)
+		qdel(newlap.battery)
 		newlap.battery = new /obj/item/cell/high(newlap)
 	else if(power == 2)
-		cdel(newlap.battery)
+		qdel(newlap.battery)
 		newlap.battery = new /obj/item/cell/super(newlap)
 	newlap.spawn_parts()
 
@@ -373,7 +373,7 @@
 	T.time = worldtime2text()
 	vendor_account.transaction_log.Add(T)
 
-	cdel(relap)
+	qdel(relap)
 	relap = null
 	vendmode = 0
 	cardreader = 0
