@@ -54,44 +54,44 @@
 		if(!iscarbon(target))
 			return
 		if(laser_target)
-			remove_laser()
+			laser_target.remove_laser()
 		to_chat(user, "<span class='danger'>You focus your targeting laser on [target]!</span>")
 		laser_target = target
 		targetlaser_on = FALSE
-		apply_laser()
+		laser_target.apply_laser()
 		processing_objects.Remove(src) //So we don't accumulate additional processing.
 		processing_objects.Add(src)
 		return
 	return ..()
 
-/obj/item/weapon/gun/rifle/sniper/M42A/proc/apply_laser()
-	if(ishuman(laser_target))
-		var/mob/living/carbon/human/H = laser_target
-		H.overlays_standing[LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-LASER_LAYER)
-		laser_target.apply_overlay(LASER_LAYER)
-	else if(isXeno(laser_target))
-		var/mob/living/carbon/Xenomorph/X = laser_target
-		X.overlays_standing[X_LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-X_LASER_LAYER)
-		laser_target.apply_overlay(X_LASER_LAYER)
-	else if(ismonkey(laser_target))
-		var/mob/living/carbon/monkey/M = laser_target
-		M.overlays_standing[M_LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-M_LASER_LAYER)
-		laser_target.apply_overlay(M_LASER_LAYER)
-	else
-		return
 
-/obj/item/weapon/gun/rifle/sniper/M42A/proc/remove_laser()
-	if(ishuman(laser_target))
-		var/mob/living/carbon/human/H = laser_target
-		H.remove_overlay(LASER_LAYER)
-	else if(isXeno(laser_target))
-		var/mob/living/carbon/Xenomorph/X = laser_target
-		X.remove_overlay(X_LASER_LAYER)
-	else if(ismonkey(laser_target))
-		var/mob/living/carbon/monkey/M = laser_target
-		M.remove_overlay(M_LASER_LAYER)
-	else
-		return
+/mob/living/carbon/proc/apply_laser()
+	return FALSE
+
+/mob/living/carbon/human/apply_laser()
+	overlays_standing[LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-LASER_LAYER)
+	apply_overlay(LASER_LAYER)
+
+/mob/living/carbon/Xenomorph/apply_laser()
+	overlays_standing[X_LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-X_LASER_LAYER)
+	apply_overlay(X_LASER_LAYER)
+
+/mob/living/carbon/monkey/apply_laser()
+	overlays_standing[M_LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-M_LASER_LAYER)
+	apply_overlay(M_LASER_LAYER)
+
+
+/mob/living/carbon/proc/remove_laser()
+	return FALSE
+
+/mob/living/carbon/human/remove_laser()
+	remove_overlay(LASER_LAYER)
+
+/mob/living/carbon/Xenomorph/remove_laser()
+	remove_overlay(X_LASER_LAYER)
+
+/mob/living/carbon/monkey/remove_laser()
+	remove_overlay(M_LASER_LAYER)
 
 
 /obj/item/weapon/gun/rifle/sniper/M42A/unique_action(mob/user)
@@ -101,7 +101,7 @@
 	else if(zoom)
 		laser_off(user)
 
-/obj/item/weapon/gun/rifle/sniper/M42A/Dispose()
+/obj/item/weapon/gun/rifle/sniper/M42A/Destroy()
 	laser_off()
 	. = ..()
 
@@ -184,7 +184,7 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_off(mob/user, toggle_off = TRUE, silent = FALSE)
 	if(laser_target)
-		remove_laser()
+		laser_target.remove_laser()
 	laser_target = null
 	accuracy_mult = config.base_hit_accuracy_mult
 	processing_objects.Remove(src)
@@ -832,7 +832,7 @@
 
 /obj/item/weapon/gun/launcher/rocket/delete_bullet(obj/item/projectile/projectile_to_fire, refund = FALSE)
 	qdel(projectile_to_fire)
-	if(refund) 
+	if(refund)
 		current_mag.current_rounds++
 	return TRUE
 

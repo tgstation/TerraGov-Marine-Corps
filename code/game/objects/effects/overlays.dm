@@ -155,7 +155,7 @@
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "sniper_laser"
 
-/obj/effect/overlay/temp/blinking_laser/Dispose()
+/obj/effect/overlay/temp/blinking_laser/Destroy()
 	SetLuminosity(0)
 	return ..()
 
