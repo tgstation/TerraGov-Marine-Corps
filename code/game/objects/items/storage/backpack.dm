@@ -380,7 +380,8 @@
 					"/obj/item/device/m56d_post",
 					"/obj/item/device/turret_top",
 					"/obj/item/ammo_magazine/sentry",
-					"/obj/item/ammo_magazine/sentry",
+					"/obj/item/ammo_magazine/minisentry",
+					"/obj/item/device/marine_turret/mini",
 					"/obj/item/stack/sandbags"
 					)
 

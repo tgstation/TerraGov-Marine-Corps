@@ -385,7 +385,7 @@
 
 	H.throw_at(T, fling_distance, 1, src, 1)
 
-	spawn(xeno_caste.fling_cooldown)
+	spawn(WARRIOR_FLING_COOLDOWN)
 		used_fling = FALSE
 		to_chat(src, "<span class='notice'>You gather enough strength to fling something again.</span>")
 		update_action_button_icons()
@@ -467,7 +467,7 @@
 	shake_camera(M, 2, 1)
 	step_away(M, src, 2)
 
-	spawn(xeno_caste.punch_cooldown)
+	spawn(WARRIOR_PUNCH_COOLDOWN)
 		used_punch = FALSE
 		to_chat(src, "<span class='notice'>You gather enough strength to punch again.</span>")
 		update_action_button_icons()
@@ -503,7 +503,7 @@
 	if (Adjacent(H))
 		start_pulling(H,1)
 
-	spawn(xeno_caste.lunge_cooldown)
+	spawn(WARRIOR_LUNGE_COOLDOWN)
 		used_lunge = FALSE
 		to_chat(src, "<span class='notice'>You get ready to lunge again.</span>")
 		update_action_button_icons()
@@ -604,7 +604,7 @@
 	do_agility_cooldown()
 
 /mob/living/carbon/Xenomorph/proc/do_agility_cooldown()
-	spawn(xeno_caste.toggle_agility_cooldown)
+	spawn(WARRIOR_AGILITY_COOLDOWN)
 		used_toggle_agility = FALSE
 		to_chat(src, "<span class='notice'>You can [agility ? "raise yourself back up" : "lower yourself back down"] again.</span>")
 		update_action_button_icons()

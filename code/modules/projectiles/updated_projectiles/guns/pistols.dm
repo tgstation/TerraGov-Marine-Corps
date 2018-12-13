@@ -28,12 +28,27 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK //For easy reference.
 
-	New()
-		..()
-		if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
+/obj/item/weapon/gun/pistol/New()
+	. = ..()
+	if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
 
-	unique_action(mob/user)
-		cock(user)
+/obj/item/weapon/gun/pistol/unique_action(mob/user)
+	cock(user)
+
+/obj/item/weapon/gun/pistol/has_ammo_counter()
+	return TRUE
+
+/obj/item/weapon/gun/pistol/get_ammo_type()
+	if(!ammo)
+		return list("unknown", "unknown")
+	else
+		return list(ammo.hud_state, ammo.hud_state_empty)
+
+/obj/item/weapon/gun/pistol/get_ammo_count()
+	if(!current_mag)
+		return in_chamber ? 1 : 0
+	else
+		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 //-------------------------------------------------------
 //M4A3 PISTOL
@@ -45,10 +60,10 @@
 	item_state = "m4a3"
 	current_mag = /obj/item/ammo_magazine/pistol
 
-	New()
-		select_gamemode_skin(/obj/item/weapon/gun/pistol/m4a3)
-		..()
-		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
+/obj/item/weapon/gun/pistol/m4a3/New()
+	. = ..()
+	select_gamemode_skin(/obj/item/weapon/gun/pistol/m4a3)
+	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
 /obj/item/weapon/gun/pistol/m4a3/set_gun_config_values()
 	fire_delay = config.mlow_fire_delay
@@ -64,9 +79,9 @@
 	icon_state = "m4a3c"
 	item_state = "m4a3c"
 
-	New()
-		..()
-		select_gamemode_skin(/obj/item/weapon/gun/pistol/m4a3/custom)
+/obj/item/weapon/gun/pistol/m4a3/custom/New()
+	. = ..()
+	select_gamemode_skin(/obj/item/weapon/gun/pistol/m4a3/custom)
 
 /obj/item/weapon/gun/pistol/m4a3/custom/set_gun_config_values()
 	fire_delay = config.mlow_fire_delay
@@ -89,9 +104,9 @@
 	current_mag = /obj/item/ammo_magazine/pistol/m1911
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
+/obj/item/weapon/gun/pistol/m1911/New()
+	. = ..()
+	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
 //-------------------------------------------------------
 //Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
@@ -103,9 +118,9 @@
 	item_state = "b92fs"
 	current_mag = /obj/item/ammo_magazine/pistol/b92fs
 
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
+/obj/item/weapon/gun/pistol/b92fs/New()
+	. = ..()
+	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
 /obj/item/weapon/gun/pistol/b92fs/set_gun_config_values()
 	fire_delay = config.mlow_fire_delay
@@ -155,12 +170,12 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
-	New()
-		..() //Pick some variant sprites.
-		var/skin = pick("","g_","c_")
-		icon_state = skin + icon_state
-		item_state = skin + item_state
-		attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 23, "under_x" = 20, "under_y" = 17, "stock_x" = 20, "stock_y" = 17)
+/obj/item/weapon/gun/pistol/heavy/New()
+	. = ..() //Pick some variant sprites.
+	var/skin = pick("","g_","c_")
+	icon_state = skin + icon_state
+	item_state = skin + item_state
+	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 23, "under_x" = 20, "under_y" = 17, "stock_x" = 20, "stock_y" = 17)
 
 /obj/item/weapon/gun/pistol/heavy/set_gun_config_values()
 	fire_delay = config.max_fire_delay
@@ -192,16 +207,16 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
-	New()//Making the gun have an invisible silencer since it's supposed to have one.
-		..()
-		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
-		var/obj/item/attachable/suppressor/S = new(src)
-		S.attach_icon = ""
-		S.icon_state = ""
-		S.flags_attach_features &= ~ATTACH_REMOVABLE
-		S.Attach(src)
-		update_attachable(S.slot)
-		S.icon_state = initial(S.icon_state)
+/obj/item/weapon/gun/pistol/c99/New()//Making the gun have an invisible silencer since it's supposed to have one.
+	. = ..()
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
+	var/obj/item/attachable/suppressor/S = new(src)
+	S.attach_icon = ""
+	S.icon_state = ""
+	S.flags_attach_features &= ~ATTACH_REMOVABLE
+	S.Attach(src)
+	update_attachable(S.slot)
+	S.icon_state = initial(S.icon_state)
 
 /obj/item/weapon/gun/pistol/c99/set_gun_config_values()
 	fire_delay = config.high_fire_delay
@@ -240,9 +255,9 @@
 	attachable_allowed = list()
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 17)
+/obj/item/weapon/gun/pistol/kt42/New()
+	. = ..()
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 17)
 
 /obj/item/weapon/gun/pistol/kt42/set_gun_config_values()
 	fire_delay = config.high_fire_delay*2
@@ -277,9 +292,9 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 25, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
+/obj/item/weapon/gun/pistol/holdout/New()
+	. = ..()
+	attachable_offset = list("muzzle_x" = 25, "muzzle_y" = 20,"rail_x" = 12, "rail_y" = 22, "under_x" = 17, "under_y" = 15, "stock_x" = 22, "stock_y" = 17)
 
 /obj/item/weapon/gun/pistol/holdout/set_gun_config_values()
 	fire_delay = config.mlow_fire_delay
@@ -303,9 +318,9 @@
 	attachable_allowed = list()
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 16, "under_y" = 15, "stock_x" = 16, "stock_y" = 15)
+/obj/item/weapon/gun/pistol/highpower/New()
+	. = ..()
+	attachable_offset = list("muzzle_x" = 27, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 16, "under_y" = 15, "stock_x" = 16, "stock_y" = 15)
 
 /obj/item/weapon/gun/pistol/highpower/set_gun_config_values()
 	fire_delay = config.high_fire_delay*2

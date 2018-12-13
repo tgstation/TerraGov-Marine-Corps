@@ -496,7 +496,6 @@
 
 		var/obj/item/weapon/gun/energy/plasma_caster/W = new(usr)
 		usr.put_in_active_hand(W)
-		W.source = src
 		caster_active = 1
 		to_chat(usr, "<span class='notice'>You activate your plasma caster.</span>")
 		playsound(src,'sound/weapons/pred_plasmacaster_on.ogg', 15, 1)
@@ -878,10 +877,6 @@
 /obj/item/weapon/wristblades/Destroy()
 	. = ..()
 	return TA_REVIVE_ME
-
-/obj/item/weapon/wristblades/Recycle()
-	var/blacklist[] = list("attack_verb")
-	. = ..() + blacklist
 
 /obj/item/weapon/wristblades/dropped(mob/living/carbon/human/M)
 	playsound(M,'sound/weapons/wristblades_off.ogg', 15, 1)

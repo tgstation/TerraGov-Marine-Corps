@@ -132,7 +132,7 @@
 	flags_gun_features = GUN_INTERNAL_MAG
 	able_to_fire(mob/living/user)
 		var/turf/current_turf = get_turf(user)
-		if (current_turf.z == 3 || current_turf.z == 4) //Can't fire on the Almayer, bub.
+		if (current_turf.z == 3 || current_turf.z == 4) //Can't fire on the Theseus, bub.
 			click_empty(user)
 			to_chat(user, "<span class='warning'>You can't fire that here!</span>")
 			return 0

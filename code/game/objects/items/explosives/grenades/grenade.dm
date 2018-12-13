@@ -15,6 +15,8 @@
 	var/dangerous = 0		//Make an danger overlay for humans?
 	var/arm_sound = 'sound/weapons/armbomb.ogg'
 	var/underslug_launchable = FALSE
+	var/hud_state = "grenade_he"
+	var/hud_state_empty = "grenade_empty"
 
 /obj/item/explosive/grenade/New()
 
