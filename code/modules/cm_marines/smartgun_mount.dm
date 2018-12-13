@@ -354,7 +354,7 @@
 
 /obj/machinery/m56d_hmg/proc/load_into_chamber()
 	if(in_chamber)
-		return 1 //Already set!
+		return TRUE //Already set!
 	if(rounds == 0)
 		update_icon() //make sure the user can see the lack of ammo.
 		return 0 //Out of ammo.
