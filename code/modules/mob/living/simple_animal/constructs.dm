@@ -38,7 +38,7 @@
 	new /obj/item/ectoplasm (src.loc)
 	. = ..(null,"collapses in a shattered heap.")
 	ghostize()
-	cdel(src)
+	qdel(src)
 
 /mob/living/simple_animal/construct/examine(mob/user)
 	var/msg = "<span cass='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>!\n"

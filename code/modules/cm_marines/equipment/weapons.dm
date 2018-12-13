@@ -39,7 +39,7 @@
 	pcell = new /obj/item/cell(src)
 
 /obj/item/smartgun_powerpack/attack_self(mob/user, automatic = FALSE)
-	if(!ishuman(user) || user.stat) 
+	if(!ishuman(user) || user.stat)
 		return FALSE
 
 	var/obj/item/weapon/gun/smartgun/mygun = user.get_active_hand()
@@ -68,11 +68,13 @@
 	else
 		user.visible_message("[user.name]'s powerpack servos begin automatically feeding an ammo belt into the M56 Smartgun.","The powerpack servos begin automatically feeding a fresh ammo belt into the M56 Smartgun.")
 	var/reload_duration = 50
+	var/obj/screen/ammo/A = user.hud_used.ammo
 	if(!automatic)
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.smartgun>0)
 			reload_duration = max(reload_duration - 10*user.mind.cm_skills.smartgun,30)
 		if(do_after(user,reload_duration, TRUE, 5, BUSY_ICON_FRIENDLY))
 			reload(user, mygun)
+			A.update_hud(user)
 		else
 			to_chat(user, "Your reloading was interrupted!")
 			playsound(src,'sound/machines/buzz-two.ogg', 25, 1)
@@ -81,6 +83,7 @@
 	else
 		if(autoload_check(user, reload_duration, mygun, src))
 			reload(user, mygun, TRUE)
+			A.update_hud(user)
 		else
 			to_chat(user, "The automated reload process was interrupted!")
 			playsound(src,'sound/machines/buzz-two.ogg', 25, 1)
@@ -103,7 +106,7 @@
 	if(istype(A, /obj/item/cell) && !pcell)
 		var/obj/item/cell/C = A
 		pcell = C
-		cdel(C)
+		qdel(C)
 		visible_message("[user] puts a new power cell in the [src].")
 		to_chat(user, "You put a new cell in the [src] containing [pcell.charge] charge.")
 		playsound(src,'sound/machines/click.ogg', 25, 1)
@@ -127,9 +130,9 @@
 	mygun.current_mag.current_rounds += rounds_to_reload
 	rounds_remaining -= rounds_to_reload
 
-	if(!automatic)	
+	if(!automatic)
 		to_chat(user, "You finish loading [rounds_to_reload] shells into the M56 Smartgun. Ready to rumble!")
-	else	
+	else
 		to_chat(user, "The powerpack servos finish loading [rounds_to_reload] shells into the M56 Smartgun. Ready to rumble!")
 	playsound(user, 'sound/weapons/unload.ogg', 25, 1)
 
@@ -484,7 +487,7 @@
 			S = /obj/item/storage/box/spec/demolitionist
 	new S(loc)
 	user.put_in_hands(S)
-	cdel()
+	qdel()
 
 /obj/item/spec_kit/attack_self(mob/user)
 	var/selection = input(user, "Pick your equipment", "Specialist Kit Selection") as null|anything in list("Pyro","Grenadier","Sniper","Scout","Demo")
@@ -502,4 +505,4 @@
 			new /obj/item/storage/box/spec/scout (T)
 		if("Demo")
 			new /obj/item/storage/box/spec/demolitionist (T)
-	cdel(src)
+	qdel(src)

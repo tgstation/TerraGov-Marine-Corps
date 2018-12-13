@@ -64,7 +64,7 @@ client/verb/JoinResponseTeam()
 				return
 			var/leader_selected = isemptylist(response_team_members)
 			var/mob/living/carbon/human/new_commando = create_response_team(L.loc, leader_selected, new_name)
-			cdel(L)
+			qdel(L)
 			new_commando.mind.key = usr.key
 			new_commando.key = usr.key
 
@@ -182,7 +182,7 @@ proc/trigger_armed_response_team(var/force = 0)
 	for(var/x in all_hairs)
 		var/datum/sprite_accessory/hair/H = new x // create new hair datum based on type x
 		hairs.Add(H.name) // add hair name to hairs
-		cdel(H) // delete the hair after it's all done
+		qdel(H) // delete the hair after it's all done
 
 //	var/new_style = input("Please select hair style", "Character Generation")  as null|anything in hairs
 //hair

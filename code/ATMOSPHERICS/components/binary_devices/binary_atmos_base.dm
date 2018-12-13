@@ -41,7 +41,7 @@
 
 	return null
 
-/obj/machinery/atmospherics/binary/Dispose()
+/obj/machinery/atmospherics/binary/Destroy()
 	if(node1)
 		node1.disconnect(src)
 		del(network1)

@@ -100,7 +100,7 @@ var/global/const/base_law_type = /datum/ai_laws/nanotrasen
 	src.ion += law
 
 /datum/ai_laws/proc/clear_inherent_laws()
-	cdel(src.inherent)
+	qdel(src.inherent)
 	src.inherent = list()
 
 /datum/ai_laws/proc/add_supplied_law(var/number, var/law)

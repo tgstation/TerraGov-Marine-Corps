@@ -248,6 +248,8 @@
 /datum/skills/pfc/pmc
 	name = "PMC Private"
 	police = SKILL_POLICE_MP
+	construction = SKILL_CONSTRUCTION_METAL
+	engineer = SKILL_ENGINEER_METAL
 
 
 /datum/skills/pfc/crafty
@@ -380,7 +382,7 @@
 
 /datum/skills/mercenary
 	name = "Mercenary"
-	cqc = 3
+	cqc = SKILL_CQC_MP
 	engineer = SKILL_ENGINEER_ENGI
 	construction = SKILL_CONSTRUCTION_PLASTEEL
 	firearms = SKILL_FIREARMS_TRAINED

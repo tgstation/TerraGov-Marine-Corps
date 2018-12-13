@@ -64,7 +64,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			to_chat(usr, "<span class='warning'>[O]'s ink is smeared by [name], but doesn't wash away!</span>")
 	return
 
-/datum/reagent/reaction_mob(mob/living/M, var/method=TOUCH, reac_volume)//Splashing people with ethanol isn't quite as good as fuel.
+/datum/reagent/consumbale/ethanol/reaction_mob(mob/living/M, var/method=TOUCH, reac_volume)//Splashing people with ethanol isn't quite as good as fuel.
 	if(!isliving(M))
 		return
 

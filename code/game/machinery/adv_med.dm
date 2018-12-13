@@ -52,7 +52,7 @@
 	src.icon_state = "body_scanner_1"
 	for(var/obj/O in src)
 		//O = null
-		cdel(O)
+		qdel(O)
 		//Foreach goto(124)
 	src.add_fingerprint(usr)
 	return
@@ -119,7 +119,7 @@
 				ex_act(severity)
 				//Foreach goto(35)
 			//SN src = null
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(50))
@@ -128,7 +128,7 @@
 					ex_act(severity)
 					//Foreach goto(108)
 				//SN src = null
-				cdel(src)
+				qdel(src)
 				return
 		if(3.0)
 			if (prob(25))
@@ -137,7 +137,7 @@
 					ex_act(severity)
 					//Foreach goto(181)
 				//SN src = null
-				cdel(src)
+				qdel(src)
 				return
 		else
 	return
@@ -147,12 +147,12 @@
 	switch(severity)
 		if(1.0)
 			//SN src = null
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(50))
 				//SN src = null
-				cdel(src)
+				qdel(src)
 				return
 		else
 	return

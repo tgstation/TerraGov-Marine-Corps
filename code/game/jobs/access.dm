@@ -311,6 +311,12 @@ proc/get_all_job_icons()
 		if("FRE1") . = size ? "FRE " : "Freelancer Standard"
 		if("FRE2") . = size ? "FRE " : "Freelancer Medic"
 		if("FRE3") . = size ? "FRE " : "Freelancer Leader"
+		if("CLF1") . = size ? "CLF " : "CLF Standard"
+		if("CLF2") . = size ? "CLF " : "CLF Medic"
+		if("CLF3") . = size ? "CLF " : "CLF Leader"
+		if("MRC1") . = size ? "MERC " : "MERC Heavy"
+		if("MRC2") . = size ? "MERC " : "MERC Miner"
+		if("MRC3") . = size ? "MERC " : "MERC Engineer"
 		else . = paygrade + " " //custom paygrade
 
 #define PAYGRADES_MARINE list("C","E1","E2","E3","E4","E5","E6","E6E","E7","E8","E8E","E9","E9E","O1","O2","O3","O4", "WO")

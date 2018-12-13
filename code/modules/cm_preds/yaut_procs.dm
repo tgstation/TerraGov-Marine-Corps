@@ -131,7 +131,7 @@
 			T.butchery_progress = 5 //Won't really matter.
 			playsound(loc, 'sound/weapons/slice.ogg', 25)
 			to_chat(src, "\blue You finish butchering!")
-			cdel(T)
+			qdel(T)
 		else
 			to_chat(src, "You pause your butchering for later.")
 
