@@ -226,7 +226,7 @@
 	var/rounds_max = 700
 	var/fire_delay = 4 //Gotta have rounds down quick.
 	var/last_fired = 0
-	var/burst_fire = FALSE//0 is non-burst mode, 1 is burst.
+	var/burst_fire = FALSE
 	var/burst_fire_toggled = FALSE
 	var/safety = FALSE //Weapon safety, 0 is weapons hot, 1 is safe.
 	var/health = 200
