@@ -7,15 +7,15 @@
 /obj/structure/flora/ex_act(severity)
 	switch(severity)
 		if(1)
-			cdel(src)
+			qdel(src)
 		if(2)
 			if(prob(70))
-				cdel(src)
+				qdel(src)
 		if(3)
 			if(prob(50))
-				cdel(src)
+				qdel(src)
 
-/obj/structure/flora/Dispose()
+/obj/structure/flora/Destroy()
 	processing_objects.Remove(src)
 	return ..()
 
@@ -53,7 +53,7 @@
 
 /obj/structure/flora/process()
 	if(health <= 0)
-		cdel(src)
+		qdel(src)
 	if(!on_fire)
 		processing_objects.Remove(src)
 	else
@@ -93,7 +93,9 @@
 		if(W.hitsound)
 			playsound(get_turf(src), W.hitsound, 100, 0, 0)
 		user.visible_message("<span class='notice'>[user] begins to cut down [src] with [W].</span>","<span class='notice'>You begin to cut down [src] with [W].</span>", "You hear the sound of sawing.")
-		if(!do_after(usr, 10 SECONDS, TRUE, 5, BUSY_ICON_BUILD)) //10 seconds to cut down a tree
+		var/cut_force = min(1, W.force)
+		var/cutting_time = CLAMP(10, 20, 100/cut_force) SECONDS
+		if(!do_after(usr, cutting_time , TRUE, 5, BUSY_ICON_BUILD)) //
 			user.visible_message("<span class='notice'>[user] fells [src] with the [W].</span>","<span class='notice'>You fell [src] with the [W].</span>", "You hear the sound of a tree falling.")
 			playsound(get_turf(src), 'sound/effects/meteorimpact.ogg', 100 , 0, 0)
 			for(var/i=1 to log_amount)
@@ -102,7 +104,7 @@
 			var/obj/structure/flora/stump/S = new(loc)
 			S.name = "[name] stump"
 
-			cdel(src)
+			qdel(src)
 
 	else
 		return ..()
@@ -126,7 +128,7 @@
 		var/obj/structure/flora/stump/S = new(loc)
 		S.name = "[name] stump"
 		processing_objects.Remove(src)
-		cdel(src)
+		qdel(src)
 	if(!on_fire)
 		processing_objects.Remove(src)
 	else
