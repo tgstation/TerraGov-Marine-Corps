@@ -211,7 +211,7 @@
 	..()
 
 /obj/item/device/flashlight/flare/Destroy()
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/device/flashlight/flare/process()
@@ -220,7 +220,7 @@
 		turn_off()
 		if(!fuel)
 			icon_state = "[initial(icon_state)]-empty"
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 
 /obj/item/device/flashlight/flare/proc/turn_off()
 	on = 0
@@ -249,7 +249,7 @@
 		force = on_damage
 		heat_source = 1500
 		damtype = "fire"
-		processing_objects += src
+		START_PROCESSING(SSobj, src)
 
 /obj/item/device/flashlight/flare/on
 
@@ -261,7 +261,7 @@
 		update_brightness()
 		force = on_damage
 		damtype = "fire"
-		processing_objects += src
+		START_PROCESSING(SSobj, src)
 
 /obj/item/device/flashlight/slime
 	gender = PLURAL

@@ -305,15 +305,15 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(slot == WEAR_HANDS && H.species && H.species.name == "Yautja")
-			processing_objects.Add(src)
+			START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/gloves/yautja/dropped(mob/user)
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/clothing/gloves/yautja/process()
 	if(!ishuman(loc))
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return
 	var/mob/living/carbon/human/H = loc
 	if(cloak_timer)

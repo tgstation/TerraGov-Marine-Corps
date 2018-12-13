@@ -25,11 +25,11 @@
 		var/datum/reagent/R = chemical_reagents_list[T]
 		reagent_names += R.name
 
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 
 /obj/item/reagent_container/borghypo/Destroy()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/item/reagent_container/borghypo/process() //Every [recharge_time] seconds, recharge some reagents for the cyborg+
