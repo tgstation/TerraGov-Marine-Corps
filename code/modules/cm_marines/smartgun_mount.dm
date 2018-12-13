@@ -357,7 +357,7 @@
 		return TRUE //Already set!
 	if(rounds == 0)
 		update_icon() //make sure the user can see the lack of ammo.
-		return 0 //Out of ammo.
+		return FALSE //Out of ammo.
 
 	in_chamber = rnew(/obj/item/projectile, loc) //New bullet!
 	in_chamber.generate_bullet(ammo)
