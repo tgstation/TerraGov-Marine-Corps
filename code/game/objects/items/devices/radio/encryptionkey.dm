@@ -29,7 +29,7 @@
 	name = "AI Integrated Encryption Key"
 	desc = "Integrated encryption key"
 	icon_state = "cap_cypherkey"
-	channels = list("Almayer" = TRUE, "Command" = TRUE, "MP" = TRUE, "Engi" = TRUE, "MedSci" = TRUE)
+	channels = list("Theseus" = TRUE, "Command" = TRUE, "MP" = TRUE, "Engi" = TRUE, "MedSci" = TRUE)
 
 /obj/item/device/encryptionkey/engi
 	name = "Engineering Radio Encryption Key"
@@ -121,7 +121,7 @@
 /obj/item/device/encryptionkey/general
     	name = "\improper General radio encryption key"
     	icon_state = "cypherkey"
-    	channels = list("Almayer" = TRUE)
+    	channels = list("Theseus" = TRUE)
 
 
 //PMCs

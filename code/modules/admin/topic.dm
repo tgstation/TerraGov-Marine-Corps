@@ -211,14 +211,14 @@
 
 			if("use_dest")
 
-				var/confirm = alert("Are you sure you want to self-destruct the Almayer?", "Self-Destruct", "Yes", "Cancel")
+				var/confirm = alert("Are you sure you want to self-destruct the [MAIN_SHIP_NAME]?", "Self-Destruct", "Yes", "Cancel")
 				if(confirm != "Yes")
 					return
 
 				if(!EvacuationAuthority.initiate_self_destruct(1))
 					to_chat(usr, "<span class='warning'>You are unable to trigger the self-destruct right now!</span>")
 					return
-				if(alert("Are you sure you want to destroy the Almayer right now?",, "Yes", "Cancel") == "Cancel") return
+				if(alert("Are you sure you want to destroy the [MAIN_SHIP_NAME] right now?",, "Yes", "Cancel") == "Cancel") return
 
 				log_admin("[key_name(usr)] forced the self-destruct system, destroying the [MAIN_SHIP_NAME].")
 				message_admins("\blue [key_name_admin(usr)] forced the self-destrust system, destroying the [MAIN_SHIP_NAME].", 1)
@@ -1691,7 +1691,7 @@
 				if(!message_body) return
 				var/sent_by = input(src.owner, "Enter JUST the name you are sending this from", "Outgoing message from Nanotrasen", "") as message|null
 				if(!sent_by) return
-				fax_message = generate_templated_fax(1,"NANOTRASEN CORPORATE AFFAIRS - USS ALMAYER",subject,addressed_to,message_body,sent_by,"Corporate Affairs Director","Nanotrasen")
+				fax_message = generate_templated_fax(1,"NANOTRASEN CORPORATE AFFAIRS - [MAIN_SHIP_NAME]",subject,addressed_to,message_body,sent_by,"Corporate Affairs Director","Nanotrasen")
 		usr << browse(fax_message, "window=clfaxpreview;size=600x600")
 		var/send_choice = input("Send this fax?") in list("Send", "Cancel")
 		if(send_choice == "Cancel") return

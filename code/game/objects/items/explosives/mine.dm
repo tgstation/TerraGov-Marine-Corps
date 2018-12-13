@@ -52,7 +52,7 @@
 		to_chat(user, "<span class='warning'>You can't plant a mine here.</span>")
 		return
 
-	/*if(user.z == MAIN_SHIP_Z_LEVEL || user.z == LOW_ORBIT_Z_LEVEL) // Almayer or dropship transit level
+	/*if(user.z == MAIN_SHIP_Z_LEVEL || user.z == LOW_ORBIT_Z_LEVEL) // Theseus or dropship transit level
 		to_chat(user, "<span class='warning'>You can't plant a mine on a spaceship!</span>")
 		return*/
 

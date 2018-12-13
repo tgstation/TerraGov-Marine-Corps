@@ -338,7 +338,7 @@
 			switch(z_hidden)
 				if(0)
 					z_hidden = MAIN_SHIP_Z_LEVEL
-					to_chat(usr, "\icon[src] <span class='notice'>Marines on the Almayer are now hidden.</span>")
+					to_chat(usr, "\icon[src] <span class='notice'>Marines on the [MAIN_SHIP_NAME] are now hidden.</span>")
 				if(MAIN_SHIP_Z_LEVEL)
 					z_hidden = 1
 					to_chat(usr, "\icon[src] <span class='notice'>Marines on the ground are now hidden.</span>")
@@ -557,8 +557,8 @@
 	send_to_squads("Calibrating trajectory window...")
 	sleep(11)
 	for(var/mob/living/carbon/H in living_mob_list)
-		if(H.z == MAIN_SHIP_Z_LEVEL && !H.stat) //USS Almayer decks.
-			to_chat(H, "<span class='warning'>The deck of the USS Almayer shudders as the orbital cannons open fire on the colony.</span>")
+		if(H.z == MAIN_SHIP_Z_LEVEL && !H.stat) //TGS Theseus decks.
+			to_chat(H, "<span class='warning'>The deck of the [MAIN_SHIP_NAME] shudders as the orbital cannons open fire on the colony.</span>")
 			if(H.client)
 				shake_camera(H, 10, 1)
 	state("<span class='boldnotice'>Orbital bombardment has fired! Impact imminent!</span>")

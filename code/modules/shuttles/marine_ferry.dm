@@ -6,15 +6,15 @@
 
 
 /*
-/client/verb/TestAlmayerEvac()
-	set name = "Test Almayer Evac"
+/client/verb/TestTheseusEvac()
+	set name = "Test Theseus Evac"
 
 	for(var/datum/shuttle/ferry/marine/M in shuttle_controller.process_shuttles)
-		if(M.info_tag == "Almayer Evac" || M.info_tag == "Alt Almayer Evac")
+		if(M.info_tag == "[MAIN_SHIP_NAME] Evac" || M.info_tag == "Alt [MAIN_SHIP_NAME] Evac")
 			spawn(1)
 				M.short_jump()
 				to_chat(world, "LAUNCHED THING WITH TAG [M.shuttle_tag]")
-		else if(M.info_tag == "Almayer Dropship")
+		else if(M.info_tag == "[MAIN_SHIP_NAME] Dropship")
 			spawn(1)
 				M.short_jump()
 				to_chat(world, "LAUNCHED THING WITH TAG [M.shuttle_tag]")
@@ -352,7 +352,7 @@
 				if(istype(get_area(TU), /area/almayer/hallways/hangar))
 					crash_turfs += TU
 			if(crash_turfs.len) T_trg = pick(crash_turfs)
-			else message_admins("\blue no crash turf found in Almayer Hangar, contact coders.")
+			else message_admins("\blue no crash turf found in [MAIN_SHIP_NAME] Hangar, contact coders.")
 			break
 
 	if(!istype(T_src) || !istype(T_int) || !istype(T_trg))
