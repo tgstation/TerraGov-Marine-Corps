@@ -19,6 +19,13 @@
 	//Detective Work, used for the duplicate data points kept in the scanners
 	var/list/original_atom
 
+/atom/New()
+	. = ..()
+	spawn() // hacky
+		Initialize()
+
+/atom/proc/Initialize()
+	return
 
 /*
 We actually care what this returns, since it can return different directives.

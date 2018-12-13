@@ -4,11 +4,6 @@ datum/controller/process/objects/setup()
 	name = "Objects"
 	schedule_interval = 23 //2.3 seconds
 
-	to_chat(world, "\red \b Initializing objects")
-	sleep(-1)
-	for(var/atom/movable/object in world)
-		object.initialize()
-
 datum/controller/process/objects/doWork()
 
 	var/i = 1
