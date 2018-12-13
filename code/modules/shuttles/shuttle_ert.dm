@@ -187,7 +187,7 @@
 			for(var/area/A in all_areas)
 				if(A.type == dock_id)
 					MS.area_station = A
-					to_chat(usr, "\red You set the docking area on the Almayer to \"[dock_name]\".")
+					to_chat(usr, "\red You set the docking area on the [MAIN_SHIP_NAME] to \"[dock_name]\".")
 					break
 
 		ui_interact(usr)

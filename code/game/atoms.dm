@@ -35,9 +35,6 @@ directive is properly returned.
 		light = null
 	. = ..()
 
-/atom/Recycle()
-	return
-
 //===========================================================================
 
 

@@ -89,6 +89,8 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	if (!key || !note)
 		return
 
+	key = ckey(key)
+
 	//Loading list of notes for this key
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
@@ -116,8 +118,8 @@ datum/admins/proc/notes_gethtml(var/ckey)
 		P.author = usr.key
 		P.rank = usr.client.holder.rank
 	else
-		P.author = "Adminbot"
-		P.rank = "Friendly Robot"
+		P.author = "TGMC Adminbot"
+		P.rank = "Silicon"
 	P.content = note
 	P.timestamp = "[hourminute_string] [copytext(full_date,1,day_loc)][day_string][copytext(full_date,day_loc+2)]"
 	P.hidden = FALSE
@@ -143,6 +145,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 
 
 /proc/notes_del(var/key, var/index)
+	key = ckey(key)
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
@@ -159,6 +162,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	qdel(info)
 
 /proc/notes_hide(var/key, var/index)
+	key = ckey(key)
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
@@ -176,6 +180,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	qdel(info)
 
 /proc/notes_unhide(var/key, var/index)
+	key = ckey(key)
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
@@ -193,6 +198,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	qdel(info)
 
 /proc/player_notes_show_irc(var/key as text)
+	key = ckey(key)
 	var/dat = "          Info on [key]%0D%0A"
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos

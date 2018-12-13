@@ -111,10 +111,6 @@
 		..()
 		return TA_REVIVE_ME //So we can recycle this garbage.
 
-	Recycle()
-		var/blacklist[] = list("name","w_class","desc","flags","icon_state")
-		. = ..() + blacklist
-
 	dropped(mob/user)
 		..()
 		//This hand should be holding the main weapon. If everything worked correctly, it should not be wielded.

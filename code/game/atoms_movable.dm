@@ -31,8 +31,6 @@
 	loc = null //so we move into null space. Must be after ..() b/c atom's Dispose handles deleting our lighting stuff
 
 
-/atom/movable/Recycle()
-	return
 //===========================================================================
 
 /atom/movable/proc/initialize()

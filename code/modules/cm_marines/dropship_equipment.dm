@@ -65,10 +65,10 @@
 	base_category = DROPSHIP_WEAPON
 
 /obj/effect/attach_point/weapon/dropship1
-	ship_tag = "USS Almayer Dropship 1"
+	ship_tag = "TGS Theseus Dropship 1"
 
 /obj/effect/attach_point/weapon/dropship2
-	ship_tag = "USS Almayer Dropship 2"
+	ship_tag = "TGS Theseus Dropship 2"
 
 
 /obj/effect/attach_point/crew_weapon
@@ -76,10 +76,10 @@
 	base_category = DROPSHIP_CREW_WEAPON
 
 /obj/effect/attach_point/crew_weapon/dropship1
-	ship_tag = "USS Almayer Dropship 1"
+	ship_tag = "TGS Theseus Dropship 1"
 
 /obj/effect/attach_point/crew_weapon/dropship2
-	ship_tag = "USS Almayer Dropship 2"
+	ship_tag = "TGS Theseus Dropship 2"
 
 
 /obj/effect/attach_point/electronics
@@ -88,10 +88,10 @@
 	icon_state = "equip_base_front"
 
 /obj/effect/attach_point/electronics/dropship1
-	ship_tag = "USS Almayer Dropship 1"
+	ship_tag = "TGS Theseus Dropship 1"
 
 /obj/effect/attach_point/electronics/dropship2
-	ship_tag = "USS Almayer Dropship 2"
+	ship_tag = "TGS Theseus Dropship 2"
 
 
 /obj/effect/attach_point/fuel
@@ -101,20 +101,20 @@
 	base_category = DROPSHIP_FUEL_EQP
 
 /obj/effect/attach_point/fuel/dropship1
-	ship_tag = "USS Almayer Dropship 1"
+	ship_tag = "TGS Theseus Dropship 1"
 
 /obj/effect/attach_point/fuel/dropship2
-	ship_tag = "USS Almayer Dropship 2"
+	ship_tag = "TGS Theseus Dropship 2"
 
 
 /obj/effect/attach_point/computer
 	base_category = DROPSHIP_COMPUTER
 
 /obj/effect/attach_point/computer/dropship1
-	ship_tag = "USS Almayer Dropship 1"
+	ship_tag = "TGS Theseus Dropship 1"
 
 /obj/effect/attach_point/computer/dropship2
-	ship_tag = "USS Almayer Dropship 2"
+	ship_tag = "TGS Theseus Dropship 2"
 
 
 
@@ -288,7 +288,7 @@
 	else
 		to_chat(user, "<span class='notice'>You retract [src].</span>")
 		undeploy_sentry()
-		
+
 
 /obj/structure/dropship_equipment/sentry_holder/update_equipment()
 	if(ship_base)

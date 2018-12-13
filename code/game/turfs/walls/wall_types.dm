@@ -2,7 +2,7 @@
 
 
 
-//-----USS Almayer Walls ---//
+//-----TGS Theseus Walls ---//
 
 /turf/closed/wall/almayer
 	name = "hull"

@@ -49,11 +49,11 @@
 	latejoin_larva_drop		= 0
 	flags_round_type		= MODE_PREDATOR|MODE_NO_LATEJOIN
 	role_instruction		= 1
-	roles_for_mode = list(/datum/job/marine/standard/equipped,
-							/datum/job/marine/medic/equipped,
-							/datum/job/marine/engineer/equipped,
-							/datum/job/marine/specialist/equipped,
-							/datum/job/marine/leader/equipped,
+	roles_for_mode = list(/datum/job/marine/standard,
+							/datum/job/marine/medic,
+							/datum/job/marine/engineer,
+							/datum/job/marine/specialist,
+							/datum/job/marine/leader,
 							/datum/job/civilian/liaison/nightmare,
 							/datum/job/command/commander/nightmare
 							)
@@ -1053,9 +1053,8 @@
 			domutcheck(H,null,MUTCHK_FORCED)
 			H.update_mutations()
 			horror = H
-			special_role = BE_SURVIVOR|BE_RESPONDER
+			special_role = BE_SURVIVOR
 			recruit_msg = "a horror and kill the living?"
-			//BE_RESPONDER
 			animation_teleport_spooky_in(H)
 		else
 			var/mob/living/carbon/human/H = new(pick(horror_spawns))
@@ -1186,7 +1185,7 @@
 			H.update_body(0)
 			H.update_hair()
 			horror = H
-			special_role = BE_SURVIVOR|BE_RESPONDER
+			special_role = BE_SURVIVOR
 			recruit_msg = "a hero and fight together with the remaining mortal souls?"
 			animation_teleport_magic_in(H)
 
