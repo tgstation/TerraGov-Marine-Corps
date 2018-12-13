@@ -540,7 +540,7 @@
 /obj/machinery/m56d_hmg/on_set_interaction(mob/user)
 	flags_atom |= RELAY_CLICK
 	user.client.change_view(view_tiles)
-	switch(src.dir)
+	switch(dir)
 		if(NORTH)
 			user.client.pixel_x = 0
 			user.client.pixel_y = view_tile_offset * 32
