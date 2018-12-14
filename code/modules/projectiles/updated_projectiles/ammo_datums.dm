@@ -1201,7 +1201,7 @@
 /datum/ammo/energy/lasgun/New()
 	..()
 	accurate_range = config.norm_shell_range
-	damage = config.mlow_hit_damage
+	damage = config.low_hit_damage
 	penetration = config.mlow_armor_penetration
 	max_range = config.long_shell_range
 	shell_speed = config.ultra_shell_speed
