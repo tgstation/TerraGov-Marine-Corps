@@ -47,7 +47,6 @@
 	w_class = 4
 	force = 15
 	throwforce = 15
-	throw_speed = 5
 	throw_range = 20
 	attack_verb = list("hit", "whacked", "sliced")
 	max_amount = 10
