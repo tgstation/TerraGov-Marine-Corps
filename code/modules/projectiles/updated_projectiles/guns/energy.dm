@@ -338,6 +338,10 @@
 //Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.
 /obj/item/weapon/gun/energy/lasgun/proc/toggle_chargemode(mob/user)
 	if(overcharge == FALSE)
+		if(!cell)
+			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
+			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s overcharge mode but you have no battery loaded.</span>")
+			return
 		if(cell.charge < M37_OVERCHARGE_AMMO_COST)
 			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
 			to_chat(user, "<span class='warning'>You attempt to toggle on [src]'s overcharge mode but your battery pack lacks adequate charge to do so.</span>")
