@@ -221,17 +221,3 @@
 	old_lead.update_inv_head() //updating marine helmet leader overlays
 	old_lead.update_inv_wear_suit()
 	to_chat(old_lead, "<font size='3' color='blue'>You're no longer the Squad Leader for [src]!</font>")
-
-
-//Not a safe proc. Returns null if squads or jobs aren't set up.
-//Mostly used in the marine squad console in marine_consoles.dm.
-/proc/get_squad_by_name(var/text)
-	if(!RoleAuthority || RoleAuthority.squads.len == 0)
-		return null
-
-	var/datum/squad/S
-	for(S in RoleAuthority.squads)
-		if(S.name == text)
-			return S
-
-	return null

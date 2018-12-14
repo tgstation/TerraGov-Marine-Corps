@@ -425,33 +425,50 @@ datum/mind
 		qdel(cm_skills)
 	cm_skills = new skills_path()
 
-/mob/living/proc/reset_cm_skills(new_job)
+/mob/proc/reset_cm_skills(new_job)
 	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
 	if(J)
 		mind?.set_cm_skills(J.skills_type) //give new role's job_knowledge to us.
 
-/mob/living/proc/reset_comm_title(new_job)
+/mob/proc/reset_comm_title(new_job)
 	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
 	if(J && mind)
 		mind.role_comm_title = J.comm_title
 
-/mob/living/proc/reset_alt_title(new_job)
+/mob/proc/reset_alt_title(new_job)
 	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
 	if(J && mind)
 		mind.role_alt_title = J.get_alternative_title(src)
 
-/mob/living/proc/reset_special_role(new_job)
+/mob/proc/reset_special_role(new_job)
 	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
 	if(J && mind)
 		mind.special_role = J.special_role
 
 
-/mob/living/proc/reset_role(new_job)
+/mob/proc/reset_role(new_job)
 	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
 	if(J && mind)
 		mind.assigned_role = J.title
 
-/mob/living/proc/set_everything(var/mob/living/carbon/human/H, var/new_role)
+/mob/proc/set_ID(new_job)
+	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
+	if(new_job && ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(H.wear_id)
+			var/obj/item/card/id/I = H.wear_id.GetID()
+			if(I)
+				var/title_alt = J.get_alternative_title(H)
+				I.access = J.get_access()
+				I.rank = J.title
+				I.assignment = title_alt ? title_alt :  J.disp_title
+				I.name = "[I.registered_name]'s ID Card ([I.assignment])"
+				I.paygrade = J.paygrade
+		else
+			J.equip_identification(H, J)
+
+/mob/proc/set_everything(var/mob/living/carbon/human/H, var/new_role)
+	to_chat(world, "Setting everything for [H], new_role [new_role]")
 	H.reset_cm_skills(new_role)
 	H.reset_special_role(new_role)
 	H.reset_comm_title(new_role)
