@@ -211,7 +211,7 @@
 	update_health()
 
 /obj/structure/razorwire/Bumped(atom/A)
-	..()
+	. = ..()
 
 	if(istype(A, /mob/living/carbon/Xenomorph/Crusher))
 
