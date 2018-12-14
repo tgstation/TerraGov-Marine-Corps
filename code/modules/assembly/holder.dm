@@ -14,15 +14,15 @@
 	var/obj/item/device/assembly/a_right = null
 	var/obj/special_assembly = null
 
-/obj/item/device/assembly_holder/Dispose()
+/obj/item/device/assembly_holder/Destroy()
 	if(a_left)
-		cdel(a_left)
+		qdel(a_left)
 		a_left = null
 	if(a_right)
-		cdel(a_right)
+		qdel(a_right)
 		a_right = null
 	if(special_assembly)
-		cdel(special_assembly)
+		qdel(special_assembly)
 		special_assembly = null
 	. = ..()
 
@@ -186,7 +186,7 @@
 			a_right.holder = null
 			a_right.loc = T
 			a_right = null
-		cdel(src)
+		qdel(src)
 
 
 
@@ -229,7 +229,7 @@
 		tmr.time = 5
 	tmr.secured = 1
 	tmr.holder = src
-	processing_objects.Add(tmr)
+	START_PROCESSING(SSobj, tmr)
 	a_left = tmr
 	a_right = ign
 	secured = 1

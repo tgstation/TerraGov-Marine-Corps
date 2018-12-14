@@ -11,7 +11,7 @@
 	var/obj/structure/inflatable/R = new /obj/structure/inflatable(user.loc)
 	src.transfer_fingerprints_to(R)
 	R.add_fingerprint(user)
-	cdel(src)
+	qdel(src)
 
 
 
@@ -27,7 +27,7 @@
 		var/obj/structure/inflatable/door/R = new /obj/structure/inflatable/door(user.loc)
 		src.transfer_fingerprints_to(R)
 		R.add_fingerprint(user)
-		cdel(src)
+		qdel(src)
 
 
 
@@ -62,7 +62,7 @@
 /obj/structure/inflatable/ex_act(severity)
 	switch(severity)
 		if(1)
-			cdel(src)
+			qdel(src)
 		if(2)
 			deflate(1)
 
@@ -127,7 +127,7 @@
 		new /obj/structure/inflatable/popped(loc)
 		//var/obj/item/inflatable/torn/R = new /obj/item/inflatable/torn(loc)
 		//src.transfer_fingerprints_to(R)
-		cdel(src)
+		qdel(src)
 	else
 		//to_chat(user, "\blue You slowly deflate the inflatable wall.")
 		visible_message("[src] slowly deflates.")
@@ -135,7 +135,7 @@
 		spawn(50)
 			var/obj/item/inflatable/R = new /obj/item/inflatable(loc)
 			src.transfer_fingerprints_to(R)
-			cdel(src)
+			qdel(src)
 
 /obj/structure/inflatable/verb/hand_deflate()
 	set name = "Deflate"
@@ -275,7 +275,7 @@
 		new /obj/structure/inflatable/popped/door(loc)
 		//var/obj/item/inflatable/door/torn/R = new /obj/item/inflatable/door/torn(loc)
 		//src.transfer_fingerprints_to(R)
-		cdel(src)
+		qdel(src)
 	else
 		//to_chat(user, "\blue You slowly deflate the inflatable wall.")
 		visible_message("[src] slowly deflates.")
@@ -283,7 +283,7 @@
 		spawn(50)
 			var/obj/item/inflatable/door/R = new /obj/item/inflatable/door(loc)
 			src.transfer_fingerprints_to(R)
-			cdel(src)
+			qdel(src)
 
 
 

@@ -24,7 +24,7 @@
 	RefreshParts()
 	src.initialize(); //Agouri
 
-/obj/machinery/r_n_d/server/Dispose()
+/obj/machinery/r_n_d/server/Destroy()
 	griefProtection()
 	. = ..()
 
@@ -119,7 +119,7 @@
 				if(I.reliability != 100 && crit_fail)
 					I.crit_fail = 1
 				I.loc = src.loc
-			cdel(src)
+			qdel(src)
 			return 1
 
 /obj/machinery/r_n_d/server/attack_hand(mob/user as mob)

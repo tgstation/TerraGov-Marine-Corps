@@ -48,7 +48,7 @@
 
 	rebuild_mixing_inputs()
 
-/obj/machinery/atmospherics/omni/mixer/Dispose()
+/obj/machinery/atmospherics/omni/mixer/Destroy()
 	inputs.Cut()
 	output = null
 	. = ..()

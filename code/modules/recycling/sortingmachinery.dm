@@ -18,7 +18,7 @@
 			if(istype(wrapped, /obj/structure/closet))
 				var/obj/structure/closet/O = wrapped
 				O.welded = 0
-		cdel(src)
+		qdel(src)
 		return
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -126,7 +126,7 @@
 			else
 				wrapped.loc = get_turf(src)
 
-		cdel(src)
+		qdel(src)
 		return
 
 	attackby(obj/item/W as obj, mob/user as mob)
@@ -296,7 +296,7 @@
 			to_chat(user, "\blue The object you are trying to wrap is unsuitable for the sorting machinery!")
 		if (src.amount <= 0)
 			new /obj/item/trash/c_tube( src.loc )
-			cdel(src)
+			qdel(src)
 			return
 		return
 
@@ -432,7 +432,7 @@
 					C.update()
 					C.anchored = 1
 					C.density = 1
-					cdel(src)
+					qdel(src)
 				return
 			else
 				to_chat(user, "You need more welding fuel to complete this task.")

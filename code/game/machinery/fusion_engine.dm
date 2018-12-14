@@ -1,4 +1,3 @@
-//Experimental engine for the Almayer.  Should be fancier.  I expect I'll eventually make it totally seperate from the Geothermal as I don't like the procs... - Apop
 
 
 #define FUSION_ENGINE_MAX_POWER_GEN	50000 //Full capacity

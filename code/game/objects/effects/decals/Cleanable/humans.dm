@@ -18,7 +18,7 @@ var/global/list/image/splatter_cache=list()
 	var/basecolor="#ff3b00" // Color when wet.
 	var/amount = 5
 
-/obj/effect/decal/cleanable/blood/Dispose()
+/obj/effect/decal/cleanable/blood/Destroy()
 	for(var/datum/disease/D in viruses)
 		D.cure(0)
 	. = ..()
@@ -36,7 +36,7 @@ var/global/list/image/splatter_cache=list()
 				if(B != src)
 					if (B.blood_DNA)
 						blood_DNA |= B.blood_DNA.Copy()
-					cdel(B)
+					qdel(B)
 	spawn(DRYING_TIME * (amount+1))
 		dry()
 

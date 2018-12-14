@@ -11,15 +11,15 @@
 	..()
 	structure_list += src
 
-/obj/structure/Dispose()
+/obj/structure/Destroy()
 	. = ..()
 	structure_list -= src
 
-/obj/structure/proc/destroy(deconstruct)
+/obj/structure/proc/destroy_structure(deconstruct)
 	if(parts)
 		new parts(loc)
 	density = FALSE
-	cdel(src)
+	qdel(src)
 
 /obj/structure/proc/handle_barrier_chance(mob/living/M)
 	return FALSE
@@ -30,7 +30,7 @@
 		if(HULK in user.mutations)
 			user.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 			visible_message("<span class='danger'>[user] smashes the [src] apart!</span>")
-			destroy()
+			destroy_structure()
 
 /obj/structure/attackby(obj/item/C as obj, mob/user as mob)
 	. = ..()
@@ -40,7 +40,7 @@
 			return
 		if(do_after(user, P.calc_delay(user), TRUE, 5, BUSY_ICON_HOSTILE) && P)
 			P.cut_apart(user, name, src)
-			cdel()
+			qdel()
 		return
 
 //Default "structure" proc. This should be overwritten by sub procs.
@@ -51,7 +51,7 @@
 	if(breakable)
 		if(user.wall_smash)
 			visible_message("<span class='danger'>[user] smashes [src] apart!</span>")
-			destroy()
+			destroy_structure()
 
 /obj/structure/attack_paw(mob/user)
 	if(breakable)
@@ -63,11 +63,11 @@
 /obj/structure/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			if(prob(50))
-				cdel(src)
+				qdel(src)
 				return
 		if(3.0)
 			return

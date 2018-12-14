@@ -24,7 +24,7 @@
 	//TODO: make it heat up the surroundings when not in space
 
 /obj/item/device/suit_cooling_unit/New()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 	cell = new/obj/item/cell()	//comes with the crappy default power cell - high-capacity ones shouldn't be hard to find
 	cell.loc = src
@@ -50,7 +50,7 @@
 
 	var/charge_usage = (temp_adj/max_cooling)*charge_consumption
 
-	H.bodytemperature -= temp_adj*efficiency
+	H.adjust_bodytemperature(-temp_adj*efficiency)
 
 	cell.use(charge_usage)
 

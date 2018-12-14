@@ -30,7 +30,7 @@
 		for(var/datum/playingcard/P in H.cards)
 			cards += P
 		update_icon()
-		cdel(O)
+		qdel(O)
 		to_chat(user, "You place your cards on the bottom of the deck.")
 		return
 	..()
@@ -98,7 +98,7 @@
 	//players -= usr
 
 	var/mob/living/M = input("Who do you wish to deal a card?") as null|anything in players
-	if(!usr || disposed || !Adjacent(usr) || !M || M.disposed) return
+	if(!usr || gc_destroyed || !Adjacent(usr) || !M || M.gc_destroyed) return
 
 	if(!cards.len)
 		return
@@ -163,7 +163,7 @@
 		for(var/datum/playingcard/P in H.cards)
 			cards += P
 		src.concealed = H.concealed
-		cdel(O)
+		qdel(O)
 		if(loc != user)
 			user.put_in_hands(src)
 		update_icon()
@@ -181,10 +181,10 @@
 		to_discard[P.name] = P
 	var/discarding = input("Which card do you wish to put down?") as null|anything in to_discard
 
-	if(!discarding || !usr || disposed || loc != usr) return
+	if(!discarding || !usr || gc_destroyed || loc != usr) return
 
 	var/datum/playingcard/card = to_discard[discarding]
-	if(card.disposed)
+	if(card.gc_destroyed)
 		return
 	var/found = FALSE
 	for(var/datum/playingcard/P in cards)
@@ -193,7 +193,7 @@
 			break
 	if(!found)
 		return
-	cdel(to_discard)
+	qdel(to_discard)
 
 	var/obj/item/toy/handcard/H = new(src.loc)
 	H.cards += card
@@ -205,7 +205,7 @@
 	H.loc = get_step(usr,usr.dir)
 
 	if(!cards.len)
-		cdel(src)
+		qdel(src)
 
 /obj/item/toy/handcard/attack_self(var/mob/user as mob)
 	concealed = !concealed

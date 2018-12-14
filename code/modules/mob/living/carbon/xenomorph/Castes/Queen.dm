@@ -248,7 +248,7 @@
 			xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3,hivenumber)
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
 
-/mob/living/carbon/Xenomorph/Queen/Dispose()
+/mob/living/carbon/Xenomorph/Queen/Destroy()
 	. = ..()
 	if(observed_xeno)
 		set_queen_overwatch(observed_xeno, TRUE)
@@ -266,7 +266,7 @@
 			breathing_counter = 0 //Reset the counter
 
 		if(observed_xeno)
-			if(observed_xeno.stat == DEAD || observed_xeno.disposed)
+			if(observed_xeno.stat == DEAD || observed_xeno.gc_destroyed)
 				set_queen_overwatch(observed_xeno, TRUE)
 
 		if(ovipositor && !is_mob_incapacitated(TRUE))
@@ -310,7 +310,7 @@
 								visible_message("<span class='xenodanger'>[L] quickly burrows into the ground.</span>")
 								ticker.mode.stored_larva++
 								round_statistics.total_xenos_created-- // keep stats sane
-								cdel(L)
+								qdel(L)
 
 
 //Custom bump for crushers. This overwrites normal bumpcode from carbon.dm
@@ -582,7 +582,7 @@
 	ovipositor = TRUE
 
 	for(var/datum/action/A in actions)
-		cdel(A)
+		qdel(A)
 
 	var/list/immobile_abilities = list(\
 		/datum/action/xeno_action/regurgitate,\
@@ -637,7 +637,7 @@
 		zoom_out()
 
 		for(var/datum/action/A in actions)
-			cdel(A)
+			qdel(A)
 
 		var/list/mobile_abilities = list(
 			/datum/action/xeno_action/xeno_resting,
@@ -762,7 +762,7 @@
 		observed_xeno = target
 		if(old_xeno)
 			old_xeno.hud_set_queen_overwatch()
-	if(!target.disposed) //not cdel'd
+	if(!target.gc_destroyed) //not cdel'd
 		target.hud_set_queen_overwatch()
 	reset_view()
 

@@ -14,7 +14,7 @@
 	..()
 	switch(stage)
 		if(2)
-			affected_mob.bodytemperature -= 10
+			affected_mob.adjust_bodytemperature(-10 * TEMPERATURE_DAMAGE_COEFFICIENT)
 			if(prob(1) && prob(10))
 				to_chat(affected_mob, "\blue You feel better.")
 				cure()
@@ -28,7 +28,7 @@
 			if(prob(5))
 				to_chat(affected_mob, "\red You feel stiff.")
 		if(3)
-			affected_mob.bodytemperature -= 20
+			affected_mob.adjust_bodytemperature(-20 * TEMPERATURE_DAMAGE_COEFFICIENT)
 			if(prob(1))
 				affected_mob.emote("sneeze")
 			if(prob(1))

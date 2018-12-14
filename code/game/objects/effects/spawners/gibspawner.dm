@@ -38,7 +38,7 @@
 		for(var/datum/disease/D in viruses)
 			if(D.spread_type == SPECIAL)
 				viruses -= D
-				cdel(D)
+				qdel(D)
 
 		if(sparks)
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
@@ -77,7 +77,7 @@
 					if(directions.len)
 						gib.streak(directions)
 
-		cdel(src)
+		qdel(src)
 
 
 
