@@ -151,7 +151,7 @@
 				"<span class='notice'>You repair [src].</span>")
 				health = min(health + 100, RAZORWIRE_MAX_HEALTH)
 				update_health()
-				playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
+				playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 
 	if(istype(W, /obj/item/tool/pickaxe/plasmacutter))
 		var/obj/item/tool/pickaxe/plasmacutter/P = W
