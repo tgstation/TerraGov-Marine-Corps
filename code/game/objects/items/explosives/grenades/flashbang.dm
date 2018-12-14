@@ -29,7 +29,7 @@
 
 
 	new/obj/effect/particle_effect/smoke/flashbang(T)
-	cdel(src)
+	qdel(src)
 	return
 
 /obj/item/explosive/grenade/flashbang/proc/bang(var/turf/T , var/mob/living/carbon/M)						// Added a new proc called 'bang' that takes a location and a person to be banged.
@@ -128,7 +128,7 @@
 			new /obj/item/explosive/grenade/flashbang/clusterbang/segment(src.loc)//Creates a 'segment' that launches a few more flashbangs
 			playsound(src.loc, 'sound/weapons/armbomb.ogg', 25, 1, 6)
 	spawn(0)
-		cdel(src)
+		qdel(src)
 		return
 
 /obj/item/explosive/grenade/flashbang/clusterbang/segment
@@ -159,7 +159,7 @@
 			new /obj/item/explosive/grenade/flashbang/cluster(src.loc)
 			playsound(src.loc, 'sound/weapons/armbomb.ogg', 25, 1, 6)
 	spawn(0)
-		cdel(src)
+		qdel(src)
 		return
 
 /obj/item/explosive/grenade/flashbang/cluster/New()//Same concept as the segments, so that all of the parts don't become reliant on the clusterbang

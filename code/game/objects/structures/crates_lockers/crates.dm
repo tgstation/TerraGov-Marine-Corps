@@ -117,18 +117,18 @@
 	switch(severity)
 		if(1.0)
 			for(var/obj/O in src.contents)
-				cdel(O)
-			cdel(src)
+				qdel(O)
+			qdel(src)
 			return
 		if(2.0)
 			for(var/obj/O in src.contents)
 				if(prob(50))
-					cdel(O)
-			cdel(src)
+					qdel(O)
+			qdel(src)
 			return
 		if(3.0)
 			if (prob(50))
-				cdel(src)
+				qdel(src)
 			return
 		else
 	return

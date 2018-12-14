@@ -566,7 +566,7 @@
 
 /datum/reagent/space_cleaner/reaction_obj(var/obj/O, var/volume)
 	if(istype(O,/obj/effect/decal/cleanable))
-		cdel(O)
+		qdel(O)
 	else
 		if(O)
 			O.clean_blood()
@@ -576,7 +576,7 @@
 		T.clean_blood()
 		for(var/obj/effect/decal/cleanable/C in T.contents)
 			reaction_obj(C, volume)
-			cdel(C)
+			qdel(C)
 
 /datum/reagent/space_cleaner/reaction_mob(var/mob/M, var/method=TOUCH, var/volume)
 	if(method == TOUCH || method == VAPOR)

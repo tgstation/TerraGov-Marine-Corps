@@ -8,10 +8,10 @@
 
 /obj/item/holder/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
-/obj/item/holder/Dispose()
-	processing_objects.Remove(src)
+/obj/item/holder/Destroy()
+	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/item/holder/process()
@@ -25,7 +25,7 @@
 			mob_container.forceMove(get_turf(src))
 			M.reset_view()
 
-		cdel(src)
+		qdel(src)
 
 /obj/item/holder/attackby(obj/item/W as obj, mob/user as mob)
 	for(var/mob/M in src.contents)

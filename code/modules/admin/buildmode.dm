@@ -212,7 +212,7 @@
 					T.ChangeTurf(/turf/closed/wall)
 					return
 				else if(istype(object,/obj))
-					cdel(object)
+					qdel(object)
 					return
 			else if(istype(object,/turf) && mods["alt"] && mods["left"])
 				new/obj/machinery/door/airlock(get_turf(object))
@@ -245,7 +245,7 @@
 				holder.buildmode.objholder = text2path("[object.type]")
 				to_chat(usr, "Selected: [object.type]")
 			else if(mods["right"])
-				if(isobj(object)) cdel(object)
+				if(isobj(object)) qdel(object)
 
 		if(3)
 			if(mods["left"]) //I cant believe this shit actually compiles.

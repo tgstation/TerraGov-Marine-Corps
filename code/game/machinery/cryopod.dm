@@ -251,7 +251,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 								S.remove_from_storage(I, loc)
 								strippeditems += I
 								I.loc = null
-						cdel(W)
+						qdel(W)
 						continue
 
 
@@ -284,13 +284,13 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 					for(var/TT in deleteempty)
 						if(istype(W, TT))
 							if(length(W.contents) == 0)
-								cdel(W) // delete all the empty satchels
+								qdel(W) // delete all the empty satchels
 								continue item_loop
 							break // not empty, don't delete
 
 					for(var/DA in deleteall)
 						if(istype(W, DA))
-							cdel(W)
+							qdel(W)
 							continue item_loop
 
 
@@ -302,7 +302,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 				for(var/obj/item/A in strippeditems)
 					for(var/DAA in deleteall)
 						if(istype(A, DAA))
-							cdel(A)
+							qdel(A)
 							continue stripped_items
 
 					dept_console += A
@@ -314,7 +314,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 				//We don't want revs to get objectives that aren't for heads of staff. Letting
 				//them win or lose based on cryo is silly so we remove the objective.
 				if(istype(O, /datum/objective/mutiny) && O.target == occupant.mind)
-					cdel(O)
+					qdel(O)
 				else if(O.target && istype(O.target,/datum/mind))
 					if(O.target == occupant.mind)
 						if(O.owner && O.owner.current)
@@ -326,7 +326,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 							if(!(O.target))
 								all_objectives -= O
 								O.owner.objectives -= O
-								cdel(O)
+								qdel(O)
 
 			if(ishuman(occupant))
 				var/mob/living/carbon/human/H = occupant
@@ -356,7 +356,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 				RoleAuthority.free_role(RoleAuthority.roles_for_mode[occupant.mind.assigned_role])
 
 				if(occupant.mind.objectives.len)
-					cdel(occupant.mind.objectives)
+					qdel(occupant.mind.objectives)
 					occupant.mind.objectives = null
 					occupant.mind.special_role = null
 
@@ -366,15 +366,15 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 			for(var/datum/data/record/R in data_core.medical)
 				if((R.fields["name"] == occupant.real_name))
 					data_core.medical -= R
-					cdel(R)
+					qdel(R)
 			for(var/datum/data/record/T in data_core.security)
 				if((T.fields["name"] == occupant.real_name))
 					data_core.security -= T
-					cdel(T)
+					qdel(T)
 			for(var/datum/data/record/G in data_core.general)
 				if((G.fields["name"] == occupant.real_name))
 					data_core.general -= G
-					cdel(G)
+					qdel(G)
 
 			if(orient_right)
 				icon_state = "body_scanner_0-r"
@@ -393,7 +393,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 
 			//Delete the mob.
 
-			cdel(occupant)
+			qdel(occupant)
 			occupant = null
 			stop_processing()
 

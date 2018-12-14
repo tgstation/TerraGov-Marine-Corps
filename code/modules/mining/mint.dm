@@ -30,7 +30,7 @@
 		for (var/dir in cardinal)
 			src.output = locate(/obj/machinery/mineral/output, get_step(src, dir))
 			if(src.output) break
-		//processing_objects.Add(src)
+		//START_PROCESSING(SSobj, src)
 		start_processing()
 		return
 	return
@@ -43,22 +43,22 @@
 		if(O)
 			if (istype(O,/obj/item/stack/sheet/mineral/gold))
 				amt_gold += 100 * O.get_amount()
-				cdel(O)
+				qdel(O)
 			if (istype(O,/obj/item/stack/sheet/mineral/silver))
 				amt_silver += 100 * O.get_amount()
-				cdel(O)
+				qdel(O)
 			if (istype(O,/obj/item/stack/sheet/mineral/diamond))
 				amt_diamond += 100 * O.get_amount()
-				cdel(O)
+				qdel(O)
 			if (istype(O,/obj/item/stack/sheet/mineral/phoron))
 				amt_phoron += 100 * O.get_amount()
-				cdel(O)
+				qdel(O)
 			if (istype(O,/obj/item/stack/sheet/mineral/uranium))
 				amt_uranium += 100 * O.get_amount()
-				cdel(O)
+				qdel(O)
 			if (istype(O,/obj/item/stack/sheet/metal))
 				amt_iron += 100 * O.get_amount()
-				cdel(O)
+				qdel(O)
 
 /obj/machinery/mineral/mint/attack_hand(user as mob)
 

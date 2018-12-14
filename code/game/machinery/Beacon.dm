@@ -20,9 +20,9 @@
 
 		hide(T.intact_tile)
 
-	Dispose()
+	Destroy()
 		if(Beacon)
-			cdel(Beacon)
+			qdel(Beacon)
 			Beacon = null
 		. = ..()
 

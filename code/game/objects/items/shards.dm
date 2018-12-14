@@ -56,7 +56,7 @@
 						continue
 					G.attackby(NG, user)
 					to_chat(user, "You add the newly-formed glass to the stack. It now contains [NG.amount] sheets.")
-				cdel(src)
+				qdel(src)
 				return
 	return ..()
 

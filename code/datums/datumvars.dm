@@ -587,7 +587,7 @@ client
 				for(var/obj/Obj in object_list)
 					if(Obj.type == O_type)
 						i++
-						cdel(Obj)
+						qdel(Obj)
 				if(!i)
 					to_chat(usr, "No objects of this type exist")
 					return
@@ -598,7 +598,7 @@ client
 				for(var/obj/Obj in object_list)
 					if(istype(Obj,O_type))
 						i++
-						cdel(Obj)
+						qdel(Obj)
 				if(!i)
 					to_chat(usr, "No objects of this type exist")
 					return
@@ -994,13 +994,13 @@ client
 				if(I.removed_type)
 					var/obj/item/organ/O = new I.removed_type()
 					organ_slot = O.organ_tag
-					cdel(O)
+					qdel(O)
 				else
 					organ_slot = "unknown organ"
 
 			if(H.internal_organs_by_name[organ_slot])
 				to_chat(usr, "[H] already has an organ in that slot.")
-				cdel(I)
+				qdel(I)
 				return
 
 			H.internal_organs_by_name[organ_slot] = I
@@ -1028,7 +1028,7 @@ client
 			return
 
 		to_chat(usr, "Removed [rem_organ] from [M].")
-		cdel(rem_organ)
+		qdel(rem_organ)
 
 
 	else if(href_list["addlimb"])

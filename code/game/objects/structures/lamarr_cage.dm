@@ -15,7 +15,7 @@
 		if (1)
 			new /obj/item/shard( src.loc )
 			Break()
-			cdel(src)
+			qdel(src)
 		if (2)
 			if (prob(50))
 				src.health -= 15

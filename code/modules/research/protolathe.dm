@@ -103,7 +103,7 @@ Note: Must be placed west/left of and R&D console to function.
 			if(diamond_amount >= 2000)
 				var/obj/item/stack/sheet/mineral/diamond/G = new /obj/item/stack/sheet/mineral/diamond(src.loc)
 				G.amount = round(diamond_amount / G.perunit)
-			cdel(src)
+			qdel(src)
 			return 1
 		else
 			to_chat(user, "\red You can't load the [src.name] while it's opened.")

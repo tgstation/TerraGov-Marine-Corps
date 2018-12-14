@@ -22,7 +22,7 @@
 		icon_state = initial(icon_state)
 		SetLuminosity(0)
 
-/obj/item/device/flashlight/Dispose()
+/obj/item/device/flashlight/Destroy()
 	if(ismob(src.loc))
 		src.loc.SetLuminosity(-brightness_on)
 	else
@@ -77,7 +77,7 @@
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		to_chat(user, "<span class='notice'>You modify [src]. It can now be mounted on a weapon.</span>")
 		to_chat(user, "<span class='notice'>Use a screwdriver on [F] to change it back.</span>")
-		cdel(src) //Delete da old flashlight
+		qdel(src) //Delete da old flashlight
 		return
 	else
 		..()
@@ -210,8 +210,8 @@
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
 	..()
 
-/obj/item/device/flashlight/flare/Dispose()
-	processing_objects -= src
+/obj/item/device/flashlight/flare/Destroy()
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/device/flashlight/flare/process()
@@ -220,7 +220,7 @@
 		turn_off()
 		if(!fuel)
 			icon_state = "[initial(icon_state)]-empty"
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 
 /obj/item/device/flashlight/flare/proc/turn_off()
 	on = 0
@@ -249,7 +249,7 @@
 		force = on_damage
 		heat_source = 1500
 		damtype = "fire"
-		processing_objects += src
+		START_PROCESSING(SSobj, src)
 
 /obj/item/device/flashlight/flare/on
 
@@ -261,7 +261,7 @@
 		update_brightness()
 		force = on_damage
 		damtype = "fire"
-		processing_objects += src
+		START_PROCESSING(SSobj, src)
 
 /obj/item/device/flashlight/slime
 	gender = PLURAL

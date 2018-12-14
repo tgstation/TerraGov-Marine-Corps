@@ -130,7 +130,7 @@
 				A.state = 4
 				A.icon_state = "4"
 			M.deconstruct(src)
-			cdel(src)
+			qdel(src)
 	else
 		src.attack_hand(user)
 	return

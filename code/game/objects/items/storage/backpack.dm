@@ -97,7 +97,7 @@
 			return
 		if(istype(W, /obj/item/storage/backpack/holding) && !W.crit_fail)
 			to_chat(user, "\red The Bluespace interfaces of the two devices conflict and malfunction.")
-			cdel(W)
+			qdel(W)
 			return
 		..()
 
@@ -108,7 +108,7 @@
 		else
 			to_chat(user, "\red The Bluespace generator malfunctions!")
 			for (var/obj/O in src.contents) //it broke, delete what was in it
-				cdel(O)
+				qdel(O)
 			crit_fail = 1
 			icon_state = "brokenpack"
 
@@ -380,7 +380,8 @@
 					"/obj/item/device/m56d_post",
 					"/obj/item/device/turret_top",
 					"/obj/item/ammo_magazine/sentry",
-					"/obj/item/ammo_magazine/sentry",
+					"/obj/item/ammo_magazine/minisentry",
+					"/obj/item/device/marine_turret/mini",
 					"/obj/item/stack/sandbags"
 					)
 
@@ -426,14 +427,14 @@
 	var/mob/living/carbon/human/wearer = null
 	actions_types = list(/datum/action/item_action/toggle)
 
-/obj/item/storage/backpack/marine/satchel/scout_cloak/Dispose()
+/obj/item/storage/backpack/marine/satchel/scout_cloak/Destroy()
 	camo_off()
 	return ..()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/dropped(mob/user)
 	camo_off(user)
 	wearer = null
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/verb/use_camouflage()
@@ -488,7 +489,7 @@
 	spawn(1)
 		anim(M.loc,M,'icons/mob/mob.dmi',,"cloak",,M.dir)
 
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 	return TRUE
 
@@ -496,7 +497,7 @@
 	if (!user)
 		camo_active = FALSE
 		wearer = null
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return 0
 
 	to_chat(user, "<span class='warning'>Your cloak's camouflage has deactivated!</span>")
@@ -519,7 +520,7 @@
 	camo_cooldown_timer = world.time + cooldown //recalibration and recharge time scales inversely with charge remaining
 	to_chat(user, "<span class='warning'>Your thermal cloak is recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
 	process_camo_cooldown(user, cooldown)
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/process_camo_cooldown(mob/living/user, cooldown)
 	if(!camo_cooldown_timer)

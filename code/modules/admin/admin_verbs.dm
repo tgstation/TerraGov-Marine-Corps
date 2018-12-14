@@ -521,7 +521,7 @@ var/list/admin_verbs_mentor = list(
 		if(C)
 			message_admins("[key_name_admin(src)] has warned [key_name_admin(C)] resulting in a [AUTOBANTIME] minute ban.")
 			to_chat(C, "<font color='red'><BIG><B>You have been autobanned due to a warning by [ckey].</B></BIG><br>This is a temporary ban, it will be removed in [AUTOBANTIME] minutes.")
-			cdel(C)
+			qdel(C)
 		else
 			message_admins("[key_name_admin(src)] has warned [warned_ckey] resulting in a [AUTOBANTIME] minute ban.")
 		AddBan(warned_ckey, D.last_id, "Autobanning due to too many formal warnings", ckey, 1, AUTOBANTIME)
@@ -905,12 +905,12 @@ var/list/admin_verbs_mentor = list(
 	if(!holder)	return
 	if(config)
 		if(config.allow_synthetic_gun_use)
-			to_chat(src, "<b>Synthetic gun use allowed.</b>")
+			to_chat(src, "<b>Synthetic gun use disallowed.</b>")
 			message_admins("Admin [key_name_admin(usr)] has disabled synthetic gun use.", 1)
 			log_admin("[key_name(src)] disabled synthetic gun use.")
 		else
-			to_chat(src, "<b>Synthetic gun use disallowed.</b>")
-			message_admins("Admin [key_name_admin(usr)] has synthetic gun use.", 1)
+			to_chat(src, "<b>Synthetic gun use allowed.</b>")
+			message_admins("Admin [key_name_admin(usr)] has enabled synthetic gun use.", 1)
 			log_admin("[key_name(src)] allowed synthetic gun use.")
 		config.allow_synthetic_gun_use = !config.allow_synthetic_gun_use
 
