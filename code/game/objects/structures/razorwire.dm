@@ -132,7 +132,7 @@
 		if(do_after(user,delay_disassembly, TRUE, 5, BUSY_ICON_BUILD))
 			user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 			"<span class='notice'>You disassemble [src].</span>")
-			playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
+			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 			destroy(TRUE)
 		return
 
