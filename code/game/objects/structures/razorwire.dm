@@ -217,7 +217,7 @@
 
 		var/mob/living/carbon/Xenomorph/Crusher/C = A
 
-		if(C.charge_speed < C.charge_speed_max/2)
+		if(C.charge_speed < C.charge_speed_max * 0.5)
 			return
 
 		health -= 200 * round(C.charge_speed / max(1, C.charge_speed_max),0.01)
