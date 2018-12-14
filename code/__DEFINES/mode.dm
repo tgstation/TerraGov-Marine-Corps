@@ -59,7 +59,7 @@
 #define BE_MUTINEER   (1 << 13)
 #define BE_CHANGELING (1 << 14)
 
-#define BE_WO_COM (1 << 15)
+#define BE_SQUAD_STRICT (1 << 15)
 //=================================================
 
 var/list/be_special_flags = list(

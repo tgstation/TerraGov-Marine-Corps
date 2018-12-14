@@ -468,7 +468,6 @@ datum/mind
 			J.equip_identification(H, J)
 
 /mob/proc/set_everything(var/mob/living/carbon/human/H, var/new_role)
-	to_chat(world, "Setting everything for [H], new_role [new_role]")
 	H.reset_cm_skills(new_role)
 	H.reset_special_role(new_role)
 	H.reset_comm_title(new_role)
