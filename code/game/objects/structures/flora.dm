@@ -16,7 +16,7 @@
 				qdel(src)
 
 /obj/structure/flora/Destroy()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/structure/flora/attackby(obj/item/W, mob/living/user)
@@ -49,13 +49,13 @@
 	if(on_fire)
 		return
 	on_fire = TRUE
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 /obj/structure/flora/process()
 	if(health <= 0)
 		qdel(src)
 	if(!on_fire)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 	else
 		health -= 25
 
@@ -79,13 +79,13 @@
 			health -= (rand(140, 300))
 		if(3.0)
 			health -= (rand(50, 100))
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	return
 
 /obj/structure/flora/tree/bullet_act(var/obj/item/projectile/Proj)
 	health -= Proj.damage * 0.5
 	. = ..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	return TRUE
 
 /obj/structure/flora/tree/attackby(obj/item/W, mob/user, params)
@@ -113,7 +113,7 @@
 	if(on_fire == FALSE)
 		on_fire = TRUE
 		SetLuminosity(5)
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	update_icon()
 
 
@@ -127,10 +127,10 @@
 		density = 0
 		var/obj/structure/flora/stump/S = new(loc)
 		S.name = "[name] stump"
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		qdel(src)
 	if(!on_fire)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 	else
 		health -= 5
 	return ..()
