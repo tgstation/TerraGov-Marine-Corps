@@ -22,12 +22,6 @@
 #define ATMOS_DEFAULT_VOLUME_MIXER	200	//L
 #define ATMOS_DEFAULT_VOLUME_PIPE	70	//L
 
-// channel numbers for power
-#define EQUIP	1
-#define LIGHT	2
-#define ENVIRON	3
-#define TOTAL	4	//for total power used only
-
 // bitflags for machine stat variable
 #define BROKEN		1
 #define NOPOWER		2
@@ -35,13 +29,6 @@
 #define MAINT		8			// under maintaince
 #define EMPED		16		// temporary broken by EMP pulse
 #define MACHINE_DO_NOT_PROCESS 32768 //Do not added these to processing queue.
-
-//bitflags for door switches.
-#define OPEN	1
-#define IDSCAN	2
-#define BOLTS	4
-#define SHOCK	8
-#define SAFE	16
 
 #define ENGINE_EJECT_Z	3
 
