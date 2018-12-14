@@ -144,7 +144,7 @@
 				delay -= 10 + user.mind.cm_skills.engineer * 5
 			user.visible_message("<span class='notice'>[user] begins repairing damage to [src].</span>",
 			"<span class='notice'>You begin repairing the damage to [src].</span>")
-			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
+			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 			var/old_loc = loc
 			if(do_after(user, delay, TRUE, 5, BUSY_ICON_FRIENDLY) && old_loc == loc)
 				user.visible_message("<span class='notice'>[user] repairs some damage on [src].</span>",
