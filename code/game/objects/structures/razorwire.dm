@@ -96,7 +96,7 @@
 /obj/structure/razorwire/attackby(obj/item/W, mob/user)
 	if(!W)
 		return
-	if(istype(W, /obj/item/grab) && get_dist(src, user) <= 1)
+	if(istype(W, /obj/item/grab))
 		if(isXeno(user))
 			return
 		var/obj/item/grab/G = W
