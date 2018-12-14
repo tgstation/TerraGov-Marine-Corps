@@ -46,7 +46,7 @@
 	icon_state = "barbedwire_assembly"
 	w_class = 4
 	force = 15
-	throwforce = 15
+	throwforce = 10
 	throw_range = 5
 	attack_verb = list("hit", "whacked", "sliced")
 	max_amount = 10
