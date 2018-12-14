@@ -38,7 +38,7 @@
 			cdel(T)
 
 /obj/structure/razorwire/Crossed(atom/movable/O)
-	..()
+	. = ..()
 	if(!isliving(O))
 		return
 	var/mob/living/M = O
