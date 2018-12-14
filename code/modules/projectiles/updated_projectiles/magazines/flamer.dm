@@ -51,10 +51,10 @@
 	name = "large incinerator tank (B)"
 	desc = "A large fuel tank of Ultra Thick Napthal Fuel type B,a wide-spreading sticky combustable liquid chemical, for use in the M240-T incinerator unit. Handle with care."
 	icon_state = "flametank_large_green"
-	caliber = "Napalm B"
+	default_ammo = /datum/ammo/flamethrower/green
 
 /obj/item/ammo_magazine/flamer_tank/large/X
 	name = "large incinerator tank (X)"
 	desc = "A large fuel tank of Ultra Thick Napthal Fuel type X,a sticky combustable liquid chemical that burns extremely hot, for use in the M240-T incinerator unit. Handle with care."
 	icon_state = "flametank_large_blue"
-	caliber = "Napalm X"
+	default_ammo = /datum/ammo/flamethrower/blue

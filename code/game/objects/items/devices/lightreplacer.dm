@@ -90,7 +90,7 @@
 				AddUses(1)
 				to_chat(user, "You insert the [L.name] into the [src.name]. You have [uses] lights remaining.")
 				user.drop_held_item()
-				cdel(L)
+				qdel(L)
 				return
 		else
 			to_chat(user, "You need a working light.")
@@ -156,7 +156,7 @@
 			target.brightness = L2.brightness
 			target.on = target.has_power()
 			target.update()
-			cdel(L2)
+			qdel(L2)
 
 			if(target.on && target.rigged)
 				target.explode()

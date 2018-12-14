@@ -29,7 +29,7 @@
 			M.temp_drop_inv_item(src)
 			M.put_in_hands(I)
 			I.add_fingerprint(M)
-			cdel(src)
+			qdel(src)
 			return
 		else if(exFancy == 10)
 			to_chat(M, "\blue It's a brand new, un-restricted, ANTI-MATERIAL SNIPER RIFLE!!!!!!  What are the chances???")
@@ -38,7 +38,7 @@
 			M.temp_drop_inv_item(src)
 			M.put_in_hands(I)
 			I.add_fingerprint(M)
-			cdel(src)
+			qdel(src)
 			return
 		else if(exFancy == 20)
 			to_chat(M, "\blue Just what the fuck is it???")
@@ -47,7 +47,7 @@
 			M.temp_drop_inv_item(src)
 			M.put_in_hands(I)
 			I.add_fingerprint(M)
-			cdel(src)
+			qdel(src)
 			return
 		else
 			gift_type = pick(
@@ -65,12 +65,12 @@
 			M.temp_drop_inv_item(src)
 			M.put_in_hands(I)
 			I.add_fingerprint(M)
-			cdel(src)
+			qdel(src)
 			return
 	else if (fancy <=5)
 		to_chat(M, "\blue It's fucking EMPTY.  Man, Fuck CM.")
 		M.temp_drop_inv_item(src)
-		cdel(src)
+		qdel(src)
 		return
 
 
@@ -117,7 +117,7 @@
 	M.temp_drop_inv_item(src)
 	M.put_in_hands(I)
 	I.add_fingerprint(M)
-	cdel(src)
+	qdel(src)
 	return
 
 
@@ -132,7 +132,7 @@
 	flags_gun_features = GUN_INTERNAL_MAG
 	able_to_fire(mob/living/user)
 		var/turf/current_turf = get_turf(user)
-		if (current_turf.z == 3 || current_turf.z == 4) //Can't fire on the Almayer, bub.
+		if (current_turf.z == 3 || current_turf.z == 4) //Can't fire on the Theseus, bub.
 			click_empty(user)
 			to_chat(user, "<span class='warning'>You can't fire that here!</span>")
 			return 0

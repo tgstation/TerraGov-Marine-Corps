@@ -293,7 +293,7 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 		cleantime = 10
 	spawn(cleantime)
 		cleaning = 0
-		cdel(target)
+		qdel(target)
 		icon_state = "cleanbot[on]"
 		anchored = 0
 		target = null
@@ -313,5 +313,5 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	cdel(src)
+	qdel(src)
 	return

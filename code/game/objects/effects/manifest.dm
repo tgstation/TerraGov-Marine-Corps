@@ -18,5 +18,5 @@
 	P.info = dat
 	P.name = "paper- 'Crew Manifest'"
 	//SN src = null
-	cdel(src)
+	qdel(src)
 	return

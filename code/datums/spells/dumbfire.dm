@@ -76,11 +76,11 @@
 							trail.icon_state = proj_trail_icon_state
 							trail.density = 0
 							spawn(proj_trail_lifespan)
-								cdel(trail)
+								qdel(trail)
 
 				current_loc = projectile.loc
 
 				sleep(proj_step_delay)
 
 			if(projectile)
-				cdel(projectile)
+				qdel(projectile)

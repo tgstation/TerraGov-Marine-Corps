@@ -73,18 +73,18 @@
 			to_chat(M, "<span class='warning'>You need to remove your glasses first. Why are you even wearing these?</span>")
 			return
 		M.temp_drop_inv_item(G) //Get rid of ye existinge gogglors
-		cdel(G)
+		qdel(G)
 	switch(current_goggles)
 		if(0)
-			M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/night/yautja,M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/yautja(M), WEAR_EYES)
 			to_chat(M, "<span class='notice'>Low-light vision module: activated.</span>")
 			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 		if(1)
-			M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/thermal/yautja,M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/yautja(M), WEAR_EYES)
 			to_chat(M, "<span class='notice'>Thermal sight module: activated.</span>")
 			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 		if(2)
-			M.equip_to_slot_or_del(rnew(/obj/item/clothing/glasses/meson/yautja,M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/meson/yautja(M), WEAR_EYES)
 			to_chat(M, "<span class='notice'>Material vision module: activated.</span>")
 			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 		if(3)
@@ -107,7 +107,7 @@
 		if(G)
 			if(istype(G,/obj/item/clothing/glasses/night/yautja) || istype(G,/obj/item/clothing/glasses/meson/yautja) || istype(G,/obj/item/clothing/glasses/thermal/yautja))
 				mob.temp_drop_inv_item(G)
-				cdel(G)
+				qdel(G)
 				mob.update_inv_glasses()
 		var/datum/mob_hud/H = huds[MOB_HUD_MEDICAL_ADVANCED]
 		H.remove_hud_from(mob)
@@ -305,15 +305,15 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(slot == WEAR_HANDS && H.species && H.species.name == "Yautja")
-			processing_objects.Add(src)
+			START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/gloves/yautja/dropped(mob/user)
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/clothing/gloves/yautja/process()
 	if(!ishuman(loc))
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return
 	var/mob/living/carbon/human/H = loc
 	if(cloak_timer)
@@ -378,7 +378,10 @@
 			return
 
 		var/obj/item/weapon/wristblades/W
-		W =  rnew(upgrades > 2 ? /obj/item/weapon/wristblades/scimitar : /obj/item/weapon/wristblades, user)
+		if(upgrades > 2)
+			W = new /obj/item/weapon/wristblades/scimitar(user)
+		else
+			W = new /obj/item/weapon/wristblades(user)
 
 		user.put_in_active_hand(W)
 		blades_active = 1
@@ -471,14 +474,14 @@
 			usr.r_hand = null
 			if(R)
 				M.temp_drop_inv_item(R)
-				cdel(R)
+				qdel(R)
 			M.update_inv_r_hand()
 		if(L && istype(L))
 			found = 1
 			usr.l_hand = null
 			if(L)
 				M.temp_drop_inv_item(L)
-				cdel(L)
+				qdel(L)
 			M.update_inv_l_hand()
 		if(found)
 			to_chat(usr, "<span class='notice'>You deactivate your plasma caster.</span>")
@@ -493,7 +496,6 @@
 
 		var/obj/item/weapon/gun/energy/plasma_caster/W = new(usr)
 		usr.put_in_active_hand(W)
-		W.source = src
 		caster_active = 1
 		to_chat(usr, "<span class='notice'>You activate your plasma caster.</span>")
 		playsound(src,'sound/weapons/pred_plasmacaster_on.ogg', 15, 1)
@@ -630,7 +632,7 @@
 	for(var/mob/living/simple_animal/hostile/smartdisc/S in range(7))
 		to_chat(usr, "<span class='warning'>The [S] skips back towards you!</span>")
 		new /obj/item/explosive/grenade/spawnergrenade/smartdisc(S.loc)
-		cdel(S)
+		qdel(S)
 
 	for(var/obj/item/explosive/grenade/spawnergrenade/smartdisc/D in range(10))
 		D.throw_at(usr,10,1,usr)
@@ -692,7 +694,7 @@
 
 	New()
 		..()
-		cdel(keyslot1)
+		qdel(keyslot1)
 		keyslot1 = new /obj/item/device/encryptionkey/yautja
 		recalculateChannels()
 
@@ -770,7 +772,7 @@
 				if(ismob(loc))
 					user = loc
 					user.temp_drop_inv_item(src)
-				cdel(src)
+				qdel(src)
 			return
 
 		if(sure == "No" || !sure) return
@@ -872,13 +874,9 @@
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
 
 
-/obj/item/weapon/wristblades/Dispose()
+/obj/item/weapon/wristblades/Destroy()
 	. = ..()
 	return TA_REVIVE_ME
-
-/obj/item/weapon/wristblades/Recycle()
-	var/blacklist[] = list("attack_verb")
-	. = ..() + blacklist
 
 /obj/item/weapon/wristblades/dropped(mob/living/carbon/human/M)
 	playsound(M,'sound/weapons/wristblades_off.ogg', 15, 1)
@@ -1205,7 +1203,7 @@
 			var/turf/T = get_turf(src)
 			if(ispath(spawner_type))
 				new spawner_type(T)
-//		cdel(src)
+//		qdel(src)
 		return
 
 	check_eye(mob/user)

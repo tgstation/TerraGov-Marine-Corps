@@ -1,4 +1,3 @@
-
 //This datum keeps track of individual squads. New squads can be added without any problem but to give them
 //access you must add them individually to access.dm with the other squads. Just look for "access_alpha" and add the new one
 
@@ -206,13 +205,13 @@
 		if(istype(old_lead.wear_ear, /obj/item/device/radio/headset/almayer/marine))
 			var/obj/item/device/radio/headset/almayer/marine/R = old_lead.wear_ear
 			if(istype(R.keyslot1, /obj/item/device/encryptionkey/squadlead))
-				cdel(R.keyslot1)
+				qdel(R.keyslot1)
 				R.keyslot1 = null
 			else if(istype(R.keyslot2, /obj/item/device/encryptionkey/squadlead))
-				cdel(R.keyslot2)
+				qdel(R.keyslot2)
 				R.keyslot2 = null
 			else if(istype(R.keyslot3, /obj/item/device/encryptionkey/squadlead))
-				cdel(R.keyslot3)
+				qdel(R.keyslot3)
 				R.keyslot3 = null
 			R.recalculateChannels()
 		if(istype(old_lead.wear_id, /obj/item/card/id))
@@ -236,4 +235,3 @@
 			return S
 
 	return null
-

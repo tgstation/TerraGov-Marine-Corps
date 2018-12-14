@@ -22,4 +22,4 @@
 			var/turf/T = get_turf(C)
 			if(istype(T, /turf/open/space))
 				spawned_carp -= C
-				cdel(C)
+				qdel(C)

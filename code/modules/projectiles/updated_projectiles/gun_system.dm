@@ -87,6 +87,8 @@
 
 	var/base_gun_icon //the default gun icon_state. change to reskin the gun
 
+	var/hud_enabled = TRUE //If the Ammo HUD is enabled for this gun or not.
+
 
 //----------------------------------------------------------
 				//				    \\
@@ -95,23 +97,23 @@
 				//					\\
 //----------------------------------------------------------
 
-	New(loc, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
-		..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
-		base_gun_icon = icon_state
-		attachable_overlays = list("muzzle", "rail", "under", "stock", "mag", "special")
-		if(current_mag)
-			if(spawn_empty && !(flags_gun_features & GUN_INTERNAL_MAG)) //Internal mags will still spawn, but they won't be filled.
-				current_mag = null
-				update_icon()
-			else
-				current_mag = new current_mag(src, spawn_empty ? 1 : 0)
-				ammo = current_mag.default_ammo ? ammo_list[current_mag.default_ammo] : ammo_list[/datum/ammo/bullet] //Latter should never happen, adding as a precaution.
+/obj/item/weapon/gun/New(loc, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
+	. = ..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
+	base_gun_icon = icon_state
+	attachable_overlays = list("muzzle", "rail", "under", "stock", "mag", "special")
+	if(current_mag)
+		if(spawn_empty && !(flags_gun_features & GUN_INTERNAL_MAG)) //Internal mags will still spawn, but they won't be filled.
+			current_mag = null
+			update_icon()
 		else
-			ammo = ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
-		set_gun_config_values()
-		update_force_list() //This gives the gun some unique verbs for attacking.
+			current_mag = new current_mag(src, spawn_empty ? 1 : 0)
+			ammo = current_mag.default_ammo ? ammo_list[current_mag.default_ammo] : ammo_list[/datum/ammo/bullet] //Latter should never happen, adding as a precaution.
+	else
+		ammo = ammo_list[ammo] //If they don't have a mag, they fire off their own thing.
+	set_gun_config_values()
+	update_force_list() //This gives the gun some unique verbs for attacking.
 
-		handle_starting_attachment()
+	handle_starting_attachment()
 
 
 //Called by the gun's New(), set the gun variables' values.
@@ -143,7 +145,7 @@
 			update_attachable(A.slot)
 
 
-/obj/item/weapon/gun/Dispose()
+/obj/item/weapon/gun/Destroy()
 	in_chamber 		= null
 	ammo 			= null
 	current_mag 	= null
@@ -263,6 +265,9 @@
 					skill_value = user.mind.cm_skills.spec_weapons
 			if(skill_value)
 				wield_time -= 2*skill_value
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.add_hud(user)
+	A.update_hud(user)
 	do_wield(user, wield_time)
 	return TRUE
 
@@ -277,6 +282,10 @@
 	item_state  = copytext(item_state, 1, -2)
 	update_slowdown()
 	remove_offhand(user)
+
+	var/obj/screen/ammo/A = user.hud_used.ammo
+	A.remove_hud(user)
+
 	return TRUE
 	
 /obj/item/weapon/gun/proc/update_slowdown()
@@ -419,7 +428,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 					H.update_icon()
 					break
 			if(!found_handful)
-				var/obj/item/ammo_magazine/handful/new_handful = rnew(/obj/item/ammo_magazine/handful)
+				var/obj/item/ammo_magazine/handful/new_handful = new /obj/item/ammo_magazine/handful()
 				new_handful.generate_handful(current_mag.default_ammo, current_mag.caliber, 8, 1, type)
 				new_handful.loc = get_turf(src)
 		else
@@ -506,7 +515,7 @@ and you're good to go.
 		log_debug("ERROR CODE I2: null ammo while create_bullet(). User: <b>[usr]</b>")
 		chambered = ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
 
-	var/obj/item/projectile/P = rnew(/obj/item/projectile, src)
+	var/obj/item/projectile/P = new /obj/item/projectile(src)
 	P.generate_bullet(chambered)
 	return P
 
@@ -534,7 +543,7 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/delete_bullet(var/obj/item/projectile/projectile_to_fire, var/refund = 0)
 	if(active_attachable) //Attachables don't chamber rounds, so we want to delete it right away.
-		cdel(projectile_to_fire) //Getting rid of it. Attachables only use ammo after the cycle is over.
+		qdel(projectile_to_fire) //Getting rid of it. Attachables only use ammo after the cycle is over.
 		if(refund)
 			active_attachable.current_rounds++ //Refund the bullet.
 		return TRUE
@@ -694,6 +703,9 @@ and you're good to go.
 
 	flags_gun_features &= ~GUN_BURST_FIRING // We always want to turn off bursting when we're done.
 
+	var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
+	A.update_hud(user)
+
 /obj/item/weapon/gun/attack(mob/living/M, mob/living/user, def_zone)
 	if(flags_gun_features & GUN_CAN_POINTBLANK) // If it can't point blank, you can't suicide and such.
 		if(M == user && user.zone_selected == "mouth")
@@ -740,7 +752,7 @@ and you're good to go.
 
 						projectile_to_fire.play_damage_effect(user)
 						if(!delete_bullet(projectile_to_fire))
-							cdel(projectile_to_fire) //If this proc DIDN'T delete the bullet, we're going to do so here.
+							qdel(projectile_to_fire) //If this proc DIDN'T delete the bullet, we're going to do so here.
 
 						reload_into_chamber(user) //Reload the sucker.
 
@@ -774,20 +786,20 @@ and you're good to go.
 						if(projectile_to_fire.ammo.bonus_projectiles_amount)
 							var/obj/item/projectile/BP
 							for(var/i = 1 to projectile_to_fire.ammo.bonus_projectiles_amount)
-								BP = rnew(/obj/item/projectile, M.loc)
+								BP = new /obj/item/projectile(M.loc)
 								BP.generate_bullet(ammo_list[projectile_to_fire.ammo.bonus_projectiles_type])
 								BP.dir = get_dir(user, M)
 								BP.distance_travelled = get_dist(user, M)
 								BP.ammo.on_hit_mob(M, BP)
 								M.bullet_act(BP)
-								cdel(BP)
+								qdel(BP)
 
 						projectile_to_fire.ammo.on_hit_mob(M, projectile_to_fire)
 						M.bullet_act(projectile_to_fire)
 						last_fired = world.time
 
 						if(!delete_bullet(projectile_to_fire))
-							cdel(projectile_to_fire)
+							qdel(projectile_to_fire)
 						reload_into_chamber(user) //Reload into the chamber if the gun supports it.
 						return TRUE
 					else
@@ -862,6 +874,8 @@ and you're good to go.
 
 /obj/item/weapon/gun/proc/click_empty(mob/user)
 	if(user)
+		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
+		A.update_hud(user)
 		to_chat(user, "<span class='warning'><b>*click*</b></span>")
 		playsound(user, 'sound/weapons/gun_empty.ogg', 25, 1, 5) //5 tile range
 	else
@@ -1053,13 +1067,13 @@ and you're good to go.
 
 	if(prob(65)) //Not all the time.
 		var/image_layer = (user && user.dir == SOUTH) ? MOB_LAYER+0.1 : MOB_LAYER-0.1
-		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/items/projectiles.dmi',user,muzzle_flash,image_layer))
+		var/image/I = image('icons/obj/items/projectiles.dmi',user,muzzle_flash,image_layer)
 		var/matrix/rotate = matrix() //Change the flash angle.
 		rotate.Translate(x,y)
 		rotate.Turn(angle)
 		I.transform = rotate
 
-		I.flick_overlay(user, 3)
+		flick_overlay_view(I, user, 3)
 
 /obj/item/weapon/gun/on_enter_storage(obj/item/I)
 	if(istype(I,/obj/item/storage/belt/gun))

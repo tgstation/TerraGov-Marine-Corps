@@ -8,13 +8,13 @@
 /obj/structure/sign/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
-			cdel(src)
+			qdel(src)
 			return
 		if(3.0)
-			cdel(src)
+			qdel(src)
 			return
 		else
 	return
@@ -29,7 +29,7 @@
 		//var/icon/I = icon('icons/obj/decals.dmi', icon_state)
 		//S.icon = I.Scale(24, 24)
 		S.sign_state = icon_state
-		cdel(src)
+		qdel(src)
 	else ..()
 
 /obj/item/sign
@@ -58,7 +58,7 @@
 		S.desc = desc
 		S.icon_state = sign_state
 		to_chat(user, "You fasten \the [S] with your [tool].")
-		cdel(src)
+		qdel(src)
 	else ..()
 
 /obj/structure/sign/double/map

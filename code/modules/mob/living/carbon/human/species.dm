@@ -59,7 +59,7 @@
 	var/heat_level_2 = 400  // Heat damage level 2 above this point.
 	var/heat_level_3 = 1000 // Heat damage level 2 above this point.
 
-	var/body_temperature = 310.15	//non-IS_SYNTHETIC species will try to stabilize at this temperature. (also affects temperature processing)
+	var/body_temperature = BODYTEMP_NORMAL 	//non-IS_SYNTHETIC species will try to stabilize at this temperature. (also affects temperature processing)
 	var/reagent_tag                 //Used for metabolizing reagents.
 
 	var/darksight = 2
@@ -661,18 +661,18 @@
 
 /datum/species/zombie/handle_post_spawn(var/mob/living/carbon/human/H)
 	if(H.hud_used)
-		cdel(H.hud_used)
+		qdel(H.hud_used)
 		H.hud_used = null
 //		H.create_mob_hud()
 		if(H.hud_used)
 			H.hud_used.show_hud(H.hud_used.hud_version)
 	if(H.l_hand) H.drop_inv_item_on_ground(H.l_hand, FALSE, TRUE)
 	if(H.r_hand) H.drop_inv_item_on_ground(H.r_hand, FALSE, TRUE)
-	if(H.wear_id) cdel(H.wear_id)
-	if(H.gloves) cdel(H.gloves)
-	if(H.head) cdel(H.head)
-	if(H.glasses) cdel(H.glasses)
-	if(H.wear_mask) cdel(H.wear_mask)
+	if(H.wear_id) qdel(H.wear_id)
+	if(H.gloves) qdel(H.gloves)
+	if(H.head) qdel(H.head)
+	if(H.glasses) qdel(H.glasses)
+	if(H.wear_mask) qdel(H.wear_mask)
 	var/obj/item/weapon/zombie_claws/ZC = new()
 	ZC.icon_state = "claw_r"
 	H.equip_to_slot_or_del(ZC, WEAR_R_HAND, TRUE)
@@ -917,7 +917,7 @@
 
 	if(WEAR_BACK in equip_slots)
 		equip_slots |= WEAR_IN_BACK
-		equip_slots |= WEAR_IN_B_HOLSTER	
+		equip_slots |= WEAR_IN_B_HOLSTER
 	if(WEAR_WAIST in equip_slots)
 		equip_slots |= WEAR_IN_HOLSTER
 	if(WEAR_JACKET in equip_slots)

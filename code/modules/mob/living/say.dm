@@ -7,7 +7,7 @@ var/list/department_radio_keys = list(
 
 	  ":m" = "MedSci",		"#m" = "MedSci",		".m" = "MedSci",
 	  ":e" = "Engi", 		"#e" = "Engi",			".e" = "Engi",
-	  ":z" = "Almayer",		"#z" = "Almayer",		".z" = "Almayer",
+	  ":z" = "Theseus",		"#z" = "Theseus",		".z" = "Theseus",
 	  ":v" = "Command",		"#v" = "Command",		".v" = "Command",
 	  ":q" = "Alpha",		"#q" = "Alpha",			".q" = "Alpha",
 	  ":b" = "Bravo",		"#b" = "Bravo",			".b" = "Bravo",
@@ -25,7 +25,7 @@ var/list/department_radio_keys = list(
 
 	  ":M" = "MedSci",		"#M" = "MedSci",		".M" = "MedSci",
 	  ":E" = "Engi", 		"#E" = "Engi",			".E" = "Engi",
-	  ":Z" = "Almayer",		"#Z" = "Almayer",		".Z" = "Almayer",
+	  ":Z" = "Theseus",		"#Z" = "Theseus",		".Z" = "Theseus",
 	  ":V" = "Command",		"#V" = "Command",		".V" = "Command",
 	  ":Q" = "Alpha",		"#Q" = "Alpha",			".Q" = "Alpha",
 	  ":B" = "Bravo",		"#B" = "Bravo",			".B" = "Bravo",
@@ -126,7 +126,7 @@ var/list/department_radio_keys = list(
 		if(not_dead_speaker)
 			for(var/mob/M in listening)
 				if(M.client) M.client.images -= speech_bubble
-		cdel(speech_bubble)
+		qdel(speech_bubble)
 
 
 	for(var/obj/O in listening_obj)

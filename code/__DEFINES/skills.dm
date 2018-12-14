@@ -69,7 +69,7 @@
 #define SKILL_ENGINEER_PLASTEEL 2	//plasteel barricade repair
 #define SKILL_ENGINEER_ENGI 	3	//hacking&&planet engine fixing&&apc building (combat engi)
 #define SKILL_ENGINEER_MT 		4	//Telecomms fixing, faster engine fixing (MT)
-//higher levels give faster Almayer engine repair.
+//higher levels give faster engine repair.
 
 
 //medical skill

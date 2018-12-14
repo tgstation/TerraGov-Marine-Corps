@@ -23,7 +23,7 @@
 /obj/effect/decal/mecha_wreckage/ex_act(severity)
 	if(severity < 2)
 		spawn
-			cdel(src)
+			qdel(src)
 	return
 
 /obj/effect/decal/mecha_wreckage/bullet_act(var/obj/item/projectile/Proj)
@@ -80,7 +80,7 @@
         playsound(src, 'sound/effects/metal_crash.ogg', 50, 1)
         M.visible_message("<span class='danger'>[M] slices [src] apart!</span>","<span class='danger'>You slice [src] apart!</span>")
         robogibs(src)
-        cdel(src)
+        qdel(src)
 
 /obj/effect/decal/mecha_wreckage/gygax
 	name = "Gygax wreckage"

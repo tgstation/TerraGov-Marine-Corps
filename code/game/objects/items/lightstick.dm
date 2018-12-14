@@ -17,7 +17,7 @@
 				playsound(src, 'sound/weapons/Genhit.ogg', 25, 1)
 				if(istype(O,/mob/living/carbon/Xenomorph))
 					if(prob(40))
-						cdel(src)
+						qdel(src)
 					else
 						anchored = 0
 						icon_state = "lightstick_[s_color][anchored]"
@@ -50,7 +50,7 @@
 		playsound(user, 'sound/weapons/Genhit.ogg', 25, 1)
 
 	//Remove lightsource
-	Dispose()
+	Destroy()
 		SetLuminosity(0)
 		. = ..()
 

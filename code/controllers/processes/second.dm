@@ -13,4 +13,4 @@
 			Object.process()
 			i++
 			continue
-		processing_objects.Cut(i,i+1)
+		SSobj.Cut(i,i+1)

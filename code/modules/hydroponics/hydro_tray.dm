@@ -581,7 +581,7 @@
 
 			if(!S.seed)
 				to_chat(user, "The packet seems to be empty. You throw it away.")
-				cdel(O)
+				qdel(O)
 				return
 
 			to_chat(user, "You plant the [S.seed.seed_name] [S.seed.seed_noun].")
@@ -605,7 +605,7 @@
 
 				lastcycle = world.time
 
-			cdel(O)
+			qdel(O)
 
 			check_level_sanity()
 			update_icon()
@@ -641,7 +641,7 @@
 		weedlevel -= spray.weed_kill_str
 		to_chat(user, "You spray [src] with [O].")
 		playsound(loc, 'sound/effects/spray3.ogg', 25, 1, 3)
-		cdel(O)
+		qdel(O)
 
 		check_level_sanity()
 		update_icon()
@@ -662,13 +662,13 @@
 			to_chat(user, "\red [src] is already occupied!")
 		else
 			user.drop_held_item()
-			cdel(O)
+			qdel(O)
 
 			var/obj/machinery/apiary/A = new(src.loc)
 			A.icon = src.icon
 			A.icon_state = src.icon_state
 			A.hydrotray_type = src.type
-			cdel(src)
+			qdel(src)
 	return
 
 /obj/machinery/portable_atmospherics/hydroponics/attack_tk(mob/user as mob)
@@ -739,7 +739,7 @@
 /obj/machinery/portable_atmospherics/hydroponics/soil/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/tool/shovel))
 		to_chat(user, "You clear up [src]!")
-		cdel(src)
+		qdel(src)
 	else if(istype(O,/obj/item/tool/shovel) || istype(O,/obj/item/tank))
 		return
 	else

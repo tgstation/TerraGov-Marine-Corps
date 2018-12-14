@@ -297,7 +297,7 @@
 				if(contents.len) //Hopefully won't auto-delete things inside crushed stuff.
 					var/turf/T = get_turf(src)
 					for(var/atom/movable/S in contents) S.loc = T
-				cdel(src)
+				qdel(src)
 				X.charge_speed -= X.charge_speed_buildup * 3 //Lose three turfs worth of speed
 		else
 			if(X.charge_speed > X.charge_speed_buildup * X.charge_turfs_to_charge)

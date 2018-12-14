@@ -22,7 +22,7 @@
 	..()
 	if(istype(W, /obj/item/tool/wrench))
 		new /obj/item/stack/sheet/metal(user.loc)
-		cdel(src)
+		qdel(src)
 
 	if(istype(W, /obj/item/stack/rods))
 		var/obj/item/stack/rods/R = W
@@ -30,7 +30,7 @@
 			new /obj/item/frame/table/reinforced(get_turf(src))
 			to_chat(user, "<span class='notice'>You reinforce [src].</span>")
 			user.temp_drop_inv_item(src)
-			cdel(src)
+			qdel(src)
 		else
 			to_chat(user, "<span class='warning'>You need at least four rods to reinforce [src].</span>")
 
@@ -41,7 +41,7 @@
 			new /obj/item/stack/sheet/metal(get_turf(src))
 			to_chat(user, "<span class='notice'>You replace the metal parts of [src].</span>")
 			user.temp_drop_inv_item(src)
-			cdel(src)
+			qdel(src)
 		else
 			to_chat(user, "<span class='warning'>You need at least two wood sheets to swap the metal parts of [src].</span>")
 
@@ -56,7 +56,7 @@
 	var/obj/structure/table/T = new table_type(user.loc)
 	T.add_fingerprint(user)
 	user.drop_held_item()
-	cdel(src)
+	qdel(src)
 
 /*
  * Reinforced Table Parts
@@ -75,7 +75,7 @@
 	if(istype(W, /obj/item/tool/wrench))
 		new /obj/item/stack/sheet/metal(get_turf(src))
 		new /obj/item/stack/rods(get_turf(src))
-		cdel(src)
+		qdel(src)
 
 /*
  * Wooden Table Parts
@@ -92,14 +92,14 @@
 
 	if(istype(W, /obj/item/tool/wrench))
 		new /obj/item/stack/sheet/wood(get_turf(src))
-		cdel(src)
+		qdel(src)
 
 	if(istype(W, /obj/item/stack/tile/carpet))
 		var/obj/item/stack/tile/carpet/C = W
 		if(C.use(1))
 			to_chat(user, "<span class='notice'>You put a layer of carpet on [src].</span>")
 			new /obj/item/frame/table/gambling(get_turf(src))
-			cdel(src)
+			qdel(src)
 
 /*
  * Gambling Table Parts
@@ -117,13 +117,13 @@
 	if(istype(W, /obj/item/tool/wrench))
 		new /obj/item/stack/sheet/wood(get_turf(src))
 		new /obj/item/stack/tile/carpet(get_turf(src))
-		cdel(src)
+		qdel(src)
 
 	if(istype(W, /obj/item/tool/crowbar))
 		to_chat(user, "<span class='notice'>You pry the carpet out of [src].</span>")
 		new /obj/item/stack/tile/carpet(get_turf(src))
 		new /obj/item/frame/table/wood(get_turf(src))
-		cdel(src)
+		qdel(src)
 
 
 
@@ -147,7 +147,7 @@
 	..()
 	if(istype(W, /obj/item/tool/wrench))
 		new /obj/item/stack/sheet/metal(get_turf(src))
-		cdel(src)
+		qdel(src)
 
 /obj/item/frame/rack/attack_self(mob/user as mob)
 
@@ -166,4 +166,4 @@
 	var/obj/structure/rack/R = new /obj/structure/rack(user.loc)
 	R.add_fingerprint(user)
 	user.drop_held_item()
-	cdel(src)
+	qdel(src)
