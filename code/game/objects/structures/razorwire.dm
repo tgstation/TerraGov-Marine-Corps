@@ -17,7 +17,7 @@
 	var/health = RAZORWIRE_MAX_HEALTH
 	var/soak = 5
 
-/obj/structure/razorwire/destroy(deconstruct = FALSE)
+/obj/structure/razorwire/proc/destroyed(deconstruct = FALSE)
 	if(deconstruct)
 		if(health > RAZORWIRE_MAX_HEALTH * 0.5)
 			new sheet_type(loc)
@@ -29,13 +29,13 @@
 		if(prob(50))
 			var/obj/item/stack/rods/salvage = new sheet_type2(loc)
 			salvage.amount = rand(1,4)
-	cdel(src)
+	qdel(src)
 
 /obj/structure/razorwire/New()
 	..()
 	for(var/obj/structure/razorwire/T in loc)
 		if(T != src)
-			cdel(T)
+			qdel(T)
 
 /obj/structure/razorwire/Crossed(atom/movable/O)
 	. = ..()
@@ -78,7 +78,7 @@
 			razorwire_untangle(M)
 	. = ..()
 
-/obj/structure/razorwire/Dispose()
+/obj/structure/razorwire/Destroy()
 	. = ..()
 	for(var/mob/living/M in entangled_list)
 		M.frozen = FALSE
@@ -133,7 +133,7 @@
 			user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 			"<span class='notice'>You disassemble [src].</span>")
 			playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-			destroy(TRUE)
+			destroyed(TRUE)
 		return
 
 	if(istype(W, /obj/item/tool/weldingtool))
@@ -158,7 +158,7 @@
 		if(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD))
 			if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P && src) //Barbed wire requires half the normal time
 				P.cut_apart(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD) //Barbed wire requires half the normal power
-				destroy()
+				destroyed()
 		return
 
 	if((W.flags_item & ITEM_ABSTRACT) || isrobot(user))
@@ -202,7 +202,7 @@
 	switch(severity)
 		if(1.0)
 			visible_message("<span class='danger'>[src] is blown apart!</span>")
-			destroy()
+			destroyed()
 			return
 		if(2.0)
 			health -= rand(33, 66)
@@ -270,7 +270,7 @@
 	if(!health)
 		if(!nomessage)
 			visible_message("<span class='danger'>[src] falls apart!</span>")
-		destroy()
+		destroyed()
 		return
 
 	update_icon()
