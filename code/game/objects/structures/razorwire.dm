@@ -33,7 +33,7 @@
 
 /obj/structure/razorwire/New()
 	..()
-	for(var/obj/structure/razorwire/T in src.loc)
+	for(var/obj/structure/razorwire/T in loc)
 		if(T != src)
 			cdel(T)
 
