@@ -262,7 +262,7 @@
 			C.apply_damage(rand(RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MIN_DAMAGE_MULT_HIGH, RAZORWIRE_BASE_DAMAGE * RAZORWIRE_MAX_DAMAGE_MULT_HIGH), BRUTE, def_zone, armor_block, null, 1) //pouncing into razor wire is especially ouchy
 			C.KnockDown(1)
 			razorwire_tangle(C)
-	..()
+	return ..()
 
 /obj/structure/razorwire/proc/update_health(nomessage)
 	health = CLAMP(health, 0, RAZORWIRE_MAX_HEALTH)
