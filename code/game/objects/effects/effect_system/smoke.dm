@@ -24,12 +24,12 @@
 	if(oldamount)
 		amount = oldamount - 1
 	time_to_live += rand(-1,1)
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 /obj/effect/particle_effect/smoke/Destroy()
 	if(opacity)
 		SetOpacity(0)
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	. =..()
 
 

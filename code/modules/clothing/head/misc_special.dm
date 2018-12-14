@@ -85,7 +85,7 @@
 
 /obj/item/clothing/head/cakehat/process()
 	if(!onfire)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return
 
 /obj/item/clothing/head/cakehat/attack_self(mob/user as mob)
@@ -95,7 +95,7 @@
 		src.force = 3
 		src.damtype = "fire"
 		src.icon_state = "cake1"
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 	else
 		src.force = null
 		src.damtype = "brute"

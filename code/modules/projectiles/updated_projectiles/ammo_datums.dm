@@ -1546,7 +1546,7 @@
 	var/obj/item/device/flashlight/flare/G = new (T)
 	G.visible_message("<span class='warning'>\A [G] bursts into brilliant light nearby!</span>")
 	G.on = 1
-	processing_objects += G
+	START_PROCESSING(SSobj, G)
 	G.icon_state = "flare-on"
 	G.damtype = "fire"
 	G.SetLuminosity(G.brightness_on)

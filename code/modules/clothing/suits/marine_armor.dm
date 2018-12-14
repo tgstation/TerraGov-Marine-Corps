@@ -386,24 +386,24 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 /obj/item/clothing/suit/storage/marine/specialist/proc/b18automed_turn_off(mob/living/carbon/human/user, silent = FALSE)
 	B18_automed_on = FALSE
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	if(!silent)
 		to_chat(user, "<span class='warning'>[src] lets out a beep as its automedical suite deactivates.</span>")
 		playsound(src,'sound/machines/click.ogg', 15, 0, 1)
 
 /obj/item/clothing/suit/storage/marine/specialist/proc/b18automed_turn_on(mob/living/carbon/human/user, silent = FALSE)
 	B18_automed_on = TRUE
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	if(!silent)
 		to_chat(user, "<span class='notice'>[src] lets out a hum as its automedical suite activates.</span>")
 		playsound(src,'sound/voice/b18_activate.ogg', 15, 0, 1)
 
 /obj/item/clothing/suit/storage/marine/specialist/process()
 	if(!B18_automed_on)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return
 	if(!wearer)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return
 
 	var/list/details = list()

@@ -30,7 +30,7 @@
 		process()
 		checkReagents()
 	spawn(120)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		sleep(30)
 
 		if(metal)
