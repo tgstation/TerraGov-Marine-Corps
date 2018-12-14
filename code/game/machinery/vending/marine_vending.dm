@@ -23,7 +23,7 @@
 					/obj/item/ammo_magazine/revolver = 25,
 					/obj/item/ammo_magazine/smg/m39 = 30,
 					/obj/item/ammo_magazine/rifle = 22,
-					/obj/item/ammo_magazine/lasgun/M43 = 22,
+					/obj/item/cell/lasgun/M43 = 22,
 					/obj/item/ammo_magazine/shotgun = 8,
 					/obj/item/ammo_magazine/shotgun/buckshot = 8,
 					/obj/item/ammo_magazine/shotgun/flechette = 8,
@@ -201,8 +201,8 @@
 					/obj/item/ammo_magazine/shotgun/buckshot = 10,
 					/obj/item/ammo_magazine/shotgunbox/flechette = 3,
 					/obj/item/ammo_magazine/shotgun/flechette = 15,
-					/obj/item/ammo_magazine/lasgun/M43 = 15,
-					/obj/item/ammo_magazine/lasgun/M43/highcap = 1,
+					/obj/item/cell/lasgun/M43 = 15,
+					/obj/item/cell/lasgun/M43/highcap = 1,
 					/obj/item/smartgun_powerpack = 2
 					)
 
@@ -261,8 +261,8 @@
 
 	product_ads = "Lasgun running low? Recharge here!;Need a charge?;Power up!;Electrifying!;Empower yourself!"
 	products = list(
-					/obj/item/ammo_magazine/lasgun/M43 = 10,
-					/obj/item/ammo_magazine/lasgun/M43/highcap = 2,
+					/obj/item/cell/lasgun/M43 = 10,
+					/obj/item/cell/lasgun/M43/highcap = 2,
 					)
 
 	contraband =   list()
@@ -290,7 +290,7 @@
 				icon_state = "lascharger_25"
 
 /obj/machinery/vending/lasgun/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/ammo_magazine/lasgun))
+	if(istype(W, /obj/item/cell/lasgun))
 		stock(W, user, TRUE)
 		return TRUE
 	return ..()
@@ -304,7 +304,7 @@
 	. = ..()
 
 	var/obj/item/I = A
-	if(istype(I, /obj/item/ammo_magazine/lasgun))
+	if(istype(I, /obj/item/cell/lasgun))
 		stock(I, user, TRUE)
 	else
 		stock(I, user)
@@ -314,11 +314,9 @@
 	 //More accurate comparison between absolute paths.
 	for(R in (product_records + hidden_records + coin_records))
 		if(item_to_stock.type == R.product_path && !istype(item_to_stock,/obj/item/storage)) //Nice try, specialists/engis
-			if(istype(item_to_stock, /obj/item/ammo_magazine))
-				var/obj/item/ammo_magazine/A = item_to_stock
-				if(istype(A, /obj/item/ammo_magazine/lasgun) && recharge)
-					if(!recharge_lasguncell(A, user))
-						return //Can't recharge so cancel out
+			if(istype(item_to_stock, /obj/item/cell/lasgun) && recharge)
+				if(!recharge_lasguncell(item_to_stock, user))
+					return //Can't recharge so cancel out
 
 			if(item_to_stock.loc == user) //Inside the mob's inventory
 				if(item_to_stock.flags_item & WIELDED)
@@ -329,7 +327,7 @@
 				var/obj/item/storage/S = item_to_stock.loc
 				S.remove_from_storage(item_to_stock, user.loc)
 
-			cdel(item_to_stock)
+			qdel(item_to_stock)
 			if(!recharge)
 				user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
 				"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
@@ -337,8 +335,8 @@
 			updateUsrDialog()
 			break //We found our item, no reason to go on.
 
-/obj/machinery/vending/lasgun/proc/recharge_lasguncell(obj/item/ammo_magazine/lasgun/A, mob/user)
-	var/recharge_cost = (A.max_rounds - A.current_rounds) * 10 //10 energy per shot
+/obj/machinery/vending/lasgun/proc/recharge_lasguncell(obj/item/cell/lasgun/M43/A, mob/user)
+	var/recharge_cost = (A.maxcharge - A.charge)
 	if(recharge_cost > machine_current_charge)
 		to_chat(user, "<span class='warning'>[A] cannot be recharged; [src] has inadequate charge remaining: [machine_current_charge] of [machine_max_charge].</span>")
 		return

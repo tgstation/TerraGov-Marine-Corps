@@ -140,6 +140,7 @@
 					"/obj/item/ammo_magazine/lasgun",
 					"/obj/item/ammo_magazine/sniper",
 					"/obj/item/ammo_magazine/handful",
+					"/obj/item/cell/lasgun",
 					)
 
 

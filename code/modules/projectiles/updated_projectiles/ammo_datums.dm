@@ -1196,6 +1196,7 @@
 /datum/ammo/energy/lasgun
 	name = "laser bolt"
 	icon_state = "laser"
+	hud_state = "laser"
 
 /datum/ammo/energy/lasgun/New()
 	..()
@@ -1211,6 +1212,7 @@
 
 /datum/ammo/energy/lasgun/M43
 	name = "M43 laser bolt"
+	hud_state = "laser"
 
 /datum/ammo/energy/lasgun/M43/New()
 	..()
@@ -1219,6 +1221,7 @@
 /datum/ammo/energy/lasgun/M43/overcharge
 	name = "M43 overcharged laser bolt"
 	icon_state = "heavylaser"
+	hud_state = "laser_overcharge"
 
 /datum/ammo/energy/lasgun/M43/overcharge/New()
 	..()

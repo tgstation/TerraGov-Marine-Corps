@@ -809,6 +809,9 @@ and you're good to go.
 						if(!delete_bullet(projectile_to_fire))
 							qdel(projectile_to_fire)
 						reload_into_chamber(user) //Reload into the chamber if the gun supports it.
+						if(user) //Update dat HUD
+							var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
+							A.update_hud(user)
 						return TRUE
 
 	return ..() //Pistolwhippin'

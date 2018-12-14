@@ -506,10 +506,10 @@ WEAPONS
 
 /datum/supply_packs/gun/lasrifle
 	contains = list(
-					/obj/item/weapon/gun/energy/lasgun/M43,
-					/obj/item/weapon/gun/energy/lasgun/M43,
-					/obj/item/ammo_magazine/lasgun/M43,
-					/obj/item/ammo_magazine/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
 					)
 	name = "surplus lasrifle crate (M43 x2, M43 battery packs x2)"
 	cost = RO_PRICE_VERY_CHEAP
@@ -1898,21 +1898,21 @@ AMMO
  /datum/supply_packs/ammo_M43lasgun
 	name = "M43 lasgun battery crate (M43 x15 each)"
 	contains = list(
-					/obj/item/ammo_magazine/lasgun/M43,
-					/obj/item/ammo_magazine/lasgun/M43,
-					/obj/item/ammo_magazine/lasgun/M43,
-					/obj/item/ammo_magazine/lasgun/M43,
-					/obj/item/ammo_magazine/lasgun/M43,
-					/obj/item/ammo_magazine/lasgun/M43,
-					/obj/item/ammo_magazine/lasgun/M43,
-					/obj/item/ammo_magazine/lasgun/M43,
-					/obj/item/ammo_magazine/lasgun/M43,
-					/obj/item/ammo_magazine/lasgun/M43,
-					/obj/item/ammo_magazine/lasgun/M43,
-					/obj/item/ammo_magazine/lasgun/M43,
-					/obj/item/ammo_magazine/lasgun/M43,
-					/obj/item/ammo_magazine/lasgun/M43,
-					/obj/item/ammo_magazine/lasgun/M43
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo
@@ -1922,13 +1922,13 @@ AMMO
  /datum/supply_packs/ammo_M43lasgun_highcap
 	name = "M43 lasgun highcap battery crate (M43 highcap x7 each)"
 	contains = list(
-					/obj/item/ammo_magazine/lasgun/M43/highcap,
-					/obj/item/ammo_magazine/lasgun/M43/highcap,
-					/obj/item/ammo_magazine/lasgun/M43/highcap,
-					/obj/item/ammo_magazine/lasgun/M43/highcap,
-					/obj/item/ammo_magazine/lasgun/M43/highcap,
-					/obj/item/ammo_magazine/lasgun/M43/highcap,
-					/obj/item/ammo_magazine/lasgun/M43/highcap
+					/obj/item/cell/lasgun/M43/highcap,
+					/obj/item/cell/lasgun/M43/highcap,
+					/obj/item/cell/lasgun/M43/highcap,
+					/obj/item/cell/lasgun/M43/highcap,
+					/obj/item/cell/lasgun/M43/highcap,
+					/obj/item/cell/lasgun/M43/highcap,
+					/obj/item/cell/lasgun/M43/highcap,
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo

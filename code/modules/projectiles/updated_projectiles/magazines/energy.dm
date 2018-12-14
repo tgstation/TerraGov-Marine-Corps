@@ -1,48 +1,43 @@
 //Energy weapons
 
-/obj/item/ammo_magazine/lasgun
+/obj/item/cell/lasgun
 	name = "\improper Lasgun Battery"
 	desc = "A specialized high density battery used to power Lasguns."
-	var/base_ammo_icon = "m43"
+	origin_tech = "powerstorage=2"
+	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "m43"
-	default_ammo = /datum/ammo/energy/lasgun
-	max_rounds = 50
-	current_rounds = 50
+	maxcharge = 1000
 	w_class = 3.0
-	gun_type = /obj/item/weapon/gun/energy/lasgun
-	caliber = "lasgun"
-	flags_magazine = NOFLAGS //Obviously you can't grab bullets from this.
+	matter = list("metal" = 700, "glass" = 60)
+	var/base_ammo_icon = "m43"
+	var/gun_type = /obj/item/weapon/gun/energy/lasgun
+	var/reload_delay = 0
 
-/obj/item/ammo_magazine/lasgun/M43
+/obj/item/cell/lasgun/M43
 	name = "\improper M43 lasgun battery"
 	desc = "A specialized high density battery used to power the M43 Lasgun."
+	origin_tech = "powerstorage=2"
 	base_ammo_icon = "m43"
 	icon_state = "m43"
-	default_ammo = /datum/ammo/energy/lasgun/M43
-	overcharge_ammo = /datum/ammo/energy/lasgun/M43/overcharge
-	max_rounds = 50
-	current_rounds = 50
 	gun_type = /obj/item/weapon/gun/energy/lasgun/M43
-	caliber = "M43lasgun"
 
-/obj/item/ammo_magazine/lasgun/M43/New()
+/obj/item/cell/lasgun/M43/highcap// Large battery
+	name = "\improper M43 highcap lasgun battery"
+	desc = "An advanced, ultrahigh capacity battery used to power the M43 Lasgun; has sixty percent more charge capacity than standard laspacks."
+	origin_tech = "powerstorage=3"
+	base_ammo_icon = "m43_e"
+	icon_state = "m43_e"
+	maxcharge = 1600
+
+
+/obj/item/cell/lasgun/M43/New()
 	..()
 	update_icon()
 
-/obj/item/ammo_magazine/lasgun/M43/emp_act(severity)
-	var/amount = round(max_rounds * rand(2,severity) * 0.1)
-	current_rounds = max(0,current_rounds - amount)
-	update_icon()
-	return ..()
-
-/obj/item/ammo_magazine/lasgun/M43/update_icon()
-	var/remaining = CEILING((current_rounds / max(1,max_rounds)) * 100, 25)
+/obj/item/cell/lasgun/M43/update_icon()
+	var/remaining = CEILING((charge / max(maxcharge, 1)) * 100, 25)
 	icon_state = "[base_ammo_icon]_[remaining]"
 
-/obj/item/ammo_magazine/lasgun/M43/highcap// Large battery
-	name = "M43 highcap lasgun battery"
-	desc = "An advanced, ultrahigh capacity battery used to power the M43 Lasgun; has nearly fifty percent more charge capacity than standard laspacks."
-	base_ammo_icon = "m43_e"
-	icon_state = "m43_e"
-	max_rounds = 80
-	current_rounds = 80
+/obj/item/cell/lasgun/updateicon()
+	return FALSE
+
