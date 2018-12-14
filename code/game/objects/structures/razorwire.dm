@@ -169,7 +169,7 @@
 		damage *= 0.25
 	damage = max(damage - soak,0)
 	if(damage)
-		..()
+		. = ..()
 		health -= damage
 		update_health()
 
