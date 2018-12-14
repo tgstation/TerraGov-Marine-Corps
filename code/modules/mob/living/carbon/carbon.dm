@@ -1,9 +1,9 @@
 
-/mob/living/carbon/Dispose()
+/mob/living/carbon/Destroy()
 	for(var/datum/disease/virus in viruses)
 		virus.cure()
 	. = ..()
-	stomach_contents.Cut() //movable atom's Dispose() deletes all content, we clear stomach_contents to be safe.
+	stomach_contents.Cut() //movable atom's Destroy() deletes all content, we clear stomach_contents to be safe.
 
 /mob/living/carbon/Move(NewLoc, direct)
 	. = ..()
@@ -330,8 +330,8 @@
 		thrown_thing.throw_at(target, thrown_thing.throw_range, thrown_thing.throw_speed, src, spin_throw)
 
 /mob/living/carbon/fire_act(exposed_temperature, exposed_volume)
-	..()
-	bodytemperature = max(bodytemperature, BODYTEMP_HEAT_DAMAGE_LIMIT+10)
+	. = ..()
+	adjust_bodytemperature(100, 0, BODYTEMP_HEAT_DAMAGE_LIMIT+10)
 
 
 /mob/living/carbon/show_inv(mob/living/carbon/user as mob)

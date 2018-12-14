@@ -13,7 +13,7 @@ datum/objective
 		if(text)
 			explanation_text = text
 
-	Dispose()
+	Destroy()
 		all_objectives -= src
 		. = ..()
 
@@ -299,7 +299,7 @@ datum/objective/steal
 			if (!custom_target) return
 			var/tmp_obj = new custom_target
 			var/custom_name = tmp_obj:name
-			cdel(tmp_obj)
+			qdel(tmp_obj)
 			custom_name = stripped_input("Enter target name:", "Objective target", custom_name, MAX_MESSAGE_LEN)
 			if (!custom_name) return
 			target_name = custom_name

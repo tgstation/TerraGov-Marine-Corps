@@ -64,7 +64,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 			M.icon_state = "box_1"
 			for(var/obj/I in component_parts)
 				I.loc = src.loc
-			cdel(src)
+			qdel(src)
 			return 1
 		else
 			to_chat(user, "\red You can't load the [src.name] while it's opened.")

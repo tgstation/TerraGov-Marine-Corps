@@ -33,7 +33,7 @@
 				break
 		update_icon()
 
-/obj/structure/ladder/Dispose()
+/obj/structure/ladder/Destroy()
 	if(down)
 		down.up = null
 		down = null
@@ -41,7 +41,7 @@
 		up.down = null
 		up = null
 	if(cam)
-		cdel(cam)
+		qdel(cam)
 		cam = null
 	. = ..()
 

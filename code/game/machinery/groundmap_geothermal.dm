@@ -294,7 +294,7 @@
 	var/repair_state = 0
 	var/health = 120
 
-/obj/machinery/colony_floodlight/Dispose()
+/obj/machinery/colony_floodlight/Destroy()
 	SetLuminosity(0)
 	if(fswitch)
 		fswitch.floodlist -= src
@@ -346,7 +346,7 @@
 				user.visible_message("<span class='notice'>[user] starts unscrewing [src]'s maintenance hatch.</span>", \
 				"<span class='notice'>You start unscrewing [src]'s maintenance hatch.</span>")
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					if(disposed || repair_state != FLOODLIGHT_REPAIR_UNSCREW)
+					if(gc_destroyed || repair_state != FLOODLIGHT_REPAIR_UNSCREW)
 						return
 					playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 					repair_state = FLOODLIGHT_REPAIR_CROWBAR
@@ -358,7 +358,7 @@
 				user.visible_message("<span class='notice'>[user] starts screwing [src]'s maintenance hatch closed.</span>", \
 				"<span class='notice'>You start screwing [src]'s maintenance hatch closed.</span>")
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					if(disposed || repair_state != FLOODLIGHT_REPAIR_SCREW)
+					if(gc_destroyed || repair_state != FLOODLIGHT_REPAIR_SCREW)
 						return
 					playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 					damaged = 0
@@ -383,7 +383,7 @@
 				user.visible_message("<span class='notice'>[user] starts prying [src]'s maintenance hatch open.</span>",\
 				"<span class='notice'>You start prying [src]'s maintenance hatch open.</span>")
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					if(disposed || repair_state != FLOODLIGHT_REPAIR_CROWBAR)
+					if(gc_destroyed || repair_state != FLOODLIGHT_REPAIR_CROWBAR)
 						return
 					playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 					repair_state = FLOODLIGHT_REPAIR_WELD
@@ -406,7 +406,7 @@
 					user.visible_message("<span class='notice'>[user] starts welding [src]'s damage.</span>",
 					"<span class='notice'>You start welding [src]'s damage.</span>")
 					if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-						if(disposed || !WT.isOn() || repair_state != FLOODLIGHT_REPAIR_WELD)
+						if(gc_destroyed || !WT.isOn() || repair_state != FLOODLIGHT_REPAIR_WELD)
 							return
 						playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
 						repair_state = FLOODLIGHT_REPAIR_CABLE
@@ -433,7 +433,7 @@
 				user.visible_message("<span class='notice'>[user] starts replacing [src]'s damaged cables.</span>",\
 				"<span class='notice'>You start replacing [src]'s damaged cables.</span>")
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_GENERIC))
-					if(disposed || repair_state != FLOODLIGHT_REPAIR_CABLE)
+					if(gc_destroyed || repair_state != FLOODLIGHT_REPAIR_CABLE)
 						return
 					if(C.use(2))
 						playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)

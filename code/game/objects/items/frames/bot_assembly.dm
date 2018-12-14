@@ -18,13 +18,13 @@
 	..()
 	if(istype(W, /obj/item/robot_parts/l_arm) || istype(W, /obj/item/robot_parts/r_arm))
 		user.drop_held_item()
-		cdel(W)
+		qdel(W)
 		var/turf/T = get_turf(src.loc)
 		var/obj/machinery/bot/cleanbot/A = new /obj/machinery/bot/cleanbot(T)
 		A.name = src.created_name
 		to_chat(user, "<span class='notice'>You add the robot arm to the bucket and sensor assembly. Beep boop!</span>")
 		user.temp_drop_inv_item(src)
-		cdel(src)
+		qdel(src)
 
 	else if (istype(W, /obj/item/tool/pen))
 		var/t = copytext(stripped_input(user, "Enter new robot name", src.name, src.created_name),1,MAX_NAME_LEN)
@@ -53,13 +53,13 @@
 /obj/item/frame/toolbox_tiles/attackby(var/obj/item/W, mob/user as mob)
 	..()
 	if(isprox(W))
-		cdel(W)
+		qdel(W)
 		var/obj/item/frame/toolbox_tiles_sensor/B = new /obj/item/frame/toolbox_tiles_sensor()
 		B.created_name = src.created_name
 		user.put_in_hands(B)
 		to_chat(user, "<span class='notice'>You add the sensor to the toolbox and tiles!</span>")
 		user.temp_drop_inv_item(src)
-		cdel(src)
+		qdel(src)
 
 	else if (istype(W, /obj/item/tool/pen))
 		var/t = copytext(stripped_input(user, "Enter new robot name", src.name, src.created_name),1,MAX_NAME_LEN)
@@ -87,13 +87,13 @@
 /obj/item/frame/toolbox_tiles_sensor/attackby(var/obj/item/W, mob/user as mob)
 	..()
 	if(istype(W, /obj/item/robot_parts/l_arm) || istype(W, /obj/item/robot_parts/r_arm))
-		cdel(W)
+		qdel(W)
 		var/turf/T = get_turf(user.loc)
 		var/obj/machinery/bot/floorbot/A = new /obj/machinery/bot/floorbot(T)
 		A.name = src.created_name
 		to_chat(user, "<span class='notice'>You add the robot arm to the odd looking toolbox assembly! Boop beep!</span>")
 		user.temp_drop_inv_item(src)
-		cdel(src)
+		qdel(src)
 	else if (istype(W, /obj/item/tool/pen))
 		var/t = stripped_input(user, "Enter new robot name", src.name, src.created_name)
 
@@ -141,7 +141,7 @@
 			if(0)
 				if(istype(W, /obj/item/device/healthanalyzer))
 					user.drop_held_item()
-					cdel(W)
+					qdel(W)
 					src.build_step++
 					to_chat(user, "<span class='notice'>You add the health sensor to [src].</span>")
 					src.name = "First aid/robot arm/health analyzer assembly"
@@ -150,7 +150,7 @@
 			if(1)
 				if(isprox(W))
 					user.drop_held_item()
-					cdel(W)
+					qdel(W)
 					src.build_step++
 					to_chat(user, "<span class='notice'>You complete the Medibot! Beep boop.</span>")
 					var/turf/T = get_turf(src)
@@ -158,4 +158,4 @@
 					S.skin = src.skin
 					S.name = src.created_name
 					user.temp_drop_inv_item(src)
-					cdel(src)
+					qdel(src)

@@ -25,9 +25,9 @@
 	idle_power_usage = 10
 	active_power_usage = 1000
 
-	Dispose()
+	Destroy()
 		if(milled_item)
-			cdel(milled_item)
+			qdel(milled_item)
 			milled_item = null
 		. = ..()
 
@@ -59,7 +59,7 @@
 		else
 			error = 1
 
-	cdel(milled_item)
+	qdel(milled_item)
 	milled_item = null
 	busy = 0
 
@@ -99,9 +99,9 @@
 	idle_power_usage = 10
 	active_power_usage = 500
 
-	Dispose()
+	Destroy()
 		if(fermenting_item)
-			cdel(fermenting_item)
+			qdel(fermenting_item)
 			fermenting_item = null
 		. = ..()
 
@@ -135,7 +135,7 @@
 		else
 			error = 1
 
-	cdel(fermenting_item)
+	qdel(fermenting_item)
 	fermenting_item = null
 	busy = 0
 
@@ -171,9 +171,9 @@
 	idle_power_usage = 10
 	active_power_usage = 10000
 
-	Dispose()
+	Destroy()
 		if(destilling_item)
-			cdel(destilling_item)
+			qdel(destilling_item)
 			destilling_item = null
 		. = ..()
 
@@ -202,7 +202,7 @@
 		else
 			error = 1
 
-	cdel(destilling_item)
+	qdel(destilling_item)
 	destilling_item = null
 	busy = 0
 

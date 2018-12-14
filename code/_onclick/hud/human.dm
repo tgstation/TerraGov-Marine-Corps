@@ -260,6 +260,7 @@
 	zone_sel.update_icon(owner)
 	static_inventory += zone_sel
 
+	ammo = new /obj/screen/ammo()
 
 
 /mob/living/carbon/human/verb/toggle_hotkey_verbs()

@@ -91,7 +91,7 @@
 	var/obj/machinery/hydro_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
 	var/lum_value = 7
 
-	Dispose()
+	Destroy()
 		SetLuminosity(0)
 		. = ..()
 

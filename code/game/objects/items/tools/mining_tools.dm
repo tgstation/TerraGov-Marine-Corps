@@ -246,7 +246,7 @@
 		heat_source = 3800
 		SetLuminosity(2)
 
-/obj/item/tool/pickaxe/plasmacutter/Dispose()
+/obj/item/tool/pickaxe/plasmacutter/Destroy()
 	if(powered)
 		SetLuminosity(0)
 	return ..()

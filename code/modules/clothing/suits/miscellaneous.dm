@@ -356,3 +356,12 @@
 	flags_cold_protection = UPPER_TORSO|ARMS
 	min_cold_protection_temperature = T0C
 	siemens_coefficient = 0.7
+
+/obj/item/clothing/suit/replica
+	name = "replica armor"
+	desc = "A replica of the armour of choice for colonial militia."
+	icon = 'icons/obj/clothing/cm_suits.dmi'
+	sprite_sheet_id = 1
+	icon_state = "rebel_armor"
+	item_state = "rebel_armor"
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS

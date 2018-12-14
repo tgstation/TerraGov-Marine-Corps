@@ -44,7 +44,7 @@
 	SetLuminosity(round(potency/15))
 	lastTick = world.timeofday
 
-/obj/effect/glowshroom/Dispose()
+/obj/effect/glowshroom/Destroy()
 	SetLuminosity(0)
 	. = ..()
 
@@ -91,15 +91,15 @@
 /obj/effect/glowshroom/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(50))
-				cdel(src)
+				qdel(src)
 				return
 		if(3.0)
 			if (prob(5))
-				cdel(src)
+				qdel(src)
 				return
 		else
 	return
@@ -111,4 +111,4 @@
 
 /obj/effect/glowshroom/proc/CheckEndurance()
 	if(endurance <= 0)
-		cdel(src)
+		qdel(src)

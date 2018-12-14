@@ -107,7 +107,7 @@ FIRE ALARM
 			if(0)
 				if(istype(W, /obj/item/circuitboard/firealarm))
 					to_chat(user, "You insert the circuit!")
-					cdel(W)
+					qdel(W)
 					buildstage = 1
 					update_icon()
 
@@ -116,7 +116,7 @@ FIRE ALARM
 					var/obj/item/frame/fire_alarm/frame = new /obj/item/frame/fire_alarm()
 					frame.loc = user.loc
 					playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-					cdel(src)
+					qdel(src)
 		return
 
 	//src.alarm() // why was this even a thing?
@@ -134,7 +134,7 @@ FIRE ALARM
 			src.alarm()
 			src.time = 0
 			src.timing = 0
-			//processing_objects.Remove(src) // uh what
+			//STOP_PROCESSING(SSobj, src) // uh what
 		src.updateDialog()
 	last_process = world.timeofday
 /*
@@ -209,7 +209,7 @@ FIRE ALARM
 		else if (href_list["time"])
 			src.timing = text2num(href_list["time"])
 			last_process = world.timeofday
-			//processing_objects.Add(src)
+			//START_PROCESSING(SSobj, src)
 		else if (href_list["tp"])
 			var/tp = text2num(href_list["tp"])
 			src.time += tp

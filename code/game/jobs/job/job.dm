@@ -66,7 +66,7 @@
 
 <span class='role_body'>[generate_entry_message(H)]</span>
 
-<span class='role_body'>As the [title_given] you answer to [supervisors]. Special circumstances may change this.[M ? "\nYour account number is: <b>[M.account_number]</b>. Your account pin is: <b>[M.remote_access_pin]</b>." : ""]</span>
+<span class='role_body'>As a [title_given] you answer to [supervisors]. Special circumstances may change this.[M ? "\nYour account number is: <b>[M.account_number]</b>. Your account pin is: <b>[M.remote_access_pin]</b>." : ""]</span>
 <span class='role_body'>|______________________|</span>
 "}
 

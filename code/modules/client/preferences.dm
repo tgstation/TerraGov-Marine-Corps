@@ -6,7 +6,7 @@ var/global/list/special_roles = list(
 	"Xenomorph" = 1,
 	"Xenomorph Queen" = 1,
 	"Survivor" = 1,
-	"Responder" = 1,
+	"End of Round Deathmatch" = 1,
 	"Predator" = 1,
 	"WO Commander" = 1
 
@@ -101,7 +101,7 @@ datum/preferences
 
 		//Some faction information.
 	var/home_system = "Unset"           //System of birth.
-	var/citizenship = "United Americas (United States)" //Current home system.
+	var/citizenship = "TerraGov" //Current home system.
 	var/faction = "None"                //Antag faction/general associated faction.
 	var/religion = "None"               //Religious association.
 
@@ -349,9 +349,9 @@ datum/preferences
 				ban_check_name = "WO Commander"
 
 		if(jobban_isbanned(user, ban_check_name))
-			dat += "<b>Be [i]:</b> <font color=red><b> \[BANNED]</b></font><br>"
+			dat += "<font color=red><b> \[BANNED]</b></font><br>"
 		else
-			dat += "<b>Be [i]:</b> <a href='?_src_=prefs;preference=be_special;num=[n]'><b>[src.be_special&(1<<n) ? "Yes" : "No"]</b></a><br>"
+			dat += "<a href='?_src_=prefs;preference=be_special;num=[n]'><b>[src.be_special&(1<<n) ? "Yes" : "No"]</b></a><br>"
 		n++
 
 	dat += "\t<a href='?_src_=prefs;preference=job;task=menu'><b>Set Marine Role Preferences</b></a><br>"
@@ -1244,7 +1244,7 @@ datum/preferences
 							moth_wings = new_wings
 
 				if("nt_relation")
-					var/new_relation = input(user, "Choose your relation to the Weyland-Yutani company. Note that this represents what others can find out about your character by researching your background, not what your character actually thinks.", "Character Preference")  as null|anything in list("Loyal", "Supportive", "Neutral", "Skeptical", "Opposed")
+					var/new_relation = input(user, "Choose your relation to the Nanotrasen company. Note that this represents what others can find out about your character by researching your background, not what your character actually thinks.", "Character Preference")  as null|anything in list("Loyal", "Supportive", "Neutral", "Skeptical", "Opposed")
 					if(new_relation)
 						nanotrasen_relation = new_relation
 

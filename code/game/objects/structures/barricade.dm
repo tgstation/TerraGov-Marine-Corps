@@ -74,7 +74,7 @@
 
 		else if(!C.stat)
 			visible_message("<span class='danger'>[C] smashes through [src]!</span>")
-			destroy()
+			destroy_structure()
 
 /obj/structure/barricade/CheckExit(atom/movable/O, turf/target)
 	if(closed)
@@ -103,7 +103,7 @@
 
 	if(istype(mover, /obj/vehicle/multitile))
 		visible_message("<span class='danger'>[mover] drives over and destroys [src]!</span>")
-		destroy(0)
+		destroy_structure(0)
 		return FALSE
 
 	var/obj/structure/S = locate(/obj/structure) in get_turf(mover)
@@ -199,7 +199,7 @@
 			playsound(src, barricade_hitsound, 25, 1)
 		hit_barricade(W)
 
-/obj/structure/barricade/destroy(deconstruct)
+/obj/structure/barricade/destroy_structure(deconstruct)
 	if(deconstruct && is_wired)
 		new /obj/item/stack/barbed_wire(loc)
 	if(stack_type)
@@ -211,13 +211,13 @@
 
 		if(stack_amt)
 			new stack_type (loc, stack_amt)
-	cdel(src)
+	qdel(src)
 
 /obj/structure/barricade/ex_act(severity)
 	switch(severity)
 		if(1.0)
 			visible_message("<span class='danger'>[src] is blown apart!</span>")
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			health -= rand(33, 66)
@@ -267,7 +267,7 @@
 	if(!health)
 		if(!nomessage)
 			visible_message("<span class='danger'>[src] falls apart!</span>")
-		destroy()
+		destroy_structure()
 		return
 
 	update_damage_state()
@@ -355,7 +355,7 @@
 			return
 		if(!ET.folded)
 			user.visible_message("\blue \The [user] removes \the [src].")
-			destroy(TRUE)
+			destroy_structure(TRUE)
 		return
 	else
 		. = ..()
@@ -600,7 +600,7 @@
 					user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 					"<span class='notice'>You take [src]'s panels apart.</span>")
 					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-					destroy(TRUE) //Note : Handles deconstruction too !
+					destroy_structure(TRUE) //Note : Handles deconstruction too !
 				return
 
 	. = ..()
@@ -812,7 +812,7 @@
 					user.visible_message("<span class='notice'>[user] takes [src]'s panels apart.</span>",
 					"<span class='notice'>You take [src]'s panels apart.</span>")
 					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-					destroy(TRUE) //Note : Handles deconstruction too !
+					destroy_structure(TRUE) //Note : Handles deconstruction too !
 				else busy = FALSE
 				return
 
@@ -899,8 +899,23 @@
 			if(do_after(user, ET.shovelspeed, TRUE, 5, BUSY_ICON_BUILD))
 				user.visible_message("<span class='notice'>[user] disassembles [src].</span>",
 				"<span class='notice'>You disassemble [src].</span>")
-				destroy(TRUE)
+				destroy_structure(TRUE)
 		return TRUE
+
+	if(istype(W, /obj/item/stack/sandbags) )
+		if(health == maxhealth)
+			to_chat(user, "<span class='warning'>[src] isn't in need of repairs!</span>")
+			return
+		var/obj/item/stack/sandbags/D = W
+		if(D.get_amount() < 1)
+			to_chat(user, "<span class='warning'>You need a sandbag to repair [src].</span>")
+			return
+		visible_message("<span class='notice'>[user] begins to replace [src]'s damaged sandbags...</span>")
+		if(do_after(user, 30, TRUE, 5, BUSY_ICON_BUILD) && health < maxhealth)
+			if(D.use(1))
+				health = min(health + (maxhealth * 0.2), maxhealth) //Each sandbag restores 20% of max health as 5 sandbags = 1 sandbag barricade.
+				user.visible_message("<span class='notice'>[user] replaces a damaged sandbag, repairing [src].</span>",
+				"<span class='notice'>You replace a damaged sandbag, repairing it [src].</span>")
 	else
 		. = ..()
 

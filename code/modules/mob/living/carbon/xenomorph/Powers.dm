@@ -385,7 +385,7 @@
 
 	H.throw_at(T, fling_distance, 1, src, 1)
 
-	spawn(xeno_caste.fling_cooldown)
+	spawn(WARRIOR_FLING_COOLDOWN)
 		used_fling = FALSE
 		to_chat(src, "<span class='notice'>You gather enough strength to fling something again.</span>")
 		update_action_button_icons()
@@ -467,7 +467,7 @@
 	shake_camera(M, 2, 1)
 	step_away(M, src, 2)
 
-	spawn(xeno_caste.punch_cooldown)
+	spawn(WARRIOR_PUNCH_COOLDOWN)
 		used_punch = FALSE
 		to_chat(src, "<span class='notice'>You gather enough strength to punch again.</span>")
 		update_action_button_icons()
@@ -503,7 +503,7 @@
 	if (Adjacent(H))
 		start_pulling(H,1)
 
-	spawn(xeno_caste.lunge_cooldown)
+	spawn(WARRIOR_LUNGE_COOLDOWN)
 		used_lunge = FALSE
 		to_chat(src, "<span class='notice'>You get ready to lunge again.</span>")
 		update_action_button_icons()
@@ -604,7 +604,7 @@
 	do_agility_cooldown()
 
 /mob/living/carbon/Xenomorph/proc/do_agility_cooldown()
-	spawn(xeno_caste.toggle_agility_cooldown)
+	spawn(WARRIOR_AGILITY_COOLDOWN)
 		used_toggle_agility = FALSE
 		to_chat(src, "<span class='notice'>You can [agility ? "raise yourself back up" : "lower yourself back down"] again.</span>")
 		update_action_button_icons()
@@ -1055,7 +1055,7 @@
 	var/sound_to_play = pick(1, 2) == 1 ? 'sound/voice/alien_spitacid.ogg' : 'sound/voice/alien_spitacid2.ogg'
 	playsound(src.loc, sound_to_play, 25, 1)
 
-	var/obj/item/projectile/A = rnew(/obj/item/projectile, current_turf)
+	var/obj/item/projectile/A = new /obj/item/projectile(current_turf)
 	A.generate_bullet(ammo, ammo.damage * (max(0,upgrade) * 0.15)) //increase damage by 15% per upgrade level; compensates for the loss of insane attack speeds.
 	A.permutated += src
 	A.def_zone = get_limbzone_target()
@@ -1116,7 +1116,7 @@
 					var/oldloc = DR.loc
 					visible_message("<span class='xenonotice'>\The [src] regurgitates a thick substance and thickens [DR].</span>", \
 						"<span class='xenonotice'>You regurgitate some resin and thicken [DR].</span>", null, 5)
-					cdel(DR)
+					qdel(DR)
 					new /obj/structure/mineral_door/resin/thick (oldloc)
 					playsound(loc, "alien_resin_build", 25)
 					use_plasma(resin_plasma_cost)
@@ -1328,7 +1328,7 @@
 			"<span class='xenowarning'>You vomit globs of vile stuff at \the [O]. It sizzles under the bubbling mess of acid!</span>", null, 5)
 		playsound(loc, "sound/bullets/acid_impact1.ogg", 25)
 		sleep(20)
-		cdel(A)
+		qdel(A)
 		return
 
 	if(isturf(O))
@@ -1606,7 +1606,7 @@
 			T = temp
 	else
 		facing = get_dir(M, src)
-		if(check_blocked_turf(get_step(T, facing) ) ) //Make sure we can actually go to the target turf
+		if(!check_blocked_turf(get_step(T, facing) ) ) //Make sure we can actually go to the target turf
 			M.loc = get_step(T, facing) //Move the target behind us before flinging
 			for (var/x = 0, x < toss_distance, x++)
 				temp = get_step(T, facing)
@@ -1863,9 +1863,9 @@
 
 	second_wind_used = TRUE
 
-	second_wind_delay = world.time + (RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.01) )
+	second_wind_delay = world.time + (RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.015) )
 
-	spawn(RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.01) ) //1 minute cooldown, minus 0.5 seconds per rage to minimum 30 seconds.
+	spawn(RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.015) ) //4 minute cooldown, minus 0.75 seconds per rage to minimum 60 seconds.
 		second_wind_used = FALSE
 		to_chat(src, "<span class='xenodanger'>You gather enough strength to use Second Wind again.</span>")
 		playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
@@ -1921,7 +1921,7 @@
 		return
 
 	for(var/obj/effect/xenomorph/spray/S in target) //No stacking spray!
-		cdel(S)
+		qdel(S)
 	new /obj/effect/xenomorph/spray(target)
 	for(var/mob/living/carbon/M in target)
 		if( isXeno(M) ) //Xenos immune to acid
@@ -1958,7 +1958,7 @@
 		to_chat(src, "<span class='xenowarning'>You're not yet ready to spray again! You can do so in [( (last_spray_used + acid_d) - world.time) * 0.1] seconds.</span>")
 		return
 
-	if(!do_after(src, 3, TRUE, 3, BUSY_ICON_HOSTILE))
+	if(!do_after(src, 5, TRUE, 5, BUSY_ICON_HOSTILE, TRUE, TRUE))
 		return
 
 	var/turf/target

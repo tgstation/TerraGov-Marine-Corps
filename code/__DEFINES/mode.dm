@@ -1,16 +1,20 @@
 //=================================================
 //Self destruct, nuke, and evacuation.
-#define EVACUATION_TIME_LOCK 36000
-#define DISTRESS_TIME_LOCK 3600
-#define SHUTTLE_TIME_LOCK 6000
-#define SHUTTLE_LOCK_COOLDOWN 6000
-#define SHUTTLE_LOCK_TIME_LOCK 27000
-#define EVACUATION_AUTOMATIC_DEPARTURE 1800 //All pods automatically depart in 10 minutes, unless they are full or unable to launch for some reason.
+#define EVACUATION_TIME_LOCK 60 MINUTES
+#define DISTRESS_TIME_LOCK 10 MINUTES
+#define SHUTTLE_TIME_LOCK 10 MINUTES
+#define SHUTTLE_LOCK_COOLDOWN 10 MINUTES
+#define SHUTTLE_LOCK_TIME_LOCK 45 MINUTES
+#define EVACUATION_AUTOMATIC_DEPARTURE 3 MINUTES //All pods automatically depart in 10 minutes, unless they are full or unable to launch for some reason.
 #define EVACUATION_ESTIMATE_DEPARTURE ((evac_time + EVACUATION_AUTOMATIC_DEPARTURE - world.time) * 0.1)
 #define EVACUATION_STATUS_STANDING_BY 0
 #define EVACUATION_STATUS_INITIATING 1
 #define EVACUATION_STATUS_IN_PROGRESS 2
 #define EVACUATION_STATUS_COMPLETE 3
+
+#define COOLDOWN_COMM_REQUEST 5 MINUTES
+#define COOLDOWN_COMM_MESSAGE 1 MINUTE
+#define COOLDOWN_COMM_CENTRAL 30 SECONDS
 
 #define NUKE_EXPLOSION_INACTIVE 0
 #define NUKE_EXPLOSION_ACTIVE	1
@@ -24,39 +28,39 @@
 
 #define IS_MODE_COMPILED(MODE) (ispath(text2path("/datum/game_mode/"+(MODE))))
 
-#define MODE_INFESTATION		1
-#define MODE_PREDATOR			2
-#define MODE_NO_LATEJOIN		4
-#define MODE_HAS_FINISHED		8
-#define MODE_FOG_ACTIVATED 		16
-#define MODE_INFECTION			32
-#define MODE_HUMAN_ANTAGS		64
+#define MODE_INFESTATION		(1 << 0)
+#define MODE_PREDATOR			(1 << 1)
+#define MODE_NO_LATEJOIN		(1 << 2)
+#define MODE_HAS_FINISHED		(1 << 3)
+#define MODE_FOG_ACTIVATED 		(1 << 4)
+#define MODE_INFECTION			(1 << 5)
+#define MODE_HUMAN_ANTAGS		(1 << 6)
 
-#define BE_ALIEN		1
-#define BE_QUEEN		2
-#define BE_SURVIVOR		4
-#define BE_RESPONDER	8
-#define BE_PREDATOR		16
+#define BE_ALIEN		(1 << 0)
+#define BE_QUEEN		(1 << 1)
+#define BE_SURVIVOR		(1 << 2)
+#define BE_DEATHMATCH	(1 << 3)
+#define BE_PREDATOR		(1 << 4)
 
 
-#define BE_REV        32
-#define BE_TRAITOR    64
-#define BE_OPERATIVE  128
-#define BE_CULTIST    256
-#define BE_MONKEY     512
-#define BE_NINJA      1024
-#define BE_RAIDER     2048
-#define BE_PLANT      4096
-#define BE_MUTINEER   8192
-#define BE_CHANGELING 16384
+#define BE_REV        (1 << 5)
+#define BE_TRAITOR    (1 << 6)
+#define BE_OPERATIVE  (1 << 7)
+#define BE_CULTIST    (1 << 8)
+#define BE_MONKEY     (1 << 9)
+#define BE_NINJA      (1 << 10)
+#define BE_RAIDER     (1 << 11)
+#define BE_PLANT      (1 << 12)
+#define BE_MUTINEER   (1 << 13)
+#define BE_CHANGELING (1 << 14)
 
-#define BE_WO_COM 32768
+#define BE_WO_COM (1 << 15)
 //=================================================
 
 var/list/be_special_flags = list(
 	"Xenomorph" = BE_ALIEN,
 	"Survivor" = BE_SURVIVOR,
-	"Responder" = BE_RESPONDER,
+	"End of Round Deathmatch" = BE_DEATHMATCH,
 	"Predator" = BE_PREDATOR,
 	"Queen" = BE_QUEEN
 

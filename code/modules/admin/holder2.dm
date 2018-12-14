@@ -16,9 +16,9 @@ var/list/admin_datums = list()
 /datum/admins/New(initial_rank = "Temporary Admin", initial_rights = 0, ckey)
 	if(!ckey)
 		error("Admin datum created without a ckey argument. Datum has been deleted")
-		cdel(src)
+		qdel(src)
 		return
-	admincaster_signature = "Weyland-Yutani Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
+	admincaster_signature = "Nanotrasen Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
 	rank = initial_rank
 	rights = initial_rights
 	if (rights & R_DEBUG) //grant profile access
@@ -85,7 +85,7 @@ you will have to do something like if(client.holder.rights & R_ADMIN) yourself.
 	admin_datums -= ckey
 	if(holder)
 		holder.disassociate()
-		cdel(holder)
+		qdel(holder)
 		holder = null
 	return 1
 

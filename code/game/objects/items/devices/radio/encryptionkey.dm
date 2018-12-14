@@ -29,7 +29,7 @@
 	name = "AI Integrated Encryption Key"
 	desc = "Integrated encryption key"
 	icon_state = "cap_cypherkey"
-	channels = list("Almayer" = TRUE, "Command" = TRUE, "MP" = TRUE, "Engi" = TRUE, "MedSci" = TRUE)
+	channels = list("Theseus" = TRUE, "Command" = TRUE, "MP" = TRUE, "Engi" = TRUE, "MedSci" = TRUE)
 
 /obj/item/device/encryptionkey/engi
 	name = "Engineering Radio Encryption Key"
@@ -121,7 +121,7 @@
 /obj/item/device/encryptionkey/general
     	name = "\improper General radio encryption key"
     	icon_state = "cypherkey"
-    	channels = list("Almayer" = TRUE)
+    	channels = list("Theseus" = TRUE)
 
 
 //PMCs
@@ -130,8 +130,8 @@
 	channels = list("Colonist" = TRUE)
 
 /obj/item/device/encryptionkey/PMC
-	name = "\improper Weyland Yutani encryption key"
-	channels = list("WY PMC" = TRUE)
+	name = "\improper Nanotrasen encryption key"
+	channels = list("NT PMC" = TRUE)
 
 /obj/item/device/encryptionkey/bears
 	name = "\improper UPP encryption key"
@@ -139,5 +139,5 @@
 	channels = list("UPP" = TRUE)
 
 /obj/item/device/encryptionkey/commando
-	name = "\improper WY commando encryption key"
+	name = "\improper NT commando encryption key"
 	channels = list("SpecOps" = TRUE)

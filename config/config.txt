@@ -125,7 +125,7 @@ ERT_ADMIN_ONLY
 #PROTECT_ROLES_FROM_ANTAGONIST
 
 ## Comment this out to stop admins being able to choose their personal ooccolor
-ALLOW_ADMIN_OOCCOLOR
+#ALLOW_ADMIN_OOCCOLOR
 
 ## If metadata is supported
 # ALLOW_METADATA
@@ -193,10 +193,10 @@ GUEST_BAN
 FORUMURL https://tgstation13.org/phpBB/viewforum.php?f=64
 
 ## Wiki address
-WIKIURL https://tgstation13.org/wiki/DMCA
+WIKIURL https://tgstation13.org/wiki/TGMC
 
 ## Rules address
-RULESURL https://tgstation13.org/wiki/DMCA_Rules
+RULESURL https://tgstation13.org/wiki/TGMC:Rules
 
 ## Chat address
 CHATURL https://discord.gg/2dFpfNE
@@ -205,10 +205,10 @@ CHATURL https://discord.gg/2dFpfNE
 DONATIONURL https://www.patreon.com/tgstation
 
 ## Bug tracker address
-BUGTRACKERURL https://github.com/ColonialMarines-Mirror/ColonialMarines-2018/issues
+BUGTRACKERURL https://github.com/tgstation/TerraGov-Marine-Corps/issues
 
 ## Ban appeals URL - usually for a forum or wherever people should go to contact your admins.
-BANAPPEALS https://cc.ddmers.com/dmca/
+BANAPPEALS https://tgstation13.org/phpBB/viewforum.php?f=70
 
 ## In-game features
 ## spawns a spellbook which gives object-type spells instead of verb-type spells for the wizard
@@ -297,12 +297,12 @@ REQ_CULT_GHOSTWRITER 6
 #DEBUG_PARANOID
 
 ## Automute the OOC channel. OOC mutes itself at round-start and unmutes itself at round-end.
-AUTOOOCMUTE
+#AUTOOOCMUTE
 
 # MAP URLS
-ALMAYER_URL https://affectedarc07.github.io/SS13WebMap/DMCA/Almayer/index.html
-BIGRED_URL https://affectedarc07.github.io/SS13WebMap/DMCA/BigRed/index.html
-ICECOLONY_URL https://affectedarc07.github.io/SS13WebMap/DMCA/IceColony/index.html
-LV624_URL https://affectedarc07.github.io/SS13WebMap/DMCA/LV624/index.html
-PRISONSTATION_URL https://affectedarc07.github.io/SS13WebMap/PrisonStation/Almayer/index.html
-WHISKEYOUTPOST_URL https://affectedarc07.github.io/SS13WebMap/DMCA/WhiskeyOutpost/index.html
+ALMAYER_URL https://affectedarc07.github.io/SS13WebMap/TGMC/Almayer/index.html
+BIGRED_URL https://affectedarc07.github.io/SS13WebMap/TGMC/BigRed/index.html
+ICECOLONY_URL https://affectedarc07.github.io/SS13WebMap/TGMC/IceColony/index.html
+LV624_URL https://affectedarc07.github.io/SS13WebMap/TGMC/LV624/index.html
+PRISONSTATION_URL https://affectedarc07.github.io/SS13WebMap/TGMC/PrisonStation/index.html
+WHISKEYOUTPOST_URL https://affectedarc07.github.io/SS13WebMap/TGMC/WhiskeyOutpost/index.html

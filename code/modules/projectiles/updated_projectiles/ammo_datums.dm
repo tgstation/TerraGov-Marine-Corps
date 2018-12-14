@@ -21,6 +21,8 @@
 	var/name 		= "generic bullet"
 	var/icon 		= 'icons/obj/items/projectiles.dmi'
 	var/icon_state 	= "bullet"
+	var/hud_state   = "unknown"  //Bullet type on the Ammo HUD
+	var/hud_state_empty = "unknown"
 	var/ping 		= "ping_b" //The icon that is displayed when the bullet bounces off something.
 	var/sound_hit //When it deals damage.
 	var/sound_armor //When it's blocked by human armor.
@@ -179,7 +181,7 @@
 		set waitfor = 0
 		var/i
 		for(i = 1 to bonus_projectiles_amount) //Want to run this for the number of bonus projectiles.
-			var/obj/item/projectile/P = rnew(/obj/item/projectile, original_P.shot_from)
+			var/obj/item/projectile/P = new /obj/item/projectile(original_P.shot_from)
 			P.generate_bullet(ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
 			var/turf/new_target = null
 			if(prob(P.scatter))
@@ -216,7 +218,7 @@
 		if(!istype(T))
 			return
 		for(var/obj/flamer_fire/F in T) // No stacking flames!
-			cdel(F)
+			qdel(F)
 		new /obj/flamer_fire(T, 20, 20)
 
 
@@ -251,6 +253,8 @@
 
 /datum/ammo/bullet/pistol
 	name = "pistol bullet"
+	hud_state = "pistol"
+	hud_state_empty = "pistol_empty"
 
 /datum/ammo/bullet/pistol/New()
 	..()
@@ -259,13 +263,16 @@
 
 /datum/ammo/bullet/pistol/tiny
 	name = "light pistol bullet"
+	hud_state = "pistol_light"
 
 /datum/ammo/bullet/pistol/tranq
 	name = "tranq bullet"
+	hud_state = "pistol_tranq"
 	debilitate = list(0,0,0,0,5,3,30,0)
 
 /datum/ammo/bullet/pistol/hollow
 	name = "hollowpoint pistol bullet"
+	hud_state = "pistol_hollow"
 
 
 /datum/ammo/bullet/pistol/hollow/New()
@@ -278,6 +285,7 @@
 
 /datum/ammo/bullet/pistol/ap
 	name = "armor-piercing pistol bullet"
+	hud_state = "pistol_ap"
 
 /datum/ammo/bullet/pistol/ap/New()
 	..()
@@ -288,6 +296,7 @@
 
 /datum/ammo/bullet/pistol/heavy
 	name = "heavy pistol bullet"
+	hud_state = "pistol_heavy"
 
 /datum/ammo/bullet/pistol/heavy/New()
 	..()
@@ -299,6 +308,7 @@
 
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
+	hud_state = "pistol_fire"
 	damage_type = BURN
 	shrapnel_chance = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
@@ -310,6 +320,7 @@
 
 /datum/ammo/bullet/pistol/squash
 	name = "squash-head pistol bullet"
+	hud_state = "pistol_special"
 	debilitate = list(0,0,0,0,0,0,0,2)
 
 /datum/ammo/bullet/pistol/squash/New()
@@ -322,6 +333,8 @@
 /datum/ammo/bullet/pistol/mankey
 	name = "live monkey"
 	icon_state = "monkey1"
+	hud_state = "monkey"
+	hud_state_empty = "monkey_empty"
 	ping = null //no bounce off.
 	damage_type = BURN
 	debilitate = list(4,4,0,0,0,0,0,0)
@@ -346,6 +359,8 @@
 
 /datum/ammo/bullet/revolver
 	name = "revolver bullet"
+	hud_state = "revolver"
+	hud_state_empty = "revolver_empty"
 
 /datum/ammo/bullet/revolver/New()
 	..()
@@ -356,6 +371,7 @@
 
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
+	hud_state = "revolver_small"
 
 /datum/ammo/bullet/revolver/small/New()
 	..()
@@ -363,6 +379,7 @@
 
 /datum/ammo/bullet/revolver/marksman
 	name = "slimline revolver bullet"
+	hud_state = "revolver_slim"
 	shrapnel_chance = 0
 	damage_falloff = 0
 
@@ -376,6 +393,7 @@
 
 /datum/ammo/bullet/revolver/heavy
 	name = "heavy revolver bullet"
+	hud_state = "revolver_heavy"
 
 /datum/ammo/bullet/revolver/heavy/New()
 	..()
@@ -388,6 +406,7 @@
 
 /datum/ammo/bullet/revolver/highimpact
 	name = "high-impact revolver bullet"
+	hud_state = "revolver_impact"
 
 /datum/ammo/bullet/revolver/highimpact/New()
 	..()
@@ -408,6 +427,8 @@
 
 /datum/ammo/bullet/smg
 	name = "submachinegun bullet"
+	hud_state = "smg"
+	hud_state_empty = "smg_empty"
 
 /datum/ammo/bullet/smg/New()
 	..()
@@ -421,6 +442,7 @@
 
 /datum/ammo/bullet/smg/ap
 	name = "armor-piercing submachinegun bullet"
+	hud_state = "smg_ap"
 
 /datum/ammo/bullet/smg/ap/New()
 	..()
@@ -429,6 +451,7 @@
 
 /datum/ammo/bullet/smg/ppsh
 	name = "submachinegun light bullet"
+	hud_state = "smg_light"
 
 /datum/ammo/bullet/smg/ppsh/New()
 	..()
@@ -444,6 +467,8 @@
 
 /datum/ammo/bullet/rifle
 	name = "rifle bullet"
+	hud_state = "rifle"
+	hud_state_empty = "rifle_empty"
 
 /datum/ammo/bullet/rifle/New()
 	..()
@@ -453,6 +478,7 @@
 
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
+	hud_state = "rifle_ap"
 
 /datum/ammo/bullet/rifle/ap/New()
 	..()
@@ -461,6 +487,7 @@
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
+	hud_state = "rifle_fire"
 	damage_type = BURN
 	shrapnel_chance = 0
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
@@ -471,6 +498,8 @@
 
 /datum/ammo/bullet/rifle/m4ra
 	name = "A19 high velocity bullet"
+	hud_state = "hivelo"
+	hud_state_empty = "hivelo_empty"
 	shrapnel_chance = 0
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -485,6 +514,7 @@
 
 /datum/ammo/bullet/rifle/m4ra/incendiary
 	name = "A19 high velocity incendiary bullet"
+	hud_state = "hivelo_fire"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 
 /datum/ammo/bullet/rifle/m4ra/incendiary/New()
@@ -497,6 +527,7 @@
 
 /datum/ammo/bullet/rifle/m4ra/impact
 	name = "A19 high velocity impact bullet"
+	hud_state = "hivelo_impact"
 	flags_ammo_behavior = AMMO_BALLISTIC
 
 /datum/ammo/bullet/rifle/m4ra/impact/New()
@@ -512,6 +543,7 @@
 
 /datum/ammo/bullet/rifle/mar40
 	name = "heavy rifle bullet"
+	hud_state = "rifle_heavy"
 
 /datum/ammo/bullet/rifle/mar40/New()
 	..()
@@ -526,9 +558,11 @@
 */
 
 /datum/ammo/bullet/shotgun
+	hud_state_empty = "shotgun_empty"
 
 /datum/ammo/bullet/shotgun/slug
 	name = "shotgun slug"
+	hud_state = "shotgun_slug"
 
 /datum/ammo/bullet/shotgun/slug/New()
 	..()
@@ -543,6 +577,7 @@
 /datum/ammo/bullet/shotgun/beanbag
 	name = "beanbag slug"
 	icon_state = "beanbag"
+	hud_state = "shotgun_beanbag"
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_IGNORE_RESIST
 
 /datum/ammo/bullet/shotgun/beanbag/New()
@@ -566,6 +601,7 @@
 
 /datum/ammo/bullet/shotgun/incendiary
 	name = "incendiary slug"
+	hud_state = "shotgun_fire"
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_INCENDIARY
 
@@ -590,6 +626,7 @@
 /datum/ammo/bullet/shotgun/flechette
 	name = "shotgun flechette shell"
 	icon_state = "flechette"
+	hud_state = "shotgun_flechette"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette_spread
 
 /datum/ammo/bullet/shotgun/flechette/New()
@@ -623,6 +660,7 @@
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
 	icon_state = "buckshot"
+	hud_state = "shotgun_buckshot"
 	bonus_projectiles_type = /datum/ammo/bullet/shotgun/spread
 
 /datum/ammo/bullet/shotgun/buckshot/New()
@@ -681,6 +719,8 @@
 
 /datum/ammo/bullet/sniper
 	name = "sniper bullet"
+	hud_state = "sniper"
+	hud_state_empty = "sniper_empty"
 	damage_falloff = 0
 	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SNIPER|AMMO_SKIPS_HUMANS
@@ -697,6 +737,7 @@
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
+	hud_state = "sniper_fire"
 	accuracy = 0
 	damage_type = BURN
 	iff_signal = ACCESS_IFF_MARINE
@@ -712,6 +753,7 @@
 
 /datum/ammo/bullet/sniper/flak
 	name = "flak sniper bullet"
+	hud_state = "sniper_flak"
 	iff_signal = ACCESS_IFF_MARINE
 
 /datum/ammo/bullet/sniper/flak/New()
@@ -725,10 +767,12 @@
 
 /datum/ammo/bullet/sniper/svd
 	name = "crude sniper bullet"
+	hud_state = "sniper_crude"
 	iff_signal = null
 
 /datum/ammo/bullet/sniper/elite
 	name = "supersonic sniper bullet"
+	hud_state = "sniper_supersonic"
 	iff_signal = ACCESS_IFF_PMC
 
 /datum/ammo/bullet/sniper/elite/New()
@@ -746,6 +790,8 @@
 /datum/ammo/bullet/smartgun
 	name = "smartgun bullet"
 	icon_state = "redbullet" //Red bullets to indicate friendly fire restriction
+	hud_state = "smartgun"
+	hud_state_empty = "smartgun_empty"
 	iff_signal = ACCESS_IFF_MARINE
 	flags_ammo_behavior = AMMO_BALLISTIC|AMMO_SKIPS_HUMANS
 
@@ -766,6 +812,7 @@
 
 /datum/ammo/bullet/smartgun/dirty
 	name = "irradiated smartgun bullet"
+	hud_state = "smartgun_radioactive"
 	iff_signal = ACCESS_IFF_PMC
 	debilitate = list(0,0,0,3,0,0,0,1)
 
@@ -832,6 +879,7 @@
 
 /datum/ammo/bullet/minigun
 	name = "minigun bullet"
+	hud_state = "minigun"
 
 /datum/ammo/bullet/minigun/New()
 	..()
@@ -852,6 +900,8 @@
 /datum/ammo/rocket
 	name = "high explosive rocket"
 	icon_state = "missile"
+	hud_state = "rocket_he"
+	hud_state_empty = "rocket_empty"
 	ping = null //no bounce off.
 	sound_bounce	= "rocket_bounce"
 	damage_falloff = 0
@@ -868,8 +918,8 @@
 	penetration = config.max_armor_penetration
 	shell_speed = config.slow_shell_speed
 
-/datum/ammo/rocket/Dispose()
-	cdel(smoke)
+/datum/ammo/rocket/Destroy()
+	qdel(smoke)
 	smoke = null
 	. = ..()
 
@@ -895,6 +945,7 @@
 
 /datum/ammo/rocket/ap
 	name = "anti-armor rocket"
+	hud_state = "rocket_ap"
 	damage_falloff = 0
 
 /datum/ammo/rocket/ap/New()
@@ -951,6 +1002,7 @@
 
 /datum/ammo/rocket/wp
 	name = "white phosphorous rocket"
+	hud_state = "rocket_fire"
 	flags_ammo_behavior = AMMO_ROCKET|AMMO_INCENDIARY|AMMO_EXPLOSIVE
 	damage_type = BURN
 /datum/ammo/rocket/wp/New()
@@ -983,6 +1035,7 @@
 
 /datum/ammo/rocket/wp/quad
 	name = "thermobaric rocket"
+	hud_state = "rocket_thermobaric"
 	flags_ammo_behavior = AMMO_ROCKET
 /datum/ammo/rocket/wp/quad/New()
 	..()
@@ -1037,6 +1090,8 @@
 /datum/ammo/energy/taser
 	name = "taser bolt"
 	icon_state = "stun"
+	hud_state = "taser"
+	hud_state_empty = "battery_empty"
 	damage_type = OXY
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST //Not that ignoring will do much right now.
 
@@ -1044,6 +1099,7 @@
 	stun_living(M,P)
 
 /datum/ammo/energy/yautja/
+	hud_state_empty = "battery_empty"
 
 /datum/ammo/energy/yautja/New()
 	..()
@@ -1054,6 +1110,7 @@
 /datum/ammo/energy/yautja/pistol
 	name = "plasma pistol bolt"
 	icon_state = "ion"
+	hud_state = "plasma_pistol"
 	flags_ammo_behavior = AMMO_ENERGY
 /datum/ammo/energy/yautja/pistol/New()
 	..()
@@ -1063,6 +1120,7 @@
 /datum/ammo/energy/yautja/caster/bolt
 	name = "plasma bolt"
 	icon_state = "ion"
+	hud_state = "plasma"
 	debilitate = list(2,2,0,0,0,1,0,0)
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST
 
@@ -1073,6 +1131,7 @@
 /datum/ammo/energy/yautja/caster/blast
 	name = "plasma blast"
 	icon_state = "pulse1"
+	hud_state = "plasma_blast"
 
 /datum/ammo/energy/yautja/caster/blast/New()
 	..()
@@ -1082,6 +1141,7 @@
 /datum/ammo/energy/yautja/caster/sphere
 	name = "plasma eradication sphere"
 	icon_state = "bluespace"
+	hud_state = "plasma_sphere"
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_EXPLOSIVE
 
 /datum/ammo/energy/yautja/caster/sphere/New()
@@ -1120,12 +1180,14 @@
 /datum/ammo/energy/yautja/rifle/bolt
 	name = "plasma rifle bolt"
 	icon_state = "ion"
+	hud_state = "plasma_rifle"
 	debilitate = list(0,2,0,0,0,0,0,0)
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST
 
 /datum/ammo/energy/yautja/rifle/blast
 	name = "plasma rifle blast"
 	icon_state = "bluespace"
+	hud_state = "plasma_rifle_blast"
 
 /datum/ammo/energy/yautja/rifle/blast/New()
 	..()
@@ -1214,7 +1276,6 @@
 	icon_state = "sticky"
 	ping = null
 	flags_ammo_behavior = AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE
-	added_spit_delay = 5
 	spit_cost = 40
 
 /datum/ammo/xeno/sticky/New()
@@ -1325,8 +1386,8 @@
 	accuracy_var_high = config.max_proj_variance
 	max_range = config.long_shell_range
 
-/datum/ammo/xeno/boiler_gas/Dispose()
-	cdel(smoke_system)
+/datum/ammo/xeno/boiler_gas/Destroy()
+	qdel(smoke_system)
 	smoke_system = null
 	. = ..()
 
@@ -1420,6 +1481,8 @@
 /datum/ammo/flamethrower
 	name = "flame"
 	icon_state = "pulse0"
+	hud_state = "flame"
+	hud_state_empty = "flame_empty"
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
 
@@ -1446,6 +1509,14 @@
 	if(locate(/obj/flamer_fire) in T)
 		return
 	new /obj/flamer_fire(T, 20, 20, fire_spread_amount = 2)
+
+/datum/ammo/flamethrower/green
+	name = "green flame"
+	hud_state = "flame_green"
+
+/datum/ammo/flamethrower/blue
+	name = "blue flame"
+	hud_state = "flame_blue"
 
 /datum/ammo/flare
 	name = "flare"
@@ -1475,25 +1546,25 @@
 	var/obj/item/device/flashlight/flare/G = new (T)
 	G.visible_message("<span class='warning'>\A [G] bursts into brilliant light nearby!</span>")
 	G.on = 1
-	processing_objects += G
+	START_PROCESSING(SSobj, G)
 	G.icon_state = "flare-on"
 	G.damtype = "fire"
 	G.SetLuminosity(G.brightness_on)
 
-/datum/ammo/rocket/nobugs
-	name = "\improper NO BUGS rocket"
+/datum/ammo/rocket/toy
+	name = "\improper toy rocket"
 	damage = 1
 
 	on_hit_mob(mob/M,obj/item/projectile/P)
 		to_chat(M, "<font size=6 color=red>NO BUGS</font>")
 
-/datum/ammo/rocket/nobugs/on_hit_obj(obj/O,obj/item/projectile/P)
+/datum/ammo/rocket/toy/on_hit_obj(obj/O,obj/item/projectile/P)
 	return
 
-/datum/ammo/rocket/nobugs/on_hit_turf(turf/T,obj/item/projectile/P)
+/datum/ammo/rocket/toy/on_hit_turf(turf/T,obj/item/projectile/P)
 	return
 
-/datum/ammo/rocket/nobugs/do_at_max_range(obj/item/projectile/P)
+/datum/ammo/rocket/toy/do_at_max_range(obj/item/projectile/P)
 	return
 
 /datum/ammo/grenade_container

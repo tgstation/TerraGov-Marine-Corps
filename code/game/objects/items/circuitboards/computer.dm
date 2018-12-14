@@ -197,6 +197,10 @@
 /obj/item/circuitboard/computer/supplycomp/construct(var/obj/machinery/computer/supplycomp/SC)
 	if (..(SC))
 		SC.can_order_contraband = contraband_enabled
+		if(contraband_enabled)
+			SC.req_access = list()
+		else
+			SC.req_access = list(ACCESS_MARINE_LOGISTICS)
 
 /obj/item/circuitboard/computer/supplycomp/deconstruct(var/obj/machinery/computer/supplycomp/SC)
 	if (..(SC))

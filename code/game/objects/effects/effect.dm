@@ -4,7 +4,7 @@
 	..()
 	effect_list += src
 
-/obj/effect/Dispose()
+/obj/effect/Destroy()
 	. = ..()
 	effect_list -= src
 

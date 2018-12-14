@@ -160,13 +160,13 @@
 	return
 
 
-/obj/item/tool/weldingtool/Dispose()
+/obj/item/tool/weldingtool/Destroy()
 	if(welding)
 		if(ismob(loc))
 			loc.SetLuminosity(-2)
 		else
 			SetLuminosity(0)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/item/tool/weldingtool/examine(mob/user)
@@ -176,8 +176,8 @@
 
 
 /obj/item/tool/weldingtool/process()
-	if(disposed)
-		processing_objects.Remove(src)
+	if(gc_destroyed)
+		STOP_PROCESSING(SSobj, src)
 		return
 	if(welding)
 		if(++weld_tick >= 20)
@@ -307,7 +307,7 @@
 			icon_state = "welder1"
 			w_class = 4
 			heat_source = 3800
-			processing_objects.Add(src)
+			START_PROCESSING(SSobj, src)
 		else
 			if(M)
 				to_chat(M, "<span class='warning'>[src] needs more fuel!</span>")
@@ -332,7 +332,7 @@
 				M.update_inv_l_hand()
 		else
 			SetLuminosity(0)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 
 /obj/item/tool/weldingtool/proc/flamethrower_screwdriver(obj/item/I, mob/user)
 	if(welding)
@@ -445,7 +445,7 @@
 			to_chat(user, "\red That was stupid of you.")
 			explosion(get_turf(src),-1,0,2)
 			if(src)
-				cdel(src)
+				qdel(src)
 			return
 		else
 			if(T.welding)

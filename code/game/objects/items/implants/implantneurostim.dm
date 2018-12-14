@@ -9,7 +9,7 @@
 /obj/item/implant/neurostim/get_data()
 	var/dat = {"
 <b>Implant Specifications:</b><BR>
-<b>Name:</b> Weyland-Yutani NX-35 Neurostimulator Implant<BR>
+<b>Name:</b> Nanotrasen NX-35 Neurostimulator Implant<BR>
 <HR>
 <b>Implant Details:</b><BR>
 <b>Function:</b> Stimulates and regulates sensorimotor function to optimize performance. Benefits include improved balance, and improved resistance to overstimulation and disoritentation.<BR>
@@ -72,14 +72,14 @@
 	phrase = p
 	user.mind.store_memory("[src] in [source] can be made to deliver negative stimulus by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.", 0, 0)
 	to_chat(user, "<span class='notice'>[src] in [source] can be made to deliver negative stimulus by saying something containing the phrase ''[src.phrase]'', <B>say [src.phrase]</B> to attempt to activate.</span>")
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	return 1
 
 
 /obj/item/implant/neurostim/process()
 
 	if(!ismob(imp_in) || malfunction == MALFUNCTION_PERMANENT)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return
 
 	implant_age++
@@ -106,12 +106,12 @@
 
 
 /obj/item/implant/neurostim/meltdown()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 
-/obj/item/implant/neurostim/Dispose()
-	processing_objects.Remove(src)
+/obj/item/implant/neurostim/Destroy()
+	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 

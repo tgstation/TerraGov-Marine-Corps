@@ -184,7 +184,7 @@
 	new /obj/effect/spawner/gibspawner/robot(Tsec)
 	new /obj/effect/decal/cleanable/blood/oil(src.loc)
 
-	cdel(src)
+	qdel(src)
 
 /obj/vehicle/proc/healthcheck()
 	if(health <= 0)
@@ -241,7 +241,7 @@
 		M.pixel_y = initial(buckled_mob.pixel_y)
 		M.old_y = initial(buckled_mob.pixel_y)
 
-/obj/vehicle/Dispose()
+/obj/vehicle/Destroy()
 	SetLuminosity(0)
 	. = ..()
 

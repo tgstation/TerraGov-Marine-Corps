@@ -2,10 +2,10 @@
 //I'm thinking that "autopsy" will generate a "vial" of blood, pieces of Chitin, and a rando organ.
 
 /*
-Note: Must be placed within 3 tiles of the WY Research Console
+Note: Must be placed within 3 tiles of the NT Research Console
 */
 /obj/machinery/r_n_d/organic_analyzer
-	name = "Weyland Yutani Brand Organic Analyzer(TM)"
+	name = "Nanotrasen Brand Organic Analyzer(TM)"
 	icon_state = "d_analyzer"
 	var/obj/item/loaded_item = null
 	var/decon_mod = 1
@@ -15,7 +15,7 @@ Note: Must be placed within 3 tiles of the WY Research Console
 	active_power_usage = 2500
 
 /obj/machinery/r_n_d/organic_analyzer/New()
-	..()
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/destructive_analyzer(src) //We'll need it's own board one day.
 	component_parts += new /obj/item/stock_parts/scanning_module(src)
@@ -61,7 +61,7 @@ Note: Must be placed within 3 tiles of the WY Research Console
 			M.icon_state = "box_1"
 			for(var/obj/I in component_parts)
 				I.loc = src.loc
-			cdel(src)
+			qdel(src)
 			return 1
 		else
 			to_chat(user, "\red You can't load the [src.name] while it's opened.")
@@ -69,10 +69,10 @@ Note: Must be placed within 3 tiles of the WY Research Console
 	if (disabled)
 		return
 	if (!linked_console)
-		to_chat(user, "\red The Weyland Brand Organic Analyzer must be linked to an R&D console first!")
+		to_chat(user, "\red The Nanotrasen Brand Organic Analyzer must be linked to an R&D console first!")
 		return
 	if (busy)
-		to_chat(user, "\red The Weyland Brand Organic Analyzer is busy right now.")
+		to_chat(user, "\red The Nanotrasen Brand Organic Analyzer is busy right now.")
 		return
 	if (istype(O, /obj/item/XenoBio) && !loaded_item)
 		if(isrobot(user)) //Don't put your module items in there!

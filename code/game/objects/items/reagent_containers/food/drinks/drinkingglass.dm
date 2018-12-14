@@ -97,7 +97,7 @@
 				if("sake")
 					icon_state = "ginvodkaglass"
 					name = "Glass of sake"
-					desc = "A glass of warm Weyland-Yutani brand sake."
+					desc = "A glass of warm Nanotrasen brand sake."
 					center_of_mass = list("x"=16, "y"=12)
 				if("vodka")
 					icon_state = "ginvodkaglass"

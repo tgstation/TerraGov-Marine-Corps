@@ -13,11 +13,11 @@
 	inv_overlay = image("icon" = 'icons/obj/clothing/ties_overlay.dmi', "icon_state" = "[item_state? "[item_state]" : "[icon_state]"]")
 
 
-/obj/item/clothing/tie/Dispose()
+/obj/item/clothing/tie/Destroy()
 	if(has_suit)
 		has_suit.remove_accessory()
 	if(inv_overlay)
-		cdel(inv_overlay)
+		qdel(inv_overlay)
 		inv_overlay = null
 	. = ..()
 
@@ -162,7 +162,7 @@
 
 /obj/item/clothing/tie/medal/conduct
 	name = "distinguished conduct medal"
-	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honor, this is the most basic award given by the USCM"
+	desc = "A bronze medal awarded for distinguished conduct. Whilst a great honor, this is the most basic award given by the TGMC"
 
 /obj/item/clothing/tie/medal/bronze_heart
 	name = "bronze heart medal"
@@ -197,7 +197,7 @@
 
 /obj/item/clothing/tie/medal/gold/heroism
 	name = "medal of exceptional heroism"
-	desc = "An extremely rare golden medal awarded only by the USCM. To recieve such a medal is the highest honor and as such, very few exist."
+	desc = "An extremely rare golden medal awarded only by the TGMC. To recieve such a medal is the highest honor and as such, very few exist."
 
 //Armbands
 /obj/item/clothing/tie/armband
@@ -245,9 +245,9 @@
 	icon_state = "holster"
 	var/obj/item/weapon/gun/holstered = null
 
-/obj/item/clothing/tie/holster/Dispose()
+/obj/item/clothing/tie/holster/Destroy()
 	if(holstered)
-		cdel(holstered)
+		qdel(holstered)
 		holstered = null
 	. = ..()
 
@@ -351,6 +351,10 @@
 	else
 		H.unholster(usr)
 
+/obj/item/clothing/tie/holster/m4a3/New()
+	. = ..()
+	holstered = new /obj/item/weapon/gun/pistol/m4a3(src)
+
 /obj/item/clothing/tie/holster/armpit
 	name = "shoulder holster"
 	desc = "A worn-out handgun holster. Perfect for concealed carry"
@@ -381,9 +385,9 @@
 	hold = new/obj/item/storage/internal(src)
 	hold.storage_slots = slots
 
-/obj/item/clothing/tie/storage/Dispose()
+/obj/item/clothing/tie/storage/Destroy()
 	if(hold)
-		cdel(hold)
+		qdel(hold)
 		hold = null
 	. = ..()
 
@@ -446,6 +450,16 @@
 	desc = "Worn brownish synthcotton vest with lots of pockets to unload your hands."
 	icon_state = "vest_brown"
 	slots = 5
+
+/obj/item/clothing/tie/storage/white_vest
+	name = "white webbing vest"
+	desc = "A clean white Nylon vest with large pockets specially designed for medical supplies"
+	icon_state = "vest_white"
+	slots = 8
+
+/obj/item/clothing/tie/storage/white_vest/New()
+	. = ..()
+	hold.can_hold = list("/obj/item/tool/surgery", "/obj/item/stack/medical/advanced/bruise_pack", "/obj/item/stack/medical/advanced/ointment", "/obj/item/stack/nanopaste")
 
 
 /obj/item/clothing/tie/storage/knifeharness

@@ -8,7 +8,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 
 /obj/structure/orbital_cannon
 	name = "\improper Orbital Cannon"
-	desc = "The USCM Orbital Cannon System. Used for shooting large targets on the planet that is orbited. It accelerates its payload with solid fuel for devastating results upon impact."
+	desc = "The TGMC Orbital Cannon System. Used for shooting large targets on the planet that is orbited. It accelerates its payload with solid fuel for devastating results upon impact."
 	icon = 'icons/obj/machines/artillery.dmi'
 	icon_state = "OBC_unloaded"
 	density = TRUE
@@ -221,7 +221,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	chambered_tray = FALSE
 	tray.fuel_amt = 0
 	if(tray.warhead)
-		cdel(tray.warhead)
+		qdel(tray.warhead)
 		tray.warhead = null
 	tray.update_icon()
 
@@ -250,9 +250,9 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	var/fuel_amt = 0
 
 
-/obj/structure/orbital_tray/Dispose()
+/obj/structure/orbital_tray/Destroy()
 	if(warhead)
-		cdel(warhead)
+		qdel(warhead)
 		warhead = null
 	if(linked_ob)
 		linked_ob.tray = null
@@ -294,7 +294,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 							fuel_amt++
 							PC.loaded = null
 							PC.update_icon()
-							cdel(OA)
+							qdel(OA)
 							update_icon()
 					else
 						if(warhead)
@@ -388,7 +388,7 @@ var/obj/structure/ship_rail_gun/almayer_rail_gun
 	var/range_num = max(8 - inaccuracy_amt*2, 3)
 	for(var/turf/TU in range(range_num,target))
 		for(var/obj/flamer_fire/F in TU) // No stacking flames!
-			cdel(F)
+			qdel(F)
 		new/obj/flamer_fire(TU, 10, 50) //super hot flames
 
 

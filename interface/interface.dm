@@ -69,7 +69,7 @@
 	switch(choice)
 		if("Ship")
 			switch(MAIN_SHIP_NAME)
-				if("USS Almayer")
+				if("TGS Theseus")
 					ship_link = config.almayer_url
 			if(!ship_link)
 				to_chat(src, "<span class='warning'>This ship map has no webmap setup.</span>")

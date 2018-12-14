@@ -200,7 +200,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define LIMB_MUTATED 64 //limb is deformed by mutations
 #define LIMB_AMPUTATED 128 //limb was amputated cleanly or destroyed limb was cleaned up, thus causing no pain
 #define LIMB_REPAIRED 256 //we just repaired the bone, stops the gelling after setting
-
+#define LIMB_STABILIZED (1<<9) //certain suits will support a broken limb while worn such as the b18
 
 /////////////////MOVE DEFINES//////////////////////
 #define MOVE_INTENT_WALK        1
@@ -426,9 +426,9 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define ID_LAYER				20
 #define SHOES_LAYER				19
 #define GLOVES_LAYER			18
-#define SUIT_LAYER				17
+#define BELT_LAYER   			17
 #define GLASSES_LAYER			16
-#define BELT_LAYER				15		//Possible make this an overlay of somethign required to wear a belt?
+#define SUIT_LAYER				15		//Possible make this an overlay of somethign required to wear a belt?
 #define SUIT_STORE_LAYER		14
 #define BACK_LAYER				13
 #define HAIR_LAYER				12		//TODO: make part of head layer?
@@ -488,7 +488,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define RAV_CHARGEDISTANCE				7
 #define RAV_CHARGECOOLDOWN				30 SECONDS
 #define RAV_CHARGE_TYPE					3
-#define RAV_SECOND_WIND_COOLDOWN		5 MINUTES
+#define RAV_SECOND_WIND_COOLDOWN		4 MINUTES
 #define RAV_RAVAGE_COOLDOWN				10 SECONDS
 #define RAV_HANDLE_CHARGE				1
 
@@ -502,6 +502,14 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CARRIER_SPAWN_HUGGER_COST 100
 #define CARRIER_HUGGER_THROW_SPEED 2
 #define CARRIER_HUGGER_THROW_DISTANCE 5
+
+//Warrior defines
+
+#define WARRIOR_LUNGE_COOLDOWN 10 SECONDS
+#define WARRIOR_PUNCH_COOLDOWN 6 SECONDS
+#define WARRIOR_FLING_COOLDOWN 6 SECONDS
+#define WARRIOR_AGILITY_COOLDOWN 0.5 SECONDS
+
 
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1

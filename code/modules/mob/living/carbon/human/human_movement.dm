@@ -55,7 +55,7 @@
 			var/datum/limb/E = get_limb(organ_name)
 			if(!E || (E.status & LIMB_DESTROYED))
 				. += 4
-			if(E.status & LIMB_SPLINTED)
+			if(E.status & LIMB_SPLINTED || E.status & LIMB_STABILIZED)
 				. += 0.65
 			else if(E.status & LIMB_BROKEN)
 				. += 1.5
@@ -67,7 +67,7 @@
 			var/datum/limb/E = get_limb(organ_name)
 			if(!E || (E.status & LIMB_DESTROYED))
 				. += 4
-			if(E.status & LIMB_SPLINTED)
+			if(E.status & LIMB_SPLINTED || E.status & LIMB_STABILIZED)
 				. += 0.75
 			else if(E.status & LIMB_BROKEN)
 				. += 1.5

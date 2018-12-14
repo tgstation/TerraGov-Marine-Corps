@@ -52,7 +52,7 @@
 	var/obj/effect/alien/egg/newegg = new /obj/effect/alien/egg(T)
 	newegg.hivenumber = hivenumber
 	playsound(T, 'sound/effects/splat.ogg', 15, 1)
-	cdel(src)
+	qdel(src)
 
 /obj/item/xeno_egg/proc/plant_egg(mob/living/carbon/Xenomorph/user, turf/T)
 	if(!user.check_alien_construction(T))
@@ -78,7 +78,7 @@
 		var/obj/effect/alien/egg/newegg = new /obj/effect/alien/egg(T)
 		newegg.hivenumber = hivenumber
 		playsound(T, 'sound/effects/splat.ogg', 15, 1)
-		cdel(src)
+		qdel(src)
 
 
 /obj/item/xeno_egg/attack_self(mob/user)
@@ -106,7 +106,7 @@
 
 /obj/item/xeno_egg/fire_act(exposed_temperature, exposed_volume)
 	if(exposed_temperature > 300)
-		cdel(src)
+		qdel(src)
 
 /obj/item/xeno_egg/flamer_fire_act()
-	cdel(src)
+	qdel(src)

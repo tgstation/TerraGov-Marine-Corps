@@ -92,10 +92,10 @@
 /obj/machinery/vending/ex_act(severity)
 	switch(severity)
 		if(1)
-			cdel(src)
+			qdel(src)
 		if(2)
 			if(prob(50))
-				cdel(src)
+				qdel(src)
 		if(3)
 			if(prob(25))
 				spawn(0)
@@ -561,10 +561,10 @@
 				to_chat(user, "\blue You successfully pull the coin out before the [src] could swallow it.")
 			else
 				to_chat(user, "\blue You weren't able to pull the coin out fast enough, the machine ate it, string and all.")
-				cdel(coin)
+				qdel(coin)
 				coin = null
 		else
-			cdel(coin)
+			qdel(coin)
 			coin = null
 
 	vend_ready = 0 //One thing at a time!!
@@ -619,10 +619,18 @@
 						to_chat(user, "<span class='warning'>[G] has non-standard attachments equipped. Detach them before you can restock it.</span>")
 						return
 
-			if(istype(item_to_stock, /obj/item/ammo_magazine))
+			else if(istype(item_to_stock, /obj/item/ammo_magazine))
 				var/obj/item/ammo_magazine/A = item_to_stock
 				if(A.current_rounds < A.max_rounds)
 					to_chat(user, "<span class='warning'>[A] isn't full. Fill it before you can restock it.</span>")
+					return
+			else if(istype(item_to_stock, /obj/item/smartgun_powerpack))
+				var/obj/item/smartgun_powerpack/P = item_to_stock
+				if(!P.pcell)
+					to_chat(user, "<span class='warning'>The [P] doesn't have a cell. You must put one in before you can restock it.</span>")
+					return
+				if(P.pcell.charge < P.pcell.maxcharge)
+					to_chat(user, "<span class='warning'>The [P] cell isn't full. You must recharge it before you can restock it.</span>")
 					return
 			if(item_to_stock.loc == user) //Inside the mob's inventory
 				if(item_to_stock.flags_item & WIELDED)
@@ -633,7 +641,7 @@
 				var/obj/item/storage/S = item_to_stock.loc
 				S.remove_from_storage(item_to_stock, user.loc)
 
-			cdel(item_to_stock)
+			qdel(item_to_stock)
 			user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
 			"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
 			R.amount++

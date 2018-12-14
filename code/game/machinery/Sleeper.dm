@@ -24,12 +24,12 @@
 	switch(severity)
 		if(1.0)
 			//SN src = null
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(50))
 				//SN src = null
-				cdel(src)
+				qdel(src)
 				return
 		else
 	return
@@ -174,7 +174,7 @@
 	anchored = 1
 	var/orient = "LEFT" // "RIGHT" changes the dir suffix to "-r"
 	var/mob/living/carbon/human/occupant = null
-	var/available_chemicals = list("inaprovaline" = "Inaprovaline", "sleeptoxin" = "Soporific", "paracetamol" = "Paracetamol", "dylovene" = "Dylovene", "dexalin" = "Dexalin", "tricordrazine" = "Tricordrazine")
+	var/available_chemicals = list("inaprovaline" = "Inaprovaline", "sleeptoxin" = "Soporific", "paracetamol" = "Paracetamol", "bicaridine" = "Bicaridine", "kelotane" = "Kelotane", "dylovene" = "Dylovene", "dexalin" = "Dexalin", "tricordrazine" = "Tricordrazine", "spaceacillin" = "Spaceacillin")
 	var/amounts = list(5, 10)
 	var/obj/item/reagent_container/glass/beaker = null
 	var/filtering = FALSE
@@ -195,10 +195,10 @@
 		return
 	return
 
-/obj/machinery/sleeper/Dispose()
+/obj/machinery/sleeper/Destroy()
 	occupant.in_stasis = FALSE //clean up; end stasis; remove from processing
 	occupant = null
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	stop_processing()
 	return ..()
 
@@ -262,6 +262,9 @@
 		stop_processing() //Shut down; stasis off, filtering off, stop processing.
 		return
 
+	//Life support
+	occupant?.adjustOxyLoss(-occupant.getOxyLoss()) // keep them breathing, pretend they get IV dexalinplus
+
 	if(filtering)
 		if(beaker)
 			if(beaker.reagents.total_volume < beaker.reagents.maximum_volume)
@@ -322,13 +325,13 @@
 		toggle_filter()
 	switch(severity)
 		if(1)
-			cdel(src)
+			qdel(src)
 		if(2)
 			if(prob(50))
-				cdel(src)
+				qdel(src)
 		if(3)
 			if(prob(25))
-				cdel(src)
+				qdel(src)
 
 
 /obj/machinery/sleeper/emp_act(severity)
@@ -475,5 +478,5 @@
 		icon_state = "sleeper_1-r"
 
 	for(var/obj/O in src)
-		cdel(O)
+		qdel(O)
 	add_fingerprint(usr)

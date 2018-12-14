@@ -150,7 +150,7 @@
 					src.ping("DANGER! Magnetic containment field failure in 3 ... 2 ... 1 ...")
 					explosion(src.loc,1,2,4,8)
 					// Not sure if this is necessary, but just in case the SMES *somehow* survived..
-					cdel(src)
+					qdel(src)
 
 
 
@@ -223,7 +223,7 @@
 					if(I.reliability != 100 && crit_fail)
 						I.crit_fail = 1
 					I.loc = src.loc
-				cdel(src)
+				qdel(src)
 				return
 
 		// Superconducting Magnetic Coil - Upgrade the SMES

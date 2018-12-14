@@ -127,7 +127,7 @@
 	icon_state = "engine"
 
 /area/prison/ship
-	name = "\improper Weyland-Yutani Ship USS Omortson"
+	name = "\improper Nanotrasen Ship USS Omortson"
 	icon_state = "blue-red2"
 
 /area/prison/hangar

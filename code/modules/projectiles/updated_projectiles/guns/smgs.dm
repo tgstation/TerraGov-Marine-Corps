@@ -1,4 +1,3 @@
-
 /obj/item/weapon/gun/smg
 	reload_sound = 'sound/weapons/gun_rifle_reload.ogg' //Could use a unique sound.
 	cocked_sound = 'sound/weapons/gun_cocked2.ogg'
@@ -18,20 +17,35 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 	gun_skill_category = GUN_SKILL_SMGS
 
-	New()
-		..()
-		if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
+/obj/item/weapon/gun/smg/New()
+	. = ..()
+	if(current_mag && current_mag.current_rounds > 0) 
+		load_into_chamber()
 
-	unique_action(mob/user)
-		cock(user)
+/obj/item/weapon/gun/smg/unique_action(mob/user)
+	cock(user)
 
+/obj/item/weapon/gun/smg/has_ammo_counter()
+	return TRUE
+
+/obj/item/weapon/gun/smg/get_ammo_type()
+	if(!ammo)
+		return list("unknown", "unknown")
+	else
+		return list(ammo.hud_state, ammo.hud_state_empty)
+
+/obj/item/weapon/gun/smg/get_ammo_count()
+	if(!current_mag)
+		return in_chamber ? 1 : 0
+	else
+		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 //-------------------------------------------------------
 //M39 SMG
 
 /obj/item/weapon/gun/smg/m39
 	name = "\improper M39 submachinegun"
-	desc = "Armat Battlefield Systems M-39 submachinegun. Occasionally carried by light-infantry, scouts, engineers or medics. Uses 10x20mm rounds in a 48 round magazine."
+	desc = "Armat Battlefield Systems M-39 submachinegun. A light firearm capable of effective one-handed use that is ideal for close to medium range engagements. Uses 10x20mm rounds in a high capacity magazine."
 	icon_state = "m39"
 	item_state = "m39"
 	current_mag = /obj/item/ammo_magazine/smg/m39
@@ -55,8 +69,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 
 /obj/item/weapon/gun/smg/m39/New()
-	select_gamemode_skin(/obj/item/weapon/gun/smg/m39, list(MAP_ICE_COLONY = "m39b2") )
-	..()
+	. = ..()
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 14, "rail_y" = 22, "under_x" = 24, "under_y" = 16, "stock_x" = 24, "stock_y" = 16)
 
 /obj/item/weapon/gun/smg/m39/set_gun_config_values()
@@ -64,7 +77,7 @@
 	burst_delay = config.min_fire_delay
 	burst_amount = config.med_burst_value
 	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.mlow_hit_accuracy_mult
 	scatter = config.low_scatter_value
 	scatter_unwielded = config.high_scatter_value
 	damage_mult = config.base_hit_damage_mult
@@ -118,9 +131,9 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK
 
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
+/obj/item/weapon/gun/smg/mp5/New()
+	. = ..()
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
 
 
 /obj/item/weapon/gun/smg/mp5/set_gun_config_values()
@@ -156,9 +169,9 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
+/obj/item/weapon/gun/smg/mp7/New()
+	. = ..()
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
 
 
 /obj/item/weapon/gun/smg/mp7/set_gun_config_values()
@@ -186,9 +199,9 @@
 	current_mag = /obj/item/ammo_magazine/smg/skorpion
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
+/obj/item/weapon/gun/smg/skorpion/New()
+	. = ..()
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
 
 /obj/item/weapon/gun/smg/skorpion/set_gun_config_values()
 	fire_delay = config.low_fire_delay
@@ -223,9 +236,9 @@
 
 	flags_gun_features = GUN_CAN_POINTBLANK
 
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 26, "under_y" = 15, "stock_x" = 26, "stock_y" = 15)
+/obj/item/weapon/gun/smg/ppsh/New()
+	. = ..()
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 26, "under_y" = 15, "stock_x" = 26, "stock_y" = 15)
 
 
 /obj/item/weapon/gun/smg/ppsh/set_gun_config_values()
@@ -255,9 +268,9 @@
 	current_mag = /obj/item/ammo_magazine/smg/uzi
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 19,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
+/obj/item/weapon/gun/smg/uzi/New()
+	. = ..()
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 19,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
 
 /obj/item/weapon/gun/smg/uzi/set_gun_config_values()
@@ -292,9 +305,9 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 20, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
+/obj/item/weapon/gun/smg/p90/New()
+	. = ..()
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 20, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
 
 /obj/item/weapon/gun/smg/p90/set_gun_config_values()

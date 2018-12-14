@@ -33,7 +33,7 @@
 
 /obj/item/weapon/claymore/mercsword/machete
 	name = "\improper M2132 machete"
-	desc = "Latest issue of the USCM Machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
+	desc = "Latest issue of the TGMC Machete. Great for clearing out jungle or brush on outlying colonies. Found commonly in the hands of scouts and trackers, but difficult to carry with the usual kit."
 	icon_state = "machete"
 	force = 40
 	attack_speed = 9
@@ -75,7 +75,7 @@
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "combat_knife"
 	item_state = "combat_knife"
-	desc = "The standard issue survival knife issued to Colonial Marines soldiers. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle."
+	desc = "The standard issue survival knife issued to TerraGov Marine Corps soldiers. You can slide this knife into your boots, and can be field-modified to attach to the end of a rifle."
 	flags_atom = CONDUCT
 	sharp = IS_SHARP_ITEM_ACCURATE
 	matter = list("metal" = 1000)
@@ -103,7 +103,7 @@
 				user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 				if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
 					F.loc = get_turf(src)
-				cdel(src) //Delete da old knife
+				qdel(src) //Delete da old knife
 			else
 				to_chat(user, "<span class='notice'>You don't have enough cable for that.</span>")
 				return
