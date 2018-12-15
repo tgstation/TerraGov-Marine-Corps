@@ -43,7 +43,7 @@
 		qdel(tripwire)
 		tripwire = null
 	if(camera)
-		cdel(camera)
+		qdel(camera)
 		camera = null
 	. = ..()
 
@@ -195,4 +195,4 @@
 	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 	AI.SetName("Smartmine Alert System")
 	AI.aiRadio.talk_into(AI,"[notice]","Almayer","announces")
-	cdel(AI)
+	qdel(AI)
