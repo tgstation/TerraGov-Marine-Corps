@@ -184,7 +184,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	to_chat(world, "There were [round_statistics.ravager_ravage_victims] people taken down by Ravagers.")
 	to_chat(world, "[round_statistics.warrior_limb_rips] limbs ripped off by Warriors.")
 	to_chat(world, "[round_statistics.crusher_stomp_victims] people stomped by crushers.")
-	to_chat(world, "There were [round_statistics.praetorian_spray_direct_hits] people hit directly by praetorians acid sprays.")
+	to_chat(world, "[round_statistics.praetorian_spray_direct_hits] people hit directly by Praetorian acid spray.")
 	to_chat(world, "There were [round_statistics.weeds_planted] weed nodes planted this round.")
 	to_chat(world, "There were [round_statistics.weeds_destroyed] weed tiles removed this round.")
 		
