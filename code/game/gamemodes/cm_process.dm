@@ -181,7 +181,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	to_chat(world, "[round_statistics.grenades_thrown] total grenades exploding.")
 	to_chat(world, "[round_statistics.now_pregnant] people infected among which [round_statistics.total_larva_burst] burst. For a [(round_statistics.total_larva_burst / max(round_statistics.now_pregnant, 1)) * 100]% successful delivery rate!")
 	to_chat(world, "[round_statistics.queen_screech] Queen screeches.")
-	to_chat(world, "There were [round_statistics.ravager_ravage_victims] people taken down by Ravagers.")
+	to_chat(world, "[round_statistics.ravager_ravage_victims] ravaged victims. Damn, Ravagers!")
 	to_chat(world, "[round_statistics.warrior_limb_rips] limbs ripped off by Warriors.")
 	to_chat(world, "[round_statistics.crusher_stomp_victims] people stomped by crushers.")
 	to_chat(world, "[round_statistics.praetorian_spray_direct_hits] people hit directly by Praetorian acid spray.")
