@@ -27,10 +27,10 @@
 			var/obj/item/clothing/mask/cigarette/cig = W
 			if (cig.heat_source)
 				src.visible_message("[user] crushes [cig] in [src], putting it out.")
-				processing_objects.Remove(cig)
+				STOP_PROCESSING(SSobj, cig)
 				var/obj/item/butt = new cig.type_butt(src)
 				cig.transfer_fingerprints_to(butt)
-				cdel(cig)
+				qdel(cig)
 				W = butt
 			else if (cig.heat_source == 0)
 				to_chat(user, "You place [cig] in [src] without even smoking it. Why would you do that?")

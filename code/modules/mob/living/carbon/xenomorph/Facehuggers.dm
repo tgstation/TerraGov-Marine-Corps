@@ -36,7 +36,7 @@
 	..()
 	GoActive()
 
-/obj/item/clothing/mask/facehugger/Dispose()
+/obj/item/clothing/mask/facehugger/Destroy()
 	. = ..()
 	if(iscarbon(loc))
 		var/mob/living/carbon/M = loc
@@ -54,7 +54,7 @@
 		if(F.stat == CONSCIOUS) count++
 		if(count > 2) //Was 5, our rules got much tighter
 			visible_message("<span class='xenowarning'>The facehugger is furiously cannibalized by the nearby horde of other ones!</span>")
-			cdel(src)
+			qdel(src)
 			return
 	if(stat == CONSCIOUS && loc) //Make sure we're conscious and not idle or dead.
 		if(check_lifecycle())
@@ -378,14 +378,14 @@
 				E.status = GROWN
 				E.icon_state = "Egg"
 				E.deploy_egg_triggers()
-				cdel(src)
+				qdel(src)
 				return
 			var/obj/effect/alien/resin/trap/T = locate() in loc
 			if(T && !T.hugger)
 				visible_message("<span class='xenowarning'>[src] crawls into [T]!</span>")
 				T.hugger = TRUE
 				T.icon_state = "trap1"
-				cdel(src)
+				qdel(src)
 				return
 		Die()
 	else if(!attached || !ishuman(loc)) //doesn't age while attached
@@ -439,7 +439,7 @@
 
 	sleep(1800) //3 minute timer for it to decay
 	visible_message("\icon[src] <span class='danger'>\The [src] decays into a mass of acid and chitin.</span>")
-	cdel(src)
+	qdel(src)
 
 /proc/CanHug(mob/living/carbon/M)
 

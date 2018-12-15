@@ -30,7 +30,7 @@
 		ammo = ammo_list[ammo]
 		start_processing()
 
-	Dispose()
+	Destroy()
 		ammo = null
 		. = ..()
 
@@ -52,7 +52,7 @@
 		connect_to_network()
 		src.directwired = 1
 
-/obj/machinery/power/emitter/Dispose()
+/obj/machinery/power/emitter/Destroy()
 	message_admins("Emitter deleted at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 	log_game("Emitter deleted at ([x],[y],[z])")
 	investigate_log("<font color='red'>deleted</font> at ([x],[y],[z])","singulo")
@@ -131,7 +131,7 @@
 		//need to calculate the power per shot as the emitter doesn't fire continuously.
 		var/burst_time = (min_burst_delay + max_burst_delay)/2 + 2*(burst_shots-1)
 		var/power_per_shot = active_power_usage * (burst_time/10) / burst_shots
-		var/obj/item/projectile/A = rnew(/obj/item/projectile, loc)
+		var/obj/item/projectile/A = new /obj/item/projectile(loc)
 		A.generate_bullet(ammo, round(power_per_shot/EMITTER_DAMAGE_POWER_TRANSFER))
 
 		playsound(src.loc, 'sound/weapons/emitter.ogg', 25, 1)
@@ -146,7 +146,7 @@
 			else 		target = locate(T.x,T.y+3,T.z)
 
 		if(!target) //Off the edge of the map somehow.
-			cdel(A)
+			qdel(A)
 			return
 
 		A.fire_at(target,src,src,A.ammo.max_range,A.ammo.shell_speed) //Range, speed. Emitter shots are slow.

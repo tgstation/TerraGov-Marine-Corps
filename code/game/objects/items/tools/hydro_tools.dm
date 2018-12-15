@@ -143,8 +143,8 @@
 	if(istype(A, /obj/effect/plantsegment))
 		for(var/obj/effect/plantsegment/B in orange(A,1))
 			if(prob(80))
-				cdel(B)
-		cdel(A)
+				qdel(B)
+		qdel(A)
 
 
 
@@ -166,7 +166,7 @@
 	for(var/mob/living/simple_animal/bee/B in T)
 		if(B.feral < 0)
 			caught_bees += B.strength
-			cdel(B)
+			qdel(B)
 			user.visible_message("\blue [user] nets some bees.","\blue You net up some of the becalmed bees.")
 		else
 			user.visible_message("\red [user] swings at some bees, they don't seem to like it.","\red You swing at some bees, they don't seem to like it.")

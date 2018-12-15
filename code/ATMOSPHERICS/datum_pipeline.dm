@@ -8,13 +8,11 @@
 
 	var/alert_pressure = 0
 
-/datum/pipeline/Dispose()
+/datum/pipeline/Destroy()
 	if(network)
-		cdel(network)
+		qdel(network)
 
 	..()
-
-/datum/pipeline/proc/process()//This use to be called called from the pipe networks
 
 	//Allow for reactions
 	//air.react() //Should be handled by pipe_network now

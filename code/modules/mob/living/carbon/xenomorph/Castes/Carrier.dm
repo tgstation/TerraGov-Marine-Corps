@@ -224,7 +224,7 @@
 		if(F.stat == CONSCIOUS && !F.sterile)
 			huggers_cur++
 			to_chat(src, "<span class='notice'>You store the facehugger and carry it for safekeeping. Now sheltering: [huggers_cur] / [xeno_caste.huggers_max].</span>")
-			cdel(F)
+			qdel(F)
 		else
 			to_chat(src, "<span class='warning'>This [F.name] looks too unhealthy.</span>")
 	else
@@ -286,7 +286,7 @@
 		if(stat == CONSCIOUS)
 			eggs_cur++
 			to_chat(src, "<span class='notice'>You store the egg and carry it for safekeeping. Now sheltering: [eggs_cur] / [xeno_caste.eggs_max].</span>")
-			cdel(E)
+			qdel(E)
 		else
 			to_chat(src, "<span class='warning'>This [E.name] looks too unhealthy.</span>")
 	else

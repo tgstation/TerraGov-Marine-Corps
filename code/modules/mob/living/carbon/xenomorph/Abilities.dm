@@ -848,7 +848,7 @@ datum/action/xeno_action/activable/salvage_plasma/hivelord
 			possible_xenos += T
 
 	var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
-	if(!selected_xeno || selected_xeno.disposed || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z == ADMIN_Z_LEVEL || !X.check_state())
+	if(!selected_xeno || selected_xeno.gc_destroyed || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z == ADMIN_Z_LEVEL || !X.check_state())
 		if(X.observed_xeno)
 			X.set_queen_overwatch(X.observed_xeno, TRUE)
 	else
@@ -1075,7 +1075,7 @@ datum/action/xeno_action/activable/salvage_plasma/hivelord
 		//Something went horribly wrong!
 		to_chat(X, "<span class='warning'>Something went terribly wrong here. Your new xeno is null! Tell a coder immediately!</span>")
 		if(new_xeno)
-			cdel(new_xeno)
+			qdel(new_xeno)
 		return
 
 	if(T.mind)
@@ -1121,7 +1121,7 @@ datum/action/xeno_action/activable/salvage_plasma/hivelord
 	log_admin("[key_name_admin(X)] has deevolved [key_name_admin(T)]. Reason: [reason]")
 
 	round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
-	cdel(T)
+	qdel(T)
 	X.use_plasma(600)
 
 

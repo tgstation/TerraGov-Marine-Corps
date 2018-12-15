@@ -73,7 +73,7 @@
 
 	return null
 
-/obj/machinery/atmospherics/valve/Dispose()
+/obj/machinery/atmospherics/valve/Destroy()
 	if(node1)
 		node1.disconnect(src)
 		del(network_node1)
@@ -306,4 +306,4 @@
 		user.visible_message("<span class='notice'>[user] unfastens [src].</span>",
 		"<span class='notice'>You unfasten [src].</span>")
 		new /obj/item/pipe(loc, make_from = src)
-		cdel(src)
+		qdel(src)

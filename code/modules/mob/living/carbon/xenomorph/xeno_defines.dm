@@ -79,10 +79,6 @@
 
 	// *** Warrior Abilities *** //
 	var/agility_speed_increase = 0 // this opens up possibilities for balancing
-	var/lunge_cooldown = 0
-	var/fling_cooldown = 0
-	var/punch_cooldown = 0
-	var/toggle_agility_cooldown = 0
 
 	// *** Boiler Abilities *** //
 	var/bomb_strength = 0

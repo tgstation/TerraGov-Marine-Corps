@@ -229,7 +229,7 @@
 			genetics = seed.seed
 			degradation = 0
 
-		cdel(seed)
+		qdel(seed)
 		seed = null
 
 	if(href_list["get_gene"])

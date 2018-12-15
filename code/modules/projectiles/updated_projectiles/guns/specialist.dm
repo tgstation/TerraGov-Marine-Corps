@@ -276,7 +276,7 @@
 	return current_mag.current_rounds
 
 /obj/item/weapon/gun/smartgun/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
-	cdel(projectile_to_fire)
+	qdel(projectile_to_fire)
 	if(refund) current_mag.current_rounds++
 	return 1
 
@@ -293,6 +293,22 @@
 	sleep(5)
 	if(power_pack && power_pack.loc)
 		power_pack.attack_self(smart_gunner, TRUE)
+
+/obj/item/weapon/gun/smartgun/has_ammo_counter()
+	return TRUE
+
+/obj/item/weapon/gun/smartgun/get_ammo_type()
+	if(!ammo)
+		return list("unknown", "unknown")
+	else
+		return list(ammo.hud_state, ammo.hud_state_empty)
+
+/obj/item/weapon/gun/smartgun/get_ammo_count()
+	if(!current_mag)
+		return 0
+	else
+		return current_mag.current_rounds
+
 
 /obj/item/weapon/gun/smartgun/dirty
 	name = "\improper M56D 'dirty' smartgun"
@@ -394,6 +410,8 @@
 			return
 		if(grenades.len)
 			fire_grenade(target,user)
+			var/obj/screen/ammo/A = user.hud_used.ammo
+			A.update_hud(user)
 		else
 			to_chat(user, "<span class='warning'>The grenade launcher is empty.</span>")
 
@@ -442,6 +460,18 @@
 		sleep(10)
 		if(F?.loc) 
 			F.prime()
+
+/obj/item/weapon/gun/launcher/m92/has_ammo_counter()
+	return TRUE
+
+/obj/item/weapon/gun/launcher/m92/get_ammo_type()
+	if(length(grenades) == 0)
+		return list("empty", "empty")
+	else
+		return list(grenades[1].hud_state, grenades[1].hud_state_empty)
+
+/obj/item/weapon/gun/launcher/m92/get_ammo_count()
+	return length(grenades)
 
 
 /obj/item/weapon/gun/launcher/m81
@@ -656,7 +686,7 @@
 
 
 /obj/item/weapon/gun/launcher/rocket/delete_bullet(obj/item/projectile/projectile_to_fire, refund = FALSE)
-	cdel(projectile_to_fire)
+	qdel(projectile_to_fire)
 	if(refund) 
 		current_mag.current_rounds++
 	return TRUE
@@ -721,6 +751,21 @@
 			C.emote("pain")
 
 		. = ..()
+
+/obj/item/weapon/gun/launcher/rocket/has_ammo_counter()
+	return TRUE
+
+/obj/item/weapon/gun/launcher/rocket/get_ammo_type()
+	if(!ammo)
+		return list("unknown", "unknown")
+	else
+		return list(ammo.hud_state, ammo.hud_state_empty)
+
+/obj/item/weapon/gun/launcher/rocket/get_ammo_count()
+	if(!current_mag)
+		return 0
+	else
+		return current_mag.current_rounds
 
 //-------------------------------------------------------
 //M5 RPG'S MEAN FUCKING COUSIN

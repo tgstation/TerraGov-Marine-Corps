@@ -338,7 +338,7 @@
 			switch(z_hidden)
 				if(0)
 					z_hidden = MAIN_SHIP_Z_LEVEL
-					to_chat(usr, "\icon[src] <span class='notice'>Marines on the Almayer are now hidden.</span>")
+					to_chat(usr, "\icon[src] <span class='notice'>Marines on the [MAIN_SHIP_NAME] are now hidden.</span>")
 				if(MAIN_SHIP_Z_LEVEL)
 					z_hidden = 1
 					to_chat(usr, "\icon[src] <span class='notice'>Marines on the ground are now hidden.</span>")
@@ -557,8 +557,8 @@
 	send_to_squads("Calibrating trajectory window...")
 	sleep(11)
 	for(var/mob/living/carbon/H in living_mob_list)
-		if(H.z == MAIN_SHIP_Z_LEVEL && !H.stat) //USS Almayer decks.
-			to_chat(H, "<span class='warning'>The deck of the USS Almayer shudders as the orbital cannons open fire on the colony.</span>")
+		if(H.z == MAIN_SHIP_Z_LEVEL && !H.stat) //TGS Theseus decks.
+			to_chat(H, "<span class='warning'>The deck of the [MAIN_SHIP_NAME] shudders as the orbital cannons open fire on the colony.</span>")
 			if(H.client)
 				shake_camera(H, 10, 1)
 	state("<span class='boldnotice'>Orbital bombardment has fired! Impact imminent!</span>")
@@ -797,7 +797,7 @@
 		S.supply_cooldown = world.time
 
 		if(S.sbeacon)
-			cdel(S.sbeacon) //Wipe the beacon. It's only good for one use.
+			qdel(S.sbeacon) //Wipe the beacon. It's only good for one use.
 			S.sbeacon = null
 		playsound(C.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehh
 		C.anchored = FALSE
@@ -861,7 +861,7 @@
 	var/icon_activated = "motion2"
 	var/obj/machinery/camera/beacon_cam = null
 
-/obj/item/device/squad_beacon/Dispose()
+/obj/item/device/squad_beacon/Destroy()
 	if(src in active_orbital_beacons)
 		active_orbital_beacons -= src
 	if(squad)
@@ -871,7 +871,7 @@
 			squad.squad_orbital_beacons -= src
 		squad = null
 	if(beacon_cam)
-		cdel(beacon_cam)
+		qdel(beacon_cam)
 		beacon_cam = null
 	SetLuminosity(0)
 	return ..()
@@ -998,7 +998,7 @@
 			squad = null
 		if(src in active_orbital_beacons)
 			active_orbital_beacons -= src
-		cdel(beacon_cam)
+		qdel(beacon_cam)
 		beacon_cam = null
 		activated = FALSE
 		anchored = FALSE

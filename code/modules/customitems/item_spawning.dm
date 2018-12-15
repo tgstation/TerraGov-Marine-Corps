@@ -42,13 +42,13 @@
 						I.dna_hash = C.dna_hash
 						I.fingerprint_hash = C.fingerprint_hash
 						//replace old ID
-						cdel(C)
+						qdel(C)
 						ok = M.equip_if_possible(I, WEAR_ID, 0)	//if 1, last argument deletes on fail
 						break
 				else if(istype(Item,/obj/item/storage/belt))
 					var/obj/item/storage/belt/I = Item
 					if(istype(M.belt,/obj/item/storage/belt))
-						cdel(M.belt)
+						qdel(M.belt)
 						M.belt=null
 						ok = M.equip_if_possible(I, WEAR_WAIST, 0)
 						break

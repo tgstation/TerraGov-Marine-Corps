@@ -37,7 +37,7 @@
 				if((M.client && !is_blind(M)))
 					M.show_message("\red [src] lets out a contented sigh as their form unwinds. ")
 					ghostize()
-			cdel(src)
+			qdel(src)
 			return
 
 /*

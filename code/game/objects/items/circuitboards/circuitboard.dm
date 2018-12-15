@@ -56,7 +56,7 @@
 	if (istype(W, /obj/item/device/multitool))
 		var/obj/item/circuitboard/machine/ghettosmes/newcircuit = new(user.loc)
 		user.put_in_hands(newcircuit)
-		cdel(src)
+		qdel(src)
 
 
 

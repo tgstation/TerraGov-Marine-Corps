@@ -23,7 +23,7 @@ var/global/list/rad_collectors = list()
 	rad_collectors += src
 	start_processing()
 
-/obj/machinery/power/rad_collector/Dispose()
+/obj/machinery/power/rad_collector/Destroy()
 	rad_collectors -= src
 	. = ..()
 
