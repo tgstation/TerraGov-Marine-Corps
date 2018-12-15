@@ -645,6 +645,13 @@
 	name = "additional flechette"
 	icon_state = "flechette"
 
+/datum/ammo/bullet/shotgun/flechette/masterkey
+	bonus_projectiles_type = /datum/ammo/bullet/shotgun/flechette_spread/masterkey
+
+/datum/ammo/bullet/shotgun/flechette/masterkey/New()
+	..()
+	damage = config.high_hit_damage
+
 /datum/ammo/bullet/shotgun/flechette_spread/New()
 	..()
 	accuracy_var_low = config.med_proj_variance
@@ -656,6 +663,10 @@
 	damage_falloff *= 0.5
 	penetration	= config.high_armor_penetration
 	scatter = config.max_scatter_value //bonus projectiles run their own scatter chance
+
+/datum/ammo/bullet/shotgun/flechette_spread/masterkey/New()
+	..()
+	damage = config.low_hit_damage
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
