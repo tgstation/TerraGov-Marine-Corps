@@ -965,7 +965,7 @@ Defined in conflicts.dm of the #defines folder.
 	w_class = 4
 	max_rounds = 3
 	current_rounds = 3
-	ammo = /datum/ammo/bullet/shotgun/buckshot/masterkey
+	ammo = /datum/ammo/bullet/shotgun/buckshot/masterkey, /datum/ammo/bullet/shotgun/flechette/masterkey
 	slot = "under"
 	fire_sound = 'sound/weapons/gun_shotgun.ogg'
 	type_of_casings = "shell"
