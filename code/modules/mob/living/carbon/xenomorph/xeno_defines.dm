@@ -93,13 +93,8 @@
 	var/eggs_max = 0
 
 	// *** Defender Abilities *** //
-	var/headbutt_cooldown = 0
-	var/tail_sweep_cooldown = 0
-	var/crest_defense_cooldown = 0
-	var/fortify_cooldown = 0
 	var/crest_defense_armor = 0
 	var/fortify_armor = 0
-	var/cresttoss_cooldown = 0
 
 	// *** Queen Abilities *** //
 	var/queen_leader_limit = 0 //Amount of leaders allowed
