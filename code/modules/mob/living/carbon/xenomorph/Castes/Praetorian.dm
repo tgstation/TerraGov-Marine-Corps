@@ -15,14 +15,14 @@
 	tackle_damage = 40
 
 	// *** Speed *** //
-	speed = -0.1
+	speed = -0.15
 
 	// *** Plasma *** //
 	plasma_max = 800
 	plasma_gain = 25
 
 	// *** Health *** //
-	max_health = 210
+	max_health = 200
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
@@ -33,7 +33,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
-	armor_deflection = 35
+	armor_deflection = 30
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
@@ -59,20 +59,20 @@
 	tackle_damage = 45
 
 	// *** Speed *** //
-	speed = 0.0
+	speed = -0.25
 
 	// *** Plasma *** //
 	plasma_max = 900
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 225
+	max_health = 240
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 40
+	armor_deflection = 35
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
@@ -94,7 +94,7 @@
 	tackle_damage = 50
 
 	// *** Speed *** //
-	speed = -0.1
+	speed = -0.3
 
 	// *** Plasma *** //
 	plasma_max = 1000
@@ -130,14 +130,14 @@
 	tackle_damage = 60
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = -0.35
 
 	// *** Plasma *** //
 	plasma_max = 1000
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 255
 
 	// *** Defense *** //
 	armor_deflection = 45
