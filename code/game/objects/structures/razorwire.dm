@@ -279,6 +279,8 @@
 /obj/structure/grille/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGRILLE))
 		return TRUE
+	if(mover.throwing && istype(mover,/obj/item))
+		return TRUE
 
 /obj/structure/razorwire/update_icon()
 	var/health_percent = round(health/RAZORWIRE_MAX_HEALTH * 100)
