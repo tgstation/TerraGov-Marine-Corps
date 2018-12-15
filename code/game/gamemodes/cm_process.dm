@@ -179,11 +179,12 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	to_chat(world, "There were [round_statistics.total_bullet_hits_on_humans] bullets that hit marines. For a [(round_statistics.total_bullet_hits_on_humans / max(round_statistics.total_bullets_fired, 1)) * 100]% friendly fire rate!")
 	to_chat(world, "There were [round_statistics.total_bullet_hits_on_xenos] bullets that hit xenomorphs. For a [(round_statistics.total_bullet_hits_on_xenos / max(round_statistics.total_bullets_fired, 1)) * 100]% accuracy total!")
 	to_chat(world, "There were [round_statistics.grenades_thrown] total grenades used.")
+	to_chat(world, "There were [round_statistics.now_pregnant] people infected and [round_statistics.total_larva_burst] who burst. for a [(round_statistics.total_larva_burst / max(round_statistics.now_pregnant, 1)) * 100]% successful delivery rate!")
 	to_chat(world, "There were [round_statistics.queen_screech] times the queen screeched.")
 	to_chat(world, "There were [round_statistics.ravager_ravage_victims] people taken down by Ravagers.")
 	to_chat(world, "There were [round_statistics.warrior_limb_rips] limbs ripped off by Warriors.")
 	to_chat(world, "There were [round_statistics.crusher_stomp_victims] people crushed by crushers.")
-	to_chat(world, "There were [round_statistics.praetorian_spray_direct_hits] people hit directly by acid sprays.")
+	to_chat(world, "There were [round_statistics.praetorian_spray_direct_hits] people hit directly by praetorians acid sprays.")
 	to_chat(world, "There were [round_statistics.weeds_planted] weed nodes planted this round.")
 	to_chat(world, "There were [round_statistics.weeds_destroyed] weed tiles removed this round.")
 		
