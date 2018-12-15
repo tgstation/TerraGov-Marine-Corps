@@ -17,11 +17,13 @@
 	unacidable = 1
 	flags_atom = CONDUCT
 
+	var/obj/machinery/camera/camera = null
 	var/iff_signal = ACCESS_IFF_MARINE
 	var/triggered = 0
 	var/armed = 0 //Will the mine explode or not
 	var/trigger_type = "explosive" //Calls that proc
 	var/obj/effect/mine_tripwire/tripwire
+	var/camera_number
 	/*
 		"explosive"
 		//"incendiary" //New bay//
@@ -30,10 +32,19 @@
 	ex_act() trigger_explosion() //We don't care about how strong the explosion was.
 	emp_act() trigger_explosion() //Same here. Don't care about the effect strength.
 
+/obj/item/explosive/mine/New()
+	. = ..()
+	camera = new (src)
+	camera.network = list("military")
+	camera.c_tag = "[name] ([camera_number])"
+
 /obj/item/explosive/mine/Dispose()
 	if(tripwire)
 		cdel(tripwire)
 		tripwire = null
+	if(camera)
+		cdel(camera)
+		camera = null
 	. = ..()
 
 /obj/item/explosive/mine/pmc
@@ -71,6 +82,7 @@
 		icon_state += "_armed"
 		user.drop_held_item()
 		dir = user.dir //The direction it is planted in is the direction the user faces at that time
+		camera.c_tag = "[name] ([get_area(src)] | X: [x] | Y: [y])" //Update Camera name
 		var/tripwire_loc = get_turf(get_step(loc, dir))
 		tripwire = new /obj/effect/mine_tripwire(tripwire_loc)
 		tripwire.linked_claymore = src
@@ -112,11 +124,14 @@
 
 	triggered = 1
 	playsound(loc, 'sound/weapons/mine_tripped.ogg', 25, 1)
-	trigger_explosion()
+	trigger_explosion(H)
 
 //Note : May not be actual explosion depending on linked method
-/obj/item/explosive/mine/proc/trigger_explosion()
+/obj/item/explosive/mine/proc/trigger_explosion(mob/M = null)
 	set waitfor = 0
+
+	if(M)
+		mine_alert(M)
 
 	switch(trigger_type)
 		if("explosive")
@@ -139,7 +154,7 @@
 		var/direction = pick(cardinal)
 		var/step_direction = get_step(src, direction)
 		tripwire.forceMove(step_direction)
-	trigger_explosion()
+	trigger_explosion(M)
 
 /obj/item/explosive/mine/flamer_fire_act() //adding mine explosions
 	var/turf/T = loc
@@ -170,3 +185,14 @@
 
 	if(linked_claymore && ismob(A))
 		linked_claymore.Bumped(A)
+
+/obj/item/explosive/mine/proc/mine_alert(mob/M)
+	if(!M)
+		return
+	var/notice
+	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
+	notice = "<b>ALERT! [src] detonated. Hostile/unknown: [M] Detected at: [get_area(M)]. Coordinates: (X: [M.x], Y: [M.y]).</b>"
+	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
+	AI.SetName("Smartmine Alert System")
+	AI.aiRadio.talk_into(AI,"[notice]","Almayer","announces")
+	cdel(AI)

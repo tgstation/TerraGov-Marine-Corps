@@ -250,6 +250,7 @@
 	var/knockdown_threshold = 100
 	var/work_time = 40 //Defines how long it takes to do most maintenance actions
 	var/magazine_type = /obj/item/ammo_magazine/sentry
+	var/camera_number
 
 /obj/machinery/marine_turret/examine(mob/user)
 	. = ..()
@@ -282,9 +283,10 @@
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
 	cell = new /obj/item/cell/high(src)
+	camera_number = rand(1,1000)
 	camera = new (src)
 	camera.network = list("military")
-	camera.c_tag = "[name] ([rand(0, 1000)])"
+	camera.c_tag = "[name] ([get_area(src)] | X: [x] | Y: [y]| [camera_number])" //Update Camera name
 	spawn(2)
 		stat = 0
 	//processing_objects.Add(src)
@@ -482,7 +484,7 @@
 				if(!camera)
 					camera = new /obj/machinery/camera(src)
 					camera.network = list("military")
-					camera.c_tag = src.name
+				camera.c_tag = "[name] ([get_area(src)] | X: [x] | Y: [y]| [camera_number])" //Update Camera name
 				update_icon()
 			else
 				on = FALSE
@@ -569,6 +571,7 @@
 			if(do_after(user, work_time, TRUE, 5, BUSY_ICON_BUILD))
 				user.visible_message("<span class='notice'>[user] unanchors [src] from the ground.</span>",
 				"<span class='notice'>You unanchor [src] from the ground.</span>")
+				camera.c_tag += " Unsecured" //Update Camera name
 				anchored = 0
 				playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			return
@@ -1154,7 +1157,7 @@
 	cell = H
 	camera = new (src)
 	camera.network = list("military")
-	camera.c_tag = "[src.name] ([rand(0,1000)])"
+	camera.c_tag = "[name] ([get_area(src)] | X: [x] | Y: [y]| [camera_number])" //Update Camera name
 	spawn(2)
 		stat = 0
 	ammo = ammo_list[ammo]
@@ -1192,7 +1195,7 @@
 		if(!camera)
 			camera = new /obj/machinery/camera(src)
 			camera.network = list("military")
-			camera.c_tag = src.name
+		camera.c_tag = "[name] ([get_area(src)] | X: [x] | Y: [y]| [camera_number])" //Update Camera name
 		update_icon()
 	else
 		on = FALSE
