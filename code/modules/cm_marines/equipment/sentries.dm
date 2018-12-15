@@ -287,7 +287,7 @@
 	camera.c_tag = "[name] ([rand(0, 1000)])"
 	spawn(2)
 		stat = 0
-	//processing_objects.Add(src)
+	//START_PROCESSING(SSobj, src)
 	ammo = ammo_list[ammo]
 	update_icon()
 
