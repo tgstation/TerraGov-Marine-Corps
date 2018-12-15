@@ -276,7 +276,7 @@
 
 	update_icon()
 
-/obj/structure/grille/CanPass(atom/movable/mover, turf/target)
+/obj/structure/razorwire/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover) && mover.checkpass(PASSGRILLE))
 		return TRUE
 	if(mover.throwing && istype(mover,/obj/item))
