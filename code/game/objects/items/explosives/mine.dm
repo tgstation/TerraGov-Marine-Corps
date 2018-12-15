@@ -38,9 +38,9 @@
 	camera.network = list("military")
 	camera.c_tag = "[name] ([camera_number])"
 
-/obj/item/explosive/mine/Dispose()
+/obj/item/explosive/mine/Destroy()
 	if(tripwire)
-		cdel(tripwire)
+		qdel(tripwire)
 		tripwire = null
 	if(camera)
 		cdel(camera)
@@ -63,7 +63,7 @@
 		to_chat(user, "<span class='warning'>You can't plant a mine here.</span>")
 		return
 
-	/*if(user.z == MAIN_SHIP_Z_LEVEL || user.z == LOW_ORBIT_Z_LEVEL) // Almayer or dropship transit level
+	/*if(user.z == MAIN_SHIP_Z_LEVEL || user.z == LOW_ORBIT_Z_LEVEL) // Theseus or dropship transit level
 		to_chat(user, "<span class='warning'>You can't plant a mine on a spaceship!</span>")
 		return*/
 
@@ -103,7 +103,7 @@
 			armed = 0
 			icon_state = copytext(icon_state,1,-6)
 			if(tripwire)
-				cdel(tripwire)
+				qdel(tripwire)
 				tripwire = null
 
 //Mine can also be triggered if you "cross right in front of it" (same tile)
@@ -137,7 +137,7 @@
 		if("explosive")
 			if(tripwire)
 				explosion(tripwire.loc, -1, -1, 2)
-				cdel(src)
+				qdel(src)
 
 /obj/item/explosive/mine/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(triggered) //Mine is already set to go off
@@ -158,7 +158,7 @@
 
 /obj/item/explosive/mine/flamer_fire_act() //adding mine explosions
 	var/turf/T = loc
-	cdel(src)
+	qdel(src)
 	explosion(T, -1, -1, 2)
 
 
@@ -170,14 +170,14 @@
 	unacidable = 1 //You never know
 	var/obj/item/explosive/mine/linked_claymore
 
-/obj/effect/mine_tripwire/Dispose()
+/obj/effect/mine_tripwire/Destroy()
 	if(linked_claymore)
 		linked_claymore = null
 	. = ..()
 
 /obj/effect/mine_tripwire/Crossed(atom/A)
 	if(!linked_claymore)
-		cdel(src)
+		qdel(src)
 		return
 
 	if(linked_claymore.triggered) //Mine is already set to go off

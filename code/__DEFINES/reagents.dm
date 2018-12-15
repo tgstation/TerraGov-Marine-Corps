@@ -31,8 +31,6 @@
 #define REM_REAGENT	3	// reagent removed (may still exist)
 
 
-#define REM REAGENTS_EFFECT_MULTIPLIER
-
 #define REAGENTS_OVERDOSE 30
 #define REAGENTS_OVERDOSE_CRITICAL 50
 
@@ -41,10 +39,10 @@
 // By defining the effect multiplier this way, it'll exactly adjust
 // all effects according to how they originally were with the 0.4 metabolism
 #define REAGENTS_EFFECT_MULTIPLIER REAGENTS_METABOLISM / 0.4
+#define REM REAGENTS_EFFECT_MULTIPLIER
 
 // Reagent metabolism defines.
 #define FOOD_METABOLISM 0.4
-#define ALCOHOL_METABOLISM 0.1
 
 // Factor of how fast mob nutrition decreases
 #define HUNGER_FACTOR 0.05

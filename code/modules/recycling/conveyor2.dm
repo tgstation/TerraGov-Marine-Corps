@@ -160,7 +160,7 @@
 		C.set_operable(stepdir, id, op)
 
 /*
-/obj/machinery/conveyor/verb/destroy()
+/obj/machinery/conveyor/verb/destroy_belt()
 	set src in view()
 	src.broken()
 */

@@ -292,6 +292,9 @@
 	var/protection = (prot["head"] + prot["arms"] + prot["feet"] + prot["legs"] + prot["groin"] + prot["chest"] + prot["hands"])/7
 	return protection
 
+mob/living/carbon/human/get_standard_bodytemperature()
+	return species.body_temperature
+
 /mob/living/proc/camo_off_process(code = 0, damage = 0)
 	return
 

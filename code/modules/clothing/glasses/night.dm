@@ -79,11 +79,7 @@
 	fullscreen_vision = null
 
 
-/obj/item/clothing/glasses/night/yautja/Dispose()
+/obj/item/clothing/glasses/night/yautja/Destroy()
 	..()
 	return TA_REVIVE_ME
-
-/obj/item/clothing/glasses/night/yautja/Recycle()
-	var/blacklist[] = list("overlay","icon_state","item_state","name","desc","darkness_view","can_remove")
-	. = ..() + blacklist
 

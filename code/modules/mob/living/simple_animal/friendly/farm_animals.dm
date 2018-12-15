@@ -47,7 +47,7 @@
 
 		if(locate(/obj/effect/plantsegment) in loc)
 			var/obj/effect/plantsegment/SV = locate(/obj/effect/plantsegment) in loc
-			cdel(SV)
+			qdel(SV)
 			if(prob(10))
 				say("Nom")
 
@@ -67,7 +67,7 @@
 	if(!stat)
 		if(locate(/obj/effect/plantsegment) in loc)
 			var/obj/effect/plantsegment/SV = locate(/obj/effect/plantsegment) in loc
-			cdel(SV)
+			qdel(SV)
 			if(prob(10))
 				say("Nom")
 
@@ -182,7 +182,7 @@
 		amount_grown += rand(1,2)
 		if(amount_grown >= 100)
 			new /mob/living/simple_animal/chicken(src.loc)
-			cdel(src)
+			qdel(src)
 
 var/const/MAX_CHICKENS = 50
 var/global/chicken_count = 0
@@ -231,7 +231,7 @@ var/global/chicken_count = 0
 		if(!stat && eggsleft < 8)
 			user.visible_message("\blue [user] feeds [O] to [name]! It clucks happily.","\blue You feed [O] to [name]! It clucks happily.")
 			user.drop_held_item()
-			cdel(O)
+			qdel(O)
 			eggsleft += rand(1, 4)
 			//to_chat(world, eggsleft)
 		else
@@ -250,7 +250,7 @@ var/global/chicken_count = 0
 		E.pixel_x = rand(-6,6)
 		E.pixel_y = rand(-6,6)
 		if(chicken_count < MAX_CHICKENS && prob(10))
-			processing_objects.Add(E)
+			START_PROCESSING(SSobj, E)
 
 /obj/item/reagent_container/food/snacks/egg/var/amount_grown = 0
 /obj/item/reagent_container/food/snacks/egg/process()
@@ -259,7 +259,7 @@ var/global/chicken_count = 0
 		if(amount_grown >= 100)
 			visible_message("[src] hatches with a quiet cracking sound.")
 			new /mob/living/simple_animal/chick(get_turf(src))
-			processing_objects.Remove(src)
-			cdel(src)
+			STOP_PROCESSING(SSobj, src)
+			qdel(src)
 	else
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)

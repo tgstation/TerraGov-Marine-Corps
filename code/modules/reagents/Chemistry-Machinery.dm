@@ -52,11 +52,11 @@
 /obj/machinery/chem_dispenser/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(50))
-				cdel(src)
+				qdel(src)
 				return
 
 
@@ -263,11 +263,11 @@
 /obj/machinery/chem_master/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(50))
-				cdel(src)
+				qdel(src)
 				return
 
 /obj/machinery/chem_master/attackby(obj/item/I as obj, mob/living/user as mob)
@@ -1054,7 +1054,7 @@
 
 /obj/machinery/reagentgrinder/proc/remove_object(var/obj/item/O)
 	holdingitems -= O
-	cdel(O)
+	qdel(O)
 
 /obj/machinery/reagentgrinder/proc/juice()
 	power_change()

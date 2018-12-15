@@ -198,7 +198,7 @@ x_pos = 0 1 2 3 4 5 6 7 8
 		/datum/coords {x_pos = 1; y_pos = 1}, /datum/coords {x_pos = 2; y_pos = 1}, /datum/coords {x_pos = 3; y_pos = 1}, /datum/coords {x_pos = 4; y_pos = 1}, /datum/coords {x_pos = 5; y_pos = 1}, /datum/coords {x_pos = 6; y_pos = 1}, /datum/coords {x_pos = 7; y_pos = 1},
 	)
 
-	//Almayer Evac Pods
+	//TGS Theseus Evac Pods
 /*
 x_pos = 0 1 2 3 4 5
 		| | | | | |
@@ -210,7 +210,7 @@ x_pos = 0 1 2 3 4 5
 		O X X X X O -- y_pos = 1
 		T O O O O O -- y_pos = 0
 	*/
-	s_info["Almayer Evac"] = newlist(
+	s_info["[MAIN_SHIP_NAME] Evac"] = newlist(
 		/datum/coords {x_pos = 1; y_pos = 5}, /datum/coords {x_pos = 2; y_pos = 5}, /datum/coords {x_pos = 3; y_pos = 5}, /datum/coords {x_pos = 4; y_pos = 5},
 
 		/datum/coords {x_pos = 1; y_pos = 4}, /datum/coords {x_pos = 2; y_pos = 4}, /datum/coords {x_pos = 3; y_pos = 4}, /datum/coords {x_pos = 4; y_pos = 4},
@@ -222,7 +222,7 @@ x_pos = 0 1 2 3 4 5
 		/datum/coords {x_pos = 1; y_pos = 1}, /datum/coords {x_pos = 2; y_pos = 1}, /datum/coords {x_pos = 3; y_pos = 1}, /datum/coords {x_pos = 4; y_pos = 1}
 	)
 
-	//Alternate Almayer Evac Pods
+	//Alternate TGS Theseus Evac Pods
 /*
 x_pos = 0 1 2 3 4 5 6
 		| | | | | | |
@@ -233,7 +233,7 @@ x_pos = 0 1 2 3 4 5 6
 		O X X X X X O -- y_pos = 1
 		T O O O O O O -- y_pos = 0
 	*/
-	s_info["Alt Almayer Evac"] = newlist(
+	s_info["Alt [MAIN_SHIP_NAME] Evac"] = newlist(
 		/datum/coords {x_pos = 1; y_pos = 4}, /datum/coords {x_pos = 2; y_pos = 4}, /datum/coords {x_pos = 3; y_pos = 4}, /datum/coords {x_pos = 4; y_pos = 4}, /datum/coords {x_pos = 5; y_pos = 4},
 
 		/datum/coords {x_pos = 1; y_pos = 3}, /datum/coords {x_pos = 2; y_pos = 3}, /datum/coords {x_pos = 3; y_pos = 3}, /datum/coords {x_pos = 4; y_pos = 3}, /datum/coords {x_pos = 5; y_pos = 3},
@@ -243,9 +243,9 @@ x_pos = 0 1 2 3 4 5 6
 		/datum/coords {x_pos = 1; y_pos = 1}, /datum/coords {x_pos = 2; y_pos = 1}, /datum/coords {x_pos = 3; y_pos = 1}, /datum/coords {x_pos = 4; y_pos = 1}, /datum/coords {x_pos = 5; y_pos = 1}
 	)
 
-	//Almayer Dropship
+	//TGS Theseus Dropship
 
-	s_info["Almayer Dropship"] = newlist(
+	s_info["[MAIN_SHIP_NAME] Dropship"] = newlist(
 
 	/datum/coords{x_pos=3;y_pos=20}, /datum/coords{x_pos=4;y_pos=20}, /datum/coords{x_pos=5;y_pos=20}, /datum/coords{x_pos=6;y_pos=20}, /datum/coords{x_pos=7;y_pos=20},
 
@@ -319,7 +319,7 @@ var/datum/shuttle/ferry/marine/S = shuttle_controller.shuttles["[MAIN_SHIP_NAME]
 if(!S) {log_debug("ERROR CODE SO1: unable to find shuttle with the tag of: ["[MAIN_SHIP_NAME] [T] [name]"]."); \
 return FALSE}; \
 L[get_turf(src)] = rotation; \
-cdel(src)
+qdel(src)
 
 /obj/effect/landmark/shuttle_loc/marine_src/dropship //Name these "1" or "2", etc.
 	New()
@@ -335,7 +335,7 @@ cdel(src)
 			return FALSE
 		S.locs_dock[get_turf(src)] = rotation
 		S.link_support_units(get_turf(src)) //Process links.
-		cdel(src)
+		qdel(src)
 
 /obj/effect/landmark/shuttle_loc/marine_int/dropship
 	New()
@@ -354,7 +354,7 @@ cdel(src)
 		sleep(50)
 		..()
 		shuttle_controller.locs_crash[get_turf(src)] = rotation
-		cdel(src)
+		qdel(src)
 
 #undef SHUTTLE_LINK_LOCATIONS
 
@@ -431,7 +431,7 @@ cdel(src)
 		// Delete objects and gib living things in the destination
 		for (var/atom/A in target)
 			if (isobj(A) && A.loc == target)
-				cdel(A)
+				qdel(A)
 				continue
 
 			if (isliving(A))

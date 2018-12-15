@@ -116,7 +116,7 @@
 
 ///process()
 ///Called by the gameticker
-/datum/game_mode/proc/process()
+/datum/game_mode/process()
 	return 0
 
 
@@ -268,7 +268,7 @@
 
 	var/roletext
 	switch(role)
-		if(BE_RESPONDER)	roletext = "Responder"
+		if(BE_DEATHMATCH)	roletext = "End of Round Deathmatch"
 		if(BE_ALIEN)		roletext = "Alien"
 		if(BE_QUEEN)		roletext = "Queen"
 		if(BE_SURVIVOR)		roletext = "Survivor"

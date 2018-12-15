@@ -1016,13 +1016,13 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 	var/list/spawned_gear_list
 
 /obj/effect/essentials_set/New(loc)
-	..()
+	. = ..()
 	for(var/typepath in spawned_gear_list)
 		if(spawned_gear_list[typepath])
 			new typepath(loc, spawned_gear_list[typepath])
 		else
 			new typepath(loc)
-	cdel(src)
+	qdel(src)
 
 
 /obj/effect/essentials_set/basic

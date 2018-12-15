@@ -20,15 +20,15 @@
 	..()
 	object_list += src
 
-/obj/Dispose()
+/obj/Destroy()
 	. = ..()
 	object_list -= src
 
 
 /obj/item/proc/is_used_on(obj/O, mob/user)
 
-/obj/proc/process()
-	processing_objects.Remove(src)
+/obj/process()
+	STOP_PROCESSING(SSobj, src)
 	return 0
 
 
@@ -94,7 +94,7 @@
 /obj/proc/hear_talk(mob/M, text)
 	return
 
-/obj/Dispose()
+/obj/Destroy()
 	if(buckled_mob) unbuckle()
 	. = ..()
 

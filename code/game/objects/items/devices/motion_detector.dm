@@ -14,7 +14,7 @@
 	var/identifier = MOTION_DETECTOR_HOSTILE
 	layer = BELOW_FULLSCREEN_LAYER
 
-	Dispose()
+	Destroy()
 		..()
 		return TA_REVIVE_ME
 
@@ -65,10 +65,10 @@
 	return ..()
 
 
-/obj/item/device/motiondetector/Dispose()
-	processing_objects.Remove(src)
+/obj/item/device/motiondetector/Destroy()
+	STOP_PROCESSING(SSobj, src)
 	for(var/obj/X in blip_pool)
-		cdel(X)
+		qdel(X)
 	blip_pool = list()
 	..()
 
@@ -88,7 +88,7 @@
 	active = FALSE
 	operator = null
 	update_icon()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 
 /obj/item/device/motiondetector/process()
 	if(!active)
@@ -116,7 +116,7 @@
 		recycletime = initial(recycletime)
 		for(var/X in blip_pool) //we dump and remake the blip pool every few minutes
 			if(blip_pool[X])	//to clear blips assigned to mobs that are long gone.
-				cdel(blip_pool[X]) //the blips are garbage-collected and reused via rnew() below
+				qdel(blip_pool[X]) //the blips are garbage-collected and reused via rnew() below
 		blip_pool = list()
 
 	if(!detector_mode)
@@ -172,16 +172,16 @@
 		if(!blip_pool[target])
 			switch(status)
 				if(MOTION_DETECTOR_HOSTILE)
-					blip_pool[target] = rnew(/obj/effect/detector_blip)
+					blip_pool[target] = new /obj/effect/detector_blip()
 					//blip_pool[target].icon_state = "detector_blip_friendly"
 				if(MOTION_DETECTOR_FRIENDLY)
-					blip_pool[target] = rnew(/obj/effect/detector_blip/friendly)
+					blip_pool[target] = new /obj/effect/detector_blip/friendly()
 					//blip_pool[target].icon_state = "detector_blip_friendly"
 				if(MOTION_DETECTOR_DEAD)
-					blip_pool[target] = rnew(/obj/effect/detector_blip/dead)
+					blip_pool[target] = new /obj/effect/detector_blip/dead()
 					//blip_pool[target].icon_state = "detector_blip_dead"
 				if(MOTION_DETECTOR_FUBAR)
-					blip_pool[target] = rnew(/obj/effect/detector_blip/fubar)
+					blip_pool[target] = new /obj/effect/detector_blip/fubar()
 					//blip_pool[target].icon_state = "detector_blip_fubar"
 
 		var/obj/effect/detector_blip/DB = blip_pool[target]
@@ -247,10 +247,10 @@
 			if(active)
 				to_chat(usr, "<span class='notice'>You activate [src].</span>")
 				operator = usr
-				processing_objects.Add(src)
+				START_PROCESSING(SSobj, src)
 			else
 				to_chat(usr, "<span class='notice'>You deactivate [src].</span>")
-				processing_objects.Remove(src)
+				STOP_PROCESSING(SSobj, src)
 			update_icon()
 
 		else if(href_list["detector_mode"])

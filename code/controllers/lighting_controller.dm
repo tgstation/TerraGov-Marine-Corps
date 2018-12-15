@@ -22,7 +22,7 @@ datum/controller/lighting/New()
 	if(lighting_controller != src)
 		if(istype(lighting_controller,/datum/controller/lighting))
 			Recover()	//if we are replacing an existing lighting_controller (due to a crash) we attempt to preserve as much as we can
-			cdel(lighting_controller)
+			qdel(lighting_controller)
 		lighting_controller = src
 
 
@@ -32,7 +32,7 @@ datum/controller/lighting/New()
 //than deleting them). Processing interval should be roughly half a second for best results.
 //By using queues we are ensuring we don't perform more updates than are necessary
 /*
-datum/controller/lighting/proc/process()
+datum/controller/lighting/process()
 	processing = 1
 	spawn(0)
 		set background = 1
@@ -63,7 +63,7 @@ datum/controller/lighting/proc/process()
 			sleep(processing_interval)
 */
 
-datum/controller/lighting/proc/process()
+datum/controller/lighting/process()
 	while(processing)
 		iteration++
 		var/thing

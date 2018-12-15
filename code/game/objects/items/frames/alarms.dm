@@ -15,7 +15,7 @@ Code shamelessly copied from apc_frame
 /obj/item/frame/air_alarm/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/tool/wrench))
 		new /obj/item/stack/sheet/metal( get_turf(src.loc), 2 )
-		cdel(src)
+		qdel(src)
 		return
 	..()
 
@@ -41,7 +41,7 @@ Code shamelessly copied from apc_frame
 		return
 
 	new /obj/machinery/alarm(loc, ndir, 1)
-	cdel(src)
+	qdel(src)
 
 /*
 FIRE ALARM ITEM
@@ -58,7 +58,7 @@ Code shamelessly copied from apc_frame
 /obj/item/frame/fire_alarm/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/tool/wrench))
 		new /obj/item/stack/sheet/metal( get_turf(src.loc), 2 )
-		cdel(src)
+		qdel(src)
 		return
 	..()
 
@@ -85,4 +85,4 @@ Code shamelessly copied from apc_frame
 
 	new /obj/machinery/firealarm(loc, ndir, 1)
 
-	cdel(src)
+	qdel(src)

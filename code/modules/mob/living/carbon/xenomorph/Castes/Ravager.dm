@@ -317,7 +317,7 @@
 		return
 
 	for(var/obj/flamer_fire/F in T) // No stacking flames!
-		cdel(F)
+		qdel(F)
 
 	new/obj/flamer_fire(T)
 

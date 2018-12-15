@@ -304,7 +304,7 @@
 					user.drop_inv_item_on_ground(src)
 
 				new /obj/effect/decal/cleanable/ash(src.loc)
-				cdel(src)
+				qdel(src)
 
 			else
 				to_chat(user, "\red You must hold \the [P] steady to burn \the [src].")
