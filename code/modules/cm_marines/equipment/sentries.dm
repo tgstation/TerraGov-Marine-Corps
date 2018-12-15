@@ -1167,6 +1167,8 @@
 	name = "Modified UA-577 Gauss Turret"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a high-capacity drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
 	iff_signal = 0
+	alerts_on = FALSE
+	safety_off = TRUE
 	rounds = 1000000
 	ammo = /datum/ammo/bullet/turret/dumb
 
