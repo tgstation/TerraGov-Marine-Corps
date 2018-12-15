@@ -403,6 +403,7 @@ sorts them out by their department.
 				M.mind.assigned_squad = P
 			else
 				M.mind.assigned_squad = R
+			return TRUE
 
 		if("Squad Engineer")
 			for(var/datum/squad/S in shuffle(squads))
@@ -549,3 +550,7 @@ sorts them out by their department.
 					return TRUE
 						
 			return FALSE
+
+	log_game("ERROR: Could not assign squad for [M].")
+	message_admins("ERROR: Could not assign squad for [M].")
+	return FALSE
