@@ -78,7 +78,7 @@
 	Please ensure that long_jump() and short_jump() are only called from here. This applies to subtypes as well.
 	Doing so will ensure that multiple jumps cannot be initiated in parallel.
 */
-/datum/shuttle/ferry/proc/process()
+/datum/shuttle/ferry/process()
 
 	switch(process_state)
 		if (WAIT_LAUNCH)
