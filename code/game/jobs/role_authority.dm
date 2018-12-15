@@ -84,12 +84,12 @@ var/global/datum/authority/branch/role/RoleAuthority
 				roles_by_equipment_paths[J.type] = J
 
 
-/*			
+/*
 Unless a gamemode re-defines the jobs for that specific mode, this assures the preference menu will only contain the "default" roles, also
 sorts them out by their department.
 */
 
-	for(var/i in ROLES_REGULAR_ALL) 
+	for(var/i in ROLES_REGULAR_ALL)
 		J = roles_for_mode[i]
 		if(!J)
 			continue
@@ -116,16 +116,16 @@ sorts them out by their department.
 	var/ckey
 	var/role
 	for(i in L)
-		if(!i)	
+		if(!i)
 			continue
 		i = trim(i)
-		if(!length(i)) 
+		if(!length(i))
 			continue
-		else if(copytext(i, 1, 2) == "#") 
+		else if(copytext(i, 1, 2) == "#")
 			continue
 
 		P = text2list(i, "+")
-		if(!P.len) 
+		if(!P.len)
 			continue
 		ckey = ckey(P[1]) //Converting their key to canonical form. ckey() does this by stripping all spaces, underscores and converting to lower case.
 
@@ -245,7 +245,7 @@ sorts them out by their department.
 						roles_to_iterate -= j //Remove the position, since we no longer need it.
 						break
 
-			if(!length(unassigned_players)) 
+			if(!length(unassigned_players))
 				break
 
 /datum/authority/branch/role/proc/assign_random_role(mob/new_player/M, list/roles_to_iterate) //In case we want to pass on a list.
@@ -254,9 +254,9 @@ sorts them out by their department.
 		var/datum/job/J
 		var/j
 
-		if(length(roles_to_iterate)) //No more free roles, make them a marine.
-			assign_role(M, roles_by_name["Squad Marine"])
-			return roles_to_iterate
+		if(!length(roles_to_iterate)) //No more free roles, make them a marine.
+			if(assign_role(M, roles_by_name["Squad Marine"]))
+				return roles_to_iterate
 
 		j = pick(roles_to_iterate)
 		J = roles_to_iterate[j]
@@ -264,16 +264,20 @@ sorts them out by their department.
 		if(!istype(J))
 			log_game("ERROR: No job datum found for [J] while assigning random role.")
 			message_admins("ERROR: No job datum found for [J] while assigning random role.")
-			assign_role(M, roles_by_name["Squad Marine"])
-			return roles_to_iterate
+			if(assign_role(M, roles_by_name["Squad Marine"]))
+				return roles_to_iterate
 
 		if(assign_role(M, J)) //Check to see if they can actually get it.
-			if(J.current_positions >= J.spawn_positions) 
+			if(J.current_positions >= J.spawn_positions)
 				roles_to_iterate -= j
 			return roles_to_iterate
-
-	//Something went wrong, make them a marine.
-	assign_role(M, roles_by_name["Squad Marine"])
+		else if(assign_role(M, roles_by_name["Squad Marine"]))
+			return roles_to_iterate
+		else
+			log_game("ERROR: Failed to assign random role to [M].")
+			message_admins("ERROR: Failed to assign random role to [M].")
+			return roles_to_iterate
+	
 
 
 /datum/authority/branch/role/proc/assign_role(mob/new_player/M, datum/job/J, latejoin = 0)
@@ -282,6 +286,9 @@ sorts them out by their department.
 
 	if(check_role_entry(M, J, latejoin))
 		M.set_everything(M, J.title)
+		if(J.flags_startup_parameters & ROLE_ADD_TO_SQUAD) //Handle their squad preferences.
+			if(!handle_squad(M))
+				return FALSE
 		J.current_positions++
 		return TRUE
 
@@ -316,14 +323,14 @@ sorts them out by their department.
 
 
 /datum/authority/branch/role/proc/equip_role(mob/living/M, datum/job/J, turf/late_join)
-	if(!istype(M) || !istype(J)) 
+	if(!istype(M) || !istype(J))
 		return
 
 	//Sets their equipment to the equivalent job datum.
 	J.generate_equipment(M)
 
 	if(late_join) //If they late joined, we put them in cryo.
-		M.loc = late_join 
+		M.loc = late_join
 	else
 		var/i
 		var/obj/effect/landmark/L //To iterate.
@@ -333,16 +340,16 @@ sorts them out by their department.
 			if(L.name == J.title && !locate(/mob/living) in L.loc)
 				S = L
 				break
-		if(!S) 
+		if(!S)
 			S = locate("start*[J.title]") //Converts old spawns into new ones.
-		if(istype(S) && istype(S.loc, /turf)) 
+		if(istype(S) && istype(S.loc, /turf))
 			M.loc = S.loc
 		else
 			log_game("ERROR: No spawn location found for player [M], job [J].")
 			message_admins("ERROR: No spawn location found for player [M], job [J].")
 
 	if(ishuman(M))
-		var/mob/living/carbon/H = M
+		var/mob/living/carbon/human/H = M
 		J.equip_preference_gear(H) //After we move them, we want to equip their special gear.
 
 		//Give them an account in the database.
@@ -353,7 +360,7 @@ sorts them out by their department.
 			remembered_info += "<b>Your account pin is:</b> [A.remote_access_pin]<br>"
 			remembered_info += "<b>Your account funds are:</b> $[A.money]<br>"
 
-			if(A.transaction_log.len)
+			if(length(A.transaction_log))
 				var/datum/transaction/T = A.transaction_log[1]
 				remembered_info += "<b>Your account was created:</b> [T.time], [T.date] at [T.source_terminal]<br>"
 			H.mind.store_memory(remembered_info)
@@ -361,8 +368,9 @@ sorts them out by their department.
 
 		J.equip_identification(H, J)
 
-		if(J.flags_startup_parameters & ROLE_ADD_TO_SQUAD) //Add marine roles to a squad.
-			handle_squad(H)
+		if(J.flags_startup_parameters & ROLE_ADD_TO_SQUAD) //Add them to their chosen squad.
+			var/datum/squad/S = H.mind.assigned_squad
+			S.put_marine_in_squad(H)
 
 		J.announce_entry_message(H, A) //Tell them their spawn info.
 		J.generate_entry_conditions(H) //Do any other thing that relates to their spawn.
@@ -375,98 +383,169 @@ sorts them out by their department.
 	return TRUE
 
 
-/datum/authority/branch/role/proc/squad_conditions(var/mob/living/carbon/human/H)
-	
-
-/datum/authority/branch/role/proc/handle_squad(var/mob/living/carbon/human/H)
-	if(!H?.mind) 
-		return
-
-	if(H.assigned_squad)
-		return
+/datum/authority/branch/role/proc/handle_squad(var/mob/new_player/M)
+	if(!M?.mind)
+		return FALSE
 
 	var/datum/squad/R = pick(squads_names)
 	var/datum/squad/P
+	var/strict = FALSE
 
-	var/pref_squad
-	if(H.client?.prefs?.preferred_squad && H.client.prefs.preferred_squad != "None")
-		pref_squad = H.client.prefs.preferred_squad
+	if(M.client?.prefs?.preferred_squad && M.client.prefs.preferred_squad != "None")
+		P = squads_names[M.client.prefs.preferred_squad]
 
-	if(pref_squad)
-		P = squads_names[pref_squad]
+	if(M.client?.prefs?.be_special & BE_SQUAD_STRICT)
+		strict = TRUE
 
-	switch(H.mind.assigned_role)
-		if("Squad Marine") //Always put marines in their preferred squad if possible.
-			if(pref_squad)
-				P.put_marine_in_squad(H)
+	switch(M.mind.assigned_role)
+		if("Squad Marine") //Always put squad marines in their preferred squad if possible.
+			if(P)
+				M.mind.assigned_squad = P
 			else
-				R.put_marine_in_squad(H)
+				M.mind.assigned_squad = R
 
 		if("Squad Engineer")
-			for(var/datum/squad/S in mixed_squads)
-				if(S.usable)
-					if(S.num_engineers >= S.max_engineers) 
+			for(var/datum/squad/S in shuffle(squads))
+				if(strict)
+					if(S.num_engineers >= S.max_engineers)
 						continue
-					if(pref_squad_name && S.name == pref_squad_name)
-						S.put_marine_in_squad(H) //fav squad has a spot for us, no more searching needed.
-						return
 
-					if(!lowest)
-						lowest = S
-					else if(S.num_engineers < lowest.num_engineers)
-						lowest = S
+					if(S == P)
+						M.mind.assigned_squad = P
+						return TRUE
+				else
+					if(S.num_engineers >= S.max_engineers)
+						continue
+
+					if(S == P)
+						M.mind.assigned_squad = P
+						return TRUE
+
+			if(strict)
+				return FALSE
+					
+			for(var/datum/squad/S in shuffle(squads))
+				if(S.num_engineers >= S.max_engineers)
+					continue
+
+				else
+					M.mind.assigned_squad = S
+					return TRUE
+
+			return FALSE
 
 		if("Squad Medic")
-			for(var/datum/squad/S in mixed_squads)
-				if(S.usable)
-					if(S.num_medics >= S.max_medics) 
+			for(var/datum/squad/S in shuffle(squads))
+				if(strict)
+					if(S.num_medics >= S.max_medics)
 						continue
-					if(pref_squad_name && S.name == pref_squad_name)
-						S.put_marine_in_squad(H) //fav squad has a spot for us.
-						return
 
-					if(!lowest)
-						lowest = S
-					else if(S.num_medics < lowest.num_medics)
-						lowest = S
-
-		if("Squad Leader")
-			for(var/datum/squad/S in mixed_squads)
-				if(S.usable)
-					if(S.num_leaders >= S.max_leaders) 
+					if(S == P)
+						M.mind.assigned_squad = P
+						return TRUE
+				else
+					if(S.num_medics >= S.max_medics)
 						continue
-					if(pref_squad_name && S.name == pref_squad_name)
-						S.put_marine_in_squad(H) //fav squad has a spot for us.
-						return
 
-					if(!lowest)
-						lowest = S
-					else if(S.num_leaders < lowest.num_leaders)
-						lowest = S
+					if(S == P)
+						M.mind.assigned_squad = P
+						return TRUE
 
-		if("Squad Specialist")
-			for(var/datum/squad/S in mixed_squads)
-				if(S.usable)
-					if(S.num_specialists >= S.max_specialists) continue
-					if(pref_squad_name && S.name == pref_squad_name)
-						S.put_marine_in_squad(H) //fav squad has a spot for us.
-						return
-
-					if(!lowest)
-						lowest = S
-					else if(S.num_specialists < lowest.num_specialists)
-						lowest = S
+			if(strict)
+				return FALSE
+					
+			for(var/datum/squad/S in shuffle(squads))
+				if(S.num_medics >= S.max_medics)
+					continue
+				else
+					M.mind.assigned_squad = S
+					return TRUE
+						
+			return FALSE
 
 		if("Squad Smartgunner")
-			for(var/datum/squad/S in mixed_squads)
-				if(S.usable)
-					if(S.num_smartgun >= S.max_smartgun) 
+			for(var/datum/squad/S in shuffle(squads))
+				if(strict)
+					if(S.num_smartgun >= S.max_smartgun)
 						continue
-					if(pref_squad_name && S.name == pref_squad_name)
-						S.put_marine_in_squad(H) //fav squad has a spot for us.
-						return
 
-					if(!lowest)
-						lowest = S
-					else if(S.num_smartgun < lowest.num_smartgun)
-						lowest = S
+					if(S == P)
+						M.mind.assigned_squad = P
+						return TRUE
+				else
+					if(S.num_smartgun >= S.max_smartgun)
+						continue
+
+					if(S == P)
+						M.mind.assigned_squad = P
+						return TRUE
+
+			if(strict)
+				return FALSE
+					
+			for(var/datum/squad/S in shuffle(squads))
+				if(S.num_smartgun >= S.max_smartgun)
+					continue
+				else
+					M.mind.assigned_squad = S
+					return TRUE
+						
+			return FALSE
+
+		if("Squad Specialist")
+			for(var/datum/squad/S in shuffle(squads))
+				if(strict)
+					if(S.num_specialists >= S.max_specialists)
+						continue
+
+					if(S == P)
+						M.mind.assigned_squad = P
+						return TRUE
+				else
+					if(S.num_specialists >= S.max_specialists)
+						continue
+
+					if(S == P)
+						M.mind.assigned_squad = P
+						return TRUE
+
+			if(strict)
+				return FALSE
+					
+			for(var/datum/squad/S in shuffle(squads))
+				if(S.num_specialists >= S.max_specialists)
+					continue
+				else
+					M.mind.assigned_squad = S
+					return TRUE
+						
+			return FALSE
+
+		if("Squad Leader")
+			for(var/datum/squad/S in shuffle(squads))
+				if(strict)
+					if(S.num_leaders >= S.max_leaders)
+						continue
+
+					if(S == P)
+						M.mind.assigned_squad = P
+						return TRUE
+				else
+					if(S.num_leaders >= S.max_leaders)
+						continue
+
+					if(S == P)
+						M.mind.assigned_squad = P
+						return TRUE
+
+			if(strict)
+				return FALSE
+					
+			for(var/datum/squad/S in shuffle(squads))
+				if(S.num_leaders >= S.max_leaders)
+					continue
+				else
+					M.mind.assigned_squad = S
+					return TRUE
+						
+			return FALSE

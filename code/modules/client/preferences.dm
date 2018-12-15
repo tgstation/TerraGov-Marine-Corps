@@ -8,7 +8,7 @@ var/global/list/special_roles = list(
 	"Survivor" = 1,
 	"End of Round Deathmatch" = 1,
 	"Predator" = 1,
-	"WO Commander" = 1
+	"Prefer Squad over Role" = 1
 
 	// "wizard" = IS_MODE_COMPILED("wizard"),               // 3
 	// "malf AI" = IS_MODE_COMPILED("malfunction"),         // 4
@@ -344,9 +344,6 @@ datum/preferences
 
 			if("Predator")
 				ban_check_name = "Predator"
-
-			if("WO Commander")
-				ban_check_name = "WO Commander"
 
 		if(jobban_isbanned(user, ban_check_name))
 			dat += "<font color=red><b> \[BANNED]</b></font><br>"

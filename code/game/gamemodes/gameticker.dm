@@ -68,7 +68,7 @@ var/global/datum/controller/gameticker/ticker
 
 /datum/controller/gameticker/proc/setup()
 	if(master_mode == "secret")
-		hide_mode = 1
+		hide_mode = TRUE
 
 	var/list/datum/game_mode/runnable_modes
 	if((master_mode=="random") || (master_mode=="secret"))
@@ -163,10 +163,10 @@ var/global/datum/controller/gameticker/ticker
 
 /datum/controller/gameticker/proc/create_characters()
 	for(var/mob/new_player/player in player_list)
-		if(!player?.ready || !player.mind?.assigned_role))
+		if(!player?.ready || !player.mind?.assigned_role)
 			continue
-			player.create_character()
-			qdel(player)
+		player.create_character()
+		qdel(player)
 
 
 /datum/controller/gameticker/proc/collect_minds()
@@ -176,22 +176,20 @@ var/global/datum/controller/gameticker/ticker
 
 
 /datum/controller/gameticker/proc/equip_characters()
-	var/captainless = 1
+	var/captainless = TRUE
 
 	if(mode && istype(mode, /datum/game_mode/huntergames))
 		return
 
-	var/mob/living/carbon/human/player
-	var/m
-	for(m in player_list)
-		player = m
-		if(istype(player) && player.mind && player.mind.assigned_role)
-			if(player.mind.assigned_role == "Commander")
-				captainless = 0
-			if(player.mind.assigned_role != "MODE")
-				RoleAuthority.equip_role(player, RoleAuthority.roles_by_name[player.mind.assigned_role])
-				UpdateFactionList(player)
-				EquipCustomItems(player)
+	for(var/player in player_list)
+		var/mob/living/carbon/human/H = player
+		if(istype(H) && H.mind?.assigned_role)
+			if(H.mind.assigned_role == "Commander")
+				captainless = FALSE
+			if(H.mind.assigned_role != "MODE")
+				RoleAuthority.equip_role(player, RoleAuthority.roles_by_name[H.mind.assigned_role])
+				UpdateFactionList(H)
+				EquipCustomItems(H)
 
 	if(captainless)
 		for(var/mob/M in player_list)
@@ -199,7 +197,7 @@ var/global/datum/controller/gameticker/ticker
 				to_chat(M, "Marine commander position not forced on anyone.")
 
 
-/datum/controller/gameticker/proc/process()
+/datum/controller/gameticker/process()
 	if(current_state != GAME_STATE_PLAYING)
 		return FALSE
 
@@ -209,7 +207,7 @@ var/global/datum/controller/gameticker/ticker
 	var/mode_finished = FALSE
 
 	if(config.continous_rounds)
-		if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) 
+		if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED)
 			game_finished = TRUE
 		mode_finished = (!post_game && mode.check_finished())
 	else

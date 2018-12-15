@@ -77,7 +77,7 @@
 /datum/game_mode/colonialmarines_halloween_2016/can_start()
 	initialize_special_clamps()
 	//initialize_starting_predator_list()
-	var/ready_players = num_players() // Get all players that have "Ready" selected
+	var/ready_players = ready_players() // Get all players that have "Ready" selected
 	if(ready_players < required_players)
 		to_chat(world, "<span class='round_setup'>Not enough players to start the game. Aborting.</span>")
 		return
