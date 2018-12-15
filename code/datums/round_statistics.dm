@@ -1,6 +1,15 @@
 
 //the datum that stores specific statistics from the current round.
 
+/*
+To add new statistics, include "var/the_thing_to_count = 0" in the list below indented accordingly.
+
+Then, in the file where the thing you want to count happens, include "round_statistics.the_thing_to_count++"
+
+to use said count anywhere else include round_statistics.the_thing_to_count in your code.
+add [] around this to use it in text.
+*/
+
 var/datum/round_statistics/round_statistics = new()
 
 /datum/round_statistics
@@ -39,3 +48,4 @@ var/datum/round_statistics/round_statistics = new()
 	var/weeds_planted = 0
 	var/weeds_destroyed = 0
 	var/grenades_thrown = 0
+	var/queen_screech = 0

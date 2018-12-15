@@ -179,6 +179,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	to_chat(world, "There were [round_statistics.total_bullet_hits_on_humans] bullets that hit marines. For a [(round_statistics.total_bullet_hits_on_humans / max(round_statistics.total_bullets_fired, 1)) * 100]% friendly fire rate!")
 	to_chat(world, "There were [round_statistics.total_bullet_hits_on_xenos] bullets that hit xenomorphs. For a [(round_statistics.total_bullet_hits_on_xenos / max(round_statistics.total_bullets_fired, 1)) * 100]% accuracy total!")
 	to_chat(world, "There were [round_statistics.grenades_thrown] total grenades used.")
+	to_chat(world, "There were [round_statistics.queen_screech] times the queen screeched.")
 	to_chat(world, "There were [round_statistics.ravager_ravage_victims] people taken down by Ravagers.")
 	to_chat(world, "There were [round_statistics.warrior_limb_rips] limbs ripped off by Warriors.")
 	to_chat(world, "There were [round_statistics.crusher_stomp_victims] people crushed by crushers.")
