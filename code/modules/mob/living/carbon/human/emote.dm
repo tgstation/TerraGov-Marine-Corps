@@ -292,18 +292,18 @@
 
 		if("help")
 			var/msg = {"<br><br><b>To use an emote, type an asterix (*) before a following word. Emotes with a sound are <span style='color: green;'>green</span>. Spamming emotes with sound will likely get you in trouble, don't do it.<br><br> \
-			blink, blink_r, bow-(mob name), chuckle, <span style='color: green;'>clap</span>, collapse, cough, cry, drool, eyebrow, facepalm, 
-			faint, frown, gasp, giggle, glare-(mob name), <span style='color: green;'>golfclap</span>, grin, grumble, handshake, hug-(mob name), 
-			laugh, look-(mob name), me, <span style='color: green;'>medic</span>, moan, mumble, nod, point, <span style='color: green;'>salute</span>, 
-			scream, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, stare-(mob name), twitch, wave, yawn</b><br>"}
+blink, blink_r, bow-(mob name), chuckle, <span style='color: green;'>clap</span>, collapse, cough, cry, drool, eyebrow, facepalm, 
+faint, frown, gasp, giggle, glare-(mob name), <span style='color: green;'>golfclap</span>, grin, grumble, handshake, hug-(mob name), 
+laugh, look-(mob name), me, <span style='color: green;'>medic</span>, moan, mumble, nod, point, <span style='color: green;'>salute</span>, 
+scream, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, stare-(mob name), twitch, wave, yawn</b><br>"}
 			to_chat(src, msg)
 			if(has_species(src,"Yautja"))
 				var/yautja_msg = {"<br><b>As a Predator, you have the following additional emotes. Tip: The *medic emote has neither a cooldown nor a visibile origin...<br><br>\
-				<span style='color: green;'>anytime</span>, <span style='color: green;'>click</span>, <span style='color: green;'>helpme</span>, 
-				<span style='color: green;'>iseeyou</span>, <span style='color: green;'>itsatrap</span>, <span style='color: green;'>laugh1</span>, 
-				<span style='color: green;'>laugh2</span>, <span style='color: green;'>laugh3</span>, <span style='color: green;'>malescream</span>, 
-				<span style='color: green;'>femalescream</span>, me, <span style='color: green;'>overhere</span>, <span style='color: green;'>turnaround</span>, 
-				<span style='color: green;'>roar</span></b><br>"}
+<span style='color: green;'>anytime</span>, <span style='color: green;'>click</span>, <span style='color: green;'>helpme</span>, 
+<span style='color: green;'>iseeyou</span>, <span style='color: green;'>itsatrap</span>, <span style='color: green;'>laugh1</span>, 
+<span style='color: green;'>laugh2</span>, <span style='color: green;'>laugh3</span>, <span style='color: green;'>malescream</span>, 
+<span style='color: green;'>femalescream</span>, me, <span style='color: green;'>overhere</span>, <span style='color: green;'>turnaround</span>, 
+<span style='color: green;'>roar</span></b><br>"}
 				to_chat(src, yautja_msg)
 
 		//Predator only emotes (why this isn't a separate override is beyond me.)
