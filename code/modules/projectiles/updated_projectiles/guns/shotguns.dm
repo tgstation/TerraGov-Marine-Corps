@@ -541,3 +541,4 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/masterkey
 	name = "masterkey attachment"
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/masterkey
