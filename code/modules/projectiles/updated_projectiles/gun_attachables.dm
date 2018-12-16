@@ -700,7 +700,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/attached_gun
 	attachment_action_type = /datum/action/item_action/toggle
 	//Some attachments may be fired. So here are the variables related to that.
-	var/datum/ammo/ammo = null //If it has a default bullet-like ammo.
+	var/list/datum/ammo/ammo = list() //If it has a default bullet-like ammo.
 	var/max_range 		= 0 //Determines # of tiles distance the attachable can fire, if it's not a projectile.
 	var/type_of_casings = null
 	var/attachment_firing_delay = 0 //the delay between shots, for attachments that fires stuff
@@ -961,44 +961,31 @@ Defined in conflicts.dm of the #defines folder.
 	name = "masterkey shotgun"
 	icon_state = "masterkey"
 	attach_icon = "masterkey_a"
-	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot. The short barrel reduces the ammo's effectiveness."
+	desc = "A weapon-mounted, three-shot shotgun. Reloadable with buckshot and flechettes. The short barrel reduces the ammo's effectiveness."
 	w_class = 4
-	max_rounds = 3
-	current_rounds = 3
-	ammo = /datum/ammo/bullet/shotgun/buckshot/masterkey, /datum/ammo/bullet/shotgun/flechette/masterkey
 	slot = "under"
 	fire_sound = 'sound/weapons/gun_shotgun.ogg'
 	type_of_casings = "shell"
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_PROJECTILE|ATTACH_RELOADABLE|ATTACH_WEAPON
+	var/obj/item/weapon/gun/abstract_gun = null //make a new variable to store the abstract shotgun in
 
 /obj/item/attachable/attached_gun/shotgun/New()
 	..()
+	abstract_gun = new /obj/item/weapon/gun/shotgun/masterkey
 	attachment_firing_delay = config.mhigh_fire_delay*3
 
 /obj/item/attachable/attached_gun/shotgun/examine(mob/user)
 	..()
-	if(current_rounds > 0)
-		to_chat(user, "It has [current_rounds] shell\s left.")
+	if(abstract_gun.current_mag.current_rounds > 0)
+		to_chat(user, "It has [abstract_gun.current_mag.current_rounds] shell\s left.")
 	else
 		to_chat(user, "It's empty.")
 
 /obj/item/attachable/attached_gun/shotgun/reload_attachment(obj/item/ammo_magazine/handful/mag, mob/user)
-	if(istype(mag) && mag.flags_magazine & AMMUNITION_HANDFUL)
-		if(mag.default_ammo == /datum/ammo/bullet/shotgun/buckshot)
-			if(current_rounds >= max_rounds)
-				to_chat(user, "<span class='warning'>[src] is full.</span>")
-			else
-				current_rounds++
-				mag.current_rounds--
-				mag.update_icon()
-				to_chat(user, "<span class='notice'>You load one shotgun shell in [src].</span>")
-				playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
-				if(mag.current_rounds <= 0)
-					user.temp_drop_inv_item(mag)
-					qdel(mag)
-			return
-	to_chat(user, "<span class='warning'>[src] only accepts shotgun buckshot.</span>")
-
+    if(mag.default_ammo != /datum/ammo/bullet/shotgun/buckshot  && mag.default_ammo != /datum/ammo/bullet/shotgun/flechette)
+        to_chat(user, "<span class='warning'>[src] only accepts buckshot and flechettes.</span>")
+        return
+    abstract_gun.reload(user, mag)
 
 
 /obj/item/attachable/verticalgrip

@@ -537,3 +537,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 
 //-------------------------------------------------------
+//MASTERKEY SHOTGUN
+
+/obj/item/weapon/gun/shotgun/masterkey
+	name = "masterkey attachment"
