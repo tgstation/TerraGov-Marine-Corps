@@ -196,3 +196,17 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define OBJ_SKILL_CONSTRUCTION	17
 #define OBJ_SKILL_POLICE		18
 #define OBJ_SKILL_POWERLOADER	19
+
+//Razor wire
+
+#define RAZORWIRE_BASE_DAMAGE		40
+#define RAZORWIRE_ENTANGLE_DELAY	5 SECONDS
+#define RAZORWIRE_SOAK				5
+#define RAZORWIRE_MAX_HEALTH		200
+#define RAZORWIRE_SLOWDOWN			10
+#define RAZORWIRE_MIN_DAMAGE_MULT_LOW	0.4 //attacking
+#define RAZORWIRE_MAX_DAMAGE_MULT_LOW	0.6
+#define RAZORWIRE_MIN_DAMAGE_MULT_MED	0.8 //climbing into, disentangling or crusher charging it
+#define RAZORWIRE_MAX_DAMAGE_MULT_MED	1.2
+#define RAZORWIRE_MIN_DAMAGE_MULT_HIGH	1.6 //pouncing into it
+#define RAZORWIRE_MAX_DAMAGE_MULT_HIGH	2.4

@@ -183,6 +183,10 @@
 					var/obj/vehicle/multitile/root/cm_armored/A = O
 					A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
 					A.healthcheck()
+				else if(istype(O, /obj/structure/razorwire) )
+					var/obj/structure/razorwire/R = O
+					R.health -= rand(40,60) + 8 * upgrade
+					R.update_health()
 				return
 
 		T = next_T
@@ -200,6 +204,10 @@
 					var/obj/vehicle/multitile/root/cm_armored/A = O
 					A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
 					A.healthcheck()
+				else if(istype(O, /obj/structure/razorwire) )
+					var/obj/structure/razorwire/R = O
+					R.health -= rand(40,60) + 8 * upgrade
+					R.update_health()
 				return
 
 		var/obj/effect/xenomorph/spray/S = acid_splat_turf(T)
@@ -240,6 +248,10 @@
 						var/obj/vehicle/multitile/root/cm_armored/A = O
 						A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
 						A.healthcheck()
+					else if(istype(O, /obj/structure/razorwire) )
+						var/obj/structure/razorwire/R = O
+						R.health -= rand(40,60) + 8 * upgrade
+						R.update_health()
 					normal_density_flag = 1
 					break
 
@@ -280,6 +292,10 @@
 						var/obj/vehicle/multitile/root/cm_armored/A = O
 						A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
 						A.healthcheck()
+					else if(istype(O, /obj/structure/razorwire) )
+						var/obj/structure/razorwire/R = O
+						R.health -= rand(40,60) + 8 * upgrade
+						R.update_health()
 					inverse_normal_density_flag = 1
 					break
 
@@ -299,6 +315,10 @@
 							var/obj/vehicle/multitile/root/cm_armored/A = O
 							A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
 							A.healthcheck()
+						else if(istype(O, /obj/structure/razorwire) )
+							var/obj/structure/razorwire/R = O
+							R.health -= rand(40,60) + 8 * upgrade
+							R.update_health()
 						inverse_normal_density_flag = 1
 						break
 
