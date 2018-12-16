@@ -188,6 +188,7 @@
 /obj/item/weapon/gun/examine(mob/user)
 	..()
 	var/dat = ""
+	var/attached_weapon
 	if(flags_gun_features & GUN_TRIGGER_SAFETY)
 		dat += "The safety's on!<br>"
 	else
@@ -197,11 +198,9 @@
 	if(muzzle) 	dat += "It has \icon[muzzle] [muzzle.name] mounted on the front.<br>"
 	if(stock) 	dat += "It has \icon[stock] [stock.name] for a stock.<br>"
 	if(under)
-		dat += "It has \icon[under] [under.name]"
+		dat += "It has \icon[under] [under.name] mounted on the bottom.<br>"
 		if(under.flags_attach_features & ATTACH_WEAPON)
-			dat += " ([under.current_rounds]/[under.max_rounds])"
-		dat += " mounted underneath.<br>"
-
+			attached_weapon = TRUE
 
 	if(!(flags_gun_features & (GUN_INTERNAL_MAG|GUN_UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
 		if(current_mag && current_mag.current_rounds > 0)
@@ -213,6 +212,8 @@
 			dat += "It's unloaded[in_chamber?" but has a round chambered":""].<br>"
 	if(dat)
 		to_chat(user, dat)
+	if(attached_weapon)
+		under.examine(user)
 
 /obj/item/weapon/gun/wield(var/mob/user)
 	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
