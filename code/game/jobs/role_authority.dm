@@ -214,6 +214,13 @@ sorts them out by their department.
 
 	unassigned_players = null
 
+	for(var/datum/squad/S in squads)
+		S.num_engineers = initial(S.num_engineers)
+		S.num_medics = initial(S.num_medics)
+		S.num_smartgun = initial(S.num_smartgun)
+		S.num_specialists = initial(S.num_specialists)
+		S.num_leaders = initial(S.num_leaders)
+
 
 /datum/authority/branch/role/proc/assign_initial_roles(l, list/roles_to_iterate)
 	. = roles_to_iterate
@@ -404,20 +411,13 @@ sorts them out by their department.
 
 		if("Squad Engineer")
 			for(var/datum/squad/S in shuffle(squads))
-				if(strict)
-					if(S.num_engineers >= S.max_engineers)
-						continue
+				if(S.num_engineers >= S.max_engineers)
+					continue
 
-					if(S == P)
-						M.mind.assigned_squad = P
-						return TRUE
-				else
-					if(S.num_engineers >= S.max_engineers)
-						continue
-
-					if(S == P)
-						M.mind.assigned_squad = P
-						return TRUE
+				if(P && P == S)
+					M.mind.assigned_squad = P
+					S.num_engineers++
+					return TRUE
 
 			if(strict)
 				return FALSE
@@ -428,26 +428,20 @@ sorts them out by their department.
 
 				else
 					M.mind.assigned_squad = S
+					S.num_engineers++
 					return TRUE
 
 			return FALSE
 
 		if("Squad Medic")
 			for(var/datum/squad/S in shuffle(squads))
-				if(strict)
-					if(S.num_medics >= S.max_medics)
-						continue
+				if(S.num_medics >= S.max_medics)
+					continue
 
-					if(S == P)
-						M.mind.assigned_squad = P
-						return TRUE
-				else
-					if(S.num_medics >= S.max_medics)
-						continue
-
-					if(S == P)
-						M.mind.assigned_squad = P
-						return TRUE
+				if(P && P == S)
+					M.mind.assigned_squad = P
+					S.num_medics++
+					return TRUE
 
 			if(strict)
 				return FALSE
@@ -457,26 +451,20 @@ sorts them out by their department.
 					continue
 				else
 					M.mind.assigned_squad = S
+					S.num_medics++
 					return TRUE
 						
 			return FALSE
 
 		if("Squad Smartgunner")
 			for(var/datum/squad/S in shuffle(squads))
-				if(strict)
-					if(S.num_smartgun >= S.max_smartgun)
-						continue
+				if(S.num_smartgun >= S.max_smartgun)
+					continue
 
-					if(S == P)
-						M.mind.assigned_squad = P
-						return TRUE
-				else
-					if(S.num_smartgun >= S.max_smartgun)
-						continue
-
-					if(S == P)
-						M.mind.assigned_squad = P
-						return TRUE
+				if(P && P == S)
+					M.mind.assigned_squad = P
+					S.num_smartgun++
+					return TRUE
 
 			if(strict)
 				return FALSE
@@ -486,26 +474,20 @@ sorts them out by their department.
 					continue
 				else
 					M.mind.assigned_squad = S
+					S.num_smartgun++
 					return TRUE
 						
 			return FALSE
 
 		if("Squad Specialist")
 			for(var/datum/squad/S in shuffle(squads))
-				if(strict)
-					if(S.num_specialists >= S.max_specialists)
-						continue
+				if(S.num_specialists >= S.max_specialists)
+					continue
 
-					if(S == P)
-						M.mind.assigned_squad = P
-						return TRUE
-				else
-					if(S.num_specialists >= S.max_specialists)
-						continue
-
-					if(S == P)
-						M.mind.assigned_squad = P
-						return TRUE
+				if(P && P == S)
+					M.mind.assigned_squad = P
+					S.num_specialists++
+					return TRUE
 
 			if(strict)
 				return FALSE
@@ -515,26 +497,20 @@ sorts them out by their department.
 					continue
 				else
 					M.mind.assigned_squad = S
+					S.num_specialists++
 					return TRUE
 						
 			return FALSE
 
 		if("Squad Leader")
 			for(var/datum/squad/S in shuffle(squads))
-				if(strict)
-					if(S.num_leaders >= S.max_leaders)
-						continue
+				if(S.num_leaders >= S.max_leaders)
+					continue
 
-					if(S == P)
-						M.mind.assigned_squad = P
-						return TRUE
-				else
-					if(S.num_leaders >= S.max_leaders)
-						continue
-
-					if(S == P)
-						M.mind.assigned_squad = P
-						return TRUE
+				if(P && P == S)
+					M.mind.assigned_squad = P
+					S.num_leaders++
+					return TRUE
 
 			if(strict)
 				return FALSE
@@ -544,6 +520,7 @@ sorts them out by their department.
 					continue
 				else
 					M.mind.assigned_squad = S
+					S.num_leaders++
 					return TRUE
 						
 			return FALSE
