@@ -20,6 +20,7 @@ var/datum/round_statistics/round_statistics = new()
 	var/total_xenos_created = 0
 	var/total_humans_created = 0
 	var/total_bullet_hits_on_humans = 0
+	var/total_bullet_hits_on_marines = 0
 	var/total_bullet_hits_on_xenos = 0
 	var/total_larva_burst = 0
 	var/carrier_traps = 0

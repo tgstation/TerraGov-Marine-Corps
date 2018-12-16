@@ -178,7 +178,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 			to_chat(player, "<span class='round_body'>The end of round statistics are:</span>")
 			to_chat(player, " ")//gotta get that formatting on.
 			to_chat(player, "There were [round_statistics.total_bullets_fired] total bullets fired.")
-			to_chat(player, "[round_statistics.total_bullet_hits_on_humans] bullets managed to hit marines. For a [(round_statistics.total_bullet_hits_on_humans / max(round_statistics.total_bullets_fired, 1)) * 100]% friendly fire rate!")
+			to_chat(player, "[round_statistics.total_bullet_hits_on_marines] bullets managed to hit marines. For a [(round_statistics.total_bullet_hits_on_marines / max(round_statistics.total_bullets_fired, 1)) * 100]% friendly fire rate!")
 			if(round_statistics.total_bullet_hits_on_xenos)
 				to_chat(player, "[round_statistics.total_bullet_hits_on_xenos] bullets managed to hit xenomorphs. For a [(round_statistics.total_bullet_hits_on_xenos / max(round_statistics.total_bullets_fired, 1)) * 100]% accuracy total!")
 			if(round_statistics.grenades_thrown)
