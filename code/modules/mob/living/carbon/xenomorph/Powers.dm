@@ -696,7 +696,7 @@
 	H.throw_at(T, headbutt_distance, 1, src)
 	H.KnockDown(1, 1)
 	playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
-	spawn(xeno_caste.headbutt_cooldown)
+	spawn(DEFENDER_HEADBUTT_COOLDOWN)
 		used_headbutt = 0
 		to_chat(src, "<span class='notice'>You gather enough strength to headbutt again.</span>")
 		update_action_button_icons()
@@ -760,7 +760,7 @@
 	else
 		use_plasma(DEFENDER_TAILSWIPE_COST)
 
-	spawn(xeno_caste.tail_sweep_cooldown)
+	spawn(DEFENDER_TAILSWIPE_COOLDOWN)
 		used_tail_sweep = FALSE
 		to_chat(src, "<span class='notice'>You gather enough strength to tail sweep again.</span>")
 		update_action_button_icons()
@@ -809,7 +809,7 @@
 	do_crest_defense_cooldown()
 
 /mob/living/carbon/Xenomorph/proc/do_crest_defense_cooldown()
-	spawn(xeno_caste.crest_defense_cooldown)
+	spawn(DEFENDER_CREST_DEFENSE_COOLDOWN)
 		used_crest_defense = FALSE
 		to_chat(src, "<span class='notice'>You can [crest_defense ? "raise" : "lower"] your crest.</span>")
 		update_action_button_icons()
@@ -864,7 +864,7 @@
 	update_icons()
 
 /mob/living/carbon/Xenomorph/proc/do_fortify_cooldown()
-	spawn(xeno_caste.fortify_cooldown)
+	spawn(DEFENDER_FORTIFY_COOLDOWN)
 		used_fortify = FALSE
 		to_chat(src, "<span class='notice'>You can [fortify ? "stand up" : "fortify"] again.</span>")
 		update_action_button_icons()
@@ -1571,7 +1571,7 @@
 	if(cresttoss_used)
 		return
 
-	if(!check_plasma(40))
+	if(!check_plasma(CRUSHER_CRESTTOSS_COST))
 		return
 
 	if(legcuffed)
@@ -1579,7 +1579,7 @@
 		return
 
 	if(stagger)
-		to_chat(src, "<span class='xenowarning'>You try to fling away [M] but are unable as you fail to shake off the shock!</span>")
+		to_chat(src, "<span class='xenowarning'>You try to fling away [M] but are too disoriented!</span>")
 		return
 
 	if (!Adjacent(M) || !istype(M, /mob/living)) //Sanity check
@@ -1630,7 +1630,7 @@
 	"<span class='xenowarning'>You fling [M] away with your crest!</span>")
 
 	cresttoss_used = 1
-	use_plasma(40)
+	use_plasma(CRUSHER_CRESTTOSS_COST)
 
 
 	M.throw_at(T, toss_distance, 1, src)
@@ -1661,7 +1661,7 @@
 /mob/living/carbon/Xenomorph/proc/cresttoss_cooldown()
 	if(!cresttoss_used)//sanity check/safeguard
 		return
-	spawn(xeno_caste.cresttoss_cooldown)
+	spawn(CRUSHER_CRESTTOSS_COOLDOWN)
 		cresttoss_used = FALSE
 		to_chat(src, "<span class='xenowarning'><b>You can now crest toss again.</b></span>")
 		playsound(src, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)

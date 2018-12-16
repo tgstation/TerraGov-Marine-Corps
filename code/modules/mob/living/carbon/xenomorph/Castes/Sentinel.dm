@@ -154,6 +154,7 @@
 	upgrade = 0
 	speed = -0.8
 	pull_speed = -2
+	wound_type = "alien" //used to match appropriate wound overlays
 	var/last_neurotoxin_sting = null
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

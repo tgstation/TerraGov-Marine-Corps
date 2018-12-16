@@ -14,8 +14,6 @@
 
 	..()
 
-/datum/pipeline/proc/process()//This use to be called called from the pipe networks
-
 	//Allow for reactions
 	//air.react() //Should be handled by pipe_network now
 
