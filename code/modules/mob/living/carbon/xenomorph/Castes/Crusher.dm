@@ -151,6 +151,7 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	xeno_explosion_resistance = 3 //no stuns from explosions, ignore damages except devastation range.
 	mob_size = MOB_SIZE_BIG
+	wound_type = "crusher" //used to match appropriate wound overlays
 
 	is_charging = 1 //Crushers start with charging enabled
 
@@ -505,3 +506,4 @@
 			icon_state = "Crusher Walking"
 
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
+	update_wounds()
