@@ -384,7 +384,7 @@ sorts them out by their department.
 	if(!M?.mind)
 		return FALSE
 
-	var/datum/squad/R = pick(squads_names)
+	var/datum/squad/R = squads_names[pick(squads_names)]
 	var/datum/squad/P
 	var/strict = FALSE
 
