@@ -371,16 +371,16 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	command_announcement.Announce(input, name, new_sound = 'sound/AI/bioscan.ogg')
 
 	log_admin("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""].")
-	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[hostLocationS ? " Location: [hostLocationS].":""]", 1)
-	message_admins("Bioscan - Xenos: [numXenosPlanetr] on the planet[xenoLocationP ? " Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""]", 1)
+	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[hostLocationS ? " Location: [hostLocationS].":""]", 1)
+	message_admins("Bioscan - Xenos: [numXenosPlanetr] on the planet[xenoLocationP ? ". Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""]", 1)
 		
 	for(var/mob/M in observers) // Extra information for all ghosts
 		if(istype(M, /mob/new_player))
 			continue
 		to_chat(M, "<h2 class='alert'>Detailed Information</h2>")
-		to_chat(M, {"<span class='alert'>[numXenosPlanet] xeno[numXenosPlanet > 1 ? "s" : ""] on the planet, including [numLarvaPlanet] larva.<br>
-[numXenosShip] xeno[numXenosShip > 1 ? "s" : ""] on the ship, [numLarvaShip] larva.<br>
-[numHostsPlanet] human[numHostsPlanet > 1 ? "s" : ""] on the planet.<br>
+		to_chat(M, {"<span class='alert'>[numXenosPlanet] xenos on the planet, including [numLarvaPlanet] larva.
+[numXenosShip] xenos on the ship, [numLarvaShip] larva.
+[numHostsPlanet] human[numHostsPlanet > 1 ? "s" : ""] on the planet.
 [numHostsShip] human[numHostsShip > 1 ? "s" : ""] on the ship.</span>"})
 
 
