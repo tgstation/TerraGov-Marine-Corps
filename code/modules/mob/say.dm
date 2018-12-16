@@ -21,8 +21,6 @@
 	if(!message)
 		return
 
-	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
-
 	say(message)
 
 
@@ -37,12 +35,10 @@
 	if(!message)
 		return
 
-	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
-
 	if(use_me)
-		emote("me", message, TRUE)
+		emote("me", EMOTE_VISIBLE, message, TRUE)
 	else
-		emote(message, null, TRUE)
+		emote(message, EMOTE_VISIBLE, null, TRUE)
 
 
 /mob/proc/say_dead(var/message)

@@ -39,9 +39,7 @@ var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
 	if(!message)
 		return
 
-	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
-
-	say(message)
+	say_verb(message)
 
 
 /mob/verb/me_wrapper()
@@ -59,12 +57,7 @@ var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
 	if(!message)
 		return
 
-	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
-
-	if(use_me)
-		emote("me", message, TRUE)
-	else
-		emote(message, null, TRUE)
+	me_verb(message)
 
 
 /client/verb/typing_indicator()
