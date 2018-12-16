@@ -1,40 +1,41 @@
 /mob/proc/say()
 	return
 
+
 /mob/verb/whisper()
 	set name = "Whisper"
 	set category = "IC"
 	return
 
+
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 	set category = "IC"
-	if(say_disabled)	//This is here to try to identify lag problems
+	set hidden = TRUE
+
+	if(say_disabled)
 		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
 		return
 
-	if(message == "*dance")
-		set_typing_indicator(FALSE)
-		usr.say(message)
-		return
-	set_typing_indicator(FALSE)
-	usr.say(message)
+	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+
+	say(message)
 
 
 /mob/verb/me_verb(message as text)
 	set name = "Me"
 	set category = "IC"
+	set hidden = TRUE
 
-	if(say_disabled)	//This is here to try to identify lag problems
+	if(say_disabled)
 		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
-		return
+
 	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
 
-	set_typing_indicator(FALSE)
 	if(use_me)
-		usr.emote("me",usr.emote_type,message, TRUE)
+		emote("me", message, TRUE)
 	else
-		usr.emote(message, 1, null, TRUE)
+		emote(message, null, TRUE)
 
 /mob/proc/say_dead(var/message)
 	var/name = src.real_name
@@ -65,10 +66,10 @@
 	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span> says, <span class='message'>\"[message]\"</span></span>"
 
 	for(var/mob/M in player_list)
-	
+
 		if(istype(M, /mob/new_player))
 			continue
-			
+
 		if(M.client && M.stat == DEAD && (M.client.prefs.toggles_chat & CHAT_DEAD))
 			to_chat(M, rendered)
 

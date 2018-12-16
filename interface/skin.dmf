@@ -228,7 +228,7 @@ macro "hotkeymode"
 		command = "holster"
 	elem 
 		name = "M"
-		command = ".me"
+		command = "me"
 	elem 
 		name = "O"
 		command = "ooc"
@@ -252,7 +252,7 @@ macro "hotkeymode"
 		command = ".south"
 	elem 
 		name = "T"
-		command = ".say"
+		command = "say"
 	elem "w_key"
 		name = "W+REP"
 		command = ".north"

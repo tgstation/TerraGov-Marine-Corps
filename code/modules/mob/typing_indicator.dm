@@ -7,46 +7,57 @@ mob/var/last_typed_time
 var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
 
 
-/mob/proc/set_typing_indicator(var/enabled)
-	if(!client && !typing_indicator)
+
+/mob/proc/toggle_typing_indicator(var/type)
+	if(!client || !typing_indicator)
 		return
 
-	if(client.prefs?.toggles_chat & SHOW_TYPING)
+	if(!client.prefs?.toggles_chat & SHOW_TYPING)
 		overlays -= typing_indicator
+		return
 	
-	if(enabled && typing)
+	if(typing)
 		overlays -= typing_indicator
 		typing = FALSE
-	else if(enabled)
-		if(stat == CONSCIOUS) 
-			overlays += typing_indicator
-		typing = TRUE
 
-	return enabled
+	else if(stat == CONSCIOUS)
+		overlays += typing_indicator
+		typing = TRUE
 
 
 /mob/verb/say_wrapper()
-	set name = ".Say"
-	set hidden = TRUE
+	set name = "Say"
+	set category = "IC"
 
-	set_typing_indicator(TRUE)
+	toggle_typing_indicator()
 	var/message = input("","say (text)") as text
-	set_typing_indicator(FALSE)
+	toggle_typing_indicator()
+
 	if(!message)
 		return
-	say_verb(message)
+
+	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+
+	say(message)
 
 
 /mob/verb/me_wrapper()
-	set name = ".Me"
-	set hidden = TRUE
+	set name = "Me"
+	set category = "IC"
 
-	set_typing_indicator(TRUE)
+	toggle_typing_indicator()
 	var/message = input("", "me (text)") as text
-	set_typing_indicator(FALSE)
+	toggle_typing_indicator()
+
 	if(!message)
 		return
-	me_verb(message)
+
+	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
+
+	if(use_me)
+		emote("me", message, TRUE)
+	else
+		emote(message, null, TRUE)
 
 
 /client/verb/typing_indicator()
@@ -61,6 +72,6 @@ var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
 	// Clear out any existing typing indicator.
 	if(prefs.toggles_chat & SHOW_TYPING)
 		if(istype(mob)) 
-			mob.set_typing_indicator(0)
+			mob.toggle_typing_indicator()
 
 	feedback_add_details("admin_verb","TID") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

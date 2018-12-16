@@ -16,12 +16,11 @@
 		if(I.implanted)
 			I.trigger(act, src)
 
-
 	var/mob/living/carbon/human/H
 	if(param)
 		for(var/mob/living/carbon/A in view(null, null))
 			if(findtext(param, A.name) != 0)
-				M = A
+				H = A
 				break
 
 	if(!H || !istype(H))
@@ -136,7 +135,7 @@
 
 		if("handshake")
 			if(!is_mob_restrained() && r_hand && param)
-				if(M.canmove && M.r_hand && !M.is_mob_restrained())
+				if(H.canmove && H.r_hand && !H.is_mob_restrained())
 					message = "<B>[comm_paygrade][src]</B> shakes hands with [H]."
 				else
 					message = "<B>[comm_paygrade][src]</B> holds out \his hand to [H]."
@@ -230,7 +229,7 @@
 			if(!is_mob_restrained())
 				var/t1 = round(text2num(param))
 				if(isnum(t1))
-					if(t1 <= 5 && (!r_hand || !sl_hand))
+					if(t1 <= 5 && (!r_hand || !l_hand))
 						message = "<B>[comm_paygrade][src]</B> raises [t1] finger\s."
 					else if(t1 <= 10 && (!r_hand && !l_hand))
 						message = "<B>[comm_paygrade][src]</B> raises [t1] finger\s."
@@ -245,7 +244,7 @@
 			message = "<B>[comm_paygrade][src]</B> snores."
 
 		if("stare")
-			if(M)
+			if(param)
 				message = "<B>[comm_paygrade][src]</B> stares at [H]."
 			else
 				message = "<B>[comm_paygrade][src]</B> stares."
@@ -368,7 +367,7 @@
 				M.show_message(message)
 
 		for(var/mob/O in get_mobs_in_view(world.view, src))
-			O.show_message(message, m_type)
+			O.show_message(message)
 
 
 /mob/living/carbon/human/proc/audio_emote_cooldown(player_caused)
