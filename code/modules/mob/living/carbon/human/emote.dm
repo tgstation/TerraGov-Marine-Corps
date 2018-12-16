@@ -410,12 +410,10 @@ scream, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, star
 
 /mob/living/carbon/human/proc/audio_emote_cooldown(player_caused)
 	if(player_caused)
-		if(!recent_audio_emote)
-			recent_audio_emote = TRUE
+		if(audio_emote_time < world.time)
+			audio_emote_time = world.time + 80
 			return FALSE
-		if(recent_audio_emote)
+		else
 			to_chat(usr, "<span class='notice'>You just did an audible emote. Wait a while.</span>")
-			spawn(50)
-				recent_audio_emote = FALSE
 			return TRUE
 	return FALSE
