@@ -194,10 +194,7 @@ sorts them out by their department.
 	unassigned_players = shuffle(unassigned_players, 1) //Shuffle the players.
 
 
-	//Here we're doing the main body of the loop and assigning everyone. This is done on three macro levels.
-	var/l = 0
-
-	while(++l <= 3) //Three macro loops, from high to low.
+	for(var/l = 1 to 3) //Here we're doing the main body of the loop and assigning everyone. This is done on three macro levels.
 		roles = assign_initial_roles(l, roles)
 
 	for(var/i in unassigned_players)
