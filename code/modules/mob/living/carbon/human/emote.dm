@@ -40,7 +40,7 @@
 					return
 				if(client.handle_spam_prevention(message, MUTE_IC))
 					return
-			return custom_emote("[message]", player_caused)
+			return custom_emote(m_type, "[message]", player_caused)
 
 		if("blink")
 			message = "<B>[comm_paygrade][src]</B> blinks."
