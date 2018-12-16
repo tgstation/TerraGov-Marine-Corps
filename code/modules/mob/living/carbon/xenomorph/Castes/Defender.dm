@@ -24,7 +24,7 @@
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 200
 
 	// *** Evolution *** //
 	evolution_threshold = 100
@@ -42,10 +42,6 @@
 	charge_type = 2 //Pounce - Hunter
 
 	// *** Defender Abilities *** //
-	headbutt_cooldown = 4 SECONDS
-	tail_sweep_cooldown = 12 SECONDS
-	crest_defense_cooldown = 1 SECONDS
-	fortify_cooldown = 200
 	crest_defense_armor = 35
 	fortify_armor = 70
 
@@ -69,7 +65,7 @@
 	plasma_gain = 13
 
 	// *** Health *** //
-	max_health = 275
+	max_health = 240
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
@@ -101,7 +97,7 @@
 	plasma_gain = 14
 
 	// *** Health *** //
-	max_health = 290
+	max_health = 260
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
@@ -134,7 +130,7 @@
 	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 270
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
@@ -152,8 +148,8 @@
 	desc = "A alien with an armored head crest."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Defender Walking"
-	health = 250
-	maxHealth = 250
+	health = 200
+	maxHealth = 200
 	plasma_stored = 50
 	speed = -0.2
 	pixel_x = -16

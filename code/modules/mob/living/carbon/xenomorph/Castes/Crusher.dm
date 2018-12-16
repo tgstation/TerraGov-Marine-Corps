@@ -41,7 +41,6 @@
 	armor_deflection = 80
 
 	// *** Crusher Abilities *** //
-	cresttoss_cooldown = 6 SECONDS
 
 /datum/xeno_caste/crusher/mature
 	upgrade_name = "Mature"
