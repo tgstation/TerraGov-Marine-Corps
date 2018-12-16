@@ -319,6 +319,11 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define HIVEMIND 16         // Broadcast to all mobs with this language.
 //=================================================
 
+
+#define EMOTE_VISIBLE  1
+#define EMOTE_AUDIBLE  2
+
+
 //Species flags.
 #define NO_BLOOD 1
 #define NO_BREATHE 2

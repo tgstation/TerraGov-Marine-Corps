@@ -1052,14 +1052,26 @@
 	var/message = ""
 	switch(command_aura)
 		if("move")
+			var/image/move = image('icons/mob/talk.dmi', icon_state = "order_move")
+			overlays += move
 			message = pick(";GET MOVING!", ";GO, GO, GO!", ";WE ARE ON THE MOVE!", ";MOVE IT!", ";DOUBLE TIME!")
 			say(message)
+			spawn(5 SECONDS)
+				overlays -= move
 		if("hold")
+			var/image/hold = image('icons/mob/talk.dmi', icon_state = "order_hold")
+			overlays += hold
 			message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!")
 			say(message)
+			spawn(5 SECONDS)
+				overlays -= hold
 		if("focus")
+			var/image/focus = image('icons/mob/talk.dmi', icon_state = "order_focus")
+			overlays += focus
 			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!")
 			say(message)
+			spawn(5 SECONDS)
+				overlays -= focus
 	update_action_buttons()
 
 

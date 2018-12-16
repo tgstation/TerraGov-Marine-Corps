@@ -1,15 +1,19 @@
 // All mobs should have custom emote, really..
-/mob/proc/custom_emote(var/message = null, player_caused)
+/mob/proc/custom_emote(var/m_type = EMOTE_VISIBLE, var/message = null, player_caused)
 	var/comm_paygrade = ""
+
 	if(stat || (!use_me && player_caused))
 		if(player_caused)
 			to_chat(src, "You are unable to emote.")
 		return
+
 	if(istype(src, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = src
 		comm_paygrade = H.get_paygrade()
 
 	var/muzzled = istype(wear_mask, /obj/item/clothing/mask/muzzle)
+	if(m_type == EMOTE_AUDIBLE && muzzled) 
+		return
 
 	var/input
 	if(!message)
@@ -22,8 +26,10 @@
 	else
 		return
 
+
 	if(message)
 		log_message(message, LOG_EMOTE)
+
 
 		for(var/mob/M in player_list)
 			if (!M.client)
@@ -35,15 +41,25 @@
 			if(M.stat == DEAD && (M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) && !(M in viewers(src,null)))
 				M.show_message(message)
 
-		for(var/mob/O in viewers(src, null))
-			if(O.status_flags & PASSEMOTES)
-				for(var/obj/item/holder/H in O.contents)
-					H.show_message(message, m_type)
 
-				for(var/mob/living/M in O.contents)
-					M.show_message(message, m_type)
+		if(m_type == EMOTE_VISIBLE)
+			for(var/mob/O in viewers(src, null))
+				if(O.status_flags & PASSEMOTES)
+					for(var/obj/item/holder/H in O.contents)
+						H.show_message(message, m_type)
+					for(var/mob/living/M in O.contents)
+						M.show_message(message, m_type)
+				O.show_message(message, m_type)
 
-			O.show_message(message, m_type)
+		else if(m_type == EMOTE_AUDIBLE)
+			for(var/mob/O in hearers(get_turf(src), null))
+				if(O.status_flags & PASSEMOTES)
+					for(var/obj/item/holder/H in O.contents)
+						H.show_message(message, m_type)
+					for(var/mob/living/M in O.contents)
+						M.show_message(message, m_type)
+				O.show_message(message, m_type)
+
 
 /mob/proc/emote_dead(var/message)
 	if(client.prefs.muted & MUTE_DEADCHAT)
@@ -58,7 +74,6 @@
 		if(!dsay_allowed)
 			to_chat(src, "<span class='warning'>Deadchat is globally muted</span>")
 			return
-
 
 	var/input
 	if(!message)
@@ -91,4 +106,4 @@
 	set desc = "Displays a list of usable emotes."
 	set category = "IC"
 
-	usr.say("*help")
+	say("*help")

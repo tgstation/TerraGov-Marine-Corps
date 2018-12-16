@@ -7,7 +7,6 @@ mob/var/last_typed_time
 var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
 
 
-
 /mob/proc/toggle_typing_indicator(var/type)
 	if(!client || !typing_indicator)
 		return
@@ -26,8 +25,12 @@ var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
 
 
 /mob/verb/say_wrapper()
-	set name = "Say"
-	set category = "IC"
+	set name = ".Say"
+	set hidden = TRUE
+
+	if(say_disabled)
+		to_chat(usr, "<span class='warning'><b>Speech is currently admin-disabled.</b>.")
+		return
 
 	toggle_typing_indicator()
 	var/message = input("","say (text)") as text
@@ -42,8 +45,12 @@ var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
 
 
 /mob/verb/me_wrapper()
-	set name = "Me"
-	set category = "IC"
+	set name = ".Me"
+	set hidden = TRUE
+
+	if(say_disabled)
+		to_chat(usr, "<span class='warning'><b>Speech is currently admin-disabled.</b>.")
+		return
 
 	toggle_typing_indicator()
 	var/message = input("", "me (text)") as text
