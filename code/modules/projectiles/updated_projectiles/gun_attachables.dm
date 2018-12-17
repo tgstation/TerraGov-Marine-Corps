@@ -994,6 +994,16 @@ Defined in conflicts.dm of the #defines folder.
         return
     abstract_gun.reload(user, mag)
 
+/obj/item/attachable/attached_gun/shotgun/fire_attachment(atom/target, obj/item/weapon/gun/gun, mob/living/user)
+	if(gun.active_attachable.abstract_gun.current_mag.current_rounds > 0) //If it's still got ammo and stuff.
+		gun.active_attachable.abstract_gun.current_mag.current_rounds--
+		return gun.active_attachable.Fire
+	else
+		to_chat(user, "<span class='warning'>[gun.active_attachable] is empty!</span>")
+		to_chat(user, "<span class='notice'>You disable [gun.active_attachable].</span>")
+		playsound(user, gun.active_attachable.activation_sound, 15, 1)
+		gun.active_attachable.activate_attachment(src, null, TRUE)
+
 /obj/item/attachable/verticalgrip
 	name = "vertical grip"
 	desc = "A custom-built improved foregrip for better accuracy, less recoil, and less scatter when wielded especially during burst fire. \nHowever, it also increases weapon size, slightly increases wield delay and makes unwielded fire more cumbersome."

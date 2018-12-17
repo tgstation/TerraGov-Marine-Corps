@@ -487,19 +487,8 @@ and you're good to go.
 /obj/item/weapon/gun/proc/load_into_chamber(mob/user)
 	//The workhorse of the bullet procs.
  	//If we have a round chambered and no active attachable, we're good to go.
-	if(in_chamber && !active_attachable)
+	if(in_chamber)
 		return in_chamber //Already set!
-
-	//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
-	if(active_attachable)
-		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
-			active_attachable.current_rounds--
-			return create_bullet(active_attachable.ammo)
-		else
-			to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
-			to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
-			playsound(user, active_attachable.activation_sound, 15, 1)
-			active_attachable.activate_attachment(src, null, TRUE)
 	else
 		return ready_in_chamber()//We're not using the active attachable, we must use the active mag if there is one.
 
