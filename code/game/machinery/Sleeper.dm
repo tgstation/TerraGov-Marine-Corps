@@ -198,7 +198,7 @@
 /obj/machinery/sleeper/Destroy()
 	occupant.in_stasis = FALSE //clean up; end stasis; remove from processing
 	occupant = null
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	stop_processing()
 	return ..()
 

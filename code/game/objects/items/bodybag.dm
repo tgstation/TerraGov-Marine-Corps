@@ -227,7 +227,7 @@
 	if(L)
 		L.in_stasis = FALSE
 		stasis_mob = null
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/structure/closet/bodybag/cryobag/open()
@@ -235,7 +235,7 @@
 	if(L)
 		L.in_stasis = FALSE
 		stasis_mob = null
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 	. = ..()
 	if(used > max_uses)
 		new /obj/item/trash/used_stasis_bag(loc)
@@ -262,16 +262,16 @@
 	var/mob/living/carbon/human/H = locate() in contents
 	if(H)
 		stasis_mob = H
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 
 /obj/structure/closet/bodybag/cryobag/process()
 	used++
 	if(!stasis_mob)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		open()
 		return
 	if(stasis_mob.stat == DEAD)// || !stasis_mob.key || !stasis_mob.client) // stop using cryobags for corpses and SSD/Ghosted
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		open()
 		visible_message("<span class='notice'>\The [src] rejects the corpse.</span>")
 		return

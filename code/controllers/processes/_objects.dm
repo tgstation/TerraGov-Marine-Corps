@@ -12,10 +12,10 @@ datum/controller/process/objects/setup()
 datum/controller/process/objects/doWork()
 
 	var/i = 1
-	while(i<=processing_objects.len)
-		var/obj/Object = processing_objects[i]
+	while(i<=SSobj.len)
+		var/obj/Object = SSobj[i]
 		if(Object)
 			Object.process()
 			i++
 			continue
-		processing_objects.Cut(i,i+1)
+		SSobj.Cut(i,i+1)

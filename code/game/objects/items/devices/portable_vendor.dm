@@ -186,11 +186,11 @@
 
 /obj/item/device/portable_vendor/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 	update_overlays()
 
 /obj/item/device/portable_vendor/Destroy()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 
@@ -198,7 +198,7 @@
 	var/turf/T = get_turf(src)
 	T.visible_message("<span class='warning'>[src] shudders as its internal components break apart!</span>")
 	broken = 1
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	update_overlays()
 
 	playsound(src, 'sound/effects/sparks4.ogg', 60, 1)

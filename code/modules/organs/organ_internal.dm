@@ -23,7 +23,7 @@
 	var/germ_level = 0		// INTERNAL germs inside the organ, this is BAD if it's greater than INFECTION_LEVEL_ONE
 
 
-/datum/internal_organ/proc/process()
+/datum/internal_organ/process()
 		return 0
 
 //Germs
