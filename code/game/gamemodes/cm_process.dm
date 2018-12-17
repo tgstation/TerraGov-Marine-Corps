@@ -304,8 +304,10 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 					if(0) //nullspace
 						if(M.loc && M.loc.z == 3) //in a closet or vent
 							numXenosShip++
+							xenoLocationsS += M.loc.loc.name
 						if(M.loc && M.loc.z == 1)
 							numXenosPlanet++
+							xenoLocationsP += M.loc.loc.name
 					if(1) //Planet.
 						if(istype(M, /mob/living/carbon/Xenomorph/Larva))
 							numLarvaPlanet++
@@ -324,8 +326,10 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 					if(0) //nullspace
 						if(M.loc && M.loc.z == 3) //in a closet or vent
 							numHostsShip++
+							hostLocationsS += M.loc.loc.name
 						if(M.loc && M.loc.z == 1)
 							numHostsPlanet++ 
+							hostLocationsP += M.loc.loc.name
 					if(1) //Planet.
 						numHostsPlanet++ 
 						hostLocationsP += M.loc.loc.name
