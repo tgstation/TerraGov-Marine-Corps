@@ -174,74 +174,11 @@ var/global/datum/controller/gameticker/ticker
 		qdel(player)
 
 
-<<<<<<< HEAD
-/datum/controller/gameticker
-	proc/create_characters()
-		for(var/mob/new_player/player in player_list)
-			if(player && player.ready && player.mind)
-				if(player.mind.assigned_role=="AI")
-					player.close_spawn_windows()
-					player.AIize()
-				else if(!player.mind.assigned_role)
-					continue
-				else
-					player.create_character()
-					qdel(player)
-
-
-	proc/collect_minds()
-		for(var/mob/living/player in player_list)
-			if(player.mind)
-				ticker.minds += player.mind
-
-
-	proc/equip_characters()
-		var/captainless=1
-		if(mode && istype(mode,/datum/game_mode/huntergames)) // || istype(mode,/datum/game_mode/whiskey_outpost)
-			return
-
-		var/mob/living/carbon/human/player
-		var/m
-		for(m in player_list)
-			player = m
-			if(istype(player) && player.mind && player.mind.assigned_role)
-				if(player.mind.assigned_role == "Commander")
-					captainless=0
-				if(player.mind.assigned_role != "MODE")
-					RoleAuthority.equip_role(player, RoleAuthority.roles_by_name[player.mind.assigned_role])
-					UpdateFactionList(player)
-					EquipCustomItems(player)
-		if(captainless)
-			for(var/mob/M in player_list)
-				if(!istype(M,/mob/new_player))
-					to_chat(M, "Marine commander position not forced on anyone.")
-
-
-	process()
-		if(current_state != GAME_STATE_PLAYING)
-			return 0
-
-		mode.process()
-
-		var/game_finished = 0
-		var/mode_finished = 0
-		if (config.continous_rounds)
-			if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) game_finished = 1
-			mode_finished = (!post_game && mode.check_finished())
-		else
-			game_finished = (mode.check_finished() /* || (emergency_shuttle.returned() && emergency_shuttle.evac == 1)*/)
-			mode_finished = game_finished
-
-		if(!EvacuationAuthority.dest_status != NUKE_EXPLOSION_IN_PROGRESS && game_finished && (mode_finished || post_game))
-			current_state = GAME_STATE_FINISHED
-			Master.SetRunLevel(RUNLEVEL_POSTGAME)
-=======
 /datum/controller/gameticker/proc/collect_minds()
 	for(var/mob/living/player in player_list)
 		if(player.mind)
 			ticker.minds += player.mind
 
->>>>>>> 42a8bac1f358d000e0b6d5f19b6e2850d36ebddc
 
 /datum/controller/gameticker/proc/equip_characters()
 	var/captainless = TRUE

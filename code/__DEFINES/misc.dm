@@ -1,5 +1,3 @@
-/datum/proc/process()
-	return
 //for all defines that doesn't fit in any other file.
 
 
