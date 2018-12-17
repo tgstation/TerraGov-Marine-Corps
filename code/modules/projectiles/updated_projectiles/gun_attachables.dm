@@ -987,7 +987,6 @@ Defined in conflicts.dm of the #defines folder.
         return
     abstract_gun.reload(user, mag)
 
-
 /obj/item/attachable/verticalgrip
 	name = "vertical grip"
 	desc = "A custom-built improved foregrip for better accuracy, less recoil, and less scatter when wielded especially during burst fire. \nHowever, it also increases weapon size, slightly increases wield delay and makes unwielded fire more cumbersome."

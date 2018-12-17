@@ -542,3 +542,6 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/masterkey
 	name = "masterkey attachment"
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/masterkey
+	fire_sound = 'sound/weapons/gun_shotgun.ogg'
+	reload_sound = 'sound/weapons/gun_shotgun_shell_insert.ogg'
+	cocked_sound = 'sound/weapons/gun_shotgun_reload.ogg'
