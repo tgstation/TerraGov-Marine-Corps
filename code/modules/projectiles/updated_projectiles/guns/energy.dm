@@ -351,7 +351,6 @@
 		charge_cost = M37_OVERCHARGE_AMMO_COST
 		ammo = ammo_list[/datum/ammo/energy/lasgun/M43/overcharge]
 		fire_delay = config.med_fire_delay * 2 // 1 shot per second fire rate
-		damage_falloff_mult = config.low_damage_falloff_mult
 		fire_sound = 'sound/weapons/Laser3.ogg'
 		to_chat(user, "\icon[src] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = TRUE
@@ -360,7 +359,6 @@
 		charge_cost = M37_STANDARD_AMMO_COST
 		ammo = ammo_list[/datum/ammo/energy/lasgun/M43]
 		fire_delay = config.low_fire_delay
-		damage_falloff_mult = config.med_damage_falloff_mult
 		fire_sound = 'sound/weapons/Laser.ogg'
 		to_chat(user, "\icon[src] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = FALSE
