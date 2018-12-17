@@ -1,11 +1,7 @@
-//MARINE RESEARCH CONSOLE 15JAN2016 BY APOP
-
 //This is the Research Console for the new Marine Research System.  It controls the research database, as well as the Sample Analyzer and 3d Fabricator.
 //Future machines will also be controlled from this.
 //Basically, this is a rehashed RD console.
 //FYI:  All the marine research weapons, still use the r_n_d class.  Don't see a reason to make another one, and this will let the w-y system link with Legacy.
-#define	IMPRINTER	1	//For circuits. Uses glass/chemicals.
-#define PROTOLATHE	2	//New stuff. Uses glass/metal/chemicals
 
 /obj/machinery/computer/NTresearch
 	name = "R&D Console"

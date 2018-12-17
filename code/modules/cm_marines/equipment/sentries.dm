@@ -287,6 +287,7 @@
 	camera.c_tag = "[name] ([rand(0, 1000)])"
 	spawn(2)
 		stat = 0
+	//START_PROCESSING(SSobj, src)
 	ammo = ammo_list[ammo]
 	update_icon()
 
@@ -1038,17 +1039,17 @@
 		if(path.len)
 			var/blocked = FALSE
 			for(T in path)
-				if(T.opacity || T.density)
+				if(T.opacity || T.density && T.throwpass == FALSE)
 					blocked = TRUE
 					break //LoF Broken; stop checking; we can't proceed further.
 
 				for(var/obj/machinery/MA in T)
-					if(MA.opacity || MA.density && !(MA.flags_atom & ON_BORDER) )
+					if(MA.opacity || MA.density && MA.throwpass == FALSE)
 						blocked = TRUE
 						break //LoF Broken; stop checking; we can't proceed further.
 
 				for(var/obj/structure/S in T)
-					if(S.opacity || S.density && !(S.flags_atom & ON_BORDER) )
+					if(S.opacity || S.density && S.throwpass == FALSE )
 						blocked = TRUE
 						break //LoF Broken; stop checking; we can't proceed further.
 			if(!blocked)

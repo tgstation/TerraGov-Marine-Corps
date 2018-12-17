@@ -14,7 +14,6 @@
 /datum/surgery_step/necro/fix_dead_tissue //Debridement
 
 	allowed_tools = list(
-		/obj/item/tool/surgery/scalpel/manager = 0,			\
 		/obj/item/tool/surgery/scalpel = 100,		\
 		/obj/item/tool/kitchen/knife = 75,	\
 		/obj/item/shard = 50, 		\
