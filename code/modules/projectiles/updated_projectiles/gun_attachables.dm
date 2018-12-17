@@ -975,11 +975,18 @@ Defined in conflicts.dm of the #defines folder.
 	attachment_firing_delay = config.mhigh_fire_delay*3
 
 /obj/item/attachable/attached_gun/shotgun/examine(mob/user)
-	..()
-	if(abstract_gun.current_mag.current_rounds > 0)
-		to_chat(user, "It has [abstract_gun.current_mag.current_rounds] shell\s left.")
-	else
-		to_chat(user, "It's empty.")
+	if(attached_weapon)
+		if (!abstract_gun.current_mag.current_rounds)
+			to_chat(user, "The [src] is empty!")
+		else
+			to_chat(user, "The [src] has [abstract_gun.current_mag.current_rounds] shell\s left.")
+	else 
+		. = ..()
+		if (!abstract_gun.current_mag.current_rounds)
+			to_chat(user, "The [src] is empty!")
+		else
+			
+			to_chat(user, "The [src] has [abstract_gun.current_mag.current_rounds] shell\s left.")
 
 /obj/item/attachable/attached_gun/shotgun/reload_attachment(obj/item/ammo_magazine/handful/mag, mob/user)
     if(mag.default_ammo != /datum/ammo/bullet/shotgun/buckshot  && mag.default_ammo != /datum/ammo/bullet/shotgun/flechette)
