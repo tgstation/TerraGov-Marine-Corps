@@ -8,10 +8,10 @@ var/global/image/typing_indicator = image('icons/mob/talk.dmi', null, "typing")
 
 
 /mob/proc/toggle_typing_indicator(var/type)
-	if(!client || !typing_indicator)
+	if(!typing_indicator)
 		return
 
-	if(!client.prefs?.toggles_chat & SHOW_TYPING)
+	if(!client?.prefs?.toggles_chat & SHOW_TYPING)
 		overlays -= typing_indicator
 		return
 	

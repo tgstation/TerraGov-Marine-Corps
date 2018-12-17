@@ -139,7 +139,7 @@
 				message = "<B>[comm_paygrade][src]</B> makes a noise."
 
 		if("handshake")
-			if(!is_mob_restrained() && r_hand && param)
+			if(!is_mob_restrained() && !(r_hand && l_hand) && param)
 				if(H.canmove && H.r_hand && !H.is_mob_restrained())
 					message = "<B>[comm_paygrade][src]</B> shakes hands with [H]."
 				else
