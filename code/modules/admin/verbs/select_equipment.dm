@@ -96,22 +96,3 @@
 	log_admin("[key_name(usr)] changed the equipment of [key_name(M)] to [dresscode].")
 	message_admins("\blue [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode].", 1)
 	return
-
-
-/mob/living/proc/set_ID(new_job)
-	return
-
-/mob/living/carbon/human/set_ID(new_job)
-	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
-	if(new_job)
-		if(wear_id)
-			var/obj/item/card/id/I = wear_id.GetID()
-			if(I)
-				var/title_alt = J.get_alternative_title(src)
-				I.access = J.get_access()
-				I.rank = J.title
-				I.assignment = title_alt ? title_alt :  J.disp_title
-				I.name = "[I.registered_name]'s ID Card ([I.assignment])"
-				I.paygrade = J.paygrade
-		else
-			J.equip_identification(src, J)
