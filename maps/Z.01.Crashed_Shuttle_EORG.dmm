@@ -1,0 +1,130 @@
+"aa" = (/turf/closed/shuttle{icon_state = "wall2"},/area/centcom/test)
+"ab" = (/turf/open/gm/grass,/area/centcom/test)
+"ac" = (/turf/open/gm/dirt,/area/centcom/test)
+"ad" = (/turf/open/gm/coast{icon_state = "beach"; dir = 4},/area/centcom/test)
+"ae" = (/turf/open/gm/river,/area/centcom/test)
+"af" = (/obj/structure/flora/ausbushes/ppflowers,/turf/open/gm/river,/area/centcom/test)
+"ag" = (/turf/open/gm/coast{icon_state = "beach"; dir = 8},/area/centcom/test)
+"ah" = (/turf/closed/gm/dense,/area/centcom/test)
+"ai" = (/turf/closed/wall,/area/centcom/test)
+"aj" = (/obj/structure/flora/ausbushes/ywflowers,/turf/open/gm/river,/area/centcom/test)
+"ak" = (/turf/open/floor/prison{icon_state = "kitchen"},/area/centcom/test)
+"al" = (/obj/structure/flora/ausbushes/reedbush,/turf/open/gm/river,/area/centcom/test)
+"am" = (/obj/structure/flora/ausbushes/sparsegrass,/turf/open/gm/river,/area/centcom/test)
+"an" = (/obj/structure/jungle/vines,/turf/open/gm/grass,/area/centcom/test)
+"ao" = (/obj/structure/jungle/planttop1,/turf/open/gm/grass,/area/centcom/test)
+"ap" = (/obj/machinery/shower{pixel_y = 32},/turf/open/floor/prison{icon_state = "kitchen"},/area/centcom/test)
+"aq" = (/obj/structure/jungle/plantbot1,/turf/open/gm/grass,/area/centcom/test)
+"ar" = (/turf/open/jungle,/area/centcom/test)
+"as" = (/obj/machinery/door/airlock,/turf/open/floor/prison{icon_state = "kitchen"},/area/centcom/test)
+"at" = (/turf/closed/shuttle,/area/centcom/test)
+"au" = (/obj/structure/window/shuttle,/obj/structure/grille,/turf/open/shuttle/brig,/area/centcom/test)
+"av" = (/obj/structure/bed/chair/dropship/passenger{icon_state = "shuttle_chair"; dir = 4},/turf/open/shuttle/brig,/area/centcom/test)
+"aw" = (/turf/open/shuttle/brig,/area/centcom/test)
+"ax" = (/obj/structure/bed/chair/dropship/passenger{icon_state = "shuttle_chair"; dir = 8},/turf/open/shuttle/brig,/area/centcom/test)
+"ay" = (/obj/machinery/floodlight{name = "Floodlight"},/turf/open/gm/grass,/area/centcom/test)
+"az" = (/obj/structure/bed/chair/dropship/pilot{icon_state = "pilot_chair"; dir = 1},/turf/open/shuttle/brig,/area/centcom/test)
+"aA" = (/obj/structure/table,/obj/machinery/light,/turf/open/shuttle/brig,/area/centcom/test)
+"aB" = (/turf/open/gm/coast{icon_state = "beach"; dir = 5},/area/centcom/test)
+"aC" = (/turf/open/gm/coast{icon_state = "beach"; dir = 10},/area/centcom/test)
+"aD" = (/turf/open/gm/coast,/area/centcom/test)
+"aE" = (/turf/open/gm/coast{icon_state = "beach"; dir = 6},/area/centcom/test)
+"aF" = (/obj/structure/bed/chair/dropship/passenger,/turf/open/shuttle/brig,/area/centcom/test)
+"aG" = (/obj/machinery/door/airlock/hatch,/turf/open/shuttle/brig,/area/centcom/test)
+"aH" = (/obj/structure/closet,/turf/open/floor,/area/centcom/test)
+"aI" = (/obj/structure/table,/turf/open/floor,/area/centcom/test)
+"aJ" = (/obj/structure/table,/obj/structure/bedsheetbin,/turf/open/floor,/area/centcom/test)
+"aK" = (/obj/structure/closet/athletic_mixed,/turf/open/floor,/area/centcom/test)
+"aL" = (/turf/open/floor,/area/centcom/test)
+"aM" = (/turf/open/gm/coast{icon_state = "beach"; dir = 9},/area/centcom/test)
+"aN" = (/turf/open/gm/coast{icon_state = "beach"; dir = 1},/area/centcom/test)
+"aO" = (/obj/structure/bed/chair/dropship/passenger{icon_state = "shuttle_chair"; dir = 8},/obj/machinery/light{icon_state = "tube1"; dir = 4},/turf/open/shuttle/brig,/area/centcom/test)
+"aP" = (/obj/structure/bed/chair/dropship/passenger{icon_state = "shuttle_chair"; dir = 4},/obj/machinery/light{icon_state = "tube1"; dir = 8},/turf/open/shuttle/brig,/area/centcom/test)
+"aQ" = (/obj/structure/bed,/obj/item/bedsheet,/turf/open/floor,/area/centcom/test)
+"aR" = (/obj/machinery/door/airlock/glass,/turf/open/floor,/area/centcom/test)
+"aS" = (/obj/machinery/light{icon_state = "tube1"; dir = 1},/turf/open/shuttle/brig,/area/centcom/test)
+"aT" = (/obj/structure/lattice,/turf/open/gm/grass,/area/centcom/test)
+"aU" = (/obj/structure/door_assembly/door_assembly_hatch,/turf/open/shuttle/brig,/area/centcom/test)
+"aV" = (/obj/structure/closet/cabinet,/turf/open/floor,/area/centcom/test)
+"aW" = (/obj/machinery/door/airlock/multi_tile/glass,/turf/open/floor,/area/centcom/test)
+"aX" = (/obj/structure/window/framed/colony,/turf/open/floor,/area/centcom/test)
+"aY" = (/obj/structure/table,/obj/item/storage/bible,/turf/open/floor,/area/centcom/test)
+"aZ" = (/obj/structure/closet/crate,/turf/open/floor,/area/centcom/test)
+"ba" = (/obj/structure/coatrack,/turf/open/floor,/area/centcom/test)
+"bb" = (/obj/item/storage/belt/utility/full,/turf/open/shuttle/brig,/area/centcom/test)
+"bc" = (/obj/machinery/light,/turf/open/shuttle/brig,/area/centcom/test)
+"bd" = (/obj/structure/rack,/turf/open/floor,/area/centcom/test)
+"be" = (/obj/structure/rack,/obj/item/storage/belt/champion,/turf/open/floor,/area/centcom/test)
+"bf" = (/obj/structure/closet/toolcloset,/turf/open/floor,/area/centcom/test)
+"bg" = (/turf/open/floor/wood,/area/centcom/test)
+"bh" = (/obj/structure/broken_apc,/turf/open/floor/wood,/area/centcom/test)
+"bi" = (/obj/machinery/door/airlock/glass,/turf/open/floor/wood,/area/centcom/test)
+"bj" = (/obj/effect/decal/cleanable/blood/oil,/turf/open/floor/wood,/area/centcom/test)
+"bk" = (/obj/structure/closet/crate,/turf/open/floor/wood,/area/centcom/test)
+"bl" = (/obj/structure/table,/turf/open/floor/wood,/area/centcom/test)
+"bm" = (/obj/structure/table,/obj/item/storage/toolbox/mechanical,/turf/open/floor/wood,/area/centcom/test)
+"bn" = (/obj/structure/flora/ausbushes/sparsegrass,/turf/closed/shuttle{icon_state = "wall2"},/area/centcom/test)
+"bo" = (/obj/structure/flora/ausbushes/reedbush,/turf/closed/shuttle{icon_state = "wall2"},/area/centcom/test)
+
+(1,1,1) = {"
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+aaabababababababababababababababababababacadaeaeafagacababababababahahabababababababababababababababababahahahababababaa
+aaabababababaiaiaiaiaiaiaiaiaiaiaiaiaiabacadaeaeajagacabababababababababababababababababababahabababababababahababababaa
+aaababahahabaiakakakakakakakakakakakaiabacadalafaeagacababababababababababababababahabababababababababababababababababaa
+aaabababahabaiakaiakaiakaiakaiakaiakaiabacadaeaeamagacababababahahanahanababababababababahababababababababababababababaa
+aaababaoababaiakapakapakapakapakapakaiabacadaeaeaeagacababahananananananababababababababababababababahahababahahababahaa
+aaababaqababaiakaiakaiakaiakaiakaiakaiabacadaeaeaeagacabahahahanababanahahahahahabababababababababababababababababababaa
+aaabababababaiakapakapakapakapakapakaiabacadajaeaeagacabarahahababababababababababababababababababababababababababababaa
+aaabababababaiakakakakakakakakakakakaiabacadajamaeagacabababababababababababababababababababababababababahahabababababaa
+aaabahabababaiaiaiaiaiasaiasaiaiaiaiaiabacadafaeaeagacababababatatauatauatatabababababababababababababababahabababababaa
+aaabahabababababababababaoabababababababacadaealaeagacabababatatavawatawaxatatababababababababababababababababababababaa
+aaababababahahahabayababaqabababababababacadaeaeajagacabababatavawawazawawaxatababababahahababababababababababababababaa
+aaabababababababababababababacacacacacacacadaeajaeagacabababatatatawaAawatatatababababahahababababababababababahabababaa
+aaababaiaiaiaiaiaiaiaiabababacaBaeaCaDaDaDaEamafalagacabababataFataGataGataFatababababanabababababababababababababababaa
+aaabaiaiaHaIaIaJaIaKaiaiababacadamajaeaeaeaeaeajaeaCacabababaGawawawatawawawaGabababahahahababababababababababababahabaa
+aaabaiaLaLaLaLaLaLaLaLaiababacadaeaeafaMaNaNaNaNaNaBacabahabaGawawaOataPawawaGababababababababababababababababababababaa
+aaabaiaLaQaLaQaLaQaLaLaiababacadaealajagacacacacacacacabahabatawawaxatavawawatababababababababababahahababababababababaa
+aaabaiaLaLaLaLaLaLaLaLaRababacadafaeafagacabababababababahabatavawawaSawawaxatababababababababababahahababababahabababaa
+aaabaiaLaLaQaLaQaLaQaLaiababacadajamaeagacabababahahanahahabatatawaTawawawatatababababababababababahahababababababababaa
+aaabaiaLaLaLaLaLaLaLaLaRababacadaeaeaeagacabababahananahabababataUataUaTawaTaTababababababababababahahababababababababaa
+aaabaiaLaQaLaQaLaQaLaLaiababacadaeaeaeagacabababahanabababababatawawawawawaTabababababababababababahahababababababababaa
+aaabaiaLaLaLaLaLaLaLaLaiababacadaeafajagacabababahababababababaTaTaTaTabaTaTabababababababababababahahababababababababaa
+aaabaiaLaLaLaVaVaLaLaLaiababacadaeaeaeagacabababahababaoabababababababaTaTabababababababababaoababababababababababababaa
+aaabaiaiaWaLaiaiaWaLaiaiababacadalaeaeagacababababababaqabababababaTababababababababababababaqabababababababahababababaa
+aaababaiaLaLaLaLaLaLaiabababacadaeaeaeagacababababababababababababababayababababababababababababababababababahahabababaa
+aaababaXaIaLaLaLaLaIaXabababacadaeafaeagacababababababababababababababababababababababababababababababababababababababaa
+aaaoabaXaIaLaLaLaLaYaXabayabacadajalaeagacabahahahababababababababababaTaTaTabababababababababababababababababababababaa
+aaaqabaXaIaLaLaLaLaIaXabababacadafajamagacabananahababababababababaTaTaTaTaTatababababababababababababababababababababaa
+aaababaXaIaLaLaLaLaIaXabababacadafajaeagacabahananabababababababaTaTaTaTawawatababababababababababababababababababahabaa
+aaababaiaLaLaZbaaLaLaiabababacadaeajaeagacabahahahabababababababatawbbawawawatabababababababababababababahababababababaa
+aaabaiaiaWaLaiaiaWaLaiaiababacadaeaeaeagacababahahababababababatataGataGataGatatabababababababababababababababababababaa
+aaabaiaLaLaLaLaLaLaLaLaiababacadaeaealagacababababababababababatavawawbcawawaxatabababababababababahabababababababababaa
+aaabaiaLaLaLaLaLaLaLaLaiababacadaeafaeagacababababahahababababatavawaxatavawaxatabababababababababahababababahababababaa
+aaabaiaIaLbdbebdbdaLaLaiababacadajaeaeagacacabababahabababababatawawaxatavawawatabababababababababahabababababababababaa
+aaabaiaIaLbdaLaLbdaLaLaRababacadaeamaeaeagacacababababababababaGawawaOataPawawaGabababababababababahabababababababababaa
+aaabaiaIaLbdaLaLbdaLaLaiababacadaeafafaeaeagacacababababahababaGawawaxatavawawaGabababababababababahabababababababababaa
+aaabaiaLaLbdbdbdbdaLaLaRababacadaeaeamamaeagacacababaoababababatawawaxatavawawatabababababababababababababababababahabaa
+aaabaiaLaLaLaLaLaLaLaLaiababacacacadaeafaeaCaDacababaqababababatavawawaSawawaxatababaoababababababababababababababababaa
+aaabaiaibfaIaIaIaIbfaiaiabababacacacadaeaeaeaMacabababababababatatawawawawawatatababaqababababababababababababababababaa
+aaababaiaiaiaiaiaiaiaiabababababacacadaeafaeagacabababahababababatatauatauatatababababababababababababababahabababababaa
+aaababababababababababababahabababacadaeajamagacababahahabahabababababababababababababababababababababababababababababaa
+aaababababababababababaoabababayabacadalafaeagacabahahahahahahababababababababababababababababababababababababababababaa
+aaababababababababababaqabababababacadajaeaeagacababananabababababababababababababababababababababababababababababababaa
+aaababahabababababababababababababacadaeaeaeagacabahahahahabababababababababahababababababababababaoababababahabababahaa
+aaababahababaiaiaiaiaiaiaiaiabababacadaeamamagacababababahaoabababababababababababababababababababaqabababababababababaa
+aaabababababaibgbgbgbgbgbgaiabababacadaeamaeagacabababababaqabahananahabababahabababababababababababababababababahababaa
+aaabababababaibhbgbgbgbgbgaiabababacadaeaeaeagacabababababababananabahahababababababababababababababababababababahababaa
+aaabababababaibgbgbgbgbgbgbiabababacadaeaeajagacabababababababahahabahababababababahaharahahahahahahabababababababababaa
+aaabahabababaibgbjbgbgbgbgaiabababacadaeafalagacabababababababababababababababababababababababababababababababababababaa
+aaabahabababaibkbgbgbgblbmaiabababacadaeajaeagacabababababababababababababababababababababababababababababababababababaa
+aaahahabababaiaiaiaiaiaiaiaiabababacadamaeaeagacabababababahahababababababababahahahahahabababababababababababababababaa
+aaababababababababababababababacacacadaeamaeagacababababababahabababababababababababababababababababababababahababababaa
+aaababababababababababababayabacadaeaeaeaMaNacacababababababababababababababahahabababababababababababababababababababaa
+aaababababababababababahabababacadaeamaeagacacababababababababahabababababababahahahahahabababababahabababababababababaa
+aaababababaoabababababahahababacadaeafaeagacabababababababababababababababababababababababababababababababababababababaa
+aaababababaqabababababababababacadaeaeajagacabababababababababababababahahababababababababababahabababababababababababaa
+aaababababababababababababababacadaeaeafagacabababababahahahahahahabababahababababababababababababababababababababababaa
+aaababababababababababababahabacadalaeamagacababababababababababababababababababababahabababababababahababababababababaa
+aaababababababababababababababacadaeafaeagacabababababababababababababababababababababababababababababababababababababaa
+aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaabnboaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa
+"}
