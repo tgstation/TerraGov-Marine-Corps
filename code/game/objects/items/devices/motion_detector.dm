@@ -328,4 +328,5 @@
 		icon_state = "minidetector_on_[detector_mode]"
 	else
 		icon_state = "minidetector_off"
-	return ..()
+	return
+
