@@ -133,7 +133,7 @@ obj/machinery/gateway/centerstation/process()
 
 /obj/machinery/gateway/centerstation/attackby(obj/item/device/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/device/multitool))
-		to_chat(user, "\black The gate is already calibrated, there is no work for you to do here.")
+		to_chat(user, "The gate is already calibrated, there is no work for you to do here.")
 		return
 
 /////////////////////////////////////Away////////////////////////
@@ -219,7 +219,7 @@ obj/machinery/gateway/centerstation/process()
 	if(istype(M, /mob/living/carbon))
 		for(var/obj/item/implant/exile/E in M)//Checking that there is an exile implant in the contents
 			if(E.imp_in == M)//Checking that it's actually implanted vs just in their pocket
-				to_chat(M, "\black The station gate has detected your exile implant and is blocking your entry.")
+				to_chat(M, "The station gate has detected your exile implant and is blocking your entry.")
 				return
 	M.loc = get_step(stationgate.loc, SOUTH)
 	M.dir = SOUTH
@@ -228,7 +228,7 @@ obj/machinery/gateway/centerstation/process()
 /obj/machinery/gateway/centeraway/attackby(obj/item/device/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/device/multitool))
 		if(calibrated)
-			to_chat(user, "\black The gate is already calibrated, there is no work for you to do here.")
+			to_chat(user, "The gate is already calibrated, there is no work for you to do here.")
 			return
 		else
 			to_chat(user, "<span class='boldnotice'>Recalibration successful!: This gate's systems have been fine tuned.  Travel to this gate will now be on target.</span>")
