@@ -974,8 +974,8 @@ Defined in conflicts.dm of the #defines folder.
 	abstract_gun = new /obj/item/weapon/gun/shotgun/masterkey
 	attachment_firing_delay = config.mhigh_fire_delay*3
 
-/obj/item/attachable/attached_gun/shotgun/examine(mob/user)
-	if(attached_weapon)
+/obj/item/attachable/attached_gun/shotgun/examine(mob/user, /obj/item/weapon/gun/gun)
+	if(gun.attached_weapon)
 		if (!abstract_gun.current_mag.current_rounds)
 			to_chat(user, "The [src] is empty!")
 		else
