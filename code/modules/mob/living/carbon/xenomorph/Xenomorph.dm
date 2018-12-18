@@ -100,12 +100,11 @@
 	if(!xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)])
 		error("error finding datum")
 		return
-	var/datum/xeno_caste/X = new xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
+	var/datum/xeno_caste/X = xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
 	if(!istype(X))
 		error("error with caste datum")
 		return
 	xeno_caste = X
-	X.owner = src
 
 	plasma_stored = xeno_caste.plasma_max
 	maxHealth = xeno_caste.max_health

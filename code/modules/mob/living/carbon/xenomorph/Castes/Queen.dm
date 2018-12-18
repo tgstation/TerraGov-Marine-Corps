@@ -46,9 +46,9 @@
 	// *** Queen Abilities *** //
 	queen_leader_limit = 1 //Amount of leaders allowed
 
-/datum/xeno_caste/queen/handle_decay()
+/datum/xeno_caste/queen/handle_decay(mob/living/carbon/Xenomorph/X)
 	if(prob(20+abs(3*upgrade)))
-		owner.use_plasma(min(rand(1,2), owner.plasma_stored))
+		X.use_plasma(min(rand(1,2), X.plasma_stored))
 
 /datum/xeno_caste/queen/mature
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
@@ -222,7 +222,7 @@
 		/datum/action/xeno_action/activable/gut,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
-		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/xeno_spit
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/claw_toggle,
@@ -725,6 +725,7 @@
 			icon_state = "Queen Walking"
 
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
+	update_wounds()
 
 /mob/living/carbon/Xenomorph/Queen/Topic(href, href_list)
 

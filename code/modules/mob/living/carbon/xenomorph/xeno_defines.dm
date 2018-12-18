@@ -4,8 +4,6 @@
 	var/upgrade_name = "Young"
 	var/caste_desc = null
 
-	var/mob/living/carbon/Xenomorph/owner = null
-
 	var/caste_type_path = null
 
 	var/ancient_message = ""
@@ -91,13 +89,8 @@
 	var/eggs_max = 0
 
 	// *** Defender Abilities *** //
-	var/headbutt_cooldown = 0
-	var/tail_sweep_cooldown = 0
-	var/crest_defense_cooldown = 0
-	var/fortify_cooldown = 0
 	var/crest_defense_armor = 0
 	var/fortify_armor = 0
-	var/cresttoss_cooldown = 0
 
 	// *** Queen Abilities *** //
 	var/queen_leader_limit = 0 //Amount of leaders allowed
@@ -241,6 +234,8 @@
 	var/notice_delay = 20 //2 second between notices
 
 	var/cresttoss_used = FALSE
+
+	var/wound_type = "ravager" //used to match appropriate wound overlays
 
 /datum/hive_status
 	var/hivenumber = XENO_HIVE_NORMAL

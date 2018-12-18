@@ -285,6 +285,8 @@
 		affect(L)
 	for(var/obj/structure/barricade/B in T)
 		B.acid_smoke_damage(src)
+	for(var/obj/structure/razorwire/R in T)
+		R.acid_smoke_damage(src)
 	for(var/obj/vehicle/multitile/hitbox/cm_armored/H in T)
 		var/obj/vehicle/multitile/root/cm_armored/R = H.root
 		if(!R) continue

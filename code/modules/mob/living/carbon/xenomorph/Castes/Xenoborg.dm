@@ -25,7 +25,7 @@
 	max_health = 300
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_ROBOTIC|CASTE_FIRE_IMMUNE|CASTE_NO_DECAY
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_ROBOTIC|CASTE_FIRE_IMMUNE|CASTE_DECAY_PROOF
 
 	// *** Defense *** //
 	armor_deflection = 90 //Chance of deflecting projectiles.
@@ -52,8 +52,9 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/corrosive_acid,
-		/datum/action/xeno_action/activable/pounce //,
+		/datum/action/xeno_action/activable/pounce,
 //		/datum/action/xeno_action/activable/fire_cannon,
+		/datum/action/xeno_action/activable/salvage_plasma
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
