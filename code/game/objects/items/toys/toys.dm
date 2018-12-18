@@ -137,7 +137,7 @@
 	var/colourName = "red" //for updateIcon purposes
 
 	suicide_act(mob/user)
-		user.visible_message("\red <b>[user] is jamming the [src.name] up \his nose and into \his brain. It looks like \he's trying to commit suicide.</b>")
+		user.visible_message("<span class='danger'>[user] is jamming the [src.name] up \his nose and into \his brain. It looks like \he's trying to commit suicide.</span>")
 		return (BRUTELOSS|OXYLOSS)
 
 /*

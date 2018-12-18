@@ -72,7 +72,7 @@
 		t += "<span class='boldnotice'>You are too far away to read it.</span>"
 
 	else if(stat & (NOPOWER|BROKEN))
-		t += "\red <B>The display is off.</B>"
+		t += "<span class='danger'>The display is off.</span>"
 
 	else if(target)
 		if(target.return_pressure())

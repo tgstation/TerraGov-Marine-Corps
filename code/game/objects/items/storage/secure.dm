@@ -189,7 +189,7 @@
 						H.Stun(time)
 					if(H.stat != 2)	H.stat = 1
 					for(var/mob/O in viewers(H, null))
-						O.show_message(text("\red <B>[] has been knocked unconscious!</B>", H), 1, "\red You hear someone fall.", 2)
+						O.show_message(text("<span class='danger'>[] has been knocked unconscious!</span>", H), 1, "\red You hear someone fall.", 2)
 				else
 					to_chat(H, text("\red [] tried to knock you unconcious!",user))
 					H.adjust_blurriness(3)

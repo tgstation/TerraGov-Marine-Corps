@@ -65,7 +65,7 @@
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 				for(var/mob/O in viewers(src, null))
 					if ((O.client && !is_blind(O)))
-						O.show_message(text("\red <B>[] knocks down [H]!</B>", src), 1)
+						O.show_message(text("<span class='danger'>[] knocks down [H]!</span>", src), 1)
 		return
 	else if(a_intent == "grab")
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
@@ -79,7 +79,7 @@
 
 		var/dmg = rand(10,25)
 		H.apply_damage(dmg,BRUTE,edge = 1) //Does NOT check armor.
-		visible_message("\red <B>[src] mauls [H]!</b>","\red <B>You maul [H]!</b>")
+		visible_message("<span class='danger'>[src] mauls [H]!</b>","\red <B>You maul [H]!</span>")
 		playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 	return
 
@@ -101,12 +101,12 @@
 		return
 	else if(a_intent == "grab")
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
-		visible_message("\red <B>[src] grabs [X] in their jaws!</B>","\red <B>You grab [X] in your jaws!</b>")
+		visible_message("<span class='danger'>[src] grabs [X] in their jaws!</B>","\red <B>You grab [X] in your jaws!</span>")
 		src.start_pulling(X)
 	else
 		var/dmg = rand(20,32)
 		X.apply_damage(dmg,BRUTE,edge = 1) //Does NOT check armor.
-		visible_message("\red <B>[src] mauls [X]!</b>","\red <B>You maul [X]!</b>")
+		visible_message("<span class='danger'>[src] mauls [X]!</b>","\red <B>You maul [X]!</span>")
 		playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 	return
 
@@ -130,7 +130,7 @@
 		return
 	else if(a_intent == "grab")
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
-		visible_message("\red <B>[src] grabs [H] in their jaws!</B>","\red <B>You grab [H] in your jaws!</b>")
+		visible_message("<span class='danger'>[src] grabs [H] in their jaws!</B>","\red <B>You grab [H] in your jaws!</span>")
 		src.start_pulling(H)
 		return
 	else
@@ -141,7 +141,7 @@
 			return
 		var/dmg = rand(3,8)
 		H.apply_damage(dmg,BRUTE,edge = 1) //Does NOT check armor.
-		visible_message("\red <B>[src] mauls [H]!</b>","\red <B>You maul [H]!</b>")
+		visible_message("<span class='danger'>[src] mauls [H]!</b>","\red <B>You maul [H]!</span>")
 		playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 	return
 
@@ -155,12 +155,12 @@
 			if ((prob(75) && health > 0))
 				playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 				for(var/mob/O in viewers(src, null))
-					O.show_message("\red <B>[M.name] has bit [name]!</B>", 1)
+					O.show_message("<span class='danger'>[M.name] has bit [name]!</span>", 1)
 				var/damage = rand(2, 4)
 				adjustBruteLoss(damage)
 			else
 				for(var/mob/O in viewers(src, null))
-					O.show_message("\red <B>[M.name] has attempted to bite [name]!</B>", 1)
+					O.show_message("<span class='danger'>[M.name] has attempted to bite [name]!</span>", 1)
 	return
 
 //punched by a hu-man
@@ -175,7 +175,7 @@
 		if (M.a_intent == "hurt")
 			var/datum/unarmed_attack/attack = M.species.unarmed
 			if ((prob(75) && health > 0))
-				visible_message("\red <B>[M] [pick(attack.attack_verb)]ed [src]!</B>")
+				visible_message("<span class='danger'>[M] [pick(attack.attack_verb)]ed [src]!</span>")
 
 				playsound(loc, "punch", 25, 1)
 				var/damage = rand(3, 7)
@@ -188,7 +188,7 @@
 				updatehealth()
 			else
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
-				visible_message("\red <B>[M] tried to [pick(attack.attack_verb)] [src]!</B>")
+				visible_message("<span class='danger'>[M] tried to [pick(attack.attack_verb)] [src]!</span>")
 		else
 			if (M.a_intent == "grab")
 
@@ -204,11 +204,11 @@
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 						for(var/mob/O in viewers(src, null))
 							if ((O.client && !is_blind(O)))
-								O.show_message(text("\red <B>[] has pushed down [name]!</B>", M), 1)
+								O.show_message(text("<span class='danger'>[] has pushed down [name]!</span>", M), 1)
 					else
 						for(var/mob/O in viewers(src, null))
 							if ((O.client && !is_blind(O)))
-								O.show_message(text("\red <B>[] shoves at [name]!</B>", M), 1)
+								O.show_message(text("<span class='danger'>[] shoves at [name]!</span>", M), 1)
 	return
 
 /mob/living/carbon/hellhound/attack_animal(mob/living/M as mob)

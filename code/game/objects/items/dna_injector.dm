@@ -132,7 +132,7 @@
 					log_attack("[key_name(user)] injected [key_name(M)] with the [name]")
 
 
-				user.visible_message("\red <B>[user] is trying to inject [M] with [src]!</B>")
+				user.visible_message("<span class='danger'>[user] is trying to inject [M] with [src]!</span>")
 				if(do_mob(user, M, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 					if(src == user.get_active_hand())
 						add_fingerprint(user)

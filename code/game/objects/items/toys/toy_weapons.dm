@@ -62,7 +62,7 @@
 		playsound(user, 'sound/weapons/Gunshot.ogg', 15, 1)
 		src.bullets--
 		for(var/mob/O in viewers(user, null))
-			O.show_message(text("\red <B>[] fires a cap gun at []!</B>", user, target), 1, "\red You hear a gunshot", 2)
+			O.show_message(text("<span class='danger'>[] fires a cap gun at []!</span>", user, target), 1, "\red You hear a gunshot", 2)
 
 /obj/item/toy/gun_ammo
 	name = "ammo-caps"
@@ -167,7 +167,7 @@
 
 			for(var/mob/O in viewers(M, null))
 				if(O.client)
-					O.show_message(text("\red <B>[] casually lines up a shot with []'s head and pulls the trigger!</B>", user, M), 1, "\red You hear the sound of foam against skull", 2)
+					O.show_message(text("<span class='danger'>[] casually lines up a shot with []'s head and pulls the trigger!</span>", user, M), 1, "\red You hear the sound of foam against skull", 2)
 					O.show_message(text("\red [] was hit in the head by the foam dart!", M), 1)
 
 			playsound(user.loc, 'sound/items/syringeproj.ogg', 15, 1)
@@ -175,7 +175,7 @@
 			src.bullets--
 		else if (M.lying && src.bullets == 0)
 			for(var/mob/O in viewers(M, null))
-				if (O.client)	O.show_message(text("\red <B>[] casually lines up a shot with []'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</B>", user, M), 1, "\red You hear someone fall", 2)
+				if (O.client)	O.show_message(text("<span class='danger'>[] casually lines up a shot with []'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</span>", user, M), 1, "\red You hear someone fall", 2)
 			user.KnockDown(5)
 		return
 

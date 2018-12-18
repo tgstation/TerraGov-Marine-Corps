@@ -556,9 +556,9 @@
 		if(!usr.action_busy)
 			log_combat(usr, src, "attempted to toggle internals")
 			if(internal)
-				usr.visible_message("\red <B>[usr] is trying to disable [src]'s internals</B>", null, null, 3)
+				usr.visible_message("<span class='danger'>[usr] is trying to disable [src]'s internals</span>", null, null, 3)
 			else
-				usr.visible_message("\red <B>[usr] is trying to enable [src]'s internals.</B>", null, null, 3)
+				usr.visible_message("<span class='danger'>[usr] is trying to enable [src]'s internals.</span>", null, null, 3)
 
 			if(do_mob(usr, src, POCKET_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 				if (internal)
@@ -617,9 +617,9 @@
 				if(U.hastie)
 					log_combat(usr, src, "attempted to remove accessory ([U.hastie])")
 					if(istype(U.hastie, /obj/item/clothing/tie/holobadge) || istype(U.hastie, /obj/item/clothing/tie/medal))
-						visible_message("\red <B>[usr] tears off \the [U.hastie] from [src]'s [U]!</B>", null, null, 5)
+						visible_message("<span class='danger'>[usr] tears off \the [U.hastie] from [src]'s [U]!</span>", null, null, 5)
 					else
-						visible_message("\red <B>[usr] is trying to take off \a [U.hastie] from [src]'s [U]!</B>", null, null, 5)
+						visible_message("<span class='danger'>[usr] is trying to take off \a [U.hastie] from [src]'s [U]!</span>", null, null, 5)
 						if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 							if(U == w_uniform && U.hastie)
 								U.remove_accessory(usr)
@@ -633,7 +633,7 @@
 				to_chat(usr, "The controls are locked.")
 			else
 				var/oldsens = U.has_sensor
-				visible_message("\red <B>[usr] is trying to modify [src]'s sensors!</B>", null, null, 4)
+				visible_message("<span class='danger'>[usr] is trying to modify [src]'s sensors!</span>", null, null, 4)
 				if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 					if(U == w_uniform)
 						if(U.has_sensor >= 2)

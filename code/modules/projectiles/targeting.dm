@@ -32,9 +32,9 @@
 					L.NotTargeted(src)
 			qdel(target)
 			target = null
-			usr.visible_message("\red <b>[usr] turns \the [src] on [M]!</b>")
+			usr.visible_message("<span class='danger'>[usr] turns \the [src] on [M]!</span>")
 		else
-			usr.visible_message("\red <b>[usr] aims \a [src] at [M]!</b>")
+			usr.visible_message("<span class='danger'>[usr] aims \a [src] at [M]!</span>")
 		M.Targeted(src)
 
 //HE MOVED, SHOOT HIM!

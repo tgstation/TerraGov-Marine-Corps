@@ -94,7 +94,7 @@ Contains most of the procs that are called when a mob is attacked by something
 				return 1
 		var/obj/item/weapon/I = l_hand
 		if(I.IsShield() && (prob(50 - round(damage / 3))))
-			visible_message("\red <B>[src] blocks [attack_text] with the [l_hand.name]!</B>", null, null, 5)
+			visible_message("<span class='danger'>[src] blocks [attack_text] with the [l_hand.name]!</span>", null, null, 5)
 			return 1
 	if(r_hand && istype(r_hand, /obj/item/weapon))
 		if(combistick && istype(r_hand,/obj/item/weapon/combistick))
@@ -103,7 +103,7 @@ Contains most of the procs that are called when a mob is attacked by something
 				return 1
 		var/obj/item/weapon/I = r_hand
 		if(I.IsShield() && (prob(50 - round(damage / 3))))
-			visible_message("\red <B>[src] blocks [attack_text] with the [r_hand.name]!</B>", null, null, 5)
+			visible_message("<span class='danger'>[src] blocks [attack_text] with the [r_hand.name]!</span>", null, null, 5)
 			return 1
 	return 0
 
@@ -145,9 +145,9 @@ Contains most of the procs that are called when a mob is attacked by something
 		return 0
 
 	if(I.attack_verb && I.attack_verb.len)
-		visible_message("\red <B>[src] has been [pick(I.attack_verb)] in the [hit_area] with [I.name] by [user]!</B>", null, null, 5)
+		visible_message("<span class='danger'>[src] has been [pick(I.attack_verb)] in the [hit_area] with [I.name] by [user]!</span>", null, null, 5)
 	else
-		visible_message("\red <B>[src] has been attacked in the [hit_area] with [I.name] by [user]!</B>", null, null, 5)
+		visible_message("<span class='danger'>[src] has been attacked in the [hit_area] with [I.name] by [user]!</span>", null, null, 5)
 
 	var/armor = run_armor_check(affecting, "melee", "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].")
 	var/weapon_sharp = is_sharp(I)
@@ -204,7 +204,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			if("chest")//Easier to score a stun but lasts less time
 				if(prob((I.force + 10)))
 					apply_effect(6, WEAKEN, armor)
-					visible_message("\red <B>[src] has been knocked down!</B>", null, null, 5)
+					visible_message("<span class='danger'>[src] has been knocked down!</span>", null, null, 5)
 
 				if(bloody)
 					bloody_body(src)

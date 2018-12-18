@@ -14,7 +14,7 @@
 	origin_tech = "combat=2"
 
 	suicide_act(mob/user)
-		user.visible_message("\red <b>[user] is putting the live [src.name] in \his mouth! It looks like \he's trying to commit suicide.</b>")
+		user.visible_message("<span class='danger'>[user] is putting the live [src.name] in \his mouth! It looks like \he's trying to commit suicide.</span>")
 		return (FIRELOSS)
 
 /obj/item/weapon/stunprod/update_icon()

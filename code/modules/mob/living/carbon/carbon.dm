@@ -118,7 +118,7 @@
 	if (shock_damage > 10)
 		src.visible_message(
 			"\red [src] was shocked by the [source]!", \
-			"\red <B>You feel a powerful shock course through your body!</B>", \
+			"<span class='danger'>You feel a powerful shock course through your body!</span>", \
 			"\red You hear a heavy electrical crack." \
 		)
 		if(isXeno(src) && mob_size == MOB_SIZE_BIG)

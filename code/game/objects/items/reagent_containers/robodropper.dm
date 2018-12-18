@@ -46,7 +46,7 @@
 						trans = src.reagents.trans_to(safe_thing, amount_per_transfer_from_this)
 
 						for(var/mob/O in viewers(world.view, user))
-							O.show_message(text("\red <B>[] tries to squirt something into []'s eyes, but fails!</B>", user, target), 1)
+							O.show_message(text("<span class='danger'>[] tries to squirt something into []'s eyes, but fails!</span>", user, target), 1)
 						spawn(5)
 							src.reagents.reaction(safe_thing, TOUCH)
 
@@ -59,7 +59,7 @@
 
 
 				for(var/mob/O in viewers(world.view, user))
-					O.show_message(text("\red <B>[] squirts something into []'s eyes!</B>", user, target), 1)
+					O.show_message(text("<span class='danger'>[] squirts something into []'s eyes!</span>", user, target), 1)
 				reagents.reaction(target, TOUCH)
 
 				var/mob/M = target

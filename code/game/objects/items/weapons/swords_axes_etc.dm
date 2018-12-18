@@ -46,7 +46,7 @@
 	if (M.stuttering < 8 && (!(HULK in M.mutations))  /*&& (!istype(H:wear_suit, /obj/item/clothing/suit/judgerobe))*/)
 		M.stuttering = 8
 	for(var/mob/O in viewers(M))
-		if (O.client)	O.show_message("\red <B>[M] has been beaten with \the [src] by [user]!</B>", 1, "\red You hear someone fall", 2)
+		if (O.client)	O.show_message("<span class='danger'>[M] has been beaten with \the [src] by [user]!</span>", 1, "\red You hear someone fall", 2)
 
 //Telescopic baton
 /obj/item/weapon/telebaton

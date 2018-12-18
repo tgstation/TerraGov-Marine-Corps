@@ -84,7 +84,7 @@
 
 	if(user.species.can_shred(user) && !(stat & BROKEN))
 		playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1, -1)
-		visible_message("\red <B>[user] has slashed at [src]!</B>")
+		visible_message("<span class='danger'>[user] has slashed at [src]!</span>")
 		src.take_damage(15)
 	return
 
@@ -443,7 +443,7 @@
 /obj/machinery/turret/attack_animal(mob/living/M as mob)
 	if(M.melee_damage_upper == 0)	return
 	if(!(stat & BROKEN))
-		visible_message("\red <B>[M] [M.attacktext] [src]!</B>")
+		visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>")
 		log_combat(M, src, "attacked")
 		src.health -= M.melee_damage_upper
 		if (src.health <= 0)

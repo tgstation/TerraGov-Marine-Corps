@@ -47,7 +47,7 @@
 
 	for(var/mob/O in viewers(src, null))
 		if ((O.client && !( is_blind(O) )))
-			O.show_message(text("\red <B>[] [failed ? "tried to tackle" : "has tackled"] down []!</B>", src, T), 1)
+			O.show_message(text("<span class='danger'>[] [failed ? "tried to tackle" : "has tackled"] down []!</span>", src, T), 1)
 
 /mob/living/carbon/human/proc/leap()
 	set category = "Abilities"

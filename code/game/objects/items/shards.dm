@@ -17,7 +17,7 @@
 	var/shardsize
 
 /obj/item/shard/suicide_act(mob/user)
-	user.visible_message("\red <b>[user] is slitting \his [prob(50) ? "wrists" :"throat"] with [src]! It looks like \he's trying to commit suicide.</b>")
+	user.visible_message("<span class='danger'>[user] is slitting \his [prob(50) ? "wrists" :"throat"] with [src]! It looks like \he's trying to commit suicide.</span>")
 	return (BRUTELOSS)
 
 /obj/item/shard/attack(mob/living/carbon/M, mob/living/carbon/user)

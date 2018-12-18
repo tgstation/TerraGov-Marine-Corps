@@ -20,7 +20,7 @@
 	var/armed = 0
 
 	suicide_act(mob/user)
-		user.visible_message("\red <b>[user] is putting the [src.name] on \his head! It looks like \he's trying to commit suicide.</b>")
+		user.visible_message("<span class='danger'>[user] is putting the [src.name] on \his head! It looks like \he's trying to commit suicide.</span>")
 		return (BRUTELOSS)
 
 /obj/item/legcuffs/beartrap/attack_self(mob/user as mob)
@@ -51,7 +51,7 @@
 							for(var/mob/O in viewers(H, null))
 								if(O == H)
 									continue
-								O.show_message("\red <B>[H] steps on \the [src].</B>", 1)
+								O.show_message("<span class='danger'>[H] steps on \the [src].</span>", 1)
 				if(isanimal(AM) && !istype(AM, /mob/living/simple_animal/parrot) && !istype(AM, /mob/living/simple_animal/construct) && !istype(AM, /mob/living/simple_animal/shade) && !istype(AM, /mob/living/simple_animal/hostile/viscerator))
 					armed = 0
 					var/mob/living/simple_animal/SA = AM

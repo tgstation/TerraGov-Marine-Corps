@@ -141,7 +141,7 @@
 /obj/machinery/door/window/hitby(AM as mob|obj)
 
 	..()
-	visible_message("\red <B>The glass door was hit by [AM].</B>", 1)
+	visible_message("<span class='danger'>The glass door was hit by [AM].</span>", 1)
 	var/tforce = 0
 	if(ismob(AM))
 		tforce = 40
@@ -172,7 +172,7 @@
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
 			playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
-			visible_message("\red <B>[user] smashes against the [src.name].</B>", 1)
+			visible_message("<span class='danger'>[user] smashes against the [src.name].</span>", 1)
 			take_damage(25)
 			return
 	return try_to_activate_door(user)
@@ -233,7 +233,7 @@
 	if(!(I.flags_item & NOBLUDGEON) && I.force && density) //trying to smash windoor with item
 		var/aforce = I.force
 		playsound(src.loc, 'sound/effects/Glasshit.ogg', 25, 1)
-		visible_message("\red <B>[src] was hit by [I].</B>")
+		visible_message("<span class='danger'>[src] was hit by [I].</span>")
 		if(I.damtype == BRUTE || I.damtype == BURN)
 			take_damage(aforce)
 		return TRUE
