@@ -519,6 +519,13 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define WARRIOR_AGILITY_COOLDOWN 0.5 SECONDS
 
 
+//sentinel defines
+
+#define NEUROTOXIN_STING_COOLDOWN				30 SECONDS
+#define NEUROTOXIN_STING_INJECT_DELAY			1.5 SECONDS
+#define NEUROTOXIN_STING_AMOUNT_INITIAL			15
+#define NEUROTOXIN_STING_AMOUNT_RECURRING		10
+
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1
 #define CAN_HOLD_ONE_HAND 2

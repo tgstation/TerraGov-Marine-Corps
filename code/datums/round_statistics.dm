@@ -36,3 +36,4 @@ var/datum/round_statistics/round_statistics = new()
 	var/ravager_ravages = 0
 	var/ravager_ravage_victims = 0
 	var/ravager_second_winds = 0
+	var/sentinel_neurotoxin_stings = 0
