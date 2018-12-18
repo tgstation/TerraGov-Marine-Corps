@@ -59,8 +59,8 @@
 		laser_target = target
 		targetlaser_on = FALSE
 		laser_target.apply_laser()
-		processing_objects.Remove(src) //So we don't accumulate additional processing.
-		processing_objects.Add(src)
+		STOP_PROCESSING(SSobj, src) //So we don't accumulate additional processing.
+		START_PROCESSING(SSobj, src)
 		return
 	return ..()
 
@@ -187,7 +187,7 @@
 		laser_target.remove_laser()
 	laser_target = null
 	accuracy_mult = config.base_hit_accuracy_mult
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	if(toggle_off)
 		targetlaser_on = FALSE
 		if(!silent && user)
