@@ -974,8 +974,8 @@ Defined in conflicts.dm of the #defines folder.
 	abstract_gun = new /obj/item/weapon/gun/shotgun/masterkey
 	attachment_firing_delay = config.mhigh_fire_delay*3
 
-/obj/item/attachable/attached_gun/shotgun/examine(mob/user, /obj/item/weapon/gun/gun)
-	if(gun.attached_weapon)
+/obj/item/attachable/attached_gun/shotgun/examine(mob/user)
+	if(attach_applied)
 		if (!abstract_gun.current_mag.current_rounds)
 			to_chat(user, "The [src] is empty!")
 		else
@@ -995,14 +995,7 @@ Defined in conflicts.dm of the #defines folder.
     abstract_gun.reload(user, mag)
 
 /obj/item/attachable/attached_gun/shotgun/fire_attachment(atom/target, mob/living/user)
-	if(abstract_gun.current_mag.current_rounds > 0) //If it's still got ammo and stuff.
-		abstract_gun.current_mag.current_rounds--
-		return abstract_gun.Fire(target, user)
-	else
-		to_chat(user, "<span class='warning'>[gun.active_attachable] is empty!</span>")
-		to_chat(user, "<span class='notice'>You disable [gun.active_attachable].</span>")
-		playsound(user, activation_sound, 15, 1)
-		activate_attachment(src, null, TRUE)
+	
 
 /obj/item/attachable/verticalgrip
 	name = "vertical grip"
