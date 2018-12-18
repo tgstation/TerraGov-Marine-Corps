@@ -145,7 +145,7 @@ datum/controller/process/proc/doWork()
 
 datum/controller/process/proc/setup()
 
-datum/controller/process/proc/process()
+datum/controller/process/process()
 	started()
 	doWork()
 	finished()

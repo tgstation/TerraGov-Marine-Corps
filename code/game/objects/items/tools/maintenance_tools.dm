@@ -166,7 +166,7 @@
 			loc.SetLuminosity(-2)
 		else
 			SetLuminosity(0)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/item/tool/weldingtool/examine(mob/user)
@@ -177,7 +177,7 @@
 
 /obj/item/tool/weldingtool/process()
 	if(gc_destroyed)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return
 	if(welding)
 		if(++weld_tick >= 20)
@@ -307,7 +307,7 @@
 			icon_state = "welder1"
 			w_class = 4
 			heat_source = 3800
-			processing_objects.Add(src)
+			START_PROCESSING(SSobj, src)
 		else
 			if(M)
 				to_chat(M, "<span class='warning'>[src] needs more fuel!</span>")
@@ -332,7 +332,7 @@
 				M.update_inv_l_hand()
 		else
 			SetLuminosity(0)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 
 /obj/item/tool/weldingtool/proc/flamethrower_screwdriver(obj/item/I, mob/user)
 	if(welding)

@@ -51,3 +51,4 @@ var/datum/round_statistics/round_statistics = new()
 	var/grenades_thrown = 0
 	var/queen_screech = 0
 	var/now_pregnant = 0
+	var/sentinel_neurotoxin_stings = 0
