@@ -1,22 +1,20 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
-
 /*
- * GAMEMODES (by Rastaf0)
- *
- * In the new mode system all special roles are fully supported.
- * You can have proper wizards/traitors/changelings/cultists during any mode.
- * Only two things really depends on gamemode:
- * 1. Starting roles, equipment and preparations
- * 2. Conditions of finishing the round.
- *
+  GAMEMODES (by Rastaf0)
+
+  In the new mode system all special roles are fully supported.
+  You can have proper wizards/traitors/changelings/cultists during any mode.
+  Only two things really depends on gamemode:
+  1. Starting roles, equipment and preparations
+  2. Conditions of finishing the round.
+
  */
 
 
 /datum/game_mode
-	var/name = "invalid"
+	var/name = ""
 	var/config_tag = null
-	var/intercept_hacked = 0
-	var/votable = 1
+	var/intercept_hacked = FALSE
+	var/votable = TRUE
 	var/probability = 0
 	var/list/datum/mind/modePlayer = new
 	var/list/restricted_jobs = list()	// Jobs it doesn't make sense to be.  I.E chaplain or AI cultist
@@ -26,7 +24,7 @@
 	var/required_enemies = 0
 	var/recommended_enemies = 0
 	var/newscaster_announcements = null
-	var/ert_disabled = 0
+	var/ert_disabled = FALSE
 	var/uplink_welcome = "Syndicate Uplink Console:"
 	var/uplink_uses = 10
 	var/list/datum/uplink_item/uplink_items = list(
@@ -69,62 +67,49 @@
 			)
 		)
 
-// Items removed from above:
-/*
-/obj/item/device/cloaking_device:4:Cloaking Device;	//Replacing cloakers with thermals.	-Pete
-*/
 
-/datum/game_mode/proc/announce() //to be calles when round starts
-	to_chat(world, "<B>Notice</B>: [src] did not define announce()")
+/datum/game_mode/proc/announce()
+	return FALSE
 
 
-///can_start()
-///Checks to see if the game can be setup and ran with the current number of players or whatnot.
 /datum/game_mode/proc/can_start()
-	var/playerC = 0
-	for(var/mob/new_player/player in player_list)
-		if((player.client)&&(player.ready))
-			playerC++
+	var/players = ready_players()
 
-	if(master_mode=="secret")
-		if(playerC >= required_players_secret)
-			return 1
+	if(master_mode == "secret" && players >= required_players_secret)
+		return TRUE
+	else if(players >= required_players)
+		return TRUE
 	else
-		if(playerC >= required_players)
-			return 1
-	return 0
+		return FALSE
 
 
-///pre_setup()
-///Attempts to select players for special roles the mode might have.
 /datum/game_mode/proc/pre_setup()
-	return 1
+	return FALSE
 
 
-///post_setup()
-///Everyone should now be on the station and have their normal gear.  This is the place to give the special roles extra things
 /datum/game_mode/proc/post_setup()
-	spawn (ROUNDSTART_LOGOUT_REPORT_TIME)
+	spawn(ROUNDSTART_LOGOUT_REPORT_TIME)
 		display_roundstart_logout_report()
 
 	feedback_set_details("round_start","[time2text(world.realtime)]")
-	if(ticker && ticker.mode)
+	if(ticker?.mode)
 		feedback_set_details("game_mode","[ticker.mode]")
 	feedback_set_details("server_ip","[world.internet_address]:[world.port]")
-	return 1
+	return TRUE
 
 
-///process()
-///Called by the gameticker
-/datum/game_mode/proc/process()
-	return 0
+/datum/game_mode/process()
+	return FALSE
 
 
-/datum/game_mode/proc/check_finished() //to be called by ticker
-	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED) return TRUE
+/datum/game_mode/proc/check_finished()
+	if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED)
+		return TRUE
 
-/datum/game_mode/proc/cleanup()	//This is called when the round has ended but not the game, if any cleanup would be necessary in that case.
-	return
+
+/datum/game_mode/proc/cleanup()
+	return FALSE
+
 
 /datum/game_mode/proc/declare_completion()
 	var/clients = 0
@@ -192,72 +177,15 @@
 	if(escaped_on_pod_5 > 0)
 		feedback_set("escaped_on_pod_5",escaped_on_pod_5)
 
-	//send2mainirc("A round of [src.name] has ended - [surviving_total] survivors, [ghosts] ghosts.")
-
-	return 0
+	return FALSE
 
 
-/datum/game_mode/proc/check_win() //universal trigger to be called at mob death, nuke explosion, etc. To be called from everywhere.
-	return 0
+/datum/game_mode/proc/check_win()
+	return FALSE
 
 
 /datum/game_mode/proc/send_intercept()
-	var/intercepttext = "<FONT size = 3><B>Cent. Com. Update</B> Requested status information:</FONT><HR>"
-	intercepttext += "<B> In case you have misplaced your copy, attached is a list of personnel whom reliable sources&trade; suspect may be affiliated with subversive elements:</B><br>"
-
-
-	var/list/suspects = list()
-	for(var/mob/living/carbon/human/man in player_list) if(man.client && man.mind)
-		// NT relation option
-		var/special_role = man.mind.special_role
-		if (special_role == "Wizard" || special_role == "Ninja" || special_role == "Syndicate" || special_role == "Syndicate Commando" || special_role == "Vox Raider")
-			continue	//NT intelligence ruled out possiblity that those are too classy to pretend to be a crew.
-		if(man.client.prefs.nanotrasen_relation == "Opposed" && prob(50) || \
-		   man.client.prefs.nanotrasen_relation == "Skeptical" && prob(20))
-			suspects += man
-		// Antags
-		else if(special_role == "traitor" && prob(40) || \
-		   special_role == "Changeling" && prob(50) || \
-		   special_role == "Cultist" && prob(30) || \
-		   special_role == "Head Revolutionary" && prob(30))
-			suspects += man
-
-			// If they're a traitor or likewise, give them extra TC in exchange.
-			var/obj/item/device/uplink/hidden/suplink = man.mind.find_syndicate_uplink()
-			if(suplink)
-				var/extra = 4
-				suplink.uses += extra
-				to_chat(man, "\red We have received notice that enemy intelligence suspects you to be linked with us. We have thus invested significant resources to increase your uplink's capacity.")
-			else
-				// Give them a warning!
-				to_chat(man, "\red They are on to you!")
-
-		// Some poor people who were just in the wrong place at the wrong time..
-		else if(prob(10))
-			suspects += man
-	for(var/mob/M in suspects)
-		switch(rand(1, 100))
-			if(1 to 50)
-				intercepttext += "Someone with the job of <b>[M.mind.assigned_role]</b> <br>"
-			else
-				intercepttext += "<b>[M.name]</b>, the <b>[M.mind.assigned_role]</b> <br>"
-
-	for (var/obj/machinery/computer/communications/comm in machines)
-		if (!(comm.stat & (BROKEN|NOPOWER)) && comm.prints_intercept)
-			var/obj/item/paper/intercept = new /obj/item/paper( comm.loc )
-			intercept.name = "Cent. Com. Status Summary"
-			intercept.info = intercepttext
-
-			comm.messagetitle.Add("Cent. Com. Status Summary")
-			comm.messagetext.Add(intercepttext)
-	world << sound('sound/AI/commandreport.ogg')
-
-/*	command_alert("Summary downloaded and printed out at all communications consoles.", "Enemy communication intercept. Security Level Elevated.")
-	for(var/mob/M in player_list)
-		if(!istype(M,/mob/new_player))
-			M << sound('sound/AI/intercept.ogg')
-	if(security_level < SEC_LEVEL_BLUE)
-		set_security_level(SEC_LEVEL_BLUE)*/
+	return FALSE
 
 
 /datum/game_mode/proc/get_players_for_role(var/role, override_jobbans = 0)
@@ -268,12 +196,12 @@
 
 	var/roletext
 	switch(role)
-		if(BE_DEATHMATCH)			roletext = "End of Round Deathmatch"
+		if(BE_DEATHMATCH)	roletext = "End of Round Deathmatch"
 		if(BE_ALIEN)		roletext = "Alien"
 		if(BE_QUEEN)		roletext = "Queen"
 		if(BE_SURVIVOR)		roletext = "Survivor"
 		if(BE_PREDATOR)		roletext = "Predator"
-		if(BE_WO_COM)		roletext = "WO Commander"
+		if(BE_SQUAD_STRICT)	roletext = "Prefer squad over role"
 
 	//Assemble a list of active players without jobbans.
 	for(var/mob/new_player/player in player_list)
@@ -347,28 +275,25 @@
 
 
 /datum/game_mode/proc/latespawn(var/mob)
+	return FALSE
 
-/datum/game_mode/proc/num_players()
-	. = 0
+
+/datum/game_mode/proc/ready_players()
+	var/num = 0
 	for(var/mob/new_player/P in player_list)
 		if(P.client && P.ready)
-			. ++
+			num++
+	return num
 
 
-///////////////////////////////////
-//Keeps track of all living heads//
-///////////////////////////////////
 /datum/game_mode/proc/get_living_heads()
 	var/list/heads = list()
 	for(var/mob/living/carbon/human/player in mob_list)
-		if(player.stat!=2 && player.mind && (player.mind.assigned_role in ROLES_COMMAND ))
+		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in ROLES_COMMAND))
 			heads += player.mind
 	return heads
 
 
-////////////////////////////
-//Keeps track of all heads//
-////////////////////////////
 /datum/game_mode/proc/get_all_heads()
 	var/list/heads = list()
 	for(var/mob/player in mob_list)
@@ -376,18 +301,18 @@
 			heads += player.mind
 	return heads
 
+
 /datum/game_mode/proc/check_antagonists_topic(href, href_list[])
-	return 0
+	return FALSE
+
 
 /datum/game_mode/New()
 	if(!map_tag)
 		to_chat(world, "MT001: No mapping tag set, tell a coder. [map_tag]")
 
-//////////////////////////
-//Reports player logouts//
-//////////////////////////
-proc/display_roundstart_logout_report()
-	var/msg = "\blue <b>Roundstart logout report\n\n"
+
+/datum/game_mode/proc/display_roundstart_logout_report()
+	var/msg = "<span class='notice'><b>Roundstart logout report</b></span>"
 	for(var/mob/living/L in mob_list)
 
 		if(L.ckey)
@@ -440,7 +365,7 @@ proc/display_roundstart_logout_report()
 			to_chat(M, msg)
 
 
-proc/get_nt_opposed()
+/datum/game_mode/proc/get_nt_opposed()
 	var/list/dudes = list()
 	for(var/mob/living/carbon/human/man in player_list)
 		if(man.client)
@@ -448,52 +373,60 @@ proc/get_nt_opposed()
 				dudes += man
 			else if(man.client.prefs.nanotrasen_relation == "Skeptical" && prob(50))
 				dudes += man
-	if(dudes.len == 0) return null
-	return pick(dudes)
+	if(dudes.len == 0)
+		return null
+	else
+		return pick(dudes)
 
-//Announces objectives/generic antag text.
+
 /proc/show_generic_antag_text(var/datum/mind/player)
-	if(player.current)
-		var/msg = \
-		"You are an antagonist! <font color=blue>Within the rules,</font> \
-		try to act as an opposing force to the crew. Further RP and try to make sure \
-		other players have <i>fun</i>! If you are confused or at a loss, always adminhelp, \
-		and before taking extreme actions, please try to also contact the administration! \
-		Think through your actions and make the roleplay immersive! <b>Please remember all \
-		rules aside from those without explicit exceptions apply to antagonists.</b>"
-		to_chat(player.current, msg)
+	if(!player?.current)
+		return
+
+	to_chat(player.current, {"You are an antagonist! <font color=blue>Within the rules,</font>
+	try to act as an opposing force to the crew. Further RP and try to make sure
+	other players have <i>fun</i>! If you are confused or at a loss, always adminhelp,
+	and before taking extreme actions, please try to also contact the administration!
+	Think through your actions and make the roleplay immersive! <b>Please remember all
+	rules aside from those without explicit exceptions apply to antagonists.</b>"})
+
 
 /proc/show_objectives(var/datum/mind/player)
-
-	if(!player || !player.current) return
+	if(!player?.current)
+		return
 
 	if(config.objectives_disabled)
 		show_generic_antag_text(player)
 		return
 
 	var/obj_count = 1
-	to_chat(player.current, "\blue Your current objectives:")
+	to_chat(player.current, "<span class='notice'><b>Your current objectives:</b></span>")
 	for(var/datum/objective/objective in player.objectives)
 		to_chat(player.current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 		obj_count++
 
-/datum/game_mode/proc/printplayer(var/datum/mind/ply)
-	if(!ply) return
+
+/datum/game_mode/proc/printplayer(var/datum/mind/player)
+	if(!player)
+		return
+
 	var/role
 
-	if(ply.special_role)
-		role = ply.special_role
+	if(player.special_role)
+		role = player.special_role
+	else if(player.assigned_role)
+		role = player.assigned_role
 	else
-		role = ply.assigned_role
+		role = "Unassigned"
 
-	var/text = "<br><b>[ply.name]</b>(<b>[ply.key]</b>) as \a <b>[role]</b> ("
-	if(ply.current)
-		if(ply.current.stat == DEAD)
+	var/text = "<br><b>[player.name]</b>(<b>[player.key]</b>) as \a <b>[role]</b> ("
+	if(player.current)
+		if(player.current.stat == DEAD)
 			text += "died"
 		else
 			text += "survived"
-		if(ply.current.real_name != ply.name)
-			text += " as <b>[ply.current.real_name]</b>"
+		if(player.current.real_name != player.name)
+			text += " as <b>[player.current.real_name]</b>"
 	else
 		text += "body destroyed"
 	text += ")"

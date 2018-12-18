@@ -48,7 +48,7 @@
 	required_players 		= 2 //Need at least one player, but really we need 2.
 	latejoin_larva_drop		= 0
 	flags_round_type		= MODE_PREDATOR|MODE_NO_LATEJOIN
-	role_instruction		= 1
+	role_instruction		= ROLE_MODE_REPLACE
 	roles_for_mode = list(/datum/job/marine/standard,
 							/datum/job/marine/medic,
 							/datum/job/marine/engineer,
@@ -77,7 +77,7 @@
 /datum/game_mode/colonialmarines_halloween_2016/can_start()
 	initialize_special_clamps()
 	//initialize_starting_predator_list()
-	var/ready_players = num_players() // Get all players that have "Ready" selected
+	var/ready_players = ready_players() // Get all players that have "Ready" selected
 	if(ready_players < required_players)
 		to_chat(world, "<span class='round_setup'>Not enough players to start the game. Aborting.</span>")
 		return
@@ -1489,14 +1489,14 @@
 		. = ..()
 		for(var/mob/W in shadow_wights) qdel(W)
 		shadow_wights = null
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 
 	attack_hand(mob/M) //You dun goofed now, goofy.
 		to_chat(M, "<span class='danger'>The strange thing in your hand begins to move around! You suddenly get a very bad feeling about this!</span>")
 		icon_state = "statuette2"
 		mouse_opacity = 0 //Can't be interacted with again.
 		shadow_wights = new
-		processing_objects += src
+		START_PROCESSING(SSobj, src)
 
 /obj/item/vampiric/process()
 	if(!isturf(loc))
@@ -1602,13 +1602,13 @@
 
 	New()
 		..()
-		processing_objects += src
+		START_PROCESSING(SSobj, src)
 		loc_last_process = loc
 
 	Destroy()
 		animation_destruction_fade(src)
 		. = ..()
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 
 /obj/effect/decal/cleanable/blood/splatter/animated/process()
 	if(target_turf && loc != target_turf)
@@ -1636,12 +1636,12 @@
 
 	Destroy()
 		. = ..()
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 		if(master_doll && master_doll.loc) master_doll.shadow_wights -= src
 
 /obj/effect/shadow_wight/New()
 	animation_teleport_spooky_in(src)
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 
 /obj/effect/shadow_wight/process()
 	if(loc)

@@ -212,6 +212,12 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		if(L.name == "deathmatch")
 			spawns += L.loc
 
+	if(length(spawns) < 1)
+		message_admins("DEBUG: Failed to find any End of Round Deathmatch landmarks.")
+		log_debug("DEBUG: Failed to find any End of Round Deathmatch landmarks.")
+		to_chat(world, "<br><br><h1><span class='warning'>End of Round Deathmatch initialization failed, please do not grief.</span></h1><br><br>")
+		return
+
 	for(var/x in mob_list)
 		if(!istype(x, /mob/living/carbon/human))
 			continue
@@ -230,12 +236,19 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 				switch(L.name)
 					if("deathmatch")
 						spawns += L.loc
-			picked = pick(spawns)
-			spawns -= picked
+
+			if(length(spawns) < 1)
+				message_admins("DEBUG: Failed to regenerate End of Round Deathmatch landmarks.")
+				log_debug("DEBUG: Failed to regenerate End of Round Deathmatch landmarks.")
+
+			else
+				picked = pick(spawns)
+				spawns -= picked
 
 		
 		if(picked)
 			H.loc = picked
+			H.revive()
 			to_chat(H, "<br><br><h1><span class='warning'>Fight for your life!</span></h1><br><br>")
 		else
 			to_chat(H, "<br><br><h1><span class='warning'>Failed to find a valid location for End of Round Deathmatch. Please do not grief.</span></h1><br><br>")
