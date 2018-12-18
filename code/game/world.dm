@@ -211,7 +211,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				if(C.is_afk(INACTIVITY_KICK))
 					if(!istype(C.mob, /mob/dead))
 						log_access("AFK: [key_name(C)]")
-						to_chat(C, "\red You have been inactive for more than 10 minutes and have been disconnected.")
+						to_chat(C, "<span class='warning'>You have been inactive for more than 10 minutes and have been disconnected.</span>")
 						qdel(C)
 #undef INACTIVITY_KICK
 

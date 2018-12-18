@@ -95,11 +95,11 @@
 	if(href_list["start"])
 
 		if(MS.at_origin)
-			to_chat(usr, "\red You are already at your home base.")
+			to_chat(usr, "<span class='warning'>You are already at your home base.</span>")
 			return
 
 		if(!MS.return_warning)
-			to_chat(usr, "\red Returning to your home base will end your mission. If you are sure, press the button again.")
+			to_chat(usr, "<span class='warning'>Returning to your home base will end your mission. If you are sure, press the button again.</span>")
 			//TODO: Actually end the mission.
 			MS.return_warning = 1
 			return
@@ -111,11 +111,11 @@
 	if(href_list["toggle_cloak"])
 
 		MS.cloaked = !MS.cloaked
-		to_chat(usr, "\red Ship stealth systems have been [(MS.cloaked ? "activated. The station will not" : "deactivated. The station will")] be warned of our arrival.")
+		to_chat(usr, "<span class='warning'>Ship stealth systems have been [(MS.cloaked ? "activated. The station will not" : "deactivated. The station will")] be warned of our arrival.</span>")
 
 	if(href_list["move_multi"])
 		if((MS.last_move + MS.cooldown*10) > world.time)
-			to_chat(usr, "\red The ship's drive is inoperable while the engines are charging.")
+			to_chat(usr, "<span class='warning'>The ship's drive is inoperable while the engines are charging.</span>")
 			return
 
 		var/choice = input("Select a destination.") as null|anything in MS.destinations

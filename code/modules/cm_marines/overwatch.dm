@@ -396,7 +396,7 @@
 	if(.)  //Checks for power outages
 		return
 	if(!allowed(user))
-		to_chat(user, "\red You don't have access.")
+		to_chat(user, "<span class='warning'>You don't have access.</span>")
 		return
 	if(!squads.len)
 		for(var/datum/squad/S in RoleAuthority.squads)

@@ -29,11 +29,11 @@
 	if(on)
 		to_chat(user, "\green It seems to be online.")
 	else
-		to_chat(user, "\red It seems to be offline")
+		to_chat(user, "<span class='warning'>It seems to be offline</span>")
 
 /obj/machinery/power/breakerbox/attack_ai(mob/user)
 	if(busy)
-		to_chat(user, "\red System is busy. Please wait until current operation is finished before changing power settings.")
+		to_chat(user, "<span class='warning'>System is busy. Please wait until current operation is finished before changing power settings.</span>")
 		return
 
 	busy = 1
@@ -47,7 +47,7 @@
 /obj/machinery/power/breakerbox/attack_hand(mob/user)
 
 	if(busy)
-		to_chat(user, "\red System is busy. Please wait until current operation is finished before changing power settings.")
+		to_chat(user, "<span class='warning'>System is busy. Please wait until current operation is finished before changing power settings.</span>")
 		return
 
 	busy = 1

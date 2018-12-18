@@ -394,7 +394,7 @@ var/global/list/uneatable = list(
 				if(istype(H.glasses,/obj/item/clothing/glasses/meson))
 					to_chat(H, "\blue You look directly into [src], good thing you had your protective eyewear on!")
 					return
-		to_chat(M, "\red You look directly into [src] and feel weak.")
+		to_chat(M, "<span class='warning'>You look directly into [src] and feel weak.</span>")
 		M.apply_effect(3, STUN)
 		visible_message("<span class='danger'>[M] stares blankly at [src]!</span>")
 

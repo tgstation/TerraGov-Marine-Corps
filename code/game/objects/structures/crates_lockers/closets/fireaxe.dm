@@ -23,7 +23,7 @@
 
 		if (isrobot(usr) || src.locked)
 			if(istype(O, /obj/item/device/multitool))
-				to_chat(user, "\red Resetting circuitry...")
+				to_chat(user, "<span class='warning'>Resetting circuitry...</span>")
 				playsound(user, 'sound/machines/lockreset.ogg', 25, 1)
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_HOSTILE))
 					src.locked = 0
@@ -54,7 +54,7 @@
 		if (istype(O, /obj/item/weapon/twohanded/fireaxe) && src.localopened)
 			if(!fireaxe)
 				if(O.flags_item & WIELDED)
-					to_chat(user, "\red Unwield the axe first.")
+					to_chat(user, "<span class='warning'>Unwield the axe first.</span>")
 					return
 				fireaxe = O
 				user.drop_held_item()
@@ -82,7 +82,7 @@
 					spawn(10) update_icon()
 					return
 				else
-					to_chat(user, "\red Resetting circuitry...")
+					to_chat(user, "<span class='warning'>Resetting circuitry...</span>")
 					sleep(50)
 					src.locked = 1
 					to_chat(user, "\blue You re-enable the locking modules.")
@@ -110,7 +110,7 @@
 			hasaxe = 1
 		if(!ishuman(user)) return
 		if(src.locked)
-			to_chat(user, "\red The cabinet won't budge!")
+			to_chat(user, "<span class='warning'>The cabinet won't budge!</span>")
 			return
 		if(localopened)
 			if(fireaxe)
@@ -155,7 +155,7 @@
 
 		if (isrobot(usr) || src.locked || src.smashed)
 			if(src.locked)
-				to_chat(usr, "\red The cabinet won't budge!")
+				to_chat(usr, "<span class='warning'>The cabinet won't budge!</span>")
 			else if(src.smashed)
 				to_chat(usr, "\blue The protective glass is broken!")
 			return
@@ -190,12 +190,12 @@
 
 	attack_ai(mob/user as mob)
 		if(src.smashed)
-			to_chat(user, "\red The security of the cabinet is compromised.")
+			to_chat(user, "<span class='warning'>The security of the cabinet is compromised.</span>")
 			return
 		else
 			locked = !locked
 			if(locked)
-				to_chat(user, "\red Cabinet locked.")
+				to_chat(user, "<span class='warning'>Cabinet locked.</span>")
 			else
 				to_chat(user, "\blue Cabinet unlocked.")
 			return

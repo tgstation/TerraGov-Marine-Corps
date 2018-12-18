@@ -32,13 +32,13 @@
 
 /obj/machinery/shieldwallgen/attack_hand(mob/user as mob)
 	if(state != 1)
-		to_chat(user, "\red The shield generator needs to be firmly secured to the floor first.")
+		to_chat(user, "<span class='warning'>The shield generator needs to be firmly secured to the floor first.</span>")
 		return 1
 	if(src.locked && !istype(user, /mob/living/silicon))
-		to_chat(user, "\red The controls are locked!")
+		to_chat(user, "<span class='warning'>The controls are locked!</span>")
 		return 1
 	if(power != 1)
-		to_chat(user, "\red The shield generator needs to be powered by wire underneath.")
+		to_chat(user, "<span class='warning'>The shield generator needs to be powered by wire underneath.</span>")
 		return 1
 
 	if(src.active >= 1)
@@ -187,7 +187,7 @@
 			src.locked = !src.locked
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 		else
-			to_chat(user, "\red Access denied.")
+			to_chat(user, "<span class='warning'>Access denied.</span>")
 
 	else
 		src.add_fingerprint(user)

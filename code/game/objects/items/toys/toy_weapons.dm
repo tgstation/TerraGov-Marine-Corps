@@ -33,14 +33,14 @@
 				to_chat(user, "\blue It's already fully loaded!")
 				return 1
 			if (A.amount_left <= 0)
-				to_chat(user, "\red There is no more caps!")
+				to_chat(user, "<span class='warning'>There is no more caps!</span>")
 				return 1
 			if (A.amount_left < (7 - bullets))
 				src.bullets += A.amount_left
-				to_chat(user, "\red You reload [A.amount_left] caps\s!")
+				to_chat(user, "<span class='warning'>You reload [A.amount_left] caps\s!</span>")
 				A.amount_left = 0
 			else
-				to_chat(user, "\red You reload [7 - bullets] caps\s!")
+				to_chat(user, "<span class='warning'>You reload [7 - bullets] caps\s!</span>")
 				A.amount_left -= 7 - bullets
 				bullets = 7
 			A.update_icon()
@@ -52,7 +52,7 @@
 		if (flag)
 			return
 		if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-			to_chat(usr, "\red You don't have the dexterity to do this!")
+			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 		src.add_fingerprint(user)
 		if (src.bullets < 1)
@@ -107,7 +107,7 @@
 					bullets++
 					to_chat(user, "\blue You load the foam dart into the crossbow.")
 			else
-				to_chat(usr, "\red It's already fully loaded.")
+				to_chat(usr, "<span class='warning'>It's already fully loaded.</span>")
 
 
 	afterattack(atom/target as mob|obj|turf|area, mob/user as mob, flag)

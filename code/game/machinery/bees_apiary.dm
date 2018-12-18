@@ -32,7 +32,7 @@
 /obj/machinery/apiary/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/queen_bee))
 		if(health > 0)
-			to_chat(user, "\red There is already a queen in there.")
+			to_chat(user, "<span class='warning'>There is already a queen in there.</span>")
 		else
 			health = 10
 			nutrilevel += 10
@@ -58,7 +58,7 @@
 		if(do_after(user, 50, TRUE, 5, BUSY_ICON_GENERIC))
 			new hydrotray_type(src.loc)
 			new /obj/item/frame/apiary(src.loc)
-			to_chat(user, "\red You dislodge the apiary from the tray.")
+			to_chat(user, "<span class='warning'>You dislodge the apiary from the tray.</span>")
 			qdel(src)
 	else if(istype(O, /obj/item/tool/bee_net))
 		var/obj/item/tool/bee_net/N = O
@@ -72,7 +72,7 @@
 		var/obj/item/reagent_container/glass/G = O
 		if(harvestable_honey > 0)
 			if(health > 0)
-				to_chat(user, "\red You begin to harvest the honey. The bees don't seem to like it.")
+				to_chat(user, "<span class='warning'>You begin to harvest the honey. The bees don't seem to like it.</span>")
 				angry_swarm(user)
 			else
 				to_chat(user, "\blue You begin to harvest the honey.")

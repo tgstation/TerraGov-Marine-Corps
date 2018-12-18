@@ -94,7 +94,7 @@
 		//okay, so the closet is either welded or locked... resist!!!
 		usr.next_move = world.time + 100
 		L.last_special = world.time + 100
-		to_chat(L, "\red You lean on the back of \the [C] and start pushing the door open. (this will take about [breakout_time] minutes)")
+		to_chat(L, "<span class='warning'>You lean on the back of \the [C] and start pushing the door open. (this will take about [breakout_time] minutes)</span>")
 		for(var/mob/O in viewers(usr.loc))
 			O.show_message("\red <B>The [L.loc] begins to shake violently!</B>", 1)
 
@@ -125,7 +125,7 @@
 					SC.broken = 1
 					SC.locked = 0
 					SC.update_icon()
-					to_chat(usr, "\red You successfully break out!")
+					to_chat(usr, "<span class='warning'>You successfully break out!</span>")
 					for(var/mob/O in viewers(L.loc))
 						O.show_message("\red <B>\the [usr] successfully broke out of \the [SC]!</B>", 1)
 					if(istype(SC.loc, /obj/structure/bigDelivery)) //Do this to prevent contents from being opened into nullspace (read: bluespace)
@@ -135,7 +135,7 @@
 				else
 					C.welded = 0
 					C.update_icon()
-					to_chat(usr, "\red You successfully break out!")
+					to_chat(usr, "<span class='warning'>You successfully break out!</span>")
 					for(var/mob/O in viewers(L.loc))
 						O.show_message("\red <B>\the [usr] successfully broke out of \the [C]!</B>", 1)
 					if(istype(C.loc, /obj/structure/bigDelivery)) //nullspace ect.. read the comment above
@@ -198,7 +198,7 @@
 
 
 			if(can_break_cuffs) //Don't want to do a lot of logic gating here.
-				to_chat(usr, "\red You attempt to break [HC]. (This will take around 5 seconds and you need to stand still)")
+				to_chat(usr, "<span class='warning'>You attempt to break [HC]. (This will take around 5 seconds and you need to stand still)</span>")
 				for(var/mob/O in viewers(CM))
 					O.show_message(text("\red <B>[] is trying to break [HC]!</B>", CM), 1)
 				spawn(0)
@@ -207,7 +207,7 @@
 							return
 						for(var/mob/O in viewers(CM))
 							O.show_message(text("\red <B>[] manages to break [HC]!</B>", CM), 1)
-						to_chat(CM, "\red You successfully break [HC].")
+						to_chat(CM, "<span class='warning'>You successfully break [HC].</span>")
 						CM.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 						qdel(CM.handcuffed)
 						CM.handcuffed = null
@@ -217,7 +217,7 @@
 				/*if(istype(HC, /obj/item/handcuffs/xeno))
 					breakouttime = 300
 					displaytime = "Half a"
-					to_chat(CM, "\red You attempt to remove \the [HC]. (This will take around half a minute and you need to stand still)")
+					to_chat(CM, "<span class='warning'>You attempt to remove \the [HC]. (This will take around half a minute and you need to stand still)</span>")
 					spawn (breakouttime)
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
 							O.show_message("\red <B>[CM] manages to remove the handcuffs!</B>", 1)
@@ -228,7 +228,7 @@
 
 				if(istype(HC))
 					displaytime = max(1, round(HC.breakouttime / 600)) //Minutes
-				to_chat(CM, "\red You attempt to remove [HC]. (This will take around [displaytime] minute(s) and you need to stand still)")
+				to_chat(CM, "<span class='warning'>You attempt to remove [HC]. (This will take around [displaytime] minute(s) and you need to stand still)</span>")
 				for(var/mob/O in viewers(CM))
 					O.show_message( "\red <B>[usr] attempts to remove [HC]!</B>", 1)
 				spawn(0)
@@ -254,7 +254,7 @@
 					can_break_cuffs = 1
 
 			if(can_break_cuffs) //Don't want to do a lot of logic gating here.
-				to_chat(usr, "\red You attempt to break your legcuffs. (This will take around 5 seconds and you need to stand still)")
+				to_chat(usr, "<span class='warning'>You attempt to break your legcuffs. (This will take around 5 seconds and you need to stand still)</span>")
 				for(var/mob/O in viewers(CM))
 					O.show_message(text("\red <B>[] is trying to break [LC]!</B>", CM), 1)
 				spawn(0)
@@ -263,7 +263,7 @@
 							return
 						for(var/mob/O in viewers(CM))
 							O.show_message(text("\red <B>[] manages to break [LC]!</B>", CM), 1)
-						to_chat(CM, "\red You successfully break your legcuffs.")
+						to_chat(CM, "<span class='warning'>You successfully break your legcuffs.</span>")
 						CM.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 						CM.temp_drop_inv_item(CM.legcuffed)
 						qdel(CM.legcuffed)
@@ -274,7 +274,7 @@
 				if(istype(LC)) //If you are legcuffed with actual legcuffs... Well what do I know, maybe someone will want to legcuff you with toilet paper in the future...
 					breakouttime = LC.breakouttime
 					displaytime = breakouttime / 600 //Minutes
-				to_chat(CM, "\red You attempt to remove [LC]. (This will take around [displaytime] minutes and you need to stand still)")
+				to_chat(CM, "<span class='warning'>You attempt to remove [LC]. (This will take around [displaytime] minutes and you need to stand still)</span>")
 				for(var/mob/O in viewers(CM))
 					O.show_message( "\red <B>[usr] attempts to remove [LC]!</B>", 1)
 				spawn(0)

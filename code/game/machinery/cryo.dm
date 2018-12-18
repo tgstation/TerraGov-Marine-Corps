@@ -361,7 +361,7 @@
 
 /obj/machinery/cryo_cell/proc/turn_on()
 	if (stat & (NOPOWER|BROKEN))
-		to_chat(usr, "\red The cryo cell is not functioning.")
+		to_chat(usr, "<span class='warning'>The cryo cell is not functioning.</span>")
 		return
 	on = TRUE
 	start_processing()
@@ -369,7 +369,7 @@
 
 /obj/machinery/cryo_cell/proc/put_mob(mob/living/carbon/M as mob, put_in = null)
 	if (stat & (NOPOWER|BROKEN))
-		to_chat(usr, "\red The cryo cell is not functioning.")
+		to_chat(usr, "<span class='warning'>The cryo cell is not functioning.</span>")
 		return
 	if(!ishuman(M)) // stop fucking monkeys and xenos being put in.
 		to_chat(usr, "<span class='notice'>\ [src] is compatible with humanoid anatomies only!</span>")
@@ -378,7 +378,7 @@
 		to_chat(usr, "<span class='danger'>The cryo cell is already occupied!</span>")
 		return
 	if (M.abiotic())
-		to_chat(usr, "\red Subject may not have abiotic items on.")
+		to_chat(usr, "<span class='warning'>Subject may not have abiotic items on.</span>")
 		return
 	if(put_in) //Select an appropriate message
 		visible_message("<span class='notice'>[usr] puts [M] in [src].</span>", 3)

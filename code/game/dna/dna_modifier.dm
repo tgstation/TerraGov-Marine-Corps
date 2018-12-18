@@ -121,7 +121,7 @@
 /obj/machinery/dna_scannernew/attackby(var/obj/item/item as obj, var/mob/user as mob)
 	if(istype(item, /obj/item/reagent_container/glass))
 		if(beaker)
-			to_chat(user, "\red A beaker is already loaded into the machine.")
+			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
 			return
 
 		beaker = item

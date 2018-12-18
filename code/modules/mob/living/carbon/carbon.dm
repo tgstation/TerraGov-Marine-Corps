@@ -379,7 +379,7 @@
 	set category = "IC"
 
 	if(usr.sleeping)
-		to_chat(usr, "\red You are already sleeping")
+		to_chat(usr, "<span class='warning'>You are already sleeping</span>")
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
 		usr.sleeping = 20 //Short nap

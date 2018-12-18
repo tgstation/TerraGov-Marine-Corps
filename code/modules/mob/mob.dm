@@ -73,7 +73,7 @@
 					return
 
 	if(stat == UNCONSCIOUS)
-		to_chat(src, "<I>... You can almost hear someone talking ...</I>")
+		to_chat(src, "<span class='emote'>... You can almost hear someone talking ...</span>")
 	else
 		to_chat(src, msg)
 

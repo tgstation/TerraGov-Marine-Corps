@@ -54,7 +54,7 @@
 	if(usr.stat)
 		return
 	if(emagged == 1)
-		to_chat(usr, "\red [src] makes a scratchy noise.")
+		to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
 		return
 	icon_state = "taperecorderrecording"
 	if(timerecorded < 3600 && playing == 0)
@@ -81,7 +81,7 @@
 	if(usr.stat)
 		return
 	if(emagged == 1)
-		to_chat(usr, "\red [src] makes a scratchy noise.")
+		to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
 		return
 	if(recording == 1)
 		recording = 0
@@ -125,7 +125,7 @@
 	if(usr.stat)
 		return
 	if(emagged == 1)
-		to_chat(usr, "\red [src] makes a scratchy noise.")
+		to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
 		return
 	if(recording == 1)
 		to_chat(usr, "<span class='notice'>You can't playback when recording!</span>")
@@ -184,7 +184,7 @@
 	if(usr.stat)
 		return
 	if(emagged == 1)
-		to_chat(usr, "\red [src] makes a scratchy noise.")
+		to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
 		return
 	if(!canprint)
 		to_chat(usr, "<span class='notice'>The recorder can't print that fast!</span>")
@@ -209,7 +209,7 @@
 		if(usr.stat)
 			return
 		if(emagged == 1)
-			to_chat(usr, "\red [src] makes a scratchy noise.")
+			to_chat(usr, "<span class='warning'>[src] makes a scratchy noise.</span>")
 			return
 		icon_state = "taperecorderrecording"
 		if(timerecorded < 3600 && playing == 0)
@@ -226,7 +226,7 @@
 			icon_state = "taperecorderidle"
 			return
 		else
-			to_chat(usr, "\red Either [src]'s memory is full, or it is currently playing back its memory.")
+			to_chat(usr, "<span class='warning'>Either [src]'s memory is full, or it is currently playing back its memory.</span>")
 	else
 		if(usr.stat)
 			to_chat(usr, "Not when you're incapacitated.")
@@ -246,5 +246,5 @@
 			icon_state = "taperecorderidle"
 			return
 		else
-			to_chat(usr, "\red Stop what?")
+			to_chat(usr, "<span class='warning'>Stop what?</span>")
 			return

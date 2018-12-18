@@ -460,14 +460,14 @@
 		var/obj/item/tool/kitchen/tray/T = W
 		if(T.calc_carry() > 0)
 			if(prob(85))
-				to_chat(user, "\red The tray won't fit in [src].")
+				to_chat(user, "<span class='warning'>The tray won't fit in [src].</span>")
 				return
 			else
 				W.loc = user.loc
 				if ((user.client && user.s_active != src))
 					user.client.screen -= W
 				W.dropped(user)
-				to_chat(user, "\red God damnit!")
+				to_chat(user, "<span class='warning'>God damnit!</span>")
 
 	W.add_fingerprint(user)
 	return handle_item_insertion(W, FALSE, user)

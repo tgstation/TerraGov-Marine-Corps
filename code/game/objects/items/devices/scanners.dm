@@ -536,7 +536,7 @@ REAGENT SCANNER
 	if (user.stat)
 		return
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		to_chat(usr, "\red You don't have the dexterity to do this!")
+		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 
 	var/turf/location = user.loc
@@ -594,17 +594,17 @@ REAGENT SCANNER
 	if (user.stat)
 		return
 	if (crit_fail)
-		to_chat(user, "\red This device has critically failed and is no longer functional!")
+		to_chat(user, "<span class='warning'>This device has critically failed and is no longer functional!</span>")
 		return
 	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		to_chat(user, "\red You don't have the dexterity to do this!")
+		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 	if(reagents.total_volume)
 		var/list/blood_traces = list()
 		for(var/datum/reagent/R in reagents.reagent_list)
 			if(R.id != "blood")
 				reagents.clear_reagents()
-				to_chat(user, "\red The sample was contaminated! Please insert another sample")
+				to_chat(user, "<span class='warning'>The sample was contaminated! Please insert another sample</span>")
 				return
 			else
 				blood_traces = params2list(R.data["trace_chem"])
@@ -658,12 +658,12 @@ REAGENT SCANNER
 	if (user.stat)
 		return
 	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		to_chat(user, "\red You don't have the dexterity to do this!")
+		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 	if(!istype(O))
 		return
 	if (crit_fail)
-		to_chat(user, "\red This device has critically failed and is no longer functional!")
+		to_chat(user, "<span class='warning'>This device has critically failed and is no longer functional!</span>")
 		return
 
 	if(!isnull(O.reagents))

@@ -38,7 +38,7 @@
 		return 0
 
 	proc/meltdown()	//breaks it down, making implant unrecongizible
-		to_chat(imp_in, "\red You feel something melting inside [part ? "your [part.display_name]" : "you"]!")
+		to_chat(imp_in, "<span class='warning'>You feel something melting inside [part ? "your [part.display_name]" : "you"]!</span>")
 		if (part)
 			part.take_damage(burn = 15, used_weapon = "Electronics meltdown")
 		else

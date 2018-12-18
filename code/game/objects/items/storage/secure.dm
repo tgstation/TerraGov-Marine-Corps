@@ -152,7 +152,7 @@
 
 	attack_hand(mob/user as mob)
 		if ((src.loc == user) && (src.locked == 1))
-			to_chat(usr, "\red [src] is locked and cannot be opened!")
+			to_chat(usr, "<span class='warning'>[src] is locked and cannot be opened!</span>")
 		else if ((src.loc == user) && (!src.locked))
 			src.open(usr)
 		else
@@ -166,7 +166,7 @@
 	//I consider this worthless but it isn't my code so whatever.  Remove or uncomment.
 	/*attack(mob/M as mob, mob/living/user as mob)
 		if ((CLUMSY in user.mutations) && prob(50))
-			to_chat(user, "\red The [src] slips out of your hand and hits your head.")
+			to_chat(user, "<span class='warning'>The [src] slips out of your hand and hits your head.</span>")
 			user.take_limb_damage(10)
 			user.KnockOut(2)
 			return
@@ -180,7 +180,7 @@
 				if (H.stat < 2 && H.health < 50 && prob(90))
 				// ******* Check
 					if (istype(H, /obj/item/clothing/head) && H.flags & 8 && prob(80))
-						to_chat(H, "\red The helmet protects you from being hit hard in the head!")
+						to_chat(H, "<span class='warning'>The helmet protects you from being hit hard in the head!</span>")
 						return
 					var/time = rand(2, 6)
 					if (prob(75))

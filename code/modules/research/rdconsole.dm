@@ -152,7 +152,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(istype(D, /obj/item/disk/tech_disk)) t_disk = D
 		else if (istype(D, /obj/item/disk/design_disk)) d_disk = D
 		else
-			to_chat(user, "\red Machine cannot accept disks in that format.")
+			to_chat(user, "<span class='warning'>Machine cannot accept disks in that format.</span>")
 			return
 		user.drop_inv_item_to_loc(D, src)
 		to_chat(user, "\blue You add the disk to the machine!")
@@ -236,7 +236,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(href_list["eject_item"]) //Eject the item inside the destructive analyzer.
 		if(linked_destroy)
 			if(linked_destroy.busy)
-				to_chat(usr, "\red The destructive analyzer is busy at the moment.")
+				to_chat(usr, "<span class='warning'>The destructive analyzer is busy at the moment.</span>")
 
 			else if(linked_destroy.loaded_item)
 				linked_destroy.loaded_item.loc = linked_destroy.loc
@@ -247,7 +247,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(href_list["deconstruct"]) //Deconstruct the item in the destructive analyzer and update the research holder.
 		if(linked_destroy)
 			if(linked_destroy.busy)
-				to_chat(usr, "\red The destructive analyzer is busy at the moment.")
+				to_chat(usr, "<span class='warning'>The destructive analyzer is busy at the moment.</span>")
 			else
 				var/choice = input("Proceeding will destroy loaded item.") in list("Proceed", "Cancel")
 				if(choice == "Cancel" || !linked_destroy) return
@@ -260,7 +260,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 						linked_destroy.busy = 0
 						if(!linked_destroy.hacked)
 							if(!linked_destroy.loaded_item)
-								to_chat(usr, "\red The destructive analyzer appears to be empty.")
+								to_chat(usr, "<span class='warning'>The destructive analyzer appears to be empty.</span>")
 								screen = 1.0
 								return
 							if(linked_destroy.loaded_item.reliability >= 90)
@@ -301,7 +301,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(href_list["sync"]) //Sync the research holder with all the R&D consoles in the game that aren't sync protected.
 		screen = 0.0
 		if(!sync)
-			to_chat(usr, "\red You must connect to the network first!")
+			to_chat(usr, "<span class='warning'>You must connect to the network first!</span>")
 		else
 			griefProtection() //Putting this here because I dont trust the sync process
 			spawn(30)

@@ -298,14 +298,14 @@
 					locked = !locked
 					updateDialog()
 				else
-					to_chat(usr, "\red Access denied.")
+					to_chat(usr, "<span class='warning'>Access denied.</span>")
 					return
 			if("power")
 				if (src.on)
 					turn_off()
 				else if (cell && !open)
 					if (!turn_on())
-						to_chat(usr, "\red You can't switch on [src].")
+						to_chat(usr, "<span class='warning'>You can't switch on [src].</span>")
 						return
 				else
 					return

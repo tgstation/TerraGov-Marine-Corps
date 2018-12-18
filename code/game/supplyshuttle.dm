@@ -436,7 +436,7 @@ var/list/mechtoys = list(
 
 /obj/machinery/computer/supplycomp/attack_hand(var/mob/user as mob)
 	if(!allowed(user))
-		to_chat(user, "\red Access Denied.")
+		to_chat(user, "<span class='warning'>Access Denied.</span>")
 		return
 
 	if(..())
@@ -627,7 +627,7 @@ var/list/mechtoys = list(
 		temp += "<BR><A href='?src=\ref[src];order=[last_viewed_group]'>Back</A>|<A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
 
 		if(supply_controller.shoppinglist.len > 20)
-			to_chat(usr, "\red Current retrieval load has reached maximum capacity.")
+			to_chat(usr, "<span class='warning'>Current retrieval load has reached maximum capacity.</span>")
 			return
 
 		for(var/i=1, i<=supply_controller.requestlist.len, i++)

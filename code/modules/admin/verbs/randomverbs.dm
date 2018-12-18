@@ -39,7 +39,7 @@
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), WEAR_BODY)
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), WEAR_FEET)
 		spawn(50)
-			to_chat(M, "\red You have been sent to the prison station!")
+			to_chat(M, "<span class='warning'>You have been sent to the prison station!</span>")
 		log_admin("[key_name(usr)] sent [key_name(M)] to the prison station.")
 		message_admins("\blue [key_name_admin(usr)] sent [key_name_admin(M)] to the prison station.", 1)
 		feedback_add_details("admin_verb","PRISON") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -481,7 +481,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set desc = "Force a predator round for the round type. Only works on maps that support Predator spawns."
 
 	if(!ticker || ticker.current_state < GAME_STATE_PLAYING || !ticker.mode)
-		to_chat(usr, "\red The game hasn't started yet!")
+		to_chat(usr, "<span class='warning'>The game hasn't started yet!</span>")
 		return
 
 	var/datum/game_mode/predator_round = ticker.mode
@@ -515,7 +515,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		else
 			M.add_ion_law(input)
 			for(var/mob/living/silicon/ai/O in mob_list)
-				to_chat(O, "\red " + input + "\red...LAWS UPDATED")
+				to_chat(O, "<span class='warning'>" + input + "\red...LAWS UPDATED</span>")
 				O.show_laws()
 
 	log_admin("Admin [key_name(usr)] has added a new AI law - [input]")
@@ -805,7 +805,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if(M)
 			AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
 			to_chat(M, "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>")
-			to_chat(M, "\red This is a temporary ban, it will be removed in [mins] minutes.")
+			to_chat(M, "<span class='warning'>This is a temporary ban, it will be removed in [mins] minutes.</span>")
 			to_chat(M, "\red To try to resolve this matter head to http:)
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 			message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
@@ -820,7 +820,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			return
 		AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
 		to_chat(M, "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>")
-		to_chat(M, "\red This is a permanent ban.")
+		to_chat(M, "<span class='warning'>This is a permanent ban.</span>")
 		to_chat(M, "\red To try to resolve this matter head to http:)
 		log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
 		message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")

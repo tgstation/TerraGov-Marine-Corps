@@ -42,11 +42,11 @@
 					cure()
 					return
 			if (prob(8))
-				to_chat(affected_mob, "\red Your head hurts.")
+				to_chat(affected_mob, "<span class='warning'>Your head hurts.</span>")
 			if (prob(9))
 				to_chat(affected_mob, "You feel a tingling sensation in your chest.")
 			if (prob(9))
-				to_chat(affected_mob, "\red You feel angry.")
+				to_chat(affected_mob, "<span class='warning'>You feel angry.</span>")
 		if(2)
 			if(restcure)
 /*
@@ -60,14 +60,14 @@
 					cure()
 					return
 			if (prob(8))
-				to_chat(affected_mob, "\red Your skin feels loose.")
+				to_chat(affected_mob, "<span class='warning'>Your skin feels loose.</span>")
 			if (prob(10))
 				to_chat(affected_mob, "You feel very strange.")
 			if (prob(4))
-				to_chat(affected_mob, "\red You feel a stabbing pain in your head!")
+				to_chat(affected_mob, "<span class='warning'>You feel a stabbing pain in your head!</span>")
 				affected_mob.KnockOut(2)
 			if (prob(4))
-				to_chat(affected_mob, "\red Your stomach churns.")
+				to_chat(affected_mob, "<span class='warning'>Your stomach churns.</span>")
 		if(3)
 			if(restcure)
 /*
@@ -81,7 +81,7 @@
 					cure()
 					return
 			if (prob(10))
-				to_chat(affected_mob, "\red Your entire body vibrates.")
+				to_chat(affected_mob, "<span class='warning'>Your entire body vibrates.</span>")
 
 			if (prob(35))
 				if(prob(50))

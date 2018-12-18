@@ -27,10 +27,10 @@
 		user.show_message("\blue Body Temperature: ???", 1)
 		return
 	if(!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		to_chat(user, "\red You don't have the dexterity to do this!")
+		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 	if(!istype(M, /mob/living/silicon/robot) && !(ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
-		to_chat(user, "\red You can't analyze non-robotic things!")
+		to_chat(user, "<span class='warning'>You can't analyze non-robotic things!</span>")
 		return
 
 	user.visible_message("<span class='notice'> [user] has analyzed [M]'s components.","<span class='notice'> You have analyzed [M]'s components.")

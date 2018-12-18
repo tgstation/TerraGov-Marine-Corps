@@ -69,7 +69,7 @@
 		else
 			visible_message("\red \b [src] blocks the [O] with its shield! ")
 	else
-		to_chat(usr, "\red This weapon is ineffective, it does no damage.")
+		to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 		visible_message("\red [user] gently taps [src] with the [O]. ")
 
 

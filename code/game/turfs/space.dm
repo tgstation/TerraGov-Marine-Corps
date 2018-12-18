@@ -67,7 +67,7 @@
 			S.use(1)
 			return
 		else
-			to_chat(user, "\red The plating is going to need some support.")
+			to_chat(user, "<span class='warning'>The plating is going to need some support.</span>")
 	return
 
 
@@ -96,7 +96,7 @@
 				if(istype(A, /mob/living))
 					var/mob/living/MM = A
 					if(MM.client && !MM.stat)
-						to_chat(MM, "\red Something you are carrying is preventing you from leaving. Don't play stupid; you know exactly what it is.")
+						to_chat(MM, "<span class='warning'>Something you are carrying is preventing you from leaving. Don't play stupid; you know exactly what it is.</span>")
 						if(MM.x <= TRANSITIONEDGE)
 							MM.inertia_dir = 4
 						else if(MM.x >= world.maxx -TRANSITIONEDGE)

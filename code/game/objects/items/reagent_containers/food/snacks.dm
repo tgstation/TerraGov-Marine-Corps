@@ -1015,7 +1015,7 @@
 
 /obj/item/reagent_container/food/snacks/popcorn/On_Consume()
 	if(prob(unpopped))	//lol ...what's the point?
-		to_chat(usr, "\red You bite down on an un-popped kernel!")
+		to_chat(usr, "<span class='warning'>You bite down on an un-popped kernel!</span>")
 		unpopped = max(0, unpopped-1)
 	return ..()
 
@@ -1373,7 +1373,7 @@
 
 /obj/item/reagent_container/food/snacks/monkeycube/proc/Expand()
 	for(var/mob/M in viewers(src,7))
-		to_chat(M, "\red \The [src] expands!")
+		to_chat(M, "<span class='warning'>\The [src] expands!</span>")
 	var/turf/T = get_turf(src)
 	if(T)
 		new monkey_type(T)
@@ -2287,7 +2287,7 @@
 	if( open && pizza )
 		user.put_in_hands( pizza )
 
-		to_chat(user, "\red You take the [src.pizza] out of the [src].")
+		to_chat(user, "<span class='warning'>You take the [src.pizza] out of the [src].</span>")
 		src.pizza = null
 		update_icon()
 		return
@@ -2301,7 +2301,7 @@
 		boxes -= box
 
 		user.put_in_hands( box )
-		to_chat(user, "\red You remove the topmost [src] from your hand.")
+		to_chat(user, "<span class='warning'>You remove the topmost [src] from your hand.</span>")
 		box.update_icon()
 		update_icon()
 		return
@@ -2338,11 +2338,11 @@
 				box.update_icon()
 				update_icon()
 
-				to_chat(user, "\red You put the [box] ontop of the [src]!")
+				to_chat(user, "<span class='warning'>You put the [box] ontop of the [src]!</span>")
 			else
-				to_chat(user, "\red The stack is too high!")
+				to_chat(user, "<span class='warning'>The stack is too high!</span>")
 		else
-			to_chat(user, "\red Close the [box] first!")
+			to_chat(user, "<span class='warning'>Close the [box] first!</span>")
 
 		return
 
@@ -2354,9 +2354,9 @@
 
 			update_icon()
 
-			to_chat(user, "\red You put the [I] in the [src]!")
+			to_chat(user, "<span class='warning'>You put the [I] in the [src]!</span>")
 		else
-			to_chat(user, "\red You try to push the [I] through the lid but it doesn't work!")
+			to_chat(user, "<span class='warning'>You try to push the [I] through the lid but it doesn't work!</span>")
 		return
 
 	if( istype(I, /obj/item/tool/pen/) )

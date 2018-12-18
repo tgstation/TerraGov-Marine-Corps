@@ -30,7 +30,7 @@
 		var/obj/item/tool/weldingtool/WT = W
 
 		if(amount < 4)
-			to_chat(user, "\red You need at least four rods to do this.")
+			to_chat(user, "<span class='warning'>You need at least four rods to do this.</span>")
 			return
 
 		if(WT.remove_fuel(0,user))

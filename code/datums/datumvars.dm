@@ -7,7 +7,7 @@ client
 		set name = "View Variables"
 
 		if(!usr.client || !usr.client.holder || !(usr.client.holder.rights & R_MOD))
-			to_chat(usr, "\red You need to be a moderator or higher to access this.")
+			to_chat(usr, "<span class='warning'>You need to be a moderator or higher to access this.</span>")
 			return
 
 		if(!D)	return

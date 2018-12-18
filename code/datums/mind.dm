@@ -313,7 +313,7 @@ datum/mind
 						ticker.mode.traitors -= src
 						special_role = null
 						current.hud_set_special_role()
-						to_chat(current, "\red <FONT size = 3><B>You have been brainwashed! You are no longer a traitor!</B></FONT>")
+						to_chat(current, "<span class='warning'><FONT size = 3><B>You have been brainwashed! You are no longer a traitor!</B></FONT></span>")
 						log_admin("[key_name_admin(usr)] has de-traitor'ed [current].")
 						if(isAI(current))
 							var/mob/living/silicon/ai/A = current
@@ -359,7 +359,7 @@ datum/mind
 								suplink.uses = crystals
 				if("uplink")
 					if (!ticker.mode.equip_traitor(current, !(src in ticker.mode.traitors)))
-						to_chat(usr, "\red Equipping a syndicate failed!")
+						to_chat(usr, "<span class='warning'>Equipping a syndicate failed!</span>")
 
 		else if (href_list["obj_announce"])
 			var/obj_count = 1

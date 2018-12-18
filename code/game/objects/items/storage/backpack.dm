@@ -93,10 +93,10 @@
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if(crit_fail)
-			to_chat(user, "\red The Bluespace generator isn't working.")
+			to_chat(user, "<span class='warning'>The Bluespace generator isn't working.</span>")
 			return
 		if(istype(W, /obj/item/storage/backpack/holding) && !W.crit_fail)
-			to_chat(user, "\red The Bluespace interfaces of the two devices conflict and malfunction.")
+			to_chat(user, "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>")
 			qdel(W)
 			return
 		..()
@@ -104,9 +104,9 @@
 	proc/failcheck(mob/user as mob)
 		if (prob(src.reliability)) return 1 //No failure
 		if (prob(src.reliability))
-			to_chat(user, "\red The Bluespace portal resists your attempt to add another item.")
+			to_chat(user, "<span class='warning'>The Bluespace portal resists your attempt to add another item.</span>")
 		else
-			to_chat(user, "\red The Bluespace generator malfunctions!")
+			to_chat(user, "<span class='warning'>The Bluespace generator malfunctions!</span>")
 			for (var/obj/O in src.contents) //it broke, delete what was in it
 				qdel(O)
 			crit_fail = 1

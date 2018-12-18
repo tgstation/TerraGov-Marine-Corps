@@ -103,7 +103,7 @@
 			break
 
 		if(!found)
-			to_chat(usr, "\red Poll question details not found.")
+			to_chat(usr, "<span class='warning'>Poll question details not found.</span>")
 			return
 
 		switch(polltype)
@@ -360,7 +360,7 @@
 			break
 
 		if(!validpoll)
-			to_chat(usr, "\red Poll is not valid.")
+			to_chat(usr, "<span class='warning'>Poll is not valid.</span>")
 			return
 
 		var/DBQuery/select_query2 = dbcon.NewQuery("SELECT id FROM erro_poll_option WHERE id = [optionid] AND pollid = [pollid]")
@@ -373,7 +373,7 @@
 			break
 
 		if(!validoption)
-			to_chat(usr, "\red Poll option is not valid.")
+			to_chat(usr, "<span class='warning'>Poll option is not valid.</span>")
 			return
 
 		var/alreadyvoted = 0
@@ -387,11 +387,11 @@
 				break
 
 		if(!multichoice && alreadyvoted)
-			to_chat(usr, "\red You already voted in this poll.")
+			to_chat(usr, "<span class='warning'>You already voted in this poll.</span>")
 			return
 
 		if(multichoice && (alreadyvoted >= multiplechoiceoptions))
-			to_chat(usr, "\red You already have more than [multiplechoiceoptions] logged votes on this poll. Enough is enough. Contact the database admin if this is an error.")
+			to_chat(usr, "<span class='warning'>You already have more than [multiplechoiceoptions] logged votes on this poll. Enough is enough. Contact the database admin if this is an error.</span>")
 			return
 
 		var/adminrank = "Player"
@@ -427,7 +427,7 @@
 			break
 
 		if(!validpoll)
-			to_chat(usr, "\red Poll is not valid.")
+			to_chat(usr, "<span class='warning'>Poll is not valid.</span>")
 			return
 
 		var/alreadyvoted = 0
@@ -440,7 +440,7 @@
 			break
 
 		if(alreadyvoted)
-			to_chat(usr, "\red You already sent your feedback for this poll.")
+			to_chat(usr, "<span class='warning'>You already sent your feedback for this poll.</span>")
 			return
 
 		var/adminrank = "Player"
@@ -485,7 +485,7 @@
 			break
 
 		if(!validpoll)
-			to_chat(usr, "\red Poll is not valid.")
+			to_chat(usr, "<span class='warning'>Poll is not valid.</span>")
 			return
 
 		var/DBQuery/select_query2 = dbcon.NewQuery("SELECT id FROM erro_poll_option WHERE id = [optionid] AND pollid = [pollid]")
@@ -498,7 +498,7 @@
 			break
 
 		if(!validoption)
-			to_chat(usr, "\red Poll option is not valid.")
+			to_chat(usr, "<span class='warning'>Poll option is not valid.</span>")
 			return
 
 		var/alreadyvoted = 0
@@ -511,7 +511,7 @@
 			break
 
 		if(alreadyvoted)
-			to_chat(usr, "\red You already voted in this poll.")
+			to_chat(usr, "<span class='warning'>You already voted in this poll.</span>")
 			return
 
 		var/adminrank = "Player"

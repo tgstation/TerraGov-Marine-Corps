@@ -27,7 +27,7 @@
 
 /obj/item/weapon/classic_baton/attack(mob/living/M as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "\red You club yourself over the head.")
+		to_chat(user, "<span class='warning'>You club yourself over the head.</span>")
 		user.KnockDown(3 * force)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
@@ -105,7 +105,7 @@
 /obj/item/weapon/telebaton/attack(mob/target as mob, mob/living/user as mob)
 	if(on)
 		if ((CLUMSY in user.mutations) && prob(50))
-			to_chat(user, "\red You club yourself over the head.")
+			to_chat(user, "<span class='warning'>You club yourself over the head.</span>")
 			user.KnockDown(3 * force)
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
@@ -133,7 +133,7 @@
 
 /obj/item/weapon/shield/energy/attack_self(mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "\red You beat yourself in the head with [src].")
+		to_chat(user, "<span class='warning'>You beat yourself in the head with [src].</span>")
 		user.take_limb_damage(5)
 	active = !active
 	if (active)

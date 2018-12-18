@@ -100,7 +100,7 @@
 	if (!istype(M, /mob))
 		return
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		to_chat(user, "\red You don't have the dexterity to do this!")
+		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 
 	log_combat(user, M, "injected", src)
@@ -146,7 +146,7 @@
 				O.show_message(text("\red [] has been injected with [] by [].", M, src, user), 1)
 				//Foreach goto(192)
 			if (!(istype(M, /mob/living/carbon/human) || istype(M, /mob/living/carbon/monkey)))
-				to_chat(user, "\red Apparently it didn't work.")
+				to_chat(user, "<span class='warning'>Apparently it didn't work.</span>")
 				return
 
 			if (buf && buf.types & DNA2_BUF_SE)

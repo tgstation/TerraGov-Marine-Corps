@@ -74,7 +74,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(operating)
-		to_chat(user, "\red It's locked and running")
+		to_chat(user, "<span class='warning'>It's locked and running</span>")
 		return
 	else
 		src.startgibbing(user)

@@ -301,9 +301,9 @@
 	if(B)
 		for(var/obj/item/ore/O in contents)
 			O.loc = B
-		to_chat(usr, "\red You unload the drill's storage cache into the ore box.")
+		to_chat(usr, "<span class='warning'>You unload the drill's storage cache into the ore box.</span>")
 	else
-		to_chat(usr, "\red You must move an ore box up to the drill before you can unload it.")
+		to_chat(usr, "<span class='warning'>You must move an ore box up to the drill before you can unload it.</span>")
 */
 
 /obj/machinery/mining/brace

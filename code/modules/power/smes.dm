@@ -300,7 +300,7 @@
 		return
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		if(!istype(usr, /mob/living/silicon/ai))
-			to_chat(usr, "\red You don't have the dexterity to do this!")
+			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 
 //to_chat(world, "[href] ; [href_list[href]]")

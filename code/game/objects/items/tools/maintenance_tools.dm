@@ -442,14 +442,14 @@
 		if(T.welding & prob(50))
 			message_admins("[key_name_admin(user)] triggered a fueltank explosion.")
 			log_game("[key_name(user)] triggered a fueltank explosion.")
-			to_chat(user, "\red That was stupid of you.")
+			to_chat(user, "<span class='warning'>That was stupid of you.</span>")
 			explosion(get_turf(src),-1,0,2)
 			if(src)
 				qdel(src)
 			return
 		else
 			if(T.welding)
-				to_chat(user, "\red That was close!")
+				to_chat(user, "<span class='warning'>That was close!</span>")
 			src.reagents.trans_to(W, T.max_fuel)
 			to_chat(user, "\blue Welder refilled!")
 			playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)

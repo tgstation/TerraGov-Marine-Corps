@@ -410,7 +410,7 @@ Buildable meters
 
 	for(var/obj/machinery/atmospherics/M in src.loc)
 		if((M.initialize_directions & pipe_dir) && M.check_connect_types_construction(M,src))	// matches at least one direction on either type of pipe & same connection type
-			to_chat(user, "\red There is already a pipe of the same type at this location.")
+			to_chat(user, "<span class='warning'>There is already a pipe of the same type at this location.</span>")
 			return 1
 	// no conflicts found
 
@@ -1005,7 +1005,7 @@ Buildable meters
 	if (!istype(W, /obj/item/tool/wrench))
 		return ..()
 	if(!locate(/obj/machinery/atmospherics/pipe, src.loc))
-		to_chat(user, "\red You need to fasten it to a pipe")
+		to_chat(user, "<span class='warning'>You need to fasten it to a pipe</span>")
 		return 1
 	new/obj/machinery/meter( src.loc )
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)

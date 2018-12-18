@@ -34,13 +34,13 @@
 			survive_mob_death = TRUE //changed because infection rate was REALLY horrible.
 			if(goo_message_cooldown < world.time )
 				if(prob(3))
-					to_chat(affected_mob, "\red You feel really warm...")
+					to_chat(affected_mob, "<span class='warning'>You feel really warm...</span>")
 					goo_message_cooldown = world.time + 100
 		if(2)
 			if(goo_message_cooldown < world.time)
-				if (prob(3)) to_chat(affected_mob, "\red Your throat is really dry...")
+				if (prob(3)) to_chat(affected_mob, "<span class='warning'>Your throat is really dry...</span>")
 				else if (prob(6))
-					to_chat(affected_mob, "\red You feel really warm...")
+					to_chat(affected_mob, "<span class='warning'>You feel really warm...</span>")
 				else if (prob(2))
 					H.vomit()
 				goo_message_cooldown = world.time + 100
@@ -50,13 +50,13 @@
 			H.next_move_slowdown = max(H.next_move_slowdown, 1)
 			if(goo_message_cooldown < world.time)
 				if (prob(3))
-					to_chat(affected_mob, "\red You cough up some black fluid...")
+					to_chat(affected_mob, "<span class='warning'>You cough up some black fluid...</span>")
 					goo_message_cooldown = world.time + 100
 				else if (prob(6))
-					to_chat(affected_mob, "\red Your throat is really dry...")
+					to_chat(affected_mob, "<span class='warning'>Your throat is really dry...</span>")
 					goo_message_cooldown = world.time + 100
 				else if (prob(9))
-					to_chat(affected_mob, "\red You feel really warm...")
+					to_chat(affected_mob, "<span class='warning'>You feel really warm...</span>")
 					goo_message_cooldown = world.time + 100
 				else if(prob(5))
 					goo_message_cooldown = world.time + 100

@@ -364,7 +364,7 @@
 		return
 
 	if(busy)
-		to_chat(user, "\red Someone's already washing here.")
+		to_chat(user, "<span class='warning'>Someone's already washing here.</span>")
 		return
 
 	to_chat(usr, "\blue You start washing your hands.")
@@ -384,7 +384,7 @@
 
 /obj/structure/sink/attackby(obj/item/O as obj, mob/living/user as mob)
 	if(busy)
-		to_chat(user, "\red Someone's already washing here.")
+		to_chat(user, "<span class='warning'>Someone's already washing here.</span>")
 		return
 
 	var/obj/item/reagent_container/RG = O

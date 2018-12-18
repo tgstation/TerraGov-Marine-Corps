@@ -81,7 +81,7 @@
 			if ((M.client && !is_blind(M)))
 				M.show_message("\red \b [src] has been attacked with [O] by [user]. ")
 	else
-		to_chat(usr, "\red This weapon is ineffective, it does no damage.")
+		to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 		for(var/mob/M in viewers(src, null))
 			if ((M.client && !is_blind(M)))
 				M.show_message("\red [user] gently taps [src] with [O]. ")
@@ -127,7 +127,7 @@
 				if ((M.client && !is_blind(M)))
 					M.show_message("\red \b [O] bounces harmlessly off of [src]. ")
 	else
-		to_chat(usr, "\red This weapon is ineffective, it does no damage.")
+		to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 		for(var/mob/M in viewers(src, null))
 			if ((M.client && !is_blind(M)))
 				M.show_message("\red [user] gently taps [src] with [O]. ")
@@ -253,7 +253,7 @@
 				if ((M.client && !is_blind(M)))
 					M.show_message("\red \b [O] bounces harmlessly off of [src]. ")
 	else
-		to_chat(usr, "\red This weapon is ineffective, it does no damage.")
+		to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 		for(var/mob/M in viewers(src, null))
 			if ((M.client && !is_blind(M)))
 				M.show_message("\red [user] gently taps [src] with [O]. ")
@@ -271,7 +271,7 @@
 	if (istype(usr,/mob/living/simple_animal/constructbehemoth))
 
 		if(usr.energy<300)
-			to_chat(usr, "\red You do not have enough power stored!")
+			to_chat(usr, "<span class='warning'>You do not have enough power stored!</span>")
 			return
 
 		if(usr.stat)

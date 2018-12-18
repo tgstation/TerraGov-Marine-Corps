@@ -285,16 +285,16 @@
 		locked = 0
 	else if(istype(I,/obj/item/card/id))
 		if(emagged)
-			to_chat(user, "\red Circuit lock does not respond.")
+			to_chat(user, "<span class='warning'>Circuit lock does not respond.</span>")
 			return
 		if(check_access(I))
 			locked = !locked
 			to_chat(user, "\blue You [locked ? "" : "un"]lock the circuit controls.")
 		else
-			to_chat(user, "\red Access denied.")
+			to_chat(user, "<span class='warning'>Access denied.</span>")
 	else if(istype(I,/obj/item/device/multitool))
 		if(locked)
-			to_chat(user, "\red Circuit controls are locked.")
+			to_chat(user, "<span class='warning'>Circuit controls are locked.</span>")
 			return
 		var/existing_networks = list2text(network,",")
 		var/input = strip_html(input(usr, "Which networks would you like to connect this camera console circuit to? Seperate networks with a comma. No Spaces!\nFor example: military,Security,Secret ", "Multitool-Circuitboard interface", existing_networks))

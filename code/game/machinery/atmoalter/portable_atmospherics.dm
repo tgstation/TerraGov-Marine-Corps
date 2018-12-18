@@ -119,7 +119,7 @@
 
 	if(istype(I, /obj/item/tool/screwdriver))
 		if(!cell)
-			to_chat(user, "\red There is no power cell installed.")
+			to_chat(user, "<span class='warning'>There is no power cell installed.</span>")
 			return
 
 		user.visible_message("\blue [user] opens the panel on [src] and removes [cell].", "\blue You open the panel on [src] and remove [cell].")

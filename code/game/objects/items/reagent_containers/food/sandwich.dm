@@ -23,7 +23,7 @@
 			sandwich_limit += 4
 
 	if(src.contents.len > sandwich_limit)
-		to_chat(user, "\red If you put anything else on \the [src] it's going to collapse.")
+		to_chat(user, "<span class='warning'>If you put anything else on \the [src] it's going to collapse.</span>")
 		return
 	else if(istype(W,/obj/item/shard))
 		to_chat(user, "\blue You hide [W] in \the [src].")
@@ -94,6 +94,6 @@
 		H = M
 
 	if(H && shard && M == user) //This needs a check for feeding the food to other people, but that could be abusable.
-		to_chat(H, "\red You lacerate your mouth on a [shard.name] in the sandwich!")
+		to_chat(H, "<span class='warning'>You lacerate your mouth on a [shard.name] in the sandwich!</span>")
 		H.adjustBruteLoss(5) //TODO: Target head if human.
 	..()

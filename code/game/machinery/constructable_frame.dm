@@ -30,7 +30,7 @@
 /obj/machinery/constructable_frame/machine_frame
 	attackby(obj/item/P as obj, mob/user as mob)
 		if(P.crit_fail)
-			to_chat(user, "\red This part is faulty, you cannot add this to the machine!")
+			to_chat(user, "<span class='warning'>This part is faulty, you cannot add this to the machine!</span>")
 			return
 		switch(state)
 			if(1)
@@ -144,5 +144,5 @@
 									break
 							to_chat(user, desc)
 							if(P && P.loc != src && !istype(P, /obj/item/stack/cable_coil))
-								to_chat(user, "\red You cannot add that component to the machine!")
+								to_chat(user, "<span class='warning'>You cannot add that component to the machine!</span>")
 

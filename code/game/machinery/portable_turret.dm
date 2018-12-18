@@ -242,7 +242,7 @@ Status: []<BR>"},
 		if(anchored) // you can't turn a turret on/off if it's not anchored/secured
 			on = !on // toggle on/off
 		else
-			to_chat(usr, "\red It has to be secured first!")
+			to_chat(usr, "<span class='warning'>It has to be secured first!</span>")
 
 		updateUsrDialog()
 		return
@@ -313,7 +313,7 @@ Status: []<BR>"},
 		// Emagging the turret makes it go bonkers and stun everyone. It also makes
 		// the turret shoot much, much faster.
 
-		to_chat(user, "\red You short out [src]'s threat assessment circuits.")
+		to_chat(user, "<span class='warning'>You short out [src]'s threat assessment circuits.</span>")
 		spawn(0)
 			for(var/mob/O in hearers(src, null))
 				O.show_message("\red [src] hums oddly...", 1)
@@ -346,7 +346,7 @@ Status: []<BR>"},
 			locked = !src.locked
 			to_chat(user, "Controls are now [locked ? "locked." : "unlocked."]")
 		else
-			to_chat(user, "\red Access denied.")
+			to_chat(user, "<span class='warning'>Access denied.</span>")
 
 	else
 		// if the turret was attacked with the intention of harming it:
@@ -729,7 +729,7 @@ Status: []<BR>"},
 				var/obj/item/weapon/weldingtool/WT = W
 				if(!WT.isOn()) return
 				if (WT.get_fuel() < 5) // uses up 5 fuel.
-					to_chat(user, "\red You need more fuel to complete this task.")
+					to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
 					return
 
 				playsound(src.loc, pick('sound/items/Welder.ogg', 'sound/items/Welder2.ogg'), 50, 1)
@@ -797,7 +797,7 @@ Status: []<BR>"},
 				var/obj/item/weapon/weldingtool/WT = W
 				if(!WT.isOn()) return
 				if (WT.get_fuel() < 5)
-					to_chat(user, "\red You need more fuel to complete this task.")
+					to_chat(user, "<span class='warning'>You need more fuel to complete this task.</span>")
 
 				playsound(src.loc, pick('sound/items/Welder.ogg', 'sound/items/Welder2.ogg'), 50, 1)
 				if(do_after(user, 30))
@@ -974,7 +974,7 @@ Status: []<BR>"},
 			else
 				Parent_Turret.on=1
 		else
-			to_chat(usr, "\red It has to be secured first!")
+			to_chat(usr, "<span class='warning'>It has to be secured first!</span>")
 
 		updateUsrDialog()
 		return
@@ -998,7 +998,7 @@ Status: []<BR>"},
 /obj/machinery/porta_turret_cover/attackby(obj/item/W as obj, mob/user as mob)
 
 	if ((istype(W, /obj/item/weapon/card/emag)) && (!Parent_Turret.emagged))
-		to_chat(user, "\red You short out [Parent_Turret]'s threat assessment circuits.")
+		to_chat(user, "<span class='warning'>You short out [Parent_Turret]'s threat assessment circuits.</span>")
 		spawn(0)
 			for(var/mob/O in hearers(Parent_Turret, null))
 				O.show_message("\red [Parent_Turret] hums oddly...", 1)
@@ -1028,7 +1028,7 @@ Status: []<BR>"},
 			to_chat(user, "Controls are now [Parent_Turret.locked ? "locked." : "unlocked."]")
 			updateUsrDialog()
 		else
-			to_chat(user, "\red Access denied.")
+			to_chat(user, "<span class='warning'>Access denied.</span>")
 
 	else
 		Parent_Turret.health -= W.force * 0.5

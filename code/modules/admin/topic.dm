@@ -691,7 +691,7 @@
 			// 	if("Yes")
 			// 		if(!check_rights(R_MOD,0) && !check_rights(R_BAN))  return
 			// 		if(config.ban_legacy_system)
-			// 			to_chat(usr, "\red Your server is using the legacy banning system, which does not support temporary job bans. Consider upgrading. Aborting ban.")
+			// 			to_chat(usr, "<span class='warning'>Your server is using the legacy banning system, which does not support temporary job bans. Consider upgrading. Aborting ban.</span>")
 			// 			return
 			// 		var/mins = input(usr,"How long (in minutes)?","Ban time",1440) as num|null
 			// 		if(!mins)
@@ -716,7 +716,7 @@
 			// 		message_admins("\blue [key_name_admin(usr)] banned [key_name_admin(M)] from [msg] for [mins] minutes", 1)
 			// 		to_chat(M, "\red<BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG>")
 			// 		to_chat(M, "<span class='danger'>The reason is: [reason]</span>")
-			// 		to_chat(M, "\red This jobban will be lifted in [mins] minutes.")
+			// 		to_chat(M, "<span class='warning'>This jobban will be lifted in [mins] minutes.</span>")
 			// 		jobban_savebanfile()
 			// 		href_list["jobban2"] = 1 // lets it fall through and refresh
 			// 		return 1
@@ -738,7 +738,7 @@
 				message_admins("\blue [key_name_admin(usr)] banned [key_name_admin(M)] from [msg]", 1)
 				to_chat(M, "\red<BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG>")
 				to_chat(M, "<span class='danger'>The reason is: [reason]</span>")
-				to_chat(M, "\red Jobban can be lifted only upon request.")
+				to_chat(M, "<span class='warning'>Jobban can be lifted only upon request.</span>")
 				jobban_savebanfile()
 				href_list["jobban2"] = 1 // lets it fall through and refresh
 				return 1
@@ -783,9 +783,9 @@
 				return
 			var/reason = input("Please enter reason")
 			if(!reason)
-				to_chat(M, "\red You have been kicked from the server")
+				to_chat(M, "<span class='warning'>You have been kicked from the server</span>")
 			else
-				to_chat(M, "\red You have been kicked from the server: [reason]")
+				to_chat(M, "<span class='warning'>You have been kicked from the server: [reason]</span>")
 			log_admin("[key_name(usr)] booted [key_name(M)].")
 			message_admins("\blue [key_name_admin(usr)] booted [key_name_admin(M)].", 1)
 			//M.client = null
@@ -850,14 +850,14 @@
 		AddBan(mob_key, mob_id, reason, usr.ckey, 1, mins, mob_ip)
 		ban_unban_log_save("[usr.client.ckey] has banned [mob_key]|Duration: [mins] minutes|Reason: [sanitize(reason)]")
 		to_chat(M, "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [sanitize(reason)].</B></BIG>")
-		to_chat(M, "\red This is a temporary ban, it will be removed in [mins] minutes.")
+		to_chat(M, "<span class='warning'>This is a temporary ban, it will be removed in [mins] minutes.</span>")
 		feedback_inc("ban_tmp",1)
 		DB_ban_record(BANTYPE_TEMP, M, mins, reason)
 		feedback_inc("ban_tmp_mins",mins)
 		if(config.banappeals)
-			to_chat(M, "\red To try to resolve this matter head to [config.banappeals]")
+			to_chat(M, "<span class='warning'>To try to resolve this matter head to [config.banappeals]</span>")
 		else
-			to_chat(M, "\red No ban appeals URL has been set.")
+			to_chat(M, "<span class='warning'>No ban appeals URL has been set.</span>")
 		log_admin("[usr.client.ckey] has banned [mob_key]|Duration: [mins] minutes|Reason: [sanitize(reason)]")
 		message_admins("\blue[usr.client.ckey] has banned [mob_key].\nReason: [sanitize(reason)]\nThis will be removed in [mins] minutes.")
 		notes_add(mob_key, "Banned by [usr.client.ckey]|Duration: [mins] minutes|Reason: [sanitize(reason)]", usr)
@@ -892,7 +892,7 @@
 		AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
 		ban_unban_log_save("[usr.client.ckey] has banned [M.ckey]|Duration: [mins] minutes|Reason: [reason]")
 		to_chat(M, "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>")
-		to_chat(M, "\red This is a temporary ban, it will be removed in [mins] minutes.")
+		to_chat(M, "<span class='warning'>This is a temporary ban, it will be removed in [mins] minutes.</span>")
 		to_chat(M, "\blue This ban was made using a one-click ban system. If you think an error has been made, please visit our forums' ban appeal section.")
 		to_chat(M, "\blue If you make sure to mention that this was a one-click ban, the administration team may double-check this code for you.")
 		if(config.banappeals)
@@ -1058,7 +1058,7 @@
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), WEAR_BODY)
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), WEAR_FEET)
 
-		to_chat(M, "\red You have been sent to the prison station!")
+		to_chat(M, "<span class='warning'>You have been sent to the prison station!</span>")
 		log_admin("[key_name(usr)] sent [key_name(M)] to the prison station.")
 		message_admins("\blue [key_name_admin(usr)] sent [key_name_admin(M)] to the prison station.", 1)
 

@@ -105,20 +105,20 @@ move an amendment</a> to the drawing.</p>
 	if(!istype(res,/list))
 		switch(res)
 			if(ROOM_ERR_SPACE)
-				to_chat(usr, "\red The new area must be completely airtight!")
+				to_chat(usr, "<span class='warning'>The new area must be completely airtight!</span>")
 				return
 			if(ROOM_ERR_TOOLARGE)
-				to_chat(usr, "\red The new area too large!")
+				to_chat(usr, "<span class='warning'>The new area too large!</span>")
 				return
 			else
-				to_chat(usr, "\red Error! Please notify administration!")
+				to_chat(usr, "<span class='warning'>Error! Please notify administration!</span>")
 				return
 	var/list/turf/turfs = res
 	var/str = trim(stripped_input(usr,"New area name:","Blueprint Editing", "", MAX_NAME_LEN))
 	if(!str || !length(str)) //cancel
 		return
 	if(length(str) > 50)
-		to_chat(usr, "\red Name too long.")
+		to_chat(usr, "<span class='warning'>Name too long.</span>")
 		return
 	var/area/A = new
 	A.name = str
@@ -158,7 +158,7 @@ move an amendment</a> to the drawing.</p>
 	if(!str || !length(str) || str==prevname) //cancel
 		return
 	if(length(str) > 50)
-		to_chat(usr, "\red Text too long.")
+		to_chat(usr, "<span class='warning'>Text too long.</span>")
 		return
 	set_area_machinery_title(A,str,prevname)
 	for(var/area/RA in A.related)

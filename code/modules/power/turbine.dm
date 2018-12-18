@@ -172,7 +172,7 @@
 		return
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		if(!istype(usr, /mob/living/silicon/ai))
-			to_chat(usr, "\red You don't have the dexterity to do this!")
+			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 
 	if (( usr.interactee==src && ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon/ai)))

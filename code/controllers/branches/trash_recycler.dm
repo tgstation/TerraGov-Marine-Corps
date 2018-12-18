@@ -208,7 +208,7 @@ overhead only applies when the image is first created.*/
 	set desc = "This will toggle the Recycle Authority's purge mode and log the results in debug. Do not use this without good reason."
 
 	RecycleAuthority.purging = !RecycleAuthority.purging
-	to_chat(usr, "\red RA is [RecycleAuthority.purging? "now purging." : "is no longer purging."]")
+	to_chat(usr, "<span class='warning'>RA is [RecycleAuthority.purging? "now purging." : "is no longer purging."]</span>")
 	log_debug("RA: <b>[usr.key]</b> used the purge toggle.")
 
 #undef DEBUG_RA_AUTHORITY

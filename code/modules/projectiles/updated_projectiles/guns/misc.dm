@@ -250,9 +250,9 @@
 				to_chat(user, "\blue You put the syringe in [src].")
 				to_chat(user, "\blue [syringes.len] / [max_syringes] syringes.")
 			else
-				to_chat(usr, "\red [src] cannot hold more syringes.")
+				to_chat(usr, "<span class='warning'>[src] cannot hold more syringes.</span>")
 		else
-			to_chat(usr, "\red This syringe is broken!")
+			to_chat(usr, "<span class='warning'>This syringe is broken!</span>")
 
 
 /obj/item/weapon/gun/syringe/afterattack(obj/target, mob/user , flag)
@@ -270,7 +270,7 @@
 	if(syringes.len)
 		spawn(0) fire_syringe(target,user)
 	else
-		to_chat(usr, "\red [src] is empty.")
+		to_chat(usr, "<span class='warning'>[src] is empty.</span>")
 
 /obj/item/weapon/gun/syringe/proc/fire_syringe(atom/target, mob/user)
 	if (locate (/obj/structure/table, src.loc))

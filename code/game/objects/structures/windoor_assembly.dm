@@ -196,7 +196,7 @@ obj/structure/windoor_assembly/Destroy()
 			//Crowbar to complete the assembly, Step 7 complete.
 			else if(istype(W, /obj/item/tool/crowbar))
 				if(!src.electronics)
-					to_chat(usr, "\red The assembly is missing electronics.")
+					to_chat(usr, "<span class='warning'>The assembly is missing electronics.</span>")
 					return
 				usr << browse(null, "window=windoor_access")
 				playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)

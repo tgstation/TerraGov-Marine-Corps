@@ -647,7 +647,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				SMES.output = 75000
 
 	if(!found_the_pump && response == "Setup Completely")
-		to_chat(src, "\red Unable to locate air supply to fill up with coolant, adding some coolant around the supermatter")
+		to_chat(src, "<span class='warning'>Unable to locate air supply to fill up with coolant, adding some coolant around the supermatter</span>")
 
 
 

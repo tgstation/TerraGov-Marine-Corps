@@ -48,7 +48,7 @@
 			to_chat(user, "Controls are now [src.locked ? "locked." : "unlocked."]")
 			updateDialog()
 		else
-			to_chat(user, "\red Access denied.")
+			to_chat(user, "<span class='warning'>Access denied.</span>")
 	else if(istype(W, /obj/item/card/emag))
 		if(prob(75))
 			src.locked = !src.locked
@@ -182,7 +182,7 @@
 		return
 	else if( href_list["toggle"] )
 		if (!active && !anchored)
-			to_chat(usr, "\red The [src] needs to be firmly secured to the floor first.")
+			to_chat(usr, "<span class='warning'>The [src] needs to be firmly secured to the floor first.</span>")
 			return
 		toggle()
 	else if( href_list["change_radius"] )

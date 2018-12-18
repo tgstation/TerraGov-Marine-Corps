@@ -380,7 +380,7 @@
 		return src.attack_hand(user)
 
 	if (istype(W, /obj/item/weapon/card/emag) && !emagged)
-		to_chat(user, "\red You short out the turret controls' access analysis module.")
+		to_chat(user, "<span class='warning'>You short out the turret controls' access analysis module.</span>")
 		emagged = 1
 		locked = 0
 		if(user.machine==src)
@@ -449,7 +449,7 @@
 		if (src.health <= 0)
 			src.die()
 	else
-		to_chat(M, "\red That object is useless to you.")
+		to_chat(M, "<span class='warning'>That object is useless to you.</span>")
 	return
 
 /obj/machinery/turretid/Topic(href, href_list, var/nowindow = 0)

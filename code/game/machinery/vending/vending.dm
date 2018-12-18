@@ -492,7 +492,7 @@
 						ewallet.worth -= R.price
 						src.vend(R, usr)
 					else
-						to_chat(usr, "\red The ewallet doesn't have enough money to pay for that.")
+						to_chat(usr, "<span class='warning'>The ewallet doesn't have enough money to pay for that.</span>")
 						src.currently_vending = R
 						src.updateUsrDialog()
 				else

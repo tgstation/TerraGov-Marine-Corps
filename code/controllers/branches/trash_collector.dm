@@ -180,7 +180,7 @@ TO DO: Implement more support for /mob.
 	set desc = "This will toggle the Trash Authority's purge mode and log the results in debug. Do not use this without good reason."
 
 	TrashAuthority.purging = !TrashAuthority.purging
-	to_chat(usr, "\red TA is [TrashAuthority.purging? "now purging." : "is no longer purging."]")
+	to_chat(usr, "<span class='warning'>TA is [TrashAuthority.purging? "now purging." : "is no longer purging."]</span>")
 	log_debug("TA: <b>[usr.key]</b> used the purge toggle.")
 
 #undef DEBUG_TA_AUTHORITY

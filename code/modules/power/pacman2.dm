@@ -57,7 +57,7 @@
 	examine()
 		..()
 		to_chat(usr, "\blue The generator has [P.air_contents.phoron] units of fuel left, producing [power_gen] per cycle.")
-		if(crit_fail) to_chat(usr, "\red The generator seems to have broken down.")
+		if(crit_fail) to_chat(usr, "<span class='warning'>The generator seems to have broken down.</span>")
 
 	handleInactive()
 		heat -= 2
@@ -75,7 +75,7 @@
 	attackby(var/obj/item/O as obj, var/mob/user as mob)
 		if(istype(O, /obj/item/weapon/tank/phoron))
 			if(P)
-				to_chat(user, "\red The generator already has a phoron tank loaded!")
+				to_chat(user, "<span class='warning'>The generator already has a phoron tank loaded!</span>")
 				return
 			P = O
 			user.drop_item()

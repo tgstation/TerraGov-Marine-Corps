@@ -1017,7 +1017,7 @@ table tr:first-child th:first-child { border: none;}
 						to_chat(user, "\blue You [ locked ? "lock" : "unlock"] the Air Alarm interface.")
 						updateUsrDialog()
 					else
-						to_chat(user, "\red Access denied.")
+						to_chat(user, "<span class='warning'>Access denied.</span>")
 			return
 
 		if(1)

@@ -20,7 +20,7 @@
 	var/mob/living/carbon/human/H = A
 
 	if (last_chew + 75 > world.time)
-		to_chat(H, "\red You can't bite your hand again yet...")
+		to_chat(H, "<span class='warning'>You can't bite your hand again yet...</span>")
 		return
 
 

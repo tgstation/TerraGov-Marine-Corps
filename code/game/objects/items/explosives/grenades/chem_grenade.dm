@@ -40,10 +40,10 @@
 	if(istype(W,/obj/item/device/assembly_holder) && (!stage || stage==1) && path != 2)
 		var/obj/item/device/assembly_holder/det = W
 		if(istype(det.a_left,det.a_right.type) || (!isigniter(det.a_left) && !isigniter(det.a_right)))
-			to_chat(user, "\red Assembly must contain one igniter.")
+			to_chat(user, "<span class='warning'>Assembly must contain one igniter.</span>")
 			return
 		if(!det.secured)
-			to_chat(user, "\red Assembly must be secured with screwdriver.")
+			to_chat(user, "<span class='warning'>Assembly must be secured with screwdriver.</span>")
 			return
 		path = 1
 		to_chat(user, "\blue You add [W] to the metal casing.")
@@ -61,7 +61,7 @@
 				to_chat(user, "\blue You lock the assembly.")
 				name = "grenade"
 			else
-//					to_chat(user, "\red You need to add at least one beaker before locking the assembly.")
+//					to_chat(user, "<span class='warning'>You need to add at least one beaker before locking the assembly.</span>")
 				to_chat(user, "\blue You lock the empty assembly.")
 				name = "fake grenade"
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 0, 6)
@@ -69,7 +69,7 @@
 			stage = 2
 		else if(stage == 2)
 			if(active && prob(95))
-				to_chat(user, "\red You trigger the assembly!")
+				to_chat(user, "<span class='warning'>You trigger the assembly!</span>")
 				prime()
 				return
 			else
@@ -82,7 +82,7 @@
 	else if(is_type_in_list(W, allowed_containers) && (!stage || stage==1) && path != 2)
 		path = 1
 		if(beakers.len == 2)
-			to_chat(user, "\red The grenade can not hold more containers.")
+			to_chat(user, "<span class='warning'>The grenade can not hold more containers.</span>")
 			return
 		else
 			if(W.reagents.total_volume)
@@ -93,7 +93,7 @@
 					stage = 1
 					name = "unsecured grenade with [beakers.len] containers[detonator?" and detonator":""]"
 			else
-				to_chat(user, "\red \the [W] is empty.")
+				to_chat(user, "<span class='warning'>\the [W] is empty.</span>")
 
 /obj/item/explosive/grenade/chem_grenade/examine(mob/user)
 	..()

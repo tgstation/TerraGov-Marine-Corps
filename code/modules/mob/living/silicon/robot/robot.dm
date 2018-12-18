@@ -341,11 +341,11 @@ var/list/robot_verbs_default = list(
 	set name = "Self Diagnosis"
 
 	if(!is_component_functioning("diagnosis unit"))
-		to_chat(src, "\red Your self-diagnosis component isn't functioning.")
+		to_chat(src, "<span class='warning'>Your self-diagnosis component isn't functioning.</span>")
 
 	var/datum/robot_component/CO = get_component("diagnosis unit")
 	if (!cell_use_power(CO.active_usage))
-		to_chat(src, "\red Low Power.")
+		to_chat(src, "<span class='warning'>Low Power.</span>")
 	var/dat = self_diagnosis()
 	src << browse(dat, "window=robotdiagnosis")
 
@@ -369,10 +369,10 @@ var/list/robot_verbs_default = list(
 	var/datum/robot_component/C = components[toggle]
 	if(C.toggled)
 		C.toggled = 0
-		to_chat(src, "\red You disable [C.name].")
+		to_chat(src, "<span class='warning'>You disable [C.name].</span>")
 	else
 		C.toggled = 1
-		to_chat(src, "\red You enable [C.name].")
+		to_chat(src, "<span class='warning'>You enable [C.name].</span>")
 
 // this function displays jetpack pressure in the stat panel
 /mob/living/silicon/robot/proc/show_jetpack_pressure()
@@ -605,7 +605,7 @@ var/list/robot_verbs_default = list(
 				to_chat(user, "You [ locked ? "lock" : "unlock"] [src]'s interface.")
 				update_icons()
 			else
-				to_chat(user, "\red Access denied.")
+				to_chat(user, "<span class='warning'>Access denied.</span>")
 
 	else if(istype(W, /obj/item/card/emag))		// trying to unlock with an emag card
 		if(!opened)//Cover is closed
@@ -642,19 +642,19 @@ var/list/robot_verbs_default = list(
 					var/time = time2text(world.realtime,"hh:mm:ss")
 					lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
 					set_zeroth_law("Only [user.real_name] and people he designates as being such are Syndicate Agents.")
-					to_chat(src, "\red ALERT: Foreign software detected.")
+					to_chat(src, "<span class='warning'>ALERT: Foreign software detected.</span>")
 					sleep(5)
-					to_chat(src, "\red Initiating diagnostics...")
+					to_chat(src, "<span class='warning'>Initiating diagnostics...</span>")
 					sleep(20)
-					to_chat(src, "\red SynBorg v1.7.1 loaded.")
+					to_chat(src, "<span class='warning'>SynBorg v1.7.1 loaded.</span>")
 					sleep(5)
-					to_chat(src, "\red LAW SYNCHRONISATION ERROR")
+					to_chat(src, "<span class='warning'>LAW SYNCHRONISATION ERROR</span>")
 					sleep(5)
-					to_chat(src, "\red Would you like to send a report to NanoTraSoft? Y/N")
+					to_chat(src, "<span class='warning'>Would you like to send a report to NanoTraSoft? Y/N</span>")
 					sleep(10)
-					to_chat(src, "\red > N")
+					to_chat(src, "<span class='warning'>> N</span>")
 					sleep(20)
-					to_chat(src, "\red ERRORERRORERROR")
+					to_chat(src, "<span class='warning'>ERRORERRORERROR</span>")
 					to_chat(src, "<b>Obey these laws:</b>")
 					laws.show_laws(src)
 					to_chat(src, "<span class='danger'>ALERT: [user.real_name] is your new master. Obey your new laws and his commands.</span>")
@@ -793,7 +793,7 @@ var/list/robot_verbs_default = list(
 
 /mob/living/silicon/robot/proc/installed_modules()
 	if(weapon_lock)
-		to_chat(src, "\red Weapon lock active, unable to use modules! Count:[weaponlock_time]")
+		to_chat(src, "<span class='warning'>Weapon lock active, unable to use modules! Count:[weaponlock_time]</span>")
 		return
 
 	if(!module)
@@ -959,7 +959,7 @@ var/list/robot_verbs_default = list(
 								cleaned_human.shoes.clean_blood()
 								cleaned_human.update_inv_shoes(0)
 							cleaned_human.clean_blood(1)
-							to_chat(cleaned_human, "\red [src] cleans your face!")
+							to_chat(cleaned_human, "<span class='warning'>[src] cleans your face!</span>")
 		return
 
 /mob/living/silicon/robot/proc/self_destruct()

@@ -704,7 +704,7 @@ var/list/admin_verbs_mentor = list(
 	if(!check_rights(R_FUN))	return
 
 	if(!istype(M, /mob/living/carbon/human))
-		to_chat(usr, "\red You can only do this to humans!")
+		to_chat(usr, "<span class='warning'>You can only do this to humans!</span>")
 		return
 	switch(alert("Are you sure you wish to edit this mob's appearance? Skrell, Unathi, Vox and Tajaran can result in unintended consequences.",,"Yes","No"))
 		if("No")

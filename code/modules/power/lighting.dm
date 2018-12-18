@@ -414,7 +414,7 @@
 	if(M.melee_damage_upper == 0)
 		return
 	if(status == LIGHT_EMPTY||status == LIGHT_BROKEN)
-		to_chat(M, "\red That object is useless to you.")
+		to_chat(M, "<span class='warning'>That object is useless to you.</span>")
 		return
 	else if (status == LIGHT_OK||status == LIGHT_BURNED)
 		for(var/mob/O in viewers(src))

@@ -464,10 +464,10 @@
 	for(var/mob/living/carbon/M in mob_list) //knock down mobs
 		if(M.z != T_trg.z) continue
 		if(M.buckled)
-			to_chat(M, "\red You are jolted against [M.buckled]!")
+			to_chat(M, "<span class='warning'>You are jolted against [M.buckled]!</span>")
 			shake_camera(M, 3, 1)
 		else
-			to_chat(M, "\red The floor jolts under your feet!")
+			to_chat(M, "<span class='warning'>The floor jolts under your feet!</span>")
 			shake_camera(M, 10, 1)
 			M.KnockDown(3)
 

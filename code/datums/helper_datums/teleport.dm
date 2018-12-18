@@ -161,7 +161,7 @@
 			precision = max(rand(1,100)*bagholding.len,100)
 			if(istype(teleatom, /mob/living))
 				var/mob/living/MM = teleatom
-				to_chat(MM, "\red The Bluespace interface on your Bag of Holding interferes with the teleport!")
+				to_chat(MM, "<span class='warning'>The Bluespace interface on your Bag of Holding interferes with the teleport!</span>")
 		return 1
 
 	teleportChecks()

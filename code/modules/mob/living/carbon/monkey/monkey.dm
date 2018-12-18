@@ -229,7 +229,7 @@
 							O.show_message("\red <B>[src] has been touched with the stun gloves by [M]!</B>", 1, "\red You hear someone fall", 2)
 					return
 				else
-					to_chat(M, "\red Not enough charge! ")
+					to_chat(M, "<span class='warning'>Not enough charge! </span>")
 					return
 
 	if (M.a_intent == "help")

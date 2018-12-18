@@ -1098,7 +1098,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			if(istype(A, /obj/item/tank) || istype(A, /obj/machinery/portable_atmospherics) || istype(A, /obj/machinery/atmospherics/pipe/tank))
 				var/obj/icon = A
 				for (var/mob/O in viewers(user, null))
-					to_chat(O, "\red [user] has used [src] on \icon[icon] [A]")
+					to_chat(O, "<span class='warning'>[user] has used [src] on \icon[icon] [A]</span>")
 				var/pressure = A.return_pressure()
 				var/temperature = A.return_temperature()
 				var/gas = A.return_gas()

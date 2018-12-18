@@ -1276,23 +1276,23 @@
 		if(istype(usr, /mob/living/silicon) || \
 			istype(usr, /mob/living/carbon/Xenomorph) || \
 			istype(usr, /mob/living/carbon/monkey))
-			to_chat(usr, "\red You don't have the dexterity to do this!")
+			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 		if(working)
-			to_chat(user, "\red Wait for it to recharge first.")
+			to_chat(user, "<span class='warning'>Wait for it to recharge first.</span>")
 			return
 
 		var/remove_max = 10
 		var/turf/T = src.loc
 		if(T)
-			to_chat(user, "\red You turn on the recycler.")
+			to_chat(user, "<span class='warning'>You turn on the recycler.</span>")
 			var/removed = 0
 			for(var/i, i < remove_max, i++)
 				for(var/obj/O in T)
 					if(istype(O,/obj/structure/closet/crate))
 						var/obj/structure/closet/crate/C = O
 						if(C.contents.len)
-							to_chat(user, "\red [O] must be emptied before it can be recycled")
+							to_chat(user, "<span class='warning'>[O] must be emptied before it can be recycled</span>")
 							continue
 						new /obj/item/stack/sheet/metal(get_step(src,dir))
 						O.loc = get_turf(locate(84,237,2)) //z.2

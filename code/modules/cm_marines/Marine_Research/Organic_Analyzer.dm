@@ -64,7 +64,7 @@ Note: Must be placed within 3 tiles of the NT Research Console
 			qdel(src)
 			return 1
 		else
-			to_chat(user, "\red You can't load the [src.name] while it's opened.")
+			to_chat(user, "<span class='warning'>You can't load the [src.name] while it's opened.</span>")
 			return 1
 	if (disabled)
 		return
@@ -78,7 +78,7 @@ Note: Must be placed within 3 tiles of the NT Research Console
 		if(isrobot(user)) //Don't put your module items in there!
 			return
 		if(!O.origin_tech)
-			to_chat(user, "\red Can't do anything with that, maybe something organic...!")
+			to_chat(user, "<span class='warning'>Can't do anything with that, maybe something organic...!</span>")
 			return
 		//var/list/temp_tech = ConvertReqString2List(O.origin_tech) //This warning might just be Byond being silly.
 		busy = 1

@@ -163,7 +163,7 @@
 	if((ishuman(H))) //i guess carp and shit shouldn't set them off
 		var/mob/living/carbon/M = H
 		if(M.m_intent == MOVE_INTENT_RUN)
-			to_chat(M, "\red You step on the snap pop!")
+			to_chat(M, "<span class='warning'>You step on the snap pop!</span>")
 
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(2, 0, src)
@@ -231,7 +231,7 @@
 				for(var/atom/T in get_turf(D))
 					D.reagents.reaction(T)
 					if(ismob(T) && T:client)
-						to_chat(T:client, "\red [user] has sprayed you with water!")
+						to_chat(T:client, "<span class='warning'>[user] has sprayed you with water!</span>")
 				sleep(4)
 			qdel(D)
 

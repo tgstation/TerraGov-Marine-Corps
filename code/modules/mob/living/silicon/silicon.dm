@@ -54,7 +54,7 @@
 	flash_eyes(1, TRUE, type = /obj/screen/fullscreen/flash/noise)
 
 	to_chat(src, "<span class='danger'>*BZZZT*</span>")
-	to_chat(src, "\red Warning: Electromagnetic pulse detected.")
+	to_chat(src, "<span class='warning'>Warning: Electromagnetic pulse detected.</span>")
 	..()
 
 /mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount)

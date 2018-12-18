@@ -1107,7 +1107,7 @@
 
 	if(istype(W, /obj/item/device/analyzer) && in_range(user, src))
 		for (var/mob/O in viewers(user, null))
-			to_chat(O, "\red [user] has used the analyzer on \icon[icon]")
+			to_chat(O, "<span class='warning'>[user] has used the analyzer on \icon[icon]</span>")
 
 		to_chat(user, "\blue Results of analysis of \icon[icon]")
 		if (pressure>0)

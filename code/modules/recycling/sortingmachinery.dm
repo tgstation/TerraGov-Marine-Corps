@@ -57,7 +57,7 @@
 				if("Description")
 					var/str = trim(copytext(sanitize(input(usr,"Label text?","Set label","")),1,MAX_MESSAGE_LEN))
 					if(!str || !length(str))
-						to_chat(usr, "\red Invalid text.")
+						to_chat(usr, "<span class='warning'>Invalid text.</span>")
 						return
 					if(!examtext && !nameset)
 						examtext = str
@@ -166,7 +166,7 @@
 				if("Description")
 					var/str = trim(copytext(sanitize(input(usr,"Label text?","Set label","")),1,MAX_MESSAGE_LEN))
 					if(!str || !length(str))
-						to_chat(usr, "\red Invalid text.")
+						to_chat(usr, "<span class='warning'>Invalid text.</span>")
 						return
 					if(!examtext && !nameset)
 						examtext = str

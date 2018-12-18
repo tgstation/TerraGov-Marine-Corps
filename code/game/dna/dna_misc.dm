@@ -338,9 +338,9 @@
 			M.mutations.Add(HULK)
 	if (isblockon(getblock(M.dna.struc_enzymes, HEADACHEBLOCK,3),HEADACHEBLOCK))
 		M.disabilities |= EPILEPSY
-		to_chat(M, "\red You get a headache.")
+		to_chat(M, "<span class='warning'>You get a headache.</span>")
 	if (isblockon(getblock(M.dna.struc_enzymes, FAKEBLOCK,3),FAKEBLOCK))
-		to_chat(M, "\red You feel strange.")
+		to_chat(M, "<span class='warning'>You feel strange.</span>")
 		if (prob(95))
 			if(prob(50))
 				randmutb(M)
@@ -350,13 +350,13 @@
 			randmutg(M)
 	if (isblockon(getblock(M.dna.struc_enzymes, COUGHBLOCK,3),COUGHBLOCK))
 		M.disabilities |= COUGHING
-		to_chat(M, "\red You start coughing.")
+		to_chat(M, "<span class='warning'>You start coughing.</span>")
 	if (isblockon(getblock(M.dna.struc_enzymes, CLUMSYBLOCK,3),CLUMSYBLOCK))
-		to_chat(M, "\red You feel lightheaded.")
+		to_chat(M, "<span class='warning'>You feel lightheaded.</span>")
 		M.mutations.Add(CLUMSY)
 	if (isblockon(getblock(M.dna.struc_enzymes, TWITCHBLOCK,3),TWITCHBLOCK))
 		M.disabilities |= TOURETTES
-		to_chat(M, "\red You twitch.")
+		to_chat(M, "<span class='warning'>You twitch.</span>")
 	if (isblockon(getblock(M.dna.struc_enzymes, XRAYBLOCK,3),XRAYBLOCK))
 		if(probinj(30,inj) || (XRAY in old_mutations))
 			to_chat(M, "\blue The walls suddenly disappear.")
@@ -366,14 +366,14 @@
 			M.mutations.Add(XRAY)
 	if (isblockon(getblock(M.dna.struc_enzymes, NERVOUSBLOCK,3),NERVOUSBLOCK))
 		M.disabilities |= NERVOUS
-		to_chat(M, "\red You feel nervous.")
+		to_chat(M, "<span class='warning'>You feel nervous.</span>")
 	if (isblockon(getblock(M.dna.struc_enzymes, FIREBLOCK,3),FIREBLOCK))
 		if(probinj(30,inj) || (COLD_RESISTANCE in old_mutations))
 			to_chat(M, "\blue Your body feels warm.")
 			M.mutations.Add(COLD_RESISTANCE)
 	if (isblockon(getblock(M.dna.struc_enzymes, BLINDBLOCK,3),BLINDBLOCK))
 		M.sdisabilities |= BLIND
-		to_chat(M, "\red You can't seem to see anything.")
+		to_chat(M, "<span class='warning'>You can't seem to see anything.</span>")
 	if (isblockon(getblock(M.dna.struc_enzymes, TELEBLOCK,3),TELEBLOCK))
 		if(probinj(15,inj) || (TK in old_mutations))
 			to_chat(M, "\blue You feel smarter.")
@@ -381,7 +381,7 @@
 	if (isblockon(getblock(M.dna.struc_enzymes, DEAFBLOCK,3),DEAFBLOCK))
 		M.sdisabilities |= DEAF
 		M.ear_deaf = 1
-		to_chat(M, "\red Its kinda quiet..")
+		to_chat(M, "<span class='warning'>Its kinda quiet..</span>")
 	if (isblockon(getblock(M.dna.struc_enzymes, GLASSESBLOCK,3),GLASSESBLOCK))
 		M.disabilities |= NEARSIGHTED
 		to_chat(M, "Your eyes feel weird...")

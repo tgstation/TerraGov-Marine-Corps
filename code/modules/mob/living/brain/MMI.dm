@@ -26,10 +26,10 @@
 
 			var/obj/item/organ/brain/B = O
 			if(B.health <= 0)
-				to_chat(user, "\red That brain is well and truly dead.")
+				to_chat(user, "<span class='warning'>That brain is well and truly dead.</span>")
 				return
 			else if(!B.brainmob)
-				to_chat(user, "\red You aren't sure where this brain came from, but you're pretty sure it's a useless brain.")
+				to_chat(user, "<span class='warning'>You aren't sure where this brain came from, but you're pretty sure it's a useless brain.</span>")
 				return
 
 			for(var/mob/V in viewers(src, null))
@@ -60,7 +60,7 @@
 				locked = !locked
 				to_chat(user, "\blue You [locked ? "lock" : "unlock"] the brain holder.")
 			else
-				to_chat(user, "\red Access denied.")
+				to_chat(user, "<span class='warning'>Access denied.</span>")
 			return
 		if(brainmob)
 			O.attack(brainmob, user)//Oh noooeeeee
@@ -70,9 +70,9 @@
 	//TODO: ORGAN REMOVAL UPDATE. Make the brain remain in the MMI so it doesn't lose organ data.
 	attack_self(mob/user as mob)
 		if(!brainmob)
-			to_chat(user, "\red You upend the MMI, but there's nothing in it.")
+			to_chat(user, "<span class='warning'>You upend the MMI, but there's nothing in it.</span>")
 		else if(locked)
-			to_chat(user, "\red You upend the MMI, but the brain is clamped into place.")
+			to_chat(user, "<span class='warning'>You upend the MMI, but the brain is clamped into place.</span>")
 		else
 			to_chat(user, "\blue You upend the MMI, spilling the brain onto the floor.")
 			var/obj/item/organ/brain/brain = new(user.loc)
