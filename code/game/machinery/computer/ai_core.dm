@@ -196,7 +196,7 @@ That prevents a few funky behaviors.
 					if("AICARD")
 						var/obj/item/device/aicard/C = src
 						if(C.contents.len)//If there is an AI on card.
-							to_chat(U, "\red <b>Transfer failed</b>: \black Existing AI found on this terminal. Remove existing AI to install a new one.")
+							to_chat(U, "<span class='danger'>Transfer failed: Existing AI found on this terminal. Remove existing AI to install a new one.</span>")
 						else
 							new /obj/structure/AIcore/deactivated(T.loc)//Spawns a deactivated terminal at AI location.
 							T.aiRestorePowerRoutine = 0//So the AI initially has power.
@@ -209,7 +209,7 @@ That prevents a few funky behaviors.
 								C.icon_state = "aicard-full"
 							T.cancel_camera()
 							to_chat(T, "You have been downloaded to a mobile storage device. Remote device connection severed.")
-							to_chat(U, "\blue <b>Transfer successful</b>: \black [T.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory.")
+							to_chat(U, "<span class='boldnotice'>Transfer successful: [T.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory.</span>")
 
 			if("INACTIVE")//Inactive AI object.
 				var/obj/structure/AIcore/deactivated/T = target
@@ -226,7 +226,7 @@ That prevents a few funky behaviors.
 							C.overlays.Cut()
 							A.cancel_camera()
 							to_chat(A, "You have been uploaded to a stationary terminal. Remote device connection restored.")
-							to_chat(U, "\blue <b>Transfer successful</b>: \black [A.name] ([rand(1000,9999)].exe) installed and executed succesfully. Local copy has been removed.")
+							to_chat(U, "<span class='boldnotice'>Transfer successful: [A.name] ([rand(1000,9999)].exe) installed and executed succesfully. Local copy has been removed.</span>")
 							qdel(T)
 			if("AIFIXER")//AI Fixer terminal.
 				var/obj/machinery/computer/aifixer/T = target
@@ -250,7 +250,7 @@ That prevents a few funky behaviors.
 								T.overlays -= image('icons/obj/machines/computer.dmi', "ai-fixer-empty")
 								A.cancel_camera()
 								to_chat(A, "You have been uploaded to a stationary terminal. Sadly, there is no remote access from here.")
-								to_chat(U, "\blue <b>Transfer successful</b>: \black [A.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed.")
+								to_chat(U, "<span class='boldnotice'>Transfer successful: [A.name] ([rand(1000,9999)].exe) installed and executed successfully. Local copy has been removed.</span>")
 						else
 							if(!C.contents.len && T.occupant && !T.active)
 								C.name = "inteliCard - [T.occupant.name]"
@@ -262,16 +262,16 @@ That prevents a few funky behaviors.
 									C.icon_state = "aicard-full"
 									T.overlays -= image('icons/obj/machines/computer.dmi', "ai-fixer-full")
 								to_chat(T.occupant, "You have been downloaded to a mobile storage device. Still no remote access.")
-								to_chat(U, "\blue <b>Transfer successful</b>: \black [T.occupant.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory.")
+								to_chat(U, "<span class='boldnotice'>Transfer successful: [T.occupant.name] ([rand(1000,9999)].exe) removed from host terminal and stored within local memory.</span>")
 								T.occupant.loc = C
 								T.occupant.cancel_camera()
 								T.occupant = null
 							else if (C.contents.len)
-								to_chat(U, "\red <b>ERROR</b>: \black Artificial intelligence detected on terminal.")
+								to_chat(U, "<span class='danger'>ERROR: Artificial intelligence detected on terminal.</span>")
 							else if (T.active)
-								to_chat(U, "\red <b>ERROR</b>: \black Reconstruction in progress.")
+								to_chat(U, "<span class='danger'>ERROR: Reconstruction in progress.</span>")
 							else if (!T.occupant)
-								to_chat(U, "\red <b>ERROR</b>: \black Unable to locate artificial intelligence.")
+								to_chat(U, "<span class='danger'>ERROR: Unable to locate artificial intelligence.</span>")
 	else
-		to_chat(U, "\red <b>ERROR</b>: \black AI flush is in progress, cannot execute transfer protocol.")
+		to_chat(U, "<span class='danger'>ERROR: AI flush is in progress, cannot execute transfer protocol.</span>")
 	return

@@ -164,7 +164,7 @@
 				target_zone = get_zone_with_miss_chance(user.zone_selected, L)
 
 			if(!target_zone)
-				L.visible_message("\red <B>[user] misses [L] with \the [src]!")
+				L.visible_message("<span class='danger'>[user] misses [L] with \the [src]!</span>")
 				return 0
 
 			var/mob/living/carbon/human/H = L

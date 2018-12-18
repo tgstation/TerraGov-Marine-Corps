@@ -218,7 +218,7 @@
 				else
 					H.Stun(time)
 				if(H.stat != 2)	H.stat = 1
-				user.visible_message("<span class='danger'>[H] has been knocked unconscious!</B>", "\red <B>You knock [H] unconscious!</span>")
+				user.visible_message("<span class='danger'>[H] has been knocked unconscious!</span>", "<span class='danger'>You knock [H] unconscious!</span>")
 				return
 			else
 				H.visible_message("\red [user] tried to knock [H] unconscious!", "\red [user] tried to knock you unconscious!")

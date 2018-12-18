@@ -457,7 +457,7 @@
 			var/damage = rand(user.melee_damage_lower, user.melee_damage_upper)
 			src.take_damage(damage)
 			src.check_for_internal_damage(list(MECHA_INT_CONTROL_LOST))
-			visible_message("\red <B>[user]</B> [user.attacktext] [src]!")
+			visible_message("<span class='danger'>[user] [user.attacktext] [src]!</span>")
 			log_combat(user, src, "attacked")
 		else
 			src.log_append_to_last("Armor saved.")

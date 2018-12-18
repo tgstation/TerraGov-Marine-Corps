@@ -41,7 +41,7 @@
 				src.take_limb_damage(d)
 			for(var/mob/M in viewers(user, null))
 				if(M.client)
-					M.show_message(text("\red <B>[user] attacks [src]'s stomach wall with the [I.name]!"), 2)
+					M.show_message("<span class='danger'>[user] attacks [src]'s stomach wall with the [I.name]!</span>", 2)
 			playsound(user.loc, 'sound/effects/attackblob.ogg', 25, 1)
 
 			if(prob(max(4*(100*getBruteLoss()/maxHealth - 75),0))) //4% at 24% health, 80% at 5% health

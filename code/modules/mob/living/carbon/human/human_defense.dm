@@ -130,7 +130,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(user == src) // Attacking yourself can't miss
 		target_zone = user.zone_selected
 	if(!target_zone)
-		visible_message("\red <B>[user] misses [src] with \the [I]!", null, null, 5)
+		visible_message("<span class='danger'>[user] misses [src] with \the [I]!</span>", null, null, 5)
 		return 0
 
 	var/datum/limb/affecting = get_limb(target_zone)

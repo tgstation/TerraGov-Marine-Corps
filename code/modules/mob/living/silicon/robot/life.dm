@@ -213,7 +213,7 @@
 		killswitch_time --
 		if(killswitch_time <= 0)
 			if(client)
-				to_chat(src, "\red <B>Killswitch Activated")
+				to_chat(src, "<span class='danger'>Killswitch Activated</span>")
 			killswitch = 0
 			spawn(5)
 				gib()
@@ -224,7 +224,7 @@
 		weaponlock_time --
 		if(weaponlock_time <= 0)
 			if(src.client)
-				to_chat(src, "\red <B>Weapon Lock Timed Out!")
+				to_chat(src, "<span class='danger'>Weapon Lock Timed Out!</span>")
 			weapon_lock = 0
 			weaponlock_time = 120
 
