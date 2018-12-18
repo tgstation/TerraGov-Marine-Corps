@@ -977,16 +977,16 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/attached_gun/shotgun/examine(mob/user)
 	if(attach_applied)
 		if (!abstract_gun.current_mag.current_rounds)
-			to_chat(user, "The [src] is empty!")
+			to_chat(user, "[src] is empty!")
 		else
-			to_chat(user, "The [src] has [abstract_gun.current_mag.current_rounds] shell\s left.")
+			to_chat(user, "[src] has [abstract_gun.current_mag.current_rounds] shell\s left.")
 	else 
 		. = ..()
 		if (!abstract_gun.current_mag.current_rounds)
-			to_chat(user, "The [src] is empty!")
+			to_chat(user, "[src] is empty!")
 		else
 			
-			to_chat(user, "The [src] has [abstract_gun.current_mag.current_rounds] shell\s left.")
+			to_chat(user, "[src] has [abstract_gun.current_mag.current_rounds] shell\s left.")
 
 /obj/item/attachable/attached_gun/shotgun/reload_attachment(obj/item/ammo_magazine/handful/mag, mob/user)
     if(mag.default_ammo != /datum/ammo/bullet/shotgun/buckshot  && mag.default_ammo != /datum/ammo/bullet/shotgun/flechette)
@@ -995,14 +995,7 @@ Defined in conflicts.dm of the #defines folder.
     abstract_gun.reload(user, mag)
 
 /obj/item/attachable/attached_gun/shotgun/fire_attachment(atom/target, mob/living/user, params)
-    if(abstract_gun.current_mag.current_rounds > 0) //If it's still got ammo and stuff.
-        return abstract_gun.Fire(target, user, params)
-    else
-        to_chat(user, "<span class='warning'>1002</span>")
-        to_chat(user, "<span class='warning'>[src] is empty!</span>")
-        to_chat(user, "<span class='notice'>You disable [src].</span>")
-        playsound(user, activation_sound, 15, 1)
-        activate_attachment(src, null, TRUE)
+    return abstract_gun.Fire(target, user, params)
 
 /obj/item/attachable/verticalgrip
 	name = "vertical grip"

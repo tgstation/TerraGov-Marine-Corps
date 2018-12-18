@@ -584,13 +584,13 @@ and you're good to go.
 	if(active_attachable && active_attachable.flags_attach_features & ATTACH_WEAPON) //Attachment activated and is a weapon.
 		check_for_attachment_fire = 1
 		if(!(active_attachable.flags_attach_features)) //If it's unique projectile, this is where we fire it.
-			if(active_attachable.current_rounds <= 0)
+			if(active_attachable.current_rounds <= 0 && active_attachable.abstract_gun.current_mag.current_rounds <= 0)
 				click_empty(user) //If it's empty, let them know.
 				to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
 				to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
 				active_attachable.activate_attachment(src, null, TRUE)
 			else
-				active_attachable.fire_attachment(target,src,user) //Fire it.
+				active_attachable.fire_attachment(target, src, user) //Fire it.
 				user.camo_off_process(SCOUT_CLOAK_OFF_ATTACK) //Cause cloak to shimmer.
 				last_fired = world.time
 			return
