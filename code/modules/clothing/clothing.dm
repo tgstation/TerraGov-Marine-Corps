@@ -133,14 +133,15 @@
 	w_class = 3
 
 /obj/item/clothing/suit/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
+	if(ismob(loc))
+		var/mob/M = loc
 		M.update_inv_wear_suit()
 
 /obj/item/clothing/suit/mob_can_equip(mob/M, slot, disable_warning = 0)
 	//if we can't equip the item anyway, don't bother with other checks.
-	if (!..())
-		return 0
+	. = ..()
+	if(!.)
+		return FALSE
 
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
@@ -148,8 +149,8 @@
 		//some uniforms prevent you from wearing any suits but certain types
 		if(U?.suit_restricted && !is_type_in_list(src, U.suit_restricted))
 			to_chat(H, "<span class='warning'>[src] can't be worn with [U].</span>")
-			return 0
-	return 1
+			return FALSE
+	return TRUE
 
 
 /////////////////////////////////////////////////////////
