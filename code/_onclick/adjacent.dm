@@ -168,3 +168,10 @@ Quick adjacency (to turf):
 /turf/handle_barriers(mob/living/M)
 	return src
 	
+
+//This is a temporary solution to make dropship equipment work correctly.
+/obj/structure/dropship_equipment/Adjacent(var/atom/neighbor)
+	for(var/turf/T in locs)
+		if(T.Adjacent(neighbor,src))
+			return TRUE
+	return FALSE
