@@ -236,10 +236,9 @@
 
 		if(hit_chance)
 			if(isliving(A))
-				if(shot_from) //Check
-					if(shot_from.sniper_target(A)) //First check to see if we've actually got anyone targeted
-						if(A != shot_from.sniper_target(A)) //If we've singled out someone with a targeting laser, forsake all others
-							continue
+				if(shot_from?.shot_from.sniper_target(A)) //First check to see if we've actually got anyone targeted
+					if(A != shot_from.sniper_target(A)) //If we've singled out someone with a targeting laser, forsake all others
+						continue
 				var/mob_is_hit = FALSE
 				var/mob/living/L = A
 
@@ -536,8 +535,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		#endif
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
 		if(src == P.shot_from.sniper_target(src))
-			damage *= 1.5 //+50% damage vs the aimed target
-			penetration *= 1.5 //+50% penetration vs the aimed target
+			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER //+50% damage vs the aimed target
+			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER //+50% penetration vs the aimed target
 		armor -= penetration//Minus armor penetration from the bullet. If the bullet has negative penetration, adding to their armor, but they don't have armor, they get nothing.
 		#if DEBUG_HUMAN_DEFENSE
 		to_chat(world, "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>")
@@ -651,8 +650,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
 		if(src == P.shot_from.sniper_target(src))
-			damage *= 1.5 //+50% damage vs the aimed target
-			penetration *= 1.5 //+50% penetration vs the aimed target
+			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER //+50% damage vs the aimed target
+			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER //+50% penetration vs the aimed target
 
 		armor -= penetration
 
