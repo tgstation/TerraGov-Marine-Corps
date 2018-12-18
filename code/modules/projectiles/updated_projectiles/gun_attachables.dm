@@ -994,8 +994,16 @@ Defined in conflicts.dm of the #defines folder.
         return
     abstract_gun.reload(user, mag)
 
-/obj/item/attachable/attached_gun/shotgun/fire_attachment(atom/target, mob/living/user)
-	
+/obj/item/attachable/attached_gun/shotgun/fire_attachment(atom/target, mob/living/user, params)
+    if(abstract_gun.current_mag.current_rounds > 0) //If it's still got ammo and stuff.
+		to_chat(world, "999")
+        return abstract_gun.Fire(target, user, params)
+    else
+		to_chat(world, "1002")
+        to_chat(user, "<span class='warning'>[src] is empty!</span>")
+        to_chat(user, "<span class='notice'>You disable [src].</span>")
+        playsound(user, activation_sound, 15, 1)
+        activate_attachment(src, null, TRUE)
 
 /obj/item/attachable/verticalgrip
 	name = "vertical grip"

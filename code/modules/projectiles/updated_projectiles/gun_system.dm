@@ -488,21 +488,21 @@ and you're good to go.
 /obj/item/weapon/gun/proc/load_into_chamber(mob/user)
 	//The workhorse of the bullet procs.
  	//If we have a round chambered and no active attachable, we're good to go.
-	var/check_for_attachment_fire = 0
-    if(active_attachable && active_attachable.flags_attach_features & ATTACH_WEAPON) //Attachment activated and is a weapon.
-        check_for_attachment_fire = 1
-        if(!(active_attachable.flags_attach_features) ) //If it's unique projectile, this is where we fire it.
-            if(active_attachable.current_rounds <= 0)
-                click_empty(user) //If it's empty, let them know.
-                to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
-                to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
-                active_attachable.activate_attachment(src, null, TRUE)
-            else
-                active_attachable.fire_attachment(target,src,user) //Fire it.
-                user.camo_off_process(SCOUT_CLOAK_OFF_ATTACK) //Cause cloak to shimmer.
-                last_fired = world.time
-            return
-            //If there's more to the attachment, it will be processed farther down, through in_chamber and regular bullet act.
+	if(in_chamber && !active_attachable)
+		return in_chamber //Already set!
+
+	//Let's check on the active attachable. It loads ammo on the go, so it never chambers anything
+	if(active_attachable)
+		if(active_attachable.current_rounds > 0) //If it's still got ammo and stuff.
+			active_attachable.current_rounds--
+			return create_bullet(active_attachable.ammo)
+		else
+			to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
+			to_chat(user, "<span class='notice'>You disable [active_attachable].</span>")
+			playsound(user, active_attachable.activation_sound, 15, 1)
+			active_attachable.activate_attachment(src, null, TRUE)
+	else
+		return ready_in_chamber()//We're not using the active attachable, we must use the active mag if there is one.
 
 
 /obj/item/weapon/gun/proc/ready_in_chamber()
@@ -583,7 +583,7 @@ and you're good to go.
 	var/check_for_attachment_fire = 0
 	if(active_attachable && active_attachable.flags_attach_features & ATTACH_WEAPON) //Attachment activated and is a weapon.
 		check_for_attachment_fire = 1
-		if( !(active_attachable.flags_attach_features & ATTACH_PROJECTILE) ) //If it's unique projectile, this is where we fire it.
+		if(!(active_attachable.flags_attach_features)) //If it's unique projectile, this is where we fire it.
 			if(active_attachable.current_rounds <= 0)
 				click_empty(user) //If it's empty, let them know.
 				to_chat(user, "<span class='warning'>[active_attachable] is empty!</span>")
