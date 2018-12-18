@@ -240,7 +240,7 @@
 
 /datum/language/zombie
 	name = "Zombie"
-	desc = "Braaaains..."
+	desc = "If you select this from the language screen, expect braaaains..."
 	colour = "green"
 	key = "4"
 	flags = RESTRICTED
