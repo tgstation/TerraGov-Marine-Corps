@@ -23,6 +23,8 @@ SUBSYSTEM_DEF(atoms)
 	initialized = INITIALIZATION_INNEW_MAPLOAD
 	InitializeAtoms()
 
+	lighting_controller.Initialize()
+
 	setup_gamemode_list()
 	return ..()
 
