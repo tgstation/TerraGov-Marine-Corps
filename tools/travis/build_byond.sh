@@ -7,5 +7,5 @@ shopt -s globstar
 if [ "$BUILD_TOOLS" = false ]; then
     (! grep 'step_[xy]' _maps/**/*.dmm)
     source $HOME/BYOND-${BYOND_MAJOR}.${BYOND_MINOR}/byond/bin/byondsetup
-    tools/travis/dm.sh ColonialMarinesALPHA.dme
+    tools/travis/dm.sh tgmc.dme
 fi;
