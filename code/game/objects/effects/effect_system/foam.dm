@@ -198,11 +198,7 @@
 
 /obj/structure/foamedmetal/attack_hand(var/mob/user)
 	if ((HULK in user.mutations) || (prob(75 - metal*25)))
-		to_chat(user, "\blue You smash through the metal foam wall.")
-		for(var/mob/O in oviewers(user))
-			if ((O.client && !( is_blind(O) )))
-				to_chat(O, "\red [user] smashes through the foamed metal.")
-
+		user.visible_message("\red [user] smashes through the foamed metal.", "\blue You smash through the metal foam wall.")
 		qdel(src)
 	else
 		to_chat(user, "\blue You hit the metal foam but bounce off it.")
@@ -211,10 +207,7 @@
 /obj/structure/foamedmetal/attackby(var/obj/item/I, var/mob/user)
 
 	if(prob(I.force*20 - metal*25))
-		to_chat(user, "\blue You smash through the foamed metal with \the [I].")
-		for(var/mob/O in oviewers(user))
-			if ((O.client && !( is_blind(O) )))
-				to_chat(O, "\red [user] smashes through the foamed metal.")
+		user.visible_message("\red [user] smashes through the foamed metal.", "\blue You smash through the foamed metal with \the [I].")
 		qdel(src)
 	else
 		to_chat(user, "\blue You hit the metal foam to no effect.")

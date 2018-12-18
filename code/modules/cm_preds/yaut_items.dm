@@ -434,10 +434,8 @@
 
 /obj/item/clothing/gloves/yautja/proc/decloak(var/mob/user)
 	if(!user) return
-	to_chat(user, "Your cloaking device deactivates.")
 	cloaked = 0
-	for(var/mob/O in oviewers(user))
-		O.show_message("[user.name] shimmers into existence!",1)
+	user.visible_message("[user.name] shimmers into existence!","Your cloaking device deactivates.")
 	playsound(user.loc,'sound/effects/pred_cloakoff.ogg', 15, 1)
 	user.alpha = initial(user.alpha)
 	cloak_timer = 10

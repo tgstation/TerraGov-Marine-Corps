@@ -51,9 +51,7 @@
 		return
 
 	busy = 1
-	for(var/mob/O in viewers(user))
-		O.show_message(text("\red [user] started reprogramming [src]!"), 1)
-
+	user.visible_message("\red [user] started reprogramming [src]!","You start reprogramming [src]")
 	if(do_after(user, 300, FALSE, 5, BUSY_ICON_BUILD)) // 30s for non-AIs as humans have to manually reprogram it and rapid switching may cause some lag / powernet updates flood. If AIs spam it they can be easily traced.
 		set_state(!on)
 		user.visible_message(\

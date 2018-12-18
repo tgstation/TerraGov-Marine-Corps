@@ -500,11 +500,9 @@
 		STOP_PROCESSING(SSobj, src)
 		return 0
 
-	to_chat(user, "<span class='warning'>Your cloak's camouflage has deactivated!</span>")
-	camo_active = 0
 
-	for (var/mob/O in oviewers(user))
-		O.show_message("[user.name] shimmers into existence!",1)
+	camo_active = 0
+	user.visible_message("[user.name] shimmers into existence!", "<span class='warning'>Your cloak's camouflage has deactivated!</span>")
 	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 	user.alpha = initial(user.alpha)
 
