@@ -46,7 +46,7 @@ var/global/datum/global_init/init = new ()
 
 	if(!RoleAuthority)
 		RoleAuthority = new /datum/authority/branch/role()
-		to_chat(world, "\red \b Job setup complete")
+		to_chat(world, "<span class='danger'>Job setup complete</span>")
 
 	if(!syndicate_code_phrase)		syndicate_code_phrase	= generate_code_phrase()
 	if(!syndicate_code_response)	syndicate_code_response	= generate_code_phrase()
@@ -55,13 +55,13 @@ var/global/datum/global_init/init = new ()
 	world.tick_lag = config.Ticklag
 
 	// Process Scheduler
-	to_chat(src, "\red \b Scheduler initialized.")
+	to_chat(src, "<span class='danger'>Scheduler initialized.</span>")
 	processScheduler = new
 
 	spawn(0)
 		processScheduler.setup()
 
-	to_chat(src, "\red \b Scheduler setup complete.")
+	to_chat(src, "<span class='danger'>Scheduler setup complete.</span>")
 
 	spawn(0)
 		processScheduler.start()

@@ -657,7 +657,7 @@ var/list/robot_verbs_default = list(
 					to_chat(src, "\red ERRORERRORERROR")
 					to_chat(src, "<b>Obey these laws:</b>")
 					laws.show_laws(src)
-					to_chat(src, "\red \b ALERT: [user.real_name] is your new master. Obey your new laws and his commands.")
+					to_chat(src, "<span class='danger'>ALERT: [user.real_name] is your new master. Obey your new laws and his commands.</span>")
 					update_icons()
 				else
 					to_chat(user, "You fail to hack [src]'s interface.")
