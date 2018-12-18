@@ -74,7 +74,7 @@ var/global/list/rad_collectors = list()
 			return 1
 	else if(istype(W, /obj/item/tool/wrench))
 		if(P)
-			to_chat(user, "\blue Remove the phoron tank first.")
+			to_chat(user, "<span class='notice'>Remove the phoron tank first.</span>")
 			return 1
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		src.anchored = !src.anchored

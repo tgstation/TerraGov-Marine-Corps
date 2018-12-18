@@ -38,7 +38,7 @@
 		else
 			spawn(5)
 				I.reagents.trans_to(src.imp, 5)
-				to_chat(user, "\blue You inject 5 units of the solution. The syringe now contains [I.reagents.total_volume] units.")
+				to_chat(user, "<span class='notice'>You inject 5 units of the solution. The syringe now contains [I.reagents.total_volume] units.</span>")
 	else if (istype(I, /obj/item/implanter))
 		var/obj/item/implanter/M = I
 		if (M.imp)

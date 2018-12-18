@@ -60,7 +60,7 @@
 						spawn(5)
 							src.reagents.reaction(safe_thing, TOUCH)
 
-						to_chat(user, "\blue You transfer [trans] units of the solution.")
+						to_chat(user, "<span class='notice'>You transfer [trans] units of the solution.</span>")
 						if (src.reagents.total_volume<=0)
 							filled = 0
 							icon_state = "dropper[filled]"
@@ -80,7 +80,7 @@
 				msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) squirted [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)])")
 
 			trans = src.reagents.trans_to(target, amount_per_transfer_from_this)
-			to_chat(user, "\blue You transfer [trans] units of the solution.")
+			to_chat(user, "<span class='notice'>You transfer [trans] units of the solution.</span>")
 			if (src.reagents.total_volume<=0)
 				filled = 0
 				icon_state = "dropper[filled]"
@@ -97,7 +97,7 @@
 
 			var/trans = target.reagents.trans_to(src, amount_per_transfer_from_this)
 
-			to_chat(user, "\blue You fill the dropper with [trans] units of the solution.")
+			to_chat(user, "<span class='notice'>You fill the dropper with [trans] units of the solution.</span>")
 
 			filled = 1
 			icon_state = "dropper[filled]"

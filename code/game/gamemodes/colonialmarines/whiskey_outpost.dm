@@ -655,7 +655,7 @@
 			to_chat(world, "<br><br>")
 			to_chat(world, "<span class='notice'>*___________________________________*</span>")
 			to_chat(world, "<span class='boldnotice'>***Whiskey Outpost Controller***</span>")
-			to_chat(world, "\blue <b>Wave:</b> [xeno_wave][wave_times_delayed?"|\red Times delayed: [wave_times_delayed]":""]")
+			to_chat(world, "<span class='notice'><b>Wave:</b> [xeno_wave][wave_times_delayed?"|\red Times delayed: [wave_times_delayed]":""]</span>")
 			to_chat(world, "<span class='notice'>*___________________________________*</span>")
 			to_chat(world, "<br><br>")
 			to_chat(world, "<br><br>")
@@ -1013,7 +1013,7 @@
 	if(xeno_count)
 		to_chat(world, "<span class='notice'>*___________________________________*</span>")
 		to_chat(world, "<span class='boldnotice'>***Whiskey Outpost Controller***</span>")
-		to_chat(world, "\blue Moved [xeno_count] Xeno remains to trash.")
+		to_chat(world, "<span class='notice'>Moved [xeno_count] Xeno remains to trash.</span>")
 		to_chat(world, "<span class='notice'>*___________________________________*</span>")
 
 

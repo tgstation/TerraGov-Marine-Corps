@@ -85,7 +85,7 @@ Note: Must be placed within 3 tiles of the NT Research Console
 		loaded_item = O
 		user.drop_held_item()
 		O.loc = src
-		to_chat(user, "\blue You add the [O.name] to the machine!")
+		to_chat(user, "<span class='notice'>You add the [O.name] to the machine!</span>")
 		flick("d_analyzer_la", src)
 		spawn(10)
 			icon_state = "d_analyzer_l"

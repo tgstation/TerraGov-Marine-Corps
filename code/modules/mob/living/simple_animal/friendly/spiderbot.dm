@@ -74,7 +74,7 @@
 
 
 		user.drop_inv_item_to_loc(O, src)
-		to_chat(user, "\blue You install [O] in [src]!")
+		to_chat(user, "<span class='notice'>You install [O] in [src]!</span>")
 		mmi = O
 		transfer_personality(O)
 		update_icon()
@@ -91,7 +91,7 @@
 				for(var/mob/W in viewers(user, null))
 					W.show_message(text("\red [user] has spot-welded some of the damage to [src]!"), 1)
 			else
-				to_chat(user, "\blue [src] is undamaged!")
+				to_chat(user, "<span class='notice'>[src] is undamaged!</span>")
 		else
 			to_chat(user, "Need more welding fuel!")
 			return
@@ -109,7 +109,7 @@
 			id_card = pda.id
 
 		if(ACCESS_MARINE_RESEARCH in id_card.access)
-			to_chat(user, "\blue You swipe your access card and pop the brain out of [src].")
+			to_chat(user, "<span class='notice'>You swipe your access card and pop the brain out of [src].</span>")
 			eject_brain()
 
 			if(held_item)
@@ -128,7 +128,7 @@
 			var/obj/item/card/emag/emag = O
 			emag.uses--
 			emagged = 1
-			to_chat(user, "\blue You short out the security protocols and overload [src]'s cell, priming it to explode in a short time.")
+			to_chat(user, "<span class='notice'>You short out the security protocols and overload [src]'s cell, priming it to explode in a short time.</span>")
 			spawn(100)	to_chat(src, "<span class='warning'>Your cell seems to be outputting a lot of power...</span>")
 			spawn(200)	to_chat(src, "<span class='warning'>Internal heat sensors are spiking! Something is badly wrong with your cell!</span>")
 			spawn(300)	src.explode()

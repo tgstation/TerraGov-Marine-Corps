@@ -280,7 +280,7 @@
 		if(emagged)
 			to_chat(user, "Circuit lock is already removed.")
 			return
-		to_chat(user, "\blue You override the circuit lock and open controls.")
+		to_chat(user, "<span class='notice'>You override the circuit lock and open controls.</span>")
 		emagged = 1
 		locked = 0
 	else if(istype(I,/obj/item/card/id))
@@ -289,7 +289,7 @@
 			return
 		if(check_access(I))
 			locked = !locked
-			to_chat(user, "\blue You [locked ? "" : "un"]lock the circuit controls.")
+			to_chat(user, "<span class='notice'>You [locked ? "" : "un"]lock the circuit controls.</span>")
 		else
 			to_chat(user, "<span class='warning'>Access denied.</span>")
 	else if(istype(I,/obj/item/device/multitool))
@@ -315,10 +315,10 @@
 		if(src.build_path == /obj/machinery/computer/rdconsole/core)
 			src.name = "Circuit Board (RD Console - Robotics)"
 			src.build_path = /obj/machinery/computer/rdconsole/robotics
-			to_chat(user, "\blue Access protocols set to robotics.")
+			to_chat(user, "<span class='notice'>Access protocols set to robotics.</span>")
 		else
 			src.name = "Circuit Board (RD Console)"
 			src.build_path = /obj/machinery/computer/rdconsole/core
-			to_chat(user, "\blue Access protocols set to default.")
+			to_chat(user, "<span class='notice'>Access protocols set to default.</span>")
 
 

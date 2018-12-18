@@ -67,32 +67,32 @@
 	if (istype(W, /obj/item/tool/wrench))
 		if(connected_port)
 			disconnect()
-			to_chat(user, "\blue You disconnect [name] from the port.")
+			to_chat(user, "<span class='notice'>You disconnect [name] from the port.</span>")
 			update_icon()
 			return
 		else
 			var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
 			if(possible_port)
 				if(connect(possible_port))
-					to_chat(user, "\blue You connect [name] to the port.")
+					to_chat(user, "<span class='notice'>You connect [name] to the port.</span>")
 					update_icon()
 					return
 				else
-					to_chat(user, "\blue [name] failed to connect to the port.")
+					to_chat(user, "<span class='notice'>[name] failed to connect to the port.</span>")
 					return
 			else
-				to_chat(user, "\blue Nothing happens.")
+				to_chat(user, "<span class='notice'>Nothing happens.</span>")
 				return
 
 	else if ((istype(W, /obj/item/device/analyzer)) && Adjacent(user))
 		visible_message("\red [user] has used [W] on \icon[icon]")
-		to_chat(user, "\blue Results of analysis of \icon[icon]")
+		to_chat(user, "<span class='notice'>Results of analysis of \icon[icon]</span>")
 		if (pressure>0)
-			to_chat(user, "\blue Pressure: [round(pressure,0.1)] kPa")
-			to_chat(user, "\blue [gas_type]: [100]%")
-			to_chat(user, "\blue Temperature: [round(temperature-T0C)]&deg;C")
+			to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
+			to_chat(user, "<span class='notice'>[gas_type]: [100]%</span>")
+			to_chat(user, "<span class='notice'>Temperature: [round(temperature-T0C)]&deg;C</span>")
 		else
-			to_chat(user, "\blue Tank is empty!")
+			to_chat(user, "<span class='notice'>Tank is empty!</span>")
 
 
 

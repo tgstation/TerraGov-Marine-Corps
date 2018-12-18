@@ -516,7 +516,7 @@
 	if(probability <= 0)
 		return
 
-	//to_chat(world, "\blue Spread([probability])")
+	//to_chat(world, "<span class='notice'>Spread([probability])</span>")
 	for(var/turf/open/jungle/J in orange(1, src))
 		if(!J.bushes_spawn)
 			continue
@@ -582,13 +582,13 @@
 		var/mob/living/M = O
 		//slip in the murky water if we try to run through it
 		if(prob(10 + (M.m_intent == MOVE_INTENT_RUN ? 40 : 0)))
-			to_chat(M, pick("\blue You slip on something slimy.","\blue You fall over into the murk."))
+			to_chat(M, pick("\blue You slip on something slimy.", "<span class='notice'>You fall over into the murk.</span>"))
 			M.Stun(2)
 			M.KnockDown(1)
 
 		//piranhas - 25% chance to be an omnipresent risk, although they do practically no damage
 		if(prob(25))
-			to_chat(M, "\blue You feel something slithering around your legs.")
+			to_chat(M, "<span class='notice'>You feel something slithering around your legs.</span>")
 			if(prob(50))
 				spawn(rand(25,50))
 					var/turf/T = get_turf(M)

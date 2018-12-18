@@ -893,12 +893,12 @@
 		ban_unban_log_save("[usr.client.ckey] has banned [M.ckey]|Duration: [mins] minutes|Reason: [reason]")
 		to_chat(M, "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>")
 		to_chat(M, "<span class='warning'>This is a temporary ban, it will be removed in [mins] minutes.</span>")
-		to_chat(M, "\blue This ban was made using a one-click ban system. If you think an error has been made, please visit our forums' ban appeal section.")
-		to_chat(M, "\blue If you make sure to mention that this was a one-click ban, the administration team may double-check this code for you.")
+		to_chat(M, "<span class='notice'>This ban was made using a one-click ban system. If you think an error has been made, please visit our forums' ban appeal section.</span>")
+		to_chat(M, "<span class='notice'>If you make sure to mention that this was a one-click ban, the administration team may double-check this code for you.</span>")
 		if(config.banappeals)
-			to_chat(M, "\blue The ban appeal forums are located here: [config.banappeals]")
+			to_chat(M, "<span class='notice'>The ban appeal forums are located here: [config.banappeals]</span>")
 		else
-			to_chat(M, "\blue Unfortunately, no ban appeals URL has been set.")
+			to_chat(M, "<span class='notice'>Unfortunately, no ban appeals URL has been set.</span>")
 		feedback_inc("ban_tmp", 1)
 		DB_ban_record(BANTYPE_TEMP, M, mins, reason)
 		feedback_inc("ban_tmp_mins", mins)
@@ -1108,7 +1108,7 @@
 		sleep(5)
 		M.loc = pick(tdome1)
 		spawn(50)
-			to_chat(M, "\blue You have been sent to the Thunderdome.")
+			to_chat(M, "<span class='notice'>You have been sent to the Thunderdome.</span>")
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 1)")
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 1)", 1)
 
@@ -1133,7 +1133,7 @@
 		sleep(5)
 		M.loc = pick(tdome2)
 		spawn(50)
-			to_chat(M, "\blue You have been sent to the Thunderdome.")
+			to_chat(M, "<span class='notice'>You have been sent to the Thunderdome.</span>")
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Team 2)")
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Team 2)", 1)
 
@@ -1155,7 +1155,7 @@
 		sleep(5)
 		M.loc = pick(tdomeadmin)
 		spawn(50)
-			to_chat(M, "\blue You have been sent to the Thunderdome.")
+			to_chat(M, "<span class='notice'>You have been sent to the Thunderdome.</span>")
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Admin.)")
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Admin.)", 1)
 
@@ -1184,7 +1184,7 @@
 		sleep(5)
 		M.loc = pick(tdomeobserve)
 		spawn(50)
-			to_chat(M, "\blue You have been sent to the Thunderdome.")
+			to_chat(M, "<span class='notice'>You have been sent to the Thunderdome.</span>")
 		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome. (Observer.)")
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Observer.)", 1)
 
@@ -1510,7 +1510,7 @@
 		log_admin("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
 		message_admins("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
 		feedback_inc("admin_cookies_spawned",1)
-		to_chat(H, "\blue Your prayers have been answered!! You received the <b>best cookie</b>!")
+		to_chat(H, "<span class='notice'>Your prayers have been answered!! You received the <b>best cookie</b>!</span>")
 
 	else if(href_list["BlueSpaceArtillery"])
 		if(!check_rights(R_ADMIN|R_FUN))	return
@@ -2476,7 +2476,7 @@
 	if(href_list["mark"])
 		var/mob/ref_person = locate(href_list["mark"])
 		if(!istype(ref_person))
-			to_chat(usr, "\blue Looks like that person stopped existing!")
+			to_chat(usr, "<span class='notice'>Looks like that person stopped existing!</span>")
 			return
 		if(ref_person && ref_person.adminhelp_marked)
 			to_chat(usr, "<b>This Pray/Mentorhelp/Adminhelp is already being handled.</b>")
@@ -2500,7 +2500,7 @@
 	if(href_list["noresponse"])
 		var/mob/ref_person = locate(href_list["noresponse"])
 		if(!istype(ref_person))
-			to_chat(usr, "\blue Looks like that person stopped existing!")
+			to_chat(usr, "<span class='notice'>Looks like that person stopped existing!</span>")
 			return
 		if(ref_person && ref_person.adminhelp_marked)
 			to_chat(usr, "<b>This Pray/Mentorhelp/Adminhelp is already being handled.</b>")
@@ -2525,7 +2525,7 @@
 	if(href_list["warning"])
 		var/mob/ref_person = locate(href_list["warning"])
 		if(!istype(ref_person))
-			to_chat(usr, "\blue Looks like that person stopped existing!")
+			to_chat(usr, "<span class='notice'>Looks like that person stopped existing!</span>")
 			return
 		if(ref_person && ref_person.adminhelp_marked)
 			to_chat(usr, "<b>This Pray/Mentorhelp/Adminhelp is already being handled.</b>")
@@ -2551,7 +2551,7 @@
 	if(href_list["autoresponse"]) // new verb on the Ahelp.  Will tell the person their message was received, and they probably won't get a response
 		var/mob/ref_person = locate(href_list["autoresponse"])
 		if(!istype(ref_person))
-			to_chat(usr, "\blue Looks like that person stopped existing!")
+			to_chat(usr, "<span class='notice'>Looks like that person stopped existing!</span>")
 			return
 		if(ref_person && ref_person.adminhelp_marked)
 			to_chat(usr, "<b>This Mentorhelp/Adminhelp is already being handled, but continue if you wish.</b>")

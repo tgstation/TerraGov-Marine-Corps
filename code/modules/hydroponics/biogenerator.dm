@@ -52,10 +52,10 @@
 				G.loc = src
 				i++
 				if(i >= 10)
-					to_chat(user, "\blue You fill the biogenerator to its capacity.")
+					to_chat(user, "<span class='notice'>You fill the biogenerator to its capacity.</span>")
 					break
 			if(i<10)
-				to_chat(user, "\blue You empty the plant bag into the biogenerator.")
+				to_chat(user, "<span class='notice'>You empty the plant bag into the biogenerator.</span>")
 
 
 	else if(!istype(O, /obj/item/reagent_container/food/snacks/grown))
@@ -68,7 +68,7 @@
 			to_chat(user, "<span class='warning'>The biogenerator is full! Activate it.</span>")
 		else
 			if(user.drop_inv_item_to_loc(O, src))
-				to_chat(user, "\blue You put [O.name] in [src.name]")
+				to_chat(user, "<span class='notice'>You put [O.name] in [src.name]</span>")
 	update_icon()
 
 

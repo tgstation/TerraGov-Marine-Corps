@@ -70,15 +70,15 @@
 
 	else if(!in_use)
 		if(amount < 4)
-			to_chat(user, "\blue You need at least four rods to do this.")
+			to_chat(user, "<span class='notice'>You need at least four rods to do this.</span>")
 			return
-		to_chat(usr, "\blue Assembling grille...")
+		to_chat(usr, "<span class='notice'>Assembling grille...</span>")
 		in_use = 1
 		if (!do_after(usr, 20, TRUE, 5, BUSY_ICON_BUILD))
 			in_use = 0
 			return
 		var/obj/structure/grille/F = new /obj/structure/grille/ ( usr.loc )
-		to_chat(usr, "\blue You assemble a grille")
+		to_chat(usr, "<span class='notice'>You assemble a grille</span>")
 		in_use = 0
 		F.add_fingerprint(usr)
 		use(4)

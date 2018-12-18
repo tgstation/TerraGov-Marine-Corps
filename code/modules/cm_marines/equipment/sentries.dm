@@ -400,7 +400,7 @@
 			if(burst_fire)
 				burst_fire = 0
 				state("A green light on [src] blinks slowly.")
-				to_chat(usr, "\blue You deactivate the burst fire mode.")
+				to_chat(usr, "<span class='notice'>You deactivate the burst fire mode.</span>")
 			else
 				burst_fire = 1
 				fire_delay = burst_delay

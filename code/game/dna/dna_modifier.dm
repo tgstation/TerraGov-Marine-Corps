@@ -101,7 +101,7 @@
 	if (usr.stat != 0)
 		return
 	if (!ishuman(usr) && !ismonkey(usr)) //Make sure they're a mob that has dna
-		to_chat(usr, "\blue Try as you might, you can not climb up into the scanner.")
+		to_chat(usr, "<span class='notice'>Try as you might, you can not climb up into the scanner.</span>")
 		return
 	if (src.occupant)
 		to_chat(usr, "<span class='boldnotice'>The scanner is already occupied!</span>")

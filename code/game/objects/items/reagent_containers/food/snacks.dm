@@ -490,10 +490,10 @@
 		var/clr = C.colourName
 
 		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
-			to_chat(usr, "\blue The egg refuses to take on this color!")
+			to_chat(usr, "<span class='notice'>The egg refuses to take on this color!</span>")
 			return
 
-		to_chat(usr, "\blue You color \the [src] [clr]")
+		to_chat(usr, "<span class='notice'>You color \the [src] [clr]</span>")
 		icon_state = "egg-[clr]"
 		egg_color = clr
 	else

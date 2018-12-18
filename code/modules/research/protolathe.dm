@@ -150,7 +150,7 @@ Note: Must be placed west/left of and R&D console to function.
 	var/stacktype = stack.type
 	stack.use(amount)
 	if(do_after(user, 15, TRUE, 5, BUSY_ICON_FRIENDLY))
-		to_chat(user, "\blue You add [amount] sheets to the [src.name].")
+		to_chat(user, "<span class='notice'>You add [amount] sheets to the [src.name].</span>")
 		icon_state = "protolathe"
 		switch(stacktype)
 			if(/obj/item/stack/sheet/metal)

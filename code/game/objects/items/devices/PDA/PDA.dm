@@ -1048,22 +1048,22 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 			if(2)
 				if (!istype(C:dna, /datum/dna))
-					to_chat(user, "\blue No fingerprints found on [C]")
+					to_chat(user, "<span class='notice'>No fingerprints found on [C]</span>")
 				else if(!istype(C, /mob/living/carbon/monkey))
 					if(!isnull(C:gloves))
-						to_chat(user, "\blue No fingerprints found on [C]")
+						to_chat(user, "<span class='notice'>No fingerprints found on [C]</span>")
 				else
 					to_chat(user, text("\blue [C]'s Fingerprints: [md5(C:dna.uni_identity)]"))
 				if (!C.blood_DNA || !C.blood_DNA.len)
-					to_chat(user, "\blue No blood found on [C]")
+					to_chat(user, "<span class='notice'>No blood found on [C]</span>")
 					if(C.blood_DNA)
 						qdel(C.blood_DNA)
 						C.blood_DNA = null
 				else
-					to_chat(user, "\blue Blood found on [C]. Analysing...")
+					to_chat(user, "<span class='notice'>Blood found on [C]. Analysing...</span>")
 					spawn(15)
 						for(var/blood in C.blood_DNA)
-							to_chat(user, "\blue Blood type: [C.blood_DNA[blood]]\nDNA: [blood]")
+							to_chat(user, "<span class='notice'>Blood type: [C.blood_DNA[blood]]\nDNA: [blood]</span>")
 
 			if(4)
 				for (var/mob/O in viewers(C, null))
@@ -1085,13 +1085,13 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			if(!isnull(A.reagents))
 				if(A.reagents.reagent_list.len > 0)
 					var/reagents_length = A.reagents.reagent_list.len
-					to_chat(user, "\blue [reagents_length] chemical agent[reagents_length > 1 ? "s" : ""] found.")
+					to_chat(user, "<span class='notice'>[reagents_length] chemical agent[reagents_length > 1 ? "s" : ""] found.</span>")
 					for (var/re in A.reagents.reagent_list)
-						to_chat(user, "\blue \t [re]")
+						to_chat(user, "<span class='notice'>\t [re]</span>")
 				else
-					to_chat(user, "\blue No active chemical agents found in [A].")
+					to_chat(user, "<span class='notice'>No active chemical agents found in [A].</span>")
 			else
-				to_chat(user, "\blue No significant chemical agents found in [A].")
+				to_chat(user, "<span class='notice'>No significant chemical agents found in [A].</span>")
 
 		if(5)
 
@@ -1103,13 +1103,13 @@ var/global/list/obj/item/device/pda/PDAs = list()
 				var/temperature = A.return_temperature()
 				var/gas = A.return_gas()
 
-				to_chat(user, "\blue Results of analysis of \icon[icon]")
+				to_chat(user, "<span class='notice'>Results of analysis of \icon[icon]</span>")
 				if (pressure>0)
-					to_chat(user, "\blue Pressure: [round(pressure,0.1)] kPa")
-					to_chat(user, "\blue Gas Type: [gas]")
-					to_chat(user, "\blue Temperature: [round(temperature-T0C)]&deg;C")
+					to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
+					to_chat(user, "<span class='notice'>Gas Type: [gas]</span>")
+					to_chat(user, "<span class='notice'>Temperature: [round(temperature-T0C)]&deg;C</span>")
 				else
-					to_chat(user, "\blue Tank is empty!")
+					to_chat(user, "<span class='notice'>Tank is empty!</span>")
 
 
 	if (!scanmode && istype(A, /obj/item/paper) && owner)
@@ -1159,7 +1159,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		// feature to the PDA, which would better convey the availability of the feature, but this will work for now.
 
 		// Inform the user
-		to_chat(user, "\blue Paper scanned and OCRed to notekeeper.")
+		to_chat(user, "<span class='notice'>Paper scanned and OCRed to notekeeper.</span>")
 
 
 

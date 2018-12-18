@@ -201,7 +201,7 @@
 		user.visible_message("\red [user] smashes through the foamed metal.", "\blue You smash through the metal foam wall.")
 		qdel(src)
 	else
-		to_chat(user, "\blue You hit the metal foam but bounce off it.")
+		to_chat(user, "<span class='notice'>You hit the metal foam but bounce off it.</span>")
 	return
 
 /obj/structure/foamedmetal/attackby(var/obj/item/I, var/mob/user)
@@ -210,7 +210,7 @@
 		user.visible_message("\red [user] smashes through the foamed metal.", "\blue You smash through the foamed metal with \the [I].")
 		qdel(src)
 	else
-		to_chat(user, "\blue You hit the metal foam to no effect.")
+		to_chat(user, "<span class='notice'>You hit the metal foam to no effect.</span>")
 
 /obj/structure/foamedmetal/CanPass(atom/movable/mover, turf/target, height = 1.5, air_group = 0)
 	if(air_group)

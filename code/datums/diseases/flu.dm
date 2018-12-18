@@ -17,12 +17,12 @@
 		if(2)
 /*
 			if(affected_mob.sleeping && prob(20))  //removed until sleeping is fixed --Blaank
-				to_chat(affected_mob, "\blue You feel better.")
+				to_chat(affected_mob, "<span class='notice'>You feel better.</span>")
 				stage--
 				return
 */
 			if(affected_mob.lying && prob(20))  //added until sleeping is fixed --Blaank
-				to_chat(affected_mob, "\blue You feel better.")
+				to_chat(affected_mob, "<span class='notice'>You feel better.</span>")
 				stage--
 				return
 			if(prob(1))
@@ -42,12 +42,12 @@
 		if(3)
 /*
 			if(affected_mob.sleeping && prob(15))  //removed until sleeping is fixed
-				to_chat(affected_mob, "\blue You feel better.")
+				to_chat(affected_mob, "<span class='notice'>You feel better.</span>")
 				stage--
 				return
 */
 			if(affected_mob.lying && prob(15))  //added until sleeping is fixed
-				to_chat(affected_mob, "\blue You feel better.")
+				to_chat(affected_mob, "<span class='notice'>You feel better.</span>")
 				stage--
 				return
 			if(prob(1))

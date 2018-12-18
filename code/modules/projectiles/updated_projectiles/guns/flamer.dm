@@ -419,7 +419,7 @@
 	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(user,target) <= 1)
 		var/obj/o = target
 		o.reagents.trans_to(src, max_water)
-		to_chat(user, "\blue \The [src]'s hydro cannon is refilled with water.")
+		to_chat(user, "<span class='notice'>\The [src]'s hydro cannon is refilled with water.</span>")
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 

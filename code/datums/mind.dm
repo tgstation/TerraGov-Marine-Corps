@@ -337,7 +337,7 @@ datum/mind
 				if("autoobjectives")
 					if (!config.objectives_disabled)
 						ticker.mode.forge_traitor_objectives(src)
-						to_chat(usr, "\blue The objectives for traitor [key] have been generated. You can edit them and anounce manually.")
+						to_chat(usr, "<span class='notice'>The objectives for traitor [key] have been generated. You can edit them and anounce manually.</span>")
 
 		else if (href_list["common"])
 			switch(href_list["common"])
@@ -363,7 +363,7 @@ datum/mind
 
 		else if (href_list["obj_announce"])
 			var/obj_count = 1
-			to_chat(current, "\blue Your current objectives:")
+			to_chat(current, "<span class='notice'>Your current objectives:</span>")
 			for(var/datum/objective/objective in objectives)
 				to_chat(current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 				obj_count++

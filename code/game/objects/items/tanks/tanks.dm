@@ -44,7 +44,7 @@
 			else
 				descriptive = "furiously hot"
 
-		to_chat(user, "\blue \The \icon[src][src] feels [descriptive]")
+		to_chat(user, "<span class='notice'>\The \icon[src][src] feels [descriptive]</span>")
 
 
 /obj/item/tank/attackby(obj/item/W as obj, mob/user as mob)
@@ -56,14 +56,14 @@
 
 		manipulated_by = user.real_name			//This person is aware of the contents of the tank.
 
-		to_chat(user, "\blue Results of analysis of \icon[src]")
+		to_chat(user, "<span class='notice'>Results of analysis of \icon[src]</span>")
 		if (pressure>0)
-			to_chat(user, "\blue Pressure: [round(pressure,0.1)] kPa")
+			to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
 
-			to_chat(user, "\blue [gas_type]: 100%")
-			to_chat(user, "\blue Temperature: [round(temperature-T0C)]&deg;C")
+			to_chat(user, "<span class='notice'>[gas_type]: 100%</span>")
+			to_chat(user, "<span class='notice'>Temperature: [round(temperature-T0C)]&deg;C</span>")
 		else
-			to_chat(user, "\blue Tank is empty!")
+			to_chat(user, "<span class='notice'>Tank is empty!</span>")
 		src.add_fingerprint(user)
 
 
@@ -129,17 +129,17 @@
 			var/mob/living/carbon/location = loc
 			if(location.internal == src)
 				location.internal = null
-				to_chat(usr, "\blue You close the tank release valve.")
+				to_chat(usr, "<span class='notice'>You close the tank release valve.</span>")
 				if (location.hud_used && location.hud_used.internals)
 					location.hud_used.internals.icon_state = "internal0"
 			else
 				if(location.wear_mask && (location.wear_mask.flags_inventory & ALLOWINTERNALS))
 					location.internal = src
-					to_chat(usr, "\blue You open \the [src] valve.")
+					to_chat(usr, "<span class='notice'>You open \the [src] valve.</span>")
 					if (location.hud_used && location.hud_used.internals)
 						location.hud_used.internals.icon_state = "internal1"
 				else
-					to_chat(usr, "\blue You need something to connect to \the [src].")
+					to_chat(usr, "<span class='notice'>You need something to connect to \the [src].</span>")
 
 	src.add_fingerprint(usr)
 	return 1

@@ -144,11 +144,11 @@
 			return
 		user.drop_held_item()
 		D.loc = src
-		to_chat(user, "\blue You add the disk to the machine!")
+		to_chat(user, "<span class='notice'>You add the disk to the machine!</span>")
 	else if(istype(D, /obj/item/card/emag) && !emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
-		to_chat(user, "\blue You you disable the security protocols")
+		to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
 	else
 		//The construction/deconstruction of the console code.
 		..()

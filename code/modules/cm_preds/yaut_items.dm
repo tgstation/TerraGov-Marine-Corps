@@ -597,10 +597,10 @@
 	inject_timer = 1
 	spawn(1200)
 		if(usr && src.loc == usr)
-			to_chat(usr, "\blue Your bracers beep faintly and inform you that a new healing crystal is ready to be created.")
+			to_chat(usr, "<span class='notice'>Your bracers beep faintly and inform you that a new healing crystal is ready to be created.</span>")
 			inject_timer = 0
 
-	to_chat(usr, "\blue You feel a faint hiss and a crystalline injector drops into your hand.")
+	to_chat(usr, "<span class='notice'>You feel a faint hiss and a crystalline injector drops into your hand.</span>")
 	var/obj/item/reagent_container/hypospray/autoinjector/yautja/O = new(usr)
 	usr.put_in_active_hand(O)
 	playsound(src,'sound/machines/click.ogg', 15, 1)

@@ -361,7 +361,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 		if (src.uses < 1)	return 0
 		if (emote == "pale")
 			src.uses--
-			to_chat(source, "\blue You feel a sudden surge of energy!")
+			to_chat(source, "<span class='notice'>You feel a sudden surge of energy!</span>")
 			source.SetStunned(0)
 			source.SetKnockeddown(0)
 			source.SetKnockedout(0)

@@ -65,5 +65,5 @@
 		affected_mob.dna.UpdateSE()
 		affected_mob.real_name = original_dna["name"]
 
-		to_chat(affected_mob, "\blue You feel more like yourself.")
+		to_chat(affected_mob, "<span class='notice'>You feel more like yourself.</span>")
 	. = ..()

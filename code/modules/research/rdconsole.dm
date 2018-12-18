@@ -155,11 +155,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			to_chat(user, "<span class='warning'>Machine cannot accept disks in that format.</span>")
 			return
 		user.drop_inv_item_to_loc(D, src)
-		to_chat(user, "\blue You add the disk to the machine!")
+		to_chat(user, "<span class='notice'>You add the disk to the machine!</span>")
 	else if(istype(D, /obj/item/card/emag) && !emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
 		emagged = 1
-		to_chat(user, "\blue You you disable the security protocols")
+		to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
 	else
 		//The construction/deconstruction of the console code.
 		..()

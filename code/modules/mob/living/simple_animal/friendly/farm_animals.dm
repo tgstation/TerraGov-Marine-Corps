@@ -235,7 +235,7 @@ var/global/chicken_count = 0
 			eggsleft += rand(1, 4)
 			//to_chat(world, eggsleft)
 		else
-			to_chat(user, "\blue [name] doesn't seem hungry!")
+			to_chat(user, "<span class='notice'>[name] doesn't seem hungry!</span>")
 	else
 		..()
 

@@ -89,7 +89,7 @@
 	//to_chat(world, "multi_shuttle: last_departed=[MS.last_departed], origin=[MS.origin], interim=[MS.interim], travel_time=[MS.move_time]")
 
 	if (MS.moving_status != SHUTTLE_IDLE)
-		to_chat(usr, "\blue [shuttle_tag] vessel is moving.")
+		to_chat(usr, "<span class='notice'>[shuttle_tag] vessel is moving.</span>")
 		return
 
 	if(href_list["start"])
@@ -121,7 +121,7 @@
 		var/choice = input("Select a destination.") as null|anything in MS.destinations
 		if(!choice) return
 
-		to_chat(usr, "\blue [shuttle_tag] main computer recieved message.")
+		to_chat(usr, "<span class='notice'>[shuttle_tag] main computer recieved message.</span>")
 
 		if(MS.at_origin)
 			MS.announce_arrival()

@@ -234,7 +234,7 @@
 		if(C.flags_token & tokensupport)
 			if(user.drop_inv_item_to_loc(W, src))
 				coin = W
-				to_chat(user, "\blue You insert the [W] into the [src]")
+				to_chat(user, "<span class='notice'>You insert the [W] into the [src]</span>")
 		else
 			to_chat(user, "<span class='warning'>\The [src] rejects the [W].</span>")
 			return
@@ -246,7 +246,7 @@
 	else if (istype(W, /obj/item/spacecash/ewallet))
 		if(user.drop_inv_item_to_loc(W, src))
 			ewallet = W
-			to_chat(user, "\blue You insert the [W] into the [src]")
+			to_chat(user, "<span class='notice'>You insert the [W] into the [src]</span>")
 		return
 
 	else if(istype(W, /obj/item/tool/wrench))
@@ -455,7 +455,7 @@
 		coin.loc = src.loc
 		if(!usr.get_active_hand())
 			usr.put_in_hands(coin)
-		to_chat(usr, "\blue You remove the [coin] from the [src]")
+		to_chat(usr, "<span class='notice'>You remove the [coin] from the [src]</span>")
 		coin = null
 
 	if(href_list["remove_ewallet"] && !istype(usr,/mob/living/silicon))
@@ -465,7 +465,7 @@
 		ewallet.loc = src.loc
 		if(!usr.get_active_hand())
 			usr.put_in_hands(ewallet)
-		to_chat(usr, "\blue You remove the [ewallet] from the [src]")
+		to_chat(usr, "<span class='notice'>You remove the [ewallet] from the [src]</span>")
 		ewallet = null
 
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
@@ -554,13 +554,13 @@
 
 	if (R in coin_records)
 		if(!coin)
-			to_chat(user, "\blue You need to insert a coin to get this item.")
+			to_chat(user, "<span class='notice'>You need to insert a coin to get this item.</span>")
 			return
 		if(coin.string_attached)
 			if(prob(50))
-				to_chat(user, "\blue You successfully pull the coin out before the [src] could swallow it.")
+				to_chat(user, "<span class='notice'>You successfully pull the coin out before the [src] could swallow it.</span>")
 			else
-				to_chat(user, "\blue You weren't able to pull the coin out fast enough, the machine ate it, string and all.")
+				to_chat(user, "<span class='notice'>You weren't able to pull the coin out fast enough, the machine ate it, string and all.</span>")
 				qdel(coin)
 				coin = null
 		else

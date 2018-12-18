@@ -18,7 +18,7 @@
 			dismantle_wall(1)
 			return
 		else
-			to_chat(user, "\blue You punch the wall.")
+			to_chat(user, "<span class='notice'>You punch the wall.</span>")
 			return
 
 	add_fingerprint(user)

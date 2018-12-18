@@ -137,7 +137,7 @@
 	if(istype(W,/obj/item/tool/screwdriver))
 		if(active) return
 		open = !open
-		to_chat(user, "\blue You [open ? "open" : "close"] the maintenance panel.")
+		to_chat(user, "<span class='notice'>You [open ? "open" : "close"] the maintenance panel.</span>")
 		return
 	else
 		if(!open || active) return ..()
@@ -208,14 +208,14 @@
 		if(use_cell_power())
 			active = !active
 			if(active)
-				to_chat(user, "\blue You engage \the [src] and it lurches downwards, grinding noisily.")
+				to_chat(user, "<span class='notice'>You engage \the [src] and it lurches downwards, grinding noisily.</span>")
 				need_update_field = 1
 			else
-				to_chat(user, "\blue You disengage \the [src] and it shudders to a grinding halt.")
+				to_chat(user, "<span class='notice'>You disengage \the [src] and it shudders to a grinding halt.</span>")
 		else
-			to_chat(user, "\blue The drill is unpowered.")
+			to_chat(user, "<span class='notice'>The drill is unpowered.</span>")
 	else
-		to_chat(user, "\blue Turning on a piece of industrial machinery without sufficient bracing is a bad idea.")
+		to_chat(user, "<span class='notice'>Turning on a piece of industrial machinery without sufficient bracing is a bad idea.</span>")
 
 	update_icon()
 
@@ -318,15 +318,15 @@
 	if(istype(W,/obj/item/tool/wrench))
 
 		if(istype(get_turf(src),/turf/space))
-			to_chat(user, "\blue You can't anchor something to empty space. Idiot.")
+			to_chat(user, "<span class='notice'>You can't anchor something to empty space. Idiot.</span>")
 			return
 
 		if(connected && connected.active)
-			to_chat(user, "\blue You can't unanchor the brace of a running drill!")
+			to_chat(user, "<span class='notice'>You can't unanchor the brace of a running drill!</span>")
 			return
 
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-		to_chat(user, "\blue You [anchored ? "un" : ""]anchor the brace.")
+		to_chat(user, "<span class='notice'>You [anchored ? "un" : ""]anchor the brace.</span>")
 
 		anchored = !anchored
 		if(anchored)

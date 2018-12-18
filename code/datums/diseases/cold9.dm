@@ -16,7 +16,7 @@
 		if(2)
 			affected_mob.adjust_bodytemperature(-10 * TEMPERATURE_DAMAGE_COEFFICIENT)
 			if(prob(1) && prob(10))
-				to_chat(affected_mob, "\blue You feel better.")
+				to_chat(affected_mob, "<span class='notice'>You feel better.</span>")
 				cure()
 				return
 			if(prob(1))

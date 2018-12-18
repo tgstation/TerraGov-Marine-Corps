@@ -401,7 +401,7 @@
 	if(usr == occupant)//If the user is inside the tube...
 		if (usr.stat == 2)//and he's not dead....
 			return
-		to_chat(usr, "\blue Auto release sequence activated. You will be released when you have recovered.")
+		to_chat(usr, "<span class='notice'>Auto release sequence activated. You will be released when you have recovered.</span>")
 		auto_release = TRUE
 	else
 		if (usr.stat != 0)

@@ -122,7 +122,7 @@
 /obj/machinery/bot/mulebot/attackby(var/obj/item/I, var/mob/user)
 	if(istype(I,/obj/item/card/emag))
 		locked = !locked
-		to_chat(user, "\blue You [locked ? "lock" : "unlock"] the mulebot's controls!")
+		to_chat(user, "<span class='notice'>You [locked ? "lock" : "unlock"] the mulebot's controls!</span>")
 		flick("mulebot-emagged", src)
 		playsound(src.loc, 'sound/effects/sparks1.ogg', 25, 0)
 	else if(istype(I,/obj/item/cell) && open && !cell)
@@ -132,7 +132,7 @@
 			updateDialog()
 	else if(istype(I,/obj/item/tool/screwdriver))
 		if(locked)
-			to_chat(user, "\blue The maintenance hatch cannot be opened or closed while the controls are locked.")
+			to_chat(user, "<span class='notice'>The maintenance hatch cannot be opened or closed while the controls are locked.</span>")
 			return
 
 		open = !open
@@ -153,7 +153,7 @@
 				"\blue You repair [src]!"
 			)
 		else
-			to_chat(user, "\blue [src] does not need a repair!")
+			to_chat(user, "<span class='notice'>[src] does not need a repair!</span>")
 	else if(load && ismob(load))  // chance to knock off rider
 		if(prob(1+I.force * 2))
 			unload(0)
@@ -399,29 +399,29 @@
 					var/wirebit = text2num(href_list["wire"])
 					wires &= ~wirebit
 				else
-					to_chat(usr, "\blue You need wirecutters!")
+					to_chat(usr, "<span class='notice'>You need wirecutters!</span>")
 			if("wiremend")
 				if(istype(usr.get_active_hand(), /obj/item/tool/wirecutters))
 					var/wirebit = text2num(href_list["wire"])
 					wires |= wirebit
 				else
-					to_chat(usr, "\blue You need wirecutters!")
+					to_chat(usr, "<span class='notice'>You need wirecutters!</span>")
 
 			if("wirepulse")
 				if(istype(usr.get_active_hand(), /obj/item/device/multitool))
 					switch(href_list["wire"])
 						if("1","2")
-							to_chat(usr, "\blue \icon[src] The charge light flickers.")
+							to_chat(usr, "<span class='notice'>\icon[src] The charge light flickers.</span>")
 						if("4")
-							to_chat(usr, "\blue \icon[src] The external warning lights flash briefly.")
+							to_chat(usr, "<span class='notice'>\icon[src] The external warning lights flash briefly.</span>")
 						if("8")
-							to_chat(usr, "\blue \icon[src] The load platform clunks.")
+							to_chat(usr, "<span class='notice'>\icon[src] The load platform clunks.</span>")
 						if("16", "32")
-							to_chat(usr, "\blue \icon[src] The drive motor whines briefly.")
+							to_chat(usr, "<span class='notice'>\icon[src] The drive motor whines briefly.</span>")
 						else
-							to_chat(usr, "\blue \icon[src] You hear a radio crackle.")
+							to_chat(usr, "<span class='notice'>\icon[src] You hear a radio crackle.</span>")
 				else
-					to_chat(usr, "\blue You need a multitool!")
+					to_chat(usr, "<span class='notice'>You need a multitool!</span>")
 
 
 

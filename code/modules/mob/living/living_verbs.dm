@@ -221,7 +221,7 @@
 					spawn (breakouttime)
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
 							O.show_message("\red <B>[CM] manages to remove the handcuffs!</B>", 1)
-						to_chat(CM, "\blue You successfully remove \the [CM.handcuffed].")
+						to_chat(CM, "<span class='notice'>You successfully remove \the [CM.handcuffed].</span>")
 						CM.drop_inv_item_on_ground(CM.handcuffed)
 						return*/ //Commented by Apop
 
@@ -237,7 +237,7 @@
 							return // time leniency for lag which also might make this whole thing pointless but the server
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
 							O.show_message("\red <B>[CM] manages to remove [HC]!</B>", 1)
-						to_chat(CM, "\blue You successfully remove [HC].")
+						to_chat(CM, "<span class='notice'>You successfully remove [HC].</span>")
 						CM.drop_inv_item_on_ground(CM.handcuffed)
 		else if(CM.legcuffed && CM.canmove && (CM.last_special <= world.time))
 			var/obj/item/legcuffs/LC = CM.legcuffed
@@ -283,7 +283,7 @@
 							return // time leniency for lag which also might make this whole thing pointless but the server
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
 							O.show_message("\red <B>[CM] manages to remove the legcuffs!</B>", 1)
-						to_chat(CM, "\blue You successfully remove \the [CM.legcuffed].")
+						to_chat(CM, "<span class='notice'>You successfully remove \the [CM.legcuffed].</span>")
 						CM.drop_inv_item_on_ground(CM.legcuffed)
 
 /mob/living/proc/lay_down()

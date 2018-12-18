@@ -390,7 +390,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		target.followers += src
 		following = target
 		loc = target.loc
-		to_chat(src, "\blue Now following [target]")
+		to_chat(src, "<span class='notice'>Now following [target]</span>")
 		spawn(0) //Backup
 			while(target && following == target && client)
 				var/turf/T = get_turf(target)
@@ -469,12 +469,12 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	to_chat(src, "<span class='boldnotice'>Results:</span>")
 	if(abs(pressure - ONE_ATMOSPHERE) < 10)
-		to_chat(src, "\blue Pressure: [round(pressure,0.1)] kPa")
+		to_chat(src, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
 	else
 		to_chat(src, "<span class='warning'>Pressure: [round(pressure,0.1)] kPa</span>")
 
-	to_chat(src, "\blue Gas type: [env_gas]")
-	to_chat(src, "\blue Temperature: [round(env_temperature-T0C,0.1)]&deg;C")
+	to_chat(src, "<span class='notice'>Gas type: [env_gas]</span>")
+	to_chat(src, "<span class='notice'>Temperature: [round(env_temperature-T0C,0.1)]&deg;C</span>")
 
 
 /mob/dead/observer/verb/toggle_zoom()

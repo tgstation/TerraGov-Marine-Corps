@@ -472,9 +472,9 @@
 	..()
 	if ((in_range(src, user) || loc == user))
 		if (b_stat)
-			to_chat(user, "\blue [src] can be attached and modified!")
+			to_chat(user, "<span class='notice'>[src] can be attached and modified!</span>")
 		else
-			to_chat(user, "\blue [src] can not be modified or attached!")
+			to_chat(user, "<span class='notice'>[src] can not be modified or attached!</span>")
 
 
 /obj/item/device/radio/attackby(obj/item/W as obj, mob/user as mob)

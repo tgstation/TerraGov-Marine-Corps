@@ -237,7 +237,7 @@
 /obj/item/weapon/gun/syringe/examine(mob/user)
 	..()
 	if(user != loc) return
-	to_chat(user, "\blue [syringes.len] / [max_syringes] syringes.")
+	to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
 
 /obj/item/weapon/gun/syringe/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/reagent_container/syringe))
@@ -247,8 +247,8 @@
 				user.drop_inv_item_to_loc(I, src)
 				syringes += I
 				update_icon()
-				to_chat(user, "\blue You put the syringe in [src].")
-				to_chat(user, "\blue [syringes.len] / [max_syringes] syringes.")
+				to_chat(user, "<span class='notice'>You put the syringe in [src].</span>")
+				to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
 			else
 				to_chat(usr, "<span class='warning'>[src] cannot hold more syringes.</span>")
 		else

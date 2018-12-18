@@ -30,7 +30,7 @@
 
 		if (istype(A, /obj/item/toy/gun_ammo))
 			if (src.bullets >= 7)
-				to_chat(user, "\blue It's already fully loaded!")
+				to_chat(user, "<span class='notice'>It's already fully loaded!</span>")
 				return 1
 			if (A.amount_left <= 0)
 				to_chat(user, "<span class='warning'>There is no more caps!</span>")
@@ -97,7 +97,7 @@
 	examine(mob/user)
 		..()
 		if (bullets)
-			to_chat(user, "\blue It is loaded with [bullets] foam darts!")
+			to_chat(user, "<span class='notice'>It is loaded with [bullets] foam darts!</span>")
 
 	attackby(obj/item/I as obj, mob/user as mob)
 		if(istype(I, /obj/item/toy/crossbow_ammo))
@@ -105,7 +105,7 @@
 				if(user.drop_held_item())
 					qdel(I)
 					bullets++
-					to_chat(user, "\blue You load the foam dart into the crossbow.")
+					to_chat(user, "<span class='notice'>You load the foam dart into the crossbow.</span>")
 			else
 				to_chat(usr, "<span class='warning'>It's already fully loaded.</span>")
 
@@ -212,13 +212,13 @@
 	attack_self(mob/user as mob)
 		src.active = !( src.active )
 		if (src.active)
-			to_chat(user, "\blue You extend the plastic blade with a quick flick of your wrist.")
+			to_chat(user, "<span class='notice'>You extend the plastic blade with a quick flick of your wrist.</span>")
 			playsound(user, 'sound/weapons/saberon.ogg', 15, 1)
 			src.icon_state = "swordblue"
 			src.item_state = "swordblue"
 			src.w_class = 4
 		else
-			to_chat(user, "\blue You push the plastic blade back down into the handle.")
+			to_chat(user, "<span class='notice'>You push the plastic blade back down into the handle.</span>")
 			playsound(user, 'sound/weapons/saberoff.ogg', 15, 1)
 			src.icon_state = "sword0"
 			src.item_state = "sword0"
