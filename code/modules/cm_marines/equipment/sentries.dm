@@ -79,7 +79,7 @@
 		S.update_icon()
 		qdel(src)
 
-	
+
 /obj/machinery/turret_tripod_deployed
 	name = "\improper UA 571-C turret tripod"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
@@ -285,7 +285,7 @@
 	cell = new /obj/item/cell/high(src)
 	camera_number = rand(1,1000)
 	camera = new (src)
-	camera.network = list("military")
+	camera.network = list("LEADER")
 	camera.c_tag = "[name] ([get_area(src)] | X: [x] | Y: [y]| [camera_number])" //Update Camera name
 	spawn(2)
 		stat = 0
@@ -483,7 +483,7 @@
 				SetLuminosity(7)
 				if(!camera)
 					camera = new /obj/machinery/camera(src)
-					camera.network = list("military")
+					camera.network = list("LEADER")
 				camera.c_tag = "[name] ([get_area(src)] | X: [x] | Y: [y]| [camera_number])" //Update Camera name
 				update_icon()
 			else
@@ -1156,7 +1156,7 @@
 	var/obj/item/cell/super/H = new(src) //Better cells in these ones.
 	cell = H
 	camera = new (src)
-	camera.network = list("military")
+	camera.network = list("LEADER")
 	camera.c_tag = "[name] ([get_area(src)] | X: [x] | Y: [y]| [camera_number])" //Update Camera name
 	spawn(2)
 		stat = 0
@@ -1196,7 +1196,7 @@
 		SetLuminosity(7)
 		if(!camera)
 			camera = new /obj/machinery/camera(src)
-			camera.network = list("military")
+			camera.network = list("LEADER")
 		camera.c_tag = "[name] ([get_area(src)] | X: [x] | Y: [y]| [camera_number])" //Update Camera name
 		update_icon()
 	else

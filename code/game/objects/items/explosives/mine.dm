@@ -35,7 +35,7 @@
 /obj/item/explosive/mine/New()
 	. = ..()
 	camera = new (src)
-	camera.network = list("military")
+	camera.network = list("LEADER")
 	camera.c_tag = "[name] ([camera_number])"
 
 /obj/item/explosive/mine/Destroy()
@@ -133,12 +133,6 @@
 	if(M)
 		mine_alert(M)
 
-	switch(trigger_type)
-		if("explosive")
-			if(tripwire)
-				explosion(tripwire.loc, -1, -1, 2)
-				qdel(src)
-
 /obj/item/explosive/mine/attack_alien(mob/living/carbon/Xenomorph/M)
 	if(triggered) //Mine is already set to go off
 		return
@@ -189,10 +183,16 @@
 /obj/item/explosive/mine/proc/mine_alert(mob/M)
 	if(!M)
 		return
-	var/notice
+	var/notice = "<b>ALERT! [src] detonated. Hostile/unknown: [M] Detected at: [get_area(M)]. Coordinates: (X: [M.x], Y: [M.y]).</b>"
 	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
-	notice = "<b>ALERT! [src] detonated. Hostile/unknown: [M] Detected at: [get_area(M)]. Coordinates: (X: [M.x], Y: [M.y]).</b>"
 	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 	AI.SetName("Smartmine Alert System")
-	AI.aiRadio.talk_into(AI,"[notice]","Almayer","announces")
+	to_chat(world, "AI: [AI] AI Name: [AI.name], Notice: [notice]")
+	AI.aiRadio.talk_into(AI,"[notice]","Theseus","announces")
 	qdel(AI)
+
+	switch(trigger_type) //Makes sure we announce first before detonation.
+		if("explosive")
+			if(tripwire)
+				explosion(tripwire.loc, -1, -1, 2)
+				qdel(src)
