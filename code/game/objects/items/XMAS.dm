@@ -97,7 +97,6 @@
 	return
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/XMAS
-	..()
 	flags_gun_features = GUN_INTERNAL_MAG
 	able_to_fire(mob/living/user)
 		var/turf/current_turf = get_turf(user)
@@ -109,7 +108,6 @@
 			return TRUE
 
 /obj/item/weapon/gun/rifle/sniper/elite/XMAS
-	..()
 	flags_gun_features = GUN_INTERNAL_MAG
 
 	able_to_fire(mob/living/user)
