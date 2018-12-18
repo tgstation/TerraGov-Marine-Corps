@@ -19,16 +19,16 @@
 	fire_sound = 'sound/weapons/gun_sniper.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper
 	force = 12
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	wield_delay = 12 //Ends up being 1.6 seconds due to scope
 	zoomdevicename = "scope"
 	attachable_allowed = list(/obj/item/attachable/bipod)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 
-/obj/item/weapon/gun/rifle/sniper/M42A/New()
+/obj/item/weapon/gun/rifle/sniper/M42A/Initialize()
 	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a"))
 	. = ..()
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/obj/item/attachable/scope/S = new(src)
 	S.attach_icon = "" //Let's make it invisible. The sprite already has one.
 	S.icon_state = ""
@@ -64,14 +64,14 @@
 	fire_sound = 'sound/weapons/sniper_heavy.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/elite
 	force = 17
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 	zoomdevicename = "scope"
 	attachable_allowed = list()
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 
 
-/obj/item/weapon/gun/rifle/sniper/elite/New()
+/obj/item/weapon/gun/rifle/sniper/elite/Initialize()
 	. = ..()
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 	var/obj/item/attachable/scope/S = new(src)
 	S.icon_state = "pmcscope"
 	S.attach_icon = "pmcscope"
@@ -109,6 +109,7 @@
 	fire_sound = 'sound/weapons/gun_kt42.ogg'
 	current_mag = /obj/item/ammo_magazine/sniper/svd
 	type_of_casings = "cartridge"
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	attachable_allowed = list(
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
@@ -121,9 +122,8 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 
 
-/obj/item/weapon/gun/rifle/sniper/svd/New()
+/obj/item/weapon/gun/rifle/sniper/svd/Initialize()
 	. = ..()
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	var/obj/item/attachable/S = new /obj/item/attachable/scope/slavic(src)
 	S.Attach(src)
 	S = new /obj/item/attachable/slavicbarrel(src)
@@ -155,6 +155,7 @@
 	fire_sound = list('sound/weapons/gun_m4ra.ogg')
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
 	force = 16
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	attachable_allowed = list(
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/extended_barrel,
@@ -171,9 +172,8 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
 
-/obj/item/weapon/gun/rifle/m4ra/New()
+/obj/item/weapon/gun/rifle/m4ra/Initialize()
 	. = ..()
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	var/obj/item/attachable/scope/m4ra/S = new(src)
 	S.icon_state = null // the gun's sprite already shows a scope
 	S.attach_icon = null

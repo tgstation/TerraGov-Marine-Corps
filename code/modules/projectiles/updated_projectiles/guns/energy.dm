@@ -7,7 +7,7 @@
 	var/obj/item/cell/cell //1000 power.
 	var/charge_cost = 10 //100 shots.
 
-/obj/item/weapon/gun/energy/New()
+/obj/item/weapon/gun/energy/Initialize()
 	. = ..()
 	cell = new /obj/item/cell(src)
 
@@ -74,7 +74,7 @@
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
 
-/obj/item/weapon/gun/energy/taser/New()
+/obj/item/weapon/gun/energy/taser/Initialize()
 	. = ..()
 	cell = new /obj/item/cell/high(src)
 
@@ -116,7 +116,7 @@
 	charge_cost = 100
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 
-/obj/item/weapon/gun/energy/plasmarifle/New()
+/obj/item/weapon/gun/energy/plasmarifle/Initialize()
 	. = ..()
 	cell = new /obj/item/cell/high(src)
 
