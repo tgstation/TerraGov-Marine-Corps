@@ -994,10 +994,10 @@ Defined in conflicts.dm of the #defines folder.
         return
     abstract_gun.reload(user, mag)
 
-/obj/item/attachable/attached_gun/shotgun/fire_attachment(atom/target, obj/item/weapon/gun/gun, mob/living/user)
+/obj/item/attachable/attached_gun/shotgun/fire_attachment(atom/target, mob/living/user)
 	if(abstract_gun.current_mag.current_rounds > 0) //If it's still got ammo and stuff.
 		abstract_gun.current_mag.current_rounds--
-		return active_attachable.Fire()
+		return abstract_gun.Fire(target, user)
 	else
 		to_chat(user, "<span class='warning'>[gun.active_attachable] is empty!</span>")
 		to_chat(user, "<span class='notice'>You disable [gun.active_attachable].</span>")
