@@ -12,7 +12,7 @@
 /obj/item/circuitboard/computer/security
 	name = "Circuit board (Security Camera Monitor)"
 	build_path = /obj/machinery/computer/security
-	var/network = list("military")
+	var/network = list("LEADER")
 	req_access = list(ACCESS_MARINE_BRIG)
 	var/locked = 1
 	var/emagged = 0

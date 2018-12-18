@@ -7,7 +7,7 @@
 	icon_state = "cameras"
 	var/obj/machinery/camera/current = null
 	var/last_pic = 1.0
-	var/list/network = list("military")
+	var/list/network = list("LEADER")
 	var/mapping = 0//For the overview file, interesting bit of code.
 	circuit = /obj/item/circuitboard/computer/security
 
@@ -192,10 +192,10 @@
 /obj/machinery/computer/security/almayer
 	density = 0
 	icon_state = "security_cam"
-	network = list("almayer")
+	network = list("almayer", "LEADER")
 
 /obj/machinery/computer/security/almayer_network
-	network = list("almayer")
+	network = list("almayer", "LEADER")
 
 
 /obj/machinery/computer/security/dropship

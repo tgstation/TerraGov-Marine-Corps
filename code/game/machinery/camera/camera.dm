@@ -8,7 +8,7 @@
 	active_power_usage = 10
 	layer = FLY_LAYER
 
-	var/list/network = list("military")
+	var/list/network = list("LEADER")
 	var/c_tag = null
 	var/c_tag_order = 999
 	var/status = 1.0

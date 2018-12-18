@@ -492,6 +492,14 @@
 	var/obj/item/device/squad_beacon/B = cam_target
 	if(istype(B))
 		return B?.beacon_cam
+	var/obj/machinery/marine_turret/T = cam_target
+	if(istype(T))
+		return T?.camera
+	var/obj/item/explosive/mine/M = cam_target
+	if(istype(M))
+		return M?.camera
+
+
 
 //Sends a string to our currently selected squad.
 /obj/machinery/computer/overwatch/proc/send_to_squad(var/txt = "", var/plus_name = FALSE, var/only_leader = FALSE)
