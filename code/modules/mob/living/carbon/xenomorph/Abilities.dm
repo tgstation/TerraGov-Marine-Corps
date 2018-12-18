@@ -28,6 +28,7 @@
 		"<span class='xenonotice'>You regurgitate a pulsating node and plant it on the ground!</span>", null, 5)
 		new /obj/effect/alien/weeds/node(X.loc, src, X)
 		playsound(X.loc, "alien_resin_build", 25)
+		round_statistics.weeds_planted++
 
 // Resting
 /datum/action/xeno_action/xeno_resting
