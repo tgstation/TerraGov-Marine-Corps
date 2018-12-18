@@ -173,37 +173,37 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 /datum/game_mode/proc/declare_completion_announce_round_stats()
 	set waitfor = 0
 	sleep(140)
-	var/dat = "<span class='round_body'>The end of round statistics are:</span>"
-	dat += "<br> "//gotta get that formatting on.
-	dat += "<br>There were [round_statistics.total_bullets_fired] total bullets fired."
-	dat += "<br>[round_statistics.total_bullet_hits_on_marines] bullets managed to hit marines. For a [(round_statistics.total_bullet_hits_on_marines / max(round_statistics.total_bullets_fired, 1)) * 100]% friendly fire rate!"
+	var/list/dat = list({"<span class='round_body'>The end of round statistics are:</span><br>
+		<br>There were [round_statistics.total_bullets_fired] total bullets fired.
+		<br>[round_statistics.total_bullet_hits_on_marines] bullets managed to hit marines. For a [(round_statistics.total_bullet_hits_on_marines / max(round_statistics.total_bullets_fired, 1)) * 100]% friendly fire rate!"})
 	if(round_statistics.total_bullet_hits_on_xenos)
-		dat += "<br>[round_statistics.total_bullet_hits_on_xenos] bullets managed to hit xenomorphs. For a [(round_statistics.total_bullet_hits_on_xenos / max(round_statistics.total_bullets_fired, 1)) * 100]% accuracy total!"
+		dat += "[round_statistics.total_bullet_hits_on_xenos] bullets managed to hit xenomorphs. For a [(round_statistics.total_bullet_hits_on_xenos / max(round_statistics.total_bullets_fired, 1)) * 100]% accuracy total!"
 	if(round_statistics.grenades_thrown)
-		dat += "<br>[round_statistics.grenades_thrown] total grenades exploding."
+		dat += "[round_statistics.grenades_thrown] total grenades exploding."
 	else
-		dat += "<br>No grenades exploded."
+		dat += "No grenades exploded."
 	if(round_statistics.now_pregnant)
-		dat += "<br>[round_statistics.now_pregnant] people infected among which [round_statistics.total_larva_burst] burst. For a [(round_statistics.total_larva_burst / max(round_statistics.now_pregnant, 1)) * 100]% successful delivery rate!"
+		dat += "[round_statistics.now_pregnant] people infected among which [round_statistics.total_larva_burst] burst. For a [(round_statistics.total_larva_burst / max(round_statistics.now_pregnant, 1)) * 100]% successful delivery rate!"
 	if(round_statistics.queen_screech)
-		dat += "<br>[round_statistics.queen_screech] Queen screeches."
+		dat += "[round_statistics.queen_screech] Queen screeches."
 	if(round_statistics.ravager_ravage_victims)
-		dat += "<br>[round_statistics.ravager_ravage_victims] ravaged victims. Damn, Ravagers!"
+		dat += "[round_statistics.ravager_ravage_victims] ravaged victims. Damn, Ravagers!"
 	if(round_statistics.warrior_limb_rips)
-		dat += "<br>[round_statistics.warrior_limb_rips] limbs ripped off by Warriors."
+		dat += "[round_statistics.warrior_limb_rips] limbs ripped off by Warriors."
 	if(round_statistics.crusher_stomp_victims)
-		dat += "<br>[round_statistics.crusher_stomp_victims] people stomped by crushers."
+		dat += "[round_statistics.crusher_stomp_victims] people stomped by crushers."
 	if(round_statistics.praetorian_spray_direct_hits)
-		dat += "<br>[round_statistics.praetorian_spray_direct_hits] people hit directly by Praetorian acid spray."
+		dat += "[round_statistics.praetorian_spray_direct_hits] people hit directly by Praetorian acid spray."
 	if(round_statistics.weeds_planted)
-		dat += "<br>[round_statistics.weeds_planted] weed nodes planted."
+		dat += "[round_statistics.weeds_planted] weed nodes planted."
 	if(round_statistics.weeds_destroyed)
-		dat += "<br>[round_statistics.weeds_destroyed] weed tiles removed."
+		dat += "[round_statistics.weeds_destroyed] weed tiles removed."
 	if(round_statistics.carrier_traps)
-		dat += "<br>[round_statistics.carrier_traps] hidey holes for huggers were made."
+		dat += "[round_statistics.carrier_traps] hidey holes for huggers were made."
+	var/output = jointext(dat, "<br>")
 	for(var/mob/player in player_list)
 		if(player?.client?.prefs?.toggles_chat & CHAT_STATISTICS)
-			to_chat(player, dat)	
+			to_chat(player, output)
 
 /datum/game_mode/proc/end_of_round_deathmatch()
 	var/list/spawns = list()
