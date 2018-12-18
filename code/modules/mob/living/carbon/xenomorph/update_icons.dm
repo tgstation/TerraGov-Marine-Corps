@@ -3,6 +3,7 @@
 
 //Xeno Overlays Indexes//////////
 #define X_LASER_LAYER			8
+#define X_WOUND_LAYER			8
 #define X_HEAD_LAYER			7
 #define X_SUIT_LAYER			6
 #define X_L_HAND_LAYER			5
@@ -29,6 +30,7 @@
 	else if(lying)
 		if((resting || sleeping) && (!knocked_down && !knocked_out && health > 0))
 			icon_state = "[xeno_caste.caste_name] Sleeping"
+
 		else
 			icon_state = "[xeno_caste.caste_name] Knocked Down"
 	else
@@ -37,6 +39,7 @@
 		else
 			icon_state = "[xeno_caste.caste_name] Walking"
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
+	update_wounds()
 
 /mob/living/carbon/Xenomorph/regenerate_icons()
 	..()
@@ -127,6 +130,54 @@
 
 		overlays_standing[X_FIRE_LAYER] = I
 		apply_overlay(X_FIRE_LAYER)
+
+
+/mob/living/carbon/Xenomorph/proc/update_wounds()
+	remove_overlay(X_WOUND_LAYER)
+	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
+		var/image/I
+		if(resting)
+			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[wound_type]_wounded_resting", "layer"=-X_WOUND_LAYER)
+		else if(sleeping || stat == DEAD)
+			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[wound_type]_wounded_sleeping", "layer"=-X_WOUND_LAYER)
+		else
+			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[wound_type]_wounded", "layer"=-X_WOUND_LAYER)
+
+		overlays_standing[X_WOUND_LAYER] = I
+		apply_overlay(X_WOUND_LAYER)
+
+/mob/living/carbon/Xenomorph/Warrior/update_wounds()
+	remove_overlay(X_WOUND_LAYER)
+	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
+		var/image/I
+		if(resting)
+			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="warrior_wounded_resting", "layer"=-X_WOUND_LAYER)
+		else if(sleeping || stat == DEAD)
+			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="warrior_wounded_sleeping", "layer"=-X_WOUND_LAYER)
+		else if(agility)
+			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="warrior_wounded_agility", "layer"=-X_WOUND_LAYER)
+		else
+			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="warrior_wounded", "layer"=-X_WOUND_LAYER)
+
+		overlays_standing[X_WOUND_LAYER] = I
+		apply_overlay(X_WOUND_LAYER)
+
+
+/mob/living/carbon/Xenomorph/Hunter/update_wounds()
+	remove_overlay(X_WOUND_LAYER)
+	if(health < maxHealth * 0.5) //Injuries appear at less than 50% health
+		var/image/I
+		if(resting)
+			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[wound_type]_wounded_resting", "layer"=-X_WOUND_LAYER)
+		else if(sleeping || stat == DEAD)
+			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[wound_type]_wounded_sleeping", "layer"=-X_WOUND_LAYER)
+		else
+			I = image("icon"='icons/Xeno/wound_overlays.dmi', "icon_state"="[wound_type]_wounded", "layer"=-X_WOUND_LAYER)
+		I.alpha = src.alpha
+		overlays_standing[X_WOUND_LAYER] = I
+		apply_overlay(X_WOUND_LAYER)
+
+
 
 /mob/living/carbon/Xenomorph/update_transform()
 	..()

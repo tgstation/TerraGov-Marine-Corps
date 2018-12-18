@@ -22,12 +22,6 @@
 #define ATMOS_DEFAULT_VOLUME_MIXER	200	//L
 #define ATMOS_DEFAULT_VOLUME_PIPE	70	//L
 
-// channel numbers for power
-#define EQUIP	1
-#define LIGHT	2
-#define ENVIRON	3
-#define TOTAL	4	//for total power used only
-
 // bitflags for machine stat variable
 #define BROKEN		1
 #define NOPOWER		2
@@ -35,13 +29,6 @@
 #define MAINT		8			// under maintaince
 #define EMPED		16		// temporary broken by EMP pulse
 #define MACHINE_DO_NOT_PROCESS 32768 //Do not added these to processing queue.
-
-//bitflags for door switches.
-#define OPEN	1
-#define IDSCAN	2
-#define BOLTS	4
-#define SHOCK	8
-#define SAFE	16
 
 #define ENGINE_EJECT_Z	3
 
@@ -209,6 +196,20 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define OBJ_SKILL_CONSTRUCTION	17
 #define OBJ_SKILL_POLICE		18
 #define OBJ_SKILL_POWERLOADER	19
+
+//Razor wire
+
+#define RAZORWIRE_BASE_DAMAGE		40
+#define RAZORWIRE_ENTANGLE_DELAY	5 SECONDS
+#define RAZORWIRE_SOAK				5
+#define RAZORWIRE_MAX_HEALTH		200
+#define RAZORWIRE_SLOWDOWN			10
+#define RAZORWIRE_MIN_DAMAGE_MULT_LOW	0.4 //attacking
+#define RAZORWIRE_MAX_DAMAGE_MULT_LOW	0.6
+#define RAZORWIRE_MIN_DAMAGE_MULT_MED	0.8 //climbing into, disentangling or crusher charging it
+#define RAZORWIRE_MAX_DAMAGE_MULT_MED	1.2
+#define RAZORWIRE_MIN_DAMAGE_MULT_HIGH	1.6 //pouncing into it
+#define RAZORWIRE_MAX_DAMAGE_MULT_HIGH	2.4
 
 //Scope accuracy defines
 #define SCOPE_RAIL				0.4

@@ -23,7 +23,7 @@
 		if(first)
 			qdel(first)
 			first = null
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		. = ..()
 
 	activate()
@@ -36,13 +36,13 @@
 	toggle_secure()
 		secured = !secured
 		if(secured)
-			processing_objects.Add(src)
+			START_PROCESSING(SSobj, src)
 		else
 			on = 0
 			if(first)
 				qdel(first)
 				first = null
-			processing_objects.Remove(src)
+			STOP_PROCESSING(SSobj, src)
 		update_icon()
 		return secured
 
@@ -202,7 +202,7 @@
 	return
 
 /obj/effect/beam/i_beam/Destroy()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/effect/beam/i_beam/process()

@@ -467,7 +467,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 // xeno defines
 
-#define CRUSHER_STOMP_COOLDOWN 200
+
 #define XENO_SLOWDOWN_REGEN 0.4
 #define XENO_HALOSS_REGEN 3
 #define QUEEN_DEATH_TIMER 300 // 5 minutes
@@ -493,8 +493,18 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 //defender defines
 
-#define DEFENDER_HEADBUTT_COST			20
-#define DEFENDER_TAILSWIPE_COST			30
+#define DEFENDER_HEADBUTT_COST			25
+#define DEFENDER_TAILSWIPE_COST			35
+#define DEFENDER_HEADBUTT_COOLDOWN		6 SECONDS
+#define DEFENDER_TAILSWIPE_COOLDOWN		12 SECONDS
+#define DEFENDER_FORTIFY_COOLDOWN		1 SECOND
+#define DEFENDER_CREST_DEFENSE_COOLDOWN	1 SECOND
+
+//crusher defines
+#define CRUSHER_CRESTTOSS_COST			40
+#define CRUSHER_CRESTTOSS_COOLDOWN		6 SECONDS
+#define CRUSHER_STOMP_COST				80
+#define CRUSHER_STOMP_COOLDOWN 			20 SECONDS
 
 //carrier defines
 
@@ -509,6 +519,13 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define WARRIOR_FLING_COOLDOWN 6 SECONDS
 #define WARRIOR_AGILITY_COOLDOWN 0.5 SECONDS
 
+
+//sentinel defines
+
+#define NEUROTOXIN_STING_COOLDOWN				30 SECONDS
+#define NEUROTOXIN_STING_INJECT_DELAY			1.5 SECONDS
+#define NEUROTOXIN_STING_AMOUNT_INITIAL			15
+#define NEUROTOXIN_STING_AMOUNT_RECURRING		10
 
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1

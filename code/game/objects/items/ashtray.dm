@@ -27,7 +27,7 @@
 			var/obj/item/clothing/mask/cigarette/cig = W
 			if (cig.heat_source)
 				src.visible_message("[user] crushes [cig] in [src], putting it out.")
-				processing_objects.Remove(cig)
+				STOP_PROCESSING(SSobj, cig)
 				var/obj/item/butt = new cig.type_butt(src)
 				cig.transfer_fingerprints_to(butt)
 				qdel(cig)
