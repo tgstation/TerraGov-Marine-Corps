@@ -363,8 +363,6 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	w_class = 5
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammobox"
-	item_state = "ammobox"
-	var/base_icon_state
 	var/magazine_amount = 10
 	var/max_magazine_amount = 10
 	var/max_magazine_rounds = 40
@@ -372,14 +370,11 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/magazine_type = /obj/item/ammo_magazine/rifle
 	var/deployed = FALSE
 
-/obj/item/ammobox/New()
-	base_icon_state = icon_state
-
 /obj/item/ammobox/update_icon()
 	if(magazine_amount > 0) 
-		icon_state = "[base_icon_state]_deployed"
+		icon_state = "[initial(icon_state)]_deployed"
 	else 
-		icon_state = "[base_icon_state]_empty"
+		icon_state = "[initial(icon_state)]_empty"
 
 /obj/item/ammobox/examine(mob/user)
 	. = ..()
@@ -428,8 +423,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 		return
 	if(istype(over_object, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = over_object
-		if(H == usr && !H.is_mob_incapacitated() && Adjacent(H) && in_range(src, over_object) && H.put_in_hands(src))
-			icon_state = base_icon_state
+		if(H == usr && !H.is_mob_incapacitated() && Adjacent(H) && H.put_in_hands(src))
+			icon_state = initial(icon_state)
 
 
 //Deployable shotgun ammo box
@@ -438,7 +433,6 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	desc = "A large, deployable ammo box."
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "ammoboxslug"
-	var/base_icon_state
 	default_ammo = /datum/ammo/bullet/shotgun/slug
 	caliber = "12g"
 	gun_type = /obj/item/weapon/gun/shotgun
@@ -448,14 +442,11 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/base = /obj/item/ammo_magazine/shotgunbox
 	var/deployed = FALSE
 
-/obj/item/ammo_magazine/shotgunbox/New()
-	base_icon_state = icon_state
-
 /obj/item/ammo_magazine/shotgunbox/update_icon()
 	if(current_rounds > 0) 
-		icon_state = "[base_icon_state]_deployed"
+		icon_state = "[initial(icon_state)]_deployed"
 	else 
-		icon_state = "[base_icon_state]_empty"
+		icon_state = "[initial(icon_state)]_empty"
 
 /obj/item/ammo_magazine/shotgunbox/attack_self(mob/user)
 	deployed = TRUE
@@ -467,8 +458,8 @@ Turn() or Shift() as there is virtually no overhead. ~N
 		return
 	if(istype(over_object, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = over_object
-		if(H == usr && !H.is_mob_incapacitated() && Adjacent(H) && in_range(src, over_object) && H.put_in_hands(src))
-			icon_state = base_icon_state
+		if(H == usr && !H.is_mob_incapacitated() && Adjacent(H) && H.put_in_hands(src))
+			icon_state = initial(icon_state)
 
 /obj/item/ammo_magazine/shotgunbox/examine(mob/user)
 	. = ..()
