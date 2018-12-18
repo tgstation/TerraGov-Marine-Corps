@@ -375,7 +375,7 @@
 		to_chat(usr, "<span class='notice'>\ [src] is compatible with humanoid anatomies only!</span>")
 		return
 	if (occupant)
-		to_chat(usr, "\red <B>The cryo cell is already occupied!</B>")
+		to_chat(usr, "<span class='danger'>The cryo cell is already occupied!</span>")
 		return
 	if (M.abiotic())
 		to_chat(usr, "\red Subject may not have abiotic items on.")

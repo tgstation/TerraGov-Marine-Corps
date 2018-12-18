@@ -715,7 +715,7 @@
 			// 		notes_add(M.ckey, "Banned  from [msg] - [reason]")
 			// 		message_admins("\blue [key_name_admin(usr)] banned [key_name_admin(M)] from [msg] for [mins] minutes", 1)
 			// 		to_chat(M, "\red<BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG>")
-			// 		to_chat(M, "\red <B>The reason is: [reason]</B>")
+			// 		to_chat(M, "<span class='danger'>The reason is: [reason]</span>")
 			// 		to_chat(M, "\red This jobban will be lifted in [mins] minutes.")
 			// 		jobban_savebanfile()
 			// 		href_list["jobban2"] = 1 // lets it fall through and refresh
@@ -737,7 +737,7 @@
 				notes_add(M.ckey, "Banned  from [msg] - [reason]")
 				message_admins("\blue [key_name_admin(usr)] banned [key_name_admin(M)] from [msg]", 1)
 				to_chat(M, "\red<BIG><B>You have been jobbanned by [usr.client.ckey] from: [msg].</B></BIG>")
-				to_chat(M, "\red <B>The reason is: [reason]</B>")
+				to_chat(M, "<span class='danger'>The reason is: [reason]</span>")
 				to_chat(M, "\red Jobban can be lifted only upon request.")
 				jobban_savebanfile()
 				href_list["jobban2"] = 1 // lets it fall through and refresh
@@ -834,7 +834,7 @@
 		if(M.client && M.client.holder)	return	//admins cannot be banned. Even if they could, the ban doesn't affect them anyway
 
 		if(!M.ckey)
-			to_chat(usr, "\red <B>Warning: Mob ckey for [M.name] not found.</b>")
+			to_chat(usr, "<span class='danger'>Warning: Mob ckey for [M.name] not found.</span>")
 			return
 		var/mob_key = M.ckey
 		var/mob_id = M.computer_id
@@ -873,7 +873,7 @@
 		if(M.client && M.client.holder)	return	//admins cannot be banned. Even if they could, the ban doesn't affect them anyway
 
 		if(!M.ckey)
-			to_chat(usr, "\red <B>Warning: Mob ckey for [M.name] not found.</b>")
+			to_chat(usr, "<span class='danger'>Warning: Mob ckey for [M.name] not found.</span>")
 			return
 
 		var/mins = 0

@@ -65,7 +65,7 @@
 		var/mob/M = AM
 		playsound(src.loc, 'sound/effects/glass_step.ogg', 25, 1) // not sure how to handle metal shards with sounds
 		if(!M.buckled)
-			to_chat(M, "\red <B>You step on \the [src]!</B>")
+			to_chat(M, "<span class='danger'>You step on \the [src]!</span>")
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 

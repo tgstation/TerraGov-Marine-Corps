@@ -821,7 +821,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		if( isobserver(ghostmob) )
 			qdel(ghostmob)
 		spawn(15)
-			to_chat(L, "\red <B>Attention!! You are playing as a hellhound. You can get server banned if you are shitty so listen up!</b>")
+			to_chat(L, "<span class='danger'>Attention!! You are playing as a hellhound. You can get server banned if you are shitty so listen up!</span>")
 			to_chat(L, "\red You MUST listen to and obey the Predator's commands at all times. Die if they demand it. Not following them is unthinkable to a hellhound.")
 			to_chat(L, "\red You are not here to go hog wild rambo. You're here to be part of something rare, a Predator hunt.")
 			to_chat(L, "\red The Predator players must follow a strict code of role-play and you are expected to as well.")

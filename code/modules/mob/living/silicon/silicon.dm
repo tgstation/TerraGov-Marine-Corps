@@ -53,7 +53,7 @@
 			Stun(rand(1,5))
 	flash_eyes(1, TRUE, type = /obj/screen/fullscreen/flash/noise)
 
-	to_chat(src, "\red <B>*BZZZT*</B>")
+	to_chat(src, "<span class='danger'>*BZZZT*</span>")
 	to_chat(src, "\red Warning: Electromagnetic pulse detected.")
 	..()
 

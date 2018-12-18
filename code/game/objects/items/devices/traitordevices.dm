@@ -45,10 +45,10 @@ effective or pretty fucking useless.
 				M.KnockDown(rand(10,20))
 				if(prob(25))
 					M.Stun(rand(5,10))
-				to_chat(M, "\red <b>You feel a tremendous, paralyzing wave flood your mind.</b>")
+				to_chat(M, "<span class='danger'>You feel a tremendous, paralyzing wave flood your mind.</span>")
 
 			else
-				to_chat(M, "\red <b>You feel a sudden, electric jolt travel through your head.</b>")
+				to_chat(M, "<span class='danger'>You feel a sudden, electric jolt travel through your head.</span>")
 
 	playsound(src.loc, 'sound/misc/interference.ogg', 25, 1)
 	to_chat(user, "\blue You trigger [src].")

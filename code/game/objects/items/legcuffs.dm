@@ -46,7 +46,7 @@
 							armed = 0
 							icon_state = "beartrap0"
 							playsound(loc, 'sound/effects/snap.ogg', 25, 1)
-							to_chat(H, "\red <B>You step on \the [src]!</B>")
+							to_chat(H, "<span class='danger'>You step on \the [src]!</span>")
 							feedback_add_details("handcuffs","B") //Yes, I know they're legcuffs. Don't change this, no need for an extra variable. The "B" is used to tell them apart.
 							for(var/mob/O in viewers(H, null))
 								if(O == H)

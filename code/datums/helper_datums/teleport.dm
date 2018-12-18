@@ -180,7 +180,7 @@
 		if(destination.z == 2) //centcomm z-level
 			if(istype(teleatom, /obj/mecha))
 				var/obj/mecha/MM = teleatom
-				to_chat(MM.occupant, "\red <B>The mech would not survive the jump to a location so far away!</B>")
+				to_chat(MM.occupant, "<span class='danger'>The mech would not survive the jump to a location so far away!</span>")
 				return 0
 			if(!isemptylist(teleatom.search_contents_for(/obj/item/storage/backpack/holding)))
 				teleatom.visible_message("\red <B>The Bag of Holding bounces off of the portal!</B>")

@@ -72,7 +72,7 @@
 	for (var/mob/living/silicon/ai/target in player_list)
 		if(target.mind.special_role == "traitor")
 			continue
-		to_chat(target, "\red <b>You have detected a change in your laws information:</b>")
+		to_chat(target, "<span class='danger'>You have detected a change in your laws information:</span>")
 		to_chat(target, law)
 		target.add_ion_law(law)
 		target.show_laws()
