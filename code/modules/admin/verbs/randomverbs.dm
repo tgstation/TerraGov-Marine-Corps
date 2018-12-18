@@ -280,7 +280,7 @@ Ccomp's first proc.
 //	G.has_enabled_antagHUD = 2
 	G.can_reenter_corpse = 1
 
-	G:show_message(text("\blue <B>You may now respawn.  You should roleplay as if you learned nothing about the round during your time with the dead.</B>"), 1)
+	G:show_message(text("<span class='boldnotice'>You may now respawn.  You should roleplay as if you learned nothing about the round during your time with the dead.</span>"), 1)
 	log_admin("[key_name(usr)] allowed [key_name(G)] to bypass the 30 minute respawn limit")
 	message_admins("Admin [key_name_admin(usr)] allowed [key_name_admin(G)] to bypass the 30 minute respawn limit", 1)
 
@@ -308,10 +308,10 @@ Ccomp's first proc.
 		for(var/mob/dead/observer/g in get_ghosts())
 			if(!g.client.holder)						// Add the verb back for all non-admin ghosts
 				g.verbs += /mob/dead/observer/verb/toggle_antagHUD
-			to_chat(g, "\blue <B>The Administrator has enabled AntagHUD </B>"	)
+			to_chat(g, "<span class='boldnotice'>The Administrator has enabled AntagHUD </span>"	)
 		config.antag_hud_allowed = 1
 		action = "enabled"
-		to_chat(src, "\blue <B>AntagHUD usage has been enabled</B>")
+		to_chat(src, "<span class='boldnotice'>AntagHUD usage has been enabled</span>")
 
 
 	log_admin("[key_name(usr)] has [action] antagHUD usage for observers")
@@ -328,10 +328,10 @@ Ccomp's first proc.
 	var/action=""
 	if(config.antag_hud_restricted)
 		for(var/mob/dead/observer/g in get_ghosts())
-			to_chat(g, "\blue <B>The administrator has lifted restrictions on joining the round if you use AntagHUD</B>")
+			to_chat(g, "<span class='boldnotice'>The administrator has lifted restrictions on joining the round if you use AntagHUD</span>")
 		action = "lifted restrictions"
 		config.antag_hud_restricted = 0
-		to_chat(src, "\blue <B>AntagHUD restrictions have been lifted</B>")
+		to_chat(src, "<span class='boldnotice'>AntagHUD restrictions have been lifted</span>")
 	else
 		for(var/mob/dead/observer/g in get_ghosts())
 			to_chat(g, "\red <B>The administrator has placed restrictions on joining the round if you use AntagHUD</B>")

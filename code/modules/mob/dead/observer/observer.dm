@@ -467,7 +467,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/env_temperature = T.return_temperature()
 	var/env_gas = T.return_gas()
 
-	to_chat(src, "\blue <B>Results:</B>")
+	to_chat(src, "<span class='boldnotice'>Results:</span>")
 	if(abs(pressure - ONE_ATMOSPHERE) < 10)
 		to_chat(src, "\blue Pressure: [round(pressure,0.1)] kPa")
 	else

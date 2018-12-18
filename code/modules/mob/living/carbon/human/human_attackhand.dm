@@ -49,10 +49,10 @@
 //			if(M.health < -75)	return 0
 
 			if((M.head && (M.head.flags_inventory & COVERMOUTH)) || (M.wear_mask && (M.wear_mask.flags_inventory & COVERMOUTH)))
-				to_chat(M, "\blue <B>Remove your mask!</B>")
+				to_chat(M, "<span class='boldnotice'>Remove your mask!</span>")
 				return 0
 			if((head && (head.flags_inventory & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
-				to_chat(M, "\blue <B>Remove his mask!</B>")
+				to_chat(M, "<span class='boldnotice'>Remove his mask!</span>")
 				return 0
 
 			//CPR
@@ -66,7 +66,7 @@
 					adjustOxyLoss(-suff)
 					updatehealth()
 					visible_message("\red [M] performs CPR on [src]!", null, null, 3)
-					to_chat(src, "\blue <b>You feel a breath of fresh air enter your lungs. It feels good.</b>")
+					to_chat(src, "<span class='boldnotice'>You feel a breath of fresh air enter your lungs. It feels good.</span>")
 					to_chat(M, "\red Repeat at least every 7 seconds.")
 
 

@@ -395,7 +395,7 @@
 
 /obj/machinery/sleeper/proc/check(mob/living/user)
 	if(occupant)
-		to_chat(user, text("\blue <B>Occupant ([]) Statistics:</B>", occupant))
+		to_chat(user, text("<span class='boldnotice'>Occupant ([]) Statistics:</span>", occupant))
 		var/t1
 		switch(occupant.stat)
 			if(0)

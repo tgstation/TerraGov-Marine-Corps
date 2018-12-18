@@ -920,12 +920,12 @@
 			to_chat(usr, "\red Kinda hard to climb in while handcuffed don't you think?")
 			return
 	if (src.occupant)
-		to_chat(usr, "\blue <B>The [src.name] is already occupied!</B>")
+		to_chat(usr, "<span class='boldnotice'>The [src.name] is already occupied!</span>")
 		src.log_append_to_last("Permission denied.")
 		return
 /*
 	if (usr.abiotic())
-		to_chat(usr, "\blue <B>Subject cannot have abiotic items on.</B>")
+		to_chat(usr, "<span class='boldnotice'>Subject cannot have abiotic items on.</span>")
 		return
 */
 	var/passed

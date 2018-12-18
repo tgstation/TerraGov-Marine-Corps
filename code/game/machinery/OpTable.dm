@@ -223,11 +223,11 @@
 
 /obj/machinery/optable/proc/check_table(mob/living/carbon/patient as mob)
 	if(victim)
-		to_chat(usr, "\blue <B>The table is already occupied!</B>")
+		to_chat(usr, "<span class='boldnotice'>The table is already occupied!</span>")
 		return 0
 
 	if(patient.buckled)
-		to_chat(usr, "\blue <B>Unbuckle first!</B>")
+		to_chat(usr, "<span class='boldnotice'>Unbuckle first!</span>")
 		return 0
 
 	return 1

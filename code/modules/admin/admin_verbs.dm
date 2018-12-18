@@ -399,7 +399,7 @@ var/list/admin_verbs_mentor = list(
 			mob.add_to_all_mob_huds()
 		else
 			mob.invisibility = INVISIBILITY_OBSERVER
-			to_chat(mob, "\blue <b>Invisimin on. You are now as invisible as a ghost.</b>")
+			to_chat(mob, "<span class='boldnotice'>Invisimin on. You are now as invisible as a ghost.</span>")
 			mob.alpha = max(mob.alpha - 100, 0)
 			mob.remove_from_all_mob_huds()
 

@@ -228,7 +228,7 @@
 
 	//Check to see if we slipped
 	if(prob(Process_Spaceslipping(5)))
-		to_chat(src, "\blue <B>You slipped!</B>")
+		to_chat(src, "<span class='boldnotice'>You slipped!</span>")
 		src.inertia_dir = src.last_move_dir
 		step(src, src.inertia_dir)
 		return 0

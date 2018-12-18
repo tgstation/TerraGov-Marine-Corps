@@ -386,7 +386,7 @@
 		visible_message("<span class='notice'>[usr] climbs into [src].</span>", 3)
 	M.forceMove(src)
 	if(M.health > -100 && (M.health < 0 || M.sleeping))
-		to_chat(M, "\blue <b>You feel a cold liquid surround you. Your skin starts to freeze up.</b>")
+		to_chat(M, "<span class='boldnotice'>You feel a cold liquid surround you. Your skin starts to freeze up.</span>")
 	occupant = M
 	update_use_power(2)
 //	M.metabslow = 1

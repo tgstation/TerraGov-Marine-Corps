@@ -547,7 +547,7 @@ REAGENT SCANNER
 	var/env_gas = location.return_gas()
 	var/env_temp = location.return_temperature()
 
-	user.show_message("\blue <B>Results:</B>", 1)
+	user.show_message("<span class='boldnotice'>Results:</span>", 1)
 	if(abs(env_pressure - ONE_ATMOSPHERE) < 10)
 		user.show_message("\blue Pressure: [round(env_pressure,0.1)] kPa", 1)
 	else

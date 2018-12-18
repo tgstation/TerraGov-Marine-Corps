@@ -196,11 +196,11 @@
 	if(HUD_toggled[HUD_nbr])
 		HUD_toggled[HUD_nbr] = 0
 		H.remove_hud_from(src)
-		to_chat(src, "\blue <B>[hud_choice] Disabled</B>")
+		to_chat(src, "<span class='boldnotice'>[hud_choice] Disabled</span>")
 	else
 		HUD_toggled[HUD_nbr] = 1
 		H.add_hud_to(src)
-		to_chat(src, "\blue <B>[hud_choice] Enabled</B>")
+		to_chat(src, "<span class='boldnotice'>[hud_choice] Enabled</span>")
 
 /mob/living/silicon/verb/pose()
 	set name = "Set Pose"
