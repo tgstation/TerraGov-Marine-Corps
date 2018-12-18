@@ -34,9 +34,6 @@
 
 /obj/item/explosive/mine/New()
 	. = ..()
-	camera = new (src)
-	camera.network = list("LEADER")
-	camera.c_tag = "[name] ([camera_number])"
 
 /obj/item/explosive/mine/Destroy()
 	if(tripwire)
@@ -82,7 +79,9 @@
 		icon_state += "_armed"
 		user.drop_held_item()
 		dir = user.dir //The direction it is planted in is the direction the user faces at that time
-		camera.c_tag = "[name] ([get_area(src)] | X: [x] | Y: [y])" //Update Camera name
+		camera = new (src)
+		camera.network = list("LEADER")
+		camera.c_tag = "M20 Mine: [get_area(src)] | X: [x] | Y: [y]| [camera_number]" //Update Camera name
 		var/tripwire_loc = get_turf(get_step(loc, dir))
 		tripwire = new /obj/effect/mine_tripwire(tripwire_loc)
 		tripwire.linked_claymore = src

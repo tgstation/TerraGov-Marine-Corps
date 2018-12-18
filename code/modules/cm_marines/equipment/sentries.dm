@@ -286,7 +286,7 @@
 	camera_number = rand(1,1000)
 	camera = new (src)
 	camera.network = list("LEADER")
-	camera.c_tag = "[name] ([get_area(src)] | X: [x] | Y: [y]| [camera_number])" //Update Camera name
+	camera.c_tag = "Sentry: [get_area(src)] | X: [x] | Y: [y]| [camera_number]" //Update Camera name
 	spawn(2)
 		stat = 0
 	//START_PROCESSING(SSobj, src)
