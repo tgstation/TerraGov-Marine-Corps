@@ -19,41 +19,30 @@
 	return
 
 /obj/item/reagent_container/food/drinks/attack(mob/M as mob, mob/user as mob, def_zone)
-	var/datum/reagents/R = src.reagents
+	var/datum/reagents/R = reagents
 	var/fillevel = gulp_size
 
 	if(!R.total_volume || !R)
-		to_chat(user, "<span class='warning'>The [src.name] is empty!</span>")
+		to_chat(user, "<span class='warning'>[src] is empty!</span>")
 		return FALSE
 
+	if(!canconsume(mob/user, mob/target)
+		return
+
 	if(M == user)
-
-		if(istype(M,/mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
-			if(H.species.flags & IS_SYNTHETIC)
-				to_chat(H, "<span class='warning'>You have a monitor for a head, where do you think you're going to put that?</span>")
-				return
-
-		to_chat(M,"<span class='notice'>You swallow a gulp from \the [src].</span>")
+		to_chat(M,"<span class='notice'>You swallow a gulp from [src].</span>")
 		if(reagents.total_volume)
 			reagents.reaction(M, INGEST)
 			reagents.trans_to(M, gulp_size)
 
 		playsound(M.loc,'sound/items/drink.ogg', 15, 1)
 		return TRUE
-	else if(istype(M,/mob/living/carbon/human))
 
-		var/mob/living/carbon/human/H = M
-		if(H.species.flags & IS_SYNTHETIC)
-			to_chat(H, "<span class='warning'>They have a monitor for a head, where do you think you're going to put that?</span>")
-			return
-
-		for(var/mob/O in viewers(world.view, user))
-			O.show_message("<span class='warning'>[user] attempts to feed [M] [src].</span>", 1)
+	else
+		user.visible_message("<span class='warning'>[user] attempts to feed [M] [src].</span>", "<span class='notice'>You attempt to feed [M] [src].</span>", null, 5)
 		if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
 			return
-		for(var/mob/O in viewers(world.view, user))
-			O.show_message("<span class='warning'>[user] feeds [M] [src].</span>", 1)
+		user.visible_message("<span class='warning'>[user] feeds [M] [src].</span>", "<span class='notice'>You feed [M] [src].</span>", null, 5)
 
 		var/rgt_list_text = get_reagent_list_text()
 

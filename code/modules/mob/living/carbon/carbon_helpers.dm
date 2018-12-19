@@ -1,3 +1,6 @@
+/mob/living/carbon/has_mouth()
+	return TRUE
+
 /mob/living/carbon/can_use_hands()
 	if(handcuffed)
 		return FALSE

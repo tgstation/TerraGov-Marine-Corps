@@ -14,7 +14,7 @@
 	desc = "An armored beret commonly used by special operations officers."
 	icon_state = "beret_badge"
 	armor = list(melee = 65, bullet = 55, laser = 35,energy = 20, bomb = 30, bio = 30, rad = 30)
-	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ
+	flags_inventory = STOPSPRESSUREDAMAGE|THICKMATERIAL
 	flags_inv_hide = HIDEEYES
 	siemens_coefficient = 0.9
 
@@ -23,7 +23,7 @@
 	name = "Santa's hat"
 	desc = "Ho ho ho. Merrry X-mas!"
 	icon_state = "santahat"
-	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ
+	flags_inventory = STOPSPRESSUREDAMAGE|THICKMATERIAL
 	flags_inv_hide = HIDEEYES
 	flags_armor_protection = HEAD
 
@@ -42,7 +42,7 @@
 	icon_state = "pirate"
 	item_state = "pirate"
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
-	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ
+	flags_inventory = STOPSPRESSUREDAMAGE|THICKMATERIAL
 	flags_inv_hide = HIDEEYES
 	flags_armor_protection = 0
 	siemens_coefficient = 0.9

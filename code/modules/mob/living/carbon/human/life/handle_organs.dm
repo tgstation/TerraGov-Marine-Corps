@@ -14,21 +14,20 @@
 				else
 					reagents.metabolize(src, alien, can_overdose = FALSE, liverless=TRUE)
 
-	if(!(species.flags & IS_SYNTHETIC))
+	if(!(species.flags & NO_HUNGER))
 		//Nutrition decrease
-		if(nutrition > 0 && stat != 2)
-			nutrition = max (0, nutrition - HUNGER_FACTOR)
+		if(stat != DEAD)
+			adjust_nutrition(-HUNGER_FACTOR)
 
-		if(nutrition > 450)
+		if(nutrition > NUTRITION_LEVEL_WELL_FED)
 			if(overeatduration < 600) //Capped so people don't take forever to unfat
 				overeatduration++
 		else
 			if(overeatduration > 1)
 				overeatduration -= 2 //Doubled the unfat rate
 
+	if(!(species.flags & NO_CHEM_METABOLIZATION))
 		handle_trace_chems()
-
-	else nutrition = 350 //synthetics are never hungry
 
 	var/leg_tally = 2
 

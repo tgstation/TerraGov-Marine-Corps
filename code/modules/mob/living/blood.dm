@@ -96,10 +96,8 @@
 
 		// Without enough blood you slowly go hungry.
 		if(blood_volume < BLOOD_VOLUME_SAFE)
-			if(nutrition >= 300)
-				nutrition -= 10
-			else if(nutrition >= 200)
-				nutrition -= 3
+			var/nutriloss = nutrition >= 300 ? 10 : 3
+			adjust_nutrition(-nutriloss)
 
 		//Bleeding out
 		var/blood_max = 0
@@ -230,7 +228,7 @@
 
 
 //Gets blood from mob to the container, preserving all data in it.
-/mob/living/carbon/proc/take_blood(obj/O, amount)
+/mob/living/carbon/proc/take_blood(obj/O, amount, user)
 	if(!O.reagents)
 		return
 
@@ -239,6 +237,10 @@
 
 	var/b_id = get_blood_id()
 	if(!b_id)
+		return
+
+	if(!T.dna || NOCLONE in T.mutations) //target done been et, no more blood in him
+		to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
 		return
 
 	var/list/data = get_blood_data()
@@ -255,9 +257,10 @@
 	return 1
 
 
-/mob/living/carbon/human/take_blood(obj/O, var/amount)
+/mob/living/carbon/human/take_blood(obj/O, amount, user)
 
 	if(species && species.flags & NO_BLOOD)
+		to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
 		return
 
 	. = ..()

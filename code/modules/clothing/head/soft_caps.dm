@@ -104,7 +104,6 @@
 	icon_state = "greysoft"
 	cap_color = "grey"
 	armor = list(melee = 35, bullet = 35, laser = 35,energy = 15, bomb = 10, bio = 0, rad = 0)
-	flags_inventory = BLOCKSHARPOBJ
 
 /obj/item/clothing/head/soft/marine/alpha
 	name = "alpha squad sergeant cap"

@@ -20,7 +20,7 @@
 	var/up = 0
 	armor = list(melee = 10, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	flags_atom = CONDUCT
-	flags_inventory = COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
+	flags_inventory = COVEREYES|COVERMOUTH
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE
 	flags_armor_protection = HEAD|FACE|EYES
 	actions_types = list(/datum/action/item_action/toggle)
@@ -42,7 +42,7 @@
 
 	if(usr.canmove && !usr.stat && !usr.is_mob_restrained())
 		if(up)
-			flags_inventory |= COVEREYES|COVERMOUTH|BLOCKSHARPOBJ
+			flags_inventory |= COVEREYES|COVERMOUTH
 			flags_inv_hide |= HIDEEARS|HIDEEYES|HIDEFACE
 			icon_state = initial(icon_state)
 			eye_protection = initial(eye_protection)
@@ -50,7 +50,7 @@
 			to_chat(usr, "You flip the [src] down to protect your eyes.")
 			anti_hug = hug_memory //This will reset the hugged var, but ehh. More efficient than making a new var for it.
 		else
-			flags_inventory &= ~(COVEREYES|COVERMOUTH|BLOCKSHARPOBJ)
+			flags_inventory &= ~(COVEREYES|COVERMOUTH)
 			flags_inv_hide &= ~(HIDEEARS|HIDEEYES|HIDEFACE)
 			icon_state = "[initial(icon_state)]up"
 			eye_protection = 0
@@ -162,10 +162,10 @@
 	var/icon/earbit = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kittyinner")
 
 /obj/item/clothing/head/kitty/update_icon(mob/living/carbon/human/user, remove = FALSE)
-	if(!istype(user)) 
+	if(!istype(user))
 		to_chat(world, "Not an user")
 		return
-	
+
 	ears = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kitty")
 	ears.Blend(rgb(user.r_hair, user.g_hair, user.b_hair), ICON_ADD)
 	ears.Blend(earbit, ICON_OVERLAY)

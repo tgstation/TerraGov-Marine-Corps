@@ -695,7 +695,7 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 
-		if(H.species.flags & IS_SYNTHETIC && H.a_intent == "grab")
+		if(H.species.flags & IS_SYNTHETIC && !(H.species.flags & NO_HUNGER) && H.a_intent == "grab")
 			if(emagged || stat & BROKEN)
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 				s.set_up(3, 1, src)
@@ -703,21 +703,19 @@
 				to_chat(H, "<span class='danger'>The APC's power currents surge eratically, damaging your chassis!</span>")
 				H.adjustFireLoss(10,0)
 			else if(cell && cell.charge > 0)
-				if(H.nutrition < 450)
-					if(cell.charge >= 500)
-						H.nutrition += 50
-						cell.charge -= 500
-					else
-						H.nutrition += cell.charge/10
-						cell.charge = 0
-
-					to_chat(user, "<span class='notice'>You slot your fingers into the APC interface and siphon off some of the stored charge for your own use.</span>")
-					if(cell.charge < 0) cell.charge = 0
-					if(H.nutrition > 500) H.nutrition = 500
-					charging = 1
-
-				else
+				if(H.nutrition > NUTRITION_LEVEL_WELL_FED)
 					to_chat(user, "<span class='warning'>You are already fully charged.</span>")
+				if(cell.charge >= 500)
+					H.adjust_nutrition(50)
+					cell.charge -= 500
+				else
+					H.adjust_nutrition(cell.charge/10)
+					cell.charge = 0
+
+				to_chat(user, "<span class='notice'>You slot your fingers into the APC interface and siphon off some of the stored charge for your own use.</span>")
+				if(cell.charge < 0)
+					cell.charge = 0
+				charging = 1
 			else
 				to_chat(user, "<span class='warning'>There is no charge to draw from that APC.</span>")
 			return

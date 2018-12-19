@@ -105,7 +105,7 @@
 	icon_state = "robocop_helmet"
 	item_state = "robocop_helmet"
 	armor = list(melee = 87, bullet = 87, laser = 87, energy = 87, bomb = 87, bio = 50, rad = 50)
-	flags_inventory = COVEREYES|BLOCKSHARPOBJ
+	flags_inventory = COVEREYES|THICKMATERIAL
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDETOPHAIR
 	anti_hug = 100
 
@@ -116,7 +116,7 @@
 	item_state = "robocop_armor"
 	slowdown = 1
 	flags_atom = CONDUCT
-	flags_inventory = BLOCKSHARPOBJ
+	flags_inventory = THICKMATERIAL
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS

@@ -80,7 +80,6 @@
 			desc = "Worn during cold operations by idiots."
 			flags_cold_protection = HEAD
 			min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-			flags_inventory = BLOCKSHARPOBJ
 			flags_inv_hide = HIDEEARS|HIDETOPHAIR
 
 /obj/item/clothing/head/headband/red
@@ -160,7 +159,6 @@
 	desc = "A beret with the ensign insignia emblazoned on it. It radiates respect and authority."
 	icon_state = "beret_badge"
 	armor = list(melee = 40, bullet = 40, laser = 40,energy = 20, bomb = 10, bio = 0, rad = 0)
-	flags_inventory = BLOCKSHARPOBJ
 
 /obj/item/clothing/head/beret/marine/commander
 	name = "marine commander beret"
@@ -193,9 +191,7 @@
 	armor = list(melee = 35, bullet = 35, laser = 20, energy = 10, bomb = 10, bio = 0, rad = 0)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
-	anti_hug = 1
 
 	attack_self(mob/user as mob)
 		if(src.icon_state == "ushankadown")
@@ -218,12 +214,11 @@
 	armor = list(melee = 90, bullet = 70, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
 	flags_cold_protection = HEAD|UPPER_TORSO|ARMS
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 
 
 /obj/item/clothing/head/uppcap
-	name = "\improper armored UPP cap"
+	name = "armored UPP cap"
 	desc = "Standard UPP head gear for covert operations and low-ranking officers alike. Sells for high prices on the black market due to their rarity."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	icon_state = "upp_cap"
@@ -234,15 +229,14 @@
 	armor = list(melee = 50, bullet = 50, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
 
 /obj/item/clothing/head/uppcap/beret
-	name = "\improper armored UPP beret"
+	name = "armored UPP beret"
 	icon_state = "upp_beret"
 
 /obj/item/clothing/head/frelancer
-	name = "\improper armored Freelancer cap"
+	name = "armored Freelancer cap"
 	desc = "A sturdy freelancer's cap. More protective than it seems."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
@@ -252,15 +246,14 @@
 	armor = list(melee = 50, bullet = 50, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
 
 /obj/item/clothing/head/frelancer/beret
-	name = "\improper armored Freelancer beret"
+	name = "armored Freelancer beret"
 	icon_state = "freelancer_beret"
 
 /obj/item/clothing/head/militia
-	name = "\improper armored militia cowl"
+	name = "armored militia cowl"
 	desc = "A large hood in service with some militias, meant for obscurity on the frontier. Offers some head protection due to the study fibers utilized in production."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
@@ -270,11 +263,10 @@
 	armor = list(melee = 30, bullet = 30, laser = 45, energy = 35, bomb = 45, bio = 20, rad = 30)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
 
 /obj/item/clothing/head/admiral
-	name = "\improper armored Admiral cap"
+	name = "armored Admiral cap"
 	desc = "A sturdy admiral's cap. More protective than it seems. Please don't ditch this for a helmet like a punk."
 	icon_state = "admiral_helmet"
 	siemens_coefficient = 2.0
@@ -282,6 +274,5 @@
 	armor = list(melee = 60, bullet = 60, laser = 45, energy = 55, bomb = 55, bio = 10, rad = 10)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
 

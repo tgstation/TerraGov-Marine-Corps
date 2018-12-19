@@ -32,14 +32,10 @@ var/global/list/randomized_pill_icons
 
 /obj/item/reagent_container/pill/attack(mob/M, mob/user, def_zone)
 
+	if(!canconsume(mob/user, mob/target)
+		return
+
 	if(M == user)
-
-		if(istype(M, /mob/living/carbon/human))
-			var/mob/living/carbon/human/H = M
-			if(H.species.flags & IS_SYNTHETIC)
-				to_chat(H, "<span class='warning'>You can't eat pills.</span>")
-				return
-
 		to_chat(M, "<span class='notice'>You swallow [src].</span>")
 		M.drop_inv_item_on_ground(src) //icon update
 		if(reagents.total_volume)
@@ -48,14 +44,9 @@ var/global/list/randomized_pill_icons
 		qdel(src)
 		return TRUE
 
-	else if(istype(M, /mob/living/carbon/human) )
+	else
 
-		var/mob/living/carbon/human/H = M
-		if(H.species.flags & IS_SYNTHETIC)
-			to_chat(user, "<span class='warning'>They have a monitor for a head, where do you think you're going to put that?</span>")
-			return
-
-		user.visible_message("<span class='warning'>[user] attempts to force [M] to swallow [src].</span>")
+		user.visible_message("<span class='warning'>[user] attempts to force [M] to swallow [src].</span>", "<span class='notice'>You attempt to force [M] to swallow [src].</span>", null, 5)
 
 		var/ingestion_time = 30
 		if(user.mind && user.mind.cm_skills)
@@ -64,8 +55,7 @@ var/global/list/randomized_pill_icons
 		if(!do_mob(user, M, ingestion_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL)) return
 
 		user.drop_inv_item_on_ground(src) //icon update
-		for(var/mob/O in viewers(world.view, user))
-			O.show_message("<span class='warning'>[user] forces [M] to swallow [src].", 1)
+		user.visible_message("<span class='warning'>[user] forces [M] to swallow [src].", "<span class='notice'>You force [M] to swallow [src].", null, 5)
 
 		var/rgt_list_text = get_reagent_list_text()
 

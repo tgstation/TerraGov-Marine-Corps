@@ -9,9 +9,8 @@
 	. = ..()
 	if(.)
 		if(nutrition && stat != DEAD)
-			nutrition -= HUNGER_FACTOR/10
-			if(m_intent == MOVE_INTENT_RUN)
-				nutrition -= HUNGER_FACTOR/10
+			var/nutriloss = m_intent == MOVE_INTENT_RUN ? 2 : 1
+			adjust_nutrition(-HUNGER_FACTOR/10 * nutriloss)
 
 		// Moving around increases germ_level faster
 		if(germ_level < GERM_LEVEL_MOVE_CAP && prob(8))
@@ -181,11 +180,8 @@
 /mob/living/carbon/proc/vomit()
 
 	var/mob/living/carbon/human/H = src
-	if(H.species.flags & IS_SYNTHETIC)
-		return //Machines don't throw up.
-
-	if(stat == DEAD) //Corpses don't puke
-		return
+	if(H.species.flags & (IS_SYNTHETIC|NO_MOUTH) || stat == DEAD)
+		return //These guys don't throw up.
 
 	if(!lastpuke)
 		lastpuke = TRUE
@@ -199,7 +195,7 @@
 			if (istype(location, /turf))
 				location.add_vomit_floor(src, 1)
 
-			nutrition = max(nutrition - 40, 0)
+			adjust_nutrition(-40)
 			adjustToxLoss(-3)
 			spawn(350)	//wait 35 seconds before next volley
 				lastpuke = FALSE

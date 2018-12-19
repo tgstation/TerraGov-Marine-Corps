@@ -21,7 +21,7 @@
 	min_cold_protection_temperature = SPACE_HELMET_min_cold_protection_temperature
 	flags_armor_protection = HEAD|FACE|EYES
 	flags_cold_protection = HEAD
-	flags_inventory = COVEREYES|COVERMOUTH|NOPRESSUREDMAGE|ALLOWINTERNALS|ALLOWREBREATH|BLOCKGASEFFECT|BLOCKSHARPOBJ
+	flags_inventory = COVEREYES|COVERMOUTH|STOPSPRESSUREDAMAGE|ALLOWINTERNALS|ALLOWREBREATH|BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDELOWHAIR
 	filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
 	gas_filter_strength = 3
@@ -120,6 +120,7 @@
 	icon_state = "halfarmor1"
 	item_state = "armor"
 	sprite_sheet_id = 1
+	flags_inventory = THICKMATERIAL
 	flags_armor_protection = UPPER_TORSO|ARM_LEFT
 	armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
 	min_cold_protection_temperature = ARMOR_min_cold_protection_temperature

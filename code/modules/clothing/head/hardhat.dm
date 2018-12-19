@@ -9,7 +9,6 @@
 	armor = list(melee = 30, bullet = 5, laser = 20,energy = 10, bomb = 20, bio = 10, rad = 20)
 	actions_types = list(/datum/action/item_action/toggle)
 	siemens_coefficient = 0.9
-	flags_inventory = BLOCKSHARPOBJ
 
 	attack_self(mob/user)
 		if(!isturf(user.loc))
@@ -58,14 +57,14 @@
 	icon_state = "hardhat0_red"
 	hardhat_color = "red"
 	name = "firefighter helmet"
-	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ
+	flags_inventory = STOPSPRESSUREDAMAGE
 	flags_heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_HELMET_max_heat_protection_temperature
 
 /obj/item/clothing/head/hardhat/white
 	icon_state = "hardhat0_white"
 	hardhat_color = "white"
-	flags_inventory = NOPRESSUREDMAGE|BLOCKSHARPOBJ
+	flags_inventory = STOPSPRESSUREDAMAGE
 	flags_heat_protection = HEAD
 	max_heat_protection_temperature = FIRE_HELMET_max_heat_protection_temperature
 

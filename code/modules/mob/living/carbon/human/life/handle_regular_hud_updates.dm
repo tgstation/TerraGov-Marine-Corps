@@ -82,10 +82,10 @@
 
 		if(hud_used.nutrition_icon)
 			switch(nutrition)
-				if(450 to INFINITY)				hud_used.nutrition_icon.icon_state = "nutrition0"
-				if(350 to 450)					hud_used.nutrition_icon.icon_state = "nutrition1"
-				if(250 to 350)					hud_used.nutrition_icon.icon_state = "nutrition2"
-				if(150 to 250)					hud_used.nutrition_icon.icon_state = "nutrition3"
+				if(NUTRITION_LEVEL_WELL_FED  to INFINITY)				hud_used.nutrition_icon.icon_state = "nutrition0"
+				if(NUTRITION_LEVEL_FED to NUTRITION_LEVEL_WELL_FED)					hud_used.nutrition_icon.icon_state = "nutrition1"
+				if(NUTRITION_LEVEL_HUNGRY to NUTRITION_LEVEL_FED)					hud_used.nutrition_icon.icon_state = "nutrition2"
+				if(NUTRITION_LEVEL_STARVING to NUTRITION_LEVEL_HUNGRY)					hud_used.nutrition_icon.icon_state = "nutrition3"
 				else							hud_used.nutrition_icon.icon_state = "nutrition4"
 
 		if(hud_used.pressure_icon)

@@ -29,10 +29,9 @@
 
 	if (M.stat < 2 && M.health < 50 && prob(90))
 		if(ishuman(M))
-			var/mob/living/carbon/human/H = M
-			var/obj/item/P = H.head
-			if(istype(P) && P.flags_inventory & BLOCKSHARPOBJ && prob(80))
-				to_chat(M, "\red The helmet protects you from being hit hard in the head!")
+			var/lawyering = target.getarmor(target_zone, "melee")
+			if(prob(lawyering > 5 : lawyering + 30 : 0))
+				to_chat(M, "<span class = 'warning'>Your armor protects you from the blow to the head!</span>")
 				return
 		var/time = rand(2, 6)
 		if (prob(75))

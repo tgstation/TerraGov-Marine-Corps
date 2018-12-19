@@ -160,24 +160,29 @@
 	for(var/datum/limb/L in limbs)
 		L.icon_name = get_limb_icon_name(species, b_icon, gender, L.display_name, e_icon)
 
-/mob/living/carbon/human/can_inject(var/mob/user, var/error_msg, var/target_zone)
-	. = 1
+/mob/living/carbon/human/can_inject(mob/user, error_msg, target_zone)
+	. = TRUE
 
 	if(!user)
-		target_zone = pick("chest","chest","chest","left leg","right leg","left arm", "right arm", "head")
+		target_zone = pick("chest","left hand","right hand","left leg","right leg","left arm", "right arm", "head")
 	else if(!target_zone)
 		target_zone = user.zone_selected
 
 	switch(target_zone)
 		if("head")
-			if(head && head.flags_inventory & BLOCKSHARPOBJ)
-				. = 0
+			if(head && head.flags_inventory & THICKMATERIAL)
+				. = FALSE
 		else
-			if(wear_suit && wear_suit.flags_inventory & BLOCKSHARPOBJ)
-				. = 0
+			if(wear_suit && wear_suit.flags_inventory & THICKMATERIAL)
+				. = FALSE
+
+	var/datum/limb/affecting = get_limb(target_zone)
+	if(affecting.status & (LIMB_ROBOT|LIMB_DESTROYED))
+		. = FALSE
+
 	if(!. && error_msg && user)
  		// Might need re-wording.
-		to_chat(user, "<span class='alert'>There is no exposed flesh or thin material [target_zone == "head" ? "on their head" : "on their body"] to inject into.</span>")
+		to_chat(user, "<span class='alert'>There is no exposed flesh or thin material on their [target_zone] to inject into.</span>")
 
 
 /mob/living/carbon/human/has_brain()
@@ -203,6 +208,11 @@
 		if(tinttotal < 3)
 			return TRUE
 	return FALSE
+
+/mob/living/carbon/human/has_mouth()
+	if(!has_limb("head") || species.flags & NO_MOUTH)
+		return FALSE
+	return TRUE
 
 /mob/living/carbon/human/is_mob_restrained(var/check_grab = 1)
 	if(check_grab && pulledby && pulledby.grab_level >= GRAB_NECK)

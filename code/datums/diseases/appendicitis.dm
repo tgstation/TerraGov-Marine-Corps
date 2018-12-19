@@ -34,7 +34,7 @@
 			affected_mob.adjustToxLoss(1)
 	if(stage > 2)
 		if(prob(1))
-			if (affected_mob.nutrition > 100)
+			if(affected_mob.nutrition > 100)
 				var/mob/living/carbon/human/H = affected_mob
 				H.vomit()
 			else

@@ -319,6 +319,14 @@
 	if(wear_id) wear_id.emp_act(severity)
 	..()
 
+/mob/living/carbon/is_mouth_covered(check_head = TRUE, check_mask = TRUE)
+	if((check_mask && wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
+		return TRUE
+
+/mob/living/carbon/are_eyes_covered(check_glasses = TRUE, check_head = TRUE, check_mask = TRUE)
+	if(check_mask && wear_mask && (wear_mask.flags_inventory & COVEREYES))
+		return wear_mask
+
 /mob/living/carbon/monkey/ex_act(severity)
 	flash_eyes()
 

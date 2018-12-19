@@ -13,7 +13,7 @@
 
 	var/pressure_adjustment_coefficient = 1 // Assume no protection at first.
 
-	if(wear_suit && (wear_suit.flags_inventory & NOPRESSUREDMAGE) && head && (head.flags_inventory & NOPRESSUREDMAGE)) //Complete set of pressure-proof suit worn, assume fully sealed.
+	if(wear_suit && (wear_suit.flags_inventory & STOPSPRESSUREDAMAGE) && head && (head.flags_inventory & STOPSPRESSUREDAMAGE)) //Complete set of pressure-proof suit worn, assume fully sealed.
 		pressure_adjustment_coefficient = 0
 
 		//Handles breaches in your space suit. 10 suit damage equals a 100% loss of pressure protection.
@@ -61,8 +61,7 @@
 		return //Fuck this precision
 
 	if(bodytemperature < species.cold_level_1) //260.15 is 310.15 - 50, the temperature where you start to feel effects.
-		if(nutrition >= 2) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
-			nutrition -= 2
+		adjust_nutrition (-2) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
 		var/recovery_amt = max((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), BODYTEMP_AUTORECOVERY_MINIMUM)
 		adjust_bodytemperature(recovery_amt)
 

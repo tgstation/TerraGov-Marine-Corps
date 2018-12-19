@@ -1,6 +1,5 @@
 
 /obj/item/clothing/suit/armor
-	flags_inventory = BLOCKSHARPOBJ
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO
@@ -114,7 +113,6 @@
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
-	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEJUMPSUIT
 	siemens_coefficient = 0.5
 	permeability_coefficient = 0.7
@@ -140,7 +138,7 @@
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/handcuffs,/obj/item/tank/emergency_oxygen)
 	slowdown = 1
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 100, rad = 100)
-	flags_inventory = BLOCKSHARPOBJ|NOPRESSUREDMAGE
+	flags_inventory = THICKMATERIAL|STOPSPRESSUREDAMAGE
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature

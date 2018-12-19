@@ -53,7 +53,7 @@
 /obj/item/reagent_container/syringe/attackby(obj/item/I as obj, mob/user as mob)
 	return
 
-/obj/item/reagent_container/syringe/afterattack(obj/target, mob/user, proximity)
+/obj/item/reagent_container/syringe/afterattack(atom/target, mob/user, proximity)
 	if(!proximity)
 		return
 	if(!target.reagents)
@@ -83,6 +83,11 @@
 	if(user.mind && user.mind.cm_skills)
 		injection_time = max(5, 50 - 10*user.mind.cm_skills.medical)
 
+	if(isliving(target))
+		mob/living/L = target
+		if(!can_inject(user))
+			return
+
 	switch(mode)
 		if(SYRINGE_DRAW)
 
@@ -90,29 +95,15 @@
 				to_chat(user, "<span class='warning'>The syringe is full.</span>")
 				return
 
-			if(ismob(target))//Blood!
+			if(isliving(target))//Blood!
 				if(iscarbon(target))//maybe just add a blood reagent to all mobs. Then you can suck them dry...With hundreds of syringes. Jolly good idea.
 					var/amount = src.reagents.maximum_volume - src.reagents.total_volume
 					var/mob/living/carbon/T = target
 					if(T.get_blood_id() && reagents.has_reagent(T.get_blood_id()))
 						to_chat(user, "<span class='warning'>There is already a blood sample in this syringe.</span>")
 						return
-					if(!T.dna)
-						to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
+					if(!T.take_blood(src,amount, user))
 						return
-					if(NOCLONE in T.mutations) //target done been et, no more blood in him
-						to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
-						return
-
-					if(ishuman(T))
-						var/mob/living/carbon/human/H = T
-						if(H.species.flags & NO_BLOOD)
-							to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
-							return
-						else
-							T.take_blood(src,amount)
-					else
-						T.take_blood(src,amount)
 
 					on_reagent_change()
 					reagents.handle_reactions()
@@ -234,10 +225,10 @@
 	log_combat(user, target, "attacked", src, "(INTENT: [uppertext(user.a_intent)])")
 	msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) attacked [key_name(target)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[target]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[target]'>FLW</a>) with [src.name] (INTENT: [uppertext(user.a_intent)])")
 
-	if(istype(target, /mob/living/carbon/human))
+	if(ishuman(target))
 
 		var/target_zone = ran_zone(check_zone(user.zone_selected, target))
-		var/datum/limb/affecting = target:get_limb(target_zone)
+		var/datum/limb/affecting = target.get_limb(target_zone)
 
 		if (!affecting)
 			return
@@ -247,26 +238,24 @@
 		var/hit_area = affecting.display_name
 
 		var/mob/living/carbon/human/H = target
-		if((user != target) && H.check_shields(7, "the [src.name]"))
+		if((user != target) && H.check_shields(3, "the [name]"))
 			return
 
-		if (target != user && target.getarmor(target_zone, "melee") > 5 && prob(50))
-			for(var/mob/O in viewers(world.view, user))
-				O.show_message(text("<span class='danger'>[user] tries to stab [target] in \the [hit_area] with [src.name], but the attack is deflected by armor!</span>"), 1)
-			user.temp_drop_inv_item(src)
-			qdel(src)
-			return
+	var/malpractice = target.getarmor(target_zone, "melee")
+	if ((target != user && prob(malpractice > 5 ? malpractice + 30 : 0)) || !can_inject(user, null))
+		user.visible_message("<span class='danger'>[user] tries to stab [target] in [hit_area] with [src], but the attack is deflected by armor!</span>",
+							"<span class='danger'>You try to stab [target] in [hit_area] with [src], but the attack is deflected by armor!</span>", null, 5)
+		user.temp_drop_inv_item(src)
+		qdel(src)
+		return
 
-		for(var/mob/O in viewers(world.view, user))
-			O.show_message(text("<span class='danger'>[user] stabs [target] in \the [hit_area] with [src.name]!</span>"), 1)
+	user.visible_message("<span class='danger'>[user] stabs [target] in [hit_area] with [src]!</span>",
+						"<span class='warning'>You stab [target] in [hit_area] with [src]!</span>", null, 5)
 
-		if(affecting.take_damage(3))
-			target:UpdateDamageIcon()
-
+	if(ishuman(target))
+		affecting.take_damage(3)
 	else
-		for(var/mob/O in viewers(world.view, user))
-			O.show_message(text("<span class='danger'>[user] stabs [target] with [src.name]!</span>"), 1)
-		target.take_limb_damage(3)// 7 is the same as crowbar punch
+		target.take_limb_damage(3)
 
 	reagents.reaction(target, INJECT)
 	var/syringestab_amount_transferred = rand(0, (reagents.total_volume - 5)) //nerfed by popular demand
@@ -279,7 +268,7 @@
 
 
 /obj/item/reagent_container/syringe/ld50_syringe
-	name = "Lethal Injection Syringe"
+	name = "syringe (lethal injection)"
 	desc = "A syringe used for lethal injections."
 	icon = 'icons/obj/items/syringe.dmi'
 	item_state = "syringe_0"
@@ -300,9 +289,8 @@
 				return
 
 			if(ismob(target))
-				if(istype(target, /mob/living/carbon))//I Do not want it to suck 50 units out of people
-					to_chat(usr, "<span class='warning'>This needle isn't designed for drawing blood.</span>")
-					return
+				to_chat(usr, "<span class='warning'>This needle isn't designed for drawing blood.</span>")
+				return
 			else //if not mob
 				if(!target.reagents.total_volume)
 					to_chat(user, "<span class='warning'>[target] is empty.</span>")
@@ -333,15 +321,16 @@
 				return
 
 			if(ismob(target) && target != user)
-				user.visible_message("<span class='danger'>[user] is trying to inject [target] with a giant syringe!</span>")
+				user.visible_message("<span class='danger'>[user] is trying to inject [target] with [src]!</span>")
 				if(!do_mob(user, target, 300, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 					return
-				user.visible_message("<span class='warning'>[user] injects [target] with a giant syringe!</span>")
-			spawn(5)
+				if(!can_inject(user))
+					return
+				user.visible_message("<span class='warning'>[user] injects [target] with [src]!</span>")
 				var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 				if(iscarbon(target) && locate(/datum/reagent/blood) in reagents.reagent_list)
 					var/mob/living/carbon/C = target
-					C.inject_blood(src, amount_per_transfer_from_this)
+					inject_blood(src, amount_per_transfer_from_this)
 				else
 					reagents.reaction(target, INJECT)
 					trans = reagents.trans_to(target, amount_per_transfer_from_this)

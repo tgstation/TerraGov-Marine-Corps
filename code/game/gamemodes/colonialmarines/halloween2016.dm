@@ -454,7 +454,7 @@
 		H = M
 	else return //If they are not human, they should not be using this proc.
 
-	H.nutrition = rand(325,400)
+	H.set_nutrition(rand(NUTRITION_LEVEL_START_MIN, NUTRITION_LEVEL_START_MAX))
 
 	//Squad ID and backpack are already spawned in job datum
 	given_role = given_role? given_role : H.mind.assigned_role

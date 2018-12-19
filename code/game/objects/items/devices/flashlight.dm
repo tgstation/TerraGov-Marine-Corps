@@ -94,7 +94,7 @@
 			return
 
 		var/mob/living/carbon/human/H = M	//mob has protective eyewear
-		if(istype(M, /mob/living/carbon/human) && ((H.head && H.head.flags_inventory & COVEREYES) || (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) || (H.glasses && H.glasses.flags_inventory & COVEREYES)))
+		if(are_eyes_covered())
 			to_chat(user, "<span class='notice'>You're going to need to remove that [(H.head && H.head.flags_inventory & COVEREYES) ? "helmet" : (H.wear_mask && H.wear_mask.flags_inventory & COVEREYES) ? "mask": "glasses"] first.</span>")
 			return
 

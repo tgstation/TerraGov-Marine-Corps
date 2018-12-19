@@ -50,27 +50,29 @@
 	return
 
 /obj/item/reagent_container/food/snacks/attack(mob/M, mob/user, def_zone)
+	if(a_intent = "harm")
+		return ..()
+
 	if(!reagents.total_volume)						//Shouldn't be needed but it checks to see if it has anything left in it.
 		to_chat(user, "<span class='warning'>None of [src] left, oh no!</span>")
 		M.drop_inv_item_on_ground(src)	//so icons update :[
 		qdel(src)
 		return FALSE
 
+	if(!canconsume(mob/user, mob/target)
+		return
+
 	if(package)
-		to_chat(M, "<span class='warning'>How do you expect to eat this with the package still on?</span>")
+		to_chat(M, "<span class='warning'>How does one expect to eat this with the package still on?</span>")
 		return FALSE
 
 	if(istype(M, /mob/living/carbon))
-		var/fullness = M.nutrition + (M.reagents.get_reagent_amount("nutriment") * 25)
-		if(M == user)								//If you're eating it yourself
-			if(istype(M,/mob/living/carbon/human))
-				var/mob/living/carbon/human/H = M
-				if(H.species.flags & IS_SYNTHETIC)
-					to_chat(H, "<span class='warning'>You have a monitor for a head, where do you think you're going to put that?</span>")
-					return
-			if (fullness <= 50)
+		var/fullness = M.nutrition + 10
+		for(var/datum/reagent/consumable/C in M.reagents.reagent_list) //we add the nutrition value of what we're currently digesting
+			fullness += C.nutriment_factor * C.volume / C.metabolization_rate
+			if (fullness <= 60)
 				to_chat(M, "<span class='warning'>You hungrily chew out a piece of [src] and gobble it!</span>")
-			if (fullness > 50 && fullness <= 150)
+			if (fullness > 60 && fullness <= 150)
 				to_chat(M, "<span class='warning'>You hungrily begin to eat [src].</span>")
 			if (fullness > 150 && fullness <= 350)
 				to_chat(M, "<span class='warning'>You take a bite of [src].</span>")
@@ -80,20 +82,12 @@
 				to_chat(M, "<span class='warning'>You cannot force any more of [src] to go down your throat.</span>")
 				return FALSE
 		else
-			if(istype(M,/mob/living/carbon/human))
-				var/mob/living/carbon/human/H = M
-				if(H.species.flags & IS_SYNTHETIC)
-					to_chat(H, "<span class='warning'>They have a monitor for a head, where do you think you're going to put that?</span>")
-					return
-
 
 			if (fullness <= (550 * (1 + M.overeatduration / 1000)))
-				for(var/mob/O in viewers(world.view, user))
-					O.show_message("<span class='warning'>[user] attempts to feed [M] [src].</span>", 1)
+				user.visible_message("<span class='warning'>[user] attempts to feed [M] [src].</span>", "<span class='warning'>You attempt to feed [M] [src].</span>", null, 5)
 			else
-				for(var/mob/O in viewers(world.view, user))
-					O.show_message("<span class='warning'>[user] cannot force anymore of [src] down [M]'s throat.</span>", 1)
-					return FALSE
+				user.visible_message("<span class='warning'>[user] cannot force anymore of [src] down [M]'s throat.</span>", "<span class='warning'>You cannot force anymore of [src] down [M]'s throat.</span>", null, 5)
+				return FALSE
 
 			if(!do_mob(user, M, 30, BUSY_ICON_FRIENDLY))
 				return
@@ -103,8 +97,7 @@
 			log_combat(user, M, "fed", src, "Reagents: [rgt_list_text]")
 			msg_admin_attack("[key_name(user)] fed [key_name(M)] with [src.name] Reagents: [rgt_list_text] (INTENT: [uppertext(user.a_intent)])")
 
-			for(var/mob/O in viewers(world.view, user))
-				O.show_message("<span class='warning'>[user] feeds [M] [src].</span>", 1)
+			user.visible_message("<span class='warning'>[user] feeds [M] [src].</span>", "<span class='warning'>You feed [M] [src].</span>", null, 5)
 
 
 		if(reagents)								//Handle ingestion of the reagent.

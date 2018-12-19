@@ -5,7 +5,7 @@
 
 
 /obj/item/reagent_container/food/drinks/cans/attack_self(mob/user as mob)
-	if(canopened == FALSE)
+	if(!canopened)
 		playsound(src,'sound/effects/canopen.ogg', 15, 1)
 		to_chat(user, "<span class='notice'>You open the drink with [pick("an audible", "a satisfying")] pop!</span>")
 		canopened = TRUE
@@ -13,7 +13,7 @@
 		return
 
 /obj/item/reagent_container/food/drinks/cans/attack(mob/M as mob, mob/user as mob, def_zone)
-	if (canopened == FALSE)
+	if (!canopened)
 		to_chat(user, "<span class='notice'>You need to open the drink first!</span>")
 		return
 	..()

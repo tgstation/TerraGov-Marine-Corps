@@ -208,10 +208,11 @@
 			var/mob/living/carbon/human/H = M
 			var/obj/item/head_protection = H.head
 			if (H.stat < 2 && H.health < 50 && prob(90))
-				// ******* Check
-				if (istype(head_protection) && head_protection.flags_inventory & BLOCKSHARPOBJ  && prob(80))
-					to_chat(H, "\red The helmet protects you from being hit hard in the head!")
-					return
+				if(ishuman(M))
+					var/masterchef = target.getarmor(target_zone, "melee")
+						if(prob(masterchef > 5 : masterchef + 30 : 0))
+							to_chat(M, "<span class = 'warning'>Your armor protects you from the blow to the head!</span>")
+							return
 				var/time = rand(2, 6)
 				if (prob(75))
 					H.KnockOut(time)

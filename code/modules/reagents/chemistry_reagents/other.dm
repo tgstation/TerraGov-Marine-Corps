@@ -745,9 +745,9 @@
 	taste_description = "bitterness"
 
 /datum/reagent/lipozine/on_mob_life(mob/living/M)
-	if(M.nutrition < 50)
-		M.overeatduration = 0
-		M.nutrition -= 10
+	M.overeatduration = 0
+	if(M.nutrition > 50)
+		M.adjust_nutrition (-10)
 		if(prob(20))
 			M.adjustToxLoss(0.1)
 	else
@@ -755,8 +755,7 @@
 
 /datum/reagent/consumable/lipozine/overdose_process(mob/living/M, alien)
 	M.apply_damages(0, 1, 1)
-	if(M.nutrition < 100)
-		M.nutrition -= 10
+	M.adjust_nutrition(-10)
 
 /datum/reagent/consumable/lipozine/overdose_crit_process(mob/living/M, alien)
 	M.apply_damages(1, 3, 1)

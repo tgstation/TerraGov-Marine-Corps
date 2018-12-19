@@ -16,7 +16,7 @@
 
 /datum/reagent/consumable/on_mob_life(mob/living/carbon/M)
 	current_cycle++
-	M.nutrition += nutriment_factor * REM
+	M.adjust_nutrition(nutriment_factor * REM)
 	if(adj_temp)
 		M.adjust_bodytemperature(adj_temp * TEMPERATURE_DAMAGE_COEFFICIENT, (adj_temp < 0 ? targ_temp : 0), (adj_temp > 0 ? targ_temp : INFINITY))
 	holder.remove_reagent(src.id, custom_metabolism)

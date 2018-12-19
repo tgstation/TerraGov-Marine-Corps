@@ -18,8 +18,8 @@
 
 /datum/job/marine/generate_entry_conditions(mob/living/carbon/human/H)
 	. = ..()
-	if(flags_startup_parameters & ROLE_ADD_TO_MODE) 
-		H.nutrition = rand(60,250) //Start hungry for the default marine.
+	if(flags_startup_parameters & ROLE_ADD_TO_MODE)
+		H.set_nutrition(rand(NUTRITION_LEVEL_MARINE_MIN, NUTRITION_LEVEL_MARINE_MAX)) //Start hungry for the default marine.
 
 
 /datum/job/marine/standard
