@@ -140,16 +140,19 @@
 /obj/item/clothing/suit/mob_can_equip(mob/M, slot, disable_warning = 0)
 	//if we can't equip the item anyway, don't bother with other checks.
 	. = ..()
-	if(!.)
+	if(!. || !ishuman(M))
 		return FALSE
 
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/clothing/under/U = H.w_uniform
-		//some uniforms prevent you from wearing any suits but certain types
-		if(U?.suit_restricted && !is_type_in_list(src, U.suit_restricted))
-			to_chat(H, "<span class='warning'>[src] can't be worn with [U].</span>")
-			return FALSE
+	var/mob/living/carbon/human/H = M
+	if(!istype(H.w_uniform, /obj/item/clothing/under))
+		return FALSE
+
+	var/obj/item/clothing/under/U = H.w_uniform
+	//some uniforms prevent you from wearing any suits but certain types
+	if(U.suit_restricted && !is_type_in_list(src, U.suit_restricted))
+		to_chat(H, "<span class='warning'>[src] can't be worn with [U].</span>")
+		return FALSE
+		
 	return TRUE
 
 
