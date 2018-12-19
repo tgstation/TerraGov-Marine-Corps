@@ -25,35 +25,34 @@
 	det_time = rand(det_time - 10, det_time + 10)
 
 /obj/item/explosive/grenade/attack_self(mob/user)
-	if(!active)
+	if(active)
+		return
 
-		if(!user.IsAdvancedToolUser())
-			to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
-			return
+	if(!user.IsAdvancedToolUser())
+		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		return
 
-		if(ishuman(user))
-			var/mob/living/carbon/human/S = user
-			if(S.species.flags & IS_SYNTHETIC && dangerous)
-				to_chat(user, "<span class='warning'>Your programming prevents you from operating this device!</span>")
-				return
+	if(isSynth(user) && dangerous && !config.allow_synthetic_gun_use)
+		to_chat(user, "<span class='warning'>Your programming prevents you from operating this device!</span>")
+		return
 
-		add_fingerprint(user)
-		activate(user)
-		if((CLUMSY in user.mutations) && prob(50))
-			to_chat(user, "<span class='warning'>Huh? How does this thing work?</span>")
-			spawn(5) prime()
+	add_fingerprint(user)
+	activate(user)
+	if((CLUMSY in user.mutations) && prob(50))
+		to_chat(user, "<span class='warning'>Huh? How does this thing work?</span>")
+		spawn(5) prime()
 
-		else
-			user.visible_message("<span class='warning'>[user] primes \a [name]!</span>", \
-			"<span class='warning'>You prime \a [name]!</span>")
-			if(initial(dangerous) && has_species(user, "Human"))
-				var/nade_sound = user.gender == FEMALE ? get_sfx("female_fragout") : get_sfx("male_fragout")
+	else
+		user.visible_message("<span class='warning'>[user] primes \a [name]!</span>", \
+		"<span class='warning'>You prime \a [name]!</span>")
+		if(initial(dangerous) && has_species(user, "Human"))
+			var/nade_sound = user.gender == FEMALE ? get_sfx("female_fragout") : get_sfx("male_fragout")
 
-				for(var/mob/living/carbon/human/H in hearers(6,user))
-					H.playsound_local(user, nade_sound, 35)
-			if(iscarbon(user))
-				var/mob/living/carbon/C = user
-				C.throw_mode_on()
+			for(var/mob/living/carbon/human/H in hearers(6,user))
+				H.playsound_local(user, nade_sound, 35)
+		if(iscarbon(user))
+			var/mob/living/carbon/C = user
+			C.throw_mode_on()
 
 
 /obj/item/explosive/grenade/proc/activate(mob/user as mob)
