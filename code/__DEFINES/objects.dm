@@ -210,3 +210,11 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define RAZORWIRE_MAX_DAMAGE_MULT_MED	1.2
 #define RAZORWIRE_MIN_DAMAGE_MULT_HIGH	1.6 //pouncing into it
 #define RAZORWIRE_MAX_DAMAGE_MULT_HIGH	2.4
+
+//Flares
+
+#define FLARE_IGNITE_MELEE_DAMAGE		10
+#define FLARE_IGNITE_THROW_DAMAGE		15
+#define FLARE_IGNITE_STACKS				5
+#define FLARE_IGNITE_POWER				5
+#define FLARE_BRIGHTNESS				5
