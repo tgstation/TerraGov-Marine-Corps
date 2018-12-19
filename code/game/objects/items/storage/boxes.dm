@@ -548,17 +548,18 @@
 	w_class = 3
 	max_storage_space = 10
 	can_hold = list(
-		"/obj/item/device/flashlight/flare"
+		"/obj/item/device/flashlight/flare",
+		"/obj/item/explosive/grenade/flare",
 		)
 
 /obj/item/storage/box/m94/New()
 	..()
 	contents = list()
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
 
 
 /obj/item/storage/box/m94/update_icon()

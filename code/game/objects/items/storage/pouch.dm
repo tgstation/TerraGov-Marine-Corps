@@ -345,7 +345,8 @@
 	storage_slots = 5
 	draw_mode = 1
 	icon_state = "flare"
-	can_hold = list("/obj/item/device/flashlight/flare")
+	can_hold = list("/obj/item/device/flashlight/flare",
+					"/obj/item/explosive/grenade/flare")
 
 /obj/item/storage/pouch/flare/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/storage/box/m94))
@@ -353,7 +354,7 @@
 		if(M.contents.len)
 			if(contents.len < storage_slots)
 				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC)) 
+				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
 					return
 				for(var/obj/item/I in M)
 					if(contents.len < storage_slots)
@@ -372,11 +373,11 @@
 
 /obj/item/storage/pouch/flare/full/New()
 	..()
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
-	new /obj/item/device/flashlight/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
+	new /obj/item/explosive/grenade/flare(src)
 
 
 
@@ -496,7 +497,7 @@
 		if(M.current_rounds)
 			if(contents.len < storage_slots)
 				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC)) 
+				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
 					return
 				var/cont
 				for(var/x = 1 to storage_slots)

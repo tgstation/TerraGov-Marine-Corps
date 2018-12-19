@@ -41,13 +41,13 @@
 
 /obj/item/weapon/gun/flare/delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
-	if(refund) 
+	if(refund)
 		num_flares++
 	return TRUE
 
 /obj/item/weapon/gun/flare/attackby(obj/item/I, mob/user)
-	if(istype(I,/obj/item/device/flashlight/flare))
-		var/obj/item/device/flashlight/flare/flare = I
+	if(istype(I,/obj/item/explosive/grenade/flare))
+		var/obj/item/explosive/grenade/flare = I
 		if(num_flares >= max_flares)
 			to_chat(user, "It's already full.")
 			return
@@ -63,10 +63,10 @@
 
 /obj/item/weapon/gun/flare/unload(mob/user)
 	if(num_flares)
-		var/obj/item/device/flashlight/flare/new_flare = new()
-		if(user) 
+		var/obj/item/explosive/grenade/flare/new_flare = new()
+		if(user)
 			user.put_in_hands(new_flare)
-		else 
+		else
 			new_flare.loc = get_turf(src)
 		num_flares--
 		to_chat(user, "<span class='notice'>You unload a flare from [src].</span>")
@@ -93,7 +93,7 @@
 
 /obj/item/weapon/gun/minigun/New(loc, spawn_empty)
 	. = ..()
-	if(current_mag && current_mag.current_rounds > 0) 
+	if(current_mag && current_mag.current_rounds > 0)
 		load_into_chamber()
 
 /obj/item/weapon/gun/minigun/set_gun_config_values()
@@ -214,7 +214,7 @@
 
 /obj/item/weapon/gun/launcher/spike/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
-	if(refund) 
+	if(refund)
 		spikes++
 	return TRUE
 

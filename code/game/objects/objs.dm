@@ -16,6 +16,9 @@
 
 	var/explosion_resistance = 0
 
+	var/igniting = FALSE	//Whether it ignites on impact
+	var/item_fire_stacks = null	//How many fire stacks it applies
+
 /obj/New()
 	..()
 	object_list += src

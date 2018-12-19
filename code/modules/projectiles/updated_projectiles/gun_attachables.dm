@@ -802,10 +802,12 @@ Defined in conflicts.dm of the #defines folder.
 	playsound(user.loc, fire_sound, 50, 1)
 	message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) fired an underslung grenade launcher")
 	log_game("[key_name_admin(user)] used an underslung grenade launcher.")
-	G.det_time = 15
+	G.det_time = min(15, G.det_time)
 	G.throw_range = max_range
+	G.launched = TRUE
 	G.activate()
-	G.throw_at(target, max_range, 2, user)
+	G.throwforce += 10 + G.launchforce //Throws with signifcantly more force than a standard marine can.
+	G.throw_at(target, max_range, 3, user)
 	current_rounds--
 	loaded_grenades.Cut(1,2)
 
@@ -1111,7 +1113,7 @@ Defined in conflicts.dm of the #defines folder.
 		G.aim_slowdown += SLOWDOWN_ADS_SCOPE
 		G.wield_delay += WIELD_DELAY_FAST
 	G.update_slowdown()
-		
+
 	//var/image/targeting_icon = image('icons/mob/mob.dmi', null, "busy_targeting", "pixel_y" = 22) //on hold until the bipod is fixed
 	if(bipod_deployed)
 		icon_state = "bipod-on"
@@ -1140,12 +1142,12 @@ Defined in conflicts.dm of the #defines folder.
 	for(var/obj/O in T)
 		if(O.throwpass && O.density && O.dir == user.dir && O.flags_atom & ON_BORDER)
 			return O
-	
-	T = get_step(T, user.dir) 
+
+	T = get_step(T, user.dir)
 	for(var/obj/O in T)
 		if((istype(O, /obj/structure/window_frame)))
 			return O
-	
+
 	return FALSE
 
 

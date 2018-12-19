@@ -234,7 +234,7 @@
 				//if(istype(ticker.mode, /datum/game_mode/ice_colony))//drop a coif with the uniform on ice colony
 				if(map_tag == MAP_ICE_COLONY)
 					new /obj/item/clothing/mask/rebreather/scarf(loc)
-					
+
 
 			if(bitf == MARINE_CAN_BUY_ESSENTIALS)
 				if(vendor_role == "Squad Specialist" && H.mind && H.mind.assigned_role == "Squad Specialist")
@@ -1029,7 +1029,9 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 	spawned_gear_list = list(
 						/obj/item/clothing/head/helmet/marine,
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine
+						/obj/item/clothing/shoes/marine,
+						/obj/item/explosive/grenade/impact,
+						/obj/item/explosive/grenade/impact,
 						)
 
 
@@ -1037,13 +1039,17 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 	spawned_gear_list = list(
 						/obj/item/clothing/head/helmet/marine,
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine
+						/obj/item/clothing/shoes/marine,
+						/obj/item/explosive/grenade/impact,
+						/obj/item/explosive/grenade/impact,
 						)
 
 /obj/effect/essentials_set/basic_specialist
 	spawned_gear_list = list(
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine
+						/obj/item/clothing/shoes/marine,
+						/obj/item/explosive/grenade/impact,
+						/obj/item/explosive/grenade/impact,
 						)
 
 /obj/effect/essentials_set/basic_squadleader
@@ -1052,7 +1058,9 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/clothing/head/helmet/marine/leader,
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine
+						/obj/item/clothing/shoes/marine,
+						/obj/item/explosive/grenade/impact,
+						/obj/item/explosive/grenade/impact,
 						)
 
 /obj/effect/essentials_set/basic_medic
@@ -1060,7 +1068,9 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/clothing/head/helmet/marine/medic,
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine/medic,
-						/obj/item/clothing/shoes/marine
+						/obj/item/clothing/shoes/marine,
+						/obj/item/explosive/grenade/impact,
+						/obj/item/explosive/grenade/impact,
 						)
 
 /obj/effect/essentials_set/basic_engineer
@@ -1068,7 +1078,9 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/clothing/head/helmet/marine/tech,
 						/obj/item/clothing/glasses/welding,
 						/obj/item/clothing/under/marine/engineer,
-						/obj/item/clothing/shoes/marine
+						/obj/item/clothing/shoes/marine,
+						/obj/item/explosive/grenade/impact,
+						/obj/item/explosive/grenade/impact,
 						)
 
 /obj/effect/essentials_set/medic
@@ -1079,7 +1091,7 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/roller/medevac,
 						/obj/item/device/medevac_beacon,
 						/obj/item/roller,
-						/obj/item/reagent_container/hypospray/advanced/oxycodone
+						/obj/item/reagent_container/hypospray/advanced/oxycodone,
 						)
 
 /obj/effect/essentials_set/engi
