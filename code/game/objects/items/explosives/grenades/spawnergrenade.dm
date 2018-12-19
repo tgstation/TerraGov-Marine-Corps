@@ -7,7 +7,6 @@
 	var/banglet = 0
 	var/spawner_type = null // must be an object path
 	var/deliveryamt = 1 // amount of type to deliver
-	dangerous = TRUE
 
 /obj/item/explosive/grenade/spawnergrenade/prime()	// Prime now just handles the two loops that query for people in lockers and people who can see it.
 

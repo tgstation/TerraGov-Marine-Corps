@@ -3,7 +3,6 @@
 	icon_state = "emp"
 	item_state = "emp"
 	origin_tech = "materials=2;magnets=3"
-	dangerous = TRUE
 
 /obj/item/explosive/grenade/empgrenade/prime()
 	..()

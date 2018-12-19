@@ -12,7 +12,7 @@
 	hitsound = 'sound/weapons/smash.ogg'
 	var/active = 0
 	var/det_time = 50
-	var/dangerous = FALSE 	//Does it make a danger overlay for humans? Can synths use it?
+	var/dangerous = TRUE 	//Does it make a danger overlay for humans? Can synths use it?
 	var/arm_sound = 'sound/weapons/armbomb.ogg'
 	var/underslug_launchable = FALSE
 	var/hud_state = "grenade_he"
