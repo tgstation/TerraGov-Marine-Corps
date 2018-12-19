@@ -6,7 +6,7 @@
 	icon_state = "grenade"
 	det_time = 40
 	item_state = "grenade"
-	dangerous = 1
+	dangerous = TRUE
 	underslug_launchable = TRUE
 
 /obj/item/explosive/grenade/frag/prime()
@@ -28,7 +28,7 @@
 	icon_state = "training_grenade"
 	item_state = "grenade"
 	hud_state = "grenade_dummy"
-	dangerous = 0
+	dangerous = FALSE
 
 /obj/item/explosive/grenade/frag/training/prime()
 	spawn(0)

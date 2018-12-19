@@ -12,7 +12,7 @@
 	hitsound = 'sound/weapons/smash.ogg'
 	var/active = 0
 	var/det_time = 50
-	var/dangerous = 0		//Make an danger overlay for humans?
+	var/dangerous = FALSE 	//Does it make a danger overlay for humans? Can synths use it?
 	var/arm_sound = 'sound/weapons/armbomb.ogg'
 	var/underslug_launchable = FALSE
 	var/hud_state = "grenade_he"
@@ -33,7 +33,7 @@
 
 		if(ishuman(user))
 			var/mob/living/carbon/human/S = user
-			if(S.species.flags & IS_SYNTHETIC)
+			if(S.species.flags & IS_SYNTHETIC && dangerous)
 				to_chat(user, "<span class='warning'>Your programming prevents you from operating this device!</span>")
 				return
 

@@ -3,10 +3,11 @@
 	icon_state = "emp"
 	item_state = "emp"
 	origin_tech = "materials=2;magnets=3"
+	dangerous = TRUE
 
-	prime()
-		..()
-		if(empulse(src, 4, 10))
-			qdel(src)
-		return
+/obj/item/explosive/grenade/empgrenade/prime()
+	..()
+	if(empulse(src, 4, 10))
+		qdel(src)
+	return
 
