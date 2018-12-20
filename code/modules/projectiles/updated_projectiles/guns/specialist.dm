@@ -626,11 +626,14 @@
 
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
+	reload_sound = 'sound/weapons/gun_mortar_reload.ogg'
 	var/datum/effect_system/smoke_spread/smoke
+	var/obj/item/ammo_magazine/rocket/loaded_rocket = null
 
 
 /obj/item/weapon/gun/launcher/rocket/New()
 	. = ..()
+	current_mag.current_rounds = 0
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	smoke = new()
 	smoke.attach(src)
@@ -649,9 +652,14 @@
 
 	if(!do_after(user, delay, TRUE, 3, BUSY_ICON_HOSTILE)) //slight wind up
 		return
-		
-	return ..()
 
+	playsound(loc,'sound/weapons/gun_mortar_fire.ogg', 50, 1)
+	. = ..()
+
+	loaded_rocket.current_rounds = 0
+	user.drop_inv_item_on_ground(loaded_rocket)
+	loaded_rocket.update_icon()
+	loaded_rocket = null
 
 /obj/item/weapon/gun/launcher/rocket/wield(mob/living/user)
 	. = ..()
@@ -708,35 +716,43 @@
 		to_chat(user, "<span class='warning'>That frame is empty!</span>")
 		return
 
+	loaded_rocket = rocket
 	if(user)
 		to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
 		if(do_after(user,current_mag.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
-			user.drop_inv_item_on_ground(rocket)
-			replace_ammo(user,rocket)
+			replace_ammo(user,loaded_rocket)
+			user.drop_inv_item_on_ground(loaded_rocket)
+			loaded_rocket.loc = src
 			current_mag.current_rounds = current_mag.max_rounds
-			rocket.current_rounds = 0
 			to_chat(user, "<span class='notice'>You load [rocket] into [src].</span>")
-			if(reload_sound) 
+			if(reload_sound)
 				playsound(user, reload_sound, 25, 1)
-			else 
+			else
 				playsound(user,'sound/machines/click.ogg', 25, 1)
 		else
 			to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
 			return
 	else
-		rocket.loc = get_turf(src)
-		replace_ammo(,rocket)
+		loaded_rocket.loc = src
+		replace_ammo(,loaded_rocket)
 		current_mag.current_rounds = current_mag.max_rounds
-		rocket.current_rounds = 0
-	rocket.update_icon()
 	return TRUE
 
 /obj/item/weapon/gun/launcher/rocket/unload(mob/user)
 	if(user)
-		if(!current_mag.current_rounds) 
+		if(!current_mag.current_rounds)
 			to_chat(user, "<span class='warning'>[src] is already empty!</span>")
-		else 							
-			to_chat(user, "<span class='warning'>It would be too much trouble to unload [src] now. Should have thought ahead!</span>")
+		else
+			to_chat(user, "<span class='notice'>You begin unloading [src].</span>")
+			if(!do_after(user,current_mag.reload_delay * 0.5, TRUE, 5, BUSY_ICON_FRIENDLY))
+				to_chat(user, "<span class='warning'>Your unloading was interrupted!</span>")
+				return
+			current_mag.current_rounds = 0
+			ammo = null
+			loaded_rocket.loc = get_turf(src)
+			loaded_rocket = null
+			to_chat(user, "<span class='notice'>You successfully unload [src].</span>")
+
 
 //Adding in the rocket backblast. The tile behind the specialist gets blasted hard enough to down and slightly wound anyone
 /obj/item/weapon/gun/launcher/rocket/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
