@@ -6,10 +6,12 @@
 	attachable_allowed = list()
 	var/obj/item/cell/cell //1000 power.
 	var/charge_cost = 10 //100 shots.
+	var/cell_type = /obj/item/cell
 
 /obj/item/weapon/gun/energy/Initialize()
 	. = ..()
-	cell = new /obj/item/cell(src)
+	if(cell_type)
+		cell = new cell_type(src)
 
 /obj/item/weapon/gun/energy/able_to_fire(mob/living/user)
 	. = ..()
@@ -73,10 +75,7 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
-
-/obj/item/weapon/gun/energy/taser/Initialize()
-	. = ..()
-	cell = new /obj/item/cell/high(src)
+	cell_type = /obj/item/cell/high
 
 /obj/item/weapon/gun/energy/taser/set_gun_config_values()
 	fire_delay = config.high_fire_delay * 2
@@ -115,10 +114,7 @@
 	w_class = 5
 	charge_cost = 100
 	flags_gun_features = GUN_UNUSUAL_DESIGN
-
-/obj/item/weapon/gun/energy/plasmarifle/Initialize()
-	. = ..()
-	cell = new /obj/item/cell/high(src)
+	cell_type = /obj/item/cell/high
 
 /obj/item/weapon/gun/energy/plasmarifle/set_gun_config_values()
 	fire_delay = config.high_fire_delay*2
