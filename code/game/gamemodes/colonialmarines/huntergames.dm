@@ -369,7 +369,6 @@ var/waiting_for_drop_votes = 0
 			if("hunter_secondary")
 				secondary_spawns += L.loc
 
-#undef HUNTER_BEST_ITEM
 #undef HUNTER_GOOD_ITEM
 #undef HUNTER_OKAY_ITEM
 #undef HUNTER_BODY

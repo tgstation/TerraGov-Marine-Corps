@@ -60,7 +60,7 @@
 	speed = -2.1
 	tier = 1
 	upgrade = -1 //Predaliens are already in their ultimate form, they don't get even better
-
+	wound_type = "predalien" //used to match appropriate wound overlays
 	var/butchered_last //world.time to prevent spam.
 	var/butchered_sum = 0 //The number of people butchered. Lowers the health gained.
 

@@ -73,7 +73,7 @@ Additional game mode variables.
 	var/stored_larva = 0
 
 	//Role Authority set up.
-	var/role_instruction 	= 0 // 1 is to replace, 2 is to add, 3 is to remove.
+	var/role_instruction 	= ROLE_MODE_DEFAULT
 	var/roles_for_mode[] //Won't have a list if the instruction is set to 0.
 
 	//Bioscan related.
@@ -89,7 +89,7 @@ Additional game mode variables.
 //===================================================\\
 
 datum/game_mode/proc/initialize_special_clamps()
-	var/ready_players = num_players() // Get all players that have "Ready" selected
+	var/ready_players = ready_players() // Get all players that have "Ready" selected
 	xeno_starting_num = max((ready_players/7), xeno_required_num)
 	surv_starting_num = CLAMP((ready_players/25), 0, 8)
 	merc_starting_num = max((ready_players/3), 1)

@@ -170,12 +170,53 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		to_chat(world, dat)
 
 
+/datum/game_mode/proc/declare_completion_announce_round_stats()
+	set waitfor = 0
+	sleep(140)
+	var/list/dat = list({"<span class='round_body'>The end of round statistics are:</span><br>
+		<br>There were [round_statistics.total_bullets_fired] total bullets fired.
+		<br>[round_statistics.total_bullet_hits_on_marines] bullets managed to hit marines. For a [(round_statistics.total_bullet_hits_on_marines / max(round_statistics.total_bullets_fired, 1)) * 100]% friendly fire rate!"})
+	if(round_statistics.total_bullet_hits_on_xenos)
+		dat += "[round_statistics.total_bullet_hits_on_xenos] bullets managed to hit xenomorphs. For a [(round_statistics.total_bullet_hits_on_xenos / max(round_statistics.total_bullets_fired, 1)) * 100]% accuracy total!"
+	if(round_statistics.grenades_thrown)
+		dat += "[round_statistics.grenades_thrown] total grenades exploding."
+	else
+		dat += "No grenades exploded."
+	if(round_statistics.now_pregnant)
+		dat += "[round_statistics.now_pregnant] people infected among which [round_statistics.total_larva_burst] burst. For a [(round_statistics.total_larva_burst / max(round_statistics.now_pregnant, 1)) * 100]% successful delivery rate!"
+	if(round_statistics.queen_screech)
+		dat += "[round_statistics.queen_screech] Queen screeches."
+	if(round_statistics.ravager_ravage_victims)
+		dat += "[round_statistics.ravager_ravage_victims] ravaged victims. Damn, Ravagers!"
+	if(round_statistics.warrior_limb_rips)
+		dat += "[round_statistics.warrior_limb_rips] limbs ripped off by Warriors."
+	if(round_statistics.crusher_stomp_victims)
+		dat += "[round_statistics.crusher_stomp_victims] people stomped by crushers."
+	if(round_statistics.praetorian_spray_direct_hits)
+		dat += "[round_statistics.praetorian_spray_direct_hits] people hit directly by Praetorian acid spray."
+	if(round_statistics.weeds_planted)
+		dat += "[round_statistics.weeds_planted] weed nodes planted."
+	if(round_statistics.weeds_destroyed)
+		dat += "[round_statistics.weeds_destroyed] weed tiles removed."
+	if(round_statistics.carrier_traps)
+		dat += "[round_statistics.carrier_traps] hidey holes for huggers were made."
+	var/output = jointext(dat, "<br>")
+	for(var/mob/player in player_list)
+		if(player?.client?.prefs?.toggles_chat & CHAT_STATISTICS)
+			to_chat(player, output)
+
 /datum/game_mode/proc/end_of_round_deathmatch()
 	var/list/spawns = list()
 
 	for(var/obj/effect/landmark/L in landmarks_list)
 		if(L.name == "deathmatch")
 			spawns += L.loc
+
+	if(length(spawns) < 1)
+		message_admins("DEBUG: Failed to find any End of Round Deathmatch landmarks.")
+		log_debug("DEBUG: Failed to find any End of Round Deathmatch landmarks.")
+		to_chat(world, "<br><br><h1><span class='warning'>End of Round Deathmatch initialization failed, please do not grief.</span></h1><br><br>")
+		return
 
 	for(var/x in mob_list)
 		if(!istype(x, /mob/living/carbon/human))
@@ -195,12 +236,19 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 				switch(L.name)
 					if("deathmatch")
 						spawns += L.loc
-			picked = pick(spawns)
-			spawns -= picked
+
+			if(length(spawns) < 1)
+				message_admins("DEBUG: Failed to regenerate End of Round Deathmatch landmarks.")
+				log_debug("DEBUG: Failed to regenerate End of Round Deathmatch landmarks.")
+
+			else
+				picked = pick(spawns)
+				spawns -= picked
 
 		
 		if(picked)
 			H.loc = picked
+			H.revive()
 			to_chat(H, "<br><br><h1><span class='warning'>Fight for your life!</span></h1><br><br>")
 		else
 			to_chat(H, "<br><br><h1><span class='warning'>Failed to find a valid location for End of Round Deathmatch. Please do not grief.</span></h1><br><br>")

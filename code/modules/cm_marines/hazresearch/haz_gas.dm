@@ -14,11 +14,11 @@
 
 /obj/effect/biohazard/gas/New()
 	..()
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 
 /obj/effect/biohazard/gas/Del()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/effect/biohazard/gas/proc/lifespancheck()

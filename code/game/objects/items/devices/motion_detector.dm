@@ -66,7 +66,7 @@
 
 
 /obj/item/device/motiondetector/Destroy()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	for(var/obj/X in blip_pool)
 		qdel(X)
 	blip_pool = list()
@@ -88,7 +88,7 @@
 	active = FALSE
 	operator = null
 	update_icon()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 
 /obj/item/device/motiondetector/process()
 	if(!active)
@@ -247,10 +247,10 @@
 			if(active)
 				to_chat(usr, "<span class='notice'>You activate [src].</span>")
 				operator = usr
-				processing_objects.Add(src)
+				START_PROCESSING(SSobj, src)
 			else
 				to_chat(usr, "<span class='notice'>You deactivate [src].</span>")
-				processing_objects.Remove(src)
+				STOP_PROCESSING(SSobj, src)
 			update_icon()
 
 		else if(href_list["detector_mode"])
@@ -328,4 +328,5 @@
 		icon_state = "minidetector_on_[detector_mode]"
 	else
 		icon_state = "minidetector_off"
-	return ..()
+	return
+

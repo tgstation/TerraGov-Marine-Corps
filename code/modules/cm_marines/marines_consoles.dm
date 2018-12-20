@@ -450,15 +450,10 @@
 		else if(href_list["squad"])
 			if(allowed(usr))
 				if(modify && istype(modify))
-					var/list/squad_list = list()
-					for(var/datum/squad/S in RoleAuthority.squads)
-						if(S.usable)
-							squad_list += S.name
-
-					var/name_sel = input("Which squad would you like to put the person in?") as null|anything in squad_list
-					if(!name_sel)
+					var/squad_name = input("Which squad would you like to put the person in?") as null|anything in RoleAuthority.squads_names
+					if(!squad_name)
 						return
-					var/datum/squad/selected = get_squad_by_name(name_sel)
+					var/datum/squad/selected = RoleAuthority.squads[RoleAuthority.squads_names.Find(squad_name)]
 
 					//First, remove any existing squad access and clear the card.
 					for(var/datum/squad/Q in RoleAuthority.squads)

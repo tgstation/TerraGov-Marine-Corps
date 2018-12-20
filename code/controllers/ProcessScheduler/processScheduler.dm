@@ -79,7 +79,7 @@ var/global/datum/controller/processScheduler/processScheduler
 	spawn(0)
 		process()
 
-/datum/controller/processScheduler/proc/process()
+/datum/controller/processScheduler/process()
 	while(isRunning)
 		checkRunningProcesses()
 		queueProcesses()

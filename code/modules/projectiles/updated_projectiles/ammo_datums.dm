@@ -1261,9 +1261,9 @@
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/M, obj/item/projectile/P)
 	if(!istype(M))
 		return ..()
-		var/mob/living/carbon/C = M
-		if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
-			return
+	var/mob/living/carbon/C = M
+	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
+		return
 	return ..()
 
 /datum/ammo/xeno/toxin/upgrade1
@@ -1582,7 +1582,7 @@
 	var/obj/item/device/flashlight/flare/G = new (T)
 	G.visible_message("<span class='warning'>\A [G] bursts into brilliant light nearby!</span>")
 	G.on = 1
-	processing_objects += G
+	START_PROCESSING(SSobj, G)
 	G.icon_state = "flare-on"
 	G.damtype = "fire"
 	G.SetLuminosity(G.brightness_on)

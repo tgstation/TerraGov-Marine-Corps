@@ -81,13 +81,11 @@
 	results = list("water" = 1)
 	required_reagents = list("oxygen" = 1, "hydrogen" = 2)
 
-/
 /datum/chemical_reaction/thermite
 	name = "Thermite"
 	id = "thermite"
 	results = list("thermite" = 3)
 	required_reagents = list("aluminum" = 10, "iron" = 10, "oxygen" = 10, "phoron" = 1)
-/
 
 /datum/chemical_reaction/lexorin
 	name = "Lexorin"
