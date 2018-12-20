@@ -148,7 +148,8 @@ mob/living/proc/adjustHalLoss(amount) //This only makes sense for carbon.
 
 	// shut down ongoing problems
 	radiation = 0
-	set_nutrition(400)
+	set_nutrition(NUTRITION_LEVEL_DEFAULT, TRUE)
+	set_overeating(0, TRUE)
 	bodytemperature = get_standard_bodytemperature()
 	sdisabilities = 0
 	disabilities = 0

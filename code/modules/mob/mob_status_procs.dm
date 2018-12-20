@@ -89,77 +89,6 @@
 /mob/proc/Dizzy(amount)
 	return // For the time being, only carbons get dizzy.
 
-/mob/proc/update_tint()
-	return
-
-/mob/proc/blind_eyes(amount)
-	if(amount>0)
-		var/old_eye_blind = eye_blind
-		eye_blind = max(eye_blind, amount)
-		if(!old_eye_blind)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
-
-/mob/proc/adjust_blindness(amount)
-	if(amount>0)
-		var/old_eye_blind = eye_blind
-		eye_blind += amount
-		if(!old_eye_blind)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
-	else if(eye_blind)
-		var/blind_minimum = 0
-		if(stat != CONSCIOUS)
-			blind_minimum = 1
-		if(isliving(src))
-			var/mob/living/L = src
-			if(!L.has_vision())
-				blind_minimum = 1
-		eye_blind = max(eye_blind+amount, blind_minimum)
-		if(!eye_blind)
-			clear_fullscreen("blind")
-
-/mob/proc/set_blindness(amount)
-	if(amount>0)
-		var/old_eye_blind = eye_blind
-		eye_blind = amount
-		if(client && !old_eye_blind)
-			overlay_fullscreen("blind", /obj/screen/fullscreen/blind)
-	else if(!eye_blind)
-		var/blind_minimum = 0
-		if(stat != CONSCIOUS)
-			blind_minimum = 1
-		if(isliving(src))
-			var/mob/living/L = src
-			if(!L.has_vision())
-				blind_minimum = 1
-		eye_blind = blind_minimum
-		if(!eye_blind)
-			clear_fullscreen("blind")
-
-/mob/proc/blur_eyes(amount)
-	if(amount>0)
-		var/old_eye_blurry = eye_blurry
-		eye_blurry = max(amount, eye_blurry)
-		if(!old_eye_blurry)
-			overlay_fullscreen("blurry", /obj/screen/fullscreen/blurry)
-
-/mob/proc/adjust_blurriness(amount)
-	var/old_eye_blurry = eye_blurry
-	eye_blurry = max(eye_blurry+amount, 0)
-	if(amount>0)
-		if(!old_eye_blurry)
-			overlay_fullscreen("blurry", /obj/screen/fullscreen/blurry)
-	else if(old_eye_blurry && !eye_blurry)
-		clear_fullscreen("blurry")
-
-/mob/proc/set_blurriness(amount)
-	var/old_eye_blurry = eye_blurry
-	eye_blurry = max(amount, 0)
-	if(amount>0)
-		if(!old_eye_blurry)
-			overlay_fullscreen("blurry", /obj/screen/fullscreen/blurry)
-	else if(old_eye_blurry)
-		clear_fullscreen("blurry")
-
 /mob/proc/adjustEarDamage(damage = 0, deaf = 0)
 	ear_damage = max(0, ear_damage + damage)
 	ear_deaf = max((sdisabilities & DEAF|| ear_damage >= 100) ? 1 : 0, ear_deaf + deaf)
@@ -189,13 +118,3 @@
 /mob/proc/adjust_bodytemperature(amount,min_temp=0,max_temp=INFINITY)
 	if(bodytemperature >= min_temp && bodytemperature <= max_temp)
 		bodytemperature = CLAMP(bodytemperature + amount,min_temp,max_temp)
-
-////////////////////////////////////NUTRITION///////////////////////////////////////
-
-/mob/proc/adjust_nutrition(amount, min_nutri = 0, max_nutri = INFINITY)
-	nutrition = max(0, nutrition)
-	if(nutrition >= min_nutri &&  nutrition <= max_nutri)
-		nutrition = CLAMP(nutrition + amount, min_nutri, max_nutri)
-
-/mob/proc/set_nutrition(amount)
-	nutrition = max(0, amount)

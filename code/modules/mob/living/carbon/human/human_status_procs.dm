@@ -1,50 +1,27 @@
-/mob/living/carbon/human/blind_eyes(amount, forced = FALSE)
-	if(!forced)
-		if(has_vision() && !has_eyes() && stat == CONSCIOUS)
-			set_blindness(0, TRUE)
-	return ..()
-
-/mob/living/carbon/human/adjust_blindness(amount, forced = FALSE)
-	if(!forced)
-		if(has_vision() && !has_eyes() && stat == CONSCIOUS)
-			set_blindness(0, TRUE)
-	return ..()
-
-/mob/living/carbon/human/set_blindness(amount, forced = FALSE)
-	if(!forced)
-		if(has_vision() && !has_eyes() && stat == CONSCIOUS)
-			return
-	return ..()
-
-/mob/living/carbon/human/blur_eyes(amount, forced = FALSE)
-	if(!forced)
-		if(has_vision() && !has_eyes() && stat == CONSCIOUS)
-			set_blurriness(0, TRUE)
-	return ..()
-
-/mob/living/carbon/human/adjust_blurriness(amount, forced = FALSE)
-	if(!forced)
-		if(has_vision() && !has_eyes() && stat == CONSCIOUS)
-			set_blurriness(0, TRUE)
-	return ..()
-
-/mob/living/carbon/human/set_blurriness(amount, forced = FALSE)
-	if(!forced)
-		if(has_vision() && !has_eyes() && stat == CONSCIOUS)
-			return
-	return ..()
-
 /mob/living/carbon/human/Stun(amount)
-	if(HULK in mutations)
-		return
-	..()
+	if(!(HULK in mutations))
+		return ..()
 
 /mob/living/carbon/human/KnockDown(amount)
-	if(HULK in mutations)
-		return
-	..()
+	if(!(HULK in mutations))
+		return ..()
 
 /mob/living/carbon/human/KnockOut(amount)
-	if(HULK in mutations)
-		return
-	..()
+	if(!(HULK in mutations))
+		return ..()
+
+/mob/living/carbon/human/adjust_nutrition(amount, min_nutri = 0, max_nutri = NUTRITION_LEVEL_MAX, forced = FALSE)
+	if(!(species.flags & NO_HUNGER) || forced)
+		return ..()
+
+/mob/living/carbon/human/set_nutrition(amount, forced = FALSE)
+	if(!(species.flags & NO_HUNGER) || forced)
+		return ..()
+
+/mob/living/carbon/human/adjust_overeating(amount, min_binge = 0, max_binge = OVEREATING_LEVEL_MAX, forced = FALSE)
+	if(!(species.flags & NO_HUNGER) || forced)
+		return ..()
+
+/mob/living/carbon/human/set_overeating(amount, forced = FALSE)
+	if(!(species.flags & NO_HUNGER) || forced)
+		return ..()

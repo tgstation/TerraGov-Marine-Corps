@@ -143,7 +143,7 @@ var/global/sent_syndicate_strike_team = 0
 		equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/syndicate/black(src), WEAR_HEAD)
 	else
 		equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/syndicate/black/red(src), WEAR_HEAD)
-	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/syndicate(src), WEAR_FACE)
+	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/marine/swat/syndicate(src), WEAR_FACE)
 	equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal(src), WEAR_EYES)
 
 	equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(src), WEAR_BACK)

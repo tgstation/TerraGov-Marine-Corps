@@ -1,48 +1,59 @@
-
-
 /obj/item/clothing/mask/gas
+	name = "gas mask"
+	desc = "A face-covering mask that can be connected to an air supply."
+	icon_state = "gas_mask"
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 30, rad = 0)
+	flags_inventory = COVERMOUTH | COVEREYES | ALLOWINTERNALS
+	flags_inv_hide = HIDEEARS|HIDEFACE|HIDELOWHAIR
+	w_class = 3
+	item_state = "gas_mask"
+	gas_transfer_coefficient = 0.1
+	permeability_coefficient = 0.1
+	siemens_coefficient = 0.9
+	var/gas_filter_strength = 1			//For gas mask filters
+	var/list/filtered_gases = list()
+
+
+/obj/item/clothing/mask/gas/marine
 	name = "gas mask"
 	desc = "A face-covering mask that can be connected to an air supply. Filters harmful gases from the air."
 	icon_state = "gas_alt"
 	flags_inventory = COVERMOUTH | COVEREYES | ALLOWINTERNALS | BLOCKGASEFFECT | ALLOWREBREATH
-	flags_inv_hide = HIDEEARS|HIDEFACE|HIDELOWHAIR
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
-	w_class = 2.0
+	w_class = 2
 	item_state = "gas_alt"
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
-	siemens_coefficient = 0.9
 	tint = 2
-	var/gas_filter_strength = 1			//For gas mask filters
-	var/list/filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
+	gas_filter_strength = 1
+	list/filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
 
-/obj/item/clothing/mask/gas/PMC
+/obj/item/clothing/mask/gas/marine/PMC
 	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter."
 	item_state = "helmet"
 	icon_state = "pmc_mask"
 	anti_hug = 3
 	tint = 0
-	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 1, rad = 1)
-	flags_inventory = COVERMOUTH|ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH
+	armor = list(melee = 10, bullet = 10, laser = 5, energy = 5, bomb = 10, bio = 30, rad = 1)
+	flags_inventory = ALLOWINTERNALS|BLOCKGASEFFECT|ALLOWREBREATH
 	flags_inv_hide = HIDEEARS|HIDEFACE|HIDEALLHAIR
 
-/obj/item/clothing/mask/gas/PMC/upp
+/obj/item/clothing/mask/gas/marine/PMC/upp
 	name = "\improper UPP armored commando balaclava"
 	icon_state = "upp_mask"
 
-/obj/item/clothing/mask/gas/PMC/leader
+/obj/item/clothing/mask/gas/marine/PMC/leader
 	name = "\improper M8 pattern armored balaclava"
 	desc = "An armored balaclava designed to conceal both the identity of the operator and act as an air-filter. This particular suit looks like it belongs to a high-ranking officer."
 	icon_state = "officer_mask"
 
-/obj/item/clothing/mask/gas/bear
+/obj/item/clothing/mask/gas/marine/PMC/bear
 	name = "tactical balaclava"
 	desc = "A superior balaclava worn by the Iron Bears."
 	icon_state = "bear_mask"
 	anti_hug = 2
-	tint = 0
 
 //Plague Dr suit can be found in clothing/suits/bio.dm
 /obj/item/clothing/mask/gas/plaguedoctor
@@ -53,7 +64,7 @@
 	armor = list(melee = 0, bullet = 0, laser = 2,energy = 2, bomb = 0, bio = 75, rad = 0)
 	flags_armor_protection = HEAD|FACE
 
-/obj/item/clothing/mask/gas/swat
+/obj/item/clothing/mask/gas/marine/swat
 	name = "\improper SWAT mask"
 	desc = "A close-fitting tactical mask that can be connected to an air supply."
 	icon_state = "swat"
@@ -62,11 +73,9 @@
 	siemens_coefficient = 0.7
 	flags_armor_protection = FACE|EYES
 
-/obj/item/clothing/mask/gas/syndicate
+/obj/item/clothing/mask/gas/marine/swat/syndicate
 	name = "syndicate mask"
-	desc = "A close-fitting tactical mask that can be connected to an air supply."
-	icon_state = "swat"
-	siemens_coefficient = 0.7
+	icon_state = "syndicate"
 
 /obj/item/clothing/mask/gas/voice
 	name = "gas mask"
@@ -81,45 +90,67 @@
 	desc = "A close-fitting mask that acts both as an air filter and a post-modern fashion statement."
 	icon_state = "s-ninja"
 	item_state = "s-ninja_mask"
-	vchange = 1
+	flags_inventory = COVEREYES | ALLOWINTERNALS | BLOCKGASEFFECT | ALLOWREBREATH
+	gas_transfer_coefficient = 0.01
+	permeability_coefficient = 0.01
 	siemens_coefficient = 0.2
+	gas_filter_strength = 1
+	list/filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
+	vchange = 1
 
 /obj/item/clothing/mask/gas/clown_hat
 	name = "clown wig and mask"
 	desc = "A true prankster's facial attire. A clown is incomplete without his wig and mask."
 	icon_state = "clown"
 	item_state = "clown_hat"
-	tint = 0
+	flags_inventory = COVEREYES | ALLOWINTERNALS
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 10, rad = 0)
+
 
 /obj/item/clothing/mask/gas/sexyclown
 	name = "sexy-clown wig and mask"
 	desc = "A feminine clown mask for the dabbling crossdressers or female entertainers."
 	icon_state = "sexyclown"
 	item_state = "sexyclown"
+	flags_inventory = COVEREYES | ALLOWINTERNALS
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 10, rad = 0)
+
+
 
 /obj/item/clothing/mask/gas/mime
 	name = "mime mask"
 	desc = "The traditional mime's mask. It has an eerie facial posture."
 	icon_state = "mime"
 	item_state = "mime"
+	flags_inventory = COVEREYES | ALLOWINTERNALS
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 10, rad = 0)
+
+
 
 /obj/item/clothing/mask/gas/monkeymask
 	name = "monkey mask"
 	desc = "A mask used when acting as a monkey."
 	icon_state = "monkeymask"
 	item_state = "monkeymask"
+	flags_inventory = COVEREYES | ALLOWINTERNALS
 	flags_armor_protection = HEAD|FACE|EYES
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 10, rad = 0)
+
 
 /obj/item/clothing/mask/gas/sexymime
 	name = "sexy mime mask"
 	desc = "A traditional female mime's mask."
 	icon_state = "sexymime"
 	item_state = "sexymime"
+	flags_inventory = COVEREYES | ALLOWINTERNALS
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 10, rad = 0)
 
-/obj/item/clothing/mask/gas/death_commando
+
+/obj/item/clothing/mask/gas/marine/PMC/death_commando
 	name = "Death Commando Mask"
 	icon_state = "death_commando_mask"
 	item_state = "death_commando_mask"
+	flags_inventory = COVERMOUTH | COVEREYES | ALLOWINTERNALS | BLOCKGASEFFECT | ALLOWREBREATH
 	siemens_coefficient = 0.2
 
 /obj/item/clothing/mask/gas/cyborg
@@ -131,3 +162,5 @@
 	name = "owl mask"
 	desc = "Twoooo!"
 	icon_state = "owl"
+	flags_inventory = COVEREYES | ALLOWINTERNALS
+	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 10, rad = 0)

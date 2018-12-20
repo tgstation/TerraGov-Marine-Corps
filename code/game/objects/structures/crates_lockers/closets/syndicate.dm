@@ -13,7 +13,7 @@
 	..()
 	sleep(2)
 	new /obj/item/tank/jetpack/oxygen(src)
-	new /obj/item/clothing/mask/gas/syndicate(src)
+	new /obj/item/clothing/mask/gas/marine/swat/syndicate(src)
 	new /obj/item/clothing/under/syndicate(src)
 	new /obj/item/clothing/head/helmet/space/rig/syndi(src)
 	new /obj/item/clothing/suit/space/rig/syndi(src)
@@ -34,7 +34,7 @@
 	new /obj/item/tank/jetpack/oxygen(src)
 	new /obj/item/clothing/shoes/magboots(src)
 	new /obj/item/clothing/suit/space/rig/syndi(src)
-	new /obj/item/clothing/mask/gas/syndicate(src)
+	new /obj/item/clothing/mask/gas/marine/swat/syndicate(src)
 	new /obj/item/clothing/head/helmet/space/rig/syndi(src)
 
 

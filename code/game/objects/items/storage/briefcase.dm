@@ -14,35 +14,28 @@
 /obj/item/storage/briefcase/New()
 	..()
 
-/obj/item/storage/briefcase/attack(mob/living/M as mob, mob/living/user as mob)
-	//..()
-
+/obj/item/storage/briefcase/attack(mob/living/M, mob/living/user, def_zone)
 	if ((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, "\red The [src] slips out of your hand and hits your head.")
 		user.take_limb_damage(10)
 		user.KnockOut(2)
 		return
 
+	..()
 
 	log_combat(user, M, "attack", src)
 	msg_admin_attack("[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)]) (<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>)")
 
-	if (M.stat < 2 && M.health < 50 && prob(90))
+	if (M.stat != DEAD && M.health < 50 && prob(90) && (ishuman(M) || ismonkey(M)) && def_zone == "head")
 		if(ishuman(M))
-			var/lawyering = target.getarmor(target_zone, "melee")
-			if(prob(lawyering > 5 : lawyering + 30 : 0))
+			var/lawyering = M.getarmor(def_zone, "melee")
+			if(prob(lawyering > 5 ? lawyering + 30 : 0))
 				to_chat(M, "<span class = 'warning'>Your armor protects you from the blow to the head!</span>")
 				return
 		var/time = rand(2, 6)
 		if (prob(75))
 			M.KnockOut(time)
 		else
-			M.Stun(time)
-		if(M.stat != 2)	M.stat = 1
-		for(var/mob/O in viewers(M, null))
-			O.show_message(text("\red <B>[] has been knocked unconscious!</B>", M), 1, "\red You hear someone fall.", 2)
-	else
-		to_chat(M, text("\red [] tried to knock you unconcious!",user))
-		M.adjust_blurriness(3)
+			M.KnockDown(time)
+		user.visible_message("<span class='danger'>[M] has been knocked down!</span>", "<span class='danger'>You knock [M] down!</B>", null, 5)
 
-	return

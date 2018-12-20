@@ -333,9 +333,10 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define HAS_SKIN_COLOR 1024
 #define HAS_LIPS 2048
 #define HAS_UNDERWEAR 4096
-#define HAS_NO_HAIR 8192
-#define IS_PLANT 16384
-#define IS_SYNTHETIC 32768
+#define HAS_NO_MOUTH 8192
+#define HAS_NO_HAIR 16384
+#define IS_PLANT 32768
+#define IS_SYNTHETIC 65536
 //=================================================
 
 //Some on_mob_life() procs check for alien races.
@@ -388,18 +389,22 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define HUMAN_MAX_PALENESS	30 //this is added to human skin tone to get value of pale_max variable
 
 //Nutrition levels
+#define NUTRITION_LEVEL_MAX INFINITY
 #define NUTRITION_LEVEL_FAT 600
 #define NUTRITION_LEVEL_FULL 550
 #define NUTRITION_LEVEL_WELL_FED 450
+#define NUTRITION_LEVEL_DEFAULT 400
 #define NUTRITION_LEVEL_FED 350
 #define NUTRITION_LEVEL_HUNGRY 250
 #define NUTRITION_LEVEL_STARVING 150
 
 #define NUTRITION_LEVEL_START_MIN 325
-#define NUTRITION_LEVEL_START_MAX 400
+#define NUTRITION_LEVEL_START_MAX 	NUTRITION_LEVEL_DEFAULT
 
 #define NUTRITION_LEVEL_MARINE_MIN 60
-#define NUTRITION_LEVEL_MARINE_MAX 250
+#define NUTRITION_LEVEL_MARINE_MAX	NUTRITION_LEVEL_HUNGRY
+
+#define OVEREATING_LEVEL_MAX 600
 
 //diseases
 

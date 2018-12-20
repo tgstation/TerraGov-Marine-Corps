@@ -32,8 +32,8 @@ var/global/list/randomized_pill_icons
 
 /obj/item/reagent_container/pill/attack(mob/M, mob/user, def_zone)
 
-	if(!canconsume(mob/user, mob/target)
-		return
+	if(!canconsume(user, M))
+		return FALSE
 
 	if(M == user)
 		to_chat(M, "<span class='notice'>You swallow [src].</span>")

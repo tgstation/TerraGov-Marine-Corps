@@ -1068,6 +1068,7 @@
 #include "code\modules\mob\living\living_health_procs.dm"
 #include "code\modules\mob\living\living_helpers.dm"
 #include "code\modules\mob\living\living_powers.dm"
+#include "code\modules\mob\living\living_status_procs.dm"
 #include "code\modules\mob\living\living_verbs.dm"
 #include "code\modules\mob\living\login.dm"
 #include "code\modules\mob\living\logout.dm"

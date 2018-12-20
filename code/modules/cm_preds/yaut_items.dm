@@ -21,7 +21,7 @@
 	min_cold_protection_temperature = SPACE_HELMET_min_cold_protection_temperature
 	flags_armor_protection = HEAD|FACE|EYES
 	flags_cold_protection = HEAD
-	flags_inventory = COVEREYES|COVERMOUTH|STOPSPRESSUREDAMAGE|ALLOWINTERNALS|ALLOWREBREATH|BLOCKGASEFFECT
+	flags_inventory = COVEREYES|STOPSPRESSUREDAMAGE|ALLOWINTERNALS|ALLOWREBREATH|BLOCKGASEFFECT
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDELOWHAIR
 	filtered_gases = list("phoron", "sleeping_agent", "carbon_dioxide")
 	gas_filter_strength = 3

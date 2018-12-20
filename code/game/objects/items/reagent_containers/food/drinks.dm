@@ -26,7 +26,7 @@
 		to_chat(user, "<span class='warning'>[src] is empty!</span>")
 		return FALSE
 
-	if(!canconsume(mob/user, mob/target)
+	if(!canconsume(user, M))
 		return
 
 	if(M == user)

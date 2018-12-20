@@ -9,5 +9,8 @@
 		return FALSE
 	return has_eyes()
 
+/mob/living/proc/has_extravision()
+	return (!has_eyes() && has_vision())
+
 /mob/living/proc/has_mouth()
 	return FALSE

@@ -14,17 +14,12 @@
 				else
 					reagents.metabolize(src, alien, can_overdose = FALSE, liverless=TRUE)
 
-	if(!(species.flags & NO_HUNGER))
-		//Nutrition decrease
-		if(stat != DEAD)
-			adjust_nutrition(-HUNGER_FACTOR)
+	//Nutrition decrease
+	if(stat != DEAD)
+		adjust_nutrition(-HUNGER_FACTOR)
 
-		if(nutrition > NUTRITION_LEVEL_WELL_FED)
-			if(overeatduration < 600) //Capped so people don't take forever to unfat
-				overeatduration++
-		else
-			if(overeatduration > 1)
-				overeatduration -= 2 //Doubled the unfat rate
+		var/chubby_rate = nutrition > NUTRITION_LEVEL_WELL_FED ? 1 : -2
+		adjust_overeating(chubby_rate)
 
 	if(!(species.flags & NO_CHEM_METABOLIZATION))
 		handle_trace_chems()

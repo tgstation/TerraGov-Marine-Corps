@@ -745,7 +745,7 @@
 	taste_description = "bitterness"
 
 /datum/reagent/lipozine/on_mob_life(mob/living/M)
-	M.overeatduration = 0
+	M.set_overeating(0)
 	if(M.nutrition > 50)
 		M.adjust_nutrition (-10)
 		if(prob(20))

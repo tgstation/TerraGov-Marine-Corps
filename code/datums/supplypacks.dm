@@ -51,7 +51,7 @@ OPERATIONS
 					/obj/item/weapon/gun/pistol/b92fs/M9,
 					/obj/item/ammo_magazine/pistol/b92fstranq,
 					/obj/item/clothing/under/syndicate/combat,
-					/obj/item/clothing/mask/gas/swat,
+					/obj/item/clothing/mask/gas/marine/swat,
 					/obj/item/clothing/tie/storage/black_vest
 					)
 	cost = RO_PRICE_NORMAL

@@ -18,10 +18,14 @@
 /mob/living/proc/getarmor(var/def_zone, var/type)
 	return 0
 
-/mob/living/proc/is_mouth_covered(check_head = TRUE, check_mask = TRUE)
+/mob/living/proc/is_mouth_covered(check_head = TRUE, check_mask = TRUE, check_limb = FALSE)
+	if(check_limb && !has_mouth())
+		return TRUE
 	return FALSE
 
-/mob/living/proc/are_eyes_covered(check_glasses = TRUE, check_head = TRUE, check_mask = TRUE)
+/mob/living/proc/are_eyes_covered(check_glasses = TRUE, check_head = TRUE, check_mask = TRUE, check_limb = FALSE)
+	if(check_limb && !has_eyes())
+		return TRUE
 	return FALSE
 
 //Handles the effects of "stun" weapons

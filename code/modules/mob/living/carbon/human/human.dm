@@ -1567,7 +1567,7 @@
 		return TRUE
 	else if(eye_blind == 1)
 		adjust_blindness(-1)
-	if(tinttotal == 2)
+	if(tinttotal == 2 && !has_extravision())
 		overlay_fullscreen("tint", /obj/screen/fullscreen/impaired, 2)
 		return TRUE
 	else

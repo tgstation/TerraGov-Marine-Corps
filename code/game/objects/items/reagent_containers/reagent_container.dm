@@ -45,22 +45,26 @@
 	else
 		. = "No reagents"
 
-/obj/item/reagent_container/proc/canconsume(mob/user, mob/eater) // This goes into attack
+/obj/item/reagent_container/attack(mob/M, mob/user, def_zone)
+	if(user.a_intent == "harm")
+		return ..()
+
+/obj/item/reagent_container/proc/canconsume(mob/user, mob/living/eater) // This goes into attack
 
 	if(!iscarbon(eater))
 		return FALSE
 
 	var/mob/living/carbon/C = eater
-		var/covered = ""
-		if(C.is_mouth_covered(check_mask = FALSE))
-			covered = "headgear"
-		else if(C.is_mouth_covered(check_head = FALSE))
-			covered = "mask"
-		if(covered)
-			var/who = (isnull(user) || eater == user) ? "your" : "their"
-			to_chat(user, "<span class='warning'>You have to remove [who] [covered] first!</span>")
-			return FALSE
-		if(!target.has_mouth)
-			to_chat(user, "Where do you intend to put [src]? [target == user ? "You don't" : "[target] doesn't"] have a mouth!")
-			return FALSE
-		return TRUE
+	var/covered = ""
+	if(C.is_mouth_covered(check_mask = FALSE))
+		covered = "headgear"
+	else if(C.is_mouth_covered(check_head = FALSE))
+		covered = "mask"
+	if(covered)
+		var/who = (isnull(user) || eater == user) ? "your" : "their"
+		to_chat(user, "<span class='warning'>You have to remove [who] [covered] first!</span>")
+		return FALSE
+	if(!eater.has_mouth())
+		to_chat(user, "Where do you intend to put [src]? [eater == user ? "You don't" : "[eater] doesn't"] have a mouth!")
+		return FALSE
+	return TRUE

@@ -72,7 +72,7 @@
 	var/is_floating = 0
 	var/floatiness = 0
 	var/charges = 0.0
-	var/nutrition = 400 //Carbon
+	var/nutrition = NUTRITION_LEVEL_DEFAULT //Carbon
 
 	var/specset //Simple way to track which set has the player taken
 

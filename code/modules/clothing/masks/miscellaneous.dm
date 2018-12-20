@@ -50,7 +50,6 @@
 	desc = "A blue neck scarf."
 	icon_state = "blueneckscarf"
 	item_state = "blueneckscarf"
-	flags_inventory = COVERMOUTH
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 
@@ -59,7 +58,6 @@
 	desc = "A red and white checkered neck scarf."
 	icon_state = "redwhite_scarf"
 	item_state = "redwhite_scarf"
-	flags_inventory = COVERMOUTH
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 
@@ -68,7 +66,6 @@
 	desc = "A green neck scarf."
 	icon_state = "green_scarf"
 	item_state = "green_scarf"
-	flags_inventory = COVERMOUTH
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 
@@ -77,7 +74,6 @@
 	desc = "A stealthy, dark scarf."
 	icon_state = "ninja_scarf"
 	item_state = "ninja_scarf"
-	flags_inventory = COVERMOUTH
 	w_class = 2
 	gas_transfer_coefficient = 0.90
 	siemens_coefficient = 0
@@ -87,7 +83,7 @@
 	desc = "A rubber pig mask."
 	icon_state = "pig"
 	item_state = "pig"
-	flags_inventory = COVERMOUTH|COVEREYES
+	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEFACE|HIDEALLHAIR|HIDEEYES|HIDEEARS
 	w_class = 2
 	siemens_coefficient = 0.9
@@ -98,7 +94,7 @@
 	desc = "A mask made of soft vinyl and latex, representing the head of a horse."
 	icon_state = "horsehead"
 	item_state = "horsehead"
-	flags_inventory = COVERMOUTH|COVEREYES
+	flags_inventory = COVEREYES
 	flags_inv_hide = HIDEFACE|HIDEALLHAIR|HIDEEYES|HIDEEARS
 	flags_armor_protection = HEAD|FACE|EYES
 	w_class = 2

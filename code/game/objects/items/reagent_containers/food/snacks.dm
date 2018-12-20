@@ -50,7 +50,7 @@
 	return
 
 /obj/item/reagent_container/food/snacks/attack(mob/M, mob/user, def_zone)
-	if(a_intent = "harm")
+	if(user.a_intent == "harm")
 		return ..()
 
 	if(!reagents.total_volume)						//Shouldn't be needed but it checks to see if it has anything left in it.
@@ -59,17 +59,18 @@
 		qdel(src)
 		return FALSE
 
-	if(!canconsume(mob/user, mob/target)
-		return
-
 	if(package)
 		to_chat(M, "<span class='warning'>How does one expect to eat this with the package still on?</span>")
+		return FALSE
+
+	if(!canconsume(user, M))
 		return FALSE
 
 	if(istype(M, /mob/living/carbon))
 		var/fullness = M.nutrition + 10
 		for(var/datum/reagent/consumable/C in M.reagents.reagent_list) //we add the nutrition value of what we're currently digesting
-			fullness += C.nutriment_factor * C.volume / C.metabolization_rate
+			fullness += C.nutriment_factor * C.volume / C.custom_metabolism
+		if(M == user)
 			if (fullness <= 60)
 				to_chat(M, "<span class='warning'>You hungrily chew out a piece of [src] and gobble it!</span>")
 			if (fullness > 60 && fullness <= 150)
@@ -82,9 +83,8 @@
 				to_chat(M, "<span class='warning'>You cannot force any more of [src] to go down your throat.</span>")
 				return FALSE
 		else
-
 			if (fullness <= (550 * (1 + M.overeatduration / 1000)))
-				user.visible_message("<span class='warning'>[user] attempts to feed [M] [src].</span>", "<span class='warning'>You attempt to feed [M] [src].</span>", null, 5)
+				M.visible_message("<span class='warning'>[user] attempts to feed [M] [src].</span>", "<span class='danger'>[user] attempts to feed you [src].</span>", null, 5)
 			else
 				user.visible_message("<span class='warning'>[user] cannot force anymore of [src] down [M]'s throat.</span>", "<span class='warning'>You cannot force anymore of [src] down [M]'s throat.</span>", null, 5)
 				return FALSE

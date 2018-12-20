@@ -160,59 +160,55 @@
 
 /datum/reagent/consumable/capsaicin/condensed/reaction_mob(mob/living/M, method=TOUCH, volume)
 	if(method in list(TOUCH, VAPOR, PATCH))
-		if(istype(M, /mob/living/carbon/human))
+		if(!M.has_eyes() && !M.has_mouth())
+			if(prob(5))
+				to_chat(M, "<span class='italics'>You sense something spicy in the air for a moment...</span>")
+			return
+		if(ishuman(M))
 			var/mob/living/carbon/human/victim = M
-			var/mouth_covered = 0
-			var/eyes_covered = 0
+			var/mouth_covered = FALSE
+			var/eyes_covered = FALSE
 			var/obj/item/safe_thing = null
-			if( victim.wear_mask )
-				if( victim.wear_mask.flags_inventory & COVEREYES )
-					eyes_covered = 1
-					safe_thing = victim.wear_mask
-				if( victim.wear_mask.flags_inventory & COVERMOUTH )
-					mouth_covered = 1
-					safe_thing = victim.wear_mask
-			if( victim.head )
-				if( victim.head.flags_inventory & COVEREYES )
-					eyes_covered = 1
-					safe_thing = victim.head
-				if( victim.head.flags_inventory & COVERMOUTH )
-					mouth_covered = 1
-					safe_thing = victim.head
-			if(victim.glasses)
-				eyes_covered = 1
-				if( !safe_thing )
-					safe_thing = victim.glasses
-			if( eyes_covered && mouth_covered )
+			if(victim.are_eyes_covered(check_mask = FALSE, check_head = FALSE))
+				eyes_covered = TRUE
+				safe_thing = victim.glasses
+			if(victim.are_eyes_covered(check_head = FALSE, check_eyes = FALSE))
+				eyes_covered = TRUE
+				safe_thing = victim.wear_mask
+			if(victim.is_mouth_covered(check_head = FALSE))
+				mouth_covered = TRUE
+				safe_thing = victim.wear_mask
+			if(victim.are_eyes_covered(check_mask = FALSE, check_eyes = FALSE))
+				eyes_covered = TRUE
+				safe_thing = victim.head
+			if(victim.is_mouth_covered(check_mask = FALSE))
+				mouth_covered = TRUE
+				safe_thing = victim.head
+			if(eyes_covered && mouth_covered)
 				to_chat(victim, "<span class='danger'>Your [safe_thing.name] protects you from the pepperspray!</span>")
 				return
-			else if( mouth_covered )	// Reduced effects if partially protected
+			if(mouth_covered)	// Reduced effects if partially protected
 				to_chat(victim, "<span class='danger'>Your [safe_thing] protect your face from the pepperspray!</span>")
 				victim.blur_eyes(15)
 				victim.blind_eyes(5)
 				victim.Stun(5)
 				victim.KnockDown(5)
-				//victim.KnockOut(10)
-				//victim.drop_held_item()
 				return
-			else if( eyes_covered ) // Mouth cover is better than eye cover, except it's actually the opposite.
+			if(eyes_covered) // Mouth cover is better than eye cover, except it's actually the opposite.
 				to_chat(victim, "<span class='danger'>Your [safe_thing] protects you from most of the pepperspray!</span>")
-				if(!(victim.species && (victim.species.flags & NO_PAIN)))
+				if(!(victim.species?.flags & NO_PAIN))
 					if(prob(10))
 						victim.Stun(1)
 				victim.blur_eyes(5)
 				return
-			else // Oh dear :D
-				if(!(victim.species && (victim.species.flags & NO_PAIN)))
-					if(prob(10))
-						victim.emote("scream")
-				to_chat(victim, "<span class='danger'>You're sprayed directly in the eyes with pepperspray!</span>")
-				victim.blur_eyes(25)
-				victim.blind_eyes(10)
-				victim.Stun(5)
-				victim.KnockDown(5)
-				//victim.KnockOut(10)
-				//victim.drop_held_item()
+			if(!(victim.species?.flags & NO_PAIN))
+				if(prob(10))
+					victim.emote("scream")
+			to_chat(victim, "<span class='danger'>You're sprayed directly in the eyes with pepperspray!</span>")
+			victim.blur_eyes(25)
+			victim.blind_eyes(10)
+			victim.Stun(5)
+			victim.KnockDown(5)
 
 
 /datum/reagent/consumable/frostoil

@@ -67,9 +67,9 @@
 /mob/living/proc/handle_impaired_vision()
 	//Eyes
 	if(eye_blind)
-		adjust_blindness(-1)
+		adjust_blindness(-1, TRUE)
 	if(eye_blurry)			//blurry eyes heal slowly
-		adjust_blurriness(-1)
+		adjust_blurriness(-1, TRUE)
 
 
 /mob/living/proc/handle_impaired_hearing()
@@ -317,14 +317,14 @@
 /mob/living/carbon/human/ignore_pull_delay()
 	return has_species(src,"Yautja") //Predators aren't slowed when pulling their prey.
 
-/mob/living/proc/can_inject()
-	return TRUE
+/mob/living/proc/can_inject(mob/user)
+	return FALSE
 
-/mob/living/is_injectable(allowmobs = TRUE)
-	return (allowmobs && reagents && can_inject())
+/mob/living/is_injectable(allowmobs = TRUE, mob/user)
+	return (allowmobs && reagents && can_inject(user))
 
-/mob/living/is_drawable(allowmobs = TRUE)
-	return (allowmobs && reagents && can_inject())
+/mob/living/is_drawable(allowmobs = TRUE, mob/user)
+	return (allowmobs && reagents && can_inject(user))
 
 /mob/living/Bump(atom/movable/AM, yes)
 	if(buckled || !yes || now_pushing)

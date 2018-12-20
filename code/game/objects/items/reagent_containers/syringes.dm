@@ -21,6 +21,12 @@
 	sharp = IS_SHARP_ITEM_SIMPLE
 	var/mode = SYRINGE_DRAW
 
+/obj/item/reagent_container/syringe/New()
+	. = ..()
+	if(list_reagents) //syringe starts in inject mode if its already got something inside
+		mode = SYRINGE_INJECT
+		update_icon()
+
 /obj/item/reagent_container/syringe/on_reagent_change()
 	update_icon()
 
@@ -84,8 +90,8 @@
 		injection_time = max(5, 50 - 10*user.mind.cm_skills.medical)
 
 	if(isliving(target))
-		mob/living/L = target
-		if(!can_inject(user))
+		var/mob/living/L = target
+		if(!L.can_inject(user, TRUE))
 			return
 
 	switch(mode)
@@ -95,19 +101,22 @@
 				to_chat(user, "<span class='warning'>The syringe is full.</span>")
 				return
 
-			if(isliving(target))//Blood!
-				if(iscarbon(target))//maybe just add a blood reagent to all mobs. Then you can suck them dry...With hundreds of syringes. Jolly good idea.
-					var/amount = src.reagents.maximum_volume - src.reagents.total_volume
-					var/mob/living/carbon/T = target
-					if(T.get_blood_id() && reagents.has_reagent(T.get_blood_id()))
-						to_chat(user, "<span class='warning'>There is already a blood sample in this syringe.</span>")
-						return
-					if(!T.take_blood(src,amount, user))
-						return
+			if(iscarbon(target))//Blood!
+				var/mob/living/carbon/C = target
+				var/amount = src.reagents.maximum_volume - src.reagents.total_volume
+				if(C.get_blood_id() && reagents.has_reagent(C.get_blood_id()))
+					to_chat(user, "<span class='warning'>There is already a blood sample in this syringe.</span>")
+					return
+				user.visible_message("<span class='warning'>[user] is trying to take a blood sample from [target]!</span>", \
+					"<span class='danger'>You start trying to take a blood sample from [target]...</span>")
+				if(!do_mob(user, target, injection_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
+					return
+				if(!C.take_blood(src, amount, user))
+					return
 
-					on_reagent_change()
-					reagents.handle_reactions()
-					user.visible_message("<span clas='warning'>[user] takes a blood sample from [target].</span>",
+				on_reagent_change()
+				reagents.handle_reactions()
+				user.visible_message("<span clas='warning'>[user] takes a blood sample from [target].</span>",
 										"<span class='notice'>You take a blood sample from [target].</span>", null, 4)
 
 			else //if not mob
@@ -140,42 +149,20 @@
 				to_chat(user, "<span class='warning'>[target] is full.</span>")
 				return
 
-			if(ismob(target))
-				if(target != user)
-
-					if(ishuman(target))
-
-						var/mob/living/carbon/human/H = target
-						if(H.wear_suit)
-							if(istype(H.wear_suit,/obj/item/clothing/suit/space))
-								injection_time = 60
-							else if(!H.can_inject(user, 1))
-								return
-
-					else if(isliving(target))
-
-						var/mob/living/M = target
-						if(!M.can_inject(user, 1))
-							return
-
-					if(injection_time != 60)
-						user.visible_message("<span class='danger'>[user] is trying to inject [target]!</span>")
-					else
-						user.visible_message("<span class='danger'>[user] begins hunting for an injection port on [target]'s suit!</span>")
-
+			if(isliving(target))
+				var/mob/living/M = target
+				if(M != user)
+					user.visible_message("<span class='danger'>[user] is trying to inject [target]!</span>", "<span class='notice'>You start trying to inject [target]...</span>", null, 5)
 					if(!do_mob(user, target, injection_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 						return
+					user.visible_message("<span class='warning'>[user] injects [target] with the syringe!</span>", "<span class='notice'>You inject [target] with [src]!</span>", null, 5)
 
-					user.visible_message("<span class='warning'>[user] injects [target] with the syringe!</span>")
-
-					if(istype(target,/mob/living))
-						var/mob/living/M = target
-						var/list/injected = list()
-						for(var/datum/reagent/R in reagents.reagent_list)
-							injected += R.name
-						var/contained = english_list(injected)
-						log_combat(user, M, "injected", src, "Reagents: [contained]")
-						msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) injected [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)])")
+					var/list/injected = list()
+					for(var/datum/reagent/R in reagents.reagent_list)
+						injected += R.name
+					var/contained = english_list(injected)
+					log_combat(user, M, "injected", src, "Reagents: [contained]")
+					msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) injected [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)])")
 
 				reagents.reaction(target, INJECT)
 
@@ -187,7 +174,7 @@
 			else
 				trans = reagents.trans_to(target, amount_per_transfer_from_this)
 
-			to_chat(user, "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>")
+			to_chat(user, "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [reagents.total_volume] units.</span>")
 			if (reagents.total_volume <= 0 && mode==SYRINGE_INJECT)
 				mode = SYRINGE_DRAW
 				update_icon()
@@ -220,37 +207,37 @@
 		overlays += filling
 
 
-/obj/item/reagent_container/syringe/proc/syringestab(mob/living/carbon/target as mob, mob/living/carbon/user as mob)
+/obj/item/reagent_container/syringe/proc/syringestab(mob/living/target as mob, mob/living/carbon/user as mob)
 
 	log_combat(user, target, "attacked", src, "(INTENT: [uppertext(user.a_intent)])")
 	msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) attacked [key_name(target)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[target]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[target]'>FLW</a>) with [src.name] (INTENT: [uppertext(user.a_intent)])")
 
+	var/target_zone = ran_zone(check_zone(user.zone_selected, target))
+	if(!target_zone)
+		user.visible_message("<span class='danger'>[user] tries to stab [target] with [src], but misses!",
+							"<span class='danger'>You try to stab [target] with [src], but miss!</span>", null, 5)
+	var/hit_area
+	var/datum/limb/affecting
 	if(ishuman(target))
-
-		var/target_zone = ran_zone(check_zone(user.zone_selected, target))
-		var/datum/limb/affecting = target.get_limb(target_zone)
-
-		if (!affecting)
-			return
+		var/mob/living/carbon/human/H = target
+		affecting = H.get_limb(target_zone)
 		if(affecting.status & LIMB_DESTROYED)
 			to_chat(user, "What [affecting.display_name]?")
 			return
-		var/hit_area = affecting.display_name
-
-		var/mob/living/carbon/human/H = target
+		hit_area = affecting.display_name
 		if((user != target) && H.check_shields(3, "the [name]"))
 			return
 
 	var/malpractice = target.getarmor(target_zone, "melee")
-	if ((target != user && prob(malpractice > 5 ? malpractice + 30 : 0)) || !can_inject(user, null))
-		user.visible_message("<span class='danger'>[user] tries to stab [target] in [hit_area] with [src], but the attack is deflected by armor!</span>",
-							"<span class='danger'>You try to stab [target] in [hit_area] with [src], but the attack is deflected by armor!</span>", null, 5)
+	if ((target != user && prob(malpractice > 5 ? malpractice + 30 : 0)) || !target.can_inject(user))
+		user.visible_message("<span class='danger'>[user] tries to stab [target] [hit_area ? "in [hit_area]" : ""] with [src], but the attack is deflected by armor!</span>",
+							"<span class='danger'>You try to stab [target] in [hit_area ? "in [hit_area]" : ""] with [src], but the attack is deflected by armor!</span>", null, 5)
 		user.temp_drop_inv_item(src)
 		qdel(src)
 		return
 
-	user.visible_message("<span class='danger'>[user] stabs [target] in [hit_area] with [src]!</span>",
-						"<span class='warning'>You stab [target] in [hit_area] with [src]!</span>", null, 5)
+	user.visible_message("<span class='danger'>[user] stabs [target] in [hit_area ? "in [hit_area]" : ""] with [src]!</span>",
+						"<span class='warning'>You stab [target] in [hit_area ? "in [hit_area]" : ""] with [src]!</span>", null, 5)
 
 	if(ishuman(target))
 		affecting.take_damage(3)
@@ -320,24 +307,25 @@
 				to_chat(user, "<span class='warning'>[target] is full.</span>")
 				return
 
-			if(ismob(target) && target != user)
+			var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
+			if(isliving(target))
+				var/mob/living/L = target
+				if(!L.can_inject(user, TRUE))
+					return
 				user.visible_message("<span class='danger'>[user] is trying to inject [target] with [src]!</span>")
 				if(!do_mob(user, target, 300, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL))
 					return
-				if(!can_inject(user))
-					return
 				user.visible_message("<span class='warning'>[user] injects [target] with [src]!</span>")
-				var/trans = reagents.trans_to(target, amount_per_transfer_from_this)
 				if(iscarbon(target) && locate(/datum/reagent/blood) in reagents.reagent_list)
-					var/mob/living/carbon/C = target
-					inject_blood(src, amount_per_transfer_from_this)
-				else
-					reagents.reaction(target, INJECT)
-					trans = reagents.trans_to(target, amount_per_transfer_from_this)
-				to_chat(user, "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [src.reagents.total_volume] units.</span>")
-				if (reagents.total_volume >= reagents.maximum_volume && mode==SYRINGE_INJECT)
-					mode = SYRINGE_DRAW
-					update_icon()
+					var/mob/living/carbon/C = L
+					C.inject_blood(src, amount_per_transfer_from_this)
+			else
+				reagents.reaction(target, INJECT)
+				trans = reagents.trans_to(target, amount_per_transfer_from_this)
+			to_chat(user, "<span class='notice'>You inject [trans] units of the solution. The syringe now contains [reagents.total_volume] units.</span>")
+			if (reagents.total_volume >= reagents.maximum_volume && mode==SYRINGE_INJECT)
+				mode = SYRINGE_DRAW
+				update_icon()
 	return
 
 
@@ -367,55 +355,25 @@
 	desc = "Contains inaprovaline - used to stabilize patients."
 	list_reagents = list("inaprovaline" = 15)
 
-/obj/item/reagent_container/syringe/inaprovaline/New()
-	. = ..()
-	mode = SYRINGE_INJECT
-	update_icon()
-
 /obj/item/reagent_container/syringe/dylovene
 	name = "syringe (dylovene)"
 	desc = "Contains anti-toxins."
 	list_reagents = list("dylovene" = 15)
-
-/obj/item/reagent_container/syringe/dylovene/New()
-	. = ..()
-	mode = SYRINGE_INJECT
-	update_icon()
 
 /obj/item/reagent_container/syringe/antiviral
 	name = "syringe (spaceacillin)"
 	desc = "Contains antiviral agents. Can also be used to treat infected wounds."
 	list_reagents = list("spaceacillin" = 15)
 
-/obj/item/reagent_container/syringe/antiviral/New()
-	. = ..()
-	mode = SYRINGE_INJECT
-	update_icon()
-
 /obj/item/reagent_container/syringe/drugs
 	name = "syringe (drugs)"
 	desc = "Contains aggressive drugs meant for torture."
 	list_reagents = list("space_drugs" = 5, "mindbreaker" = 5, "cryptobiolin" = 5)
 
-/obj/item/reagent_container/syringe/drugs/New()
-	. = ..()
-	mode = SYRINGE_INJECT
-	update_icon()
-
 /obj/item/reagent_container/syringe/ld50_syringe/choral
 	list_reagents = list("chloralhydrate" = 50)
-
-/obj/item/reagent_container/syringe/ld50_syringe/choral/New()
-	. = ..()
-	mode = SYRINGE_INJECT
-	update_icon()
 
 /obj/item/reagent_container/syringe/mixed
 	name = "syringe (mixed)"
 	desc = "Contains inaprovaline & dylovene."
 	list_reagents = list("inaprovaline" = 7, "dylovene" = 8)
-
-/obj/item/reagent_container/syringe/mixed/New()
-	. = ..()
-	mode = SYRINGE_INJECT
-	update_icon()

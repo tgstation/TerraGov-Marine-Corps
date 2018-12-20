@@ -191,13 +191,14 @@
 	w_class = 3.0
 	attack_verb = list("bashed", "battered", "bludgeoned", "thrashed", "whacked") //I think the rollingpin attackby will end up ignoring this anyway.
 
-/obj/item/tool/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
-	if ((CLUMSY in user.mutations) && prob(50))
+/obj/item/tool/kitchen/rollingpin/attack(mob/living/M, mob/living/user, def_zone)
+	if((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, "\red The [src] slips out of your hand and hits your head.")
 		user.take_limb_damage(10)
 		user.KnockOut(2)
 		return
 
+	..()
 
 	log_combat(user, M, "attacked", src)
 	msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) used the [src.name] to attack [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>)")
@@ -206,25 +207,17 @@
 	if (t == "head")
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			var/obj/item/head_protection = H.head
-			if (H.stat < 2 && H.health < 50 && prob(90))
-				if(ishuman(M))
-					var/masterchef = target.getarmor(target_zone, "melee")
-						if(prob(masterchef > 5 : masterchef + 30 : 0))
-							to_chat(M, "<span class = 'warning'>Your armor protects you from the blow to the head!</span>")
-							return
+			if (H.stat != DEAD && H.health < 50 && prob(90) && (ishuman(M) || ismonkey(M)) && def_zone == "head")
+				var/masterchef = M.getarmor(def_zone, "melee")
+				if(prob(masterchef > 5 ? masterchef + 30 : 0))
+					to_chat(M, "<span class = 'warning'>Your armor protects you from the blow to the head!</span>")
+					return
 				var/time = rand(2, 6)
 				if (prob(75))
 					H.KnockOut(time)
 				else
-					H.Stun(time)
-				if(H.stat != 2)	H.stat = 1
-				user.visible_message("\red <B>[H] has been knocked unconscious!</B>", "\red <B>You knock [H] unconscious!</B>")
-				return
-			else
-				H.visible_message("\red [user] tried to knock [H] unconscious!", "\red [user] tried to knock you unconscious!")
-				H.blur_eyes(3)
-	return ..()
+					H.KnockDown(time)
+				user.visible_message("<span class='danger'>[H] has been knocked down!</span>", "<span class='danger'>You knock [H] down!</B>", null, 5)
 
 /*
  * Trays - Agouri

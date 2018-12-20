@@ -5,7 +5,7 @@
 	desc = "A hood that protects the head and face from biological comtaminants."
 	permeability_coefficient = 0.01
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 100, rad = 20)
-	flags_inventory = COVEREYES|COVERMOUTH
+	flags_inventory = COVEREYES|COVERMOUTH|THICKMATERIAL
 	flags_inv_hide = HIDEFACE|HIDEMASK|HIDEEARS|HIDEALLHAIR
 	flags_armor_protection = HEAD|FACE|EYES
 	siemens_coefficient = 0.9
@@ -18,6 +18,7 @@
 	w_class = 4//bulky item
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
+	flags_inventory = THICKMATERIAL
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	slowdown = 1.0
 	allowed = list(/obj/item/tank/emergency_oxygen,/obj/item/tool/pen,/obj/item/device/flashlight/pen)

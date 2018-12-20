@@ -243,7 +243,7 @@ proc/trigger_armed_response_team(var/force = 0)
 	equip_to_slot_or_del(new /obj/item/device/flashlight(src), WEAR_L_STORE)
 	equip_to_slot_or_del(new /obj/item/clipboard(src), WEAR_R_STORE)
 	equip_to_slot_or_del(new /obj/item/weapon/gun/energy/gun(src), WEAR_WAIST)
-	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/swat(src), WEAR_FACE)
+	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/marine/swat(src), WEAR_FACE)
 
 	//Glasses
 	equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(src), WEAR_EYES)

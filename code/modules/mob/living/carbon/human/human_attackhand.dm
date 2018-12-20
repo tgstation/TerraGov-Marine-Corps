@@ -48,29 +48,35 @@
 				return 1
 //			if(M.health < -75)	return 0
 
-			if((M.head && (M.head.flags_inventory & COVERMOUTH)) || (M.wear_mask && (M.wear_mask.flags_inventory & COVERMOUTH)))
-				to_chat(M, "\blue <B>Remove your mask!</B>")
-				return 0
-			if((head && (head.flags_inventory & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
-				to_chat(M, "\blue <B>Remove his mask!</B>")
-				return 0
+			if(M.is_mouth_covered(check_mask = FALSE))
+				to_chat(M, "<span class='boldnotice'>Remove your headgear first!</B>")
+				return FALSE
+			if(M.is_mouth_covered(check_head = FALSE))
+				to_chat(M, "<span class='boldnotice'>Remove your mask first!</B>")
+				return FALSE
+			if(is_mouth_covered(check_mask = FALSE))
+				to_chat(M, "<span class='boldnotice'>Remove their headgear first!</B>")
+				return FALSE
+			if(is_mouth_covered(check_head = FALSE))
+				to_chat(M, "<span class='boldnotice'>Remove their mask first!</B>")
+				return FALSE
 
 			//CPR
 			if(M.action_busy)
-				return 1
-			M.visible_message("\red <B>[M] is trying perform CPR on [src]!</B>", null, null, 4)
+				return TRUE
+			M.visible_message("<span class='notice'>[M] is trying to perform CPR on [name]!</span>", \
+							"<span class='notice'>You try to perform CPR on [name]... Hold still!</span>", null, 5)
 
 			if(do_mob(M, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_MEDICAL))
 				if(health > config.health_threshold_dead && health < config.health_threshold_crit)
 					var/suff = min(getOxyLoss(), 5) //Pre-merge level, less healing, more prevention of dieing.
 					adjustOxyLoss(-suff)
 					updatehealth()
-					visible_message("\red [M] performs CPR on [src]!", null, null, 3)
-					to_chat(src, "\blue <b>You feel a breath of fresh air enter your lungs. It feels good.</b>")
-					to_chat(M, "\red Repeat at least every 7 seconds.")
+					M.visible_message("[M] performs CPR on [name]!", "<span class='notice'>You perform CPR on [name].</span>")
+					to_chat(src, "<span class='boldnotice'>You feel a breath of fresh air enter your lungs... It feels good...</span>")
 
 
-			return 1
+			return TRUE
 
 		if("grab")
 			if(M == src || anchored)
