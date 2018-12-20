@@ -81,5 +81,7 @@
 //Define flamer
 #define M240T_WATER_AMOUNT 			reagents.get_reagent_amount("water")
 
+//Define lasgun
 #define M37_STANDARD_AMMO_COST			20
-#define M37_OVERCHARGE_AMMO_COST		40
+#define M37_OVERCHARGE_AMMO_COST		80
+#define M37_OVERCHARGE_FIRE_DELAY		10

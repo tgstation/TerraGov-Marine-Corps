@@ -6,12 +6,10 @@
 	attachable_allowed = list()
 	var/obj/item/cell/cell //1000 power.
 	var/charge_cost = 10 //100 shots.
-	var/cell_type = /obj/item/cell
 
 /obj/item/weapon/gun/energy/New()
 	. = ..()
-	if(cell_type)
-		cell = new cell_type(src)
+	cell = new /obj/item/cell(src)
 
 /obj/item/weapon/gun/energy/able_to_fire(mob/living/user)
 	. = ..()
@@ -75,7 +73,10 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
-	cell_type = /obj/item/cell/high
+
+/obj/item/weapon/gun/energy/taser/New()
+	. = ..()
+	cell = new /obj/item/cell/high(src)
 
 /obj/item/weapon/gun/energy/taser/set_gun_config_values()
 	fire_delay = config.high_fire_delay * 2
@@ -114,7 +115,10 @@
 	w_class = 5
 	charge_cost = 100
 	flags_gun_features = GUN_UNUSUAL_DESIGN
-	cell_type = /obj/item/cell/high
+
+/obj/item/weapon/gun/energy/plasmarifle/New()
+	. = ..()
+	cell = new /obj/item/cell/high(src)
 
 /obj/item/weapon/gun/energy/plasmarifle/set_gun_config_values()
 	fire_delay = config.high_fire_delay*2
@@ -333,6 +337,8 @@
 
 //Toggles Overcharge mode. Overcharge mode significantly increases damage and AP in exchange for doubled ammo usage and increased fire delay.
 /obj/item/weapon/gun/energy/lasgun/proc/toggle_chargemode(mob/user)
+	//if(in_chamber)
+	//	delete_bullet(in_chamber, TRUE)
 	if(overcharge == FALSE)
 		if(!cell)
 			playsound(user, 'sound/machines/buzz-two.ogg', 15, 0, 2)
@@ -346,7 +352,8 @@
 		playsound(user, 'sound/weapons/emitter.ogg', 15, 0, 2)
 		charge_cost = M37_OVERCHARGE_AMMO_COST
 		ammo = ammo_list[/datum/ammo/energy/lasgun/M43/overcharge]
-		fire_delay = config.med_fire_delay * 2 // 1 shot per second fire rate
+		damage_falloff_mult = config.low_damage_falloff_mult
+		fire_delay = M37_OVERCHARGE_FIRE_DELAY // 1 shot per second fire rate
 		fire_sound = 'sound/weapons/Laser3.ogg'
 		to_chat(user, "\icon[src] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = TRUE
@@ -358,6 +365,8 @@
 		fire_sound = 'sound/weapons/Laser.ogg'
 		to_chat(user, "\icon[src] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
 		overcharge = FALSE
+
+	//load_into_chamber()
 
 	if(user)
 		var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
@@ -371,6 +380,27 @@
 	in_chamber = create_bullet(ammo)
 	update_icon(user)
 	return in_chamber
+
+/obj/item/weapon/gun/energy/lasgun/reload_into_chamber(mob/user)
+	/*
+	ATTACHMENT POST PROCESSING
+	This should only apply to the masterkey, since it's the only attachment that shoots through Fire()
+	instead of its own thing through fire_attachment(). If any other bullet attachments are added, they would fire here.
+	*/
+	if(active_attachable)
+		make_casing(active_attachable.type_of_casings) // Attachables can drop their own casings.
+
+	if(!active_attachable) //We don't need to check for the mag if an attachment was used to shoot.
+		if(cell) //If there is no mag, we can't reload.
+			if(overcharge && cell.charge < M37_OVERCHARGE_AMMO_COST && cell.charge >= M37_STANDARD_AMMO_COST) //Revert to standard shot if we don't have enough juice for overcharge, but enough for the standard mode
+				toggle_chargemode(user)
+				return
+			if(cell.charge <= 0 && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
+				unload(user,1,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
+				playsound(src, empty_sound, 25, 1)
+
+	return TRUE
+
 
 //Ammo/Charge functions
 /obj/item/weapon/gun/energy/lasgun/update_icon(mob/user)
@@ -452,23 +482,21 @@
 		else
 			replace_magazine(user, new_cell)
 	else
-		cell = new_cell
-		new_cell.loc = src
-		if(!in_chamber)
-			load_into_chamber()
-
-	update_icon(user)
+		replace_magazine(null, new_cell)
 	return TRUE
 
 /obj/item/weapon/gun/energy/lasgun/replace_magazine(mob/user, obj/item/cell/lasgun/new_cell)
-	user.drop_inv_item_to_loc(new_cell, src) //Click!
 	cell = new_cell
-	if(!in_chamber)
-		ready_in_chamber(user)
-	user.visible_message("<span class='notice'>[user] loads [new_cell] into [src]!</span>",
-	"<span class='notice'>You load [new_cell] into [src]!</span>", null, 3)
-	if(reload_sound)
-		playsound(user, reload_sound, 25, 1, 5)
+	if(user)
+		user.drop_inv_item_to_loc(new_cell, src) //Click!
+		user.visible_message("<span class='notice'>[user] loads [new_cell] into [src]!</span>",
+		"<span class='notice'>You load [new_cell] into [src]!</span>", null, 3)
+		if(reload_sound)
+			playsound(user, reload_sound, 25, 1, 5)
+	else
+		new_cell.loc = src
+	//if(!in_chamber)
+	//	load_into_chamber()
 	update_icon()
 
 

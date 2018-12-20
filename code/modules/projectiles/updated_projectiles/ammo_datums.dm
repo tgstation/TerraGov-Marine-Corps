@@ -1065,7 +1065,7 @@
 */
 
 /datum/ammo/energy
-	ping = null //no bounce off. We can have one later.
+	ping = "ping_s"
 	sound_hit 	 	= "energy_hit"
 	sound_miss		= "energy_miss"
 	sound_bounce	= "energy_bounce"
