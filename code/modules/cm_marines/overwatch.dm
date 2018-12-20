@@ -484,7 +484,7 @@
 		return
 	var/mob/living/carbon/human/H = cam_target
 	if(istype(H) && current_squad)
-		var/obj/item/device/radio/headset/almayer/helm = H.head
+		var/obj/item/clothing/head/helmet/marine/helm = H.head
 		return helm?.camera
 	var/obj/effect/overlay/temp/laser_target/LT = cam_target
 	if(istype(LT))
