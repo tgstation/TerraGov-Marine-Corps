@@ -734,7 +734,7 @@
 			return
 	else
 		loaded_rocket.loc = src
-		replace_ammo(,loaded_rocket)
+		replace_ammo(null,loaded_rocket)
 		current_mag.current_rounds = current_mag.max_rounds
 	return TRUE
 
