@@ -452,7 +452,7 @@ WEAPONS
 	containername = "\improper explosive M40 HEDP grenades crate (WARNING)"
 	group = "Weapons"
 
-/datum/supply_packs/explosives_M40_HEDP
+/datum/supply_packs/explosives_M40_IMDP
 	name = "M40 IMDP impact grenades crate (x5)"
 	contains = list(
 					/obj/item/explosive/grenade/impact,

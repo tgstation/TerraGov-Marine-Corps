@@ -340,20 +340,18 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	if(!active)
 		turn_on(user)
 
-/obj/item/explosive/grenade/flare/on
+/obj/item/explosive/grenade/flare/on/New()
 
-	New()
-
-		..()
-		active = TRUE
-		heat_source = 1500
-		update_brightness()
-		force = FLARE_IGNITE_MELEE_DAMAGE
-		throwforce = FLARE_IGNITE_THROW_DAMAGE
-		igniting = TRUE
-		item_fire_stacks = FLARE_IGNITE_STACKS
-		damtype = "fire"
-		START_PROCESSING(SSobj, src)
+	..()
+	active = TRUE
+	heat_source = 1500
+	update_brightness()
+	force = FLARE_IGNITE_MELEE_DAMAGE
+	throwforce = FLARE_IGNITE_THROW_DAMAGE
+	igniting = TRUE
+	item_fire_stacks = FLARE_IGNITE_STACKS
+	damtype = "fire"
+	START_PROCESSING(SSobj, src)
 
 /obj/item/explosive/grenade/flare/proc/update_brightness(var/mob/user = null)
 	if(active)
