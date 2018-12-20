@@ -141,7 +141,7 @@
 
 	ticker.mode.on_distress_cooldown = TRUE
 
-	spawn(1 MINUTE)
+	spawn(1 MINUTES)
 		if(length(candidates) < mob_min)
 			message_admins("Aborting distress beacon [name], not enough candidates. Found [length(candidates)].", 1)
 			ticker.mode.waiting_for_candidates = FALSE
