@@ -28,7 +28,7 @@
 /obj/item/weapon/gun/rifle/sniper/M42A/New()
 	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a"))
 	. = ..()
-		var/obj/item/attachable/scope/S = new(src)
+	var/obj/item/attachable/scope/S = new(src)
 	S.attach_icon = "" //Let's make it invisible. The sprite already has one.
 	S.icon_state = ""
 	S.flags_attach_features &= ~ATTACH_REMOVABLE
