@@ -806,7 +806,7 @@ Defined in conflicts.dm of the #defines folder.
 	G.throw_range = max_range
 	G.launched = TRUE
 	G.activate()
-	G.throwforce += 10 + G.launchforce //Throws with signifcantly more force than a standard marine can.
+	G.throwforce += G.launchforce //Throws with signifcantly more force than a standard marine can.
 	G.throw_at(target, max_range, 3, user)
 	current_rounds--
 	loaded_grenades.Cut(1,2)

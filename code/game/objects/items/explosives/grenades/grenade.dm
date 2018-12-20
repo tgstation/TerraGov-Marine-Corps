@@ -11,7 +11,7 @@
 	flags_equip_slot = SLOT_WAIST
 	hitsound = 'sound/weapons/smash.ogg'
 	var/launched = FALSE //if launched from a UGL/grenade launcher
-	var/launchforce = 0 //bonus damage if launched from a UGL/grenade launcher
+	var/launchforce = 10 //bonus impact damage if launched from a UGL/grenade launcher
 	var/active = 0
 	var/det_time = 50
 	var/dangerous = 0		//Make an danger overlay for humans?

@@ -254,7 +254,7 @@
 /obj/item/weapon/gun/smartgun/able_to_fire(mob/living/user)
 	. = ..()
 	if(.)
-		if(!ishuman(user)) 
+		if(!ishuman(user))
 			return FALSE
 		var/mob/living/carbon/human/H = user
 		if(!istype(H.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner) || !istype(H.back,/obj/item/smartgun_powerpack))
@@ -343,7 +343,7 @@
 	throw_range = 10
 	force = 5.0
 	wield_delay = 8
-	fire_sound = 'sound/weapons/armbomb.ogg'
+	fire_sound = 'sound/weapons/gun_m92_attachable.ogg'
 	cocked_sound = 'sound/weapons/gun_m92_cocked.ogg'
 	var/list/grenades = new/list()
 	var/max_grenades = 6
@@ -363,7 +363,8 @@
 	sleep(1)
 	grenades += new /obj/item/explosive/grenade/frag(src)
 	grenades += new /obj/item/explosive/grenade/frag(src)
-	grenades += new /obj/item/explosive/grenade/incendiary(src)
+	grenades += new /obj/item/explosive/grenade/frag(src)
+	grenades += new /obj/item/explosive/grenade/frag(src)
 	grenades += new /obj/item/explosive/grenade/frag(src)
 	grenades += new /obj/item/explosive/grenade/frag(src)
 
@@ -380,7 +381,7 @@
 /obj/item/weapon/gun/launcher/m92/examine(mob/user)
 	. = ..()
 	if(grenades.len)
-		if(get_dist(user, src) > 2 && user != loc) 
+		if(get_dist(user, src) > 2 && user != loc)
 			return
 		to_chat(user, "\blue It is loaded with <b>[grenades.len] / [max_grenades]</b> grenades.")
 
@@ -390,18 +391,19 @@
 		if(grenades.len < max_grenades)
 			if(user.drop_inv_item_to_loc(I, src))
 				grenades += I
+				playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
 				to_chat(user, "<span class='info'>Now storing: [grenades.len] / [max_grenades] grenades.</span>")
 		else
 			to_chat(user, "<span class='warning'>The grenade launcher cannot hold more grenades!</span>")
 
 	else if(istype(I,/obj/item/attachable))
-		if(check_inactive_hand(user)) 
+		if(check_inactive_hand(user))
 			attach_to_gun(user,I)
 
 
 /obj/item/weapon/gun/launcher/m92/afterattack(atom/target, mob/user, flag)
-	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)	
+	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
 		if(!do_after(user, 8, TRUE, 5, BUSY_ICON_HOSTILE))
 			return
 	if(able_to_fire(user))
@@ -431,7 +433,7 @@
 		if(user)
 			user.put_in_hands(nade)
 			playsound(user, unload_sound, 25, 1)
-		else 
+		else
 			nade.loc = get_turf(src)
 		grenades -= nade
 	else
@@ -439,8 +441,7 @@
 
 
 /obj/item/weapon/gun/launcher/m92/proc/fire_grenade(atom/target, mob/user)
-	set waitfor = 0
-	playsound(user.loc, cocked_sound, 25, 1)	
+	playsound(user.loc, cocked_sound, 25, 1)
 	last_fired = world.time
 	for(var/mob/O in viewers(world.view, user))
 		O.show_message(text("<span class='danger'>[] fired a grenade!</span>", user), 1)
@@ -449,17 +450,15 @@
 	grenades -= F
 	F.loc = user.loc
 	F.throw_range = 20
-	F.throw_at(target, 20, 2, user)
 	if(F && F.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
 		message_admins("[key_name_admin(user)] fired a grenade ([F.name]) from \a ([name]).")
 		log_game("[key_name_admin(user)] used a grenade ([name]).")
-		F.icon_state = initial(F.icon_state) + "_active"
-		F.active = 1
-		F.updateicon()
+		F.launched = TRUE
+		F.det_time = min(10, F.det_time)
+		F.throwforce += F.launchforce //Throws with signifcantly more force than a standard marine can.
+		F.activate()
+		F.throw_at(target, 20, 3, user)
 		playsound(F.loc, fire_sound, 50, 1)
-		sleep(10)
-		if(F?.loc) 
-			F.prime()
 
 /obj/item/weapon/gun/launcher/m92/has_ammo_counter()
 	return TRUE
@@ -518,7 +517,7 @@
 /obj/item/weapon/gun/launcher/m81/examine(mob/user)
 	. = ..()
 	if(grenade)
-		if(get_dist(user, src) > 2 && user != loc) 
+		if(get_dist(user, src) > 2 && user != loc)
 			return
 		to_chat(user, "\blue It is loaded with a grenade.")
 
@@ -589,7 +588,7 @@
 		F.updateicon()
 		playsound(F.loc, fire_sound, 50, 1)
 		sleep(10)
-		if(F?.loc) 
+		if(F?.loc)
 			F.prime()
 
 
@@ -649,7 +648,7 @@
 
 	if(!do_after(user, delay, TRUE, 3, BUSY_ICON_HOSTILE)) //slight wind up
 		return
-		
+
 	return ..()
 
 
@@ -669,9 +668,9 @@
 
 /obj/item/weapon/gun/launcher/rocket/examine(mob/user)
 	. = ..()
-	if(current_mag.current_rounds)  
+	if(current_mag.current_rounds)
 		to_chat(user, "It's ready to rocket.")
-	else 							
+	else
 		to_chat(user, "It's empty.")
 
 
@@ -687,13 +686,13 @@
 
 /obj/item/weapon/gun/launcher/rocket/delete_bullet(obj/item/projectile/projectile_to_fire, refund = FALSE)
 	qdel(projectile_to_fire)
-	if(refund) 
+	if(refund)
 		current_mag.current_rounds++
 	return TRUE
 
 
 /obj/item/weapon/gun/launcher/rocket/reload(mob/user, obj/item/ammo_magazine/rocket)
-	if(flags_gun_features & GUN_BURST_FIRING) 
+	if(flags_gun_features & GUN_BURST_FIRING)
 		return
 
 	if(!rocket || !istype(rocket) || rocket.caliber != current_mag.caliber)
@@ -716,9 +715,9 @@
 			current_mag.current_rounds = current_mag.max_rounds
 			rocket.current_rounds = 0
 			to_chat(user, "<span class='notice'>You load [rocket] into [src].</span>")
-			if(reload_sound) 
+			if(reload_sound)
 				playsound(user, reload_sound, 25, 1)
-			else 
+			else
 				playsound(user,'sound/machines/click.ogg', 25, 1)
 		else
 			to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
@@ -733,9 +732,9 @@
 
 /obj/item/weapon/gun/launcher/rocket/unload(mob/user)
 	if(user)
-		if(!current_mag.current_rounds) 
+		if(!current_mag.current_rounds)
 			to_chat(user, "<span class='warning'>[src] is already empty!</span>")
-		else 							
+		else
 			to_chat(user, "<span class='warning'>It would be too much trouble to unload [src] now. Should have thought ahead!</span>")
 
 //Adding in the rocket backblast. The tile behind the specialist gets blasted hard enough to down and slightly wound anyone

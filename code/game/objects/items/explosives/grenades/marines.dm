@@ -249,19 +249,19 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 /obj/item/explosive/grenade/impact/prime()
 	spawn(0)
-		explosion(loc, -1, 1, 0, 2)
+		explosion(loc, -1, -1, 1, 2)
 		qdel(src)
 	return
 
 /obj/item/explosive/grenade/impact/flamer_fire_act()
 	var/turf/T = loc
 	qdel(src)
-	explosion(T, -1, 1, 0, 2)
+	explosion(T, -1, -1, 1, 2)
 
 /obj/item/explosive/grenade/impact/throw_impact(atom/hit_atom, speed)
 	. = ..()
-	if(active)
-		explosion(loc, -1, 1, 0, 2)
+	if(active) //Only contact det if active
+		explosion(loc, -1, -1, 1, 2)
 		qdel(src)
 
 

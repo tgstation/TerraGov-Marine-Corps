@@ -612,6 +612,12 @@
 	grenade_type = /obj/item/explosive/grenade/chem_grenade/teargas
 
 
+/obj/item/storage/box/nade_box/impact
+	name = "\improper M40 IMDP grenade box"
+	desc = "A secure box holding 25 M40 IMDP impact grenades. High explosive, don't store near the flamer fuel."
+	icon_state = "nade_placeholder"
+	grenade_type = /obj/item/explosive/grenade/impact
+	can_hold = list("/obj/item/explosive/grenade/impact")
 
 
 
