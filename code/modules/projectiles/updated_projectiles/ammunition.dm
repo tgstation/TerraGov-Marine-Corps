@@ -384,22 +384,23 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	if(deployed == FALSE)
 		to_chat(user, "<span class='warning'>[src] must be on the ground to be refilled.</span>")
 		return
-	if(istype(I, /obj/item/ammo_magazine))
-		var/obj/item/ammo_magazine/MG = I
-		if(!(MG.flags_magazine & AMMUNITION_REFILLABLE))
-			return
-		if(MG.default_ammo != ammo_type)
-			to_chat(user, "<span class='warning'>That's not the right kind of ammo.</span>")
-			return
-		if(MG.current_rounds != MG.max_rounds)
-			to_chat(user, "<span class='warning'>The magazine is not full!</span>")
-			return
-		if(magazine_amount == max_magazine_amount)
-			to_chat(user, "<span class='warning'>The [src] is already full.")
-			return
-		qdel(user.get_held_item())
-		magazine_amount++
-		update_icon()
+	if(!istype(I, /obj/item/ammo_magazine))
+		return
+	var/obj/item/ammo_magazine/MG = I
+	if(!(MG.flags_magazine & AMMUNITION_REFILLABLE))
+		return
+	if(MG.default_ammo != ammo_type)
+		to_chat(user, "<span class='warning'>That's not the right kind of ammo.</span>")
+		return
+	if(MG.current_rounds != MG.max_rounds)
+		to_chat(user, "<span class='warning'>The magazine is not full!</span>")
+		return
+	if(magazine_amount == max_magazine_amount)
+		to_chat(user, "<span class='warning'>The [src] is already full.")
+		return
+	qdel(user.get_held_item())
+	magazine_amount++
+	update_icon()
 
 /obj/item/ammobox/attack_hand(mob/user)
 	if(deployed == FALSE)
@@ -421,10 +422,11 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/ammobox/MouseDrop(atom/over_object)
 	if(deployed == FALSE)
 		return
-	if(istype(over_object, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = over_object
-		if(H == usr && !H.is_mob_incapacitated() && Adjacent(H) && H.put_in_hands(src))
-			icon_state = initial(icon_state)
+	if(!istype(over_object, /mob/living/carbon/human))
+		return
+	var/mob/living/carbon/human/H = over_object
+	if(H == usr && !H.is_mob_incapacitated() && Adjacent(H) && H.put_in_hands(src))
+		icon_state = initial(icon_state)
 
 
 //Deployable shotgun ammo box
