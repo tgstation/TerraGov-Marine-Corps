@@ -28,7 +28,8 @@
 
 /obj/structure/closet/bodybag/tarp
 	name = "\improper V1 thermal-dampening tarp"
-	desc = "A tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camouflage, and smell dampening."
+	bag_name = "V1 thermal-dampening tarp"
+	desc = "An active camo tarp carried by TGMC Snipers. When laying underneath the tarp, the sniper is almost indistinguishable from the landscape if utilized correctly. The tarp contains a thermal-dampening weave to hide the wearer's heat signatures, optical camouflage, and smell dampening."
 	icon = 'icons/obj/bodybag.dmi'
 	icon_state = "jungletarp_closed"
 	icon_closed = "jungletarp_closed"
@@ -37,6 +38,34 @@
 	close_sound = 'sound/effects/vegetation_walk_2.ogg'
 	item_path = /obj/item/bodybag/tarp
 	anchored = 1
+	closet_stun_delay = 0
+
+/obj/structure/closet/bodybag/tarp/close()
+	. = ..()
+	spawn(30)
+		var/mob/M = locate() in src //need to be occupied
+		if(!opened && M)
+			playsound(loc,'sound/effects/cloak_scout_on.ogg', 15, 1) //stealth mode engaged!
+			alpha = 13 //stealth mode engaged
+
+/obj/structure/closet/bodybag/tarp/open()
+	. = ..()
+	if(alpha != initial(alpha))
+		playsound(loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
+		alpha = initial(alpha) //stealth mode disengaged
+
+/obj/structure/closet/bodybag/tarp/store_mobs(var/stored_units)
+	var/list/mobs_can_store = list()
+	for(var/mob/living/carbon/human/H in loc)
+		if(H.buckled)
+			continue
+		mobs_can_store += H
+	var/mob/living/carbon/human/mob_to_store
+	if(mobs_can_store.len)
+		mob_to_store = pick(mobs_can_store)
+		mob_to_store.forceMove(src)
+		stored_units += mob_size
+	return stored_units
 
 /obj/structure/closet/bodybag/tarp/snow
 	icon_state = "snowtarp_closed"
