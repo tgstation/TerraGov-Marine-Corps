@@ -210,3 +210,8 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define RAZORWIRE_MAX_DAMAGE_MULT_MED	1.2
 #define RAZORWIRE_MIN_DAMAGE_MULT_HIGH	1.6 //pouncing into it
 #define RAZORWIRE_MAX_DAMAGE_MULT_HIGH	2.4
+
+//Hypospray
+
+#define HYPOSPRAY_INJECT_MODE_DRAW		0
+#define HYPOSPRAY_INJECT_MODE_INJECT	1

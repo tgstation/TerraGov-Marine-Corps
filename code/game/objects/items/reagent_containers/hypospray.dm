@@ -16,7 +16,7 @@
 	flags_equip_slot = SLOT_WAIST
 	w_class = 2.0
 	var/skilllock = 1
-	var/inject_mode = TRUE //TRUE for inject FALSE for drain
+	var/inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 	var/core_name = "hypospray"
 	var/label = null
 
@@ -46,56 +46,55 @@
 /obj/item/reagent_container/hypospray/attack_paw(mob/user as mob)
 	return attack_hand(user)
 
-/obj/item/reagent_container/hypospray/afterattack(obj/T, mob/living/user)
-	if(!T.reagents)
+/obj/item/reagent_container/hypospray/afterattack(atom/A, mob/living/user)
+	if(!A.reagents)
 		return
-	if(!inject_mode) //if we're draining
+	if(inject_mode == HYPOSPRAY_INJECT_MODE_DRAW) //if we're draining
 		if(reagents.holder_full())
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
 			return
 
-		if(ismob(T))//Blood!
-			if(iscarbon(T))
-				var/amount = min(src.reagents.maximum_volume - src.reagents.total_volume, amount_per_transfer_from_this)
-				var/mob/living/carbon/C = T
-				if(C.get_blood_id() && reagents.has_reagent(C.get_blood_id()))
-					to_chat(user, "<span class='warning'>There is already a blood sample in [src].</span>")
-					return
-				if(!C.dna)
-					to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
-					return
-				if(NOCLONE in C.mutations) //target done been et, no more blood in him
-					to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
-					return
-
-				if(ishuman(T))
-					var/mob/living/carbon/human/H = C
-					if(H.species.flags & NO_BLOOD)
-						to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
-						return
-					else
-						C.take_blood(src,amount)
-				else
-					C.take_blood(src,amount)
-
-				on_reagent_change()
-				reagents.handle_reactions()
-				user.visible_message("<span clas='warning'>[user] takes a blood sample from [T].</span>",
-									"<span class='notice'>You take a blood sample from [T].</span>", null, 4)
-		else //if not mob
-			if(!T.reagents.total_volume)
-				to_chat(user, "<span class='warning'>[T] is empty.")
+		if(iscarbon(A))
+			var/amount = min(src.reagents.maximum_volume - src.reagents.total_volume, amount_per_transfer_from_this)
+			var/mob/living/carbon/C = A
+			if(C.get_blood_id() && reagents.has_reagent(C.get_blood_id()))
+				to_chat(user, "<span class='warning'>There is already a blood sample in [src].</span>")
+				return
+			if(!C.dna)
+				to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
+				return
+			if(NOCLONE in C.mutations) //target done been et, no more blood in him
+				to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
 				return
 
-			if(!T.is_drawable())
+			if(ishuman(C))
+				var/mob/living/carbon/human/H = C
+				if(H.species.flags & NO_BLOOD)
+					to_chat(user, "<span class='warning'>You are unable to locate any blood.</span>")
+					return
+				else
+					C.take_blood(src,amount)
+			else
+				C.take_blood(src,amount)
+
+			on_reagent_change()
+			reagents.handle_reactions()
+			user.visible_message("<span clas='warning'>[user] takes a blood sample from [A].</span>",
+								"<span class='notice'>You take a blood sample from [A].</span>", null, 4)
+		else if(istype(A,/obj)) //if not mob
+			if(!A.reagents.total_volume)
+				to_chat(user, "<span class='warning'>[A] is empty.")
+				return
+
+			if(!A.is_drawable())
 				to_chat(user, "<span class='warning'>You cannot directly remove reagents from this object.</span>")
 				return
 
-			var/trans = T.reagents.trans_to(src, amount_per_transfer_from_this)
+			var/trans = A.reagents.trans_to(src, amount_per_transfer_from_this)
 
 			to_chat(user, "<span class='notice'>You fill [src] with [trans] units of the solution.</span>")
 		if (reagents.holder_full())
-			inject_mode = !inject_mode
+			inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 			update_icon()
 		return TRUE
 
@@ -103,14 +102,13 @@
 	if(!reagents.total_volume)
 		to_chat(user, "<span class='warning'>[src] is empty.</span>")
 		return
-	if(!T.is_injectable() && !ismob(T))
+	if(!A.is_injectable())
 		to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
 		return
 	if(skilllock && user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use the [src].</span>")
-		var/fumbling_time = SKILL_TASK_EASY
-		if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD))
+		if(!do_after(user, SKILL_TASK_EASY, TRUE, 5, BUSY_ICON_BUILD))
 			return
 
 
@@ -118,10 +116,10 @@
 	for(var/datum/reagent/R in src.reagents.reagent_list)
 		injected += R.name
 	var/contained = english_list(injected)
-	log_combat(user, T, "injected", src, "Reagents: [contained]")
+	log_combat(user, A, "injected", src, "Reagents: [english_list(reagents.reagent_list)]")
 
-	if(ismob(T))
-		var/mob/M = T
+	if(ismob(A))
+		var/mob/M = A
 		if(M != user && M.stat != DEAD && M.a_intent != "help" && !M.is_mob_incapacitated() && ((M.mind && M.mind.cm_skills && M.mind.cm_skills.cqc >= SKILL_CQC_MP) || isYautja(M))) // preds have null skills
 			user.KnockDown(3)
 			log_combat(M, user, "blocked", addition="using their cqc skill (hypospray injection)")
@@ -136,8 +134,8 @@
 		to_chat(M, "<span class='warning'>You feel a tiny prick!</span>")
 
 	playsound(loc, 'sound/items/hypospray.ogg', 50, 1)
-	reagents.reaction(T, INJECT)
-	var/trans = reagents.trans_to(T, amount_per_transfer_from_this)
+	reagents.reaction(A, INJECT)
+	var/trans = reagents.trans_to(A, amount_per_transfer_from_this)
 	to_chat(user, "<span class='notice'>[trans] units injected. [reagents.total_volume] units remaining in [src]. </span>")
 
 	return TRUE
