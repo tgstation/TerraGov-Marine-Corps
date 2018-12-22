@@ -13,12 +13,12 @@
 	spawn(0)
 		explosion(loc, -1, -1, 1)
 		frag_blast(get_turf(src), src)
-		cdel(src)
+		qdel(src)
 	return
 
 /obj/item/explosive/grenade/frag/flamer_fire_act()
 	var/turf/T = loc
-	cdel(src)
+	qdel(src)
 	explosion(T, -1, -1, 1)
 	frag_blast(get_turf(src), src)
 
@@ -55,16 +55,10 @@
 
 /obj/item/explosive/grenade/frag/PMC/prime()
 	spawn(0)
-		explosion(loc, -1, -1, 4)
+		explosion(loc, -1, -1, 1)
+		frag_blast(get_turf(src), src, 24)
 		qdel(src)
 	return
-
-	prime()
-		spawn(0)
-			explosion(loc, -1, -1, 1)
-			frag_blast(get_turf(src), src, 24)
-			cdel(src)
-		return
 
 /obj/item/explosive/grenade/frag/m15
 	name = "\improper M15 fragmentation grenade"
@@ -74,12 +68,12 @@
 	hud_state = "grenade_frag"
 	underslug_launchable = FALSE
 
-	prime()
-		spawn(0)
-			explosion(get_turf(src), -1, -1, 1)
-			frag_blast(get_turf(src), src, 24)
-			cdel(src)
-		return
+/obj/item/explosive/grenade/frag/m15/prime()
+	spawn(0)
+		explosion(get_turf(src), -1, -1, 1)
+		frag_blast(get_turf(src), src, 24)
+		qdel(src)
+	return
 
 
 /obj/item/explosive/grenade/frag/stick
@@ -95,12 +89,12 @@
 	throw_range = 7
 	underslug_launchable = FALSE
 
-	prime()
-		spawn(0)
-			explosion(get_turf(src), -1, -1, 1)
-			frag_blast(get_turf(src), src)
-			cdel(src)
-		return
+/obj/item/explosive/grenade/frag/stick/prime()
+	spawn(0)
+		explosion(get_turf(src), -1, -1, 1)
+		frag_blast(get_turf(src), src)
+		qdel(src)
+	return
 
 
 /obj/item/explosive/grenade/frag/upp
@@ -113,12 +107,12 @@
 	throw_range = 6
 	underslug_launchable = FALSE
 
-	prime()
-		spawn(0)
-			explosion(get_turf(src), -1, -1, 1)
-			frag_blast(get_turf(src), src)
-			cdel(src)
-		return
+/obj/item/explosive/grenade/frag/upp/prime()
+	spawn(0)
+		explosion(get_turf(src), -1, -1, 1)
+		frag_blast(get_turf(src), src)
+		qdel(src)
+	return
 
 
 /obj/item/explosive/grenade/incendiary
