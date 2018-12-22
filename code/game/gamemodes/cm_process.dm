@@ -299,43 +299,30 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 
 	for(var/mob/M in player_list) //Scan through and detect Xenos and Hosts, but only those with clients.
 		if(M.stat != DEAD)
+			var/area/A = get_area(M)
 			if(isXeno(M))
-				switch(M.z)
-					if(0) //nullspace
-						if(M.loc && M.loc.z == 3) //in a closet or vent
-							numXenosShip++
-							xenoLocationsS += get_area(M)
-						if(M.loc && M.loc.z == 1)
-							numXenosPlanet++
-							xenoLocationsP += get_area(M)
+				switch(A?.z)
 					if(1) //Planet.
 						if(istype(M, /mob/living/carbon/Xenomorph/Larva))
 							numLarvaPlanet++
 						numXenosPlanet++
-						xenoLocationsP += get_area(M)
+						xenoLocationsP += A
 					if(3) //On the ship.
 						if(istype(M, /mob/living/carbon/Xenomorph/Larva))
 							numLarvaShip++
 						numXenosShip++ 
-						xenoLocationsS += get_area(M)
+						xenoLocationsS += A
 					
 				activeXenos += M
 
 			if(ishuman(M) && !isYautja(M))
-				switch(M.z)
-					if(0) //nullspace
-						if(M.loc && M.loc.z == 3) //in a closet or vent
-							numHostsShip++
-							hostLocationsS += get_area(M)
-						if(M.loc && M.loc.z == 1)
-							numHostsPlanet++ 
-							hostLocationsP += get_area(M)
+				switch(A?.z)
 					if(1) //Planet.
 						numHostsPlanet++ 
-						hostLocationsP += get_area(M)
+						hostLocationsP += A
 					if(3) //On the ship.
 						numHostsShip++ 
-						hostLocationsS += get_area(M)
+						hostLocationsS += A
 
 
 					
