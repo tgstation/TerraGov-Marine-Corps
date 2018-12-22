@@ -1,3 +1,5 @@
+//chem_grenade.dm
+
 /obj/item/explosive/grenade/chem_grenade
 	name = "Grenade Casing"
 	icon_state = "chemg"

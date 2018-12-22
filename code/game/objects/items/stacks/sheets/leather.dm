@@ -1,3 +1,5 @@
+//leather.dm
+
 /obj/item/stack/sheet/animalhide/human
 	name = "human skin"
 	desc = "The by-product of human farming."

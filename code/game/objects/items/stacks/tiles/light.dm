@@ -1,3 +1,5 @@
+//light.dm
+
 /obj/item/stack/tile/light
 	name = "light tile"
 	singular_name = "light floor tile"

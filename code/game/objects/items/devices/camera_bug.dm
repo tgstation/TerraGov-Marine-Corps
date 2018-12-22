@@ -1,3 +1,5 @@
+//camera_bug.dm
+
 /obj/item/device/camera_bug
 	name = "camera bug"
 	icon_state = "flash"

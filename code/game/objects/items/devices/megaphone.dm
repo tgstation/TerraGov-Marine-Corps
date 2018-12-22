@@ -1,3 +1,5 @@
+//megaphone.dm
+
 /obj/item/device/megaphone
 	name = "megaphone"
 	desc = "A device used to project your voice. Loudly."

@@ -1,3 +1,5 @@
+//trash.dm
+
 //Items labled as 'trash' for the trash bag.
 
 /obj/item/trash

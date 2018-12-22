@@ -1,3 +1,5 @@
+//artifacts.dm
+
 /obj/item/changestone
 	name = "An uncut ruby"
 	desc = "The ruby shines and catches the light, despite being uncut"

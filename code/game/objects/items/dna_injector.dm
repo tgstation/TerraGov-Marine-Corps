@@ -1,3 +1,5 @@
+//dna_injector.dm
+
 /obj/item/dnainjector
 	name = "DNA-Injector"
 	desc = "This injects the person with DNA."

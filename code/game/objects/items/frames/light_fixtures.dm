@@ -1,4 +1,4 @@
-
+//light_fixtures.dm
 
 /obj/item/frame/light_fixture
 	name = "light fixture frame"

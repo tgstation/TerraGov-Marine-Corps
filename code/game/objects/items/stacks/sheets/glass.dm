@@ -1,3 +1,5 @@
+//glass.dm
+
 /* Glass stack types
  * Contains:
  *		Glass sheets

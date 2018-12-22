@@ -1,3 +1,5 @@
+//handcuffs.dm
+
 /obj/item/handcuffs
 	name = "handcuffs"
 	desc = "Use this to keep prisoners in line."

@@ -1,3 +1,5 @@
+//flashbang.dm
+
 /obj/item/explosive/grenade/flashbang
 	name = "flashbang"
 	icon_state = "flashbang2"

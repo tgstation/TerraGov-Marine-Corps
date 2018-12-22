@@ -1,4 +1,4 @@
-
+//weaponry.dm
 
 /obj/item/weapon/banhammer
 	desc = "A banhammer"

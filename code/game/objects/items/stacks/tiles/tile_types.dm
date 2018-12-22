@@ -1,3 +1,5 @@
+//tile_types.dm
+
 /* Diffrent misc types of tiles
  * Contains:
  *		Grass

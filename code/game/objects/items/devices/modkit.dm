@@ -1,3 +1,5 @@
+//modkit.dm
+
 #define MODKIT_HELMET 1
 #define MODKIT_SUIT 2
 #define MODKIT_FULL 3

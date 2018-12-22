@@ -1,3 +1,5 @@
+//bible.dm
+
 /obj/item/storage/bible
 	name = "bible"
 	desc = "Apply to head repeatedly."

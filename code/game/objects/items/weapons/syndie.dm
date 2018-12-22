@@ -1,3 +1,5 @@
+//syndie.dm
+
 /obj/item/weapon/syndie
 	icon = 'icons/obj/syndieweapons.dmi'
 

@@ -1,3 +1,5 @@
+//ashtray.dm
+
 /obj/item/ashtray
 	icon = 'icons/obj/items/ashtray.dmi'
 	var/

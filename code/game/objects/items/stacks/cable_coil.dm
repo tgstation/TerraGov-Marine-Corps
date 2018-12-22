@@ -1,3 +1,4 @@
+//cable_coil.dm
 
 // the cable coil object, used for laying cable
 

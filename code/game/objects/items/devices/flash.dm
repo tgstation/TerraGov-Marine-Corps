@@ -1,3 +1,5 @@
+//flash.dm
+
 /obj/item/device/flash
 	name = "flash"
 	desc = "Used for blinding and being an asshole."

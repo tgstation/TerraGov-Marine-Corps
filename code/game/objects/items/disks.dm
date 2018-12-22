@@ -1,3 +1,5 @@
+//disks.dm
+
 /obj/item/disk
 	name = "disk"
 	icon = 'icons/obj/items/disk.dmi'

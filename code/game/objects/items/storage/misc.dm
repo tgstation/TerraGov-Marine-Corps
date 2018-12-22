@@ -1,3 +1,5 @@
+//misc.dm
+
 /obj/item/storage/pill_bottle/dice
 	name = "pack of dice"
 	desc = "It's a small container with dice inside."

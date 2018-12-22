@@ -1,3 +1,4 @@
+//autopsy_scanner.dm
 
 //moved these here from code/defines/obj/weapon.dm
 //please preference put stuff where it's easy to find - C

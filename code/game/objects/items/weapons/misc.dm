@@ -1,3 +1,5 @@
+//misc.dm
+
 /obj/item/weapon/chainofcommand
 	name = "chain of command"
 	desc = "A tool used by great men to placate the frothing masses."

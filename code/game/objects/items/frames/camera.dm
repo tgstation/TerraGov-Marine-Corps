@@ -1,3 +1,5 @@
+//camera.dm
+
 /obj/item/frame/camera
 	name = "camera assembly"
 	desc = "The basic construction for Corporate-Always-Watching-You cameras."

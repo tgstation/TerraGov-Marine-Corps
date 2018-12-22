@@ -1,3 +1,4 @@
+//legcuffs.dm
 
 /obj/item/legcuffs
 	name = "legcuffs"

@@ -1,3 +1,5 @@
+//uplink_kits.dm
+
 /obj/item/storage/box/syndicate/
 	New()
 		..()

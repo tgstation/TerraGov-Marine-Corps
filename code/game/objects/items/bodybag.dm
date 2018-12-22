@@ -1,3 +1,5 @@
+//bodybag.dm
+
 //Also contains /obj/structure/closet/bodybag because I doubt anyone would think to look for bodybags in /object/structures
 
 /obj/item/bodybag

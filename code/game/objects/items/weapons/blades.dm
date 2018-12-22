@@ -1,3 +1,5 @@
+//blades.dm
+
 /obj/item/weapon/claymore
 	name = "claymore"
 	desc = "What are you standing around staring at this for? Get to killing!"

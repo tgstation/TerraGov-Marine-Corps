@@ -1,3 +1,5 @@
+//nanopaste.dm
+
 /obj/item/stack/nanopaste
 	name = "nanopaste"
 	singular_name = "nanite swarm"

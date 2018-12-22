@@ -1,3 +1,5 @@
+//bags.dm
+
 /*
  *	These absorb the functionality of the plant bag, ore satchel, etc.
  *	They use the use_to_pickup, quick_gather, and quick_empty functions

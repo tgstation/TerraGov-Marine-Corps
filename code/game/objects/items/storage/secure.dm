@@ -1,3 +1,5 @@
+//secure.dm
+
 /*
  *	Absorbs /obj/item/secstorage.
  *	Reimplements it only slightly to use existing storage functionality.

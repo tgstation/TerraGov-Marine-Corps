@@ -1,3 +1,5 @@
+//wallets.dm
+
 /obj/item/storage/wallet
 	name = "wallet"
 	desc = "It can hold a few small and personal things."

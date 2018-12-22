@@ -1,3 +1,5 @@
+//cosmetics.dm
+
 /obj/item/facepaint
 	gender = PLURAL
 	name = "facepaint"

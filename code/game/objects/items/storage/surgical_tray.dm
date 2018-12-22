@@ -1,3 +1,5 @@
+//surgical_tray.dm
+
 /obj/item/storage/surgical_tray
 	name = "surgical tray"
 	desc = "A small metallic tray covered in sterile tarp. Intended to store surgical tools in a neat and clean fashion."

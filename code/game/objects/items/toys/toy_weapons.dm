@@ -1,3 +1,5 @@
+//toy_weapons.dm
+
 /*
  *		Toy gun
  *		Toy crossbow

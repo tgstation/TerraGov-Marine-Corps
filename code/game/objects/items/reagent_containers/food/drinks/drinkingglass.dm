@@ -1,4 +1,4 @@
-
+//drinkingglass.dm
 
 /obj/item/reagent_container/food/drinks/drinkingglass
 	name = "glass"

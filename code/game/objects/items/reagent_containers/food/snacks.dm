@@ -1,3 +1,5 @@
+//snacks.dm
+
 //Food items that are eaten normally and don't leave anything behind.
 /obj/item/reagent_container/food/snacks
 	name = "snack"

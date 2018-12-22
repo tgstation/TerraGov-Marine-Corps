@@ -1,3 +1,5 @@
+//stunbaton.dm
+
 /obj/item/weapon/baton
 	name = "stunbaton"
 	desc = "A stun baton for incapacitating people with."

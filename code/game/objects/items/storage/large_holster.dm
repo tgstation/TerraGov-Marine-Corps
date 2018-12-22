@@ -1,4 +1,4 @@
-
+//large_holster.dm
 
 /obj/item/storage/large_holster
 	name = "\improper Rifle Holster"

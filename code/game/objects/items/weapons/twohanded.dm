@@ -1,3 +1,5 @@
+//twohanded.dm
+
 	/*##################################################################
 	Much improved now. Leaving the overall item procs here since they're
 	easier to find that way. Theoretically any item may be twohanded,

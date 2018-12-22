@@ -1,3 +1,5 @@
+//plastique.dm
+
 /obj/item/explosive/plastique
 	name = "plastic explosives"
 	desc = "Used to put holes in specific areas without too much extra hole."

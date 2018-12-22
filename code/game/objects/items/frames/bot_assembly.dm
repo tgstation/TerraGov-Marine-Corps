@@ -1,4 +1,4 @@
-
+//bot_assembly.dm
 
 //Cleanbot assembly
 /obj/item/frame/bucket_sensor

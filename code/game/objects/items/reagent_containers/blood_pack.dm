@@ -1,3 +1,5 @@
+//blood_pack.dm
+
 /obj/item/reagent_container/blood
 	name = "BloodPack"
 	desc = "Contains blood used for transfusion."

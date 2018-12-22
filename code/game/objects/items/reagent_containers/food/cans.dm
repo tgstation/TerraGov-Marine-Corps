@@ -1,3 +1,5 @@
+//cans.dm
+
 /obj/item/reagent_container/food/drinks/cans
 	name = "soda can"
 	container_type = 0

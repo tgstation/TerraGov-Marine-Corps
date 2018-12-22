@@ -1,3 +1,4 @@
+//cloaking.dm
 
 //chameleon projector
 //cloaking device

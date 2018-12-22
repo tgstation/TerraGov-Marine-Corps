@@ -1,3 +1,5 @@
+//extinguisher.dm
+
 /obj/item/tool/extinguisher
 	name = "fire extinguisher"
 	desc = "A traditional red fire extinguisher."

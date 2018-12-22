@@ -1,3 +1,5 @@
+//flashlight.dm
+
 /obj/item/device/flashlight
 	name = "flashlight"
 	desc = "A hand-held emergency light."

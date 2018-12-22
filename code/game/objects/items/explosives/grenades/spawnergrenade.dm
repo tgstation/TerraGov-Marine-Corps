@@ -1,3 +1,5 @@
+//spawnergrenade.dm
+
 /obj/item/explosive/grenade/spawnergrenade
 	desc = "It is set to detonate in 5 seconds. It will unleash unleash an unspecified anomaly into the vicinity."
 	name = "delivery grenade"

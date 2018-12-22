@@ -1,3 +1,5 @@
+//grenade.dm
+
 /obj/item/explosive/grenade
 	name = "grenade"
 	desc = "A hand held grenade, with an adjustable timer."

@@ -1,3 +1,5 @@
+//powersink.dm
+
 // Powersink - used to drain station power
 
 /obj/item/device/powersink

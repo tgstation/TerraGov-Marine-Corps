@@ -1,3 +1,5 @@
+//sandwich.dm
+
 /obj/item/reagent_container/food/snacks/breadslice/attackby(obj/item/W as obj, mob/user as mob)
 
 	if(istype(W,/obj/item/shard) || istype(W,/obj/item/reagent_container/food/snacks))

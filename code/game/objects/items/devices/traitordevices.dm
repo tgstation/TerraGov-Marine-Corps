@@ -1,3 +1,5 @@
+//traitordevices.dm
+
 /*
 
 Miscellaneous traitor devices

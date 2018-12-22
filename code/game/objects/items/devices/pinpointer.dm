@@ -1,3 +1,5 @@
+//pinpointer.dm
+
 /obj/item/device/pinpointer
 	name = "pinpointer"
 	icon_state = "pinoff"

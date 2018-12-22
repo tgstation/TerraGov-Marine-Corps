@@ -1,3 +1,4 @@
+//barbed_wire.dm
 
 /obj/item/stack/barbed_wire
 	name = "barbed wire"

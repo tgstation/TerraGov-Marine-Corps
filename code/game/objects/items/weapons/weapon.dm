@@ -1,3 +1,4 @@
+//weapon.dm
 
 //items designed as weapon
 /obj/item/weapon

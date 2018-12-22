@@ -1,4 +1,4 @@
-
+//mine.dm
 
 ///***MINES***///
 //Mines have an invisible "tripwire" atom that explodes when crossed

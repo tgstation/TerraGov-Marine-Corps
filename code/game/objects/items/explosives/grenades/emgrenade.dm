@@ -1,3 +1,5 @@
+//emgrenade.dm
+
 /obj/item/explosive/grenade/empgrenade
 	name = "classic emp grenade"
 	icon_state = "emp"

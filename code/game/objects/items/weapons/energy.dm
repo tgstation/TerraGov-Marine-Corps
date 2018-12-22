@@ -1,3 +1,5 @@
+//energy.dm
+
 /obj/item/weapon/energy
 	var/active = 0
 	flags_atom = NOBLOODY

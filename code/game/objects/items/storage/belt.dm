@@ -1,4 +1,4 @@
-
+//belt.dm
 
 /obj/item/storage/belt
 	name = "belt"

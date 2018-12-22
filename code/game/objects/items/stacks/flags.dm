@@ -1,3 +1,5 @@
+//flags.dm
+
 // Flags.
 
 /obj/item/stack/flag

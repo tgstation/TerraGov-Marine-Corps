@@ -1,3 +1,5 @@
+//portable_vendor.dm
+
 //Vendor for CL stuff
 //Bribe items may help marines, but also give CL more control over them
 //Bought with points, which regenerate over time

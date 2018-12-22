@@ -1,3 +1,5 @@
+//swords_axes_etc.dm
+
 /* Weapons
  * Contains:
  *		Banhammer

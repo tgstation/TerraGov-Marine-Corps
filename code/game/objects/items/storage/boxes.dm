@@ -1,3 +1,5 @@
+//boxes.dm
+
 /*
  *	Everything derived from the common cardboard box.
  *	Basically everything except the original is a kit (starts full).

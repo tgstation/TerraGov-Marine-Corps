@@ -1,3 +1,4 @@
+//holo_weapons.dm
 
 //holographic weapons used by the holodeck.
 

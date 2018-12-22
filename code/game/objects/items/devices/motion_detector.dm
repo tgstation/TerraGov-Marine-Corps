@@ -1,3 +1,4 @@
+//motion_detector.dm
 
 #define MOTION_DETECTOR_LONG		0
 #define MOTION_DETECTOR_SHORT		1

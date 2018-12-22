@@ -1,3 +1,5 @@
+//storage.dm
+
 // To clarify:
 // For use_to_pickup and allow_quick_gather functionality,
 // see item/attackby() (/game/objects/items.dm)

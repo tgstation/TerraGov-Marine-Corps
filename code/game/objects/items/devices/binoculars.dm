@@ -1,3 +1,5 @@
+//binoculars.dm
+
 /obj/item/device/binoculars
 
 	name = "binoculars"

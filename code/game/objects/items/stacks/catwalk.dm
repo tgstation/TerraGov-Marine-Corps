@@ -1,3 +1,5 @@
+//catwalk.dm
+
 /obj/item/stack/catwalk
 	name = "catwalk mesh"
 	singular_name = "catwalk mesh"

@@ -1,3 +1,5 @@
+//pipe_painter.dm
+
 /obj/item/device/pipe_painter
 	name = "pipe painter"
 	icon = 'icons/obj/items/paper.dmi'

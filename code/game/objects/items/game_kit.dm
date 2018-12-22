@@ -1,3 +1,5 @@
+//game_kit.dm
+
 /*
 CONTAINS:
 THAT STUPID GAME KIT

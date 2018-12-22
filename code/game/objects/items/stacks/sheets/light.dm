@@ -1,3 +1,5 @@
+//light.dm
+
 /obj/item/stack/light_w
 	name = "wired glass tile"
 	singular_name = "wired glass floor tile"
