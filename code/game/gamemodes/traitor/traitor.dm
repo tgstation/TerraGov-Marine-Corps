@@ -1,3 +1,5 @@
+//traitor.dm
+
 /datum/game_mode
 	// this includes admin-appointed traitors and multitraitors. Easy!
 	var/list/datum/mind/traitors = list()

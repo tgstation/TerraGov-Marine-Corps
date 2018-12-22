@@ -1,3 +1,5 @@
+//extended.dm
+
 /datum/game_mode/extended
 	name = "extended"
 	config_tag = "extended"

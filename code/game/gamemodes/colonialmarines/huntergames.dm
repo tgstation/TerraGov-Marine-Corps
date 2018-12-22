@@ -1,3 +1,5 @@
+//huntergames.dm
+
 #define HUNTER_LOOTBOX  pick(\
 								150; list(/obj/item/stack/medical/advanced/ointment, \
 										/obj/item/stack/medical/advanced/bruise_pack, \

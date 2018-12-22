@@ -1,4 +1,4 @@
-// Areas.dm
+//areas.dm
 
 
 

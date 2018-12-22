@@ -1,3 +1,5 @@
+//cm_initialize.dm
+
 /*
 This is a collection of procs related to CM and spawning aliens/predators/survivors. With this centralized system,
 you can spawn them at round start in any game mode. You can also add additional categories, and they will be supported

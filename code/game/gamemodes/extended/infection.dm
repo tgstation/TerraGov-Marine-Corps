@@ -1,3 +1,5 @@
+//infection.dm
+
 //THIS IS A BLANK LABEL ONLY SO PEOPLE CAN SEE WHEN WE RUNNIN DIS BITCH.   Should probably write a real one one day.  Maybe.
 /datum/game_mode/infection
 	name = "Infection"

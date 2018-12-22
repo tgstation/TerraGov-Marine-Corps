@@ -1,3 +1,4 @@
+//human_antag.dm
 
 /datum/game_mode/human_antag
 	name = "Human Antagonists"

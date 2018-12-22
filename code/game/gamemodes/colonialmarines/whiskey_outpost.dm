@@ -1,3 +1,5 @@
+//whiskey_outpost.dm
+
 /datum/game_mode/whiskey_outpost
 	name = "Whiskey Outpost"
 	config_tag = "Whiskey Outpost"

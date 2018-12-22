@@ -1,3 +1,4 @@
+//power_failure.dm
 
 /proc/power_failure(var/announce = 1)
 	var/list/skipped_areas = list(/area/turret_protected/ai)

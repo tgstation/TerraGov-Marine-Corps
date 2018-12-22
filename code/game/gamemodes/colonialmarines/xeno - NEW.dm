@@ -1,3 +1,5 @@
+//xeno - NEW.dm
+
 /datum/game_mode
 	var/list/datum/mind/aliens = list()
 	var/list/datum/mind/survivors = list()

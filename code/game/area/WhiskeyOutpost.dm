@@ -1,3 +1,5 @@
+//WhiskeyOutpost.dm
+
 /area/whiskey_outpost
 	name = "\improper Whiskey Outpost"
 	icon_state = "green"

@@ -1,3 +1,5 @@
+//IceColony.dm
+
 /*
  * Areas for the Ice Colony map (nickname is "Shiva's Snowball")
  * Area inheritance logic :

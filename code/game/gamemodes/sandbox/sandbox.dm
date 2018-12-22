@@ -1,3 +1,5 @@
+//sandbox.dm
+
 /datum/game_mode/sandbox
 	name = "sandbox"
 	config_tag = "sandbox"

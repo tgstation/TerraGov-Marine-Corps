@@ -1,3 +1,5 @@
+//ai_monitored.dm
+
 /area/ai_monitored
 	name = "AI Monitored Area"
 	var/obj/machinery/camera/motioncamera = null

@@ -1,3 +1,5 @@
+//halloween2016.dm
+
 #define EVENT_MAJOR_INTERVAL 	3000 // 5 minutes
 #define EVENT_MINOR_INTERVAL 	900 // 1.5 minutes
 #define FOG_DELAY_INTERVAL		6000 // 8 minutes

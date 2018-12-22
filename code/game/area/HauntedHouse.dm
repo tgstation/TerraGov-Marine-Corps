@@ -1,3 +1,5 @@
+//HauntedHouse.dm
+
 //Haunted House Areas--------------------------------//
 /area/haunted_house
 	name = "\improper haunted house"
