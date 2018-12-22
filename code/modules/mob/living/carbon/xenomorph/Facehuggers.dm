@@ -342,6 +342,7 @@
 
 	sleep(rand(MIN_IMPREGNATION_TIME,MAX_IMPREGNATION_TIME))
 	Impregnate(M)
+	round_statistics.now_pregnant++
 
 	return TRUE
 

@@ -107,6 +107,13 @@
 	w_class = 2.0
 	flags_item = NOSHIELD
 
+/obj/item/skub
+	desc = "It's skub."
+	name = "skub"
+	icon = 'icons/obj/items/weapons.dmi'
+	icon_state = "skub"
+	w_class = 4.0
+	attack_verb = list("skubbed")
 
 /obj/item/ectoplasm
 	name = "ectoplasm"
