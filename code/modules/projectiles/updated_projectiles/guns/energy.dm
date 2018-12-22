@@ -7,6 +7,37 @@
 	var/obj/item/cell/cell //1000 power.
 	var/charge_cost = 10 //100 shots.
 
+/obj/item/weapon/gun/energy/examine(mob/user)
+	..()
+	var/list/dat = list()
+	if(flags_gun_features & GUN_TRIGGER_SAFETY)
+		dat += "The safety's on!<br>"
+	else
+		dat += "The safety's off!<br>"
+
+	if(rail) 	dat += "It has \icon[rail] [rail.name] mounted on the top.<br>"
+	if(muzzle) 	dat += "It has \icon[muzzle] [muzzle.name] mounted on the front.<br>"
+	if(stock) 	dat += "It has \icon[stock] [stock.name] for a stock.<br>"
+	if(under)
+		dat += "It has \icon[under] [under.name]"
+		if(under.flags_attach_features & ATTACH_WEAPON)
+			dat += " ([under.current_rounds]/[under.max_rounds])"
+		dat += " mounted underneath.<br>"
+
+
+	if(!(flags_gun_features & (GUN_INTERNAL_MAG|GUN_UNUSUAL_DESIGN))) //Internal mags and unusual guns have their own stuff set.
+		var/current_shots = get_ammo_count()
+		if(cell && current_shots > 0)
+			if(flags_gun_features & GUN_AMMO_COUNTER)
+
+				dat += "Ammo counter shows [current_shots] round\s remaining.<br>"
+			else
+				dat += "It's loaded[in_chamber?" and has a round chambered":""].<br>"
+		else
+			dat += "It's unloaded[in_chamber?" but has a round chambered":""].<br>"
+	if(dat)
+		to_chat(user, "[dat.Join(" ")]")
+
 /obj/item/weapon/gun/energy/New()
 	. = ..()
 	cell = new /obj/item/cell(src)

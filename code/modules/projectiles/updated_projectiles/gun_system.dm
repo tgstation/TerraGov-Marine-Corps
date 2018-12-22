@@ -191,8 +191,8 @@
 	update_mag_overlay()
 
 /obj/item/weapon/gun/examine(mob/user)
-	..()
-	var/dat = ""
+	. = ..()
+	var/list/dat = list()
 	if(flags_gun_features & GUN_TRIGGER_SAFETY)
 		dat += "The safety's on!<br>"
 	else
@@ -217,7 +217,7 @@
 		else
 			dat += "It's unloaded[in_chamber?" but has a round chambered":""].<br>"
 	if(dat)
-		to_chat(user, dat)
+		to_chat(user, "[dat.Join(" ")]")
 
 /obj/item/weapon/gun/wield(var/mob/user)
 	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
