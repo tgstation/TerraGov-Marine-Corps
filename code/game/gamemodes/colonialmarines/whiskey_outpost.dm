@@ -4,13 +4,13 @@
 	required_players 		= 0
 	recommended_enemies 	= 0 //Leaving this relic code incase we want to do some extra things with it in the future.
 	xeno_bypass_timer 		= 1
-	role_instruction		= 1
-	roles_for_mode = list(/datum/job/marine/standard/equipped,
-					/datum/job/marine/medic/equipped,
-					/datum/job/marine/engineer/equipped,
-					/datum/job/marine/specialist/equipped,
-					/datum/job/marine/smartgunner/equipped,
-					/datum/job/marine/leader/equipped,
+	role_instruction		= ROLE_MODE_REPLACE
+	roles_for_mode = list(/datum/job/marine/standard,
+					/datum/job/marine/medic,
+					/datum/job/marine/engineer,
+					/datum/job/marine/specialist,
+					/datum/job/marine/smartgunner,
+					/datum/job/marine/leader,
 					/datum/job/medical/doctor,
 					/datum/job/command/commander,
 					/datum/job/logistics/tech/maint,
@@ -109,8 +109,8 @@
 
 	sleep(10)
 	to_chat(world, "<span class='round_header'>The current game mode is - WHISKEY OUTPOST!</span>")
-	to_chat(world, "<span class='round_body'>It is the year 2181 on the planet LV-624, five years before the arrival of the USS Almayer and the 7th 'Falling Falcons' Battalion in the sector</span>")
-	to_chat(world, "<span class='round_body'>The 3rd 'Dust Raiders' Battalion is charged with establishing a USCM prescence in the Tychon's Rift sector</span>")
+	to_chat(world, "<span class='round_body'>It is the year 2181 on the planet LV-624, five years before the arrival of the [MAIN_SHIP_NAME] and the 7th 'Falling Falcons' Battalion in the sector</span>")
+	to_chat(world, "<span class='round_body'>The 3rd 'Dust Raiders' Battalion is charged with establishing a TGMC prescence in the Tychon's Rift sector</span>")
 	to_chat(world, "<span class='round_body'>[map_tag], one of the Dust Raider bases being established in the sector, has come under attack from unrecognized alien forces</span>")
 	to_chat(world, "<span class='round_body'>With casualties mounting and supplies running thin, the Dust Raiders at [map_tag] must survive for an hour to alert the rest of their battalion in the sector</span>")
 	to_chat(world, "<span class='round_body'>Hold out for as long as you can.</span>")
@@ -141,18 +141,18 @@
 			if("Doctor") //Only get rid of some of the stuff
 				for(var/I in H.contents)
 					if(istype(I,/obj/item/device/pda/medical))
-						cdel(I)
+						qdel(I)
 					if(istype(I,/obj/item/clothing/shoes/laceup))
-						cdel(I)
+						qdel(I)
 			if("Executive Officer") //Wipe their stuff clean. Reequip them later
 				for(var/I in H.contents)
-					cdel(I)
+					qdel(I)
 			if("Military Police")
 				for(var/I in H.contents)
-					cdel(I)
+					qdel(I)
 			if("Maintenance Tech")
 				for(var/I in H.contents)
-					cdel(I)
+					qdel(I)
 		H.loc = picked
 	else //Else if we spawned as doctor or commander
 		H = new(picked)
@@ -1035,7 +1035,7 @@
 		feedback_set_details("round_end_result","Xenos won")
 		to_chat(world, "<span class='round_header'>The Xenos have succesfully defended their hive from colonization.</span>")
 		to_chat(world, "<span class='round_body'>Well done, you've secured LV-624 for the hive!</span>")
-		to_chat(world, "<span class='round_body'>It will be another five years before the USCM returns to the Tychon's Rift sector, with the arrival of the 7th 'Falling Falcons' Battalion and the USS Almayer.</span>")
+		to_chat(world, "<span class='round_body'>It will be another five years before the TGMC returns to the Tychon's Rift sector, with the arrival of the 7th 'Falling Falcons' Battalion and the [MAIN_SHIP_NAME].</span>")
 		to_chat(world, "<span class='round_body'>The xenomorph hive on LV-624 remains unthreatened until then..</span>")
 		world << sound('sound/misc/Game_Over_Man.ogg')
 
@@ -1046,7 +1046,7 @@
 		to_chat(world, "<span class='round_header'>Against the onslaught, the marines have survived.</span>")
 		to_chat(world, "<span class='round_body'>The signal rings out to the USS Alistoun, and Dust Raiders stationed elsewhere in Tychon's Rift begin to converge on LV-624.</span>")
 		to_chat(world, "<span class='round_body'>Eventually, the Dust Raiders secure LV-624 and the entire Tychon's Rift sector in 2182, pacifiying it and establishing peace in the sector for decades to come.</span>")
-		to_chat(world, "<span class='round_body'>The USS Almayer and the 7th 'Falling Falcons' Battalion are never sent to the sector and are spared their fate in 2186.</span>")
+		to_chat(world, "<span class='round_body'>The [MAIN_SHIP_NAME] and the 7th 'Falling Falcons' Battalion are never sent to the sector and are spared their fate in 2186.</span>")
 		world << sound('sound/misc/hell_march.ogg')
 
 		log_game("Marines remaining: [count_humans()]\nRound time: [duration2text()]")
@@ -1495,7 +1495,7 @@
 		flame_radius(3,target_4)
 		explosion(target_4,  -1, 2, 3, 5)
 		sleep(1)
-		cdel(lasertarget)
+		qdel(lasertarget)
 		lazing = 0
 		laz_r = 1
 		sleep(6000)
@@ -1523,7 +1523,7 @@
 		var/turf/target_2 = locate(T.x + rand(-2,2),T.y + rand(-2,2),T.z)
 		var/turf/target_3 = locate(T.x + rand(-2,2),T.y + rand(-2,2),T.z)
 		if(target && istype(target))
-			cdel(lasertarget)
+			qdel(lasertarget)
 			explosion(target, -1, HE_power, con_power, con_power) //Kaboom!
 			sleep(rand(15,30)) //This is all better done in a for loop, but I am mad lazy
 			explosion(target_2, -1, HE_power, con_power, con_power)
@@ -1588,7 +1588,7 @@
 	var/turf/T = get_turf(src) //Make sure we get the turf we're tossing this on.
 	drop_supplies(T, supply_drop)
 	playsound(src,'sound/effects/bamf.ogg', 50, 1)
-	cdel(src)
+	qdel(src)
 	return
 
 /obj/item/device/whiskey_supply_beacon/verb/switch_supplies()
@@ -1726,7 +1726,7 @@
 		num ++
 	sleep(5)
 	message_admins("[num] [src]\s were spawned in at [loc.loc.name] ([loc.x],[loc.y],[loc.z]). (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>)")
-	cdel()
+	qdel()
 
 /obj/effect/landmark/wo_spawners/marines
 	name = "marine spawner"

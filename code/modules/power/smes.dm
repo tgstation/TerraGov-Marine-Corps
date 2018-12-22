@@ -255,7 +255,7 @@
 					user.visible_message(\
 						"<span class='notice'>[user.name] cut the cables and dismantled the power terminal.</span>",\
 						"<span class='notice'>You cut the cables and dismantle the power terminal.</span>")
-					cdel(terminal)
+					qdel(terminal)
 					terminal = null
 		building_terminal = 0
 		return FALSE
@@ -357,7 +357,7 @@
 			smoke.attach(src)
 			smoke.start()
 			explosion(src.loc, -1, 0, 1, 3, 1, 0)
-			cdel(src)
+			qdel(src)
 			return
 		if(prob(15)) //Power drain
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread

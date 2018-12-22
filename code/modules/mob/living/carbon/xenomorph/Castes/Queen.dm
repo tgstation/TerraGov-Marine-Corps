@@ -12,7 +12,7 @@
 	melee_damage_upper = 55
 
 	// *** Tackle *** //
-	tackle_damage = 55 
+	tackle_damage = 55
 
 	// *** Speed *** //
 	speed = 0.6
@@ -31,17 +31,17 @@
 	caste_flags = CASTE_IS_INTELLIGENT|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_FIRE_IMMUNE
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
-	
+
 	// *** Defense *** //
-	armor_deflection = 45 
+	armor_deflection = 45
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 1.5 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/medium, /datum/ammo/xeno/acid/medium)
 
-	// *** Pheromones *** //	
+	// *** Pheromones *** //
 	aura_strength = 2 //The Queen's aura is strong and stays so, and gets devastating late game. Climbs by 1 to 5
-	aura_allowed = list("frenzy", "warding", "recovery") 
+	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 1 //Amount of leaders allowed
@@ -56,8 +56,8 @@
 	melee_damage_upper = 60
 
 	// *** Tackle *** //
-	tackle_damage = 60 
-	
+	tackle_damage = 60
+
 	// *** Speed *** //
 	speed = 0.5
 
@@ -75,10 +75,11 @@
 	armor_deflection = 50
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 1.5 SECONDS
+	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
 
-	// *** Pheromones *** //	
-	aura_strength = 3 
+	// *** Pheromones *** //
+	aura_strength = 3
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 2
@@ -93,8 +94,8 @@
 	melee_damage_upper = 65
 
 	// *** Tackle *** //
-	tackle_damage = 65 
-	
+	tackle_damage = 65
+
 	// *** Speed *** //
 	speed = 0.4
 
@@ -112,10 +113,11 @@
 	armor_deflection = 55
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 1.5 SECONDS
+	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade3, /datum/ammo/xeno/acid/medium)
 
-	// *** Pheromones *** //	
-	aura_strength = 4 
+	// *** Pheromones *** //
+	aura_strength = 4
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 3
@@ -130,8 +132,8 @@
 	melee_damage_upper = 70
 
 	// *** Tackle *** //
-	tackle_damage = 70 
-	
+	tackle_damage = 70
+
 	// *** Speed *** //
 	speed = 0.3
 
@@ -149,10 +151,11 @@
 	armor_deflection = 60
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 1.5 SECONDS
+	spit_types = list(/datum/ammo/xeno/toxin/medium/upgrade2, /datum/ammo/xeno/acid/medium)
 
-	// *** Pheromones *** //	
-	aura_strength = 5 
+	// *** Pheromones *** //
+	aura_strength = 5
 
 	// *** Queen Abilities *** //
 	queen_leader_limit = 4
@@ -245,7 +248,7 @@
 			xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3,hivenumber)
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
 
-/mob/living/carbon/Xenomorph/Queen/Dispose()
+/mob/living/carbon/Xenomorph/Queen/Destroy()
 	. = ..()
 	if(observed_xeno)
 		set_queen_overwatch(observed_xeno, TRUE)
@@ -263,7 +266,7 @@
 			breathing_counter = 0 //Reset the counter
 
 		if(observed_xeno)
-			if(observed_xeno.stat == DEAD || observed_xeno.disposed)
+			if(observed_xeno.stat == DEAD || observed_xeno.gc_destroyed)
 				set_queen_overwatch(observed_xeno, TRUE)
 
 		if(ovipositor && !is_mob_incapacitated(TRUE))
@@ -307,7 +310,7 @@
 								visible_message("<span class='xenodanger'>[L] quickly burrows into the ground.</span>")
 								ticker.mode.stored_larva++
 								round_statistics.total_xenos_created-- // keep stats sane
-								cdel(L)
+								qdel(L)
 
 
 //Custom bump for crushers. This overwrites normal bumpcode from carbon.dm
@@ -485,6 +488,7 @@
 			A.update_button_icon()
 	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
 	visible_message("<span class='xenohighdanger'>\The [src] emits an ear-splitting guttural roar!</span>")
+	round_statistics.queen_screech++
 	create_shriekwave() //Adds the visual effect. Wom wom wom
 	//stop_momentum(charge_dir) //Screech kills a charge
 
@@ -503,14 +507,12 @@
 
 		if(dist < 8)
 			to_chat(H, "<span class='danger'>An ear-splitting guttural roar tears through your mind and makes your world convulse!</span>")
-			H.druggy += 3 //Perception distorting effects of the psychic scream
 			H.stunned += stun_duration
 			H.KnockDown(stun_duration)
 			H.apply_damage(halloss_damage, HALLOSS)
 			if(!H.ear_deaf)
 				H.ear_deaf += stun_duration * 20  //Deafens them temporarily
 			spawn(31)
-				H.druggy += stun_duration * 10 //Perception distorting effects of the psychic scream
 				shake_camera(H, stun_duration * 10, 0.75) //Perception distorting effects of the psychic scream
 
 /mob/living/carbon/Xenomorph/Queen/proc/queen_gut(atom/A)
@@ -581,7 +583,7 @@
 	ovipositor = TRUE
 
 	for(var/datum/action/A in actions)
-		cdel(A)
+		qdel(A)
 
 	var/list/immobile_abilities = list(\
 		/datum/action/xeno_action/regurgitate,\
@@ -636,7 +638,7 @@
 		zoom_out()
 
 		for(var/datum/action/A in actions)
-			cdel(A)
+			qdel(A)
 
 		var/list/mobile_abilities = list(
 			/datum/action/xeno_action/xeno_resting,
@@ -720,6 +722,7 @@
 			icon_state = "Queen Walking"
 
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
+	update_wounds()
 
 /mob/living/carbon/Xenomorph/Queen/Topic(href, href_list)
 
@@ -761,7 +764,7 @@
 		observed_xeno = target
 		if(old_xeno)
 			old_xeno.hud_set_queen_overwatch()
-	if(!target.disposed) //not cdel'd
+	if(!target.gc_destroyed) //not cdel'd
 		target.hud_set_queen_overwatch()
 	reset_view()
 

@@ -47,7 +47,7 @@
 	for(var/obj/item/stack/sheet/hairlesshide/HH in contents)
 		var/obj/item/stack/sheet/wetleather/WL = new(src)
 		WL.amount = HH.amount
-		cdel(HH)
+		qdel(HH)
 
 
 	if( locate(/mob,contents) )

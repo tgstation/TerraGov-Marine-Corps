@@ -39,10 +39,6 @@
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
-	lunge_cooldown = 4 SECONDS
-	fling_cooldown = 4 SECONDS
-	punch_cooldown = 4 SECONDS
-	toggle_agility_cooldown = 0.5 SECONDS
 
 /datum/xeno_caste/warrior/mature
 	upgrade_name = "Mature"
@@ -74,11 +70,6 @@
 	armor_deflection = 50
 
 	// *** Warrior Abilities *** //
-	agility_speed_increase = 0
-	lunge_cooldown = 4 SECONDS
-	fling_cooldown = 4 SECONDS
-	punch_cooldown = 4 SECONDS
-	toggle_agility_cooldown = 0.5 SECONDS
 
 /datum/xeno_caste/warrior/elder
 	upgrade_name = "Elder"
@@ -111,10 +102,6 @@
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
-	lunge_cooldown = 4 SECONDS
-	fling_cooldown = 4 SECONDS
-	punch_cooldown = 4 SECONDS
-	toggle_agility_cooldown = 0.5 SECONDS
 
 /datum/xeno_caste/warrior/ancient
 	upgrade_name = "Ancient"
@@ -147,10 +134,6 @@
 
 	// *** Warrior Abilities *** //
 	agility_speed_increase = 0
-	lunge_cooldown = 4 SECONDS
-	fling_cooldown = 4 SECONDS
-	punch_cooldown = 4 SECONDS
-	toggle_agility_cooldown = 0.5 SECONDS
 
 /mob/living/carbon/Xenomorph/Warrior
 	caste_base_type = /mob/living/carbon/Xenomorph/Warrior
@@ -192,6 +175,7 @@
 			icon_state = "Warrior Walking"
 
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
+	update_wounds()
 
 /mob/living/carbon/Xenomorph/Warrior/throw_item(atom/target)
 	throw_mode_off()
@@ -236,7 +220,7 @@
 			"<span class='xenowarning'>You grab [L] by the throat!</span>")
 
 	if(!lunge && !isXeno(AM))
-		spawn(xeno_caste.lunge_cooldown)
+		spawn(WARRIOR_LUNGE_COOLDOWN)
 			used_lunge = 0
 			to_chat(src, "<span class='notice'>You get ready to lunge again.</span>")
 			update_action_button_icons()

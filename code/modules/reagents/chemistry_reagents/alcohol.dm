@@ -64,7 +64,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 			to_chat(usr, "<span class='warning'>[O]'s ink is smeared by [name], but doesn't wash away!</span>")
 	return
 
-/datum/reagent/reaction_mob(mob/living/M, var/method=TOUCH, reac_volume)//Splashing people with ethanol isn't quite as good as fuel.
+/datum/reagent/consumbale/ethanol/reaction_mob(mob/living/M, var/method=TOUCH, reac_volume)//Splashing people with ethanol isn't quite as good as fuel.
 	if(!isliving(M))
 		return
 
@@ -82,7 +82,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 /datum/reagent/consumable/ethanol/wy_beer
 	name = "Aspen Beer"
 	id = "aspen"
-	description = "Pretty good when you get past the fact that it tastes like piss. Canned by the Weyland-Yutani Corporation."
+	description = "Pretty good when you get past the fact that it tastes like piss. Canned by the Nanotrasen Corporation."
 	color = "#ffcc66"
 	boozepwr = 5 //Space Europeans hate it
 	taste_description = "dish water"
@@ -134,7 +134,8 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	boozepwr = 80
 	nutriment_factor = 1 * FOOD_METABOLISM
 	taste_description = "jitters and death"
-	adj_temp = -5
+	adj_temp = 5
+	targ_temp = 305
 
 /datum/reagent/consumable/ethanol/thirteenloko/on_mob_life(mob/living/carbon/M)
 	M.drowsyness = max(0,M.drowsyness-7)
@@ -695,7 +696,7 @@ All effects don't start immediately, but rather get worse over time; the rate is
 	taste_description = "refreshingly cold"
 	boozepwr = 15
 	targ_temp = 270
-	adj_temp = -20
+	adj_temp = 20
 
 /datum/reagent/consumable/ethanol/grog
 	name = "Grog"

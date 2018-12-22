@@ -73,12 +73,12 @@
 		if(1)
 			if(prob(50))
 				dump_everything() //So suits dont survive all the time
-			cdel(src)
+			qdel(src)
 
 		if(2)
 			if(prob(50))
 				dump_everything()
-				cdel(src)
+				qdel(src)
 
 
 
@@ -220,7 +220,7 @@
 
 	sleep(150)
 
-	if(disposed)
+	if(gc_destroyed)
 		return
 	if(inserted_helmet)
 		inserted_helmet.clean_blood()

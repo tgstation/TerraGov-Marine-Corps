@@ -228,24 +228,24 @@
 /obj/item/clothing/head/helmet/marine/update_icon()
 	if(pockets.contents.len && (flags_marine_helmet & HELMET_GARB_OVERLAY))
 		if(!helmet_overlays["band"])
-			var/image/reusable/I = rnew(/image/reusable, list('icons/obj/clothing/cm_hats.dmi', src, "helmet_band"))
+			var/image/I = image('icons/obj/clothing/cm_hats.dmi', src, "helmet_band")
 			helmet_overlays["band"] = I
 
 		if(!helmet_overlays["item"])
 			var/obj/O = pockets.contents[1]
 			if(O.type in allowed_helmet_items)
-				var/image/reusable/I = rnew(/image/reusable, list('icons/obj/clothing/cm_hats.dmi', src, "[allowed_helmet_items[O.type]][O.type == /obj/item/tool/lighter/random ? O:clr : ""]"))
+				var/image/I = image('icons/obj/clothing/cm_hats.dmi', src, "[allowed_helmet_items[O.type]][O.type == /obj/item/tool/lighter/random ? O:clr : ""]")
 				helmet_overlays["item"] = I
 
 	else
 		if(helmet_overlays["item"])
-			var/image/reusable/RI = helmet_overlays["item"]
+			var/image/RI = helmet_overlays["item"]
 			helmet_overlays["item"] = null
-			cdel(RI)
+			qdel(RI)
 		if(helmet_overlays["band"])
-			var/image/reusable/J = helmet_overlays["band"]
+			var/image/J = helmet_overlays["band"]
 			helmet_overlays["band"] = null
-			cdel(J)
+			qdel(J)
 
 	if(ismob(loc))
 		var/mob/M = loc
@@ -313,7 +313,7 @@
 /obj/item/clothing/head/helmet/marine/scout
 	name = "\improper M3-S helmet"
 	icon_state = "scout_helmet"
-	desc = "A custom helmet designed for USCM Scouts."
+	desc = "A custom helmet designed for TGMC Scouts."
 	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 
@@ -324,7 +324,7 @@
 /obj/item/clothing/head/helmet/marine/pyro
 	name = "\improper M35 helmet"
 	icon_state = "pyro_helmet"
-	desc = "A helmet designed for USCM Pyrotechnicians. Contains heavy insulation, covered in nomex weave."
+	desc = "A helmet designed for TGMC Pyrotechnicians. Contains heavy insulation, covered in nomex weave."
 	armor = list(melee = 85, bullet = 75, laser = 60, energy = 50, bomb = 50, bio = 10, rad = 10)
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	max_heat_protection_temperature = FIRESUIT_max_heat_protection_temperature
@@ -348,7 +348,7 @@
 
 /obj/item/clothing/head/helmet/marine/tanker
 	name = "\improper M50 tanker helmet"
-	desc = "The lightweight M50 tanker helmet is designed for use by armored crewmen in the USCM. It offers low weight protection, and allows agile movement inside the confines of an armored vehicle."
+	desc = "The lightweight M50 tanker helmet is designed for use by armored crewmen in the TGMC. It offers low weight protection, and allows agile movement inside the confines of an armored vehicle."
 	icon_state = "tanker_helmet"
 	armor = list(melee = 40, bullet = 40, laser = 35, energy = 45, bomb = 30, bio = 15, rad = 15)
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
@@ -401,7 +401,7 @@
 
 /obj/item/clothing/head/helmet/marine/veteran/PMC/commando
 	name = "\improper PMC commando helmet"
-	desc = "A fully enclosed, armored helmet made for Weyland Yutani elite commandos."
+	desc = "A fully enclosed, armored helmet made for Nanotrasen elite commandos."
 	icon_state = "commando_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
 	armor = list(melee = 90, bullet = 120, laser = 90, energy = 90, bomb = 90, bio = 100, rad = 100)

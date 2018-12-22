@@ -16,7 +16,7 @@
 			new /obj/item/shard( src.loc )
 			if (occupied)
 				occupied = 0
-			cdel(src)
+			qdel(src)
 		if (2)
 			if (prob(50))
 				src.health -= 15

@@ -85,7 +85,7 @@
 
 /obj/item/clothing/head/cakehat/process()
 	if(!onfire)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return
 
 /obj/item/clothing/head/cakehat/attack_self(mob/user as mob)
@@ -95,7 +95,7 @@
 		src.force = 3
 		src.damtype = "fire"
 		src.icon_state = "cake1"
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 	else
 		src.force = null
 		src.damtype = "brute"
@@ -143,7 +143,7 @@
 //			user.UpdateLuminosity()
 			SetLuminosity(brightness_on)
 
-	Dispose()
+	Destroy()
 		if(ismob(src.loc))
 			src.loc.SetLuminosity(-brightness_on)
 		else
@@ -157,18 +157,27 @@
 	desc = "A pair of kitty ears. Meow!"
 	icon_state = "kitty"
 	flags_armor_protection = 0
-	var/icon/mob
-	var/icon/mob2
 	siemens_coefficient = 1.5
-/*
-	update_icon(var/mob/living/carbon/human/user)
-		if(!istype(user)) return
-		mob = new/icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kitty")
-		mob2 = new/icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kitty2")
-		mob.Blend(rgb(user.r_hair, user.g_hair, user.b_hair), ICON_ADD)
-		mob2.Blend(rgb(user.r_hair, user.g_hair, user.b_hair), ICON_ADD)
+	var/icon/ears = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kitty")
+	var/icon/earbit = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kittyinner")
 
-		var/icon/earbit = new/icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kittyinner")
-		var/icon/earbit2 = new/icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kittyinner2")
-		mob.Blend(earbit, ICON_OVERLAY)
-		mob2.Blend(earbit2, ICON_OVERLAY)*/
+/obj/item/clothing/head/kitty/update_icon(mob/living/carbon/human/user, remove = FALSE)
+	if(!istype(user)) 
+		to_chat(world, "Not an user")
+		return
+	
+	ears = new /icon("icon" = 'icons/mob/head_0.dmi', "icon_state" = "kitty")
+	ears.Blend(rgb(user.r_hair, user.g_hair, user.b_hair), ICON_ADD)
+	ears.Blend(earbit, ICON_OVERLAY)
+
+	if(user.head && istype(user.head, /obj/item/clothing/head/kitty) && !remove)
+		user.overlays.Add(ears)
+	else
+		user.overlays.Remove(ears)
+
+/obj/item/clothing/head/kitty/dropped(mob/living/carbon/human/user)
+	update_icon(user, remove = TRUE)
+
+/obj/item/clothing/head/kitty/equipped(mob/living/carbon/human/user)
+	if(user.head && istype(user.head, /obj/item/clothing/head/kitty))
+		update_icon(user)

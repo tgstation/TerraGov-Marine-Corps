@@ -205,7 +205,7 @@
 		if(shuttle.locked)
 			return
 		if(shuttle.transit_gun_mission == TRUE)
-			to_chat(M, "<span class='notice'>You reset the flight plan to a transport mission between the Almayer and the planet.</span>")
+			to_chat(M, "<span class='notice'>You reset the flight plan to a transport mission between the [MAIN_SHIP_NAME] and the planet.</span>")
 			shuttle.transit_gun_mission = FALSE
 		else
 			if(M.mind && M.mind.cm_skills && M.mind.cm_skills.pilot < SKILL_PILOT_TRAINED) //everyone can activate the fire mission mode while fumbling, but everyone can reset it back to transport without.

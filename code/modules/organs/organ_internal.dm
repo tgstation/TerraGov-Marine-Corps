@@ -23,7 +23,7 @@
 	var/germ_level = 0		// INTERNAL germs inside the organ, this is BAD if it's greater than INFECTION_LEVEL_ONE
 
 
-/datum/internal_organ/proc/process()
+/datum/internal_organ/process()
 		return 0
 
 //Germs
@@ -243,16 +243,12 @@
 		for(var/datum/reagent/R in owner.reagents.reagent_list)
 			// Damaged liver means some chemicals are very dangerous
 			// The liver is also responsible for clearing out alcohol and toxins.
-			// Ethanol and all drinks are bad.K
-			if(istype(R, /datum/reagent/consumable/ethanol))
+			// Ethanol and all drinks and all poisons are bad.K
+			if(istype(R, /datum/reagent/consumable/ethanol) || istype(R, /datum/reagent/toxin))
 				if(filter_effect < 3)
-					owner.adjustToxLoss(0.1 * PROCESS_ACCURACY)
+					var/toxloss = istype(R, /datum/reagent/toxin) ? 0.3 : 0.1
+					owner.adjustToxLoss(toxloss * PROCESS_ACCURACY)
 				owner.reagents.remove_reagent(R.id, R.custom_metabolism*filter_effect)
-			// Can't cope with toxins at all
-			else if(istype(R, /datum/reagent/toxin))
-				if(filter_effect < 3)
-					owner.adjustToxLoss(0.3 * PROCESS_ACCURACY)
-				owner.reagents.remove_reagent(R.id, ALCOHOL_METABOLISM*filter_effect)
 
 		//Heal toxin damage slowly if not damaged
 		if(damage < 5 && prob(25))

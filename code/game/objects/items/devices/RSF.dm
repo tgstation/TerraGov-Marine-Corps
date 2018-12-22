@@ -28,7 +28,7 @@ RSF
 			to_chat(user, "The RSF can't hold any more matter.")
 			return
 
-		cdel(W)
+		qdel(W)
 
 		stored_matter += 10
 		playsound(src.loc, 'sound/machines/click.ogg', 15, 1)

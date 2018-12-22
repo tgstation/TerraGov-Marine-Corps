@@ -18,10 +18,10 @@ datum/controller/vote
 	New()
 		if(vote != src)
 			if(istype(vote))
-				cdel(vote)
+				qdel(vote)
 			vote = src
 
-	proc/process()	//called by master_controller
+	process()	//called by master_controller
 		if(mode)
 			// No more change mode votes after the game has started.
 			// 3 is GAME_STATE_PLAYING, but that #define is undefined for some reason

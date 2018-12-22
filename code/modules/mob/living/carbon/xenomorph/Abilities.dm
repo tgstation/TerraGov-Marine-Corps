@@ -28,6 +28,7 @@
 		"<span class='xenonotice'>You regurgitate a pulsating node and plant it on the ground!</span>", null, 5)
 		new /obj/effect/alien/weeds/node(X.loc, src, X)
 		playsound(X.loc, "alien_resin_build", 25)
+		round_statistics.weeds_planted++
 
 // Resting
 /datum/action/xeno_action/xeno_resting
@@ -829,7 +830,7 @@
 			possible_xenos += T
 
 	var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
-	if(!selected_xeno || selected_xeno.disposed || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z == ADMIN_Z_LEVEL || !X.check_state())
+	if(!selected_xeno || selected_xeno.gc_destroyed || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z == ADMIN_Z_LEVEL || !X.check_state())
 		if(X.observed_xeno)
 			X.set_queen_overwatch(X.observed_xeno, TRUE)
 	else
@@ -1056,7 +1057,7 @@
 		//Something went horribly wrong!
 		to_chat(X, "<span class='warning'>Something went terribly wrong here. Your new xeno is null! Tell a coder immediately!</span>")
 		if(new_xeno)
-			cdel(new_xeno)
+			qdel(new_xeno)
 		return
 
 	if(T.mind)
@@ -1102,7 +1103,7 @@
 	log_admin("[key_name_admin(X)] has deevolved [key_name_admin(T)]. Reason: [reason]")
 
 	round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
-	cdel(T)
+	qdel(T)
 	X.use_plasma(600)
 
 	
@@ -1238,6 +1239,21 @@
 	var/mob/living/carbon/Xenomorph/Hunter/X = owner
 	return !X.used_stealth
 
+//Sentinel Neurotox Sting
+/datum/action/xeno_action/activable/neurotox_sting
+	name = "Neurotoxin Sting"
+	action_icon_state = "neuro_sting"
+	ability_name = "neurotoxin sting"
+	plasma_cost = 150
+
+/datum/action/xeno_action/activable/neurotox_sting/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Sentinel/X = owner
+	X.neurotoxin_sting(A)
+
+/datum/action/xeno_action/activable/neurotox_sting/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Sentinel/X = owner
+	if(world.time >= X.last_neurotoxin_sting + NEUROTOXIN_STING_COOLDOWN)
+		return TRUE
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 

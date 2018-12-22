@@ -78,6 +78,7 @@
 	declare_completion_announce_xenomorphs()
 	declare_completion_announce_survivors()
 	declare_completion_announce_medal_awards()
+	declare_completion_announce_round_stats()
 	return 1
 
 
@@ -87,5 +88,5 @@
 	initialize_post_survivor_list()
 
 	spawn (50)
-		command_announcement.Announce("We've lost contact with the Weyland-Yutani's research facility, [name]. The [MAIN_SHIP_NAME] has been dispatched to assist.", "[MAIN_SHIP_NAME]")
+		command_announcement.Announce("We've lost contact with the Nanotrasen's research facility, [name]. The [MAIN_SHIP_NAME] has been dispatched to assist.", "[MAIN_SHIP_NAME]")
 

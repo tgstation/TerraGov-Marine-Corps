@@ -50,11 +50,11 @@
 		update_turf_overlay()
 
 /turf/open/floor/plating/plating_catwalk/proc/update_turf_overlay()
-	var/image/reusable/I = rnew(/image/reusable, list(icon, src, "catwalk", CATWALK_LAYER))
+	var/image/I = image(icon, src, "catwalk", CATWALK_LAYER)
 	switch(covered)
 		if(0)
 			overlays -= I
-			cdel(I)
+			qdel(I)
 		if(1) overlays += I
 
 /turf/open/floor/plating/plating_catwalk/attackby(obj/item/W as obj, mob/user as mob)
@@ -159,21 +159,21 @@
 					for(var/mob/living/M in H)
 						M.take_overall_damage(20, 0, "Blunt Trauma")
 					for(var/obj/effect/decal/cleanable/C in contents) //get rid of blood
-						cdel(C)
+						qdel(C)
 					R.expel(H)
 					return
 
-				cdel(AM)
+				qdel(AM)
 
 		else
 			for(var/obj/effect/decal/cleanable/C in contents) //for the off chance of someone bleeding mid=flight
-				cdel(C)
+				qdel(C)
 
 
 //Others
 /turf/open/floor/almayer/uscm
 	icon_state = "logo_c"
-	name = "\improper USCM Logo"
+	name = "\improper TGMC Logo"
 
 /turf/open/floor/almayer/uscm/directional
 	icon_state = "logo_directional"
@@ -181,17 +181,12 @@
 
 
 // RESEARCH STUFF
-/turf/open/floor/almayer/research/containment/entrance
-	icon_state = "containment_entrance"
 
 /turf/open/floor/almayer/research/containment/floor1
 	icon_state = "containment_floor_1"
 
 /turf/open/floor/almayer/research/containment/floor2
 	icon_state = "containment_floor_2"
-
-/turf/open/floor/almayer/research/containment/corner
-	icon_state = "containment_corner"
 
 /turf/open/floor/almayer/research/containment/corner1
 	icon_state = "containment_corner_1"
@@ -205,11 +200,6 @@
 /turf/open/floor/almayer/research/containment/corner4
 	icon_state = "containment_corner_4"
 
-/turf/open/floor/almayer/research/containment/corner_var1
-	icon_state = "containment_corner_variant_1"
-
-/turf/open/floor/almayer/research/containment/corner_var2
-	icon_state = "containment_corner_variant_2"
 
 
 

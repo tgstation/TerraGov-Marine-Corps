@@ -56,7 +56,7 @@
 		path = list()
 		permutated = list()
 
-	Dispose()
+	Destroy()
 		..()
 		in_flight = 0
 		ammo = null
@@ -68,10 +68,6 @@
 		path = null
 		list_reagents = null
 		return TA_REVIVE_ME
-
-	Recycle()
-		var/blacklist[] = list("ammo","name","desc","icon_state","damage","in_flight","shot_from","original","target_turf","starting", "permutated","path")
-		. = ..() + blacklist
 
 	Bumped(atom/A as mob|obj|turf|area)
 		if(A && !A in permutated)
@@ -104,7 +100,7 @@
 	if(starting != loc) loc = starting //Put us on the turf, if we're not.
 	target_turf = get_turf(target)
 	if(!target_turf || target_turf == starting) //This shouldn't happen, but it can.
-		cdel(src)
+		qdel(src)
 		return
 	firer = F
 	if(F) permutated += F //Don't hit the shooter (firer)
@@ -159,11 +155,11 @@
 	var/this_iteration = 0
 	in_flight = 1
 	for(next_turf in path)
-		if(!loc || disposed || !in_flight) return
+		if(!loc || gc_destroyed || !in_flight) return
 
 		if(distance_travelled >= range)
 			ammo.do_at_max_range(src)
-			cdel(src)
+			qdel(src)
 			return
 
 		var/proj_dir = get_dir(current_turf, next_turf)
@@ -173,13 +169,13 @@
 				current_turf.bullet_act(src)
 				in_flight = 0
 				sleep(0)
-				cdel(src)
+				qdel(src)
 				return
 
 		if(scan_a_turf(next_turf)) //We hit something! Get out of all of this.
 			in_flight = 0
 			sleep(0)
-			cdel(src)
+			qdel(src)
 			return
 
 		loc = next_turf
@@ -202,10 +198,10 @@
 					distance_travelled-- //because the new follow_flightpath() repeats the last step.
 					follow_flightpath(speed, change_x, change_y, range) //Onwards!
 				else
-					cdel(src)
+					qdel(src)
 					return
 			else //To prevent bullets from getting stuck in maps like WO.
-				cdel(src)
+				qdel(src)
 				return
 
 /obj/item/projectile/proc/scan_a_turf(turf/T)
@@ -645,7 +641,10 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 					armor = max(0, armor - (xeno_caste.armor_deflection * config.xeno_armor_resist_low)) //Both facing same way -- ie. shooting from behind; armour reduced by 50% of base.
 				else
 					armor = max(0, armor - (xeno_caste.armor_deflection * config.xeno_armor_resist_lmed)) //Both facing same way -- ie. shooting from behind; armour reduced by 75% of base.
-			else if(P.dir == reverse_direction(charger.dir)) armor += round(xeno_caste.armor_deflection * config.xeno_armor_resist_low) //We are facing the bullet.
+			else if(P.dir == reverse_direction(charger.dir))
+				armor += round(xeno_caste.armor_deflection * config.xeno_armor_resist_low) //We are facing the bullet.
+			else if(isXenoCrusher(src))
+				armor = max(0, armor - (xeno_caste.armor_deflection * config.xeno_armor_resist_vlow)) //side armour eats a bit of shit if we're a Crusher
 			//Otherwise use the standard armor deflection for crushers.
 			#if DEBUG_XENO_DEFENSE
 			to_chat(world, "<span class='debuginfo'>Adjusted crest armor is: <b>[armor]</b></span>")
@@ -762,7 +761,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	health -= round(P.damage/2)
 	if (health < 0)
 		visible_message("<span class='warning'>[src] breaks down!</span>")
-		destroy()
+		destroy_structure()
 	return 1
 
 
@@ -779,7 +778,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(!P || !P.ammo.ping) return
 	if(prob(65))
 		if(P.ammo.sound_bounce) playsound(src, P.ammo.sound_bounce, 50, 1)
-		var/image/reusable/I = rnew(/image/reusable, list('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10))
+		var/image/I = image('icons/obj/items/projectiles.dmi',src,P.ammo.ping,10)
 		var/angle = (P.firer && prob(60)) ? round(Get_Angle(P.firer,src)) : round(rand(1,359))
 		I.pixel_x += rand(-6,6)
 		I.pixel_y += rand(-6,6)
@@ -787,8 +786,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		var/matrix/rotate = matrix()
 		rotate.Turn(angle)
 		I.transform = rotate
-
-		I.flick_overlay(src, 3)
+		flick_overlay_view(I, src, 3)
 
 /mob/proc/bullet_message(obj/item/projectile/P)
 	if(!P) return
@@ -804,6 +802,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		if(ishuman(firingMob) && ishuman(src) && firingMob.mind && !firingMob.mind.special_role && mind && !mind.special_role) //One human shot another, be worried about it but do everything basically the same //special_role should be null or an empty string if done correctly
 			log_combat(firingMob, src, "shot", P)
 			msg_admin_ff("[key_name(firingMob)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[firingMob]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[firingMob.x];Y=[firingMob.y];Z=[firingMob.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[firingMob]'>FLW</a>) shot [key_name(src)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[src]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[src]'>FLW</a>) with \a [P] in [get_area(firingMob)]")
+			round_statistics.total_bullet_hits_on_marines++
 		else
 			log_combat(firingMob, src, "shot", P)
 			msg_admin_attack("[key_name(firingMob)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[firingMob]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[firingMob.x];Y=[firingMob.y];Z=[firingMob.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[firingMob]'>FLW</a>) shot [key_name(src)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[src]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[src]'>FLW</a>) with \a [P] in [get_area(firingMob)]")

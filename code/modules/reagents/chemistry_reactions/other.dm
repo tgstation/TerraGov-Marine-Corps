@@ -19,15 +19,15 @@
 			//Should be removed when we actually balance out chemistry.
 				var/obj/item/explosive/grenade/g
 				var/obj/item/storage/s
-				for(g in location) cdel(g) //Grab anything on our turf/something.
+				for(g in location) qdel(g) //Grab anything on our turf/something.
 				if(istype(location, /obj/item/storage) || ismob(location)) //If we're in a bag or person.
 					for(s in location) //Find all other containers.
-						for(g in s) cdel(g) //Delete all the grenades.
+						for(g in s) qdel(g) //Delete all the grenades.
 				if(istype(location.loc, /obj/item/storage) || ismob(location.loc)) //If the container is in another container.
-					for(g in location.loc) cdel(g) //Delete all the grenades inside.
+					for(g in location.loc) qdel(g) //Delete all the grenades inside.
 					for(s in location.loc) //Search for more containers.
 						if(s == location) continue //Don't search the container we're in.
-						for(g in s) cdel(g) //Delete all the grenades inside.
+						for(g in s) qdel(g) //Delete all the grenades inside.
 		holder.clear_reagents()
 		return
 
@@ -81,13 +81,11 @@
 	results = list("water" = 1)
 	required_reagents = list("oxygen" = 1, "hydrogen" = 2)
 
-/
 /datum/chemical_reaction/thermite
 	name = "Thermite"
 	id = "thermite"
 	results = list("thermite" = 3)
 	required_reagents = list("aluminum" = 10, "iron" = 10, "oxygen" = 10, "phoron" = 1)
-/
 
 /datum/chemical_reaction/lexorin
 	name = "Lexorin"
@@ -195,7 +193,7 @@
 		if(istype(T,/turf/open/space))
 			continue
 		for(var/obj/flamer_fire/F in T) // No stacking flames!
-			cdel(F)
+			qdel(F)
 		new /obj/flamer_fire(T, 5 + rand(0,11))
 
 

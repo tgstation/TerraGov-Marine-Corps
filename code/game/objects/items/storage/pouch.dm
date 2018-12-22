@@ -166,71 +166,79 @@
 	storage_slots = 6
 	icon_state = "large_pistol_mag"
 
+/obj/item/storage/pouch/magazine/pistol/large/full/New()
+	. = ..()
+	new /obj/item/ammo_magazine/pistol(src)
+	new /obj/item/ammo_magazine/pistol(src)
+	new /obj/item/ammo_magazine/pistol(src)
+	new /obj/item/ammo_magazine/pistol(src)
+	new /obj/item/ammo_magazine/pistol(src)
+	new /obj/item/ammo_magazine/pistol(src)
 
 /obj/item/storage/pouch/magazine/pistol/pmc_mateba/New()
-	..()
+	. = ..()
 	new /obj/item/ammo_magazine/revolver/mateba (src)
 	new /obj/item/ammo_magazine/revolver/mateba (src)
 	new /obj/item/ammo_magazine/revolver/mateba (src)
 
 /obj/item/storage/pouch/magazine/pistol/pmc_vp70/New()
-	..()
-	new /obj/item/ammo_magazine/pistol/vp70 (src)
-	new /obj/item/ammo_magazine/pistol/vp70 (src)
-	new /obj/item/ammo_magazine/pistol/vp70 (src)
+	. = ..()
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
+	new /obj/item/ammo_magazine/pistol/vp70(src)
 
 /obj/item/storage/pouch/magazine/pistol/pmc_vp78/New()
-	..()
-	new /obj/item/ammo_magazine/pistol/vp78 (src)
-	new /obj/item/ammo_magazine/pistol/vp78 (src)
-	new /obj/item/ammo_magazine/pistol/vp78 (src)
+	. = ..()
+	new /obj/item/ammo_magazine/pistol/vp78(src)
+	new /obj/item/ammo_magazine/pistol/vp78(src)
+	new /obj/item/ammo_magazine/pistol/vp78(src)
 
 
 /obj/item/storage/pouch/magazine/upp/New()
-	..()
-	new /obj/item/ammo_magazine/rifle/type71 (src)
-	new /obj/item/ammo_magazine/rifle/type71 (src)
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/type71(src)
+	new /obj/item/ammo_magazine/rifle/type71(src)
 
 /obj/item/storage/pouch/magazine/large/upp/New()
-	..()
-	new /obj/item/ammo_magazine/rifle/type71 (src)
-	new /obj/item/ammo_magazine/rifle/type71 (src)
-	new /obj/item/ammo_magazine/rifle/type71 (src)
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/type71(src)
+	new /obj/item/ammo_magazine/rifle/type71(src)
+	new /obj/item/ammo_magazine/rifle/type71(src)
 
 /obj/item/storage/pouch/magazine/upp_smg/New()
-	..()
-	new /obj/item/ammo_magazine/smg/skorpion (src)
-	new /obj/item/ammo_magazine/smg/skorpion (src)
+	. = ..()
+	new /obj/item/ammo_magazine/smg/skorpion(src)
+	new /obj/item/ammo_magazine/smg/skorpion(src)
 
 /obj/item/storage/pouch/magazine/large/pmc_m39/New()
-	..()
-	new /obj/item/ammo_magazine/smg/m39/ap (src)
-	new /obj/item/ammo_magazine/smg/m39/ap (src)
-	new /obj/item/ammo_magazine/smg/m39/ap (src)
+	. = ..()
+	new /obj/item/ammo_magazine/smg/m39/ap(src)
+	new /obj/item/ammo_magazine/smg/m39/ap(src)
+	new /obj/item/ammo_magazine/smg/m39/ap(src)
 
 /obj/item/storage/pouch/magazine/large/pmc_p90/New()
-	..()
-	new /obj/item/ammo_magazine/smg/p90 (src)
-	new /obj/item/ammo_magazine/smg/p90 (src)
-	new /obj/item/ammo_magazine/smg/p90 (src)
+	. = ..()
+	new /obj/item/ammo_magazine/smg/p90(src)
+	new /obj/item/ammo_magazine/smg/p90(src)
+	new /obj/item/ammo_magazine/smg/p90(src)
 
 /obj/item/storage/pouch/magazine/large/pmc_lmg/New()
-	..()
-	new /obj/item/ammo_magazine/rifle/lmg (src)
-	new /obj/item/ammo_magazine/rifle/lmg (src)
-	new /obj/item/ammo_magazine/rifle/lmg (src)
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/lmg(src)
+	new /obj/item/ammo_magazine/rifle/lmg(src)
+	new /obj/item/ammo_magazine/rifle/lmg(src)
 
 /obj/item/storage/pouch/magazine/large/pmc_sniper/New()
-	..()
-	new /obj/item/ammo_magazine/sniper/elite (src)
-	new /obj/item/ammo_magazine/sniper/elite (src)
-	new /obj/item/ammo_magazine/sniper/elite (src)
+	. = ..()
+	new /obj/item/ammo_magazine/sniper/elite(src)
+	new /obj/item/ammo_magazine/sniper/elite(src)
+	new /obj/item/ammo_magazine/sniper/elite(src)
 
 /obj/item/storage/pouch/magazine/large/pmc_rifle/New()
-	..()
-	new /obj/item/ammo_magazine/rifle/ap (src)
-	new /obj/item/ammo_magazine/rifle/ap (src)
-	new /obj/item/ammo_magazine/rifle/ap (src)
+	. = ..()
+	new /obj/item/ammo_magazine/rifle/ap(src)
+	new /obj/item/ammo_magazine/rifle/ap(src)
+	new /obj/item/ammo_magazine/rifle/ap(src)
 
 
 
@@ -345,7 +353,8 @@
 		if(M.contents.len)
 			if(contents.len < storage_slots)
 				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC)) return
+				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC)) 
+					return
 				for(var/obj/item/I in M)
 					if(contents.len < storage_slots)
 						M.remove_from_storage(I)
@@ -360,6 +369,7 @@
 		return TRUE
 	else
 		return ..()
+
 /obj/item/storage/pouch/flare/full/New()
 	..()
 	new /obj/item/device/flashlight/flare(src)
@@ -479,3 +489,27 @@
 	draw_mode = 0
 	can_hold = list("/obj/item/ammo_magazine/handful",
 					)
+
+/obj/item/storage/pouch/shotgun/attackby(obj/item/W, mob/user)
+	if(istype(W, /obj/item/ammo_magazine/shotgun))
+		var/obj/item/ammo_magazine/shotgun/M = W
+		if(M.current_rounds)
+			if(contents.len < storage_slots)
+				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
+				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC)) 
+					return
+				var/cont
+				for(var/x = 1 to storage_slots)
+					cont = handle_item_insertion(M.create_handful(), 1, user)
+					if(!cont)
+						break
+				M.update_icon()
+				playsound(user.loc, "rustle", 15, 1, 6)
+				to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
+			else
+				to_chat(user, "<span class='warning'>[src] is full.</span>")
+		else
+			to_chat(user, "<span class='warning'>[M] is empty.</span>")
+		return TRUE
+	else
+		return ..()

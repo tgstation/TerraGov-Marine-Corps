@@ -24,7 +24,7 @@
 	plasma_gain = 10
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 200
 
 	// *** Evolution *** //
 	evolution_threshold = 100
@@ -34,7 +34,7 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA
-	
+
 	// *** Defense *** //
 	armor_deflection = 20
 
@@ -42,20 +42,15 @@
 	charge_type = 2 //Pounce - Hunter
 
 	// *** Defender Abilities *** //
-	headbutt_cooldown = 4 SECONDS
-	tail_sweep_cooldown = 12 SECONDS
-	crest_defense_cooldown = 1 SECONDS
-	fortify_cooldown = 200
 	crest_defense_armor = 35
 	fortify_armor = 70
-	cresttoss_cooldown = 6 SECONDS
 
 /datum/xeno_caste/defender/mature
 	upgrade_name = "Mature"
 	caste_desc = "An alien with an armored head crest. It looks a little more dangerous."
 	upgrade = 1
 
-	// *** Melee Attacks *** //	
+	// *** Melee Attacks *** //
 	melee_damage_lower = 20
 	melee_damage_upper = 30
 
@@ -70,7 +65,7 @@
 	plasma_gain = 13
 
 	// *** Health *** //
-	max_health = 275
+	max_health = 240
 
 	// *** Evolution *** //
 	upgrade_threshold = 200
@@ -87,7 +82,7 @@
 	caste_desc = "An alien with an armored head crest. It looks pretty strong."
 	upgrade = 2
 
-	// *** Melee Attacks *** //	
+	// *** Melee Attacks *** //
 	melee_damage_lower = 23
 	melee_damage_upper = 33
 
@@ -102,7 +97,7 @@
 	plasma_gain = 14
 
 	// *** Health *** //
-	max_health = 290
+	max_health = 260
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
@@ -120,7 +115,7 @@
 	upgrade = 3
 	ancient_message = "You are a incredibly resilient, you can control the battle through sheer force."
 
-	// *** Melee Attacks *** //	
+	// *** Melee Attacks *** //
 	melee_damage_lower = 26
 	melee_damage_upper = 36
 
@@ -135,7 +130,7 @@
 	plasma_gain = 15
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 270
 
 	// *** Evolution *** //
 	upgrade_threshold = 400
@@ -153,8 +148,8 @@
 	desc = "A alien with an armored head crest."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	icon_state = "Defender Walking"
-	health = 250
-	maxHealth = 250
+	health = 200
+	maxHealth = 200
 	plasma_stored = 50
 	speed = -0.2
 	pixel_x = -16
@@ -162,6 +157,7 @@
 	tier = 1
 	upgrade = 0
 	pull_speed = -2
+	wound_type = "defender" //used to match appropriate wound overlays
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
@@ -190,3 +186,4 @@
 			icon_state = "Defender Walking"
 
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
+	update_wounds()

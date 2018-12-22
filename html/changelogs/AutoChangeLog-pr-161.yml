@@ -1,0 +1,4 @@
+author: "Arachnidnexus"
+delete-after: True
+changes: 
+  - imageadd: "Changes tank ammo sprites and fixes current sentry ammo sprite"

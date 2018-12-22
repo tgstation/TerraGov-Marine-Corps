@@ -46,7 +46,7 @@
 			if(thermal_protection < 1)
 				temp_adj = (1 - thermal_protection) * ((loc_temp - bodytemperature) / BODYTEMP_HEAT_DIVISOR)
 
-		bodytemperature += CLAMP(temp_adj, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX)
+		adjust_bodytemperature(temp_adj, BODYTEMP_COOLING_MAX, BODYTEMP_HEATING_MAX)
 
 	//+/- 50 degrees from 310.15K is the 'safe' zone, where no damage is dealt.
 	if(bodytemperature > species.heat_level_1)

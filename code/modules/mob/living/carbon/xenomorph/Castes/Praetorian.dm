@@ -8,14 +8,14 @@
 	upgrade = 0
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 20
-	melee_damage_upper = 25
+	melee_damage_lower = 30
+	melee_damage_upper = 35
 
 	// *** Tackle *** //
 	tackle_damage = 40
 
 	// *** Speed *** //
-	speed = -0.1
+	speed = 0.0
 
 	// *** Plasma *** //
 	plasma_max = 800
@@ -36,14 +36,14 @@
 	armor_deflection = 35
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS 
+	spit_delay = 1.5 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/heavy, /datum/ammo/xeno/acid/heavy, /datum/ammo/xeno/sticky)
 
 	acid_spray_range = 4
 	acid_spray_cooldown = 20 SECONDS
 
-	// *** Pheromones *** //	
-	aura_strength = 1.5 //Praetorian's aura starts strong. They are the Queen's right hand. Climbs by 1 to 4.5
+	// *** Pheromones *** //
+	aura_strength = 2.5 //Praetorian's aura starts strong. They are the Queen's right hand. Climbs by 1 to 4.5
 	aura_allowed = list("frenzy", "warding", "recovery")
 
 /datum/xeno_caste/praetorian/mature
@@ -52,21 +52,21 @@
 	upgrade = 1
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 25
-	melee_damage_upper = 30
+	melee_damage_lower = 40
+	melee_damage_upper = 45
 
 	// *** Tackle *** //
-	tackle_damage = 45
+	tackle_damage = 50
 
 	// *** Speed *** //
-	speed = 0.0
+	speed = -0.15
 
 	// *** Plasma *** //
 	plasma_max = 900
 	plasma_gain = 30
 
 	// *** Health *** //
-	max_health = 225
+	max_health = 250
 
 	// *** Evolution *** //
 	upgrade_threshold = 800
@@ -75,10 +75,11 @@
 	armor_deflection = 40
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS 
+	spit_delay = 1.5 SECONDS
+	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade1, /datum/ammo/xeno/acid/heavy, /datum/ammo/xeno/sticky)
 
-	// *** Pheromones *** //	
-	aura_strength = 2.5 
+	// *** Pheromones *** //
+	aura_strength = 3.5
 
 /datum/xeno_caste/praetorian/elder
 	upgrade_name = "Elder"
@@ -86,33 +87,34 @@
 	upgrade = 2
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 30
-	melee_damage_upper = 35
+	melee_damage_lower = 45
+	melee_damage_upper = 50
 
 	// *** Tackle *** //
-	tackle_damage = 50
+	tackle_damage = 57
 
 	// *** Speed *** //
-	speed = -0.1
+	speed = -0.22
 
 	// *** Plasma *** //
 	plasma_max = 1000
 	plasma_gain = 40
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 270
 
 	// *** Evolution *** //
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor_deflection = 40
+	armor_deflection = 43
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS 
+	spit_delay = 1.5 SECONDS
+	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade2, /datum/ammo/xeno/acid/heavy, /datum/ammo/xeno/sticky)
 
-	// *** Pheromones *** //	
-	aura_strength = 3.5 
+	// *** Pheromones *** //
+	aura_strength = 4.2
 
 /datum/xeno_caste/praetorian/ancient
 	upgrade_name = "Ancient"
@@ -121,30 +123,31 @@
 	ancient_message = "You are the strongest range fighter around. Your spit is devestating and you can fire nearly a constant stream."
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 35
-	melee_damage_upper = 40
+	melee_damage_lower = 48
+	melee_damage_upper = 53
 
 	// *** Tackle *** //
 	tackle_damage = 60
 
 	// *** Speed *** //
-	speed = -0.2
+	speed = -0.25
 
 	// *** Plasma *** //
 	plasma_max = 1000
 	plasma_gain = 50
 
 	// *** Health *** //
-	max_health = 250
+	max_health = 280
 
 	// *** Defense *** //
 	armor_deflection = 45
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 1.5 SECONDS
+	spit_types = list(/datum/ammo/xeno/toxin/heavy/upgrade3, /datum/ammo/xeno/acid/heavy, /datum/ammo/xeno/sticky)
 
-	// *** Pheromones *** //	
-	aura_strength = 4.5 
+	// *** Pheromones *** //
+	aura_strength = 4.5
 
 /mob/living/carbon/Xenomorph/Praetorian
 	caste_base_type = /mob/living/carbon/Xenomorph/Praetorian

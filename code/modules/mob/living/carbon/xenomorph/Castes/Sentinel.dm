@@ -8,8 +8,8 @@
 	upgrade = 0
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 10
-	melee_damage_upper = 20
+	melee_damage_lower = 15
+	melee_damage_upper = 25
 
 	// *** Tackle *** //
 	tackle_damage = 25
@@ -37,7 +37,7 @@
 	armor_deflection = 15
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin)
 
 /datum/xeno_caste/sentinel/mature
@@ -54,11 +54,11 @@
 	tackle_damage = 30
 
 	// *** Speed *** //
-	speed = -0.9
+	speed = -0.95
 
 	// *** Plasma *** //
-	plasma_max = 400
-	plasma_gain = 12
+	plasma_max = 450
+	plasma_gain = 15
 
 	// *** Health *** //
 	max_health = 180
@@ -67,10 +67,10 @@
 	upgrade_threshold = 200
 
 	// *** Defense *** //
-	armor_deflection = 15
+	armor_deflection = 20
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/upgrade1)
 
 /datum/xeno_caste/sentinel/elder
@@ -80,18 +80,18 @@
 	upgrade = 2
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 25
-	melee_damage_upper = 30
+	melee_damage_lower = 23
+	melee_damage_upper = 33
 
 	// *** Tackle *** //
 	tackle_damage = 35
 
 	// *** Speed *** //
-	speed = -1.0
+	speed = -1.05
 
 	// *** Plasma *** //
-	plasma_max = 500
-	plasma_gain = 15
+	plasma_max = 550
+	plasma_gain = 18
 
 	// *** Health *** //
 	max_health = 190
@@ -100,10 +100,10 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor_deflection = 20
+	armor_deflection = 23
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/upgrade2)
 
 /datum/xeno_caste/sentinel/ancient
@@ -133,10 +133,10 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor_deflection = 20
+	armor_deflection = 25
 
 	// *** Ranged Attack *** //
-	spit_delay = 1.5 SECONDS
+	spit_delay = 1.3 SECONDS
 	spit_types = list(/datum/ammo/xeno/toxin/upgrade3)
 
 /mob/living/carbon/Xenomorph/Sentinel
@@ -154,12 +154,80 @@
 	upgrade = 0
 	speed = -0.8
 	pull_speed = -2
+	wound_type = "alien" //used to match appropriate wound overlays
+	var/last_neurotoxin_sting = null
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/corrosive_acid/drone,
 		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/neurotox_sting,
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
 		)
+
+
+/mob/living/carbon/Xenomorph/Sentinel/proc/neurotoxin_sting(var/mob/living/H)
+
+	if(!check_state())
+		return
+
+	if(world.time < last_neurotoxin_sting + NEUROTOXIN_STING_COOLDOWN) //Sure, let's use this.
+		to_chat(src, "<span class='xenowarning'>You are not ready to use the sting again. It will be ready in [(last_neurotoxin_sting + NEUROTOXIN_STING_COOLDOWN - world.time) SECONDS] seconds.</span>")
+		return
+
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
+		return
+
+	if(!istype(H) || isXeno(H) || isrobot(H))
+		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
+		return
+
+	if(!Adjacent(H))
+		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
+			to_chat(src, "<span class='xenowarning'>You can't reach this target!</span>")
+			recent_notice = world.time //anti-notice spam
+		return
+
+	if ((H.status_flags & XENO_HOST) && istype(H.buckled, /obj/structure/bed/nest))
+		to_chat(src, "<span class='xenowarning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
+		return
+
+	if(!check_plasma(150))
+		return
+	last_neurotoxin_sting = world.time
+	use_plasma(150)
+
+	round_statistics.sentinel_neurotoxin_stings++
+
+	face_atom(H)
+	animation_attack_on(H)
+	H.reagents.add_reagent("xeno_toxin", NEUROTOXIN_STING_AMOUNT_INITIAL) //15 units transferred initially.
+	to_chat(H, "<span class='danger'>You feel a tiny prick.</span>")
+	to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with neurotoxin!</span>")
+	playsound(H, 'sound/effects/spray3.ogg', 15, 1)
+	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+	if(do_after(src, NEUROTOXIN_STING_INJECT_DELAY, TRUE, 5, BUSY_ICON_HOSTILE)) //First follow up injection
+		if(!neurotoxin_recurring_injection(H))
+			return
+		to_chat(src, "<span class='xenowarning'>Your stinger continues to inject neurotoxin!</span>")
+		if(do_after(src, NEUROTOXIN_STING_INJECT_DELAY, TRUE, 5, BUSY_ICON_HOSTILE)) //Second follow up injection
+			if(!neurotoxin_recurring_injection(H))
+				return
+			to_chat(src, "<span class='xenowarning'>Your stinger retracts as it finishes discharging the neurotoxin.</span>")
+
+
+	spawn(NEUROTOXIN_STING_COOLDOWN)
+		playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+		to_chat(src, "<span class='xenodanger'>You feel your neurotoxin glands refill. You can use your neurotoxin sting again.</span>")
+		update_action_button_icons()
+
+
+/mob/living/carbon/Xenomorph/Sentinel/proc/neurotoxin_recurring_injection(var/mob/living/H)
+	face_atom(H)
+	animation_attack_on(H)
+	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+	H.reagents.add_reagent("xeno_toxin", NEUROTOXIN_STING_AMOUNT_RECURRING) //10 units transferred.
+	return TRUE

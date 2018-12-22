@@ -837,7 +837,7 @@ proc/anim(turf/location,atom/target,a_icon,a_icon_state as text,flick_anim as te
 		animation.master = target
 		flick(flick_anim, animation)
 	sleep(max(sleeptime, 15))
-	cdel(animation)
+	qdel(animation)
 
 //Will return the contents of an atom recursivly to a depth of 'searchDepth'
 /atom/proc/GetAllContents(searchDepth = 5)
@@ -993,8 +993,13 @@ var/global/image/busy_indicator_hostile
 	user.action_busy = FALSE
 
 
-/proc/do_after(mob/user, delay, needhand = TRUE, numticks = 5, show_busy_icon, selected_zone_check) //hacky, will suffice for now.
-	if(!istype(user) || delay <= 0) return FALSE
+/proc/do_after(mob/user, delay, needhand = TRUE, numticks = 5, show_busy_icon, selected_zone_check, busy_check = FALSE) //hacky, will suffice for now.
+	if(!istype(user) || delay <= 0)
+		return FALSE
+
+	if(busy_check && user.action_busy)
+		to_chat(user, "<span class='warning'>You're already busy doing something!</span>")
+		return FALSE
 
 	var/mob/living/L
 	if(istype(user, /mob/living)) L = user //No more doing things while you're in crit
@@ -1183,7 +1188,7 @@ var/global/image/busy_indicator_hostile
 							X.icon = 'icons/turf/shuttle.dmi'
 							X.icon_state = oldreplacetext(O.icon_state, "_f", "_s") // revert the turf to the old icon_state
 							X.name = "wall"
-							cdel(O) // prevents multiple shuttle corners from stacking
+							qdel(O) // prevents multiple shuttle corners from stacking
 							continue
 						if(!istype(O,/obj)) continue
 						O.loc = X

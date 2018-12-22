@@ -49,7 +49,7 @@
 		icon_state = "implant_melted"
 		malfunction = MALFUNCTION_PERMANENT
 
-	Dispose()
+	Destroy()
 		if(part)
 			part.implants.Remove(src)
 		. = ..()
@@ -158,7 +158,7 @@ Implant Specifics:<BR>"}
 		msg = sanitize_simple(msg, replacechars)
 		if(findtext(msg,phrase))
 			activate()
-			cdel(src)
+			qdel(src)
 
 	activate()
 		if (malfunction == MALFUNCTION_PERMANENT)
@@ -182,11 +182,11 @@ Implant Specifics:<BR>"}
 							istype(part,/datum/limb/head))
 							part.createwound(BRUISE, 60)	//mangle them instead
 							explosion(get_turf(imp_in), -1, -1, 2, 3)
-							cdel(src)
+							qdel(src)
 						else
 							explosion(get_turf(imp_in), -1, -1, 2, 3)
 							part.droplimb()
-							cdel(src)
+							qdel(src)
 				if (elevel == "Destroy Body")
 					explosion(get_turf(T), -1, 0, 1, 6)
 					T.gib()
@@ -248,7 +248,7 @@ Implant Specifics:<BR>"}
 					else
 						part.droplimb()
 				explosion(get_turf(imp_in), -1, -1, 2, 3)
-				cdel(src)
+				qdel(src)
 
 /obj/item/implant/chem
 	name = "chemical implant"
@@ -295,7 +295,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 		if(!src.reagents.total_volume)
 			to_chat(R, "You hear a faint click from your chest.")
 			spawn(0)
-				cdel(src)
+				qdel(src)
 		return
 
 	emp_act(severity)
@@ -321,12 +321,12 @@ the implant may become unstable and either pre-maturely inject the subject or si
 	get_data()
 		var/dat = {"
 <b>Implant Specifications:</b><BR>
-<b>Name:</b> Weyland Yutani Employee Management Implant<BR>
+<b>Name:</b> Nanotrasen Employee Management Implant<BR>
 <b>Life:</b> Ten years.<BR>
-<b>Important Notes:</b> Personnel injected are marked as WY property and are subject to WY overwatch.<BR>
+<b>Important Notes:</b> Personnel injected are marked as NT property and are subject to NT overwatch.<BR>
 <HR>
 <b>Implant Details:</b><BR>
-<b>Function:</b> Marks the host as WY property and allow special monitoring functions.<BR>
+<b>Function:</b> Marks the host as NT property and allow special monitoring functions.<BR>
 <b>Special Features:</b> Will make the host more resistent to brainwashing techniques.<BR>
 <b>Integrity:</b> Implant will last approximately ten years."}
 		return dat
@@ -335,7 +335,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 		if(!ishuman(M))	return
 		if(isYautja(M)) return
 		var/mob/living/carbon/human/H = M
-		to_chat(H, "<span class='notice'>You are now tagged as a WY loyalist and will be monitored by their central headquarters. You retain your free will and mental faculties.</span>")
+		to_chat(H, "<span class='notice'>You are now tagged as a NT loyalist and will be monitored by their central headquarters. You retain your free will and mental faculties.</span>")
 		return 1
 
 /obj/item/implant/adrenalin
@@ -413,18 +413,18 @@ the implant may become unstable and either pre-maturely inject the subject or si
 					a.autosay("[mobname] has died in Space!", "[mobname]'s Death Alarm")
 				else
 					a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm")
-				cdel(a)
-				processing_objects.Remove(src)
+				qdel(a)
+				STOP_PROCESSING(SSobj, src)
 			if ("emp")
 				var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
 				var/name = prob(50) ? t.name : pick(teleportlocs)
 				a.autosay("[mobname] has died in [name]!", "[mobname]'s Death Alarm")
-				cdel(a)
+				qdel(a)
 			else
 				var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
 				a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm")
-				cdel(a)
-				processing_objects.Remove(src)
+				qdel(a)
+				STOP_PROCESSING(SSobj, src)
 
 	emp_act(severity)			//for some reason alarms stop going off in case they are emp'd, even without this
 		if (malfunction)		//so I'm just going to add a meltdown chance here
@@ -437,14 +437,14 @@ the implant may become unstable and either pre-maturely inject the subject or si
 				meltdown()
 			else if (prob(60))	//but more likely it will just quietly die
 				malfunction = MALFUNCTION_PERMANENT
-			processing_objects.Remove(src)
+			STOP_PROCESSING(SSobj, src)
 
 		spawn(20)
 			malfunction--
 
 	implanted(mob/source as mob)
 		mobname = source.real_name
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 		return 1
 
 /obj/item/implant/compressed
@@ -481,7 +481,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 			imp_in.put_in_hands(scanned)
 		else
 			scanned.loc = t
-		cdel(src)
+		qdel(src)
 
 	implanted(mob/source as mob)
 		src.activation_emote = input("Choose activation emote:") in list("blink", "blink_r", "eyebrow", "chuckle", "twitch_s", "frown", "nod", "blush", "giggle", "grin", "groan", "shrug", "smile", "pale", "sniff", "whimper", "wink")

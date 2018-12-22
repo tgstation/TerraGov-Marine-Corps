@@ -15,7 +15,7 @@
 	var/smoke_ready = 1
 	var/smoke_cooldown = 100
 	var/datum/effect_system/smoke_spread/smoke_system = new
-	operation_req_access = list(ACCESS_WY_CORPORATE)
+	operation_req_access = list(ACCESS_NT_CORPORATE)
 	wreckage = /obj/effect/decal/mecha_wreckage/marauder
 	add_req_access = 0
 	internal_damage_threshold = 25
@@ -27,7 +27,7 @@
 	name = "Seraph"
 	icon_state = "seraph"
 	initial_icon = "seraph"
-	operation_req_access = list(ACCESS_WY_CORPORATE)
+	operation_req_access = list(ACCESS_NT_CORPORATE)
 	step_in = 3
 	health = 550
 	wreckage = /obj/effect/decal/mecha_wreckage/seraph
@@ -63,7 +63,7 @@
 	if(equipment.len)//Now to remove it and equip anew.
 		for(ME in equipment)
 			equipment -= ME
-			cdel(ME)
+			qdel(ME)
 //	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/scattershot(src)
 //	ME.attach(src)
 //	ME = new /obj/item/mecha_parts/mecha_equipment/weapon/ballistic/missile_rack/explosive(src)

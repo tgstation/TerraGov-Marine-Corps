@@ -39,6 +39,17 @@
 		resist_grab()
 		return
 
+	//untangling
+	if(entangled_by)
+		if(world.time < entangle_delay)
+			visible_message("<span class='danger'>[src] attempts to disentangle itself from [entangled_by] but was unsuccessful!</span>")
+			to_chat(src, "<span class='warning'>You will be able to disentangle yourself after [(entangle_delay - world.time) * 0.1] more seconds!</span>")
+			return
+		if(istype(entangled_by, /obj/structure/razorwire) )
+			var/obj/structure/razorwire/R = entangled_by
+			R.razorwire_untangle(src)
+		return
+
 	//unbuckling yourself
 	if(L.buckled && (L.last_special <= world.time) )
 		if(iscarbon(L))
@@ -176,7 +187,7 @@
 							return
 						CM.visible_message("<span class='danger'>[CM] tears [HC] in half!</span>", \
 							"<span class='notice'>You tear [HC] in half!</span>")
-						cdel(CM.handcuffed)
+						qdel(CM.handcuffed)
 						CM.handcuffed = null
 						CM.handcuff_update()
 				return
@@ -198,7 +209,7 @@
 							O.show_message(text("\red <B>[] manages to break [HC]!</B>", CM), 1)
 						to_chat(CM, "\red You successfully break [HC].")
 						CM.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-						cdel(CM.handcuffed)
+						qdel(CM.handcuffed)
 						CM.handcuffed = null
 						CM.handcuff_update()
 			else
@@ -255,7 +266,7 @@
 						to_chat(CM, "\red You successfully break your legcuffs.")
 						CM.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 						CM.temp_drop_inv_item(CM.legcuffed)
-						cdel(CM.legcuffed)
+						qdel(CM.legcuffed)
 						CM.legcuffed = null
 			else
 				var/breakouttime = 1200 //A default in case you are somehow legcuffed with something that isn't an obj/item/legcuffs type

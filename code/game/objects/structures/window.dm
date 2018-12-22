@@ -252,8 +252,8 @@
 			update_nearby_icons()
 			step(src, get_dir(user, src))
 		healthcheck(1, 1, 1, user, W)
+		. = ..() // Do the attack animation.
 	dismantle = FALSE
-	return ..()
 
 
 /obj/structure/window/proc/disassemble_window()
@@ -261,7 +261,7 @@
 		new /obj/item/stack/sheet/glass/reinforced(loc, 2)
 	else
 		new /obj/item/stack/sheet/glass/reinforced(loc, 2)
-	cdel(src)
+	qdel(src)
 
 
 /obj/structure/window/proc/shatter_window(create_debris)
@@ -271,7 +271,7 @@
 			new shardtype(loc)
 		if(reinf)
 			new /obj/item/stack/rods(loc)
-	cdel(src)
+	qdel(src)
 
 
 /obj/structure/window/verb/rotate()
@@ -319,7 +319,7 @@
 
 	update_nearby_icons()
 
-/obj/structure/window/Dispose()
+/obj/structure/window/Destroy()
 	density = FALSE
 	update_nearby_icons()
 	. = ..()
@@ -464,9 +464,9 @@
 		relativewall_neighbours()
 	..()
 
-/obj/structure/window/framed/Dispose()
+/obj/structure/window/framed/Destroy()
 	for(var/obj/effect/alien/weeds/weedwall/window/WW in loc)
-		cdel(WW)
+		qdel(WW)
 	. = ..()
 
 
@@ -500,7 +500,7 @@
 		var/obj/structure/window_frame/new_window_frame = new window_frame(loc, TRUE)
 		new_window_frame.icon_state = "[new_window_frame.basestate][junction]_frame"
 		new_window_frame.dir = dir
-	cdel(src)
+	qdel(src)
 
 /obj/structure/window/framed/almayer
 	name = "reinforced window"
@@ -624,7 +624,7 @@
 	//icon_state = "rwindow0_debug" //Uncomment to check hull in the map editor
 	var/triggered = FALSE //indicates if the shutters have already been triggered
 
-/obj/structure/window/framed/prison/reinforced/hull/Dispose()
+/obj/structure/window/framed/prison/reinforced/hull/Destroy()
 	spawn_shutters()
 	.=..()
 

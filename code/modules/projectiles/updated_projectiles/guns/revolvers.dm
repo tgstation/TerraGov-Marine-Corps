@@ -24,7 +24,7 @@
 	movement_acc_penalty_mult = 3
 
 /obj/item/weapon/gun/revolver/New()
-	..() //Do all that other stuff.
+	. = ..() //Do all that other stuff.
 	replace_cylinder(current_mag.current_rounds)
 
 /obj/item/weapon/gun/revolver/set_gun_config_values()
@@ -39,7 +39,7 @@
 
 
 /obj/item/weapon/gun/revolver/examine(mob/user)
-	..()
+	. = ..()
 	to_chat(user, "[current_mag.chamber_closed? "It's closed.": "It's open with [current_mag.current_rounds] round\s loaded."]")
 
 /obj/item/weapon/gun/revolver/update_icon() //Special snowflake update icon.
@@ -49,7 +49,7 @@
 	if(istype(P, /obj/item/tool/screwdriver))
 		to_chat(user, "[catchworking? "You adjust the cylinder lock to allow the cylinder to be spun.": "You adjust the cylinder lock to the correct depth."]")
 		catchworking = !catchworking
-	..()
+	return ..()
 
 /obj/item/weapon/gun/revolver/proc/rotate_cylinder(mob/user) //Cylinder moves backward.
 	current_mag.chamber_position = current_mag.chamber_position == 1 ? current_mag.max_rounds : current_mag.chamber_position - 1
@@ -77,7 +77,8 @@
 //The cylinder is always emptied out before a reload takes place.
 /obj/item/weapon/gun/revolver/proc/add_to_cylinder(mob/user) //Bullets are added forward.
 	//First we're going to try and replace the current bullet.
-	if(!current_mag.current_rounds) current_mag.chamber_contents[current_mag.chamber_position] = "bullet"
+	if(!current_mag.current_rounds) 
+		current_mag.chamber_contents[current_mag.chamber_position] = "bullet"
 	else//Failing that, we'll try to replace the next bullet in line.
 		if( (current_mag.chamber_position + 1) > current_mag.max_rounds)
 			current_mag.chamber_contents[1] = "bullet"
@@ -182,7 +183,7 @@
 	return TRUE
 
 /obj/item/weapon/gun/revolver/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
-	cdel(projectile_to_fire)
+	qdel(projectile_to_fire)
 	if(refund) current_mag.current_rounds++
 	return TRUE
 
@@ -273,12 +274,25 @@
 
 	recent_trick = world.time //Turn on the delay for the next trick.
 
+
+/obj/item/weapon/gun/revolver/has_ammo_counter()
+	return TRUE
+
+/obj/item/weapon/gun/revolver/get_ammo_type()
+	if(!ammo)
+		return list("unknown", "unknown")
+	else
+		return list(ammo.hud_state, ammo.hud_state_empty)
+
+/obj/item/weapon/gun/revolver/get_ammo_count()
+	return current_mag ? current_mag.current_rounds : 0
+
 //-------------------------------------------------------
 //M44 MAGNUM REVOLVER //Not actually cannon, but close enough.
 
 /obj/item/weapon/gun/revolver/m44
 	name = "\improper M44 combat revolver"
-	desc = "A bulky revolver, occasionally carried by assault troops and officers in the Colonial Marines, as well civilian law enforcement. Uses .44 Magnum rounds."
+	desc = "A bulky revolver, occasionally carried by assault troops and officers in the Marine Corps, as well civilian law enforcement. Uses .44 Magnum rounds."
 	icon_state = "m44"
 	item_state = "m44"
 	current_mag = /obj/item/ammo_magazine/internal/revolver/m44
@@ -408,7 +422,7 @@
 
 /obj/item/weapon/gun/revolver/mateba/cmateba
 	name = "\improper Mateba autorevolver special"
-	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds. This version is a limited edition produced for the USCM, and issued in extremely small amounts. Was a mail-order item back in 2172, and is highly sought after by officers across many different battalions. This one is stamped 'Major Ike Saker, 7th 'Falling Falcons' Battalion.'"
+	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds. This version is a limited edition produced for the TGMC, and issued in extremely small amounts. Was a mail-order item back in 2172, and is highly sought after by officers across many different battalions. This one is stamped 'Major Ike Saker, 7th 'Falling Falcons' Battalion.'"
 	icon_state = "cmateba"
 	item_state = "cmateba"
 	New()

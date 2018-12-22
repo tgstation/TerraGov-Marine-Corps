@@ -251,7 +251,7 @@
 	if(!istype(apart)) return 0
 	for(var/obj/O in part_set)
 		if(O.type == apart.type)
-			cdel(apart)
+			qdel(apart)
 			return 0
 	part_set[++part_set.len] = apart
 	return 1
@@ -725,7 +725,7 @@
 		res.Move(src.loc)
 		result = res.amount
 	else
-		cdel(res)
+		qdel(res)
 	return result
 
 
@@ -771,7 +771,7 @@
 			if(src.resources["diamond"] >= 2000)
 				var/obj/item/stack/sheet/mineral/diamond/G = new /obj/item/stack/sheet/mineral/diamond(src.loc)
 				G.amount = round(src.resources["diamond"] / G.perunit)
-			cdel(src)
+			qdel(src)
 			return 1
 		else
 			to_chat(user, "\red You can't load the [src.name] while it's opened.")

@@ -15,8 +15,8 @@ with the original.*/
 /datum/shuttle/ferry/marine/evacuation_pod
 	location = 0
 	warmup_time = 5
-	shuttle_tag = "Almayer Evac"
-	info_tag = "Almayer Evac"
+	shuttle_tag = "TGS Theseus Evac"
+	info_tag = "TGS Theseus Evac"
 	sound_target = 18
 	sound_misc = 'sound/effects/escape_pod_launch.ogg'
 	var/static/passengers = 0 //How many living escape on the shuttle. Does not count simple animals.

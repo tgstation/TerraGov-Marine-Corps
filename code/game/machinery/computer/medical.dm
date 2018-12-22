@@ -4,7 +4,7 @@
 	name = "Medical Records"
 	desc = "This can be used to check medical records."
 	icon_state = "medcomp"
-	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_WY_CORPORATE)
+	req_one_access = list(ACCESS_MARINE_MEDBAY, ACCESS_NT_CORPORATE)
 	circuit = "/obj/item/circuitboard/computer/med_data"
 	var/obj/item/card/id/scan = null
 	var/authenticated = null
@@ -218,7 +218,7 @@
 			if (href_list["del_all2"])
 				for(var/datum/data/record/R in data_core.medical)
 					data_core.medical -= R
-					cdel(R)
+					qdel(R)
 					//Foreach goto(494)
 				src.temp = "All records deleted."
 
@@ -370,7 +370,7 @@
 
 			if (href_list["del_r2"])
 				if (active2)
-					cdel(active2)
+					qdel(active2)
 					active2 = null
 
 			if (href_list["d_rec"])
@@ -506,7 +506,7 @@
 
 		else if(prob(1))
 			data_core.medical -= R
-			cdel(R)
+			qdel(R)
 			continue
 
 	..(severity)
@@ -514,6 +514,6 @@
 
 /obj/machinery/computer/med_data/laptop
 	name = "Medical Laptop"
-	desc = "Cheap Weyland Yutani Laptop."
+	desc = "Cheap Nanotrasen Laptop."
 	icon_state = "medlaptop"
 	density = 0

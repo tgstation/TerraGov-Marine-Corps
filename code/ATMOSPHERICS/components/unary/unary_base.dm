@@ -26,7 +26,7 @@
 
 	return null
 
-/obj/machinery/atmospherics/unary/Dispose()
+/obj/machinery/atmospherics/unary/Destroy()
 	if(node)
 		node.disconnect(src)
 		del(network)

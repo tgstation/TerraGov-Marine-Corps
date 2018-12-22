@@ -5,7 +5,7 @@ var/list/unansweredAhelps = list()			//This feels inefficient, but I can't think
 var/list/unansweredMhelps = list()
 var/list/CLFaxes = list()								//List of all CL faxes sent this round
 var/list/fax_contents = list() 					//List of fax contents to maintain it even if source paper is deleted
-var/list/USCMFaxes = list()							//List of all USCM faxes sent this round
+var/list/TGMCFaxes = list()							//List of all TGMC faxes sent this round
 var/list/active_tracking_beacons = list()			//List of all active squad tracking beacons
 
 //Names of maps that can be compiled on
@@ -47,7 +47,11 @@ var/global/list/attachment_vendors = list() //Used by our gamemode code
 var/global/list/marine_vendors = list() //Used by our gamemode code
 var/global/list/cargo_ammo_vendors = list() //Used by our gamemode code
 var/global/list/cargo_guns_vendors = list() //Used by our gamemode code
-var/global/list/processing_objects = list()
+var/global/list/SSobj = list()
+
+#define START_PROCESSING(Processor, Datum) Processor.Add(Datum)
+#define STOP_PROCESSING(Processor, Datum) Processor.Remove(Datum)
+
 var/global/list/active_diseases = list()
 var/global/list/events = list()
 var/global/list/processing_second = list()

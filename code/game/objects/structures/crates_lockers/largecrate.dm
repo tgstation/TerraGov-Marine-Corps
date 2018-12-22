@@ -16,7 +16,7 @@
 	M.visible_message("<span class='danger'>\The [M] smashes \the [src] apart!</span>", \
 	"<span class='danger'>You smash \the [src] apart!</span>", \
 	"<span class='danger'>You hear splitting wood!</span>", 5)
-	cdel(src)
+	qdel(src)
 
 /obj/structure/largecrate/attack_hand(mob/user as mob)
 	to_chat(user, "<span class='notice'>You need a crowbar to pry this open!</span>")
@@ -31,7 +31,7 @@
 		user.visible_message("<span class='notice'>[user] pries \the [src] open.</span>", \
 							 "<span class='notice'>You pry open \the [src].</span>", \
 							 "<span class='notice'>You hear splitting wood.</span>")
-		cdel(src)
+		qdel(src)
 	else
 		return attack_hand(user)
 
@@ -140,8 +140,8 @@
 	desc = "Two small black storage cases."
 	icon_state = "case_small"
 
-/obj/structure/largecrate/random/barrel/attackby(obj/item/tool/weldingtool/W as obj, mob/user as mob)
-	if(W.welding == 1)
+/obj/structure/largecrate/random/barrel/attackby(obj/item/tool/weldingtool/W, mob/user as mob)
+	if(istype(W) && W.welding == 1)
 		if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))
 			new /obj/item/stack/sheet/metal/small_stack(src)
 			W.remove_fuel(1,user)
@@ -152,7 +152,7 @@
 								 "<span class='notice'>You weld open \the [src].</span>", \
 								 "<span class='notice'>You hear loud hissing and the sound of metal falling over.</span>")
 			playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
-			cdel(src)
+			qdel(src)
 		else
 			return FALSE
 	else
@@ -213,7 +213,7 @@
 
 
 /obj/structure/largecrate/guns
-	name = "\improper USCM firearms crate (x3)"
+	name = "\improper TGMC firearms crate (x3)"
 	var/num_guns = 3
 	var/num_mags = 0
 	var/list/stuff = list(

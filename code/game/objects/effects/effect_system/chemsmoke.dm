@@ -204,7 +204,7 @@
 	if(smoke.opacity)
 		smoke.SetOpacity(0)
 	fadeOut(smoke)
-	cdel(smoke)
+	qdel(smoke)
 
 //------------------------------------------
 // Fades out the smoke smoothly using it's alpha variable.

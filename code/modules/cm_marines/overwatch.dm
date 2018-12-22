@@ -259,18 +259,18 @@
 				if(current_squad)
 					to_chat(usr, "<span class='warning'>\icon[src] You are already selecting a squad.</span>")
 				else
-					var/list/squad_list = list()
+					var/list/squad_choices = list()
 					for(var/datum/squad/S in RoleAuthority.squads)
-						if(S.usable && !S.overwatch_officer)
-							squad_list += S.name
+						if(!S.overwatch_officer)
+							squad_choices += S.name
 
-					var/name_sel = input("Which squad would you like to claim for Overwatch?") as null|anything in squad_list
-					if(!name_sel || operator != usr)
+					var/squad_name = input("Which squad would you like to claim for Overwatch?") as null|anything in squad_choices
+					if(!squad_name || operator != usr)
 						return
 					if(current_squad)
 						to_chat(usr, "<span class='warning'>\icon[src] You are already selecting a squad.</span>")
 						return
-					var/datum/squad/selected = get_squad_by_name(name_sel)
+					var/datum/squad/selected = RoleAuthority.squads[RoleAuthority.squads_names.Find(squad_name)]
 					if(selected)
 						selected.overwatch_officer = usr //Link everything together, squad, console, and officer
 						current_squad = selected
@@ -338,7 +338,7 @@
 			switch(z_hidden)
 				if(0)
 					z_hidden = MAIN_SHIP_Z_LEVEL
-					to_chat(usr, "\icon[src] <span class='notice'>Marines on the Almayer are now hidden.</span>")
+					to_chat(usr, "\icon[src] <span class='notice'>Marines on the [MAIN_SHIP_NAME] are now hidden.</span>")
 				if(MAIN_SHIP_Z_LEVEL)
 					z_hidden = 1
 					to_chat(usr, "\icon[src] <span class='notice'>Marines on the ground are now hidden.</span>")
@@ -557,8 +557,8 @@
 	send_to_squads("Calibrating trajectory window...")
 	sleep(11)
 	for(var/mob/living/carbon/H in living_mob_list)
-		if(H.z == MAIN_SHIP_Z_LEVEL && !H.stat) //USS Almayer decks.
-			to_chat(H, "<span class='warning'>The deck of the USS Almayer shudders as the orbital cannons open fire on the colony.</span>")
+		if(H.z == MAIN_SHIP_Z_LEVEL && !H.stat) //TGS Theseus decks.
+			to_chat(H, "<span class='warning'>The deck of the [MAIN_SHIP_NAME] shudders as the orbital cannons open fire on the colony.</span>")
 			if(H.client)
 				shake_camera(H, 10, 1)
 	state("<span class='boldnotice'>Orbital bombardment has fired! Impact imminent!</span>")
@@ -797,7 +797,7 @@
 		S.supply_cooldown = world.time
 
 		if(S.sbeacon)
-			cdel(S.sbeacon) //Wipe the beacon. It's only good for one use.
+			qdel(S.sbeacon) //Wipe the beacon. It's only good for one use.
 			S.sbeacon = null
 		playsound(C.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehh
 		C.anchored = FALSE
@@ -819,36 +819,36 @@
 	density = 0
 	unacidable = 1
 	layer = ABOVE_TURF_LAYER
-	var/squad = "Alpha"
+	var/squad_name = "Alpha"
 	var/sending_package = 0
 
-	New() //Link a squad to a drop pad
-		..()
-		spawn(10)
-			force_link()
+/obj/structure/supply_drop/New() //Link a squad to a drop pad
+	. = ..()
+	spawn(10)
+		force_link()
 
-	proc/force_link() //Somehow, it didn't get set properly on the new proc. Force it again,
-		var/datum/squad/S = get_squad_by_name(squad)
-		if(S)
-			S.drop_pad = src
-		else
-			to_chat(world, "Alert! Supply drop pads did not initialize properly.")
+/obj/structure/supply_drop/proc/force_link() //Somehow, it didn't get set properly on the new proc. Force it again,
+	var/datum/squad/S = RoleAuthority.squads[RoleAuthority.squads_names.Find(squad_name)]
+	if(S)
+		S.drop_pad = src
+	else
+		to_chat(world, "Alert! Supply drop pads did not initialize properly.")
 
 /obj/structure/supply_drop/alpha
 	icon_state = "alphadrop"
-	squad = "Alpha"
+	squad_name = "Alpha"
 
 /obj/structure/supply_drop/bravo
 	icon_state = "bravodrop"
-	squad = "Bravo"
+	squad_name = "Bravo"
 
 /obj/structure/supply_drop/charlie
 	icon_state = "charliedrop"
-	squad = "Charlie"
+	squad_name = "Charlie"
 
 /obj/structure/supply_drop/delta
 	icon_state = "deltadrop"
-	squad = "Delta"
+	squad_name = "Delta"
 
 /obj/item/device/squad_beacon
 	name = "squad supply beacon"
@@ -861,7 +861,7 @@
 	var/icon_activated = "motion2"
 	var/obj/machinery/camera/beacon_cam = null
 
-/obj/item/device/squad_beacon/Dispose()
+/obj/item/device/squad_beacon/Destroy()
 	if(src in active_orbital_beacons)
 		active_orbital_beacons -= src
 	if(squad)
@@ -871,7 +871,7 @@
 			squad.squad_orbital_beacons -= src
 		squad = null
 	if(beacon_cam)
-		cdel(beacon_cam)
+		qdel(beacon_cam)
 		beacon_cam = null
 	SetLuminosity(0)
 	return ..()
@@ -998,7 +998,7 @@
 			squad = null
 		if(src in active_orbital_beacons)
 			active_orbital_beacons -= src
-		cdel(beacon_cam)
+		qdel(beacon_cam)
 		beacon_cam = null
 		activated = FALSE
 		anchored = FALSE
@@ -1015,8 +1015,7 @@
 
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
 
-/mob/living/carbon/human/verb/issue_order()
-
+/mob/living/carbon/human/verb/issue_order(which as null|text)
 	set name = "Issue Order"
 	set desc = "Issue an order to nearby humans, using your authority to strengthen their resolve."
 	set category = "IC"
@@ -1033,12 +1032,16 @@
 		to_chat(src, "<span class='warning'>You have recently given an order. Calm down.</span>")
 		return
 
-	var/choice = input(src, "Choose an order") in command_aura_allowed + "help" + "cancel"
-	if(choice == "help")
-		to_chat(src, "<span class='notice'><br>Orders give a buff to nearby soldiers for a short period of time, followed by a cooldown, as follows:<br><B>Move</B> - Increased mobility and chance to dodge projectiles.<br><B>Hold</B> - Increased resistance to pain and combat wounds.<br><B>Focus</B> - Increased gun accuracy and effective range.<br></span>")
-		return
-	if(choice == "cancel") return
-	command_aura = choice
+	if(!which)
+		var/choice = input(src, "Choose an order") in command_aura_allowed + "help" + "cancel"
+		if(choice == "help")
+			to_chat(src, "<span class='notice'><br>Orders give a buff to nearby soldiers for a short period of time, followed by a cooldown, as follows:<br><B>Move</B> - Increased mobility and chance to dodge projectiles.<br><B>Hold</B> - Increased resistance to pain and combat wounds.<br><B>Focus</B> - Increased gun accuracy and effective range.<br></span>")
+			return
+		if(choice == "cancel") 
+			return
+		command_aura = choice
+	else
+		command_aura = which
 	command_aura_cooldown = 45 //45 ticks
 	command_aura_tick = 10 //10 ticks
 	var/message = ""
@@ -1053,6 +1056,7 @@
 			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!")
 			say(message)
 	update_action_buttons()
+
 
 /datum/action/skill/issue_order
 	name = "Issue Order"
@@ -1145,7 +1149,7 @@
 				dist = "<b>N/A</b>"
 				if(H.mind && H.mind.assigned_role != "Squad Leader")
 					act_sl = " (acting SL)"
-			else if(M_turf.z == SL_z)
+			else if(M_turf && SL_z && M_turf.z == SL_z)
 				dist = "[get_dist(H, current_squad.squad_leader)] ([dir2text_short(get_dir(current_squad.squad_leader, H))])"
 		switch(H.stat)
 			if(CONSCIOUS)

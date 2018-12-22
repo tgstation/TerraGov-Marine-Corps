@@ -83,5 +83,8 @@
 	var/fire_immune = FALSE
 	var/fire_resist = 1 //0 to 1; lower is better as it is a multiplier.
 
+	var/entangle_delay = null
+	var/entangled_by = null
+
 	var/shrapnel_counter = 0 //Number of instances a mob has been hit by shrapnel within a time interval
 	var/last_shrapnel = null //Time since a living mob was last hit by shrapnel

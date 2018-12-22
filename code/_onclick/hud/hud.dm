@@ -48,6 +48,8 @@
 	var/obj/screen/gun_move_icon
 	var/obj/screen/gun_run_icon
 
+	var/obj/screen/ammo
+
 	var/list/static_inventory = list() //the screen objects which are static
 	var/list/toggleable_inventory = list() //the screen objects which can be hidden
 	var/list/obj/screen/hotkeybuttons = list() //the buttons that can be used via hotkeys
@@ -61,27 +63,27 @@
 	mymob = owner
 	hide_actions_toggle = new
 
-/datum/hud/Dispose()
+/datum/hud/Destroy()
 	if(mymob.hud_used == src)
 		mymob.hud_used = null
 	if(static_inventory.len)
 		for(var/thing in static_inventory)
-			cdel(thing)
+			qdel(thing)
 		static_inventory.Cut()
 	if(toggleable_inventory.len)
 		for(var/thing in toggleable_inventory)
-			cdel(thing)
+			qdel(thing)
 		toggleable_inventory.Cut()
 	if(hotkeybuttons.len)
 		for(var/thing in hotkeybuttons)
-			cdel(thing)
+			qdel(thing)
 		hotkeybuttons.Cut()
 	if(infodisplay.len)
 		for(var/thing in infodisplay)
-			cdel(thing)
+			qdel(thing)
 		infodisplay.Cut()
 
- 	cdel(hide_actions_toggle)
+ 	qdel(hide_actions_toggle)
 	hide_actions_toggle = null
 
 	r_hand_hud_object = null
@@ -117,6 +119,8 @@
 	gun_item_use_icon = null
 	gun_move_icon = null
 	gun_run_icon = null
+
+	ammo = null
 
 	. = ..()
 

@@ -1,5 +1,5 @@
 
-//computer that displays random emails from the Almayer crew, purely for backstory.
+//computer that displays random emails from the Theseus crew, purely for backstory.
 
 /obj/machinery/computer/emails
 	name = "Personal Computer"
@@ -7,7 +7,7 @@
 	icon = 'icons/obj/machines/computer.dmi'
 	icon_state = "terminal1"
 	var/screen = 0
-	var/email_type = /datum/fluff_email/almayer //the type of emails this computer will show. e.g. USCM emails for the personal computers on the Almayer
+	var/email_type = /datum/fluff_email/almayer //the type of emails this computer will show. e.g. TGMC emails for the personal computers on the Theseus
 	var/list/email_list
 	var/selected_mail
 
@@ -21,7 +21,7 @@
 		var/path = pick_n_take(L)
 		email_list += new path()
 
-/obj/machinery/computer/emails/Dispose()
+/obj/machinery/computer/emails/Destroy()
 	email_list = null
 	. = ..()
 

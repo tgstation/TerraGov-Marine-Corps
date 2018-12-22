@@ -1,0 +1,4 @@
+author: "Arachnidnexus"
+delete-after: True
+changes: 
+  - imageadd: "Minor adjustment to Almayer windows and fix to south end of Prison window frames."

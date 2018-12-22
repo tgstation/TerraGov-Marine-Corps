@@ -8,11 +8,11 @@
 	upgrade = 0
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 15
-	melee_damage_upper = 25
+	melee_damage_lower = 18
+	melee_damage_upper = 28
 
 	// *** Tackle *** //
-	tackle_damage = 30 
+	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = -0.5
@@ -29,17 +29,19 @@
 	upgrade_threshold = 200
 
 	evolves_to = list(/mob/living/carbon/Xenomorph/Boiler)
-	deevolves_to = /mob/living/carbon/Xenomorph/Sentinel 
+	deevolves_to = /mob/living/carbon/Xenomorph/Sentinel
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_VENT_CRAWL|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
-	armor_deflection = 20 
+	armor_deflection = 10
 
 	// *** Ranged Attack *** //
-	spit_delay = 1 SECONDS
+	spit_delay = 1.5 SECONDS
 	spit_types = list(/datum/ammo/xeno/acid/heavy) //Gotta give them their own version of heavy acid; kludgy but necessary as 100 plasma is way too costly.
+
+	acid_delay = 30 SECONDS //30 second delay on acid spray.
 
 /datum/xeno_caste/spitter/mature
 	upgrade_name = "Mature"
@@ -52,7 +54,7 @@
 	melee_damage_upper = 35
 
 	// *** Tackle *** //
-	tackle_damage = 35 
+	tackle_damage = 35
 
 	// *** Speed *** //
 	speed = -0.6
@@ -68,12 +70,12 @@
 	upgrade_threshold = 400
 
 	// *** Defense *** //
-	armor_deflection = 25
+	armor_deflection = 15
 
 	// *** Ranged Attack *** //
-	spit_delay = 2.0 SECONDS
+	spit_delay = 1.5 SECONDS
 
-	acid_delay = 30 SECONDS //30 second delay on acid spray. Reduced by -3/-2/-1 per upgrade.
+	acid_delay = 30 SECONDS //30 second delay on acid spray.
 
 /datum/xeno_caste/spitter/elder
 	upgrade_name = "Elder"
@@ -82,8 +84,8 @@
 	upgrade = 2
 
 	// *** Melee Attacks *** //
-	melee_damage_lower = 30
-	melee_damage_upper = 35
+	melee_damage_lower = 28
+	melee_damage_upper = 38
 
 	// *** Tackle *** //
 	tackle_damage = 40
@@ -102,10 +104,12 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 30
+	armor_deflection = 18
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
+
+	acid_delay = 30 SECONDS //30 second delay on acid spray.
 
 /datum/xeno_caste/spitter/ancient
 	upgrade_name = "Ancient"
@@ -134,10 +138,12 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 45
+	armor_deflection = 20
 
 	// *** Ranged Attack *** //
 	spit_delay = 1.5 SECONDS
+
+	acid_delay = 30 SECONDS //30 second delay on acid spray.
 
 /mob/living/carbon/Xenomorph/Spitter
 	caste_base_type = /mob/living/carbon/Xenomorph/Spitter
@@ -154,7 +160,8 @@
 	tier = 2
 	upgrade = 0
 	acid_cooldown = 0
-	
+	wound_type = "alien" //used to match appropriate wound overlays
+
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,

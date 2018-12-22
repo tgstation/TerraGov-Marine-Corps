@@ -12,6 +12,7 @@
 	var/max_damage = 0
 	var/max_size = 0
 	var/last_dam = -1
+	var/supported = FALSE
 
 	var/display_name
 	var/list/wounds = list()
@@ -74,7 +75,7 @@
 	return icon('icons/mob/human.dmi',"blank")
 */
 
-/datum/limb/proc/process()
+/datum/limb/process()
 		return 0
 
 //Germs
@@ -461,8 +462,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		//having an infection raises your body temperature
 		var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + owner.species.body_temperature
 		//need to make sure we raise temperature fast enough to get around environmental cooling preventing us from reaching fever_temperature
-		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
-
+		owner.adjust_bodytemperature((fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, 0, fever_temperature - owner.bodytemperature)
 		if(prob(round(germ_level/10)))
 			if (antibiotics < MIN_ANTIBIOTICS)
 				germ_level++
@@ -689,7 +689,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			status = LIMB_DESTROYED
 		for(var/i in implants)
 			implants -= i
-			cdel(i)
+			qdel(i)
 
 		germ_level = 0
 		if(hidden)
@@ -752,7 +752,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				owner.drop_inv_item_on_ground(owner.shoes, null, TRUE)
 
 		if(delete_limb)
-			cdel(organ)
+			qdel(organ)
 		else
 			owner.visible_message("<span class='warning'>[owner.name]'s [display_name] flies off in an arc!</span>",
 			"<span class='highdanger'><b>Your [display_name] goes flying off!</b></span>",
@@ -875,26 +875,21 @@ Note that amputating the affected organ does in fact remove the infection from t
 	// This is mostly for the ninja suit to stop ninja being so crippled by breaks.
 	// TODO: consider moving this to a suit proc or process() or something during
 	// hardsuit rewrite.
-	if(!(status & LIMB_SPLINTED) && istype(owner,/mob/living/carbon/human))
+	if(ishuman(owner))
 
 		var/mob/living/carbon/human/H = owner
-
 		if(H.wear_suit && istype(H.wear_suit,/obj/item/clothing/suit))
 
 			var/obj/item/clothing/suit/suit = H.wear_suit
 
-			if(isnull(suit.supporting_limbs))
-				return
-
-			to_chat(owner, "You feel [suit] constrict about your [display_name], supporting it.")
-			status |= LIMB_SPLINTED
-			suit.supporting_limbs |= src
+			suit.secure_limb(src, H)
 	return
 
 /datum/limb/proc/robotize()
 	status &= ~LIMB_BROKEN
 	status &= ~LIMB_BLEEDING
 	status &= ~LIMB_SPLINTED
+	status &= ~LIMB_STABILIZED
 	status &= ~LIMB_AMPUTATED
 	status &= ~LIMB_DESTROYED
 	status &= ~LIMB_NECROTIZED
@@ -960,7 +955,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	return !(status & (LIMB_DESTROYED|LIMB_MUTATED|LIMB_NECROTIZED))
 
 /datum/limb/proc/is_broken()
-	return ((status & LIMB_BROKEN) && !(status & LIMB_SPLINTED))
+	return ((status & LIMB_BROKEN) && !(status & LIMB_SPLINTED) && !(status & LIMB_STABILIZED))
 
 /datum/limb/proc/is_malfunctioning()
 	return ((status & LIMB_ROBOT) && prob(brute_dam + burn_dam))
@@ -984,11 +979,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 			spark_system.attach(owner)
 			spark_system.start()
 			spawn(10)
-				cdel(spark_system)
+				qdel(spark_system)
 				spark_system = null
 
 /datum/limb/proc/embed(var/obj/item/W, var/silent = 0)
-	if(!W || W.disposed || (W.flags_item & (NODROP|DELONDROP)))
+	if(!W || W.gc_destroyed || (W.flags_item & (NODROP|DELONDROP)))
 		return
 	if(!silent)
 		owner.visible_message("<span class='danger'>\The [W] sticks in the wound!</span>")
