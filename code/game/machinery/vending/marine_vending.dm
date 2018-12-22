@@ -117,7 +117,7 @@
 					/obj/item/explosive/grenade/cloakbomb = 3,
 					/obj/item/storage/box/m94 = 30,
 					/obj/item/device/flashlight/combat = 5,
-					/obj/item/clothing/mask/gas = 10
+					/obj/item/clothing/mask/gas/marine = 10
 					)
 
 	contraband = list(
@@ -357,7 +357,7 @@
 						/obj/item/storage/pouch/medkit = 4,
 						/obj/item/storage/pouch/magazine = 4,
 						/obj/item/storage/pouch/pistol = 4,
-						/obj/item/clothing/mask/gas = 4
+						/obj/item/clothing/mask/gas/marine = 4
 					)
 	contraband = list(/obj/item/reagent_container/blood/OMinus = 1)
 
@@ -380,7 +380,7 @@
 						/obj/item/explosive/grenade/incendiary = 2,
 						/obj/item/storage/pouch/magazine/large = 1,
 						/obj/item/storage/pouch/general/medium = 1,
-						/obj/item/clothing/mask/gas = 1
+						/obj/item/clothing/mask/gas/marine = 1
 					)
 	contraband = list()
 	premium = list(
@@ -474,7 +474,7 @@
 						/obj/item/storage/box/m56_system = 1,
 						/obj/item/smartgun_powerpack = 1,
 						/obj/item/storage/pouch/magazine = 1,
-						/obj/item/clothing/mask/gas = 1
+						/obj/item/clothing/mask/gas/marine = 1
 			)
 	contraband = list()
 	premium = list()
@@ -508,7 +508,7 @@
 						/obj/item/storage/pouch/magazine/large = 1,
 						/obj/item/storage/pouch/general/large = 1,
 						/obj/item/storage/pouch/pistol = 1,
-						/obj/item/clothing/mask/gas = 1,
+						/obj/item/clothing/mask/gas/marine = 1,
 						/obj/item/device/whistle = 1,
 						/obj/item/storage/box/zipcuffs = 2
 					)

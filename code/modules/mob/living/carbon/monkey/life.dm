@@ -156,19 +156,12 @@
 					var/obj/item/clothing/mask/M = wear_mask
 					air_info = M.filter_air(air_info)
 
-				// Handle chem smoke effect  -- Doohl
-				var/block = 0
-				if(wear_mask)
-					if(istype(wear_mask, /obj/item/clothing/mask/gas))
-						block = 1
-
-				if(!block)
+				if(!(wear_mask.flags_inventory & BLOCKGASEFFECT) || !internal)
 					for(var/obj/effect/particle_effect/smoke/chem/smoke in view(1, src))
 						if(smoke.reagents.total_volume)
 							smoke.reagents.reaction(src, INGEST)
-							spawn(5)
-								if(smoke)
-									smoke.reagents.copy_to(src, 10) // I dunno, maybe the reagents enter the blood stream through the lungs?
+							if(smoke)
+								smoke.reagents.copy_to(src, 10) // I dunno, maybe the reagents enter the blood stream through the lungs?
 							break // If they breathe in the nasty stuff once, no need to continue checking
 
 

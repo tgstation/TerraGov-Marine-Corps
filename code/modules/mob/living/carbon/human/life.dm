@@ -42,9 +42,6 @@
 			//blood
 			handle_blood()
 
-			//Random events (vomiting etc)
-			handle_random_events()
-
 			//effects of being grabbed aggressively by another mob
 			if(pulledby && pulledby.grab_level)
 				handle_grabbed()

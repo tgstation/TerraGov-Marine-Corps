@@ -2399,7 +2399,7 @@ SUPPLIES
 	group = "Supplies"
 
 /datum/supply_packs/internals
-	name = "oxygen internals crate (x3 masks, x3 tanks)"
+	name = "oxygen internals crate (x3 gas masks, x3 tanks)"
 	contains = list(
 					/obj/item/clothing/mask/gas,
 					/obj/item/clothing/mask/gas,

@@ -177,3 +177,7 @@
 			reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
 		if(81 to INFINITY)
 			reagent_shock_modifier += PAIN_REDUCTION_HEAVY
+
+/mob/living/carbon/proc/handle_special()
+	if(acid_process_cooldown)
+		acid_process_cooldown = max(acid_process_cooldown - 1, 0) //Your protection from the acid puddle process eventually goes away.

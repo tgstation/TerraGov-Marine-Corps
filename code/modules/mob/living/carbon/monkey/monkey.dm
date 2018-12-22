@@ -126,15 +126,6 @@
 
 	. += config.monkey_delay
 
-/mob/living/carbon/monkey/get_permeability_protection()
-	var/protection = 0
-	//if(head)
-	//	protection = 1 - head.permeability_coefficient ((no head slot in inventory for time being))
-	if(wear_mask)
-		protection = max(1 - wear_mask.permeability_coefficient, protection)
-	protection = protection/7 //the rest of the body isn't covered.
-	return protection
-
 /mob/living/carbon/monkey/reagent_check(datum/reagent/R) //can metabolize all reagents
 	return FALSE
 
@@ -319,13 +310,29 @@
 	if(wear_id) wear_id.emp_act(severity)
 	..()
 
-/mob/living/carbon/monkey/is_mouth_covered(check_head = TRUE, check_mask = TRUE)
-	if((check_mask && wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
-		return TRUE
+/mob/living/carbon/monkey/get_permeability_protection()
+	var/protection = 0
+	//if(head)
+	//	protection = 1 - head.permeability_coefficient ((no head slot in inventory for time being))
+	if(wear_mask)
+		protection = max(1 - wear_mask.permeability_coefficient, protection)
+	protection = protection/7 //the rest of the body isn't covered.
+	return protection
 
-/mob/living/carbon/monkey/are_eyes_covered(check_glasses = TRUE, check_head = TRUE, check_mask = TRUE)
-	if(check_mask && wear_mask && (wear_mask.flags_inventory & COVEREYES))
+/mob/living/carbon/monkey/is_mouth_covered(check_head = TRUE, check_mask = TRUE, check_limb = FALSE)
+	if(check_mask && wear_mask?.flags_inventory & COVERMOUTH)
 		return wear_mask
+	return ..()
+
+/mob/living/carbon/monkey/has_smoke_protection()
+	if(wear_mask?.flags_inventory & BLOCKGASEFFECT)
+		return TRUE
+	return ..()
+
+/mob/living/carbon/monkey/are_eyes_covered(check_glasses = TRUE, check_head = TRUE, check_mask = TRUE, check_limb = FALSE)
+	if(check_mask && wear_mask?.flags_inventory & COVEREYES)
+		return wear_mask
+	return ..()
 
 /mob/living/carbon/monkey/ex_act(severity)
 	flash_eyes()

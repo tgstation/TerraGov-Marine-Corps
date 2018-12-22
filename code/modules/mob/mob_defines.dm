@@ -102,7 +102,7 @@
 
 	var/in_throw_mode = 0
 
-	var/coughedtime = null
+	var/smoke_delay = FALSE
 
 	var/inertia_dir = 0
 
