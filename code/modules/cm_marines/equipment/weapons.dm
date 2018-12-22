@@ -197,17 +197,17 @@
 		..()
 		spawn(1)
 			new /obj/item/clothing/suit/storage/marine/sniper(src)
-			new /obj/item/clothing/glasses/m42_goggles(src)
+			new /obj/item/clothing/glasses/night/m42_night_goggles(src)
 			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/flak(src)
-			new /obj/item/device/binoculars(src)
+			new /obj/item/device/binoculars/tactical(src)
 			new /obj/item/storage/backpack/marine/smock(src)
 			new /obj/item/weapon/gun/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
-
+			new /obj/item/bodybag/tarp(src)
 
 	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
@@ -359,13 +359,13 @@
 			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/flak(src)
-			new /obj/item/device/binoculars(src)
+			new /obj/item/device/binoculars/tactical(src)
 			new /obj/item/storage/backpack/marine/smock(src)
 			new /obj/item/weapon/gun/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
-			new /obj/structure/closet/bodybag/tarp(src)
+			new /obj/item/bodybag/tarp(src)
 
 	open(mob/user) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
