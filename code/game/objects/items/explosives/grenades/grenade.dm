@@ -40,7 +40,8 @@
 	activate(user)
 	if((CLUMSY in user.mutations) && prob(50))
 		to_chat(user, "<span class='warning'>Huh? How does this thing work?</span>")
-		spawn(5) prime()
+		spawn(5)
+			prime()
 
 	else
 		user.visible_message("<span class='warning'>[user] primes \a [name]!</span>", \
