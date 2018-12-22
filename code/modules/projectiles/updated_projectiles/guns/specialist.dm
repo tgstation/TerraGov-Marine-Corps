@@ -739,19 +739,20 @@
 	return TRUE
 
 /obj/item/weapon/gun/launcher/rocket/unload(mob/user)
-	if(user)
-		if(!current_mag.current_rounds)
-			to_chat(user, "<span class='warning'>[src] is already empty!</span>")
-		else
-			to_chat(user, "<span class='notice'>You begin unloading [src].</span>")
-			if(!do_after(user,current_mag.reload_delay * 0.5, TRUE, 5, BUSY_ICON_FRIENDLY))
-				to_chat(user, "<span class='warning'>Your unloading was interrupted!</span>")
-				return
-			current_mag.current_rounds = 0
-			ammo = null
-			loaded_rocket.loc = get_turf(src)
-			loaded_rocket = null
-			to_chat(user, "<span class='notice'>You successfully unload [src].</span>")
+	if(!user)
+		return
+	if(!current_mag.current_rounds)
+		to_chat(user, "<span class='warning'>[src] is already empty!</span>")
+		return
+	to_chat(user, "<span class='notice'>You begin unloading [src].</span>")
+	if(!do_after(user,current_mag.reload_delay * 0.5, TRUE, 5, BUSY_ICON_FRIENDLY))
+		to_chat(user, "<span class='warning'>Your unloading was interrupted!</span>")
+		return
+	current_mag.current_rounds = 0
+	ammo = null
+	loaded_rocket.loc = get_turf(src)
+	loaded_rocket = null
+	to_chat(user, "<span class='notice'>You successfully unload [src].</span>")
 
 
 //Adding in the rocket backblast. The tile behind the specialist gets blasted hard enough to down and slightly wound anyone
