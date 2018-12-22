@@ -1,3 +1,5 @@
+//wizarditis.dm
+
 /datum/disease/wizarditis
 	name = "Wizarditis"
 	max_stages = 4

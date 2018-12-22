@@ -1,3 +1,5 @@
+//projectile.dm
+
 /obj/effect/proc_holder/spell/targeted/projectile
 	name = "Projectile"
 	desc = "This spell summons projectiles which try to hit the targets."

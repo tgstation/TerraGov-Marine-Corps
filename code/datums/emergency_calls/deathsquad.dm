@@ -1,3 +1,5 @@
+//deathsquad.dm
+
 /datum/emergency_call/deathsquad
 	name = "Deathsquad"
 	probability = 0

@@ -1,3 +1,5 @@
+//browser.dm
+
 /datum/browser
 	var/mob/user
 	var/title

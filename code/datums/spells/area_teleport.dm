@@ -1,3 +1,5 @@
+//area_teleport.dm
+
 /obj/effect/proc_holder/spell/targeted/area_teleport
 	name = "Area teleport"
 	desc = "This spell teleports you to a type of area of your selection."

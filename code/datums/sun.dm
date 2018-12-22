@@ -1,3 +1,5 @@
+//sun.dm
+
 /datum/sun
 	var/angle
 	var/dx

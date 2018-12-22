@@ -1,3 +1,5 @@
+//trigger.dm
+
 /obj/effect/proc_holder/spell/targeted/trigger
 	name = "Trigger"
 	desc = "This spell triggers another spell or a few."

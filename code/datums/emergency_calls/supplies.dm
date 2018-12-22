@@ -1,3 +1,5 @@
+//supplies.dm
+
 //Supply drop. Just crates, no members.
 #define ERT_CRATES  pick(list(/obj/item/weapon/gun/smg/m39, \
 							/obj/item/weapon/gun/smg/m39, \

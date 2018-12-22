@@ -1,3 +1,5 @@
+//dumbfire.dm
+
 /obj/effect/proc_holder/spell/dumbfire
 
 	var/projectile_type = ""

@@ -1,3 +1,5 @@
+//ai_laws.dm
+
 var/global/const/base_law_type = /datum/ai_laws/nanotrasen
 
 

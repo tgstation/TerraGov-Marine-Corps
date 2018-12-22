@@ -1,3 +1,5 @@
+//ethereal_jaunt.dm
+
 /obj/effect/proc_holder/spell/targeted/ethereal_jaunt
 	name = "Ethereal Jaunt"
 	desc = "This spell creates your ethereal form, temporarily making you invisible and able to pass through walls."

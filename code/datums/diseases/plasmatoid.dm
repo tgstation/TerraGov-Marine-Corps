@@ -1,3 +1,5 @@
+//plasmatoid.dm
+
 /datum/disease/plasmatoid
 	name = "Plasmatoid"
 	max_stages = 4

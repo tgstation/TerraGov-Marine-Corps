@@ -1,3 +1,5 @@
+//pierrot_throat.dm
+
 /datum/disease/pierrot_throat
 	name = "Pierrot's Throat"
 	max_stages = 4

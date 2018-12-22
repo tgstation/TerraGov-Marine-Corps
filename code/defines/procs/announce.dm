@@ -1,3 +1,5 @@
+//announce.dm
+
 /var/datum/announcement/priority/priority_announcement = new(do_log = 0)
 /var/datum/announcement/priority/command/command_announcement = new(do_log = 0, do_newscast = 1)
 /var/datum/announcement/priority/command/warning/ai_system = new()

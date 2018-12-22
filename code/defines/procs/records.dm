@@ -1,3 +1,5 @@
+//records.dm
+
 /proc/CreateGeneralRecord()
 	var/mob/living/carbon/human/dummy = new()
 	dummy.mind = new()

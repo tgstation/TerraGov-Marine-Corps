@@ -1,3 +1,5 @@
+//emergency_call.dm
+
 //This file deals with distress beacons. It randomizes between a number of different types when activated.
 //There's also an admin commmand which lets you set one to your liking.
 

@@ -1,3 +1,5 @@
+//skills.dm
+
 /datum/skills
 	var/name //the name of the skillset
 	var/cqc = SKILL_CQC_DEFAULT

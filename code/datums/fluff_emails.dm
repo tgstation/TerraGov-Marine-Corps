@@ -1,3 +1,4 @@
+//fluff_emails.dm
 
 /datum/fluff_email
 	var/title //email title
