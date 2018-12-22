@@ -1,3 +1,5 @@
+//aicard.dm
+
 /obj/item/device/aicard
 	name = "inteliCard"
 	icon = 'icons/obj/items/pda.dmi'

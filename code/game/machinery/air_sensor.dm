@@ -1,3 +1,5 @@
+//air_sensor.dm
+
 /obj/machinery/air_sensor
 	icon = 'icons/obj/stationobjs.dmi'
 	icon_state = "gsensor1"

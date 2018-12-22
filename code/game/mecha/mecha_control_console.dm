@@ -1,3 +1,5 @@
+//mecha_control_console.dm
+
 /obj/machinery/computer/mecha
 	name = "Exosuit Control"
 	icon = 'icons/obj/machines/computer.dmi'

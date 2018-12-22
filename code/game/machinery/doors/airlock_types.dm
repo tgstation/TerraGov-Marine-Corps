@@ -1,3 +1,4 @@
+//airlock_types.dm
 
 /obj/machinery/door/airlock/secure
 	name = "\improper Secure Airlock"

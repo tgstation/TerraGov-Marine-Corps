@@ -1,3 +1,5 @@
+//autolathe.dm
+
 /obj/machinery/autolathe
 	name = "\improper autolathe"
 	desc = "It produces items using metal and glass."

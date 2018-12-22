@@ -1,3 +1,5 @@
+//camera.dm
+
 /obj/machinery/camera
 	name = "security camera"
 	desc = "It's used to monitor rooms."

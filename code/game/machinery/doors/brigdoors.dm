@@ -1,3 +1,5 @@
+//brigdoors.dm
+
 // TODO: Make this a child of door_display. ~Bmc777
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 

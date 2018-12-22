@@ -1,3 +1,5 @@
+//Beacon.dm
+
 /obj/machinery/bluespace_beacon
 
 	icon = 'icons/obj/objects.dmi'

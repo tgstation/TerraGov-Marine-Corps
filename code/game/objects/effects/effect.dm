@@ -1,3 +1,5 @@
+//effect.dm
+
 /obj/effect
 
 /obj/effect/New()

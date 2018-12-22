@@ -1,3 +1,5 @@
+//magnet.dm
+
 // Magnetic attractor, creates variable magnetic fields and attraction.
 // Can also be used to emit electron/proton beams to create a center of magnetism on another tile
 

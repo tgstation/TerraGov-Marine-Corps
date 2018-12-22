@@ -1,3 +1,5 @@
+//robots.dm
+
 /obj/effect/decal/cleanable/blood/gibs/robot
 	name = "robot debris"
 	desc = "It's a useless heap of junk... <i>or is it?</i>"

@@ -1,3 +1,4 @@
+//microwave.dm
 
 /obj/machinery/microwave
 	name = "Microwave"

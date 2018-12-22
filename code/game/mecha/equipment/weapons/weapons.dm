@@ -1,3 +1,5 @@
+//weapons.dm
+
 /*
 /obj/item/mecha_parts/mecha_equipment/weapon
 	name = "mecha weapon"

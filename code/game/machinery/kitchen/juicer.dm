@@ -1,3 +1,4 @@
+//juicer.dm
 
 /obj/machinery/juicer
 	name = "Juicer"

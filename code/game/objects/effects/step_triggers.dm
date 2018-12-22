@@ -1,3 +1,5 @@
+//step_triggers.dm
+
 /* Simple object type, calls a proc when "stepped" on by something */
 
 /obj/effect/step_trigger

@@ -1,3 +1,5 @@
+//research.dm
+
 /obj/structure/closet/secure_closet/scientist
 	name = "Scientist's Locker"
 	req_access = list(ACCESS_RESEARCH)

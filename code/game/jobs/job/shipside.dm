@@ -1,3 +1,5 @@
+//shipside.dm
+
 var/datum/announcement/minor/captain_announcement = new(do_newscast = 1)
 
 /datum/job/command

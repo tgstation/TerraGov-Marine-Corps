@@ -1,3 +1,5 @@
+//igniter.dm
+
 /obj/machinery/igniter
 	name = "igniter"
 	desc = "It's useful for igniting flammable items."

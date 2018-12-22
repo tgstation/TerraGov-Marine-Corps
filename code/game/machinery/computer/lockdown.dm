@@ -1,3 +1,5 @@
+//lockdown.dm
+
 //this computer displays status and remotely activates multiple shutters / blast doors
 //todo: lock / electrify specified area doors? might be a bit gamebreaking
 

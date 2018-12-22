@@ -1,3 +1,5 @@
+//multi_tile.dm
+
 //Terribly sorry for the code doubling, but things go derpy otherwise.
 /obj/machinery/door/airlock/multi_tile
 	width = 2

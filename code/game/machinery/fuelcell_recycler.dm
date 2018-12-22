@@ -1,3 +1,5 @@
+//fuelcell_recycler.dm
+
 /obj/machinery/fuelcell_recycler
 	name = "fuel cell recycler"
 	desc = "A large machine with whirring fans and two cylindrical holes in the top. Used to regenerate fuel cells."

@@ -1,3 +1,5 @@
+//overlays.dm
+
 /obj/effect/overlay
 	name = "overlay"
 	unacidable = 1

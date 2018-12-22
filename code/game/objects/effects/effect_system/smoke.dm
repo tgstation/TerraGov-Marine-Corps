@@ -1,3 +1,5 @@
+//smoke.dm
+
 /////////////////////////////////////////////
 //// SMOKE SYSTEMS
 // direct can be optinally added when set_up, to make the smoke always travel in one direction

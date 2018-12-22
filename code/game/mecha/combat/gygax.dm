@@ -1,3 +1,5 @@
+//gygax.dm
+
 /obj/mecha/combat/gygax
 	desc = "A lightweight, security exosuit. Popular among private and corporate security."
 	name = "Gygax"

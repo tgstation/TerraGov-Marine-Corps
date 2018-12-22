@@ -1,3 +1,5 @@
+//airlock.dm
+
 #define AIRLOCK_WIRE_IDSCAN 1
 #define AIRLOCK_WIRE_MAIN_POWER1 2
 #define AIRLOCK_WIRE_MAIN_POWER2 3

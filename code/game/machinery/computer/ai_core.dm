@@ -1,3 +1,5 @@
+//ai_core.dm
+
 /obj/structure/AIcore
 	density = 1
 	anchored = 0

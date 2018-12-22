@@ -1,3 +1,5 @@
+//phazon.dm
+
 /obj/mecha/combat/phazon
 	desc = "An exosuit which can only be described as 'WTF?'."
 	name = "Phazon"

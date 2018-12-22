@@ -1,3 +1,5 @@
+//bio-dome_floodlights.dm
+
 /obj/machinery/hydro_floodlight_switch
 	name = "Biodome Floodlight Switch"
 	icon = 'icons/turf/ground_map.dmi'

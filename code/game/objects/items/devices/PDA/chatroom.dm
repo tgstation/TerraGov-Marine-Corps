@@ -1,3 +1,5 @@
+//chatroom.dm
+
 var/list/chatrooms = list()
 
 /datum/chatroom

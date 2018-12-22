@@ -1,3 +1,4 @@
+//door.dm
 
 /obj/machinery/door
 	name = "\improper Door"

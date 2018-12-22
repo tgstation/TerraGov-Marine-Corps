@@ -1,3 +1,5 @@
+//vending.dm
+
 #define CAT_NORMAL 0
 #define CAT_HIDDEN 1
 #define CAT_COIN   2

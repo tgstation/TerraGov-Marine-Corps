@@ -1,3 +1,5 @@
+//whitelist.dm
+
 #define WHITELISTFILE "data/whitelist.txt"
 
 var/list/whitelist = list()

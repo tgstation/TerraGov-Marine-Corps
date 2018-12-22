@@ -1,3 +1,5 @@
+//meter.dm
+
 /obj/machinery/meter
 	name = "meter"
 	desc = "It measures something."

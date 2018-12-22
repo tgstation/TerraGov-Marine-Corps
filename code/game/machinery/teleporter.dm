@@ -1,3 +1,5 @@
+//teleporter.dm
+
 /obj/machinery/computer/teleporter
 	name = "Teleporter"
 	desc = "Used to control a linked teleportation Hub and Station."

@@ -1,3 +1,5 @@
+//autodoc.dm
+
 #define AUTODOC_NOTICE_SUCCESS 1
 #define AUTODOC_NOTICE_DEATH 2
 #define AUTODOC_NOTICE_NO_RECORD 3

@@ -1,3 +1,5 @@
+//nuclearbomb.dm
+
 var/bomb_set
 
 /obj/machinery/nuclearbomb

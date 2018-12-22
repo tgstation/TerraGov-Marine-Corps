@@ -1,3 +1,5 @@
+//pipe_dispenser.dm
+
 /obj/machinery/pipedispenser
 	name = "Pipe Dispenser"
 	icon = 'icons/obj/stationobjs.dmi'

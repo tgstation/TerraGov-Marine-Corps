@@ -1,3 +1,5 @@
+//wishgranter.dm
+
 /*
 /obj/machinery/wish_granter
 	name = "Wish Granter"

@@ -1,3 +1,5 @@
+//wires.dm
+
 #define CAMERA_WIRE_FOCUS 1
 #define CAMERA_WIRE_POWER 2
 #define CAMERA_WIRE_LIGHT 3

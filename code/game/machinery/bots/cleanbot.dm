@@ -1,3 +1,4 @@
+//cleanbot.dm
 
 //Cleanbot
 /obj/machinery/bot/cleanbot

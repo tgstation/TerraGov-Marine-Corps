@@ -1,3 +1,5 @@
+//canister.dm
+
 /obj/machinery/portable_atmospherics/canister
 	name = "canister"
 	icon = 'icons/obj/machines/atmos.dmi'

@@ -1,3 +1,5 @@
+//bombspawner.dm
+
 /* The old single tank bombs that dont really work anymore
 /obj/effect/spawner/bomb
 	name = "bomb"

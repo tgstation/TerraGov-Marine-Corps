@@ -1,3 +1,4 @@
+//communications.dm
 
 #define STATE_DEFAULT 1
 #define STATE_EVACUATION 2

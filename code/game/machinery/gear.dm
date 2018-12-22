@@ -1,3 +1,5 @@
+//gear.dm
+
 /obj/machinery/gear
 	name = "\improper gear"
 	icon_state = "gear"

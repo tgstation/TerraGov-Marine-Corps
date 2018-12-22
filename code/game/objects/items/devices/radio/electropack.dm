@@ -1,3 +1,5 @@
+//electropack.dm
+
 /obj/item/device/radio/electropack
 	name = "electropack"
 	desc = "Dance my monkeys! DANCE!!!"

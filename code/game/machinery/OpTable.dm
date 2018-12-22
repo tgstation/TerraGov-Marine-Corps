@@ -1,3 +1,5 @@
+//OpTable.dm
+
 /obj/machinery/optable
 	name = "Operating Table"
 	desc = "Used for advanced medical procedures."

@@ -1,3 +1,5 @@
+//mercenaries.dm
+
 /datum/job/mercenaries
 	special_role = "Mercenary"
 	comm_title = "Merc"

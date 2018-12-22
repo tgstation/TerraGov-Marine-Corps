@@ -1,3 +1,5 @@
+//role_authority.dm
+
 /*
 How this works:
 Role Authority handles the creation and assignment of roles. What is a role? Currently all roles are handled through job datums. If a gamemode requires

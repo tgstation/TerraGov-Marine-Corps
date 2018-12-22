@@ -1,3 +1,5 @@
+//squads.dm
+
 //This datum keeps track of individual squads. New squads can be added without any problem but to give them
 //access you must add them individually to access.dm with the other squads. Just look for "access_alpha" and add the new one
 

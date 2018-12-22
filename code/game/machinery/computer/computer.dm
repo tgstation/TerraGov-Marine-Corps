@@ -1,3 +1,5 @@
+//computer.dm
+
 /obj/machinery/computer
 	name = "computer"
 	icon = 'icons/obj/machines/computer.dmi'

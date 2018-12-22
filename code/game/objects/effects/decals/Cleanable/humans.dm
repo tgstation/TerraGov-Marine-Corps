@@ -1,3 +1,5 @@
+//humans.dm
+
 #define DRYING_TIME 5 * 60*10                        //for 1 unit of depth in puddle (amount var)
 
 var/global/list/image/splatter_cache=list()

@@ -1,3 +1,5 @@
+//flasher.dm
+
 // It is a gizmo that flashes a small area
 
 /obj/machinery/flasher

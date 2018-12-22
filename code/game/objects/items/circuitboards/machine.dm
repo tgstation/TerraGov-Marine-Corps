@@ -1,4 +1,4 @@
-
+//machine.dm
 
 //Machine Frame Circuit Boards
 /*Common Parts: Parts List: Ignitor, Timer, Infra-red laser, Infra-red sensor, t_scanner, Capacitor, Valve, sensor unit,

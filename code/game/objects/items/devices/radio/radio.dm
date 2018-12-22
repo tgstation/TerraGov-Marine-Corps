@@ -1,4 +1,4 @@
-
+//radio.dm
 
 /obj/item/device/radio
 	icon = 'icons/obj/items/radio.dmi'

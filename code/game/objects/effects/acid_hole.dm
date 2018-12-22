@@ -1,3 +1,5 @@
+//acid_hole.dm
+
 /obj/effect/acid_hole
 	name = "hole"
 	desc = "What could have done this?"

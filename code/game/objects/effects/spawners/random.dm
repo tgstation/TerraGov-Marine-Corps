@@ -1,3 +1,5 @@
+//random.dm
+
 /obj/effect/spawner/random
 	name = "Random Object"
 	desc = "This item type is used to spawn random objects at round-start"

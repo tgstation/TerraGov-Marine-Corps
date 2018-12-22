@@ -1,11 +1,4 @@
-
-
-
-
-
-
-
-
+//itemspawner.dm
 
 //Costume spawner landmarks
 

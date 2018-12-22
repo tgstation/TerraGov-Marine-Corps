@@ -1,3 +1,5 @@
+//bs12.dm
+
 // baystation12 posters
 /datum/poster/bay_1
 	icon_state="bsposter1"

@@ -1,3 +1,5 @@
+//simple_docking_controller.dm
+
 //a docking port that uses a single door
 /obj/machinery/embedded_controller/radio/simple_docking_controller
 	name = "docking hatch controller"

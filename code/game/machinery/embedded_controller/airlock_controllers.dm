@@ -1,3 +1,5 @@
+//airlock_controllers.dm
+
 //base type for controllers of two-door systems
 /obj/machinery/embedded_controller/radio/airlock
 	// Setup parameters only

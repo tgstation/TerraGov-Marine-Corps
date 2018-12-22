@@ -1,3 +1,5 @@
+//scoreboard.dm
+
 /obj/machinery/scoreboard
 	icon = 'icons/obj/machines/scoreboard.dmi'
 	icon_state = "scoreboard"

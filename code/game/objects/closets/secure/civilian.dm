@@ -1,3 +1,4 @@
+//civilian.dm
 
 /obj/structure/closet/secure_closet/chef_personal
 	name = "Chef's Locker"

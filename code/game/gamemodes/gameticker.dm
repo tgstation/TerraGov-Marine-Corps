@@ -1,3 +1,5 @@
+//gameticker.dm
+
 var/global/datum/controller/gameticker/ticker
 
 #define GAME_STATE_PREGAME		1

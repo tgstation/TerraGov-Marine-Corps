@@ -1,3 +1,5 @@
+//manifest.dm
+
 /obj/effect/manifest
 	name = "manifest"
 	icon = 'icons/mob/screen1.dmi'

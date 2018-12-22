@@ -1,3 +1,5 @@
+//alarmlock.dm
+
 /obj/machinery/door/airlock/alarmlock
 
 	name = "Glass Alarm Airlock"

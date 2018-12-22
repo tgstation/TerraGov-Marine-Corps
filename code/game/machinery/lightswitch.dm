@@ -1,3 +1,5 @@
+//lightswitch.dm
+
 // the light switch
 // can have multiple per area
 // can also operate on non-loc area through "otherarea" var

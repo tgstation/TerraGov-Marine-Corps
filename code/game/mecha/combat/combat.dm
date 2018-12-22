@@ -1,3 +1,5 @@
+//combat.dm
+
 /obj/mecha/combat
 	var/force = 30
 	var/damtype = "brute"

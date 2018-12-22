@@ -1,3 +1,5 @@
+//fax.dm
+
 var/list/obj/machinery/faxmachine/allfaxes = list()
 var/list/alldepartments = list()
 

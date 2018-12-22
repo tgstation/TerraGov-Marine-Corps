@@ -1,3 +1,5 @@
+//walllocker.dm
+
 //added by cael from old bs12
 //not sure if there's an immediate place for secure wall lockers, but i'm sure the players will think of something
 

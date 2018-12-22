@@ -1,3 +1,5 @@
+//railing.dm
+
 /obj/machinery/door/poddoor/railing
 	name = "\improper retractable railing"
 	icon = 'icons/obj/doors/railing.dmi'

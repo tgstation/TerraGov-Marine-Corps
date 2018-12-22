@@ -1,4 +1,4 @@
-
+//corpsespawner.dm
 
 
 ///////////////////// LANDMARK CORPSE ///////

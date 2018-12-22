@@ -1,3 +1,5 @@
+//buttons.dm
+
 /obj/machinery/driver_button
 	name = "mass driver button"
 	icon = 'icons/obj/objects.dmi'

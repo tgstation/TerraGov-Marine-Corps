@@ -1,3 +1,5 @@
+//ai_slipper.dm
+
 /*/obj/machinery/ai_slipper
 	name = "\improper AI Liquid Dispenser"
 	icon = 'icons/obj/items/devices.dmi'

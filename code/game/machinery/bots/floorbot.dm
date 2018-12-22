@@ -1,6 +1,4 @@
-
-
-
+//floorbot.dm
 
 //Floorbot
 /obj/machinery/bot/floorbot

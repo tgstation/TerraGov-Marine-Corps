@@ -1,3 +1,5 @@
+//smartfridge.dm
+
 /* SmartFridge.  Much todo
 */
 /obj/machinery/smartfridge

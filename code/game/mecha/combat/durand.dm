@@ -1,3 +1,5 @@
+//durand.dm
+
 /obj/mecha/combat/durand
 	desc = "An aging combat exosuit utilized by the TGMC. Originally developed to combat hostile alien lifeforms."
 	name = "Durand"

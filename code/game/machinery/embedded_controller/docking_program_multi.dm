@@ -1,3 +1,5 @@
+//docking_program_multi.dm
+
 /*
 	These programs are for docking controllers that consist of multiple independent airlocks
 	Each airlock has an airlock controller running the child program, and there is one docking controller running the master program

@@ -1,3 +1,5 @@
+//marines.dm
+
 /datum/job/marine
 	department_flag = ROLEGROUP_MARINE_SQUAD_MARINES
 	supervisors = "the acting squad leader"

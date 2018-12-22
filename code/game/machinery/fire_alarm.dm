@@ -1,5 +1,4 @@
-
-
+//fire_alarm.dm
 
 /*
 FIRE ALARM

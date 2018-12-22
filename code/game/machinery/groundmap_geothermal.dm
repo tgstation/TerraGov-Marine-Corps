@@ -1,3 +1,5 @@
+//groundmap_geothermal.dm
+
 /obj/machinery/power/geothermal
 	name = "\improper G-11 geothermal generator"
 	icon = 'icons/turf/geothermal.dmi'

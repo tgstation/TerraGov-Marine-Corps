@@ -1,3 +1,5 @@
+//navbeacon.dm
+
 // Navigation beacon for AI robots
 // Functions as a transponder: looks for incoming signal matching
 

@@ -1,3 +1,5 @@
+//medical_decals.dm
+
 /obj/effect/decal/medical_decals
 	icon = 'icons/effects/medical_decals.dmi'
 	layer = TURF_LAYER

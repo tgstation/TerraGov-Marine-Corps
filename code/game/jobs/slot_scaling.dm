@@ -1,3 +1,4 @@
+//slot_scaling.dm
 
 /proc/get_total_marines()
 	var/count = 0

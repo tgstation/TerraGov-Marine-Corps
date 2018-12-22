@@ -1,3 +1,5 @@
+//firedoor.dm
+
 // Door open and close constants
 /var/const
 	CLOSED = 2

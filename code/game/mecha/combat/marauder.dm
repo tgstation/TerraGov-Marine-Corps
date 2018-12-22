@@ -1,3 +1,5 @@
+//marauder.dm
+
 /obj/mecha/combat/marauder
 	desc = "Heavy-duty, combat exosuit, developed after the Durand model. Rarely found among civilian populations."
 	name = "Marauder"

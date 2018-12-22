@@ -1,3 +1,5 @@
+//bots.dm
+
 // AI (i.e. game AI, not the AI player) controlled bots
 
 /obj/machinery/bot

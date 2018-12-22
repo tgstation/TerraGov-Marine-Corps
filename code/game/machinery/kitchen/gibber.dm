@@ -1,3 +1,4 @@
+//gibber.dm
 
 /obj/machinery/gibber
 	name = "Gibber"

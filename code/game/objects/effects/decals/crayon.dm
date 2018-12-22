@@ -1,3 +1,5 @@
+//crayon.dm
+
 /obj/effect/decal/cleanable/crayon
 	name = "rune"
 	desc = "A rune drawn in crayon."

@@ -1,3 +1,5 @@
+//spaceheater.dm
+
 /obj/machinery/space_heater
 	anchored = 0
 	density = 0

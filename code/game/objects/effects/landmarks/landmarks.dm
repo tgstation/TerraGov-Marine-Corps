@@ -1,3 +1,5 @@
+//landmarks.dm
+
 /obj/effect/landmark
 	name = "landmark"
 	icon = 'icons/mob/screen1.dmi'

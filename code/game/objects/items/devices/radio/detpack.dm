@@ -1,3 +1,5 @@
+//detpack.dm
+
 /obj/item/device/radio/detpack
 	name = "detonation pack"
 	desc = "Programmable remotely triggered 'smart' explosive used for demolitions and impromptu booby traps. Can be set to breach or demolition detonation patterns."

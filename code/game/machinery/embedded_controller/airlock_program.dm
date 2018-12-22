@@ -1,3 +1,5 @@
+//airlock_program.dm
+
 //Handles the control of airlocks
 
 #define STATE_IDLE			0

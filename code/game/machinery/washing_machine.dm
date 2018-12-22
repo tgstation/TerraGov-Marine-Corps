@@ -1,3 +1,5 @@
+//washing_machine.dm
+
 /obj/machinery/washing_machine
 	name = "Washing Machine"
 	icon = 'icons/obj/machines/washing_machine.dmi'

@@ -1,3 +1,5 @@
+//door_control.dm
+
 #define CONTROL_POD_DOORS 0
 #define CONTROL_NORMAL_DOORS 1
 #define CONTROL_EMITTERS 2

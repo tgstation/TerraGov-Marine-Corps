@@ -1,3 +1,5 @@
+//intercom.dm
+
 /obj/item/device/radio/intercom
 	name = "station intercom"
 	desc = "Talk through this. To speak directly into an intercom next to you, use :i."

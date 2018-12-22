@@ -1,3 +1,5 @@
+//spiders.dm
+
 //generic procs copied from obj/effect/alien
 /obj/effect/spider
 	name = "web"

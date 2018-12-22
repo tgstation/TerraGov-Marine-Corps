@@ -1,3 +1,5 @@
+//hoverpod.dm
+
 /obj/mecha/hoverpod
 	desc = "Stubby and round, this space-capable craft is an ancient favorite."
 	name = "Hover Pod"

@@ -1,3 +1,5 @@
+//vaultspawner.dm
+
 /obj/effect/spawner/vaultspawner
 	var/maxX = 6
 	var/maxY = 6

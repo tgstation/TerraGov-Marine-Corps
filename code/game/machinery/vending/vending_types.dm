@@ -1,3 +1,4 @@
+//vending_types.dm
 
 /*
  * Vending machine types

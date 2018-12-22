@@ -1,3 +1,5 @@
+//records_scanner.dm
+
 //not a computer
 obj/machinery/scanner
 	name = "Identity Analyser"

@@ -1,3 +1,5 @@
+//motion.dm
+
 /obj/machinery/camera
 
 	var/list/motionTargets = list()

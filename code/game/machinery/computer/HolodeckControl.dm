@@ -1,3 +1,5 @@
+//HolodeckControl.dm
+
 var/global/list/holodeck_programs = list(
 	"emptycourt" = /area/holodeck/source_emptycourt,		\
 	"boxingcourt" =	/area/holodeck/source_boxingcourt,	\

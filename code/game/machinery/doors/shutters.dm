@@ -1,3 +1,5 @@
+//shutters.dm
+
 /obj/machinery/door/poddoor/shutters
 	name = "\improper Shutters"
 	icon = 'icons/obj/doors/rapid_pdoor.dmi'

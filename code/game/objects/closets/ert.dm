@@ -1,3 +1,5 @@
+//ert.dm
+
 /obj/structure/closet/secure_closet/ert/commander
 	name = "\improper ERT commander locker"
 	req_access = list(ACCESS_MARINE_BRIG)

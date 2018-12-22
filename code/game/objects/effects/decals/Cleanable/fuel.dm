@@ -1,3 +1,5 @@
+//fueld.dm
+
 obj/effect/decal/cleanable/liquid_fuel
 	//Liquid fuel is used for things that used to rely on volatile fuels or phoron being contained to a couple tiles.
 	icon = 'icons/effects/effects.dmi'

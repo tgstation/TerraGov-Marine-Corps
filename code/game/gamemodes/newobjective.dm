@@ -1,3 +1,5 @@
+//newobjective.dm
+
 #define FRAME_PROBABILITY 3
 #define THEFT_PROBABILITY 55
 #define KILL_PROBABILITY 37

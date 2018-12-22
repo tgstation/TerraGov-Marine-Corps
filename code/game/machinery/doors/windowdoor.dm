@@ -1,3 +1,5 @@
+//windowdoor.dm
+
 /obj/machinery/door/window
 	name = "interior door"
 	desc = "A strong door."

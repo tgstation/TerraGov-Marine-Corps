@@ -1,3 +1,5 @@
+//beacon.dm
+
 /obj/item/device/radio/beacon
 	name = "Tracking Beacon"
 	desc = "A beacon used by a teleporter."

@@ -1,3 +1,5 @@
+//freelancers.dm
+
 /datum/job/freelancer
 	special_role = "Freelancer"
 	comm_title = "FRE"

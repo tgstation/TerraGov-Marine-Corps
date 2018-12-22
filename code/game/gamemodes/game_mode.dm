@@ -1,3 +1,5 @@
+//game_mode.dm
+
 /*
   GAMEMODES (by Rastaf0)
 

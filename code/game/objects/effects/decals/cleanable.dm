@@ -1,3 +1,5 @@
+//cleanable.dm
+
 /obj/effect/decal/cleanable
 	var/list/random_icon_states = list()
 	var/targeted_by = null			// Used so cleanbots can't claim a mess.

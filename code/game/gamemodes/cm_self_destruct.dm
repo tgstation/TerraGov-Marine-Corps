@@ -1,3 +1,5 @@
+//cm_self_destruct.dm
+
 /*
 TODO
 Look into animation screen not showing on self destruct and other weirdness
