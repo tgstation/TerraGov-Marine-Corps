@@ -14,6 +14,7 @@
 	possible_transfer_amounts = null
 	container_type = OPENCONTAINER
 	flags_equip_slot = SLOT_WAIST
+	flags_item = NOBLUDGEON
 	w_class = 2.0
 	var/skilllock = 1
 	var/inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
@@ -24,7 +25,7 @@
 	if(user.is_mob_incapacitated() || !usr.IsAdvancedToolUser())
 		return FALSE
 
-	label(user)
+	handle_interface(user)
 
 /obj/item/reagent_container/hypospray/proc/empty(mob/user)
 	if (alert(user, "Are you sure you want to empty [src]?", "Flush [src]:", "Yes", "No") != "Yes")
@@ -301,12 +302,6 @@
 
 /obj/item/reagent_container/hypospray/advanced/oxycodone
 	list_reagents = list("oxycodone" = 60)
-
-/obj/item/reagent_container/hypospray/advanced/attack_self(mob/user)
-	if(user.is_mob_incapacitated() || !usr.IsAdvancedToolUser())
-		return FALSE
-
-	handle_interface(user)
 
 
 /obj/item/reagent_container/hypospray/advanced/update_icon()
