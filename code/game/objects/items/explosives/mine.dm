@@ -186,7 +186,6 @@
 	playsound(loc, 'sound/machines/warning-buzzer.ogg', 50, FALSE)
 	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 	AI.SetName("Smartmine Alert System")
-	to_chat(world, "AI: [AI] AI Name: [AI.name], Notice: [notice]")
 	AI.aiRadio.talk_into(AI,"[notice]","Theseus","announces")
 	qdel(AI)
 
