@@ -12,6 +12,11 @@
 	unacidable = 1
 	health = 1
 
+/obj/effect/alien/weeds/healthcheck()
+    if(health <= 0)
+        round_statistics.weeds_destroyed++
+        qdel(src)
+
 /obj/effect/alien/weeds/New(pos, obj/effect/alien/weeds/node/node)
 	..()
 
