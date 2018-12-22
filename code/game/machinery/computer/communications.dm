@@ -215,7 +215,7 @@
 				distress_cancel = FALSE
 				just_called = TRUE
 				spawn(1 MINUTE)
-					if(!distress_cancel)
+					if(!distress_cancel || !ticker.mode.on_distress_cooldown)
 						ticker.mode.activate_distress()
 						log_game("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within 60 seconds.")
 						message_admins("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within 60 seconds.", 1)
