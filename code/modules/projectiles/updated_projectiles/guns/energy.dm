@@ -356,7 +356,7 @@
 	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.max_hit_accuracy_mult //Heavy and unwieldy; you don't one hand this.
 	damage_mult = config.base_hit_damage_mult
 	scatter_unwielded = config.max_scatter_value * 2.5 //Heavy and unwieldy; you don't one hand this.
-	damage_falloff_mult = config.med_damage_falloff_mult
+	damage_falloff_mult = config.low_damage_falloff_mult
 
 //variant without ugl attachment
 /obj/item/weapon/gun/energy/lasgun/M43/stripped
@@ -383,7 +383,6 @@
 		playsound(user, 'sound/weapons/emitter.ogg', 15, 0, 2)
 		charge_cost = M37_OVERCHARGE_AMMO_COST
 		ammo = ammo_list[/datum/ammo/energy/lasgun/M43/overcharge]
-		damage_falloff_mult = config.low_damage_falloff_mult
 		fire_delay = M37_OVERCHARGE_FIRE_DELAY // 1 shot per second fire rate
 		fire_sound = 'sound/weapons/Laser3.ogg'
 		to_chat(user, "\icon[src] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
