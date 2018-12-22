@@ -1,3 +1,5 @@
+//fluspanish.dm
+
 /datum/disease/fluspanish
 	name = "Spanish inquisition Flu"
 	max_stages = 3

@@ -1,3 +1,5 @@
+//fullscreen.dm
+
 /mob/proc/overlay_fullscreen(category, type, severity)
 	var/obj/screen/fullscreen/FS
 	if(fullscreens[category])

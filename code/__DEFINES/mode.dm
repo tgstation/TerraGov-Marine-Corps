@@ -1,3 +1,5 @@
+//mode.dm
+
 //=================================================
 //Self destruct, nuke, and evacuation.
 #define EVACUATION_TIME_LOCK 60 MINUTES

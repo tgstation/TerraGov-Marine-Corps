@@ -1,3 +1,5 @@
+//mixer.dm
+
 /obj/machinery/atmospherics/trinary/mixer
 	icon = 'icons/atmos/mixer.dmi'
 	icon_state = "map"

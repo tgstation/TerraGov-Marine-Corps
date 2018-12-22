@@ -1,3 +1,5 @@
+//machines.dm
+
 // channel numbers for power
 #define EQUIP			1
 #define LIGHT			2

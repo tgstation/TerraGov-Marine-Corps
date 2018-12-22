@@ -1,3 +1,5 @@
+//_DynamicAreaLighting_TG.dm
+
 /*
 	Modified DynamicAreaLighting for TGstation - Coded by Carnwennan
 

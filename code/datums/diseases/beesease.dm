@@ -1,3 +1,5 @@
+//beesease.dm
+
 /*
 /datum/disease/beesease
 	name = "Beesease"

@@ -1,3 +1,5 @@
+//filter.dm
+
 /obj/machinery/atmospherics/trinary/filter
 	icon = 'icons/atmos/filter.dmi'
 	icon_state = "map"

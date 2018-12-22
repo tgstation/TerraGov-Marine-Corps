@@ -1,3 +1,5 @@
+//brainrot.dm
+
 /datum/disease/brainrot
 	name = "Brainrot"
 	max_stages = 4

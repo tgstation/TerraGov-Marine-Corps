@@ -1,3 +1,5 @@
+//ai.dm
+
 /*
 	AI ClickOn()
 

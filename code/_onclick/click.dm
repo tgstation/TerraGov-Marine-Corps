@@ -1,3 +1,4 @@
+//click.dm
 
 // 1 decisecond click delay (above and beyond mob/next_move)
 /mob/var/next_click = 0

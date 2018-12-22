@@ -1,3 +1,5 @@
+//symptoms.dm
+
 // Symptoms are the effects that engineered advanced diseases do.
 
 var/list/list_symptoms = subtypesof(/datum/symptom)

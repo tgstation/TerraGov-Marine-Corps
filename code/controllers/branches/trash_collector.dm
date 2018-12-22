@@ -1,3 +1,5 @@
+//trash_collector.dm
+
 //Defined in setup.dm. Referenced here.
 /*
 #define TA_TRASH_ME		1 //Trash it.

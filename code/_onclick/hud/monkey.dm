@@ -1,3 +1,5 @@
+//monkey.dm
+
 /datum/hud/monkey/New(mob/living/carbon/monkey/owner, ui_style='icons/mob/screen1_old.dmi')
 	..()
 	var/obj/screen/using

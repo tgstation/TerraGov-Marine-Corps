@@ -1,3 +1,5 @@
+//diseases.dm
+
 datum/controller/process/diseases
 
 datum/controller/process/diseases/setup()

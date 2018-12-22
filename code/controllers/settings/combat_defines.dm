@@ -1,3 +1,5 @@
+//combat_defines.dm
+
 /datum/configuration
 	var/proj_base_accuracy_mult = 0.01
 	var/proj_base_damage_mult = 0.01

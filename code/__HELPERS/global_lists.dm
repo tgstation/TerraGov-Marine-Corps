@@ -1,3 +1,5 @@
+//global_lists.dm
+
 var/list/clients = list()								//list of all clients
 var/list/admins = list()								//list of all clients whom are admins
 var/list/directory = list()							//list of all ckeys with associated client

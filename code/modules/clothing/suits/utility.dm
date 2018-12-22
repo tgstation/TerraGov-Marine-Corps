@@ -1,3 +1,5 @@
+//utility.dm
+
 /*
  * Contains:
  *		Fire protection

@@ -1,3 +1,5 @@
+//passive_gate.dm
+
 #define REGULATE_NONE	0
 #define REGULATE_INPUT	1	//shuts off when input side is below the target pressure
 #define REGULATE_OUTPUT	2	//shuts off when output side is above the target pressure

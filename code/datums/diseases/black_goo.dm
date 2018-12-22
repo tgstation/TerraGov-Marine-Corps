@@ -1,3 +1,5 @@
+//black_good.dm
+
 //Disease Datum
 /datum/disease/black_goo
 	name = "Black Goo"

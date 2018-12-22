@@ -1,3 +1,5 @@
+//mobs.dm
+
 proc/random_ethnicity()
 	return pick(ethnicities_list)
 

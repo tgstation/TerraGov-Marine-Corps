@@ -1,3 +1,4 @@
+//mob_procs.dm
 
 /mob/proc/has_disease(var/datum/disease/virus)
 	for(var/datum/disease/D in viruses)

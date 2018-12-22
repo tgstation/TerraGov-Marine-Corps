@@ -1,3 +1,5 @@
+//observer.dm
+
 /client/var/inquisitive_ghost = 1
 /mob/dead/observer/verb/toggle_inquisition() // warning: unexpected inquisition
 	set name = "Toggle Inquisitiveness"

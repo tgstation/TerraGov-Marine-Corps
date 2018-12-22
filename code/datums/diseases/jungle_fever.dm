@@ -1,3 +1,5 @@
+//jungle_fever.dm
+
 /datum/disease/jungle_fever
 	name = "Jungle Fever"
 	max_stages = 1

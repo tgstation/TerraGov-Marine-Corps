@@ -1,3 +1,5 @@
+//conflict.dm
+
 //Grab levels
 #define GRAB_PASSIVE	0
 #define GRAB_AGGRESSIVE	1

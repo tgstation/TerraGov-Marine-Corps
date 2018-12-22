@@ -1,3 +1,5 @@
+//equipment.dm
+
 //FLAGS BITMASK
 
 

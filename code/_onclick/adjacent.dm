@@ -1,3 +1,5 @@
+//adjacent.dm
+
 /*
 	Adjacency proc for determining touch range
 

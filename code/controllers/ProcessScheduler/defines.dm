@@ -1,3 +1,5 @@
+//defines.dm
+
 // Process status defines
 #define PROCESS_STATUS_IDLE 1
 #define PROCESS_STATUS_QUEUED 2

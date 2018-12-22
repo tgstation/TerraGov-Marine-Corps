@@ -1,3 +1,5 @@
+//cold.dm
+
 /datum/disease/cold
 	name = "The Cold"
 	max_stages = 3

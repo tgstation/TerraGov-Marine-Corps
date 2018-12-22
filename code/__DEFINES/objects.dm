@@ -1,3 +1,5 @@
+//objects.dm
+
 // Doors!
 #define DOOR_CRUSH_DAMAGE 10
 

@@ -1,3 +1,5 @@
+//tgs.config.dm
+
 #define TGS_EXTERNAL_CONFIGURATION
 #define TGS_V3_API
 #define TGS_DEFINE_AND_SET_GLOBAL(Name, Value) var/##Name = ##Value

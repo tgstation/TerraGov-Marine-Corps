@@ -1,3 +1,5 @@
+//logging.dm
+
 // Logging types for log_message()
 #define LOG_ATTACK		(1 << 0)
 #define LOG_SAY			(1 << 1)

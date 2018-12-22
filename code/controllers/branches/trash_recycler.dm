@@ -1,3 +1,5 @@
+//trash_recycler.dm
+
 	/*
 	Made this into a datum, unlike some of the other implementations.
 	Honestly no reason it shouldn't be a controller on its own

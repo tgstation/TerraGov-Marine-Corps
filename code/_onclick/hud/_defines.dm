@@ -1,3 +1,5 @@
+//_defines.dm
+
 /*
 	These defines specificy screen locations.  For more information, see the byond documentation on the screen_loc var.
 

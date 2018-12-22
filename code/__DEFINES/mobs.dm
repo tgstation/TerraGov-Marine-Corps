@@ -1,3 +1,5 @@
+//mobs.dm
+
 //Some mob defines below
 #define AI_CAMERA_LUMINOSITY 6
 

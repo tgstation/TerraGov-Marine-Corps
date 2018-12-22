@@ -1,3 +1,5 @@
+//generator_input.dm
+
 /obj/machinery/atmospherics/unary/generator_input
 	icon = 'icons/atmos/heat_exchanger.dmi'
 	icon_state = "intact"

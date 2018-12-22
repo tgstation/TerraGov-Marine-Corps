@@ -1,3 +1,5 @@
+//heat_source.dm
+
 //TODO: Put this under a common parent type with freezers to cut down on the copypasta
 
 /obj/machinery/atmospherics/unary/heater

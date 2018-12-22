@@ -1,3 +1,5 @@
+//names.dm
+
 var/church_name = null
 /proc/church_name()
 	if (church_name)

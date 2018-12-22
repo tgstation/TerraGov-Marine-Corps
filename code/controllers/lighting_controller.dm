@@ -1,3 +1,5 @@
+//lighting_controller.dm
+
 var/datum/controller/lighting/lighting_controller = new ()
 
 datum/controller/lighting

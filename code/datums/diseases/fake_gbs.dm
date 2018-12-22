@@ -1,3 +1,5 @@
+//fake_gbs.dm
+
 /datum/disease/fake_gbs
 	name = "GBS"
 	max_stages = 5

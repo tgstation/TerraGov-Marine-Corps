@@ -1,3 +1,5 @@
+//game_options.dm
+
 /datum/configuration
 	//game_options.txt configs
 	var/health_threshold_softcrit = 0

@@ -1,3 +1,5 @@
+//binary_atmos_base.dm
+
 /obj/machinery/atmospherics/binary
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH

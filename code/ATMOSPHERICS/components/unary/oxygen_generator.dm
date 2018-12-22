@@ -1,3 +1,5 @@
+//oxygen_generator.dm
+
 /obj/machinery/atmospherics/unary/oxygen_generator
 	icon = 'icons/atmos/oxygen_generator.dmi'
 	icon_state = "intact_off"

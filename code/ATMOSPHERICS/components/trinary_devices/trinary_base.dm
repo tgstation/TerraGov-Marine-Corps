@@ -1,3 +1,5 @@
+//trinary_base.dm
+
 /obj/machinery/atmospherics/trinary
 	dir = SOUTH
 	initialize_directions = SOUTH|NORTH|WEST

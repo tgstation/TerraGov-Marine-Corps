@@ -1,3 +1,5 @@
+//power.dm
+
 //Code moved into datum/controller/process/machines
 /*
 datum/controller/process/power

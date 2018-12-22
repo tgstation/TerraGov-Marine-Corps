@@ -1,3 +1,5 @@
+//hooks.dm
+
 /**
  * @file hooks.dm
  * Implements hooks, a simple way to run code on pre-defined events.

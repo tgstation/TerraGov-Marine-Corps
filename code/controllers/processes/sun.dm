@@ -1,3 +1,5 @@
+//sun.dm
+
 datum/controller/process/sun
 
 datum/controller/process/sun/setup()

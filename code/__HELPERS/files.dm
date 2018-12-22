@@ -1,3 +1,5 @@
+//files.dm
+
 //checks if a file exists and contains text
 //returns text as a string if these conditions are met
 /proc/return_file_text(filename)

@@ -1,3 +1,5 @@
+//__game.dm
+
 //Admin perms are in global.dm.
 
 #define DEBUG 0

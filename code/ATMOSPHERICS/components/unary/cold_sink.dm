@@ -1,3 +1,5 @@
+//cold_sink.dm
+
 //TODO: Put this under a common parent type with heaters to cut down on the copypasta
 #define FREEZER_PERF_MULT 2.5
 

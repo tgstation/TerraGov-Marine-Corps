@@ -1,3 +1,5 @@
+//cmp.dm
+
 /proc/cmp_numeric_dsc(a,b)
 	return b - a
 

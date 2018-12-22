@@ -1,3 +1,5 @@
+//portables_connector.dm
+
 /obj/machinery/atmospherics/portables_connector
 	icon = 'icons/atmos/connector.dmi'
 	icon_state = "map_connector"
