@@ -1,3 +1,5 @@
+//bar.dm
+
 /obj/structure/closet/secure_closet/bar
 	name = "Booze"
 	req_access = list(ACCESS_CIVILIAN_PUBLIC)
