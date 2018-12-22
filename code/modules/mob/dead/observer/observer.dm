@@ -35,6 +35,7 @@
 	ghost_sechud = client.prefs.ghost_sechud
 	ghost_squadhud = client.prefs.ghost_squadhud
 	ghost_xenohud = client.prefs.ghost_xenohud
+	client.prefs.save_preferences()
 	var/datum/mob_hud/H
 	if(ghost_medhud)
 		H = huds[MOB_HUD_MEDICAL_OBSERVER]
@@ -260,6 +261,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	ghost_sechud = client.prefs.ghost_sechud
 	ghost_squadhud = client.prefs.ghost_squadhud
 	ghost_xenohud = client.prefs.ghost_xenohud
+	client.prefs.save_preferences()
 	var/datum/mob_hud/H
 
 	switch(hud_choice)
