@@ -311,6 +311,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/extended_barrel/New()
 	..()
 	accuracy_mod = config.med_hit_accuracy_mult
+	accuracy_unwielded_mod = config.low_hit_accuracy_mult
 	damage_mod = -config.min_hit_damage_mult
 	scatter_mod = -config.min_scatter_value
 	size_mod = 1
@@ -401,7 +402,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/reddot/New()
 	..()
 	accuracy_mod = config.med_hit_accuracy_mult
-	accuracy_unwielded_mod = config.min_hit_accuracy_mult
+	accuracy_unwielded_mod = config.low_hit_accuracy_mult
 	movement_acc_penalty_mod = -config.min_movement_acc_penalty
 
 
@@ -1068,8 +1069,8 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/lasersight/New()
 	..()
-	accuracy_mod = config.min_hit_accuracy_mult
-	movement_acc_penalty_mod = -config.min_burst_scatter_penalty
+	accuracy_mod = config.low_hit_accuracy_mult
+	movement_acc_penalty_mod = -config.min_movement_acc_penalty
 	accuracy_unwielded_mod = config.med_hit_accuracy_mult
 
 
