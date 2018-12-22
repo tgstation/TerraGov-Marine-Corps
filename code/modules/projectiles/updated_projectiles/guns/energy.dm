@@ -536,6 +536,9 @@
 	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)))
 		return
 
+	if(!cell || isnull(cell) || cell.loc != src)
+		return
+
 	if(drop_override || !user) //If we want to drop it on the ground or there's no user.
 		cell.loc = get_turf(src) //Drop it on the ground.
 	else
