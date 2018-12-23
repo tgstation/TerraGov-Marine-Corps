@@ -1161,11 +1161,11 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/burstfire_assembly/New()
 	..()
-	accuracy_mod = -config.med_hit_accuracy_mult
+	accuracy_mod = -config.mlow_hit_accuracy_mult
 	burst_mod = config.low_burst_value
 	scatter_mod = config.low_scatter_value
 
-	accuracy_unwielded_mod = -config.hmed_hit_accuracy_mult
+	accuracy_unwielded_mod = -config.med_hit_accuracy_mult
 	scatter_unwielded_mod = config.med_scatter_value
 
 
