@@ -14,7 +14,7 @@
 	var/spread_speed = 1 //time in decisecond for a smoke to spread one tile.
 	var/lifetime = 5
 	var/opaque = TRUE //whether the smoke can block the view when in enough amount
-
+	var/obj/chemholder // for chemical smokes.
 
 	//Remove this bit to use the old smoke
 	icon = 'icons/effects/96x96.dmi'
@@ -24,7 +24,6 @@
 /obj/effect/particle_effect/smoke/New(loc)
 	. = ..()
 	lifetime += rand(-1,1)
-	create_reagents(500)
 	START_PROCESSING(SSobj, src)
 
 /obj/effect/particle_effect/smoke/Destroy()
@@ -61,15 +60,13 @@
 	for(var/mob/living/L in T)
 		smoke_mob(L)
 
-/*
+
 /obj/effect/particle_effect/smoke/proc/spread_smoke(direction)
 	var/turf/t_loc = get_turf(src)
 	if(!t_loc)
 		return
 	var/list/newsmokes = list()
 	for(var/turf/dir in cardinal)
-		if(direction && i != direction)
-			continue
 		var/turf/T = get_step(t_loc, dir)
 		if(check_airblock(T)) //smoke can't spread that way
 			continue
@@ -77,14 +74,14 @@
 		if(foundsmoke)
 			continue
 		apply_smoke_effect(t_loc)
-		var/obj/effect/particle_effect/smoke/S = new smoke_type(T)
-		reagents.copy_to(S, reagents.total_volume)
+		var/obj/effect/particle_effect/smoke/S = new type(T)
+		S.chemholder = chemholder
 		S.dir = pick(cardinal)
 		S.amount = amount-1
 		S.lifetime = lifetime
 		if(S.amount>0)
 			if(opaque)
-				S.set_opacity(TRUE)
+				S.SetOpacity(TRUE)
 			newsmokes.Add(S)
 
 	if(newsmokes.len)
@@ -99,21 +96,19 @@
 	for(var/atom/movable/M in T)
 		if(!M.CanPass(src, T))
 			return TRUE
-*/
 
 /obj/effect/particle_effect/smoke/proc/smoke_mob(mob/living/carbon/C)
 	if(!istype(C) || lifetime < 1)
-		return FALSE
+		return
 	if(!C.smoke_delay)
-		return FALSE
+		return
 	C.smoke_delay = TRUE
 	spawn(10)
 		if(C)
 			C.smoke_delay = FALSE
+	effect_contact(C)
 	if(!C.internal || !C.has_smoke_protection())
 		effect_inhale(C)
-	effect_contact(C)
-	return TRUE
 
 /obj/effect/particle_effect/smoke/proc/effect_inhale(mob/living/carbon/C)
 	return
@@ -332,13 +327,13 @@
 	var/smoke_type = /obj/effect/particle_effect/smoke
 	var/lifetime
 	var/list/targetTurfs = list()
-/*
+
 /datum/effect_system/smoke_spread/set_up(radius = 2, loca, smoke_time)
 	if(isturf(loca))
 		location = loca
 	else
 		location = get_turf(loca)
-	amount = radius
+	range = radius
 	if(smoke_time)
 		lifetime = smoke_time
 
@@ -350,7 +345,7 @@
 		S.lifetime = lifetime
 	if(S.amount)
 		S.spread_smoke()
-*/
+
 
 /datum/effect_system/smoke_spread/bad
 	smoke_type = /obj/effect/particle_effect/smoke/bad
@@ -371,26 +366,35 @@ datum/effect_system/smoke_spread/tactical
 	smoke_type = /obj/effect/particle_effect/smoke/xeno
 	var/strength = 1 // see smoke_type
 
+/datum/effect_system/smoke_spread/xeno/start()
+	if(holder)
+		location = get_turf(holder)
+	var/obj/effect/particle_effect/smoke/xeno/S = new smoke_type(location)
+	S.strength = strength
+	if(lifetime)
+		S.lifetime = lifetime
+	if(S.amount)
+		S.spread_smoke()
+
 /datum/effect_system/smoke_spread/xeno/acid
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/burn
 
 /datum/effect_system/smoke_spread/xeno/neuro
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro
 
-
+/*
 /datum/effect_system/smoke_spread/set_up(radius = 2, loca, smoke_time)
 	if(isturf(loca))
 		location = loca
 	else
 		location = get_turf(loca)
 	range = radius
-	var/pyt_range = radius * 0.3
 	if(smoke_time)
 		lifetime = smoke_time
 
-	for(var/turf/T in range(radius, location))
+	for(var/turf/T in circlerangeturfs(location,range))
 		var/foundsmoke = locate(/obj/effect/particle_effect/smoke) in T //Don't spread smoke where there's already smoke!
-		if(cheap_pythag(T.x - location.x, T.y - location.y) <= pyt_range && !foundsmoke)
+		if(!foundsmoke)
 			targetTurfs += T
 
 	check_flow(location, targetTurfs)
@@ -426,23 +430,10 @@ datum/effect_system/smoke_spread/tactical
 
 /datum/effect_system/smoke_spread/start()
 
-	//distance between each smoke cloud
-	var/const/arcLength = 2.3559
-
-	var/turf/t_loc = get_turf(src)
 	var/list/smokelist = list()
 
-	//calculate positions for smoke coverage - then spawn smoke
-	var/offset = ISINTEGER(range) ? 0 : 45 //degrees
-	var/points = round((range * 2 * PI) / arcLength)
-	var/angle = round(TODEGREES(arcLength / range))
-
-	for(var/j in 1 to points)
-		var/a = (angle * j) + offset
-		var/turf/target = get_turf_in_angle(a, t_loc, range)
-		for(var/turf/T in getline(t_loc, target))
-			if(T in (targetTurfs && !smokelist))
-				smokelist.Add(T)
+	for(var/turf/T in targetTurfs)
+		smokelist.Add(T)
 
 	if(smokelist.len)
 		spawn(1) //the smoke spreads rapidly but not instantly
@@ -470,3 +461,4 @@ datum/effect_system/smoke_spread/tactical
 		S.lifetime = lifetime
 	S.strength = strength
 	S.spread_smoke(T)
+*/
