@@ -2,8 +2,8 @@
 	Pre-map initialization stuff should go here.
 */
 /datum/global_init/New()
-	world.log = config_error_log = world_pda_log = sql_error_log = world_runtime_log = world_attack_log = world_game_log = "data/logs/config_error.log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
-	qdel(src)
+	//world.log = config_error_log = world_pda_log = sql_error_log = world_runtime_log = world_attack_log = world_game_log = "data/logs/config_error.log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
+	//qdel(src)
 
 /world/New()
 
