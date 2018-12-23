@@ -50,6 +50,8 @@
 /obj/item/reagent_container/hypospray/afterattack(atom/A, mob/living/user)
 	if(!A.reagents)
 		return
+	if(!istype(user))
+		return
 	if(inject_mode == HYPOSPRAY_INJECT_MODE_DRAW) //if we're draining
 		if(reagents.holder_full())
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
