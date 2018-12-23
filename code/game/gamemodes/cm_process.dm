@@ -370,7 +370,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 			continue
 		to_chat(M, "<h2 class='alert'>Detailed Information</h2>")
 		to_chat(M, {"<span class='alert'>[numXenosPlanet] xenos on the planet, including [numLarvaPlanet] larva.
-[numXenosShip] xenos on the ship, [numLarvaShip] larva.
+[numXenosShip] xenos on the ship, including [numLarvaShip] larva.
 [numHostsPlanet] human[numHostsPlanet > 1 ? "s" : ""] on the planet.
 [numHostsShip] human[numHostsShip > 1 ? "s" : ""] on the ship.</span>"})
 
