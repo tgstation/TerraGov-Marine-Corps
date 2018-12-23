@@ -38,11 +38,9 @@ var/global/datum/controller/gameticker/ticker
 /datum/controller/gameticker/proc/pregame()
 
 	login_music = pick(
-	'sound/music/SpaceHero.ogg',
-	'sound/music/title1.ogg',
-	'sound/music/title2.ogg',
-	'sound/music/title3.ogg',
-	'sound/music/clown.ogg')
+	'sound/music/AllIWantForChristmas.ogg',
+	'sound/music/LastChristmas.ogg',
+	'sound/music/LetItSnow.ogg')
 
 	do
 		pregame_timeleft = 180
