@@ -104,6 +104,12 @@ Quick adjacency (to turf):
 	return FALSE
 
 
+/obj/structure/ship_ammo/Adjacent(var/atom/neighbor)
+	for(var/turf/T in locs)
+		if(T.Adjacent(neighbor,src))
+			return TRUE
+	return FALSE
+
 // This is necessary for storage items not on your person.
 /obj/item/Adjacent(var/atom/neighbor, var/recurse = 1)
 	if(neighbor == loc)
