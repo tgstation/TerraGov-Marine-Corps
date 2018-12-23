@@ -610,9 +610,20 @@
 	can_hold = list("/obj/item/explosive/grenade/chem_grenade/teargas")
 	grenade_type = /obj/item/explosive/grenade/chem_grenade/teargas
 
+/obj/item/storage/box/nade_box/Incendary
+	name = "\improper M40 HIDP grenade box"
+	desc = "A secure box holding 25 M40 HIDP grenades."
+	icon_state = "nade_HIDP_box"
+	can_hold = list("/obj/item/explosive/grenade/incendiary")
+	grenade_type = /obj/item/explosive/grenade/incendiary
 
 
-
+/obj/item/storage/box/nade_box/M15
+	name = "\improper M15 grenade box"
+	desc = "A secure box holding 25 M15 fragmentation grenades."
+	icon_state = "nade_m15_box"
+	can_hold = list("/obj/item/explosive/grenade/frag/m15")
+	grenade_type = /obj/item/explosive/grenade/frag/m15
 
 //ITEMS-----------------------------------//
 /obj/item/storage/box/lightstick
@@ -681,3 +692,5 @@
 	else if(!isopened)
 		isopened = 1
 		icon_state = "mealpackopened"
+
+
