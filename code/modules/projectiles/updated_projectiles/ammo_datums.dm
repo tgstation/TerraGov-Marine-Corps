@@ -1223,6 +1223,14 @@
 	spit_cost = 50
 	added_spit_delay = 5
 
+/datum/ammo/xeno/toxin/New()
+	accuracy = config.max_hit_accuracy
+	shell_speed = config.reg_shell_speed
+	accurate_range = config.close_shell_range
+	max_range = config.near_shell_range
+	accuracy_var_low = config.low_proj_variance
+	accuracy_var_high = config.low_proj_variance
+
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/M, obj/item/projectile/P)
 	if(!istype(M))
 		return ..()
