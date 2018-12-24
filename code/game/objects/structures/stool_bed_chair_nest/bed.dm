@@ -131,8 +131,9 @@ obj/structure/bed/Destroy()
 						M.last_teleport = B.last_teleport
 					if(B.linked_beacon)
 						M.linked_beacon = B.linked_beacon
-					if(B.linked_beacon?.linked_bed_deployed == src)
-						M.linked_beacon.linked_bed = M
+						if(B.linked_beacon.linked_bed_deployed == B)
+							M.linked_beacon.linked_bed = M
+							B.linked_beacon.linked_bed_deployed = null
 				H.visible_message("<span class='warning'>[H] grabs [src] from the floor!</span>",
 				"<span class='warning'>You grab [src] from the floor!</span>")
 				qdel(src)
@@ -255,8 +256,9 @@ obj/structure/bed/Destroy()
 			B.last_teleport = I.last_teleport
 		if(linked_beacon)
 			B.linked_beacon = I.linked_beacon
-			if(B.linked_beacon.linked_bed == src)
+			if(B.linked_beacon.linked_bed == I)
 				B.linked_beacon.linked_bed_deployed = B
+				B.linked_beacon.linked_bed = null
 	qdel(src)
 
 /obj/item/roller_holder
