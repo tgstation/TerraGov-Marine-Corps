@@ -8,7 +8,6 @@
 	var/charge_cost = 10 //100 shots.
 
 /obj/item/weapon/gun/energy/examine(mob/user)
-	..()
 	var/list/dat = list()
 	if(flags_gun_features & GUN_TRIGGER_SAFETY)
 		dat += "The safety's on!<br>"
@@ -524,9 +523,7 @@
 		if(reload_sound)
 			playsound(user, reload_sound, 25, 1, 5)
 	else
-		new_cell.loc = src
-	//if(!in_chamber)
-	//	load_into_chamber()
+		cell.loc = src
 	update_icon()
 
 
