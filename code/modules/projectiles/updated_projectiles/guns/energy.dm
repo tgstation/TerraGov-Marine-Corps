@@ -522,10 +522,10 @@
 		"<span class='notice'>You load [new_cell] into [src]!</span>", null, 3)
 		if(reload_sound)
 			playsound(user, reload_sound, 25, 1, 5)
+		update_icon(user)
 	else
 		cell.loc = src
-	update_icon()
-
+		update_icon()
 
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
 //This can be passed with a null user, so we need to check for that as well.
