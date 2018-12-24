@@ -486,7 +486,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define RAV_CHARGEDISTANCE				7
 #define RAV_CHARGECOOLDOWN				30 SECONDS
 #define RAV_CHARGE_TYPE					3
-#define RAV_SECOND_WIND_COOLDOWN		4 MINUTES
+#define RAV_SECOND_WIND_COOLDOWN		240 SECONDS
 #define RAV_RAVAGE_COOLDOWN				10 SECONDS
 #define RAV_HANDLE_CHARGE				1
 
