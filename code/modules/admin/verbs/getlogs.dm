@@ -163,7 +163,8 @@
 	var/path = "data/logs/"
 	path = browse_folders(path)
 
-	recursive_download(path)
+	if(path)
+		recursive_download(path)
 
 
 
@@ -192,7 +193,7 @@
 		var/choice = input(src, "Choose a folder to access:", "Download", null) as null|anything in choices
 		switch(choice)
 			if(null)
-				return
+				return FALSE
 			if("/")
 				path = root
 				continue
@@ -201,7 +202,6 @@
 		
 
 		if(copytext(path, -1, 0) != "/")		//didn't choose a directory, no need to iterate again
-
 			continue
 		else
 			var/choice2 = alert(src, "Is this the folder you want to download?:",, "Yes", "No")
