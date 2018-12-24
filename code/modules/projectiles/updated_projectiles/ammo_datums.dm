@@ -1217,10 +1217,11 @@
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
-	ammo_reagents = list("xeno_toxin" = 5)
+	ammo_reagents = list("xeno_toxin" = 6)
 	debilitate = list(0.5,0.5,0,0,0,0,0,0)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_IGNORE_RESIST
 	spit_cost = 50
+	added_spit_delay = 5
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/M, obj/item/projectile/P)
 	if(!istype(M))
@@ -1232,44 +1233,44 @@
 
 /datum/ammo/xeno/toxin/upgrade1
 	name = "neurotoxic spit"
-	ammo_reagents = list("xeno_toxin" = 5.75)
+	ammo_reagents = list("xeno_toxin" = 7.2)
 
 /datum/ammo/xeno/toxin/upgrade2
-	ammo_reagents = list("xeno_toxin" = 6.5)
+	ammo_reagents = list("xeno_toxin" = 7.8)
 
 /datum/ammo/xeno/toxin/upgrade3
-	ammo_reagents = list("xeno_toxin" = 7.25)
+	ammo_reagents = list("xeno_toxin" = 8.1)
 
 
-/datum/ammo/xeno/toxin/medium //Spitter
+/datum/ammo/xeno/toxin/medium //Queen
 	name = "neurotoxic spatter"
-	ammo_reagents = list("xeno_toxin" = 8)
-	added_spit_delay = 5
+	ammo_reagents = list("xeno_toxin" = 8.5)
+	added_spit_delay = 10
 	spit_cost = 75
 
 /datum/ammo/xeno/toxin/medium/upgrade1
-	ammo_reagents = list("xeno_toxin" = 9.2)
+	ammo_reagents = list("xeno_toxin" = 10.2)
 
 /datum/ammo/xeno/toxin/medium/upgrade2
-	ammo_reagents = list("xeno_toxin" = 10.4)
+	ammo_reagents = list("xeno_toxin" = 11.1)
 
 /datum/ammo/xeno/toxin/medium/upgrade3
-	ammo_reagents = list("xeno_toxin" = 11.6)
+	ammo_reagents = list("xeno_toxin" = 11.48)
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
-	ammo_reagents = list("xeno_toxin" = 10)
-	added_spit_delay = 8
+	ammo_reagents = list("xeno_toxin" = 11)
+	added_spit_delay = 15
 	spit_cost = 100
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
-	ammo_reagents = list("xeno_toxin" = 11.5)
+	ammo_reagents = list("xeno_toxin" = 13.2)
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
-	ammo_reagents = list("xeno_toxin" = 13)
+	ammo_reagents = list("xeno_toxin" = 14.3)
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	ammo_reagents = list("xeno_toxin" = 14.5)
+	ammo_reagents = list("xeno_toxin" = 14.85)
 
 /datum/ammo/xeno/sticky
 	name = "sticky resin spit"
