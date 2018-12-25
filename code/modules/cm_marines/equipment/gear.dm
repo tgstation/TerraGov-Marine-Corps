@@ -40,16 +40,60 @@
 	anchored = 1
 	closet_stun_delay = 0
 
+/obj/item/device/radio/detpack/Destroy()
+	. = ..()
+	processing_second.Remove(src)
+
 /obj/structure/closet/bodybag/tarp/close()
 	. = ..()
-	spawn(30)
-		var/mob/M = locate() in src //need to be occupied
-		if(!opened && M)
-			playsound(loc,'sound/effects/cloak_scout_on.ogg', 15, 1) //stealth mode engaged!
-			alpha = 13 //stealth mode engaged
+	var/mob/M = locate() in src //need to be occupied
+	if(!opened && M)
+		playsound(loc,'sound/effects/cloak_scout_on.ogg', 15, 1) //stealth mode engaged!
+		processing_second.Add(src)
+
+/obj/structure/closet/bodybag/tarp/process() //We only process until stealth fully achieved to save resources.
+	var/mob/M = locate() in src //need to be occupied
+	if(opened || !M) //Abort if no mob inside.
+		alpha = initial(alpha)
+		processing_second.Remove(src)
+		return
+
+	alpha = max(alpha - 85, 13)
+
+	if(alpha <= 13)
+		processing_second.Remove(src)
+		return
+
+/obj/structure/closet/bodybag/tarp/fire_act(exposed_temperature, exposed_volume)
+	var/mob/M = locate() in src //need to be occupied
+	if(exposed_temperature > 300 && !opened && M)
+		to_chat(M, "<font color='danger'>The intense heat forces you out of [src]!</font>")
+		open()
+
+/obj/structure/closet/bodybag/tarp/flamer_fire_act()
+	var/mob/M = locate() in src //need to be occupied
+	if(!opened && M)
+		to_chat(M, "<font color='danger'>The intense heat forces you out of [src]!</font>")
+		open()
+
+/obj/structure/closet/bodybag/tarp/ex_act(severity)
+	var/mob/M = locate() in src //need to be occupied
+	if(!opened && M)
+		to_chat(M, "<font color='danger'>The shockwave blows [src] open!</font>")
+		open()
+	switch(severity)
+		if(1)
+			visible_message("<span class='danger'>\The shockwave blows [src] apart!</span>")
+			qdel(src) //blown apart
+
+/obj/structure/closet/bodybag/tarp/bullet_act(var/obj/item/projectile/Proj)
+	var/mob/M = locate() in src //need to be occupied
+	if(!opened && M)
+		M.bullet_act(Proj) //tarp isn't bullet proof; concealment, not cover; pass it on to the occupant.
 
 /obj/structure/closet/bodybag/tarp/open()
 	. = ..()
+	processing_second.Remove(src)
 	if(alpha != initial(alpha))
 		playsound(loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 		alpha = initial(alpha) //stealth mode disengaged

@@ -345,7 +345,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
 	w_class = 5
-	storage_slots = 12
+	storage_slots = 15
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -360,11 +360,14 @@
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/flak(src)
 			new /obj/item/device/binoculars/tactical(src)
-			new /obj/item/storage/backpack/marine/smock(src)
 			new /obj/item/weapon/gun/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
+			new /obj/item/storage/backpack/marine/satchel/scout_cloak
 			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
+			new /obj/item/explosive/grenade/cloakbomb(src)
+			new /obj/item/explosive/grenade/cloakbomb(src)
+			new /obj/item/explosive/grenade/cloakbomb(src)
 			new /obj/item/bodybag/tarp(src)
 
 	open(mob/user) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
@@ -384,7 +387,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
 	w_class = 5
-	storage_slots = 21
+	storage_slots = 22
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -414,6 +417,7 @@
 			new /obj/item/explosive/grenade/cloakbomb(src)
 			new /obj/item/explosive/grenade/cloakbomb(src)
 			new /obj/item/explosive/grenade/cloakbomb(src)
+			new /obj/item/bodybag/tarp(src)
 
 
 
