@@ -67,19 +67,19 @@
 /obj/structure/closet/bodybag/tarp/fire_act(exposed_temperature, exposed_volume)
 	var/mob/M = locate() in src //need to be occupied
 	if(exposed_temperature > 300 && !opened && M)
-		to_chat(M, "<font color='danger'>The intense heat forces you out of [src]!</font>")
+		to_chat(M, "<span class='danger'>The intense heat forces you out of [src]!</span>")
 		open()
 
 /obj/structure/closet/bodybag/tarp/flamer_fire_act()
 	var/mob/M = locate() in src //need to be occupied
 	if(!opened && M)
-		to_chat(M, "<font color='danger'>The intense heat forces you out of [src]!</font>")
+		to_chat(M, "<span class='danger'>The intense heat forces you out of [src]!</span>")
 		open()
 
 /obj/structure/closet/bodybag/tarp/ex_act(severity)
 	var/mob/M = locate() in src //need to be occupied
 	if(!opened && M)
-		to_chat(M, "<font color='danger'>The shockwave blows [src] open!</font>")
+		to_chat(M, "<span class='danger'>The shockwave blows [src] open!</span>")
 		open()
 	switch(severity)
 		if(1)

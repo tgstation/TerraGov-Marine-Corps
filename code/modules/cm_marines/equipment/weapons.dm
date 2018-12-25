@@ -363,7 +363,7 @@
 			new /obj/item/weapon/gun/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
-			new /obj/item/storage/backpack/marine/satchel/scout_cloak
+			new /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper(src)
 			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
 			new /obj/item/explosive/grenade/cloakbomb(src)
 			new /obj/item/explosive/grenade/cloakbomb(src)
@@ -412,7 +412,7 @@
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/weapon/gun/rifle/m4ra(src)
-			new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
+			new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
 			new /obj/item/device/motiondetector/scout(src)
 			new /obj/item/explosive/grenade/cloakbomb(src)
 			new /obj/item/explosive/grenade/cloakbomb(src)
