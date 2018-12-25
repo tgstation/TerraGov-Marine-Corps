@@ -300,7 +300,7 @@
 
 /datum/ammo/bullet/pistol/heavy/New()
 	..()
-	accuracy = -config.med_hit_accuracy
+	accuracy = -config.low_hit_accuracy
 	accuracy_var_low = config.med_proj_variance
 	damage = config.lmed_hit_damage
 	penetration= config.min_armor_penetration
@@ -326,8 +326,8 @@
 /datum/ammo/bullet/pistol/squash/New()
 	..()
 	accuracy = config.med_hit_accuracy
-	damage = config.med_hit_damage
-	penetration= config.low_armor_penetration
+	damage = config.hlow_hit_damage
+	penetration= config.mlow_armor_penetration
 	shrapnel_chance = config.med_shrapnel_chance
 
 /datum/ammo/bullet/pistol/mankey
