@@ -114,12 +114,6 @@
 				//Then, we place the mob where it ought to be
 				X.stomach_contents.Add(pulled)
 				pulled.forceMove(X)
-				if(ishuman(M))
-					var/mob/living/carbon/human/H = M
-					if(H.wear_ear) //Deactivate the headset camera
-						if(istype(H.wear_ear,/obj/item/device/radio/headset/almayer))
-							var/obj/item/device/radio/headset/almayer/I = H.wear_ear
-							I.camera.status = FALSE
 				return 1
 		if(!(pulled in X.stomach_contents))
 			to_chat(X, "<span class='warning'>You stop devouring \the [pulled]. \He probably tasted gross anyways.</span>")

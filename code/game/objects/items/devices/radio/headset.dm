@@ -215,7 +215,7 @@
 
 /obj/item/device/radio/headset/almayer
 	name = "marine radio headset"
-	desc = "A standard military radio headset. Has a small built in camera."
+	desc = "A standard military radio headset."
 	icon_state = "cargo_headset"
 	item_state = "headset"
 	frequency = PUB_FREQ
@@ -223,12 +223,6 @@
 	var/mob/living/carbon/human/wearer = null
 	var/headset_hud_on = FALSE
 	var/sl_direction = FALSE
-	var/obj/machinery/camera/camera
-
-/obj/item/device/radio/headset/almayer/New()
-	..()
-	camera = new /obj/machinery/camera(src)
-	camera.network = list("LEADER")
 
 /obj/item/device/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
 	if(slot == WEAR_EAR)
@@ -237,9 +231,7 @@
 		headset_hud_on = FALSE //So we always activate on equip.
 		sl_direction = FALSE
 		toggle_squadhud(wearer)
-	if(camera)
-		camera.c_tag = user.name
-	..()
+	return ..()
 
 /obj/item/device/radio/headset/almayer/dropped(mob/living/carbon/human/user)
 	if(istype(user) && headset_hud_on)
@@ -248,9 +240,7 @@
 			user.hud_used.SL_locator.alpha = 0
 			wearer = null
 			squadhud = null
-	if(camera)
-		camera.c_tag = "Unknown"
-	..()
+	return ..()
 
 /obj/item/device/radio/headset/almayer/Destroy()
 	if(wearer && headset_hud_on)
