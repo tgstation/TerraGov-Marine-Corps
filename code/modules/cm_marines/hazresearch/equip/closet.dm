@@ -13,6 +13,6 @@
 		sleep(2)
 		new /obj/item/clothing/suit/bio/marine(src)
 		new /obj/item/clothing/head/helmet/bio/marine(src)
-		new /obj/item/clothing/shoes/swat(src)
-		new /obj/item/clothing/gloves/swat(src)
+		new /obj/item/clothing/shoes/combat(src)
+		new /obj/item/clothing/gloves/combat(src)
 		return

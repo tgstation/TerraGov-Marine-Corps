@@ -216,6 +216,7 @@
 	if(!target_zone)
 		user.visible_message("<span class='danger'>[user] tries to stab [target] with [src], but misses!",
 							"<span class='danger'>You try to stab [target] with [src], but miss!</span>", null, 5)
+		return
 	var/hit_area
 	var/datum/limb/affecting
 	if(ishuman(target))

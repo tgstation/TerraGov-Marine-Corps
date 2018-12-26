@@ -57,7 +57,7 @@
 	slowdown = 0
 	armor = list(melee = 60, bullet = 50, laser = 30,energy = 15, bomb = 30, bio = 30, rad = 30)
 	siemens_coefficient = 0.9
-	flags_armor_protection = UPPER_TORSO|ARMS
+	flags_armor_protection = CHEST|ARMS
 
 
 

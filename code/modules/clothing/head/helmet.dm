@@ -366,6 +366,7 @@
 	desc = "A protective cap made from flexible kevlar. Standard issue for most security forms in the place of a helmet."
 	icon_state = "pmc_hat"
 	armor = list(melee = 38, bullet = 38, laser = 32, energy = 22, bomb = 12, bio = 5, rad = 5)
+	permeability_coefficient = 0.9
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	flags_inv_hide = NOFLAGS
 	flags_marine_helmet = NOFLAGS
@@ -400,6 +401,7 @@
 	desc = "A fully enclosed, armored helmet made for Nanotrasen elite commandos."
 	icon_state = "commando_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
+	permeability_coefficient = 0.25
 	armor = list(melee = 90, bullet = 120, laser = 90, energy = 90, bomb = 90, bio = 100, rad = 100)
 	flags_inventory = COVEREYES|COVERMOUTH|BLOCKGASEFFECT|THICKMATERIAL
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR
@@ -452,6 +454,7 @@
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
 	icon_state = "upp_helmet_heavy"
+	permeability_coefficient = 0.9
 	armor = list(melee = 90, bullet = 85, laser = 60, energy = 65, bomb = 85, bio = 5, rad = 5)
 	flags_inventory = THICKMATERIAL
 	unacidable = 1
@@ -506,6 +509,7 @@
 	desc = "A sturdy helmet worn by an unknown mercenary group."
 	icon_state = "mercenary_heavy_helmet"
 	flags_armor_protection = HEAD|FACE|EYES
+	permeability_coefficient = 0.9
 	armor = list(melee = 80, bullet = 80, laser = 50, energy = 60, bomb = 70, bio = 10, rad = 10)
 	flags_inventory = COVEREYES|COVERMOUTH|THICKMATERIAL
 	flags_inv_hide = HIDEEARS|HIDEEYES|HIDEFACE|HIDEMASK|HIDEALLHAIR

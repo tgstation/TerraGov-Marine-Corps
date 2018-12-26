@@ -14,26 +14,26 @@
 	name = "mime shoes"
 	icon_state = "mime"
 
-/obj/item/clothing/shoes/swat
-	name = "\improper SWAT shoes"
-	desc = "When you want to turn up the heat."
-	icon_state = "swat"
-	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
-	flags_inventory = NOSLIPPING
-	siemens_coefficient = 0.6
 
-/obj/item/clothing/shoes/combat //Basically SWAT shoes combined with galoshes.
+/obj/item/clothing/shoes/combat //basic syndicate combat boots for nuke ops and mob corpses
 	name = "combat boots"
-	desc = "When you REALLY want to turn up the heat"
+	desc = "High speed, no drag combat boots."
 	icon_state = "swat"
-	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
-	flags_inventory = NOSLIPPING
+	armor = list(melee = 60, bullet = 40, laser = 10,energy = 10, bomb = 10, bio = 10, rad = 0)
+	permeability_coefficient = 0.05 //Thick soles, and covers the ankle
 	siemens_coefficient = 0.6
 
+/obj/item/clothing/shoes/combat/swat
+	name = "\improper SWAT shoes"
+	desc = "High speed, no drag combat boots."
+	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 10, rad = 0)
+	flags_inventory = NOSLIPPING
+	permeability_coefficient = 0.01
 	flags_cold_protection = FEET
 	min_cold_protection_temperature = SHOE_min_cold_protection_temperature
 	flags_heat_protection = FEET
 	max_heat_protection_temperature = SHOE_max_heat_protection_temperature
+
 
 /obj/item/clothing/shoes/space_ninja
 	name = "ninja shoes"
@@ -87,6 +87,7 @@
 	icon_state = "jackboots"
 	item_state = "jackboots"
 	siemens_coefficient = 0.7
+	permeability_coefficient = 0.1
 
 /obj/item/clothing/shoes/cult
 	name = "boots"
@@ -140,6 +141,7 @@
 	desc = "When you feet are as cold as your heart"
 	icon_state = "swat"
 	siemens_coefficient = 0.6
+	permeability_coefficient = 0.15
 	flags_cold_protection = FEET
 	flags_heat_protection = FEET
 	min_cold_protection_temperature = SHOE_min_cold_protection_temperature

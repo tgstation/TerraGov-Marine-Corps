@@ -268,7 +268,7 @@ REAGENT SCANNER
 						unknown_body++
 			if(e.hidden)
 				unknown_body++
-			if(e.body_part == UPPER_TORSO) //embryo in chest?
+			if(e.body_part == CHEST) //embryo in chest?
 				if(locate(/obj/item/alien_embryo) in H)
 					unknown_body++
 

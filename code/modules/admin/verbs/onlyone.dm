@@ -20,7 +20,7 @@
 		H.equip_to_slot_or_del(new /obj/item/clothing/under/kilt(H), WEAR_BODY)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret(H), WEAR_HEAD)
 		H.equip_to_slot_or_del(new /obj/item/weapon/claymore(H), WEAR_L_HAND)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(H), WEAR_FEET)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat/swat(H), WEAR_FEET)
 
 		var/obj/item/card/id/W = new(H)
 		W.name = "[H.real_name]'s ID Card"

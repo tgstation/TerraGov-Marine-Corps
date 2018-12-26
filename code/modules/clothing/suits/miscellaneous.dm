@@ -14,9 +14,8 @@
 	icon_state = "bluetag"
 	item_state = "bluetag"
 	blood_overlay_type = "armor"
-	flags_armor_protection = UPPER_TORSO
+	flags_armor_protection = CHEST
 	allowed = list (/obj/item/weapon/gun)
-	siemens_coefficient = 3.0
 
 /obj/item/clothing/suit/redtag
 	name = "red laser tag armour"
@@ -24,9 +23,8 @@
 	icon_state = "redtag"
 	item_state = "redtag"
 	blood_overlay_type = "armor"
-	flags_armor_protection = UPPER_TORSO
+	flags_armor_protection = CHEST
 	allowed = list (/obj/item/weapon/gun)
-	siemens_coefficient = 3.0
 
 /*
  * Costume
@@ -36,7 +34,7 @@
 	desc = "Yarr."
 	icon_state = "pirate"
 	item_state = "pirate"
-	flags_armor_protection = UPPER_TORSO|ARMS
+	flags_armor_protection = CHEST|ARMS
 
 
 /obj/item/clothing/suit/hgpirate
@@ -45,7 +43,7 @@
 	icon_state = "hgpirate"
 	item_state = "hgpirate"
 	flags_inv_hide = HIDEJUMPSUIT
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	armor = list(melee = 60, bullet = 90, laser = 60, energy = 20, bomb = 25, bio = 10, rad = 10)
 
 
@@ -77,14 +75,14 @@
 	icon_state = "justice"
 	item_state = "justice"
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
+	flags_armor_protection = CHEST|GROIN|ARMS|HANDS|LEGS|FEET
 
 /obj/item/clothing/suit/judgerobe
 	name = "judge's robe"
 	desc = "This robe commands authority."
 	icon_state = "judge"
 	item_state = "judge"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	allowed = list(/obj/item/storage/fancy/cigarettes,/obj/item/spacecash)
 	flags_inv_hide = HIDEJUMPSUIT
 
@@ -94,7 +92,7 @@
 	icon_state = "vest"
 	item_state = "wcoat"
 	blood_overlay_type = "armor"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = CHEST|GROIN
 
 
 /obj/item/clothing/suit/apron/overalls
@@ -102,7 +100,7 @@
 	desc = "A set of denim overalls."
 	icon_state = "overalls"
 	item_state = "overalls"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_armor_protection = CHEST|GROIN|LEGS
 
 
 /obj/item/clothing/suit/syndicatefake
@@ -110,17 +108,16 @@
 	icon_state = "syndicate"
 	item_state = "space_suit_syndicate"
 	desc = "A plastic replica of the syndicate space suit, you'll look just like a real murderous syndicate agent in this! This is a toy, it is not made for use in space!"
-	w_class = 3
 	allowed = list(/obj/item/device/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/toy)
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|HANDS|LEGS|FEET
+	flags_armor_protection = CHEST|GROIN|ARMS|HANDS|LEGS|FEET
 
 /obj/item/clothing/suit/hastur
-	name = "Hastur's Robes"
+	name = "\improper Hastur's Robes"
 	desc = "Robes not meant to be worn by man"
 	icon_state = "hastur"
 	item_state = "hastur"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
+	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 
 
@@ -129,7 +126,7 @@
 	desc = "Have YOU killed a xenos today?"
 	icon_state = "imperium_monk"
 	item_state = "imperium_monk"
-	flags_armor_protection = HEAD|UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
+	flags_armor_protection = HEAD|CHEST|GROIN|LEGS|FEET|ARMS
 	flags_inv_hide = HIDESHOES|HIDEJUMPSUIT
 
 
@@ -138,9 +135,8 @@
 	desc = "A suit made long ago by the ancient empire KFC."
 	icon_state = "chickensuit"
 	item_state = "chickensuit"
-	flags_armor_protection = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS|FEET
+	flags_armor_protection = CHEST|ARMS|GROIN|LEGS|FEET
 	flags_inv_hide = HIDESHOES|HIDEJUMPSUIT
-	siemens_coefficient = 2.0
 
 
 /obj/item/clothing/suit/monkeysuit
@@ -148,9 +144,8 @@
 	desc = "A suit that looks like a primate"
 	icon_state = "monkeysuit"
 	item_state = "monkeysuit"
-	flags_armor_protection = UPPER_TORSO|ARMS|LOWER_TORSO|LEGS|FEET|HANDS
+	flags_armor_protection = CHEST|ARMS|GROIN|LEGS|FEET|HANDS
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	siemens_coefficient = 2.0
 
 
 /obj/item/clothing/suit/holidaypriest
@@ -158,7 +153,7 @@
 	desc = "This is a nice holiday my son."
 	icon_state = "holidaypriest"
 	item_state = "holidaypriest"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	flags_inv_hide = HIDEJUMPSUIT
 
 
@@ -167,7 +162,7 @@
 	desc = "An ordinary cardboard box with holes cut in the sides."
 	icon_state = "cardborg"
 	item_state = "cardborg"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = CHEST|GROIN
 	flags_inv_hide = HIDEJUMPSUIT
 
 /*
@@ -179,7 +174,7 @@
 	desc = "A suit that completely restrains the wearer."
 	icon_state = "straight_jacket"
 	item_state = "straight_jacket"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 
 	equipped(var/mob/user, var/slot)
@@ -195,7 +190,7 @@
 	desc = "A worn out, curiously comfortable t-shirt with a picture of Ian. You wouldn't go so far as to say it feels like being hugged when you wear it but it's pretty close. Good for sleeping in."
 	icon_state = "ianshirt"
 	item_state = "ianshirt"
-	flags_armor_protection = UPPER_TORSO|ARMS
+	flags_armor_protection = CHEST|ARMS
 
 //Blue suit jacket toggle
 /obj/item/clothing/suit/suit/verb/toggle()
@@ -227,14 +222,14 @@
 	desc = "Slightly old-fashioned sleepwear."
 	icon_state = "blue_pyjamas"
 	item_state = "blue_pyjamas"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 
 /obj/item/clothing/under/redpyjamas
 	name = "red pyjamas"
 	desc = "Slightly old-fashioned sleepwear."
 	icon_state = "red_pyjamas"
 	item_state = "red_pyjamas"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 
 //coats
 
@@ -256,82 +251,13 @@
 	icon_state = "neocoat"
 	item_state = "neocoat"
 
-//stripper
-/obj/item/clothing/under/stripper
-	flags_armor_protection = 0
-
-/obj/item/clothing/under/stripper/stripper_pink
-	name = "pink swimsuit"
-	desc = "A rather skimpy pink swimsuit."
-	icon_state = "stripper_p_under"
-	siemens_coefficient = 1
-
-/obj/item/clothing/under/stripper/stripper_green
-	name = "green swimsuit"
-	desc = "A rather skimpy green swimsuit."
-	icon_state = "stripper_g_under"
-	siemens_coefficient = 1
-
-/obj/item/clothing/suit/stripper/stripper_pink
-	name = "pink skimpy dress"
-	desc = "A rather skimpy pink dress."
-	icon_state = "stripper_p_over"
-	siemens_coefficient = 1
-
-/obj/item/clothing/suit/stripper/stripper_green
-	name = "green skimpy dress"
-	desc = "A rather skimpy green dress."
-	icon_state = "stripper_g_over"
-	siemens_coefficient = 1
-
-/obj/item/clothing/under/stripper/mankini
-	name = "the mankini"
-	desc = "No honest man would wear this abomination"
-	icon_state = "mankini"
-	siemens_coefficient = 1
-
 /obj/item/clothing/suit/xenos
 	name = "xenos suit"
 	desc = "A suit made out of chitinous alien hide."
 	icon_state = "xenos"
 	item_state = "xenos_helm"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	siemens_coefficient = 2.0
-//swimsuit
-/obj/item/clothing/under/swimsuit/
-	siemens_coefficient = 1
-	flags_armor_protection = 0
-
-/obj/item/clothing/under/swimsuit/black
-	name = "black swimsuit"
-	desc = "An oldfashioned black swimsuit."
-	icon_state = "swim_black"
-	siemens_coefficient = 1
-
-/obj/item/clothing/under/swimsuit/blue
-	name = "blue swimsuit"
-	desc = "An oldfashioned blue swimsuit."
-	icon_state = "swim_blue"
-	siemens_coefficient = 1
-
-/obj/item/clothing/under/swimsuit/purple
-	name = "purple swimsuit"
-	desc = "An oldfashioned purple swimsuit."
-	icon_state = "swim_purp"
-	siemens_coefficient = 1
-
-/obj/item/clothing/under/swimsuit/green
-	name = "green swimsuit"
-	desc = "An oldfashioned green swimsuit."
-	icon_state = "swim_green"
-	siemens_coefficient = 1
-
-/obj/item/clothing/under/swimsuit/red
-	name = "red swimsuit"
-	desc = "An oldfashioned red swimsuit."
-	icon_state = "swim_red"
-	siemens_coefficient = 1
 
 /obj/item/clothing/suit/poncho
 	name = "poncho"
@@ -352,10 +278,9 @@
 	name = "bomber jacket"
 	desc = "A well-worn WW2 leather bomber jacket."
 	icon_state = "bomber"
-	flags_armor_protection = UPPER_TORSO|ARMS
-	flags_cold_protection = UPPER_TORSO|ARMS
+	flags_armor_protection = CHEST|ARMS
+	flags_cold_protection = CHEST|ARMS
 	min_cold_protection_temperature = T0C
-	siemens_coefficient = 0.7
 
 /obj/item/clothing/suit/replica
 	name = "replica armor"
@@ -364,4 +289,4 @@
 	sprite_sheet_id = 1
 	icon_state = "rebel_armor"
 	item_state = "rebel_armor"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_armor_protection = CHEST|GROIN|LEGS

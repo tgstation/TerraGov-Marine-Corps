@@ -130,7 +130,7 @@ var/global/sent_strike_team = 0
 		equip_to_slot_or_del(new /obj/item/clothing/under/color/green(src), WEAR_BODY)
 	else
 		equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom_officer(src), WEAR_BODY)
-	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), WEAR_FEET)
+	equip_to_slot_or_del(new /obj/item/clothing/shoes/combat/swat(src), WEAR_FEET)
 	equip_to_slot_or_del(new /obj/item/clothing/suit/armor/swat(src), WEAR_JACKET)
 	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), WEAR_HANDS)
 	equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/deathsquad(src), WEAR_HEAD)

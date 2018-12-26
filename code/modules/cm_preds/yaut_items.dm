@@ -120,7 +120,7 @@
 	item_state = "armor"
 	sprite_sheet_id = 1
 	flags_inventory = THICKMATERIAL
-	flags_armor_protection = UPPER_TORSO|ARM_LEFT
+	flags_armor_protection = CHEST|ARM_LEFT
 	armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
 	min_cold_protection_temperature = ARMOR_min_cold_protection_temperature
 	max_heat_protection_temperature = ARMOR_max_heat_protection_temperature
@@ -150,40 +150,40 @@
 			if(7128)
 				name = "\improper 'Armor of the Swamp Horror'"
 				icon_state = "halfarmor_elder_joshuu"
-				flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+				flags_armor_protection = CHEST|GROIN|ARMS
 				armor = list(melee = 70, bullet = 80, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 			if(9867)
 				name = "\improper 'Armor of the Enforcer'"
 				icon_state = "halfarmor_elder_feweh"
-				flags_armor_protection = UPPER_TORSO|ARMS
+				flags_armor_protection = CHEST|ARMS
 				armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 			if(4879)
 				name = "\improper 'Armor of the Ambivalent Collector'"
 				icon_state = "halfarmor_elder_n"
-				flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+				flags_armor_protection = CHEST|GROIN|ARMS
 				armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 			else
 				name = "clan elder's armor"
 				icon_state = "halfarmor_elder"
-				flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+				flags_armor_protection = CHEST|GROIN|ARMS
 				armor = list(melee = 70, bullet = 80, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 	else
 		switch(armor_number)
 			if(2)
 				icon_state = "halfarmor[armor_number]"
-				flags_armor_protection = UPPER_TORSO|ARMS
+				flags_armor_protection = CHEST|ARMS
 				armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
 			if(3)
 				icon_state = "halfarmor[armor_number]"
-				flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+				flags_armor_protection = CHEST|GROIN
 				armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
 			if(4)
 				icon_state = "halfarmor[armor_number]"
-				flags_armor_protection = UPPER_TORSO
+				flags_armor_protection = CHEST
 				armor = list(melee = 75, bullet = 80, laser = 60, energy = 70, bomb = 70, bio = 20, rad = 20)
 			if(5,441)
 				icon_state = "halfarmor[armor_number]"
-				flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+				flags_armor_protection = CHEST|GROIN|ARMS
 				armor = list(melee = 70, bullet = 70, laser = 55, energy = 65, bomb = 65, bio = 20, rad = 20)
 	flags_cold_protection = flags_armor_protection
 	flags_heat_protection = flags_armor_protection
@@ -192,7 +192,7 @@
 	name = "heavy clan armor"
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon_state = "fullarmor"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_armor_protection = CHEST|GROIN|ARMS
 	armor = list(melee = 90, bullet = 95, laser = 75, energy = 75, bomb = 75, bio = 25, rad = 25)
 	slowdown = 1
 
@@ -209,7 +209,7 @@
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "cape_elder"
 	flags_equip_slot = SLOT_BACK
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	armor = list(melee = 10, bullet = 0, laser = 5, energy = 15, bomb = 0, bio = 0, rad = 0)
 	unacidable = 1
 
@@ -247,7 +247,7 @@
 	..()
 	icon_state = "y-boots[boot_number]"
 	if(boot_number != 1) //More overall protection, less defensive value.
-		flags_armor_protection = FEET|LEGS|LOWER_TORSO
+		flags_armor_protection = FEET|LEGS|GROIN
 		armor = list(melee = 65, bullet = 75, laser = 55, energy = 45, bomb = 45, bio = 20, rad = 20)
 	flags_cold_protection = flags_armor_protection
 	flags_heat_protection = flags_armor_protection
@@ -257,8 +257,8 @@
 	icon = 'icons/obj/clothing/uniforms.dmi'
 	desc = "A set of very fine chainlink in a meshwork for comfort and utility."
 	icon_state = "mesh_shirt"
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|FEET|HANDS //Does not cover the head though.
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|FEET|HANDS
+	flags_cold_protection = CHEST|GROIN|LEGS|ARMS|FEET|HANDS //Does not cover the head though.
+	flags_heat_protection = CHEST|GROIN|LEGS|ARMS|FEET|HANDS
 	has_sensor = 0
 	armor = list(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 10, bio = 10, rad = 10)
 	siemens_coefficient = 0.9
@@ -1058,7 +1058,7 @@
 				if(!affecting)
 					affecting = target:get_limb(ran_zone(user.zone_selected,90)) //No luck? Try again.
 				if(affecting)
-					if(affecting.body_part != UPPER_TORSO && affecting.body_part != LOWER_TORSO) //as hilarious as it is
+					if(affecting.body_part != CHEST && affecting.body_part != GROIN) //as hilarious as it is
 						user.visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
 						affecting.droplimb(1) //the second 1 is  amputation. This amputates.
 		else //Probably an alien

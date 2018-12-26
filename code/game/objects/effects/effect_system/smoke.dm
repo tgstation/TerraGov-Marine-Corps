@@ -117,6 +117,34 @@
 	return
 
 /////////////////////////////////////////////
+// Smoke spread
+/////////////////////////////////////////////
+
+/datum/effect_system/smoke_spread
+	var/range = 3
+	var/smoke_type = /obj/effect/particle_effect/smoke
+	var/lifetime
+	var/list/targetTurfs = list()
+
+/datum/effect_system/smoke_spread/set_up(radius = 2, loca, smoke_time)
+	if(isturf(loca))
+		location = loca
+	else
+		location = get_turf(loca)
+	range = radius
+	if(smoke_time)
+		lifetime = smoke_time
+
+/datum/effect_system/smoke_spread/start()
+	if(holder)
+		location = get_turf(holder)
+	var/obj/effect/particle_effect/smoke/S = new smoke_type(location)
+	if(lifetime)
+		S.lifetime = lifetime
+	if(S.amount)
+		S.spread_smoke()
+
+/////////////////////////////////////////////
 // Bad smoke
 /////////////////////////////////////////////
 
@@ -319,33 +347,8 @@
 		C.AdjustKnockeddown(0.5)
 
 /////////////////////////////////////////////
-// Smoke spread
+// Smoke spreads
 /////////////////////////////////////////////
-
-/datum/effect_system/smoke_spread
-	var/range = 3
-	var/smoke_type = /obj/effect/particle_effect/smoke
-	var/lifetime
-	var/list/targetTurfs = list()
-
-/datum/effect_system/smoke_spread/set_up(radius = 2, loca, smoke_time)
-	if(isturf(loca))
-		location = loca
-	else
-		location = get_turf(loca)
-	range = radius
-	if(smoke_time)
-		lifetime = smoke_time
-
-/datum/effect_system/smoke_spread/start()
-	if(holder)
-		location = get_turf(holder)
-	var/obj/effect/particle_effect/smoke/S = new smoke_type(location)
-	if(lifetime)
-		S.lifetime = lifetime
-	if(S.amount)
-		S.spread_smoke()
-
 
 /datum/effect_system/smoke_spread/bad
 	smoke_type = /obj/effect/particle_effect/smoke/bad
@@ -382,83 +385,89 @@ datum/effect_system/smoke_spread/tactical
 /datum/effect_system/smoke_spread/xeno/neuro
 	smoke_type = /obj/effect/particle_effect/smoke/xeno/neuro
 
-/*
-/datum/effect_system/smoke_spread/set_up(radius = 2, loca, smoke_time)
-	if(isturf(loca))
-		location = loca
-	else
-		location = get_turf(loca)
-	range = radius
-	if(smoke_time)
-		lifetime = smoke_time
+/////////////////////////////////////////////
+// Chem smoke
+/////////////////////////////////////////////
+/obj/effect/particle_effect/smoke/chem
+	lifetime = 10
+	var/fraction
 
-	for(var/turf/T in circlerangeturfs(location,range))
-		var/foundsmoke = locate(/obj/effect/particle_effect/smoke) in T //Don't spread smoke where there's already smoke!
-		if(!foundsmoke)
-			targetTurfs += T
+/obj/effect/particle_effect/smoke/chem/New()
+	. = ..()
+	fraction = INVERSE(lifetime)
 
-	check_flow(location, targetTurfs)
+/obj/effect/particle_effect/smoke/chem/apply_smoke_effect(turf/T)
+	if(chemholder?.reagents)
+		chemholder.reagents.reaction(T, TOUCH, fraction * chemholder.reagents.total_volume)
+	return ..()
 
-/datum/effect_system/smoke_spread/proc/check_flow()
+/obj/effect/particle_effect/smoke/chem/effect_contact(mob/living/carbon/C)
+	if(chemholder?.reagents)
+		chemholder.reagents.reaction(C, TOUCH, fraction * chemholder.reagents.total_volume)
 
-	var/list/pending = new()
-	var/list/complete = new()
+/obj/effect/particle_effect/smoke/chem/effect_inhale(mob/living/carbon/C)
+	if(chemholder?.reagents)
+		chemholder.reagents.reaction(C, INGEST, fraction * chemholder.reagents.total_volume)
+		chemholder.reagents.trans_to(C, fraction * chemholder.reagents.total_volume)
 
-	pending += location
+/datum/effect_system/smoke_spread/chem
+	var/obj/chemholder
+	smoke_type = /obj/effect/particle_effect/smoke/chem
 
-	while(pending.len)
-		for(var/turf/current in pending)
-			for(var/turf/T in cardinal)
-				if(T in (pending || complete || !targetTurfs))
-					continue
-				if(check_airblock(T)) //smoke can't spread that way
-					continue
-				pending += T
+/datum/effect_system/smoke_spread/chem/New()
+	..()
+	chemholder = new /obj()
+	var/datum/reagents/R = new/datum/reagents(500)
+	chemholder.reagents = R
+	R.my_atom = chemholder
 
-			pending -= current
-			complete += current
+/datum/effect_system/smoke_spread/chem/Destroy()
+	qdel(chemholder)
+	chemholder = null
+	return ..()
 
-	targetTurfs = complete
-	return
+/datum/effect_system/smoke_spread/chem/set_up(datum/reagents/carry = null, radius = 1, loca, smoke_time, silent = FALSE)
+	. = ..()
 
-/datum/effect_system/smoke_spread/proc/check_airblock(turf/T)
-	if(T.density)
-		return TRUE
-	for(var/atom/movable/M in T)
-		if(!M.CanPass(smoke_type, T))
-			return TRUE
+	carry.copy_to(chemholder, carry.total_volume)
 
-/datum/effect_system/smoke_spread/start()
+	if(!silent)
+		var/contained = ""
+		for(var/reagent in carry.reagent_list)
+			contained += " [reagent] "
+		if(contained)
+			contained = "\[[contained]\]"
+		var/area/A = get_area(location)
 
-	var/list/smokelist = list()
+		var/where = "[A.name]|[location.x], [location.y]"
+		var/whereLink = "<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>[where]</a>"
 
-	for(var/turf/T in targetTurfs)
-		smokelist.Add(T)
+		if(carry.my_atom.fingerprintslast)
+			var/mob/M = get_mob_by_key(carry.my_atom.fingerprintslast)
+			var/more = ""
+			if(M)
+				more = "(<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</a>)"
+			message_admins("A chemical smoke reaction has taken place in ([whereLink])[contained]. Last associated key is [carry.my_atom.fingerprintslast][more].", 0, 1)
+			log_game("A chemical smoke reaction has taken place in ([where])[contained]. Last associated key is [carry.my_atom.fingerprintslast].")
+		else
+			message_admins("A chemical smoke reaction has taken place in ([whereLink]). No associated key.", 0, 1)
+			log_game("A chemical smoke reaction has taken place in ([where])[contained]. No associated key.")
 
-	if(smokelist.len)
-		spawn(1) //the smoke spreads rapidly but not instantly
-			for(var/turf/T in smokelist)
-				spawn_smoke(T)
 
-/datum/effect_system/smoke_spread/proc/spawn_smoke(turf/T)
-	var/obj/effect/particle_effect/smoke/S = new smoke_type(location)
+/datum/effect_system/smoke_spread/chem/start()
+	if(holder)
+		location = get_turf(holder)
+	var/obj/effect/particle_effect/smoke/chem/S = new smoke_type(location)
+
+	if(chemholder.reagents.total_volume > 1) // can't split 1 very well
+		S.chemholder = chemholder
+
+	var/color = mix_color_from_reagents(chemholder.reagents.reagent_list)
+	if(color)
+		S.icon = icon('icons/effects/chemsmoke.dmi')
+		S.icon += color
+
 	if(lifetime)
 		S.lifetime = lifetime
-	S.spread_smoke(T)
-
-/obj/effect/particle_effect/smoke/proc/spread_smoke(turf/T, icon/I)
-	if(opaque)
-		SetOpacity(TRUE)
-	dir = pick(cardinal)
-	pixel_x = -32 + rand(-8,8)
-	pixel_y = -32 + rand(-8,8)
-	walk_to(src, T)
-	apply_smoke_effect(get_turf(src))
-
-/datum/effect_system/smoke_spread/xeno/spawn_smoke(turf/T)
-	var/obj/effect/particle_effect/smoke/xeno/S = new smoke_type(location)
-	if(lifetime)
-		S.lifetime = lifetime
-	S.strength = strength
-	S.spread_smoke(T)
-*/
+	if(S.amount)
+		S.spread_smoke()

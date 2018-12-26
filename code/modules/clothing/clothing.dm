@@ -123,7 +123,7 @@
 	icon = 'icons/obj/clothing/suits.dmi'
 	name = "suit"
 	var/fire_resist = T0C+100
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	allowed = list(/obj/item/tank/emergency_oxygen)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
 	flags_equip_slot = SLOT_OCLOTHING
@@ -244,7 +244,7 @@
 	siemens_coefficient = 0.9
 	flags_armor_protection = FEET
 	flags_equip_slot = SLOT_FEET
-	permeability_coefficient = 0.50
+	permeability_coefficient = 0.5
 	slowdown = SHOES_SLOWDOWN
 	species_restricted = list("exclude","Yautja")
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/shoes.dmi')

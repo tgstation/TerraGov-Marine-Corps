@@ -232,7 +232,7 @@ proc/trigger_armed_response_team(var/force = 0)
 
 	//Replaced with new ERT uniform
 	equip_to_slot_or_del(new /obj/item/clothing/under/ert(src), WEAR_BODY)
-	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), WEAR_FEET)
+	equip_to_slot_or_del(new /obj/item/clothing/shoes/combat/swat(src), WEAR_FEET)
 	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), WEAR_HANDS)
 	equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(src), WEAR_EYES)
 /*
@@ -249,7 +249,7 @@ proc/trigger_armed_response_team(var/force = 0)
 	equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(src), WEAR_EYES)
 
 	//Shoes & gloves
-	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), WEAR_FEET)
+	equip_to_slot_or_del(new /obj/item/clothing/shoes/combat/swat(src), WEAR_FEET)
 	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), WEAR_HANDS)
 
 	//Removed
