@@ -176,7 +176,7 @@
 
 						var/obj/item/device/radio/headset/headset_to_add = item_to_add
 
-						usr.drop_inv_item_to_loc(headset_to_add, src)
+						usr.transferItemToLoc(headset_to_add, src)
 						ears = headset_to_add
 						to_chat(usr, "You fit the headset onto [src].")
 
@@ -621,7 +621,7 @@
 			stolen_item = C.r_hand
 
 		if(stolen_item)
-			if(C.drop_inv_item_to_loc(stolen_item, src))
+			if(C.transferItemToLoc(stolen_item, src))
 				held_item = stolen_item
 				visible_message("[src] grabs the [held_item] out of [C]'s hand!", "\blue You snag the [held_item] out of [C]'s hand!", "You hear the sounds of wings flapping furiously.")
 				return held_item

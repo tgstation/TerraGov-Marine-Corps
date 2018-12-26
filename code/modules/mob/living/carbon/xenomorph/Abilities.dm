@@ -1001,7 +1001,7 @@
 	if(!X.observed_xeno)
 		to_chat(X, "<span class='warning'>You must overwatch the xeno you want to de-evolve.</span>")
 		return
-	
+
 	var/mob/living/carbon/Xenomorph/T = X.observed_xeno
 	if(!X.check_plasma(600)) // check plasma gives an error message itself
 		return
@@ -1021,7 +1021,7 @@
 	if(!T.xeno_caste.deevolves_to)
 		to_chat(X, "<span class='xenowarning'>[T] can't be deevolved.</span>")
 		return
-	
+
 	var/datum/xeno_caste/new_caste = xeno_caste_datums[T.xeno_caste.deevolves_to][1]
 
 	var/confirm = alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", , "Yes", "No")
@@ -1080,7 +1080,7 @@
 	new_xeno.middle_mouse_toggle = T.middle_mouse_toggle //Keep our toggle state
 
 	for(var/obj/item/W in T.contents) //Drop stuff
-		T.drop_inv_item_on_ground(W)
+		T.dropItemToGround(W)
 
 	T.empty_gut()
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [T].</span>", \
@@ -1105,7 +1105,7 @@
 	qdel(T)
 	X.use_plasma(600)
 
-	
+
 
 //Ravager Abilities
 

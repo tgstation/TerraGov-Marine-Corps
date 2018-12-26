@@ -286,7 +286,7 @@ Defined in conflicts.dm of the #defines folder.
 			var/obj/item/storage/S = loc
 			S.remove_from_storage(src)
 		if(loc == user)
-			user.drop_inv_item_on_ground(src)
+			user.dropItemToGround(src)
 		var/obj/item/weapon/combat_knife/F = new(src.loc)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
@@ -448,7 +448,7 @@ Defined in conflicts.dm of the #defines folder.
 			var/obj/item/storage/S = loc
 			S.remove_from_storage(src)
 		if(loc == user)
-			user.temp_drop_inv_item(src)
+			user.temporarilyRemoveItemFromInventory(src)
 		var/obj/item/device/flashlight/F = new(user)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		qdel(src) //Delete da old flashlight
@@ -784,7 +784,7 @@ Defined in conflicts.dm of the #defines folder.
 			current_rounds++
 			loaded_grenades += G.type
 			to_chat(user, "<span class='notice'>You load [G] in [src].</span>")
-			user.temp_drop_inv_item(G)
+			user.temporarilyRemoveItemFromInventory(G)
 			qdel(G)
 
 /obj/item/attachable/attached_gun/grenade/fire_attachment(atom/target,obj/item/weapon/gun/gun,mob/living/user)
@@ -994,7 +994,7 @@ Defined in conflicts.dm of the #defines folder.
 				to_chat(user, "<span class='notice'>You load one shotgun shell in [src].</span>")
 				playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
 				if(mag.current_rounds <= 0)
-					user.temp_drop_inv_item(mag)
+					user.temporarilyRemoveItemFromInventory(mag)
 					qdel(mag)
 			return
 	to_chat(user, "<span class='warning'>[src] only accepts shotgun buckshot.</span>")
@@ -1111,7 +1111,7 @@ Defined in conflicts.dm of the #defines folder.
 		G.aim_slowdown += SLOWDOWN_ADS_SCOPE
 		G.wield_delay += WIELD_DELAY_FAST
 	G.update_slowdown()
-		
+
 	//var/image/targeting_icon = image('icons/mob/mob.dmi', null, "busy_targeting", "pixel_y" = 22) //on hold until the bipod is fixed
 	if(bipod_deployed)
 		icon_state = "bipod-on"
@@ -1140,12 +1140,12 @@ Defined in conflicts.dm of the #defines folder.
 	for(var/obj/O in T)
 		if(O.throwpass && O.density && O.dir == user.dir && O.flags_atom & ON_BORDER)
 			return O
-	
-	T = get_step(T, user.dir) 
+
+	T = get_step(T, user.dir)
 	for(var/obj/O in T)
 		if((istype(O, /obj/structure/window_frame)))
 			return O
-	
+
 	return FALSE
 
 

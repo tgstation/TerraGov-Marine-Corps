@@ -104,14 +104,14 @@
 		return FALSE
 	. = ..()
 
-/mob/living/carbon/human/u_equip(obj/item/I, atom/newloc, nomoveupdate, force)
+/mob/living/carbon/human/doUnEquip(obj/item/I, atom/newloc, nomoveupdate, force)
 	. = ..()
 	if(!. || !I)
 		return FALSE
 
 	if(I == wear_suit)
 		if(s_store)
-			drop_inv_item_on_ground(s_store)
+			dropItemToGround(s_store)
 		wear_suit = null
 		if(I.flags_inv_hide & HIDESHOES)
 			update_inv_shoes()
@@ -122,15 +122,15 @@
 		update_inv_wear_suit()
 	else if(I == w_uniform)
 		if(r_store)
-			drop_inv_item_on_ground(r_store)
+			dropItemToGround(r_store)
 		if(l_store)
-			drop_inv_item_on_ground(l_store)
+			dropItemToGround(l_store)
 		if(belt)
-			drop_inv_item_on_ground(belt)
+			dropItemToGround(belt)
 		if(wear_suit) //We estimate all armors with uniform restrictions aren't okay with removing the uniform altogether
 			var/obj/item/clothing/suit/S = wear_suit
 			if(S.uniform_restricted)
-				drop_inv_item_on_ground(wear_suit)
+				dropItemToGround(wear_suit)
 		w_uniform = null
 		update_suit_sensors()
 		update_inv_w_uniform()
@@ -449,7 +449,7 @@
 	I.add_fingerprint(src)
 	if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 		if(I && Adjacent(M) && I == M.get_item_by_slot(slot_to_process))
-			M.drop_inv_item_on_ground(I)
+			M.dropItemToGround(I)
 
 	if(M)
 		if(interactee == M && Adjacent(M))
@@ -471,7 +471,7 @@
 		if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 			if(I == get_active_hand() && !M.get_item_by_slot(slot_to_process) && Adjacent(M))
 				if(I.mob_can_equip(M, slot_to_process, TRUE))//Placing an item on the mob
-					drop_inv_item_on_ground(I)
+					dropItemToGround(I)
 					if(I && !I.gc_destroyed) //Might be self-deleted?
 						M.equip_to_slot_if_possible(I, slot_to_process, 1, 0, 1, 1)
 

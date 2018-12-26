@@ -40,7 +40,7 @@
 	. = ..()
 	if(iscarbon(loc))
 		var/mob/living/carbon/M = loc
-		M.temp_drop_inv_item(src)
+		M.temporarilyRemoveItemFromInventory(src)
 
 /obj/item/clothing/mask/facehugger/ex_act(severity)
 	Die()
@@ -241,7 +241,7 @@
 
 	if(isXeno(loc)) //Being carried? Drop it
 		var/mob/living/carbon/Xenomorph/X = loc
-		X.drop_inv_item_on_ground(src)
+		X.dropItemToGround(src)
 		X.update_icons()
 
 	if(isturf(M.loc))
@@ -307,7 +307,7 @@
 					cannot_infect = 1
 				else
 					target.visible_message("<span class='danger'>[src] smashes against [target]'s [W.name] and rips it off!</span>")
-					target.drop_inv_item_on_ground(W)
+					target.dropItemToGround(W)
 				if(W.anti_hug && prob(15)) //15% chance the hugger will go idle after ripping off a helmet. Otherwise it will keep going.
 					W.anti_hug = max(0, --W.anti_hug)
 					GoIdle()
@@ -433,7 +433,7 @@
 
 	if(ismob(loc)) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
 		var/mob/M = loc
-		M.drop_inv_item_on_ground(src)
+		M.dropItemToGround(src)
 
 	layer = BELOW_MOB_LAYER //so dead hugger appears below live hugger if stacked on same tile.
 

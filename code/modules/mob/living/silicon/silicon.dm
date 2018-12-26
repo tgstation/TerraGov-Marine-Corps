@@ -28,7 +28,7 @@
 /mob/living/silicon/drop_held_item()
 	return
 
-/mob/living/silicon/drop_held_items()
+/mob/living/silicon/drop_all_held_items()
 	return
 
 /mob/living/simple_animal/update_transform()

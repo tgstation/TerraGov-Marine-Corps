@@ -55,7 +55,7 @@
 /obj/vehicle/train/cargo/engine/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/key/cargo_train))
 		if(!key)
-			user.drop_inv_item_to_loc(W, src)
+			user.transferItemToLoc(W, src)
 			key = W
 			verbs += /obj/vehicle/train/cargo/engine/verb/remove_key
 		return

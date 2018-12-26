@@ -2,7 +2,7 @@
 	name = "head"
 	icon = 'icons/obj/clothing/hats.dmi'
 	flags_armor_protection = HEAD
-	flags_equip_slot = SLOT_HEAD
+	flags_equip_slot = ITEM_SLOT_HEAD
 	w_class = 2.0
 	var/anti_hug = 0
 

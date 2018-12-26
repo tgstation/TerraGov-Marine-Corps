@@ -7,7 +7,7 @@
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
 	w_class = 4
-	flags_equip_slot = SLOT_BACK	//ERROOOOO
+	flags_equip_slot = ITEM_SLOT_BACK	//ERROOOOO
 	max_w_class = 3
 	storage_slots = null
 	max_storage_space = 30
@@ -17,7 +17,7 @@
 	if(!worn_accessible && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.back == src)
-/*			if(user.drop_inv_item_on_ground(src))
+/*			if(user.dropItemToGround(src))
 				pickup(user)
 				add_fingerprint(user)
 				if(!user.put_in_active_hand(src))

@@ -182,7 +182,7 @@
 		var/obj/item/stack/stack = eating
 		stack.use(max(1,round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
 	else
-		if(user.temp_drop_inv_item(O))
+		if(user.temporarilyRemoveItemFromInventory(O))
 			qdel(O)
 
 	updateUsrDialog()

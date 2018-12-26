@@ -13,7 +13,7 @@
 	w_class = 1.0
 	throw_range = 1
 	throw_speed = 1
-	flags_equip_slot = SLOT_HEAD
+	flags_equip_slot = ITEM_SLOT_HEAD
 	flags_armor_protection = HEAD
 	attack_verb = list("bapped")
 
@@ -301,7 +301,7 @@
 				"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.")
 
 				if(user.get_inactive_hand() == src)
-					user.drop_inv_item_on_ground(src)
+					user.dropItemToGround(src)
 
 				new /obj/effect/decal/cleanable/ash(src.loc)
 				qdel(src)
@@ -366,8 +366,8 @@
 			B.name = name
 		else if (P.name != "paper" && P.name != "photo")
 			B.name = P.name
-		user.drop_inv_item_on_ground(P)
-		user.drop_inv_item_on_ground(src)
+		user.dropItemToGround(P)
+		user.dropItemToGround(src)
 		to_chat(user, "<span class='notice'>You clip the [P.name] to [(src.name == "paper") ? "the paper" : src.name].</span>")
 		B.attach_doc(src, user, TRUE)
 		B.attach_doc(P, user, TRUE)

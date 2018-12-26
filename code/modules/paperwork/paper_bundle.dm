@@ -26,17 +26,17 @@
 				add_fingerprint(user)
 				return
 		if(loc == user)
-			user.drop_inv_item_on_ground(P)
+			user.dropItemToGround(P)
 			attach_doc(P, user)
 	else if(istype(W, /obj/item/photo))
 		if(loc == user)
-			user.drop_inv_item_on_ground(W)
+			user.dropItemToGround(W)
 			attach_doc(W, user)
 	else if(W.heat_source >= 400)
 		burnpaper(W, user)
 	else if(istype(W, /obj/item/paper_bundle))
 		if(loc == user)
-			user.drop_inv_item_on_ground(W)
+			user.dropItemToGround(W)
 			for(var/obj/O in W)
 				attach_doc(O, user, TRUE)
 			to_chat(user, "<span class='notice'>You add \the [W.name] to [(src.name == "paper bundle") ? "the paper bundle" : src.name].</span>")
@@ -67,7 +67,7 @@
 				"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.")
 
 				if(user.get_inactive_hand() == src)
-					user.drop_inv_item_on_ground(src)
+					user.dropItemToGround(src)
 
 				new /obj/effect/decal/cleanable/ash(src.loc)
 				qdel(src)
@@ -149,7 +149,7 @@
 			if(amount == 1)
 				var/obj/item/paper/P = contents[1]
 				P.loc = usr.loc
-				usr.drop_inv_item_on_ground(src)
+				usr.dropItemToGround(src)
 				qdel(src)
 				usr.put_in_hands(P)
 				return
@@ -184,7 +184,7 @@
 	for(var/obj/O in src)
 		O.forceMove(usr.loc)
 		O.add_fingerprint(usr)
-	usr.drop_inv_item_on_ground(src)
+	usr.dropItemToGround(src)
 	qdel(src)
 
 /obj/item/paper_bundle/update_icon()
@@ -220,7 +220,7 @@
 
 /obj/item/paper_bundle/proc/attach_doc(obj/item/I, mob/living/user, no_message)
 	if(I.loc == user)
-		user.drop_inv_item_on_ground(I)
+		user.dropItemToGround(I)
 	I.forceMove(src)
 	I.add_fingerprint(user)
 	amount++

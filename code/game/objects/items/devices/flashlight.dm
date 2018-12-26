@@ -6,7 +6,7 @@
 	item_state = "flashlight"
 	w_class = 2
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	matter = list("metal" = 50,"glass" = 20)
 	actions_types = list(/datum/action/item_action)
 	var/on = FALSE
@@ -72,7 +72,7 @@
 			var/obj/item/storage/S = loc
 			S.remove_from_storage(src)
 		if(loc == user)
-			user.drop_inv_item_on_ground(src) //This part is important to make sure our light sources update, as it calls dropped()
+			user.dropItemToGround(src) //This part is important to make sure our light sources update, as it calls dropped()
 		var/obj/item/attachable/flashlight/F = new(src.loc)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		to_chat(user, "<span class='notice'>You modify [src]. It can now be mounted on a weapon.</span>")

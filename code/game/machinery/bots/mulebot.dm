@@ -127,7 +127,7 @@
 		playsound(src.loc, 'sound/effects/sparks1.ogg', 25, 0)
 	else if(istype(I,/obj/item/cell) && open && !cell)
 		var/obj/item/cell/C = I
-		if(user.drop_inv_item_to_loc(C, src))
+		if(user.transferItemToLoc(C, src))
 			cell = C
 			updateDialog()
 	else if(istype(I,/obj/item/tool/screwdriver))

@@ -287,13 +287,13 @@
 	A.remove_hud(user)
 
 	return TRUE
-	
+
 /obj/item/weapon/gun/proc/update_slowdown()
 	if(flags_item & WIELDED)
 		slowdown = initial(slowdown) + aim_slowdown
 	else
 		slowdown = initial(slowdown)
-	
+
 
 //----------------------------------------------------------
 			//							        \\
@@ -370,7 +370,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	return TRUE
 
 /obj/item/weapon/gun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
-	user.drop_inv_item_to_loc(magazine, src) //Click!
+	user.transferItemToLoc(magazine, src) //Click!
 	current_mag = magazine
 	replace_ammo(user,magazine)
 	if(!in_chamber)

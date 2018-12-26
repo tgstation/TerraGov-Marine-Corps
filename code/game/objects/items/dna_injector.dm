@@ -92,7 +92,7 @@
 
 	spawn(0)//this prevents the collapse of space-time continuum
 		if (user)
-			user.temp_drop_inv_item(src)
+			user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 	return uses
 

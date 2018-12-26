@@ -11,7 +11,7 @@
 
 	for(var/obj/item/W in M)
 		if(istype(W,/obj/item/alien_embryo)) continue
-		M.drop_inv_item_on_ground(W)
+		M.dropItemToGround(W)
 
 	log_admin("[key_name(usr)] made [key_name(M)] drop everything!")
 	message_admins("[key_name_admin(usr)] made [key_name_admin(M)] drop everything!", 1)
@@ -29,7 +29,7 @@
 			return
 		//strip their stuff before they teleport into a cell :downs:
 		for(var/obj/item/W in M)
-			M.drop_inv_item_on_ground(W)
+			M.dropItemToGround(W)
 		//teleport person to cell
 		M.KnockOut(5)
 		sleep(5)	//so they black out before warping
@@ -48,7 +48,7 @@
 	set category = null
 	set name = "Subtle Message"
 
-	if(!ismob(M))	
+	if(!ismob(M))
 		return
 	if(!check_rights(R_ADMIN|R_MOD|R_MENTOR))
 		to_chat(src, "Only staff members may use this command.")

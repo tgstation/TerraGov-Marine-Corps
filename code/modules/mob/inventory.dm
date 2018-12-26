@@ -77,13 +77,13 @@
 //Drops the item in our left hand
 /mob/proc/drop_l_hand()
 	if(l_hand)
-		return drop_inv_item_on_ground(l_hand)
+		return dropItemToGround(l_hand)
 	return 0
 
 //Drops the item in our right hand
 /mob/proc/drop_r_hand()
 	if(r_hand)
-		return drop_inv_item_on_ground(r_hand)
+		return dropItemToGround(r_hand)
 	return 0
 
 //Drops the item in our active hand.
@@ -92,26 +92,26 @@
 	else		return drop_r_hand()
 
 //Drops the items in our hands.
-/mob/proc/drop_held_items()
+/mob/proc/drop_all_held_items()
 	drop_r_hand()
 	drop_l_hand()
 
 //drop the inventory item on a specific location
-/mob/proc/drop_inv_item_to_loc(obj/item/I, atom/newloc, nomoveupdate, force)
-	return u_equip(I, newloc, nomoveupdate, force)
+/mob/proc/transferItemToLoc(obj/item/I, atom/newloc, nomoveupdate, force)
+	return doUnEquip(I, newloc, nomoveupdate, force)
 
 //drop the inventory item on the ground
-/mob/proc/drop_inv_item_on_ground(obj/item/I, nomoveupdate, force)
-	return u_equip(I, loc, nomoveupdate, force)
+/mob/proc/dropItemToGround(obj/item/I, nomoveupdate, force)
+	return doUnEquip(I, loc, nomoveupdate, force)
 
 //Never use this proc directly. nomoveupdate is used when we don't want the item to react to
 // its new loc (e.g.triggering mousetraps)
-/mob/proc/u_equip(obj/item/I, atom/newloc, nomoveupdate, force)
+/mob/proc/doUnEquip(obj/item/I, atom/newloc, nomoveupdate, force)
 
 	if(!I) return TRUE
 
 	if((I.flags_item & NODROP) && !force)
-		return FALSE //u_equip() only fails if item has NODROP
+		return FALSE //doUnEquip() only fails if item has NODROP
 
 	if (I == r_hand)
 		r_hand = null
@@ -134,8 +134,8 @@
 
 //Remove an item on a mob's inventory.  It does not change the item's loc, just unequips it from the mob.
 //Used just before you want to delete the item, or moving it afterwards.
-/mob/proc/temp_drop_inv_item(obj/item/I, force)
-	return u_equip(I, null, force)
+/mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force)
+	return doUnEquip(I, null, force)
 
 
 //Outdated but still in use apparently. This should at least be a human proc.

@@ -254,7 +254,7 @@
 /obj/item/weapon/gun/smartgun/able_to_fire(mob/living/user)
 	. = ..()
 	if(.)
-		if(!ishuman(user)) 
+		if(!ishuman(user))
 			return FALSE
 		var/mob/living/carbon/human/H = user
 		if(!istype(H.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner) || !istype(H.back,/obj/item/smartgun_powerpack))
@@ -380,7 +380,7 @@
 /obj/item/weapon/gun/launcher/m92/examine(mob/user)
 	. = ..()
 	if(grenades.len)
-		if(get_dist(user, src) > 2 && user != loc) 
+		if(get_dist(user, src) > 2 && user != loc)
 			return
 		to_chat(user, "\blue It is loaded with <b>[grenades.len] / [max_grenades]</b> grenades.")
 
@@ -388,7 +388,7 @@
 /obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user)
 	if((istype(I, /obj/item/explosive/grenade)))
 		if(grenades.len < max_grenades)
-			if(user.drop_inv_item_to_loc(I, src))
+			if(user.transferItemToLoc(I, src))
 				grenades += I
 				to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
 				to_chat(user, "<span class='info'>Now storing: [grenades.len] / [max_grenades] grenades.</span>")
@@ -396,12 +396,12 @@
 			to_chat(user, "<span class='warning'>The grenade launcher cannot hold more grenades!</span>")
 
 	else if(istype(I,/obj/item/attachable))
-		if(check_inactive_hand(user)) 
+		if(check_inactive_hand(user))
 			attach_to_gun(user,I)
 
 
 /obj/item/weapon/gun/launcher/m92/afterattack(atom/target, mob/user, flag)
-	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)	
+	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
 		if(!do_after(user, 8, TRUE, 5, BUSY_ICON_HOSTILE))
 			return
 	if(able_to_fire(user))
@@ -431,7 +431,7 @@
 		if(user)
 			user.put_in_hands(nade)
 			playsound(user, unload_sound, 25, 1)
-		else 
+		else
 			nade.loc = get_turf(src)
 		grenades -= nade
 	else
@@ -440,7 +440,7 @@
 
 /obj/item/weapon/gun/launcher/m92/proc/fire_grenade(atom/target, mob/user)
 	set waitfor = 0
-	playsound(user.loc, cocked_sound, 25, 1)	
+	playsound(user.loc, cocked_sound, 25, 1)
 	last_fired = world.time
 	for(var/mob/O in viewers(world.view, user))
 		O.show_message(text("<span class='danger'>[] fired a grenade!</span>", user), 1)
@@ -458,7 +458,7 @@
 		F.updateicon()
 		playsound(F.loc, fire_sound, 50, 1)
 		sleep(10)
-		if(F?.loc) 
+		if(F?.loc)
 			F.prime()
 
 /obj/item/weapon/gun/launcher/m92/has_ammo_counter()
@@ -518,7 +518,7 @@
 /obj/item/weapon/gun/launcher/m81/examine(mob/user)
 	. = ..()
 	if(grenade)
-		if(get_dist(user, src) > 2 && user != loc) 
+		if(get_dist(user, src) > 2 && user != loc)
 			return
 		to_chat(user, "\blue It is loaded with a grenade.")
 
@@ -527,7 +527,7 @@
 	if((istype(I, /obj/item/explosive/grenade)))
 		if((istype(I, grenade_type_allowed)))
 			if(!grenade)
-				if(user.drop_inv_item_to_loc(I, src))
+				if(user.transferItemToLoc(I, src))
 					grenade = I
 					to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
 			else
@@ -589,7 +589,7 @@
 		F.updateicon()
 		playsound(F.loc, fire_sound, 50, 1)
 		sleep(10)
-		if(F?.loc) 
+		if(F?.loc)
 			F.prime()
 
 
@@ -649,7 +649,7 @@
 
 	if(!do_after(user, delay, TRUE, 3, BUSY_ICON_HOSTILE)) //slight wind up
 		return
-		
+
 	return ..()
 
 
@@ -669,9 +669,9 @@
 
 /obj/item/weapon/gun/launcher/rocket/examine(mob/user)
 	. = ..()
-	if(current_mag.current_rounds)  
+	if(current_mag.current_rounds)
 		to_chat(user, "It's ready to rocket.")
-	else 							
+	else
 		to_chat(user, "It's empty.")
 
 
@@ -687,13 +687,13 @@
 
 /obj/item/weapon/gun/launcher/rocket/delete_bullet(obj/item/projectile/projectile_to_fire, refund = FALSE)
 	qdel(projectile_to_fire)
-	if(refund) 
+	if(refund)
 		current_mag.current_rounds++
 	return TRUE
 
 
 /obj/item/weapon/gun/launcher/rocket/reload(mob/user, obj/item/ammo_magazine/rocket)
-	if(flags_gun_features & GUN_BURST_FIRING) 
+	if(flags_gun_features & GUN_BURST_FIRING)
 		return
 
 	if(!rocket || !istype(rocket) || rocket.caliber != current_mag.caliber)
@@ -711,14 +711,14 @@
 	if(user)
 		to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
 		if(do_after(user,current_mag.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
-			user.drop_inv_item_on_ground(rocket)
+			user.dropItemToGround(rocket)
 			replace_ammo(user,rocket)
 			current_mag.current_rounds = current_mag.max_rounds
 			rocket.current_rounds = 0
 			to_chat(user, "<span class='notice'>You load [rocket] into [src].</span>")
-			if(reload_sound) 
+			if(reload_sound)
 				playsound(user, reload_sound, 25, 1)
-			else 
+			else
 				playsound(user,'sound/machines/click.ogg', 25, 1)
 		else
 			to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
@@ -733,9 +733,9 @@
 
 /obj/item/weapon/gun/launcher/rocket/unload(mob/user)
 	if(user)
-		if(!current_mag.current_rounds) 
+		if(!current_mag.current_rounds)
 			to_chat(user, "<span class='warning'>[src] is already empty!</span>")
-		else 							
+		else
 			to_chat(user, "<span class='warning'>It would be too much trouble to unload [src] now. Should have thought ahead!</span>")
 
 //Adding in the rocket backblast. The tile behind the specialist gets blasted hard enough to down and slightly wound anyone

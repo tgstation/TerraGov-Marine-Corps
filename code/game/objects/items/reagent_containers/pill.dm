@@ -41,7 +41,7 @@ var/global/list/randomized_pill_icons
 				return
 
 		to_chat(M, "<span class='notice'>You swallow [src].</span>")
-		M.drop_inv_item_on_ground(src) //icon update
+		M.dropItemToGround(src) //icon update
 		if(reagents.total_volume)
 			reagents.trans_to(M, reagents.total_volume)
 
@@ -63,7 +63,7 @@ var/global/list/randomized_pill_icons
 
 		if(!do_mob(user, M, ingestion_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL)) return
 
-		user.drop_inv_item_on_ground(src) //icon update
+		user.dropItemToGround(src) //icon update
 		for(var/mob/O in viewers(world.view, user))
 			O.show_message("<span class='warning'>[user] forces [M] to swallow [src].", 1)
 

@@ -172,7 +172,7 @@ cases. Override_icon_state should be a list.*/
 	throwing = FALSE
 
 	if(loc == user)
-		if(!user.drop_inv_item_on_ground(src))
+		if(!user.dropItemToGround(src))
 			return
 	else
 		user.next_move = max(user.next_move+2,world.time + 2)
@@ -301,31 +301,31 @@ cases. Override_icon_state should be a list.*/
 			if(WEAR_FACE)
 				if(H.wear_mask)
 					return FALSE
-				if(!(flags_equip_slot & SLOT_FACE))
+				if(!(flags_equip_slot & ITEM_SLOT_MASK))
 					return FALSE
 				return TRUE
 			if(WEAR_BACK)
 				if(H.back)
 					return FALSE
-				if(!(flags_equip_slot & SLOT_BACK))
+				if(!(flags_equip_slot & ITEM_SLOT_BACK))
 					return FALSE
 				return TRUE
 			if(WEAR_JACKET)
 				if(H.wear_suit)
 					return FALSE
-				if(!(flags_equip_slot & SLOT_OCLOTHING))
+				if(!(flags_equip_slot & ITEM_SLOT_OCLOTHING	))
 					return FALSE
 				return TRUE
 			if(WEAR_HANDS)
 				if(H.gloves)
 					return FALSE
-				if(!(flags_equip_slot & SLOT_HANDS))
+				if(!(flags_equip_slot & ITEM_SLOT_GLOVES))
 					return FALSE
 				return TRUE
 			if(WEAR_FEET)
 				if(H.shoes)
 					return FALSE
-				if(!(flags_equip_slot & SLOT_FEET))
+				if(!(flags_equip_slot & ITEM_SLOT_FEET))
 					return FALSE
 				return TRUE
 			if(WEAR_WAIST)
@@ -335,37 +335,37 @@ cases. Override_icon_state should be a list.*/
 					if(!disable_warning)
 						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
 					return FALSE
-				if(!(flags_equip_slot & SLOT_WAIST))
+				if(!(flags_equip_slot & ITEM_SLOT_BELT))
 					return FALSE
 				return TRUE
 			if(WEAR_EYES)
 				if(H.glasses)
 					return FALSE
-				if(!(flags_equip_slot & SLOT_EYES))
+				if(!(flags_equip_slot & ITEM_SLOT_EYES	))
 					return FALSE
 				return TRUE
 			if(WEAR_HEAD)
 				if(H.head)
 					return FALSE
-				if(!(flags_equip_slot & SLOT_HEAD))
+				if(!(flags_equip_slot & ITEM_SLOT_HEAD))
 					return FALSE
 				return TRUE
 			if(WEAR_EAR)
 				if(H.wear_ear)
 					return FALSE
-				if(!(flags_equip_slot & SLOT_EAR))
+				if(!(flags_equip_slot & ITEM_SLOT_EARS))
 					return FALSE
 				return TRUE
 			if(WEAR_BODY)
 				if(H.w_uniform)
 					return FALSE
-				if(!(flags_equip_slot & SLOT_ICLOTHING))
+				if(!(flags_equip_slot & ITEM_SLOT_ICLOTHING))
 					return FALSE
 				return TRUE
 			if(WEAR_ID)
 				if(H.wear_id)
 					return FALSE
-				if(!(flags_equip_slot & SLOT_ID))
+				if(!(flags_equip_slot & ITEM_SLOT_ID))
 					return FALSE
 				return TRUE
 			if(WEAR_L_STORE)
@@ -375,9 +375,9 @@ cases. Override_icon_state should be a list.*/
 					if(!disable_warning)
 						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
 					return FALSE
-				if(flags_equip_slot & SLOT_NO_STORE)
+				if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
 					return FALSE
-				if(w_class <= 2 || (flags_equip_slot & SLOT_STORE))
+				if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
 					return TRUE
 			if(WEAR_R_STORE)
 				if(H.r_store)
@@ -386,9 +386,9 @@ cases. Override_icon_state should be a list.*/
 					if(!disable_warning)
 						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
 					return FALSE
-				if(flags_equip_slot & SLOT_NO_STORE)
+				if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
 					return FALSE
-				if(w_class <= 2 || (flags_equip_slot & SLOT_STORE))
+				if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
 					return TRUE
 				return FALSE
 			if(WEAR_J_STORE)
@@ -491,13 +491,13 @@ cases. Override_icon_state should be a list.*/
 			if(WEAR_FACE)
 				if(MO.wear_mask)
 					return FALSE
-				if( !(flags_equip_slot & SLOT_FACE) )
+				if( !(flags_equip_slot & ITEM_SLOT_MASK) )
 					return FALSE
 				return TRUE
 			if(WEAR_BACK)
 				if(MO.back)
 					return FALSE
-				if( !(flags_equip_slot & SLOT_BACK) )
+				if( !(flags_equip_slot & ITEM_SLOT_BACK) )
 					return FALSE
 				return TRUE
 		return FALSE //Unsupported slot

@@ -79,7 +79,7 @@
 		S.update_icon()
 		qdel(src)
 
-	
+
 /obj/machinery/turret_tripod_deployed
 	name = "\improper UA 571-C turret tripod"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
@@ -662,7 +662,7 @@
 		user.visible_message("<span class='notice'>[user] begins installing \a [O.name] into [src].</span>",
 		"<span class='notice'>You begin installing \a [O.name] into [src].</span>")
 		if(do_after(user, work_time, TRUE, 5, BUSY_ICON_BUILD))
-			user.drop_inv_item_to_loc(O, src)
+			user.transferItemToLoc(O, src)
 			user.visible_message("<span class='notice'>[user] installs \a [O.name] into [src].</span>",
 			"<span class='notice'>You install \a [O.name] into [src].</span>")
 			cell = O
@@ -1336,7 +1336,7 @@
 	item_state = "minisentry_packed"
 	w_class = 4
 	health = 150 //We keep track of this when folding up the sentry.
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 
 /obj/item/device/marine_turret/mini/attack_self(mob/user) //click the sentry to deploy it.
 	if(!ishuman(usr))

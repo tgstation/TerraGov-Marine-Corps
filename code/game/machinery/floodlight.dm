@@ -109,7 +109,7 @@
 			if(cell)
 				to_chat(user, "There is a power cell already installed.")
 			else
-				if(user.drop_inv_item_to_loc(W, src))
+				if(user.transferItemToLoc(W, src))
 					cell = W
 					to_chat(user, "You insert the power cell.")
 	updateicon()

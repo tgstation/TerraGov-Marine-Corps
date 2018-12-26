@@ -648,7 +648,7 @@ mob/proc/yank_out_object()
 
 /mob/on_stored_atom_del(atom/movable/AM)
 	if(istype(AM, /obj/item))
-		temp_drop_inv_item(AM, TRUE) //unequip before deletion to clear possible item references on the mob.
+		temporarilyRemoveItemFromInventory(AM, TRUE) //unequip before deletion to clear possible item references on the mob.
 
 /mob/forceMove(atom/destination)
 	stop_pulling()

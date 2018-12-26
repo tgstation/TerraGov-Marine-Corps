@@ -5,7 +5,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "handcuff"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 5
 	w_class = 2
 	throw_speed = 2
@@ -53,14 +53,14 @@
 		if(do_mob(user, H, cuff_delay, BUSY_ICON_HOSTILE, BUSY_ICON_GENERIC))
 			if(src == user.get_active_hand() && !H.handcuffed && Adjacent(user))
 				if(H.has_limb_for_slot(WEAR_HANDCUFFS))
-					user.drop_inv_item_on_ground(src)
+					user.dropItemToGround(src)
 					H.equip_to_slot_if_possible(src, WEAR_HANDCUFFS, 1, 0, 1, 1)
 
 	else if (ismonkey(target))
 		user.visible_message("<span class='notice'>[user] tries to put [src] on [target].</span>")
 		if(do_mob(user, target, 30, BUSY_ICON_HOSTILE, BUSY_ICON_GENERIC))
 			if(src == user.get_active_hand() && !target.handcuffed && Adjacent(user))
-				user.drop_inv_item_on_ground(src)
+				user.dropItemToGround(src)
 				target.equip_to_slot_if_possible(src, WEAR_HANDCUFFS, 1, 0, 1, 1)
 
 
@@ -156,7 +156,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "handcuff"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 5
 	w_class = 2.0
 	throw_speed = 2

@@ -742,7 +742,7 @@ var/list/obj/machinery/newscaster/allCasters = list() //Global list that will co
 		photo = null
 	var/obj/item/photo/PH = user.get_active_hand()
 	if(istype(PH))
-		if(user.drop_inv_item_to_loc(photo, src))
+		if(user.transferItemToLoc(photo, src))
 			photo = PH
 	else if(istype(user,/mob/living/silicon))
 		var/mob/living/silicon/tempAI = user

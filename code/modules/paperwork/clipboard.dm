@@ -9,7 +9,7 @@
 	throw_range = 10
 	var/obj/item/tool/pen/haspen		//The stored pen.
 	var/obj/item/toppaper	//The topmost piece of paper.
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 
 /obj/item/clipboard/New()
 	update_icon()
@@ -23,10 +23,10 @@
 		if(!M.is_mob_restrained() && !M.stat)
 			switch(over_object.name)
 				if("r_hand")
-					M.drop_inv_item_on_ground(src)
+					M.dropItemToGround(src)
 					M.put_in_r_hand(src)
 				if("l_hand")
-					M.drop_inv_item_on_ground(src)
+					M.dropItemToGround(src)
 					M.put_in_l_hand(src)
 
 			add_fingerprint(usr)

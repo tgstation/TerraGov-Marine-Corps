@@ -489,11 +489,11 @@
 	var/random_primary = 1
 
 	I = H.wear_id
-	if(I) H.drop_inv_item_on_ground(I) //Remove it for now, so it doesn't get deleted.
+	if(I) H.dropItemToGround(I) //Remove it for now, so it doesn't get deleted.
 	if(H.contents.len) //We want to get rid of all their items. Everything is generated on the fly during the game mode.
 		for(var/i in H.contents)
 			if(istype(i,/obj/item))
-				H.temp_drop_inv_item(i)
+				H.temporarilyRemoveItemFromInventory(i)
 				qdel(i)
 	if(I) H.equip_to_slot_or_del(ID, WEAR_ID) //Put it back on.
 
@@ -701,7 +701,7 @@
 				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/tech(H), WEAR_HEAD)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
 				I = H.gloves
-				H.temp_drop_inv_item(I)
+				H.temporarilyRemoveItemFromInventory(I)
 				qdel(I)
 				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
 				H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(H), WEAR_WAIST)
@@ -809,7 +809,7 @@
 						H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/specialist(H), WEAR_HEAD)
 						H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/specialist(H), WEAR_JACKET)
 						I = H.gloves
-						H.temp_drop_inv_item(I)
+						H.temporarilyRemoveItemFromInventory(I)
 						qdel(I)
 						H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/specialist(H), WEAR_HANDS)
 						H.equip_to_slot_or_del(new /obj/item/storage/large_holster/machete/full(H), WEAR_BACK)

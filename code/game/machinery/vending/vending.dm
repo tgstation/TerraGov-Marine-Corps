@@ -232,7 +232,7 @@
 			to_chat(user, "<span class='warning'>[src] doesn't have a coin slot.</span>")
 			return
 		if(C.flags_token & tokensupport)
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				coin = W
 				to_chat(user, "\blue You insert the [W] into the [src]")
 		else
@@ -244,7 +244,7 @@
 		scan_card(I)
 		return
 	else if (istype(W, /obj/item/spacecash/ewallet))
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			ewallet = W
 			to_chat(user, "\blue You insert the [W] into the [src]")
 		return
@@ -635,7 +635,7 @@
 			if(item_to_stock.loc == user) //Inside the mob's inventory
 				if(item_to_stock.flags_item & WIELDED)
 					item_to_stock.unwield(user)
-				user.temp_drop_inv_item(item_to_stock)
+				user.temporarilyRemoveItemFromInventory(item_to_stock)
 
 			if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
 				var/obj/item/storage/S = item_to_stock.loc

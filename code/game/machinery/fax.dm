@@ -138,7 +138,7 @@ var/list/alldepartments = list()
 		else
 			var/obj/item/I = usr.get_active_hand()
 			if (istype(I, /obj/item/card/id))
-				usr.drop_inv_item_to_loc(I, src)
+				usr.transferItemToLoc(I, src)
 				scan = I
 		authenticated = 0
 
@@ -161,7 +161,7 @@ var/list/alldepartments = list()
 
 	if(istype(O, /obj/item/paper))
 		if(!tofax)
-			user.drop_inv_item_to_loc(O, src)
+			user.transferItemToLoc(O, src)
 			tofax = O
 			to_chat(user, "<span class='notice'>You insert the paper into \the [src].</span>")
 			flick("faxsend", src)
@@ -173,7 +173,7 @@ var/list/alldepartments = list()
 
 		var/obj/item/card/id/idcard = O
 		if(!scan)
-			user.drop_inv_item_to_loc(idcard, src)
+			user.transferItemToLoc(idcard, src)
 			scan = idcard
 
 	else if(istype(O, /obj/item/tool/wrench))

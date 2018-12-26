@@ -65,7 +65,7 @@
 	if(!istype(i))
 		return
 
-	if(user.drop_inv_item_to_loc(i, src))
+	if(user.transferItemToLoc(i, src))
 		to_chat(user, "<span class='notice'>You put [i] in [src].</span>")
 		papers.Add(i)
 		amount++
