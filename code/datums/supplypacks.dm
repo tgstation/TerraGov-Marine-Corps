@@ -463,7 +463,7 @@ WEAPONS
 	group = "Weapons"
 
 /datum/supply_packs/explosives_hidp
-	name = "M40 HIDP incendary grenade box crate (x25)"
+ 	name = "M40 HIDP incendiary grenade box crate (x25)"
 	contains = list(
 					/obj/item/storage/box/nade_box/Incendary
 					)
