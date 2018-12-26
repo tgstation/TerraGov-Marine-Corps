@@ -120,7 +120,7 @@
 						var/obj/item/device/radio/headset/almayer/marine/R = H.wear_ear
 						if(R.camera.status)
 							R.camera.status = FALSE //Turn camera off.
-							to_chat(pulled, "<span class='danger'>Your headset camera flickers off as you are devoured; you'll need to reactivate it by rebooting your headset HUD!<span>")
+							to_chat(H, "<span class='danger'>Your headset camera flickers off as you are devoured; you'll need to reactivate it by rebooting your headset HUD!<span>")
 
 				return 1
 		if(!(pulled in X.stomach_contents))
