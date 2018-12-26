@@ -314,7 +314,6 @@
 	<BR>
 	<b><A href='?src=\ref[src];sl_direction=1'>Turn Squad Leader Directional Indicator: [sl_direction ? "Off" : "On"]</A></b><BR>
 	<BR>
-	<b><A href='?src=\ref[src];headset_camera=1'>Reboot Headset Camera; Camera Status: [camera.status ? "Off" : "On"]</A></b><BR>
 	</TT>"}
 	user << browse(dat, "window=radio")
 	onclose(user, "radio")
@@ -331,9 +330,6 @@
 
 		else if(href_list["sl_direction"])
 			toggle_sl_direction(user)
-
-		else if(href_list["headset_camera"])
-			camera.status = TRUE
 
 		if(!master)
 			if(ishuman(loc))
