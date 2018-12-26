@@ -469,7 +469,7 @@ WEAPONS
 					)
 	cost = RO_PRICE_VERY_PRICY
 	containertype = /obj/structure/closet/crate/explosives
-	containername = "\improper HIDP incendary grenade crate (WARNING)"
+ 	containername = "\improper HIDP incendiary grenade crate (WARNING)"
 	group = "Weapons"
 
 /datum/supply_packs/explosives_hidp
