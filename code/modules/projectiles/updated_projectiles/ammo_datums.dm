@@ -184,6 +184,9 @@
 			var/obj/item/projectile/P = new /obj/item/projectile(original_P.shot_from)
 			P.generate_bullet(ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
 			var/turf/new_target = null
+
+			P.scatter = round(P.scatter - (initial(original_P.scatter) - original_P.scatter) ) //if the gun changes the scatter of the main projectile, it also affects the bonus ones.
+
 			if(prob(P.scatter))
 				var/scatter_x = rand(-1,1)
 				var/scatter_y = rand(-1,1)
@@ -191,7 +194,9 @@
 				if(!istype(new_target) || isnull(new_target))
 					continue	//If we didn't find anything, make another pass.
 				P.original = new_target
+
 			P.accuracy = round(P.accuracy * original_P.accuracy/initial(original_P.accuracy)) //if the gun changes the accuracy of the main projectile, it also affects the bonus ones.
+
 			if(!new_target)
 				new_target = original_P.target_turf
 			P.fire_at(new_target,original_P.firer,original_P.shot_from,P.ammo.max_range,P.ammo.shell_speed) //Fire!
@@ -655,7 +660,7 @@
 	damage_var_high = config.low_proj_variance
 	damage_falloff *= 0.5
 	penetration	= config.high_armor_penetration
-	scatter = config.max_scatter_value //bonus projectiles run their own scatter chance
+	scatter = config.thirty_scatter_value //bonus projectiles run their own scatter chance
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
@@ -704,7 +709,7 @@
 	damage_falloff = config.buckshot_damage_falloff
 	penetration	= -config.mlow_armor_penetration
 	shell_speed = config.reg_shell_speed
-	scatter = config.max_scatter_value*2 //bonus projectiles run their own scatter chance
+	scatter = config.max_scatter_value*1.5 //bonus projectiles run their own scatter chance
 
 /datum/ammo/bullet/shotgun/spread/masterkey/New()
 	..()

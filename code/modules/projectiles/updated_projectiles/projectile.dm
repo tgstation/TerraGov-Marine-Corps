@@ -51,6 +51,8 @@
 
 	var/list_reagents = null
 
+	var/projectile_speed = 0
+
 	New()
 		. = ..()
 		path = list()
@@ -94,6 +96,7 @@
 
 //Target, firer, shot from. Ie the gun
 /obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
+	projectile_speed += speed
 	if(!original) original = target
 	if(!loc) loc = get_turf(F)
 	starting = get_turf(src)
@@ -130,7 +133,7 @@
 	rotate.Turn(angle)
 	src.transform = rotate
 
-	follow_flightpath(speed,change_x,change_y,range) //pyew!
+	follow_flightpath(projectile_speed,change_x,change_y,range) //pyew!
 
 /obj/item/projectile/proc/each_turf(speed = 1)
 	var/new_speed = speed

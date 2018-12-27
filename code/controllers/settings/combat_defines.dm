@@ -97,6 +97,7 @@
 	var/low_scatter_value = 15
 	var/med_scatter_value = 20
 	var/high_scatter_value = 25
+	var/thirty_scatter_value = 30
 	var/mhigh_scatter_value = 35
 	var/max_scatter_value = 40
 
@@ -360,6 +361,8 @@
 			med_scatter_value = value
 		if("high_scatter_value")
 			high_scatter_value = value
+		if("thirty_scatter_value")
+			thirty_scatter_value = value
 		if("mhigh_scatter_value")
 			mhigh_scatter_value = value
 		if("max_scatter_value")
