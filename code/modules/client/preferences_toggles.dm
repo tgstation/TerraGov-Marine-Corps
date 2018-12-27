@@ -1,4 +1,13 @@
 //toggles
+/client/verb/toggle_see_stats()
+	set name = "Toggle End of Round Stats"
+	set category = "Preferences"
+	set desc = ".Toggle Between seeing the end of round stats or not seeing them."
+	prefs.toggles_chat ^= CHAT_STATISTICS
+	to_chat(src, "At the end of the round you will [(prefs.toggles_chat & CHAT_STATISTICS) ? "see all statistics" : "not see any statistics"].")
+	prefs.save_preferences()
+	feedback_add_details("admin_verb","TERS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 /client/verb/toggle_ghost_ears()
 	set name = "Show/Hide GhostEars"
 	set category = "Preferences"
