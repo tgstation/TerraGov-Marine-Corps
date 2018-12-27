@@ -152,36 +152,39 @@ Currently only has the tank hardpoints
 	max_clips = 3
 	max_angle = 45
 
-	apply_buff()
-		owner.cooldowns["primary"] = 200
-		owner.accuracies["primary"] = 0.97
+/obj/item/hardpoint/primary/cannon/broken
+	health = 0
 
-	is_ready()
-		if(world.time < next_use)
-			to_chat(usr, "<span class='warning'>This module is not ready to be used yet.</span>")
-			return 0
-		if(health <= 0)
-			to_chat(usr, "<span class='warning'>This module is too broken to be used.</span>")
-			return 0
-		return 1
+/obj/item/hardpoint/primary/cannon/apply_buff()
+	owner.cooldowns["primary"] = 200
+	owner.accuracies["primary"] = 0.97
 
-	active_effect(var/turf/T)
+/obj/item/hardpoint/primary/cannon/is_ready()
+	if(world.time < next_use)
+		to_chat(usr, "<span class='warning'>This module is not ready to be used yet.</span>")
+		return 0
+	if(health <= 0)
+		to_chat(usr, "<span class='warning'>This module is too broken to be used.</span>")
+		return 0
+	return 1
 
-		if(ammo.current_rounds <= 0)
-			to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
-			return
+/obj/item/hardpoint/primary/cannon/active_effect(var/turf/T)
 
-		next_use = world.time + owner.cooldowns["primary"] * owner.misc_ratios["prim_cool"]
+	if(ammo.current_rounds <= 0)
+		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
+		return
 
-		if(!do_after(usr, 5, FALSE, 5, BUSY_ICON_HOSTILE))
-			return
-		if(!prob(owner.accuracies["primary"] * 100 * owner.misc_ratios["prim_acc"]))
-			T = get_step(T, pick(cardinal))
-		var/obj/item/projectile/P = new
-		P.generate_bullet(new ammo.default_ammo)
-		P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-		playsound(get_turf(src), pick('sound/weapons/tank_cannon_fire1.ogg', 'sound/weapons/tank_cannon_fire2.ogg'), 60, 1)
-		ammo.current_rounds--
+	next_use = world.time + owner.cooldowns["primary"] * owner.misc_ratios["prim_cool"]
+
+	if(!do_after(usr, 5, FALSE, 5, BUSY_ICON_HOSTILE))
+		return
+	if(!prob(owner.accuracies["primary"] * 100 * owner.misc_ratios["prim_acc"]))
+		T = get_step(T, pick(cardinal))
+	var/obj/item/projectile/P = new
+	P.generate_bullet(new ammo.default_ammo)
+	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
+	playsound(get_turf(src), pick('sound/weapons/tank_cannon_fire1.ogg', 'sound/weapons/tank_cannon_fire2.ogg'), 60, 1)
+	ammo.current_rounds--
 
 /obj/item/hardpoint/primary/minigun
 	name = "LTAA-AP Minigun"
@@ -368,33 +371,36 @@ Currently only has the tank hardpoints
 	max_clips = 1
 	max_angle = 90
 
-	apply_buff()
-		owner.cooldowns["secondary"] = 5
-		owner.accuracies["secondary"] = 0.7
+/obj/item/hardpoint/secondary/m56cupola/broken
+	health = 0
 
-	is_ready()
-		if(world.time < next_use)
-			to_chat(usr, "<span class='warning'>This module is not ready to be used yet.</span>")
-			return 0
-		if(health <= 0)
-			to_chat(usr, "<span class='warning'>This module is too broken to be used.</span>")
-			return 0
-		return 1
+/obj/item/hardpoint/secondary/m56cupola/apply_buff()
+	owner.cooldowns["secondary"] = 5
+	owner.accuracies["secondary"] = 0.7
 
-	active_effect(var/turf/T)
+/obj/item/hardpoint/secondary/m56cupola/is_ready()
+	if(world.time < next_use)
+		to_chat(usr, "<span class='warning'>This module is not ready to be used yet.</span>")
+		return 0
+	if(health <= 0)
+		to_chat(usr, "<span class='warning'>This module is too broken to be used.</span>")
+		return 0
+	return 1
 
-		if(ammo.current_rounds <= 0)
-			to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
-			return
+/obj/item/hardpoint/secondary/m56cupola/active_effect(var/turf/T)
 
-		next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
-		if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
-			T = get_step(T, pick(cardinal))
-		var/obj/item/projectile/P = new
-		P.generate_bullet(new ammo.default_ammo)
-		P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-		playsound(get_turf(src), pick(list('sound/weapons/gun_smartgun1.ogg', 'sound/weapons/gun_smartgun2.ogg', 'sound/weapons/gun_smartgun3.ogg')), 60, 1)
-		ammo.current_rounds--
+	if(ammo.current_rounds <= 0)
+		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
+		return
+
+	next_use = world.time + owner.cooldowns["secondary"] * owner.misc_ratios["secd_cool"]
+	if(!prob(owner.accuracies["secondary"] * 100 * owner.misc_ratios["secd_acc"]))
+		T = get_step(T, pick(cardinal))
+	var/obj/item/projectile/P = new
+	P.generate_bullet(new ammo.default_ammo)
+	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
+	playsound(get_turf(src), pick(list('sound/weapons/gun_smartgun1.ogg', 'sound/weapons/gun_smartgun2.ogg', 'sound/weapons/gun_smartgun3.ogg')), 60, 1)
+	ammo.current_rounds--
 
 /obj/item/hardpoint/secondary/grenade_launcher
 	name = "Grenade Launcher"
@@ -465,48 +471,51 @@ Currently only has the tank hardpoints
 	max_clips = 4
 	is_activatable = 1
 
-	apply_buff()
-		owner.cooldowns["support"] = 30
-		owner.accuracies["support"] = 0.8
+/obj/item/hardpoint/support/smoke_launcher/broken
+	health = 0
 
-	is_ready()
-		if(world.time < next_use)
-			to_chat(usr, "<span class='warning'>This module is not ready to be used yet.</span>")
-			return 0
-		if(health <= 0)
-			to_chat(usr, "<span class='warning'>This module is too broken to be used.</span>")
-			return 0
-		return 1
+/obj/item/hardpoint/support/smoke_launcher/apply_buff()
+	owner.cooldowns["support"] = 30
+	owner.accuracies["support"] = 0.8
 
-	active_effect(var/turf/T)
+/obj/item/hardpoint/support/smoke_launcher/is_ready()
+	if(world.time < next_use)
+		to_chat(usr, "<span class='warning'>This module is not ready to be used yet.</span>")
+		return 0
+	if(health <= 0)
+		to_chat(usr, "<span class='warning'>This module is too broken to be used.</span>")
+		return 0
+	return 1
 
-		if(ammo.current_rounds <= 0)
-			to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
-			return
+/obj/item/hardpoint/support/smoke_launcher/active_effect(var/turf/T)
 
-		next_use = world.time + owner.cooldowns["support"] * owner.misc_ratios["supp_cool"]
-		if(!prob(owner.accuracies["support"] * 100 * owner.misc_ratios["supp_acc"]))
-			T = get_step(T, pick(cardinal))
-		var/obj/item/projectile/P = new
-		P.generate_bullet(new ammo.default_ammo)
-		P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
-		playsound(get_turf(src), 'sound/weapons/tank_smokelauncher_fire.ogg', 60, 1)
-		ammo.current_rounds--
+	if(ammo.current_rounds <= 0)
+		to_chat(usr, "<span class='warning'>This module does not have any ammo.</span>")
+		return
 
-	get_icon_image(var/x_offset, var/y_offset, var/new_dir)
+	next_use = world.time + owner.cooldowns["support"] * owner.misc_ratios["supp_cool"]
+	if(!prob(owner.accuracies["support"] * 100 * owner.misc_ratios["supp_acc"]))
+		T = get_step(T, pick(cardinal))
+	var/obj/item/projectile/P = new
+	P.generate_bullet(new ammo.default_ammo)
+	P.fire_at(T, owner, src, P.ammo.max_range, P.ammo.shell_speed)
+	playsound(get_turf(src), 'sound/weapons/tank_smokelauncher_fire.ogg', 60, 1)
+	ammo.current_rounds--
 
-		var/icon_suffix = "NS"
-		var/icon_state_suffix = "0"
+/obj/item/hardpoint/support/smoke_launcher/get_icon_image(var/x_offset, var/y_offset, var/new_dir)
 
-		if(new_dir in list(NORTH, SOUTH))
-			icon_suffix = "NS"
-		else if(new_dir in list(EAST, WEST))
-			icon_suffix = "EW"
+	var/icon_suffix = "NS"
+	var/icon_state_suffix = "0"
 
-		if(health <= 0) icon_state_suffix = "1"
-		else if(ammo.current_rounds <= 0) icon_state_suffix = "2"
+	if(new_dir in list(NORTH, SOUTH))
+		icon_suffix = "NS"
+	else if(new_dir in list(EAST, WEST))
+		icon_suffix = "EW"
 
-		return image(icon = "[disp_icon]_[icon_suffix]", icon_state = "[disp_icon_state]_[icon_state_suffix]", pixel_x = x_offset, pixel_y = y_offset)
+	if(health <= 0) icon_state_suffix = "1"
+	else if(ammo.current_rounds <= 0) icon_state_suffix = "2"
+
+	return image(icon = "[disp_icon]_[icon_suffix]", icon_state = "[disp_icon_state]_[icon_state_suffix]", pixel_x = x_offset, pixel_y = y_offset)
 
 /obj/item/hardpoint/support/weapons_sensor
 	name = "Integrated Weapons Sensor Array"
@@ -641,17 +650,20 @@ Currently only has the tank hardpoints
 	disp_icon = "tank"
 	disp_icon_state = "ballistic_armor"
 
-	apply_buff()
-		owner.dmg_multipliers["bullet"] = 0.5
-		owner.dmg_multipliers["slash"] = 0.75
-		owner.dmg_multipliers["blunt"] = 0.75
-		owner.dmg_multipliers["all"] = 0.9
+/obj/item/hardpoint/armor/ballistic/broken
+	health = 0
 
-	remove_buff()
-		owner.dmg_multipliers["bullet"] = 1.0
-		owner.dmg_multipliers["slash"] = 1.0
-		owner.dmg_multipliers["blunt"] = 1.0
-		owner.dmg_multipliers["all"] = 1.0
+/obj/item/hardpoint/armor/ballistic/apply_buff()
+	owner.dmg_multipliers["bullet"] = 0.5
+	owner.dmg_multipliers["slash"] = 0.75
+	owner.dmg_multipliers["blunt"] = 0.75
+	owner.dmg_multipliers["all"] = 0.9
+
+/obj/item/hardpoint/armor/ballistic/remove_buff()
+	owner.dmg_multipliers["bullet"] = 1.0
+	owner.dmg_multipliers["slash"] = 1.0
+	owner.dmg_multipliers["blunt"] = 1.0
+	owner.dmg_multipliers["all"] = 1.0
 
 /obj/item/hardpoint/armor/caustic
 	name = "Caustic Armor"
@@ -770,14 +782,17 @@ Currently only has the tank hardpoints
 	disp_icon = "tank"
 	disp_icon_state = "treads"
 
-	get_icon_image(var/x_offset, var/y_offset, var/new_dir)
-		return null //Handled in update_icon()
+/obj/item/hardpoint/treads/standard/broken
+	health = 0
 
-	apply_buff()
-		owner.move_delay = 7
+/obj/item/hardpoint/treads/standard/get_icon_image(var/x_offset, var/y_offset, var/new_dir)
+	return null //Handled in update_icon()
 
-	remove_buff()
-		owner.move_delay = 30
+/obj/item/hardpoint/treads/standard/apply_buff()
+	owner.move_delay = 7
+
+/obj/item/hardpoint/treads/standard/remove_buff()
+	owner.move_delay = 30
 
 /////////////////
 // TREAD SLOTS // END
