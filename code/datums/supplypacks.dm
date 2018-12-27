@@ -465,7 +465,7 @@ WEAPONS
 /datum/supply_packs/explosives_hidp
  	name = "M40 HIDP incendiary grenade box crate (x25)"
 	contains = list(
-					/obj/item/storage/box/nade_box/Incendary
+					/obj/item/storage/box/nade_box/incendiary
 					)
 	cost = RO_PRICE_VERY_PRICY
 	containertype = /obj/structure/closet/crate/explosives
