@@ -18,61 +18,61 @@ var/global/list/gear_datums = list()
 // Headslot items
 
 /datum/gear/red_bandana
-	display_name = "Bandana (Red)"
+	display_name = "TGMC bandana (Red)"
 	path = /obj/item/clothing/head/bandana/red
 	cost = 3
 	slot = WEAR_HEAD
 
 /datum/gear/cmbandana
-	display_name = "TGMC Bandana (Green)"
+	display_name = "TGMC bandana (Green)"
 	path = /obj/item/clothing/head/cmbandana
 	cost = 3
 	slot = WEAR_HEAD
 
 /datum/gear/cmbandanatan
-	display_name = "TGMC Bandana (Tan)"
+	display_name = "TGMC bandana (Tan)"
 	path = /obj/item/clothing/head/cmbandana/tan
 	cost = 3
 	slot = WEAR_HEAD
 
 /datum/gear/cmberet
-	display_name = "TGMC Beret (Green)"
+	display_name = "TGMC beret (Green)"
 	path = /obj/item/clothing/head/cmberet
 	cost = 3
 	slot = WEAR_HEAD
 
 /datum/gear/cmberettan
-	display_name = "TGMC Beret (Green)"
+	display_name = "TGMC beret (Green)"
 	path = /obj/item/clothing/head/cmberet
 	cost = 3
 	slot = WEAR_HEAD
 
 /datum/gear/cmheadband
-	display_name = "TGMC Headband (Green)"
+	display_name = "TGMC headband (Green)"
 	path = /obj/item/clothing/head/headband
 	cost = 3
 	slot = WEAR_HEAD
 
 /datum/gear/cmheadbandred
-	display_name = "TGMC Headband (Red)"
+	display_name = "TGMC headband (Red)"
 	path = /obj/item/clothing/head/headband/red
 	cost = 3
 	slot = WEAR_HEAD
 
 /datum/gear/cmheadset
-	display_name = "TGMC Earpiece"
+	display_name = "TGMC earpiece"
 	path = /obj/item/clothing/head/headset
 	cost = 3
 	slot = WEAR_HEAD
 
 /datum/gear/cmcap
-	display_name = "TGMC Cap"
+	display_name = "TGMC cap"
 	path = /obj/item/clothing/head/cmcap
 	cost = 3
 	slot = WEAR_HEAD
 
 /datum/gear/cmboonie
-	display_name = "TGMC Boonie Hat"
+	display_name = "TGMC boonie hat"
 	path = /obj/item/clothing/head/boonie
 	cost = 3
 	slot = WEAR_HEAD
@@ -275,14 +275,14 @@ var/global/list/gear_datums = list()
 	slot = WEAR_EYES
 
 /datum/gear/thugshades
-	display_name = "Shades"
-	path = /obj/item/clothing/glasses/sunglasses/big
+	display_name = "Big shades"
+	path = /obj/item/clothing/glasses/sunglasses/fake/big
 	cost = 2
 	slot = WEAR_EYES
 
 /datum/gear/prescription
-	display_name = "Sunglasses"
-	path = /obj/item/clothing/glasses/sunglasses/prescription
+	display_name = "Sunglasses (prescription)"
+	path = /obj/item/clothing/glasses/sunglasses/fake/prescription
 	cost = 2
 	slot = WEAR_EYES
 
@@ -712,13 +712,13 @@ var/global/list/gear_datums = list()
 	cost = 2
 */
 /datum/gear/cmgoggles
-	display_name = "Ballistic Goggles"
+	display_name = "Ballistic goggles"
 	path = /obj/item/clothing/glasses/mgoggles
 	cost = 2
 	slot = WEAR_EYES
 
 /datum/gear/cmPgoggles
-	display_name = "Prescription Goggles"
+	display_name = "Ballistic goggles (prescription)"
 	path = /obj/item/clothing/glasses/mgoggles/prescription
-	cost = 3
+	cost = 2
 	slot = WEAR_EYES
