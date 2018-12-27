@@ -112,7 +112,7 @@
 					/obj/item/explosive/mine = 2,
 					/obj/item/storage/box/nade_box = 2,
 					/obj/item/storage/box/nade_box/M15 = 2 ,
-					/obj/item/storage/box/nade_box/Incendary = 1,
+ 					/obj/item/storage/box/nade_box/incendiary = 1,
 					/obj/item/explosive/grenade/frag/m15 = 2,
 					/obj/item/explosive/grenade/incendiary = 4,
 					/obj/item/explosive/grenade/smokebomb = 5,

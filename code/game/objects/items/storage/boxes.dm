@@ -610,7 +610,7 @@
 	can_hold = list("/obj/item/explosive/grenade/chem_grenade/teargas")
 	grenade_type = /obj/item/explosive/grenade/chem_grenade/teargas
 
-/obj/item/storage/box/nade_box/Incendary
+ /obj/item/storage/box/nade_box/incendiary
 	name = "\improper M40 HIDP grenade box"
 	desc = "A secure box holding 25 M40 HIDP grenades."
 	icon_state = "nade_HIDP_box"
