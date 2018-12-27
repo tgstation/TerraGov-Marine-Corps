@@ -10,18 +10,8 @@
 	var/tank_points = 625
 	var/busy
 
-/obj/machinery/tank_part_fabricator/New()
-	..()
-	start_processing()
-
 /obj/machinery/tank_part_fabricator/power_change()
 	..()
-	if (stat & NOPOWER)
-		icon_state = "drone_fab_nopower"
-
-/obj/machinery/tank_part_fabricator/process()
-	if(ticker.current_state < GAME_STATE_PLAYING)
-		return
 	if(stat & NOPOWER)
 		icon_state = "drone_fab_nopower"
 		return
