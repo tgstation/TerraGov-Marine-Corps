@@ -160,7 +160,7 @@
 		var/obj/item/clothing/mask/cigarette/C = locate() in src
 		if(C)
 			remove_from_storage(C, get_turf(user))
-			user.equip_to_slot_if_possible(C, WEAR_FACE)
+			user.equip_to_slot_if_possible(C, SLOT_WEAR_MASK)
 			to_chat(user, "<span class='notice'>You take a cigarette out of the pack.</span>")
 			update_icon()
 	else
@@ -221,7 +221,7 @@
 		var/obj/item/clothing/mask/cigarette/cigar/C = locate() in src
 		if(C)
 			remove_from_storage(C, get_turf(user))
-			user.equip_to_slot_if_possible(C, WEAR_FACE)
+			user.equip_to_slot_if_possible(C, SLOT_WEAR_MASK)
 			to_chat(user, "<span class='notice'>You take a cigar out of the case.</span>")
 			update_icon()
 	else

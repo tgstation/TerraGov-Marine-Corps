@@ -49,18 +49,18 @@
 //flags_inv_hide
 //Bit flags for the flags_inv_hide variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
 
-#define HIDEGLOVES		1
-#define HIDESUITSTORAGE	2
-#define HIDEJUMPSUIT	4
-#define HIDESHOES		8
-#define HIDEMASK		16
-#define HIDEEARS		32		//(ears means headsets and such)
-#define HIDEEYES		64		//(eyes means glasses)
-#define HIDELOWHAIR		128		// temporarily removes the user's facial hair overlay.
-#define HIDETOPHAIR		256		// temporarily removes the user's hair overlay. Leaves facial hair.
-#define HIDEALLHAIR		512		// temporarily removes the user's hair, facial and otherwise.
-#define HIDETAIL 		1024
-#define HIDEFACE		2056	//Dictates whether we appear as unknown.
+#define HIDEGLOVES		(1<<0)
+#define HIDESUITSTORAGE	(1<<1)
+#define HIDEJUMPSUIT	(1<<2)
+#define HIDESHOES		(1<<3)//these first four are used in exterior suits
+#define HIDEMASK		(1<<4)//these last seven are used in masks and headgear.
+#define HIDEEARS		(1<<5)	//(ears means headsets and such)
+#define HIDEEYES		(1<<6)	// Whether eyes and glasses are hidden
+#define HIDELOWHAIR		(1<<7)	// temporarily removes the user's facial hair overlay.
+#define HIDETOPHAIR		(1<<8)	// temporarily removes the user's hair overlay. Leaves facial hair.
+#define HIDEALLHAIR		(1<<9)	// temporarily removes the user's hair, facial and otherwise.
+#define HIDETAIL 		(1<<10)
+#define HIDEFACE		(1<<11)	//Dictates whether we appear as unknown.
 
 
 //==========================================================================================
@@ -128,36 +128,36 @@
 
 //slots
 //Text strings so that the slots can be associated when doing inventory lists.
-#define WEAR_ID				"id"
-#define WEAR_EAR			"wear_ear"
-#define WEAR_BODY			"body"
-#define WEAR_LEGS			"legs"
-#define WEAR_FEET			"feet"
-#define WEAR_HANDS			"hands"
-#define WEAR_WAIST			"waist"
-#define WEAR_JACKET			"jacket"
-#define WEAR_EYES			"eyes"
-#define WEAR_FACE			"face"
-#define WEAR_HEAD			"head"
-#define WEAR_BACK			"back"
-#define WEAR_L_STORE		"l_store"
-#define WEAR_R_STORE		"r_store"
-#define WEAR_ACCESSORY		"accessory"
-#define WEAR_J_STORE		"j_store"
-#define WEAR_L_HAND			"l_hand"
-#define WEAR_R_HAND			"r_hand"
-#define WEAR_HANDCUFFS		"handcuffs"
-#define WEAR_LEGCUFFS		"legcuffs"
-#define EQUIP_IN_BOOT		"in_boot"
-#define WEAR_IN_BACK		"in_back"
-#define WEAR_IN_JACKET		"in_jacket"
-#define WEAR_IN_ACCESSORY	"in_accessory"
-#define WEAR_IN_HOLSTER		"in_holster"
-#define WEAR_IN_B_HOLSTER	"in_b_holster"
-#define WEAR_IN_J_HOLSTER	"in_j_holster"
-#define EQUIP_IN_STORAGE	"in_storage"
-#define EQUIP_IN_L_POUCH	"in_l_pouch"
-#define EQUIP_IN_R_POUCH	"in_r_pouch"
+#define SLOT_WEAR_ID		1
+#define SLOT_EARS			2
+#define SLOT_W_UNIFORM		3
+#define SLOT_LEGS			4
+#define SLOT_SHOES			5
+#define SLOT_GLOVES			6
+#define SLOT_BELT			7
+#define SLOT_WEAR_SUIT		8
+#define SLOT_GLASSES		9
+#define SLOT_WEAR_MASK		10
+#define SLOT_HEAD			11
+#define SLOT_BACK			12
+#define SLOT_L_STORE		13
+#define SLOT_R_STORE		14
+#define SLOT_ACCESSORY		15
+#define SLOT_S_STORE		16
+#define SLOT_L_HAND			17
+#define SLOT_R_HAND			18
+#define SLOT_HANDCUFFED		19
+#define SLOT_LEGCUFFED		20
+#define SLOT_IN_BOOT		21
+#define SLOT_IN_BACKPACK	22
+#define SLOT_IN_SUIT		23
+#define SLOT_IN_ACCESSORY	24
+#define SLOT_IN_HOLSTER		25
+#define SLOT_IN_B_HOLSTER	26
+#define SLOT_IN_S_HOLSTER	27
+#define SLOT_IN_STORAGE		28
+#define SLOT_IN_L_POUCH		29
+#define SLOT_IN_R_POUCH		30
 //=================================================
 
 // bitflags for clothing parts

@@ -241,7 +241,7 @@
 
 
 /obj/item/clothing/glasses/sunglasses/sechud/equipped(mob/living/carbon/human/user, slot)
-	if(slot == WEAR_EYES)
+	if(slot == SLOT_GLASSES)
 		var/datum/mob_hud/H = huds[hud_type]
 		H.add_hud_to(user)
 	..()

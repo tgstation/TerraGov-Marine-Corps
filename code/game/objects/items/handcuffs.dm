@@ -40,7 +40,7 @@
 	if (ishuman(target))
 		var/mob/living/carbon/human/H = target
 
-		if (!H.has_limb_for_slot(WEAR_HANDCUFFS))
+		if (!H.has_limb_for_slot(SLOT_HANDCUFFED))
 			to_chat(user, "\red \The [H] needs at least two wrists before you can cuff them together!")
 			return
 
@@ -52,16 +52,16 @@
 		user.visible_message("<span class='notice'>[user] tries to put [src] on [H].</span>")
 		if(do_mob(user, H, cuff_delay, BUSY_ICON_HOSTILE, BUSY_ICON_GENERIC))
 			if(src == user.get_active_hand() && !H.handcuffed && Adjacent(user))
-				if(H.has_limb_for_slot(WEAR_HANDCUFFS))
+				if(H.has_limb_for_slot(SLOT_HANDCUFFED))
 					user.dropItemToGround(src)
-					H.equip_to_slot_if_possible(src, WEAR_HANDCUFFS, 1, 0, 1, 1)
+					H.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)
 
 	else if (ismonkey(target))
 		user.visible_message("<span class='notice'>[user] tries to put [src] on [target].</span>")
 		if(do_mob(user, target, 30, BUSY_ICON_HOSTILE, BUSY_ICON_GENERIC))
 			if(src == user.get_active_hand() && !target.handcuffed && Adjacent(user))
 				user.dropItemToGround(src)
-				target.equip_to_slot_if_possible(src, WEAR_HANDCUFFS, 1, 0, 1, 1)
+				target.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)
 
 
 /obj/item/handcuffs/zip
@@ -135,7 +135,7 @@
 
 		if (ishuman(C))
 			var/mob/living/carbon/human/H = C
-			if (!H.has_limb_for_slot(WEAR_HANDCUFFS))
+			if (!H.has_limb_for_slot(SLOT_HANDCUFFED))
 				to_chat(user, "\red \The [H] needs at least two wrists before you can cuff them together!")
 				return
 

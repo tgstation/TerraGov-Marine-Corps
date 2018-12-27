@@ -19,7 +19,7 @@
 		W.forceMove(src)
 		l_hand = W
 		W.layer = ABOVE_HUD_LAYER
-		W.equipped(src,WEAR_L_HAND)
+		W.equipped(src,SLOT_L_HAND)
 		update_inv_l_hand()
 		return 1
 	return 0
@@ -32,7 +32,7 @@
 		W.forceMove(src)
 		r_hand = W
 		W.layer = ABOVE_HUD_LAYER
-		W.equipped(src,WEAR_R_HAND)
+		W.equipped(src,SLOT_R_HAND)
 		update_inv_r_hand()
 		return 1
 	return 0
@@ -139,26 +139,86 @@
 
 
 //Outdated but still in use apparently. This should at least be a human proc.
-/mob/proc/get_equipped_items()
+/mob/proc/get_equipped_items(include_pockets = FALSE)
 	var/list/items = new/list()
 
-	if(hasvar(src,"back")) if(src:back) items += src:back
-	if(hasvar(src,"belt")) if(src:belt) items += src:belt
-	if(hasvar(src,"wear_ear")) if(src:wear_ear) items += src:wear_ear
-	if(hasvar(src,"glasses")) if(src:glasses) items += src:glasses
-	if(hasvar(src,"gloves")) if(src:gloves) items += src:gloves
-	if(hasvar(src,"head")) if(src:head) items += src:head
-	if(hasvar(src,"shoes")) if(src:shoes) items += src:shoes
-	if(hasvar(src,"wear_id")) if(src:wear_id) items += src:wear_id
-	if(hasvar(src,"wear_mask")) if(src:wear_mask) items += src:wear_mask
-	if(hasvar(src,"wear_suit")) if(src:wear_suit) items += src:wear_suit
-//	if(hasvar(src,"w_radio")) if(src:w_radio) items += src:w_radio  commenting this out since headsets go on your ears now PLEASE DON'T BE MAD KEELIN
-	if(hasvar(src,"w_uniform")) if(src:w_uniform) items += src:w_uniform
-
-	//if(hasvar(src,"l_hand")) if(src:l_hand) items += src:l_hand
-	//if(hasvar(src,"r_hand")) if(src:r_hand) items += src:r_hand
+	if(hasvar(src,"back"))
+		if(src:back)
+			items += src:back
+	if(hasvar(src,"belt"))
+		if(src:belt)
+			items += src:belt
+	if(hasvar(src,"wear_ear"))
+		if(src:wear_ear)
+			items += src:wear_ear
+	if(hasvar(src,"glasses"))
+		if(src:glasses)
+			items += src:glasses
+	if(hasvar(src,"gloves"))
+		if(src:gloves)
+			items += src:gloves
+	if(hasvar(src,"head"))
+		if(src:head)
+			items += src:head
+	if(hasvar(src,"shoes"))
+		if(src:shoes)
+			items += src:shoes
+	if(hasvar(src,"wear_id"))
+		if(src:wear_id)
+			items += src:wear_id
+	if(hasvar(src,"wear_mask"))
+		if(src:wear_mask)
+			items += src:wear_mask
+	if(hasvar(src,"wear_suit"))
+		if(src:wear_suit)
+			items += src:wear_suit
+	if(hasvar(src,"w_uniform"))
+		if(src:w_uniform)
+			items += src:w_uniform
+	if(include_pockets)
+		if(hasvar(src,"l_store"))
+			if(src:l_store)
+				items += src:l_store
+		if(hasvar(src,"r_store"))
+			if(src:r_store)
+				items += src:r_store
+		if(hasvar(src,"s_store"))
+			if(src:s_store)
+				items += src:s_store
 
 	return items
+
+/mob/living/proc/unequip_everything()
+	var/list/items = list()
+	items |= get_equipped_items(TRUE)
+	for(var/I in items)
+		dropItemToGround(I)
+	drop_all_held_items()
+
+
+/mob/living/carbon/proc/check_obscured_slots()
+	var/list/obscured = list()
+	var/hidden_slots = NONE
+
+	for(var/obj/item/I in get_equipped_items())
+		hidden_slots |= I.flags_inv_hide
+
+	if(hidden_slots & HIDEMASK)
+		obscured |= SLOT_WEAR_MASK
+	if(hidden_slots & HIDEEYES)
+		obscured |= SLOT_GLASSES
+	if(hidden_slots & HIDEEARS)
+		obscured |= SLOT_EARS
+	if(hidden_slots & HIDEGLOVES)
+		obscured |= SLOT_GLOVES
+	if(hidden_slots & HIDEJUMPSUIT)
+		obscured |= SLOT_W_UNIFORM
+	if(hidden_slots & HIDESHOES)
+		obscured |= SLOT_SHOES
+	if(hidden_slots & HIDESUITSTORAGE)
+		obscured |= SLOT_S_STORE
+
+	return obscured
 
 //proc to get the item in the active hand.
 /mob/proc/get_held_item()
@@ -177,75 +237,75 @@
 	//warning: icky code
 	var/equipped = 0
 	switch(slot)
-		if(WEAR_BACK)
+		if(SLOT_BACK)
 			if(!src.back)
 				src.back = W
 				equipped = 1
-		if(WEAR_FACE)
+		if(SLOT_WEAR_MASK)
 			if(!src.wear_mask)
 				src.wear_mask = W
 				equipped = 1
-		if(WEAR_HANDCUFFS)
+		if(SLOT_HANDCUFFED)
 			if(!src.handcuffed)
 				src.handcuffed = W
 				equipped = 1
-		if(WEAR_L_HAND)
+		if(SLOT_L_HAND)
 			if(!src.l_hand)
 				src.l_hand = W
 				equipped = 1
-		if(WEAR_R_HAND)
+		if(SLOT_R_HAND)
 			if(!src.r_hand)
 				src.r_hand = W
 				equipped = 1
-		if(WEAR_WAIST)
+		if(SLOT_BELT)
 			if(!src.belt && src.w_uniform)
 				src.belt = W
 				equipped = 1
-		if(WEAR_ID)
+		if(SLOT_WEAR_ID)
 			if(!src.wear_id /* && src.w_uniform */)
 				src.wear_id = W
 				equipped = 1
-		if(WEAR_EAR)
+		if(SLOT_EARS)
 			if(!wear_ear)
 				wear_ear = W
 				equipped = 1
-		if(WEAR_EYES)
+		if(SLOT_GLASSES)
 			if(!src.glasses)
 				src.glasses = W
 				equipped = 1
-		if(WEAR_HANDS)
+		if(SLOT_GLOVES)
 			if(!src.gloves)
 				src.gloves = W
 				equipped = 1
-		if(WEAR_HEAD)
+		if(SLOT_HEAD)
 			if(!src.head)
 				src.head = W
 				equipped = 1
-		if(WEAR_FEET)
+		if(SLOT_SHOES)
 			if(!src.shoes)
 				src.shoes = W
 				equipped = 1
-		if(WEAR_JACKET)
+		if(SLOT_WEAR_SUIT)
 			if(!src.wear_suit)
 				src.wear_suit = W
 				equipped = 1
-		if(WEAR_BODY)
+		if(SLOT_W_UNIFORM)
 			if(!src.w_uniform)
 				src.w_uniform = W
 				equipped = 1
-		if(WEAR_L_STORE)
+		if(SLOT_L_STORE)
 			if(!src.l_store && src.w_uniform)
 				src.l_store = W
 				equipped = 1
-		if(WEAR_R_STORE)
+		if(SLOT_R_STORE)
 			if(!src.r_store && src.w_uniform)
 				src.r_store = W
 				equipped = 1
-		if(WEAR_J_STORE)
+		if(SLOT_S_STORE)
 			if(!src.s_store && src.wear_suit)
 				src.s_store = W
 				equipped = 1
-		if(WEAR_IN_BACK)
+		if(SLOT_IN_BACKPACK)
 			if (src.back && istype(src.back, /obj/item/storage/backpack))
 				var/obj/item/storage/backpack/B = src.back
 				if(B.contents.len < B.storage_slots && W.w_class <= B.max_w_class)

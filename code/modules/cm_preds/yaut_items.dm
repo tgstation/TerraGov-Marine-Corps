@@ -76,15 +76,15 @@
 		qdel(G)
 	switch(current_goggles)
 		if(0)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/yautja(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/yautja(M), SLOT_GLASSES)
 			to_chat(M, "<span class='notice'>Low-light vision module: activated.</span>")
 			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 		if(1)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/yautja(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/yautja(M), SLOT_GLASSES)
 			to_chat(M, "<span class='notice'>Thermal sight module: activated.</span>")
 			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 		if(2)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/meson/yautja(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/meson/yautja(M), SLOT_GLASSES)
 			to_chat(M, "<span class='notice'>Material vision module: activated.</span>")
 			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 		if(3)
@@ -96,7 +96,7 @@
 
 
 /obj/item/clothing/mask/gas/yautja/equipped(mob/living/carbon/human/user, slot)
-	if(slot == WEAR_FACE)
+	if(slot == SLOT_WEAR_MASK)
 		var/datum/mob_hud/H = huds[MOB_HUD_MEDICAL_ADVANCED]
 		H.add_hud_to(user)
 	..()
@@ -304,7 +304,7 @@
 	..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(slot == WEAR_HANDS && H.species && H.species.name == "Yautja")
+		if(slot == SLOT_GLOVES && H.species && H.species.name == "Yautja")
 			START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/gloves/yautja/dropped(mob/user)

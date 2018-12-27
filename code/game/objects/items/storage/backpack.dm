@@ -58,7 +58,7 @@
 	return 1
 
 /obj/item/storage/backpack/equipped(mob/user, slot)
-	if(slot == WEAR_BACK)
+	if(slot == SLOT_BACK)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
 		if(use_sound)
 			playsound(loc, use_sound, 15, 1, 6)
@@ -549,7 +549,7 @@
 /obj/item/storage/backpack/marine/satchel/scout_cloak/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user))
 		return FALSE
-	if(slot != WEAR_BACK)
+	if(slot != SLOT_BACK)
 		return FALSE
 	return TRUE
 

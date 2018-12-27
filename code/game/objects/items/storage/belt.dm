@@ -14,7 +14,7 @@
 
 
 /obj/item/storage/belt/equipped(mob/user, slot)
-	if(slot == WEAR_WAIST)
+	if(slot == SLOT_BELT)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
 	..()
 

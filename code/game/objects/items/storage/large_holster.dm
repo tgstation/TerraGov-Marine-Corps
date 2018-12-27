@@ -23,7 +23,7 @@
 
 
 /obj/item/storage/large_holster/equipped(mob/user, slot)
-	if(slot == WEAR_BACK || slot == WEAR_WAIST || slot == WEAR_J_STORE)
+	if(slot == SLOT_BACK || slot == SLOT_BELT || slot == SLOT_S_STORE)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
 	..()
 

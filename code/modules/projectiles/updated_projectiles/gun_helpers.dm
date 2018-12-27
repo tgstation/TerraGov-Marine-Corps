@@ -252,7 +252,7 @@ should be alright.
 	if(loc && user)
 		if(isnull(user.s_store) && isturf(loc))
 			var/obj/item/I = user.wear_suit
-			user.equip_to_slot_if_possible(src,WEAR_J_STORE)
+			user.equip_to_slot_if_possible(src,SLOT_S_STORE)
 			if(user.s_store == src)
 				to_chat(user, "<span class='warning'>[src] snaps into place on [I].</span>")
 			user.update_inv_s_store()
@@ -766,7 +766,7 @@ should be alright.
 
 
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
-	if(slot != WEAR_L_HAND && slot != WEAR_R_HAND)
+	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
 		return FALSE
 	return TRUE
 

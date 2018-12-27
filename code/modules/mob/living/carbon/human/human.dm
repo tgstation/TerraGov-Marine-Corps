@@ -520,7 +520,7 @@
 
 			var/placing = FALSE
 
-			if(place_item && !(place_item.flags_item & ITEM_ABSTRACT) && (place_item.mob_can_equip(src, WEAR_L_STORE, TRUE) || place_item.mob_can_equip(src, WEAR_R_STORE, TRUE)))
+			if(place_item && !(place_item.flags_item & ITEM_ABSTRACT) && (place_item.mob_can_equip(src, SLOT_L_STORE, TRUE) || place_item.mob_can_equip(src, SLOT_R_STORE, TRUE)))
 				to_chat(usr, "<span class='notice'>You try to place [place_item] into [src]'s pocket.</span>")
 				placing = TRUE
 			else
@@ -529,12 +529,12 @@
 			if(do_mob(usr, src, POCKET_STRIP_DELAY))
 				if(placing)
 					if(place_item && place_item == usr.get_active_hand())
-						if(place_item.mob_can_equip(src, WEAR_R_STORE, TRUE))
+						if(place_item.mob_can_equip(src, SLOT_R_STORE, TRUE))
 							dropItemToGround(place_item)
-							equip_to_slot_if_possible(place_item, WEAR_R_STORE, 1, 0, 1)
-						if(place_item.mob_can_equip(src, WEAR_L_STORE, TRUE))
+							equip_to_slot_if_possible(place_item, SLOT_R_STORE, 1, 0, 1)
+						if(place_item.mob_can_equip(src, SLOT_L_STORE, TRUE))
 							dropItemToGround(place_item)
-							equip_to_slot_if_possible(place_item, WEAR_L_STORE, 1, 0, 1)
+							equip_to_slot_if_possible(place_item, SLOT_L_STORE, 1, 0, 1)
 
 				else
 					if(r_store || l_store)
