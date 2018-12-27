@@ -218,6 +218,10 @@
 	icon_state = "bigsunglasses"
 	item_state = "bigsunglasses"
 
+/obj/item/clothing/glasses/sunglasses/big/prescription
+	name = "prescription sunglasses"
+	prescription = TRUE
+
 /obj/item/clothing/glasses/sunglasses/fake
 	desc = "A pair of designer sunglasses. Doesn't seem like it'll block flashes."
 	eye_protection = 0
@@ -230,6 +234,10 @@
 	desc = "A pair of larger than average designer sunglasses. Doesn't seem like it'll block flashes."
 	icon_state = "bigsunglasses"
 	item_state = "bigsunglasses"
+
+/obj/item/clothing/glasses/sunglasses/fake/big/prescription
+	name = "prescription sunglasses"
+	prescription = TRUE
 
 /obj/item/clothing/glasses/sunglasses/sechud
 	name = "HUDSunglasses"

@@ -280,6 +280,12 @@ var/global/list/gear_datums = list()
 	cost = 2
 	slot = WEAR_EYES
 
+/datum/gear/p_thugshades
+	display_name = "Big shades (prescription)"
+	path = /obj/item/clothing/glasses/sunglasses/fake/big/prescription
+	cost = 2
+	slot = WEAR_EYES
+
 /datum/gear/prescription
 	display_name = "Sunglasses (prescription)"
 	path = /obj/item/clothing/glasses/sunglasses/fake/prescription
