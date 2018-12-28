@@ -424,6 +424,67 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	log_admin("[key_name(src)] has granted [M.key] all skills.")
 	message_admins("\blue [key_name_admin(usr)] has granted [M.key] all skills.", 1)
 
+/client/proc/cmd_admin_changesquad(var/mob/M in mob_list)
+	set category = "Admin"
+	set name = "Change Squad"
+
+	if(!check_rights(R_DEBUG|R_ADMIN))
+		alert("Insufficient permissions.")
+		return
+
+	if(!ticker)
+		alert("Wait until the game starts.")
+		return
+
+	if(!istype(M, /mob/living/carbon/human))
+		alert("Invalid mob.")
+		return
+
+	var/mob/living/carbon/human/H = M
+
+	if(!H.mind?.assigned_role)
+		alert("Mob has no mind.")
+		return
+
+	switch(H.mind.assigned_role)
+		if(!("Squad Marine" || "Squad Engineer" || "Squad Medic" || "Squad Smartgunner" || "Squad Specialist" || "Squad Leader"))
+			alert("Invalid role")
+			return
+
+
+	if(!istype(H.wear_id, /obj/item/card/id))
+		alert("Mob has no ID.")
+		return
+
+	if(H.assigned_squad)
+		var/datum/squad/PS = H.assigned_squad
+		PS.remove_marine_from_squad(H)
+
+	var/datum/squad/S = input(usr, "Choose the marine's new squad") as null|anything in RoleAuthority.squads
+	if(!S) 
+		return
+
+	S.put_marine_in_squad(H)
+
+	for(var/datum/data/record/t in data_core.general) //we update the crew manifest
+		if(t.fields["name"] == H.real_name)
+			t.fields["squad"] = S.name
+			break
+
+	var/obj/item/card/id/ID = H.wear_id
+	ID.assigned_fireteam = 0 //reset fireteam assignment
+
+	//Changes headset frequency to match new squad
+	var/obj/item/device/radio/headset/almayer/marine/E = H.wear_ear
+	if(istype(E, /obj/item/device/radio/headset/almayer/marine))
+		E.set_frequency(S.radio_freq)
+
+	H.hud_set_squad()
+
+	feedback_add_details("admin_verb","CSQ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(src)] has changed the squad of [M.key] to [S].")
+	message_admins("\blue [key_name_admin(usr)] has changed the squad of [M.key] to [S].", 1)
+
 /client/proc/cmd_assume_direct_control(var/mob/M in mob_list)
 	set category = "Admin"
 	set name = "Assume direct control"
