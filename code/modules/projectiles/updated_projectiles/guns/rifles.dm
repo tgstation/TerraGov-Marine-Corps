@@ -421,7 +421,7 @@
 	recoil_unwielded = config.high_recoil_value
 
 //-------------------------------------------------------
-//M41A PULSE RIFLE
+//MK224
 
 /obj/item/weapon/gun/rifle/mk224
 	name = "\improper MK224 Tactical Shotgun"
@@ -442,7 +442,7 @@
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/magnetic_harness,
-						/obj/item/attachable/stock/rifle,
+						/obj/item/attachable/stock/tactical,
 						/obj/item/attachable/attached_gun/grenade,
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/scope/mini)
@@ -452,7 +452,7 @@
 
 /obj/item/weapon/gun/rifle/mk224/New()
 	. = ..()
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
 
 /obj/item/weapon/gun/rifle/mk224/set_gun_config_values()
 	fire_delay = config.tacshottie_fire_delay - config.mlow_fire_delay 
