@@ -215,16 +215,16 @@
 				distress_cancel = FALSE
 				just_called = TRUE
 				spawn(1 MINUTE)
-					if(!distress_cancel || !ticker.mode.on_distress_cooldown)
+					just_called = FALSE
+					cooldown_request = world.time
+					if(distress_cancel || ticker.mode.on_distress_cooldown || ticker.mode.waiting_for_candidates)
+						return FALSE
+					else
 						ticker.mode.activate_distress()
+						state = STATE_DISTRESS
 						log_game("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within 60 seconds.")
 						message_admins("A distress beacon requested by [key_name_admin(usr)] was automatically sent due to not receiving an answer within 60 seconds.", 1)
-					just_called = FALSE
-
-				cooldown_request = world.time
-				return TRUE
-
-			state = STATE_DISTRESS
+						return TRUE
 
 		if("messagelist")
 			currmsg = 0
