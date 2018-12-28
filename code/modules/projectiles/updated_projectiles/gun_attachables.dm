@@ -536,7 +536,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/scope/mini/activate_attachment(obj/item/weapon/gun/G, mob/living/carbon/user, turn_off)
 	if(turn_off)
 		if(G.zoom)
-			accuracy_mod = -config.low_hit_accuracy_mult
+			accuracy_mod = null
 			G.zoom(user, zoom_offset, zoom_viewsize)
 		return TRUE
 
@@ -1111,7 +1111,7 @@ Defined in conflicts.dm of the #defines folder.
 		G.aim_slowdown += SLOWDOWN_ADS_SCOPE
 		G.wield_delay += WIELD_DELAY_FAST
 	G.update_slowdown()
-		
+
 	//var/image/targeting_icon = image('icons/mob/mob.dmi', null, "busy_targeting", "pixel_y" = 22) //on hold until the bipod is fixed
 	if(bipod_deployed)
 		icon_state = "bipod-on"
@@ -1140,12 +1140,12 @@ Defined in conflicts.dm of the #defines folder.
 	for(var/obj/O in T)
 		if(O.throwpass && O.density && O.dir == user.dir && O.flags_atom & ON_BORDER)
 			return O
-	
-	T = get_step(T, user.dir) 
+
+	T = get_step(T, user.dir)
 	for(var/obj/O in T)
 		if((istype(O, /obj/structure/window_frame)))
 			return O
-	
+
 	return FALSE
 
 
