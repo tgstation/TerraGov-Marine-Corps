@@ -989,7 +989,7 @@
 				chassis.visible_message("\red [chassis] rips [target]'s arms off.")
 			else
 				step_away(M,chassis)
-				chassis.occupant_message("You smash into [target], sending them flying.")
+				chassis.occupant_message("You smash into [target], sending [target.p_them()] flying.")
 				chassis.visible_message("[chassis] tosses [target] like a piece of paper.")
 			set_ready_state(0)
 			chassis.use_power(energy_drain)

@@ -406,9 +406,7 @@
 					R.cell.charge -= 20
 				else
 					B.deductcharge(B.hitcost)
-				user.visible_message( \
-					"<span class='danger'>[user] was stunned by \his wet [O]!</span>", \
-					"<span class='userdanger'>[user] was stunned by \his wet [O]!</span>")
+				user.visible_message("<span class='danger'>[user] was stunned by [user.p_their()] wet [O]!</span>")
 				return
 
 	var/turf/location = user.loc

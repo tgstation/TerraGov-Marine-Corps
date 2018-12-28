@@ -12,7 +12,7 @@
 	attack_verb = list("flogged", "whipped", "lashed", "disciplined")
 
 	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is strangling \himself with the [src.name]! It looks like \he's trying to commit suicide.</b>"
+		user.visible_message("<span class='danger'>[user] is strangling [p_them()]self with the [src.name]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 		return (OXYLOSS)
 
 

@@ -588,8 +588,8 @@
 	if(L.status & LIMB_DESTROYED)
 		return FALSE
 
-	visible_message("<span class='xenowarning'>\The [src] rips [M]'s [L.display_name] away from \his body!</span>", \
-	"<span class='xenowarning'>\The [M]'s [L.display_name] rips away from \his body!</span>")
+	visible_message("<span class='xenowarning'>\The [src] rips [M]'s [L.display_name] away from [M.p_their()] body!</span>", \
+	"<span class='xenowarning'>\The [M]'s [L.display_name] rips away from [M.p_their()] body!</span>")
 	log_message(src, M, "ripped the [L.display_name] off", addition="2/2 progress")
 
 	L.droplimb()

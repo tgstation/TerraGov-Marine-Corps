@@ -78,10 +78,10 @@
 				return
 
 
-		viewers(src) << pick("\red <b>[src] is attempting to bite \his tongue off! It looks like \he's trying to commit suicide.</b>", \
-							"\red <b>[src] is jamming \his thumbs into \his eye sockets! It looks like \he's trying to commit suicide.</b>", \
-							"\red <b>[src] is twisting \his own neck! It looks like \he's trying to commit suicide.</b>", \
-							"\red <b>[src] is holding \his breath! It looks like \he's trying to commit suicide.</b>")
+		visible_message(pick("<span class='danger'>[src] is attempting to bite [p_their()] tongue off! It looks like [p_theyre()] trying to commit suicide.</span>", \
+							"<span class='danger'>[src] is jamming [p_their()] thumbs into [p_their()] eye sockets! It looks like [p_theyre()] trying to commit suicide.</span>", \
+							"<span class='danger'>[src] is twisting [p_their()] own neck! It looks like [p_theyre()] trying to commit suicide.</span>", \
+							"<span class='danger'>[src] is holding [p_their()] breath! It looks like [p_theyre()] trying to commit suicide.</span>"))
 		adjustOxyLoss(max(175 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		updatehealth()
 
@@ -132,7 +132,7 @@
 			return
 		suiciding = 1
 		//instead of killing them instantly, just put them at -175 health and let 'em gasp for a while
-		viewers(src) << "\red <b>[src] is attempting to bite \his tongue. It looks like \he's trying to commit suicide.</b>"
+		visible_message("<span class='danger'>[src] is attempting to bite [p_their()] tongue. It looks like [p_theyre()] trying to commit suicide.</span>")
 		adjustOxyLoss(max(175- getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		updatehealth()
 
@@ -151,7 +151,7 @@
 
 	if(confirm == "Yes")
 		suiciding = 1
-		viewers(src) << "\red <b>[src] is powering down. It looks like \he's trying to commit suicide.</b>"
+		visible_message("<span class='danger'>[src] is powering down. It looks like [p_theyre()] trying to commit suicide.</span>")
 		//put em at -175
 		adjustOxyLoss(max(maxHealth * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		updatehealth()
@@ -171,7 +171,7 @@
 
 	if(confirm == "Yes")
 		suiciding = 1
-		viewers(src) << "\red <b>[src] is powering down. It looks like \he's trying to commit suicide.</b>"
+		visible_message("<span class='danger'>[src] is powering down. It looks like [p_theyre()] trying to commit suicide.</span>")
 		//put em at -175
 		adjustOxyLoss(max(maxHealth * 2 - getToxLoss() - getFireLoss() - getBruteLoss() - getOxyLoss(), 0))
 		updatehealth()

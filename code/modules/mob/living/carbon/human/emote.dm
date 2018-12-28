@@ -184,7 +184,7 @@
 					if (M.canmove && !M.r_hand && !M.is_mob_restrained())
 						message = "<B>[comm_paygrade][src]</B> shakes hands with [M]."
 					else
-						message = "<B>[comm_paygrade][src]</B> holds out \his hand to [M]."
+						message = "<B>[comm_paygrade][src]</B> holds out [p_their()] hand to [M]."
 
 		if("hug")
 			m_type = 1
@@ -201,7 +201,7 @@
 				if (M)
 					message = "<B>[comm_paygrade][src]</B> hugs [M]."
 				else
-					message = "<B>[comm_paygrade][src]</B> hugs \himself."
+					message = "<B>[comm_paygrade][src]</B> hugs [p_them()]self."
 
 		if ("laugh")
 			if (!muzzled)
@@ -293,7 +293,7 @@
 					playsound(loc, species.screams[NEUTER], 50)
 
 		if("shakehead")
-			message = "<B>[comm_paygrade][src]</B> shakes \his head."
+			message = "<B>[comm_paygrade][src]</B> shakes [p_their()] head."
 			m_type = 1
 
 		if ("shiver")
