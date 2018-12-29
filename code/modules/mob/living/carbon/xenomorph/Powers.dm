@@ -878,6 +878,7 @@
 	armor_bonus -= xeno_caste.fortify_armor
 	xeno_explosion_resistance = 0
 	frozen = FALSE
+	fortify = FALSE
 	anchored = FALSE
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, 1)
 	update_canmove()
