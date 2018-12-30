@@ -7,7 +7,7 @@
 
 /world/New()
 
-	hub_password = "[config.hub_password]"
+	hub_password = "kMZy3U5jJHSiBQjr"
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
 
 	makeDatumRefLists()
