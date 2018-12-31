@@ -1044,10 +1044,10 @@ table tr:first-child th:first-child { border: none;}
 					if(!electronics)
 						circuit = new/obj/item/circuitboard/airalarm( src.loc )
 					else
-						circuit = electronics
+						circuit = new electronics( src.loc )
 						if(electronics.is_general_board)
 							circuit.set_general()
-						circuit.loc = src.loc
+					electronics = null
 					buildstage = 0
 					update_icon()
 				return

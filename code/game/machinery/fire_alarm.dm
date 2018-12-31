@@ -105,10 +105,10 @@ FIRE ALARM
 						if(!electronics)
 							circuit = new/obj/item/circuitboard/firealarm( src.loc )
 						else
-							circuit = electronics
+							circuit = new electronics( src.loc )
 							if(electronics.is_general_board)
 								circuit.set_general()
-							circuit.loc = src.loc
+						electronics = null
 						buildstage = 0
 						update_icon()
 			if(0)
