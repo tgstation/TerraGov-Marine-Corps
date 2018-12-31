@@ -2370,6 +2370,25 @@ ENGINEERING
 					/obj/item/circuitboard/machine/pacman/super
 					)
 
+/datum/supply_packs/general_circuitboards
+	name = "General circuitboard crate (10x)"
+	cost = RO_PRICE_NEAR_FREE
+	containername = "\improper General circuit board crate (10x)"
+	containertype = /obj/structure/closet/crate/secure
+	group = "Engineering"
+	contains = list(
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/device/multitool,
+					)
 
 /*******************************************************************************
 SCIENCE
