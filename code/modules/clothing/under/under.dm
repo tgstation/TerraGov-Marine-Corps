@@ -107,7 +107,7 @@
 			if(2)
 				to_chat(user, "Its vital tracker appears to be enabled.")
 			if(3)
-				to_chat(user, "Its vital tracker and tracking beacon appear to be enabled.")
+				to_chat(user, "Its vital tracker and tracking beacon appears to be enabled.")
 	if(hastie)
 		to_chat(user, "\A [hastie] is clipped to it.")
 
