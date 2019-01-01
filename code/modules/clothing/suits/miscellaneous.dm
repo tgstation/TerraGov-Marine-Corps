@@ -171,22 +171,22 @@
 	flags_inv_hide = HIDEJUMPSUIT
 
 /obj/item/clothing/suit/white_dress_jacket
-	name = "White Dress Jacket"
+	name = "White Dress Jacket" 
 	desc = "The perfect white jacket to go with your white dress uniform."
-	icon_state = "white_dress_jacket"
-	item_state = "white_dress_jacket"
+	icon_state = "white_dress_jacket" //with thanks to Baystation12
+	item_state = "white_dress_jacket" //with thanks to Baystation12
 
 /obj/item/clothing/suit/officer_cloak
 	name = "Officer Cloak"
 	desc = "A dashing cloak as befitting an officer."
-	icon_state = "officer_cloak"
-	item_state = "officer_cloak"
+	icon_state = "officer_cloak" //with thanks to Baystation12
+	item_state = "officer_cloak" //with thanks to Baystation12
 
 /obj/item/clothing/suit/commander_cloak
 	name = "Commander's Cloak"
 	desc = "An opulant cloak detailed with your many accomplishments."
-	icon_state = "commander_cloak"
-	item_state = "commander_cloak"
+	icon_state = "commander_cloak" //with thanks to Baystation12
+	item_state = "commander_cloak" //with thanks to Baystation12
 
 /*
  * Misc
