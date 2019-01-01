@@ -170,6 +170,12 @@
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
 	flags_inv_hide = HIDEJUMPSUIT
 
+/obj/item/clothing/suit/white_dress_jacket
+	name = "White Dress Jacket"
+	desc = "The perfect white jacket to go with your white dress uniform."
+	icon_state = "white_dress_jacket"
+	item_state = "white_dress_jacket"
+
 /*
  * Misc
  */
