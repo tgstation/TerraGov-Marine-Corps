@@ -54,13 +54,24 @@
 
 
 /obj/structure/extinguisher_cabinet/update_icon()
-	if(!opened)
-		icon_state = "extinguisher_closed"
-		return
-	if(has_extinguisher)
-		if(istype(has_extinguisher, /obj/item/tool/extinguisher/mini))
-			icon_state = "extinguisher_mini"
-		else
-			icon_state = "extinguisher_full"
-	else
-		icon_state = "extinguisher_empty"
+	overlays.Cut()
+	icon_state = "extinguisher[opened]"
+
+	if(opened && has_extinguisher)
+		overlays += "extinguishero_[has_extinguisher.sprite_name]"
+
+/obj/structure/extinguisher_cabinet/north
+	dir = NORTH
+	pixel_y = 32
+
+/obj/structure/extinguisher_cabinet/south
+	dir = SOUTH
+	pixel_y = -32
+
+/obj/structure/extinguisher_cabinet/east
+	dir = EAST
+	pixel_x = 32
+
+/obj/structure/extinguisher_cabinet/west
+	dir = WEST
+	pixel_x = -32

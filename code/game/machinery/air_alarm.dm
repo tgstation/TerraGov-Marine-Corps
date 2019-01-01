@@ -60,7 +60,7 @@
 
 /obj/machinery/alarm
 	name = "alarm"
-	icon = 'icons/obj/machines/monitors.dmi' // I made these really quickly because idk where they have their new air alarm ~Art
+	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "alarm0"
 	anchored = 1
 	use_power = 1
@@ -108,7 +108,7 @@
 
 
 
-/obj/machinery/alarm/New(var/loc, var/direction, var/building = 0)
+/obj/machinery/alarm/New(location, direction, building = FALSE)
 	..()
 
 	if(building)
@@ -116,22 +116,33 @@
 			src.loc = loc
 
 		if(direction)
-			src.dir = direction
+			dir = direction
 
 		buildstage = 0
-		wiresexposed = 1
-		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
-		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
+		wiresexposed = TRUE
+		switch(dir)
+			if(NORTH)
+				pixel_y = 32
+			if(SOUTH)
+				pixel_y = -32
+			if(EAST)
+				pixel_x = 32
+			if(WEST)
+				pixel_x = -32
 		update_icon()
-		if(ticker && ticker.current_state == 3)//if the game is running
-			src.initialize()
+		if(ticker?.current_state == GAME_STATE_PLAYING)//if the game is running
+			initialize()
 		return
 
 	switch(dir)
-		if(NORTH) pixel_y = 25
-		if(SOUTH) pixel_y = -25
-		if(EAST) pixel_x = 25
-		if(WEST) pixel_x = -25
+		if(NORTH)
+			pixel_y = 32
+		if(SOUTH)
+			pixel_y = -32
+		if(EAST)
+			pixel_x = 32
+		if(WEST)
+			pixel_x = -32
 
 	first_run()
 	start_processing()
@@ -248,6 +259,9 @@
 	return 0
 
 /obj/machinery/alarm/update_icon()
+	if(buildstage != 2)
+		icon_state = "alarm-b1"
+		return
 	if(wiresexposed)
 		icon_state = "alarmx"
 		return
@@ -259,13 +273,7 @@
 	if (alarm_area.atmosalm)
 		icon_level = max(icon_level, 1)	//if there's an atmos alarm but everything is okay locally, no need to go past yellow
 
-	switch(icon_level)
-		if (0)
-			icon_state = "alarm0"
-		if (1)
-			icon_state = "alarm2" //yes, alarm2 is yellow alarm
-		if (2)
-			icon_state = "alarm1"
+	icon_state = "alarm[icon_level]"
 
 /obj/machinery/alarm/receive_signal(datum/signal/signal)
 	if(stat & (NOPOWER|BROKEN))
@@ -968,6 +976,7 @@ table tr:first-child th:first-child { border: none;}
 					to_chat(usr, "<span class='notice'>You cut last of wires inside [src]</span>")
 					update_icon()
 					buildstage = 1
+					update_icon()
 				return
 
 		else if (href_list["pulse"])

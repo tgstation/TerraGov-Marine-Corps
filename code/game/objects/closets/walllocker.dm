@@ -1,45 +1,46 @@
-//added by cael from old bs12
-//not sure if there's an immediate place for secure wall lockers, but i'm sure the players will think of something
-
 /obj/structure/closet/walllocker
+	name = "wall locker"
 	desc = "A wall mounted storage locker."
-	name = "Wall Locker"
-	icon = 'icons/obj/structures/walllocker.dmi'
+	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "wall-locker"
-	density = 0
-	anchored = 1
+	density = FALSE
+	anchored = TRUE
 	icon_closed = "wall-locker"
 	icon_opened = "wall-lockeropen"
-	wall_mounted = 1
+	store_mobs = FALSE
+	wall_mounted = TRUE
 
-//spawns endless (3 sets) amounts of breathmask, emergency oxy tank and crowbar
+/obj/structure/closet/walllocker/update_icon()
+	overlays.Cut()
+	if(!opened)
+		icon_state = icon_closed
+		if(welded)
+			overlays += image(icon, "[icon_closed]welded")
+	else
+		icon_state = icon_opened
 
-/obj/structure/closet/walllocker/emerglocker
+/obj/structure/closet/walllocker/north
+	pixel_y = 32
+	dir = SOUTH
+
+/obj/structure/closet/walllocker/south
+	pixel_y = -32
+	dir = NORTH
+
+/obj/structure/closet/walllocker/west
+	pixel_x = -32
+	dir = WEST
+
+/obj/structure/closet/walllocker/east
+	pixel_x = 32
+	dir = EAST
+
+/obj/structure/closet/walllocker/emerglocker //wall mounted emergency closet
 	name = "emergency locker"
-	desc = "A wall mounted locker with emergency supplies."
-	var/list/spawnitems = list(/obj/item/tank/emergency_oxygen/double,/obj/item/clothing/mask/gas)
-	var/amount = 6 // spawns each items X times.
 	icon_state = "emerg"
-
-/obj/structure/closet/walllocker/emerglocker/toggle(mob/user as mob)
-	src.attack_hand(user)
-	return
-
-/obj/structure/closet/walllocker/emerglocker/attackby(obj/item/W as obj, mob/user as mob)
-	return
-
-/obj/structure/closet/walllocker/emerglocker/attack_hand(mob/user as mob)
-	if (istype(user, /mob/living/silicon/ai))	//Added by Strumpetplaya - AI shouldn't be able to
-		return									//activate emergency lockers.  This fixes that.  (Does this make sense, the AI can't call attack_hand, can it? --Mloc)
-	if(!amount)
-		to_chat(usr, "<spawn class='notice'>It's empty..")
-		return
-	if(amount)
-		to_chat(usr, "<spawn class='notice'>You take out some items from \the [src].")
-		for(var/path in spawnitems)
-			new path(src.loc)
-		amount--
-	return
+	icon_closed = "emerg"
+	icon_opened = "emergopen"
+	desc = "A wall mounted locker with emergency supplies."
 
 /obj/structure/closet/walllocker/emerglocker/north
 	pixel_y = 32
@@ -54,5 +55,104 @@
 	dir = WEST
 
 /obj/structure/closet/walllocker/emerglocker/east
+	pixel_x = 32
+	dir = EAST
+
+/obj/structure/walllocker/emerglocker/full // spawners
+
+/obj/structure/walllocker/emerglocker/full/New()
+	. = ..()
+	sleep(2)
+	for(var/i in 1 to 2)
+		new /obj/item/tank/emergency_oxygen/double(src)
+		new /obj/item/clothing/mask/gas(src)
+
+/obj/structure/closet/walllocker/emerglocker/full/north
+	pixel_y = 32
+	dir = SOUTH
+
+/obj/structure/closet/walllocker/emerglocker/full/south
+	pixel_y = -32
+	dir = NORTH
+
+/obj/structure/closet/walllocker/emerglocker/full/west
+	pixel_x = -32
+	dir = WEST
+
+/obj/structure/closet/walllocker/emerglocker/full/east
+	pixel_x = 32
+	dir = EAST
+
+/obj/structure/closet/walllocker/hydrant //wall mounted fire closet
+	name = "fire-safety locker"
+	desc = "A wall mounted storage unit for fire-fighting supplies."
+	icon_state = "hydrant"
+	icon_closed = "hydrant"
+	icon_opened = "hydrantopen"
+
+/obj/structure/closet/walllocker/hydrant/north
+	pixel_y = 32
+	dir = SOUTH
+
+/obj/structure/closet/walllocker/hydrant/south
+	pixel_y = -32
+	dir = NORTH
+
+/obj/structure/closet/walllocker/hydrant/west
+	pixel_x = -32
+	dir = WEST
+
+/obj/structure/closet/walllocker/hydrant/east
+	pixel_x = 32
+	dir = EAST
+
+/obj/structure/closet/walllocker/hydrant/full // spawners
+
+/obj/structure/closet/walllocker/hydrant/full/New()
+	. = ..()
+	sleep(2)
+	new /obj/item/clothing/suit/fire/firefighter(src)
+	new /obj/item/clothing/mask/gas(src)
+	new /obj/item/device/flashlight(src)
+	new /obj/item/tank/oxygen/red(src)
+	new /obj/item/tool/extinguisher(src)
+	new /obj/item/clothing/head/hardhat/red(src)
+
+/obj/structure/closet/walllocker/hydrant/full/north
+	pixel_y = 32
+	dir = SOUTH
+
+/obj/structure/closet/walllocker/hydrant/full/south
+	pixel_y = -32
+	dir = NORTH
+
+/obj/structure/closet/walllocker/hydrant/full/west
+	pixel_x = -32
+	dir = WEST
+
+/obj/structure/closet/walllocker/hydrant/full/east
+	pixel_x = 32
+	dir = EAST
+
+/obj/structure/closet/walllocker/medical_wall //wall mounted medical closet
+	name = "first-aid locker"
+	desc = "A wall mounted storage unit for first aid supplies."
+	icon_state = "medical_wall"
+	icon_closed = "medical_wall"
+	icon_opened = "medical_wallopen"
+
+/obj/structure/closet/walllocker/medical_wall/north
+	pixel_y = 32
+	dir = SOUTH
+
+/obj/structure/closet/walllocker/medical_wall/south
+	pixel_y = -32
+	dir = NORTH
+
+/obj/structure/closet/walllocker/medical_wall/west
+	pixel_x = -32
+	dir = WEST
+
+/obj/structure/closet/walllocker/medical_wall/east
 	pixel_x = 32
 	dir = EAST

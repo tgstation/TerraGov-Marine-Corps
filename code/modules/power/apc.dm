@@ -4,32 +4,32 @@
 #define APC_WIRE_AI_CONTROL 4
 
 //update_state
-#define UPSTATE_CELL_IN 1
-#define UPSTATE_OPENED1 2
-#define UPSTATE_OPENED2 4
-#define UPSTATE_MAINT 8
-#define UPSTATE_BROKE 16
-#define UPSTATE_BLUESCREEN 32
-#define UPSTATE_WIREEXP 64
-#define UPSTATE_ALLGOOD 128
+#define UPSTATE_OPENED1 (1<<0)
+#define UPSTATE_OPENED2 (1<<1)
+#define UPSTATE_MAINT (1<<2)
+#define UPSTATE_BROKE (1<<3)
+#define UPSTATE_WIREEXP (1<<4)
+#define UPSTATE_ALLGOOD (1<<5)
 
 //update_overlay
-#define APC_UPOVERLAY_CHARGEING0 1
-#define APC_UPOVERLAY_CHARGEING1 2
-#define APC_UPOVERLAY_CHARGEING2 4
-#define APC_UPOVERLAY_EQUIPMENT0 8
-#define APC_UPOVERLAY_EQUIPMENT1 16
-#define APC_UPOVERLAY_EQUIPMENT2 32
-#define APC_UPOVERLAY_LIGHTING0 64
-#define APC_UPOVERLAY_LIGHTING1 128
-#define APC_UPOVERLAY_LIGHTING2 256
-#define APC_UPOVERLAY_ENVIRON0 512
-#define APC_UPOVERLAY_ENVIRON1 1024
-#define APC_UPOVERLAY_ENVIRON2 2048
-#define APC_UPOVERLAY_LOCKED 4096
-#define APC_UPOVERLAY_OPERATING 8192
+#define APC_UPOVERLAY_CHARGEING0 (1<<0)
+#define APC_UPOVERLAY_CHARGEING1 (1<<1)
+#define APC_UPOVERLAY_CHARGEING2 (1<<2)
+#define APC_UPOVERLAY_EQUIPMENT0 (1<<3)
+#define APC_UPOVERLAY_EQUIPMENT1 (1<<4)
+#define APC_UPOVERLAY_EQUIPMENT2 (1<<5)
+#define APC_UPOVERLAY_LIGHTING0 (1<<6)
+#define APC_UPOVERLAY_LIGHTING1 (1<<7)
+#define APC_UPOVERLAY_LIGHTING2 (1<<8)
+#define APC_UPOVERLAY_ENVIRON0 (1<<9)
+#define APC_UPOVERLAY_ENVIRON1 (1<<10)
+#define APC_UPOVERLAY_ENVIRON2 (1<<11)
+#define APC_UPOVERLAY_LOCKED (1<<12)
+#define APC_UPOVERLAY_OPERATING (1<<13)
+#define APC_UPOVERLAY_CELL_IN (1<<14)
+#define APC_UPOVERLAY_BLUESCREEN (1<<15)
 
-#define APC_UPDATE_ICON_COOLDOWN 100 //10 seconds
+#define APC_UPDATE_ICON_COOLDOWN 10 SECONDS
 
 
 //The Area Power Controller (APC), formerly Power Distribution Unit (PDU)
@@ -41,17 +41,6 @@
 
 
 //NOTE: STUFF STOLEN FROM AIRLOCK.DM thx
-/obj/machinery/power/apc/weak
-	cell_type = /obj/item/cell
-
-/obj/machinery/power/apc/high
-	cell_type = /obj/item/cell/high
-
-/obj/machinery/power/apc/super
-	cell_type = /obj/item/cell/super
-
-/obj/machinery/power/apc/hyper
-	cell_type = /obj/item/cell/hyper
 
 /obj/machinery/power/apc
 	name = "area power controller"
@@ -79,7 +68,6 @@
 	var/locked = 1
 	var/coverlocked = 1
 	var/aidisabled = 0
-	var/tdir = null
 	var/obj/machinery/power/terminal/terminal = null
 	var/lastused_light = 0
 	var/lastused_equip = 0
@@ -144,12 +132,18 @@
 	//This allows the APC to be embedded in a wall, yet still inside an area
 	if(building)
 		dir = ndir
-	tdir = dir //To fix Vars bug
-	dir = SOUTH
 
-	pixel_x = (tdir & 3) ? 0 : (tdir == 4 ? 24 : -24)
-	pixel_y = (tdir & 3) ? (tdir == 1 ? 24 : -24) : 0
-	if(building == 0)
+	switch(dir)
+		if(NORTH)
+			pixel_y = 32
+		if(SOUTH)
+			pixel_y = -32
+		if(EAST)
+			pixel_x = 32
+		if(WEST)
+			pixel_x = -32
+
+	if(!building)
 		init()
 	else
 		area = loc.loc:master
@@ -174,7 +168,7 @@
 	//Create a terminal object at the same position as original turf loc
 	//Wires will attach to this
 	terminal = new/obj/machinery/power/terminal(src.loc)
-	terminal.dir = tdir
+	terminal.dir = dir
 	terminal.master = src
 
 /obj/machinery/power/apc/proc/init()
@@ -224,85 +218,31 @@
 //Update the APC icon to show the three base states
 //Also add overlays for indicator lights
 /obj/machinery/power/apc/update_icon()
-
-	if(!status_overlays)
-		status_overlays = 1
-		status_overlays_lock = new
-		status_overlays_charging = new
-		status_overlays_equipment = new
-		status_overlays_lighting = new
-		status_overlays_environ = new
-
-		status_overlays_lock.len = 2
-		status_overlays_charging.len = 3
-		status_overlays_equipment.len = 4
-		status_overlays_lighting.len = 4
-		status_overlays_environ.len = 4
-
-		status_overlays_lock[1] = image(icon, "apcox-0") //0 = blue, 1 = red
-		status_overlays_lock[2] = image(icon, "apcox-1")
-
-		status_overlays_charging[1] = image(icon, "apco3-0")
-		status_overlays_charging[2] = image(icon, "apco3-1")
-		status_overlays_charging[3] = image(icon, "apco3-2")
-
-		status_overlays_equipment[1] = image(icon, "apco0-0") //0 = red, 1 = green, 2 = blue
-		status_overlays_equipment[2] = image(icon, "apco0-1")
-		status_overlays_equipment[3] = image(icon, "apco0-2")
-		status_overlays_equipment[4] = image(icon, "apco0-3")
-
-		status_overlays_lighting[1] = image(icon, "apco1-0")
-		status_overlays_lighting[2] = image(icon, "apco1-1")
-		status_overlays_lighting[3] = image(icon, "apco1-2")
-		status_overlays_lighting[4] = image(icon, "apco1-3")
-
-		status_overlays_environ[1] = image(icon, "apco2-0")
-		status_overlays_environ[2] = image(icon, "apco2-1")
-		status_overlays_environ[3] = image(icon, "apco2-2")
-		status_overlays_environ[4] = image(icon, "apco2-3")
-
 	var/update = check_updates()	//Returns 0 if no need to update icons.
 									//1 if we need to update the icon_state
 									//2 if we need to update the overlays
 	if(!update)
 		return
 
-	if(update & 1) //Updating the icon state
-		if(update_state & UPSTATE_ALLGOOD)
-			icon_state = "apc0"
-		else if(update_state & (UPSTATE_OPENED1|UPSTATE_OPENED2))
-			var/basestate = "apc[cell ? "2" : "1"]"
-			if(update_state & UPSTATE_OPENED1)
-				if(update_state & (UPSTATE_MAINT|UPSTATE_BROKE))
-					icon_state = "apcmaint" //Disabled APC cannot hold cell
-				else
-					icon_state = basestate
-			else if(update_state & UPSTATE_OPENED2)
-				icon_state = "[basestate]-nocover"
-		else if(update_state & UPSTATE_BROKE)
-			icon_state = "apc-b"
-		else if(update_state & UPSTATE_BLUESCREEN)
-			icon_state = "apcemag"
-		else if(update_state & UPSTATE_WIREEXP)
-			icon_state = "apcewires"
+	overlays.Cut()
 
-	if(!(update_state & UPSTATE_ALLGOOD))
-		if(overlays.len)
-			overlays = 0
-			return
+	if(update & 1)
+		var/broken = update_state & UPSTATE_BROKE ? "-b" : ""
+		var/status = update_state & UPSTATE_WIREEXP ? "-wires" : broken
+		icon_state = "apc[opened][status]"
 
 	if(update & 2)
-
-		if(overlays.len)
-			overlays = 0
-
-		if(!(stat & (BROKEN|MAINT)) && update_state & UPSTATE_ALLGOOD)
-			overlays += status_overlays_lock[locked + 1]
-			overlays += status_overlays_charging[charging + 1]
-			if(operating)
-				overlays += status_overlays_equipment[equipment + 1]
-				overlays += status_overlays_lighting[lighting + 1]
-				overlays += status_overlays_environ[environ + 1]
+		if(update_overlay & APC_UPOVERLAY_CELL_IN)
+			overlays += "apco_cell"
+		else if(update_overlay & APC_UPOVERLAY_BLUESCREEN)
+			overlays += image(icon, "apco_emag")
+		else
+			overlays += image(icon, "apcox-[locked]")
+			overlays += image(icon, "apco3-[charging]")
+			if(update_overlay & APC_UPOVERLAY_OPERATING)
+				overlays += image(icon, "apco0-[equipment]")
+				overlays += image(icon, "apco1-[lighting]")
+				overlays += image(icon, "apco2-[environ]")
 
 /obj/machinery/power/apc/proc/check_updates()
 
@@ -311,8 +251,7 @@
 	update_state = 0
 	update_overlay = 0
 
-	if(cell)
-		update_state |= UPSTATE_CELL_IN
+
 	if(stat & BROKEN)
 		update_state |= UPSTATE_BROKE
 	if(stat & MAINT)
@@ -322,17 +261,17 @@
 			update_state |= UPSTATE_OPENED1
 		if(opened == 2)
 			update_state |= UPSTATE_OPENED2
-	else if(emagged)
-		update_state |= UPSTATE_BLUESCREEN
-	else if(wiresexposed)
+	else if(wiresexposed && !(stat & (BROKEN|MAINT)))
 		update_state |= UPSTATE_WIREEXP
-	if(update_state <= 1)
+	if(!update_state)
 		update_state |= UPSTATE_ALLGOOD
 
 	if(operating)
 		update_overlay |= APC_UPOVERLAY_OPERATING
 
 	if(update_state & UPSTATE_ALLGOOD)
+		if(emagged)
+			update_overlay |= APC_UPOVERLAY_BLUESCREEN
 		if(locked)
 			update_overlay |= APC_UPOVERLAY_LOCKED
 
@@ -363,13 +302,16 @@
 			update_overlay |= APC_UPOVERLAY_ENVIRON1
 		else if(environ == 2)
 			update_overlay |= APC_UPOVERLAY_ENVIRON2
+	else if(opened && !(stat & (UPSTATE_MAINT)) && cell)
+		if((opened == 1 && !(stat & BROKEN)) || opened == 2)
+			update_overlay |= APC_UPOVERLAY_CELL_IN
 
 	var/results = 0
 	if(last_update_state == update_state && last_update_overlay == update_overlay)
 		return 0
 	if(last_update_state != update_state)
 		results += 1
-	if(last_update_overlay != update_overlay && update_overlay != 0)
+	if(last_update_overlay != update_overlay && update_overlay)
 		results += 2
 	return results
 
@@ -1360,18 +1302,102 @@
 	. = ..()
 
 
+/obj/machinery/power/apc/north
+	dir = NORTH
+
+/obj/machinery/power/apc/east
+	dir = EAST
+
+/obj/machinery/power/apc/west
+	dir = WEST
+
+/obj/machinery/power/apc/potato
+	cell_type = /obj/item/cell/potato
+
+/obj/machinery/power/apc/potato/north
+	dir = NORTH
+
+/obj/machinery/power/apc/potato/east
+	dir = EAST
+
+/obj/machinery/power/apc/potato/west
+	dir = WEST
+
+/obj/machinery/power/apc/weak
+	cell_type = /obj/item/cell
+
+/obj/machinery/power/apc/weak/north
+	dir = NORTH
+
+/obj/machinery/power/apc/weak/east
+	dir = EAST
+
+/obj/machinery/power/apc/weak/west
+	dir = WEST
+
+/obj/machinery/power/apc/high
+	cell_type = /obj/item/cell/high
+
+/obj/machinery/power/apc/high/north
+	dir = NORTH
+
+/obj/machinery/power/apc/high/east
+	dir = EAST
+
+/obj/machinery/power/apc/high/west
+	dir = WEST
+
+/obj/machinery/power/apc/super
+	cell_type = /obj/item/cell/super
+
+/obj/machinery/power/apc/super/north
+	dir = NORTH
+
+/obj/machinery/power/apc/super/east
+	dir = EAST
+
+/obj/machinery/power/apc/super/west
+	dir = WEST
+
+/obj/machinery/power/apc/hyper
+	cell_type = /obj/item/cell/hyper
+
+/obj/machinery/power/apc/hyper/north
+	dir = NORTH
+
+/obj/machinery/power/apc/hyper/east
+	dir = EAST
+
+/obj/machinery/power/apc/hyper/west
+	dir = WEST
 
 //------Theseus APCs ------//
 
 /obj/machinery/power/apc/almayer
 	cell_type = /obj/item/cell/high
 
+/obj/machinery/power/apc/almayer/north
+	dir = NORTH
+
+/obj/machinery/power/apc/almayer/east
+	dir = EAST
+
+/obj/machinery/power/apc/almayer/west
+	dir = WEST
+
 /obj/machinery/power/apc/almayer/hardened
 	name = "hardened area power controller"
 	desc = "A control terminal for the area electrical systems. This one is hardened against sudden power fluctuations caused by electrical grid damage."
 	crash_break_probability = 0
 
+/obj/machinery/power/apc/almayer/hardened/north
+	dir = NORTH
 
+/obj/machinery/power/apc/almayer/hardened/east
+	dir = EAST
+
+/obj/machinery/power/apc/almayer/hardened/west
+	dir = WEST
 
 
 
