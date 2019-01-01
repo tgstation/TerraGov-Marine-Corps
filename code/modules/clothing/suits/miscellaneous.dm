@@ -176,6 +176,18 @@
 	icon_state = "white_dress_jacket"
 	item_state = "white_dress_jacket"
 
+/obj/item/clothing/suit/officer_cloak
+	name = "Officer Cloak"
+	desc = "A dashing cloak as befitting an officer."
+	icon_state = "officer_cloak"
+	item_state = "officer_cloak"
+
+/obj/item/clothing/suit/commander_cloak
+	name = "Commander's Cloak"
+	desc = "An opulant cloak detailed with your many accomplishments."
+	icon_state = "commander_cloak"
+	item_state = "commander_cloak"
+
 /*
  * Misc
  */
