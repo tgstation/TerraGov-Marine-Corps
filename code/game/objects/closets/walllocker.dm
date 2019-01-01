@@ -9,15 +9,8 @@
 	icon_opened = "wall-lockeropen"
 	store_mobs = FALSE
 	wall_mounted = TRUE
-
-/obj/structure/closet/walllocker/update_icon()
-	overlays.Cut()
-	if(!opened)
-		icon_state = icon_closed
-		if(welded)
-			overlays += image(icon, "[icon_closed]welded")
-	else
-		icon_state = icon_opened
+	storage_capacity = 20
+	overlay_welded = "walllockerwelded"
 
 /obj/structure/closet/walllocker/north
 	pixel_y = 32
@@ -41,6 +34,7 @@
 	icon_closed = "emerg"
 	icon_opened = "emergopen"
 	desc = "A wall mounted locker with emergency supplies."
+	overlay_welded = "emergwelded"
 
 /obj/structure/closet/walllocker/emerglocker/north
 	pixel_y = 32
@@ -89,6 +83,7 @@
 	icon_state = "hydrant"
 	icon_closed = "hydrant"
 	icon_opened = "hydrantopen"
+	overlay_welded = "hydrant-medical_welded"
 
 /obj/structure/closet/walllocker/hydrant/north
 	pixel_y = 32
@@ -140,6 +135,7 @@
 	icon_state = "medical_wall"
 	icon_closed = "medical_wall"
 	icon_opened = "medical_wallopen"
+	overlay_welded = "hydrant-medical_welded"
 
 /obj/structure/closet/walllocker/medical_wall/north
 	pixel_y = 32
