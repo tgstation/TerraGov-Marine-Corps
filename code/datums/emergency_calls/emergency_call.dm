@@ -176,7 +176,6 @@
 				if(length(candidates))
 					for(var/datum/mind/M in candidates)
 						if(M.current)
-							message_admins("ERROR: [M.key] didn't get pick even though they are in candidates.")
 							to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team. Better luck next time!</span>")
 
 			if(announce)
