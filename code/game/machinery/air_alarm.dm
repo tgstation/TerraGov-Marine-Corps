@@ -124,16 +124,6 @@
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 		update_icon()
 
-	switch(dir)
-		if(NORTH) pixel_y = 25
-		if(SOUTH) pixel_y = -25
-		if(EAST) pixel_x = 25
-		if(WEST) pixel_x = -25
-
-	first_run()
-	start_processing()
-
-
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
 	if (alarm_area.master)
@@ -156,6 +146,16 @@
 	set_frequency(frequency)
 	if (!master_is_operating())
 		elect_master()
+	
+	switch(dir)
+		if(NORTH) pixel_y = 25
+		if(SOUTH) pixel_y = -25
+		if(EAST) pixel_x = 25
+		if(WEST) pixel_x = -25
+
+	first_run()
+	start_processing()
+
 
 /obj/machinery/alarm/process()
 	if((stat & (NOPOWER|BROKEN)) || shorted || buildstage != 2)
