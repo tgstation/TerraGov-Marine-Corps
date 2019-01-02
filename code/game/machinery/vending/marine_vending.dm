@@ -742,6 +742,28 @@
 
 	prices = list()
 
+/obj/machinery/vending/dress_supply
+	name = "\improper ColMarTech dress uniform vendor"
+	desc = "A automated weapon rack hooked up to a colossal storage of dress uniforms"
+	icon_state = "marineuniform"
+	icon_vend = "marineuniform_vend"
+	icon_deny = "marineuniform"
+	req_access = null
+	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
+	var/squad_tag = ""
+
+	product_ads = "Hey! You! Stop looking like a turtle and start looking like a TRUE soldier!;Dress whites, fresh off the ironing board!;Why kill in armor when you can kill in style?;These uniforms are so sharp you'd cut yourself just looking at them!;X;X;X;X;X"
+	products = list(
+					/obj/item/clothing/under/whites = 50,
+					/obj/item/clothing/head/white_dress = 50,
+					/obj/item/clothing/shoes/white = 50,
+					/obj/item/clothing/gloves/white = 50,
+					/obj/item/clothing/suit/officer_cloak = 50,
+					/obj/item/clothing/suit/commander_cloak = 50
+					)
+
+	prices = list()
+
 /obj/machinery/vending/uniform_supply/New()
 	..()
 	var/products2[]
