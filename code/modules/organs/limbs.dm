@@ -75,7 +75,7 @@
 	return icon('icons/mob/human.dmi',"blank")
 */
 
-/datum/limb/proc/process()
+/datum/limb/process()
 		return 0
 
 //Germs
@@ -983,7 +983,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 				spark_system = null
 
 /datum/limb/proc/embed(var/obj/item/W, var/silent = 0)
-	if(!W || W.disposed || (W.flags_item & (NODROP|DELONDROP)))
+	if(!W || W.gc_destroyed || (W.flags_item & (NODROP|DELONDROP)))
 		return
 	if(!silent)
 		owner.visible_message("<span class='danger'>\The [W] sticks in the wound!</span>")
@@ -1190,11 +1190,11 @@ Note that amputating the affected organ does in fact remove the infection from t
 		return
 	if(type == "brute")
 		owner.visible_message("\red You hear a sickening cracking sound coming from \the [owner]'s face.",	\
-		"\red <b>Your face becomes unrecognizible mangled mess!</b>",	\
+		"<span class='danger'>Your face becomes unrecognizible mangled mess!</span>",	\
 		"\red You hear a sickening crack.")
 	else
 		owner.visible_message("\red [owner]'s face melts away, turning into mangled mess!",	\
-		"\red <b>Your face melts off!</b>",	\
+		"<span class='danger'>Your face melts off!</span>",	\
 		"\red You hear a sickening sizzle.")
 	disfigured = 1
 	owner.name = owner.get_visible_name()

@@ -28,17 +28,17 @@
 	else
 		organ_data = new organ_type()
 	if(!robotic)
-		processing_objects += src
+		START_PROCESSING(SSobj, src)
 
 
 /obj/item/organ/Destroy()
-	if(!robotic) processing_objects -= src
+	if(!robotic) STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/item/organ/process()
 
 	if(robotic)
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 		return
 
 	// Don't process if we're in a freezer, an MMI or a stasis bag. //TODO: ambient temperature?
@@ -64,7 +64,7 @@
 	name = "dead [initial(name)]"
 	if(dead_icon) icon_state = dead_icon
 	health = 0
-	processing_objects -= src
+	STOP_PROCESSING(SSobj, src)
 	//TODO: Grey out the icon state.
 	//TODO: Inject an organ with peridaxon to make it alive again.
 
@@ -213,7 +213,7 @@
 	if(robotic)
 		return
 
-	to_chat(user, "\blue You take an experimental bite out of \the [src].")
+	to_chat(user, "<span class='notice'>You take an experimental bite out of \the [src].</span>")
 	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
 	if(B)
 		var/turf/TU = get_turf(src)

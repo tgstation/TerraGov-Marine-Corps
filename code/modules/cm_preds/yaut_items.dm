@@ -305,15 +305,15 @@
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(slot == WEAR_HANDS && H.species && H.species.name == "Yautja")
-			processing_objects.Add(src)
+			START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/gloves/yautja/dropped(mob/user)
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	..()
 
 /obj/item/clothing/gloves/yautja/process()
 	if(!ishuman(loc))
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return
 	var/mob/living/carbon/human/H = loc
 	if(cloak_timer)
@@ -434,10 +434,8 @@
 
 /obj/item/clothing/gloves/yautja/proc/decloak(var/mob/user)
 	if(!user) return
-	to_chat(user, "Your cloaking device deactivates.")
 	cloaked = 0
-	for(var/mob/O in oviewers(user))
-		O.show_message("[user.name] shimmers into existence!",1)
+	user.visible_message("[user.name] shimmers into existence!","Your cloaking device deactivates.")
 	playsound(user.loc,'sound/effects/pred_cloakoff.ogg', 15, 1)
 	user.alpha = initial(user.alpha)
 	cloak_timer = 10
@@ -496,7 +494,6 @@
 
 		var/obj/item/weapon/gun/energy/plasma_caster/W = new(usr)
 		usr.put_in_active_hand(W)
-		W.source = src
 		caster_active = 1
 		to_chat(usr, "<span class='notice'>You activate your plasma caster.</span>")
 		playsound(src,'sound/weapons/pred_plasmacaster_on.ogg', 15, 1)
@@ -600,10 +597,10 @@
 	inject_timer = 1
 	spawn(1200)
 		if(usr && src.loc == usr)
-			to_chat(usr, "\blue Your bracers beep faintly and inform you that a new healing crystal is ready to be created.")
+			to_chat(usr, "<span class='notice'>Your bracers beep faintly and inform you that a new healing crystal is ready to be created.</span>")
 			inject_timer = 0
 
-	to_chat(usr, "\blue You feel a faint hiss and a crystalline injector drops into your hand.")
+	to_chat(usr, "<span class='notice'>You feel a faint hiss and a crystalline injector drops into your hand.</span>")
 	var/obj/item/reagent_container/hypospray/autoinjector/yautja/O = new(usr)
 	usr.put_in_active_hand(O)
 	playsound(src,'sound/machines/click.ogg', 15, 1)
@@ -878,10 +875,6 @@
 /obj/item/weapon/wristblades/Destroy()
 	. = ..()
 	return TA_REVIVE_ME
-
-/obj/item/weapon/wristblades/Recycle()
-	var/blacklist[] = list("attack_verb")
-	. = ..() + blacklist
 
 /obj/item/weapon/wristblades/dropped(mob/living/carbon/human/M)
 	playsound(M,'sound/weapons/wristblades_off.ogg', 15, 1)

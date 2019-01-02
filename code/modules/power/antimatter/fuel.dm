@@ -77,7 +77,7 @@
 		if("Anti-Hydrogen")
 			M.gib()
 		if("Hydrogen")
-			to_chat(M, "\blue You feel very light, as if you might just float away...")
+			to_chat(M, "<span class='notice'>You feel very light, as if you might just float away...</span>")
 	del(src)
 	return
 

@@ -1,11 +1,7 @@
-//MARINE RESEARCH CONSOLE 15JAN2016 BY APOP
-
 //This is the Research Console for the new Marine Research System.  It controls the research database, as well as the Sample Analyzer and 3d Fabricator.
 //Future machines will also be controlled from this.
 //Basically, this is a rehashed RD console.
 //FYI:  All the marine research weapons, still use the r_n_d class.  Don't see a reason to make another one, and this will let the w-y system link with Legacy.
-#define	IMPRINTER	1	//For circuits. Uses glass/chemicals.
-#define PROTOLATHE	2	//New stuff. Uses glass/metal/chemicals
 
 /obj/machinery/computer/NTresearch
 	name = "R&D Console"
@@ -144,15 +140,15 @@
 		if(istype(D, /obj/item/disk/tech_disk)) t_disk = D
 		else if (istype(D, /obj/item/disk/design_disk)) d_disk = D
 		else
-			to_chat(user, "\red Machine cannot accept disks in that format.")
+			to_chat(user, "<span class='warning'>Machine cannot accept disks in that format.</span>")
 			return
 		user.drop_held_item()
 		D.loc = src
-		to_chat(user, "\blue You add the disk to the machine!")
+		to_chat(user, "<span class='notice'>You add the disk to the machine!</span>")
 	else if(istype(D, /obj/item/card/emag) && !emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 75, 1)
 		emagged = 1
-		to_chat(user, "\blue You you disable the security protocols")
+		to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
 	else
 		//The construction/deconstruction of the console code.
 		..()
@@ -185,7 +181,7 @@
 	else if(href_list["eject_item"]) //Eject the item inside the destructive analyzer.
 		if(linked_destroy)
 			if(linked_destroy.busy)
-				to_chat(usr, "\red The destructive analyzer is busy at the moment.")
+				to_chat(usr, "<span class='warning'>The destructive analyzer is busy at the moment.</span>")
 
 			else if(linked_destroy.loaded_item)
 				linked_destroy.loaded_item.loc = linked_destroy.loc
@@ -196,7 +192,7 @@
 	else if(href_list["deconstruct"]) //Deconstruct the item in the destructive analyzer and update the research holder.
 		if(linked_destroy)
 			if(linked_destroy.busy)
-				to_chat(usr, "\red The destructive analyzer is busy at the moment.")
+				to_chat(usr, "<span class='warning'>The destructive analyzer is busy at the moment.</span>")
 			else
 				var/choice = input("Proceeding will destroy loaded item.") in list("Proceed", "Cancel")
 				if(choice == "Cancel" || !linked_destroy) return
@@ -209,7 +205,7 @@
 						linked_destroy.busy = 0
 						if(!linked_destroy.hacked)
 							if(!linked_destroy.loaded_item)
-								to_chat(usr, "\red The destructive analyzer appears to be empty.")
+								to_chat(usr, "<span class='warning'>The destructive analyzer appears to be empty.</span>")
 								screen = 1.0
 								return
 							if(linked_destroy.loaded_item.reliability >= 90)
@@ -250,7 +246,7 @@
 	else if(href_list["sync"]) //Sync the research holder with all the R&D consoles in the game that aren't sync protected.
 		screen = 0.0
 		if(!sync)
-			to_chat(usr, "\red You must connect to the network first!")
+			to_chat(usr, "<span class='warning'>You must connect to the network first!</span>")
 		else
 			griefProtection() //Putting this here because I dont trust the sync process
 			spawn(30)

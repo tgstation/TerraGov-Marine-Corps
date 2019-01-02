@@ -259,8 +259,7 @@
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 25, 1)
-		for(var/mob/O in viewers(src, null))
-			O.show_message("\red <B>[M]</B> [M.attacktext] [src]!", 1)
+		visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>", 1)
 		log_combat(M, src, "attacked")
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 		adjustBruteLoss(damage)
@@ -312,7 +311,7 @@
 						if ((M.client && !is_blind(M)))
 							M.show_message("\blue [user] applies the [MED] on [src]")
 		else
-			to_chat(user, "\blue this [src] is dead, medical items won't bring it back to life.")
+			to_chat(user, "<span class='notice'>this [src] is dead, medical items won't bring it back to life.</span>")
 	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
 		if(istype(O, /obj/item/tool/kitchen/knife) || istype(O, /obj/item/tool/kitchen/knife/butcher))
 			new meat_type (get_turf(src))
@@ -330,7 +329,7 @@
 				if ((M.client && !is_blind(M)))
 					M.show_message("\red \b [src] has been attacked with the [O] by [user]. ")
 		else
-			to_chat(usr, "\red This weapon is ineffective, it does no damage.")
+			to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 			for(var/mob/M in viewers(src, null))
 				if ((M.client && !is_blind(M)))
 					M.show_message("\red [user] gently taps [src] with the [O]. ")

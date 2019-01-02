@@ -39,7 +39,7 @@
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), WEAR_BODY)
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), WEAR_FEET)
 		spawn(50)
-			to_chat(M, "\red You have been sent to the prison station!")
+			to_chat(M, "<span class='warning'>You have been sent to the prison station!</span>")
 		log_admin("[key_name(usr)] sent [key_name(M)] to the prison station.")
 		message_admins("\blue [key_name_admin(usr)] sent [key_name_admin(M)] to the prison station.", 1)
 		feedback_add_details("admin_verb","PRISON") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -280,7 +280,7 @@ Ccomp's first proc.
 //	G.has_enabled_antagHUD = 2
 	G.can_reenter_corpse = 1
 
-	G:show_message(text("\blue <B>You may now respawn.  You should roleplay as if you learned nothing about the round during your time with the dead.</B>"), 1)
+	G:show_message(text("<span class='boldnotice'>You may now respawn.  You should roleplay as if you learned nothing about the round during your time with the dead.</span>"), 1)
 	log_admin("[key_name(usr)] allowed [key_name(G)] to bypass the 30 minute respawn limit")
 	message_admins("Admin [key_name_admin(usr)] allowed [key_name_admin(G)] to bypass the 30 minute respawn limit", 1)
 
@@ -300,18 +300,18 @@ Ccomp's first proc.
 			if(g.antagHUD)
 				g.antagHUD = 0						// Disable it on those that have it enabled
 				g.has_enabled_antagHUD = 2				// We'll allow them to respawn
-				to_chat(g, "\red <B>The Administrator has disabled AntagHUD </B>")
+				to_chat(g, "<span class='danger'>The Administrator has disabled AntagHUD </span>")
 		config.antag_hud_allowed = 0
-		to_chat(src, "\red <B>AntagHUD usage has been disabled</B>")
+		to_chat(src, "<span class='danger'>AntagHUD usage has been disabled</span>")
 		action = "disabled"
 	else
 		for(var/mob/dead/observer/g in get_ghosts())
 			if(!g.client.holder)						// Add the verb back for all non-admin ghosts
 				g.verbs += /mob/dead/observer/verb/toggle_antagHUD
-			to_chat(g, "\blue <B>The Administrator has enabled AntagHUD </B>"	)
+			to_chat(g, "<span class='boldnotice'>The Administrator has enabled AntagHUD </span>"	)
 		config.antag_hud_allowed = 1
 		action = "enabled"
-		to_chat(src, "\blue <B>AntagHUD usage has been enabled</B>")
+		to_chat(src, "<span class='boldnotice'>AntagHUD usage has been enabled</span>")
 
 
 	log_admin("[key_name(usr)] has [action] antagHUD usage for observers")
@@ -328,19 +328,19 @@ Ccomp's first proc.
 	var/action=""
 	if(config.antag_hud_restricted)
 		for(var/mob/dead/observer/g in get_ghosts())
-			to_chat(g, "\blue <B>The administrator has lifted restrictions on joining the round if you use AntagHUD</B>")
+			to_chat(g, "<span class='boldnotice'>The administrator has lifted restrictions on joining the round if you use AntagHUD</span>")
 		action = "lifted restrictions"
 		config.antag_hud_restricted = 0
-		to_chat(src, "\blue <B>AntagHUD restrictions have been lifted</B>")
+		to_chat(src, "<span class='boldnotice'>AntagHUD restrictions have been lifted</span>")
 	else
 		for(var/mob/dead/observer/g in get_ghosts())
-			to_chat(g, "\red <B>The administrator has placed restrictions on joining the round if you use AntagHUD</B>")
-			to_chat(g, "\red <B>Your AntagHUD has been disabled, you may choose to re-enabled it but will be under restrictions </B>")
+			to_chat(g, "<span class='danger'>The administrator has placed restrictions on joining the round if you use AntagHUD</span>")
+			to_chat(g, "<span class='danger'>Your AntagHUD has been disabled, you may choose to re-enabled it but will be under restrictions </span>")
 			g.antagHUD = 0
 			g.has_enabled_antagHUD = 0
 		action = "placed restrictions"
 		config.antag_hud_restricted = 1
-		to_chat(src, "\red <B>AntagHUD restrictions have been enabled</B>")
+		to_chat(src, "<span class='danger'>AntagHUD restrictions have been enabled</span>")
 
 	log_admin("[key_name(usr)] has [action] on joining the round if they use AntagHUD")
 	message_admins("Admin [key_name_admin(usr)] has [action] on joining the round if they use AntagHUD", 1)
@@ -481,7 +481,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set desc = "Force a predator round for the round type. Only works on maps that support Predator spawns."
 
 	if(!ticker || ticker.current_state < GAME_STATE_PLAYING || !ticker.mode)
-		to_chat(usr, "\red The game hasn't started yet!")
+		to_chat(usr, "<span class='warning'>The game hasn't started yet!</span>")
 		return
 
 	var/datum/game_mode/predator_round = ticker.mode
@@ -515,7 +515,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		else
 			M.add_ion_law(input)
 			for(var/mob/living/silicon/ai/O in mob_list)
-				to_chat(O, "\red " + input + "\red...LAWS UPDATED")
+				to_chat(O, "<span class='warning'>" + input + "\red...LAWS UPDATED</span>")
 				O.show_laws()
 
 	log_admin("Admin [key_name(usr)] has added a new AI law - [input]")
@@ -673,7 +673,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	if(O.disposed) return //mob was garbage collected
+	if(O.gc_destroyed) return //mob was garbage collected
 
 	new_ckey = input("Enter new ckey:","CKey") as null|text
 
@@ -805,7 +805,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		if(M)
 			AddBan(M.ckey, M.computer_id, reason, usr.ckey, 1, mins)
 			to_chat(M, "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>")
-			to_chat(M, "\red This is a temporary ban, it will be removed in [mins] minutes.")
+			to_chat(M, "<span class='warning'>This is a temporary ban, it will be removed in [mins] minutes.</span>")
 			to_chat(M, "\red To try to resolve this matter head to http:)
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 			message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
@@ -820,7 +820,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			return
 		AddBan(M.ckey, M.computer_id, reason, usr.ckey, 0, 0)
 		to_chat(M, "\red<BIG><B>You have been banned by [usr.client.ckey].\nReason: [reason].</B></BIG>")
-		to_chat(M, "\red This is a permanent ban.")
+		to_chat(M, "<span class='warning'>This is a permanent ban.</span>")
 		to_chat(M, "\red To try to resolve this matter head to http:)
 		log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
 		message_admins("\blue[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
@@ -895,7 +895,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set category = "Special Verbs"
 	set name = "Attack Log"
 
-	to_chat(usr, text("\red <b>Attack Log for []</b>", mob))
+	to_chat(usr, text("<span class='danger'>Attack Log for []</span>", mob))
 	show_individual_logging_panel(M)
 	feedback_add_details("admin_verb","ATTL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -926,7 +926,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	message_admins("Admin [key_name_admin(usr)] has forced the players to have random appearances.", 1)
 
 	if(notifyplayers == "Yes")
-		to_chat(world, "\blue <b>Admin [usr.key] has forced the players to have completely random identities!")
+		to_chat(world, "<span class='boldnotice'>Admin [usr.key] has forced the players to have completely random identities!</span>")
 
 	to_chat(usr, "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>.")
 

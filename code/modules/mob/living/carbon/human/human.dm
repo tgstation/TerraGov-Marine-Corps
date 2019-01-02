@@ -269,8 +269,7 @@
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 25, 1)
-		for(var/mob/O in viewers(src, null))
-			O.show_message("\red <B>[M]</B> [M.attacktext] [src]!", 1)
+		visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>")
 		log_combat(M, src, "attacked")
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 		var/dam_zone = pick("chest", "l_hand", "r_hand", "l_leg", "r_leg")
@@ -556,9 +555,9 @@
 		if(!usr.action_busy)
 			log_combat(usr, src, "attempted to toggle internals")
 			if(internal)
-				usr.visible_message("\red <B>[usr] is trying to disable [src]'s internals</B>", null, null, 3)
+				usr.visible_message("<span class='danger'>[usr] is trying to disable [src]'s internals</span>", null, null, 3)
 			else
-				usr.visible_message("\red <B>[usr] is trying to enable [src]'s internals.</B>", null, null, 3)
+				usr.visible_message("<span class='danger'>[usr] is trying to enable [src]'s internals.</span>", null, null, 3)
 
 			if(do_mob(usr, src, POCKET_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 				if (internal)
@@ -617,9 +616,9 @@
 				if(U.hastie)
 					log_combat(usr, src, "attempted to remove accessory ([U.hastie])")
 					if(istype(U.hastie, /obj/item/clothing/tie/holobadge) || istype(U.hastie, /obj/item/clothing/tie/medal))
-						visible_message("\red <B>[usr] tears off \the [U.hastie] from [src]'s [U]!</B>", null, null, 5)
+						visible_message("<span class='danger'>[usr] tears off \the [U.hastie] from [src]'s [U]!</span>", null, null, 5)
 					else
-						visible_message("\red <B>[usr] is trying to take off \a [U.hastie] from [src]'s [U]!</B>", null, null, 5)
+						visible_message("<span class='danger'>[usr] is trying to take off \a [U.hastie] from [src]'s [U]!</span>", null, null, 5)
 						if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 							if(U == w_uniform && U.hastie)
 								U.remove_accessory(usr)
@@ -633,7 +632,7 @@
 				to_chat(usr, "The controls are locked.")
 			else
 				var/oldsens = U.has_sensor
-				visible_message("\red <B>[usr] is trying to modify [src]'s sensors!</B>", null, null, 4)
+				visible_message("<span class='danger'>[usr] is trying to modify [src]'s sensors!</span>", null, null, 4)
 				if(do_mob(usr, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 					if(U == w_uniform)
 						if(U.has_sensor >= 2)
@@ -693,7 +692,7 @@
 
 
 			if(!modified)
-				to_chat(usr, "\red Unable to locate a data core entry for this person.")
+				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
 
 	if (href_list["secrecord"])
 		if(hasHUD(usr,"security"))
@@ -723,7 +722,7 @@
 								read = 1
 
 			if(!read)
-				to_chat(usr, "\red Unable to locate a data core entry for this person.")
+				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
 
 	if (href_list["secrecordComment"])
 		if(hasHUD(usr,"security"))
@@ -753,7 +752,7 @@
 								to_chat(usr, "<a href='?src=\ref[src];secrecordadd=`'>\[Add comment\]</a>")
 
 			if(!read)
-				to_chat(usr, "\red Unable to locate a data core entry for this person.")
+				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
 
 	if (href_list["secrecordadd"])
 		if(hasHUD(usr,"security"))
@@ -821,7 +820,7 @@
 											U.handle_regular_hud_updates()
 
 			if(!modified)
-				to_chat(usr, "\red Unable to locate a data core entry for this person.")
+				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
 
 	if (href_list["medrecord"])
 		if(hasHUD(usr,"medical"))
@@ -852,7 +851,7 @@
 								read = 1
 
 			if(!read)
-				to_chat(usr, "\red Unable to locate a data core entry for this person.")
+				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
 
 	if (href_list["medrecordComment"])
 		if(hasHUD(usr,"medical"))
@@ -882,7 +881,7 @@
 								to_chat(usr, "<a href='?src=\ref[src];medrecordadd=`'>\[Add comment\]</a>")
 
 			if(!read)
-				to_chat(usr, "\red Unable to locate a data core entry for this person.")
+				to_chat(usr, "<span class='warning'>Unable to locate a data core entry for this person.</span>")
 
 	if (href_list["medrecordadd"])
 		if(hasHUD(usr,"medical"))
@@ -1287,7 +1286,7 @@
 		"You begin counting your pulse.", null, 3)
 
 	if(src.pulse)
-		to_chat(usr, "\blue [self ? "You have a" : "[src] has a"] pulse! Counting...")
+		to_chat(usr, "<span class='notice'>[self ? "You have a" : "[src] has a"] pulse! Counting...</span>")
 	else
 		to_chat(usr, "\red [src] has no pulse!"	)
 		return
@@ -1298,7 +1297,7 @@
 	if(usr.l_move_time >= time)	//checks if our mob has moved during the sleep()
 		to_chat(usr, "You moved while counting. Try again.")
 	else
-		to_chat(usr, "\blue [self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)].")
+		to_chat(usr, "<span class='notice'>[self ? "Your" : "[src]'s"] pulse is [src.get_pulse(GETPULSE_HAND)].</span>")
 
 /mob/living/carbon/human/verb/view_manifest()
 	set name = "View Crew Manifest"

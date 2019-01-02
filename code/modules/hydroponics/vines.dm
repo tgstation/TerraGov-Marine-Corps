@@ -296,10 +296,10 @@
 	spawn(0)
 		spawn_piece(src.loc)
 
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 /obj/effect/plant_controller/Destroy()
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/effect/plant_controller/proc/spawn_piece(var/turf/location)

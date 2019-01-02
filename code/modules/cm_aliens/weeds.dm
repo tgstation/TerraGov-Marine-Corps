@@ -174,7 +174,7 @@
 	return
 
 /obj/effect/alien/weeds/fire_act()
-	if(!disposed)
+	if(!gc_destroyed)
 		spawn(rand(100,175))
 			qdel(src)
 

@@ -394,12 +394,12 @@ var/list/admin_verbs_mentor = list(
 	if(holder && mob)
 		if(mob.invisibility == INVISIBILITY_OBSERVER)
 			mob.invisibility = initial(mob.invisibility)
-			to_chat(mob, "\red <b>Invisimin off. Invisibility reset.</b>")
+			to_chat(mob, "<span class='danger'>Invisimin off. Invisibility reset.</span>")
 			mob.alpha = max(mob.alpha + 100, 255)
 			mob.add_to_all_mob_huds()
 		else
 			mob.invisibility = INVISIBILITY_OBSERVER
-			to_chat(mob, "\blue <b>Invisimin on. You are now as invisible as a ghost.</b>")
+			to_chat(mob, "<span class='boldnotice'>Invisimin on. You are now as invisible as a ghost.</span>")
 			mob.alpha = max(mob.alpha - 100, 0)
 			mob.remove_from_all_mob_huds()
 
@@ -704,7 +704,7 @@ var/list/admin_verbs_mentor = list(
 	if(!check_rights(R_FUN))	return
 
 	if(!istype(M, /mob/living/carbon/human))
-		to_chat(usr, "\red You can only do this to humans!")
+		to_chat(usr, "<span class='warning'>You can only do this to humans!</span>")
 		return
 	switch(alert("Are you sure you wish to edit this mob's appearance? Skrell, Unathi, Vox and Tajaran can result in unintended consequences.",,"Yes","No"))
 		if("No")
@@ -905,12 +905,12 @@ var/list/admin_verbs_mentor = list(
 	if(!holder)	return
 	if(config)
 		if(config.allow_synthetic_gun_use)
-			to_chat(src, "<b>Synthetic gun use allowed.</b>")
+			to_chat(src, "<b>Synthetic gun use disallowed.</b>")
 			message_admins("Admin [key_name_admin(usr)] has disabled synthetic gun use.", 1)
 			log_admin("[key_name(src)] disabled synthetic gun use.")
 		else
-			to_chat(src, "<b>Synthetic gun use disallowed.</b>")
-			message_admins("Admin [key_name_admin(usr)] has synthetic gun use.", 1)
+			to_chat(src, "<b>Synthetic gun use allowed.</b>")
+			message_admins("Admin [key_name_admin(usr)] has enabled synthetic gun use.", 1)
 			log_admin("[key_name(src)] allowed synthetic gun use.")
 		config.allow_synthetic_gun_use = !config.allow_synthetic_gun_use
 

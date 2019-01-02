@@ -1,4 +1,3 @@
-
 //This datum keeps track of individual squads. New squads can be added without any problem but to give them
 //access you must add them individually to access.dm with the other squads. Just look for "access_alpha" and add the new one
 
@@ -78,18 +77,15 @@
 	radio_freq = DELTA_FREQ
 
 
-//Straight-up insert a marine into a squad.
-//This sets their ID, increments the total count, and so on. Everything else is done in job_controller.dm.
-//So it does not check if the squad is too full already, or randomize it, etc.
 /datum/squad/proc/put_marine_in_squad(var/mob/living/carbon/human/H)
 	if(!H || !istype(H,/mob/living/carbon/human))
 		return FALSE
 	if(!usable)
 		return FALSE
 	if(!H.mind?.assigned_role)
-		return FALSE//Not yet
+		return FALSE
 	if(H.assigned_squad)
-		return FALSE //already in a squad
+		return FALSE
 
 	var/obj/item/card/id/C = null
 
@@ -97,7 +93,7 @@
 	if(!C)
 		C = H.get_active_hand()
 	if(!istype(C))
-		return FALSE//Abort, no ID found
+		return FALSE
 
 	switch(H.mind.assigned_role)
 		if("Squad Engineer")
@@ -117,7 +113,7 @@
 			if(H.mind.assigned_role == "Squad Leader") //field promoted SL don't count as real ones
 				num_leaders++
 
-	src.count++ //Add up the tally. This is important in even squad distribution.
+	count++ //Add up the tally. This is important in even squad distribution.
 
 	if(H.mind.assigned_role != "Squad Marine")
 		log_admin("[key_name(H)] has been assigned as [name] [H.mind.assigned_role]") // we don't want to spam squad marines but the others are useful
@@ -126,24 +122,25 @@
 	H.assigned_squad = src //Add them to the squad
 
 	var/c_oldass = C.assignment
-	C.access += src.access //Add their squad access to their ID
+	C.access += access //Add their squad access to their ID
 	C.assignment = "[name] [c_oldass]"
 	C.name = "[C.registered_name]'s ID Card ([C.assignment])"
 	return TRUE
 
 
-//proc used by the overwatch console to transfer marine to another squad
 /datum/squad/proc/remove_marine_from_squad(mob/living/carbon/human/H)
 	if(!H.mind)
 		return FALSE
+
 	if(!H.assigned_squad)
-		return //not assigned to a squad
+		return FALSE
+
 	var/obj/item/card/id/C
 	C = H.wear_id
 	if(!istype(C))
-		return FALSE//Abort, no ID found
+		return FALSE
 
-	C.access -= src.access
+	C.access -= access
 	C.assignment = H.mind.assigned_role
 	C.name = "[C.registered_name]'s ID Card ([C.assignment])"
 
@@ -174,8 +171,8 @@
 /datum/squad/proc/clean_marine_from_squad(mob/living/carbon/human/H, wipe = FALSE)
 	if(!H.assigned_squad || !(H in marines_list))
 		return FALSE
-	marines_list -= src //they were never here
-	if(!wipe) //preserve their memories
+	marines_list -= src
+	if(!wipe)
 		var/role = "unknown"
 		if(H.mind?.assigned_role)
 			role = H.mind.assigned_role
@@ -184,6 +181,7 @@
 		squad_leader = null
 	H.assigned_squad = null
 	return TRUE
+
 
 /datum/squad/proc/demote_squad_leader(leader_killed)
 	var/mob/living/carbon/human/old_lead = squad_leader
@@ -222,18 +220,3 @@
 	old_lead.update_inv_head() //updating marine helmet leader overlays
 	old_lead.update_inv_wear_suit()
 	to_chat(old_lead, "<font size='3' color='blue'>You're no longer the Squad Leader for [src]!</font>")
-
-
-//Not a safe proc. Returns null if squads or jobs aren't set up.
-//Mostly used in the marine squad console in marine_consoles.dm.
-/proc/get_squad_by_name(var/text)
-	if(!RoleAuthority || RoleAuthority.squads.len == 0)
-		return null
-
-	var/datum/squad/S
-	for(S in RoleAuthority.squads)
-		if(S.name == text)
-			return S
-
-	return null
-

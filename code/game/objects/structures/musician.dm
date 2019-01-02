@@ -431,7 +431,7 @@
 	if (istype(O, /obj/item/tool/wrench))
 		if (anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-			to_chat(user, "\blue You begin to loosen \the [src]'s casters...")
+			to_chat(user, "<span class='notice'>You begin to loosen \the [src]'s casters...</span>")
 			if (do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
 				user.visible_message( \
 					"[user] loosens \the [src]'s casters.", \
@@ -440,7 +440,7 @@
 				src.anchored = 0
 		else
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-			to_chat(user, "\blue You begin to tighten \the [src] to the floor...")
+			to_chat(user, "<span class='notice'>You begin to tighten \the [src] to the floor...</span>")
 			if (do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 				user.visible_message( \
 					"[user] tightens \the [src]'s casters.", \

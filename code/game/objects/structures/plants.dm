@@ -80,7 +80,7 @@
 			playsound(src.loc, 'sound/effects/vegetation_hit.ogg', 25, 1)
 			health -= damage
 			if(health < 0)
-				to_chat(user, "\blue You clear away [src].")
+				to_chat(user, "<span class='notice'>You clear away [src].</span>")
 			healthcheck()
 	else
 		return ..()
@@ -154,7 +154,7 @@ var/jungle_plants_init = 0
 /obj/structure/jungle_plant/attack_hand(var/mob/user as mob)
 	if(fruits_left > 0)
 		fruits_left--
-		to_chat(user, "\blue You pick a fruit off [src].")
+		to_chat(user, "<span class='notice'>You pick a fruit off [src].</span>")
 
 		var/obj/item/reagent_container/food/snacks/grown/jungle_fruit/J = new (src.loc)
 		J.potency = plant_strength

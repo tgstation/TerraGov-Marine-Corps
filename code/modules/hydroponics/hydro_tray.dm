@@ -611,7 +611,7 @@
 			update_icon()
 
 		else
-			to_chat(user, "\red \The [src] already has seeds in it!")
+			to_chat(user, "<span class='warning'>\The [src] already has seeds in it!</span>")
 
 	else if (istype(O, /obj/item/tool/minihoe))  // The minihoe
 
@@ -620,7 +620,7 @@
 			weedlevel = 0
 			update_icon()
 		else
-			to_chat(user, "\red This plot is completely devoid of weeds. It doesn't need uprooting.")
+			to_chat(user, "<span class='warning'>This plot is completely devoid of weeds. It doesn't need uprooting.</span>")
 
 	else if (istype(O, /obj/item/storage/bag/plants))
 
@@ -659,7 +659,7 @@
 	else if(istype(O, /obj/item/frame/apiary))
 
 		if(seed)
-			to_chat(user, "\red [src] is already occupied!")
+			to_chat(user, "<span class='warning'>[src] is already occupied!</span>")
 		else
 			user.drop_held_item()
 			qdel(O)

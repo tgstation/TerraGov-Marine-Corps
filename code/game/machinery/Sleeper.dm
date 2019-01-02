@@ -198,7 +198,7 @@
 /obj/machinery/sleeper/Destroy()
 	occupant.in_stasis = FALSE //clean up; end stasis; remove from processing
 	occupant = null
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	stop_processing()
 	return ..()
 
@@ -395,7 +395,7 @@
 
 /obj/machinery/sleeper/proc/check(mob/living/user)
 	if(occupant)
-		to_chat(user, text("\blue <B>Occupant ([]) Statistics:</B>", occupant))
+		to_chat(user, text("<span class='boldnotice'>Occupant ([]) Statistics:</span>", occupant))
 		var/t1
 		switch(occupant.stat)
 			if(0)
@@ -411,14 +411,14 @@
 		to_chat(user, text("[]\t -Respiratory Damage %: []", (occupant.getOxyLoss() < 60 ? "\blue " : "\red "), occupant.getOxyLoss()))
 		to_chat(user, text("[]\t -Toxin Content %: []", (occupant.getToxLoss() < 60 ? "\blue " : "\red "), occupant.getToxLoss()))
 		to_chat(user, text("[]\t -Burn Severity %: []", (occupant.getFireLoss() < 60 ? "\blue " : "\red "), occupant.getFireLoss()))
-		to_chat(user, "\blue Expected time till occupant can safely awake: (note: If health is below 20% these times are inaccurate)")
-		to_chat(user, "\blue \t [occupant.knocked_out / 5] second\s (if around 1 or 2 the sleeper is keeping them asleep.)")
+		to_chat(user, "<span class='notice'>Expected time till occupant can safely awake: (note: If health is below 20% these times are inaccurate)</span>")
+		to_chat(user, "<span class='notice'>\t [occupant.knocked_out / 5] second\s (if around 1 or 2 the sleeper is keeping them asleep.)</span>")
 		if(beaker)
-			to_chat(user, "\blue \t Dialysis Output Beaker has [beaker.reagents.maximum_volume - beaker.reagents.total_volume] of free space remaining.")
+			to_chat(user, "<span class='notice'>\t Dialysis Output Beaker has [beaker.reagents.maximum_volume - beaker.reagents.total_volume] of free space remaining.</span>")
 		else
-			to_chat(user, "\blue No Dialysis Output Beaker loaded.")
+			to_chat(user, "<span class='notice'>No Dialysis Output Beaker loaded.</span>")
 	else
-		to_chat(user, "\blue There is no one inside!")
+		to_chat(user, "<span class='notice'>There is no one inside!</span>")
 	return
 
 

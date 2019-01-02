@@ -16,7 +16,7 @@
 	if(istype(loc, /mob/living))
 		affected_mob = loc
 		affected_mob.status_flags |= XENO_HOST
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 		if(iscarbon(affected_mob))
 			var/mob/living/carbon/C = affected_mob
 			C.med_hud_set_status()
@@ -29,19 +29,19 @@
 		if(iscarbon(affected_mob))
 			var/mob/living/carbon/C = affected_mob
 			C.med_hud_set_status()
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		affected_mob = null
 	. = ..()
 
 /obj/item/alien_embryo/process()
 	if(!affected_mob) //The mob we were gestating in is straight up gone, we shouldn't be here
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		qdel(src)
 		return FALSE
 
 	if(loc != affected_mob) //Our location is not the host
 		affected_mob.status_flags &= ~(XENO_HOST)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		if(iscarbon(affected_mob))
 			var/mob/living/carbon/C = affected_mob
 			C.med_hud_set_status()
@@ -55,13 +55,13 @@
 				var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
 				if(L)
 					L.chest_burst(affected_mob)
-				processing_objects.Remove(src)
+				STOP_PROCESSING(SSobj, src)
 				return FALSE
 		else
 			var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
 			if(L)
 				L.chest_burst(affected_mob)
-			processing_objects.Remove(src)
+			STOP_PROCESSING(SSobj, src)
 			return FALSE
 
 	if(affected_mob.in_stasis == STASIS_IN_CRYO_CELL)

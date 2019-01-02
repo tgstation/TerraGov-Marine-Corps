@@ -23,7 +23,7 @@
 	var/germ_level = 0		// INTERNAL germs inside the organ, this is BAD if it's greater than INFECTION_LEVEL_ONE
 
 
-/datum/internal_organ/proc/process()
+/datum/internal_organ/process()
 		return 0
 
 //Germs
@@ -203,7 +203,7 @@
 
 	if (germ_level > INFECTION_LEVEL_ONE)
 		if(prob(1))
-			to_chat(owner, "\red Your skin itches.")
+			to_chat(owner, "<span class='warning'>Your skin itches.</span>")
 	if (germ_level > INFECTION_LEVEL_TWO)
 		if(prob(1))
 			spawn owner.vomit()

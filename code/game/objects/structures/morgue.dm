@@ -237,7 +237,7 @@
 				if(!C.cremating)
 					C.cremate(user)
 	else
-		to_chat(user, "\red Access denied.")
+		to_chat(user, "<span class='warning'>Access denied.</span>")
 
 
 

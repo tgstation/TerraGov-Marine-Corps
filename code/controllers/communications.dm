@@ -141,7 +141,7 @@ var/list/radiochannels = list(
 	"UPP" 			= RUS_FREQ,
 	"Colonist"		= DUT_FREQ,
 
-	"Almayer"		= PUB_FREQ,
+	"Theseus"		= PUB_FREQ,
 	"Command"		= COMM_FREQ,
 	"MedSci"		= MED_FREQ,
 	"Engi"			= ENG_FREQ,

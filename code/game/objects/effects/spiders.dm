@@ -22,9 +22,9 @@
 
 /obj/effect/spider/attackby(var/obj/item/W, var/mob/user)
 	if(W.attack_verb.len)
-		visible_message("\red <B>\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]")
+		visible_message("<span class='danger'>\The [src] have been [pick(W.attack_verb)] with \the [W][(user ? " by [user]." : ".")]</span>")
 	else
-		visible_message("\red <B>\The [src] have been attacked with \the [W][(user ? " by [user]." : ".")]")
+		visible_message("<span class='danger'>\The [src] have been attacked with \the [W][(user ? " by [user]." : ".")]</span>")
 
 	var/damage = W.force / 4.0
 
@@ -78,7 +78,7 @@
 	New()
 		pixel_x = rand(3,-3)
 		pixel_y = rand(3,-3)
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 
 /obj/effect/spider/eggcluster/process()
 	amount_grown += rand(0,2)
@@ -101,7 +101,7 @@
 	New()
 		pixel_x = rand(6,-6)
 		pixel_y = rand(6,-6)
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 		//50% chance to grow up
 		if(prob(50))
 			amount_grown = 1

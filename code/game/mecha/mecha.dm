@@ -424,7 +424,7 @@
 				src.take_damage(15)
 				src.check_for_internal_damage(list(MECHA_INT_CONTROL_LOST))
 				playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
-				to_chat(user, "\red You slash at the armored suit!")
+				to_chat(user, "<span class='warning'>You slash at the armored suit!</span>")
 				visible_message("\red [user] slashes at [name]'s armor!")
 			else
 				src.log_append_to_last("Armor saved.")
@@ -457,7 +457,7 @@
 			var/damage = rand(user.melee_damage_lower, user.melee_damage_upper)
 			src.take_damage(damage)
 			src.check_for_internal_damage(list(MECHA_INT_CONTROL_LOST))
-			visible_message("\red <B>[user]</B> [user.attacktext] [src]!")
+			visible_message("<span class='danger'>[user] [user.attacktext] [src]!</span>")
 			log_combat(user, src, "attacked")
 		else
 			src.log_append_to_last("Armor saved.")
@@ -603,7 +603,7 @@
 /obj/mecha/proc/dynattackby(obj/item/W as obj, mob/user as mob)
 	src.log_message("Attacked by [W]. Attacker - [user]")
 	if(prob(src.deflect_chance))
-		to_chat(user, "\red \The [W] bounces off [src.name].")
+		to_chat(user, "<span class='warning'>\The [W] bounces off [src.name].</span>")
 		src.log_append_to_last("Armor saved.")
 
 	else
@@ -649,9 +649,9 @@
 				output_maintenance_dialog(id_card, user)
 				return
 			else
-				to_chat(user, "\red Invalid ID: Access denied.")
+				to_chat(user, "<span class='warning'>Invalid ID: Access denied.</span>")
 		else
-			to_chat(user, "\red Maintenance protocols disabled by operator.")
+			to_chat(user, "<span class='warning'>Maintenance protocols disabled by operator.</span>")
 	else if(istype(W, /obj/item/tool/wrench))
 		if(state==1)
 			state = 2
@@ -706,7 +706,7 @@
 		if (!WT.remove_fuel(0,user))
 			return
 		if(src.health<initial(src.health))
-			to_chat(user, "\blue You repair some damage to [src.name].")
+			to_chat(user, "<span class='notice'>You repair some damage to [src.name].</span>")
 			src.health += min(10, initial(src.health)-src.health)
 		else
 			to_chat(user, "The [src.name] is at full integrity")
@@ -917,15 +917,15 @@
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(C.handcuffed)
-			to_chat(usr, "\red Kinda hard to climb in while handcuffed don't you think?")
+			to_chat(usr, "<span class='warning'>Kinda hard to climb in while handcuffed don't you think?</span>")
 			return
 	if (src.occupant)
-		to_chat(usr, "\blue <B>The [src.name] is already occupied!</B>")
+		to_chat(usr, "<span class='boldnotice'>The [src.name] is already occupied!</span>")
 		src.log_append_to_last("Permission denied.")
 		return
 /*
 	if (usr.abiotic())
-		to_chat(usr, "\blue <B>Subject cannot have abiotic items on.</B>")
+		to_chat(usr, "<span class='boldnotice'>Subject cannot have abiotic items on.</span>")
 		return
 */
 	var/passed
@@ -935,7 +935,7 @@
 	else if(src.operation_allowed(usr))
 		passed = 1
 	if(!passed)
-		to_chat(usr, "\red Access denied")
+		to_chat(usr, "<span class='warning'>Access denied</span>")
 		src.log_append_to_last("Permission denied.")
 		return
 //	to_chat(usr, "You start climbing into [src.name]")
@@ -1485,7 +1485,7 @@
 				passengers["[P.occupant]"] = P
 
 		if (!passengers)
-			to_chat(user, "\red There are no passengers to remove.")
+			to_chat(user, "<span class='warning'>There are no passengers to remove.</span>")
 			return
 
 		var/pname = input(user, "Choose a passenger to forcibly remove.", "Forcibly Remove Passenger") as null|anything in passengers

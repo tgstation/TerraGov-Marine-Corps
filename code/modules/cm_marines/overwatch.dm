@@ -259,18 +259,18 @@
 				if(current_squad)
 					to_chat(usr, "<span class='warning'>\icon[src] You are already selecting a squad.</span>")
 				else
-					var/list/squad_list = list()
+					var/list/squad_choices = list()
 					for(var/datum/squad/S in RoleAuthority.squads)
-						if(S.usable && !S.overwatch_officer)
-							squad_list += S.name
+						if(!S.overwatch_officer)
+							squad_choices += S.name
 
-					var/name_sel = input("Which squad would you like to claim for Overwatch?") as null|anything in squad_list
-					if(!name_sel || operator != usr)
+					var/squad_name = input("Which squad would you like to claim for Overwatch?") as null|anything in squad_choices
+					if(!squad_name || operator != usr)
 						return
 					if(current_squad)
 						to_chat(usr, "<span class='warning'>\icon[src] You are already selecting a squad.</span>")
 						return
-					var/datum/squad/selected = get_squad_by_name(name_sel)
+					var/datum/squad/selected = RoleAuthority.squads[RoleAuthority.squads_names.Find(squad_name)]
 					if(selected)
 						selected.overwatch_officer = usr //Link everything together, squad, console, and officer
 						current_squad = selected
@@ -338,7 +338,7 @@
 			switch(z_hidden)
 				if(0)
 					z_hidden = MAIN_SHIP_Z_LEVEL
-					to_chat(usr, "\icon[src] <span class='notice'>Marines on the Almayer are now hidden.</span>")
+					to_chat(usr, "\icon[src] <span class='notice'>Marines on the [MAIN_SHIP_NAME] are now hidden.</span>")
 				if(MAIN_SHIP_Z_LEVEL)
 					z_hidden = 1
 					to_chat(usr, "\icon[src] <span class='notice'>Marines on the ground are now hidden.</span>")
@@ -396,7 +396,7 @@
 	if(.)  //Checks for power outages
 		return
 	if(!allowed(user))
-		to_chat(user, "\red You don't have access.")
+		to_chat(user, "<span class='warning'>You don't have access.</span>")
 		return
 	if(!squads.len)
 		for(var/datum/squad/S in RoleAuthority.squads)
@@ -557,8 +557,8 @@
 	send_to_squads("Calibrating trajectory window...")
 	sleep(11)
 	for(var/mob/living/carbon/H in living_mob_list)
-		if(H.z == MAIN_SHIP_Z_LEVEL && !H.stat) //USS Almayer decks.
-			to_chat(H, "<span class='warning'>The deck of the USS Almayer shudders as the orbital cannons open fire on the colony.</span>")
+		if(H.z == MAIN_SHIP_Z_LEVEL && !H.stat) //TGS Theseus decks.
+			to_chat(H, "<span class='warning'>The deck of the [MAIN_SHIP_NAME] shudders as the orbital cannons open fire on the colony.</span>")
 			if(H.client)
 				shake_camera(H, 10, 1)
 	state("<span class='boldnotice'>Orbital bombardment has fired! Impact imminent!</span>")
@@ -819,36 +819,36 @@
 	density = 0
 	unacidable = 1
 	layer = ABOVE_TURF_LAYER
-	var/squad = "Alpha"
+	var/squad_name = "Alpha"
 	var/sending_package = 0
 
-	New() //Link a squad to a drop pad
-		..()
-		spawn(10)
-			force_link()
+/obj/structure/supply_drop/New() //Link a squad to a drop pad
+	. = ..()
+	spawn(10)
+		force_link()
 
-	proc/force_link() //Somehow, it didn't get set properly on the new proc. Force it again,
-		var/datum/squad/S = get_squad_by_name(squad)
-		if(S)
-			S.drop_pad = src
-		else
-			to_chat(world, "Alert! Supply drop pads did not initialize properly.")
+/obj/structure/supply_drop/proc/force_link() //Somehow, it didn't get set properly on the new proc. Force it again,
+	var/datum/squad/S = RoleAuthority.squads[RoleAuthority.squads_names.Find(squad_name)]
+	if(S)
+		S.drop_pad = src
+	else
+		to_chat(world, "Alert! Supply drop pads did not initialize properly.")
 
 /obj/structure/supply_drop/alpha
 	icon_state = "alphadrop"
-	squad = "Alpha"
+	squad_name = "Alpha"
 
 /obj/structure/supply_drop/bravo
 	icon_state = "bravodrop"
-	squad = "Bravo"
+	squad_name = "Bravo"
 
 /obj/structure/supply_drop/charlie
 	icon_state = "charliedrop"
-	squad = "Charlie"
+	squad_name = "Charlie"
 
 /obj/structure/supply_drop/delta
 	icon_state = "deltadrop"
-	squad = "Delta"
+	squad_name = "Delta"
 
 /obj/item/device/squad_beacon
 	name = "squad supply beacon"

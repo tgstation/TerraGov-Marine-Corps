@@ -569,7 +569,7 @@ proc/populate_seed_list()
 		got_product = 1
 
 	if(!got_product && !harvest_sample)
-		to_chat(user, "\red You fail to harvest anything useful.")
+		to_chat(user, "<span class='warning'>You fail to harvest anything useful.</span>")
 	else
 		to_chat(user, "You [harvest_sample ? "take a sample" : "harvest"] from the [display_name].")
 

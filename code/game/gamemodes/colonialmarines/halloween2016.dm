@@ -48,12 +48,12 @@
 	required_players 		= 2 //Need at least one player, but really we need 2.
 	latejoin_larva_drop		= 0
 	flags_round_type		= MODE_PREDATOR|MODE_NO_LATEJOIN
-	role_instruction		= 1
-	roles_for_mode = list(/datum/job/marine/standard/equipped,
-							/datum/job/marine/medic/equipped,
-							/datum/job/marine/engineer/equipped,
-							/datum/job/marine/specialist/equipped,
-							/datum/job/marine/leader/equipped,
+	role_instruction		= ROLE_MODE_REPLACE
+	roles_for_mode = list(/datum/job/marine/standard,
+							/datum/job/marine/medic,
+							/datum/job/marine/engineer,
+							/datum/job/marine/specialist,
+							/datum/job/marine/leader,
 							/datum/job/civilian/liaison/nightmare,
 							/datum/job/command/commander/nightmare
 							)
@@ -77,7 +77,7 @@
 /datum/game_mode/colonialmarines_halloween_2016/can_start()
 	initialize_special_clamps()
 	//initialize_starting_predator_list()
-	var/ready_players = num_players() // Get all players that have "Ready" selected
+	var/ready_players = ready_players() // Get all players that have "Ready" selected
 	if(ready_players < required_players)
 		to_chat(world, "<span class='round_setup'>Not enough players to start the game. Aborting.</span>")
 		return
@@ -466,7 +466,7 @@
 			spawn(40)
 				if(H)
 					to_chat(H, "________________________")
-					to_chat(H, "\red <b>You are the [H.mind.assigned_role]!<b>")
+					to_chat(H, "<span class='danger'>You are the [H.mind.assigned_role]!</span>")
 					to_chat(H, "It was just a regular day in the office when the higher up decided to send you in to this hot mess. If only you called in sick that day...")
 					to_chat(H, "The W-Y mercs were hired to protect some important science experiment, and W-Y expects you to keep them in line.")
 					to_chat(H, "These are hardened killers, and you write on paper for a living. It won't be easy, that's for damn sure.")
@@ -478,7 +478,7 @@
 			spawn(40)
 				if(H)
 					to_chat(H, "________________________")
-					to_chat(H, "\red <b>You are the [H.mind.assigned_role]!<b>")
+					to_chat(H, "<span class='danger'>You are the [H.mind.assigned_role]!</span>")
 					to_chat(H, "What the hell did you do to get assigned on this mission? Maybe someone is looking to bump you off for a promotion. Regardless...")
 					to_chat(H, "The marines need a leader to inspire them and lead them to victory. You'll settle for telling them which side of the gun the bullets come from.")
 					to_chat(H, "You are a vet, a real badass in your day, but now you're in the thick of it with the grunts. You're plenty sure they are going to die in droves.")
@@ -896,7 +896,7 @@
 		spawn(40)
 			if(H)
 				to_chat(H, "________________________")
-				to_chat(H, "\red <b>You are the [H.mind.assigned_role]!<b>")
+				to_chat(H, "<span class='danger'>You are the [H.mind.assigned_role]!</span>")
 				to_chat(H, "Gear up, maggot! You have been dropped off in this God-forsaken place to complete some wetworks for Uncle Sam! Not even your mother knows that you're here!")
 				to_chat(H, "Some W-Y mercs are camping out north of the colony, and they got some doo-hickie doomsday device they are planning to use. Make sure they don't!")
 				to_chat(H, "Wipe them out and destroy their tech! The [MAIN_SHIP_NAME] will maintain radio silence for the duration of the mission!")
@@ -1053,9 +1053,8 @@
 			domutcheck(H,null,MUTCHK_FORCED)
 			H.update_mutations()
 			horror = H
-			special_role = BE_SURVIVOR|BE_RESPONDER
+			special_role = BE_SURVIVOR
 			recruit_msg = "a horror and kill the living?"
-			//BE_RESPONDER
 			animation_teleport_spooky_in(H)
 		else
 			var/mob/living/carbon/human/H = new(pick(horror_spawns))
@@ -1186,7 +1185,7 @@
 			H.update_body(0)
 			H.update_hair()
 			horror = H
-			special_role = BE_SURVIVOR|BE_RESPONDER
+			special_role = BE_SURVIVOR
 			recruit_msg = "a hero and fight together with the remaining mortal souls?"
 			animation_teleport_magic_in(H)
 
@@ -1490,14 +1489,14 @@
 		. = ..()
 		for(var/mob/W in shadow_wights) qdel(W)
 		shadow_wights = null
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 
 	attack_hand(mob/M) //You dun goofed now, goofy.
 		to_chat(M, "<span class='danger'>The strange thing in your hand begins to move around! You suddenly get a very bad feeling about this!</span>")
 		icon_state = "statuette2"
 		mouse_opacity = 0 //Can't be interacted with again.
 		shadow_wights = new
-		processing_objects += src
+		START_PROCESSING(SSobj, src)
 
 /obj/item/vampiric/process()
 	if(!isturf(loc))
@@ -1603,13 +1602,13 @@
 
 	New()
 		..()
-		processing_objects += src
+		START_PROCESSING(SSobj, src)
 		loc_last_process = loc
 
 	Destroy()
 		animation_destruction_fade(src)
 		. = ..()
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 
 /obj/effect/decal/cleanable/blood/splatter/animated/process()
 	if(target_turf && loc != target_turf)
@@ -1637,12 +1636,12 @@
 
 	Destroy()
 		. = ..()
-		processing_objects -= src
+		STOP_PROCESSING(SSobj, src)
 		if(master_doll && master_doll.loc) master_doll.shadow_wights -= src
 
 /obj/effect/shadow_wight/New()
 	animation_teleport_spooky_in(src)
-	processing_objects += src
+	START_PROCESSING(SSobj, src)
 
 /obj/effect/shadow_wight/process()
 	if(loc)

@@ -71,19 +71,15 @@
 	var/acid_spray_range = 0
 	var/acid_spray_cooldown = 0
 
-	// *** Pheromones *** //	
+	// *** Pheromones *** //
 	var/aura_strength = 0 //The strength of our aura. Zero means we can't emit one
 	var/aura_allowed = list("frenzy", "warding", "recovery") //"Evolving" removed for the time being
 
 	// *** Warrior Abilities *** //
 	var/agility_speed_increase = 0 // this opens up possibilities for balancing
-	var/lunge_cooldown = 0
-	var/fling_cooldown = 0
-	var/punch_cooldown = 0
-	var/toggle_agility_cooldown = 0
 
 	// *** Boiler Abilities *** //
-	var/bomb_strength = 0 
+	var/bomb_strength = 0
 	var/acid_delay = 0
 	var/bomb_delay = 0
 
@@ -93,13 +89,8 @@
 	var/eggs_max = 0
 
 	// *** Defender Abilities *** //
-	var/headbutt_cooldown = 0
-	var/tail_sweep_cooldown = 0
-	var/crest_defense_cooldown = 0
-	var/fortify_cooldown = 0
 	var/crest_defense_armor = 0
 	var/fortify_armor = 0
-	var/cresttoss_cooldown = 0
 
 	// *** Queen Abilities *** //
 	var/queen_leader_limit = 0 //Amount of leaders allowed
@@ -243,6 +234,8 @@
 	var/notice_delay = 20 //2 second between notices
 
 	var/cresttoss_used = FALSE
+
+	var/wound_type = "ravager" //used to match appropriate wound overlays
 
 /datum/hive_status
 	var/hivenumber = XENO_HIVE_NORMAL

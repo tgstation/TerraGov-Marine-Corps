@@ -97,7 +97,7 @@
 		if (W)
 			if (W.attack_speed)
 				next_move += W.attack_speed
-			if (!A.attackby(W, src) && A && !A.disposed)
+			if (!A.attackby(W, src) && A && !A.gc_destroyed)
 				W?.afterattack(A, src, 1, mods) //The attackby could have made W dissappear, such as refilling mags on an ammo box.
 		else
 			next_move += 4
@@ -244,7 +244,7 @@
 		nutrition = max(nutrition - rand(1,5),0)
 		handle_regular_hud_updates()
 	else
-		to_chat(src, "\red You're out of energy!  You need food!")
+		to_chat(src, "<span class='warning'>You're out of energy!  You need food!</span>")
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
 /mob/proc/face_atom(var/atom/A)

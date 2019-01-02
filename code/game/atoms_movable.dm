@@ -31,8 +31,6 @@
 	loc = null //so we move into null space. Must be after ..() b/c atom's Dispose handles deleting our lighting stuff
 
 
-/atom/movable/Recycle()
-	return
 //===========================================================================
 
 /atom/movable/proc/initialize()
@@ -203,7 +201,7 @@
 	var/area/a = get_area(src.loc)
 	if(dist_x > dist_y)
 		var/error = dist_x/2 - dist_y
-		while(src && !disposed && target &&((((src.x < target.x && dx == EAST) || (src.x > target.x && dx == WEST)) && dist_travelled < range) || (a && a.has_gravity == 0)  || istype(src.loc, /turf/open/space)) && src.throwing && istype(src.loc, /turf))
+		while(src && !gc_destroyed && target &&((((src.x < target.x && dx == EAST) || (src.x > target.x && dx == WEST)) && dist_travelled < range) || (a && a.has_gravity == 0)  || istype(src.loc, /turf/open/space)) && src.throwing && istype(src.loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dy)
@@ -232,7 +230,7 @@
 			a = get_area(src.loc)
 	else
 		var/error = dist_y/2 - dist_x
-		while(src && !disposed && target &&((((src.y < target.y && dy == NORTH) || (src.y > target.y && dy == SOUTH)) && dist_travelled < range) || (a && a.has_gravity == 0)  || istype(src.loc, /turf/open/space)) && src.throwing && istype(src.loc, /turf))
+		while(src && !gc_destroyed && target &&((((src.y < target.y && dy == NORTH) || (src.y > target.y && dy == SOUTH)) && dist_travelled < range) || (a && a.has_gravity == 0)  || istype(src.loc, /turf/open/space)) && src.throwing && istype(src.loc, /turf))
 			// only stop when we've gone the whole distance (or max throw range) and are on a non-space tile, or hit something, or hit the end of the map, or someone picks it up
 			if(error < 0)
 				var/atom/step = get_step(src, dx)

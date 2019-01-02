@@ -174,10 +174,6 @@ bullets/shells. ~N
 	..()
 	return TA_REVIVE_ME
 
-/obj/item/ammo_magazine/handful/Recycle()
-	var/blacklist[] = list("name","desc","icon_state","caliber","max_rounds","current_rounds","default_ammo","icon_type","gun_type")
-	. = ..() + blacklist
-
 /obj/item/ammo_magazine/handful/update_icon() //Handles the icon itself as well as some bonus things.
 	if(max_rounds >= current_rounds)
 		var/I = current_rounds*50 // For the metal.

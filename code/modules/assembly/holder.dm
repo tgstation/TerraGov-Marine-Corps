@@ -140,15 +140,15 @@
 /obj/item/device/assembly_holder/attackby(obj/item/W as obj, mob/user as mob)
 	if(isscrewdriver(W))
 		if(!a_left || !a_right)
-			to_chat(user, "\red BUG:Assembly part missing, please report this!")
+			to_chat(user, "<span class='warning'>BUG:Assembly part missing, please report this!</span>")
 			return
 		a_left.toggle_secure()
 		a_right.toggle_secure()
 		secured = !secured
 		if(secured)
-			to_chat(user, "\blue \The [src] is ready!")
+			to_chat(user, "<span class='notice'>\The [src] is ready!</span>")
 		else
-			to_chat(user, "\blue \The [src] can now be taken apart!")
+			to_chat(user, "<span class='notice'>\The [src] can now be taken apart!</span>")
 		update_icon()
 		return
 	else if(W.IsSpecialAssembly())
@@ -162,7 +162,7 @@
 	src.add_fingerprint(user)
 	if(src.secured)
 		if(!a_left || !a_right)
-			to_chat(user, "\red Assembly part missing!")
+			to_chat(user, "<span class='warning'>Assembly part missing!</span>")
 			return
 		if(istype(a_left,a_right.type))//If they are the same type it causes issues due to window code
 			switch(alert("Which side would you like to use?",,"Left","Right"))
@@ -229,7 +229,7 @@
 		tmr.time = 5
 	tmr.secured = 1
 	tmr.holder = src
-	processing_objects.Add(tmr)
+	START_PROCESSING(SSobj, tmr)
 	a_left = tmr
 	a_right = ign
 	secured = 1

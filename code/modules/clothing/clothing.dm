@@ -51,7 +51,7 @@
 						wearable = 1
 
 				if(!wearable && (slot != 15 && slot != 16)) //Pockets.
-					to_chat(M, "\red Your species cannot wear [src].")
+					to_chat(M, "<span class='warning'>Your species cannot wear [src].</span>")
 					return 0
 
 	return 1

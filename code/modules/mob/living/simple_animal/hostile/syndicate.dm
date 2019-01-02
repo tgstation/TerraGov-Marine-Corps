@@ -69,7 +69,7 @@
 		else
 			visible_message("\red \b [src] blocks the [O] with its shield! ")
 	else
-		to_chat(usr, "\red This weapon is ineffective, it does no damage.")
+		to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 		visible_message("\red [user] gently taps [src] with the [O]. ")
 
 
@@ -78,7 +78,7 @@
 	if(prob(65))
 		src.health -= Proj.damage
 	else
-		visible_message("\red <B>[src] blocks [Proj] with its shield!</B>")
+		visible_message("<span class='danger'>[src] blocks [Proj] with its shield!</span>")
 	return 0
 
 

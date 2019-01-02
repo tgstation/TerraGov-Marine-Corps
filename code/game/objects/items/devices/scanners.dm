@@ -28,12 +28,12 @@ REAGENT SCANNER
 	icon_state = "t-ray[on]"
 
 	if(on)
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 
 
 /obj/item/device/t_scanner/process()
 	if(!on)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return null
 
 	for(var/turf/T in range(1, src.loc) )
@@ -50,7 +50,7 @@ REAGENT SCANNER
 				O.invisibility = 0
 				O.alpha = 128
 				spawn(10)
-					if(O && !O.disposed)
+					if(O && !O.gc_destroyed)
 						var/turf/U = O.loc
 						if(U.intact_tile)
 							O.invisibility = 101
@@ -536,7 +536,7 @@ REAGENT SCANNER
 	if (user.stat)
 		return
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		to_chat(usr, "\red You don't have the dexterity to do this!")
+		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 
 	var/turf/location = user.loc
@@ -547,7 +547,7 @@ REAGENT SCANNER
 	var/env_gas = location.return_gas()
 	var/env_temp = location.return_temperature()
 
-	user.show_message("\blue <B>Results:</B>", 1)
+	user.show_message("<span class='boldnotice'>Results:</span>", 1)
 	if(abs(env_pressure - ONE_ATMOSPHERE) < 10)
 		user.show_message("\blue Pressure: [round(env_pressure,0.1)] kPa", 1)
 	else
@@ -594,17 +594,17 @@ REAGENT SCANNER
 	if (user.stat)
 		return
 	if (crit_fail)
-		to_chat(user, "\red This device has critically failed and is no longer functional!")
+		to_chat(user, "<span class='warning'>This device has critically failed and is no longer functional!</span>")
 		return
 	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		to_chat(user, "\red You don't have the dexterity to do this!")
+		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 	if(reagents.total_volume)
 		var/list/blood_traces = list()
 		for(var/datum/reagent/R in reagents.reagent_list)
 			if(R.id != "blood")
 				reagents.clear_reagents()
-				to_chat(user, "\red The sample was contaminated! Please insert another sample")
+				to_chat(user, "<span class='warning'>The sample was contaminated! Please insert another sample</span>")
 				return
 			else
 				blood_traces = params2list(R.data["trace_chem"])
@@ -658,12 +658,12 @@ REAGENT SCANNER
 	if (user.stat)
 		return
 	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		to_chat(user, "\red You don't have the dexterity to do this!")
+		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 	if(!istype(O))
 		return
 	if (crit_fail)
-		to_chat(user, "\red This device has critically failed and is no longer functional!")
+		to_chat(user, "<span class='warning'>This device has critically failed and is no longer functional!</span>")
 		return
 
 	if(!isnull(O.reagents))
@@ -681,11 +681,11 @@ REAGENT SCANNER
 				else
 					recent_fail = 1
 		if(dat)
-			to_chat(user, "\blue Chemicals found: [dat]")
+			to_chat(user, "<span class='notice'>Chemicals found: [dat]</span>")
 		else
-			to_chat(user, "\blue No active chemical agents found in [O].")
+			to_chat(user, "<span class='notice'>No active chemical agents found in [O].</span>")
 	else
-		to_chat(user, "\blue No significant chemical agents found in [O].")
+		to_chat(user, "<span class='notice'>No significant chemical agents found in [O].</span>")
 
 	return
 

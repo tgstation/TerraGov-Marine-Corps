@@ -44,7 +44,7 @@
 	if(!proximity) return
 	if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
 		A.reagents.trans_to(src, 10)
-		to_chat(user, "\blue You fill the balloon with the contents of [A].")
+		to_chat(user, "<span class='notice'>You fill the balloon with the contents of [A].</span>")
 		src.desc = "A translucent balloon with some form of liquid sloshing around in it."
 		src.update_icon()
 	return
@@ -61,7 +61,7 @@
 					qdel(src)
 				else
 					src.desc = "A translucent balloon with some form of liquid sloshing around in it."
-					to_chat(user, "\blue You fill the balloon with the contents of [O].")
+					to_chat(user, "<span class='notice'>You fill the balloon with the contents of [O].</span>")
 					O.reagents.trans_to(src, 10)
 	src.update_icon()
 	return
@@ -137,7 +137,7 @@
 	var/colourName = "red" //for updateIcon purposes
 
 	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is jamming the [src.name] up \his nose and into \his brain. It looks like \he's trying to commit suicide.</b>"
+		user.visible_message("<span class='danger'>[user] is jamming the [src.name] up \his nose and into \his brain. It looks like \he's trying to commit suicide.</span>")
 		return (BRUTELOSS|OXYLOSS)
 
 /*
@@ -163,7 +163,7 @@
 	if((ishuman(H))) //i guess carp and shit shouldn't set them off
 		var/mob/living/carbon/M = H
 		if(M.m_intent == MOVE_INTENT_RUN)
-			to_chat(M, "\red You step on the snap pop!")
+			to_chat(M, "<span class='warning'>You step on the snap pop!</span>")
 
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 			s.set_up(2, 0, src)
@@ -204,12 +204,12 @@
 
 	else if (istype(A, /obj/structure/reagent_dispensers/watertank) && get_dist(src,A) <= 1)
 		A.reagents.trans_to(src, 10)
-		to_chat(user, "\blue You refill your flower!")
+		to_chat(user, "<span class='notice'>You refill your flower!</span>")
 		return
 
 	else if (src.reagents.total_volume < 1)
 		src.empty = 1
-		to_chat(user, "\blue Your flower has run dry!")
+		to_chat(user, "<span class='notice'>Your flower has run dry!</span>")
 		return
 
 	else
@@ -231,7 +231,7 @@
 				for(var/atom/T in get_turf(D))
 					D.reagents.reaction(T)
 					if(ismob(T) && T:client)
-						to_chat(T:client, "\red [user] has sprayed you with water!")
+						to_chat(T:client, "<span class='warning'>[user] has sprayed you with water!</span>")
 				sleep(4)
 			qdel(D)
 

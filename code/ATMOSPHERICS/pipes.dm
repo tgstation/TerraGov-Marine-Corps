@@ -65,7 +65,7 @@
 	return parent.return_network(reference)
 
 /obj/machinery/atmospherics/pipe/Destroy()
-	if(!disposed) //not already cdel'd
+	if(!gc_destroyed) //not already cdel'd
 		if(parent)
 			qdel(parent)
 	return ..()
@@ -1107,15 +1107,15 @@
 
 	if(istype(W, /obj/item/device/analyzer) && in_range(user, src))
 		for (var/mob/O in viewers(user, null))
-			to_chat(O, "\red [user] has used the analyzer on \icon[icon]")
+			to_chat(O, "<span class='warning'>[user] has used the analyzer on \icon[icon]</span>")
 
-		to_chat(user, "\blue Results of analysis of \icon[icon]")
+		to_chat(user, "<span class='notice'>Results of analysis of \icon[icon]</span>")
 		if (pressure>0)
-			to_chat(user, "\blue Pressure: [round(pressure,0.1)] kPa")
-			to_chat(user, "\blue [gas_type]: [100]%")
-			to_chat(user, "\blue Temperature: [round(temperature-T0C)]&deg;C")
+			to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
+			to_chat(user, "<span class='notice'>[gas_type]: [100]%</span>")
+			to_chat(user, "<span class='notice'>Temperature: [round(temperature-T0C)]&deg;C</span>")
 		else
-			to_chat(user, "\blue Tank is empty!")
+			to_chat(user, "<span class='notice'>Tank is empty!</span>")
 
 /obj/machinery/atmospherics/pipe/tank/air
 	name = "Pressure Tank (Air)"

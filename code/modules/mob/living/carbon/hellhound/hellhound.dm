@@ -39,7 +39,7 @@
 	see_in_dark = 8
 
 	for(var/mob/dead/observer/M in player_list)
-		to_chat(M, "\red <B>A hellhound is now available to play!</b> Please be sure you can follow the rules.")
+		to_chat(M, "<span class='danger'>A hellhound is now available to play! Please be sure you can follow the rules.</span>")
 		to_chat(M, "\red Click 'Join as hellhound' in the ghost panel to become one. First come first serve!")
 		to_chat(M, "\red If you need help during play, click adminhelp and ask.")
 
@@ -65,7 +65,7 @@
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 				for(var/mob/O in viewers(src, null))
 					if ((O.client && !is_blind(O)))
-						O.show_message(text("\red <B>[] knocks down [H]!</B>", src), 1)
+						O.show_message(text("<span class='danger'>[] knocks down [H]!</span>", src), 1)
 		return
 	else if(a_intent == "grab")
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
@@ -79,7 +79,7 @@
 
 		var/dmg = rand(10,25)
 		H.apply_damage(dmg,BRUTE,edge = 1) //Does NOT check armor.
-		visible_message("\red <B>[src] mauls [H]!</b>","\red <B>You maul [H]!</b>")
+		visible_message("<span class='danger'>[src] mauls [H]!</span>","<span class='danger'>You maul [H]!</span>")
 		playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 	return
 
@@ -101,12 +101,12 @@
 		return
 	else if(a_intent == "grab")
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
-		visible_message("\red <B>[src] grabs [X] in their jaws!</B>","\red <B>You grab [X] in your jaws!</b>")
+		visible_message("<span class='danger'>[src] grabs [X] in their jaws!</span>","<span class='danger'>You grab [X] in your jaws!</span>")
 		src.start_pulling(X)
 	else
 		var/dmg = rand(20,32)
 		X.apply_damage(dmg,BRUTE,edge = 1) //Does NOT check armor.
-		visible_message("\red <B>[src] mauls [X]!</b>","\red <B>You maul [X]!</b>")
+		visible_message("<span class='danger'>[src] mauls [X]!</span>","<span class='danger'>You maul [X]!</span>")
 		playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 	return
 
@@ -130,7 +130,7 @@
 		return
 	else if(a_intent == "grab")
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
-		visible_message("\red <B>[src] grabs [H] in their jaws!</B>","\red <B>You grab [H] in your jaws!</b>")
+		visible_message("<span class='danger'>[src] grabs [H] in their jaws!</span>","<span class='danger'>You grab [H] in your jaws!</span>")
 		src.start_pulling(H)
 		return
 	else
@@ -141,7 +141,7 @@
 			return
 		var/dmg = rand(3,8)
 		H.apply_damage(dmg,BRUTE,edge = 1) //Does NOT check armor.
-		visible_message("\red <B>[src] mauls [H]!</b>","\red <B>You maul [H]!</b>")
+		visible_message("<span class='danger'>[src] mauls [H]!</span>","<span class='danger'>You maul [H]!</span>")
 		playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 	return
 
@@ -155,12 +155,12 @@
 			if ((prob(75) && health > 0))
 				playsound(loc, 'sound/weapons/bite.ogg', 25, 1)
 				for(var/mob/O in viewers(src, null))
-					O.show_message("\red <B>[M.name] has bit [name]!</B>", 1)
+					O.show_message("<span class='danger'>[M.name] has bit [name]!</span>", 1)
 				var/damage = rand(2, 4)
 				adjustBruteLoss(damage)
 			else
 				for(var/mob/O in viewers(src, null))
-					O.show_message("\red <B>[M.name] has attempted to bite [name]!</B>", 1)
+					O.show_message("<span class='danger'>[M.name] has attempted to bite [name]!</span>", 1)
 	return
 
 //punched by a hu-man
@@ -175,7 +175,7 @@
 		if (M.a_intent == "hurt")
 			var/datum/unarmed_attack/attack = M.species.unarmed
 			if ((prob(75) && health > 0))
-				visible_message("\red <B>[M] [pick(attack.attack_verb)]ed [src]!</B>")
+				visible_message("<span class='danger'>[M] [pick(attack.attack_verb)]ed [src]!</span>")
 
 				playsound(loc, "punch", 25, 1)
 				var/damage = rand(3, 7)
@@ -188,7 +188,7 @@
 				updatehealth()
 			else
 				playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
-				visible_message("\red <B>[M] tried to [pick(attack.attack_verb)] [src]!</B>")
+				visible_message("<span class='danger'>[M] tried to [pick(attack.attack_verb)] [src]!</span>")
 		else
 			if (M.a_intent == "grab")
 
@@ -204,11 +204,11 @@
 						playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 						for(var/mob/O in viewers(src, null))
 							if ((O.client && !is_blind(O)))
-								O.show_message(text("\red <B>[] has pushed down [name]!</B>", M), 1)
+								O.show_message(text("<span class='danger'>[] has pushed down [name]!</span>", M), 1)
 					else
 						for(var/mob/O in viewers(src, null))
 							if ((O.client && !is_blind(O)))
-								O.show_message(text("\red <B>[] shoves at [name]!</B>", M), 1)
+								O.show_message(text("<span class='danger'>[] shoves at [name]!</span>", M), 1)
 	return
 
 /mob/living/carbon/hellhound/attack_animal(mob/living/M as mob)
@@ -218,8 +218,7 @@
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 25, 1)
-		for(var/mob/O in viewers(src, null))
-			O.show_message("\red <B>[M]</B> [M.attacktext] [src]!", 1)
+		visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>", 1)
 		log_combat(M, src, "attacked")
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 		adjustBruteLoss(damage)
@@ -276,7 +275,7 @@
 			message = trim(copytext(message,2))
 			if(!message) return
 			for(var/mob/living/carbon/hellhound/M in living_mob_list)
-				to_chat(M, "\blue <B>\[RADIO\]</b>: [src.name] [verb_used], '<B>[message]<B>'.")
+				to_chat(M, "<span class='boldnotice'>\[RADIO\]: [src.name] [verb_used], '[message]'.</span>")
 			return
 
 	message = capitalize(trim_left(message))

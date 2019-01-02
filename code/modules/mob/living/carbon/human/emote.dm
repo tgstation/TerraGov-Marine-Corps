@@ -29,7 +29,7 @@
 			if(player_caused)
 				if (src.client)
 					if (client.prefs.muted & MUTE_IC)
-						to_chat(src, "\red You cannot send IC messages (muted).")
+						to_chat(src, "<span class='warning'>You cannot send IC messages (muted).</span>")
 						return
 					if (src.client.handle_spam_prevention(message,MUTE_IC))
 						return
@@ -491,7 +491,7 @@
 				m_type = 1
 				playsound(src.loc, 'sound/voice/pred_turnaround.ogg', 25, 0)
 		else
-			to_chat(src, "\blue Unusable emote '[act]'. Say *help for a list of emotes.")
+			to_chat(src, "<span class='notice'>Unusable emote '[act]'. Say *help for a list of emotes.</span>")
 
 	if (message)
 		log_message(message, LOG_EMOTE)

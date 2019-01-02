@@ -73,12 +73,12 @@ Additional game mode variables.
 	var/stored_larva = 0
 
 	//Role Authority set up.
-	var/role_instruction 	= 0 // 1 is to replace, 2 is to add, 3 is to remove.
+	var/role_instruction 	= ROLE_MODE_DEFAULT
 	var/roles_for_mode[] //Won't have a list if the instruction is set to 0.
 
 	//Bioscan related.
-	var/bioscan_current_interval = 36000
-	var/bioscan_ongoing_interval = 18000
+	var/bioscan_current_interval = 45 MINUTES
+	var/bioscan_ongoing_interval = 20 MINUTES
 
 	var/flags_round_type = NOFLAGS
 
@@ -89,7 +89,7 @@ Additional game mode variables.
 //===================================================\\
 
 datum/game_mode/proc/initialize_special_clamps()
-	var/ready_players = num_players() // Get all players that have "Ready" selected
+	var/ready_players = ready_players() // Get all players that have "Ready" selected
 	xeno_starting_num = max((ready_players/7), xeno_required_num)
 	surv_starting_num = CLAMP((ready_players/25), 0, 8)
 	merc_starting_num = max((ready_players/3), 1)
@@ -292,7 +292,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	while(i > 0) //While we can still pick someone for the role.
 		if(length(possible_xenomorphs)) //We still have candidates
 			new_xeno = pick(possible_xenomorphs)
-			if(!new_xeno) 
+			if(!new_xeno)
 				break  //Looks like we didn't get anyone. Back out.
 			new_xeno.assigned_role = "MODE"
 			new_xeno.special_role = "Xenomorph"
@@ -486,7 +486,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 	new_xeno.update_icons()
 
-	if(original) 
+	if(original)
 		qdel(original) //Just to be sure.
 
 /datum/game_mode/proc/transform_queen(datum/mind/ghost_mind)
@@ -506,7 +506,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 	new_queen.update_icons()
 
-	if(original) 
+	if(original)
 		qdel(original) //Just to be sure.
 
 //===================================================\\
@@ -527,10 +527,10 @@ datum/game_mode/proc/initialize_post_queen_list()
 			var/i = surv_starting_num
 			var/datum/mind/new_survivor
 			while(i > 0)
-				if(!length(possible_survivors)) 
+				if(!length(possible_survivors))
 					break  //Ran out of candidates! Can't have a null pick(), so just stick with what we have.
 				new_survivor = pick(possible_survivors)
-				if(!new_survivor) 
+				if(!new_survivor)
 					break  //We ran out of survivors!
 				new_survivor.assigned_role = "MODE"
 				new_survivor.special_role = "Survivor"
@@ -763,12 +763,12 @@ datum/game_mode/proc/initialize_post_queen_list()
 		to_chat(H, "<h2>You are a survivor!</h2>")
 		switch(map_tag)
 			if(MAP_PRISON_STATION)
-				to_chat(H, "\blue You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now.")
+				to_chat(H, "<span class='notice'>You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now.</span>")
 			if(MAP_ICE_COLONY)
-				to_chat(H, "\blue You are a survivor of the attack on the ice habitat. You worked or lived on the colony, and managed to avoid the alien attacks.. until now.")
+				to_chat(H, "<span class='notice'>You are a survivor of the attack on the ice habitat. You worked or lived on the colony, and managed to avoid the alien attacks.. until now.</span>")
 			else
-				to_chat(H, "\blue You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now.")
-		to_chat(H, "\blue You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit.")
+				to_chat(H, "<span class='notice'>You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now.</span>")
+		to_chat(H, "<span class='notice'>You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit.</span>")
 	return 1
 
 /datum/game_mode/proc/tell_survivor_story()

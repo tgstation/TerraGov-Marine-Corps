@@ -21,7 +21,7 @@
 	stack_id = "cable coil"
 
 	suicide_act(mob/user)
-		viewers(user) << "<span class='warning'><b>[user] is strangling \himself with the [src.name]! It looks like \he's trying to commit suicide.</b></span>"
+		user.visible_message("<span class='warning'><b>[user] is strangling \himself with the [src.name]! It looks like \he's trying to commit suicide.</b></span>")
 		return(OXYLOSS)
 
 
@@ -336,7 +336,7 @@
 			var/mob/living/carbon/human/H = M
 			if(H.species.flags & IS_SYNTHETIC)
 				if(M == user)
-					to_chat(user, "\red You can't repair damage to your own body - it's against OH&S.")
+					to_chat(user, "<span class='warning'>You can't repair damage to your own body - it's against OH&S.</span>")
 					return
 
 		if(S.burn_dam > 0 && use(1))

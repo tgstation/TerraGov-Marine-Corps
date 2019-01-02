@@ -108,7 +108,7 @@ so there's honestly not too much to do here.
 		product.vars[i] = islist(product.vars[i]) ? list() : gathered_variables[product.type][i]
 
 	recycling[product.type] += product //Adds it to the list.
-	product.ta_directive = TA_REVIVE_ME //It won't be collected and disposed of later.
+	product.ta_directive = TA_REVIVE_ME //It won't be collected and gc_destroyed of later.
 
 /*
 This is the opposite of Dispose. You can override this proc for certain things if you want to preserve
@@ -208,7 +208,7 @@ overhead only applies when the image is first created.*/
 	set desc = "This will toggle the Recycle Authority's purge mode and log the results in debug. Do not use this without good reason."
 
 	RecycleAuthority.purging = !RecycleAuthority.purging
-	to_chat(usr, "\red RA is [RecycleAuthority.purging? "now purging." : "is no longer purging."]")
+	to_chat(usr, "<span class='warning'>RA is [RecycleAuthority.purging? "now purging." : "is no longer purging."]</span>")
 	log_debug("RA: <b>[usr.key]</b> used the purge toggle.")
 
 #undef DEBUG_RA_AUTHORITY

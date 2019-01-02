@@ -20,20 +20,20 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/card/id))
 			if(src.broken)
-				to_chat(user, "\red It appears to be broken.")
+				to_chat(user, "<span class='warning'>It appears to be broken.</span>")
 				return
 			if(src.allowed(user))
 				src.locked = !( src.locked )
 				if(src.locked)
 					src.icon_state = src.icon_locked
-					to_chat(user, "\red You lock the [src.name]!")
+					to_chat(user, "<span class='warning'>You lock the [src.name]!</span>")
 					return
 				else
 					src.icon_state = src.icon_closed
-					to_chat(user, "\red You unlock the [src.name]!")
+					to_chat(user, "<span class='warning'>You unlock the [src.name]!</span>")
 					return
 			else
-				to_chat(user, "\red Access Denied")
+				to_chat(user, "<span class='warning'>Access Denied</span>")
 		else if(istype(W, /obj/item/card/emag) && !broken)
 			broken = 1
 			locked = 0
@@ -45,13 +45,13 @@
 		if(!locked)
 			..()
 		else
-			to_chat(user, "\red Its locked!")
+			to_chat(user, "<span class='warning'>Its locked!</span>")
 		return
 
 
 	show_to(mob/user as mob)
 		if(locked)
-			to_chat(user, "\red Its locked!")
+			to_chat(user, "<span class='warning'>Its locked!</span>")
 		else
 			..()
 		return

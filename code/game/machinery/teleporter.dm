@@ -216,12 +216,12 @@
 		return
 	if (istype(M, /obj/item/disk/nuclear)) // Don't let nuke disks get teleported --NeoFite
 		for(var/mob/O in viewers(M, null))
-			O.show_message(text("\red <B>The [] bounces off of the portal!</B>", M.name), 1)
+			O.show_message(text("<span class='danger'>The [] bounces off of the portal!</span>", M.name), 1)
 		return
 	if (istype(M, /mob/living))
 		var/mob/living/MM = M
 		if(MM.check_contents_for(/obj/item/disk/nuclear))
-			to_chat(MM, "\red Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through.")
+			to_chat(MM, "<span class='warning'>Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through.</span>")
 			return
 	var/disky = 0
 	for (var/atom/O in M.contents) //I'm pretty sure this accounts for the maximum amount of container in container stacking. --NeoFite
@@ -241,14 +241,14 @@
 				disky = 1
 	if (disky)
 		for(var/mob/P in viewers(M, null))
-			P.show_message(text("\red <B>The [] bounces off of the portal!</B>", M.name), 1)
+			P.show_message(text("<span class='danger'>The [] bounces off of the portal!</span>", M.name), 1)
 		return
 
 //Bags of Holding cause bluespace teleportation to go funky. --NeoFite
 	if (istype(M, /mob/living))
 		var/mob/living/MM = M
 		if(MM.check_contents_for(/obj/item/storage/backpack/holding))
-			to_chat(MM, "\red The Bluespace interface on your Bag of Holding interferes with the teleport!")
+			to_chat(MM, "<span class='warning'>The Bluespace interface on your Bag of Holding interferes with the teleport!</span>")
 			precision = rand(1,100)
 	if (istype(M, /obj/item/storage/backpack/holding))
 		precision = rand(1,100)

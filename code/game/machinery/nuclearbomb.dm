@@ -169,11 +169,11 @@ var/bomb_set
 /obj/machinery/nuclearbomb/attack_hand(mob/user as mob)
 	if (src.extended)
 		if (!ishuman(user))
-			to_chat(usr, "\red You don't have the dexterity to do this!")
+			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return 1
 
 		if (!ishuman(user))
-			to_chat(usr, "\red You don't have the dexterity to do this!")
+			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return 1
 		user.set_interaction(src)
 		var/dat = text("<TT><B>Nuclear Fission Explosive</B><BR>\nAuth. Disk: <A href='?src=\ref[];auth=1'>[]</A><HR>", src, (src.auth ? "++++++++++" : "----------"))
@@ -226,14 +226,14 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 	if (!usr.canmove || usr.stat || usr.is_mob_restrained())
 		return
 	if (!ishuman(usr))
-		to_chat(usr, "\red You don't have the dexterity to do this!")
+		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 
 	if (src.deployable)
-		to_chat(usr, "\red You close several panels to make [src] undeployable.")
+		to_chat(usr, "<span class='warning'>You close several panels to make [src] undeployable.</span>")
 		src.deployable = 0
 	else
-		to_chat(usr, "\red You adjust some panels to make [src] deployable.")
+		to_chat(usr, "<span class='warning'>You adjust some panels to make [src] deployable.</span>")
 		src.deployable = 1
 	return
 
@@ -323,7 +323,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 					if (src.timing == -1.0)
 						return
 					if (src.safety)
-						to_chat(usr, "\red The safety is still on.")
+						to_chat(usr, "<span class='warning'>The safety is still on.</span>")
 						return
 					src.timing = !( src.timing )
 					if (src.timing)

@@ -77,9 +77,9 @@
 		user.visible_message("<span class='notice'>[user] milks [src] using \the [O].</span>")
 		var/transfered = udder.trans_id_to(G, "milk", rand(5,10))
 		if(G.reagents.total_volume >= G.volume)
-			to_chat(user, "\red The [O] is full.")
+			to_chat(user, "<span class='warning'>The [O] is full.</span>")
 		if(!transfered)
-			to_chat(user, "\red The udder is dry. Wait a bit longer...")
+			to_chat(user, "<span class='warning'>The udder is dry. Wait a bit longer...</span>")
 	else
 		..()
 //cow
@@ -117,9 +117,9 @@
 		user.visible_message("<span class='notice'>[user] milks [src] using \the [O].</span>")
 		var/transfered = udder.trans_id_to(G, "milk", rand(5,10))
 		if(G.reagents.total_volume >= G.volume)
-			to_chat(user, "\red The [O] is full.")
+			to_chat(user, "<span class='warning'>The [O] is full.</span>")
 		if(!transfered)
-			to_chat(user, "\red The udder is dry. Wait a bit longer...")
+			to_chat(user, "<span class='warning'>The udder is dry. Wait a bit longer...</span>")
 	else
 		..()
 
@@ -235,7 +235,7 @@ var/global/chicken_count = 0
 			eggsleft += rand(1, 4)
 			//to_chat(world, eggsleft)
 		else
-			to_chat(user, "\blue [name] doesn't seem hungry!")
+			to_chat(user, "<span class='notice'>[name] doesn't seem hungry!</span>")
 	else
 		..()
 
@@ -250,7 +250,7 @@ var/global/chicken_count = 0
 		E.pixel_x = rand(-6,6)
 		E.pixel_y = rand(-6,6)
 		if(chicken_count < MAX_CHICKENS && prob(10))
-			processing_objects.Add(E)
+			START_PROCESSING(SSobj, E)
 
 /obj/item/reagent_container/food/snacks/egg/var/amount_grown = 0
 /obj/item/reagent_container/food/snacks/egg/process()
@@ -259,7 +259,7 @@ var/global/chicken_count = 0
 		if(amount_grown >= 100)
 			visible_message("[src] hatches with a quiet cracking sound.")
 			new /mob/living/simple_animal/chick(get_turf(src))
-			processing_objects.Remove(src)
+			STOP_PROCESSING(SSobj, src)
 			qdel(src)
 	else
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)

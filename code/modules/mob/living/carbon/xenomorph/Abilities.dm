@@ -829,7 +829,7 @@
 			possible_xenos += T
 
 	var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
-	if(!selected_xeno || selected_xeno.disposed || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z == ADMIN_Z_LEVEL || !X.check_state())
+	if(!selected_xeno || selected_xeno.gc_destroyed || selected_xeno == X.observed_xeno || selected_xeno.stat == DEAD || selected_xeno.z == ADMIN_Z_LEVEL || !X.check_state())
 		if(X.observed_xeno)
 			X.set_queen_overwatch(X.observed_xeno, TRUE)
 	else
@@ -1238,6 +1238,21 @@
 	var/mob/living/carbon/Xenomorph/Hunter/X = owner
 	return !X.used_stealth
 
+//Sentinel Neurotox Sting
+/datum/action/xeno_action/activable/neurotox_sting
+	name = "Neurotoxin Sting"
+	action_icon_state = "neuro_sting"
+	ability_name = "neurotoxin sting"
+	plasma_cost = 150
+
+/datum/action/xeno_action/activable/neurotox_sting/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Sentinel/X = owner
+	X.neurotoxin_sting(A)
+
+/datum/action/xeno_action/activable/neurotox_sting/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Sentinel/X = owner
+	if(world.time >= X.last_neurotoxin_sting + NEUROTOXIN_STING_COOLDOWN)
+		return TRUE
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 

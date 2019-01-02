@@ -488,7 +488,7 @@
 			return chassis.dynattackby(W,user)
 		chassis.log_message("Attacked by [W]. Attacker - [user]")
 		if(prob(chassis.deflect_chance*deflect_coeff))
-			to_chat(user, "\red The [W] bounces off [chassis] armor.")
+			to_chat(user, "<span class='warning'>The [W] bounces off [chassis] armor.</span>")
 			chassis.log_append_to_last("Armor saved.")
 		else
 			chassis.occupant_message("<font color='red'><b>[user] hits [chassis] with [W].</b></font>")
@@ -1032,7 +1032,7 @@
 			log_message("[user] boarded.")
 			occupant_message("[user] boarded.")
 		else if(src.occupant != user)
-			to_chat(user, "\red [src.occupant] was faster. Try better next time, loser.")
+			to_chat(user, "<span class='warning'>[src.occupant] was faster. Try better next time, loser.</span>")
 	else
 		to_chat(user, "You stop entering the exosuit.")
 
@@ -1106,13 +1106,13 @@
 		return
 
 	if (!isturf(usr.loc))
-		to_chat(usr, "\red You can't reach the passenger compartment from here.")
+		to_chat(usr, "<span class='warning'>You can't reach the passenger compartment from here.</span>")
 		return
 
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(C.handcuffed)
-			to_chat(usr, "\red Kinda hard to climb in while handcuffed don't you think?")
+			to_chat(usr, "<span class='warning'>Kinda hard to climb in while handcuffed don't you think?</span>")
 			return
 
 	//search for a valid passenger compartment
@@ -1132,10 +1132,10 @@
 	//didn't find anything
 	switch (feedback)
 		if (OCCUPIED)
-			to_chat(usr, "\red The passenger compartment is already occupied!")
+			to_chat(usr, "<span class='warning'>The passenger compartment is already occupied!</span>")
 		if (LOCKED)
-			to_chat(usr, "\red The passenger compartment hatch is locked!")
+			to_chat(usr, "<span class='warning'>The passenger compartment hatch is locked!</span>")
 		if (OCCUPIED|LOCKED)
-			to_chat(usr, "\red All of the passenger compartments are already occupied or locked!")
+			to_chat(usr, "<span class='warning'>All of the passenger compartments are already occupied or locked!</span>")
 		if (0)
-			to_chat(usr, "\red \The [src] doesn't have a passenger compartment.")
+			to_chat(usr, "<span class='warning'>\The [src] doesn't have a passenger compartment.</span>")

@@ -247,7 +247,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("Wait until the game starts")
 		return
 
-	if(M.disposed)
+	if(M.gc_destroyed)
 		alert("That mob doesn't seem to exist, close the panel and try again.")
 		return
 
@@ -267,7 +267,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("Wait until the game starts")
 		return
 
-	if(!M.disposed)
+	if(!M.gc_destroyed)
 		alert("That mob doesn't seem to exist, close the panel and try again.")
 		return
 
@@ -287,7 +287,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("Wait until the game starts")
 		return
 
-	if(M.disposed)
+	if(M.gc_destroyed)
 		alert("That mob doesn't seem to exist, close the panel and try again.")
 		return
 
@@ -309,7 +309,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("Wait until the game starts")
 		return
 
-	if(M.disposed)
+	if(M.gc_destroyed)
 		alert("That mob doesn't seem to exist, close the panel and try again.")
 		return
 
@@ -430,7 +430,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set desc = "Direct intervention"
 
 	if(!check_rights(R_DEBUG|R_ADMIN))	return
-	if(M.disposed) return //mob is garbage collected
+	if(M.gc_destroyed) return //mob is garbage collected
 	if(M.ckey)
 		if(alert("This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.",,"Yes","No") != "Yes")
 			return
@@ -647,7 +647,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				SMES.output = 75000
 
 	if(!found_the_pump && response == "Setup Completely")
-		to_chat(src, "\red Unable to locate air supply to fill up with coolant, adding some coolant around the supermatter")
+		to_chat(src, "<span class='warning'>Unable to locate air supply to fill up with coolant, adding some coolant around the supermatter</span>")
 
 
 

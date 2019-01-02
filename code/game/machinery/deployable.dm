@@ -114,7 +114,7 @@
 
 	proc/explode()
 
-		visible_message("\red <B>[src] blows apart!</B>")
+		visible_message("<span class='danger'>[src] blows apart!</span>")
 		var/turf/Tsec = get_turf(src)
 
 	/*	var/obj/item/stack/rods/ =*/

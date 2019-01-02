@@ -2,7 +2,7 @@
 	..()
 
 	if((M != src) && check_shields(0, M.name))
-		visible_message("\red <B>[M] attempted to touch [src]!</B>", null, null, 5)
+		visible_message("<span class='danger'>[M] attempted to touch [src]!</span>", null, null, 5)
 		return 0
 
 	if(M.gloves && istype(M.gloves, /obj/item/clothing/gloves/boxing/hologlove))
@@ -10,7 +10,7 @@
 		var/damage = rand(0, 9)
 		if(!damage)
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1)
-			visible_message("\red <B>[M] has attempted to punch [src]!</B>")
+			visible_message("<span class='danger'>[M] has attempted to punch [src]!</span>")
 			return 0
 		var/datum/limb/affecting = get_limb(ran_zone(M.zone_selected))
 		var/armor_block = run_armor_check(affecting, "melee")
@@ -19,11 +19,11 @@
 
 		playsound(loc, "punch", 25, 1)
 
-		visible_message("\red <B>[M] has punched [src]!</B>")
+		visible_message("<span class='danger'>[M] has punched [src]!</span>")
 
 		apply_damage(damage, HALLOSS, affecting, armor_block)
 		if(damage >= 9)
-			visible_message("\red <B>[M] has weakened [src]!</B>")
+			visible_message("<span class='danger'>[M] has weakened [src]!</span>")
 			apply_effect(4, WEAKEN, armor_block)
 
 		return
@@ -49,16 +49,16 @@
 //			if(M.health < -75)	return 0
 
 			if((M.head && (M.head.flags_inventory & COVERMOUTH)) || (M.wear_mask && (M.wear_mask.flags_inventory & COVERMOUTH)))
-				to_chat(M, "\blue <B>Remove your mask!</B>")
+				to_chat(M, "<span class='boldnotice'>Remove your mask!</span>")
 				return 0
 			if((head && (head.flags_inventory & COVERMOUTH)) || (wear_mask && (wear_mask.flags_inventory & COVERMOUTH)))
-				to_chat(M, "\blue <B>Remove his mask!</B>")
+				to_chat(M, "<span class='boldnotice'>Remove his mask!</span>")
 				return 0
 
 			//CPR
 			if(M.action_busy)
 				return 1
-			M.visible_message("\red <B>[M] is trying perform CPR on [src]!</B>", null, null, 4)
+			M.visible_message("<span class='danger'>[M] is trying perform CPR on [src]!</span>", null, null, 4)
 
 			if(do_mob(M, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_MEDICAL))
 				if(health > config.health_threshold_dead && health < config.health_threshold_crit)
@@ -66,8 +66,8 @@
 					adjustOxyLoss(-suff)
 					updatehealth()
 					visible_message("\red [M] performs CPR on [src]!", null, null, 3)
-					to_chat(src, "\blue <b>You feel a breath of fresh air enter your lungs. It feels good.</b>")
-					to_chat(M, "\red Repeat at least every 7 seconds.")
+					to_chat(src, "<span class='boldnotice'>You feel a breath of fresh air enter your lungs. It feels good.</span>")
+					to_chat(M, "<span class='warning'>Repeat at least every 7 seconds.</span>")
 
 
 			return 1
@@ -163,23 +163,23 @@
 			if (randn <= 25)
 				apply_effect(3, WEAKEN, run_armor_check(affecting, "melee"))
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-				visible_message("\red <B>[M] has pushed [src]!</B>", null, null, 5)
+				visible_message("<span class='danger'>[M] has pushed [src]!</span>", null, null, 5)
 				return
 
 			if(randn <= 60)
 				//BubbleWrap: Disarming breaks a pull
 				if(pulling)
-					visible_message("\red <b>[M] has broken [src]'s grip on [pulling]!</B>", null, null, 5)
+					visible_message("<span class='danger'>[M] has broken [src]'s grip on [pulling]!</span>", null, null, 5)
 					stop_pulling()
 				else
 					drop_held_item()
-					visible_message("\red <B>[M] has disarmed [src]!</B>", null, null, 5)
+					visible_message("<span class='danger'>[M] has disarmed [src]!</span>", null, null, 5)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 				return
 
 
 			playsound(loc, 'sound/weapons/punchmiss.ogg', 25, 1, 7)
-			visible_message("\red <B>[M] attempted to disarm [src]!</B>", null, null, 5)
+			visible_message("<span class='danger'>[M] attempted to disarm [src]!</span>", null, null, 5)
 	return
 
 /mob/living/carbon/human/proc/afterattack(atom/target as mob|obj|turf|area, mob/living/user as mob|obj, inrange, params)

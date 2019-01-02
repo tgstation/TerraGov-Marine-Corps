@@ -81,13 +81,11 @@
 	results = list("water" = 1)
 	required_reagents = list("oxygen" = 1, "hydrogen" = 2)
 
-/
 /datum/chemical_reaction/thermite
 	name = "Thermite"
 	id = "thermite"
 	results = list("thermite" = 3)
 	required_reagents = list("aluminum" = 10, "iron" = 10, "oxygen" = 10, "phoron" = 1)
-/
 
 /datum/chemical_reaction/lexorin
 	name = "Lexorin"
@@ -303,7 +301,7 @@
 /datum/chemical_reaction/foam/on_reaction(datum/reagents/holder, created_volume)
 	var/location = get_turf(holder.my_atom)
 	for(var/mob/M in viewers(5, location))
-		to_chat(M, "\red The solution spews out foam!")
+		to_chat(M, "<span class='warning'>The solution spews out foam!</span>")
 	var/datum/effect_system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 0)
 	s.start()
@@ -321,7 +319,7 @@
 	var/location = get_turf(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
-		to_chat(M, "\red The solution spews out a metalic foam!")
+		to_chat(M, "<span class='warning'>The solution spews out a metalic foam!</span>")
 
 	var/datum/effect_system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 1)
@@ -339,7 +337,7 @@
 	var/location = get_turf(holder.my_atom)
 
 	for(var/mob/M in viewers(5, location))
-		to_chat(M, "\red The solution spews out a metallic foam!")
+		to_chat(M, "<span class='warning'>The solution spews out a metallic foam!</span>")
 
 	var/datum/effect_system/foam_spread/s = new()
 	s.set_up(created_volume, location, holder, 2)

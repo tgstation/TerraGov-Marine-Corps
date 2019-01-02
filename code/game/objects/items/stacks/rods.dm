@@ -16,11 +16,21 @@
 
 /obj/item/stack/rods/attackby(obj/item/W as obj, mob/user as mob)
 	..()
+	if(istype(W, /obj/item/stack/barbed_wire)) //making razorwire obstacles
+		var/obj/item/stack/barbed_wire/B = W
+		if(amount < 4)
+			to_chat(user, "<span class='warning'>You need [4 - amount] more [src] to make a razor wire obstacle!</span>")
+			return
+		use(4)
+		B.use(1)
+		var/obj/structure/razorwire/M = new/obj/item/stack/razorwire(user.loc, 1)
+		to_chat(user, "<span class='notice'>You combine the rods and barbed wire into [M]!</span>")
+
 	if (istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/WT = W
 
 		if(amount < 4)
-			to_chat(user, "\red You need at least four rods to do this.")
+			to_chat(user, "<span class='warning'>You need at least four rods to do this.</span>")
 			return
 
 		if(WT.remove_fuel(0,user))
@@ -60,15 +70,15 @@
 
 	else if(!in_use)
 		if(amount < 4)
-			to_chat(user, "\blue You need at least four rods to do this.")
+			to_chat(user, "<span class='notice'>You need at least four rods to do this.</span>")
 			return
-		to_chat(usr, "\blue Assembling grille...")
+		to_chat(usr, "<span class='notice'>Assembling grille...</span>")
 		in_use = 1
 		if (!do_after(usr, 20, TRUE, 5, BUSY_ICON_BUILD))
 			in_use = 0
 			return
 		var/obj/structure/grille/F = new /obj/structure/grille/ ( usr.loc )
-		to_chat(usr, "\blue You assemble a grille")
+		to_chat(usr, "<span class='notice'>You assemble a grille</span>")
 		in_use = 0
 		F.add_fingerprint(usr)
 		use(4)

@@ -266,7 +266,7 @@
 			breathing_counter = 0 //Reset the counter
 
 		if(observed_xeno)
-			if(observed_xeno.stat == DEAD || observed_xeno.disposed)
+			if(observed_xeno.stat == DEAD || observed_xeno.gc_destroyed)
 				set_queen_overwatch(observed_xeno, TRUE)
 
 		if(ovipositor && !is_mob_incapacitated(TRUE))
@@ -721,6 +721,7 @@
 			icon_state = "Queen Walking"
 
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
+	update_wounds()
 
 /mob/living/carbon/Xenomorph/Queen/Topic(href, href_list)
 
@@ -762,7 +763,7 @@
 		observed_xeno = target
 		if(old_xeno)
 			old_xeno.hud_set_queen_overwatch()
-	if(!target.disposed) //not cdel'd
+	if(!target.gc_destroyed) //not cdel'd
 		target.hud_set_queen_overwatch()
 	reset_view()
 

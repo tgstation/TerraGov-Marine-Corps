@@ -27,7 +27,7 @@
 
 /obj/item/weapon/classic_baton/attack(mob/living/M as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "\red You club yourself over the head.")
+		to_chat(user, "<span class='warning'>You club yourself over the head.</span>")
 		user.KnockDown(3 * force)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
@@ -46,7 +46,7 @@
 	if (M.stuttering < 8 && (!(HULK in M.mutations))  /*&& (!istype(H:wear_suit, /obj/item/clothing/suit/judgerobe))*/)
 		M.stuttering = 8
 	for(var/mob/O in viewers(M))
-		if (O.client)	O.show_message("\red <B>[M] has been beaten with \the [src] by [user]!</B>", 1, "\red You hear someone fall", 2)
+		if (O.client)	O.show_message("<span class='danger'>[M] has been beaten with \the [src] by [user]!</span>", 1, "\red You hear someone fall", 2)
 
 //Telescopic baton
 /obj/item/weapon/telebaton
@@ -105,7 +105,7 @@
 /obj/item/weapon/telebaton/attack(mob/target as mob, mob/living/user as mob)
 	if(on)
 		if ((CLUMSY in user.mutations) && prob(50))
-			to_chat(user, "\red You club yourself over the head.")
+			to_chat(user, "<span class='warning'>You club yourself over the head.</span>")
 			user.KnockDown(3 * force)
 			if(ishuman(user))
 				var/mob/living/carbon/human/H = user
@@ -133,7 +133,7 @@
 
 /obj/item/weapon/shield/energy/attack_self(mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "\red You beat yourself in the head with [src].")
+		to_chat(user, "<span class='warning'>You beat yourself in the head with [src].</span>")
 		user.take_limb_damage(5)
 	active = !active
 	if (active)
@@ -141,14 +141,14 @@
 		icon_state = "eshield[active]"
 		w_class = 4
 		playsound(user, 'sound/weapons/saberon.ogg', 25, 1)
-		to_chat(user, "\blue [src] is now active.")
+		to_chat(user, "<span class='notice'>[src] is now active.</span>")
 
 	else
 		force = 3
 		icon_state = "eshield[active]"
 		w_class = 1
 		playsound(user, 'sound/weapons/saberoff.ogg', 25, 1)
-		to_chat(user, "\blue [src] can now be concealed.")
+		to_chat(user, "<span class='notice'>[src] can now be concealed.</span>")
 
 	if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user

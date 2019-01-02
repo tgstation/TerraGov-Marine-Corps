@@ -60,7 +60,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 
 	var/flags_scuttle = NOFLAGS
 
-/datum/authority/branch/evacuation/EvacuationAuthority/New()
+/datum/authority/branch/evacuation/New()
 	. = ..()
 	dest_master = locate()
 	if(!dest_master)

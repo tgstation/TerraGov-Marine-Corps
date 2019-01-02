@@ -93,10 +93,10 @@
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if(crit_fail)
-			to_chat(user, "\red The Bluespace generator isn't working.")
+			to_chat(user, "<span class='warning'>The Bluespace generator isn't working.</span>")
 			return
 		if(istype(W, /obj/item/storage/backpack/holding) && !W.crit_fail)
-			to_chat(user, "\red The Bluespace interfaces of the two devices conflict and malfunction.")
+			to_chat(user, "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>")
 			qdel(W)
 			return
 		..()
@@ -104,9 +104,9 @@
 	proc/failcheck(mob/user as mob)
 		if (prob(src.reliability)) return 1 //No failure
 		if (prob(src.reliability))
-			to_chat(user, "\red The Bluespace portal resists your attempt to add another item.")
+			to_chat(user, "<span class='warning'>The Bluespace portal resists your attempt to add another item.</span>")
 		else
-			to_chat(user, "\red The Bluespace generator malfunctions!")
+			to_chat(user, "<span class='warning'>The Bluespace generator malfunctions!</span>")
 			for (var/obj/O in src.contents) //it broke, delete what was in it
 				qdel(O)
 			crit_fail = 1
@@ -380,7 +380,8 @@
 					"/obj/item/device/m56d_post",
 					"/obj/item/device/turret_top",
 					"/obj/item/ammo_magazine/sentry",
-					"/obj/item/ammo_magazine/sentry",
+					"/obj/item/ammo_magazine/minisentry",
+					"/obj/item/device/marine_turret/mini",
 					"/obj/item/stack/sandbags"
 					)
 
@@ -433,7 +434,7 @@
 /obj/item/storage/backpack/marine/satchel/scout_cloak/dropped(mob/user)
 	camo_off(user)
 	wearer = null
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	return ..()
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/verb/use_camouflage()
@@ -488,7 +489,7 @@
 	spawn(1)
 		anim(M.loc,M,'icons/mob/mob.dmi',,"cloak",,M.dir)
 
-	processing_objects.Add(src)
+	START_PROCESSING(SSobj, src)
 
 	return TRUE
 
@@ -496,14 +497,12 @@
 	if (!user)
 		camo_active = FALSE
 		wearer = null
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		return 0
 
-	to_chat(user, "<span class='warning'>Your cloak's camouflage has deactivated!</span>")
-	camo_active = 0
 
-	for (var/mob/O in oviewers(user))
-		O.show_message("[user.name] shimmers into existence!",1)
+	camo_active = 0
+	user.visible_message("[user.name] shimmers into existence!", "<span class='warning'>Your cloak's camouflage has deactivated!</span>")
 	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 	user.alpha = initial(user.alpha)
 
@@ -519,7 +518,7 @@
 	camo_cooldown_timer = world.time + cooldown //recalibration and recharge time scales inversely with charge remaining
 	to_chat(user, "<span class='warning'>Your thermal cloak is recalibrating! It will be ready in [(camo_cooldown_timer - world.time) * 0.1] seconds.")
 	process_camo_cooldown(user, cooldown)
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 
 /obj/item/storage/backpack/marine/satchel/scout_cloak/proc/process_camo_cooldown(mob/living/user, cooldown)
 	if(!camo_cooldown_timer)
@@ -628,11 +627,11 @@
 		return
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume < max_fuel)
 		O.reagents.trans_to(src, max_fuel)
-		to_chat(user, "\blue You crack the cap off the top of the pack and fill it back up again from the tank.")
+		to_chat(user, "<span class='notice'>You crack the cap off the top of the pack and fill it back up again from the tank.</span>")
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume == max_fuel)
-		to_chat(user, "\blue The pack is already full!")
+		to_chat(user, "<span class='notice'>The pack is already full!</span>")
 		return
 	..()
 

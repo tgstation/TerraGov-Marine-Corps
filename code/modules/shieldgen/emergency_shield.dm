@@ -77,7 +77,7 @@
 
 /obj/machinery/shield/hitby(AM as mob|obj)
 	//Let everyone know we've been hit!
-	visible_message("\red <B>[src] was hit by [AM].</B>")
+	visible_message("<span class='danger'>[src] was hit by [AM].</span>")
 
 	//Super realistic, resource-intensive, real-time damage calculations.
 	var/tforce = 0
@@ -272,10 +272,10 @@
 	else if(istype(W, /obj/item/tool/screwdriver))
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		if(is_open)
-			to_chat(user, "\blue You close the panel.")
+			to_chat(user, "<span class='notice'>You close the panel.</span>")
 			is_open = 0
 		else
-			to_chat(user, "\blue You open the panel and expose the wiring.")
+			to_chat(user, "<span class='notice'>You open the panel and expose the wiring.</span>")
 			is_open = 1
 
 	else if(istype(W, /obj/item/stack/cable_coil) && malfunction && is_open)
@@ -295,15 +295,15 @@
 			return
 		if(anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-			to_chat(user, "\blue You unsecure the [src] from the floor!")
+			to_chat(user, "<span class='notice'>You unsecure the [src] from the floor!</span>")
 			if(active)
-				to_chat(user, "\blue The [src] shuts off!")
+				to_chat(user, "<span class='notice'>The [src] shuts off!</span>")
 				src.shields_down()
 			anchored = 0
 		else
 			if(istype(get_turf(src), /turf/open/space)) return //No wrenching these in space!
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-			to_chat(user, "\blue You secure the [src] to the floor!")
+			to_chat(user, "<span class='notice'>You secure the [src] to the floor!</span>")
 			anchored = 1
 
 
@@ -312,7 +312,7 @@
 			src.locked = !src.locked
 			to_chat(user, "The controls are now [src.locked ? "locked." : "unlocked."]")
 		else
-			to_chat(user, "\red Access denied.")
+			to_chat(user, "<span class='warning'>Access denied.</span>")
 
 	else
 		..()

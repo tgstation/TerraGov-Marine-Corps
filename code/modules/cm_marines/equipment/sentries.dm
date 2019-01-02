@@ -287,7 +287,7 @@
 	camera.c_tag = "[name] ([rand(0, 1000)])"
 	spawn(2)
 		stat = 0
-	//processing_objects.Add(src)
+	//START_PROCESSING(SSobj, src)
 	ammo = ammo_list[ammo]
 	update_icon()
 
@@ -400,7 +400,7 @@
 			if(burst_fire)
 				burst_fire = 0
 				state("A green light on [src] blinks slowly.")
-				to_chat(usr, "\blue You deactivate the burst fire mode.")
+				to_chat(usr, "<span class='notice'>You deactivate the burst fire mode.</span>")
 			else
 				burst_fire = 1
 				fire_delay = burst_delay
@@ -767,7 +767,7 @@
 		spawn(10)
 			if(src && loc)
 				explosion(loc, -1, -1, 2, 0)
-				if(!disposed)
+				if(!gc_destroyed)
 					qdel(src)
 		return
 
@@ -1039,17 +1039,17 @@
 		if(path.len)
 			var/blocked = FALSE
 			for(T in path)
-				if(T.opacity || T.density)
+				if(T.opacity || T.density && T.throwpass == FALSE)
 					blocked = TRUE
 					break //LoF Broken; stop checking; we can't proceed further.
 
 				for(var/obj/machinery/MA in T)
-					if(MA.opacity || MA.density && !(MA.flags_atom & ON_BORDER) )
+					if(MA.opacity || MA.density && MA.throwpass == FALSE)
 						blocked = TRUE
 						break //LoF Broken; stop checking; we can't proceed further.
 
 				for(var/obj/structure/S in T)
-					if(S.opacity || S.density && !(S.flags_atom & ON_BORDER) )
+					if(S.opacity || S.density && S.throwpass == FALSE )
 						blocked = TRUE
 						break //LoF Broken; stop checking; we can't proceed further.
 			if(!blocked)
@@ -1239,7 +1239,7 @@
 			notice = "<b>ALERT! [src]'s battery depleted at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
 	var/mob/living/silicon/ai/AI = new/mob/living/silicon/ai(src, null, null, 1)
 	AI.SetName("Sentry Alert System")
-	AI.aiRadio.talk_into(AI,"[notice]","Almayer","announces")
+	AI.aiRadio.talk_into(AI,"[notice]","Theseus","announces")
 	qdel(AI)
 
 /obj/machinery/marine_turret/mini

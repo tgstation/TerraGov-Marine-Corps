@@ -38,7 +38,7 @@
 		return 0
 
 	proc/meltdown()	//breaks it down, making implant unrecongizible
-		to_chat(imp_in, "\red You feel something melting inside [part ? "your [part.display_name]" : "you"]!")
+		to_chat(imp_in, "<span class='warning'>You feel something melting inside [part ? "your [part.display_name]" : "you"]!</span>")
 		if (part)
 			part.take_damage(burn = 15, used_weapon = "Electronics meltdown")
 		else
@@ -361,7 +361,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 		if (src.uses < 1)	return 0
 		if (emote == "pale")
 			src.uses--
-			to_chat(source, "\blue You feel a sudden surge of energy!")
+			to_chat(source, "<span class='notice'>You feel a sudden surge of energy!</span>")
 			source.SetStunned(0)
 			source.SetKnockeddown(0)
 			source.SetKnockedout(0)
@@ -414,7 +414,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 				else
 					a.autosay("[mobname] has died in [t.name]!", "[mobname]'s Death Alarm")
 				qdel(a)
-				processing_objects.Remove(src)
+				STOP_PROCESSING(SSobj, src)
 			if ("emp")
 				var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
 				var/name = prob(50) ? t.name : pick(teleportlocs)
@@ -424,7 +424,7 @@ the implant may become unstable and either pre-maturely inject the subject or si
 				var/obj/item/device/radio/headset/a = new /obj/item/device/radio/headset(null)
 				a.autosay("[mobname] has died-zzzzt in-in-in...", "[mobname]'s Death Alarm")
 				qdel(a)
-				processing_objects.Remove(src)
+				STOP_PROCESSING(SSobj, src)
 
 	emp_act(severity)			//for some reason alarms stop going off in case they are emp'd, even without this
 		if (malfunction)		//so I'm just going to add a meltdown chance here
@@ -437,14 +437,14 @@ the implant may become unstable and either pre-maturely inject the subject or si
 				meltdown()
 			else if (prob(60))	//but more likely it will just quietly die
 				malfunction = MALFUNCTION_PERMANENT
-			processing_objects.Remove(src)
+			STOP_PROCESSING(SSobj, src)
 
 		spawn(20)
 			malfunction--
 
 	implanted(mob/source as mob)
 		mobname = source.real_name
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 		return 1
 
 /obj/item/implant/compressed

@@ -6,7 +6,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	var/list/process_shuttles	//simple list of shuttles, for processing
 	var/list/locs_crash
 
-/datum/shuttle_controller/proc/process()
+/datum/shuttle_controller/process()
 	//process ferry shuttles
 	for (var/datum/shuttle/ferry/shuttle in process_shuttles)
 
@@ -100,7 +100,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle1.warmup_time = 10
 	shuttle1.move_time = DROPSHIP_TRANSIT_DURATION
 	shuttle1.shuttle_tag = "[MAIN_SHIP_NAME] Dropship 1"
-	shuttle1.info_tag = "Almayer Dropship"
+	shuttle1.info_tag = "[MAIN_SHIP_NAME] Dropship"
 	shuttle1.can_be_optimized = TRUE
 	shuttle1.can_do_gun_mission = TRUE
 	shuttle1.load_datums()
@@ -113,7 +113,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 	shuttle1.warmup_time = 10
 	shuttle1.move_time = DROPSHIP_TRANSIT_DURATION
 	shuttle1.shuttle_tag = "[MAIN_SHIP_NAME] Dropship 2"
-	shuttle1.info_tag = "Almayer Dropship"
+	shuttle1.info_tag = "[MAIN_SHIP_NAME] Dropship"
 	shuttle1.can_be_optimized = TRUE
 	shuttle1.can_do_gun_mission = TRUE
 	shuttle1.load_datums()
@@ -126,7 +126,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 		P = new
 		P.shuttle_tag = MAIN_SHIP_NAME + " Evac [i]"
 		switch(i) //TODO: Do this procedurally.
-			if(10 to 11) P.info_tag = "Alt Almayer Evac"
+			if(10 to 11) P.info_tag = "Alt [MAIN_SHIP_NAME] Evac"
 		P.load_datums()
 		shuttles[P.shuttle_tag] = P
 		process_shuttles += P
@@ -366,7 +366,7 @@ var/global/datum/shuttle_controller/shuttle_controller
 //		var/dat = ""
 //		for (var/dock_tag in dock_controller_map + dock_controller_map_station + dock_controller_map_offsite)
 //			dat += "\"[dock_tag]\", "
-//		to_chat(world, "\red \b warning: shuttles with docking tags [dat] could not find their controllers!")
+//		to_chat(world, "<span class='danger'>warning: shuttles with docking tags [dat] could not find their controllers!</span>")
 
 	//makes all shuttles docked to something at round start go into the docked state
 	for(var/shuttle_tag in shuttles)

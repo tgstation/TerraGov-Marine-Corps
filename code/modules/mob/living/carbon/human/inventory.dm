@@ -14,7 +14,7 @@
 			else
 				update_inv_r_hand(0)
 		else
-			to_chat(H, "\red You are unable to equip that.")
+			to_chat(H, "<span class='warning'>You are unable to equip that.</span>")
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)
@@ -383,7 +383,7 @@
 			var/obj/item/storage/S = r_store
 			S.handle_item_insertion(W, FALSE, src)
 		else
-			to_chat(src, "\red You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it...")
+			to_chat(src, "<span class='warning'>You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it...</span>")
 			return
 	return TRUE
 
@@ -472,7 +472,7 @@
 			if(I == get_active_hand() && !M.get_item_by_slot(slot_to_process) && Adjacent(M))
 				if(I.mob_can_equip(M, slot_to_process, TRUE))//Placing an item on the mob
 					drop_inv_item_on_ground(I)
-					if(I && !I.disposed) //Might be self-deleted?
+					if(I && !I.gc_destroyed) //Might be self-deleted?
 						M.equip_to_slot_if_possible(I, slot_to_process, 1, 0, 1, 1)
 
 	if(M)
