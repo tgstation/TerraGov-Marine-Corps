@@ -19,6 +19,8 @@ var/global/normal_ooc_colour = "#002eb8"
 	if(!msg)
 		return
 
+	var/ooc_msg = msg
+
 	if(!(prefs.toggles_chat & CHAT_OOC))
 		to_chat(src, "\red You have OOC muted.")
 		return
@@ -85,7 +87,7 @@ var/global/normal_ooc_colour = "#002eb8"
 					display_name = "[holder.fakekey]/([src.key])"
 				else
 					display_name = holder.fakekey
-			to_chat(C, "<font color='[display_colour]'><span class='ooc'>[src.donator ? "\[D\] " : ""]<span class='prefix'>OOC:</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>")
+			ooc_msg = "<font color='[display_colour]'><span class='ooc'>[src.donator ? "\[D\] " : ""]<span class='prefix'>OOC:</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>"
 			/*
 			if(holder)
 				if(!holder.fakekey || C.holder)
@@ -101,6 +103,7 @@ var/global/normal_ooc_colour = "#002eb8"
 			else
 				to_chat(C, "<font color='[normal_ooc_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[src.key]:</EM> <span class='message'>[msg]</span></span></font>")
 			*/
+			to_chat(C, "[emoji_parse(ooc_msg)]")
 
 /client/proc/set_ooc_color_global(newColor as color)
 	set name = "OOC Text Color - Global"

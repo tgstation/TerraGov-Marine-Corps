@@ -976,6 +976,7 @@
 #include "code\modules\economy\Events.dm"
 #include "code\modules\economy\Events_Mundane.dm"
 #include "code\modules\economy\TradeDestinations.dm"
+#include "code\modules\emoji\emoji_parse.dm"
 #include "code\modules\events\alien_infestation.dm"
 #include "code\modules\events\brand_intelligence.dm"
 #include "code\modules\events\carp_migration.dm"
