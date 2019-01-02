@@ -153,7 +153,7 @@
 
 /client/proc/getfolderlogs()
 	set name = "Get Server Logs Folder"
-	set desc = "Yeah okay."
+	set desc = "Please use responsibly."
 	set category = "Admin"
 
 	var/choice = alert(src, "Due to the way BYOND handles files, you WILL need a click macro. This function is also recurive and prone to fucking up, especially if you select the wrong folder. Are you absolutely sure you want to proceed?", "WARNING", "Yes", "No")
