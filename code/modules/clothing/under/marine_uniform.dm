@@ -163,7 +163,7 @@
 	name = "\improper TGMC dress uniform"
 	desc = "A standard-issue Marine dress uniform. The starch in the fabric chafes a small amount but it pales in comparison to the pride you feel when you first put it on during graduation from boot camp. doesn't seem to fit perfectly around the waist though."
 	siemens_coefficient = 0.9
-	icon_state = "marine_whites" //with thanks to Baystation12
+	icon_state = "marine_whites" //with thanks to Manezinho
 	rollable_sleeves = FALSE
 
 //=========================//RESPONDERS\\================================\\
