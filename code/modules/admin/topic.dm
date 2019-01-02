@@ -264,12 +264,12 @@
 			if("Yes")		
 				delmob = 1
 
-		var/location
+		var/turf/location
 		switch(alert("Teleport to your location?","Message","Yes","No","Cancel"))
 			if("Cancel")	
 				return
 			if("Yes")		
-				location = usr.loc
+				location = get_turf(usr)
 
 		log_admin("[key_name(usr)] has used rudimentary transformation on [key_name(M)]. Transforming to [href_list["simplemake"]].[delmob ? " Deleting old mob." : ""][location ? " Teleporting to new location." : ""]")
 		message_admins("<span class='notice'>[key_name_admin(usr)] has used rudimentary transformation on [key_name_admin(M)]. Transforming to [href_list["simplemake"]].[delmob ? " Deleting old mob." : ""][location ? " Teleporting to new location." : ""]</span>", 1)
