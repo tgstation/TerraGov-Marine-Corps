@@ -759,7 +759,9 @@
 					/obj/item/clothing/shoes/white = 50,
 					/obj/item/clothing/gloves/white = 50,
 					/obj/item/clothing/suit/officer_cloak = 50,
-					/obj/item/clothing/suit/commander_cloak = 50
+					/obj/item/clothing/suit/commander_cloak = 50,
+					/obj/item/clothing/suit/officer_cloak_red = 50,
+					/obj/item/clothing/suit/commander_cloak_red = 50
 					)
 
 	prices = list()
