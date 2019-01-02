@@ -214,7 +214,7 @@
 
 				distress_cancel = FALSE
 				just_called = TRUE
-				spawn(1 MINUTE)
+				spawn(1 MINUTES)
 					just_called = FALSE
 					cooldown_request = world.time
 					if(distress_cancel || ticker.mode.on_distress_cooldown || ticker.mode.waiting_for_candidates)
