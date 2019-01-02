@@ -47,7 +47,11 @@ Pipelines + Other Objects -> Pipe network
 		pipe_vision_img = null
 
 	start_processing()
-	..()
+	return ..()
+
+/obj/machinery/atmospherics/Initialize()
+	. = ..()
+	initialize()
 
 /obj/machinery/atmospherics/Destroy()
 	for(var/mob/living/M in src) //ventcrawling is serious business
