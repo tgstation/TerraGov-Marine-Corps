@@ -716,6 +716,7 @@
 		return
 	else
 		density = initial(density)
+		icon_state = "sentry_base"
 
 	if(rounds)
 		overlays += ammo_full
@@ -1301,6 +1302,7 @@
 		stop_processing()
 		return
 	else
+		icon_state = "minisentry_off"
 		density = initial(density)
 
 	if(!cell)
