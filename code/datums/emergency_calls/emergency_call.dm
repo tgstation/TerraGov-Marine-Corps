@@ -47,17 +47,20 @@
 //Randomizes and chooses a call datum.
 /datum/game_mode/proc/get_random_call()
 	var/datum/emergency_call/chosen_call
+	var/list/valid_calls
 
 	for(var/datum/emergency_call/E in all_calls) //Loop through all potential candidates
 		if(probability < 1) //Those that are meant to be admin-only
 			continue
+
+		valid_calls += E
 
 		if(prob(E.probability))
 			chosen_call = E
 			break
 
 	if(!istype(chosen_call))
-		chosen_call = pick(all_calls)
+		chosen_call = pick(valid_calls)
 		
 	return chosen_call
 
