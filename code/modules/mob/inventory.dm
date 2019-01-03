@@ -139,54 +139,9 @@
 
 
 //Outdated but still in use apparently. This should at least be a human proc.
-/mob/proc/get_equipped_items(include_pockets = FALSE)
-	var/list/items = new/list()
-
-	if(hasvar(src,"back"))
-		if(src:back)
-			items += src:back
-	if(hasvar(src,"belt"))
-		if(src:belt)
-			items += src:belt
-	if(hasvar(src,"wear_ear"))
-		if(src:wear_ear)
-			items += src:wear_ear
-	if(hasvar(src,"glasses"))
-		if(src:glasses)
-			items += src:glasses
-	if(hasvar(src,"gloves"))
-		if(src:gloves)
-			items += src:gloves
-	if(hasvar(src,"head"))
-		if(src:head)
-			items += src:head
-	if(hasvar(src,"shoes"))
-		if(src:shoes)
-			items += src:shoes
-	if(hasvar(src,"wear_id"))
-		if(src:wear_id)
-			items += src:wear_id
-	if(hasvar(src,"wear_mask"))
-		if(src:wear_mask)
-			items += src:wear_mask
-	if(hasvar(src,"wear_suit"))
-		if(src:wear_suit)
-			items += src:wear_suit
-	if(hasvar(src,"w_uniform"))
-		if(src:w_uniform)
-			items += src:w_uniform
-	if(include_pockets)
-		if(hasvar(src,"l_store"))
-			if(src:l_store)
-				items += src:l_store
-		if(hasvar(src,"r_store"))
-			if(src:r_store)
-				items += src:r_store
-		if(hasvar(src,"s_store"))
-			if(src:s_store)
-				items += src:s_store
-
-	return items
+//Daily reminder to murder this - Remie from /tg/station
+/mob/living/proc/get_equipped_items(include_pockets = FALSE)
+	return
 
 /mob/living/proc/unequip_everything()
 	var/list/items = list()

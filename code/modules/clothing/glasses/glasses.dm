@@ -109,7 +109,7 @@
 	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet."
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
-	flags_equip_slot = SLOT_EYES	|SLOT_FACE
+	flags_equip_slot = SLOT_EYES|SLOT_FACE
 
 /obj/item/clothing/glasses/mgoggles/prescription
 	name = "prescription marine ballistic goggles"

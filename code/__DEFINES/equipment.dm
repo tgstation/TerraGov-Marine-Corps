@@ -49,19 +49,18 @@
 //flags_inv_hide
 //Bit flags for the flags_inv_hide variable, which determine when a piece of clothing hides another. IE a helmet hiding glasses.
 
-#define HIDEGLOVES		(1<<0)
-#define HIDESUITSTORAGE	(1<<1)
-#define HIDEJUMPSUIT	(1<<2)
-#define HIDESHOES		(1<<3)//these first four are used in exterior suits
-#define HIDEMASK		(1<<4)//these last seven are used in masks and headgear.
-#define HIDEEARS		(1<<5)	//(ears means headsets and such)
-#define HIDEEYES		(1<<6)	// Whether eyes and glasses are hidden
-#define HIDELOWHAIR		(1<<7)	// temporarily removes the user's facial hair overlay.
-#define HIDETOPHAIR		(1<<8)	// temporarily removes the user's hair overlay. Leaves facial hair.
-#define HIDEALLHAIR		(1<<9)	// temporarily removes the user's hair, facial and otherwise.
-#define HIDETAIL 		(1<<10)
-#define HIDEFACE		(1<<11)	//Dictates whether we appear as unknown.
-
+#define HIDEGLOVES		1
+#define HIDESUITSTORAGE	2
+#define HIDEJUMPSUIT	4
+#define HIDESHOES		8
+#define HIDEMASK		16
+#define HIDEEARS		32		//(ears means headsets and such)
+#define HIDEEYES		64		//(eyes means glasses)
+#define HIDELOWHAIR		128		// temporarily removes the user's facial hair overlay.
+#define HIDETOPHAIR		256		// temporarily removes the user's hair overlay. Leaves facial hair.
+#define HIDEALLHAIR		512		// temporarily removes the user's hair, facial and otherwise.
+#define HIDETAIL 		1024
+#define HIDEFACE	2056	//Dictates whether we appear as unknown.
 
 //==========================================================================================
 
@@ -123,7 +122,7 @@
 #define SLOT_BACK 			1024
 #define SLOT_STORE 			2048	//this is to allow items with a w_class of 3 or 4 to fit in pockets.
 #define SLOT_NO_STORE		4096	//this is to deny items with a w_class of 2 or 1 to fit in pockets.
-#define SLOT_LEGS 16384
+#define SLOT_LEGS 			16384
 //=================================================
 
 //slots

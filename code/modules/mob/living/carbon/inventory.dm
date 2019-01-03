@@ -34,6 +34,13 @@
 		legcuffed = null
 		legcuff_update()
 
+/mob/living/carbon/get_equipped_items(include_pockets = FALSE)
+	var/list/items = list()
+	if(back)
+		items += back
+	if(wear_mask)
+		items += wear_mask
+	return items
 
 /mob/living/carbon/proc/wear_mask_update(obj/item/I)
 	update_inv_wear_mask()

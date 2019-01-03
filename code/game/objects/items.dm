@@ -313,7 +313,7 @@ cases. Override_icon_state should be a list.*/
 			if(WEAR_JACKET)
 				if(H.wear_suit)
 					return FALSE
-				if(!(flags_equip_slot & SLOT_OCLOTHING	))
+				if(!(flags_equip_slot & SLOT_OCLOTHING))
 					return FALSE
 				return TRUE
 			if(WEAR_HANDS)
@@ -341,7 +341,7 @@ cases. Override_icon_state should be a list.*/
 			if(WEAR_EYES)
 				if(H.glasses)
 					return FALSE
-				if(!(flags_equip_slot & SLOT_EYES	))
+				if(!(flags_equip_slot & SLOT_EYES))
 					return FALSE
 				return TRUE
 			if(WEAR_HEAD)

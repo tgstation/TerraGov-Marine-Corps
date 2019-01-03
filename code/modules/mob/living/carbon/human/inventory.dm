@@ -187,8 +187,34 @@
 		s_store = null
 		update_inv_s_store()
 
-
-
+/mob/living/carbon/human/get_equipped_items(include_pockets = FALSE)
+	var/list/items = ..()
+	if(head)
+		items += head
+	if(belt)
+		items += belt
+	if(wear_ear)
+		items += wear_ear
+	if(glasses)
+		items += glasses
+	if(gloves)
+		items += gloves
+	if(shoes)
+		items += shoes
+	if(wear_id)
+		items += wear_id
+	if(wear_suit)
+		items += wear_suit
+	if(w_uniform)
+		items += w_uniform
+	if(include_pockets)
+		if(l_store)
+			items += l_store
+		if(r_store)
+			items += r_store
+		if(s_store)
+			items += s_store
+	return items
 
 /mob/living/carbon/human/wear_mask_update(obj/item/I, equipping)
 	//equipping arg to differentiate when we equip/unequip a mask
