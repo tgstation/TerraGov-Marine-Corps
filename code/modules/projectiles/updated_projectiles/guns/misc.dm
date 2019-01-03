@@ -41,7 +41,7 @@
 
 /obj/item/weapon/gun/flare/delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
-	if(refund) 
+	if(refund)
 		num_flares++
 	return TRUE
 
@@ -64,9 +64,9 @@
 /obj/item/weapon/gun/flare/unload(mob/user)
 	if(num_flares)
 		var/obj/item/device/flashlight/flare/new_flare = new()
-		if(user) 
+		if(user)
 			user.put_in_hands(new_flare)
-		else 
+		else
 			new_flare.loc = get_turf(src)
 		num_flares--
 		to_chat(user, "<span class='notice'>You unload a flare from [src].</span>")
@@ -93,7 +93,7 @@
 
 /obj/item/weapon/gun/minigun/New(loc, spawn_empty)
 	. = ..()
-	if(current_mag && current_mag.current_rounds > 0) 
+	if(current_mag && current_mag.current_rounds > 0)
 		load_into_chamber()
 
 /obj/item/weapon/gun/minigun/set_gun_config_values()
@@ -148,7 +148,7 @@
 	unacidable = 1
 	fire_sound = 'sound/effects/woodhit.ogg' // TODO: Decent THWOK noise.
 	ammo = /datum/ammo/alloy_spike
-	flags_equip_slot = SLOT_WAIST|SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	w_class = 3 //Fits in yautja bags.
 	var/spikes = 12
 	var/max_spikes = 12
@@ -214,7 +214,7 @@
 
 /obj/item/weapon/gun/launcher/spike/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
-	if(refund) 
+	if(refund)
 		spikes++
 	return TRUE
 

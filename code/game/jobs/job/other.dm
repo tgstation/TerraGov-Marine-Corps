@@ -14,10 +14,10 @@
 	S.knife = new /obj/item/weapon/combat_knife
 	S.update_icon()
 
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), WEAR_BODY)
-	H.equip_to_slot_or_del(S, WEAR_FEET)
-	H.equip_to_slot(new /obj/item/storage/pouch/survival/full(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/device/radio(H), WEAR_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(S, SLOT_SHOES)
+	H.equip_to_slot(new /obj/item/storage/pouch/survival/full(H), SLOT_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/device/radio(H), SLOT_R_STORE)
 
 
 /datum/job/other/passenger
@@ -46,11 +46,11 @@
 	B.contents += new /obj/item/ammo_magazine/pistol/holdout
 
 
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/pizza(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new /obj/item/clothing/head/soft/red(H), WEAR_HEAD)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/red(H), WEAR_FEET)
-	H.equip_to_slot_or_del(B, WEAR_BACK)
-	H.equip_to_slot_or_del(new /obj/item/pizzabox/margherita(H), WEAR_R_HAND)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/holdout(H), WEAR_WAIST)
-	H.equip_to_slot_or_del(new /obj/item/device/radio(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/drinks/cans/dr_gibb(H), WEAR_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/pizza(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/head/soft/red(H), SLOT_HEAD)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/red(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(B, SLOT_BACK)
+	H.equip_to_slot_or_del(new /obj/item/pizzabox/margherita(H), SLOT_R_HAND)
+	H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/holdout(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new /obj/item/device/radio(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/reagent_container/food/drinks/cans/dr_gibb(H), SLOT_L_STORE)

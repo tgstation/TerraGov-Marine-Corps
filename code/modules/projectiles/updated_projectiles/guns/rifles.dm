@@ -4,7 +4,7 @@
 	reload_sound = 'sound/weapons/gun_rifle_reload.ogg'
 	cocked_sound = 'sound/weapons/gun_cocked2.ogg'
 	origin_tech = "combat=4;materials=3"
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 4
 	force = 15
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
@@ -14,7 +14,7 @@
 
 /obj/item/weapon/gun/rifle/New()
 	. = ..()
-	if(current_mag && current_mag.current_rounds > 0) 
+	if(current_mag && current_mag.current_rounds > 0)
 		load_into_chamber()
 
 /obj/item/weapon/gun/rifle/set_gun_config_values()

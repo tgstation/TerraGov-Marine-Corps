@@ -6,7 +6,7 @@
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	permeability_coefficient = 0.90
-	flags_equip_slot = SLOT_ICLOTHING
+	flags_equip_slot = ITEM_SLOT_ICLOTHING
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	w_class = 3
 	var/has_sensor = 1//For the crew computer 2 = unable to change mode

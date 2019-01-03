@@ -76,15 +76,15 @@
 		qdel(G)
 	switch(current_goggles)
 		if(0)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/yautja(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/yautja(M), SLOT_GLASSES)
 			to_chat(M, "<span class='notice'>Low-light vision module: activated.</span>")
 			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 		if(1)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/yautja(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/yautja(M), SLOT_GLASSES)
 			to_chat(M, "<span class='notice'>Thermal sight module: activated.</span>")
 			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 		if(2)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/meson/yautja(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/meson/yautja(M), SLOT_GLASSES)
 			to_chat(M, "<span class='notice'>Material vision module: activated.</span>")
 			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 		if(3)
@@ -96,7 +96,7 @@
 
 
 /obj/item/clothing/mask/gas/yautja/equipped(mob/living/carbon/human/user, slot)
-	if(slot == WEAR_FACE)
+	if(slot == SLOT_WEAR_MASK)
 		var/datum/mob_hud/H = huds[MOB_HUD_MEDICAL_ADVANCED]
 		H.add_hud_to(user)
 	..()
@@ -208,7 +208,7 @@
 	desc = "A dusty, yet powerful cape worn and passed down by elder Yautja."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "cape_elder"
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	armor = list(melee = 10, bullet = 0, laser = 5, energy = 15, bomb = 0, bio = 0, rad = 0)
 	unacidable = 1
@@ -304,7 +304,7 @@
 	..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(slot == WEAR_HANDS && H.species && H.species.name == "Yautja")
+		if(slot == SLOT_GLOVES && H.species && H.species.name == "Yautja")
 			START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/gloves/yautja/dropped(mob/user)
@@ -723,7 +723,7 @@
 	desc = "A Yautja hunting pouch worn around the waist, made from a thick tanned hide. Capable of holding various devices and tools and used for the transport of trophies."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "beltbag"
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	max_w_class = 3
 	storage_slots = 10
 	max_storage_space = 30
@@ -916,7 +916,7 @@
 	desc = "A segmented, lightweight whip made of durable, acid-resistant metal. Not very common among Yautja Hunters, but still a dangerous weapon capable of shredding prey."
 	icon_state = "whip"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 35
 	throwforce = 12
 	w_class = 3
@@ -943,7 +943,7 @@
 	icon_state = "predknife"
 	item_state = "knife"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_STORE
+	flags_equip_slot = ITEM_SLOT_POCKETS
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 24
 	w_class = 1
@@ -993,7 +993,7 @@
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "clansword"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 	force = 45 //More damage than other weapons like it. Considering how "strong" this sword is supposed to be, 38 damage was laughable.
@@ -1032,7 +1032,7 @@
 	icon_state = "predscythe"
 	item_state = "scythe"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	sharp = IS_SHARP_ITEM_BIG
 	force = 32
 	w_class = 4.0
@@ -1074,7 +1074,7 @@
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "combistick"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 4
 	force = 32
 	throwforce = 70
@@ -1116,7 +1116,7 @@
 	else
 		to_chat(user, "<span class='notice'>You collapse [src] for storage.</span>")
 		icon_state = initial(icon_state) + "_f"
-		flags_equip_slot = SLOT_STORE
+		flags_equip_slot = ITEM_SLOT_POCKETS
 		w_class = 1
 		force = 0
 		throwforce = initial(throwforce) - 50

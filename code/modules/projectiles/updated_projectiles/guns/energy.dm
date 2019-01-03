@@ -110,7 +110,7 @@
 	ammo = /datum/ammo/energy/yautja/rifle/bolt
 	muzzle_flash = null // TO DO, add a decent one.
 	zoomdevicename = "scope"
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 5
 	charge_cost = 100
 	flags_gun_features = GUN_UNUSUAL_DESIGN
@@ -154,7 +154,7 @@
 	origin_tech = "combat=8;materials=7;bluespace=6"
 	unacidable = 1
 	fire_sound = 'sound/weapons/pulse3.ogg'
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	ammo = /datum/ammo/energy/yautja/pistol
 	muzzle_flash = null // TO DO, add a decent one.
 	w_class = 3

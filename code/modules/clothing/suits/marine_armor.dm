@@ -163,7 +163,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 /obj/item/clothing/suit/storage/marine/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user))
 		return FALSE
-	if(slot != WEAR_JACKET)
+	if(slot != SLOT_WEAR_SUIT)
 		return FALSE
 	return TRUE //only give action button when armor is worn.
 
@@ -380,7 +380,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 /obj/item/clothing/suit/storage/marine/specialist/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
-	if(slot == WEAR_JACKET)
+	if(slot == SLOT_WEAR_SUIT)
 		wearer = user
 		b18automed_turn_on(user)
 
@@ -857,7 +857,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 /obj/item/clothing/suit/storage/faction/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user)) return FALSE
-	if(slot != WEAR_JACKET) return FALSE
+	if(slot != SLOT_WEAR_SUIT) return FALSE
 	return TRUE //only give action button when armor is worn.
 
 /obj/item/clothing/suit/storage/faction/proc/toggle_armor_light(mob/user)

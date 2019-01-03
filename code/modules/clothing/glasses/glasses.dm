@@ -11,7 +11,7 @@
 	var/toggleable = 0
 	var/active = 1
 	flags_inventory = COVEREYES
-	flags_equip_slot = SLOT_EYES
+	flags_equip_slot = ITEM_SLOT_EYES
 	flags_armor_protection = EYES
 	var/deactive_state = "degoggles"
 	var/fullscreen_vision
@@ -109,7 +109,7 @@
 	desc = "Standard issue TGMC goggles. Mostly used to decorate one's helmet."
 	icon_state = "mgoggles"
 	item_state = "mgoggles"
-	flags_equip_slot = SLOT_EYES|SLOT_FACE
+	flags_equip_slot = ITEM_SLOT_EYES|ITEM_SLOT_MASK
 
 /obj/item/clothing/glasses/mgoggles/prescription
 	name = "prescription marine ballistic goggles"
@@ -241,7 +241,7 @@
 
 
 /obj/item/clothing/glasses/sunglasses/sechud/equipped(mob/living/carbon/human/user, slot)
-	if(slot == WEAR_EYES)
+	if(slot == SLOT_GLASSES)
 		var/datum/mob_hud/H = huds[hud_type]
 		H.add_hud_to(user)
 	..()

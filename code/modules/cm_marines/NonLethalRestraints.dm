@@ -3,7 +3,7 @@
 	desc = "A specialised prod designed for incapacitating xenomorphic lifeforms with."
 	icon_state = "stunbaton"
 	item_state = "baton"
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 12
 	throwforce = 7
 	w_class = 3

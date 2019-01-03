@@ -4,7 +4,7 @@
 	icon_state = "claymore"
 	item_state = "claymore"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 40
 	throwforce = 10
 	sharp = IS_SHARP_ITEM_BIG
@@ -141,7 +141,7 @@
 	throw_range = 7
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	flags_equip_slot = SLOT_STORE
+	flags_equip_slot = ITEM_SLOT_POCKETS
 
 
 

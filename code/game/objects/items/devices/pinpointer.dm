@@ -2,7 +2,7 @@
 	name = "pinpointer"
 	icon_state = "pinoff"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = 1
 	item_state = "electronic"
 	throw_speed = 4
