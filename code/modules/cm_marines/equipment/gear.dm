@@ -40,10 +40,6 @@
 	anchored = 1
 	closet_stun_delay = 0
 
-/obj/item/device/radio/detpack/Destroy()
-	. = ..()
-	processing_second.Remove(src)
-
 /obj/structure/closet/bodybag/tarp/close()
 	. = ..()
 	var/mob/M = locate() in src //need to be occupied
