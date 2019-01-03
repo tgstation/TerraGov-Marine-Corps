@@ -96,7 +96,6 @@
 
 
 	landmarks_list += src
-	testing("added '[src]' to landmarks_list")
 
 /obj/effect/landmark/Destroy()
 	landmarks_list -= src
