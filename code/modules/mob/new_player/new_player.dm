@@ -24,7 +24,7 @@
 			Direct Download (Windows Installer): http://www.byond.com/download/build/[world.byond_version]/[world.byond_version].[world.byond_build]_byond.exe <br> \
 			Other versions (search for [world.byond_build] or higher): http://www.byond.com/download/build/[world.byond_version]</span>")
 
-			qdel(client)
+			del(client)
 
 	verb/new_player_panel()
 		set src = usr
