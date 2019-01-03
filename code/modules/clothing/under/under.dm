@@ -117,7 +117,7 @@
 	if (user.is_mob_incapacitated(TRUE))
 		return
 	if(has_sensor >= 2)
-		to_chat(user, "The sensors in [src] can't be modified.</span>")
+		to_chat(user, "The sensors in [src] can't be modified.")
 		return FALSE
 	if(has_sensor <= 0)
 		to_chat(user, "[src] does not have any sensors.")
