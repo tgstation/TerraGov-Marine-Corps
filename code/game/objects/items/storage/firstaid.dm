@@ -224,7 +224,7 @@
 				var/mob/living/carbon/C = user
 				C.swap_hand()
 		else
-			user.dropItemToGround(I)
+			user.drop_inv_item_on_ground(I)
 			to_chat(user, "<span class='notice'>You fumble around with \the [src] and drop a pill on the floor.</span>")
 		return
 	else

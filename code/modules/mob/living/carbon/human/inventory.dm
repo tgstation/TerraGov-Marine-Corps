@@ -33,63 +33,63 @@
 
 /mob/living/carbon/human/proc/has_limb_for_slot(slot)
 	switch(slot)
-		if(SLOT_BACK)
+		if(WEAR_BACK)
 			return has_limb("chest")
-		if(SLOT_WEAR_MASK)
+		if(WEAR_FACE)
 			return has_limb("head")
-		if(SLOT_HANDCUFFED)
+		if(WEAR_HANDCUFFS)
 			return has_limb("l_hand") && has_limb("r_hand")
-		if(SLOT_LEGCUFFED)
+		if(WEAR_LEGCUFFS)
 			return has_limb("l_leg") && has_limb("r_leg")
-		if(SLOT_L_HAND)
+		if(WEAR_L_HAND)
 			return has_limb("l_hand")
-		if(SLOT_R_HAND)
+		if(WEAR_R_HAND)
 			return has_limb("r_hand")
-		if(SLOT_BELT)
+		if(WEAR_WAIST)
 			return has_limb("chest")
-		if(SLOT_WEAR_ID)
+		if(WEAR_ID)
 			return TRUE
-		if(SLOT_EARS)
+		if(WEAR_EAR)
 			return has_limb("head")
-		if(SLOT_GLASSES)
+		if(WEAR_EYES)
 			return has_limb("head")
-		if(SLOT_GLOVES)
+		if(WEAR_HANDS)
 			return has_limb("l_hand") && has_limb("r_hand")
-		if(SLOT_HEAD)
+		if(WEAR_HEAD)
 			return has_limb("head")
-		if(SLOT_SHOES)
+		if(WEAR_FEET)
 			return has_limb("r_foot") && has_limb("l_foot")
-		if(SLOT_WEAR_SUIT)
+		if(WEAR_JACKET)
 			return has_limb("chest")
-		if(SLOT_W_UNIFORM)
+		if(WEAR_BODY)
 			return has_limb("chest")
-		if(SLOT_L_STORE)
+		if(WEAR_L_STORE)
 			return has_limb("chest")
-		if(SLOT_R_STORE)
+		if(WEAR_R_STORE)
 			return has_limb("chest")
-		if(SLOT_S_STORE)
+		if(WEAR_J_STORE)
 			return has_limb("chest")
-		if(SLOT_ACCESSORY)
+		if(WEAR_ACCESSORY)
 			return has_limb("chest")
-		if(SLOT_IN_BOOT)
+		if(EQUIP_IN_BOOT)
 			return has_limb("r_foot") && has_limb("l_foot")
-		if(SLOT_IN_BACKPACK)
+		if(WEAR_IN_BACK)
 			return has_limb("chest")
-		if(SLOT_IN_SUIT)
+		if(WEAR_IN_JACKET)
 			return has_limb("chest")
-		if(SLOT_IN_ACCESSORY)
+		if(WEAR_IN_ACCESSORY)
 			return has_limb("chest")
-		if(SLOT_IN_HOLSTER)
+		if(WEAR_IN_HOLSTER)
 			return has_limb("chest")
-		if(SLOT_IN_S_HOLSTER)
+		if(WEAR_IN_J_HOLSTER)
 			return has_limb("chest")
-		if(SLOT_IN_B_HOLSTER)
+		if(WEAR_IN_B_HOLSTER)
 			return has_limb("chest")
-		if(SLOT_IN_STORAGE)
+		if(EQUIP_IN_STORAGE)
 			return TRUE
-		if(SLOT_IN_L_POUCH)
+		if(EQUIP_IN_L_POUCH)
 			return has_limb("chest")
-		if(SLOT_IN_R_POUCH)
+		if(EQUIP_IN_R_POUCH)
 			return has_limb("chest")
 
 /mob/living/carbon/human/put_in_l_hand(obj/item/W)
@@ -104,14 +104,14 @@
 		return FALSE
 	. = ..()
 
-/mob/living/carbon/human/doUnEquip(obj/item/I, atom/newloc, nomoveupdate, force)
+/mob/living/carbon/human/u_equip(obj/item/I, atom/newloc, nomoveupdate, force)
 	. = ..()
 	if(!. || !I)
 		return FALSE
 
 	if(I == wear_suit)
 		if(s_store)
-			dropItemToGround(s_store)
+			drop_inv_item_on_ground(s_store)
 		wear_suit = null
 		if(I.flags_inv_hide & HIDESHOES)
 			update_inv_shoes()
@@ -122,15 +122,15 @@
 		update_inv_wear_suit()
 	else if(I == w_uniform)
 		if(r_store)
-			dropItemToGround(r_store)
+			drop_inv_item_on_ground(r_store)
 		if(l_store)
-			dropItemToGround(l_store)
+			drop_inv_item_on_ground(l_store)
 		if(belt)
-			dropItemToGround(belt)
+			drop_inv_item_on_ground(belt)
 		if(wear_suit) //We estimate all armors with uniform restrictions aren't okay with removing the uniform altogether
 			var/obj/item/clothing/suit/S = wear_suit
 			if(S.uniform_restricted)
-				dropItemToGround(wear_suit)
+				drop_inv_item_on_ground(wear_suit)
 		w_uniform = null
 		update_suit_sensors()
 		update_inv_w_uniform()
@@ -243,47 +243,47 @@
 	W.layer = ABOVE_HUD_LAYER
 
 	switch(slot)
-		if(SLOT_BACK)
+		if(WEAR_BACK)
 			back = W
 			W.equipped(src, slot)
 			update_inv_back()
-		if(SLOT_WEAR_MASK)
+		if(WEAR_FACE)
 			wear_mask = W
 			W.equipped(src, slot)
 			sec_hud_set_ID()
 			wear_mask_update(W, TRUE)
 			update_inv_wear_mask()
-		if(SLOT_HANDCUFFED)
+		if(WEAR_HANDCUFFS)
 			handcuffed = W
 			handcuff_update()
-		if(SLOT_LEGCUFFED)
+		if(WEAR_LEGCUFFS)
 			legcuffed = W
 			W.equipped(src, slot)
 			legcuff_update()
-		if(SLOT_L_HAND)
+		if(WEAR_L_HAND)
 			l_hand = W
 			W.equipped(src, slot)
 			update_inv_l_hand()
-		if(SLOT_R_HAND)
+		if(WEAR_R_HAND)
 			r_hand = W
 			W.equipped(src, slot)
 			update_inv_r_hand()
-		if(SLOT_BELT)
+		if(WEAR_WAIST)
 			belt = W
 			W.equipped(src, slot)
 			update_inv_belt()
-		if(SLOT_WEAR_ID)
+		if(WEAR_ID)
 			wear_id = W
 			W.equipped(src, slot)
 			sec_hud_set_ID()
 			hud_set_squad()
 			update_inv_wear_id()
 			name = get_visible_name()
-		if(SLOT_EARS)
+		if(WEAR_EAR)
 			wear_ear = W
 			W.equipped(src, slot)
 			update_inv_ears()
-		if(SLOT_GLASSES)
+		if(WEAR_EYES)
 			glasses = W
 			W.equipped(src, slot)
 			var/obj/item/clothing/glasses/G = W
@@ -292,11 +292,11 @@
 			if(G.tint)
 				update_tint()
 			update_inv_glasses()
-		if(SLOT_GLOVES)
+		if(WEAR_HANDS)
 			gloves = W
 			W.equipped(src, slot)
 			update_inv_gloves()
-		if(SLOT_HEAD)
+		if(WEAR_HEAD)
 			head = W
 			if(head.flags_inv_hide & HIDEFACE)
 				name = get_visible_name()
@@ -311,11 +311,11 @@
 			W.equipped(src, slot)
 			update_tint()
 			update_inv_head()
-		if(SLOT_SHOES)
+		if(WEAR_FEET)
 			shoes = W
 			W.equipped(src, slot)
 			update_inv_shoes()
-		if(SLOT_WEAR_SUIT)
+		if(WEAR_JACKET)
 			wear_suit = W
 			if(wear_suit.flags_inv_hide & HIDESHOES)
 				update_inv_shoes()
@@ -325,61 +325,61 @@
 				update_hair()
 			W.equipped(src, slot)
 			update_inv_wear_suit()
-		if(SLOT_W_UNIFORM)
+		if(WEAR_BODY)
 			w_uniform = W
 			W.equipped(src, slot)
 			sec_hud_set_ID()
 			update_inv_w_uniform()
-		if(SLOT_L_STORE)
+		if(WEAR_L_STORE)
 			l_store = W
 			W.equipped(src, slot)
 			update_inv_pockets()
-		if(SLOT_R_STORE)
+		if(WEAR_R_STORE)
 			r_store = W
 			W.equipped(src, slot)
 			update_inv_pockets()
-		if(SLOT_ACCESSORY)
+		if(WEAR_ACCESSORY)
 			var/obj/item/clothing/under/U = w_uniform
 			if(U && !U.hastie)
 				var/obj/item/clothing/tie/T = W
 				T.on_attached(U, src)
 				U.hastie = T
 				update_inv_w_uniform()
-		if(SLOT_S_STORE)
+		if(WEAR_J_STORE)
 			s_store = W
 			W.equipped(src, slot)
 			update_inv_s_store()
-		if(SLOT_IN_BOOT)
+		if(EQUIP_IN_BOOT)
 			var/obj/item/clothing/shoes/marine/B = shoes
 			B.attackby(W, src)
-		if(SLOT_IN_BACKPACK)
+		if(WEAR_IN_BACK)
 			var/obj/item/storage/S = back
 			S.handle_item_insertion(W, TRUE, src)
-		if(SLOT_IN_SUIT)
+		if(WEAR_IN_JACKET)
 			var/obj/item/clothing/suit/storage/S = wear_suit
 			if(istype(S) && S.pockets.storage_slots)
 				W.loc = S.pockets//Has to have some slots available.
-		if(SLOT_IN_ACCESSORY)
+		if(WEAR_IN_ACCESSORY)
 			var/obj/item/clothing/under/U = w_uniform
 			if(U && U.hastie)
 				var/obj/item/clothing/tie/storage/T = U.hastie
 				if(istype(T) && T.hold.storage_slots) W.loc = T.hold
-		if(SLOT_IN_HOLSTER)
+		if(WEAR_IN_HOLSTER)
 			var/obj/item/storage/S = belt
 			S.handle_item_insertion(W, FALSE, src)
-		if(SLOT_IN_B_HOLSTER)
+		if(WEAR_IN_B_HOLSTER)
 			var/obj/item/storage/S = back
 			S.handle_item_insertion(W, FALSE, src)
-		if(SLOT_IN_S_HOLSTER)
+		if(WEAR_IN_J_HOLSTER)
 			var/obj/item/storage/S = s_store
 			S.handle_item_insertion(W, FALSE, src)
-		if(SLOT_IN_STORAGE)
+		if(EQUIP_IN_STORAGE)
 			var/obj/item/storage/S = s_active
 			S.handle_item_insertion(W, FALSE, src)
-		if(SLOT_IN_L_POUCH)
+		if(EQUIP_IN_L_POUCH)
 			var/obj/item/storage/S = l_store
 			S.handle_item_insertion(W, FALSE, src)
-		if(SLOT_IN_R_POUCH)
+		if(EQUIP_IN_R_POUCH)
 			var/obj/item/storage/S = r_store
 			S.handle_item_insertion(W, FALSE, src)
 		else
@@ -392,41 +392,41 @@
 
 /mob/living/carbon/human/get_item_by_slot(slot_id)
 	switch(slot_id)
-		if(SLOT_BACK)
+		if(WEAR_BACK)
 			return back
-		if(SLOT_WEAR_MASK)
+		if(WEAR_FACE)
 			return wear_mask
-		if(SLOT_BELT)
+		if(WEAR_WAIST)
 			return belt
-		if(SLOT_WEAR_ID)
+		if(WEAR_ID)
 			return wear_id
-		if(SLOT_EARS)
+		if(WEAR_EAR)
 			return wear_ear
-		if(SLOT_GLASSES)
+		if(WEAR_EYES)
 			return glasses
-		if(SLOT_GLOVES)
+		if(WEAR_HANDS)
 			return gloves
-		if(SLOT_L_HAND)
+		if(WEAR_L_HAND)
 			return l_hand
-		if(SLOT_R_HAND)
+		if(WEAR_R_HAND)
 			return r_hand
-		if(SLOT_HEAD)
+		if(WEAR_HEAD)
 			return head
-		if(SLOT_SHOES)
+		if(WEAR_FEET)
 			return shoes
-		if(SLOT_WEAR_SUIT)
+		if(WEAR_JACKET)
 			return wear_suit
-		if(SLOT_W_UNIFORM)
+		if(WEAR_BODY)
 			return w_uniform
-		if(SLOT_L_STORE)
+		if(WEAR_L_STORE)
 			return l_store
-		if(SLOT_R_STORE)
+		if(WEAR_R_STORE)
 			return r_store
-		if(SLOT_S_STORE)
+		if(WEAR_J_STORE)
 			return s_store
-		if(SLOT_HANDCUFFED)
+		if(WEAR_HANDCUFFS)
 			return handcuffed
-		if(SLOT_LEGCUFFED)
+		if(WEAR_LEGCUFFS)
 			return legcuffed
 
 
@@ -449,7 +449,7 @@
 	I.add_fingerprint(src)
 	if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 		if(I && Adjacent(M) && I == M.get_item_by_slot(slot_to_process))
-			M.dropItemToGround(I)
+			M.drop_inv_item_on_ground(I)
 
 	if(M)
 		if(interactee == M && Adjacent(M))
@@ -471,7 +471,7 @@
 		if(do_mob(src, M, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
 			if(I == get_active_hand() && !M.get_item_by_slot(slot_to_process) && Adjacent(M))
 				if(I.mob_can_equip(M, slot_to_process, TRUE))//Placing an item on the mob
-					dropItemToGround(I)
+					drop_inv_item_on_ground(I)
 					if(I && !I.gc_destroyed) //Might be self-deleted?
 						M.equip_to_slot_if_possible(I, slot_to_process, 1, 0, 1, 1)
 

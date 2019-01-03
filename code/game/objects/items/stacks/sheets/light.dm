@@ -19,7 +19,7 @@
 		amount--
 		new/obj/item/stack/sheet/glass(user.loc)
 		if(amount <= 0)
-			user.temporarilyRemoveItemFromInventory(src)
+			user.temp_drop_inv_item(src)
 			qdel(src)
 
 	if(istype(O,/obj/item/stack/sheet/metal))

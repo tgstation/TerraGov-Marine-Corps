@@ -59,7 +59,7 @@
 				// insert cell
 				var/obj/item/cell/C = usr.get_active_hand()
 				if(istype(C))
-					if(user.transferItemToLoc(C, src))
+					if(user.drop_inv_item_to_loc(C, src))
 						cell = C
 						C.add_fingerprint(usr)
 

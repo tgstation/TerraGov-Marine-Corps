@@ -19,7 +19,7 @@
 		W.forceMove(src)
 		l_hand = W
 		W.layer = ABOVE_HUD_LAYER
-		W.equipped(src,SLOT_L_HAND)
+		W.equipped(src,WEAR_L_HAND)
 		update_inv_l_hand()
 		return 1
 	return 0
@@ -32,7 +32,7 @@
 		W.forceMove(src)
 		r_hand = W
 		W.layer = ABOVE_HUD_LAYER
-		W.equipped(src,SLOT_R_HAND)
+		W.equipped(src,WEAR_R_HAND)
 		update_inv_r_hand()
 		return 1
 	return 0
@@ -77,13 +77,13 @@
 //Drops the item in our left hand
 /mob/proc/drop_l_hand()
 	if(l_hand)
-		return dropItemToGround(l_hand)
+		return drop_inv_item_on_ground(l_hand)
 	return 0
 
 //Drops the item in our right hand
 /mob/proc/drop_r_hand()
 	if(r_hand)
-		return dropItemToGround(r_hand)
+		return drop_inv_item_on_ground(r_hand)
 	return 0
 
 //Drops the item in our active hand.
@@ -92,26 +92,26 @@
 	else		return drop_r_hand()
 
 //Drops the items in our hands.
-/mob/proc/drop_all_held_items()
+/mob/proc/drop_held_items()
 	drop_r_hand()
 	drop_l_hand()
 
 //drop the inventory item on a specific location
-/mob/proc/transferItemToLoc(obj/item/I, atom/newloc, nomoveupdate, force)
-	return doUnEquip(I, newloc, nomoveupdate, force)
+/mob/proc/drop_inv_item_to_loc(obj/item/I, atom/newloc, nomoveupdate, force)
+	return u_equip(I, newloc, nomoveupdate, force)
 
 //drop the inventory item on the ground
-/mob/proc/dropItemToGround(obj/item/I, nomoveupdate, force)
-	return doUnEquip(I, loc, nomoveupdate, force)
+/mob/proc/drop_inv_item_on_ground(obj/item/I, nomoveupdate, force)
+	return u_equip(I, loc, nomoveupdate, force)
 
 //Never use this proc directly. nomoveupdate is used when we don't want the item to react to
 // its new loc (e.g.triggering mousetraps)
-/mob/proc/doUnEquip(obj/item/I, atom/newloc, nomoveupdate, force)
+/mob/proc/u_equip(obj/item/I, atom/newloc, nomoveupdate, force)
 
 	if(!I) return TRUE
 
 	if((I.flags_item & NODROP) && !force)
-		return FALSE //doUnEquip() only fails if item has NODROP
+		return FALSE //u_equip() only fails if item has NODROP
 
 	if (I == r_hand)
 		r_hand = null
@@ -134,8 +134,8 @@
 
 //Remove an item on a mob's inventory.  It does not change the item's loc, just unequips it from the mob.
 //Used just before you want to delete the item, or moving it afterwards.
-/mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force)
-	return doUnEquip(I, null, force)
+/mob/proc/temp_drop_inv_item(obj/item/I, force)
+	return u_equip(I, null, force)
 
 
 //Outdated but still in use apparently. This should at least be a human proc.
@@ -192,8 +192,8 @@
 	var/list/items = list()
 	items |= get_equipped_items(TRUE)
 	for(var/I in items)
-		dropItemToGround(I)
-	drop_all_held_items()
+		drop_inv_item_on_ground(I)
+	drop_held_items()
 
 
 /mob/living/carbon/proc/check_obscured_slots()
@@ -204,19 +204,19 @@
 		hidden_slots |= I.flags_inv_hide
 
 	if(hidden_slots & HIDEMASK)
-		obscured |= SLOT_WEAR_MASK
+		obscured |= WEAR_FACE
 	if(hidden_slots & HIDEEYES)
-		obscured |= SLOT_GLASSES
+		obscured |= WEAR_EYES
 	if(hidden_slots & HIDEEARS)
-		obscured |= SLOT_EARS
+		obscured |= WEAR_EAR
 	if(hidden_slots & HIDEGLOVES)
-		obscured |= SLOT_GLOVES
+		obscured |= WEAR_HANDS
 	if(hidden_slots & HIDEJUMPSUIT)
-		obscured |= SLOT_W_UNIFORM
+		obscured |= WEAR_BODY
 	if(hidden_slots & HIDESHOES)
-		obscured |= SLOT_SHOES
+		obscured |= WEAR_FEET
 	if(hidden_slots & HIDESUITSTORAGE)
-		obscured |= SLOT_S_STORE
+		obscured |= WEAR_J_STORE
 
 	return obscured
 
@@ -237,75 +237,75 @@
 	//warning: icky code
 	var/equipped = 0
 	switch(slot)
-		if(SLOT_BACK)
+		if(WEAR_BACK)
 			if(!src.back)
 				src.back = W
 				equipped = 1
-		if(SLOT_WEAR_MASK)
+		if(WEAR_FACE)
 			if(!src.wear_mask)
 				src.wear_mask = W
 				equipped = 1
-		if(SLOT_HANDCUFFED)
+		if(WEAR_HANDCUFFS)
 			if(!src.handcuffed)
 				src.handcuffed = W
 				equipped = 1
-		if(SLOT_L_HAND)
+		if(WEAR_L_HAND)
 			if(!src.l_hand)
 				src.l_hand = W
 				equipped = 1
-		if(SLOT_R_HAND)
+		if(WEAR_R_HAND)
 			if(!src.r_hand)
 				src.r_hand = W
 				equipped = 1
-		if(SLOT_BELT)
+		if(WEAR_WAIST)
 			if(!src.belt && src.w_uniform)
 				src.belt = W
 				equipped = 1
-		if(SLOT_WEAR_ID)
+		if(WEAR_ID)
 			if(!src.wear_id /* && src.w_uniform */)
 				src.wear_id = W
 				equipped = 1
-		if(SLOT_EARS)
+		if(WEAR_EAR)
 			if(!wear_ear)
 				wear_ear = W
 				equipped = 1
-		if(SLOT_GLASSES)
+		if(WEAR_EYES)
 			if(!src.glasses)
 				src.glasses = W
 				equipped = 1
-		if(SLOT_GLOVES)
+		if(WEAR_HANDS)
 			if(!src.gloves)
 				src.gloves = W
 				equipped = 1
-		if(SLOT_HEAD)
+		if(WEAR_HEAD)
 			if(!src.head)
 				src.head = W
 				equipped = 1
-		if(SLOT_SHOES)
+		if(WEAR_FEET)
 			if(!src.shoes)
 				src.shoes = W
 				equipped = 1
-		if(SLOT_WEAR_SUIT)
+		if(WEAR_JACKET)
 			if(!src.wear_suit)
 				src.wear_suit = W
 				equipped = 1
-		if(SLOT_W_UNIFORM)
+		if(WEAR_BODY)
 			if(!src.w_uniform)
 				src.w_uniform = W
 				equipped = 1
-		if(SLOT_L_STORE)
+		if(WEAR_L_STORE)
 			if(!src.l_store && src.w_uniform)
 				src.l_store = W
 				equipped = 1
-		if(SLOT_R_STORE)
+		if(WEAR_R_STORE)
 			if(!src.r_store && src.w_uniform)
 				src.r_store = W
 				equipped = 1
-		if(SLOT_S_STORE)
+		if(WEAR_J_STORE)
 			if(!src.s_store && src.wear_suit)
 				src.s_store = W
 				equipped = 1
-		if(SLOT_IN_BACKPACK)
+		if(WEAR_IN_BACK)
 			if (src.back && istype(src.back, /obj/item/storage/backpack))
 				var/obj/item/storage/backpack/B = src.back
 				if(B.contents.len < B.storage_slots && W.w_class <= B.max_w_class)

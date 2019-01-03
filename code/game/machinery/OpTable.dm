@@ -101,11 +101,11 @@
 	if(!anes_tank)
 		to_chat(user, "<span class='warning'>There is no anesthetic tank connected to the table, load one first.</span>")
 		return
-	if(H.wear_mask && !H.dropItemToGround(H.wear_mask))
+	if(H.wear_mask && !H.drop_inv_item_on_ground(H.wear_mask))
 		to_chat(user, "<span class='danger'>You can't remove their mask!</span>")
 		return
 	var/obj/item/clothing/mask/breath/medical/B = new()
-	if(!H.equip_if_possible(B, SLOT_WEAR_MASK))
+	if(!H.equip_if_possible(B, WEAR_FACE))
 		to_chat(user, "<span class='danger'>You can't fit the gas mask over their face!</span>")
 		qdel(B)
 		return
@@ -122,7 +122,7 @@
 		var/mob/living/carbon/human/H = buckled_mob
 		H.internal = null
 		var/obj/item/M = H.wear_mask
-		H.dropItemToGround(M)
+		H.drop_inv_item_on_ground(M)
 		qdel(M)
 		H.visible_message("<span class='notice'>[user] turns off the anesthetic and removes the mask from [H].</span>")
 		..()
@@ -193,7 +193,7 @@
 /obj/machinery/optable/attackby(obj/item/W, mob/living/user)
 	if(istype(W, /obj/item/tank/anesthetic))
 		if(!anes_tank)
-			user.transferItemToLoc(W, src)
+			user.drop_inv_item_to_loc(W, src)
 			anes_tank = W
 			to_chat(user, "<span class='notice'>You connect \the [anes_tank] to \the [src].</span>")
 			return

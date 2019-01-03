@@ -177,7 +177,7 @@
 		if(amount <= 0)
 			var/oldsrc = src
 			src = null //dont kill proc after qdel()
-			usr.dropItemToGround(oldsrc)
+			usr.drop_inv_item_on_ground(oldsrc)
 			qdel(oldsrc)
 			if(istype(O,/obj/item) && istype(usr,/mob/living/carbon))
 				usr.put_in_hands(O)
@@ -199,7 +199,7 @@
 	amount -= used
 	if(amount <= 0)
 		if(usr && loc == usr)
-			usr.temporarilyRemoveItemFromInventory(src)
+			usr.temp_drop_inv_item(src)
 		qdel(src)
 	return 1
 

@@ -226,7 +226,7 @@ var/list/solars_list = list()
 	if(!tracker)
 		if(istype(W, /obj/item/circuitboard/solar_tracker))
 			tracker = 1
-			if(user.temporarilyRemoveItemFromInventory(W))
+			if(user.temp_drop_inv_item(W))
 				qdel(W)
 				user.visible_message("<span class='notice'>[user] inserts the electronics into the solar assembly.</span>")
 			return 1

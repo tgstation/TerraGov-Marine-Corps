@@ -14,7 +14,7 @@
 	desc = "There are 0 caps left. Looks almost like the real thing! Ages 8 and up. Please recycle in an autolathe when you're out of caps!"
 	icon_state = "capgun"
 	item_state = "gun"
-	flags_equip_slot = ITEM_SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	w_class = 3.0
 
 	matter = list("glass" = 10,"metal" = 10)
@@ -239,7 +239,7 @@
 	icon_state = "katana"
 	flags_atom = CONDUCT
 	flags_item = NOSHIELD
-	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
+	flags_equip_slot = SLOT_WAIST|SLOT_BACK
 	force = 5
 	throwforce = 5
 	w_class = 3

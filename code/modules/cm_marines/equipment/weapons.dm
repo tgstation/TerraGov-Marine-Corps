@@ -25,7 +25,7 @@
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "powerpack"
 	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BACK
+	flags_equip_slot = SLOT_BACK
 	w_class = 5.0
 	var/obj/item/cell/pcell = null
 	var/rounds_remaining = 500

@@ -4,7 +4,7 @@
 	item_state = "buildpipe"
 	icon_state = "blank"
 	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	matter = list("metal" = 500, "glass" = 0)
 	var/construction_time = 100
 	var/list/construction_cost = list("metal"=20000,"glass"=5000)
@@ -105,32 +105,32 @@
 	..()
 	if(istype(W, /obj/item/robot_parts/l_leg))
 		if(l_leg)	return
-		if(user.transferItemToLoc(W, src))
+		if(user.drop_inv_item_to_loc(W, src))
 			l_leg = W
 			updateicon()
 
 	if(istype(W, /obj/item/robot_parts/r_leg))
 		if(r_leg)	return
-		if(user.transferItemToLoc(W, src))
+		if(user.drop_inv_item_to_loc(W, src))
 			r_leg = W
 			updateicon()
 
 	if(istype(W, /obj/item/robot_parts/l_arm))
 		if(l_arm)	return
-		if(user.transferItemToLoc(W, src))
+		if(user.drop_inv_item_to_loc(W, src))
 			l_arm = W
 			updateicon()
 
 	if(istype(W, /obj/item/robot_parts/r_arm))
 		if(r_arm)	return
-		if(user.transferItemToLoc(W, src))
+		if(user.drop_inv_item_to_loc(W, src))
 			r_arm = W
 			updateicon()
 
 	if(istype(W, /obj/item/robot_parts/chest))
 		if(chest)	return
 		if(W:wires && W:cell)
-			if(user.transferItemToLoc(W, src))
+			if(user.drop_inv_item_to_loc(W, src))
 				chest = W
 				updateicon()
 		else if(!W:wires)
@@ -141,7 +141,7 @@
 	if(istype(W, /obj/item/robot_parts/head))
 		if(head)	return
 		if(W:flash2 && W:flash1)
-			if(user.transferItemToLoc(W, src))
+			if(user.drop_inv_item_to_loc(W, src))
 				head = W
 				updateicon()
 		else
@@ -228,7 +228,7 @@
 			to_chat(user, "\blue You have already inserted a cell!")
 			return
 		else
-			if(user.transferItemToLoc(W, src))
+			if(user.drop_inv_item_to_loc(W, src))
 				cell = W
 				to_chat(user, "\blue You insert the cell!")
 	if(istype(W, /obj/item/stack/cable_coil))
@@ -252,17 +252,17 @@
 			to_chat(user, "\blue You have already inserted the eyes!")
 			return
 		else if(src.flash1)
-			if(user.transferItemToLoc(W, src))
+			if(user.drop_inv_item_to_loc(W, src))
 				flash2 = W
 				to_chat(user, "\blue You insert the flash into the eye socket!")
 		else
-			user.transferItemToLoc(W, src)
+			user.drop_inv_item_to_loc(W, src)
 			flash1 = W
 			to_chat(user, "\blue You insert the flash into the eye socket!")
 	else if(istype(W, /obj/item/stock_parts/manipulator))
 		to_chat(user, "\blue You install some manipulators and modify the head, creating a functional spider-bot!")
 		new /mob/living/simple_animal/spiderbot(get_turf(loc))
-		user.temporarilyRemoveItemFromInventory(W)
+		user.temp_drop_inv_item(W)
 		qdel(W)
 		qdel(src)
 		return

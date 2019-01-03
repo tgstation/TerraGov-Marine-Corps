@@ -102,7 +102,7 @@
 	name = "ears"
 	w_class = 1.0
 	throwforce = 2
-	flags_equip_slot = ITEM_SLOT_EARS
+	flags_equip_slot = SLOT_EAR
 
 /obj/item/clothing/ears/update_clothing_icon()
 	if (ismob(src.loc))
@@ -114,7 +114,7 @@
 	desc = "Protects your hearing from loud noises, and quiet ones as well."
 	icon_state = "earmuffs"
 	item_state = "earmuffs"
-	flags_equip_slot = ITEM_SLOT_EARS
+	flags_equip_slot = SLOT_EAR
 
 
 ///////////////////////////////////////////////////////////////////////
@@ -126,7 +126,7 @@
 	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
 	allowed = list(/obj/item/tank/emergency_oxygen)
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 0, rad = 0)
-	flags_equip_slot = ITEM_SLOT_OCLOTHING
+	flags_equip_slot = SLOT_OCLOTHING
 	var/blood_overlay_type = "suit"
 	var/list/supporting_limbs = null
 	siemens_coefficient = 0.9
@@ -164,7 +164,7 @@
 	var/obj/item/cell/cell = 0
 	var/clipped = 0
 	flags_armor_protection = HANDS
-	flags_equip_slot = ITEM_SLOT_GLOVES
+	flags_equip_slot = SLOT_HANDS
 	attack_verb = list("challenged")
 	species_restricted = list("exclude","Yautja")
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/gloves.dmi')
@@ -214,7 +214,7 @@
 	name = "mask"
 	icon = 'icons/obj/clothing/masks.dmi'
 	flags_armor_protection = HEAD
-	flags_equip_slot = ITEM_SLOT_MASK
+	flags_equip_slot = SLOT_FACE
 	flags_armor_protection = FACE|EYES
 	sprite_sheets = list("Vox" = 'icons/mob/species/vox/masks.dmi')
 	var/anti_hug = 0
@@ -243,7 +243,7 @@
 	gender = PLURAL //Carn: for grammarically correct text-parsing
 	siemens_coefficient = 0.9
 	flags_armor_protection = FEET
-	flags_equip_slot = ITEM_SLOT_FEET
+	flags_equip_slot = SLOT_FEET
 	permeability_coefficient = 0.50
 	slowdown = SHOES_SLOWDOWN
 	species_restricted = list("exclude","Yautja")

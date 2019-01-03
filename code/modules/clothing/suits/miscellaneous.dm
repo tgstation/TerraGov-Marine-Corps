@@ -183,9 +183,9 @@
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
 
 	equipped(var/mob/user, var/slot)
-		if(slot == SLOT_WEAR_SUIT && ishuman(user))
+		if(slot == WEAR_JACKET && ishuman(user))
 			var/mob/living/carbon/human/H = user
-			H.dropItemToGround(H.handcuffed)
+			H.drop_inv_item_on_ground(H.handcuffed)
 			H.drop_l_hand()
 			H.drop_r_hand()
 		..()

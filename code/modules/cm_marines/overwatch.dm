@@ -910,7 +910,7 @@
 	if(do_after(user, delay, TRUE, 5, BUSY_ICON_FRIENDLY))
 
 		squad.sbeacon = src
-		user.transferItemToLoc(src, user.loc)
+		user.drop_inv_item_to_loc(src, user.loc)
 		activated = 1
 		anchored = 1
 		w_class = 10
@@ -973,7 +973,7 @@
 		var/n = active_orbital_beacons.Find(src)
 		cam_name += " [n]"
 		var/obj/machinery/camera/beacon_cam/BC = new(src, cam_name)
-		H.transferItemToLoc(src, H.loc)
+		H.drop_inv_item_to_loc(src, H.loc)
 		beacon_cam = BC
 		activated = TRUE
 		anchored = TRUE

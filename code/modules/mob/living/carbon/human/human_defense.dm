@@ -21,7 +21,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			if(c_hand && (stun_amount || agony_amount > 10))
 				msg_admin_attack("[src.name] ([src.ckey]) was disarmed by a stun effect")
 
-				dropItemToGround(c_hand)
+				drop_inv_item_on_ground(c_hand)
 				if (affected.status & LIMB_ROBOT)
 					emote("me", 1, "drops what they were holding, their [affected.display_name] malfunctioning!")
 				else

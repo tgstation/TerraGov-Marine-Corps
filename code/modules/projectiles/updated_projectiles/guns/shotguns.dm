@@ -365,7 +365,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	desc = "A double barreled shotgun whose barrel has been artificially shortened to reduce range but increase damage and spread."
 	icon_state = "sshotgun"
 	item_state = "sshotgun"
-	flags_equip_slot = ITEM_SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	attachable_allowed = list()
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
 
@@ -391,7 +391,7 @@ can cause issues with ammo types getting mixed up during the burst.
 /obj/item/weapon/gun/shotgun/pump
 	name = "\improper M37A2 pump shotgun"
 	desc = "An Armat Battlefield Systems classic design, the M37A2 combines close-range firepower with long term reliability. Requires a pump, which is a Unique Action."
-	flags_equip_slot = ITEM_SLOT_BACK
+	flags_equip_slot = SLOT_BACK
 	icon_state = "m37"
 	item_state = "m37"
 	current_mag = /obj/item/ammo_magazine/internal/shotgun/pump

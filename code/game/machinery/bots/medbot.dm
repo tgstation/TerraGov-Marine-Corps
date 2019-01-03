@@ -202,7 +202,7 @@
 			to_chat(user, "<span class='notice'>There is already a beaker loaded.</span>")
 			return
 
-		if(user.transferItemToLoc(W, src))
+		if(user.drop_inv_item_to_loc(W, src))
 			reagent_glass = W
 			to_chat(user, "<span class='notice'>You insert [W].</span>")
 			src.updateUsrDialog()
@@ -534,5 +534,5 @@
 	qdel(S)
 	user.put_in_hands(A)
 	to_chat(user, "<span class='notice'>You add the robot arm to the first aid kit.</span>")
-	user.temporarilyRemoveItemFromInventory(src)
+	user.temp_drop_inv_item(src)
 	qdel(src)

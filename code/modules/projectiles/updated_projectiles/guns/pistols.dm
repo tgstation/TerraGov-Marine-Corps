@@ -7,7 +7,7 @@
 	cocked_sound = 'sound/weapons/gun_pistol_cocked.ogg'
 	origin_tech = "combat=3;materials=2"
 	matter = list("metal" = 2000)
-	flags_equip_slot = ITEM_SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	w_class = 3
 	force = 6
 	movement_acc_penalty_mult = 3

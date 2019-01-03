@@ -50,7 +50,7 @@
 				to_chat(user, "\red The [name] blinks red as you try to insert the cell!")
 				return
 
-			if(user.transferItemToLoc(W, src))
+			if(user.drop_inv_item_to_loc(W, src))
 				charging = W
 				user.visible_message("[user] inserts a cell into the charger.", "You insert a cell into the charger.")
 				chargelevel = -1

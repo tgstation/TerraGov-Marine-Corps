@@ -46,7 +46,7 @@
 
 /obj/item/folder/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/paper) || istype(W, /obj/item/photo) || istype(W, /obj/item/paper_bundle))
-		if(user.transferItemToLoc(W, src))
+		if(user.drop_inv_item_to_loc(W, src))
 			to_chat(user, "<span class='notice'>You put the [W] into \the [src].</span>")
 			update_icon()
 	else if(istype(W, /obj/item/tool/pen))

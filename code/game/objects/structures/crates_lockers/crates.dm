@@ -87,7 +87,7 @@
 	if(opened)
 		if(isrobot(user))
 			return
-		user.transferItemToLoc(W, loc)
+		user.drop_inv_item_to_loc(W, loc)
 	else if(istype(W, /obj/item/packageWrap))
 		return
 	else if(istype(W, /obj/item/stack/cable_coil))

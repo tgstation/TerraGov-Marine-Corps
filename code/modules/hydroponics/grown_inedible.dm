@@ -128,7 +128,7 @@
 	if(force <= 0)
 		if(user)
 			to_chat(user, "All the leaves have fallen off \the [src] from violent whacking.")
-			user.temporarilyRemoveItemFromInventory(src)
+			user.temp_drop_inv_item(src)
 		qdel(src)
 
 /obj/item/grown/nettle/death // -- Skie

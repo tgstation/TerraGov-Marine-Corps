@@ -169,7 +169,7 @@
 		O.emp_act(severity)
 
 /obj/item/weapon/gun/equipped(mob/user, slot)
-	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
+	if(slot != WEAR_L_HAND && slot != WEAR_R_HAND)
 		stop_aim()
 		if (user.client)
 			user.update_gun_icons()
@@ -370,7 +370,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	return TRUE
 
 /obj/item/weapon/gun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
-	user.transferItemToLoc(magazine, src) //Click!
+	user.drop_inv_item_to_loc(magazine, src) //Click!
 	current_mag = magazine
 	replace_ammo(user,magazine)
 	if(!in_chamber)

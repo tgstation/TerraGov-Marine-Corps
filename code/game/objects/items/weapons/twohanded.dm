@@ -101,7 +101,7 @@
 	unwield(var/mob/user)
 		if(flags_item & WIELDED)
 			flags_item &= ~WIELDED
-			user.temporarilyRemoveItemFromInventory(src)
+			user.temp_drop_inv_item(src)
 			qdel(src)
 
 	wield()
@@ -130,7 +130,7 @@
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 	w_class = 4.0
-	flags_equip_slot = ITEM_SLOT_BACK
+	flags_equip_slot = SLOT_BACK
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
 	force_wielded = 45
@@ -207,7 +207,7 @@
 	item_state = "spearglass"
 	force = 14
 	w_class = 4.0
-	flags_equip_slot = ITEM_SLOT_BACK
+	flags_equip_slot = SLOT_BACK
 	force_wielded = 24
 	throwforce = 30
 	throw_speed = 3
@@ -227,7 +227,7 @@
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon."
 	force = 28
 	w_class = 4.0
-	flags_equip_slot = ITEM_SLOT_BACK
+	flags_equip_slot = SLOT_BACK
 	force_wielded = 60
 	throwforce = 50
 	throw_speed = 3

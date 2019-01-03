@@ -7,7 +7,7 @@
 
 
 /obj/item/clothing/glasses/hud/equipped(mob/living/carbon/human/user, slot)
-	if(slot == SLOT_GLASSES && active)
+	if(slot == WEAR_EYES && active)
 		var/datum/mob_hud/H = huds[hud_type]
 		H.add_hud_to(user)
 	..()

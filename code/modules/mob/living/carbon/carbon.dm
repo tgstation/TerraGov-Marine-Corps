@@ -53,7 +53,7 @@
 
 /mob/living/carbon/gib()
 	if(legcuffed)
-		dropItemToGround(legcuffed)
+		drop_inv_item_on_ground(legcuffed)
 
 	for(var/atom/movable/A in stomach_contents)
 		stomach_contents.Remove(A)
@@ -66,11 +66,11 @@
 
 /mob/living/carbon/revive()
 	if (handcuffed && !initial(handcuffed))
-		dropItemToGround(handcuffed)
+		drop_inv_item_on_ground(handcuffed)
 	handcuffed = initial(handcuffed)
 
 	if (legcuffed && !initial(legcuffed))
-		dropItemToGround(legcuffed)
+		drop_inv_item_on_ground(legcuffed)
 	legcuffed = initial(legcuffed)
 	..()
 
@@ -315,7 +315,7 @@
 
 	else //real item in hand, not a grab
 		thrown_thing = I
-		dropItemToGround(I, TRUE)
+		drop_inv_item_on_ground(I, TRUE)
 
 	//actually throw it!
 	if (thrown_thing)

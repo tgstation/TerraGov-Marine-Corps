@@ -6,7 +6,7 @@
 	origin_tech = "combat=4;materials=3"
 	icon_state = "m240"
 	item_state = "m240"
-	flags_equip_slot = ITEM_SLOT_BACK
+	flags_equip_slot = SLOT_BACK
 	w_class = 4
 	force = 15
 	fire_sound = 'sound/weapons/gun_flamethrower2.ogg'

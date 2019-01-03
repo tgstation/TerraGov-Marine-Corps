@@ -137,10 +137,10 @@
 		var/obj/item/clothing/mask/facehugger/G = get_inactive_hand()
 		if(istype(F))
 			F.Die()
-			dropItemToGround(F)
+			drop_inv_item_on_ground(F)
 		if(istype(G))
 			G.Die()
-			dropItemToGround(G)
+			drop_inv_item_on_ground(G)
 
 /mob/living/proc/ExtinguishMob()
 	if(on_fire)

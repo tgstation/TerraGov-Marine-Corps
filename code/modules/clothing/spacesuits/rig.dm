@@ -120,7 +120,7 @@
 			to_chat(M, "Your suit's helmet deploys with a hiss.")
 			//TODO: Species check, skull damage for forcing an unfitting helmet on?
 			helmet.loc = H
-			H.equip_to_slot(helmet, SLOT_HEAD)
+			H.equip_to_slot(helmet, WEAR_HEAD)
 			helmet.flags_item |= NODROP
 
 	if(attached_boots && boots)
@@ -129,7 +129,7 @@
 		else
 			to_chat(M, "Your suit's boots deploy with a hiss.")
 			boots.loc = H
-			H.equip_to_slot(boots, SLOT_SHOES)
+			H.equip_to_slot(boots, WEAR_FEET)
 			boots.flags_item |= NODROP
 
 /obj/item/clothing/suit/space/rig/dropped()
@@ -142,14 +142,14 @@
 		if(istype(H))
 			if(helmet && H.head == helmet)
 				helmet.flags_item &= ~NODROP
-				H.transferItemToLoc(helmet, src)
+				H.drop_inv_item_to_loc(helmet, src)
 
 	if(boots)
 		H = boots.loc
 		if(istype(H))
 			if(boots && H.shoes == boots)
 				boots.flags_item &= ~NODROP
-				H.transferItemToLoc(boots, src)
+				H.drop_inv_item_to_loc(boots, src)
 
 /*
 /obj/item/clothing/suit/space/rig/verb/get_mounted_device()
@@ -214,7 +214,7 @@
 
 	if(H.head == helmet)
 		helmet.flags_item &= ~NODROP
-		H.transferItemToLoc(helmet, src)
+		H.drop_inv_item_to_loc(helmet, src)
 		to_chat(H, "\blue You retract your hardsuit helmet.")
 	else
 		if(H.head)
@@ -223,7 +223,7 @@
 		//TODO: Species check, skull damage for forcing an unfitting helmet on?
 		helmet.loc = H
 		helmet.pickup(H)
-		H.equip_to_slot(helmet, SLOT_HEAD)
+		H.equip_to_slot(helmet, WEAR_HEAD)
 		helmet.flags_item |= NODROP
 		to_chat(H, "\blue You deploy your hardsuit helmet, sealing you off from the world.")
 

@@ -7,7 +7,7 @@
 	item_state = "electronic"
 	flags_atom = CONDUCT
 	flags_item = NOBLUDGEON
-	flags_equip_slot = ITEM_SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 
 /obj/item/device/detective_scanner/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	if (!ishuman(M))

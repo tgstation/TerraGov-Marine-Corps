@@ -104,7 +104,7 @@
 	else
 		move_delay = initial(move_delay)
 		icon_state = "powerloader_open"
-		M.drop_all_held_items() //drop the clamp when unbuckling
+		M.drop_held_items() //drop the clamp when unbuckling
 
 /obj/vehicle/powerloader/buckle_mob(mob/M, mob/user)
 	if(M != user)

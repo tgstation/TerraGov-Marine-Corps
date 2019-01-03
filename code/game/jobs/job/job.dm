@@ -91,7 +91,7 @@
 				continue //Is the role allowed?
 			if(G.whitelisted && !is_alien_whitelisted(G.whitelisted))
 				continue //is the role whitelisted? //TODO Remove this.
-			H.equip_to_slot_or_del(new G.path(H), G.slot ? G.slot : SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new G.path(H), G.slot ? G.slot : WEAR_IN_BACK)
 
 	//Give humans wheelchairs, if they need them.
 	var/datum/limb/l_foot = H.get_limb("l_foot")
@@ -108,7 +108,7 @@
 	if(H.disabilities & NEARSIGHTED)
 		var/obj/item/clothing/glasses/regular/P = new (H)
 		P.prescription = 1
-		H.equip_to_slot_or_del(P, SLOT_GLASSES)
+		H.equip_to_slot_or_del(P, WEAR_EYES)
 
 /datum/job/proc/equip_identification(mob/living/carbon/human/H)
 	if(!istype(H))
@@ -128,7 +128,7 @@
 	//put the player's account number onto the ID
 	if(H.mind?.initial_account)
 		C.associated_account_number = H.mind.initial_account.account_number
-	H.equip_to_slot_or_del(C, SLOT_WEAR_ID)
+	H.equip_to_slot_or_del(C, WEAR_ID)
 	return TRUE
 
 /datum/job/proc/get_access()

@@ -52,7 +52,7 @@
 			to_chat(user, "It's already full.")
 			return
 		num_flares++
-		user.temporarilyRemoveItemFromInventory(flare)
+		user.temp_drop_inv_item(flare)
 		sleep(-1)
 		qdel(flare)
 		to_chat(user, "<span class='notice'>You insert the flare.</span>")
@@ -148,7 +148,7 @@
 	unacidable = 1
 	fire_sound = 'sound/effects/woodhit.ogg' // TODO: Decent THWOK noise.
 	ammo = /datum/ammo/alloy_spike
-	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
+	flags_equip_slot = SLOT_WAIST|SLOT_BACK
 	w_class = 3 //Fits in yautja bags.
 	var/spikes = 12
 	var/max_spikes = 12
@@ -244,7 +244,7 @@
 		var/obj/item/reagent_container/syringe/S = I
 		if(S.mode != 2)//SYRINGE_BROKEN in syringes.dm
 			if(syringes.len < max_syringes)
-				user.transferItemToLoc(I, src)
+				user.drop_inv_item_to_loc(I, src)
 				syringes += I
 				update_icon()
 				to_chat(user, "\blue You put the syringe in [src].")

@@ -274,7 +274,7 @@ Buildable meters
 /obj/item/pipe/afterattack(turf/open/floor/target, mob/user, proximity)
 	if(!proximity) return
 	if(istype(target))
-		user.transferItemToLoc(src, target)
+		user.drop_inv_item_to_loc(src, target)
 	else
 		return ..()
 

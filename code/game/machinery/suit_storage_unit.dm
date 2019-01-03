@@ -248,7 +248,7 @@
 				if(inserted_suit)
 					to_chat(user, "<span class='warning'>The unit already contains a suit.</span>")
 					return
-				if(user.transferItemToLoc(S, src))
+				if(user.drop_inv_item_to_loc(S, src))
 					to_chat(user, "<span class='notice'>You load the [S.name] into the storage compartment.</span>")
 					inserted_suit = S
 					update_icon()
@@ -261,7 +261,7 @@
 					to_chat(user, "<span class='warning'>The unit already contains a helmet.</span>")
 					return
 				to_chat(user, "<span class='notice'>You load the [H.name] into the storage compartment.</span>")
-				if(user.transferItemToLoc(H, src))
+				if(user.drop_inv_item_to_loc(H, src))
 					inserted_helmet = H
 					update_icon()
 					updateUsrDialog()
@@ -273,7 +273,7 @@
 					to_chat(user, "<span class='warning'>The unit already contains a mask.</span>")
 					return
 				to_chat(user, "<span class='notice'>You load the [M.name] into the storage compartment.</span>")
-				if(user.transferItemToLoc(M, src))
+				if(user.drop_inv_item_to_loc(M, src))
 					inserted_mask = M
 					update_icon()
 					updateUsrDialog()
@@ -285,7 +285,7 @@
 					to_chat(user, "<span class='warning'>The unit already contains a tank.</span>")
 					return
 				to_chat(user, "<span class='notice'>You load the [T.name] into the storage compartment.</span>")
-				if(user.transferItemToLoc(T, src))
+				if(user.drop_inv_item_to_loc(T, src))
 					inserted_tank = T
 					update_icon()
 					updateUsrDialog()

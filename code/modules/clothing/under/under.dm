@@ -6,7 +6,7 @@
 	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
 	permeability_coefficient = 0.90
-	flags_equip_slot = ITEM_SLOT_ICLOTHING
+	flags_equip_slot = SLOT_ICLOTHING
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	w_class = 3
 	var/has_sensor = 1//For the crew computer 2 = unable to change mode
@@ -61,7 +61,7 @@
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(H.w_uniform == src)
-				H.dropItemToGround(src)
+				H.drop_inv_item_on_ground(src)
 				if(H.equip_to_appropriate_slot(I))
 					H.put_in_active_hand(src)
 
@@ -88,10 +88,10 @@
 			if(over_object)
 				switch(over_object.name)
 					if("r_hand")
-						usr.dropItemToGround(src)
+						usr.drop_inv_item_on_ground(src)
 						usr.put_in_r_hand(src)
 					if("l_hand")
-						usr.dropItemToGround(src)
+						usr.drop_inv_item_on_ground(src)
 						usr.put_in_l_hand(src)
 				add_fingerprint(usr)
 

@@ -212,7 +212,7 @@
 	if(!istype(C))
 		return
 
-	H.transferItemToLoc(C, src)
+	H.drop_inv_item_to_loc(C, src)
 	cell = C
 	powercheck()
 	to_chat(usr, "<span class='notice'>You install [C] in [src].</span>")

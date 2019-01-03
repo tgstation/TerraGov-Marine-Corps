@@ -278,7 +278,7 @@
 /obj/machinery/sleeper/attackby(var/obj/item/W, var/mob/living/user)
 	if(istype(W, /obj/item/reagent_container/glass))
 		if(!beaker)
-			if(user.transferItemToLoc(W, src))
+			if(user.drop_inv_item_to_loc(W, src))
 				beaker = W
 				user.visible_message("[user] adds \a [W] to \the [src]!", "You add \a [W] to \the [src]!")
 				updateUsrDialog()

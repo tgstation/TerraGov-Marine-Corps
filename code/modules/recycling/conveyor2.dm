@@ -109,7 +109,7 @@
 			var/mob/GM = G.grabbed_thing
 			step(GM, get_dir(GM, src))
 			return
-	user.transferItemToLoc(I, loc)
+	user.drop_inv_item_to_loc(I, loc)
 
 // attack with hand, move pulled object onto conveyor
 /obj/machinery/conveyor/attack_hand(mob/user as mob)

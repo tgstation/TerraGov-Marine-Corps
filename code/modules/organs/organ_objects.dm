@@ -223,7 +223,7 @@
 		TU.add_blood(L, B.color)
 
 
-	user.temporarilyRemoveItemFromInventory(src)
+	user.temp_drop_inv_item(src)
 	var/obj/item/reagent_container/food/snacks/organ/O = new(get_turf(src))
 	O.name = name
 	O.icon_state = dead_icon ? dead_icon : icon_state

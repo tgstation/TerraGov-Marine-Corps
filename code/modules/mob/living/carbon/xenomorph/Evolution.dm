@@ -224,7 +224,7 @@
 	update_spits() //Update spits to new/better ones
 
 	for(var/obj/item/W in contents) //Drop stuff
-		dropItemToGround(W)
+		drop_inv_item_on_ground(W)
 
 	empty_gut()
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src].</span>", \

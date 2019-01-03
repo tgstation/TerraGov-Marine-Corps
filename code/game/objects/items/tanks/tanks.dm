@@ -5,7 +5,7 @@
 	name = "tank"
 	icon = 'icons/obj/items/tank.dmi'
 	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BACK
+	flags_equip_slot = SLOT_BACK
 	w_class = 3
 
 	var/pressure_full = ONE_ATMOSPHERE*4

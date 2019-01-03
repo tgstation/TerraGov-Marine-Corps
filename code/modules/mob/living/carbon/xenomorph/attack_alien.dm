@@ -158,7 +158,7 @@
 						playsound(loc, "alien_claw_metal", 25, 1)
 						M.visible_message("<span class='danger'>The [M] smashes off [src]'s [wear_mask.name]!</span>", \
 						"<span class='danger'>You smash off [src]'s [wear_mask.name]!</span>", null, 5)
-						dropItemToGround(wear_mask)
+						drop_inv_item_on_ground(wear_mask)
 						emote("roar")
 						return TRUE
 

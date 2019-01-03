@@ -64,10 +64,10 @@
 		if(!usr.is_mob_restrained() && !usr.stat)
 			switch(over_object.name)
 				if("r_hand")
-					usr.dropItemToGround(src)
+					usr.drop_inv_item_on_ground(src)
 					usr.put_in_r_hand(src)
 				if("l_hand")
-					usr.dropItemToGround(src)
+					usr.drop_inv_item_on_ground(src)
 					usr.put_in_l_hand(src)
 			add_fingerprint(usr)
 
@@ -395,7 +395,7 @@
 /obj/item/storage/proc/handle_item_insertion(obj/item/W, prevent_warning = 0, mob/user)
 	if(!istype(W)) return 0
 	if(user && W.loc == user)
-		if(!user.transferItemToLoc(W, src))
+		if(!user.drop_inv_item_to_loc(W, src))
 			return 0
 	else
 		W.forceMove(src)

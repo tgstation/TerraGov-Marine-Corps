@@ -11,7 +11,7 @@ They're all essentially identical when it comes to getting the job done.
 	item_state = "ammo_mag" //PLACEHOLDER. This ensures the mag doesn't use the icon state instead.
 	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
 	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	matter = list("metal" = 1000)
 	origin_tech = "combat=2'materials=2" //Low.
 	throwforce = 2
@@ -91,7 +91,7 @@ They're all essentially identical when it comes to getting the job done.
 	current_rounds += S
 	if(source.current_rounds <= 0 && istype(source, /obj/item/ammo_magazine/handful)) //We want to delete it if it's a handful.
 		if(user)
-			user.temporarilyRemoveItemFromInventory(source)
+			user.temp_drop_inv_item(source)
 		qdel(source) //Dangerous. Can mean future procs break if they reference the source. Have to account for this.
 	else source.update_icon()
 	update_icon(S)
@@ -282,7 +282,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "big_ammo_box"
 	item_state = "big_ammo_box"
-	flags_equip_slot = ITEM_SLOT_BACK
+	flags_equip_slot = SLOT_BACK
 	var/base_icon_state = "big_ammo_box"
 	var/default_ammo = /datum/ammo/bullet/rifle
 	var/bullet_amount = 600
@@ -342,7 +342,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 			AM.update_icon()
 			to_chat(user, "<span class='notice'>You put [S] rounds in [src].</span>")
 			if(AM.current_rounds <= 0)
-				user.temporarilyRemoveItemFromInventory(AM)
+				user.temp_drop_inv_item(AM)
 				qdel(AM)
 
 //explosion when using flamer procs.

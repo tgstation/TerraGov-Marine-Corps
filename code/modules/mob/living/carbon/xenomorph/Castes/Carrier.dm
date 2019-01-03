@@ -243,7 +243,7 @@
 		if(isturf(F.loc) && Adjacent(F))
 			if(F.hivenumber != hivenumber)
 				to_chat(src, "<span class='warning'>That facehugger is tainted!</span>")
-				dropItemToGround(F)
+				drop_inv_item_on_ground(F)
 				return
 			store_hugger(F)
 			return
@@ -268,7 +268,7 @@
 	if(!threw_a_hugger)
 		threw_a_hugger = 1
 		update_action_button_icons()
-		dropItemToGround(F)
+		drop_inv_item_on_ground(F)
 		F.throw_at(T, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		visible_message("<span class='xenowarning'>\The [src] throws something towards \the [T]!</span>", \
 		"<span class='xenowarning'>You throw a facehugger towards \the [T]!</span>")

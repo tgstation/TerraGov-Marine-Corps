@@ -46,9 +46,9 @@
 	if((!isassembly(D))||(!isassembly(D2)))	return 0
 	if((D:secured)||(D2:secured))	return 0
 	if(user)
-		user.temporarilyRemoveItemFromInventory(D)
+		user.temp_drop_inv_item(D)
 		if(D2.loc == user)
-			user.temporarilyRemoveItemFromInventory(D2)
+			user.temp_drop_inv_item(D2)
 		else if(istype(D2.loc, /obj/item/storage))
 			var/obj/item/storage/S = D2.loc
 			S.remove_from_storage(D2)

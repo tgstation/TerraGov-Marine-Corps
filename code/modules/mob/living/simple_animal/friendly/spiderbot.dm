@@ -73,7 +73,7 @@
 
 
 
-		user.transferItemToLoc(O, src)
+		user.drop_inv_item_to_loc(O, src)
 		to_chat(user, "\blue You install [O] in [src]!")
 		mmi = O
 		transfer_personality(O)

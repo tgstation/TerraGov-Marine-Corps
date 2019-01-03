@@ -74,7 +74,7 @@
 	icon = 'icons/obj/items/paper.dmi'
 	icon_state = "pen"
 	item_state = "pen"
-	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_EARS
+	flags_equip_slot = SLOT_WAIST|SLOT_EAR
 	throwforce = 0
 	w_class = 1
 	throw_speed = 7
@@ -116,7 +116,7 @@
 /obj/item/tool/pen/sleepypen
 	desc = "It's a black ink pen with a sharp point and a carefully engraved \"Waffle Co.\""
 	container_type = OPENCONTAINER
-	flags_equip_slot = ITEM_SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	origin_tech = "materials=2;syndicate=5"
 
 
@@ -144,7 +144,7 @@
  */
  /obj/item/tool/pen/paralysis
 	container_type = OPENCONTAINER
-	flags_equip_slot = ITEM_SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	origin_tech = "materials=2;syndicate=5"
 
 

@@ -184,9 +184,9 @@
 		if(hud_used && hud_used.pull_icon)
 			hud_used.pull_icon.icon_state = "pull0"
 		if(istype(r_hand, /obj/item/grab))
-			temporarilyRemoveItemFromInventory(r_hand)
+			temp_drop_inv_item(r_hand)
 		else if(istype(l_hand, /obj/item/grab))
-			temporarilyRemoveItemFromInventory(l_hand)
+			temp_drop_inv_item(l_hand)
 		if(istype(M))
 			if(M.client)
 				//resist_grab uses long movement cooldown durations to prevent message spam

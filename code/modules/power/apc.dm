@@ -458,7 +458,7 @@
 			if(stat & MAINT)
 				to_chat(user, "<span class='warning'>There is no connector for your power cell.</span>")
 				return
-			if(user.transferItemToLoc(W, src))
+			if(user.drop_inv_item_to_loc(W, src))
 				cell = W
 				user.visible_message("<span class='notice'>[user] inserts [W] into [src]!",
 				"<span class='notice'>You insert [W] into [src]!")

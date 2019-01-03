@@ -172,7 +172,7 @@ cases. Override_icon_state should be a list.*/
 	throwing = FALSE
 
 	if(loc == user)
-		if(!user.dropItemToGround(src))
+		if(!user.drop_inv_item_on_ground(src))
 			return
 	else
 		user.next_move = max(user.next_move+2,world.time + 2)
@@ -290,111 +290,111 @@ cases. Override_icon_state should be a list.*/
 			return FALSE
 
 		switch(slot)
-			if(SLOT_L_HAND)
+			if(WEAR_L_HAND)
 				if(H.l_hand)
 					return FALSE
 				return TRUE
-			if(SLOT_R_HAND)
+			if(WEAR_R_HAND)
 				if(H.r_hand)
 					return FALSE
 				return TRUE
-			if(SLOT_WEAR_MASK)
+			if(WEAR_FACE)
 				if(H.wear_mask)
 					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_MASK))
+				if(!(flags_equip_slot & SLOT_FACE))
 					return FALSE
 				return TRUE
-			if(SLOT_BACK)
+			if(WEAR_BACK)
 				if(H.back)
 					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_BACK))
+				if(!(flags_equip_slot & SLOT_BACK))
 					return FALSE
 				return TRUE
-			if(SLOT_WEAR_SUIT)
+			if(WEAR_JACKET)
 				if(H.wear_suit)
 					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_OCLOTHING	))
+				if(!(flags_equip_slot & SLOT_OCLOTHING	))
 					return FALSE
 				return TRUE
-			if(SLOT_GLOVES)
+			if(WEAR_HANDS)
 				if(H.gloves)
 					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_GLOVES))
+				if(!(flags_equip_slot & SLOT_HANDS))
 					return FALSE
 				return TRUE
-			if(SLOT_SHOES)
+			if(WEAR_FEET)
 				if(H.shoes)
 					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_FEET))
+				if(!(flags_equip_slot & SLOT_FEET))
 					return FALSE
 				return TRUE
-			if(SLOT_BELT)
+			if(WEAR_WAIST)
 				if(H.belt)
 					return FALSE
-				if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
+				if(!H.w_uniform && (WEAR_BODY in mob_equip))
 					if(!disable_warning)
 						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
 					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_BELT))
+				if(!(flags_equip_slot & SLOT_WAIST))
 					return FALSE
 				return TRUE
-			if(SLOT_GLASSES)
+			if(WEAR_EYES)
 				if(H.glasses)
 					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_EYES	))
+				if(!(flags_equip_slot & SLOT_EYES	))
 					return FALSE
 				return TRUE
-			if(SLOT_HEAD)
+			if(WEAR_HEAD)
 				if(H.head)
 					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_HEAD))
+				if(!(flags_equip_slot & SLOT_HEAD))
 					return FALSE
 				return TRUE
-			if(SLOT_EARS)
+			if(WEAR_EAR)
 				if(H.wear_ear)
 					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_EARS))
+				if(!(flags_equip_slot & SLOT_EAR))
 					return FALSE
 				return TRUE
-			if(SLOT_W_UNIFORM)
+			if(WEAR_BODY)
 				if(H.w_uniform)
 					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_ICLOTHING))
+				if(!(flags_equip_slot & SLOT_ICLOTHING))
 					return FALSE
 				return TRUE
-			if(SLOT_WEAR_ID)
+			if(WEAR_ID)
 				if(H.wear_id)
 					return FALSE
-				if(!(flags_equip_slot & ITEM_SLOT_ID))
+				if(!(flags_equip_slot & SLOT_ID))
 					return FALSE
 				return TRUE
-			if(SLOT_L_STORE)
+			if(WEAR_L_STORE)
 				if(H.l_store)
 					return FALSE
-				if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
+				if(!H.w_uniform && (WEAR_BODY in mob_equip))
 					if(!disable_warning)
 						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
 					return FALSE
-				if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
+				if(flags_equip_slot & SLOT_NO_STORE)
 					return FALSE
-				if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
+				if(w_class <= 2 || (flags_equip_slot & SLOT_STORE))
 					return TRUE
-			if(SLOT_R_STORE)
+			if(WEAR_R_STORE)
 				if(H.r_store)
 					return FALSE
-				if(!H.w_uniform && (SLOT_W_UNIFORM in mob_equip))
+				if(!H.w_uniform && (WEAR_BODY in mob_equip))
 					if(!disable_warning)
 						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
 					return FALSE
-				if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
+				if(flags_equip_slot & SLOT_NO_STORE)
 					return FALSE
-				if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
+				if(w_class <= 2 || (flags_equip_slot & SLOT_STORE))
 					return TRUE
 				return FALSE
-			if(SLOT_S_STORE)
+			if(WEAR_J_STORE)
 				if(H.s_store)
 					return FALSE
-				if(!H.wear_suit && (SLOT_WEAR_SUIT in mob_equip))
+				if(!H.wear_suit && (WEAR_JACKET in mob_equip))
 					if(!disable_warning)
 						to_chat(H, "<span class='warning'>You need a suit before you can attach this [name].</span>")
 					return FALSE
@@ -405,69 +405,69 @@ cases. Override_icon_state should be a list.*/
 				if( istype(src, /obj/item/device/pda) || istype(src, /obj/item/tool/pen) || is_type_in_list(src, H.wear_suit.allowed) )
 					return TRUE
 				return FALSE
-			if(SLOT_HANDCUFFED)
+			if(WEAR_HANDCUFFS)
 				if(H.handcuffed)
 					return FALSE
 				if(!istype(src, /obj/item/handcuffs))
 					return FALSE
 				return TRUE
-			if(SLOT_LEGCUFFED)
+			if(WEAR_LEGCUFFS)
 				if(H.legcuffed)
 					return FALSE
 				if(!istype(src, /obj/item/legcuffs))
 					return FALSE
 				return TRUE
-			if(SLOT_ACCESSORY)
+			if(WEAR_ACCESSORY)
 				if(!istype(src, /obj/item/clothing/tie))
 					return FALSE
 				var/obj/item/clothing/under/U = H.w_uniform
 				if(!U || U.hastie)
 					return FALSE
 				return TRUE
-			if(SLOT_IN_BOOT)
+			if(EQUIP_IN_BOOT)
 				if(!istype(src, /obj/item/weapon/combat_knife) && !istype(src, /obj/item/weapon/throwing_knife))
 					return FALSE
 				var/obj/item/clothing/shoes/marine/B = H.shoes
 				if(!B || !istype(B) || B.knife)
 					return FALSE
 				return TRUE
-			if(SLOT_IN_BACKPACK)
+			if(WEAR_IN_BACK)
 				if (!H.back || !istype(H.back, /obj/item/storage/backpack))
 					return FALSE
 				var/obj/item/storage/backpack/B = H.back
 				if(src.w_class <= B.max_w_class && B.can_be_inserted(src))
 					return TRUE
-			if(SLOT_IN_B_HOLSTER)
+			if(WEAR_IN_B_HOLSTER)
 				if (H.back && istype(H.back, /obj/item/storage/large_holster))
 					var/obj/item/storage/S = H.back
 					if(S.can_be_inserted(src))
 						return TRUE
 				return FALSE
-			if(SLOT_IN_HOLSTER)
+			if(WEAR_IN_HOLSTER)
 				if((H.belt && istype(H.belt,/obj/item/storage/large_holster)) || (H.belt && istype(H.belt,/obj/item/storage/belt/gun)))
 					var/obj/item/storage/S = H.belt
 					if(S.can_be_inserted(src))
 						return TRUE
 				return FALSE
-			if(SLOT_IN_S_HOLSTER)
+			if(WEAR_IN_J_HOLSTER)
 				if((H.s_store && istype(H.s_store, /obj/item/storage/large_holster)) ||(H.s_store && istype(H.s_store,/obj/item/storage/belt/gun)))
 					var/obj/item/storage/S = H.s_store
 					if(S.can_be_inserted(src))
 						return TRUE
 				return FALSE
-			if(SLOT_IN_STORAGE)
+			if(EQUIP_IN_STORAGE)
 				if(!H.s_active)
 					return FALSE
 				var/obj/item/storage/S = H.s_active
 				if(S.can_be_inserted(src))
 					return TRUE
-			if(SLOT_IN_L_POUCH)
+			if(EQUIP_IN_L_POUCH)
 				if(!H.l_store || !istype(H.l_store, /obj/item/storage/pouch))
 					return FALSE
 				var/obj/item/storage/S = H.l_store
 				if(S.can_be_inserted(src))
 					return TRUE
-			if(SLOT_IN_R_POUCH)
+			if(EQUIP_IN_R_POUCH)
 				if(!H.r_store || !istype(H.r_store, /obj/item/storage/pouch))
 					return FALSE
 				var/obj/item/storage/S = H.r_store
@@ -480,24 +480,24 @@ cases. Override_icon_state should be a list.*/
 		//START MONKEY
 		var/mob/living/carbon/monkey/MO = M
 		switch(slot)
-			if(SLOT_L_HAND)
+			if(WEAR_L_HAND)
 				if(MO.l_hand)
 					return FALSE
 				return TRUE
-			if(SLOT_R_HAND)
+			if(WEAR_R_HAND)
 				if(MO.r_hand)
 					return FALSE
 				return TRUE
-			if(SLOT_WEAR_MASK)
+			if(WEAR_FACE)
 				if(MO.wear_mask)
 					return FALSE
-				if( !(flags_equip_slot & ITEM_SLOT_MASK) )
+				if( !(flags_equip_slot & SLOT_FACE) )
 					return FALSE
 				return TRUE
-			if(SLOT_BACK)
+			if(WEAR_BACK)
 				if(MO.back)
 					return FALSE
-				if( !(flags_equip_slot & ITEM_SLOT_BACK) )
+				if( !(flags_equip_slot & SLOT_BACK) )
 					return FALSE
 				return TRUE
 		return FALSE //Unsupported slot

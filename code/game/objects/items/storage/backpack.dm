@@ -7,7 +7,7 @@
 	desc = "You wear this on your back and put items into it."
 	icon_state = "backpack"
 	w_class = 4
-	flags_equip_slot = ITEM_SLOT_BACK	//ERROOOOO
+	flags_equip_slot = SLOT_BACK	//ERROOOOO
 	max_w_class = 3
 	storage_slots = null
 	max_storage_space = 30
@@ -17,7 +17,7 @@
 	if(!worn_accessible && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.back == src)
-/*			if(user.dropItemToGround(src))
+/*			if(user.drop_inv_item_on_ground(src))
 				pickup(user)
 				add_fingerprint(user)
 				if(!user.put_in_active_hand(src))
@@ -58,7 +58,7 @@
 	return 1
 
 /obj/item/storage/backpack/equipped(mob/user, slot)
-	if(slot == SLOT_BACK)
+	if(slot == WEAR_BACK)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
 		if(use_sound)
 			playsound(loc, use_sound, 15, 1, 6)
@@ -549,7 +549,7 @@
 /obj/item/storage/backpack/marine/satchel/scout_cloak/item_action_slot_check(mob/user, slot)
 	if(!ishuman(user))
 		return FALSE
-	if(slot != SLOT_BACK)
+	if(slot != WEAR_BACK)
 		return FALSE
 	return TRUE
 

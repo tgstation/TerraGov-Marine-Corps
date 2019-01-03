@@ -235,7 +235,7 @@
 					return
 
 				to_chat(usr, "You install the coil into the SMES unit!")
-				if(user.transferItemToLoc(W, src))
+				if(user.drop_inv_item_to_loc(W, src))
 					cur_coils ++
 					component_parts += W
 					recalc_coils()

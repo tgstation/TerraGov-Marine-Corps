@@ -559,7 +559,7 @@ var/list/robot_verbs_default = list(
 		else if(cell)
 			to_chat(user, "There is a power cell already installed.")
 		else
-			if(user.transferItemToLoc(W, src))
+			if(user.drop_inv_item_to_loc(W, src))
 				cell = W
 				to_chat(user, "You insert the power cell.")
 

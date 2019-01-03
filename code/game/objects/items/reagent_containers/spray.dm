@@ -6,7 +6,7 @@
 	item_state = "cleaner"
 	container_type = OPENCONTAINER_NOUNIT
 	flags_item = NOBLUDGEON
-	flags_equip_slot = ITEM_SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	throwforce = 3
 	w_class = 2.0
 	throw_speed = 2

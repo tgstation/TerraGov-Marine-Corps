@@ -23,7 +23,7 @@
 	var/obj/structure/closet/bodybag/R = new unfolded_path(location, src)
 	R.add_fingerprint(user)
 	R.open(user)
-	user.temporarilyRemoveItemFromInventory(src)
+	user.temp_drop_inv_item(src)
 	qdel(src)
 
 

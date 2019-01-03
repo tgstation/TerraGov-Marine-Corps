@@ -1045,7 +1045,7 @@
 
 		//strip their stuff and stick it in the crate
 		for(var/obj/item/I in M)
-			M.transferItemToLoc(I, locker)
+			M.drop_inv_item_to_loc(I, locker)
 
 		//so they black out before warping
 		M.KnockOut(5)
@@ -1055,8 +1055,8 @@
 		M.loc = prison_cell
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/prisoner = M
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), SLOT_W_UNIFORM)
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), SLOT_SHOES)
+			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), WEAR_BODY)
+			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), WEAR_FEET)
 
 		to_chat(M, "\red You have been sent to the prison station!")
 		log_admin("[key_name(usr)] sent [key_name(M)] to the prison station.")
@@ -1102,7 +1102,7 @@
 			return
 
 		for(var/obj/item/I in M)
-			M.dropItemToGround(I)
+			M.drop_inv_item_on_ground(I)
 
 		M.KnockOut(5)
 		sleep(5)
@@ -1127,7 +1127,7 @@
 			return
 
 		for(var/obj/item/I in M)
-			M.dropItemToGround(I)
+			M.drop_inv_item_on_ground(I)
 
 		M.KnockOut(5)
 		sleep(5)
@@ -1174,12 +1174,12 @@
 			return
 
 		for(var/obj/item/I in M)
-			M.dropItemToGround(I)
+			M.drop_inv_item_on_ground(I)
 
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/observer = M
-			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), SLOT_W_UNIFORM)
-			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(observer), SLOT_SHOES)
+			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), WEAR_BODY)
+			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(observer), WEAR_FEET)
 		M.KnockOut(5)
 		sleep(5)
 		M.loc = pick(tdomeobserve)
@@ -1294,8 +1294,8 @@
 				if(M.client) M.client.change_view(world.view)
 			if(is_alien_whitelisted(M,"Yautja Elder"))
 				H.real_name = "Elder [M.real_name]"
-				H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), SLOT_WEAR_SUIT)
-				H.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), SLOT_L_HAND)
+				H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), WEAR_JACKET)
+				H.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), WEAR_L_HAND)
 
 			qdel(H) //May have to clear up round-end vars and such....
 
@@ -1496,9 +1496,9 @@
 			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
 			return
 
-		H.equip_to_slot_or_del( new /obj/item/reagent_container/food/snacks/cookie(H), SLOT_L_HAND )
+		H.equip_to_slot_or_del( new /obj/item/reagent_container/food/snacks/cookie(H), WEAR_L_HAND )
 		if(!(istype(H.l_hand,/obj/item/reagent_container/food/snacks/cookie)))
-			H.equip_to_slot_or_del( new /obj/item/reagent_container/food/snacks/cookie(H), SLOT_R_HAND )
+			H.equip_to_slot_or_del( new /obj/item/reagent_container/food/snacks/cookie(H), WEAR_R_HAND )
 			if(!(istype(H.r_hand,/obj/item/reagent_container/food/snacks/cookie)))
 				log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")

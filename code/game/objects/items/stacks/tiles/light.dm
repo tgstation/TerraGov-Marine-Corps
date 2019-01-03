@@ -31,5 +31,5 @@
 		amount--
 		new/obj/item/stack/light_w(user.loc)
 		if(amount <= 0)
-			user.temporarilyRemoveItemFromInventory(src)
+			user.temp_drop_inv_item(src)
 			qdel(src)

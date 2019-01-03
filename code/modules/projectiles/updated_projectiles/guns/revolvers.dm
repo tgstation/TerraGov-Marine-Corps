@@ -2,7 +2,7 @@
 
 //Generic parent object.
 /obj/item/weapon/gun/revolver
-	flags_equip_slot = ITEM_SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	w_class = 3
 	origin_tech = "combat=3;materials=2"
 	matter = list("metal" = 2000)
@@ -226,7 +226,7 @@
 			user.visible_message("[user] catches [src] with the same hand!","\blue You catch [src] as it spins in to your hand!")
 		else
 			user.visible_message("[user] catches [src] with his other hand!","\blue You snatch [src] with your other hand! Awesome!")
-			user.temporarilyRemoveItemFromInventory(src)
+			user.temp_drop_inv_item(src)
 			user.put_in_inactive_hand(src)
 			user.swap_hand()
 			user.update_inv_l_hand(0)

@@ -8,7 +8,7 @@
 	throw_speed = 3
 	throw_range = 7
 	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	hitsound = 'sound/weapons/smash.ogg'
 	var/active = 0
 	var/det_time = 50

@@ -4,7 +4,7 @@
 	for(var/obj/item/W in src)
 		if (W==w_uniform) // will be torn
 			continue
-		dropItemToGround(W)
+		drop_inv_item_on_ground(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -70,7 +70,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		dropItemToGround(W)
+		drop_inv_item_on_ground(W)
 	monkeyizing = 1
 	canmove = 0
 	icon = null
@@ -135,7 +135,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		dropItemToGround(W)
+		drop_inv_item_on_ground(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -189,7 +189,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		dropItemToGround(W)
+		drop_inv_item_on_ground(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -215,7 +215,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		dropItemToGround(W)
+		drop_inv_item_on_ground(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -241,7 +241,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		dropItemToGround(W)
+		drop_inv_item_on_ground(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -272,7 +272,7 @@
 	if(monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		dropItemToGround(W)
+		drop_inv_item_on_ground(W)
 
 	regenerate_icons()
 	monkeyizing = 1

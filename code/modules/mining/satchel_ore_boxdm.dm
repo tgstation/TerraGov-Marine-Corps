@@ -13,7 +13,7 @@
 
 /obj/structure/ore_box/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/ore))
-		user.transferItemToLoc(W, src)
+		user.drop_inv_item_to_loc(W, src)
 	else if (istype(W, /obj/item/storage))
 		var/obj/item/storage/S = W
 		S.hide_from(usr)

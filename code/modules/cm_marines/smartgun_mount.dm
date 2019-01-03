@@ -178,7 +178,7 @@
 				icon_state = "M56D_e"
 			else
 				icon_state = "M56D" // otherwise we're a empty gun on a mount.
-			user.temporarilyRemoveItemFromInventory(MG)
+			user.temp_drop_inv_item(MG)
 			qdel(MG)
 		return
 
@@ -313,7 +313,7 @@
 			D.current_rounds = rounds
 		rounds = min(rounds + M.current_rounds, rounds_max)
 		update_icon()
-		user.temporarilyRemoveItemFromInventory(O)
+		user.temp_drop_inv_item(O)
 		qdel(O)
 		return
 	return ..()

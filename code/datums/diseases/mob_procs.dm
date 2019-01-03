@@ -142,8 +142,8 @@
 			if(isobj(wear_suit))
 				Cl = wear_suit
 				. = prob((Cl.permeability_coefficient*100) - 1)
-			if(. && isobj(SLOT_W_UNIFORM))
-				Cl = SLOT_W_UNIFORM
+			if(. && isobj(WEAR_BODY))
+				Cl = WEAR_BODY
 				. = prob((Cl.permeability_coefficient*100) - 1)
 		if(3)
 			if(isobj(wear_suit) && wear_suit.flags_armor_protection&HANDS)

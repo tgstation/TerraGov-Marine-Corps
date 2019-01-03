@@ -286,7 +286,7 @@ Defined in conflicts.dm of the #defines folder.
 			var/obj/item/storage/S = loc
 			S.remove_from_storage(src)
 		if(loc == user)
-			user.dropItemToGround(src)
+			user.drop_inv_item_on_ground(src)
 		var/obj/item/weapon/combat_knife/F = new(src.loc)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
@@ -448,7 +448,7 @@ Defined in conflicts.dm of the #defines folder.
 			var/obj/item/storage/S = loc
 			S.remove_from_storage(src)
 		if(loc == user)
-			user.temporarilyRemoveItemFromInventory(src)
+			user.temp_drop_inv_item(src)
 		var/obj/item/device/flashlight/F = new(user)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		qdel(src) //Delete da old flashlight
@@ -784,7 +784,7 @@ Defined in conflicts.dm of the #defines folder.
 			current_rounds++
 			loaded_grenades += G.type
 			to_chat(user, "<span class='notice'>You load [G] in [src].</span>")
-			user.temporarilyRemoveItemFromInventory(G)
+			user.temp_drop_inv_item(G)
 			qdel(G)
 
 /obj/item/attachable/attached_gun/grenade/fire_attachment(atom/target,obj/item/weapon/gun/gun,mob/living/user)
@@ -994,7 +994,7 @@ Defined in conflicts.dm of the #defines folder.
 				to_chat(user, "<span class='notice'>You load one shotgun shell in [src].</span>")
 				playsound(user, 'sound/weapons/gun_shotgun_shell_insert.ogg', 25, 1)
 				if(mag.current_rounds <= 0)
-					user.temporarilyRemoveItemFromInventory(mag)
+					user.temp_drop_inv_item(mag)
 					qdel(mag)
 			return
 	to_chat(user, "<span class='warning'>[src] only accepts shotgun buckshot.</span>")

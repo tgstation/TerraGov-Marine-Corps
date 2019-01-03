@@ -322,7 +322,7 @@
 			to_chat(user, "<span class='warning'>You slice at the table, but only claw it up a little.</span>")
 		return
 
-	user.transferItemToLoc(W, loc)
+	user.drop_inv_item_to_loc(W, loc)
 
 
 /obj/structure/table/proc/straight_table_check(var/direction)
@@ -585,7 +585,7 @@
 		return
 	if((W.flags_item & ITEM_ABSTRACT) || isrobot(user))
 		return
-	user.transferItemToLoc(W, loc)
+	user.drop_inv_item_to_loc(W, loc)
 
 
 /obj/structure/rack/Crossed(atom/movable/O)

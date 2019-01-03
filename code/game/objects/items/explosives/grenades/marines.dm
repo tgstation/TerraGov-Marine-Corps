@@ -118,7 +118,7 @@
 	det_time = 40
 	item_state = "grenade_fire"
 	hud_state = "grenade_fire"
-	flags_equip_slot = ITEM_SLOT_BELT
+	flags_equip_slot = SLOT_WAIST
 	dangerous = 1
 	underslug_launchable = TRUE
 

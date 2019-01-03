@@ -69,7 +69,7 @@
 			to_chat(user, "<span class='warning'>That won't fit!</span>")
 			return
 
-		if(user.transferItemToLoc(W, src))
+		if(user.drop_inv_item_to_loc(W, src))
 			beaker = W
 
 			var/reagentnames = ""

@@ -177,7 +177,7 @@ FLOOR SAFES
 	if(open)
 		if(I.w_class + space <= maxspace)
 			space += I.w_class
-			if(user.transferItemToLoc(I, src))
+			if(user.drop_inv_item_to_loc(I, src))
 				to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
 			updateUsrDialog()
 			return

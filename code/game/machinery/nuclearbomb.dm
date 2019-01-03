@@ -89,7 +89,7 @@ var/bomb_set
 
 	if (extended)
 		if (istype(O, /obj/item/disk/nuclear))
-			if(user.transferItemToLoc(O, src))
+			if(user.drop_inv_item_to_loc(O, src))
 				auth = O
 				add_fingerprint(user)
 			return
