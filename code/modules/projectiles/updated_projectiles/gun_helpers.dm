@@ -126,17 +126,17 @@ DEFINES in setup.dm, referenced here.
 
 
 /obj/item/weapon/gun/attack_hand(mob/user)
-	var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
+	var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()
 	if(in_hand == src && (flags_item & TWOHANDED))
 		unload(user)//It has to be held if it's a two hander.
-	else 
+	else
 		return ..()
 
 
 /obj/item/weapon/gun/throw_at(atom/target, range, speed, thrower)
 	if( harness_check(thrower) )
 		to_chat(usr, "<span class='warning'>\The [src] clanks on the ground.</span>")
-	else 
+	else
 		return ..()
 
 /*
@@ -205,7 +205,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	user.overlays += busy_icon
 	user.action_busy = TRUE
 	var/delayfraction = round(delay/5)
-	var/obj/holding = user.get_active_hand()
+	var/obj/holding = user.get_active_held_item()
 	. = TRUE
 	for(var/i = 1 to 5)
 		sleep(delayfraction)
@@ -216,10 +216,10 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 			. = FALSE
 			break
 		if(holding)
-			if(!holding.loc || user.get_active_hand() != holding)
+			if(!holding.loc || user.get_active_held_item() != holding)
 				. = FALSE
 				break
-		else if(user.get_active_hand())
+		else if(user.get_active_held_item())
 			. = FALSE
 			break
 		if(world.time > wield_time)
@@ -253,7 +253,7 @@ should be alright.
 		if(isnull(user.s_store) && isturf(loc))
 			var/obj/item/I = user.wear_suit
 			user.equip_to_slot_if_possible(src,WEAR_J_STORE)
-			if(user.s_store == src) 
+			if(user.s_store == src)
 				to_chat(user, "<span class='warning'>[src] snaps into place on [I].</span>")
 			user.update_inv_s_store()
 
@@ -348,7 +348,7 @@ should be alright.
 
 /obj/item/weapon/gun/proc/check_inactive_hand(mob/user)
 	if(user)
-		var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
+		var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()
 		if( in_hand != src ) //It has to be held.
 			to_chat(user, "<span class='warning'>You have to hold [src] to do that!</span>")
 			return
@@ -418,7 +418,7 @@ should be alright.
 		if(attachment && attachment.loc)
 			user.visible_message("<span class='notice'>[user] attaches [attachment] to [src].</span>",
 			"<span class='notice'>You attach [attachment] to [src].</span>", null, 4)
-			user.temp_drop_inv_item(attachment)
+			user.temporarilyRemoveItemFromInventory(attachment)
 			attachment.Attach(src)
 			update_attachable(attachment.slot)
 			playsound(user, 'sound/machines/click.ogg', 15, 1, 4)

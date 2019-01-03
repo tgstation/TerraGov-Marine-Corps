@@ -16,21 +16,21 @@
 
 /client/verb/fastSouth()
 	set instant = TRUE
-	set hidden = TRUE 
+	set hidden = TRUE
 	set name = ".fastSouth"
 	Move(get_step(mob, SOUTH), SOUTH)
 
 
 /client/verb/fastWest()
 	set instant = TRUE
-	set hidden = TRUE 
+	set hidden = TRUE
 	set name = ".fastWest"
 	Move(get_step(mob, WEST), WEST)
 
 
 /client/verb/fastEast()
 	set instant = TRUE
-	set hidden = TRUE 
+	set hidden = TRUE
 	set name = ".fastEast"
 	Move(get_step(mob, EAST), EAST)
 
@@ -57,7 +57,7 @@
 /client/Northwest()
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
-		if(!C.get_active_hand())
+		if(!C.get_active_held_item())
 			to_chat(usr, "\red You have nothing to drop in your hand.")
 			return
 		C.drop_held_item()

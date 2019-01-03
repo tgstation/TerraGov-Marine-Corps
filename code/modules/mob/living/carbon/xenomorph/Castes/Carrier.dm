@@ -14,7 +14,7 @@
 	melee_damage_upper = 30
 
 	// *** Tackle *** //
-	tackle_damage = 30 
+	tackle_damage = 30
 
 	// *** Speed *** //
 	speed = 0
@@ -29,18 +29,18 @@
 	// *** Evolution *** //
 	upgrade_threshold = 200
 
-	deevolves_to = /mob/living/carbon/Xenomorph/Drone 
+	deevolves_to = /mob/living/carbon/Xenomorph/Drone
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA
 	can_hold_eggs = CAN_HOLD_ONE_HAND
-	
+
 	// *** Defense *** //
 	armor_deflection = 5
 
-	// *** Pheromones *** //	
+	// *** Pheromones *** //
 	aura_strength = 1 //Carrier's pheromones are equivalent to Hivelord. Climbs 0.5 up to 2.5
-	aura_allowed = list("frenzy", "warding", "recovery") 
+	aura_allowed = list("frenzy", "warding", "recovery")
 
 	// *** Carrier Abilities *** //
 	huggers_max = 8
@@ -76,7 +76,7 @@
 	// *** Defense *** //
 	armor_deflection = 10
 
-	// *** Pheromones *** //	
+	// *** Pheromones *** //
 	aura_strength = 1.5
 
 	// *** Carrier Abilities *** //
@@ -113,7 +113,7 @@
 	// *** Defense *** //
 	armor_deflection = 10
 
-	// *** Pheromones *** //	
+	// *** Pheromones *** //
 	aura_strength = 2
 
 	// *** Carrier Abilities *** //
@@ -150,14 +150,14 @@
 	// *** Defense *** //
 	armor_deflection = 15
 
-	// *** Pheromones *** //	
+	// *** Pheromones *** //
 	aura_strength = 2.5
 
 	// *** Carrier Abilities *** //
 	huggers_max = 11
 	hugger_delay = 1.0 SECONDS
-	eggs_max = 6	
-					
+	eggs_max = 6
+
 /mob/living/carbon/Xenomorph/Carrier
 	caste_base_type = /mob/living/carbon/Xenomorph/Carrier
 	name = "Carrier"
@@ -243,12 +243,12 @@
 		if(isturf(F.loc) && Adjacent(F))
 			if(F.hivenumber != hivenumber)
 				to_chat(src, "<span class='warning'>That facehugger is tainted!</span>")
-				drop_inv_item_on_ground(F)
+				dropItemToGround(F)
 				return
 			store_hugger(F)
 			return
 
-	var/obj/item/clothing/mask/facehugger/F = get_active_hand()
+	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	if(!F) //empty active hand
 		//if no hugger in active hand, we take one from our storage
 		if(huggers_cur <= 0)
@@ -268,7 +268,7 @@
 	if(!threw_a_hugger)
 		threw_a_hugger = 1
 		update_action_button_icons()
-		drop_inv_item_on_ground(F)
+		dropItemToGround(F)
 		F.throw_at(T, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		visible_message("<span class='xenowarning'>\The [src] throws something towards \the [T]!</span>", \
 		"<span class='xenowarning'>You throw a facehugger towards \the [T]!</span>")
@@ -306,7 +306,7 @@
 			store_egg(E)
 			return
 
-	var/obj/item/xeno_egg/E = get_active_hand()
+	var/obj/item/xeno_egg/E = get_active_held_item()
 	if(!E) //empty active hand
 		//if no hugger in active hand, we take one from our storage
 		if(eggs_cur <= 0)

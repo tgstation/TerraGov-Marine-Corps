@@ -343,7 +343,7 @@ datum/mind
 			switch(href_list["common"])
 				if("undress")
 					for(var/obj/item/W in current)
-						current.drop_inv_item_on_ground(W)
+						current.dropItemToGround(W)
 				if("takeuplink")
 					take_uplink()
 					memory = null//Remove any memory they may have had.

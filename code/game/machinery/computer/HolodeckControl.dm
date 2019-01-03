@@ -177,7 +177,7 @@ var/global/list/holodeck_programs = list(
 	if(isobj(obj))
 		var/mob/M = obj.loc
 		if(ismob(M))
-			M.temp_drop_inv_item(obj)
+			M.temporarilyRemoveItemFromInventory(obj)
 
 	if(!silent)
 		var/obj/oldobj = obj
@@ -427,7 +427,7 @@ var/global/list/holodeck_programs = list(
 			visible_message("<span class='danger'>[user] dunks [M] into the [src]!</span>")
 		return
 	else if (istype(W, /obj/item) && get_dist(src,user)<2)
-		user.drop_inv_item_to_loc(W, loc)
+		user.transferItemToLoc(W, loc)
 		for(var/obj/machinery/scoreboard/X in machines)
 			if(X.id == id)
 				X.score(side)

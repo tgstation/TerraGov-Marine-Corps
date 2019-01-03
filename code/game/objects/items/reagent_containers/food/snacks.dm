@@ -35,7 +35,7 @@
 		if(M == usr)
 			to_chat(usr, "<span class='notice'>You finish eating \the [src].</span>")
 		M.visible_message("<span class='notice'>[M] finishes eating \the [src].</span>")
-		usr.drop_inv_item_on_ground(src)	//so icons update :[
+		usr.dropItemToGround(src)	//so icons update :[
 
 		if(trash)
 			if(ispath(trash,/obj/item))
@@ -52,7 +52,7 @@
 /obj/item/reagent_container/food/snacks/attack(mob/M, mob/user, def_zone)
 	if(!reagents.total_volume)						//Shouldn't be needed but it checks to see if it has anything left in it.
 		to_chat(user, "<span class='warning'>None of [src] left, oh no!</span>")
-		M.drop_inv_item_on_ground(src)	//so icons update :[
+		M.dropItemToGround(src)	//so icons update :[
 		qdel(src)
 		return FALSE
 
@@ -189,7 +189,7 @@
 		if(!iscarbon(user))
 			return TRUE
 
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			to_chat(user, "<span class='warning'>You slip [W] inside [src].</span>")
 			add_fingerprint(user)
 		return
@@ -2293,7 +2293,7 @@
 		return
 
 	if( boxes.len > 0 )
-		if( user.get_inactive_hand() != src )
+		if( user.get_inactive_held_item() != src )
 			..()
 			return
 
@@ -2331,7 +2331,7 @@
 				boxestoadd += i
 
 			if( (boxes.len+1) + boxestoadd.len <= 5 )
-				user.drop_inv_item_to_loc(box, src)
+				user.transferItemToLoc(box, src)
 				box.boxes = list() // Clear the box boxes so we don't have boxes inside boxes. - Xzibit
 				src.boxes.Add( boxestoadd )
 
@@ -2349,7 +2349,7 @@
 	if( istype(I, /obj/item/reagent_container/food/snacks/sliceable/pizza/) ) // Long ass fucking object name
 
 		if(open)
-			user.drop_inv_item_to_loc(I, src)
+			user.transferItemToLoc(I, src)
 			pizza = I
 
 			update_icon()

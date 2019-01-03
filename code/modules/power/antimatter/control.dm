@@ -157,7 +157,7 @@
 		if(fueljar)
 			to_chat(user, "\red There is already a [fueljar] inside!")
 			return
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			fueljar = W
 			user.visible_message("[user.name] loads an [W.name] into the [src.name].", \
 					"You load an [W.name].", \

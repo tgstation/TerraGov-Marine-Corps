@@ -142,14 +142,14 @@
 		if(istype(H))
 			if(helmet && H.head == helmet)
 				helmet.flags_item &= ~NODROP
-				H.drop_inv_item_to_loc(helmet, src)
+				H.transferItemToLoc(helmet, src)
 
 	if(boots)
 		H = boots.loc
 		if(istype(H))
 			if(boots && H.shoes == boots)
 				boots.flags_item &= ~NODROP
-				H.drop_inv_item_to_loc(boots, src)
+				H.transferItemToLoc(boots, src)
 
 /*
 /obj/item/clothing/suit/space/rig/verb/get_mounted_device()
@@ -214,7 +214,7 @@
 
 	if(H.head == helmet)
 		helmet.flags_item &= ~NODROP
-		H.drop_inv_item_to_loc(helmet, src)
+		H.transferItemToLoc(helmet, src)
 		to_chat(H, "\blue You retract your hardsuit helmet.")
 	else
 		if(H.head)

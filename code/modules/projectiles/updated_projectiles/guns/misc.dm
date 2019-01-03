@@ -41,7 +41,7 @@
 
 /obj/item/weapon/gun/flare/delete_bullet(var/obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
-	if(refund) 
+	if(refund)
 		num_flares++
 	return TRUE
 
@@ -52,7 +52,7 @@
 			to_chat(user, "It's already full.")
 			return
 		num_flares++
-		user.temp_drop_inv_item(flare)
+		user.temporarilyRemoveItemFromInventory(flare)
 		sleep(-1)
 		qdel(flare)
 		to_chat(user, "<span class='notice'>You insert the flare.</span>")
@@ -64,9 +64,9 @@
 /obj/item/weapon/gun/flare/unload(mob/user)
 	if(num_flares)
 		var/obj/item/device/flashlight/flare/new_flare = new()
-		if(user) 
+		if(user)
 			user.put_in_hands(new_flare)
-		else 
+		else
 			new_flare.loc = get_turf(src)
 		num_flares--
 		to_chat(user, "<span class='notice'>You unload a flare from [src].</span>")
@@ -93,7 +93,7 @@
 
 /obj/item/weapon/gun/minigun/New(loc, spawn_empty)
 	. = ..()
-	if(current_mag && current_mag.current_rounds > 0) 
+	if(current_mag && current_mag.current_rounds > 0)
 		load_into_chamber()
 
 /obj/item/weapon/gun/minigun/set_gun_config_values()
@@ -214,7 +214,7 @@
 
 /obj/item/weapon/gun/launcher/spike/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
-	if(refund) 
+	if(refund)
 		spikes++
 	return TRUE
 
@@ -244,7 +244,7 @@
 		var/obj/item/reagent_container/syringe/S = I
 		if(S.mode != 2)//SYRINGE_BROKEN in syringes.dm
 			if(syringes.len < max_syringes)
-				user.drop_inv_item_to_loc(I, src)
+				user.transferItemToLoc(I, src)
 				syringes += I
 				update_icon()
 				to_chat(user, "\blue You put the syringe in [src].")

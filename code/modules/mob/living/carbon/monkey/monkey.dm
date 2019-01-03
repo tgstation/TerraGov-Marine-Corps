@@ -151,7 +151,7 @@
 				if(what)
 					usr.stripPanelUnequip(what,src,slot)
 				else
-					what = usr.get_active_hand()
+					what = usr.get_active_held_item()
 					usr.stripPanelEquip(what,src,slot)
 
 	if(href_list["internal"])
@@ -385,11 +385,11 @@
 	//Check hands
 	var/obj/item/card/id/id_card
 	var/obj/item/held_item
-	held_item = get_active_hand()
+	held_item = get_active_held_item()
 	if(held_item) //Check active hand
 		id_card = held_item.GetID()
 	if(!id_card) //If there is no id, check the other hand
-		held_item = get_inactive_hand()
+		held_item = get_inactive_held_item()
 		if(held_item)
 			id_card = held_item.GetID()
 	if(id_card)

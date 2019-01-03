@@ -94,10 +94,10 @@
 		if((!( M.is_mob_restrained() ) && !( M.stat ) && M.back == src))
 			switch(over_object.name)
 				if("r_hand")
-					M.drop_inv_item_on_ground(src)
+					M.dropItemToGround(src)
 					M.put_in_r_hand(src)
 				if("l_hand")
-					M.drop_inv_item_on_ground(src)
+					M.dropItemToGround(src)
 					M.put_in_l_hand(src)
 			add_fingerprint(usr)
 			return
@@ -154,7 +154,7 @@
 			to_chat(user, "<span class='notice'>[src] still has some film in it!</span>")
 			return
 		to_chat(user, "<span class='notice'>You insert [I] into [src].</span>")
-		if(user.temp_drop_inv_item(I))
+		if(user.temporarilyRemoveItemFromInventory(I))
 			qdel(I)
 			pictures_left = pictures_max
 		return
@@ -304,7 +304,7 @@
 /obj/item/device/camera/proc/printpicture(mob/user, var/datum/picture/P)
 	var/obj/item/photo/Photo = new/obj/item/photo()
 	Photo.loc = user.loc
-	if(!user.get_inactive_hand())
+	if(!user.get_inactive_held_item())
 		user.put_in_inactive_hand(Photo)
 	Photo.construct(P)
 

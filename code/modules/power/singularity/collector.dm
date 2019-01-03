@@ -64,7 +64,7 @@ var/global/list/rad_collectors = list()
 		if(src.P)
 			to_chat(user, "\red There's already a phoron tank loaded.")
 			return 1
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			P = W
 			update_icon()
 		return 1

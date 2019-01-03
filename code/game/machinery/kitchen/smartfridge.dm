@@ -245,7 +245,7 @@
 
 	if (panel_open)
 		if (href_list["cutwire"])
-			if (!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
+			if (!( istype(usr.get_active_held_item(), /obj/item/tool/wirecutters) ))
 				to_chat(user, "You need wirecutters!")
 				return 1
 
@@ -257,7 +257,7 @@
 			return 1
 
 		if (href_list["pulsewire"])
-			if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			if (!istype(usr.get_active_held_item(), /obj/item/device/multitool))
 				to_chat(usr, "You need a multitool!")
 				return 1
 

@@ -59,7 +59,7 @@
 					playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 					to_chat(user, "\blue You add the circuit board to the frame.")
 					circuit = P
-					if(user.drop_inv_item_to_loc(P, src))
+					if(user.transferItemToLoc(P, src))
 						icon_state = "box_2"
 						state = 3
 						components = list()
@@ -137,7 +137,7 @@
 											req_components[I] -= camt
 											update_desc()
 											break
-									if(user.drop_inv_item_to_loc(P, src))
+									if(user.transferItemToLoc(P, src))
 										components += P
 										req_components[I]--
 										update_desc()

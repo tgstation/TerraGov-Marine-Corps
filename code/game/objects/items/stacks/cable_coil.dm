@@ -109,7 +109,7 @@
 	..()
 
 /obj/item/stack/cable_coil/attack_hand(mob/user as mob)
-	if (user.get_inactive_hand() == src)
+	if (user.get_inactive_held_item() == src)
 		var/obj/item/stack/cable_coil/F = new /obj/item/stack/cable_coil(user, 1, color)
 		F.copy_evidences(src)
 		user.put_in_hands(F)

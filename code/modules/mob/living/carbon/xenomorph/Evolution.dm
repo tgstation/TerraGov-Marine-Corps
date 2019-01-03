@@ -77,7 +77,7 @@
 
 	if(!new_caste_type)
 		to_chat(src, "EVO8: Something went wrong with evolving")
-		return 
+		return
 
 	if(!isturf(loc)) //cdel'd or inside something
 		return
@@ -224,7 +224,7 @@
 	update_spits() //Update spits to new/better ones
 
 	for(var/obj/item/W in contents) //Drop stuff
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 
 	empty_gut()
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src].</span>", \

@@ -65,7 +65,7 @@
 
 /obj/machinery/mill/attackby(var/obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/reagent_container/food))
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			input += W
 	else
 		..()
@@ -141,7 +141,7 @@
 
 /obj/machinery/fermenter/attackby(var/obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/reagent_container/food))
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			input += W
 	else
 		..()
@@ -208,7 +208,7 @@
 
 /obj/machinery/still/attackby(var/obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/reagent_container/food))
-		if(user.drop_inv_item_to_loc(W, loc))
+		if(user.transferItemToLoc(W, loc))
 			input += W
 	else
 		..()
@@ -292,7 +292,7 @@
 
 /obj/machinery/centrifuge/attackby(var/obj/item/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/reagent_container/food))
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			input += W
 	else
 		..()

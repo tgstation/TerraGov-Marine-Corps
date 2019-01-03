@@ -57,9 +57,9 @@
 				return
 			else
 				// insert cell
-				var/obj/item/cell/C = usr.get_active_hand()
+				var/obj/item/cell/C = usr.get_active_held_item()
 				if(istype(C))
-					if(user.drop_inv_item_to_loc(C, src))
+					if(user.transferItemToLoc(C, src))
 						cell = C
 						C.add_fingerprint(usr)
 
@@ -131,7 +131,7 @@
 				set_temperature = dd_range(T0C, T0C + 90, set_temperature + value)
 
 			if("cellremove")
-				if(open && cell && !usr.get_active_hand())
+				if(open && cell && !usr.get_active_held_item())
 					usr.visible_message("\blue [usr] removes \the [cell] from \the [src].", "\blue You remove \the [cell] from \the [src].")
 					cell.updateicon()
 					usr.put_in_hands(cell)
@@ -141,7 +141,7 @@
 
 			if("cellinstall")
 				if(open && !cell)
-					var/obj/item/cell/C = usr.get_active_hand()
+					var/obj/item/cell/C = usr.get_active_held_item()
 					if(istype(C))
 						if(usr.drop_held_item())
 							cell = C

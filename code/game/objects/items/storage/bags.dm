@@ -158,7 +158,7 @@
 
 	if(!inserted || !S.amount)
 		if(user && W.loc == user)
-			user.temp_drop_inv_item(S)
+			user.temporarilyRemoveItemFromInventory(S)
 		if(!S.amount)
 			qdel(S)
 		else

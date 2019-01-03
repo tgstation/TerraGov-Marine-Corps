@@ -48,7 +48,7 @@
 		path = 1
 		to_chat(user, "\blue You add [W] to the metal casing.")
 		playsound(src.loc, 'sound/items/Screwdriver2.ogg', 25, 0, 6)
-		user.temp_drop_inv_item(det)
+		user.temporarilyRemoveItemFromInventory(det)
 		det.forceMove(src)
 		detonator = det
 		icon_state = initial(icon_state) +"_ass"
@@ -154,7 +154,7 @@
 
 		if(istype(loc, /mob/living/carbon))		//drop dat grenade if it goes off in your hand
 			var/mob/living/carbon/C = loc
-			C.drop_inv_item_on_ground(src)
+			C.dropItemToGround(src)
 			C.throw_mode_off()
 
 		invisibility = INVISIBILITY_MAXIMUM //Why am i doing this?

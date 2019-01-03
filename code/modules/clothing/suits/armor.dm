@@ -276,19 +276,19 @@
 	if(usr.stat) return
 
 	if(!holstered)
-		if(!istype(usr.get_active_hand(), /obj/item/weapon/gun))
+		if(!istype(usr.get_active_held_item(), /obj/item/weapon/gun))
 			to_chat(usr, "\blue You need your gun equiped to holster it.")
 			return
-		var/obj/item/weapon/gun/W = usr.get_active_hand()
+		var/obj/item/weapon/gun/W = usr.get_active_held_item()
 		if (W.w_class > 3)
 			to_chat(usr, "\red This gun won't fit in \the belt!")
 			return
-		holstered = usr.get_active_hand()
+		holstered = usr.get_active_held_item()
 		usr.drop_held_item()
 		holstered.loc = src
 		usr.visible_message("\blue \The [usr] holsters \the [holstered].", "You holster \the [holstered].")
 	else
-		if(istype(usr.get_active_hand(),/obj) && istype(usr.get_inactive_hand(),/obj))
+		if(istype(usr.get_active_held_item(),/obj) && istype(usr.get_inactive_held_item(),/obj))
 			to_chat(usr, "\red You need an empty hand to draw the gun!")
 		else
 			if(usr.a_intent == "hurt")

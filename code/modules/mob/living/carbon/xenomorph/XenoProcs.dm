@@ -293,7 +293,7 @@
 					frozen = TRUE
 					if(xeno_caste.charge_type == 2)
 						M.attack_alien(src, null, "disarm") //Hunters get a free throttle in exchange for lower initial stun.
-					if(!(xeno_caste.caste_flags & CASTE_IS_ROBOTIC)) 
+					if(!(xeno_caste.caste_flags & CASTE_IS_ROBOTIC))
 						playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
 					spawn(xeno_caste.charge_type == 1 ? 5 : 15)
 						frozen = FALSE
@@ -410,7 +410,7 @@
 	return 1
 
 /mob/living/carbon/Xenomorph/drop_held_item()
-	var/obj/item/clothing/mask/facehugger/F = get_active_hand()
+	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	if(istype(F))
 		if(locate(/turf/closed/wall/resin) in loc)
 			to_chat(src, "<span class='warning'>You decide not to drop [F] after all.</span>")

@@ -21,13 +21,13 @@
 /obj/item/stool/proc/deploy(var/mob/user)
 
 	if(!origin)
-		user.temp_drop_inv_item(src)
+		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 		return
 
 	if(user)
 		origin.loc = get_turf(user)
-		user.temp_drop_inv_item(src)
+		user.temporarilyRemoveItemFromInventory(src)
 		user.visible_message("\blue [user] puts [src] down.", "\blue You put [src] down.")
 		qdel(src)
 
@@ -38,7 +38,7 @@
 /obj/item/stool/attack(mob/M as mob, mob/user as mob)
 	if (prob(25) && istype(M,/mob/living))
 		user.visible_message("\red [user] breaks [src] over [M]'s back!")
-		user.temp_drop_inv_item(src)
+		user.temporarilyRemoveItemFromInventory(src)
 		var/obj/item/stack/sheet/metal/m = new/obj/item/stack/sheet/metal
 		m.loc = get_turf(src)
 		var/mob/living/T = M

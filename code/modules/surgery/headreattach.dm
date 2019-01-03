@@ -178,7 +178,7 @@
 		B.brainmob.mind.transfer_to(target)
 
 	//Deal with the head item properly
-	user.temp_drop_inv_item(B)
+	user.temporarilyRemoveItemFromInventory(B)
 	qdel(B)
 
 /datum/surgery_step/head/attach/fail_step(mob/living/user, mob/living/carbon/human/target, target_zone, obj/item/tool, datum/limb/affected)

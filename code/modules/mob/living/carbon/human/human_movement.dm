@@ -46,8 +46,8 @@
 	//Compile reducible tally and send it to total tally. Cannot go more than 1 units faster from the reducible tally!
 	. += max(-0.7, reducible_tally)
 
-	if(istype(get_active_hand(), /obj/item/weapon/gun))
-		var/obj/item/weapon/gun/G = get_active_hand() //If wielding, it will ALWAYS be on the active hand
+	if(istype(get_active_held_item(), /obj/item/weapon/gun))
+		var/obj/item/weapon/gun/G = get_active_held_item() //If wielding, it will ALWAYS be on the active hand
 		. += G.slowdown
 
 	if(istype(buckled, /obj/structure/bed/chair/wheelchair))

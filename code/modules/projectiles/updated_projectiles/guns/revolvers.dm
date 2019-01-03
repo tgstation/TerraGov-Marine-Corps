@@ -77,7 +77,7 @@
 //The cylinder is always emptied out before a reload takes place.
 /obj/item/weapon/gun/revolver/proc/add_to_cylinder(mob/user) //Bullets are added forward.
 	//First we're going to try and replace the current bullet.
-	if(!current_mag.current_rounds) 
+	if(!current_mag.current_rounds)
 		current_mag.chamber_contents[current_mag.chamber_position] = "bullet"
 	else//Failing that, we'll try to replace the next bullet in line.
 		if( (current_mag.chamber_position + 1) > current_mag.max_rounds)
@@ -222,11 +222,11 @@
 	if(loc && user)
 		invisibility = 0
 		playsound(user, thud_sound, 25, 1)
-		if(user.get_inactive_hand())
+		if(user.get_inactive_held_item())
 			user.visible_message("[user] catches [src] with the same hand!","\blue You catch [src] as it spins in to your hand!")
 		else
 			user.visible_message("[user] catches [src] with his other hand!","\blue You snatch [src] with your other hand! Awesome!")
-			user.temp_drop_inv_item(src)
+			user.temporarilyRemoveItemFromInventory(src)
 			user.put_in_inactive_hand(src)
 			user.swap_hand()
 			user.update_inv_l_hand(0)
@@ -241,7 +241,7 @@
 	//Pain is largely ignored, since it deals its own effects on the mob. We're just concerned with health.
 	//And this proc will only deal with humans for now.
 
-	var/obj/item/weapon/gun/revolver/double = user.get_inactive_hand()
+	var/obj/item/weapon/gun/revolver/double = user.get_inactive_held_item()
 	if(prob(chance))
 		switch(rand(1,8))
 			if(1)

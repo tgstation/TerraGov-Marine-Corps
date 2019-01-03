@@ -2,116 +2,123 @@
 //as they handle all relevant stuff like adding it to the player's screen and updating their overlays.
 
 //Returns the thing in our active hand
-/mob/proc/get_active_hand()
-	if(hand)	return l_hand
-	else		return r_hand
+/mob/proc/get_active_held_item()
+	if(hand)
+		return l_hand
+	return r_hand
 
 //Returns the thing in our inactive hand
-/mob/proc/get_inactive_hand()
-	if(hand)	return r_hand
-	else		return l_hand
+/mob/proc/get_inactive_held_item()
+	if(hand)
+		return r_hand
+	return l_hand
 
 //Puts the item into your l_hand if possible and calls all necessary triggers/updates. returns 1 on success.
-/mob/proc/put_in_l_hand(var/obj/item/W)
-	if(lying)			return 0
-	if(!istype(W))		return 0
+/mob/proc/put_in_l_hand(obj/item/W)
+	if(lying)
+		return FALSE
+	if(!istype(W))
+		return FALSE
 	if(!l_hand)
 		W.forceMove(src)
 		l_hand = W
 		W.layer = ABOVE_HUD_LAYER
 		W.equipped(src,WEAR_L_HAND)
 		update_inv_l_hand()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 //Puts the item into your r_hand if possible and calls all necessary triggers/updates. returns 1 on success.
-/mob/proc/put_in_r_hand(var/obj/item/W)
-	if(lying)			return 0
-	if(!istype(W))		return 0
+/mob/proc/put_in_r_hand(obj/item/W)
+	if(lying)
+		return FALSE
+	if(!istype(W))
+		return FALSE
 	if(!r_hand)
 		W.forceMove(src)
 		r_hand = W
 		W.layer = ABOVE_HUD_LAYER
 		W.equipped(src,WEAR_R_HAND)
 		update_inv_r_hand()
-		return 1
-	return 0
+		return TRUE
+	return FALSE
 
 //Puts the item into our active hand if possible. returns 1 on success.
-/mob/proc/put_in_active_hand(var/obj/item/W)
-	if(hand)	return put_in_l_hand(W)
-	else		return put_in_r_hand(W)
+/mob/proc/put_in_active_hand(obj/item/W)
+	if(hand)
+		return put_in_l_hand(W)
+	return put_in_r_hand(W)
 
 //Puts the item into our inactive hand if possible. returns 1 on success.
-/mob/proc/put_in_inactive_hand(var/obj/item/W)
-	if(hand)	return put_in_r_hand(W)
-	else		return put_in_l_hand(W)
+/mob/proc/put_in_inactive_hand(obj/item/W)
+	if(hand)
+		return put_in_r_hand(W)
+	return put_in_l_hand(W)
 
 //Puts the item our active hand if possible. Failing that it tries our inactive hand. Returns 1 on success.
 //If both fail it drops it on the floor and returns 0.
 //This is probably the main one you need to know :)
-/mob/proc/put_in_hands(var/obj/item/W)
-	if(!W)		return 0
+/mob/proc/put_in_hands(obj/item/W)
+	if(!W)
+		return FALSE
 	if(put_in_active_hand(W))
-		update_inv_l_hand(0)
-		update_inv_r_hand()
-		return 1
-	else if(put_in_inactive_hand(W))
-		update_inv_l_hand(0)
-		update_inv_r_hand()
-		return 1
+		return TRUE
+	if(put_in_inactive_hand(W))
+		return TRUE
 	else
 		W.forceMove(get_turf(src))
 		W.layer = initial(W.layer)
 		W.dropped(src)
-		return 0
+		return FALSE
 
 
 
 /mob/proc/drop_item_v()		//this is dumb.
 	if(stat == CONSCIOUS && isturf(loc))
 		return drop_held_item()
-	return 0
+	return FALSE
 
 
 //Drops the item in our left hand
 /mob/proc/drop_l_hand()
 	if(l_hand)
-		return drop_inv_item_on_ground(l_hand)
-	return 0
+		return dropItemToGround(l_hand)
+	return FALSE
 
 //Drops the item in our right hand
 /mob/proc/drop_r_hand()
 	if(r_hand)
-		return drop_inv_item_on_ground(r_hand)
-	return 0
+		return dropItemToGround(r_hand)
+	return FALSE
 
 //Drops the item in our active hand.
 /mob/proc/drop_held_item()
-	if(hand)	return drop_l_hand()
-	else		return drop_r_hand()
+	if(hand)
+		return drop_l_hand()
+	return drop_r_hand()
 
 //Drops the items in our hands.
-/mob/proc/drop_held_items()
+/mob/proc/drop_all_held_items()
 	drop_r_hand()
 	drop_l_hand()
 
 //drop the inventory item on a specific location
-/mob/proc/drop_inv_item_to_loc(obj/item/I, atom/newloc, nomoveupdate, force)
-	return u_equip(I, newloc, nomoveupdate, force)
+/mob/proc/transferItemToLoc(obj/item/I, atom/newloc, nomoveupdate, force)
+	return doUnEquip(I, newloc, nomoveupdate, force)
 
 //drop the inventory item on the ground
-/mob/proc/drop_inv_item_on_ground(obj/item/I, nomoveupdate, force)
-	return u_equip(I, loc, nomoveupdate, force)
+/mob/proc/dropItemToGround(obj/item/I, nomoveupdate, force)
+	return doUnEquip(I, loc, nomoveupdate, force)
 
 //Never use this proc directly. nomoveupdate is used when we don't want the item to react to
 // its new loc (e.g.triggering mousetraps)
-/mob/proc/u_equip(obj/item/I, atom/newloc, nomoveupdate, force)
+/mob/proc/doUnEquip(obj/item/I, atom/newloc, nomoveupdate, force)
 
-	if(!I) return TRUE
+	if(!I)
+		return TRUE
 
 	if((I.flags_item & NODROP) && !force)
-		return FALSE //u_equip() only fails if item has NODROP
+		return FALSE //doUnEquip() only fails if item has NODROP
 
 	if (I == r_hand)
 		r_hand = null
@@ -134,8 +141,8 @@
 
 //Remove an item on a mob's inventory.  It does not change the item's loc, just unequips it from the mob.
 //Used just before you want to delete the item, or moving it afterwards.
-/mob/proc/temp_drop_inv_item(obj/item/I, force)
-	return u_equip(I, null, force)
+/mob/proc/temporarilyRemoveItemFromInventory(obj/item/I, force)
+	return doUnEquip(I, null, force)
 
 
 //Outdated but still in use apparently. This should at least be a human proc.

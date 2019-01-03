@@ -154,7 +154,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		else
 			to_chat(user, "\red Machine cannot accept disks in that format.")
 			return
-		user.drop_inv_item_to_loc(D, src)
+		user.transferItemToLoc(D, src)
 		to_chat(user, "\blue You add the disk to the machine!")
 	else if(istype(D, /obj/item/card/emag) && !emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)

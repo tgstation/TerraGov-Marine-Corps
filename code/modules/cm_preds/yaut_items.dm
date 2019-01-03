@@ -72,7 +72,7 @@
 		if(!istype(G,/obj/item/clothing/glasses/night/yautja) && !istype(G,/obj/item/clothing/glasses/meson/yautja) && !istype(G,/obj/item/clothing/glasses/thermal/yautja))
 			to_chat(M, "<span class='warning'>You need to remove your glasses first. Why are you even wearing these?</span>")
 			return
-		M.temp_drop_inv_item(G) //Get rid of ye existinge gogglors
+		M.temporarilyRemoveItemFromInventory(G) //Get rid of ye existinge gogglors
 		qdel(G)
 	switch(current_goggles)
 		if(0)
@@ -106,7 +106,7 @@
 		var/obj/item/G = mob.glasses
 		if(G)
 			if(istype(G,/obj/item/clothing/glasses/night/yautja) || istype(G,/obj/item/clothing/glasses/meson/yautja) || istype(G,/obj/item/clothing/glasses/thermal/yautja))
-				mob.temp_drop_inv_item(G)
+				mob.temporarilyRemoveItemFromInventory(G)
 				qdel(G)
 				mob.update_inv_glasses()
 		var/datum/mob_hud/H = huds[MOB_HUD_MEDICAL_ADVANCED]
@@ -358,12 +358,12 @@
 	if(!isYautja(user))
 		to_chat(user, "<span class='warning'>You have no idea how to work these things!</span>")
 		return
-	var/obj/item/weapon/wristblades/R = user.get_active_hand()
+	var/obj/item/weapon/wristblades/R = user.get_active_held_item()
 	if(R && istype(R)) //Turn it off.
 		to_chat(user, "<span class='notice'>You retract your wrist blades.</span>")
 		playsound(user.loc,'sound/weapons/wristblades_off.ogg', 15, 1)
 		blades_active = 0
-		user.drop_inv_item_to_loc(R, R.loc)
+		user.transferItemToLoc(R, R.loc)
 		return
 	else
 		if(!drain_power(user,50)) return
@@ -473,14 +473,14 @@
 			found = 1
 			usr.r_hand = null
 			if(R)
-				M.temp_drop_inv_item(R)
+				M.temporarilyRemoveItemFromInventory(R)
 				qdel(R)
 			M.update_inv_r_hand()
 		if(L && istype(L))
 			found = 1
 			usr.l_hand = null
 			if(L)
-				M.temp_drop_inv_item(L)
+				M.temporarilyRemoveItemFromInventory(L)
 				qdel(L)
 			M.update_inv_l_hand()
 		if(found)
@@ -489,7 +489,7 @@
 			caster_active = 0
 		return
 	else //Turn it on!
-		if(usr.get_active_hand())
+		if(usr.get_active_held_item())
 			to_chat(usr, "<span class='warning'>Your hand must be free to activate your caster!</span>")
 			return
 		if(!drain_power(usr,50)) return
@@ -529,14 +529,14 @@
 		to_chat(M, "<span class='warning'>You have no idea how to work these things!</span>")
 		return
 
-	var/obj/item/grab/G = M.get_active_hand()
+	var/obj/item/grab/G = M.get_active_held_item()
 	if(istype(G))
 		var/mob/living/carbon/human/comrade = G.grabbed_thing
 		if(isYautja(comrade) && comrade.stat == DEAD)
 			var/obj/item/clothing/gloves/yautja/bracer = comrade.gloves
 			if(istype(bracer))
 				if(alert("Are you sure you want to send this Yautja into the great hunting grounds?","Explosive Bracers", "Yes", "No") == "Yes")
-					if(M.get_active_hand() == G && comrade && comrade.gloves == bracer && !bracer.exploding)
+					if(M.get_active_held_item() == G && comrade && comrade.gloves == bracer && !bracer.exploding)
 						bracer.explodey(comrade)
 						M.visible_message("<span class='warning'>[M] presses a few buttons on [comrade]'s wrist bracer.</span>","<span class='danger'>You activate the timer. May [comrade]'s final hunt be swift.</span>")
 			else
@@ -586,7 +586,7 @@
 		to_chat(usr, "<span class='warning'>You have no idea how to work these things!/span>")
 		return
 
-	if(usr.get_active_hand())
+	if(usr.get_active_held_item())
 		to_chat(usr, "<span class='warning'>Your active hand must be empty!</span>")
 		return 0
 
@@ -771,7 +771,7 @@
 			if(loc)
 				if(ismob(loc))
 					user = loc
-					user.temp_drop_inv_item(src)
+					user.temporarilyRemoveItemFromInventory(src)
 				qdel(src)
 			return
 
@@ -868,7 +868,7 @@
 /obj/item/weapon/wristblades/New()
 	..()
 	if(usr)
-		var/obj/item/weapon/wristblades/W = usr.get_inactive_hand()
+		var/obj/item/weapon/wristblades/W = usr.get_inactive_held_item()
 		if(istype(W)) //wristblade in usr's other hand.
 			attack_speed = attack_speed - attack_speed/3
 	attack_verb = list("sliced", "slashed", "jabbed", "torn", "gored")
@@ -881,7 +881,7 @@
 /obj/item/weapon/wristblades/dropped(mob/living/carbon/human/M)
 	playsound(M,'sound/weapons/wristblades_off.ogg', 15, 1)
 	if(M)
-		var/obj/item/weapon/wristblades/W = M.get_inactive_hand()
+		var/obj/item/weapon/wristblades/W = M.get_inactive_held_item()
 		if(istype(W))
 			W.attack_speed = initial(attack_speed)
 	..()
@@ -889,7 +889,7 @@
 /obj/item/weapon/wristblades/afterattack(atom/A, mob/user, proximity)
 	if(!proximity || !user) return
 	if(user)
-		var/obj/item/weapon/wristblades/W = user.get_inactive_hand()
+		var/obj/item/weapon/wristblades/W = user.get_inactive_held_item()
 		attack_speed = (istype(W)) ? 4 : initial(attack_speed)
 
 	if (istype(A, /obj/machinery/door/airlock))
@@ -1048,7 +1048,7 @@
 		if(!isYautja(user))
 			if(prob(20))
 				user.visible_message("<span class='warning'>[src] slips out of your hands!</span>")
-				user.drop_inv_item_on_ground(src)
+				user.dropItemToGround(src)
 				return
 		..()
 		if(ishuman(target)) //Slicey dicey!

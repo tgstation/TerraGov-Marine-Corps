@@ -111,7 +111,7 @@
 
 		var/obj/item/cell/C = I
 
-		if(user.drop_inv_item_to_loc(C, src))
+		if(user.transferItemToLoc(C, src))
 			C.add_fingerprint(user)
 			cell = C
 			user.visible_message("\blue [user] opens the panel on [src] and inserts [C].", "\blue You open the panel on [src] and insert [C].")
