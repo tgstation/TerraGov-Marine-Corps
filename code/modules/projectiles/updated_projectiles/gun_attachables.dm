@@ -536,7 +536,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/scope/mini/activate_attachment(obj/item/weapon/gun/G, mob/living/carbon/user, turn_off)
 	if(turn_off)
 		if(G.zoom)
-			accuracy_mod = null
+			accuracy_mod = 0
 			G.zoom(user, zoom_offset, zoom_viewsize)
 		return TRUE
 
