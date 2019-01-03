@@ -22,8 +22,7 @@
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 
-/obj/item/weapon/gun/flamer/Initialize()
-	. = ..()
+/obj/item/weapon/gun/flamer/set_gun_config_values()
 	fire_delay = config.max_fire_delay * 5
 
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
