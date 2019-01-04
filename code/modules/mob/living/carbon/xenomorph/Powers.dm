@@ -474,9 +474,9 @@
 			switch(L.body_part)
 				if(HEAD)
 					fracture_chance = 50
-				if(CHEST)
+				if(UPPER_TORSO)
 					fracture_chance = 50
-				if(GROIN)
+				if(LOWER_TORSO)
 					fracture_chance = 50
 			fracture_chance *= max(0,round(1 - armor_block,0.01)) //Reduce the fracture chance by a % equal to the armor.
 
@@ -554,7 +554,7 @@
 	var/mob/living/carbon/human/H = M
 	var/datum/limb/L = H.get_limb(check_zone(zone_selected))
 
-	if (!L || L.body_part == CHEST || L.body_part == GROIN || (L.status & LIMB_DESTROYED) || L.body_part == HEAD) //Only limbs; no head
+	if (!L || L.body_part == UPPER_TORSO || L.body_part == LOWER_TORSO || (L.status & LIMB_DESTROYED) || L.body_part == HEAD) //Only limbs; no head
 		to_chat(src, "<span class='xenowarning'>You can't rip off that limb.</span>")
 		return FALSE
 	round_statistics.warrior_limb_rips++

@@ -71,7 +71,7 @@
 	slowdown = 1
 	armor = list(melee = 40, bullet = 5, laser = 20,energy = 5, bomb = 35, bio = 100, rad = 20)
 	allowed = list(/obj/item/device/flashlight,/obj/item/tank,/obj/item/device/suit_cooling_unit)
-	flags_heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = SPACE_SUIT_max_heat_protection_temperature
 
 	species_restricted = list("exclude","Unathi","Tajara","Vox")

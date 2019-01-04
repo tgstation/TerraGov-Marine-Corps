@@ -1449,7 +1449,7 @@
 			face_exposed = 0
 		if(C.flags_armor_protection & EYES)
 			eyes_exposed = 0
-		if(C.flags_armor_protection & CHEST)
+		if(C.flags_armor_protection & UPPER_TORSO)
 			torso_exposed = 0
 		if(C.flags_armor_protection & ARMS)
 			arms_exposed = 0

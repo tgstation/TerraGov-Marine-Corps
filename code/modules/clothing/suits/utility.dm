@@ -17,14 +17,14 @@
 	w_class = 4//bulky item
 	gas_transfer_coefficient = 0.9
 	permeability_coefficient = 0.5
-	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	allowed = list(/obj/item/device/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/tool/extinguisher)
 	slowdown = 1
 	flags_inventory = STOPSPRESSUREDAMAGE|THICKMATERIAL
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT|HIDETAIL
-	flags_heat_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	max_heat_protection_temperature = FIRESUIT_max_heat_protection_temperature
-	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 
 
 /obj/item/clothing/suit/fire/firefighter
@@ -62,11 +62,11 @@
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
 	flags_inventory = THICKMATERIAL
-	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
 	slowdown = 2
 	armor = list(melee = 20, bullet = 0, laser = 20,energy = 10, bomb = 100, bio = 0, rad = 0)
 	flags_inv_hide = HIDEJUMPSUIT|HIDETAIL
-	flags_heat_protection = CHEST|GROIN
+	flags_heat_protection = UPPER_TORSO|LOWER_TORSO
 	max_heat_protection_temperature = ARMOR_max_heat_protection_temperature
 
 
@@ -101,7 +101,7 @@
 	gas_transfer_coefficient = 0.9
 	permeability_coefficient = 0.5
 	flags_inventory = THICKMATERIAL
-	flags_armor_protection = CHEST|GROIN|LEGS|ARMS|HANDS|FEET
+	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|HANDS|FEET
 	allowed = list(/obj/item/device/flashlight,/obj/item/tank/emergency_oxygen,/obj/item/clothing/head/radiation,/obj/item/clothing/mask/gas)
 	slowdown = 1.5
 	armor = list(melee = 0, bullet = 0, laser = 0,energy = 0, bomb = 0, bio = 60, rad = 100)

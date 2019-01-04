@@ -161,24 +161,24 @@
 //=================================================
 
 // bitflags for clothing parts
-#define HEAD			(1<<0)
-#define FACE			(1<<1)
-#define EYES			(1<<2)
-#define CHEST			(1<<3)
-#define GROIN			(1<<4)
-#define LEG_LEFT		(1<<5)
-#define LEG_RIGHT		(1<<7)
-#define LEGS			(LEG_LEFT | LEG_RIGHT)
-#define FOOT_LEFT		(1<<8)
-#define FOOT_RIGHT		(1<<9)
-#define FEET			(FOOT_LEFT | FOOT_RIGHT)
-#define ARM_LEFT		(1<<10)
-#define ARM_RIGHT		(1<<11)
-#define ARMS			(ARM_LEFT | ARM_RIGHT)
-#define HAND_LEFT		(1<<12)
-#define HAND_RIGHT		(1<<13)
-#define HANDS			(HAND_LEFT | HAND_RIGHT)
-#define FULL_BODY		(~0)
+#define HEAD			1
+#define FACE			2
+#define EYES			4
+#define UPPER_TORSO		8
+#define LOWER_TORSO		16
+#define LEG_LEFT		32
+#define LEG_RIGHT		64
+#define LEGS			96
+#define FOOT_LEFT		128
+#define FOOT_RIGHT		256
+#define FEET			384
+#define ARM_LEFT		512
+#define ARM_RIGHT		1024
+#define ARMS			1536
+#define HAND_LEFT		2048
+#define HAND_RIGHT		4096
+#define HANDS			6144
+#define FULL_BODY		8191
 //=================================================
 
 //defense zones for selecting them via the hud.
