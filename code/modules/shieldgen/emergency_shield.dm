@@ -301,7 +301,8 @@
 				src.shields_down()
 			anchored = 0
 		else
-			if(istype(get_turf(src), /turf/open/space)) return //No wrenching these in space!
+			if(isspaceturf(get_turf(src)))
+				return //No wrenching these in space!
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			to_chat(user, "\blue You secure the [src] to the floor!")
 			anchored = 1

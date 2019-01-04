@@ -78,11 +78,11 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		if(m.mind)
 			if(m.stat == DEAD) "<span class='round_body'>You met your demise during the events of [upper_text(name)].</span>"
 			else
-				if(isYautja(m))
+				if(isyautja(m))
 
 				if(ishuman(m))
 					is_mob_immobalized()
-				if(isXeno(m))
+				if(isxeno(m))
 
 
 				var/turf/T = get_turf(m)
@@ -219,7 +219,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		return
 
 	for(var/x in mob_list)
-		if(!istype(x, /mob/living/carbon/human))
+		if(!ishuman(x))
 			continue
 
 		var/mob/living/carbon/human/H = x
@@ -245,7 +245,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 				picked = pick(spawns)
 				spawns -= picked
 
-		
+
 		if(picked)
 			H.loc = picked
 			H.revive()
@@ -298,7 +298,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 
 	for(var/mob/M in player_list) //Scan through and detect Xenos and Hosts, but only those with clients.
 		if(M.stat != DEAD)
-			if(isXeno(M))
+			if(isxeno(M))
 				switch(M.z)
 					if(0) //nullspace
 						if(M.loc && M.loc.z == 3) //in a closet or vent
@@ -313,26 +313,26 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 					if(3) //On the ship.
 						if(istype(M, /mob/living/carbon/Xenomorph/Larva))
 							numLarvaShip++
-						numXenosShip++ 
-					
+						numXenosShip++
+
 				activeXenos += M
 
-			if(ishuman(M) && !isYautja(M))
+			if(ishuman(M) && !isyautja(M))
 				switch(M.z)
 					if(0) //nullspace
 						if(M.loc && M.loc.z == 3) //in a closet or vent
 							numHostsShip++
 						if(M.loc && M.loc.z == 1)
-							numHostsPlanet++ 
+							numHostsPlanet++
 					if(1) //Planet.
-						numHostsPlanet++ 
+						numHostsPlanet++
 						hostLocationsP += M.loc.loc.name
 					if(3) //On the ship.
-						numHostsShip++ 
+						numHostsShip++
 						hostLocationsS += M.loc.loc.name
 
 
-					
+
 		else
 			observers += M
 
@@ -341,7 +341,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	var/numXenosPlanetr = max(0, numXenosPlanet + rand(-delta, delta))
 	var/hostLocationP
 	var/hostLocationS
-	
+
 	if(length(hostLocationsP))
 		hostLocationP = pick(hostLocationsP)
 
@@ -356,7 +356,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 
 	// The announcement to all Humans. Slightly off for the planet and elsewhere, accurate for the ship.
 	var/xenoLocationP
-	
+
 	if(length(xenoLocationsP))
 		xenoLocationP = pick(xenoLocationsP)
 
@@ -369,7 +369,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 
 		// Extra information for all ghosts
 	for(var/mob/M in observers)
-		if(istype(M, /mob/new_player))
+		if(isnewplayer(M))
 			continue
 		to_chat(M, "<h2 class='alert'>Detailed Information</h2>")
 		to_chat(M, "<span class='alert'>[numXenosPlanetr] xenos on the planet, including [numLarvaPlanet] larva.<br>[numXenosShip] xenos on the ship, [numLarvaShip] larva.<br>[numHostsPlanet] humans on the planet.<br>[numHostsShip] humans on the ship.</span>")
@@ -386,12 +386,12 @@ Only checks living mobs with a client attached.
 	var/num_xenos = 0
 
 	for(var/mob/M in player_list)
-		if(M.z && (M.z in z_levels) && M.stat != DEAD && !istype(M.loc, /turf/open/space)) //If they have a z var, they are on a turf.
+		if(M.z && (M.z in z_levels) && M.stat != DEAD && !isspaceturf(M.loc)) //If they have a z var, they are on a turf.
 			if(ishuman(M) && !(M.status_flags & XENO_HOST) && !iszombie(M))
 				var/mob/living/carbon/human/H = M
 				if(H.species && H.species.count_human) //only real humans count
 					num_humans++
-			else if(isXeno(M))
+			else if(isxeno(M))
 				var/mob/living/carbon/Xenomorph/X = M
 				if(!X.stealth_router(HANDLE_STEALTH_CHECK)) //We don't count stealthed Beanos due to delay potential
 					num_xenos++
@@ -404,8 +404,8 @@ Only checks living mobs with a client attached.
 	var/num_pmcs = 0
 
 	for(var/mob/M in player_list)
-		if(M.z && (M.z in z_levels) && M.stat != DEAD && !istype(M.loc, /turf/open/space))
-			if(ishuman(M) && !isYautja(M))
+		if(M.z && (M.z in z_levels) && M.stat != DEAD && !isspaceturf(M.loc))
+			if(ishuman(M) && !isyautja(M))
 				if(M.mind && M.mind.special_role == "PMC") 	num_pmcs++
 				else if(M.mind && !M.mind.special_role)		num_marines++
 

@@ -106,7 +106,7 @@
 		if(prob(20))
 			visible_message("<span class='warning'>\The [src] slumps to the ground, too weak to continue fighting.</span>", \
 			"<span class='warning'>You slump to the ground, you're in too much pain to keep going.</span>")
-			if(prob(25) && ishuman()) //only humans can scream, shame.
+			if(prob(25) && ishuman(src)) //only humans can scream, shame.
 				emote("scream")
 		KnockDown(5)
 		setHalLoss(maxHealth*2)
@@ -120,7 +120,7 @@
 		if(mind)
 			if((mind.active && client != null) || immune_to_ssd) //This also checks whether a client is connected, if not, sleep is not reduced.
 				AdjustSleeping(-1)
-		if(!isXeno(src))
+		if(!isxeno(src))
 			if(prob(2) && health && !hal_crit)
 				spawn()
 					emote("snore")

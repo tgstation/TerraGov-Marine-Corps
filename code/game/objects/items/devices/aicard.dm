@@ -11,7 +11,7 @@
 
 
 	attack(mob/living/silicon/ai/M as mob, mob/user as mob)
-		if(!istype(M, /mob/living/silicon/ai))//If target is not an AI.
+		if(!isAI(M))//If target is not an AI.
 			return ..()
 
 		log_combat(user, M, "carded", src)

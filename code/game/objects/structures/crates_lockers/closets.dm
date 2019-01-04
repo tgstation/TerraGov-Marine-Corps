@@ -118,7 +118,7 @@
 	for(var/mob/M in src.loc)
 		if(stored_units + mob_size > storage_capacity)
 			break
-		if(istype (M, /mob/dead/observer))
+		if(isobserver(M))
 			continue
 		if(M.buckled)
 			continue
@@ -194,7 +194,7 @@
 /obj/structure/closet/attackby(obj/item/W, mob/living/user)
 	if(src.opened)
 		if(istype(W, /obj/item/grab))
-			if(isXeno(user))
+			if(isxeno(user))
 				return
 			var/obj/item/grab/G = W
 			if(G.grabbed_thing)
@@ -221,7 +221,7 @@
 			qdel(src)
 			return
 
-		if(isrobot(user))
+		if(iscyborg(user))
 			return
 		user.drop_inv_item_to_loc(W,loc)
 

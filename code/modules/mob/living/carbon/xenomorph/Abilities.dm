@@ -175,7 +175,7 @@
 /datum/action/xeno_action/activable/spray_acid/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
 
-	if (isXenoPraetorian(owner))
+	if (isxenopraetorian(owner))
 		X.acid_spray_cone(A)
 		return
 
@@ -185,7 +185,7 @@
 /datum/action/xeno_action/activable/spray_acid/action_cooldown_check()
 	var/mob/living/carbon/Xenomorph/X = owner
 
-	if (isXenoPraetorian(owner))
+	if (isxenopraetorian(owner))
 		return !X.used_acid_spray
 
 	var/mob/living/carbon/Xenomorph/B = X
@@ -395,7 +395,7 @@
 	if(X.hivenumber && X.hivenumber <= hive_datum.len)
 		var/datum/hive_status/hive = hive_datum[X.hivenumber]
 
-		if(isXenoQueen(X) && hive.xeno_leader_list.len && X.anchored)
+		if(isxenoqueen(X) && hive.xeno_leader_list.len && X.anchored)
 			var/mob/living/carbon/Xenomorph/Queen/Q = X
 			for(var/mob/living/carbon/Xenomorph/L in hive.xeno_leader_list)
 				L.handle_xeno_leader_pheromones(Q)
@@ -826,7 +826,7 @@
 		return
 	var/list/possible_xenos = list()
 	for(var/mob/living/carbon/Xenomorph/T in living_mob_list)
-		if(T.z != ADMIN_Z_LEVEL && !isXenoQueen(T) && X.hivenumber == T.hivenumber)
+		if(T.z != ADMIN_Z_LEVEL && !isxenoqueen(T) && X.hivenumber == T.hivenumber)
 			possible_xenos += T
 
 	var/mob/living/carbon/Xenomorph/selected_xeno = input(X, "Target", "Watch which xenomorph?") as null|anything in possible_xenos
@@ -1002,7 +1002,7 @@
 	if(!X.observed_xeno)
 		to_chat(X, "<span class='warning'>You must overwatch the xeno you want to de-evolve.</span>")
 		return
-	
+
 	var/mob/living/carbon/Xenomorph/T = X.observed_xeno
 	if(!X.check_plasma(600)) // check plasma gives an error message itself
 		return
@@ -1022,7 +1022,7 @@
 	if(!T.xeno_caste.deevolves_to)
 		to_chat(X, "<span class='xenowarning'>[T] can't be deevolved.</span>")
 		return
-	
+
 	var/datum/xeno_caste/new_caste = xeno_caste_datums[T.xeno_caste.deevolves_to][1]
 
 	var/confirm = alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", , "Yes", "No")
@@ -1106,7 +1106,7 @@
 	qdel(T)
 	X.use_plasma(600)
 
-	
+
 
 //Ravager Abilities
 

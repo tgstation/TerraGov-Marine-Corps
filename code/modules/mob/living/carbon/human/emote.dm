@@ -409,7 +409,7 @@
 			wave, \
 			yawn</b><br>"
 			to_chat(src, msg)
-			if (has_species(src,"Yautja"))
+			if (isyautjastrict(src))
 				var/yautja_msg = "<br><b>As a Predator, you have the following additional emotes. Tip: The *medic emote has neither a cooldown nor a visibile origin...<br><br>\
 				<span style='color: green;'>anytime</span>, \
 				<span style='color: green;'>click</span>, \
@@ -430,11 +430,11 @@
 
 		// Pred emotes
 		if ("anytime")
-			if(has_species(src,"Yautja") && src.loc)
+			if(isyautjastrict(src) && loc)
 				m_type = 1
 				playsound(src.loc, 'sound/voice/pred_anytime.ogg', 25, 0)
 		if ("click")
-			if(has_species(src,"Yautja") && src.loc)
+			if(isyautjastrict(src) && loc)
 				m_type = 1
 				spawn(2)
 					if(rand(0,100) < 50)
@@ -442,43 +442,43 @@
 					else
 						playsound(src.loc, 'sound/voice/pred_click2.ogg', 25, 1)
 		if ("helpme")
-			if(has_species(src,"Yautja") && src.loc)
+			if(isyautjastrict(src) && loc)
 				m_type = 1
 				playsound(src.loc, 'sound/voice/pred_helpme.ogg', 25, 0)
 		if("malescream")
-			if(has_species(src,"Yautja") && src.loc)
+			if(isyautjastrict(src) && loc)
 				m_type = 1
 				playsound(loc, "male_scream", 50)
 		if("femalescream")
-			if(has_species(src,"Yautja") && src.loc)
+			if(isyautjastrict(src) && loc)
 				m_type = 1
 				playsound(loc, "female_scream", 50)
 		if ("iseeyou")
-			if(has_species(src,"Yautja") && src.loc)
+			if(isyautjastrict(src) && loc)
 				m_type = 1
 				playsound(src.loc, 'sound/hallucinations/i_see_you2.ogg', 25, 0)
 		if ("itsatrap")
-			if(has_species(src,"Yautja") && src.loc)
+			if(isyautjastrict(src) && loc)
 				m_type = 1
 				playsound(src.loc, 'sound/voice/pred_itsatrap.ogg', 25, 0)
 		if ("laugh1")
-			if(has_species(src,"Yautja") && src.loc)
+			if(isyautjastrict(src) && loc)
 				m_type = 1
 				playsound(src.loc, 'sound/voice/pred_laugh1.ogg', 25, 0)
 		if ("laugh2")
-			if(has_species(src,"Yautja") && src.loc)
+			if(isyautjastrict(src) && loc)
 				m_type = 1
 				playsound(src.loc, 'sound/voice/pred_laugh2.ogg', 25, 0)
 		if ("laugh3")
-			if(has_species(src,"Yautja") && src.loc)
+			if(isyautjastrict(src) && loc)
 				m_type = 1
 				playsound(src.loc, 'sound/voice/pred_laugh3.ogg', 25, 0)
 		if ("overhere")
-			if(has_species(src,"Yautja") && src.loc)
+			if(isyautjastrict(src) && loc)
 				m_type = 1
 				playsound(src.loc, 'sound/voice/pred_overhere.ogg', 25, 0)
 		if ("roar")
-			if(has_species(src,"Yautja") && src.loc)
+			if(isyautjastrict(src) && loc)
 				message = "<B>[src] roars!</b>"
 				m_type = 1
 				spawn(2)
@@ -487,7 +487,7 @@
 					else
 						playsound(src.loc, 'sound/voice/pred_roar2.ogg', 50, 1)
 		if ("turnaround")
-			if(has_species(src,"Yautja") && src.loc)
+			if(isyautjastrict(src) && loc)
 				m_type = 1
 				playsound(src.loc, 'sound/voice/pred_turnaround.ogg', 25, 0)
 		else
@@ -500,7 +500,7 @@
  // Maybe some people are okay with that.
 
 		for(var/mob/M in dead_mob_list)
-			if(!M.client || istype(M, /mob/new_player))
+			if(!M.client || isnewplayer(M))
 				continue //skip monkeys, leavers and new players
 			if(M.stat == DEAD && M.client.prefs && (M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) && !(M in viewers(src,null)))
 				M.show_message(message)

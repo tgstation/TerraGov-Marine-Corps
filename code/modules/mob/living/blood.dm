@@ -358,11 +358,11 @@
 /mob/living/carbon/human/get_blood_id()
 	if((NO_BLOOD in species.flags))
 		return
-	if(species.name == "Yautja")
+	if(isyautjastrict(src))
 		return "greenblood"
-	if(species.name == "Synthetic" || species.name == "Early Synthetic")
+	if(issynth(src))
 		return "whiteblood"
-	if(species.name == "Zombie")
+	if(iszombie(src))
 		return "greyblood"
 	return "blood"
 

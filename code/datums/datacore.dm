@@ -187,7 +187,8 @@ var/global/list/PDA_Manifest = list()
 		if(!nosleep)
 			sleep(40)
 		for(var/mob/living/carbon/human/H in player_list)
-			if(H.species && H.species.name == "Yautja") continue
+			if(isyautjastrict(H))
+				continue
 			manifest_inject(H)
 		return
 

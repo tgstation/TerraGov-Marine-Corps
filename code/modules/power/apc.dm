@@ -893,7 +893,7 @@
 			if(aidisabled == 0)
 				aidisabled = 1
 			updateDialog()
-	if(isXeno(usr)) //So aliens don't see this when they cut all of the wires.
+	if(isxeno(usr)) //So aliens don't see this when they cut all of the wires.
 		return
 	interact(usr)
 	updateUsrDialog()
@@ -994,7 +994,7 @@
 	return 1
 
 /obj/machinery/power/apc/Topic(href, href_list, var/usingUI = 1)
-	if(!(isrobot(usr) && (href_list["apcwires"] || href_list["pulse"])))
+	if(!(iscyborg(usr) && (href_list["apcwires"] || href_list["pulse"])))
 		if(!can_use(usr, 1))
 			return 0
 	add_fingerprint(usr)

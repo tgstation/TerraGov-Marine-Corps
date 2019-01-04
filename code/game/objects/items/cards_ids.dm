@@ -144,7 +144,7 @@
 /obj/item/card/id/New()
 	..()
 	spawn(30)
-	if(istype(loc, /mob/living/carbon/human))
+	if(ishuman(loc))
 		blood_type = loc:dna:b_type
 		dna_hash = loc:dna:unique_enzymes
 		fingerprint_hash = md5(loc:dna:uni_identity)
@@ -206,7 +206,7 @@
 	if(istype(O, /obj/item/card/id))
 		var/obj/item/card/id/I = O
 		src.access |= I.access
-		if(istype(user, /mob/living) && user.mind)
+		if(isliving(user) && user.mind)
 			if(user.mind.special_role)
 				to_chat(usr, "\blue The card's microscanners activate as you pass it over the ID, copying its access.")
 
@@ -352,7 +352,7 @@
 					msg += "\"[fallen_names[x]] - [fallen_assignements[x]]\""
 				else
 					msg += "\"[fallen_names[x]] - [fallen_assignements[x]]\", "
-			 
+
 			msg += ".</span>"
 
 			to_chat(user, msg)

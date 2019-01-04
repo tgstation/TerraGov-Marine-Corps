@@ -140,7 +140,7 @@
 						continue
 					landedon.KnockDown(3)
 					landedon.take_overall_damage(50, 0, "Blunt Trauma")
-				if(isXeno(AM))
+				if(isxeno(AM))
 					var/list/L = orange(rand(2,4))		// Not actually the fruit
 					for (var/mob/living/carbon/human/H in L)
 						H.KnockDown(3)

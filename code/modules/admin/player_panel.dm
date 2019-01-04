@@ -234,7 +234,7 @@
 						M_job = M.job
 					else if(ismonkey(M))
 						M_job = "Monkey"
-					else if(isXeno(M))
+					else if(isxeno(M))
 						M_job = "Alien"
 					else
 						M_job = "Carbon-based"
@@ -242,7 +242,7 @@
 				else if(issilicon(M)) //silicon
 					if(isAI(M))
 						M_job = "AI"
-					else if(isrobot(M))
+					else if(iscyborg(M))
 						M_job = "Cyborg"
 					else
 						M_job = "Silicon-based"
@@ -332,17 +332,17 @@
 		dat += "<tr><td>[M.name]</td>"
 		if(isAI(M))
 			dat += "<td>AI</td>"
-		else if(isrobot(M))
+		else if(iscyborg(M))
 			dat += "<td>Cyborg</td>"
 		else if(ishuman(M))
 			dat += "<td>[M.real_name]</td>"
-		else if(istype(M, /mob/new_player))
+		else if(isnewplayer(M))
 			dat += "<td>New Player</td>"
 		else if(isobserver(M))
 			dat += "<td>Ghost</td>"
 		else if(ismonkey(M))
 			dat += "<td>Monkey</td>"
-		else if(isXeno(M))
+		else if(isxeno(M))
 			dat += "<td>Alien</td>"
 		else
 			dat += "<td>Unknown</td>"
@@ -403,17 +403,17 @@
 		dat += "<td><a href='?src=\ref[usr];priv_msg=\ref[M]'>[M.name]</a></td>"
 		if(isAI(M))
 			dat += "<td>AI</td>"
-		else if(isrobot(M))
+		else if(iscyborg(M))
 			dat += "<td>Cyborg</td>"
 		else if(ishuman(M))
 			dat += "<td>[M.real_name]</td>"
-		else if(istype(M, /mob/new_player))
+		else if(isnewplayer(M))
 			dat += "<td>New Player</td>"
 		else if(isobserver(M))
 			dat += "<td>Ghost</td>"
 		else if(ismonkey(M))
 			dat += "<td>Monkey</td>"
-		else if(isXeno(M))
+		else if(isxeno(M))
 			dat += "<td>Alien</td>"
 		else
 			dat += "<td>Unknown</td>"
@@ -533,7 +533,7 @@
 			<td>
 				<a href='?src=\ref[admins];adminplayeropts=\ref[M]'>[M.real_name]</a>
 				[M.client ? "" : " <i>(logged out)</i>"]
-				[M.is_dead() ? " <b><font color='red'>(DEAD)</font></b>" : ""]
+				[M.stat == DEAD ? " <b><font color='red'>(DEAD)</font></b>" : ""]
 			</td>
 			<td>
 				<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a>

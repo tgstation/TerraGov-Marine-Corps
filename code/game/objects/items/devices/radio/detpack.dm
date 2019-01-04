@@ -88,7 +88,7 @@
 	return ..()
 
 /obj/item/device/radio/detpack/proc/nullvars()
-	if(istype(plant_target, /atom/movable) && plant_target.loc)
+	if(ismovableatom(plant_target) && plant_target.loc)
 		var/atom/movable/T = plant_target
 		if(T.drag_delay == 3)
 			T.drag_delay = target_drag_delay //reset the drag delay of whatever we attached the detpack to
@@ -122,7 +122,7 @@
 	//..()
 	if(usr.stat || usr.is_mob_restrained())
 		return
-	if(((istype(usr, /mob/living/carbon/human) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
+	if(((ishuman(usr) && ((!( ticker ) || (ticker && ticker.mode != "monkey")) && usr.contents.Find(src))) || (usr.contents.Find(master) || (in_range(src, usr) && istype(loc, /turf)))))
 		usr.set_interaction(src)
 		if(href_list["freq"])
 			var/new_frequency = (frequency + text2num(href_list["freq"]))
@@ -166,7 +166,7 @@
 
 /obj/item/device/radio/detpack/attack_self(mob/user as mob, flag1)
 
-	if(!istype(user, /mob/living/carbon/human))
+	if(!ishuman(user))
 		return
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_METAL)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use [src].</span>",
@@ -219,7 +219,7 @@
 		var/obj/O = target
 		if(O.unacidable)
 			return FALSE
-	if(istype(target, /turf/closed/wall))
+	if(iswallturf(target))
 		var/turf/closed/wall/W = target
 		if(W.hull)
 			return FALSE
@@ -255,7 +255,7 @@
 		"<span class='warning'>You plant [name] on [target]! Timer set for [timer] seconds.</span>")
 
 		plant_target = target
-		if(istype(plant_target, /atom/movable))
+		if(ismovableatom(plant_target))
 			var/atom/movable/T = plant_target
 			T.vis_contents += src
 			if(T.drag_delay < 3) //Anything with a fast drag delay we need to modify to avoid kamikazi tactics

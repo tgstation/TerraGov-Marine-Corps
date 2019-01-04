@@ -138,7 +138,7 @@
 
 	if(istype(W, /obj/item/grab) && get_dist(src, user) < 2)
 		var/obj/item/grab/G = W
-		if(istype(G.grabbed_thing, /mob/living))
+		if(isliving(G.grabbed_thing))
 			var/mob/living/M = G.grabbed_thing
 			var/state = user.grab_level
 			user.drop_held_item()

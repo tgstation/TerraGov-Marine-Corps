@@ -494,7 +494,7 @@
 
 	for(var/mob/M in view())
 		if(M && M.client)
-			if(isXeno(M))
+			if(isxeno(M))
 				shake_camera(M, 10, 1)
 			else
 				shake_camera(M, 30, 1) //50 deciseconds, SORRY 5 seconds was way too long. 3 seconds now
@@ -531,7 +531,7 @@
 	if(last_special > world.time)
 		return
 
-	if(isSynth(victim))
+	if(issynth(victim))
 		var/datum/limb/head/synthhead = victim.get_limb("head")
 		if(synthhead.status & LIMB_DESTROYED)
 			return
@@ -546,7 +546,7 @@
 				to_chat(src, "<span class='xenowarning'>The child may still hatch! Not yet!</span>")
 				return
 
-	if(isXeno(victim))
+	if(isxeno(victim))
 		var/mob/living/carbon/Xenomorph/xeno = victim
 		if(hivenumber == xeno.hivenumber)
 			to_chat(src, "<span class='warning'>You can't bring yourself to harm a fellow sister to this magnitude.</span>")
@@ -689,7 +689,7 @@
 			client.perspective = EYE_PERSPECTIVE
 			client.eye = observed_xeno
 		else
-			if (istype(A, /atom/movable))
+			if (ismovableatom(A))
 				client.perspective = EYE_PERSPECTIVE
 				client.eye = A
 			else

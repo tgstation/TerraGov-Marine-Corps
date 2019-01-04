@@ -514,7 +514,7 @@ cases. Override_icon_state should be a list.*/
 		return
 	if(!usr.canmove || usr.stat || usr.is_mob_restrained() || !Adjacent(usr))
 		return
-	if((!istype(usr, /mob/living/carbon)) || (istype(usr, /mob/living/brain)))//Is humanoid, and is not a brain
+	if((!iscarbon(usr)) || (isbrain(usr)))//Is humanoid, and is not a brain
 		to_chat(usr, "\red You can't pick things up!")
 		return
 	if( usr.stat || usr.is_mob_restrained() )//Is not asleep/dead and is not restrained
@@ -777,7 +777,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 				sleep(2)
 			qdel(W)
 
-	if((istype(user.loc, /turf/open/space)) || (user.lastarea.has_gravity == 0))
+	if(isspaceturf(user.loc) || user.lastarea.has_gravity == 0)
 		user.inertia_dir = get_dir(target, user)
 		step(user, user.inertia_dir)
 	return

@@ -29,7 +29,7 @@
 		var/obj/item/I = user.get_active_hand()
 		if(I && I.force)
 			var/d = rand(round(I.force / 4), I.force)
-			if(istype(src, /mob/living/carbon/human))
+			if(ishuman(src))
 				var/mob/living/carbon/human/H = src
 				var/organ = H.get_limb("chest")
 				if (istype(organ, /datum/limb))
@@ -46,7 +46,7 @@
 
 			if(prob(max(4*(100*getBruteLoss()/maxHealth - 75),0))) //4% at 24% health, 80% at 5% health
 				gib()
-	else if(!chestburst && (status_flags & XENO_HOST) && isXenoLarva(user))
+	else if(!chestburst && (status_flags & XENO_HOST) && isxenolarva(user))
 		var/mob/living/carbon/Xenomorph/Larva/L = user
 		L.chest_burst(src)
 
@@ -76,7 +76,8 @@
 
 
 /mob/living/carbon/attack_hand(mob/M as mob)
-	if(!istype(M, /mob/living/carbon)) return
+	if(!iscarbon(M))
+		return
 
 	for(var/datum/disease/D in viruses)
 		if(D.spread_by_touch())
@@ -91,7 +92,8 @@
 
 
 /mob/living/carbon/attack_paw(mob/M as mob)
-	if(!istype(M, /mob/living/carbon)) return
+	if(!iscarbon(M))
+		return
 
 	for(var/datum/disease/D in viruses)
 
@@ -121,7 +123,7 @@
 			"\red <B>You feel a powerful shock course through your body!</B>", \
 			"\red You hear a heavy electrical crack." \
 		)
-		if(isXeno(src) && mob_size == MOB_SIZE_BIG)
+		if(isxeno(src) && mob_size == MOB_SIZE_BIG)
 			Stun(1)//Sadly, something has to stop them from bumping them 10 times in a second
 			KnockDown(1)
 		else
@@ -323,7 +325,7 @@
 
 		if(!lastarea)
 			lastarea = get_area(src.loc)
-		if((istype(loc, /turf/open/space)) || !lastarea.has_gravity)
+		if(isspaceturf(loc) || !lastarea.has_gravity)
 			inertia_dir = get_dir(target, src)
 			step(src, inertia_dir)
 

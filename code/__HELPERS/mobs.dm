@@ -85,13 +85,3 @@ proc/age2agedescription(age)
 		if(60 to 70)		return "aging"
 		if(70 to INFINITY)	return "elderly"
 		else				return "unknown"
-
-
-proc/has_species(var/mob/M, var/species)
-	if(!M || !istype(M,/mob/living/carbon/human)) return 0
-	var/mob/living/carbon/human/H = M
-
-	if(!H.species) return 0
-	if(H.species.name != species) return 0
-
-	return 1

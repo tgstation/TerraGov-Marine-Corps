@@ -108,7 +108,7 @@
 /obj/item/grown/nettle/pickup(mob/living/carbon/human/user as mob)
 	if(istype(user) && !user.gloves)
 		to_chat(user, "\red The nettle burns your bare hand!")
-		if(istype(user, /mob/living/carbon/human))
+		if(ishuman(user))
 			var/organ = ((user.hand ? "l_":"r_") + "arm")
 			var/datum/limb/affecting = user.get_limb(organ)
 			if(affecting.take_damage(0,force))
@@ -155,7 +155,7 @@
 
 	if(!..()) return
 
-	if(istype(M, /mob/living))
+	if(isliving(M))
 		to_chat(M, "\red You are stunned by the powerful acid of the deathnettle!")
 
 		log_combat(user, M, "hit", src)

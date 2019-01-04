@@ -21,7 +21,7 @@
 		if(fireaxe)
 			hasaxe = 1
 
-		if (isrobot(usr) || src.locked)
+		if (iscyborg(usr) || src.locked)
 			if(istype(O, /obj/item/device/multitool))
 				to_chat(user, "\red Resetting circuitry...")
 				playsound(user, 'sound/machines/lockreset.ogg', 25, 1)
@@ -153,7 +153,7 @@
 		set name = "Open/Close"
 		set category = "Object"
 
-		if (isrobot(usr) || src.locked || src.smashed)
+		if (iscyborg(usr) || src.locked || src.smashed)
 			if(src.locked)
 				to_chat(usr, "\red The cabinet won't budge!")
 			else if(src.smashed)
@@ -167,7 +167,7 @@
 		set name = "Remove Fire Axe"
 		set category = "Object"
 
-		if (isrobot(usr))
+		if (iscyborg(usr))
 			return
 
 		if (istype(usr, /mob/living/carbon/Xenomorph))

@@ -141,7 +141,7 @@
 
 /obj/machinery/power/turbine/attack_hand(mob/user)
 
-	if ( (get_dist(src, user) > 1 ) || (stat & (NOPOWER|BROKEN)) && (!istype(user, /mob/living/silicon/ai)) )
+	if ( (get_dist(src, user) > 1 ) || (stat & (NOPOWER|BROKEN)) && !isAI(user) )
 		user.unset_interaction()
 		user << browse(null, "window=turbine")
 		return
@@ -168,14 +168,14 @@
 	..()
 	if(stat & BROKEN)
 		return
-	if (usr.is_mob_incapacitated() || usr.is_mob_restrained() )
+	if (usr.is_mob_incapacitated(TRUE))
 		return
-	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		if(!istype(usr, /mob/living/silicon/ai))
+	if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
+		if(!isAI(usr))
 			to_chat(usr, "\red You don't have the dexterity to do this!")
 			return
 
-	if (( usr.interactee==src && ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon/ai)))
+	if (( usr.interactee==src && ((get_dist(src, usr) <= 1) && isturf(loc))) || isAI(usr))
 
 
 		if( href_list["close"] )
@@ -304,7 +304,7 @@
 /obj/machinery/computer/turbine_computer/Topic(href, href_list)
 	if(..())
 		return
-	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
+	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
 		usr.set_interaction(src)
 
 		if( href_list["view"] )

@@ -16,7 +16,7 @@
 		usr.on_mob_jump()
 		usr.forceMove(pick(get_area_turfs(A)))
 		log_admin("[key_name(usr)] jumped to [A]")
-		if(!istype(usr, /mob/dead/observer))
+		if(!isobserver(usr))
 			message_admins("[key_name_admin(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) jumped to [A]", 1)
 		feedback_add_details("admin_verb","JA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
@@ -32,7 +32,7 @@
 		usr.on_mob_jump()
 		usr.forceMove(T)
 		log_admin("[key_name(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
-		if(!istype(usr, /mob/dead/observer))
+		if(!isobserver(usr))
 			message_admins("[key_name_admin(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) jumped to [T.x],[T.y],[T.z] in [T.loc] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)", 1)
 		feedback_add_details("admin_verb","JT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else
@@ -58,7 +58,7 @@
 			else
 				to_chat(A, "This mob is not located in the game world.")
 		log_admin("[key_name(usr)] jumped to [key_name(M)]")
-		if(!istype(usr, /mob/dead/observer))
+		if(!isobserver(usr))
 			message_admins("[key_name_admin(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) jumped to [key_name_admin(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>)", 1)
 	else
 		alert("Admin jumping disabled")
@@ -83,7 +83,7 @@
 			A.forceMove(A.loc)
 
 			feedback_add_details("admin_verb","JC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		if(!istype(usr, /mob/dead/observer))
+		if(!isobserver(usr))
 			message_admins("[key_name_admin(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) jumped to coordinates [tx], [ty], [tz] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[tx];Y=[ty];Z=[tz]'>JMP</a>)")
 
 	else
@@ -109,7 +109,7 @@
 		usr.on_mob_jump()
 		usr.loc = M.loc
 		log_admin("[key_name(usr)] jumped to [key_name(M)]")
-		if(!istype(usr, /mob/dead/observer))
+		if(!isobserver(usr))
 			message_admins("[key_name_admin(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) jumped to [key_name_admin(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>)", 1)
 		feedback_add_details("admin_verb","JK") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	else

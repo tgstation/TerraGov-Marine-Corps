@@ -1,6 +1,6 @@
 /mob/living/carbon/human/gib()
 
-	var/is_a_synth = isSynth(src)
+	var/is_a_synth = issynth(src)
 	for(var/datum/limb/E in limbs)
 		if(istype(E, /datum/limb/chest))
 			continue
@@ -85,7 +85,7 @@
 
 /mob/living/carbon/human/proc/ChangeToHusk()
 	if(HUSK in mutations)	return
-	if(isSynth(src)) return // dont husk synths
+	if(issynth(src)) return // dont husk synths
 
 	if(f_style)
 		f_style = "Shaved"		//we only change the icon_state of the hair datum, so it doesn't mess up their UI/UE

@@ -298,9 +298,9 @@
 
 /obj/effect/particle_effect/smoke/xeno_burn/affect(var/mob/living/carbon/M)
 	..()
-	if(isXeno(M))
+	if(isxeno(M))
 		return
-	if(isYautja(M) && prob(75))
+	if(isyautja(M) && prob(75))
 		return
 	if(M.stat == DEAD)
 		return
@@ -342,9 +342,9 @@
 
 /obj/effect/particle_effect/smoke/xeno_weak/affect(var/mob/living/carbon/M)
 	..()
-	if(isXeno(M))
+	if(isxeno(M))
 		return
-	if(isYautja(M) && prob(75))
+	if(isyautja(M) && prob(75))
 		return
 	if(M.stat == DEAD)
 		return

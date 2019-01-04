@@ -90,7 +90,7 @@
 		return
 
 	for(var/mob/living/carbon/M in loc)
-		if(isXeno(M))
+		if(isxeno(M))
 			continue
 		if(M.acid_process_cooldown)
 			M.acid_process_cooldown = 0 //Enjoy your very temporary reprieve
@@ -142,7 +142,7 @@
 		playsound(src, "acid_hit", 25)
 
 		if(istype(acid_t, /turf))
-			if(istype(acid_t, /turf/closed/wall))
+			if(iswallturf(acid_t))
 				var/turf/closed/wall/W = acid_t
 				new /obj/effect/acid_hole (W)
 			else

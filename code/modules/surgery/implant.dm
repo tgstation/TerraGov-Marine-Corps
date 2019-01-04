@@ -175,7 +175,7 @@
 			imp.imp_in = null
 			imp.implanted = 0
 
-		if(istype(target, /mob/living/carbon/human))
+		if(ishuman(target))
 			var/mob/living/carbon/human/H = target
 			H.sec_hud_set_implants()
 

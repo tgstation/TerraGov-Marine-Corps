@@ -166,7 +166,7 @@
 
 	var/mob/M = targets[target]
 
-	if(istype(M, /mob/dead/observer) || M.stat == DEAD)
+	if(isobserver(M) || M.stat == DEAD)
 		to_chat(src, "Not even a [src.species.name] can speak to the dead.")
 		return
 
@@ -175,7 +175,7 @@
 	to_chat(M, "\blue Like lead slabs crashing into the ocean, alien thoughts drop into your mind: [text]")
 	if(istype(M,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		if(H.species.name == src.species.name)
+		if(is_species(H, species))
 			return
 		to_chat(H, "\red Your nose begins to bleed...")
 		H.drip(1)

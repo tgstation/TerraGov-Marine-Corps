@@ -38,7 +38,7 @@
 	var/datum/mob_hud/H
 	if(ghost_medhud)
 		H = huds[MOB_HUD_MEDICAL_OBSERVER]
-		H.add_hud_to(src)	
+		H.add_hud_to(src)
 	if(ghost_sechud)
 		H = huds[MOB_HUD_SECURITY_ADVANCED]
 		H.add_hud_to(src)
@@ -105,7 +105,7 @@
 
 /mob/dead/observer/Topic(href, href_list)
 	if(href_list["reentercorpse"])
-		if(istype(usr, /mob/dead/observer))
+		if(isobserver(usr))
 			var/mob/dead/observer/A = usr
 			A.reenter_corpse()
 	if(href_list["track"])
@@ -143,7 +143,7 @@ Works together with spawning an observer, noted above.
 		else//If the silicon mob has no law datum, no inherent laws, or a law zero, add them to the hud.
 			var/mob/living/silicon/silicon_target = target
 			if(!silicon_target.laws||(silicon_target.laws&&(silicon_target.laws.zeroth||!silicon_target.laws.inherent.len))||silicon_target.mind.special_role=="traitor")
-				if(isrobot(silicon_target))//Different icons for robutts and AI.
+				if(iscyborg(silicon_target))//Different icons for robutts and AI.
 					U.client.images += image(tempHud,silicon_target,"hudmalborg")
 				else
 					U.client.images += image(tempHud,silicon_target,"hudmalai")
@@ -297,7 +297,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set category = "Ghost"
 	set name = "Teleport"
 	set desc= "Teleport to a location"
-	if(!istype(usr, /mob/dead/observer))
+	if(!isobserver(usr))
 		to_chat(usr, "Not when you're not dead!")
 		return
 	var/A
@@ -406,7 +406,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Jump to Mob"
 	set desc = "Teleport to a mob"
 
-	if(istype(usr, /mob/dead/observer)) //Make sure they're an observer!
+	if(isobserver(usr)) //Make sure they're an observer!
 
 
 		var/list/dest = list() //List of possible destinations (mobs)
@@ -455,7 +455,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	set name = "Analyze Air"
 	set category = "Ghost"
 
-	if(!istype(usr, /mob/dead/observer)) return
+	if(!isobserver(usr)) return
 
 	// Shamelessly copied from the Gas Analyzers
 	if (!( istype(loc, /turf) ))
@@ -874,7 +874,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	var/target = null
 
 	for(var/mob/living/M in mobs)
-		if(!istype(M,/mob/living/carbon/human) || M.stat || isYautja(M)) mobs -= M
+		if(!istype(M,/mob/living/carbon/human) || M.stat || isyautja(M)) mobs -= M
 
 
 	target = input("Please, select a contestant!", "Cake Time", null, null) as null|anything in mobs

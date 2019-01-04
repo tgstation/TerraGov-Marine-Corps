@@ -251,7 +251,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("That mob doesn't seem to exist, close the panel and try again.")
 		return
 
-	if(istype(M, /mob/living/carbon/human))
+	if(ishuman(M))
 		log_admin("[key_name(src)] has robotized [M.key].")
 		spawn(10)
 			M:Robotize()
@@ -271,7 +271,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("That mob doesn't seem to exist, close the panel and try again.")
 		return
 
-	if(istype(M, /mob/new_player))
+	if(isnewplayer(M))
 		alert("The mob must not be a new_player.")
 		return
 
@@ -313,7 +313,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("That mob doesn't seem to exist, close the panel and try again.")
 		return
 
-	if(isXeno(M))
+	if(isxeno(M))
 		log_admin("[key_name(src)] changed hivenumber of [M] to [M.hivenumber].")
 		M.hivenumber = hivenumber
 		if(istype(M, /mob/living/carbon/Xenomorph/Larva))
@@ -385,7 +385,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if (!ticker)
 		alert("Wait until the game starts")
 		return
-	if (istype(M, /mob/living/carbon/human))
+	if (ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if (H.wear_id)
 			var/obj/item/card/id/id = H.wear_id
@@ -681,7 +681,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
-	if(istype(M, /mob/living/carbon))
+	if(iscarbon(M))
 		M.dna.SetSEState(block,!M.dna.GetSEState(block))
 		domutcheck(M,null,MUTCHK_FORCED)
 		M.update_mutations()

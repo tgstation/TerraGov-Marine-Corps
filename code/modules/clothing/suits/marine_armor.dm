@@ -615,14 +615,14 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 			B18_automed_pain = round(B18_automed_pain)
 			B18_automed_pain = CLAMP(B18_automed_pain,B18_PAIN_MIN,B18_PAIN_MAX)
 		if(!( master ))
-			if(istype(loc, /mob/living/carbon/human))
+			if(ishuman(loc))
 				handle_interface(loc)
 			else
 				for(var/mob/living/carbon/human/M in viewers(1, src))
 					if(M.client)
 						handle_interface(M)
 		else
-			if(istype(master.loc, /mob/living/carbon/human))
+			if(ishuman(master.loc))
 				handle_interface(master.loc)
 			else
 				for(var/mob/living/carbon/human/M in viewers(1, master))

@@ -24,7 +24,7 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 	if (ismob(M))
-		if(istype(M, /mob/living/silicon/ai))
+		if(isAI(M))
 			alert("The AI can't be sent to prison you jerk!", null, null, null, null, null)
 			return
 		//strip their stuff before they teleport into a cell :downs:
@@ -34,7 +34,7 @@
 		M.KnockOut(5)
 		sleep(5)	//so they black out before warping
 		M.loc = pick(prisonwarp)
-		if(istype(M, /mob/living/carbon/human))
+		if(ishuman(M))
 			var/mob/living/carbon/human/prisoner = M
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), WEAR_BODY)
 			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), WEAR_FEET)
@@ -48,7 +48,7 @@
 	set category = null
 	set name = "Subtle Message"
 
-	if(!ismob(M))	
+	if(!ismob(M))
 		return
 	if(!check_rights(R_ADMIN|R_MOD|R_MENTOR))
 		to_chat(src, "Only staff members may use this command.")
@@ -628,7 +628,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	var/data = "<h1>[customname]</h1><br><br><br>\red[input]<br><br>"
 
 	for(var/mob/M in player_list)
-		if(isXeno(M) || isobserver(M))
+		if(isxeno(M) || isobserver(M))
 			to_chat(M, data)
 
 	log_admin("[key_name(src)] has created a Queen Mother report: [input]")
@@ -751,7 +751,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	log_admin("[key_name(usr)] has gibbed [key_name(M)]")
 	message_admins("[key_name_admin(usr)] has gibbed [key_name_admin(M)]", 1)
 
-	if(istype(M, /mob/dead/observer))
+	if(isobserver(M))
 		gibs(M.loc, M.viruses)
 		return
 
@@ -764,7 +764,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
 	if(confirm == "Yes")
-		if (istype(mob, /mob/dead/observer)) // so they don't spam gibs everywhere
+		if (isobserver(mob)) // so they don't spam gibs everywhere
 			return
 		else
 			mob.gib()
@@ -1014,7 +1014,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	for(var/client/C in clients)
 		if(isobserver(C.mob) || C.mob.stat == DEAD)
 			continue
-		if(isXeno(C.mob))
+		if(isxeno(C.mob))
 			C.mob.loc = get_turf(usr)
 
 /proc/get_all()

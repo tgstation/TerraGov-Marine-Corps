@@ -78,7 +78,7 @@ Note: Must be placed within 3 tiles of the R&D Console
 		to_chat(user, "\red The destructive analyzer is busy right now.")
 		return
 	if (istype(O, /obj/item) && !loaded_item)
-		if(isrobot(user)) //Don't put your module items in there!
+		if(iscyborg(user)) //Don't put your module items in there!
 			return
 		if(!O.origin_tech)
 			to_chat(user, "\red This doesn't seem to have a tech origin!")

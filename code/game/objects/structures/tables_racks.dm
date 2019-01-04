@@ -248,7 +248,7 @@
 
 	if (!istype(I) || user.get_active_hand() != I)
 		return ..()
-	if(isrobot(user))
+	if(iscyborg(user))
 		return
 	user.drop_held_item()
 	if(I.loc != loc)
@@ -274,10 +274,10 @@
 	if(!W)
 		return
 	if(istype(W, /obj/item/grab) && get_dist(src, user) <= 1)
-		if(isXeno(user))
+		if(isxeno(user))
 			return
 		var/obj/item/grab/G = W
-		if(istype(G.grabbed_thing, /mob/living))
+		if(isliving(G.grabbed_thing))
 			var/mob/living/M = G.grabbed_thing
 			if(user.a_intent == "hurt")
 				if(user.grab_level > GRAB_AGGRESSIVE)
@@ -309,7 +309,7 @@
 			destroy_structure(1)
 		return
 
-	if((W.flags_item & ITEM_ABSTRACT) || isrobot(user))
+	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
 		return
 
 	if(istype(W, /obj/item/weapon/wristblades))
@@ -565,7 +565,7 @@
 /obj/structure/rack/MouseDrop_T(obj/item/I, mob/user)
 	if (!istype(I) || user.get_active_hand() != I)
 		return
-	if(isrobot(user))
+	if(iscyborg(user))
 		return
 	user.drop_held_item()
 	if(I.loc != loc)
@@ -583,7 +583,7 @@
 		destroy_structure(1)
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 		return
-	if((W.flags_item & ITEM_ABSTRACT) || isrobot(user))
+	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
 		return
 	user.drop_inv_item_to_loc(W, loc)
 

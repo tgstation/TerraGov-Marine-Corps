@@ -139,7 +139,7 @@
 		deductcharge(hitcost)
 		return
 
-	if(isrobot(M))
+	if(iscyborg(M))
 		..()
 		return
 

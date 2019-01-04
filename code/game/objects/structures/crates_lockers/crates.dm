@@ -85,7 +85,7 @@
 /obj/structure/closet/crate/attackby(obj/item/W as obj, mob/user as mob)
 	if(W.flags_item & ITEM_ABSTRACT) return
 	if(opened)
-		if(isrobot(user))
+		if(iscyborg(user))
 			return
 		user.drop_inv_item_to_loc(W, loc)
 	else if(istype(W, /obj/item/packageWrap))

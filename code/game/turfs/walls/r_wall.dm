@@ -27,7 +27,7 @@
 	if(hull)
 		return
 
-	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if (!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 
@@ -85,7 +85,7 @@
 				playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
 
 				if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall/r_wall))
+					if(!isrwallturf(src))
 						return
 
 					if(d_state == 1)
@@ -113,7 +113,7 @@
 					playsound(src, 'sound/items/Welder.ogg', 25, 1)
 
 					if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-						if(!istype(src, /turf/closed/wall/r_wall) || !WT || !WT.isOn())
+						if(!isrwallturf(src) || !WT || !WT.isOn())
 							return
 
 
@@ -130,7 +130,7 @@
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 
 				if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall/r_wall))
+					if(!isrwallturf(src))
 						return
 
 					if(d_state == 2 )
@@ -145,7 +145,7 @@
 				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 
 				if(do_after(user, 100, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall/r_wall))
+					if(!isrwallturf(src))
 						return
 					if(d_state == 3 )
 						d_state = 4
@@ -159,7 +159,7 @@
 				playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
 
 				if(do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall/r_wall))
+					if(!isrwallturf(src))
 						return
 
 					if(d_state == 4)
@@ -175,7 +175,8 @@
 				playsound(src, 'sound/items/Wirecutter.ogg', 25, 1)
 
 				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall/r_wall)) return
+					if(!isrwallturf(src))
+						return
 
 					if(d_state == 5)
 						d_state++
@@ -190,7 +191,7 @@
 				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 
 				if(do_after(user, 100, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall/r_wall))
+					if(!isrwallturf(src))
 						return
 
 					if(d_state == 6)
@@ -206,7 +207,7 @@
 		to_chat(user, "<span class='notice'>You begin to drill though the wall.</span>")
 
 		if(do_after(user, 200, TRUE, 5, BUSY_ICON_BUILD))
-			if(!istype(src, /turf/closed/wall/r_wall))
+			if(!isrwallturf(src))
 				return
 			to_chat(user, "<span class='notice'>Your drill tears though the last of the reinforced plating.</span>")
 			dismantle_wall()
@@ -217,7 +218,7 @@
 		user.visible_message("<span class='notice'>[user] starts repairing the damage to [src].</span>",
 		"<span class='notice'>You start repairing the damage to [src].</span>")
 		playsound(src, 'sound/items/Welder.ogg', 25, 1)
-		if(do_after(user, max(5, round(damage / 5)), TRUE, 5, BUSY_ICON_FRIENDLY) && istype(src, /turf/closed/wall/r_wall))
+		if(do_after(user, max(5, round(damage / 5)), TRUE, 5, BUSY_ICON_FRIENDLY) && isrwallturf(src))
 			user.visible_message("<span class='notice'>[user] finishes repairing the damage to [src].</span>",
 			"<span class='notice'>You finish repairing the damage to [src].</span>")
 			take_damage(-damage)

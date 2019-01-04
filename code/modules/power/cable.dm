@@ -8,7 +8,7 @@
 
 		var/turf/T = user.loc
 
-		if(T.intact_tile || !istype(T, /turf/open/floor))
+		if(T.intact_tile || !isfloorturf(T))
 			return
 
 		if(get_dist(src, user) > 1)

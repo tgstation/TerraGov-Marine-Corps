@@ -24,9 +24,9 @@
 					count_marine_humans++
 				if(C.mob.status_flags & XENO_HOST)
 					count_infectedhumans++
-			if(isXeno(C.mob))
+			if(isxeno(C.mob))
 				count_aliens++
-			if(isYautja(C.mob))
+			if(isyautja(C.mob))
 				count_preds++
 		if(iszombie(C.mob))
 			count_zed++

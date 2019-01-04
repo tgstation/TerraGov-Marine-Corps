@@ -159,7 +159,7 @@ FIRE ALARM
 	var/area/A = src.loc
 	var/d1
 	var/d2
-	if (istype(user, /mob/living/carbon/human) || istype(user, /mob/living/silicon))
+	if (ishuman(user) || issilicon(user))
 		A = A.loc
 
 		if (A.flags_alarm_state & ALARM_WARNING_FIRE)
@@ -200,7 +200,7 @@ FIRE ALARM
 	if (buildstage != 2)
 		return
 
-	if ((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
+	if ((usr.contents.Find(src) || ((get_dist(src, usr) <= 1) && istype(src.loc, /turf))) || issilicon(usr))
 		usr.set_interaction(src)
 		if (href_list["reset"])
 			src.reset()

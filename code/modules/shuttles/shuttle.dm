@@ -217,7 +217,7 @@
 				else if (!M.buckled)
 					to_chat(M, "\red The floor lurches beneath you!")
 					shake_camera(M, iselevator? 2 : 10, 1)
-		if(istype(M, /mob/living/carbon) && !iselevator)
+		if(iscarbon(M) && !iselevator)
 			if(!M.buckled)
 				M.KnockDown(3)
 

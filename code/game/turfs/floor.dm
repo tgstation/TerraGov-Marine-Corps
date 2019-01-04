@@ -118,7 +118,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 			if(icon_state != "carpetsymbol")
 				var/connectdir = 0
 				for(var/direction in cardinal)
-					if(istype(get_step(src, direction), /turf/open/floor))
+					if(isfloorturf(get_step(src, direction)))
 						var/turf/open/floor/FF = get_step(src, direction)
 						if(FF.is_carpet_floor())
 							connectdir |= direction
@@ -277,7 +277,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 		spawn(5)
 			if(src)
 				for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
-					if(istype(get_step(src,direction), /turf/open/floor))
+					if(isfloorturf(get_step(src,direction)))
 						var/turf/open/floor/FF = get_step(src,direction)
 						FF.update_icon() //So siding get updated properly
 
@@ -460,12 +460,12 @@ var/list/wood_icons = list("wood", "wood-broken")
 					F.on = L.on
 				if(istype(T, /obj/item/stack/tile/grass))
 					for(var/direction in cardinal)
-						if(istype(get_step(src, direction), /turf/open/floor))
+						if(isfloorturf(get_step(src, direction)))
 							var/turf/open/floor/FF = get_step(src,direction)
 							FF.update_icon() //so siding gets updated properly
 				else if(istype(T, /obj/item/stack/tile/carpet))
 					for(var/direction in list(1, 2, 4, 8, 5, 6, 9, 10))
-						if(istype(get_step(src, direction), /turf/open/floor))
+						if(isfloorturf(get_step(src, direction)))
 							var/turf/open/floor/FF = get_step(src,direction)
 							FF.update_icon() //so siding gets updated properly
 				T.use(1)

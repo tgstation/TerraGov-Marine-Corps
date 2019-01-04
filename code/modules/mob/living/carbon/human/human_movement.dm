@@ -33,10 +33,10 @@
 
 	reducible_tally += reagent_move_delay_modifier //hyperzine and ultrazine
 
-	if(shock_stage >= 10 && !isYautja(src))
+	if(shock_stage >= 10 && !isyautja(src))
 		reducible_tally += 3
 
-	if(bodytemperature < species.cold_level_1 && !isYautja(src))
+	if(bodytemperature < species.cold_level_1 && !isyautja(src))
 		reducible_tally += 2 //Major slowdown if you're freezing
 
 	if(temporary_slowdown)

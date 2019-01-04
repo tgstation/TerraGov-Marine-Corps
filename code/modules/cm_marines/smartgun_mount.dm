@@ -136,7 +136,7 @@
 		to_chat(user, "The <b>M56D Smartgun</b> is not yet mounted.")
 
 /obj/machinery/m56d_post/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(isXenoLarva(M))
+	if(isxenolarva(M))
 		return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
 	"<span class='danger'>You slash [src]!</span>")
@@ -343,7 +343,7 @@
 	return 1
 
 /obj/machinery/m56d_hmg/attack_alien(mob/living/carbon/Xenomorph/M) // Those Ayy lmaos.
-	if(isXenoLarva(M))
+	if(isxenolarva(M))
 		return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
 	"<span class='danger'>You slash [src]!</span>")
@@ -525,7 +525,7 @@
 			if(user.interactee) //Make sure we're not manning two guns at once, tentacle arms.
 				to_chat(user, "You're already manning something!")
 				return
-			if(isSynth(user) && !config.allow_synthetic_gun_use)
+			if(issynth(user) && !config.allow_synthetic_gun_use)
 				to_chat(user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
 				return
 			if(user.get_active_hand() != null)

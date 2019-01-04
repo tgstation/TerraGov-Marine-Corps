@@ -183,11 +183,11 @@
 		time_coeff = diff
 
 /obj/machinery/mecha_part_fabricator/proc/operation_allowed(mob/M)
-	if(isrobot(M) || isAI(M))
+	if(iscyborg(M) || isAI(M))
 		return 1
 	if(!istype(req_access) || !req_access.len)
 		return 1
-	else if(istype(M, /mob/living/carbon/human))
+	else if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		for(var/ID in list(H.get_active_hand(), H.wear_id, H.belt))
 			if(src.check_access(ID))

@@ -819,7 +819,7 @@
 	. = ..()
 
 /obj/structure/barricade/plasteel/attack_hand(mob/user as mob)
-	if(isXeno(user))
+	if(isxeno(user))
 		return
 
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)

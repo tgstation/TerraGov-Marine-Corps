@@ -658,7 +658,7 @@ About the new airlock wires panel:
 	M.forceMove(loc)
 
 /obj/machinery/door/airlock/attack_hand(mob/user as mob)
-	if(!istype(usr, /mob/living/silicon))
+	if(!issilicon(usr))
 		if(src.isElectrified())
 			if(src.shock(user, 100))
 				return
@@ -788,7 +788,7 @@ About the new airlock wires panel:
 			src.signalers[wirenum] = null
 
 
-	if(istype(usr, /mob/living/silicon))
+	if(issilicon(usr))
 		if (!check_synth_access(usr))
 			return
 
@@ -975,7 +975,7 @@ About the new airlock wires panel:
 			var/obj/item/clothing/mask/cigarette/L = C
 			L.light("<span class='notice'>[user] lights their [L] on an electrical arc from the [src]")
 			return
-	if(!istype(user, /mob/living/silicon))
+	if(!issilicon(user))
 		if(isElectrified())
 			if(shock(user, 75))
 				return
@@ -1158,7 +1158,7 @@ About the new airlock wires panel:
 
 	for(var/turf/turf in locs)
 		for(var/mob/living/M in turf)
-			if(isrobot(M))
+			if(iscyborg(M))
 				M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)
 			else
 				M.apply_damage(DOOR_CRUSH_DAMAGE, BRUTE)

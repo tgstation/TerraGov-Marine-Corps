@@ -280,7 +280,7 @@ display round(lastgen) and phorontank amount
 
 /obj/machinery/power/port_gen/pacman/interact(mob/user)
 	if (get_dist(src, user) > 1 )
-		if (!istype(user, /mob/living/silicon/ai))
+		if (!isAI(user))
 			user.unset_interaction()
 			user << browse(null, "window=port_gen")
 			return

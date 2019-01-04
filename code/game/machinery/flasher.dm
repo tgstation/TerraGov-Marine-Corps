@@ -69,7 +69,7 @@
 		if (get_dist(src, O) > src.range)
 			continue
 
-		if (istype(O, /mob/living/carbon/human))
+		if (ishuman(O))
 			var/mob/living/carbon/human/H = O
 			if(H.get_eye_protection() > 0)
 				continue
@@ -78,7 +78,7 @@
 			continue
 
 		O.KnockDown(strength)
-		if (istype(O, /mob/living/carbon/human))
+		if (ishuman(O))
 			var/mob/living/carbon/human/H = O
 			var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 			if (E && (E.damage > E.min_bruised_damage && prob(E.damage + 50)))
@@ -100,7 +100,7 @@
 	if ((src.disable) || (src.last_flash && world.time < src.last_flash + 150))
 		return
 
-	if(istype(AM, /mob/living/carbon))
+	if(iscarbon(AM))
 		var/mob/living/carbon/M = AM
 		if ((M.m_intent != MOVE_INTENT_WALK) && (src.anchored))
 			src.flash()

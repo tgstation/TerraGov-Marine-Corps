@@ -129,14 +129,14 @@ DEFINES in setup.dm, referenced here.
 	var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
 	if(in_hand == src && (flags_item & TWOHANDED))
 		unload(user)//It has to be held if it's a two hander.
-	else 
+	else
 		return ..()
 
 
 /obj/item/weapon/gun/throw_at(atom/target, range, speed, thrower)
 	if( harness_check(thrower) )
 		to_chat(usr, "<span class='warning'>\The [src] clanks on the ground.</span>")
-	else 
+	else
 		return ..()
 
 /*
@@ -198,7 +198,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	if(!istype(user) || delay <= 0)
 		return FALSE
 	var/mob/living/L
-	if(istype(user, /mob/living))
+	if(isliving(user))
 		L = user
 	var/image/busy_icon
 	busy_icon = get_busy_icon(BUSY_ICON_HOSTILE)
@@ -253,7 +253,7 @@ should be alright.
 		if(isnull(user.s_store) && isturf(loc))
 			var/obj/item/I = user.wear_suit
 			user.equip_to_slot_if_possible(src,WEAR_J_STORE)
-			if(user.s_store == src) 
+			if(user.s_store == src)
 				to_chat(user, "<span class='warning'>[src] snaps into place on [I].</span>")
 			user.update_inv_s_store()
 

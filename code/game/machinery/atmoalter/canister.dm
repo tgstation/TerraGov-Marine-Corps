@@ -185,7 +185,7 @@ update_flag
 		src.add_fingerprint(user)
 		healthcheck()
 
-	else if(istype(user, /mob/living/silicon/robot) && istype(W, /obj/item/tank/jetpack))
+	else if(iscyborg(user) && istype(W, /obj/item/tank/jetpack))
 		var/obj/item/tank/jetpack/JT = W
 		if(pressure > JT.pressure_full)
 			JT.gas_type = gas_type

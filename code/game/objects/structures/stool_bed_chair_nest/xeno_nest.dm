@@ -100,11 +100,11 @@
 		to_chat(user, "<span class='warning'>\The [M] is too big to fit in [src].</span>")
 		return
 
-	if(!isXeno(user))
+	if(!isxeno(user))
 		to_chat(user, "<span class='warning'>Gross! You're not touching that stuff.</span>")
 		return
 
-	if(isYautja(M))
+	if(isyautja(M))
 		to_chat(user, "<span class='warning'>\The [M] seems to be wearing some kind of resin-resistant armor!</span>")
 		return
 
@@ -184,7 +184,7 @@
 	healthcheck()
 
 /obj/structure/bed/nest/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(isXenoLarva(M)) //Larvae can't do shit
+	if(isxenolarva(M)) //Larvae can't do shit
 		return
 	if(M.a_intent == "hurt")
 		M.visible_message("<span class='danger'>\The [M] claws at \the [src]!</span>", \

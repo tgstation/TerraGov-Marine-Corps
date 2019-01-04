@@ -287,13 +287,13 @@
 	A.remove_hud(user)
 
 	return TRUE
-	
+
 /obj/item/weapon/gun/proc/update_slowdown()
 	if(flags_item & WIELDED)
 		slowdown = initial(slowdown) + aim_slowdown
 	else
 		slowdown = initial(slowdown)
-	
+
 
 //----------------------------------------------------------
 			//							        \\
@@ -826,7 +826,7 @@ and you're good to go.
 			return
 
 		if(!config.allow_synthetic_gun_use)
-			if(isSynth(user))
+			if(issynth(user))
 				to_chat(user, "<span class='warning'>Your program does not allow you to use firearms.</span>")
 				return
 

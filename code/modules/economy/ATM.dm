@@ -115,7 +115,7 @@ log transactions
 		..()
 
 /obj/machinery/atm/attack_hand(mob/user as mob)
-	if(istype(user, /mob/living/silicon))
+	if(issilicon(user))
 		to_chat(user, "\red \icon[src] Artificial unit recognized. Artificial units do not currently receive monetary compensation, as per Nanotrasen regulation #1005.")
 		return
 	if(get_dist(src,user) <= 1)

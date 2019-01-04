@@ -97,10 +97,10 @@
 	if(!W)
 		return
 	if(istype(W, /obj/item/grab))
-		if(isXeno(user))
+		if(isxeno(user))
 			return
 		var/obj/item/grab/G = W
-		if(istype(G.grabbed_thing, /mob/living))
+		if(isliving(G.grabbed_thing))
 			var/mob/living/M = G.grabbed_thing
 			if(user.a_intent == "hurt")
 				if(user.grab_level > GRAB_AGGRESSIVE)
@@ -162,7 +162,7 @@
 				destroyed()
 		return
 
-	if((W.flags_item & ITEM_ABSTRACT) || isrobot(user))
+	if((W.flags_item & ITEM_ABSTRACT) || iscyborg(user))
 		return
 
 	var/damage = W.force

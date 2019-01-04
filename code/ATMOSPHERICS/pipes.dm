@@ -17,7 +17,7 @@
 /obj/machinery/atmospherics/pipe/New()
 	..()
 	//so pipes under walls are hidden
-	if(istype(loc, /turf/closed))
+	if(isclosedturf(loc))
 		level = 1
 	//build_network()
 

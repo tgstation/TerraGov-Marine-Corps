@@ -71,7 +71,7 @@
 	healthcheck()
 
 /obj/effect/alien/resin/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(isXenoLarva(M)) //Larvae can't do shit
+	if(isxenolarva(M)) //Larvae can't do shit
 		return 0
 	M.visible_message("<span class='xenonotice'>\The [M] claws \the [src]!</span>", \
 	"<span class='xenonotice'>You claw \the [src].</span>")
@@ -168,7 +168,7 @@
 	..()
 
 /obj/effect/alien/resin/trap/examine(mob/user)
-	if(isXeno(user))
+	if(isxeno(user))
 		to_chat(user, "A hole for a little one to hide in ambush.")
 		if(hugger)
 			to_chat(user, "There's a little one inside.")
@@ -201,7 +201,7 @@
 
 /obj/effect/alien/resin/trap/HasProximity(atom/movable/AM)
 	if(hugger)
-		if(CanHug(AM) && !isYautja(AM) && !isSynth(AM))
+		if(CanHug(AM) && !isyautja(AM) && !issynth(AM))
 			var/mob/living/L = AM
 			L.visible_message("<span class='warning'>[L] trips on [src]!</span>",\
 							"<span class='danger'>You trip on [src]!</span>")
@@ -241,7 +241,7 @@
 	..()
 
 /obj/effect/alien/resin/trap/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/clothing/mask/facehugger) && isXeno(user))
+	if(istype(W, /obj/item/clothing/mask/facehugger) && isxeno(user))
 		var/obj/item/clothing/mask/facehugger/FH = W
 		if(FH.stat == DEAD)
 			to_chat(user, "<span class='warning'>You can't put a dead facehugger in [src].</span>")
@@ -343,7 +343,7 @@
 		qdel(src)
 
 /obj/structure/mineral_door/resin/TryToSwitchState(atom/user)
-	if(isXeno(user))
+	if(isxeno(user))
 		return ..()
 
 /obj/structure/mineral_door/resin/Open()
@@ -492,7 +492,7 @@
 		if(GROWING)
 			to_chat(M, "<span class='xenowarning'>The child is not developed yet.</span>")
 		if(GROWN)
-			if(isXenoLarva(M))
+			if(isxenolarva(M))
 				to_chat(M, "<span class='xenowarning'>You nudge the egg, but nothing happens.</span>")
 				return
 			to_chat(M, "<span class='xenonotice'>You retrieve the child.</span>")
@@ -623,7 +623,7 @@
 
 /obj/effect/alien/egg/HasProximity(atom/movable/AM as mob|obj)
 	if(status == GROWN)
-		if(!CanHug(AM) || isYautja(AM) || isSynth(AM)) //Predators are too stealthy to trigger eggs to burst. Maybe the huggers are afraid of them.
+		if(!CanHug(AM) || isyautja(AM) || issynth(AM)) //Predators are too stealthy to trigger eggs to burst. Maybe the huggers are afraid of them.
 			return
 		Burst(FALSE)
 
@@ -702,7 +702,7 @@ TUNNEL
 
 /obj/structure/tunnel/examine(mob/user)
 	..()
-	if(!isXeno(user) && !isobserver(user))
+	if(!isxeno(user) && !isobserver(user))
 		return
 
 	if(!other)
@@ -739,7 +739,7 @@ TUNNEL
 	healthcheck()
 
 /obj/structure/tunnel/attackby(obj/item/W as obj, mob/user as mob)
-	if(!isXeno(user))
+	if(!isxeno(user))
 		return ..()
 	attack_alien(user)
 
@@ -753,7 +753,7 @@ TUNNEL
 		if(!hive.living_xeno_queen)
 			to_chat(M, "<span class='xenowarning'>There is no Queen. You must choose a queen first.</span>")
 			return FALSE
-		else if(isXenoQueen(M))
+		else if(isxenoqueen(M))
 			to_chat(M, "<span class='xenowarning'>There is no reason to leave the safety of the caves yet.</span>")
 			return FALSE
 
@@ -766,7 +766,7 @@ TUNNEL
 	if(M.mob_size == MOB_SIZE_BIG) //Big xenos take WAY longer
 		tunnel_time = 120
 
-	if(isXenoLarva(M)) //Larva can zip through near-instantly, they are wormlike after all
+	if(isxenolarva(M)) //Larva can zip through near-instantly, they are wormlike after all
 		tunnel_time = 5
 
 	if(!other || !isturf(other.loc))

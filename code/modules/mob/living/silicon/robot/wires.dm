@@ -87,7 +87,7 @@
 	src.interact(usr)
 
 /mob/living/silicon/robot/proc/interact(mob/user)
-	if(wiresexposed && (!istype(user, /mob/living/silicon)))
+	if(wiresexposed && (!issilicon(user)))
 		user.set_interaction(src)
 		var/t1 = text("<B>Access Panel</B><br>\n")
 		var/list/Borgwires = list(
@@ -114,7 +114,7 @@
 
 /mob/living/silicon/robot/Topic(href, href_list)
 	..()
-	if (((in_range(src, usr) && istype(src.loc, /turf))) && !istype(usr, /mob/living/silicon))
+	if (((in_range(src, usr) && istype(src.loc, /turf))) && !issilicon(usr))
 		usr.set_interaction(src)
 		if (href_list["borgwires"])
 			var/t1 = text2num(href_list["borgwires"])

@@ -65,10 +65,10 @@
 	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span> says, <span class='message'>\"[message]\"</span></span>"
 
 	for(var/mob/M in player_list)
-	
-		if(istype(M, /mob/new_player))
+
+		if(isnewplayer(M))
 			continue
-			
+
 		if(M.client && M.stat == DEAD && (M.client.prefs.toggles_chat & CHAT_DEAD))
 			to_chat(M, rendered)
 

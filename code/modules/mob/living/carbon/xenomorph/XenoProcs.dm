@@ -253,7 +253,7 @@
 
 	if(ismob(hit_atom)) //Hit a mob! This overwrites normal throw code.
 		var/mob/living/carbon/M = hit_atom
-		if(!M.stat && !isXeno(M))
+		if(!M.stat && !isxeno(M))
 			switch(xeno_caste.charge_type)
 				if(1 to 2)
 					if(ishuman(M) && M.dir in reverse_nearby_direction(dir))
@@ -263,7 +263,7 @@
 							throwing = FALSE //Reset throwing manually.
 							return FALSE
 
-						if(isYautja(H))
+						if(isyautja(H))
 							if(H.check_shields(0, "the pounce", 1))
 								visible_message("<span class='danger'>[H] blocks the pounce of [src] with the combistick!</span>",
 												"<span class='xenodanger'>[H] blocks your pouncing form with the combistick!</span>", null, 5)
@@ -293,7 +293,7 @@
 					frozen = TRUE
 					if(xeno_caste.charge_type == 2)
 						M.attack_alien(src, null, "disarm") //Hunters get a free throttle in exchange for lower initial stun.
-					if(!(xeno_caste.caste_flags & CASTE_IS_ROBOTIC)) 
+					if(!(xeno_caste.caste_flags & CASTE_IS_ROBOTIC))
 						playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
 					spawn(xeno_caste.charge_type == 1 ? 5 : 15)
 						frozen = FALSE
@@ -486,7 +486,7 @@
 	if(charge_speed > charge_speed_buildup * charge_turfs_to_charge)
 
 		for(var/mob/living/carbon/M in loc)
-			if(M.lying && !isXeno(M) && M.stat != DEAD && !(M.status_flags & XENO_HOST && istype(M.buckled, /obj/structure/bed/nest)))
+			if(M.lying && !isxeno(M) && M.stat != DEAD && !(M.status_flags & XENO_HOST && istype(M.buckled, /obj/structure/bed/nest)))
 				visible_message("<span class='danger'>[src] runs [M] over!</span>",
 				"<span class='danger'>You run [M] over!</span>", null, 5)
 
@@ -495,10 +495,10 @@
 
 		var/shake_dist = min(round(charge_speed * 5), 8)
 		for(var/mob/living/carbon/M in range(shake_dist))
-			if(M.client && !isXeno(M))
+			if(M.client && !isxeno(M))
 				shake_camera(M, 1, 1)
 
-	lastturf = isturf(loc) && !istype(loc, /turf/open/space) ? loc : null//Set their turf, to make sure they're moving and not jumped in a locker or some shit
+	lastturf = isturf(loc) && !isspaceturf(loc) ? loc : null//Set their turf, to make sure they're moving and not jumped in a locker or some shit
 
 	update_icons()
 

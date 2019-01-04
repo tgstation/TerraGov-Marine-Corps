@@ -42,7 +42,7 @@
 
 	log_attack("<font color='red'>[user.name] ([user.ckey]) attacked [M.name] ([M.ckey]) with [src.name] (INTENT: [uppertext(user.a_intent)])</font>")
 
-	if (!(istype(user, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
+	if (!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
 		to_chat(user, "\red You don't have the dexterity to do this!")
 		return
 	if(!chaplain)
@@ -67,7 +67,7 @@
 			to_chat(M, "\red The power of [src.deity_name] clears your mind of heresy!")
 			to_chat(user, "\red You see how [M]'s eyes become clear, the cult no longer holds control over him!")
 			ticker.mode.remove_cultist(M.mind)*/
-		if ((istype(M, /mob/living/carbon/human) && prob(60)))
+		if ((ishuman(M) && prob(60)))
 			bless(M)
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("\red <B>[] heals [] with the power of [src.deity_name]!</B>", user, M), 1)
@@ -88,7 +88,7 @@
 */
 /obj/item/storage/bible/afterattack(atom/A, mob/user as mob, proximity)
 	if(!proximity) return
-/*	if (istype(A, /turf/open/floor))
+/*	if (isfloorturf(A))
 		to_chat(user, "\blue You hit the floor with the bible.")
 		if(user.mind && (user.mind.assigned_role == "Chaplain"))
 			call(/obj/effect/rune/proc/revealrunes)(src)*/

@@ -274,7 +274,7 @@
 		jobname = "AI"
 
 	// --- Cyborg ---
-	else if (isrobot(M))
+	else if (iscyborg(M))
 		jobname = "Cyborg"
 
 	// --- Unidentifiable mob ---
@@ -516,7 +516,7 @@
 
 /obj/item/device/radio/borg/talk_into()
 	..()
-	if (isrobot(src.loc))
+	if (iscyborg(src.loc))
 		var/mob/living/silicon/robot/R = src.loc
 		var/datum/robot_component/C = R.components["radio"]
 		R.cell_use_power(C.active_usage)

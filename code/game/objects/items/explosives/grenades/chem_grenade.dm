@@ -152,7 +152,7 @@
 				if( A == src ) continue
 				src.reagents.reaction(A, 1, 10)
 
-		if(istype(loc, /mob/living/carbon))		//drop dat grenade if it goes off in your hand
+		if(iscarbon(loc))		//drop dat grenade if it goes off in your hand
 			var/mob/living/carbon/C = loc
 			C.drop_inv_item_on_ground(src)
 			C.throw_mode_off()

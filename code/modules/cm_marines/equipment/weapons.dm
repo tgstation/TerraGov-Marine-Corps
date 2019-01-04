@@ -143,7 +143,7 @@
 	if(!istype(user) || delay <= 0) return FALSE
 
 	var/mob/living/carbon/human/L
-	if(istype(user, /mob/living/carbon/human)) L = user
+	if(ishuman(user)) L = user
 
 	var/delayfraction = round(delay/numticks)
 	. = TRUE

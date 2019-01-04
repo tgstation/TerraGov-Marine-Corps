@@ -24,7 +24,7 @@
 	if (!(ndir in cardinal))
 		return
 	var/turf/loc = get_turf(usr)
-	if (!istype(loc, /turf/open/floor))
+	if (!isfloorturf(loc))
 		to_chat(usr, "\red [src.name] cannot be placed on this spot.")
 		return
 	to_chat(usr, "Attaching [src] to the wall.")

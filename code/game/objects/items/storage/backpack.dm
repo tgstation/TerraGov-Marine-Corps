@@ -452,7 +452,7 @@
 	if (!istype(M))
 		return
 
-	if(M.species.name == "Zombie")
+	if(iszombie(M))
 		return
 
 	if (M.back != src)

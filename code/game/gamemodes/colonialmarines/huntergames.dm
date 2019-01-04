@@ -59,7 +59,7 @@
 								50; /obj/item/storage/firstaid/fire, \
 								25; /obj/item/explosive/grenade/flashbang, \
 								25; /obj/item/legcuffs/yautja)
-								
+
 #define HUNTER_OKAY_ITEM  pick(\
 								400; /obj/item/weapon/twohanded/spear, \
 								300; /obj/item/tool/crowbar, \
@@ -130,7 +130,7 @@ var/waiting_for_drop_votes = 0
 	var/supply_votes[]
 
 /obj/effect/step_trigger/hell_hound_blocker/Trigger(mob/living/carbon/hellhound/H)
-	if(istype(H)) 
+	if(istype(H))
 		H.gib() //No mercy.
 
 /datum/game_mode/huntergames/announce()
@@ -161,9 +161,9 @@ var/waiting_for_drop_votes = 0
 			if("xeno tunnel")
 				qdel(L)
 
-	for(var/obj/item/weapon/gun/G in item_list) 
+	for(var/obj/item/weapon/gun/G in item_list)
 		qdel(G) //No guns or ammo allowed.
-	for(var/obj/item/ammo_magazine/M in item_list) 
+	for(var/obj/item/ammo_magazine/M in item_list)
 		qdel(M)
 
 	for(var/mob/new_player/player in player_list)
@@ -171,17 +171,17 @@ var/waiting_for_drop_votes = 0
 			if(!player.mind && player.client)
 				player.mind = new /datum/mind(player.key)
 			player.mind.assigned_role = "ROLE"
-				
+
 	return TRUE
 
 /datum/game_mode/huntergames/post_setup()
 	var/mob/M
 	for(M in mob_list)
-		if(M.client && istype(M, /mob/living/carbon/human))
+		if(M.client && ishuman(M))
 			var/mob/living/carbon/human/H = M
 			spawn_contestant(H)
 
-	if(config) 
+	if(config)
 		config.remove_gun_restrictions = 1 //This will allow anyone to use cool guns.
 
 	world << sound('sound/effects/siren.ogg')
@@ -210,7 +210,7 @@ var/waiting_for_drop_votes = 0
 	H.loc = picked
 
 	if(H.client)
-		H.name = H.client.prefs.real_name 
+		H.name = H.client.prefs.real_name
 		H.client.change_view(world.view)
 
 	if(!H.mind)
@@ -318,7 +318,7 @@ var/waiting_for_drop_votes = 0
 	var/mob/living/carbon/winner = null
 
 	for(var/mob/living/carbon/human/Q in living_mob_list)
-		if(istype(Q) && Q.stat == 0 && !isYautja(Q) && !istype(get_area(Q.loc), /area/centcom) && !istype(get_area(Q.loc), /area/tdome))
+		if(istype(Q) && Q.stat == 0 && !isyautja(Q) && !istype(get_area(Q.loc), /area/centcom) && !istype(get_area(Q.loc), /area/tdome))
 			winner = Q
 			break
 
@@ -346,7 +346,7 @@ var/waiting_for_drop_votes = 0
 	return FALSE
 
 /datum/game_mode/huntergames/proc/place_lootbox(turf/T)
-	if(!istype(T)) 
+	if(!istype(T))
 		return FALSE
 
 	var/atom/location = new /obj/structure/closet/crate(T)
@@ -356,7 +356,7 @@ var/waiting_for_drop_votes = 0
 		new item(location)
 
 /datum/game_mode/huntergames/proc/place_initial_item(turf/T, item)
-	if(!istype(T)) 
+	if(!istype(T))
 		return FALSE
 
 	new item(T)

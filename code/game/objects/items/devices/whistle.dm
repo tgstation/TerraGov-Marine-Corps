@@ -38,7 +38,7 @@
 		spamcheck = 0
 
 /obj/item/device/whistle/MouseDrop(obj/over_object as obj)
-	if(ishuman(usr) || ismonkey(usr) || isrobot(usr))
+	if(ishuman(usr) || ismonkey(usr) || iscyborg(usr))
 
 		if(!usr.is_mob_restrained() && !usr.stat && usr.wear_mask == src)
 			switch(over_object.name)

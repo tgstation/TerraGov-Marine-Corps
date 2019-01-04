@@ -543,19 +543,19 @@
 		return
 
 	if ( (get_dist(src, user) > 1 ))
-		if (!istype(user, /mob/living/silicon))
+		if (!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=air_alarm")
 			user << browse(null, "window=AAlarmwires")
 			return
 
 
-		else if (istype(user, /mob/living/silicon) && aidisabled)
+		else if (issilicon(user) && aidisabled)
 			to_chat(user, "AI control for this Air Alarm interface has been disabled.")
 			user << browse(null, "window=air_alarm")
 			return
 
-	if(wiresexposed && (!istype(user, /mob/living/silicon)))
+	if(wiresexposed && !issilicon(user))
 		var/t1 = text("<html><head><title>[alarm_area.name] Air Alarm Wires</title></head><body><B>Access Panel</B><br>\n")
 		var/list/wirecolors = list(
 			"Orange" = 1,
@@ -587,7 +587,7 @@
 	return
 
 /obj/machinery/alarm/proc/return_text(mob/user)
-	if(!(istype(user, /mob/living/silicon)) && locked)
+	if(!issilicon(user) && locked)
 		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr><i>(Swipe ID card to unlock interface)</i></body></html>"
 	else
 		return "<html><head><title>\The [src]</title></head><body>[return_status()]<hr>[rcon_text()]<hr>[return_controls()]</body></html>"
@@ -827,7 +827,7 @@ table tr:first-child th:first-child { border: none;}
 	return output
 
 /obj/machinery/alarm/Topic(href, href_list)
-	if(..() || !( Adjacent(usr) || istype(usr, /mob/living/silicon)) ) // dont forget calling super in machine Topics -walter0o
+	if(..() || !( Adjacent(usr) || issilicon(usr)) ) // dont forget calling super in machine Topics -walter0o
 		usr.unset_interaction()
 		usr << browse(null, "window=air_alarm")
 		usr << browse(null, "window=AAlarmwires")
@@ -861,7 +861,7 @@ table tr:first-child th:first-child { border: none;}
 			target_temperature = input_temperature + T0C
 
 	// hrefs that need the AA unlocked -walter0o
-	if(!locked || istype(usr, /mob/living/silicon))
+	if(!locked || issilicon(usr))
 
 		if(href_list["command"])
 			var/device_id = href_list["id_tag"]

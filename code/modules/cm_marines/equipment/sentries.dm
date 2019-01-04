@@ -79,7 +79,7 @@
 		S.update_icon()
 		qdel(src)
 
-	
+
 /obj/machinery/turret_tripod_deployed
 	name = "\improper UA 571-C turret tripod"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
@@ -310,7 +310,7 @@
 	. = ..()
 
 /obj/machinery/marine_turret/attack_hand(mob/user as mob)
-	if(isYautja(user))
+	if(isyautja(user))
 		to_chat(user, "<span class='warning'>You punch [src] but nothing happens.</span>")
 		return
 	src.add_fingerprint(user)
@@ -827,7 +827,7 @@
 
 
 /obj/machinery/marine_turret/attack_alien(mob/living/carbon/Xenomorph/M)
-	if(isXenoLarva(M)) return //Larvae can't do shit
+	if(isxenolarva(M)) return //Larvae can't do shit
 	M.visible_message("<span class='danger'>[M] has slashed [src]!</span>",
 	"<span class='danger'>You slash [src]!</span>")
 	M.animation_attack_on(src)
@@ -1008,9 +1008,9 @@
 	var/mob/living/M
 
 	for(M in oview(range, src))
-		if(M.stat == DEAD || isrobot(M)) //No dead or robots.
+		if(M.stat == DEAD || iscyborg(M)) //No dead or robots.
 			continue
-		if(!safety_off && !isXeno(M)) //When safeties are on, Xenos only.
+		if(!safety_off && !isxeno(M)) //When safeties are on, Xenos only.
 			continue
 		/*
 		I really, really need to replace this with some that isn't insane. You shouldn't have to fish for access like this.
@@ -1127,7 +1127,7 @@
 	var/obj/machinery/camera/current = null
 
 	check_eye(var/mob/user as mob)
-		if (user.z == 0 || user.stat || ((get_dist(user, src) > 1 || is_blind(user)) && !istype(user, /mob/living/silicon))) //user can't see - not sure why canmove is here.
+		if (user.z == 0 || user.stat || ((get_dist(user, src) > 1 || is_blind(user)) && !issilicon(user))) //user can't see - not sure why canmove is here.
 			return null
 		if(!linked_turret || isnull(linked_turret.camera))
 			return null
@@ -1169,7 +1169,7 @@
 
 /obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)
 
-	if(isYautja(user))
+	if(isyautja(user))
 		to_chat(user, "<span class='warning'>You punch [src] but nothing happens.</span>")
 		return
 	src.add_fingerprint(user)

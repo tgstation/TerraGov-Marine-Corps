@@ -94,7 +94,7 @@
 						dat += "<A href='?src=\ref[src];operation=change_lead'>\[CHANGE SQUAD LEADER\]</a><BR><BR>"
 					else
 						dat += "<B>Squad Leader:</B> <font color=red>NONE</font> <A href='?src=\ref[src];operation=change_lead'>\[ASSIGN SQUAD LEADER\]</a><BR><BR>"
-		
+
 					dat += "<B>Primary Objective:</B> "
 					if(current_squad.primary_objective)
 						dat += "[current_squad.primary_objective] <a href='?src=\ref[src];operation=set_primary'>\[Set\]</a><br>"
@@ -143,7 +143,7 @@
 						dat += "<span class='warning'>None</span><br>"
 						selected_target = null
 					else
-						dat += "<font color='green'>[selected_target.name]</font><br>"		
+						dat += "<font color='green'>[selected_target.name]</font><br>"
 					dat += "<A href='?src=\ref[src];operation=shootrailgun'>\[FIRE!\]</a><br>"
 					dat += "----------------------<br></body>"
 					dat += "<br><br><a href='?src=\ref[src];operation=refresh'>{Refresh}</a></body>"
@@ -192,7 +192,7 @@
 	if(!href_list["operation"])
 		return
 
-	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (istype(usr, /mob/living/silicon)))
+	if((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))) || (issilicon(usr)))
 		usr.set_interaction(src)
 
 	switch(href_list["operation"])
@@ -456,7 +456,7 @@
 					dat += "<span class='warning'>None</span><br>"
 					selected_target = null
 				else
-					dat += "<font color='green'>[selected_target.name]</font><br>"		
+					dat += "<font color='green'>[selected_target.name]</font><br>"
 				dat += "<A href='?src=\ref[src];operation=dropbomb'>\[FIRE!\]</a><br>"
 				dat += "----------------------<BR></Body>"
 				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a></Body>"
@@ -543,7 +543,7 @@
 		to_chat(usr, "\icon[src] <span class='warning'>The target's signal is too weak.</span>")
 		return
 	var/turf/T = get_turf(selected_target)
-	if(istype(T, /turf/open/space))
+	if(isspaceturf(T))
 		to_chat(usr, "\icon[src] <span class='warning'>The target's landing zone appears to be out of bounds.</span>")
 		return
 	busy = TRUE //All set, let's do this.
@@ -768,7 +768,7 @@
 
 	var/turf/T = get_turf(current_squad.sbeacon)
 
-	if(istype(T, /turf/open/space) || T.density)
+	if(isspaceturf(T) || T.density)
 		to_chat(usr, "\icon[src] <span class='warning'>The [current_squad.sbeacon.name]'s landing zone appears to be obstructed or out of bounds.</span>")
 		return
 
@@ -1011,7 +1011,7 @@
 		H.visible_message("[H] deactivates [src]",
 		"You deactivate [src]")
 		H.put_in_active_hand(src)
-	
+
 
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
 
@@ -1037,7 +1037,7 @@
 		if(choice == "help")
 			to_chat(src, "<span class='notice'><br>Orders give a buff to nearby soldiers for a short period of time, followed by a cooldown, as follows:<br><B>Move</B> - Increased mobility and chance to dodge projectiles.<br><B>Hold</B> - Increased resistance to pain and combat wounds.<br><B>Focus</B> - Increased gun accuracy and effective range.<br></span>")
 			return
-		if(choice == "cancel") 
+		if(choice == "cancel")
 			return
 		command_aura = choice
 	else
@@ -1254,7 +1254,7 @@
 		dat += "<b><font color=red>NONE!</font></b><br>"
 	dat += get_squad_info_ending()
 	return dat
-	
+
 /obj/machinery/computer/overwatch/proc/get_squad_info_ending()
 	var/dat = ""
 	dat += "----------------------<br>"

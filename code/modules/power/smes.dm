@@ -169,7 +169,7 @@
 		if (NORTHWEST, SOUTHWEST)
 			tempDir = WEST
 	var/turf/tempLoc = get_step(src, reverse_direction(tempDir))
-	if (istype(tempLoc, /turf/open/space))
+	if (isspaceturf(tempLoc))
 		to_chat(user, "<span class='warning'>You can't build a terminal on space.</span>")
 		return TRUE
 	else if (istype(tempLoc))
@@ -298,8 +298,8 @@
 
 	if (usr.stat || usr.is_mob_restrained() )
 		return
-	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
-		if(!istype(usr, /mob/living/silicon/ai))
+	if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
+		if(!isAI(usr))
 			to_chat(usr, "\red You don't have the dexterity to do this!")
 			return
 

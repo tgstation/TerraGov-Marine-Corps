@@ -10,7 +10,7 @@
 
 /obj/structure/lattice/New()
 	..()
-	if(!istype(src.loc, /turf/open/space))
+	if(!isspaceturf(loc))
 		qdel(src)
 	for(var/obj/structure/lattice/LAT in src.loc)
 		if(LAT != src)
@@ -61,7 +61,7 @@
 	return
 
 /obj/structure/lattice/proc/updateOverlays()
-	//if(!(istype(src.loc, /turf/open/space)))
+	//if(!isspaceturf(loc))
 	//	qdel(src)
 	spawn(1)
 		overlays = list()
@@ -72,7 +72,7 @@
 			if(locate(/obj/structure/lattice, get_step(src, direction)))
 				dir_sum += direction
 			else
-				if(!(istype(get_step(src, direction), /turf/open/space)))
+				if(!isspaceturf(get_step(src, direction)))
 					dir_sum += direction
 
 		icon_state = "lattice[dir_sum]"

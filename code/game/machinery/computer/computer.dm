@@ -120,7 +120,7 @@
 			M.deconstruct(src)
 			qdel(src)
 	else
-		if(isXeno(user))
+		if(isxeno(user))
 			src.attack_alien(user)
 			return
 		src.attack_hand(user)

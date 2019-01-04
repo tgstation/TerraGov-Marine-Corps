@@ -43,7 +43,7 @@
 	if(stat & BROKEN || !I || !user)
 		return
 
-	if(isXeno(user)) //No, fuck off. Concerns trashing Marines and facehuggers
+	if(isxeno(user)) //No, fuck off. Concerns trashing Marines and facehuggers
 		return
 
 	add_fingerprint(user)
@@ -108,7 +108,7 @@
 				flush()
 		return
 
-	if(isrobot(user))
+	if(iscyborg(user))
 		return
 	if(!I)
 		return
@@ -120,7 +120,7 @@
 
 //Mouse drop another mob or self
 /obj/machinery/disposal/MouseDrop_T(mob/target, mob/user)
-	if(!istype(target) || target.anchored || target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1 || user.is_mob_incapacitated(TRUE) || istype(user, /mob/living/silicon/ai) || target.mob_size >= MOB_SIZE_BIG)
+	if(!istype(target) || target.anchored || target.buckled || get_dist(user, src) > 1 || get_dist(user, target) > 1 || user.is_mob_incapacitated(TRUE) || isAI(user) || target.mob_size >= MOB_SIZE_BIG)
 		return
 	if(isanimal(user) && target != user) return //Animals cannot put mobs other than themselves into disposal
 	add_fingerprint(user)
@@ -415,7 +415,7 @@
 			target = get_offset_target_turf(loc, rand(5) - rand(5), rand(5) - rand(5))
 			AM.loc = loc
 			AM.pipe_eject(0)
-			if(!istype(AM, /mob/living/silicon/robot/drone)) //Poor drones kept smashing windows and taking system damage being fired out of disposals. ~Z
+			if(!ismaintdrone(AM)) //Poor drones kept smashing windows and taking system damage being fired out of disposals. ~Z
 				spawn(1)
 					if(AM)
 						AM.throw_at(target, 5, 1)
@@ -459,7 +459,7 @@
 	//Check for any living mobs trigger hasmob.
 	//hasmob effects whether the package goes to cargo or its tagged destination.
 	for(var/mob/living/M in D)
-		if(M && M.stat != DEAD && !istype(M, /mob/living/silicon/robot/drone))
+		if(M?.stat != DEAD && !ismaintdrone(M))
 			hasmob = 1
 
 	//Checks 1 contents level deep. This means that players can be sent through disposals...
@@ -467,7 +467,7 @@
 	for(var/obj/O in D)
 		if(O.contents)
 			for(var/mob/living/M in O.contents)
-				if(M && M.stat != 2 && !istype(M, /mob/living/silicon/robot/drone))
+				if(M && M.stat != 2 && !ismaintdrone(M))
 					hasmob = 1
 
 	//Now everything inside the disposal gets put into the holder
@@ -485,7 +485,7 @@
 			var/obj/item/smallDelivery/T = AM
 			destinationTag = T.sortTag
 		//Drones can mail themselves through maint.
-		if(istype(AM, /mob/living/silicon/robot/drone))
+		if(ismaintdrone(AM))
 			var/mob/living/silicon/robot/drone/drone = AM
 			destinationTag = drone.mail_destination
 
@@ -510,7 +510,7 @@
 	while(active)
 		if(hasmob && prob(3))
 			for(var/mob/living/H in src)
-				if(!istype(H, /mob/living/silicon/robot/drone)) //Drones use the mailing code to move through the disposal system,
+				if(!ismaintdrone(H)) //Drones use the mailing code to move through the disposal system,
 					if(map_tag != MAP_WHISKEY_OUTPOST)
 						H.take_overall_damage(20, 0, "Blunt Trauma") //Horribly maim any living creature jumping down disposals.  c'est la vie
 
@@ -659,7 +659,7 @@
 //Update the icon_state to reflect hidden status
 /obj/structure/disposalpipe/proc/update()
 	var/turf/T = loc
-	hide(T.intact_tile && !istype(T, /turf/open/space)) //Space never hides pipes
+	hide(T.intact_tile && !isspaceturf(T)) //Space never hides pipes
 
 //Hide called by levelupdate if turf intact status changes, change visibility status and force update of icon
 /obj/structure/disposalpipe/hide(var/intact)
@@ -681,7 +681,7 @@
 		H.active = 0
 		H.loc = src
 		return
-	if(istype(T, /turf/open/floor)) //intact floor, pop the tile
+	if(isfloorturf(T)) //intact floor, pop the tile
 		var/turf/open/floor/F = T
 		if(!F.is_plating())
 			if(!F.broken && !F.burnt)
@@ -689,7 +689,7 @@
 			F.make_plating()
 
 	if(direction) //Direction is specified
-		if(istype(T, /turf/open/space)) //If ended in space, then range is unlimited
+		if(isspaceturf(T)) //If ended in space, then range is unlimited
 			target = get_edge_target_turf(T, direction)
 		else //Otherwise limit to 10 tiles
 			target = get_ranged_target_turf(T, direction, 10)
@@ -1332,7 +1332,7 @@
 		for(var/atom/movable/AM in H)
 			AM.loc = src.loc
 			AM.pipe_eject(dir)
-			if(!istype(AM, /mob/living/silicon/robot/drone)) //Drones keep smashing windows from being fired out of chutes. Bad for the station. ~Z
+			if(!ismaintdrone(AM)) //Drones keep smashing windows from being fired out of chutes. Bad for the station. ~Z
 				spawn(5)
 					AM.throw_at(target, 3, 1)
 		qdel(H)

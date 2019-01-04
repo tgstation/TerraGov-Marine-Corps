@@ -283,7 +283,7 @@ client
 				body += "<option value='?_src_=vars;makerobot=\ref[D]'>Make cyborg</option>"
 				body += "<option value='?_src_=vars;makemonkey=\ref[D]'>Make monkey</option>"
 				body += "<option value='?_src_=vars;makealien=\ref[D]'>Make alien</option>"
-			if(isXeno(D))
+			if(isxeno(D))
 				body += "<option value='?_src_=vars;changehivenumber=\ref[D]'>Change Hivenumber</option>"
 			body += "<option value>---</option>"
 			body += "<option value='?_src_=vars;gib=\ref[D]'>Gib</option>"
@@ -860,7 +860,7 @@ client
 				H.mind.cm_skills.police = new_skill_level
 			if("powerloader")
 				H.mind.cm_skills.powerloader = new_skill_level
-		
+
 		H.update_action_buttons()
 
 		to_chat(usr, "[H]'s [selected_skill] skill is now set to [new_skill_level].")

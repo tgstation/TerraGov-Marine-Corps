@@ -58,7 +58,7 @@
 				if(!(M in close))
 					// check if the mob can hear
 					if(M.ear_deaf <= 0 || !M.ear_deaf)
-						if(!istype(M.loc, /turf/open/space))
+						if(!isspaceturf(M.loc))
 							M << 'sound/effects/explosionfar.ogg'
 		if(adminlog)
 			message_admins("Explosion with size ([devastation_range], [heavy_impact_range], [light_impact_range]) in area [epicenter.loc.name] ([epicenter.x],[epicenter.y],[epicenter.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[epicenter.x];Y=[epicenter.y];Z=[epicenter.z]'>JMP</a>)")
@@ -102,7 +102,7 @@
 			//------- TURF FIRES -------
 
 			if(T)
-				if(dist < flame_range && prob(40) && !istype(T, /turf/open/space))
+				if(dist < flame_range && prob(40) && !isspaceturf(T))
 					var/obj/effect/particle_effect/fire/F = new /obj/effect/particle_effect/fire(T)
 					if(istype(F))
 						F.life = rand(6,10)

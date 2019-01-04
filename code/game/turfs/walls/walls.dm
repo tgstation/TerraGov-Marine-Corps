@@ -62,7 +62,7 @@
 			T = get_step(src, i)
 
 			//update junction type of nearby walls
-			if(istype(T, /turf/closed/wall))
+			if(iswallturf(T))
 				T.relativewall()
 
 			//nearby glowshrooms updated
@@ -84,7 +84,7 @@
 
 /turf/closed/wall/MouseDrop_T(mob/M, mob/user)
 	if(acided_hole)
-		if(M == user && isXeno(user))
+		if(M == user && isxeno(user))
 			acided_hole.use_wall_hole(user)
 			return
 	..()
@@ -300,7 +300,7 @@
 
 /turf/closed/wall/attack_animal(mob/living/M as mob)
 	if(M.wall_smash)
-		if((istype(src, /turf/closed/wall/r_wall)) || hull)
+		if((isrwallturf(src)) || hull)
 			to_chat(M, "<span class='warning'>This [name] is far too strong for you to destroy.</span>")
 			return
 		else
@@ -400,7 +400,7 @@
 			user.visible_message("<span class='notice'>[user] starts repairing the damage to [src].</span>",
 			"<span class='notice'>You start repairing the damage to [src].</span>")
 			playsound(src, 'sound/items/Welder.ogg', 25, 1)
-			if(do_after(user, max(5, round(damage / 5)), TRUE, 5, BUSY_ICON_FRIENDLY) && istype(src, /turf/closed/wall) && WT && WT.isOn())
+			if(do_after(user, max(5, round(damage / 5)), TRUE, 5, BUSY_ICON_FRIENDLY) && iswallturf(src) && WT && WT.isOn())
 				user.visible_message("<span class='notice'>[user] finishes repairing the damage to [src].</span>",
 				"<span class='notice'>You finish repairing the damage to [src].</span>")
 				take_damage(-damage)
@@ -420,7 +420,8 @@
 				"<span class='notice'>You begin slicing through the outer plating.</span>")
 
 				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall) || !WT || !WT.isOn())	return
+					if(!iswallturf(src) || !WT || !WT.isOn())
+						return
 
 					if(!d_state)
 						d_state++
@@ -436,7 +437,8 @@
 				playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
 
 				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall)) return
+					if(!iswallturf(src))
+						return
 
 					if(d_state == 1)
 						d_state++
@@ -453,7 +455,8 @@
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 
 				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall) || !WT || !WT.isOn())	return
+					if(!iswallturf(src) || !WT || !WT.isOn())
+						return
 
 					if(d_state == 2)
 						d_state++
@@ -469,7 +472,8 @@
 				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 
 				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall)) return
+					if(!iswallturf(src))
+						return
 
 					if(d_state == 3)
 						d_state++
@@ -485,7 +489,8 @@
 				playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
 
 				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall)) return
+					if(!iswallturf(src))
+						return
 
 					if(d_state == 4)
 						d_state++
@@ -501,7 +506,8 @@
 				playsound(src, 'sound/items/Wirecutter.ogg', 25, 1)
 
 				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall)) return
+					if(!iswallturf(src))
+						return
 
 					if(d_state == 5)
 						d_state++
@@ -517,7 +523,8 @@
 				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 
 				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall)) return
+					if(!iswallturf(src))
+						return
 
 					if(d_state == 6)
 						d_state++
@@ -534,7 +541,8 @@
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
 
 				if(do_after(user, 60, TRUE, 5, BUSY_ICON_BUILD))
-					if(!istype(src, /turf/closed/wall) || !WT || !WT.isOn())	return
+					if(!iswallturf(src) || !WT || !WT.isOn())
+						return
 
 					if(d_state == 7)
 						new /obj/item/stack/rods(src)

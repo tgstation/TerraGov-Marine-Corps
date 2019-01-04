@@ -119,7 +119,7 @@ obj/structure/bed/Destroy()
 /obj/structure/bed/MouseDrop(atom/over_object)
 	. = ..()
 	if(foldabletype && !buckled_mob && !buckled_bodybag)
-		if(istype(over_object, /mob/living/carbon/human))
+		if(ishuman(over_object))
 			var/mob/living/carbon/human/H = over_object
 			if(H == usr && !H.is_mob_incapacitated() && Adjacent(H) && in_range(src, over_object))
 				var/obj/item/I = new foldabletype(get_turf(src))

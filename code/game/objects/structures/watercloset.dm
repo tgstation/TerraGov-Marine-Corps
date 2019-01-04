@@ -54,7 +54,7 @@
 			return
 
 	if(istype(I, /obj/item/grab))
-		if(isXeno(user)) return
+		if(isxeno(user)) return
 		var/obj/item/grab/G = I
 
 		if(isliving(G.grabbed_thing))
@@ -109,7 +109,7 @@
 
 /obj/structure/urinal/attackby(obj/item/I, mob/living/user)
 	if(istype(I, /obj/item/grab))
-		if(isXeno(user)) return
+		if(isxeno(user)) return
 		var/obj/item/grab/G = I
 		if(isliving(G.grabbed_thing))
 			var/mob/living/GM = G.grabbed_thing
@@ -357,7 +357,7 @@
 	var/busy = 0 	//Something's being washed at the moment
 
 /obj/structure/sink/attack_hand(mob/user)
-	if(isrobot(user) || isAI(user))
+	if(iscyborg(user) || isAI(user))
 		return
 
 	if(!Adjacent(user))
@@ -401,7 +401,7 @@
 				user.Stun(10)
 				user.stuttering = 10
 				user.KnockDown(10)
-				if(isrobot(user))
+				if(iscyborg(user))
 					var/mob/living/silicon/robot/R = user
 					R.cell.charge -= 20
 				else

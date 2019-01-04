@@ -375,7 +375,7 @@ var/list/solars_list = list()
 /obj/machinery/power/solar_control/interact(mob/user)
 	if(stat & (BROKEN|NOPOWER)) return
 	if ( (get_dist(src, user) > 1 ))
-		if (!istype(user, /mob/living/silicon))
+		if (!issilicon(user))
 			user.unset_interaction()
 			user << browse(null, "window=solcon")
 			return

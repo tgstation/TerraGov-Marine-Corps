@@ -116,7 +116,7 @@
 
 //sort of a legacy burn method for /electrocute, /shock, and the e_chair
 /mob/living/proc/burn_skin(burn_amount)
-	if(istype(src, /mob/living/carbon/human))
+	if(ishuman(src))
 		//to_chat(world, "DEBUG: burn_skin(), mutations=[mutations]")
 		if(mShock in src.mutations) //shockproof
 			return 0
@@ -131,14 +131,14 @@
 				H.UpdateDamageIcon()
 		H.updatehealth()
 		return 1
-	else if(istype(src, /mob/living/carbon/monkey))
+	else if(ismonkey(src))
 		if (COLD_RESISTANCE in src.mutations) //fireproof
 			return 0
 		var/mob/living/carbon/monkey/M = src
 		M.adjustFireLoss(burn_amount)
 		M.updatehealth()
 		return 1
-	else if(istype(src, /mob/living/silicon/ai))
+	else if(isAI(src))
 		return 0
 
 /mob/living/proc/adjustBodyTemp(actual, desired, incrementboost)
@@ -157,7 +157,7 @@
 		temperature -= change
 		if(actual < desired)
 			temperature = desired
-//	if(istype(src, /mob/living/carbon/human))
+//	if(ishuman(src))
 //		to_chat(world, "[src] ~ [src.bodytemperature] ~ [temperature]")
 	return temperature
 
@@ -315,7 +315,7 @@
 	return FALSE
 
 /mob/living/carbon/human/ignore_pull_delay()
-	return has_species(src,"Yautja") //Predators aren't slowed when pulling their prey.
+	return isyautjastrict(src) //Predators aren't slowed when pulling their prey.
 
 /mob/living/proc/can_inject()
 	return TRUE
@@ -340,15 +340,15 @@
 			now_pushing = 0
 			return
 
-		if(isXeno(L) && !isXenoLarva(L)) //Handling pushing Xenos in general, but big Xenos and Preds can still push small Xenos
+		if(isxeno(L) && !isxenolarva(L)) //Handling pushing Xenos in general, but big Xenos and Preds can still push small Xenos
 			var/mob/living/carbon/Xenomorph/X = L
-			if((ishuman(src) && X.mob_size == MOB_SIZE_BIG) || (isXeno(src) && X.mob_size == MOB_SIZE_BIG))
-				if(!isXeno(src) && client)
+			if((ishuman(src) && X.mob_size == MOB_SIZE_BIG) || (isxeno(src) && X.mob_size == MOB_SIZE_BIG))
+				if(!isxeno(src) && client)
 					do_bump_delay = 1
 				now_pushing = 0
 				return
 
-		if(isXeno(src) && !isXenoLarva(src) && ishuman(L)) //We are a Xenomorph and pushing a human
+		if(isxeno(src) && !isxenolarva(src) && ishuman(L)) //We are a Xenomorph and pushing a human
 			var/mob/living/carbon/Xenomorph/X = src
 			if(X.mob_size == MOB_SIZE_BIG)
 				L.do_bump_delay = 1
@@ -422,7 +422,7 @@
 
 	now_pushing = 0
 	..()
-	if (!( istype(AM, /atom/movable) ))
+	if (!ismovableatom(AM))
 		return
 	if (!( now_pushing ))
 		now_pushing = 1
@@ -492,7 +492,7 @@
 
 	alpha = 5 // bah, let's make it better, it's a disposable device anyway
 
-	if(!isXeno(src)||!isanimal(src))
+	if(!isxeno(src)||!isanimal(src))
 		var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
 		SA.remove_from_hud(src)
 		var/datum/mob_hud/xeno_infection/XI = huds[MOB_HUD_XENO_INFECTION]
@@ -507,7 +507,7 @@
 
 	alpha = initial(alpha)
 
-	if(!isXeno(src)|| !isanimal(src))
+	if(!isxeno(src)|| !isanimal(src))
 		var/datum/mob_hud/security/advanced/SA = huds[MOB_HUD_SECURITY_ADVANCED]
 		SA.add_to_hud(src)
 		var/datum/mob_hud/xeno_infection/XI = huds[MOB_HUD_XENO_INFECTION]

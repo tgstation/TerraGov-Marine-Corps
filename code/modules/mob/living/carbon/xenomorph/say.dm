@@ -63,7 +63,7 @@
 			var/noise = pick('sound/machines/ping.ogg','sound/machines/twobeep.ogg')
 			verb = pick("beeps", "buzzes", "pings")
 			playsound(src.loc, noise, 25, 1)
-		else if(isXenoPredalien(src))
+		else if(isxenopredalien(src))
 			playsound(loc, 'sound/voice/predalien_click.ogg', 25, 1)
 		else
 			playsound(loc, "alien_talk", 25, 1)
@@ -72,7 +72,7 @@
 		hivemind_talk(message)
 
 /mob/living/carbon/Xenomorph/say_understands(var/mob/other,var/datum/language/speaking = null)
-	if(isXeno(other))
+	if(isxeno(other))
 		return TRUE
 	return ..()
 
@@ -89,7 +89,7 @@
 		to_chat(src, "<span class='warning'>The Queen is dead. The hivemind is weakened. Despair!</span>")
 		return
 	var/rendered
-	if(isXenoQueen(src))
+	if(isxenoqueen(src))
 		rendered = "<font size='3' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'> hisses, '[message]'</span></span></i></font>"
 	else if(xeno_caste.caste_flags & CASTE_IS_ROBOTIC)
 		var/message_b = pick("high-pitched blast of static","series of pings","long string of numbers","loud, mechanical squeal", "series of beeps")
@@ -100,12 +100,12 @@
 	var/track = ""
 	var/ghostrend
 	for (var/mob/S in player_list)
-		if(isnull(S) || (!isXeno(S) && S.stat != DEAD) || istype(S,/mob/new_player))
+		if(isnull(S) || (!isxeno(S) && S.stat != DEAD) || istype(S,/mob/new_player))
 			continue
 		if(istype(S,/mob/dead/observer))
 			if(S.client.prefs && S.client.prefs.toggles_chat & CHAT_GHOSTHIVEMIND)
 				track = "(<a href='byond://?src=\ref[S];track=\ref[src]'>follow</a>)"
-				if(isXenoQueen(src))
+				if(isxenoqueen(src))
 					ghostrend = "<font size='3' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span> [track]<span class='message'> hisses, '[message]'</span></span></i></font>"
 				else
 					ghostrend = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> [track]<span class='message'> hisses, '[message]'</span></span></i>"

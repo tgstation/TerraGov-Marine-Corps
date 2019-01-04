@@ -24,7 +24,7 @@
 	var/fixed = 0 //If set to 1, can't unanchor and move the mortar, used for map spawns and WO
 
 /obj/structure/mortar/attack_hand(mob/user as mob)
-	if(isYautja(user))
+	if(isyautja(user))
 		to_chat(user, "<span class='warning'>You kick [src] but nothing happens.</span>")
 		return
 	if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
@@ -118,7 +118,7 @@
 			"<span class='notice'>You fumble around figuring out how to fire [src].</span>")
 			var/fumbling_time = 30 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
 			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-		if(isSynth(user) && !config.allow_synthetic_gun_use)
+		if(issynth(user) && !config.allow_synthetic_gun_use)
 			to_chat(user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
 			return
 		if(busy)

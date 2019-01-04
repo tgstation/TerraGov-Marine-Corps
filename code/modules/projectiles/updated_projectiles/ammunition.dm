@@ -114,10 +114,10 @@ They're all essentially identical when it comes to getting the job done.
 		to_chat(user, "<span class='notice'>You grab <b>[R]</b> round\s from [src].</span>")
 		update_icon(-R) //Update the other one.
 		return R //Give the number created.
-	else 
+	else
 		update_icon(-R)
 		return new_handful
-		
+
 
 //our magazine inherits ammo info from a source magazine
 /obj/item/ammo_magazine/proc/match_ammo(obj/item/ammo_magazine/source)
@@ -374,9 +374,9 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	var/base = /obj/item/ammobox
 
 /obj/item/ammobox/update_icon()
-	if(magazine_amount > 0) 
+	if(magazine_amount > 0)
 		icon_state = "[base_icon_state]_deployed"
-	else 
+	else
 		icon_state = "[base_icon_state]_empty"
 
 /obj/item/ammobox/examine(mob/user)
@@ -426,7 +426,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/ammobox/MouseDrop(atom/over_object)
 	if(deployed == FALSE)
 		return
-	if(istype(over_object, /mob/living/carbon/human))
+	if(ishuman(over_object))
 		var/mob/living/carbon/human/H = over_object
 		if(H==usr && !H.is_mob_incapacitated() && Adjacent(H) && in_range(src, over_object))
 			var/obj/item/ammobox/I = new base
@@ -456,9 +456,9 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 
 /obj/item/ammo_magazine/shotgunbox/update_icon()
-	if(current_rounds > 0) 
+	if(current_rounds > 0)
 		icon_state = "[base_icon_state]_deployed"
-	else 
+	else
 		icon_state = "[base_icon_state]_empty"
 
 /obj/item/ammo_magazine/shotgunbox/attack_self(mob/user)
@@ -469,7 +469,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/ammo_magazine/shotgunbox/MouseDrop(atom/over_object)
 	if(deployed == FALSE)
 		return
-	if(istype(over_object, /mob/living/carbon/human))
+	if(ishuman(over_object))
 		var/mob/living/carbon/human/H = over_object
 		if(H==usr && !H.is_mob_incapacitated() && Adjacent(H) && in_range(src, over_object))
 			var/obj/item/ammo_magazine/shotgunbox/I = new base
