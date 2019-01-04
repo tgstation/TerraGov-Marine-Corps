@@ -160,6 +160,38 @@
 #define SLOT_IN_R_POUCH		30
 //=================================================
 
+//I hate that this has to exist
+/proc/slotdefine2slotbit(slotdefine) //Keep this up to date with the value of SLOT BITMASKS and SLOTS (the two define sections above)
+	. = 0
+	switch(slotdefine)
+		if(SLOT_BACK)
+			. = ITEM_SLOT_BACK
+		if(SLOT_WEAR_MASK)
+			. = ITEM_SLOT_MASK
+		if(SLOT_BELT)
+			. = ITEM_SLOT_BELT
+		if(SLOT_WEAR_ID)
+			. = ITEM_SLOT_ID
+		if(SLOT_EARS)
+			. = ITEM_SLOT_EARS
+		if(SLOT_GLASSES)
+			. = ITEM_SLOT_EYES
+		if(SLOT_GLOVES)
+			. = ITEM_SLOT_GLOVES
+		if(SLOT_HEAD)
+			. = ITEM_SLOT_HEAD
+		if(SLOT_SHOES)
+			. = ITEM_SLOT_FEET
+		if(SLOT_WEAR_SUIT)
+			. = ITEM_SLOT_OCLOTHING
+		if(SLOT_W_UNIFORM)
+			. = ITEM_SLOT_ICLOTHING
+		if(SLOT_L_STORE, SLOT_R_STORE)
+			. = ITEM_SLOT_POCKET
+		if(SLOT_LEGS)
+			. = ITEM_SLOT_LEGS
+
+//=================================================
 // bitflags for clothing parts
 #define HEAD			(1<<0)
 #define FACE			(1<<1)
