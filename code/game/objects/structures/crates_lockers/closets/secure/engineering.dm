@@ -9,7 +9,7 @@
 	icon_off = "secureceoff"
 
 
-	New()
+	/obj/structure/closet/secure_closet/engineering_chief/New()
 		..()
 		sleep(2)
 		new /obj/item/clothing/tie/storage/webbing(src)
@@ -31,6 +31,10 @@
 		new /obj/item/storage/pouch/general/medium(src)
 		new /obj/item/storage/pouch/construction(src)
 		new /obj/item/storage/pouch/tools(src)
+		new /obj/item/clothing/shoes/white(src)
+		new /obj/item/clothing/gloves/white(src)
+		new /obj/item/clothing/under/whites(src)
+		new /obj/item/clothing/head/white_dress(src)
 
 
 /obj/structure/closet/secure_closet/engineering_electrical
@@ -44,7 +48,7 @@
 	icon_off = "secureengelecoff"
 
 
-	New()
+	/obj/structure/closet/secure_closet/engineering_electrical/New()
 		..()
 		sleep(2)
 		new /obj/item/clothing/gloves/yellow(src)
@@ -73,7 +77,7 @@
 	icon_off = "secureengweldoff"
 
 
-	New()
+	/obj/structure/closet/secure_closet/engineering_welding/New()
 		..()
 		sleep(2)
 		new /obj/item/clothing/head/welding(src)
@@ -97,7 +101,7 @@
 	icon_broken = "secureengbroken"
 	icon_off = "secureengoff"
 
-	New()
+	/obj/structure/closet/secure_closet/engineering_personal/New()
 		..()
 		if (prob(70)) new /obj/item/clothing/tie/storage/brown_vest(src)
 		else new /obj/item/clothing/tie/storage/webbing(src)
@@ -115,6 +119,10 @@
 		new /obj/item/clothing/mask/gas(src)
 		new /obj/item/device/flashlight(src)
 		new /obj/item/storage/backpack/industrial(src)
+		new /obj/item/clothing/shoes/white(src)
+		new /obj/item/clothing/gloves/white(src)
+		new /obj/item/clothing/under/whites(src)
+		new /obj/item/clothing/head/white_dress(src)
 
 	select_gamemode_equipment(gamemode)
 		switch(map_tag)
@@ -134,7 +142,7 @@
 	icon_off = "secureatmoff"
 
 
-	New()
+	/obj/structure/closet/secure_closet/atmos_personal/New()
 		..()
 		sleep(2)
 		if (prob(70))
