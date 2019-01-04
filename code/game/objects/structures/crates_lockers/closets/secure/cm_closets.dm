@@ -271,7 +271,7 @@
 	icon_broken = "secure_locked_commander"
 	icon_off = "secure_closed_commander"
 
-	New()
+	/obj/structure/closet/secure_closet/commander/New()
 		..()
 		new /obj/item/storage/backpack/mcommander(src)
 		new /obj/item/clothing/shoes/marinechief/commander(src)
@@ -280,6 +280,11 @@
 		new /obj/item/clothing/head/beret/marine/commander(src)
 		new /obj/item/clothing/glasses/sunglasses(src)
 		new /obj/item/device/radio/headset/almayer/mcom(src)
+		new /obj/item/clothing/shoes/white(src)
+		new /obj/item/clothing/gloves/white(src)
+		new /obj/item/clothing/under/whites(src)
+		new /obj/item/clothing/head/white_dress(src)
+		new /obj/item/clothing/suit/commander_cloak(src)
 
 /obj/structure/closet/secure_closet/securecom
 	name = "commander's secure box"
@@ -301,26 +306,22 @@
 	icon_broken = "secure_locked_staff"
 	icon_off = "secure_closed_staff"
 
-	New()
+	/obj/structure/closet/secure_closet/staff_officer/New()
 		..()
 		new /obj/item/clothing/head/cmberet(src)
-		new /obj/item/clothing/head/cmberet(src)
-		new /obj/item/clothing/head/cmberet/tan(src)
 		new /obj/item/clothing/head/cmberet/tan(src)
 		new /obj/item/clothing/head/cmcap/ro(src)
-		new /obj/item/clothing/head/cmcap/ro(src)
-		new /obj/item/clothing/head/cmcap/ro(src)
-		new /obj/item/device/radio/headset/almayer/mcom(src)
 		new /obj/item/device/radio/headset/almayer/mcom(src)
 		new /obj/item/clothing/under/marine/officer/bridge(src)
-		new /obj/item/clothing/under/marine/officer/bridge(src)
-		new /obj/item/clothing/shoes/marine(src)
 		new /obj/item/clothing/shoes/marine(src)
 		new /obj/item/clothing/suit/storage/marine/MP/RO(src)
 		new /obj/item/clothing/suit/storage/marine/MP/RO(src)
 		new /obj/item/storage/belt/marine(src)
-		new /obj/item/storage/belt/marine(src)
-		new /obj/item/storage/backpack/marine/standard(src)
+		new /obj/item/clothing/shoes/white(src)
+		new /obj/item/clothing/gloves/white(src)
+		new /obj/item/clothing/under/whites(src)
+		new /obj/item/clothing/head/white_dress(src)
+		new /obj/item/clothing/suit/officer_cloak(src)
 
 /obj/structure/closet/secure_closet/pilot_officer
 	name = "pilot officer's locker"
@@ -332,7 +333,7 @@
 	icon_broken = "secure_locked_pilot"
 	icon_off = "secure_closed_pilot"
 
-	New()
+	/obj/structure/closet/secure_closet/pilot_officer/New()
 		..()
 		new /obj/item/clothing/head/helmet/marine/pilot(src)
 		new /obj/item/device/radio/headset/almayer/mcom(src)
@@ -343,6 +344,10 @@
 		new /obj/item/storage/backpack/marine/satchel(src)
 		new /obj/item/clothing/gloves/yellow(src)
 		new /obj/item/clothing/glasses/sunglasses(src)
+		new /obj/item/clothing/shoes/white(src)
+		new /obj/item/clothing/gloves/white(src)
+		new /obj/item/clothing/under/whites(src)
+		new /obj/item/clothing/head/white_dress(src)
 
 	select_gamemode_equipment(gamemode)
 		switch(map_tag)
@@ -361,7 +366,7 @@
 	icon_broken = "secure_broken_police"
 	icon_off = "secure_closed_police"
 
-	New()
+	/obj/structure/closet/secure_closet/military_police/New()
 		..()
 		new /obj/item/clothing/head/cmberet/red(src)
 		new /obj/item/clothing/head/cmberet/red(src)
@@ -377,6 +382,10 @@
 		new /obj/item/weapon/gun/energy/taser(src)
 		new /obj/item/weapon/baton(src)
 		new /obj/item/storage/backpack/security (src)
+		new /obj/item/clothing/shoes/white(src)
+		new /obj/item/clothing/gloves/white(src)
+		new /obj/item/clothing/under/whites(src)
+		new /obj/item/clothing/head/white_dress(src)
 
 /obj/structure/closet/secure_closet/warrant_officer
 	name = "chief MP's locker"
@@ -388,7 +397,7 @@
 	icon_broken = "secure_locked_warrant"
 	icon_off = "secure_closed_warrant"
 
-	New()
+	/obj/structure/closet/secure_closet/warrant_officer/New()
 		..()
 		new /obj/item/clothing/head/cmberet/wo(src)
 		new /obj/item/clothing/tie/holster/armpit(src)
@@ -402,6 +411,10 @@
 		new /obj/item/weapon/gun/energy/taser(src)
 		new /obj/item/weapon/baton(src)
 		new /obj/item/storage/backpack/security (src)
+		new /obj/item/clothing/shoes/white(src)
+		new /obj/item/clothing/gloves/white(src)
+		new /obj/item/clothing/under/whites(src)
+		new /obj/item/clothing/head/white_dress(src)
 
 /obj/structure/closet/secure_closet/military_officer_spare
 	name = "extra equipment locker"
@@ -413,7 +426,7 @@
 	icon_broken = "secure_locked_warrant"
 	icon_off = "secure_closed_warrant"
 
-	New()
+	/obj/structure/closet/secure_closet/military_officer_spare/New()
 		..()
 		new /obj/item/clothing/tie/holster/armpit(src)
 		new /obj/item/storage/backpack/security(src)
@@ -427,6 +440,10 @@
 		new /obj/item/clothing/gloves/black(src)
 		new /obj/item/device/radio/headset/almayer/mmpo(src)
 		new /obj/item/clothing/tie/holster/waist(src)
+		new /obj/item/clothing/shoes/white(src)
+		new /obj/item/clothing/gloves/white(src)
+		new /obj/item/clothing/under/whites(src)
+		new /obj/item/clothing/head/white_dress(src)
 
 //ALMAYER MEDICAL CLOSET
 /obj/structure/closet/secure_closet/medical_doctor
@@ -439,7 +456,7 @@
 	icon_broken = "secure_broken_medical"
 	icon_off = "secure_closed_medical"
 
-	New()
+	/obj/structure/closet/secure_closet/medical_doctor/New()
 		..()
 		new /obj/item/storage/backpack/marine/satchel(src)
 		if(z != 1) new /obj/item/device/radio/headset/almayer/doc(src)
@@ -472,7 +489,7 @@
 	icon_broken = "secure_broken_cargo"
 	icon_off = "secure_off_cargo"
 
-	New()
+	/obj/structure/closet/secure_closet/req_officer/New()
 		..()
 		new /obj/item/device/radio/headset/almayer/mcom(src)
 		new /obj/item/clothing/under/rank/ro_suit(src)
@@ -483,6 +500,10 @@
 		new /obj/item/storage/backpack/marine/satchel(src)
 		new /obj/item/clothing/tie/storage/webbing(src)
 		new /obj/item/clothing/suit/storage/marine/MP/RO(src)
+		new /obj/item/clothing/shoes/white(src)
+		new /obj/item/clothing/gloves/white(src)
+		new /obj/item/clothing/under/whites(src)
+		new /obj/item/clothing/head/white_dress(src)
 
 /obj/structure/closet/secure_closet/cargotech
 	name = "Cargo Technician's Locker"
@@ -494,7 +515,7 @@
 	icon_broken = "secure_broken_cargo"
 	icon_off = "secure_off_cargo"
 
-	New()
+	/obj/structure/closet/secure_closet/cargotech/New()
 		..()
 		new /obj/item/clothing/under/rank/cargotech(src)
 		new /obj/item/clothing/shoes/marine(src)
@@ -504,4 +525,8 @@
 		new /obj/item/device/flashlight(src)
 		new /obj/item/storage/backpack/marine/satchel(src)
 		new /obj/item/clothing/tie/storage/webbing(src)
+		new /obj/item/clothing/shoes/white(src)
+		new /obj/item/clothing/gloves/white(src)
+		new /obj/item/clothing/under/whites(src)
+		new /obj/item/clothing/head/white_dress(src)
 		return
