@@ -110,9 +110,9 @@
 //===========================================================================================
 
 //ITEM INVENTORY SLOT BITMASKS
-#define ITEM_SLOT_OCLOTHING 		(1<<0)
-#define ITEM_SLOT_ICLOTHING 		(1<<1)
-#define ITEM_SLOT_GLOVES 			(1<<2)
+#define ITEM_SLOT_OCLOTHING 	(1<<0)
+#define ITEM_SLOT_ICLOTHING 	(1<<1)
+#define ITEM_SLOT_GLOVES 		(1<<2)
 #define ITEM_SLOT_EYES 			(1<<3)
 #define ITEM_SLOT_EARS 			(1<<4)
 #define ITEM_SLOT_MASK 			(1<<5)
@@ -121,23 +121,23 @@
 #define ITEM_SLOT_ID 			(1<<8)
 #define ITEM_SLOT_BELT			(1<<9)
 #define ITEM_SLOT_BACK 			(1<<10)
-#define ITEM_SLOT_POCKETS 			(1<<11)	//this is to allow items with a w_class of 3 or 4 to fit in pockets.
-#define ITEM_SLOT_DENYPOCKETS		(1<<12)	//this is to deny items with a w_class of 2 or 1 to fit in pockets.
+#define ITEM_SLOT_POCKETS 		(1<<11)	//this is to allow items with a w_class of 3 or 4 to fit in pockets.
+#define ITEM_SLOT_DENYPOCKETS	(1<<12)	//this is to deny items with a w_class of 2 or 1 to fit in pockets.
 #define ITEM_SLOT_LEGS 			(1<<13)
 //=================================================
 
 //slots
 //Text strings so that the slots can be associated when doing inventory lists.
-#define SLOT_WEAR_ID				1
+#define SLOT_WEAR_ID		1
 #define SLOT_EARS			2
-#define SLOT_W_UNIFORM			3
+#define SLOT_W_UNIFORM		3
 #define SLOT_LEGS			4
 #define SLOT_SHOES			5
 #define SLOT_GLOVES			6
 #define SLOT_BELT			7
-#define SLOT_WEAR_SUIT			8
-#define SLOT_GLASSES			9
-#define SLOT_WEAR_MASK			10
+#define SLOT_WEAR_SUIT		8
+#define SLOT_GLASSES		9
+#define SLOT_WEAR_MASK		10
 #define SLOT_HEAD			11
 #define SLOT_BACK			12
 #define SLOT_L_STORE		13
@@ -149,23 +149,23 @@
 #define SLOT_HANDCUFFED		19
 #define SLOT_LEGCUFFED		20
 #define SLOT_IN_BOOT		21
-#define SLOT_IN_BACKPACK		22
+#define SLOT_IN_BACKPACK	22
 #define SLOT_IN_SUIT		23
 #define SLOT_IN_ACCESSORY	24
 #define SLOT_IN_HOLSTER		25
 #define SLOT_IN_B_HOLSTER	26
 #define SLOT_IN_S_HOLSTER	27
-#define SLOT_IN_STORAGE	28
-#define SLOT_IN_L_POUCH	29
-#define SLOT_IN_R_POUCH	30
+#define SLOT_IN_STORAGE		28
+#define SLOT_IN_L_POUCH		29
+#define SLOT_IN_R_POUCH		30
 //=================================================
 
 // bitflags for clothing parts
 #define HEAD			(1<<0)
 #define FACE			(1<<1)
 #define EYES			(1<<2)
-#define UPPER_TORSO		(1<<3)
-#define LOWER_TORSO		(1<<4)
+#define CHEST		(1<<3)
+#define GROIN		(1<<4)
 #define LEG_LEFT		(1<<5)
 #define LEG_RIGHT		(1<<6)
 #define LEGS			(LEG_RIGHT|LEG_LEFT)

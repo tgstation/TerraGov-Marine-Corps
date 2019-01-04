@@ -2,9 +2,9 @@
 /obj/item/clothing/under
 	icon = 'icons/obj/clothing/uniforms.dmi'
 	name = "under"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
+	flags_cold_protection = CHEST|GROIN|LEGS|ARMS
+	flags_heat_protection = CHEST|GROIN|LEGS|ARMS
 	permeability_coefficient = 0.90
 	flags_equip_slot = ITEM_SLOT_ICLOTHING
 	armor = list(melee = 0, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
@@ -174,14 +174,14 @@
 
 	if(rollable_sleeves)
 		rolled_sleeves = !rolled_sleeves
-		var/full_coverage = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+		var/full_coverage = CHEST|GROIN|LEGS|ARMS
 		if(rolled_sleeves)
-			var/partial_coverage = UPPER_TORSO|LOWER_TORSO|LEGS
+			var/partial_coverage = CHEST|GROIN|LEGS
 			var/final_coverage
 			//Marine uniforms can only roll up the sleeves, not wear it at the waist.
 			if(istype(src,/obj/item/clothing/under/marine))
 				final_coverage = copytext(icon_state,1,3) == "s_" ? full_coverage : partial_coverage
-			else final_coverage = partial_coverage & ~UPPER_TORSO
+			else final_coverage = partial_coverage & ~CHEST
 			flags_armor_protection = final_coverage
 		else
 			flags_armor_protection = full_coverage
