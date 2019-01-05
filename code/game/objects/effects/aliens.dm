@@ -64,6 +64,9 @@
 	if(ishuman(AM))
 		var/mob/living/carbon/human/H = AM
 		var/armor_block
+		if(H.acid_process_cooldown > world.time - 10) //one second reprieve
+			return
+		H.acid_process_cooldown = world.time
 		if(!H.lying)
 			to_chat(H, "<span class='danger'>Your feet scald and burn! Argh!</span>")
 			H.emote("pain")
@@ -91,9 +94,6 @@
 
 	for(var/mob/living/carbon/M in loc)
 		if(isXeno(M))
-			continue
-		if(M.acid_process_cooldown)
-			M.acid_process_cooldown = 0 //Enjoy your very temporary reprieve
 			continue
 		Crossed(M)
 
