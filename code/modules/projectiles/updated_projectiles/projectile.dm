@@ -47,9 +47,9 @@
 	var/scatter = 0
 
 	var/distance_travelled = 0
-	var/in_flight = FALSE
+	var/in_flight = 0
 
-	var/list/list_reagents = null
+	var/list_reagents = null
 
 	New()
 		. = ..()
@@ -58,7 +58,7 @@
 
 	Destroy()
 		..()
-		in_flight = FALSE
+		in_flight = 0
 		ammo = null
 		shot_from = null
 		original = null

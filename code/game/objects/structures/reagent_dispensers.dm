@@ -12,7 +12,7 @@
 	var/amount_per_transfer_from_this = 10
 	var/possible_transfer_amounts = list(10,25,50,100)
 
-/obj/structure/reagent_dispensers/attackby(obj/item/W, mob/user, params)
+/obj/structure/reagent_dispensers/attackby(obj/item/W as obj, mob/user as mob)
 	return
 
 /obj/structure/reagent_dispensers/New()
@@ -185,7 +185,7 @@
 
 
 /obj/structure/reagent_dispensers/water_cooler
-	name = "water cooler"
+	name = "Water-Cooler"
 	desc = "A machine that dispenses water to drink."
 	amount_per_transfer_from_this = 5
 	icon = 'icons/obj/machines/vending.dmi'
@@ -196,6 +196,7 @@
 /obj/structure/reagent_dispensers/water_cooler/New()
 	..()
 	reagents.add_reagent("water",500)
+
 
 /obj/structure/reagent_dispensers/beerkeg
 	name = "beer keg"

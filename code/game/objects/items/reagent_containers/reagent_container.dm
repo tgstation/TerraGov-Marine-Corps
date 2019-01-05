@@ -21,7 +21,7 @@
 		amount_per_transfer_from_this = N
 
 /obj/item/reagent_container/New()
-	. = ..()
+	..()
 	if (!possible_transfer_amounts)
 		verbs -= /obj/item/reagent_container/verb/set_APTFT //which objects actually uses it?
 	create_reagents(volume)
