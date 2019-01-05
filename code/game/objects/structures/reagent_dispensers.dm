@@ -236,7 +236,7 @@
 /obj/structure/reagent_dispensers/wallmounted/west
 	dir = WEST
 
-/obj/structure/reagent_dispensers/peppertank
+/obj/structure/reagent_dispensers/wallmounted/peppertank
 	name = "pepper spray refiller"
 	desc = "Refill pepper spray canisters."
 	icon_state = "peppertank"
