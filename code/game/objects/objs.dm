@@ -27,7 +27,6 @@
 
 /obj/item/proc/is_used_on(obj/O, mob/user)
 
-
 /obj/process()
 	STOP_PROCESSING(SSobj, src)
 	return 0
