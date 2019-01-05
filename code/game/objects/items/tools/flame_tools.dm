@@ -194,8 +194,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 30
 	reagents.set_reacting(FALSE)
-	if(list_reagents)
-		reagents.add_reagent_list(list_reagents) // Latest news, cigs previously didn't have nicotine.
+	add_initial_reagents()
 
 /obj/item/clothing/mask/cigarette/attackby(obj/item/W, mob/user, params)
 	if(lit || smoketime <= 0)
