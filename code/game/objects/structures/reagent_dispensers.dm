@@ -215,7 +215,7 @@
 	anchored = TRUE
 	density = FALSE
 
-/obj/structure/reagent_dispensers/New()
+/obj/structure/reagent_dispensers/wallmounted/New()
 	. = ..()
 	switch(dir)
 		if(NORTH)
