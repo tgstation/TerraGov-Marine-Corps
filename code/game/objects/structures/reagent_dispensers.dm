@@ -202,11 +202,13 @@
 	desc = "Refill pepper spray canisters."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "peppertank"
+	anchored = 1
+	density = 0
 	amount_per_transfer_from_this = 45
 	list_reagents = list("condensedcapsaicin" = 1000)
 
 /obj/structure/reagent_dispensers/water_cooler
-	name = "Water-Cooler"
+	name = "water cooler"
 	desc = "A machine that dispenses water to drink."
 	amount_per_transfer_from_this = 5
 	icon = 'icons/obj/machines/vending.dmi'
@@ -229,5 +231,6 @@
 	desc = "A dispenser of virus food."
 	icon = 'icons/obj/objects.dmi'
 	icon_state = "virusfoodtank"
-	amount_per_transfer_from_this = 10
+	anchored = 1
+	density = 0
 	list_reagents = list("virusfood" = 1000)

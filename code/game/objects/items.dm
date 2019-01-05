@@ -95,6 +95,8 @@
 	item_list -= src
 	. = ..()
 
+
+
 /obj/item/ex_act(severity)
 	switch(severity)
 		if(1)
