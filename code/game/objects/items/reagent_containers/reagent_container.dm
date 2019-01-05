@@ -10,6 +10,7 @@
 	var/amount_per_transfer_from_this = 5
 	var/possible_transfer_amounts = list(5,10,15,25,30)
 	var/volume = 30
+	var/list/list_reagents = null
 
 /obj/item/reagent_container/verb/set_APTFT() //set amount_per_transfer_from_this
 	set name = "Set transfer amount"
@@ -26,6 +27,10 @@
 	create_reagents(volume)
 
 	add_initial_reagents()
+
+/obj/item/reagent_container/proc/add_initial_reagents()
+	if(list_reagents)
+		reagents.add_reagent_list(list_reagents)
 
 //returns a text listing the reagents (and their volume) in the atom. Used by Attack logs for reagents in pills
 /obj/item/reagent_container/proc/get_reagent_list_text()
