@@ -67,9 +67,6 @@
 						/obj/item/attachable/gyro)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-
-/obj/item/weapon/gun/smg/m39/New()
-	. = ..()
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 14, "rail_y" = 22, "under_x" = 24, "under_y" = 16, "stock_x" = 24, "stock_y" = 16)
 
 /obj/item/weapon/gun/smg/m39/set_gun_config_values()
@@ -130,11 +127,7 @@
 						/obj/item/attachable/scope)
 
 	flags_gun_features = GUN_CAN_POINTBLANK
-
-/obj/item/weapon/gun/smg/mp5/New()
-	. = ..()
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
-
 
 /obj/item/weapon/gun/smg/mp5/set_gun_config_values()
 	fire_delay = config.mlow_fire_delay
@@ -168,11 +161,7 @@
 						/obj/item/attachable/scope)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
-
-/obj/item/weapon/gun/smg/mp7/New()
-	. = ..()
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
-
 
 /obj/item/weapon/gun/smg/mp7/set_gun_config_values()
 	fire_delay = config.med_fire_delay
@@ -198,9 +187,6 @@
 	fire_sound = 'sound/weapons/gun_skorpion.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/skorpion
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
-
-/obj/item/weapon/gun/smg/skorpion/New()
-	. = ..()
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
 
 /obj/item/weapon/gun/smg/skorpion/set_gun_config_values()
@@ -235,11 +221,7 @@
 						/obj/item/attachable/flashlight)
 
 	flags_gun_features = GUN_CAN_POINTBLANK
-
-/obj/item/weapon/gun/smg/ppsh/New()
-	. = ..()
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 26, "under_y" = 15, "stock_x" = 26, "stock_y" = 15)
-
 
 /obj/item/weapon/gun/smg/ppsh/set_gun_config_values()
 	fire_delay = config.min_fire_delay
@@ -267,11 +249,7 @@
 	fire_sound = 'sound/weapons/uzi.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/uzi
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
-
-/obj/item/weapon/gun/smg/uzi/New()
-	. = ..()
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 19,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
-
 
 /obj/item/weapon/gun/smg/uzi/set_gun_config_values()
 	fire_delay = config.med_fire_delay
@@ -304,11 +282,7 @@
 						/obj/item/attachable/scope)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
-
-/obj/item/weapon/gun/smg/p90/New()
-	. = ..()
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 20, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
-
 
 /obj/item/weapon/gun/smg/p90/set_gun_config_values()
 	fire_delay = config.high_fire_delay
