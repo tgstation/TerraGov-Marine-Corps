@@ -60,7 +60,7 @@
 #define HIDETOPHAIR		256		// temporarily removes the user's hair overlay. Leaves facial hair.
 #define HIDEALLHAIR		512		// temporarily removes the user's hair, facial and otherwise.
 #define HIDETAIL 		1024
-#define HIDEFACE	  2056	//Dictates whether we appear as unknown.
+#define HIDEFACE		2056	//Dictates whether we appear as unknown.
 
 
 //==========================================================================================

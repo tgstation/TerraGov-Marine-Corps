@@ -19,9 +19,9 @@
 	var/defib_cooldown = 0 //Cooldown for toggling the defib
 	origin_tech = "biotech=3"
 
-	suicide_act(mob/user)
-		user.visible_message("<span class='danger'>[user] is putting the live paddles on [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide.</span>")
-		return (FIRELOSS)
+/obj/item/device/defibrillator/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is putting the live paddles on [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	return (FIRELOSS)
 
 /mob/living/carbon/human/proc/check_tod()
 	if(!undefibbable && world.time <= timeofdeath + config.revive_grace_period)

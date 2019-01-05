@@ -21,7 +21,7 @@
 	stack_id = "cable coil"
 
 /obj/item/stack/cable_coil/suicide_act(mob/user)
-	user.visible_message("<span class='warning'><b>[user] is strangling [p_them()]self with the [src.name]! It looks like [user.p_theyre()] trying to commit suicide.</b></span>")
+	user.visible_message("<span class='danger'>[user] is strangling [p_them()]self with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 	return(OXYLOSS)
 
 

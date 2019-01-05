@@ -13,7 +13,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
 /obj/item/weapon/claymore/suicide_act(mob/user)
-	viewers(user) << "\red <b>[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide.</b>"
+	user.visible_message("<span class='danger'>[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 	return(BRUTELOSS)
 
 /obj/item/weapon/claymore/mercsword
