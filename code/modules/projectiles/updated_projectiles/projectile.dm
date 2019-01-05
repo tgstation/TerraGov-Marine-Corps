@@ -10,9 +10,9 @@
 	name = "projectile"
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "bullet"
-	density = 0
-	unacidable = 1
-	anchored = 1 //You will not have me, space wind!
+	density = FALSE
+	unacidable = TRUE
+	anchored = TRUE //You will not have me, space wind!
 	flags_atom = NOINTERACT //No real need for this, but whatever. Maybe this flag will do something useful in the future.
 	mouse_opacity = 0
 	invisibility = 100 // We want this thing to be invisible when it drops on a turf because it will be on the user's turf. We then want to make it visible as it travels.
@@ -49,36 +49,35 @@
 	var/distance_travelled = 0
 	var/in_flight = 0
 
-	var/list_reagents = null
+/obj/item/projectile/New()
+	. = ..()
+	path = list()
+	permutated = list()
 
-	New()
-		. = ..()
-		path = list()
-		permutated = list()
+/obj/item/projectile/Destroy()
+	..()
+	in_flight = 0
+	ammo = null
+	shot_from = null
+	original = null
+	target_turf = null
+	starting = null
+	permutated = null
+	path = null
+	list_reagents = null
+	return TA_REVIVE_ME
 
-	Destroy()
-		..()
-		in_flight = 0
-		ammo = null
-		shot_from = null
-		original = null
-		target_turf = null
-		starting = null
-		permutated = null
-		path = null
-		list_reagents = null
-		return TA_REVIVE_ME
+/obj/item/projectile/Bumped(atom/A as mob|obj|turf|area)
+	if(A && !A in permutated)
+		scan_a_turf(A.loc)
 
-	Bumped(atom/A as mob|obj|turf|area)
-		if(A && !A in permutated)
-			scan_a_turf(A.loc)
-
-	Crossed(AM as mob|obj)
-		if(AM && !AM in permutated)
-			scan_a_turf(get_turf(AM))
+/obj/item/projectile/Crossed(AM as mob|obj)
+	if(AM && !AM in permutated)
+		scan_a_turf(get_turf(AM))
 
 
-	ex_act() return FALSE //We do not want anything to delete these, simply to make sure that all the bullet references are not runtiming. Otherwise, constantly need to check if the bullet exists.
+/obj/item/projectile/ex_act()
+	return FALSE //We do not want anything to delete these, simply to make sure that all the bullet references are not runtiming. Otherwise, constantly need to check if the bullet exists.
 
 /obj/item/projectile/proc/generate_bullet(ammo_datum, bonus_damage = 0, reagent_multiplier = 0)
 	ammo 		= ammo_datum
