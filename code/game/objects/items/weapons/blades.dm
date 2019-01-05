@@ -141,7 +141,7 @@
 	throw_range = 7
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	flags_equip_slot = ITEM_SLOT_POCKETS
+	flags_equip_slot = ITEM_SLOT_POCKET
 
 
 

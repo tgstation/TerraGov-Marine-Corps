@@ -375,9 +375,9 @@ cases. Override_icon_state should be a list.*/
 					if(!disable_warning)
 						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
 					return FALSE
-				if(flags_equip_slot & ITEM_SLOT_DENYPOCKETS)
+				if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
 					return FALSE
-				if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKETS))
+				if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
 					return TRUE
 			if(SLOT_R_STORE)
 				if(H.r_store)
@@ -386,9 +386,9 @@ cases. Override_icon_state should be a list.*/
 					if(!disable_warning)
 						to_chat(H, "<span class='warning'>You need a jumpsuit before you can attach this [name].</span>")
 					return FALSE
-				if(flags_equip_slot & ITEM_SLOT_DENYPOCKETS)
+				if(flags_equip_slot & ITEM_SLOT_DENYPOCKET)
 					return FALSE
-				if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKETS))
+				if(w_class <= 2 || (flags_equip_slot & ITEM_SLOT_POCKET))
 					return TRUE
 				return FALSE
 			if(SLOT_S_STORE)

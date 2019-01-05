@@ -943,7 +943,7 @@
 	icon_state = "predknife"
 	item_state = "knife"
 	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_POCKETS
+	flags_equip_slot = ITEM_SLOT_POCKET
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 24
 	w_class = 1
@@ -1116,7 +1116,7 @@
 	else
 		to_chat(user, "<span class='notice'>You collapse [src] for storage.</span>")
 		icon_state = initial(icon_state) + "_f"
-		flags_equip_slot = ITEM_SLOT_POCKETS
+		flags_equip_slot = ITEM_SLOT_POCKET
 		w_class = 1
 		force = 0
 		throwforce = initial(throwforce) - 50

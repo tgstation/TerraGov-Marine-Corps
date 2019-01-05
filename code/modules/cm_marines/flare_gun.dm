@@ -170,7 +170,7 @@ obj/item/projectile/flareburst
 	w_class =0.5
 	origin_tech="combat=1;materials=1"
 	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_POCKETS
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_POCKET
 
 /obj/item/flareround_sp
 	name = "Howl Flare Shell"
@@ -180,4 +180,4 @@ obj/item/projectile/flareburst
 	w_class =0.5
 	origin_tech="combat=1;materials=1"
 	flags_atom = CONDUCT
-	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_POCKETS
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_POCKET

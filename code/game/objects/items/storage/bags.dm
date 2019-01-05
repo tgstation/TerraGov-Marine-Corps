@@ -74,7 +74,7 @@
 	desc = "This little bugger can be used to store and transport ores."
 	icon = 'icons/obj/mining.dmi'
 	icon_state = "satchel"
-	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_POCKETS
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_POCKET
 	w_class = 3
 	storage_slots = 50
 	max_storage_space = 200 //Doesn't matter what this is, so long as it's more or equal to storage_slots * ore.w_class

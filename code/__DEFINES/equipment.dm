@@ -121,8 +121,8 @@
 #define ITEM_SLOT_ID 			(1<<8)
 #define ITEM_SLOT_BELT			(1<<9)
 #define ITEM_SLOT_BACK 			(1<<10)
-#define ITEM_SLOT_POCKETS 		(1<<11)	//this is to allow items with a w_class of 3 or 4 to fit in pockets.
-#define ITEM_SLOT_DENYPOCKETS	(1<<12)	//this is to deny items with a w_class of 2 or 1 to fit in pockets.
+#define ITEM_SLOT_POCKET 		(1<<11)	//this is to allow items with a w_class of 3 or 4 to fit in pockets.
+#define ITEM_SLOT_DENYPOCKET	(1<<12)	//this is to deny items with a w_class of 2 or 1 to fit in pockets.
 #define ITEM_SLOT_LEGS 			(1<<13)
 //=================================================
 

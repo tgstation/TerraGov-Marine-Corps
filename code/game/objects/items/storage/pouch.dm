@@ -4,7 +4,7 @@
 	icon_state = "small_drop"
 	w_class = 4 //does not fit in backpack
 	max_w_class = 2
-	flags_equip_slot = ITEM_SLOT_POCKETS
+	flags_equip_slot = ITEM_SLOT_POCKET
 	storage_slots = 1
 	draw_mode = 0
 	allow_drawing_method = TRUE
