@@ -43,25 +43,24 @@
 
 
 		if(m_type == EMOTE_VISIBLE)
-			M.visible_message(message, message)
+			visible_message(message, message)
 
 		if(m_type == EMOTE_AUDIBLE)
-			M.visible_message(null, null, message)
+			visible_message(null, null, message)
 
 
 /mob/proc/emote_dead(var/message)
 	if(client.prefs.muted & MUTE_DEADCHAT)
-		to_chat(src, "<span class='warning'>You cannot send deadchat emotes (muted).</span>")
+		to_chat(src, "<span class='danger'>You cannot send deadchat emotes (muted).</span>")
 		return
 
 	if(!(client.prefs.toggles_chat & CHAT_DEAD))
-		to_chat(src, "<span class='warning'>You have deadchat muted.</span>")
+		to_chat(src, "<span class='danger'>You have deadchat muted.</span>")
 		return
 
-	if(!client?.holder)
-		if(!dsay_allowed)
-			to_chat(src, "<span class='warning'>Deadchat is globally muted</span>")
-			return
+	if(!client.holder && !dsay_allowed)
+		to_chat(src, "<span class='danger'>Deadchat is globally muted.</span>")
+		return
 
 	var/input
 	if(!message)
