@@ -458,38 +458,41 @@ Turn() or Shift() as there is virtually no overhead. ~N
 /obj/item/ammo_magazine/shotgunbox/MouseDrop(atom/over_object)
 	if(deployed == FALSE)
 		return
-	if(istype(over_object, /mob/living/carbon/human))
-		var/mob/living/carbon/human/H = over_object
-		if(H == usr && !H.is_mob_incapacitated() && Adjacent(H) && H.put_in_hands(src))
-			icon_state = initial(icon_state)
+	if(!ishuman(over_object))
+		return
+	var/mob/living/carbon/human/H = over_object
+	if(H == usr && !H.is_mob_incapacitated() && Adjacent(H) && H.put_in_hands(src))
+		icon_state = initial(icon_state)
 
 /obj/item/ammo_magazine/shotgunbox/examine(mob/user)
 	. = ..()
-	to_chat(user, "It contains [current_rounds] out of [max_rounds] rounds.")
+	to_chat(user, "It contains [current_rounds] out of [max_rounds] shotgun shells.")
 
 /obj/item/ammo_magazine/shotgunbox/attack_hand(mob/user)
 	if(deployed == FALSE)
 		user.put_in_hands(src)
 		return
-	if(flags_magazine & AMMUNITION_REFILLABLE && current_rounds > 0)
-		if(create_handful(user))
-			update_icon()
-	else
+	if(!(flags_magazine & AMMUNITION_REFILLABLE) || current_rounds < 1)
 		to_chat(user, "<span class='warning'>The [src] is empty.")
-	return ..()
+		return ..()
+	if(create_handful(user))
+		update_icon()
+		return ..()
 
 /obj/item/ammo_magazine/shotgunbox/attackby(obj/item/I, mob/user)
 	if(deployed == FALSE)
 		to_chat(user, "<span class='warning'>[src] must be on the ground to be refilled.</span>")
 		return
-	if(istype(I, /obj/item/ammo_magazine))
-		var/obj/item/ammo_magazine/MG = I
-		if(MG.flags_magazine & AMMUNITION_HANDFUL && flags_magazine & AMMUNITION_REFILLABLE)
-			var/obj/item/ammo_magazine/handful/transfer_from = MG
-			if(default_ammo == transfer_from.default_ammo)
-				transfer_ammo(transfer_from,user,transfer_from.current_rounds)
-			else
-				to_chat(user, "<span class='warning'>That's not the right kind of ammo.</span>")
+	if(!istype(I, /obj/item/ammo_magazine))
+		return
+	var/obj/item/ammo_magazine/MG = I
+	if(!(MG.flags_magazine & AMMUNITION_HANDFUL) || !(flags_magazine & AMMUNITION_REFILLABLE))
+		to_chat(user, "<span class='warning'>That's not the right kind of ammo.</span>")
+		return
+	var/obj/item/ammo_magazine/handful/transfer_from = MG
+	if(default_ammo == transfer_from.default_ammo)
+		transfer_ammo(transfer_from,user,transfer_from.current_rounds)
+
 
 
 
