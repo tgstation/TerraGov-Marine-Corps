@@ -436,11 +436,9 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("Wait until the game starts.")
 		return
 
-	if(!istype(M, /mob/living/carbon/human))
+	if(!istype(H))
 		alert("Invalid mob.")
 		return
-
-	var/mob/living/carbon/human/H = M
 
 	if(!H.mind?.assigned_role)
 		alert("Mob has no mind or role.")
@@ -476,14 +474,19 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		var/obj/item/device/radio/headset/almayer/marine/E = H.wear_ear
 		E.set_frequency(S.radio_freq)
 	else
+		if(H.wear_ear)
+			qdel(H.wear_ear)
+			H.update_icons()
 		H.wear_ear = new /obj/item/device/radio/headset/almayer/marine
-		H.wear_ear.set_frequency(S.radio_freq)
+		var/obj/item/device/radio/headset/almayer/marine/E = H.wear_ear
+		E.set_frequency(S.radio_freq)
+		H.update_icons()
 
 	H.hud_set_squad()
 
 	feedback_add_details("admin_verb","CSQ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(src)] has changed the squad of [M.key] to [S].")
-	message_admins("\blue [key_name_admin(usr)] has changed the squad of [M.key] to [S].", 1)
+	log_admin("[key_name(src)] has changed the squad of [H.key] to [S].")
+	message_admins("<span class='boldnotice'>[key_name_admin(usr)] has changed the squad of [H.key] to [S].</span>", 1)
 
 /client/proc/cmd_assume_direct_control(var/mob/M in mob_list)
 	set category = "Admin"
