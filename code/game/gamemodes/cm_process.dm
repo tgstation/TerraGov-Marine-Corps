@@ -302,13 +302,13 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 			var/area/A = get_area(M)
 			if(isXeno(M))
 				switch(A?.z)
-					if(1) //Planet.
-						if(istype(M, /mob/living/carbon/Xenomorph/Larva))
+					if(PLANET_Z_LEVEL || LOW_ORBIT_Z_LEVEL)
+						if(isXenoLarva(M))
 							numLarvaPlanet++
 						numXenosPlanet++
 						xenoLocationsP += A
-					if(3) //On the ship.
-						if(istype(M, /mob/living/carbon/Xenomorph/Larva))
+					if(MAIN_SHIP_Z_LEVEL)
+						if(isXenoLarva(M))
 							numLarvaShip++
 						numXenosShip++ 
 						xenoLocationsS += A
@@ -317,10 +317,10 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 
 			if(ishuman(M) && !isYautja(M))
 				switch(A?.z)
-					if(1) //Planet.
+					if(PLANET_Z_LEVEL || LOW_ORBIT_Z_LEVEL)
 						numHostsPlanet++ 
 						hostLocationsP += A
-					if(3) //On the ship.
+					if(MAIN_SHIP_Z_LEVEL)
 						numHostsShip++ 
 						hostLocationsS += A
 
