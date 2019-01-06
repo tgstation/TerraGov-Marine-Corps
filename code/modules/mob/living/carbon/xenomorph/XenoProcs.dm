@@ -564,13 +564,13 @@
 
 	hivenumber = newhivenumber
 
-	if(isXenoLarva(X))
-		var/mob/living/carbon/Xenomorph/Larva/L = X
+	if(isXenoLarva(src))
+		var/mob/living/carbon/Xenomorph/Larva/L = src
 		L.update_icons() // larva renaming done differently
 	else
-		X.generate_name()
+		generate_name()
 
-	if(isXenoQueen(X))
+	if(isXenoQueen(src))
 		update_living_queens()
 
 //////////// XENO CASTE PROCS //////////////////
