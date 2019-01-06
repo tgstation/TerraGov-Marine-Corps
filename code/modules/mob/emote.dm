@@ -43,22 +43,10 @@
 
 
 		if(m_type == EMOTE_VISIBLE)
-			for(var/mob/O in viewers(src, null))
-				if(O.status_flags & PASSEMOTES)
-					for(var/obj/item/holder/H in O.contents)
-						H.show_message(message, m_type)
-					for(var/mob/living/M in O.contents)
-						M.show_message(message, m_type)
-				O.show_message(message, m_type)
+			M.visible_message(message, message)
 
-		else if(m_type == EMOTE_AUDIBLE)
-			for(var/mob/O in hearers(get_turf(src), null))
-				if(O.status_flags & PASSEMOTES)
-					for(var/obj/item/holder/H in O.contents)
-						H.show_message(message, m_type)
-					for(var/mob/living/M in O.contents)
-						M.show_message(message, m_type)
-				O.show_message(message, m_type)
+		if(m_type == EMOTE_AUDIBLE)
+			M.visible_message(null, null, message)
 
 
 /mob/proc/emote_dead(var/message)
