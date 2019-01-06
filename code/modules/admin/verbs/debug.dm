@@ -424,7 +424,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	log_admin("[key_name(src)] has granted [M.key] all skills.")
 	message_admins("\blue [key_name_admin(usr)] has granted [M.key] all skills.", 1)
 
-/client/proc/cmd_admin_changesquad(var/mob/M in mob_list)
+/client/proc/cmd_admin_changesquad(var/mob/living/carbon/human/H in mob_list)
 	set category = "Admin"
 	set name = "Change Squad"
 
@@ -443,7 +443,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	var/mob/living/carbon/human/H = M
 
 	if(!H.mind?.assigned_role)
-		alert("Mob has no mind.")
+		alert("Mob has no mind or role.")
 		return
 
 	switch(H.mind.assigned_role)
@@ -451,11 +451,8 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			alert("Invalid role")
 			return
 
-
-	if(!istype(H.wear_id, /obj/item/card/id))
-		alert("Mob has no ID.")
-		return
-
+	H.set_everything(H.mind.assigned_role)
+	
 	if(H.assigned_squad)
 		var/datum/squad/PS = H.assigned_squad
 		PS.remove_marine_from_squad(H)
@@ -475,9 +472,12 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	ID.assigned_fireteam = 0 //reset fireteam assignment
 
 	//Changes headset frequency to match new squad
-	var/obj/item/device/radio/headset/almayer/marine/E = H.wear_ear
-	if(istype(E, /obj/item/device/radio/headset/almayer/marine))
+	if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))
+		var/obj/item/device/radio/headset/almayer/marine/E = H.wear_ear
 		E.set_frequency(S.radio_freq)
+	else
+		H.wear_ear = new /obj/item/device/radio/headset/almayer/marine
+		H.wear_ear.set_frequency(S.radio_freq)
 
 	H.hud_set_squad()
 
