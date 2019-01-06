@@ -313,7 +313,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		return
 
 	var/hivenumber_status = X.hivenumber
-	var/list/namelist = list("Normal","Corrupted","Alpha","Beta","Zeta")
+
+	var/list/namelist = list()
+	for(var/datum/hive_status/H in hive_datum) // global hive datum list
+		namelist += H.name
 
 	var/newhive = input(src, "Select a hive.", null, null) in namelist
 
@@ -332,6 +335,8 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			newhivenumber = XENO_HIVE_BETA
 		if("Zeta")
 			newhivenumber = XENO_HIVE_ZETA
+		else
+			return
 
 	if(X.hivenumber != hivenumber_status)
 		to_chat(usr, "Someone else changed this xeno while you were deciding")
@@ -341,22 +346,14 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("Wait until the game starts")
 		return
 
-	if(X.gc_destroyed)
+	if(!X || X.gc_destroyed)
 		alert("That mob doesn't seem to exist, close the panel and try again.")
 		return
 
 	log_admin("[key_name(src)] changed hivenumber of [X] to [newhive].")
 	message_admins("<span class='boldnotice'>[key_name(src)] changed hivenumber of [X] to [newhive].</span>", 1)
-	X.hivenumber = newhivenumber
 
-	if(istype(X, /mob/living/carbon/Xenomorph/Larva))
-		var/mob/living/carbon/Xenomorph/Larva/L = X
-		L.update_icons() // larva renaming done differently
-	else
-		X.generate_name()
-
-	if(istype(X, /mob/living/carbon/Xenomorph/Queen))
-		update_living_queens()
+	X.set_hive_number(newhivenumber)
 
 	feedback_add_details("admin_verb","CHHN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	
