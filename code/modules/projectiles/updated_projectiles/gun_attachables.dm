@@ -607,6 +607,17 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -config.med_scatter_value
 	movement_acc_penalty_mod = config.min_movement_acc_penalty
 
+/obj/item/attachable/stock/scout
+	name = "\improper ZX-76 tactical stock"
+	desc = "A standard polymer stock for the ZX-76 assault shotgun."
+	icon_state = "ZX_stock"
+
+/obj/item/attachable/stock/scout/New()
+	..()
+	accuracy_mod = config.min_hit_accuracy_mult
+	recoil_mod = -config.min_recoil_value
+	scatter_mod = -config.min_scatter_value
+
 /obj/item/attachable/stock/slavic
 	name = "wooden stock"
 	desc = "A non-standard heavy wooden stock for Slavic firearms."
@@ -1111,7 +1122,7 @@ Defined in conflicts.dm of the #defines folder.
 		G.aim_slowdown += SLOWDOWN_ADS_SCOPE
 		G.wield_delay += WIELD_DELAY_FAST
 	G.update_slowdown()
-		
+
 	//var/image/targeting_icon = image('icons/mob/mob.dmi', null, "busy_targeting", "pixel_y" = 22) //on hold until the bipod is fixed
 	if(bipod_deployed)
 		icon_state = "bipod-on"
@@ -1140,12 +1151,12 @@ Defined in conflicts.dm of the #defines folder.
 	for(var/obj/O in T)
 		if(O.throwpass && O.density && O.dir == user.dir && O.flags_atom & ON_BORDER)
 			return O
-	
-	T = get_step(T, user.dir) 
+
+	T = get_step(T, user.dir)
 	for(var/obj/O in T)
 		if((istype(O, /obj/structure/window_frame)))
 			return O
-	
+
 	return FALSE
 
 

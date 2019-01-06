@@ -54,7 +54,7 @@ can cause issues with ammo types getting mixed up during the burst.
 		update_icon()	//This is not needed for now. Maybe we'll have loaded sprites at some point, but I doubt it. Also doesn't play well with double barrel.
 		ready_in_chamber()
 		cock_gun(user)
-	if(user) 
+	if(user)
 		playsound(user, reload_sound, 25, 1)
 	return TRUE
 
@@ -97,7 +97,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun
 	reload(mob/user, var/obj/item/ammo_magazine/magazine)
-		if(flags_gun_features & GUN_BURST_FIRING) 
+		if(flags_gun_features & GUN_BURST_FIRING)
 			return
 
 		if(!magazine || !istype(magazine,/obj/item/ammo_magazine/handful)) //Can only reload with handfuls.
@@ -116,7 +116,7 @@ can cause issues with ammo types getting mixed up during the burst.
 			add_to_tube(user,mag_caliber) //This will check the other conditions.
 
 	unload(mob/user)
-		if(flags_gun_features & GUN_BURST_FIRING) 
+		if(flags_gun_features & GUN_BURST_FIRING)
 			return
 		empty_chamber(user)
 
@@ -181,7 +181,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/merc/New()
 	. = ..()
-	if(current_mag && current_mag.current_rounds > 0) 
+	if(current_mag && current_mag.current_rounds > 0)
 		load_into_chamber()
 
 /obj/item/weapon/gun/shotgun/merc/set_gun_config_values()
@@ -199,7 +199,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/merc/examine(mob/user)
 	. = ..()
-	if(in_chamber) 
+	if(in_chamber)
 		to_chat(user, "It has a chambered round.")
 
 //-------------------------------------------------------
@@ -248,7 +248,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/combat/examine(mob/user)
 	. = ..()
-	if(in_chamber) 
+	if(in_chamber)
 		to_chat(user, "It has a chambered round.")
 
 //-------------------------------------------------------
@@ -298,7 +298,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	icon_state = current_mag.chamber_closed ? copytext(icon_state,1,-2) : icon_state + "_o"
 
 /obj/item/weapon/gun/shotgun/double/check_chamber_position()
-	if(current_mag.chamber_closed) 
+	if(current_mag.chamber_closed)
 		return
 	return TRUE
 
@@ -345,7 +345,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/double/delete_bullet(obj/item/projectile/projectile_to_fire, refund = 0)
 	qdel(projectile_to_fire)
-	if(refund) 
+	if(refund)
 		current_mag.current_rounds++
 	return TRUE
 
@@ -526,3 +526,50 @@ can cause issues with ammo types getting mixed up during the burst.
 	pump_delay = config.mhigh_fire_delay*2
 
 //-------------------------------------------------------
+
+//-------------------------------------------------------
+//SCOUT SHOTGUN
+
+/obj/item/weapon/gun/shotgun/merc/scout
+	name = "\improper ZX-76 assault shotgun"
+	desc = "The MIC ZX-76 Assault Shotgun, a semi-automatic combat shotgun capable of a double shot. Has a 10 round internal magazine."
+	icon_state = "zx-76"
+	item_state = "zx-76"
+	origin_tech = "combat=5;materials=4"
+	fire_sound = 'sound/weapons/gun_shotgun_automatic.ogg'
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
+	attachable_allowed = list(
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun,) //if it can mount a flamer, why can't it mount a shotgun
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
+
+/obj/item/weapon/gun/shotgun/combat/New()
+	. = ..()
+	var/obj/item/attachable/stock/scout/G = new(src)
+	G.flags_attach_features &= ~ATTACH_REMOVABLE
+	G.Attach(src)
+	update_attachable(G.slot)
+	G.icon_state = initial(G.icon_state)
+	if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
+
+/obj/item/weapon/gun/shotgun/merc/scout/set_gun_config_values()
+	fire_delay = config.tacshottie_fire_delay
+	burst_amount = config.low_burst_value
+	burst_delay = 0.01
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.max_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.max_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil = config.low_recoil_value
+	recoil_unwielded = config.high_recoil_value
