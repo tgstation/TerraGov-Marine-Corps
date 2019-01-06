@@ -1172,7 +1172,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		"<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>")
 
 		E.stage++
-		X.larva_growth_used = world.time + 1 MINUTE
+		X.larva_growth_used = world.time + 1 MINUTES
 
 //Ravager Abilities
 
