@@ -109,17 +109,20 @@
 	var/atom/acid_t
 	var/ticks = 0
 	var/acid_strength = 1 //100% speed, normal
+	var/acid_damage = 125 //acid damage on pick up, subject to armor
 
 //Sentinel weakest acid
 /obj/effect/xenomorph/acid/weak
 	name = "weak acid"
 	acid_strength = 2.5 //250% normal speed
+	acid_damage = 75
 	icon_state = "acid_weak"
 
 //Superacid
 /obj/effect/xenomorph/acid/strong
 	name = "strong acid"
 	acid_strength = 0.4 //20% normal speed
+	acid_damage = 175
 	icon_state = "acid_strong"
 
 /obj/effect/xenomorph/acid/New(loc, target)

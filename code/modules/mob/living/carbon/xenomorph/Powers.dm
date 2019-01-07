@@ -1358,7 +1358,11 @@
 		A.layer = O.layer + 0.1
 	else //If not, appear on the floor or on an item
 		A.layer = LOWER_ITEM_LAYER //below any item, above BELOW_OBJ_LAYER (smartfridge)
+		if(istype(O, /obj/item)) //set the acid variable
+			var/obj/item/I = O
+			I.current_acid = A
 
+	A.name = name + " (on [src])" //Identify what the acid is on
 	A.add_hiddenprint(src)
 
 	if(!isturf(O))
