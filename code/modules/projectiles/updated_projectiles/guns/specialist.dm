@@ -250,7 +250,7 @@
 /obj/item/weapon/gun/smartgun/able_to_fire(mob/living/user)
 	. = ..()
 	if(.)
-		if(!ishuman(user)) 
+		if(!ishuman(user))
 			return FALSE
 		var/mob/living/carbon/human/H = user
 		if(!istype(H.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner) || !istype(H.back,/obj/item/smartgun_powerpack))
@@ -375,7 +375,7 @@
 /obj/item/weapon/gun/launcher/m92/examine(mob/user)
 	. = ..()
 	if(grenades.len)
-		if(get_dist(user, src) > 2 && user != loc) 
+		if(get_dist(user, src) > 2 && user != loc)
 			return
 		to_chat(user, "\blue It is loaded with <b>[grenades.len] / [max_grenades]</b> grenades.")
 
@@ -391,12 +391,12 @@
 			to_chat(user, "<span class='warning'>The grenade launcher cannot hold more grenades!</span>")
 
 	else if(istype(I,/obj/item/attachable))
-		if(check_inactive_hand(user)) 
+		if(check_inactive_hand(user))
 			attach_to_gun(user,I)
 
 
 /obj/item/weapon/gun/launcher/m92/afterattack(atom/target, mob/user, flag)
-	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)	
+	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
 		if(!do_after(user, 8, TRUE, 5, BUSY_ICON_HOSTILE))
 			return
 	if(able_to_fire(user))
@@ -426,7 +426,7 @@
 		if(user)
 			user.put_in_hands(nade)
 			playsound(user, unload_sound, 25, 1)
-		else 
+		else
 			nade.loc = get_turf(src)
 		grenades -= nade
 	else
@@ -435,7 +435,7 @@
 
 /obj/item/weapon/gun/launcher/m92/proc/fire_grenade(atom/target, mob/user)
 	set waitfor = 0
-	playsound(user.loc, cocked_sound, 25, 1)	
+	playsound(user.loc, cocked_sound, 25, 1)
 	last_fired = world.time
 	for(var/mob/O in viewers(world.view, user))
 		O.show_message(text("<span class='danger'>[] fired a grenade!</span>", user), 1)
@@ -453,7 +453,7 @@
 		F.updateicon()
 		playsound(F.loc, fire_sound, 50, 1)
 		sleep(10)
-		if(F?.loc) 
+		if(F?.loc)
 			F.prime()
 
 /obj/item/weapon/gun/launcher/m92/has_ammo_counter()
@@ -512,7 +512,7 @@
 /obj/item/weapon/gun/launcher/m81/examine(mob/user)
 	. = ..()
 	if(grenade)
-		if(get_dist(user, src) > 2 && user != loc) 
+		if(get_dist(user, src) > 2 && user != loc)
 			return
 		to_chat(user, "\blue It is loaded with a grenade.")
 
@@ -583,7 +583,7 @@
 		F.updateicon()
 		playsound(F.loc, fire_sound, 50, 1)
 		sleep(10)
-		if(F?.loc) 
+		if(F?.loc)
 			F.prime()
 
 
@@ -642,7 +642,7 @@
 
 	if(!do_after(user, delay, TRUE, 3, BUSY_ICON_HOSTILE)) //slight wind up
 		return
-		
+
 	return ..()
 
 
@@ -662,9 +662,9 @@
 
 /obj/item/weapon/gun/launcher/rocket/examine(mob/user)
 	. = ..()
-	if(current_mag.current_rounds)  
+	if(current_mag.current_rounds)
 		to_chat(user, "It's ready to rocket.")
-	else 							
+	else
 		to_chat(user, "It's empty.")
 
 
@@ -680,13 +680,13 @@
 
 /obj/item/weapon/gun/launcher/rocket/delete_bullet(obj/item/projectile/projectile_to_fire, refund = FALSE)
 	qdel(projectile_to_fire)
-	if(refund) 
+	if(refund)
 		current_mag.current_rounds++
 	return TRUE
 
 
 /obj/item/weapon/gun/launcher/rocket/reload(mob/user, obj/item/ammo_magazine/rocket)
-	if(flags_gun_features & GUN_BURST_FIRING) 
+	if(flags_gun_features & GUN_BURST_FIRING)
 		return
 
 	if(!rocket || !istype(rocket) || rocket.caliber != current_mag.caliber)
@@ -709,9 +709,9 @@
 			current_mag.current_rounds = current_mag.max_rounds
 			rocket.current_rounds = 0
 			to_chat(user, "<span class='notice'>You load [rocket] into [src].</span>")
-			if(reload_sound) 
+			if(reload_sound)
 				playsound(user, reload_sound, 25, 1)
-			else 
+			else
 				playsound(user,'sound/machines/click.ogg', 25, 1)
 		else
 			to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
@@ -726,9 +726,9 @@
 
 /obj/item/weapon/gun/launcher/rocket/unload(mob/user)
 	if(user)
-		if(!current_mag.current_rounds) 
+		if(!current_mag.current_rounds)
 			to_chat(user, "<span class='warning'>[src] is already empty!</span>")
-		else 							
+		else
 			to_chat(user, "<span class='warning'>It would be too much trouble to unload [src] now. Should have thought ahead!</span>")
 
 //Adding in the rocket backblast. The tile behind the specialist gets blasted hard enough to down and slightly wound anyone
@@ -783,3 +783,51 @@
 	scatter = config.med_scatter_value
 	damage_mult = config.base_hit_damage_mult
 	recoil = config.med_recoil_value
+
+//-------------------------------------------------------
+
+//-------------------------------------------------------
+//SCOUT SHOTGUN
+
+/obj/item/weapon/gun/shotgun/merc/scout
+	name = "\improper ZX-76 assault shotgun"
+	desc = "The MIC ZX-76 Assault Shotgun, a semi-automatic combat shotgun capable of a double shot. Has a 10 round internal magazine."
+	icon_state = "zx-76"
+	item_state = "zx-76"
+	origin_tech = "combat=5;materials=4"
+	fire_sound = 'sound/weapons/gun_shotgun_automatic.ogg'
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
+	attachable_allowed = list(
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun,) //if it can mount a flamer, why can't it mount a shotgun
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
+
+/obj/item/weapon/gun/shotgun/combat/New()
+	. = ..()
+	var/obj/item/attachable/stock/scout/G = new(src)
+	G.flags_attach_features &= ~ATTACH_REMOVABLE
+	G.Attach(src)
+	update_attachable(G.slot)
+	G.icon_state = initial(G.icon_state)
+	if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
+
+/obj/item/weapon/gun/shotgun/merc/scout/set_gun_config_values()
+	fire_delay = config.tacshottie_fire_delay
+	burst_amount = config.low_burst_value
+	burst_delay = 0.01 //basically instantaneous two shots
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.max_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.max_scatter_value
+	damage_mult = config.base_hit_damage_mult
+	recoil = config.low_recoil_value
+	recoil_unwielded = config.high_recoil_value
