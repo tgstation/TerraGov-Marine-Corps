@@ -109,6 +109,7 @@ HIGH_FIRE_DELAY 5
 MHIGH_FIRE_DELAY 6
 MAX_FIRE_DELAY 7
 TACSHOTTIE_FIRE_DELAY 15
+SCOUTSHOTTIE_FIRE_DELAY 20
 
 ##SCATTER
 ##% chance of scattering the projectile, added to the gun scatter chance when fired. Only affects guns.

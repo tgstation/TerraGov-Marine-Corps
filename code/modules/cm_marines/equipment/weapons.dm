@@ -389,33 +389,33 @@
 	foldable = null
 	spec_set = "scout"
 
-	New()
-		..()
-		spawn(1)
-			new /obj/item/clothing/suit/storage/marine/M3S(src)
-			new /obj/item/clothing/head/helmet/marine/scout(src)
-			new /obj/item/clothing/glasses/night/M4RA(src)
-			new /obj/item/ammo_magazine/rifle/m4ra(src)
-			new /obj/item/ammo_magazine/rifle/m4ra(src)
-			new /obj/item/ammo_magazine/rifle/m4ra(src)
-			new /obj/item/ammo_magazine/rifle/m4ra(src)
-			new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
-			new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
-			new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
-			new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
-			new /obj/item/device/binoculars/tactical/scout(src)
-			new /obj/item/weapon/gun/pistol/vp70(src)
-			new /obj/item/ammo_magazine/pistol/vp70(src)
-			new /obj/item/ammo_magazine/pistol/vp70(src)
-			new /obj/item/weapon/gun/rifle/m4ra(src)
-			new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
-			new /obj/item/device/motiondetector/scout(src)
-			new /obj/item/explosive/grenade/cloakbomb(src)
-			new /obj/item/explosive/grenade/cloakbomb(src)
-			new /obj/item/explosive/grenade/cloakbomb(src)
+/obj/item/storage/box/spec/scout/New()
+	..()
+	spawn(1)
+		new /obj/item/clothing/suit/storage/marine/M3S(src)
+		new /obj/item/clothing/head/helmet/marine/scout(src)
+		new /obj/item/clothing/glasses/night/M4RA(src)
+		new /obj/item/ammo_magazine/rifle/m4ra(src)
+		new /obj/item/ammo_magazine/rifle/m4ra(src)
+		new /obj/item/ammo_magazine/rifle/m4ra(src)
+		new /obj/item/ammo_magazine/rifle/m4ra(src)
+		new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
+		new /obj/item/ammo_magazine/rifle/m4ra/incendiary(src)
+		new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
+		new /obj/item/ammo_magazine/rifle/m4ra/impact(src)
+		new /obj/item/device/binoculars/tactical/scout(src)
+		new /obj/item/weapon/gun/pistol/vp70(src)
+		new /obj/item/ammo_magazine/pistol/vp70(src)
+		new /obj/item/ammo_magazine/pistol/vp70(src)
+		new /obj/item/weapon/gun/rifle/m4ra(src)
+		new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
+		new /obj/item/device/motiondetector/scout(src)
+		new /obj/item/explosive/grenade/cloakbomb(src)
+		new /obj/item/explosive/grenade/cloakbomb(src)
+		new /obj/item/explosive/grenade/cloakbomb(src)
 
 
-/obj/item/storage/box/spec/scout/shotgun
+/obj/item/storage/box/spec/scoutshotgun
 	name = "\improper Scout equipment"
 	desc = "A large case containing Scout equipment; this one features the ZX-76 assault shotgun. Drag this sprite into you to open it up!\nNOTE: You cannot put items back inside this case."
 	icon = 'icons/Marine/marine-weapons.dmi'
@@ -427,24 +427,24 @@
 	foldable = null
 	spec_set = "scout"
 
-	New()
-		..()
-		spawn(1)
-			new /obj/item/clothing/suit/storage/marine/M3S(src)
-			new /obj/item/clothing/head/helmet/marine/scout(src)
-			new /obj/item/clothing/glasses/night/M4RA(src)
-			new /obj/item/device/binoculars/tactical/scout(src)
-			new /obj/item/weapon/gun/pistol/vp70(src)
-			new /obj/item/ammo_magazine/pistol/vp70(src)
-			new /obj/item/ammo_magazine/pistol/vp70(src)
-			new /obj/item/weapon/gun/shotgun/merc/scout(src)
-			new /obj/item/ammo_magazine/shotgun/incendiary(src)
-			new /obj/item/ammo_magazine/shotgun/incendiary(src)
-			new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
-			new /obj/item/device/motiondetector/scout(src)
-			new /obj/item/explosive/grenade/cloakbomb(src)
-			new /obj/item/explosive/grenade/cloakbomb(src)
-			new /obj/item/explosive/grenade/cloakbomb(src)
+/obj/item/storage/box/spec/scoutshotgun/New()
+	..()
+	spawn(1)
+		new /obj/item/clothing/suit/storage/marine/M3S(src)
+		new /obj/item/clothing/head/helmet/marine/scout(src)
+		new /obj/item/clothing/glasses/night/M4RA(src)
+		new /obj/item/device/binoculars/tactical/scout(src)
+		new /obj/item/weapon/gun/pistol/vp70(src)
+		new /obj/item/ammo_magazine/pistol/vp70(src)
+		new /obj/item/ammo_magazine/pistol/vp70(src)
+		new /obj/item/weapon/gun/shotgun/merc/scout(src)
+		new /obj/item/ammo_magazine/shotgun/incendiary(src)
+		new /obj/item/ammo_magazine/shotgun/incendiary(src)
+		new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
+		new /obj/item/device/motiondetector/scout(src)
+		new /obj/item/explosive/grenade/cloakbomb(src)
+		new /obj/item/explosive/grenade/cloakbomb(src)
+		new /obj/item/explosive/grenade/cloakbomb(src)
 
 
 /obj/item/storage/box/spec/pyro
@@ -512,8 +512,10 @@
 			S = /obj/item/storage/box/spec/heavy_grenadier
 		if("Sniper")
 			S = /obj/item/storage/box/spec/sniper
-		if("Scout")
+		if("Scout (Battle Rifle)")
 			S = /obj/item/storage/box/spec/scout
+		if("Scout (Shotgun)")
+			S = /obj/item/storage/box/spec/scoutshotgun
 		if("Demo")
 			S = /obj/item/storage/box/spec/demolitionist
 	new S(loc)

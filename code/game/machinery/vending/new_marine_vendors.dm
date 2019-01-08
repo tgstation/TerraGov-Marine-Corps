@@ -202,6 +202,8 @@
 						to_chat(H, "<span class='warning'>You already have a specialist specialization.</span>")
 						return
 					var/p_name = L[1]
+					if(findtext(p_name, "Scout Set")) //Makes sure there can only be one Scout kit taken despite the two variants.
+						p_name = "Scout Set"
 					if(!available_specialist_sets.Find(p_name))
 						to_chat(H, "<span class='warning'>That set is already taken</span>")
 						return
@@ -915,7 +917,7 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 	listed_products = list(
 							list("SPECIALIST SETS (Choose one)", 0, null, null, null),
 							list("Scout Set (Battle Rifle)", 0, /obj/item/storage/box/spec/scout, MARINE_CAN_BUY_ESSENTIALS, "white"),
-							list("Scout Set (Shotgun)", 0, /obj/item/storage/box/spec/scout/shotgun, MARINE_CAN_BUY_ESSENTIALS, "white"),
+							list("Scout Set (Shotgun)", 0, /obj/item/storage/box/spec/scoutshotgun, MARINE_CAN_BUY_ESSENTIALS, "white"),
 							list("Sniper Set", 0, /obj/item/storage/box/spec/sniper, MARINE_CAN_BUY_ESSENTIALS, "white"),
 							list("Demolitionist Set", 0, /obj/item/storage/box/spec/demolitionist, MARINE_CAN_BUY_ESSENTIALS, "white"),
 							list("Heavy Grenadier Set", 0, /obj/item/storage/box/spec/heavy_grenadier, MARINE_CAN_BUY_ESSENTIALS, "white"),

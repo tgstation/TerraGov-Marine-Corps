@@ -91,6 +91,7 @@
 	var/mhigh_fire_delay = 6
 	var/max_fire_delay = 7
 	var/tacshottie_fire_delay = 15
+	var/scoutshottie_fire_delay = 20
 
 	var/min_scatter_value = 5
 	var/mlow_scatter_value = 10
@@ -349,6 +350,8 @@
 			max_fire_delay = value
 		if("tacshottie_fire_delay")
 			tacshottie_fire_delay = value
+		if("scoutshottie_fire_delay")
+			scoutshottie_fire_delay = value
 
 		if("min_scatter_value")
 			min_scatter_value = value

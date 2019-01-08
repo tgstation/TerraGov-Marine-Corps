@@ -117,7 +117,7 @@
 						/obj/item/attachable/scope/slavic)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 20, "stock_y" = 14)
 
 /obj/item/weapon/gun/rifle/sniper/svd/New()
 	. = ..()
@@ -791,7 +791,7 @@
 
 /obj/item/weapon/gun/shotgun/merc/scout
 	name = "\improper ZX-76 assault shotgun"
-	desc = "The MIC ZX-76 Assault Shotgun, a semi-automatic combat shotgun capable of a double shot. Has a 10 round internal magazine."
+	desc = "The MIC ZX-76 Assault Shotgun, a semi-automatic combat shotgun capable of a double shot. Has a 9 round internal magazine."
 	icon_state = "zx-76"
 	item_state = "zx-76"
 	origin_tech = "combat=5;materials=4"
@@ -808,20 +808,22 @@
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/attached_gun/flamer,
-						/obj/item/attachable/attached_gun/shotgun,) //if it can mount a flamer, why can't it mount a shotgun
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 14, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/attached_gun/grenade,)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 18, "under_x" = 28, "under_y" = 13, "stock_x" = 11, "stock_y" = 15)
 
-/obj/item/weapon/gun/shotgun/combat/New()
+/obj/item/weapon/gun/shotgun/merc/scout/New()
 	. = ..()
 	var/obj/item/attachable/stock/scout/G = new(src)
 	G.flags_attach_features &= ~ATTACH_REMOVABLE
 	G.Attach(src)
 	update_attachable(G.slot)
 	G.icon_state = initial(G.icon_state)
-	if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
+	if(current_mag && current_mag.current_rounds > 0)
+		load_into_chamber()
 
 /obj/item/weapon/gun/shotgun/merc/scout/set_gun_config_values()
-	fire_delay = config.tacshottie_fire_delay
+	fire_delay = config.scoutshottie_fire_delay
 	burst_amount = config.low_burst_value
 	burst_delay = 0.01 //basically instantaneous two shots
 	accuracy_mult = config.base_hit_accuracy_mult

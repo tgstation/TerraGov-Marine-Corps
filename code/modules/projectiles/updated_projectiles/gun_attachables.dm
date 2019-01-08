@@ -609,8 +609,9 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/scout
 	name = "\improper ZX-76 tactical stock"
-	desc = "A standard polymer stock for the ZX-76 assault shotgun."
-	icon_state = "ZX_stock"
+	desc = "A standard polymer stock for the ZX-76 assault shotgun. Designed for maximum ease of use in close quarters."
+	icon_state = "zx_stock"
+	wield_delay_mod = null
 
 /obj/item/attachable/stock/scout/New()
 	..()
