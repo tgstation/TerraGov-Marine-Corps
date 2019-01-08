@@ -791,7 +791,7 @@
 
 /obj/item/weapon/gun/shotgun/merc/scout
 	name = "\improper ZX-76 assault shotgun"
-	desc = "The MIC ZX-76 Assault Shotgun, a semi-automatic combat shotgun capable of a double shot. Has a 9 round internal magazine."
+	desc = "The MIC ZX-76 Assault Shotgun, a dobule barreled semi-automatic combat shotgun with a twin shot mode. Has a 9 round internal magazine."
 	icon_state = "zx-76"
 	item_state = "zx-76"
 	origin_tech = "combat=5;materials=4"
@@ -807,10 +807,11 @@
 						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/compensator,
 						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/lasersight,
 						/obj/item/attachable/attached_gun/flamer,
 						/obj/item/attachable/attached_gun/shotgun,
 						/obj/item/attachable/attached_gun/grenade,)
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 18, "under_x" = 28, "under_y" = 13, "stock_x" = 11, "stock_y" = 15)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 18, "under_x" = 24, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)
 
 /obj/item/weapon/gun/shotgun/merc/scout/New()
 	. = ..()
