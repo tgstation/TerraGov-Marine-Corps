@@ -70,7 +70,6 @@
 	origin_tech = "combat=1;materials=1"
 	matter = list("metal" = 2000)
 	ammo = /datum/ammo/energy/taser
-	movement_acc_penalty_mult = 1
 	charge_cost = 1250
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
@@ -78,11 +77,11 @@
 	cell_type = /obj/item/cell/high
 
 /obj/item/weapon/gun/energy/taser/set_gun_config_values()
-	fire_delay = config.high_fire_delay * 2
-	accuracy_mult = config.base_hit_accuracy_mult
+	fire_delay = config.max_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
 	accuracy_mult_unwielded = config.base_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
+	scatter = config.mlow_scatter_value
+	scatter_unwielded = config.low_scatter_value
 	damage_mult = config.base_hit_damage_mult
 
 /obj/item/weapon/gun/energy/taser/update_icon()
