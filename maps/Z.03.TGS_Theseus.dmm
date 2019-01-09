@@ -4720,7 +4720,7 @@
 "bMN" = (/obj/structure/rack,/turf/open/floor/almayer{icon_state = "cargo"},/area/almayer/shipboard/brig)
 "bMO" = (/obj/structure/closet/secure_closet/guncabinet/riot_control,/turf/open/floor/almayer{tag = "icon-redfull"; icon_state = "redfull"},/area/almayer/shipboard/brig)
 "bMP" = (/obj/effect/decal/warning_stripes{tag = "icon-W"; icon_state = "W"},/turf/open/floor/plating/almayer,/area/almayer/shipboard/brig)
-"bMQ" = (/obj/structure/closet/secure_closet/military_police,/obj/item/reagent_container/spray/pepper,/obj/structure/reagent_dispensers/peppertank{pixel_x = -30},/turf/open/floor/almayer{icon_state = "cargo"},/area/almayer/shipboard/brig)
+"bMQ" = (/obj/structure/closet/secure_closet/military_police,/obj/item/reagent_container/spray/pepper,/obj/structure/reagent_dispensers/wallmounted/peppertank{pixel_x = -30},/turf/open/floor/almayer{icon_state = "cargo"},/area/almayer/shipboard/brig)
 "bMR" = (/obj/structure/table/almayer,/obj/item/weapon/gun/pistol/m4a3,/obj/item/weapon/gun/pistol/m4a3,/obj/item/weapon/gun/pistol/m4a3,/turf/open/floor/almayer{dir = 5; icon_state = "red"; tag = "icon-red"},/area/almayer/shipboard/brig)
 "bMS" = (/obj/machinery/door/poddoor/railing{dir = 2; id = "maintenance_lower_railing"},/turf/open/floor/almayer{icon_regular_floor = "mono"; icon_state = "mono"},/area/almayer/hull/lower_hull)
 "bMT" = (/obj/structure/disposalpipe/segment,/turf/open/floor/almayer{icon_regular_floor = "mono"; icon_state = "mono"},/area/almayer/hull/lower_hull)
