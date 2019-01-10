@@ -3,6 +3,7 @@
 	desc = "A wall mounted storage locker."
 	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "wall-locker"
+	pixel_y = 32
 	density = FALSE
 	anchored = TRUE
 	icon_closed = "wall-locker"
@@ -14,18 +15,16 @@
 
 /obj/structure/closet/walllocker/north
 	pixel_y = 32
-	dir = SOUTH
-
-/obj/structure/closet/walllocker/south
-	pixel_y = -32
 	dir = NORTH
 
 /obj/structure/closet/walllocker/west
-	pixel_x = -32
+	pixel_y = 0
+	pixel_x = 32
 	dir = WEST
 
 /obj/structure/closet/walllocker/east
-	pixel_x = 32
+	pixel_y = 0
+	pixel_x = -32
 	dir = EAST
 
 /obj/structure/closet/walllocker/emerglocker //wall mounted emergency closet
@@ -37,19 +36,17 @@
 	overlay_welded = "emergwelded"
 
 /obj/structure/closet/walllocker/emerglocker/north
-	pixel_y = 32
-	dir = SOUTH
-
-/obj/structure/closet/walllocker/emerglocker/south
 	pixel_y = -32
 	dir = NORTH
 
 /obj/structure/closet/walllocker/emerglocker/west
-	pixel_x = -32
+	pixel_y = 0
+	pixel_x = 32
 	dir = WEST
 
 /obj/structure/closet/walllocker/emerglocker/east
-	pixel_x = 32
+	pixel_y = 0
+	pixel_x = -32
 	dir = EAST
 
 /obj/structure/walllocker/emerglocker/full // spawners
@@ -62,19 +59,17 @@
 		new /obj/item/clothing/mask/gas(src)
 
 /obj/structure/closet/walllocker/emerglocker/full/north
-	pixel_y = 32
-	dir = SOUTH
-
-/obj/structure/closet/walllocker/emerglocker/full/south
 	pixel_y = -32
 	dir = NORTH
 
 /obj/structure/closet/walllocker/emerglocker/full/west
-	pixel_x = -32
+	pixel_y = 0
+	pixel_x = 32
 	dir = WEST
 
 /obj/structure/closet/walllocker/emerglocker/full/east
-	pixel_x = 32
+	pixel_y = 0
+	pixel_x = -32
 	dir = EAST
 
 /obj/structure/closet/walllocker/hydrant //wall mounted fire closet
@@ -86,19 +81,17 @@
 	overlay_welded = "hydrant-medical_welded"
 
 /obj/structure/closet/walllocker/hydrant/north
-	pixel_y = 32
-	dir = SOUTH
-
-/obj/structure/closet/walllocker/hydrant/south
 	pixel_y = -32
 	dir = NORTH
 
 /obj/structure/closet/walllocker/hydrant/west
-	pixel_x = -32
+	pixel_y = 0
+	pixel_x = 32
 	dir = WEST
 
 /obj/structure/closet/walllocker/hydrant/east
-	pixel_x = 32
+	pixel_y = 0
+	pixel_x = -32
 	dir = EAST
 
 /obj/structure/closet/walllocker/hydrant/full // spawners
@@ -114,19 +107,17 @@
 	new /obj/item/clothing/head/hardhat/red(src)
 
 /obj/structure/closet/walllocker/hydrant/full/north
-	pixel_y = 32
-	dir = SOUTH
-
-/obj/structure/closet/walllocker/hydrant/full/south
 	pixel_y = -32
 	dir = NORTH
 
 /obj/structure/closet/walllocker/hydrant/full/west
-	pixel_x = -32
+	pixel_y = 0
+	pixel_x = 32
 	dir = WEST
 
 /obj/structure/closet/walllocker/hydrant/full/east
-	pixel_x = 32
+	pixel_y = 0
+	pixel_x = -32
 	dir = EAST
 
 /obj/structure/closet/walllocker/medical_wall //wall mounted medical closet
@@ -138,17 +129,15 @@
 	overlay_welded = "hydrant-medical_welded"
 
 /obj/structure/closet/walllocker/medical_wall/north
-	pixel_y = 32
-	dir = SOUTH
-
-/obj/structure/closet/walllocker/medical_wall/south
 	pixel_y = -32
 	dir = NORTH
 
 /obj/structure/closet/walllocker/medical_wall/west
-	pixel_x = -32
+	pixel_y = 0
+	pixel_x = 32
 	dir = WEST
 
 /obj/structure/closet/walllocker/medical_wall/east
-	pixel_x = 32
+	pixel_y = 0
+	pixel_x = -32
 	dir = EAST

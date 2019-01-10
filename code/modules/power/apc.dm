@@ -45,7 +45,7 @@
 /obj/machinery/power/apc
 	name = "area power controller"
 	desc = "A control terminal for the area electrical systems."
-	icon = 'icons/obj/power.dmi'
+	icon = 'icons/obj/wallframes.dmi'
 	icon_state = "apc0"
 	anchored = 1
 	use_power = 0
@@ -1302,6 +1302,9 @@
 	. = ..()
 
 
+//------Various APCs ------//
+
+
 /obj/machinery/power/apc/north
 	dir = NORTH
 
@@ -1309,6 +1312,30 @@
 	dir = EAST
 
 /obj/machinery/power/apc/west
+	dir = WEST
+
+/obj/machinery/power/apc/lowcharge
+	start_charge = 25
+
+/obj/machinery/power/apc/lowcharge/north
+	dir = NORTH
+
+/obj/machinery/power/apc/lowcharge/east
+	dir = EAST
+
+/obj/machinery/power/apc/lowcharge/west
+	dir = WEST
+
+/obj/machinery/power/apc/nocharge
+	start_charge = 0
+
+/obj/machinery/power/apc/nocharge/north
+	dir = NORTH
+
+/obj/machinery/power/apc/nocharge/east
+	dir = EAST
+
+/obj/machinery/power/apc/nocharge/west
 	dir = WEST
 
 /obj/machinery/power/apc/potato

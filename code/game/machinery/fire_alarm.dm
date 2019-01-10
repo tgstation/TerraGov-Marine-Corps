@@ -23,6 +23,32 @@ FIRE ALARM
 	var/wiresexposed = 0
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
 
+/obj/machinery/firealarm/New(location, direction, building)
+	..()
+
+	if(location)
+		loc = location
+
+	if(direction)
+		dir = direction
+
+	if(building)
+		buildstage = 0
+		wiresexposed = TRUE
+
+	switch(dir)
+		if(NORTH)
+			pixel_y = 32
+		if(SOUTH)
+			pixel_y = -32
+		if(EAST)
+			pixel_x = 32
+		if(WEST)
+			pixel_x = -32
+
+	update_icon()
+	start_processing()
+
 /obj/machinery/firealarm/update_icon()
 	overlays.Cut()
 
@@ -236,28 +262,12 @@ FIRE ALARM
 	//playsound(src.loc, 'sound/ambience/signal.ogg', 50, 0)
 	return
 
-/obj/machinery/firealarm/New(loc, dir, building)
-	..()
 
-	if(loc)
-		src.loc = loc
+/obj/machinery/firealarm/north
+	dir = NORTH
 
-	if(dir)
-		src.dir = dir
+/obj/machinery/firealarm/east
+	dir = EAST
 
-	if(building)
-		buildstage = 0
-		wiresexposed = 1
-
-	switch(dir)
-		if(NORTH)
-			pixel_y = 32
-		if(SOUTH)
-			pixel_y = -32
-		if(EAST)
-			pixel_x = 32
-		if(WEST)
-			pixel_x = -32
-
-	update_icon()
-	start_processing()
+/obj/machinery/firealarm/west
+	dir = WEST
