@@ -323,6 +323,10 @@ var/list/slot_equipment_priority = list( \
 		'html/changelog.css',
 		'html/changelog.js',
 		'html/changelog.html'
+		'html/chrome-wrench.png'
+		'html/ban.png'
+		'html/coding.png'
+		'html/scales.png'
 		)
 	src << browse('html/changelog.html', "window=changes;size=675x650")
 	if(prefs.lastchangelog != changelog_hash)
