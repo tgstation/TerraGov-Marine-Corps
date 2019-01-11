@@ -293,7 +293,7 @@
 					frozen = TRUE
 					if(xeno_caste.charge_type == 2)
 						M.attack_alien(src, null, "disarm") //Hunters get a free throttle in exchange for lower initial stun.
-					if(!(xeno_caste.caste_flags & CASTE_IS_ROBOTIC)) 
+					if(!(xeno_caste.caste_flags & CASTE_IS_ROBOTIC))
 						playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
 					spawn(xeno_caste.charge_type == 1 ? 5 : 15)
 						frozen = FALSE
@@ -542,6 +542,16 @@
 				return TRUE
 			else
 				return FALSE
+
+/mob/living/carbon/Xenomorph/proc/neuroclaw_router()
+	return
+
+/mob/living/carbon/Xenomorph/Defiler/neuroclaw_router(mob/living/carbon/human/H)
+	if(!check_plasma(50) || !neuro_claws || !H)
+		return
+	use_plasma(50)
+	H.reagents.add_reagent("xeno_toxin", DEFILER_CLAW_AMOUNT)
+	to_chat(src, "<span class='xenowarning'>Your claw spines inject your victim with neurotoxin!</span>")
 
 /mob/living/carbon/Xenomorph/proc/process_ravager_charge(hit = TRUE, mob/living/carbon/M = null)
 	return FALSE

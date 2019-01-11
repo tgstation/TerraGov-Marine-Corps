@@ -1002,7 +1002,7 @@
 	if(!X.observed_xeno)
 		to_chat(X, "<span class='warning'>You must overwatch the xeno you want to de-evolve.</span>")
 		return
-	
+
 	var/mob/living/carbon/Xenomorph/T = X.observed_xeno
 	if(!X.check_plasma(600)) // check plasma gives an error message itself
 		return
@@ -1022,7 +1022,7 @@
 	if(!T.xeno_caste.deevolves_to)
 		to_chat(X, "<span class='xenowarning'>[T] can't be deevolved.</span>")
 		return
-	
+
 	var/datum/xeno_caste/new_caste = xeno_caste_datums[T.xeno_caste.deevolves_to][1]
 
 	var/confirm = alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", , "Yes", "No")
@@ -1106,7 +1106,7 @@
 	qdel(T)
 	X.use_plasma(600)
 
-	
+
 
 //Ravager Abilities
 
@@ -1252,6 +1252,53 @@
 	var/mob/living/carbon/Xenomorph/Sentinel/X = owner
 	if(world.time >= X.last_neurotoxin_sting + NEUROTOXIN_STING_COOLDOWN)
 		return TRUE
+
+//Defiler abilities
+
+/datum/action/xeno_action/activable/neuroclaws
+	name = "Toggle Neuroinjectors"
+	action_icon_state = "neuroclaws_on"
+	ability_name = "neuroclaws"
+
+/datum/action/xeno_action/activable/neuro_claws/action_activate()
+	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	X.neuro_claws()
+
+/datum/action/xeno_action/activable/emit_neurogas/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	if(world.time >= X.last_use_neuroclaws + DEFILER_CLAWS_COOLDOWN)
+		return TRUE
+
+//Defiler's Sting
+/datum/action/xeno_action/activable/defiler_sting
+	name = "Defiler's Sting"
+	action_icon_state = "defiler_sting"
+	ability_name = "defiler sting"
+
+/datum/action/xeno_action/activable/defiler_sting/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	X.defiler_sting(A)
+
+/datum/action/xeno_action/activable/defiler_sting/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	if(world.time >= X.last_defiler_sting + DEFILER_STING_COOLDOWN)
+		return TRUE
+
+//Defiler Neurogas
+/datum/action/xeno_action/activable/emit_neurogas
+	name = "Emit Neurogas"
+	action_icon_state = "emit_neurogas"
+	ability_name = "emit neurogas"
+
+/datum/action/xeno_action/activable/emit_neurogas/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	if(world.time >= X.last_emit_neurogas + DEFILER_GAS_COOLDOWN)
+		return TRUE
+
+/datum/action/xeno_action/activable/emit_neurogas/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	X.emit_neurogas()
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 

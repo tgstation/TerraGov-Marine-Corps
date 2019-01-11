@@ -817,3 +817,19 @@
 
 /datum/reagent/xeno_neurotoxin/overdose_crit_process(mob/living/M)
 		M.adjustOxyLoss(min(4,volume * 0.2 * REM)) //Overdose starts applying more oxy damage
+
+/datum/reagent/xeno_growthtoxin
+	name = "Larval Accelerant"
+	id = "xeno_growthtoxin"
+	description = "A metabolic accelerant that dramatically increases the rate of larval growth in a host."
+	reagent_state = LIQUID
+	color = "#CF3600" // rgb: 207, 54, 0
+	custom_metabolism = 0.5 // Slow meta rate.
+	overdose_threshold = REAGENTS_OVERDOSE
+	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL
+
+/datum/reagent/xeno_neurotoxin/overdose_process(mob/living/M)
+		M.adjustOxyLoss(min(2,volume * 0.1 * REM)) //Overdose starts applying more oxy damage
+
+/datum/reagent/xeno_neurotoxin/overdose_crit_process(mob/living/M)
+		M.adjustOxyLoss(min(4,volume * 0.2 * REM)) //Overdose starts applying more oxy damage

@@ -1160,6 +1160,7 @@
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Carrier.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Crusher.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Defender.dm"
+#include "code\modules\mob\living\carbon\xenomorph\Castes\Defiler.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Drone.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Hivelord.dm"
 #include "code\modules\mob\living\carbon\xenomorph\Castes\Hunter.dm"

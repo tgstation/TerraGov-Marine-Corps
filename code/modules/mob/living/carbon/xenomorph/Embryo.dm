@@ -81,6 +81,10 @@
 		counter += 1 + max(0,(0.03 * affected_mob.health)) //Up to +300% faster, depending on the health of the host
 	else if(stage <= 4)
 		counter++
+	if(isliving(affected_mob))
+		var/mob/living/L = affected_mob
+		if(L.reagents.get_reagent_amount("xeno_growthtoxin"))
+			counter += 10 //Dramatically accelerates larval growth. You don't want this stuff in your body.
 
 	if(stage < 5 && counter >= 120)
 		counter = 0
