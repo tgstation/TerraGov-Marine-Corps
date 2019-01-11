@@ -147,6 +147,7 @@
 	caliber = "rocket"
 	default_ammo = /datum/ammo/rocket
 	max_rounds = 1
+	current_rounds = 0
 	reload_delay = 60
 
 
