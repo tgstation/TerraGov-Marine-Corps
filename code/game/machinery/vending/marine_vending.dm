@@ -348,6 +348,7 @@
 		machine_current_charge -= min(machine_current_charge, recharge_cost)
 		to_chat(user, "<span class='notice'>This dispenser has [machine_current_charge] of [machine_max_charge] remaining.</span>")
 		update_icon()
+		return TRUE
 
 
 /obj/machinery/vending/marineFood
