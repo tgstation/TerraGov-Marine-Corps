@@ -136,14 +136,14 @@
 	name = "Defiler"
 	desc = "A frightening looking, bulky xeno that drips with suspect green fluids."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
-	icon_state = "Warrior Walking"
 	health = 225
 	maxHealth = 225
-	plasma_stored = 50
+	plasma_stored = 400
 	speed = -1
 	pixel_x = -16
 	old_x = -16
-	tier = 2
+	wound_type = "runner" //used to match appropriate wound overlays
+	tier = 3
 	upgrade = 0
 	var/datum/effect_system/smoke_spread/smoke_system = null
 	var/last_defiler_sting = null
