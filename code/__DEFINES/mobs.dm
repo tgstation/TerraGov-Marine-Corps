@@ -529,7 +529,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 //Defiler defines
 
 #define DEFILER_STING_COOLDOWN				20 SECONDS
-#define DEFILER_GAS_COOLDOWN				30 SECONDS
+#define DEFILER_GAS_COOLDOWN				60 SECONDS
 #define DEFILER_CLAWS_COOLDOWN				1 SECONDS
 
 #define DEFILER_STING_INJECT_DELAY			1.5 SECONDS

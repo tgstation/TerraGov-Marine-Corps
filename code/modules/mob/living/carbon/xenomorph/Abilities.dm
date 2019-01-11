@@ -1255,23 +1255,38 @@
 
 //Defiler abilities
 
-/datum/action/xeno_action/activable/neuroclaws
+/datum/action/xeno_action/neuroclaws
 	name = "Toggle Neuroinjectors"
 	action_icon_state = "neuroclaws_on"
-	ability_name = "neuroclaws"
 
-/datum/action/xeno_action/activable/neuro_claws/action_activate()
+/datum/action/xeno_action/neuroclaws/action_activate()
 	var/mob/living/carbon/Xenomorph/Defiler/X = owner
-	X.neuro_claws()
 
-/datum/action/xeno_action/activable/emit_neurogas/action_cooldown_check()
+	if(!X.check_state())
+		return
+
+	if(world.time < X.last_use_neuroclaws + DEFILER_CLAWS_COOLDOWN)
+		return
+
+	X.neuro_claws = !X.neuro_claws
+	X.last_use_neuroclaws = world.time
+	to_chat(X, "<span class='notice'>You [X.neuro_claws ? "extend" : "retract"] your claws' neuro spines.</span>")
+	button.overlays.Cut()
+	if(X.neuro_claws)
+		playsound(X, 'sound/weapons/slash.ogg', 15, 1)
+		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_off")
+	else
+		playsound(X, 'sound/weapons/slashmiss.ogg', 15, 1)
+		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_on")
+
+/datum/action/xeno_action/emit_neurogas/action_cooldown_check()
 	var/mob/living/carbon/Xenomorph/Defiler/X = owner
 	if(world.time >= X.last_use_neuroclaws + DEFILER_CLAWS_COOLDOWN)
 		return TRUE
 
 //Defiler's Sting
 /datum/action/xeno_action/activable/defiler_sting
-	name = "Defiler's Sting"
+	name = "Defile"
 	action_icon_state = "defiler_sting"
 	ability_name = "defiler sting"
 
