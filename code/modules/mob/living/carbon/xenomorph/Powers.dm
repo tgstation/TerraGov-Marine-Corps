@@ -2012,3 +2012,144 @@
 		for(var/X in actions)
 			var/datum/action/A = X
 			A.update_button_icon()
+
+
+
+//Defiler abilities
+/mob/living/carbon/Xenomorph/Defiler/proc/emit_neurogas()
+
+	if(!check_state()) return
+
+	if(world.time < last_emit_neurogas + DEFILER_GAS_COOLDOWN) //Sure, let's use this.
+		to_chat(src, "<span class='xenodanger'>You are not ready to emit neurogas again. This ability will be ready in [(last_emit_neurogas + DEFILER_GAS_COOLDOWN - world.time) * 0.1] seconds.</span>")
+		return FALSE
+
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
+		return
+
+	if(!check_plasma(200))
+		return
+
+	last_emit_neurogas = world.time
+	use_plasma(200)
+
+	//give them fair warning
+	visible_message("<span class='danger'>Tufts of smoke begin to billow from [src]!</span>", \
+	"<span class='xenodanger'>Your dorsal vents widen, and emit tufts of neurogas!</span>")
+
+	spawn(DEFILER_GAS_COOLDOWN)
+		playsound(loc, 'sound/effects/xeno_newlarva.ogg', 50, 1)
+		to_chat(src, "<span class='xenodanger'>You feel your dorsal vents bristle with neurotoxic gas. You can use Emit Neurotoxin again.</span>")
+		update_action_button_icons()
+
+	if(!do_after(src, DEFILER_STING_INJECT_DELAY, TRUE, 5, BUSY_ICON_HOSTILE))
+		return
+
+	if(stagger) //If we got staggered, return
+		to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
+		return
+
+	round_statistics.defiler_neurogas_uses++
+
+	visible_message("<span class='xenodanger'>[src] emits a noxious gas!</span>", \
+	"<span class='xenodanger'>You emit neurogas!</span>")
+	dispense_gas()
+
+/mob/living/carbon/Xenomorph/Defiler/proc/dispense_gas(count = 0)
+	if(stagger) //If we got staggered, return
+		to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
+		return
+	if(count > 4)
+		return
+	playsound(loc, 'sound/effects/smoke.ogg', 25)
+	var/turf/T = get_turf(src)
+	smoke_system = new /datum/effect_system/smoke_spread/xeno_weaken()
+	smoke_system.amount = 1
+	smoke_system.set_up(1, 0, T)
+	smoke_system.start()
+	T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
+	spawn(10)
+		dispense_gas(count + 1)
+
+
+/mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting(mob/living/H)
+
+	if(!check_state())
+		return
+
+	if(world.time < last_defiler_sting + DEFILER_STING_COOLDOWN) //Sure, let's use this.
+		to_chat(src, "<span class='xenodanger'>You are not ready to Defile again. It will be ready in [(last_defiler_sting + DEFILER_STING_COOLDOWN - world.time) * 0.1] seconds.</span>")
+		return
+
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
+		return
+
+	if(!istype(H) || isXeno(H) || isrobot(H))
+		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
+		return
+
+	if(!Adjacent(H))
+		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
+			to_chat(src, "<span class='xenowarning'>You can't reach this target!</span>")
+			recent_notice = world.time //anti-notice spam
+		return
+
+	if ((H.status_flags & XENO_HOST) && istype(H.buckled, /obj/structure/bed/nest))
+		to_chat(src, "<span class='xenowarning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
+		return
+
+	if(!check_plasma(150))
+		return
+	last_defiler_sting = world.time
+	use_plasma(150)
+
+	round_statistics.defiler_defiler_stings++
+
+	face_atom(H)
+	animation_attack_on(H)
+	H.reagents.add_reagent("xeno_toxin", DEFILER_STING_AMOUNT_INITIAL) //15 units transferred initially.
+	H.reagents.add_reagent("xeno_growthtoxin", DEFILER_STING_AMOUNT_INITIAL) //15 units transferred initially.
+	to_chat(H, "<span class='danger'>You feel a tiny prick.</span>")
+	to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with neurotoxin and larval growth serum!</span>")
+	playsound(H, 'sound/effects/spray3.ogg', 15, 1)
+	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+
+	spawn(DEFILER_STING_COOLDOWN)
+		playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+		to_chat(src, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. You can use Defile again.</span>")
+		update_action_button_icons()
+
+	defiler_recurring_injection(H)
+
+
+/mob/living/carbon/Xenomorph/Defiler/proc/defiler_recurring_injection(mob/living/H, count = 1)
+	if(count > 3)
+		return FALSE
+	if(!Adjacent(H) || stagger)
+		return FALSE
+	face_atom(H)
+	if(!do_after(src, DEFILER_STING_INJECT_DELAY, TRUE, 5, BUSY_ICON_HOSTILE))
+		return
+	animation_attack_on(H)
+	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+	H.reagents.add_reagent("xeno_toxin", DEFILER_STING_AMOUNT_RECURRING) //10 units transferred.
+	H.reagents.add_reagent("xeno_growthtoxin", DEFILER_STING_AMOUNT_RECURRING)
+
+	if(count < 2)
+		defiler_recurring_injection(H, count + 1)
+		return
+
+	//It's infection time!
+	if(!CanHug(H))
+		return
+
+	var/embryos = 0
+	for(var/obj/item/alien_embryo/embryo in H) // already got one, stops doubling up
+		embryos++
+	if(!embryos)
+		var/obj/item/alien_embryo/embryo = new /obj/item/alien_embryo(H)
+		embryo.hivenumber = hivenumber
+		to_chat(src, "<span class='xenodanger'>Your stinger successfully implants a larva into the host.</span>")
+	return

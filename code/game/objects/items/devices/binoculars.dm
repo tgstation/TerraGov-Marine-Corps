@@ -19,20 +19,6 @@
 /obj/item/device/binoculars/on_set_interaction(var/mob/user)
 	flags_atom |= RELAY_CLICK
 
-/obj/item/device/binoculars/attack_hand(mob/user)
-	//From there, the new xeno exists, hopefully
-	var/mob/living/carbon/Xenomorph/new_xeno = new /mob/living/carbon/Xenomorph/Defiler(get_turf(user))
-
-	if(!istype(new_xeno))
-		//Something went horribly wrong!
-		to_chat(user, "<span class='warning'>Something went terribly wrong here. Your new xeno is null! Tell a coder immediately!</span>")
-		if(new_xeno)
-			qdel(new_xeno)
-		return
-
-	if(user.mind)
-		user.mind.transfer_to(new_xeno)
-	new_xeno.upgrade_xeno(3)
 
 /obj/item/device/binoculars/on_unset_interaction(var/mob/user)
 	flags_atom &= ~RELAY_CLICK
