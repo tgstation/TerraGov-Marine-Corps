@@ -2036,14 +2036,14 @@
 
 	//give them fair warning
 	visible_message("<span class='danger'>Tufts of smoke begin to billow from [src]!</span>", \
-	"<span class='xenodanger'>Your dorsal vents widen, and emit tufts of neurogas!</span>")
+	"<span class='xenodanger'>Your dorsal vents widen, preparing to emit neurogas. Keep still!</span>")
 
 	spawn(DEFILER_GAS_COOLDOWN)
-		playsound(loc, 'sound/effects/xeno_newlarva.ogg', 50, 1)
-		to_chat(src, "<span class='xenodanger'>You feel your dorsal vents bristle with neurotoxic gas. You can use Emit Neurotoxin again.</span>")
+		playsound(loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
+		to_chat(src, "<span class='xenodanger'>You feel your dorsal vents bristle with neurotoxic gas. You can use Emit Neurogas again.</span>")
 		update_action_button_icons()
 
-	if(!do_after(src, DEFILER_STING_INJECT_DELAY, TRUE, 5, BUSY_ICON_HOSTILE))
+	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
 		return
 
 	if(stagger) //If we got staggered, return
@@ -2060,13 +2060,13 @@
 	if(stagger) //If we got staggered, return
 		to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
 		return
-	if(count > 4)
+	if(count > DEFILER_GAS_CLOUD_COUNT)
 		return
 	playsound(loc, 'sound/effects/smoke.ogg', 25)
 	var/turf/T = get_turf(src)
 	smoke_system = new /datum/effect_system/smoke_spread/xeno_weaken()
-	smoke_system.amount = 1
-	smoke_system.set_up(1, 0, T)
+	smoke_system.amount = 2
+	smoke_system.set_up(2, 0, T)
 	smoke_system.start()
 	T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
 	spawn(10)
@@ -2117,7 +2117,7 @@
 	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 
 	spawn(DEFILER_STING_COOLDOWN)
-		playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+		playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 0)
 		to_chat(src, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. You can use Defile again.</span>")
 		update_action_button_icons()
 
@@ -2130,7 +2130,7 @@
 	if(!Adjacent(H) || stagger)
 		return FALSE
 	face_atom(H)
-	if(!do_after(src, DEFILER_STING_INJECT_DELAY, TRUE, 5, BUSY_ICON_HOSTILE))
+	if(!do_after(src, DEFILER_STING_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
 		return
 	animation_attack_on(H)
 	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
