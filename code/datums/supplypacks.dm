@@ -321,6 +321,19 @@ WEAPONS
 	containername = "\improper rifles crate"
 	group = "Weapons"
 
+/datum/supply_packs/gun/lasrifle
+	contains = list(
+					/obj/item/weapon/gun/energy/lasgun/M43,
+					/obj/item/weapon/gun/energy/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					)
+	name = "surplus lasrifle crate (M43 lasgun x2, M43 battery packs x2)"
+	cost = RO_PRICE_VERY_CHEAP
+	containertype = /obj/structure/closet/crate
+	containername = "\improper lasrifle crate"
+	group = "Weapons"
+
 /datum/supply_packs/gun/heavyrifle
 	contains = list(
 					/obj/item/weapon/gun/rifle/lmg,
@@ -502,19 +515,6 @@ WEAPONS
 	cost = RO_PRICE_KINDA_PRICY
 	containertype = /obj/structure/closet/crate/explosives
 	containername = "\improper detpack explosives crate (WARNING)"
-	group = "Weapons"
-
-/datum/supply_packs/gun/lasrifle
-	contains = list(
-					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43,
-					/obj/item/cell/lasgun/M43,
-					)
-	name = "surplus lasrifle crate (M43 x2, M43 battery packs x2)"
-	cost = RO_PRICE_VERY_CHEAP
-	containertype = /obj/structure/closet/crate
-	containername = "\improper lasrifle crate"
 	group = "Weapons"
 
 /*******************************************************************************

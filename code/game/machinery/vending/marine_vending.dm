@@ -335,11 +335,11 @@
 			updateUsrDialog()
 			break //We found our item, no reason to go on.
 
-/obj/machinery/vending/lasgun/proc/recharge_lasguncell(obj/item/cell/lasgun/M43/A, mob/user)
+/obj/machinery/vending/lasgun/proc/recharge_lasguncell(obj/item/cell/lasgun/A, mob/user)
 	var/recharge_cost = (A.maxcharge - A.charge)
 	if(recharge_cost > machine_current_charge)
 		to_chat(user, "<span class='warning'>[A] cannot be recharged; [src] has inadequate charge remaining: [machine_current_charge] of [machine_max_charge].</span>")
-		return
+		return FALSE
 	else
 		to_chat(user, "<span class='warning'>You insert [A] into [src] to be recharged.</span>")
 		if(icon_vend)
