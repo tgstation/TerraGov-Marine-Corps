@@ -111,8 +111,6 @@
 					// /obj/item/weapon/gun/shotgun/combat = 1,
 					/obj/item/explosive/mine = 2,
 					/obj/item/storage/box/nade_box = 2,
-					/obj/item/storage/box/nade_box/M15 = 1 ,
- 					/obj/item/storage/box/nade_box/incendiary = 0,
 					/obj/item/explosive/grenade/frag/m15 = 2,
 					/obj/item/explosive/grenade/incendiary = 4,
 					/obj/item/explosive/grenade/smokebomb = 5,
@@ -143,6 +141,8 @@
 					/obj/item/weapon/gun/smg/skorpion = 0,
 					/obj/item/weapon/gun/smg/uzi = 0,
 					/obj/item/weapon/gun/smg/p90 = 0
+					/obj/item/storage/box/nade_box/M15 = 0 ,
+ 					/obj/item/storage/box/nade_box/incendiary = 0,
 					)
 	premium = list()
 
