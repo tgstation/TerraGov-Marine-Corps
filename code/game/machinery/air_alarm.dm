@@ -88,7 +88,7 @@
 	var/area/alarm_area
 	var/buildstage = 2 //2 is built, 1 is building, 0 is frame.
 
-	var/target_temperature = T0C+20
+	var/target_temperature = T20C
 	var/regulating_temperature = 0
 
 	var/datum/radio_frequency/radio_connection
@@ -126,9 +126,9 @@
 			if(SOUTH)
 				pixel_y = -32
 			if(EAST)
-				pixel_x = 32
-			if(WEST)
 				pixel_x = -32
+			if(WEST)
+				pixel_x = 32
 		update_icon()
 		if(ticker?.current_state == GAME_STATE_PLAYING)//if the game is running
 			initialize()
@@ -1084,26 +1084,56 @@ table tr:first-child th:first-child { border: none;}
 		to_chat(user, "The circuit is missing.")
 
 
+/obj/machinery/alarm/north
+	dir = NORTH
+
+/obj/machinery/alarm/east
+	dir = EAST
+
+/obj/machinery/alarm/west
+	dir = WEST
 
 
 /obj/machinery/alarm/monitor
-	apply_danger_level = 0
-	breach_detection = 0
-	post_alert = 0
+	apply_danger_level = FALSE
+	breach_detection = FALSE
+	post_alert = FALSE
 
-/obj/machinery/alarm/server/New()
-	..()
+/obj/machinery/alarm/monitor/north
+	dir = NORTH
+
+/obj/machinery/alarm/monitor/east
+	dir = EAST
+
+/obj/machinery/alarm/monitor/west
+	dir = WEST
+
+
+/obj/machinery/alarm/server
 	req_one_access = list(ACCESS_CIVILIAN_ENGINEERING)
+	target_temperature = 90
+
+/obj/machinery/alarm/server/first_run()
+	alarm_area = get_area(src)
+	if (alarm_area.master)
+		alarm_area = alarm_area.master
+	area_uid = alarm_area.uid
+	if (name == "alarm")
+		name = "[alarm_area.name] Air Alarm"
+
 	TLV["oxygen"] =			list(-1.0, -1.0,-1.0,-1.0) // Partial pressure, kpa
 	TLV["carbon dioxide"] = list(-1.0, -1.0,   5,  10) // Partial pressure, kpa
 	TLV["phoron"] =			list(-1.0, -1.0, 0.2, 0.5) // Partial pressure, kpa
 	TLV["other"] =			list(-1.0, -1.0, 0.5, 1.0) // Partial pressure, kpa
 	TLV["pressure"] =		list(0,ONE_ATMOSPHERE*0.10,ONE_ATMOSPHERE*1.40,ONE_ATMOSPHERE*1.60) /* kpa */
 	TLV["temperature"] =	list(20, 40, 140, 160) // K
-	target_temperature = 90
 
 
-//Theseus version
-/obj/machinery/alarm/almayer
+/obj/machinery/alarm/server/north
+	dir = NORTH
 
+/obj/machinery/alarm/server/east
+	dir = EAST
 
+/obj/machinery/alarm/server/west
+	dir = WEST
