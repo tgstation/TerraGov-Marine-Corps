@@ -272,7 +272,7 @@
 	icon_off = "secure_closed_commander"
 
 /obj/structure/closet/secure_closet/commander/New()
-	..()
+	. = ..()
 	new /obj/item/storage/backpack/mcommander(src)
 	new /obj/item/clothing/shoes/marinechief/commander(src)
 	new /obj/item/clothing/gloves/marine/techofficer/commander(src)
