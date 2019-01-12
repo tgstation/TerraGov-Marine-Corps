@@ -54,7 +54,7 @@
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/activable/pounce,
 //		/datum/action/xeno_action/activable/fire_cannon,
-		/datum/action/xeno_action/activable/salvage_plasma
+		/datum/action/xeno_action/activable/salvage_plasma/improved
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,

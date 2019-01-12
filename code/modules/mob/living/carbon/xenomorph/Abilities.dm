@@ -412,7 +412,7 @@
 	var/mob/living/carbon/Xenomorph/X = owner
 	X.xeno_transfer_plasma(A, plasma_transfer_amount, transfer_delay, max_range)
 
-/datum/action/xeno_action/activable/transfer_plasma/hivelord
+/datum/action/xeno_action/activable/transfer_plasma/improved
 	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 4
 	transfer_delay = 0.5 SECONDS
 	max_range = 7
@@ -431,7 +431,7 @@ datum/action/xeno_action/activable/salvage_plasma/use_ability(atom/A)
 		return
 	X.xeno_salvage_plasma(A, plasma_salvage_amount, salvage_delay, max_range)
 
-datum/action/xeno_action/activable/salvage_plasma/hivelord
+datum/action/xeno_action/activable/salvage_plasma/improved
 	plasma_salvage_amount = PLASMA_SALVAGE_AMOUNT * 2
 	salvage_delay = 3 SECONDS
 	max_range = 4
