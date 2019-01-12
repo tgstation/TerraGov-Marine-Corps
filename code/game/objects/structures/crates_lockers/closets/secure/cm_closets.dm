@@ -349,11 +349,13 @@
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
 
-	select_gamemode_equipment(gamemode) //removing the whitespace in the above lists causes errors here.
-		switch(map_tag)
-			if(MAP_ICE_COLONY)
-				new /obj/item/clothing/mask/rebreather/scarf(src)
-				new /obj/item/clothing/mask/rebreather/scarf(src)
+/obj/structure/closet/secure_closet/pilot_officer/select_gamemode_equipment()
+	switch(map_tag)
+		if(MAP_ICE_COLONY)
+			new /obj/item/clothing/mask/rebreather/scarf(src)
+			new /obj/item/clothing/mask/rebreather/scarf(src)
+
+
 
 /**********************Military Police Gear**************************/
 /obj/structure/closet/secure_closet/military_police
