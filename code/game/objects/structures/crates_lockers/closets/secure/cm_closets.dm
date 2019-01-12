@@ -516,7 +516,7 @@
 	icon_off = "secure_off_cargo"
 
 /obj/structure/closet/secure_closet/cargotech/New()
-	..()
+	. = ..()
 	new /obj/item/clothing/under/rank/cargotech(src)
 	new /obj/item/clothing/shoes/marine(src)
 	new /obj/item/device/radio/headset/almayer/ct(src)
