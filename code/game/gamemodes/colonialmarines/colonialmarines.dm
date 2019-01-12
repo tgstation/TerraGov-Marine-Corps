@@ -249,5 +249,6 @@
 	declare_completion_announce_xenomorphs()
 	declare_completion_announce_survivors()
 	declare_completion_announce_medal_awards()
+	declare_completion_announce_round_stats()
 	end_of_round_deathmatch()
 	return TRUE

@@ -6,10 +6,12 @@
 	attachable_allowed = list()
 	var/obj/item/cell/cell //1000 power.
 	var/charge_cost = 10 //100 shots.
+	var/cell_type = /obj/item/cell
 
 /obj/item/weapon/gun/energy/New()
 	. = ..()
-	cell = new /obj/item/cell(src)
+	if(cell_type)
+		cell = new cell_type(src)
 
 /obj/item/weapon/gun/energy/able_to_fire(mob/living/user)
 	. = ..()
@@ -68,22 +70,18 @@
 	origin_tech = "combat=1;materials=1"
 	matter = list("metal" = 2000)
 	ammo = /datum/ammo/energy/taser
-	movement_acc_penalty_mult = 1
-	charge_cost = 100
+	charge_cost = 500
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
-
-/obj/item/weapon/gun/energy/taser/New()
-	. = ..()
-	cell = new /obj/item/cell/high(src)
+	cell_type = /obj/item/cell/high
 
 /obj/item/weapon/gun/energy/taser/set_gun_config_values()
 	fire_delay = config.high_fire_delay * 2
-	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
 	accuracy_mult_unwielded = config.base_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
+	scatter = config.mlow_scatter_value
+	scatter_unwielded = config.low_scatter_value
 	damage_mult = config.base_hit_damage_mult
 
 /obj/item/weapon/gun/energy/taser/update_icon()
@@ -94,9 +92,10 @@
 
 /obj/item/weapon/gun/energy/taser/able_to_fire(mob/living/user)
 	. = ..()
-	if (. && istype(user)) //Let's check all that other stuff first.
-		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.police < SKILL_POLICE_MP)
+	if (.) //Let's check all that other stuff first.
+		if(user?.mind?.cm_skills?.police && user.mind.cm_skills.police < SKILL_POLICE_MP)
 			to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
+			return FALSE
 
 
 /obj/item/weapon/gun/energy/plasmarifle
@@ -115,10 +114,7 @@
 	w_class = 5
 	charge_cost = 100
 	flags_gun_features = GUN_UNUSUAL_DESIGN
-
-/obj/item/weapon/gun/energy/plasmarifle/New()
-	. = ..()
-	cell = new /obj/item/cell/high(src)
+	cell_type = /obj/item/cell/high
 
 /obj/item/weapon/gun/energy/plasmarifle/set_gun_config_values()
 	fire_delay = config.high_fire_delay*2
