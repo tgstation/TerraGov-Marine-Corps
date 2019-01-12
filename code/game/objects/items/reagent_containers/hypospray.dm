@@ -84,7 +84,7 @@
 			reagents.handle_reactions()
 			user.visible_message("<span clas='warning'>[user] takes a blood sample from [A].</span>",
 								"<span class='notice'>You take a blood sample from [A].</span>", null, 4)
-		else if(istype(A,/obj)) //if not mob
+		else if(istype(A, /obj)) //if not mob
 			if(!A.reagents.total_volume)
 				to_chat(user, "<span class='warning'>[A] is empty.")
 				return
@@ -96,7 +96,7 @@
 			var/trans = A.reagents.trans_to(src, amount_per_transfer_from_this)
 
 			to_chat(user, "<span class='notice'>You fill [src] with [trans] units of the solution.</span>")
-		if (reagents.holder_full())
+		if(reagents.holder_full())
 			inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 			update_icon()
 		return TRUE
@@ -108,7 +108,7 @@
 	if(!A.is_injectable())
 		to_chat(user, "<span class='warning'>You cannot directly fill this object.</span>")
 		return
-	if(skilllock && user.mind && user.mind.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
+	if(skilllock && user.mind?.cm_skills && user.mind.cm_skills.medical < SKILL_MEDICAL_CHEM)
 		user.visible_message("<span class='notice'>[user] fumbles around figuring out how to use the [src].</span>",
 		"<span class='notice'>You fumble around figuring out how to use the [src].</span>")
 		if(!do_after(user, SKILL_TASK_EASY, TRUE, 5, BUSY_ICON_BUILD))
@@ -238,14 +238,14 @@
 			empty(usr)
 
 		if(!( master ))
-			if(istype(loc, /mob/living/carbon/human))
+			if(ishuman(loc))
 				handle_interface(loc)
 			else
 				for(var/mob/living/carbon/human/M in viewers(1, src))
 					if(M.client)
 						handle_interface(M)
 		else
-			if(istype(master.loc, /mob/living/carbon/human))
+			if(ishuman(master.loc))
 				handle_interface(master.loc)
 			else
 				for(var/mob/living/carbon/human/M in viewers(1, master))
@@ -289,7 +289,7 @@
 					if(M.client)
 						handle_interface(M)
 		else
-			if(istype(master.loc, /mob/living/carbon/human))
+			if(ishuman(master.loc))
 				handle_interface(master.loc)
 			else
 				for(var/mob/living/carbon/human/M in viewers(1, master))
