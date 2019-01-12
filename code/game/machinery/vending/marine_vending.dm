@@ -277,7 +277,7 @@
 
 /obj/machinery/vending/lasgun/update_icon()
 	if(machine_max_charge)
-		switch(machine_current_charge / machine_max_charge)
+		switch(machine_current_charge / max(1,machine_max_charge))
 			if(0)
 				icon_state = "lascharger-off"
 			if(1 to 0.76)
