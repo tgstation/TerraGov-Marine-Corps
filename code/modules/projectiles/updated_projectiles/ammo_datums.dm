@@ -1630,7 +1630,7 @@
 	flags_ammo_behavior = AMMO_SHRAPNEL
 
 /datum/ammo/bullet/shrapnel/flechette/New()
-	..()
+	. = ..()
 	accuracy = config.max_hit_accuracy
 	accurate_range = config.min_shell_range
 	accuracy_var_low = config.med_proj_variance
