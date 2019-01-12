@@ -28,6 +28,7 @@
 		"<span class='xenonotice'>You regurgitate a pulsating node and plant it on the ground!</span>", null, 5)
 		new /obj/effect/alien/weeds/node(X.loc, src, X)
 		playsound(X.loc, "alien_resin_build", 25)
+		round_statistics.weeds_planted++
 
 // Resting
 /datum/action/xeno_action/xeno_resting
@@ -1228,7 +1229,6 @@
 	name = "Toggle Stealth"
 	action_icon_state = "stealth_on"
 	ability_name = "stealth"
-	plasma_cost = 0
 
 /datum/action/xeno_action/activable/stealth/action_activate()
 	var/mob/living/carbon/Xenomorph/Hunter/X = owner
@@ -1238,6 +1238,20 @@
 	var/mob/living/carbon/Xenomorph/Hunter/X = owner
 	return !X.used_stealth
 
+//Sentinel Neurotox Sting
+/datum/action/xeno_action/activable/neurotox_sting
+	name = "Neurotoxin Sting"
+	action_icon_state = "neuro_sting"
+	ability_name = "neurotoxin sting"
+
+/datum/action/xeno_action/activable/neurotox_sting/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Sentinel/X = owner
+	X.neurotoxin_sting(A)
+
+/datum/action/xeno_action/activable/neurotox_sting/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Sentinel/X = owner
+	if(world.time >= X.last_neurotoxin_sting + NEUROTOXIN_STING_COOLDOWN)
+		return TRUE
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 
