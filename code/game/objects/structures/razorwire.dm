@@ -6,7 +6,7 @@
 	var/base_icon_state = "barbedwire_x"
 	density = TRUE
 	anchored = TRUE
-	layer = TABLE_LAYER
+	layer = ABOVE_OBJ_LAYER
 	throwpass = TRUE	//You can throw objects over this
 	climbable = TRUE
 	breakable = TRUE

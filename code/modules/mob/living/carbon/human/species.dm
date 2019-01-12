@@ -33,7 +33,7 @@
 	var/mutantrace                // Safeguard due to old code.
 	var/list/speech_sounds        // A list of sounds to potentially play when speaking.
 	var/list/speech_chance
-	var/has_fine_manipulation = 1 // Can use small items.
+	var/has_fine_manipulation = TRUE // Can use small items.
 	var/insulated                 // Immune to electrocution and glass shards to the feet.
 	var/show_paygrade = FALSE
 	var/count_human = FALSE // Does this count as a human?
@@ -295,7 +295,7 @@
 	darksight = 8
 	slowdown = 0.3
 	insulated = 1
-	has_fine_manipulation = 0
+	has_fine_manipulation = FALSE
 
 	heat_level_1 = 1000
 	heat_level_2 = 1500

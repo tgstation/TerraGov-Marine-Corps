@@ -6,7 +6,6 @@
 	icon_state = "grenade"
 	det_time = 40
 	item_state = "grenade"
-	dangerous = 1
 	underslug_launchable = TRUE
 
 /obj/item/explosive/grenade/frag/prime()
@@ -28,7 +27,7 @@
 	icon_state = "training_grenade"
 	item_state = "grenade"
 	hud_state = "grenade_dummy"
-	dangerous = 0
+	dangerous = FALSE
 
 /obj/item/explosive/grenade/frag/training/prime()
 	spawn(0)
@@ -118,8 +117,6 @@
 	det_time = 40
 	item_state = "grenade_fire"
 	hud_state = "grenade_fire"
-	flags_equip_slot = ITEM_SLOT_BELT
-	dangerous = 1
 	underslug_launchable = TRUE
 
 /obj/item/explosive/grenade/incendiary/prime()
@@ -172,6 +169,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	item_state = "grenade_smoke"
 	hud_state = "grenade_smoke"
 	underslug_launchable = TRUE
+	dangerous = FALSE
 	var/datum/effect_system/smoke_spread/bad/smoke
 
 /obj/item/explosive/grenade/smokebomb/New()
@@ -193,6 +191,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	det_time = 20
 	item_state = "grenade_cloak"
 	hud_state = "grenade_hide"
+	dangerous = FALSE
 	underslug_launchable = TRUE
 	var/datum/effect_system/smoke_spread/tactical/smoke
 
