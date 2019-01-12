@@ -112,7 +112,7 @@ REAGENT SCANNER
 		user.show_message("\tType: <font color='blue'>Oxygen</font>-<font color='green'>Toxin</font>-<font color='#FFA500'>Burns</font>-<font color='red'>Brute</font>", 1)
 		user.show_message("\tDamage: <font color='blue'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>")
 		user.show_message("<span class='notice'> Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)</span>", 1)
-		user.show_message("\red <b>Warning: Blood Level ERROR: --% --cl.\blue Type: ERROR")
+		user.show_message("<span class='warning'> <b>Warning: Blood Level ERROR: --% --cl.<span class='notice'> Type: ERROR</span>")
 		user.show_message("<span class='notice'> Subject's pulse: <font color='red'>-- bpm.</font></span>")
 		return
 

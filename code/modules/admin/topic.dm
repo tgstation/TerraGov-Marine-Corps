@@ -1568,8 +1568,8 @@
 		log_admin("[src.owner] replied to [key_name(H)]'s TGMC message with the message [input].")
 		for(var/client/X in admins)
 			if((R_ADMIN|R_MOD) & X.holder.rights)
-				to_chat(X, "<b>ADMINS/MODS: \red [src.owner] replied to [key_name(H)]'s TGMC message with: \blue \"[input]\"</b>")
-		to_chat(H, "\red You hear something crackle in your headset before a voice speaks, \"Please stand by for a message from TGMC:\" \blue <b>\"[input]\"</b>")
+				to_chat(X, "<b>ADMINS/MODS: <span class='warning'> [src.owner] replied to [key_name(H)]'s TGMC message with: <span class='notice'> \"[input]\"</b></span>")
+		to_chat(H, "<span class='warning'> You hear something crackle in your headset before a voice speaks, \"Please stand by for a message from TGMC:\" <span class='notice'> <b>\"[input]\"</b></span>")
 
 	else if(href_list["SyndicateReply"])
 		var/mob/living/carbon/human/H = locate(href_list["SyndicateReply"])

@@ -405,12 +405,12 @@
 			if(2)
 				t1 = "*dead*"
 			else
-		to_chat(user, text("[]\t Health %: [] ([])", (occupant.health > 50 ? "\blue " : "\red "), occupant.health, t1))
+		to_chat(user, text("[]\t Health %: [] ([])</span>", (occupant.health > 50 ? "<span class='notice'> " : "<span class='warning'> "), occupant.health, t1))
 		to_chat(user, text("[]\t -Core Temperature: []&deg;C ([]&deg;F)</FONT><BR>", (occupant.bodytemperature > 50 ? "<font color='blue'>" : "<font color='red'>"), occupant.bodytemperature-T0C, occupant.bodytemperature*1.8-459.67))
-		to_chat(user, text("[]\t -Brute Damage %: []", (occupant.getBruteLoss() < 60 ? "\blue " : "\red "), occupant.getBruteLoss()))
-		to_chat(user, text("[]\t -Respiratory Damage %: []", (occupant.getOxyLoss() < 60 ? "\blue " : "\red "), occupant.getOxyLoss()))
-		to_chat(user, text("[]\t -Toxin Content %: []", (occupant.getToxLoss() < 60 ? "\blue " : "\red "), occupant.getToxLoss()))
-		to_chat(user, text("[]\t -Burn Severity %: []", (occupant.getFireLoss() < 60 ? "\blue " : "\red "), occupant.getFireLoss()))
+		to_chat(user, text("[]\t -Brute Damage %: []</span>", (occupant.getBruteLoss() < 60 ? "<span class='notice'> " : "<span class='warning'> "), occupant.getBruteLoss()))
+		to_chat(user, text("[]\t -Respiratory Damage %: []</span>", (occupant.getOxyLoss() < 60 ? "<span class='notice'> " : "<span class='warning'> "), occupant.getOxyLoss()))
+		to_chat(user, text("[]\t -Toxin Content %: []</span>", (occupant.getToxLoss() < 60 ? "<span class='notice'> " : "<span class='warning'> "), occupant.getToxLoss()))
+		to_chat(user, text("[]\t -Burn Severity %: []</span>", (occupant.getFireLoss() < 60 ? "<span class='notice'> " : "<span class='warning'> "), occupant.getFireLoss()))
 		to_chat(user, "<span class='notice'>Expected time till occupant can safely awake: (note: If health is below 20% these times are inaccurate)</span>")
 		to_chat(user, "<span class='notice'>\t [occupant.knocked_out / 5] second\s (if around 1 or 2 the sleeper is keeping them asleep.)</span>")
 		if(beaker)

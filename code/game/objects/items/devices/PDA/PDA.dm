@@ -1027,7 +1027,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 				user.show_message("<span class='notice'> Analyzing Results for [C]:</span>")
 				user.show_message("<span class='notice'> \t Overall Status: [C.stat > 1 ? "dead" : "[C.health - C.halloss]% healthy"]</span>", 1)
-				user.show_message("\blue \t Damage Specifics: [C.getOxyLoss() > 50 ? "\red" : "\blue"][C.getOxyLoss()]-[C.getToxLoss() > 50 ? "\red" : "\blue"][C.getToxLoss()]-[C.getFireLoss() > 50 ? "\red" : "\blue"][C.getFireLoss()]-[C.getBruteLoss() > 50 ? "\red" : "\blue"][C.getBruteLoss()]", 1)
+				user.show_message("<span class='notice'> \t Damage Specifics: [C.getOxyLoss() > 50 ? "<span class='warning'>" : "<span class='notice'>"][C.getOxyLoss()]-[C.getToxLoss() > 50 ? "<span class='warning'>" : "<span class='notice'>"][C.getToxLoss()]-[C.getFireLoss() > 50 ? "<span class='warning'>" : "<span class='notice'>"][C.getFireLoss()]-[C.getBruteLoss() > 50 ? "<span class='warning'>" : "<span class='notice'>"][C.getBruteLoss()]</span>", 1)
 				user.show_message("<span class='notice'> \t Key: Suffocation/Toxin/Burns/Brute</span>", 1)
 				user.show_message("<span class='notice'> \t Body Temperature: [C.bodytemperature-T0C]&deg;C ([C.bodytemperature*1.8-459.67]&deg;F)</span>", 1)
 				if(C.tod && (C.stat == DEAD || (C.status_flags & FAKEDEATH)))
@@ -1038,7 +1038,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 					user.show_message("<span class='notice'> Localized Damage, Brute/Burn:</span>",1)
 					if(length(damaged)>0)
 						for(var/datum/limb/org in damaged)
-							user.show_message(text("\blue \t []: []\blue-[]",capitalize(org.display_name),(org.brute_dam > 0)?"\red [org.brute_dam]":0,(org.burn_dam > 0)?"\red [org.burn_dam]":0),1)
+							user.show_message(text("<span class='notice'> \t []: []<span class='notice'>-[]</span>",capitalize(org.display_name),(org.brute_dam > 0)?"<span class='warning'> [org.brute_dam]":0,(org.burn_dam > 0)?"<span class='warning'> [org.burn_dam]":0),1)
 					else
 						user.show_message("<span class='notice'> \t Limbs are OK.</span>",1)
 

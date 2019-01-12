@@ -64,7 +64,7 @@
 		M.reagents.add_reagent(reagent_ids[mode], t)
 		reagent_volumes[reagent_ids[mode]] -= t
 		// to_chat(user, "<span class='notice'>[t] units injected. [reagent_volumes[reagent_ids[mode]]] units remaining.</span>")
-		to_chat(user, "\blue [t] units of \red [reagent_ids[mode]] \blue injected for a total of \red [round(M.reagents.get_reagent_amount(reagent_ids[mode]))]\blue. [reagent_volumes[reagent_ids[mode]]] units remaining.")
+		to_chat(user, "<span class='notice'> [t] units of <span class='warning'> [reagent_ids[mode]] <span class='notice'> injected for a total of <span class='warning'> [round(M.reagents.get_reagent_amount(reagent_ids[mode]))]<span class='notice'>. [reagent_volumes[reagent_ids[mode]]] units remaining.</span>")
 
 	return
 

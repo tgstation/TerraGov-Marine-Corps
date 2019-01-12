@@ -517,7 +517,7 @@
 	weedlevel = 0
 
 	update_icon()
-	visible_message("\red The \blue [previous_plant] \red has suddenly mutated into \blue [seed.display_name]!")
+	visible_message("<span class='warning'> The <span class='notice'> [previous_plant] <span class='warning'> has suddenly mutated into <span class='notice'> [seed.display_name]!</span>")
 
 	return
 
