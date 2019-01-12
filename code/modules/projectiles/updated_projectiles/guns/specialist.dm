@@ -715,7 +715,7 @@
 			replace_ammo(user,loaded_rocket)
 			user.drop_inv_item_on_ground(loaded_rocket)
 			loaded_rocket.loc = src
-			current_mag.current_rounds = current_mag.max_rounds
+			current_mag.current_rounds = min(current_mag.current_rounds + 1, current_mag.max_rounds)
 			to_chat(user, "<span class='notice'>You load [rocket] into [src].</span>")
 			if(reload_sound)
 				playsound(user, reload_sound, 25, 1)
@@ -727,7 +727,7 @@
 	else
 		loaded_rocket.loc = src
 		replace_ammo(null,loaded_rocket)
-		current_mag.current_rounds = current_mag.max_rounds
+		current_mag.current_rounds = min(current_mag.current_rounds + 1, current_mag.max_rounds)
 	return TRUE
 
 /obj/item/weapon/gun/launcher/rocket/unload(mob/user)
@@ -740,7 +740,7 @@
 	if(!do_after(user,current_mag.reload_delay * 0.5, TRUE, 5, BUSY_ICON_FRIENDLY))
 		to_chat(user, "<span class='warning'>Your unloading was interrupted!</span>")
 		return
-	current_mag.current_rounds = 0
+	current_mag.current_rounds = min(0,current_mag.current_rounds - 1)
 	ammo = null
 	loaded_rocket.loc = get_turf(src)
 	loaded_rocket = null
