@@ -750,8 +750,6 @@
 	icon_deny = "marineuniform"
 	req_access = null
 	req_one_access = list(ACCESS_MARINE_LOGISTICS, ACCESS_MARINE_PREP, ACCESS_MARINE_CARGO)
-	var/squad_tag = ""
-
 	product_ads = "Hey! You! Stop looking like a turtle and start looking like a TRUE soldier!;Dress whites, fresh off the ironing board!;Why kill in armor when you can kill in style?;These uniforms are so sharp you'd cut yourself just looking at them!"
 	products = list(
 					/obj/item/clothing/under/whites = 50,
