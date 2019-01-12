@@ -307,7 +307,7 @@
 
 
 /obj/item/reagent_container/hypospray/advanced/update_icon()
-	..()
+	. = ..()
 
 	overlays.Cut()
 	if(reagents.total_volume)
