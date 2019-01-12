@@ -151,7 +151,7 @@
 	update_icon()
 
 /obj/item/reagent_container/hypospray/pickup(mob/user)
-	..()
+	. = ..()
 	update_icon()
 
 /obj/item/reagent_container/hypospray/dropped(mob/user)
