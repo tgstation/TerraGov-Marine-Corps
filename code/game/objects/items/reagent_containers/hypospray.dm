@@ -28,7 +28,7 @@
 	handle_interface(user)
 
 /obj/item/reagent_container/hypospray/proc/empty(mob/user)
-	if (alert(user, "Are you sure you want to empty [src]?", "Flush [src]:", "Yes", "No") != "Yes")
+	if(alert(user, "Are you sure you want to empty [src]?", "Flush [src]:", "Yes", "No") != "Yes")
 		return
 	if(isturf(user.loc))
 		to_chat(user, "<span class='notice'>You flush the contents of [src].</span>")
