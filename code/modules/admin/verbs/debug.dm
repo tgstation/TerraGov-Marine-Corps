@@ -451,9 +451,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	H.set_everything(H.mind.assigned_role)
 	
-	if(H.assigned_squad)
-		var/datum/squad/PS = H.assigned_squad
-		PS.remove_marine_from_squad(H)
+	H.assigned_squad?.remove_marine_from_squad(H)
 
 	var/datum/squad/S = input(usr, "Choose the marine's new squad") as null|anything in RoleAuthority.squads
 	if(!S) 
