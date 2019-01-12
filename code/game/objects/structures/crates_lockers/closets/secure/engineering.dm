@@ -9,32 +9,32 @@
 	icon_off = "secureceoff"
 
 
-	/obj/structure/closet/secure_closet/engineering_chief/New()
-		..()
-		sleep(2)
-		new /obj/item/clothing/tie/storage/webbing(src)
-		new /obj/item/clothing/tie/storage/brown_vest(src)
-		new /obj/item/clothing/head/hardhat/white(src)
-		new /obj/item/clothing/head/welding(src)
-		new /obj/item/clothing/gloves/yellow(src)
-		new /obj/item/cartridge/ce(src)
-		if(z && (z == 3 || z == 4))
-			new /obj/item/device/radio/headset/almayer/ce(src)
-		new /obj/item/storage/toolbox/mechanical(src)
-		new /obj/item/clothing/suit/storage/hazardvest(src)
-		new /obj/item/clothing/mask/gas(src)
-		new /obj/item/device/multitool(src)
-		new /obj/item/device/flash(src)
-		new /obj/item/tool/taperoll/engineering(src)
-		new /obj/item/device/flashlight(src)
-		new /obj/item/storage/pouch/electronics(src)
-		new /obj/item/storage/pouch/general/medium(src)
-		new /obj/item/storage/pouch/construction(src)
-		new /obj/item/storage/pouch/tools(src)
-		new /obj/item/clothing/shoes/white(src)
-		new /obj/item/clothing/gloves/white(src)
-		new /obj/item/clothing/under/whites(src)
-		new /obj/item/clothing/head/white_dress(src)
+/obj/structure/closet/secure_closet/engineering_chief/New()
+	..()
+	sleep(2)
+	new /obj/item/clothing/tie/storage/webbing(src)
+	new /obj/item/clothing/tie/storage/brown_vest(src)
+	new /obj/item/clothing/head/hardhat/white(src)
+	new /obj/item/clothing/head/welding(src)
+	new /obj/item/clothing/gloves/yellow(src)
+	new /obj/item/cartridge/ce(src)
+	if(z && (z == 3 || z == 4))
+		new /obj/item/device/radio/headset/almayer/ce(src)
+	new /obj/item/storage/toolbox/mechanical(src)
+	new /obj/item/clothing/suit/storage/hazardvest(src)
+	new /obj/item/clothing/mask/gas(src)
+	new /obj/item/device/multitool(src)
+	new /obj/item/device/flash(src)
+	new /obj/item/tool/taperoll/engineering(src)
+	new /obj/item/device/flashlight(src)
+	new /obj/item/storage/pouch/electronics(src)
+	new /obj/item/storage/pouch/general/medium(src)
+	new /obj/item/storage/pouch/construction(src)
+	new /obj/item/storage/pouch/tools(src)
+	new /obj/item/clothing/shoes/white(src)
+	new /obj/item/clothing/gloves/white(src)
+	new /obj/item/clothing/under/whites(src)
+	new /obj/item/clothing/head/white_dress(src)
 
 
 /obj/structure/closet/secure_closet/engineering_electrical
@@ -48,23 +48,23 @@
 	icon_off = "secureengelecoff"
 
 
-	/obj/structure/closet/secure_closet/engineering_electrical/New()
-		..()
-		sleep(2)
-		new /obj/item/clothing/gloves/yellow(src)
-		new /obj/item/clothing/gloves/yellow(src)
-		new /obj/item/clothing/gloves/yellow(src)
-		new /obj/item/clothing/gloves/yellow(src)
-		new /obj/item/storage/toolbox/electrical(src)
-		new /obj/item/storage/toolbox/electrical(src)
-		new /obj/item/storage/toolbox/electrical(src)
-		new /obj/item/circuitboard/apc(src)
-		new /obj/item/circuitboard/apc(src)
-		new /obj/item/circuitboard/apc(src)
-		new /obj/item/device/multitool(src)
-		new /obj/item/device/multitool(src)
-		new /obj/item/device/multitool(src)
-		return
+/obj/structure/closet/secure_closet/engineering_electrical/New()
+	..()
+	sleep(2)
+	new /obj/item/clothing/gloves/yellow(src)
+	new /obj/item/clothing/gloves/yellow(src)
+	new /obj/item/clothing/gloves/yellow(src)
+	new /obj/item/clothing/gloves/yellow(src)
+	new /obj/item/storage/toolbox/electrical(src)
+	new /obj/item/storage/toolbox/electrical(src)
+	new /obj/item/storage/toolbox/electrical(src)
+	new /obj/item/circuitboard/apc(src)
+	new /obj/item/circuitboard/apc(src)
+	new /obj/item/circuitboard/apc(src)
+	new /obj/item/device/multitool(src)
+	new /obj/item/device/multitool(src)
+	new /obj/item/device/multitool(src)
+	return
 
 /obj/structure/closet/secure_closet/engineering_welding
 	name = "welding supplies"
@@ -77,19 +77,19 @@
 	icon_off = "secureengweldoff"
 
 
-	/obj/structure/closet/secure_closet/engineering_welding/New()
-		..()
-		sleep(2)
-		new /obj/item/clothing/head/welding(src)
-		new /obj/item/clothing/head/welding(src)
-		new /obj/item/clothing/head/welding(src)
-		new /obj/item/tool/weldingtool/largetank(src)
-		new /obj/item/tool/weldingtool/largetank(src)
-		new /obj/item/tool/weldingtool/largetank(src)
-		new /obj/item/tool/weldpack(src)
-		new /obj/item/tool/weldpack(src)
-		new /obj/item/tool/weldpack(src)
-		return
+/obj/structure/closet/secure_closet/engineering_welding/New()
+	..()
+	sleep(2)
+	new /obj/item/clothing/head/welding(src)
+	new /obj/item/clothing/head/welding(src)
+	new /obj/item/clothing/head/welding(src)
+	new /obj/item/tool/weldingtool/largetank(src)
+	new /obj/item/tool/weldingtool/largetank(src)
+	new /obj/item/tool/weldingtool/largetank(src)
+	new /obj/item/tool/weldpack(src)
+	new /obj/item/tool/weldpack(src)
+	new /obj/item/tool/weldpack(src)
+	return
 
 /obj/structure/closet/secure_closet/engineering_personal
 	name = "engineer's locker"
@@ -124,7 +124,7 @@
 		new /obj/item/clothing/under/whites(src)
 		new /obj/item/clothing/head/white_dress(src)
 
-	select_gamemode_equipment(gamemode)
+	select_gamemode_equipment(gamemode) //removing the whitespace in the above list causes errors with this.
 		switch(map_tag)
 			if(MAP_ICE_COLONY)
 				new /obj/item/clothing/suit/storage/snow_suit(src)
@@ -142,21 +142,21 @@
 	icon_off = "secureatmoff"
 
 
-	/obj/structure/closet/secure_closet/atmos_personal/New()
-		..()
-		sleep(2)
-		if (prob(70))
-			new /obj/item/clothing/tie/storage/brown_vest(src)
-		else
-			new /obj/item/clothing/tie/storage/webbing(src)
-		new /obj/item/clothing/suit/fire/firefighter(src)
-		new /obj/item/storage/backpack/industrial(src)
-		new /obj/item/device/flashlight(src)
-		new /obj/item/tool/extinguisher(src)
-		if(z && (z == 3 || z == 4))
-			new /obj/item/device/radio/headset/almayer/mt(src)
-		new /obj/item/clothing/suit/storage/hazardvest(src)
-		new /obj/item/clothing/mask/gas(src)
-		new /obj/item/cartridge/atmos(src)
-		new /obj/item/tool/taperoll/engineering(src)
-		return
+/obj/structure/closet/secure_closet/atmos_personal/New()
+	..()
+	sleep(2)
+	if (prob(70))
+		new /obj/item/clothing/tie/storage/brown_vest(src)
+	else
+		new /obj/item/clothing/tie/storage/webbing(src)
+	new /obj/item/clothing/suit/fire/firefighter(src)
+	new /obj/item/storage/backpack/industrial(src)
+	new /obj/item/device/flashlight(src)
+	new /obj/item/tool/extinguisher(src)
+	if(z && (z == 3 || z == 4))
+		new /obj/item/device/radio/headset/almayer/mt(src)
+	new /obj/item/clothing/suit/storage/hazardvest(src)
+	new /obj/item/clothing/mask/gas(src)
+	new /obj/item/cartridge/atmos(src)
+	new /obj/item/tool/taperoll/engineering(src)
+	return
