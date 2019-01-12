@@ -174,6 +174,7 @@
 /obj/item/explosive/grenade/chem_grenade/metalfoam
 	name = "Metal-Foam Grenade"
 	desc = "Used for emergency sealing of air breaches."
+	dangerous = FALSE
 	path = 1
 	stage = 2
 
@@ -220,6 +221,7 @@
 /obj/item/explosive/grenade/chem_grenade/antiweed
 	name = "weedkiller grenade"
 	desc = "Used for purging large areas of invasive plant species. Contents under pressure. Do not directly inhale contents."
+	dangerous = FALSE
 	path = 1
 	stage = 2
 
@@ -243,6 +245,7 @@
 /obj/item/explosive/grenade/chem_grenade/cleaner
 	name = "cleaner grenade"
 	desc = "BLAM!-brand foaming space cleaner. In a special applicator for rapid cleaning of wide areas."
+	dangerous = FALSE
 	stage = 2
 	path = 1
 

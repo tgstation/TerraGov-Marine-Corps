@@ -119,7 +119,7 @@ datum/game_mode/proc/initialize_special_clamps()
 
 	if(!ticker || !ticker.mode)
 		to_chat(src, "<span class='warning'>The game hasn't started yet!</span?")
-		return
+		return FALSE
 
 	ticker.mode.pred_maximum_num = input(src,"What is the new maximum number of predators?","Input:",4) as num|null
 	ticker.mode.pred_current_num = input(src,"What is the new current number of predators?","Input:",0) as num|null
@@ -178,7 +178,8 @@ datum/game_mode/proc/initialize_special_clamps()
 
 /datum/game_mode/proc/attempt_to_join_as_predator(mob/pred_candidate)
 	var/mob/living/carbon/human/new_predator = transform_predator(pred_candidate) //Initialized and ready.
-	if(!new_predator) return
+	if(!new_predator) 
+		return FALSE
 
 	log_admin("[new_predator.key], became a new Yautja, [new_predator.real_name].")
 	message_admins("([new_predator.key]) joined as Yautja, [new_predator.real_name].")
@@ -189,28 +190,28 @@ datum/game_mode/proc/initialize_special_clamps()
 
 	if(!(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_PREDATOR))
 		if(show_warning) to_chat(pred_candidate, "<span class='warning'>You are not whitelisted! You may apply on the forums to be whitelisted as a predator.</span>")
-		return
+		return FALSE
 
 	if(!(flags_round_type & MODE_PREDATOR))
 		if(show_warning) to_chat(pred_candidate, "<span class='warning'>There is no Hunt this round! Maybe the next one.</span>")
-		return
+		return FALSE
 
 	if(pred_candidate.ckey in pred_keys)
 		if(show_warning) to_chat(pred_candidate, "<span class='warning'>You already were a Yautja! Give someone else a chance.</span>")
-		return
+		return FALSE
 
 	if(!(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_YAUTJA_ELDER))
 		if(pred_current_num >= pred_maximum_num)
 			if(show_warning) to_chat(pred_candidate, "<span class='warning'>Only [pred_maximum_num] predators may spawn per round, but Elders are excluded.</span>")
-			return
+			return FALSE
 
-	return 1
+	return TRUE
 
 /datum/game_mode/proc/transform_predator(mob/pred_candidate)
 	if(!pred_candidate.client) //Something went wrong.
 		message_admins("<span class='warning'><b>Warning</b>: null client in transform_predator.</span>")
 		log_debug("Null client in transform_predator.")
-		return
+		return FALSE
 
 	var/mob/living/carbon/human/new_predator
 
@@ -279,7 +280,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	var/list/datum/mind/possible_xenomorphs = get_players_for_role(BE_ALIEN)
 	if(possible_xenomorphs.len < xeno_required_num) //We don't have enough aliens.
 		to_chat(world, "<h2 style=\"color:red\">Not enough players have chosen to be a xenomorph in their character setup. <b>Aborting</b>.</h2>")
-		return
+		return FALSE
 
 	//Minds are not transferred at this point, so we have to clean out those who may be already picked to play.
 	for(var/datum/mind/A in possible_xenomorphs)
@@ -309,7 +310,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	*/
 	if(xenomorphs.len < xeno_required_num)
 		to_chat(world, "<h2 style=\"color:red\">Could not find any candidates after initial alien list pass. <b>Aborting</b>.</h2>")
-		return
+		return FALSE
 
 	return TRUE
 
@@ -346,13 +347,13 @@ datum/game_mode/proc/initialize_special_clamps()
 
 datum/game_mode/proc/initialize_post_queen_list()
 	if(!queen)
-		return
+		return FALSE
 	transform_queen(queen)
 
 /datum/game_mode/proc/check_xeno_late_join(mob/xeno_candidate)
 	if(jobban_isbanned(xeno_candidate, "Alien")) // User is jobbanned
 		to_chat(xeno_candidate, "<span class='warning'>You are banned from playing aliens and cannot spawn as a xenomorph.</span>")
-		return
+		return FALSE
 	return TRUE
 
 /datum/game_mode/proc/attempt_to_join_as_larva(mob/xeno_candidate)
@@ -496,7 +497,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	if(!hive.living_xeno_queen && original?.client?.prefs && (original.client.prefs.be_special & BE_QUEEN) && !jobban_isbanned(original, "Queen"))
 		new_queen = new /mob/living/carbon/Xenomorph/Queen (pick(xeno_spawn))
 	else
-		return
+		return FALSE
 	ghost_mind.transfer_to(new_queen)
 	ghost_mind.name = ghost_mind.current.name
 
@@ -767,9 +768,10 @@ datum/game_mode/proc/initialize_post_queen_list()
 			if(MAP_ICE_COLONY)
 				to_chat(H, "<span class='notice'>You are a survivor of the attack on the ice habitat. You worked or lived on the colony, and managed to avoid the alien attacks.. until now.</span>")
 			else
-				to_chat(H, "<span class='notice'>You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now.</span>")
-		to_chat(H, "<span class='notice'>You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit.</span>")
-	return 1
+
+				to_chat(H, "<span class='notice'> You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now.</span>")
+		to_chat(H, "<span class='notice'> You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit.</span>")
+	return TRUE
 
 /datum/game_mode/proc/tell_survivor_story()
 	var/list/survivor_story = list(
@@ -837,7 +839,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 					to_chat(survivor.current, temp_story)
 					survivor.memory += temp_story
 		current_survivors -= survivor
-	return 1
+	return TRUE
 
 //===================================================\\
 
