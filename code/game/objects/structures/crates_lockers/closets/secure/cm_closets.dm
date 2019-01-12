@@ -367,7 +367,7 @@
 	icon_off = "secure_closed_police"
 
 /obj/structure/closet/secure_closet/military_police/New()
-	..()
+	. = ..()
 	new /obj/item/clothing/head/cmberet/red(src)
 	new /obj/item/clothing/head/cmberet/red(src)
 	new /obj/item/clothing/gloves/black(src)
