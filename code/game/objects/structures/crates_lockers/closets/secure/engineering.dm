@@ -49,7 +49,7 @@
 
 
 /obj/structure/closet/secure_closet/engineering_electrical/New()
-	..()
+	. = ..()
 	sleep(2)
 	new /obj/item/clothing/gloves/yellow(src)
 	new /obj/item/clothing/gloves/yellow(src)
