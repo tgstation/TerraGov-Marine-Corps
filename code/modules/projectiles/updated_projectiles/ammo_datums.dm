@@ -1095,6 +1095,11 @@
 	damage_type = OXY
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST //Not that ignoring will do much right now.
 
+/datum/ammo/energy/taser/New()
+	. = ..()
+	max_range = config.short_shell_range
+	accurate_range 	= config.near_shell_range
+
 /datum/ammo/energy/taser/on_hit_mob(mob/M, obj/item/projectile/P)
 	stun_living(M,P)
 

@@ -70,7 +70,7 @@
 	origin_tech = "combat=1;materials=1"
 	matter = list("metal" = 2000)
 	ammo = /datum/ammo/energy/taser
-	charge_cost = 1250
+	charge_cost = 500
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
