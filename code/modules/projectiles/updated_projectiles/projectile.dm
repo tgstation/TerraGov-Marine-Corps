@@ -55,7 +55,7 @@
 	permutated = list()
 
 /obj/item/projectile/Destroy()
-	..()
+	. = ..()
 	in_flight = 0
 	ammo = null
 	shot_from = null
