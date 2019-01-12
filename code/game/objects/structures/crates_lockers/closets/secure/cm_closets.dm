@@ -307,7 +307,7 @@
 	icon_off = "secure_closed_staff"
 
 /obj/structure/closet/secure_closet/staff_officer/New()
-	..()
+	. = ..()
 	new /obj/item/clothing/head/cmberet(src)
 	new /obj/item/clothing/head/cmberet/tan(src)
 	new /obj/item/clothing/head/cmcap/ro(src)
