@@ -223,7 +223,7 @@
 	var/obj/machinery/camera/camera
 
 /obj/item/device/radio/headset/almayer/New()
-	..()
+	. = ..()
 	camera = new /obj/machinery/camera(src)
 	camera.network = list("LEADER")
 
@@ -238,7 +238,7 @@
 				user.hud_used.locate_leader.mouse_opacity = 1
 	if(camera)
 		camera.c_tag = user.name
-	..()
+	return ..()
 
 /obj/item/device/radio/headset/almayer/dropped(mob/living/carbon/human/user)
 	if(istype(user) && headset_hud_on)
@@ -251,7 +251,7 @@
 				user.hud_used.locate_leader.mouse_opacity = 0
 	if(camera)
 		camera.c_tag = "Unknown"
-	..()
+	return ..()
 
 
 
