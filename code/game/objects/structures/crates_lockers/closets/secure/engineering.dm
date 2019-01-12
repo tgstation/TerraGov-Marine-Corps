@@ -10,7 +10,7 @@
 
 
 /obj/structure/closet/secure_closet/engineering_chief/New()
-	..()
+	. = ..()
 	sleep(2)
 	new /obj/item/clothing/tie/storage/webbing(src)
 	new /obj/item/clothing/tie/storage/brown_vest(src)
