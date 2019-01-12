@@ -272,7 +272,7 @@
 	prices = list()
 
 /obj/machinery/vending/lasgun/New()
-	..()
+	. = ..()
 	update_icon()
 
 /obj/machinery/vending/lasgun/update_icon()

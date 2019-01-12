@@ -1199,7 +1199,7 @@
 	hud_state = "laser"
 
 /datum/ammo/energy/lasgun/New()
-	..()
+	. = ..()
 	accurate_range = config.short_shell_range
 	damage = config.mlow_hit_damage
 	penetration = config.mlow_armor_penetration
@@ -1215,7 +1215,7 @@
 	hud_state = "laser"
 
 /datum/ammo/energy/lasgun/M43/New()
-	..()
+	. = ..()
 	penetration = config.med_armor_penetration
 
 /datum/ammo/energy/lasgun/M43/overcharge
@@ -1224,7 +1224,7 @@
 	hud_state = "laser_overcharge"
 
 /datum/ammo/energy/lasgun/M43/overcharge/New()
-	..()
+	. = ..()
 	damage = config.hmed_hit_damage
 	max_range = config.max_shell_range
 	penetration = config.mhigh_armor_penetration

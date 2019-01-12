@@ -31,7 +31,7 @@
 
 
 /obj/item/cell/lasgun/M43/New()
-	..()
+	. = ..()
 	update_icon()
 
 /obj/item/cell/lasgun/M43/update_icon()

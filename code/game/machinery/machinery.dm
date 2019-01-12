@@ -194,7 +194,7 @@ Class Procs:
 		A.master.powerupdate = 1
 
 /obj/machinery/power_change()
-	if( !powered(power_channel) && (machine_current_charge <= 0) )
+	if(!powered(power_channel) && (machine_current_charge <= 0))
 		stat |= NOPOWER
 	else
 		stat &= ~NOPOWER
@@ -206,7 +206,7 @@ Class Procs:
 			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Idle Power Usage: [idle_power_usage] Machine Current Charge: [machine_current_charge].</span>")
 			update_icon()
 			return TRUE
-		else if (machine_current_charge > active_power_usage)
+		else if(machine_current_charge > active_power_usage)
 			machine_current_charge -= min(machine_current_charge, active_power_usage)
 			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Active Power Usage: [active_power_usage] Machine Current Charge: [machine_current_charge].</span>")
 			update_icon()

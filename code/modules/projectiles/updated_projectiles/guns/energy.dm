@@ -339,7 +339,7 @@
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
 
 /obj/item/weapon/gun/energy/lasgun/M43/New()
-	..()
+	. = ..()
 	cell = null
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 	var/obj/item/attachable/stock/lasgun/S = new(src)
