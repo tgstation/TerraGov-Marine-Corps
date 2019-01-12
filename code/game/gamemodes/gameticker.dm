@@ -232,6 +232,8 @@ var/global/datum/controller/gameticker/ticker
 				to_chat(world, "<span class='warning'><b>The OOC channel has been globally enabled due to round end!</b></span>")
 				ooc_allowed = TRUE
 
+			config.allow_synthetic_gun_use = TRUE
+
 			if(blackbox)
 				blackbox.save_all_data_to_sql()
 
