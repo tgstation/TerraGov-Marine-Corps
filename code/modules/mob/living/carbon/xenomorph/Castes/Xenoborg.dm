@@ -3,6 +3,7 @@
 	display_name = "Xenoborg"
 	upgrade_name = ""
 	caste_desc = "Oh dear god!"
+	caste_type_path = /mob/living/carbon/Xenomorph/Xenoborg
 
 	tier = 0
 	upgrade = 0

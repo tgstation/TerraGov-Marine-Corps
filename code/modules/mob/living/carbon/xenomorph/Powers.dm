@@ -1062,6 +1062,10 @@
 		to_chat(src, "<span class='warning'>[target]'s source of energy is incompatible with ours.</span>")
 		return
 
+	if(plasma_stored >= xeno_caste.plasma_max)
+		to_chat(src, "<span class='notice'>Your [energy] reserves are already at full capacity and can't hold any more.</span>")
+		return
+
 	if(target.stat != DEAD)
 		to_chat(src, "<span class='warning'>You can't steal [energy] from living sisters, ask for some to a drone or a hivelord instead!</span>")
 		return
@@ -1076,7 +1080,7 @@
 
 	to_chat(src, "<span class='notice'>You start salvaging [energy] from [target].</span>")
 
-	while(target.plasma_stored)
+	while(target.plasma_stored && plasma_stored >= xeno_caste.plasma_max)
 		if(!do_after(src, salvage_delay, TRUE, 5, BUSY_ICON_HOSTILE) || !check_state())
 			break
 
@@ -1090,10 +1094,6 @@
 
 		if(stagger)
 			to_chat(src, "<span class='xenowarning'>Your muscles fail to respond as you try to shake up the shock!</span>")
-			break
-
-		if(!(target.plasma_stored))
-			to_chat(src, "<span class='notice'>\The [target] doesn't have any [energy] left to salvage.</span>")
 			break
 
 		if(target.plasma_stored < amount)
