@@ -427,7 +427,7 @@
 	icon_off = "secure_closed_warrant"
 
 /obj/structure/closet/secure_closet/military_officer_spare/New()
-	..()
+	. = ..()
 	new /obj/item/clothing/tie/holster/armpit(src)
 	new /obj/item/storage/backpack/security(src)
 	new /obj/item/clothing/shoes/marine(src)
