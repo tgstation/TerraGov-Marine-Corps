@@ -80,3 +80,21 @@
 
 //Define flamer
 #define M240T_WATER_AMOUNT 			reagents.get_reagent_amount("water")
+
+//Research defines. IDs of teches
+#define RESEARCH_XENOSTART 0
+
+#define RESEARCH_XENO_BIOLOGY 10
+#define RESEARCH_BIO_PLATING 11
+#define RESEARCH_CRUSHER_PLATING 12
+#define RESEARCH_XENO_MUSCLES 13
+#define RESEARCH_XENO_HIVELORD 14
+#define RESEARCH_XENO_ARMOR 15
+
+#define RESEARCH_XENO_CHEMISTRY 20
+#define RESEARCH_XENO_SPITTER 21
+
+#define RESEARCH_XENO_FLORA 30
+#define RESEARCH_XENO_WEED 31
+#define RESEARCH_XENO_SACK 32
+#define RESEARCH_XENO_DRONE 33
