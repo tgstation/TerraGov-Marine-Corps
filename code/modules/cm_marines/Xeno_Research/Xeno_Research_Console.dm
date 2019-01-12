@@ -25,7 +25,7 @@
 							"/obj/item/stock_parts/manipulator" = 2
 							)
 
-/obj/item/circuitboard/machine/biolathe
+/obj/item/circuitboard/machine/biorganic
 	name = "Circuit board (Bio-Organic Generator)"
 	build_path = /obj/machinery/Research_Machinery/biogenerator
 	origin_tech = RESEARCH_XENO_HIVELORD
@@ -290,7 +290,7 @@
 			if(known.id == topic)
 				var/obj/item/paper/printed = new /obj/item/paper()
 				printed.name = "Research report: " + known.name
-				printed.info = "<B><center>USCM Almayer Medical and Research Division</B><BR>Topic: "+ known.name + "</center><HR><BR>" + known.resdesc + "<HR>Signature: "
+				printed.info = "<B><center>TGS Theseus Medical and Research Division</B><BR>Topic: "+ known.name + "</center><HR><BR>" + known.resdesc + "<HR>Signature: "
 				printed.loc = src.loc
 
 	updateUsrDialog()

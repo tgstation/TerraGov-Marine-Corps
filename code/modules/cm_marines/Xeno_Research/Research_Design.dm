@@ -44,7 +44,7 @@
 	name = "Biogenerator Prototype"
 	desc = "With understanding Hivelord's metabolism we can potentially have infinite source of Xenomorph biomaterial. But we must use internal connetor of our protolathe."
 	id = "hivethingy"
-	build_path = /obj/machinery/Research_Machinery/biogenerator
+	build_path = /obj/item/circuitboard/machine/biorganic
 	req_tech = list(RESEARCH_XENO_HIVELORD)
 	materials = list("metal" = 0, "glass" = 500, "biomass" = 50)
 

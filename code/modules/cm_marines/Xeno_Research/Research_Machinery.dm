@@ -297,7 +297,7 @@
 /obj/machinery/Research_Machinery/biogenerator/New()
 	..()
 	component_parts = list()
-	component_parts += new /obj/item/circuitboard/machine/biolathe(src)
+	component_parts += new /obj/item/circuitboard/machine/biorganic(src)
 	component_parts += new /obj/item/marineResearch/xenomorph/secretor/hivelord(src)		// Aliens will ABSOLUTELY HATE any researcher, that build this thing
 	component_parts += new /obj/item/stock_parts/manipulator(src)
 
