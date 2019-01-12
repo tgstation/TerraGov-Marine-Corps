@@ -398,7 +398,7 @@
 	icon_off = "secure_closed_warrant"
 
 /obj/structure/closet/secure_closet/warrant_officer/New()
-	..()
+	. = ..()
 	new /obj/item/clothing/head/cmberet/wo(src)
 	new /obj/item/clothing/tie/holster/armpit(src)
 	new /obj/item/clothing/shoes/marine(src)
