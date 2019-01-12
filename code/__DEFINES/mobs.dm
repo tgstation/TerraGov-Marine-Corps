@@ -476,6 +476,9 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define WARRIOR_AGILITY_ARMOR 30
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 
+#define PLASMA_TRANSFER_AMOUNT 50
+#define PLASMA_SALVAGE_AMOUNT 40
+#define PLASMA_SALVAGE_MULTIPLIER 0.5 // I'd not reccomend setting this higher than one.
 
 #define CRITICAL_HIT_DELAY 25
 

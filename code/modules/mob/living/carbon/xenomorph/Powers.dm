@@ -1099,7 +1099,7 @@
 		if(target.plasma_stored < amount)
 			amount = target.plasma_stored //Just take it all.
 
-		var/absorbed_amount = round(amount/2)
+		var/absorbed_amount = round(amount * PLASMA_SALVAGE_MULTIPLIER)
 		target.use_plasma(amount)
 		gain_plasma(absorbed_amount)
 		to_chat(src, "<span class='xenowarning'>You salvage [absorbed_amount] units of [energy] from [target]. You have [plasma_stored]/[xeno_caste.plasma_max] stored now.</span>")

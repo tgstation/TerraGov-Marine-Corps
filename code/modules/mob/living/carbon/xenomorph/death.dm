@@ -1,6 +1,6 @@
 
 /mob/living/carbon/Xenomorph/death(gibbed)
-	var/msg = !isXenoSilicon(src) ? "lets out a waning guttural screech, green blood bubbling from its maw." : "begins to shudder, and the lights go out in its eyes as it lies still."
+	var/msg = isXenoSilicon(src) ? "begins to shudder, and the lights go out in its eyes as it lies still." : "lets out a waning guttural screech, green blood bubbling from its maw."
 	. = ..(gibbed,msg)
 	if(!.) return //If they're already dead, it will return.
 

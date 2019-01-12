@@ -404,8 +404,8 @@
 	name = "Transfer Plasma"
 	action_icon_state = "transfer_plasma"
 	ability_name = "transfer plasma"
-	var/plasma_transfer_amount = 50
-	var/transfer_delay = 20
+	var/plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT
+	var/transfer_delay = 2 SECONDS
 	var/max_range = 2
 
 /datum/action/xeno_action/activable/transfer_plasma/use_ability(atom/A)
@@ -413,15 +413,15 @@
 	X.xeno_transfer_plasma(A, plasma_transfer_amount, transfer_delay, max_range)
 
 /datum/action/xeno_action/activable/transfer_plasma/hivelord
-	plasma_transfer_amount = 200
-	transfer_delay = 5
+	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 4
+	transfer_delay = 0.5 SECONDS
 	max_range = 7
 
 /datum/action/xeno_action/activable/salvage_plasma
 	name = "Salvage Plasma"
 	action_icon_state = "salvage_plasma"
 	ability_name = "salvage plasma"
-	var/plasma_salvage_amount = 40
+	var/plasma_salvage_amount = PLASMA_SALVAGE_AMOUNT
 	var/salvage_delay = 5 SECONDS
 	var/max_range = 1
 
@@ -432,7 +432,7 @@ datum/action/xeno_action/activable/salvage_plasma/use_ability(atom/A)
 	X.xeno_salvage_plasma(A, plasma_salvage_amount, salvage_delay, max_range)
 
 datum/action/xeno_action/activable/salvage_plasma/hivelord
-	plasma_salvage_amount = 80
+	plasma_salvage_amount = PLASMA_SALVAGE_AMOUNT * 2
 	salvage_delay = 3 SECONDS
 	max_range = 4
 
