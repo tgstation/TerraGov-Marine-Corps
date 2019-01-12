@@ -490,7 +490,7 @@
 	icon_off = "secure_off_cargo"
 
 /obj/structure/closet/secure_closet/req_officer/New()
-	..()
+	. = ..()
 	new /obj/item/device/radio/headset/almayer/mcom(src)
 	new /obj/item/clothing/under/rank/ro_suit(src)
 	new /obj/item/clothing/shoes/marine(src)
