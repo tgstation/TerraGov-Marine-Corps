@@ -40,7 +40,7 @@
 			desc = "It appears to be broken."
 			icon_state = src.icon_broken
 			for(var/mob/O in viewers(user, 3))
-				O.show_message("\blue The locker has been broken by [user] with an electromagnetic card!", 1, "You hear a faint electrical spark.", 2)
+				O.show_message("<span class='notice'> The locker has been broken by [user] with an electromagnetic card!</span>", 1, "You hear a faint electrical spark.", 2)
 
 		if(!locked)
 			..()

@@ -25,7 +25,7 @@
 				occupied = 1
 				meat = 5
 				meattype = 1
-				visible_message("\red [user] has forced [M] onto the spike, killing them instantly!")
+				visible_message("<span class='warning'> [user] has forced [M] onto the spike, killing them instantly!</span>")
 				M.death()
 				qdel(M)
 				G.grabbed_thing = null

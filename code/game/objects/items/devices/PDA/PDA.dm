@@ -692,10 +692,10 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 			if(istype(cartridge, /obj/item/cartridge/syndicate))
 				if(!(useMS && useTC))
-					U.show_message("\red An error flashes on your [src]: Connection unavailable", 1)
+					U.show_message("<span class='warning'> An error flashes on your [src]: Connection unavailable</span>", 1)
 					return
 				if(useTC != 2) // Does our recepient have a broadcaster on their level?
-					U.show_message("\red An error flashes on your [src]: Recipient unavailable", 1)
+					U.show_message("<span class='warning'> An error flashes on your [src]: Recipient unavailable</span>", 1)
 					return
 				var/obj/item/device/pda/P = locate(href_list["target"])
 				if(!isnull(P))
@@ -713,15 +713,15 @@ var/global/list/obj/item/device/pda/PDAs = list()
 							difficulty += 3 * P.hidden_uplink
 
 						if(prob(difficulty))
-							U.show_message("\red An error flashes on your [src].", 1)
+							U.show_message("<span class='warning'> An error flashes on your [src].</span>", 1)
 						else if (prob(difficulty * 7))
-							U.show_message("\red Energy feeds back into your [src]!", 1)
+							U.show_message("<span class='warning'> Energy feeds back into your [src]!</span>", 1)
 							ui.close()
 							detonate_act(src)
 							log_admin("[key_name(U)] just attempted to blow up [P] with the Detomatix cartridge but failed, blowing themselves up")
 							message_admins("[key_name_admin(U)] just attempted to blow up [P] with the Detomatix cartridge but failed.", 1)
 						else
-							U.show_message("\blue Success!", 1)
+							U.show_message("<span class='notice'> Success!</span>", 1)
 							log_admin("[key_name(U)] just attempted to blow up [P] with the Detomatix cartridge and succeeded")
 							message_admins("[key_name_admin(U)] just attempted to blow up [P] with the Detomatix cartridge and succeeded.", 1)
 							detonate_act(P)
@@ -807,7 +807,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		qdel(P)
 
 	if(M && isliving(M))
-		message = "\red" + message
+		message = "<span class='warning'></span>" + message
 		M.show_message(message, 1)
 
 /obj/item/device/pda/proc/remove_id()
@@ -1023,24 +1023,24 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			if(1)
 
 				for (var/mob/O in viewers(C, null))
-					O.show_message("\red [user] has analyzed [C]'s vitals!", 1)
+					O.show_message("<span class='warning'> [user] has analyzed [C]'s vitals!</span>", 1)
 
-				user.show_message("\blue Analyzing Results for [C]:")
-				user.show_message("\blue \t Overall Status: [C.stat > 1 ? "dead" : "[C.health - C.halloss]% healthy"]", 1)
+				user.show_message("<span class='notice'> Analyzing Results for [C]:</span>")
+				user.show_message("<span class='notice'> \t Overall Status: [C.stat > 1 ? "dead" : "[C.health - C.halloss]% healthy"]</span>", 1)
 				user.show_message("\blue \t Damage Specifics: [C.getOxyLoss() > 50 ? "\red" : "\blue"][C.getOxyLoss()]-[C.getToxLoss() > 50 ? "\red" : "\blue"][C.getToxLoss()]-[C.getFireLoss() > 50 ? "\red" : "\blue"][C.getFireLoss()]-[C.getBruteLoss() > 50 ? "\red" : "\blue"][C.getBruteLoss()]", 1)
-				user.show_message("\blue \t Key: Suffocation/Toxin/Burns/Brute", 1)
-				user.show_message("\blue \t Body Temperature: [C.bodytemperature-T0C]&deg;C ([C.bodytemperature*1.8-459.67]&deg;F)", 1)
+				user.show_message("<span class='notice'> \t Key: Suffocation/Toxin/Burns/Brute</span>", 1)
+				user.show_message("<span class='notice'> \t Body Temperature: [C.bodytemperature-T0C]&deg;C ([C.bodytemperature*1.8-459.67]&deg;F)</span>", 1)
 				if(C.tod && (C.stat == DEAD || (C.status_flags & FAKEDEATH)))
-					user.show_message("\blue \t Time of Death: [C.tod]")
+					user.show_message("<span class='notice'> \t Time of Death: [C.tod]</span>")
 				if(istype(C, /mob/living/carbon/human))
 					var/mob/living/carbon/human/H = C
 					var/list/damaged = H.get_damaged_limbs(1,1)
-					user.show_message("\blue Localized Damage, Brute/Burn:",1)
+					user.show_message("<span class='notice'> Localized Damage, Brute/Burn:</span>",1)
 					if(length(damaged)>0)
 						for(var/datum/limb/org in damaged)
 							user.show_message(text("\blue \t []: []\blue-[]",capitalize(org.display_name),(org.brute_dam > 0)?"\red [org.brute_dam]":0,(org.burn_dam > 0)?"\red [org.burn_dam]":0),1)
 					else
-						user.show_message("\blue \t Limbs are OK.",1)
+						user.show_message("<span class='notice'> \t Limbs are OK.</span>",1)
 
 				for(var/datum/disease/D in C.viruses)
 					if(!D.hidden[SCANNER])
@@ -1053,7 +1053,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 					if(!isnull(C:gloves))
 						to_chat(user, "<span class='notice'>No fingerprints found on [C]</span>")
 				else
-					to_chat(user, text("\blue [C]'s Fingerprints: [md5(C:dna.uni_identity)]"))
+					to_chat(user, text("<span class='notice'> [C]'s Fingerprints: [md5(C:dna.uni_identity)]</span>"))
 				if (!C.blood_DNA || !C.blood_DNA.len)
 					to_chat(user, "<span class='notice'>No blood found on [C]</span>")
 					if(C.blood_DNA)
@@ -1067,13 +1067,13 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 			if(4)
 				for (var/mob/O in viewers(C, null))
-					O.show_message("\red [user] has analyzed [C]'s radiation levels!", 1)
+					O.show_message("<span class='warning'> [user] has analyzed [C]'s radiation levels!</span>", 1)
 
-				user.show_message("\blue Analyzing Results for [C]:")
+				user.show_message("<span class='notice'> Analyzing Results for [C]:</span>")
 				if(C.radiation)
-					user.show_message("\green Radiation Level: \black [C.radiation]")
+					user.show_message("<span class='green'> Radiation Level: \black [C.radiation]</span>")
 				else
-					user.show_message("\blue No radiation detected.")
+					user.show_message("<span class='notice'> No radiation detected.</span>")
 
 /obj/item/device/pda/afterattack(atom/A as mob|obj|turf|area, mob/user as mob, proximity)
 	if(!proximity) return

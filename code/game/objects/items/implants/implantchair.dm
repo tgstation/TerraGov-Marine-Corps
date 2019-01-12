@@ -123,7 +123,7 @@
 			if(!imp)	continue
 			if(istype(imp, /obj/item/implant/loyalty))
 				for (var/mob/O in viewers(M, null))
-					O.show_message("\red [M] has been implanted by the [src.name].", 1)
+					O.show_message("<span class='warning'> [M] has been implanted by the [src.name].</span>", 1)
 
 				if(imp.implanted(M))
 					imp.loc = M

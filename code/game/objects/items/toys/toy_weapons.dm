@@ -56,13 +56,13 @@
 			return
 		src.add_fingerprint(user)
 		if (src.bullets < 1)
-			user.show_message("\red *click* *click*", 2)
+			user.show_message("<span class='warning'> *click* *click*</span>", 2)
 			playsound(user, 'sound/weapons/gun_empty.ogg', 15, 1)
 			return
 		playsound(user, 'sound/weapons/Gunshot.ogg', 15, 1)
 		src.bullets--
 		for(var/mob/O in viewers(user, null))
-			O.show_message(text("<span class='danger'>[] fires a cap gun at []!</span>", user, target), 1, "\red You hear a gunshot", 2)
+			O.show_message(text("<span class='danger'>[] fires a cap gun at []!</span>", user, target), 1, "<span class='warning'> You hear a gunshot</span>", 2)
 
 /obj/item/toy/gun_ammo
 	name = "ammo-caps"
@@ -133,7 +133,7 @@
 						if(!istype(M,/mob/living)) continue
 						if(M == user) continue
 						for(var/mob/O in viewers(world.view, D))
-							O.show_message(text("\red [] was hit by the foam dart!", M), 1)
+							O.show_message(text("<span class='warning'> [] was hit by the foam dart!</span>", M), 1)
 						new /obj/item/toy/crossbow_ammo(M.loc)
 						qdel(D)
 						return
@@ -155,7 +155,7 @@
 		else if (bullets == 0)
 			user.KnockDown(5)
 			for(var/mob/O in viewers(world.view, user))
-				O.show_message(text("\red [] realized they were out of ammo and starting scrounging for some!", user), 1)
+				O.show_message(text("<span class='warning'> [] realized they were out of ammo and starting scrounging for some!</span>", user), 1)
 
 
 	attack(mob/M as mob, mob/user as mob)
@@ -167,15 +167,15 @@
 
 			for(var/mob/O in viewers(M, null))
 				if(O.client)
-					O.show_message(text("<span class='danger'>[] casually lines up a shot with []'s head and pulls the trigger!</span>", user, M), 1, "\red You hear the sound of foam against skull", 2)
-					O.show_message(text("\red [] was hit in the head by the foam dart!", M), 1)
+					O.show_message(text("<span class='danger'>[] casually lines up a shot with []'s head and pulls the trigger!</span>", user, M), 1, "<span class='warning'> You hear the sound of foam against skull</span>", 2)
+					O.show_message(text("<span class='warning'> [] was hit in the head by the foam dart!</span>", M), 1)
 
 			playsound(user.loc, 'sound/items/syringeproj.ogg', 15, 1)
 			new /obj/item/toy/crossbow_ammo(M.loc)
 			src.bullets--
 		else if (M.lying && src.bullets == 0)
 			for(var/mob/O in viewers(M, null))
-				if (O.client)	O.show_message(text("<span class='danger'>[] casually lines up a shot with []'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</span>", user, M), 1, "\red You hear someone fall", 2)
+				if (O.client)	O.show_message(text("<span class='danger'>[] casually lines up a shot with []'s head, pulls the trigger, then realizes they are out of ammo and drops to the floor in search of some!</span>", user, M), 1, "<span class='warning'> You hear someone fall</span>", 2)
 			user.KnockDown(5)
 		return
 

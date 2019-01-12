@@ -481,7 +481,7 @@
 	..()
 	new/obj/effect/decal/cleanable/egg_smudge(src.loc)
 	src.reagents.reaction(hit_atom, TOUCH)
-	src.visible_message("\red [src.name] has been squashed.","\red You hear a smack.")
+	src.visible_message("<span class='warning'> [src.name] has been squashed.</span>","<span class='warning'> You hear a smack.</span>")
 	qdel(src)
 
 /obj/item/reagent_container/food/snacks/egg/attackby(obj/item/W as obj, mob/user as mob)
@@ -840,7 +840,7 @@
 /obj/item/reagent_container/food/snacks/pie/throw_impact(atom/hit_atom)
 	..()
 	new /obj/effect/decal/cleanable/pie_smudge(loc)
-	visible_message("\red [src.name] splats.","\red You hear a splat.")
+	visible_message("<span class='warning'> [src.name] splats.</span>","<span class='warning'> You hear a splat.</span>")
 	qdel(src)
 
 /obj/item/reagent_container/food/snacks/berryclafoutis

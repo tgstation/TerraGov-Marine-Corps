@@ -349,9 +349,9 @@
 /obj/machinery/vending/attack_hand(mob/user as mob)
 	if(tipped_level == 2)
 		tipped_level = 1
-		user.visible_message("\blue [user] begins to heave the vending machine back into place!","\blue You start heaving the vending machine back into place..")
+		user.visible_message("<span class='notice'> [user] begins to heave the vending machine back into place!</span>","<span class='notice'> You start heaving the vending machine back into place..</span>")
 		if(do_after(user,80, FALSE, 5, BUSY_ICON_FRIENDLY))
-			user.visible_message("\blue [user] rights the [src]!","\blue You right the [src]!")
+			user.visible_message("<span class='notice'> [user] rights the [src]!</span>","<span class='notice'> You right the [src]!</span>")
 			flip_back()
 			return
 		else

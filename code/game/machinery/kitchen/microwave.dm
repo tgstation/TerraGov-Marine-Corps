@@ -56,24 +56,24 @@
 	if(src.broken > 0)
 		if(src.broken == 2 && istype(O, /obj/item/tool/screwdriver)) // If it's broken and they're using a screwdriver
 			user.visible_message( \
-				"\blue [user] starts to fix part of the microwave.", \
-				"\blue You start to fix part of the microwave." \
+				"<span class='notice'> [user] starts to fix part of the microwave.</span>", \
+				"<span class='notice'> You start to fix part of the microwave.</span>" \
 			)
 			if (do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
 				user.visible_message( \
-					"\blue [user] fixes part of the microwave.", \
-					"\blue You have fixed part of the microwave." \
+					"<span class='notice'> [user] fixes part of the microwave.</span>", \
+					"<span class='notice'> You have fixed part of the microwave.</span>" \
 				)
 				src.broken = 1 // Fix it a bit
 		else if(src.broken == 1 && istype(O, /obj/item/tool/wrench)) // If it's broken and they're doing the wrench
 			user.visible_message( \
-				"\blue [user] starts to fix part of the microwave.", \
-				"\blue You start to fix part of the microwave." \
+				"<span class='notice'> [user] starts to fix part of the microwave.</span>", \
+				"<span class='notice'> You start to fix part of the microwave.</span>" \
 			)
 			if (do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
 				user.visible_message( \
-					"\blue [user] fixes the microwave.", \
-					"\blue You have fixed the microwave." \
+					"<span class='notice'> [user] fixes the microwave.</span>", \
+					"<span class='notice'> You have fixed the microwave.</span>" \
 				)
 				icon_state = "mw"
 				broken = 0 // Fix it!
@@ -85,13 +85,13 @@
 	else if(src.dirty==100) // The microwave is all dirty so can't be used!
 		if(istype(O, /obj/item/reagent_container/spray/cleaner)) // If they're trying to clean it then let them
 			user.visible_message( \
-				"\blue [user] starts to clean the microwave.", \
-				"\blue You start to clean the microwave." \
+				"<span class='notice'> [user] starts to clean the microwave.</span>", \
+				"<span class='notice'> You start to clean the microwave.</span>" \
 			)
 			if (do_after(user,20, TRUE, 5, BUSY_ICON_FRIENDLY))
 				user.visible_message( \
-					"\blue [user]  has cleaned  the microwave.", \
-					"\blue You have cleaned the microwave." \
+					"<span class='notice'> [user]  has cleaned  the microwave.</span>", \
+					"<span class='notice'> You have cleaned the microwave.</span>" \
 				)
 				dirty = 0 // It's clean!
 				broken = 0 // just to be sure
@@ -109,15 +109,15 @@
 			new O.type (src)
 			S.use(1)
 			user.visible_message( \
-				"\blue [user] has added one of [O] to \the [src].", \
-				"\blue You add one of [O] to \the [src].")
+				"<span class='notice'> [user] has added one of [O] to \the [src].</span>", \
+				"<span class='notice'> You add one of [O] to \the [src].</span>")
 		else
 		//	user.before_take_item(O)	//This just causes problems so far as I can tell. -Pete
 			if(user.drop_held_item())
 				O.forceMove(src)
 				user.visible_message( \
-					"\blue [user] has added \the [O] to \the [src].", \
-					"\blue You add \the [O] to \the [src].")
+					"<span class='notice'> [user] has added \the [O] to \the [src].</span>", \
+					"<span class='notice'> You add \the [O] to \the [src].</span>")
 	else if(istype(O,/obj/item/reagent_container/glass) || \
 	        istype(O,/obj/item/reagent_container/food/drinks) || \
 	        istype(O,/obj/item/reagent_container/food/condiment) \
@@ -293,7 +293,7 @@
 	return 0
 
 /obj/machinery/microwave/proc/start()
-	src.visible_message("\blue The microwave turns on.", "\blue You hear a microwave.")
+	src.visible_message("<span class='notice'> The microwave turns on.</span>", "<span class='notice'> You hear a microwave.</span>")
 	src.operating = 1
 	src.icon_state = "mw1"
 	src.updateUsrDialog()
@@ -324,7 +324,7 @@
 
 /obj/machinery/microwave/proc/muck_finish()
 	playsound(src.loc, 'sound/machines/ding.ogg', 25, 1)
-	visible_message("\red The microwave gets covered in muck!")
+	visible_message("<span class='warning'> The microwave gets covered in muck!</span>")
 	dirty = 100 // Make it dirty so it can't be used util cleaned
 	flags_atom = null //So you can't add condiments
 	icon_state = "mwbloody" // Make it look dirty too
@@ -336,7 +336,7 @@
 	s.set_up(2, 1, src)
 	s.start()
 	icon_state = "mwb" // Make it look all busted up and shit
-	visible_message("\red The microwave breaks!") //Let them know they're stupid
+	visible_message("<span class='warning'> The microwave breaks!</span>") //Let them know they're stupid
 	broken = 2 // Make it broken so it can't be used util fixed
 	flags_atom = null //So you can't add condiments
 	operating = 0 // Turn it off again aferwards

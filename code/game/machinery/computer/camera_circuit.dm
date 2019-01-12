@@ -51,7 +51,7 @@
 				to_chat(user, "<span class='notice'>You must select a camera network circuit!</span>")
 		else if(istype(I,/obj/item/weapon/screwdriver))
 			secured = !secured
-			user.visible_message("\blue The [src] can [secured ? "no longer" : "now"] be modified.")
+			user.visible_message("<span class='notice'> The [src] can [secured ? </span>"no longer" : "now"] be modified.")
 			updateBuildPath()
 		return
 

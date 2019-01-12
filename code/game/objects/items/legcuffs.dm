@@ -111,7 +111,7 @@
 							src.loc = H
 							H.legcuff_update()
 							playsound(H,'sound/weapons/tablehit1.ogg', 25, 1)
-							to_chat(H, "\icon[src] \red <B>You step on \the [src]!</B>")
+							to_chat(H, "\icon[src] <span class='warning'> <B>You step on \the [src]!</B></span>")
 							H.KnockDown(4)
 							if(ishuman(H))
 								H.emote("pain")

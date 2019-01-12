@@ -54,8 +54,8 @@
 		to_chat(user, "<span class='warning'>The injector is empty.</span>")
 		return
 
-	to_chat(user, "\blue You inject [M] with the injector.")
-	to_chat(M, "\blue [user] injects you with the injector.")
+	to_chat(user, "<span class='notice'> You inject [M] with the injector.</span>")
+	to_chat(M, "<span class='notice'> [user] injects you with the injector.</span>")
 	playsound(loc, 'sound/items/hypospray.ogg', 50, 1)
 
 	reagents.reaction(M, INJECT)
@@ -72,7 +72,7 @@
 	var/selection = input("Please select a reagent:", "Reagent", null) as null|anything in reagent_ids
 	if(!selection) return
 	var/datum/reagent/R = chemical_reagents_list[selection]
-	to_chat(user, "\blue Synthesizer is now producing '[R.name]'.")
+	to_chat(user, "<span class='notice'> Synthesizer is now producing '[R.name]'.</span>")
 	mode = reagent_ids.Find(selection)
 	playsound(src.loc, 'sound/effects/pop.ogg', 15, 0)
 	return

@@ -325,7 +325,7 @@ datum/mind
 						ticker.mode.traitors += src
 						special_role = "traitor"
 						current.hud_set_special_role()
-						to_chat(current, "<B>\red You are a traitor!</B>")
+						to_chat(current, "<B><span class='warning'> You are a traitor!</B></span>")
 						log_admin("[key_name_admin(usr)] has traitor'ed [current].")
 						show_objectives()
 

@@ -33,8 +33,8 @@
 	var/datum/limb/O = H.get_limb(H.hand?"l_hand":"r_hand")
 	if (!O) return
 
-	var/s = "\red [H.name] chews on \his [O.display_name]!"
-	H.visible_message(s, "\red You chew on your [O.display_name]!")
+	var/s = "<span class='warning'> [H.name] chews on \his [O.display_name]!</span>"
+	H.visible_message(s, "<span class='warning'> You chew on your [O.display_name]!</span>")
 	H.log_message("[s] ([key_name(H)])", LOG_ATTACK)
 
 	if(O.take_damage(1,0,1,1,"teeth marks"))

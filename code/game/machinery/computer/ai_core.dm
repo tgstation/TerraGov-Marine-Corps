@@ -16,7 +16,7 @@
 			if(istype(P, /obj/item/tool/wrench))
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					to_chat(user, "\blue You wrench the frame into place.")
+					to_chat(user, "<span class='notice'> You wrench the frame into place.</span>")
 					anchored = 1
 					state = 1
 			if(istype(P, /obj/item/tool/weldingtool))
@@ -27,31 +27,31 @@
 				playsound(loc, 'sound/items/Welder.ogg', 25, 1)
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 					if(!src || !WT.remove_fuel(0, user)) return
-					to_chat(user, "\blue You deconstruct the frame.")
+					to_chat(user, "<span class='notice'> You deconstruct the frame.</span>")
 					new /obj/item/stack/sheet/plasteel( loc, 4)
 					qdel(src)
 		if(1)
 			if(istype(P, /obj/item/tool/wrench))
 				playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 				if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
-					to_chat(user, "\blue You unfasten the frame.")
+					to_chat(user, "<span class='notice'> You unfasten the frame.</span>")
 					anchored = 0
 					state = 0
 			if(istype(P, /obj/item/circuitboard/aicore) && !circuit)
 				if(user.drop_held_item())
 					playsound(loc, 'sound/items/Deconstruct.ogg', 25, 1)
-					to_chat(user, "\blue You place the circuit board inside the frame.")
+					to_chat(user, "<span class='notice'> You place the circuit board inside the frame.</span>")
 					icon_state = "1"
 					circuit = P
 					P.forceMove(src)
 			if(istype(P, /obj/item/tool/screwdriver) && circuit)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				to_chat(user, "\blue You screw the circuit board into place.")
+				to_chat(user, "<span class='notice'> You screw the circuit board into place.</span>")
 				state = 2
 				icon_state = "2"
 			if(istype(P, /obj/item/tool/crowbar) && circuit)
 				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
-				to_chat(user, "\blue You remove the circuit board.")
+				to_chat(user, "<span class='notice'> You remove the circuit board.</span>")
 				state = 1
 				icon_state = "0"
 				circuit.loc = loc
@@ -59,7 +59,7 @@
 		if(2)
 			if(istype(P, /obj/item/tool/screwdriver) && circuit)
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				to_chat(user, "\blue You unfasten the circuit board.")
+				to_chat(user, "<span class='notice'> You unfasten the circuit board.</span>")
 				state = 1
 				icon_state = "1"
 			if(istype(P, /obj/item/stack/cable_coil))
@@ -81,7 +81,7 @@
 					to_chat(user, "Get that brain out of there first")
 				else
 					playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
-					to_chat(user, "\blue You remove the cables.")
+					to_chat(user, "<span class='notice'> You remove the cables.</span>")
 					state = 2
 					icon_state = "2"
 					var/obj/item/stack/cable_coil/A = new /obj/item/stack/cable_coil( loc )
@@ -125,14 +125,14 @@
 
 			if(istype(P, /obj/item/device/mmi))
 				if(!P:brainmob)
-					to_chat(user, "\red Sticking an empty [P] into the frame would sort of defeat the purpose.")
+					to_chat(user, "<span class='warning'> Sticking an empty [P] into the frame would sort of defeat the purpose.</span>")
 					return
 				if(P:brainmob.stat == 2)
-					to_chat(user, "\red Sticking a dead [P] into the frame would sort of defeat the purpose.")
+					to_chat(user, "<span class='warning'> Sticking a dead [P] into the frame would sort of defeat the purpose.</span>")
 					return
 
 				if(jobban_isbanned(P:brainmob, "AI"))
-					to_chat(user, "\red This [P] does not seem to fit.")
+					to_chat(user, "<span class='warning'> This [P] does not seem to fit.</span>")
 					return
 
 				if(user.drop_held_item())
@@ -143,7 +143,7 @@
 
 			if(istype(P, /obj/item/tool/crowbar) && brain)
 				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
-				to_chat(user, "\blue You remove the brain.")
+				to_chat(user, "<span class='notice'> You remove the brain.</span>")
 				brain.loc = loc
 				brain = null
 				icon_state = "3"
@@ -151,7 +151,7 @@
 		if(4)
 			if(istype(P, /obj/item/tool/crowbar))
 				playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
-				to_chat(user, "\blue You remove the glass panel.")
+				to_chat(user, "<span class='notice'> You remove the glass panel.</span>")
 				state = 3
 				if (brain)
 					icon_state = "3b"
@@ -162,7 +162,7 @@
 
 			if(istype(P, /obj/item/tool/screwdriver))
 				playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
-				to_chat(user, "\blue You connect the monitor.")
+				to_chat(user, "<span class='notice'> You connect the monitor.</span>")
 				var/mob/living/silicon/ai/A = new /mob/living/silicon/ai ( loc, laws, brain )
 				if(A) //if there's no brain, the mob is deleted and a structure/AIcore is created
 					A.rename_self("ai", 1)

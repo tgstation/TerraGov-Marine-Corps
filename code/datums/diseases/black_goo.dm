@@ -80,7 +80,7 @@
 				H.nutrition = 450 //never hungry
 				if(goo_message_cooldown < world.time)
 					goo_message_cooldown = world.time + 100
-					to_chat(affected_mob, "\green Spread... Consume... Infect...")
+					to_chat(affected_mob, "<span class='green'> Spread... Consume... Infect...</span>")
 
 
 /datum/disease/black_goo/proc/zombie_transform(mob/living/carbon/human/H)
@@ -121,11 +121,11 @@
 		var/mob/living/carbon/human/H = M
 		if(H.species.name == "Human")
 			for(var/datum/disease/black_goo/BG in H.viruses)
-				user.show_message(text("\green <B>You sense your target is infected</B>"))
+				user.show_message(text("<span class='green'> <B>You sense your target is infected</B></span>"))
 				return
 			if(prob(75))
 				M.contract_disease(new /datum/disease/black_goo)
-				user.show_message(text("\green <B>You sense your target is now infected</B>"))
+				user.show_message(text("<span class='green'> <B>You sense your target is now infected</B></span>"))
 
 
 /obj/item/weapon/zombie_claws/afterattack(obj/O as obj, mob/user as mob, proximity)

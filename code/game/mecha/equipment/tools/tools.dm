@@ -52,8 +52,8 @@
 				M.take_overall_damage(dam_force)
 				M.adjustOxyLoss(round(dam_force/2))
 				M.updatehealth()
-				occupant_message("\red You squeeze [target] with the [src.name]!")
-				chassis.visible_message("\red [chassis] squeezes [target]!")
+				occupant_message("<span class='warning'> You squeeze [target] with the [src.name]!</span>")
+				chassis.visible_message("<span class='warning'> [chassis] squeezes [target]!</span>")
 				log_combat(chassis.occupant, M, "squeezed", src)
 				playsound(chassis.loc, 'sound/mecha/powerloader_attack.ogg', 25, 1)
 			else
@@ -150,12 +150,12 @@
 			if( istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(chassis,target) <= 1)
 				var/obj/o = target
 				o.reagents.trans_to(src, 200)
-				occupant_message("\blue \The [src] is now refilled")
+				occupant_message("<span class='notice'> \The [src] is now refilled</span>")
 				playsound(chassis, 'sound/effects/refill.ogg', 25, 1, 4)
 				return
 
 			if (src.reagents.total_volume < 1)
-				occupant_message("\red \The [src] is empty.")
+				occupant_message("<span class='warning'> \The [src] is empty.</span>")
 				return
 
 			playsound(chassis, 'sound/effects/extinguish.ogg', 25, 1, 10)
@@ -539,7 +539,7 @@
 		if(!action_checks(src))
 			return chassis.dynbulletdamage(Proj)
 		if(prob(chassis.deflect_chance*deflect_coeff))
-			chassis.occupant_message("\blue The armor deflects incoming projectile.")
+			chassis.occupant_message("<span class='notice'> The armor deflects incoming projectile.</span>")
 			chassis.visible_message("The [chassis.name] armor deflects the projectile")
 			chassis.log_append_to_last("Armor saved.")
 		else
@@ -554,7 +554,7 @@
 		if(!action_checks(A))
 			return chassis.dynhitby(A)
 		if(prob(chassis.deflect_chance*deflect_coeff) || istype(A, /mob/living) || istype(A, /obj/item/mecha_parts/mecha_tracking))
-			chassis.occupant_message("\blue The [A] bounces off the armor.")
+			chassis.occupant_message("<span class='notice'> The [A] bounces off the armor.</span>")
 			chassis.visible_message("The [A] bounces off the [chassis] armor")
 			chassis.log_append_to_last("Armor saved.")
 			if(istype(A, /mob/living))
@@ -982,11 +982,11 @@
 			var/mob/living/M = target
 			if(M.stat>1) return
 			if(chassis.occupant.a_intent == "hurt")
-				chassis.occupant_message("\red You obliterate [target] with [src.name], leaving blood and guts everywhere.")
-				chassis.visible_message("\red [chassis] destroys [target] in an unholy fury.")
+				chassis.occupant_message("<span class='warning'> You obliterate [target] with [src.name], leaving blood and guts everywhere.</span>")
+				chassis.visible_message("<span class='warning'> [chassis] destroys [target] in an unholy fury.</span>")
 			if(chassis.occupant.a_intent == "disarm")
-				chassis.occupant_message("\red You tear [target]'s limbs off with [src.name].")
-				chassis.visible_message("\red [chassis] rips [target]'s arms off.")
+				chassis.occupant_message("<span class='warning'> You tear [target]'s limbs off with [src.name].</span>")
+				chassis.visible_message("<span class='warning'> [chassis] rips [target]'s arms off.</span>")
 			else
 				step_away(M,chassis)
 				chassis.occupant_message("You smash into [target], sending them flying.")
@@ -1023,7 +1023,7 @@
 
 /obj/item/mecha_parts/mecha_equipment/tool/passenger/proc/move_inside(var/mob/user)
 	if (chassis)
-		chassis.visible_message("\blue [user] starts to climb into [chassis].")
+		chassis.visible_message("<span class='notice'> [user] starts to climb into [chassis].</span>")
 
 	if(do_after(user, 40, FALSE, 5, BUSY_ICON_GENERIC))
 		if(!src.occupant)

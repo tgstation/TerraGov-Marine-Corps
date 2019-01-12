@@ -198,9 +198,9 @@ var/bomb_set
 	else if (src.deployable)
 		if(removal_stage < 5)
 			src.anchored = 1
-			visible_message("\red With a steely snap, bolts slide out of [src] and anchor it to the flooring!")
+			visible_message("<span class='warning'> With a steely snap, bolts slide out of [src] and anchor it to the flooring!</span>")
 		else
-			visible_message("\red \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.")
+			visible_message("<span class='warning'> \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
 		if(!src.lighthack)
 			flick("nuclearbombc", src)
 			src.icon_state = "nuclearbomb1"
@@ -263,12 +263,12 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 							src.safety = !src.safety
 							spawn(100) src.safety = !src.safety
 							if(src.safety == 1)
-								visible_message("\blue The [src] quiets down.")
+								visible_message("<span class='notice'> The [src] quiets down.</span>")
 								if(!src.lighthack)
 									if (src.icon_state == "nuclearbomb2")
 										src.icon_state = "nuclearbomb1"
 							else
-								visible_message("\blue The [src] emits a quiet whirling noise!")
+								visible_message("<span class='notice'> The [src] emits a quiet whirling noise!</span>")
 			if(href_list["act"] == "wire")
 				if (!istype(usr.get_active_hand(), /obj/item/tool/wirecutters))
 					to_chat(usr, "You need wirecutters!")
@@ -347,14 +347,14 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 
 					if(removal_stage == 5)
 						src.anchored = 0
-						visible_message("\red \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.")
+						visible_message("<span class='warning'> \The [src] makes a highly unpleasant crunching noise. It looks like the anchoring bolts have been cut.</span>")
 						return
 
 					src.anchored = !( src.anchored )
 					if(src.anchored)
-						visible_message("\red With a steely snap, bolts slide out of [src] and anchor it to the flooring.")
+						visible_message("<span class='warning'> With a steely snap, bolts slide out of [src] and anchor it to the flooring.</span>")
 					else
-						visible_message("\red The anchoring bolts slide back into the depths of [src].")
+						visible_message("<span class='warning'> The anchoring bolts slide back into the depths of [src].</span>")
 
 		src.add_fingerprint(usr)
 		for(var/mob/M in viewers(1, src))

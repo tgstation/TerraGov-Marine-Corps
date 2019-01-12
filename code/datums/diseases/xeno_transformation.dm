@@ -41,7 +41,7 @@
 				to_chat(affected_mob, "<span class='warning'>You can feel something move...inside.</span>")
 		if(4)
 			if (prob(10))
-				to_chat(affected_mob, pick("\red Your skin feels very tight.", "<span class='warning'>Your blood boils!</span>"))
+				to_chat(affected_mob, pick("<span class='warning'> Your skin feels very tight.</span>", "<span class='warning'>Your blood boils!</span>"))
 				affected_mob.take_limb_damage(8)
 			if (prob(20))
 				affected_mob.say(pick("You look delicious.", "Going to... devour you...", "Hsssshhhhh!"))

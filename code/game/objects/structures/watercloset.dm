@@ -379,7 +379,7 @@
 	if(ishuman(user))
 		user:update_inv_gloves()
 	for(var/mob/V in viewers(src, null))
-		V.show_message("\blue [user] washes their hands using \the [src].")
+		V.show_message("<span class='notice'> [user] washes their hands using \the [src].</span>")
 
 
 /obj/structure/sink/attackby(obj/item/O as obj, mob/living/user as mob)
@@ -390,7 +390,7 @@
 	var/obj/item/reagent_container/RG = O
 	if (istype(RG) && RG.is_open_container())
 		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
-		user.visible_message("\blue [user] fills \the [RG] using \the [src].","\blue You fill \the [RG] using \the [src].")
+		user.visible_message("<span class='notice'> [user] fills \the [RG] using \the [src].</span>","<span class='notice'> You fill \the [RG] using \the [src].</span>")
 		return
 
 	else if (istype(O, /obj/item/weapon/baton))
@@ -429,8 +429,8 @@
 
 	O.clean_blood()
 	user.visible_message( \
-		"\blue [user] washes \a [I] using \the [src].", \
-		"\blue You wash \a [I] using \the [src].")
+		"<span class='notice'> [user] washes \a [I] using \the [src].</span>", \
+		"<span class='notice'> You wash \a [I] using \the [src].</span>")
 
 
 /obj/structure/sink/kitchen

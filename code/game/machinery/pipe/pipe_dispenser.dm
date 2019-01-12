@@ -114,7 +114,7 @@
 			if (do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
 				user.visible_message( \
 					"[user] unfastens \the [src].", \
-					"\blue You have unfastened \the [src]. Now it can be pulled somewhere else.", \
+					"<span class='notice'> You have unfastened \the [src]. Now it can be pulled somewhere else.</span>", \
 					"You hear ratchet.")
 				src.anchored = 0
 				src.stat |= MAINT
@@ -127,7 +127,7 @@
 			if (do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 				user.visible_message( \
 					"[user] fastens \the [src].", \
-					"\blue You have fastened \the [src]. Now it can dispense pipes.", \
+					"<span class='notice'> You have fastened \the [src]. Now it can dispense pipes.</span>", \
 					"You hear ratchet.")
 				src.anchored = 1
 				src.stat &= ~MAINT

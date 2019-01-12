@@ -137,10 +137,10 @@
 	if(src.operating)
 		return
 	if(!src.occupant)
-		visible_message("\red You hear a loud metallic grinding sound.")
+		visible_message("<span class='warning'> You hear a loud metallic grinding sound.</span>")
 		return
 	use_power(1000)
-	visible_message("\red You hear a loud squelchy grinding sound.")
+	visible_message("<span class='warning'> You hear a loud squelchy grinding sound.</span>")
 	src.operating = 1
 	update_icon()
 

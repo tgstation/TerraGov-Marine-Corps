@@ -85,7 +85,7 @@
 				return
 
 	else if ((istype(W, /obj/item/device/analyzer)) && Adjacent(user))
-		visible_message("\red [user] has used [W] on \icon[icon]")
+		visible_message("<span class='warning'> [user] has used [W] on \icon[icon]</span>")
 		to_chat(user, "<span class='notice'>Results of analysis of \icon[icon]</span>")
 		if (pressure>0)
 			to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
@@ -114,7 +114,7 @@
 		if(user.drop_inv_item_to_loc(C, src))
 			C.add_fingerprint(user)
 			cell = C
-			user.visible_message("\blue [user] opens the panel on [src] and inserts [C].", "\blue You open the panel on [src] and insert [C].")
+			user.visible_message("<span class='notice'> [user] opens the panel on [src] and inserts [C].</span>", "<span class='notice'> You open the panel on [src] and insert [C].</span>")
 		return
 
 	if(istype(I, /obj/item/tool/screwdriver))
@@ -122,7 +122,7 @@
 			to_chat(user, "<span class='warning'>There is no power cell installed.</span>")
 			return
 
-		user.visible_message("\blue [user] opens the panel on [src] and removes [cell].", "\blue You open the panel on [src] and remove [cell].")
+		user.visible_message("<span class='notice'> [user] opens the panel on [src] and removes [cell].</span>", "<span class='notice'> You open the panel on [src] and remove [cell].</span>")
 		cell.add_fingerprint(user)
 		cell.loc = src.loc
 		cell = null

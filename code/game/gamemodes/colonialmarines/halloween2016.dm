@@ -661,7 +661,7 @@
 		spawn(40)
 			if(H)
 				to_chat(H, "________________________")
-				to_chat(H, "\red <b>You are the [H.mind.assigned_role]!<b>")
+				to_chat(H, "<span class='warning'> <b>You are the [H.mind.assigned_role]!<b></span>")
 				to_chat(H, "We have a new mission for you. The TGMC is coming to investigate one of our blacksites, and we require your services.")
 				to_chat(H, "Make sure you keep the TerraGov Marine Corps from tampering with our equipment. It is very, very expensive, and will be hard to replace.")
 				to_chat(H, "As usual, you will be handsomely rewarded upon completion of this mission. Should you fail, we will deny our involvement.")

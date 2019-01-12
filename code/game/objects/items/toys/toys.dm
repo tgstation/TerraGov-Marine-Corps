@@ -68,7 +68,7 @@
 
 /obj/item/toy/balloon/throw_impact(atom/hit_atom)
 	if(src.reagents.total_volume >= 1)
-		src.visible_message("\red The [src] bursts!","You hear a pop and a splash.")
+		src.visible_message("<span class='warning'> The [src] bursts!</span>","You hear a pop and a splash.")
 		src.reagents.reaction(get_turf(hit_atom), TOUCH)
 		for(var/atom/A in get_turf(hit_atom))
 			src.reagents.reaction(A, TOUCH)
@@ -155,7 +155,7 @@
 		s.set_up(3, 1, src)
 		s.start()
 		new /obj/effect/decal/cleanable/ash(src.loc)
-		src.visible_message("\red The [src.name] explodes!","\red You hear a snap!")
+		src.visible_message("<span class='warning'> The [src.name] explodes!</span>","<span class='warning'> You hear a snap!</span>")
 		playsound(src, 'sound/effects/snap.ogg', 25, 1)
 		qdel(src)
 
@@ -169,7 +169,7 @@
 			s.set_up(2, 0, src)
 			s.start()
 			new /obj/effect/decal/cleanable/ash(src.loc)
-			src.visible_message("\red The [src.name] explodes!","\red You hear a snap!")
+			src.visible_message("<span class='warning'> The [src.name] explodes!</span>","<span class='warning'> You hear a snap!</span>")
 			playsound(src, 'sound/effects/snap.ogg', 25, 1)
 			qdel(src)
 

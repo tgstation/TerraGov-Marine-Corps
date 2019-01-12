@@ -108,12 +108,12 @@ REAGENT SCANNER
 
 	// Doesn't work on non-humans and synthetics
 	if(!istype(M, /mob/living/carbon) || (ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
-		user.show_message("\n\blue Health Analyzer results for ERROR:\n\t Overall Status: ERROR")
+		user.show_message("\n<span class='notice'> Health Analyzer results for ERROR:\n\t Overall Status: ERROR</span>")
 		user.show_message("\tType: <font color='blue'>Oxygen</font>-<font color='green'>Toxin</font>-<font color='#FFA500'>Burns</font>-<font color='red'>Brute</font>", 1)
 		user.show_message("\tDamage: <font color='blue'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>")
-		user.show_message("\blue Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)", 1)
+		user.show_message("<span class='notice'> Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)</span>", 1)
 		user.show_message("\red <b>Warning: Blood Level ERROR: --% --cl.\blue Type: ERROR")
-		user.show_message("\blue Subject's pulse: <font color='red'>-- bpm.</font>")
+		user.show_message("<span class='notice'> Subject's pulse: <font color='red'>-- bpm.</font></span>")
 		return
 
 	// Calculate damage amounts
@@ -126,7 +126,7 @@ REAGENT SCANNER
 	// Show overall
 	if(M.status_flags & FAKEDEATH)
 		OX = fake_oxy > 50 			? 	"<b>[fake_oxy]</b>" 			: fake_oxy
-		dat += "\n\blue Health Analyzer for [M]:\n\tOverall Status: <b>DEAD</b>\n"
+		dat += "\n<span class='notice'> Health Analyzer for [M]:\n\tOverall Status: <b>DEAD</b>\n</span>"
 	else
 		dat += "\nHealth Analyzer results for [M]:\n\tOverall Status: [M.stat > 1 ? "<b>DEAD</b>" : "<b>[M.health - M.halloss]% healthy"]</b>\n"
 	dat += "\tType:    <font color='blue'>Oxygen</font>-<font color='green'>Toxin</font>-<font color='#FFA500'>Burns</font>-<font color='red'>Brute</font>\n"
@@ -549,12 +549,12 @@ REAGENT SCANNER
 
 	user.show_message("<span class='boldnotice'>Results:</span>", 1)
 	if(abs(env_pressure - ONE_ATMOSPHERE) < 10)
-		user.show_message("\blue Pressure: [round(env_pressure,0.1)] kPa", 1)
+		user.show_message("<span class='notice'> Pressure: [round(env_pressure,0.1)] kPa</span>", 1)
 	else
-		user.show_message("\red Pressure: [round(env_pressure,0.1)] kPa", 1)
+		user.show_message("<span class='warning'> Pressure: [round(env_pressure,0.1)] kPa</span>", 1)
 	if(env_pressure > 0)
-		user.show_message("\blue Gas Type: [env_gas]", 1)
-		user.show_message("\blue Temperature: [round(env_temp-T0C)]&deg;C", 1)
+		user.show_message("<span class='notice'> Gas Type: [env_gas]</span>", 1)
+		user.show_message("<span class='notice'> Temperature: [round(env_temp-T0C)]&deg;C</span>", 1)
 
 	src.add_fingerprint(user)
 	return
@@ -672,7 +672,7 @@ REAGENT SCANNER
 			var/one_percent = O.reagents.total_volume / 100
 			for (var/datum/reagent/R in O.reagents.reagent_list)
 				if(prob(reliability))
-					dat += "\n \t \blue [R][details ? ": [R.volume / one_percent]%" : ""]"
+					dat += "\n \t <span class='notice'> [R][details ? ": [R.volume / one_percent]%" : ""]</span>"
 					recent_fail = 0
 				else if(recent_fail)
 					crit_fail = 1

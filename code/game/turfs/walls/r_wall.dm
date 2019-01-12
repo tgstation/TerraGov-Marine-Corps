@@ -13,7 +13,7 @@
 /turf/closed/wall/r_wall/attack_hand(mob/user)
 	if (HULK in user.mutations)
 		if (prob(10))
-			to_chat(usr, text("\blue You smash through the wall."))
+			to_chat(usr, text("<span class='notice'> You smash through the wall.</span>"))
 			usr.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
 			dismantle_wall(1)
 			return

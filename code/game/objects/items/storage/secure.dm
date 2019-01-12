@@ -49,21 +49,21 @@
 			if (istype(W, /obj/item/tool/screwdriver))
 				if (do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 					src.open =! src.open
-					user.show_message(text("\blue You [] the service panel.", (src.open ? "open" : "close")))
+					user.show_message(text("<span class='notice'> You [] the service panel.</span>", (src.open ? "open" : "close")))
 				return
 			if ((istype(W, /obj/item/device/multitool)) && (src.open == 1)&& (!src.l_hacking))
-				user.show_message(text("\red Now attempting to reset internal memory, please hold."), 1)
+				user.show_message(text("<span class='warning'> Now attempting to reset internal memory, please hold.</span>"), 1)
 				src.l_hacking = 1
 				if (do_after(usr, 100, TRUE, 5, BUSY_ICON_BUILD))
 					if (prob(40))
 						src.l_setshort = 1
 						src.l_set = 0
-						user.show_message(text("\red Internal memory reset.  Please give it a few seconds to reinitialize."), 1)
+						user.show_message(text("<span class='warning'> Internal memory reset.  Please give it a few seconds to reinitialize.</span>"), 1)
 						sleep(80)
 						src.l_setshort = 0
 						src.l_hacking = 0
 					else
-						user.show_message(text("\red Unable to reset internal memory."), 1)
+						user.show_message(text("<span class='warning'> Unable to reset internal memory.</span>"), 1)
 						src.l_hacking = 0
 				else	src.l_hacking = 0
 				return
@@ -189,9 +189,9 @@
 						H.Stun(time)
 					if(H.stat != 2)	H.stat = 1
 					for(var/mob/O in viewers(H, null))
-						O.show_message(text("<span class='danger'>[] has been knocked unconscious!</span>", H), 1, "\red You hear someone fall.", 2)
+						O.show_message(text("<span class='danger'>[] has been knocked unconscious!</span>", H), 1, "<span class='warning'> You hear someone fall.</span>", 2)
 				else
-					to_chat(H, text("\red [] tried to knock you unconcious!",user))
+					to_chat(H, text("<span class='warning'> [] tried to knock you unconcious!</span>",user))
 					H.adjust_blurriness(3)
 
 		return*/

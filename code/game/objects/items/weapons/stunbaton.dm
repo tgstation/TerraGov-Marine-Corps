@@ -77,7 +77,7 @@
 	if(istype(H))
 		var/obj/item/card/id/I = H.wear_id
 		if(!istype(I) || !check_access(I))
-			H.visible_message("\blue [src] beeeps as [H] picks it up", "<span class='danger'>WARNING: Unauthorized user detected. Denying access...</span>")
+			H.visible_message("<span class='notice'> [src] beeeps as [H] picks it up</span>", "<span class='danger'>WARNING: Unauthorized user detected. Denying access...</span>")
 			H.KnockDown(20)
 			H.visible_message("<span class='warning'>[src] beeps and sends a shock through [H]'s body!</span>")
 			deductcharge(hitcost)

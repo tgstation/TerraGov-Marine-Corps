@@ -173,7 +173,7 @@
 
 /obj/structure/closet/attack_animal(mob/living/user)
 	if(user.wall_smash)
-		visible_message("\red [user] destroys the [src]. ")
+		visible_message("<span class='warning'> [user] destroys the [src]. </span>")
 		for(var/atom/movable/A as mob|obj in src)
 			A.loc = src.loc
 		qdel(src)

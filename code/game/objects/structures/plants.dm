@@ -74,9 +74,9 @@
 			damage = rand(8,18)
 		if(indestructable)
 			//this bush marks the edge of the map, you can't destroy it
-			to_chat(user, "\red You flail away at the undergrowth, but it's too thick here.")
+			to_chat(user, "<span class='warning'> You flail away at the undergrowth, but it's too thick here.</span>")
 		else
-			user.visible_message("\red [user] flails away at the  [src] with [I].","\red You flail away at the [src] with [I].")
+			user.visible_message("<span class='warning'> [user] flails away at the  [src] with [I].</span>","<span class='warning'> You flail away at the [src] with [I].</span>")
 			playsound(src.loc, 'sound/effects/vegetation_hit.ogg', 25, 1)
 			health -= damage
 			if(health < 0)
@@ -168,5 +168,5 @@ var/jungle_plants_init = 0
 		fruit_overlay.Blend(rgb(fruit_r, fruit_g, fruit_b), ICON_ADD)
 		overlays += fruit_overlay
 	else
-		to_chat(user, "\red There are no fruit left on [src].")
+		to_chat(user, "<span class='warning'> There are no fruit left on [src].</span>")
 		

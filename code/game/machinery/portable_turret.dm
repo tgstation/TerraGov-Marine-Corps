@@ -316,7 +316,7 @@ Status: []<BR>"},
 		to_chat(user, "<span class='warning'>You short out [src]'s threat assessment circuits.</span>")
 		spawn(0)
 			for(var/mob/O in hearers(src, null))
-				O.show_message("\red [src] hums oddly...", 1)
+				O.show_message("<span class='warning'> [src] hums oddly...</span>", 1)
 		emagged = 1
 		src.on = 0 // turns off the turret temporarily
 		sleep(60) // 6 seconds for the traitor to gtfo of the area before the turret decides to ruin his shit
@@ -1001,7 +1001,7 @@ Status: []<BR>"},
 		to_chat(user, "<span class='warning'>You short out [Parent_Turret]'s threat assessment circuits.</span>")
 		spawn(0)
 			for(var/mob/O in hearers(Parent_Turret, null))
-				O.show_message("\red [Parent_Turret] hums oddly...", 1)
+				O.show_message("<span class='warning'> [Parent_Turret] hums oddly...</span>", 1)
 		Parent_Turret.emagged = 1
 		Parent_Turret.on = 0
 		sleep(40)

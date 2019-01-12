@@ -77,7 +77,7 @@
 		to_chat(usr, "<span class='notice'>You wind some cable together to make some restraints.</span>")
 		src.use(15)
 	else
-		to_chat(usr, "<span class='notice'>\blue You cannot do that.</span>")
+		to_chat(usr, "<span class='notice'><span class='notice'> You cannot do that.</span>")
 	..()
 
 /obj/item/stack/cable_coil/attackby(obj/item/W, mob/user)
@@ -341,7 +341,7 @@
 
 		if(S.burn_dam > 0 && use(1))
 			S.heal_damage(0,15,0,1)
-			user.visible_message("\red \The [user] repairs some burn damage on \the [M]'s [S.display_name] with \the [src].")
+			user.visible_message("<span class='warning'> \The [user] repairs some burn damage on \the [M]'s [S.display_name] with \the [src].</span>")
 			return
 		else
 			to_chat(user, "Nothing to fix!")

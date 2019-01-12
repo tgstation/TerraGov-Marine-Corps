@@ -425,13 +425,13 @@
 				src.check_for_internal_damage(list(MECHA_INT_CONTROL_LOST))
 				playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
 				to_chat(user, "<span class='warning'>You slash at the armored suit!</span>")
-				visible_message("\red [user] slashes at [name]'s armor!")
+				visible_message("<span class='warning'> [user] slashes at [name]'s armor!</span>")
 			else
 				src.log_append_to_last("Armor saved.")
 				playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
-				to_chat(user, "\green Your claws had no effect!")
-				src.occupant_message("\blue The [user]'s claws are stopped by the armor.")
-				visible_message("\blue [user] rebounds off [name]'s armor!")
+				to_chat(user, "<span class='green'> Your claws had no effect!</span>")
+				src.occupant_message("<span class='notice'> The [user]'s claws are stopped by the armor.</span>")
+				visible_message("<span class='notice'> [user] rebounds off [name]'s armor!</span>")
 		else
 			user.visible_message("<font color='red'><b>[user] hits [src.name]. Nothing happens</b></font>","<font color='red'><b>You hit [src.name] with no visible effect.</b></font>")
 			src.log_append_to_last("Armor saved.")
@@ -462,8 +462,8 @@
 		else
 			src.log_append_to_last("Armor saved.")
 			playsound(src.loc, 'sound/weapons/slash.ogg', 25, 1)
-			src.occupant_message("\blue The [user]'s attack is stopped by the armor.")
-			visible_message("\blue The [user] rebounds off [src.name]'s armor!")
+			src.occupant_message("<span class='notice'> The [user]'s attack is stopped by the armor.</span>")
+			visible_message("<span class='notice'> The [user] rebounds off [src.name]'s armor!</span>")
 			log_combat(user, src, "attacked")
 	return
 
@@ -479,7 +479,7 @@
 		src.visible_message("The [A] fastens firmly to [src].")
 		return
 	if(prob(src.deflect_chance) || istype(A, /mob))
-		src.occupant_message("\blue The [A] bounces off the armor.")
+		src.occupant_message("<span class='notice'> The [A] bounces off the armor.</span>")
 		src.visible_message("The [A] bounces off the [src.name] armor")
 		src.log_append_to_last("Armor saved.")
 		if(istype(A, /mob/living))
@@ -501,7 +501,7 @@
 
 /obj/mecha/proc/dynbulletdamage(var/obj/item/projectile/Proj)
 	if(prob(src.deflect_chance))
-		src.occupant_message("\blue The armor deflects incoming projectile.")
+		src.occupant_message("<span class='notice'> The armor deflects incoming projectile.</span>")
 		src.visible_message("The [src.name] armor deflects the projectile")
 		src.log_append_to_last("Armor saved.")
 		return
@@ -817,12 +817,12 @@
 	var/obj/machinery/atmospherics/portables_connector/possible_port = locate(/obj/machinery/atmospherics/portables_connector/) in loc
 	if(possible_port)
 		if(connect(possible_port))
-			src.occupant_message("\blue [name] connects to the port.")
+			src.occupant_message("<span class='notice'> [name] connects to the port.</span>")
 			src.verbs += /obj/mecha/verb/disconnect_from_port
 			src.verbs -= /obj/mecha/verb/connect_to_port
 			return
 		else
-			src.occupant_message("\red [name] failed to connect to the port.")
+			src.occupant_message("<span class='warning'> [name] failed to connect to the port.</span>")
 			return
 	else
 		src.occupant_message("Nothing happens")
@@ -837,11 +837,11 @@
 	if(usr!=src.occupant)
 		return
 	if(disconnect())
-		src.occupant_message("\blue [name] disconnects from the port.")
+		src.occupant_message("<span class='notice'> [name] disconnects from the port.</span>")
 		src.verbs -= /obj/mecha/verb/disconnect_from_port
 		src.verbs += /obj/mecha/verb/connect_to_port
 	else
-		src.occupant_message("\red [name] is not connected to the port at the moment.")
+		src.occupant_message("<span class='warning'> [name] is not connected to the port at the moment.</span>")
 
 /obj/mecha/verb/toggle_lights()
 	set name = "Toggle Lights"
@@ -940,7 +940,7 @@
 		return
 //	to_chat(usr, "You start climbing into [src.name]")
 
-	visible_message("\blue [usr] starts to climb into [src.name]")
+	visible_message("<span class='notice'> [usr] starts to climb into [src.name]</span>")
 
 	if(enter_after(40,usr))
 		if(!src.occupant)
@@ -989,7 +989,7 @@
 	//Added a message here since people assume their first click failed or something./N
 //	to_chat(user, "Installing MMI, please stand by.")
 
-	visible_message("\blue [usr] starts to insert an MMI into [src.name]")
+	visible_message("<span class='notice'> [usr] starts to insert an MMI into [src.name]</span>")
 
 	if(enter_after(40,user))
 		if(!occupant)
@@ -1496,11 +1496,11 @@
 		var/obj/item/mecha_parts/mecha_equipment/tool/passenger/P = passengers[pname]
 		var/mob/occupant = P.occupant
 
-		user.visible_message("\red [user] begins opening the hatch on \the [P]...", "\red You begin opening the hatch on \the [P]...")
+		user.visible_message("<span class='warning'> [user] begins opening the hatch on \the [P]...</span>", "<span class='warning'> You begin opening the hatch on \the [P]...</span>")
 		if (!do_after(user, 40, FALSE, 5, BUSY_ICON_GENERIC))
 			return
 
-		user.visible_message("\red [user] opens the hatch on \the [P] and removes [occupant]!", "\red You open the hatch on \the [P] and remove [occupant]!")
+		user.visible_message("<span class='warning'> [user] opens the hatch on \the [P] and removes [occupant]!</span>", "<span class='warning'> You open the hatch on \the [P] and remove [occupant]!</span>")
 		P.go_out()
 		P.log_message("[occupant] was removed.")
 		return

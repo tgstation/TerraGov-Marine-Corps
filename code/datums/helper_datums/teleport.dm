@@ -172,7 +172,7 @@
 		if(!isemptylist(teleatom.search_contents_for(/obj/item/disk/nuclear)))
 			if(istype(teleatom, /mob/living))
 				var/mob/living/MM = teleatom
-				MM.visible_message("<span class='danger'>The [MM] bounces off of the portal!</span>","\red Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through.")
+				MM.visible_message("<span class='danger'>The [MM] bounces off of the portal!</span>","<span class='warning'> Something you are carrying seems to be unable to pass through the portal. Better drop it if you want to go through.</span>")
 			else
 				teleatom.visible_message("<span class='danger'>The [teleatom] bounces off of the portal!</span>")
 			return 0

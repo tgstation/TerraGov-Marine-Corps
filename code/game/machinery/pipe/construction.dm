@@ -414,7 +414,7 @@ Buildable meters
 			return 1
 	// no conflicts found
 
-	var/pipefailtext = "\red There's nothing to connect this pipe section to!" //(with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
+	var/pipefailtext = "<span class='warning'> There's nothing to connect this pipe section to!</span>" //(with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
 
 	//TODO: Move all of this stuff into the various pipe constructors.
 	switch(pipe_type)
@@ -979,7 +979,7 @@ Buildable meters
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 	user.visible_message( \
 		"[user] fastens the [src].", \
-		"\blue You have fastened the [src].", \
+		"<span class='notice'> You have fastened the [src].</span>", \
 		"You hear ratchet.")
 	qdel(src)	// remove the pipe item
 

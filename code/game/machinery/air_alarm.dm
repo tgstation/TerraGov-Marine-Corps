@@ -989,7 +989,7 @@ table tr:first-child th:first-child { border: none;}
 		stat ^= BROKEN
 		add_fingerprint(user)
 		for(var/mob/O in viewers(user, null))
-			O.show_message(text("\red [] has []activated []!", user, (stat&BROKEN) ? "de" : "re", src), 1)
+			O.show_message(text("<span class='warning'> [] has []activated []!</span>", user, (stat&BROKEN) ? "de" : "re", src), 1)
 		update_icon()
 		return
 */

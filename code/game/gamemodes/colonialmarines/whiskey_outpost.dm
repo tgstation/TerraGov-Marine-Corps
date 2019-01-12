@@ -655,7 +655,7 @@
 			to_chat(world, "<br><br>")
 			to_chat(world, "<span class='notice'>*___________________________________*</span>")
 			to_chat(world, "<span class='boldnotice'>***Whiskey Outpost Controller***</span>")
-			to_chat(world, "<span class='notice'><b>Wave:</b> [xeno_wave][wave_times_delayed?"|\red Times delayed: [wave_times_delayed]":""]</span>")
+			to_chat(world, "<span class='notice'><b>Wave:</b> [xeno_wave][wave_times_delayed?"|<span class='warning'> Times delayed: [wave_times_delayed]</span>":""]</span>")
 			to_chat(world, "<span class='notice'>*___________________________________*</span>")
 			to_chat(world, "<br><br>")
 			to_chat(world, "<br><br>")

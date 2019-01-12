@@ -96,7 +96,7 @@
 				P.icon_state = "[P.icon_base]_[dir]"
 			cur = get_step_towards(cur,end)
 	//is_blocked_turf(var/turf/T)
-		to_chat(usr, "\blue You finish placing the [src]."	)
+		to_chat(usr, "<span class='notice'> You finish placing the [src].</span>"	)
 
 /obj/item/tool/taperoll/afterattack(var/atom/A, mob/user as mob, proximity)
 	if (proximity && istype(A, /obj/machinery/door/airlock))
@@ -142,7 +142,7 @@
 	if(user.a_intent == "help" && ((!can_puncture(W) && src.allowed(user))))
 		to_chat(user, "You can't break the [src] with that!")
 		return
-	user.show_viewers("\blue [user] breaks the [src]!")
+	user.show_viewers("<span class='notice'> [user] breaks the [src]!</span>")
 
 	var/dir[2]
 	var/icon_dir = src.icon_state

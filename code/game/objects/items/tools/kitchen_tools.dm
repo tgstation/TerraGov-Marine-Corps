@@ -47,11 +47,11 @@
 		reagents.trans_to(M, reagents.total_volume)
 		if(M == user)
 			for(var/mob/O in viewers(M, null))
-				O.show_message(text("\blue [] eats some [] from \the [].", user, loaded, src), 1)
+				O.show_message(text("<span class='notice'> [] eats some [] from \the [].</span>", user, loaded, src), 1)
 				M.reagents.add_reagent("nutriment", 1)
 		else
 			for(var/mob/O in viewers(M, null))
-				O.show_message(text("\blue [] feeds [] some [] from \the []", user, M, loaded, src), 1)
+				O.show_message(text("<span class='notice'> [] feeds [] some [] from \the []</span>", user, M, loaded, src), 1)
 				M.reagents.add_reagent("nutriment", 1)
 		playsound(M.loc,'sound/items/eatfood.ogg', 15, 1)
 		overlays.Cut()
@@ -221,7 +221,7 @@
 				user.visible_message("<span class='danger'>[H] has been knocked unconscious!</span>", "<span class='danger'>You knock [H] unconscious!</span>")
 				return
 			else
-				H.visible_message("\red [user] tried to knock [H] unconscious!", "\red [user] tried to knock you unconscious!")
+				H.visible_message("<span class='warning'> [user] tried to knock [H] unconscious!</span>", "<span class='warning'> [user] tried to knock you unconscious!</span>")
 				H.blur_eyes(3)
 	return ..()
 

@@ -181,6 +181,6 @@
 			if(p_loc == user.loc && p_loc_m == C.loc)
 				C.handcuffed = new /obj/item/restraints(C)
 				C.handcuff_update()
-				C.visible_message("\red [C] has been successfully restrained by [user]!")
+				C.visible_message("<span class='warning'> [C] has been successfully restrained by [user]!</span>")
 				qdel(src)
 	return
