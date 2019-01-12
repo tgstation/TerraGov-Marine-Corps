@@ -134,7 +134,7 @@ log transactions
 				dat += "<span class='alert'>Maximum number of pin attempts exceeded! Access to this ATM has been temporarily disabled.</span>"
 			else if(authenticated_account)
 				if(authenticated_account.suspended)
-					dat += "\red<b>Access to this account has been suspended, and the funds within frozen.</b>"
+					dat += "<span class='warning'><b>Access to this account has been suspended, and the funds within frozen.</b></span>"
 				else
 					switch(view_screen)
 						if(CHANGE_SECURITY_LEVEL)

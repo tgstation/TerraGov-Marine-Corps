@@ -213,7 +213,7 @@ field_generator power level display
 		return 1
 	else
 		for(var/mob/M in viewers(src))
-			M.show_message("\red \The [src] shuts down!")
+			M.show_message("<span class='warning'> \The [src] shuts down!</span>")
 		turn_off()
 		investigate_log("ran out of power and <font color='red'>deactivated</font>","singulo")
 		src.power = 0

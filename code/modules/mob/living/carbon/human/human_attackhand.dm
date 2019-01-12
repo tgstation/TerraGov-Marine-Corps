@@ -65,7 +65,7 @@
 					var/suff = min(getOxyLoss(), 5) //Pre-merge level, less healing, more prevention of dieing.
 					adjustOxyLoss(-suff)
 					updatehealth()
-					visible_message("\red [M] performs CPR on [src]!", null, null, 3)
+					visible_message("<span class='warning'> [M] performs CPR on [src]!</span>", null, null, 3)
 					to_chat(src, "<span class='boldnotice'>You feel a breath of fresh air enter your lungs. It feels good.</span>")
 					to_chat(M, "<span class='warning'>Repeat at least every 7 seconds.</span>")
 

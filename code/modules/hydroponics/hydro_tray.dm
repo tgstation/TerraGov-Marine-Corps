@@ -460,7 +460,7 @@
 	pestlevel = 0
 	sampled = 0
 	update_icon()
-	visible_message("\blue [src] has been overtaken by [seed.display_name].")
+	visible_message("<span class='notice'> [src] has been overtaken by [seed.display_name].</span>")
 
 	return
 
@@ -616,7 +616,7 @@
 	else if (istype(O, /obj/item/tool/minihoe))  // The minihoe
 
 		if(weedlevel > 0)
-			user.visible_message("\red [user] starts uprooting the weeds.", "\red You remove the weeds from the [src].")
+			user.visible_message("<span class='warning'> [user] starts uprooting the weeds.</span>", "<span class='warning'> You remove the weeds from the [src].</span>")
 			weedlevel = 0
 			update_icon()
 		else
@@ -691,17 +691,17 @@
 
 	else
 		if(seed && !dead)
-			to_chat(usr, "[src] has \blue [seed.display_name] \black planted.")
+			to_chat(usr, "[src] has <span class='notice'> [seed.display_name] \black planted.</span>")
 			if(health <= (seed.endurance / 2))
-				to_chat(usr, "The plant looks \red unhealthy.")
+				to_chat(usr, "The plant looks <span class='warning'> unhealthy.</span>")
 		else
 			to_chat(usr, "[src] is empty.")
 		to_chat(usr, "Water: [round(waterlevel,0.1)]/100")
 		to_chat(usr, "Nutrient: [round(nutrilevel,0.1)]/10")
 		if(weedlevel >= 5)
-			to_chat(usr, "[src] is \red filled with weeds!")
+			to_chat(usr, "[src] is <span class='warning'> filled with weeds!</span>")
 		if(pestlevel >= 5)
-			to_chat(usr, "[src] is \red filled with tiny worms!")
+			to_chat(usr, "[src] is <span class='warning'> filled with tiny worms!</span>")
 
 		if(!istype(src,/obj/machinery/portable_atmospherics/hydroponics/soil))
 

@@ -226,7 +226,7 @@
 
 					for(var/mob/O in viewers(src, null))
 						if (O.client)
-							O.show_message("<span class='danger'>[src] has been touched with the stun gloves by [M]!</span>", 1, "\red You hear someone fall", 2)
+							O.show_message("<span class='danger'>[src] has been touched with the stun gloves by [M]!</span>", 1, "<span class='warning'> You hear someone fall</span>", 2)
 					return
 				else
 					to_chat(M, "<span class='warning'>Not enough charge! </span>")

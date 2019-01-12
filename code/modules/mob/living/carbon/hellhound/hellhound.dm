@@ -40,8 +40,8 @@
 
 	for(var/mob/dead/observer/M in player_list)
 		to_chat(M, "<span class='danger'>A hellhound is now available to play! Please be sure you can follow the rules.</span>")
-		to_chat(M, "\red Click 'Join as hellhound' in the ghost panel to become one. First come first serve!")
-		to_chat(M, "\red If you need help during play, click adminhelp and ask.")
+		to_chat(M, "<span class='warning'> Click 'Join as hellhound' in the ghost panel to become one. First come first serve!</span>")
+		to_chat(M, "<span class='warning'> If you need help during play, click adminhelp and ask.</span>")
 
 
 
@@ -70,7 +70,7 @@
 	else if(a_intent == "grab")
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
 		for(var/mob/O in viewers(src, null))
-			O.show_message(text("\red [] has grabbed [H] in their jaws!", src), 1)
+			O.show_message(text("<span class='warning'> [] has grabbed [H] in their jaws!</span>", src), 1)
 		src.start_pulling(H)
 	else
 		if(isYautja(H))
@@ -95,9 +95,9 @@
 			if(prob(40))
 				X.KnockOut(4)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
-				visible_message("\red [src] knocks down [X]!","\red You knock down [X]!")
+				visible_message("<span class='warning'> [src] knocks down [X]!</span>","<span class='warning'> You knock down [X]!</span>")
 				return
-		visible_message("\red [src] shoves at [X]!","\red You shove at [X]!")
+		visible_message("<span class='warning'> [src] shoves at [X]!</span>","<span class='warning'> You shove at [X]!</span>")
 		return
 	else if(a_intent == "grab")
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
@@ -124,9 +124,9 @@
 			if (!(H.knocked_out ))
 				H.KnockOut(8)
 				playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
-				visible_message("\red [src] knocks down [H]!","\red You knock down [H]!")
+				visible_message("<span class='warning'> [src] knocks down [H]!</span>","<span class='warning'> You knock down [H]!</span>")
 				return
-		visible_message("\red [src] shoves at [H]!","\red You shove at [H]!")
+		visible_message("<span class='warning'> [src] shoves at [H]!</span>","<span class='warning'> You shove at [H]!</span>")
 		return
 	else if(a_intent == "grab")
 		playsound(loc, 'sound/weapons/thudswoosh.ogg', 25, 1)
@@ -258,7 +258,7 @@
 /mob/living/carbon/hellhound/say(var/message)
 	if(client)
 		if(client.prefs.muted & MUTE_IC)
-			to_chat(src, "\red You cannot speak in IC (Muted).")
+			to_chat(src, "<span class='warning'> You cannot speak in IC (Muted).</span>")
 			return
 	message =  trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
 	if(stat == 2)
@@ -282,13 +282,13 @@
 	if(!message || stat)
 		return
 
-	to_chat(src, "\blue You say, '<B>[message]</b>'.")
+	to_chat(src, "<span class='notice'> You say, '<B>[message]</b>'.</span>")
 	for(var/mob/living/carbon/hellhound/H in orange(9))
-		to_chat(H, "\blue [src.name] [verb_used], '[message]'.")
+		to_chat(H, "<span class='notice'> [src.name] [verb_used], '[message]'.</span>")
 
 	for(var/mob/living/carbon/C in orange(6))
 		if(!istype(C,/mob/living/carbon/hellhound))
-			to_chat(C, "\blue [src.name] [verb_used].")
+			to_chat(C, "<span class='notice'> [src.name] [verb_used].</span>")
 	return
 
 /mob/living/carbon/hellhound/movement_delay()

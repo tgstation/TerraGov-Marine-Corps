@@ -280,7 +280,7 @@
 			if (health > 0)
 				for(var/mob/O in viewers(src, null))
 					if ((O.client && !is_blind(O)))
-						O.show_message("\blue [M] [response_help] [src]")
+						O.show_message("<span class='notice'> [M] [response_help] [src]</span>")
 
 		if("grab")
 			if(M == src || anchored)
@@ -293,7 +293,7 @@
 			adjustBruteLoss(harm_intent_damage)
 			for(var/mob/O in viewers(src, null))
 				if ((O.client && !is_blind(O)))
-					O.show_message("\red [M] [response_harm] [src]")
+					O.show_message("<span class='warning'> [M] [response_harm] [src]</span>")
 
 	return
 
@@ -309,7 +309,7 @@
 					MED.use(1)
 					for(var/mob/M in viewers(src, null))
 						if ((M.client && !is_blind(M)))
-							M.show_message("\blue [user] applies the [MED] on [src]")
+							M.show_message("<span class='notice'> [user] applies the [MED] on [src]</span>")
 		else
 			to_chat(user, "<span class='notice'>this [src] is dead, medical items won't bring it back to life.</span>")
 	if(meat_type && (stat == DEAD))	//if the animal has a meat, and if it is dead.
@@ -327,12 +327,12 @@
 			adjustBruteLoss(damage)
 			for(var/mob/M in viewers(src, null))
 				if ((M.client && !is_blind(M)))
-					M.show_message("\red \b [src] has been attacked with the [O] by [user]. ")
+					M.show_message("<span class='warning'> \b [src] has been attacked with the [O] by [user]. </span>")
 		else
 			to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 			for(var/mob/M in viewers(src, null))
 				if ((M.client && !is_blind(M)))
-					M.show_message("\red [user] gently taps [src] with the [O]. ")
+					M.show_message("<span class='warning'> [user] gently taps [src] with the [O]. </span>")
 
 
 

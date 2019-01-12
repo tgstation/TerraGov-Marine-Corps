@@ -294,9 +294,9 @@ var/list/slot_equipment_priority = list( \
 	if (flavor_text && flavor_text != "")
 		var/msg = oldreplacetext(flavor_text, "\n", " ")
 		if(lentext(msg) <= 40)
-			return "\blue [msg]"
+			return "<span class='notice'> [msg]</span>"
 		else
-			return "\blue [copytext(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>"
+			return "<span class='notice'> [copytext(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></span>"
 
 
 

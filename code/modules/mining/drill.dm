@@ -248,7 +248,7 @@
 
 /obj/machinery/mining/drill/proc/system_error(var/error)
 
-	if(error) src.visible_message("\red \The [src] flashes a '[error]' warning.")
+	if(error) src.visible_message("<span class='warning'> \The [src] flashes a '[error]' warning.</span>")
 	need_player_check = 1
 	active = 0
 	update_icon()
@@ -339,7 +339,7 @@
 	var/turf/T = get_step(get_turf(src), src.dir)
 
 	if(!T.has_resources)
-		src.visible_message("\red The terrain near the brace is unsuitable!")
+		src.visible_message("<span class='warning'> The terrain near the brace is unsuitable!</span>")
 		return
 
 	for(var/thing in T.contents)

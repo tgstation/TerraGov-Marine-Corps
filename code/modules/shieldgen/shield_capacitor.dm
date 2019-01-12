@@ -49,7 +49,7 @@
 
 	else if(istype(W, /obj/item/tool/wrench))
 		src.anchored = !src.anchored
-		src.visible_message("\blue \icon[src] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].")
+		src.visible_message("<span class='notice'> \icon[src] [src] has been [anchored ? "bolted to the floor" : "unbolted from the floor"] by [user].</span>")
 
 		if(anchored)
 			spawn(0)

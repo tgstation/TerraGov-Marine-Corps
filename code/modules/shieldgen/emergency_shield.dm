@@ -34,7 +34,7 @@
 
 
 	if (src.health <= 0)
-		visible_message("\blue The [src] dissipates!")
+		visible_message("<span class='notice'> The [src] dissipates!</span>")
 		qdel(src)
 		return
 
@@ -47,7 +47,7 @@
 	health -= Proj.damage
 	..()
 	if(health <=0)
-		visible_message("\blue The [src] dissipates!")
+		visible_message("<span class='notice'> The [src] dissipates!</span>")
 		qdel(src)
 		return 1
 	opacity = 1
@@ -93,7 +93,7 @@
 
 	//Handle the destruction of the shield
 	if (src.health <= 0)
-		visible_message("\blue The [src] dissipates!")
+		visible_message("<span class='notice'> The [src] dissipates!</span>")
 		qdel(src)
 		return
 
@@ -250,14 +250,14 @@
 		return
 
 	if (src.active)
-		user.visible_message("\blue \icon[src] [user] deactivated the shield generator.", \
-			"\blue \icon[src] You deactivate the shield generator.", \
+		user.visible_message("<span class='notice'> \icon[src] [user] deactivated the shield generator.</span>", \
+			"<span class='notice'> \icon[src] You deactivate the shield generator.</span>", \
 			"You hear heavy droning fade out.")
 		src.shields_down()
 	else
 		if(anchored)
-			user.visible_message("\blue \icon[src] [user] activated the shield generator.", \
-				"\blue \icon[src] You activate the shield generator.", \
+			user.visible_message("<span class='notice'> \icon[src] [user] activated the shield generator.</span>", \
+				"<span class='notice'> \icon[src] You activate the shield generator.</span>", \
 				"You hear heavy droning.")
 			src.shields_up()
 		else

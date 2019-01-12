@@ -33,7 +33,7 @@
 				return
 
 			for(var/mob/V in viewers(src, null))
-				V.show_message(text("\blue [user] sticks \a [O] into \the [src]."))
+				V.show_message(text("<span class='notice'> [user] sticks \a [O] into \the [src].</span>"))
 
 			brainmob = O:brainmob
 			O:brainmob = null

@@ -89,7 +89,7 @@
 					health = maxHealth
 				add_fingerprint(user)
 				for(var/mob/W in viewers(user, null))
-					W.show_message(text("\red [user] has spot-welded some of the damage to [src]!"), 1)
+					W.show_message(text("<span class='warning'> [user] has spot-welded some of the damage to [src]!</span>"), 1)
 			else
 				to_chat(user, "<span class='notice'>[src] is undamaged!</span>")
 		else
@@ -141,12 +141,12 @@
 			adjustBruteLoss(damage)
 			for(var/mob/M in viewers(src, null))
 				if ((M.client && !is_blind(M)))
-					M.show_message("\red \b [src] has been attacked with the [O] by [user]. ")
+					M.show_message("<span class='warning'> \b [src] has been attacked with the [O] by [user]. </span>")
 		else
 			to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 			for(var/mob/M in viewers(src, null))
 				if ((M.client && !is_blind(M)))
-					M.show_message("\red [user] gently taps [src] with the [O]. ")
+					M.show_message("<span class='warning'> [user] gently taps [src] with the [O]. </span>")
 
 /mob/living/simple_animal/spiderbot/proc/transfer_personality(var/obj/item/device/mmi/M as obj)
 
@@ -159,7 +159,7 @@
 /mob/living/simple_animal/spiderbot/proc/explode() //When emagged.
 	for(var/mob/M in viewers(src, null))
 		if ((M.client && !is_blind(M)))
-			M.show_message("\red [src] makes an odd warbling noise, fizzles, and explodes.")
+			M.show_message("<span class='warning'> [src] makes an odd warbling noise, fizzles, and explodes.</span>")
 	explosion(get_turf(loc), -1, -1, 3, 5)
 	eject_brain()
 	death()
@@ -224,14 +224,14 @@
 		return 0
 
 	if(istype(held_item, /obj/item/explosive/grenade))
-		visible_message("\red [src] launches \the [held_item]!", "\red You launch \the [held_item]!", "You hear a skittering noise and a thump!")
+		visible_message("<span class='warning'> [src] launches \the [held_item]!</span>", "<span class='warning'> You launch \the [held_item]!</span>", "You hear a skittering noise and a thump!")
 		var/obj/item/explosive/grenade/G = held_item
 		G.forceMove(loc)
 		G.prime()
 		held_item = null
 		return 1
 
-	visible_message("\blue [src] drops \the [held_item]!", "\blue You drop \the [held_item]!", "You hear a skittering noise and a soft thump.")
+	visible_message("<span class='notice'> [src] drops \the [held_item]!</span>", "<span class='notice'> You drop \the [held_item]!</span>", "You hear a skittering noise and a soft thump.")
 
 	held_item.forceMove(loc)
 	held_item = null
@@ -262,7 +262,7 @@
 			if(selection == I)
 				held_item = selection
 				selection.loc = src
-				visible_message("\blue [src] scoops up \the [held_item]!", "\blue You grab \the [held_item]!", "You hear a skittering noise and a clink.")
+				visible_message("<span class='notice'> [src] scoops up \the [held_item]!</span>", "<span class='notice'> You grab \the [held_item]!</span>", "You hear a skittering noise and a clink.")
 				return held_item
 		to_chat(src, "<span class='warning'>\The [selection] is too far away.</span>")
 		return 0

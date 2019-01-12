@@ -77,7 +77,7 @@
 
 		//make some noise
 		if(prob(0.5))
-			src.visible_message("\blue [pick("Buzzzz.","Hmmmmm.","Bzzz.")]")
+			src.visible_message("<span class='notice'> [pick("Buzzzz.","Hmmmmm.","Bzzz.")]</span>")
 
 		//smoke, water and steam calms us down
 		var/calming = 0
@@ -96,7 +96,7 @@
 
 		if(calming)
 			if(feral > 0)
-				src.visible_message("\blue The bees calm down!")
+				src.visible_message("<span class='notice'> The bees calm down!</span>")
 			feral = -10
 			target_mob = null
 			target_turf = null
@@ -145,7 +145,7 @@
 			if (!(DirBlocked(get_step(src, get_dir(src,target_turf)),get_dir(src,target_turf)))) // Check for windows and doors!
 				Move(get_step(src, get_dir(src,target_turf)))
 				if (prob(0.1))
-					src.visible_message("\blue The bees swarm after [target_mob]!")
+					src.visible_message("<span class='notice'> The bees swarm after [target_mob]!</span>")
 			if(src.loc == target_turf)
 				target_turf = null
 				wander = 1

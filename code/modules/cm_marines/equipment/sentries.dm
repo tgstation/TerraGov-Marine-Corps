@@ -1184,7 +1184,7 @@
 
 	if(!on)
 		to_chat(user, "You turn on the [src].")
-		visible_message("\blue [src] hums to life and emits several beeps.")
+		visible_message("<span class='notice'> [src] hums to life and emits several beeps.</span>")
 		state("[src] buzzes in a monotone: 'Default systems initiated.'")
 		target = null
 		on = TRUE

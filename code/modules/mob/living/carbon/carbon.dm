@@ -25,7 +25,7 @@
 		if(prob(30))
 			for(var/mob/M in hearers(4, src))
 				if(M.client)
-					M.show_message("\red You hear something rumbling inside [src]'s stomach...", 2)
+					M.show_message("<span class='warning'> You hear something rumbling inside [src]'s stomach...</span>", 2)
 		var/obj/item/I = user.get_active_hand()
 		if(I && I.force)
 			var/d = rand(round(I.force / 4), I.force)
@@ -117,9 +117,9 @@
 	playsound(loc, "sparks", 25, 1)
 	if (shock_damage > 10)
 		src.visible_message(
-			"\red [src] was shocked by the [source]!", \
+			"<span class='warning'> [src] was shocked by the [source]!</span>", \
 			"<span class='danger'>You feel a powerful shock course through your body!</span>", \
-			"\red You hear a heavy electrical crack." \
+			"<span class='warning'> You hear a heavy electrical crack.</span>" \
 		)
 		if(isXeno(src) && mob_size == MOB_SIZE_BIG)
 			Stun(1)//Sadly, something has to stop them from bumping them 10 times in a second
@@ -129,9 +129,9 @@
 			KnockDown(10)
 	else
 		src.visible_message(
-			"\red [src] was mildly shocked by the [source].", \
-			"\red You feel a mild shock course through your body.", \
-			"\red You hear a light zapping." \
+			"<span class='warning'> [src] was mildly shocked by the [source].</span>", \
+			"<span class='warning'> You feel a mild shock course through your body.</span>", \
+			"<span class='warning'> You hear a light zapping.</span>" \
 		)
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread

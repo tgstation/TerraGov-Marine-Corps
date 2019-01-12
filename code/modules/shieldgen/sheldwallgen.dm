@@ -110,7 +110,7 @@
 		src.active = 2
 	if(src.active >= 1)
 		if(src.power == 0)
-			src.visible_message("\red The [src.name] shuts down due to lack of power!", \
+			src.visible_message("<span class='warning'> The [src.name] shuts down due to lack of power!</span>", \
 				"You hear heavy droning fade out")
 			icon_state = "Shield_Gen"
 			src.active = 0
@@ -191,7 +191,7 @@
 
 	else
 		src.add_fingerprint(user)
-		visible_message("\red The [src.name] has been hit with \the [W.name] by [user.name]!")
+		visible_message("<span class='warning'> The [src.name] has been hit with \the [W.name] by [user.name]!</span>")
 
 /obj/machinery/shieldwallgen/proc/cleanup(var/NSEW)
 	var/obj/machinery/shieldwall/F

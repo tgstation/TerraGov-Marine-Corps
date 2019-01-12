@@ -62,12 +62,12 @@
 				C.next_move = world.time + 100
 				C.last_special = world.time + 100
 				C.visible_message("<span class='danger'>[C] attempts to unbuckle themself!</span>",\
-				"\red You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)")
+				"<span class='warning'> You attempt to unbuckle yourself. (This will take around 2 minutes and you need to stand still)</span>")
 				if(do_after(C, 1200, FALSE, 5, BUSY_ICON_HOSTILE))
 					if(!C.buckled)
 						return
 					C.visible_message("<span class='danger'>[C] manages to unbuckle themself!</span>",\
-								"\blue You successfully unbuckle yourself.")
+								"<span class='notice'> You successfully unbuckle yourself.</span>")
 					C.buckled.manual_unbuckle(C)
 			else
 				C.buckled.manual_unbuckle(C)

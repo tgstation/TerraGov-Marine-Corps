@@ -480,7 +480,7 @@ var/list/robot_verbs_default = list(
 			updatehealth()
 			add_fingerprint(user)
 			for(var/mob/O in viewers(user, null))
-				O.show_message(text("\red [user] has fixed some of the dents on [src]!"), 1)
+				O.show_message(text("<span class='warning'> [user] has fixed some of the dents on [src]!</span>"), 1)
 		else
 			to_chat(user, "Need more welding fuel!")
 			return
@@ -494,7 +494,7 @@ var/list/robot_verbs_default = list(
 			adjustFireLoss(-30)
 			updatehealth()
 			for(var/mob/O in viewers(user, null))
-				O.show_message(text("\red [user] has fixed some of the burnt wires on [src]!"), 1)
+				O.show_message(text("<span class='warning'> [user] has fixed some of the burnt wires on [src]!</span>"), 1)
 
 	else if (istype(W, /obj/item/tool/crowbar))	// crowbar means open or close the cover
 		if(opened)

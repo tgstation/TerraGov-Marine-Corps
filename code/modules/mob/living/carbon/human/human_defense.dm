@@ -252,7 +252,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			zone = get_zone_with_miss_chance(zone, src, 15)
 
 		if(!zone)
-			visible_message("\blue \The [O] misses [src] narrowly!", null, null, 5)
+			visible_message("<span class='notice'> \The [O] misses [src] narrowly!</span>", null, null, 5)
 			return
 
 		O.throwing = 0		//it hit, so stop moving
@@ -263,7 +263,7 @@ Contains most of the procs that are called when a mob is attacked by something
 		var/datum/limb/affecting = get_limb(zone)
 		var/hit_area = affecting.display_name
 
-		src.visible_message("\red [src] has been hit in the [hit_area] by [O].", null, null, 5)
+		src.visible_message("<span class='warning'> [src] has been hit in the [hit_area] by [O].</span>", null, null, 5)
 		var/armor = run_armor_check(affecting, "melee", "Your armor has protected your [hit_area].", "Your armor has softened hit to your [hit_area].") //I guess "melee" is the best fit here
 
 		if(armor < 1)
@@ -300,7 +300,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			var/momentum = speed/2
 			var/dir = get_dir(O.throw_source, src)
 
-			visible_message("\red [src] staggers under the impact!","\red You stagger under the impact!", null, null, 5)
+			visible_message("<span class='warning'> [src] staggers under the impact!</span>","<span class='warning'> You stagger under the impact!</span>", null, null, 5)
 			src.throw_at(get_edge_target_turf(src,dir),1,momentum)
 
 

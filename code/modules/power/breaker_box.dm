@@ -27,7 +27,7 @@
 /obj/machinery/power/breakerbox/examine(mob/user)
 	to_chat(user, "Large machine with heavy duty switching circuits used for advanced grid control")
 	if(on)
-		to_chat(user, "\green It seems to be online.")
+		to_chat(user, "<span class='green'> It seems to be online.</span>")
 	else
 		to_chat(user, "<span class='warning'>It seems to be offline</span>")
 
@@ -37,10 +37,10 @@
 		return
 
 	busy = 1
-	to_chat(user, "\green Updating power settings..")
+	to_chat(user, "<span class='green'> Updating power settings..</span>")
 	if(do_after(user, 50, FALSE, 5, BUSY_ICON_GENERIC)) //5s for AI as AIs can manipulate electronics much faster.
 		set_state(!on)
-		to_chat(user, "\green Update Completed. New setting:[on ? "on": "off"]")
+		to_chat(user, "<span class='green'> Update Completed. New setting:[on ? "on": "off"]</span>")
 	busy = 0
 
 
@@ -51,7 +51,7 @@
 		return
 
 	busy = 1
-	user.visible_message("\red [user] started reprogramming [src]!","You start reprogramming [src]")
+	user.visible_message("<span class='warning'> [user] started reprogramming [src]!</span>","You start reprogramming [src]")
 	if(do_after(user, 300, FALSE, 5, BUSY_ICON_BUILD)) // 30s for non-AIs as humans have to manually reprogram it and rapid switching may cause some lag / powernet updates flood. If AIs spam it they can be easily traced.
 		set_state(!on)
 		user.visible_message(\

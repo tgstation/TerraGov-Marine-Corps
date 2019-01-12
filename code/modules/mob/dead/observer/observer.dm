@@ -632,7 +632,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		W.update_icon()
 		W.message = message
 		W.add_hiddenprint(src)
-		W.visible_message("\red Invisible fingers crudely paint something in blood on [T]...")*/
+		W.visible_message("<span class='warning'> Invisible fingers crudely paint something in blood on [T]...</span>")*/
 
 /mob/dead/verb/join_as_alien()
 	set category = "Ghost"
@@ -700,7 +700,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 
 	if(zombie_list.len == 0)
-		to_chat(src, "\green There are no available zombies or all empty zombies have been fed the cure.")
+		to_chat(src, "<span class='green'> There are no available zombies or all empty zombies have been fed the cure.</span>")
 		return
 
 	var/choice = input("Pick a Zombie:") as null|anything in zombie_list

@@ -1126,10 +1126,10 @@
 
 	var/say = input ("What do you wish to say")
 	if(mRemotetalk in target.mutations)
-		target.show_message("\blue You hear [src.real_name]'s voice: [say]")
+		target.show_message("<span class='notice'> You hear [src.real_name]'s voice: [say]</span>")
 	else
-		target.show_message("\blue You hear a voice that seems to echo around the room: [say]")
-	usr.show_message("\blue You project your mind into [target.real_name]: [say]")
+		target.show_message("<span class='notice'> You hear a voice that seems to echo around the room: [say]</span>")
+	usr.show_message("<span class='notice'> You project your mind into [target.real_name]: [say]</span>")
 	log_directed_talk(usr, target, say, LOG_SAY, "project mind")
 	for(var/mob/dead/observer/G in dead_mob_list)
 		G.show_message("<i>Telepathic message from <b>[src]</b> to <b>[target]</b>: [say]</i>")
@@ -1279,16 +1279,16 @@
 	if(usr == src)
 		self = 1
 	if(!self)
-		usr.visible_message("\blue [usr] kneels down, puts \his hand on [src]'s wrist and begins counting their pulse.",\
+		usr.visible_message("<span class='notice'> [usr] kneels down, puts \his hand on [src]'s wrist and begins counting their pulse.</span>",\
 		"You begin counting [src]'s pulse", null, 3)
 	else
-		usr.visible_message("\blue [usr] begins counting their pulse.",\
+		usr.visible_message("<span class='notice'> [usr] begins counting their pulse.</span>",\
 		"You begin counting your pulse.", null, 3)
 
 	if(src.pulse)
 		to_chat(usr, "<span class='notice'>[self ? "You have a" : "[src] has a"] pulse! Counting...</span>")
 	else
-		to_chat(usr, "\red [src] has no pulse!"	)
+		to_chat(usr, "<span class='warning'> [src] has no pulse!</span>"	)
 		return
 
 	to_chat(usr, "Don't move until counting is finished.")

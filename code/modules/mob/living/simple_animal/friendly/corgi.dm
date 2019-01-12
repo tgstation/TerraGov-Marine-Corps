@@ -96,7 +96,7 @@
 		if(!stat)
 			for(var/mob/M in viewers(user, null))
 				if ((M.client && !is_blind(M)))
-					M.show_message("\blue [user] baps [name] on the nose with the rolled up [O]")
+					M.show_message("<span class='notice'> [user] baps [name] on the nose with the rolled up [O]</span>")
 			spawn(0)
 				for(var/i in list(1,2,4,8,4,2,1,2))
 					dir = i

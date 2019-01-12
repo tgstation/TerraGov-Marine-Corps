@@ -273,7 +273,7 @@
 	holstered = W
 	user.drop_inv_item_to_loc(holstered, src)
 	holstered.add_fingerprint(user)
-	user.visible_message("\blue [user] holsters the [holstered].", "You holster the [holstered].")
+	user.visible_message("<span class='notice'> [user] holsters the [holstered].</span>", "You holster the [holstered].")
 
 /obj/item/clothing/tie/holster/proc/unholster(mob/user as mob)
 	if(!holstered)
@@ -513,7 +513,7 @@
 		to_chat(user, "Waving around a badge before swiping an ID would be pretty pointless.")
 		return
 	if(isliving(user))
-		user.visible_message("\red [user] displays their W-Y Internal Security Legal Authorization Badge.\nIt reads: [stored_name], W-Y Security.","\red You display your W-Y Internal Security Legal Authorization Badge.\nIt reads: [stored_name], W-Y Security.")
+		user.visible_message("<span class='warning'> [user] displays their W-Y Internal Security Legal Authorization Badge.\nIt reads: [stored_name], W-Y Security.</span>","<span class='warning'> You display your W-Y Internal Security Legal Authorization Badge.\nIt reads: [stored_name], W-Y Security.</span>")
 
 /obj/item/clothing/tie/holobadge/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
@@ -548,7 +548,7 @@
 
 /obj/item/clothing/tie/holobadge/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))
-		user.visible_message("\red [user] invades [M]'s personal space, thrusting [src] into their face insistently.","\red You invade [M]'s personal space, thrusting [src] into their face insistently. You are the law.")
+		user.visible_message("<span class='warning'> [user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='warning'> You invade [M]'s personal space, thrusting [src] into their face insistently. You are the law.</span>")
 
 /obj/item/storage/box/holobadge
 	name = "holobadge box"

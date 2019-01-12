@@ -480,7 +480,7 @@
 	else if (href_list["organScan"])//initiate an organic scan - CM
 		if(linked_organic)
 			if(linked_organic.busy)
-				to_chat(usr, "\red The Nanotrasen Brand Organic Analyzer(TM) is busy at the moment.")
+				to_chat(usr, "<span class='warning'> The Nanotrasen Brand Organic Analyzer(TM) is busy at the moment.</span>")
 			else
 				var/choice = input("Proceeding will destroy loaded item, preventing it's use for biomass.") in list("Proceed", "Cancel")
 				if(choice == "Cancel" || !linked_organic) return
@@ -493,7 +493,7 @@
 						linked_organic.busy = 0
 						if(!linked_organic.hacked)
 							if(!linked_organic.loaded_item)
-								to_chat(usr, "\red The Nanotrasen Brand Organic Analyzer(TM) appears to be empty.")
+								to_chat(usr, "<span class='warning'> The Nanotrasen Brand Organic Analyzer(TM) appears to be empty.</span>")
 								screen = 1.0
 								return
 							if(linked_organic.loaded_item.reliability >= 90)
@@ -515,7 +515,7 @@
 	else if(href_list["eject_organ"]) //Eject the item inside the destructive analyzer.
 		if(linked_organic)
 			if(linked_organic.busy)
-				to_chat(usr, "\red The Nanotrasen Brand Organic Analyzer(TM) is busy at the moment.")
+				to_chat(usr, "<span class='warning'> The Nanotrasen Brand Organic Analyzer(TM) is busy at the moment.</span>")
 
 			else if(linked_organic.loaded_item)
 				linked_organic.loaded_item.loc = linked_organic.loc

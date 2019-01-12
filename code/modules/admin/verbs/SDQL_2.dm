@@ -3,7 +3,7 @@
 /client/proc/SDQL2_query(query_text as message)
 	set category = "Admin"
 	if(!check_rights(R_DEBUG))  //Shouldn't happen... but just to be safe.
-		message_admins("\red ERROR: Non-admin [usr.key] attempted to execute a SDQL query!")
+		message_admins("<span class='warning'> ERROR: Non-admin [usr.key] attempted to execute a SDQL query!</span>")
 		log_admin("Non-admin [usr.key] attempted to execute a SDQL query!")
 
 	if(!query_text || length(query_text) < 1)

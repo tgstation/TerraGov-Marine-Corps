@@ -91,7 +91,7 @@ Basically a cheap knock-off of the Protolathe that I wrote in the middle of the 
 		to_chat(user, "\The Nanotrasen Brand Bioprinter(TM) must be linked to an R&D console first!")
 		return 1
 	if (busy)
-		to_chat(user, "\red The Nanotrasen Brand Bioprinter(TM) is busy. Please wait for completion of previous operation.")
+		to_chat(user, "<span class='warning'> The Nanotrasen Brand Bioprinter(TM) is busy. Please wait for completion of previous operation.</span>")
 		return 1
 	if (!istype(O, /obj/item/XenoBio))
 		to_chat(user, "<span class='warning'>You cannot insert this item into the protolathe!</span>")

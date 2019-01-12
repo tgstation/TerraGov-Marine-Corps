@@ -352,7 +352,7 @@
 				if(istype(get_area(TU), /area/almayer/hallways/hangar))
 					crash_turfs += TU
 			if(crash_turfs.len) T_trg = pick(crash_turfs)
-			else message_admins("\blue no crash turf found in [MAIN_SHIP_NAME] Hangar, contact coders.")
+			else message_admins("<span class='notice'> no crash turf found in [MAIN_SHIP_NAME] Hangar, contact coders.</span>")
 			break
 
 	if(!istype(T_src) || !istype(T_int) || !istype(T_trg))

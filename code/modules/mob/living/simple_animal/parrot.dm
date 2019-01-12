@@ -418,7 +418,7 @@
 				if(!parrot_perch || parrot_interest.loc != parrot_perch.loc)
 					held_item = parrot_interest
 					parrot_interest.loc = src
-					visible_message("[src] grabs the [held_item]!", "\blue You grab the [held_item]!", "You hear the sounds of wings flapping furiously.")
+					visible_message("[src] grabs the [held_item]!", "<span class='notice'> You grab the [held_item]!</span>", "You hear the sounds of wings flapping furiously.")
 
 			parrot_interest = null
 			parrot_state = PARROT_SWOOP|PARROT_RETURN
@@ -593,7 +593,7 @@
 
 			held_item = I
 			I.loc = src
-			visible_message("[src] grabs the [held_item]!", "\blue You grab the [held_item]!", "You hear the sounds of wings flapping furiously.")
+			visible_message("[src] grabs the [held_item]!", "<span class='notice'> You grab the [held_item]!</span>", "You hear the sounds of wings flapping furiously.")
 			return held_item
 
 	to_chat(src, "<span class='warning'>There is nothing of interest to take.</span>")
@@ -623,7 +623,7 @@
 		if(stolen_item)
 			if(C.drop_inv_item_to_loc(stolen_item, src))
 				held_item = stolen_item
-				visible_message("[src] grabs the [held_item] out of [C]'s hand!", "\blue You snag the [held_item] out of [C]'s hand!", "You hear the sounds of wings flapping furiously.")
+				visible_message("[src] grabs the [held_item] out of [C]'s hand!", "<span class='notice'> You snag the [held_item] out of [C]'s hand!</span>", "You hear the sounds of wings flapping furiously.")
 				return held_item
 
 	to_chat(src, "<span class='warning'>There is nothing of interest to take.</span>")
