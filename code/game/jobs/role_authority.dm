@@ -336,8 +336,13 @@ sorts them out by their department.
 	if(late_join) //If they late joined, we put them in cryo.
 		M.loc = late_join
 	else
+		var/obj/effect/landmark/L //To iterate.
 		var/obj/effect/landmark/S //Starting mark.
-		for(var/obj/effect/landmark/L in landmarks_list) // This whole thing is fucking awful
+		for(var/i in landmarks_list) // This whole thing is fucking awful
+			if(!i)
+				stack_trace(i)
+				continue
+			L = i
 			if(L.name == J.title && !locate(/mob/living) in L.loc)
 				S = L
 				break
