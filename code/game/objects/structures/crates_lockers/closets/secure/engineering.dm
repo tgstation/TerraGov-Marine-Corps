@@ -143,7 +143,7 @@
 
 
 /obj/structure/closet/secure_closet/atmos_personal/New()
-	..()
+	. = ..()
 	sleep(2)
 	if (prob(70))
 		new /obj/item/clothing/tie/storage/brown_vest(src)
