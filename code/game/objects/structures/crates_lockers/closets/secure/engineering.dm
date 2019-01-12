@@ -78,7 +78,7 @@
 
 
 /obj/structure/closet/secure_closet/engineering_welding/New()
-	..()
+	. = ..()
 	sleep(2)
 	new /obj/item/clothing/head/welding(src)
 	new /obj/item/clothing/head/welding(src)
