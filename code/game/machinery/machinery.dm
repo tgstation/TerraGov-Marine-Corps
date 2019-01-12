@@ -219,13 +219,13 @@ Class Procs:
 			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Machine Current Charge: [machine_current_charge] .</span>")
 			var/power_usage = (min(500,max(0,machine_max_charge - machine_current_charge)))
 			machine_current_charge += power_usage //recharge internal cell at max rate of 500
-			use_power(power_usage,power_channel, 1)
+			use_power(power_usage,power_channel, TRUE)
 			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Power Usage: [power_usage] Machine Current Charge: [machine_current_charge].</span>")
 			update_icon()
 		else
 			use_power(idle_power_usage,power_channel, TRUE)
 
-	else if(src.use_power >= 2)
+	else if(use_power >= 2)
 		use_power(active_power_usage,power_channel, TRUE)
 	return TRUE
 

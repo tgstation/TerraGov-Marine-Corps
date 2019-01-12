@@ -419,7 +419,7 @@
 	if(active_attachable)
 		make_casing(active_attachable.type_of_casings) // Attachables can drop their own casings.
 
-	if(!active_attachable) //We don't need to check for the mag if an attachment was used to shoot.
+	if(!active_attachable && cell) //We don't need to check for the mag if an attachment was used to shoot.
 		if(cell) //If there is no mag, we can't reload.
 			if(overcharge && cell.charge < M37_OVERCHARGE_AMMO_COST && cell.charge >= M37_STANDARD_AMMO_COST) //Revert to standard shot if we don't have enough juice for overcharge, but enough for the standard mode
 				toggle_chargemode(user)
