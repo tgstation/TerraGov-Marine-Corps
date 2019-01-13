@@ -10,9 +10,9 @@
 	name = "projectile"
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "bullet"
-	density = 0
-	unacidable = 1
-	anchored = 1 //You will not have me, space wind!
+	density = FALSE
+	unacidable = TRUE
+	anchored = TRUE //You will not have me, space wind!
 	flags_atom = NOINTERACT //No real need for this, but whatever. Maybe this flag will do something useful in the future.
 	mouse_opacity = 0
 	invisibility = 100 // We want this thing to be invisible when it drops on a turf because it will be on the user's turf. We then want to make it visible as it travels.
@@ -49,36 +49,35 @@
 	var/distance_travelled = 0
 	var/in_flight = 0
 
-	var/list_reagents = null
+/obj/item/projectile/New()
+	. = ..()
+	path = list()
+	permutated = list()
 
-	New()
-		. = ..()
-		path = list()
-		permutated = list()
+/obj/item/projectile/Destroy()
+	. = ..()
+	in_flight = 0
+	ammo = null
+	shot_from = null
+	original = null
+	target_turf = null
+	starting = null
+	permutated = null
+	path = null
+	list_reagents = null
+	return TA_REVIVE_ME
 
-	Destroy()
-		..()
-		in_flight = 0
-		ammo = null
-		shot_from = null
-		original = null
-		target_turf = null
-		starting = null
-		permutated = null
-		path = null
-		list_reagents = null
-		return TA_REVIVE_ME
+/obj/item/projectile/Bumped(atom/A as mob|obj|turf|area)
+	if(A && !A in permutated)
+		scan_a_turf(A.loc)
 
-	Bumped(atom/A as mob|obj|turf|area)
-		if(A && !A in permutated)
-			scan_a_turf(A.loc)
-
-	Crossed(AM as mob|obj)
-		if(AM && !AM in permutated)
-			scan_a_turf(get_turf(AM))
+/obj/item/projectile/Crossed(AM as mob|obj)
+	if(AM && !AM in permutated)
+		scan_a_turf(get_turf(AM))
 
 
-	ex_act() return FALSE //We do not want anything to delete these, simply to make sure that all the bullet references are not runtiming. Otherwise, constantly need to check if the bullet exists.
+/obj/item/projectile/ex_act()
+	return FALSE //We do not want anything to delete these, simply to make sure that all the bullet references are not runtiming. Otherwise, constantly need to check if the bullet exists.
 
 /obj/item/projectile/proc/generate_bullet(ammo_datum, bonus_damage = 0, reagent_multiplier = 0)
 	ammo 		= ammo_datum
@@ -724,7 +723,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	switch(P.ammo.damage_type)
 		if(BRUTE) 	damage = P.ammo.flags_ammo_behavior & AMMO_ROCKET ? round(damage * 10) : damage //Bullets do much less to walls and such.
-		if(BURN)	damage = P.ammo.flags_ammo_behavior & (AMMO_ENERGY) ? round(damage * 7) : damage
+		if(BURN)	damage = P.ammo.flags_ammo_behavior & (AMMO_ENERGY) ? round(damage * 1.5) : damage
 		else return
 	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC) current_bulletholes++
 	take_damage(damage)
@@ -793,6 +792,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		if(ishuman(firingMob) && ishuman(src) && firingMob.mind && !firingMob.mind.special_role && mind && !mind.special_role) //One human shot another, be worried about it but do everything basically the same //special_role should be null or an empty string if done correctly
 			log_combat(firingMob, src, "shot", P)
 			msg_admin_ff("[key_name(firingMob)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[firingMob]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[firingMob.x];Y=[firingMob.y];Z=[firingMob.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[firingMob]'>FLW</a>) shot [key_name(src)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[src]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[src]'>FLW</a>) with \a [P] in [get_area(firingMob)]")
+			round_statistics.total_bullet_hits_on_marines++
 		else
 			log_combat(firingMob, src, "shot", P)
 			msg_admin_attack("[key_name(firingMob)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[firingMob]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[firingMob.x];Y=[firingMob.y];Z=[firingMob.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[firingMob]'>FLW</a>) shot [key_name(src)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[src]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[src]'>FLW</a>) with \a [P] in [get_area(firingMob)]")

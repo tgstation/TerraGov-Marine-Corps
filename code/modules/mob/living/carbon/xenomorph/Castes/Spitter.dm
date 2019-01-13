@@ -28,7 +28,7 @@
 	evolution_threshold = 200
 	upgrade_threshold = 200
 
-	evolves_to = list(/mob/living/carbon/Xenomorph/Boiler)
+	evolves_to = list(/mob/living/carbon/Xenomorph/Boiler, /mob/living/carbon/Xenomorph/Praetorian)
 	deevolves_to = /mob/living/carbon/Xenomorph/Sentinel
 
 	// *** Flags *** //
@@ -160,6 +160,7 @@
 	tier = 2
 	upgrade = 0
 	acid_cooldown = 0
+	wound_type = "alien" //used to match appropriate wound overlays
 
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,

@@ -28,7 +28,7 @@
 	evolution_threshold = 200
 	upgrade_threshold = 200
 
-	evolves_to = list(/mob/living/carbon/Xenomorph/Praetorian, /mob/living/carbon/Xenomorph/Crusher)
+	evolves_to = list(/mob/living/carbon/Xenomorph/Crusher)
 	deevolves_to = /mob/living/carbon/Xenomorph/Defender
 
 	// *** Flags *** //
@@ -175,6 +175,7 @@
 			icon_state = "Warrior Walking"
 
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
+	update_wounds()
 
 /mob/living/carbon/Xenomorph/Warrior/throw_item(atom/target)
 	throw_mode_off()

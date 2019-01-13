@@ -183,6 +183,10 @@
 					var/obj/vehicle/multitile/root/cm_armored/A = O
 					A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
 					A.healthcheck()
+				else if(istype(O, /obj/structure/razorwire) )
+					var/obj/structure/razorwire/R = O
+					R.health -= rand(40,60) + 8 * upgrade
+					R.update_health()
 				return
 
 		T = next_T
@@ -200,6 +204,10 @@
 					var/obj/vehicle/multitile/root/cm_armored/A = O
 					A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
 					A.healthcheck()
+				else if(istype(O, /obj/structure/razorwire) )
+					var/obj/structure/razorwire/R = O
+					R.health -= rand(40,60) + 8 * upgrade
+					R.update_health()
 				return
 
 		var/obj/effect/xenomorph/spray/S = acid_splat_turf(T)
@@ -240,6 +248,10 @@
 						var/obj/vehicle/multitile/root/cm_armored/A = O
 						A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
 						A.healthcheck()
+					else if(istype(O, /obj/structure/razorwire) )
+						var/obj/structure/razorwire/R = O
+						R.health -= rand(40,60) + 8 * upgrade
+						R.update_health()
 					normal_density_flag = 1
 					break
 
@@ -280,6 +292,10 @@
 						var/obj/vehicle/multitile/root/cm_armored/A = O
 						A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
 						A.healthcheck()
+					else if(istype(O, /obj/structure/razorwire) )
+						var/obj/structure/razorwire/R = O
+						R.health -= rand(40,60) + 8 * upgrade
+						R.update_health()
 					inverse_normal_density_flag = 1
 					break
 
@@ -299,6 +315,10 @@
 							var/obj/vehicle/multitile/root/cm_armored/A = O
 							A.take_damage_type(rand(40,60) + 8 * upgrade, "acid", src)
 							A.healthcheck()
+						else if(istype(O, /obj/structure/razorwire) )
+							var/obj/structure/razorwire/R = O
+							R.health -= rand(40,60) + 8 * upgrade
+							R.update_health()
 						inverse_normal_density_flag = 1
 						break
 
@@ -696,7 +716,7 @@
 	H.throw_at(T, headbutt_distance, 1, src)
 	H.KnockDown(1, 1)
 	playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
-	spawn(xeno_caste.headbutt_cooldown)
+	spawn(DEFENDER_HEADBUTT_COOLDOWN)
 		used_headbutt = 0
 		to_chat(src, "<span class='notice'>You gather enough strength to headbutt again.</span>")
 		update_action_button_icons()
@@ -760,7 +780,7 @@
 	else
 		use_plasma(DEFENDER_TAILSWIPE_COST)
 
-	spawn(xeno_caste.tail_sweep_cooldown)
+	spawn(DEFENDER_TAILSWIPE_COOLDOWN)
 		used_tail_sweep = FALSE
 		to_chat(src, "<span class='notice'>You gather enough strength to tail sweep again.</span>")
 		update_action_button_icons()
@@ -809,7 +829,7 @@
 	do_crest_defense_cooldown()
 
 /mob/living/carbon/Xenomorph/proc/do_crest_defense_cooldown()
-	spawn(xeno_caste.crest_defense_cooldown)
+	spawn(DEFENDER_CREST_DEFENSE_COOLDOWN)
 		used_crest_defense = FALSE
 		to_chat(src, "<span class='notice'>You can [crest_defense ? "raise" : "lower"] your crest.</span>")
 		update_action_button_icons()
@@ -864,7 +884,7 @@
 	update_icons()
 
 /mob/living/carbon/Xenomorph/proc/do_fortify_cooldown()
-	spawn(xeno_caste.fortify_cooldown)
+	spawn(DEFENDER_FORTIFY_COOLDOWN)
 		used_fortify = FALSE
 		to_chat(src, "<span class='notice'>You can [fortify ? "stand up" : "fortify"] again.</span>")
 		update_action_button_icons()
@@ -982,22 +1002,25 @@
 
 
 /mob/living/carbon/Xenomorph/proc/xeno_transfer_plasma(atom/A, amount = 50, transfer_delay = 20, max_range = 2)
-	if(!isXeno(A))
+	if(!isXeno(A) || !check_state())
 		return
-	var/mob/living/carbon/Xenomorph/target = A
 
-	if(!check_state())
-		return
+	var/mob/living/carbon/Xenomorph/target = A
+	var/energy = isXenoSilicon(src) ? "charge" : "plasma"
 
 	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>You can't transfer plasma from here!</span>")
+		to_chat(src, "<span class='warning'>You can't transfer [energy] from here!</span>")
+		return
+
+	if(isXenoSilicon(src) != isXenoSilicon(A))
+		to_chat(src, "<span class='warning'>[target]'s source of energy is incompatible with ours.</span>")
 		return
 
 	if(get_dist(src, target) > max_range)
 		to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
 		return
 
-	to_chat(src, "<span class='notice'>You start focusing your plasma towards [target].</span>")
+	to_chat(src, "<span class='notice'>You start focusing your [energy] towards [target].</span>")
 	if(!do_after(src, transfer_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
 		return
 
@@ -1005,7 +1028,7 @@
 		return
 
 	if(!isturf(loc))
-		to_chat(src, "<span class='warning'>You can't transfer plasma from here!</span>")
+		to_chat(src, "<span class='warning'>You can't transfer [energy] from here!</span>")
 		return
 
 	if(get_dist(src, target) > max_range)
@@ -1020,9 +1043,68 @@
 		amount = plasma_stored //Just use all of it
 	use_plasma(amount)
 	target.gain_plasma(amount)
-	to_chat(target, "<span class='xenowarning'>\The [src] has transfered [amount] plasma to you. You now have [target.plasma_stored].</span>")
-	to_chat(src, "<span class='xenowarning'>You have transferred [amount] plasma to \the [target]. You now have [plasma_stored].</span>")
+	to_chat(target, "<span class='xenowarning'>[src] has transfered [amount] units of [energy] to you. You now have [target.plasma_stored]/[target.xeno_caste.plasma_max].</span>")
+	to_chat(src, "<span class='xenowarning'>You have transferred [amount] units of [energy] to [target]. You now have [plasma_stored]/[xeno_caste.plasma_max].</span>")
 	playsound(src, "alien_drool", 25)
+
+/mob/living/carbon/Xenomorph/proc/xeno_salvage_plasma(atom/A, amount, salvage_delay, max_range)
+	if(!isXeno(A) || !check_state())
+		return
+
+	var/mob/living/carbon/Xenomorph/target = A
+	var/energy = isXenoSilicon(src) ? "charge" : "plasma"
+
+	if(!isturf(loc))
+		to_chat(src, "<span class='warning'>You can't salvage [energy] from here!</span>")
+		return
+
+	if(isXenoSilicon(src) != isXenoSilicon(A))
+		to_chat(src, "<span class='warning'>[target]'s source of energy is incompatible with ours.</span>")
+		return
+
+	if(plasma_stored >= xeno_caste.plasma_max)
+		to_chat(src, "<span class='notice'>Your [energy] reserves are already at full capacity and can't hold any more.</span>")
+		return
+
+	if(target.stat != DEAD)
+		to_chat(src, "<span class='warning'>You can't steal [energy] from living sisters, ask for some to a drone or a hivelord instead!</span>")
+		return
+
+	if(get_dist(src, target) > max_range)
+		to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
+		return
+
+	if(!(target.plasma_stored))
+		to_chat(src, "<span class='notice'>[target] doesn't have any [energy] left to salvage.</span>")
+		return
+
+	to_chat(src, "<span class='notice'>You start salvaging [energy] from [target].</span>")
+
+	while(target.plasma_stored && plasma_stored >= xeno_caste.plasma_max)
+		if(!do_after(src, salvage_delay, TRUE, 5, BUSY_ICON_HOSTILE) || !check_state())
+			break
+
+		if(!isturf(loc))
+			to_chat(src, "<span class='warning'>You can't absorb [energy] from here!</span>")
+			break
+
+		if(get_dist(src, target) > max_range)
+			to_chat(src, "<span class='warning'>You need to be closer to [target].</span>")
+			break
+
+		if(stagger)
+			to_chat(src, "<span class='xenowarning'>Your muscles fail to respond as you try to shake up the shock!</span>")
+			break
+
+		if(target.plasma_stored < amount)
+			amount = target.plasma_stored //Just take it all.
+
+		var/absorbed_amount = round(amount * PLASMA_SALVAGE_MULTIPLIER)
+		target.use_plasma(amount)
+		gain_plasma(absorbed_amount)
+		to_chat(src, "<span class='xenowarning'>You salvage [absorbed_amount] units of [energy] from [target]. You have [plasma_stored]/[xeno_caste.plasma_max] stored now.</span>")
+		if(prob(50))
+			playsound(src, "alien_drool", 25)
 
 //Note: All the neurotoxin projectile items are stored in XenoProcs.dm
 /mob/living/carbon/Xenomorph/proc/xeno_spit(atom/T)
@@ -1571,7 +1653,7 @@
 	if(cresttoss_used)
 		return
 
-	if(!check_plasma(40))
+	if(!check_plasma(CRUSHER_CRESTTOSS_COST))
 		return
 
 	if(legcuffed)
@@ -1579,7 +1661,7 @@
 		return
 
 	if(stagger)
-		to_chat(src, "<span class='xenowarning'>You try to fling away [M] but are unable as you fail to shake off the shock!</span>")
+		to_chat(src, "<span class='xenowarning'>You try to fling away [M] but are too disoriented!</span>")
 		return
 
 	if (!Adjacent(M) || !istype(M, /mob/living)) //Sanity check
@@ -1630,7 +1712,7 @@
 	"<span class='xenowarning'>You fling [M] away with your crest!</span>")
 
 	cresttoss_used = 1
-	use_plasma(40)
+	use_plasma(CRUSHER_CRESTTOSS_COST)
 
 
 	M.throw_at(T, toss_distance, 1, src)
@@ -1661,7 +1743,7 @@
 /mob/living/carbon/Xenomorph/proc/cresttoss_cooldown()
 	if(!cresttoss_used)//sanity check/safeguard
 		return
-	spawn(xeno_caste.cresttoss_cooldown)
+	spawn(CRUSHER_CRESTTOSS_COOLDOWN)
 		cresttoss_used = FALSE
 		to_chat(src, "<span class='xenowarning'><b>You can now crest toss again.</b></span>")
 		playsound(src, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
