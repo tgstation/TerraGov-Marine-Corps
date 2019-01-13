@@ -970,7 +970,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/obj/item/weapon/gun/abstract_gun = null //make a new variable to store the abstract shotgun in
 
 /obj/item/attachable/attached_gun/shotgun/New()
-	..()
+	. = ..()
 	abstract_gun = new /obj/item/weapon/gun/shotgun/masterkey
 	attachment_firing_delay = config.mhigh_fire_delay*3
 
