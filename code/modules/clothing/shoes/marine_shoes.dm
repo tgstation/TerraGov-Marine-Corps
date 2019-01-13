@@ -59,6 +59,10 @@
 	flags_inventory = NOSLIPPING
 	siemens_coefficient = 0.6
 
+/obj/item/clothing/shoes/marinechief/sa
+	name = "spatial agent's shoes"
+	desc = "Shoes worn by a spatial agent."
+
 /obj/item/clothing/shoes/marinechief/commander
 	name = "commander shoes"
 	desc = "Has special soles for better trampling those underneath."

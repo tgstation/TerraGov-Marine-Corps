@@ -239,6 +239,14 @@
 	name = "prescription sunglasses"
 	prescription = TRUE
 
+/obj/item/clothing/glasses/sunglasses/sa
+	name = "spatial agent's sunglasses"
+	desc = "Glasses worn by a spatial agent."
+	eye_protection = 2
+	vision_flags = SEE_TURFS|SEE_MOBS|SEE_OBJS
+	flash_protection = FLASH_PROTECTION_MAJOR
+	var/hud_type = MOB_HUD_MEDICAL_OBSERVER
+
 /obj/item/clothing/glasses/sunglasses/sechud
 	name = "HUDSunglasses"
 	desc = "Sunglasses with a HUD."
