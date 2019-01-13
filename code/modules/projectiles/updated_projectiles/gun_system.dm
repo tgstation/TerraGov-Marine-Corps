@@ -212,9 +212,7 @@
 		else
 			dat += "It's unloaded[in_chamber?" but has a round chambered":""].<br>"
 	if(dat)
-		to_chat(user, dat)
-	if(attached_weapon)
-		under.examine(user)
+		to_chat(user, "[dat.Join(" ")]")
 
 /obj/item/weapon/gun/wield(var/mob/user)
 	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
