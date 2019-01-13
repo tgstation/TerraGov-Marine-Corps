@@ -62,7 +62,7 @@
 	id = "teslabackpack"
 	build_path = /obj/item/tesla_powerpack
 	req_tech = list(RESEARCH_XENO_MUSCLES)
-	materials = list("metal" = 1000, "glass" = 500, "biomass" = 0)
+	materials = list("metal" = 500, "glass" = 0, "biomass" = 0)
 
 /datum/marine_design/cell
 	name = "XBA-based power cells"
