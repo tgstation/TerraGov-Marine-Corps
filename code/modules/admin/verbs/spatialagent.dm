@@ -1,4 +1,4 @@
-/client/verb/spatialagent()
+/client/proc/spatialagent()
     set category = "Debug"
     set name = "Spawn Spatial Agent"
     set desc = "Spawns a Spatial Agent. Useful for debugging."
