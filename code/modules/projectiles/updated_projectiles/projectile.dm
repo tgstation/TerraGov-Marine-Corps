@@ -49,12 +49,12 @@
 	var/distance_travelled = 0
 	var/in_flight = 0
 
+	var/projectile_speed = 0
+
 /obj/item/projectile/New()
 	. = ..()
 	path = list()
 	permutated = list()
-
-	var/projectile_speed = 0
 
 /obj/item/projectile/Destroy()
 	. = ..()
