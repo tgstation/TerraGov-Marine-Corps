@@ -32,7 +32,7 @@
 			new_board.set_general()
 			user.put_in_hands(new_board)
 		return
-	. = ..()
+	return ..()
 
 /obj/item/circuitboard/proc/set_general()
 	is_general_board = TRUE
@@ -149,7 +149,7 @@
 
 
 /obj/item/circuitboard/airlock/Topic(href, href_list)
-	..()
+	. = ..()
 	if (usr.stat || usr.is_mob_restrained() || (!ishuman(usr) && !istype(usr,/mob/living/silicon)))
 		return
 	if (href_list["close"])
@@ -169,7 +169,7 @@
 				src.locked = 0
 				src.last_configurator = I:registered_name
 
-	if (locked)
+	if(locked)
 		return
 
 	if (href_list["logout"])
