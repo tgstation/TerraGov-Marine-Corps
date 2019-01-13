@@ -124,7 +124,7 @@
 		new /obj/item/clothing/under/whites(src)
 		new /obj/item/clothing/head/white_dress(src)
 
-	select_gamemode_equipment(gamemode) //removing the whitespace in the above list causes errors with this.
+	select_gamemode_equipment() //removing the whitespace in the above list causes errors with this.
 		switch(map_tag)
 			if(MAP_ICE_COLONY)
 				new /obj/item/clothing/suit/storage/snow_suit(src)
