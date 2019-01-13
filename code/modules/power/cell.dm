@@ -77,7 +77,7 @@
 */
 
 /obj/item/cell/attack_self(mob/user as mob)
-	src.add_fingerprint(user)
+	add_fingerprint(user)
 	if(rigged)
 		user.visible_message("<span class='danger'>[user] destabilizes [src]; it will detonate shortly!</span>",
 		"<span class='danger'>You destabilize [src]; it will detonate shortly!</span>")
