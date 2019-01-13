@@ -705,6 +705,8 @@ Defined in conflicts.dm of the #defines folder.
 	var/type_of_casings = null
 	var/attachment_firing_delay = 0 //the delay between shots, for attachments that fires stuff
 	var/fire_sound = null //Sound to play when firing it alternately
+	var/obj/item/weapon/gun/abstract_gun = null //make a new variable to store the abstract underbarrel attachment in
+
 
 
 /obj/item/attachable/attached_gun/New() //Let's make sure if something needs an ammo type, it spawns with one.
@@ -826,6 +828,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/attached_gun/flamer/New()
 	..()
+	abstract_gun = /obj/item/weapon/gun/flamer/underbarrel
 	attachment_firing_delay = config.max_fire_delay * 5
 
 /obj/item/attachable/attached_gun/flamer/examine(mob/user)
@@ -967,7 +970,6 @@ Defined in conflicts.dm of the #defines folder.
 	fire_sound = 'sound/weapons/gun_shotgun.ogg'
 	type_of_casings = "shell"
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_PROJECTILE|ATTACH_RELOADABLE|ATTACH_WEAPON
-	var/obj/item/weapon/gun/abstract_gun = null //make a new variable to store the abstract shotgun in
 
 /obj/item/attachable/attached_gun/shotgun/New()
 	..()

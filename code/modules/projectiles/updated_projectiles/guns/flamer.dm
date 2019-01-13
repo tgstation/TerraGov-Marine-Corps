@@ -423,6 +423,10 @@
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 
+/obj/item/weapon/gun/flamer/underbarrel
+	name = "\improper underbarrel flamer"
+	fire_sound = 'sound/weapons/gun_flamethrower2.ogg'
+
 //////////////////////////////////////////////////////////////////////////////////////////////////
 //Time to redo part of abby's code.
 //Create a flame sprite object. Doesn't work like regular fire, ie. does not affect atmos or heat
