@@ -60,7 +60,6 @@
 
 	qdel(src)
 
-//TODO: Make this code better and less repetetive - Done.
 //Spawns a tank that has a bunch of broken hardpoints
 /obj/effect/multitile_spawner/cm_armored/tank/decrepit
 	spawn_hardpoints = list(HDPT_PRIMARY = /obj/item/hardpoint/primary/cannon/broken,
