@@ -3,6 +3,7 @@
 	display_name = "Xenoborg"
 	upgrade_name = ""
 	caste_desc = "Oh dear god!"
+	caste_type_path = /mob/living/carbon/Xenomorph/Xenoborg
 
 	tier = 0
 	upgrade = 0
@@ -25,8 +26,8 @@
 	max_health = 300
 
 	// *** Flags *** //
-	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_ROBOTIC|CASTE_FIRE_IMMUNE
-	
+	caste_flags = CASTE_IS_INTELLIGENT|CASTE_IS_ROBOTIC|CASTE_FIRE_IMMUNE|CASTE_DECAY_PROOF
+
 	// *** Defense *** //
 	armor_deflection = 90 //Chance of deflecting projectiles.
 
@@ -52,8 +53,9 @@
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
 		/datum/action/xeno_action/activable/corrosive_acid,
-		/datum/action/xeno_action/activable/pounce //,
+		/datum/action/xeno_action/activable/pounce,
 //		/datum/action/xeno_action/activable/fire_cannon,
+		/datum/action/xeno_action/activable/salvage_plasma/improved
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/vent_crawl,
@@ -131,7 +133,7 @@
 				return
 			src.visible_message("<span class='notice'>\The [user] carefully inserts \the [C] into \the [src]'s power supply port.")
 			plasma_stored += C.charge
-			if(plasma_stored > xeno_caste.plasma_max) 
+			if(plasma_stored > xeno_caste.plasma_max)
 				plasma_stored = xeno_caste.plasma_max
 			to_chat(src, "<span class='notice'>Your power supply suddenly updates. New charge: [plasma_stored]/[xeno_caste.plasma_max]")
 			qdel(O)

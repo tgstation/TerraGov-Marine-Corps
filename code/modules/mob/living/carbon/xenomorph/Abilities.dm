@@ -404,18 +404,37 @@
 	name = "Transfer Plasma"
 	action_icon_state = "transfer_plasma"
 	ability_name = "transfer plasma"
-	var/plasma_transfer_amount = 50
-	var/transfer_delay = 20
+	var/plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT
+	var/transfer_delay = 2 SECONDS
 	var/max_range = 2
 
 /datum/action/xeno_action/activable/transfer_plasma/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
 	X.xeno_transfer_plasma(A, plasma_transfer_amount, transfer_delay, max_range)
 
-/datum/action/xeno_action/activable/transfer_plasma/hivelord
-	plasma_transfer_amount = 200
-	transfer_delay = 5
+/datum/action/xeno_action/activable/transfer_plasma/improved
+	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 4
+	transfer_delay = 0.5 SECONDS
 	max_range = 7
+
+/datum/action/xeno_action/activable/salvage_plasma
+	name = "Salvage Plasma"
+	action_icon_state = "salvage_plasma"
+	ability_name = "salvage plasma"
+	var/plasma_salvage_amount = PLASMA_SALVAGE_AMOUNT
+	var/salvage_delay = 5 SECONDS
+	var/max_range = 1
+
+datum/action/xeno_action/activable/salvage_plasma/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(owner.action_busy)
+		return
+	X.xeno_salvage_plasma(A, plasma_salvage_amount, salvage_delay, max_range)
+
+datum/action/xeno_action/activable/salvage_plasma/improved
+	plasma_salvage_amount = PLASMA_SALVAGE_AMOUNT * 2
+	salvage_delay = 3 SECONDS
+	max_range = 4
 
 //Boiler abilities
 
@@ -1002,7 +1021,7 @@
 	if(!X.observed_xeno)
 		to_chat(X, "<span class='warning'>You must overwatch the xeno you want to de-evolve.</span>")
 		return
-	
+
 	var/mob/living/carbon/Xenomorph/T = X.observed_xeno
 	if(!X.check_plasma(600)) // check plasma gives an error message itself
 		return
@@ -1022,7 +1041,7 @@
 	if(!T.xeno_caste.deevolves_to)
 		to_chat(X, "<span class='xenowarning'>[T] can't be deevolved.</span>")
 		return
-	
+
 	var/datum/xeno_caste/new_caste = xeno_caste_datums[T.xeno_caste.deevolves_to][1]
 
 	var/confirm = alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", , "Yes", "No")
@@ -1106,7 +1125,7 @@
 	qdel(T)
 	X.use_plasma(600)
 
-	
+
 
 //Ravager Abilities
 
