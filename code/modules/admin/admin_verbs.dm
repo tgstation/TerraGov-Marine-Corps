@@ -151,7 +151,7 @@ var/list/admin_verbs_debug = list(
 	/datum/proc/ra_purge,
 	/client/proc/scheduler,
 	/client/proc/cmd_admin_change_hivenumber,
-	/client/proc/spatialagent
+	/client/proc/spatial_agent
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
