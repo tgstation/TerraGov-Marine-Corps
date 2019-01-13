@@ -220,7 +220,12 @@
 	item_state = "headset"
 	frequency = PUB_FREQ
 	var/headset_hud_on = 1
+	var/obj/machinery/camera/camera
 
+/obj/item/device/radio/headset/almayer/New()
+	. = ..()
+	camera = new /obj/machinery/camera(src)
+	camera.network = list("LEADER")
 
 /obj/item/device/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
 	if(slot == WEAR_EAR)
@@ -231,8 +236,9 @@
 			if(user.mind && user.assigned_squad && user.hud_used && user.hud_used.locate_leader)
 				user.hud_used.locate_leader.alpha = 255
 				user.hud_used.locate_leader.mouse_opacity = 1
-
-	..()
+	if(camera)
+		camera.c_tag = user.name
+	return ..()
 
 /obj/item/device/radio/headset/almayer/dropped(mob/living/carbon/human/user)
 	if(istype(user) && headset_hud_on)
@@ -243,7 +249,10 @@
 			if(user.hud_used && user.hud_used.locate_leader)
 				user.hud_used.locate_leader.alpha = 0
 				user.hud_used.locate_leader.mouse_opacity = 0
-	..()
+	if(camera)
+		camera.c_tag = "Unknown"
+	return ..()
+
 
 
 /obj/item/device/radio/headset/almayer/verb/toggle_squadhud()
@@ -263,6 +272,7 @@
 				if(user.mind && user.assigned_squad && user.hud_used && user.hud_used.locate_leader)
 					user.hud_used.locate_leader.alpha = 255
 					user.hud_used.locate_leader.mouse_opacity = 1
+					camera.status = TRUE //Allows us to turn the camera back on.
 			else
 				H.remove_hud_from(usr)
 				if(user.hud_used && user.hud_used.locate_leader)

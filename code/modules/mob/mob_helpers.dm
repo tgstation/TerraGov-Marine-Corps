@@ -212,6 +212,13 @@ proc/isXenoPredalien(A)
 		return TRUE
 	return FALSE
 
+/proc/isXenoSilicon(A)
+	if(isXeno(A))
+		var/mob/living/carbon/Xenomorph/X = A
+		if(X.xeno_caste.caste_flags & CASTE_IS_ROBOTIC)
+			return TRUE
+	return FALSE
+
 proc/isYautja(A)
 	if(isHellhound(A))
 		return TRUE //They are always considered Yautja.

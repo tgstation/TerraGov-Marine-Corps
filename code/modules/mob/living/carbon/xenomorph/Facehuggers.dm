@@ -308,6 +308,13 @@
 				else
 					target.visible_message("<span class='danger'>[src] smashes against [target]'s [W.name] and rips it off!</span>")
 					target.dropItemToGround(W)
+					if(ishuman(M)) //Check for camera; if we have one, turn it off.
+						var/mob/living/carbon/human/H = M
+						if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))
+							var/obj/item/device/radio/headset/almayer/marine/R = H.wear_ear
+							if(R.camera.status)
+								R.camera.status = FALSE //Turn camera off.
+								to_chat(H, "<span class='danger'>Your headset camera flickers off; you'll need to reactivate it by rebooting your headset HUD!<span>")
 				if(W.anti_hug && prob(15)) //15% chance the hugger will go idle after ripping off a helmet. Otherwise it will keep going.
 					W.anti_hug = max(0, --W.anti_hug)
 					GoIdle()

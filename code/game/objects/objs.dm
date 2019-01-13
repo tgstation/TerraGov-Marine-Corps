@@ -15,6 +15,7 @@
 	var/can_buckle = FALSE
 
 	var/explosion_resistance = 0
+	var/can_supply_drop = FALSE
 
 /obj/New()
 	..()

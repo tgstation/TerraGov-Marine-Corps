@@ -153,6 +153,9 @@
 	if(over_object == user && in_range(src, user))
 		to_chat(user, "<span class='notice'>You fold [src].</span>")
 		var/obj/item/device/m56d_post/P = new(loc)
+		if(gun_mounted)
+			var/obj/item/device/m56d_gun/HMG = new(loc)
+			HMG.rounds = gun_rounds
 		user.put_in_hands(P)
 		qdel(src)
 
