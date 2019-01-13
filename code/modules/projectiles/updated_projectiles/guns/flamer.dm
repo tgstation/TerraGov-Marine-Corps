@@ -20,11 +20,10 @@
 						/obj/item/attachable/magnetic_harness)
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
-
-/obj/item/weapon/gun/flamer/New()
-	. = ..()
-	fire_delay = config.max_fire_delay * 5
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
+
+/obj/item/weapon/gun/flamer/set_gun_config_values()
+	fire_delay = config.max_fire_delay * 5
 
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
 	toggle_flame(user)

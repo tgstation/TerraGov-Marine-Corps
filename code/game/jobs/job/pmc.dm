@@ -59,7 +59,7 @@
 	RS.contents += new /obj/item/explosive/mine/pmc
 	RS.contents += new /obj/item/explosive/plastique
 
-	var/obj/item/clothing/suit/storage/marine/veteran/PMC/J = new /obj/item/clothing/suit/storage/marine/veteran/PMC(H)
+	var/obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC/J = new /obj/item/clothing/suit/storage/marine/smartgunner/veteran/PMC(H)
 	J.pockets.contents += new /obj/item/explosive/grenade/frag/PMC
 	J.pockets.contents += new /obj/item/explosive/grenade/frag/PMC
 

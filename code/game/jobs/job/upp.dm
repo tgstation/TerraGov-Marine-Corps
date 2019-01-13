@@ -28,6 +28,11 @@
 	S.knife = new /obj/item/weapon/combat_knife/upp
 	S.update_icon()
 
+	var/obj/item/storage/pouch/bayonet/RS = new /obj/item/storage/pouch/bayonet(H)
+	RS.contents += /obj/item/weapon/combat_knife/upp
+	RS.contents += /obj/item/weapon/combat_knife/upp
+	RS.contents += /obj/item/weapon/combat_knife/upp
+
 	var/obj/item/storage/backpack/lightpack/B = new /obj/item/storage/backpack/lightpack(H)
 	B.contents += new /obj/item/reagent_container/food/snacks/upp
 	B.contents += new /obj/item/reagent_container/food/snacks/upp
@@ -52,7 +57,7 @@
 	H.equip_to_slot_or_del(new /obj/item/storage/belt/marine/upp/full(H), WEAR_WAIST)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/type71(H), WEAR_J_STORE)
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/bayonet/upp(H), WEAR_R_STORE)
+	H.equip_to_slot_or_del(RS, WEAR_R_STORE)
 
 
 //UPP Medic
@@ -123,6 +128,12 @@
 	S.knife = new /obj/item/weapon/combat_knife/upp
 	S.update_icon()
 
+	var/obj/item/storage/pouch/explosive/RS = new /obj/item/storage/pouch/explosive(H)
+	RS.contents += new /obj/item/device/assembly/signaler
+	RS.contents += new /obj/item/device/radio/detpack
+	RS.contents += new /obj/item/device/radio/detpack
+	RS.contents += new /obj/item/explosive/grenade/cloakbomb
+
 	var/obj/item/storage/backpack/lightpack/B = new /obj/item/storage/backpack/lightpack(H)
 	B.contents += new /obj/item/reagent_container/food/snacks/upp
 	B.contents += new /obj/item/reagent_container/food/snacks/upp
@@ -146,8 +157,8 @@
 	H.equip_to_slot_or_del(S, WEAR_FEET)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), WEAR_HANDS)
 	H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/type71/flamer(H), WEAR_J_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/large/upp(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/bayonet/upp(H), WEAR_L_STORE)
+	H.equip_to_slot_or_del(RS, WEAR_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), WEAR_L_STORE)
 
 
 //UPP Leader
@@ -172,6 +183,10 @@
 	RS.contents += new /obj/item/explosive/plastique
 	RS.contents += new /obj/item/explosive/plastique
 
+	var/obj/item/weapon/gun/rifle/type71/carbine/R = new /obj/item/weapon/gun/rifle/type71/carbine(H)
+	R.rail = new /obj/item/attachable/scope/slavic
+	R.under = new /obj/item/attachable/verticalgrip
+
 	var/obj/item/storage/backpack/lightpack/B = new /obj/item/storage/backpack/lightpack(H)
 	B.contents += new /obj/item/reagent_container/food/snacks/upp
 	B.contents += new /obj/item/reagent_container/food/snacks/upp
@@ -180,9 +195,11 @@
 	B.contents += new /obj/item/storage/box/m94
 	B.contents += new /obj/item/explosive/grenade/incendiary/molotov
 	B.contents += new /obj/item/explosive/grenade/incendiary/molotov
-	B.contents += new /obj/item/ammo_magazine/flamer_tank
 	B.contents += new /obj/item/stack/sheet/metal/medium_stack
 	B.contents += new /obj/item/stack/sheet/plasteel/small_stack
+	B.contents += new /obj/item/ammo_magazine/rifle/type71
+	B.contents += new /obj/item/ammo_magazine/rifle/type71
+	B.contents += new /obj/item/ammo_magazine/rifle/type71
 
 
 	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/bears(H), WEAR_EAR)
@@ -192,7 +209,7 @@
 	H.equip_to_slot_or_del(B, WEAR_BACK)
 	H.equip_to_slot_or_del(S, WEAR_FEET)
 	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/type71/flamer(H), WEAR_J_STORE)
+	H.equip_to_slot_or_del(R, WEAR_J_STORE)
 	H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/korovin/standard(H), WEAR_WAIST)
 	H.equip_to_slot_or_del(RS, WEAR_R_STORE)
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(H), WEAR_L_STORE)

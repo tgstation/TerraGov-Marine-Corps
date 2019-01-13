@@ -73,7 +73,7 @@ Additional game mode variables.
 	var/stored_larva = 0
 
 	//Role Authority set up.
-	var/role_instruction 	= 0 // 1 is to replace, 2 is to add, 3 is to remove.
+	var/role_instruction 	= ROLE_MODE_DEFAULT
 	var/roles_for_mode[] //Won't have a list if the instruction is set to 0.
 
 	//Bioscan related.
@@ -89,7 +89,7 @@ Additional game mode variables.
 //===================================================\\
 
 datum/game_mode/proc/initialize_special_clamps()
-	var/ready_players = num_players() // Get all players that have "Ready" selected
+	var/ready_players = ready_players() // Get all players that have "Ready" selected
 	xeno_starting_num = max((ready_players/7), xeno_required_num)
 	surv_starting_num = CLAMP((ready_players/25), 0, 8)
 	merc_starting_num = max((ready_players/3), 1)
@@ -119,7 +119,7 @@ datum/game_mode/proc/initialize_special_clamps()
 
 	if(!ticker || !ticker.mode)
 		to_chat(src, "<span class='warning'>The game hasn't started yet!</span?")
-		return
+		return FALSE
 
 	ticker.mode.pred_maximum_num = input(src,"What is the new maximum number of predators?","Input:",4) as num|null
 	ticker.mode.pred_current_num = input(src,"What is the new current number of predators?","Input:",0) as num|null
@@ -178,7 +178,8 @@ datum/game_mode/proc/initialize_special_clamps()
 
 /datum/game_mode/proc/attempt_to_join_as_predator(mob/pred_candidate)
 	var/mob/living/carbon/human/new_predator = transform_predator(pred_candidate) //Initialized and ready.
-	if(!new_predator) return
+	if(!new_predator) 
+		return FALSE
 
 	log_admin("[new_predator.key], became a new Yautja, [new_predator.real_name].")
 	message_admins("([new_predator.key]) joined as Yautja, [new_predator.real_name].")
@@ -189,28 +190,28 @@ datum/game_mode/proc/initialize_special_clamps()
 
 	if(!(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_PREDATOR))
 		if(show_warning) to_chat(pred_candidate, "<span class='warning'>You are not whitelisted! You may apply on the forums to be whitelisted as a predator.</span>")
-		return
+		return FALSE
 
 	if(!(flags_round_type & MODE_PREDATOR))
 		if(show_warning) to_chat(pred_candidate, "<span class='warning'>There is no Hunt this round! Maybe the next one.</span>")
-		return
+		return FALSE
 
 	if(pred_candidate.ckey in pred_keys)
 		if(show_warning) to_chat(pred_candidate, "<span class='warning'>You already were a Yautja! Give someone else a chance.</span>")
-		return
+		return FALSE
 
 	if(!(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_YAUTJA_ELDER))
 		if(pred_current_num >= pred_maximum_num)
 			if(show_warning) to_chat(pred_candidate, "<span class='warning'>Only [pred_maximum_num] predators may spawn per round, but Elders are excluded.</span>")
-			return
+			return FALSE
 
-	return 1
+	return TRUE
 
 /datum/game_mode/proc/transform_predator(mob/pred_candidate)
 	if(!pred_candidate.client) //Something went wrong.
 		message_admins("<span class='warning'><b>Warning</b>: null client in transform_predator.</span>")
 		log_debug("Null client in transform_predator.")
-		return
+		return FALSE
 
 	var/mob/living/carbon/human/new_predator
 
@@ -279,7 +280,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	var/list/datum/mind/possible_xenomorphs = get_players_for_role(BE_ALIEN)
 	if(possible_xenomorphs.len < xeno_required_num) //We don't have enough aliens.
 		to_chat(world, "<h2 style=\"color:red\">Not enough players have chosen to be a xenomorph in their character setup. <b>Aborting</b>.</h2>")
-		return
+		return FALSE
 
 	//Minds are not transferred at this point, so we have to clean out those who may be already picked to play.
 	for(var/datum/mind/A in possible_xenomorphs)
@@ -292,7 +293,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	while(i > 0) //While we can still pick someone for the role.
 		if(length(possible_xenomorphs)) //We still have candidates
 			new_xeno = pick(possible_xenomorphs)
-			if(!new_xeno) 
+			if(!new_xeno)
 				break  //Looks like we didn't get anyone. Back out.
 			new_xeno.assigned_role = "MODE"
 			new_xeno.special_role = "Xenomorph"
@@ -309,7 +310,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	*/
 	if(xenomorphs.len < xeno_required_num)
 		to_chat(world, "<h2 style=\"color:red\">Could not find any candidates after initial alien list pass. <b>Aborting</b>.</h2>")
-		return
+		return FALSE
 
 	return TRUE
 
@@ -346,13 +347,13 @@ datum/game_mode/proc/initialize_special_clamps()
 
 datum/game_mode/proc/initialize_post_queen_list()
 	if(!queen)
-		return
+		return FALSE
 	transform_queen(queen)
 
 /datum/game_mode/proc/check_xeno_late_join(mob/xeno_candidate)
 	if(jobban_isbanned(xeno_candidate, "Alien")) // User is jobbanned
 		to_chat(xeno_candidate, "<span class='warning'>You are banned from playing aliens and cannot spawn as a xenomorph.</span>")
-		return
+		return FALSE
 	return TRUE
 
 /datum/game_mode/proc/attempt_to_join_as_larva(mob/xeno_candidate)
@@ -486,7 +487,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 	new_xeno.update_icons()
 
-	if(original) 
+	if(original)
 		qdel(original) //Just to be sure.
 
 /datum/game_mode/proc/transform_queen(datum/mind/ghost_mind)
@@ -496,7 +497,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	if(!hive.living_xeno_queen && original?.client?.prefs && (original.client.prefs.be_special & BE_QUEEN) && !jobban_isbanned(original, "Queen"))
 		new_queen = new /mob/living/carbon/Xenomorph/Queen (pick(xeno_spawn))
 	else
-		return
+		return FALSE
 	ghost_mind.transfer_to(new_queen)
 	ghost_mind.name = ghost_mind.current.name
 
@@ -506,7 +507,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 	new_queen.update_icons()
 
-	if(original) 
+	if(original)
 		qdel(original) //Just to be sure.
 
 //===================================================\\
@@ -527,10 +528,10 @@ datum/game_mode/proc/initialize_post_queen_list()
 			var/i = surv_starting_num
 			var/datum/mind/new_survivor
 			while(i > 0)
-				if(!length(possible_survivors)) 
+				if(!length(possible_survivors))
 					break  //Ran out of candidates! Can't have a null pick(), so just stick with what we have.
 				new_survivor = pick(possible_survivors)
-				if(!new_survivor) 
+				if(!new_survivor)
 					break  //We ran out of survivors!
 				new_survivor.assigned_role = "MODE"
 				new_survivor.special_role = "Survivor"
@@ -769,7 +770,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 			else
 				to_chat(H, "\blue You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now.")
 		to_chat(H, "\blue You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit.")
-	return 1
+	return TRUE
 
 /datum/game_mode/proc/tell_survivor_story()
 	var/list/survivor_story = list(
@@ -837,7 +838,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 					to_chat(survivor.current, temp_story)
 					survivor.memory += temp_story
 		current_survivors -= survivor
-	return 1
+	return TRUE
 
 //===================================================\\
 
@@ -936,6 +937,8 @@ datum/game_mode/proc/initialize_post_queen_list()
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
 						/obj/item/ammo_magazine/shotgunbox/flechette = round(scale * 3),
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 15),
+						/obj/item/cell/lasgun/M43 = round(scale * 30),
+						/obj/item/cell/lasgun/M43/highcap = round(scale * 5),
 						/obj/item/smartgun_powerpack = round(scale * 2)
 						)
 
@@ -1001,6 +1004,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 						/obj/item/weapon/gun/rifle/m41a = round(scale * 20),
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 10),
 						// /obj/item/weapon/gun/shotgun/combat = round(scale * 1),
+						/obj/item/weapon/gun/energy/lasgun/M43 = round(scale * 10),
 						/obj/item/explosive/mine = round(scale * 2),
 						/obj/item/storage/box/nade_box = round(scale * 2),
 						/obj/item/explosive/grenade/frag/m15 = round(scale * 2),
@@ -1050,6 +1054,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 						/obj/item/weapon/gun/smg/m39 = round(scale * 30),
 						/obj/item/weapon/gun/rifle/m41a = round(scale * 30),
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 15),
+						/obj/item/weapon/gun/energy/lasgun/M43 = round(scale * 15),
 
 						/obj/item/ammo_magazine/pistol = round(scale * 30),
 						/obj/item/ammo_magazine/revolver = round(scale * 20),
@@ -1059,6 +1064,8 @@ datum/game_mode/proc/initialize_post_queen_list()
 						/obj/item/ammo_magazine/shotgun = round(scale * 10),
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 10),
+						/obj/item/cell/lasgun/M43 = round(scale * 25),
+						/obj/item/cell/lasgun/M43/highcap = 0,
 
 						/obj/item/weapon/combat_knife = round(scale * 30),
 						/obj/item/weapon/throwing_knife = round(scale * 10),

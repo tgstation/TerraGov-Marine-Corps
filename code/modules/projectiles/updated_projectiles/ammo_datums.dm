@@ -1076,7 +1076,7 @@
 */
 
 /datum/ammo/energy
-	ping = null //no bounce off. We can have one later.
+	ping = "ping_s"
 	sound_hit 	 	= "energy_hit"
 	sound_miss		= "energy_miss"
 	sound_bounce	= "energy_bounce"
@@ -1105,6 +1105,11 @@
 	hud_state_empty = "battery_empty"
 	damage_type = OXY
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST //Not that ignoring will do much right now.
+
+/datum/ammo/energy/taser/New()
+	. = ..()
+	max_range = config.short_shell_range
+	accurate_range 	= config.near_shell_range
 
 /datum/ammo/energy/taser/on_hit_mob(mob/M, obj/item/projectile/P)
 	stun_living(M,P)
@@ -1204,6 +1209,42 @@
 	..()
 	shell_speed = config.super_shell_speed
 
+/datum/ammo/energy/lasgun
+	name = "laser bolt"
+	icon_state = "laser"
+	hud_state = "laser"
+
+/datum/ammo/energy/lasgun/New()
+	. = ..()
+	accurate_range = config.short_shell_range
+	damage = config.mlow_hit_damage
+	penetration = config.mlow_armor_penetration
+	max_range = config.long_shell_range
+	shell_speed = config.ultra_shell_speed
+	accuracy_var_low = config.low_proj_variance
+	accuracy_var_high = config.low_proj_variance
+	damage_var_low = config.low_proj_variance
+	damage_var_high = config.low_proj_variance
+
+/datum/ammo/energy/lasgun/M43
+	name = "M43 laser bolt"
+	hud_state = "laser"
+
+/datum/ammo/energy/lasgun/M43/New()
+	. = ..()
+	penetration = config.med_armor_penetration
+
+/datum/ammo/energy/lasgun/M43/overcharge
+	name = "M43 overcharged laser bolt"
+	icon_state = "heavylaser"
+	hud_state = "laser_overcharge"
+
+/datum/ammo/energy/lasgun/M43/overcharge/New()
+	. = ..()
+	damage = config.hmed_hit_damage
+	max_range = config.max_shell_range
+	penetration = config.mhigh_armor_penetration
+
 /*
 //================================================
 					Xeno Spits
@@ -1236,9 +1277,9 @@
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/M, obj/item/projectile/P)
 	if(!istype(M))
 		return ..()
-		var/mob/living/carbon/C = M
-		if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
-			return
+	var/mob/living/carbon/C = M
+	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
+		return
 	return ..()
 
 /datum/ammo/xeno/toxin/upgrade1

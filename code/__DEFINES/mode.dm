@@ -25,6 +25,11 @@
 #define FLAGS_SELF_DESTRUCT_DENY 2
 //=================================================
 
+#define ROLE_MODE_DEFAULT   0
+#define ROLE_MODE_REPLACE   1
+#define ROLE_MODE_ADD		2
+#define ROLE_MODE_SUBTRACT	3
+
 
 #define IS_MODE_COMPILED(MODE) (ispath(text2path("/datum/game_mode/"+(MODE))))
 
@@ -54,7 +59,7 @@
 #define BE_MUTINEER   (1 << 13)
 #define BE_CHANGELING (1 << 14)
 
-#define BE_WO_COM (1 << 15)
+#define BE_SQUAD_STRICT (1 << 15)
 //=================================================
 
 var/list/be_special_flags = list(

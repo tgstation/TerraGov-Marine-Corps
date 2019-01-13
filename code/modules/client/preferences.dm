@@ -8,7 +8,7 @@ var/global/list/special_roles = list(
 	"Survivor" = 1,
 	"End of Round Deathmatch" = 1,
 	"Predator" = 1,
-	"WO Commander" = 1
+	"Prefer Squad over Role" = 1
 
 	// "wizard" = IS_MODE_COMPILED("wizard"),               // 3
 	// "malf AI" = IS_MODE_COMPILED("malfunction"),         // 4
@@ -345,9 +345,6 @@ datum/preferences
 			if("Predator")
 				ban_check_name = "Predator"
 
-			if("WO Commander")
-				ban_check_name = "WO Commander"
-
 		if(jobban_isbanned(user, ban_check_name))
 			dat += "<font color=red><b> \[BANNED]</b></font><br>"
 		else
@@ -527,7 +524,7 @@ datum/preferences
 	if(user.client.prefs) //Just makin sure
 		if(user.client.prefs.alternate_option == GET_RANDOM_JOB)
 			HTML += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=green>Get random job if preferences unavailable</font></a></u></center><br>"
-		if(user.client.prefs.alternate_option == BE_ASSISTANT)
+		if(user.client.prefs.alternate_option == BE_MARINE)
 			HTML += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=red>Be marine if preference unavailable</font></a></u></center><br>"
 		if(user.client.prefs.alternate_option == RETURN_TO_LOBBY)
 			HTML += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=purple>Return to lobby if preference unavailable</font></a></u></center><br>"
@@ -818,7 +815,7 @@ datum/preferences
 					ResetJobs()
 					SetChoices(user)
 				if("random")
-					if(alternate_option == GET_RANDOM_JOB || alternate_option == BE_ASSISTANT)
+					if(alternate_option == GET_RANDOM_JOB || alternate_option == BE_MARINE)
 						alternate_option += 1
 					else if(alternate_option == RETURN_TO_LOBBY)
 						alternate_option = 0
