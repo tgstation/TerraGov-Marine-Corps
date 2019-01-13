@@ -70,10 +70,7 @@
 	name = "\improper spatial agent's jumpsuit"
 	has_sensor = 0
 	sensor_mode = 0
-	canremove = 0
 	siemens_coefficient = 0
-	cold_protection = FULL_BODY
-	heat_protection = FULL_BODY
 
 /obj/item/clothing/under/ert
 	name = "ERT tactical uniform"

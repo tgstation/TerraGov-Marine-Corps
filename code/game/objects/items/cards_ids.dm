@@ -287,7 +287,8 @@
 	name = "\improper Spatial Agent ID"
 	desc = "An ID worn by Spatial Agents."
 	registered_name = "High Command"
-	access = get_all_accesses()
+	New()
+		access = get_all_accesses()
 
 
 /obj/item/card/id/equipped(mob/living/carbon/human/H, slot)
