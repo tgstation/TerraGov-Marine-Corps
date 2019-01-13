@@ -27,7 +27,7 @@
 	// *** Evolution *** //
 	upgrade_threshold = 400
 
-	deevolves_to = /mob/living/carbon/Xenomorph/Drone
+	deevolves_to = /mob/living/carbon/Xenomorph/Spitter
 
 	// *** Flags *** //
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_BE_GIVEN_PLASMA
