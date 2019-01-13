@@ -225,10 +225,6 @@
 		return
 	if(!status && O.is_refillable())
 		reagents.trans_to(O, reagents.total_volume)
-	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1)
-		if(!welding)
-			O.reagents.trans_to(src, max_fuel)
-		return
 	if (welding)
 		remove_fuel(1)
 
