@@ -167,11 +167,11 @@
 					if(!length(candidates)) //We ran out of candidates.
 						break
 					var/datum/mind/M = pick(candidates) //Get a random candidate, then remove it from the candidates list.
-					if(M?.current?.stat != DEAD)
-						candidates -= M //Strip them from the list, they aren't dead anymore.
-						continue
 					if(!istype(M)) //Something went horrifically wrong
 						candidates -= M
+						continue
+					if(M.current?.stat != DEAD)
+						candidates -= M //Strip them from the list, they aren't dead anymore.
 						continue
 					picked_candidates += M
 					candidates -= M
