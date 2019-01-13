@@ -101,9 +101,9 @@
 			known_tech += tech
 			CheckDesigns()
 
-/datum/marineResearch/proc/AvailToKnown(datum/marineTech/reserched)			//Haphazardous
-	available_tech -= reserched
-	known_tech += reserched
+/datum/marineResearch/proc/AvailToKnown(datum/marineTech/researched)			//Haphazardous
+	available_tech -= researched
+	known_tech += researched
 	CheckDesigns()
 
 /datum/marineTech
@@ -141,7 +141,7 @@ Queen thingy - RESEARCH_XENO_QUEEN
 /datum/marineTech/Xenomorph  //Starting tech
 	name = "Xenomorphs"
 	desc = "Analysis of alien species."
-	resdesc = "Well, lets sink it - we are fighting against increadibly powerful and staggering foe. CLF, UPP, pirates - they are nothing compare to those beasts, if not a monsters. We need research further.."
+	resdesc = "Well, we are fighting against increadibly powerful and staggering foe. One individual is hard to kill and strong enough to take down a small squad of marines alone."
 	id = RESEARCH_XENOSTART
 
 
@@ -149,43 +149,36 @@ Queen thingy - RESEARCH_XENO_QUEEN
 /datum/marineTech/XenoMBiology
 	name = "Xenomorph Biology"
 	desc = "Analysis of bizzare nature of Xenomorphs"
-	resdesc = "If we thought that humanity is a crowned kings of nature... Xenomorphs are Emperors. Resistant even for vacuum, they blood appears to be acid, that even corrode tank armor... And don't even think about those claws.."
+	resdesc = "If we thought that humanity is a crowned kings of nature... Xenomorphs are Emperors. Resistant even for vacuum, they blood appears to be acid, that can even corrode tank armor... And don't even think about those claws.."
 	id = RESEARCH_XENO_BIOLOGY
 	req_tech = list(RESEARCH_XENOSTART)
 	need_item = 0									//No need for the item
 
 /datum/marineTech/BioPlating
-	name = "Xenomorph Armor Plating"
-	desc = "Technology of manufacturing valuable plating for standart armor"
-	resdesc = "Even their terrifying nature can benefit Colonial Marines with some valuable upgrades. Molecular structure of their chitin are increadibly strong and durable for being biological at fundamental. So much benefits, and no drawbacks..."
+	name = "Xenomorph Chitin Plating"
+	desc = "Analysis of alien chitin."
+	resdesc = "Even their terrifying nature can benefit Marine Corps with some valuable upgrades. Molecular structure of their chitin are increadibly strong and durable for being biological at fundamental. So much benefits, and no drawbacks... But, well, right now it's only theory."
 	id = RESEARCH_BIO_PLATING
 	req_tech = list(RESEARCH_XENO_BIOLOGY)
 
 /datum/marineTech/CrusherPlating
 	name = "Crusher chitin patterns"
-	desc = "Analysis of durable Crusher's chitin provides us with more reinforced plating"
-	resdesc = "Well, to begin with - Crusher is very tenacious fella to kill even with AP rounds. But the best part of it - flamethowers will lighten him up like 4th July and provide us with stronger upgrades!"
+	desc = "Analysis of durable Crusher's chitin."
+	resdesc = "Well, to begin with - Crusher is very strong and durable combatant, even if you use AP rounds against it. But the best part of it - flamethowers can literally incinerate Crusher in matter of seconds."
 	id = RESEARCH_CRUSHER_PLATING
 	req_tech = list(RESEARCH_XENO_BIOLOGY)
 
 /datum/marineTech/Muscle
 	name = "Xenomorph muscle tissue"
 	desc = "Alien muscle tissue using same methods as human muscles, but they proven to be more durable and acid-resistant"
-	resdesc = "It's true, that xenomorph claws can pierce armor, thanks to their sharpness. But to make it worse for our troops, Xenomophs have powerful muscle system, that can even withstand the most powerful of acids. It can still be pierced by standart rifle bullets, but have fun to pierce it with 9mm."
+	resdesc = "It's true, that xenomorph claws can pierce armor, thanks to their sharpness. But to make it worse for our troops, Xenomophs have powerful muscle system, that can even withstand the most powerful of acids. It can still be pierced by standart rifle bullets, but 9mm rounds will just scratch it."
 	id = RESEARCH_XENO_MUSCLES
 	req_tech = list(RESEARCH_XENO_BIOLOGY)
-
-/datum/marineTech/BioArmor
-	name = "Chitin Armor."
-	desc = "Possible solutions in chitin armor assemble."
-	resdesc = "Natural armor of Xenomorph race is something miraculous. It can withstand tremendous damage and regenerate itself. We have enough equipment to bolt in some imitation of this armor."
-	id = RESEARCH_XENO_ARMOR
-	req_tech = list(RESEARCH_CRUSHER_PLATING, RESEARCH_XENO_MUSCLES)
 
 /datum/marineTech/hivelord
 	name = "Hivelord metabolism"
 	desc = "Detailed analysis of Hivelords' metabolism shows, that their organism very energy-efficent"
-	resdesc = "Wow. Hivelord cannot be poisoned. It cannot overeat either. Whatever it eats, food will provide 100% nutriment, even if it's drugged. Moreover, Hivelord will be basically uncatchable on weed, thanks to sharpened senses and enigmatic connection between xenobiology and xenoflora."
+	resdesc = "Hivelord. Its metabolism is something special. Most intresting part - it has two separated muscle systems. First we already know - see \"Muscle Tissue\" entry. Second system... Well, it constantly generating huge amount some \"bioplasma\" substance, what appeared as a backbone of horrifying nature of Xenomorph species. And we have an idea how put it in use."
 	id = RESEARCH_XENO_HIVELORD
 	req_tech = list(RESEARCH_XENO_BIOLOGY, RESEARCH_XENO_MUSCLES, RESEARCH_XENO_CHEMISTRY, RESEARCH_XENO_FLORA, RESEARCH_XENO_DRONE)
 
@@ -211,7 +204,7 @@ Queen thingy - RESEARCH_XENO_QUEEN
 /datum/marineTech/XenoFlora
 	name = "Xenomorph Flora"
 	desc = "Analysis of xenoflora, abudantly found near all Hives"
-	resdesc = "It's not a flora. It's all resins. But our troops ignorant or stupid enough. But somehow, that resin acts like flora anyway and makes some enigmatic connection with xenobiology."
+	resdesc = "It's not a flora. It's all resins. But our troops ignorant or stupid enough to come to this conclusion. But somehow, that resin acts like flora anyway and makes some enigmatic connection with xenobiology."
 	id = RESEARCH_XENO_FLORA
 	req_tech = list(RESEARCH_XENOSTART)
 	need_item = 0
@@ -224,9 +217,9 @@ Queen thingy - RESEARCH_XENO_QUEEN
 	req_tech = list(RESEARCH_XENO_FLORA)
 
 /datum/marineTech/XenoSack
-	name = "Purple Sacks"
+	name = "Purple Sacs"
 	desc = "Those sacks - small 'bushes', that produces weed nearby"
-	resdesc = "As more we study xenoflora, the more enigmatic it for us. Purple Sack - is a small tank with mixture of various xenomorph-based acids with complex organ-like thing. We assume, that thing is responsible for producing weeds nearby."
+	resdesc = "As more we study xenoflora, the more enigmatic it for us. Purple Sac - is a small tank with mixture of various xenomorph-based acids with complex organ-like thing. We assume, that thing is responsible for producing weeds nearby."
 	id = RESEARCH_XENO_SACK
 	req_tech = list(RESEARCH_XENO_FLORA)
 
