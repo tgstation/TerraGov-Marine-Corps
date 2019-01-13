@@ -972,7 +972,7 @@ Defined in conflicts.dm of the #defines folder.
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_PROJECTILE|ATTACH_RELOADABLE|ATTACH_WEAPON
 
 /obj/item/attachable/attached_gun/shotgun/New()
-	..()
+	. = ..()
 	abstract_gun = new /obj/item/weapon/gun/shotgun/masterkey
 	attachment_firing_delay = config.mhigh_fire_delay*3
 

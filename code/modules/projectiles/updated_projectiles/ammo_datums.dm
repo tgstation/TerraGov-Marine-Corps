@@ -665,7 +665,7 @@
 	scatter = config.max_scatter_value //bonus projectiles run their own scatter chance
 
 /datum/ammo/bullet/shotgun/flechette_spread/masterkey/New()
-	..()
+	. = ..()
 	damage = config.low_hit_damage
 
 /datum/ammo/bullet/shotgun/buckshot
