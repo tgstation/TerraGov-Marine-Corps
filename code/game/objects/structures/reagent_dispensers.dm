@@ -153,13 +153,16 @@
 /obj/structure/reagent_dispensers/fueltank/bullet_act(obj/item/projectile/Proj)
 	if(exploding)
 		return FALSE
-	if(istype(Proj.firer,/mob/living/carbon/human))
-		message_admins("[key_name(Proj.firer)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[Proj.firer]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[Proj.firer.x];Y=[Proj.firer.y];Z=[Proj.firer.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[Proj.firer]'>FLW</a>) shot fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]).")
-		log_game("[key_name(Proj.firer)] shot fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]).")
+
+	. = ..()
 
 	if(Proj.damage > 10 && prob(60) && Proj.ammo.damage_type in list(BRUTE|BURN))
+		if(ismob(Proj.firer))
+			var/mob/shooter = Proj.firer
+			if(shooter.client)
+				message_admins("[key_name(Proj.firer)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[Proj.firer]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[Proj.firer.x];Y=[Proj.firer.y];Z=[Proj.firer.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[Proj.firer]'>FLW</a>) shot a fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]), setting it off.")
+				log_game("[key_name(Proj.firer)] shot a fueltank at [loc.loc.name] ([loc.x],[loc.y],[loc.z]), setting it off.")
 		explode()
-	return TRUE
 
 /obj/structure/reagent_dispensers/fueltank/ex_act()
 	explode()
