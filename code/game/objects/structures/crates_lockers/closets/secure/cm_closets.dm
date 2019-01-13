@@ -24,7 +24,7 @@
 			icon_broken = "squad_[closet_squad]_emmaged"
 			icon_off = "squad_[closet_squad]_off"
 
-	select_gamemode_equipment()
+	/obj/structure/closet/secure_closet/marine/select_gamemode_equipment()
 		switch(map_tag)
 			if(MAP_ICE_COLONY)
 				new /obj/item/clothing/mask/rebreather/scarf(src)
@@ -33,7 +33,7 @@
 // STANDARD MARINE
 
 /obj/structure/closet/secure_closet/marine/standard
-	select_gamemode_equipment()
+	/obj/structure/closet/secure_closet/marine/standard/select_gamemode_equipment()
 		..()
 		new /obj/item/clothing/suit/storage/marine(src)
 		new /obj/item/storage/belt/marine(src)
@@ -84,7 +84,7 @@
 // MARINE LEADER
 
 /obj/structure/closet/secure_closet/marine/leader
-	select_gamemode_equipment()
+	/obj/structure/closet/secure_closet/marine/leader/select_gamemode_equipment()
 		..()
 		new /obj/item/clothing/suit/storage/marine/leader(src)
 		new /obj/item/storage/belt/marine(src)
@@ -146,7 +146,7 @@
 		new /obj/item/clothing/glasses/welding(src)
 		new /obj/item/clothing/tie/storage/webbing(src)
 
-	select_gamemode_equipment()
+	/obj/structure/closet/secure_closet/marine/engi/select_gamemode_equipment()
 		..()
 		new /obj/item/clothing/suit/storage/marine(src)
 		new /obj/item/clothing/head/helmet/marine/tech(src)
@@ -208,7 +208,7 @@
 		new /obj/item/roller/medevac(src)
 		new /obj/item/device/defibrillator(src)
 
-	select_gamemode_equipment()
+	/obj/structure/closet/secure_closet/marine/medic/select_gamemode_equipment()
 		..()
 		new /obj/item/clothing/suit/storage/marine(src)
 		new /obj/item/clothing/head/helmet/marine/medic(src)
@@ -472,7 +472,7 @@
 		new /obj/item/clothing/glasses/hud/health(src)
 		new /obj/item/clothing/suit/surgical(src)
 
-	select_gamemode_equipment() //removing white space in the above list causes errors here.
+	/obj/structure/closet/secure_closet/medical_doctor/select_gamemode_equipment() //removing white space in the above list causes errors here.
 		switch(map_tag)
 			if(MAP_ICE_COLONY)
 				new /obj/item/clothing/suit/storage/snow_suit/doctor(src)
