@@ -417,7 +417,7 @@
 		new /obj/item/explosive/grenade/cloakbomb(src)
 		new /obj/item/explosive/grenade/cloakbomb(src)
 		new /obj/item/explosive/grenade/cloakbomb(src)
-			new /obj/item/bodybag/tarp(src)
+		new /obj/item/bodybag/tarp(src)
 
 
 /obj/item/storage/box/spec/scoutshotgun
