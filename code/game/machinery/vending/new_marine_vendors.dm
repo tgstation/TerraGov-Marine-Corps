@@ -981,6 +981,7 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 							list("Motion detector", 5, /obj/item/device/motiondetector, null, "black"),
 							list("Advanced firstaid kit", 10, /obj/item/storage/firstaid/adv, null, "orange"),
 							list("Ziptie box", 5, /obj/item/storage/box/zipcuffs, null, "black"),
+							list("V1 thermal-dampening tarp", 5, /obj/structure/closet/bodybag/tarp, null, "black"),
 
 							list("SPECIAL AMMUNITION", 0, null, null, null),
 							list("HP M4A3 magazine", 5, /obj/item/ammo_magazine/pistol/hp, null, "black"),

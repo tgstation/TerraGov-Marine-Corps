@@ -166,6 +166,20 @@ OPERATIONS
 	contraband = 1
 	group = "Operations"
 
+/datum/supply_packs/tarps
+	name = "V1 thermal-dampening tarp crate (x5)"
+	contains = list(
+					/obj/structure/closet/bodybag/tarp,
+					/obj/structure/closet/bodybag/tarp,
+					/obj/structure/closet/bodybag/tarp,
+					/obj/structure/closet/bodybag/tarp,
+					/obj/structure/closet/bodybag/tarp,
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper V1 thermal-dampening tarp crate"
+	group = "Operations"
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
@@ -325,6 +339,19 @@ WEAPONS
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper rifles crate"
+	group = "Weapons"
+
+/datum/supply_packs/gun/lasrifle
+	contains = list(
+					/obj/item/weapon/gun/energy/lasgun/M43,
+					/obj/item/weapon/gun/energy/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					)
+	name = "surplus lasrifle crate (M43 lasgun x2, M43 battery packs x2)"
+	cost = RO_PRICE_VERY_CHEAP
+	containertype = /obj/structure/closet/crate
+	containername = "\improper lasrifle crate"
 	group = "Weapons"
 
 /datum/supply_packs/gun/heavyrifle
@@ -528,7 +555,6 @@ WEAPONS
 	containertype = /obj/structure/closet/crate/explosives
 	containername = "\improper detpack explosives crate (WARNING)"
 	group = "Weapons"
-
 
 /*******************************************************************************
 HARDPOINT MODULES (and their ammo)
@@ -1898,6 +1924,54 @@ AMMO
 	cost = RO_PRICE_NORMAL
 	containertype = /obj/structure/closet/crate/ammo
 	containername = "\improper M56D emplacement ammo crate"
+	group = "Ammo"
+
+/datum/supply_packs/lasgun_charger
+	name = "ColMarTech Lasgun Field Charger (Stocked With: M43 Power Cells x10, M43 Expanded x2)"
+	contains = list()
+	cost = RO_PRICE_PRICY
+	containertype = /obj/machinery/vending/lasgun
+	containername = "ColMarTech Lasgun Field Charger"
+	group = "Ammo"
+
+ /datum/supply_packs/ammo_M43lasgun
+	name = "M43 lasgun battery crate (M43 x15 each)"
+	contains = list(
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "lasgun battery crate"
+	group = "Ammo"
+
+ /datum/supply_packs/ammo_M43lasgun_highcap
+	name = "M43 lasgun highcap battery crate (M43 highcap x7 each)"
+	contains = list(
+					/obj/item/cell/lasgun/M43/highcap,
+					/obj/item/cell/lasgun/M43/highcap,
+					/obj/item/cell/lasgun/M43/highcap,
+					/obj/item/cell/lasgun/M43/highcap,
+					/obj/item/cell/lasgun/M43/highcap,
+					/obj/item/cell/lasgun/M43/highcap,
+					/obj/item/cell/lasgun/M43/highcap,
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "ammo crate"
 	group = "Ammo"
 
 /*******************************************************************************
