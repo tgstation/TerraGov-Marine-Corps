@@ -236,9 +236,10 @@
 
 		if(hit_chance)
 			if(isliving(A))
-				if(shot_from?.shot_from.sniper_target(A)) //First check to see if we've actually got anyone targeted
-					if(A != shot_from.sniper_target(A)) //If we've singled out someone with a targeting laser, forsake all others
-						continue
+				if(shot_from) //First check to see if we've actually got anyone targeted
+					if(shot_from.sniper_target(A))
+						if(A != shot_from.sniper_target(A)) //If we've singled out someone with a targeting laser, forsake all others
+							continue
 				var/mob_is_hit = FALSE
 				var/mob/living/L = A
 
@@ -247,9 +248,16 @@
 				var/i = 0
 				while(++i <= 2 && hit_chance > 0) // This runs twice if necessary
 					hit_roll 					= rand(0, 99) //Our randomly generated roll
+					#if DEBUG_HIT_CHANCE
+					to_chat(world, "DEBUG: Hit Chance 1: [hit_chance], Hit Roll: [hit_roll]")
+					#endif
 					if(hit_roll < 25 && !shot_from.sniper_target(A)) //Sniper targets more likely to hit
 						def_zone 	= pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
-					hit_chance 				   -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
+					if(!shot_from.sniper_target(A))
+						hit_chance 				   -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
+						#if DEBUG_HIT_CHANCE
+						to_chat(world, "Hit Chance 2: [hit_chance]")
+						#endif
 
 					switch(i)
 						if(1)

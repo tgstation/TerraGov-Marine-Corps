@@ -55,8 +55,8 @@
 			return
 		if(laser_target)
 			laser_target.remove_laser()
-		to_chat(user, "<span class='danger'>You focus your targeting laser on [target]!</span>")
 		laser_target = target
+		to_chat(user, "<span class='danger'>You focus your targeting laser on [target]!</span>")
 		targetlaser_on = FALSE
 		laser_target.apply_laser()
 		STOP_PROCESSING(SSobj, src) //So we don't accumulate additional processing.
@@ -126,37 +126,8 @@
 
 /obj/item/weapon/gun/rifle/sniper/M42A/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
 	. = ..()
-	var/obj/item/attachable/scope/m42a/S = rail
-	if(zoom)
-		S.accuracy_mod = config.max_hit_accuracy_mult
-	else
-		S.accuracy_mod = 0
-		user.client?.change_view(viewsize)
-
-		var/tilesize = 32
-		var/viewoffset2 = tilesize * tileoffset
-
-		switch(user.dir)
-			if(NORTH)
-				user.client.pixel_x = 0
-				user.client.pixel_y = viewoffset2
-			if(SOUTH)
-				user.client.pixel_x = 0
-				user.client.pixel_y = -viewoffset2
-			if(EAST)
-				user.client.pixel_x = viewoffset2
-				user.client.pixel_y = 0
-			if(WEST)
-				user.client.pixel_x = -viewoffset2
-				user.client.pixel_y = 0
-
+	if(!zoom && targetlaser_on)
 		laser_off(user)
-
-		spawn(1) //Don't ask me why I have to do this meddling with the client viewing; I just do, otherwise the laser decal won't get properly deleted; a retarded solution for a retarded problem.
-			if(user.client)
-				user.client.change_view(world.view)
-				user.client.pixel_x = 0
-				user.client.pixel_y = 0
 
 /atom/proc/sniper_target(atom/A)
 	return FALSE
@@ -177,7 +148,7 @@
 			to_chat(user, "<span class='warning'>You must be zoomed in to use your targeting laser!</span>")
 		return
 	targetlaser_on = TRUE
-	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
+	accuracy_mult = config.max_hit_accuracy_mult
 	if(!silent && user)
 		to_chat(user, "<span class='notice'><b>You activate your targeting laser and take careful aim.</b></span>")
 		playsound(user,'sound/machines/click.ogg', 25, 1)
@@ -186,7 +157,7 @@
 	if(laser_target)
 		laser_target.remove_laser()
 	laser_target = null
-	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult = -config.max_hit_accuracy_mult
 	STOP_PROCESSING(SSobj, src)
 	if(toggle_off)
 		targetlaser_on = FALSE
@@ -197,8 +168,7 @@
 /obj/item/weapon/gun/rifle/sniper/M42A/set_gun_config_values()
 	fire_delay = config.high_fire_delay*5
 	burst_amount = config.min_burst_value
-	accuracy_mult = config.base_hit_accuracy_mult*1.5
-	scatter = config.low_scatter_value
+	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
 	damage_mult = config.base_hit_damage_mult
 	recoil = config.min_recoil_value
 
