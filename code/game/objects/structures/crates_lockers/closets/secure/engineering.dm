@@ -102,7 +102,7 @@
 	icon_off = "secureengoff"
 
 	/obj/structure/closet/secure_closet/engineering_personal/New()
-		..()
+		. = ..()
 		if (prob(70)) new /obj/item/clothing/tie/storage/brown_vest(src)
 		else new /obj/item/clothing/tie/storage/webbing(src)
 		new /obj/item/storage/toolbox/mechanical(src)

@@ -13,7 +13,7 @@
 	var/closet_squad //which squad this closet belong to
 
 	/obj/structure/closet/secure_closet/marine/New()
-		..()
+		. = ..()
 		new /obj/item/clothing/shoes/marine(src)
 
 		if(closet_squad)
@@ -34,7 +34,7 @@
 
 /obj/structure/closet/secure_closet/marine/standard
 	/obj/structure/closet/secure_closet/marine/standard/select_gamemode_equipment()
-		..()
+		. = ..()
 		new /obj/item/clothing/suit/storage/marine(src)
 		new /obj/item/storage/belt/marine(src)
 		new /obj/item/clothing/head/helmet/marine(src)
@@ -46,7 +46,7 @@
 	closet_squad = "alpha"
 
 	/obj/structure/closet/secure_closet/marine/standard/alpha/New()
-		..()
+		. = ..()
 		new /obj/item/device/radio/headset/almayer/marine/alpha(src)
 		new /obj/item/clothing/gloves/marine/alpha(src)
 
@@ -56,7 +56,7 @@
 	closet_squad = "bravo"
 
 	/obj/structure/closet/secure_closet/marine/standard/bravo/New()
-		..()
+		. = ..()
 		new /obj/item/device/radio/headset/almayer/marine/bravo(src)
 		new /obj/item/clothing/gloves/marine/bravo(src)
 
@@ -66,7 +66,7 @@
 	closet_squad = "charlie"
 
 	/obj/structure/closet/secure_closet/marine/standard/charlie/New()
-		..()
+		. = ..()
 		new /obj/item/device/radio/headset/almayer/marine/charlie(src)
 		new /obj/item/clothing/gloves/marine/charlie(src)
 
@@ -76,7 +76,7 @@
 	closet_squad = "delta"
 
 	/obj/structure/closet/secure_closet/marine/standard/delta/New()
-		..()
+		. = ..()
 		new /obj/item/device/radio/headset/almayer/marine/delta(src)
 		new /obj/item/clothing/gloves/marine/delta(src)
 
@@ -85,7 +85,7 @@
 
 /obj/structure/closet/secure_closet/marine/leader
 	/obj/structure/closet/secure_closet/marine/leader/select_gamemode_equipment()
-		..()
+		. = ..()
 		new /obj/item/clothing/suit/storage/marine/leader(src)
 		new /obj/item/storage/belt/marine(src)
 		new /obj/item/clothing/head/helmet/marine/leader(src)
@@ -97,7 +97,7 @@
 	closet_squad = "alpha"
 
 	/obj/structure/closet/secure_closet/marine/leader/alpha/New()
-		..()
+		. = ..()
 		new /obj/item/clothing/gloves/marine/alpha(src)
 		new /obj/item/device/radio/headset/almayer/marine/alpha/lead(src)
 
@@ -107,7 +107,7 @@
 	closet_squad = "bravo"
 
 	/obj/structure/closet/secure_closet/marine/leader/bravo/New()
-		..()
+		. = ..()
 		new /obj/item/clothing/gloves/marine/bravo(src)
 		new /obj/item/device/radio/headset/almayer/marine/bravo/lead(src)
 
@@ -117,7 +117,7 @@
 	closet_squad = "charlie"
 
 	/obj/structure/closet/secure_closet/marine/leader/charlie/New()
-		..()
+		. = ..()
 		new /obj/item/clothing/gloves/marine/charlie(src)
 		new /obj/item/device/radio/headset/almayer/marine/charlie/lead(src)
 
@@ -127,7 +127,7 @@
 	closet_squad = "delta"
 
 	/obj/structure/closet/secure_closet/marine/leader/delta/New()
-		..()
+		. = ..()
 		new /obj/item/clothing/gloves/marine/delta(src)
 		new /obj/item/device/radio/headset/almayer/marine/delta/lead(src)
 
@@ -141,13 +141,13 @@
 	health = 100000 // just no
 
 	/obj/structure/closet/secure_closet/marine/engi/New()
-		..()
+		. = ..()
 		new /obj/item/storage/belt/utility/full(src)
 		new /obj/item/clothing/glasses/welding(src)
 		new /obj/item/clothing/tie/storage/webbing(src)
 
 	/obj/structure/closet/secure_closet/marine/engi/select_gamemode_equipment()
-		..()
+		. = ..()
 		new /obj/item/clothing/suit/storage/marine(src)
 		new /obj/item/clothing/head/helmet/marine/tech(src)
 		new /obj/item/clothing/under/marine/engineer(src)
@@ -158,7 +158,7 @@
 	closet_squad = "alpha"
 
 	/obj/structure/closet/secure_closet/marine/engi/alpha/New()
-		..()
+		. = ..()
 		new /obj/item/clothing/gloves/marine/alpha/insulated(src)
 		new /obj/item/device/radio/headset/almayer/marine/alpha/engi(src)
 
@@ -168,7 +168,7 @@
 	closet_squad = "bravo"
 
 	/obj/structure/closet/secure_closet/marine/engi/bravo/New()
-		..()
+		. = ..()
 		new /obj/item/clothing/gloves/marine/bravo/insulated(src)
 		new /obj/item/device/radio/headset/almayer/marine/bravo/engi(src)
 
@@ -178,7 +178,7 @@
 	closet_squad = "charlie"
 
 	/obj/structure/closet/secure_closet/marine/engi/charlie/New()
-		..()
+		. = ..()
 		new /obj/item/clothing/gloves/marine/charlie/insulated(src)
 		new /obj/item/device/radio/headset/almayer/marine/charlie/engi(src)
 
@@ -188,7 +188,7 @@
 	closet_squad = "delta"
 
 	/obj/structure/closet/secure_closet/marine/engi/delta/New()
-		..()
+		. = ..()
 		new /obj/item/clothing/gloves/marine/delta/insulated(src)
 		new /obj/item/device/radio/headset/almayer/marine/delta/engi(src)
 
@@ -201,7 +201,7 @@
 	health = 100000 // just no
 
 	/obj/structure/closet/secure_closet/marine/medic/New()
-		..()
+		. = ..()
 		new /obj/item/storage/belt/combatLifesaver(src)
 		new /obj/item/clothing/glasses/hud/health(src)
 		new /obj/item/clothing/tie/storage/webbing(src)
@@ -209,7 +209,7 @@
 		new /obj/item/device/defibrillator(src)
 
 	/obj/structure/closet/secure_closet/marine/medic/select_gamemode_equipment()
-		..()
+		. = ..()
 		new /obj/item/clothing/suit/storage/marine(src)
 		new /obj/item/clothing/head/helmet/marine/medic(src)
 		new /obj/item/clothing/under/marine/medic(src)
@@ -220,7 +220,7 @@
 	closet_squad = "alpha"
 
 	/obj/structure/closet/secure_closet/marine/medic/alpha/New()
-		..()
+		. = ..()
 		new /obj/item/clothing/gloves/marine/alpha(src)
 		new /obj/item/device/radio/headset/almayer/marine/alpha/med(src)
 
@@ -230,7 +230,7 @@
 	closet_squad = "bravo"
 
 	/obj/structure/closet/secure_closet/marine/medic/bravo/New()
-		..()
+		. = ..()
 		new /obj/item/clothing/gloves/marine/bravo(src)
 		new /obj/item/device/radio/headset/almayer/marine/bravo/med(src)
 
@@ -240,7 +240,7 @@
 	closet_squad = "charlie"
 
 	/obj/structure/closet/secure_closet/marine/medic/charlie/New()
-		..()
+		. = ..()
 		new /obj/item/clothing/gloves/marine/charlie(src)
 		new /obj/item/device/radio/headset/almayer/marine/charlie/med(src)
 
@@ -250,7 +250,7 @@
 	closet_squad = "delta"
 
 	/obj/structure/closet/secure_closet/marine/medic/delta/New()
-		..()
+		. = ..()
 		new /obj/item/clothing/gloves/marine/delta(src)
 		new /obj/item/device/radio/headset/almayer/marine/delta/med(src)
 
@@ -334,7 +334,7 @@
 	icon_off = "secure_closed_pilot"
 
 /obj/structure/closet/secure_closet/pilot_officer/New()
-	..()
+	. = ..()
 	new /obj/item/clothing/head/helmet/marine/pilot(src)
 	new /obj/item/device/radio/headset/almayer/mcom(src)
 	new /obj/item/clothing/under/marine/officer/pilot(src)
@@ -459,7 +459,7 @@
 	icon_off = "secure_closed_medical"
 
 	/obj/structure/closet/secure_closet/medical_doctor/New()
-		..()
+		. = ..()
 		new /obj/item/storage/backpack/marine/satchel(src)
 		if(z != 1) new /obj/item/device/radio/headset/almayer/doc(src)
 		new /obj/item/clothing/shoes/white(src)
