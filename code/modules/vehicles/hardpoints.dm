@@ -154,6 +154,9 @@ Currently only has the tank hardpoints
 	max_clips = 3
 	max_angle = 45
 
+/obj/item/hardpoint/primary/cannon/broken
+	health = 0
+
 /obj/item/hardpoint/primary/cannon/apply_buff()
 	owner.cooldowns["primary"] = 200
 	owner.accuracies["primary"] = 0.97
@@ -370,6 +373,9 @@ Currently only has the tank hardpoints
 	max_clips = 1
 	max_angle = 90
 
+/obj/item/hardpoint/secondary/m56cupola/broken
+	health = 0
+
 /obj/item/hardpoint/secondary/m56cupola/apply_buff()
 	owner.cooldowns["secondary"] = 5
 	owner.accuracies["secondary"] = 0.7
@@ -466,6 +472,9 @@ Currently only has the tank hardpoints
 	ammo = new /obj/item/ammo_magazine/tank/tank_slauncher
 	max_clips = 4
 	is_activatable = TRUE
+
+/obj/item/hardpoint/support/smoke_launcher/broken
+	health = 0
 
 /obj/item/hardpoint/support/smoke_launcher/apply_buff()
 	owner.cooldowns["support"] = 30
@@ -649,6 +658,9 @@ Currently only has the tank hardpoints
 	disp_icon = "tank"
 	disp_icon_state = "ballistic_armor"
 
+/obj/item/hardpoint/armor/ballistic/broken
+	health = 0
+
 /obj/item/hardpoint/armor/ballistic/apply_buff()
 	owner.dmg_multipliers["bullet"] = 0.5
 	owner.dmg_multipliers["slash"] = 0.75
@@ -777,6 +789,9 @@ Currently only has the tank hardpoints
 
 	disp_icon = "tank"
 	disp_icon_state = "treads"
+
+/obj/item/hardpoint/treads/standard/broken
+	health = 0
 
 /obj/item/hardpoint/treads/standard/get_icon_image(var/x_offset, var/y_offset, var/new_dir)
 	return null //Handled in update_icon()

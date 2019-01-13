@@ -115,6 +115,7 @@
 
 	var/min_shell_range = 3
 	var/close_shell_range = 5
+	var/screen_shell_range = 7
 	var/near_shell_range = 10
 	var/short_shell_range = 15
 	var/norm_shell_range = 20
@@ -393,6 +394,8 @@
 			min_shell_range = value
 		if("close_shell_range")
 			close_shell_range = value
+		if("screen_shell_range")
+			screen_shell_range = value
 		if("short_shell_range")
 			short_shell_range = value
 		if("near_shell_range")

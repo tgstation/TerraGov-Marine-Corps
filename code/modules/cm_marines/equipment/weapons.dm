@@ -197,17 +197,17 @@
 		..()
 		spawn(1)
 			new /obj/item/clothing/suit/storage/marine/sniper(src)
-			new /obj/item/clothing/glasses/m42_goggles(src)
+			new /obj/item/clothing/glasses/night/m42_night_goggles(src)
 			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/flak(src)
-			new /obj/item/device/binoculars(src)
+			new /obj/item/device/binoculars/tactical(src)
 			new /obj/item/storage/backpack/marine/smock(src)
 			new /obj/item/weapon/gun/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
-
+			new /obj/item/bodybag/tarp(src)
 
 	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
@@ -360,15 +360,15 @@
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/flak(src)
 			new /obj/item/device/binoculars/tactical(src)
-			new /obj/item/storage/backpack/marine/smock(src)
 			new /obj/item/weapon/gun/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
+			new /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper(src)
 			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
 			new /obj/item/explosive/grenade/cloakbomb(src)
 			new /obj/item/explosive/grenade/cloakbomb(src)
 			new /obj/item/explosive/grenade/cloakbomb(src)
-			new /obj/item/explosive/grenade/cloakbomb(src)
+			new /obj/item/bodybag/tarp(src)
 
 	open(mob/user) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
@@ -387,7 +387,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
 	w_class = 5
-	storage_slots = 21
+	storage_slots = 22
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -412,11 +412,12 @@
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/weapon/gun/rifle/m4ra(src)
-			new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
+			new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
 			new /obj/item/device/motiondetector/scout(src)
 			new /obj/item/explosive/grenade/cloakbomb(src)
 			new /obj/item/explosive/grenade/cloakbomb(src)
 			new /obj/item/explosive/grenade/cloakbomb(src)
+			new /obj/item/bodybag/tarp(src)
 
 
 
