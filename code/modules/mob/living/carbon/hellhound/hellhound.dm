@@ -245,7 +245,7 @@
 
 
 /mob/living/carbon/hellhound/IsAdvancedToolUser()
-	return 0
+	return FALSE
 
 /mob/living/carbon/hellhound/vomit()
 	return

@@ -311,7 +311,7 @@
 	desc = "The actual firearm in the 4-piece M56D Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way.\nYou may toggle firing restrictions by using a special action."
 	origin_tech = "combat=7;materials=5"
 	current_mag = /obj/item/ammo_magazine/internal/smartgun/dirty
-	ammo_secondary = /datum/ammo/bullet/smartgun/lethal
+	ammo_secondary = /datum/ammo/bullet/smartgun/dirty/lethal
 	attachable_allowed = list() //Cannot be upgraded.
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY
 
