@@ -148,7 +148,7 @@
 			to_chat(user, "<span class='warning'>You must be zoomed in to use your targeting laser!</span>")
 		return
 	targetlaser_on = TRUE
-	accuracy_mult = config.max_hit_accuracy_mult
+	accuracy_mult += config.max_hit_accuracy_mult //We get a big accuracy bonus vs the lasered target
 	if(!silent && user)
 		to_chat(user, "<span class='notice'><b>You activate your targeting laser and take careful aim.</b></span>")
 		playsound(user,'sound/machines/click.ogg', 25, 1)
@@ -157,7 +157,7 @@
 	if(laser_target)
 		laser_target.remove_laser()
 	laser_target = null
-	accuracy_mult = -config.max_hit_accuracy_mult
+	accuracy_mult -= config.max_hit_accuracy_mult //We lose a big accuracy bonus vs the now unlasered target
 	STOP_PROCESSING(SSobj, src)
 	if(toggle_off)
 		targetlaser_on = FALSE
