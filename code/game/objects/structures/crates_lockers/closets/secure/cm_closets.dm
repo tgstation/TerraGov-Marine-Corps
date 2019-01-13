@@ -12,17 +12,16 @@
 	icon = 'icons/Marine/Marine_Lockers.dmi'
 	var/closet_squad //which squad this closet belong to
 
-	/obj/structure/closet/secure_closet/marine/New()
-		. = ..()
-		new /obj/item/clothing/shoes/marine(src)
-
+/obj/structure/closet/secure_closet/marine/New()
+	. = ..()
+	new /obj/item/clothing/shoes/marine(src)
 		if(closet_squad)
-			icon_state = "squad_[closet_squad]_locked"
-			icon_closed = "squad_[closet_squad]_unlocked"
-			icon_locked = "squad_[closet_squad]_locked"
-			icon_opened = "squad_[closet_squad]_open"
-			icon_broken = "squad_[closet_squad]_emmaged"
-			icon_off = "squad_[closet_squad]_off"
+		icon_state = "squad_[closet_squad]_locked"
+		icon_closed = "squad_[closet_squad]_unlocked"
+		icon_locked = "squad_[closet_squad]_locked"
+		icon_opened = "squad_[closet_squad]_open"
+		icon_broken = "squad_[closet_squad]_emmaged"
+		icon_off = "squad_[closet_squad]_off"
 
 	/obj/structure/closet/secure_closet/marine/select_gamemode_equipment()
 		switch(map_tag)
