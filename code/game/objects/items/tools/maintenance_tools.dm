@@ -202,7 +202,7 @@
 		if(!(S.status & LIMB_ROBOT) || user.a_intent != "help")
 			return ..()
 
-		if(H.species.flags & IS_SYNTHETIC)
+		if(issynth(H))
 			if(M == user)
 				to_chat(user, "<span class='warning'>You can't repair damage to your own body - it's against OH&S.</span>")
 				return
@@ -225,20 +225,6 @@
 		return
 	if(!status && O.is_refillable())
 		reagents.trans_to(O, reagents.total_volume)
-	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1)
-		if(!welding)
-			O.reagents.trans_to(src, max_fuel)
-			weld_tick = 0
-			user.visible_message("<span class='notice'>[user] refills [src].</span>", \
-			"<span class='notice'>You refill [src].</span>")
-			playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		else
-			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a blowtorch.")
-			log_game("[key_name(user)] triggered a fueltank explosion with a blowtorch.")
-			to_chat(user, "<span class='danger'>You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.</span>")
-			var/obj/structure/reagent_dispensers/fueltank/tank = O
-			tank.explode()
-		return
 	if (welding)
 		remove_fuel(1)
 

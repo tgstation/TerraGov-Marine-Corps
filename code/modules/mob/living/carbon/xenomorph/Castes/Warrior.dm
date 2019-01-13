@@ -28,7 +28,7 @@
 	evolution_threshold = 200
 	upgrade_threshold = 200
 
-	evolves_to = list(/mob/living/carbon/Xenomorph/Praetorian, /mob/living/carbon/Xenomorph/Crusher)
+	evolves_to = list(/mob/living/carbon/Xenomorph/Crusher)
 	deevolves_to = /mob/living/carbon/Xenomorph/Defender
 
 	// *** Flags *** //

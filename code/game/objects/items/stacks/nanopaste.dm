@@ -6,6 +6,7 @@
 	icon_state = "tube"
 	origin_tech = "materials=4;engineering=3"
 	amount = 10
+	max_amount = 10
 	w_class = 2
 	stack_id = "nanopaste"
 

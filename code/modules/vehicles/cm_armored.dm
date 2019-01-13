@@ -782,6 +782,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	add_hardpoint(HP, user)
 
+	update_icon()
+
 //User-orientated proc for taking of hardpoints
 //Again, similar to the above ones
 /obj/vehicle/multitile/root/cm_armored/proc/uninstall_hardpoint(var/obj/item/O, var/mob/user)
@@ -823,14 +825,14 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //General proc for putting on hardpoints
 //ALWAYS CALL THIS WHEN ATTACHING HARDPOINTS
 /obj/vehicle/multitile/root/cm_armored/proc/add_hardpoint(var/obj/item/hardpoint/HP, var/mob/user)
-
+	if(!istype(HP))
+		return
 	HP.owner = src
-	HP.apply_buff()
+	if(HP.health > 0)
+		HP.apply_buff()
 	HP.loc = src
 
 	hardpoints[HP.slot] = HP
-
-	update_icon()
 
 //General proc for taking off hardpoints
 //ALWAYS CALL THIS WHEN REMOVING HARDPOINTS
