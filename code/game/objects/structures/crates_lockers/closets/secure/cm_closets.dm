@@ -12,7 +12,7 @@
 	icon = 'icons/Marine/Marine_Lockers.dmi'
 	var/closet_squad //which squad this closet belong to
 
-	New()
+	/obj/structure/closet/secure_closet/marine/New()
 		..()
 		new /obj/item/clothing/shoes/marine(src)
 
@@ -45,7 +45,7 @@
 	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA)
 	closet_squad = "alpha"
 
-	New()
+	/obj/structure/closet/secure_closet/marine/standard/alpha/New()
 		..()
 		new /obj/item/device/radio/headset/almayer/marine/alpha(src)
 		new /obj/item/clothing/gloves/marine/alpha(src)
@@ -55,7 +55,7 @@
 	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_BRAVO)
 	closet_squad = "bravo"
 
-	New()
+	/obj/structure/closet/secure_closet/marine/standard/bravo/New()
 		..()
 		new /obj/item/device/radio/headset/almayer/marine/bravo(src)
 		new /obj/item/clothing/gloves/marine/bravo(src)
@@ -65,7 +65,7 @@
 	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_CHARLIE)
 	closet_squad = "charlie"
 
-	New()
+	/obj/structure/closet/secure_closet/marine/standard/charlie/New()
 		..()
 		new /obj/item/device/radio/headset/almayer/marine/charlie(src)
 		new /obj/item/clothing/gloves/marine/charlie(src)
@@ -75,7 +75,7 @@
 	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DELTA)
 	closet_squad = "delta"
 
-	New()
+	/obj/structure/closet/secure_closet/marine/standard/delta/New()
 		..()
 		new /obj/item/device/radio/headset/almayer/marine/delta(src)
 		new /obj/item/clothing/gloves/marine/delta(src)
@@ -96,7 +96,7 @@
 	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_LEADER)
 	closet_squad = "alpha"
 
-	New()
+	/obj/structure/closet/secure_closet/marine/leader/alpha/New()
 		..()
 		new /obj/item/clothing/gloves/marine/alpha(src)
 		new /obj/item/device/radio/headset/almayer/marine/alpha/lead(src)
@@ -106,7 +106,7 @@
 	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_BRAVO, ACCESS_MARINE_LEADER)
 	closet_squad = "bravo"
 
-	New()
+	/obj/structure/closet/secure_closet/marine/leader/bravo/New()
 		..()
 		new /obj/item/clothing/gloves/marine/bravo(src)
 		new /obj/item/device/radio/headset/almayer/marine/bravo/lead(src)
@@ -116,7 +116,7 @@
 	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_LEADER)
 	closet_squad = "charlie"
 
-	New()
+	/obj/structure/closet/secure_closet/marine/leader/charlie/New()
 		..()
 		new /obj/item/clothing/gloves/marine/charlie(src)
 		new /obj/item/device/radio/headset/almayer/marine/charlie/lead(src)
@@ -126,7 +126,7 @@
 	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DELTA, ACCESS_MARINE_LEADER)
 	closet_squad = "delta"
 
-	New()
+	/obj/structure/closet/secure_closet/marine/leader/delta/New()
 		..()
 		new /obj/item/clothing/gloves/marine/delta(src)
 		new /obj/item/device/radio/headset/almayer/marine/delta/lead(src)
@@ -140,7 +140,7 @@
 	slotlocktype = "engi"
 	health = 100000 // just no
 
-	New()
+	/obj/structure/closet/secure_closet/marine/engi/New()
 		..()
 		new /obj/item/storage/belt/utility/full(src)
 		new /obj/item/clothing/glasses/welding(src)
@@ -157,7 +157,7 @@
 	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_ENGPREP)
 	closet_squad = "alpha"
 
-	New()
+	/obj/structure/closet/secure_closet/marine/engi/alpha/New()
 		..()
 		new /obj/item/clothing/gloves/marine/alpha/insulated(src)
 		new /obj/item/device/radio/headset/almayer/marine/alpha/engi(src)
@@ -167,7 +167,7 @@
 	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_BRAVO, ACCESS_MARINE_ENGPREP)
 	closet_squad = "bravo"
 
-	New()
+	/obj/structure/closet/secure_closet/marine/engi/bravo/New()
 		..()
 		new /obj/item/clothing/gloves/marine/bravo/insulated(src)
 		new /obj/item/device/radio/headset/almayer/marine/bravo/engi(src)
@@ -177,7 +177,7 @@
 	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_ENGPREP)
 	closet_squad = "charlie"
 
-	New()
+	/obj/structure/closet/secure_closet/marine/engi/charlie/New()
 		..()
 		new /obj/item/clothing/gloves/marine/charlie/insulated(src)
 		new /obj/item/device/radio/headset/almayer/marine/charlie/engi(src)
@@ -187,7 +187,7 @@
 	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DELTA, ACCESS_MARINE_ENGPREP)
 	closet_squad = "delta"
 
-	New()
+	/obj/structure/closet/secure_closet/marine/engi/delta/New()
 		..()
 		new /obj/item/clothing/gloves/marine/delta/insulated(src)
 		new /obj/item/device/radio/headset/almayer/marine/delta/engi(src)
@@ -200,7 +200,7 @@
 	slotlocktype = "medic"
 	health = 100000 // just no
 
-	New()
+	/obj/structure/closet/secure_closet/marine/medic/New()
 		..()
 		new /obj/item/storage/belt/combatLifesaver(src)
 		new /obj/item/clothing/glasses/hud/health(src)
@@ -219,7 +219,7 @@
 	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_ALPHA, ACCESS_MARINE_MEDPREP)
 	closet_squad = "alpha"
 
-	New()
+	/obj/structure/closet/secure_closet/marine/medic/alpha/New()
 		..()
 		new /obj/item/clothing/gloves/marine/alpha(src)
 		new /obj/item/device/radio/headset/almayer/marine/alpha/med(src)
@@ -229,7 +229,7 @@
 	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_BRAVO, ACCESS_MARINE_MEDPREP)
 	closet_squad = "bravo"
 
-	New()
+	/obj/structure/closet/secure_closet/marine/medic/bravo/New()
 		..()
 		new /obj/item/clothing/gloves/marine/bravo(src)
 		new /obj/item/device/radio/headset/almayer/marine/bravo/med(src)
@@ -239,7 +239,7 @@
 	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_MEDPREP)
 	closet_squad = "charlie"
 
-	New()
+	/obj/structure/closet/secure_closet/marine/medic/charlie/New()
 		..()
 		new /obj/item/clothing/gloves/marine/charlie(src)
 		new /obj/item/device/radio/headset/almayer/marine/charlie/med(src)
@@ -249,7 +249,7 @@
 	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DELTA, ACCESS_MARINE_MEDPREP)
 	closet_squad = "delta"
 
-	New()
+	/obj/structure/closet/secure_closet/marine/medic/delta/New()
 		..()
 		new /obj/item/clothing/gloves/marine/delta(src)
 		new /obj/item/device/radio/headset/almayer/marine/delta/med(src)
