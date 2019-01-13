@@ -169,7 +169,7 @@ If you are not piloting, there is an autopilot fallback for command, but don't l
 
 
 //Tank Crewmen
-/datum/job/command/tank_crew	
+/datum/job/command/tank_crew
 	title = "Tank Crewman"
 	comm_title = "TC"
 	paygrade = "O1"

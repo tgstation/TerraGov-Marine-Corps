@@ -283,14 +283,6 @@
 		access = get_all_centcom_access()
 		..()
 
-/obj/item/card/id/centcom/sa
-	name = "\improper Spatial Agent ID"
-	desc = "An ID worn by Spatial Agents."
-	registered_name = "High Command"
-	New()
-		access = get_all_accesses()
-
-
 /obj/item/card/id/equipped(mob/living/carbon/human/H, slot)
 	if(istype(H))
 		H.update_inv_head() //updating marine helmet squad coloring
