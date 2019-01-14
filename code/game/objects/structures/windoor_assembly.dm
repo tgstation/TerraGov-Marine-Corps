@@ -190,6 +190,8 @@ obj/structure/windoor_assembly/Destroy()
 					else
 						src.name = "Wired Windoor Assembly"
 					var/obj/item/circuitboard/airlock/ae = electronics
+					if(electronics.is_general_board)
+						ae.set_general()
 					electronics = null
 					ae.loc = src.loc
 
