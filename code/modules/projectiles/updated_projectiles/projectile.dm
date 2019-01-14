@@ -235,6 +235,8 @@
 
 		if(hit_chance)
 			if(isliving(A))
+				if(shot_from && shot_from.sniper_target(A) && A != shot_from.sniper_target(A)) //First check to see if we've actually got anyone targeted; If we've singled out someone with a targeting laser, forsake all others
+					continue
 				var/mob_is_hit = FALSE
 				var/mob/living/L = A
 
@@ -243,8 +245,16 @@
 				var/i = 0
 				while(++i <= 2 && hit_chance > 0) // This runs twice if necessary
 					hit_roll 					= rand(0, 99) //Our randomly generated roll
-					if(hit_roll < 25) def_zone 	= pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
-					hit_chance 				   -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
+					#if DEBUG_HIT_CHANCE
+					to_chat(world, "DEBUG: Hit Chance 1: [hit_chance], Hit Roll: [hit_roll]")
+					#endif
+					if(hit_roll < 25 && !shot_from.sniper_target(A)) //Sniper targets more likely to hit
+						def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
+					if(!shot_from.sniper_target(A))
+						hit_chance -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
+						#if DEBUG_HIT_CHANCE
+						to_chat(world, "Hit Chance 2: [hit_chance]")
+						#endif
 
 					switch(i)
 						if(1)
@@ -509,7 +519,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	//Shields
 	if( !(P.ammo.flags_ammo_behavior & AMMO_ROCKET) ) //No, you can't block rockets.
-		if( P.dir == reverse_direction(dir) && check_shields(damage * 0.65, "[P]") )
+		if( P.dir == reverse_direction(dir) && check_shields(damage * 0.65, "[P]") && src != P.shot_from.sniper_target(src)) //Aimed sniper shots will ignore shields
 			P.ammo.on_shield_block(src)
 			bullet_ping(P)
 			return
@@ -529,6 +539,9 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		to_chat(world, "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>")
 		#endif
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
+		if(src == P.shot_from.sniper_target(src))
+			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER //+50% damage vs the aimed target
+			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER //+50% penetration vs the aimed target
 		armor -= penetration//Minus armor penetration from the bullet. If the bullet has negative penetration, adding to their armor, but they don't have armor, they get nothing.
 		#if DEBUG_HUMAN_DEFENSE
 		to_chat(world, "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>")
@@ -641,7 +654,12 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			#endif
 
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
+		if(src == P.shot_from.sniper_target(src))
+			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER //+50% damage vs the aimed target
+			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER //+50% penetration vs the aimed target
+
 		armor -= penetration
+
 		#if DEBUG_XENO_DEFENSE
 		world << "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>"
 		#endif

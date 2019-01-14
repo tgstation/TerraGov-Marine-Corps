@@ -1142,7 +1142,7 @@
 	A.permutated += src
 	A.def_zone = get_limbzone_target()
 
-	A.fire_at(T, src, null, ammo.max_range, ammo.shell_speed)
+	A.fire_at(T, src, src, ammo.max_range, ammo.shell_speed)
 	has_spat = world.time + xeno_caste.spit_delay + ammo.added_spit_delay
 	use_plasma(ammo.spit_cost)
 	cooldown_notification(xeno_caste.spit_delay + ammo.added_spit_delay, "spit")
