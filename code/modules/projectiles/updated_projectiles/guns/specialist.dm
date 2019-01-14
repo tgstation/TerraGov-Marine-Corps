@@ -9,7 +9,8 @@
 	gun_skill_category = GUN_SKILL_SPEC
 	wield_delay = WIELD_DELAY_SLOW
 
-//Pow! Headshot.
+//Pow! Headshot
+
 /obj/item/weapon/gun/rifle/sniper/M42A
 	name = "\improper M42A scoped rifle"
 	desc = "A heavy sniper rifle manufactured by Armat Systems. It has a scope system and fires armor penetrating rounds out of a 15-round magazine.\n'Peace Through Superior Firepower'"
@@ -21,15 +22,21 @@
 	force = 12
 	wield_delay = 12 //Ends up being 1.6 seconds due to scope
 	zoomdevicename = "scope"
-	attachable_allowed = list(/obj/item/attachable/bipod)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
+	var/targetlaser_on = FALSE
+	var/mob/living/carbon/laser_target = null
+	var/image/LT = null
+	attachable_allowed = list(
+                        /obj/item/attachable/bipod,
+                        /obj/item/attachable/lasersight,
+                        )
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 
 /obj/item/weapon/gun/rifle/sniper/M42A/New()
-	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a"))
+	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a") )
 	. = ..()
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
-	var/obj/item/attachable/scope/S = new(src)
+	var/obj/item/attachable/scope/m42a/S = new(src)
 	S.attach_icon = "" //Let's make it invisible. The sprite already has one.
 	S.icon_state = ""
 	S.flags_attach_features &= ~ATTACH_REMOVABLE
@@ -38,13 +45,130 @@
 	Q.Attach(src)
 	update_attachables()
 	S.icon_state = initial(S.icon_state)
+	LT = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-LASER_LAYER)
 
+/obj/item/weapon/gun/rifle/sniper/M42A/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
+	if(!able_to_fire(user))
+		return
+	if(targetlaser_on)
+		if(!iscarbon(target))
+			return
+		if(laser_target)
+			laser_target.remove_laser()
+		laser_target = target
+		to_chat(user, "<span class='danger'>You focus your targeting laser on [target]!</span>")
+		targetlaser_on = FALSE
+		laser_target.apply_laser()
+		STOP_PROCESSING(SSobj, src) //So we don't accumulate additional processing.
+		START_PROCESSING(SSobj, src)
+		return
+	return ..()
+
+
+/mob/living/carbon/proc/apply_laser()
+	return FALSE
+
+/mob/living/carbon/human/apply_laser()
+	overlays_standing[LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-LASER_LAYER)
+	apply_overlay(LASER_LAYER)
+
+/mob/living/carbon/Xenomorph/apply_laser()
+	overlays_standing[X_LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-X_LASER_LAYER)
+	apply_overlay(X_LASER_LAYER)
+
+/mob/living/carbon/monkey/apply_laser()
+	overlays_standing[M_LASER_LAYER] = image("icon" = 'icons/obj/items/projectiles.dmi',"icon_state" = "sniper_laser", "layer" =-M_LASER_LAYER)
+	apply_overlay(M_LASER_LAYER)
+
+
+/mob/living/carbon/proc/remove_laser()
+	return FALSE
+
+/mob/living/carbon/human/remove_laser()
+	remove_overlay(LASER_LAYER)
+
+/mob/living/carbon/Xenomorph/remove_laser()
+	remove_overlay(X_LASER_LAYER)
+
+/mob/living/carbon/monkey/remove_laser()
+	remove_overlay(M_LASER_LAYER)
+
+
+/obj/item/weapon/gun/rifle/sniper/M42A/unique_action(mob/user)
+	if(!targetlaser_on)
+		laser_on(user)
+
+	else if(zoom)
+		laser_off(user)
+
+/obj/item/weapon/gun/rifle/sniper/M42A/Destroy()
+	laser_off()
+	. = ..()
+
+/obj/item/weapon/gun/rifle/sniper/M42A/dropped()
+	laser_off()
+	. = ..()
+
+/obj/item/weapon/gun/rifle/sniper/M42A/process()
+	if(!zoom)
+		laser_off()
+		return
+	var/mob/living/user = loc
+	if(!isliving(user) )
+		laser_off()
+		return
+	if(!laser_target)
+		laser_off(user, FALSE)
+		return
+	if(!can_see(user, laser_target, length=23))
+		laser_off(user, FALSE)
+		to_chat(user, "<span class='danger'>You lose sight of your target!</span>")
+
+/obj/item/weapon/gun/rifle/sniper/M42A/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //tileoffset is client view offset in the direction the user is facing. viewsize is how far out this thing zooms. 7 is normal view
+	. = ..()
+	if(!zoom && targetlaser_on)
+		laser_off(user)
+
+/atom/proc/sniper_target(atom/A)
+	return FALSE
+
+/obj/item/weapon/gun/rifle/sniper/M42A/sniper_target(atom/A)
+	if(!laser_target)
+		return FALSE
+	if(A == laser_target)
+		return laser_target
+	else
+		return TRUE
+
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_on(mob/user, silent = FALSE)
+	if(targetlaser_on)
+		return
+	if(!zoom)
+		if(!silent)
+			to_chat(user, "<span class='warning'>You must be zoomed in to use your targeting laser!</span>")
+		return
+	targetlaser_on = TRUE
+	accuracy_mult += config.max_hit_accuracy_mult //We get a big accuracy bonus vs the lasered target
+	if(!silent && user)
+		to_chat(user, "<span class='notice'><b>You activate your targeting laser and take careful aim.</b></span>")
+		playsound(user,'sound/machines/click.ogg', 25, 1)
+
+/obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_off(mob/user, toggle_off = TRUE, silent = FALSE)
+	if(laser_target)
+		laser_target.remove_laser()
+	laser_target = null
+	accuracy_mult -= config.max_hit_accuracy_mult //We lose a big accuracy bonus vs the now unlasered target
+	STOP_PROCESSING(SSobj, src)
+	if(toggle_off)
+		targetlaser_on = FALSE
+		if(!silent && user)
+			to_chat(user, "<span class='notice'><b>You deactivate your targeting laser.</b></span>")
+			playsound(user,'sound/machines/click.ogg', 25, 1)
 
 /obj/item/weapon/gun/rifle/sniper/M42A/set_gun_config_values()
 	fire_delay = config.high_fire_delay*5
 	burst_amount = config.min_burst_value
-	accuracy_mult = config.base_hit_accuracy_mult*1.5
-	scatter = config.low_scatter_value
+	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
 	damage_mult = config.base_hit_damage_mult
 	recoil = config.min_recoil_value
 
@@ -67,11 +191,10 @@
 	zoomdevicename = "scope"
 	attachable_allowed = list()
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
-
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
 /obj/item/weapon/gun/rifle/sniper/elite/New()
 	. = ..()
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 	var/obj/item/attachable/scope/S = new(src)
 	S.icon_state = "pmcscope"
 	S.attach_icon = "pmcscope"
@@ -119,11 +242,10 @@
 						/obj/item/attachable/scope/slavic)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
-
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
 /obj/item/weapon/gun/rifle/sniper/svd/New()
 	. = ..()
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	var/obj/item/attachable/S = new /obj/item/attachable/scope/slavic(src)
 	S.Attach(src)
 	S = new /obj/item/attachable/slavicbarrel(src)
@@ -156,24 +278,18 @@
 	current_mag = /obj/item/ammo_magazine/rifle/m4ra
 	force = 16
 	attachable_allowed = list(
-						/obj/item/attachable/heavy_barrel,
-						/obj/item/attachable/extended_barrel,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
 						/obj/item/attachable/bipod,
-						/obj/item/attachable/compensator,
-						/obj/item/attachable/lasersight,
-						/obj/item/attachable/attached_gun/grenade,
-						/obj/item/attachable/attached_gun/shotgun,
-						)
+						/obj/item/attachable/compensator)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
 /obj/item/weapon/gun/rifle/m4ra/New()
 	. = ..()
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 	var/obj/item/attachable/scope/m4ra/S = new(src)
 	S.icon_state = null // the gun's sprite already shows a scope
 	S.attach_icon = null
@@ -185,16 +301,13 @@
 
 
 /obj/item/weapon/gun/rifle/m4ra/set_gun_config_values()
-	fire_delay = config.mhigh_fire_delay
-	burst_amount = config.low_burst_value
-	burst_delay = config.vlow_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.max_hit_accuracy_mult
-	scatter_unwielded = config.max_scatter_value
+	fire_delay = config.high_fire_delay
+	burst_amount = config.med_burst_value
+	burst_delay = config.mlow_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	scatter = config.low_scatter_value
 	damage_mult = config.base_hit_damage_mult
 	recoil = config.min_recoil_value
-	recoil_unwielded = config.high_recoil_value
-	damage_falloff_mult = config.low_damage_falloff_mult
 
 //-------------------------------------------------------
 //SMARTGUN
@@ -227,12 +340,11 @@
 
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/flashlight)
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 17, "rail_y" = 17, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
 
 /obj/item/weapon/gun/smartgun/New()
 	. = ..()
 	ammo_secondary = ammo_list[ammo_secondary]
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 17, "rail_y" = 17, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
-
 
 /obj/item/weapon/gun/smartgun/set_gun_config_values()
 	fire_delay = config.low_fire_delay
@@ -254,7 +366,7 @@
 /obj/item/weapon/gun/smartgun/able_to_fire(mob/living/user)
 	. = ..()
 	if(.)
-		if(!ishuman(user)) 
+		if(!ishuman(user))
 			return FALSE
 		var/mob/living/carbon/human/H = user
 		if(!istype(H.wear_suit,/obj/item/clothing/suit/storage/marine/smartgunner) || !istype(H.back,/obj/item/smartgun_powerpack))
@@ -315,7 +427,7 @@
 	desc = "The actual firearm in the 4-piece M56D Smartgun System. If you have this, you're about to bring some serious pain to anyone in your way.\nYou may toggle firing restrictions by using a special action."
 	origin_tech = "combat=7;materials=5"
 	current_mag = /obj/item/ammo_magazine/internal/smartgun/dirty
-	ammo_secondary = /datum/ammo/bullet/smartgun/lethal
+	ammo_secondary = /datum/ammo/bullet/smartgun/dirty/lethal
 	attachable_allowed = list() //Cannot be upgraded.
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY
 
@@ -354,12 +466,11 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
 	var/datum/effect_system/smoke_spread/smoke
-
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
 /obj/item/weapon/gun/launcher/m92/New()
 	set waitfor = 0
 	. = ..()
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	sleep(1)
 	grenades += new /obj/item/explosive/grenade/frag(src)
 	grenades += new /obj/item/explosive/grenade/frag(src)
@@ -380,7 +491,7 @@
 /obj/item/weapon/gun/launcher/m92/examine(mob/user)
 	. = ..()
 	if(grenades.len)
-		if(get_dist(user, src) > 2 && user != loc) 
+		if(get_dist(user, src) > 2 && user != loc)
 			return
 		to_chat(user, "\blue It is loaded with <b>[grenades.len] / [max_grenades]</b> grenades.")
 
@@ -396,12 +507,12 @@
 			to_chat(user, "<span class='warning'>The grenade launcher cannot hold more grenades!</span>")
 
 	else if(istype(I,/obj/item/attachable))
-		if(check_inactive_hand(user)) 
+		if(check_inactive_hand(user))
 			attach_to_gun(user,I)
 
 
 /obj/item/weapon/gun/launcher/m92/afterattack(atom/target, mob/user, flag)
-	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)	
+	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
 		if(!do_after(user, 8, TRUE, 5, BUSY_ICON_HOSTILE))
 			return
 	if(able_to_fire(user))
@@ -431,7 +542,7 @@
 		if(user)
 			user.put_in_hands(nade)
 			playsound(user, unload_sound, 25, 1)
-		else 
+		else
 			nade.loc = get_turf(src)
 		grenades -= nade
 	else
@@ -440,7 +551,7 @@
 
 /obj/item/weapon/gun/launcher/m92/proc/fire_grenade(atom/target, mob/user)
 	set waitfor = 0
-	playsound(user.loc, cocked_sound, 25, 1)	
+	playsound(user.loc, cocked_sound, 25, 1)
 	last_fired = world.time
 	for(var/mob/O in viewers(world.view, user))
 		O.show_message(text("<span class='danger'>[] fired a grenade!</span>", user), 1)
@@ -458,7 +569,7 @@
 		F.updateicon()
 		playsound(F.loc, fire_sound, 50, 1)
 		sleep(10)
-		if(F?.loc) 
+		if(F?.loc)
 			F.prime()
 
 /obj/item/weapon/gun/launcher/m92/has_ammo_counter()
@@ -495,12 +606,11 @@
 	var/grenade
 	var/grenade_type_allowed = /obj/item/explosive/grenade
 	var/riot_version
-
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
 /obj/item/weapon/gun/launcher/m81/New(loc, spawn_empty)
 	set waitfor = 0
 	. = ..()
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	if(!spawn_empty)
 		if(riot_version)
 			grenade = new /obj/item/explosive/grenade/chem_grenade/teargas(src)
@@ -518,7 +628,7 @@
 /obj/item/weapon/gun/launcher/m81/examine(mob/user)
 	. = ..()
 	if(grenade)
-		if(get_dist(user, src) > 2 && user != loc) 
+		if(get_dist(user, src) > 2 && user != loc)
 			return
 		to_chat(user, "\blue It is loaded with a grenade.")
 
@@ -589,7 +699,7 @@
 		F.updateicon()
 		playsound(F.loc, fire_sound, 50, 1)
 		sleep(10)
-		if(F?.loc) 
+		if(F?.loc)
 			F.prime()
 
 
@@ -627,11 +737,10 @@
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
 	var/datum/effect_system/smoke_spread/smoke
-
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
 /obj/item/weapon/gun/launcher/rocket/New()
 	. = ..()
-	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	smoke = new()
 	smoke.attach(src)
 
@@ -649,7 +758,7 @@
 
 	if(!do_after(user, delay, TRUE, 3, BUSY_ICON_HOSTILE)) //slight wind up
 		return
-		
+
 	return ..()
 
 
@@ -669,9 +778,9 @@
 
 /obj/item/weapon/gun/launcher/rocket/examine(mob/user)
 	. = ..()
-	if(current_mag.current_rounds)  
+	if(current_mag.current_rounds)
 		to_chat(user, "It's ready to rocket.")
-	else 							
+	else
 		to_chat(user, "It's empty.")
 
 
@@ -687,13 +796,13 @@
 
 /obj/item/weapon/gun/launcher/rocket/delete_bullet(obj/item/projectile/projectile_to_fire, refund = FALSE)
 	qdel(projectile_to_fire)
-	if(refund) 
+	if(refund)
 		current_mag.current_rounds++
 	return TRUE
 
 
 /obj/item/weapon/gun/launcher/rocket/reload(mob/user, obj/item/ammo_magazine/rocket)
-	if(flags_gun_features & GUN_BURST_FIRING) 
+	if(flags_gun_features & GUN_BURST_FIRING)
 		return
 
 	if(!rocket || !istype(rocket) || rocket.caliber != current_mag.caliber)
@@ -716,9 +825,9 @@
 			current_mag.current_rounds = current_mag.max_rounds
 			rocket.current_rounds = 0
 			to_chat(user, "<span class='notice'>You load [rocket] into [src].</span>")
-			if(reload_sound) 
+			if(reload_sound)
 				playsound(user, reload_sound, 25, 1)
-			else 
+			else
 				playsound(user,'sound/machines/click.ogg', 25, 1)
 		else
 			to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
@@ -733,9 +842,9 @@
 
 /obj/item/weapon/gun/launcher/rocket/unload(mob/user)
 	if(user)
-		if(!current_mag.current_rounds) 
+		if(!current_mag.current_rounds)
 			to_chat(user, "<span class='warning'>[src] is already empty!</span>")
-		else 							
+		else
 			to_chat(user, "<span class='warning'>It would be too much trouble to unload [src] now. Should have thought ahead!</span>")
 
 //Adding in the rocket backblast. The tile behind the specialist gets blasted hard enough to down and slightly wound anyone

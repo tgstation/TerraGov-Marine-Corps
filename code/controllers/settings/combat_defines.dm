@@ -97,6 +97,7 @@
 	var/low_scatter_value = 15
 	var/med_scatter_value = 20
 	var/high_scatter_value = 25
+	var/thirty_scatter_value = 30
 	var/mhigh_scatter_value = 35
 	var/max_scatter_value = 40
 
@@ -115,6 +116,7 @@
 
 	var/min_shell_range = 3
 	var/close_shell_range = 5
+	var/screen_shell_range = 7
 	var/near_shell_range = 10
 	var/short_shell_range = 15
 	var/norm_shell_range = 20
@@ -360,6 +362,8 @@
 			med_scatter_value = value
 		if("high_scatter_value")
 			high_scatter_value = value
+		if("thirty_scatter_value")
+			thirty_scatter_value = value
 		if("mhigh_scatter_value")
 			mhigh_scatter_value = value
 		if("max_scatter_value")
@@ -393,6 +397,8 @@
 			min_shell_range = value
 		if("close_shell_range")
 			close_shell_range = value
+		if("screen_shell_range")
+			screen_shell_range = value
 		if("short_shell_range")
 			short_shell_range = value
 		if("near_shell_range")

@@ -10,9 +10,9 @@
 	name = "projectile"
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "bullet"
-	density = 0
-	unacidable = 1
-	anchored = 1 //You will not have me, space wind!
+	density = FALSE
+	unacidable = TRUE
+	anchored = TRUE //You will not have me, space wind!
 	flags_atom = NOINTERACT //No real need for this, but whatever. Maybe this flag will do something useful in the future.
 	mouse_opacity = 0
 	invisibility = 100 // We want this thing to be invisible when it drops on a turf because it will be on the user's turf. We then want to make it visible as it travels.
@@ -49,36 +49,37 @@
 	var/distance_travelled = 0
 	var/in_flight = 0
 
-	var/list_reagents = null
+	var/projectile_speed = 0
 
-	New()
-		. = ..()
-		path = list()
-		permutated = list()
+/obj/item/projectile/New()
+	. = ..()
+	path = list()
+	permutated = list()
 
-	Destroy()
-		..()
-		in_flight = 0
-		ammo = null
-		shot_from = null
-		original = null
-		target_turf = null
-		starting = null
-		permutated = null
-		path = null
-		list_reagents = null
-		return TA_REVIVE_ME
+/obj/item/projectile/Destroy()
+	. = ..()
+	in_flight = 0
+	ammo = null
+	shot_from = null
+	original = null
+	target_turf = null
+	starting = null
+	permutated = null
+	path = null
+	list_reagents = null
+	return TA_REVIVE_ME
 
-	Bumped(atom/A as mob|obj|turf|area)
-		if(A && !A in permutated)
-			scan_a_turf(A.loc)
+/obj/item/projectile/Bumped(atom/A as mob|obj|turf|area)
+	if(A && !A in permutated)
+		scan_a_turf(A.loc)
 
-	Crossed(AM as mob|obj)
-		if(AM && !AM in permutated)
-			scan_a_turf(get_turf(AM))
+/obj/item/projectile/Crossed(AM as mob|obj)
+	if(AM && !AM in permutated)
+		scan_a_turf(get_turf(AM))
 
 
-	ex_act() return FALSE //We do not want anything to delete these, simply to make sure that all the bullet references are not runtiming. Otherwise, constantly need to check if the bullet exists.
+/obj/item/projectile/ex_act()
+	return FALSE //We do not want anything to delete these, simply to make sure that all the bullet references are not runtiming. Otherwise, constantly need to check if the bullet exists.
 
 /obj/item/projectile/proc/generate_bullet(ammo_datum, bonus_damage = 0, reagent_multiplier = 0)
 	ammo 		= ammo_datum
@@ -94,6 +95,7 @@
 
 //Target, firer, shot from. Ie the gun
 /obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
+	projectile_speed += speed
 	if(!original) original = target
 	if(!loc) loc = get_turf(F)
 	starting = get_turf(src)
@@ -130,7 +132,7 @@
 	rotate.Turn(angle)
 	src.transform = rotate
 
-	follow_flightpath(speed,change_x,change_y,range) //pyew!
+	follow_flightpath(projectile_speed,change_x,change_y,range) //pyew!
 
 /obj/item/projectile/proc/each_turf(speed = 1)
 	var/new_speed = speed
@@ -236,6 +238,8 @@
 
 		if(hit_chance)
 			if(isliving(A))
+				if(shot_from && shot_from.sniper_target(A) && A != shot_from.sniper_target(A)) //First check to see if we've actually got anyone targeted; If we've singled out someone with a targeting laser, forsake all others
+					continue
 				var/mob_is_hit = FALSE
 				var/mob/living/L = A
 
@@ -244,8 +248,16 @@
 				var/i = 0
 				while(++i <= 2 && hit_chance > 0) // This runs twice if necessary
 					hit_roll 					= rand(0, 99) //Our randomly generated roll
-					if(hit_roll < 25) def_zone 	= pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
-					hit_chance 				   -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
+					#if DEBUG_HIT_CHANCE
+					to_chat(world, "DEBUG: Hit Chance 1: [hit_chance], Hit Roll: [hit_roll]")
+					#endif
+					if(hit_roll < 25 && !shot_from.sniper_target(A)) //Sniper targets more likely to hit
+						def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
+					if(!shot_from.sniper_target(A))
+						hit_chance -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
+						#if DEBUG_HIT_CHANCE
+						to_chat(world, "Hit Chance 2: [hit_chance]")
+						#endif
 
 					switch(i)
 						if(1)
@@ -510,7 +522,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	//Shields
 	if( !(P.ammo.flags_ammo_behavior & AMMO_ROCKET) ) //No, you can't block rockets.
-		if( P.dir == reverse_direction(dir) && check_shields(damage * 0.65, "[P]") )
+		if( P.dir == reverse_direction(dir) && check_shields(damage * 0.65, "[P]") && src != P.shot_from.sniper_target(src)) //Aimed sniper shots will ignore shields
 			P.ammo.on_shield_block(src)
 			bullet_ping(P)
 			return
@@ -530,6 +542,9 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 		to_chat(world, "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>")
 		#endif
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
+		if(src == P.shot_from.sniper_target(src))
+			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER //+50% damage vs the aimed target
+			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER //+50% penetration vs the aimed target
 		armor -= penetration//Minus armor penetration from the bullet. If the bullet has negative penetration, adding to their armor, but they don't have armor, they get nothing.
 		#if DEBUG_HUMAN_DEFENSE
 		to_chat(world, "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>")
@@ -642,7 +657,12 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			#endif
 
 		var/penetration = P.ammo.penetration > 0 || armor > 0 ? P.ammo.penetration : 0
+		if(src == P.shot_from.sniper_target(src))
+			damage *= SNIPER_LASER_DAMAGE_MULTIPLIER //+50% damage vs the aimed target
+			penetration *= SNIPER_LASER_ARMOR_MULTIPLIER //+50% penetration vs the aimed target
+
 		armor -= penetration
+
 		#if DEBUG_XENO_DEFENSE
 		world << "<span class='debuginfo'>Adjusted armor after penetration is: <b>[armor]</b></span>"
 		#endif
@@ -724,7 +744,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	switch(P.ammo.damage_type)
 		if(BRUTE) 	damage = P.ammo.flags_ammo_behavior & AMMO_ROCKET ? round(damage * 10) : damage //Bullets do much less to walls and such.
-		if(BURN)	damage = P.ammo.flags_ammo_behavior & (AMMO_ENERGY) ? round(damage * 7) : damage
+		if(BURN)	damage = P.ammo.flags_ammo_behavior & (AMMO_ENERGY) ? round(damage * 1.5) : damage
 		else return
 	if(P.ammo.flags_ammo_behavior & AMMO_BALLISTIC) current_bulletholes++
 	take_damage(damage)
