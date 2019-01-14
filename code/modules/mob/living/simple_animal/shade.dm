@@ -35,7 +35,7 @@
 			new /obj/item/ectoplasm (src.loc)
 			for(var/mob/M in viewers(src, null))
 				if((M.client && !is_blind(M)))
-					M.show_message("\red [src] lets out a contented sigh as their form unwinds. ")
+					M.show_message("<span class='warning'> [src] lets out a contented sigh as their form unwinds. </span>")
 					ghostize()
 			qdel(src)
 			return
@@ -52,11 +52,11 @@
 				health -= damage
 				for(var/mob/M in viewers(src, null))
 					if ((M.client && !is_blind(M)))
-						M.show_message("\red \b [src] has been attacked with the [O] by [user]. ")
+						M.show_message("<span class='danger'> [src] has been attacked with the [O] by [user]. </span>")
 			else
-				to_chat(usr, "\red This weapon is ineffective, it does no damage.")
+				to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 				for(var/mob/M in viewers(src, null))
 					if ((M.client && !is_blind(M)))
-						M.show_message("\red [user] gently taps [src] with the [O]. ")
+						M.show_message("<span class='warning'> [user] gently taps [src] with the [O]. </span>")
 		return
 */

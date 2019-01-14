@@ -77,7 +77,7 @@
 		if("Anti-Hydrogen")
 			M.gib()
 		if("Hydrogen")
-			to_chat(M, "\blue You feel very light, as if you might just float away...")
+			to_chat(M, "<span class='notice'>You feel very light, as if you might just float away...</span>")
 	del(src)
 	return
 
@@ -96,5 +96,5 @@
 			return
 	else
 		for(var/mob/O in viewers(M, null))
-			O.show_message(text("\red [M] ate the [content ? content : "empty canister"]!"), 1)
+			O.show_message(text("<span class='warning'> [M] ate the [content ? content : </span>"empty canister"]!"), 1)
 		src.injest(M)

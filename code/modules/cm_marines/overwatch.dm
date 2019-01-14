@@ -94,7 +94,7 @@
 						dat += "<A href='?src=\ref[src];operation=change_lead'>\[CHANGE SQUAD LEADER\]</a><BR><BR>"
 					else
 						dat += "<B>Squad Leader:</B> <font color=red>NONE</font> <A href='?src=\ref[src];operation=change_lead'>\[ASSIGN SQUAD LEADER\]</a><BR><BR>"
-		
+
 					dat += "<B>Primary Objective:</B> "
 					if(current_squad.primary_objective)
 						dat += "[current_squad.primary_objective] <a href='?src=\ref[src];operation=set_primary'>\[Set\]</a><br>"
@@ -143,7 +143,7 @@
 						dat += "<span class='warning'>None</span><br>"
 						selected_target = null
 					else
-						dat += "<font color='green'>[selected_target.name]</font><br>"		
+						dat += "<font color='green'>[selected_target.name]</font><br>"
 					dat += "<A href='?src=\ref[src];operation=shootrailgun'>\[FIRE!\]</a><br>"
 					dat += "----------------------<br></body>"
 					dat += "<br><br><a href='?src=\ref[src];operation=refresh'>{Refresh}</a></body>"
@@ -161,7 +161,9 @@
 					else
 						dat += "<font color='green'>Ready!</font><br>"
 					dat += "<B>Launch Pad Status:</b> "
-					var/obj/structure/closet/crate/C = locate() in current_squad.drop_pad.loc
+					var/obj/C = locate() in current_squad.drop_pad.loc //This thing should ALWAYS exist.
+					if(!C.can_supply_drop) //Can only send supply droppable items
+						C = null
 					if(C)
 						dat += "<font color='green'>Supply crate loaded</font><BR>"
 					else
@@ -396,7 +398,7 @@
 	if(.)  //Checks for power outages
 		return
 	if(!allowed(user))
-		to_chat(user, "\red You don't have access.")
+		to_chat(user, "<span class='warning'>You don't have access.</span>")
 		return
 	if(!squads.len)
 		for(var/datum/squad/S in RoleAuthority.squads)
@@ -456,7 +458,7 @@
 					dat += "<span class='warning'>None</span><br>"
 					selected_target = null
 				else
-					dat += "<font color='green'>[selected_target.name]</font><br>"		
+					dat += "<font color='green'>[selected_target.name]</font><br>"
 				dat += "<A href='?src=\ref[src];operation=dropbomb'>\[FIRE!\]</a><br>"
 				dat += "----------------------<BR></Body>"
 				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a></Body>"
@@ -478,13 +480,13 @@
 	cam = null
 	user.reset_view(null)
 
-//returns the helmet camera the human is wearing
+//returns the headset camera the human is wearing
 /obj/machinery/computer/overwatch/proc/get_camera_from_target(cam_target)
 	if(!cam_target)
 		return
 	var/mob/living/carbon/human/H = cam_target
 	if(istype(H) && current_squad)
-		var/obj/item/clothing/head/helmet/marine/helm = H.head
+		var/obj/item/device/radio/headset/almayer/helm = H.wear_ear
 		return helm?.camera
 	var/obj/effect/overlay/temp/laser_target/LT = cam_target
 	if(istype(LT))
@@ -752,7 +754,10 @@
 		to_chat(usr, "\icon[src] <span class='warning'>No supply beacon detected!</span>")
 		return
 
-	var/obj/structure/closet/crate/C = locate() in current_squad.drop_pad.loc //This thing should ALWAYS exist.
+	var/obj/C = locate() in current_squad.drop_pad.loc //This thing should ALWAYS exist.
+	if(!C.can_supply_drop) //Can only send vendors and crates
+		C = null
+
 	if(!istype(C))
 		to_chat(usr, "\icon[src] <span class='warning'>No crate was detected on the drop pad. Get Requisitions on the line!</span>")
 		return
@@ -1011,7 +1016,7 @@
 		H.visible_message("[H] deactivates [src]",
 		"You deactivate [src]")
 		H.put_in_active_hand(src)
-	
+
 
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
 
@@ -1037,7 +1042,7 @@
 		if(choice == "help")
 			to_chat(src, "<span class='notice'><br>Orders give a buff to nearby soldiers for a short period of time, followed by a cooldown, as follows:<br><B>Move</B> - Increased mobility and chance to dodge projectiles.<br><B>Hold</B> - Increased resistance to pain and combat wounds.<br><B>Focus</B> - Increased gun accuracy and effective range.<br></span>")
 			return
-		if(choice == "cancel") 
+		if(choice == "cancel")
 			return
 		command_aura = choice
 	else
@@ -1254,7 +1259,7 @@
 		dat += "<b><font color=red>NONE!</font></b><br>"
 	dat += get_squad_info_ending()
 	return dat
-	
+
 /obj/machinery/computer/overwatch/proc/get_squad_info_ending()
 	var/dat = ""
 	dat += "----------------------<br>"

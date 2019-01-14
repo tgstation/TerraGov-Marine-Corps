@@ -10,13 +10,13 @@
 		mail_destination = ""
 		return
 
-	to_chat(src, "\blue You configure your internal beacon, tagging yourself for delivery to '[new_tag]'.")
+	to_chat(src, "<span class='notice'>You configure your internal beacon, tagging yourself for delivery to '[new_tag]'.</span>")
 	mail_destination = new_tag
 
 	//Auto flush if we use this verb inside a disposal chute.
 	var/obj/machinery/disposal/D = src.loc
 	if(istype(D))
-		to_chat(src, "\blue \The [D] acknowledges your signal.")
+		to_chat(src, "<span class='notice'>\The [D] acknowledges your signal.</span>")
 		D.flush_count = D.flush_every_ticks
 
 	return

@@ -61,6 +61,7 @@
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/compensator,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
