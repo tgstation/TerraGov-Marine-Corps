@@ -340,7 +340,7 @@ sorts them out by their department.
 		var/obj/effect/landmark/S //Starting mark.
 		for(var/i in landmarks_list) // This whole thing is fucking awful
 			if(!i)
-				stack_trace(i)
+				stack_trace("null landmark in roleauthority landmarks_list iterator.")
 				continue
 			L = i
 			if(L.name == J.title && !locate(/mob/living) in L.loc)
