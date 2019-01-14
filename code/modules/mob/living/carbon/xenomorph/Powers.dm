@@ -1478,6 +1478,8 @@
 	var/sentinel_count = 0
 	var/defender_list = ""
 	var/defender_count = 0
+	var/defiler_list = ""
+	var/defiler_count = 0
 	var/larva_list = ""
 	var/larva_count = 0
 	var/stored_larva_count = ticker.mode.stored_larva
@@ -1560,6 +1562,10 @@
 				if (leader == "")
 					defender_list += xenoinfo
 				defender_count++
+			if ("Defiler")
+				if (leader == "")
+					defiler_list += xenoinfo
+				defiler_count++
 			if("Bloody Larva") // all larva are caste = blood larva
 				if(leader == "") larva_list += xenoinfo
 				larva_count++
@@ -1567,7 +1573,7 @@
 	dat += "<b>Total Living Sisters: [count]</b><BR>"
 	//if(exotic_count != 0) //Exotic Xenos in the Hive like Predalien or Xenoborg
 		//dat += "<b>Ultimate Tier:</b> [exotic_count] Sisters</b><BR>"
-	dat += "<b>Tier 3: [boiler_count + crusher_count + praetorian_count + ravager_count] Sisters</b> | Boilers: [boiler_count] | Crushers: [crusher_count] | Praetorians: [praetorian_count] | Ravagers: [ravager_count]<BR>"
+	dat += "<b>Tier 3: [boiler_count + crusher_count + praetorian_count + ravager_count] Sisters</b> | Boilers: [boiler_count] | Crushers: [crusher_count] | Praetorians: [praetorian_count] | Ravagers: [ravager_count] | Defilers: [defiler_count]<BR>"
 	dat += "<b>Tier 2: [carrier_count + hivelord_count + hunter_count + spitter_count + warrior_count] Sisters</b> | Carriers: [carrier_count] | Hivelords: [hivelord_count] | Warriors: [warrior_count] | Hunters: [hunter_count] | Spitters: [spitter_count]<BR>"
 	dat += "<b>Tier 1: [drone_count + runner_count + sentinel_count + defender_count] Sisters</b> | Drones: [drone_count] | Runners: [runner_count] | Sentinels: [sentinel_count] | Defenders: [defender_count]<BR>"
 	dat += "<b>Larvas: [larva_count] Sisters<BR>"
@@ -1575,7 +1581,7 @@
 		if(user.hivenumber == XENO_HIVE_NORMAL)
 			dat += "<b>Burrowed Larva: [stored_larva_count] Sisters<BR>"
 	dat += "<table cellspacing=4>"
-	dat += queen_list + leader_list + boiler_list + crusher_list + praetorian_list + ravager_list + carrier_list + hivelord_list + warrior_list + hunter_list + spitter_list + drone_list + runner_list + sentinel_list + defender_list + larva_list
+	dat += queen_list + leader_list + boiler_list + crusher_list + praetorian_list + ravager_list + carrier_list + hivelord_list + warrior_list + hunter_list + spitter_list + drone_list + runner_list + sentinel_list + defender_list + defiler_list + larva_list
 	dat += "</table></body>"
 	usr << browse(dat, "window=roundstatus;size=500x500")
 
@@ -2105,8 +2111,11 @@
 		to_chat(src, "<span class='xenodanger'>You feel your dorsal vents bristle with neurotoxic gas. You can use Emit Neurogas again.</span>")
 		update_action_button_icons()
 
+	emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
 	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
+		emitting_gas = FALSE
 		return
+	emitting_gas = FALSE
 
 	if(stagger) //If we got staggered, return
 		to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
@@ -2213,5 +2222,6 @@
 	if(!embryos)
 		var/obj/item/alien_embryo/embryo = new /obj/item/alien_embryo(H)
 		embryo.hivenumber = hivenumber
+		round_statistics.now_pregnant++
 		to_chat(src, "<span class='xenodanger'>Your stinger successfully implants a larva into the host.</span>")
 	return

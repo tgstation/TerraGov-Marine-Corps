@@ -19,7 +19,7 @@
 
 	// *** Plasma *** //
 	plasma_max = 400
-	plasma_gain = 20
+	plasma_gain = 14
 
 	// *** Health *** //
 	max_health = 225
@@ -55,7 +55,7 @@
 
 	// *** Plasma *** //
 	plasma_max = 500
-	plasma_gain = 25
+	plasma_gain = 17
 
 	// *** Health *** //
 	max_health = 275
@@ -82,14 +82,14 @@
 	tackle_damage = 50
 
 	// *** Speed *** //
-	speed = -1.7
+	speed = -1.17
 
 	// *** Plasma *** //
 	plasma_max = 550
-	plasma_gain = 28
+	plasma_gain = 19
 
 	// *** Health *** //
-	max_health = 300
+	max_health = 290
 
 	// *** Evolution *** //
 	upgrade_threshold = 1600
@@ -117,10 +117,10 @@
 
 	// *** Plasma *** //
 	plasma_max = 575
-	plasma_gain = 30
+	plasma_gain = 20
 
 	// *** Health *** //
-	max_health = 315
+	max_health = 300
 
 	// *** Evolution *** //
 	upgrade_threshold = 1600
@@ -134,7 +134,7 @@
 /mob/living/carbon/Xenomorph/Defiler
 	caste_base_type = /mob/living/carbon/Xenomorph/Defiler
 	name = "Defiler"
-	desc = "A frightening looking, bulky xeno that drips with suspect green fluids."
+	desc = "A large, powerfully muscled xeno replete with dripping spines and gas leaking dorsal vents."
 	icon = 'icons/Xeno/2x2_Xenos.dmi'
 	health = 225
 	maxHealth = 225
@@ -142,7 +142,7 @@
 	speed = -1
 	pixel_x = -16
 	old_x = -16
-	wound_type = "runner" //used to match appropriate wound overlays
+	wound_type = "defiler" //used to match appropriate wound overlays
 	tier = 3
 	upgrade = 0
 	var/datum/effect_system/smoke_spread/smoke_system = null
@@ -150,6 +150,7 @@
 	var/last_emit_neurogas = null
 	var/last_use_neuroclaws = null
 	var/neuro_claws = FALSE
+	var/emitting_gas = FALSE
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
@@ -183,5 +184,10 @@
 
 /mob/living/carbon/Xenomorph/Defiler/hitby(atom/movable/AM as mob|obj,var/speed = 5)
 	if(ishuman(AM))
+		return
+	..()
+
+/mob/living/carbon/Xenomorph/Defiler/Bumped(atom/movable/AM as mob|obj)
+	if(emitting_gas) //We don't get bumped around
 		return
 	..()
