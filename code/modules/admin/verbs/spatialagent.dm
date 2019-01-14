@@ -9,6 +9,7 @@
 	var/T = get_turf(usr)
 	var/mob/living/carbon/human/sa/sa = new(T)
 	sa.ckey = usr.ckey
+	change_view(world.view)
 	sa.name = "Spatial Agent"
 	sa.real_name = "Spatial Agent"
 	sa.voice_name = "Spatial Agent"
@@ -16,19 +17,11 @@
 
 	var/datum/job/J = new /datum/job/other/spatial_agent
 	J.generate_equipment(sa)
-
-	//Languages.
-	sa.add_language("English")
-	sa.add_language("Sainja")
-	sa.add_language("Xenomorph")
-	sa.add_language("Hivemind")
-	sa.add_language("Russian")
-	sa.add_language("Tradeband")
-	sa.add_language("Gutter")
+	J.generate_entry_conditions(sa)
 
 //Spatial Agent human.
 /mob/living/human/sa
-	status_flags = GODMODE|CANPUSH
+	status_flags = CANPUSH
 
 //Verbs.
 /mob/living/carbon/human/sa/verb/sarejuv()

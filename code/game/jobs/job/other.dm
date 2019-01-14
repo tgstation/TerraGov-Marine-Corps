@@ -63,6 +63,16 @@
 	equipment = TRUE
 	skills_type = /datum/skills/spatial_agent
 
+/datum/job/other/spatial_agent/generate_entry_conditions(mob/living/carbon/human/sa/H)
+	. = ..()
+	H.add_language("English")
+	H.add_language("Sainja")
+	H.add_language("Xenomorph")
+	H.add_language("Hivemind")
+	H.add_language("Russian")
+	H.add_language("Tradeband")
+	H.add_language("Gutter")
+
 /datum/job/other/spatial_agent/generate_equipment(mob/living/carbon/human/H)
 	H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom_commander/sa(H), WEAR_BODY)
 	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/sa(H), WEAR_FEET)
