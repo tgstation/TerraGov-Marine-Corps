@@ -158,7 +158,7 @@ var/global/datum/controller/gameticker/ticker
 		Holiday_Game_Start()
 
 	if(config.autooocmute)
-		to_chat(world, "<span class='warning'><b>The OOC channel has been globally disabled due to round start!</b></span>")
+		to_chat(world, "<span class='danger'>The OOC channel has been globally disabled due to round start!</span>")
 		ooc_allowed = FALSE
 
 	supply_controller.process()

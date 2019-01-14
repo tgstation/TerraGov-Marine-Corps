@@ -313,7 +313,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	. = ..()
 	if(. && istype(user))
 		if(!current_mag.chamber_closed)
-			to_chat(user, "\red Close the chamber!")
+			to_chat(user, "<span class='warning'>Close the chamber!</span>")
 			return 0
 
 /obj/item/weapon/gun/shotgun/double/empty_chamber(mob/user)

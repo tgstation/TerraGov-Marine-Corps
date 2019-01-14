@@ -104,8 +104,16 @@
 	fire_sound = 'sound/weapons/gun_glock.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/m1911
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
-		
+
+/obj/item/weapon/gun/pistol/m1911/custom/set_gun_config_values()
+	fire_delay = config.mlow_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult
+	scatter = config.med_scatter_value
+	scatter_unwielded = config.hmed_hit_accuracy_mult
+	damage_mult = config.base_hit_damage_mult + config.low_hit_damage_mult
+	recoil_unwielded = config.min_recoil_value
+
 //-------------------------------------------------------
 //Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
 
@@ -333,14 +341,15 @@
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
 /obj/item/weapon/gun/pistol/vp70/set_gun_config_values()
-	fire_delay = config.mhigh_fire_delay
+	fire_delay = config.low_fire_delay
 	burst_amount = config.med_burst_value
-	burst_delay = config.low_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult
+	burst_delay = config.min_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult + config.min_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.min_hit_accuracy_mult
 	scatter = config.med_scatter_value
 	scatter_unwielded = config.med_scatter_value
 	damage_mult = config.base_hit_damage_mult + config.high_hit_damage_mult
+	recoil_unwielded = config.min_recoil_value
 
 //-------------------------------------------------------
 //VP78
@@ -357,11 +366,11 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 24, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
 
 /obj/item/weapon/gun/pistol/vp78/set_gun_config_values()
-	fire_delay = config.max_fire_delay
+	fire_delay = config.low_fire_delay
 	burst_amount = config.med_burst_value
 	burst_delay = config.low_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult
+	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult
 	scatter = config.med_scatter_value
 	scatter_unwielded = config.med_scatter_value
 	damage_mult = config.base_hit_damage_mult

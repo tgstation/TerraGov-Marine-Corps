@@ -10,7 +10,7 @@
 	set name = "Say"
 	set category = "IC"
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "\red Speech is currently admin-disabled.")
+		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
 		return
 
 	if(message == "*dance")
@@ -26,7 +26,7 @@
 	set category = "IC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "\red Speech is currently admin-disabled.")
+		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
 		return
 	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
 
@@ -40,18 +40,18 @@
 	var/name = src.real_name
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "\red Speech is currently admin-disabled.")
+		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
 		return
 	if(!src.client) //Somehow
 		return
 
 	if(!src.client.holder)
 		if(!dsay_allowed)
-			to_chat(src, "\red Deadchat is globally muted")
+			to_chat(src, "<span class='warning'>Deadchat is globally muted</span>")
 			return
 
 	if(client && client.prefs && !(client.prefs.toggles_chat & CHAT_DEAD))
-		to_chat(usr, "\red You have deadchat muted.")
+		to_chat(usr, "<span class='warning'>You have deadchat muted.</span>")
 		return
 /*
 	if(mind && mind.name)
