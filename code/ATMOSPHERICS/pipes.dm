@@ -199,7 +199,7 @@
 	return 1
 
 /obj/machinery/atmospherics/pipe/simple/proc/burst()
-	src.visible_message("<span class='warning'> \bold [src] bursts!</span>");
+	src.visible_message("<span class='danger'> [src] bursts!</span>");
 	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1)
 	var/datum/effect_system/smoke_spread/smoke = new
 	smoke.set_up(0,0, src.loc, 0)
