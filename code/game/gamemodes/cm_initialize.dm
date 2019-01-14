@@ -938,6 +938,8 @@ datum/game_mode/proc/initialize_post_queen_list()
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
 						/obj/item/ammo_magazine/shotgunbox/flechette = round(scale * 3),
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 15),
+						/obj/item/cell/lasgun/M43 = round(scale * 30),
+						/obj/item/cell/lasgun/M43/highcap = round(scale * 5),
 						/obj/item/smartgun_powerpack = round(scale * 2)
 						)
 
@@ -1003,6 +1005,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 						/obj/item/weapon/gun/rifle/m41a = round(scale * 20),
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 10),
 						// /obj/item/weapon/gun/shotgun/combat = round(scale * 1),
+						/obj/item/weapon/gun/energy/lasgun/M43 = round(scale * 10),
 						/obj/item/explosive/mine = round(scale * 2),
 						/obj/item/storage/box/nade_box = round(scale * 2),
 						/obj/item/explosive/grenade/frag/m15 = round(scale * 2),
@@ -1052,6 +1055,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 						/obj/item/weapon/gun/smg/m39 = round(scale * 30),
 						/obj/item/weapon/gun/rifle/m41a = round(scale * 30),
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 15),
+						/obj/item/weapon/gun/energy/lasgun/M43 = round(scale * 15),
 
 						/obj/item/ammo_magazine/pistol = round(scale * 30),
 						/obj/item/ammo_magazine/revolver = round(scale * 20),
@@ -1061,6 +1065,8 @@ datum/game_mode/proc/initialize_post_queen_list()
 						/obj/item/ammo_magazine/shotgun = round(scale * 10),
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 10),
+						/obj/item/cell/lasgun/M43 = round(scale * 25),
+						/obj/item/cell/lasgun/M43/highcap = 0,
 
 						/obj/item/weapon/combat_knife = round(scale * 30),
 						/obj/item/weapon/throwing_knife = round(scale * 10),

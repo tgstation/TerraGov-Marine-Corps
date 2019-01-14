@@ -1212,12 +1212,12 @@ var/global/respawntime = 15
 		return
 
 	if(ticker.mode.picked_call)
-		ticker.mode.picked_call = null
 		ticker.mode.picked_call.members = list()
 		ticker.mode.picked_call.candidates = list()
 		ticker.mode.waiting_for_candidates = FALSE
 		ticker.mode.on_distress_cooldown = FALSE
-
+		ticker.mode.picked_call = null
+	
 
 	var/list/list_of_calls = list()
 	for(var/datum/emergency_call/L in ticker.mode.all_calls)

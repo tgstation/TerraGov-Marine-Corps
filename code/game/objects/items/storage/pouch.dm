@@ -137,8 +137,10 @@
 					"/obj/item/ammo_magazine/smg",
 					"/obj/item/ammo_magazine/pistol",
 					"/obj/item/ammo_magazine/revolver",
+					"/obj/item/ammo_magazine/lasgun",
 					"/obj/item/ammo_magazine/sniper",
 					"/obj/item/ammo_magazine/handful",
+					"/obj/item/cell/lasgun",
 					)
 
 

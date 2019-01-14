@@ -60,6 +60,8 @@
 	var/time_to_equip = 0 // set to ticks it takes to equip a worn suit.
 	var/time_to_unequip = 0 // set to ticks it takes to unequip a worn suit.
 
+	var/obj/effect/xenomorph/acid/current_acid = null //If it has acid spewed on it
+
 	/* Species-specific sprites, concept stolen from Paradise//vg/.
 	ex:
 	sprite_sheets = list(
@@ -240,6 +242,30 @@ cases. Override_icon_state should be a list.*/
 
 // called just as an item is picked up (loc is not yet changed)
 /obj/item/proc/pickup(mob/user)
+	if(current_acid) //handle acid removal
+		if(!ishuman(user)) //gotta have limbs Morty
+			return
+		user.visible_message("<span class='danger'>Corrosive substances seethe all over [user] as it retrieves the acid-soaked [src]!</span>",
+		"<span class='danger'>Corrosive substances burn and seethe all over you upon retrieving the acid-soaked [src]!</span>")
+		playsound(user, "acid_hit", 25)
+		var/mob/living/carbon/human/H = user
+		var/armor_block
+		H.emote("pain")
+		var/raw_damage = current_acid.acid_damage * 0.25 //It's spread over 4 areas.
+		var/list/affected_limbs = list("l_hand", "r_hand", "l_arm", "r_arm")
+		var/limb_count = null
+		for(var/datum/limb/X in H.limbs)
+			if(limb_count > 4) //All target limbs affected
+				break
+			if(!affected_limbs.Find(X.name) )
+				continue
+			armor_block = H.run_armor_check(X, "energy")
+			if(istype(X) && X.take_damage(null, rand(raw_damage * 0.75, raw_damage * 1.25), null, null, null, null, null, armor_block))
+				H.UpdateDamageIcon()
+			limb_count++
+		H.updatehealth()
+		qdel(current_acid)
+		current_acid = null
 	return
 
 // called when this item is removed from a storage item, which is passed on as S. The loc variable is already set to the new destination before this is called.

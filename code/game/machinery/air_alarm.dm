@@ -81,7 +81,7 @@
 	var/aidisabled = 0
 	var/AAlarmwires = 31
 	var/shorted = 0
-
+	var/obj/item/circuitboard/airalarm/electronics = null
 	var/mode = AALARM_MODE_SCRUBBING
 	var/screen = AALARM_SCREEN_MAIN
 	var/area_uid
@@ -1040,8 +1040,14 @@ table tr:first-child th:first-child { border: none;}
 				if(do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
 					user.visible_message("<span class='notice'>[user] pries out [src]'s circuits.</span>",
 					"<span class='notice'>You pry out [src]'s circuits.</span>")
-					var/obj/item/circuitboard/airalarm/circuit = new()
-					circuit.loc = user.loc
+					var/obj/item/circuitboard/airalarm/circuit
+					if(!electronics)
+						circuit = new/obj/item/circuitboard/airalarm( src.loc )
+					else
+						circuit = new electronics( src.loc )
+						if(electronics.is_general_board)
+							circuit.set_general()
+					electronics = null
 					buildstage = 0
 					update_icon()
 				return

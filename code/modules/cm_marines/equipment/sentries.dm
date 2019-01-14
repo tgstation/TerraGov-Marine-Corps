@@ -79,7 +79,7 @@
 		S.update_icon()
 		qdel(src)
 
-	
+
 /obj/machinery/turret_tripod_deployed
 	name = "\improper UA 571-C turret tripod"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine."
@@ -1142,8 +1142,8 @@
 	immobile = TRUE
 	on = TRUE
 	burst_fire = TRUE
-	rounds = 500
-	rounds_max = 500
+	rounds = 100000
+	rounds_max = 100000
 	icon_state = "sentry_base"
 
 /obj/machinery/marine_turret/premade/New()
@@ -1164,7 +1164,6 @@
 	name = "Modified UA-577 Gauss Turret"
 	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a high-capacity drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
 	iff_signal = 0
-	rounds = 1000000
 	ammo = /datum/ammo/bullet/turret/dumb
 
 /obj/machinery/marine_turret/premade/dumb/attack_hand(mob/user as mob)

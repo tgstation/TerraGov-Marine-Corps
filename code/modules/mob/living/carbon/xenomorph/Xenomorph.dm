@@ -77,9 +77,7 @@
 	if(xeno_caste.spit_types?.len)
 		ammo = ammo_list[xeno_caste.spit_types[1]]
 
-	var/datum/reagents/R = new/datum/reagents(100)
-	reagents = R
-	R.my_atom = src
+	create_reagents(1000)
 	gender = NEUTER
 
 	living_xeno_list += src
