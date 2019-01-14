@@ -2628,6 +2628,10 @@
 
 	if(href_list["distress"]) //Distress Beacon, sends a random distress beacon when pressed
 		var/mob/ref_person = locate(href_list["distress"])
+
+		if(ticker?.mode?.waiting_for_candidates)
+			return
+
 		ticker.mode.activate_distress()
-		log_game("[key_name_admin(usr)] has sent a randomized distress beacon, requested by [key_name_admin(ref_person)]")
-		message_admins("[key_name_admin(usr)] has sent a randomized distress beacon, requested by [key_name_admin(ref_person)]", 1)
+		log_game("[key_name_admin(usr)] has sent a randomized distress beacon early, requested by [key_name_admin(ref_person)]")
+		message_admins("[key_name_admin(usr)] has sent a randomized distress beacon early, requested by [key_name_admin(ref_person)]", 1)

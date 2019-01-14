@@ -186,7 +186,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	var/lastHolder = null
 	var/smoketime = 300
 	var/chem_volume = 30
-	var/list/list_reagents = list("nicotine" = 15)
+	list_reagents = list("nicotine" = 15)
 	flags_armor_protection = 0
 
 /obj/item/clothing/mask/cigarette/New()
@@ -194,8 +194,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 
 	create_reagents(chem_volume) // making the cigarrete a chemical holder with a maximum volume of 30
 	reagents.set_reacting(FALSE)
-	if(list_reagents)
-		reagents.add_reagent_list(list_reagents) // Latest news, cigs previously didn't have nicotine.
+	add_initial_reagents()
 
 /obj/item/clothing/mask/cigarette/attackby(obj/item/W, mob/user, params)
 	if(lit || smoketime <= 0)

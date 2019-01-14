@@ -66,6 +66,8 @@
 	var/ammo_per_shot	= 1						//How much ammo consumed per shot; normally 1.
 	var/overcharge		= 0						//In overcharge mode?
 
+	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
+
 	//Targeting.
 	var/tmp/list/mob/living/target				//List of who yer targeting.
 	var/tmp/mob/living/last_moved_mob			//Used to fire faster at more than one person.
@@ -943,7 +945,7 @@ and you're good to go.
 	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy_mult) // Apply gun accuracy multiplier to projectile accuracy
 	projectile_to_fire.damage = round(projectile_to_fire.damage * damage_mult) 		// Apply gun damage multiplier to projectile damage
 	projectile_to_fire.damage_falloff	= round(projectile_to_fire.damage_falloff * damage_falloff_mult) 	// Apply gun damage bleed multiplier to projectile damage bleed
-
+	projectile_to_fire.projectile_speed += shell_speed_mod
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
 

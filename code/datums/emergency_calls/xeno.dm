@@ -23,9 +23,7 @@
 	if(!istype(spawn_loc)) 
 		return
 
-	var/mob/living/carbon/Xenomorph/new_xeno = new /mob/living/carbon/Xenomorph/Hunter/mature(spawn_loc)
-
-	new_xeno.key = M.key
+	var/mob/living/carbon/Xenomorph/new_xeno
 
 	if(original)
 		qdel(original)
@@ -35,12 +33,19 @@
 	if(!leader)
 		new_xeno = new /mob/living/carbon/Xenomorph/Ravager(spawn_loc)
 		leader = new_xeno
+		new_xeno.key = M.key
 		return
 
 	if(prob(35))
 		new_xeno = new /mob/living/carbon/Xenomorph/Drone/elder(spawn_loc)
+		new_xeno.key = M.key
 		return
 
 
 	if(prob(35))
 		new_xeno = new /mob/living/carbon/Xenomorph/Spitter/mature(spawn_loc)
+		new_xeno.key = M.key
+		return
+
+	 new_xeno = new /mob/living/carbon/Xenomorph/Hunter/mature(spawn_loc)
+	 new_xeno.key = M.key

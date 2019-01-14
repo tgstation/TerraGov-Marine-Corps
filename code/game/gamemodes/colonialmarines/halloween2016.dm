@@ -154,7 +154,8 @@
 				R.b_type = blood_attuners[L.name]
 			if("blood idol")
 				blood_idol_spawns += L.loc
-			else L = null //So we are not deleting all landmarks that still may exist, like observer spawn.
+			else
+				continue
 		qdel(L)
 
 	to_chat(world, "<span class='round_setup'>Generating treasures...</span>")
