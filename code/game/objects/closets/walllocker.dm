@@ -49,9 +49,9 @@
 	pixel_x = -32
 	dir = EAST
 
-/obj/structure/walllocker/emerglocker/full // spawners
+/obj/structure/closet/walllocker/emerglocker/full // spawners
 
-/obj/structure/walllocker/emerglocker/full/New()
+/obj/structure/closet/walllocker/emerglocker/full/New()
 	. = ..()
 	sleep(2)
 	for(var/i in 1 to 2)
