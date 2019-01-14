@@ -1094,6 +1094,8 @@ About the new airlock wires panel:
 						ae.one_access = 1
 				else
 					ae = electronics
+					if(electronics.is_general_board)
+						ae.set_general()
 					electronics = null
 					ae.loc = src.loc
 				if(operating == -1)
