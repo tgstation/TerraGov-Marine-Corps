@@ -99,6 +99,7 @@
 	var/global/list/status_overlays_equipment
 	var/global/list/status_overlays_lighting
 	var/global/list/status_overlays_environ
+	var/obj/item/circuitboard/apc/electronics = null
 
 /proc/RandomAPCWires()
 	//To make this not randomize the wires, just set index to 1 and increment it in the flag for loop (after doing everything else).
@@ -376,7 +377,14 @@
 				else
 					user.visible_message("<span class='notice'>[user] removes [src]'s power control board.</span>",
 					"<span class='notice'>You remove [src]'s power control board.</span>")
-					new /obj/item/circuitboard/apc(loc)
+					var/obj/item/circuitboard/apc/circuit
+					if(!electronics)
+						circuit = new/obj/item/circuitboard/apc( src.loc )
+					else
+						circuit = new electronics( src.loc )
+						if(electronics.is_general_board)
+							circuit.set_general()
+				electronics = null
 		else if(opened != 2) //Cover isn't removed
 			opened = 0
 			update_icon()
@@ -545,6 +553,7 @@
 			has_electronics = 1
 			user.visible_message("<span class='notice'>[user] inserts the power control board into [src].</span>",
 			"<span class='notice'>You insert the power control board into [src].</span>")
+			electronics = W
 			qdel(W)
 	else if(istype(W, /obj/item/circuitboard/apc) && opened && has_electronics == 0 && (stat & BROKEN))
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)

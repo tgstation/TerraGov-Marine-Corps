@@ -20,6 +20,8 @@
 	var/store_items = TRUE
 	var/store_mobs = TRUE
 
+	var/closet_stun_delay = 1
+
 	anchored = TRUE
 
 	var/const/mob_size = 15
@@ -65,9 +67,8 @@
 
 	for(var/mob/M in src)
 		M.forceMove(loc)
-		M.stunned = max(M.stunned, 2) //Action delay when going out of a closet
-		M.update_canmove() //Force the delay to go in action immediately
-		if(!M.lying)
+		M.Stun(closet_stun_delay)//Action delay when going out of a closet
+		if(!M.lying && M.stunned)
 			M.visible_message("<span class='warning'>[M] suddenly gets out of [src]!",
 			"<span class='warning'>You get out of [src] and get your bearings!")
 

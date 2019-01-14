@@ -264,6 +264,7 @@
 		"/obj/item/weapon/combat_knife",
 		"/obj/item/device/flashlight/flare",
 		"/obj/item/ammo_magazine/rifle",
+		"/obj/item/cell/lasgun",
 		"/obj/item/ammo_magazine/smg",
 		"/obj/item/ammo_magazine/pistol",
 		"/obj/item/ammo_magazine/revolver",
@@ -320,7 +321,7 @@
 		if(M.current_rounds)
 			if(contents.len < storage_slots)
 				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC)) 
+				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
 					return
 				var/cont
 				for(var/x = 1 to storage_slots)

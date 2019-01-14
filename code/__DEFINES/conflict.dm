@@ -35,7 +35,7 @@
 #define GUN_HAS_FULL_AUTO		4096
 #define GUN_FULL_AUTO_ON		8192
 #define GUN_POLICE				16384
-
+#define GUN_ENERGY				32768
 
 //Gun attachable related flags.
 #define ATTACH_REMOVABLE	1
@@ -80,3 +80,13 @@
 
 //Define flamer
 #define M240T_WATER_AMOUNT 			reagents.get_reagent_amount("water")
+
+//Define sniper laser multipliers
+
+#define SNIPER_LASER_DAMAGE_MULTIPLIER	1.5
+#define SNIPER_LASER_ARMOR_MULTIPLIER	1.5
+
+//Define lasgun
+#define M37_STANDARD_AMMO_COST			20
+#define M37_OVERCHARGE_AMMO_COST		80
+#define M37_OVERCHARGE_FIRE_DELAY		10
