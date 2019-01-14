@@ -1029,6 +1029,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!check_rights(R_ADMIN))	return
 
 	for(var/client/C in clients)
-    	if(!isliving(C.mob))
+		if(!isliving(C.mob))
 			continue
 		C.mob.rejuvenate
