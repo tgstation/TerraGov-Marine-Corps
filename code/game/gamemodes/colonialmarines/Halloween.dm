@@ -255,7 +255,7 @@
 /datum/game_mode/Halloween/declare_completion()
 	if(finished == 1)
 		feedback_set_details("round_end_result","alien major victory - marine incursion fails")
-		to_chat(world, "<span class='warning'> <FONT size = 4><B>Alien major victory!</B></FONT></span>")
+		to_chat(world, "<span class='round_header'>Alien major victory!</span>")
 		to_chat(world, "<FONT size = 3><B>The aliens have successfully wiped out the marines and will live to spread the infestation!</B></FONT>")
 		if(prob(50))
 			world << 'sound/misc/Game_Over_Man.ogg'
@@ -265,7 +265,7 @@
 
 	else if(finished == 2)
 		feedback_set_details("round_end_result","marine major victory - xenomorph infestation eradicated")
-		to_chat(world, "<span class='warning'> <FONT size = 4><B>Marines major victory!</B></FONT></span>")
+		to_chat(world, "<span class='round_header'>Marines major victory!</span>")
 		to_chat(world, "<FONT size = 3><B>The marines managed to wipe out the aliens and stop the infestation!</B></FONT>")
 		if(prob(50))
 			world << 'sound/misc/hardon.ogg'
