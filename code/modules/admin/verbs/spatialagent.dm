@@ -3,9 +3,6 @@
 	set name = "Spawn Spatial Agent"
 	set desc = "Spawns a Spatial Agent. Useful for debugging."
 
-	if (!holder)
-		return
-
 	if (!check_rights(R_DEBUG))
 		return
 
@@ -41,14 +38,6 @@
 	set popup_menu = 0
 
 	revive()
-
-/mob/living/carbon/human/sa/verb/godmode()
-	set name = "Toggle Godmode"
-	set desc = "Enable or disable Godmode."
-	set category = "Agent"
-
-	status_flags ^= GODMODE
-	to_chat(src, "<span class='notice'> God mode is now [status_flags & GODMODE ? "enabled" : "disabled"] </span>")
 
 /mob/living/carbon/human/sa/verb/leave()
 	set name = "Teleport Out"
