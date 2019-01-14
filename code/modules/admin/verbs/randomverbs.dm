@@ -1028,12 +1028,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /proc/rejuv_all()
 	if(!check_rights(R_ADMIN))	return
 
-<<<<<<< HEAD
-	for(var/mob/living/M in living_mob_list)
-		if(M.client)
-=======
-	for(var/mob/living/M in mob_list)
-		if(!M.stat == DEAD && M.client)
->>>>>>> 6464dbb9bb376b87e0ac1d4ed9668de23f452313
+	for(var/client/C in clients)
+    	if(!isliving(C.mob))
 			continue
-		M.rejuvenate()
+		C.mob.rejuvenate
