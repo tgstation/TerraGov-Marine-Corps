@@ -79,7 +79,7 @@
 		adjustBruteLoss(damage)
 		for(var/mob/M in viewers(src, null))
 			if ((M.client && !is_blind(M)))
-				M.show_message("<span class='warning'> \b [src] has been attacked with [O] by [user]. </span>")
+				M.show_message("<span class='danger'> [src] has been attacked with [O] by [user]. </span>")
 	else
 		to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 		for(var/mob/M in viewers(src, null))
@@ -121,11 +121,11 @@
 			adjustBruteLoss(damage)
 			for(var/mob/M in viewers(src, null))
 				if ((M.client && !is_blind(M)))
-					M.show_message("<span class='warning'> \b [src] has been attacked with [O] by [user]. </span>")
+					M.show_message("<span class='danger'> [src] has been attacked with [O] by [user]. </span>")
 		else
 			for(var/mob/M in viewers(src, null))
 				if ((M.client && !is_blind(M)))
-					M.show_message("<span class='warning'> \b [O] bounces harmlessly off of [src]. </span>")
+					M.show_message("<span class='danger'> [O] bounces harmlessly off of [src]. </span>")
 	else
 		to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 		for(var/mob/M in viewers(src, null))
@@ -247,11 +247,11 @@
 			adjustBruteLoss(damage)
 			for(var/mob/M in viewers(src, null))
 				if ((M.client && !is_blind(M)))
-					M.show_message("<span class='warning'> \b [src] has been attacked with [O] by [user]. </span>")
+					M.show_message("<span class='danger'> [src] has been attacked with [O] by [user]. </span>")
 		else
 			for(var/mob/M in viewers(src, null))
 				if ((M.client && !is_blind(M)))
-					M.show_message("<span class='warning'> \b [O] bounces harmlessly off of [src]. </span>")
+					M.show_message("<span class='danger'> [O] bounces harmlessly off of [src]. </span>")
 	else
 		to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 		for(var/mob/M in viewers(src, null))
