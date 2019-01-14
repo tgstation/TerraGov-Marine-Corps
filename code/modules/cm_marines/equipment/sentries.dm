@@ -400,7 +400,7 @@
 			if(burst_fire)
 				burst_fire = 0
 				state("A green light on [src] blinks slowly.")
-				to_chat(usr, "\blue You deactivate the burst fire mode.")
+				to_chat(usr, "<span class='notice'>You deactivate the burst fire mode.</span>")
 			else
 				burst_fire = 1
 				fire_delay = burst_delay
@@ -1183,7 +1183,7 @@
 
 	if(!on)
 		to_chat(user, "You turn on the [src].")
-		visible_message("\blue [src] hums to life and emits several beeps.")
+		visible_message("<span class='notice'> [src] hums to life and emits several beeps.</span>")
 		state("[src] buzzes in a monotone: 'Default systems initiated.'")
 		target = null
 		on = TRUE
