@@ -17,7 +17,7 @@
 	// This should be only used on Dev for testing purposes.
 /obj/machinery/power/fractal_reactor/New()
 	..()
-	to_chat(world, "<b><span class='warning'> WARNING: \black Map testing power source activated at: X:[src.loc.x] Y:[src.loc.y] Z:[src.loc.z]</b></span>")
+	to_chat(world, "<span class='danger'> WARNING: \black Map testing power source activated at: X:[src.loc.x] Y:[src.loc.y] Z:[src.loc.z]</span>")
 	start_processing()
 
 /obj/machinery/power/fractal_reactor/power_change()
