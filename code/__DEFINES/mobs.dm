@@ -415,6 +415,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define REST_HALLOSS_RECOVERY_RATE -32
 
 // Human Overlay Indexes
+#define LASER_LAYER				27		//For sniper targeting laser
 #define MOTH_WINGS_LAYER		26
 #define MUTANTRACE_LAYER		25
 #define MUTATIONS_LAYER			24
@@ -442,7 +443,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define TARGETED_LAYER			2	//for target sprites when held at gun point, and holo cards.
 #define FIRE_LAYER				1		//If you're on fire		//BS12: Layer for the target overlay from weapon targeting system
 
-#define TOTAL_LAYERS			26
+#define TOTAL_LAYERS			27
 
 #define MOTH_WINGS_BEHIND_LAYER	1
 
@@ -455,7 +456,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define HUNTER_STEALTH_WALK_PLASMADRAIN			2
 #define HUNTER_STEALTH_RUN_PLASMADRAIN			5
 #define HUNTER_STEALTH_STILL_ALPHA				13 //95% transparency
-#define HUNTER_STEALTH_WALK_ALPHA				51 //80% transparency
+#define HUNTER_STEALTH_WALK_ALPHA				38 //85% transparency
 #define HUNTER_STEALTH_RUN_ALPHA				128 //50% transparency
 #define HUNTER_STEALTH_STEALTH_DELAY			40 //4 seconds before 95% stealth
 #define HUNTER_STEALTH_INITIAL_DELAY			20 //2 seconds before we can increase stealth
