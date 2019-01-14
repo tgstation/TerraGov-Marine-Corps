@@ -76,6 +76,7 @@
 	var/list/abilities = list()	// For species-derived or admin-given powers
 	var/list/preferences = list()
 	var/list/screams = list()
+	var/list/paincries = list()
 
 	var/blood_color = "#A10808" //Red.
 	var/flesh_color = "#FFC896" //Pink.
@@ -256,6 +257,7 @@
 	count_human = TRUE
 
 	screams = list("male" = "male_scream", "female" = "female_scream")
+	paincries = list("male" = "male_pain", "female" = "female_pain")
 
 	//If you wanted to add a species-level ability:
 	/*abilities = list(/client/proc/test_ability)*/
@@ -396,7 +398,9 @@
 
 	flags = HAS_LIPS|HAS_NO_HAIR
 	preferences = list("moth_wings" = "Wings")
+
 	screams = list("neuter" = 'sound/voice/moth_scream.ogg')
+	paincries = list("neuter" = 'sound/voice/human_male_pain_3.ogg')
 
 	flesh_color = "#E5CD99"
 
