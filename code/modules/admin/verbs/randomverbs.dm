@@ -1031,4 +1031,4 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	for(var/client/C in clients)
 		if(!isliving(C.mob))
 			continue
-		C.mob.rejuvenate
+		mob.rejuvenate
