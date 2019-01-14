@@ -257,12 +257,12 @@
 			to_chat(usr, "This can only be used on instances of type /mob")
 			return
 
-		var/delmob = 0
+		var/delmob = FALSE
 		switch(alert("Delete old mob?","Message","Yes","No","Cancel"))
 			if("Cancel")	
 				return
 			if("Yes")		
-				delmob = 1
+				delmob = TRUE
 
 		var/turf/location
 		switch(alert("Teleport to your location?","Message","Yes","No","Cancel"))
