@@ -17,7 +17,7 @@
 	new /obj/item/clothing/head/welding(src)
 	new /obj/item/clothing/gloves/yellow(src)
 	new /obj/item/cartridge/ce(src)
-	if(z && (z == MAIN_SHIP_Z_LEVEL || z == LOW_ORBIT_Z_LEVEL))
+	if(z == MAIN_SHIP_Z_LEVEL || z == LOW_ORBIT_Z_LEVEL)
 		new /obj/item/device/radio/headset/almayer/ce(src)
 	new /obj/item/storage/toolbox/mechanical(src)
 	new /obj/item/clothing/suit/storage/hazardvest(src)
