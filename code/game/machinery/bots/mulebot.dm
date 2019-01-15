@@ -411,15 +411,15 @@
 				if(istype(usr.get_active_hand(), /obj/item/device/multitool))
 					switch(href_list["wire"])
 						if("1","2")
-							to_chat(usr, "<span class='notice'>\icon[src] The charge light flickers.</span>")
+							to_chat(usr, "<span class='notice'>[bicon(src)] The charge light flickers.</span>")
 						if("4")
-							to_chat(usr, "<span class='notice'>\icon[src] The external warning lights flash briefly.</span>")
+							to_chat(usr, "<span class='notice'>[bicon(src)] The external warning lights flash briefly.</span>")
 						if("8")
-							to_chat(usr, "<span class='notice'>\icon[src] The load platform clunks.</span>")
+							to_chat(usr, "<span class='notice'>[bicon(src)] The load platform clunks.</span>")
 						if("16", "32")
-							to_chat(usr, "<span class='notice'>\icon[src] The drive motor whines briefly.</span>")
+							to_chat(usr, "<span class='notice'>[bicon(src)] The drive motor whines briefly.</span>")
 						else
-							to_chat(usr, "<span class='notice'>\icon[src] You hear a radio crackle.</span>")
+							to_chat(usr, "<span class='notice'>[bicon(src)] You hear a radio crackle.</span>")
 				else
 					to_chat(usr, "<span class='notice'>You need a multitool!</span>")
 

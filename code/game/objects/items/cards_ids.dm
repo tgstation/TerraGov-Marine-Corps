@@ -150,7 +150,7 @@
 		fingerprint_hash = md5(loc:dna:uni_identity)
 
 /obj/item/card/id/attack_self(mob/user as mob)
-	user.visible_message("[user] shows you: \icon[src] [name]: assignment: [assignment]")
+	user.visible_message("[user] shows you: [bicon(src)] [name]: assignment: [assignment]")
 
 	src.add_fingerprint(user)
 	return

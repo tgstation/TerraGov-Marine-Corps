@@ -167,7 +167,7 @@ var/list/forbidden_varedit_object_types = list(
 
 	else if(isicon(variable))
 		to_chat(usr, "Variable appears to be <b>ICON</b>.")
-		variable = "\icon[variable]"
+		variable = "[bicon(variable)]"
 		default = "icon"
 
 	else if(istype(variable,/atom) || istype(variable,/datum))

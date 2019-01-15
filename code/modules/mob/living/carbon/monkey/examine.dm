@@ -1,6 +1,6 @@
 /mob/living/carbon/monkey/examine(mob/user)
 
-	var/msg = "<span class='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>!\n"
+	var/msg = "<span class='info'>*---------*\nThis is [bicon(src)] \a <EM>[src]</EM>!\n"
 
 	if (src.handcuffed)
 		msg += "It is \icon[src.handcuffed] handcuffed!\n"

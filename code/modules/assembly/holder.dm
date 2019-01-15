@@ -193,7 +193,7 @@
 /obj/item/device/assembly_holder/process_activation(var/obj/D, var/normal = 1, var/special = 1)
 	if(!D)	return 0
 	if(!secured)
-		visible_message("\icon[src] *beep* *beep*", "*beep* *beep*")
+		visible_message("[bicon(src)] *beep* *beep*", "*beep* *beep*")
 	if((normal) && (a_right) && (a_left))
 		if(a_right != D)
 			a_right.pulsed(0)

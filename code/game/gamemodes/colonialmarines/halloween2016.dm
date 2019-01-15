@@ -1550,7 +1550,7 @@
 				stored_blood -= 0.1
 		if(0.1 to 0.9)
 			if(prob(5))
-				visible_message("<span class='warning'>\icon[src] [src]'s eyes glow ruby red for a moment!</span>")
+				visible_message("<span class='warning'>[bicon(src)] [src]'s eyes glow ruby red for a moment!</span>")
 				stored_blood -= 0.1
 
 	//Check the shadow wights and auto-remove them if they get too far.

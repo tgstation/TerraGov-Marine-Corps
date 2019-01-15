@@ -436,7 +436,7 @@
 	icon_state = "[initial(icon_state)]_dead"
 	stat = DEAD
 
-	visible_message("\icon[src] <span class='danger'>\The [src] curls up into a ball!</span>")
+	visible_message("[bicon(src)] <span class='danger'>\The [src] curls up into a ball!</span>")
 	playsound(src.loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
 
 	if(ismob(loc)) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
@@ -446,7 +446,7 @@
 	layer = BELOW_MOB_LAYER //so dead hugger appears below live hugger if stacked on same tile.
 
 	sleep(1800) //3 minute timer for it to decay
-	visible_message("\icon[src] <span class='danger'>\The [src] decays into a mass of acid and chitin.</span>")
+	visible_message("[bicon(src)] <span class='danger'>\The [src] decays into a mass of acid and chitin.</span>")
 	qdel(src)
 
 /proc/CanHug(mob/living/carbon/M)
