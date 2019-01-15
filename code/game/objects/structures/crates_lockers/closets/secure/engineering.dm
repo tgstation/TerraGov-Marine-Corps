@@ -148,7 +148,7 @@
 	new /obj/item/storage/backpack/industrial(src)
 	new /obj/item/device/flashlight(src)
 	new /obj/item/tool/extinguisher(src)
-	if(z && (z == MAIN_SHIP_Z_LEVEL || z == LOW_ORBIT_Z_LEVEL))
+	if(z == MAIN_SHIP_Z_LEVEL || z == LOW_ORBIT_Z_LEVEL)
 		new /obj/item/device/radio/headset/almayer/mt(src)
 	new /obj/item/clothing/suit/storage/hazardvest(src)
 	new /obj/item/clothing/mask/gas(src)
