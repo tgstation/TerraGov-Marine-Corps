@@ -100,10 +100,13 @@
 
 /obj/structure/closet/secure_closet/engineering_personal/Initialize()
 	. = ..()
-	if (prob(70)) new /obj/item/clothing/tie/storage/brown_vest(src)
-	else new /obj/item/clothing/tie/storage/webbing(src)
+	if (prob(70)) 
+		new /obj/item/clothing/tie/storage/brown_vest(src)
+	else 
+		new /obj/item/clothing/tie/storage/webbing(src)
 	new /obj/item/storage/toolbox/mechanical(src)
-	if(z != 1) new /obj/item/device/radio/headset/almayer/mt(src)
+	if(z != PLANET_Z_LEVEL) 
+		new /obj/item/device/radio/headset/almayer/mt(src)
 	new /obj/item/clothing/glasses/meson(src)
 	new /obj/item/cartridge/engineering(src)
 	new /obj/item/tool/taperoll/engineering(src)
