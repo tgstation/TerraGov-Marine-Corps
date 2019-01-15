@@ -43,9 +43,6 @@
 	else
 		return !density
 
-/obj/structure/closet/proc/select_gamemode_equipment()
-	return
-
 /obj/structure/closet/proc/can_open()
 	if(src.welded)
 		return FALSE
