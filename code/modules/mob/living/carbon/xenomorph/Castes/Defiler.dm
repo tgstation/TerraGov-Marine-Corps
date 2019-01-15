@@ -36,6 +36,7 @@
 	armor_deflection = 30
 
 	// *** Defiler Abilities *** //
+	neuro_claws_dose = DEFILER_CLAW_AMOUNT
 
 /datum/xeno_caste/defiler/mature
 	upgrade_name = "Mature"
@@ -67,6 +68,7 @@
 	armor_deflection = 40
 
 	// *** Defiler Abilities *** //
+	neuro_claws_dose = 6
 
 /datum/xeno_caste/defiler/elder
 	upgrade_name = "Elder"
@@ -98,6 +100,7 @@
 	armor_deflection = 47
 
 	// *** Defiler Abilities *** //
+	neuro_claws_dose = 6.7
 
 /datum/xeno_caste/defiler/ancient
 	upgrade_name = "Ancient"
@@ -128,8 +131,8 @@
 	// *** Defense *** //
 	armor_deflection = 50
 
-	// *** Warrior Abilities *** //
-	agility_speed_increase = 0
+	// *** Defiler Abilities *** //
+	neuro_claws_dose = 7
 
 /mob/living/carbon/Xenomorph/Defiler
 	caste_base_type = /mob/living/carbon/Xenomorph/Defiler
@@ -151,9 +154,11 @@
 	var/last_use_neuroclaws = null
 	var/neuro_claws = FALSE
 	var/emitting_gas = FALSE
+	var/neuro_claws_dose = DEFILER_CLAW_AMOUNT
 	actions = list(
 		/datum/action/xeno_action/xeno_resting,
 		/datum/action/xeno_action/regurgitate,
+		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/activable/emit_neurogas,
 		/datum/action/xeno_action/activable/defiler_sting,
 		/datum/action/xeno_action/neuroclaws,

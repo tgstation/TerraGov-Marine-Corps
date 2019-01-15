@@ -550,7 +550,7 @@
 	if(!check_plasma(50) || !neuro_claws || !H)
 		return
 	use_plasma(50)
-	H.reagents.add_reagent("xeno_toxin", DEFILER_CLAW_AMOUNT)
+	H.reagents.add_reagent("xeno_toxin", neuro_claws_dose)
 	to_chat(src, "<span class='xenowarning'>Your claw spines inject your victim with neurotoxin!</span>")
 
 /mob/living/carbon/Xenomorph/proc/process_ravager_charge(hit = TRUE, mob/living/carbon/M = null)
