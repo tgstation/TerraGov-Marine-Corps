@@ -111,15 +111,17 @@
 	if(hastie)
 		to_chat(user, "\A [hastie] is clipped to it.")
 
-/obj/item/clothing/under/proc/set_sensors(mob/user)
-	if (istype(user, /mob/dead/)) return
-	if (user.stat || user.is_mob_restrained()) return
+/obj/item/clothing/under/proc/set_sensors(mob/living/user)
+	if (!istype(user))
+		return
+	if (user.is_mob_incapacitated(TRUE))
+		return
 	if(has_sensor >= 2)
-		to_chat(user, "The controls are locked.")
-		return 0
+		to_chat(user, "The sensors in [src] can't be modified.")
+		return FALSE
 	if(has_sensor <= 0)
-		to_chat(user, "This suit does not have any sensors.")
-		return 0
+		to_chat(user, "[src] does not have any sensors.")
+		return FALSE
 
 	var/list/modes = list("Off", "Binary sensors", "Vitals tracker", "Tracking beacon")
 	var/switchMode = input("Select a sensor mode:", "Suit Sensor Mode", modes[sensor_mode + 1]) in modes
@@ -147,7 +149,7 @@
 		switch(sensor_mode)
 			if(0)
 				for(var/mob/V in viewers(usr, 1))
-					V.show_message("\red [user] disables [src.loc]'s remote sensing equipment.", 1)
+					V.show_message("<span class='warning'> [user] disables [src.loc]'s remote sensing equipment.</span>", 1)
 			if(1)
 				for(var/mob/V in viewers(usr, 1))
 					V.show_message("[user] turns [src.loc]'s remote sensors to binary.", 1)

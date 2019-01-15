@@ -31,7 +31,7 @@
 						speaking = L
 						break
 
-		if(!(xeno_caste.caste_flags & CASTE_IS_ROBOTIC))
+		if(!isXenoSilicon(src))
 			if(isnull(speaking) || speaking.key != "a") //Not hivemind? Then default to xenocommon. BRUTE FORCE YO
 				for(var/datum/language/L in languages)
 					if(L.key == "x")
@@ -59,7 +59,7 @@
 		return
 
 	if(forced)
-		if(xeno_caste.caste_flags & CASTE_IS_ROBOTIC)
+		if(isXenoSilicon(src))
 			var/noise = pick('sound/machines/ping.ogg','sound/machines/twobeep.ogg')
 			verb = pick("beeps", "buzzes", "pings")
 			playsound(src.loc, noise, 25, 1)
@@ -91,7 +91,7 @@
 	var/rendered
 	if(isXenoQueen(src))
 		rendered = "<font size='3' font color='purple'><i><span class='game say'>Hivemind, <span class='name'>[name]</span> <span class='message'> hisses, '[message]'</span></span></i></font>"
-	else if(xeno_caste.caste_flags & CASTE_IS_ROBOTIC)
+	else if(isXenoSilicon(src))
 		var/message_b = pick("high-pitched blast of static","series of pings","long string of numbers","loud, mechanical squeal", "series of beeps")
 		rendered = "<i><span class='game say'>Hivemind, <span class='name'>[name]</span> emits a [message_b]!</span></i>"
 	else

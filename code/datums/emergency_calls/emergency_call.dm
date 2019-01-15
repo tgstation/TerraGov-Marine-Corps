@@ -47,17 +47,20 @@
 //Randomizes and chooses a call datum.
 /datum/game_mode/proc/get_random_call()
 	var/datum/emergency_call/chosen_call
+	var/list/valid_calls
 
 	for(var/datum/emergency_call/E in all_calls) //Loop through all potential candidates
 		if(probability < 1) //Those that are meant to be admin-only
 			continue
+
+		valid_calls += E
 
 		if(prob(E.probability))
 			chosen_call = E
 			break
 
 	if(!istype(chosen_call))
-		chosen_call = pick(all_calls)
+		chosen_call = pick(valid_calls)
 		
 	return chosen_call
 
@@ -141,7 +144,7 @@
 
 	ticker.mode.on_distress_cooldown = TRUE
 
-	spawn(1 MINUTE)
+	spawn(1 MINUTES)
 		if(length(candidates) < mob_min)
 			message_admins("Aborting distress beacon [name], not enough candidates. Found [length(candidates)].", 1)
 			ticker.mode.waiting_for_candidates = FALSE
@@ -164,11 +167,11 @@
 					if(!length(candidates)) //We ran out of candidates.
 						break
 					var/datum/mind/M = pick(candidates) //Get a random candidate, then remove it from the candidates list.
-					if(M.current.stat != DEAD)
-						candidates -= M //Strip them from the list, they aren't dead anymore.
-						continue
 					if(!istype(M)) //Something went horrifically wrong
 						candidates -= M
+						continue
+					if(M.current?.stat != DEAD)
+						candidates -= M //Strip them from the list, they aren't dead anymore.
 						continue
 					picked_candidates += M
 					candidates -= M
@@ -176,7 +179,6 @@
 				if(length(candidates))
 					for(var/datum/mind/M in candidates)
 						if(M.current)
-							message_admins("ERROR: [M.key] didn't get pick even though they are in candidates.")
 							to_chat(M.current, "<span class='warning'>You didn't get selected to join the distress team. Better luck next time!</span>")
 
 			if(announce)

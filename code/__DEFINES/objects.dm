@@ -211,6 +211,12 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define RAZORWIRE_MIN_DAMAGE_MULT_HIGH	1.6 //pouncing into it
 #define RAZORWIRE_MAX_DAMAGE_MULT_HIGH	2.4
 
+//Scope accuracy defines
+#define SCOPE_RAIL				0.4
+#define SCOPE_RAIL_MINI			0.2
+#define SCOPE_RAIL_SNIPER		0.5
+
+
 //Hypospray
 
 #define HYPOSPRAY_INJECT_MODE_DRAW		0
