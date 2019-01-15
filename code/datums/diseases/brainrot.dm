@@ -24,7 +24,6 @@
 				to_chat(affected_mob, "\red Your don't feel like yourself.")
 			if(prob(5))
 				affected_mob.adjustBrainLoss(1)
-				affected_mob.updatehealth()
 		if(3)
 			if(prob(2))
 				affected_mob.emote("stare")
@@ -32,7 +31,6 @@
 				affected_mob.emote("drool")
 			if(prob(10) && affected_mob.getBrainLoss()<=98)//shouldn't retard you to death now
 				affected_mob.adjustBrainLoss(2)
-				affected_mob.updatehealth()
 				if(prob(2))
 					to_chat(affected_mob, "\red Your try to remember something important...but can't.")
 /*			if(prob(10))
@@ -52,7 +50,6 @@
 					to_chat(affected_mob, "\red Your head hurts.") */
 			if(prob(15) && affected_mob.getBrainLoss()<=98) //shouldn't retard you to death now
 				affected_mob.adjustBrainLoss(3)
-				affected_mob.updatehealth()
 				if(prob(2))
 					to_chat(affected_mob, "\red Strange buzzing fills your head, removing all thoughts.")
 			if(prob(3))

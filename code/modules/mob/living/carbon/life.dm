@@ -162,7 +162,7 @@
 				drowsyness += 5
 
 		if(drunkenness >= 91)
-			adjustBrainLoss(0.2)
+			adjustBrainLoss(0.2, TRUE)
 			if(prob(15 && !stat))
 				to_chat(src, "<span class='warning'>Just a quick nap...</span>")
 				Sleeping(40)

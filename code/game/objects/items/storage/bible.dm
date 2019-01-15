@@ -75,7 +75,7 @@
 			playsound(src.loc, "punch", 25, 1)
 		else
 			if(ishuman(M) && !istype(M:head, /obj/item/clothing/head/helmet))
-				M.adjustBrainLoss(10)
+				M.adjustBrainLoss(10, TRUE)
 				to_chat(M, "\red You feel dumber.")
 			for(var/mob/O in viewers(M, null))
 				O.show_message(text("\red <B>[] beats [] over the head with []!</B>", user, M, src), 1)
