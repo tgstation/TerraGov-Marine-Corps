@@ -706,7 +706,7 @@ var/global/respawntime = 15
 			<BR>
 			<B>Mass-Rejuvenate</B><BR>
 			<BR>
-			<A href='?src=\ref[src];secretsfun=rejuvall'>Rejuv ALL living, cliented mobs</A><BR>
+			<A href='?src=\ref[src];secretsfun=rejuvall'>Rejuv ALL cliented mobs</A><BR>
 			"}
 
 	if(check_rights(R_DEBUG,0))
