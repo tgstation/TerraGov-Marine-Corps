@@ -764,10 +764,11 @@
 	playsound(loc,'sound/weapons/gun_mortar_fire.ogg', 50, 1)
 	. = ..()
 
-	loaded_rocket.current_rounds = 0
-	user.drop_inv_item_on_ground(loaded_rocket)
-	loaded_rocket.update_icon()
-	loaded_rocket = null
+	loaded_rocket.current_rounds = max(loaded_rocket.current_rounds - 1, 0)
+	if(!loaded_rocket.current_rounds)
+		user.drop_inv_item_on_ground(loaded_rocket)
+		loaded_rocket.update_icon()
+		loaded_rocket = null
 
 /obj/item/weapon/gun/launcher/rocket/wield(mob/living/user)
 	. = ..()
@@ -831,7 +832,7 @@
 			replace_ammo(user,loaded_rocket)
 			user.drop_inv_item_on_ground(loaded_rocket)
 			loaded_rocket.loc = src
-			current_mag.current_rounds = min(current_mag.current_rounds + 1, current_mag.max_rounds)
+			current_mag.current_rounds = min(loaded_rocket.current_rounds, current_mag.max_rounds)
 			to_chat(user, "<span class='notice'>You load [rocket] into [src].</span>")
 			if(reload_sound)
 				playsound(user, reload_sound, 25, 1)
