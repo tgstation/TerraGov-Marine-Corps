@@ -23,6 +23,8 @@
 	if(!usr || usr != mob)	//stops us calling Topic for somebody else's client. Also helps prevent usr=null
 		return
 
+	if(href_list["_src_"] == "chat") // Oh god the ping hrefs.
+		return chatOutput.Topic(href, href_list)
 
 	//search the href for script injection
 	if( findtext(href,"<script",1,0) )
@@ -30,6 +32,11 @@
 		message_admins("Attempted use of scripts within a topic call, by [src]")
 		//del(usr)
 		return
+/*
+	//Logs all hrefs, except chat pings
+	if(!(href_list["_src_"] == "chat" && href_list["proc"] == "ping" && length(href_list) == 2))
+		log_href("[src] (usr:[usr]\[[AREACOORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")*/
+
 
 	//Admin PM //Why is this not in /datums/admin/Topic()
 	if(href_list["priv_msg"])
@@ -37,7 +44,8 @@
 		if(ismob(C)) 		//Old stuff can feed-in mobs instead of clients
 			var/mob/M = C
 			C = M.client
-		if(!C) return //Outdated links to logged players generate runtimes
+		if(!C) 
+			return //Outdated links to logged players generate runtimes
 		if(unansweredMhelps[C.computer_id]) 
 			unansweredMhelps.Remove(C.computer_id)
 		if(unansweredAhelps[C.computer_id]) 
@@ -50,10 +58,16 @@
 		log_href("[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr]) || [hsrc ? "[hsrc] " : ""][href]")
 
 	switch(href_list["_src_"])
-		if("holder")	hsrc = holder
-		if("usr")		hsrc = mob
-		if("prefs")		return prefs.process_link(usr,href_list)
-		if("vars")		return view_var_Topic(href,href_list,hsrc)
+		if("holder")	
+			hsrc = holder
+		if("usr")		
+			hsrc = mob
+		if("prefs")		
+			return prefs.process_link(usr,href_list)
+		if("vars")		
+			return view_var_Topic(href,href_list,hsrc)
+		if("chat")
+			return chatOutput.Topic(href, href_list)
 
 	..()	//redirect to hsrc.Topic()
 
@@ -91,6 +105,7 @@
 	//CONNECT//
 	///////////
 /client/New(TopicData)
+	chatOutput = new /datum/chatOutput(src)
 	TopicData = null							//Prevent calls to client.Topic from connect
 
 	if(!(connection in list("seeker", "web")))					//Invalid connection type.
@@ -136,6 +151,7 @@
 	prefs.last_id = computer_id			//these are gonna be used for banning
 
 	. = ..()	//calls mob.Login()
+	chatOutput.start() // Starts the chat
 
 	if(custom_event_msg && custom_event_msg != "")
 		to_chat(src, "<h1 class='alert'>Custom Event</h1>")
