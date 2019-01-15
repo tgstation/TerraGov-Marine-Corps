@@ -140,7 +140,8 @@ item, and will change the skin to whatever you specify here. You can also
 manually override the icon with a unique skin if wanted, for the outlier
 cases. Override_icon_state should be a list.*/
 /obj/item/proc/select_gamemode_skin(expected_type, list/override_icon_state, override_name, list/override_protection)
-	if(type == expected_type)
+	return
+	/*if(type == expected_type)
 		var/new_icon_state
 		var/new_name
 		var/new_protection
@@ -157,7 +158,7 @@ cases. Override_icon_state should be a list.*/
 				if(new_name) name = new_name
 				if(new_protection) min_cold_protection_temperature = new_protection
 
-		item_state = icon_state
+		item_state = icon_state*/
 
 /obj/item/attack_hand(mob/user as mob)
 	if (!user)

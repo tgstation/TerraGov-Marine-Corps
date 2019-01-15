@@ -222,7 +222,8 @@
 		/datum/action/xeno_action/activable/gut,
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
-		/datum/action/xeno_action/activable/xeno_spit
+		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/larva_growth,
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/claw_toggle,
@@ -656,8 +657,9 @@
 			/datum/action/xeno_action/emit_pheromones,
 			/datum/action/xeno_action/activable/gut,
 			/datum/action/xeno_action/psychic_whisper,
-		  /datum/action/xeno_action/shift_spits,
+		 	/datum/action/xeno_action/shift_spits,
 			/datum/action/xeno_action/activable/xeno_spit,
+			/datum/action/xeno_action/activable/larva_growth,
 			)
 
 		for(var/path in mobile_abilities)

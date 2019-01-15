@@ -9,8 +9,8 @@
 
 	var/datum/computer/file/embedded_program/docking/multi/docking_program
 
-/obj/machinery/embedded_controller/radio/docking_port_multi/initialize()
-	..()
+/obj/machinery/embedded_controller/radio/docking_port_multi/Initialize()
+	. = ..()
 	docking_program = new/datum/computer/file/embedded_program/docking/multi(src)
 	program = docking_program
 
@@ -55,8 +55,8 @@
 	var/datum/computer/file/embedded_program/airlock/multi_docking/airlock_program
 	tag_secure = 1
 
-/obj/machinery/embedded_controller/radio/airlock/docking_port_multi/initialize()
-	..()
+/obj/machinery/embedded_controller/radio/airlock/docking_port_multi/Initialize()
+	. = ..()
 	airlock_program = new/datum/computer/file/embedded_program/airlock/multi_docking(src)
 	program = airlock_program
 

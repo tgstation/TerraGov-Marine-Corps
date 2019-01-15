@@ -11,14 +11,9 @@
 	var/processing = 0
 	var/exproof = 0
 
-/obj/machinery/computer/New()
-	..()
-	if(ticker)
-		initialize()
+/obj/machinery/computer/Initialize()
+	. = ..()
 	start_processing()
-
-
-/obj/machinery/computer/initialize()
 	power_change()
 
 /obj/machinery/computer/process()

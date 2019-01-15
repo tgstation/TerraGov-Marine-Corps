@@ -29,7 +29,7 @@
 	. = ..()
 	select_gamemode_equipment()
 
-/obj/structure/closet/initialize()
+/obj/structure/closet/Initialize()
 	..()
 	spawn(1)
 		if(!opened)		// if closed, any item at the crate's loc is put in the contents

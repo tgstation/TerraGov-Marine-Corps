@@ -19,6 +19,25 @@
 
 
 /mob/Stat()
+	if(client && client.holder)
+		if(statpanel("MC"))
+			stat("CPU:", "[world.cpu]")
+			stat("Instances:", "[num2text(world.contents.len, 10)]")
+			stat("World Time:", "[world.time]")
+			stat(null)
+			if(Master)
+				Master.stat_entry()
+			else
+				stat("Master Controller:", "ERROR")
+			if(Failsafe)
+				Failsafe.stat_entry()
+			else
+				stat("Failsafe Controller:", "ERROR")
+			if(Master)
+				stat(null)
+				for(var/datum/controller/subsystem/SS in Master.subsystems)
+					SS.stat_entry()
+
 	// Looking at contents of a tile
 	if (tile_contents_change)
 		tile_contents_change = 0

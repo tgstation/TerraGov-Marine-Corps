@@ -263,10 +263,8 @@ var/list/solars_list = list()
 	var/nexttime = 0		// Next clock time that manual tracking will move the array
 
 
-/obj/machinery/power/solar_control/New()
-	..()
-	if(ticker)
-		initialize()
+/obj/machinery/power/solar_control/Initialize()
+	. = ..()
 	connect_to_network()
 
 /obj/machinery/power/solar_control/disconnect_from_network()
@@ -278,7 +276,7 @@ var/list/solars_list = list()
 	if(powernet)
 		solars_list.Add(src)
 
-/obj/machinery/power/solar_control/initialize()
+/obj/machinery/power/solar_control/Initialize()
 	..()
 	if(!powernet) return
 	set_panels(cdir)
