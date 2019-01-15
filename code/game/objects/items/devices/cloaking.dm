@@ -80,10 +80,10 @@
 /obj/item/device/cloaking_device/attack_self(mob/user as mob)
 	src.active = !( src.active )
 	if (src.active)
-		to_chat(user, "\blue The cloaking device is now active.")
+		to_chat(user, "<span class='notice'>The cloaking device is now active.</span>")
 		src.icon_state = "shield1"
 	else
-		to_chat(user, "\blue The cloaking device is now inactive.")
+		to_chat(user, "<span class='notice'>The cloaking device is now inactive.</span>")
 		src.icon_state = "shield0"
 	src.add_fingerprint(user)
 	return

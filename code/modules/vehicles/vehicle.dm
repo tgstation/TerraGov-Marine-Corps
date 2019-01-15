@@ -95,7 +95,7 @@
 	if(M.melee_damage_upper == 0)
 		return
 	health -= M.melee_damage_upper
-	src.visible_message("\red <B>[M] has [M.attacktext] [src]!</B>")
+	src.visible_message("<span class='danger'>[M] has [M.attacktext] [src]!</span>")
 	log_combat(M, src, "attacked")
 	if(prob(10))
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)
@@ -165,7 +165,7 @@
 		to_chat(user, "<span class='warning'>You bypass [src]'s controls.</span>")
 
 /obj/vehicle/proc/explode()
-	src.visible_message("\red <B>[src] blows apart!</B>", 1)
+	src.visible_message("<span class='danger'>[src] blows apart!</span>", 1)
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/stack/rods(Tsec)
