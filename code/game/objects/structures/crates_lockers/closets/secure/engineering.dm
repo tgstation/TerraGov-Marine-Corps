@@ -9,7 +9,7 @@
 	icon_off = "secureceoff"
 
 
-/obj/structure/closet/secure_closet/engineering_chief/New()
+/obj/structure/closet/secure_closet/engineering_chief/Initialize()
 	. = ..()
 	new /obj/item/clothing/tie/storage/webbing(src)
 	new /obj/item/clothing/tie/storage/brown_vest(src)
@@ -47,7 +47,7 @@
 	icon_off = "secureengelecoff"
 
 
-/obj/structure/closet/secure_closet/engineering_electrical/New()
+/obj/structure/closet/secure_closet/engineering_electrical/Initialize()
 	. = ..()
 	new /obj/item/clothing/gloves/yellow(src)
 	new /obj/item/clothing/gloves/yellow(src)
@@ -75,7 +75,7 @@
 	icon_off = "secureengweldoff"
 
 
-/obj/structure/closet/secure_closet/engineering_welding/New()
+/obj/structure/closet/secure_closet/engineering_welding/Initialize()
 	. = ..()
 	new /obj/item/clothing/head/welding(src)
 	new /obj/item/clothing/head/welding(src)
@@ -98,7 +98,7 @@
 	icon_broken = "secureengbroken"
 	icon_off = "secureengoff"
 
-/obj/structure/closet/secure_closet/engineering_personal/New()
+/obj/structure/closet/secure_closet/engineering_personal/Initialize()
 	. = ..()
 	if (prob(70)) new /obj/item/clothing/tie/storage/brown_vest(src)
 	else new /obj/item/clothing/tie/storage/webbing(src)
@@ -139,7 +139,7 @@
 	icon_off = "secureatmoff"
 
 
-/obj/structure/closet/secure_closet/atmos_personal/New()
+/obj/structure/closet/secure_closet/atmos_personal/Initialize()
 	. = ..()
 	if (prob(70))
 		new /obj/item/clothing/tie/storage/brown_vest(src)
