@@ -350,7 +350,7 @@
 
 			round_statistics.praetorian_spray_direct_hits++
 
-			C.acid_process_cooldown = world.time //prevent the victim from being damaged by acid puddle process damage for 1 second, so there's no chance they get immediately double dipped by it.
+			C.acid_process_cooldown = 2 //prevent the victim from being damaged by acid puddle process damage for 1 tick, so there's no chance they get immediately double dipped by it.
 			var/armor_block = C.run_armor_check("chest", "energy")
 			var/damage = rand(30,40) + 4 * upgrade
 			if(ishuman(C))
@@ -1142,7 +1142,7 @@
 	A.permutated += src
 	A.def_zone = get_limbzone_target()
 
-	A.fire_at(T, src, src, ammo.max_range, ammo.shell_speed)
+	A.fire_at(T, src, null, ammo.max_range, ammo.shell_speed)
 	has_spat = world.time + xeno_caste.spit_delay + ammo.added_spit_delay
 	use_plasma(ammo.spit_cost)
 	cooldown_notification(xeno_caste.spit_delay + ammo.added_spit_delay, "spit")
@@ -1420,11 +1420,7 @@
 		A.layer = O.layer + 0.1
 	else //If not, appear on the floor or on an item
 		A.layer = LOWER_ITEM_LAYER //below any item, above BELOW_OBJ_LAYER (smartfridge)
-		if(istype(O, /obj/item)) //set the acid variable
-			var/obj/item/I = O
-			I.current_acid = A
 
-	A.name = name + " (on [src])" //Identify what the acid is on
 	A.add_hiddenprint(src)
 
 	if(!isturf(O))

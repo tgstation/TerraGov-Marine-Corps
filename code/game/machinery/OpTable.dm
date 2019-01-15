@@ -48,8 +48,8 @@
 
 /obj/machinery/optable/attack_paw(mob/user as mob)
 	if ((HULK in usr.mutations))
-		to_chat(usr, text("<span class='notice'> You destroy the operating table.</span>"))
-		visible_message("<span class='warning'> [usr] destroys the operating table!</span>")
+		to_chat(usr, text("\blue You destroy the operating table."))
+		visible_message("\red [usr] destroys the operating table!")
 		src.density = 0
 		qdel(src)
 	if (!( locate(/obj/machinery/optable, user.loc) ))
@@ -68,8 +68,8 @@
 
 /obj/machinery/optable/attack_hand(mob/living/user)
 	if (HULK in usr.mutations)
-		to_chat(usr, text("<span class='notice'> You destroy the table.</span>"))
-		visible_message("<span class='warning'> [usr] destroys the operating table!</span>")
+		to_chat(usr, text("\blue You destroy the table."))
+		visible_message("\red [usr] destroys the operating table!")
 		src.density = 0
 		qdel(src)
 		return
@@ -223,11 +223,11 @@
 
 /obj/machinery/optable/proc/check_table(mob/living/carbon/patient as mob)
 	if(victim)
-		to_chat(usr, "<span class='boldnotice'>The table is already occupied!</span>")
+		to_chat(usr, "\blue <B>The table is already occupied!</B>")
 		return 0
 
 	if(patient.buckled)
-		to_chat(usr, "<span class='boldnotice'>Unbuckle first!</span>")
+		to_chat(usr, "\blue <B>Unbuckle first!</B>")
 		return 0
 
 	return 1

@@ -10,6 +10,8 @@
 
 	handle_fire() //Check if we're on fire
 
+	handle_special() //Handle special stuff like the acid_process_cooldown
+
 /mob/living/carbon/handle_regular_hud_updates()
 	. = ..()
 	if(.)

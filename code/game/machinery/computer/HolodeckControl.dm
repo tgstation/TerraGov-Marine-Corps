@@ -113,7 +113,7 @@ var/global/list/holodeck_programs = list(
 	if(istype(D, /obj/item/card/emag) && !emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
 		emagged = 1
-		to_chat(user, "<span class='notice'>You vastly increase projector power and override the safety and security protocols.</span>")
+		to_chat(user, "\blue You vastly increase projector power and override the safety and security protocols.")
 		to_chat(user, "Warning.  Automatic shutoff and derezing protocols have been corrupted.  Please call Nanotrasen maintenance and do not use the simulator.")
 		log_game("[key_name(usr)] emagged the Holodeck Control Computer")
 	src.updateUsrDialog()
@@ -446,9 +446,9 @@ var/global/list/holodeck_programs = list(
 				if(X.id == id)
 					X.score(side)
 					// no break, to update multiple scoreboards
-			visible_message("<span class='notice'> Swish! \the [I] lands in \the [src].</span>", 3)
+			visible_message("\blue Swish! \the [I] lands in \the [src].", 3)
 		else
-			visible_message("<span class='warning'> \the [I] bounces off of \the [src]'s rim!</span>", 3)
+			visible_message("\red \the [I] bounces off of \the [src]'s rim!", 3)
 		return 0
 	else
 		return ..()

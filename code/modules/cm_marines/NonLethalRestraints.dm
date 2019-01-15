@@ -14,7 +14,7 @@
 	origin_tech = "combat=2"
 
 	suicide_act(mob/user)
-		user.visible_message("<span class='danger'>[user] is putting the live [src.name] in \his mouth! It looks like \he's trying to commit suicide.</span>")
+		viewers(user) << "\red <b>[user] is putting the live [src.name] in \his mouth! It looks like \he's trying to commit suicide.</b>"
 		return (FIRELOSS)
 
 /obj/item/weapon/stunprod/update_icon()
@@ -25,7 +25,7 @@
 
 /obj/item/weapon/stunprod/attack_self(mob/user as mob)
 	if(status && (CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "<span class='warning'>You grab the [src] on the wrong side.</span>")
+		to_chat(user, "\red You grab the [src] on the wrong side.")
 		user.KnockDown(30)
 		charges--
 		if(charges < 1)

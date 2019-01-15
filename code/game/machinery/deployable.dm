@@ -41,7 +41,7 @@
 					var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 					s.set_up(2, 1, src)
 					s.start()
-					visible_message("<span class='warning'> BZZzZZzZZzZT</span>")
+					visible_message("\red BZZzZZzZZzZT")
 					return
 			return
 		else if (istype(W, /obj/item/card/emag))
@@ -52,7 +52,7 @@
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 				s.set_up(2, 1, src)
 				s.start()
-				visible_message("<span class='warning'> BZZzZZzZZzZT</span>")
+				visible_message("\red BZZzZZzZZzZT")
 				return
 			else if (src.emagged == 1)
 				src.emagged = 2
@@ -60,19 +60,19 @@
 				var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 				s.set_up(2, 1, src)
 				s.start()
-				visible_message("<span class='warning'> BZZzZZzZZzZT</span>")
+				visible_message("\red BZZzZZzZZzZT")
 				return
 		else if (istype(W, /obj/item/tool/wrench))
 			if (src.health < src.maxhealth)
 				src.health = src.maxhealth
 				src.emagged = 0
 				src.req_access = list(ACCESS_MARINE_PREP)
-				visible_message("<span class='warning'> [user] repairs \the [src]!</span>")
+				visible_message("\red [user] repairs \the [src]!")
 				return
 			else if (src.emagged > 0)
 				src.emagged = 0
 				src.req_access = list(ACCESS_MARINE_PREP)
-				visible_message("<span class='warning'> [user] repairs \the [src]!</span>")
+				visible_message("\red [user] repairs \the [src]!")
 				return
 			return
 		else
@@ -114,7 +114,7 @@
 
 	proc/explode()
 
-		visible_message("<span class='danger'>[src] blows apart!</span>")
+		visible_message("\red <B>[src] blows apart!</B>")
 		var/turf/Tsec = get_turf(src)
 
 	/*	var/obj/item/stack/rods/ =*/

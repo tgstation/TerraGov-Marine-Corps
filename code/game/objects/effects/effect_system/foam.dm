@@ -198,19 +198,26 @@
 
 /obj/structure/foamedmetal/attack_hand(var/mob/user)
 	if ((HULK in user.mutations) || (prob(75 - metal*25)))
-		user.visible_message("<span class='warning'> [user] smashes through the foamed metal.</span>", "<span class='notice'> You smash through the metal foam wall.</span>")
+		to_chat(user, "\blue You smash through the metal foam wall.")
+		for(var/mob/O in oviewers(user))
+			if ((O.client && !( is_blind(O) )))
+				to_chat(O, "\red [user] smashes through the foamed metal.")
+
 		qdel(src)
 	else
-		to_chat(user, "<span class='notice'>You hit the metal foam but bounce off it.</span>")
+		to_chat(user, "\blue You hit the metal foam but bounce off it.")
 	return
 
 /obj/structure/foamedmetal/attackby(var/obj/item/I, var/mob/user)
 
 	if(prob(I.force*20 - metal*25))
-		user.visible_message("<span class='warning'> [user] smashes through the foamed metal.</span>", "<span class='notice'> You smash through the foamed metal with \the [I].</span>")
+		to_chat(user, "\blue You smash through the foamed metal with \the [I].")
+		for(var/mob/O in oviewers(user))
+			if ((O.client && !( is_blind(O) )))
+				to_chat(O, "\red [user] smashes through the foamed metal.")
 		qdel(src)
 	else
-		to_chat(user, "<span class='notice'>You hit the metal foam to no effect.</span>")
+		to_chat(user, "\blue You hit the metal foam to no effect.")
 
 /obj/structure/foamedmetal/CanPass(atom/movable/mover, turf/target, height = 1.5, air_group = 0)
 	if(air_group)

@@ -148,17 +148,6 @@
 	SetLuminosity(0)
 	. = ..()
 
-/obj/effect/overlay/temp/sniper_laser
-	name = "laser"
-	mouse_opacity = 0
-	luminosity = 2
-	icon = 'icons/obj/items/projectiles.dmi'
-	icon_state = "sniper_laser"
-
-/obj/effect/overlay/temp/blinking_laser/Destroy()
-	SetLuminosity(0)
-	return ..()
-
 /obj/effect/overlay/temp/emp_sparks
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "empdisable"
@@ -219,4 +208,4 @@
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
-	return ..()
+	..()

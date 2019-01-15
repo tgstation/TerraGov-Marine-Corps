@@ -65,10 +65,9 @@
 	if (!id_tag)
 		assign_uid()
 		id_tag = num2text(uid)
-
-/obj/machinery/atmospherics/unary/vent_pump/Initialize()
-	. = ..()
-	broadcast_status()
+	if(ticker && ticker.current_state == 3)//if the game is running
+		src.initialize()
+		src.broadcast_status()
 
 /obj/machinery/atmospherics/unary/vent_pump/high_volume
 	name = "Large Air Vent"

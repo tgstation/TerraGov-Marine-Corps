@@ -11,13 +11,13 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if(istype(W,/obj/item/coin))
 			if(coins < 4 && !state)
-				user.visible_message("[user] inserts \the [W] into \the [src].","<span class='notice'> You insert \the [W] inside \the [src].</span>")
+				user.visible_message("[user] inserts \the [W] into \the [src].","\blue You insert \the [W] inside \the [src].")
 				coins++
 				qdel(W)
 			else
-				to_chat(user, "<span class='warning'>\the [W] does not fit anymore.</span>")
+				to_chat(user, "\red \the [W] does not fit anymore.")
 		else
-			to_chat(user, "<span class='warning'>\the [W] does not fit inside that rectangular hole.</span>")
+			to_chat(user, "\red \the [W] does not fit inside that rectangular hole.")
 
 	examine(mob/user)
 		desc = state?"<font size='4' color='red'>NO BUGS</font>":"A strange small metal object with a button in the middle and rectangular hole on the side..."
@@ -28,7 +28,7 @@
 			return
 		if(!state)
 			if(coins)
-				user.visible_message("You hear a click from somewhere near...","<span class='notice'> You press the button and hear a click coming from inside...</span>")
+				user.visible_message("You hear a click from somewhere near...","\blue You press the button and hear a click coming from inside...")
 				state = 1
 				spawn(rand(100,200))
 					switch(coins)
@@ -73,6 +73,6 @@
 						layer = 2
 						coins = 0
 			else
-				to_chat(usr, "<span class='warning'>Nothing happened...</span>")
+				to_chat(usr, "\red Nothing happened...")
 		else
-			to_chat(usr, "<span class='warning'>Nothing happened...</span>")
+			to_chat(usr, "\red Nothing happened...")

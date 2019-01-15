@@ -367,7 +367,7 @@ var/list/ai_verbs_default = list(
 		if(target && (!istype(target, /mob/living/carbon/human) || html_decode(href_list["trackname"]) == target:get_face_name()))
 			ai_actual_track(target)
 		else
-			to_chat(src, "<span class='warning'>System error. Cannot locate [html_decode(href_list["trackname"])].</span>")
+			to_chat(src, "\red System error. Cannot locate [html_decode(href_list["trackname"])].")
 		return
 
 	return
@@ -378,7 +378,8 @@ var/list/ai_verbs_default = list(
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 25, 1)
-		visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>")
+		for(var/mob/O in viewers(src, null))
+			O.show_message("\red <B>[M]</B> [M.attacktext] [src]!", 1)
 		log_combat(M, src, "attacked")
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 		adjustBruteLoss(damage)
@@ -477,7 +478,7 @@ var/list/ai_verbs_default = list(
 			if(network in C.network)
 				U.eyeobj.setLoc(get_turf(C))
 				break
-	to_chat(src, "<span class='notice'>Switched to [network] camera network.</span>")
+	to_chat(src, "\blue Switched to [network] camera network.")
 //End of code by Mord_Sith
 
 /mob/living/silicon/ai/proc/ai_statuschange()
@@ -554,7 +555,7 @@ var/list/ai_verbs_default = list(
 
 	var/obj/machinery/power/apc/apc = src.loc
 	if(!istype(apc))
-		to_chat(src, "<span class='notice'>You are already in your Main Core.</span>")
+		to_chat(src, "\blue You are already in your Main Core.")
 		return
 	apc.malfvacate()*/
 
@@ -606,19 +607,19 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/tool/wrench))
 		if(anchored)
-			user.visible_message("<span class='notice'> \The [user] starts to unbolt \the [src] from the plating...</span>")
+			user.visible_message("\blue \The [user] starts to unbolt \the [src] from the plating...")
 			if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-				user.visible_message("<span class='notice'> \The [user] decides not to unbolt \the [src].</span>")
+				user.visible_message("\blue \The [user] decides not to unbolt \the [src].")
 				return
-			user.visible_message("<span class='notice'> \The [user] finishes unfastening \the [src]!</span>")
+			user.visible_message("\blue \The [user] finishes unfastening \the [src]!")
 			anchored = 0
 			return
 		else
-			user.visible_message("<span class='notice'> \The [user] starts to bolt \the [src] to the plating...</span>")
+			user.visible_message("\blue \The [user] starts to bolt \the [src] to the plating...")
 			if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-				user.visible_message("<span class='notice'> \The [user] decides not to bolt \the [src].</span>")
+				user.visible_message("\blue \The [user] decides not to bolt \the [src].")
 				return
-			user.visible_message("<span class='notice'> \The [user] finishes fastening down \the [src]!</span>")
+			user.visible_message("\blue \The [user] finishes fastening down \the [src]!")
 			anchored = 1
 			return
 	else
@@ -644,14 +645,14 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai/proc/check_unable(var/flags = 0)
 	if(stat == DEAD)
-		to_chat(usr, "<span class='warning'>You are dead!</span>")
+		to_chat(usr, "\red You are dead!")
 		return 1
 
 	if((flags & AI_CHECK_WIRELESS) && src.control_disabled)
-		to_chat(usr, "<span class='warning'>Wireless control is disabled!</span>")
+		to_chat(usr, "\red Wireless control is disabled!")
 		return 1
 	if((flags & AI_CHECK_RADIO) && src.aiRadio.disabledAi)
-		to_chat(src, "<span class='warning'>System Error - Transceiver Disabled!</span>")
+		to_chat(src, "\red System Error - Transceiver Disabled!")
 		return 1
 	return 0
 

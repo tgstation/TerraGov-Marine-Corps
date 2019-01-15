@@ -94,22 +94,6 @@ Quick adjacency (to turf):
 		return 0
 	return (T.Adjacent(neighbor,src))
 
-
-//This is a temporary solution to make dropship equipment work correctly.
-//TODO: Make multitile.
-/obj/structure/dropship_equipment/Adjacent(var/atom/neighbor)
-	for(var/turf/T in locs)
-		if(T.Adjacent(neighbor,src))
-			return TRUE
-	return FALSE
-
-
-/obj/structure/ship_ammo/Adjacent(var/atom/neighbor)
-	for(var/turf/T in locs)
-		if(T.Adjacent(neighbor,src))
-			return TRUE
-	return FALSE
-
 // This is necessary for storage items not on your person.
 /obj/item/Adjacent(var/atom/neighbor, var/recurse = 1)
 	if(neighbor == loc)
@@ -183,3 +167,4 @@ Quick adjacency (to turf):
 
 /turf/handle_barriers(mob/living/M)
 	return src
+	

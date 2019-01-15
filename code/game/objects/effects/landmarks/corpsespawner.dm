@@ -35,8 +35,7 @@
 	var/xenovictim = FALSE //whether this person was infected and killed by xenos
 
 
-/obj/effect/landmark/corpsespawner/Initialize()
-	. = ..()
+/obj/effect/landmark/corpsespawner/initialize()
 	if(loc && !gc_destroyed) //there's some issue with the code that calls this initialize twice,
 		createCorpse()	//once normally and once when the landmark is in null space, thus spawning a mob there
 						//this is a bandaid until it's properly fixed.

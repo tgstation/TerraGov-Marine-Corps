@@ -6,7 +6,8 @@
 	unacidable = 1
 
 /obj/effect/landmark/New()
-	. = ..()
+
+	..()
 	tag = "landmark*[name]"
 	invisibility = 101
 
@@ -96,10 +97,11 @@
 
 
 	landmarks_list += src
+	return 1
 
 /obj/effect/landmark/Destroy()
 	landmarks_list -= src
-	return ..()
+	. = ..()
 
 /obj/effect/landmark/start
 	name = "start"
@@ -108,14 +110,16 @@
 	anchored = 1.0
 
 /obj/effect/landmark/start/New()
-	. = ..()
+	..()
 	tag = "start*[name]"
 	invisibility = 101
+
+	return 1
 
 /obj/effect/landmark/map_tag
 	name = "mapping tag"
 
 /obj/effect/landmark/map_tag/New()
-	. = ..()
 	map_tag = name
 	qdel(src)
+	return

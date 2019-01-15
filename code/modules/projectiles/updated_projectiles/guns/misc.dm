@@ -91,7 +91,7 @@
 	force = 20
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_WIELDED_FIRING_ONLY
 
-/obj/item/weapon/gun/minigun/Initialize(loc, spawn_empty)
+/obj/item/weapon/gun/minigun/New(loc, spawn_empty)
 	. = ..()
 	if(current_mag && current_mag.current_rounds > 0) 
 		load_into_chamber()
@@ -165,7 +165,7 @@
 		last_regen = world.time
 		update_icon()
 
-/obj/item/weapon/gun/launcher/spike/Initialize()
+/obj/item/weapon/gun/launcher/spike/New()
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	last_regen = world.time
@@ -237,7 +237,7 @@
 /obj/item/weapon/gun/syringe/examine(mob/user)
 	..()
 	if(user != loc) return
-	to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
+	to_chat(user, "\blue [syringes.len] / [max_syringes] syringes.")
 
 /obj/item/weapon/gun/syringe/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/reagent_container/syringe))
@@ -247,12 +247,12 @@
 				user.drop_inv_item_to_loc(I, src)
 				syringes += I
 				update_icon()
-				to_chat(user, "<span class='notice'>You put the syringe in [src].</span>")
-				to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
+				to_chat(user, "\blue You put the syringe in [src].")
+				to_chat(user, "\blue [syringes.len] / [max_syringes] syringes.")
 			else
-				to_chat(usr, "<span class='warning'>[src] cannot hold more syringes.</span>")
+				to_chat(usr, "\red [src] cannot hold more syringes.")
 		else
-			to_chat(usr, "<span class='warning'>This syringe is broken!</span>")
+			to_chat(usr, "\red This syringe is broken!")
 
 
 /obj/item/weapon/gun/syringe/afterattack(obj/target, mob/user , flag)
@@ -270,7 +270,7 @@
 	if(syringes.len)
 		spawn(0) fire_syringe(target,user)
 	else
-		to_chat(usr, "<span class='warning'>[src] is empty.</span>")
+		to_chat(usr, "\red [src] is empty.")
 
 /obj/item/weapon/gun/syringe/proc/fire_syringe(atom/target, mob/user)
 	if (locate (/obj/structure/table, src.loc))
@@ -348,6 +348,6 @@
 	anchored = 1
 	density = 0
 
-/obj/effect/syringe_gun_dummy/Initialize()
+/obj/effect/syringe_gun_dummy/New()
 	create_reagents(15)
 	return ..()

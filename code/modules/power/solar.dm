@@ -263,8 +263,10 @@ var/list/solars_list = list()
 	var/nexttime = 0		// Next clock time that manual tracking will move the array
 
 
-/obj/machinery/power/solar_control/Initialize()
-	. = ..()
+/obj/machinery/power/solar_control/New()
+	..()
+	if(ticker)
+		initialize()
 	connect_to_network()
 
 /obj/machinery/power/solar_control/disconnect_from_network()
@@ -276,7 +278,7 @@ var/list/solars_list = list()
 	if(powernet)
 		solars_list.Add(src)
 
-/obj/machinery/power/solar_control/Initialize()
+/obj/machinery/power/solar_control/initialize()
 	..()
 	if(!powernet) return
 	set_panels(cdir)
@@ -314,7 +316,7 @@ var/list/solars_list = list()
 		playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 			if (src.stat & BROKEN)
-				to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
+				to_chat(user, "\blue The broken glass falls out.")
 				var/obj/structure/computerframe/A = new( src.loc )
 				new /obj/item/shard( src.loc )
 				var/obj/item/circuitboard/computer/solar_control/M = new( A )
@@ -326,7 +328,7 @@ var/list/solars_list = list()
 				A.anchored = 1
 				qdel(src)
 			else
-				to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
+				to_chat(user, "\blue You disconnect the monitor.")
 				var/obj/structure/computerframe/A = new( src.loc )
 				var/obj/item/circuitboard/computer/solar_control/M = new( A )
 				for (var/obj/C in src)

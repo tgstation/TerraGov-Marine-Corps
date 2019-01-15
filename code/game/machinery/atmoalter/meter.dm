@@ -11,13 +11,18 @@
 	use_power = 1
 	idle_power_usage = 15
 
+/obj/machinery/meter/New()
+	..()
+	src.target = locate(/obj/machinery/atmospherics/pipe) in loc
+	return 1
+
 /obj/machinery/meter/Destroy()
 	target = null
 	. = ..()
 
-/obj/machinery/meter/Initialize()
-	. = ..()
-	target = locate(/obj/machinery/atmospherics/pipe) in loc
+/obj/machinery/meter/initialize()
+	if (!target)
+		src.target = locate(/obj/machinery/atmospherics/pipe) in loc
 
 /obj/machinery/meter/process()
 	if(!target)
@@ -64,10 +69,10 @@
 	var/t = "A gas flow meter. "
 
 	if(get_dist(user, src) > 3 && !(istype(user, /mob/living/silicon/ai) || istype(user, /mob/dead)))
-		t += "<span class='boldnotice'>You are too far away to read it.</span>"
+		t += "\blue <B>You are too far away to read it.</B>"
 
 	else if(stat & (NOPOWER|BROKEN))
-		t += "<span class='danger'>The display is off.</span>"
+		t += "\red <B>The display is off.</B>"
 
 	else if(target)
 		if(target.return_pressure())
@@ -101,9 +106,15 @@
 
 // TURF METER - REPORTS A TILE'S AIR CONTENTS
 
-/obj/machinery/meter/turf/Initialize()
-	. = ..()
-	target = loc
+/obj/machinery/meter/turf/New()
+	..()
+	src.target = loc
+	return 1
+
+
+/obj/machinery/meter/turf/initialize()
+	if (!target)
+		src.target = loc
 
 /obj/machinery/meter/turf/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	return

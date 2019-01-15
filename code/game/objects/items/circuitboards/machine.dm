@@ -125,7 +125,7 @@ obj/item/circuitboard/machine/rdserver
 	if(istype(I,/obj/item/tool/screwdriver))
 		machine_dir = turn(machine_dir, 90)
 		init_dirs = machine_dir
-		user.visible_message("<span class='notice'> \The [user] adjusts the jumper on the [src]'s port configuration pins.</span>", "<span class='notice'> You adjust the jumper on the port configuration pins. Now set to [dir2text(machine_dir)].</span>")
+		user.visible_message("\blue \The [user] adjusts the jumper on the [src]'s port configuration pins.", "\blue You adjust the jumper on the port configuration pins. Now set to [dir2text(machine_dir)].")
 	return
 
 /obj/item/circuitboard/machine/unary_atmos/examine(mob/user)

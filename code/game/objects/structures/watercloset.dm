@@ -364,10 +364,10 @@
 		return
 
 	if(busy)
-		to_chat(user, "<span class='warning'>Someone's already washing here.</span>")
+		to_chat(user, "\red Someone's already washing here.")
 		return
 
-	to_chat(usr, "<span class='notice'>You start washing your hands.</span>")
+	to_chat(usr, "\blue You start washing your hands.")
 
 	busy = 1
 	sleep(40)
@@ -379,18 +379,18 @@
 	if(ishuman(user))
 		user:update_inv_gloves()
 	for(var/mob/V in viewers(src, null))
-		V.show_message("<span class='notice'> [user] washes their hands using \the [src].</span>")
+		V.show_message("\blue [user] washes their hands using \the [src].")
 
 
 /obj/structure/sink/attackby(obj/item/O as obj, mob/living/user as mob)
 	if(busy)
-		to_chat(user, "<span class='warning'>Someone's already washing here.</span>")
+		to_chat(user, "\red Someone's already washing here.")
 		return
 
 	var/obj/item/reagent_container/RG = O
 	if (istype(RG) && RG.is_open_container())
 		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
-		user.visible_message("<span class='notice'> [user] fills \the [RG] using \the [src].</span>","<span class='notice'> You fill \the [RG] using \the [src].</span>")
+		user.visible_message("\blue [user] fills \the [RG] using \the [src].","\blue You fill \the [RG] using \the [src].")
 		return
 
 	else if (istype(O, /obj/item/weapon/baton))
@@ -417,7 +417,7 @@
 	var/obj/item/I = O
 	if(!I || !istype(I,/obj/item)) return
 
-	to_chat(usr, "<span class='notice'>You start washing \the [I].</span>")
+	to_chat(usr, "\blue You start washing \the [I].")
 
 	busy = 1
 	sleep(40)
@@ -429,8 +429,8 @@
 
 	O.clean_blood()
 	user.visible_message( \
-		"<span class='notice'> [user] washes \a [I] using \the [src].</span>", \
-		"<span class='notice'> You wash \a [I] using \the [src].</span>")
+		"\blue [user] washes \a [I] using \the [src].", \
+		"\blue You wash \a [I] using \the [src].")
 
 
 /obj/structure/sink/kitchen

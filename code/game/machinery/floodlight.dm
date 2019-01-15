@@ -56,7 +56,7 @@
 
 	if(on)
 		on = 0
-		to_chat(user, "<span class='notice'>You turn off the light.</span>")
+		to_chat(user, "\blue You turn off the light.")
 		SetLuminosity(0)
 		unacidable = 1
 	else
@@ -65,7 +65,7 @@
 		if(cell.charge <= 0)
 			return
 		on = 1
-		to_chat(user, "<span class='notice'>You turn on the light.</span>")
+		to_chat(user, "\blue You turn on the light.")
 		SetLuminosity(brightness_on)
 		unacidable = 0
 

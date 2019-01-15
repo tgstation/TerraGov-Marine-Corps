@@ -74,7 +74,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(operating)
-		to_chat(user, "<span class='warning'>It's locked and running</span>")
+		to_chat(user, "\red It's locked and running")
 		return
 	else
 		src.startgibbing(user)
@@ -137,10 +137,10 @@
 	if(src.operating)
 		return
 	if(!src.occupant)
-		visible_message("<span class='warning'> You hear a loud metallic grinding sound.</span>")
+		visible_message("\red You hear a loud metallic grinding sound.")
 		return
 	use_power(1000)
-	visible_message("<span class='warning'> You hear a loud squelchy grinding sound.</span>")
+	visible_message("\red You hear a loud squelchy grinding sound.")
 	src.operating = 1
 	update_icon()
 

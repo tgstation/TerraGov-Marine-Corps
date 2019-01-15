@@ -49,7 +49,7 @@
 		if(!do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
 			return
 
-		user.visible_message("<span class='notice'>[user.name] planted \the [L] into [src].</span>")
+		user.visible_message("\blue[user.name] planted \the [L] into [src].")
 		L.anchored = 1
 		L.icon_state = "lightstick_[L.s_color][L.anchored]"
 		user.drop_held_item()

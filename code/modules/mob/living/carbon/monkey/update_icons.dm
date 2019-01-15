@@ -1,5 +1,4 @@
 //Monkey Overlays Indexes////////
-#define M_LASER_LAYER			9
 #define M_MASK_LAYER			8
 #define M_BACK_LAYER			7
 #define M_HANDCUFF_LAYER		6
@@ -8,7 +7,7 @@
 #define M_TARGETED_LAYER		3
 #define M_FIRE_LAYER			2
 #define M_BURST_LAYER			1
-#define M_TOTAL_LAYERS			9
+#define M_TOTAL_LAYERS			8
 /////////////////////////////////
 
 /mob/living/carbon/monkey

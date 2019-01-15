@@ -20,38 +20,38 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if (istype(W, /obj/item/card/id))
 			if(src.broken)
-				to_chat(user, "<span class='warning'>It appears to be broken.</span>")
+				to_chat(user, "\red It appears to be broken.")
 				return
 			if(src.allowed(user))
 				src.locked = !( src.locked )
 				if(src.locked)
 					src.icon_state = src.icon_locked
-					to_chat(user, "<span class='warning'>You lock the [src.name]!</span>")
+					to_chat(user, "\red You lock the [src.name]!")
 					return
 				else
 					src.icon_state = src.icon_closed
-					to_chat(user, "<span class='warning'>You unlock the [src.name]!</span>")
+					to_chat(user, "\red You unlock the [src.name]!")
 					return
 			else
-				to_chat(user, "<span class='warning'>Access Denied</span>")
+				to_chat(user, "\red Access Denied")
 		else if(istype(W, /obj/item/card/emag) && !broken)
 			broken = 1
 			locked = 0
 			desc = "It appears to be broken."
 			icon_state = src.icon_broken
 			for(var/mob/O in viewers(user, 3))
-				O.show_message("<span class='notice'> The locker has been broken by [user] with an electromagnetic card!</span>", 1, "You hear a faint electrical spark.", 2)
+				O.show_message("\blue The locker has been broken by [user] with an electromagnetic card!", 1, "You hear a faint electrical spark.", 2)
 
 		if(!locked)
 			..()
 		else
-			to_chat(user, "<span class='warning'>Its locked!</span>")
+			to_chat(user, "\red Its locked!")
 		return
 
 
 	show_to(mob/user as mob)
 		if(locked)
-			to_chat(user, "<span class='warning'>Its locked!</span>")
+			to_chat(user, "\red Its locked!")
 		else
 			..()
 		return

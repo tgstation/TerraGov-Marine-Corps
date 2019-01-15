@@ -154,8 +154,7 @@ var/global/list/obj/machinery/telecomms/telecomms_list = list()
 
 	start_processing()
 
-/obj/machinery/telecomms/Initialize()
-	. = ..()
+/obj/machinery/telecomms/initialize()
 	if(autolinkers.len)
 		// Links nearby machines
 		if(!long_range_link)

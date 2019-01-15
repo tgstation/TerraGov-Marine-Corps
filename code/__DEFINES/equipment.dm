@@ -24,7 +24,6 @@
 #define NOBLOODY				8		// Don't want a blood overlay on this one.
 #define DIRLOCK					16		// movable atom won't change direction when Moving()ing. Useful for items that have several dir states.
 #define RELAY_CLICK				32		//This is used for /obj/ that relay your clicks via handle_click(), mostly for MGs + Sentries ~Art
-#define INITIALIZED				64  	//Whether /atom/Initialize() has already run for the object
 //==========================================================================================
 
 //flags_barrier

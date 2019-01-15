@@ -434,8 +434,10 @@
 
 /obj/item/clothing/gloves/yautja/proc/decloak(var/mob/user)
 	if(!user) return
+	to_chat(user, "Your cloaking device deactivates.")
 	cloaked = 0
-	user.visible_message("[user.name] shimmers into existence!","Your cloaking device deactivates.")
+	for(var/mob/O in oviewers(user))
+		O.show_message("[user.name] shimmers into existence!",1)
 	playsound(user.loc,'sound/effects/pred_cloakoff.ogg', 15, 1)
 	user.alpha = initial(user.alpha)
 	cloak_timer = 10
@@ -597,10 +599,10 @@
 	inject_timer = 1
 	spawn(1200)
 		if(usr && src.loc == usr)
-			to_chat(usr, "<span class='notice'>Your bracers beep faintly and inform you that a new healing crystal is ready to be created.</span>")
+			to_chat(usr, "\blue Your bracers beep faintly and inform you that a new healing crystal is ready to be created.")
 			inject_timer = 0
 
-	to_chat(usr, "<span class='notice'>You feel a faint hiss and a crystalline injector drops into your hand.</span>")
+	to_chat(usr, "\blue You feel a faint hiss and a crystalline injector drops into your hand.")
 	var/obj/item/reagent_container/hypospray/autoinjector/yautja/O = new(usr)
 	usr.put_in_active_hand(O)
 	playsound(src,'sound/machines/click.ogg', 15, 1)

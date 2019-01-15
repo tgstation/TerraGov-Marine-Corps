@@ -11,9 +11,14 @@
 	var/processing = 0
 	var/exproof = 0
 
-/obj/machinery/computer/Initialize()
-	. = ..()
+/obj/machinery/computer/New()
+	..()
+	if(ticker)
+		initialize()
 	start_processing()
+
+
+/obj/machinery/computer/initialize()
 	power_change()
 
 /obj/machinery/computer/process()
@@ -104,12 +109,12 @@
 			for (var/obj/C in src)
 				C.loc = src.loc
 			if (src.stat & BROKEN)
-				to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
+				to_chat(user, "\blue The broken glass falls out.")
 				new /obj/item/shard( src.loc )
 				A.state = 3
 				A.icon_state = "3"
 			else
-				to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
+				to_chat(user, "\blue You disconnect the monitor.")
 				A.state = 4
 				A.icon_state = "4"
 			M.deconstruct(src)

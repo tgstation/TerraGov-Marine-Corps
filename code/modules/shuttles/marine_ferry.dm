@@ -352,7 +352,7 @@
 				if(istype(get_area(TU), /area/almayer/hallways/hangar))
 					crash_turfs += TU
 			if(crash_turfs.len) T_trg = pick(crash_turfs)
-			else message_admins("<span class='notice'> no crash turf found in [MAIN_SHIP_NAME] Hangar, contact coders.</span>")
+			else message_admins("\blue no crash turf found in [MAIN_SHIP_NAME] Hangar, contact coders.")
 			break
 
 	if(!istype(T_src) || !istype(T_int) || !istype(T_trg))
@@ -464,10 +464,10 @@
 	for(var/mob/living/carbon/M in mob_list) //knock down mobs
 		if(M.z != T_trg.z) continue
 		if(M.buckled)
-			to_chat(M, "<span class='warning'>You are jolted against [M.buckled]!</span>")
+			to_chat(M, "\red You are jolted against [M.buckled]!")
 			shake_camera(M, 3, 1)
 		else
-			to_chat(M, "<span class='warning'>The floor jolts under your feet!</span>")
+			to_chat(M, "\red The floor jolts under your feet!")
 			shake_camera(M, 10, 1)
 			M.KnockDown(3)
 

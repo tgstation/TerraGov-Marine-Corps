@@ -155,8 +155,8 @@
 	//Give them some information
 	spawn(4)
 		to_chat(H, "<h2>You are a survivor!</h2>")
-		to_chat(H, "<span class='notice'>You are a survivor of the attack on LV-624. You worked or lived in the archaeology colony, and managed to avoid the alien attacks.. until now.</span>")
-		to_chat(H, "<span class='notice'>You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit.</span>")
+		to_chat(H, "\blue You are a survivor of the attack on LV-624. You worked or lived in the archaeology colony, and managed to avoid the alien attacks.. until now.")
+		to_chat(H, "\blue You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit.")
 	return 1
 
 //This is processed each tick, but check_win is only checked 5 ticks, so we don't go crazy with scanning for mobs.
@@ -255,7 +255,7 @@
 /datum/game_mode/Halloween/declare_completion()
 	if(finished == 1)
 		feedback_set_details("round_end_result","alien major victory - marine incursion fails")
-		to_chat(world, "<span class='round_header'>Alien major victory!</span>")
+		to_chat(world, "\red <FONT size = 4><B>Alien major victory!</B></FONT>")
 		to_chat(world, "<FONT size = 3><B>The aliens have successfully wiped out the marines and will live to spread the infestation!</B></FONT>")
 		if(prob(50))
 			world << 'sound/misc/Game_Over_Man.ogg'
@@ -265,7 +265,7 @@
 
 	else if(finished == 2)
 		feedback_set_details("round_end_result","marine major victory - xenomorph infestation eradicated")
-		to_chat(world, "<span class='round_header'>Marines major victory!</span>")
+		to_chat(world, "\red <FONT size = 4><B>Marines major victory!</B></FONT>")
 		to_chat(world, "<FONT size = 3><B>The marines managed to wipe out the aliens and stop the infestation!</B></FONT>")
 		if(prob(50))
 			world << 'sound/misc/hardon.ogg'
@@ -275,25 +275,25 @@
 
 	else if(finished == 3)
 		feedback_set_details("round_end_result","marine minor victory - infestation stopped at a great cost")
-		to_chat(world, "<span class='warning'> <FONT size = 3><B>Marine minor victory.</B></FONT></span>")
+		to_chat(world, "\red <FONT size = 3><B>Marine minor victory.</B></FONT>")
 		to_chat(world, "<FONT size = 3><B>Both the marines and the aliens have been terminated. At least the infestation has been eradicated!</B></FONT>")
 		world << 'sound/misc/sadtrombone.ogg'
 		log_game("Marine minor victory (Both dead)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()]")
 
 	else if(finished == 4)
 		feedback_set_details("round_end_result","alien minor victory - infestation survives")
-		to_chat(world, "<span class='warning'> <FONT size = 3><B>Alien minor victory.</B></FONT></span>")
+		to_chat(world, "\red <FONT size = 3><B>Alien minor victory.</B></FONT>")
 		to_chat(world, "<FONT size = 3><B>The [MAIN_SHIP_NAME] has been evacuated... but the infestation remains!</B></FONT>")
 		log_game("Alien minor victory (Evac)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()]")
 
 	else if(finished == 5)
 		feedback_set_details("round_end_result","draw - the station has been nuked")
-		to_chat(world, "<span class='warning'> <FONT size = 3><B>Draw.</B></FONT></span>")
+		to_chat(world, "\red <FONT size = 3><B>Draw.</B></FONT>")
 		to_chat(world, "<FONT size = 3><B>The station has blown by a nuclear fission device... there are no winners!</B></FONT>")
 		world << 'sound/misc/sadtrombone.ogg'
 		log_game("Draw (Nuke)\nXenos Remaining: [count_xenos()]. Humans remaining: [count_humans()]\nRound time: [duration2text()]")
 	else
-		to_chat(world, "<span class='warning'> Whoops, something went wrong with declare_completion(), finished: [finished]. Blame the coders!</span>")
+		to_chat(world, "\red Whoops, something went wrong with declare_completion(), finished: [finished]. Blame the coders!")
 
 	to_chat(world, "Xenos Remaining: [count_xenos()]. Humans remaining: [count_humans()].")
 

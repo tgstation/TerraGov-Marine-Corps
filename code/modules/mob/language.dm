@@ -238,13 +238,6 @@
 	flags = RESTRICTED|HIVEMIND
 	drone_only = 1
 
-/datum/language/zombie
-	name = "Zombie"
-	desc = "If you select this from the language screen, expect braaaains..."
-	colour = "green"
-	key = "4"
-	flags = RESTRICTED
-
 // Language handling.
 /mob/proc/add_language(var/language)
 

@@ -95,7 +95,7 @@
 		if(hp <= 0)
 			for(var/mob/O in oviewers())
 				if (O.client && !is_blind(O))
-					to_chat(O, "<span class='warning'>[src] breaks into tiny pieces and collapses!</span>")
+					to_chat(O, "\red [src] breaks into tiny pieces and collapses!")
 			qdel(src)
 
 		// Create a temporary object to represent the damage

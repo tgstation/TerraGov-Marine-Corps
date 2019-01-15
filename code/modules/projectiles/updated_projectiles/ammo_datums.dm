@@ -184,9 +184,6 @@
 			var/obj/item/projectile/P = new /obj/item/projectile(original_P.shot_from)
 			P.generate_bullet(ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
 			var/turf/new_target = null
-
-			P.scatter = round(P.scatter - (initial(original_P.scatter) - original_P.scatter) ) //if the gun changes the scatter of the main projectile, it also affects the bonus ones.
-
 			if(prob(P.scatter))
 				var/scatter_x = rand(-1,1)
 				var/scatter_y = rand(-1,1)
@@ -194,9 +191,7 @@
 				if(!istype(new_target) || isnull(new_target))
 					continue	//If we didn't find anything, make another pass.
 				P.original = new_target
-
 			P.accuracy = round(P.accuracy * original_P.accuracy/initial(original_P.accuracy)) //if the gun changes the accuracy of the main projectile, it also affects the bonus ones.
-
 			if(!new_target)
 				new_target = original_P.target_turf
 			P.fire_at(new_target,original_P.firer,original_P.shot_from,P.ammo.max_range,P.ammo.shell_speed) //Fire!
@@ -305,7 +300,7 @@
 
 /datum/ammo/bullet/pistol/heavy/New()
 	..()
-	accuracy = -config.low_hit_accuracy
+	accuracy = -config.med_hit_accuracy
 	accuracy_var_low = config.med_proj_variance
 	damage = config.lmed_hit_damage
 	penetration= config.min_armor_penetration
@@ -331,8 +326,8 @@
 /datum/ammo/bullet/pistol/squash/New()
 	..()
 	accuracy = config.med_hit_accuracy
-	damage = config.hlow_hit_damage
-	penetration= config.mlow_armor_penetration
+	damage = config.med_hit_damage
+	penetration= config.low_armor_penetration
 	shrapnel_chance = config.med_shrapnel_chance
 
 /datum/ammo/bullet/pistol/mankey
@@ -660,7 +655,7 @@
 	damage_var_high = config.low_proj_variance
 	damage_falloff *= 0.5
 	penetration	= config.high_armor_penetration
-	scatter = config.thirty_scatter_value //bonus projectiles run their own scatter chance
+	scatter = config.max_scatter_value //bonus projectiles run their own scatter chance
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
@@ -673,7 +668,7 @@
 	accuracy_var_low = config.high_proj_variance
 	accuracy_var_high = config.high_proj_variance
 	accurate_range = config.min_shell_range
-	max_range = config.near_shell_range
+	max_range = config.close_shell_range
 	damage = config.max_hit_damage
 	damage_var_low = -config.med_proj_variance
 	damage_var_high = config.med_proj_variance
@@ -702,14 +697,14 @@
 	accuracy_var_low = config.high_proj_variance
 	accuracy_var_high = config.high_proj_variance
 	accurate_range = config.min_shell_range
-	max_range = config.near_shell_range
+	max_range = config.close_shell_range
 	damage = config.med_hit_damage
 	damage_var_low = -config.med_proj_variance
 	damage_var_high = config.med_proj_variance
 	damage_falloff = config.buckshot_damage_falloff
 	penetration	= -config.mlow_armor_penetration
 	shell_speed = config.reg_shell_speed
-	scatter = config.max_scatter_value*1.5 //bonus projectiles run their own scatter chance
+	scatter = config.max_scatter_value*4 //bonus projectiles run their own scatter chance
 
 /datum/ammo/bullet/shotgun/spread/masterkey/New()
 	..()
@@ -733,7 +728,7 @@
 
 /datum/ammo/bullet/sniper/New()
 	..()
-	accurate_range = config.long_shell_range
+	accurate_range = config.min_shell_range
 	max_range = config.max_shell_range
 	scatter = -config.med_scatter_value
 	damage = config.mhigh_hit_damage
@@ -1263,19 +1258,10 @@
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
-	ammo_reagents = list("xeno_toxin" = 6)
+	ammo_reagents = list("xeno_toxin" = 5)
 	debilitate = list(0.5,0.5,0,0,0,0,0,0)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_IGNORE_RESIST
 	spit_cost = 50
-	added_spit_delay = 5
-
-/datum/ammo/xeno/toxin/New()
-	accuracy = config.max_hit_accuracy
-	shell_speed = config.reg_shell_speed
-	accurate_range = config.close_shell_range
-	max_range = config.near_shell_range
-	accuracy_var_low = config.low_proj_variance
-	accuracy_var_high = config.low_proj_variance
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/M, obj/item/projectile/P)
 	if(!istype(M))
@@ -1287,44 +1273,44 @@
 
 /datum/ammo/xeno/toxin/upgrade1
 	name = "neurotoxic spit"
-	ammo_reagents = list("xeno_toxin" = 7.2)
+	ammo_reagents = list("xeno_toxin" = 5.75)
 
 /datum/ammo/xeno/toxin/upgrade2
-	ammo_reagents = list("xeno_toxin" = 7.8)
+	ammo_reagents = list("xeno_toxin" = 6.5)
 
 /datum/ammo/xeno/toxin/upgrade3
-	ammo_reagents = list("xeno_toxin" = 8.1)
+	ammo_reagents = list("xeno_toxin" = 7.25)
 
 
-/datum/ammo/xeno/toxin/medium //Queen
+/datum/ammo/xeno/toxin/medium //Spitter
 	name = "neurotoxic spatter"
-	ammo_reagents = list("xeno_toxin" = 8.5)
-	added_spit_delay = 10
+	ammo_reagents = list("xeno_toxin" = 8)
+	added_spit_delay = 5
 	spit_cost = 75
 
 /datum/ammo/xeno/toxin/medium/upgrade1
-	ammo_reagents = list("xeno_toxin" = 10.2)
+	ammo_reagents = list("xeno_toxin" = 9.2)
 
 /datum/ammo/xeno/toxin/medium/upgrade2
-	ammo_reagents = list("xeno_toxin" = 11.1)
+	ammo_reagents = list("xeno_toxin" = 10.4)
 
 /datum/ammo/xeno/toxin/medium/upgrade3
-	ammo_reagents = list("xeno_toxin" = 11.48)
+	ammo_reagents = list("xeno_toxin" = 11.6)
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
-	ammo_reagents = list("xeno_toxin" = 11)
-	added_spit_delay = 15
+	ammo_reagents = list("xeno_toxin" = 10)
+	added_spit_delay = 8
 	spit_cost = 100
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
-	ammo_reagents = list("xeno_toxin" = 13.2)
+	ammo_reagents = list("xeno_toxin" = 11.5)
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
-	ammo_reagents = list("xeno_toxin" = 14.3)
+	ammo_reagents = list("xeno_toxin" = 13)
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	ammo_reagents = list("xeno_toxin" = 14.85)
+	ammo_reagents = list("xeno_toxin" = 14.5)
 
 /datum/ammo/xeno/sticky
 	name = "sticky resin spit"
@@ -1411,7 +1397,7 @@
 	drop_acid(get_turf(M))
 	if(istype(M,/mob/living/carbon))
 		var/mob/living/carbon/C = M
-		C.acid_process_cooldown = world.time
+		C.acid_process_cooldown = 2
 
 /datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/item/projectile/P)
 	drop_acid(get_turf(P))

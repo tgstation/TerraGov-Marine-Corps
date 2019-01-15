@@ -164,10 +164,10 @@
 
 	if(beaker)
 		if(beaker.reagents && beaker.reagents.reagent_list.len)
-			to_chat(user, "<span class='notice'>Attached is \a [beaker] with [beaker.reagents.total_volume] units of liquid.</span>")
+			to_chat(user, "\blue Attached is \a [beaker] with [beaker.reagents.total_volume] units of liquid.")
 		else
-			to_chat(user, "<span class='notice'>Attached is an empty [beaker].</span>")
+			to_chat(user, "\blue Attached is an empty [beaker].")
 	else
-		to_chat(user, "<span class='notice'>No chemicals are attached.</span>")
+		to_chat(user, "\blue No chemicals are attached.")
 
-	to_chat(user, "<span class='notice'>[attached ? attached : "No one"] is attached.</span>")
+	to_chat(user, "\blue [attached ? attached : "No one"] is attached.")

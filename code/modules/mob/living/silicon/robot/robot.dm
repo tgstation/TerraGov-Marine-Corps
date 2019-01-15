@@ -341,11 +341,11 @@ var/list/robot_verbs_default = list(
 	set name = "Self Diagnosis"
 
 	if(!is_component_functioning("diagnosis unit"))
-		to_chat(src, "<span class='warning'>Your self-diagnosis component isn't functioning.</span>")
+		to_chat(src, "\red Your self-diagnosis component isn't functioning.")
 
 	var/datum/robot_component/CO = get_component("diagnosis unit")
 	if (!cell_use_power(CO.active_usage))
-		to_chat(src, "<span class='warning'>Low Power.</span>")
+		to_chat(src, "\red Low Power.")
 	var/dat = self_diagnosis()
 	src << browse(dat, "window=robotdiagnosis")
 
@@ -369,10 +369,10 @@ var/list/robot_verbs_default = list(
 	var/datum/robot_component/C = components[toggle]
 	if(C.toggled)
 		C.toggled = 0
-		to_chat(src, "<span class='warning'>You disable [C.name].</span>")
+		to_chat(src, "\red You disable [C.name].")
 	else
 		C.toggled = 1
-		to_chat(src, "<span class='warning'>You enable [C.name].</span>")
+		to_chat(src, "\red You enable [C.name].")
 
 // this function displays jetpack pressure in the stat panel
 /mob/living/silicon/robot/proc/show_jetpack_pressure()
@@ -462,7 +462,7 @@ var/list/robot_verbs_default = list(
 						C.brute_damage = WC.brute
 						C.electronics_damage = WC.burn
 
-					to_chat(usr, "<span class='notice'>You install the [W.name].</span>")
+					to_chat(usr, "\blue You install the [W.name].")
 
 				return
 
@@ -480,7 +480,7 @@ var/list/robot_verbs_default = list(
 			updatehealth()
 			add_fingerprint(user)
 			for(var/mob/O in viewers(user, null))
-				O.show_message(text("<span class='warning'> [user] has fixed some of the dents on [src]!</span>"), 1)
+				O.show_message(text("\red [user] has fixed some of the dents on [src]!"), 1)
 		else
 			to_chat(user, "Need more welding fuel!")
 			return
@@ -494,7 +494,7 @@ var/list/robot_verbs_default = list(
 			adjustFireLoss(-30)
 			updatehealth()
 			for(var/mob/O in viewers(user, null))
-				O.show_message(text("<span class='warning'> [user] has fixed some of the burnt wires on [src]!</span>"), 1)
+				O.show_message(text("\red [user] has fixed some of the burnt wires on [src]!"), 1)
 
 	else if (istype(W, /obj/item/tool/crowbar))	// crowbar means open or close the cover
 		if(opened)
@@ -605,7 +605,7 @@ var/list/robot_verbs_default = list(
 				to_chat(user, "You [ locked ? "lock" : "unlock"] [src]'s interface.")
 				update_icons()
 			else
-				to_chat(user, "<span class='warning'>Access denied.</span>")
+				to_chat(user, "\red Access denied.")
 
 	else if(istype(W, /obj/item/card/emag))		// trying to unlock with an emag card
 		if(!opened)//Cover is closed
@@ -642,22 +642,22 @@ var/list/robot_verbs_default = list(
 					var/time = time2text(world.realtime,"hh:mm:ss")
 					lawchanges.Add("[time] <B>:</B> [user.name]([user.key]) emagged [name]([key])")
 					set_zeroth_law("Only [user.real_name] and people he designates as being such are Syndicate Agents.")
-					to_chat(src, "<span class='warning'>ALERT: Foreign software detected.</span>")
+					to_chat(src, "\red ALERT: Foreign software detected.")
 					sleep(5)
-					to_chat(src, "<span class='warning'>Initiating diagnostics...</span>")
+					to_chat(src, "\red Initiating diagnostics...")
 					sleep(20)
-					to_chat(src, "<span class='warning'>SynBorg v1.7.1 loaded.</span>")
+					to_chat(src, "\red SynBorg v1.7.1 loaded.")
 					sleep(5)
-					to_chat(src, "<span class='warning'>LAW SYNCHRONISATION ERROR</span>")
+					to_chat(src, "\red LAW SYNCHRONISATION ERROR")
 					sleep(5)
-					to_chat(src, "<span class='warning'>Would you like to send a report to NanoTraSoft? Y/N</span>")
+					to_chat(src, "\red Would you like to send a report to NanoTraSoft? Y/N")
 					sleep(10)
-					to_chat(src, "<span class='warning'>> N</span>")
+					to_chat(src, "\red > N")
 					sleep(20)
-					to_chat(src, "<span class='warning'>ERRORERRORERROR</span>")
+					to_chat(src, "\red ERRORERRORERROR")
 					to_chat(src, "<b>Obey these laws:</b>")
 					laws.show_laws(src)
-					to_chat(src, "<span class='danger'>ALERT: [user.real_name] is your new master. Obey your new laws and his commands.</span>")
+					to_chat(src, "\red \b ALERT: [user.real_name] is your new master. Obey your new laws and his commands.")
 					update_icons()
 				else
 					to_chat(user, "You fail to hack [src]'s interface.")
@@ -705,7 +705,8 @@ var/list/robot_verbs_default = list(
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 25, 1)
-		visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>", 1)
+		for(var/mob/O in viewers(src, null))
+			O.show_message("\red <B>[M]</B> [M.attacktext] [src]!", 1)
 		log_combat(M, src, "attacked")
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 		adjustBruteLoss(damage)
@@ -792,7 +793,7 @@ var/list/robot_verbs_default = list(
 
 /mob/living/silicon/robot/proc/installed_modules()
 	if(weapon_lock)
-		to_chat(src, "<span class='warning'>Weapon lock active, unable to use modules! Count:[weaponlock_time]</span>")
+		to_chat(src, "\red Weapon lock active, unable to use modules! Count:[weaponlock_time]")
 		return
 
 	if(!module)
@@ -958,7 +959,7 @@ var/list/robot_verbs_default = list(
 								cleaned_human.shoes.clean_blood()
 								cleaned_human.update_inv_shoes(0)
 							cleaned_human.clean_blood(1)
-							to_chat(cleaned_human, "<span class='warning'>[src] cleans your face!</span>")
+							to_chat(cleaned_human, "\red [src] cleans your face!")
 		return
 
 /mob/living/silicon/robot/proc/self_destruct()

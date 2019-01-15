@@ -53,7 +53,7 @@
 	t += "<BR><HR><A href='?src=\ref[src];close=1'>Close</A>"
 
 	if(!powernet)
-		t += "<span class='warning'> No connection</span>"
+		t += "\red No connection"
 	else
 
 		var/list/L = list()
@@ -121,12 +121,12 @@
 			for (var/obj/C in src)
 				C.loc = src.loc
 			if (src.stat & BROKEN)
-				to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
+				to_chat(user, "\blue The broken glass falls out.")
 				new /obj/item/shard( src.loc )
 				A.state = 3
 				A.icon_state = "3"
 			else
-				to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
+				to_chat(user, "\blue You disconnect the monitor.")
 				A.state = 4
 				A.icon_state = "4"
 			M.deconstruct(src)

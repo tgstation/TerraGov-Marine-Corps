@@ -137,7 +137,7 @@
 	if(istype(W,/obj/item/tool/screwdriver))
 		if(active) return
 		open = !open
-		to_chat(user, "<span class='notice'>You [open ? "open" : "close"] the maintenance panel.</span>")
+		to_chat(user, "\blue You [open ? "open" : "close"] the maintenance panel.")
 		return
 	else
 		if(!open || active) return ..()
@@ -208,14 +208,14 @@
 		if(use_cell_power())
 			active = !active
 			if(active)
-				to_chat(user, "<span class='notice'>You engage \the [src] and it lurches downwards, grinding noisily.</span>")
+				to_chat(user, "\blue You engage \the [src] and it lurches downwards, grinding noisily.")
 				need_update_field = 1
 			else
-				to_chat(user, "<span class='notice'>You disengage \the [src] and it shudders to a grinding halt.</span>")
+				to_chat(user, "\blue You disengage \the [src] and it shudders to a grinding halt.")
 		else
-			to_chat(user, "<span class='notice'>The drill is unpowered.</span>")
+			to_chat(user, "\blue The drill is unpowered.")
 	else
-		to_chat(user, "<span class='notice'>Turning on a piece of industrial machinery without sufficient bracing is a bad idea.</span>")
+		to_chat(user, "\blue Turning on a piece of industrial machinery without sufficient bracing is a bad idea.")
 
 	update_icon()
 
@@ -248,7 +248,7 @@
 
 /obj/machinery/mining/drill/proc/system_error(var/error)
 
-	if(error) src.visible_message("<span class='warning'> \The [src] flashes a '[error]' warning.</span>")
+	if(error) src.visible_message("\red \The [src] flashes a '[error]' warning.")
 	need_player_check = 1
 	active = 0
 	update_icon()
@@ -301,9 +301,9 @@
 	if(B)
 		for(var/obj/item/ore/O in contents)
 			O.loc = B
-		to_chat(usr, "<span class='warning'>You unload the drill's storage cache into the ore box.</span>")
+		to_chat(usr, "\red You unload the drill's storage cache into the ore box.")
 	else
-		to_chat(usr, "<span class='warning'>You must move an ore box up to the drill before you can unload it.</span>")
+		to_chat(usr, "\red You must move an ore box up to the drill before you can unload it.")
 */
 
 /obj/machinery/mining/brace
@@ -318,15 +318,15 @@
 	if(istype(W,/obj/item/tool/wrench))
 
 		if(istype(get_turf(src),/turf/space))
-			to_chat(user, "<span class='notice'>You can't anchor something to empty space. Idiot.</span>")
+			to_chat(user, "\blue You can't anchor something to empty space. Idiot.")
 			return
 
 		if(connected && connected.active)
-			to_chat(user, "<span class='notice'>You can't unanchor the brace of a running drill!</span>")
+			to_chat(user, "\blue You can't unanchor the brace of a running drill!")
 			return
 
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-		to_chat(user, "<span class='notice'>You [anchored ? "un" : ""]anchor the brace.</span>")
+		to_chat(user, "\blue You [anchored ? "un" : ""]anchor the brace.")
 
 		anchored = !anchored
 		if(anchored)
@@ -339,7 +339,7 @@
 	var/turf/T = get_step(get_turf(src), src.dir)
 
 	if(!T.has_resources)
-		src.visible_message("<span class='warning'> The terrain near the brace is unsuitable!</span>")
+		src.visible_message("\red The terrain near the brace is unsuitable!")
 		return
 
 	for(var/thing in T.contents)

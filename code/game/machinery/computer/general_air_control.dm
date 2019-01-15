@@ -69,8 +69,7 @@
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_ATMOSIA)
 
-/obj/machinery/computer/general_air_control/Initialize()
-	. = ..()
+/obj/machinery/computer/general_air_control/initialize()
 	set_frequency(frequency)
 
 

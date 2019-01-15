@@ -23,7 +23,7 @@
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 3
 
-/obj/item/weapon/gun/revolver/Initialize()
+/obj/item/weapon/gun/revolver/New()
 	. = ..() //Do all that other stuff.
 	replace_cylinder(current_mag.current_rounds)
 
@@ -197,9 +197,9 @@
 	set waitfor = 0
 	playsound(user, spin_sound, 25, 1)
 	if(double)
-		user.visible_message("[user] deftly flicks and spins [src] and [double]!","<span class='notice'> You flick and spin [src] and [double]!</span>")
+		user.visible_message("[user] deftly flicks and spins [src] and [double]!","\blue You flick and spin [src] and [double]!")
 		animation_wrist_flick(double, 1)
-	else user.visible_message("[user] deftly flicks and spins [src]!","<span class='notice'> You flick and spin [src]!</span>")
+	else user.visible_message("[user] deftly flicks and spins [src]!","\blue You flick and spin [src]!")
 
 	animation_wrist_flick(src, direction)
 	sleep(3)
@@ -207,7 +207,7 @@
 
 /obj/item/weapon/gun/revolver/proc/revolver_throw_catch(mob/living/carbon/human/user)
 	set waitfor = 0
-	user.visible_message("[user] deftly flicks [src] and tosses it into the air!","<span class='notice'> You flick and toss [src] into the air!</span>")
+	user.visible_message("[user] deftly flicks [src] and tosses it into the air!","\blue You flick and toss [src] into the air!")
 	var/img_layer = MOB_LAYER+0.1
 	var/image/trick = image(icon,user,icon_state,img_layer)
 	switch(pick(1,2))
@@ -223,9 +223,9 @@
 		invisibility = 0
 		playsound(user, thud_sound, 25, 1)
 		if(user.get_inactive_hand())
-			user.visible_message("[user] catches [src] with the same hand!","<span class='notice'> You catch [src] as it spins in to your hand!</span>")
+			user.visible_message("[user] catches [src] with the same hand!","\blue You catch [src] as it spins in to your hand!")
 		else
-			user.visible_message("[user] catches [src] with his other hand!","<span class='notice'> You snatch [src] with your other hand! Awesome!</span>")
+			user.visible_message("[user] catches [src] with his other hand!","\blue You snatch [src] with your other hand! Awesome!")
 			user.temp_drop_inv_item(src)
 			user.put_in_inactive_hand(src)
 			user.swap_hand()
@@ -413,11 +413,9 @@
 	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds. This version is a limited edition produced for the TGMC, and issued in extremely small amounts. Was a mail-order item back in 2172, and is highly sought after by officers across many different battalions. This one is stamped 'Major Ike Saker, 7th 'Falling Falcons' Battalion.'"
 	icon_state = "cmateba"
 	item_state = "cmateba"
-
-/obj/item/weapon/gun/revolver/mateba/cmateba/Initialize()
-	. = ..()
-	select_gamemode_skin(/obj/item/weapon/gun/revolver/mateba/cmateba)
-	
+	New()
+		..()
+		select_gamemode_skin(/obj/item/weapon/gun/revolver/mateba/cmateba)
 //-------------------------------------------------------
 //MARSHALS REVOLVER //Spearhead exists in Alien cannon.
 

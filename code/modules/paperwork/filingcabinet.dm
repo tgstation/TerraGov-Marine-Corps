@@ -27,7 +27,7 @@
 	icon_state = "tallcabinet"
 
 
-/obj/structure/filingcabinet/Initialize()
+/obj/structure/filingcabinet/initialize()
 	for(var/obj/item/I in loc)
 		if(istype(I, /obj/item/paper) || istype(I, /obj/item/folder) || istype(I, /obj/item/photo) || istype(I, /obj/item/paper_bundle))
 			I.loc = src

@@ -1,3 +1,5 @@
+/datum/proc/process()
+	return
 //for all defines that doesn't fit in any other file.
 
 
@@ -21,6 +23,3 @@
 
 /var/static/global_unique_id = 1
 #define UNIQUEID (global_unique_id++)
-
-//Run the world with this parameter to enable a single run though of the game setup and tear down process with unit tests in between
-#define TEST_RUN_PARAMETER "test-run"

@@ -51,7 +51,7 @@
 						wearable = 1
 
 				if(!wearable && (slot != 15 && slot != 16)) //Pockets.
-					to_chat(M, "<span class='warning'>Your species cannot wear [src].</span>")
+					to_chat(M, "\red Your species cannot wear [src].")
 					return 0
 
 	return 1
@@ -197,7 +197,7 @@
 			return
 
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
-		user.visible_message("<span class='warning'> [user] cuts the fingertips off of the [src].</span>","<span class='warning'> You cut the fingertips off of the [src].</span>")
+		user.visible_message("\red [user] cuts the fingertips off of the [src].","\red You cut the fingertips off of the [src].")
 
 		clipped = 1
 		name = "mangled [name]"

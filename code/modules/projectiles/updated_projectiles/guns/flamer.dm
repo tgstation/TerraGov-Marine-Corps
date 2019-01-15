@@ -389,7 +389,7 @@
 	to_chat(user, "<span class='notice'>Its hydro cannon contains [M240T_WATER_AMOUNT]/[max_water] units of water!</span>")
 
 
-/obj/item/weapon/gun/flamer/M240T/Initialize()
+/obj/item/weapon/gun/flamer/M240T/New()
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_water)
 	reagents = R
@@ -418,7 +418,7 @@
 	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(user,target) <= 1)
 		var/obj/o = target
 		o.reagents.trans_to(src, max_water)
-		to_chat(user, "<span class='notice'>\The [src]'s hydro cannon is refilled with water.</span>")
+		to_chat(user, "\blue \The [src]'s hydro cannon is refilled with water.")
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 

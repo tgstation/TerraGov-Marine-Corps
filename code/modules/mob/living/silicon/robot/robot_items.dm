@@ -39,7 +39,7 @@
 				overlays += image("icon" = I.icon, "icon_state" = I.icon_state, "layer" = 30 + I.layer)
 				addedSomething = 1
 		if ( addedSomething )
-			user.visible_message("<span class='notice'> [user] load some items onto their service tray.</span>")
+			user.visible_message("\blue [user] load some items onto their service tray.")
 
 		return
 
@@ -79,9 +79,9 @@
 							sleep(rand(2,4))
 		if ( droppedSomething )
 			if ( foundtable )
-				user.visible_message("<span class='notice'> [user] unloads their service tray.</span>")
+				user.visible_message("\blue [user] unloads their service tray.")
 			else
-				user.visible_message("<span class='notice'> [user] drops all the items on their tray.</span>")
+				user.visible_message("\blue [user] drops all the items on their tray.")
 
 	return ..()
 
@@ -157,7 +157,7 @@
 	deploy_paper(get_turf(src))
 
 /obj/item/form_printer/proc/deploy_paper(var/turf/T)
-	T.visible_message("<span class='notice'> \The [src.loc] dispenses a sheet of crisp white paper.</span>")
+	T.visible_message("\blue \The [src.loc] dispenses a sheet of crisp white paper.")
 	new /obj/item/paper(T)
 
 

@@ -189,11 +189,11 @@
 /obj/item/clothing/suit/armor/reactive/attack_self(mob/user as mob)
 	src.active = !( src.active )
 	if (src.active)
-		to_chat(user, "<span class='notice'>The reactive armor is now active.</span>")
+		to_chat(user, "\blue The reactive armor is now active.")
 		src.icon_state = "reactive"
 		src.item_state = "reactive"
 	else
-		to_chat(user, "<span class='notice'>The reactive armor is now inactive.</span>")
+		to_chat(user, "\blue The reactive armor is now inactive.")
 		src.icon_state = "reactiveoff"
 		src.item_state = "reactiveoff"
 		src.add_fingerprint(user)
@@ -277,26 +277,26 @@
 
 	if(!holstered)
 		if(!istype(usr.get_active_hand(), /obj/item/weapon/gun))
-			to_chat(usr, "<span class='notice'>You need your gun equiped to holster it.</span>")
+			to_chat(usr, "\blue You need your gun equiped to holster it.")
 			return
 		var/obj/item/weapon/gun/W = usr.get_active_hand()
 		if (W.w_class > 3)
-			to_chat(usr, "<span class='warning'>This gun won't fit in \the belt!</span>")
+			to_chat(usr, "\red This gun won't fit in \the belt!")
 			return
 		holstered = usr.get_active_hand()
 		usr.drop_held_item()
 		holstered.loc = src
-		usr.visible_message("<span class='notice'> \The [usr] holsters \the [holstered].</span>", "You holster \the [holstered].")
+		usr.visible_message("\blue \The [usr] holsters \the [holstered].", "You holster \the [holstered].")
 	else
 		if(istype(usr.get_active_hand(),/obj) && istype(usr.get_inactive_hand(),/obj))
-			to_chat(usr, "<span class='warning'>You need an empty hand to draw the gun!</span>")
+			to_chat(usr, "\red You need an empty hand to draw the gun!")
 		else
 			if(usr.a_intent == "hurt")
-				usr.visible_message("<span class='warning'> \The [usr] draws \the [holstered], ready to shoot!</span>", \
-				"<span class='warning'> You draw \the [holstered], ready to shoot!</span>")
+				usr.visible_message("\red \The [usr] draws \the [holstered], ready to shoot!", \
+				"\red You draw \the [holstered], ready to shoot!")
 			else
-				usr.visible_message("<span class='notice'> \The [usr] draws \the [holstered], pointing it at the ground.</span>", \
-				"<span class='notice'> You draw \the [holstered], pointing it at the ground.</span>")
+				usr.visible_message("\blue \The [usr] draws \the [holstered], pointing it at the ground.", \
+				"\blue You draw \the [holstered], pointing it at the ground.")
 			usr.put_in_hands(holstered)
 		holstered = null
 

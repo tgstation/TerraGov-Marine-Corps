@@ -176,7 +176,7 @@
 		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
 		return
 	//Stationary stealth
-	else if(last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 4 seconds we become almost completely invisible
+	else if(last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 3 seconds we become almost completely invisible
 		alpha = HUNTER_STEALTH_STILL_ALPHA //95% invisible
 	//Walking stealth
 	else if(m_intent == MOVE_INTENT_WALK)

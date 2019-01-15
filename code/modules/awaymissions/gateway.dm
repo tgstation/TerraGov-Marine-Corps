@@ -8,8 +8,7 @@
 	var/active = 0
 
 
-/obj/machinery/gateway/Initialize()
-	. = ..()
+/obj/machinery/gateway/initialize()
 	update_icon()
 	if(dir == 2)
 		density = 0
@@ -35,8 +34,7 @@
 	var/wait = 0				//this just grabs world.time at world start
 	var/obj/machinery/gateway/centeraway/awaygate = null
 
-/obj/machinery/gateway/centerstation/Initialize()
-	. = ..()
+/obj/machinery/gateway/centerstation/initialize()
 	update_icon()
 	wait = world.time + config.gateway_delay	//+ thirty minutes default
 	awaygate = locate(/obj/machinery/gateway/centeraway)
@@ -135,7 +133,7 @@ obj/machinery/gateway/centerstation/process()
 
 /obj/machinery/gateway/centerstation/attackby(obj/item/device/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/device/multitool))
-		to_chat(user, "The gate is already calibrated, there is no work for you to do here.")
+		to_chat(user, "\black The gate is already calibrated, there is no work for you to do here.")
 		return
 
 /////////////////////////////////////Away////////////////////////
@@ -151,8 +149,7 @@ obj/machinery/gateway/centerstation/process()
 	var/obj/machinery/gateway/centeraway/stationgate = null
 
 
-/obj/machinery/gateway/centeraway/Initialize()
-	. = ..()
+/obj/machinery/gateway/centeraway/initialize()
 	update_icon()
 	stationgate = locate(/obj/machinery/gateway/centerstation)
 
@@ -222,7 +219,7 @@ obj/machinery/gateway/centerstation/process()
 	if(istype(M, /mob/living/carbon))
 		for(var/obj/item/implant/exile/E in M)//Checking that there is an exile implant in the contents
 			if(E.imp_in == M)//Checking that it's actually implanted vs just in their pocket
-				to_chat(M, "The station gate has detected your exile implant and is blocking your entry.")
+				to_chat(M, "\black The station gate has detected your exile implant and is blocking your entry.")
 				return
 	M.loc = get_step(stationgate.loc, SOUTH)
 	M.dir = SOUTH
@@ -231,9 +228,9 @@ obj/machinery/gateway/centerstation/process()
 /obj/machinery/gateway/centeraway/attackby(obj/item/device/W as obj, mob/user as mob)
 	if(istype(W,/obj/item/device/multitool))
 		if(calibrated)
-			to_chat(user, "The gate is already calibrated, there is no work for you to do here.")
+			to_chat(user, "\black The gate is already calibrated, there is no work for you to do here.")
 			return
 		else
-			to_chat(user, "<span class='boldnotice'>Recalibration successful!: This gate's systems have been fine tuned.  Travel to this gate will now be on target.</span>")
+			to_chat(user, "\blue <b>Recalibration successful!</b>: \black This gate's systems have been fine tuned.  Travel to this gate will now be on target.")
 			calibrated = 1
 			return

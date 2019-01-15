@@ -6,7 +6,7 @@ var/global/normal_ooc_colour = "#002eb8"
 	set category = "OOC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
+		to_chat(usr, "\red Speech is currently admin-disabled.")
 		return
 
 	if(!mob)
@@ -20,18 +20,18 @@ var/global/normal_ooc_colour = "#002eb8"
 		return
 
 	if(!(prefs.toggles_chat & CHAT_OOC))
-		to_chat(src, "<span class='warning'>You have OOC muted.</span>")
+		to_chat(src, "\red You have OOC muted.")
 		return
 
 	if(!holder)
 		if(!ooc_allowed)
-			to_chat(src, "<span class='warning'>OOC is globally muted</span>")
+			to_chat(src, "\red OOC is globally muted")
 			return
 		if(!dooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, "<span class='warning'>OOC for dead mobs has been turned off.</span>")
+			to_chat(usr, "\red OOC for dead mobs has been turned off.")
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, "<span class='warning'>You cannot use OOC (muted).</span>")
+			to_chat(src, "\red You cannot use OOC (muted).")
 			return
 		if(handle_spam_prevention(msg,MUTE_OOC))
 			return
@@ -128,7 +128,7 @@ var/global/normal_ooc_colour = "#002eb8"
 	if( join_motd )
 		to_chat(src, "<span class='motd'>[join_motd]</span>")
 	else
-		to_chat(src, "<span class='warning'>The motd is not set in the server configuration.</span>")
+		to_chat(src, "\red The motd is not set in the server configuration.")
 	return
 
 /client/verb/stop_sounds()

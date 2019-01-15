@@ -93,10 +93,10 @@
 
 	attackby(obj/item/W as obj, mob/user as mob)
 		if(crit_fail)
-			to_chat(user, "<span class='warning'>The Bluespace generator isn't working.</span>")
+			to_chat(user, "\red The Bluespace generator isn't working.")
 			return
 		if(istype(W, /obj/item/storage/backpack/holding) && !W.crit_fail)
-			to_chat(user, "<span class='warning'>The Bluespace interfaces of the two devices conflict and malfunction.</span>")
+			to_chat(user, "\red The Bluespace interfaces of the two devices conflict and malfunction.")
 			qdel(W)
 			return
 		..()
@@ -104,9 +104,9 @@
 	proc/failcheck(mob/user as mob)
 		if (prob(src.reliability)) return 1 //No failure
 		if (prob(src.reliability))
-			to_chat(user, "<span class='warning'>The Bluespace portal resists your attempt to add another item.</span>")
+			to_chat(user, "\red The Bluespace portal resists your attempt to add another item.")
 		else
-			to_chat(user, "<span class='warning'>The Bluespace generator malfunctions!</span>")
+			to_chat(user, "\red The Bluespace generator malfunctions!")
 			for (var/obj/O in src.contents) //it broke, delete what was in it
 				qdel(O)
 			crit_fail = 1
@@ -515,7 +515,8 @@
 	to_chat(user, "<span class='warning'>Your cloak's camouflage has deactivated!</span>")
 	camo_active = FALSE
 
-	user.visible_message("[user.name] shimmers into existence!", "<span class='warning'>Your cloak's camouflage has deactivated!</span>")
+	for (var/mob/O in oviewers(user))
+		O.show_message("[user.name] shimmers into existence!",1)
 	playsound(user.loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 	user.alpha = initial(user.alpha)
 
@@ -663,11 +664,11 @@
 		return
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume < max_fuel)
 		O.reagents.trans_to(src, max_fuel)
-		to_chat(user, "<span class='notice'>You crack the cap off the top of the pack and fill it back up again from the tank.</span>")
+		to_chat(user, "\blue You crack the cap off the top of the pack and fill it back up again from the tank.")
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume == max_fuel)
-		to_chat(user, "<span class='notice'>The pack is already full!</span>")
+		to_chat(user, "\blue The pack is already full!")
 		return
 	..()
 

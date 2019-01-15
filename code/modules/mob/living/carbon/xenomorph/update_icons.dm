@@ -2,7 +2,6 @@
 //Abby
 
 //Xeno Overlays Indexes//////////
-#define X_LASER_LAYER			9
 #define X_WOUND_LAYER			8
 #define X_HEAD_LAYER			7
 #define X_SUIT_LAYER			6
@@ -11,7 +10,7 @@
 #define X_TARGETED_LAYER		3
 #define X_LEGCUFF_LAYER			2
 #define X_FIRE_LAYER			1
-#define X_TOTAL_LAYERS			9
+#define X_TOTAL_LAYERS			8
 /////////////////////////////////
 
 /mob/living/carbon/Xenomorph/apply_overlay(cache_index)

@@ -77,7 +77,7 @@
 	if(istype(H))
 		var/obj/item/card/id/I = H.wear_id
 		if(!istype(I) || !check_access(I))
-			H.visible_message("<span class='notice'> [src] beeeps as [H] picks it up</span>", "<span class='danger'>WARNING: Unauthorized user detected. Denying access...</span>")
+			H.visible_message("\blue [src] beeeps as [H] picks it up", "<span class='danger'>WARNING: Unauthorized user detected. Denying access...</span>")
 			H.KnockDown(20)
 			H.visible_message("<span class='warning'>[src] beeps and sends a shock through [H]'s body!</span>")
 			deductcharge(hitcost)
@@ -164,7 +164,7 @@
 				target_zone = get_zone_with_miss_chance(user.zone_selected, L)
 
 			if(!target_zone)
-				L.visible_message("<span class='danger'>[user] misses [L] with \the [src]!</span>")
+				L.visible_message("\red <B>[user] misses [L] with \the [src]!")
 				return 0
 
 			var/mob/living/carbon/human/H = L

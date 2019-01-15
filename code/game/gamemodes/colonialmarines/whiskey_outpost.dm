@@ -655,7 +655,7 @@
 			to_chat(world, "<br><br>")
 			to_chat(world, "<span class='notice'>*___________________________________*</span>")
 			to_chat(world, "<span class='boldnotice'>***Whiskey Outpost Controller***</span>")
-			to_chat(world, "<span class='notice'><b>Wave:</b> [xeno_wave][wave_times_delayed?"|<span class='warning'> Times delayed: [wave_times_delayed]</span>":""]</span>")
+			to_chat(world, "\blue <b>Wave:</b> [xeno_wave][wave_times_delayed?"|\red Times delayed: [wave_times_delayed]":""]")
 			to_chat(world, "<span class='notice'>*___________________________________*</span>")
 			to_chat(world, "<br><br>")
 			to_chat(world, "<br><br>")
@@ -1013,7 +1013,7 @@
 	if(xeno_count)
 		to_chat(world, "<span class='notice'>*___________________________________*</span>")
 		to_chat(world, "<span class='boldnotice'>***Whiskey Outpost Controller***</span>")
-		to_chat(world, "<span class='notice'>Moved [xeno_count] Xeno remains to trash.</span>")
+		to_chat(world, "\blue Moved [xeno_count] Xeno remains to trash.")
 		to_chat(world, "<span class='notice'>*___________________________________*</span>")
 
 
@@ -1276,23 +1276,23 @@
 		if(istype(usr, /mob/living/silicon) || \
 			istype(usr, /mob/living/carbon/Xenomorph) || \
 			istype(usr, /mob/living/carbon/monkey))
-			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
+			to_chat(usr, "\red You don't have the dexterity to do this!")
 			return
 		if(working)
-			to_chat(user, "<span class='warning'>Wait for it to recharge first.</span>")
+			to_chat(user, "\red Wait for it to recharge first.")
 			return
 
 		var/remove_max = 10
 		var/turf/T = src.loc
 		if(T)
-			to_chat(user, "<span class='warning'>You turn on the recycler.</span>")
+			to_chat(user, "\red You turn on the recycler.")
 			var/removed = 0
 			for(var/i, i < remove_max, i++)
 				for(var/obj/O in T)
 					if(istype(O,/obj/structure/closet/crate))
 						var/obj/structure/closet/crate/C = O
 						if(C.contents.len)
-							to_chat(user, "<span class='warning'>[O] must be emptied before it can be recycled</span>")
+							to_chat(user, "\red [O] must be emptied before it can be recycled")
 							continue
 						new /obj/item/stack/sheet/metal(get_step(src,dir))
 						O.loc = get_turf(locate(84,237,2)) //z.2

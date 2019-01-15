@@ -85,20 +85,20 @@
 		is_admin = 1
 
 	if (!( abandon_allowed ) && !is_admin)
-		to_chat(usr, "<span class='notice'>Respawn is disabled.</span>")
+		to_chat(usr, "\blue Respawn is disabled.")
 		return
 	if ((stat != 2 || !( ticker )))
-		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
+		to_chat(usr, "\blue <B>You must be dead to use this!</B>")
 		return
 	if (ticker.mode.name == "meteor" || ticker.mode.name == "epidemic") //BS12 EDIT
-		to_chat(usr, "<span class='notice'>Respawn is disabled for this roundtype.</span>")
+		to_chat(usr, "\blue Respawn is disabled for this roundtype.")
 		return
 	else
 		var/deathtime = world.time - src.timeofdeath
 //		if(istype(src,/mob/dead/observer))
 //			var/mob/dead/observer/G = src
 //			if(G.has_enabled_antagHUD == 1 && config.antag_hud_restricted)
-//				to_chat(usr, "<span class='boldnotice'>Upon using the antagHUD you forfeighted the ability to join the round.</span>")
+//				to_chat(usr, "\blue <B>Upon using the antagHUD you forfeighted the ability to join the round.</B>")
 //				return
 		var/deathtimeminutes = round(deathtime / 600)
 		var/pluralcheck = "minute"
@@ -119,7 +119,7 @@
 
 	log_game("[usr.name]/[usr.key] used abandon mob.")
 
-	to_chat(usr, "<span class='boldnotice'>Make sure to play a different character, and please roleplay correctly!</span>")
+	to_chat(usr, "\blue <B>Make sure to play a different character, and please roleplay correctly!</B>")
 
 	if(!client)
 		log_game("[usr.key] AM failed due to disconnect.")

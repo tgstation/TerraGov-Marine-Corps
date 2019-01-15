@@ -481,7 +481,7 @@
 	..()
 	new/obj/effect/decal/cleanable/egg_smudge(src.loc)
 	src.reagents.reaction(hit_atom, TOUCH)
-	src.visible_message("<span class='warning'> [src.name] has been squashed.</span>","<span class='warning'> You hear a smack.</span>")
+	src.visible_message("\red [src.name] has been squashed.","\red You hear a smack.")
 	qdel(src)
 
 /obj/item/reagent_container/food/snacks/egg/attackby(obj/item/W as obj, mob/user as mob)
@@ -490,10 +490,10 @@
 		var/clr = C.colourName
 
 		if(!(clr in list("blue","green","mime","orange","purple","rainbow","red","yellow")))
-			to_chat(usr, "<span class='notice'>The egg refuses to take on this color!</span>")
+			to_chat(usr, "\blue The egg refuses to take on this color!")
 			return
 
-		to_chat(usr, "<span class='notice'>You color \the [src] [clr]</span>")
+		to_chat(usr, "\blue You color \the [src] [clr]")
 		icon_state = "egg-[clr]"
 		egg_color = clr
 	else
@@ -840,7 +840,7 @@
 /obj/item/reagent_container/food/snacks/pie/throw_impact(atom/hit_atom)
 	..()
 	new /obj/effect/decal/cleanable/pie_smudge(loc)
-	visible_message("<span class='warning'> [src.name] splats.</span>","<span class='warning'> You hear a splat.</span>")
+	visible_message("\red [src.name] splats.","\red You hear a splat.")
 	qdel(src)
 
 /obj/item/reagent_container/food/snacks/berryclafoutis
@@ -1015,7 +1015,7 @@
 
 /obj/item/reagent_container/food/snacks/popcorn/On_Consume()
 	if(prob(unpopped))	//lol ...what's the point?
-		to_chat(usr, "<span class='warning'>You bite down on an un-popped kernel!</span>")
+		to_chat(usr, "\red You bite down on an un-popped kernel!")
 		unpopped = max(0, unpopped-1)
 	return ..()
 
@@ -1373,7 +1373,7 @@
 
 /obj/item/reagent_container/food/snacks/monkeycube/proc/Expand()
 	for(var/mob/M in viewers(src,7))
-		to_chat(M, "<span class='warning'>\The [src] expands!</span>")
+		to_chat(M, "\red \The [src] expands!")
 	var/turf/T = get_turf(src)
 	if(T)
 		new monkey_type(T)
@@ -2287,7 +2287,7 @@
 	if( open && pizza )
 		user.put_in_hands( pizza )
 
-		to_chat(user, "<span class='warning'>You take the [src.pizza] out of the [src].</span>")
+		to_chat(user, "\red You take the [src.pizza] out of the [src].")
 		src.pizza = null
 		update_icon()
 		return
@@ -2301,7 +2301,7 @@
 		boxes -= box
 
 		user.put_in_hands( box )
-		to_chat(user, "<span class='warning'>You remove the topmost [src] from your hand.</span>")
+		to_chat(user, "\red You remove the topmost [src] from your hand.")
 		box.update_icon()
 		update_icon()
 		return
@@ -2338,11 +2338,11 @@
 				box.update_icon()
 				update_icon()
 
-				to_chat(user, "<span class='warning'>You put the [box] ontop of the [src]!</span>")
+				to_chat(user, "\red You put the [box] ontop of the [src]!")
 			else
-				to_chat(user, "<span class='warning'>The stack is too high!</span>")
+				to_chat(user, "\red The stack is too high!")
 		else
-			to_chat(user, "<span class='warning'>Close the [box] first!</span>")
+			to_chat(user, "\red Close the [box] first!")
 
 		return
 
@@ -2354,9 +2354,9 @@
 
 			update_icon()
 
-			to_chat(user, "<span class='warning'>You put the [I] in the [src]!</span>")
+			to_chat(user, "\red You put the [I] in the [src]!")
 		else
-			to_chat(user, "<span class='warning'>You try to push the [I] through the lid but it doesn't work!</span>")
+			to_chat(user, "\red You try to push the [I] through the lid but it doesn't work!")
 		return
 
 	if( istype(I, /obj/item/tool/pen/) )

@@ -32,7 +32,7 @@
 
 /obj/machinery/power/supermatter
 	name = "Supermatter"
-	desc = "A strangely translucent and iridescent crystal. <span class='warning'> You get headaches just from looking at it.</span>"
+	desc = "A strangely translucent and iridescent crystal. \red You get headaches just from looking at it."
 	icon = 'icons/obj/engine.dmi'
 	icon_state = "darkmatter"
 	density = 1
@@ -83,7 +83,7 @@
 
 	shard //Small subtype, less efficient and more sensitive, but less boom.
 		name = "Supermatter Shard"
-		desc = "A strangely translucent and iridescent crystal that looks like it used to be part of a larger structure. <span class='warning'> You get headaches just from looking at it.</span>"
+		desc = "A strangely translucent and iridescent crystal that looks like it used to be part of a larger structure. \red You get headaches just from looking at it."
 		icon_state = "darkmatter_shard"
 		base_icon_state = "darkmatter_shard"
 

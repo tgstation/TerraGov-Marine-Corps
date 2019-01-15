@@ -67,33 +67,33 @@ Note: Must be placed within 3 tiles of the R&D Console
 			qdel(src)
 			return 1
 		else
-			to_chat(user, "<span class='warning'>You can't load the [src.name] while it's opened.</span>")
+			to_chat(user, "\red You can't load the [src.name] while it's opened.")
 			return 1
 	if (disabled)
 		return
 	if (!linked_console)
-		to_chat(user, "<span class='warning'>The destructive analyzer must be linked to an R&D console first!</span>")
+		to_chat(user, "\red The destructive analyzer must be linked to an R&D console first!")
 		return
 	if (busy)
-		to_chat(user, "<span class='warning'>The destructive analyzer is busy right now.</span>")
+		to_chat(user, "\red The destructive analyzer is busy right now.")
 		return
 	if (istype(O, /obj/item) && !loaded_item)
 		if(isrobot(user)) //Don't put your module items in there!
 			return
 		if(!O.origin_tech)
-			to_chat(user, "<span class='warning'>This doesn't seem to have a tech origin!</span>")
+			to_chat(user, "\red This doesn't seem to have a tech origin!")
 			return
 		var/list/temp_tech = ConvertReqString2List(O.origin_tech)
 		if (temp_tech.len == 0)
-			to_chat(user, "<span class='warning'>You cannot deconstruct this item!</span>")
+			to_chat(user, "\red You cannot deconstruct this item!")
 			return
 		if(O.reliability < 90 && O.crit_fail == 0)
-			to_chat(usr, "<span class='warning'>Item is neither reliable enough nor broken enough to learn from.</span>")
+			to_chat(usr, "\red Item is neither reliable enough nor broken enough to learn from.")
 			return
 		busy = 1
 		loaded_item = O
 		user.drop_inv_item_to_loc(O, src)
-		to_chat(user, "<span class='notice'>You add the [O.name] to the machine!</span>")
+		to_chat(user, "\blue You add the [O.name] to the machine!")
 		flick("d_analyzer_la", src)
 		spawn(10)
 			icon_state = "d_analyzer_l"

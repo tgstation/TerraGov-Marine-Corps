@@ -25,7 +25,7 @@
 		return
 	var/turf/loc = get_turf(usr)
 	if (!istype(loc, /turf/open/floor))
-		to_chat(usr, "<span class='warning'>[src.name] cannot be placed on this spot.</span>")
+		to_chat(usr, "\red [src.name] cannot be placed on this spot.")
 		return
 	to_chat(usr, "Attaching [src] to the wall.")
 	playsound(src.loc, 'sound/machines/click.ogg', 15, 1)

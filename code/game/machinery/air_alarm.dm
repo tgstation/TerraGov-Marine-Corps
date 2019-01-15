@@ -81,7 +81,7 @@
 	var/aidisabled = 0
 	var/AAlarmwires = 31
 	var/shorted = 0
-	var/obj/item/circuitboard/airalarm/electronics = null
+
 	var/mode = AALARM_MODE_SCRUBBING
 	var/screen = AALARM_SCREEN_MAIN
 	var/area_uid
@@ -123,6 +123,19 @@
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
 		update_icon()
+		if(ticker && ticker.current_state == 3)//if the game is running
+			src.initialize()
+		return
+
+	switch(dir)
+		if(NORTH) pixel_y = 25
+		if(SOUTH) pixel_y = -25
+		if(EAST) pixel_x = 25
+		if(WEST) pixel_x = -25
+
+	first_run()
+	start_processing()
+
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
@@ -141,21 +154,10 @@
 	TLV["temperature"] =	list(T0C-26, T0C, T0C+40, T0C+66) // K
 
 
-/obj/machinery/alarm/Initialize()
-	. = ..()
+/obj/machinery/alarm/initialize()
 	set_frequency(frequency)
 	if (!master_is_operating())
 		elect_master()
-	
-	switch(dir)
-		if(NORTH) pixel_y = 25
-		if(SOUTH) pixel_y = -25
-		if(EAST) pixel_x = 25
-		if(WEST) pixel_x = -25
-
-	first_run()
-	start_processing()
-
 
 /obj/machinery/alarm/process()
 	if((stat & (NOPOWER|BROKEN)) || shorted || buildstage != 2)
@@ -987,7 +989,7 @@ table tr:first-child th:first-child { border: none;}
 		stat ^= BROKEN
 		add_fingerprint(user)
 		for(var/mob/O in viewers(user, null))
-			O.show_message(text("<span class='warning'> [] has []activated []!</span>", user, (stat&BROKEN) ? "de" : "re", src), 1)
+			O.show_message(text("\red [] has []activated []!", user, (stat&BROKEN) ? "de" : "re", src), 1)
 		update_icon()
 		return
 */
@@ -1012,10 +1014,10 @@ table tr:first-child th:first-child { border: none;}
 				else
 					if(allowed(usr) && !isWireCut(AALARM_WIRE_IDSCAN))
 						locked = !locked
-						to_chat(user, "<span class='notice'>You [ locked ? "lock" : "unlock"] the Air Alarm interface.</span>")
+						to_chat(user, "\blue You [ locked ? "lock" : "unlock"] the Air Alarm interface.")
 						updateUsrDialog()
 					else
-						to_chat(user, "<span class='warning'>Access denied.</span>")
+						to_chat(user, "\red Access denied.")
 			return
 
 		if(1)
@@ -1038,14 +1040,8 @@ table tr:first-child th:first-child { border: none;}
 				if(do_after(user,20, TRUE, 5, BUSY_ICON_BUILD))
 					user.visible_message("<span class='notice'>[user] pries out [src]'s circuits.</span>",
 					"<span class='notice'>You pry out [src]'s circuits.</span>")
-					var/obj/item/circuitboard/airalarm/circuit
-					if(!electronics)
-						circuit = new/obj/item/circuitboard/airalarm( src.loc )
-					else
-						circuit = new electronics( src.loc )
-						if(electronics.is_general_board)
-							circuit.set_general()
-					electronics = null
+					var/obj/item/circuitboard/airalarm/circuit = new()
+					circuit.loc = user.loc
 					buildstage = 0
 					update_icon()
 				return

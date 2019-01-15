@@ -32,9 +32,9 @@
 					L.NotTargeted(src)
 			qdel(target)
 			target = null
-			usr.visible_message("<span class='danger'>[usr] turns \the [src] on [M]!</span>")
+			usr.visible_message("\red <b>[usr] turns \the [src] on [M]!</b>")
 		else
-			usr.visible_message("<span class='danger'>[usr] aims \a [src] at [M]!</span>")
+			usr.visible_message("\red <b>[usr] aims \a [src] at [M]!</b>")
 		M.Targeted(src)
 
 //HE MOVED, SHOOT HIM!
@@ -151,7 +151,7 @@
 		else
 			return
 //		if(m_intent == MOVE_INTENT_RUN && T.client.target_can_move == 1 && T.client.target_can_run == 0)
-//			to_chat(src, "<span class='warning'>Your move intent is now set to walk, as your targeter permits it.</span>")
+//			to_chat(src, "\red Your move intent is now set to walk, as your targeter permits it.")
 //			set_m_intent(MOVE_INTENT_WALK)
 
 		//Processing the aiming. Should be probably in separate object with process() but lasy.
@@ -258,7 +258,7 @@
 				if(target_can_move)
 					to_chat(M, "Your character may now <b>walk</b> at the discretion of their targeter.")
 					if(!target_can_run)
-						to_chat(M, "<span class='warning'>Your move intent is now set to walk, as your targeter permits it.</span>")
+						to_chat(M, "\red Your move intent is now set to walk, as your targeter permits it.")
 						M.set_m_intent(MOVE_INTENT_WALK)
 				else
 					to_chat(M, "<span class='danger'>Your character will now be shot if they move.</span>")

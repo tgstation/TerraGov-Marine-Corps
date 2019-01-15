@@ -12,8 +12,8 @@
 	var/datum/radio_frequency/radio_connection
 
 
-/obj/machinery/computer/atmos_alert/Initialize()
-	. = ..()
+/obj/machinery/computer/atmos_alert/initialize()
+	..()
 	set_frequency(receive_frequency)
 
 /obj/machinery/computer/atmos_alert/receive_signal(datum/signal/signal)

@@ -44,7 +44,7 @@
 			else
 				descriptive = "furiously hot"
 
-		to_chat(user, "<span class='notice'>\The \icon[src][src] feels [descriptive]</span>")
+		to_chat(user, "\blue \The \icon[src][src] feels [descriptive]")
 
 
 /obj/item/tank/attackby(obj/item/W as obj, mob/user as mob)
@@ -52,18 +52,18 @@
 
 	if ((istype(W, /obj/item/device/analyzer)) && get_dist(user, src) <= 1)
 		for (var/mob/O in viewers(user, null))
-			to_chat(O, "<span class='warning'>[user] has used [W] on \icon[src] [src]</span>")
+			to_chat(O, "\red [user] has used [W] on \icon[src] [src]")
 
 		manipulated_by = user.real_name			//This person is aware of the contents of the tank.
 
-		to_chat(user, "<span class='notice'>Results of analysis of \icon[src]</span>")
+		to_chat(user, "\blue Results of analysis of \icon[src]")
 		if (pressure>0)
-			to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
+			to_chat(user, "\blue Pressure: [round(pressure,0.1)] kPa")
 
-			to_chat(user, "<span class='notice'>[gas_type]: 100%</span>")
-			to_chat(user, "<span class='notice'>Temperature: [round(temperature-T0C)]&deg;C</span>")
+			to_chat(user, "\blue [gas_type]: 100%")
+			to_chat(user, "\blue Temperature: [round(temperature-T0C)]&deg;C")
 		else
-			to_chat(user, "<span class='notice'>Tank is empty!</span>")
+			to_chat(user, "\blue Tank is empty!")
 		src.add_fingerprint(user)
 
 
@@ -129,17 +129,17 @@
 			var/mob/living/carbon/location = loc
 			if(location.internal == src)
 				location.internal = null
-				to_chat(usr, "<span class='notice'>You close the tank release valve.</span>")
+				to_chat(usr, "\blue You close the tank release valve.")
 				if (location.hud_used && location.hud_used.internals)
 					location.hud_used.internals.icon_state = "internal0"
 			else
 				if(location.wear_mask && (location.wear_mask.flags_inventory & ALLOWINTERNALS))
 					location.internal = src
-					to_chat(usr, "<span class='notice'>You open \the [src] valve.</span>")
+					to_chat(usr, "\blue You open \the [src] valve.")
 					if (location.hud_used && location.hud_used.internals)
 						location.hud_used.internals.icon_state = "internal1"
 				else
-					to_chat(usr, "<span class='notice'>You need something to connect to \the [src].</span>")
+					to_chat(usr, "\blue You need something to connect to \the [src].")
 
 	src.add_fingerprint(usr)
 	return 1

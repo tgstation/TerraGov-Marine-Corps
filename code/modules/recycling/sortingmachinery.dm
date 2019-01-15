@@ -57,7 +57,7 @@
 				if("Description")
 					var/str = trim(copytext(sanitize(input(usr,"Label text?","Set label","")),1,MAX_MESSAGE_LEN))
 					if(!str || !length(str))
-						to_chat(usr, "<span class='warning'>Invalid text.</span>")
+						to_chat(usr, "\red Invalid text.")
 						return
 					if(!examtext && !nameset)
 						examtext = str
@@ -166,7 +166,7 @@
 				if("Description")
 					var/str = trim(copytext(sanitize(input(usr,"Label text?","Set label","")),1,MAX_MESSAGE_LEN))
 					if(!str || !length(str))
-						to_chat(usr, "<span class='warning'>Invalid text.</span>")
+						to_chat(usr, "\red Invalid text.")
 						return
 					if(!examtext && !nameset)
 						examtext = str
@@ -293,7 +293,7 @@
 			else if(src.amount < 3)
 				to_chat(user, "<span class='warning'>You need more paper.</span>")
 		else
-			to_chat(user, "<span class='notice'>The object you are trying to wrap is unsuitable for the sorting machinery!</span>")
+			to_chat(user, "\blue The object you are trying to wrap is unsuitable for the sorting machinery!")
 		if (src.amount <= 0)
 			new /obj/item/trash/c_tube( src.loc )
 			qdel(src)
@@ -303,7 +303,7 @@
 	examine(mob/user)
 		..()
 		if(get_dist(src, user) < 2)
-			to_chat(user, "<span class='notice'>There are [amount] units of package wrap left!</span>")
+			to_chat(user, "\blue There are [amount] units of package wrap left!")
 
 
 /obj/item/device/destTagger

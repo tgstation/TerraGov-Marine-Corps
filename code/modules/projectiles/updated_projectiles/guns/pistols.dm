@@ -28,10 +28,9 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK //For easy reference.
 
-/obj/item/weapon/gun/pistol/Initialize()
+/obj/item/weapon/gun/pistol/New()
 	. = ..()
-	if(current_mag && current_mag.current_rounds > 0) 
-		load_into_chamber()
+	if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
 
 /obj/item/weapon/gun/pistol/unique_action(mob/user)
 	cock(user)
@@ -62,10 +61,10 @@
 	current_mag = /obj/item/ammo_magazine/pistol
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
 
-/obj/item/weapon/gun/pistol/m4a3/Initialize()
+/obj/item/weapon/gun/pistol/m4a3/New()
 	. = ..()
 	select_gamemode_skin(/obj/item/weapon/gun/pistol/m4a3)
-	
+
 /obj/item/weapon/gun/pistol/m4a3/set_gun_config_values()
 	fire_delay = config.mlow_fire_delay
 	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
@@ -80,7 +79,7 @@
 	icon_state = "m4a3c"
 	item_state = "m4a3c"
 
-/obj/item/weapon/gun/pistol/m4a3/custom/Initialize()
+/obj/item/weapon/gun/pistol/m4a3/custom/New()
 	. = ..()
 	select_gamemode_skin(/obj/item/weapon/gun/pistol/m4a3/custom)
 
@@ -103,16 +102,8 @@
 	origin_tech = "combat=4;materials=3"
 	fire_sound = 'sound/weapons/gun_glock.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/m1911
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 17, "stock_x" = 21, "stock_y" = 17)
-
-/obj/item/weapon/gun/pistol/m1911/custom/set_gun_config_values()
-	fire_delay = config.mlow_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.hmed_hit_accuracy_mult
-	damage_mult = config.base_hit_damage_mult + config.low_hit_damage_mult
-	recoil_unwielded = config.min_recoil_value
 
 //-------------------------------------------------------
 //Beretta 92FS, the gun McClane carries around in Die Hard. Very similar to the service pistol, all around.
@@ -174,7 +165,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 23, "under_x" = 20, "under_y" = 17, "stock_x" = 20, "stock_y" = 17)
 
-/obj/item/weapon/gun/pistol/heavy/Initialize()
+/obj/item/weapon/gun/pistol/heavy/New()
 	. = ..() //Pick some variant sprites.
 	var/skin = pick("","g_","c_")
 	icon_state = skin + icon_state
@@ -211,7 +202,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
 
-/obj/item/weapon/gun/pistol/c99/Initialize()//Making the gun have an invisible silencer since it's supposed to have one.
+/obj/item/weapon/gun/pistol/c99/New()//Making the gun have an invisible silencer since it's supposed to have one.
 	. = ..()
 	var/obj/item/attachable/suppressor/S = new(src)
 	S.attach_icon = ""
@@ -256,7 +247,7 @@
 	fire_sound = 'sound/weapons/gun_kt42.ogg'
 	current_mag = /obj/item/ammo_magazine/pistol/automatic
 	attachable_allowed = list()
-	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK	
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 20,"rail_x" = 8, "rail_y" = 22, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 17)
 
 /obj/item/weapon/gun/pistol/kt42/set_gun_config_values()
@@ -341,15 +332,14 @@
 	attachable_offset = list("muzzle_x" = 31, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
 /obj/item/weapon/gun/pistol/vp70/set_gun_config_values()
-	fire_delay = config.low_fire_delay
+	fire_delay = config.mhigh_fire_delay
 	burst_amount = config.med_burst_value
-	burst_delay = config.min_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult + config.min_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.min_hit_accuracy_mult
+	burst_delay = config.low_fire_delay
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult
 	scatter = config.med_scatter_value
 	scatter_unwielded = config.med_scatter_value
 	damage_mult = config.base_hit_damage_mult + config.high_hit_damage_mult
-	recoil_unwielded = config.min_recoil_value
 
 //-------------------------------------------------------
 //VP78
@@ -366,11 +356,11 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 9, "rail_y" = 24, "under_x" = 23, "under_y" = 13, "stock_x" = 23, "stock_y" = 13)
 
 /obj/item/weapon/gun/pistol/vp78/set_gun_config_values()
-	fire_delay = config.low_fire_delay
+	fire_delay = config.max_fire_delay
 	burst_amount = config.med_burst_value
 	burst_delay = config.low_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult
+	accuracy_mult = config.base_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult
 	scatter = config.med_scatter_value
 	scatter_unwielded = config.med_scatter_value
 	damage_mult = config.base_hit_damage_mult

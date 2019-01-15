@@ -25,7 +25,7 @@
 		if(prob(30))
 			for(var/mob/M in hearers(4, src))
 				if(M.client)
-					M.show_message("<span class='warning'> You hear something rumbling inside [src]'s stomach...</span>", 2)
+					M.show_message("\red You hear something rumbling inside [src]'s stomach...", 2)
 		var/obj/item/I = user.get_active_hand()
 		if(I && I.force)
 			var/d = rand(round(I.force / 4), I.force)
@@ -41,7 +41,7 @@
 				src.take_limb_damage(d)
 			for(var/mob/M in viewers(user, null))
 				if(M.client)
-					M.show_message("<span class='danger'>[user] attacks [src]'s stomach wall with the [I.name]!</span>", 2)
+					M.show_message(text("\red <B>[user] attacks [src]'s stomach wall with the [I.name]!"), 2)
 			playsound(user.loc, 'sound/effects/attackblob.ogg', 25, 1)
 
 			if(prob(max(4*(100*getBruteLoss()/maxHealth - 75),0))) //4% at 24% health, 80% at 5% health
@@ -117,9 +117,9 @@
 	playsound(loc, "sparks", 25, 1)
 	if (shock_damage > 10)
 		src.visible_message(
-			"<span class='warning'> [src] was shocked by the [source]!</span>", \
-			"<span class='danger'>You feel a powerful shock course through your body!</span>", \
-			"<span class='warning'> You hear a heavy electrical crack.</span>" \
+			"\red [src] was shocked by the [source]!", \
+			"\red <B>You feel a powerful shock course through your body!</B>", \
+			"\red You hear a heavy electrical crack." \
 		)
 		if(isXeno(src) && mob_size == MOB_SIZE_BIG)
 			Stun(1)//Sadly, something has to stop them from bumping them 10 times in a second
@@ -129,9 +129,9 @@
 			KnockDown(10)
 	else
 		src.visible_message(
-			"<span class='warning'> [src] was mildly shocked by the [source].</span>", \
-			"<span class='warning'> You feel a mild shock course through your body.</span>", \
-			"<span class='warning'> You hear a light zapping.</span>" \
+			"\red [src] was mildly shocked by the [source].", \
+			"\red You feel a mild shock course through your body.", \
+			"\red You hear a light zapping." \
 		)
 
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
@@ -379,7 +379,7 @@
 	set category = "IC"
 
 	if(usr.sleeping)
-		to_chat(usr, "<span class='warning'>You are already sleeping</span>")
+		to_chat(usr, "\red You are already sleeping")
 		return
 	if(alert(src,"You sure you want to sleep for a while?","Sleep","Yes","No") == "Yes")
 		usr.sleeping = 20 //Short nap

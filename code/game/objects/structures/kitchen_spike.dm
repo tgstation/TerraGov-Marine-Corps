@@ -25,16 +25,16 @@
 				occupied = 1
 				meat = 5
 				meattype = 1
-				visible_message("<span class='warning'> [user] has forced [M] onto the spike, killing them instantly!</span>")
+				visible_message("\red [user] has forced [M] onto the spike, killing them instantly!")
 				M.death()
 				qdel(M)
 				G.grabbed_thing = null
 				qdel(G)
 
 			else
-				to_chat(user, "<span class='warning'>The spike already has something on it, finish collecting its meat first!</span>")
+				to_chat(user, "\red The spike already has something on it, finish collecting its meat first!")
 		else
-			to_chat(user, "<span class='warning'>They are too big for the spike, try something smaller!</span>")
+			to_chat(user, "\red They are too big for the spike, try something smaller!")
 			return
 
 //	MouseDrop_T(var/atom/movable/C, mob/user)

@@ -78,10 +78,10 @@ var/global/sent_syndicate_strike_team = 0
 
 			//So they don't forget their code or mission.
 			if(nuke_code)
-				new_syndicate_commando.mind.store_memory("<B>Nuke Code:</B> <span class='warning'> [nuke_code].</span>")
-			new_syndicate_commando.mind.store_memory("<B>Mission:</B> <span class='warning'> [input].</span>")
+				new_syndicate_commando.mind.store_memory("<B>Nuke Code:</B> \red [nuke_code].")
+			new_syndicate_commando.mind.store_memory("<B>Mission:</B> \red [input].")
 
-			to_chat(new_syndicate_commando, "<span class='notice'>You are an Elite Syndicate. [!syndicate_leader_selected?"commando":"<B>LEADER</B>"] in the service of the Syndicate. \nYour current mission is: <span class='warning'><B>[input]</B></span>")
+			to_chat(new_syndicate_commando, "\blue You are an Elite Syndicate. [!syndicate_leader_selected?"commando":"<B>LEADER</B>"] in the service of the Syndicate. \nYour current mission is: \red<B>[input]</B>")
 
 			syndicate_commando_number--
 
@@ -96,9 +96,9 @@ var/global/sent_syndicate_strike_team = 0
 	for (var/obj/effect/landmark/L in landmarks_list)
 		if (L.name == "Syndicate-Commando-Bomb")
 			new /obj/effect/spawner/newbomb/timer/syndicate(L.loc)
-			qdel(L)
+			del(L)
 
-	message_admins("<span class='notice'> [key_name_admin(usr)] has spawned a Syndicate strike squad.</span>", 1)
+	message_admins("\blue [key_name_admin(usr)] has spawned a Syndicate strike squad.", 1)
 	log_admin("[key_name(usr)] used Spawn Syndicate Squad.")
 	feedback_add_details("admin_verb","SDTHS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 

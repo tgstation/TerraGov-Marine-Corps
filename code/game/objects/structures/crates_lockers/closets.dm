@@ -25,7 +25,7 @@
 
 	var/const/mob_size = 15
 
-/obj/structure/closet/Initialize()
+/obj/structure/closet/initialize()
 	..()
 	spawn(1)
 		if(!opened)		// if closed, any item at the crate's loc is put in the contents
@@ -174,7 +174,7 @@
 
 /obj/structure/closet/attack_animal(mob/living/user)
 	if(user.wall_smash)
-		visible_message("<span class='warning'> [user] destroys the [src]. </span>")
+		visible_message("\red [user] destroys the [src]. ")
 		for(var/atom/movable/A as mob|obj in src)
 			A.loc = src.loc
 		qdel(src)

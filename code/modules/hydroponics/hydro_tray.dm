@@ -460,7 +460,7 @@
 	pestlevel = 0
 	sampled = 0
 	update_icon()
-	visible_message("<span class='notice'> [src] has been overtaken by [seed.display_name].</span>")
+	visible_message("\blue [src] has been overtaken by [seed.display_name].")
 
 	return
 
@@ -517,7 +517,7 @@
 	weedlevel = 0
 
 	update_icon()
-	visible_message("<span class='warning'> The <span class='notice'> [previous_plant] <span class='warning'> has suddenly mutated into <span class='notice'> [seed.display_name]!</span>")
+	visible_message("\red The \blue [previous_plant] \red has suddenly mutated into \blue [seed.display_name]!")
 
 	return
 
@@ -611,16 +611,16 @@
 			update_icon()
 
 		else
-			to_chat(user, "<span class='warning'>\The [src] already has seeds in it!</span>")
+			to_chat(user, "\red \The [src] already has seeds in it!")
 
 	else if (istype(O, /obj/item/tool/minihoe))  // The minihoe
 
 		if(weedlevel > 0)
-			user.visible_message("<span class='warning'> [user] starts uprooting the weeds.</span>", "<span class='warning'> You remove the weeds from the [src].</span>")
+			user.visible_message("\red [user] starts uprooting the weeds.", "\red You remove the weeds from the [src].")
 			weedlevel = 0
 			update_icon()
 		else
-			to_chat(user, "<span class='warning'>This plot is completely devoid of weeds. It doesn't need uprooting.</span>")
+			to_chat(user, "\red This plot is completely devoid of weeds. It doesn't need uprooting.")
 
 	else if (istype(O, /obj/item/storage/bag/plants))
 
@@ -659,7 +659,7 @@
 	else if(istype(O, /obj/item/frame/apiary))
 
 		if(seed)
-			to_chat(user, "<span class='warning'>[src] is already occupied!</span>")
+			to_chat(user, "\red [src] is already occupied!")
 		else
 			user.drop_held_item()
 			qdel(O)
@@ -691,17 +691,17 @@
 
 	else
 		if(seed && !dead)
-			to_chat(usr, "[src] has <span class='notice'> [seed.display_name] \black planted.</span>")
+			to_chat(usr, "[src] has \blue [seed.display_name] \black planted.")
 			if(health <= (seed.endurance / 2))
-				to_chat(usr, "The plant looks <span class='warning'> unhealthy.</span>")
+				to_chat(usr, "The plant looks \red unhealthy.")
 		else
 			to_chat(usr, "[src] is empty.")
 		to_chat(usr, "Water: [round(waterlevel,0.1)]/100")
 		to_chat(usr, "Nutrient: [round(nutrilevel,0.1)]/10")
 		if(weedlevel >= 5)
-			to_chat(usr, "[src] is <span class='warning'> filled with weeds!</span>")
+			to_chat(usr, "[src] is \red filled with weeds!")
 		if(pestlevel >= 5)
-			to_chat(usr, "[src] is <span class='warning'> filled with tiny worms!</span>")
+			to_chat(usr, "[src] is \red filled with tiny worms!")
 
 		if(!istype(src,/obj/machinery/portable_atmospherics/hydroponics/soil))
 

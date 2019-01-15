@@ -1,71 +1,74 @@
 /mob/proc/say()
 	return
 
-
 /mob/verb/whisper()
 	set name = "Whisper"
 	set category = "IC"
-
 	return
-
 
 /mob/verb/say_verb(message as text)
 	set name = "Say"
 	set category = "IC"
-	set hidden = TRUE
-
-	if(say_disabled)
-		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
+	if(say_disabled)	//This is here to try to identify lag problems
+		to_chat(usr, "\red Speech is currently admin-disabled.")
 		return
 
-	if(!message)
+	if(message == "*dance")
+		set_typing_indicator(FALSE)
+		usr.say(message)
 		return
-
-	say(message)
+	set_typing_indicator(FALSE)
+	usr.say(message)
 
 
 /mob/verb/me_verb(message as text)
 	set name = "Me"
 	set category = "IC"
-	set hidden = TRUE
 
-	if(say_disabled)
-		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
-
-	if(!message)
+	if(say_disabled)	//This is here to try to identify lag problems
+		to_chat(usr, "\red Speech is currently admin-disabled.")
 		return
+	message = trim(copytext(sanitize(message), 1, MAX_MESSAGE_LEN))
 
+	set_typing_indicator(FALSE)
 	if(use_me)
-		emote("me", EMOTE_VISIBLE, message, TRUE)
+		usr.emote("me",usr.emote_type,message, TRUE)
 	else
-		emote(message, EMOTE_VISIBLE, null, TRUE)
-
+		usr.emote(message, 1, null, TRUE)
 
 /mob/proc/say_dead(var/message)
-	var/name = real_name
+	var/name = src.real_name
 
-	if(say_disabled)
-		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
+	if(say_disabled)	//This is here to try to identify lag problems
+		to_chat(usr, "\red Speech is currently admin-disabled.")
+		return
+	if(!src.client) //Somehow
 		return
 
-	if(!client)
-		return
+	if(!src.client.holder)
+		if(!dsay_allowed)
+			to_chat(src, "\red Deadchat is globally muted")
+			return
 
-	if(!client.holder && !dsay_allowed)
-		to_chat(src, "<span class='warning'>Deadchat is globally muted</span>")
+	if(client && client.prefs && !(client.prefs.toggles_chat & CHAT_DEAD))
+		to_chat(usr, "\red You have deadchat muted.")
 		return
+/*
+	if(mind && mind.name)
+		name = "[mind.name]"
+	else
+		name = real_name
 
-	if(client?.prefs && !(client.prefs.toggles_chat & CHAT_DEAD))
-		to_chat(usr, "<span class='warning'>You have deadchat muted.</span>")
-		return
-
+	if(name != real_name)
+		alt_name = " (died as [real_name])"
+*/
 	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>[name]</span> says, <span class='message'>\"[message]\"</span></span>"
 
 	for(var/mob/M in player_list)
-
+	
 		if(istype(M, /mob/new_player))
 			continue
-
+			
 		if(M.client && M.stat == DEAD && (M.client.prefs.toggles_chat & CHAT_DEAD))
 			to_chat(M, rendered)
 
@@ -73,30 +76,33 @@
 			to_chat(M, rendered)
 
 
-/mob/proc/say_understands(var/mob/other, var/datum/language/speaking = null)
-	if(stat == DEAD)
-		return TRUE
+/mob/proc/say_understands(var/mob/other,var/datum/language/speaking = null)
 
-	else if(universal_speak || universal_understand)
-		return TRUE
+	if (src.stat == 2)		//Dead
+		return 1
 
-	if(!speaking)
+	//Universal speak makes everything understandable, for obvious reasons.
+	else if(src.universal_speak || src.universal_understand)
+		return 1
+
+	//Languages are handled after.
+	if (!speaking)
 		if(!other)
-			return TRUE
-		else if(other.universal_speak)
-			return TRUE
-		else if(isAI(src))
-			return TRUE
-		else if(istype(other, type) || istype(src, other.type))
-			return TRUE
-		else
-			return FALSE
+			return 1
+		if(other.universal_speak)
+			return 1
+		if(isAI(src))
+			return 1
+		if (istype(other, src.type) || istype(src, other.type))
+			return 1
+		return 0
 
 	//Language check.
-	for(var/datum/language/L in languages)
+	for(var/datum/language/L in src.languages)
 		if(speaking.name == L.name)
-			return TRUE
-	return FALSE
+			return 1
+
+	return 0
 
 /*
    ***Deprecated***
@@ -110,10 +116,10 @@
 /mob/proc/say_quote(var/message, var/datum/language/speaking = null)
         var/verb = "says"
         var/ending = copytext(message, length(message))
-        if(ending == "!")
-                verb = pick("exclaims","shouts","yells")
-        else if(ending== "?")
-                verb = "asks"
+        if(ending=="!")
+                verb=pick("exclaims","shouts","yells")
+        else if(ending=="?")
+                verb="asks"
 
         return verb
 
@@ -141,8 +147,8 @@
 //parses the message mode code (e.g. :h, :w) from text, such as that supplied to say.
 //returns the message mode string or null for no message mode.
 //standard mode is the mode returned for the special ';' radio code.
-/mob/proc/parse_message_mode(var/message, var/standard_mode = "headset")
-	if(length(message) >= 1 && copytext(message, 1, 2) == ";")
+/mob/proc/parse_message_mode(var/message, var/standard_mode="headset")
+	if(length(message) >= 1 && copytext(message,1,2) == ";")
 		return standard_mode
 
 	if(length(message) >= 2)
@@ -157,7 +163,7 @@
 	if(length(message) >= 2)
 		var/language_prefix = lowertext(copytext(message, 1 ,3))
 		var/datum/language/L = language_keys[language_prefix]
-		if(can_speak(L))
+		if (can_speak(L))
 			return L
 
 	return null
