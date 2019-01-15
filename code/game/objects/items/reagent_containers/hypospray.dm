@@ -22,7 +22,7 @@
 	var/label = null
 
 /obj/item/reagent_container/hypospray/advanced/attack_self(mob/user)
-	if(user.is_mob_incapacitated() || !usr.IsAdvancedToolUser())
+	if(user.is_mob_incapacitated() || !user.IsAdvancedToolUser())
 		return FALSE
 
 	handle_interface(user)
@@ -58,7 +58,7 @@
 			return
 
 		if(iscarbon(A))
-			var/amount = min(src.reagents.maximum_volume - src.reagents.total_volume, amount_per_transfer_from_this)
+			var/amount = min(reagents.maximum_volume - reagents.total_volume, amount_per_transfer_from_this)
 			var/mob/living/carbon/C = A
 			if(C.get_blood_id() && reagents.has_reagent(C.get_blood_id()))
 				to_chat(user, "<span class='warning'>There is already a blood sample in [src].</span>")
@@ -116,7 +116,7 @@
 
 
 	var/list/injected = list()
-	for(var/datum/reagent/R in src.reagents.reagent_list)
+	for(var/datum/reagent/R in reagents.reagent_list)
 		injected += R.name
 	var/contained = english_list(injected)
 	log_combat(user, A, "injected", src, "Reagents: [english_list(reagents.reagent_list)]")
@@ -132,7 +132,7 @@
 			playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
 			return	FALSE
 
-		msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) injected [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)])")
+		msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) injected [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)])")
 		to_chat(user, "<span class='notice'>You inject [M] with [src]</span>.")
 		to_chat(M, "<span class='warning'>You feel a tiny prick!</span>")
 
