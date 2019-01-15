@@ -55,6 +55,8 @@
 	if(inject_mode == HYPOSPRAY_INJECT_MODE_DRAW) //if we're draining
 		if(reagents.holder_full())
 			to_chat(user, "<span class='warning'>[src] is full.</span>")
+			inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
+			update_icon() //So we now display as Inject
 			return
 
 		if(iscarbon(A))
@@ -80,10 +82,10 @@
 			else
 				C.take_blood(src,amount)
 
-			on_reagent_change()
 			reagents.handle_reactions()
 			user.visible_message("<span clas='warning'>[user] takes a blood sample from [A].</span>",
 								"<span class='notice'>You take a blood sample from [A].</span>", null, 4)
+
 		else if(istype(A, /obj)) //if not mob
 			if(!A.reagents.total_volume)
 				to_chat(user, "<span class='warning'>[A] is empty.")
@@ -96,9 +98,8 @@
 			var/trans = A.reagents.trans_to(src, amount_per_transfer_from_this)
 
 			to_chat(user, "<span class='notice'>You fill [src] with [trans] units of the solution.</span>")
-		if(reagents.holder_full())
-			inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
-			update_icon()
+
+		on_reagent_change()
 		return TRUE
 
 
@@ -130,7 +131,7 @@
 			M.visible_message("<span class='danger'>[M]'s reflexes kick in and knock [user] to the ground before they could use \the [src]'!</span>", \
 				"<span class='warning'>You knock [user] to the ground before they could inject you!</span>", null, 5)
 			playsound(user.loc, 'sound/weapons/thudswoosh.ogg', 25, 1, 7)
-			return	FALSE
+			return FALSE
 
 		msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) injected [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with [name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)])")
 		to_chat(user, "<span class='notice'>You inject [M] with [src]</span>.")
@@ -159,6 +160,8 @@
 	update_icon()
 
 /obj/item/reagent_container/hypospray/update_icon()
+	if(reagents.holder_full())
+		inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 	if(ismob(loc))
 		if(inject_mode)
 			icon_state = "hypo_i"
