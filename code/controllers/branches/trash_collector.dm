@@ -171,7 +171,7 @@ TO DO: Implement more support for /mob.
 			var/deletion_time = TrashAuthority.cannot_trash[I]
 			to_chat(usr, "<b>[TrashAuthority.cannot_trash[I]]</b> deleted at:[TrashAuthority.cannot_trash[deletion_time]].")
 	else
-		to_chat(usr, "\blue Empty!")
+		to_chat(usr, "<span class='notice'>Empty!</span>")
 	log_debug("TA: Currently processed: <b>[TrashAuthority.soft_del_count]</b> soft deletions and <b>[TrashAuthority.hard_del_count]</b> hard deletions.")
 
 /datum/proc/ta_purge()
@@ -180,7 +180,7 @@ TO DO: Implement more support for /mob.
 	set desc = "This will toggle the Trash Authority's purge mode and log the results in debug. Do not use this without good reason."
 
 	TrashAuthority.purging = !TrashAuthority.purging
-	to_chat(usr, "\red TA is [TrashAuthority.purging? "now purging." : "is no longer purging."]")
+	to_chat(usr, "<span class='warning'>TA is [TrashAuthority.purging? "now purging." : "is no longer purging."]</span>")
 	log_debug("TA: <b>[usr.key]</b> used the purge toggle.")
 
 #undef DEBUG_TA_AUTHORITY

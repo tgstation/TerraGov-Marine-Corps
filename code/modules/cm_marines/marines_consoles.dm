@@ -295,11 +295,11 @@
 							break
 
 					if(!jobdatum)
-						to_chat(usr, "\red No log exists for this job.")
+						to_chat(usr, "<span class='warning'>No log exists for this job.</span>")
 						return
 
 					if(!modify)
-						to_chat(usr, "\red No card to modify!")
+						to_chat(usr, "<span class='warning'>No card to modify!</span>")
 						return
 
 					modify.access = jobdatum.get_access()
