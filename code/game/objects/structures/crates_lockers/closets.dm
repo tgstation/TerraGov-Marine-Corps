@@ -27,7 +27,6 @@
 
 /obj/structure/closet/Initialize()
 	. = ..()
-	select_gamemode_equipment()
 	if(!opened)		// if closed, any item at the crate's loc is put in the contents
 		for(var/obj/item/I in src.loc)
 			if(I.density || I.anchored || I == src)
@@ -42,9 +41,6 @@
 		return TRUE
 	else
 		return !density
-
-/obj/structure/closet/proc/select_gamemode_equipment()
-	return
 
 /obj/structure/closet/proc/can_open()
 	if(src.welded)

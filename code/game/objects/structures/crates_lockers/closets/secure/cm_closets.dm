@@ -15,6 +15,9 @@
 /obj/structure/closet/secure_closet/marine/Initialize()
 	. = ..()
 	new /obj/item/clothing/shoes/marine(src)
+	switch(map_tag)
+		if(MAP_ICE_COLONY)
+			new /obj/item/clothing/mask/rebreather/scarf(src)
 	if(closet_squad)
 		icon_state = "squad_[closet_squad]_locked"
 		icon_closed = "squad_[closet_squad]_unlocked"
@@ -23,23 +26,14 @@
 		icon_broken = "squad_[closet_squad]_emmaged"
 		icon_off = "squad_[closet_squad]_off"
 
-/obj/structure/closet/secure_closet/marine/select_gamemode_equipment()
-	switch(map_tag)
-		if(MAP_ICE_COLONY)
-			new /obj/item/clothing/mask/rebreather/scarf(src)
-
-
 // STANDARD MARINE
 
-/obj/structure/closet/secure_closet/marine/standard
-
-/obj/structure/closet/secure_closet/marine/standard/select_gamemode_equipment()
+/obj/structure/closet/secure_closet/marine/standard/Initialize()
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine(src)
 	new /obj/item/storage/belt/marine(src)
 	new /obj/item/clothing/head/helmet/marine(src)
 	new /obj/item/clothing/under/marine(src)
-
 
 /obj/structure/closet/secure_closet/marine/standard/alpha
 	name = "alpha equipment locker"
@@ -87,15 +81,12 @@
 
 // MARINE LEADER
 
-/obj/structure/closet/secure_closet/marine/leader
-
-/obj/structure/closet/secure_closet/marine/leader/select_gamemode_equipment()
+/obj/structure/closet/secure_closet/marine/leader/Initialize()
 	. = ..()
 	new /obj/item/clothing/suit/storage/marine/leader(src)
 	new /obj/item/storage/belt/marine(src)
 	new /obj/item/clothing/head/helmet/marine/leader(src)
 	new /obj/item/clothing/under/marine(src)
-
 
 /obj/structure/closet/secure_closet/marine/leader/alpha
 	name = "alpha leader equipment locker"
@@ -153,13 +144,9 @@
 	new /obj/item/storage/belt/utility/full(src)
 	new /obj/item/clothing/glasses/welding(src)
 	new /obj/item/clothing/tie/storage/webbing(src)
-
-/obj/structure/closet/secure_closet/marine/engi/select_gamemode_equipment()
-	. = ..()
 	new /obj/item/clothing/suit/storage/marine(src)
 	new /obj/item/clothing/head/helmet/marine/tech(src)
 	new /obj/item/clothing/under/marine/engineer(src)
-
 
 /obj/structure/closet/secure_closet/marine/engi/alpha
 	name = "alpha engineer equipment locker"
@@ -218,13 +205,9 @@
 	new /obj/item/clothing/tie/storage/webbing(src)
 	new /obj/item/roller/medevac(src)
 	new /obj/item/device/defibrillator(src)
-
-/obj/structure/closet/secure_closet/marine/medic/select_gamemode_equipment()
-	. = ..()
 	new /obj/item/clothing/suit/storage/marine(src)
 	new /obj/item/clothing/head/helmet/marine/medic(src)
 	new /obj/item/clothing/under/marine/medic(src)
-
 
 /obj/structure/closet/secure_closet/marine/medic/alpha
 	name = "alpha medic equipment locker"
@@ -363,14 +346,10 @@
 	new /obj/item/clothing/gloves/white(src)
 	new /obj/item/clothing/under/whites(src)
 	new /obj/item/clothing/head/white_dress(src)
-
-/obj/structure/closet/secure_closet/pilot_officer/select_gamemode_equipment()
 	switch(map_tag)
 		if(MAP_ICE_COLONY)
 			new /obj/item/clothing/mask/rebreather/scarf(src)
 			new /obj/item/clothing/mask/rebreather/scarf(src)
-
-
 
 /**********************Military Police Gear**************************/
 /obj/structure/closet/secure_closet/military_police
@@ -486,14 +465,10 @@
 	new /obj/item/clothing/head/surgery/green(src)
 	new /obj/item/clothing/glasses/hud/health(src)
 	new /obj/item/clothing/suit/surgical(src)
-
-/obj/structure/closet/secure_closet/medical_doctor/select_gamemode_equipment()
 	switch(map_tag)
 		if(MAP_ICE_COLONY)
 			new /obj/item/clothing/suit/storage/snow_suit/doctor(src)
 			new /obj/item/clothing/mask/rebreather/scarf(src)
-
-
 
 //ALAMAYER CARGO CLOSET
 /obj/structure/closet/secure_closet/req_officer
