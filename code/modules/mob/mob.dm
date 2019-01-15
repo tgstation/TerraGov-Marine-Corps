@@ -19,7 +19,7 @@
 
 
 /mob/Stat()
-	if(client && client.holder)
+	if(check_rights(R_ADMIN|R_DEBUG))
 		if(statpanel("MC"))
 			stat("CPU:", "[world.cpu]")
 			stat("Instances:", "[num2text(world.contents.len, 10)]")
