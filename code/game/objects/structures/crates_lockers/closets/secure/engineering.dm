@@ -11,7 +11,6 @@
 
 /obj/structure/closet/secure_closet/engineering_chief/New()
 	. = ..()
-	sleep(2)
 	new /obj/item/clothing/tie/storage/webbing(src)
 	new /obj/item/clothing/tie/storage/brown_vest(src)
 	new /obj/item/clothing/head/hardhat/white(src)
@@ -50,7 +49,6 @@
 
 /obj/structure/closet/secure_closet/engineering_electrical/New()
 	. = ..()
-	sleep(2)
 	new /obj/item/clothing/gloves/yellow(src)
 	new /obj/item/clothing/gloves/yellow(src)
 	new /obj/item/clothing/gloves/yellow(src)
@@ -79,7 +77,6 @@
 
 /obj/structure/closet/secure_closet/engineering_welding/New()
 	. = ..()
-	sleep(2)
 	new /obj/item/clothing/head/welding(src)
 	new /obj/item/clothing/head/welding(src)
 	new /obj/item/clothing/head/welding(src)
@@ -144,7 +141,6 @@
 
 /obj/structure/closet/secure_closet/atmos_personal/New()
 	. = ..()
-	sleep(2)
 	if (prob(70))
 		new /obj/item/clothing/tie/storage/brown_vest(src)
 	else
