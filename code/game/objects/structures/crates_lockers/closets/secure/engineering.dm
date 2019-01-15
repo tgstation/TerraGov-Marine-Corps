@@ -62,7 +62,6 @@
 	new /obj/item/device/multitool(src)
 	new /obj/item/device/multitool(src)
 	new /obj/item/device/multitool(src)
-	return
 
 /obj/structure/closet/secure_closet/engineering_welding
 	name = "welding supplies"
@@ -86,7 +85,6 @@
 	new /obj/item/tool/weldpack(src)
 	new /obj/item/tool/weldpack(src)
 	new /obj/item/tool/weldpack(src)
-	return
 
 /obj/structure/closet/secure_closet/engineering_personal
 	name = "engineer's locker"
@@ -156,4 +154,4 @@
 	new /obj/item/clothing/mask/gas(src)
 	new /obj/item/cartridge/atmos(src)
 	new /obj/item/tool/taperoll/engineering(src)
-	return
+
