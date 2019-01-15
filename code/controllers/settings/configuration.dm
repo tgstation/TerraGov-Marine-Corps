@@ -89,6 +89,15 @@
 
 	var/debugparanoid = 0
 
+	var/tick_limit_mc_init = 98
+	var/fps = 20
+	var/resume_after_initializations = 0
+
+	var/base_mc_tick_rate = 1
+	var/high_pop_mc_tick_rate = 1.1
+	var/high_pop_mc_mode_amount = 65
+	var/disable_high_pop_mc_mode_amount = 60
+
 	var/server
 	var/banappeals
 	var/wikiurl
@@ -136,24 +145,6 @@
 	var/lv624_url
 	var/prisonstation_url
 	var/whiskeyoutpost_url
-
-/datum/configuration/New()
-	var/list/L = subtypesof(/datum/game_mode)
-	for(var/T in L)
-		// I wish I didn't have to instance the game modes in order to look up
-		// their information, but it is the only way (at least that I know of).
-		var/datum/game_mode/M = new T()
-
-		if (M.config_tag)
-			if(!(M.config_tag in modes))		// ensure each mode is added only once
-				log_misc("Adding game mode [M.name] ([M.config_tag]) to configuration.")
-				src.modes += M.config_tag
-				src.mode_names[M.config_tag] = M.name
-				src.probabilities[M.config_tag] = M.probability
-				if (M.votable)
-					src.votable_modes += M.config_tag
-		qdel(M)
-	src.votable_modes += "secret"
 
 /datum/configuration/proc/load(filename, type = "config") //the type can also be game_options, in which case it uses a different switch. not making it separate to not copypaste code - Urist
 	var/list/Lines = file2list(filename)
@@ -551,6 +542,27 @@
 
 		if("whiskeyoutpost_url")
 			config.whiskeyoutpost_url = value
+
+		if("tick_limit_mc_init")
+			config.tick_limit_mc_init = text2num(value)
+
+		if("fps")
+			config.fps = value
+
+		if("resume_after_initializations")
+			config.resume_after_initializations = 1
+
+		if("base_mc_tick_rate")
+			config.base_mc_tick_rate = value
+
+		if("high_pop_mc_tick_rate")
+			config.high_pop_mc_tick_rate = value
+
+		if("high_pop_mc_mode_amount")
+			config.high_pop_mc_mode_amount = value
+
+		if("disable_high_pop_mc_mode_amount")
+			config.disable_high_pop_mc_mode_amount = value
 
 		else
 			log_misc("Unknown setting in configuration: '[name]'")

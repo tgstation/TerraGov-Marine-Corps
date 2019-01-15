@@ -789,7 +789,7 @@
 			log_admin("[key_name(usr)] booted [key_name(M)].")
 			message_admins("<span class='notice'> [key_name_admin(usr)] booted [key_name_admin(M)].</span>", 1)
 			//M.client = null
-			qdel(M.client)
+			del(M.client)
 /*
 	//Player Notes
 	else if(href_list["notes"])
@@ -862,7 +862,7 @@
 		message_admins("<span class='notice'>[usr.client.ckey] has banned [mob_key].\nReason: [sanitize(reason)]\nThis will be removed in [mins] minutes.</span>")
 		notes_add(mob_key, "Banned by [usr.client.ckey]|Duration: [mins] minutes|Reason: [sanitize(reason)]", usr)
 
-		qdel(mob_client)
+		del(mob_client)
 
 	else if(href_list["lazyban"])
 		if(!check_rights(R_MOD,0) && !check_rights(R_BAN))  return
@@ -905,7 +905,7 @@
 		log_admin("[usr.client.ckey] has banned [M.ckey]|Duration: [mins] minutes|Reason: [reason]")
 		message_admins("<span class='notice'>[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.</span>")
 		notes_add(M.ckey, "Banned by [usr.client.ckey]|Duration: [mins] minutes|Reason: [reason]", usr)
-		qdel(M.client)
+		del(M.client)
 
 
 	else if(href_list["mute"])

@@ -245,7 +245,8 @@
 				holder.buildmode.objholder = text2path("[object.type]")
 				to_chat(usr, "Selected: [object.type]")
 			else if(mods["right"])
-				if(isobj(object)) qdel(object)
+				if(isobj(object)) 
+					qdel(object)
 
 		if(3)
 			if(mods["left"]) //I cant believe this shit actually compiles.

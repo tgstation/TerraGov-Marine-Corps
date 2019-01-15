@@ -389,7 +389,7 @@
 	to_chat(user, "<span class='notice'>Its hydro cannon contains [M240T_WATER_AMOUNT]/[max_water] units of water!</span>")
 
 
-/obj/item/weapon/gun/flamer/M240T/New()
+/obj/item/weapon/gun/flamer/M240T/Initialize()
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_water)
 	reagents = R

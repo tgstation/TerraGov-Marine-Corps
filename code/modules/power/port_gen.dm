@@ -114,7 +114,7 @@ display round(lastgen) and phorontank amount
 	power_gen = 20000
 	drag_delay = 1 //They got them rollers
 
-/obj/machinery/power/port_gen/pacman/initialize()
+/obj/machinery/power/port_gen/pacman/Initialize()
 	..()
 	if(anchored)
 		connect_to_network()

@@ -126,7 +126,8 @@
 			S.initialize()
 			break*/  //THIS TOO!
 
-/obj/machinery/computer/NTresearch/initialize()
+/obj/machinery/computer/NTresearch/Initialize()
+	. = ..()
 	SyncRDevices()
 
 /*  //LEAVING THIS FOR NOW.  Eventually, they'll be able to use a W-Y DATACUBE to copy the entire system.  Either for merc theft, Russian shenanigans, or W-Y retreival.
