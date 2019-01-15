@@ -382,7 +382,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 
 /obj/item/ammobox/attackby(obj/item/I, mob/user)
 	if(deployed == FALSE)
-		to_chat(user, "<span class='warning'>[src] must be on the ground to be refilled.</span>")
+		to_chat(user, "<span class='warning'>[src] must be deployed on the ground to be refilled.</span>")
 		return
 	if(!istype(I, /obj/item/ammo_magazine))
 		return
