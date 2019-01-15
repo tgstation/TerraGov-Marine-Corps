@@ -569,9 +569,8 @@
 		L.update_icons() // larva renaming done differently
 	else
 		generate_name()
-
-	if(isXenoQueen(src))
 		update_living_queens()
+		
 
 //////////// XENO CASTE PROCS //////////////////
 
