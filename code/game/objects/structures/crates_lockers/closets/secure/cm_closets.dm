@@ -124,20 +124,20 @@
 	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_CHARLIE, ACCESS_MARINE_LEADER)
 	closet_squad = "charlie"
 
-	/obj/structure/closet/secure_closet/marine/leader/charlie/New()
-		. = ..()
-		new /obj/item/clothing/gloves/marine/charlie(src)
-		new /obj/item/device/radio/headset/almayer/marine/charlie/lead(src)
+/obj/structure/closet/secure_closet/marine/leader/charlie/New()
+	. = ..()
+	new /obj/item/clothing/gloves/marine/charlie(src)
+	new /obj/item/device/radio/headset/almayer/marine/charlie/lead(src)
 
 /obj/structure/closet/secure_closet/marine/leader/delta
 	name = "delta leader equipment locker"
 	req_access = list(ACCESS_MARINE_PREP, ACCESS_MARINE_DELTA, ACCESS_MARINE_LEADER)
 	closet_squad = "delta"
 
-	/obj/structure/closet/secure_closet/marine/leader/delta/New()
-		. = ..()
-		new /obj/item/clothing/gloves/marine/delta(src)
-		new /obj/item/device/radio/headset/almayer/marine/delta/lead(src)
+/obj/structure/closet/secure_closet/marine/leader/delta/New()
+	. = ..()
+	new /obj/item/clothing/gloves/marine/delta(src)
+	new /obj/item/device/radio/headset/almayer/marine/delta/lead(src)
 
 
 
