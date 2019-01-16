@@ -87,9 +87,10 @@
 		return 0
 	return 1
 
-/obj/machinery/computer/XenoRnD/New()
+/obj/machinery/computer/XenoRnD/Initialize()
 	..()
 	files = new /datum/marineResearch(src)
+	return INITIALIZE_HINT_NORMAL
 
 /obj/machinery/computer/XenoRnD/proc/SyncRDevices() //Makes sure it is properly sync'ed up with the devices attached to it (if any). Derived from rdconsole.dm
 	for(var/obj/machinery/Research_Machinery/D in oview(3,src))

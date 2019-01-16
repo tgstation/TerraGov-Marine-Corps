@@ -22,13 +22,14 @@
 	idle_power_usage = 30
 	active_power_usage = 2500
 
-/obj/machinery/Research_Machinery/dissector/New()
+/obj/machinery/Research_Machinery/dissector/Initialize()
 	..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/dissector(src) //We'll need it's own board one day.
 	component_parts += new /obj/item/stock_parts/scanning_module(src)
 	component_parts += new /obj/item/stock_parts/manipulator(src)
 	component_parts += new /obj/item/stock_parts/micro_laser(src)
+	return INITIALIZE_HINT_NORMAL
 
 /obj/machinery/Research_Machinery/dissector/attackby(var/obj/O as obj, var/mob/user as mob)
 	if (istype(O, /obj/item/tool/screwdriver))
@@ -113,7 +114,7 @@
 	var/max_stored = 100000
 	var/list/max_per_resource = list("metal" = null, "glass" = null, "biomass" = null)
 
-/obj/machinery/Research_Machinery/marineprotolathe/New()
+/obj/machinery/Research_Machinery/marineprotolathe/Initialize()
 	..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/marineprotolathe(src)
@@ -123,6 +124,7 @@
 	component_parts += new /obj/item/stock_parts/manipulator(src)
 	component_parts += new /obj/item/stock_parts/manipulator(src)
 	RefreshParts()
+	return INITIALIZE_HINT_NORMAL
 
 /obj/machinery/Research_Machinery/marineprotolathe/proc/TotalMaterials() //returns the total of all the stored materials. Makes code neater.
 	return material_storage["metal"] + material_storage["glass"] + material_storage["biomass"]
@@ -294,12 +296,13 @@
 	idle_power_usage = 30
 	active_power_usage = 5000
 
-/obj/machinery/Research_Machinery/biogenerator/New()
+/obj/machinery/Research_Machinery/biogenerator/Initialize()
 	..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/biorganic(src)
 	component_parts += new /obj/item/marineResearch/xenomorph/secretor/hivelord(src)		// Aliens will ABSOLUTELY HATE any researcher, that build this thing
 	component_parts += new /obj/item/stock_parts/manipulator(src)
+	return INITIALIZE_HINT_NORMAL
 
 /obj/machinery/Research_Machinery/biogenerator/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if (O.is_open_container())
