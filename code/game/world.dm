@@ -60,7 +60,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	callHook("startup")
 
-	load_admins()
 	if(CONFIG_GET(flag/usewhitelist))
 		load_whitelist()
 

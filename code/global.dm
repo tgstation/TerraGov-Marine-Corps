@@ -179,6 +179,7 @@ var/datum/station_state/start_state = null
 var/datum/sun/sun = null
 
 //Logging
+/*
 var/log_directory
 var/world_game_log
 var/world_attack_log
@@ -188,6 +189,7 @@ var/world_pda_log
 var/world_href_log
 var/sql_error_log
 var/config_error_log
+*/
 
 var/list/all_player_details = list()  // [ckey] = /datum/player_details
 
