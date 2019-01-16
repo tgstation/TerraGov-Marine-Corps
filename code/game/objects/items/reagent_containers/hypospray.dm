@@ -36,7 +36,7 @@
 		reagents.clear_reagents()
 
 /obj/item/reagent_container/hypospray/proc/label(mob/user)
-	var/str = copytext(reject_bad_text(input(user,"Label text?", "Set label", "")), 1, MAX_NAME_LEN)
+	var/str = copytext(reject_bad_text(input(user,"Hypospray label text?", "Set label", "")), 1, MAX_NAME_LEN)
 	if(!str || !length(str))
 		to_chat(user, "<span class='notice'>Invalid text.</span>")
 		return
@@ -145,6 +145,8 @@
 	return TRUE
 
 /obj/item/reagent_container/hypospray/on_reagent_change()
+	if(reagents.holder_full())
+		inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 	update_icon()
 
 /obj/item/reagent_container/hypospray/attack_hand()
@@ -160,8 +162,6 @@
 	update_icon()
 
 /obj/item/reagent_container/hypospray/update_icon()
-	if(reagents.holder_full())
-		inject_mode = HYPOSPRAY_INJECT_MODE_INJECT
 	if(ismob(loc))
 		if(inject_mode)
 			icon_state = "hypo_i"
