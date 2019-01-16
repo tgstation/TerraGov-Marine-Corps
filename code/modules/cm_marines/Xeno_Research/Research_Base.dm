@@ -1,3 +1,24 @@
+#define RESEARCH_XENOSTART 0
+
+#define RESEARCH_XENO_BIOLOGY 10
+#define RESEARCH_BIO_PLATING 11
+#define RESEARCH_CRUSHER_PLATING 12
+#define RESEARCH_XENO_MUSCLES 13
+#define RESEARCH_XENO_HIVELORD 14
+#define RESEARCH_XENO_ARMOR 15
+
+#define RESEARCH_XENO_CHEMISTRY 20
+#define RESEARCH_XENO_SPITTER 21
+
+#define RESEARCH_XENO_FLORA 30
+#define RESEARCH_XENO_WEED 31
+#define RESEARCH_XENO_SACK 32
+#define RESEARCH_XENO_DRONE 33
+
+#define RESEARCH_XENO_QUEEN 40
+#define RESEARCH_XENO_DISRUPTION 41
+#define RESEARCH_XENO_CORRUPTION 42
+
 /datum/marineResearch                        //Holder
 	var/list/available_tech = list()		//available to research
 	var/list/known_tech = list()			//researched
@@ -239,6 +260,24 @@ Queen thingy - RESEARCH_XENO_QUEEN
 	id = RESEARCH_XENO_QUEEN
 	time = 60
 	req_tech = list(RESEARCH_XENOSTART, RESEARCH_XENO_BIOLOGY, RESEARCH_XENO_CHEMISTRY)
+
+/datum/marineTech/Disruptor			// Fun starting here
+	name = "Hivelink disruption"
+	desc = "Finding ways to disrupt psionic link between members of the Hive."
+	resdesc = "It was bit of surprise, when we finally get an intresting way to make xenomorphs a little pain. We don't even need Queen's core to create it. Just a little messing with electromagnetic fields and bunch of surplus equipment will make enemy regret."
+	id = RESEARCH_XENO_DISRUPTION
+	time = 120
+	req_tech = list(RESEARCH_XENO_QUEEN)
+	need_item = 0
+/
+/datum/marineTech/Corruption			// "- Absolute DISGUSTING!"- says xenomorph
+	name = "Hivemind corruption."
+	desc = "Finding ways to twist and create new Hives."
+	resdesc = "Some unorthodox solution for wiping out our enemy is found. We basically creating our own loyal Hive. Let's just hope, that our new \"friends\" can fit in our containment cells. But be advised, gene-agent is highly unstable and can cause unpredictable consequences."
+	id = RESEARCH_XENO_CORRUPTION
+	time = 150
+	req_tech = list(RESEARCH_XENO_DISRUPTION, RESEARCH_XENO_DRONE, RESEARCH_XENO_SACK, RESEARCH_XENO_SPITTER)
+	need_item = 0
 
 
 /////////
