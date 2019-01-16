@@ -50,9 +50,6 @@
 		if(4)//removing N2O
 			filtered_out = list("sleeping_agent")
 
-	if(radio_controller)
-		initialize()
-
 /obj/machinery/atmospherics/trinary/filter/update_icon()
 	if(istype(src, /obj/machinery/atmospherics/trinary/filter/m_filter))
 		icon_state = "m"
@@ -102,7 +99,8 @@
 	return 1
 
 /obj/machinery/atmospherics/trinary/filter/initialize()
-	set_frequency(frequency)
+	if(radio_controller)
+		set_frequency(frequency)
 	..()
 
 /obj/machinery/atmospherics/trinary/filter/attackby(var/obj/item/W as obj, var/mob/user as mob)
@@ -124,7 +122,7 @@
 		return
 
 	if(!src.allowed(user))
-		to_chat(user, "\red Access denied.")
+		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
 
 	var/dat

@@ -1,8 +1,3 @@
-#define SECOND *10
-#define SECONDS *10
-
-#define MINUTE *600
-#define MINUTES *600
 
 proc/worldtime2text(time = world.time) // Shows current time starting at noon 12:00 (station time)
 	return "[round(time / 36000)+12]:[(time / 600 % 60) < 10 ? add_zero(time / 600 % 60, 1) : time / 600 % 60]"
@@ -38,3 +33,10 @@ proc/isDay(var/month, var/day)
 		// Uncomment this out when debugging!
 		//else
 			//return 1
+
+GLOBAL_VAR_INIT(midnight_rollovers, 0)
+GLOBAL_VAR_INIT(rollovercheck_last_timeofday, 0)
+/proc/update_midnight_rollover()
+	if (world.timeofday < GLOB.rollovercheck_last_timeofday) //TIME IS GOING BACKWARDS!
+		return GLOB.midnight_rollovers++
+	return GLOB.midnight_rollovers

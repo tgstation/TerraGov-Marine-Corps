@@ -12,7 +12,7 @@
 
 /obj/item/stack/medical/attack(mob/living/carbon/M as mob, mob/user as mob)
 	if(!istype(M))
-		to_chat(user, "\red \The [src] cannot be applied to [M]!")
+		to_chat(user, "<span class='warning'>\The [src] cannot be applied to [M]!</span>")
 		return 1
 
 	if(!ishuman(user) && !isrobot(user))

@@ -222,7 +222,7 @@
 			return 0
 		if(is_secure_fridge)
 			if(!allowed(usr) && !emagged && locked != -1)
-				to_chat(usr, "\red Access denied.")
+				to_chat(usr, "<span class='warning'>Access denied.</span>")
 				return 0
 		var/index = text2num(href_list["vend"])
 		var/amount = text2num(href_list["amount"])
@@ -339,7 +339,7 @@
 		return 0
 	spawn(0)
 		throw_item.throw_at(target,16,3,src)
-	src.visible_message("\red <b>[src] launches [throw_item.name] at [target.name]!</b>")
+	src.visible_message("<span class='danger'>[src] launches [throw_item.name] at [target.name]!</span>")
 	return 1
 
 

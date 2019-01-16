@@ -228,7 +228,7 @@ macro "hotkeymode"
 		command = "holster"
 	elem 
 		name = "M"
-		command = "me"
+		command = ".me"
 	elem 
 		name = "O"
 		command = "ooc"
