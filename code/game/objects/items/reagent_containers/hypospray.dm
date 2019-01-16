@@ -37,7 +37,7 @@
 
 /obj/item/reagent_container/hypospray/proc/label(mob/user)
 	var/str = copytext(reject_bad_text(input(user,"Hypospray label text?", "Set label", "")), 1, MAX_NAME_LEN)
-	if(!str || !length(str))
+	if(!length(str))
 		to_chat(user, "<span class='notice'>Invalid text.</span>")
 		return
 	to_chat(user, "<span class='notice'>You label [src] as \"[str]\".</span>")
