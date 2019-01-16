@@ -1,23 +1,6 @@
-#define RESEARCH_XENOSTART 0
-
-#define RESEARCH_XENO_BIOLOGY 10
-#define RESEARCH_BIO_PLATING 11
-#define RESEARCH_CRUSHER_PLATING 12
-#define RESEARCH_XENO_MUSCLES 13
-#define RESEARCH_XENO_HIVELORD 14
-#define RESEARCH_XENO_ARMOR 15
-
-#define RESEARCH_XENO_CHEMISTRY 20
-#define RESEARCH_XENO_SPITTER 21
-
-#define RESEARCH_XENO_FLORA 30
-#define RESEARCH_XENO_WEED 31
-#define RESEARCH_XENO_SACK 32
-#define RESEARCH_XENO_DRONE 33
-
-#define RESEARCH_XENO_QUEEN 40
-#define RESEARCH_XENO_DISRUPTION 41
-#define RESEARCH_XENO_CORRUPTION 42
+#define UNKNOWN_TECH 0
+#define KNOWN_TECH 1
+#define AVAILABLE_TECH 2
 
 /datum/marineResearch                        //Holder
 	var/list/available_tech = list()		//available to research
@@ -35,11 +18,11 @@
 /datum/marineResearch/proc/Check_tech(tech)					// return 0 if tech not available nor known, return 1 if known, return 2 if available
 	for(var/datum/marineTech/avail in available_tech)
 		if(avail.id == tech)
-			return 2
-	for(var/datum/marineTech/avail in known_tech)
-		if(avail.id == tech)
-			return 1
-	return 0
+			return AVAILABLE_TECH
+	for(var/datum/marineTech/known in known_tech)
+		if(known.id == tech)
+			return KNOWN_TECH
+	return UNKNOWN_TECH
 
 /datum/marineResearch/proc/TechMakeReq(datum/marineTech/tech)
 	var/fl = 1														//Entire existance of this var pisses me the fuck off
@@ -111,13 +94,13 @@
 
 /datum/marineResearch/proc/ForcedToKnown(datum/marineTech/tech)				//When we need it to be researched NOW
 	switch(Check_tech(tech.id))
-		if(0)								//Unknown tech
+		if(UNKNOWN_TECH)								//Unknown tech
 			possible_tech -= tech
 			known_tech += tech
 			CheckDesigns()
-		if(1)								//Known tech
+		if(KNOWN_TECH)								//Known tech
 			return
-		if(2)								//To-be-researched tech
+		if(AVAILABLE_TECH)								//To-be-researched tech
 			available_tech -= tech
 			known_tech += tech
 			CheckDesigns()
@@ -271,3 +254,7 @@ Queen thingy - RESEARCH_XENO_QUEEN
 	icon_state = "datadisk4"
 	w_class = 1.0
 	var/list/teches = list()
+
+#undef UNKNOWN_TECH
+#undef KNOWN_TECH
+#undef AVAILABLE_TECH
