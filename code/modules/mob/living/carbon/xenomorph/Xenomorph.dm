@@ -111,6 +111,11 @@
 	health = maxHealth
 	speed = xeno_caste.speed
 
+/mob/living/carbon/Xenomorph/Defiler/set_datum()
+	. = ..()
+	var/datum/xeno_caste/defiler/neuro_upgrade = xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
+	neuro_claws_dose = neuro_upgrade.neuro_claws_amount
+
 //Off-load this proc so it can be called freely
 //Since Xenos change names like they change shoes, we need somewhere to hammer in all those legos
 //We set their name first, then update their real_name AND their mind name

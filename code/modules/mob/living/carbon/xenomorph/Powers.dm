@@ -2129,23 +2129,23 @@
 
 	visible_message("<span class='xenodanger'>[src] emits a noxious gas!</span>", \
 	"<span class='xenodanger'>You emit neurogas!</span>")
-	dispense_gas()
+	dispense_gas(3)
 
 /mob/living/carbon/Xenomorph/Defiler/proc/dispense_gas(count = 0)
-	if(stagger) //If we got staggered, return
-		to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
-		return
-	if(count > DEFILER_GAS_CLOUD_COUNT)
-		return
-	playsound(loc, 'sound/effects/smoke.ogg', 25)
-	var/turf/T = get_turf(src)
-	smoke_system = new /datum/effect_system/smoke_spread/xeno_weaken()
-	smoke_system.amount = 2
-	smoke_system.set_up(2, 0, T)
-	smoke_system.start()
-	T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
-	spawn(10)
-		dispense_gas(count + 1)
+	while(count)
+		sleep(10)
+		if(stagger) //If we got staggered, return
+			to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
+			return
+		playsound(loc, 'sound/effects/smoke.ogg', 25)
+		var/turf/T = get_turf(src)
+		smoke_system = new /datum/effect_system/smoke_spread/xeno_weaken()
+		smoke_system.amount = 2
+		smoke_system.set_up(2, 0, T)
+		smoke_system.start()
+		T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
+		count = max(0,count - 1)
+
 
 
 /mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting(mob/living/H)
