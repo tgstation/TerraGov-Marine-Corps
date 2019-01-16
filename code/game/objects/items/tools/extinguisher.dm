@@ -53,7 +53,7 @@
 	if( istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(src,target) <= 1)
 		var/obj/o = target
 		o.reagents.trans_to(src, 50)
-		to_chat(user, "\blue \The [src] is now refilled")
+		to_chat(user, "<span class='notice'>\The [src] is now refilled</span>")
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 

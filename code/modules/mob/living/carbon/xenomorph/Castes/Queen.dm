@@ -46,6 +46,10 @@
 	// *** Queen Abilities *** //
 	queen_leader_limit = 1 //Amount of leaders allowed
 
+/datum/xeno_caste/queen/handle_decay(mob/living/carbon/Xenomorph/X)
+	if(prob(20+abs(3*upgrade)))
+		X.use_plasma(min(rand(1,2), X.plasma_stored))
+
 /datum/xeno_caste/queen/mature
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 
@@ -219,6 +223,7 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/larva_growth,
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/claw_toggle,
@@ -652,8 +657,9 @@
 			/datum/action/xeno_action/emit_pheromones,
 			/datum/action/xeno_action/activable/gut,
 			/datum/action/xeno_action/psychic_whisper,
-		  /datum/action/xeno_action/shift_spits,
+		 	/datum/action/xeno_action/shift_spits,
 			/datum/action/xeno_action/activable/xeno_spit,
+			/datum/action/xeno_action/activable/larva_growth,
 			)
 
 		for(var/path in mobile_abilities)

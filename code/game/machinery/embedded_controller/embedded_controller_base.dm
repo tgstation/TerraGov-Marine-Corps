@@ -53,7 +53,8 @@
 	var/datum/radio_frequency/radio_connection
 	unacidable = 1
 
-/obj/machinery/embedded_controller/radio/initialize()
+/obj/machinery/embedded_controller/radio/Initialize()
+	. = ..()
 	set_frequency(frequency)
 
 /obj/machinery/embedded_controller/radio/update_icon()

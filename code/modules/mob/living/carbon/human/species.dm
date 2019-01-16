@@ -76,6 +76,7 @@
 	var/list/abilities = list()	// For species-derived or admin-given powers
 	var/list/preferences = list()
 	var/list/screams = list()
+	var/list/paincries = list()
 
 	var/blood_color = "#A10808" //Red.
 	var/flesh_color = "#FFC896" //Pink.
@@ -256,6 +257,7 @@
 	count_human = TRUE
 
 	screams = list("male" = "male_scream", "female" = "female_scream")
+	paincries = list("male" = "male_pain", "female" = "female_pain")
 
 	//If you wanted to add a species-level ability:
 	/*abilities = list(/client/proc/test_ability)*/
@@ -396,7 +398,9 @@
 
 	flags = HAS_LIPS|HAS_NO_HAIR
 	preferences = list("moth_wings" = "Wings")
+
 	screams = list("neuter" = 'sound/voice/moth_scream.ogg')
+	paincries = list("neuter" = 'sound/voice/human_male_pain_3.ogg')
 
 	flesh_color = "#E5CD99"
 
@@ -694,17 +698,17 @@
 	if(!H.regenZ) return  //Also in each check, in case they are hit with the stuff to stop the regenerating during timers.
 	sleep(5)
 	if(H && H.loc && H.stat == DEAD && H.regenZ)
-		to_chat(H, "\green You fall... but your body is slowly regenerating itself.")
+		to_chat(H, "<span class='green'> You fall... but your body is slowly regenerating itself.</span>")
 	sleep(1200)
 	if(H && H.loc && H.stat == DEAD && H.regenZ)
-		to_chat(H, "\green Your body is half regenerated...")
+		to_chat(H, "<span class='green'> Your body is half regenerated...</span>")
 	sleep(1200)
 
 	if(H && H.loc && H.stat == DEAD && H.regenZ)
 		H.revive(TRUE)
 		H.stunned = 4
 		H.Jitter(500)
-		H.visible_message("<span class = 'warning'>[H] rises!", "\green YOU RISE AGAIN!")
+		H.visible_message("<span class = 'warning'>[H] rises!", "<span class='green'> YOU RISE AGAIN!</span>")
 		H.equip_to_slot(new /obj/item/clothing/glasses/zombie_eyes, WEAR_EYES, TRUE)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine, WEAR_FEET, TRUE)
 
