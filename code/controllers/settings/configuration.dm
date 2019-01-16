@@ -146,6 +146,8 @@
 	var/prisonstation_url
 	var/whiskeyoutpost_url
 
+	var/defaultmap = "LV624"
+
 /datum/configuration/proc/load(filename, type = "config") //the type can also be game_options, in which case it uses a different switch. not making it separate to not copypaste code - Urist
 	var/list/Lines = file2list(filename)
 

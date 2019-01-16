@@ -53,7 +53,7 @@
 /obj/effect/baseturf_helper/space
 	name = "space baseturf editor"
 	baseturf = /turf/open/space
-
+/*
 /obj/effect/baseturf_helper/asteroid
 	name = "asteroid baseturf editor"
 	baseturf = /turf/open/floor/plating/asteroid
@@ -85,7 +85,7 @@
 /obj/effect/baseturf_helper/lava_land/surface
 	name = "lavaland baseturf editor"
 	baseturf = /turf/open/lava/smooth/lava_land_surface
-
+*/
 
 /obj/effect/mapping_helpers
 	icon = 'icons/effects/mapping_helpers.dmi'
@@ -155,6 +155,7 @@
 
 
 //needs to do its thing before spawn_rivers() is called
+/*
 INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 
 /obj/effect/mapping_helpers/no_lava
@@ -164,7 +165,9 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	. = ..()
 	var/turf/T = get_turf(src)
 	T.flags_1 |= NO_LAVA_GEN_1
+*/
 
+/*
 //This helper applies components to things on the map directly.
 /obj/effect/mapping_helpers/component_injector
 	name = "Component Injector"
@@ -204,3 +207,5 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 		CRASH("Wrong disease type passed in.")
 	var/datum/disease/D = new disease_type()
 	return list(component_type,D)
+	*/
+	

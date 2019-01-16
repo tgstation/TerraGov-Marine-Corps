@@ -87,7 +87,7 @@ require only minor tweaks.
 #define CAMERA_LOCK_REEBE 8
 
 //Reserved/Transit turf type
-#define RESERVED_TURF_TYPE /turf/open/space/basic			//What the turf is when not being used
+#define RESERVED_TURF_TYPE /turf/open/space			//What the turf is when not being used
 
 //Ruin Generation
 

@@ -1817,3 +1817,5 @@ var/list/WALLITEMS = list(
 	else
 		. = CB.Invoke()
 	usr = temp
+
+#define UNTIL(X) while(!(X)) stoplag()

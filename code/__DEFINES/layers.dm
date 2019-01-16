@@ -50,6 +50,8 @@
 
 #define DOOR_OPEN_LAYER 2.85	//Under all objects if opened. 2.85 due to tables being at 2.8
 
+#define DOOR_HELPER_LAYER 2.86 //keep this above OPEN_DOOR_LAYER
+
 #define BELOW_OBJ_LAYER 2.98 //just below all items
 
 #define LOWER_ITEM_LAYER 2.99 //for items that should be at the bottom of the pile of items
@@ -87,6 +89,8 @@
 #define ABOVE_FLY_LAYER 6
 
 #define AREAS_LAYER 10 //for areas, so they appear above everything else on map file.
+
+#define POINT_LAYER 12
 
 #define BELOW_FULLSCREEN_LAYER 16.9 //blip from motion detector
 #define FULLSCREEN_LAYER 17

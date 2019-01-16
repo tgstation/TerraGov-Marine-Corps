@@ -26,31 +26,31 @@
 	return bounds
 
 /datum/parsed_map/proc/initTemplateBounds()
-	var/list/obj/machinery/atmospherics/atmos_machines = list()
-	var/list/obj/structure/cable/cables = list()
+	//var/list/obj/machinery/atmospherics/atmos_machines = list()
+	//var/list/obj/structure/cable/cables = list()
 	var/list/atom/atoms = list()
 
 	var/list/turfs = block(	locate(bounds[MAP_MINX], bounds[MAP_MINY], bounds[MAP_MINZ]),
 							locate(bounds[MAP_MAXX], bounds[MAP_MAXY], bounds[MAP_MAXZ]))
-	var/list/border = block(locate(max(bounds[MAP_MINX]-1, 1),			max(bounds[MAP_MINY]-1, 1),			 bounds[MAP_MINZ]),
-							locate(min(bounds[MAP_MAXX]+1, world.maxx),	min(bounds[MAP_MAXY]+1, world.maxy), bounds[MAP_MAXZ])) - turfs
+	//var/list/border = block(locate(max(bounds[MAP_MINX]-1, 1),			max(bounds[MAP_MINY]-1, 1),			 bounds[MAP_MINZ]),
+	//						locate(min(bounds[MAP_MAXX]+1, world.maxx),	min(bounds[MAP_MAXY]+1, world.maxy), bounds[MAP_MAXZ])) - turfs
 	for(var/L in turfs)
 		var/turf/B = L
 		atoms += B
 		for(var/A in B)
 			atoms += A
-			if(istype(A, /obj/structure/cable))
-				cables += A
-				continue
-			if(istype(A, /obj/machinery/atmospherics))
-				atmos_machines += A
-	for(var/L in border)
-		var/turf/T = L
-		T.air_update_turf(TRUE) //calculate adjacent turfs along the border to prevent runtimes
+			//if(istype(A, /obj/structure/cable))
+			//	cables += A
+			//	continue
+			//if(istype(A, /obj/machinery/atmospherics))
+			//	atmos_machines += A
+	//for(var/L in border)
+		//var/turf/T = L
+		//T.air_update_turf(TRUE) //calculate adjacent turfs along the border to prevent runtimes
 
 	SSatoms.InitializeAtoms(atoms)
-	SSmachines.setup_template_powernets(cables)
-	SSair.setup_template_machinery(atmos_machines)
+	//SSmachines.setup_template_powernets(cables)
+	//SSair.setup_template_machinery(atmos_machines)
 
 /datum/map_template/proc/load_new_z()
 	var/x = round((world.maxx - width)/2)
@@ -62,11 +62,11 @@
 	if(!bounds)
 		return FALSE
 
-	repopulate_sorted_areas()
+	//repopulate_sorted_areas()
 
 	//initialize things that are normally initialized after map load
 	parsed.initTemplateBounds()
-	smooth_zlevel(world.maxz)
+	//smooth_zlevel(world.maxz)
 	log_game("Z-level [name] loaded at at [x],[y],[world.maxz]")
 
 	return level
@@ -91,8 +91,8 @@
 	if(!bounds)
 		return
 
-	if(!SSmapping.loading_ruins) //Will be done manually during mapping ss init
-		repopulate_sorted_areas()
+	//if(!SSmapping.loading_ruins) //Will be done manually during mapping ss init
+	//	repopulate_sorted_areas()
 
 	//initialize things that are normally initialized after map load
 	parsed.initTemplateBounds()

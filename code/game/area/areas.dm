@@ -13,8 +13,17 @@
 	var/temperature = T20C
 	var/pressure = ONE_ATMOSPHERE
 
+	/// If false, loading multiple maps with this area type will create multiple instances.
+	var/unique = TRUE
 
 /area/New()
+	// This interacts with the map loader, so it needs to be set immediately
+	// rather than waiting for atoms to initialize.
+	if (unique)
+		GLOB.areas_by_type[type] = src
+	return ..()
+
+/area/Initialize()
 	..()
 
 	icon_state = "" //Used to reset the icon overlay, I assume.
@@ -26,6 +35,19 @@
 	all_areas += src
 
 	initialize_power_and_lighting()
+
+/area/LateInitialize()
+	power_change()		// all machines set to current power level, also updates icon
+
+/area/Destroy()
+	if(GLOB.areas_by_type[type] == src)
+		GLOB.areas_by_type[type] = null
+	STOP_PROCESSING(SSobj, src)
+	return ..()
+
+// A hook so areas can modify the incoming args
+/area/proc/PlaceOnTopReact(list/new_baseturfs, turf/fake_turf_type, flags)
+	return flags
 
 /area/proc/initialize_power_and_lighting(override_power)
 	if(requires_power)
