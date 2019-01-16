@@ -13,6 +13,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/admin_ghost,			/*allows us to ghost/reenter body at will*/
 	/client/proc/toggle_view_range,		/*changes how far we can see*/
 	/client/proc/getserverlogs,		/*for accessing server logs*/
+	/client/proc/getfolderlogs,
 	/client/proc/getcurrentlogs,		/*for accessing server logs for the current round*/
 	/client/proc/cmd_admin_pm_context,	/*right-click adminPM interface*/
 	/client/proc/cmd_admin_pm_panel,	/*admin-pm list*/
@@ -80,6 +81,7 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/show_player_panel,	/*shows an interface for individual players, with various links (links require additional flags*/
 	/datum/admins/proc/viewUnheardMhelps,
 	/datum/admins/proc/viewUnheardAhelps,
+	/client/proc/cmd_admin_changesquad
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel
@@ -145,12 +147,8 @@ var/list/admin_verbs_debug = list(
 	/client/proc/callproc,
 	/client/proc/callatomproc,
 	/client/proc/toggledebuglogs,
-	/datum/proc/ta_diagnose,
-	/datum/proc/ra_diagnose,
-	/datum/proc/ta_purge,
-	/datum/proc/ra_purge,
-	/client/proc/scheduler,
-	/client/proc/cmd_admin_change_hivenumber
+	/client/proc/cmd_admin_change_hivenumber,
+	/client/verb/spatialagent
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
@@ -838,7 +836,12 @@ var/list/admin_verbs_mentor = list(
 	set name = "Toggle Debug Log Messages"
 	set category = "Preferences"
 
+	if(!prefs)
+		return
+
+	prefs.load_preferences()
 	prefs.toggles_chat ^= CHAT_DEBUGLOGS
+	prefs.save_preferences()
 	if(prefs.toggles_chat & CHAT_DEBUGLOGS)
 		to_chat(usr, "<span class='boldnotice'>You will now get debug log messages.</span>")
 	else

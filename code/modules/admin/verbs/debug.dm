@@ -301,33 +301,62 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	else
 		alert("Invalid mob")
 
-/client/proc/cmd_admin_change_hivenumber(mob/living/carbon/Xenomorph/M in mob_list, var/hivenumber = XENO_HIVE_NORMAL)
+/client/proc/cmd_admin_change_hivenumber(mob/living/carbon/Xenomorph/X in mob_list)
 	set category = "Debug"
 	set name = "Change Hivenumber"
+
+	if(!check_rights(R_DEBUG|R_ADMIN))	
+		return
+
+	if(!istype(X))
+		to_chat(usr, "This can only be done to instances of type /mob/living/carbon/Xenomorph")
+		return
+
+	var/hivenumber_status = X.hivenumber
+
+	var/list/namelist = list()
+	for(var/datum/hive_status/H in hive_datum) // global hive datum list
+		namelist += H.name
+
+	var/newhive = input(src, "Select a hive.", null, null) in namelist
+
+	if(!X || !istype(X))
+		return
+
+	var/newhivenumber
+	switch(newhive)
+		if("Normal")
+			newhivenumber = XENO_HIVE_NORMAL
+		if("Corrupted")
+			newhivenumber = XENO_HIVE_CORRUPTED
+		if("Alpha")
+			newhivenumber = XENO_HIVE_ALPHA
+		if("Beta")
+			newhivenumber = XENO_HIVE_BETA
+		if("Zeta")
+			newhivenumber = XENO_HIVE_ZETA
+		else
+			return
+
+	if(X.hivenumber != hivenumber_status)
+		to_chat(usr, "Someone else changed this xeno while you were deciding")
+		return
 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
 
-	if(M.gc_destroyed)
+	if(!X || X.gc_destroyed)
 		alert("That mob doesn't seem to exist, close the panel and try again.")
 		return
 
-	if(isXeno(M))
-		log_admin("[key_name(src)] changed hivenumber of [M] to [M.hivenumber].")
-		M.hivenumber = hivenumber
-		if(istype(M, /mob/living/carbon/Xenomorph/Larva))
-			var/mob/living/carbon/Xenomorph/Larva/L = M
-			L.update_icons() // larva renaming done differently
-		else
-			M.generate_name()
-		if(istype(M, /mob/living/carbon/Xenomorph/Queen))
-			update_living_queens()
-		to_chat(usr, "Hivenumber set to [M.hivenumber]")
-		feedback_add_details("admin_verb","CHHN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		message_admins("<span class='notice'> [key_name(src)] changed hivenumber of [M] to [M.hivenumber].</span>", 1)
-	else
-		alert("Invalid mob")
+	log_admin("[key_name(src)] changed hivenumber of [X] to [newhive].")
+	message_admins("<span class='boldnotice'>[key_name(src)] changed hivenumber of [X] to [newhive].</span>", 1)
+
+	X.set_hive_number(newhivenumber)
+
+	feedback_add_details("admin_verb","CHHN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	
 
 //TODO: merge the vievars version into this or something maybe mayhaps
 /client/proc/cmd_debug_del_all()
@@ -423,6 +452,68 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	feedback_add_details("admin_verb","GAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(src)] has granted [M.key] all skills.")
 	message_admins("<span class='notice'> [key_name_admin(usr)] has granted [M.key] all skills.</span>", 1)
+
+/client/proc/cmd_admin_changesquad(var/mob/living/carbon/human/H in mob_list)
+	set category = "Admin"
+	set name = "Change Squad"
+
+	if(!check_rights(R_DEBUG|R_ADMIN))
+		alert("Insufficient permissions.")
+		return
+
+	if(!ticker)
+		alert("Wait until the game starts.")
+		return
+
+	if(!istype(H))
+		alert("Invalid mob.")
+		return
+
+	if(!H.mind?.assigned_role)
+		alert("Mob has no mind or role.")
+		return
+
+	switch(H.mind.assigned_role)
+		if(!("Squad Marine" || "Squad Engineer" || "Squad Medic" || "Squad Smartgunner" || "Squad Specialist" || "Squad Leader"))
+			alert("Invalid role")
+			return
+
+	H.set_everything(H.mind.assigned_role)
+	
+	H.assigned_squad?.remove_marine_from_squad(H)
+
+	var/datum/squad/S = input(usr, "Choose the marine's new squad") as null|anything in RoleAuthority.squads
+	if(!S) 
+		return
+
+	S.put_marine_in_squad(H)
+
+	for(var/datum/data/record/t in data_core.general) //we update the crew manifest
+		if(t.fields["name"] == H.real_name)
+			t.fields["squad"] = S.name
+			break
+
+	var/obj/item/card/id/ID = H.wear_id
+	ID.assigned_fireteam = 0 //reset fireteam assignment
+
+	//Changes headset frequency to match new squad
+	if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))
+		var/obj/item/device/radio/headset/almayer/marine/E = H.wear_ear
+		E.set_frequency(S.radio_freq)
+	else
+		if(H.wear_ear)
+			qdel(H.wear_ear)
+			H.update_icons()
+		H.wear_ear = new /obj/item/device/radio/headset/almayer/marine
+		var/obj/item/device/radio/headset/almayer/marine/E = H.wear_ear
+		E.set_frequency(S.radio_freq)
+		H.update_icons()
+
+	H.hud_set_squad()
+
+	feedback_add_details("admin_verb","CSQ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(src)] has changed the squad of [H.key] to [S].")
+	message_admins("<span class='boldnotice'>[key_name_admin(usr)] has changed the squad of [H.key] to [S].</span>", 1)
 
 /client/proc/cmd_assume_direct_control(var/mob/M in mob_list)
 	set category = "Admin"

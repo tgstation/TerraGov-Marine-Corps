@@ -8,11 +8,6 @@
 	var/charge_cost = 10 //100 shots.
 	var/cell_type = /obj/item/cell
 
-/obj/item/weapon/gun/energy/New()
-	. = ..()
-	if(cell_type)
-		cell = new cell_type(src)
-
 /obj/item/weapon/gun/energy/examine(mob/user)
 	var/list/dat = list()
 	if(flags_gun_features & GUN_TRIGGER_SAFETY)
@@ -42,6 +37,11 @@
 			dat += "It's unloaded[in_chamber?" but has a round chambered":""].<br>"
 	if(dat)
 		to_chat(user, "[dat.Join(" ")]")
+
+/obj/item/weapon/gun/energy/Initialize()
+	. = ..()
+	if(cell_type)
+		cell = new cell_type(src)
 
 /obj/item/weapon/gun/energy/able_to_fire(mob/living/user)
 	. = ..()
@@ -333,11 +333,11 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 
-/obj/item/weapon/gun/energy/lasgun/M43/New()
+/obj/item/weapon/gun/energy/lasgun/M43/Initialize()
 	. = ..()
 	cell = null
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 	var/obj/item/attachable/stock/lasgun/S = new(src)
 	S.flags_attach_features &= ~ATTACH_REMOVABLE
 	S.Attach(src)

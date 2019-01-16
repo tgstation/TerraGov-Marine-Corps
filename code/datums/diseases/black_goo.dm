@@ -161,13 +161,6 @@
 		..()
 		reagents.add_reagent("antiZed", 30)
 
-/datum/language/zombie
-	name = "Zombie"
-	desc = "If you select this from the language screen, expect a ban."
-	colour = "green"
-	key = "4"
-	flags = RESTRICTED
-
 
 /obj/item/clothing/glasses/zombie_eyes
 	name = "zombie eyes"

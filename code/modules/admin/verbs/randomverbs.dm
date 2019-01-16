@@ -810,7 +810,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 			message_admins("<span class='notice'>[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.</span>")
 			world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=[mins]&server=[oldreplacetext(config.server_name, "#", "")]")
-			qdel(M.client)
+			del(M.client)
 			qdel(M)
 		else
 
@@ -825,7 +825,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
 		message_admins("<span class='notice'>[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.</span>")
 		world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=perma&server=[oldreplacetext(config.server_name, "#", "")]")
-		qdel(M.client)
+		del(M.client)
 		qdel(M)
 */
 
@@ -1028,7 +1028,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /proc/rejuv_all()
 	if(!check_rights(R_ADMIN))	return
 
-	for(var/mob/living/M in living_mob_list)
-		if(isobserver(M) || M.stat == DEAD || !M.client)
+	for(var/client/C in clients)
+		if(!isliving(C.mob))
 			continue
+		var/mob/living/M = C.mob
 		M.rejuvenate()
