@@ -5,6 +5,7 @@
 /obj/item/sampler
 	name = "Sampler"
 	desc = "Syringe for taking samples"
+	icon = 'icons/Marine/Research/Research_Items.dmi'
 	icon_state = "sampler_empty"
 	var/filled = 0
 	var/obj/item/marineResearch/xenomorph/weed/sample = null
