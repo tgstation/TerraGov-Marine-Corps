@@ -190,9 +190,9 @@
 /mob/living/carbon/Xenomorph/Defiler/hitby(atom/movable/AM as mob|obj,var/speed = 5)
 	if(ishuman(AM))
 		return
-	..()
+	return ..()
 
 /mob/living/carbon/Xenomorph/Defiler/Bumped(atom/movable/AM as mob|obj)
 	if(emitting_gas) //We don't get bumped around
 		return
-	..()
+	return ..()
