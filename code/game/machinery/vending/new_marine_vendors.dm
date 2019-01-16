@@ -969,8 +969,9 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 							list("Detonation pack", 5, /obj/item/device/radio/detpack, null, "black"),
 							list("Smoke grenade", 2, /obj/item/explosive/grenade/smokebomb, null, "black"),
 							list("Cloak grenade", 3, /obj/item/explosive/grenade/cloakbomb, null, "black"),
-							list("M40 HIDP incendiary grenade", 4, /obj/item/explosive/grenade/incendiary, null, "black"),
-							list("M40 HEDP grenade", 4, /obj/item/explosive/grenade/frag, null, "black"),
+							list("M40 HIDP incendiary grenade", 3, /obj/item/explosive/grenade/incendiary, null, "black"),
+							list("M40 HEDP grenade", 3, /obj/item/explosive/grenade/frag, null, "black"),
+							list("M40 IMDP grenade", 3, /obj/item/explosive/grenade/impact, null, "black"),
 							list("M41AE2 heavy pulse rifle", 12, /obj/item/weapon/gun/rifle/lmg, null, "orange"),
 							list("M41AE2 ammo box (10x24mm)", 4, /obj/item/ammo_magazine/rifle/lmg, null, "black"),
 							list("Flamethrower", 12, /obj/item/weapon/gun/flamer, null, "orange"),
@@ -1030,8 +1031,6 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/clothing/head/helmet/marine,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
-						/obj/item/explosive/grenade/impact,
-						/obj/item/explosive/grenade/impact,
 						)
 
 
@@ -1040,16 +1039,12 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/clothing/head/helmet/marine,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
-						/obj/item/explosive/grenade/impact,
-						/obj/item/explosive/grenade/impact,
 						)
 
 /obj/effect/essentials_set/basic_specialist
 	spawned_gear_list = list(
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
-						/obj/item/explosive/grenade/impact,
-						/obj/item/explosive/grenade/impact,
 						)
 
 /obj/effect/essentials_set/basic_squadleader
@@ -1059,8 +1054,6 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine,
 						/obj/item/clothing/shoes/marine,
-						/obj/item/explosive/grenade/impact,
-						/obj/item/explosive/grenade/impact,
 						)
 
 /obj/effect/essentials_set/basic_medic
@@ -1069,8 +1062,6 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/clothing/glasses/hud/health,
 						/obj/item/clothing/under/marine/medic,
 						/obj/item/clothing/shoes/marine,
-						/obj/item/explosive/grenade/impact,
-						/obj/item/explosive/grenade/impact,
 						)
 
 /obj/effect/essentials_set/basic_engineer
@@ -1079,8 +1070,6 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/clothing/glasses/welding,
 						/obj/item/clothing/under/marine/engineer,
 						/obj/item/clothing/shoes/marine,
-						/obj/item/explosive/grenade/impact,
-						/obj/item/explosive/grenade/impact,
 						)
 
 /obj/effect/essentials_set/medic

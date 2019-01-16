@@ -260,7 +260,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 /obj/item/explosive/grenade/impact/throw_impact(atom/hit_atom, speed)
 	. = ..()
-	if(launched && active && !istype(hit_atom, turf)) //Only contact det if active, we actually hit something, and we're fired from a grenade launcher.
+	if(launched && active && !istype(hit_atom, /turf/open)) //Only contact det if active, we actually hit something, and we're fired from a grenade launcher.
 		explosion(loc, -1, -1, 1, 2)
 		qdel(src)
 
