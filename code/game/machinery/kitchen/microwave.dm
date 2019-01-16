@@ -309,7 +309,7 @@
 	src.icon_state = "mw"
 	src.updateUsrDialog()
 
-/obj/machinery/microwave/proc/dispose()
+/obj/machinery/microwave/proc/destroy_contents()
 	for (var/obj/O in contents)
 		O.loc = src.loc
 	if (src.reagents.total_volume)
@@ -371,5 +371,5 @@
 			cook()
 
 		if ("dispose")
-			dispose()
+			destroy_contents()
 	return

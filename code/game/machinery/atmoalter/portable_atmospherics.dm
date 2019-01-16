@@ -14,7 +14,7 @@
 	var/maximum_pressure = 90*ONE_ATMOSPHERE
 
 
-/obj/machinery/portable_atmospherics/initialize()
+/obj/machinery/portable_atmospherics/Initialize()
 	. = ..()
 	spawn()
 		var/obj/machinery/atmospherics/portables_connector/port = locate() in loc

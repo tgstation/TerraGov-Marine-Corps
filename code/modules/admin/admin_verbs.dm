@@ -147,11 +147,6 @@ var/list/admin_verbs_debug = list(
 	/client/proc/callproc,
 	/client/proc/callatomproc,
 	/client/proc/toggledebuglogs,
-	/datum/proc/ta_diagnose,
-	/datum/proc/ra_diagnose,
-	/datum/proc/ta_purge,
-	/datum/proc/ra_purge,
-	/client/proc/scheduler,
 	/client/proc/cmd_admin_change_hivenumber
 	)
 
@@ -840,7 +835,12 @@ var/list/admin_verbs_mentor = list(
 	set name = "Toggle Debug Log Messages"
 	set category = "Preferences"
 
+	if(!prefs)
+		return
+
+	prefs.load_preferences()
 	prefs.toggles_chat ^= CHAT_DEBUGLOGS
+	prefs.save_preferences()
 	if(prefs.toggles_chat & CHAT_DEBUGLOGS)
 		to_chat(usr, "<span class='boldnotice'>You will now get debug log messages.</span>")
 	else

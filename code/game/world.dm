@@ -1,21 +1,21 @@
-var/global/datum/global_init/init = new ()
-
 /*
 	Pre-map initialization stuff should go here.
 */
 /datum/global_init/New()
-	world.log = config_error_log = world_pda_log = sql_error_log = world_runtime_log = world_attack_log = world_game_log = "data/logs/config_error.log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
-	load_configuration()
-	makeDatumRefLists()
-	qdel(src)
+	//world.log = config_error_log = world_pda_log = sql_error_log = world_runtime_log = world_attack_log = world_game_log = "data/logs/config_error.log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
+	//qdel(src)
 
 /world/New()
 
-	hub_password = "[config.hub_password]"
+	hub_password = "kMZy3U5jJHSiBQjr"
 	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
+
+	makeDatumRefLists()
 
 	TgsNew(null, TGS_SECURITY_TRUSTED)
 	TgsInitializationComplete()
+
+	load_configuration()
 
 	if(byond_version < RECOMMENDED_VERSION)
 		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
@@ -27,17 +27,12 @@ var/global/datum/global_init/init = new ()
 		config.server_name += " #[(world.port % 1000) / 100]"
 
 	SetupLogs()
-
+	
 	callHook("startup")
-	//Emergency Fix
-	//end-emergency fix
 
 	src.update_status()
 
 	. = ..()
-
-	TgsInitializationComplete()
-	sleep_offline = 1
 
 	// Set up roundstart seed list. This is here because vendors were
 	// bugging out and not populating with the correct packet names
@@ -54,22 +49,7 @@ var/global/datum/global_init/init = new ()
 
 	world.tick_lag = config.Ticklag
 
-	// Process Scheduler
-	to_chat(src, "<span class='danger'>Scheduler initialized.</span>")
-	processScheduler = new
-
-	spawn(0)
-		processScheduler.setup()
-
-	to_chat(src, "<span class='danger'>Scheduler setup complete.</span>")
-
-	spawn(0)
-		processScheduler.start()
-
-//	master_controller = new /datum/controller/game_controller()
-
-	//spawn(1)
-		//master_controller.setup()
+	Master.Initialize(10, FALSE, TRUE)
 
 	spawn(3000)		//so we aren't adding to the round-start lag
 		if(config.ToRban)
