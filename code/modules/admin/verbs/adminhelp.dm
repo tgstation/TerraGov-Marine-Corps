@@ -30,22 +30,22 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 		if("Suggestion / Bug Report")
 			switch(alert("Adminhelps are not for suggestions or bug reports - issues should be posted on our GitHub or on our Discord in #coding, and suggestions on our Discord in #suggestions. If you want something done, feel free to code it yourself.",,"Go to GitHub","Go to Discord","Go to Forums","Cancel"))
 				if("Go to Discord")
-					if(config.chaturl)
-						src << link(config.chaturl)
+					if(CONFIG_GET(string/chaturl))
+						src << link(CONFIG_GET(string/chaturl))
 					else
 						to_chat(src, "<span class='warning'>The chat URL is not set in the server configuration.</span>")
 				if("Go to GitHub")
-					if(config.bugtrackerurl)
-						src << link(config.bugtrackerurl)
+					if(CONFIG_GET(string/bugtrackerurl))
+						src << link(CONFIG_GET(string/bugtrackerurl))
 					else
 						to_chat(src, "<span class='warning'>The bug tracker URL is not set in the server configuration.</span>")
 				if("Go to Forums")
-					if(config.forumurl)
-						src << link(config.forumurl)
+					if(CONFIG_GET(string/forumurl))
+						src << link(CONFIG_GET(string/forumurl))
 					else
 						to_chat(src, "<span class='warning'>The forum URL is not set in the server configuration.</span>")
 
-			
+
 	var/selected_upper = uppertext(selected_type)
 
 	if(src.handle_spam_prevention(msg,MUTE_ADMINHELP))
@@ -113,7 +113,7 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 							continue
 			msg += "[original_word] "
 
-	if(!mob)	
+	if(!mob)
 		return
 
 	var/mentor_msg = "<br><br><font color='#009900'><b>[selected_upper]: [get_options_bar(mob, 4, 1, 1, 0)]:</b></font> <br><font color='#DA6200'><b>[msg]</font></b><br>"

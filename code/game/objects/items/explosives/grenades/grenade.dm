@@ -32,7 +32,7 @@
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 
-	if(isSynth(user) && dangerous && !config.allow_synthetic_gun_use)
+	if(isSynth(user) && dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(user, "<span class='warning'>Your programming prevents you from operating this device!</span>")
 		return
 

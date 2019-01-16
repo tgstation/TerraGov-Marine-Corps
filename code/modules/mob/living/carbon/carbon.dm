@@ -205,7 +205,7 @@
 				lastpuke = FALSE
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if (health >= config.health_threshold_crit)
+	if(health >= CONFIG_GET(number/health_threshold_crit))
 		if(src != M)
 			var/t_him = "it"
 			if (gender == MALE)

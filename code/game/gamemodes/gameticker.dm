@@ -35,6 +35,25 @@ var/global/datum/controller/gameticker/ticker
 	var/round_end_announced = 0 // Spam Prevention. Announce round end only once.
 	var/datum/mind/liaison = null
 
+/datum/controller/gameticker/proc/get_runnable_modes()
+	var/list/datum/game_mode/runnable_modes = new
+	for(var/T in subtypesof(/datum/game_mode))
+		var/datum/game_mode/M = new T()
+		runnable_modes += M
+		/*
+		//to_chat(world, "DEBUG: [T], tag=[M.config_tag], prob=[probabilities[M.config_tag]]")
+		if (!(M.config_tag in modes))
+			qdel(M)
+			continue
+		if (probabilities[M.config_tag]<=0)
+			qdel(M)
+			continue
+		if (M.can_start())
+			runnable_modes[M] = probabilities[M.config_tag]
+			//to_chat(world, "DEBUG: runnable_mode\[[runnable_modes.len]\] = [M.config_tag]")
+		*/
+	return runnable_modes
+
 /datum/controller/gameticker/proc/pregame()
 
 	login_music = pick(
@@ -54,7 +73,7 @@ var/global/datum/controller/gameticker/ticker
 				vote.process()
 			if(going)
 				pregame_timeleft--
-			if(pregame_timeleft == config.vote_autogamemode_timeleft)
+			if(pregame_timeleft == CONFIG_GET(number/vote_autogamemode_timeleft))
 				if(!vote.time_remaining)
 					vote.autogamemode()	//Quit calling this over and over and over and over.
 					while(vote.time_remaining)
@@ -74,7 +93,7 @@ var/global/datum/controller/gameticker/ticker
 	var/list/datum/game_mode/runnable_modes
 	if((master_mode=="random") || (master_mode=="secret"))
 
-		runnable_modes = config.get_runnable_modes()
+		runnable_modes = get_runnable_modes()
 		if(runnable_modes.len==0)
 			current_state = GAME_STATE_PREGAME
 			Master.SetRunLevel(RUNLEVEL_LOBBY)
@@ -157,7 +176,7 @@ var/global/datum/controller/gameticker/ticker
 		to_chat(world, "<span class='notice'><b>Enjoy the game!</b></span>")
 		Holiday_Game_Start()
 
-	if(config.autooocmute)
+	if(CONFIG_GET(flag/autooocmute))
 		to_chat(world, "<span class='danger'>The OOC channel has been globally disabled due to round start!</span>")
 		ooc_allowed = FALSE
 
@@ -211,7 +230,7 @@ var/global/datum/controller/gameticker/ticker
 	var/game_finished = FALSE
 	var/mode_finished = FALSE
 
-	if(config.continous_rounds)
+	if(CONFIG_GET(flag/continous_rounds))
 		if(EvacuationAuthority.dest_status == NUKE_EXPLOSION_FINISHED)
 			game_finished = TRUE
 		mode_finished = (!post_game && mode.check_finished())
@@ -233,11 +252,11 @@ var/global/datum/controller/gameticker/ticker
 			else
 				feedback_set_details("end_proper","proper completion")
 
-			if(config.autooocmute && !ooc_allowed)
+			if(CONFIG_GET(flag/autooocmute) && !ooc_allowed)
 				to_chat(world, "<span class='warning'><b>The OOC channel has been globally enabled due to round end!</b></span>")
 				ooc_allowed = TRUE
 
-			config.allow_synthetic_gun_use = TRUE
+			CONFIG_SET(allow_synthetic_gun_use, TRUE)
 
 			if(blackbox)
 				blackbox.save_all_data_to_sql()

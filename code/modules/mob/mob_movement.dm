@@ -16,21 +16,21 @@
 
 /client/verb/fastSouth()
 	set instant = TRUE
-	set hidden = TRUE 
+	set hidden = TRUE
 	set name = ".fastSouth"
 	Move(get_step(mob, SOUTH), SOUTH)
 
 
 /client/verb/fastWest()
 	set instant = TRUE
-	set hidden = TRUE 
+	set hidden = TRUE
 	set name = ".fastWest"
 	Move(get_step(mob, WEST), WEST)
 
 
 /client/verb/fastEast()
 	set instant = TRUE
-	set hidden = TRUE 
+	set hidden = TRUE
 	set name = ".fastEast"
 	Move(get_step(mob, EAST), EAST)
 
@@ -181,9 +181,9 @@
 		mob.last_move_intent = world.time + 10
 		switch(mob.m_intent)
 			if(MOVE_INTENT_RUN)
-				move_delay = 2 + config.run_speed
+				move_delay = 2 + CONFIG_GET(number/run_speed)
 			if(MOVE_INTENT_WALK)
-				move_delay = 7 + config.walk_speed
+				move_delay = 7 + CONFIG_GET(number/walk_speed)
 		move_delay += mob.movement_delay()
 		//We are now going to move
 		moving = 1

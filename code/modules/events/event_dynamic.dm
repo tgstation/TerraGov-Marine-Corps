@@ -2,7 +2,7 @@ var/list/event_last_fired = list()
 
 //Always triggers an event when called, dynamically chooses events based on job population
 /proc/spawn_dynamic_event()
-	if(!config.allow_random_events)
+	if(!CONFIG_GET(flag/allow_random_events))
 		return
 
 	//var/minutes_passed = world.time/600
@@ -67,7 +67,7 @@ var/list/event_last_fired = list()
 	for(var/V in possibleEvents)
 		debug_message += "[V]:[possibleEvents[V]]"
 	debug_message += "|||Picked:[picked_event]"
-	log_debug(debug_message)
+	log_runtime(debug_message)
 
 	if(!picked_event)
 		return

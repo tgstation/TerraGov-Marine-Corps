@@ -339,7 +339,7 @@
 /mob/living/simple_animal/movement_delay()
 	. = ..()
 	. += speed
-	. += config.animal_delay
+	. += CONFIG_GET(number/animal_delay)
 
 /mob/living/simple_animal/Stat()
 	if (!..())

@@ -951,7 +951,7 @@
 				//Apply scatter
 				var/scatter_chance = in_chamber.ammo.scatter
 				scatter_chance += (burst_size * 2)
-				in_chamber.accuracy = round(in_chamber.accuracy * (config.base_hit_accuracy_mult - config.min_hit_accuracy_mult * max(0,burst_size - 2) ) ) //Accuracy penalty scales with burst count.
+				in_chamber.accuracy = round(in_chamber.accuracy * (CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/min_hit_accuracy_mult) * max(0,burst_size - 2) ) ) //Accuracy penalty scales with burst count.
 
 				if (prob(scatter_chance))
 					var/scatter_x = rand(-1, 1)
@@ -960,7 +960,7 @@
 					if(new_target) //Looks like we found a turf.
 						target = new_target
 			else
-				in_chamber.accuracy = round(in_chamber.accuracy * (config.base_hit_accuracy_mult + config.med_hit_accuracy_mult)) //much more accurate on single fire
+				in_chamber.accuracy = round(in_chamber.accuracy * (CONFIG_GET(number/base_hit_accuracy_mult) + CONFIG_GET(number/med_hit_accuracy_mult))) //much more accurate on single fire
 
 			//Setup projectile
 			in_chamber.original = target

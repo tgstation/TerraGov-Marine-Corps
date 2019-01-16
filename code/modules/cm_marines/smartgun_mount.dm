@@ -528,7 +528,7 @@
 			if(user.interactee) //Make sure we're not manning two guns at once, tentacle arms.
 				to_chat(user, "You're already manning something!")
 				return
-			if(isSynth(user) && !config.allow_synthetic_gun_use)
+			if(isSynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 				to_chat(user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
 				return
 			if(user.get_active_hand() != null)

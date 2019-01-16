@@ -175,7 +175,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /obj/item/weapon/gun/proc/police_allowed_check(mob/living/carbon/human/user)
-	if(config && config.remove_gun_restrictions)
+	if(CONFIG_GET(flag/remove_gun_restrictions))
 		return TRUE //Not if the config removed it.
 
 	if(user.mind)
@@ -212,7 +212,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 		if(!user || user.stat || user.knocked_down || user.stunned)
 			. = FALSE
 			break
-		if(L && L.health < config.health_threshold_crit)
+		if(L && L.health < CONFIG_GET(number/health_threshold_crit))
 			. = FALSE
 			break
 		if(holding)

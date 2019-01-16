@@ -7,28 +7,38 @@
 
 /world/New()
 
-	hub_password = "kMZy3U5jJHSiBQjr"
-	changelog_hash = md5('html/changelog.html')					//used for telling if the changelog has changed recently
+	log_world("World loaded at [time_stamp()]!")
 
-	makeDatumRefLists()
+	SetupExternalRSC()
+
+	GLOB.config_error_log = GLOB.world_manifest_log = GLOB.world_pda_log = GLOB.world_job_debug_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set
+
+	//make_datum_references_lists()	//initialises global lists for referencing frequently used datums (so that we only ever do it once)
+	makeDatumRefLists() //Legacy
 
 	TgsNew(null, TGS_SECURITY_TRUSTED)
 	TgsInitializationComplete()
 
-	load_configuration()
+	//GLOB.revdata = new
 
-	if(byond_version < RECOMMENDED_VERSION)
-		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
+	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
 	initialize_marine_armor()
 
-	if(config && config.server_name != null && config.server_suffix && world.port > 0)
-		// dumb and hardcoded but I don't care~
-		config.server_name += " #[(world.port % 1000) / 100]"
-
-	SetupLogs()
-	
 	callHook("startup")
+
+	//SetupLogs depends on the RoundID, so lets check
+	//DB schema and set RoundID if we can
+	SSdbcore.CheckSchemaVersion()
+	SSdbcore.SetRoundID()
+	SetupLogs()
+
+	load_admins()
+	if(CONFIG_GET(flag/usewhitelist))
+		load_whitelist()
+
+	if(byond_version < RECOMMENDED_VERSION)
+		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
 
 	src.update_status()
 
@@ -47,14 +57,14 @@
 	if(!syndicate_code_response)	syndicate_code_response	= generate_code_phrase()
 	if(!EvacuationAuthority)		EvacuationAuthority = new
 
-	world.tick_lag = config.Ticklag
+	world.tick_lag = CONFIG_GET(number/Ticklag)
 
 	Master.Initialize(10, FALSE, TRUE)
 
 	spawn(3000)		//so we aren't adding to the round-start lag
-		if(config.ToRban)
+		if(CONFIG_GET(flag/ToRban))
 			ToRban_autoupdate()
-		if(config.kick_inactive)
+		if(CONFIG_GET(flag/kick_inactive))
 			KickInactiveClients()
 
 #undef RECOMMENDED_VERSION
@@ -101,8 +111,8 @@ var/world_topic_spam_protect_time = world.timeofday
 
 /world/Topic(T, addr, master, key)
 	TGS_TOPIC
-	
-	if(config.log_world_topic)
+
+	if(CONFIG_GET(flag/log_world_topic))
 		log_topic("\"[T]\", from:[addr], master:[master], key:[key]")
 
 	if (T == "ping")
@@ -124,8 +134,8 @@ var/world_topic_spam_protect_time = world.timeofday
 		s["mode"] = master_mode
 		s["respawn"] = config ? abandon_allowed : 0
 		s["enter"] = enter_allowed
-		s["vote"] = config.allow_vote_mode
-		s["ai"] = config.allow_ai
+		s["vote"] = CONFIG_GET(flag/allow_vote_mode)
+		s["ai"] = CONFIG_GET(flag/allow_ai)
 		s["host"] = host ? host : null
 		s["players"] = list()
 		s["stationtime"] = duration2text()
@@ -153,7 +163,7 @@ var/world_topic_spam_protect_time = world.timeofday
 				2. validationkey = the key the bot has, it should match the gameservers commspassword in it's configuration.
 		*/
 		var/input[] = params2list(T)
-		if(input["key"] != config.comms_password)
+		if(input["key"] != CONFIG_GET(string/comms_password))
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
 
 				spawn(50)
@@ -173,8 +183,8 @@ var/world_topic_spam_protect_time = world.timeofday
 		*/
 	TgsReboot()
 	for(var/client/C in clients)
-		if(config.server)	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
-			C << link("byond://[config.server]")
+		if(CONFIG_GET(string/server))	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
+			C << link("byond://[CONFIG_GET(string/server)]")
 
 	..(reason)
 
@@ -205,7 +215,7 @@ var/world_topic_spam_protect_time = world.timeofday
 	if(Lines.len)
 		if(Lines[1])
 			master_mode = Lines[1]
-			log_misc("Saved mode is '[master_mode]'")
+			log_config("Saved mode is '[master_mode]'")
 
 /world/proc/save_mode(var/the_mode)
 	var/F = file("data/mode.txt")
@@ -219,6 +229,7 @@ var/world_topic_spam_protect_time = world.timeofday
 /world/proc/load_motd()
 	join_motd = file2text("config/motd.txt")
 
+/*
 /proc/load_configuration()
 	config = new /datum/configuration()
 	config.load("config/config.txt")
@@ -228,30 +239,31 @@ var/world_topic_spam_protect_time = world.timeofday
 	config.loadforumsql("config/forumdbconfig.txt")
 	// apply some settings from config..
 	abandon_allowed = config.respawn
+*/
 
 
 /world/proc/update_status()
 	//Note: Hub content is limited to 254 characters, including HTML/CSS. Image width is limited to 450 pixels.
 	var/s = ""
 
-	if (config && config.server_name)
-		if(config.chaturl)
-			s += "<a href=\"[config.chaturl]\"><b>[config.server_name] &#8212; [MAIN_SHIP_NAME]</a></b>"
+	if(CONFIG_GET(string/server_name))
+		if(CONFIG_GET(string/chaturl))
+			s += "<a href=\"[CONFIG_GET(string/chaturl)]\"><b>[CONFIG_GET(string/server_name)] &#8212; [MAIN_SHIP_NAME]</a></b>"
 		else
-			s += "<b>[config.server_name] &#8212; [MAIN_SHIP_NAME]</b>"
+			s += "<b>[CONFIG_GET(string/server_name)] &#8212; [MAIN_SHIP_NAME]</b>"
 		if(ticker)
 			if(master_mode)
 				switch(map_tag)
 					if("Ice Colony")
-						s += "<br>Map: <a href=\"[config.icecolony_url]\"><b>[map_tag]</a></b>"
+						s += "<br>Map: <a href=\"[CONFIG_GET(string/icecolony_url)]\"><b>[map_tag]</a></b>"
 					if("LV-624")
-						s += "<br>Map: <a href=\"[config.lv624_url]\"><b>[map_tag]</a></b>"
+						s += "<br>Map: <a href=\"[CONFIG_GET(string/lv624_url)]\"><b>[map_tag]</a></b>"
 					if("Solaris Ridge")
-						s += "<br>Map: <a href=\"[config.bigred_url]\"><b>[map_tag]</a></b>"
+						s += "<br>Map: <a href=\"[CONFIG_GET(string/bigred_url)]\"><b>[map_tag]</a></b>"
 					if("Prison Station")
-						s += "<br>Map: <a href=\"[config.prisonstation_url]\"><b>[map_tag]</a></b>"
+						s += "<br>Map: <a href=\"[CONFIG_GET(string/prisonstation_url)]\"><b>[map_tag]</a></b>"
 					if("Whiskey Outpost")
-						s += "<br>Map: <a href=\"[config.whiskeyoutpost_url]\"><b>[map_tag]</a></b>"
+						s += "<br>Map: <a href=\"[CONFIG_GET(string/whiskeyoutpost_url)]\"><b>[map_tag]</a></b>"
 					else
 						s += "<br>Map: <b>[map_tag]</b>"
 				s += "<br>Mode: <b>[ticker.mode.name]</b>"
@@ -351,3 +363,15 @@ proc/establish_old_db_connection()
 		return 1
 
 #undef FAILED_DB_CONNECTION_CUTOFF
+
+
+/world/proc/SetupExternalRSC()
+#ifdef PRELOAD_RSC
+	GLOB.external_rsc_urls = world.file2list("[global.config.directory]/external_rsc_urls.txt","\n")
+	var/i=1
+	while(i<=GLOB.external_rsc_urls.len)
+		if(GLOB.external_rsc_urls[i])
+			i++
+		else
+			GLOB.external_rsc_urls.Cut(i,i+1)
+#endif

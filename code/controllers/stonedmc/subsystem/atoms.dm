@@ -138,17 +138,20 @@ SUBSYSTEM_DEF(atoms)
 		// I wish I didn't have to instance the game modes in order to look up
 		// their information, but it is the only way (at least that I know of).
 		var/datum/game_mode/M = new T()
-
+	/*
 		if (M.config_tag)
 			if(!(M.config_tag in config.modes))		// ensure each mode is added only once
-				log_misc("Adding game mode [M.name] ([M.config_tag]) to configuration.")
+				log_config("Adding game mode [M.name] ([M.config_tag]) to configuration.")
 				config.modes += M.config_tag
 				config.mode_names[M.config_tag] = M.name
 				config.probabilities[M.config_tag] = M.probability
 				if (M.votable)
 					config.votable_modes += M.config_tag
+	*/
 		qdel(M)
+
 	config.votable_modes += "secret"
+
 
 /datum/controller/subsystem/atoms/proc/InitLog()
 	. = ""

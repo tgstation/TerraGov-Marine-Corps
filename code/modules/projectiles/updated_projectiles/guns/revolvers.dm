@@ -28,14 +28,14 @@
 	replace_cylinder(current_mag.current_rounds)
 
 /obj/item/weapon/gun/revolver/set_gun_config_values()
-	fire_delay = config.mlow_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.high_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	recoil = config.min_recoil_value
-	recoil_unwielded = config.med_recoil_value
+	fire_delay = CONFIG_GET(number/mlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/low_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/high_scatter_value)
+	damage_mult = CONFIG_GET(number/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/min_recoil_value)
+	recoil_unwielded = CONFIG_GET(number/med_recoil_value)
 
 
 /obj/item/weapon/gun/revolver/examine(mob/user)
@@ -329,12 +329,12 @@
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
 
 /obj/item/weapon/gun/revolver/upp/set_gun_config_values()
-	fire_delay = config.mlow_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.high_scatter_value
-	damage_mult = config.base_hit_damage_mult + config.min_hit_damage_mult
+	fire_delay = CONFIG_GET(number/mlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/med_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/high_scatter_value)
+	damage_mult = CONFIG_GET(number/base_hit_damage_mult) + CONFIG_GET(number/min_hit_damage_mult)
 	recoil = 0
 	recoil_unwielded = 0
 
@@ -354,12 +354,12 @@
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
 /obj/item/weapon/gun/revolver/small/set_gun_config_values()
-	fire_delay = config.mlow_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
+	fire_delay = CONFIG_GET(number/mlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/low_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/med_scatter_value)
+	damage_mult = CONFIG_GET(number/base_hit_damage_mult)
 	recoil = 0
 	recoil_unwielded = 0
 
@@ -389,16 +389,16 @@
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
 /obj/item/weapon/gun/revolver/mateba/set_gun_config_values()
-	fire_delay = config.max_fire_delay
-	burst_amount = config.low_burst_value
-	burst_delay = config.med_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.high_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult + config.min_hit_damage_mult
-	recoil = config.min_recoil_value
-	recoil_unwielded = config.med_recoil_value
+	fire_delay = CONFIG_GET(number/max_fire_delay)
+	burst_amount = CONFIG_GET(number/low_burst_value)
+	burst_delay = CONFIG_GET(number/med_fire_delay)
+	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/high_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/med_scatter_value)
+	damage_mult = CONFIG_GET(number/base_hit_damage_mult) + CONFIG_GET(number/min_hit_damage_mult)
+	recoil = CONFIG_GET(number/min_recoil_value)
+	recoil_unwielded = CONFIG_GET(number/med_recoil_value)
 
 
 
@@ -417,7 +417,7 @@
 /obj/item/weapon/gun/revolver/mateba/cmateba/Initialize()
 	. = ..()
 	select_gamemode_skin(/obj/item/weapon/gun/revolver/mateba/cmateba)
-	
+
 //-------------------------------------------------------
 //MARSHALS REVOLVER //Spearhead exists in Alien cannon.
 
@@ -439,13 +439,13 @@
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 11, "rail_y" = 25, "under_x" = 20, "under_y" = 18, "stock_x" = 20, "stock_y" = 18)
 
 /obj/item/weapon/gun/revolver/cmb/set_gun_config_values()
-	fire_delay = config.mhigh_fire_delay*2
-	burst_amount = config.med_burst_value
-	burst_delay = config.high_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult + config.min_hit_damage_mult
-	recoil = config.min_recoil_value
-	recoil_unwielded = config.med_recoil_value
+	fire_delay = CONFIG_GET(number/mhigh_fire_delay) * 2
+	burst_amount = CONFIG_GET(number/med_burst_value)
+	burst_delay = CONFIG_GET(number/high_fire_delay)
+	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/med_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/med_scatter_value)
+	damage_mult = CONFIG_GET(number/base_hit_damage_mult) + CONFIG_GET(number/min_hit_damage_mult)
+	recoil = CONFIG_GET(number/min_recoil_value)
+	recoil_unwielded = CONFIG_GET(number/med_recoil_value)

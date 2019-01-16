@@ -182,7 +182,7 @@
 
 	var/can_cut = (prob(brute*2) || sharp) && !(status & LIMB_ROBOT)
 	// If the limbs can break, make sure we don't exceed the maximum damage a limb can take before breaking
-	if((brute_dam + burn_dam + brute + burn) < max_damage || !config.limbs_can_break)
+	if((brute_dam + burn_dam + brute + burn) < max_damage || !CONFIG_GET(flag/limbs_can_break))
 		if(brute)
 			if(can_cut)
 				createwound(CUT, brute)
@@ -193,7 +193,7 @@
 	else
 		//If we can't inflict the full amount of damage, spread the damage in other ways
 		//How much damage can we actually cause?
-		var/can_inflict = max_damage * config.organ_health_multiplier - (brute_dam + burn_dam)
+		var/can_inflict = max_damage * CONFIG_GET(number/organ_health_multiplier) - (brute_dam + burn_dam)
 		var/remain_brute = brute
 		var/remain_burn = burn
 		if(can_inflict)
@@ -243,7 +243,7 @@
 	if(body_part == HEAD && istype(worn_helmet, /obj/item/clothing/head/helmet) && !(owner.species.flags & IS_SYNTHETIC) ) //Early return if the body part is a head but target is wearing a helmet and is not a synth
 		owner.updatehealth()
 		return update_icon()
-	if(config.limbs_can_break && brute_dam >= max_damage * config.organ_health_multiplier)
+	if(CONFIG_GET(flag/limbs_can_break) && brute_dam >= max_damage * CONFIG_GET(number/organ_health_multiplier))
 		var/cut_prob = brute/max_damage * 10
 		if(prob(cut_prob))
 			droplimb()
@@ -395,7 +395,7 @@ This function completely restores a damaged organ to perfect condition.
 				trace_chemicals.Remove(chemID)
 
 	//Bone fracurtes
-	if(config.bones_can_break && brute_dam > min_broken_damage * config.organ_health_multiplier && !(status & LIMB_ROBOT))
+	if(CONFIG_GET(flag/bones_can_break) && brute_dam > min_broken_damage * CONFIG_GET(number/organ_health_multiplier) && !(status & LIMB_ROBOT))
 		fracture()
 	if(!(status & LIMB_BROKEN))
 		perma_injury = 0
@@ -567,7 +567,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			//we only update wounds once in [wound_update_accuracy] ticks so have to emulate realtime
 			heal_amt = heal_amt * wound_update_accuracy
 			//configurable regen speed woo, no-regen hardcore or instaheal hugbox, choose your destiny
-			heal_amt = heal_amt * config.organ_regeneration_multiplier
+			heal_amt = heal_amt * CONFIG_GET(number/organ_regeneration_multiplier)
 			// amount of healing is spread over all the wounds
 			heal_amt = heal_amt / (wounds.len + 1)
 			// making it look prettier on scanners
