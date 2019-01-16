@@ -137,11 +137,16 @@
 		var/mob/M = loc
 		M.update_inv_wear_suit()
 
-/obj/item/clothing/suit/mob_can_equip(mob/living/carbon/human/H, slot, disable_warning = 0)
+/obj/item/clothing/suit/mob_can_equip(mob/M, slot, disable_warning = 0)
 	//if we can't equip the item anyway, don't bother with other checks.
 	. = ..()
 	if(!.)
 		return FALSE
+
+	if(!ishuman(M))
+		return TRUE
+
+	var/mob/living/carbon/human/H = M
 
 	if(!istype(H.w_uniform, /obj/item/clothing/under))
 		return FALSE
