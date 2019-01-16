@@ -239,7 +239,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 /obj/item/explosive/grenade/impact
 	name = "\improper M40 IMDP grenade"
-	desc = "A high explosive contact detonation munition utilizing the standard DP canister chassis. Has a focused blast specialized for door breaching and combating emplacements and light armoured vehicles. Capable of being loaded in the M92 Launcher, or thrown by hand."
+	desc = "A high explosive contact detonation munition utilizing the standard DP canister chassis. Has a focused blast specialized for door breaching and combating emplacements and light armoured vehicles. WARNING: Handthrowing does not result in sufficient force to trigger impact detonators."
 	icon_state = "grenade_impact"
 	item_state = "grenade_impact"
 	hud_state = "grenade_frag"
@@ -260,7 +260,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 /obj/item/explosive/grenade/impact/throw_impact(atom/hit_atom, speed)
 	. = ..()
-	if(active) //Only contact det if active
+	if(launched && active && !istype(hit_atom, turf)) //Only contact det if active, we actually hit something, and we're fired from a grenade launcher.
 		explosion(loc, -1, -1, 1, 2)
 		qdel(src)
 
@@ -368,16 +368,16 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 			SetLuminosity(0)
 
 /obj/item/explosive/grenade/flare/pickup(mob/user)
-	if(active && src.loc != user)
+	if(active && loc != user)
 		user.SetLuminosity(FLARE_BRIGHTNESS)
 		SetLuminosity(0)
 	return ..()
 
 /obj/item/explosive/grenade/flare/dropped(mob/user)
-	if(active && src.loc != user)
+	if(active && loc != user)
 		user.SetLuminosity(-FLARE_BRIGHTNESS)
 		SetLuminosity(FLARE_BRIGHTNESS)
-	..()
+	return ..()
 
 /obj/item/explosive/grenade/flare/throw_impact(atom/hit_atom, speed)
 	. = ..()

@@ -19,7 +19,7 @@
 	var/can_supply_drop = FALSE
 
 	var/igniting = FALSE	//Whether it ignites on impact
-	var/item_fire_stacks = null	//How many fire stacks it applies
+	var/item_fire_stacks = 0	//How many fire stacks it applies
 
 /obj/New()
 	..()
