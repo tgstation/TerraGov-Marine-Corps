@@ -1,10 +1,13 @@
-/*
-	Pre-map initialization stuff should go here.
-*/
-/datum/global_init/New()
-	//world.log = config_error_log = world_pda_log = sql_error_log = world_runtime_log = world_attack_log = world_game_log = "data/logs/config_error.log" //temporary file used to record errors with loading config, moved to log directory once logging is set bl
-	//qdel(src)
+#define RESTART_COUNTER_PATH "data/round_counter.txt"
 
+GLOBAL_VAR(restart_counter)
+//TODO: Replace INFINITY with the version that fixes http://www.byond.com/forum/?post=2407430
+GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_build < INFINITY)
+
+/datum/global_init/New() //Legacy shitcode, leaving this in for the time being as it's out of scope.
+
+//This happens after the Master subsystem new(s) (it's a global datum)
+//So subsystems globals exist, but are not initialised
 /world/New()
 
 	log_world("World loaded at [time_stamp()]!")
@@ -16,22 +19,46 @@
 	//make_datum_references_lists()	//initialises global lists for referencing frequently used datums (so that we only ever do it once)
 	makeDatumRefLists() //Legacy
 
-	TgsNew(null, TGS_SECURITY_TRUSTED)
-	TgsInitializationComplete()
+	TgsNew(new /datum/tgs_event_handler/tg, minimum_required_security_level = TGS_SECURITY_TRUSTED)
 
-	//GLOB.revdata = new
+	GLOB.revdata = new
 
 	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
-
-	initialize_marine_armor()
-
-	callHook("startup")
 
 	//SetupLogs depends on the RoundID, so lets check
 	//DB schema and set RoundID if we can
 	SSdbcore.CheckSchemaVersion()
 	SSdbcore.SetRoundID()
 	SetupLogs()
+
+#ifndef USE_CUSTOM_ERROR_HANDLER
+	world.log = file("[GLOB.log_directory]/dd.log")
+#endif
+
+	load_admins()
+	//LoadVerbs(/datum/verbs/menu)
+	if(CONFIG_GET(flag/usewhitelist))
+		load_whitelist()
+
+	//GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
+
+	if(fexists(RESTART_COUNTER_PATH))
+		GLOB.restart_counter = text2num(trim(file2text(RESTART_COUNTER_PATH)))
+		fdel(RESTART_COUNTER_PATH)
+
+	if(NO_INIT_PARAMETER in params)
+		return
+
+	Master.Initialize(10, FALSE, TRUE)
+
+	//if(TEST_RUN_PARAMETER in params)
+		//HandleTestRun()
+/*
+// EVERYTHING BELOW IS LEGACY
+*/
+	initialize_marine_armor()
+
+	callHook("startup")
 
 	load_admins()
 	if(CONFIG_GET(flag/usewhitelist))
@@ -40,7 +67,7 @@
 	if(byond_version < RECOMMENDED_VERSION)
 		log_world("Your server's byond version does not meet the recommended requirements for this server. Please update BYOND")
 
-	src.update_status()
+	update_status()
 
 	. = ..()
 
@@ -74,25 +101,64 @@
 /world/proc/SetupLogs()
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
 	if(!override_dir)
-		log_directory = "data/logs/[time2text(world.realtime, "YYYY/MM/DD")]/round-[replacetext(time_stamp(), ":", ".")]"
+		var/realtime = world.realtime
+		var/texttime = time2text(realtime, "YYYY/MM/DD")
+		GLOB.log_directory = "data/logs/[texttime]/round-"
+		GLOB.picture_logging_prefix = "L_[time2text(realtime, "YYYYMMDD")]_"
+		GLOB.picture_log_directory = "data/picture_logs/[texttime]/round-"
+		if(GLOB.round_id)
+			GLOB.log_directory += "[GLOB.round_id]"
+			GLOB.picture_logging_prefix += "R_[GLOB.round_id]_"
+			GLOB.picture_log_directory += "[GLOB.round_id]"
+		else
+			var/timestamp = replacetext(time_stamp(), ":", ".")
+			GLOB.log_directory += "[timestamp]"
+			GLOB.picture_log_directory += "[timestamp]"
+			GLOB.picture_logging_prefix += "T_[timestamp]_"
 	else
-		log_directory = "data/logs/[override_dir]"
-	world_game_log = file("[log_directory]/game.log")
-	world_attack_log = file("[log_directory]/attack.log")
-	world_runtime_log = file("[log_directory]/runtime.log")
-	world_ra_log = file("[log_directory]/recycle.log")
-	world_pda_log = file("[log_directory]/pda.log")
-	world_href_log = file("[log_directory]/hrefs.log")
-	sql_error_log = file("[log_directory]/sql.log")
-	world_game_log << "\n\nStarting up round [time_stamp()]\n---------------------"
-	world_attack_log << "\n\nStarting up round [time_stamp()]\n---------------------"
-	world_runtime_log << "\n\nStarting up round [time_stamp()]\n---------------------"
-	world_pda_log << "\n\nStarting up round [time_stamp()]\n---------------------"
-	world_href_log << "\n\nStarting up round [time_stamp()]\n---------------------"
-	world.log = world_runtime_log
-	if(fexists(config_error_log))
-		fcopy(config_error_log, "[log_directory]/config_error.log")
-		fdel(config_error_log)
+		GLOB.log_directory = "data/logs/[override_dir]"
+		GLOB.picture_logging_prefix = "O_[override_dir]_"
+		GLOB.picture_log_directory = "data/picture_logs/[override_dir]"
+
+	GLOB.world_game_log = "[GLOB.log_directory]/game.log"
+	GLOB.world_mecha_log = "[GLOB.log_directory]/mecha.log"
+	GLOB.world_attack_log = "[GLOB.log_directory]/attack.log"
+	GLOB.world_pda_log = "[GLOB.log_directory]/pda.log"
+	GLOB.world_telecomms_log = "[GLOB.log_directory]/telecomms.log"
+	GLOB.world_manifest_log = "[GLOB.log_directory]/manifest.log"
+	GLOB.world_href_log = "[GLOB.log_directory]/hrefs.log"
+	GLOB.sql_error_log = "[GLOB.log_directory]/sql.log"
+	GLOB.world_qdel_log = "[GLOB.log_directory]/qdel.log"
+	GLOB.world_runtime_log = "[GLOB.log_directory]/runtime.log"
+	GLOB.query_debug_log = "[GLOB.log_directory]/query_debug.log"
+	GLOB.world_job_debug_log = "[GLOB.log_directory]/job_debug.log"
+
+#ifdef UNIT_TESTS
+	GLOB.test_log = file("[GLOB.log_directory]/tests.log")
+	start_log(GLOB.test_log)
+#endif
+	start_log(GLOB.world_game_log)
+	start_log(GLOB.world_attack_log)
+	start_log(GLOB.world_pda_log)
+	start_log(GLOB.world_telecomms_log)
+	start_log(GLOB.world_manifest_log)
+	start_log(GLOB.world_href_log)
+	start_log(GLOB.world_qdel_log)
+	start_log(GLOB.world_runtime_log)
+	start_log(GLOB.world_job_debug_log)
+
+	GLOB.changelog_hash = md5('html/changelog.html') //for telling if the changelog has changed recently
+	if(fexists(GLOB.config_error_log))
+		fcopy(GLOB.config_error_log, "[GLOB.log_directory]/config_error.log")
+		fdel(GLOB.config_error_log)
+
+	if(GLOB.round_id)
+		log_game("Round ID: [GLOB.round_id]")
+
+	// This was printed early in startup to the world log and config_error.log,
+	// but those are both private, so let's put the commit info in the runtime
+	// log which is ultimately public.
+	log_runtime(GLOB.revdata.get_log_message())
 
 
 //world/Topic(href, href_list[])

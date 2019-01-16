@@ -36,7 +36,7 @@
 	if(entries)
 		CRASH("[THIS_PROC_TYPE_WEIRD] called more than once!")
 	InitEntries()
-	//LoadModes()
+	LoadModes()
 	if(fexists("[directory]/config.txt") && LoadEntries("config.txt") <= 1)
 		var/list/legacy_configs = list("game_options.txt", "dbconfig.txt", "comms.txt")
 		for(var/I in legacy_configs)
@@ -54,8 +54,11 @@
 	entries_by_type.Cut()
 	QDEL_LIST_ASSOC_VAL(entries)
 	entries = null
+	/*
 	QDEL_LIST_ASSOC_VAL(maplist)
 	maplist = null
+	QDEL_NULL(defaultmap)
+	*/
 
 /datum/controller/configuration/Destroy()
 	full_wipe()
@@ -208,8 +211,9 @@
 		return
 	return E.ValidateAndSet("[new_val]")
 
-/*
 /datum/controller/configuration/proc/LoadModes()
+	return
+	/*
 	gamemode_cache = typecacheof(/datum/game_mode, TRUE)
 	modes = list()
 	mode_names = list()
@@ -221,7 +225,6 @@
 		// I wish I didn't have to instance the game modes in order to look up
 		// their information, but it is the only way (at least that I know of).
 		var/datum/game_mode/M = new T()
-
 		if(M.config_tag)
 			if(!(M.config_tag in modes))		// ensure each mode is added only once
 				modes += M.config_tag
@@ -237,23 +240,22 @@
 					votable_modes += M.config_tag
 		qdel(M)
 	votable_modes += "secret"
-*/
+	*/
 
 /datum/controller/configuration/proc/LoadMOTD()
 	motd = file2text("[directory]/motd.txt")
-/*
 	var/tm_info = GLOB.revdata.GetTestMergeInfo()
 	if(motd || tm_info)
 		motd = motd ? "[motd]<br>[tm_info]" : tm_info
-*/
 
 /datum/controller/configuration/proc/loadmaplist(filename)
 	return
-/*
+	/*
 	log_config("Loading config file [filename]...")
 	filename = "[directory]/[filename]"
 	var/list/Lines = world.file2list(filename)
-	var/currentmap = null //Replace when porting mapchanger
+
+	var/datum/map_config/currentmap = null
 	for(var/t in Lines)
 		if(!t)
 			continue
@@ -266,7 +268,7 @@
 
 		var/pos = findtext(t, " ")
 		var/command = null
-		var/data
+		var/data = null
 
 		if(pos)
 			command = lowertext(copytext(t, 1, pos))
@@ -277,15 +279,13 @@
 		if(!command)
 			continue
 
-		if(!currentmap && command != "map")
+		if (!currentmap && command != "map")
 			continue
-*/
 
-/* Uncomment when porting mapchanger
-		switch(command)
+		switch (command)
 			if ("map")
 				currentmap = load_map_config("_maps/[data].json")
-				if(currentmap?.defaulted)
+				if(currentmap.defaulted)
 					log_config("Failed to load map config for [data]!")
 					currentmap = null
 			if ("minplayers","minplayer")
@@ -303,8 +303,8 @@
 			if ("disabled")
 				currentmap = null
 			else
-				log_config("Unknown command in map vote config: '[command]'")\
-*/
+				log_config("Unknown command in map vote config: '[command]'")
+	*/
 
 
 /datum/controller/configuration/proc/pick_mode(mode_name)
@@ -318,8 +318,9 @@
 			return new T
 	return new /datum/game_mode/extended()
 
-/*
 /datum/controller/configuration/proc/get_runnable_modes()
+	return
+/*
 	var/list/datum/game_mode/runnable_modes = new
 	var/list/probabilities = Get(/datum/config_entry/keyed_list/probability)
 	var/list/min_pop = Get(/datum/config_entry/keyed_list/min_pop)
@@ -327,6 +328,7 @@
 	var/list/repeated_mode_adjust = Get(/datum/config_entry/number_list/repeated_mode_adjust)
 	for(var/T in gamemode_cache)
 		var/datum/game_mode/M = new T()
+		runnable_modes += M
 		if(!(M.config_tag in modes))
 			qdel(M)
 			continue
@@ -339,7 +341,6 @@
 			M.maximum_players = max_pop[M.config_tag]
 		if(M.can_start())
 			var/final_weight = probabilities[M.config_tag]
-			/*
 			if(SSpersistence.saved_modes.len == 3 && repeated_mode_adjust.len == 3)
 				var/recent_round = min(SSpersistence.saved_modes.Find(M.config_tag),3)
 				var/adjustment = 0
@@ -347,12 +348,13 @@
 					adjustment += repeated_mode_adjust[recent_round]
 					recent_round = SSpersistence.saved_modes.Find(M.config_tag,recent_round+1,0)
 				final_weight *= ((100-adjustment)/100)
-			*/
 			runnable_modes[M] = final_weight
 	return runnable_modes
 */
-/*
+
 /datum/controller/configuration/proc/get_runnable_midround_modes(crew)
+	return
+/*
 	var/list/datum/game_mode/runnable_modes = new
 	var/list/probabilities = Get(/datum/config_entry/keyed_list/probability)
 	var/list/min_pop = Get(/datum/config_entry/keyed_list/min_pop)

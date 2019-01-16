@@ -212,7 +212,7 @@
 	key_mode = KEY_MODE_TYPE
 	value_mode = VALUE_MODE_NUM
 	config_entry_value = list(			//DEFAULTS
-	/mob/living/simple_animal = 1
+	/mob/living/simple_animal = 1,
 	)
 
 /datum/config_entry/keyed_list/multiplicative_movespeed/ValidateAndSet()

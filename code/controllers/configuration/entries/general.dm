@@ -865,3 +865,5 @@
 /datum/config_entry/number/max_maint_drones
 
 /datum/config_entry/number/low_burst_scatter_penalty
+
+/datum/config_entry/flag/jobs_have_minimal_access

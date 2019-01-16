@@ -43,11 +43,12 @@ SUBSYSTEM_DEF(dbcore)
 
 /datum/controller/subsystem/dbcore/Shutdown()
 	//This is as close as we can get to the true round end before Disconnect() without changing where it's called, defeating the reason this is a subsystem
+	/*
 	if(SSdbcore.Connect())
-		var/datum/DBQuery/query_round_shutdown = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET shutdown_datetime = Now(), end_state = 'none' WHERE id = [GLOB.round_id]")
-		//[sanitizeSQL(SSticker.end_state)]
+		var/datum/DBQuery/query_round_shutdown = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET shutdown_datetime = Now(), end_state = '[sanitizeSQL(SSticker.end_state)]' WHERE id = [GLOB.round_id]")
 		query_round_shutdown.Execute()
 		qdel(query_round_shutdown)
+	*/
 	if(IsConnected())
 		Disconnect()
 	world.BSQL_Shutdown()
@@ -138,14 +139,14 @@ SUBSYSTEM_DEF(dbcore)
 	qdel(query_round_start)
 
 /datum/controller/subsystem/dbcore/proc/SetRoundEnd()
-	return
 	if(!Connect())
 		return
+	/*
 	var/sql_station_name = sanitizeSQL(station_name())
-	var/datum/DBQuery/query_round_end = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET end_datetime = Now(), game_mode_result = 'none', station_name = '[sql_station_name]' WHERE id = [GLOB.round_id]")
-	//[sanitizeSQL(SSticker.mode_result)]
+	var/datum/DBQuery/query_round_end = SSdbcore.NewQuery("UPDATE [format_table_name("round")] SET end_datetime = Now(), game_mode_result = '[sanitizeSQL(SSticker.mode_result)]', station_name = '[sql_station_name]' WHERE id = [GLOB.round_id]")
 	query_round_end.Execute()
 	qdel(query_round_end)
+	*/
 
 /datum/controller/subsystem/dbcore/proc/Disconnect()
 	failed_connections = 0

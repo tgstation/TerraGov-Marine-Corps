@@ -54,6 +54,7 @@ SUBSYSTEM_DEF(atoms)
 				CHECK_TICK
 
 	testing("Initialized [count] atoms")
+	pass(count)
 
 	initialized = INITIALIZATION_INNEW_REGULAR
 
@@ -138,16 +139,13 @@ SUBSYSTEM_DEF(atoms)
 		// I wish I didn't have to instance the game modes in order to look up
 		// their information, but it is the only way (at least that I know of).
 		var/datum/game_mode/M = new T()
-	/*
 		if (M.config_tag)
 			if(!(M.config_tag in config.modes))		// ensure each mode is added only once
 				log_config("Adding game mode [M.name] ([M.config_tag]) to configuration.")
 				config.modes += M.config_tag
 				config.mode_names[M.config_tag] = M.name
-				config.probabilities[M.config_tag] = M.probability
 				if (M.votable)
 					config.votable_modes += M.config_tag
-	*/
 		qdel(M)
 
 	config.votable_modes += "secret"
@@ -170,9 +168,10 @@ SUBSYSTEM_DEF(atoms)
 /datum/controller/subsystem/atoms/Shutdown()
 	var/initlog = InitLog()
 	if(initlog)
-		text2file(initlog, "[log_directory]/initialize.log")
+		text2file(initlog, "[GLOB.log_directory]/initialize.log")
 
 #undef BAD_INIT_QDEL_BEFORE
 #undef BAD_INIT_DIDNT_INIT
 #undef BAD_INIT_SLEPT
 #undef BAD_INIT_NO_HINT
+

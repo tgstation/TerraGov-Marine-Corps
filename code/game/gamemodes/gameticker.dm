@@ -35,25 +35,6 @@ var/global/datum/controller/gameticker/ticker
 	var/round_end_announced = 0 // Spam Prevention. Announce round end only once.
 	var/datum/mind/liaison = null
 
-/datum/controller/gameticker/proc/get_runnable_modes()
-	var/list/datum/game_mode/runnable_modes = new
-	for(var/T in subtypesof(/datum/game_mode))
-		var/datum/game_mode/M = new T()
-		runnable_modes += M
-		/*
-		//to_chat(world, "DEBUG: [T], tag=[M.config_tag], prob=[probabilities[M.config_tag]]")
-		if (!(M.config_tag in modes))
-			qdel(M)
-			continue
-		if (probabilities[M.config_tag]<=0)
-			qdel(M)
-			continue
-		if (M.can_start())
-			runnable_modes[M] = probabilities[M.config_tag]
-			//to_chat(world, "DEBUG: runnable_mode\[[runnable_modes.len]\] = [M.config_tag]")
-		*/
-	return runnable_modes
-
 /datum/controller/gameticker/proc/pregame()
 
 	login_music = pick(
@@ -93,7 +74,7 @@ var/global/datum/controller/gameticker/ticker
 	var/list/datum/game_mode/runnable_modes
 	if((master_mode=="random") || (master_mode=="secret"))
 
-		runnable_modes = get_runnable_modes()
+		runnable_modes = config.modes
 		if(runnable_modes.len==0)
 			current_state = GAME_STATE_PREGAME
 			Master.SetRunLevel(RUNLEVEL_LOBBY)

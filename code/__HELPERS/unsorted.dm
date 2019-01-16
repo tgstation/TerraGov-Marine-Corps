@@ -1772,3 +1772,6 @@ var/list/WALLITEMS = list(
 	var/time_clock = num2hex(TICK_DELTA_TO_MS(world.tick_usage), 3)
 
 	return "{[time_high]-[time_mid]-[GUID_VERSION][time_low]-[GUID_VARIANT][time_clock]-[node_id]}"
+
+/proc/pass()
+	return
