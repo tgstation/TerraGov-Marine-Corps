@@ -147,7 +147,7 @@ var/list/admin_verbs_debug = list(
 	/client/proc/callproc,
 	/client/proc/callatomproc,
 	/client/proc/toggledebuglogs,
-	/client/proc/cmd_admin_change_hivenumber
+	/client/proc/cmd_admin_change_hivenumber,
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
