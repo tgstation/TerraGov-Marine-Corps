@@ -271,7 +271,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	icon_state = "flare_grenade"
 	det_time = 0
 	throwforce = 1
-	dangerous = 0
+	dangerous = FALSE
 	underslug_launchable = TRUE
 	w_class = 2
 	hud_state = "grenade_frag"
@@ -279,15 +279,15 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 /obj/item/explosive/grenade/flare/New()
 	fuel = rand(800, 1000) // Sorry for changing this so much but I keep under-estimating how long X number of ticks last in seconds.
-	..()
+	return ..()
 
 /obj/item/explosive/grenade/flare/flamer_fire_act()
 	if(!active)
 		turn_on()
 
 /obj/item/explosive/grenade/flare/Destroy()
-	if(ismob(src.loc))
-		src.loc.SetLuminosity(-FLARE_BRIGHTNESS)
+	if(ismob(loc))
+		loc.SetLuminosity(-FLARE_BRIGHTNESS)
 	else
 		SetLuminosity(0)
 	STOP_PROCESSING(SSobj, src)
@@ -342,7 +342,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 /obj/item/explosive/grenade/flare/on/New()
 
-	..()
+	. = ..()
 	active = TRUE
 	heat_source = 1500
 	update_brightness()
@@ -371,7 +371,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 	if(active && src.loc != user)
 		user.SetLuminosity(FLARE_BRIGHTNESS)
 		SetLuminosity(0)
-	..()
+	return ..()
 
 /obj/item/explosive/grenade/flare/dropped(mob/user)
 	if(active && src.loc != user)
