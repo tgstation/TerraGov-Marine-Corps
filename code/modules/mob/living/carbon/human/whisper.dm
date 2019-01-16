@@ -3,14 +3,14 @@
 	var/alt_name = ""
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "\red Speech is currently admin-disabled.")
+		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
 		return
 
 	log_talk(message, LOG_WHISPER)
 
 	if (src.client)
 		if (src.client.prefs.muted & MUTE_IC)
-			to_chat(src, "\red You cannot whisper (muted).")
+			to_chat(src, "<span class='warning'>You cannot whisper (muted).</span>")
 			return
 
 		if (src.client.handle_spam_prevention(message,MUTE_IC))

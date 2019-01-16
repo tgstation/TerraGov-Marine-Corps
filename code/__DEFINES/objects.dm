@@ -218,3 +218,8 @@ var/list/RESTRICTED_CAMERA_NETWORKS = list( //Those networks can only be accesse
 #define FLARE_IGNITE_STACKS				5
 #define FLARE_IGNITE_POWER				5
 #define FLARE_BRIGHTNESS				5
+
+//Scope accuracy defines
+#define SCOPE_RAIL				0.4
+#define SCOPE_RAIL_MINI			0.2
+#define SCOPE_RAIL_SNIPER		0.5

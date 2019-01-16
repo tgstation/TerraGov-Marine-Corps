@@ -41,10 +41,10 @@
 	if (usr.stat || !(ishuman(usr) || ismonkey(usr)))
 		return
 	if (src.occupant)
-		to_chat(usr, "\blue <B>The scanner is already occupied!</B>")
+		to_chat(usr, "<span class='boldnotice'>The scanner is already occupied!</span>")
 		return
 	if (usr.abiotic())
-		to_chat(usr, "\blue <B>Subject cannot have abiotic items on.</B>")
+		to_chat(usr, "<span class='boldnotice'>Subject cannot have abiotic items on.</span>")
 		return
 	usr.forceMove(src)
 	src.occupant = usr

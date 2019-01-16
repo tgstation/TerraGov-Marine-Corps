@@ -64,6 +64,7 @@ Defined in conflicts.dm of the #defines folder.
 	var/size_mod 		= 0 //Increases the weight class.
 	var/aim_speed_mod	= 0 //Changes the aiming speed slowdown of the wearer by this value.
 	var/wield_delay_mod	= 0 //How long ADS takes (time before firing)
+	var/attach_shell_speed_mod = 0 //Changes the speed of projectiles fired
 	var/movement_acc_penalty_mod = 0 //Modifies accuracy/scatter penalty when firing onehanded while moving.
 	var/attach_delay = 30 //How long in deciseconds it takes to attach a weapon with level 1 firearms training. Default is 30 seconds.
 	var/detach_delay = 30 //How long in deciseconds it takes to detach a weapon with level 1 firearms training. Default is 30 seconds.
@@ -149,6 +150,7 @@ Defined in conflicts.dm of the #defines folder.
 	G.wield_delay		+= wield_delay_mod
 	G.burst_scatter_mult += burst_scatter_mod
 	G.movement_acc_penalty_mult += movement_acc_penalty_mod
+	G.shell_speed_mod	+= attach_shell_speed_mod
 
 	if(G.burst_amount <= 1)
 		G.flags_gun_features &= ~GUN_BURST_ON //Remove burst if they can no longer use it.
@@ -202,6 +204,7 @@ Defined in conflicts.dm of the #defines folder.
 	G.wield_delay		-= wield_delay_mod
 	G.burst_scatter_mult -= burst_scatter_mod
 	G.movement_acc_penalty_mult -= movement_acc_penalty_mod
+	G.shell_speed_mod	-=attach_shell_speed_mod
 	G.update_force_list()
 
 	if(silence_mod) //Built in silencers always come as an attach, so the gun can't be silenced right off the bat.
@@ -244,7 +247,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/suppressor
 	name = "suppressor"
-	desc = "A small tube with exhaust ports to expel noise and gas.\nDoes not completely silence a weapon, but does make it much quieter and a little more accurate and stable at the cost of slightly reduced damage."
+	desc = "A small tube with exhaust ports to expel noise and gas.\nDoes not completely silence a weapon, but does make it much quieter and a little more accurate and stable at the cost of slightly reduced damage and bullet speed."
 	icon_state = "suppressor"
 	slot = "muzzle"
 	silence_mod = 1
@@ -253,12 +256,14 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/suppressor/New()
 	..()
-	accuracy_mod = config.min_hit_accuracy_mult
+	accuracy_mod = config.low_hit_accuracy_mult
 	damage_mod = -config.min_hit_damage_mult
 	recoil_mod = -config.min_recoil_value
 	scatter_mod = -config.min_scatter_value
+	attach_shell_speed_mod = -config.min_shell_speed
 	attach_icon = pick("suppressor_a","suppressor2_a")
 
+	accuracy_unwielded_mod = -config.min_hit_accuracy_mult
 	recoil_unwielded_mod = -config.min_recoil_value
 	scatter_unwielded_mod = -config.min_scatter_value
 	damage_falloff_mod = config.min_damage_falloff_mult
@@ -303,7 +308,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/extended_barrel
 	name = "extended barrel"
-	desc = "A lengthened barrel allows for greater accuracy, particularly at long range.\nHowever, natural resistance also slows the bullet, leading to slightly reduced damage."
+	desc = "A lengthened barrel allows for lessened scatter, greater accuracy and muzzle velocity due to increased stabilization and shockwave exposure.\nHowever, this increase in velocity reduces tumbling, leading to slightly reduced damage."
 	slot = "muzzle"
 	icon_state = "ebarrel"
 	attach_icon = "ebarrel_a"
@@ -311,16 +316,16 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/extended_barrel/New()
 	..()
 	accuracy_mod = config.med_hit_accuracy_mult
+	accuracy_unwielded_mod = config.low_hit_accuracy_mult
+	attach_shell_speed_mod = config.min_shell_speed
 	damage_mod = -config.min_hit_damage_mult
 	scatter_mod = -config.min_scatter_value
 	size_mod = 1
 
 
-
-
 /obj/item/attachable/heavy_barrel
 	name = "barrel charger"
-	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile damage at the cost of accuracy and firing speed."
+	desc = "A fitted barrel extender that goes on the muzzle, with a small shaped charge that propels a bullet much faster.\nGreatly increases projectile damage and increases projectile speed at the cost of accuracy and firing speed."
 	slot = "muzzle"
 	icon_state = "hbarrel"
 	attach_icon = "hbarrel_a"
@@ -329,6 +334,7 @@ Defined in conflicts.dm of the #defines folder.
 	..()
 	accuracy_mod = -config.hmed_hit_accuracy_mult
 	damage_mod = config.hmed_hit_damage_mult
+	attach_shell_speed_mod = config.slow_shell_speed //increases projectile speed by +1
 	delay_mod = config.low_fire_delay
 	accuracy_unwielded_mod = -config.high_hit_accuracy_mult
 
@@ -401,7 +407,7 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/reddot/New()
 	..()
 	accuracy_mod = config.med_hit_accuracy_mult
-	accuracy_unwielded_mod = config.min_hit_accuracy_mult
+	accuracy_unwielded_mod = config.low_hit_accuracy_mult
 	movement_acc_penalty_mod = -config.min_movement_acc_penalty
 
 
@@ -495,6 +501,8 @@ Defined in conflicts.dm of the #defines folder.
 	attachment_action_type = /datum/action/item_action/toggle
 	var/zoom_offset = 11
 	var/zoom_viewsize = 12
+	var/zoom_accuracy = SCOPE_RAIL
+
 
 /obj/item/attachable/scope/New()
 	..()
@@ -505,7 +513,6 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/scope/activate_attachment(obj/item/weapon/gun/G, mob/living/carbon/user, turn_off)
 	if(turn_off)
 		if(G.zoom)
-			accuracy_mod = null
 			G.zoom(user, zoom_offset, zoom_viewsize)
 		return TRUE
 
@@ -514,7 +521,6 @@ Defined in conflicts.dm of the #defines folder.
 			to_chat(user, "<span class='warning'>You must hold [G] with two hands to use [src].</span>")
 		return FALSE
 	else
-		accuracy_mod = config.high_hit_accuracy_mult
 		G.zoom(user, zoom_offset, zoom_viewsize)
 	return TRUE
 
@@ -528,26 +534,11 @@ Defined in conflicts.dm of the #defines folder.
 	wield_delay_mod = WIELD_DELAY_FAST
 	zoom_offset = 5
 	zoom_viewsize = 7
+	zoom_accuracy = SCOPE_RAIL_MINI
 
-/obj/item/attachable/scope/mini/New()
+/obj/item/attachable/scope/New()
 	..()
-	burst_delay_mod = config.low_fire_delay
-
-/obj/item/attachable/scope/mini/activate_attachment(obj/item/weapon/gun/G, mob/living/carbon/user, turn_off)
-	if(turn_off)
-		if(G.zoom)
-			accuracy_mod = -config.low_hit_accuracy_mult
-			G.zoom(user, zoom_offset, zoom_viewsize)
-		return TRUE
-
-	if(!G.zoom && !(G.flags_item & WIELDED))
-		if(user)
-			to_chat(user, "<span class='warning'>You must hold [G] with two hands to use [src].</span>")
-		return FALSE
-	else
-		accuracy_mod = config.low_hit_accuracy_mult
-		G.zoom(user, zoom_offset, zoom_viewsize)
-	return TRUE
+	movement_acc_penalty_mod = config.min_movement_acc_penalty
 
 /obj/item/attachable/scope/m4ra
 	name = "m4ra rail scope"
@@ -555,14 +546,15 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "sniperscope_a"
 	desc = "A rail mounted zoom sight scope specialized for the M4RA Battle Rifle . Allows zoom by activating the attachment. Use F12 if your HUD doesn't come back."
 
-/obj/item/attachable/scope/m4ra/New()
-	..()
-	burst_delay_mod = null
+/obj/item/attachable/scope/m42a
+	name = "m42a rail scope"
+	icon_state = "sniperscope"
+	attach_icon = "sniperscope_a"
+	desc = "A rail mounted zoom sight scope specialized for the M42A Sniper Rifle . Allows zoom by activating the attachment. Can activate its targeting laser while zoomed to take aim for increased damage and penetration. Use F12 if your HUD doesn't come back."
+	zoom_accuracy = SCOPE_RAIL_SNIPER
 
 /obj/item/attachable/scope/slavic
 	icon_state = "slavicscope"
-
-
 
 //////////// Stock attachments ////////////////////////////
 
@@ -692,6 +684,17 @@ Defined in conflicts.dm of the #defines folder.
 	accuracy_unwielded_mod = config.min_hit_accuracy_mult
 	recoil_unwielded_mod = -config.min_recoil_value
 	scatter_unwielded_mod = -config.min_scatter_value
+
+
+/obj/item/attachable/stock/lasgun
+	name = "\improper M43 Sunfury lasgun stock"
+	desc = "The standard stock for the M43 Sunfury lasgun."
+	slot = "stock"
+	wield_delay_mod = null
+	icon_state = "laserstock"
+	attach_icon = "laserstock"
+	pixel_shift_x = 41
+	pixel_shift_y = 10
 
 
 ////////////// Underbarrel Attachments ////////////////////////////////////
@@ -1046,7 +1049,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/gyro
 	name = "gyroscopic stabilizer"
-	desc = "A set of weights and balances to stabilize the weapon when shooting one-handed, burst firing or moving. Greatly reduces movement penalties to accuracy. Significantly reduces burst scatter, and one-handed recoil and scatter."
+	desc = "A set of weights and balances to stabilize the weapon when burst firing or moving, especially while shooting one-handed. Greatly reduces movement penalties to accuracy. Significantly reduces burst scatter, recoil and general scatter."
 	icon_state = "gyro"
 	attach_icon = "gyro_a"
 	slot = "under"
@@ -1054,8 +1057,10 @@ Defined in conflicts.dm of the #defines folder.
 /obj/item/attachable/gyro/New()
 	..()
 	burst_scatter_mod = -config.low_burst_scatter_penalty
+	scatter_mod = -config.mlow_scatter_value
+	recoil_mod = -config.min_recoil_value
 	movement_acc_penalty_mod = -config.med_movement_acc_penalty
-	scatter_unwielded_mod = -config.low_scatter_value
+	scatter_unwielded_mod = -config.med_scatter_value
 	accuracy_unwielded_mod = config.min_hit_accuracy_mult
 	recoil_unwielded_mod = -config.low_recoil_value
 
@@ -1070,8 +1075,8 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/lasersight/New()
 	..()
-	accuracy_mod = config.min_hit_accuracy_mult
-	movement_acc_penalty_mod = -config.min_burst_scatter_penalty
+	accuracy_mod = config.low_hit_accuracy_mult
+	movement_acc_penalty_mod = -config.min_movement_acc_penalty
 	accuracy_unwielded_mod = config.med_hit_accuracy_mult
 
 
@@ -1162,11 +1167,11 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/burstfire_assembly/New()
 	..()
-	accuracy_mod = -config.med_hit_accuracy_mult
+	accuracy_mod = -config.mlow_hit_accuracy_mult
 	burst_mod = config.low_burst_value
 	scatter_mod = config.low_scatter_value
 
-	accuracy_unwielded_mod = -config.hmed_hit_accuracy_mult
+	accuracy_unwielded_mod = -config.med_hit_accuracy_mult
 	scatter_unwielded_mod = config.med_scatter_value
 
 
@@ -1199,3 +1204,11 @@ Defined in conflicts.dm of the #defines folder.
 	return TRUE
 
 
+/obj/item/weapon/gun/zoom(mob/living/user, tileoffset = 11, viewsize = 12) //this is so the accuracy modifiers for the scopes apply correctly
+	. = ..()
+	if(istype(rail,/obj/item/attachable/scope))
+		var/obj/item/attachable/scope/S = rail
+		if(zoom)
+			S.accuracy_mod = S.zoom_accuracy
+		else
+			S.accuracy_mod = 0

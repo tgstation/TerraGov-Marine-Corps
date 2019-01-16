@@ -53,8 +53,8 @@
 			Stun(rand(1,5))
 	flash_eyes(1, TRUE, type = /obj/screen/fullscreen/flash/noise)
 
-	to_chat(src, "\red <B>*BZZZT*</B>")
-	to_chat(src, "\red Warning: Electromagnetic pulse detected.")
+	to_chat(src, "<span class='danger'>*BZZZT*</span>")
+	to_chat(src, "<span class='warning'>Warning: Electromagnetic pulse detected.</span>")
 	..()
 
 /mob/living/silicon/stun_effect_act(var/stun_amount, var/agony_amount)
@@ -69,9 +69,9 @@
 
 		shock_damage *= 0.75	//take reduced damage
 		take_overall_damage(0, shock_damage)
-		visible_message("\red [src] was shocked by \the [source]!", \
-			"\red <B>Energy pulse detected, system damaged!</B>", \
-			"\red You hear an electrical crack")
+		visible_message("<span class='warning'> [src] was shocked by \the [source]!</span>", \
+			"<span class='danger'>Energy pulse detected, system damaged!</span>", \
+			"<span class='warning'> You hear an electrical crack</span>")
 		if(prob(20))
 			Stun(2)
 		return
@@ -80,7 +80,7 @@
 	return
 
 /mob/living/silicon/IsAdvancedToolUser()
-	return 1
+	return TRUE
 
 /mob/living/silicon/apply_effect(var/effect = 0,var/effecttype = STUN, var/blocked = 0)
 	return 0//The only effect that can hit them atm is flashes and they still directly edit so this works for now
@@ -196,11 +196,11 @@
 	if(HUD_toggled[HUD_nbr])
 		HUD_toggled[HUD_nbr] = 0
 		H.remove_hud_from(src)
-		to_chat(src, "\blue <B>[hud_choice] Disabled</B>")
+		to_chat(src, "<span class='boldnotice'>[hud_choice] Disabled</span>")
 	else
 		HUD_toggled[HUD_nbr] = 1
 		H.add_hud_to(src)
-		to_chat(src, "\blue <B>[hud_choice] Enabled</B>")
+		to_chat(src, "<span class='boldnotice'>[hud_choice] Enabled</span>")
 
 /mob/living/silicon/verb/pose()
 	set name = "Set Pose"

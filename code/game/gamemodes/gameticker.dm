@@ -63,6 +63,7 @@ var/global/datum/controller/gameticker/ticker
 							vote.process()
 			if(pregame_timeleft <= 0)
 				current_state = GAME_STATE_SETTING_UP
+				Master.SetRunLevel(RUNLEVEL_SETUP)
 	while(!setup())
 
 
@@ -76,6 +77,7 @@ var/global/datum/controller/gameticker/ticker
 		runnable_modes = config.get_runnable_modes()
 		if(runnable_modes.len==0)
 			current_state = GAME_STATE_PREGAME
+			Master.SetRunLevel(RUNLEVEL_LOBBY)
 			to_chat(world, "<B>Unable to choose playable game mode.</B> Reverting to pre-game lobby.")
 			return FALSE
 
@@ -100,6 +102,7 @@ var/global/datum/controller/gameticker/ticker
 		qdel(mode)
 		mode = null
 		current_state = GAME_STATE_PREGAME
+		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		RoleAuthority.reset_roles()
 		return FALSE
 
@@ -108,6 +111,7 @@ var/global/datum/controller/gameticker/ticker
 		qdel(mode)
 		mode = null
 		current_state = GAME_STATE_PREGAME
+		Master.SetRunLevel(RUNLEVEL_LOBBY)
 		to_chat(world, "<B>Error setting up [master_mode].</B> Reverting to pre-game lobby.")
 		RoleAuthority.reset_roles()
 		return 0
@@ -135,6 +139,7 @@ var/global/datum/controller/gameticker/ticker
 
 
 	current_state = GAME_STATE_PLAYING
+	Master.SetRunLevel(RUNLEVEL_GAME)
 
 	callHook("roundstart")
 
@@ -153,7 +158,7 @@ var/global/datum/controller/gameticker/ticker
 		Holiday_Game_Start()
 
 	if(config.autooocmute)
-		to_chat(world, "<span class='warning'><b>The OOC channel has been globally disabled due to round start!</b></span>")
+		to_chat(world, "<span class='danger'>The OOC channel has been globally disabled due to round start!</span>")
 		ooc_allowed = FALSE
 
 	supply_controller.process()
@@ -231,6 +236,8 @@ var/global/datum/controller/gameticker/ticker
 			if(config.autooocmute && !ooc_allowed)
 				to_chat(world, "<span class='warning'><b>The OOC channel has been globally enabled due to round end!</b></span>")
 				ooc_allowed = TRUE
+
+			config.allow_synthetic_gun_use = TRUE
 
 			if(blackbox)
 				blackbox.save_all_data_to_sql()

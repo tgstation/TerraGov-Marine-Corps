@@ -49,4 +49,5 @@
 	declare_completion_announce_individual()
 	declare_completion_announce_predators()
 	declare_completion_announce_medal_awards()
+	declare_completion_announce_round_stats()
 	return 1

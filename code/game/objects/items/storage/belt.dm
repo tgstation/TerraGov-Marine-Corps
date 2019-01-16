@@ -266,6 +266,7 @@
 		"/obj/item/device/flashlight/flare",
 		"/obj/item/explosive/grenade/flare",
 		"/obj/item/ammo_magazine/rifle",
+		"/obj/item/cell/lasgun",
 		"/obj/item/ammo_magazine/smg",
 		"/obj/item/ammo_magazine/pistol",
 		"/obj/item/ammo_magazine/revolver",

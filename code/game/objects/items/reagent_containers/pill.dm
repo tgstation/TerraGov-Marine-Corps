@@ -96,7 +96,7 @@ var/global/list/randomized_pill_icons
 			to_chat(user, "<span class='warning'>[target] is full.</span>")
 			return
 
-		to_chat(user, "\blue You dissolve the pill in [target].</span>")
+		to_chat(user, "<span class='notice'>You dissolve the pill in [target].</span></span>")
 
 		var/rgt_list_text = get_reagent_list_text()
 
