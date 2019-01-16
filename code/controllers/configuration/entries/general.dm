@@ -504,8 +504,6 @@
 
 /datum/config_entry/string/server_name
 
-/datum/config_entry/number/Ticklag
-
 /datum/config_entry/string/comms_password
 
 /datum/config_entry/flag/vote_no_default

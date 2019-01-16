@@ -83,7 +83,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	if(!syndicate_code_response)	syndicate_code_response	= generate_code_phrase()
 	if(!EvacuationAuthority)		EvacuationAuthority = new
 
-	world.tick_lag = CONFIG_GET(number/Ticklag)
+	world.tick_lag = CONFIG_GET(number/ticklag)
 
 	Master.Initialize(10, FALSE, TRUE)
 
