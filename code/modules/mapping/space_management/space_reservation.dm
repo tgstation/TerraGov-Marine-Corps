@@ -14,11 +14,11 @@
 	turf_type = /turf/open/space/transit
 
 /datum/turf_reservation/proc/Release()
-	var/v = reserved_turfs.Copy()
+//	var/v = reserved_turfs.Copy()
 	for(var/i in reserved_turfs)
 		reserved_turfs -= i
 		SSmapping.used_turfs -= i
-	SSmapping.reserve_turfs(v)
+//	SSmapping.reserve_turfs(v)
 
 /datum/turf_reservation/proc/Reserve(width, height, zlevel)
 	if(width > world.maxx || height > world.maxy || width < 1 || height < 1)

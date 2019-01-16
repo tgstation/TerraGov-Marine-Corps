@@ -43,7 +43,7 @@
 
 /datum/map_report/Topic(href, href_list)
 	. = ..()
-	if(. || !check_rights(R_ADMIN, FALSE) || !usr.client.holder.CheckAdminHref(href, href_list))
+	if(. || !check_rights(R_ADMIN, FALSE)) // || !usr.client.holder.CheckAdminHref(href, href_list))
 		return
 
 	if (href_list["show"])

@@ -110,14 +110,14 @@
 	if(!mapload)
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
 		return
-	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
-	if(airlock)
-		if(airlock.cyclelinkeddir)
-			log_world("### MAP WARNING, [src] at [AREACOORD(src)] tried to set [airlock] cyclelinkeddir, but it's already set!")
-		else
-			airlock.cyclelinkeddir = dir
-	else
-		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+	//var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
+	//if(airlock)
+	//	if(airlock.cyclelinkeddir)
+	//		log_world("### MAP WARNING, [src] at [AREACOORD(src)] tried to set [airlock] cyclelinkeddir, but it's already set!")
+	//	else
+	//		airlock.cyclelinkeddir = dir
+	//else
+		//log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 
 
 /obj/effect/mapping_helpers/airlock/locked
@@ -147,11 +147,11 @@
 	if(!mapload)
 		log_world("### MAP WARNING, [src] spawned outside of mapload!")
 		return
-	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
-	if(airlock)
-		airlock.unres_sides ^= dir
-	else
-		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
+//	var/obj/machinery/door/airlock/airlock = locate(/obj/machinery/door/airlock) in loc
+//	if(airlock)
+//		airlock.unres_sides ^= dir
+//	else
+//		log_world("### MAP WARNING, [src] failed to find an airlock at [AREACOORD(src)]")
 
 
 //needs to do its thing before spawn_rivers() is called
@@ -208,4 +208,3 @@ INITIALIZE_IMMEDIATE(/obj/effect/mapping_helpers/no_lava)
 	var/datum/disease/D = new disease_type()
 	return list(component_type,D)
 	*/
-	

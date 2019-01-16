@@ -423,6 +423,11 @@
 	if(istype(mover)) // turf/Enter(...) will perform more advanced checks
 		return !density
 
+GLOBAL_LIST_INIT(blacklisted_automated_baseturfs, typecacheof(list(
+	/turf/open/space,
+	/turf/baseturf_bottom,
+	)))
+
 // Make a new turf and put it on top
 // The args behave identical to PlaceOnBottom except they go on top
 // Things placed on top of closed turfs will ignore the topmost closed turf
@@ -495,6 +500,23 @@
 	newT.baseturfs = new_baseturfs
 	return newT
 
+/turf/proc/copyTurf(turf/T)
+	if(T.type != type)
+		var/obj/O
+		if(underlays.len)	//we have underlays, which implies some sort of transparency, so we want to a snapshot of the previous turf as an underlay
+			O = new()
+			O.underlays.Add(T)
+		T.ChangeTurf(type)
+		if(underlays.len)
+			T.underlays = O.underlays
+	if(T.icon_state != icon_state)
+		T.icon_state = icon_state
+	if(T.icon != icon)
+		T.icon = icon
+	//if(T.dir != dir)//components
+	//	T.setDir(dir)
+	return T
+
 //If you modify this function, ensure it works correctly with lateloaded map templates.
 /turf/proc/AfterChange(flags) //called after a turf has been replaced in ChangeTurf()
 	levelupdate()
@@ -522,3 +544,80 @@
 	var/obj/structure/lattice/L = locate(/obj/structure/lattice, src)
 	if(L && (L.flags_atom & INITIALIZED))
 		qdel(L)
+
+// A proc in case it needs to be recreated or badmins want to change the baseturfs
+/turf/proc/assemble_baseturfs(turf/fake_baseturf_type)
+	var/static/list/created_baseturf_lists = list()
+	var/turf/current_target
+	if(fake_baseturf_type)
+		if(length(fake_baseturf_type)) // We were given a list, just apply it and move on
+			baseturfs = fake_baseturf_type
+			return
+		current_target = fake_baseturf_type
+	else
+		if(length(baseturfs))
+			return // No replacement baseturf has been given and the current baseturfs value is already a list/assembled
+		if(!baseturfs)
+			current_target = initial(baseturfs) || type // This should never happen but just in case...
+			stack_trace("baseturfs var was null for [type]. Failsafe activated and it has been given a new baseturfs value of [current_target].")
+		else
+			current_target = baseturfs
+
+	// If we've made the output before we don't need to regenerate it
+	if(created_baseturf_lists[current_target])
+		var/list/premade_baseturfs = created_baseturf_lists[current_target]
+		if(length(premade_baseturfs))
+			baseturfs = premade_baseturfs.Copy()
+		else
+			baseturfs = premade_baseturfs
+		return baseturfs
+
+	var/turf/next_target = initial(current_target.baseturfs)
+	//Most things only have 1 baseturf so this loop won't run in most cases
+	if(current_target == next_target)
+		baseturfs = current_target
+		created_baseturf_lists[current_target] = current_target
+		return current_target
+	var/list/new_baseturfs = list(current_target)
+	for(var/i=0;current_target != next_target;i++)
+		if(i > 100)
+			// A baseturfs list over 100 members long is silly
+			// Because of how this is all structured it will only runtime/message once per type
+			stack_trace("A turf <[type]> created a baseturfs list over 100 members long. This is most likely an infinite loop.")
+			message_admins("A turf <[type]> created a baseturfs list over 100 members long. This is most likely an infinite loop.")
+			break
+		new_baseturfs.Insert(1, next_target)
+		current_target = next_target
+		next_target = initial(current_target.baseturfs)
+
+	baseturfs = new_baseturfs
+	created_baseturf_lists[new_baseturfs[new_baseturfs.len]] = new_baseturfs.Copy()
+	return new_baseturfs
+
+// Take the input as baseturfs and put it underneath the current baseturfs
+// If fake_turf_type is provided and new_baseturfs is not the baseturfs list will be created identical to the turf type's
+// If both or just new_baseturfs is provided they will be inserted below the existing baseturfs
+/turf/proc/PlaceOnBottom(list/new_baseturfs, turf/fake_turf_type)
+	if(fake_turf_type)
+		if(!new_baseturfs)
+			if(!length(baseturfs))
+				baseturfs = list(baseturfs)
+			var/list/old_baseturfs = baseturfs.Copy()
+			assemble_baseturfs(fake_turf_type)
+			if(!length(baseturfs))
+				baseturfs = list(baseturfs)
+			baseturfs -= baseturfs & GLOB.blacklisted_automated_baseturfs
+			baseturfs += old_baseturfs
+			return
+		else if(!length(new_baseturfs))
+			new_baseturfs = list(new_baseturfs, fake_turf_type)
+		else
+			new_baseturfs += fake_turf_type
+	if(!length(baseturfs))
+		baseturfs = list(baseturfs)
+	baseturfs.Insert(1, new_baseturfs)
+
+/turf/baseturf_bottom
+	name = "Z-level baseturf placeholder"
+	desc = "Marker for z-level baseturf, usually resolves to space."
+	baseturfs = /turf/baseturf_bottom
