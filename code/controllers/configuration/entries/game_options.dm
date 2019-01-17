@@ -92,8 +92,6 @@
 	integer = FALSE
 
 /datum/config_entry/number/outdated_movedelay
-	deprecated_by = /datum/config_entry/keyed_list/multiplicative_movespeed
-	abstract_type = /datum/config_entry/number/outdated_movedelay
 	integer = FALSE
 	var/movedelay_type
 

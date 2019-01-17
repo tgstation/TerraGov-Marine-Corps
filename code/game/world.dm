@@ -4,8 +4,6 @@ GLOBAL_VAR(restart_counter)
 //TODO: Replace INFINITY with the version that fixes http://www.byond.com/forum/?post=2407430
 GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_build < INFINITY)
 
-/datum/global_init/New() //Legacy shitcode, leaving this in for the time being as it's out of scope.
-
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
@@ -84,8 +82,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	if(!EvacuationAuthority)		EvacuationAuthority = new
 
 	world.tick_lag = CONFIG_GET(number/ticklag)
-
-	Master.Initialize(10, FALSE, TRUE)
 
 	spawn(3000)		//so we aren't adding to the round-start lag
 		if(CONFIG_GET(flag/ToRban))
