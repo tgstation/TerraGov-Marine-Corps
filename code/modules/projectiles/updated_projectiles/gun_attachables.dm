@@ -611,10 +611,10 @@ Defined in conflicts.dm of the #defines folder.
 	name = "\improper ZX-76 tactical stock"
 	desc = "A standard polymer stock for the ZX-76 assault shotgun. Designed for maximum ease of use in close quarters."
 	icon_state = "zx_stock"
-	wield_delay_mod = null
+	wield_delay_mod = 0
 
 /obj/item/attachable/stock/scout/New()
-	..()
+	. = ..()
 	accuracy_mod = config.min_hit_accuracy_mult
 	recoil_mod = -config.min_recoil_value
 	scatter_mod = -config.min_scatter_value

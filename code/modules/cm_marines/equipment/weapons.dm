@@ -394,7 +394,7 @@
 	spec_set = "scout"
 
 /obj/item/storage/box/spec/scout/New()
-	..()
+	. = ..()
 	spawn(1)
 		new /obj/item/clothing/suit/storage/marine/M3S(src)
 		new /obj/item/clothing/head/helmet/marine/scout(src)
@@ -433,7 +433,7 @@
 	spec_set = "scout"
 
 /obj/item/storage/box/spec/scoutshotgun/New()
-	..()
+	. = ..()
 	spawn(1)
 		new /obj/item/clothing/suit/storage/marine/M3S(src)
 		new /obj/item/clothing/head/helmet/marine/scout(src)
