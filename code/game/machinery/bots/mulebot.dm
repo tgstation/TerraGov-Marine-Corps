@@ -69,8 +69,8 @@
 
 	var/bloodiness = 0		// count of bloodiness
 
-/obj/machinery/bot/mulebot/New()
-	..()
+/obj/machinery/bot/mulebot/Initialize()
+	. = ..()
 	botcard = new(src)
 	var/datum/job/J = RoleAuthority ? RoleAuthority.roles_by_path[/datum/job/logistics/tech/cargo] : new /datum/job/logistics/tech/cargo
 	botcard.access = J.get_access()

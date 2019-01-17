@@ -611,7 +611,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if (!processing)
 		return
 	var/client_count = length(clients)
-	if (client_count < CONFIG_GET(number/disable_high_pop_mc_mode_amount))
-		processing = CONFIG_GET(number/base_mc_tick_rate)
-	else if (client_count > CONFIG_GET(number/high_pop_mc_mode_amount))
-		processing = CONFIG_GET(number/high_pop_mc_tick_rate)
+	if (client_count < CONFIG_GET(number/mc_tick_rate/disable_high_pop_mc_mode_amount))
+		processing = CONFIG_GET(number/mc_tick_rate/base_mc_tick_rate)
+	else if (client_count > CONFIG_GET(number/mc_tick_rate/high_pop_mc_mode_amount))
+		processing = CONFIG_GET(number/mc_tick_rate/high_pop_mc_tick_rate)

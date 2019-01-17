@@ -254,8 +254,8 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 16
 	attach_icon = "suppressor_a"
 
-/obj/item/attachable/suppressor/New()
-	..()
+/obj/item/attachable/suppressor/Initialize()
+	. = ..()
 	accuracy_mod = CONFIG_GET(number/low_hit_accuracy_mult)
 	damage_mod = -CONFIG_GET(number/min_hit_damage_mult)
 	recoil_mod = -CONFIG_GET(number/min_recoil_value)
@@ -300,8 +300,8 @@ Defined in conflicts.dm of the #defines folder.
 	else
 		return ..()
 
-/obj/item/attachable/bayonet/New()
-	..()
+/obj/item/attachable/bayonet/Initialize()
+	. = ..()
 	accuracy_mod = -CONFIG_GET(number/min_hit_accuracy_mult)
 	accuracy_unwielded_mod = -CONFIG_GET(number/min_hit_accuracy_mult)
 	size_mod = 1
@@ -313,8 +313,8 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "ebarrel"
 	attach_icon = "ebarrel_a"
 
-/obj/item/attachable/extended_barrel/New()
-	..()
+/obj/item/attachable/extended_barrel/Initialize()
+	. = ..()
 	accuracy_mod = CONFIG_GET(number/med_hit_accuracy_mult)
 	accuracy_unwielded_mod = CONFIG_GET(number/low_hit_accuracy_mult)
 	attach_shell_speed_mod = CONFIG_GET(number/min_shell_speed)
@@ -330,8 +330,8 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "hbarrel"
 	attach_icon = "hbarrel_a"
 
-/obj/item/attachable/heavy_barrel/New()
-	..()
+/obj/item/attachable/heavy_barrel/Initialize()
+	. = ..()
 	accuracy_mod = -CONFIG_GET(number/hmed_hit_accuracy_mult)
 	damage_mod = CONFIG_GET(number/hmed_hit_damage_mult)
 	attach_shell_speed_mod = CONFIG_GET(number/slow_shell_speed) //increases projectile speed by +1
@@ -347,8 +347,8 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "comp_a"
 	pixel_shift_x = 17
 
-/obj/item/attachable/compensator/New()
-	..()
+/obj/item/attachable/compensator/Initialize()
+	. = ..()
 	scatter_mod = -CONFIG_GET(number/med_scatter_value)
 	damage_mod = -CONFIG_GET(number/min_hit_damage_mult)
 	recoil_mod = -CONFIG_GET(number/med_recoil_value)
@@ -366,8 +366,8 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 16
 	flags_attach_features = NOFLAGS
 
-/obj/item/attachable/slavicbarrel/New()
-	..()
+/obj/item/attachable/slavicbarrel/Initialize()
+	. = ..()
 	accuracy_mod = CONFIG_GET(number/min_hit_accuracy_mult)
 	scatter_mod = -CONFIG_GET(number/low_scatter_value)
 
@@ -378,8 +378,8 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "muzzle"
 	flags_attach_features = NOFLAGS
 
-/obj/item/attachable/sniperbarrel/New()
-	..()
+/obj/item/attachable/sniperbarrel/Initialize()
+	. = ..()
 	accuracy_mod = CONFIG_GET(number/low_hit_accuracy_mult)
 	scatter_mod = -CONFIG_GET(number/low_scatter_value)
 
@@ -404,8 +404,8 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "reddot_a"
 	slot = "rail"
 
-/obj/item/attachable/reddot/New()
-	..()
+/obj/item/attachable/reddot/Initialize()
+	. = ..()
 	accuracy_mod = CONFIG_GET(number/med_hit_accuracy_mult)
 	accuracy_unwielded_mod = CONFIG_GET(number/low_hit_accuracy_mult)
 	movement_acc_penalty_mod = -CONFIG_GET(number/min_movement_acc_penalty)
@@ -470,8 +470,8 @@ Defined in conflicts.dm of the #defines folder.
 	icon_state = "autoloader"
 	attach_icon = "autoloader_a"
 
-/obj/item/attachable/quickfire/New()
-	..()
+/obj/item/attachable/quickfire/Initialize()
+	. = ..()
 	accuracy_mod = -CONFIG_GET(number/med_hit_accuracy_mult)
 	scatter_mod = CONFIG_GET(number/min_scatter_value)
 	delay_mod = -CONFIG_GET(number/min_fire_delay)
@@ -504,8 +504,8 @@ Defined in conflicts.dm of the #defines folder.
 	var/zoom_accuracy = SCOPE_RAIL
 
 
-/obj/item/attachable/scope/New()
-	..()
+/obj/item/attachable/scope/Initialize()
+	. = ..()
 	movement_acc_penalty_mod = CONFIG_GET(number/low_movement_acc_penalty)
 	accuracy_unwielded_mod = -CONFIG_GET(number/min_hit_accuracy_mult)
 
@@ -536,8 +536,8 @@ Defined in conflicts.dm of the #defines folder.
 	zoom_viewsize = 7
 	zoom_accuracy = SCOPE_RAIL_MINI
 
-/obj/item/attachable/scope/New()
-	..()
+/obj/item/attachable/scope/Initialize()
+	. = ..()
 	movement_acc_penalty_mod = CONFIG_GET(number/min_movement_acc_penalty)
 
 /obj/item/attachable/scope/m4ra
@@ -578,8 +578,8 @@ Defined in conflicts.dm of the #defines folder.
 	matter = null
 	icon_state = "stock"
 
-/obj/item/attachable/stock/shotgun/New()
-	..()
+/obj/item/attachable/stock/shotgun/Initialize()
+	. = ..()
 	accuracy_mod = CONFIG_GET(number/low_hit_accuracy_mult)
 	recoil_mod = -CONFIG_GET(number/med_recoil_value)
 	scatter_mod = -CONFIG_GET(number/med_scatter_value)
@@ -592,8 +592,8 @@ Defined in conflicts.dm of the #defines folder.
 	desc = "A sturdy polymer stock for the MK221 shotgun. Supplied in limited numbers and moderately encumbering, it provides an ergonomic surface to ease perceived recoil and usability."
 	icon_state = "tactical_stock"
 
-/obj/item/attachable/stock/tactical/New()
-	..()
+/obj/item/attachable/stock/tactical/Initialize()
+	. = ..()
 	accuracy_mod = CONFIG_GET(number/min_hit_accuracy_mult)
 	recoil_mod = -CONFIG_GET(number/med_recoil_value)
 	scatter_mod = -CONFIG_GET(number/med_scatter_value)
@@ -609,8 +609,8 @@ Defined in conflicts.dm of the #defines folder.
 	matter = null
 	flags_attach_features = NOFLAGS
 
-/obj/item/attachable/stock/slavic/New()
-	..()
+/obj/item/attachable/stock/slavic/Initialize()
+	. = ..()
 	accuracy_mod = CONFIG_GET(number/min_hit_accuracy_mult)
 	recoil_mod = -CONFIG_GET(number/med_recoil_value)
 	scatter_mod = -CONFIG_GET(number/med_scatter_value)
@@ -628,8 +628,8 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_x = 41
 	pixel_shift_y = 10
 
-/obj/item/attachable/stock/rifle/New()
-	..()
+/obj/item/attachable/stock/rifle/Initialize()
+	. = ..()
 	accuracy_mod = CONFIG_GET(number/min_hit_accuracy_mult)
 	recoil_mod = -CONFIG_GET(number/med_recoil_value)
 	scatter_mod = -CONFIG_GET(number/med_scatter_value)
@@ -654,8 +654,8 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_x = 39
 	pixel_shift_y = 11
 
-/obj/item/attachable/stock/smg/New()
-	..()
+/obj/item/attachable/stock/smg/Initialize()
+	. = ..()
 	accuracy_mod = CONFIG_GET(number/low_hit_accuracy_mult)
 	recoil_mod = -CONFIG_GET(number/med_recoil_value)
 	scatter_mod = -CONFIG_GET(number/med_scatter_value)
@@ -674,8 +674,8 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_y = 19
 	matter = null
 
-/obj/item/attachable/stock/revolver/New()
-	..()
+/obj/item/attachable/stock/revolver/Initialize()
+	. = ..()
 	accuracy_mod = CONFIG_GET(number/low_hit_accuracy_mult)
 	recoil_mod = -CONFIG_GET(number/med_recoil_value)
 	scatter_mod = -CONFIG_GET(number/med_scatter_value)
@@ -710,8 +710,8 @@ Defined in conflicts.dm of the #defines folder.
 	var/fire_sound = null //Sound to play when firing it alternately
 
 
-/obj/item/attachable/attached_gun/New() //Let's make sure if something needs an ammo type, it spawns with one.
-	..()
+/obj/item/attachable/attached_gun/Initialize() //Let's make sure if something needs an ammo type, it spawns with one.
+	. = ..()
 	if(ammo)
 		ammo = ammo_list[ammo]
 
@@ -756,8 +756,8 @@ Defined in conflicts.dm of the #defines folder.
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 	var/list/loaded_grenades //list of grenade types loaded in the UGL
 
-/obj/item/attachable/attached_gun/grenade/New()
-	..()
+/obj/item/attachable/attached_gun/grenade/Initialize()
+	. = ..()
 	attachment_firing_delay = CONFIG_GET(number/max_fire_delay) * 3
 	loaded_grenades = list()
 
@@ -827,8 +827,8 @@ Defined in conflicts.dm of the #defines folder.
 	fire_sound = 'sound/weapons/gun_flamethrower3.ogg'
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_RELOADABLE|ATTACH_WEAPON
 
-/obj/item/attachable/attached_gun/flamer/New()
-	..()
+/obj/item/attachable/attached_gun/flamer/Initialize()
+	. = ..()
 	attachment_firing_delay = CONFIG_GET(number/max_fire_delay) * 5
 
 /obj/item/attachable/attached_gun/flamer/examine(mob/user)
@@ -974,8 +974,8 @@ Defined in conflicts.dm of the #defines folder.
 	type_of_casings = "shell"
 	flags_attach_features = ATTACH_REMOVABLE|ATTACH_ACTIVATION|ATTACH_PROJECTILE|ATTACH_RELOADABLE|ATTACH_WEAPON
 
-/obj/item/attachable/attached_gun/shotgun/New()
-	..()
+/obj/item/attachable/attached_gun/shotgun/Initialize()
+	. = ..()
 	attachment_firing_delay = CONFIG_GET(number/mhigh_fire_delay) * 3
 
 /obj/item/attachable/attached_gun/shotgun/examine(mob/user)
@@ -1014,8 +1014,8 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "under"
 	pixel_shift_x = 20
 
-/obj/item/attachable/verticalgrip/New()
-	..()
+/obj/item/attachable/verticalgrip/Initialize()
+	. = ..()
 	accuracy_mod = CONFIG_GET(number/min_hit_accuracy_mult)
 	recoil_mod = -CONFIG_GET(number/low_recoil_value)
 	scatter_mod = -CONFIG_GET(number/min_scatter_value)
@@ -1035,8 +1035,8 @@ Defined in conflicts.dm of the #defines folder.
 	slot = "under"
 	pixel_shift_x = 20
 
-/obj/item/attachable/angledgrip/New()
-	..()
+/obj/item/attachable/angledgrip/Initialize()
+	. = ..()
 	recoil_mod = -CONFIG_GET(number/min_recoil_value)
 	accuracy_mod = CONFIG_GET(number/min_hit_accuracy_mult)
 	scatter_mod = -CONFIG_GET(number/min_scatter_value)
@@ -1052,8 +1052,8 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "gyro_a"
 	slot = "under"
 
-/obj/item/attachable/gyro/New()
-	..()
+/obj/item/attachable/gyro/Initialize()
+	. = ..()
 	burst_scatter_mod = -CONFIG_GET(number/low_burst_scatter_penalty)
 	scatter_mod = -CONFIG_GET(number/mlow_scatter_value)
 	recoil_mod = -CONFIG_GET(number/min_recoil_value)
@@ -1071,8 +1071,8 @@ Defined in conflicts.dm of the #defines folder.
 	pixel_shift_x = 17
 	pixel_shift_y = 17
 
-/obj/item/attachable/lasersight/New()
-	..()
+/obj/item/attachable/lasersight/Initialize()
+	. = ..()
 	accuracy_mod = CONFIG_GET(number/low_hit_accuracy_mult)
 	movement_acc_penalty_mod = -CONFIG_GET(number/min_movement_acc_penalty)
 	accuracy_unwielded_mod = CONFIG_GET(number/med_hit_accuracy_mult)
@@ -1093,8 +1093,8 @@ Defined in conflicts.dm of the #defines folder.
 	attachment_action_type = /datum/action/item_action/toggle
 
 
-/obj/item/attachable/bipod/New()
-	..()
+/obj/item/attachable/bipod/Initialize()
+	. = ..()
 	size_mod = 1
 
 /obj/item/attachable/bipod/activate_attachment(obj/item/weapon/gun/G,mob/living/user, turn_off)
@@ -1163,8 +1163,8 @@ Defined in conflicts.dm of the #defines folder.
 	attach_icon = "rapidfire_a"
 	slot = "under"
 
-/obj/item/attachable/burstfire_assembly/New()
-	..()
+/obj/item/attachable/burstfire_assembly/Initialize()
+	. = ..()
 	accuracy_mod = -CONFIG_GET(number/mlow_hit_accuracy_mult)
 	burst_mod = CONFIG_GET(number/low_burst_value)
 	scatter_mod = CONFIG_GET(number/low_scatter_value)

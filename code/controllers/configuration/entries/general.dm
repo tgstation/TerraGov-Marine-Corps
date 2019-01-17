@@ -776,14 +776,6 @@
 
 /datum/config_entry/number/max_proj_variance
 
-/datum/config_entry/number/disable_high_pop_mc_mode_amount
-
-/datum/config_entry/number/base_mc_tick_rate
-
-/datum/config_entry/number/high_pop_mc_mode_amount
-
-/datum/config_entry/number/high_pop_mc_tick_rate
-
 /datum/config_entry/number/vote_autogamemode_timeleft
 
 /datum/config_entry/flag/autooocmute
