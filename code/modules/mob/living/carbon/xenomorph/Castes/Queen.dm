@@ -243,8 +243,8 @@
 /mob/living/carbon/Xenomorph/Queen/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/Xenomorph/Queen/New()
-	..()
+/mob/living/carbon/Xenomorph/Queen/Initialize()
+	. = ..()
 	if(z != ADMIN_Z_LEVEL)//so admins can safely spawn Queens in Thunderdome for tests.
 		if(hivenumber && hivenumber <= hive_datum.len)
 			var/datum/hive_status/hive = hive_datum[hivenumber]

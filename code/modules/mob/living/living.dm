@@ -95,7 +95,7 @@
 /mob/living/update_stat()
 	update_cloak()
 
-/mob/living/New()
+/mob/living/Initialize()
 	..()
 	attack_icon = image("icon" = 'icons/effects/attacks.dmi',"icon_state" = "", "layer" = 0)
 

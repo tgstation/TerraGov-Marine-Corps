@@ -31,11 +31,11 @@
 
 	holder_type = /obj/item/holder/drone
 
-/mob/living/silicon/robot/drone/New()
+/mob/living/silicon/robot/drone/Initialize()
 
 	nicknumber = rand(100,999)
 
-	..()
+	. = ..()
 
 
 	verbs += /mob/living/proc/hide
