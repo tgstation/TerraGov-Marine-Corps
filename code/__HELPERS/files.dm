@@ -3,7 +3,6 @@
 /proc/return_file_text(filename)
 	if(fexists(filename) == 0)
 		CRASH("File not found ([filename])")
-		return
 
 	var/text = file2text(filename)
 	if(!text)
