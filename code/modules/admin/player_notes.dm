@@ -127,7 +127,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	infos += P
 	to_chat(info, infos)
 
-	message_admins("\blue [key_name_admin(usr)] has edited [key]'s notes: [sanitize(note)]")
+	message_admins("<span class='notice'> [key_name_admin(usr)] has edited [key]'s notes: [sanitize(note)]</span>")
 	log_admin("[key_name_admin(usr)] has edited [key]'s notes: [sanitize(note)]")
 
 	qdel(info)
@@ -156,7 +156,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 	infos.Remove(item)
 	to_chat(info, infos)
 
-	message_admins("\blue [key_name_admin(usr)] deleted one of [key]'s notes.")
+	message_admins("<span class='notice'> [key_name_admin(usr)] deleted one of [key]'s notes.</span>")
 	log_admin("[key_name_admin(usr)] deleted one of [key]'s notes.")
 
 	qdel(info)
@@ -174,7 +174,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 
 	to_chat(info, infos)
 
-	message_admins("\blue [key_name_admin(usr)] has hidden one of [key]'s notes.")
+	message_admins("<span class='notice'> [key_name_admin(usr)] has hidden one of [key]'s notes.</span>")
 	log_admin("[key_name_admin(usr)] has hidden one of [key]'s notes.")
 
 	qdel(info)
@@ -192,7 +192,7 @@ datum/admins/proc/notes_gethtml(var/ckey)
 
 	to_chat(info, infos)
 
-	message_admins("\blue [key_name_admin(usr)] has made one of [key]'s notes visible.")
+	message_admins("<span class='notice'> [key_name_admin(usr)] has made one of [key]'s notes visible.</span>")
 	log_admin("[key_name_admin(usr)] has made one of [key]'s notes visible.")
 
 	qdel(info)

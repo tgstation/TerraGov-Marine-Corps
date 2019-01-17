@@ -13,8 +13,8 @@
 	var/brightness_on = 5 //luminosity when on
 	var/raillight_compatible = TRUE //Can this be turned into a rail light ?
 
-/obj/item/device/flashlight/initialize()
-	..()
+/obj/item/device/flashlight/Initialize()
+	. = ..()
 	if(on)
 		icon_state = "[initial(icon_state)]-on"
 		SetLuminosity(brightness_on)

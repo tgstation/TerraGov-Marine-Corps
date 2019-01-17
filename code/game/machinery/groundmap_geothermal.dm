@@ -99,7 +99,7 @@
 	if(!anchored) return 0 //Shouldn't actually be possible
 	if(user.is_mob_incapacitated()) return 0
 	if(!ishuman(user))
-		to_chat(user, "\red You have no idea how to use that.")
+		to_chat(user, "<span class='warning'>You have no idea how to use that.</span>")
 		return 0
 
 	add_fingerprint(user)

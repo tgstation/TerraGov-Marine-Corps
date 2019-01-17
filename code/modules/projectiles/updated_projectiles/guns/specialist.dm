@@ -33,8 +33,8 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 
-/obj/item/weapon/gun/rifle/sniper/M42A/New()
-	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a") )
+/obj/item/weapon/gun/rifle/sniper/M42A/Initialize()
+	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a"))
 	. = ..()
 	var/obj/item/attachable/scope/m42a/S = new(src)
 	S.attach_icon = "" //Let's make it invisible. The sprite already has one.
@@ -193,7 +193,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
-/obj/item/weapon/gun/rifle/sniper/elite/New()
+/obj/item/weapon/gun/rifle/sniper/elite/Initialize()
 	. = ..()
 	var/obj/item/attachable/scope/S = new(src)
 	S.icon_state = "pmcscope"
@@ -244,7 +244,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
-/obj/item/weapon/gun/rifle/sniper/svd/New()
+/obj/item/weapon/gun/rifle/sniper/svd/Initialize()
 	. = ..()
 	var/obj/item/attachable/S = new /obj/item/attachable/scope/slavic(src)
 	S.Attach(src)
@@ -288,7 +288,7 @@
 	gun_skill_category = GUN_SKILL_SPEC
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
-/obj/item/weapon/gun/rifle/m4ra/New()
+/obj/item/weapon/gun/rifle/m4ra/Initialize()
 	. = ..()
 	var/obj/item/attachable/scope/m4ra/S = new(src)
 	S.icon_state = null // the gun's sprite already shows a scope
@@ -342,7 +342,7 @@
 	starting_attachment_types = list(/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 17, "rail_y" = 17, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
 
-/obj/item/weapon/gun/smartgun/New()
+/obj/item/weapon/gun/smartgun/Initialize()
 	. = ..()
 	ammo_secondary = ammo_list[ammo_secondary]
 
@@ -468,8 +468,7 @@
 	var/datum/effect_system/smoke_spread/smoke
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
-/obj/item/weapon/gun/launcher/m92/New()
-	set waitfor = 0
+/obj/item/weapon/gun/launcher/m92/Initialize()
 	. = ..()
 	sleep(1)
 	grenades += new /obj/item/explosive/grenade/frag(src)
@@ -493,7 +492,7 @@
 	if(grenades.len)
 		if(get_dist(user, src) > 2 && user != loc)
 			return
-		to_chat(user, "\blue It is loaded with <b>[grenades.len] / [max_grenades]</b> grenades.")
+		to_chat(user, "<span class='notice'> It is loaded with <b>[grenades.len] / [max_grenades]</b> grenades.</span>")
 
 
 /obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user)
@@ -608,7 +607,7 @@
 	var/riot_version
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
-/obj/item/weapon/gun/launcher/m81/New(loc, spawn_empty)
+/obj/item/weapon/gun/launcher/m81/Initialize(loc, spawn_empty)
 	set waitfor = 0
 	. = ..()
 	if(!spawn_empty)
@@ -630,7 +629,7 @@
 	if(grenade)
 		if(get_dist(user, src) > 2 && user != loc)
 			return
-		to_chat(user, "\blue It is loaded with a grenade.")
+		to_chat(user, "<span class='notice'> It is loaded with a grenade.</span>")
 
 
 /obj/item/weapon/gun/launcher/m81/attackby(obj/item/I, mob/user)
@@ -739,7 +738,7 @@
 	var/datum/effect_system/smoke_spread/smoke
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
-/obj/item/weapon/gun/launcher/rocket/New()
+/obj/item/weapon/gun/launcher/rocket/Initialize()
 	. = ..()
 	smoke = new()
 	smoke.attach(src)

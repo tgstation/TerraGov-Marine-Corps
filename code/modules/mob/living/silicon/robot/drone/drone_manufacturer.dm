@@ -87,11 +87,11 @@
 
 
 	if(ticker.current_state < GAME_STATE_PLAYING)
-		to_chat(src, "\red The game hasn't started yet!")
+		to_chat(src, "<span class='warning'>The game hasn't started yet!</span>")
 		return
 
 	if(!(config.allow_drone_spawn))
-		to_chat(src, "\red That verb is not currently permitted.")
+		to_chat(src, "<span class='warning'>That verb is not currently permitted.</span>")
 		return
 
 	if (!src.stat)
@@ -101,14 +101,14 @@
 		return 0 //something is terribly wrong
 
 	if(jobban_isbanned(src,"Cyborg"))
-		to_chat(usr, "\red You are banned from playing synthetics and cannot spawn as a drone.")
+		to_chat(usr, "<span class='warning'>You are banned from playing synthetics and cannot spawn as a drone.</span>")
 		return
 
 	var/deathtime = world.time - src.timeofdeath
 //	if(istype(src,/mob/dead/observer))
 //		var/mob/dead/observer/G = src
 //		if(G.has_enabled_antagHUD == 1 && config.antag_hud_restricted)
-//			to_chat(usr, "\blue <B>Upon using the antagHUD you forfeighted the ability to join the round.</B>")
+//			to_chat(usr, "<span class='boldnotice'>Upon using the antagHUD you forfeighted the ability to join the round.</span>")
 //			return
 
 	var/deathtimeminutes = round(deathtime / 600)
@@ -131,7 +131,7 @@
 			continue
 
 		if(DF.count_drones() >= config.max_maint_drones)
-			to_chat(src, "\red There are too many active drones in the world for you to spawn.")
+			to_chat(src, "<span class='warning'>There are too many active drones in the world for you to spawn.</span>")
 			return
 
 		if(DF.drone_progress >= 100)

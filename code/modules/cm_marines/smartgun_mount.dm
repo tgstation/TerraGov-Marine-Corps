@@ -174,7 +174,7 @@
 		to_chat(user, "You begin mounting [MG]..")
 		if(do_after(user,30, TRUE, 5, BUSY_ICON_BUILD) && !gun_mounted && anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-			user.visible_message("\blue [user] installs [MG] into place.","\blue You install [MG] into place.")
+			user.visible_message("<span class='notice'> [user] installs [MG] into place.</span>","<span class='notice'> You install [MG] into place.</span>")
 			gun_mounted = TRUE
 			gun_rounds = MG.rounds
 			if(!gun_rounds)
@@ -192,7 +192,7 @@
 		to_chat(user, "You begin dismounting [src]'s gun..")
 		if(do_after(user,30, TRUE, 5, BUSY_ICON_BUILD) && gun_mounted)
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-			user.visible_message("\blue [user] removes [src]'s gun.","\blue You remove [src]'s gun.")
+			user.visible_message("<span class='notice'> [user] removes [src]'s gun.</span>","<span class='notice'> You remove [src]'s gun.</span>")
 			new /obj/item/device/m56d_gun(loc)
 			gun_mounted = FALSE
 			gun_rounds = 0
@@ -204,7 +204,7 @@
 			to_chat(user, "You're securing the M56D into place")
 			if(do_after(user,30, TRUE, 5, BUSY_ICON_BUILD))
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-				user.visible_message("\blue [user] screws the M56D into the mount.","\blue You finalize the M56D mounted smartgun system.")
+				user.visible_message("<span class='notice'> [user] screws the M56D into the mount.</span>","<span class='notice'> You finalize the M56D mounted smartgun system.</span>")
 				var/obj/machinery/m56d_hmg/G = new(src.loc) //Here comes our new turret.
 				G.visible_message("\icon[G] <B>[G] is now complete!</B>") //finished it for everyone to
 				G.dir = src.dir //make sure we face the right direction

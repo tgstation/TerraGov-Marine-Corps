@@ -140,7 +140,8 @@ item, and will change the skin to whatever you specify here. You can also
 manually override the icon with a unique skin if wanted, for the outlier
 cases. Override_icon_state should be a list.*/
 /obj/item/proc/select_gamemode_skin(expected_type, list/override_icon_state, override_name, list/override_protection)
-	if(type == expected_type)
+	return
+	/*if(type == expected_type)
 		var/new_icon_state
 		var/new_name
 		var/new_protection
@@ -157,7 +158,7 @@ cases. Override_icon_state should be a list.*/
 				if(new_name) name = new_name
 				if(new_protection) min_cold_protection_temperature = new_protection
 
-		item_state = icon_state
+		item_state = icon_state*/
 
 /obj/item/attack_hand(mob/user as mob)
 	if (!user)
@@ -541,22 +542,22 @@ cases. Override_icon_state should be a list.*/
 	if(!usr.canmove || usr.stat || usr.is_mob_restrained() || !Adjacent(usr))
 		return
 	if((!istype(usr, /mob/living/carbon)) || (istype(usr, /mob/living/brain)))//Is humanoid, and is not a brain
-		to_chat(usr, "\red You can't pick things up!")
+		to_chat(usr, "<span class='warning'>You can't pick things up!</span>")
 		return
 	if( usr.stat || usr.is_mob_restrained() )//Is not asleep/dead and is not restrained
-		to_chat(usr, "\red You can't pick things up!")
+		to_chat(usr, "<span class='warning'>You can't pick things up!</span>")
 		return
 	if(src.anchored) //Object isn't anchored
-		to_chat(usr, "\red You can't pick that up!")
+		to_chat(usr, "<span class='warning'>You can't pick that up!</span>")
 		return
 	if(!usr.hand && usr.r_hand) //Right hand is not full
-		to_chat(usr, "\red Your right hand is full.")
+		to_chat(usr, "<span class='warning'>Your right hand is full.</span>")
 		return
 	if(usr.hand && usr.l_hand) //Left hand is not full
-		to_chat(usr, "\red Your left hand is full.")
+		to_chat(usr, "<span class='warning'>Your left hand is full.</span>")
 		return
 	if(!istype(src.loc, /turf)) //Object is on a turf
-		to_chat(usr, "\red You can't pick that up!")
+		to_chat(usr, "<span class='warning'>You can't pick that up!</span>")
 		return
 	//All checks are done, time to pick it up!
 	usr.UnarmedAttack(src)
@@ -710,7 +711,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 /obj/item/proc/extinguish(atom/target, mob/user)
 
 	if (reagents.total_volume < 1)
-		to_chat(user, "\red \The [src]'s water reserves are empty.")
+		to_chat(user, "<span class='warning'>\The [src]'s water reserves are empty.</span>")
 		return
 
 	user.visible_message("<span class='danger'>[user] sprays water from [src]!</span>", \

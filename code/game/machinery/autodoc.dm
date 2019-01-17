@@ -846,13 +846,13 @@
 	else
 		var/mob/living/occupant = connected.occupant
 		if(locked)
-			dat += "<hr><font color='red'><B><span class='warning'>Lock Console</span> | <a href='?src=\ref[src];locktoggle=1'>Unlock Console</a></B></FONT><BR>"
+			dat += "<hr><font color='red'><span class='danger'>Lock Console</span> | <a href='?src=\ref[src];locktoggle=1'>Unlock Console</a></FONT><BR>"
 		else
-			dat += "<hr><font color='red'><B><span class='warning'><a href='?src=\ref[src];locktoggle=1'>Lock Console</a> | <span class='notice'>Unlock Console</B></span></FONT><BR>"
+			dat += "<hr><font color='red'><span class='danger'><a href='?src=\ref[src];locktoggle=1'>Lock Console</a> | <span class='notice'>Unlock Console</span></FONT><BR>"
 		if(release_notice)
-			dat += "<hr><font color='red'><B><span class='warning'>Notifications On</span> | <a href='?src=\ref[src];noticetoggle=1'>Notifications Off</a></B></FONT><BR>"
+			dat += "<hr><font color='red'><span class='danger'>Notifications On</span> | <a href='?src=\ref[src];noticetoggle=1'>Notifications Off</a></FONT><BR>"
 		else
-			dat += "<hr><font color='red'><B><span class='warning'><a href='?src=\ref[src];noticetoggle=1'>Notifications On</a> | <span class='notice'>Notifications Off</B></span></FONT><BR>"
+			dat += "<hr><font color='red'><span class='danger'><a href='?src=\ref[src];noticetoggle=1'>Notifications On</a> | <span class='notice'>Notifications Off</span></FONT><BR>"
 		dat += "<hr><font color='blue'><B>Occupant Statistics:</B></FONT><BR>"
 		if(occupant)
 			var/t1

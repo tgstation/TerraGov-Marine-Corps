@@ -108,7 +108,7 @@
 /mob/living/silicon/robot/drone/attackby(obj/item/W, mob/living/user)
 
 	if(istype(W, /obj/item/robot/upgrade/))
-		to_chat(user, "\red The maintenance drone chassis not compatible with \the [W].")
+		to_chat(user, "<span class='warning'>The maintenance drone chassis not compatible with \the [W].</span>")
 		return
 
 	else if (istype(W, /obj/item/tool/crowbar))
@@ -143,13 +143,13 @@
 //CONSOLE PROCS
 /mob/living/silicon/robot/drone/proc/law_resync()
 	if(stat != 2)
-		to_chat(src, "\red A reset-to-factory directive packet filters through your data connection, and you obediently modify your programming to suit it.")
+		to_chat(src, "<span class='warning'>A reset-to-factory directive packet filters through your data connection, and you obediently modify your programming to suit it.</span>")
 		full_law_reset()
 		show_laws()
 
 /mob/living/silicon/robot/drone/proc/shut_down()
 	if(stat != 2)
-		to_chat(src, "\red You feel a system kill order percolate through your tiny brain, and you obediently destroy yourself.")
+		to_chat(src, "<span class='warning'>You feel a system kill order percolate through your tiny brain, and you obediently destroy yourself.</span>")
 		death()
 
 /mob/living/silicon/robot/drone/proc/full_law_reset()
