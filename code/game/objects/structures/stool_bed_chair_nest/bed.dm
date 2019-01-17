@@ -252,9 +252,9 @@ obj/structure/bed/Destroy()
 	if(istype(R,/obj/structure/bed/medevac_stretcher)) //We need to preserve key variables like linked beacons and cooldowns.
 		var/obj/item/roller/medevac/I = src
 		var/obj/structure/bed/medevac_stretcher/B = R
-		if(last_teleport)
+		if(I.last_teleport)
 			B.last_teleport = I.last_teleport
-		if(linked_beacon)
+		if(I.linked_beacon)
 			B.linked_beacon = I.linked_beacon
 			if(B.linked_beacon.linked_bed == I)
 				B.linked_beacon.linked_bed_deployed = B
