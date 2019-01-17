@@ -96,19 +96,6 @@ SHOW_MENTORS
 ###this it will reduce the rights that your mods have.
 #MENTORS
 
-
-## probablities for game modes chosen in "secret" and "random" modes
-##
-## default probablity is 1, increase to make that mode more likely to be picked
-## set to 0 to disable that mode
-PROBABILITY EXTENDED 1
-PROBABILITY MALFUNCTION 1
-PROBABILITY NUCLEAR 1
-PROBABILITY WIZARD 1
-PROBABILITY CHANGELING 1
-PROBABILITY CULT 1
-PROBABILITY EXTEND-A-TRAITORMONGOUS 6
-
 ## Hash out to disable random events during the round.
 #ALLOW_RANDOM_EVENTS
 
@@ -117,9 +104,6 @@ TRAITOR_SCALING
 
 ## if objectives are disabled
 #OBJECTIVES_DISABLED
-
-## make ERT's be only called by admins
-ERT_ADMIN_ONLY
 
 ## If security is prohibited from being most antagonists
 #PROTECT_ROLES_FROM_ANTAGONIST
@@ -142,26 +126,11 @@ VOTE_DELAY 6000
 ## time period (deciseconds) which voting session will last (default 1 minute)
 VOTE_PERIOD 600
 
-## autovote initial delay (deciseconds) before first automatic transfer vote call (default 180 minutes)
-VOTE_AUTOTRANSFER_INITIAL 99108000
-
-##autovote delay (deciseconds) before sequential automatic transfer votes are called (default 60 minutes)
-VOTE_AUTOTRANSFER_INTERVAL 99936000
-
-## Time left (seconds) before round start when automatic gamemote vote is called (default 100).
-VOTE_AUTOGAMEMODE_TIMELEFT 99999999
-
 ## prevents dead players from voting or starting votes
 #NO_DEAD_VOTE
 
 ## players' votes default to "No vote" (otherwise,  default to "No change")
 #DEFAULT_NO_VOTE
-
-## Allow ghosts to see antagonist through AntagHUD
-ALLOW_ANTAG_HUD
-
-## If ghosts use antagHUD they are no longer allowed to join the round.
-ANTAG_HUD_RESTRICTED
 
 ## allow AI job
 ALLOW_AI
@@ -232,9 +201,6 @@ TICKLAG 0.5
 ## Defines if Tick Compensation is used.  It results in a minor slowdown of movement of all mobs, but attempts to result in a level movement speed across all ticks.  Recommended if tickrate is lowered.
 TICKCOMP 0
 
-## Whether the server will talk to other processes through socket_talk
-SOCKET_TALK 0
-
 ## Uncomment this to ban use of ToR
 #TOR_BAN
 
@@ -281,12 +247,6 @@ USEALIENWHITELIST
 ## Uncomment to use the C library nudge instead of the python script.
 ## This helps security and stability on Linux, but you need to compile the library first.
 #USE_LIB_NUDGE
-
-## Uncommen to allow ghosts to write in blood during Cult rounds.
-ALLOW_CULT_GHOSTWRITER
-
-## Sets the minimum number of cultists needed for ghosts to write in blood.
-REQ_CULT_GHOSTWRITER 6
 
 ## Uncomment to use overmap system for zlevel travel
 #USE_OVERMAP
@@ -504,9 +464,6 @@ MAX_PROJ_VARIANCE 10
 
 ### HEALTH ###
 
-## level of health at which a mob goes into continual shock (soft crit)
-HEALTH_THRESHOLD_SOFTCRIT 0
-
 ## level of health at which a mob becomes unconscious (crit)
 HEALTH_THRESHOLD_CRIT -50
 
@@ -557,7 +514,6 @@ WALK_SPEED 1
 HUMAN_DELAY 0
 ROBOT_DELAY 0
 MONKEY_DELAY 0
-ALIEN_DELAY 0
 METROID_DELAY 0
 ANIMAL_DELAY 0
 

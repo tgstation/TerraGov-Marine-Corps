@@ -23,7 +23,7 @@
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 
 /obj/item/weapon/gun/flamer/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/max_fire_delay) * 5
+	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 5
 
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
 	toggle_flame(user)

@@ -20,4 +20,4 @@
 	if(module_active && istype(module_active, /obj/item/robot/combat/mobility))
 		. -= 3
 
-	. += CONFIG_GET(number/robot_delay)
+	. += CONFIG_GET(number/outdated_movedelay/robot_delay)

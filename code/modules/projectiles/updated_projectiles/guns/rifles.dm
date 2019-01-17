@@ -18,16 +18,16 @@
 		load_into_chamber()
 
 /obj/item/weapon/gun/rifle/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/mhigh_fire_delay)
-	burst_amount = CONFIG_GET(number/med_burst_value)
-	burst_delay = CONFIG_GET(number/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/high_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/max_scatter_value)
-	damage_mult = CONFIG_GET(number/base_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/high_recoil_value)
-	damage_falloff_mult = CONFIG_GET(number/med_damage_falloff_mult)
+	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
+	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)
 
 /obj/item/weapon/gun/rifle/unique_action(mob/user)
 	cock(user)
@@ -85,15 +85,15 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
 /obj/item/weapon/gun/rifle/m41a/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/med_fire_delay)
-	burst_amount = CONFIG_GET(number/med_burst_value)
-	burst_delay = CONFIG_GET(number/vlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/high_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/max_scatter_value)
-	damage_mult = CONFIG_GET(number/base_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/high_recoil_value)
+	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/vlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 
 //variant without ugl attachment
@@ -114,15 +114,15 @@
 
 
 /obj/item/weapon/gun/rifle/m41a/elite/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/med_fire_delay)
-	burst_amount = CONFIG_GET(number/med_burst_value)
-	burst_delay = CONFIG_GET(number/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult) + CONFIG_GET(number/max_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/high_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/max_scatter_value)
-	damage_mult = CONFIG_GET(number/base_hit_damage_mult) + CONFIG_GET(number/max_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/high_recoil_value)
+	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/max_hit_damage_mult)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 
 //-------------------------------------------------------
@@ -146,15 +146,15 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
 /obj/item/weapon/gun/rifle/m41aMK1/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/mhigh_fire_delay)
-	burst_amount = CONFIG_GET(number/high_burst_value)
-	burst_delay = CONFIG_GET(number/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/min_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/high_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/max_scatter_value)
-	damage_mult = CONFIG_GET(number/base_hit_damage_mult) + CONFIG_GET(number/min_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/high_recoil_value)
+	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/min_hit_damage_mult)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 
 
@@ -192,15 +192,15 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
 /obj/item/weapon/gun/rifle/mar40/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/mhigh_fire_delay)
-	burst_amount = CONFIG_GET(number/high_burst_value)
-	burst_delay = CONFIG_GET(number/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/low_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/high_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/max_scatter_value)
-	damage_mult = CONFIG_GET(number/base_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/high_recoil_value)
+	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 
 /obj/item/weapon/gun/rifle/mar40/carbine
@@ -211,15 +211,15 @@
 	fire_sound = 'sound/weapons/gun_ak47.ogg' //Change
 
 /obj/item/weapon/gun/rifle/mar40/carbine/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/high_fire_delay)
-	burst_amount = CONFIG_GET(number/high_burst_value)
-	burst_delay = CONFIG_GET(number/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/low_hit_accuracy_mult) + CONFIG_GET(number/min_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/low_hit_accuracy_mult) + CONFIG_GET(number/min_hit_accuracy_mult) - CONFIG_GET(number/high_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/max_scatter_value)
-	damage_mult = CONFIG_GET(number/base_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/high_recoil_value)
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/low_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/low_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 
 //-------------------------------------------------------
@@ -255,15 +255,15 @@
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 22, "under_x" = 24, "under_y" = 14, "stock_x" = 24, "stock_y" = 13)
 
 /obj/item/weapon/gun/rifle/m16/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/mhigh_fire_delay)
-	burst_amount = CONFIG_GET(number/med_burst_value)
-	burst_delay = CONFIG_GET(number/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult) + CONFIG_GET(number/min_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/high_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/max_scatter_value)
-	damage_mult = CONFIG_GET(number/base_hit_damage_mult) + CONFIG_GET(number/min_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/high_recoil_value)
+	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/min_hit_damage_mult)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 //-------------------------------------------------------
 //M41AE2 HEAVY PULSE RIFLE
@@ -297,15 +297,15 @@
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 23, "under_x" = 24, "under_y" = 12, "stock_x" = 24, "stock_y" = 12)
 
 /obj/item/weapon/gun/rifle/lmg/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/high_fire_delay)
-	burst_amount = CONFIG_GET(number/high_burst_value)
-	burst_delay = CONFIG_GET(number/min_fire_delay)
-	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/max_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/low_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/max_scatter_value) * 2
-	damage_mult = CONFIG_GET(number/base_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/max_recoil_value)
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value) * 2
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil_unwielded = CONFIG_GET(number/combat_define/max_recoil_value)
 
 
 
@@ -329,15 +329,15 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON
 
 /obj/item/weapon/gun/rifle/type71/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/high_fire_delay)
-	burst_amount = CONFIG_GET(number/low_burst_value)
-	burst_delay = CONFIG_GET(number/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult) + CONFIG_GET(number/max_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/med_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/max_scatter_value)
-	damage_mult = CONFIG_GET(number/base_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/high_recoil_value)
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 
 /obj/item/weapon/gun/rifle/type71/toggle_burst()
@@ -395,14 +395,14 @@
 
 
 /obj/item/weapon/gun/rifle/type71/carbine/commando/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/high_fire_delay)
-	burst_amount = CONFIG_GET(number/low_burst_value)
-	burst_delay = CONFIG_GET(number/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult) + CONFIG_GET(number/max_hit_accuracy_mult) + CONFIG_GET(number/max_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/med_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/max_scatter_value)
-	damage_mult = CONFIG_GET(number/base_hit_damage_mult)
-	recoil_unwielded = CONFIG_GET(number/high_recoil_value)
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 //-------------------------------------------------------

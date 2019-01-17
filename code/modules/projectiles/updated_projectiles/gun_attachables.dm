@@ -256,17 +256,17 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/suppressor/Initialize()
 	. = ..()
-	accuracy_mod = CONFIG_GET(number/low_hit_accuracy_mult)
-	damage_mod = -CONFIG_GET(number/min_hit_damage_mult)
-	recoil_mod = -CONFIG_GET(number/min_recoil_value)
-	scatter_mod = -CONFIG_GET(number/min_scatter_value)
-	attach_shell_speed_mod = -CONFIG_GET(number/min_shell_speed)
+	accuracy_mod = CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	damage_mod = -CONFIG_GET(number/combat_define/min_hit_damage_mult)
+	recoil_mod = -CONFIG_GET(number/combat_define/min_recoil_value)
+	scatter_mod = -CONFIG_GET(number/combat_define/min_scatter_value)
+	attach_shell_speed_mod = -CONFIG_GET(number/combat_define/min_shell_speed)
 	attach_icon = pick("suppressor_a","suppressor2_a")
 
-	accuracy_unwielded_mod = -CONFIG_GET(number/min_hit_accuracy_mult)
-	recoil_unwielded_mod = -CONFIG_GET(number/min_recoil_value)
-	scatter_unwielded_mod = -CONFIG_GET(number/min_scatter_value)
-	damage_falloff_mod = CONFIG_GET(number/min_damage_falloff_mult)
+	accuracy_unwielded_mod = -CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	recoil_unwielded_mod = -CONFIG_GET(number/combat_define/min_recoil_value)
+	scatter_unwielded_mod = -CONFIG_GET(number/combat_define/min_scatter_value)
+	damage_falloff_mod = CONFIG_GET(number/combat_define/min_damage_falloff_mult)
 
 /obj/item/attachable/bayonet
 	name = "bayonet"
@@ -302,8 +302,8 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/bayonet/Initialize()
 	. = ..()
-	accuracy_mod = -CONFIG_GET(number/min_hit_accuracy_mult)
-	accuracy_unwielded_mod = -CONFIG_GET(number/min_hit_accuracy_mult)
+	accuracy_mod = -CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	accuracy_unwielded_mod = -CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
 	size_mod = 1
 
 /obj/item/attachable/extended_barrel
@@ -315,11 +315,11 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/extended_barrel/Initialize()
 	. = ..()
-	accuracy_mod = CONFIG_GET(number/med_hit_accuracy_mult)
-	accuracy_unwielded_mod = CONFIG_GET(number/low_hit_accuracy_mult)
-	attach_shell_speed_mod = CONFIG_GET(number/min_shell_speed)
-	damage_mod = -CONFIG_GET(number/min_hit_damage_mult)
-	scatter_mod = -CONFIG_GET(number/min_scatter_value)
+	accuracy_mod = CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
+	accuracy_unwielded_mod = CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	attach_shell_speed_mod = CONFIG_GET(number/combat_define/min_shell_speed)
+	damage_mod = -CONFIG_GET(number/combat_define/min_hit_damage_mult)
+	scatter_mod = -CONFIG_GET(number/combat_define/min_scatter_value)
 	size_mod = 1
 
 
@@ -332,11 +332,11 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/heavy_barrel/Initialize()
 	. = ..()
-	accuracy_mod = -CONFIG_GET(number/hmed_hit_accuracy_mult)
-	damage_mod = CONFIG_GET(number/hmed_hit_damage_mult)
-	attach_shell_speed_mod = CONFIG_GET(number/slow_shell_speed) //increases projectile speed by +1
-	delay_mod = CONFIG_GET(number/low_fire_delay)
-	accuracy_unwielded_mod = -CONFIG_GET(number/high_hit_accuracy_mult)
+	accuracy_mod = -CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	damage_mod = CONFIG_GET(number/combat_define/hmed_hit_damage_mult)
+	attach_shell_speed_mod = CONFIG_GET(number/combat_define/slow_shell_speed) //increases projectile speed by +1
+	delay_mod = CONFIG_GET(number/combat_define/low_fire_delay)
+	accuracy_unwielded_mod = -CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
 
 
 /obj/item/attachable/compensator
@@ -349,11 +349,11 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/compensator/Initialize()
 	. = ..()
-	scatter_mod = -CONFIG_GET(number/med_scatter_value)
-	damage_mod = -CONFIG_GET(number/min_hit_damage_mult)
-	recoil_mod = -CONFIG_GET(number/med_recoil_value)
-	scatter_unwielded_mod = -CONFIG_GET(number/med_scatter_value)
-	recoil_unwielded_mod = -CONFIG_GET(number/med_recoil_value)
+	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mod = -CONFIG_GET(number/combat_define/min_hit_damage_mult)
+	recoil_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
+	scatter_unwielded_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
+	recoil_unwielded_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
 
 
 /obj/item/attachable/slavicbarrel
@@ -368,8 +368,8 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/slavicbarrel/Initialize()
 	. = ..()
-	accuracy_mod = CONFIG_GET(number/min_hit_accuracy_mult)
-	scatter_mod = -CONFIG_GET(number/low_scatter_value)
+	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	scatter_mod = -CONFIG_GET(number/combat_define/low_scatter_value)
 
 /obj/item/attachable/sniperbarrel
 	name = "sniper barrel"
@@ -380,8 +380,8 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/sniperbarrel/Initialize()
 	. = ..()
-	accuracy_mod = CONFIG_GET(number/low_hit_accuracy_mult)
-	scatter_mod = -CONFIG_GET(number/low_scatter_value)
+	accuracy_mod = CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	scatter_mod = -CONFIG_GET(number/combat_define/low_scatter_value)
 
 /obj/item/attachable/smartbarrel
 	name = "smartgun barrel"
@@ -406,9 +406,9 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/reddot/Initialize()
 	. = ..()
-	accuracy_mod = CONFIG_GET(number/med_hit_accuracy_mult)
-	accuracy_unwielded_mod = CONFIG_GET(number/low_hit_accuracy_mult)
-	movement_acc_penalty_mod = -CONFIG_GET(number/min_movement_acc_penalty)
+	accuracy_mod = CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
+	accuracy_unwielded_mod = CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	movement_acc_penalty_mod = -CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 
 /obj/item/attachable/flashlight
@@ -472,12 +472,12 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/quickfire/Initialize()
 	. = ..()
-	accuracy_mod = -CONFIG_GET(number/med_hit_accuracy_mult)
-	scatter_mod = CONFIG_GET(number/min_scatter_value)
-	delay_mod = -CONFIG_GET(number/min_fire_delay)
-	burst_mod = -CONFIG_GET(number/min_burst_value)
-	accuracy_unwielded_mod = -CONFIG_GET(number/hmed_hit_accuracy_mult)
-	scatter_unwielded_mod = CONFIG_GET(number/med_scatter_value)
+	accuracy_mod = -CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
+	scatter_mod = CONFIG_GET(number/combat_define/min_scatter_value)
+	delay_mod = -CONFIG_GET(number/combat_define/min_fire_delay)
+	burst_mod = -CONFIG_GET(number/combat_define/min_burst_value)
+	accuracy_unwielded_mod = -CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	scatter_unwielded_mod = CONFIG_GET(number/combat_define/med_scatter_value)
 
 
 /obj/item/attachable/magnetic_harness
@@ -506,8 +506,8 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/scope/Initialize()
 	. = ..()
-	movement_acc_penalty_mod = CONFIG_GET(number/low_movement_acc_penalty)
-	accuracy_unwielded_mod = -CONFIG_GET(number/min_hit_accuracy_mult)
+	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/low_movement_acc_penalty)
+	accuracy_unwielded_mod = -CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
 
 
 /obj/item/attachable/scope/activate_attachment(obj/item/weapon/gun/G, mob/living/carbon/user, turn_off)
@@ -538,7 +538,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/scope/Initialize()
 	. = ..()
-	movement_acc_penalty_mod = CONFIG_GET(number/min_movement_acc_penalty)
+	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 /obj/item/attachable/scope/m4ra
 	name = "m4ra rail scope"
@@ -580,10 +580,10 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/shotgun/Initialize()
 	. = ..()
-	accuracy_mod = CONFIG_GET(number/low_hit_accuracy_mult)
-	recoil_mod = -CONFIG_GET(number/med_recoil_value)
-	scatter_mod = -CONFIG_GET(number/med_scatter_value)
-	movement_acc_penalty_mod = CONFIG_GET(number/min_movement_acc_penalty)
+	accuracy_mod = CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	recoil_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
+	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
+	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 	select_gamemode_skin(type)
 
@@ -594,10 +594,10 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/tactical/Initialize()
 	. = ..()
-	accuracy_mod = CONFIG_GET(number/min_hit_accuracy_mult)
-	recoil_mod = -CONFIG_GET(number/med_recoil_value)
-	scatter_mod = -CONFIG_GET(number/med_scatter_value)
-	movement_acc_penalty_mod = CONFIG_GET(number/min_movement_acc_penalty)
+	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	recoil_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
+	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
+	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 /obj/item/attachable/stock/slavic
 	name = "wooden stock"
@@ -611,10 +611,10 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/slavic/Initialize()
 	. = ..()
-	accuracy_mod = CONFIG_GET(number/min_hit_accuracy_mult)
-	recoil_mod = -CONFIG_GET(number/med_recoil_value)
-	scatter_mod = -CONFIG_GET(number/med_scatter_value)
-	movement_acc_penalty_mod = CONFIG_GET(number/min_movement_acc_penalty)
+	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	recoil_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
+	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
+	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 /obj/item/attachable/stock/rifle
 	name = "\improper M41A skeleton stock"
@@ -630,10 +630,10 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/rifle/Initialize()
 	. = ..()
-	accuracy_mod = CONFIG_GET(number/min_hit_accuracy_mult)
-	recoil_mod = -CONFIG_GET(number/med_recoil_value)
-	scatter_mod = -CONFIG_GET(number/med_scatter_value)
-	movement_acc_penalty_mod = CONFIG_GET(number/min_movement_acc_penalty)
+	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	recoil_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
+	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
+	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 /obj/item/attachable/stock/rifle/marksman
 	name = "\improper M41A marksman stock"
@@ -656,10 +656,10 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/smg/Initialize()
 	. = ..()
-	accuracy_mod = CONFIG_GET(number/low_hit_accuracy_mult)
-	recoil_mod = -CONFIG_GET(number/med_recoil_value)
-	scatter_mod = -CONFIG_GET(number/med_scatter_value)
-	movement_acc_penalty_mod = CONFIG_GET(number/min_movement_acc_penalty)
+	accuracy_mod = CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	recoil_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
+	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
+	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
 
 /obj/item/attachable/stock/revolver
@@ -676,14 +676,14 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/revolver/Initialize()
 	. = ..()
-	accuracy_mod = CONFIG_GET(number/low_hit_accuracy_mult)
-	recoil_mod = -CONFIG_GET(number/med_recoil_value)
-	scatter_mod = -CONFIG_GET(number/med_scatter_value)
-	movement_acc_penalty_mod = CONFIG_GET(number/min_movement_acc_penalty)
+	accuracy_mod = CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	recoil_mod = -CONFIG_GET(number/combat_define/med_recoil_value)
+	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
+	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
-	accuracy_unwielded_mod = CONFIG_GET(number/min_hit_accuracy_mult)
-	recoil_unwielded_mod = -CONFIG_GET(number/min_recoil_value)
-	scatter_unwielded_mod = -CONFIG_GET(number/min_scatter_value)
+	accuracy_unwielded_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	recoil_unwielded_mod = -CONFIG_GET(number/combat_define/min_recoil_value)
+	scatter_unwielded_mod = -CONFIG_GET(number/combat_define/min_scatter_value)
 
 
 /obj/item/attachable/stock/lasgun
@@ -758,7 +758,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/attached_gun/grenade/Initialize()
 	. = ..()
-	attachment_firing_delay = CONFIG_GET(number/max_fire_delay) * 3
+	attachment_firing_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 3
 	loaded_grenades = list()
 
 /obj/item/attachable/attached_gun/grenade/examine(mob/user)
@@ -829,7 +829,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/attached_gun/flamer/Initialize()
 	. = ..()
-	attachment_firing_delay = CONFIG_GET(number/max_fire_delay) * 5
+	attachment_firing_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 5
 
 /obj/item/attachable/attached_gun/flamer/examine(mob/user)
 	..()
@@ -976,7 +976,7 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/attached_gun/shotgun/Initialize()
 	. = ..()
-	attachment_firing_delay = CONFIG_GET(number/mhigh_fire_delay) * 3
+	attachment_firing_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 3
 
 /obj/item/attachable/attached_gun/shotgun/examine(mob/user)
 	..()
@@ -1016,13 +1016,13 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/verticalgrip/Initialize()
 	. = ..()
-	accuracy_mod = CONFIG_GET(number/min_hit_accuracy_mult)
-	recoil_mod = -CONFIG_GET(number/low_recoil_value)
-	scatter_mod = -CONFIG_GET(number/min_scatter_value)
-	burst_scatter_mod = -CONFIG_GET(number/low_burst_scatter_penalty)
-	movement_acc_penalty_mod = CONFIG_GET(number/min_movement_acc_penalty)
-	accuracy_unwielded_mod = -CONFIG_GET(number/min_hit_accuracy_mult)
-	scatter_unwielded_mod = CONFIG_GET(number/min_scatter_value)
+	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	recoil_mod = -CONFIG_GET(number/combat_define/low_recoil_value)
+	scatter_mod = -CONFIG_GET(number/combat_define/min_scatter_value)
+	burst_scatter_mod = -CONFIG_GET(number/combat_define/low_burst_scatter_penalty)
+	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
+	accuracy_unwielded_mod = -CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	scatter_unwielded_mod = CONFIG_GET(number/combat_define/min_scatter_value)
 
 
 /obj/item/attachable/angledgrip
@@ -1037,11 +1037,11 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/angledgrip/Initialize()
 	. = ..()
-	recoil_mod = -CONFIG_GET(number/min_recoil_value)
-	accuracy_mod = CONFIG_GET(number/min_hit_accuracy_mult)
-	scatter_mod = -CONFIG_GET(number/min_scatter_value)
-	accuracy_unwielded_mod = -CONFIG_GET(number/min_hit_accuracy_mult)
-	scatter_unwielded_mod = CONFIG_GET(number/min_scatter_value)
+	recoil_mod = -CONFIG_GET(number/combat_define/min_recoil_value)
+	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	scatter_mod = -CONFIG_GET(number/combat_define/min_scatter_value)
+	accuracy_unwielded_mod = -CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	scatter_unwielded_mod = CONFIG_GET(number/combat_define/min_scatter_value)
 
 
 
@@ -1054,13 +1054,13 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/gyro/Initialize()
 	. = ..()
-	burst_scatter_mod = -CONFIG_GET(number/low_burst_scatter_penalty)
-	scatter_mod = -CONFIG_GET(number/mlow_scatter_value)
-	recoil_mod = -CONFIG_GET(number/min_recoil_value)
-	movement_acc_penalty_mod = -CONFIG_GET(number/med_movement_acc_penalty)
-	scatter_unwielded_mod = -CONFIG_GET(number/med_scatter_value)
-	accuracy_unwielded_mod = CONFIG_GET(number/min_hit_accuracy_mult)
-	recoil_unwielded_mod = -CONFIG_GET(number/low_recoil_value)
+	burst_scatter_mod = -CONFIG_GET(number/combat_define/low_burst_scatter_penalty)
+	scatter_mod = -CONFIG_GET(number/combat_define/mlow_scatter_value)
+	recoil_mod = -CONFIG_GET(number/combat_define/min_recoil_value)
+	movement_acc_penalty_mod = -CONFIG_GET(number/combat_define/med_movement_acc_penalty)
+	scatter_unwielded_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
+	accuracy_unwielded_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	recoil_unwielded_mod = -CONFIG_GET(number/combat_define/low_recoil_value)
 
 /obj/item/attachable/lasersight
 	name = "laser sight"
@@ -1073,9 +1073,9 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/lasersight/Initialize()
 	. = ..()
-	accuracy_mod = CONFIG_GET(number/low_hit_accuracy_mult)
-	movement_acc_penalty_mod = -CONFIG_GET(number/min_movement_acc_penalty)
-	accuracy_unwielded_mod = CONFIG_GET(number/med_hit_accuracy_mult)
+	accuracy_mod = CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	movement_acc_penalty_mod = -CONFIG_GET(number/combat_define/min_movement_acc_penalty)
+	accuracy_unwielded_mod = CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
 
 
 
@@ -1165,12 +1165,12 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/burstfire_assembly/Initialize()
 	. = ..()
-	accuracy_mod = -CONFIG_GET(number/mlow_hit_accuracy_mult)
-	burst_mod = CONFIG_GET(number/low_burst_value)
-	scatter_mod = CONFIG_GET(number/low_scatter_value)
+	accuracy_mod = -CONFIG_GET(number/combat_define/mlow_hit_accuracy_mult)
+	burst_mod = CONFIG_GET(number/combat_define/low_burst_value)
+	scatter_mod = CONFIG_GET(number/combat_define/low_scatter_value)
 
-	accuracy_unwielded_mod = -CONFIG_GET(number/med_hit_accuracy_mult)
-	scatter_unwielded_mod = CONFIG_GET(number/med_scatter_value)
+	accuracy_unwielded_mod = -CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
+	scatter_unwielded_mod = CONFIG_GET(number/combat_define/med_scatter_value)
 
 
 /obj/item/attachable/hydro_cannon

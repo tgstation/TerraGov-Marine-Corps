@@ -27,14 +27,14 @@ can cause issues with ammo types getting mixed up during the burst.
 	replace_tube(current_mag.current_rounds) //Populate the chamber.
 
 /obj/item/weapon/gun/shotgun/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/mhigh_fire_delay)
-	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult) + CONFIG_GET(number/low_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) + CONFIG_GET(number/low_hit_accuracy_mult) - CONFIG_GET(number/hmed_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/max_scatter_value)
-	damage_mult = CONFIG_GET(number/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/low_recoil_value)
-	recoil_unwielded = CONFIG_GET(number/high_recoil_value)
+	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 /obj/item/weapon/gun/shotgun/update_icon() //Shotguns do not currently have empty states, as they look exactly the same. Other than double barrel.
 	return
@@ -185,16 +185,16 @@ can cause issues with ammo types getting mixed up during the burst.
 		load_into_chamber()
 
 /obj/item/weapon/gun/shotgun/merc/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/high_fire_delay) * 2
-	burst_amount = CONFIG_GET(number/low_burst_value)
-	burst_delay = CONFIG_GET(number/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/med_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/med_hit_accuracy_mult) - CONFIG_GET(number/hmed_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/max_scatter_value)
-	damage_mult = CONFIG_GET(number/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/low_recoil_value)
-	recoil_unwielded = CONFIG_GET(number/high_recoil_value)
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 2
+	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/med_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 
 /obj/item/weapon/gun/shotgun/merc/examine(mob/user)
@@ -237,14 +237,14 @@ can cause issues with ammo types getting mixed up during the burst.
 
 
 /obj/item/weapon/gun/shotgun/combat/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/tacshottie_fire_delay) //one shot every 1.5 seconds.
-	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult) + CONFIG_GET(number/low_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/max_hit_accuracy_mult) //you need to wield this gun for any kind of accuracy
-	scatter = CONFIG_GET(number/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/max_scatter_value)
-	damage_mult = CONFIG_GET(number/base_hit_damage_mult) - CONFIG_GET(number/tacshottie_damage_mult)  //normalizing gun for vendors; damage reduced by 25% to compensate for faster fire rate; still higher DPS than M37.
-	recoil = CONFIG_GET(number/low_recoil_value)
-	recoil_unwielded = CONFIG_GET(number/high_recoil_value)
+	fire_delay = CONFIG_GET(number/combat_define/tacshottie_fire_delay) //one shot every 1.5 seconds.
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //you need to wield this gun for any kind of accuracy
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) - CONFIG_GET(number/combat_define/tacshottie_damage_mult)  //normalizing gun for vendors; damage reduced by 25% to compensate for faster fire rate; still higher DPS than M37.
+	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 
 /obj/item/weapon/gun/shotgun/combat/examine(mob/user)
@@ -275,14 +275,14 @@ can cause issues with ammo types getting mixed up during the burst.
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 21,"rail_x" = 15, "rail_y" = 22, "under_x" = 21, "under_y" = 16, "stock_x" = 21, "stock_y" = 16)
 
 /obj/item/weapon/gun/shotgun/double/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult) + CONFIG_GET(number/low_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) + CONFIG_GET(number/low_hit_accuracy_mult) - CONFIG_GET(number/hmed_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/max_scatter_value)
-	damage_mult = CONFIG_GET(number/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/low_recoil_value)
-	recoil_unwielded = CONFIG_GET(number/high_recoil_value)
+	fire_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 /obj/item/weapon/gun/shotgun/double/examine(mob/user)
 	. = ..()
@@ -369,14 +369,14 @@ can cause issues with ammo types getting mixed up during the burst.
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 11, "rail_y" = 22, "under_x" = 18, "under_y" = 16, "stock_x" = 18, "stock_y" = 16)
 
 /obj/item/weapon/gun/shotgun/double/sawn/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/mlow_fire_delay)
-	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult) + CONFIG_GET(number/low_hit_accuracy_mult) - CONFIG_GET(number/hmed_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) + CONFIG_GET(number/low_hit_accuracy_mult) - CONFIG_GET(number/hmed_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/max_scatter_value)
-	damage_mult = CONFIG_GET(number/base_hit_damage_mult) + CONFIG_GET(number/high_hit_damage_mult)
-	recoil = CONFIG_GET(number/med_recoil_value)
-	recoil_unwielded = CONFIG_GET(number/max_recoil_value)
+	fire_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/high_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/med_recoil_value)
+	recoil_unwielded = CONFIG_GET(number/combat_define/max_recoil_value)
 
 
 //-------------------------------------------------------
@@ -417,15 +417,15 @@ can cause issues with ammo types getting mixed up during the burst.
 	select_gamemode_skin(/obj/item/weapon/gun/shotgun/pump)
 
 /obj/item/weapon/gun/shotgun/pump/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/med_fire_delay) * 5
-	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult) + CONFIG_GET(number/low_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) + CONFIG_GET(number/low_hit_accuracy_mult) - CONFIG_GET(number/hmed_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/max_scatter_value)
-	damage_mult = CONFIG_GET(number/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/low_recoil_value)
-	recoil_unwielded = CONFIG_GET(number/high_recoil_value)
-	pump_delay = CONFIG_GET(number/max_fire_delay) * 2
+	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay) * 5
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
+	pump_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 2
 
 /obj/item/weapon/gun/shotgun/pump/unique_action(mob/user)
 	pump_shotgun(user)
@@ -450,7 +450,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	if(world.time < (recent_pump + pump_delay) ) //Don't spam it.
 		return
 	if(pump_lock)
-		if(world.time > recent_notice + CONFIG_GET(number/max_fire_delay))
+		if(world.time > recent_notice + CONFIG_GET(number/combat_define/max_fire_delay))
 			playsound(user,'sound/weapons/throwtap.ogg', 25, 1)
 			to_chat(user,"<span class='warning'><b>[src] has already been pumped, locking the pump mechanism; fire or unload a shell to unlock it.</b></span>")
 			recent_notice = world.time
@@ -516,14 +516,14 @@ can cause issues with ammo types getting mixed up during the burst.
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 10, "rail_y" = 23, "under_x" = 19, "under_y" = 17, "stock_x" = 19, "stock_y" = 17)
 
 /obj/item/weapon/gun/shotgun/pump/cmb/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/med_fire_delay) * 6
-	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult) + CONFIG_GET(number/hmed_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult) - CONFIG_GET(number/hmed_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/low_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/max_scatter_value)
-	damage_mult = CONFIG_GET(number/base_hit_damage_mult)
-	recoil = CONFIG_GET(number/low_recoil_value)
-	recoil_unwielded = CONFIG_GET(number/high_recoil_value)
-	pump_delay = CONFIG_GET(number/mhigh_fire_delay) * 2
+	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay) * 6
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
+	pump_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
 
 //-------------------------------------------------------

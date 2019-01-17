@@ -31,6 +31,8 @@
 
 /datum/config_entry/flag/log_hivemind	// log hivemind
 
+/datum/config_entry/flag/log_runtime	// log runtimes
+
 /datum/config_entry/flag/log_admin	// log admin actions
 	protection = CONFIG_ENTRY_LOCKED
 
@@ -460,10 +462,6 @@
 
 /datum/config_entry/flag/allow_synthetic_gun_use
 
-/datum/config_entry/number/proj_base_accuracy_mult
-
-/datum/config_entry/number/proj_base_damage_mult
-
 /datum/config_entry/flag/ToRban
 
 /datum/config_entry/flag/allow_admin_jump
@@ -510,287 +508,17 @@
 
 /datum/config_entry/flag/vote_no_dead
 
-/datum/config_entry/number/proj_base_accuracy_mult
-
-/datum/config_entry/number/proj_base_damage_mult
-
-/datum/config_entry/number/proj_variance_high
-
-/datum/config_entry/number/proj_variance_low
-
-/datum/config_entry/number/critical_chance_low
-
-/datum/config_entry/number/critical_chance_high
-
-/datum/config_entry/number/base_armor_resist_low
-
-/datum/config_entry/number/base_armor_resist_high
-
-/datum/config_entry/number/xeno_armor_resist_low
-
-/datum/config_entry/number/xeno_armor_resist_high
-
-/datum/config_entry/number/min_hit_accuracy
-
-/datum/config_entry/number/low_hit_accuracy
-
-/datum/config_entry/number/med_hit_accuracy
-
-/datum/config_entry/number/hmed_hit_accuracy
-
-/datum/config_entry/number/high_hit_accuracy
-
-/datum/config_entry/number/max_hit_accuracy
-
-/datum/config_entry/number/base_hit_accuracy_mult
-
-/datum/config_entry/number/min_hit_accuracy_mult
-
-/datum/config_entry/number/low_hit_accuracy_mult
-
-/datum/config_entry/number/mlow_hit_accuracy_mult
-
-/datum/config_entry/number/med_hit_accuracy_mult
-
-/datum/config_entry/number/hmed_hit_accuracy_mult
-
-/datum/config_entry/number/high_hit_accuracy_mult
-
-/datum/config_entry/number/max_hit_accuracy_mult
-
-/datum/config_entry/number/base_hit_damage
-
-/datum/config_entry/number/min_hit_damage
-
-/datum/config_entry/number/llow_hit_damage
-
-/datum/config_entry/number/mlow_hit_damage
-
-/datum/config_entry/number/low_hit_damage
-
-/datum/config_entry/number/hlow_hit_damage
-
-/datum/config_entry/number/lmed_hit_damage
-
-/datum/config_entry/number/lmmed_hit_damage
-
-/datum/config_entry/number/med_hit_damage
-
-/datum/config_entry/number/hmed_hit_damage
-
-/datum/config_entry/number/high_hit_damage
-
-/datum/config_entry/number/mhigh_hit_damage
-
-/datum/config_entry/number/max_hit_damage
-
-/datum/config_entry/number/super_hit_damage
-
-/datum/config_entry/number/ultra_hit_damage
-
-/datum/config_entry/number/base_hit_damage_mult
-
-/datum/config_entry/number/min_hit_damage_mult
-
-/datum/config_entry/number/low_hit_damage_mult 
-
-/datum/config_entry/number/med_hit_damage_mult
-
-/datum/config_entry/number/tacshottie_damage_mult
-
-/datum/config_entry/number/hmed_hit_damage_mult
-
-/datum/config_entry/number/high_hit_damage_mult
-
-/datum/config_entry/number/max_hit_damage_mult
-
-/datum/config_entry/number/reg_damage_falloff
-
-/datum/config_entry/number/smg_damage_falloff
-
-/datum/config_entry/number/buckshot_damage_falloff
-
-/datum/config_entry/number/extra_damage_falloff
-
-/datum/config_entry/number/base_damage_falloff_mult
-
-/datum/config_entry/number/min_damage_falloff_mult
-
-/datum/config_entry/number/low_damage_falloff_mult
-
-/datum/config_entry/number/lmed_damage_falloff_mult
-
-/datum/config_entry/number/med_damage_falloff_mult
-
-/datum/config_entry/number/hmed_damage_falloff_mult
-
-/datum/config_entry/number/high_damage_falloff_mult
-
-/datum/config_entry/number/max_damage_falloff_mult
-
-/datum/config_entry/number/min_burst_value
-
-/datum/config_entry/number/low_burst_value
-
-/datum/config_entry/number/med_burst_value
-
-/datum/config_entry/number/high_burst_value
-
-/datum/config_entry/number/mhigh_burst_value
-
-/datum/config_entry/number/max_burst_value
-
-/datum/config_entry/number/min_fire_delay
-
-/datum/config_entry/number/vlow_fire_delay
-
-/datum/config_entry/number/mlow_fire_delay
-
-/datum/config_entry/number/low_fire_delay
-
-/datum/config_entry/number/med_fire_delay
-
-/datum/config_entry/number/high_fire_delay
-
-/datum/config_entry/number/mhigh_fire_delay
-
-/datum/config_entry/number/max_fire_delay
-
-/datum/config_entry/number/tacshottie_fire_delay
-
-/datum/config_entry/number/min_scatter_value
-
-/datum/config_entry/number/mlow_scatter_value
-
-/datum/config_entry/number/low_scatter_value
-
-/datum/config_entry/number/med_scatter_value
-
-/datum/config_entry/number/high_scatter_value
-
-/datum/config_entry/number/thirty_scatter_value
-
-/datum/config_entry/number/mhigh_scatter_value
-
-/datum/config_entry/number/max_scatter_value
-
-/datum/config_entry/number/min_recoil_value
-
-/datum/config_entry/number/low_recoil_value
-
-/datum/config_entry/number/med_recoil_value
-
-/datum/config_entry/number/high_recoil_value
-
-/datum/config_entry/number/max_recoil_value
-
-/datum/config_entry/number/min_shrapnel_chance
-
-/datum/config_entry/number/low_shrapnel_chance
-
-/datum/config_entry/number/mlow_shrapnel_chance
-
-/datum/config_entry/number/med_shrapnel_chance
-
-/datum/config_entry/number/high_shrapnel_chance
-
-/datum/config_entry/number/max_shrapnel_chance
-
-/datum/config_entry/number/min_shell_range
-
-/datum/config_entry/number/close_shell_range
-
-/datum/config_entry/number/screen_shell_range
-
-/datum/config_entry/number/near_shell_range
-
-/datum/config_entry/number/short_shell_range
-
-/datum/config_entry/number/norm_shell_range
-
-/datum/config_entry/number/lnorm_shell_range
-
-/datum/config_entry/number/long_shell_range
-
-/datum/config_entry/number/vlong_shell_range
-
-/datum/config_entry/number/max_shell_range
-
-/datum/config_entry/number/slow_shell_speed
-
-/datum/config_entry/number/reg_shell_speed
-
-/datum/config_entry/number/fast_shell_speed
-
-/datum/config_entry/number/super_shell_speed
-
-/datum/config_entry/number/ultra_shell_speed
-
-/datum/config_entry/number/min_armor_penetration
-
-/datum/config_entry/number/mlow_armor_penetration
-
-/datum/config_entry/number/low_armor_penetration
-
-/datum/config_entry/number/lmed_armor_penetration
-
-/datum/config_entry/number/med_armor_penetration
-
-/datum/config_entry/number/hmed_armor_penetration
-
-/datum/config_entry/number/high_armor_penetration
-
-/datum/config_entry/number/mhigh_armor_penetration
-
-/datum/config_entry/number/vhigh_armor_penetration
-
-/datum/config_entry/number/max_armor_penetration
-
-/datum/config_entry/number/min_proj_extra
-
-/datum/config_entry/number/low_proj_extra
-
-/datum/config_entry/number/med_proj_extra
-
-/datum/config_entry/number/hmed_proj_extra
-
-/datum/config_entry/number/high_proj_extra
-
-/datum/config_entry/number/mhigh_proj_extra
-
-/datum/config_entry/number/vhigh_proj_extra
-
-/datum/config_entry/number/max_proj_extra
-
-/datum/config_entry/number/min_proj_variance
-
-/datum/config_entry/number/low_proj_variance
-
-/datum/config_entry/number/mlow_proj_variance
-
-/datum/config_entry/number/med_proj_variance
-
-/datum/config_entry/number/hmed_proj_variance
-
-/datum/config_entry/number/high_proj_variance
-
-/datum/config_entry/number/max_proj_variance
-
 /datum/config_entry/number/vote_autogamemode_timeleft
 
 /datum/config_entry/flag/autooocmute
 
 /datum/config_entry/flag/continous_rounds
 
-/datum/config_entry/allow_synthetic_gun_use
-
 /datum/config_entry/flag/objectives_disabled
 
 /datum/config_entry/flag/traitor_scaling
 
 /datum/config_entry/flag/allow_admin_spawning
-
-/datum/config_entry/flag/allow_Metadata
 
 /datum/config_entry/flag/usealienwhitelist
 
@@ -799,14 +527,6 @@
 /datum/config_entry/number/organ_health_multiplier
 
 /datum/config_entry/number/organ_regeneration_multiplier
-
-/datum/config_entry/number/aprocket_armor_penetration
-
-/datum/config_entry/number/aprocket_hit_damage
-
-/datum/config_entry/number/ltb_armor_penetration
-
-/datum/config_entry/number/ltb_hit_damage
 
 /datum/config_entry/number/health_threshold_crit
 
@@ -818,25 +538,13 @@
 
 /datum/config_entry/number/health_threshold_dead
 
-/datum/config_entry/number/robot_delay
-
 /datum/config_entry/number/revive_grace_period
 
 /datum/config_entry/flag/use_loyalty_implants
 
 /datum/config_entry/flag/husking_on
 
-/datum/config_entry/number/human_delay
-
-/datum/config_entry/number/xeno_armor_resist_lmed
-
-/datum/config_entry/number/xeno_armor_resist_vlow
-
 /datum/config_entry/flag/bones_can_break
-
-/datum/config_entry/number/monkey_delay
-
-/datum/config_entry/number/animal_delay
 
 /datum/config_entry/number/drone_build_time
 
@@ -844,16 +552,6 @@
 
 /datum/config_entry/flag/ert_admin_call_only
 
-/datum/config_entry/number/min_shell_speed
-
-/datum/config_entry/number/min_movement_acc_penalty
-
-/datum/config_entry/number/low_movement_acc_penalty
-
-/datum/config_entry/number/med_movement_acc_penalty
-
 /datum/config_entry/number/max_maint_drones
-
-/datum/config_entry/number/low_burst_scatter_penalty
 
 /datum/config_entry/flag/jobs_have_minimal_access

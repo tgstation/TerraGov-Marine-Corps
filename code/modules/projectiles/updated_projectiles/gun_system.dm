@@ -128,12 +128,12 @@
 //amounts to get specific values in each gun subtype's New().
 //This makes reading each gun's values MUCH easier.
 /obj/item/weapon/gun/proc/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/mhigh_fire_delay)
-	accuracy_mult = CONFIG_GET(number/base_hit_accuracy_mult)
-	accuracy_mult_unwielded = CONFIG_GET(number/base_hit_accuracy_mult)
-	scatter = CONFIG_GET(number/med_scatter_value)
-	scatter_unwielded = CONFIG_GET(number/med_scatter_value)
-	damage_mult = CONFIG_GET(number/base_hit_damage_mult)
+	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 
 
@@ -655,12 +655,12 @@ and you're good to go.
 		if(flags_item & WIELDED && user && under?.bipod_deployed) //Let's get to work on the bipod. I'm not really concerned if they are the same person as the previous user. It doesn't matter.
 			if(under.check_bipod_support(src, user))
 				//Passive accuracy and recoil buff, but only when firing in position.
-				projectile_to_fire.accuracy *= CONFIG_GET(number/base_hit_accuracy_mult) + CONFIG_GET(number/hmed_hit_accuracy_mult) //More accuracy.
+				projectile_to_fire.accuracy *= CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult) //More accuracy.
 				recoil_comp-- //Less recoil.
-				scatter_chance_mod -= CONFIG_GET(number/med_scatter_value)
+				scatter_chance_mod -= CONFIG_GET(number/combat_define/med_scatter_value)
 				burst_scatter_chance_mod = -3
 				if(prob(30))
-					projectile_to_fire.damage *= CONFIG_GET(number/base_hit_damage_mult) + CONFIG_GET(number/low_hit_damage_mult) //Lower chance of a damage buff.
+					projectile_to_fire.damage *= CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/low_hit_damage_mult) //Lower chance of a damage buff.
 				if(i == 1)
 					to_chat(user, "<span class='notice'>Your bipod keeps [src] steady!</span>")
 		//End of bipods.
@@ -863,7 +863,7 @@ and you're good to go.
 		else
 			if(user?.mind?.cm_skills)
 				if(user.mind.cm_skills.firearms == 0) //no training in any firearms
-					added_delay += CONFIG_GET(number/low_fire_delay) //untrained humans fire more slowly.
+					added_delay += CONFIG_GET(number/combat_define/low_fire_delay) //untrained humans fire more slowly.
 				else
 					switch(gun_skill_category)
 						if(GUN_SKILL_HEAVY_WEAPONS)
@@ -906,8 +906,8 @@ and you're good to go.
 
 	else if(user && world.time - user.l_move_time < 5) //moved during the last half second
 		//accuracy and scatter penalty if the user fires unwielded right after moving
-		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * CONFIG_GET(number/low_hit_accuracy_mult)))
-		gun_scatter += max(0, movement_acc_penalty_mult * CONFIG_GET(number/min_scatter_value))
+		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * CONFIG_GET(number/combat_define/low_hit_accuracy_mult)))
+		gun_scatter += max(0, movement_acc_penalty_mult * CONFIG_GET(number/combat_define/min_scatter_value))
 
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
@@ -940,7 +940,7 @@ and you're good to go.
 				if(GUN_SKILL_SPEC)
 					skill_accuracy = user.mind.cm_skills.spec_weapons
 		if(skill_accuracy)
-			gun_accuracy_mult += skill_accuracy * CONFIG_GET(number/low_hit_accuracy_mult) // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
+			gun_accuracy_mult += skill_accuracy * CONFIG_GET(number/combat_define/low_hit_accuracy_mult) // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
 
 	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy_mult) // Apply gun accuracy multiplier to projectile accuracy
 	projectile_to_fire.damage = round(projectile_to_fire.damage * damage_mult) 		// Apply gun damage multiplier to projectile damage
@@ -999,7 +999,7 @@ and you're good to go.
 		if(user && user.mind && user.mind.cm_skills)
 
 			if(user.mind.cm_skills.firearms == 0) //no training in any firearms
-				total_scatter_chance += CONFIG_GET(number/low_scatter_value)
+				total_scatter_chance += CONFIG_GET(number/combat_define/low_scatter_value)
 			else
 				var/scatter_tweak = 0
 				switch(gun_skill_category)
@@ -1018,7 +1018,7 @@ and you're good to go.
 					if(GUN_SKILL_SPEC)
 						scatter_tweak = user.mind.cm_skills.spec_weapons
 				if(scatter_tweak)
-					total_scatter_chance -= scatter_tweak * CONFIG_GET(number/low_scatter_value)
+					total_scatter_chance -= scatter_tweak * CONFIG_GET(number/combat_define/low_scatter_value)
 
 		if(prob(total_scatter_chance)) //Scattered!
 			var/scatter_x = rand(-1,1)
@@ -1042,7 +1042,7 @@ and you're good to go.
 	if(user && user.mind && user.mind.cm_skills)
 
 		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
-			total_recoil += CONFIG_GET(number/min_recoil_value)
+			total_recoil += CONFIG_GET(number/combat_define/min_recoil_value)
 		else
 			var/recoil_tweak
 			switch(gun_skill_category)
@@ -1061,7 +1061,7 @@ and you're good to go.
 				if(GUN_SKILL_SPEC)
 					recoil_tweak = user.mind.cm_skills.spec_weapons
 			if(recoil_tweak)
-				total_recoil -= recoil_tweak * CONFIG_GET(number/min_recoil_value)
+				total_recoil -= recoil_tweak * CONFIG_GET(number/combat_define/min_recoil_value)
 	if(total_recoil > 0 && ishuman(user))
 		shake_camera(user, total_recoil + 1, total_recoil)
 		return TRUE

@@ -80,7 +80,7 @@
 
 	Process_Cloaking_Router(src)
 
-	. += CONFIG_GET(number/human_delay)
+	. += CONFIG_GET(number/outdated_movedelay/human_delay)
 
 
 /mob/living/carbon/human/proc/Process_Cloaking_Router(mob/living/carbon/human/user)

@@ -124,7 +124,7 @@
 	if(bodytemperature < 283.222)
 		. += (283.222 - bodytemperature) / 10 * 1.75
 
-	. += CONFIG_GET(number/monkey_delay)
+	. += CONFIG_GET(number/outdated_movedelay/monkey_delay)
 
 /mob/living/carbon/monkey/get_permeability_protection()
 	var/protection = 0
