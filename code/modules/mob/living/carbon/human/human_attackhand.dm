@@ -202,8 +202,12 @@
 
 			for(var/datum/limb/org in limbs)
 				var/status = ""
+				var/treat = ""
 				var/brutedamage = org.brute_dam
 				var/burndamage = org.burn_dam
+				var/brute_treated = org.is_bandaged()
+				var/burn_treated = org.salve() //org.is_salved() doesn't seem to work here.
+
 				if(halloss > 0)
 					status = "tingling"
 
@@ -234,7 +238,14 @@
 				if(org.status & LIMB_DESTROYED)
 					status = "MISSING!"
 
-				to_chat(src, "\t [status=="OK"?"<span class='notice'> ":"<span class='warning'> "]My [org.display_name] is [status].</span>")
+				if(brute_treated == 0 & brutedamage > 0)
+					treat = "(Bandaged)"
+				if(brute_treated == 0 & burn_treated == 0 & brutedamage > 0 & burndamage > 0)
+					treat += " and "
+				if(burn_treated == 0 & burndamage > 0)
+					treat += "(Salved)"
+
+				to_chat(src, "\t [status=="OK"?"<span class='notice'> ":"<span class='warning'> "]My [org.display_name] is [status]. [treat]</span>")
 			if((SKELETON in mutations) && !w_uniform && !wear_suit)
 				play_xylophone()
 	return ..()
