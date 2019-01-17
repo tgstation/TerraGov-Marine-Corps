@@ -51,10 +51,10 @@
 	set name = "Submit Bug"
 	set desc = "Submit a bug."
 	set hidden = 1
-	if(CONFIG_GET(string/bugtrackerurl))
+	if(CONFIG_GET(string/githuburl))
 		if(alert("This will open our bug tracker page in your browser. Are you sure?",,"Yes","No")=="No")
 			return
-		src << link(CONFIG_GET(string/bugtrackerurl))
+		src << link(CONFIG_GET(string/githuburl))
 	else
 		to_chat(src, "<span class='warning'>The bug tracker URL is not set in the server configuration.</span>")
 	return
@@ -70,7 +70,7 @@
 		if("Ship")
 			switch(MAIN_SHIP_NAME)
 				if("TGS Theseus")
-					ship_link = CONFIG_GET(string/almayer_url)
+					ship_link = CONFIG_GET(string/shipurl)
 			if(!ship_link)
 				to_chat(src, "<span class='warning'>This ship map has no webmap setup.</span>")
 				return
@@ -78,15 +78,15 @@
 		if("Ground")
 			switch(map_tag)
 				if("Ice Colony")
-					ground_link = CONFIG_GET(string/icecolony_url)
+					ground_link = CONFIG_GET(string/shipurl)
 				if("LV-624")
-					ground_link = CONFIG_GET(string/lv624_url)
+					ground_link = CONFIG_GET(string/lv624url)
 				if("Solaris Ridge")
-					ground_link = CONFIG_GET(string/bigred_url)
+					ground_link = CONFIG_GET(string/bigredurl)
 				if("Prison Station")
-					ground_link = CONFIG_GET(string/prisonstation_url)
+					ground_link = CONFIG_GET(string/prisonstationurl)
 				if("Whiskey Outpost")
-					ground_link = CONFIG_GET(string/whiskeyoutpost_url)
+					ground_link = CONFIG_GET(string/whiskeyoutposturl)
 			if(!ground_link)
 				to_chat(src, "<span class='warning'>This ground map has no webmap setup.</span>")
 				return

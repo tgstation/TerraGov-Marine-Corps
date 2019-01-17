@@ -15,9 +15,9 @@
 		world.tick_lag = newtick
 		feedback_add_details("admin_verb","TICKLAG") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-		switch(alert("Enable Tick Compensation?","Tick Comp is currently: [CONFIG_GET(flag/Tickcomp)]","Yes","No"))
-			if("Yes")	CONFIG_SET(flag/Tickcomp, TRUE)
-			else		CONFIG_SET(flag/Tickcomp, FALSE)
+		switch(alert("Enable Tick Compensation?","Tick Comp is currently: [CONFIG_GET(flag/tickcomp)]","Yes","No"))
+			if("Yes")	CONFIG_SET(flag/tickcomp, TRUE)
+			else		CONFIG_SET(flag/tickcomp, FALSE)
 	else
 		to_chat(src, "<span class='warning'>Error: ticklag(): Invalid world.ticklag value. No changes made.</span>")
 

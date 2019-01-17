@@ -30,13 +30,13 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 		if("Suggestion / Bug Report")
 			switch(alert("Adminhelps are not for suggestions or bug reports - issues should be posted on our GitHub or on our Discord in #coding, and suggestions on our Discord in #suggestions. If you want something done, feel free to code it yourself.",,"Go to GitHub","Go to Discord","Go to Forums","Cancel"))
 				if("Go to Discord")
-					if(CONFIG_GET(string/chaturl))
-						src << link(CONFIG_GET(string/chaturl))
+					if(CONFIG_GET(string/discordurl))
+						src << link(CONFIG_GET(string/discordurl))
 					else
 						to_chat(src, "<span class='warning'>The chat URL is not set in the server configuration.</span>")
 				if("Go to GitHub")
-					if(CONFIG_GET(string/bugtrackerurl))
-						src << link(CONFIG_GET(string/bugtrackerurl))
+					if(CONFIG_GET(string/githuburl))
+						src << link(CONFIG_GET(string/githuburl))
 					else
 						to_chat(src, "<span class='warning'>The bug tracker URL is not set in the server configuration.</span>")
 				if("Go to Forums")

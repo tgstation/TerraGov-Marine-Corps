@@ -74,7 +74,7 @@
 						SD.set_picture("redalert")
 			if(SEC_LEVEL_DELTA)
 				if(announce)
-					command_announcement.Announce("Attention! Delta security level reached! " + CONFIG_GET(string/alert_desc_delta), "Priority Alert")
+					command_announcement.Announce("Attention! Delta security level reached! " + CONFIG_GET(string/alert_delta), "Priority Alert")
 				security_level = SEC_LEVEL_DELTA
 				spawn(0)
 					for(var/obj/machinery/door/poddoor/shutters/almayer/D in machines)

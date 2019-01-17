@@ -1,3 +1,5 @@
+/datum/config_entry/string/comms_password
+
 /datum/config_entry/string/comms_key
 	protection = CONFIG_ENTRY_HIDDEN
 

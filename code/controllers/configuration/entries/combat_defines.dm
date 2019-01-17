@@ -84,6 +84,8 @@ Accuracy multiplier.
 
 /datum/config_entry/number/combat_define/min_hit_accuracy_mult
 
+/datum/config_entry/number/combat_define/mlow_hit_accuracy_mult
+
 /datum/config_entry/number/combat_define/low_hit_accuracy_mult
 
 /datum/config_entry/number/combat_define/med_hit_accuracy_mult
