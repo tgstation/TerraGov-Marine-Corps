@@ -391,17 +391,21 @@ As such, a new tracker datum must be constructed to follow proper child inherita
 	heat_proof = 1
 	unacidable = 1
 
-	New()
-		..()
-		spawn()
-			lock()
+/obj/machinery/door/airlock/evacuation/Initialize()
+	. = ..()
+	lock()
 
 	//Can't interact with them, mostly to prevent grief and meta.
-	Bumped() return FALSE
-	attackby() return FALSE
-	attack_hand() return FALSE
-	attack_alien() return FALSE //Probably a better idea that these cannot be forced open.
-	attack_ai() return FALSE
+/obj/machinery/door/airlock/evacuation/Bumped() 
+	return FALSE
+/obj/machinery/door/airlock/evacuation/attackby() 
+	return FALSE
+/obj/machinery/door/airlock/evacuation/attack_hand() 
+	return FALSE
+/obj/machinery/door/airlock/evacuation/attack_alien() 
+	return FALSE //Probably a better idea that these cannot be forced open.
+/obj/machinery/door/airlock/evacuation/attack_ai() 
+	return FALSE
 
 #undef STATE_IDLE
 #undef STATE_READY
