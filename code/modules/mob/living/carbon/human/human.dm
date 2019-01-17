@@ -17,10 +17,7 @@
 		// Species name is handled by set_species()
 
 	if(!species)
-		if(new_species)
-			set_species(new_species)
-		else
-			set_species()
+		set_species()
 
 	switch(pick("female", "male"))
 		if("female")
@@ -1287,6 +1284,13 @@
 	dat += data_core.get_manifest()
 
 	src << browse(dat, "window=manifest;size=370x420;can_close=1")
+
+/mob/living/carbon/human/species
+	var/race = null
+
+/mob/living/carbon/human/species/Initialize()
+	. = ..()
+	set_species(race)
 
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
 
