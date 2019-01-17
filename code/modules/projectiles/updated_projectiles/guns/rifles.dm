@@ -12,7 +12,7 @@
 	wield_delay = WIELD_DELAY_NORMAL
 	gun_skill_category = GUN_SKILL_RIFLES
 
-/obj/item/weapon/gun/rifle/New()
+/obj/item/weapon/gun/rifle/Initialize()
 	. = ..()
 	if(current_mag && current_mag.current_rounds > 0) 
 		load_into_chamber()
@@ -61,6 +61,7 @@
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/bayonet,
+						/obj/item/attachable/compensator,
 						/obj/item/attachable/reddot,
 						/obj/item/attachable/verticalgrip,
 						/obj/item/attachable/angledgrip,
@@ -348,7 +349,7 @@
 	desc = " This appears to be a less common variant of the usual Type 71, with an undermounted flamethrower and improved iron sights."
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 20, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
-/obj/item/weapon/gun/rifle/type71/flamer/New()
+/obj/item/weapon/gun/rifle/type71/flamer/Initialize()
 	. = ..()
 	var/obj/item/attachable/attached_gun/flamer/S = new(src)
 	S.flags_attach_features &= ~ATTACH_REMOVABLE
@@ -372,7 +373,7 @@
 	wield_delay = 0 //Ends up being .5 seconds due to scope
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 22, "under_x" = 21, "under_y" = 18, "stock_x" = 21, "stock_y" = 18)
 
-/obj/item/weapon/gun/rifle/type71/carbine/commando/New()//Making the gun have an invisible silencer since it's supposed to have one.
+/obj/item/weapon/gun/rifle/type71/carbine/commando/Initialize()//Making the gun have an invisible silencer since it's supposed to have one.
 	. = ..()
 	//supressor
 	var/obj/item/attachable/suppressor/S = new(src)

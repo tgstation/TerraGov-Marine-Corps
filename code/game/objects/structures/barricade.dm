@@ -348,13 +348,13 @@
 		if(ET.folded)
 			return
 		if(user.action_busy)
-			user  << "\red You are already shoveling!"
+			user  << "<span class='warning'> You are already shoveling!</span>"
 			return
 		user.visible_message("[user.name] starts clearing out \the [src].","You start removing \the [src].")
 		if(!do_after(user, ET.shovelspeed, TRUE, 5, BUSY_ICON_BUILD))
 			return
 		if(!ET.folded)
-			user.visible_message("\blue \The [user] removes \the [src].")
+			user.visible_message("<span class='notice'> \The [user] removes \the [src].</span>")
 			destroy_structure(TRUE)
 		return
 	else

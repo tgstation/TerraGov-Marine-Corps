@@ -301,7 +301,9 @@ WEAPONS
 					/obj/item/ammo_magazine/shotgun,
 					/obj/item/ammo_magazine/shotgun,
 					/obj/item/ammo_magazine/shotgun/buckshot,
-					/obj/item/ammo_magazine/shotgun/buckshot
+					/obj/item/ammo_magazine/shotgun/buckshot,
+					/obj/item/ammo_magazine/shotgun/flechette,
+					/obj/item/ammo_magazine/shotgun/flechette,
 					)
 	name = "surplus shotguns crate (M37A2 x2, M37A2 ammo x2 each)"
 	cost = RO_PRICE_VERY_CHEAP
@@ -314,9 +316,11 @@ WEAPONS
 					/obj/item/weapon/gun/smg/m39,
 					/obj/item/weapon/gun/smg/m39,
 					/obj/item/ammo_magazine/smg/m39,
-					/obj/item/ammo_magazine/smg/m39
+					/obj/item/ammo_magazine/smg/m39,
+					/obj/item/ammo_magazine/smg/m39/ap,
+					/obj/item/ammo_magazine/smg/m39/ap,
 					)
-	name = "surplus SMG crate (M39 x2, M39 ammo x2)"
+	name = "surplus SMG crate (M39 x2, M39 ammo x2 AP, 2x Standard)"
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper SMGs crate"
@@ -327,9 +331,11 @@ WEAPONS
 					/obj/item/weapon/gun/rifle/m41a,
 					/obj/item/weapon/gun/rifle/m41a,
 					/obj/item/ammo_magazine/rifle,
-					/obj/item/ammo_magazine/rifle
+					/obj/item/ammo_magazine/rifle,
+					/obj/item/ammo_magazine/rifle/ap,
+					/obj/item/ammo_magazine/rifle/ap,
 					)
-	name = "surplus rifles crate (M41A x2, M41A ammo x2)"
+	name = "surplus rifles crate (M41A x2, M41A ammo x2 AP, 2x Standard)"
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper rifles crate"
@@ -354,9 +360,28 @@ WEAPONS
 					/obj/item/ammo_magazine/rifle/lmg
 					)
 	name = "M41AE2 HPR crate (HPR x1, HPR ammo box x1)"
-	cost = RO_PRICE_PRICY
+	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper M41AE2 HPR crate"
+	group = "Weapons"
+
+/datum/supply_packs/gun/heavyrifle_squad
+	contains = list(
+					/obj/item/weapon/gun/rifle/lmg,
+					/obj/item/weapon/gun/rifle/lmg,
+					/obj/item/weapon/gun/rifle/lmg,
+					/obj/item/weapon/gun/rifle/lmg,
+					/obj/item/weapon/gun/rifle/lmg,
+					/obj/item/ammo_magazine/rifle/lmg,
+					/obj/item/ammo_magazine/rifle/lmg,
+					/obj/item/ammo_magazine/rifle/lmg,
+					/obj/item/ammo_magazine/rifle/lmg,
+					/obj/item/ammo_magazine/rifle/lmg,
+					)
+	name = "M41AE2 HPR squad crate (HPR x5, HPR ammo box x5)"
+	cost = RO_PRICE_PRETTY_PRICY
+	containertype = /obj/structure/closet/crate
+	containername = "\improper M41AE2 HPR squad crate"
 	group = "Weapons"
 
 /datum/supply_packs/gun/combatshotgun
@@ -2419,6 +2444,25 @@ ENGINEERING
 					/obj/item/circuitboard/machine/pacman/super
 					)
 
+/datum/supply_packs/general_circuitboards
+	name = "General circuitboard crate (10x)"
+	cost = RO_PRICE_NEAR_FREE
+	containername = "\improper General circuit board crate (10x)"
+	containertype = /obj/structure/closet/crate/secure
+	group = "Engineering"
+	contains = list(
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/device/multitool,
+					)
 
 /*******************************************************************************
 SCIENCE

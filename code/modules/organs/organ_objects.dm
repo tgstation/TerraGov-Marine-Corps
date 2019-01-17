@@ -213,7 +213,7 @@
 	if(robotic)
 		return
 
-	to_chat(user, "\blue You take an experimental bite out of \the [src].")
+	to_chat(user, "<span class='notice'>You take an experimental bite out of \the [src].</span>")
 	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
 	if(B)
 		var/turf/TU = get_turf(src)

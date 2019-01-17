@@ -398,7 +398,7 @@
 	if(.)  //Checks for power outages
 		return
 	if(!allowed(user))
-		to_chat(user, "\red You don't have access.")
+		to_chat(user, "<span class='warning'>You don't have access.</span>")
 		return
 	if(!squads.len)
 		for(var/datum/squad/S in RoleAuthority.squads)
@@ -1054,12 +1054,24 @@
 		if("move")
 			message = pick(";GET MOVING!", ";GO, GO, GO!", ";WE ARE ON THE MOVE!", ";MOVE IT!", ";DOUBLE TIME!")
 			say(message)
+			var/image/move = image('icons/mob/talk.dmi', icon_state = "order_move")
+			overlays += move
+			spawn(5 SECONDS)
+				overlays -= move
 		if("hold")
 			message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!")
 			say(message)
+			var/image/hold = image('icons/mob/talk.dmi', icon_state = "order_hold")
+			overlays += hold
+			spawn(5 SECONDS)
+				overlays -= hold
 		if("focus")
 			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!")
 			say(message)
+			var/image/focus = image('icons/mob/talk.dmi', icon_state = "order_focus")
+			overlays += focus
+			spawn(5 SECONDS)
+				overlays -= focus
 	update_action_buttons()
 
 

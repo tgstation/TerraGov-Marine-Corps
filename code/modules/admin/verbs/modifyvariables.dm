@@ -279,7 +279,7 @@ var/list/forbidden_varedit_object_types = list(
 
 	for(var/p in forbidden_varedit_object_types)
 		if( istype(O,p) )
-			to_chat(usr, "\red It is forbidden to edit this object's variables.")
+			to_chat(usr, "<span class='warning'>It is forbidden to edit this object's variables.</span>")
 			return
 
 	var/class

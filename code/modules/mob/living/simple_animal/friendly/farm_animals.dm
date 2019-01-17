@@ -39,7 +39,7 @@
 		if(enemies.len && prob(10))
 			enemies = list()
 			LoseTarget()
-			src.visible_message("\blue [src] calms down.")
+			src.visible_message("<span class='notice'> [src] calms down.</span>")
 
 		if(stat == CONSCIOUS)
 			if(udder && prob(5))
@@ -60,7 +60,7 @@
 
 /mob/living/simple_animal/hostile/retaliate/goat/Retaliate()
 	..()
-	src.visible_message("\red [src] gets an evil-looking gleam in their eye.")
+	src.visible_message("<span class='warning'> [src] gets an evil-looking gleam in their eye.</span>")
 
 /mob/living/simple_animal/hostile/retaliate/goat/Move()
 	..()
@@ -77,9 +77,9 @@
 		user.visible_message("<span class='notice'>[user] milks [src] using \the [O].</span>")
 		var/transfered = udder.trans_id_to(G, "milk", rand(5,10))
 		if(G.reagents.total_volume >= G.volume)
-			to_chat(user, "\red The [O] is full.")
+			to_chat(user, "<span class='warning'>The [O] is full.</span>")
 		if(!transfered)
-			to_chat(user, "\red The udder is dry. Wait a bit longer...")
+			to_chat(user, "<span class='warning'>The udder is dry. Wait a bit longer...</span>")
 	else
 		..()
 //cow
@@ -117,9 +117,9 @@
 		user.visible_message("<span class='notice'>[user] milks [src] using \the [O].</span>")
 		var/transfered = udder.trans_id_to(G, "milk", rand(5,10))
 		if(G.reagents.total_volume >= G.volume)
-			to_chat(user, "\red The [O] is full.")
+			to_chat(user, "<span class='warning'>The [O] is full.</span>")
 		if(!transfered)
-			to_chat(user, "\red The udder is dry. Wait a bit longer...")
+			to_chat(user, "<span class='warning'>The udder is dry. Wait a bit longer...</span>")
 	else
 		..()
 
@@ -229,13 +229,13 @@ var/global/chicken_count = 0
 /mob/living/simple_animal/chicken/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if(istype(O, /obj/item/reagent_container/food/snacks/grown/wheat)) //feedin' dem chickens
 		if(!stat && eggsleft < 8)
-			user.visible_message("\blue [user] feeds [O] to [name]! It clucks happily.","\blue You feed [O] to [name]! It clucks happily.")
+			user.visible_message("<span class='notice'> [user] feeds [O] to [name]! It clucks happily.</span>","<span class='notice'> You feed [O] to [name]! It clucks happily.</span>")
 			user.drop_held_item()
 			qdel(O)
 			eggsleft += rand(1, 4)
 			//to_chat(world, eggsleft)
 		else
-			to_chat(user, "\blue [name] doesn't seem hungry!")
+			to_chat(user, "<span class='notice'>[name] doesn't seem hungry!</span>")
 	else
 		..()
 

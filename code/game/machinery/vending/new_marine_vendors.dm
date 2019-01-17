@@ -828,8 +828,7 @@
 							list("M20 mine box", 18, /obj/item/storage/box/explosive_mines, null, "black"),
 							list("Incendiary grenade", 6, /obj/item/explosive/grenade/incendiary, null, "black"),
 							list("Multitool", 1, /obj/item/device/multitool, null, "black"),
-							list("Power control module", 1, /obj/item/circuitboard/apc, null, "black"),
-							list("Airlock electronics", 1, /obj/item/circuitboard/airlock, null, "black"),
+							list("General circuit board", 1, /obj/item/circuitboard/general, null, "black"),
 							list("Signaler (for detpacks)", 1, /obj/item/device/assembly/signaler, null, "black"),
 
 							list("SPECIAL AMMUNITION", 0, null, null, null),
@@ -1096,7 +1095,7 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/cell/high,
 						/obj/item/tool/shovel/etool,
 						/obj/item/device/lightreplacer,
-						/obj/item/circuitboard/apc
+						/obj/item/circuitboard/general,
 						)
 
 
