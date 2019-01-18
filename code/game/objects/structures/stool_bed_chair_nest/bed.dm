@@ -245,7 +245,7 @@ obj/structure/bed/Destroy()
 			return
 	. = ..()
 
-/obj/item/roller/proc/deploy_roller(mob/user, atom/location, last_teleport = null, linked_beacon = null)
+/obj/item/roller/proc/deploy_roller(mob/user, atom/location)
 	var/obj/structure/bed/roller/R = new rollertype(location)
 	R.add_fingerprint(user)
 	user.temp_drop_inv_item(src)
@@ -514,7 +514,7 @@ var/global/list/activated_medevac_stretchers = list()
 	rollertype = /obj/structure/bed/medevac_stretcher
 
 /obj/item/roller/medevac/attack_self(mob/user)
-	deploy_roller(user, user.loc, last_teleport, linked_beacon)
+	deploy_roller(user, user.loc)
 
 
 /obj/item/roller/medevac/examine(mob/user)
