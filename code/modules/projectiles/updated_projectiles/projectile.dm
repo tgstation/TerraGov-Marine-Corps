@@ -357,9 +357,9 @@
 	return prob(hitchance)
 
 /obj/structure/window/get_projectile_hit_chance(obj/item/projectile/P)
-	if(P.ammo.flags_ammo_behavior & AMMO_ENERGY)
+	if(P.ammo.flags_ammo_behavior & AMMO_ENERGY || ( (flags_atom & ON_BORDER) && P.dir != dir && P.dir != reverse_direction(dir) ) )
 		return FALSE
-	else //if(!(flags_atom & ON_BORDER) || (P.dir & dir) || (P.dir & reverse_direction(dir)))
+	else
 		return TRUE
 
 /obj/machinery/door/poddoor/railing/get_projectile_hit_chance(obj/item/projectile/P)
