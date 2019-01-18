@@ -244,7 +244,8 @@
 
 	else if(href_list["simplemake"])
 
-		if(!check_rights(R_SPAWN))	return
+		if(!check_rights(R_SPAWN))	
+			return
 
 		var/mob/M = locate(href_list["mob"])
 
@@ -256,46 +257,55 @@
 			to_chat(usr, "This can only be used on instances of type /mob")
 			return
 
-		var/delmob = 0
+		var/delmob = FALSE
 		switch(alert("Delete old mob?","Message","Yes","No","Cancel"))
-			if("Cancel")	return
-			if("Yes")		delmob = 1
+			if("Cancel")	
+				return
+			if("Yes")		
+				delmob = TRUE
 
-		log_admin("[key_name(usr)] has used rudimentary transformation on [key_name(M)]. Transforming to [href_list["simplemake"]]; deletemob=[delmob]")
-		message_admins("<span class='notice'> [key_name_admin(usr)] has used rudimentary transformation on [key_name_admin(M)]. Transforming to [href_list["simplemake"]]; deletemob=[delmob]</span>", 1)
+		var/turf/location
+		switch(alert("Teleport to your location?","Message","Yes","No","Cancel"))
+			if("Cancel")	
+				return
+			if("Yes")		
+				location = get_turf(usr)
+
+		log_admin("[key_name(usr)] has used rudimentary transformation on [key_name(M)]. Transforming to [href_list["simplemake"]].[delmob ? " Deleting old mob." : ""][location ? " Teleporting to new location." : ""]")
+		message_admins("<span class='notice'>[key_name_admin(usr)] has used rudimentary transformation on [key_name_admin(M)]. Transforming to [href_list["simplemake"]].[delmob ? " Deleting old mob." : ""][location ? " Teleporting to new location." : ""]</span>", 1)
 
 		switch(href_list["simplemake"])
-			if("observer")			M.change_mob_type( /mob/dead/observer , null, null, delmob )
-			if("larva")				M.change_mob_type( /mob/living/carbon/Xenomorph/Larva , null, null, delmob )
-			if ("defender")			M.change_mob_type( /mob/living/carbon/Xenomorph/Defender, null, null, delmob )
-			if ("warrior")			M.change_mob_type( /mob/living/carbon/Xenomorph/Warrior, null, null, delmob )
-			if("runner")			M.change_mob_type( /mob/living/carbon/Xenomorph/Runner , null, null, delmob )
-			if("drone")				M.change_mob_type( /mob/living/carbon/Xenomorph/Drone , null, null, delmob )
-			if("sentinel")			M.change_mob_type( /mob/living/carbon/Xenomorph/Sentinel , null, null, delmob )
-			if("hunter")			M.change_mob_type( /mob/living/carbon/Xenomorph/Hunter , null, null, delmob )
-			if("carrier")			M.change_mob_type( /mob/living/carbon/Xenomorph/Carrier , null, null, delmob )
-			if("hivelord")			M.change_mob_type( /mob/living/carbon/Xenomorph/Hivelord , null, null, delmob )
-			if("praetorian")		M.change_mob_type( /mob/living/carbon/Xenomorph/Praetorian , null, null, delmob )
-			if("ravager")			M.change_mob_type( /mob/living/carbon/Xenomorph/Ravager , null, null, delmob )
-			if("spitter")			M.change_mob_type( /mob/living/carbon/Xenomorph/Spitter , null, null, delmob )
-			if("boiler")			M.change_mob_type( /mob/living/carbon/Xenomorph/Boiler , null, null, delmob )
-			if("crusher")			M.change_mob_type( /mob/living/carbon/Xenomorph/Crusher , null, null, delmob )
-			if("queen")				M.change_mob_type( /mob/living/carbon/Xenomorph/Queen , null, null, delmob )
-			if("human")				M.change_mob_type( /mob/living/carbon/human , null, null, delmob, href_list["species"])
-			if("monkey")			M.change_mob_type( /mob/living/carbon/monkey , null, null, delmob )
-			if("robot")				M.change_mob_type( /mob/living/silicon/robot , null, null, delmob )
-			if("cat")				M.change_mob_type( /mob/living/simple_animal/cat , null, null, delmob )
-			if("runtime")			M.change_mob_type( /mob/living/simple_animal/cat/Runtime , null, null, delmob )
-			if("corgi")				M.change_mob_type( /mob/living/simple_animal/corgi , null, null, delmob )
-			if("ian")				M.change_mob_type( /mob/living/simple_animal/corgi/Ian , null, null, delmob )
-			if("crab")				M.change_mob_type( /mob/living/simple_animal/crab , null, null, delmob )
-			if("coffee")			M.change_mob_type( /mob/living/simple_animal/crab/Coffee , null, null, delmob )
-			if("parrot")			M.change_mob_type( /mob/living/simple_animal/parrot , null, null, delmob )
-			if("polyparrot")		M.change_mob_type( /mob/living/simple_animal/parrot/Poly , null, null, delmob )
-			if("constructarmoured")	M.change_mob_type( /mob/living/simple_animal/construct/armoured , null, null, delmob )
-			if("constructbuilder")	M.change_mob_type( /mob/living/simple_animal/construct/builder , null, null, delmob )
-			if("constructwraith")	M.change_mob_type( /mob/living/simple_animal/construct/wraith , null, null, delmob )
-			if("shade")				M.change_mob_type( /mob/living/simple_animal/shade , null, null, delmob )
+			if("observer")			M.change_mob_type( /mob/dead/observer, location, null, delmob )
+			if("larva")				M.change_mob_type( /mob/living/carbon/Xenomorph/Larva, location, null, delmob )
+			if("defender")			M.change_mob_type( /mob/living/carbon/Xenomorph/Defender, location, null, delmob )
+			if("warrior")			M.change_mob_type( /mob/living/carbon/Xenomorph/Warrior, location, null, delmob )
+			if("runner")			M.change_mob_type( /mob/living/carbon/Xenomorph/Runner, location, null, delmob )
+			if("drone")				M.change_mob_type( /mob/living/carbon/Xenomorph/Drone, location, null, delmob )
+			if("sentinel")			M.change_mob_type( /mob/living/carbon/Xenomorph/Sentinel, location, null, delmob )
+			if("hunter")			M.change_mob_type( /mob/living/carbon/Xenomorph/Hunter, location, null, delmob )
+			if("carrier")			M.change_mob_type( /mob/living/carbon/Xenomorph/Carrier, location, null, delmob )
+			if("hivelord")			M.change_mob_type( /mob/living/carbon/Xenomorph/Hivelord, location, null, delmob )
+			if("praetorian")		M.change_mob_type( /mob/living/carbon/Xenomorph/Praetorian, location, null, delmob )
+			if("ravager")			M.change_mob_type( /mob/living/carbon/Xenomorph/Ravager, location, null, delmob )
+			if("spitter")			M.change_mob_type( /mob/living/carbon/Xenomorph/Spitter, location, null, delmob )
+			if("boiler")			M.change_mob_type( /mob/living/carbon/Xenomorph/Boiler, location, null, delmob )
+			if("crusher")			M.change_mob_type( /mob/living/carbon/Xenomorph/Crusher, location, null, delmob )
+			if("queen")				M.change_mob_type( /mob/living/carbon/Xenomorph/Queen, location, null, delmob )
+			if("human")				M.change_mob_type( /mob/living/carbon/human, location, null, delmob, href_list["species"])
+			if("monkey")			M.change_mob_type( /mob/living/carbon/monkey, location, null, delmob )
+			if("robot")				M.change_mob_type( /mob/living/silicon/robot, location, null, delmob )
+			if("cat")				M.change_mob_type( /mob/living/simple_animal/cat, location, null, delmob )
+			if("runtime")			M.change_mob_type( /mob/living/simple_animal/cat/Runtime, location, null, delmob )
+			if("corgi")				M.change_mob_type( /mob/living/simple_animal/corgi, location, null, delmob )
+			if("ian")				M.change_mob_type( /mob/living/simple_animal/corgi/Ian, location, null, delmob )
+			if("crab")				M.change_mob_type( /mob/living/simple_animal/crab, location, null, delmob )
+			if("coffee")			M.change_mob_type( /mob/living/simple_animal/crab/Coffee, location, null, delmob )
+			if("parrot")			M.change_mob_type( /mob/living/simple_animal/parrot, location, null, delmob )
+			if("polyparrot")		M.change_mob_type( /mob/living/simple_animal/parrot/Poly, location, null, delmob )
+			if("constructarmoured")	M.change_mob_type( /mob/living/simple_animal/construct/armoured, location, null, delmob )
+			if("constructbuilder")	M.change_mob_type( /mob/living/simple_animal/construct/builder, location, null, delmob )
+			if("constructwraith")	M.change_mob_type( /mob/living/simple_animal/construct/wraith, location, null, delmob )
+			if("shade")				M.change_mob_type( /mob/living/simple_animal/shade, location, null, delmob )
 
 
 	/////////////////////////////////////new ban stuff

@@ -127,10 +127,8 @@
 			drop_inv_item_on_ground(l_store)
 		if(belt)
 			drop_inv_item_on_ground(belt)
-		if(wear_suit) //We estimate all armors with uniform restrictions aren't okay with removing the uniform altogether
-			var/obj/item/clothing/suit/S = wear_suit
-			if(S.uniform_restricted)
-				drop_inv_item_on_ground(wear_suit)
+		if(wear_suit && (istype(wear_suit, /obj/item/clothing/suit/armor) || istype(wear_suit, /obj/item/clothing/suit/storage)))
+			drop_inv_item_on_ground(wear_suit)
 		w_uniform = null
 		update_suit_sensors()
 		update_inv_w_uniform()

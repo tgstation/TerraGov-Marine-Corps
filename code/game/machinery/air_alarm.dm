@@ -109,7 +109,7 @@
 
 
 /obj/machinery/alarm/New(var/loc, var/direction, var/building = 0)
-	..()
+	. = ..()
 
 	if(building)
 		if(loc)
@@ -122,7 +122,6 @@
 		wiresexposed = 1
 		pixel_x = (dir & 3)? 0 : (dir == 4 ? -24 : 24)
 		pixel_y = (dir & 3)? (dir ==1 ? -24 : 24) : 0
-		update_icon()
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
@@ -144,6 +143,9 @@
 /obj/machinery/alarm/Initialize()
 	. = ..()
 	set_frequency(frequency)
+
+	first_run()
+
 	if (!master_is_operating())
 		elect_master()
 	
@@ -153,7 +155,6 @@
 		if(EAST) pixel_x = 25
 		if(WEST) pixel_x = -25
 
-	first_run()
 	start_processing()
 
 
@@ -254,7 +255,7 @@
 		return
 
 	var/icon_level = danger_level
-	if (alarm_area.atmosalm)
+	if (alarm_area?.atmosalm)
 		icon_level = max(icon_level, 1)	//if there's an atmos alarm but everything is okay locally, no need to go past yellow
 
 	switch(icon_level)

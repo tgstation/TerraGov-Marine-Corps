@@ -860,6 +860,7 @@
 #include "code\modules\admin\verbs\SDQL_2.dm"
 #include "code\modules\admin\verbs\SDQL_2_parser.dm"
 #include "code\modules\admin\verbs\select_equipment.dm"
+#include "code\modules\admin\verbs\spatialagent.dm"
 #include "code\modules\admin\verbs\ticklag.dm"
 #include "code\modules\almayer\machinery.dm"
 #include "code\modules\animations\animation_library.dm"
