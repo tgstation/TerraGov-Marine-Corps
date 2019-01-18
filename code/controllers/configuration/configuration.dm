@@ -212,15 +212,12 @@
 	return E.ValidateAndSet("[new_val]")
 
 /datum/controller/configuration/proc/LoadModes()
-	return
-	/*
 	gamemode_cache = typecacheof(/datum/game_mode, TRUE)
 	modes = list()
 	mode_names = list()
 	mode_reports = list()
 	mode_false_report_weight = list()
 	votable_modes = list()
-	var/list/probabilities = Get(/datum/config_entry/keyed_list/probability)
 	for(var/T in gamemode_cache)
 		// I wish I didn't have to instance the game modes in order to look up
 		// their information, but it is the only way (at least that I know of).
@@ -229,18 +226,9 @@
 			if(!(M.config_tag in modes))		// ensure each mode is added only once
 				modes += M.config_tag
 				mode_names[M.config_tag] = M.name
-				probabilities[M.config_tag] = M.probability
-				mode_reports[M.report_type] = M.generate_report()
-				if(probabilities[M.config_tag]>0)
-					mode_false_report_weight[M.report_type] = M.false_report_weight
-				else
-					//"impossible" modes will still falsly show up occasionally, else they'll stick out like a sore thumb if an admin decides to force a disabled gamemode.
-					mode_false_report_weight[M.report_type] = min(1, M.false_report_weight)
 				if(M.votable)
 					votable_modes += M.config_tag
 		qdel(M)
-	votable_modes += "secret"
-	*/
 
 /datum/controller/configuration/proc/LoadMOTD()
 	motd = file2text("[directory]/motd.txt")
