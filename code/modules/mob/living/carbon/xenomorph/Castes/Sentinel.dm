@@ -226,8 +226,6 @@
 
 
 /mob/living/carbon/Xenomorph/Sentinel/proc/neurotoxin_recurring_injection(var/mob/living/H)
-	if(!Adjacent(H) || stagger)
-		return FALSE
 	face_atom(H)
 	animation_attack_on(H)
 	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)

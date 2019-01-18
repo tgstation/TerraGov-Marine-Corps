@@ -68,7 +68,7 @@
 	armor_deflection = 40
 
 	// *** Defiler Abilities *** //
-	neuro_claws_amount = 6
+	neuro_claws_amount = 7
 
 /datum/xeno_caste/defiler/elder
 	upgrade_name = "Elder"
@@ -100,7 +100,7 @@
 	armor_deflection = 47
 
 	// *** Defiler Abilities *** //
-	neuro_claws_amount = 6.7
+	neuro_claws_amount = 7.7
 
 /datum/xeno_caste/defiler/ancient
 	upgrade_name = "Ancient"
@@ -132,7 +132,7 @@
 	armor_deflection = 50
 
 	// *** Defiler Abilities *** //
-	neuro_claws_amount = 7
+	neuro_claws_amount = 8
 
 /mob/living/carbon/Xenomorph/Defiler
 	caste_base_type = /mob/living/carbon/Xenomorph/Defiler

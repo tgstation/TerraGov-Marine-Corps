@@ -2132,8 +2132,8 @@
 	dispense_gas(3)
 
 /mob/living/carbon/Xenomorph/Defiler/proc/dispense_gas(count = 0)
+	set waitfor = FALSE
 	while(count)
-		sleep(10)
 		if(stagger) //If we got staggered, return
 			to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
 			return
@@ -2145,6 +2145,7 @@
 		smoke_system.start()
 		T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
 		count = max(0,count - 1)
+		sleep(DEFILER_GAS_DELAY)
 
 
 
@@ -2199,33 +2200,32 @@
 	defiler_recurring_injection(H)
 
 
-/mob/living/carbon/Xenomorph/Defiler/proc/defiler_recurring_injection(mob/living/H, count = 1)
-	if(count > 3)
-		return FALSE
-	if(!Adjacent(H) || stagger)
-		return FALSE
-	face_atom(H)
-	if(!do_after(src, DEFILER_STING_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
-		return
-	animation_attack_on(H)
-	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
-	H.reagents.add_reagent("xeno_toxin", DEFILER_STING_AMOUNT_RECURRING) //10 units transferred.
-	H.reagents.add_reagent("xeno_growthtoxin", DEFILER_STING_AMOUNT_RECURRING)
+/mob/living/carbon/Xenomorph/Defiler/proc/defiler_recurring_injection(mob/living/H, count = 2)
+	//set waitfor = FALSE
+	while(count)
+		if(!Adjacent(H) || stagger)
+			return FALSE
+		face_atom(H)
+		if(!do_after(src, DEFILER_STING_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
+			return
+		animation_attack_on(H)
+		playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+		H.reagents.add_reagent("xeno_toxin", DEFILER_STING_AMOUNT_RECURRING) //10 units transferred.
+		H.reagents.add_reagent("xeno_growthtoxin", DEFILER_STING_AMOUNT_RECURRING)
 
-	if(count < 2)
-		defiler_recurring_injection(H, count + 1)
-		return
+		if(count < 2)
+			//It's infection time!
+			if(!CanHug(H))
+				return
 
-	//It's infection time!
-	if(!CanHug(H))
-		return
-
-	var/embryos = 0
-	for(var/obj/item/alien_embryo/embryo in H) // already got one, stops doubling up
-		embryos++
-	if(!embryos)
-		var/obj/item/alien_embryo/embryo = new /obj/item/alien_embryo(H)
-		embryo.hivenumber = hivenumber
-		round_statistics.now_pregnant++
-		to_chat(src, "<span class='xenodanger'>Your stinger successfully implants a larva into the host.</span>")
+			var/embryos = 0
+			for(var/obj/item/alien_embryo/embryo in H) // already got one, stops doubling up
+				embryos++
+			if(!embryos)
+				var/obj/item/alien_embryo/embryo = new /obj/item/alien_embryo(H)
+				embryo.hivenumber = hivenumber
+				round_statistics.now_pregnant++
+				to_chat(src, "<span class='xenodanger'>Your stinger successfully implants a larva into the host.</span>")
+		count--
+		//sleep(DEFILER_STING_CHANNEL_TIME)
 	return

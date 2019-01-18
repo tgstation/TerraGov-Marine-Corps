@@ -1165,7 +1165,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		"<span class='xenowarning'>You start to advance larval growth inside of [H].</span>")
 		if(!do_after(X, 50, TRUE, 20, BUSY_ICON_FRIENDLY) && X.check_plasma(300))
 			return
-		if(!X.check_state()) 
+		if(!X.check_state())
 			return
 		X.use_plasma(300)
 		X.visible_message("<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>", \
@@ -1323,7 +1323,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 
 /datum/action/xeno_action/neuroclaws
 	name = "Toggle Neuroinjectors"
-	action_icon_state = "neuroclaws_on"
+	action_icon_state = "neuroclaws_off"
 
 /datum/action/xeno_action/neuroclaws/action_activate()
 	var/mob/living/carbon/Xenomorph/Defiler/X = owner
@@ -1340,10 +1340,10 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	button.overlays.Cut()
 	if(X.neuro_claws)
 		playsound(X, 'sound/weapons/slash.ogg', 15, 1)
-		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_off")
+		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_on")
 	else
 		playsound(X, 'sound/weapons/slashmiss.ogg', 15, 1)
-		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_on")
+		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_off")
 
 /datum/action/xeno_action/emit_neurogas/action_cooldown_check()
 	var/mob/living/carbon/Xenomorph/Defiler/X = owner
