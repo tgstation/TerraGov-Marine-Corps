@@ -206,7 +206,7 @@
 				var/brutedamage = org.brute_dam
 				var/burndamage = org.burn_dam
 				var/brute_treated = org.is_bandaged()
-				var/burn_treated = org.salve() //org.is_salved() doesn't seem to work here.
+				var/burn_treated = org.is_salved()
 
 				if(halloss > 0)
 					status = "tingling"
@@ -238,11 +238,11 @@
 				if(org.status & LIMB_DESTROYED)
 					status = "MISSING!"
 
-				if(brute_treated == 0 & brutedamage > 0)
+				if(brute_treated == FALSE & brutedamage > 0)
 					treat = "(Bandaged)"
-				if(brute_treated == 0 & burn_treated == 0 & brutedamage > 0 & burndamage > 0)
+				if(brute_treated == FALSE & burn_treated == FALSE & brutedamage > 0 & burndamage > 0)
 					treat += " and "
-				if(burn_treated == 0 & burndamage > 0)
+				if(burn_treated == FALSE & burndamage > 0)
 					treat += "(Salved)"
 
 				to_chat(src, "\t [status=="OK"?"<span class='notice'> ":"<span class='warning'> "]My [org.display_name] is [status]. [treat]</span>")
