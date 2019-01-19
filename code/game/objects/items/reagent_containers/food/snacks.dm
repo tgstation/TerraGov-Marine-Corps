@@ -2750,7 +2750,7 @@
 	force = 35 //LEGAL LIMIT OF CHOCOLATE
 	bitesize = 3
 	wrapper = /obj/item/trash/chunk
-	list_reagents = list("nutriment" = 10, "coco" = 10)
+	list_reagents = list("nutriment" = 5, "coco" = 10)
 	tastes = list("compressed matter" = 1)
 
 /obj/item/reagent_container/food/snacks/wrapped/barcardine
