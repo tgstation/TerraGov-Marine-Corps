@@ -183,7 +183,7 @@
 /proc/shutdown_logging()
 	rustg_log_close_all()
 
-
+/*
 /* Helper procs for building detailed log lines */
 /proc/key_name(whom, include_link = null, include_name = TRUE)
 	var/mob/M
@@ -282,3 +282,67 @@
 		return "([AREACOORD(T)])"
 	else if(A.loc)
 		return "(UNKNOWN (?, ?, ?))"
+*/
+/proc/key_name(var/whom, var/include_link = null, var/include_name = 1, var/highlight_special_characters = 1)
+	var/mob/M
+	var/client/C
+	var/key
+
+	if(!whom)	return "*null*"
+	if(istype(whom, /client))
+		C = whom
+		M = C.mob
+		key = C.key
+	else if(ismob(whom))
+		M = whom
+		C = M.client
+		key = M.key
+	else // Catch-all cases if none of the types above match
+		var/swhom = null
+
+		if(istype(whom, /atom))
+			var/atom/A = whom
+			swhom = "[A.name]"
+		else if(istype(whom, /datum))
+			swhom = "[whom]"
+
+		if(!swhom)
+			swhom = "*invalid*"
+
+		return "\[[swhom]\]"
+
+	. = ""
+
+	if(key)
+		if(include_link && C)
+			. += "<a href='?priv_msg=\ref[C]'>"
+
+		if(C && C.holder && C.holder.fakekey && !include_name)
+			. += "Administrator"
+		else
+			. += key
+
+		if(include_link)
+			if(C)	. += "</a>"
+			else	. += " (DC)"
+	else
+		. += "*no key*"
+
+	if(include_name && M)
+		var/name
+
+		if(M.real_name)
+			name = M.real_name
+		else if(M.name)
+			name = M.name
+
+
+		if(include_link && is_special_character(M) && highlight_special_characters)
+			. += "/(<font color='#FFA500'>[name]</font>)" //Orange
+		else
+			. += "/([name])"
+
+	return .
+
+/proc/key_name_admin(var/whom, var/include_name = 1)
+	return key_name(whom, 1, include_name)
