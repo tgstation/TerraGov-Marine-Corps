@@ -181,8 +181,7 @@ var/waiting_for_drop_votes = 0
 			var/mob/living/carbon/human/H = M
 			spawn_contestant(H)
 
-	if(config)
-		config.remove_gun_restrictions = 1 //This will allow anyone to use cool guns.
+	CONFIG_SET(flag/remove_gun_restrictions, TRUE) //This will allow anyone to use cool guns.
 
 	world << sound('sound/effects/siren.ogg')
 

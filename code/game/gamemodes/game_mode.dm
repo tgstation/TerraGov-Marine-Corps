@@ -215,7 +215,7 @@
 	//Get a list of all the people who want to be the antagonist for this round
 	for(var/mob/new_player/player in players)
 		if(player.client.prefs.be_special & role)
-			log_debug("[player.key] had [roletext] enabled, so we are drafting them.")
+			log_game("[player.key] had [roletext] enabled, so we are drafting them.")
 			candidates += player.mind
 			players -= player
 
@@ -224,7 +224,7 @@
 		for(var/key in round_voters)
 			for(var/mob/new_player/player in players)
 				if(player.ckey == key)
-					log_debug("[player.key] voted for this round, so we are drafting them.")
+					log_game("[player.key] voted for this round, so we are drafting them.")
 					candidates += player.mind
 					players -= player
 					break
@@ -264,7 +264,7 @@
 				candidates += applicant
 				drafted.Remove(applicant)
 				to_chat(world, "<span class='warning'>[applicant.key] was force-drafted as [roletext], because there aren't enough candidates.</span>")
-				log_debug("[applicant.key] was force-drafted as [roletext], because there aren't enough candidates.")
+				log_game("[applicant.key] was force-drafted as [roletext], because there aren't enough candidates.")
 
 		else //Not enough scrubs, ABORT ABORT ABORT
 			break
@@ -395,7 +395,7 @@
 	if(!player?.current)
 		return
 
-	if(config.objectives_disabled)
+	if(CONFIG_GET(flag/objectives_disabled))
 		show_generic_antag_text(player)
 		return
 

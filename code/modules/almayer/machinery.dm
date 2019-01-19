@@ -252,7 +252,7 @@
 		if(W.name == "used stasis bag") //possiblity for abuse, but fairly low considering its near impossible to rename something without VV
 			var/obj/item/bodybag/cryobag/R = new /obj/item/bodybag/cryobag //lets give them the bag considering having it unfolded would be a pain in the ass.
 			R.add_fingerprint(user)
-			user.temp_drop_inv_item(W)
+			user.temporarilyRemoveItemFromInventory(W)
 			qdel(W)
 			user.put_in_hands(R)
 			return TRUE

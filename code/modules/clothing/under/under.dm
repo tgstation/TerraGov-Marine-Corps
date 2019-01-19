@@ -60,7 +60,7 @@
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(H.w_uniform == src)
-				H.drop_inv_item_on_ground(src)
+				H.dropItemToGround(src)
 				if(H.equip_to_appropriate_slot(I))
 					H.put_in_active_hand(src)
 
@@ -87,10 +87,10 @@
 			if(over_object)
 				switch(over_object.name)
 					if("r_hand")
-						usr.drop_inv_item_on_ground(src)
+						usr.dropItemToGround(src)
 						usr.put_in_r_hand(src)
 					if("l_hand")
-						usr.drop_inv_item_on_ground(src)
+						usr.dropItemToGround(src)
 						usr.put_in_l_hand(src)
 				add_fingerprint(usr)
 

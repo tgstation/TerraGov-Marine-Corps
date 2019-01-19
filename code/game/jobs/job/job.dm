@@ -132,7 +132,7 @@
 	return TRUE
 
 /datum/job/proc/get_access()
-	if(!config || config.jobs_have_minimal_access)
+	if(CONFIG_GET(flag/jobs_have_minimal_access))
 		return minimal_access.Copy() //Need to copy, because we want a new list here. Not the datum's list.
 	return access.Copy()
 
@@ -143,7 +143,7 @@
 
 /datum/job/proc/available_in_days(client/C)
 	//Checking the player's age is only possible through a db connection, so if there isn't one, player age will be a text string instead.
-	if(!istype(C) || !config.use_age_restriction_for_jobs || !isnum(C.player_age) || !isnum(minimal_player_age))
+	if(!istype(C) || !CONFIG_GET(flag/use_age_restriction_for_jobs) || !isnum(C.player_age) || !isnum(minimal_player_age))
 		return FALSE //One of the few times when returning 0 is the proper behavior.
 	return max(0, minimal_player_age - C.player_age)
 

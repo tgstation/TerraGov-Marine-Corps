@@ -233,7 +233,7 @@
 	if ((target != user && prob(malpractice > 5 ? malpractice + 30 : 0)) || !target.can_inject(user))
 		user.visible_message("<span class='danger'>[user] tries to stab [target] [hit_area ? "in [hit_area]" : ""] with [src], but the attack is deflected by armor!</span>",
 							"<span class='danger'>You try to stab [target] in [hit_area ? "in [hit_area]" : ""] with [src], but the attack is deflected by armor!</span>", null, 5)
-		user.temp_drop_inv_item(src)
+		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 		return
 

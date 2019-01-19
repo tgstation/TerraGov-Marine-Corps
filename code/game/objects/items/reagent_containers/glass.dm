@@ -246,7 +246,7 @@
 		to_chat(user, "You add [I] to [src].")
 		qdel(I)
 		user.put_in_hands(new /obj/item/frame/bucket_sensor)
-		user.drop_inv_item_on_ground(src)
+		user.dropItemToGround(src)
 		qdel(src)
 	else if(istype(I, /obj/item/tool/mop))
 		if(reagents.total_volume < 1)

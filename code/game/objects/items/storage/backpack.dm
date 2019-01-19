@@ -17,7 +17,7 @@
 	if(!worn_accessible && ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.back == src)
-/*			if(user.drop_inv_item_on_ground(src))
+/*			if(user.dropItemToGround(src))
 				pickup(user)
 				add_fingerprint(user)
 				if(!user.put_in_active_hand(src))

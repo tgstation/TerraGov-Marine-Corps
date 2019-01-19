@@ -143,7 +143,7 @@
 
 //This proc is called whenever someone clicks an inventory ui slot.
 /mob/proc/attack_ui(slot)
-	var/obj/item/W = get_active_hand()
+	var/obj/item/W = get_active_held_item()
 	if(istype(W))
 		equip_to_slot_if_possible(W, slot, 0) // equiphere
 
@@ -178,7 +178,7 @@
 				if(permanent)
 					W.flags_inventory |= CANTSTRIP
 					W.flags_item |= NODROP
-				if(W.loc == start_loc && get_active_hand() != W)
+				if(W.loc == start_loc && get_active_held_item() != W)
 					//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
 					if(W.zoom)
 						W.zoom(src)
@@ -190,7 +190,7 @@
 		if(permanent)
 			W.flags_inventory |= CANTSTRIP
 			W.flags_item |= NODROP
-		if(W.loc == start_loc && get_active_hand() != W)
+		if(W.loc == start_loc && get_active_held_item() != W)
 			//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
 			if(W.zoom)
 				W.zoom(src)
@@ -598,12 +598,12 @@ mob/proc/yank_out_object()
 	var/obj/item/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
 
 	if(self)
-		if(get_active_hand())
+		if(get_active_held_item())
 			to_chat(src, "<span class='warning'>You need an empty hand for this!</span>")
 			return FALSE
 		to_chat(src, "<span class='warning'>You attempt to get a good grip on [selection] in your body.</span>")
 	else
-		if(get_active_hand())
+		if(get_active_held_item())
 			to_chat(U, "<span class='warning'>You need an empty hand for this!</span>")
 			return FALSE
 		to_chat(U, "<span class='warning'>You attempt to get a good grip on [selection] in [S]'s body.</span>")
@@ -668,7 +668,7 @@ mob/proc/yank_out_object()
 
 /mob/on_stored_atom_del(atom/movable/AM)
 	if(istype(AM, /obj/item))
-		temp_drop_inv_item(AM, TRUE) //unequip before deletion to clear possible item references on the mob.
+		temporarilyRemoveItemFromInventory(AM, TRUE) //unequip before deletion to clear possible item references on the mob.
 
 /mob/forceMove(atom/destination)
 	stop_pulling()

@@ -17,8 +17,7 @@
 	soundin = get_sfx(soundin) // same sound for everyone
 
 	if(isarea(source))
-		error("[source] is an area and is trying to make the sound: [soundin]")
-		return
+		CRASH("[source] is an area and is trying to make the sound: [soundin]")
 
 	var/frequency = GET_RANDOM_FREQ // Same frequency for everybody
 	var/turf/turf_source = get_turf(source)

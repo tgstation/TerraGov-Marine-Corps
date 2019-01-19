@@ -182,7 +182,7 @@
 		var/obj/item/stack/stack = eating
 		stack.use(max(1,round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
 	else
-		if(user.temp_drop_inv_item(O))
+		if(user.temporarilyRemoveItemFromInventory(O))
 			qdel(O)
 
 	updateUsrDialog()
@@ -270,7 +270,7 @@
 		var/temp_wire = href_list["wire"]
 		if(href_list["act"] == "pulse")
 
-			if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			if (!istype(usr.get_active_held_item(), /obj/item/device/multitool))
 				to_chat(usr, "You need a multitool!")
 				return
 
@@ -300,7 +300,7 @@
 
 		else if(href_list["act"] == "wire")
 
-			if (!istype(usr.get_active_hand(), /obj/item/tool/wirecutters))
+			if (!istype(usr.get_active_held_item(), /obj/item/tool/wirecutters))
 				to_chat(usr, "You need wirecutters!")
 				return
 

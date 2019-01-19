@@ -275,9 +275,9 @@ var/datum/mob_hud/huds = list(
 				revive_enabled = FALSE
 
 		if(stat == DEAD && !undefibbable)
-			if((world.time - timeofdeath) > (config.revive_grace_period * 0.4) && (world.time - timeofdeath) < (config.revive_grace_period * 0.8))
+			if((world.time - timeofdeath) > (CONFIG_GET(number/revive_grace_period) * 0.4) && (world.time - timeofdeath) < (CONFIG_GET(number/revive_grace_period) * 0.8))
 				stage = 2
-			else if((world.time - timeofdeath) > (config.revive_grace_period * 0.8))
+			else if((world.time - timeofdeath) > (CONFIG_GET(number/revive_grace_period) * 0.8))
 				stage = 3
 
 		var/holder2_set = 0

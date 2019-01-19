@@ -74,7 +74,7 @@ var/global/normal_ooc_colour = "#002eb8"
 				display_colour = "#643200"	//brown, mostly /tg/ folks
 
 		if(holder.rights & R_COLOR)
-			if(config.allow_admin_ooccolor)
+			if(CONFIG_GET(flag/allow_admin_ooccolor))
 				display_colour = src.prefs.ooccolor
 
 	for(var/client/C in clients)

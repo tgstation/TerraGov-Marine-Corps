@@ -30,7 +30,7 @@
 						break
 
 			if(!input_plate)
-				log_misc("a [src] didn't find an input plate.")
+				log_runtime("a [src] didn't find an input plate.")
 				return
 
 	Bumped(var/atom/A)

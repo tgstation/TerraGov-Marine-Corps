@@ -662,7 +662,7 @@
 		user.visible_message("<span class='notice'>[user] begins installing \a [O.name] into [src].</span>",
 		"<span class='notice'>You begin installing \a [O.name] into [src].</span>")
 		if(do_after(user, work_time, TRUE, 5, BUSY_ICON_BUILD))
-			user.drop_inv_item_to_loc(O, src)
+			user.transferItemToLoc(O, src)
 			user.visible_message("<span class='notice'>[user] installs \a [O.name] into [src].</span>",
 			"<span class='notice'>You install \a [O.name] into [src].</span>")
 			cell = O
@@ -951,7 +951,7 @@
 				//Apply scatter
 				var/scatter_chance = in_chamber.ammo.scatter
 				scatter_chance += (burst_size * 2)
-				in_chamber.accuracy = round(in_chamber.accuracy * (config.base_hit_accuracy_mult - config.min_hit_accuracy_mult * max(0,burst_size - 2) ) ) //Accuracy penalty scales with burst count.
+				in_chamber.accuracy = round(in_chamber.accuracy * (CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/min_hit_accuracy_mult) * max(0,burst_size - 2) ) ) //Accuracy penalty scales with burst count.
 
 				if (prob(scatter_chance))
 					var/scatter_x = rand(-1, 1)
@@ -960,7 +960,7 @@
 					if(new_target) //Looks like we found a turf.
 						target = new_target
 			else
-				in_chamber.accuracy = round(in_chamber.accuracy * (config.base_hit_accuracy_mult + config.med_hit_accuracy_mult)) //much more accurate on single fire
+				in_chamber.accuracy = round(in_chamber.accuracy * (CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/med_hit_accuracy_mult))) //much more accurate on single fire
 
 			//Setup projectile
 			in_chamber.original = target
@@ -1076,7 +1076,7 @@
 		state("<span class='notice'>The [name] buzzes: AI targeting re-initialized.</span>")
 		user.unset_interaction()
 		return FALSE
-	if(user.get_active_hand() != null)
+	if(user.get_active_held_item() != null)
 		to_chat(usr, "<span class='warning'>You need a free hand to shoot [src].</span>")
 		return FALSE
 

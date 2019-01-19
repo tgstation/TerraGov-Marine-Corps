@@ -278,7 +278,7 @@
 
 
 /mob/living/carbon/human/proc/implant_loyalty(mob/living/carbon/human/M, override = FALSE) // Won't override by default.
-	if(!config.use_loyalty_implants && !override) return // Nuh-uh.
+	if(!CONFIG_GET(flag/use_loyalty_implants) && !override) return // Nuh-uh.
 
 	var/obj/item/implant/loyalty/L = new/obj/item/implant/loyalty(M)
 	L.imp_in = M
@@ -431,11 +431,11 @@
 	//Check hands
 	var/obj/item/card/id/id_card
 	var/obj/item/held_item
-	held_item = get_active_hand()
+	held_item = get_active_held_item()
 	if(held_item) //Check active hand
 		id_card = held_item.GetID()
 	if(!id_card) //If there is no id, check the other hand
-		held_item = get_inactive_hand()
+		held_item = get_inactive_held_item()
 		if(held_item)
 			id_card = held_item.GetID()
 
@@ -506,13 +506,13 @@
 				if(what)
 					usr.stripPanelUnequip(what,src,slot)
 				else
-					what = usr.get_active_hand()
+					what = usr.get_active_held_item()
 					usr.stripPanelEquip(what,src,slot)
 
 	if(href_list["pockets"])
 
 		if(!usr.action_busy)
-			var/obj/item/place_item = usr.get_active_hand() // Item to place in the pocket, if it's empty
+			var/obj/item/place_item = usr.get_active_held_item() // Item to place in the pocket, if it's empty
 
 			var/placing = FALSE
 
@@ -524,20 +524,20 @@
 
 			if(do_mob(usr, src, POCKET_STRIP_DELAY))
 				if(placing)
-					if(place_item && place_item == usr.get_active_hand())
+					if(place_item && place_item == usr.get_active_held_item())
 						if(place_item.mob_can_equip(src, SLOT_R_STORE, TRUE))
-							drop_inv_item_on_ground(place_item)
+							dropItemToGround(place_item)
 							equip_to_slot_if_possible(place_item, SLOT_R_STORE, 1, 0, 1)
 						if(place_item.mob_can_equip(src, SLOT_L_STORE, TRUE))
-							drop_inv_item_on_ground(place_item)
+							dropItemToGround(place_item)
 							equip_to_slot_if_possible(place_item, SLOT_L_STORE, 1, 0, 1)
 
 				else
 					if(r_store || l_store)
 						if(r_store && !(r_store.flags_item & NODROP) && !(r_store.flags_inventory & CANTSTRIP))
-							drop_inv_item_on_ground(r_store)
+							dropItemToGround(r_store)
 						if(l_store && !(l_store.flags_item & NODROP) && !(l_store.flags_inventory & CANTSTRIP))
-							drop_inv_item_on_ground(l_store)
+							dropItemToGround(l_store)
 					else
 						to_chat(usr, "<span class='notice'>[src]'s pockets are empty.</span>")
 

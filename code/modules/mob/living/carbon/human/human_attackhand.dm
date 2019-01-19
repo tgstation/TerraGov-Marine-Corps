@@ -43,7 +43,7 @@
 					ExtinguishMob()
 				return 1
 
-			if(health >= config.health_threshold_crit)
+			if(health >= CONFIG_GET(number/health_threshold_crit))
 				help_shake_act(M)
 				return 1
 //			if(M.health < -75)	return 0
@@ -68,7 +68,7 @@
 							"<span class='notice'>You try to perform CPR on [name]... Hold still!</span>", null, 4)
 
 			if(do_mob(M, src, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_MEDICAL))
-				if(health > config.health_threshold_dead && health < config.health_threshold_crit)
+				if(health > CONFIG_GET(number/health_threshold_dead) && health < CONFIG_GET(number/health_threshold_crit))
 					var/suff = min(getOxyLoss(), 5) //Pre-merge level, less healing, more prevention of dieing.
 					adjustOxyLoss(-suff)
 					updatehealth()
@@ -195,7 +195,7 @@
 
 
 /mob/living/carbon/human/help_shake_act(mob/living/carbon/M)
-	if (health >= config.health_threshold_crit)
+	if (health >= CONFIG_GET(number/health_threshold_crit))
 		if(src == M)
 			if(holo_card_color) //if we have a triage holocard printed on us, we remove it.
 				holo_card_color = null

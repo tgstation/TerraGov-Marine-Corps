@@ -143,14 +143,14 @@
 	. = ..()
 	if(.)
 		SetLuminosity(min(fire_stacks,5)) // light up xenos
-		var/obj/item/clothing/mask/facehugger/F = get_active_hand()
-		var/obj/item/clothing/mask/facehugger/G = get_inactive_hand()
+		var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
+		var/obj/item/clothing/mask/facehugger/G = get_inactive_held_item()
 		if(istype(F))
 			F.Die()
-			drop_inv_item_on_ground(F)
+			dropItemToGround(F)
 		if(istype(G))
 			G.Die()
-			drop_inv_item_on_ground(G)
+			dropItemToGround(G)
 
 /mob/living/proc/ExtinguishMob()
 	if(on_fire)

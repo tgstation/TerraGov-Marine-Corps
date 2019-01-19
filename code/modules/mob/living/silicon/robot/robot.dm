@@ -559,7 +559,7 @@ var/list/robot_verbs_default = list(
 		else if(cell)
 			to_chat(user, "There is a power cell already installed.")
 		else
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				cell = W
 				to_chat(user, "You insert the power cell.")
 
@@ -740,12 +740,12 @@ var/list/robot_verbs_default = list(
 	if(istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
 		//if they are holding or wearing a card that has access, that works
-		if(check_access(H.get_active_hand()) || check_access(H.wear_id))
+		if(check_access(H.get_active_held_item()) || check_access(H.wear_id))
 			return 1
 	else if(istype(M, /mob/living/carbon/monkey))
 		var/mob/living/carbon/monkey/george = M
 		//they can only hold things :(
-		if(george.get_active_hand() && istype(george.get_active_hand(), /obj/item/card/id) && check_access(george.get_active_hand()))
+		if(george.get_active_held_item() && istype(george.get_active_held_item(), /obj/item/card/id) && check_access(george.get_active_held_item()))
 			return 1
 	return 0
 
@@ -995,7 +995,7 @@ var/list/robot_verbs_default = list(
 	set category = "IC"
 	set src = usr
 
-	var/obj/item/W = get_active_hand()
+	var/obj/item/W = get_active_held_item()
 	if (W)
 		W.attack_self(src)
 

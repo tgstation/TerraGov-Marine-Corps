@@ -25,7 +25,7 @@
 			for(var/mob/M in hearers(4, src))
 				if(M.client)
 					M.show_message("<span class='warning'> You hear something rumbling inside [src]'s stomach...</span>", 2)
-		var/obj/item/I = user.get_active_hand()
+		var/obj/item/I = user.get_active_held_item()
 		if(I && I.force)
 			var/d = rand(round(I.force / 4), I.force)
 			if(istype(src, /mob/living/carbon/human))
@@ -52,7 +52,7 @@
 
 /mob/living/carbon/gib()
 	if(legcuffed)
-		drop_inv_item_on_ground(legcuffed)
+		dropItemToGround(legcuffed)
 
 	for(var/atom/movable/A in stomach_contents)
 		stomach_contents.Remove(A)
@@ -65,11 +65,11 @@
 
 /mob/living/carbon/revive()
 	if (handcuffed && !initial(handcuffed))
-		drop_inv_item_on_ground(handcuffed)
+		dropItemToGround(handcuffed)
 	handcuffed = initial(handcuffed)
 
 	if (legcuffed && !initial(legcuffed))
-		drop_inv_item_on_ground(legcuffed)
+		dropItemToGround(legcuffed)
 	legcuffed = initial(legcuffed)
 	..()
 
@@ -141,9 +141,9 @@
 
 
 /mob/living/carbon/proc/swap_hand()
-	var/obj/item/wielded_item = get_active_hand()
+	var/obj/item/wielded_item = get_active_held_item()
 	if(wielded_item && (wielded_item.flags_item & WIELDED)) //this segment checks if the item in your hand is twohanded.
-		var/obj/item/weapon/twohanded/offhand/offhand = get_inactive_hand()
+		var/obj/item/weapon/twohanded/offhand/offhand = get_inactive_held_item()
 		if(offhand && (offhand.flags_item & WIELDED))
 			to_chat(src, "<span class='warning'>Your other hand is too busy holding \the [offhand.name]</span>")
 			return
@@ -201,7 +201,7 @@
 				lastpuke = FALSE
 
 /mob/living/carbon/proc/help_shake_act(mob/living/carbon/M)
-	if (health >= config.health_threshold_crit)
+	if(health >= CONFIG_GET(number/health_threshold_crit))
 		if(src != M)
 			var/t_him = "it"
 			if (gender == MALE)
@@ -285,7 +285,7 @@
 		return
 
 	var/atom/movable/thrown_thing
-	var/obj/item/I = get_active_hand()
+	var/obj/item/I = get_active_held_item()
 
 	if(!I || (I.flags_item & NODROP)) return
 
@@ -311,7 +311,7 @@
 
 	else //real item in hand, not a grab
 		thrown_thing = I
-		drop_inv_item_on_ground(I, TRUE)
+		dropItemToGround(I, TRUE)
 
 	//actually throw it!
 	if (thrown_thing)

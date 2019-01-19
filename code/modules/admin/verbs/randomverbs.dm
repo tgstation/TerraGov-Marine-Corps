@@ -11,7 +11,7 @@
 
 	for(var/obj/item/W in M)
 		if(istype(W,/obj/item/alien_embryo)) continue
-		M.drop_inv_item_on_ground(W)
+		M.dropItemToGround(W)
 
 	log_admin("[key_name(usr)] made [key_name(M)] drop everything!")
 	message_admins("[key_name_admin(usr)] made [key_name_admin(M)] drop everything!", 1)
@@ -29,7 +29,7 @@
 			return
 		//strip their stuff before they teleport into a cell :downs:
 		for(var/obj/item/W in M)
-			M.drop_inv_item_on_ground(W)
+			M.dropItemToGround(W)
 		//teleport person to cell
 		M.KnockOut(5)
 		sleep(5)	//so they black out before warping
@@ -159,7 +159,7 @@
 
 proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 	if(automute)
-		if(!config.automute_on)	return
+		if(!CONFIG_GET(flag/automute_on))	return
 	else
 		if(!usr || !usr.client)
 			return
@@ -537,7 +537,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!istype(M))
 		alert("Cannot revive a ghost")
 		return
-	if(config.allow_admin_rev)
+	if(CONFIG_GET(flag/allow_admin_rev))
 		M.revive()
 
 		log_admin("[key_name(usr)] healed / revived [key_name(M)]")
@@ -941,12 +941,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set desc = "Toggles random events such as meteors, black holes, blob (but not space dust) on/off"
 	if(!check_rights(R_SERVER))	return
 
-	if(!config.allow_random_events)
-		config.allow_random_events = 1
+	if(!CONFIG_GET(flag/allow_random_events))
+		CONFIG_SET(flag/allow_random_events, TRUE)
 		to_chat(usr, "Random events enabled")
 		message_admins("Admin [key_name_admin(usr)] has enabled random events.", 1)
 	else
-		config.allow_random_events = 0
+		CONFIG_SET(flag/allow_random_events, FALSE)
 		to_chat(usr, "Random events disabled")
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.", 1)
 	feedback_add_details("admin_verb","TRE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

@@ -1,3 +1,16 @@
+GLOBAL_VAR(AdminProcCaller)
+GLOBAL_PROTECT(AdminProcCaller)
+GLOBAL_VAR_INIT(AdminProcCallCount, 0)
+GLOBAL_PROTECT(AdminProcCallCount)
+GLOBAL_VAR(LastAdminCalledTargetRef)
+GLOBAL_PROTECT(LastAdminCalledTargetRef)
+GLOBAL_VAR(LastAdminCalledTarget)
+GLOBAL_PROTECT(LastAdminCalledTarget)
+GLOBAL_VAR(LastAdminCalledProc)
+GLOBAL_PROTECT(LastAdminCalledProc)
+GLOBAL_LIST_EMPTY(AdminProcCallSpamPrevention)
+GLOBAL_PROTECT(AdminProcCallSpamPrevention)
+
 /client/proc/Debug2()
 	set category = "Debug"
 	set name = "Debugging Mode"
@@ -31,7 +44,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set waitfor = 0
 
 	if(!check_rights(R_DEBUG)) return
-	if(config.debugparanoid && !check_rights(R_ADMIN)) return
+	if(CONFIG_GET(flag/debugparanoid) && !check_rights(R_ADMIN)) return
 
 	var/target = null
 	var/targetselected = 0
@@ -150,7 +163,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set waitfor = 0
 
 	if(!check_rights(R_DEBUG)) return
-	if(config.debugparanoid && !check_rights(R_ADMIN)) return
+	if(CONFIG_GET(flag/debugparanoid) && !check_rights(R_ADMIN)) return
 
 	var/lst[] // List reference
 	lst = new/list() // Make the list
@@ -305,7 +318,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set category = "Debug"
 	set name = "Change Hivenumber"
 
-	if(!check_rights(R_DEBUG|R_ADMIN))	
+	if(!check_rights(R_DEBUG|R_ADMIN))
 		return
 
 	if(!istype(X))
@@ -356,7 +369,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	X.set_hive_number(newhivenumber)
 
 	feedback_add_details("admin_verb","CHHN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	
+
 
 //TODO: merge the vievars version into this or something maybe mayhaps
 /client/proc/cmd_debug_del_all()
@@ -479,11 +492,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			return
 
 	H.set_everything(H.mind.assigned_role)
-	
+
 	H.assigned_squad?.remove_marine_from_squad(H)
 
 	var/datum/squad/S = input(usr, "Choose the marine's new squad") as null|anything in RoleAuthority.squads
-	if(!S) 
+	if(!S)
 		return
 
 	S.put_marine_in_squad(H)

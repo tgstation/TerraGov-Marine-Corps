@@ -37,7 +37,7 @@ var/global/list/randomized_pill_icons
 
 	if(M == user)
 		to_chat(M, "<span class='notice'>You swallow [src].</span>")
-		M.drop_inv_item_on_ground(src) //icon update
+		M.dropItemToGround(src) //icon update
 		if(reagents.total_volume)
 			reagents.trans_to(M, reagents.total_volume)
 
@@ -54,7 +54,7 @@ var/global/list/randomized_pill_icons
 
 		if(!do_mob(user, M, ingestion_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL)) return
 
-		user.drop_inv_item_on_ground(src) //icon update
+		user.dropItemToGround(src) //icon update
 		user.visible_message("<span class='warning'>[user] forces [M] to swallow [src].", "<span class='notice'>You force [M] to swallow [src].", null, 5)
 
 		var/rgt_list_text = get_reagent_list_text()

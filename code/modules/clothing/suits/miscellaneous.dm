@@ -210,7 +210,7 @@
 	equipped(var/mob/user, var/slot)
 		if(slot == SLOT_WEAR_SUIT && ishuman(user))
 			var/mob/living/carbon/human/H = user
-			H.drop_inv_item_on_ground(H.handcuffed)
+			H.dropItemToGround(H.handcuffed)
 			H.drop_l_hand()
 			H.drop_r_hand()
 		..()

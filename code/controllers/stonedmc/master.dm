@@ -54,7 +54,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	var/static/restart_clear = 0
 	var/static/restart_timeout = 0
 	var/static/restart_count = 0
-	
+
 	var/static/random_seed
 
 	//current tick limit, assigned before running a subsystem.
@@ -69,7 +69,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if(!random_seed)
 		random_seed = (TEST_RUN_PARAMETER in world.params) ? 29051994 : rand(1, 1e9)
 		rand_seed(random_seed)
-	
+
 	var/list/_subsystems = list()
 	subsystems = _subsystems
 	if (Master != src)
@@ -183,7 +183,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 
 	var/start_timeofday = REALTIMEOFDAY
 	// Initialize subsystems.
-	current_ticklimit = config.tick_limit_mc_init
+	current_ticklimit = CONFIG_GET(number/tick_limit_mc_init)
 	for (var/datum/controller/subsystem/SS in subsystems)
 		if (SS.flags & SS_NO_INIT)
 			continue
@@ -202,14 +202,14 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	// Sort subsystems by display setting for easy access.
 	sortTim(subsystems, /proc/cmp_subsystem_display)
 	// Set world options.
-	world.fps = config.fps
+	world.fps = CONFIG_GET(number/fps)
 	var/initialized_tod = REALTIMEOFDAY
 
 	if(sleep_offline_after_initializations)
 		world.sleep_offline = TRUE
 	sleep(1)
 
-	if(sleep_offline_after_initializations && config.resume_after_initializations)
+	if(sleep_offline_after_initializations && CONFIG_GET(flag/resume_after_initializations))
 		world.sleep_offline = FALSE
 	initializations_finished_with_no_players_logged_in = initialized_tod < REALTIMEOFDAY - 10
 	// Loop.
@@ -611,7 +611,7 @@ GLOBAL_REAL(Master, /datum/controller/master) = new
 	if (!processing)
 		return
 	var/client_count = length(clients)
-	if (client_count < config.disable_high_pop_mc_mode_amount)
-		processing = config.base_mc_tick_rate
-	else if (client_count > config.high_pop_mc_mode_amount)
-		processing = config.high_pop_mc_tick_rate
+	if (client_count < CONFIG_GET(number/mc_tick_rate/disable_high_pop_mc_mode_amount))
+		processing = CONFIG_GET(number/mc_tick_rate/base_mc_tick_rate)
+	else if (client_count > CONFIG_GET(number/mc_tick_rate/high_pop_mc_mode_amount))
+		processing = CONFIG_GET(number/mc_tick_rate/high_pop_mc_tick_rate)
