@@ -6,7 +6,7 @@
 	item_state = "flashlight"
 	w_class = 2
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	matter = list("metal" = 50,"glass" = 20)
 	actions_types = list(/datum/action/item_action)
 	var/on = FALSE

@@ -8,7 +8,7 @@
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/regenZ = 1 //Temp zombie thing until I write a better method ~Apop
 
-/mob/living/carbon/human/New(var/new_loc, var/new_species = null)
+/mob/living/carbon/human/Initialize()
 	verbs += /mob/living/proc/lay_down
 	b_type = pick(7;"O-", 38;"O+", 6;"A-", 34;"A+", 2;"B-", 9;"B+", 1;"AB-", 3;"AB+")
 
@@ -17,10 +17,7 @@
 		// Species name is handled by set_species()
 
 	if(!species)
-		if(new_species)
-			set_species(new_species)
-		else
-			set_species()
+		set_species()
 
 	switch(pick("female", "male"))
 		if("female")
@@ -130,7 +127,7 @@
 	reagents = R
 	R.my_atom = src
 
-	..()
+	. = ..()
 
 	round_statistics.total_humans_created++
 
@@ -519,7 +516,7 @@
 
 			var/placing = FALSE
 
-			if(place_item && !(place_item.flags_item & ITEM_ABSTRACT) && (place_item.mob_can_equip(src, WEAR_L_STORE, TRUE) || place_item.mob_can_equip(src, WEAR_R_STORE, TRUE)))
+			if(place_item && !(place_item.flags_item & ITEM_ABSTRACT) && (place_item.mob_can_equip(src, SLOT_L_STORE, TRUE) || place_item.mob_can_equip(src, SLOT_R_STORE, TRUE)))
 				to_chat(usr, "<span class='notice'>You try to place [place_item] into [src]'s pocket.</span>")
 				placing = TRUE
 			else
@@ -528,12 +525,12 @@
 			if(do_mob(usr, src, POCKET_STRIP_DELAY))
 				if(placing)
 					if(place_item && place_item == usr.get_active_hand())
-						if(place_item.mob_can_equip(src, WEAR_R_STORE, TRUE))
+						if(place_item.mob_can_equip(src, SLOT_R_STORE, TRUE))
 							drop_inv_item_on_ground(place_item)
-							equip_to_slot_if_possible(place_item, WEAR_R_STORE, 1, 0, 1)
-						if(place_item.mob_can_equip(src, WEAR_L_STORE, TRUE))
+							equip_to_slot_if_possible(place_item, SLOT_R_STORE, 1, 0, 1)
+						if(place_item.mob_can_equip(src, SLOT_L_STORE, TRUE))
 							drop_inv_item_on_ground(place_item)
-							equip_to_slot_if_possible(place_item, WEAR_L_STORE, 1, 0, 1)
+							equip_to_slot_if_possible(place_item, SLOT_L_STORE, 1, 0, 1)
 
 				else
 					if(r_store || l_store)
@@ -1288,6 +1285,13 @@
 
 	src << browse(dat, "window=manifest;size=370x420;can_close=1")
 
+/mob/living/carbon/human/species
+	var/race = null
+
+/mob/living/carbon/human/species/Initialize()
+	. = ..()
+	set_species(race)
+
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
 
 	if(!dna)
@@ -1427,7 +1431,7 @@
 			face_exposed = 0
 		if(C.flags_armor_protection & EYES)
 			eyes_exposed = 0
-		if(C.flags_armor_protection & UPPER_TORSO)
+		if(C.flags_armor_protection & CHEST)
 			torso_exposed = 0
 		if(C.flags_armor_protection & ARMS)
 			arms_exposed = 0

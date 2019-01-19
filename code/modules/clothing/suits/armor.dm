@@ -1,8 +1,8 @@
 
 /obj/item/clothing/suit/armor
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO
+	flags_armor_protection = CHEST|GROIN
+	flags_cold_protection = CHEST|GROIN
+	flags_heat_protection = CHEST|GROIN
 	min_cold_protection_temperature = ARMOR_min_cold_protection_temperature
 	max_heat_protection_temperature = ARMOR_max_heat_protection_temperature
 	w_class = 5
@@ -19,6 +19,8 @@
 	icon_state = "armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
+	permeability_coefficient = 0.8
+	flags_armor_protection = CHEST
 	armor = list(melee = 20, bullet = 30, laser = 25, energy = 10, bomb = 15, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/armor/vest/pilot
@@ -28,6 +30,9 @@
 	icon_state = "pilot"
 	sprite_sheet_id = 1
 	blood_overlay_type = "armor"
+	flags_armor_protection = CHEST|GROIN
+	flags_cold_protection = CHEST|GROIN
+	flags_heat_protection = CHEST|GROIN
 	armor = list(melee = 50, bullet = 60, laser = 35, energy = 20, bomb = 25, bio = 0, rad = 0)
 	allowed = list(/obj/item/weapon/gun/,
 		/obj/item/tank/emergency_oxygen,
@@ -53,13 +58,14 @@
 	desc = "It's hot in the jungle. Sometimes it's hot and heavy, and sometimes it's hell on earth."
 	icon = 'icons/obj/clothing/cm_suits.dmi'
 	icon_state = "dutch_armor"
+	flags_armor_protection = CHEST|GROIN
 
 /obj/item/clothing/suit/armor/vest/admiral
 	name = "admiral's jacket"
 	desc = "An armoured jacket with gold regalia"
 	icon_state = "admiral_jacket"
 	item_state = "admiral_jacket"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_armor_protection = CHEST|GROIN|ARMS
 	w_class = 3
 
 /obj/item/clothing/suit/armor/vest/security
@@ -74,7 +80,7 @@
 	desc = "An armoured jacket with silver rank pips and livery."
 	icon_state = "warden_jacket"
 	item_state = "armor"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_armor_protection = CHEST|GROIN|ARMS
 
 /obj/item/clothing/suit/armor/laserproof
 	name = "Ablative Armor Vest"
@@ -91,6 +97,7 @@
 	icon_state = "bulletproof"
 	item_state = "armor"
 	blood_overlay_type = "armor"
+	flags_armor_protection = CHEST
 	armor = list(melee = 20, bullet = 50, laser = 25, energy = 10, bomb = 15, bio = 0, rad = 0)
 	time_to_unequip = 20
 	time_to_equip = 20
@@ -100,7 +107,7 @@
 	desc = "A suit of armor with heavy padding to protect against melee attacks. Looks like it might impair movement."
 	icon_state = "riot"
 	item_state = "swat"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 	armor = list(melee = 80, bullet = 10, laser = 10, energy = 10, bomb = 0, bio = 0, rad = 0)
 	flags_inv_hide = HIDEJUMPSUIT
@@ -123,13 +130,13 @@
 	item_state = "swat"
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS
+	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS
 	allowed = list(/obj/item/weapon/gun,/obj/item/ammo_magazine,/obj/item/ammo_casing,/obj/item/weapon/baton,/obj/item/handcuffs,/obj/item/tank/emergency_oxygen)
 	slowdown = 1
 	armor = list(melee = 80, bullet = 60, laser = 50,energy = 25, bomb = 50, bio = 100, rad = 100)
 	flags_inventory = THICKMATERIAL|STOPSPRESSUREDAMAGE
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature
 	siemens_coefficient = 0.6
 
@@ -142,7 +149,7 @@
 	blood_overlay_type = "coat"
 	flags_inventory = NOFLAGS
 	flags_inv_hide = NOFLAGS
-	flags_armor_protection = UPPER_TORSO|ARMS
+	flags_armor_protection = CHEST|ARMS
 
 
 /obj/item/clothing/suit/armor/det_suit
@@ -151,6 +158,7 @@
 	icon_state = "detective-armor"
 	item_state = "armor"
 	blood_overlay_type = "armor"
+	flags_armor_protection = CHEST|GROIN
 	armor = list(melee = 50, bullet = 15, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
 
 
@@ -204,11 +212,11 @@
 	desc = "A suit that protects against some damage."
 	icon_state = "centcom"
 	item_state = "centcom"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	allowed = list(/obj/item/weapon/gun,/obj/item/weapon/baton,/obj/item/handcuffs,/obj/item/tank/emergency_oxygen)
 	flags_inventory = THICKMATERIAL
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	flags_cold_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	min_cold_protection_temperature = SPACE_SUIT_min_cold_protection_temperature
 	permeability_coefficient = 0.5
 	armor = list(melee = 80, bullet = 80, laser = 50, energy = 50, bomb = 100, bio = 100, rad = 100)
@@ -220,7 +228,7 @@
 	icon_state = "heavy"
 	item_state = "swat_suit"
 	flags_inventory = THICKMATERIAL
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	slowdown = 3
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	gas_transfer_coefficient = 0.9
@@ -228,7 +236,7 @@
 	armor = list(melee = 80, bullet = 80, laser = 50, energy = 50, bomb = 100, bio = 100, rad = 100)
 
 /obj/item/clothing/suit/armor/tdome
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|FEET|ARMS|HANDS
+	flags_armor_protection = CHEST|GROIN|LEGS|FEET|ARMS|HANDS
 	flags_inv_hide = HIDEGLOVES|HIDESHOES|HIDEJUMPSUIT
 	flags_inventory = THICKMATERIAL
 	permeability_coefficient = 0.5
@@ -253,7 +261,7 @@
 	icon_state = "swatarmor"
 	item_state = "armor"
 	var/obj/item/weapon/gun/holstered = null
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS
+	flags_armor_protection = CHEST|GROIN|LEGS|ARMS
 	slowdown = 1
 	armor = list(melee = 60, bullet = 60, laser = 60, energy = 40, bomb = 20, bio = 0, rad = 0)
 
@@ -330,7 +338,7 @@
 	desc = "A greatcoat enhanced with a special alloy for some protection and style."
 	icon_state = "hos"
 	item_state = "hos"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	armor = list(melee = 65, bullet = 30, laser = 50, energy = 10, bomb = 25, bio = 0, rad = 0)
 	flags_inv_hide = HIDEJUMPSUIT
 
@@ -340,4 +348,4 @@
 	icon_state = "jensencoat"
 	item_state = "jensencoat"
 	flags_inv_hide = NOFLAGS
-	flags_armor_protection = UPPER_TORSO|ARMS
+	flags_armor_protection = CHEST|ARMS

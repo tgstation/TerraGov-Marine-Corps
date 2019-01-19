@@ -55,9 +55,9 @@
 	var/list/overlays_standing[X_TOTAL_LAYERS]
 
 
-/mob/living/carbon/Xenomorph/New()
+/mob/living/carbon/Xenomorph/Initialize()
 	verbs += /mob/living/proc/lay_down
-	..()
+	. = ..()
 
 	set_datum()
 	//WO GAMEMODE

@@ -24,7 +24,7 @@
 		"/obj/item/reagent_container/dropper",
 		"/obj/item/tool/screwdriver",
 		"/obj/item/tool/stamp")
-	flags_equip_slot = SLOT_ID
+	flags_equip_slot = ITEM_SLOT_ID
 
 	var/obj/item/card/id/front_id = null
 

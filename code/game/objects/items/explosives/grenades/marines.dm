@@ -117,7 +117,6 @@
 	det_time = 40
 	item_state = "grenade_fire"
 	hud_state = "grenade_fire"
-	flags_equip_slot = SLOT_WAIST
 	underslug_launchable = TRUE
 
 /obj/item/explosive/grenade/incendiary/prime()

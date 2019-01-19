@@ -75,15 +75,15 @@
 		qdel(G)
 	switch(current_goggles)
 		if(0)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/yautja(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/night/yautja(M), SLOT_GLASSES)
 			to_chat(M, "<span class='notice'>Low-light vision module: activated.</span>")
 			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 		if(1)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/yautja(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal/yautja(M), SLOT_GLASSES)
 			to_chat(M, "<span class='notice'>Thermal sight module: activated.</span>")
 			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 		if(2)
-			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/meson/yautja(M), WEAR_EYES)
+			M.equip_to_slot_or_del(new /obj/item/clothing/glasses/meson/yautja(M), SLOT_GLASSES)
 			to_chat(M, "<span class='notice'>Material vision module: activated.</span>")
 			if(prob(50)) playsound(src,'sound/effects/pred_vision.ogg', 15, 1)
 		if(3)
@@ -95,7 +95,7 @@
 
 
 /obj/item/clothing/mask/gas/yautja/equipped(mob/living/carbon/human/user, slot)
-	if(slot == WEAR_FACE)
+	if(slot == SLOT_WEAR_MASK)
 		var/datum/mob_hud/H = huds[MOB_HUD_MEDICAL_ADVANCED]
 		H.add_hud_to(user)
 	..()
@@ -120,7 +120,7 @@
 	item_state = "armor"
 	sprite_sheet_id = 1
 	flags_inventory = THICKMATERIAL
-	flags_armor_protection = UPPER_TORSO|ARM_LEFT
+	flags_armor_protection = CHEST|ARM_LEFT
 	armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
 	min_cold_protection_temperature = ARMOR_min_cold_protection_temperature
 	max_heat_protection_temperature = ARMOR_max_heat_protection_temperature
@@ -150,40 +150,40 @@
 			if(7128)
 				name = "\improper 'Armor of the Swamp Horror'"
 				icon_state = "halfarmor_elder_joshuu"
-				flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+				flags_armor_protection = CHEST|GROIN|ARMS
 				armor = list(melee = 70, bullet = 80, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 			if(9867)
 				name = "\improper 'Armor of the Enforcer'"
 				icon_state = "halfarmor_elder_feweh"
-				flags_armor_protection = UPPER_TORSO|ARMS
+				flags_armor_protection = CHEST|ARMS
 				armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 			if(4879)
 				name = "\improper 'Armor of the Ambivalent Collector'"
 				icon_state = "halfarmor_elder_n"
-				flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+				flags_armor_protection = CHEST|GROIN|ARMS
 				armor = list(melee = 75, bullet = 85, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 			else
 				name = "clan elder's armor"
 				icon_state = "halfarmor_elder"
-				flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+				flags_armor_protection = CHEST|GROIN|ARMS
 				armor = list(melee = 70, bullet = 80, laser = 60, energy = 70, bomb = 65, bio = 25, rad = 25)
 	else
 		switch(armor_number)
 			if(2)
 				icon_state = "halfarmor[armor_number]"
-				flags_armor_protection = UPPER_TORSO|ARMS
+				flags_armor_protection = CHEST|ARMS
 				armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
 			if(3)
 				icon_state = "halfarmor[armor_number]"
-				flags_armor_protection = UPPER_TORSO|LOWER_TORSO
+				flags_armor_protection = CHEST|GROIN
 				armor = list(melee = 75, bullet = 75, laser = 60, energy = 65, bomb = 65, bio = 20, rad = 20)
 			if(4)
 				icon_state = "halfarmor[armor_number]"
-				flags_armor_protection = UPPER_TORSO
+				flags_armor_protection = CHEST
 				armor = list(melee = 75, bullet = 80, laser = 60, energy = 70, bomb = 70, bio = 20, rad = 20)
 			if(5,441)
 				icon_state = "halfarmor[armor_number]"
-				flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+				flags_armor_protection = CHEST|GROIN|ARMS
 				armor = list(melee = 70, bullet = 70, laser = 55, energy = 65, bomb = 65, bio = 20, rad = 20)
 	flags_cold_protection = flags_armor_protection
 	flags_heat_protection = flags_armor_protection
@@ -192,7 +192,7 @@
 	name = "heavy clan armor"
 	desc = "A suit of armor with heavy padding. It looks old, yet functional."
 	icon_state = "fullarmor"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS
+	flags_armor_protection = CHEST|GROIN|ARMS
 	armor = list(melee = 90, bullet = 95, laser = 75, energy = 75, bomb = 75, bio = 25, rad = 25)
 	slowdown = 1
 
@@ -208,8 +208,8 @@
 	desc = "A dusty, yet powerful cape worn and passed down by elder Yautja."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "cape_elder"
-	flags_equip_slot = SLOT_BACK
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_equip_slot = ITEM_SLOT_BACK
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	armor = list(melee = 10, bullet = 0, laser = 5, energy = 15, bomb = 0, bio = 0, rad = 0)
 	unacidable = 1
 
@@ -247,7 +247,7 @@
 	..()
 	icon_state = "y-boots[boot_number]"
 	if(boot_number != 1) //More overall protection, less defensive value.
-		flags_armor_protection = FEET|LEGS|LOWER_TORSO
+		flags_armor_protection = FEET|LEGS|GROIN
 		armor = list(melee = 65, bullet = 75, laser = 55, energy = 45, bomb = 45, bio = 20, rad = 20)
 	flags_cold_protection = flags_armor_protection
 	flags_heat_protection = flags_armor_protection
@@ -257,8 +257,8 @@
 	icon = 'icons/obj/clothing/uniforms.dmi'
 	desc = "A set of very fine chainlink in a meshwork for comfort and utility."
 	icon_state = "mesh_shirt"
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|FEET|HANDS //Does not cover the head though.
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS|ARMS|FEET|HANDS
+	flags_cold_protection = CHEST|GROIN|LEGS|ARMS|FEET|HANDS //Does not cover the head though.
+	flags_heat_protection = CHEST|GROIN|LEGS|ARMS|FEET|HANDS
 	has_sensor = 0
 	armor = list(melee = 10, bullet = 10, laser = 10, energy = 10, bomb = 10, bio = 10, rad = 10)
 	siemens_coefficient = 0.9
@@ -304,7 +304,7 @@
 	..()
 	if(ishuman(user))
 		var/mob/living/carbon/human/H = user
-		if(slot == WEAR_HANDS && H.species && H.species.name == "Yautja")
+		if(slot == SLOT_GLOVES && H.species && H.species.name == "Yautja")
 			START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/gloves/yautja/dropped(mob/user)
@@ -721,7 +721,7 @@
 	desc = "A Yautja hunting pouch worn around the waist, made from a thick tanned hide. Capable of holding various devices and tools and used for the transport of trophies."
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "beltbag"
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	max_w_class = 3
 	storage_slots = 10
 	max_storage_space = 30
@@ -914,7 +914,7 @@
 	desc = "A segmented, lightweight whip made of durable, acid-resistant metal. Not very common among Yautja Hunters, but still a dangerous weapon capable of shredding prey."
 	icon_state = "whip"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 35
 	throwforce = 12
 	w_class = 3
@@ -941,7 +941,7 @@
 	icon_state = "predknife"
 	item_state = "knife"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_STORE
+	flags_equip_slot = ITEM_SLOT_POCKET
 	sharp = IS_SHARP_ITEM_ACCURATE
 	force = 24
 	w_class = 1
@@ -991,7 +991,7 @@
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "clansword"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 	force = 45 //More damage than other weapons like it. Considering how "strong" this sword is supposed to be, 38 damage was laughable.
@@ -1030,7 +1030,7 @@
 	icon_state = "predscythe"
 	item_state = "scythe"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	sharp = IS_SHARP_ITEM_BIG
 	force = 32
 	w_class = 4.0
@@ -1056,7 +1056,7 @@
 				if(!affecting)
 					affecting = target:get_limb(ran_zone(user.zone_selected,90)) //No luck? Try again.
 				if(affecting)
-					if(affecting.body_part != UPPER_TORSO && affecting.body_part != LOWER_TORSO) //as hilarious as it is
+					if(affecting.body_part != CHEST && affecting.body_part != GROIN) //as hilarious as it is
 						user.visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
 						affecting.droplimb(1) //the second 1 is  amputation. This amputates.
 		else //Probably an alien
@@ -1072,7 +1072,7 @@
 	icon = 'icons/obj/items/predator.dmi'
 	icon_state = "combistick"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 4
 	force = 32
 	throwforce = 70
@@ -1114,7 +1114,7 @@
 	else
 		to_chat(user, "<span class='notice'>You collapse [src] for storage.</span>")
 		icon_state = initial(icon_state) + "_f"
-		flags_equip_slot = SLOT_STORE
+		flags_equip_slot = ITEM_SLOT_POCKET
 		w_class = 1
 		force = 0
 		throwforce = initial(throwforce) - 50

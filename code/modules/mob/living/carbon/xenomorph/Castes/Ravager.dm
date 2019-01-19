@@ -218,7 +218,7 @@
 /mob/living/carbon/Xenomorph/Ravager/proc/delimb(var/mob/living/carbon/human/H, var/datum/limb/O)
 	if (prob(isYautja(H)?10:20)) // lets halve this for preds
 		O = H.get_limb(check_zone(zone_selected))
-		if (O.body_part != UPPER_TORSO && O.body_part != LOWER_TORSO && O.body_part != HEAD) //Only limbs.
+		if (O.body_part != CHEST && O.body_part != GROIN && O.body_part != HEAD) //Only limbs.
 			visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
 			O.droplimb()
 			return 1
@@ -275,8 +275,8 @@
 		/datum/action/xeno_action/activable/breathe_fire,
 		)
 
-/mob/living/carbon/Xenomorph/Ravager/ravenger/New()
-	..()
+/mob/living/carbon/Xenomorph/Ravager/ravenger/Initialize()
+	. = ..()
 	verbs -= /mob/living/carbon/Xenomorph/verb/hive_status
 
 /mob/living/carbon/Xenomorph/Ravager/ravenger/proc/breathe_fire(atom/A)

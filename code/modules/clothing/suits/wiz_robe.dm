@@ -40,7 +40,7 @@
 	item_state = "wizrobe"
 	gas_transfer_coefficient = 0.01
 	permeability_coefficient = 0.01
-	body_parts_covered = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	body_parts_covered = CHEST|GROIN|ARMS|LEGS
 	armor = list(melee = 30, bullet = 20, laser = 20,energy = 20, bomb = 20, bio = 20, rad = 20)
 	allowed = list(/obj/item/teleportation_scroll)
 	flags_inv_hide = HIDEJUMPSUIT
@@ -64,12 +64,14 @@
 	desc = "A set of armoured robes that seem to radiate a dark power"
 	icon_state = "magusblue"
 	item_state = "magusblue"
+	flags_armor_protection = CHEST|GROIN|ARMS|HANDS|LEGS|FEET
 
 /obj/item/clothing/suit/wizrobe/magusred
 	name = "Magus Robe"
 	desc = "A set of armoured robes that seem to radiate a dark power"
 	icon_state = "magusred"
 	item_state = "magusred"
+	flags_armor_protection = CHEST|GROIN|ARMS|HANDS|LEGS|FEET
 
 /obj/item/clothing/suit/wizrobe/psypurple
 	name = "purple robes"
@@ -82,6 +84,7 @@
 	desc = "A heavy threaded twead gray jacket. For a different sort of Gentleman."
 	icon_state = "gentlecoat"
 	item_state = "gentlecoat"
+	flags_armor_protection = CHEST|GROIN|ARMS
 
 
 /obj/item/clothing/head/wizard/fake
@@ -115,6 +118,7 @@
 	name = "Witch Robe"
 	icon_state = "marisa"
 	item_state = "marisarobe"
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
 	gas_transfer_coefficient = 1
 	permeability_coefficient = 1
 	siemens_coefficient = 1

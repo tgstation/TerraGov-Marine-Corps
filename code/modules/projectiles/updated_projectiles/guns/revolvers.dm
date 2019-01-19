@@ -2,7 +2,7 @@
 
 //Generic parent object.
 /obj/item/weapon/gun/revolver
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = 3
 	origin_tech = "combat=3;materials=2"
 	matter = list("metal" = 2000)
@@ -77,7 +77,7 @@
 //The cylinder is always emptied out before a reload takes place.
 /obj/item/weapon/gun/revolver/proc/add_to_cylinder(mob/user) //Bullets are added forward.
 	//First we're going to try and replace the current bullet.
-	if(!current_mag.current_rounds) 
+	if(!current_mag.current_rounds)
 		current_mag.chamber_contents[current_mag.chamber_position] = "bullet"
 	else//Failing that, we'll try to replace the next bullet in line.
 		if( (current_mag.chamber_position + 1) > current_mag.max_rounds)
