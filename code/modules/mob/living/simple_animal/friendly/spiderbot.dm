@@ -73,7 +73,7 @@
 
 
 
-		user.drop_inv_item_to_loc(O, src)
+		user.transferItemToLoc(O, src)
 		to_chat(user, "<span class='notice'>You install [O] in [src]!</span>")
 		mmi = O
 		transfer_personality(O)

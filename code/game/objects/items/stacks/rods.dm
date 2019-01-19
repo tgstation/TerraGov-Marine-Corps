@@ -40,7 +40,7 @@
 				M.show_message("<span class='warning'> [src] is shaped into metal by [user.name] with the weldingtool.</span>", 3, "<span class='warning'> You hear welding.</span>", 2)
 			var/obj/item/stack/rods/R = src
 			src = null
-			var/replace = (user.get_inactive_hand()==R)
+			var/replace = (user.get_inactive_held_item()==R)
 			R.use(4)
 			if (!R && replace)
 				user.put_in_hands(new_item)

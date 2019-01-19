@@ -498,7 +498,7 @@
 /obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user)
 	if((istype(I, /obj/item/explosive/grenade)))
 		if(grenades.len < max_grenades)
-			if(user.drop_inv_item_to_loc(I, src))
+			if(user.transferItemToLoc(I, src))
 				grenades += I
 				to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
 				to_chat(user, "<span class='info'>Now storing: [grenades.len] / [max_grenades] grenades.</span>")
@@ -636,7 +636,7 @@
 	if((istype(I, /obj/item/explosive/grenade)))
 		if((istype(I, grenade_type_allowed)))
 			if(!grenade)
-				if(user.drop_inv_item_to_loc(I, src))
+				if(user.transferItemToLoc(I, src))
 					grenade = I
 					to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
 			else
@@ -819,7 +819,7 @@
 	if(user)
 		to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
 		if(do_after(user,current_mag.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
-			user.drop_inv_item_on_ground(rocket)
+			user.dropItemToGround(rocket)
 			replace_ammo(user,rocket)
 			current_mag.current_rounds = current_mag.max_rounds
 			rocket.current_rounds = 0

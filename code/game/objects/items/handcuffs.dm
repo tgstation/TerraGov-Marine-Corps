@@ -51,16 +51,16 @@
 
 		user.visible_message("<span class='notice'>[user] tries to put [src] on [H].</span>")
 		if(do_mob(user, H, cuff_delay, BUSY_ICON_HOSTILE, BUSY_ICON_GENERIC))
-			if(src == user.get_active_hand() && !H.handcuffed && Adjacent(user))
+			if(src == user.get_active_held_item() && !H.handcuffed && Adjacent(user))
 				if(H.has_limb_for_slot(SLOT_HANDCUFFED))
-					user.drop_inv_item_on_ground(src)
+					user.dropItemToGround(src)
 					H.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)
 
 	else if (ismonkey(target))
 		user.visible_message("<span class='notice'>[user] tries to put [src] on [target].</span>")
 		if(do_mob(user, target, 30, BUSY_ICON_HOSTILE, BUSY_ICON_GENERIC))
-			if(src == user.get_active_hand() && !target.handcuffed && Adjacent(user))
-				user.drop_inv_item_on_ground(src)
+			if(src == user.get_active_held_item() && !target.handcuffed && Adjacent(user))
+				user.dropItemToGround(src)
 				target.equip_to_slot_if_possible(src, SLOT_HANDCUFFED, 1, 0, 1, 1)
 
 

@@ -225,13 +225,13 @@
 	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
 		return
 
-	var/obj/item/offhand = user.get_inactive_hand()
+	var/obj/item/offhand = user.get_inactive_held_item()
 	if(offhand)
 		if(offhand == user.r_hand)
 			user.drop_r_hand()
 		else if(offhand == user.l_hand)
 			user.drop_l_hand()
-		if(user.get_inactive_hand()) //Failsafe; if there's somehow still something in the off-hand (undroppable), bail.
+		if(user.get_inactive_held_item()) //Failsafe; if there's somehow still something in the off-hand (undroppable), bail.
 			to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
 			return
 
@@ -378,7 +378,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	return TRUE
 
 /obj/item/weapon/gun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
-	user.drop_inv_item_to_loc(magazine, src) //Click!
+	user.transferItemToLoc(magazine, src) //Click!
 	current_mag = magazine
 	replace_ammo(user,magazine)
 	if(!in_chamber)
@@ -637,7 +637,7 @@ and you're good to go.
 		//checking for a gun in other hand to fire akimbo
 		if(i == 1 && !reflex && !dual_wield)
 			if(user)
-				var/obj/item/IH = user.get_inactive_hand()
+				var/obj/item/IH = user.get_inactive_held_item()
 				if(istype(IH, /obj/item/weapon/gun))
 					var/obj/item/weapon/gun/OG = IH
 					if(!(OG.flags_gun_features & GUN_WIELDED_FIRING_ONLY) && OG.gun_skill_category == gun_skill_category)

@@ -1055,7 +1055,7 @@
 
 		//strip their stuff and stick it in the crate
 		for(var/obj/item/I in M)
-			M.drop_inv_item_to_loc(I, locker)
+			M.transferItemToLoc(I, locker)
 
 		//so they black out before warping
 		M.KnockOut(5)
@@ -1112,7 +1112,7 @@
 			return
 
 		for(var/obj/item/I in M)
-			M.drop_inv_item_on_ground(I)
+			M.dropItemToGround(I)
 
 		M.KnockOut(5)
 		sleep(5)
@@ -1137,7 +1137,7 @@
 			return
 
 		for(var/obj/item/I in M)
-			M.drop_inv_item_on_ground(I)
+			M.dropItemToGround(I)
 
 		M.KnockOut(5)
 		sleep(5)
@@ -1184,7 +1184,7 @@
 			return
 
 		for(var/obj/item/I in M)
-			M.drop_inv_item_on_ground(I)
+			M.dropItemToGround(I)
 
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/observer = M
@@ -1875,7 +1875,7 @@
 			if ( !( ishuman(usr) || ismonkey(usr) ) )
 				to_chat(usr, "Can only spawn in hand when you're a human or a monkey.")
 				where = "onfloor"
-			else if ( usr.get_active_hand() )
+			else if ( usr.get_active_held_item() )
 				to_chat(usr, "Your active hand is full. Spawning on floor.")
 				where = "onfloor"
 

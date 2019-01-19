@@ -662,7 +662,7 @@
 		user.visible_message("<span class='notice'>[user] begins installing \a [O.name] into [src].</span>",
 		"<span class='notice'>You begin installing \a [O.name] into [src].</span>")
 		if(do_after(user, work_time, TRUE, 5, BUSY_ICON_BUILD))
-			user.drop_inv_item_to_loc(O, src)
+			user.transferItemToLoc(O, src)
 			user.visible_message("<span class='notice'>[user] installs \a [O.name] into [src].</span>",
 			"<span class='notice'>You install \a [O.name] into [src].</span>")
 			cell = O
@@ -1076,7 +1076,7 @@
 		state("<span class='notice'>The [name] buzzes: AI targeting re-initialized.</span>")
 		user.unset_interaction()
 		return FALSE
-	if(user.get_active_hand() != null)
+	if(user.get_active_held_item() != null)
 		to_chat(usr, "<span class='warning'>You need a free hand to shoot [src].</span>")
 		return FALSE
 

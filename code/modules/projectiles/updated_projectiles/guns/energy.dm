@@ -514,7 +514,7 @@
 /obj/item/weapon/gun/energy/lasgun/replace_magazine(mob/user, obj/item/cell/lasgun/new_cell)
 	cell = new_cell
 	if(user)
-		user.drop_inv_item_to_loc(new_cell, src) //Click!
+		user.transferItemToLoc(new_cell, src) //Click!
 		user.visible_message("<span class='notice'>[user] loads [new_cell] into [src]!</span>",
 		"<span class='notice'>You load [new_cell] into [src]!</span>", null, 3)
 		if(reload_sound)

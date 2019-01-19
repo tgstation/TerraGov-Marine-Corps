@@ -175,7 +175,7 @@ cases. Override_icon_state should be a list.*/
 	throwing = FALSE
 
 	if(loc == user)
-		if(!user.drop_inv_item_on_ground(src))
+		if(!user.dropItemToGround(src))
 			return
 	else
 		user.next_move = max(user.next_move+2,world.time + 2)
@@ -590,7 +590,7 @@ cases. Override_icon_state should be a list.*/
 	set name = "Show Held Item"
 	set category = "Object"
 
-	var/obj/item/I = get_active_hand()
+	var/obj/item/I = get_active_held_item()
 	if(I && !(I.flags_item & ITEM_ABSTRACT))
 		I.showoff(src)
 
@@ -617,7 +617,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		to_chat(user, "<span class='warning'>You are unable to focus through \the [zoom_device].</span>")
 	else if(!zoom && user.client && H.tinttotal >= 3)
 		to_chat(user, "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>")
-	else if(!zoom && user.get_active_hand() != src)
+	else if(!zoom && user.get_active_held_item() != src)
 		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
 	else if(zoom) //If we are zoomed out, reset that parameter.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",

@@ -52,7 +52,7 @@
 			to_chat(user, "It's already full.")
 			return
 		num_flares++
-		user.temp_drop_inv_item(flare)
+		user.temporarilyRemoveItemFromInventory(flare)
 		sleep(-1)
 		qdel(flare)
 		to_chat(user, "<span class='notice'>You insert the flare.</span>")
@@ -244,7 +244,7 @@
 		var/obj/item/reagent_container/syringe/S = I
 		if(S.mode != 2)//SYRINGE_BROKEN in syringes.dm
 			if(syringes.len < max_syringes)
-				user.drop_inv_item_to_loc(I, src)
+				user.transferItemToLoc(I, src)
 				syringes += I
 				update_icon()
 				to_chat(user, "<span class='notice'>You put the syringe in [src].</span>")

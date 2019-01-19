@@ -127,7 +127,7 @@
 		playsound(src.loc, 'sound/effects/sparks1.ogg', 25, 0)
 	else if(istype(I,/obj/item/cell) && open && !cell)
 		var/obj/item/cell/C = I
-		if(user.drop_inv_item_to_loc(C, src))
+		if(user.transferItemToLoc(C, src))
 			cell = C
 			updateDialog()
 	else if(istype(I,/obj/item/tool/screwdriver))
@@ -314,7 +314,7 @@
 
 
 			if("cellremove")
-				if(open && cell && !usr.get_active_hand())
+				if(open && cell && !usr.get_active_held_item())
 					cell.updateicon()
 					usr.put_in_active_hand(cell)
 					cell.add_fingerprint(usr)
@@ -325,7 +325,7 @@
 
 			if("cellinsert")
 				if(open && !cell)
-					var/obj/item/cell/C = usr.get_active_hand()
+					var/obj/item/cell/C = usr.get_active_held_item()
 					if(istype(C))
 						if(usr.drop_held_item())
 							cell = C
@@ -395,20 +395,20 @@
 
 
 			if("wirecut")
-				if(istype(usr.get_active_hand(), /obj/item/tool/wirecutters))
+				if(istype(usr.get_active_held_item(), /obj/item/tool/wirecutters))
 					var/wirebit = text2num(href_list["wire"])
 					wires &= ~wirebit
 				else
 					to_chat(usr, "<span class='notice'>You need wirecutters!</span>")
 			if("wiremend")
-				if(istype(usr.get_active_hand(), /obj/item/tool/wirecutters))
+				if(istype(usr.get_active_held_item(), /obj/item/tool/wirecutters))
 					var/wirebit = text2num(href_list["wire"])
 					wires |= wirebit
 				else
 					to_chat(usr, "<span class='notice'>You need wirecutters!</span>")
 
 			if("wirepulse")
-				if(istype(usr.get_active_hand(), /obj/item/device/multitool))
+				if(istype(usr.get_active_held_item(), /obj/item/device/multitool))
 					switch(href_list["wire"])
 						if("1","2")
 							to_chat(usr, "<span class='notice'>\icon[src] The charge light flickers.</span>")

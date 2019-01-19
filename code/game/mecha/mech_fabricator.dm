@@ -189,7 +189,7 @@
 		return 1
 	else if(istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		for(var/ID in list(H.get_active_hand(), H.wear_id, H.belt))
+		for(var/ID in list(H.get_active_held_item(), H.wear_id, H.belt))
 			if(src.check_access(ID))
 				return 1
 	to_chat(M, "<font color='red'>You don't have required permissions to use [src]</font>")

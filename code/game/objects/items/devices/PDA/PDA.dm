@@ -951,7 +951,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		if(O)
 			if (istype(loc, /mob))
 				var/mob/M = loc
-				if(M.get_active_hand() == null)
+				if(M.get_active_held_item() == null)
 					M.put_in_hands(O)
 					to_chat(usr, "<span class='notice'>You remove \the [O] from \the [src].</span>")
 					return
@@ -967,13 +967,13 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		if (id)
 			remove_id()
 		else
-			var/obj/item/I = user.get_active_hand()
+			var/obj/item/I = user.get_active_held_item()
 			if (istype(I, /obj/item/card/id))
 				if(user.drop_held_item())
 					I.forceMove(src)
 					id = I
 	else
-		var/obj/item/card/I = user.get_active_hand()
+		var/obj/item/card/I = user.get_active_held_item()
 		if (istype(I, /obj/item/card/id) && I:registered_name)
 			var/obj/old_id = id
 			if(user.drop_held_item())

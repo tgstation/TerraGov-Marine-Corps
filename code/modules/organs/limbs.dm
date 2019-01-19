@@ -720,10 +720,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 					organ= new /obj/item/limb/head/synth(owner.loc, owner)
 				else
 					organ= new /obj/item/limb/head(owner.loc, owner)
-				owner.drop_inv_item_on_ground(owner.glasses, null, TRUE)
-				owner.drop_inv_item_on_ground(owner.head, null, TRUE)
-				owner.drop_inv_item_on_ground(owner.wear_ear, null, TRUE)
-				owner.drop_inv_item_on_ground(owner.wear_mask, null, TRUE)
+				owner.dropItemToGround(owner.glasses, null, TRUE)
+				owner.dropItemToGround(owner.head, null, TRUE)
+				owner.dropItemToGround(owner.wear_ear, null, TRUE)
+				owner.dropItemToGround(owner.wear_mask, null, TRUE)
 			if(ARM_RIGHT)
 				if(status & LIMB_ROBOT) 	organ = new /obj/item/robot_parts/r_arm(owner.loc)
 				else 						organ = new /obj/item/limb/r_arm(owner.loc, owner)
@@ -738,18 +738,18 @@ Note that amputating the affected organ does in fact remove the infection from t
 				else 						organ = new /obj/item/limb/l_leg(owner.loc, owner)
 			if(HAND_RIGHT)
 				if(!(status & LIMB_ROBOT)) organ= new /obj/item/limb/r_hand(owner.loc, owner)
-				owner.drop_inv_item_on_ground(owner.gloves, null, TRUE)
-				owner.drop_inv_item_on_ground(owner.r_hand, null, TRUE)
+				owner.dropItemToGround(owner.gloves, null, TRUE)
+				owner.dropItemToGround(owner.r_hand, null, TRUE)
 			if(HAND_LEFT)
 				if(!(status & LIMB_ROBOT)) organ= new /obj/item/limb/l_hand(owner.loc, owner)
-				owner.drop_inv_item_on_ground(owner.gloves, null, TRUE)
-				owner.drop_inv_item_on_ground(owner.l_hand, null, TRUE)
+				owner.dropItemToGround(owner.gloves, null, TRUE)
+				owner.dropItemToGround(owner.l_hand, null, TRUE)
 			if(FOOT_RIGHT)
 				if(!(status & LIMB_ROBOT)) organ= new /obj/item/limb/r_foot/(owner.loc, owner)
-				owner.drop_inv_item_on_ground(owner.shoes, null, TRUE)
+				owner.dropItemToGround(owner.shoes, null, TRUE)
 			if(FOOT_LEFT)
 				if(!(status & LIMB_ROBOT)) organ = new /obj/item/limb/l_foot(owner.loc, owner)
-				owner.drop_inv_item_on_ground(owner.shoes, null, TRUE)
+				owner.dropItemToGround(owner.shoes, null, TRUE)
 
 		if(delete_limb)
 			qdel(organ)
@@ -780,14 +780,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 			"\The [owner.handcuffed.name] falls off of [owner.name].",\
 			"\The [owner.handcuffed.name] falls off you.")
 
-		owner.drop_inv_item_on_ground(owner.handcuffed)
+		owner.dropItemToGround(owner.handcuffed)
 
 	if (owner.legcuffed && body_part in list(FOOT_LEFT, FOOT_RIGHT, LEG_LEFT, LEG_RIGHT))
 		owner.visible_message(\
 			"\The [owner.legcuffed.name] falls off of [owner.name].",\
 			"\The [owner.legcuffed.name] falls off you.")
 
-		owner.drop_inv_item_on_ground(owner.legcuffed)
+		owner.dropItemToGround(owner.legcuffed)
 
 /datum/limb/proc/bandage()
 	var/rval = 0
@@ -967,12 +967,12 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	if(is_broken())
 		if(prob(15))
-			owner.drop_inv_item_on_ground(c_hand)
+			owner.dropItemToGround(c_hand)
 			var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
 			owner.emote("me", 1, "[(owner.species && owner.species.flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [hand_name]!")
 	if(is_malfunctioning())
 		if(prob(10))
-			owner.drop_inv_item_on_ground(c_hand)
+			owner.dropItemToGround(c_hand)
 			owner.emote("me", 1, "drops what they were holding, their [hand_name] malfunctioning!")
 			var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 			spark_system.set_up(5, 0, owner)

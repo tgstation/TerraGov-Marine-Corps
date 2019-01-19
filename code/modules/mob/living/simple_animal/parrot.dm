@@ -157,7 +157,7 @@
 		//Adding things to inventory
 		else if(href_list["add_inv"])
 			var/add_to = href_list["add_inv"]
-			if(!usr.get_active_hand())
+			if(!usr.get_active_held_item())
 				to_chat(usr, "<span class='warning'>You have nothing in your hand to put on its [add_to].</span>")
 				return
 			switch(add_to)
@@ -166,7 +166,7 @@
 						to_chat(usr, "<span class='warning'>It's already wearing something.</span>")
 						return
 					else
-						var/obj/item/item_to_add = usr.get_active_hand()
+						var/obj/item/item_to_add = usr.get_active_held_item()
 						if(!item_to_add)
 							return
 
@@ -176,7 +176,7 @@
 
 						var/obj/item/device/radio/headset/headset_to_add = item_to_add
 
-						usr.drop_inv_item_to_loc(headset_to_add, src)
+						usr.transferItemToLoc(headset_to_add, src)
 						ears = headset_to_add
 						to_chat(usr, "You fit the headset onto [src].")
 
@@ -621,7 +621,7 @@
 			stolen_item = C.r_hand
 
 		if(stolen_item)
-			if(C.drop_inv_item_to_loc(stolen_item, src))
+			if(C.transferItemToLoc(stolen_item, src))
 				held_item = stolen_item
 				visible_message("[src] grabs the [held_item] out of [C]'s hand!", "<span class='notice'> You snag the [held_item] out of [C]'s hand!</span>", "You hear the sounds of wings flapping furiously.")
 				return held_item

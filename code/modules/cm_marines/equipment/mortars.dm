@@ -147,7 +147,7 @@
 			user.visible_message("<span class='notice'>[user] loads \a [mortar_shell.name] into [src].</span>",
 			"<span class='notice'>You load \a [mortar_shell.name] into [src].</span>")
 			visible_message("\icon[src] <span class='danger'>The [name] fires!</span>")
-			user.drop_inv_item_to_loc(mortar_shell, src)
+			user.transferItemToLoc(mortar_shell, src)
 			playsound(loc, 'sound/weapons/gun_mortar_fire.ogg', 50, 1)
 			busy = 0
 			firing = 1

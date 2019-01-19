@@ -964,7 +964,7 @@ var/global/image/busy_indicator_hostile
 	var/user_loc = user.loc
 	var/target_loc = target.loc
 	var/delayfraction = round(time/5)
-	var/holding = user.get_active_hand()
+	var/holding = user.get_active_held_item()
 
 	. = TRUE
 	for(var/i = 0 to 5)
@@ -975,7 +975,7 @@ var/global/image/busy_indicator_hostile
 		if(user.loc != user_loc || target.loc != target_loc)
 			. = FALSE
 			break
-		if(user.get_active_hand() != holding)
+		if(user.get_active_held_item() != holding)
 			. = FALSE
 			break
 		if(user.is_mob_incapacitated(TRUE) || user.lying)
@@ -1019,7 +1019,7 @@ var/global/image/busy_indicator_hostile
 	var/delayfraction = round(delay/numticks)
 	var/original_loc = user.loc
 	var/original_turf = get_turf(user)
-	var/obj/holding = user.get_active_hand()
+	var/obj/holding = user.get_active_held_item()
 	. = TRUE
 	for(var/i = 0 to numticks)
 		sleep(delayfraction)
@@ -1031,10 +1031,10 @@ var/global/image/busy_indicator_hostile
 			break
 		if(needhand)
 			if(holding)
-				if(!holding.loc || user.get_active_hand() != holding) //no longer holding the required item
+				if(!holding.loc || user.get_active_held_item() != holding) //no longer holding the required item
 					. = FALSE
 					break
-			else if(user.get_active_hand()) //something in active hand when we need it to stay empty
+			else if(user.get_active_held_item()) //something in active hand when we need it to stay empty
 				. = FALSE
 				break
 
