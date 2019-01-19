@@ -176,7 +176,7 @@
 		O.emp_act(severity)
 
 /obj/item/weapon/gun/equipped(mob/user, slot)
-	if(slot != WEAR_L_HAND && slot != WEAR_R_HAND)
+	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
 		stop_aim()
 		if (user.client)
 			user.update_gun_icons()

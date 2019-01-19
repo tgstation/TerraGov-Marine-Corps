@@ -4,7 +4,7 @@
 	icon_state = "whistle"
 	w_class = 1.0
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_FACE
+	flags_equip_slot = ITEM_SLOT_MASK
 
 	var/volume = 60
 	var/spamcheck = 0

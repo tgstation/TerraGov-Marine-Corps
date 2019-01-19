@@ -11,7 +11,7 @@ They're all essentially identical when it comes to getting the job done.
 	item_state = "ammo_mag" //PLACEHOLDER. This ensures the mag doesn't use the icon state instead.
 	var/bonus_overlay = null //Sprite pointer in ammo.dmi to an overlay to add to the gun, for extended mags, box mags, and so on
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	matter = list("metal" = 1000)
 	origin_tech = "combat=2'materials=2" //Low.
 	throwforce = 2
@@ -283,7 +283,7 @@ Turn() or Shift() as there is virtually no overhead. ~N
 	icon = 'icons/obj/items/ammo.dmi'
 	icon_state = "big_ammo_box"
 	item_state = "big_ammo_box"
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	var/base_icon_state = "big_ammo_box"
 	var/default_ammo = /datum/ammo/bullet/rifle
 	var/bullet_amount = 600

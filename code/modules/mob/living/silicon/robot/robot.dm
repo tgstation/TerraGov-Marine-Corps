@@ -74,7 +74,7 @@ var/list/robot_verbs_default = list(
 	var/scrambledcodes = 0 // Used to determine if a borg shows up on the robotics console.  Setting to one hides them.
 	var/braintype = "Cyborg"
 
-/mob/living/silicon/robot/New(loc,var/syndie = 0,var/unfinished = 0)
+/mob/living/silicon/robot/Initialize(loc,var/syndie = 0,var/unfinished = 0)
 	spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -121,7 +121,7 @@ var/list/robot_verbs_default = list(
 		cell.maxcharge = 25000
 		cell.charge = 25000
 
-	..()
+	. = ..()
 
 	if(cell)
 		var/datum/robot_component/cell_component = components["power cell"]

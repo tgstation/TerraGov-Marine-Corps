@@ -57,7 +57,7 @@
 	env_low_temp_resistance = ICE_PLANET_min_cold_protection_temperature
 
 
-/mob/living/carbon/monkey/New()
+/mob/living/carbon/monkey/Initialize()
 	verbs += /mob/living/proc/lay_down
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
@@ -97,19 +97,19 @@
 
 		update_muts=1
 
-	..()
+	return ..()
 
 
-/mob/living/carbon/monkey/unathi/New()
-	..()
+/mob/living/carbon/monkey/unathi/Initialize()
+	. = ..()
 	dna.mutantrace = "lizard"
 
-/mob/living/carbon/monkey/skrell/New()
-	..()
+/mob/living/carbon/monkey/skrell/Initialize()
+	. = ..()
 	dna.mutantrace = "skrell"
 
-/mob/living/carbon/monkey/tajara/New()
-	..()
+/mob/living/carbon/monkey/tajara/Initialize()
+	. = ..()
 	dna.mutantrace = "tajaran"
 
 /mob/living/carbon/monkey/movement_delay()

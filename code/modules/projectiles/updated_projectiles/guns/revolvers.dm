@@ -2,7 +2,7 @@
 
 //Generic parent object.
 /obj/item/weapon/gun/revolver
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = 3
 	origin_tech = "combat=3;materials=2"
 	matter = list("metal" = 2000)

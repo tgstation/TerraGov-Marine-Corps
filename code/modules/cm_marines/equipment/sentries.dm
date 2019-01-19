@@ -1337,7 +1337,7 @@
 	item_state = "minisentry_packed"
 	w_class = 4
 	health = 150 //We keep track of this when folding up the sentry.
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 
 /obj/item/device/marine_turret/mini/attack_self(mob/user) //click the sentry to deploy it.
 	if(!ishuman(usr))

@@ -105,7 +105,7 @@
 		to_chat(user, "<span class='danger'>You can't remove their mask!</span>")
 		return
 	var/obj/item/clothing/mask/breath/medical/B = new()
-	if(!H.equip_if_possible(B, WEAR_FACE))
+	if(!H.equip_if_possible(B, SLOT_WEAR_MASK))
 		to_chat(user, "<span class='danger'>You can't fit the gas mask over their face!</span>")
 		qdel(B)
 		return

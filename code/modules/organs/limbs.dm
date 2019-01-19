@@ -236,7 +236,7 @@
 
 	//If limb took enough damage, try to cut or tear it off
 
-	if(body_part == UPPER_TORSO || body_part == LOWER_TORSO || no_limb_loss)
+	if(body_part == CHEST || body_part == GROIN || no_limb_loss)
 		owner.updatehealth()
 		return update_icon()
 	var/obj/item/clothing/worn_helmet = owner.head
@@ -680,7 +680,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(status & LIMB_DESTROYED)
 		return
 	else
-		if(body_part == UPPER_TORSO)
+		if(body_part == CHEST)
 			return
 
 		if(status & LIMB_ROBOT)
@@ -1055,7 +1055,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	display_name = "chest"
 	max_damage = 200
 	min_broken_damage = 40
-	body_part = UPPER_TORSO
+	body_part = CHEST
 	vital = 1
 	encased = "ribcage"
 
@@ -1065,7 +1065,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	display_name = "groin"
 	max_damage = 200
 	min_broken_damage = 40
-	body_part = LOWER_TORSO
+	body_part = GROIN
 	vital = 1
 
 /datum/limb/l_arm

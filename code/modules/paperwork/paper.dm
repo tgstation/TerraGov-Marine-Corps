@@ -13,7 +13,7 @@
 	w_class = 1.0
 	throw_range = 1
 	throw_speed = 1
-	flags_equip_slot = SLOT_HEAD
+	flags_equip_slot = ITEM_SLOT_HEAD
 	flags_armor_protection = HEAD
 	attack_verb = list("bapped")
 
