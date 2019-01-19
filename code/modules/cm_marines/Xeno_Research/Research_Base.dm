@@ -50,13 +50,13 @@
 			return fl
 
 /datum/marineResearch/proc/AddToAvail(obj/item/marineResearch/xenomorph/A)
-	for(var/datum/marineTech/teches in possible_tech)
-		if(Check_tech(teches.id))
-			continue
-		for(var/tech in A.id)
-			if(tech != teches.id)
+	for(var/tech in A.id)
+		for(var/datum/marineTech/possible in possible_tech)
+			if(tech != possible.id)
 				continue
-			if(TechMakeReq(teches))
+			if(Check_tech(possible.id))
+				continue
+			if(TechMakeReq(possible))
 				available_tech += teches
 				possible_tech -= teches
 	return
