@@ -238,11 +238,11 @@
 				if(org.status & LIMB_DESTROYED)
 					status = "MISSING!"
 
-				if(brute_treated == FALSE & brutedamage > 0)
+				if(brute_treated == FALSE && brutedamage > 0)
 					treat = "(Bandaged)"
-				if(brute_treated == FALSE & burn_treated == FALSE & brutedamage > 0 & burndamage > 0)
+				if(brute_treated == FALSE && burn_treated == FALSE && brutedamage > 0 && burndamage > 0)
 					treat += " and "
-				if(burn_treated == FALSE & burndamage > 0)
+				if(burn_treated == FALSE && burndamage > 0)
 					treat += "(Salved)"
 
 				to_chat(src, "\t [status=="OK"?"<span class='notice'> ":"<span class='warning'> "]My [org.display_name] is [status]. [treat]</span>")
