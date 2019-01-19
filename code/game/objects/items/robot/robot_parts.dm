@@ -4,7 +4,7 @@
 	item_state = "buildpipe"
 	icon_state = "blank"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	matter = list("metal" = 500, "glass" = 0)
 	var/construction_time = 100
 	var/list/construction_cost = list("metal"=20000,"glass"=5000)

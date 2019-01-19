@@ -19,7 +19,7 @@
 		W.forceMove(src)
 		l_hand = W
 		W.layer = ABOVE_HUD_LAYER
-		W.equipped(src,WEAR_L_HAND)
+		W.equipped(src,SLOT_L_HAND)
 		update_inv_l_hand()
 		return 1
 	return 0
@@ -32,7 +32,7 @@
 		W.forceMove(src)
 		r_hand = W
 		W.layer = ABOVE_HUD_LAYER
-		W.equipped(src,WEAR_R_HAND)
+		W.equipped(src,SLOT_R_HAND)
 		update_inv_r_hand()
 		return 1
 	return 0
@@ -177,75 +177,75 @@
 	//warning: icky code
 	var/equipped = 0
 	switch(slot)
-		if(WEAR_BACK)
+		if(SLOT_BACK)
 			if(!src.back)
 				src.back = W
 				equipped = 1
-		if(WEAR_FACE)
+		if(SLOT_WEAR_MASK)
 			if(!src.wear_mask)
 				src.wear_mask = W
 				equipped = 1
-		if(WEAR_HANDCUFFS)
+		if(SLOT_HANDCUFFED)
 			if(!src.handcuffed)
 				src.handcuffed = W
 				equipped = 1
-		if(WEAR_L_HAND)
+		if(SLOT_L_HAND)
 			if(!src.l_hand)
 				src.l_hand = W
 				equipped = 1
-		if(WEAR_R_HAND)
+		if(SLOT_R_HAND)
 			if(!src.r_hand)
 				src.r_hand = W
 				equipped = 1
-		if(WEAR_WAIST)
+		if(SLOT_BELT)
 			if(!src.belt && src.w_uniform)
 				src.belt = W
 				equipped = 1
-		if(WEAR_ID)
+		if(SLOT_WEAR_ID)
 			if(!src.wear_id /* && src.w_uniform */)
 				src.wear_id = W
 				equipped = 1
-		if(WEAR_EAR)
+		if(SLOT_EARS)
 			if(!wear_ear)
 				wear_ear = W
 				equipped = 1
-		if(WEAR_EYES)
+		if(SLOT_GLASSES)
 			if(!src.glasses)
 				src.glasses = W
 				equipped = 1
-		if(WEAR_HANDS)
+		if(SLOT_GLOVES)
 			if(!src.gloves)
 				src.gloves = W
 				equipped = 1
-		if(WEAR_HEAD)
+		if(SLOT_HEAD)
 			if(!src.head)
 				src.head = W
 				equipped = 1
-		if(WEAR_FEET)
+		if(SLOT_SHOES)
 			if(!src.shoes)
 				src.shoes = W
 				equipped = 1
-		if(WEAR_JACKET)
+		if(SLOT_WEAR_SUIT)
 			if(!src.wear_suit)
 				src.wear_suit = W
 				equipped = 1
-		if(WEAR_BODY)
+		if(SLOT_W_UNIFORM)
 			if(!src.w_uniform)
 				src.w_uniform = W
 				equipped = 1
-		if(WEAR_L_STORE)
+		if(SLOT_L_STORE)
 			if(!src.l_store && src.w_uniform)
 				src.l_store = W
 				equipped = 1
-		if(WEAR_R_STORE)
+		if(SLOT_R_STORE)
 			if(!src.r_store && src.w_uniform)
 				src.r_store = W
 				equipped = 1
-		if(WEAR_J_STORE)
+		if(SLOT_S_STORE)
 			if(!src.s_store && src.wear_suit)
 				src.s_store = W
 				equipped = 1
-		if(WEAR_IN_BACK)
+		if(SLOT_IN_BACKPACK)
 			if (src.back && istype(src.back, /obj/item/storage/backpack))
 				var/obj/item/storage/backpack/B = src.back
 				if(B.contents.len < B.storage_slots && W.w_class <= B.max_w_class)

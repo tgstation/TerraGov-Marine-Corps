@@ -223,11 +223,11 @@ var/waiting_for_drop_votes = 0
 	var/hunter_body = pick(HUNTER_BODY)
 	var/hunter_feet = pick(HUNTER_FEET)
 
-	H.equip_to_slot_or_del(new hunter_body(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new hunter_feet(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/explosive/grenade/flare(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar(H), EQUIP_IN_R_POUCH)
+	H.equip_to_slot_or_del(new hunter_body(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new hunter_feet(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), SLOT_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar(H), SLOT_IN_R_POUCH)
 
 	to_chat(H, "<h2>Kill everyone. Become the last man standing.</h2>")
 	to_chat(H, "<h4>Use the flare in your pocket to light the way!</h4>")

@@ -6,6 +6,7 @@
 	attachable_allowed = list()
 	var/obj/item/cell/cell //1000 power.
 	var/charge_cost = 10 //100 shots.
+	var/cell_type = /obj/item/cell
 
 /obj/item/weapon/gun/energy/examine(mob/user)
 	var/list/dat = list()
@@ -39,7 +40,8 @@
 
 /obj/item/weapon/gun/energy/Initialize()
 	. = ..()
-	cell = new /obj/item/cell(src)
+	if(cell_type)
+		cell = new cell_type(src)
 
 /obj/item/weapon/gun/energy/able_to_fire(mob/living/user)
 	. = ..()
@@ -102,10 +104,7 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
-
-/obj/item/weapon/gun/energy/taser/Initialize()
-	. = ..()
-	cell = new /obj/item/cell/high(src)
+	cell_type = /obj/item/cell/high
 
 /obj/item/weapon/gun/energy/taser/set_gun_config_values()
 	fire_delay = config.high_fire_delay * 2
@@ -141,14 +140,11 @@
 	ammo = /datum/ammo/energy/yautja/rifle/bolt
 	muzzle_flash = null // TO DO, add a decent one.
 	zoomdevicename = "scope"
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 5
 	charge_cost = 100
 	flags_gun_features = GUN_UNUSUAL_DESIGN
-
-/obj/item/weapon/gun/energy/plasmarifle/Initialize()
-	. = ..()
-	cell = new /obj/item/cell/high(src)
+	cell_type = /obj/item/cell/high
 
 /obj/item/weapon/gun/energy/plasmarifle/set_gun_config_values()
 	fire_delay = config.high_fire_delay*2
@@ -188,7 +184,7 @@
 	origin_tech = "combat=8;materials=7;bluespace=6"
 	unacidable = 1
 	fire_sound = 'sound/weapons/pulse3.ogg'
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	ammo = /datum/ammo/energy/yautja/pistol
 	muzzle_flash = null // TO DO, add a decent one.
 	w_class = 3
@@ -317,7 +313,7 @@
 	icon_state = "m43"
 	item_state = "m43"
 	ammo = /datum/ammo/energy/lasgun/M43
-	cell = null
+	cell_type = null
 	charge_cost = M37_STANDARD_AMMO_COST
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,

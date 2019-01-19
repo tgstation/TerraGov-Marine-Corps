@@ -5,7 +5,7 @@
 	item_state = "defib"
 	flags_atom = CONDUCT
 	flags_item = NOBLUDGEON
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 5
 	throwforce = 5
 	w_class = 3

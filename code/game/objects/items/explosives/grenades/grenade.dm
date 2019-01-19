@@ -8,7 +8,7 @@
 	throw_speed = 3
 	throw_range = 7
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	hitsound = 'sound/weapons/smash.ogg'
 	var/launched = FALSE //if launched from a UGL/grenade launcher
 	var/launchforce = 10 //bonus impact damage if launched from a UGL/grenade launcher

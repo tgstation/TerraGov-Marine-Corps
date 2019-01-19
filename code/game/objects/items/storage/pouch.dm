@@ -4,7 +4,7 @@
 	icon_state = "small_drop"
 	w_class = 4 //does not fit in backpack
 	max_w_class = 2
-	flags_equip_slot = SLOT_STORE
+	flags_equip_slot = ITEM_SLOT_POCKET
 	storage_slots = 1
 	draw_mode = 0
 	allow_drawing_method = TRUE
@@ -17,7 +17,7 @@
 
 
 /obj/item/storage/pouch/equipped(mob/user, slot)
-	if(slot == WEAR_L_STORE || slot == WEAR_R_STORE)
+	if(slot == SLOT_L_STORE || slot == SLOT_R_STORE)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
 	..()
 

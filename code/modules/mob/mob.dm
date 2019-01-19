@@ -8,18 +8,42 @@
 	. = ..()
 	return TA_PURGE_ME_NOW
 
-/mob/New()
+/mob/Initialize()
 	mob_list += src
 	if(stat == DEAD)
 		dead_mob_list += src
 	else
 		living_mob_list += src
 	prepare_huds()
-	..()
+	return ..()
 
 
 /mob/Stat()
-	if(client && client.holder)
+	// Looking at contents of a tile
+	if(tile_contents_change)
+		tile_contents_change = FALSE
+		statpanel("Tile Contents")
+		client.statpanel = "Tile Contents"
+		stat(tile_contents)
+		client.stat_force_fast_update = TRUE
+		return FALSE
+
+	if(client.statpanel == "Tile Contents")
+		if(tile_contents.len && statpanel("Tile Contents"))
+			stat(tile_contents)
+			return FALSE
+
+	if(statpanel("Stats"))
+		stat("Operation Time: [worldtime2text()]")
+
+	if(client.statpanel != "Stats")
+		statpanel("Stats")
+		if(statpanel("Stats"))
+			client.statpanel = "Stats"
+			stat("Operation Time: [worldtime2text()]")
+		client.stat_force_fast_update = TRUE
+
+	if(client?.holder?.rights && client.holder.rights & (R_ADMIN|R_DEBUG))
 		if(statpanel("MC"))
 			stat("CPU:", "[world.cpu]")
 			stat("Instances:", "[num2text(world.contents.len, 10)]")
@@ -37,34 +61,11 @@
 				stat(null)
 				for(var/datum/controller/subsystem/SS in Master.subsystems)
 					SS.stat_entry()
-
-	// Looking at contents of a tile
-	if (tile_contents_change)
-		tile_contents_change = 0
-		statpanel("Tile Contents")
-		client.statpanel = "Tile Contents"
-		stat(tile_contents)
-		client.stat_force_fast_update = 1
-		return 0
-
-	if (client.statpanel == "Tile Contents")
-		if (tile_contents.len && statpanel("Tile Contents"))
-			stat(tile_contents)
-			return 0
-
-	if (client.statpanel != "Stats")
-		statpanel("Stats")
-		if (statpanel("Stats"))
-			client.statpanel = "Stats"
-			stat("Operation Time: [worldtime2text()]")
-		client.stat_force_fast_update = 1
-		return 1
-
-	if (statpanel("Stats"))
-		stat("Operation Time: [worldtime2text()]")
-		return 1
-
-	return 0
+					
+	if(statpanel("Stats") || client.statpanel != "Stats")	
+		return TRUE
+	else
+		return FALSE
 
 /mob/proc/prepare_huds()
 	hud_list = new
@@ -147,9 +148,9 @@
 		equip_to_slot_if_possible(W, slot, 0) // equiphere
 
 /mob/proc/put_in_any_hand_if_possible(obj/item/W as obj, del_on_fail = 0, disable_warning = 1, redraw_mob = 1)
-	if(equip_to_slot_if_possible(W, WEAR_L_HAND, 1, del_on_fail, disable_warning, redraw_mob))
+	if(equip_to_slot_if_possible(W, SLOT_L_HAND, 1, del_on_fail, disable_warning, redraw_mob))
 		return 1
-	else if(equip_to_slot_if_possible(W, WEAR_R_HAND, 1, del_on_fail, disable_warning, redraw_mob))
+	else if(equip_to_slot_if_possible(W, SLOT_R_HAND, 1, del_on_fail, disable_warning, redraw_mob))
 		return 1
 	return 0
 
@@ -208,28 +209,28 @@
 
 //The list of slots by priority. equip_to_appropriate_slot() uses this list. Doesn't matter if a mob type doesn't have a slot.
 var/list/slot_equipment_priority = list( \
-		WEAR_IN_HOLSTER,\
-		WEAR_IN_J_HOLSTER,\
-		WEAR_IN_B_HOLSTER,\
-		WEAR_BACK,\
-		WEAR_ID,\
-		WEAR_BODY,\
-		WEAR_ACCESSORY,\
-		WEAR_JACKET,\
-		WEAR_FACE,\
-		WEAR_HEAD,\
-		WEAR_FEET,\
-		WEAR_HANDS,\
-		WEAR_EAR,\
-		WEAR_EYES,\
-		WEAR_WAIST,\
-		WEAR_J_STORE,\
-		WEAR_L_STORE,\
-		WEAR_R_STORE,\
-		EQUIP_IN_BOOT,\
-		EQUIP_IN_STORAGE,\
-		EQUIP_IN_L_POUCH,\
-		EQUIP_IN_R_POUCH\
+		SLOT_IN_HOLSTER,\
+		SLOT_IN_S_HOLSTER,\
+		SLOT_IN_B_HOLSTER,\
+		SLOT_BACK,\
+		SLOT_WEAR_ID,\
+		SLOT_W_UNIFORM,\
+		SLOT_ACCESSORY,\
+		SLOT_WEAR_SUIT,\
+		SLOT_WEAR_MASK,\
+		SLOT_HEAD,\
+		SLOT_SHOES,\
+		SLOT_GLOVES,\
+		SLOT_EARS,\
+		SLOT_GLASSES,\
+		SLOT_BELT,\
+		SLOT_S_STORE,\
+		SLOT_L_STORE,\
+		SLOT_R_STORE,\
+		SLOT_IN_BOOT,\
+		SLOT_IN_STORAGE,\
+		SLOT_IN_L_POUCH,\
+		SLOT_IN_R_POUCH\
 	)
 
 //puts the item "W" into an appropriate slot in a human's inventory

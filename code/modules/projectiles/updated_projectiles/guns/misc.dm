@@ -148,7 +148,7 @@
 	unacidable = 1
 	fire_sound = 'sound/effects/woodhit.ogg' // TODO: Decent THWOK noise.
 	ammo = /datum/ammo/alloy_spike
-	flags_equip_slot = SLOT_WAIST|SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	w_class = 3 //Fits in yautja bags.
 	var/spikes = 12
 	var/max_spikes = 12

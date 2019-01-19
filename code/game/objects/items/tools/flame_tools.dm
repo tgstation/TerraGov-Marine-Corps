@@ -485,7 +485,7 @@ CIGARETTE PACKETS ARE IN FANCY.DM
 	w_class = 1
 	throwforce = 4
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	attack_verb = list("burnt", "singed")
 
 /obj/item/tool/lighter/zippo

@@ -1065,8 +1065,8 @@
 		M.loc = prison_cell
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/prisoner = M
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), WEAR_BODY)
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), WEAR_FEET)
+			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), SLOT_W_UNIFORM)
+			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), SLOT_SHOES)
 
 		to_chat(M, "<span class='warning'>You have been sent to the prison station!</span>")
 		log_admin("[key_name(usr)] sent [key_name(M)] to the prison station.")
@@ -1188,8 +1188,8 @@
 
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/observer = M
-			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), WEAR_BODY)
-			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(observer), WEAR_FEET)
+			observer.equip_to_slot_or_del(new /obj/item/clothing/under/suit_jacket(observer), SLOT_W_UNIFORM)
+			observer.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(observer), SLOT_SHOES)
 		M.KnockOut(5)
 		sleep(5)
 		M.loc = pick(tdomeobserve)
@@ -1304,8 +1304,8 @@
 				if(M.client) M.client.change_view(world.view)
 			if(is_alien_whitelisted(M,"Yautja Elder"))
 				H.real_name = "Elder [M.real_name]"
-				H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), WEAR_JACKET)
-				H.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), WEAR_L_HAND)
+				H.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja/full(H), SLOT_WEAR_SUIT)
+				H.equip_to_slot_or_del(new /obj/item/weapon/twohanded/glaive(H), SLOT_L_HAND)
 
 			qdel(H) //May have to clear up round-end vars and such....
 
@@ -1506,9 +1506,9 @@
 			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
 			return
 
-		H.equip_to_slot_or_del( new /obj/item/reagent_container/food/snacks/cookie(H), WEAR_L_HAND )
+		H.equip_to_slot_or_del( new /obj/item/reagent_container/food/snacks/cookie(H), SLOT_L_HAND )
 		if(!(istype(H.l_hand,/obj/item/reagent_container/food/snacks/cookie)))
-			H.equip_to_slot_or_del( new /obj/item/reagent_container/food/snacks/cookie(H), WEAR_R_HAND )
+			H.equip_to_slot_or_del( new /obj/item/reagent_container/food/snacks/cookie(H), SLOT_R_HAND )
 			if(!(istype(H.r_hand,/obj/item/reagent_container/food/snacks/cookie)))
 				log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")

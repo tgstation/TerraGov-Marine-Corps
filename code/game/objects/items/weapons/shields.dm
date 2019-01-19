@@ -6,7 +6,7 @@
 	desc = "A shield adept at blocking blunt objects from connecting with the torso of the shield wielder."
 	icon = 'icons/obj/items/weapons.dmi'
 	icon_state = "riot"
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	force = 5.0
 	throwforce = 5.0
 	throw_speed = 1
