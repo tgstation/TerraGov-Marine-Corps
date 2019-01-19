@@ -25,7 +25,7 @@ FIRE ALARM
 	var/buildstage = 2 // 2 = complete, 1 = no wires,  0 = circuit gone
 
 /obj/machinery/firealarm/New(location, direction, building)
-	..()
+	. = ..()
 
 	if(location)
 		loc = location
@@ -255,8 +255,7 @@ FIRE ALARM
 	if (!working)
 		return
 	var/area/A = get_area(src)
-	if (A)
-		A.firereset()
+	A?.firereset()
 	update_icon()
 	return
 
@@ -264,8 +263,7 @@ FIRE ALARM
 	if (!working)
 		return
 	var/area/A = get_area(src)
-	if(A)
-		A.firealert()
+	A?.firealert()
 	update_icon()
 	//playsound(src.loc, 'sound/ambience/signal.ogg', 50, 0)
 	return

@@ -112,23 +112,14 @@
 	. = ..()
 
 	if(building)
-		if(loc)
-			src.loc = loc
+		if(location)
+			loc = location
 
 		if(direction)
 			dir = direction
 
 		buildstage = 0
 		wiresexposed = TRUE
-		switch(dir)
-			if(NORTH)
-				pixel_y = 32
-			if(SOUTH)
-				pixel_y = -32
-			if(EAST)
-				pixel_x = -32
-			if(WEST)
-				pixel_x = 32
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
@@ -155,12 +146,16 @@
 
 	if (!master_is_operating())
 		elect_master()
-	
+
 	switch(dir)
-		if(NORTH) pixel_y = 32
-		if(SOUTH) pixel_y = -32
-		if(EAST) pixel_x = 32
-		if(WEST) pixel_x = -32
+		if(NORTH)
+			pixel_y = 32
+		if(SOUTH)
+			pixel_y = -32
+		if(EAST)
+			pixel_x = -32
+		if(WEST)
+			pixel_x = 32
 
 	start_processing()
 
