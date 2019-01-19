@@ -25,7 +25,7 @@
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "powerpack"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 5.0
 	var/obj/item/cell/pcell = null
 	var/rounds_remaining = 500
@@ -42,7 +42,7 @@
 	if(!ishuman(user) || user.stat)
 		return FALSE
 
-	var/obj/item/weapon/gun/smartgun/mygun = user.get_active_hand()
+	var/obj/item/weapon/gun/smartgun/mygun = user.get_active_held_item()
 
 	if(isnull(mygun) || !mygun || !istype(mygun))
 		to_chat(user, "You must be holding an M56 Smartgun to begin the reload process.")
@@ -92,7 +92,7 @@
 	return TRUE
 
 /obj/item/smartgun_powerpack/attack_hand()
-	if(usr.get_inactive_hand() == src && pcell)
+	if(usr.get_inactive_held_item() == src && pcell)
 		usr.put_in_hands(pcell)
 		playsound(src,'sound/machines/click.ogg', 25, 1)
 		to_chat(usr, "You take out the [pcell] out of the [src].")
@@ -152,7 +152,7 @@
 		if(!user)
 			. = FALSE
 			break
-		if(!(L.s_store == mygun) && !(user.get_active_hand() == mygun) && !(user.get_inactive_hand() == mygun) || !(L.back == powerpack)) //power pack and gun aren't where they should be.
+		if(!(L.s_store == mygun) && !(user.get_active_held_item() == mygun) && !(user.get_inactive_held_item() == mygun) || !(L.back == powerpack)) //power pack and gun aren't where they should be.
 			. = FALSE
 			break
 

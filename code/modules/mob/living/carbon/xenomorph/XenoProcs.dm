@@ -410,7 +410,7 @@
 	return 1
 
 /mob/living/carbon/Xenomorph/drop_held_item()
-	var/obj/item/clothing/mask/facehugger/F = get_active_hand()
+	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	if(istype(F))
 		if(locate(/turf/closed/wall/resin) in loc)
 			to_chat(src, "<span class='warning'>You decide not to drop [F] after all.</span>")

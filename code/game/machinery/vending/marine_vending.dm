@@ -321,7 +321,7 @@
 			if(item_to_stock.loc == user) //Inside the mob's inventory
 				if(item_to_stock.flags_item & WIELDED)
 					item_to_stock.unwield(user)
-				user.temp_drop_inv_item(item_to_stock)
+				user.temporarilyRemoveItemFromInventory(item_to_stock)
 
 			if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
 				var/obj/item/storage/S = item_to_stock.loc

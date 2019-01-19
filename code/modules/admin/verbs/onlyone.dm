@@ -17,10 +17,10 @@
 				continue
 			qdel(I)
 
-		H.equip_to_slot_or_del(new /obj/item/clothing/under/kilt(H), WEAR_BODY)
-		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret(H), WEAR_HEAD)
-		H.equip_to_slot_or_del(new /obj/item/weapon/claymore(H), WEAR_L_HAND)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(H), WEAR_FEET)
+		H.equip_to_slot_or_del(new /obj/item/clothing/under/kilt(H), SLOT_W_UNIFORM)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/beret(H), SLOT_HEAD)
+		H.equip_to_slot_or_del(new /obj/item/weapon/claymore(H), SLOT_L_HAND)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/combat(H), SLOT_SHOES)
 
 		var/obj/item/card/id/W = new(H)
 		W.name = "[H.real_name]'s ID Card"
@@ -29,7 +29,7 @@
 		W.access += get_all_centcom_access()
 		W.assignment = "Highlander"
 		W.registered_name = H.real_name
-		H.equip_to_slot_or_del(W, WEAR_ID)
+		H.equip_to_slot_or_del(W, SLOT_WEAR_ID)
 
 	message_admins("<span class='notice'> [key_name_admin(usr)] used THERE CAN BE ONLY ONE!</span>", 1)
 	log_admin("[key_name(usr)] used there can be only one.")

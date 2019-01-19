@@ -46,7 +46,7 @@
 		if(attached_device)
 			to_chat(user, "<span class='warning'>There is already an device attached to the valve, remove it first.</span>")
 			return
-		user.temp_drop_inv_item(A)
+		user.temporarilyRemoveItemFromInventory(A)
 		attached_device = A
 		A.forceMove(src)
 		to_chat(user, "<span class='notice'>You attach the [item] to the valve controls and secure it.</span>")

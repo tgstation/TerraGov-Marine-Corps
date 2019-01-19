@@ -40,7 +40,7 @@
 	if(ishuman(M)) //Critical overdose causes total blackout and heart damage. Too much stimulant
 		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
-		E.damage += 0.5
+		E.take_damage(0.5, TRUE)
 		if(prob(10))
 			M.emote(pick("twitch","blink_r","shiver"))
 
@@ -294,7 +294,7 @@
 
 /datum/reagent/medicine/tricordrazine/overdose_process(mob/living/M, alien)
 	M.Jitter(5)
-	M.adjustBrainLoss(1)
+	M.adjustBrainLoss(1, TRUE)
 
 /datum/reagent/medicine/tricordrazine/overdose_crit_process(mob/living/M, alien)
 	M.apply_damages(3, 3, 3)
@@ -322,7 +322,7 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 		if(E)
-			E.damage += 0.5
+			E.take_damage(0.5, TRUE)
 
 /datum/reagent/medicine/dylovene/overdose_crit_process(mob/living/M, alien)
 	M.apply_damages(2, 2) //Starts detoxing, hard
@@ -330,7 +330,7 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 		if(E)
-			E.damage += 1.5
+			E.take_damage(1.5, TRUE)
 
 /datum/reagent/medicine/adminordrazine //An OP chemical for admins
 	name = "Adminordrazine"
@@ -529,11 +529,11 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 
 /datum/reagent/medicine/russianred/overdose_process(mob/living/M, alien)
 	M.apply_damages(1, 0, 0)
-	M.adjustBrainLoss(1)
+	M.adjustBrainLoss(1, TRUE)
 
 /datum/reagent/medicine/russianred/overdose_crit_process(mob/living/M, alien)
 	M.apply_damages(1, 2, 1)
-	M.adjustBrainLoss(1)
+	M.adjustBrainLoss(1, TRUE)
 
 /datum/reagent/medicine/alkysine
 	name = "Alkysine"
@@ -572,8 +572,8 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
-		if(istype(E) && E.damage > 0)
-			E.damage = max(E.damage - 1, 0)
+		if(E)
+			E.heal_damage(1)
 	..()
 
 /datum/reagent/medicine/imidazoline/overdose_process(mob/living/M, alien)
@@ -676,7 +676,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/datum/internal_organ/heart/F = H.internal_organs_by_name["heart"]
-			F.damage += 1
+			F.take_damage(1, TRUE)
 	..()
 
 /datum/reagent/medicine/hyperzine/overdose_process(mob/living/M, alien)
@@ -684,7 +684,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
-			E.damage += 0.5
+			E.take_damage(0.5, TRUE)
 		if(prob(10))
 			M.emote(pick("twitch", "blink_r", "shiver"))
 
@@ -693,7 +693,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
-			E.damage += 2
+			E.take_damage(2, TRUE)
 		if(prob(25))
 			M.emote(pick("twitch", "blink_r", "shiver"))
 
@@ -754,7 +754,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 		C.confused += 5
 		C.Dizzy(60)
 	C.adjustToxLoss(0.1)
-	C.adjustBrainLoss(0.1)
+	C.adjustBrainLoss(0.1, TRUE)
 	return
 
 /datum/reagent/medicine/ultrazine/addiction_act_stage4(mob/living/carbon/C, alien)
@@ -770,12 +770,12 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 		C.confused += 7
 		C.Dizzy(80)
 	C.adjustToxLoss(0.3)
-	C.adjustBrainLoss(0.1)
+	C.adjustBrainLoss(0.1, TRUE)
 	if(prob(15) && ishuman(C))
 		var/mob/living/carbon/human/H = C
 		var/affected_organ = pick("heart","lungs","liver","kidneys")
 		var/datum/internal_organ/I =  H.internal_organs_by_name[affected_organ]
-			I.damage += 2
+			I.take_damage(2)
 	return
 
 
@@ -784,7 +784,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
-			E.damage += 0.5
+			E.take_damage(0.5, TRUE)
 		if(prob(10))
 			M.emote(pick("twitch", "blink_r", "shiver"))
 
@@ -793,7 +793,7 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/heart/E = H.internal_organs_by_name["heart"]
 		if(E)
-			E.damage += 1.5
+			E.take_damage(1.5, TRUE)
 
 /datum/reagent/medicine/cryoxadone
 	name = "Cryoxadone"

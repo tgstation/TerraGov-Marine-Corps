@@ -41,7 +41,7 @@ var/global/list/randomized_pill_icons
 				return
 
 		to_chat(M, "<span class='notice'>You swallow [src].</span>")
-		M.drop_inv_item_on_ground(src) //icon update
+		M.dropItemToGround(src) //icon update
 		if(reagents.total_volume)
 			reagents.trans_to(M, reagents.total_volume)
 
@@ -63,7 +63,7 @@ var/global/list/randomized_pill_icons
 
 		if(!do_mob(user, M, ingestion_time, BUSY_ICON_FRIENDLY, BUSY_ICON_MEDICAL)) return
 
-		user.drop_inv_item_on_ground(src) //icon update
+		user.dropItemToGround(src) //icon update
 		for(var/mob/O in viewers(world.view, user))
 			O.show_message("<span class='warning'>[user] forces [M] to swallow [src].", 1)
 
@@ -88,15 +88,25 @@ var/global/list/randomized_pill_icons
 		return
 
 	if(target.is_refillable())
-		if(target.is_drainable() && !target.reagents.total_volume)
-			to_chat(user, "<span class='warning'>[target] is empty! There's nothing to dissolve [src] in.</span>")
-			return
-
 		if(target.reagents.holder_full())
 			to_chat(user, "<span class='warning'>[target] is full.</span>")
 			return
 
-		to_chat(user, "<span class='notice'>You dissolve the pill in [target].</span></span>")
+		var/obj/item/reagent_container/R = null
+		var/liquidate = null
+		if(istype(target,/obj/item/reagent_container))
+			R = target
+			if(R.liquifier)
+				liquidate = TRUE
+
+		if(target.is_drainable() && !target.reagents.total_volume)
+			if(!R || !liquidate)
+				to_chat(user, "<span class='warning'>[target] is empty! There's nothing to dissolve [src] in.</span>")
+				return
+			to_chat(user, "<span class='notice'>[target]'s liquifier instantly reprocesses [src] upon insertion.</span>")
+
+		if(!R || !liquidate)
+			to_chat(user, "<span class='notice'>You dissolve the pill in [target].</span>")
 
 		var/rgt_list_text = get_reagent_list_text()
 

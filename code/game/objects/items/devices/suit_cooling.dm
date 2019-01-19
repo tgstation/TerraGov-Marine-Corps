@@ -3,7 +3,7 @@
 	desc = "A portable heat sink and liquid cooled radiator that can be hooked up to a space suit's existing temperature controls to provide industrial levels of cooling."
 	w_class = 4
 	icon_state = "suitcooler0"
-	flags_equip_slot = SLOT_BACK	//you can carry it on your back if you want, but it won't do anything unless attached to suit storage
+	flags_equip_slot = ITEM_SLOT_BACK	//you can carry it on your back if you want, but it won't do anything unless attached to suit storage
 
 	//copied from tank.dm
 	flags_atom = CONDUCT

@@ -246,7 +246,7 @@
 
 /obj/structure/table/MouseDrop_T(obj/item/I, mob/user)
 
-	if (!istype(I) || user.get_active_hand() != I)
+	if (!istype(I) || user.get_active_held_item() != I)
 		return ..()
 	if(isrobot(user))
 		return
@@ -322,7 +322,7 @@
 			to_chat(user, "<span class='warning'>You slice at the table, but only claw it up a little.</span>")
 		return
 
-	user.drop_inv_item_to_loc(W, loc)
+	user.transferItemToLoc(W, loc)
 
 
 /obj/structure/table/proc/straight_table_check(var/direction)
@@ -563,7 +563,7 @@
 		return FALSE
 
 /obj/structure/rack/MouseDrop_T(obj/item/I, mob/user)
-	if (!istype(I) || user.get_active_hand() != I)
+	if (!istype(I) || user.get_active_held_item() != I)
 		return
 	if(isrobot(user))
 		return
@@ -585,7 +585,7 @@
 		return
 	if((W.flags_item & ITEM_ABSTRACT) || isrobot(user))
 		return
-	user.drop_inv_item_to_loc(W, loc)
+	user.transferItemToLoc(W, loc)
 
 
 /obj/structure/rack/Crossed(atom/movable/O)

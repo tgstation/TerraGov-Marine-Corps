@@ -6,7 +6,7 @@
 	origin_tech = "combat=4;materials=3"
 	icon_state = "m240"
 	item_state = "m240"
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 4
 	force = 15
 	fire_sound = 'sound/weapons/gun_flamethrower2.ogg'
@@ -23,7 +23,7 @@
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
 
 /obj/item/weapon/gun/flamer/set_gun_config_values()
-	fire_delay = config.max_fire_delay * 5
+	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 5
 
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
 	toggle_flame(user)

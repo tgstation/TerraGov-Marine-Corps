@@ -18,8 +18,8 @@
 	var/sec_hud = MOB_HUD_SECURITY_ADVANCED //Determines the sec hud to use
 	var/list/HUD_toggled = list(0,0,0)
 
-/mob/living/silicon/New()
-	..()
+/mob/living/silicon/Initialize()
+	. = ..()
 	add_language("English")
 
 /mob/living/silicon/proc/show_laws()
@@ -28,7 +28,7 @@
 /mob/living/silicon/drop_held_item()
 	return
 
-/mob/living/silicon/drop_held_items()
+/mob/living/silicon/drop_all_held_items()
 	return
 
 /mob/living/simple_animal/update_transform()

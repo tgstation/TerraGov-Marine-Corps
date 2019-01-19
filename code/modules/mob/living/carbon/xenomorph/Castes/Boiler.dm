@@ -183,8 +183,8 @@
 		/datum/action/xeno_action/activable/spray_acid,
 		)
 
-/mob/living/carbon/Xenomorph/Boiler/New()
-	..()
+/mob/living/carbon/Xenomorph/Boiler/Initialize()
+	. = ..()
 	SetLuminosity(3)
 	smoke = new /datum/effect_system/smoke_spread/xeno_acid
 	smoke.attach(src)

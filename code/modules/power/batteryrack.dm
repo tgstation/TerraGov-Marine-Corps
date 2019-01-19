@@ -116,7 +116,7 @@
 		else if ((istype(W, /obj/item/stock_parts/capacitor) && (capacitors_amount < 5)) || (istype(W, /obj/item/cell) && (cells_amount < 5)))
 			if (charge < (capacity / 100))
 				if (!online && !chargemode)
-					if(user.drop_inv_item_to_loc(W, src))
+					if(user.transferItemToLoc(W, src))
 						component_parts += W
 						RefreshParts()
 						to_chat(user, "<span class='notice'>You upgrade the [src] with [W.name].</span>")

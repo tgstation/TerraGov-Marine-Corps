@@ -27,14 +27,14 @@
 		return
 	else if(istype(W,/obj/item/shard))
 		to_chat(user, "<span class='notice'>You hide [W] in \the [src].</span>")
-		user.drop_inv_item_to_loc(W, src)
+		user.transferItemToLoc(W, src)
 		update()
 		return
 	else if(istype(W,/obj/item/reagent_container/food/snacks))
 		to_chat(user, "<span class='notice'>You layer [W] over \the [src].</span>")
 		var/obj/item/reagent_container/F = W
 		F.reagents.trans_to(src, F.reagents.total_volume)
-		user.drop_inv_item_to_loc(W, src)
+		user.transferItemToLoc(W, src)
 		ingredients += W
 		update()
 		return
