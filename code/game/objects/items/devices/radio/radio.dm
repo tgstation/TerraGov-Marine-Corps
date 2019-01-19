@@ -23,7 +23,7 @@
 	var/maxf = 1499
 //			"Example" = FREQ_LISTENING|FREQ_BROADCASTING
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	throw_speed = 2
 	throw_range = 9
 	w_class = 2

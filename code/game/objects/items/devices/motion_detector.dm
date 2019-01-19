@@ -37,7 +37,7 @@
 	icon_state = "detector_off"
 	item_state = "electronic"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	var/list/blip_pool = list()
 	var/detector_range = 14
 	var/detector_mode = MOTION_DETECTOR_LONG

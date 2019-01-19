@@ -324,7 +324,7 @@
 		if(!cannot_infect)
 			loc = target
 			icon_state = initial(icon_state)
-			target.equip_to_slot(src, WEAR_FACE)
+			target.equip_to_slot(src, SLOT_WEAR_MASK)
 			target.contents += src //Monkey sanity check - Snapshot
 			target.update_inv_wear_mask()
 

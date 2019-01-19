@@ -119,7 +119,7 @@
 	item_state = "electropack"
 	w_class = 2.0
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	matter = list("metal" = 2000)
 	var/pictures_max = 10
 	var/pictures_left = 10
