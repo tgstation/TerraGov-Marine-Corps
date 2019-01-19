@@ -7,6 +7,7 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
 /world/New()
+	hub_password = "kMZy3U5jJHSiBQjr"
 
 	log_world("World loaded at [time_stamp()]!")
 
