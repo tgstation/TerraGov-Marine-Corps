@@ -308,23 +308,23 @@
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
 	<BR><HR>
-	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=face'>[(wear_mask ? wear_mask : "Nothing")]</A>
-	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=l_hand'>[(l_hand ? l_hand  : "Nothing")]</A>
-	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=r_hand'>[(r_hand ? r_hand : "Nothing")]</A>
-	<BR><B>Gloves:</B> <A href='?src=\ref[src];item=hands'>[(gloves ? gloves : "Nothing")]</A>
-	<BR><B>Eyes:</B> <A href='?src=\ref[src];item=eyes'>[(glasses ? glasses : "Nothing")]</A>
-	<BR><B>Left Ear:</B> <A href='?src=\ref[src];item=wear_ear'>[(wear_ear ? wear_ear : "Nothing")]</A>
-	<BR><B>Head:</B> <A href='?src=\ref[src];item=head'>[(head ? head : "Nothing")]</A>
-	<BR><B>Shoes:</B> <A href='?src=\ref[src];item=feet'>[(shoes ? shoes : "Nothing")]</A>
-	<BR><B>Belt:</B> <A href='?src=\ref[src];item=waist'>[(belt ? belt : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(belt, /obj/item/tank) && !internal) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
-	<BR><B>Uniform:</B> <A href='?src=\ref[src];item=body'>[(w_uniform ? w_uniform : "Nothing")]</A> [(suit) ? ((suit.has_sensor == 1) ? " <A href='?src=\ref[src];sensor=1'>Sensors</A>" : "") :]
-	<BR><B>(Exo)Suit:</B> <A href='?src=\ref[src];item=jacket'>[(wear_suit ? wear_suit : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
-	<BR><B>ID:</B> <A href='?src=\ref[src];item=id'>[(wear_id ? wear_id : "Nothing")]</A>
-	<BR><B>Suit Storage:</B> <A href='?src=\ref[src];item=j_store'>[(s_store ? s_store : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(s_store, /obj/item/tank) && !( internal )) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
+	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=[SLOT_WEAR_MASK]'>[(wear_mask ? wear_mask : "Nothing")]</A>
+	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=[SLOT_L_HAND]'>[(l_hand ? l_hand  : "Nothing")]</A>
+	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=[SLOT_R_HAND]'>[(r_hand ? r_hand : "Nothing")]</A>
+	<BR><B>Gloves:</B> <A href='?src=\ref[src];item=[SLOT_GLOVES]'>[(gloves ? gloves : "Nothing")]</A>
+	<BR><B>Eyes:</B> <A href='?src=\ref[src];item=[SLOT_GLASSES]'>[(glasses ? glasses : "Nothing")]</A>
+	<BR><B>Left Ear:</B> <A href='?src=\ref[src];item=[SLOT_EARS]'>[(wear_ear ? wear_ear : "Nothing")]</A>
+	<BR><B>Head:</B> <A href='?src=\ref[src];item=[SLOT_HEAD]'>[(head ? head : "Nothing")]</A>
+	<BR><B>Shoes:</B> <A href='?src=\ref[src];item=[SLOT_SHOES]'>[(shoes ? shoes : "Nothing")]</A>
+	<BR><B>Belt:</B> <A href='?src=\ref[src];item=[SLOT_BELT]'>[(belt ? belt : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(belt, /obj/item/tank) && !internal) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
+	<BR><B>Uniform:</B> <A href='?src=\ref[src];item=[SLOT_W_UNIFORM]'>[(w_uniform ? w_uniform : "Nothing")]</A> [(suit) ? ((suit.has_sensor == 1) ? " <A href='?src=\ref[src];sensor=1'>Sensors</A>" : "") :]
+	<BR><B>(Exo)Suit:</B> <A href='?src=\ref[src];item=[SLOT_WEAR_SUIT]'>[(wear_suit ? wear_suit : "Nothing")]</A>
+	<BR><B>Back:</B> <A href='?src=\ref[src];item=[SLOT_BACK]'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
+	<BR><B>ID:</B> <A href='?src=\ref[src];item=[SLOT_WEAR_ID]'>[(wear_id ? wear_id : "Nothing")]</A>
+	<BR><B>Suit Storage:</B> <A href='?src=\ref[src];item=[SLOT_S_STORE]'>[(s_store ? s_store : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(s_store, /obj/item/tank) && !( internal )) ? " <A href='?src=\ref[src];internal=1'>Set Internal</A>" : "")]
 	<BR>
-	[handcuffed ? "<BR><A href='?src=\ref[src];item=handcuffs'>Handcuffed</A>" : ""]
-	[legcuffed ? "<BR><A href='?src=\ref[src];item=legcuffs'>Legcuffed</A>" : ""]
+	[handcuffed ? "<BR><A href='?src=\ref[src];item=[SLOT_HANDCUFFED]'>Handcuffed</A>" : ""]
+	[legcuffed ? "<BR><A href='?src=\ref[src];item=[SLOT_LEGCUFFED]'>Legcuffed</A>" : ""]
 	[suit && suit.hastie ? "<BR><A href='?src=\ref[src];tie=1'>Remove Accessory</A>" : ""]
 	[internal ? "<BR><A href='?src=\ref[src];internal=1'>Remove Internal</A>" : ""]
 	[istype(wear_id, /obj/item/card/id/dogtag) ? "<BR><A href='?src=\ref[src];item=id'>Retrieve Info Tag</A>" : ""]
@@ -481,8 +481,9 @@
 
 
 	if (href_list["item"])
+		var/slot = text2num(href_list["item"])
 		if(!usr.is_mob_incapacitated() && Adjacent(usr))
-			if(href_list["item"] == "id")
+			if(href_list["item"] == SLOT_WEAR_ID)
 				if(istype(wear_id, /obj/item/card/id/dogtag))
 					var/obj/item/card/id/dogtag/DT = wear_id
 					if(!DT.dogtag_taken)
@@ -501,7 +502,6 @@
 					return
 			//police skill lets you strip multiple items from someone at once.
 			if(!usr.action_busy || (!usr.mind || !usr.mind.cm_skills || usr.mind.cm_skills.police >= SKILL_POLICE_MP))
-				var/slot = href_list["item"]
 				var/obj/item/what = get_item_by_slot(slot)
 				if(what)
 					usr.stripPanelUnequip(what,src,slot)
