@@ -17,7 +17,7 @@
 /obj/item/device/flash/proc/clown_check(var/mob/user)
 	if(user && (CLUMSY in user.mutations) && prob(50))
 		if(user.drop_held_item())
-			to_chat(user, "\red \The [src] slips out of your hand.")
+			to_chat(user, "<span class='warning'>\The [src] slips out of your hand.</span>")
 		return 0
 	return 1
 
@@ -187,12 +187,12 @@
 	..()
 	if(!broken)
 		broken = 1
-		to_chat(user, "\red The bulb has burnt out!")
+		to_chat(user, "<span class='warning'>The bulb has burnt out!</span>")
 		icon_state = "flashburnt"
 
 /obj/item/device/flash/synthetic/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
 	..()
 	if(!broken)
 		broken = 1
-		to_chat(user, "\red The bulb has burnt out!")
+		to_chat(user, "<span class='warning'>The bulb has burnt out!</span>")
 		icon_state = "flashburnt"

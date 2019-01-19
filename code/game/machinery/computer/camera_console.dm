@@ -42,7 +42,7 @@
 
 	attack_hand(mob/user)
 		if (src.z > 6)
-			to_chat(user, "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!")
+			to_chat(user, "<span class='danger'>Unable to establish a connection: You're too far away from the station!</span>")
 			return
 		if(stat & (NOPOWER|BROKEN))	return
 

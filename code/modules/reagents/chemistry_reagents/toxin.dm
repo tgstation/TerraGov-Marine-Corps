@@ -454,7 +454,7 @@
 			var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 			I.desc = "Looks like this was \an [O] some time ago."
 			for(var/mob/M in viewers(5, O))
-				to_chat(M, "\red \the [O] melts.")
+				to_chat(M, "<span class='warning'>\the [O] melts.</span>")
 				qdel(O)
 
 /datum/reagent/toxin/acid/polyacid

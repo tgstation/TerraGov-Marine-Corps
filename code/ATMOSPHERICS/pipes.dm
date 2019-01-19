@@ -199,7 +199,7 @@
 	return 1
 
 /obj/machinery/atmospherics/pipe/simple/proc/burst()
-	src.visible_message("\red \bold [src] bursts!");
+	src.visible_message("<span class='danger'> [src] bursts!</span>");
 	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1)
 	var/datum/effect_system/smoke_spread/smoke = new
 	smoke.set_up(0,0, src.loc, 0)
@@ -1107,15 +1107,15 @@
 
 	if(istype(W, /obj/item/device/analyzer) && in_range(user, src))
 		for (var/mob/O in viewers(user, null))
-			to_chat(O, "\red [user] has used the analyzer on \icon[icon]")
+			to_chat(O, "<span class='warning'>[user] has used the analyzer on \icon[icon]</span>")
 
-		to_chat(user, "\blue Results of analysis of \icon[icon]")
+		to_chat(user, "<span class='notice'>Results of analysis of \icon[icon]</span>")
 		if (pressure>0)
-			to_chat(user, "\blue Pressure: [round(pressure,0.1)] kPa")
-			to_chat(user, "\blue [gas_type]: [100]%")
-			to_chat(user, "\blue Temperature: [round(temperature-T0C)]&deg;C")
+			to_chat(user, "<span class='notice'>Pressure: [round(pressure,0.1)] kPa</span>")
+			to_chat(user, "<span class='notice'>[gas_type]: [100]%</span>")
+			to_chat(user, "<span class='notice'>Temperature: [round(temperature-T0C)]&deg;C</span>")
 		else
-			to_chat(user, "\blue Tank is empty!")
+			to_chat(user, "<span class='notice'>Tank is empty!</span>")
 
 /obj/machinery/atmospherics/pipe/tank/air
 	name = "Pressure Tank (Air)"

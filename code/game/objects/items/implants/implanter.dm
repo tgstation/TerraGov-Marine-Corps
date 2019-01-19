@@ -118,7 +118,7 @@
 	if(istype(A,/obj/item) && imp)
 		var/obj/item/implant/compressed/c = imp
 		if (c.scanned)
-			to_chat(user, "\red Something is already scanned inside the implant!")
+			to_chat(user, "<span class='warning'>Something is already scanned inside the implant!</span>")
 			return
 		c.scanned = A
 		if(istype(A.loc,/mob/living/carbon/human))

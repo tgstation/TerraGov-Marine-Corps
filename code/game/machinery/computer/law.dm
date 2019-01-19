@@ -18,15 +18,15 @@
 
 		opened = !opened
 		if(opened)
-			to_chat(usr, "\blue The access panel is now open.")
+			to_chat(usr, "<span class='notice'>The access panel is now open.</span>")
 		else
-			to_chat(usr, "\blue The access panel is now closed.")
+			to_chat(usr, "<span class='notice'>The access panel is now closed.</span>")
 		return
 
 
 	attackby(obj/item/O as obj, mob/user as mob)
 		if (user.z > 6)
-			to_chat(user, "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!")
+			to_chat(user, "<span class='danger'>Unable to establish a connection: You're too far away from the station!</span>")
 			return
 		if(istype(O, /obj/item/circuitboard/ai_module))
 			var/obj/item/circuitboard/ai_module/M = O

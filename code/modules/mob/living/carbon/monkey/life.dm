@@ -51,7 +51,7 @@
 
 	if (disabilities & EPILEPSY)
 		if ((prob(1) && knocked_out < 10))
-			to_chat(src, "\red You have a seizure!")
+			to_chat(src, "<span class='warning'>You have a seizure!</span>")
 			KnockOut(10)
 	if (disabilities & COUGHING)
 		if ((prob(5) && knocked_out <= 1))
@@ -81,7 +81,7 @@
 
 	if ((HULK in mutations) && health <= 25)
 		mutations.Remove(HULK)
-		to_chat(src, "\red You suddenly feel very weak.")
+		to_chat(src, "<span class='warning'>You suddenly feel very weak.</span>")
 		KnockDown(3)
 		emote("collapse")
 
@@ -91,7 +91,7 @@
 			radiation = 100
 			KnockDown(10)
 			if(!lying)
-				to_chat(src, "\red You feel weak.")
+				to_chat(src, "<span class='warning'>You feel weak.</span>")
 				emote("collapse")
 
 		switch(radiation)
@@ -107,14 +107,14 @@
 					radiation -= 5
 					KnockDown(3)
 					if(!lying)
-						to_chat(src, "\red You feel weak.")
+						to_chat(src, "<span class='warning'>You feel weak.</span>")
 						emote("collapse")
 
 			if(75 to 100)
 				radiation -= 3
 				adjustToxLoss(3)
 				if(prob(1))
-					to_chat(src, "\red You mutate!")
+					to_chat(src, "<span class='warning'>You mutate!</span>")
 					randmutb(src)
 					domutcheck(src,null)
 					emote("gasp")
@@ -256,7 +256,7 @@
 
 	if(air_info[2] > (T0C+66)) // Hot air hurts :(
 		if(prob(20))
-			to_chat(src, "\red You feel a searing heat in your lungs!")
+			to_chat(src, "<span class='warning'>You feel a searing heat in your lungs!</span>")
 		fire_alert = max(fire_alert, 2)
 	else
 		fire_alert = 0

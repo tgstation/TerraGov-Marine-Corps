@@ -167,13 +167,13 @@
 					O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
 	else if (istype(W, /obj/item/device/camera_bug))
 		if (!src.can_use())
-			to_chat(user, "\blue Camera non-functional")
+			to_chat(user, "<span class='notice'>Camera non-functional</span>")
 			return
 		if (src.bugged)
-			to_chat(user, "\blue Camera bug removed.")
+			to_chat(user, "<span class='notice'>Camera bug removed.</span>")
 			src.bugged = FALSE
 		else
-			to_chat(user, "\blue Camera bugged.")
+			to_chat(user, "<span class='notice'>Camera bugged.</span>")
 			src.bugged = TRUE
 	else
 		..()

@@ -176,7 +176,7 @@
 		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
 		return
 	//Stationary stealth
-	else if(last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 3 seconds we become almost completely invisible
+	else if(last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 4 seconds we become almost completely invisible
 		alpha = HUNTER_STEALTH_STILL_ALPHA //95% invisible
 	//Walking stealth
 	else if(m_intent == MOVE_INTENT_WALK)
@@ -557,6 +557,20 @@
 		rage = 0
 	else
 		rage *= 0.5 //Halve rage instead of 0ing it out if we miss.
+
+/mob/living/carbon/Xenomorph/proc/set_hive_number(var/newhivenumber)
+	if(!newhivenumber)
+		return
+
+	hivenumber = newhivenumber
+
+	if(isxenolarva(src))
+		var/mob/living/carbon/Xenomorph/Larva/L = src
+		L.update_icons() // larva renaming done differently
+	else
+		generate_name()
+		update_living_queens()
+
 
 //////////// XENO CASTE PROCS //////////////////
 

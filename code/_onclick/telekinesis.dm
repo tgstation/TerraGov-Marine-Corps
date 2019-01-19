@@ -121,7 +121,7 @@ var/const/tk_maxrange = 15
 			if(8 to tk_maxrange)
 				user.next_move += 10
 			else
-				to_chat(user, "\blue Your mind won't reach that far.")
+				to_chat(user, "<span class='notice'>Your mind won't reach that far.</span>")
 				return
 
 		if(!focus)

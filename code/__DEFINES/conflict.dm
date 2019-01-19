@@ -81,6 +81,11 @@
 //Define flamer
 #define M240T_WATER_AMOUNT 			reagents.get_reagent_amount("water")
 
+//Define sniper laser multipliers
+
+#define SNIPER_LASER_DAMAGE_MULTIPLIER	1.5
+#define SNIPER_LASER_ARMOR_MULTIPLIER	1.5
+
 //Define lasgun
 #define M37_STANDARD_AMMO_COST			20
 #define M37_OVERCHARGE_AMMO_COST		80

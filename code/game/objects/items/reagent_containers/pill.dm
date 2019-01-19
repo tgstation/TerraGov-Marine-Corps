@@ -88,15 +88,25 @@ var/global/list/randomized_pill_icons
 		return
 
 	if(target.is_refillable())
-		if(target.is_drainable() && !target.reagents.total_volume)
-			to_chat(user, "<span class='warning'>[target] is empty! There's nothing to dissolve [src] in.</span>")
-			return
-
 		if(target.reagents.holder_full())
 			to_chat(user, "<span class='warning'>[target] is full.</span>")
 			return
 
-		to_chat(user, "\blue You dissolve the pill in [target].</span>")
+		var/obj/item/reagent_container/R = null
+		var/liquidate = null
+		if(istype(target,/obj/item/reagent_container))
+			R = target
+			if(R.liquifier)
+				liquidate = TRUE
+
+		if(target.is_drainable() && !target.reagents.total_volume)
+			if(!R || !liquidate)
+				to_chat(user, "<span class='warning'>[target] is empty! There's nothing to dissolve [src] in.</span>")
+				return
+			to_chat(user, "<span class='notice'>[target]'s liquifier instantly reprocesses [src] upon insertion.</span>")
+
+		if(!R || !liquidate)
+			to_chat(user, "<span class='notice'>You dissolve the pill in [target].</span>")
 
 		var/rgt_list_text = get_reagent_list_text()
 

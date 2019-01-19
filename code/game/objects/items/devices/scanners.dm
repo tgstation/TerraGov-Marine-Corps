@@ -108,12 +108,12 @@ REAGENT SCANNER
 
 	// Doesn't work on non-humans and synthetics
 	if(!iscarbon(M) || (ishuman(M) && (M:species.flags & IS_SYNTHETIC)))
-		user.show_message("\n\blue Health Analyzer results for ERROR:\n\t Overall Status: ERROR")
+		user.show_message("\n<span class='notice'> Health Analyzer results for ERROR:\n\t Overall Status: ERROR</span>")
 		user.show_message("\tType: <font color='blue'>Oxygen</font>-<font color='green'>Toxin</font>-<font color='#FFA500'>Burns</font>-<font color='red'>Brute</font>", 1)
 		user.show_message("\tDamage: <font color='blue'>?</font> - <font color='green'>?</font> - <font color='#FFA500'>?</font> - <font color='red'>?</font>")
-		user.show_message("\blue Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)", 1)
-		user.show_message("\red <b>Warning: Blood Level ERROR: --% --cl.\blue Type: ERROR")
-		user.show_message("\blue Subject's pulse: <font color='red'>-- bpm.</font>")
+		user.show_message("<span class='notice'> Body Temperature: [M.bodytemperature-T0C]&deg;C ([M.bodytemperature*1.8-459.67]&deg;F)</span>", 1)
+		user.show_message("<span class='warning'> <b>Warning: Blood Level ERROR: --% --cl.<span class='notice'> Type: ERROR</span>")
+		user.show_message("<span class='notice'> Subject's pulse: <font color='red'>-- bpm.</font></span>")
 		return
 
 	// Calculate damage amounts
@@ -126,7 +126,7 @@ REAGENT SCANNER
 	// Show overall
 	if(M.status_flags & FAKEDEATH)
 		OX = fake_oxy > 50 			? 	"<b>[fake_oxy]</b>" 			: fake_oxy
-		dat += "\n\blue Health Analyzer for [M]:\n\tOverall Status: <b>DEAD</b>\n"
+		dat += "\n<span class='notice'> Health Analyzer for [M]:\n\tOverall Status: <b>DEAD</b>\n</span>"
 	else
 		dat += "\nHealth Analyzer results for [M]:\n\tOverall Status: [M.stat > 1 ? "<b>DEAD</b>" : "<b>[M.health - M.halloss]% healthy"]</b>\n"
 	dat += "\tType:    <font color='blue'>Oxygen</font>-<font color='green'>Toxin</font>-<font color='#FFA500'>Burns</font>-<font color='red'>Brute</font>\n"
@@ -536,7 +536,7 @@ REAGENT SCANNER
 	if (user.stat)
 		return
 	if (!(ishuman(usr) || ticker) && ticker.mode.name != "monkey")
-		to_chat(usr, "\red You don't have the dexterity to do this!")
+		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 
 	var/turf/location = user.loc
@@ -547,14 +547,14 @@ REAGENT SCANNER
 	var/env_gas = location.return_gas()
 	var/env_temp = location.return_temperature()
 
-	user.show_message("\blue <B>Results:</B>", 1)
+	user.show_message("<span class='boldnotice'>Results:</span>", 1)
 	if(abs(env_pressure - ONE_ATMOSPHERE) < 10)
-		user.show_message("\blue Pressure: [round(env_pressure,0.1)] kPa", 1)
+		user.show_message("<span class='notice'> Pressure: [round(env_pressure,0.1)] kPa</span>", 1)
 	else
-		user.show_message("\red Pressure: [round(env_pressure,0.1)] kPa", 1)
+		user.show_message("<span class='warning'> Pressure: [round(env_pressure,0.1)] kPa</span>", 1)
 	if(env_pressure > 0)
-		user.show_message("\blue Gas Type: [env_gas]", 1)
-		user.show_message("\blue Temperature: [round(env_temp-T0C)]&deg;C", 1)
+		user.show_message("<span class='notice'> Gas Type: [env_gas]</span>", 1)
+		user.show_message("<span class='notice'> Temperature: [round(env_temp-T0C)]&deg;C</span>", 1)
 
 	src.add_fingerprint(user)
 	return
@@ -594,17 +594,17 @@ REAGENT SCANNER
 	if (user.stat)
 		return
 	if (crit_fail)
-		to_chat(user, "\red This device has critically failed and is no longer functional!")
+		to_chat(user, "<span class='warning'>This device has critically failed and is no longer functional!</span>")
 		return
 	if (!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
-		to_chat(user, "\red You don't have the dexterity to do this!")
+		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 	if(reagents.total_volume)
 		var/list/blood_traces = list()
 		for(var/datum/reagent/R in reagents.reagent_list)
 			if(R.id != "blood")
 				reagents.clear_reagents()
-				to_chat(user, "\red The sample was contaminated! Please insert another sample")
+				to_chat(user, "<span class='warning'>The sample was contaminated! Please insert another sample</span>")
 				return
 			else
 				blood_traces = params2list(R.data["trace_chem"])
@@ -658,12 +658,12 @@ REAGENT SCANNER
 	if (user.stat)
 		return
 	if (!(ishuman(user) || ticker) && ticker.mode.name != "monkey")
-		to_chat(user, "\red You don't have the dexterity to do this!")
+		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 	if(!istype(O))
 		return
 	if (crit_fail)
-		to_chat(user, "\red This device has critically failed and is no longer functional!")
+		to_chat(user, "<span class='warning'>This device has critically failed and is no longer functional!</span>")
 		return
 
 	if(!isnull(O.reagents))
@@ -672,7 +672,7 @@ REAGENT SCANNER
 			var/one_percent = O.reagents.total_volume / 100
 			for (var/datum/reagent/R in O.reagents.reagent_list)
 				if(prob(reliability))
-					dat += "\n \t \blue [R][details ? ": [R.volume / one_percent]%" : ""]"
+					dat += "\n \t <span class='notice'> [R][details ? ": [R.volume / one_percent]%" : ""]</span>"
 					recent_fail = 0
 				else if(recent_fail)
 					crit_fail = 1
@@ -681,11 +681,11 @@ REAGENT SCANNER
 				else
 					recent_fail = 1
 		if(dat)
-			to_chat(user, "\blue Chemicals found: [dat]")
+			to_chat(user, "<span class='notice'>Chemicals found: [dat]</span>")
 		else
-			to_chat(user, "\blue No active chemical agents found in [O].")
+			to_chat(user, "<span class='notice'>No active chemical agents found in [O].</span>")
 	else
-		to_chat(user, "\blue No significant chemical agents found in [O].")
+		to_chat(user, "<span class='notice'>No significant chemical agents found in [O].</span>")
 
 	return
 

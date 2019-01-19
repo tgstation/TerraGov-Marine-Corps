@@ -48,8 +48,8 @@
 	attack_verb = list("stabbed")
 
 	suicide_act(mob/user)
-		viewers(user) << pick("\red <b>[user] is stabbing the [src.name] into \his temple! It looks like \he's trying to commit suicide.</b>", \
-							"\red <b>[user] is stabbing the [src.name] into \his heart! It looks like \he's trying to commit suicide.</b>")
+		user.visible_message(pick("<span class='danger'>[user] is stabbing the [src.name] into \his temple! It looks like \he's trying to commit suicide.</span>", \
+							"<span class='danger'>[user] is stabbing the [src.name] into \his heart! It looks like \he's trying to commit suicide.</span>"))
 		return(BRUTELOSS)
 
 /obj/item/tool/screwdriver/New()
@@ -428,19 +428,19 @@
 		if(T.welding & prob(50))
 			message_admins("[key_name_admin(user)] triggered a fueltank explosion.")
 			log_game("[key_name(user)] triggered a fueltank explosion.")
-			to_chat(user, "\red That was stupid of you.")
+			to_chat(user, "<span class='warning'>That was stupid of you.</span>")
 			explosion(get_turf(src),-1,0,2)
 			if(src)
 				qdel(src)
 			return
 		else
 			if(T.welding)
-				to_chat(user, "\red That was close!")
+				to_chat(user, "<span class='warning'>That was close!</span>")
 			src.reagents.trans_to(W, T.max_fuel)
-			to_chat(user, "\blue Welder refilled!")
+			to_chat(user, "<span class='notice'>Welder refilled!</span>")
 			playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 			return
-	to_chat(user, "\blue The tank scoffs at your insolence.  It only provides services to welders.")
+	to_chat(user, "<span class='notice'>The tank scoffs at your insolence.  It only provides services to welders.</span>")
 	return
 
 /obj/item/tool/weldpack/afterattack(obj/O as obj, mob/user as mob, proximity)
@@ -448,11 +448,11 @@
 		return
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume < max_fuel)
 		O.reagents.trans_to(src, max_fuel)
-		to_chat(user, "\blue You crack the cap off the top of the pack and fill it back up again from the tank.")
+		to_chat(user, "<span class='notice'>You crack the cap off the top of the pack and fill it back up again from the tank.</span>")
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume == max_fuel)
-		to_chat(user, "\blue The pack is already full!")
+		to_chat(user, "<span class='notice'>The pack is already full!</span>")
 		return
 
 /obj/item/tool/weldpack/examine(mob/user)

@@ -19,7 +19,7 @@
 		S.hide_from(usr)
 		for(var/obj/item/ore/O in S.contents)
 			S.remove_from_storage(O, src) //This will move the item to this item's contents
-		to_chat(user, "\blue You empty the satchel into the box.")
+		to_chat(user, "<span class='notice'>You empty the satchel into the box.</span>")
 
 	update_ore_count()
 
@@ -64,7 +64,7 @@
 	set src in view(1)
 
 	if(!ishuman(usr)) //Only living, intelligent creatures with hands can empty ore boxes.
-		to_chat(usr, "\red You are physically incapable of emptying the ore box.")
+		to_chat(usr, "<span class='warning'>You are physically incapable of emptying the ore box.</span>")
 		return
 
 	if( usr.stat || usr.is_mob_restrained() )
@@ -77,13 +77,13 @@
 	add_fingerprint(usr)
 
 	if(contents.len < 1)
-		to_chat(usr, "\red The ore box is empty")
+		to_chat(usr, "<span class='warning'>The ore box is empty</span>")
 		return
 
 	for (var/obj/item/ore/O in contents)
 		contents -= O
 		O.loc = src.loc
-	to_chat(usr, "\blue You empty the ore box")
+	to_chat(usr, "<span class='notice'>You empty the ore box</span>")
 
 	return
 

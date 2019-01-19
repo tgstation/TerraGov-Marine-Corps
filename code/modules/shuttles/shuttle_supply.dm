@@ -83,10 +83,10 @@
 			raise_elevator_effect()
 			sleep(21)
 			move(away_area, destination)
-			SW.loc = null
-			SE.loc = null
-			NW.loc = null
-			NE.loc = null
+			SW?.loc = null
+			SE?.loc = null
+			NW?.loc = null
+			NE?.loc = null
 
 		moving_status = SHUTTLE_IDLE
 		stop_gears()
@@ -140,28 +140,36 @@
 		playsound(locate(SupplyElevator_x,SupplyElevator_y,SupplyElevator_z), 'sound/machines/elevator_openclose.ogg', 50, 0)
 
 /datum/shuttle/ferry/supply/proc/lower_elevator_effect()
-	SW.loc = locate(SupplyElevator_x-2,SupplyElevator_y-2,SupplyElevator_z)
-	SE.loc = locate(SupplyElevator_x+2,SupplyElevator_y-2,SupplyElevator_z)
-	NW.loc = locate(SupplyElevator_x-2,SupplyElevator_y+2,SupplyElevator_z)
-	NE.loc = locate(SupplyElevator_x+2,SupplyElevator_y+2,SupplyElevator_z)
-	flick("supply_elevator_lowering", SW)
-	flick("supply_elevator_lowering", SE)
-	flick("supply_elevator_lowering", NW)
-	flick("supply_elevator_lowering", NE)
-	SW.icon_state = "supply_elevator_lowered"
-	SE.icon_state = "supply_elevator_lowered"
-	NW.icon_state = "supply_elevator_lowered"
-	NE.icon_state = "supply_elevator_lowered"
+	SW?.loc = locate(SupplyElevator_x-2,SupplyElevator_y-2,SupplyElevator_z)
+	SE?.loc = locate(SupplyElevator_x+2,SupplyElevator_y-2,SupplyElevator_z)
+	NW?.loc = locate(SupplyElevator_x-2,SupplyElevator_y+2,SupplyElevator_z)
+	NE?.loc = locate(SupplyElevator_x+2,SupplyElevator_y+2,SupplyElevator_z)
+	if(SW)
+		flick("supply_elevator_lowering", SW)
+	if(SE)
+		flick("supply_elevator_lowering", SE)
+	if(NW)
+		flick("supply_elevator_lowering", NW)
+	if(NE)
+		flick("supply_elevator_lowering", NE)
+	SW?.icon_state = "supply_elevator_lowered"
+	SE?.icon_state = "supply_elevator_lowered"
+	NW?.icon_state = "supply_elevator_lowered"
+	NE?.icon_state = "supply_elevator_lowered"
 
 /datum/shuttle/ferry/supply/proc/raise_elevator_effect()
-	flick("supply_elevator_raising", SW)
-	flick("supply_elevator_raising", SE)
-	flick("supply_elevator_raising", NW)
-	flick("supply_elevator_raising", NE)
-	SW.icon_state = "supply_elevator_raised"
-	SE.icon_state = "supply_elevator_raised"
-	NW.icon_state = "supply_elevator_raised"
-	NE.icon_state = "supply_elevator_raised"
+	if(SW)
+		flick("supply_elevator_raising", SW)
+	if(SE)
+		flick("supply_elevator_raising", SE)
+	if(NW)
+		flick("supply_elevator_raising", NW)
+	if(NE)
+		flick("supply_elevator_raising", NE)
+	SW?.icon_state = "supply_elevator_raised"
+	SE?.icon_state = "supply_elevator_raised"
+	NW?.icon_state = "supply_elevator_raised"
+	NE?.icon_state = "supply_elevator_raised"
 
 /datum/shuttle/ferry/supply/proc/start_gears(var/direction = 1)
 	for(var/obj/machinery/gear/M in machines)

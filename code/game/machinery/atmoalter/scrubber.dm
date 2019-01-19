@@ -133,7 +133,7 @@ Flow Rate Regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?s
 	name = "[name] (ID [id])"
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/attack_hand(var/mob/user as mob)
-		to_chat(usr, "\blue You can't directly interact with this machine. Use the scrubber control console.")
+		to_chat(usr, "<span class='notice'>You can't directly interact with this machine. Use the scrubber control console.</span>")
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/update_icon()
 	src.overlays = 0
@@ -161,12 +161,12 @@ Flow Rate Regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?s
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	if(istype(I, /obj/item/tool/wrench))
 		if(on)
-			to_chat(user, "\blue Turn it off first!")
+			to_chat(user, "<span class='notice'>Turn it off first!</span>")
 			return
 
 		anchored = !anchored
 		playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-		to_chat(user, "\blue You [anchored ? "wrench" : "unwrench"] \the [src].")
+		to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")
 
 		return
 
@@ -188,7 +188,7 @@ Flow Rate Regulator: <A href='?src=\ref[src];volume_adj=-1000'>-</A> <A href='?s
 
 /obj/machinery/portable_atmospherics/powered/scrubber/huge/stationary/attackby(var/obj/item/I as obj, var/mob/user as mob)
 	if(istype(I, /obj/item/tool/wrench))
-		to_chat(user, "\blue The bolts are too tight for you to unscrew!")
+		to_chat(user, "<span class='notice'>The bolts are too tight for you to unscrew!</span>")
 		return
 
 	..()

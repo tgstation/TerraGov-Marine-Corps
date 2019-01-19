@@ -230,7 +230,7 @@
 			apply_damage(tackle_pain, HALLOSS, "chest", armor_block * 0.5) //Only half armour applies vs tackle
 			updatehealth()
 			updateshock()
-			var/throttle_message = "<span class='danger'>The [M] throttles [src]!</span>"
+			var/throttle_message = "<span class='danger'>\The [M] throttles [src]!</span>"
 			var/throttle_message2 = "<span class='danger'>You throttle [src]!</span>"
 			if(tackle_pain > 40)
 				throttle_message = "<span class='danger'>\The [M] badly throttles [src]!</span>"

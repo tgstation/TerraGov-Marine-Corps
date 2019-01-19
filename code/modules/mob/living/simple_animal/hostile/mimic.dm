@@ -56,17 +56,9 @@
 	stop_automated_movement = 1
 	wander = 0
 	var/attempt_open = 0
-/*
-	New()
-		set waitfor = 0
-		..()
-		sleep(10) //Make sure everything is spawned in.
-		for(var/obj/item/I in loc)
-			I.loc = src
-	*/
 
-	initialize()
-		..()
+	Initialize()
+		. = ..()
 		for(var/obj/item/I in loc)
 			I.loc = src
 

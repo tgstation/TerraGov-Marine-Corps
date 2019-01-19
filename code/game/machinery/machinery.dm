@@ -242,7 +242,7 @@ Class Procs:
 	if(usr.is_mob_restrained() || usr.lying || usr.stat)
 		return 1
 	if (!ishuman(usr))
-		to_chat(usr, "\red You don't have the dexterity to do this!")
+		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 
 	var/norange = 0
@@ -287,7 +287,7 @@ Class Procs:
 	if(user.lying || user.stat)
 		return 1
 	if (!ishuman(usr))
-		to_chat(usr, "\red You don't have the dexterity to do this!")
+		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 /*
 	//distance checks are made by atom/proc/clicked()
@@ -297,10 +297,10 @@ Class Procs:
 	if (ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 60)
-			visible_message("\red [H] stares cluelessly at [src] and drools.")
+			visible_message("<span class='warning'> [H] stares cluelessly at [src] and drools.</span>")
 			return 1
 		else if(prob(H.getBrainLoss()))
-			to_chat(user, "\red You momentarily forget how to use [src].")
+			to_chat(user, "<span class='warning'>You momentarily forget how to use [src].</span>")
 			return 1
 
 	src.add_fingerprint(user)
