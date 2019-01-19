@@ -291,7 +291,7 @@
 		step(M, pick(cardinal))
 	if(prob(5))
 		M.emote(pick("twitch","drool","moan"))
-	M.adjustBrainLoss(1)
+	M.adjustBrainLoss(1, TRUE)
 	..()
 
 /datum/reagent/sulfur
@@ -648,7 +648,7 @@
 /datum/reagent/impedrezene/on_mob_life(mob/living/M)
 	M.Jitter(-5)
 	if(prob(80))
-		M.adjustBrainLoss(2*REM)
+		M.adjustBrainLoss(2*REM, TRUE)
 	if(prob(50))
 		M.drowsyness = max(M.drowsyness, 3)
 	if(prob(10))

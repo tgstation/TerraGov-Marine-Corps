@@ -64,10 +64,10 @@
 		if(!usr.is_mob_restrained() && !usr.stat)
 			switch(over_object.name)
 				if("r_hand")
-					usr.drop_inv_item_on_ground(src)
+					usr.dropItemToGround(src)
 					usr.put_in_r_hand(src)
 				if("l_hand")
-					usr.drop_inv_item_on_ground(src)
+					usr.dropItemToGround(src)
 					usr.put_in_l_hand(src)
 			add_fingerprint(usr)
 
@@ -259,7 +259,7 @@
 	// Placing something in the storage screen
 	if(master)
 		var/obj/item/storage/S = master
-		var/obj/item/I = user.get_active_hand()
+		var/obj/item/I = user.get_active_held_item()
 		if(I)
 			if (master.attackby(I, user))
 				user.next_move = world.time + 2
@@ -395,7 +395,7 @@
 /obj/item/storage/proc/handle_item_insertion(obj/item/W, prevent_warning = 0, mob/user)
 	if(!istype(W)) return 0
 	if(user && W.loc == user)
-		if(!user.drop_inv_item_to_loc(W, src))
+		if(!user.transferItemToLoc(W, src))
 			return 0
 	else
 		W.forceMove(src)

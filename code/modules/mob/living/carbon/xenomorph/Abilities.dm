@@ -676,7 +676,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		to_chat(X, "<span class='warning'>You are not ready to dig a tunnel again.</span>")
 		return
 
-	if(X.get_active_hand())
+	if(X.get_active_held_item())
 		to_chat(X, "<span class='xenowarning'>You need an empty claw for this!</span>")
 		return
 
@@ -1100,7 +1100,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	new_xeno.middle_mouse_toggle = T.middle_mouse_toggle //Keep our toggle state
 
 	for(var/obj/item/W in T.contents) //Drop stuff
-		T.drop_inv_item_on_ground(W)
+		T.dropItemToGround(W)
 
 	T.empty_gut()
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [T].</span>", \

@@ -73,7 +73,7 @@
 
 
 
-		user.drop_inv_item_to_loc(O, src)
+		user.transferItemToLoc(O, src)
 		to_chat(user, "<span class='notice'>You install [O] in [src]!</span>")
 		mmi = O
 		transfer_personality(O)
@@ -187,14 +187,14 @@
 	eject_brain()
 	. = ..()
 
-/mob/living/simple_animal/spiderbot/New()
+/mob/living/simple_animal/spiderbot/Initialize()
 
 	radio = new /obj/item/device/radio/borg(src)
 	camera = new /obj/machinery/camera(src)
 	camera.c_tag = "Spiderbot-[real_name]"
 	camera.network = list("SS13")
 
-	..()
+	return ..()
 
 /mob/living/simple_animal/spiderbot/death()
 

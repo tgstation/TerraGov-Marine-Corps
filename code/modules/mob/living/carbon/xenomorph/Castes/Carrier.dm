@@ -245,12 +245,12 @@
 		if(isturf(F.loc) && Adjacent(F))
 			if(F.hivenumber != hivenumber)
 				to_chat(src, "<span class='warning'>That facehugger is tainted!</span>")
-				drop_inv_item_on_ground(F)
+				dropItemToGround(F)
 				return
 			store_hugger(F)
 			return
 
-	var/obj/item/clothing/mask/facehugger/F = get_active_hand()
+	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	if(!F) //empty active hand
 		//if no hugger in active hand, we take one from our storage
 		if(huggers_cur <= 0)
@@ -270,7 +270,7 @@
 	if(!threw_a_hugger)
 		threw_a_hugger = 1
 		update_action_button_icons()
-		drop_inv_item_on_ground(F)
+		dropItemToGround(F)
 		F.throw_at(T, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		visible_message("<span class='xenowarning'>\The [src] throws something towards \the [T]!</span>", \
 		"<span class='xenowarning'>You throw a facehugger towards \the [T]!</span>")
@@ -308,7 +308,7 @@
 			store_egg(E)
 			return
 
-	var/obj/item/xeno_egg/E = get_active_hand()
+	var/obj/item/xeno_egg/E = get_active_held_item()
 	if(!E) //empty active hand
 		//if no hugger in active hand, we take one from our storage
 		if(eggs_cur <= 0)

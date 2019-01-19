@@ -29,7 +29,7 @@
 		if(R.use(4))
 			new /obj/item/frame/table/reinforced(get_turf(src))
 			to_chat(user, "<span class='notice'>You reinforce [src].</span>")
-			user.temp_drop_inv_item(src)
+			user.temporarilyRemoveItemFromInventory(src)
 			qdel(src)
 		else
 			to_chat(user, "<span class='warning'>You need at least four rods to reinforce [src].</span>")
@@ -40,7 +40,7 @@
 			new /obj/item/frame/table/wood(get_turf(src))
 			new /obj/item/stack/sheet/metal(get_turf(src))
 			to_chat(user, "<span class='notice'>You replace the metal parts of [src].</span>")
-			user.temp_drop_inv_item(src)
+			user.temporarilyRemoveItemFromInventory(src)
 			qdel(src)
 		else
 			to_chat(user, "<span class='warning'>You need at least two wood sheets to swap the metal parts of [src].</span>")

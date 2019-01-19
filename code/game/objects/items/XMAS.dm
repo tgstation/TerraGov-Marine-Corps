@@ -26,7 +26,7 @@
 			to_chat(M, "<span class='notice'>It's a brand new, un-restricted, THERMOBARIC ROCKET LAUNCHER!  What are the chances?</span>")
 			gift_type = /obj/item/weapon/gun/launcher/rocket/m57a4/XMAS
 			var/obj/item/I = new gift_type(M)
-			M.temp_drop_inv_item(src)
+			M.temporarilyRemoveItemFromInventory(src)
 			M.put_in_hands(I)
 			I.add_fingerprint(M)
 			qdel(src)
@@ -35,7 +35,7 @@
 			to_chat(M, "<span class='notice'>It's a brand new, un-restricted, ANTI-MATERIAL SNIPER RIFLE!  What are the chances?</span>")
 			gift_type = /obj/item/weapon/gun/rifle/sniper/elite/XMAS
 			var/obj/item/I = new gift_type(M)
-			M.temp_drop_inv_item(src)
+			M.temporarilyRemoveItemFromInventory(src)
 			M.put_in_hands(I)
 			I.add_fingerprint(M)
 			qdel(src)
@@ -44,7 +44,7 @@
 			to_chat(M, "<span class='notice'>Just what the fuck is it?</span>")
 			gift_type = /obj/item/clothing/mask/facehugger/lamarr
 			var/obj/item/I = new gift_type(M)
-			M.temp_drop_inv_item(src)
+			M.temporarilyRemoveItemFromInventory(src)
 			M.put_in_hands(I)
 			I.add_fingerprint(M)
 			qdel(src)
@@ -62,14 +62,14 @@
 			)
 			to_chat(M, "<span class='notice'>It's a REAL gift!</span>")
 			var/obj/item/I = new gift_type(M)
-			M.temp_drop_inv_item(src)
+			M.temporarilyRemoveItemFromInventory(src)
 			M.put_in_hands(I)
 			I.add_fingerprint(M)
 			qdel(src)
 			return
 	else if (fancy <=5)
 		to_chat(M, "<span class='notice'>It's fucking EMPTY.</span>")
-		M.temp_drop_inv_item(src)
+		M.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 		return
 
@@ -90,7 +90,7 @@
 	if(!ispath(gift_type,/obj/item))	return
 	to_chat(M, "<span class='notice'>At least it's something...</span>")
 	var/obj/item/I = new gift_type(M)
-	M.temp_drop_inv_item(src)
+	M.temporarilyRemoveItemFromInventory(src)
 	M.put_in_hands(I)
 	I.add_fingerprint(M)
 	qdel(src)
