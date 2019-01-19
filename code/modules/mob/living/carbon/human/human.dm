@@ -483,7 +483,7 @@
 	if (href_list["item"])
 		var/slot = text2num(href_list["item"])
 		if(!usr.is_mob_incapacitated() && Adjacent(usr))
-			if(href_list["item"] == SLOT_WEAR_ID)
+			if(slot == SLOT_WEAR_ID)
 				if(istype(wear_id, /obj/item/card/id/dogtag))
 					var/obj/item/card/id/dogtag/DT = wear_id
 					if(!DT.dogtag_taken)
