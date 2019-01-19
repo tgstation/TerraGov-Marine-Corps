@@ -35,7 +35,7 @@ These are the boundaries of a critical hit.
 
 /*
 Base armor resist.
-These are the multiples * after soaking damage. Low is the initial one used after soaking damage, 
+These are the multiples * after soaking damage. Low is the initial one used after soaking damage,
 high is the derived one after soaking damage again.
 */
 /datum/config_entry/number/combat_define/base_armor_resist_low
@@ -142,7 +142,7 @@ Damage multiplier.
 
 /datum/config_entry/number/combat_define/min_hit_damage_mult
 
-/datum/config_entry/number/combat_define/low_hit_damage_mult 
+/datum/config_entry/number/combat_define/low_hit_damage_mult
 
 /datum/config_entry/number/combat_define/med_hit_damage_mult
 
@@ -206,6 +206,8 @@ How many shots the weapon shoots each burst. Should be set to 1 if the gun doesn
 Fire delay.
 Ticks before the weapon can be fired again. Should be 6 for regular delay and 2 for burst delay.
 */
+/datum/config_entry/number/combat_define/no_fire_delay
+
 /datum/config_entry/number/combat_define/min_fire_delay
 
 /datum/config_entry/number/combat_define/vlow_fire_delay

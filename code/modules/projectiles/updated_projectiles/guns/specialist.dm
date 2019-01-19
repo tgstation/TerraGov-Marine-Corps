@@ -939,13 +939,13 @@
 		load_into_chamber()
 
 /obj/item/weapon/gun/shotgun/merc/scout/set_gun_config_values()
-	fire_delay = config.scoutshottie_fire_delay
-	burst_amount = config.low_burst_value
-	burst_delay = config.no_fire_delay //basically instantaneous two shots
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.max_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.max_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	recoil = config.low_recoil_value
-	recoil_unwielded = config.high_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/no_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/no_fire_delay) //basically instantaneous two shots
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)

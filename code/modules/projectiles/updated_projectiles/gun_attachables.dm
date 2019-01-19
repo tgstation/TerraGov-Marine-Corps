@@ -607,9 +607,9 @@ Defined in conflicts.dm of the #defines folder.
 
 /obj/item/attachable/stock/scout/New()
 	. = ..()
-	accuracy_mod = config.min_hit_accuracy_mult
-	recoil_mod = -config.min_recoil_value
-	scatter_mod = -config.min_scatter_value
+	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	recoil_mod = -CONFIG_GET(number/combat_define/min_recoil_value)
+	scatter_mod = -CONFIG_GET(number/combat_define/min_scatter_value)
 
 /obj/item/attachable/stock/slavic
 	name = "wooden stock"
