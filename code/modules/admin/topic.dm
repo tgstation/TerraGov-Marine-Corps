@@ -118,19 +118,19 @@
 				if(null,"") return
 				if("*New Rank*")
 					new_rank = input("Please input a new rank", "New custom rank", null, null) as null|text
-					if(config.admin_legacy_system)
+					if(CONFIG_GET(flag/admin_legacy_system))
 						new_rank = ckeyEx(new_rank)
 					if(!new_rank)
 						to_chat(usr, "<font color='red'>Error: Topic 'editrights': Invalid rank</font>")
 						return
-					if(config.admin_legacy_system)
+					if(CONFIG_GET(flag/admin_legacy_system))
 						if(admin_ranks.len)
 							if(new_rank in admin_ranks)
 								rights = admin_ranks[new_rank]		//we typed a rank which already exists, use its rights
 							else
 								admin_ranks[new_rank] = 0			//add the new rank to admin_ranks
 				else
-					if(config.admin_legacy_system)
+					if(CONFIG_GET(flag/admin_legacy_system))
 						new_rank = ckeyEx(new_rank)
 						rights = admin_ranks[new_rank]				//we input an existing rank, use its rights
 
@@ -244,7 +244,7 @@
 
 	else if(href_list["simplemake"])
 
-		if(!check_rights(R_SPAWN))	
+		if(!check_rights(R_SPAWN))
 			return
 
 		var/mob/M = locate(href_list["mob"])
@@ -259,16 +259,16 @@
 
 		var/delmob = FALSE
 		switch(alert("Delete old mob?","Message","Yes","No","Cancel"))
-			if("Cancel")	
+			if("Cancel")
 				return
-			if("Yes")		
+			if("Yes")
 				delmob = TRUE
 
 		var/turf/location
 		switch(alert("Teleport to your location?","Message","Yes","No","Cancel"))
-			if("Cancel")	
+			if("Cancel")
 				return
-			if("Yes")		
+			if("Yes")
 				location = get_turf(usr)
 
 		log_admin("[key_name(usr)] has used rudimentary transformation on [key_name(M)]. Transforming to [href_list["simplemake"]].[delmob ? " Deleting old mob." : ""][location ? " Teleporting to new location." : ""]")
@@ -758,7 +758,7 @@
 		//Unbanning joblist
 		//all jobs in joblist are banned already OR we didn't give a reason (implying they shouldn't be banned)
 		if(joblist.len) //at least 1 banned job exists in joblist so we have stuff to unban.
-			if(!config.ban_legacy_system)
+			if(!CONFIG_GET(flag/ban_legacy_system))
 				to_chat(usr, "Unfortunately, database based unbanning cannot be done through this panel")
 				DB_ban_panel(M.ckey)
 				return
@@ -864,8 +864,8 @@
 		feedback_inc("ban_tmp",1)
 		DB_ban_record(BANTYPE_TEMP, M, mins, reason)
 		feedback_inc("ban_tmp_mins",mins)
-		if(config.banappeals)
-			to_chat(M, "<span class='warning'>To try to resolve this matter head to [config.banappeals]</span>")
+		if(CONFIG_GET(string/banappeals))
+			to_chat(M, "<span class='warning'>To try to resolve this matter head to [CONFIG_GET(string/banappeals)]</span>")
 		else
 			to_chat(M, "<span class='warning'>No ban appeals URL has been set.</span>")
 		log_admin("[usr.client.ckey] has banned [mob_key]|Duration: [mins] minutes|Reason: [sanitize(reason)]")
@@ -905,8 +905,8 @@
 		to_chat(M, "<span class='warning'>This is a temporary ban, it will be removed in [mins] minutes.</span>")
 		to_chat(M, "<span class='notice'>This ban was made using a one-click ban system. If you think an error has been made, please visit our forums' ban appeal section.</span>")
 		to_chat(M, "<span class='notice'>If you make sure to mention that this was a one-click ban, the administration team may double-check this code for you.</span>")
-		if(config.banappeals)
-			to_chat(M, "<span class='notice'>The ban appeal forums are located here: [config.banappeals]</span>")
+		if(CONFIG_GET(string/banappeals))
+			to_chat(M, "<span class='notice'>The ban appeal forums are located here: [CONFIG_GET(string/banappeals)]</span>")
 		else
 			to_chat(M, "<span class='notice'>Unfortunately, no ban appeals URL has been set.</span>")
 		feedback_inc("ban_tmp", 1)
@@ -1207,7 +1207,7 @@
 			to_chat(usr, "This can only be used on instances of type /mob/living")
 			return
 
-		if(config.allow_admin_rev)
+		if(CONFIG_GET(flag/allow_admin_rev))
 			L.revive()
 			message_admins("<span class='warning'> Admin [key_name_admin(usr)] healed / revived [key_name_admin(L)]!</span>", 1)
 			log_admin("[key_name(usr)] healed / revived [key_name(L)]")
@@ -1819,7 +1819,7 @@
 	else if(href_list["object_list"])			//this is the laggiest thing ever
 		if(!check_rights(R_SPAWN))	return
 
-		if(!config.allow_admin_spawning)
+		if(!CONFIG_GET(flag/allow_admin_spawning))
 			to_chat(usr, "Spawning of items is not allowed.")
 			return
 

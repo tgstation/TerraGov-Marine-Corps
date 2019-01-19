@@ -214,7 +214,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 
 	if(length(spawns) < 1)
 		message_admins("DEBUG: Failed to find any End of Round Deathmatch landmarks.")
-		log_debug("DEBUG: Failed to find any End of Round Deathmatch landmarks.")
+		log_runtime("DEBUG: Failed to find any End of Round Deathmatch landmarks.")
 		to_chat(world, "<br><br><h1><span class='warning'>End of Round Deathmatch initialization failed, please do not grief.</span></h1><br><br>")
 		return
 
@@ -239,13 +239,13 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 
 			if(length(spawns) < 1)
 				message_admins("DEBUG: Failed to regenerate End of Round Deathmatch landmarks.")
-				log_debug("DEBUG: Failed to regenerate End of Round Deathmatch landmarks.")
+				log_runtime("DEBUG: Failed to regenerate End of Round Deathmatch landmarks.")
 
 			else
 				picked = pick(spawns)
 				spawns -= picked
 
-		
+
 		if(picked)
 			H.loc = picked
 			H.revive()
@@ -310,22 +310,22 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 					if(MAIN_SHIP_Z_LEVEL)
 						if(isXenoLarva(M))
 							numLarvaShip++
-						numXenosShip++ 
+						numXenosShip++
 						xenoLocationsS += A
-					
+
 				activeXenos += M
 
 			if(ishuman(M) && !isYautja(M))
 				switch(A?.z)
 					if(PLANET_Z_LEVEL || LOW_ORBIT_Z_LEVEL)
-						numHostsPlanet++ 
+						numHostsPlanet++
 						hostLocationsP += A
 					if(MAIN_SHIP_Z_LEVEL)
-						numHostsShip++ 
+						numHostsShip++
 						hostLocationsS += A
 
 
-					
+
 		else
 			observers += M
 
@@ -334,7 +334,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	var/numXenosPlanetr = max(0, numXenosPlanet + rand(-delta, delta))
 	var/hostLocationP
 	var/hostLocationS
-	
+
 	if(length(hostLocationsP))
 		hostLocationP = pick(hostLocationsP)
 
@@ -350,7 +350,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	// The announcement to all Humans. Slightly off for the planet and elsewhere, accurate for the ship.
 	var/xenoLocationP
 	var/xenoLocationS
-	
+
 	if(length(xenoLocationsP))
 		xenoLocationP = pick(xenoLocationsP)
 
@@ -364,7 +364,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	log_admin("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""].")
 	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[numHostsShipr && hostLocationS ? " Location: [hostLocationS].":""]", 1)
 	message_admins("Bioscan - Xenos: [numXenosPlanetr] on the planet[numXenosPlanetr > 0 && xenoLocationP ? ". Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""]", 1)
-		
+
 	for(var/mob/M in observers) // Extra information for all ghosts
 		if(istype(M, /mob/new_player))
 			continue

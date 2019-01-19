@@ -24,7 +24,7 @@
 		return (FIRELOSS)
 
 /mob/living/carbon/human/proc/check_tod()
-	if(!undefibbable && world.time <= timeofdeath + config.revive_grace_period)
+	if(!undefibbable && world.time <= timeofdeath + CONFIG_GET(number/revive_grace_period))
 		return TRUE
 	return FALSE
 
@@ -199,7 +199,7 @@
 		H.adjustCloneLoss(-defib_heal_amt)
 		H.adjustOxyLoss(-H.getOxyLoss())
 		H.updatehealth() //Needed for the check to register properly
-		if(H.health > config.health_threshold_dead)
+		if(H.health > CONFIG_GET(number/health_threshold_dead))
 			user.visible_message("<span class='notice'>\icon[src] \The [src] beeps: Defibrillation successful.</span>")
 			living_mob_list.Add(H)
 			dead_mob_list.Remove(H)

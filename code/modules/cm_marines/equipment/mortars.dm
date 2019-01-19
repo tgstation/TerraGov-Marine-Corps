@@ -118,7 +118,7 @@
 			"<span class='notice'>You fumble around figuring out how to fire [src].</span>")
 			var/fumbling_time = 30 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
 			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-		if(isSynth(user) && !config.allow_synthetic_gun_use)
+		if(isSynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
 			return
 		if(busy)

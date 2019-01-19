@@ -210,7 +210,7 @@ datum/game_mode/proc/initialize_special_clamps()
 /datum/game_mode/proc/transform_predator(mob/pred_candidate)
 	if(!pred_candidate.client) //Something went wrong.
 		message_admins("<span class='warning'><b>Warning</b>: null client in transform_predator.</span>")
-		log_debug("Null client in transform_predator.")
+		log_runtime("Null client in transform_predator.")
 		return FALSE
 
 	var/mob/living/carbon/human/new_predator

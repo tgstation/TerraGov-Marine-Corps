@@ -148,7 +148,7 @@
 			to_chat(user, "<span class='warning'>You must be zoomed in to use your targeting laser!</span>")
 		return
 	targetlaser_on = TRUE
-	accuracy_mult += config.max_hit_accuracy_mult //We get a big accuracy bonus vs the lasered target
+	accuracy_mult += CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We get a big accuracy bonus vs the lasered target
 	if(!silent && user)
 		to_chat(user, "<span class='notice'><b>You activate your targeting laser and take careful aim.</b></span>")
 		playsound(user,'sound/machines/click.ogg', 25, 1)
@@ -157,7 +157,7 @@
 	if(laser_target)
 		laser_target.remove_laser()
 	laser_target = null
-	accuracy_mult -= config.max_hit_accuracy_mult //We lose a big accuracy bonus vs the now unlasered target
+	accuracy_mult -= CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We lose a big accuracy bonus vs the now unlasered target
 	STOP_PROCESSING(SSobj, src)
 	if(toggle_off)
 		targetlaser_on = FALSE
@@ -166,11 +166,11 @@
 			playsound(user,'sound/machines/click.ogg', 25, 1)
 
 /obj/item/weapon/gun/rifle/sniper/M42A/set_gun_config_values()
-	fire_delay = config.high_fire_delay*5
-	burst_amount = config.min_burst_value
-	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
-	damage_mult = config.base_hit_damage_mult
-	recoil = config.min_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 5
+	burst_amount = CONFIG_GET(number/combat_define/min_burst_value)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
 
 
 /obj/item/weapon/gun/rifle/sniper/M42A/jungle //These really should just be skins.
@@ -205,12 +205,12 @@
 	update_attachables()
 
 /obj/item/weapon/gun/rifle/sniper/elite/set_gun_config_values()
-	fire_delay = config.high_fire_delay*5
-	burst_amount = config.min_burst_value
-	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
-	scatter = config.low_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	recoil = config.max_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 5
+	burst_amount = CONFIG_GET(number/combat_define/min_burst_value)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/max_recoil_value)
 
 /obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user, atom/target)
 	. = ..()
@@ -257,12 +257,12 @@
 
 
 /obj/item/weapon/gun/rifle/sniper/svd/set_gun_config_values()
-	fire_delay = config.mhigh_fire_delay*2
-	burst_amount = config.low_burst_value
-	accuracy_mult = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult
-	scatter = config.low_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	recoil = config.min_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
+	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
 
 
 
@@ -301,13 +301,13 @@
 
 
 /obj/item/weapon/gun/rifle/m4ra/set_gun_config_values()
-	fire_delay = config.high_fire_delay
-	burst_amount = config.med_burst_value
-	burst_delay = config.mlow_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	scatter = config.low_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	recoil = config.min_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
 
 //-------------------------------------------------------
 //SMARTGUN
@@ -347,13 +347,13 @@
 	ammo_secondary = ammo_list[ammo_secondary]
 
 /obj/item/weapon/gun/smartgun/set_gun_config_values()
-	fire_delay = config.low_fire_delay
-	burst_amount = config.med_burst_value
-	burst_delay = config.min_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult + config.min_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	damage_falloff_mult = config.med_damage_falloff_mult
+	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)
 
 /obj/item/weapon/gun/smartgun/examine(mob/user)
 	. = ..()
@@ -432,12 +432,12 @@
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY
 
 /obj/item/weapon/gun/smartgun/dirty/set_gun_config_values()
-	fire_delay = config.low_fire_delay
-	burst_amount = config.med_burst_value
-	burst_delay = config.min_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult + config.min_hit_accuracy_mult + config.min_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
+	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 
 //-------------------------------------------------------
@@ -479,12 +479,12 @@
 
 
 /obj/item/weapon/gun/launcher/m92/set_gun_config_values()
-	fire_delay = config.max_fire_delay*3
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
+	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 3
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 
 /obj/item/weapon/gun/launcher/m92/examine(mob/user)
@@ -618,10 +618,10 @@
 
 
 /obj/item/weapon/gun/launcher/m81/set_gun_config_values()
-	fire_delay = config.max_fire_delay * 1.5
-	accuracy_mult = config.base_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
+	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 1.5
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 
 /obj/item/weapon/gun/launcher/m81/examine(mob/user)
@@ -768,11 +768,11 @@
 
 
 /obj/item/weapon/gun/launcher/rocket/set_gun_config_values()
-	fire_delay = config.high_fire_delay*2
-	accuracy_mult = config.base_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	recoil = config.med_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 2
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/med_recoil_value)
 
 
 /obj/item/weapon/gun/launcher/rocket/examine(mob/user)
@@ -891,10 +891,10 @@
 
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/set_gun_config_values()
-	fire_delay = config.mhigh_fire_delay
-	burst_delay = config.med_fire_delay
-	burst_amount = config.high_burst_value
-	accuracy_mult = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	recoil = config.med_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
+	burst_delay = CONFIG_GET(number/combat_define/med_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/med_recoil_value)

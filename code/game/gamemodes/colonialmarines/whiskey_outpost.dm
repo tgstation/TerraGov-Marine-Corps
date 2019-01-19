@@ -100,7 +100,7 @@
 	lobby_time = world.time
 	var/mob/M
 
-	if(config) config.remove_gun_restrictions = 1
+	CONFIG_SET(flag/remove_gun_restrictions, TRUE)
 
 	for(M in mob_list)
 		if(M.client && istype(M,/mob/living/carbon/human))

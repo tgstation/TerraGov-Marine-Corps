@@ -1118,3 +1118,9 @@ client
 		src.debug_variables(DAT)
 
 	return
+
+/datum/proc/CanProcCall(procname)
+	return TRUE
+
+/datum/proc/can_vv_get(var_name)
+	return TRUE

@@ -317,7 +317,7 @@ x_pos = 0 1 2 3 4 5 6
 #define SHUTTLE_LINK_LOCATIONS(T, L) \
 ..(); \
 var/datum/shuttle/ferry/marine/S = shuttle_controller.shuttles["[MAIN_SHIP_NAME] [T] [name]"]; \
-if(!S) {log_debug("ERROR CODE SO1: unable to find shuttle with the tag of: ["[MAIN_SHIP_NAME] [T] [name]"]."); \
+if(!S) {log_runtime("ERROR CODE SO1: unable to find shuttle with the tag of: ["[MAIN_SHIP_NAME] [T] [name]"]."); \
 return FALSE}; \
 L[get_turf(src)] = rotation; \
 qdel(src)
@@ -333,7 +333,7 @@ qdel(src)
 	..()
 	var/datum/shuttle/ferry/marine/evacuation_pod/S = shuttle_controller.shuttles["[MAIN_SHIP_NAME] Evac [name]"]
 	if(!S)
-		log_debug("ERROR CODE SO1: unable to find shuttle with the tag of: ["[MAIN_SHIP_NAME] Evac [name]"].")
+		log_runtime("ERROR CODE SO1: unable to find shuttle with the tag of: ["[MAIN_SHIP_NAME] Evac [name]"].")
 		return FALSE
 	S.locs_dock[get_turf(src)] = rotation
 	S.link_support_units(get_turf(src)) //Process links.
