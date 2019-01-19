@@ -49,7 +49,7 @@ var/global/list/cargo_ammo_vendors = list() //Used by our gamemode code
 var/global/list/cargo_guns_vendors = list() //Used by our gamemode code
 var/global/list/active_diseases = list()
 var/global/list/events = list()
-var/global/list/processing_second = list()
+var/global/list/processing = list()
 
 //used by binoculars for dropship bombardment
 var/global/list/active_laser_targets = list()

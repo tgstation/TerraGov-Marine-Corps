@@ -45,19 +45,19 @@
 	var/mob/M = locate() in src //need to be occupied
 	if(!opened && M)
 		playsound(loc,'sound/effects/cloak_scout_on.ogg', 15, 1) //stealth mode engaged!
-		processing_second.Add(src)
+		processing.Add(src)
 
 /obj/structure/closet/bodybag/tarp/process() //We only process until stealth fully achieved to save resources.
 	var/mob/M = locate() in src //need to be occupied
 	if(opened || !M) //Abort if no mob inside.
 		alpha = initial(alpha)
-		processing_second.Remove(src)
+		processing.Remove(src)
 		return
 
 	alpha = max(alpha - 85, 13)
 
 	if(alpha <= 13)
-		processing_second.Remove(src)
+		processing.Remove(src)
 		return
 
 /obj/structure/closet/bodybag/tarp/fire_act(exposed_temperature, exposed_volume)
@@ -89,7 +89,7 @@
 
 /obj/structure/closet/bodybag/tarp/open()
 	. = ..()
-	processing_second.Remove(src)
+	processing.Remove(src)
 	if(alpha != initial(alpha))
 		playsound(loc,'sound/effects/cloak_scout_off.ogg', 15, 1)
 		alpha = initial(alpha) //stealth mode disengaged
