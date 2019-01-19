@@ -37,6 +37,9 @@ MODE_PREDATOR
 
 Additional game mode variables.
 */
+#define XENO_STARTING_COEF 6
+#define MERC_STARTING_COEF 3
+#define SURVIVOR_STARTING_COEF 15
 
 /datum/game_mode
 	var/datum/mind/xenomorphs[] = list() //These are our basic lists to keep track of who is in the game.
@@ -68,7 +71,7 @@ Additional game mode variables.
 	var/monkey_amount		= 0 //How many monkeys do we spawn on this map ?
 	var/list/monkey_types	= list() //What type of monkeys do we spawn
 	var/latejoin_tally		= 0 //How many people latejoined Marines
-	var/latejoin_larva_drop = 7 //A larva will spawn in once the tally reaches this level. If set to 0, no latejoin larva drop
+	var/latejoin_larva_drop = LATEJOIN_LARVA_DISABLED //A larva will spawn in once the latejoin marine tally reaches this level. If set to 0, no latejoin larva drop
 
 	var/stored_larva = 0
 
@@ -90,9 +93,9 @@ Additional game mode variables.
 
 datum/game_mode/proc/initialize_special_clamps()
 	var/ready_players = ready_players() // Get all players that have "Ready" selected
-	xeno_starting_num = max((ready_players/7), xeno_required_num)
-	surv_starting_num = CLAMP((ready_players/25), 0, 8)
-	merc_starting_num = max((ready_players/3), 1)
+	xeno_starting_num = max((ready_players / XENO_STARTING_COEF), xeno_required_num)
+	surv_starting_num = CLAMP((ready_players / SURVIVOR_STARTING_COEF), 0, 8)
+	merc_starting_num = max((ready_players / MERC_STARTING_COEF), 1)
 	marine_starting_num = ready_players - xeno_starting_num - surv_starting_num - merc_starting_num
 	for(var/datum/squad/sq in RoleAuthority.squads)
 		if(sq)
