@@ -33,38 +33,39 @@
 			stat(tile_contents)
 			return FALSE
 
+	if(statpanel("Stats"))
+		stat("Operation Time: [worldtime2text()]")
+
 	if(client.statpanel != "Stats")
 		statpanel("Stats")
 		if(statpanel("Stats"))
 			client.statpanel = "Stats"
 			stat("Operation Time: [worldtime2text()]")
 		client.stat_force_fast_update = TRUE
-		return TRUE
 
-	if(statpanel("Stats"))
-		stat("Operation Time: [worldtime2text()]")
-
-		if(client?.holder?.rights && client.holder.rights & (R_ADMIN|R_DEBUG))
-			if(statpanel("MC"))
-				stat("CPU:", "[world.cpu]")
-				stat("Instances:", "[num2text(world.contents.len, 10)]")
-				stat("World Time:", "[world.time]")
+	if(client?.holder?.rights && client.holder.rights & (R_ADMIN|R_DEBUG))
+		if(statpanel("MC"))
+			stat("CPU:", "[world.cpu]")
+			stat("Instances:", "[num2text(world.contents.len, 10)]")
+			stat("World Time:", "[world.time]")
+			stat(null)
+			if(Master)
+				Master.stat_entry()
+			else
+				stat("Master Controller:", "ERROR")
+			if(Failsafe)
+				Failsafe.stat_entry()
+			else
+				stat("Failsafe Controller:", "ERROR")
+			if(Master)
 				stat(null)
-				if(Master)
-					Master.stat_entry()
-				else
-					stat("Master Controller:", "ERROR")
-				if(Failsafe)
-					Failsafe.stat_entry()
-				else
-					stat("Failsafe Controller:", "ERROR")
-				if(Master)
-					stat(null)
-					for(var/datum/controller/subsystem/SS in Master.subsystems)
-						SS.stat_entry()
+				for(var/datum/controller/subsystem/SS in Master.subsystems)
+					SS.stat_entry()
+					
+	if(statpanel("Stats") || client.statpanel != "Stats")	
 		return TRUE
-
-	return FALSE
+	else
+		return FALSE
 
 /mob/proc/prepare_huds()
 	hud_list = new
