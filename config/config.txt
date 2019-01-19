@@ -2,7 +2,7 @@
 ## Anything after a "#" is commented out, uncomment things to enable them, comment to disable them.
 
 ## Server name: This appears at the top of the screen in-game.
-#SERVERNAME TerraGov Marine Corps
+#SERVER_NAME TerraGov Marine Corps
 
 ## Hosted by name for unix platforms
 #HOSTEDBY yournamehere
