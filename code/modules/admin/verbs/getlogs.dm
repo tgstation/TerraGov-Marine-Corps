@@ -127,7 +127,7 @@
 	set desc = "View/retrieve logfiles for the current round."
 	set category = "Admin"
 
-	browseserverlogs("[log_directory]/")
+	browseserverlogs("[GLOB.log_directory]/")
 
 /client/proc/browseserverlogs(path = "data/logs/")
 	path = browse_files(path)
@@ -199,7 +199,7 @@
 				continue
 
 		path += choice
-		
+
 
 		if(copytext(path, -1, 0) != "/")		//didn't choose a directory, no need to iterate again
 			continue

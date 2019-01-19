@@ -74,7 +74,7 @@ Currently only has the tank hardpoints
 		to_chat(user, "<span class='warning'>Something interrupted you while reloading [owner].</span>")
 		return FALSE
 
-	user.temp_drop_inv_item(A, 0)
+	user.temporarilyRemoveItemFromInventory(A, 0)
 	to_chat(user, "<span class='notice'>You install \the [A] in \the [owner].</span>")
 	backup_clips += A
 	return TRUE

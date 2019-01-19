@@ -248,7 +248,7 @@ obj/structure/bed/Destroy()
 /obj/item/roller/proc/deploy_roller(mob/user, atom/location)
 	var/obj/structure/bed/roller/R = new rollertype(location)
 	R.add_fingerprint(user)
-	user.temp_drop_inv_item(src)
+	user.temporarilyRemoveItemFromInventory(src)
 	if(istype(R,/obj/structure/bed/medevac_stretcher)) //We need to preserve key variables like linked beacons and cooldowns.
 		var/obj/item/roller/medevac/I = src
 		var/obj/structure/bed/medevac_stretcher/B = R

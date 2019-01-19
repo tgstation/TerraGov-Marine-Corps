@@ -55,9 +55,9 @@
 	var/list/overlays_standing[X_TOTAL_LAYERS]
 
 
-/mob/living/carbon/Xenomorph/New()
+/mob/living/carbon/Xenomorph/Initialize()
 	verbs += /mob/living/proc/lay_down
-	..()
+	. = ..()
 
 	set_datum()
 	//WO GAMEMODE
@@ -92,18 +92,14 @@
 
 /mob/living/carbon/Xenomorph/proc/set_datum()
 	if(!caste_base_type)
-		error("xeno spawned without a caste_base_type set")
-		return
+		CRASH("xeno spawned without a caste_base_type set")
 	if(!xeno_caste_datums[caste_base_type])
-		error("error finding base type")
-		return
+		CRASH("error finding base type")
 	if(!xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)])
-		error("error finding datum")
-		return
+		CRASH("error finding datum")
 	var/datum/xeno_caste/X = xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
 	if(!istype(X))
-		error("error with caste datum")
-		return
+		CRASH("error with caste datum")
 	xeno_caste = X
 
 	plasma_stored = xeno_caste.plasma_max

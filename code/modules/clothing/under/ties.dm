@@ -271,7 +271,7 @@
 		return
 
 	holstered = W
-	user.drop_inv_item_to_loc(holstered, src)
+	user.transferItemToLoc(holstered, src)
 	holstered.add_fingerprint(user)
 	user.visible_message("<span class='notice'> [user] holsters the [holstered].</span>", "You holster the [holstered].")
 
@@ -279,7 +279,7 @@
 	if(!holstered)
 		return
 
-	if(user.get_active_hand() && user.get_inactive_hand())
+	if(user.get_active_held_item() && user.get_inactive_held_item())
 		to_chat(user, "<span class='warning'>You need an empty hand to draw the [holstered]!</span>")
 	else
 		if(user.a_intent == "hurt")
@@ -343,10 +343,10 @@
 		to_chat(usr, "/red Something is very wrong.")
 
 	if(!H.holstered)
-		if(!istype(usr.get_active_hand(), /obj/item/weapon/gun))
+		if(!istype(usr.get_active_held_item(), /obj/item/weapon/gun))
 			to_chat(usr, "<span class='notice'>You need your gun equiped to holster it.</span>")
 			return
-		var/obj/item/weapon/gun/W = usr.get_active_hand()
+		var/obj/item/weapon/gun/W = usr.get_active_held_item()
 		H.holster(W, usr)
 	else
 		H.unholster(usr)
@@ -500,14 +500,14 @@
 	name = "holobadge"
 	desc = "This glowing blue badge marks the holder as THE LAW."
 	icon_state = "holobadge"
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 
 	var/emagged = 0 //Emagging removes Sec check.
 	var/stored_name = null
 
 /obj/item/clothing/tie/holobadge/cord
 	icon_state = "holobadge-cord"
-	flags_equip_slot = SLOT_FACE
+	flags_equip_slot = ITEM_SLOT_MASK
 
 /obj/item/clothing/tie/holobadge/attack_self(mob/user as mob)
 	if(!stored_name)
