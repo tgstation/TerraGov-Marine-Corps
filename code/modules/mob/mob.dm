@@ -8,14 +8,14 @@
 	. = ..()
 	return TA_PURGE_ME_NOW
 
-/mob/New()
+/mob/Initialize()
 	mob_list += src
 	if(stat == DEAD)
 		dead_mob_list += src
 	else
 		living_mob_list += src
 	prepare_huds()
-	..()
+	return ..()
 
 
 /mob/Stat()

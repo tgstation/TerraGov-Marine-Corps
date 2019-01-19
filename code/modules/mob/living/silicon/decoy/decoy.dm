@@ -1,6 +1,6 @@
 /mob/living/silicon/decoy/ship_ai //For the moment, pending better pathing.
 
-/mob/living/silicon/decoy/ship_ai/New()
+/mob/living/silicon/decoy/ship_ai/Initialize()
 	. = ..()
 	name = MAIN_AI_SYSTEM
 	desc = "This is the artificial intelligence system for the [MAIN_SHIP_NAME]. Like many other military-grade AI systems, this one was manufactured by Weyland-Yutani."

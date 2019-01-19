@@ -8,7 +8,7 @@
 	var/embedded_flag	  //To check if we've need to roll for damage on movement while an item is imbedded in us.
 	var/regenZ = 1 //Temp zombie thing until I write a better method ~Apop
 
-/mob/living/carbon/human/New(var/new_loc, var/new_species = null)
+/mob/living/carbon/human/Initialize()
 	verbs += /mob/living/proc/lay_down
 	b_type = pick(7;"O-", 38;"O+", 6;"A-", 34;"A+", 2;"B-", 9;"B+", 1;"AB-", 3;"AB+")
 
@@ -17,10 +17,7 @@
 		// Species name is handled by set_species()
 
 	if(!species)
-		if(new_species)
-			set_species(new_species)
-		else
-			set_species()
+		set_species()
 
 	switch(pick("female", "male"))
 		if("female")
@@ -130,7 +127,7 @@
 	reagents = R
 	R.my_atom = src
 
-	..()
+	. = ..()
 
 	round_statistics.total_humans_created++
 
@@ -1287,6 +1284,13 @@
 	dat += data_core.get_manifest()
 
 	src << browse(dat, "window=manifest;size=370x420;can_close=1")
+
+/mob/living/carbon/human/species
+	var/race = null
+
+/mob/living/carbon/human/species/Initialize()
+	. = ..()
+	set_species(race)
 
 /mob/living/carbon/human/proc/set_species(var/new_species, var/default_colour)
 

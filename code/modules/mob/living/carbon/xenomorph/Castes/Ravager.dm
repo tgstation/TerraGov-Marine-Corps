@@ -275,8 +275,8 @@
 		/datum/action/xeno_action/activable/breathe_fire,
 		)
 
-/mob/living/carbon/Xenomorph/Ravager/ravenger/New()
-	..()
+/mob/living/carbon/Xenomorph/Ravager/ravenger/Initialize()
+	. = ..()
 	verbs -= /mob/living/carbon/Xenomorph/verb/hive_status
 
 /mob/living/carbon/Xenomorph/Ravager/ravenger/proc/breathe_fire(atom/A)
