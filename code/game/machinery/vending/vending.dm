@@ -70,25 +70,21 @@
 	var/wrenchable = TRUE
 	var/isshared = FALSE
 
-/obj/machinery/vending/New()
-	..()
-	spawn(4)
-		src.slogan_list = text2list(src.product_slogans, ";")
+/obj/machinery/vending/Initialize()
+	. = ..()
+	src.slogan_list = text2list(src.product_slogans, ";")
 
-		// So not all machines speak at the exact same time.
-		// The first time this machine says something will be at slogantime + this random value,
-		// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
-		src.last_slogan = world.time + rand(0, slogan_delay)
+	// So not all machines speak at the exact same time.
+	// The first time this machine says something will be at slogantime + this random value,
+	// so if slogantime is 10 minutes, it will say it at somewhere between 10 and 20 minutes after the machine is crated.
+	src.last_slogan = world.time + rand(0, slogan_delay)
 
-		src.build_inventory(products)
-		 //Add hidden inventory
-		src.build_inventory(contraband, 1)
-		src.build_inventory(premium, 0, 1)
-		power_change()
-		start_processing()
-		return
-
-	return
+	src.build_inventory(products)
+		//Add hidden inventory
+	src.build_inventory(contraband, 1)
+	src.build_inventory(premium, 0, 1)
+	power_change()
+	start_processing()
 
 /obj/machinery/vending/ex_act(severity)
 	switch(severity)

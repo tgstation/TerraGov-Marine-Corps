@@ -34,18 +34,15 @@
 		else
 	return
 
-/obj/machinery/sleep_console/New()
-	..()
-	spawn( 5 )
-		if(orient == "RIGHT")
-			icon_state = "sleeperconsole-r"
-			connected = locate(/obj/machinery/sleeper, get_step(src, EAST))
-			connected.connected = src
-		else
-			connected = locate(/obj/machinery/sleeper, get_step(src, WEST))
-			connected.connected = src
-		return
-	return
+/obj/machinery/sleep_console/Initialize()
+	. = ..()
+	if(orient == "RIGHT")
+		icon_state = "sleeperconsole-r"
+		connected = locate(/obj/machinery/sleeper, get_step(src, EAST))
+		connected.connected = src
+	else
+		connected = locate(/obj/machinery/sleeper, get_step(src, WEST))
+		connected.connected = src
 
 /obj/machinery/sleep_console/attack_ai(mob/living/user)
 	return attack_hand(user)
@@ -186,15 +183,12 @@
 	active_power_usage = 200 //builtin health analyzer, dialysis machine, injectors.
 
 
-/obj/machinery/sleeper/New()
-	..()
+/obj/machinery/sleeper/Initialize()
+	. = ..()
 	beaker = new /obj/item/reagent_container/glass/beaker/large()
-	spawn( 5 )
-		if(orient == "RIGHT")
-			icon_state = "sleeper_0-r"
-		return
-	return
-
+	if(orient == "RIGHT")
+		icon_state = "sleeper_0-r"
+		
 /obj/machinery/sleeper/Destroy()
 	occupant.in_stasis = FALSE //clean up; end stasis; remove from processing
 	occupant = null
