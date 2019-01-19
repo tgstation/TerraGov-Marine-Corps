@@ -422,6 +422,8 @@
 	if(ishuman(P.firer))
 		var/mob/living/carbon/human/shooter_human = P.firer
 		. -= round(max(30,(shooter_human.traumatic_shock) * 0.2)) //Chance to hit declines with pain, being reduced by 0.2% per point of pain.
+		if(shooter_human.stagger)
+			. -= 30 //Being staggered fucks your aim.
 		if(shooter_human.marskman_aura)
 			. += shooter_human.marskman_aura * 1.5 //Flat buff of 3 % accuracy per aura level
 			. += P.distance_travelled * 0.35 * shooter_human.marskman_aura //Flat buff to accuracy per tile travelled

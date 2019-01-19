@@ -1295,7 +1295,7 @@
 	var/mob/living/carbon/C = M
 	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
 		return
-	staggerstun(C, P, config.close_shell_range, 0, 0, 0, 1) //Slows down briefly
+	staggerstun(C, P, config.close_shell_range, 0, 0, 1, 1) //Staggers and slows down briefly
 	return ..()
 
 /datum/ammo/xeno/toxin/upgrade1
