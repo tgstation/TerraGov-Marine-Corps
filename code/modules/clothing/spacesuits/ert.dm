@@ -15,7 +15,7 @@
 		camera.network = list("ERT")
 		cameranet.removeCamera(camera)
 		camera.c_tag = user.name
-		to_chat(user, "\blue User scanned as [camera.c_tag]. Camera activated.")
+		to_chat(user, "<span class='notice'>User scanned as [camera.c_tag]. Camera activated.</span>")
 
 /obj/item/clothing/head/helmet/space/rig/ert/examine(mob/user)
 	..()

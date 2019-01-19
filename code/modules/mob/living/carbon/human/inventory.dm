@@ -14,7 +14,7 @@
 			else
 				update_inv_r_hand(0)
 		else
-			to_chat(H, "\red You are unable to equip that.")
+			to_chat(H, "<span class='warning'>You are unable to equip that.</span>")
 
 /mob/living/carbon/human/proc/equip_in_one_of_slots(obj/item/W, list/slots, del_on_fail = 1)
 	for (var/slot in slots)
@@ -127,10 +127,8 @@
 			drop_inv_item_on_ground(l_store)
 		if(belt)
 			drop_inv_item_on_ground(belt)
-		if(wear_suit) //We estimate all armors with uniform restrictions aren't okay with removing the uniform altogether
-			var/obj/item/clothing/suit/S = wear_suit
-			if(S.uniform_restricted)
-				drop_inv_item_on_ground(wear_suit)
+		if(wear_suit && (istype(wear_suit, /obj/item/clothing/suit/armor) || istype(wear_suit, /obj/item/clothing/suit/storage)))
+			drop_inv_item_on_ground(wear_suit)
 		w_uniform = null
 		update_suit_sensors()
 		update_inv_w_uniform()
@@ -383,7 +381,7 @@
 			var/obj/item/storage/S = r_store
 			S.handle_item_insertion(W, FALSE, src)
 		else
-			to_chat(src, "\red You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it...")
+			to_chat(src, "<span class='warning'>You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it...</span>")
 			return
 	return TRUE
 

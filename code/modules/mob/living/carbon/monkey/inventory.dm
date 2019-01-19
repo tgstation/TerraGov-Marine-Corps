@@ -43,7 +43,7 @@
 		if(WEAR_IN_BACK)
 			W.forceMove(back)
 		else
-			to_chat(usr, "\red You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it...")
+			to_chat(usr, "<span class='warning'>You are trying to eqip this item to an unsupported inventory slot. How the heck did you manage that? Stop it...</span>")
 			return
 
 	W.layer = ABOVE_HUD_LAYER

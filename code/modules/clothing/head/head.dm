@@ -172,6 +172,10 @@
 	desc = "A beret with the lieutenant-commander insignia emblazoned on it. It emits a dark aura and may corrupt the soul."
 	icon_state = "hosberet"
 
+/obj/item/clothing/head/beret/marine/chiefofficer/sa
+	name = "spatial agent's beret"
+	desc = "A beret with the Spatial Agent insignia on it."
+
 /obj/item/clothing/head/beret/marine/techofficer
 	name = "technical officer beret"
 	desc = "A beret with the lieutenant insignia emblazoned on it. There's something inexplicably efficient about it..."

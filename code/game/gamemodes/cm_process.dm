@@ -286,6 +286,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 /datum/game_mode/proc/announce_bioscans(var/delta = 2)
 	var/list/activeXenos = list() //We'll announce to them later.
 	var/list/xenoLocationsP = list()
+	var/list/xenoLocationsS = list()
 	var/list/hostLocationsP = list()
 	var/list/hostLocationsS = list()
 	var/list/observers = list()
@@ -298,38 +299,30 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 
 	for(var/mob/M in player_list) //Scan through and detect Xenos and Hosts, but only those with clients.
 		if(M.stat != DEAD)
+			var/area/A = get_area(M)
 			if(isXeno(M))
-				switch(M.z)
-					if(0) //nullspace
-						if(M.loc && M.loc.z == 3) //in a closet or vent
-							numXenosShip++
-						if(M.loc && M.loc.z == 1)
-							numXenosPlanet++
-					if(1) //Planet.
-						if(istype(M, /mob/living/carbon/Xenomorph/Larva))
+				switch(A?.z)
+					if(PLANET_Z_LEVEL || LOW_ORBIT_Z_LEVEL)
+						if(isXenoLarva(M))
 							numLarvaPlanet++
 						numXenosPlanet++
-						xenoLocationsP += M.loc.loc.name
-					if(3) //On the ship.
-						if(istype(M, /mob/living/carbon/Xenomorph/Larva))
+						xenoLocationsP += A
+					if(MAIN_SHIP_Z_LEVEL)
+						if(isXenoLarva(M))
 							numLarvaShip++
 						numXenosShip++ 
+						xenoLocationsS += A
 					
 				activeXenos += M
 
 			if(ishuman(M) && !isYautja(M))
-				switch(M.z)
-					if(0) //nullspace
-						if(M.loc && M.loc.z == 3) //in a closet or vent
-							numHostsShip++
-						if(M.loc && M.loc.z == 1)
-							numHostsPlanet++ 
-					if(1) //Planet.
+				switch(A?.z)
+					if(PLANET_Z_LEVEL || LOW_ORBIT_Z_LEVEL)
 						numHostsPlanet++ 
-						hostLocationsP += M.loc.loc.name
-					if(3) //On the ship.
+						hostLocationsP += A
+					if(MAIN_SHIP_Z_LEVEL)
 						numHostsShip++ 
-						hostLocationsS += M.loc.loc.name
+						hostLocationsS += A
 
 
 					
@@ -352,27 +345,34 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	for(var/mob/M in activeXenos)
 		M << sound(get_sfx("queen"), wait = 0, volume = 50)
 		to_chat(M, "<span class='xenoannounce'>The Queen Mother reaches into your mind from worlds away.</span>")
-		to_chat(M, "<span class='xenoannounce'>To my children and their Queen. I sense [numHostsShipr ? "approximately [numHostsShipr]":"no"] host[!numHostsShipr || numHostsShipr > 1 ? "s":""] in the metal hive[hostLocationS ? ", including one in [hostLocationS]":""] and [numHostsPlanet ? "[numHostsPlanet]":"none"] scattered elsewhere[hostLocationP ? ", including one in [hostLocationP]":""].</span>")
+		to_chat(M, "<span class='xenoannounce'>To my children and their Queen. I sense [numHostsShipr ? "approximately [numHostsShipr]":"no"] host[numHostsShipr > 1 ? "s":""] in the metal hive[numHostsShipr > 0 && hostLocationS ? ", including one in [hostLocationS]":""] and [numHostsPlanet ? "[numHostsPlanet]":"none"] scattered elsewhere[hostLocationP ? ", including one in [hostLocationP]":""].</span>")
 
 	// The announcement to all Humans. Slightly off for the planet and elsewhere, accurate for the ship.
 	var/xenoLocationP
+	var/xenoLocationS
 	
 	if(length(xenoLocationsP))
 		xenoLocationP = pick(xenoLocationsP)
 
+	if(length(xenoLocationsS))
+		xenoLocationS = pick(xenoLocationsS)
+
 	var/name = "[MAIN_AI_SYSTEM] Bioscan Status"
-	var/input = "Bioscan complete.\n\nSensors indicate [numXenosShip ? "[numXenosShip]":"no"] unknown lifeform signature[!numXenosShip || numXenosShip > 1 ? "s":""] present on the ship and [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[!numXenosPlanetr || numXenosPlanetr > 1 ? "s":""] located elsewhere[xenoLocationP ? ", including one in [xenoLocationP]":""]."
+	var/input = "Bioscan complete.\n\nSensors indicate [numXenosShip ? "[numXenosShip]":"no"] unknown lifeform signature[numXenosShip > 1 ? "s":""] present on the ship[xenoLocationS ? " including one in [xenoLocationS]" : ""] and [numXenosPlanetr ? "approximately [numXenosPlanetr]":"no"] signature[numXenosPlanetr > 1 ? "s":""] located elsewhere[numXenosPlanetr > 0 && xenoLocationP ? ", including one in [xenoLocationP]":""]."
 	command_announcement.Announce(input, name, new_sound = 'sound/AI/bioscan.ogg')
 
-	log_admin("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location:[hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP].":""].")
-	message_admins("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location:[hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP].":""].", 1)
-
-		// Extra information for all ghosts
-	for(var/mob/M in observers)
+	log_admin("Bioscan. Humans: [numHostsPlanet] on the planet[hostLocationP ? " Location:[hostLocationP]":""] and [numHostsShip] on the ship.[hostLocationS ? " Location: [hostLocationS].":""] Xenos: [numXenosPlanetr] on the planet and [numXenosShip] on the ship[xenoLocationP ? " Location:[xenoLocationP]":""].")
+	message_admins("Bioscan - Humans: [numHostsPlanet] on the planet[hostLocationP ? ". Location:[hostLocationP]":""]. [numHostsShipr] on the ship.[numHostsShipr && hostLocationS ? " Location: [hostLocationS].":""]", 1)
+	message_admins("Bioscan - Xenos: [numXenosPlanetr] on the planet[numXenosPlanetr > 0 && xenoLocationP ? ". Location:[xenoLocationP]":""]. [numXenosShip] on the ship.[xenoLocationS ? " Location: [xenoLocationS].":""]", 1)
+		
+	for(var/mob/M in observers) // Extra information for all ghosts
 		if(istype(M, /mob/new_player))
 			continue
 		to_chat(M, "<h2 class='alert'>Detailed Information</h2>")
-		to_chat(M, "<span class='alert'>[numXenosPlanetr] xenos on the planet, including [numLarvaPlanet] larva.<br>[numXenosShip] xenos on the ship, [numLarvaShip] larva.<br>[numHostsPlanet] humans on the planet.<br>[numHostsShip] humans on the ship.</span>")
+		to_chat(M, {"<span class='alert'>[numXenosPlanet] xenos on the planet, including [numLarvaPlanet] larva.
+[numXenosShip] xenos on the ship, including [numLarvaShip] larva.
+[numHostsPlanet] human[numHostsPlanet > 1 ? "s" : ""] on the planet.
+[numHostsShip] human[numHostsShip > 1 ? "s" : ""] on the ship.</span>"})
 
 
 

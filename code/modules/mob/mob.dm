@@ -19,6 +19,25 @@
 
 
 /mob/Stat()
+	if(check_rights(R_ADMIN|R_DEBUG))
+		if(statpanel("MC"))
+			stat("CPU:", "[world.cpu]")
+			stat("Instances:", "[num2text(world.contents.len, 10)]")
+			stat("World Time:", "[world.time]")
+			stat(null)
+			if(Master)
+				Master.stat_entry()
+			else
+				stat("Master Controller:", "ERROR")
+			if(Failsafe)
+				Failsafe.stat_entry()
+			else
+				stat("Failsafe Controller:", "ERROR")
+			if(Master)
+				stat(null)
+				for(var/datum/controller/subsystem/SS in Master.subsystems)
+					SS.stat_entry()
+
 	// Looking at contents of a tile
 	if (tile_contents_change)
 		tile_contents_change = 0
@@ -73,7 +92,7 @@
 					return
 
 	if(stat == UNCONSCIOUS)
-		to_chat(src, "<I>... You can almost hear someone talking ...</I>")
+		to_chat(src, "<span class='emote'>... You can almost hear someone talking ...</span>")
 	else
 		to_chat(src, msg)
 
@@ -294,9 +313,9 @@ var/list/slot_equipment_priority = list( \
 	if (flavor_text && flavor_text != "")
 		var/msg = oldreplacetext(flavor_text, "\n", " ")
 		if(lentext(msg) <= 40)
-			return "\blue [msg]"
+			return "<span class='notice'> [msg]</span>"
 		else
-			return "\blue [copytext(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a>"
+			return "<span class='notice'> [copytext(msg, 1, 37)]... <a href='byond://?src=\ref[src];flavor_more=1'>More...</a></span>"
 
 
 
@@ -524,7 +543,7 @@ var/list/slot_equipment_priority = list( \
 
 
 /mob/proc/IsAdvancedToolUser()//This might need a rename but it should replace the can this mob use things check
-	return 0
+	return FALSE
 
 
 /mob/proc/get_species()

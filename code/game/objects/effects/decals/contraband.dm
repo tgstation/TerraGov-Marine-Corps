@@ -89,7 +89,7 @@ obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
 /turf/closed/wall/proc/place_poster(var/obj/item/contraband/poster/P, var/mob/user)
 
 	if(!istype(src,/turf/closed/wall))
-		to_chat(user, "\red You can't place this here!")
+		to_chat(user, "<span class='warning'>You can't place this here!</span>")
 		return
 
 	var/stuff_on_wall = 0

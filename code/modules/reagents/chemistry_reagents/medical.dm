@@ -109,7 +109,7 @@
 
 /datum/reagent/medicine/tramadol/overdose_process(mob/living/M, alien)
 	M.hallucination = max(M.hallucination, 2) //Hallucinations and tox damage
-	M.apply_damage(1, TOX)
+	M.apply_damage(1, OXY)
 
 /datum/reagent/medicine/tramadol/overdose_crit_process(mob/living/M, alien)
 	M.apply_damage(3, TOX)
@@ -585,12 +585,21 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 /datum/reagent/medicine/peridaxon
 	name = "Peridaxon"
 	id = "peridaxon"
-	description = "Used to stabilize internal organs while waiting for surgery. Medicate cautiously."
+	description = "Used to stabilize internal organs while waiting for surgery, and fixes organ damage at cryogenic temperatures. Medicate cautiously."
 	color = "#C845DC"
 	overdose_threshold = REAGENTS_OVERDOSE/2
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 	custom_metabolism = 0.05
 	scannable = TRUE
+
+/datum/reagent/medicine/peridaxon/on_mob_life(mob/living/M)
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		for(var/datum/internal_organ/I in H.internal_organs)
+			if(I.damage)
+				if(M.bodytemperature > 169 && I.damage > 5) //can only fix very minor organ damage outside of cryo
+					return
+				I.damage = max(I.damage - 1, 0)
 
 /datum/reagent/medicine/peridaxon/overdose_process(mob/living/M, alien)
 	M.apply_damage(2, BRUTE)
@@ -621,12 +630,26 @@ datum/reagent/medicine/synaptizine/overdose_crit_process(mob/living/M, alien)
 /datum/reagent/medicine/quickclot
 	name = "Quick Clot"
 	id = "quickclot"
-	description = "A chemical designed to quickly stop all sorts of bleeding by encouraging coagulation."
+	description = "A chemical designed to quickly arrest all sorts of bleeding by encouraging coagulation. Can rectify internal bleeding at cryogenic temperatures."
 	color = "#CC00FF"
 	overdose_threshold = REAGENTS_OVERDOSE/2 //Was 4, now 6 //Now 15
 	overdose_crit_threshold = REAGENTS_OVERDOSE_CRITICAL/2
 	scannable = TRUE //scannable now.  HUZZAH.
 	custom_metabolism = 0.05
+
+/datum/reagent/medicine/quickclot/on_mob_life(mob/living/M)
+	if(M.bodytemperature > 169) //only heals IB at cryogenic temperatures.
+		return
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		for(var/datum/limb/X in H.limbs)
+			for(var/datum/wound/W in X.wounds)
+				if(W.internal)
+					W.damage = max(0, W.damage - 1)
+					X.update_damages()
+					if (X.update_icon())
+						X.owner.UpdateDamageIcon(1)
+
 
 /datum/reagent/medicine/quickclot/overdose_process(mob/living/M, alien)
 	M.apply_damage(2, BRUTE)

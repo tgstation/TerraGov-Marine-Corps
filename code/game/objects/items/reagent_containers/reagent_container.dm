@@ -10,7 +10,7 @@
 	var/amount_per_transfer_from_this = 5
 	var/possible_transfer_amounts = list(5,10,15,25,30)
 	var/volume = 30
-	var/list/list_reagents = null
+	var/liquifier = FALSE //Can liquify/grind pills without needing fluid to dissolve.
 
 /obj/item/reagent_container/verb/set_APTFT() //set amount_per_transfer_from_this
 	set name = "Set transfer amount"
@@ -21,16 +21,12 @@
 		amount_per_transfer_from_this = N
 
 /obj/item/reagent_container/New()
-	..()
+	. = ..()
 	if (!possible_transfer_amounts)
 		verbs -= /obj/item/reagent_container/verb/set_APTFT //which objects actually uses it?
 	create_reagents(volume)
 
 	add_initial_reagents()
-
-/obj/item/reagent_container/proc/add_initial_reagents()
-	if(list_reagents)
-		reagents.add_reagent_list(list_reagents)
 
 //returns a text listing the reagents (and their volume) in the atom. Used by Attack logs for reagents in pills
 /obj/item/reagent_container/proc/get_reagent_list_text()
