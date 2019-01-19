@@ -51,7 +51,7 @@
 						wearable = 1
 
 				if(!wearable && (slot != 15 && slot != 16)) //Pockets.
-					to_chat(M, "\red Your species cannot wear [src].")
+					to_chat(M, "<span class='warning'>Your species cannot wear [src].</span>")
 					return 0
 
 	return 1
@@ -133,23 +133,31 @@
 	w_class = 3
 
 /obj/item/clothing/suit/update_clothing_icon()
-	if (ismob(src.loc))
-		var/mob/M = src.loc
+	if(ismob(loc))
+		var/mob/M = loc
 		M.update_inv_wear_suit()
 
 /obj/item/clothing/suit/mob_can_equip(mob/M, slot, disable_warning = 0)
 	//if we can't equip the item anyway, don't bother with other checks.
-	if (!..())
-		return 0
+	. = ..()
+	if(!.)
+		return FALSE
 
-	if(ishuman(M))
-		var/mob/living/carbon/human/H = M
-		var/obj/item/clothing/under/U = H.w_uniform
-		//some uniforms prevent you from wearing any suits but certain types
-		if(U?.suit_restricted && !is_type_in_list(src, U.suit_restricted))
-			to_chat(H, "<span class='warning'>[src] can't be worn with [U].</span>")
-			return 0
-	return 1
+	if(!ishuman(M))
+		return TRUE
+
+	var/mob/living/carbon/human/H = M
+
+	if(!istype(H.w_uniform, /obj/item/clothing/under))
+		return FALSE
+
+	var/obj/item/clothing/under/U = H.w_uniform
+	//some uniforms prevent you from wearing any suits but certain types
+	if(U.suit_restricted && !is_type_in_list(src, U.suit_restricted))
+		to_chat(H, "<span class='warning'>[src] can't be worn with [U].</span>")
+		return FALSE
+		
+	return TRUE
 
 
 /////////////////////////////////////////////////////////
@@ -197,7 +205,7 @@
 			return
 
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
-		user.visible_message("\red [user] cuts the fingertips off of the [src].","\red You cut the fingertips off of the [src].")
+		user.visible_message("<span class='warning'> [user] cuts the fingertips off of the [src].</span>","<span class='warning'> You cut the fingertips off of the [src].</span>")
 
 		clipped = 1
 		name = "mangled [name]"

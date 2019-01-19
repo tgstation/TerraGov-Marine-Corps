@@ -33,13 +33,13 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_CAN_HOLD_FACEHUGGERS|CASTE_CAN_BE_GIVEN_PLASMA
 
 	can_hold_eggs = CAN_HOLD_TWO_HANDS
-	
+
 	// *** Defense *** //
 	armor_deflection = 5
 
-	// *** Pheromones *** //	
+	// *** Pheromones *** //
 	aura_strength = 1 //Hivelord's aura is not extremely strong, but better than Drones. At the top, it's just a bit above a young Queen. Climbs by 0.5 to 2.5
-	aura_allowed = list("frenzy", "warding", "recovery") 
+	aura_allowed = list("frenzy", "warding", "recovery")
 
 /datum/xeno_caste/hivelord/mature
 	upgrade_name = "Mature"
@@ -69,7 +69,7 @@
 	// *** Defense *** //
 	armor_deflection = 10
 
-	// *** Pheromones *** //	
+	// *** Pheromones *** //
 	aura_strength = 1.5
 
 /datum/xeno_caste/hivelord/elder
@@ -100,7 +100,7 @@
 	// *** Defense *** //
 	armor_deflection = 10
 
-	// *** Pheromones *** //	
+	// *** Pheromones *** //
 	aura_strength = 2
 
 /datum/xeno_caste/hivelord/ancient
@@ -132,9 +132,9 @@
 	// *** Defense *** //
 	armor_deflection = 15
 
-	// *** Pheromones *** //	
+	// *** Pheromones *** //
 	aura_strength = 2
-					
+
 /mob/living/carbon/Xenomorph/Hivelord
 	caste_base_type = /mob/living/carbon/Xenomorph/Hivelord
 	name = "Hivelord"
@@ -158,7 +158,7 @@
 		/datum/action/xeno_action/plant_weeds,
 		/datum/action/xeno_action/choose_resin,
 		/datum/action/xeno_action/activable/secrete_resin/hivelord,
-		/datum/action/xeno_action/activable/transfer_plasma/hivelord,
+		/datum/action/xeno_action/activable/transfer_plasma/improved,
 		/datum/action/xeno_action/activable/corrosive_acid,
 		/datum/action/xeno_action/emit_pheromones,
 		/datum/action/xeno_action/build_tunnel,

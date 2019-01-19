@@ -4,8 +4,8 @@
 	var/tag_door
 	var/datum/computer/file/embedded_program/docking/simple/docking_program
 
-/obj/machinery/embedded_controller/radio/simple_docking_controller/initialize()
-	..()
+/obj/machinery/embedded_controller/radio/simple_docking_controller/Initialize()
+	. = ..()
 	docking_program = new/datum/computer/file/embedded_program/docking/simple(src)
 	program = docking_program
 

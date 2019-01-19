@@ -166,6 +166,20 @@ OPERATIONS
 	contraband = 1
 	group = "Operations"
 
+/datum/supply_packs/tarps
+	name = "V1 thermal-dampening tarp crate (x5)"
+	contains = list(
+					/obj/structure/closet/bodybag/tarp,
+					/obj/structure/closet/bodybag/tarp,
+					/obj/structure/closet/bodybag/tarp,
+					/obj/structure/closet/bodybag/tarp,
+					/obj/structure/closet/bodybag/tarp,
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "\improper V1 thermal-dampening tarp crate"
+	group = "Operations"
+
 /*******************************************************************************
 WEAPONS
 *******************************************************************************/
@@ -287,7 +301,9 @@ WEAPONS
 					/obj/item/ammo_magazine/shotgun,
 					/obj/item/ammo_magazine/shotgun,
 					/obj/item/ammo_magazine/shotgun/buckshot,
-					/obj/item/ammo_magazine/shotgun/buckshot
+					/obj/item/ammo_magazine/shotgun/buckshot,
+					/obj/item/ammo_magazine/shotgun/flechette,
+					/obj/item/ammo_magazine/shotgun/flechette,
 					)
 	name = "surplus shotguns crate (M37A2 x2, M37A2 ammo x2 each)"
 	cost = RO_PRICE_VERY_CHEAP
@@ -300,9 +316,11 @@ WEAPONS
 					/obj/item/weapon/gun/smg/m39,
 					/obj/item/weapon/gun/smg/m39,
 					/obj/item/ammo_magazine/smg/m39,
-					/obj/item/ammo_magazine/smg/m39
+					/obj/item/ammo_magazine/smg/m39,
+					/obj/item/ammo_magazine/smg/m39/ap,
+					/obj/item/ammo_magazine/smg/m39/ap,
 					)
-	name = "surplus SMG crate (M39 x2, M39 ammo x2)"
+	name = "surplus SMG crate (M39 x2, M39 ammo x2 AP, 2x Standard)"
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper SMGs crate"
@@ -313,12 +331,27 @@ WEAPONS
 					/obj/item/weapon/gun/rifle/m41a,
 					/obj/item/weapon/gun/rifle/m41a,
 					/obj/item/ammo_magazine/rifle,
-					/obj/item/ammo_magazine/rifle
+					/obj/item/ammo_magazine/rifle,
+					/obj/item/ammo_magazine/rifle/ap,
+					/obj/item/ammo_magazine/rifle/ap,
 					)
-	name = "surplus rifles crate (M41A x2, M41A ammo x2)"
+	name = "surplus rifles crate (M41A x2, M41A ammo x2 AP, 2x Standard)"
 	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper rifles crate"
+	group = "Weapons"
+
+/datum/supply_packs/gun/lasrifle
+	contains = list(
+					/obj/item/weapon/gun/energy/lasgun/M43,
+					/obj/item/weapon/gun/energy/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					)
+	name = "surplus lasrifle crate (M43 lasgun x2, M43 battery packs x2)"
+	cost = RO_PRICE_VERY_CHEAP
+	containertype = /obj/structure/closet/crate
+	containername = "\improper lasrifle crate"
 	group = "Weapons"
 
 /datum/supply_packs/gun/heavyrifle
@@ -327,9 +360,28 @@ WEAPONS
 					/obj/item/ammo_magazine/rifle/lmg
 					)
 	name = "M41AE2 HPR crate (HPR x1, HPR ammo box x1)"
-	cost = RO_PRICE_PRICY
+	cost = RO_PRICE_VERY_CHEAP
 	containertype = /obj/structure/closet/crate
 	containername = "\improper M41AE2 HPR crate"
+	group = "Weapons"
+
+/datum/supply_packs/gun/heavyrifle_squad
+	contains = list(
+					/obj/item/weapon/gun/rifle/lmg,
+					/obj/item/weapon/gun/rifle/lmg,
+					/obj/item/weapon/gun/rifle/lmg,
+					/obj/item/weapon/gun/rifle/lmg,
+					/obj/item/weapon/gun/rifle/lmg,
+					/obj/item/ammo_magazine/rifle/lmg,
+					/obj/item/ammo_magazine/rifle/lmg,
+					/obj/item/ammo_magazine/rifle/lmg,
+					/obj/item/ammo_magazine/rifle/lmg,
+					/obj/item/ammo_magazine/rifle/lmg,
+					)
+	name = "M41AE2 HPR squad crate (HPR x5, HPR ammo box x5)"
+	cost = RO_PRICE_PRETTY_PRICY
+	containertype = /obj/structure/closet/crate
+	containername = "\improper M41AE2 HPR squad crate"
 	group = "Weapons"
 
 /datum/supply_packs/gun/combatshotgun
@@ -503,7 +555,6 @@ WEAPONS
 	containertype = /obj/structure/closet/crate/explosives
 	containername = "\improper detpack explosives crate (WARNING)"
 	group = "Weapons"
-
 
 /*******************************************************************************
 HARDPOINT MODULES (and their ammo)
@@ -1875,6 +1926,54 @@ AMMO
 	containername = "\improper M56D emplacement ammo crate"
 	group = "Ammo"
 
+/datum/supply_packs/lasgun_charger
+	name = "ColMarTech Lasgun Field Charger (Stocked With: M43 Power Cells x10, M43 Expanded x2)"
+	contains = list()
+	cost = RO_PRICE_PRICY
+	containertype = /obj/machinery/vending/lasgun
+	containername = "ColMarTech Lasgun Field Charger"
+	group = "Ammo"
+
+ /datum/supply_packs/ammo_M43lasgun
+	name = "M43 lasgun battery crate (M43 x15 each)"
+	contains = list(
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					/obj/item/cell/lasgun/M43,
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "lasgun battery crate"
+	group = "Ammo"
+
+ /datum/supply_packs/ammo_M43lasgun_highcap
+	name = "M43 lasgun highcap battery crate (M43 highcap x7 each)"
+	contains = list(
+					/obj/item/cell/lasgun/M43/highcap,
+					/obj/item/cell/lasgun/M43/highcap,
+					/obj/item/cell/lasgun/M43/highcap,
+					/obj/item/cell/lasgun/M43/highcap,
+					/obj/item/cell/lasgun/M43/highcap,
+					/obj/item/cell/lasgun/M43/highcap,
+					/obj/item/cell/lasgun/M43/highcap,
+					)
+	cost = RO_PRICE_CHEAP
+	containertype = /obj/structure/closet/crate/ammo
+	containername = "ammo crate"
+	group = "Ammo"
+
 /*******************************************************************************
 ARMOR
 *******************************************************************************/
@@ -2345,6 +2444,25 @@ ENGINEERING
 					/obj/item/circuitboard/machine/pacman/super
 					)
 
+/datum/supply_packs/general_circuitboards
+	name = "General circuitboard crate (10x)"
+	cost = RO_PRICE_NEAR_FREE
+	containername = "\improper General circuit board crate (10x)"
+	containertype = /obj/structure/closet/crate/secure
+	group = "Engineering"
+	contains = list(
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/circuitboard/general,
+					/obj/item/device/multitool,
+					)
 
 /*******************************************************************************
 SCIENCE

@@ -63,10 +63,6 @@
 				else if((world.time - timeofdeath) > (config.revive_grace_period * 0.8))
 					med_hud_set_status()
 
-	else
-		handle_stasis_bag()
-
-
 	stabilize_body_temperature() //Body temperature adjusts itself (self-regulation) (even when dead)
 
 	//Handle temperature/pressure differences between body and environment

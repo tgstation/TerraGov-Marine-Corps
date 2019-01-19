@@ -16,7 +16,7 @@
 
 /obj/item/storage/briefcase/attack(mob/living/M, mob/living/user, def_zone)
 	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "\red The [src] slips out of your hand and hits your head.")
+		to_chat(user, "<span class='warning'>The [src] slips out of your hand and hits your head.</span>")
 		user.take_limb_damage(10)
 		user.KnockOut(2)
 		return

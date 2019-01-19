@@ -88,7 +88,7 @@
 	var/recently_unbuckled = 0
 
 	//Emotes
-	var/recent_audio_emote = 0
+	var/audio_emote_time = 1
 
 	//Life variables
 	var/oxygen_alert = 0
@@ -123,3 +123,5 @@
 	var/temporary_slowdown = 0 //Stacking slowdown caused from effects, currently used by neurotoxin gas
 
 	var/datum/squad/assigned_squad //the squad this human is assigned to
+
+	var/cloaking = FALSE

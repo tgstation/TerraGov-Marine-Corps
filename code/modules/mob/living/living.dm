@@ -372,7 +372,7 @@
 
 			if(HULK in L.mutations)
 				if(prob(70))
-					to_chat(usr, "\red <B>You fail to push [L]'s fat ass out of the way.</B>")
+					to_chat(usr, "<span class='danger'>You fail to push [L]'s fat ass out of the way.</span>")
 					now_pushing = 0
 					return
 			if(!(L.status_flags & CANPUSH))

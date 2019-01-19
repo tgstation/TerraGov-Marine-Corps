@@ -23,7 +23,7 @@
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 3
 
-/obj/item/weapon/gun/revolver/New()
+/obj/item/weapon/gun/revolver/Initialize()
 	. = ..() //Do all that other stuff.
 	replace_cylinder(current_mag.current_rounds)
 
@@ -197,9 +197,9 @@
 	set waitfor = 0
 	playsound(user, spin_sound, 25, 1)
 	if(double)
-		user.visible_message("[user] deftly flicks and spins [src] and [double]!","\blue You flick and spin [src] and [double]!")
+		user.visible_message("[user] deftly flicks and spins [src] and [double]!","<span class='notice'> You flick and spin [src] and [double]!</span>")
 		animation_wrist_flick(double, 1)
-	else user.visible_message("[user] deftly flicks and spins [src]!","\blue You flick and spin [src]!")
+	else user.visible_message("[user] deftly flicks and spins [src]!","<span class='notice'> You flick and spin [src]!</span>")
 
 	animation_wrist_flick(src, direction)
 	sleep(3)
@@ -207,7 +207,7 @@
 
 /obj/item/weapon/gun/revolver/proc/revolver_throw_catch(mob/living/carbon/human/user)
 	set waitfor = 0
-	user.visible_message("[user] deftly flicks [src] and tosses it into the air!","\blue You flick and toss [src] into the air!")
+	user.visible_message("[user] deftly flicks [src] and tosses it into the air!","<span class='notice'> You flick and toss [src] into the air!</span>")
 	var/img_layer = MOB_LAYER+0.1
 	var/image/trick = image(icon,user,icon_state,img_layer)
 	switch(pick(1,2))
@@ -223,9 +223,9 @@
 		invisibility = 0
 		playsound(user, thud_sound, 25, 1)
 		if(user.get_inactive_hand())
-			user.visible_message("[user] catches [src] with the same hand!","\blue You catch [src] as it spins in to your hand!")
+			user.visible_message("[user] catches [src] with the same hand!","<span class='notice'> You catch [src] as it spins in to your hand!</span>")
 		else
-			user.visible_message("[user] catches [src] with his other hand!","\blue You snatch [src] with your other hand! Awesome!")
+			user.visible_message("[user] catches [src] with his other hand!","<span class='notice'> You snatch [src] with your other hand! Awesome!</span>")
 			user.temp_drop_inv_item(src)
 			user.put_in_inactive_hand(src)
 			user.swap_hand()
@@ -309,10 +309,7 @@
 						/obj/item/attachable/scope,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/scope/mini)
-
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 23, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 21,"rail_x" = 17, "rail_y" = 23, "under_x" = 22, "under_y" = 17, "stock_x" = 22, "stock_y" = 19)
 
 //-------------------------------------------------------
 //RUSSIAN REVOLVER //Based on the 7.62mm Russian revolvers.
@@ -329,10 +326,7 @@
 	attachable_allowed = list(/obj/item/attachable/compensator)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
-
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
+	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 21,"rail_x" = 14, "rail_y" = 23, "under_x" = 24, "under_y" = 19, "stock_x" = 24, "stock_y" = 19)
 
 /obj/item/weapon/gun/revolver/upp/set_gun_config_values()
 	fire_delay = config.mlow_fire_delay
@@ -357,9 +351,6 @@
 	current_mag = /obj/item/ammo_magazine/internal/revolver/small
 	force = 6
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
-
-/obj/item/weapon/gun/revolver/small/New()
-	..()
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
 /obj/item/weapon/gun/revolver/small/set_gun_config_values()
@@ -395,9 +386,6 @@
 						/obj/item/attachable/compensator)
 
 	flags_gun_features = GUN_CAN_POINTBLANK|GUN_INTERNAL_MAG
-
-/obj/item/weapon/gun/revolver/mateba/New()
-	..()
 	attachable_offset = list("muzzle_x" = 28, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 22, "under_y" = 15, "stock_x" = 22, "stock_y" = 15)
 
 /obj/item/weapon/gun/revolver/mateba/set_gun_config_values()
@@ -425,9 +413,11 @@
 	desc = "The Mateba is a powerful, fast-firing revolver that uses its own recoil to rotate the cylinders. It uses heavy .454 rounds. This version is a limited edition produced for the TGMC, and issued in extremely small amounts. Was a mail-order item back in 2172, and is highly sought after by officers across many different battalions. This one is stamped 'Major Ike Saker, 7th 'Falling Falcons' Battalion.'"
 	icon_state = "cmateba"
 	item_state = "cmateba"
-	New()
-		..()
-		select_gamemode_skin(/obj/item/weapon/gun/revolver/mateba/cmateba)
+
+/obj/item/weapon/gun/revolver/mateba/cmateba/Initialize()
+	. = ..()
+	select_gamemode_skin(/obj/item/weapon/gun/revolver/mateba/cmateba)
+	
 //-------------------------------------------------------
 //MARSHALS REVOLVER //Spearhead exists in Alien cannon.
 
@@ -446,9 +436,6 @@
 						/obj/item/attachable/heavy_barrel,
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/compensator)
-
-/obj/item/weapon/gun/revolver/cmb/New()
-	..()
 	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 22,"rail_x" = 11, "rail_y" = 25, "under_x" = 20, "under_y" = 18, "stock_x" = 20, "stock_y" = 18)
 
 /obj/item/weapon/gun/revolver/cmb/set_gun_config_values()

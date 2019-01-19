@@ -32,12 +32,16 @@
 
 	// *** Flags *** //
 	caste_flags = CASTE_IS_INTELLIGENT
-	
+
 	// *** Defense *** //
 	armor_deflection = 50 //Chance of deflecting projectiles.
 
 	charge_type = 4
 	pounce_delay = 4 SECONDS
+
+/datum/xeno_caste/predalien/handle_decay(mob/living/carbon/Xenomorph/X)
+	if(prob(20))
+		X.use_plasma(min(rand(1,2), X.plasma_stored))
 
 /mob/living/carbon/Xenomorph/Predalien
 	caste_base_type = /mob/living/carbon/Xenomorph/Predalien

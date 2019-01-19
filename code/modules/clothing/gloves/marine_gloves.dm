@@ -67,6 +67,12 @@
 	name = "chief officer gloves"
 	desc = "Blood crusts are attached to its metal studs, which are slightly dented."
 
+/obj/item/clothing/gloves/marine/officer/chief/sa
+	name = "spatial agent's gloves"
+	desc = "Gloves worn by a Spatial Agent."
+	siemens_coefficient = 0
+	permeability_coefficient = 0
+
 /obj/item/clothing/gloves/marine/techofficer
 	name = "tech officer gloves"
 	desc = "Sterile AND insulated! Why is not everyone issued with these?"

@@ -16,11 +16,11 @@
 		if(!active)
 			active = 1
 			workdisk()
-			to_chat(usr, "\blue You activate the pinpointer")
+			to_chat(usr, "<span class='notice'>You activate the pinpointer</span>")
 		else
 			active = 0
 			icon_state = "pinoff"
-			to_chat(usr, "\blue You deactivate the pinpointer")
+			to_chat(usr, "<span class='notice'>You deactivate the pinpointer</span>")
 
 	proc/workdisk()
 		if(!active) return
@@ -64,11 +64,11 @@
 				worklocation()
 			if(mode == 2)
 				workobj()
-			to_chat(usr, "\blue You activate the pinpointer")
+			to_chat(usr, "<span class='notice'>You activate the pinpointer</span>")
 		else
 			active = 0
 			icon_state = "pinoff"
-			to_chat(usr, "\blue You deactivate the pinpointer")
+			to_chat(usr, "<span class='notice'>You deactivate the pinpointer</span>")
 
 
 	proc/worklocation()

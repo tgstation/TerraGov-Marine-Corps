@@ -30,14 +30,14 @@ Code shamelessly copied from apc_frame
 	var/turf/loc = get_turf(usr)
 	var/area/A = loc.loc
 	if (!istype(loc, /turf/open/floor))
-		to_chat(usr, "\red Air Alarm cannot be placed on this spot.")
+		to_chat(usr, "<span class='warning'>Air Alarm cannot be placed on this spot.</span>")
 		return
 	if (A.requires_power == 0 || A.name == "Space")
-		to_chat(usr, "\red Air Alarm cannot be placed in this area.")
+		to_chat(usr, "<span class='warning'>Air Alarm cannot be placed in this area.</span>")
 		return
 
 	if(gotwallitem(loc, ndir))
-		to_chat(usr, "\red There's already an item on this wall!")
+		to_chat(usr, "<span class='warning'>There's already an item on this wall!</span>")
 		return
 
 	new /obj/machinery/alarm(loc, ndir, 1)
@@ -73,14 +73,14 @@ Code shamelessly copied from apc_frame
 	var/turf/loc = get_turf(usr)
 	var/area/A = loc.loc
 	if (!istype(loc, /turf/open/floor))
-		to_chat(usr, "\red Fire Alarm cannot be placed on this spot.")
+		to_chat(usr, "<span class='warning'>Fire Alarm cannot be placed on this spot.</span>")
 		return
 	if (A.requires_power == 0 || A.name == "Space")
-		to_chat(usr, "\red Fire Alarm cannot be placed in this area.")
+		to_chat(usr, "<span class='warning'>Fire Alarm cannot be placed in this area.</span>")
 		return
 
 	if(gotwallitem(loc, ndir))
-		to_chat(usr, "\red There's already an item on this wall!")
+		to_chat(usr, "<span class='warning'>There's already an item on this wall!</span>")
 		return
 
 	new /obj/machinery/firealarm(loc, ndir, 1)

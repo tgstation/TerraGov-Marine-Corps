@@ -404,18 +404,37 @@
 	name = "Transfer Plasma"
 	action_icon_state = "transfer_plasma"
 	ability_name = "transfer plasma"
-	var/plasma_transfer_amount = 50
-	var/transfer_delay = 20
+	var/plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT
+	var/transfer_delay = 2 SECONDS
 	var/max_range = 2
 
 /datum/action/xeno_action/activable/transfer_plasma/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/X = owner
 	X.xeno_transfer_plasma(A, plasma_transfer_amount, transfer_delay, max_range)
 
-/datum/action/xeno_action/activable/transfer_plasma/hivelord
-	plasma_transfer_amount = 200
-	transfer_delay = 5
+/datum/action/xeno_action/activable/transfer_plasma/improved
+	plasma_transfer_amount = PLASMA_TRANSFER_AMOUNT * 4
+	transfer_delay = 0.5 SECONDS
 	max_range = 7
+
+/datum/action/xeno_action/activable/salvage_plasma
+	name = "Salvage Plasma"
+	action_icon_state = "salvage_plasma"
+	ability_name = "salvage plasma"
+	var/plasma_salvage_amount = PLASMA_SALVAGE_AMOUNT
+	var/salvage_delay = 5 SECONDS
+	var/max_range = 1
+
+datum/action/xeno_action/activable/salvage_plasma/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(owner.action_busy)
+		return
+	X.xeno_salvage_plasma(A, plasma_salvage_amount, salvage_delay, max_range)
+
+datum/action/xeno_action/activable/salvage_plasma/improved
+	plasma_salvage_amount = PLASMA_SALVAGE_AMOUNT * 2
+	salvage_delay = 3 SECONDS
+	max_range = 4
 
 //Boiler abilities
 
@@ -1002,7 +1021,7 @@
 	if(!X.observed_xeno)
 		to_chat(X, "<span class='warning'>You must overwatch the xeno you want to de-evolve.</span>")
 		return
-	
+
 	var/mob/living/carbon/Xenomorph/T = X.observed_xeno
 	if(!X.check_plasma(600)) // check plasma gives an error message itself
 		return
@@ -1022,7 +1041,7 @@
 	if(!T.xeno_caste.deevolves_to)
 		to_chat(X, "<span class='xenowarning'>[T] can't be deevolved.</span>")
 		return
-	
+
 	var/datum/xeno_caste/new_caste = xeno_caste_datums[T.xeno_caste.deevolves_to][1]
 
 	var/confirm = alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", , "Yes", "No")
@@ -1106,7 +1125,54 @@
 	qdel(T)
 	X.use_plasma(600)
 
-	
+
+/datum/action/xeno_action/activable/larva_growth
+	name = "Advance Larval Growth (300)"
+	action_icon_state = "larva_growth"
+	ability_name = "advance larval growth"
+
+/datum/action/xeno_action/activable/larva_growth/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(world.time > X.larva_growth_used)
+		return TRUE
+
+/datum/action/xeno_action/activable/larva_growth/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	if(!X.check_state() || X.action_busy)
+		return
+
+	if(world.time < X.larva_growth_used)
+		to_chat(X, "<span class='xenowarning'>You're still recovering from your previous larva growth advance. Wait [round((X.larva_growth_used - world.time) * 0.1)] seconds.</span>")
+		return
+
+	if(!istype(A, /mob/living/carbon/human))
+		return
+
+	var/mob/living/carbon/human/H = A
+
+	var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in H
+
+	if(!E)
+		to_chat(X, "<span class='xenowarning'>[H] doesn't have a larva growing inside of them.</xenowarning>")
+		return
+
+	if(E.stage >= 3)
+		to_chat(X, "<span class='xenowarning'>\The [E] inside of [H] is too old to be advanced.</xenowarning>")
+		return
+
+	if(X.check_plasma(300))
+		X.visible_message("<span class='xenowarning'>\The [X] starts to advance larval growth inside of [H].</span>", \
+		"<span class='xenowarning'>You start to advance larval growth inside of [H].</span>")
+		if(!do_after(X, 50, TRUE, 20, BUSY_ICON_FRIENDLY) && X.check_plasma(300))
+			return
+		if(!X.check_state()) 
+			return
+		X.use_plasma(300)
+		X.visible_message("<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>", \
+		"<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>")
+
+		E.stage++
+		X.larva_growth_used = world.time + 1 MINUTES
 
 //Ravager Abilities
 
@@ -1229,7 +1295,6 @@
 	name = "Toggle Stealth"
 	action_icon_state = "stealth_on"
 	ability_name = "stealth"
-	plasma_cost = 0
 
 /datum/action/xeno_action/activable/stealth/action_activate()
 	var/mob/living/carbon/Xenomorph/Hunter/X = owner
@@ -1244,7 +1309,6 @@
 	name = "Neurotoxin Sting"
 	action_icon_state = "neuro_sting"
 	ability_name = "neurotoxin sting"
-	plasma_cost = 150
 
 /datum/action/xeno_action/activable/neurotox_sting/use_ability(atom/A)
 	var/mob/living/carbon/Xenomorph/Sentinel/X = owner
