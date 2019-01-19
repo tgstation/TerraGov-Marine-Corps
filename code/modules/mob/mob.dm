@@ -43,24 +43,25 @@
 	if(statpanel("Stats"))
 		stat("Operation Time: [worldtime2text()]")
 
-	if(client?.holder?.rights && client.holder.rights & (R_ADMIN|R_DEBUG))
-		if(statpanel("MC"))
-			stat("CPU:", "[world.cpu]")
-			stat("Instances:", "[num2text(world.contents.len, 10)]")
-			stat("World Time:", "[world.time]")
-			stat(null)
-			if(Master)
-				Master.stat_entry()
-			else
-				stat("Master Controller:", "ERROR")
-			if(Failsafe)
-				Failsafe.stat_entry()
-			else
-				stat("Failsafe Controller:", "ERROR")
-			if(Master)
+		if(client?.holder?.rights && client.holder.rights & (R_ADMIN|R_DEBUG))
+			if(statpanel("MC"))
+				stat("CPU:", "[world.cpu]")
+				stat("Instances:", "[num2text(world.contents.len, 10)]")
+				stat("World Time:", "[world.time]")
 				stat(null)
-				for(var/datum/controller/subsystem/SS in Master.subsystems)
-					SS.stat_entry()
+				if(Master)
+					Master.stat_entry()
+				else
+					stat("Master Controller:", "ERROR")
+				if(Failsafe)
+					Failsafe.stat_entry()
+				else
+					stat("Failsafe Controller:", "ERROR")
+				if(Master)
+					stat(null)
+					for(var/datum/controller/subsystem/SS in Master.subsystems)
+						SS.stat_entry()
+		return TRUE
 
 	return FALSE
 
