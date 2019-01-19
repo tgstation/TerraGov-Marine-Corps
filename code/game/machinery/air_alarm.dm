@@ -109,7 +109,7 @@
 
 
 /obj/machinery/alarm/New(location, direction, building = FALSE)
-	..()
+	. = ..()
 
 	if(building)
 		if(loc)
@@ -129,24 +129,6 @@
 				pixel_x = -32
 			if(WEST)
 				pixel_x = 32
-		update_icon()
-		if(ticker?.current_state == GAME_STATE_PLAYING)//if the game is running
-			initialize()
-		return
-
-	switch(dir)
-		if(NORTH)
-			pixel_y = 32
-		if(SOUTH)
-			pixel_y = -32
-		if(EAST)
-			pixel_x = 32
-		if(WEST)
-			pixel_x = -32
-
-	first_run()
-	start_processing()
-
 
 /obj/machinery/alarm/proc/first_run()
 	alarm_area = get_area(src)
@@ -165,10 +147,23 @@
 	TLV["temperature"] =	list(T0C-26, T0C, T0C+40, T0C+66) // K
 
 
-/obj/machinery/alarm/initialize()
+/obj/machinery/alarm/Initialize()
+	. = ..()
 	set_frequency(frequency)
+
+	first_run()
+
 	if (!master_is_operating())
 		elect_master()
+	
+	switch(dir)
+		if(NORTH) pixel_y = 32
+		if(SOUTH) pixel_y = -32
+		if(EAST) pixel_x = 32
+		if(WEST) pixel_x = -32
+
+	start_processing()
+
 
 /obj/machinery/alarm/process()
 	if((stat & (NOPOWER|BROKEN)) || shorted || buildstage != 2)
@@ -270,7 +265,7 @@
 		return
 
 	var/icon_level = danger_level
-	if (alarm_area.atmosalm)
+	if (alarm_area?.atmosalm)
 		icon_level = max(icon_level, 1)	//if there's an atmos alarm but everything is okay locally, no need to go past yellow
 
 	icon_state = "alarm[icon_level]"
@@ -998,7 +993,7 @@ table tr:first-child th:first-child { border: none;}
 		stat ^= BROKEN
 		add_fingerprint(user)
 		for(var/mob/O in viewers(user, null))
-			O.show_message(text("\red [] has []activated []!", user, (stat&BROKEN) ? "de" : "re", src), 1)
+			O.show_message(text("<span class='warning'> [] has []activated []!</span>", user, (stat&BROKEN) ? "de" : "re", src), 1)
 		update_icon()
 		return
 */
@@ -1023,10 +1018,10 @@ table tr:first-child th:first-child { border: none;}
 				else
 					if(allowed(usr) && !isWireCut(AALARM_WIRE_IDSCAN))
 						locked = !locked
-						to_chat(user, "\blue You [ locked ? "lock" : "unlock"] the Air Alarm interface.")
+						to_chat(user, "<span class='notice'>You [ locked ? "lock" : "unlock"] the Air Alarm interface.</span>")
 						updateUsrDialog()
 					else
-						to_chat(user, "\red Access denied.")
+						to_chat(user, "<span class='warning'>Access denied.</span>")
 			return
 
 		if(1)

@@ -136,22 +136,12 @@ obj/machinery/door/airlock/proc/set_frequency(new_frequency)
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
 
 
-obj/machinery/door/airlock/initialize()
+obj/machinery/door/airlock/Initialize()
+	. = ..()
 	if(frequency)
 		set_frequency(frequency)
-
-	update_icon()
-
-
-obj/machinery/door/airlock/New()
-	..()
-
-	if(radio_controller)
-		set_frequency(frequency)
-
 	start_processing()
-
-
+	update_icon()
 
 obj/machinery/airlock_sensor
 	icon = 'icons/obj/airlock_machines.dmi'
@@ -215,15 +205,13 @@ obj/machinery/airlock_sensor/proc/set_frequency(new_frequency)
 	frequency = new_frequency
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
 
-obj/machinery/airlock_sensor/initialize()
+obj/machinery/airlock_sensor/Initialize()
+	. = ..()
 	set_frequency(frequency)
+	start_processing()
 
 obj/machinery/airlock_sensor/New()
 	..()
-	if(radio_controller)
-		set_frequency(frequency)
-	start_processing()
-
 
 obj/machinery/airlock_sensor/airlock_interior
 	command = "cycle_interior"
@@ -264,7 +252,7 @@ obj/machinery/access_button/attackby(obj/item/I as obj, mob/user as mob)
 obj/machinery/access_button/attack_hand(mob/user)
 	add_fingerprint(usr)
 	if(!allowed(user))
-		to_chat(user, "\red Access Denied")
+		to_chat(user, "<span class='warning'>Access Denied</span>")
 
 	else if(radio_connection)
 		var/datum/signal/signal = new
@@ -282,15 +270,13 @@ obj/machinery/access_button/proc/set_frequency(new_frequency)
 	radio_connection = radio_controller.add_object(src, frequency, RADIO_AIRLOCK)
 
 
-obj/machinery/access_button/initialize()
+obj/machinery/access_button/Initialize()
+	. = ..()
 	set_frequency(frequency)
 
 
 obj/machinery/access_button/New()
 	..()
-
-	if(radio_controller)
-		set_frequency(frequency)
 
 obj/machinery/access_button/airlock_interior
 	frequency = 1379

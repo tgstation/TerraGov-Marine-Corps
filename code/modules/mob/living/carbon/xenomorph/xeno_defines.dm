@@ -229,6 +229,9 @@
 	//Acid spray
 	var/last_spray_used
 
+	//Larva Growth
+	var/larva_growth_used = 0
+
 	//Notification spam controls
 	var/recent_notice = 0
 	var/notice_delay = 20 //2 second between notices
@@ -238,6 +241,7 @@
 	var/wound_type = "ravager" //used to match appropriate wound overlays
 
 /datum/hive_status
+	var/name = "Normal"
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen
 	var/slashing_allowed = 1 //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
@@ -249,21 +253,25 @@
 	var/list/xeno_leader_list = list()
 
 /datum/hive_status/corrupted
+	name = "Corrupted"
 	hivenumber = XENO_HIVE_CORRUPTED
 	prefix = "Corrupted "
 	color = "#00ff80"
 
 /datum/hive_status/alpha
+	name = "Alpha"
 	hivenumber = XENO_HIVE_ALPHA
 	prefix = "Alpha "
 	color = "#cccc00"
 
 /datum/hive_status/beta
+	name = "Beta"
 	hivenumber = XENO_HIVE_BETA
 	prefix = "Beta "
 	color = "#9999ff"
 
 /datum/hive_status/zeta
+	name = "Zeta"
 	hivenumber = XENO_HIVE_ZETA
 	prefix = "Zeta "
 	color = "#606060"

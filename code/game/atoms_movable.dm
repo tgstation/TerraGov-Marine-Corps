@@ -21,8 +21,10 @@
 	for(var/atom/movable/I in contents)
 		qdel(I)
 
-	if(pulledby) pulledby.stop_pulling()
-	if(throw_source) throw_source = null
+	if(pulledby) 
+		pulledby.stop_pulling()
+	if(throw_source) 
+		throw_source = null
 
 	if(loc)
 		loc.on_stored_atom_del(src) //things that container need to do when a movable atom inside it is deleted
@@ -30,11 +32,7 @@
 	. = ..()
 	loc = null //so we move into null space. Must be after ..() b/c atom's Dispose handles deleting our lighting stuff
 
-
 //===========================================================================
-
-/atom/movable/proc/initialize()
-	return
 
 /atom/movable/Move(NewLoc, direct)
 	/*

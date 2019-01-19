@@ -121,3 +121,6 @@
 		return "([AREACOORD(T)])"
 	else if(A.loc)
 		return "(UNKNOWN (?, ?, ?))"
+
+/proc/log_qdel(text)
+	world_qdel_log << "QDEL: [text]"

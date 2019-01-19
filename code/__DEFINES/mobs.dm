@@ -319,6 +319,11 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define HIVEMIND 16         // Broadcast to all mobs with this language.
 //=================================================
 
+
+#define EMOTE_VISIBLE  1
+#define EMOTE_AUDIBLE  2
+
+
 //Species flags.
 #define NO_BLOOD 1
 #define NO_BREATHE 2
@@ -500,8 +505,8 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define DEFENDER_TAILSWIPE_COST			35
 #define DEFENDER_HEADBUTT_COOLDOWN		6 SECONDS
 #define DEFENDER_TAILSWIPE_COOLDOWN		12 SECONDS
-#define DEFENDER_FORTIFY_COOLDOWN		1 SECOND
-#define DEFENDER_CREST_DEFENSE_COOLDOWN	1 SECOND
+#define DEFENDER_FORTIFY_COOLDOWN		1 SECONDS
+#define DEFENDER_CREST_DEFENSE_COOLDOWN	1 SECONDS
 
 //crusher defines
 #define CRUSHER_CRESTTOSS_COST			40
