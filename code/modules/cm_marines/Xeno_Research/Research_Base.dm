@@ -57,8 +57,8 @@
 			if(Check_tech(possible.id))
 				continue
 			if(TechMakeReq(possible))
-				available_tech += teches
-				possible_tech -= teches
+				available_tech += possible
+				possible_tech -= possible
 	return
 
 /datum/marineResearch/proc/CheckAvail()
