@@ -65,6 +65,13 @@
 	item_state = "dg_suit"
 	rollable_sleeves = FALSE
 
+/obj/item/clothing/under/rank/centcom_commander/sa
+	desc = "It's a jumpsuit worn by Spatial Agents."
+	name = "\improper spatial agent's jumpsuit"
+	has_sensor = 0
+	sensor_mode = 0
+	siemens_coefficient = 0
+
 /obj/item/clothing/under/ert
 	name = "ERT tactical uniform"
 	desc = "A short-sleeved black uniform, paired with grey digital-camo cargo pants. It looks very tactical."

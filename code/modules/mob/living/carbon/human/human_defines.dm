@@ -88,7 +88,7 @@
 	var/recently_unbuckled = 0
 
 	//Emotes
-	var/recent_audio_emote = 0
+	var/audio_emote_time = 1
 
 	//Life variables
 	var/oxygen_alert = 0

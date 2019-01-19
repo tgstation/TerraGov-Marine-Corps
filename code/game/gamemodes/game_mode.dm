@@ -263,7 +263,7 @@
 			if(applicant)
 				candidates += applicant
 				drafted.Remove(applicant)
-				to_chat(world, "\red [applicant.key] was force-drafted as [roletext], because there aren't enough candidates.")
+				to_chat(world, "<span class='warning'>[applicant.key] was force-drafted as [roletext], because there aren't enough candidates.</span>")
 				log_debug("[applicant.key] was force-drafted as [roletext], because there aren't enough candidates.")
 
 		else //Not enough scrubs, ABORT ABORT ABORT

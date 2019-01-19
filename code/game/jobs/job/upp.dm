@@ -29,9 +29,9 @@
 	S.update_icon()
 
 	var/obj/item/storage/pouch/bayonet/RS = new /obj/item/storage/pouch/bayonet(H)
-	RS.contents += /obj/item/weapon/combat_knife/upp
-	RS.contents += /obj/item/weapon/combat_knife/upp
-	RS.contents += /obj/item/weapon/combat_knife/upp
+	RS.contents += new /obj/item/weapon/combat_knife/upp
+	RS.contents += new /obj/item/weapon/combat_knife/upp
+	RS.contents += new /obj/item/weapon/combat_knife/upp
 
 	var/obj/item/storage/backpack/lightpack/B = new /obj/item/storage/backpack/lightpack(H)
 	B.contents += new /obj/item/reagent_container/food/snacks/upp

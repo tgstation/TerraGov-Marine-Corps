@@ -6,9 +6,9 @@
 	if(!client) return
 	client.inquisitive_ghost = !client.inquisitive_ghost
 	if(client.inquisitive_ghost)
-		to_chat(src, "\blue You will now examine everything you click on.")
+		to_chat(src, "<span class='notice'>You will now examine everything you click on.</span>")
 	else
-		to_chat(src, "\blue You will no longer examine things you click on.")
+		to_chat(src, "<span class='notice'>You will no longer examine things you click on.</span>")
 
 /mob/dead/observer/click(var/atom/A, var/list/mods)
 	if (..())

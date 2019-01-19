@@ -6,6 +6,7 @@
 	attachable_allowed = list()
 	var/obj/item/cell/cell //1000 power.
 	var/charge_cost = 10 //100 shots.
+	var/cell_type = /obj/item/cell
 
 /obj/item/weapon/gun/energy/examine(mob/user)
 	var/list/dat = list()
@@ -37,9 +38,10 @@
 	if(dat)
 		to_chat(user, "[dat.Join(" ")]")
 
-/obj/item/weapon/gun/energy/New()
+/obj/item/weapon/gun/energy/Initialize()
 	. = ..()
-	cell = new /obj/item/cell(src)
+	if(cell_type)
+		cell = new cell_type(src)
 
 /obj/item/weapon/gun/energy/able_to_fire(mob/living/user)
 	. = ..()
@@ -102,10 +104,7 @@
 	flags_gun_features = GUN_UNUSUAL_DESIGN
 	gun_skill_category = GUN_SKILL_PISTOLS
 	movement_acc_penalty_mult = 0
-
-/obj/item/weapon/gun/energy/taser/New()
-	. = ..()
-	cell = new /obj/item/cell/high(src)
+	cell_type = /obj/item/cell/high
 
 /obj/item/weapon/gun/energy/taser/set_gun_config_values()
 	fire_delay = config.high_fire_delay * 2
@@ -145,10 +144,7 @@
 	w_class = 5
 	charge_cost = 100
 	flags_gun_features = GUN_UNUSUAL_DESIGN
-
-/obj/item/weapon/gun/energy/plasmarifle/New()
-	. = ..()
-	cell = new /obj/item/cell/high(src)
+	cell_type = /obj/item/cell/high
 
 /obj/item/weapon/gun/energy/plasmarifle/set_gun_config_values()
 	fire_delay = config.high_fire_delay*2
@@ -317,7 +313,7 @@
 	icon_state = "m43"
 	item_state = "m43"
 	ammo = /datum/ammo/energy/lasgun/M43
-	cell = null
+	cell_type = null
 	charge_cost = M37_STANDARD_AMMO_COST
 	attachable_allowed = list(
 						/obj/item/attachable/bayonet,
@@ -337,11 +333,11 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER|GUN_ENERGY
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 
-/obj/item/weapon/gun/energy/lasgun/M43/New()
+/obj/item/weapon/gun/energy/lasgun/M43/Initialize()
 	. = ..()
 	cell = null
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 15, "stock_x" = 22, "stock_y" = 12)
 	var/obj/item/attachable/stock/lasgun/S = new(src)
 	S.flags_attach_features &= ~ATTACH_REMOVABLE
 	S.Attach(src)

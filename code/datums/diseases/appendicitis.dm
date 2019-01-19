@@ -25,11 +25,11 @@
 
 	if(stage == 1)
 		if(prob(5))
-			to_chat(affected_mob, "\red You feel a stinging pain in your abdomen!")
+			to_chat(affected_mob, "<span class='warning'>You feel a stinging pain in your abdomen!</span>")
 			affected_mob.emote("me",1,"winces slightly.")
 	if(stage > 1)
 		if(prob(3))
-			to_chat(affected_mob, "\red You feel a stabbing pain in your abdomen!")
+			to_chat(affected_mob, "<span class='warning'>You feel a stabbing pain in your abdomen!</span>")
 			affected_mob.emote("me",1,"winces painfully.")
 			affected_mob.adjustToxLoss(1)
 	if(stage > 2)
@@ -38,13 +38,13 @@
 				var/mob/living/carbon/human/H = affected_mob
 				H.vomit()
 			else
-				to_chat(affected_mob, "\red You gag as you want to throw up, but there's nothing in your stomach!")
+				to_chat(affected_mob, "<span class='warning'>You gag as you want to throw up, but there's nothing in your stomach!</span>")
 				affected_mob.KnockDown(10)
 				affected_mob.adjustToxLoss(3)
 	if(stage > 3)
 		if(prob(1) && ishuman(affected_mob))
 			var/mob/living/carbon/human/H = affected_mob
-			to_chat(H, "\red Your abdomen is a world of pain!")
+			to_chat(H, "<span class='warning'>Your abdomen is a world of pain!</span>")
 			H.KnockDown(10)
 
 			var/datum/limb/groin = H.get_limb("groin")

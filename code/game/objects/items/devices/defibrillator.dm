@@ -20,7 +20,7 @@
 	origin_tech = "biotech=3"
 
 	suicide_act(mob/user)
-		viewers(user) << "<span class='danger'>[user] is putting the live paddles on \his chest! It looks like \he's trying to commit suicide.</span>"
+		user.visible_message("<span class='danger'>[user] is putting the live paddles on \his chest! It looks like \he's trying to commit suicide.</span>")
 		return (FIRELOSS)
 
 /mob/living/carbon/human/proc/check_tod()
