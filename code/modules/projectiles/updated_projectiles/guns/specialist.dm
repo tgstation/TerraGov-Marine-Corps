@@ -941,7 +941,7 @@
 /obj/item/weapon/gun/shotgun/merc/scout/set_gun_config_values()
 	fire_delay = config.scoutshottie_fire_delay
 	burst_amount = config.low_burst_value
-	burst_delay = 0.01 //basically instantaneous two shots
+	burst_delay = config.no_fire_delay //basically instantaneous two shots
 	accuracy_mult = config.base_hit_accuracy_mult
 	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.max_hit_accuracy_mult
 	scatter = config.med_scatter_value
