@@ -103,9 +103,6 @@
 
 /obj/machinery/vending/proc/build_inventory(var/list/productlist,hidden=0,req_coin=0)
 
-	if(delay_product_spawn)
-		sleep(15) //Make ABSOLUTELY SURE the seed datum is properly populated.
-
 	for(var/typepath in productlist)
 		var/amount = productlist[typepath]
 		var/price = prices[typepath]
@@ -136,9 +133,6 @@
 		else
 			R.category=CAT_NORMAL
 			product_records += R
-
-		if(delay_product_spawn)
-			sleep(5) //sleep(1) did not seem to cut it, so here we are.
 
 		R.product_name = initial(temp_path.name)
 
