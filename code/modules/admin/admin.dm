@@ -1219,7 +1219,6 @@ var/global/respawntime = 15
 		ticker.mode.picked_call = null
 	
 
-
 	var/list/list_of_calls = list()
 	for(var/datum/emergency_call/L in ticker.mode.all_calls)
 		if(L?.name)
