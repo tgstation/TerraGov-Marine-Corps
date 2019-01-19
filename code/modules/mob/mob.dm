@@ -19,7 +19,31 @@
 
 
 /mob/Stat()
-	if(check_rights(R_ADMIN|R_DEBUG))
+	// Looking at contents of a tile
+	if(tile_contents_change)
+		tile_contents_change = FALSE
+		statpanel("Tile Contents")
+		client.statpanel = "Tile Contents"
+		stat(tile_contents)
+		client.stat_force_fast_update = TRUE
+		return FALSE
+
+	if(client.statpanel == "Tile Contents")
+		if(tile_contents.len && statpanel("Tile Contents"))
+			stat(tile_contents)
+			return FALSE
+
+	if(statpanel("Stats"))
+		stat("Operation Time: [worldtime2text()]")
+
+	if(client.statpanel != "Stats")
+		statpanel("Stats")
+		if(statpanel("Stats"))
+			client.statpanel = "Stats"
+			stat("Operation Time: [worldtime2text()]")
+		client.stat_force_fast_update = TRUE
+
+	if(client?.holder?.rights && client.holder.rights & (R_ADMIN|R_DEBUG))
 		if(statpanel("MC"))
 			stat("CPU:", "[world.cpu]")
 			stat("Instances:", "[num2text(world.contents.len, 10)]")
@@ -37,34 +61,11 @@
 				stat(null)
 				for(var/datum/controller/subsystem/SS in Master.subsystems)
 					SS.stat_entry()
-
-	// Looking at contents of a tile
-	if (tile_contents_change)
-		tile_contents_change = 0
-		statpanel("Tile Contents")
-		client.statpanel = "Tile Contents"
-		stat(tile_contents)
-		client.stat_force_fast_update = 1
-		return 0
-
-	if (client.statpanel == "Tile Contents")
-		if (tile_contents.len && statpanel("Tile Contents"))
-			stat(tile_contents)
-			return 0
-
-	if (client.statpanel != "Stats")
-		statpanel("Stats")
-		if (statpanel("Stats"))
-			client.statpanel = "Stats"
-			stat("Operation Time: [worldtime2text()]")
-		client.stat_force_fast_update = 1
-		return 1
-
-	if (statpanel("Stats"))
-		stat("Operation Time: [worldtime2text()]")
-		return 1
-
-	return 0
+					
+	if(statpanel("Stats") || client.statpanel != "Stats")	
+		return TRUE
+	else
+		return FALSE
 
 /mob/proc/prepare_huds()
 	hud_list = new
