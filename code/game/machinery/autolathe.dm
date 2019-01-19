@@ -169,7 +169,7 @@
 		mass_per_sheet += eating.matter[material]
 
 	if(!filltype)
-		to_chat(user, "\red \The [src] is full. Please remove material from the autolathe in order to insert more.")
+		to_chat(user, "<span class='warning'>\The [src] is full. Please remove material from the autolathe in order to insert more.</span>")
 		return
 	else if(filltype == 1)
 		to_chat(user, "You fill \the [src] to capacity with \the [eating].")
@@ -204,7 +204,7 @@
 	add_fingerprint(usr)
 
 	if(busy)
-		to_chat(usr, "\red The autolathe is busy. Please wait for completion of previous operation.")
+		to_chat(usr, "<span class='warning'>The autolathe is busy. Please wait for completion of previous operation.</span>")
 		return
 
 	if(href_list["change_category"])

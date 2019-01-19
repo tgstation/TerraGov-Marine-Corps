@@ -307,7 +307,7 @@
 				qdel(src)
 
 			else
-				to_chat(user, "\red You must hold \the [P] steady to burn \the [src].")
+				to_chat(user, "<span class='warning'>You must hold \the [P] steady to burn \the [src].</span>")
 
 
 /obj/item/paper/Topic(href, href_list)

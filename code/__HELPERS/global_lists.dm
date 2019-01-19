@@ -47,11 +47,6 @@ var/global/list/attachment_vendors = list() //Used by our gamemode code
 var/global/list/marine_vendors = list() //Used by our gamemode code
 var/global/list/cargo_ammo_vendors = list() //Used by our gamemode code
 var/global/list/cargo_guns_vendors = list() //Used by our gamemode code
-var/global/list/SSobj = list()
-
-#define START_PROCESSING(Processor, Datum) Processor.Add(Datum)
-#define STOP_PROCESSING(Processor, Datum) Processor.Remove(Datum)
-
 var/global/list/active_diseases = list()
 var/global/list/events = list()
 var/global/list/processing_second = list()
@@ -62,6 +57,8 @@ var/global/list/active_laser_targets = list()
 //used by the main overwatch console
 var/global/list/active_orbital_beacons = list()
 var/global/list/active_supply_beacons = list()
+
+var/global/world_qdel_log
 
 //Used by Queen overwatch
 //var/global/list/xeno_leader_list = list() - moved to hive_datum
@@ -201,3 +198,12 @@ var/global/list/moth_wings_list = list()
 				. += "    has: [t]\n"
 	to_chat(world, .)
 */
+
+//creates every subtype of prototype (excluding prototype) and adds it to list L.
+//if no list/L is provided, one is created.
+/proc/init_subtypes(prototype, list/L)
+	if(!istype(L))
+		L = list()
+	for(var/path in subtypesof(prototype))
+		L += new path()
+	return L

@@ -50,7 +50,7 @@
 		var/mob/living/carbon/C = usr
 		C.toggle_throw_mode()
 	else
-		to_chat(usr, "\red This mob type cannot throw items.")
+		to_chat(usr, "<span class='warning'>This mob type cannot throw items.</span>")
 	return
 
 
@@ -58,11 +58,11 @@
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
 		if(!C.get_active_held_item())
-			to_chat(usr, "\red You have nothing to drop in your hand.")
+			to_chat(usr, "<span class='warning'>You have nothing to drop in your hand.</span>")
 			return
 		C.drop_held_item()
 	else
-		to_chat(usr, "\red This mob type cannot drop items.")
+		to_chat(usr, "<span class='warning'>This mob type cannot drop items.</span>")
 	return
 
 //This gets called when you press the delete button.
@@ -70,7 +70,7 @@
 	set hidden = 1
 
 	if(!usr.pulling)
-		to_chat(usr, "\blue You are not pulling anything.")
+		to_chat(usr, "<span class='notice'>You are not pulling anything.</span>")
 		return
 	usr.stop_pulling()
 
@@ -228,7 +228,7 @@
 
 	//Check to see if we slipped
 	if(prob(Process_Spaceslipping(5)))
-		to_chat(src, "\blue <B>You slipped!</B>")
+		to_chat(src, "<span class='boldnotice'>You slipped!</span>")
 		src.inertia_dir = src.last_move_dir
 		step(src, src.inertia_dir)
 		return 0

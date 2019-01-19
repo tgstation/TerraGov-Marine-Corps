@@ -18,7 +18,7 @@
 	var/atom/plant_target = null //which atom the detpack is planted on
 	var/target_drag_delay = null //store this for restoration later
 	var/boom = FALSE //confirms whether we actually detted.
-
+	var/process_count = 0
 
 /obj/item/device/radio/detpack/examine(mob/user)
 	. = ..()
@@ -37,7 +37,7 @@
 
 
 /obj/item/device/radio/detpack/Destroy()
-	processing_second.Remove(src)
+	STOP_PROCESSING(SSfastprocess, src)
 	if(plant_target && !boom) //whatever name you give it
 		loc = get_turf(src)
 		nullvars()
@@ -108,7 +108,7 @@
 			return
 		armed = TRUE
 		//bombtick()
-		processing_second.Add(src)
+		START_PROCESSING(SSfastprocess, src)
 		update_icon()
 	else
 		armed = FALSE
@@ -265,14 +265,17 @@
 
 
 /obj/item/device/radio/detpack/process()
+	if(++process_count < 5)
+		return
+	process_count = 0
 	if(plant_target == null || !plant_target.loc) //need a target to be attached to
-		processing_second.Remove(src)
+		STOP_PROCESSING(SSfastprocess, src)
 		if(timer < DETPACK_TIMER_MIN) //reset to minimum 10 seconds; no 'cooking' with aborted detonations.
 			timer = DETPACK_TIMER_MIN
 		nullvars()
 		return
 	if(!on) //need to be active and armed.
-		processing_second.Remove(src)
+		STOP_PROCESSING(SSfastprocess, src)
 		armed = FALSE
 		if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
 			timer = DETPACK_TIMER_MIN
@@ -281,7 +284,7 @@
 	if(!armed)
 		if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
 			timer = DETPACK_TIMER_MIN
-		processing_second.Remove(src)
+		STOP_PROCESSING(SSfastprocess, src)
 		update_icon()
 		return
 	if(timer) //Timer is still counting down to armaggedon...

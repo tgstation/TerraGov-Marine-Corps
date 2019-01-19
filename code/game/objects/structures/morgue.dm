@@ -139,7 +139,7 @@
 	O.forceMove(loc)
 	if (user != O)
 		for(var/mob/B in viewers(user, 3))
-			B.show_message("\red [user] stuffs [O] into [src]!", 1)
+			B.show_message("<span class='warning'> [user] stuffs [O] into [src]!</span>", 1)
 
 
 
@@ -183,9 +183,9 @@
 		return
 
 	if(contents.len <= 1) //1 because the tray is inside.
-		visible_message("\red You hear a hollow crackle.")
+		visible_message("<span class='warning'> You hear a hollow crackle.</span>")
 	else
-		visible_message("\red You hear a roar as the crematorium activates.")
+		visible_message("<span class='warning'> You hear a roar as the crematorium activates.</span>")
 
 		cremating = 1
 
@@ -237,7 +237,7 @@
 				if(!C.cremating)
 					C.cremate(user)
 	else
-		to_chat(user, "\red Access denied.")
+		to_chat(user, "<span class='warning'>Access denied.</span>")
 
 
 

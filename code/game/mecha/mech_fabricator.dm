@@ -774,7 +774,7 @@
 			qdel(src)
 			return 1
 		else
-			to_chat(user, "\red You can't load the [src.name] while it's opened.")
+			to_chat(user, "<span class='warning'>You can't load the [src.name] while it's opened.</span>")
 			return 1
 
 	if(istype(W, /obj/item/card/emag))

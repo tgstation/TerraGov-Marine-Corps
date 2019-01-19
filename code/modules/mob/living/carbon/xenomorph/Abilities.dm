@@ -1126,6 +1126,53 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	X.use_plasma(600)
 
 
+/datum/action/xeno_action/activable/larva_growth
+	name = "Advance Larval Growth (300)"
+	action_icon_state = "larva_growth"
+	ability_name = "advance larval growth"
+
+/datum/action/xeno_action/activable/larva_growth/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/X = owner
+	if(world.time > X.larva_growth_used)
+		return TRUE
+
+/datum/action/xeno_action/activable/larva_growth/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Queen/X = owner
+	if(!X.check_state() || X.action_busy)
+		return
+
+	if(world.time < X.larva_growth_used)
+		to_chat(X, "<span class='xenowarning'>You're still recovering from your previous larva growth advance. Wait [round((X.larva_growth_used - world.time) * 0.1)] seconds.</span>")
+		return
+
+	if(!istype(A, /mob/living/carbon/human))
+		return
+
+	var/mob/living/carbon/human/H = A
+
+	var/obj/item/alien_embryo/E = locate(/obj/item/alien_embryo) in H
+
+	if(!E)
+		to_chat(X, "<span class='xenowarning'>[H] doesn't have a larva growing inside of them.</xenowarning>")
+		return
+
+	if(E.stage >= 3)
+		to_chat(X, "<span class='xenowarning'>\The [E] inside of [H] is too old to be advanced.</xenowarning>")
+		return
+
+	if(X.check_plasma(300))
+		X.visible_message("<span class='xenowarning'>\The [X] starts to advance larval growth inside of [H].</span>", \
+		"<span class='xenowarning'>You start to advance larval growth inside of [H].</span>")
+		if(!do_after(X, 50, TRUE, 20, BUSY_ICON_FRIENDLY) && X.check_plasma(300))
+			return
+		if(!X.check_state()) 
+			return
+		X.use_plasma(300)
+		X.visible_message("<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>", \
+		"<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>")
+
+		E.stage++
+		X.larva_growth_used = world.time + 1 MINUTES
 
 //Ravager Abilities
 

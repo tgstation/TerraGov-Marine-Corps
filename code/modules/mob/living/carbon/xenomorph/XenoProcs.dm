@@ -558,6 +558,20 @@
 	else
 		rage *= 0.5 //Halve rage instead of 0ing it out if we miss.
 
+/mob/living/carbon/Xenomorph/proc/set_hive_number(var/newhivenumber)
+	if(!newhivenumber)
+		return
+
+	hivenumber = newhivenumber
+
+	if(isXenoLarva(src))
+		var/mob/living/carbon/Xenomorph/Larva/L = src
+		L.update_icons() // larva renaming done differently
+	else
+		generate_name()
+		update_living_queens()
+		
+
 //////////// XENO CASTE PROCS //////////////////
 
 /datum/xeno_caste/proc/handle_decay(mob/living/carbon/Xenomorph/X)

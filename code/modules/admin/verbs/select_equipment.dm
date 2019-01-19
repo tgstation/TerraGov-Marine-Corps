@@ -94,5 +94,5 @@
 	M.regenerate_icons()
 
 	log_admin("[key_name(usr)] changed the equipment of [key_name(M)] to [dresscode].")
-	message_admins("\blue [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode].", 1)
+	message_admins("<span class='notice'> [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode].</span>", 1)
 	return

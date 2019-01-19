@@ -258,22 +258,22 @@
 
 /obj/item/clothing/tie/holster/proc/holster(obj/item/I, mob/user as mob)
 	if(holstered)
-		to_chat(user, "\red There is already a [holstered] holstered here!")
+		to_chat(user, "<span class='warning'>There is already a [holstered] holstered here!</span>")
 		return
 
 	if (!istype(I, /obj/item/weapon/gun))
-		to_chat(user, "\red Only guns can be holstered!")
+		to_chat(user, "<span class='warning'>Only guns can be holstered!</span>")
 		return
 
 	var/obj/item/weapon/gun/W = I
 	if (!can_holster(W))
-		to_chat(user, "\red This [W] won't fit in the [src]!")
+		to_chat(user, "<span class='warning'>This [W] won't fit in the [src]!</span>")
 		return
 
 	holstered = W
 	user.transferItemToLoc(holstered, src)
 	holstered.add_fingerprint(user)
-	user.visible_message("\blue [user] holsters the [holstered].", "You holster the [holstered].")
+	user.visible_message("<span class='notice'> [user] holsters the [holstered].</span>", "You holster the [holstered].")
 
 /obj/item/clothing/tie/holster/proc/unholster(mob/user as mob)
 	if(!holstered)
@@ -344,7 +344,7 @@
 
 	if(!H.holstered)
 		if(!istype(usr.get_active_held_item(), /obj/item/weapon/gun))
-			to_chat(usr, "\blue You need your gun equiped to holster it.")
+			to_chat(usr, "<span class='notice'>You need your gun equiped to holster it.</span>")
 			return
 		var/obj/item/weapon/gun/W = usr.get_active_held_item()
 		H.holster(W, usr)
@@ -514,17 +514,17 @@
 		to_chat(user, "Waving around a badge before swiping an ID would be pretty pointless.")
 		return
 	if(isliving(user))
-		user.visible_message("\red [user] displays their W-Y Internal Security Legal Authorization Badge.\nIt reads: [stored_name], W-Y Security.","\red You display your W-Y Internal Security Legal Authorization Badge.\nIt reads: [stored_name], W-Y Security.")
+		user.visible_message("<span class='warning'> [user] displays their W-Y Internal Security Legal Authorization Badge.\nIt reads: [stored_name], W-Y Security.</span>","<span class='warning'> You display your W-Y Internal Security Legal Authorization Badge.\nIt reads: [stored_name], W-Y Security.</span>")
 
 /obj/item/clothing/tie/holobadge/attackby(var/obj/item/O as obj, var/mob/user as mob)
 
 	if (istype(O, /obj/item/card/emag))
 		if (emagged)
-			to_chat(user, "\red [src] is already cracked.")
+			to_chat(user, "<span class='warning'>[src] is already cracked.</span>")
 			return
 		else
 			emagged = 1
-			to_chat(user, "\red You swipe [O] and crack the holobadge security checks.")
+			to_chat(user, "<span class='warning'>You swipe [O] and crack the holobadge security checks.</span>")
 			return
 
 	else if(istype(O, /obj/item/card/id) || istype(O, /obj/item/device/pda))
@@ -549,7 +549,7 @@
 
 /obj/item/clothing/tie/holobadge/attack(mob/living/carbon/human/M, mob/living/user)
 	if(isliving(user))
-		user.visible_message("\red [user] invades [M]'s personal space, thrusting [src] into their face insistently.","\red You invade [M]'s personal space, thrusting [src] into their face insistently. You are the law.")
+		user.visible_message("<span class='warning'> [user] invades [M]'s personal space, thrusting [src] into their face insistently.</span>","<span class='warning'> You invade [M]'s personal space, thrusting [src] into their face insistently. You are the law.</span>")
 
 /obj/item/storage/box/holobadge
 	name = "holobadge box"

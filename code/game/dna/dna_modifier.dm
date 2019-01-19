@@ -101,13 +101,13 @@
 	if (usr.stat != 0)
 		return
 	if (!ishuman(usr) && !ismonkey(usr)) //Make sure they're a mob that has dna
-		to_chat(usr, "\blue Try as you might, you can not climb up into the scanner.")
+		to_chat(usr, "<span class='notice'>Try as you might, you can not climb up into the scanner.</span>")
 		return
 	if (src.occupant)
-		to_chat(usr, "\blue <B>The scanner is already occupied!</B>")
+		to_chat(usr, "<span class='boldnotice'>The scanner is already occupied!</span>")
 		return
 	if (usr.abiotic())
-		to_chat(usr, "\blue <B>Subject cannot have abiotic items on.</B>")
+		to_chat(usr, "<span class='boldnotice'>Subject cannot have abiotic items on.</span>")
 		return
 	usr.stop_pulling()
 	usr.client.perspective = EYE_PERSPECTIVE
@@ -121,7 +121,7 @@
 /obj/machinery/dna_scannernew/attackby(var/obj/item/item as obj, var/mob/user as mob)
 	if(istype(item, /obj/item/reagent_container/glass))
 		if(beaker)
-			to_chat(user, "\red A beaker is already loaded into the machine.")
+			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
 			return
 
 		beaker = item
@@ -135,10 +135,10 @@
 		return
 	var/mob/M = G.grabbed_thing
 	if (src.occupant)
-		to_chat(user, "\blue <B>The scanner is already occupied!</B>")
+		to_chat(user, "<span class='boldnotice'>The scanner is already occupied!</span>")
 		return
 	if (M.abiotic())
-		to_chat(user, "\blue <B>Subject cannot have abiotic items on.</B>")
+		to_chat(user, "<span class='boldnotice'>Subject cannot have abiotic items on.</span>")
 		return
 	put_in(M)
 	add_fingerprint(user)

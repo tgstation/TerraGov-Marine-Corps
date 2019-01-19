@@ -191,7 +191,7 @@
 //Human interact with machine
 /obj/machinery/disposal/attack_hand(mob/user as mob)
 	if(user && user.loc == src)
-		to_chat(usr, "\red You cannot reach the controls from inside.")
+		to_chat(usr, "<span class='warning'>You cannot reach the controls from inside.</span>")
 		return
 
 	interact(user, 0)

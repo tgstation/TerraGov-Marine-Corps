@@ -32,7 +32,7 @@
 	// Internal organs of this body part
 	var/list/datum/internal_organ/internal_organs
 
-	var/damage_msg = "\red You feel an intense pain"
+	var/damage_msg = "<span class='warning'> You feel an intense pain</span>"
 	var/broken_description
 
 	var/surgery_open_stage = 0
@@ -1189,13 +1189,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if (disfigured)
 		return
 	if(type == "brute")
-		owner.visible_message("\red You hear a sickening cracking sound coming from \the [owner]'s face.",	\
-		"\red <b>Your face becomes unrecognizible mangled mess!</b>",	\
-		"\red You hear a sickening crack.")
+		owner.visible_message("<span class='warning'> You hear a sickening cracking sound coming from \the [owner]'s face.</span>",	\
+		"<span class='danger'>Your face becomes unrecognizible mangled mess!</span>",	\
+		"<span class='warning'> You hear a sickening crack.</span>")
 	else
-		owner.visible_message("\red [owner]'s face melts away, turning into mangled mess!",	\
-		"\red <b>Your face melts off!</b>",	\
-		"\red You hear a sickening sizzle.")
+		owner.visible_message("<span class='warning'> [owner]'s face melts away, turning into mangled mess!</span>",	\
+		"<span class='danger'>Your face melts off!</span>",	\
+		"<span class='warning'> You hear a sickening sizzle.</span>")
 	disfigured = 1
 	owner.name = owner.get_visible_name()
 

@@ -28,7 +28,7 @@
 	if(user)
 		origin.loc = get_turf(user)
 		user.temporarilyRemoveItemFromInventory(src)
-		user.visible_message("\blue [user] puts [src] down.", "\blue You put [src] down.")
+		user.visible_message("<span class='notice'> [user] puts [src] down.</span>", "<span class='notice'> You put [src] down.</span>")
 		qdel(src)
 
 /obj/item/stool/attack_self(mob/user as mob)
@@ -37,7 +37,7 @@
 
 /obj/item/stool/attack(mob/M as mob, mob/user as mob)
 	if (prob(25) && istype(M,/mob/living))
-		user.visible_message("\red [user] breaks [src] over [M]'s back!")
+		user.visible_message("<span class='warning'> [user] breaks [src] over [M]'s back!</span>")
 		user.temporarilyRemoveItemFromInventory(src)
 		var/obj/item/stack/sheet/metal/m = new/obj/item/stack/sheet/metal
 		m.loc = get_turf(src)
