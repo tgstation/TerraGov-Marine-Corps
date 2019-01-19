@@ -307,8 +307,8 @@
 	dir = turn(dir, 270)
 
 
-/obj/structure/window/New(Loc, start_dir = null, constructed = 0)
-	..()
+/obj/structure/window/Initialize(Loc, start_dir = null, constructed = 0)
+	. = ..()
 
 	//player-constructed windows
 	if(constructed)
@@ -411,8 +411,8 @@
 	health = 300
 	reinf = TRUE
 
-/obj/structure/window/New(Loc, constructed = 0)
-	..()
+/obj/structure/window/Initialize(Loc, constructed = 0)
+	. = ..()
 
 	//player-constructed windows
 	if(constructed)
@@ -458,11 +458,10 @@
 	tiles_with = list(
 		/turf/closed/wall)
 
-/obj/structure/window/framed/New()
-	spawn(0)
-		relativewall()
-		relativewall_neighbours()
-	..()
+/obj/structure/window/framed/Initialize()
+	relativewall()
+	relativewall_neighbours()
+	. = ..()
 
 /obj/structure/window/framed/Destroy()
 	for(var/obj/effect/alien/weeds/weedwall/window/WW in loc)
