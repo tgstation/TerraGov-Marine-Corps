@@ -51,6 +51,8 @@
 	var/debilitate[]				= null 		// Stun,knockdown,knockout,irradiate,stutter,eyeblur,drowsy,agony
 	var/list/ammo_reagents			= null		// Type of reagent transmitted by the projectile on hit.
 	var/barricade_clear_distance	= 1			// How far the bullet can travel before incurring a chance of hitting barricades; normally 1.
+	var/armor_type					= ""		// Does this have an override for the armor type the ammo should test?
+
 
 	New()
 		accuracy 			= config.min_hit_accuracy 	// This is added to the bullet's base accuracy.
@@ -143,21 +145,26 @@
 				for(var/i=0, i<knockback, i++)
 					step_away(M,P)
 
-		//Check for and apply soft CC; Xeno only at this time
-		if(isXeno(M) && (M.mob_size == MOB_SIZE_BIG && soft_size_threshold > 2) || (M.mob_size == MOB_SIZE_XENO && soft_size_threshold > 1))
-			var/mob/living/carbon/Xenomorph/X = M
+		//Check for and apply soft CC
+		if(iscarbon(M))
+			var/mob/living/carbon/C = M
+			var/stagger_immune = FALSE
+			if(isXeno(C))
+				var/mob/living/carbon/Xenomorph/X = M
+				if(isXenoQueen(X)) //Stagger too powerful vs the Queen, so she's immune.
+					stagger_immune = TRUE
 			#if DEBUG_STAGGER_SLOWDOWN
 			to_chat(world, "<span class='debuginfo'>Damage: Initial stagger is: <b>[target.stagger]</b></span>")
 			#endif
-			if(!isXenoQueen(X)) //Stagger too powerful vs the Queen.
-				X.adjust_stagger(stagger)
+			if(!stagger_immune)
+				C.adjust_stagger(stagger)
 			#if DEBUG_STAGGER_SLOWDOWN
 			to_chat(world, "<span class='debuginfo'>Damage: Final stagger is: <b>[target.stagger]</b></span>")
 			#endif
 			#if DEBUG_STAGGER_SLOWDOWN
 			to_chat(world, "<span class='debuginfo'>Damage: Initial slowdown is: <b>[target.slowdown]</b></span>")
 			#endif
-			X.add_slowdown(slowdown)
+			C.add_slowdown(slowdown)
 			#if DEBUG_STAGGER_SLOWDOWN
 			to_chat(world, "<span class='debuginfo'>Damage: Final slowdown is: <b>[target.slowdown]</b></span>")
 			#endif
@@ -1268,6 +1275,8 @@
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_IGNORE_RESIST
 	spit_cost = 50
 	added_spit_delay = 5
+	damage_type = HALLOSS
+	armor_type = "bio"
 
 /datum/ammo/xeno/toxin/New()
 	accuracy = config.max_hit_accuracy
@@ -1276,6 +1285,9 @@
 	max_range = config.near_shell_range
 	accuracy_var_low = config.low_proj_variance
 	accuracy_var_high = config.low_proj_variance
+	damage = config.low_hit_damage
+	damage_var_low = config.low_proj_variance
+	damage_var_high = config.med_proj_variance
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/M, obj/item/projectile/P)
 	if(!istype(M))
@@ -1283,6 +1295,7 @@
 	var/mob/living/carbon/C = M
 	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
 		return
+	staggerstun(C, P, config.close_shell_range, 0, 0, 0, 1) //Slows down briefly
 	return ..()
 
 /datum/ammo/xeno/toxin/upgrade1
@@ -1302,6 +1315,10 @@
 	added_spit_delay = 10
 	spit_cost = 75
 
+/datum/ammo/xeno/toxin/medium/New()
+	. = ..()
+	damage = config.hlow_hit_damage
+
 /datum/ammo/xeno/toxin/medium/upgrade1
 	ammo_reagents = list("xeno_toxin" = 10.2)
 
@@ -1316,6 +1333,10 @@
 	ammo_reagents = list("xeno_toxin" = 11)
 	added_spit_delay = 15
 	spit_cost = 100
+
+/datum/ammo/xeno/toxin/medium/New()
+	. = ..()
+	damage = config.lmed_hit_damage
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
 	ammo_reagents = list("xeno_toxin" = 13.2)

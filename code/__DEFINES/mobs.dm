@@ -472,7 +472,6 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 // xeno defines
 
-
 #define XENO_SLOWDOWN_REGEN 0.4
 #define XENO_HALOSS_REGEN 3
 #define QUEEN_DEATH_TIMER 300 // 5 minutes
@@ -549,3 +548,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CASTE_IS_INTELLIGENT		(1<<7)
 #define CASTE_IS_ROBOTIC			(1<<8)
 #define CASTE_DECAY_PROOF			(1<<9)
+
+//misc
+
+#define STANDARD_SLOWDOWN_REGEN 0.3

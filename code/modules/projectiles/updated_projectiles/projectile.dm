@@ -50,6 +50,7 @@
 	var/in_flight = 0
 
 	var/projectile_speed = 0
+	var/armor_type = null
 
 /obj/item/projectile/New()
 	. = ..()
@@ -92,6 +93,7 @@
 	damage     *= rand(config.proj_variance_low-ammo.damage_var_low, config.proj_variance_high+ammo.damage_var_high) * config.proj_base_damage_mult
 	damage_falloff = ammo.damage_falloff
 	list_reagents = ammo.ammo_reagents
+	armor_type = ammo.armor_type
 
 //Target, firer, shot from. Ie the gun
 /obj/item/projectile/proc/fire_at(atom/target,atom/F, atom/S, range = 30,speed = 1)
@@ -533,11 +535,14 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	//Run armor check. We won't bother if there is no damage being done.
 	if( damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) )
 		var/armor //Damage types don't correspond to armor types. We are thus merging them.
-		switch(P.ammo.damage_type)
-			if(BRUTE) armor = P.ammo.flags_ammo_behavior & AMMO_ROCKET ? getarmor_organ(organ, "bomb") : getarmor_organ(organ, "bullet")
-			if(BURN) armor = P.ammo.flags_ammo_behavior & AMMO_ENERGY ? getarmor_organ(organ, "energy") : getarmor_organ(organ, "laser")
-			if(TOX, OXY, CLONE) armor = getarmor_organ(organ, "bio")
-			else armor = getarmor_organ(organ, "energy") //Won't be used, but just in case.
+		if(P.armor_type) //If the projectile is meant to test a specific armor type, we use that.
+			armor = getarmor_organ(organ, P.armor_type)
+		else
+			switch(P.ammo.damage_type)
+				if(BRUTE) armor = P.ammo.flags_ammo_behavior & AMMO_ROCKET ? getarmor_organ(organ, "bomb") : getarmor_organ(organ, "bullet")
+				if(BURN) armor = P.ammo.flags_ammo_behavior & AMMO_ENERGY ? getarmor_organ(organ, "energy") : getarmor_organ(organ, "laser")
+				if(TOX, OXY, CLONE) armor = getarmor_organ(organ, "bio")
+				else armor = getarmor_organ(organ, "energy") //Won't be used, but just in case.
 		#if DEBUG_HUMAN_DEFENSE
 		to_chat(world, "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>")
 		#endif

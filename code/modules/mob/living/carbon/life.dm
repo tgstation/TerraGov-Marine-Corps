@@ -175,3 +175,29 @@
 			reagent_shock_modifier += PAIN_REDUCTION_MEDIUM
 		if(81 to INFINITY)
 			reagent_shock_modifier += PAIN_REDUCTION_HEAVY
+
+	handle_stagger()
+	handle_slowdown()
+
+
+/mob/living/carbon/proc/handle_stagger()
+	if(stagger)
+		adjust_stagger(-1)
+	return stagger
+
+/mob/living/carbon/proc/adjust_stagger(amount)
+	stagger = max(stagger + amount,0)
+	return stagger
+
+/mob/living/carbon/proc/handle_slowdown()
+	if(slowdown)
+		adjust_slowdown(-STANDARD_SLOWDOWN_REGEN)
+	return slowdown
+
+/mob/living/carbon/proc/adjust_slowdown(amount)
+	slowdown = max(slowdown + amount,0)
+	return slowdown
+
+/mob/living/carbon/proc/add_slowdown(amount)
+	slowdown = adjust_slowdown(amount*STANDARD_SLOWDOWN_REGEN)
+	return slowdown
