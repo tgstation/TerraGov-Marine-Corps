@@ -39,6 +39,7 @@
 			client.statpanel = "Stats"
 			stat("Operation Time: [worldtime2text()]")
 		client.stat_force_fast_update = TRUE
+		return TRUE
 
 	if(statpanel("Stats"))
 		stat("Operation Time: [worldtime2text()]")
