@@ -2212,6 +2212,8 @@
 		playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 		H.reagents.add_reagent("xeno_toxin", DEFILER_STING_AMOUNT_RECURRING) //10 units transferred.
 		H.reagents.add_reagent("xeno_growthtoxin", DEFILER_STING_AMOUNT_RECURRING)
+		overdose_check(H)
+		overdose_check(H, "xeno_growthtoxin")
 
 		if(count < 2)
 			//It's infection time!
@@ -2229,3 +2231,11 @@
 		count--
 		//sleep(DEFILER_STING_CHANNEL_TIME)
 	return
+
+/mob/living/carbon/Xenomorph/proc/overdose_check(mob/living/L, toxin = "xeno_toxin")
+	if(!iscarbon(L))
+		return
+	var/mob/living/carbon/C = L
+	var/datum/reagent/xeno_tox = C.reagents.get_reagent("[toxin]")
+	if(xeno_tox.overdosed)
+		to_chat(src, "<span class='xenodanger'>You sense this host is overdosed on [xeno_tox.name].</span>")
