@@ -269,7 +269,7 @@
 
 /proc/key_name_admin(whom, include_name = TRUE)
 	return key_name(whom, TRUE, include_name)
-
+*/
 /proc/loc_name(atom/A)
 	if(!istype(A))
 		return "(INVALID LOCATION)"
@@ -282,7 +282,7 @@
 		return "([AREACOORD(T)])"
 	else if(A.loc)
 		return "(UNKNOWN (?, ?, ?))"
-*/
+
 /proc/key_name(var/whom, var/include_link = null, var/include_name = 1, var/highlight_special_characters = 1)
 	var/mob/M
 	var/client/C
