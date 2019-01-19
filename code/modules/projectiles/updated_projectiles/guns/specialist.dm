@@ -157,10 +157,10 @@
 	if(laser_target)
 		laser_target.remove_laser()
 	laser_target = null
-	accuracy_mult -= CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We lose a big accuracy bonus vs the now unlasered target
 	STOP_PROCESSING(SSobj, src)
-	if(toggle_off)
+	if(toggle_off && targetlaser_on) //sanity check
 		targetlaser_on = FALSE
+		accuracy_mult -= CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We lose a big accuracy bonus vs the now unlasered target
 		if(!silent && user)
 			to_chat(user, "<span class='notice'><b>You deactivate your targeting laser.</b></span>")
 			playsound(user,'sound/machines/click.ogg', 25, 1)
