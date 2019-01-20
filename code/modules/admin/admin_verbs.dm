@@ -504,3 +504,170 @@
 /client/proc/findStealthKey() //TEMPORARY
 	if(holder)
 		return holder.owner.key
+
+
+/client/proc/cmd_admin_check_contents(mob/living/M as mob in mob_list)
+	set category = null
+	set name = "Check Contents"
+
+	var/list/L = M.get_contents()
+	for(var/t in L)
+		to_chat(usr, "[t]")
+	feedback_add_details("admin_verb","CC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/cmd_admin_changekey(mob/O in living_mob_list)
+	set category = "Admin"
+	set name = "Change CKey"
+	var/new_ckey = null
+
+	if (!holder)
+		to_chat(src, "Only administrators may use this command.")
+		return
+
+	if(O.gc_destroyed) return //mob was garbage collected
+
+	new_ckey = input("Enter new ckey:","CKey") as null|text
+
+	if(!new_ckey || new_ckey == null)
+		return
+
+	O.ghostize(0)
+	log_admin("[key_name(usr)] modified [O.name]'s ckey to [new_ckey]")
+	message_admins("[key_name_admin(usr)] modified [O.name]'s ckey to [new_ckey]", 1)
+	feedback_add_details("admin_verb","KEY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	O.ckey = new_ckey
+	if(O.client) O.client.change_view(world.view)
+
+/client/proc/cmd_admin_list_open_jobs()
+	set category = "Admin"
+	set name = "Job Slots - List"
+
+	if (!holder)
+		to_chat(src, "Only administrators may use this command.")
+		return
+	if(RoleAuthority)
+		var/datum/job/J
+		var/i
+		for(i in RoleAuthority.roles_by_name)
+			J = RoleAuthority.roles_by_name[i]
+			if(J.flags_startup_parameters & ROLE_ADD_TO_MODE) to_chat(src, "[J.title]: [J.get_total_positions(1)] / [J.current_positions]")
+	feedback_add_details("admin_verb","LFS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+
+/client/proc/cmd_admin_rejuvenate(mob/living/M as mob in mob_list)
+	set category = null
+	set name = "Rejuvenate"
+	if(!holder)
+		to_chat(src, "Only administrators may use this command.")
+		return
+	if(!mob)
+		return
+	if(!istype(M))
+		alert("Cannot revive a ghost")
+		return
+	if(CONFIG_GET(flag/allow_admin_rev))
+		M.revive()
+
+		log_admin("[key_name(usr)] healed / revived [key_name(M)]")
+		message_admins("<span class='warning'> Admin [key_name_admin(usr)] healed / revived [key_name_admin(M)]!</span>", 1)
+	else
+		alert("Admin revive disabled")
+	feedback_add_details("admin_verb","REJU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/toggle_own_ghost_vis()
+	set name = "Ghost visiblity"
+	set desc = "Toggle your visibility as a ghost to other ghosts."
+	set category = "Admin"
+
+	if(!holder) return
+
+	if(isobserver(usr))
+		if(usr.invisibility <> 60 && usr.layer <> 4.0)
+			usr.invisibility = 60
+			usr.layer = MOB_LAYER
+			to_chat(usr, "<span class='warning'>Ghost visibility returned to normal.</span>")
+		else
+			usr.invisibility = 70
+			usr.layer = BELOW_MOB_LAYER
+			to_chat(usr, "<span class='warning'>Your ghost is now invisibile to other ghosts.</span>")
+		log_admin("Admin [key_name(src)] has toggled Ordukai Mode.")
+	else
+		to_chat(usr, "<span class='warning'>You need to be a ghost in order to use this.</span>")
+
+/client/proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
+	if(automute)
+		if(!CONFIG_GET(flag/automute_on))	return
+	else
+		if(!usr || !usr.client)
+			return
+		if(!usr.client.holder)
+			to_chat(usr, "<font color='red'>Error: cmd_admin_mute: You don't have permission to do this.</font>")
+			return
+		if(!M.client)
+			to_chat(usr, "<font color='red'>Error: cmd_admin_mute: This mob doesn't have a client tied to it.</font>")
+		if(M.client.holder)
+			to_chat(usr, "<font color='red'>Error: cmd_admin_mute: You cannot mute an admin/mod.</font>")
+	if(!M.client)		return
+	if(M.client.holder)	return
+
+	var/muteunmute
+	var/mute_string
+
+	switch(mute_type)
+		if(MUTE_IC)			mute_string = "IC (say and emote)"
+		if(MUTE_OOC)		mute_string = "OOC"
+		if(MUTE_PRAY)		mute_string = "pray"
+		if(MUTE_ADMINHELP)	mute_string = "adminhelp, admin PM and ASAY"
+		if(MUTE_DEADCHAT)	mute_string = "deadchat and DSAY"
+		if(MUTE_ALL)		mute_string = "everything"
+		else				return
+
+	if(automute)
+		muteunmute = "auto-muted"
+		M.client.prefs.muted |= mute_type
+		log_admin("SPAM AUTOMUTE: [muteunmute] [key_name(M)] from [mute_string]")
+		message_admins("SPAM AUTOMUTE: [muteunmute] [key_name_admin(M)] from [mute_string].", 1)
+		to_chat(M, "You have been [muteunmute] from [mute_string] by the SPAM AUTOMUTE system. Contact an admin.")
+		feedback_add_details("admin_verb","AUTOMUTE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		return
+
+	if(M.client.prefs.muted & mute_type)
+		muteunmute = "unmuted"
+		M.client.prefs.muted &= ~mute_type
+	else
+		muteunmute = "muted"
+		M.client.prefs.muted |= mute_type
+
+	log_admin("[key_name(usr)] has [muteunmute] [key_name(M)] from [mute_string]")
+	message_admins("[key_name_admin(usr)] has [muteunmute] [key_name_admin(M)] from [mute_string].", 1)
+	to_chat(M, "You have been [muteunmute] from [mute_string].")
+	feedback_add_details("admin_verb","MUTE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+
+/client/proc/cmd_admin_prison(mob/M as mob in mob_list)
+	set category = "Admin"
+	set name = "Prison"
+	if(!holder)
+		to_chat(src, "Only administrators may use this command.")
+		return
+	if (ismob(M))
+		if(istype(M, /mob/living/silicon/ai))
+			alert("The AI can't be sent to prison you jerk!", null, null, null, null, null)
+			return
+		//strip their stuff before they teleport into a cell :downs:
+		for(var/obj/item/W in M)
+			M.dropItemToGround(W)
+		//teleport person to cell
+		M.KnockOut(5)
+		sleep(5)	//so they black out before warping
+		M.loc = pick(prisonwarp)
+		if(istype(M, /mob/living/carbon/human))
+			var/mob/living/carbon/human/prisoner = M
+			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), SLOT_W_UNIFORM)
+			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), SLOT_SHOES)
+		spawn(50)
+			to_chat(M, "<span class='warning'>You have been sent to the prison station!</span>")
+		log_admin("[key_name(usr)] sent [key_name(M)] to the prison station.")
+		message_admins("<span class='notice'> [key_name_admin(usr)] sent [key_name_admin(M)] to the prison station.</span>", 1)
+		feedback_add_details("admin_verb","PRISON") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
