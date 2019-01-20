@@ -42,8 +42,8 @@
 	var/obj/machinery/Research_Machinery/marineprotolathe/linked_lathe = null 		//linked marine protolathe
 
 	var/screen = 1.0	//Which screen is currently showing.
-	var/errored = 0		//Errored during item construction.
-	var/res_in_prog = 0 //Science takes time
+	var/errored = FALSE		//Errored during item construction.
+	var/res_in_prog = FALSE //Science takes time
 
 	req_access = list(ACCESS_MARINE_RESEARCH)
 
@@ -71,15 +71,15 @@
 
 /obj/machinery/computer/XenoRnD/proc/CanConstruct(metal, glass, biomass)	//Check for available resource
 	if(metal > linked_lathe.material_storage["metal"])
-		return 0
+		return FALSE
 	if(glass > linked_lathe.material_storage["glass"])
-		return 0
+		return FALSE
 	if(biomass > linked_lathe.material_storage["biomass"])
-		return 0
-	return 1
+		return FALSE
+	return TRUE
 
 /obj/machinery/computer/XenoRnD/Initialize()
-	..()
+	. = ..()
 	files = new /datum/marineResearch(src)
 	return INITIALIZE_HINT_NORMAL
 
@@ -102,7 +102,7 @@
 		user.drop_held_item()
 		inserted_disk = O
 		O.loc = src
-		return 1
+		return TRUE
 	return
 
 /obj/machinery/computer/XenoRnD/Topic(href, href_list)				//Brutally teared from rdconsole.dm
@@ -121,7 +121,7 @@
 
 	else if(href_list["reset"])
 		warning("RnD console has errored during protolathe operation. Resetting.")
-		errored = 0
+		errored = FALSE
 		screen = 1.0
 		updateUsrDialog()
 
@@ -155,13 +155,13 @@
 			else
 				var/choice = input("Proceeding will destroy loaded item.") in list("Proceed", "Cancel")
 				if(choice == "Cancel" || !linked_dissector) return
-				linked_dissector.busy = 1
+				linked_dissector.busy = TRUE
 				screen = 0.1
 				updateUsrDialog()
 				flick("d_analyzer_process", linked_dissector)
 				spawn(24)
 					if(linked_dissector)
-						linked_dissector.busy = 0
+						linked_dissector.busy = TRUE
 						if(!linked_dissector.loaded_item)
 							to_chat(usr, "\red The organic dissector appears to be empty.")
 							screen = 1.0
@@ -207,13 +207,13 @@
 				var/reser = input("Start research [avail.name]?") in list("Proceed", "Cancel")
 				if(reser == "Cancel") return
 				screen = 0.5
-				res_in_prog = 1
+				res_in_prog = TRUE
 				spawn(10*avail.time)
-					errored = 1
+					errored = TRUE
 					files.AvailToKnown(avail)
-					res_in_prog = 0
+					res_in_prog = FALSE
 					screen = 1.0
-					errored = 0
+					errored = FALSE
 					files.CheckAvail()
 					updateUsrDialog()
 				break
@@ -262,10 +262,10 @@
 				continue
 			if(!CanConstruct(design.materials["metal"], design.materials["glass"], design.materials["biomass"]))
 				break
-			errored = 1
+			errored = TRUE
 			if(design.build_path)
 				flick("protolathe_n", linked_lathe)
-				errored = 0
+				errored = FALSE
 				screen = 0.6
 				linked_lathe.material_storage["metal"] -= design.materials["metal"]
 				linked_lathe.material_storage["glass"] -= design.materials["glass"]
@@ -436,7 +436,7 @@
 			dat += "Material Amount per resource:<BR>"
 			dat += "Metal: [linked_lathe.material_storage["metal"]]/[linked_lathe.max_per_resource["metal"]]<BR>"
 			dat += "Glass: [linked_lathe.material_storage["glass"]]/[linked_lathe.max_per_resource["glass"]]<BR>"
-			if(files.Check_tech(RESEARCH_XENOSTART) == 1)
+			if(files.Check_tech(RESEARCH_XENOSTART) == TRUE)
 				dat += "Xenomorph biomatter: [linked_lathe.material_storage["biomass"]]/[linked_lathe.max_per_resource["biomass"]]<BR>"
 			dat += "<BR>Available experimental equipment.<HR><HR>"
 			for(var/datum/marine_design/design in files.known_design)

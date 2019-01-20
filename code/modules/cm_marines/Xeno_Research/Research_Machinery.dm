@@ -4,9 +4,9 @@
 
 	var/obj/machinery/computer/XenoRnD/linked_console = null
 
-	var/busy = 0
-	var/opened = 0
-	use_power = 1
+	var/busy = FALSE
+	var/opened = FALSE
+	use_power = TRUE
 	idle_power_usage = 30
 	active_power_usage = 2500
 
@@ -16,14 +16,13 @@
 	name = "Organic dissector"
 	icon_state = "d_analyzer"
 	var/obj/item/marineResearch/xenomorph/loaded_item = null
-	var/decon_mod = 1
+	var/decon_mod = TRUE
 
-	use_power = 1
 	idle_power_usage = 30
 	active_power_usage = 2500
 
 /obj/machinery/Research_Machinery/dissector/Initialize()
-	..()
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/dissector(src) //We'll need it's own board one day.
 	component_parts += new /obj/item/stock_parts/scanning_module(src)
@@ -34,14 +33,14 @@
 /obj/machinery/Research_Machinery/dissector/attackby(var/obj/O as obj, var/mob/user as mob)
 	if (istype(O, /obj/item/tool/screwdriver))
 		if (!opened)
-			opened = 1
+			opened = TRUE
 			if(linked_console)
 				linked_console.linked_dissector = null
 				linked_console = null
 			icon_state = "d_analyzer_t"
 			to_chat(user, "You open the maintenance hatch of [src].")
 		else
-			opened = 0
+			opened = FALSE
 			icon_state = "d_analyzer"
 			to_chat(user, "You close the maintenance hatch of [src].")
 		return
@@ -54,10 +53,10 @@
 			for(var/obj/I in component_parts)
 				I.loc = src.loc
 			qdel(src)
-			return 1
+			return TRUE
 		else
 			to_chat(user, "\red You can't load the [src.name] while it's opened.")
-			return 1
+			return TRUE
 	if (!linked_console)
 		to_chat(user, "\red The Organic dissector must be linked to an R&D console first!")
 		return
@@ -71,8 +70,8 @@
 			var/obj/item/sampler/A = O
 			if(!A.filled)
 				to_chat(user, "\red [O.name] is empty!")
-				return 1
-			A.filled = 0
+				return TRUE
+			A.filled = FALSE
 			loaded_item = A.sample
 			A.sample = null
 			A.update_icon()
@@ -80,12 +79,12 @@
 			flick("d_analyzer_la", src)
 			spawn(10)
 				icon_state = "d_analyzer_l"
-				busy = 0
-			return 1
+				busy = FALSE
+			return TRUE
 		if(!istype(O, /obj/item/marineResearch/xenomorph))
 			to_chat(user, "\red Can't do anything with that, maybe something organic...!")
 			return
-		busy = 1
+		busy = TRUE
 		loaded_item = O
 		user.drop_held_item()
 		O.loc = src
@@ -93,8 +92,8 @@
 		flick("d_analyzer_la", src)
 		spawn(10)
 			icon_state = "d_analyzer_l"
-			busy = 0
-		return 1
+			busy = FALSE
+		return TRUE
 	else
 		to_chat(user, "\red Can't do anything with that, maybe something organic...!")
 	return
@@ -105,7 +104,6 @@
 	icon_state = "protolathe"
 	flags_atom = OPENCONTAINER
 
-	use_power = 1
 	idle_power_usage = 30
 	active_power_usage = 5000
 	// var/obj/machinery/Research_Machinery/biogenerator/linked_generator = null
@@ -115,7 +113,7 @@
 	var/list/max_per_resource = list("metal" = null, "glass" = null, "biomass" = null)
 
 /obj/machinery/Research_Machinery/marineprotolathe/Initialize()
-	..()
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/marineprotolathe(src)
 	component_parts += new /obj/item/stock_parts/matter_bin(src)
@@ -147,17 +145,17 @@
 
 /obj/machinery/Research_Machinery/marineprotolathe/attackby(var/obj/item/O as obj, var/mob/user as mob)
 	if (O.is_open_container())
-		return 1
+		return TRUE
 	if (istype(O, /obj/item/tool/screwdriver))
 		if (!opened)
-			opened = 1
+			opened = TRUE
 			if(linked_console)
 				linked_console.linked_lathe = null
 				linked_console = null
 			icon_state = "protolathe_off"
 			to_chat(user, "You open the maintenance hatch of [src].")
 		else
-			opened = 0
+			opened = FALSE
 			icon_state = "protolathe"
 			to_chat(user, "You close the maintenance hatch of [src].")
 		return
@@ -187,38 +185,38 @@
 				linked_console.linked_lathe = null
 				linked_console = null
 			qdel(src)
-			return 1
+			return TRUE
 
 	if(istype(O, /obj/item/marineResearch/xenomorph))
 		if(TotalMaterials() > max_stored)
-			return 1
+			return TRUE
 		if(max_per_resource["biomass"] <= material_storage["biomass"])
 			to_chat(user, "\red The protolathe's biomass bin is full.")
-			return 1
+			return TRUE
 		user.drop_held_item()
 		material_storage["biomass"] += 500
 		qdel(O)
-		return 1
+		return TRUE
 
 	if(istype(O, /obj/item/sampler))
 		var/obj/item/sampler/samp = O
 		if(!samp.filled)
 			to_chat(user, "\red Sampler is empty!")
-			return 1
+			return TRUE
 		if(max_per_resource["biomass"] <= material_storage["biomass"])
 			to_chat(user, "\red The protolathe's biomass bin is full.")
-			return 1
+			return TRUE
 		material_storage["biomass"] += 50
-		samp.filled = 0
+		samp.filled = FALSE
 		samp.sample = null
 		samp.update_icon()
-		return 1
+		return TRUE
 
 	if(istype(O,/obj/item/stack/sheet))
 		var/obj/item/stack/sheet/S = O
 		if (material_storage[S.name] + S.perunit > max_per_resource[S.name])
 			to_chat(user, "\red The protolathe's [S.name] material bin is full. Please remove material before adding more.")
-			return 1
+			return TRUE
 
 	var/obj/item/stack/sheet/stack = O
 	var/amount = round(input("How many sheets do you want to add?") as num)//No decimals
@@ -237,7 +235,7 @@
 		if(max_per_resource["glass"] < (amount*stack.perunit))//Can't overfill
 			amount = min(stack.amount, round((max_per_resource[stack.name])/stack.perunit))
 
-	busy = 1
+	busy = TRUE
 	use_power(max(1000, (3750*amount/10)))
 	stack.use(amount)
 	to_chat(user, "\blue You add [amount] sheets to the [src.name].")
@@ -245,7 +243,7 @@
 		material_storage["metal"] += amount * 3750
 	if(istype(stack, /obj/item/stack/sheet/glass))
 		material_storage["glass"] += amount * 3750
-	busy = 0
+	busy = FALSE
 	src.updateUsrDialog()
 
 /*
@@ -301,7 +299,7 @@
 	active_power_usage = 5000
 
 /obj/machinery/Research_Machinery/biogenerator/Initialize()
-	..()
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/circuitboard/machine/biorganic(src)
 	component_parts += new /obj/item/marineResearch/xenomorph/secretor/hivelord(src)		// Aliens will ABSOLUTELY HATE any researcher, that build this thing
