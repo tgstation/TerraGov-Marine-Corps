@@ -702,18 +702,6 @@ var/list/debug_verbs = list(
 	message_admins("[src] readmined themselves.", 1)
 	feedback_add_details("admin_verb", "RAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/toggle_log_hrefs()
-	set name = "Toggle href Logging"
-	set category = "Server"
-	if(!holder)	return
-	if(config)
-		if(CONFIG_GET(flag/log_hrefs))
-			CONFIG_SET(flag/log_hrefs, FALSE)
-			to_chat(src, "<b>Stopped logging hrefs</b>")
-		else
-			CONFIG_SET(flag/log_hrefs, TRUE)
-			to_chat(src, "<b>Started logging hrefs</b>")
-
 /client/proc/check_ai_laws()
 	set name = "Check AI Laws"
 	set category = "Admin"
@@ -890,42 +878,6 @@ var/list/debug_verbs = list(
 	if(sec_level && alert("Switch from code [get_security_level()] to code [sec_level]?","Change security level?","Yes","No") == "Yes")
 		set_security_level(sec_level)
 		log_admin("[key_name(usr)] changed the security level to code [sec_level].")
-
-/client/proc/toggle_gun_restrictions()
-	set name = "Toggle Gun Restrictions"
-	set desc = "Toggling to on will allow anyone to use restricted NT superguns. Leave this alone unless you know what you're doing."
-	set category = "Server"
-
-	if(!holder)	return
-	if(config)
-		if(CONFIG_GET(flag/remove_gun_restrictions))
-			CONFIG_SET(flag/remove_gun_restrictions, FALSE)
-			to_chat(src, "<b>Enabled gun restrictions.</b>")
-			message_admins("Admin [key_name_admin(usr)] has enabled NT gun restrictions.", 1)
-			log_admin("[key_name(src)] enabled NT gun restrictions.")
-		else
-			CONFIG_SET(flag/remove_gun_restrictions, TRUE)
-			to_chat(src, "<b>Disabled gun restrictions.</b>")
-			message_admins("Admin [key_name_admin(usr)] has disabled NT gun restrictions.", 1)
-			log_admin("[key_name(src)] disabled NT gun restrictions.")
-
-/client/proc/toggle_synthetic_restrictions()
-	set name = "Toggle Synthetic Gun Use"
-	set desc = "Toggling to on will allow synthetics to fire guns. Leave this alone unless you know what you're doing."
-	set category = "Server"
-
-	if(!holder)	return
-	if(config)
-		if(CONFIG_GET(flag/allow_synthetic_gun_use))
-			CONFIG_SET(flag/allow_synthetic_gun_use, FALSE)
-			to_chat(src, "<b>Synthetic gun use disallowed.</b>")
-			message_admins("Admin [key_name_admin(usr)] has disabled synthetic gun use.", 1)
-			log_admin("[key_name(src)] disabled synthetic gun use.")
-		else
-			CONFIG_SET(flag/allow_synthetic_gun_use, TRUE)
-			to_chat(src, "<b>Synthetic gun use allowed.</b>")
-			message_admins("Admin [key_name_admin(usr)] has enabled synthetic gun use.", 1)
-			log_admin("[key_name(src)] allowed synthetic gun use.")
 
 /client/proc/adjust_weapon_mult()
 	set name = "Adjust Weapon Multipliers"
