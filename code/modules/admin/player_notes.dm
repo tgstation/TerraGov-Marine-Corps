@@ -1,90 +1,3 @@
-//This stuff was originally intended to be integrated into the ban-system I was working on
-//but it's safe to say that'll never be finished. So I've merged it into the current player panel.
-//enjoy				~Carn
-/*
-#define NOTESFILE "data/player_notes.sav"	//where the player notes are saved
-
-datum/admins/proc/notes_show(var/ckey)
-	usr << browse("<head><title>Player Notes</title></head><body>[notes_gethtml(ckey)]</body>","window=player_notes;size=700x400")
-
-
-datum/admins/proc/notes_gethtml(var/ckey)
-	var/savefile/notesfile = new(NOTESFILE)
-	if(!notesfile)	return "<font color='red'>Error: Cannot access [NOTESFILE]</font>"
-	if(ckey)
-		. = "<b>Notes for <a href='?src=\ref[src];notes=show'>[ckey]</a>:</b> <a href='?src=\ref[src];notes=add;ckey=[ckey]'>\[+\]</a> <a href='?src=\ref[src];notes=remove;ckey=[ckey]'>\[-\]</a><br>"
-		notesfile.cd = "/[ckey]"
-		var/index = 1
-		while( !notesfile.eof )
-			var/note
-			notesfile >> note
-			. += "[note] <a href='?src=\ref[src];notes=remove;ckey=[ckey];from=[index]'>\[-\]</a><br>"
-			index++
-	else
-		. = "<b>All Notes:</b> <a href='?src=\ref[src];notes=add'>\[+\]</a> <a href='?src=\ref[src];notes=remove'>\[-\]</a><br>"
-		notesfile.cd = "/"
-		for(var/dir in notesfile.dir)
-			. += "<a href='?src=\ref[src];notes=show;ckey=[dir]'>[dir]</a><br>"
-	return
-
-
-//handles adding notes to the end of a ckey's buffer
-//originally had seperate entries such as var/by to record who left the note and when
-//but the current bansystem is a heap of dung.
-/proc/notes_add(var/ckey, var/note)
-	if(!ckey)
-		ckey = ckey(input(usr,"Who would you like to add notes for?","Enter a ckey",null) as text|null)
-		if(!ckey)	return
-
-	if(!note)
-		note = html_encode(input(usr,"Enter your note:","Enter some text",null) as message|null)
-		if(!note)	return
-
-	var/savefile/notesfile = new(NOTESFILE)
-	if(!notesfile)	return
-	notesfile.cd = "/[ckey]"
-	notesfile.eof = 1		//move to the end of the buffer
-	to_chat(notesfile, "[time2text(world.realtime,"DD-MMM-YYYY")]|[note][(usr && usr.ckey)?" ~[usr.ckey]":""]")
-	return
-
-//handles removing entries from the buffer, or removing the entire directory if no start_index is given
-/proc/notes_remove(var/ckey, var/start_index, var/end_index)
-	var/savefile/notesfile = new(NOTESFILE)
-	if(!notesfile)	return
-
-	if(!ckey)
-		notesfile.cd = "/"
-		ckey = ckey(input(usr,"Who would you like to remove notes for?","Enter a ckey",null) as null|anything in notesfile.dir)
-		if(!ckey)	return
-
-	if(start_index)
-		notesfile.cd = "/[ckey]"
-		var/list/noteslist = list()
-		if(!end_index)	end_index = start_index
-		var/index = 0
-		while( !notesfile.eof )
-			index++
-			var/temp
-			notesfile >> temp
-			if( (start_index <= index) && (index <= end_index) )
-				continue
-			noteslist += temp
-
-		notesfile.eof = -2		//Move to the start of the buffer and then erase.
-
-		for( var/note in noteslist )
-			to_chat(notesfile, note)
-	else
-		notesfile.cd = "/"
-		if(alert(usr,"Are you sure you want to remove all their notes?","Confirmation","No","Yes - Remove all notes") == "Yes - Remove all notes")
-			notesfile.dir.Remove(ckey)
-	return
-
-#undef NOTESFILE
-*/
-
-//Hijacking this file for BS12 player_notes_list functions. I like this ^ one systemm alright, but converting sounds too bothersome~ Chinsky.
-
 /proc/notes_add(var/key, var/note, var/mob/usr)
 	if (!key || !note)
 		return
@@ -210,3 +123,153 @@ datum/admins/proc/notes_gethtml(var/ckey)
 			dat += "[I.content]%0D%0Aby [I.author] ([I.rank]) on [I.timestamp]%0D%0A%0D%0A"
 
 	return dat
+
+/datum/player_info/var/author // admin who authored the information
+/datum/player_info/var/rank //rank of admin who made the notes
+/datum/player_info/var/content // text content of the information
+/datum/player_info/var/timestamp // Because this is bloody annoying
+/datum/player_info/var/hidden
+
+#define PLAYER_NOTES_ENTRIES_PER_PAGE 50
+/datum/admins/proc/player_notes_list()
+	set category = "Admin"
+	set name = "Player Notes List"
+
+	if(!istype(src,/datum/admins))
+		src = usr.client.holder
+
+	if(!istype(src,/datum/admins))
+		to_chat(usr, "Error: you are not an admin!")
+		return
+
+	PlayerNotesPage(1)
+
+/datum/admins/proc/PlayerNotesPage(page)
+	var/dat = "<B>Player notes</B><HR>"
+	var/savefile/S = new("data/player_notes.sav")
+	var/list/note_keys
+	S >> note_keys
+	if(!note_keys)
+		dat += "No notes found."
+	else
+		dat += "<table>"
+		note_keys = sortList(note_keys)
+
+		// Display the notes on the current page
+		var/number_pages = note_keys.len / PLAYER_NOTES_ENTRIES_PER_PAGE
+		// Emulate ceil(why does BYOND not have ceil)
+		if(number_pages != round(number_pages))
+			number_pages = round(number_pages) + 1
+		var/page_index = page - 1
+		if(page_index < 0 || page_index >= number_pages)
+			return
+
+		var/lower_bound = page_index * PLAYER_NOTES_ENTRIES_PER_PAGE + 1
+		var/upper_bound = (page_index + 1) * PLAYER_NOTES_ENTRIES_PER_PAGE
+		upper_bound = min(upper_bound, note_keys.len)
+		for(var/index = lower_bound, index <= upper_bound, index++)
+			var/t = note_keys[index]
+			dat += "<tr><td><a href='?src=\ref[src];notes=show;ckey=[t]'>[t]</a></td></tr>"
+
+		dat += "</table><br>"
+
+		// Display a footer to select different pages
+		for(var/index = 1, index <= number_pages, index++)
+			if(index == page)
+				dat += "<b>"
+			dat += "<a href='?src=\ref[src];notes=list;index=[index]'>[index]</a> "
+			if(index == page)
+				dat += "</b>"
+
+	usr << browse(dat, "window=player_notes;size=400x400")
+
+
+/datum/admins/proc/player_has_info(var/key as text)
+	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/list/infos
+	info >> infos
+	if(!infos || !infos.len) return 0
+	else return 1
+
+
+/datum/admins/proc/player_notes_show(var/key as text)
+	set category = "Admin"
+	set name = "Player Notes Show"
+
+	if(!istype(src, /datum/admins))
+		src = usr.client.holder
+
+	if(!istype(src, /datum/admins))
+		to_chat(usr, "Error: you are not an admin!")
+		return
+
+	var/dat = "<html><head><title>Info on [key]</title></head>"
+	dat += "<body>"
+
+	key = ckey(key)
+
+	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/list/infos
+	info >> infos
+	if(!infos)
+		dat += "No information found on the given key.<br>"
+	else
+		var/update_file = 0
+		var/i = 0
+		for(var/datum/player_info/I in infos)
+			i += 1
+			if(!I.timestamp)
+				I.timestamp = "Pre-4/3/2012"
+				update_file = 1
+			if(!I.rank)
+				I.rank = "N/A"
+				update_file = 1
+			dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
+			if((I.author == usr.key || I.author == "Adminbot" || ishost(usr)) && ((R_ADMIN & usr.client.holder.rights) || (R_MOD & usr.client.holder.rights)))
+				dat += "<A href='?src=\ref[src];remove_player_info=[key];remove_index=[i]'>Remove</A> "
+			if((R_ADMIN & usr.client.holder.rights) || (R_MOD & usr.client.holder.rights))
+				if(I.hidden)
+					dat += "<A href='?src=\ref[src];unhide_player_info=[key];remove_index=[i]'>Unhide</A>"
+				else
+					dat += "<A href='?src=\ref[src];hide_player_info=[key];remove_index=[i]'>Hide</A>"
+			dat += "<br><br>"
+		if(update_file) to_chat(info, infos)
+
+	dat += "<br>"
+	dat += "<A href='?src=\ref[src];add_player_info=[key]'>Add Comment</A><br>"
+	dat += "<A href='?src=\ref[src];player_notes_copy=[key]'>Copy Player Notes</A><br>"
+
+	dat += "</body></html>"
+	usr << browse(dat, "window=adminplayerinfo;size=480x480")
+
+
+/datum/admins/proc/player_notes_copy(var/key as text)
+	set category = null
+	set name = "Player Notes Copy"
+	if (!istype(src,/datum/admins))
+		src = usr.client.holder
+	if (!istype(src,/datum/admins))
+		to_chat(usr, "Error: you are not an admin!")
+		return
+	var/dat = "<html><head><title>Copying notes for [key]</title></head>"
+	dat += "<body>"
+	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
+	var/list/infos
+	info >> infos
+	if(!infos)
+		dat += "No information found on the given key.<br>"
+	else
+		dat += "Some notes might need to be omitted for security/privacy reasons!<br><hr>"
+		var/i = 0
+		for(var/datum/player_info/I in infos)
+			i += 1
+			if(!I.timestamp)
+				I.timestamp = "Pre-4/3/2012"
+			dat += "<font color=#008800>[I.content]</font> | <i><font color=blue>[I.timestamp]</i></font>"
+			dat += "<br><br>"
+	dat += "</body></html>"
+	// Using regex to remove the note author for bans done in admin/topic.dm
+	var/regex/remove_author = new("(?=Banned by).*?(?=\\|)", "g")
+	dat = remove_author.Replace(dat, "Banned ")
+
+	usr << browse(dat, "window=notescopy;size=480x480")

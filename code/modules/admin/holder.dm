@@ -195,7 +195,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_create_AI_report,  //Allows creation of IC reports by the ships AI
 	/client/proc/cmd_admin_xeno_report,  //Allows creation of IC reports by the Queen Mother
 	/client/proc/show_hive_status,
-	// /client/proc/check_ai_laws,			/*shows AI and borg laws*/
 	/client/proc/check_antagonists,
 	/client/proc/admin_memo,			/*admin memo system. show/delete/write. +SERVER needed to delete admin memos of others*/
 	/client/proc/dsay,					/*talk in deadchat using our ckey/fakekey*/
@@ -558,3 +557,74 @@ var/list/debug_verbs = list(
 	verbs += /client/proc/enable_debug_verbs
 
 	feedback_add_details("admin_verb","hDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+
+/proc/is_mentor(client/C)
+
+	if(!istype(C))
+		return 0
+	if(!C.holder)
+		return 0
+
+	if(C.holder.rights == R_MENTOR)
+		return 1
+	return 0
+
+
+
+/proc/ishost(whom)
+	if(!whom)
+		return 0
+	var/client/C
+	var/mob/M
+	if(istype(whom, /client))
+		C = whom
+	else if(istype(whom, /mob))
+		M = whom
+		C = M.client
+	else
+		return 0
+	if(R_HOST & C.holder.rights)
+		return 1
+	else
+		return 0
+
+/proc/message_admins(var/msg) // +ADMIN and above
+	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
+	log_admin_private(msg)
+	for(var/client/C in admins)
+		if(R_ADMIN & C.holder.rights)
+			to_chat(C, msg)
+
+/proc/message_mods(var/msg) // +MOD and above (not Mentors)
+	msg = "<span class=\"admin\"><span class=\"prefix\">MOD LOG:</span> <span class=\"message\">[msg]</span></span>"
+	log_admin_private(msg)
+	for(var/client/C in admins)
+		if(R_MOD & C.holder.rights)
+			to_chat(C, msg)
+
+/proc/message_staff(var/msg) // ALL staff - including Mentors
+	msg = "<span class=\"admin\"><span class=\"prefix\">STAFF LOG:</span> <span class=\"message\">[msg]</span></span>"
+	log_admin_private(msg)
+	for(var/client/C in admins)
+		if(C.holder.rights)
+			to_chat(C, msg)
+
+/proc/msg_admin_attack(var/text) //Toggleable Attack Messages
+	log_attack(text)
+	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ATTACK:</span> <span class=\"message\">[text]</span></span>"
+	for(var/client/C in admins)
+		if(R_MOD & C.holder.rights)
+			if((C.prefs.toggles_chat & CHAT_ATTACKLOGS) && !((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
+				var/msg = rendered
+				to_chat(C, msg)
+
+/proc/msg_admin_ff(var/text)
+	log_attack(text) //Do everything normally BUT IN GREEN SO THEY KNOW
+	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ATTACK:</span> <font color=#00ff00><b>[text]</b></font></span>" //I used <font> because I never learned html correctly, fix this if you want
+
+	for(var/client/C in admins)
+		if(R_MOD & C.holder.rights)
+			if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) && !((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
+				var/msg = rendered
+				to_chat(C, msg)

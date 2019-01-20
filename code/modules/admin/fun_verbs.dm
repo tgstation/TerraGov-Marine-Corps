@@ -655,3 +655,139 @@
 
 	play_imported_sound(melody)
 	feedback_add_details("admin_verb","PDS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+
+/datum/admins/proc/announce()
+	set category = "Fun"
+	set name = "Announce"
+	set desc= "Announce your desires to the world."
+
+	if(!check_rights(0))
+		return
+
+	var/message = input("Global message to send:", "Admin Announce") as message|null
+
+	if(!message)
+		return
+
+	if(!check_rights(R_SERVER,0))
+		message = adminscrub(message,500)
+
+	to_chat(world, "<span class='notice'> <b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b>\n \t [message]</span>")
+	log_admin("Announce: [key_name(usr)] : [message]")
+	feedback_add_details("admin_verb","A") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+
+/datum/admins/proc/admin_force_distress()
+	set category = "Fun"
+	set name = "Distress Beacon"
+	set desc = "Call a distress beacon. This should not be done if the shuttle's already been called."
+
+	if(!ticker?.mode)
+		to_chat(src, "<span class='warning'>Please wait for the round to begin first.</span>")
+		return
+
+	if(!check_rights(R_ADMIN))
+		to_chat(src, "<span class='warning'>Insufficient permissions.</span>")
+		return
+
+	if(ticker.mode.waiting_for_candidates)
+		to_chat(src, "<span class='warning'>Please wait for the current beacon to be finalized.</span>")
+		return
+
+	if(ticker.mode.picked_call)
+		ticker.mode.picked_call.members = list()
+		ticker.mode.picked_call.candidates = list()
+		ticker.mode.waiting_for_candidates = FALSE
+		ticker.mode.on_distress_cooldown = FALSE
+		ticker.mode.picked_call = null
+
+
+	var/list/list_of_calls = list()
+	for(var/datum/emergency_call/L in ticker.mode.all_calls)
+		if(L?.name)
+			list_of_calls += L.name
+
+	list_of_calls += "Randomize"
+
+	var/choice = input("Which distress do you want to call?") as null|anything in list_of_calls
+	if(!choice)
+		return
+
+	if(choice == "Randomize")
+		ticker.mode.picked_call	= ticker.mode.get_random_call()
+	else
+		for(var/datum/emergency_call/C in ticker.mode.all_calls)
+			if(C?.name == choice)
+				ticker.mode.picked_call = C
+				break
+
+	if(!istype(ticker.mode.picked_call))
+		return
+
+	var/is_announcing = TRUE
+	var/announce = alert(src, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No")
+	if(announce == "No")
+		is_announcing = FALSE
+
+	ticker.mode.picked_call.activate(is_announcing)
+
+	feedback_add_details("admin_verb","DISTR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(usr)] admin-called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]")
+	message_admins("<span class='notice'> [key_name_admin(usr)] admin-called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]</span>", 1)
+
+
+/datum/admins/proc/admin_force_ERT_shuttle()
+	set category = "Fun"
+	set name = "Force ERT Shuttle"
+	set desc = "Force Launch the ERT Shuttle."
+
+	if (!ticker  || !ticker.mode) return
+	if(!check_rights(R_ADMIN))	return
+
+	var/tag = input("Which ERT shuttle should be force launched?", "Select an ERT Shuttle:") as null|anything in list("Distress", "Distress_PMC", "Distress_UPP", "Distress_Big")
+	if(!tag) return
+
+	var/datum/shuttle/ferry/ert/shuttle = shuttle_controller.shuttles[tag]
+	if(!shuttle || !istype(shuttle))
+		message_admins("Warning: Distress shuttle not found. Aborting.")
+		return
+
+	if(shuttle.location) //in start zone in admin z level
+		var/dock_id
+		var/dock_list = list("Port", "Starboard", "Aft")
+		if(shuttle.use_umbilical)
+			dock_list = list("Port Hangar", "Starboard Hangar")
+		var/dock_name = input("Where on the [MAIN_SHIP_NAME] should the shuttle dock?", "Select a docking zone:") as null|anything in dock_list
+		switch(dock_name)
+			if("Port") dock_id = /area/shuttle/distress/arrive_2
+			if("Starboard") dock_id = /area/shuttle/distress/arrive_1
+			if("Aft") dock_id = /area/shuttle/distress/arrive_3
+			if("Port Hangar") dock_id = /area/shuttle/distress/arrive_s_hangar
+			if("Starboard Hangar") dock_id = /area/shuttle/distress/arrive_n_hangar
+			else return
+		for(var/datum/shuttle/ferry/ert/F in shuttle_controller.process_shuttles)
+			if(F != shuttle)
+				//other ERT shuttles already docked on almayer or about to be
+				if(!F.location || F.moving_status != SHUTTLE_IDLE)
+					if(F.area_station.type == dock_id)
+						message_admins("Warning: That docking zone is already taken by another shuttle. Aborting.")
+						return
+
+		for(var/area/A in all_areas)
+			if(A.type == dock_id)
+				shuttle.area_station = A
+				break
+
+
+	if(!shuttle.can_launch())
+		message_admins("Warning: Unable to launch this Distress shuttle at this moment. Aborting.")
+		return
+
+	shuttle.launch()
+
+	feedback_add_details("admin_verb","LNCHERTSHTL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(usr)] force launched a distress shuttle ([tag])")
+	message_admins("<span class='notice'> [key_name_admin(usr)] force launched a distress shuttle ([tag])</span>", 1)
+
+

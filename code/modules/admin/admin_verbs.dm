@@ -294,12 +294,6 @@
 	message_admins("[src] readmined themselves.", 1)
 	feedback_add_details("admin_verb", "RAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/check_ai_laws()
-	set name = "Check AI Laws"
-	set category = "Admin"
-	if(holder)
-		src.holder.output_ai_laws()
-
 
 //---- bs12 verbs ----
 
@@ -671,3 +665,78 @@ proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 		message_admins("<span class='notice'> [key_name_admin(usr)] sent [key_name_admin(M)] to the prison station.</span>", 1)
 		feedback_add_details("admin_verb","PRISON") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+/datum/admins/proc/unprison(var/mob/M in mob_list)
+	set category = "Admin"
+	set name = "Unprison"
+	if (M.z == 2)
+		if(CONFIG_GET(flag/allow_admin_jump))
+			M.loc = pick(latejoin)
+			message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", 1)
+			log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
+		else
+			alert("Admin jumping disabled")
+	else
+		alert("[M.name] is not prisoned.")
+	feedback_add_details("admin_verb","UP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/datum/admins/proc/show_skills(var/mob/living/carbon/human/M as mob in player_list)
+	set category = "Admin"
+	set name = "Show Skills"
+
+	if (!istype(src,/datum/admins))
+		src = usr.client.holder
+	if (!istype(src,/datum/admins))
+		to_chat(usr, "Error: you are not an admin!")
+		return
+
+	show_skill_window(usr, M)
+
+	return
+
+/client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
+	set category = "Admin"
+	set name = "Update Mob Sprite"
+	set desc = "Should fix any mob sprite update errors."
+
+	if (!holder)
+		to_chat(src, "Only administrators may use this command.")
+		return
+
+	if(istype(H))
+		H.regenerate_icons()
+
+/datum/admins/proc/togglesleep(var/mob/living/M as mob in mob_list)
+	set category = "Admin"
+	set name = "Toggle Sleeping"
+
+	if(!check_rights(0))	return
+
+	if (M.sleeping > 0)
+		M.sleeping = 0
+	else
+		M.sleeping = 9999999
+
+	log_admin("[key_name(usr)] used Toggle Sleeping on [key_name(M)].")
+	message_admins("[key_name(usr)] used Toggle Sleeping on [key_name(M)].")
+
+	return
+
+/datum/admins/proc/sleepall()
+	set category = "Admin"
+	set name = "Toggle Sleep All in View"
+
+	if(!check_rights(0))	return
+
+	if(alert("This will toggle a sleep/awake status on ALL mobs within your view range (for Administration purposes). Are you sure?",,"Yes","Cancel") == "Yes")
+		for(var/mob/living/M in view())
+			if (M.sleeping > 0)
+				M.sleeping = 0
+			else
+				M.sleeping = 9999999
+	else
+		return
+
+	log_admin("[key_name(usr)] used Toggle Sleep All in View.")
+	message_admins("[key_name(usr)] used Toggle Sleep All in View.")
+
+	return
