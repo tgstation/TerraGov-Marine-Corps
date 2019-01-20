@@ -37,9 +37,15 @@ MODE_PREDATOR
 
 Additional game mode variables.
 */
-#define XENO_STARTING_COEF 6
+#define XENO_STARTING_COEF 5.5
 #define MERC_STARTING_COEF 3
 #define SURVIVOR_STARTING_COEF 15
+
+#define SURVIVOR_WEAPONS list(\
+				list(/obj/item/weapon/gun/smg/mp7, /obj/item/ammo_magazine/smg/mp7),\
+				list(/obj/item/weapon/gun/shotgun/double/sawn, /obj/item/ammo_magazine/shotgun/flechette),\
+				list(/obj/item/weapon/gun/smg/uzi, /obj/item/ammo_magazine/smg/uzi),\
+				list(/obj/item/weapon/gun/smg/mp5, /obj/item/ammo_magazine/smg/mp5))
 
 /datum/game_mode
 	var/datum/mind/xenomorphs[] = list() //These are our basic lists to keep track of who is in the game.
@@ -68,8 +74,6 @@ Additional game mode variables.
 	var/round_fog[]				//List of the fog locations.
 	var/round_time_lobby 		//Base time for the lobby, for fog dispersal.
 	var/round_time_fog 			//Variance time for fog dispersal, done during pre-setup.
-	var/monkey_amount		= 0 //How many monkeys do we spawn on this map ?
-	var/list/monkey_types	= list() //What type of monkeys do we spawn
 	var/latejoin_tally		= 0 //How many people latejoined Marines
 	var/latejoin_larva_drop = LATEJOIN_LARVA_DISABLED //A larva will spawn in once the latejoin marine tally reaches this level. If set to 0, no latejoin larva drop
 
@@ -93,9 +97,9 @@ Additional game mode variables.
 
 datum/game_mode/proc/initialize_special_clamps()
 	var/ready_players = ready_players() // Get all players that have "Ready" selected
-	xeno_starting_num = max((ready_players / XENO_STARTING_COEF), xeno_required_num)
-	surv_starting_num = CLAMP((ready_players / SURVIVOR_STARTING_COEF), 0, 8)
-	merc_starting_num = max((ready_players / MERC_STARTING_COEF), 1)
+	xeno_starting_num = max((round(ready_players / XENO_STARTING_COEF)), xeno_required_num)
+	surv_starting_num = CLAMP((round(ready_players / SURVIVOR_STARTING_COEF)), 0, 8)
+	merc_starting_num = max((round(ready_players / MERC_STARTING_COEF)), 1)
 	marine_starting_num = ready_players - xeno_starting_num - surv_starting_num - merc_starting_num
 	for(var/datum/squad/sq in RoleAuthority.squads)
 		if(sq)
@@ -550,157 +554,14 @@ datum/game_mode/proc/initialize_post_queen_list()
 //Start the Survivor players. This must go post-setup so we already have a body.
 //No need to transfer their mind as they begin as a human.
 /datum/game_mode/proc/transform_survivor(var/datum/mind/ghost)
-
-	var/list/survivor_types
-	switch(map_tag)
-		if(MAP_PRISON_STATION)
-			survivor_types = list("Scientist","Doctor","Corporate","Security","Prisoner","Prisoner","Prisoner","Clown")
-		if(MAP_LV_624,MAP_BIG_RED)
-			survivor_types = list("Assistant","Civilian","Scientist","Doctor","Chef","Botanist","Atmos Tech","Chaplain","Miner","Salesman","Colonial Marshall","Clown")
-		if(MAP_ICE_COLONY)
-			survivor_types = list("Scientist","Doctor","Salesman","Security","Clown")
-		else
-			survivor_types = list("Assistant","Civilian","Scientist","Doctor","Chef","Botanist","Atmos Tech","Chaplain","Miner","Salesman","Colonial Marshall","Clown")
-
 	var/mob/living/carbon/human/H = ghost.current
 
 	H.loc = pick(surv_spawn)
 
-	var/id_assignment = ""
-
-	//Damage them for realism purposes
-	H.take_limb_damage(rand(0,15), rand(0,15))
-
-//Give them proper jobs and stuff here later
-	var/randjob = pick(survivor_types)
-	switch(randjob)
-		if("Scientist") //Scientist
-			id_assignment = "Scientist"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), SLOT_W_UNIFORM)
-			if(map_tag != MAP_ICE_COLONY)
-				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), SLOT_WEAR_SUIT)
-				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/tox(H), SLOT_BACK)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor/scientist)
-		if("Doctor") //Doctor
-			id_assignment = "Doctor"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), SLOT_W_UNIFORM)
-			if(map_tag != MAP_ICE_COLONY)
-				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), SLOT_WEAR_SUIT)
-				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/belt/medical(H), SLOT_L_HAND)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/med(H), SLOT_BACK)
-			H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(H.back), SLOT_IN_BACKPACK)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor/doctor)
-		if("Corporate") //Corporate guy
-			id_assignment = "Corporate Liaison"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor)
-		if("Security") //Security
-			id_assignment = "Security"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/corp(H), SLOT_W_UNIFORM)
-			if(map_tag != MAP_ICE_COLONY)
-				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/sec(H), SLOT_BACK)
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(H), SLOT_L_HAND)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor/marshall)
-		if("Prisoner") //Prisoner
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(H), SLOT_SHOES)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor/prisoner)
-		if("Assistant")
-			id_assignment = "Assistant"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor)
-		if("Civilian")
-			id_assignment = "Civilian"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor)
-		if("Chef")
-			id_assignment = "Chef"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(H), SLOT_WEAR_SUIT)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
-			H.equip_to_slot_or_del(new /obj/item/tool/kitchen/rollingpin(H), SLOT_L_HAND)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor/chef)
-		if("Botanist")
-			id_assignment = "Botanist"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), SLOT_WEAR_SUIT)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/tool/hatchet(H), SLOT_L_HAND)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor)
-		if("Atmos Tech")
-			id_assignment = "Atmos Tech"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/atmostech(H), SLOT_L_HAND)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/eng(H), SLOT_BACK)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor/atmos)
-
-		if("Chaplain") //Chaplain
-			id_assignment = "Chaplain"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
-			H.equip_to_slot_or_del(new /obj/item/storage/bible/booze(H.back), SLOT_IN_BACKPACK)
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/double/sawn(H), SLOT_BELT)
-			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), SLOT_L_HAND)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor)
-
-		if("Miner") //Miner
-			id_assignment = "Miner"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/tool/pickaxe(H), SLOT_L_HAND)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
-			H.equip_to_slot_or_del(new /obj/item/device/flashlight/lantern(H.back), SLOT_IN_BACKPACK)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor/miner)
-		if("Salesman") //Corporate guy
-			id_assignment = "Salesman"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), SLOT_W_UNIFORM)
-			if(map_tag != MAP_ICE_COLONY)
-				H.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(H), SLOT_WEAR_SUIT)
-				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/briefcase(H), SLOT_L_HAND)
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(H), SLOT_BELT)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor)
-		if("Colonial Marshall") //Colonial Marshal
-			id_assignment = "Colonial Marshall"
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/CMB(H), SLOT_WEAR_SUIT)
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/CM_uniform(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(H), SLOT_L_HAND)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/sec(H), SLOT_BACK)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor/marshall)
-		if("Clown")//HONK
-			id_assignment = "Clown"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/clown(H), SLOT_W_UNIFORM)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/clown_shoes(H), SLOT_SHOES)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/clown(H), SLOT_BACK)
-			H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/clown_hat(H), SLOT_WEAR_MASK)
-			H.equip_to_slot_or_del(new /obj/item/tool/stamp/clown(H), SLOT_IN_BACKPACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/spray/waterflower(H), SLOT_IN_BACKPACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK) //The clown needs a number of bananas to be prepared for the xenomorphs
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
-			H.equip_to_slot_or_del(new /obj/item/toy/bikehorn(H), SLOT_IN_BACKPACK)
-			H.fully_replace_character_name(H.real_name, pick(clown_names))
-			var/datum/dna/gene/disability/clumsy/G = new /datum/dna/gene/disability/clumsy
-			G.activate(H)
-			ghost.set_cm_skills(/datum/skills/civilian/survivor/clown)
-
+	var/datum/job/J = RoleAuthority.roles_by_equipment_paths[pick(subtypesof(/datum/job/other/survivor))]
+	J.generate_equipment(H)
+	J.generate_entry_conditions(H)
+	J.equip_identification(H)
 
 	if(map_tag == MAP_ICE_COLONY)
 		H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
@@ -709,72 +570,34 @@ datum/game_mode/proc/initialize_post_queen_list()
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(H), SLOT_SHOES)
 		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_GLOVES)
 
-	if(id_assignment)
-		var/obj/item/card/id/W = new(H)
-		W.name = "[H.real_name]'s ID Card ([id_assignment])"
-		W.assignment = id_assignment
-		W.paygrade = "C"
-		W.registered_name = H.real_name
-		H.equip_to_slot_or_del(W, SLOT_WEAR_ID)
-
 	H.name = H.get_visible_name()
 
-	if(map_tag != MAP_PRISON_STATION)
-		var/random_weap = rand(0,4)
-		switch(random_weap)
-			if(0)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/holdout(H), SLOT_BELT)
-			if(1)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/b92fs(H), SLOT_BELT)
-			if(2)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/kt42(H), SLOT_BELT)
-			if(3)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/uzi(H), SLOT_BELT)
-			if(4)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/small(H), SLOT_BELT)
+	var/weapons = pick(SURVIVOR_WEAPONS)
+	var/obj/item/weapon/W = weapons[1]
+	var/obj/item/ammo_magazine/A = weapons[2]
+	H.equip_to_slot_or_del(new W(H), SLOT_BELT)
+	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
+	H.equip_to_slot_or_del(new A(H), SLOT_IN_BACKPACK)
 
-	var/random_gear = rand(0,20)
-	switch(random_gear)
-		if(0)
-			H.equip_to_slot_or_del(new /obj/item/device/camera/oldcamera(H), SLOT_R_HAND)
-		if(1)
-			H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), SLOT_R_HAND)
-		if(2)
-			H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), SLOT_R_HAND)
-		if(3)
-			H.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(H), SLOT_R_HAND)
-		if(4)
-			H.equip_to_slot_or_del(new /obj/item/tool/surgery/surgicaldrill(H), SLOT_R_HAND)
-		if(5)
-			H.equip_to_slot_or_del(new /obj/item/stack/medical/bruise_pack(H), SLOT_R_HAND)
-		if(6)
-			H.equip_to_slot_or_del(new /obj/item/weapon/butterfly/switchblade(H), SLOT_R_HAND)
-		if(7)
-			H.equip_to_slot_or_del(new /obj/item/tool/kitchen/knife(H), SLOT_R_HAND)
-		if(8)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/lemoncakeslice(H), SLOT_R_HAND)
-		if(9)
-			H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/dblue(H), SLOT_R_HAND)
-		if(10)
-			H.equip_to_slot_or_del(new /obj/item/tool/weldingtool/largetank(H), SLOT_R_HAND)
+	H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H),SLOT_GLASSES)
 
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(H), SLOT_R_STORE)
 	H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), SLOT_L_STORE)
 
-
-	//Give them some information
-	spawn(4)
-		to_chat(H, "<h2>You are a survivor!</h2>")
-		switch(map_tag)
-			if(MAP_PRISON_STATION)
-				to_chat(H, "<span class='notice'>You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now.</span>")
-			if(MAP_ICE_COLONY)
-				to_chat(H, "<span class='notice'>You are a survivor of the attack on the ice habitat. You worked or lived on the colony, and managed to avoid the alien attacks.. until now.</span>")
-			else
-
-				to_chat(H, "<span class='notice'> You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now.</span>")
-		to_chat(H, "<span class='notice'> You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit.</span>")
-	return TRUE
+	to_chat(H, "<h2>You are a survivor!</h2>")
+	switch(map_tag)
+		if(MAP_PRISON_STATION)
+			to_chat(H, "<span class='notice'>You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now.</span>")
+		if(MAP_ICE_COLONY)
+			to_chat(H, "<span class='notice'>You are a survivor of the attack on the ice habitat. You worked or lived on the colony, and managed to avoid the alien attacks.. until now.</span>")
+		if(MAP_BIG_RED)
+			to_chat(H, "<span class='notice'>You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now.</span>")
+		if(MAP_LV_624)
+			to_chat(H, "<span class='notice'>You are a survivor of the attack on the colony. You suspected something was wrong and tried to warn others, but it was too late...</span>")
+		else
+			to_chat(H, "<span class='notice'>Through a miracle you managed to survive the attack. But are you truly safe now?</span>")
+	to_chat(H, "<span class='notice'> You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit.</span>")
 
 /datum/game_mode/proc/tell_survivor_story()
 	var/list/survivor_story = list(

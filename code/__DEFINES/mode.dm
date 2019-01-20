@@ -162,4 +162,4 @@ var/list/be_special_flags = list(
 
 
 #define LATEJOIN_LARVA_DISABLED 0
-#define LATEJOIN_LARVA_REQUIRED_NUM 7
+#define LATEJOIN_LARVA_REQUIRED_NUM 6
