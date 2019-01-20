@@ -89,7 +89,6 @@ var/global/list/uneatable = list(
 	last_warning = world.time
 	var/count = locate(/obj/machinery/containment_field) in orange(30, src)
 	if(!count)	message_admins("A singulo has been created without containment fields active ([x],[y],[z])",1)
-	investigate_log("was created. [count?"":"<font color='red'>No containment fields were active</font>"]","singulo")
 
 /obj/machinery/singularity/proc/dissipate()
 	if(!dissipate)
@@ -161,7 +160,6 @@ var/global/list/uneatable = list(
 			consume_range = 4
 			dissipate = 0 //It cant go smaller due to e loss
 	if(current_size == allowed_size)
-		investigate_log("<font color='red'>grew to size [current_size]</font>","singulo")
 		return 1
 	else if(current_size < (--temp_allowed_size))
 		expand(temp_allowed_size)

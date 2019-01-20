@@ -1443,9 +1443,6 @@
 		sleep(2)
 		C.jumptocoord(x,y,z)
 
-	else if(href_list["adminchecklaws"])
-		output_ai_laws()
-
 	else if(href_list["adminmoreinfo"])
 		var/mob/M = locate(href_list["adminmoreinfo"])
 		if(!ismob(M))
@@ -1534,13 +1531,7 @@
 		if(alert(src.owner, "Are you sure you wish to hit [key_name(M)] with Blue Space Artillery? This will severely hurt and most likely kill them.",  "Confirm Firing?" , "Yes" , "No") != "Yes")
 			return
 
-		if(BSACooldown)
-			to_chat(src.owner, "Standby!  Reload cycle in progress!  Gunnary crews ready in five seconds!")
-			return
-
-		BSACooldown = 1
 		spawn(50)
-			BSACooldown = 0
 
 		to_chat(M, "You've been hit by bluespace artillery!")
 		log_admin("[key_name(M)] has been hit by Bluespace Artillery fired by [src.owner]")
@@ -2107,8 +2098,6 @@
 				for(var/sig in lawchanges)
 					dat += "[sig]<BR>"
 				usr << browse(dat, "window=lawchanges;size=800x500")
-			if("showailaws")
-				output_ai_laws()
 			if("showgm")
 				if(!ticker)
 					alert("The game hasn't started yet!")

@@ -126,6 +126,7 @@ var/shuttle_left = 0
 var/midi_playing = 0
 var/heard_midi = 0
 var/total_silenced = 0
+var/respawntime = 15
 
 var/list/jobMax = list()
 var/list/bombers = list(  )
