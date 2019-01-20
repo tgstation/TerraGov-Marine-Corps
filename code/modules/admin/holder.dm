@@ -18,17 +18,11 @@ var/list/admin_datums = list()
 
 	var/href_token
 
-	var/admincaster_screen = 0	//See newscaster.dm under machinery for a full description
-	var/datum/feed_message/admincaster_feed_message = new /datum/feed_message   //These two will act as holders.
-	var/datum/feed_channel/admincaster_feed_channel = new /datum/feed_channel
-	var/admincaster_signature	//What you'll sign the newsfeeds as
-
 /datum/admins/New(initial_rank = "Temporary Admin", initial_rights = 0, ckey)
 	if(!ckey)
 		stack_trace("Admin datum created without a ckey argument. Datum has been deleted")
 		qdel(src)
 		return
-	admincaster_signature = "Nanotrasen Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
 	rank = initial_rank
 	rights = initial_rights
 	if (rights & R_DEBUG) //grant profile access
@@ -258,7 +252,6 @@ var/list/admin_verbs_sounds = list(
 	)
 var/list/admin_verbs_fun = list(
 	// /client/proc/object_talk,
-	/datum/admins/proc/access_news_network,
 	/client/proc/cmd_admin_dress,
 	/client/proc/cmd_admin_select_mob_rank,
 	/client/proc/cmd_admin_gib_self,
@@ -386,7 +379,6 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/reload_whitelist,
 	/client/proc/cmd_debug_make_powernets,
 	/client/proc/debug_controller,
-	/client/proc/startSinglo,
 	/client/proc/cmd_debug_mob_lists,
 	/client/proc/cmd_debug_del_all,
 	/client/proc/cmd_debug_tog_aliens,
@@ -521,13 +513,11 @@ var/list/debug_verbs = list(
         /client/proc/camera_view,
         /client/proc/sec_camera_report,
         /client/proc/intercom_view,
-        /client/proc/Cell,
         /client/proc/atmosscan,
         /client/proc/powerdebug,
         /client/proc/count_objects_on_z_level,
         /client/proc/count_objects_all,
         /client/proc/cmd_assume_direct_control,
-        /client/proc/startSinglo,
         /client/proc/ticklag,
         /client/proc/cmd_admin_grantfullaccess,
         /client/proc/cmd_admin_grantallskills,
@@ -541,7 +531,6 @@ var/list/debug_verbs = list(
         /client/proc/disable_communication,
         /client/proc/disable_movement,
         /client/proc/hide_debug_verbs,
-        /client/proc/setup_supermatter_engine,
         /client/proc/view_power_update_stats_area,
         /client/proc/view_power_update_stats_machines,
         /client/proc/toggle_power_update_profiling,

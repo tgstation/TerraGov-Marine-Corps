@@ -1845,7 +1845,7 @@ client
 				H.mind.cm_skills.police = new_skill_level
 			if("powerloader")
 				H.mind.cm_skills.powerloader = new_skill_level
-		
+
 		H.update_action_buttons()
 
 		to_chat(usr, "[H]'s [selected_skill] skill is now set to [new_skill_level].")
@@ -2137,31 +2137,6 @@ client
 
 /datum/proc/can_vv_get(var_name)
 	return TRUE
-
-
-/datum/verb/find_refs()
-	set category = "Debug"
-	set name = "Find References"
-	set src in world
-
-	find_references(FALSE)
-
-
-/datum/verb/qdel_then_find_references()
-	set category = "Debug"
-	set name = "qdel() then Find References"
-	set src in world
-
-	qdel(src, TRUE)		//Force.
-	if(!running_find_references)
-		find_references(TRUE)
-
-/datum/verb/qdel_then_if_fail_find_references()
-	set category = "Debug"
-	set name = "qdel() then Find References if GC failure"
-	set src in world
-
-	qdel_and_find_ref_if_fail(src, TRUE)
 
 // Debug verbs.
 /client/proc/restart_controller(controller in list("Master", "Failsafe"))
