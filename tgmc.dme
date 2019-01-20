@@ -854,6 +854,7 @@
 #include "code\modules\admin\verbs\possess.dm"
 #include "code\modules\admin\verbs\pray.dm"
 #include "code\modules\admin\verbs\select_equipment.dm"
+#include "code\modules\admin\verbs\varedit.dm"
 #include "code\modules\almayer\machinery.dm"
 #include "code\modules\animations\animation_library.dm"
 #include "code\modules\assembly\assembly.dm"

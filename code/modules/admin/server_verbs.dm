@@ -1,42 +1,48 @@
-/datum/admins/proc/restart()
+/client/proc/restart()
 	set category = "Server"
 	set name = "Restart"
-	set desc="Restarts the world"
-	if (!usr.client.holder)
+	set desc = "Restarts the server."
+	set waitfor = FALSE
+
+	if(!check_rights(R_SERVER))
 		return
-	var/confirm = alert("Restart the game world?", "Restart", "Yes", "Cancel")
-	if(confirm == "Cancel")
+
+	if(alert("Restart the game world?", "Restart", "Yes", "No") != "Yes")
 		return
-	if(confirm == "Yes")
-		to_chat(world, "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!</span>")
-		log_admin("[key_name(usr)] initiated a reboot.")
 
-		feedback_set_details("end_error","admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]")
-		feedback_add_details("admin_verb","R") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	to_chat(world, "<span class='danger'>Restarting world!</span><br><span class='notice'>Initiated by: [key_name(usr)]</span>")
+	log_admin("[key_name(usr)] initiated a restart.")
 
-		if(blackbox)
-			blackbox.save_all_data_to_sql()
+	sleep(50)
+	world.Reboot()
 
-		sleep(50)
-		world.Reboot()
-
-/datum/admins/proc/toggleooc()
+/client/proc/toggle_ooc()
 	set category = "Server"
-	set desc="Globally Toggles OOC"
-	set name="Toggle OOC"
-	ooc_allowed = !( ooc_allowed )
-	if (ooc_allowed)
+	set name = "Toggle OOC"
+	set desc = "Toggles OOC for non-admins."
+
+	if(!check_rights(R_SERVER))
+		return
+
+	ooc_allowed = !(ooc_allowed)
+
+	if(ooc_allowed)
 		to_chat(world, "<B>The OOC channel has been globally enabled!</B>")
 	else
 		to_chat(world, "<B>The OOC channel has been globally disabled!</B>")
-	log_admin("[key_name(usr)] toggled OOC.")
-	message_admins("[key_name_admin(usr)] toggled OOC.", 1)
-	feedback_add_details("admin_verb","TOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/datum/admins/proc/toggledsay()
+	log_admin("[key_name(usr)] toggled OOC.")
+	message_admins("[key_name_admin(usr)] toggled OOC.")
+
+
+/client/proc/toggle_deadchat()
 	set category = "Server"
-	set desc = "Globally Toggles Deadchat"
 	set name = "Toggle Deadchat"
+	set desc = "Toggles deadchat for non-admins."
+
+	if(!check_rights(R_SERVER))
+		return
+
 	dsay_allowed = !( dsay_allowed )
 	if(dsay_allowed)
 		to_chat(world, "<B>Deadchat has been globally enabled!</B>")
@@ -46,15 +52,19 @@
 	message_admins("[key_name_admin(usr)] toggled deadchat.", 1)
 	feedback_add_details("admin_verb","TDSAY") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc
 
-/datum/admins/proc/toggleoocdead()
+
+/datum/admins/proc/toggle_deadooc()
 	set category = "Server"
-	set desc="Toggle the ability for dead people to use OOC chat"
-	set name="Toggle Dead OOC"
+	set desc = "Toggle the ability for dead people to use OOC chat"
+	set name = "Toggle Dead OOC"
+
+
 	dooc_allowed = !( dooc_allowed )
 
 	log_admin("[key_name(usr)] toggled Dead OOC.")
 	message_admins("[key_name_admin(usr)] toggled Dead OOC.", 1)
 	feedback_add_details("admin_verb","TDOOC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 /datum/admins/proc/toggletraitorscaling()
 	set category = "Server"
@@ -65,10 +75,11 @@
 	message_admins("[key_name_admin(usr)] toggled Traitor Scaling [traitor_scaling ? "on" : "off"].", 1)
 	feedback_add_details("admin_verb","TTS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+
 /datum/admins/proc/startnow()
 	set category = "Server"
-	set desc="Start the round RIGHT NOW"
-	set name="Start Now"
+	set desc = "Start the round RIGHT NOW"
+	set name = "Start Now"
 	if(!ticker)
 		alert("Unable to start the game as it is not set up.")
 		return
@@ -77,15 +88,17 @@
 		log_admin("[usr.key] has started the game.")
 		message_admins("<font color='blue'>[usr.key] has started the game.</font>")
 		feedback_add_details("admin_verb","SN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		return 1
+		return TRUE
 	else
 		to_chat(usr, "<font color='red'>Error: Start Now: Game has already started.</font>")
-		return 0
+		return FALSE
+
 
 /datum/admins/proc/togglejoin()
 	set category = "Server"
 	set desc="Players can still log into the server, but Marines won't be able to join the game as a new mob."
 	set name="Toggle Joining"
+
 	enter_allowed = !( enter_allowed )
 	if (!( enter_allowed ))
 		to_chat(world, "<B>New players may no longer join the game.</B>")
@@ -95,6 +108,7 @@
 	message_admins("<span class='notice'> [key_name_admin(usr)] toggled new player game joining.</span>", 1)
 	world.update_status()
 	feedback_add_details("admin_verb","TE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 /datum/admins/proc/toggleAI()
 	set category = "Server"
@@ -110,10 +124,12 @@
 	world.update_status()
 	feedback_add_details("admin_verb","TAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
+
 /datum/admins/proc/toggleaban()
 	set category = "Server"
-	set desc="Respawn basically"
-	set name="Toggle Respawn"
+	set desc = "Respawn basically"
+	set name = "Toggle Respawn"
+
 	abandon_allowed = !( abandon_allowed )
 	if (abandon_allowed)
 		to_chat(world, "<B>You may now respawn.</B>")
@@ -123,6 +139,7 @@
 	log_admin("[key_name(usr)] toggled respawn to [abandon_allowed ? "On" : "Off"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 /datum/admins/proc/toggleatime(time as num)
 	set category = "Server"
@@ -136,6 +153,7 @@
 	log_admin("[key_name(usr)] set the respawn time to [respawntime] minutes.")
 	world.update_status()
 	feedback_add_details("admin_verb","TRT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 /datum/admins/proc/end_round()
 	set category = "Server"
@@ -155,6 +173,7 @@
 			to_chat(C, "<hr>")
 
 		return
+
 
 /datum/admins/proc/delay()
 	set category = "Server"
@@ -302,66 +321,86 @@
 	message_admins("[key_name_admin(src)] has turned aliens [aliens_allowed ? "on" : "off"].", 0)
 	feedback_add_details("admin_verb","TAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/toggle_log_hrefs()
-	set name = "Toggle href Logging"
-	set category = "Server"
-	if(!holder)	return
-	if(config)
-		if(CONFIG_GET(flag/log_hrefs))
-			CONFIG_SET(flag/log_hrefs, FALSE)
-			to_chat(src, "<b>Stopped logging hrefs</b>")
-		else
-			CONFIG_SET(flag/log_hrefs, TRUE)
-			to_chat(src, "<b>Started logging hrefs</b>")
-
 
 /client/proc/toggle_gun_restrictions()
 	set name = "Toggle Gun Restrictions"
-	set desc = "Toggling to on will allow anyone to use restricted NT superguns. Leave this alone unless you know what you're doing."
 	set category = "Server"
+	set desc = "Currently only affects MP guns."
 
-	if(!holder)	return
+	if(!check_rights(R_SERVER))
+		return
+
 	if(config)
 		if(CONFIG_GET(flag/remove_gun_restrictions))
 			CONFIG_SET(flag/remove_gun_restrictions, FALSE)
-			to_chat(src, "<b>Enabled gun restrictions.</b>")
-			message_admins("Admin [key_name_admin(usr)] has enabled NT gun restrictions.", 1)
-			log_admin("[key_name(src)] enabled NT gun restrictions.")
 		else
 			CONFIG_SET(flag/remove_gun_restrictions, TRUE)
-			to_chat(src, "<b>Disabled gun restrictions.</b>")
-			message_admins("Admin [key_name_admin(usr)] has disabled NT gun restrictions.", 1)
-			log_admin("[key_name(src)] disabled NT gun restrictions.")
+
+		log_admin("[key_name(usr)] has [CONFIG_GET(flag/remove_gun_restrictions) ? "enabled" : "disabled"] gun restrictions.")
+		message_admins("[key_name_admin(usr)] has [CONFIG_GET(flag/remove_gun_restrictions) ? "enabled" : "disabled"] gun restrictions.")
+
 
 /client/proc/toggle_synthetic_restrictions()
-	set name = "Toggle Synthetic Gun Use"
-	set desc = "Toggling to on will allow synthetics to fire guns. Leave this alone unless you know what you're doing."
+	set name = "Toggle Synthetic Restrictions"
 	set category = "Server"
+	set desc = "Toggling to on will allow synthetics to use weapons."
 
-	if(!holder)	return
+	if(!check_rights(R_SERVER))
+		return
+
 	if(config)
 		if(CONFIG_GET(flag/allow_synthetic_gun_use))
 			CONFIG_SET(flag/allow_synthetic_gun_use, FALSE)
-			to_chat(src, "<b>Synthetic gun use disallowed.</b>")
-			message_admins("Admin [key_name_admin(usr)] has disabled synthetic gun use.", 1)
-			log_admin("[key_name(src)] disabled synthetic gun use.")
 		else
 			CONFIG_SET(flag/allow_synthetic_gun_use, TRUE)
-			to_chat(src, "<b>Synthetic gun use allowed.</b>")
-			message_admins("Admin [key_name_admin(usr)] has enabled synthetic gun use.", 1)
-			log_admin("[key_name(src)] allowed synthetic gun use.")
+
+		log_admin("[key_name(src)] has [CONFIG_GET(flag/allow_synthetic_gun_use) ? "enabled" : "disabled"] synthetic weapon use.")
+		message_admins("[key_name_admin(usr)] has [CONFIG_GET(flag/allow_synthetic_gun_use) ? "enabled" : "disabled"] synthetic weapon use.")
+
 
 /client/proc/adjust_weapon_mult()
-	set name = "Adjust Weapon Multipliers"
-	set desc = "Using this allow to change how much accuracy and damage are changed. 1 is the normal number, anything higher will increase damage and/or accuracy."
 	set category = "Server"
+	set name = "Adjust Weapon Multipliers"
+	set desc = "Adjusts the global weapons multipliers."
 
-	if(!holder)	return
+	if(!check_rights(R_SERVER))
+		return
+
 	if(config)
-		var/acc = input("Select the new accuracy multiplier.","ACCURACY MULTIPLIER", 1) as num
-		var/dam = input("Select the new damage multiplier.","DAMAGE MULTIPLIER", 1) as num
+		var/acc = input("Select the new accuracy multiplier.", "ACCURACY MULTIPLIER", 1) as num
+		var/dam = input("Select the new damage multiplier.", "DAMAGE MULTIPLIER", 1) as num
 		if(acc && dam)
 			CONFIG_SET(number/combat_define/proj_base_accuracy_mult, (acc * 0.01))
 			CONFIG_SET(number/combat_define/proj_base_damage_mult, (dam * 0.01))
 			log_admin("Admin [key_name_admin(usr)] changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.", 1)
 			log_game("<b>[key_name(src)]</b> changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.")
+
+
+/client/proc/reload_admins()
+	set name = "Reload Admins"
+	set category = "Server"
+	set desc = "Manually load all admins from the .txt"
+
+	if(!check_rights(R_SERVER))
+		return
+
+	load_admins()
+
+	log_game("[key_name(src)] manually reloaded admins.")
+	message_admins("[key_name_admin(usr)] manually reloaded admins.")
+
+
+/client/proc/reload_whitelist()
+	set name = "Reload Whitelist"
+	set category = "Server"
+	set desc = "Manually load the whitelisted players from the .txt"
+
+	if(!check_rights(R_SERVER))
+		return
+
+	if(!RoleAuthority)
+		return
+
+	RoleAuthority.load_whitelist()
+
+	message_admins("[usr.ckey] manually reloaded the role whitelist.")

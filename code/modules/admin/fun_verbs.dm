@@ -913,3 +913,69 @@
 		set_security_level(sec_level)
 		log_admin("[key_name(usr)] changed the security level to code [sec_level].")
 
+
+/client/proc/cmd_admin_animalize(var/mob/M in mob_list)
+	set category = "Fun"
+	set name = "Make Simple Animal"
+
+	if(!ticker)
+		alert("Wait until the game starts")
+		return
+
+	if(!M.gc_destroyed)
+		alert("That mob doesn't seem to exist, close the panel and try again.")
+		return
+
+	if(istype(M, /mob/new_player))
+		alert("The mob must not be a new_player.")
+		return
+
+	log_admin("[key_name(src)] has animalized [M.key].")
+	spawn(10)
+		M.Animalize()
+
+/client/proc/cmd_admin_alienize(var/mob/M in mob_list)
+	set category = "Fun"
+	set name = "Make Alien"
+
+	if(!ticker)
+		alert("Wait until the game starts")
+		return
+
+	if(M.gc_destroyed)
+		alert("That mob doesn't seem to exist, close the panel and try again.")
+		return
+
+	if(ishuman(M))
+		log_admin("[key_name(src)] has alienized [M.key].")
+		spawn(10)
+			M:Alienize()
+			feedback_add_details("admin_verb","MKAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+		log_admin("[key_name(usr)] made [key_name(M)] into an alien.")
+		message_admins("<span class='notice'> [key_name_admin(usr)] made [key_name(M)] into an alien.</span>", 1)
+	else
+		alert("Invalid mob")
+
+
+
+
+/client/proc/cmd_admin_robotize(var/mob/M in mob_list)
+	set category = "Fun"
+	set name = "Make Robot"
+
+	if(!ticker)
+		alert("Wait until the game starts")
+		return
+
+	if(M.gc_destroyed)
+		alert("That mob doesn't seem to exist, close the panel and try again.")
+		return
+
+	if(istype(M, /mob/living/carbon/human))
+		log_admin("[key_name(src)] has robotized [M.key].")
+		spawn(10)
+			M:Robotize()
+
+	else
+		alert("Invalid mob")
+
