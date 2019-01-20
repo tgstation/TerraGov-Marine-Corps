@@ -1,3 +1,25 @@
+/datum/admins/proc/Game()
+	if(!check_rights(0))	return
+
+	var/dat = {"
+		<center><B>Game Panel</B></center><hr>\n
+		<A href='?src=\ref[src];c_mode=1'>Change Game Mode</A><br>
+		"}
+	if(master_mode == "secret")
+		dat += "<A href='?src=\ref[src];f_secret=1'>(Force Secret Mode)</A><br>"
+
+	dat += {"
+		<BR>
+		<A href='?src=\ref[src];create_object=1'>Create Object</A><br>
+		<A href='?src=\ref[src];quick_create_object=1'>Quick Create Object</A><br>
+		<A href='?src=\ref[src];create_turf=1'>Create Turf</A><br>
+		<A href='?src=\ref[src];create_mob=1'>Create Mob</A><br>
+		"}
+
+	usr << browse(dat, "window=admin2;size=210x280")
+	return
+
+
 /var/create_mob_html = null
 
 /datum/admins/proc/create_mob(var/mob/user)
