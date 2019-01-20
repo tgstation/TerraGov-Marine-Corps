@@ -33,7 +33,7 @@
 	caste_flags = CASTE_CAN_BE_QUEEN_HEALED|CASTE_EVOLUTION_ALLOWED|CASTE_CAN_BE_GIVEN_PLASMA
 
 	// *** Defense *** //
-	armor_deflection = 30
+	armor_deflection = 20
 
 	// *** Defiler Abilities *** //
 	var/neuro_claws_amount = DEFILER_CLAW_AMOUNT
@@ -65,7 +65,7 @@
 	upgrade_threshold = 800
 
 	// *** Defense *** //
-	armor_deflection = 40
+	armor_deflection = 30
 
 	// *** Defiler Abilities *** //
 	neuro_claws_amount = 7
@@ -97,7 +97,7 @@
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor_deflection = 47
+	armor_deflection = 37
 
 	// *** Defiler Abilities *** //
 	neuro_claws_amount = 7.7
@@ -129,7 +129,7 @@
 	upgrade_threshold = 1600
 
 	// *** Defense *** //
-	armor_deflection = 50
+	armor_deflection = 40
 
 	// *** Defiler Abilities *** //
 	neuro_claws_amount = 8
