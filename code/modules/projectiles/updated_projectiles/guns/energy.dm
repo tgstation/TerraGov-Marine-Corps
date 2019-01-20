@@ -284,7 +284,7 @@
 	fire_sound = 'sound/weapons/Laser.ogg'
 	matter = list("metal" = 2000)
 	ammo = /datum/ammo/energy/lasgun
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 4
 	force = 15
 	overcharge = FALSE
