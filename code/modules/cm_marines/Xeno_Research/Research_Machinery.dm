@@ -108,7 +108,7 @@
 	use_power = 1
 	idle_power_usage = 30
 	active_power_usage = 5000
-	var/obj/machinery/Research_Machinery/biogenerator/linked_generator = null
+	// var/obj/machinery/Research_Machinery/biogenerator/linked_generator = null
 
 	var/list/material_storage = list("metal" = 0.0, "glass" = 0.0, "biomass" = 0.0)
 	var/max_stored = 100000
@@ -129,12 +129,14 @@
 /obj/machinery/Research_Machinery/marineprotolathe/proc/TotalMaterials() //returns the total of all the stored materials. Makes code neater.
 	return material_storage["metal"] + material_storage["glass"] + material_storage["biomass"]
 
+/*
 /obj/machinery/Research_Machinery/marineprotolathe/proc/RefilBio()			// When you connect biomatter generator, you will have no need to refill with alien bodyparts
 	if(!linked_generator)
 		return
 	if(material_storage["biomass"] < max_per_resource["biomass"])
 		material_storage["biomass"] = max_per_resource["biomass"]
 	return
+*/
 
 /obj/machinery/Research_Machinery/marineprotolathe/RefreshParts()
 	var/T = 0
@@ -176,9 +178,11 @@
 			if(material_storage["biomass"] > 0)
 				visible_message("<span class='danger'>All biomass has been splattered across the floor!</span>")
 				new /obj/effect/decal/cleanable/blood/xeno(src.loc)
+			/*
 			if(linked_generator)
 				linked_generator.linked_protolathe = null
 				linked_generator = null
+			*/
 			if(linked_console)
 				linked_console.linked_lathe = null
 				linked_console = null
@@ -244,6 +248,7 @@
 	busy = 0
 	src.updateUsrDialog()
 
+/*
 /obj/machinery/Research_Machinery/marineprotolathe/Topic(href, href_list)
 	if(..())
 		return
@@ -251,7 +256,6 @@
 	add_fingerprint(usr)
 
 	usr.set_interaction(src)
-
 	if(href_list["connect"])
 		for(var/obj/machinery/Research_Machinery/biogenerator/D in oview(1,src))
 			if(D.linked_protolathe != null || D.opened)
@@ -333,3 +337,4 @@
 			qdel(src)
 			return 1
 	return
+*/

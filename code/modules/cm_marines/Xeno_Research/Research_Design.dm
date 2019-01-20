@@ -40,14 +40,6 @@
 	req_tech = list(RESEARCH_XENO_SPITTER)
 	materials = list("metal" = 500, "glass" = 0, "biomass" = 0)
 
-/datum/marine_design/biocircuit
-	name = "Biogenerator Prototype"
-	desc = "With understanding Hivelord's metabolism we can potentially have infinite source of Xenomorph biomaterial. But we must use internal connetor of our protolathe."
-	id = "hivethingy"
-	build_path = /obj/item/circuitboard/machine/biorganic
-	req_tech = list(RESEARCH_XENO_HIVELORD)
-	materials = list("metal" = 0, "glass" = 500, "biomass" = 50)
-
 /datum/marine_design/teslagun
 	name = "HEW \"Paralayzer\" military-grade retrofit"
 	desc = "Initial flaw, that we found in Xenomorph organism, bring us to the idea of retrofitting old Heavy Electrical Weapon. But it need suitable recharger, what can be created separately."

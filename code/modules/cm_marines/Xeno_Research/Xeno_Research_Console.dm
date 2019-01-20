@@ -25,15 +25,6 @@
 							"/obj/item/stock_parts/manipulator" = 2
 							)
 
-/obj/item/circuitboard/machine/biorganic
-	name = "Circuit board (Bio-Organic Generator)"
-	build_path = /obj/machinery/Research_Machinery/biogenerator
-	origin_tech = RESEARCH_XENO_HIVELORD
-	req_components = list(
-							"/obj/item/stock_parts/manipulator" = 1,
-							"/obj/item/marineResearch/xenomorph/secretor/hivelord" = 1
-							)
-
 /obj/item/circuitboard/machine/analyze_console
 	name = "Circuit board (Speciemen Analyze Console)"
 	build_path = /obj/machinery/computer/analyze_console
@@ -282,7 +273,7 @@
 				spawn(16)
 					new design.build_path(linked_lathe.loc)
 					screen = 4.1
-					linked_lathe.RefilBio()
+					//linked_lathe.RefilBio()
 					break
 
 	else if(href_list["print"])
