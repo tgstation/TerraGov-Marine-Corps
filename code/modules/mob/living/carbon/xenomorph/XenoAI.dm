@@ -73,7 +73,11 @@ var/global/list/AIXenosWithoutSquad = list() //List of all AI xenos without squa
 /mob/living/carbon/Xenomorph/AI/New()
 	..()
 	update_progression() //Evolves it if possible so the correct things can be set
+<<<<<<< HEAD
 	move_to_delay = initial(move_to_delay) + 1
+=======
+	move_to_delay = initial(move_to_delay) + config.run_speed
+>>>>>>> parent of fa8f5121f... Revert "good bye master"
 	ConsiderMovement()
 	AIXenos += src
 	AIXenosWithoutSquad += src

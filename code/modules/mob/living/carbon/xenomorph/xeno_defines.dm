@@ -240,6 +240,9 @@
 
 	var/wound_type = "ravager" //used to match appropriate wound overlays
 
+	var/evolution_speed = 1
+	var/upgrade_speed = 1
+
 /datum/hive_status
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen
