@@ -4,7 +4,6 @@
 	required_players = 1 //Need at least one player, but really we need 2.
 	xeno_required_num = 1 //Need at least one xeno.
 	flags_round_type = MODE_INFESTATION|MODE_FOG_ACTIVATED
-	latejoin_larva_drop = LATEJOIN_LARVA_REQUIRED_NUM 
 
 ////////////////////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -18,6 +17,7 @@
 	if(!found_queen && !found_xenos)
 		return FALSE
 	initialize_starting_survivor_list()
+	latejoin_larva_drop = CONFIG_GET(number/latejoin_larva_required_num)
 	return TRUE
 
 /datum/game_mode/colonialmarines/announce()
