@@ -37,7 +37,7 @@
 	var/list/Lines = list()
 
 	if(holder)
-		if(holder.rights & (R_ADMIN|R_MOD))
+		if(holder.rights & (R_ADMIN))
 			for(var/client/C in clients)
 				var/entry = "\t[C.key]"
 				if(C.holder?.fakekey)
@@ -90,7 +90,7 @@
 		msg += "[line]\n"
 
 	if(holder)
-		if((holder.rights & (R_ADMIN|R_MOD)) || ((mob.stat == DEAD) && (holder.rights & (R_MENTOR))))
+		if((holder.rights & (R_ADMIN)) || ((mob.stat == DEAD) && (holder.rights & (R_MENTOR))))
 			var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
 			msg += "<b>Total Players: [length(Lines)]</b>"
 			msg += "<br><b style='color:#777'>Observers: [count_observers] (Non-Admin: [count_nonadmin_observers])</b>"
@@ -112,11 +112,11 @@
 	var/num_admins_online = 0
 	var/num_mentors_online = 0
 	if(holder)
-		if((holder.rights & (R_ADMIN|R_MOD)) || ((mob.stat == DEAD) && (holder.rights & (R_MENTOR))))
+		if((holder.rights & (R_ADMIN)) || ((mob.stat == DEAD) && (holder.rights & (R_MENTOR))))
 			for(var/client/C in admins)
-				if(R_ADMIN & C.holder.rights || (!R_MOD & C.holder.rights && !R_MENTOR & C.holder.rights))	//Used to determine who shows up in admin rows
+				if(R_ADMIN & C.holder.rights || (!R_MENTOR & C.holder.rights))	//Used to determine who shows up in admin rows
 
-					if(C.holder.fakekey && !(holder.rights & (R_ADMIN|R_MOD)))		//Mentors can't see stealthmins
+					if(C.holder.fakekey && !(holder.rights & (R_ADMIN)))		//Mentors can't see stealthmins
 						continue
 
 					msg += "\t[C] is a [C.holder.rank]"
@@ -136,21 +136,6 @@
 					msg += "\n"
 
 					num_admins_online++
-				else if(R_MOD & C.holder.rights)				//Who shows up in mod/mentor rows.
-					modmsg += "\t[C] is a [C.holder.rank]"
-
-					if(isobserver(C.mob))
-						modmsg += " - Observing"
-					else if(istype(C.mob,/mob/new_player))
-						modmsg += " - Lobby"
-					else
-						modmsg += " - Playing"
-
-					if(C.is_afk())
-						modmsg += " (AFK)"
-					modmsg += "\n"
-					num_mods_online++
-
 				else if(R_MENTOR & C.holder.rights)
 					mentmsg += "\t[C] is a [C.holder.rank]"
 					if(isobserver(C.mob))
@@ -166,25 +151,19 @@
 					num_mentors_online++
 		else
 			for(var/client/C in admins)
-				if(C.holder.rights & R_ADMIN || !(C.holder.rights & (R_MOD|R_MENTOR)))
+				if(C.holder.rights & R_ADMIN || !(C.holder.rights & (R_MENTOR)))
 					if(!C.holder.fakekey)
 						msg += "\t[C] is a [C.holder.rank]\n"
 						num_admins_online++
-				else if (R_MOD & C.holder.rights)
-					modmsg += "\t[C] is a [C.holder.rank]\n"
-					num_mods_online++
 				else if (R_MENTOR & C.holder.rights)
 					mentmsg += "\t[C] is a [C.holder.rank]\n"
 					num_mentors_online++
 	else
 		for(var/client/C in admins)
-			if(R_ADMIN & C.holder.rights || (!R_MOD & C.holder.rights && !R_MENTOR & C.holder.rights))
+			if(R_ADMIN & C.holder.rights || (!R_MENTOR & C.holder.rights))
 				if(!C.holder.fakekey)
 					msg += "\t[C] is a [C.holder.rank]\n"
 					num_admins_online++
-			else if (R_MOD & C.holder.rights)
-				modmsg += "\t[C] is a [C.holder.rank]\n"
-				num_mods_online++
 			else if (R_MENTOR & C.holder.rights)
 				mentmsg += "\t[C] is a [C.holder.rank]\n"
 				num_mentors_online++

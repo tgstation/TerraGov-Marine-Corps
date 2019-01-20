@@ -159,11 +159,10 @@ you will have to do something like if(client.holder.rights & R_ADMIN) yourself.
 /proc/HrefTokenFormField(forceGlobal = FALSE)
 	return "<input type='hidden' name='admin_token' value='[RawHrefToken(forceGlobal)]'>"
 
-//admin verb groups - They can overlap if you so wish. Only one of each verb will exist in the verbs list regardless
+
 var/list/admin_verbs_default = list(
 	/client/proc/toggleadminhelpsound,	/*toggles whether we hear a sound when adminhelps/PMs are used*/
 	/client/proc/deadmin_self,			/*destroys our own admin datum so we can play as a regular player*/
-	// /client/proc/cmd_mentor_check_new_players
 	)
 var/list/admin_verbs_admin = list(
 	/client/proc/player_panel_new,		/*shows an interface for all players, with links to various panels*/
@@ -199,7 +198,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/dsay,					/*talk in deadchat using our ckey/fakekey*/
 	/client/proc/toggleprayers,			/*toggles prayers on/off*/
 	/client/proc/toggle_hear_radio,		/*toggles whether we hear the radio*/
-	// /client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
 	/client/proc/secrets,
 	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
 	/datum/admins/proc/toggleoocdead,	/*toggles ooc on/off for everyone who is dead*/
@@ -209,21 +207,20 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/player_notes_list,
 	/datum/admins/proc/player_notes_show,
 	/client/proc/cmd_mod_say,
-	/client/proc/free_slot,			/*frees slot for chosen job*/
+	/client/proc/jobs_free,			/*frees slot for chosen job*/
 	/client/proc/cmd_admin_change_custom_event,
-	/client/proc/cmd_admin_rejuvenate,
+	/client/proc/rejuvenate,
 	/client/proc/toggleattacklogs,
 	/client/proc/toggledebuglogs,
 	/client/proc/change_security_level, /* Changes alert levels*/
 	/client/proc/toggle_gun_restrictions,
 	/client/proc/toggle_synthetic_restrictions,
 	/client/proc/adjust_weapon_mult,
-	/datum/admins/proc/togglesleep,
-	/datum/admins/proc/sleepall,
+	/client/proc/toggle_sleep,
+	/client/proc/toggle_sleep_area,
 	/datum/admins/proc/admin_force_distress,
 	/datum/admins/proc/admin_force_ERT_shuttle,
-	/client/proc/cmd_admin_changekey,
-	// /client/proc/response_team, // Response Teams admin verb
+	/client/proc/change_key,
 	/datum/admins/proc/viewCLFaxes,
 	/datum/admins/proc/viewTGMCFaxes,
 	/datum/admins/proc/force_predator_round, //Force spawns a predator round.
@@ -241,29 +238,25 @@ var/list/admin_verbs_admin = list(
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel
-	// /client/proc/jobbans // Disabled temporarily due to 15-30 second lag spikes. Don't forget the comma in the line above when uncommenting this!
 	)
 var/list/admin_verbs_sounds = list(
 	/client/proc/play_sound_from_list,
 	/client/proc/play_imported_sound
 	)
 var/list/admin_verbs_fun = list(
-	// /client/proc/object_talk,
+	/client/proc/object_talk,
 	/client/proc/cmd_admin_dress,
 	/client/proc/cmd_admin_select_mob_rank,
 	/client/proc/cmd_admin_gib_self,
 	/client/proc/drop_bomb,
     /client/proc/drop_custom_bomb,
-	// /client/proc/cmd_admin_add_freeform_ai_law,
-	// /client/proc/cmd_admin_add_random_ai_law,
-	// /client/proc/make_sound,
+	/client/proc/make_sound,
 	/client/proc/set_ooc_color_global,
 	/datum/admins/proc/hostile_lure,
-	/client/proc/set_away_timer,
 	/client/proc/editappear
 	)
 var/list/admin_verbs_spawn = list(
-	/datum/admins/proc/spawn_atom,		/*allows us to spawn instances*/
+	/datum/admins/proc/spawn_atom,
 	/client/proc/respawn_character
 	)
 var/list/admin_verbs_server = list(
@@ -276,14 +269,14 @@ var/list/admin_verbs_server = list(
 	/datum/admins/proc/end_round,
 	/client/proc/toggle_log_hrefs,
 	/datum/admins/proc/toggleAI,
-	/client/proc/cmd_admin_delete,		/*delete an instance/object/mob/etc*/
+	/client/proc/cmd_admin_delete,
 	/client/proc/cmd_debug_del_all,
 	/datum/admins/proc/adrev,
 	/datum/admins/proc/adspawn,
 	/datum/admins/proc/adjump
 	)
 var/list/admin_verbs_debug = list(
-	/client/proc/cmd_admin_list_open_jobs,
+	/client/proc/jobs_free,
 	/client/proc/Debug2,
 	/client/proc/cmd_debug_make_powernets,
 	/client/proc/debug_controller,
@@ -294,9 +287,6 @@ var/list/admin_verbs_debug = list(
 	/client/proc/reload_admins,
 	/client/proc/reload_whitelist,
 	/client/proc/restart_controller,
-	///client/proc/remake_distribution_map,
-	///client/proc/show_distribution_map,
-	// /client/proc/show_plant_genes,
 	/client/proc/enable_debug_verbs,
 	/client/proc/callproc,
 	/client/proc/callatomproc,
@@ -325,7 +315,6 @@ var/list/admin_verbs_color = list(
 	/client/proc/set_ooc_color_self
 	)
 
-//verbs which can be hidden - needs work
 var/list/admin_verbs_hideable = list(
 	/client/proc/set_ooc_color_global,
 	/client/proc/set_ooc_color_self,
@@ -344,16 +333,13 @@ var/list/admin_verbs_hideable = list(
 	/client/proc/cmd_admin_world_narrate,
 	/client/proc/play_sound_from_list,
 	/client/proc/play_imported_sound,
-	// /client/proc/object_talk,
+	/client/proc/object_talk,
 	/client/proc/cmd_admin_dress,
 	/client/proc/cmd_admin_select_mob_rank,
 	/client/proc/cmd_admin_gib_self,
 	/client/proc/drop_bomb,
-	/client/proc/cmd_admin_add_freeform_ai_law,
-	/client/proc/cmd_admin_add_random_ai_law,
 	/client/proc/cmd_admin_create_centcom_report,
-	// /client/proc/make_sound,
-	/client/proc/cmd_admin_add_random_ai_law,
+	/client/proc/make_sound,
 	/client/proc/Set_Holiday,
 	/datum/admins/proc/startnow,
 	/datum/admins/proc/restart,
@@ -367,7 +353,7 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/adspawn,
 	/datum/admins/proc/adjump,
 	/client/proc/restart_controller,
-	/client/proc/cmd_admin_list_open_jobs,
+	/client/proc/jobs_list,
 	/client/proc/callproc,
 	/client/proc/callatomproc,
 	/client/proc/Debug2,
@@ -383,39 +369,6 @@ var/list/admin_verbs_hideable = list(
 	/proc/release,
 	/client/proc/remove_players_from_vic
 	)
-var/list/admin_verbs_mod = list(
-	/client/proc/cmd_admin_pm_context,	/*right-click adminPM interface*/
-	/client/proc/cmd_admin_pm_panel,	/*admin-pm list*/
-	/client/proc/debug_variables,		/*allows us to -see- the variables of any instance in the game.*/
-	/client/proc/toggledebuglogs,
-	/datum/admins/proc/player_notes_list,
-	/datum/admins/proc/player_notes_show,
-	/client/proc/admin_ghost,			/*allows us to ghost/reenter body at will*/
-	/client/proc/cmd_mod_say,
-	/client/proc/player_panel_new,
-	/client/proc/dsay,
-	/datum/admins/proc/togglesleep,
-	/datum/admins/proc/togglejoin,
-	/client/proc/toggle_own_ghost_vis,
-	/datum/admins/proc/show_player_panel,
-	/client/proc/check_antagonists,
-	// /client/proc/jobbans // Disabled temporarily due to 15-30 second lag spikes. Don't forget the comma in the line above when uncommenting this!
-	// /client/proc/investigate_show,		/*various admintools for investigation. Such as a singulo grief-log*/
-	/client/proc/toggleattacklogs,
-	/client/proc/toggleffattacklogs,
-	/client/proc/toggleendofroundattacklogs,
-	/client/proc/getcurrentlogs,		/*for accessing server logs for the current round*/
-	/datum/admins/proc/toggleooc,		/*toggles ooc on/off for everyone*/
-	/datum/admins/proc/toggleoocdead,	/*toggles ooc on/off for everyone who is dead*/
-	/client/proc/cmd_admin_changekey,
-	/client/proc/cmd_admin_subtle_message,	/*send an message to somebody as a 'voice in their head'*/
-	/client/proc/cmd_admin_xeno_report,  //Allows creation of IC reports by the Queen Mother
-	/proc/release,
-	/datum/admins/proc/viewUnheardMhelps,
-	/datum/admins/proc/viewUnheardAhelps, //Why even have it as a client proc anyway?
-	/datum/admins/proc/viewCLFaxes,
-	/datum/admins/proc/viewTGMCFaxes
-)
 
 var/list/admin_verbs_mentor = list(
 	/client/proc/cmd_admin_pm_context,
@@ -432,7 +385,7 @@ var/list/admin_verbs_mentor = list(
 /client/proc/add_admin_verbs()
 	if(holder)
 		verbs += admin_verbs_default
-		if(holder.rights & R_BUILDMODE)		verbs += /client/proc/togglebuildmodeself
+		if(holder.rights & R_ASAY)		verbs += /client/proc/togglebuildmodeself
 		if(holder.rights & R_ADMIN)			verbs += admin_verbs_admin
 		if(holder.rights & R_BAN)			verbs += admin_verbs_ban
 		if(holder.rights & R_FUN)			verbs += admin_verbs_fun
@@ -441,14 +394,10 @@ var/list/admin_verbs_mentor = list(
 			verbs += admin_verbs_debug
 			if(CONFIG_GET(flag/debugparanoid) && !check_rights(R_ADMIN))
 				verbs.Remove(admin_verbs_paranoid_debug)			//Right now it's just callproc but we can easily add others later on.
-		if(holder.rights & R_POSSESS)		verbs += admin_verbs_possess
 		if(holder.rights & R_PERMISSIONS)	verbs += admin_verbs_permissions
-		if(holder.rights & R_STEALTH)		verbs += /client/proc/stealth
-		if(holder.rights & R_REJUVINATE)	verbs += admin_verbs_rejuv
 		if(holder.rights & R_COLOR)			verbs += admin_verbs_color
-		if(holder.rights & R_SOUNDS)		verbs += admin_verbs_sounds
+		if(holder.rights & R_SOUND)		verbs += admin_verbs_sounds
 		if(holder.rights & R_SPAWN)			verbs += admin_verbs_spawn
-		if(holder.rights & R_MOD)			verbs += admin_verbs_mod
 		if(holder.rights & R_MENTOR)		verbs += admin_verbs_mentor
 
 /client/proc/remove_admin_verbs()
@@ -462,7 +411,7 @@ var/list/admin_verbs_mentor = list(
 		admin_verbs_debug,
 		admin_verbs_possess,
 		admin_verbs_permissions,
-		/client/proc/stealth,
+		/client/proc/stealth_mode,
 		admin_verbs_rejuv,
 		admin_verbs_color,
 		admin_verbs_sounds,
@@ -557,36 +506,14 @@ var/list/debug_verbs = list(
 
 	feedback_add_details("admin_verb","hDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
 /proc/is_mentor(client/C)
-
 	if(!istype(C))
-		return 0
-	if(!C.holder)
-		return 0
-
-	if(C.holder.rights == R_MENTOR)
-		return 1
-	return 0
-
-
-
-/proc/ishost(whom)
-	if(!whom)
-		return 0
-	var/client/C
-	var/mob/M
-	if(istype(whom, /client))
-		C = whom
-	else if(istype(whom, /mob))
-		M = whom
-		C = M.client
-	else
-		return 0
-	if(R_HOST & C.holder.rights)
-		return 1
-	else
-		return 0
+		return FALSE
+	if(!C?.holder?.rights)
+		return FALSE
+	if(C.holder.rights & (R_MENTOR) && !(C.holder.rights & (R_ADMIN)))
+		return TRUE
+	return FALSE
 
 /proc/message_admins(var/msg) // +ADMIN and above
 	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
@@ -599,7 +526,7 @@ var/list/debug_verbs = list(
 	msg = "<span class=\"admin\"><span class=\"prefix\">MOD LOG:</span> <span class=\"message\">[msg]</span></span>"
 	log_admin_private(msg)
 	for(var/client/C in admins)
-		if(R_MOD & C.holder.rights)
+		if(R_ADMIN & C.holder.rights)
 			to_chat(C, msg)
 
 /proc/message_staff(var/msg) // ALL staff - including Mentors
@@ -613,7 +540,7 @@ var/list/debug_verbs = list(
 	log_attack(text)
 	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ATTACK:</span> <span class=\"message\">[text]</span></span>"
 	for(var/client/C in admins)
-		if(R_MOD & C.holder.rights)
+		if(R_ADMIN & C.holder.rights)
 			if((C.prefs.toggles_chat & CHAT_ATTACKLOGS) && !((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
 				var/msg = rendered
 				to_chat(C, msg)
@@ -623,7 +550,12 @@ var/list/debug_verbs = list(
 	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ATTACK:</span> <font color=#00ff00><b>[text]</b></font></span>" //I used <font> because I never learned html correctly, fix this if you want
 
 	for(var/client/C in admins)
-		if(R_MOD & C.holder.rights)
+		if(R_ADMIN & C.holder.rights)
 			if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) && !((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
 				var/msg = rendered
 				to_chat(C, msg)
+
+
+/client/proc/findStealthKey() //TEMPORARY
+	if(holder)
+		return holder.owner.key

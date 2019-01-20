@@ -1,35 +1,6 @@
 //#define TESTING
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 #define MAIN_SHIP_NAME "TGS Theseus"
-//=================================================
-//Please don't edit these values without speaking to Errorage first	~Carn
-//Admin Permissions
-#define R_BUILDMODE		1
-#define R_ADMIN			2
-#define R_BAN			4
-#define R_FUN			8
-#define R_SERVER		16
-#define R_DEBUG			32
-#define R_POSSESS		64
-#define R_PERMISSIONS	128
-#define R_STEALTH		256
-#define R_REJUVINATE	512
-#define R_COLOR			1024
-#define R_VAREDIT		2048
-#define R_SOUNDS		4096
-#define R_SPAWN			8192
-#define R_MOD			16384
-#define R_MENTOR		32768
-#define R_HOST			65536
-// 512.1430 increases maximum bit flags from 16 to 24, so the following flags should be available for future changes:
-// #define R_PERMISSION	131072
-// #define R_PERMISSION	262144
-// #define R_PERMISSION	524288
-// #define R_PERMISSION	1048576
-// #define R_PERMISSION	2097152
-// #define R_PERMISSION	4194304
-//=================================================
-
 
 var/global/obj/effect/datacore/data_core = null
 

@@ -1,6 +1,12 @@
+/client/proc/player_panel_new()
+	set name = "Player Panel"
+	set category = "Admin"
+	if(holder)
+		holder.player_panel_new()
+	feedback_add_details("admin_verb","PPN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/player_panel_new()//The new one
-	if(!usr.client.holder.rights & (R_ADMIN|R_MOD))
+	if(!usr.client.holder.rights & (R_ADMIN))
 		return
 	var/dat = "<html><head><title>Admin Player Panel</title></head>"
 
@@ -387,7 +393,7 @@
 
 //Extended panel with ban related things
 /datum/admins/proc/player_panel_extended()
-	if(!usr.client.holder.rights & (R_ADMIN|R_MOD))
+	if(!usr.client.holder.rights & (R_ADMIN))
 		return
 
 	var/dat = "<html><head><title>Player Menu</title></head>"
@@ -443,7 +449,7 @@
 			dat += "<br><A HREF='?_src_=vars;Vars=\ref[EvacuationAuthority]'>VV Evacuation Controller</A><br>"
 			dat += "<A HREF='?_src_=vars;Vars=\ref[shuttle_controller]'>VV Shuttle Controller</A><br><br>"
 
-		if(check_rights(R_MOD, FALSE))
+		if(check_rights(R_ADMIN))
 			dat += "<b>Evacuation:</b> "
 			switch(EvacuationAuthority.evac_status)
 				if(EVACUATION_STATUS_STANDING_BY) dat += 	"STANDING BY"
@@ -613,7 +619,7 @@
 		<A href='?src=\ref[src];getmob=\ref[M]'>Get</A> |
 		<A href='?src=\ref[src];sendmob=\ref[M]'>Send To</A>
 		<br><br>
-		[check_rights(R_ADMIN|R_MOD,0) ? "<A href='?src=\ref[src];traitor=\ref[M]'>Traitor panel</A> |" : "" ]
+		[check_rights(R_ADMIN) ? "<A href='?src=\ref[src];traitor=\ref[M]'>Traitor panel</A> |" : "" ]
 		<A href='?src=\ref[src];narrateto=\ref[M]'>Narrate to</A> |
 		<A href='?src=\ref[src];subtlemessage=\ref[M]'>Subtle message</A>
 	"}

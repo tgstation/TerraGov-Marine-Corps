@@ -750,23 +750,6 @@ var/global/list/power_update_requests_by_area = list()
 
 #undef DEBUG_XENO
 
-
-// Debug for testing seed genes.
-/client/proc/show_plant_genes()
-	set category = "Debug"
-	set name = "Show Plant Genes"
-	set desc = "Prints the round's plant gene masks."
-
-	if(!holder)	return
-
-	if(!gene_tag_masks)
-		to_chat(usr, "Gene masks not set.")
-		return
-
-	for(var/mask in gene_tag_masks)
-		to_chat(usr, "[mask]: [gene_tag_masks[mask]]")
-
-
 /client/proc/forceEvent(var/type in allEvents)
 	set name = "Trigger Event (Debug Only)"
 	set category = "Debug"
@@ -933,7 +916,7 @@ client
 		set category = "Debug"
 		set name = "View Variables"
 
-		if(!usr.client || !usr.client.holder || !(usr.client.holder.rights & R_MOD))
+		if(!usr.client || !usr.client.holder || !(usr.client.holder.rights & R_ADMIN))
 			to_chat(usr, "<span class='warning'>You need to be a moderator or higher to access this.</span>")
 			return
 
@@ -943,7 +926,7 @@ client
 		var/body = ""
 
 		//Sort of a temporary solution for right now.
-		if(istype(D,/datum/admins) && !(ishost(usr))) //Prevents non-hosts from changing their own permissions.
+		if(!check_rights(R_EVERYTHING)) //Prevents non-hosts from changing their own permissions.
 			to_chat(usr, "<span class='warning'>You need host permission to access this.</span>")
 			return
 
@@ -1434,7 +1417,7 @@ client
 		href_list["datumrefresh"] = href_list["give_spell"]
 
 	else if(href_list["godmode"])
-		if(!check_rights(R_REJUVINATE))	return
+		if(!check_rights(R_ADMIN))	return
 
 		var/mob/M = locate(href_list["godmode"])
 		if(!istype(M))
@@ -2998,3 +2981,27 @@ var/list/forbidden_varedit_object_types = list(
 	log_world("### VarEdit by [key_name(src)]: [O.type] '[variable]': [var_value] => [html_encode("[O.vars[variable]]")]")
 	log_admin("[key_name(src)] modified [original_name]'s '[variable]': [html_encode("[var_value]")] => [O.vars[variable]]")
 	message_admins("[key_name_admin(src)] modified [original_name]'s '[variable]': [var_value] => [O.vars[variable]]", 1)
+
+
+/client/proc/cmd_admin_check_contents(mob/living/M as mob in mob_list)
+	set category = "Debug"
+	set name = "Check Contents"
+
+	var/list/L = M.get_contents()
+	for(var/t in L)
+		to_chat(usr, "[t]")
+	feedback_add_details("admin_verb","CC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+
+/client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
+	set category = "Debug"
+	set name = "Update Mob Sprite"
+	set desc = "Should fix any mob sprite errors."
+
+	if(!check_rights(R_DEBUG))
+		return
+
+	if(!H || !istype(H))
+		return
+
+	H.regenerate_icons()

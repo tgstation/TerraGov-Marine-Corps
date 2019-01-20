@@ -1,6 +1,6 @@
 /proc/togglebuildmode(mob/M as mob in player_list)
 	set name = "Toggle Build Mode"
-	set category = "Special Verbs"
+	set category = "Fun"
 	if(M.client)
 		if(M.client.buildmode)
 			log_admin("[key_name(usr)] has left build mode.")

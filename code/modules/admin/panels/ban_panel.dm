@@ -77,7 +77,7 @@ world/IsBanned(key,address,computer_id)
 
 datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/rounds = 0, var/banckey = null)
 
-	if(!check_rights(R_MOD,0) && !check_rights(R_BAN))	return
+	if(!check_rights(R_BAN))	return
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
@@ -809,22 +809,11 @@ var/jobban_keylist[0]		//to store the keys & ranks
 		L.Remove(r1.group[1])
 		return 1
 
-
-/datum/admins/proc/Jobbans()
-	if(!check_rights(R_BAN)) return
-	var/L[] //List reference.
-	var/r //rank --This will always be a string.
-	var/c //ckey --This will always be a string.
-	var/i //individual record / ban reason
-	var/t //text to show in the window
-	var/u //unban button href arg
-	var/dat = "<b>Job Bans!</b><hr><table>"
-	for(r in jobban_keylist)
-		L = jobban_keylist[r]
-		for(c in L)
-			i = jobban_keylist[r][c] //These are already strings, as you're iterating through them. Anyway, establish jobban.
-			t = "[c] - [r] ## [i]"
-			u = "[c] - [r]"
-			dat += "<tr><td>[t] (<A href='?src=\ref[src];removejobban=[u]'>unban</A>)</td></tr>"
-	dat += "</table>"
-	usr << browse(dat, "window=ban;size=400x400")
+/client/proc/unban_panel()
+	set name = "Unban Panel"
+	set category = "Admin"
+	if(holder)
+		if(CONFIG_GET(flag/ban_legacy_system))
+			holder.unbanpanel()
+		else
+			holder.DB_ban_panel()

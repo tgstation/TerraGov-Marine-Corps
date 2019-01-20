@@ -49,9 +49,9 @@
 	var/savefile/note_list = new("data/player_notes.sav")
 	var/list/note_keys
 	note_list >> note_keys
-	if(!note_keys) 
+	if(!note_keys)
 		note_keys = list()
-	if(!note_keys.Find(key)) 
+	if(!note_keys.Find(key))
 		note_keys += key
 	to_chat(note_list, note_keys)
 	qdel(note_list)
@@ -62,7 +62,7 @@
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || infos.len < index) 
+	if(!infos || infos.len < index)
 		return
 
 	var/datum/player_info/item = infos[index]
@@ -79,7 +79,7 @@
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || infos.len < index) 
+	if(!infos || infos.len < index)
 		return
 
 	var/datum/player_info/item = infos[index]
@@ -97,7 +97,7 @@
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
 	info >> infos
-	if(!infos || infos.len < index) 
+	if(!infos || infos.len < index)
 		return
 
 	var/datum/player_info/item = infos[index]
@@ -225,9 +225,9 @@
 				I.rank = "N/A"
 				update_file = 1
 			dat += "<font color=#008800>[I.content]</font> <i>by [I.author] ([I.rank])</i> on <i><font color=blue>[I.timestamp]</i></font> "
-			if((I.author == usr.key || I.author == "Adminbot" || ishost(usr)) && ((R_ADMIN & usr.client.holder.rights) || (R_MOD & usr.client.holder.rights)))
+			if(I.author == usr.key || I.author == "Adminbot" || check_rights(R_EVERYTHING))
 				dat += "<A href='?src=\ref[src];remove_player_info=[key];remove_index=[i]'>Remove</A> "
-			if((R_ADMIN & usr.client.holder.rights) || (R_MOD & usr.client.holder.rights))
+			if((R_ADMIN & usr.client.holder.rights))
 				if(I.hidden)
 					dat += "<A href='?src=\ref[src];unhide_player_info=[key];remove_index=[i]'>Unhide</A>"
 				else
@@ -273,3 +273,13 @@
 	dat = remove_author.Replace(dat, "Banned ")
 
 	usr << browse(dat, "window=notescopy;size=480x480")
+
+
+/client/proc/player_notes_list()
+	set name = "Player Notes List"
+	set category = "Admin"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	player_notes_list()

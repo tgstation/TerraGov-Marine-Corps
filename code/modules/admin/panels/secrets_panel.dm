@@ -1,3 +1,12 @@
+/client/proc/secrets()
+	set name = "Secrets Panel"
+	set category = "Admin"
+	if (holder)
+		holder.Secrets()
+	feedback_add_details("admin_verb","S") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	return
+
+
 /datum/admins/proc/Secrets()
 	if(!check_rights(0))	return
 

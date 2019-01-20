@@ -230,35 +230,6 @@
 	message_admins("[key_name_admin(src)] has created a command report", 1)
 	feedback_add_details("admin_verb","CCR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
-/client/proc/cmd_admin_add_freeform_ai_law()
-	set category = "Fun"
-	set name = "Add Custom AI law"
-	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
-		return
-	var/input = input(usr, "Please enter anything you want the AI to do. Anything. Serious.", "What?", "") as text|null
-	if(!input)
-		return
-	for(var/mob/living/silicon/ai/M in mob_list)
-		if (M.stat == 2)
-			to_chat(usr, "Upload failed. No signal is being detected from the AI.")
-		else if (M.see_in_dark == 0)
-			to_chat(usr, "Upload failed. Only a faint signal is being detected from the AI, and it is not responding to our requests. It may be low on power.")
-		else
-			M.add_ion_law(input)
-			for(var/mob/living/silicon/ai/O in mob_list)
-				to_chat(O, "<span class='warning'>" + input + "<span class='warning'>...LAWS UPDATED</span>")
-				O.show_laws()
-
-	log_admin("Admin [key_name(usr)] has added a new AI law - [input]")
-	message_admins("Admin [key_name_admin(usr)] has added a new AI law - [input]", 1)
-
-	var/show_log = alert(src, "Show ion message?", "Message", "Yes", "No")
-	if(show_log == "Yes")
-		command_announcement.Announce("Ion storm detected in proximity. Recommendation: Check all AI-controlled equipment for data corruption.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
-	feedback_add_details("admin_verb","IONC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 /client/proc/respawn_character()
 	set category = "Fun"
 	set name = "Respawn Character"
@@ -382,26 +353,6 @@
 	feedback_add_details("admin_verb","RSPCH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return new_character
 
-
-/client/proc/cmd_admin_add_random_ai_law()
-	set category = "Fun"
-	set name = "Add Random AI Law"
-	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
-		return
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
-	if(confirm != "Yes") return
-	log_admin("[key_name(src)] has added a random AI law.")
-	message_admins("[key_name_admin(src)] has added a random AI law.", 1)
-
-	var/show_log = alert(src, "Show ion message?", "Message", "Yes", "No")
-	if(show_log == "Yes")
-		command_announcement.Announce("Ion storm detected in proximity. Recommendation: Check all AI-controlled equipment for data corruption.", "Anomaly Alert", new_sound = 'sound/AI/ionstorm.ogg')
-
-	IonStorm(0)
-	feedback_add_details("admin_verb","ION") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-
 /client/proc/cmd_admin_godmode(mob/M as mob in mob_list)
 	set category = "Fun"
 	set name = "Godmode"
@@ -464,7 +415,7 @@
 
 	if(!ismob(M))
 		return
-	if(!check_rights(R_ADMIN|R_MOD|R_MENTOR))
+	if(!check_rights(R_ADMIN|R_MENTOR))
 		to_chat(src, "Only staff members may use this command.")
 		return
 
@@ -597,7 +548,7 @@
 	set category = "Fun"
 	set name = "Play Imported Sound"
 	set desc = "Play a sound imported from anywhere on your computer."
-	if(!check_rights(R_SOUNDS))	return
+	if(!check_rights(R_SOUND))	return
 
 	if(midi_playing)
 		to_chat(usr, "No. An Admin already played a midi recently.")
@@ -644,7 +595,7 @@
 	set category = "Fun"
 	set name = "Play Sound From List"
 	set desc = "Play a sound already in the project from a pre-made list."
-	if(!check_rights(R_SOUNDS))	return
+	if(!check_rights(R_SOUND))	return
 
 	var/list/sounds = file2list("sound/soundlist.txt");
 	sounds += "--CANCEL--"
@@ -790,4 +741,175 @@
 	log_admin("[key_name(usr)] force launched a distress shuttle ([tag])")
 	message_admins("<span class='notice'> [key_name_admin(usr)] force launched a distress shuttle ([tag])</span>", 1)
 
+
+/client/proc/make_sound(var/obj/O in object_list) // -- TLE
+	set category = "Special Verbs"
+	set name = "Make Sound"
+	set desc = "Display a message to everyone who can hear the target"
+	if(O)
+		var/message = input("What do you want the message to be?", "Make Sound") as text|null
+		if(!message)
+			return
+		for (var/mob/V in hearers(O))
+			V.show_message(message, 2)
+		log_admin("[key_name(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound")
+		message_admins("<span class='notice'> [key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound</span>", 1)
+		feedback_add_details("admin_verb","MS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/togglebuildmodeself()
+	set name = "Toggle Build Mode Self"
+	set category = "Fun"
+	if(src.mob)
+		togglebuildmode(src.mob)
+	feedback_add_details("admin_verb","TBMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/object_talk(var/msg as text) // -- TLE
+	set category = "Special Verbs"
+	set name = "Object Say"
+	set desc = "Display a message to everyone who can hear the target"
+	if(mob.control_object)
+		if(!msg)
+			return
+		for (var/mob/V in hearers(mob.control_object))
+			V.show_message("<b>[mob.control_object.name]</b> says: \"" + msg + "\"", 2)
+	feedback_add_details("admin_verb","OT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+
+/client/proc/drop_bomb() // Some admin dickery that can probably be done better -- TLE
+	set category = "Fun"
+	set name = "Drop Bomb"
+	set desc = "Cause an explosion of varying strength at your location."
+
+	var/turf/epicenter = mob.loc
+	var/list/choices = list("CANCEL", "Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
+	var/choice = input("What size explosion would you like to produce?") in choices
+	switch(choice)
+		if("CANCEL")
+			return 0
+		if("Small Bomb")
+			explosion(epicenter, 1, 2, 3, 3)
+		if("Medium Bomb")
+			explosion(epicenter, 2, 3, 4, 4)
+		if("Big Bomb")
+			explosion(epicenter, 3, 5, 7, 5)
+		if("Custom Bomb")
+			var/devastation_range = input("Devastation range (in tiles):") as num
+			var/heavy_impact_range = input("Heavy impact range (in tiles):") as num
+			var/light_impact_range = input("Light impact range (in tiles):") as num
+			var/flash_range = input("Flash range (in tiles):") as num
+			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
+	message_admins("<span class='notice'> [ckey] used 'Drop Bomb' at [epicenter.loc].</span>")
+	feedback_add_details("admin_verb","DB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+/client/proc/give_spell(mob/T as mob in mob_list) // -- Urist
+	set category = "Fun"
+	set name = "Give Spell"
+	set desc = "Gives a spell to a mob."
+	var/list/spell_names = list()
+	for(var/v in spells)
+	//	"/obj/effect/proc_holder/spell/" 30 symbols ~Intercross21
+		spell_names.Add(copytext("[v]", 31, 0))
+	var/S = input("Choose the spell to give to that guy", "ABRAKADABRA") as null|anything in spell_names
+	if(!S) return
+	var/path = text2path("/obj/effect/proc_holder/spell/[S]")
+	T.spell_list += new path
+	feedback_add_details("admin_verb","GS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(usr)] gave [key_name(T)] the spell [S].")
+	message_admins("<span class='notice'> [key_name_admin(usr)] gave [key_name(T)] the spell [S].</span>", 1)
+
+/client/proc/give_disease(mob/T as mob in mob_list) // -- Giacom
+	set category = "Fun"
+	set name = "Give Disease (old)"
+	set desc = "Gives a (tg-style) Disease to a mob."
+	var/list/disease_names = list()
+	for(var/v in diseases)
+	//	"/datum/disease/" 15 symbols ~Intercross
+		disease_names.Add(copytext("[v]", 16, 0))
+	var/datum/disease/D = input("Choose the disease to give to that guy", "ACHOO") as null|anything in disease_names
+	if(!D) return
+	var/path = text2path("/datum/disease/[D]")
+	T.contract_disease(new path, 1)
+	feedback_add_details("admin_verb","GD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(usr)] gave [key_name(T)] the disease [D].")
+	message_admins("<span class='notice'> [key_name_admin(usr)] gave [key_name(T)] the disease [D].</span>", 1)
+
+/client/proc/set_ooc_color_self()
+	set category = "Fun"
+	set name = "OOC Text Color - Self"
+	if(!holder && !donator)	return
+	var/new_ooccolor = input(src, "Please select your OOC colour.", "OOC colour") as color|null
+	if(new_ooccolor)
+		prefs.ooccolor = new_ooccolor
+		prefs.save_preferences()
+	feedback_add_details("admin_verb","OC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	return
+
+/client/proc/editappear(mob/living/carbon/human/M as mob in mob_list)
+	set name = "Edit Appearance"
+	set category = "Fun"
+
+	if(!check_rights(R_FUN))	return
+
+	if(!istype(M, /mob/living/carbon/human))
+		to_chat(usr, "<span class='warning'>You can only do this to humans!</span>")
+		return
+	switch(alert("Are you sure you wish to edit this mob's appearance? Skrell, Unathi, Vox and Tajaran can result in unintended consequences.",,"Yes","No"))
+		if("No")
+			return
+	var/new_facial = input("Please select facial hair color.", "Character Generation") as color
+	if(new_facial)
+		M.r_facial = hex2num(copytext(new_facial, 2, 4))
+		M.g_facial = hex2num(copytext(new_facial, 4, 6))
+		M.b_facial = hex2num(copytext(new_facial, 6, 8))
+
+	var/new_hair = input("Please select hair color.", "Character Generation") as color
+	if(new_facial)
+		M.r_hair = hex2num(copytext(new_hair, 2, 4))
+		M.g_hair = hex2num(copytext(new_hair, 4, 6))
+		M.b_hair = hex2num(copytext(new_hair, 6, 8))
+
+	var/new_eyes = input("Please select eye color.", "Character Generation") as color
+	if(new_eyes)
+		M.r_eyes = hex2num(copytext(new_eyes, 2, 4))
+		M.g_eyes = hex2num(copytext(new_eyes, 4, 6))
+		M.b_eyes = hex2num(copytext(new_eyes, 6, 8))
+
+	var/new_skin = input("Please select body color. This is for Tajaran, Unathi, and Skrell only!", "Character Generation") as color
+	if(new_skin)
+		M.r_skin = hex2num(copytext(new_skin, 2, 4))
+		M.g_skin = hex2num(copytext(new_skin, 4, 6))
+		M.b_skin = hex2num(copytext(new_skin, 6, 8))
+
+
+	// hair
+	var/new_hstyle = input(usr, "Select a hair style", "Grooming")  as null|anything in hair_styles_list
+	if(new_hstyle)
+		M.h_style = new_hstyle
+
+	// facial hair
+	var/new_fstyle = input(usr, "Select a facial hair style", "Grooming")  as null|anything in facial_hair_styles_list
+	if(new_fstyle)
+		M.f_style = new_fstyle
+
+	var/new_gender = alert(usr, "Please select gender.", "Character Generation", "Male", "Female")
+	if (new_gender)
+		if(new_gender == "Male")
+			M.gender = MALE
+		else
+			M.gender = FEMALE
+	M.update_hair()
+	M.update_body()
+	M.check_dna(M)
+
+
+/client/proc/change_security_level()
+	set name = "Set Security Level"
+	set desc = "Sets the station security level"
+	set category = "Fun"
+
+	if(!check_rights(R_ADMIN))	return
+	var sec_level = input(usr, "It's currently code [get_security_level()].", "Select Security Level")  as null|anything in (list("green","blue","red","delta")-get_security_level())
+	if(sec_level && alert("Switch from code [get_security_level()] to code [sec_level]?","Change security level?","Yes","No") == "Yes")
+		set_security_level(sec_level)
+		log_admin("[key_name(usr)] changed the security level to code [sec_level].")
 

@@ -124,9 +124,9 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 	var/list/mentorholders = list()
 	var/list/adminholders = list()
 	for(var/client/X in admins)
-		if((R_MENTOR & X.holder.rights) && !((R_ADMIN & X.holder.rights) || (R_MOD & X.holder.rights))) // we don't want to count admins twice. This list should be JUST mentors
+		if((R_MENTOR & X.holder.rights) && !((R_ADMIN & X.holder.rights))) // we don't want to count admins twice. This list should be JUST mentors
 			mentorholders += X
-		if((R_ADMIN & X.holder.rights) || (R_MOD & X.holder.rights)) // just admins here please
+		if((R_ADMIN & X.holder.rights)) // just admins here please
 			adminholders += X
 			if(X.is_afk())
 				admin_number_afk++
@@ -246,13 +246,13 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 	var/admin_number_afk = 0
 	var/list/adminholders = list()
 	for(var/client/X in admins)
-		if((R_ADMIN & X.holder.rights) || (R_MOD & X.holder.rights)) // just admins here please
+		if((R_ADMIN & X.holder.rights)) // just admins here please
 			adminholders += X
 			if(X.is_afk())
 				admin_number_afk++
 
 	if(adminholders.len && (admin_number_afk != adminholders.len))
-		if((R_ADMIN & usr.client.holder.rights) || (R_MOD & usr.client.holder.rights))
+		if((R_ADMIN & usr.client.holder.rights))
 			for(var/CID in unansweredAhelps)
 				body += "[unansweredAhelps[CID]]" //If I have done these correctly, it should have the options bar as well a mark and noresponse
 			body += "<br><br></body></html>"
@@ -269,7 +269,7 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 		src << browse(body, "window=ahelps;size=800x300")
 		return
 
-	
+
 
 /datum/admins/proc/viewUnheardMhelps()
 	set name = "View Unheard Mhelps"

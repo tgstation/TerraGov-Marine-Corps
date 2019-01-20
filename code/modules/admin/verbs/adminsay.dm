@@ -1,5 +1,5 @@
 /client/proc/cmd_admin_say(msg as text)
-	set category = "Special Verbs"
+	set category = "Admin"
 	set name = "Asay" //Gave this shit a shorter name so you only have to time out "asay" rather than "admin say" to use it --NeoFite
 	set hidden = 1
 	if(!check_rights(R_ADMIN))	return
@@ -10,10 +10,10 @@
 	mob.log_talk(msg, LOG_ASAY)
 
 	var/color = "adminsay"
-	if(ishost(usr))
+	if(check_rights(R_EVERYTHING))
 		color = "headminsay"
 
-	if(check_rights(R_ADMIN|R_MOD,0))
+	if(check_rights(R_ADMIN))
 		msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> <EM>[key_name(usr, 1)]</EM> (<A HREF='?_src_=holder;adminmoreinfo=\ref[mob]'>?</A>) (<a href='?_src_=holder;adminplayerobservejump=\ref[mob]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[mob]'>FLW</a>): <span class='message'>[msg]</span></span>"
 		for(var/client/C in admins)
 			if(R_ADMIN & C.holder.rights)
@@ -22,11 +22,11 @@
 	feedback_add_details("admin_verb","M") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/cmd_mod_say(msg as text)
-	set category = "Special Verbs"
+	set category = "Admin"
 	set name = "Msay"
 	set hidden = 1
 
-	if(!check_rights(R_ADMIN|R_MOD|R_MENTOR, 0))
+	if(!check_rights(R_ADMIN|R_MENTOR, 0))
 		return
 
 	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
@@ -35,13 +35,13 @@
 	if (!msg)
 		return
 	var/color = "mod"
-	if (check_rights(R_ADMIN|R_MOD,0))
+	if (check_rights(R_ADMIN))
 		color = "adminmod"
 
 	var/channel = "MOD:"
 	channel = "[holder.rank]:"
 	for(var/client/C in admins)
-		if(C.holder.rights & (R_ADMIN|R_MOD))
+		if(C.holder.rights & (R_ADMIN))
 			to_chat(C, "<span class='[color]'><span class='prefix'>[channel]</span> <EM>[key_name(src,1)]</EM> (<A HREF='?src=\ref[C.holder];adminmoreinfo=\ref[mob]'>?</A>) (<A HREF='?src=\ref[C.holder];adminplayerobservejump=\ref[mob]'>JMP</A>) (<A HREF='?src=\ref[C.holder];adminplayerfollow=\ref[mob]'>FLW</a>): <span class='message'>[msg]</span></span>")
 		else if((C.holder.rights & R_MENTOR) && (C.mob.stat == DEAD))
 			to_chat(C, "<span class='[color]'><span class='prefix'>[channel]</span> <EM>[key_name(src,1,1,0)]</EM> (<A HREF='?src=\ref[C.holder];adminplayerobservejump=\ref[mob]'>JMP</A>) (<A HREF='?src=\ref[C.holder];adminplayerfollow=\ref[mob]'>FLW</a>): <span class='message'>[msg]</span></span>")
@@ -49,14 +49,14 @@
 			to_chat(C, "<span class='[color]'><span class='prefix'>[channel]</span> <EM>[key_name(src,1,0,0)]</EM> (<A HREF='?src=\ref[C.holder];adminplayerobservejump=\ref[mob]'>JMP</A>) (<A HREF='?src=\ref[C.holder];adminplayerfollow=\ref[mob]'>FLW</a>): <span class='message'>[msg]</span></span>")
 
 /client/proc/dsay(msg as text)
-	set category = "Special Verbs"
+	set category = "Admin"
 	set name = "Dsay" //Gave this shit a shorter name so you only have to time out "dsay" rather than "dead say" to use it --NeoFite
 	set hidden = 1
 
 	if(!src.mob)
 		return
 
-	if(!(holder.rights & (R_ADMIN|R_MOD)) && mob.stat != DEAD)
+	if(!(holder.rights & (R_ADMIN)) && mob.stat != DEAD)
 		to_chat(src, "You must be an observer to use dsay.")
 		return
 
@@ -87,7 +87,7 @@
 		if(istype(M, /mob/new_player))
 			continue
 
-		if(M.client?.holder && (M.client.holder.rights & (R_ADMIN|R_MOD)) && (M.client.prefs.toggles_chat & CHAT_DEAD)) // show the message to admins who have deadchat toggled on
+		if(M.client?.holder && (M.client.holder.rights & (R_ADMIN)) && (M.client.prefs.toggles_chat & CHAT_DEAD)) // show the message to admins who have deadchat toggled on
 			to_chat(M, rendered)
 
 		else if(M.stat == DEAD && (M.client.prefs.toggles_chat & CHAT_DEAD)) // show the message to regular ghosts who have deadchat toggled on

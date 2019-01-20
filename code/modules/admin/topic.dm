@@ -151,7 +151,7 @@
 		else if(task == "permissions")
 			if(!D)	return
 			var/list/permissionlist = list()
-			for(var/i=1, i<=R_HOST, i<<=1)
+			for(var/i=1, i<=R_EVERYTHING, i<<=1)
 				permissionlist[rights2text(i)] = i
 			var/new_permission = input("Select a permission to turn on/off", "Permission toggle", null, null) as null|anything in permissionlist
 			if(!new_permission)	return
@@ -327,9 +327,6 @@
 			else
 				alert(usr, "This ban has already been lifted / does not exist.", "Error", "Ok")
 				unbanpanel()
-
-	else if(href_list["warn"])
-		usr.client.warn(href_list["warn"])
 
 	else if(href_list["unbanupgradeperma"])
 		if(!check_rights(R_BAN))
@@ -638,7 +635,7 @@
 		return
 	//JOBBAN'S INNARDS
 	else if(href_list["jobban3"])
-		if(!check_rights(R_MOD,0) && !check_rights(R_ADMIN))  return
+		if(!check_rights(R_ADMIN))  return
 
 		var/mob/M = locate(href_list["jobban4"])
 		if(!ismob(M))
@@ -837,7 +834,7 @@
 				DB_ban_unban(ckey(key), BANTYPE_JOB_PERMA, job)
 
 	else if(href_list["newban"])
-		if(!check_rights(R_MOD,0) && !check_rights(R_BAN))  return
+		if(!check_rights(R_BAN))  return
 
 		var/mob/M = locate(href_list["newban"])
 		if(!ismob(M)) return
@@ -876,7 +873,7 @@
 		del(mob_client)
 
 	else if(href_list["lazyban"])
-		if(!check_rights(R_MOD,0) && !check_rights(R_BAN))  return
+		if(!check_rights(R_BAN))  return
 
 		var/mob/M = locate(href_list["lazyban"])
 		if(!ismob(M)) return
@@ -920,17 +917,54 @@
 
 
 	else if(href_list["mute"])
-		if(!check_rights(R_MOD,0) && !check_rights(R_ADMIN))  return
+		if(!check_rights(R_ADMIN))
+			return
 
 		var/mob/M = locate(href_list["mute"])
-		if(!ismob(M))	return
-		if(!M.client)	return
+		if(!ismob(M))
+			return
+		if(!M.client)
+			return
 
 		var/mute_type = href_list["mute_type"]
-		if(istext(mute_type))	mute_type = text2num(mute_type)
-		if(!isnum(mute_type))	return
+		if(istext(mute_type))
+			mute_type = text2num(mute_type)
+		if(!isnum(mute_type))
+			return
 
-		cmd_admin_mute(M, mute_type)
+		else
+			if(!usr || !usr.client)
+				return
+			if(!usr.client.holder)
+				to_chat(usr, "<font color='red'>Error: cmd_admin_mute: You don't have permission to do this.</font>")
+				return
+			if(!M.client)
+				to_chat(usr, "<font color='red'>Error: cmd_admin_mute: This mob doesn't have a client tied to it.</font>")
+			if(M.client.holder)
+				to_chat(usr, "<font color='red'>Error: cmd_admin_mute: You cannot mute an admin/mod.</font>")
+
+		var/muteunmute
+		var/mute_string
+
+		switch(mute_type)
+			if(MUTE_IC)			mute_string = "IC (say and emote)"
+			if(MUTE_OOC)		mute_string = "OOC"
+			if(MUTE_PRAY)		mute_string = "pray"
+			if(MUTE_ADMINHELP)	mute_string = "adminhelp, admin PM and ASAY"
+			if(MUTE_DEADCHAT)	mute_string = "deadchat and DSAY"
+			if(MUTE_ALL)		mute_string = "everything"
+			else				return
+
+		if(M.client.prefs.muted & mute_type)
+			muteunmute = "unmuted"
+			M.client.prefs.muted &= ~mute_type
+		else
+			muteunmute = "muted"
+			M.client.prefs.muted |= mute_type
+
+		log_admin("[key_name(usr)] has [muteunmute] [key_name(M)] from [mute_string]")
+		message_admins("[key_name_admin(usr)] has [muteunmute] [key_name_admin(M)] from [mute_string].", 1)
+		to_chat(M, "You have been [muteunmute] from [mute_string].")
 
 	else if(href_list["c_mode"])
 		if(!check_rights(R_ADMIN))	return
@@ -1074,7 +1108,7 @@
 		message_admins("<span class='notice'> [key_name_admin(usr)] sent [key_name_admin(M)] to the prison station.</span>", 1)
 
 	else if(href_list["sendbacktolobby"])
-		if(!check_rights(R_MOD))
+		if(!check_rights(R_ADMIN))
 			return
 
 		var/mob/M = locate(href_list["sendbacktolobby"])
@@ -1200,7 +1234,7 @@
 		message_admins("[key_name_admin(usr)] has sent [key_name_admin(M)] to the thunderdome. (Observer.)", 1)
 
 	else if(href_list["revive"])
-		if(!check_rights(R_REJUVINATE))	return
+		if(!check_rights(R_ADMIN))	return
 
 		var/mob/living/L = locate(href_list["revive"])
 
@@ -1407,7 +1441,7 @@
 		player_panel_extended()
 
 	else if(href_list["adminplayerobservejump"])
-		if(!check_rights(R_MENTOR|R_MOD|R_ADMIN))	return
+		if(!check_rights(R_MENTOR|R_ADMIN))	return
 
 		var/mob/M = locate(href_list["adminplayerobservejump"])
 
@@ -1417,7 +1451,7 @@
 		C.jumptomob(M)
 
 	else if(href_list["adminplayerfollow"])
-		if(!check_rights(R_MENTOR|R_MOD|R_ADMIN))	return
+		if(!check_rights(R_MENTOR|R_ADMIN))	return
 
 		var/mob/M = locate(href_list["adminplayerfollow"])
 
@@ -1432,7 +1466,7 @@
 		check_antagonists()
 
 	else if(href_list["adminplayerobservecoodjump"])
-		if(!check_rights(R_MOD))	return
+		if(!check_rights(R_ADMIN))	return
 
 		var/x = text2num(href_list["X"])
 		var/y = text2num(href_list["Y"])
@@ -1449,7 +1483,7 @@
 			to_chat(usr, "This can only be used on instances of type /mob")
 			return
 
-		if(!usr.client.holder.rights & (R_ADMIN|R_MOD))
+		if(!usr.client.holder.rights & (R_ADMIN))
 			return
 
 		var/location_description = ""
@@ -1569,7 +1603,7 @@
 		to_chat(src.owner, "You sent [input] to [H] via a secure channel.")
 		log_admin("[src.owner] replied to [key_name(H)]'s TGMC message with the message [input].")
 		for(var/client/X in admins)
-			if((R_ADMIN|R_MOD) & X.holder.rights)
+			if((R_ADMIN) & X.holder.rights)
 				to_chat(X, "<b>ADMINS/MODS: <span class='warning'> [src.owner] replied to [key_name(H)]'s TGMC message with: <span class='notice'> \"[input]\"</b></span>")
 		to_chat(H, "<span class='warning'> You hear something crackle in your headset before a voice speaks, \"Please stand by for a message from TGMC:\" <span class='notice'> <b>\"[input]\"</b></span>")
 
@@ -1762,14 +1796,14 @@
 		usr.client.cmd_admin_direct_narrate(M)
 
 	else if(href_list["subtlemessage"])
-		if(!check_rights(R_ADMIN|R_MOD|R_MENTOR))
+		if(!check_rights(R_ADMIN|R_MENTOR))
 			return
 
 		var/mob/M = locate(href_list["subtlemessage"])
 		usr.client.cmd_admin_subtle_message(M)
 
 	else if(href_list["individuallog"])
-		if(!check_rights(R_ADMIN|R_MOD))
+		if(!check_rights(R_ADMIN))
 			return
 
 		var/mob/M = locate(href_list["individuallog"]) in mob_list
@@ -1780,7 +1814,7 @@
 		show_individual_logging_panel(M, href_list["log_src"], href_list["log_type"])
 
 	else if(href_list["traitor"])
-		if(!check_rights(R_ADMIN|R_MOD))	return
+		if(!check_rights(R_ADMIN))	return
 
 		if(!ticker || !ticker.mode)
 			alert("The game hasn't started yet!")
@@ -2390,7 +2424,7 @@
 
 		//send this msg to all admins
 		for(var/client/X in admins)
-			if((R_ADMIN|R_MOD) & X.holder.rights)
+			if((R_ADMIN) & X.holder.rights)
 				to_chat(X, msg)
 
 

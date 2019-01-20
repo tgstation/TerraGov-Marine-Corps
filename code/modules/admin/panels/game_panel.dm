@@ -1,3 +1,11 @@
+/client/proc/game_panel()
+	set name = "Game Panel"
+	set category = "Admin"
+	if(holder)
+		holder.Game()
+	feedback_add_details("admin_verb","GP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	return
+
 /datum/admins/proc/Game()
 	if(!check_rights(0))	return
 

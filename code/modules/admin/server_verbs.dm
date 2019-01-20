@@ -350,3 +350,18 @@
 			to_chat(src, "<b>Synthetic gun use allowed.</b>")
 			message_admins("Admin [key_name_admin(usr)] has enabled synthetic gun use.", 1)
 			log_admin("[key_name(src)] allowed synthetic gun use.")
+
+/client/proc/adjust_weapon_mult()
+	set name = "Adjust Weapon Multipliers"
+	set desc = "Using this allow to change how much accuracy and damage are changed. 1 is the normal number, anything higher will increase damage and/or accuracy."
+	set category = "Server"
+
+	if(!holder)	return
+	if(config)
+		var/acc = input("Select the new accuracy multiplier.","ACCURACY MULTIPLIER", 1) as num
+		var/dam = input("Select the new damage multiplier.","DAMAGE MULTIPLIER", 1) as num
+		if(acc && dam)
+			CONFIG_SET(number/combat_define/proj_base_accuracy_mult, (acc * 0.01))
+			CONFIG_SET(number/combat_define/proj_base_damage_mult, (dam * 0.01))
+			log_admin("Admin [key_name_admin(usr)] changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.", 1)
+			log_game("<b>[key_name(src)]</b> changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.")
