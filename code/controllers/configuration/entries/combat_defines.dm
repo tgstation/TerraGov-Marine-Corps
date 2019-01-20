@@ -226,6 +226,8 @@ Ticks before the weapon can be fired again. Should be 6 for regular delay and 2 
 
 /datum/config_entry/number/combat_define/tacshottie_fire_delay
 
+/datum/config_entry/number/combat_define/scoutshottie_fire_delay
+
 
 /*
 Scatter.
