@@ -8,7 +8,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "pickaxe"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 15.0
 	throwforce = 4.0
 	item_state = "pickaxe"
@@ -92,7 +92,7 @@
 	icon_state = "plasma_cutter_off"
 	item_state = "plasmacutter"
 	w_class = 4.0
-	flags_equip_slot = SLOT_WAIST|SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	force = 40.0
 	damtype = "fire"
 	digspeed = 20 //Can slice though normal walls, all girders, or be used in reinforced wall deconstruction/ light thermite on fire
@@ -269,7 +269,7 @@
 
 
 /obj/item/tool/pickaxe/plasmacutter/attack_hand(mob/user)
-	if(user.get_inactive_hand() != src)
+	if(user.get_inactive_held_item() != src)
 		return ..()
 	if(!cell)
 		return ..()

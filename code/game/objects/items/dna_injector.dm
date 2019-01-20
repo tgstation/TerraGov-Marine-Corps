@@ -92,7 +92,7 @@
 
 	spawn(0)//this prevents the collapse of space-time continuum
 		if (user)
-			user.temp_drop_inv_item(src)
+			user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 	return uses
 
@@ -134,7 +134,7 @@
 
 				user.visible_message("<span class='danger'>[user] is trying to inject [M] with [src]!</span>")
 				if(do_mob(user, M, HUMAN_STRIP_DELAY, BUSY_ICON_GENERIC, BUSY_ICON_GENERIC))
-					if(src == user.get_active_hand())
+					if(src == user.get_active_held_item())
 						add_fingerprint(user)
 						inject(M, user)
 						user.visible_message("<span class='warning'> [user] injects [M] with the DNA Injector!</span>")

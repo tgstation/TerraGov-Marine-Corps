@@ -6,7 +6,7 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
 	item_state = "utility"
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
 	w_class = 4
 	allow_drawing_method = TRUE
@@ -14,7 +14,7 @@
 
 
 /obj/item/storage/belt/equipped(mob/user, slot)
-	if(slot == WEAR_WAIST)
+	if(slot == SLOT_BELT)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
 	..()
 

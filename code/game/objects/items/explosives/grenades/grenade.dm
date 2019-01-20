@@ -8,7 +8,7 @@
 	throw_speed = 3
 	throw_range = 7
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	hitsound = 'sound/weapons/smash.ogg'
 	var/active = 0
 	var/det_time = 50
@@ -32,7 +32,7 @@
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 
-	if(isSynth(user) && dangerous && !config.allow_synthetic_gun_use)
+	if(isSynth(user) && dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(user, "<span class='warning'>Your programming prevents you from operating this device!</span>")
 		return
 

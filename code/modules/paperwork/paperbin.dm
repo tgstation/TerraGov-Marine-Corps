@@ -14,7 +14,7 @@
 
 /obj/item/paper_bin/MouseDrop(atom/over_object)
 	if(over_object == usr && ishuman(usr) && !usr.is_mob_restrained() && !usr.stat && (loc == usr || in_range(src, usr)))
-		if(!usr.get_active_hand())		//if active hand is empty
+		if(!usr.get_active_held_item())		//if active hand is empty
 			attack_hand(usr, 1, 1)
 
 	return
@@ -65,7 +65,7 @@
 	if(!istype(i))
 		return
 
-	if(user.drop_inv_item_to_loc(i, src))
+	if(user.transferItemToLoc(i, src))
 		to_chat(user, "<span class='notice'>You put [i] in [src].</span>")
 		papers.Add(i)
 		amount++

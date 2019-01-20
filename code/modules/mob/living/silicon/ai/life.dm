@@ -169,7 +169,7 @@
 	if(status_flags & GODMODE)
 		return
 	if(stat != DEAD)
-		if(health <= config.health_threshold_dead)
+		if(health <= CONFIG_GET(number/health_threshold_dead))
 			death()
 			return
 		else if(stat == UNCONSCIOUS)

@@ -96,7 +96,7 @@
 
 /obj/item/stack/Topic(href, href_list)
 	..()
-	if((usr.is_mob_restrained() || usr.stat || usr.get_active_hand() != src))
+	if((usr.is_mob_restrained() || usr.stat || usr.get_active_held_item() != src))
 		return
 
 	if(href_list["sublist"] && !href_list["make"])
@@ -177,7 +177,7 @@
 		if(amount <= 0)
 			var/oldsrc = src
 			src = null //dont kill proc after qdel()
-			usr.drop_inv_item_on_ground(oldsrc)
+			usr.dropItemToGround(oldsrc)
 			qdel(oldsrc)
 			if(istype(O,/obj/item) && istype(usr,/mob/living/carbon))
 				usr.put_in_hands(O)
@@ -199,7 +199,7 @@
 	amount -= used
 	if(amount <= 0)
 		if(usr && loc == usr)
-			usr.temp_drop_inv_item(src)
+			usr.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 	return 1
 
@@ -229,7 +229,7 @@
 			break
 
 /obj/item/stack/attack_hand(mob/user as mob)
-	if (user.get_inactive_hand() == src)
+	if (user.get_inactive_held_item() == src)
 		var/obj/item/stack/F = new src.type(user, 1)
 		F.copy_evidences(src)
 		user.put_in_hands(F)
@@ -250,7 +250,7 @@
 			if (S.amount >= max_amount)
 				return 1
 			var/to_transfer as num
-			if (user.get_inactive_hand()==src)
+			if (user.get_inactive_held_item()==src)
 				to_transfer = 1
 			else
 				to_transfer = min(src.amount, S.max_amount-S.amount)
