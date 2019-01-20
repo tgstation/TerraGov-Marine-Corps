@@ -1,22 +1,13 @@
 /client/proc/game_panel()
 	set name = "Game Panel"
 	set category = "Admin"
-	if(holder)
-		holder.Game()
-	feedback_add_details("admin_verb","GP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
 
-/datum/admins/proc/Game()
-	if(!check_rights(0))	return
+	if(!check_rights(R_ADMIN))	
+		return
 
 	var/dat = {"
 		<center><B>Game Panel</B></center><hr>\n
 		<A href='?src=\ref[src];c_mode=1'>Change Game Mode</A><br>
-		"}
-	if(master_mode == "secret")
-		dat += "<A href='?src=\ref[src];f_secret=1'>(Force Secret Mode)</A><br>"
-
-	dat += {"
 		<BR>
 		<A href='?src=\ref[src];create_object=1'>Create Object</A><br>
 		<A href='?src=\ref[src];quick_create_object=1'>Quick Create Object</A><br>
@@ -27,11 +18,10 @@
 	usr << browse(dat, "window=admin2;size=210x280")
 	return
 
-
 /var/create_mob_html = null
 
-/datum/admins/proc/create_mob(var/mob/user)
-	if (!create_mob_html)
+/client/proc/create_mob(var/mob/user)
+	if(!create_mob_html)
 		var/mobjs = null
 		mobjs = list2text(typesof(/mob), ";")
 		create_mob_html = file2text('html/create_object.html')
@@ -42,8 +32,8 @@
 
 /var/create_object_html = null
 
-/datum/admins/proc/create_object(var/mob/user)
-	if (!create_object_html)
+/client/proc/create_object(var/mob/user)
+	if(!create_object_html)
 		var/objectjs = null
 		objectjs = list2text(typesof(/obj), ";")
 		create_object_html = file2text('html/create_object.html')
@@ -52,7 +42,7 @@
 	user << browse(oldreplacetext(create_object_html, "/* ref src */", "\ref[src]"), "window=create_object;size=425x475")
 
 
-/datum/admins/proc/quick_create_object(var/mob/user)
+/client/proc/quick_create_object(var/mob/user)
 
 	var/quick_create_object_html = null
 	var/pathtext = null
@@ -62,7 +52,7 @@
 		return
 	var path = text2path(pathtext)
 
-	if (!quick_create_object_html)
+	if(!quick_create_object_html)
 		var/objectjs = null
 		objectjs = list2text(typesof(path), ";")
 		quick_create_object_html = file2text('html/create_object.html')
@@ -73,8 +63,8 @@
 
 /var/create_turf_html = null
 
-/datum/admins/proc/create_turf(var/mob/user)
-	if (!create_turf_html)
+/client/proc/create_turf(var/mob/user)
+	if(!create_turf_html)
 		var/turfjs = null
 		turfjs = list2text(typesof(/turf), ";")
 		create_turf_html = file2text('html/create_object.html')

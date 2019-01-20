@@ -75,9 +75,9 @@ world/IsBanned(key,address,computer_id)
 
 
 
-datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/rounds = 0, var/banckey = null)
-
-	if(!check_rights(R_BAN))	return
+/datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/rounds = 0, var/banckey = null)
+	if(!check_rights(R_BAN))	
+		return
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
@@ -101,9 +101,13 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 		if(BANTYPE_JOB_TEMP)
 			bantype_str = "JOB_TEMPBAN"
 			bantype_pass = 1
-	if( !bantype_pass ) return
-	if( !istext(reason) ) return
-	if( !isnum(duration) ) return
+
+	if(!bantype_pass) 
+		return
+	if(!istext(reason))
+		return
+	if(!isnum(duration))
+		return
 
 	var/ckey
 	var/computerid
@@ -160,9 +164,9 @@ datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = 
 
 
 
-datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
-
-	if(!check_rights(R_BAN))	return
+/datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
+	if(!check_rights(R_BAN))	
+		return
 
 	var/bantype_str
 	if(bantype)
@@ -224,9 +228,9 @@ datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
 
 	DB_ban_unban_by_id(ban_id)
 
-datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
-
-	if(!check_rights(R_BAN))	return
+/datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
+	if(!check_rights(R_BAN))	
+		return
 
 	if(!isnum(banid) || !istext(param))
 		to_chat(usr, "Cancelled")
@@ -284,9 +288,9 @@ datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
 			to_chat(usr, "Cancelled")
 			return
 
-datum/admins/proc/DB_ban_unban_by_id(var/id)
-
-	if(!check_rights(R_BAN))	return
+/datum/admins/proc/DB_ban_unban_by_id(var/id)
+	if(!check_rights(R_BAN))	
+		return
 
 	var/sql = "SELECT ckey FROM erro_ban WHERE id = [id]"
 
@@ -325,22 +329,9 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 	query_update.Execute()
 
 
-/client/proc/DB_ban_panel()
-	set category = "Admin"
-	set name = "Banning Panel"
-	set desc = "Edit admin permissions"
-
-	if(!holder)
+/client/proc/DB_ban_panel(var/playerckey = null, var/adminckey = null)
+	if(!check_rights(R_BAN))	
 		return
-
-	holder.DB_ban_panel()
-
-
-/datum/admins/proc/DB_ban_panel(var/playerckey = null, var/adminckey = null)
-	if(!usr.client)
-		return
-
-	if(!check_rights(R_BAN))	return
 
 	establish_db_connection()
 	if(!dbcon.IsConnected())
@@ -480,15 +471,13 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 	usr << browse(output,"window=lookupbans;size=900x500")
 
 
-var/CMinutes = null
 var/savefile/Banlist
-
 
 /proc/CheckBan(var/ckey, var/id, var/address)
 	if(!Banlist)		// if Banlist cannot be located for some reason
 		LoadBans()		// try to load the bans
 		if(!Banlist)	// uh oh, can't find bans!
-			return 0	// ABORT ABORT ABORT
+			return FALSE	// ABORT ABORT ABORT
 
 	. = list()
 	var/appeal
@@ -512,13 +501,13 @@ var/savefile/Banlist
 		for (var/A in Banlist.dir)
 			Banlist.cd = "/base/[A]"
 			var/matches
-			if( ckey == Banlist["key"] )
+			if(ckey == Banlist["key"])
 				matches += "ckey"
-			if( id == Banlist["id"] )
+			if(id == Banlist["id"])
 				if(matches)
 					matches += "/"
 				matches += "id"
-			if( address == Banlist["ip"] )
+			if(address == Banlist["ip"])
 				if(matches)
 					matches += "/"
 				matches += "ip"
@@ -535,10 +524,6 @@ var/savefile/Banlist
 				.["reason"] = matches
 				return .
 	return 0
-
-/proc/UpdateTime() //No idea why i made this a proc.
-	CMinutes = (world.realtime / 10) / 60
-	return 1
 
 /hook/startup/proc/loadBans()
 	return LoadBans()
@@ -573,7 +558,7 @@ var/savefile/Banlist
 			continue
 
 		if (!Banlist["temp"]) continue
-		if (CMinutes >= Banlist["minutes"]) RemoveBan(A)
+		if ((world.realtime / 10) / 60 >= Banlist["minutes"]) RemoveBan(A)
 
 	return 1
 
@@ -584,7 +569,7 @@ var/savefile/Banlist
 
 	if (temp)
 		UpdateTime()
-		bantimestamp = CMinutes + minutes
+		bantimestamp = (world.realtime / 10) / 60 + minutes
 
 	Banlist.cd = "/base"
 	if ( Banlist.dir.Find("[ckey][computerid]") )
@@ -634,7 +619,7 @@ var/savefile/Banlist
 
 /proc/GetExp(minutes as num)
 	UpdateTime()
-	var/exp = minutes - CMinutes
+	var/exp = minutes - (world.realtime / 10) / 60
 	if (exp <= 0)
 		return 0
 	else
@@ -685,41 +670,6 @@ var/savefile/Banlist
 	dat_header += "</FONT> - <FONT COLOR=green>([count] Bans)</FONT><HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 >[dat]"
 	usr << browse(dat_header, "window=unbanp;size=875x400")
 
-//////////////////////////////////// DEBUG ////////////////////////////////////
-
-/proc/CreateBans()
-
-	UpdateTime()
-
-	var/i
-	var/last
-
-	for(i=0, i<1001, i++)
-		var/a = pick(1,0)
-		var/b = pick(1,0)
-		if(b)
-			Banlist.cd = "/base"
-			Banlist.dir.Add("trash[i]trashid[i]")
-			Banlist.cd = "/base/trash[i]trashid[i]"
-			Banlist["key"] << "trash[i]"
-		else
-			Banlist.cd = "/base"
-			Banlist.dir.Add("[last]trashid[i]")
-			Banlist.cd = "/base/[last]trashid[i]"
-			Banlist["key"] << last
-		Banlist["id"] << "trashid[i]"
-		Banlist["reason"] << "Trashban[i]."
-		Banlist["temp"] << a
-		Banlist["minutes"] << CMinutes + rand(1,2000)
-		Banlist["bannedby"] << "trashmin"
-		last = "trash[i]"
-
-	Banlist.cd = "/base"
-
-/proc/ClearAllBans()
-	Banlist.cd = "/base"
-	for (var/A in Banlist.dir)
-		RemoveBan(A)
 
 var/jobban_runonce			// Updates legacy bans with new info
 var/jobban_keylist[0]		//to store the keys & ranks
@@ -752,16 +702,16 @@ var/jobban_keylist[0]		//to store the keys & ranks
 
 /hook/startup/proc/loadJobBans()
 	jobban_loadbanfile()
-	return 1
+	return TRUE
 
 /proc/jobban_loadbanfile()
 	if(CONFIG_GET(flag/ban_legacy_system))
-		var/savefile/S=new("data/job_new.ban")
+		var/savefile/S = new("data/job_new.ban")
 		S["new_bans"] >> jobban_keylist
 		log_admin("Loading jobban_rank")
 		S["runonce"] >> jobban_runonce
 
-		if (!length(jobban_keylist))
+		if(!length(jobban_keylist))
 			jobban_keylist=list()
 			log_admin("jobban_keylist was empty")
 	else
