@@ -191,11 +191,6 @@
 			if("dissector")
 				linked_dissector.linked_console = null
 				linked_dissector = null
-			/*
-			if("modifyer")
-				linked_modifyer.linked_console = null
-				linked_modifyer = null
-			*/
 			if("protolathe")
 				linked_lathe.linked_console = null
 				linked_lathe = null
@@ -273,7 +268,6 @@
 				spawn(16)
 					new design.build_path(linked_lathe.loc)
 					screen = 4.1
-					//linked_lathe.RefilBio()
 					break
 
 	else if(href_list["print"])
