@@ -1,3 +1,88 @@
+#ifndef OVERRIDE_BAN_SYSTEM
+//Blocks an attempt to connect before even creating our client datum thing.
+world/IsBanned(key,address,computer_id)
+	if(ckey(key) in admin_datums)
+		return ..()
+
+	//Guest Checking
+	if(!guests_allowed && IsGuestKey(key))
+		log_access("Failed Login: [key] - Guests not allowed")
+		message_admins("<span class='notice'> Failed Login: [key] - Guests not allowed</span>")
+		return list("reason"="guest", "desc"="\nReason: Guests not allowed. Please sign in with a byond account.")
+
+	//check if the IP address is a known TOR node
+	if(CONFIG_GET(flag/ToRban) && ToRban_isbanned(address))
+		log_access("Failed Login: [src] - Banned: ToR")
+		message_admins("<span class='notice'> Failed Login: [src] - Banned: ToR</span>")
+		//ban their computer_id and ckey for posterity
+		AddBan(ckey(key), computer_id, "Use of ToR", "Automated Ban", 0, 0)
+		return list("reason"="Using ToR", "desc"="\nReason: The network you are using to connect has been banned.\nIf you believe this is a mistake, please request help at [CONFIG_GET(string/banappeals)]")
+
+
+	if(CONFIG_GET(flag/ban_legacy_system))
+
+		//Ban Checking
+		. = CheckBan( ckey(key), computer_id, address )
+		if(.)
+			log_access("Failed Login: [key] [computer_id] [address] - Banned [.["reason"]]")
+			message_admins("<span class='notice'> Failed Login: [key] id:[computer_id] ip:[address] - Banned [.["reason"]]</span>")
+			return .
+
+		return ..()	//default pager ban stuff
+
+	else
+
+		var/ckeytext = ckey(key)
+
+		if(!establish_db_connection())
+			stack_trace("Ban database connection failure. Key [ckeytext] not checked")
+			log_sql("Ban database connection failure. Key [ckeytext] not checked")
+			return
+
+		var/failedcid = 1
+		var/failedip = 1
+
+		var/ipquery = ""
+		var/cidquery = ""
+		if(address)
+			failedip = 0
+			ipquery = " OR ip = '[address]' "
+
+		if(computer_id)
+			failedcid = 0
+			cidquery = " OR computerid = '[computer_id]' "
+
+		var/DBQuery/query = dbcon.NewQuery("SELECT ckey, ip, computerid, a_ckey, reason, expiration_time, duration, bantime, bantype FROM erro_ban WHERE (ckey = '[ckeytext]' [ipquery] [cidquery]) AND (bantype = 'PERMABAN'  OR (bantype = 'TEMPBAN' AND expiration_time > Now())) AND isnull(unbanned)")
+
+		query.Execute()
+
+		while(query.NextRow())
+			var/pckey = query.item[1]
+			//var/pip = query.item[2]
+			//var/pcid = query.item[3]
+			var/ackey = query.item[4]
+			var/reason = query.item[5]
+			var/expiration = query.item[6]
+			var/duration = query.item[7]
+			var/bantime = query.item[8]
+			var/bantype = query.item[9]
+
+			var/expires = ""
+			if(text2num(duration) > 0)
+				expires = " The ban is for [duration] minutes and expires on [expiration] (server time)."
+
+			var/desc = "\nReason: You, or another user of this computer or connection ([pckey]) is banned from playing here. The ban reason is:\n[reason]\nThis ban was applied by [ackey] on [bantime], [expires]"
+
+			return list("reason"="[bantype]", "desc"="[desc]")
+
+		if (failedcid)
+			message_admins("[key] has logged in with a blank computer id in the ban check.")
+		if (failedip)
+			message_admins("[key] has logged in with a blank ip in the ban check.")
+		return ..()	//default pager ban stuff
+#endif
+
+
 
 datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/rounds = 0, var/banckey = null)
 
@@ -402,3 +487,333 @@ datum/admins/proc/DB_ban_unban_by_id(var/id)
 		output += "</table></div>"
 
 	usr << browse(output,"window=lookupbans;size=900x500")
+
+
+var/CMinutes = null
+var/savefile/Banlist
+
+
+/proc/CheckBan(var/ckey, var/id, var/address)
+	if(!Banlist)		// if Banlist cannot be located for some reason
+		LoadBans()		// try to load the bans
+		if(!Banlist)	// uh oh, can't find bans!
+			return 0	// ABORT ABORT ABORT
+
+	. = list()
+	var/appeal
+	if(CONFIG_GET(string/banappeals))
+		appeal = "\nFor more information on your ban, or to appeal, head to <a href='[CONFIG_GET(string/banappeals)]'>[CONFIG_GET(string/banappeals)]</a>"
+	Banlist.cd = "/base"
+	if( "[ckey][id]" in Banlist.dir )
+		Banlist.cd = "[ckey][id]"
+		if (Banlist["temp"])
+			if (!GetExp(Banlist["minutes"]))
+				ClearTempbans()
+				return 0
+			else
+				.["desc"] = "\nReason: [Banlist["reason"]]\nExpires: [GetExp(Banlist["minutes"])]\nBy: [Banlist["bannedby"]][appeal]"
+		else
+			Banlist.cd	= "/base/[ckey][id]"
+			.["desc"]	= "\nReason: [Banlist["reason"]]\nExpires: <B>PERMENANT</B>\nBy: [Banlist["bannedby"]][appeal]"
+		.["reason"]	= "ckey/id"
+		return .
+	else
+		for (var/A in Banlist.dir)
+			Banlist.cd = "/base/[A]"
+			var/matches
+			if( ckey == Banlist["key"] )
+				matches += "ckey"
+			if( id == Banlist["id"] )
+				if(matches)
+					matches += "/"
+				matches += "id"
+			if( address == Banlist["ip"] )
+				if(matches)
+					matches += "/"
+				matches += "ip"
+
+			if(matches)
+				if(Banlist["temp"])
+					if (!GetExp(Banlist["minutes"]))
+						ClearTempbans()
+						return 0
+					else
+						.["desc"] = "\nReason: [Banlist["reason"]]\nExpires: [GetExp(Banlist["minutes"])]\nBy: [Banlist["bannedby"]][appeal]"
+				else
+					.["desc"] = "\nReason: [Banlist["reason"]]\nExpires: <B>PERMENANT</B>\nBy: [Banlist["bannedby"]][appeal]"
+				.["reason"] = matches
+				return .
+	return 0
+
+/proc/UpdateTime() //No idea why i made this a proc.
+	CMinutes = (world.realtime / 10) / 60
+	return 1
+
+/hook/startup/proc/loadBans()
+	return LoadBans()
+
+/proc/LoadBans()
+
+	Banlist = new("data/banlist.bdb")
+	log_admin("Loading Banlist")
+
+	if (!length(Banlist.dir)) log_admin("Banlist is empty.")
+
+	if (!Banlist.dir.Find("base"))
+		log_admin("Banlist missing base dir.")
+		Banlist.dir.Add("base")
+		Banlist.cd = "/base"
+	else if (Banlist.dir.Find("base"))
+		Banlist.cd = "/base"
+
+	ClearTempbans()
+	return 1
+
+/proc/ClearTempbans()
+	UpdateTime()
+
+	Banlist.cd = "/base"
+	for (var/A in Banlist.dir)
+		Banlist.cd = "/base/[A]"
+		if (!Banlist["key"] || !Banlist["id"])
+			RemoveBan(A)
+			log_admin("Invalid Ban.")
+			message_admins("Invalid Ban.")
+			continue
+
+		if (!Banlist["temp"]) continue
+		if (CMinutes >= Banlist["minutes"]) RemoveBan(A)
+
+	return 1
+
+
+/proc/AddBan(ckey, computerid, reason, bannedby, temp, minutes, address)
+
+	var/bantimestamp
+
+	if (temp)
+		UpdateTime()
+		bantimestamp = CMinutes + minutes
+
+	Banlist.cd = "/base"
+	if ( Banlist.dir.Find("[ckey][computerid]") )
+		to_chat(usr, text("<span class='warning'> Ban already exists.</span>"))
+		return 0
+	else
+		Banlist.dir.Add("[ckey][computerid]")
+		Banlist.cd = "/base/[ckey][computerid]"
+		Banlist["key"] << ckey
+		Banlist["id"] << computerid
+		Banlist["ip"] << address
+		Banlist["reason"] << reason
+		Banlist["bannedby"] << bannedby
+		Banlist["temp"] << temp
+		if (temp)
+			Banlist["minutes"] << bantimestamp
+	return 1
+
+/proc/RemoveBan(foldername)
+	var/key
+	var/id
+
+	Banlist.cd = "/base/[foldername]"
+	Banlist["key"] >> key
+	Banlist["id"] >> id
+	Banlist.cd = "/base"
+
+	if (!Banlist.dir.Remove(foldername)) return 0
+
+	if(!usr)
+		log_admin("Ban Expired: [key]")
+		message_admins("Ban Expired: [key]")
+	else
+		ban_unban_log_save("[key_name_admin(usr)] unbanned [key]")
+		log_admin("[key_name_admin(usr)] unbanned [key]")
+		message_admins("[key_name_admin(usr)] unbanned: [key]")
+		feedback_inc("ban_unban",1)
+		usr.client.holder.DB_ban_unban( ckey(key), BANTYPE_ANY_FULLBAN)
+	for (var/A in Banlist.dir)
+		Banlist.cd = "/base/[A]"
+		if (key == Banlist["key"] /*|| id == Banlist["id"]*/)
+			Banlist.cd = "/base"
+			Banlist.dir.Remove(A)
+			continue
+
+	return 1
+
+/proc/GetExp(minutes as num)
+	UpdateTime()
+	var/exp = minutes - CMinutes
+	if (exp <= 0)
+		return 0
+	else
+		var/timeleftstring
+		if (exp >= 1440) //1440 = 1 day in minutes
+			timeleftstring = "[round(exp / 1440, 0.1)] Days"
+		else if (exp >= 60) //60 = 1 hour in minutes
+			timeleftstring = "[round(exp / 60, 0.1)] Hours"
+		else
+			timeleftstring = "[exp] Minutes"
+		return timeleftstring
+
+/datum/admins/proc/unbanpanel()
+	var/count = 0
+	var/dat
+	//var/dat = "<HR><B>Unban Player:</B> <span class='notice'>(U) = Unban , (E) = Edit Ban<span class='green'> (Total<HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 ></span>"
+	Banlist.cd = "/base"
+	for (var/A in Banlist.dir)
+		count++
+		Banlist.cd = "/base/[A]"
+		var/ref		= "\ref[src]"
+		var/key		= Banlist["key"]
+		var/id		= Banlist["id"]
+		var/ip		= Banlist["ip"]
+		var/reason	= Banlist["reason"]
+		var/by		= Banlist["bannedby"]
+		var/expiry
+		if(Banlist["temp"])
+			expiry = GetExp(Banlist["minutes"])
+			if(!expiry)		expiry = "Removal Pending"
+		else				expiry = "Permaban"
+		var/unban_link = "<A href='?src=[ref];unbanf=[key][id]'>(U)</A><A href='?src=[ref];unbane=[key][id]'>(E)</A>"
+		var/perma_links = ""
+		if(!Banlist["temp"])
+			unban_link = ""
+			perma_links = "<A href='?src=[ref];unbanf=[key][id]'>(L)</A>"
+		else
+			perma_links = "<A href='?src=[ref];unbanupgradeperma=[key][id]'>(P)</A>"
+		if(!check_rights(R_BAN))
+			perma_links = ""
+
+		dat += "<tr><td>[unban_link][perma_links] Key: <B>[key]</B></td><td>ComputerID: <B>[id]</B></td><td>IP: <B>[ip]</B></td><td> [expiry]</td><td>(By: [by])</td><td>(Reason: [reason])</td></tr>"
+
+	dat += "</table>"
+	var/dat_header = "<HR><B>Bans:</B> <FONT COLOR=blue>(U) = Unban , (E) = Edit Ban"
+	if(!check_rights(R_BAN))
+		dat_header += ", (P) = Upgrade to Perma, (L) = Lift Permaban"
+	dat_header += "</FONT> - <FONT COLOR=green>([count] Bans)</FONT><HR><table border=1 rules=all frame=void cellspacing=0 cellpadding=3 >[dat]"
+	usr << browse(dat_header, "window=unbanp;size=875x400")
+
+//////////////////////////////////// DEBUG ////////////////////////////////////
+
+/proc/CreateBans()
+
+	UpdateTime()
+
+	var/i
+	var/last
+
+	for(i=0, i<1001, i++)
+		var/a = pick(1,0)
+		var/b = pick(1,0)
+		if(b)
+			Banlist.cd = "/base"
+			Banlist.dir.Add("trash[i]trashid[i]")
+			Banlist.cd = "/base/trash[i]trashid[i]"
+			Banlist["key"] << "trash[i]"
+		else
+			Banlist.cd = "/base"
+			Banlist.dir.Add("[last]trashid[i]")
+			Banlist.cd = "/base/[last]trashid[i]"
+			Banlist["key"] << last
+		Banlist["id"] << "trashid[i]"
+		Banlist["reason"] << "Trashban[i]."
+		Banlist["temp"] << a
+		Banlist["minutes"] << CMinutes + rand(1,2000)
+		Banlist["bannedby"] << "trashmin"
+		last = "trash[i]"
+
+	Banlist.cd = "/base"
+
+/proc/ClearAllBans()
+	Banlist.cd = "/base"
+	for (var/A in Banlist.dir)
+		RemoveBan(A)
+
+var/jobban_runonce			// Updates legacy bans with new info
+var/jobban_keylist[0]		//to store the keys & ranks
+
+/proc/check_jobban_path(X)
+	. = ckey(X)
+	if(!islist(jobban_keylist[.])) //If it's not a list, we're in trouble.
+		jobban_keylist[.] = list()
+
+/proc/jobban_fullban(mob/M, rank, reason)
+	if (!M || !M.ckey) return
+	rank = check_jobban_path(rank)
+	jobban_keylist[rank][M.ckey] = reason
+
+/proc/jobban_client_fullban(ckey, rank)
+	if (!ckey || !rank) return
+	rank = check_jobban_path(rank)
+	jobban_keylist[rank][ckey] = "Reason Unspecified"
+
+//returns a reason if M is banned from rank, returns 0 otherwise
+/proc/jobban_isbanned(mob/M, rank)
+	if(M && rank)
+		rank = check_jobban_path(rank)
+		if(guest_jobbans(rank))
+			if(CONFIG_GET(flag/guest_jobban) && IsGuestKey(M.key))
+				return "Guest Job-ban"
+			if(CONFIG_GET(flag/usewhitelist) && !check_whitelist(M))
+				return "Whitelisted Job"
+		return jobban_keylist[rank][M.ckey]
+
+/hook/startup/proc/loadJobBans()
+	jobban_loadbanfile()
+	return 1
+
+/proc/jobban_loadbanfile()
+	if(CONFIG_GET(flag/ban_legacy_system))
+		var/savefile/S=new("data/job_new.ban")
+		S["new_bans"] >> jobban_keylist
+		log_admin("Loading jobban_rank")
+		S["runonce"] >> jobban_runonce
+
+		if (!length(jobban_keylist))
+			jobban_keylist=list()
+			log_admin("jobban_keylist was empty")
+	else
+		if(!establish_db_connection())
+			stack_trace("Database connection failed. Reverting to the legacy ban system.")
+			log_sql("Database connection failed. Reverting to the legacy ban system.")
+			CONFIG_SET(flag/ban_legacy_system, TRUE)
+			jobban_loadbanfile()
+			return
+
+		//Job permabans
+		var/DBQuery/query = dbcon.NewQuery("SELECT ckey, job FROM erro_ban WHERE bantype = 'JOB_PERMABAN' AND isnull(unbanned)")
+		query.Execute()
+
+		while(query.NextRow())
+			var/ckey = query.item[1]
+			var/job = query.item[2]
+
+			jobban_keylist[job][ckey] = "Reason Unspecified"
+
+		//Job tempbans
+		var/DBQuery/query1 = dbcon.NewQuery("SELECT ckey, job FROM erro_ban WHERE bantype = 'JOB_TEMPBAN' AND isnull(unbanned) AND expiration_time > Now()")
+		query1.Execute()
+
+		while(query1.NextRow())
+			var/ckey = query1.item[1]
+			var/job = query1.item[2]
+
+			jobban_keylist[job][ckey] = "Reason Unspecified"
+
+/proc/jobban_savebanfile()
+	var/savefile/S=new("data/job_new.ban")
+	S["new_bans"] << jobban_keylist
+
+/proc/jobban_unban(mob/M, rank)
+	jobban_remove("[M.ckey] - [ckey(rank)]")
+
+/proc/ban_unban_log_save(var/formatted_log)
+	text2file(formatted_log,"data/ban_unban_log.txt")
+
+/proc/jobban_remove(X)
+	var/regex/r1 = new("(.*) - (.*)")
+	if(r1.Find(X))
+		var/L[] = jobban_keylist[r1.group[2]]
+		L.Remove(r1.group[1])
+		return 1
