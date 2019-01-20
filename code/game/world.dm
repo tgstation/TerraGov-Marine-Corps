@@ -85,8 +85,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	world.tick_lag = CONFIG_GET(number/ticklag)
 
 	spawn(3000)		//so we aren't adding to the round-start lag
-		if(CONFIG_GET(flag/ToRban))
-			ToRban_autoupdate()
 		if(CONFIG_GET(flag/kick_inactive))
 			KickInactiveClients()
 

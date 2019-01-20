@@ -112,8 +112,6 @@ Administrative related.
 
 /datum/config_entry/flag/allow_admin_spawning
 
-/datum/config_entry/flag/ToRban
-
 /datum/config_entry/flag/admin_irc
 
 /datum/config_entry/flag/show_mods

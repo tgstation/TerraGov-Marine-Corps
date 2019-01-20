@@ -10,15 +10,6 @@ world/IsBanned(key,address,computer_id)
 		message_admins("<span class='notice'> Failed Login: [key] - Guests not allowed</span>")
 		return list("reason"="guest", "desc"="\nReason: Guests not allowed. Please sign in with a byond account.")
 
-	//check if the IP address is a known TOR node
-	if(CONFIG_GET(flag/ToRban) && ToRban_isbanned(address))
-		log_access("Failed Login: [src] - Banned: ToR")
-		message_admins("<span class='notice'> Failed Login: [src] - Banned: ToR</span>")
-		//ban their computer_id and ckey for posterity
-		AddBan(ckey(key), computer_id, "Use of ToR", "Automated Ban", 0, 0)
-		return list("reason"="Using ToR", "desc"="\nReason: The network you are using to connect has been banned.\nIf you believe this is a mistake, please request help at [CONFIG_GET(string/banappeals)]")
-
-
 	if(CONFIG_GET(flag/ban_legacy_system))
 
 		//Ban Checking
