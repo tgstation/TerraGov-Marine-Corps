@@ -1,14 +1,9 @@
-/client/proc/secrets()
+/datum/admins/proc/secrets_panel()
 	set name = "Secrets Panel"
 	set category = "Admin"
-	if (holder)
-		holder.Secrets()
-	feedback_add_details("admin_verb","S") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
 
-
-/datum/admins/proc/Secrets()
-	if(!check_rights(0))	return
+	if(!check_rights(R_ADMIN))	
+		return
 
 	var/dat = "<B>The first rule of adminbuse is: you don't talk about the adminbuse.</B><HR>"
 

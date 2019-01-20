@@ -1,7 +1,7 @@
 /datum/admins/Topic(href, href_list)
 	. = ..()
 
-	if(usr.client != src.owner || !check_rights(0))
+	if(usr.client != src.owner || !check_rights(R_ADMIN))
 		log_admin("[key_name(usr)] tried to use the admin panel without authorization.")
 		message_admins("[usr.key] has attempted to override the admin panel!")
 		return
@@ -9,65 +9,6 @@
 	if(ticker.mode && ticker.mode.check_antagonists_topic(href, href_list))
 		check_antagonists()
 		return
-
-	if(href_list["dbsearchckey"] || href_list["dbsearchadmin"])
-		var/adminckey = href_list["dbsearchadmin"]
-		var/playerckey = href_list["dbsearchckey"]
-
-		DB_ban_panel(playerckey, adminckey)
-		return
-
-	else if(href_list["dbbanedit"])
-		var/banedit = href_list["dbbanedit"]
-		var/banid = text2num(href_list["dbbanid"])
-		if(!banedit || !banid)
-			return
-
-		DB_ban_edit(banid, banedit)
-		return
-
-	else if(href_list["dbbanaddtype"])
-
-		var/bantype = text2num(href_list["dbbanaddtype"])
-		var/banckey = href_list["dbbanaddckey"]
-		var/banduration = text2num(href_list["dbbaddduration"])
-		var/banjob = href_list["dbbanaddjob"]
-		var/banreason = href_list["dbbanreason"]
-
-		banckey = ckey(banckey)
-
-		switch(bantype)
-			if(BANTYPE_PERMA)
-				if(!banckey || !banreason)
-					to_chat(usr, "Not enough parameters (Requires ckey and reason)")
-					return
-				banduration = null
-				banjob = null
-			if(BANTYPE_TEMP)
-				if(!banckey || !banreason || !banduration)
-					to_chat(usr, "Not enough parameters (Requires ckey, reason and duration)")
-					return
-				banjob = null
-			if(BANTYPE_JOB_PERMA)
-				if(!banckey || !banreason || !banjob)
-					to_chat(usr, "Not enough parameters (Requires ckey, reason and job)")
-					return
-				banduration = null
-			if(BANTYPE_JOB_TEMP)
-				if(!banckey || !banreason || !banjob || !banduration)
-					to_chat(usr, "Not enough parameters (Requires ckey, reason and job)")
-					return
-
-		var/mob/playermob
-
-		for(var/mob/M in player_list)
-			if(M.ckey == banckey)
-				playermob = M
-				break
-
-		banreason = "(MANUAL BAN) "+banreason
-
-		DB_ban_record(bantype, playermob, banduration, banreason, banjob, null, banckey)
 
 	else if(href_list["editrights"])
 		if(!check_rights(R_PERMISSIONS))
@@ -163,10 +104,6 @@
 
 		edit_admin_permissions()
 
-//======================================================
-//Everything that has to do with evac and self destruct.
-//The rest of this is awful.
-//======================================================
 	if(href_list["evac_authority"])
 		switch(href_list["evac_authority"])
 			if("init_evac")
@@ -231,11 +168,9 @@
 
 		href_list["secretsadmin"] = "check_antagonist"
 
-//======================================================
-//======================================================
-
 	else if(href_list["delay_round_end"])
-		if(!check_rights(R_SERVER))	return
+		if(!check_rights(R_SERVER))	
+			return
 
 		ticker.delay_end = !ticker.delay_end
 		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
@@ -243,7 +178,6 @@
 		href_list["secretsadmin"] = "check_antagonist"
 
 	else if(href_list["simplemake"])
-
 		if(!check_rights(R_SPAWN))
 			return
 
@@ -308,8 +242,6 @@
 			if("constructwraith")	M.change_mob_type( /mob/living/simple_animal/construct/wraith, location, null, delmob )
 			if("shade")				M.change_mob_type( /mob/living/simple_animal/shade, location, null, delmob )
 
-
-	/////////////////////////////////////new ban stuff
 	else if(href_list["unbanf"])
 		if(!check_rights(R_BAN))	return
 
@@ -318,7 +250,8 @@
 		var/key = Banlist["key"]
 		if(alert(usr, "Are you sure you want to unban [key]?", "Confirmation", "Yes", "No") == "Yes")
 			if((Banlist["minutes"] - CMinutes) > 10080)
-				if(!check_rights(R_ADMIN)) return
+				if(!check_rights(R_BAN|R_ADMIN)) 
+					return
 				log_admin("[key_name(usr)] removed [key]'s permaban.")
 				ban_unban_log_save("[key_name(usr)] removed [key]'s permaban.")
 				message_admins("<span class='notice'> [key_name_admin(usr)] removed [key]'s permaban.</span>", 1)
@@ -405,10 +338,9 @@
 		feedback_inc("ban_edit",1)
 		unbanpanel()
 
-	/////////////////////////////////////new ban stuff
-
 	else if(href_list["jobban2"])
-//		if(!check_rights(R_BAN))	return
+		if(!check_rights(R_BAN))	
+			return
 
 		var/mob/M = locate(href_list["jobban2"])
 		if(!ismob(M))
@@ -426,14 +358,7 @@
 		var/header = "<head><title>Job-Ban Panel: [M.name]</title></head>"
 		var/body
 		var/jobs = ""
-
-	/***********************************WARNING!************************************
-				      The jobban stuff looks mangled and disgusting
-						      But it looks beautiful in-game
-						                -Nodrak
-	************************************WARNING!***********************************/
 		var/counter = 0
-//Regular jobs
 	//Command (Blue)
 		jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
 		jobs += "<tr align='center' bgcolor='ccccff'><th colspan='[length(ROLES_COMMAND)]'><a href='?src=\ref[src];jobban3=commanddept;jobban4=\ref[M]'>Command Positions</a></th></tr><tr align='center'>"

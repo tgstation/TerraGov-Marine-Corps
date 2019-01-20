@@ -11,7 +11,7 @@ GLOBAL_PROTECT(LastAdminCalledProc)
 GLOBAL_LIST_EMPTY(AdminProcCallSpamPrevention)
 GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
-/client/proc/proccall_advanced()
+/datum/admins/proc/proccall_advanced()
 	set category = "Debug"
 	set name = "Advanced ProcCall"
 	set waitfor = 0
@@ -132,7 +132,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 
 
-/client/proc/proccall_atom(atom/A)
+/datum/admins/proc/proccall_atom(atom/A)
 	set category = "Debug"
 	set name = "Atom ProcCall"
 	set waitfor = 0
@@ -205,7 +205,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	feedback_add_details("admin_verb","AAPC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in mob_list)
+/datum/admins/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in mob_list)
 	set category = "Debug"
 	set name = "Change Hivenumber"
 	set desc = "Set the hivenumber of a xenomorph."
@@ -251,7 +251,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	X.set_hive_number(newhivenumber)
 
 
-/client/proc/delete_all()
+/datum/admins/proc/delete_all()
 	set category = "Debug"
 	set name = "Delete Instance"
 
@@ -282,7 +282,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	feedback_add_details("admin_verb","DELA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/proc/generate_powernets()
+/datum/admins/proc/generate_powernets()
 	set category = "Debug"
 	set name = "Generate Powernets"
 	set desc = "Regenerate all powernets."
@@ -296,7 +296,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[key_name_admin(src)] has remade the powernets.")
 
 
-/client/proc/change_squad(var/mob/living/carbon/human/H in mob_list)
+/datum/admins/proc/change_squad(var/mob/living/carbon/human/H in mob_list)
 	set category = "Admin"
 	set name = "Change Squad"
 
@@ -347,7 +347,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[key_name_admin(usr)] has changed the squad of [key_name_admin(H)] to [S].")
 
 
-/client/proc/direct_control(var/mob/M in mob_list)
+/datum/admins/proc/direct_control(var/mob/M in mob_list)
 	set category = "Admin"
 	set name = "Take Over"
 	set desc = "Rohesie's verb."
@@ -377,7 +377,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[key_name_admin(usr)] took over of [key_name_admin(M)].")
 
 
-/client/proc/cmd_debug_mob_lists()
+/datum/admins/proc/debug_mob_lists()
 	set category = "Debug"
 	set name = "Debug Mob Lists"
 	set desc = "For when you just gotta know"
@@ -397,7 +397,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			to_chat(usr, list2text(clients,","))
 
 
-/client/proc/cmd_admin_toggle_block(var/mob/M,var/block)
+/datum/admins/proc/dna_toggle_block(var/mob/M,var/block)
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
@@ -449,7 +449,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[key_name_admin(usr)] spawned [chosen] at ([usr.x],[usr.y],[usr.z]) ([get_area(usr)]).")
 
 
-/client/proc/cmd_admin_delete(atom/O as obj|mob|turf in world)
+/datum/admins/proc/delete_atom(atom/O as obj|mob|turf in world)
 	set category = "Debug"
 	set name = "Delete"
 	set desc = "Delete an atom."
@@ -466,7 +466,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[key_name_admin(usr)] deleted [O] at ([O.x],[O.y],[O.z]) ([get_area(src)]).")
 
 
-/client/proc/fix_next_move()
+/datum/admins/proc/fix_next_move()
 	set category = "Debug"
 	set name = "Unfreeze Everyone"
 	var/largest_move_time = 0
@@ -498,7 +498,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	return
 
 
-/client/proc/restart_controller(controller in list("Master", "Failsafe"))
+/datum/admins/proc/restart_controller(controller in list("Master", "Failsafe"))
 	set category = "Debug"
 	set name = "Restart Controller"
 	set desc = "Restart one of the various periodic loop controllers for the game (be careful!)"
@@ -516,7 +516,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[key_name_admin(usr)] has restarted the [controller] controller.")
 
 
-/client/proc/debug_controller(controller in list("Master","Ticker","Lighting","Jobs","Sun","Radio","Supply","Shuttles","Configuration","Cameras", "Transfer Controller", "Gas Data"))
+/datum/admins/proc/debug_controller(controller in list("Master","Ticker","Lighting","Jobs","Sun","Radio","Supply","Shuttles","Configuration","Cameras", "Transfer Controller", "Gas Data"))
 	set category = "Debug"
 	set name = "Debug Controllers"
 	set desc = "Debug the various periodic loop controllers for the game."
@@ -550,7 +550,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[key_name_admin(usr)] is debugging the [controller] controller.")
 
 
-/client/proc/check_contents(mob/living/M as mob in mob_list)
+/datum/admins/proc/check_contents(mob/living/M as mob in mob_list)
 	set category = "Debug"
 	set name = "Check Contents"
 
@@ -565,7 +565,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[key_name_admin(usr)] checked the contents of [M.name].")
 
 
-/client/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
+/datum/admins/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
 	set category = "Debug"
 	set name = "Update Mob Sprite"
 	set desc = "Should fix any mob sprite errors."

@@ -1,12 +1,10 @@
-var/list/admin_ranks = list()								//list of all ranks with associated rights
+var/list/admin_ranks = list()
 
-//load our rank - > rights associations
 /proc/load_admin_ranks()
 	admin_ranks.Cut()
 
 	var/previous_rights = 0
 
-	//load text from file
 	var/list/Lines = file2list("config/admin_ranks.txt")
 
 	//process each line seperately
@@ -40,28 +38,33 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 				if("permissions", "rights")		rights |= R_PERMISSIONS
 				if("color")						rights |= R_COLOR
 				if("varedit")					rights |= R_VAREDIT
-				if("everything", "host", "all")	rights |= R_EVERYTHING
 				if("sound", "sounds")			rights |= R_SOUND
 				if("spawn", "create")			rights |= R_SPAWN
 				if("mentor")					rights |= R_MENTOR
+				if("everything", "host", "all")	rights |= R_EVERYTHING
 
 		admin_ranks[rank] = rights
 		previous_rights = rights
+
 
 /hook/startup/proc/loadAdmins()
 	load_admins()
 	return TRUE
 
+
 /proc/load_admins()
-	//clear the datums references
 	admin_datums.Cut()
+
 	for(var/client/C in admins)
 		C.remove_admin_verbs()
 		C.holder = null
+
 	admins.Cut()
+
 	//Clear profile access
 	for(var/A in world.GetConfig("admin"))
 		world.SetConfig("APP/admin", A, null)
+
 	if(CONFIG_GET(flag/admin_legacy_system))
 		load_admin_ranks()
 
@@ -98,7 +101,7 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 
 			//find the client for a ckey if they are connected and associate them with the new admin datum
 			D.associate(directory[ckey])
-
+		return
 	else
 		//The current admin system uses SQL
 		establish_db_connection()
@@ -107,7 +110,6 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 			log_sql("Failed to connect to database in load_admins(). Reverting to legacy system.")
 			CONFIG_SET(flag/admin_legacy_system, TRUE)
 			load_admins()
-			return
 
 		var/DBQuery/query = dbcon.NewQuery("SELECT ckey, rank, level, flags FROM erro_admin")
 		query.Execute()
@@ -129,4 +131,3 @@ var/list/admin_ranks = list()								//list of all ranks with associated rights
 			log_sql("The database query in load_admins() resulted in no admins being added to the list. Reverting to legacy system.")
 			CONFIG_SET(flag/admin_legacy_system, TRUE)
 			load_admins()
-			return

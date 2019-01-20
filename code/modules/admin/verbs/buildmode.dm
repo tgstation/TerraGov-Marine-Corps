@@ -1,6 +1,10 @@
-/proc/togglebuildmode(mob/M as mob in player_list)
+/datum/admins/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode"
 	set category = "Fun"
+
+	if(!check_rights(R_FUN))
+		return
+
 	if(M.client)
 		if(M.client.buildmode)
 			log_admin("[key_name(usr)] has left build mode.")
@@ -34,17 +38,20 @@
 			M.client.screen += D
 			H.cl = M.client
 
-/obj/effect/bmode//Cleaning up the tree a bit
-	density = 1
-	anchored = 1
+
+/obj/effect/bmode
+	density = TRUE
+	anchored = TRUE
 	layer = ABOVE_HUD_LAYER
 	dir = NORTH
 	icon = 'icons/misc/buildmode.dmi'
 	var/obj/effect/bmode/buildholder/master = null
 
+
 /obj/effect/bmode/builddir
 	icon_state = "build"
 	screen_loc = "NORTH,WEST"
+
 
 /obj/effect/bmode/builddir/clicked()
 	switch(dir)
@@ -58,12 +65,14 @@
 			dir = NORTHWEST
 		if(NORTHWEST)
 			dir = NORTH
-	return 1
+	return TRUE
+
 
 /obj/effect/bmode/buildhelp
 	icon = 'icons/misc/buildmode.dmi'
 	icon_state = "buildhelp"
 	screen_loc = "NORTH,WEST+1"
+
 
 /obj/effect/bmode/buildhelp/clicked()
 	switch(master.cl.buildmode)
@@ -98,15 +107,18 @@
 			to_chat(usr, "<span class='notice'> Left Mouse Button on turf/obj/mob      = Select</span>")
 			to_chat(usr, "<span class='notice'> Right Mouse Button on turf/obj/mob     = Throw</span>")
 			to_chat(usr, "<span class='notice'> ***********************************************************</span>")
-	return 1
+	return TRUE
+
 
 /obj/effect/bmode/buildquit
 	icon_state = "buildquit"
 	screen_loc = "NORTH,WEST+3"
 
+
 /obj/effect/bmode/buildquit/clicked()
 	togglebuildmode(master.cl.mob)
-	return 1
+	return TRUE
+
 
 /obj/effect/bmode/buildholder
 	density = 0
@@ -118,6 +130,7 @@
 	var/obj/effect/bmode/buildquit/buildquit = null
 	var/atom/movable/throw_atom = null
 
+
 /obj/effect/bmode/buildmode
 	icon_state = "buildmode1"
 	screen_loc = "NORTH,WEST+2"
@@ -125,8 +138,8 @@
 	var/valueholder = "derp"
 	var/objholder = /obj/structure/closet
 
-/obj/effect/bmode/buildmode/clicked(var/mob/M, var/list/mods)
 
+/obj/effect/bmode/buildmode/clicked(var/mob/M, var/list/mods)
 	if(mods["left"])
 		switch(master.cl.buildmode)
 			if(1)

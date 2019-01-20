@@ -1,7 +1,10 @@
-/client/proc/toggle_view_range()
+/datum/admins/proc/toggle_view_range()
 	set category = "Fun"
 	set name = "Change View Range"
-	set desc = "switches between 1x and custom views"
+	set desc = "Switches between 1x and custom views."
+
+	if(!check_rights(R_FUN))
+		return
 
 	if(view == world.view)
 		var/newview = input("Select view range:", "Change View Range", 7) in list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,21,28,35,50,128)
@@ -11,114 +14,73 @@
 		change_view(world.view)
 
 	log_admin("[key_name(usr)] changed their view range to [view].")
-	//message_admins("<span class='notice'> [key_name_admin(usr)] changed their view range to [view].</span>", 1)	//why? removed by order of XSI
-
-	feedback_add_details("admin_verb","CVRA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/client/proc/cmd_admin_attack_log(mob/M as mob in mob_list)
-	set category = "Fun"
-	set name = "Attack Log"
-
-	to_chat(usr, text("<span class='danger'>Attack Log for []</span>", mob))
-	show_individual_logging_panel(M)
-	feedback_add_details("admin_verb","ATTL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	message_admins("[key_name_admin(usr)] changed their view range to [view].")
 
 
-/client/proc/everyone_random()
-	set category = "Fun"
-	set name = "Make Everyone Random"
-	set desc = "Make everyone have a random appearance. You can only use this before rounds!"
-
-	if(!check_rights(R_FUN))	return
-
-	if (ticker && ticker.mode)
-		to_chat(usr, "Nope you can't do this, the game's already started. This only works before rounds!")
-		return
-
-	if(ticker.random_players)
-		ticker.random_players = 0
-		message_admins("Admin [key_name_admin(usr)] has disabled \"Everyone is Special\" mode.", 1)
-		to_chat(usr, "Disabled.")
-		return
-
-
-	var/notifyplayers = alert(src, "Do you want to notify the players?", "Options", "Yes", "No", "Cancel")
-	if(notifyplayers == "Cancel")
-		return
-
-	log_admin("Admin [key_name(src)] has forced the players to have random appearances.")
-	message_admins("Admin [key_name_admin(usr)] has forced the players to have random appearances.", 1)
-
-	if(notifyplayers == "Yes")
-		to_chat(world, "<span class='boldnotice'>Admin [usr.key] has forced the players to have completely random identities!</span>")
-
-	to_chat(usr, "<i>Remember: you can always disable the randomness by using the verb again, assuming the round hasn't started yet</i>.")
-
-	ticker.random_players = 1
-	feedback_add_details("admin_verb","MER") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-
-/client/proc/cmd_admin_gib_self()
+/datum/admins/proc/gib_self()
 	set name = "Gib Self"
 	set category = "Fun"
 
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
-	if(confirm == "Yes")
-		if (istype(mob, /mob/dead/observer)) // so they don't spam gibs everywhere
-			return
-		else
-			mob.gib()
+	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes")
+		return
 
-		log_admin("[key_name(usr)] used gibself.")
-		message_admins("<span class='notice'> [key_name_admin(usr)] used gibself.</span>", 1)
-		feedback_add_details("admin_verb","GIBS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	if(istype(mob, /mob/dead/observer))
+		return
 
-/client/proc/cmd_admin_gib(mob/M as mob in mob_list)
+	mob.gib()
+
+	log_admin("[key_name(usr)] has gibbed themselves.")
+	message_admins("[key_name_admin(usr)] has gibbed themselves.")
+
+
+/datum/admins/proc/gib(mob/living/M as mob in mob_list)
 	set category = "Fun"
 	set name = "Gib"
 
-	if(!check_rights(R_ADMIN|R_FUN))	return
+	if(!check_rights(R_FUN))	
+		return
 
-	var/confirm = alert(src, "You sure?", "Confirm", "Yes", "No")
-	if(confirm != "Yes") return
-	//Due to the delay here its easy for something to have happened to the mob
-	if(!M)	return
+	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes")
+		return
 
-	log_admin("[key_name(usr)] has gibbed [key_name(M)]")
-	message_admins("[key_name_admin(usr)] has gibbed [key_name_admin(M)]", 1)
-
-	if(istype(M, /mob/dead/observer))
-		gibs(M.loc, M.viruses)
+	if(!M)	
 		return
 
 	M.gib()
-	feedback_add_details("admin_verb","GIB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+	log_admin("[key_name(usr)] has gibbed [key_name(M)]")
+	message_admins("[key_name_admin(usr)] has gibbed [key_name_admin(M)]")
 
 
-/client/proc/cmd_admin_emp(atom/O as obj|mob|turf in world)
+/datum/admins/proc/emp(atom/A as obj|mob|turf in world)
 	set category = "Fun"
 	set name = "EM Pulse"
 
-	if(!check_rights(R_DEBUG|R_FUN))	return
+	if(!check_rights(R_FUN))	
+		return
 
-	var/heavy = input("Range of heavy pulse.", text("Input"))  as num|null
-	if(heavy == null) return
-	var/light = input("Range of light pulse.", text("Input"))  as num|null
-	if(light == null) return
+	var/heavy = input("Range of heavy pulse.", text("Input")) as num|null
+	if(isnull(heavy)) 
+		return
 
-	if (heavy || light)
+	var/light = input("Range of light pulse.", text("Input")) as num|null
+	if(isnull(light)) 
+		return
 
-		empulse(O, heavy, light)
-		log_admin("[key_name(usr)] created an EM Pulse ([heavy],[light]) at ([O.x],[O.y],[O.z])")
-		message_admins("[key_name_admin(usr)] created an EM PUlse ([heavy],[light]) at ([O.x],[O.y],[O.z])", 1)
-		feedback_add_details("admin_verb","EMP") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	if(!heavy || !light)
+		return
+
+	empulse(A, heavy, light)
+	log_admin("[key_name(usr)] created an EM Pulse ([heavy], [light]) at ([A.x], [A.y], [A.z]) ([get_area(usr)]).")
+	message_admins("[key_name_admin(usr)] created an EM PUlse ([heavy], [light]) at ([O.x], [O.y], [O.z]) ([get_area(usr)]).")
 
 
-/client/proc/cmd_admin_explosion(atom/O as obj|mob|turf in world)
+/datum/admins/proc/cmd_admin_explosion(atom/O as obj|mob|turf in world)
 	set category = "Fun"
 	set name = "Explosion"
 
-	if(!check_rights(R_DEBUG|R_FUN))	return
+	if(!check_rights(R_DEBUG|R_FUN))	
+		return
 
 	var/devastation = input("Range of total devastation. -1 to none", text("Input"))  as num|null
 	if(devastation == null) return
@@ -140,7 +102,7 @@
 		feedback_add_details("admin_verb","EXPL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/proc/cmd_admin_xeno_report()
+/datum/admins/proc/cmd_admin_xeno_report()
 	set category = "Fun"
 	set name = "Create Queen Mother Report"
 	set desc = "Basically a MOTHER report, but only for Xenos"
@@ -162,20 +124,21 @@
 	feedback_add_details("admin_verb","QMR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/proc/show_hive_status()
+/datum/admins/proc/show_hive_status()
+	set category = "Fun"
 	set name = "Show Hive Status"
 	set desc = "Check the status of the hive."
-	set category = "Fun"
-	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
+
+	if(!check_rights(R_ADMIN))
 		return
 
 	check_hive_status()
 
 
-/client/proc/cmd_admin_create_AI_report()
+/datum/admins/proc/cmd_admin_create_AI_report()
 	set category = "Fun"
 	set name = "Create AI Report"
+
 	if(!holder)
 		to_chat(src, "Only administrators may use this command.")
 		return
@@ -199,7 +162,7 @@
 		to_chat(usr, "<span class='warning'>[MAIN_AI_SYSTEM] is not responding. It may be offline or destroyed.</span>")
 
 
-/client/proc/cmd_admin_create_centcom_report()
+/datum/admins/proc/cmd_admin_create_centcom_report()
 	set category = "Fun"
 	set name = "Create Command Report"
 	if(!holder)
@@ -230,10 +193,11 @@
 	message_admins("[key_name_admin(src)] has created a command report", 1)
 	feedback_add_details("admin_verb","CCR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/respawn_character()
+/datum/admins/proc/respawn_character()
 	set category = "Fun"
 	set name = "Respawn Character"
 	set desc = "Respawn a person that has been gibbed/dusted/killed. They must be a ghost for this to work and preferably should not have a body to go back into."
+	
 	if(!holder)
 		to_chat(src, "Only administrators may use this command.")
 		return
@@ -353,25 +317,25 @@
 	feedback_add_details("admin_verb","RSPCH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return new_character
 
-/client/proc/cmd_admin_godmode(mob/M as mob in mob_list)
+
+/datum/admins/proc/cmd_admin_godmode(mob/M as mob in mob_list)
 	set category = "Fun"
 	set name = "Godmode"
-	if(!holder)
+
+	if(!check_rights(R_FUN))
 		to_chat(src, "Only administrators may use this command.")
 		return
+
 	M.status_flags ^= GODMODE
-	to_chat(usr, "<span class='notice'> Toggled [(M.status_flags & GODMODE) ? "ON" : "OFF"]</span>")
 
 	log_admin("[key_name(usr)] has toggled [key_name(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]")
 	message_admins("[key_name_admin(usr)] has toggled [key_name_admin(M)]'s nodamage to [(M.status_flags & GODMODE) ? "On" : "Off"]", 1)
-	feedback_add_details("admin_verb","GOD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-
-/client/proc/cmd_admin_world_narrate() // Allows administrators to fluff events a little easier -- TLE
+/datum/admins/proc/narrate_global() // Allows administrators to fluff events a little easier -- TLE
 	set category = "Fun"
-	set name = "Narrate - Global"
+	set name = "Global Narrate"
 
-	if (!holder)
+	if(!check_rights(R_FUN))
 		to_chat(src, "Only administrators may use this command.")
 		return
 
@@ -379,12 +343,14 @@
 
 	if(!msg)
 		return
-	to_chat(world, "[msg]")
-	log_admin("GlobalNarrate: [key_name(usr)] : [msg]")
-	message_admins("<span class='boldnotice'> GlobalNarrate: [key_name_admin(usr)] : [msg]<BR></span>", 1)
-	feedback_add_details("admin_verb","GLN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_direct_narrate(var/mob/M)	// Targetted narrate -- TLE
+	to_chat(world, "[msg]")
+
+	log_admin("[key_name(usr)] used Global Narrate: [msg]")
+	message_admins("[key_name_admin(usr)] used Global Narrate: [msg]")
+
+
+/datum/admins/proc/narage_direct(var/mob/M)
 	set category = "Fun"
 	set name = "Narrate - Direct"
 
@@ -409,7 +375,7 @@
 	feedback_add_details("admin_verb","DIRN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/proc/cmd_admin_subtle_message(mob/M as mob in mob_list)
+/datum/admins/proc/subtle_message(mob/M as mob in mob_list)
 	set category = "Fun"
 	set name = "Subtle Message"
 
@@ -431,7 +397,7 @@
 	message_admins("<span class='boldnotice'> SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] : [msg]</span>", 1)
 	feedback_add_details("admin_verb","SMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_drop_everything(mob/M as mob in mob_list)
+/datum/admins/proc/drop_everything(mob/M as mob in mob_list)
 	set category = "Fun"
 	set name = "Drop Everything"
 	if(!holder)
@@ -451,20 +417,25 @@
 	feedback_add_details("admin_verb","DEVR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/proc/check_round_statistics()
+/datum/admins/proc/check_round_statistics()
 	set category = "Fun"
 	set name = "Round Statistics"
-	if(!check_rights(R_ADMIN))	return
+
+	if(!check_rights(R_FUN)	
+		return
 
 	debug_variables(round_statistics)
 
 
-/client/proc/award_medal()
+/datum/admins/proc/award_medal()
 	set category = "Fun"
 	set name = "Award a Medal"
-	if(!check_rights(R_ADMIN))	return
+
+	if(!check_rights(R_FUN))	
+		return
 
 	give_medal_award()
+
 
 /proc/get_all_humans()
 	if(!check_rights(R_ADMIN))	return
@@ -475,6 +446,7 @@
 		if(ishuman(C.mob))
 			C.mob.loc = get_turf(usr)
 
+
 /proc/get_all_xenos()
 	if(!check_rights(R_ADMIN))	return
 
@@ -484,6 +456,7 @@
 		if(isXeno(C.mob))
 			C.mob.loc = get_turf(usr)
 
+
 /proc/get_all()
 	if(!check_rights(R_ADMIN))	return
 
@@ -491,6 +464,7 @@
 		if(isobserver(C.mob) || C.mob.stat == DEAD)
 			continue
 		C.mob.loc = get_turf(usr)
+
 
 /proc/rejuv_all()
 	if(!check_rights(R_ADMIN))	return
@@ -502,8 +476,7 @@
 		M.rejuvenate()
 
 
-// verb for admins to set custom event
-/client/proc/cmd_admin_change_custom_event()
+/datum/admins/proc/cmd_admin_change_custom_event()
 	set category = "Fun"
 	set name = "Change Custom Event"
 
@@ -528,7 +501,7 @@
 	to_chat(world, "<span class='alert'>[html_encode(custom_event_msg)]</span>")
 	to_chat(world, "<br>")
 
-// normal verb for players to view info
+
 /client/verb/cmd_view_custom_event()
 	set category = "OOC"
 	set name = "Custom Event Info"
@@ -543,12 +516,15 @@
 	to_chat(src, "<span class='alert'>[html_encode(custom_event_msg)]</span>")
 	to_chat(src, "<br>")
 
-/client/proc/play_imported_sound(S as sound)
+
+/datum/admins/proc/play_imported_sound(S as sound)
 	var/midi_warning = ""
 	set category = "Fun"
 	set name = "Play Imported Sound"
 	set desc = "Play a sound imported from anywhere on your computer."
-	if(!check_rights(R_SOUND))	return
+
+	if(!check_rights(R_SOUND))	
+		return
 
 	if(midi_playing)
 		to_chat(usr, "No. An Admin already played a midi recently.")
@@ -591,7 +567,7 @@
 
 
 
-/client/proc/play_sound_from_list()
+/datum/admins/proc/play_sound_from_list()
 	set category = "Fun"
 	set name = "Play Sound From List"
 	set desc = "Play a sound already in the project from a pre-made list."
@@ -632,15 +608,13 @@
 /datum/admins/proc/admin_force_distress()
 	set category = "Fun"
 	set name = "Distress Beacon"
-	set desc = "Call a distress beacon. This should not be done if the shuttle's already been called."
+	set desc = "Call a distress beacon manually."
+
+	if(!check_rights(R_ADMIN))
+		return
 
 	if(!ticker?.mode)
 		to_chat(src, "<span class='warning'>Please wait for the round to begin first.</span>")
-		return
-
-	if(!check_rights(R_ADMIN))
-		to_chat(src, "<span class='warning'>Insufficient permissions.</span>")
-		return
 
 	if(ticker.mode.waiting_for_candidates)
 		to_chat(src, "<span class='warning'>Please wait for the current beacon to be finalized.</span>")
@@ -653,10 +627,9 @@
 		ticker.mode.on_distress_cooldown = FALSE
 		ticker.mode.picked_call = null
 
-
 	var/list/list_of_calls = list()
 	for(var/datum/emergency_call/L in ticker.mode.all_calls)
-		if(L?.name)
+		if(L.name)
 			list_of_calls += L.name
 
 	list_of_calls += "Randomize"
@@ -669,7 +642,7 @@
 		ticker.mode.picked_call	= ticker.mode.get_random_call()
 	else
 		for(var/datum/emergency_call/C in ticker.mode.all_calls)
-			if(C?.name == choice)
+			if(C.name == choice)
 				ticker.mode.picked_call = C
 				break
 
@@ -683,7 +656,6 @@
 
 	ticker.mode.picked_call.activate(is_announcing)
 
-	feedback_add_details("admin_verb","DISTR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] admin-called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]")
 	message_admins("<span class='notice'> [key_name_admin(usr)] admin-called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]</span>", 1)
 
@@ -693,11 +665,15 @@
 	set name = "Force ERT Shuttle"
 	set desc = "Force Launch the ERT Shuttle."
 
-	if (!ticker  || !ticker.mode) return
-	if(!check_rights(R_ADMIN))	return
+	if(!check_rights(R_ADMIN))	
+		return
+
+	if(!ticker?.mode) 
+		return
 
 	var/tag = input("Which ERT shuttle should be force launched?", "Select an ERT Shuttle:") as null|anything in list("Distress", "Distress_PMC", "Distress_UPP", "Distress_Big")
-	if(!tag) return
+	if(!tag) 
+		return
 
 	var/datum/shuttle/ferry/ert/shuttle = shuttle_controller.shuttles[tag]
 	if(!shuttle || !istype(shuttle))
@@ -742,7 +718,7 @@
 	message_admins("<span class='notice'> [key_name_admin(usr)] force launched a distress shuttle ([tag])</span>", 1)
 
 
-/client/proc/make_sound(var/obj/O in object_list) // -- TLE
+/datum/admins/proc/make_sound(var/obj/O in object_list) // -- TLE
 	set category = "Special Verbs"
 	set name = "Make Sound"
 	set desc = "Display a message to everyone who can hear the target"
@@ -756,14 +732,8 @@
 		message_admins("<span class='notice'> [key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound</span>", 1)
 		feedback_add_details("admin_verb","MS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/togglebuildmodeself()
-	set name = "Toggle Build Mode Self"
-	set category = "Fun"
-	if(src.mob)
-		togglebuildmode(src.mob)
-	feedback_add_details("admin_verb","TBMS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/object_talk(var/msg as text) // -- TLE
+/datum/admins/proc/object_talk(var/msg as text) // -- TLE
 	set category = "Special Verbs"
 	set name = "Object Say"
 	set desc = "Display a message to everyone who can hear the target"
@@ -775,23 +745,22 @@
 	feedback_add_details("admin_verb","OT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/proc/drop_bomb() // Some admin dickery that can probably be done better -- TLE
+/datum/admins/proc/drop_bomb() // Some admin dickery that can probably be done better -- TLE
 	set category = "Fun"
 	set name = "Drop Bomb"
 	set desc = "Cause an explosion of varying strength at your location."
 
-	var/turf/epicenter = mob.loc
 	var/list/choices = list("CANCEL", "Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
 	var/choice = input("What size explosion would you like to produce?") in choices
 	switch(choice)
 		if("CANCEL")
-			return 0
+			return
 		if("Small Bomb")
-			explosion(epicenter, 1, 2, 3, 3)
+			explosion(mob.loc, 1, 2, 3, 3)
 		if("Medium Bomb")
-			explosion(epicenter, 2, 3, 4, 4)
+			explosion(mob.loc, 2, 3, 4, 4)
 		if("Big Bomb")
-			explosion(epicenter, 3, 5, 7, 5)
+			explosion(mob.loc, 3, 5, 7, 5)
 		if("Custom Bomb")
 			var/devastation_range = input("Devastation range (in tiles):") as num
 			var/heavy_impact_range = input("Heavy impact range (in tiles):") as num
@@ -801,42 +770,14 @@
 	message_admins("<span class='notice'> [ckey] used 'Drop Bomb' at [epicenter.loc].</span>")
 	feedback_add_details("admin_verb","DB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/give_spell(mob/T as mob in mob_list) // -- Urist
-	set category = "Fun"
-	set name = "Give Spell"
-	set desc = "Gives a spell to a mob."
-	var/list/spell_names = list()
-	for(var/v in spells)
-	//	"/obj/effect/proc_holder/spell/" 30 symbols ~Intercross21
-		spell_names.Add(copytext("[v]", 31, 0))
-	var/S = input("Choose the spell to give to that guy", "ABRAKADABRA") as null|anything in spell_names
-	if(!S) return
-	var/path = text2path("/obj/effect/proc_holder/spell/[S]")
-	T.spell_list += new path
-	feedback_add_details("admin_verb","GS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] gave [key_name(T)] the spell [S].")
-	message_admins("<span class='notice'> [key_name_admin(usr)] gave [key_name(T)] the spell [S].</span>", 1)
 
-/client/proc/give_disease(mob/T as mob in mob_list) // -- Giacom
-	set category = "Fun"
-	set name = "Give Disease (old)"
-	set desc = "Gives a (tg-style) Disease to a mob."
-	var/list/disease_names = list()
-	for(var/v in diseases)
-	//	"/datum/disease/" 15 symbols ~Intercross
-		disease_names.Add(copytext("[v]", 16, 0))
-	var/datum/disease/D = input("Choose the disease to give to that guy", "ACHOO") as null|anything in disease_names
-	if(!D) return
-	var/path = text2path("/datum/disease/[D]")
-	T.contract_disease(new path, 1)
-	feedback_add_details("admin_verb","GD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	log_admin("[key_name(usr)] gave [key_name(T)] the disease [D].")
-	message_admins("<span class='notice'> [key_name_admin(usr)] gave [key_name(T)] the disease [D].</span>", 1)
-
-/client/proc/set_ooc_color_self()
+/datum/admins/proc/set_ooc_color_self()
 	set category = "Fun"
 	set name = "OOC Text Color - Self"
-	if(!holder && !donator)	return
+
+	if(!check_rights(R_FUN))
+		return
+
 	var/new_ooccolor = input(src, "Please select your OOC colour.", "OOC colour") as color|null
 	if(new_ooccolor)
 		prefs.ooccolor = new_ooccolor
@@ -844,11 +785,13 @@
 	feedback_add_details("admin_verb","OC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return
 
-/client/proc/editappear(mob/living/carbon/human/M as mob in mob_list)
+
+/datum/admins/proc/edit_appearance(mob/living/carbon/human/M as mob in mob_list)
 	set name = "Edit Appearance"
 	set category = "Fun"
 
-	if(!check_rights(R_FUN))	return
+	if(!check_rights(R_FUN))	
+		return
 
 	if(!istype(M, /mob/living/carbon/human))
 		to_chat(usr, "<span class='warning'>You can only do this to humans!</span>")
@@ -902,7 +845,7 @@
 	M.check_dna(M)
 
 
-/client/proc/change_security_level()
+/datum/admins/proc/change_security_level()
 	set name = "Set Security Level"
 	set desc = "Sets the station security level"
 	set category = "Fun"
@@ -914,7 +857,7 @@
 		log_admin("[key_name(usr)] changed the security level to code [sec_level].")
 
 
-/client/proc/cmd_admin_animalize(var/mob/M in mob_list)
+/datum/admins/proc/animalize(var/mob/M in mob_list)
 	set category = "Fun"
 	set name = "Make Simple Animal"
 
@@ -934,7 +877,8 @@
 	spawn(10)
 		M.Animalize()
 
-/client/proc/cmd_admin_alienize(var/mob/M in mob_list)
+
+/datum/admins/proc/alienize(var/mob/M in mob_list)
 	set category = "Fun"
 	set name = "Make Alien"
 
@@ -957,9 +901,7 @@
 		alert("Invalid mob")
 
 
-
-
-/client/proc/cmd_admin_robotize(var/mob/M in mob_list)
+/datum/admins/proc/robotize(var/mob/M in mob_list)
 	set category = "Fun"
 	set name = "Make Robot"
 
@@ -978,4 +920,3 @@
 
 	else
 		alert("Invalid mob")
-

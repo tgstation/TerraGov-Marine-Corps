@@ -1,4 +1,4 @@
-/client/proc/admin_ghost()
+/datum/admins/proc/admin_ghost()
 	set category = "Admin"
 	set name = "Aghost"
 	set desc = "Allows you to ghost and re-enter body at will."
@@ -24,7 +24,7 @@
 				body.client.change_view(world.view)
 
 
-/client/proc/invisimin()
+/datum/admins/proc/invisimin()
 	set name = "Invisimin"
 	set category = "Admin"
 	set desc = "Toggles ghost-like invisibility."
@@ -45,7 +45,7 @@
 	message_admins("[key_name_admin(usr)] has turned invisimin [(mob.invisibility == INVISIBILITY_OBSERVER) ? "on" : "off"]")
 
 
-/client/proc/stealth_mode()
+/datum/admins/proc/stealth_mode()
 	set category = "Admin"
 	set name = "Stealth Mode"
 	set desc = "Allows you to change your ckey for non-admins to see."
@@ -66,7 +66,7 @@
 	message_admins("[key_name_admin(usr)] has turned stealth mode [holder.fakekey ? "on" : "off"]")
 
 
-/client/proc/deadmin_self()
+/datum/admins/proc/deadmin_self()
 	set name = "De-Admin Self"
 	set category = "Admin"
 	set desc = "Temporarily removes your admin powers."
@@ -84,7 +84,7 @@
 	message_admins("[key_name(usr)] deadmined themselves.")
 
 
-/client/proc/readmin_self()
+/datum/admins/proc/readmin_self()
 	set name = "Re-admin Self"
 	set category = "Admin"
 	set desc = "Gives you your powers back."
@@ -95,7 +95,7 @@
 	message_admins("[key_name(usr)] readmined themselves.")
 
 
-/client/proc/jobs_free()
+/datum/admins/proc/jobs_free()
 	set name = "Job Slots - Free"
 	set category = "Admin"
 	set desc = "Allows you to free a job slot."
@@ -121,7 +121,7 @@
 	message_admins("[key_name(usr)] has made a [role] slot free.")
 
 
-/client/proc/jobs_list()
+/datum/admins/proc/jobs_list()
 	set category = "Admin"
 	set name = "Job Slots - List"
 	set desc = "Lists all roles and their current status."
@@ -143,7 +143,7 @@
 	message_admins("[key_name(usr)] has checked job slots.")
 
 
-/client/proc/change_key(mob/M in living_mob_list)
+/datum/admins/proc/change_key(mob/M in living_mob_list)
 	set category = "Admin"
 	set name = "Change CKey"
 	set desc = "Allows you to properly change the ckey of a mob."
@@ -168,7 +168,7 @@
 	message_admins("[key_name_admin(usr)] changed [M.name]'s ckey to [new_ckey].")
 
 
-/client/proc/rejuvenate(mob/living/M as mob in mob_list)
+/datum/admins/proc/rejuvenate(mob/living/M as mob in mob_list)
 	set category = "Admin"
 	set name = "Rejuvenate"
 	set desc = "Revives a mob."
@@ -185,7 +185,7 @@
 	message_admins("[key_name_admin(usr)] revived [key_name_admin(M)].")
 
 
-/client/proc/toggle_sleep(var/mob/living/M as mob in mob_list)
+/datum/admins/proc/toggle_sleep(var/mob/living/M as mob in mob_list)
 	set category = "Admin"
 	set name = "Toggle Sleeping"
 
@@ -201,7 +201,7 @@
 	message_admins("[key_name_admin(usr)] toggled sleeping on [key_name_admin(M)].")
 
 
-/client/proc/toggle_sleep_area()
+/datum/admins/proc/toggle_sleep_area()
 	set category = "Admin"
 	set name = "Toggle Sleeping Area"
 
