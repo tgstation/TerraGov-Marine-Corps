@@ -635,20 +635,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	message_admins("[key_name_admin(src)] has created a Queen Mother report", 1)
 	feedback_add_details("admin_verb","QMR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_delete(atom/O as obj|mob|turf in world)
-	set category = "Debug"
-	set name = "Delete"
-
-	if (!holder)
-		to_chat(src, "Only administrators may use this command.")
-		return
-
-	if (alert(src, "Are you sure you want to delete:\n[O]\nat ([O.x], [O.y], [O.z])?", "Confirmation", "Yes", "No") == "Yes")
-		log_admin("[key_name(usr)] deleted [O] at ([O.x],[O.y],[O.z])")
-		message_admins("[key_name_admin(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) deleted [O] at ([O.x],[O.y],[O.z])", 1)
-		feedback_add_details("admin_verb","DEL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		qdel(O)
-
 /client/proc/cmd_admin_list_open_jobs()
 	set category = "Admin"
 	set name = "Job Slots - List"
@@ -843,37 +829,6 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		to_chat(usr, "[t]")
 	feedback_add_details("admin_verb","CC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/* This proc is DEFERRED. Does not do anything.
-/client/proc/cmd_admin_remove_phoron()
-	set category = "Debug"
-	set name = "Stabilize Atmos."
-	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
-		return
-	feedback_add_details("admin_verb","STATM") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-// DEFERRED
-	spawn(0)
-		for(var/turf/T in view())
-			T.poison = 0
-			T.oldpoison = 0
-			T.tmppoison = 0
-			T.oxygen = 755985
-			T.oldoxy = 755985
-			T.tmpoxy = 755985
-			T.co2 = 14.8176
-			T.oldco2 = 14.8176
-			T.tmpco2 = 14.8176
-			T.n2 = 2.844e+006
-			T.on2 = 2.844e+006
-			T.tn2 = 2.844e+006
-			T.tsl_gas = 0
-			T.osl_gas = 0
-			T.sl_gas = 0
-			T.temp = 293.15
-			T.otemp = 293.15
-			T.ttemp = 293.15
-*/
-
 /client/proc/toggle_view_range()
 	set category = "Special Verbs"
 	set name = "Change View Range"
@@ -950,18 +905,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		to_chat(usr, "Random events disabled")
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.", 1)
 	feedback_add_details("admin_verb","TRE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-/*
-/client/proc/editzoneair(var/turf/T in turfs)
-	set name = "Edit Zone Air"
-	set category = "Debug"
-	if(!src.holder)
-		to_chat(src, "Only administrators may use this command.")
-		return
 
-	if(T)
-		if(T.zone && T.zone.air)
-			debug_variables(T.zone.air)
-*/
 /client/proc/toggle_own_ghost_vis()
 	set name = "Show/Hide Own Ghost"
 	set desc = "Toggle your visibility as a ghost to other ghosts."

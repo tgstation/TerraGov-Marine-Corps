@@ -7,25 +7,6 @@
 //All this stuff was written by Absynth.
 //Edited by Apop - 11JUN16
 
-#define DEBUG_XENO 0
-
-#if DEBUG_XENO
-/mob/verb/debug_xeno_mind()
-	set name =  "Debug Xeno Mind"
-	set category = "Debug"
-	set desc = "Shows whether or not a mine is contained within the xenomorph list."
-
-	if(!ticker || ticker.current_state != GAME_STATE_PLAYING || !ticker.mode)
-		to_chat(src, "<span class='warning'>The round is either not ready, or has already finished.</span>")
-		return
-	if(mind in ticker.mode.xenomorphs)
-		to_chat(src, "<span class='debuginfo'>[src] mind is in the xenomorph list. Mind key is [mind.key].</span>")
-		to_chat(src, "<span class='debuginfo'>Current mob is: [mind.current]. Original mob is: [mind.original].</span>")
-	to_chat(else src, "<span class='debuginfo'>This xenomorph is not in the xenomorph list.</span>")
-#endif
-
-#undef DEBUG_XENO
-
 /mob/living/carbon/Xenomorph
 	name = "Drone"
 	desc = "What the hell is THAT?"

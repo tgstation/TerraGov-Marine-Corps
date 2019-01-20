@@ -116,22 +116,6 @@ datum/game_mode/proc/initialize_special_clamps()
 
 //===================================================\\
 
-#define DEBUG_PREDATOR_INITIALIZE 0
-
-#if DEBUG_PREDATOR_INITIALIZE
-/mob/verb/adjust_predator_round()
-	set name = "Adjust Predator Round"
-	set category = "Debug"
-	set desc = "Adjust the number of predators present in a predator round."
-
-	if(!ticker || !ticker.mode)
-		to_chat(src, "<span class='warning'>The game hasn't started yet!</span?")
-		return FALSE
-
-	ticker.mode.pred_maximum_num = input(src,"What is the new maximum number of predators?","Input:",4) as num|null
-	ticker.mode.pred_current_num = input(src,"What is the new current number of predators?","Input:",0) as num|null
-#endif
-
 /datum/game_mode/proc/initialize_predator(mob/living/carbon/human/new_predator)
 	predators += new_predator.mind //Add them to the proper list.
 	pred_keys += new_predator.ckey //Add their key.
