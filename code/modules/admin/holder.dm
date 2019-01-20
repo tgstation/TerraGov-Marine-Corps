@@ -226,7 +226,6 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/admin_force_ERT_shuttle,
 	/client/proc/cmd_admin_changekey,
 	// /client/proc/response_team, // Response Teams admin verb
-	/client/proc/allow_character_respawn,    /* Allows a ghost to respawn */
 	/datum/admins/proc/viewCLFaxes,
 	/datum/admins/proc/viewTGMCFaxes,
 	/datum/admins/proc/force_predator_round, //Force spawns a predator round.
@@ -341,7 +340,6 @@ var/list/admin_verbs_hideable = list(
 	/datum/admins/proc/announce,
 	/client/proc/admin_ghost,
 	/client/proc/toggle_view_range,
-	/datum/admins/proc/view_txt_log,
 	/client/proc/cmd_admin_subtle_message,
 	/client/proc/cmd_admin_check_contents,
 	/client/proc/cmd_admin_direct_narrate,

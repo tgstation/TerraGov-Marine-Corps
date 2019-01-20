@@ -594,7 +594,7 @@
 	else
 		to_chat(usr, "<span class='warning'>You need to be a ghost in order to use this.</span>")
 
-/client/proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
+proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 	if(automute)
 		if(!CONFIG_GET(flag/automute_on))	return
 	else

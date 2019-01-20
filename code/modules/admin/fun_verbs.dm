@@ -382,36 +382,6 @@
 	feedback_add_details("admin_verb","RSPCH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	return new_character
 
-/client/proc/allow_character_respawn()
-	set category = "Fun"
-	set name = "Allow Player Corpse Re-Enter"
-	set desc = "Let's the player bypass the 30 minute wait to respawn or allow them to re-enter their corpse."
-	if(!holder)
-		to_chat(src, "Only administrators may use this command.")
-		return
-
-	var/list/ghosts= get_ghosts(1,1)
-
-	var/target = input("Please, select a ghost!", "COME BACK TO LIFE!", null, null) as null|anything in ghosts
-	if(!target)
-		to_chat(src, "Hrm, appears you didn't select a ghost"		)
-		return
-
-	var/mob/dead/observer/G = ghosts[target]
-//	if(G.has_enabled_antagHUD && config.antag_hud_restricted)
-//		var/response = alert(src, "Are you sure you wish to allow this individual to play?","Ghost has used AntagHUD","Yes","No")
-//		if(response == "No") return
-	G.timeofdeath=-19999						/* time of death is checked in /mob/verb/abandon_mob() which is the Respawn verb.
-									   timeofdeath is used for bodies on autopsy but since we're messing with a ghost I'm pretty sure
-									   there won't be an autopsy.
-									*/
-//	G.has_enabled_antagHUD = 2
-	G.can_reenter_corpse = 1
-
-	G:show_message(text("<span class='boldnotice'>You may now respawn.  You should roleplay as if you learned nothing about the round during your time with the dead.</span>"), 1)
-	log_admin("[key_name(usr)] allowed [key_name(G)] to bypass the 30 minute respawn limit")
-	message_admins("Admin [key_name_admin(usr)] allowed [key_name_admin(G)] to bypass the 30 minute respawn limit", 1)
-
 
 /client/proc/cmd_admin_add_random_ai_law()
 	set category = "Fun"
