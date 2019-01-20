@@ -1,3 +1,15 @@
+/var/create_mob_html = null
+
+/datum/admins/proc/create_mob(var/mob/user)
+	if (!create_mob_html)
+		var/mobjs = null
+		mobjs = list2text(typesof(/mob), ";")
+		create_mob_html = file2text('html/create_object.html')
+		create_mob_html = oldreplacetext(create_mob_html, "null /* object types */", "\"[mobjs]\"")
+
+	user << browse(oldreplacetext(create_mob_html, "/* ref src */", "\ref[src]"), "window=create_mob;size=425x475")
+
+
 /var/create_object_html = null
 
 /datum/admins/proc/create_object(var/mob/user)
@@ -27,3 +39,15 @@
 		quick_create_object_html = oldreplacetext(quick_create_object_html, "null /* object types */", "\"[objectjs]\"")
 
 	user << browse(oldreplacetext(quick_create_object_html, "/* ref src */", "\ref[src]"), "window=quick_create_object;size=425x475")
+
+
+/var/create_turf_html = null
+
+/datum/admins/proc/create_turf(var/mob/user)
+	if (!create_turf_html)
+		var/turfjs = null
+		turfjs = list2text(typesof(/turf), ";")
+		create_turf_html = file2text('html/create_object.html')
+		create_turf_html = oldreplacetext(create_turf_html, "null /* object types */", "\"[turfjs]\"")
+
+	user << browse(oldreplacetext(create_turf_html, "/* ref src */", "\ref[src]"), "window=create_turf;size=425x475")
