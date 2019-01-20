@@ -27,6 +27,7 @@
 	max_health = 200
 
 	// *** Evolution *** //
+	evolution_threshold = 200
 	upgrade_threshold = 200
 
 	deevolves_to = /mob/living/carbon/Xenomorph/Drone
