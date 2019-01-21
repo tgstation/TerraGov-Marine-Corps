@@ -132,39 +132,39 @@ var/global/sent_syndicate_strike_team = 0
 	var/obj/item/device/radio/R = new /obj/item/device/radio/headset/syndicate(src)
 	R.set_frequency(SYND_FREQ) //Same frequency as the syndicate team in Nuke mode.
 	equip_to_slot_or_del(R, WEAR_L_EAR)
-	equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(src), WEAR_BODY)
-	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), WEAR_FEET)
+	equip_to_slot_or_del(new /obj/item/clothing/under/syndicate(src), SLOT_W_UNIFORM)
+	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), SLOT_SHOES)
 	if (!syndicate_leader_selected)
-		equip_to_slot_or_del(new /obj/item/clothing/suit/space/syndicate/black(src), WEAR_JACKET)
+		equip_to_slot_or_del(new /obj/item/clothing/suit/space/syndicate/black(src), SLOT_WEAR_SUIT)
 	else
-		equip_to_slot_or_del(new /obj/item/clothing/suit/space/syndicate/black/red(src), WEAR_JACKET)
-	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), WEAR_HANDS)
+		equip_to_slot_or_del(new /obj/item/clothing/suit/space/syndicate/black/red(src), SLOT_WEAR_SUIT)
+	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), SLOT_GLOVES)
 	if (!syndicate_leader_selected)
-		equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/syndicate/black(src), WEAR_HEAD)
+		equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/syndicate/black(src), SLOT_HEAD)
 	else
-		equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/syndicate/black/red(src), WEAR_HEAD)
-	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/syndicate(src), WEAR_FACE)
-	equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal(src), WEAR_EYES)
+		equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/syndicate/black/red(src), SLOT_HEAD)
+	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/syndicate(src), SLOT_WEAR_MASK)
+	equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal(src), SLOT_GLASSES)
 
-	equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(src), WEAR_BACK)
-	equip_to_slot_or_del(new /obj/item/weapon/storage/box(src), WEAR_IN_BACK)
+	equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(src), SLOT_BACK)
+	equip_to_slot_or_del(new /obj/item/weapon/storage/box(src), SLOT_IN_BACKPACK)
 
-	equip_to_slot_or_del(new /obj/item/ammo_magazine/c45(src), WEAR_IN_BACK)
-	equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(src), WEAR_IN_BACK)
-	equip_to_slot_or_del(new /obj/item/weapon/plastique(src), WEAR_IN_BACK)
-	equip_to_slot_or_del(new /obj/item/device/flashlight(src), WEAR_IN_BACK)
+	equip_to_slot_or_del(new /obj/item/ammo_magazine/c45(src), SLOT_IN_BACKPACK)
+	equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(src), SLOT_IN_BACKPACK)
+	equip_to_slot_or_del(new /obj/item/weapon/plastique(src), SLOT_IN_BACKPACK)
+	equip_to_slot_or_del(new /obj/item/device/flashlight(src), SLOT_IN_BACKPACK)
 	if (!syndicate_leader_selected)
-		equip_to_slot_or_del(new /obj/item/weapon/plastique(src), WEAR_IN_BACK)
+		equip_to_slot_or_del(new /obj/item/weapon/plastique(src), SLOT_IN_BACKPACK)
 	else
-		equip_to_slot_or_del(new /obj/item/weapon/pinpointer(src), WEAR_IN_BACK)
-		equip_to_slot_or_del(new /obj/item/weapon/disk/nuclear(src), WEAR_IN_BACK)
+		equip_to_slot_or_del(new /obj/item/weapon/pinpointer(src), SLOT_IN_BACKPACK)
+		equip_to_slot_or_del(new /obj/item/weapon/disk/nuclear(src), SLOT_IN_BACKPACK)
 
-	equip_to_slot_or_del(new /obj/item/weapon/melee/energy/sword(src), WEAR_L_STORE)
-	equip_to_slot_or_del(new /obj/item/weapon/grenade/empgrenade(src), WEAR_R_STORE)
-	equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen(src), WEAR_J_STORE)
-	equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/silenced(src), WEAR_WAIST)
+	equip_to_slot_or_del(new /obj/item/weapon/melee/energy/sword(src), SLOT_L_STORE)
+	equip_to_slot_or_del(new /obj/item/weapon/grenade/empgrenade(src), SLOT_R_STORE)
+	equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen(src), SLOT_S_STORE)
+	equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/silenced(src), SLOT_BELT)
 
-	equip_to_slot_or_del(new /obj/item/weapon/gun/energy/pulse_rifle(src), WEAR_R_HAND) //Will change to something different at a later time -- Superxpdude
+	equip_to_slot_or_del(new /obj/item/weapon/gun/energy/pulse_rifle(src), SLOT_R_HAND) //Will change to something different at a later time -- Superxpdude
 
 	var/obj/item/weapon/card/id/syndicate/W = new(src) //Untrackable by AI
 	W.name = "[real_name]'s ID Card"
@@ -173,6 +173,6 @@ var/global/sent_syndicate_strike_team = 0
 	W.access += list(ACCESS_NT__CORPORATE, ACCESS_ILLEGAL_PIRATE)
 	W.assignment = "Syndicate Commando"
 	W.registered_name = real_name
-	equip_to_slot_or_del(W, WEAR_ID)
+	equip_to_slot_or_del(W, SLOT_WEAR_ID)
 
 	return 1

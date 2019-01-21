@@ -14,7 +14,7 @@
 	var/maximum_pressure = 90*ONE_ATMOSPHERE
 
 
-/obj/machinery/portable_atmospherics/initialize()
+/obj/machinery/portable_atmospherics/Initialize()
 	. = ..()
 	spawn()
 		var/obj/machinery/atmospherics/portables_connector/port = locate() in loc
@@ -111,7 +111,7 @@
 
 		var/obj/item/cell/C = I
 
-		if(user.drop_inv_item_to_loc(C, src))
+		if(user.transferItemToLoc(C, src))
 			C.add_fingerprint(user)
 			cell = C
 			user.visible_message("<span class='notice'> [user] opens the panel on [src] and inserts [C].</span>", "<span class='notice'> You open the panel on [src] and insert [C].</span>")

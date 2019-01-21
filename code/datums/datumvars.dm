@@ -1,6 +1,13 @@
 
 // reference: /client/proc/modify_variables(var/atom/O, var/param_var_name = null, var/autodetect_class = 0)
 
+/datum/proc/vv_edit_var(var_name, var_value) //called whenever a var is edited
+	if(var_name == NAMEOF(src, vars))
+		return FALSE
+	vars[var_name] = var_value
+	datum_flags |= DF_VAR_EDITED
+	return TRUE
+
 client
 	proc/debug_variables(datum/D in world)
 		set category = "Debug"
@@ -283,8 +290,6 @@ client
 				body += "<option value='?_src_=vars;makerobot=\ref[D]'>Make cyborg</option>"
 				body += "<option value='?_src_=vars;makemonkey=\ref[D]'>Make monkey</option>"
 				body += "<option value='?_src_=vars;makealien=\ref[D]'>Make alien</option>"
-			if(isXeno(D))
-				body += "<option value='?_src_=vars;changehivenumber=\ref[D]'>Change Hivenumber</option>"
 			body += "<option value>---</option>"
 			body += "<option value='?_src_=vars;gib=\ref[D]'>Gib</option>"
 		if(isobj(D))
@@ -692,39 +697,6 @@ client
 			to_chat(usr, "Mob doesn't exist anymore")
 			return
 		holder.Topic(href, list("makealien"=href_list["makealien"]))
-
-	else if(href_list["changehivenumber"])
-		if(!check_rights(R_DEBUG|R_ADMIN))	return
-
-		var/mob/living/carbon/Xenomorph/X = locate(href_list["changehivenumber"])
-		if(!istype(X))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/Xenomorph")
-			return
-		var/hivenumber_status = X.hivenumber
-		var/list/namelist = list("Normal","Corrupted","Alpha","Beta","Zeta")
-
-		var/newhive = input(src,"Select a hive.", null, null) in namelist
-
-		if(!X)
-			to_chat(usr, "This xeno no longer exists")
-			return
-		var/newhivenumber
-		switch(newhive)
-			if("Normal")
-				newhivenumber = XENO_HIVE_NORMAL
-			if("Corrupted")
-				newhivenumber = XENO_HIVE_CORRUPTED
-			if("Alpha")
-				newhivenumber = XENO_HIVE_ALPHA
-			if("Beta")
-				newhivenumber = XENO_HIVE_BETA
-			if("Zeta")
-				newhivenumber = XENO_HIVE_ZETA
-		if(X.hivenumber != hivenumber_status)
-			to_chat(usr, "Someone else changed this xeno while you were deciding")
-			return
-
-		holder.Topic(href, list("changehivenumber"=href_list["changehivenumber"],"newhivenumber"=newhivenumber))
 
 	else if(href_list["makeai"])
 		if(!check_rights(R_SPAWN))	return
@@ -1146,3 +1118,9 @@ client
 		src.debug_variables(DAT)
 
 	return
+
+/datum/proc/CanProcCall(procname)
+	return TRUE
+
+/datum/proc/can_vv_get(var_name)
+	return TRUE

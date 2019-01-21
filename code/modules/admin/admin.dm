@@ -6,21 +6,21 @@ var/global/respawntime = 15
 ////////////////////////////////
 /proc/message_admins(var/msg) // +ADMIN and above
 	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
-	log_adminwarn(msg)
+	log_admin_private(msg)
 	for(var/client/C in admins)
 		if(R_ADMIN & C.holder.rights)
 			to_chat(C, msg)
 
 /proc/message_mods(var/msg) // +MOD and above (not Mentors)
 	msg = "<span class=\"admin\"><span class=\"prefix\">MOD LOG:</span> <span class=\"message\">[msg]</span></span>"
-	log_adminwarn(msg)
+	log_admin_private(msg)
 	for(var/client/C in admins)
 		if(R_MOD & C.holder.rights)
 			to_chat(C, msg)
 
 /proc/message_staff(var/msg) // ALL staff - including Mentors
 	msg = "<span class=\"admin\"><span class=\"prefix\">STAFF LOG:</span> <span class=\"message\">[msg]</span></span>"
-	log_adminwarn(msg)
+	log_admin_private(msg)
 	for(var/client/C in admins)
 		if(C.holder.rights)
 			to_chat(C, msg)
@@ -706,7 +706,7 @@ var/global/respawntime = 15
 			<BR>
 			<B>Mass-Rejuvenate</B><BR>
 			<BR>
-			<A href='?src=\ref[src];secretsfun=rejuvall'>Rejuv ALL living, cliented mobs</A><BR>
+			<A href='?src=\ref[src];secretsfun=rejuvall'>Rejuv ALL cliented mobs</A><BR>
 			"}
 
 	if(check_rights(R_DEBUG,0))
@@ -848,12 +848,13 @@ var/global/respawntime = 15
 	set category = "Server"
 	set desc="People can't be AI"
 	set name="Toggle AI"
-	config.allow_ai = !( config.allow_ai )
-	if (!( config.allow_ai ))
+	if(CONFIG_GET(flag/allow_ai))
+		CONFIG_SET(flag/allow_ai, FALSE)
 		to_chat(world, "<B>The AI job is no longer chooseable.</B>")
 	else
+		CONFIG_SET(flag/allow_ai, TRUE)
 		to_chat(world, "<B>The AI job is chooseable now.</B>")
-	log_admin("[key_name(usr)] toggled AI allowed.")
+	log_admin("[key_name(usr)] toggled the AI job.")
 	world.update_status()
 	feedback_add_details("admin_verb","TAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -954,25 +955,37 @@ var/global/respawntime = 15
 	set category = "Server"
 	set desc="Toggle admin jumping"
 	set name="Toggle Jump"
-	config.allow_admin_jump = !(config.allow_admin_jump)
-	message_admins("<span class='notice'> Toggled admin jumping to [config.allow_admin_jump].</span>")
-	feedback_add_details("admin_verb","TJ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+	if(CONFIG_GET(flag/allow_admin_jump))
+		CONFIG_SET(flag/allow_admin_jump, FALSE)
+		message_admins("<span class='notice'>Disabled admin jumping.</span>")
+	else
+		CONFIG_SET(flag/allow_admin_jump, TRUE)
+		message_admins("<span class='notice'>Enabled admin jumping.</span>")
 
 /datum/admins/proc/adspawn()
 	set category = "Server"
 	set desc="Toggle admin spawning"
 	set name="Toggle Spawn"
-	config.allow_admin_spawning = !(config.allow_admin_spawning)
-	message_admins("<span class='notice'> Toggled admin item spawning to [config.allow_admin_spawning].</span>")
-	feedback_add_details("admin_verb","TAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+	if(CONFIG_GET(flag/allow_admin_spawning))
+		CONFIG_SET(flag/allow_admin_spawning, FALSE)
+		message_admins("<span class='notice'>Disabled item spawning.</span>")
+	else
+		CONFIG_SET(flag/allow_admin_spawning, TRUE)
+		message_admins("<span class='notice'>Enabled item spawning.</span>")
 
 /datum/admins/proc/adrev()
 	set category = "Server"
 	set desc="Toggle admin revives"
 	set name="Toggle Revive"
-	config.allow_admin_rev = !(config.allow_admin_rev)
-	message_admins("<span class='notice'> Toggled reviving to [config.allow_admin_rev].</span>")
-	feedback_add_details("admin_verb","TAR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+	if(CONFIG_GET(flag/allow_admin_rev))
+		CONFIG_SET(flag/allow_admin_rev, FALSE)
+		message_admins("<span class='notice'>Disabled reviving.</span>")
+	else
+		CONFIG_SET(flag/allow_admin_rev, TRUE)
+		message_admins("<span class='notice'>Enabled reviving.</span>")
 
 /datum/admins/proc/immreboot()
 	set category = "Server"
@@ -996,7 +1009,7 @@ var/global/respawntime = 15
 	set category = "Admin"
 	set name = "Unprison"
 	if (M.z == 2)
-		if (config.allow_admin_jump)
+		if(CONFIG_GET(flag/allow_admin_jump))
 			M.loc = pick(latejoin)
 			message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", 1)
 			log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
@@ -1217,7 +1230,7 @@ var/global/respawntime = 15
 		ticker.mode.waiting_for_candidates = FALSE
 		ticker.mode.on_distress_cooldown = FALSE
 		ticker.mode.picked_call = null
-	
+
 
 	var/list/list_of_calls = list()
 	for(var/datum/emergency_call/L in ticker.mode.all_calls)

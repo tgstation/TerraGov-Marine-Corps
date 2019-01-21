@@ -53,7 +53,7 @@ FLOOR SAFES
 		if(loc && spawnkey)
 			new /obj/item/paper/safe_key(loc) //Spawn the key on top of the safe.
 
-/obj/structure/safe/initialize()
+/obj/structure/safe/Initialize()
 	for(var/obj/item/I in loc)
 		if(istype(I,/obj/item/paper/safe_key))
 			continue
@@ -177,7 +177,7 @@ FLOOR SAFES
 	if(open)
 		if(I.w_class + space <= maxspace)
 			space += I.w_class
-			if(user.drop_inv_item_to_loc(I, src))
+			if(user.transferItemToLoc(I, src))
 				to_chat(user, "<span class='notice'>You put [I] in [src].</span>")
 			updateUsrDialog()
 			return
@@ -201,7 +201,7 @@ obj/structure/safe/ex_act(severity)
 	layer = UNDERFLOOR_OBJ_LAYER
 
 
-/obj/structure/safe/floor/initialize()
+/obj/structure/safe/floor/Initialize()
 	..()
 	var/turf/T = loc
 	hide(T.intact_tile)

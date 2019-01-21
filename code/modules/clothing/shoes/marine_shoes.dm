@@ -63,6 +63,9 @@
 	name = "commander shoes"
 	desc = "Has special soles for better trampling those underneath."
 
+/obj/item/clothing/shoes/marinechief/sa
+	name = "spatial agent's shoes"
+	desc = "Shoes worn by a spatial agent."
 
 /obj/item/clothing/shoes/veteran
 

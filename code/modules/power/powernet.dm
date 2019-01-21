@@ -50,7 +50,7 @@
 				if(S.powernet == src)
 					S.restore()				// and restore some of the power that was used
 				else
-					error("[S.name] (\ref[S]) had a [S.powernet ? "different (\ref[S.powernet])" : "null"] powernet to our powernet (\ref[src]).")
+					stack_trace("[S.name] (\ref[S]) had a [S.powernet ? "different (\ref[S.powernet])" : "null"] powernet to our powernet (\ref[src]).")
 					nodes.Remove(S)
 
 

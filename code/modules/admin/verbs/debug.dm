@@ -1,3 +1,16 @@
+GLOBAL_VAR(AdminProcCaller)
+GLOBAL_PROTECT(AdminProcCaller)
+GLOBAL_VAR_INIT(AdminProcCallCount, 0)
+GLOBAL_PROTECT(AdminProcCallCount)
+GLOBAL_VAR(LastAdminCalledTargetRef)
+GLOBAL_PROTECT(LastAdminCalledTargetRef)
+GLOBAL_VAR(LastAdminCalledTarget)
+GLOBAL_PROTECT(LastAdminCalledTarget)
+GLOBAL_VAR(LastAdminCalledProc)
+GLOBAL_PROTECT(LastAdminCalledProc)
+GLOBAL_LIST_EMPTY(AdminProcCallSpamPrevention)
+GLOBAL_PROTECT(AdminProcCallSpamPrevention)
+
 /client/proc/Debug2()
 	set category = "Debug"
 	set name = "Debugging Mode"
@@ -31,7 +44,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set waitfor = 0
 
 	if(!check_rights(R_DEBUG)) return
-	if(config.debugparanoid && !check_rights(R_ADMIN)) return
+	if(CONFIG_GET(flag/debugparanoid) && !check_rights(R_ADMIN)) return
 
 	var/target = null
 	var/targetselected = 0
@@ -150,7 +163,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set waitfor = 0
 
 	if(!check_rights(R_DEBUG)) return
-	if(config.debugparanoid && !check_rights(R_ADMIN)) return
+	if(CONFIG_GET(flag/debugparanoid) && !check_rights(R_ADMIN)) return
 
 	var/lst[] // List reference
 	lst = new/list() // Make the list
@@ -301,33 +314,62 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	else
 		alert("Invalid mob")
 
-/client/proc/cmd_admin_change_hivenumber(mob/living/carbon/Xenomorph/M in mob_list, var/hivenumber = XENO_HIVE_NORMAL)
+/client/proc/cmd_admin_change_hivenumber(mob/living/carbon/Xenomorph/X in mob_list)
 	set category = "Debug"
 	set name = "Change Hivenumber"
+
+	if(!check_rights(R_DEBUG|R_ADMIN))
+		return
+
+	if(!istype(X))
+		to_chat(usr, "This can only be done to instances of type /mob/living/carbon/Xenomorph")
+		return
+
+	var/hivenumber_status = X.hivenumber
+
+	var/list/namelist = list()
+	for(var/datum/hive_status/H in hive_datum) // global hive datum list
+		namelist += H.name
+
+	var/newhive = input(src, "Select a hive.", null, null) in namelist
+
+	if(!X || !istype(X))
+		return
+
+	var/newhivenumber
+	switch(newhive)
+		if("Normal")
+			newhivenumber = XENO_HIVE_NORMAL
+		if("Corrupted")
+			newhivenumber = XENO_HIVE_CORRUPTED
+		if("Alpha")
+			newhivenumber = XENO_HIVE_ALPHA
+		if("Beta")
+			newhivenumber = XENO_HIVE_BETA
+		if("Zeta")
+			newhivenumber = XENO_HIVE_ZETA
+		else
+			return
+
+	if(X.hivenumber != hivenumber_status)
+		to_chat(usr, "Someone else changed this xeno while you were deciding")
+		return
 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
 
-	if(M.gc_destroyed)
+	if(!X || X.gc_destroyed)
 		alert("That mob doesn't seem to exist, close the panel and try again.")
 		return
 
-	if(isXeno(M))
-		log_admin("[key_name(src)] changed hivenumber of [M] to [M.hivenumber].")
-		M.hivenumber = hivenumber
-		if(istype(M, /mob/living/carbon/Xenomorph/Larva))
-			var/mob/living/carbon/Xenomorph/Larva/L = M
-			L.update_icons() // larva renaming done differently
-		else
-			M.generate_name()
-		if(istype(M, /mob/living/carbon/Xenomorph/Queen))
-			update_living_queens()
-		to_chat(usr, "Hivenumber set to [M.hivenumber]")
-		feedback_add_details("admin_verb","CHHN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		message_admins("<span class='notice'> [key_name(src)] changed hivenumber of [M] to [M.hivenumber].</span>", 1)
-	else
-		alert("Invalid mob")
+	log_admin("[key_name(src)] changed hivenumber of [X] to [newhive].")
+	message_admins("<span class='boldnotice'>[key_name(src)] changed hivenumber of [X] to [newhive].</span>", 1)
+
+	X.set_hive_number(newhivenumber)
+
+	feedback_add_details("admin_verb","CHHN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 //TODO: merge the vievars version into this or something maybe mayhaps
 /client/proc/cmd_debug_del_all()
@@ -401,7 +443,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			id.registered_name = H.real_name
 			id.assignment = "Captain"
 			id.name = "[id.registered_name]'s ID Card ([id.assignment])"
-			H.equip_to_slot_or_del(id, WEAR_ID)
+			H.equip_to_slot_or_del(id, SLOT_WEAR_ID)
 			H.update_inv_wear_id()
 	else
 		alert("Invalid mob")
@@ -450,11 +492,11 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			return
 
 	H.set_everything(H.mind.assigned_role)
-	
+
 	H.assigned_squad?.remove_marine_from_squad(H)
 
 	var/datum/squad/S = input(usr, "Choose the marine's new squad") as null|anything in RoleAuthority.squads
-	if(!S) 
+	if(!S)
 		return
 
 	S.put_marine_in_squad(H)

@@ -33,8 +33,8 @@
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 
-/obj/item/weapon/gun/rifle/sniper/M42A/New()
-	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a") )
+/obj/item/weapon/gun/rifle/sniper/M42A/Initialize()
+	select_gamemode_skin(type, list(MAP_ICE_COLONY = "s_m42a"))
 	. = ..()
 	var/obj/item/attachable/scope/m42a/S = new(src)
 	S.attach_icon = "" //Let's make it invisible. The sprite already has one.
@@ -148,7 +148,7 @@
 			to_chat(user, "<span class='warning'>You must be zoomed in to use your targeting laser!</span>")
 		return
 	targetlaser_on = TRUE
-	accuracy_mult += config.max_hit_accuracy_mult //We get a big accuracy bonus vs the lasered target
+	accuracy_mult += CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We get a big accuracy bonus vs the lasered target
 	if(!silent && user)
 		to_chat(user, "<span class='notice'><b>You activate your targeting laser and take careful aim.</b></span>")
 		playsound(user,'sound/machines/click.ogg', 25, 1)
@@ -157,7 +157,7 @@
 	if(laser_target)
 		laser_target.remove_laser()
 	laser_target = null
-	accuracy_mult -= config.max_hit_accuracy_mult //We lose a big accuracy bonus vs the now unlasered target
+	accuracy_mult -= CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We lose a big accuracy bonus vs the now unlasered target
 	STOP_PROCESSING(SSobj, src)
 	if(toggle_off)
 		targetlaser_on = FALSE
@@ -166,11 +166,11 @@
 			playsound(user,'sound/machines/click.ogg', 25, 1)
 
 /obj/item/weapon/gun/rifle/sniper/M42A/set_gun_config_values()
-	fire_delay = config.high_fire_delay*5
-	burst_amount = config.min_burst_value
-	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
-	damage_mult = config.base_hit_damage_mult
-	recoil = config.min_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 5
+	burst_amount = CONFIG_GET(number/combat_define/min_burst_value)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
 
 
 /obj/item/weapon/gun/rifle/sniper/M42A/jungle //These really should just be skins.
@@ -193,7 +193,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 18,"rail_x" = 15, "rail_y" = 19, "under_x" = 20, "under_y" = 15, "stock_x" = 20, "stock_y" = 15)
 
-/obj/item/weapon/gun/rifle/sniper/elite/New()
+/obj/item/weapon/gun/rifle/sniper/elite/Initialize()
 	. = ..()
 	var/obj/item/attachable/scope/S = new(src)
 	S.icon_state = "pmcscope"
@@ -205,12 +205,12 @@
 	update_attachables()
 
 /obj/item/weapon/gun/rifle/sniper/elite/set_gun_config_values()
-	fire_delay = config.high_fire_delay*5
-	burst_amount = config.min_burst_value
-	accuracy_mult = config.base_hit_accuracy_mult + config.max_hit_accuracy_mult
-	scatter = config.low_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	recoil = config.max_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 5
+	burst_amount = CONFIG_GET(number/combat_define/min_burst_value)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/max_recoil_value)
 
 /obj/item/weapon/gun/rifle/sniper/elite/simulate_recoil(total_recoil = 0, mob/user, atom/target)
 	. = ..()
@@ -244,7 +244,7 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
-/obj/item/weapon/gun/rifle/sniper/svd/New()
+/obj/item/weapon/gun/rifle/sniper/svd/Initialize()
 	. = ..()
 	var/obj/item/attachable/S = new /obj/item/attachable/scope/slavic(src)
 	S.Attach(src)
@@ -257,12 +257,12 @@
 
 
 /obj/item/weapon/gun/rifle/sniper/svd/set_gun_config_values()
-	fire_delay = config.mhigh_fire_delay*2
-	burst_amount = config.low_burst_value
-	accuracy_mult = config.base_hit_accuracy_mult - config.low_hit_accuracy_mult
-	scatter = config.low_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	recoil = config.min_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
+	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
 
 
 
@@ -288,7 +288,7 @@
 	gun_skill_category = GUN_SKILL_SPEC
 	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 12, "rail_y" = 23, "under_x" = 23, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
 
-/obj/item/weapon/gun/rifle/m4ra/New()
+/obj/item/weapon/gun/rifle/m4ra/Initialize()
 	. = ..()
 	var/obj/item/attachable/scope/m4ra/S = new(src)
 	S.icon_state = null // the gun's sprite already shows a scope
@@ -301,13 +301,13 @@
 
 
 /obj/item/weapon/gun/rifle/m4ra/set_gun_config_values()
-	fire_delay = config.high_fire_delay
-	burst_amount = config.med_burst_value
-	burst_delay = config.mlow_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	scatter = config.low_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	recoil = config.min_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/min_recoil_value)
 
 //-------------------------------------------------------
 //SMARTGUN
@@ -342,18 +342,18 @@
 	starting_attachment_types = list(/obj/item/attachable/flashlight)
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 16,"rail_x" = 17, "rail_y" = 17, "under_x" = 22, "under_y" = 14, "stock_x" = 22, "stock_y" = 14)
 
-/obj/item/weapon/gun/smartgun/New()
+/obj/item/weapon/gun/smartgun/Initialize()
 	. = ..()
 	ammo_secondary = ammo_list[ammo_secondary]
 
 /obj/item/weapon/gun/smartgun/set_gun_config_values()
-	fire_delay = config.low_fire_delay
-	burst_amount = config.med_burst_value
-	burst_delay = config.min_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult + config.min_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	damage_falloff_mult = config.med_damage_falloff_mult
+	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	damage_falloff_mult = CONFIG_GET(number/combat_define/med_damage_falloff_mult)
 
 /obj/item/weapon/gun/smartgun/examine(mob/user)
 	. = ..()
@@ -432,12 +432,12 @@
 	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY
 
 /obj/item/weapon/gun/smartgun/dirty/set_gun_config_values()
-	fire_delay = config.low_fire_delay
-	burst_amount = config.med_burst_value
-	burst_delay = config.min_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult + config.min_hit_accuracy_mult + config.min_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
+	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 
 //-------------------------------------------------------
@@ -468,8 +468,7 @@
 	var/datum/effect_system/smoke_spread/smoke
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
-/obj/item/weapon/gun/launcher/m92/New()
-	set waitfor = 0
+/obj/item/weapon/gun/launcher/m92/Initialize()
 	. = ..()
 	sleep(1)
 	grenades += new /obj/item/explosive/grenade/frag(src)
@@ -480,12 +479,12 @@
 
 
 /obj/item/weapon/gun/launcher/m92/set_gun_config_values()
-	fire_delay = config.max_fire_delay*3
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
+	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 3
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 
 /obj/item/weapon/gun/launcher/m92/examine(mob/user)
@@ -499,7 +498,7 @@
 /obj/item/weapon/gun/launcher/m92/attackby(obj/item/I, mob/user)
 	if((istype(I, /obj/item/explosive/grenade)))
 		if(grenades.len < max_grenades)
-			if(user.drop_inv_item_to_loc(I, src))
+			if(user.transferItemToLoc(I, src))
 				grenades += I
 				to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
 				to_chat(user, "<span class='info'>Now storing: [grenades.len] / [max_grenades] grenades.</span>")
@@ -608,7 +607,7 @@
 	var/riot_version
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 14, "rail_y" = 22, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
-/obj/item/weapon/gun/launcher/m81/New(loc, spawn_empty)
+/obj/item/weapon/gun/launcher/m81/Initialize(loc, spawn_empty)
 	set waitfor = 0
 	. = ..()
 	if(!spawn_empty)
@@ -619,10 +618,10 @@
 
 
 /obj/item/weapon/gun/launcher/m81/set_gun_config_values()
-	fire_delay = config.max_fire_delay * 1.5
-	accuracy_mult = config.base_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
+	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 1.5
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 
 /obj/item/weapon/gun/launcher/m81/examine(mob/user)
@@ -637,7 +636,7 @@
 	if((istype(I, /obj/item/explosive/grenade)))
 		if((istype(I, grenade_type_allowed)))
 			if(!grenade)
-				if(user.drop_inv_item_to_loc(I, src))
+				if(user.transferItemToLoc(I, src))
 					grenade = I
 					to_chat(user, "<span class='notice'>You put [I] in the grenade launcher.</span>")
 			else
@@ -741,7 +740,7 @@
 	var/obj/item/ammo_magazine/rocket/loaded_rocket = null
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
-/obj/item/weapon/gun/launcher/rocket/New()
+/obj/item/weapon/gun/launcher/rocket/Initialize()
 	. = ..()
 	smoke = new()
 	smoke.attach(src)
@@ -777,11 +776,11 @@
 
 
 /obj/item/weapon/gun/launcher/rocket/set_gun_config_values()
-	fire_delay = config.high_fire_delay*2
-	accuracy_mult = config.base_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	recoil = config.med_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 2
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/med_recoil_value)
 
 
 /obj/item/weapon/gun/launcher/rocket/examine(mob/user)
@@ -829,8 +828,8 @@
 	if(user)
 		to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
 		if(do_after(user,current_mag.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
+			user.dropItemToGround(rocket)
 			replace_ammo(user,loaded_rocket)
-			user.drop_inv_item_on_ground(loaded_rocket)
 			loaded_rocket.loc = src
 			current_mag.current_rounds = min(loaded_rocket.current_rounds, current_mag.max_rounds)
 			to_chat(user, "<span class='notice'>You load [rocket] into [src].</span>")
@@ -909,10 +908,10 @@
 
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/set_gun_config_values()
-	fire_delay = config.mhigh_fire_delay
-	burst_delay = config.med_fire_delay
-	burst_amount = config.high_burst_value
-	accuracy_mult = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	recoil = config.med_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
+	burst_delay = CONFIG_GET(number/combat_define/med_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/med_recoil_value)

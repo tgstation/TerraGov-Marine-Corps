@@ -11,7 +11,7 @@
 
 	for(var/obj/item/W in M)
 		if(istype(W,/obj/item/alien_embryo)) continue
-		M.drop_inv_item_on_ground(W)
+		M.dropItemToGround(W)
 
 	log_admin("[key_name(usr)] made [key_name(M)] drop everything!")
 	message_admins("[key_name_admin(usr)] made [key_name_admin(M)] drop everything!", 1)
@@ -29,15 +29,15 @@
 			return
 		//strip their stuff before they teleport into a cell :downs:
 		for(var/obj/item/W in M)
-			M.drop_inv_item_on_ground(W)
+			M.dropItemToGround(W)
 		//teleport person to cell
 		M.KnockOut(5)
 		sleep(5)	//so they black out before warping
 		M.loc = pick(prisonwarp)
 		if(istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/prisoner = M
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), WEAR_BODY)
-			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), WEAR_FEET)
+			prisoner.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(prisoner), SLOT_W_UNIFORM)
+			prisoner.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(prisoner), SLOT_SHOES)
 		spawn(50)
 			to_chat(M, "<span class='warning'>You have been sent to the prison station!</span>")
 		log_admin("[key_name(usr)] sent [key_name(M)] to the prison station.")
@@ -159,7 +159,7 @@
 
 proc/cmd_admin_mute(mob/M as mob, mute_type, automute = 0)
 	if(automute)
-		if(!config.automute_on)	return
+		if(!CONFIG_GET(flag/automute_on))	return
 	else
 		if(!usr || !usr.client)
 			return
@@ -537,7 +537,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!istype(M))
 		alert("Cannot revive a ghost")
 		return
-	if(config.allow_admin_rev)
+	if(CONFIG_GET(flag/allow_admin_rev))
 		M.revive()
 
 		log_admin("[key_name(usr)] healed / revived [key_name(M)]")
@@ -810,7 +810,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.")
 			message_admins("<span class='notice'>[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis will be removed in [mins] minutes.</span>")
 			world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=[mins]&server=[oldreplacetext(config.server_name, "#", "")]")
-			qdel(M.client)
+			del(M.client)
 			qdel(M)
 		else
 
@@ -825,7 +825,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		log_admin("[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.")
 		message_admins("<span class='notice'>[usr.client.ckey] has banned [M.ckey].\nReason: [reason]\nThis is a permanent ban.</span>")
 		world.Export("http://216.38.134.132/adminlog.php?type=ban&key=[usr.client.key]&key2=[M.key]&msg=[html_decode(reason)]&time=perma&server=[oldreplacetext(config.server_name, "#", "")]")
-		qdel(M.client)
+		del(M.client)
 		qdel(M)
 */
 
@@ -941,12 +941,12 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	set desc = "Toggles random events such as meteors, black holes, blob (but not space dust) on/off"
 	if(!check_rights(R_SERVER))	return
 
-	if(!config.allow_random_events)
-		config.allow_random_events = 1
+	if(!CONFIG_GET(flag/allow_random_events))
+		CONFIG_SET(flag/allow_random_events, TRUE)
 		to_chat(usr, "Random events enabled")
 		message_admins("Admin [key_name_admin(usr)] has enabled random events.", 1)
 	else
-		config.allow_random_events = 0
+		CONFIG_SET(flag/allow_random_events, FALSE)
 		to_chat(usr, "Random events disabled")
 		message_admins("Admin [key_name_admin(usr)] has disabled random events.", 1)
 	feedback_add_details("admin_verb","TRE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -1028,7 +1028,8 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /proc/rejuv_all()
 	if(!check_rights(R_ADMIN))	return
 
-	for(var/mob/living/M in living_mob_list)
-		if(isobserver(M) || M.stat == DEAD || !M.client)
+	for(var/client/C in clients)
+		if(!isliving(C.mob))
 			continue
+		var/mob/living/M = C.mob
 		M.rejuvenate()

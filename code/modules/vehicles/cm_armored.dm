@@ -778,7 +778,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	user.visible_message("<span class='notice'>[user] installs \the [HP] on the [src].</span>", "<span class='notice'>You install \the [HP] on [src].</span>")
 
-	user.temp_drop_inv_item(HP, 0)
+	user.temporarilyRemoveItemFromInventory(HP, 0)
 
 	add_hardpoint(HP, user)
 

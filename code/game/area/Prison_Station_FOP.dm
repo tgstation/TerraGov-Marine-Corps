@@ -400,7 +400,7 @@
 
 /area/prison/research/secret/testing
 	name = "\improper Biological Testing"
-	icon_state = "toxtest"
+//	icon_state = "toxtest"
 
 /area/prison/residential
 	ceiling = CEILING_GLASS

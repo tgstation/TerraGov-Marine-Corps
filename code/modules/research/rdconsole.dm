@@ -129,12 +129,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 /obj/machinery/computer/rdconsole/New()
 	..()
 	files = new /datum/research(src) //Setup the research data holder.
-	if(!id)
-		for(var/obj/machinery/r_n_d/server/centcom/S in machines)
-			S.initialize()
-			break
 
-/obj/machinery/computer/rdconsole/initialize()
+/obj/machinery/computer/rdconsole/Initialize()
+	. = ..()
 	SyncRDevices()
 
 /*	Instead of calling this every tick, it is only being called when needed
@@ -154,7 +151,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		else
 			to_chat(user, "<span class='warning'>Machine cannot accept disks in that format.</span>")
 			return
-		user.drop_inv_item_to_loc(D, src)
+		user.transferItemToLoc(D, src)
 		to_chat(user, "<span class='notice'>You add the disk to the machine!</span>")
 	else if(istype(D, /obj/item/card/emag) && !emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)

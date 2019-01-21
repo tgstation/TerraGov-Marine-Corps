@@ -410,7 +410,7 @@
 	return 1
 
 /mob/living/carbon/Xenomorph/drop_held_item()
-	var/obj/item/clothing/mask/facehugger/F = get_active_hand()
+	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	if(istype(F))
 		if(locate(/turf/closed/wall/resin) in loc)
 			to_chat(src, "<span class='warning'>You decide not to drop [F] after all.</span>")
@@ -557,6 +557,20 @@
 		rage = 0
 	else
 		rage *= 0.5 //Halve rage instead of 0ing it out if we miss.
+
+/mob/living/carbon/Xenomorph/proc/set_hive_number(var/newhivenumber)
+	if(!newhivenumber)
+		return
+
+	hivenumber = newhivenumber
+
+	if(isXenoLarva(src))
+		var/mob/living/carbon/Xenomorph/Larva/L = src
+		L.update_icons() // larva renaming done differently
+	else
+		generate_name()
+		update_living_queens()
+		
 
 //////////// XENO CASTE PROCS //////////////////
 

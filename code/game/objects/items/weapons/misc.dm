@@ -4,7 +4,7 @@
 	icon_state = "chain"
 	item_state = "chain"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 10
 	throwforce = 7
 	w_class = 3
