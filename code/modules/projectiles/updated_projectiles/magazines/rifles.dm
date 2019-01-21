@@ -101,4 +101,34 @@
 	max_rounds = 40
 	gun_type = /obj/item/weapon/gun/rifle/type71
 
+//-------------------------------------------------------
+// MK224 Ammunition
+/obj/item/ammo_magazine/rifle/autoshotgun
+	name = "\improper MK224 Slug magazine (12g)"
+	desc = "A 12g Slug shotgun magazine."
+	caliber = "12g"
+	icon_state = "mk224_slug"
+	w_class = 3
+	default_ammo = /datum/ammo/bullet/shotgun/slug
+	max_rounds = 9
+	gun_type = /obj/item/weapon/gun/rifle/autoshotgun
 
+/obj/item/ammo_magazine/rifle/autoshotgun/buckshot
+	name = "\improper MK224 Buckshot magazine (12g)"
+	desc = "A 12g Buckshot shotgun magazine."
+	caliber = "12g"
+	icon_state = "mk224_buck"
+	w_class = 3
+	default_ammo = /datum/ammo/bullet/shotgun/buckshot
+	max_rounds = 9
+	gun_type = /obj/item/weapon/gun/rifle/autoshotgun
+
+/obj/item/ammo_magazine/rifleautoshotgun/flechette
+	name = "\improper MK224 magazine (12g)"
+	desc = "A 12g Flechette shotgun magazine."
+	caliber = "12g"
+	icon_state = "mk224_flechette"
+	w_class = 3
+	default_ammo = /datum/ammo/bullet/shotgun/flechette
+	max_rounds = 9
+	gun_type = /obj/item/weapon/gun/rifle/autoshotgun
