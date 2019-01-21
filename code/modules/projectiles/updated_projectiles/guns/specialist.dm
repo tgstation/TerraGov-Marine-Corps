@@ -812,7 +812,7 @@
 /obj/item/weapon/gun/launcher/rocket/unload(mob/user)
 	if(!user)
 		return
-	if(!current_mag || isnull(current_mag) || current_mag.loc != src)
+	if(!current_mag || current_mag.loc != src)
 		to_chat(user, "<span class='warning'>[src] is already empty!</span>")
 		return
 	to_chat(user, "<span class='notice'>You begin unloading [src].</span>")
