@@ -1,7 +1,7 @@
 
 /mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
 	mob_list -= src
-	dead_mob_list -= src
+	GLOB.dead_mob_list -= src
 	GLOB.alive_mob_list -= src
 	ghostize()
 	clear_fullscreens()
@@ -11,7 +11,7 @@
 /mob/Initialize()
 	mob_list += src
 	if(stat == DEAD)
-		dead_mob_list += src
+		GLOB.dead_mob_list += src
 	else
 		GLOB.alive_mob_list += src
 	prepare_huds()

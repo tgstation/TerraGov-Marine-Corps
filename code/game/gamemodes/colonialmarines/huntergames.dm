@@ -238,7 +238,7 @@ var/waiting_for_drop_votes = 0
 	while(round_finished == 0)
 		to_chat(world, "<span class='round_body'>Your Predator capturers have decided it is time to bestow a gift upon the scurrying humans.</span>")
 		to_chat(world, "<span class='round_body'>One lucky contestant should prepare for a supply drop in 60 seconds.</span>")
-		for(var/mob/dead/D in dead_mob_list)
+		for(var/mob/dead/D in GLOB.dead_mob_list)
 			to_chat(D, "<span class='round_body'>Now is your chance to vote for a supply drop beneficiary! Go to Ghost tab, Spectator Vote!</span>")
 		world << sound('sound/effects/alert.ogg')
 		waiting_for_drop_votes = 1

@@ -199,7 +199,7 @@
 /mob/living/simple_animal/spiderbot/death()
 
 	GLOB.alive_mob_list -= src
-	dead_mob_list += src
+	GLOB.dead_mob_list += src
 
 	if(camera)
 		camera.status = 0

@@ -1004,7 +1004,7 @@
 
 /datum/game_mode/whiskey_outpost/proc/CleanXenos()//moves dead xenos to space
 	var/xeno_count = 0
-	for(var/mob/living/carbon/Xenomorph/X in dead_mob_list)
+	for(var/mob/living/carbon/Xenomorph/X in GLOB.dead_mob_list)
 		if(X) //Prevent any runtime errors
 			if(istype(X) && X.stat == DEAD && X.z != 2)
 				X.loc = get_turf(locate(84,237,2)) //z.2

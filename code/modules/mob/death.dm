@@ -66,7 +66,7 @@
 	mind?.store_memory("Time of death: [worldtime2text()]", 0)
 
 	GLOB.alive_mob_list -= src
-	dead_mob_list |= src
+	GLOB.dead_mob_list |= src
 
 	med_hud_set_health()
 	med_hud_set_status()

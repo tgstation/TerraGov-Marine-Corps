@@ -40,7 +40,7 @@
 			brainmob.loc = src
 			brainmob.container = src
 			brainmob.stat = 0
-			dead_mob_list -= brainmob//Update dem lists
+			GLOB.dead_mob_list -= brainmob//Update dem lists
 			GLOB.alive_mob_list += brainmob
 
 			user.drop_held_item()

@@ -776,7 +776,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("Living Mobs")
 			to_chat(usr, list2text(GLOB.alive_mob_list,","))
 		if("Dead Mobs")
-			to_chat(usr, list2text(dead_mob_list,","))
+			to_chat(usr, list2text(GLOB.dead_mob_list,","))
 		if("Clients")
 			to_chat(usr, list2text(GLOB.clients,","))
 
