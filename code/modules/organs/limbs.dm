@@ -844,7 +844,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/is_salved()
 	if(!(surgery_open_stage == 0))
 		return 1
-	var/rval = 1
+	var/rval = FALSE
 	for(var/datum/wound/W in wounds)
 		rval |= !W.salved
 	return rval

@@ -169,11 +169,11 @@ OPERATIONS
 /datum/supply_packs/tarps
 	name = "V1 thermal-dampening tarp crate (x5)"
 	contains = list(
-					/obj/structure/closet/bodybag/tarp,
-					/obj/structure/closet/bodybag/tarp,
-					/obj/structure/closet/bodybag/tarp,
-					/obj/structure/closet/bodybag/tarp,
-					/obj/structure/closet/bodybag/tarp,
+					/obj/item/bodybag/tarp,
+					/obj/item/bodybag/tarp,
+					/obj/item/bodybag/tarp,
+					/obj/item/bodybag/tarp,
+					/obj/item/bodybag/tarp
 					)
 	cost = RO_PRICE_CHEAP
 	containertype = /obj/structure/closet/crate/ammo

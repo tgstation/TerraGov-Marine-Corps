@@ -50,7 +50,7 @@
 					if(H.species.name in species_restricted)
 						wearable = 1
 
-				if(!wearable && (slot != 15 && slot != 16)) //Pockets.
+				if(!wearable && (slot != SLOT_L_STORE && slot != SLOT_R_STORE)) //Pockets.
 					to_chat(M, "<span class='warning'>Your species cannot wear [src].</span>")
 					return 0
 
@@ -156,7 +156,7 @@
 	if(U.suit_restricted && !is_type_in_list(src, U.suit_restricted))
 		to_chat(H, "<span class='warning'>[src] can't be worn with [U].</span>")
 		return FALSE
-		
+
 	return TRUE
 
 
