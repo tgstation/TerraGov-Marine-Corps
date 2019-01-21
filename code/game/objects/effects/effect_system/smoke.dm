@@ -46,7 +46,7 @@
 		alpha -= step
 		if(alpha < 160)
 			SetOpacity(0) //if we were blocking view, we aren't now because we're fading out
-	stoplag()
+		stoplag()
 
 /obj/effect/particle_effect/smoke/process()
 	lifetime--
@@ -91,10 +91,11 @@
 		return TRUE
 	var/obj/effect/particle_effect/smoke/foundsmoke = locate() in T //Don't spread smoke where there's already smoke!
 	if(foundsmoke)
-		return
+		return TRUE
 	for(var/atom/movable/M in T)
 		if(!M.CanPass(src, T))
 			return TRUE
+	return FALSE
 
 /obj/effect/particle_effect/smoke/proc/smoke_mob(mob/living/carbon/C)
 	if(!istype(C) || lifetime < 1)
