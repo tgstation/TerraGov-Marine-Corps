@@ -415,11 +415,9 @@ datum/effect_system/smoke_spread/tactical
 	smoke_type = /obj/effect/particle_effect/smoke/chem
 
 /datum/effect_system/smoke_spread/chem/New()
-	..()
+	. = ..()
 	chemholder = new /obj()
-	var/datum/reagents/R = new/datum/reagents(500)
-	chemholder.reagents = R
-	R.my_atom = chemholder
+	chemholder.create_reagents(500)
 
 /datum/effect_system/smoke_spread/chem/Destroy()
 	qdel(chemholder)

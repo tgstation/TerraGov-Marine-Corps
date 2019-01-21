@@ -204,14 +204,15 @@
 
 /datum/chemical_reaction/chemsmoke/on_reaction(var/datum/reagents/holder, var/created_volume)
 	var/location = get_turf(holder.my_atom)
-	var/datum/effect_system/smoke_spread/chem/S = new /datum/effect_system/smoke_spread/chem
+	var/smoke_radius = round(sqrt(created_volume / 2), 1)
+	var/datum/effect_system/smoke_spread/chem/S = new
 	S.attach(location)
-	S.set_up(holder, created_volume, 0, location)
-	playsound(location, 'sound/effects/smoke.ogg', 25, 1)
-	spawn(0)
+	playsound(location, 'sound/effects/smoke.ogg', 50, 1, -3)
+	if(S)
+		S.set_up(holder, smoke_radius, location)
 		S.start()
-	holder.clear_reagents()
-
+	if(holder?.my_atom)
+		holder.clear_reagents()
 
 /datum/chemical_reaction/chloralhydrate
 	name = "Chloral Hydrate"

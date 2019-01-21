@@ -1466,14 +1466,14 @@
 	drop_nade(get_turf(P), P.firer)
 
 /datum/ammo/xeno/boiler_gas/proc/set_xeno_smoke(obj/item/projectile/P)
-		smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
+	smoke_system = new /datum/effect_system/smoke_spread/xeno/neuro()
 
 /datum/ammo/xeno/boiler_gas/proc/drop_nade(turf/T, mob/firer, range = 1)
 	if(isXeno(firer))
 		var/mob/living/carbon/Xenomorph/X = firer
 		smoke_system.strength = X.xeno_caste.bomb_strength
 		range += X.upgrade
-	smoke_system.set_up(range, 0, T)
+	smoke_system.set_up(range, T)
 	smoke_system.start()
 	T.visible_message(danger_message)
 

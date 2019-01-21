@@ -156,15 +156,6 @@
 					var/obj/item/clothing/mask/M = wear_mask
 					air_info = M.filter_air(air_info)
 
-				if(!(wear_mask.flags_inventory & BLOCKGASEFFECT) || !internal)
-					for(var/obj/effect/particle_effect/smoke/chem/smoke in view(1, src))
-						if(smoke.reagents.total_volume)
-							smoke.reagents.reaction(src, INGEST)
-							if(smoke)
-								smoke.reagents.copy_to(src, 10) // I dunno, maybe the reagents enter the blood stream through the lungs?
-							break // If they breathe in the nasty stuff once, no need to continue checking
-
-
 		else //Still give container the chance to interact
 			if(istype(loc, /atom/movable))
 				var/atom/movable/container = loc

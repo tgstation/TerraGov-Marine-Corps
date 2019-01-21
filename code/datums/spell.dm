@@ -178,11 +178,11 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 		if(smoke_spread)
 			if(smoke_spread == 1)
 				var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread()
-				smoke.set_up(smoke_amt, 0, location) //no idea what the 0 is
+				smoke.set_up(smoke_amt, location)
 				smoke.start()
 			else if(smoke_spread == 2)
 				var/datum/effect_system/smoke_spread/bad/smoke = new /datum/effect_system/smoke_spread/bad()
-				smoke.set_up(smoke_amt, 0, location) //no idea what the 0 is
+				smoke.set_up(smoke_amt, location)
 				smoke.start()
 
 /obj/effect/proc_holder/spell/proc/cast(list/targets)

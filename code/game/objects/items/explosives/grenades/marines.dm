@@ -179,7 +179,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 /obj/item/explosive/grenade/smokebomb/prime()
 	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(3, 0, usr.loc, null, 7)
+	smoke.set_up(3, get_turf(src), 7)
 	smoke.start()
 	qdel(src)
 
@@ -202,7 +202,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 /obj/item/explosive/grenade/cloakbomb/prime()
 	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(3, 0, usr.loc, null, 8)
+	smoke.set_up(3, get_turf(src), 8)
 	smoke.start()
 	qdel(src)
 
@@ -225,7 +225,7 @@ proc/flame_radius(radius = 1, turf/T, burn_intensity = 25, burn_duration = 25, b
 
 /obj/item/explosive/grenade/phosphorus/prime()
 	playsound(src.loc, 'sound/effects/smoke.ogg', 25, 1, 4)
-	smoke.set_up(3, 0, usr.loc)
+	smoke.set_up(3, get_turf(src), 7)
 	smoke.start()
 	qdel(src)
 
