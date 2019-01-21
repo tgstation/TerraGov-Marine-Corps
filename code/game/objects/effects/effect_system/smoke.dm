@@ -23,7 +23,6 @@
 
 /obj/effect/particle_effect/smoke/New(loc)
 	. = ..()
-	lifetime += rand(-1,1)
 	START_PROCESSING(SSobj, src)
 
 /obj/effect/particle_effect/smoke/Destroy()
@@ -45,7 +44,7 @@
 	for(var/i in 1 to frames)
 		alpha -= step
 		if(alpha < 160)
-			SetOpacity(0) //if we were blocking view, we aren't now because we're fading out
+			SetOpacity(FALSE) //if we were blocking view, we aren't now because we're fading out
 		stoplag()
 
 /obj/effect/particle_effect/smoke/process()
@@ -66,7 +65,7 @@
 	if(!t_loc)
 		return
 	var/list/newsmokes = list()
-	for(var/turf/T in cardinal)
+	for(var/turf/T in get_adjacent_open_turfs(src))
 		if(check_airblock(T)) //smoke can't spread that way
 			continue
 		apply_smoke_effect(T)
@@ -76,9 +75,12 @@
 		S.amount = amount-1
 		S.lifetime = lifetime
 		if(S.amount > 0)
-			if(opaque)
-				S.SetOpacity(TRUE)
 			newsmokes.Add(S)
+		else
+			S.lifetime += rand(-1,1)
+	if(opaque)
+		SetOpacity(TRUE)
+	lifetime += rand(-1,1)
 
 	if(newsmokes.len)
 		spawn(1) //the smoke spreads rapidly but not instantly
@@ -87,8 +89,6 @@
 
 //proc to check if smoke can expand to another turf
 /obj/effect/particle_effect/smoke/proc/check_airblock(turf/T)
-	if(T.density)
-		return TRUE
 	var/obj/effect/particle_effect/smoke/foundsmoke = locate() in T //Don't spread smoke where there's already smoke!
 	if(foundsmoke)
 		return TRUE
@@ -193,7 +193,7 @@
 
 /obj/effect/particle_effect/smoke/tactical/Uncrossed(mob/living/M)
 	. = ..()
-	if(istype(M))
+	if(istype(M) && !locate(type) in get_turf(M))
 		M.smokecloak_off()
 
 /obj/effect/particle_effect/smoke/tactical/proc/cloak_smoke_act(mob/living/M)
@@ -201,10 +201,10 @@
 		var/mob/living/carbon/human/H = M
 		var/obj/item/clothing/gloves/yautja/Y = H.gloves
 		var/obj/item/storage/backpack/marine/satchel/scout_cloak/S = H.back
-		if(istype(H.back, S))
+		if(istype(S))
 			if(S.camo_active)
 				return
-		if(istype(H.gloves, Y))
+		if(istype(Y))
 			if(Y.cloaked)
 				return
 	M.smokecloak_on()

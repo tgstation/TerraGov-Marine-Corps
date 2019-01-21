@@ -21,6 +21,18 @@
 		return null
 	return format_text ? format_text(A.name) : A.name
 
+/proc/get_open_turf_in_dir(atom/center, dir)
+	var/turf/open/T = get_ranged_target_turf(center, dir, 1)
+	if(istype(T))
+		return T
+
+/proc/get_adjacent_open_turfs(atom/center)
+	. = list(get_open_turf_in_dir(center, NORTH),
+			get_open_turf_in_dir(center, SOUTH),
+			get_open_turf_in_dir(center, EAST),
+			get_open_turf_in_dir(center, WEST))
+	listclearnulls(.)
+
 /proc/in_range(source, user)
 	if(get_dist(source, user) <= 1)
 		return 1
