@@ -76,7 +76,7 @@
 		throw_item(A)
 		return
 
-	var/obj/item/W = get_active_hand()
+	var/obj/item/W = get_active_held_item()
 
 	// Special gun mode stuff.
 	if(W == A)
@@ -244,7 +244,7 @@
 		nutrition = max(nutrition - rand(1,5),0)
 		handle_regular_hud_updates()
 	else
-		to_chat(src, "\red You're out of energy!  You need food!")
+		to_chat(src, "<span class='warning'>You're out of energy!  You need food!</span>")
 
 // Simple helper to face what you clicked on, in case it should be needed in more than one place
 /mob/proc/face_atom(var/atom/A)

@@ -7,7 +7,7 @@
 	icon = 'icons/obj/items/spray.dmi'
 	item_state = "spray"
 	flags_item = NOBLUDGEON
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 4
 	w_class = 2.0
 	throw_speed = 2
@@ -134,7 +134,7 @@
 	w_class = 4.0
 	flags_atom = CONDUCT
 	flags_item = NOSHIELD
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	origin_tech = "materials=2;combat=2"
 	attack_verb = list("chopped", "sliced", "cut", "reaped")
 
@@ -167,9 +167,9 @@
 		if(B.feral < 0)
 			caught_bees += B.strength
 			qdel(B)
-			user.visible_message("\blue [user] nets some bees.","\blue You net up some of the becalmed bees.")
+			user.visible_message("<span class='notice'> [user] nets some bees.</span>","<span class='notice'> You net up some of the becalmed bees.</span>")
 		else
-			user.visible_message("\red [user] swings at some bees, they don't seem to like it.","\red You swing at some bees, they don't seem to like it.")
+			user.visible_message("<span class='warning'> [user] swings at some bees, they don't seem to like it.</span>","<span class='warning'> You swing at some bees, they don't seem to like it.</span>")
 			B.feral = 5
 			B.target_mob = user
 

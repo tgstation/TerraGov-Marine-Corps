@@ -7,7 +7,7 @@
 	subspace_transmission = 1
 	canhear_range = 0 // can't hear headsets from very far away
 
-	flags_equip_slot = SLOT_EAR
+	flags_equip_slot = ITEM_SLOT_EARS
 	var/translate_binary = 0
 	var/translate_hive = 0
 	var/obj/item/device/encryptionkey/keyslot1 = null
@@ -223,6 +223,12 @@
 	var/mob/living/carbon/human/wearer = null
 	var/headset_hud_on = FALSE
 	var/sl_direction = FALSE
+	var/obj/machinery/camera/camera
+
+/obj/item/device/radio/headset/almayer/Initialize()
+	. = ..()
+	camera = new /obj/machinery/camera(src)
+	camera.network = list("LEADER")
 
 /obj/item/device/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
 	if(slot == WEAR_EAR)
@@ -230,7 +236,11 @@
 		squadhud = huds[MOB_HUD_SQUAD]
 		headset_hud_on = FALSE //So we always activate on equip.
 		sl_direction = FALSE
+		camera.status = TRUE //Allows us to turn the camera back on.
 		toggle_squadhud(wearer)
+
+	if(camera)
+		camera.c_tag = user.name
 	return ..()
 
 /obj/item/device/radio/headset/almayer/dropped(mob/living/carbon/human/user)
@@ -240,6 +250,8 @@
 			user.hud_used.SL_locator.alpha = 0
 			wearer = null
 			squadhud = null
+	if(camera)
+		camera.c_tag = "Unknown"
 	return ..()
 
 /obj/item/device/radio/headset/almayer/Destroy()
@@ -327,6 +339,7 @@
 		var/mob/living/carbon/human/user = usr
 		if(href_list["headset_hud_on"])
 			toggle_squadhud(user)
+			camera.status = TRUE //Allows us to turn the camera back on.
 
 		else if(href_list["sl_direction"])
 			toggle_sl_direction(user)

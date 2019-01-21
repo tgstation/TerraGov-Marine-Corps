@@ -45,9 +45,9 @@
 	*/
 	if(!src.network || src.network.len < 1)
 		if(loc)
-			error("[src.name] in [get_area(src)] (x:[src.x] y:[src.y] z:[src.z] has errored. [src.network?"Empty network list":"Null network list"]")
+			stack_trace("[src.name] in [get_area(src)] (x:[src.x] y:[src.y] z:[src.z] has errored. [src.network?"Empty network list":"Null network list"]")
 		else
-			error("[src.name] in [get_area(src)]has errored. [src.network?"Empty network list":"Null network list"]")
+			stack_trace("[src.name] in [get_area(src)]has errored. [src.network?"Empty network list":"Null network list"]")
 		ASSERT(src.network)
 		ASSERT(src.network.len > 0)
 
@@ -167,13 +167,13 @@
 					O << browse(text("<HTML><HEAD><TITLE>[]</TITLE></HEAD><BODY><TT>[]</TT></BODY></HTML>", itemname, info), text("window=[]", itemname))
 	else if (istype(W, /obj/item/device/camera_bug))
 		if (!src.can_use())
-			to_chat(user, "\blue Camera non-functional")
+			to_chat(user, "<span class='notice'>Camera non-functional</span>")
 			return
 		if (src.bugged)
-			to_chat(user, "\blue Camera bug removed.")
+			to_chat(user, "<span class='notice'>Camera bug removed.</span>")
 			src.bugged = FALSE
 		else
-			to_chat(user, "\blue Camera bugged.")
+			to_chat(user, "<span class='notice'>Camera bugged.</span>")
 			src.bugged = TRUE
 	else
 		..()

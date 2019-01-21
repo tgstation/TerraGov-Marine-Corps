@@ -161,7 +161,9 @@
 					else
 						dat += "<font color='green'>Ready!</font><br>"
 					dat += "<B>Launch Pad Status:</b> "
-					var/obj/structure/closet/crate/C = locate() in current_squad.drop_pad.loc
+					var/obj/C = locate() in current_squad.drop_pad.loc //This thing should ALWAYS exist.
+					if(!C.can_supply_drop) //Can only send supply droppable items
+						C = null
 					if(C)
 						dat += "<font color='green'>Supply crate loaded</font><BR>"
 					else
@@ -396,7 +398,7 @@
 	if(.)  //Checks for power outages
 		return
 	if(!allowed(user))
-		to_chat(user, "\red You don't have access.")
+		to_chat(user, "<span class='warning'>You don't have access.</span>")
 		return
 	if(!squads.len)
 		for(var/datum/squad/S in RoleAuthority.squads)
@@ -478,13 +480,13 @@
 	cam = null
 	user.reset_view(null)
 
-//returns the helmet camera the human is wearing
+//returns the headset camera the human is wearing
 /obj/machinery/computer/overwatch/proc/get_camera_from_target(cam_target)
 	if(!cam_target)
 		return
 	var/mob/living/carbon/human/H = cam_target
 	if(istype(H) && current_squad)
-		var/obj/item/clothing/head/helmet/marine/helm = H.head
+		var/obj/item/device/radio/headset/almayer/helm = H.wear_ear
 		return helm?.camera
 	var/obj/effect/overlay/temp/laser_target/LT = cam_target
 	if(istype(LT))
@@ -752,7 +754,10 @@
 		to_chat(usr, "\icon[src] <span class='warning'>No supply beacon detected!</span>")
 		return
 
-	var/obj/structure/closet/crate/C = locate() in current_squad.drop_pad.loc //This thing should ALWAYS exist.
+	var/obj/C = locate() in current_squad.drop_pad.loc //This thing should ALWAYS exist.
+	if(!C.can_supply_drop) //Can only send vendors and crates
+		C = null
+
 	if(!istype(C))
 		to_chat(usr, "\icon[src] <span class='warning'>No crate was detected on the drop pad. Get Requisitions on the line!</span>")
 		return
@@ -910,7 +915,7 @@
 	if(do_after(user, delay, TRUE, 5, BUSY_ICON_FRIENDLY))
 
 		squad.sbeacon = src
-		user.drop_inv_item_to_loc(src, user.loc)
+		user.transferItemToLoc(src, user.loc)
 		activated = 1
 		anchored = 1
 		w_class = 10
@@ -973,7 +978,7 @@
 		var/n = active_orbital_beacons.Find(src)
 		cam_name += " [n]"
 		var/obj/machinery/camera/beacon_cam/BC = new(src, cam_name)
-		H.drop_inv_item_to_loc(src, H.loc)
+		H.transferItemToLoc(src, H.loc)
 		beacon_cam = BC
 		activated = TRUE
 		anchored = TRUE
@@ -1037,7 +1042,7 @@
 		if(choice == "help")
 			to_chat(src, "<span class='notice'><br>Orders give a buff to nearby soldiers for a short period of time, followed by a cooldown, as follows:<br><B>Move</B> - Increased mobility and chance to dodge projectiles.<br><B>Hold</B> - Increased resistance to pain and combat wounds.<br><B>Focus</B> - Increased gun accuracy and effective range.<br></span>")
 			return
-		if(choice == "cancel") 
+		if(choice == "cancel")
 			return
 		command_aura = choice
 	else
@@ -1049,12 +1054,24 @@
 		if("move")
 			message = pick(";GET MOVING!", ";GO, GO, GO!", ";WE ARE ON THE MOVE!", ";MOVE IT!", ";DOUBLE TIME!")
 			say(message)
+			var/image/move = image('icons/mob/talk.dmi', icon_state = "order_move")
+			overlays += move
+			spawn(5 SECONDS)
+				overlays -= move
 		if("hold")
 			message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!")
 			say(message)
+			var/image/hold = image('icons/mob/talk.dmi', icon_state = "order_hold")
+			overlays += hold
+			spawn(5 SECONDS)
+				overlays -= hold
 		if("focus")
 			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!")
 			say(message)
+			var/image/focus = image('icons/mob/talk.dmi', icon_state = "order_focus")
+			overlays += focus
+			spawn(5 SECONDS)
+				overlays -= focus
 	update_action_buttons()
 
 
@@ -1081,7 +1098,7 @@
 	else
 		button.color = rgb(255,255,255,255)
 
-/mob/living/carbon/human/New()
+/mob/living/carbon/human/Initialize()
 	..()
 	var/datum/action/skill/issue_order/issue_order_action = new
 	issue_order_action.give_action(src)

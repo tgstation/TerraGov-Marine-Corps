@@ -157,7 +157,7 @@
 		to_chat(user, "Something is already loaded into the machine.")
 		return
 	if(istype(B, /obj/item/reagent_container) && B.is_open_container())
-		if(user.drop_inv_item_to_loc(B, src))
+		if(user.transferItemToLoc(B, src))
 			beaker =  B
 			to_chat(user, "You set [B] on the machine.")
 			nanomanager.update_uis(src) // update all UIs attached to src
@@ -275,7 +275,7 @@
 		if(beaker)
 			to_chat(user, "<span class='warning'>A beaker is already loaded into the machine.</span>")
 			return
-		user.drop_inv_item_to_loc(I, src)
+		user.transferItemToLoc(I, src)
 		beaker = I
 		to_chat(user, "<span class='notice'>You add the beaker to the machine!</span>")
 		updateUsrDialog()
@@ -290,7 +290,7 @@
 			return
 
 		loaded_pill_bottle = I
-		user.drop_inv_item_to_loc(I, src)
+		user.transferItemToLoc(I, src)
 		to_chat(user, "<span class='notice'>You add the pill bottle into the dispenser slot!</span>")
 		updateUsrDialog()
 	return
@@ -799,7 +799,7 @@
 			return
 
 		beaker =  I
-		user.drop_inv_item_to_loc(I, src)
+		user.transferItemToLoc(I, src)
 		to_chat(user, "<span class='notice'>You add the beaker to the machine!</span>")
 		updateUsrDialog()
 		icon_state = "mixer1"
@@ -886,7 +886,7 @@
 			return TRUE
 		else
 			beaker =  O
-			user.drop_inv_item_to_loc(O, src)
+			user.transferItemToLoc(O, src)
 			update_icon()
 			updateUsrDialog()
 			return FALSE
@@ -916,7 +916,7 @@
 		to_chat(user, "Cannot refine into a reagent.")
 		return TRUE
 
-	user.drop_inv_item_to_loc(O, src)
+	user.transferItemToLoc(O, src)
 	holdingitems += O
 	updateUsrDialog()
 	return FALSE

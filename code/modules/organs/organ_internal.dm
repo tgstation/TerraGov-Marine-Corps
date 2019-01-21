@@ -95,23 +95,23 @@
 				parent.germ_level++
 
 			if (prob(3))	//about once every 30 seconds
-				take_damage(1,silent=prob(30))
+				take_damage(1, prob(30))
 
-/datum/internal_organ/proc/take_damage(amount, var/silent=0)
-	if(src.robotic == ORGAN_ROBOT)
-		src.damage += (amount * 0.8)
+/datum/internal_organ/proc/take_damage(amount, silent= FALSE)
+	if(amount <= 0)
+		heal_damage(- amount)
+		return
+	if(robotic == ORGAN_ROBOT)
+		damage += (amount * 0.8)
 	else
-		src.damage += amount
+		damage += amount
 
 	var/datum/limb/parent = owner.get_limb(parent_limb)
 	if (!silent)
 		owner.custom_pain("Something inside your [parent.display_name] hurts a lot.", 1)
 
 /datum/internal_organ/proc/heal_damage(amount)
-	if(damage < amount)
-		damage = 0
-	else
-		damage -= amount
+	damage = max(damage - amount, 0)
 
 /datum/internal_organ/proc/emp_act(severity)
 	switch(robotic)
@@ -203,7 +203,7 @@
 
 	if (germ_level > INFECTION_LEVEL_ONE)
 		if(prob(1))
-			to_chat(owner, "\red Your skin itches.")
+			to_chat(owner, "<span class='warning'>Your skin itches.</span>")
 	if (germ_level > INFECTION_LEVEL_TWO)
 		if(prob(1))
 			spawn owner.vomit()
@@ -214,22 +214,19 @@
 		if(owner.getToxLoss() >= 60 && !owner.reagents.has_reagent("dylovene"))
 			//Healthy liver suffers on its own
 			if (damage < min_broken_damage)
-				damage += 0.2 * PROCESS_ACCURACY
+				take_damage(0.2 * PROCESS_ACCURACY, TRUE)
 			//Damaged one shares the fun
 			else
 				var/datum/internal_organ/O = pick(owner.internal_organs)
 				if(O)
-					O.damage += 0.2  * PROCESS_ACCURACY
+					O.take_damage(0.2  * PROCESS_ACCURACY, TRUE)
 
 		// Heal a bit if needed and we're not busy. This allows recovery from low amounts of toxins.
 		if(!owner.drunkenness && owner.getToxLoss() <= 15 && !owner.radiation && min_bruised_damage > damage > 0)
 			if(!owner.reagents.has_reagent("dylovene")) // Detox effect
-				damage -= 0.2 * PROCESS_ACCURACY
+				heal_damage(0.2 * PROCESS_ACCURACY)
 			else
-				damage -= 0.04 * PROCESS_ACCURACY
-
-		if(damage < 0)
-			damage = 0
+				heal_damage(0.04 * PROCESS_ACCURACY)
 
 		// Get the effectiveness of the liver.
 		var/filter_effect = 3

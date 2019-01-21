@@ -129,16 +129,16 @@ var/list/alldepartments = list()
 		if (scan)
 			if(ishuman(usr))
 				scan.loc = usr.loc
-				if(!usr.get_active_hand())
+				if(!usr.get_active_held_item())
 					usr.put_in_hands(scan)
 				scan = null
 			else
 				scan.loc = src.loc
 				scan = null
 		else
-			var/obj/item/I = usr.get_active_hand()
+			var/obj/item/I = usr.get_active_held_item()
 			if (istype(I, /obj/item/card/id))
-				usr.drop_inv_item_to_loc(I, src)
+				usr.transferItemToLoc(I, src)
 				scan = I
 		authenticated = 0
 
@@ -161,7 +161,7 @@ var/list/alldepartments = list()
 
 	if(istype(O, /obj/item/paper))
 		if(!tofax)
-			user.drop_inv_item_to_loc(O, src)
+			user.transferItemToLoc(O, src)
 			tofax = O
 			to_chat(user, "<span class='notice'>You insert the paper into \the [src].</span>")
 			flick("faxsend", src)
@@ -173,7 +173,7 @@ var/list/alldepartments = list()
 
 		var/obj/item/card/id/idcard = O
 		if(!scan)
-			user.drop_inv_item_to_loc(idcard, src)
+			user.transferItemToLoc(idcard, src)
 			scan = idcard
 
 	else if(istype(O, /obj/item/tool/wrench))
@@ -185,7 +185,7 @@ var/list/alldepartments = list()
 /proc/Centcomm_fax(var/originfax, var/sent, var/sentname, var/mob/Sender)
 	var/faxcontents = "[sent]"
 	fax_contents += faxcontents
-	var/msg = "\blue <b><font color='#006100'>TGMC FAX: </font>[key_name(Sender, 1)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[Sender]'>?</A>) (<A HREF='?_src_=holder;mark=\ref[src]'>Mark</A>) (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[Sender]'>FLW</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='?_src_=holder;TGMCFaxReply=\ref[Sender];originfax=\ref[originfax]'>RPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>view message</a>"
+	var/msg = "<span class='notice'> <b><font color='#006100'>TGMC FAX: </font>[key_name(Sender, 1)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[Sender]'>?</A>) (<A HREF='?_src_=holder;mark=\ref[src]'>Mark</A>) (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[Sender]'>FLW</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='?_src_=holder;TGMCFaxReply=\ref[Sender];originfax=\ref[originfax]'>RPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>view message</a></span>"
 	TGMCFaxes.Add("<a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>\[view message at [world.timeofday]\]</a> <a href='?_src_=holder;TGMCFaxReply=\ref[Sender];originfax=\ref[originfax]'>REPLY</a>")
 	for(var/client/C in admins)
 		to_chat(C, msg)
@@ -193,7 +193,7 @@ var/list/alldepartments = list()
 /proc/Solgov_fax(var/originfax, var/sent, var/sentname, var/mob/Sender)
 	var/faxcontents = "[sent]"
 	fax_contents += faxcontents
-	var/msg = "\blue <b><font color='#1F66A0'>NANOTRASEN FAX: </font>[key_name(Sender, 1)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[Sender]'>?</A>) (<A HREF='?_src_=holder;ccmark=\ref[Sender]'>Mark</A>) (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[Sender]'>FLW</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='?_src_=holder;CLFaxReply=\ref[Sender];originfax=\ref[originfax]'>RPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>view message</a>"
+	var/msg = "<span class='notice'> <b><font color='#1F66A0'>NANOTRASEN FAX: </font>[key_name(Sender, 1)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[Sender]'>?</A>) (<A HREF='?_src_=holder;ccmark=\ref[Sender]'>Mark</A>) (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[Sender]'>FLW</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='?_src_=holder;CLFaxReply=\ref[Sender];originfax=\ref[originfax]'>RPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>view message</a></span>"
 	CLFaxes.Add("<a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>\[view message at [world.timeofday]\]</a> <a href='?_src_=holder;CLFaxReply=\ref[Sender];originfax=\ref[originfax]'>REPLY</a>")
 	for(var/client/C in admins)
 		if((R_ADMIN|R_MOD) & C.holder.rights)

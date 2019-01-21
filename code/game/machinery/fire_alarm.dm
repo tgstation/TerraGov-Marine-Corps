@@ -14,6 +14,7 @@ FIRE ALARM
 	var/time = 10.0
 	var/timing = 0.0
 	var/lockdownbyai = 0
+	var/obj/item/circuitboard/firealarm/electronics = null
 	anchored = 1.0
 	use_power = 1
 	idle_power_usage = 2
@@ -78,11 +79,11 @@ FIRE ALARM
 				if (istype(W, /obj/item/device/multitool))
 					src.detecting = !( src.detecting )
 					if (src.detecting)
-						user.visible_message("\red [user] has reconnected [src]'s detecting unit!", "You have reconnected [src]'s detecting unit.")
+						user.visible_message("<span class='warning'> [user] has reconnected [src]'s detecting unit!</span>", "You have reconnected [src]'s detecting unit.")
 					else
-						user.visible_message("\red [user] has disconnected [src]'s detecting unit!", "You have disconnected [src]'s detecting unit.")
+						user.visible_message("<span class='warning'> [user] has disconnected [src]'s detecting unit!</span>", "You have disconnected [src]'s detecting unit.")
 				else if (istype(W, /obj/item/tool/wirecutters))
-					user.visible_message("\red [user] has cut the wires inside \the [src]!", "You have cut the wires inside \the [src].")
+					user.visible_message("<span class='warning'> [user] has cut the wires inside \the [src]!</span>", "You have cut the wires inside \the [src].")
 					playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)
 					buildstage = 1
 					update_icon()
@@ -100,13 +101,20 @@ FIRE ALARM
 					to_chat(user, "You pry out the circuit!")
 					playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 					spawn(20)
-						var/obj/item/circuitboard/firealarm/circuit = new()
-						circuit.loc = user.loc
+						var/obj/item/circuitboard/firealarm/circuit
+						if(!electronics)
+							circuit = new/obj/item/circuitboard/firealarm( src.loc )
+						else
+							circuit = new electronics( src.loc )
+							if(electronics.is_general_board)
+								circuit.set_general()
+						electronics = null
 						buildstage = 0
 						update_icon()
 			if(0)
 				if(istype(W, /obj/item/circuitboard/firealarm))
 					to_chat(user, "You insert the circuit!")
+					electronics = W
 					qdel(W)
 					buildstage = 1
 					update_icon()

@@ -213,7 +213,7 @@
 	if(robotic)
 		return
 
-	to_chat(user, "\blue You take an experimental bite out of \the [src].")
+	to_chat(user, "<span class='notice'>You take an experimental bite out of \the [src].</span>")
 	var/datum/reagent/blood/B = locate(/datum/reagent/blood) in reagents.reagent_list
 	if(B)
 		var/turf/TU = get_turf(src)
@@ -223,7 +223,7 @@
 		TU.add_blood(L, B.color)
 
 
-	user.temp_drop_inv_item(src)
+	user.temporarilyRemoveItemFromInventory(src)
 	var/obj/item/reagent_container/food/snacks/organ/O = new(get_turf(src))
 	O.name = name
 	O.icon_state = dead_icon ? dead_icon : icon_state

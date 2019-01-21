@@ -125,7 +125,7 @@
 	item_state = "card-id"
 	var/access = list()
 	var/registered_name = "Unknown" // The name registered_name on the card
-	flags_equip_slot = SLOT_ID
+	flags_equip_slot = ITEM_SLOT_ID
 
 	var/blood_type = "\[UNSET\]"
 	var/dna_hash = "\[UNSET\]"
@@ -208,7 +208,7 @@
 		src.access |= I.access
 		if(istype(user, /mob/living) && user.mind)
 			if(user.mind.special_role)
-				to_chat(usr, "\blue The card's microscanners activate as you pass it over the ID, copying its access.")
+				to_chat(usr, "<span class='notice'>The card's microscanners activate as you pass it over the ID, copying its access.</span>")
 
 /obj/item/card/id/syndicate/attack_self(mob/user as mob)
 	if(!src.registered_name)
@@ -226,7 +226,7 @@
 			return
 		src.assignment = u
 		src.name = "[src.registered_name]'s ID Card ([src.assignment])"
-		to_chat(user, "\blue You successfully forge the ID card.")
+		to_chat(user, "<span class='notice'>You successfully forge the ID card.</span>")
 		registered_user = user
 	else if(!registered_user || registered_user == user)
 
@@ -246,7 +246,7 @@
 					return
 				src.assignment = u
 				src.name = "[src.registered_name]'s ID Card ([src.assignment])"
-				to_chat(user, "\blue You successfully forge the ID card.")
+				to_chat(user, "<span class='notice'>You successfully forge the ID card.</span>")
 				return
 			if("Show")
 				..()
@@ -352,7 +352,7 @@
 					msg += "\"[fallen_names[x]] - [fallen_assignements[x]]\""
 				else
 					msg += "\"[fallen_names[x]] - [fallen_assignements[x]]\", "
-			 
+
 			msg += ".</span>"
 
 			to_chat(user, msg)

@@ -23,7 +23,7 @@
 	var/obj/structure/closet/bodybag/R = new unfolded_path(location, src)
 	R.add_fingerprint(user)
 	R.open(user)
-	user.temp_drop_inv_item(src)
+	user.temporarilyRemoveItemFromInventory(src)
 	qdel(src)
 
 
@@ -88,7 +88,7 @@
 /obj/structure/closet/bodybag/attackby(obj/item/W, mob/user)
 	if (istype(W, /obj/item/tool/pen))
 		var/t = stripped_input(user, "What would you like the label to be?", name, null, MAX_MESSAGE_LEN)
-		if (user.get_active_hand() != W)
+		if (user.get_active_held_item() != W)
 			return
 		if (!in_range(src, user) && src.loc != user)
 			return

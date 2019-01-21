@@ -17,8 +17,7 @@
 	soundin = get_sfx(soundin) // same sound for everyone
 
 	if(isarea(source))
-		error("[source] is an area and is trying to make the sound: [soundin]")
-		return
+		CRASH("[source] is an area and is trying to make the sound: [soundin]")
 
 	var/frequency = GET_RANDOM_FREQ // Same frequency for everybody
 	var/turf/turf_source = get_turf(source)
@@ -205,9 +204,9 @@
 				S = pick('sound/voice/alien_queen_command.ogg','sound/voice/alien_queen_command2.ogg','sound/voice/alien_queen_command3.ogg')
 			// Human
 			if("male_scream")
-				S = pick('sound/voice/human_male_scream_1.ogg','sound/voice/human_male_scream_2.ogg','sound/voice/human_male_scream_3.ogg','sound/voice/human_male_scream_4.ogg',5;'sound/voice/human_male_scream_5.ogg')
+				S = pick('sound/voice/human_male_scream_1.ogg','sound/voice/human_male_scream_2.ogg','sound/voice/human_male_scream_3.ogg','sound/voice/human_male_scream_4.ogg',5;'sound/voice/human_male_scream_5.ogg','sound/voice/human_male_scream_6.ogg')
 			if("male_pain")
-				S = pick('sound/voice/human_male_pain_1.ogg','sound/voice/human_male_pain_2.ogg','sound/voice/human_male_pain_3.ogg')
+				S = pick('sound/voice/human_male_pain_1.ogg','sound/voice/human_male_pain_2.ogg','sound/voice/human_male_pain_3.ogg','sound/voice/human_male_scream_6.ogg')
 			if("male_fragout")
 				S = pick('sound/voice/human_male_grenadethrow_1.ogg', 'sound/voice/human_male_grenadethrow_2.ogg', 'sound/voice/human_male_grenadethrow_3.ogg')
 			if("female_scream")

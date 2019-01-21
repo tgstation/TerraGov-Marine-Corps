@@ -14,7 +14,7 @@
 /obj/item/reagent_container/food/drinks/bottle/proc/smash(mob/living/target as mob, mob/living/user as mob)
 
 	//Creates a shattering noise and replaces the bottle with a broken_bottle
-	user.temp_drop_inv_item(src)
+	user.temporarilyRemoveItemFromInventory(src)
 	var/obj/item/weapon/broken_bottle/B = new /obj/item/weapon/broken_bottle(user.loc)
 	user.put_in_active_hand(B)
 	if(prob(33))
@@ -60,8 +60,8 @@
 
 		//Display an attack message.
 		for(var/mob/O in viewers(user, null))
-			if(target != user) O.show_message(text("\red <B>[target] has been hit over the head with a bottle of [src.name], by [user]!</B>"), 1)
-			else O.show_message(text("\red <B>[target] hit \himself with a bottle of [src.name] on the head!</B>"), 1)
+			if(target != user) O.show_message(text("<span class='danger'>[target] has been hit over the head with a bottle of [src.name], by [user]!</span>"), 1)
+			else O.show_message(text("<span class='danger'>[target] hit \himself with a bottle of [src.name] on the head!</span>"), 1)
 		//Weaken the target for the duration that we calculated and divide it by 5.
 		if(armor_duration)
 			target.apply_effect(min(armor_duration, 10) , WEAKEN, armor_block) // Never weaken more than a flash!
@@ -69,8 +69,8 @@
 	else
 		//Default attack message and don't weaken the target.
 		for(var/mob/O in viewers(user, null))
-			if(target != user) O.show_message(text("\red <B>[target] has been attacked with a bottle of [src.name], by [user]!</B>"), 1)
-			else O.show_message(text("\red <B>[target] has attacked \himself with a bottle of [src.name]!</B>"), 1)
+			if(target != user) O.show_message(text("<span class='danger'>[target] has been attacked with a bottle of [src.name], by [user]!</span>"), 1)
+			else O.show_message(text("<span class='danger'>[target] has attacked \himself with a bottle of [src.name]!</span>"), 1)
 
 	//Attack logs
 	log_combat(user, target, "smashed", src)
@@ -79,7 +79,7 @@
 	//The reagents in the bottle splash all over the target, thanks for the idea Nodrak
 	if(src.reagents)
 		for(var/mob/O in viewers(user, null))
-			O.show_message(text("\blue <B>The contents of the [src] splashes all over [target]!</B>"), 1)
+			O.show_message(text("<span class='boldnotice'>The contents of the [src] splashes all over [target]!</span>"), 1)
 		src.reagents.reaction(target, TOUCH)
 
 	//Finally, smash the bottle. This kills (del) the bottle.

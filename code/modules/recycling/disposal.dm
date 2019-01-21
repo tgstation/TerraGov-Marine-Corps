@@ -113,7 +113,7 @@
 	if(!I)
 		return
 
-	if(user.drop_inv_item_to_loc(I, src))
+	if(user.transferItemToLoc(I, src))
 		user.visible_message("<span class='notice'>[user] places [I] into [src].</span>",
 		"<span class='notice'>You place [I] into [src].</span>")
 	update()
@@ -191,7 +191,7 @@
 //Human interact with machine
 /obj/machinery/disposal/attack_hand(mob/user as mob)
 	if(user && user.loc == src)
-		to_chat(usr, "\red You cannot reach the controls from inside.")
+		to_chat(usr, "<span class='warning'>You cannot reach the controls from inside.</span>")
 		return
 
 	interact(user, 0)

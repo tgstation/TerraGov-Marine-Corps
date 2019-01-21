@@ -41,7 +41,7 @@
 	if(..())
 		return
 	if (src.z > 6)
-		to_chat(user, "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!")
+		to_chat(user, "<span class='danger'>Unable to establish a connection: You're too far away from the station!</span>")
 		return
 	var/dat
 
@@ -179,13 +179,13 @@ What a mess.*/
 
 			if("Confirm Identity")
 				if (scan)
-					if(istype(usr,/mob/living/carbon/human) && !usr.get_active_hand())
+					if(istype(usr,/mob/living/carbon/human) && !usr.get_active_held_item())
 						usr.put_in_hands(scan)
 					else
 						scan.loc = get_turf(src)
 					scan = null
 				else
-					var/obj/item/I = usr.get_active_hand()
+					var/obj/item/I = usr.get_active_held_item()
 					if (istype(I, /obj/item/card/id))
 						if(usr.drop_held_item())
 							I.forceMove(src)

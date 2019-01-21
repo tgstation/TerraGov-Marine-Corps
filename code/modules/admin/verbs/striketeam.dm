@@ -73,10 +73,10 @@ var/global/sent_strike_team = 0
 
 			//So they don't forget their code or mission.
 			if(nuke_code)
-				new_commando.mind.store_memory("<B>Nuke Code:</B> \red [nuke_code].")
-			new_commando.mind.store_memory("<B>Mission:</B> \red [input].")
+				new_commando.mind.store_memory("<B>Nuke Code:</B> <span class='warning'> [nuke_code].</span>")
+			new_commando.mind.store_memory("<B>Mission:</B> <span class='warning'> [input].</span>")
 
-			to_chat(new_commando, "\blue You are a Special Ops. [!leader_selected?"commando":"<B>LEADER</B>"] in the service of Central Command. Check the table ahead for detailed instructions.\nYour current mission is: \red<B>[input]</B>")
+			to_chat(new_commando, "<span class='notice'>You are a Special Ops. [!leader_selected?"commando":"<B>LEADER</B>"] in the service of Central Command. Check the table ahead for detailed instructions.\nYour current mission is: <span class='warning'><B>[input]</B></span>")
 
 			commando_number--
 
@@ -91,9 +91,9 @@ var/global/sent_strike_team = 0
 	for (var/obj/effect/landmark/L in landmarks_list)
 		if (L.name == "Commando-Bomb")
 			new /obj/effect/spawner/newbomb/timer/syndicate(L.loc)
-			del(L)
+			qdel(L)
 
-	message_admins("\blue [key_name_admin(usr)] has spawned a CentCom strike squad.", 1)
+	message_admins("<span class='notice'> [key_name_admin(usr)] has spawned a CentCom strike squad.</span>", 1)
 	log_admin("[key_name(usr)] used Spawn Death Squad.")
 	return 1
 
@@ -127,35 +127,35 @@ var/global/sent_strike_team = 0
 	R.set_frequency(DTH_FREQ)
 	equip_to_slot_or_del(R, WEAR_L_EAR)
 	if (leader_selected == 0)
-		equip_to_slot_or_del(new /obj/item/clothing/under/color/green(src), WEAR_BODY)
+		equip_to_slot_or_del(new /obj/item/clothing/under/color/green(src), SLOT_W_UNIFORM)
 	else
-		equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom_officer(src), WEAR_BODY)
-	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), WEAR_FEET)
-	equip_to_slot_or_del(new /obj/item/clothing/suit/armor/swat(src), WEAR_JACKET)
-	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), WEAR_HANDS)
-	equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/deathsquad(src), WEAR_HEAD)
-	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/swat(src), WEAR_FACE)
-	equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal(src), WEAR_EYES)
+		equip_to_slot_or_del(new /obj/item/clothing/under/rank/centcom_officer(src), SLOT_W_UNIFORM)
+	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), SLOT_SHOES)
+	equip_to_slot_or_del(new /obj/item/clothing/suit/armor/swat(src), SLOT_WEAR_SUIT)
+	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), SLOT_GLOVES)
+	equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/deathsquad(src), SLOT_HEAD)
+	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/swat(src), SLOT_WEAR_MASK)
+	equip_to_slot_or_del(new /obj/item/clothing/glasses/thermal(src), SLOT_GLASSES)
 
-	equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(src), WEAR_BACK)
-	equip_to_slot_or_del(new /obj/item/weapon/storage/box(src), WEAR_IN_BACK)
+	equip_to_slot_or_del(new /obj/item/weapon/storage/backpack/security(src), SLOT_BACK)
+	equip_to_slot_or_del(new /obj/item/weapon/storage/box(src), SLOT_IN_BACKPACK)
 
-	equip_to_slot_or_del(new /obj/item/ammo_magazine/a357(src), WEAR_IN_BACK)
-	equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(src), WEAR_IN_BACK)
-	equip_to_slot_or_del(new /obj/item/weapon/storage/box/flashbangs(src), WEAR_IN_BACK)
-	equip_to_slot_or_del(new /obj/item/device/flashlight(src), WEAR_IN_BACK)
+	equip_to_slot_or_del(new /obj/item/ammo_magazine/a357(src), SLOT_IN_BACKPACK)
+	equip_to_slot_or_del(new /obj/item/weapon/storage/firstaid/regular(src), SLOT_IN_BACKPACK)
+	equip_to_slot_or_del(new /obj/item/weapon/storage/box/flashbangs(src), SLOT_IN_BACKPACK)
+	equip_to_slot_or_del(new /obj/item/device/flashlight(src), SLOT_IN_BACKPACK)
 	if (!leader_selected)
-		equip_to_slot_or_del(new /obj/item/weapon/plastique(src), WEAR_IN_BACK)
+		equip_to_slot_or_del(new /obj/item/weapon/plastique(src), SLOT_IN_BACKPACK)
 	else
-		equip_to_slot_or_del(new /obj/item/weapon/pinpointer(src), WEAR_IN_BACK)
-		equip_to_slot_or_del(new /obj/item/weapon/disk/nuclear(src), WEAR_IN_BACK)
+		equip_to_slot_or_del(new /obj/item/weapon/pinpointer(src), SLOT_IN_BACKPACK)
+		equip_to_slot_or_del(new /obj/item/weapon/disk/nuclear(src), SLOT_IN_BACKPACK)
 
-	equip_to_slot_or_del(new /obj/item/weapon/melee/energy/sword(src), WEAR_L_STORE)
-	equip_to_slot_or_del(new /obj/item/weapon/grenade/flashbang(src), WEAR_R_STORE)
-	equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen(src), WEAR_J_STORE)
-	equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/mateba(src), WEAR_WAIST)
+	equip_to_slot_or_del(new /obj/item/weapon/melee/energy/sword(src), SLOT_L_STORE)
+	equip_to_slot_or_del(new /obj/item/weapon/grenade/flashbang(src), SLOT_R_STORE)
+	equip_to_slot_or_del(new /obj/item/weapon/tank/emergency_oxygen(src), SLOT_S_STORE)
+	equip_to_slot_or_del(new /obj/item/weapon/gun/projectile/mateba(src), SLOT_BELT)
 
-	equip_to_slot_or_del(new /obj/item/weapon/gun/energy/pulse_rifle(src), WEAR_R_HAND)
+	equip_to_slot_or_del(new /obj/item/weapon/gun/energy/pulse_rifle(src), SLOT_R_HAND)
 
 
 	implant_loyalty(src)
@@ -169,6 +169,6 @@ var/global/sent_strike_team = 0
 	W.access += list(ACCESS_NT__CORPORATE)//Let's add their alloted CentCom access.
 	W.assignment = "Death Commando"
 	W.registered_name = real_name
-	equip_to_slot_or_del(W, WEAR_ID)
+	equip_to_slot_or_del(W, SLOT_WEAR_ID)
 
 	return 1

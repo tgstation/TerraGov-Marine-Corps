@@ -300,7 +300,7 @@
 		return
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		if(!istype(usr, /mob/living/silicon/ai))
-			to_chat(usr, "\red You don't have the dexterity to do this!")
+			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 
 //to_chat(world, "[href] ; [href_list[href]]")
@@ -350,7 +350,7 @@
 	if(src.z == 1)
 		if(prob(1)) //explosion
 			for(var/mob/M in viewers(src))
-				M.show_message("\red The [src.name] is making strange noises!", 3, "\red You hear sizzling electronics.", 2)
+				M.show_message("<span class='warning'> The [src.name] is making strange noises!</span>", 3, "<span class='warning'> You hear sizzling electronics.</span>", 2)
 			sleep(10*pick(4,5,6,7,10,14))
 			var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread()
 			smoke.set_up(1, 0, src.loc)

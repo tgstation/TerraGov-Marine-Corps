@@ -22,25 +22,25 @@ obj/machinery/recharger/attackby(obj/item/G as obj, mob/user as mob)
 
 	if(allowed)
 		if(charging)
-			to_chat(user, "\red \A [charging] is already charging here.")
+			to_chat(user, "<span class='warning'>\A [charging] is already charging here.</span>")
 			return
 		// Checks to make sure he's not in space doing it, and that the area got proper power.
 		var/area/a = get_area(src)
 		if(!isarea(a) || (a.power_equip == 0 && !a.unlimited_power))
-			to_chat(user, "\red The [name] blinks red as you try to insert the item!")
+			to_chat(user, "<span class='warning'>The [name] blinks red as you try to insert the item!</span>")
 			return
 		if(istype(G, /obj/item/device/defibrillator))
 			var/obj/item/device/defibrillator/D = G
 			if(D.ready)
 				to_chat(user, "<span class='warning'>It won't fit, put the paddles back into [D] first!</span>")
 				return
-		if(user.drop_inv_item_to_loc(G, src))
+		if(user.transferItemToLoc(G, src))
 			charging = G
 			start_processing()
 			update_icon()
 	else if(istype(G, /obj/item/tool/wrench))
 		if(charging)
-			to_chat(user, "\red Remove [charging] first!")
+			to_chat(user, "<span class='warning'>Remove [charging] first!</span>")
 			return
 		anchored = !anchored
 		to_chat(user, "You [anchored ? "attached" : "detached"] the recharger.")
