@@ -10,7 +10,7 @@
 	opacity = FALSE
 	anchored = TRUE
 	mouse_opacity = 0
-	var/amount = 2
+	var/amount = 3
 	var/spread_speed = 1 //time in decisecond for a smoke to spread one tile.
 	var/lifetime = 5
 	var/opaque = TRUE //whether the smoke can block the view when in enough amount
@@ -32,21 +32,21 @@
 
 /obj/effect/particle_effect/smoke/proc/kill_smoke()
 	STOP_PROCESSING(SSobj, src)
-	fade_out()
-	qdel(src)
+	INVOKE_ASYNC(src, .proc/fade_out)
+	QDEL_NULL(chemholder)
+	QDEL_IN(src, 10)
 
 /obj/effect/particle_effect/smoke/proc/fade_out(frames = 16)
-	if(!alpha) //Handle already transparent case
+	if(alpha == 0) //Handle already transparent case
 		return
-	if(frames <= 0)
-		frames = 1 //We will just assume that by no frames, the coder meant "during one frame".
+	if(frames == 0)
+		frames = 1 //We will just assume that by 0 frames, the coder meant "during one frame".
 	var/step = alpha / frames
 	for(var/i in 1 to frames)
 		alpha -= step
-		if(alpha < 160 && opaque)
+		if(alpha < 160)
 			SetOpacity(0) //if we were blocking view, we aren't now because we're fading out
-		sleep(world.tick_lag)
-	return
+	stoplag()
 
 /obj/effect/particle_effect/smoke/process()
 	lifetime--
@@ -61,25 +61,21 @@
 		smoke_mob(L)
 
 
-/obj/effect/particle_effect/smoke/proc/spread_smoke(direction)
+/obj/effect/particle_effect/smoke/proc/spread_smoke()
 	var/turf/t_loc = get_turf(src)
 	if(!t_loc)
 		return
 	var/list/newsmokes = list()
-	for(var/turf/dir in cardinal)
-		var/turf/T = get_step(t_loc, dir)
+	for(var/turf/T in cardinal)
 		if(check_airblock(T)) //smoke can't spread that way
 			continue
-		var/obj/effect/particle_effect/smoke/foundsmoke = locate() in T //Don't spread smoke where there's already smoke!
-		if(foundsmoke)
-			continue
-		apply_smoke_effect(t_loc)
+		apply_smoke_effect(T)
 		var/obj/effect/particle_effect/smoke/S = new type(T)
 		S.chemholder = chemholder
 		S.dir = pick(cardinal)
 		S.amount = amount-1
 		S.lifetime = lifetime
-		if(S.amount>0)
+		if(S.amount > 0)
 			if(opaque)
 				S.SetOpacity(TRUE)
 			newsmokes.Add(S)
@@ -93,6 +89,9 @@
 /obj/effect/particle_effect/smoke/proc/check_airblock(turf/T)
 	if(T.density)
 		return TRUE
+	var/obj/effect/particle_effect/smoke/foundsmoke = locate() in T //Don't spread smoke where there's already smoke!
+	if(foundsmoke)
+		return
 	for(var/atom/movable/M in T)
 		if(!M.CanPass(src, T))
 			return TRUE
@@ -100,15 +99,16 @@
 /obj/effect/particle_effect/smoke/proc/smoke_mob(mob/living/carbon/C)
 	if(!istype(C) || lifetime < 1)
 		return
-	if(!C.smoke_delay)
+	if(C.smoke_delay)
 		return
 	C.smoke_delay = TRUE
-	spawn(10)
-		if(C)
-			C.smoke_delay = FALSE
+	addtimer(CALLBACK(src, .proc/remove_smoke_delay, C), 10)
 	effect_contact(C)
 	if(!C.internal || !C.has_smoke_protection())
 		effect_inhale(C)
+
+/obj/effect/particle_effect/smoke/proc/remove_smoke_delay(mob/living/carbon/C)
+	C?.smoke_delay = FALSE
 
 /obj/effect/particle_effect/smoke/proc/effect_inhale(mob/living/carbon/C)
 	return
@@ -124,7 +124,6 @@
 	var/range = 3
 	var/smoke_type = /obj/effect/particle_effect/smoke
 	var/lifetime
-	var/list/targetTurfs = list()
 
 /datum/effect_system/smoke_spread/set_up(radius = 2, loca, smoke_time)
 	if(isturf(loca))
@@ -141,6 +140,7 @@
 	var/obj/effect/particle_effect/smoke/S = new smoke_type(location)
 	if(lifetime)
 		S.lifetime = lifetime
+	S.amount = range
 	if(S.amount)
 		S.spread_smoke()
 
@@ -276,12 +276,10 @@
 	if(C.smoke_delay)
 		return FALSE
 	C.smoke_delay = TRUE
-	spawn(10)
-		if(C)
-			C.smoke_delay = FALSE
+	addtimer(CALLBACK(src, .proc/remove_smoke_delay, C), 10)
+	effect_contact(C)
 	if(!C.internal && !C.has_smoke_protection())
 		effect_inhale(C)
-	effect_contact(C)
 	return TRUE
 
 //Xeno acid smoke.
@@ -419,11 +417,6 @@ datum/effect_system/smoke_spread/tactical
 	chemholder = new /obj()
 	chemholder.create_reagents(500)
 
-/datum/effect_system/smoke_spread/chem/Destroy()
-	qdel(chemholder)
-	chemholder = null
-	return ..()
-
 /datum/effect_system/smoke_spread/chem/set_up(datum/reagents/carry = null, radius = 1, loca, smoke_time, silent = FALSE)
 	. = ..()
 
@@ -467,5 +460,6 @@ datum/effect_system/smoke_spread/tactical
 
 	if(lifetime)
 		S.lifetime = lifetime
+	S.amount = range
 	if(S.amount)
 		S.spread_smoke()
