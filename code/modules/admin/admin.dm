@@ -7,28 +7,28 @@ var/global/respawntime = 15
 /proc/message_admins(var/msg) // +ADMIN and above
 	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
 	log_admin_private(msg)
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(R_ADMIN & C.holder.rights)
 			to_chat(C, msg)
 
 /proc/message_mods(var/msg) // +MOD and above (not Mentors)
 	msg = "<span class=\"admin\"><span class=\"prefix\">MOD LOG:</span> <span class=\"message\">[msg]</span></span>"
 	log_admin_private(msg)
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(R_MOD & C.holder.rights)
 			to_chat(C, msg)
 
 /proc/message_staff(var/msg) // ALL staff - including Mentors
 	msg = "<span class=\"admin\"><span class=\"prefix\">STAFF LOG:</span> <span class=\"message\">[msg]</span></span>"
 	log_admin_private(msg)
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(C.holder.rights)
 			to_chat(C, msg)
 
 /proc/msg_admin_attack(var/text) //Toggleable Attack Messages
 	log_attack(text)
 	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ATTACK:</span> <span class=\"message\">[text]</span></span>"
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(R_MOD & C.holder.rights)
 			if((C.prefs.toggles_chat & CHAT_ATTACKLOGS) && !((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
 				var/msg = rendered
@@ -38,7 +38,7 @@ var/global/respawntime = 15
 	log_attack(text) //Do everything normally BUT IN GREEN SO THEY KNOW
 	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ATTACK:</span> <font color=#00ff00><b>[text]</b></font></span>" //I used <font> because I never learned html correctly, fix this if you want
 
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(R_MOD & C.holder.rights)
 			if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) && !((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
 				var/msg = rendered
@@ -897,7 +897,7 @@ var/global/respawntime = 15
 		ticker.mode.round_finished = MODE_INFESTATION_DRAW_DEATH
 		log_admin("[key_name(usr)] has made the round end early.")
 		message_admins("<span class='notice'> [key_name(usr)] has made the round end early.</span>", 1)
-		for(var/client/C in admins)
+		for(var/client/C in GLOB.admins)
 			to_chat(C, "<hr>")
 			to_chat(C, "<span class='centerbold'>Staff-Only Alert: <EM>[usr.key]</EM> has made the round end early")
 			to_chat(C, "<hr>")
@@ -932,7 +932,7 @@ var/global/respawntime = 15
 		ticker.delay_end = !ticker.delay_end
 		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
 		message_admins("<span class='notice'> [key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].</span>", 1)
-		for(var/client/C in admins)
+		for(var/client/C in GLOB.admins)
 			to_chat(C, "<hr>")
 			to_chat(C, "<span class='centerbold'>Staff-Only Alert: <EM>[usr.key]</EM> [ticker.delay_end ? "delayed the round end" : "has made the round end normally"]")
 			to_chat(C, "<hr>")

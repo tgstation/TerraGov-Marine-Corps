@@ -770,7 +770,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("Players")
 			to_chat(usr, list2text(player_list,","))
 		if("Admins")
-			to_chat(usr, list2text(admins,","))
+			to_chat(usr, list2text(GLOB.admins,","))
 		if("Mobs")
 			to_chat(usr, list2text(mob_list,","))
 		if("Living Mobs")

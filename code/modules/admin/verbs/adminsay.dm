@@ -15,7 +15,7 @@
 
 	if(check_rights(R_ADMIN|R_MOD,0))
 		msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> <EM>[key_name(usr, 1)]</EM> (<A HREF='?_src_=holder;adminmoreinfo=\ref[mob]'>?</A>) (<a href='?_src_=holder;adminplayerobservejump=\ref[mob]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[mob]'>FLW</a>): <span class='message'>[msg]</span></span>"
-		for(var/client/C in admins)
+		for(var/client/C in GLOB.admins)
 			if(R_ADMIN & C.holder.rights)
 				to_chat(C, msg)
 
@@ -40,7 +40,7 @@
 
 	var/channel = "MOD:"
 	channel = "[holder.rank]:"
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(C.holder.rights & (R_ADMIN|R_MOD))
 			to_chat(C, "<span class='[color]'><span class='prefix'>[channel]</span> <EM>[key_name(src,1)]</EM> (<A HREF='?src=\ref[C.holder];adminmoreinfo=\ref[mob]'>?</A>) (<A HREF='?src=\ref[C.holder];adminplayerobservejump=\ref[mob]'>JMP</A>) (<A HREF='?src=\ref[C.holder];adminplayerfollow=\ref[mob]'>FLW</a>): <span class='message'>[msg]</span></span>")
 		else if((C.holder.rights & R_MENTOR) && (C.mob.stat == DEAD))

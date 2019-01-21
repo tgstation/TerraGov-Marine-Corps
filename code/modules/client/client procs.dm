@@ -114,14 +114,14 @@
 	//Admin Authorisation
 	holder = admin_datums[ckey]
 	if(holder)
-		admins += src
+		GLOB.admins += src
 		holder.owner = src
 	else // If it matters put a config check for this feature on this line
 		var/static/list/localhost_addresses = list("127.0.0.1", "::1")
 		if(isnull(address) || (address in localhost_addresses))
 			var/datum/admins/rank = new("!localhost!", ALL, ckey)
 			holder = rank
-			admins += src
+			GLOB.admins += src
 			rank.owner = src
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
@@ -180,7 +180,7 @@
 /client/Del()
 	if(holder)
 		holder.owner = null
-		admins -= src
+		GLOB.admins -= src
 	directory -= ckey
 	GLOB.clients -= src
 	return ..()

@@ -1576,7 +1576,7 @@
 
 		to_chat(src.owner, "You sent [input] to [H] via a secure channel.")
 		log_admin("[src.owner] replied to [key_name(H)]'s TGMC message with the message [input].")
-		for(var/client/X in admins)
+		for(var/client/X in GLOB.admins)
 			if((R_ADMIN|R_MOD) & X.holder.rights)
 				to_chat(X, "<b>ADMINS/MODS: <span class='warning'> [src.owner] replied to [key_name(H)]'s TGMC message with: <span class='notice'> \"[input]\"</b></span>")
 		to_chat(H, "<span class='warning'> You hear something crackle in your headset before a voice speaks, \"Please stand by for a message from TGMC:\" <span class='notice'> <b>\"[input]\"</b></span>")
@@ -2623,7 +2623,7 @@
 		var/msg = "<span class='boldnotice'>NOTICE: <font color=red>[usr.key]</font> is responding to <font color=red>[ref_person.ckey]/([ref_person])</font>.</span>"
 
 		//send this msg to all admins
-		for(var/client/X in admins)
+		for(var/client/X in GLOB.admins)
 			if((R_ADMIN|R_MOD) & X.holder.rights)
 				to_chat(X, msg)
 

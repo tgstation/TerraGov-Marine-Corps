@@ -123,7 +123,7 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 
 	var/list/mentorholders = list()
 	var/list/adminholders = list()
-	for(var/client/X in admins)
+	for(var/client/X in GLOB.admins)
 		if((R_MENTOR & X.holder.rights) && !((R_ADMIN & X.holder.rights) || (R_MOD & X.holder.rights))) // we don't want to count admins twice. This list should be JUST mentors
 			mentorholders += X
 		if((R_ADMIN & X.holder.rights) || (R_MOD & X.holder.rights)) // just admins here please
@@ -164,7 +164,7 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 	spawn(1200)
 		verbs += /client/verb/adminhelp
 
-	var/admin_number_present = admins.len - admin_number_afk
+	var/admin_number_present = GLOB.admins.len - admin_number_afk
 	log_admin("HELP: [key_name(src)]: [original_msg] - heard by [admin_number_present] non-AFK admins.")
 //	if(admin_number_present <= 0)
 //		if(!admin_number_afk)

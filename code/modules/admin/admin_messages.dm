@@ -11,7 +11,7 @@
 
 	var/admin_number_afk = 0
 	var/list/adminholders = list()
-	for(var/client/X in admins)
+	for(var/client/X in GLOB.admins)
 		if((R_ADMIN & X.holder.rights) || (R_MOD & X.holder.rights)) // just admins here please
 			adminholders += X
 			if(X.is_afk())
