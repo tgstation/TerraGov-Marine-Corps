@@ -81,7 +81,7 @@ datum/controller/vote
 				greatest_votes = votes
 		//default-vote for everyone who didn't vote
 		if(!CONFIG_GET(flag/vote_no_default) && choices.len)
-			var/non_voters = (clients.len - total_votes)
+			var/non_voters = (GLOB.clients.len - total_votes)
 			if(non_voters > 0)
 				if(mode == "restart")
 					choices["Continue Playing"] += non_voters

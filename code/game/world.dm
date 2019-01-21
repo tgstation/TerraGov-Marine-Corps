@@ -204,7 +204,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		var/n = 0
 		var/admins = 0
 
-		for(var/client/C in clients)
+		for(var/client/C in GLOB.clients)
 			if(C.holder)
 				if(C.holder.fakekey)
 					continue	//so stealthmins aren't revealed by the hub
@@ -244,7 +244,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
 		*/
 	TgsReboot()
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		if(CONFIG_GET(string/server))	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
 			C << link("byond://[CONFIG_GET(string/server)]")
 
@@ -257,7 +257,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		set background = 1
 		while(1)
 			sleep(INACTIVITY_KICK)
-			for(var/client/C in clients)
+			for(var/client/C in GLOB.clients)
 				if(C.holder && C.holder.rights & R_ADMIN) //Skip admins.
 					continue
 				if(C.is_afk(INACTIVITY_KICK))

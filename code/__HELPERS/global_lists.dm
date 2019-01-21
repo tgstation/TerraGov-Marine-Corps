@@ -1,4 +1,3 @@
-var/list/clients = list()								//list of all clients
 var/list/admins = list()								//list of all clients whom are admins
 var/list/directory = list()							//list of all ckeys with associated client
 var/list/unansweredAhelps = list()			//This feels inefficient, but I can't think of a better way. Stores the message indexed by CID

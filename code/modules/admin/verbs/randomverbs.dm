@@ -86,7 +86,7 @@
 	if(is_mentor(usr.client))
 		highlight_special_characters = 0
 
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		if(C.player_age == "Requires database")
 			missing_ages = 1
 			continue
@@ -1002,7 +1002,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /proc/get_all_humans()
 	if(!check_rights(R_ADMIN))	return
 
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		if(isobserver(C.mob) || C.mob.stat == DEAD)
 			continue
 		if(ishuman(C.mob))
@@ -1011,7 +1011,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /proc/get_all_xenos()
 	if(!check_rights(R_ADMIN))	return
 
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		if(isobserver(C.mob) || C.mob.stat == DEAD)
 			continue
 		if(isXeno(C.mob))
@@ -1020,7 +1020,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /proc/get_all()
 	if(!check_rights(R_ADMIN))	return
 
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		if(isobserver(C.mob) || C.mob.stat == DEAD)
 			continue
 		C.mob.loc = get_turf(usr)
@@ -1028,7 +1028,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 /proc/rejuv_all()
 	if(!check_rights(R_ADMIN))	return
 
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		if(!isliving(C.mob))
 			continue
 		var/mob/living/M = C.mob

@@ -108,7 +108,7 @@
 	to_chat(src, "<span class='warning'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</span>")
 
 
-	clients += src
+	GLOB.clients += src
 	directory[ckey] = src
 
 	//Admin Authorisation
@@ -182,7 +182,7 @@
 		holder.owner = null
 		admins -= src
 	directory -= ckey
-	clients -= src
+	GLOB.clients -= src
 	return ..()
 
 

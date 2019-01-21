@@ -12,7 +12,7 @@
 	var/count_preds = 0
 	var/count_zed = 0
 
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		if(isobserver(C.mob))
 			count_observers++
 			if(!C.holder)
@@ -38,7 +38,7 @@
 
 	if(holder)
 		if(holder.rights & (R_ADMIN|R_MOD))
-			for(var/client/C in clients)
+			for(var/client/C in GLOB.clients)
 				var/entry = "\t[C.key]"
 				if(C.holder?.fakekey)
 					entry += " <i>(as [C.holder.fakekey])</i>"
@@ -74,13 +74,13 @@
 				entry += " (<A HREF='?_src_=holder;adminmoreinfo=\ref[C.mob]'>?</A>)"
 				Lines += entry
 		else
-			for(var/client/C in clients)
+			for(var/client/C in GLOB.clients)
 				if(C.holder?.fakekey)
 					Lines += C.holder.fakekey
 				else
 					Lines += C.key
 	else
-		for(var/client/C in clients)
+		for(var/client/C in GLOB.clients)
 			if(C.holder?.fakekey)
 				Lines += C.holder.fakekey
 			else

@@ -778,7 +778,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("Dead Mobs")
 			to_chat(usr, list2text(dead_mob_list,","))
 		if("Clients")
-			to_chat(usr, list2text(clients,","))
+			to_chat(usr, list2text(GLOB.clients,","))
 
 // DNA2 - Admin Hax
 /client/proc/cmd_admin_toggle_block(var/mob/M,var/block)
