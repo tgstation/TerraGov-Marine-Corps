@@ -44,7 +44,6 @@
 	..()
 	real_name = "AI [role] Number [rand(1, 999999)]"
 	ConsiderMovement()
-<<<<<<< HEAD
 	equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(), SLOT_EARS)
 	equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(), SLOT_W_UNIFORM)
 	equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC(), SLOT_WEAR_SUIT)
@@ -56,29 +55,13 @@
 	equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(), SLOT_BELT)
 	thegun = new /obj/item/weapon/gun/rifle/m41a/gyro()
 	equip_to_slot(thegun, SLOT_S_STORE)
-=======
-	equip_to_slot_or_del(new /obj/item/device/radio/headset/distress/PMC(), WEAR_EAR)
-	equip_to_slot_or_del(new /obj/item/clothing/under/marine/veteran/PMC(), WEAR_BODY)
-	equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/veteran/PMC(), WEAR_JACKET)
-	equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/veteran/PMC(), WEAR_HANDS)
-	equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/veteran/PMC(), WEAR_HEAD)
-	equip_to_slot_or_del(new /obj/item/clothing/shoes/veteran/PMC(), WEAR_FEET)
-	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/PMC(), WEAR_FACE)
-	equip_to_slot_or_del(new /obj/item/storage/backpack/satchel(), WEAR_BACK)
-	equip_to_slot_or_del(new /obj/item/storage/belt/gun/m4a3/vp70(), WEAR_WAIST)
-	thegun = new /obj/item/weapon/gun/rifle/m41a/gyro()
-	equip_to_slot(thegun, WEAR_J_STORE)
->>>>>>> parent of fa8f5121f... Revert "good bye master"
 	//equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39/elite(), WEAR_J_STORE)
 	//equip_to_slot_or_del(new /obj/item/storage/pouch/firstaid/full(), WEAR_L_STORE)
 	//equip_to_slot_or_del(new /obj/item/storage/pouch/magazine/large/pmc_m39(), WEAR_R_STORE)
 	mind.set_cm_skills(skills_type)
-<<<<<<< HEAD
 	var/obj/item/card/id/someid = new/obj/item/card/id()
 	someid.access = ALL_MARINE_ACCESS
 	equip_to_slot(someid, SLOT_WEAR_ID)
-=======
->>>>>>> parent of fa8f5121f... Revert "good bye master"
 
 /mob/living/carbon/human/AI/proc/ConsiderMovement() //Ah damm not this again
 	if(stat == DEAD || !src)

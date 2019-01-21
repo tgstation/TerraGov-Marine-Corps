@@ -125,5 +125,3 @@
 	var/datum/squad/assigned_squad //the squad this human is assigned to
 
 	var/cloaking = FALSE
-
-	var/list/targeted_byAI = list()
