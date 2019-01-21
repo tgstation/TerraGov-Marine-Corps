@@ -17,7 +17,6 @@ var/list/player_votes = list()
 
 
 
-var/global/list/cable_list = list()					//Index for all cables, so that powernets don't have to look through the entire world all the time
 var/global/list/chemical_reactions_list				//List of all /datum/chemical_reaction datums. Used during chemical reactions
 var/global/list/chemical_reagents_list				//List of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
 var/global/list/landmarks_list = list()				//List of all landmarks created

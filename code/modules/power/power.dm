@@ -104,7 +104,7 @@
 		del(PN) //not cdel on purpose, powernet is still using del.
 	powernets.Cut()
 
-	for(var/obj/structure/cable/PC in cable_list)
+	for(var/obj/structure/cable/PC in GLOB.cable_list)
 		if(!PC.powernet)
 			PC.powernet = new()
 			powernets += PC.powernet
@@ -113,7 +113,7 @@
 
 //	if(Debug) log_world("[powernets.len] powernets found")
 
-	for(var/obj/structure/cable/C in cable_list)
+	for(var/obj/structure/cable/C in GLOB.cable_list)
 		if(!C.powernet)	continue
 		C.powernet.cables += C
 

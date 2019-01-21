@@ -77,7 +77,7 @@
 	var/turf/T = src.loc			// hide if turf is not intact
 
 	if(level==1) hide(T.intact_tile)
-	cable_list += src
+	GLOB.cable_list += src
 	update_icon()
 
 
@@ -85,7 +85,7 @@
 	if(!defer_powernet_rebuild)					// set if network will be rebuilt manually
 		if(powernet)
 			powernet.cut_cable(src)				// update the powernets
-	cable_list -= src
+	GLOB.cable_list -= src
 	. = ..()									// then go ahead and delete the cable
 
 /obj/structure/cable/hide(var/i)
