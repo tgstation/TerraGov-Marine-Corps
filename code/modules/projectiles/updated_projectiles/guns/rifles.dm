@@ -406,3 +406,45 @@
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 
 //-------------------------------------------------------
+//MK224
+
+/obj/item/weapon/gun/rifle/autoshotgun
+	name = "\improper MK224 Tactical Shotgun"
+	desc = "A modified version of the MK221 Tactical Shotgun, now including a magazine."
+	icon_state = "mk224"
+	item_state = "mk221"
+	fire_sound = "sound/weapons/gun_shotgun_automatic.ogg"
+	current_mag = /obj/item/ammo_magazine/rifle/autoshotgun
+	attachable_allowed = list(
+						/obj/item/attachable/quickfire,
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/heavy_barrel,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/stock/tactical,
+						/obj/item/attachable/attached_gun/grenade,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/scope/mini)
+
+	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
+	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
+
+/obj/item/weapon/gun/rifle/autoshotgun
+	. = ..()
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
+
+/obj/item/weapon/gun/rifle/autoshotgun/set_gun_config_values()
+	fire_delay = config.tacshottie_fire_delay - config.mlow_fire_delay 
+	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
+	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.max_hit_accuracy_mult 
+	scatter = config.high_scatter_value
+	scatter_unwielded = config.max_scatter_value
+	damage_mult = config.base_hit_damage_mult - config.tacshottie_damage_mult 
+	recoil = config.low_recoil_value
+	recoil_unwielded = config.high_recoil_value
