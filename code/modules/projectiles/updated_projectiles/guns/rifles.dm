@@ -407,13 +407,13 @@
 //-------------------------------------------------------
 //MK224
 
-/obj/item/weapon/gun/rifle/mk224
+/obj/item/weapon/gun/rifle/autoshotgun
 	name = "\improper MK224 Tactical Shotgun"
 	desc = "A modified version of the MK221 Tactical Shotgun, now including a magazine."
 	icon_state = "mk224"
 	item_state = "mk221"
 	fire_sound = "sound/weapons/gun_shotgun_automatic.ogg"
-	current_mag = /obj/item/ammo_magazine/rifle/mk224/slug
+	current_mag = /obj/item/ammo_magazine/rifle/autoshotgun
 	attachable_allowed = list(
 						/obj/item/attachable/quickfire,
 						/obj/item/attachable/bayonet,
@@ -434,11 +434,11 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 	starting_attachment_types = list(/obj/item/attachable/attached_gun/grenade)
 
-/obj/item/weapon/gun/rifle/mk224/New()
+/obj/item/weapon/gun/rifle/autoshotgun
 	. = ..()
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 10, "rail_y" = 21, "under_x" = 24, "under_y" = 16, "stock_x" = 14, "stock_y" = 16)
 
-/obj/item/weapon/gun/rifle/mk224/set_gun_config_values()
+/obj/item/weapon/gun/rifle/autoshotgun/set_gun_config_values()
 	fire_delay = config.tacshottie_fire_delay - config.mlow_fire_delay 
 	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
 	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.max_hit_accuracy_mult 
