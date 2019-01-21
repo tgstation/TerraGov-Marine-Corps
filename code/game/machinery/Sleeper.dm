@@ -123,8 +123,10 @@
 /obj/machinery/sleep_console/Topic(href, href_list)
 	if(..())
 		return FALSE
-	if(usr.is_mob_incapacitated() || !usr | !usr.IsAdvancedToolUser())
-		return
+	if(!usr)
+		return FALSE
+	if(usr.is_mob_incapacitated() || !usr.IsAdvancedToolUser())
+		return FALSE
 	var/mob/living/carbon/human/user = usr
 	if(get_dist(src, user) > 1)
 		return FALSE
