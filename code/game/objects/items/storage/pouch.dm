@@ -93,12 +93,11 @@
 	name = "first-aid pouch"
 	desc = "It can contain autoinjectors, ointments, and bandages."
 	icon_state = "firstaid"
-	storage_slots = 6
+	storage_slots = 5
 	can_hold = list(
 					"/obj/item/stack/medical/ointment",
 					"/obj/item/reagent_container/hypospray/autoinjector/tramadol",
 					"/obj/item/reagent_container/hypospray/autoinjector/tricordrazine",
-					"/obj/item/reagent_container/hypospray/autoinjector/hypervene",
 					"/obj/item/stack/medical/bruise_pack",
 					"/obj/item/stack/medical/splint"
 					)
@@ -111,7 +110,6 @@
 	new /obj/item/stack/medical/ointment (src)
 	new /obj/item/reagent_container/hypospray/autoinjector/tramadol (src)
 	new /obj/item/reagent_container/hypospray/autoinjector/tricordrazine (src)
-	new /obj/item/reagent_container/hypospray/autoinjector/hypervene (src)
 	new /obj/item/stack/medical/bruise_pack (src)
 	new /obj/item/stack/medical/splint (src)
 
