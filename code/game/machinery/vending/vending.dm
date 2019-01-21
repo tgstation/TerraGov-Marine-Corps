@@ -233,7 +233,7 @@
 			to_chat(user, "<span class='warning'>[src] doesn't have a coin slot.</span>")
 			return
 		if(C.flags_token & tokensupport)
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				coin = W
 				to_chat(user, "<span class='notice'>You insert the [W] into the [src]</span>")
 		else
@@ -245,7 +245,7 @@
 		scan_card(I)
 		return
 	else if (istype(W, /obj/item/spacecash/ewallet))
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			ewallet = W
 			to_chat(user, "<span class='notice'>You insert the [W] into the [src]</span>")
 		return
@@ -454,7 +454,7 @@
 			return
 
 		coin.loc = src.loc
-		if(!usr.get_active_hand())
+		if(!usr.get_active_held_item())
 			usr.put_in_hands(coin)
 		to_chat(usr, "<span class='notice'>You remove the [coin] from the [src]</span>")
 		coin = null
@@ -464,7 +464,7 @@
 			to_chat(usr, "There is no charge card in this machine.")
 			return
 		ewallet.loc = src.loc
-		if(!usr.get_active_hand())
+		if(!usr.get_active_held_item())
 			usr.put_in_hands(ewallet)
 		to_chat(usr, "<span class='notice'>You remove the [ewallet] from the [src]</span>")
 		ewallet = null
@@ -513,7 +513,7 @@
 				"<span class='notice'>You fumble around figuring out the wiring.</span>")
 				var/fumbling_time = 20 * ( SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer )
 				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-			if (!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
+			if (!( istype(usr.get_active_held_item(), /obj/item/tool/wirecutters) ))
 				to_chat(usr, "You need wirecutters!")
 				return
 			if (src.isWireColorCut(twire))
@@ -528,7 +528,7 @@
 				"<span class='notice'>You fumble around figuring out the wiring.</span>")
 				var/fumbling_time = 20 * ( SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer )
 				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-			if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			if (!istype(usr.get_active_held_item(), /obj/item/device/multitool))
 				to_chat(usr, "You need a multitool!")
 				return
 			if (src.isWireColorCut(twire))
@@ -649,7 +649,7 @@
 			if(item_to_stock.loc == user) //Inside the mob's inventory
 				if(item_to_stock.flags_item & WIELDED)
 					item_to_stock.unwield(user)
-				user.temp_drop_inv_item(item_to_stock)
+				user.temporarilyRemoveItemFromInventory(item_to_stock)
 
 			if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
 				var/obj/item/storage/S = item_to_stock.loc

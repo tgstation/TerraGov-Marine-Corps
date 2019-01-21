@@ -34,7 +34,7 @@
 			to_chat(src, "You can't commit suicide whilst restrained! ((You can type Ghost instead however.))")
 			return
 		suiciding = 1
-		var/obj/item/held_item = get_active_hand()
+		var/obj/item/held_item = get_active_held_item()
 		if(held_item)
 			var/damagetype = held_item.suicide_act(src)
 			if(damagetype)

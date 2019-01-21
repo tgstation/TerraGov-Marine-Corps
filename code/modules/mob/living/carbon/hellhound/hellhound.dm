@@ -16,7 +16,7 @@
 	var/speed = -0.6
 	var/attack_timer = 0
 
-/mob/living/carbon/hellhound/New()
+/mob/living/carbon/hellhound/Initialize()
 	verbs += /mob/living/proc/lay_down
 	var/datum/reagents/R = new/datum/reagents(1000)
 	reagents = R
@@ -32,7 +32,7 @@
 	camera = new /obj/machinery/camera(src)
 	camera.network = list("PRED")
 	camera.c_tag = src.real_name
-	..()
+	. = ..()
 
 	sight |= SEE_MOBS
 	see_invisible = SEE_INVISIBLE_MINIMUM

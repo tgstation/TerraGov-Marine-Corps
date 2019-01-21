@@ -91,7 +91,7 @@
 
 	C = H.wear_id
 	if(!C)
-		C = H.get_active_hand()
+		C = H.get_active_held_item()
 	if(!istype(C))
 		return FALSE
 

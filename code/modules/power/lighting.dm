@@ -314,7 +314,7 @@
 				on = has_power()
 				update()
 
-				if(user.temp_drop_inv_item(L))
+				if(user.temporarilyRemoveItemFromInventory(L))
 					qdel(L)
 
 					if(on && rigged)

@@ -55,8 +55,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_rejuvenate,
 	/client/proc/toggleattacklogs,
 	/client/proc/toggledebuglogs,
-	// /client/proc/toggleghostwriters,
-	/client/proc/toggledrones,
 	/client/proc/change_security_level, /* Changes alert levels*/
 	/client/proc/toggle_gun_restrictions,
 	/client/proc/toggle_synthetic_restrictions,
@@ -147,7 +145,8 @@ var/list/admin_verbs_debug = list(
 	/client/proc/callproc,
 	/client/proc/callatomproc,
 	/client/proc/toggledebuglogs,
-	/client/proc/cmd_admin_change_hivenumber
+	/client/proc/cmd_admin_change_hivenumber,
+	/client/proc/spatialagent
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
@@ -287,7 +286,7 @@ var/list/admin_verbs_mentor = list(
 		if(holder.rights & R_SERVER)		verbs += admin_verbs_server
 		if(holder.rights & R_DEBUG)
 			verbs += admin_verbs_debug
-			if(config.debugparanoid && !check_rights(R_ADMIN))
+			if(CONFIG_GET(flag/debugparanoid) && !check_rights(R_ADMIN))
 				verbs.Remove(admin_verbs_paranoid_debug)			//Right now it's just callproc but we can easily add others later on.
 		if(holder.rights & R_POSSESS)		verbs += admin_verbs_possess
 		if(holder.rights & R_PERMISSIONS)	verbs += admin_verbs_permissions
@@ -432,7 +431,7 @@ var/list/admin_verbs_mentor = list(
 	set name = "Display Job Bans"
 	set category = "Admin"
 	if(holder)
-		if(config.ban_legacy_system)
+		if(CONFIG_GET(flag/ban_legacy_system))
 			holder.Jobbans()
 		else
 			holder.DB_ban_panel()
@@ -443,7 +442,7 @@ var/list/admin_verbs_mentor = list(
 	set name = "Unban Panel"
 	set category = "Admin"
 	if(holder)
-		if(config.ban_legacy_system)
+		if(CONFIG_GET(flag/ban_legacy_system))
 			holder.unbanpanel()
 		else
 			holder.DB_ban_panel()
@@ -670,11 +669,11 @@ var/list/admin_verbs_mentor = list(
 	set category = "Server"
 	if(!holder)	return
 	if(config)
-		if(config.log_hrefs)
-			config.log_hrefs = 0
+		if(CONFIG_GET(flag/log_hrefs))
+			CONFIG_SET(flag/log_hrefs, FALSE)
 			to_chat(src, "<b>Stopped logging hrefs</b>")
 		else
-			config.log_hrefs = 1
+			CONFIG_SET(flag/log_hrefs, TRUE)
 			to_chat(src, "<b>Started logging hrefs</b>")
 
 /client/proc/check_ai_laws()
@@ -803,39 +802,16 @@ var/list/admin_verbs_mentor = list(
 	else
 		to_chat(usr, "<span class='boldnotice'>You will no longer get end-round attack log messages.</span>")
 
-/client/proc/toggleghostwriters()
-	set name = "Toggle Ghost Blood Writing"
-	set category = "Server"
-	if(!holder)	return
-	if(config)
-		if(config.cult_ghostwriter)
-			config.cult_ghostwriter = 0
-			to_chat(src, "<b>Disallowed ghost writers.</b>")
-			message_admins("Admin [key_name_admin(usr)] has disabled ghost writers.", 1)
-		else
-			config.cult_ghostwriter = 1
-			to_chat(src, "<b>Enabled ghost writers.</b>")
-			message_admins("Admin [key_name_admin(usr)] has enabled ghost writers.", 1)
-
-/client/proc/toggledrones()
-	set name = "Toggle Maintenance Drones"
-	set category = "Server"
-	if(!holder)	return
-	if(config)
-		if(config.allow_drone_spawn)
-			config.allow_drone_spawn = 0
-			to_chat(src, "<b>Disallowed maint drones.</b>")
-			message_admins("Admin [key_name_admin(usr)] has disabled maint drones.", 1)
-		else
-			config.allow_drone_spawn = 1
-			to_chat(src, "<b>Enabled maint drones.</b>")
-			message_admins("Admin [key_name_admin(usr)] has enabled maint drones.", 1)
-
 /client/proc/toggledebuglogs()
 	set name = "Toggle Debug Log Messages"
 	set category = "Preferences"
 
+	if(!prefs)
+		return
+
+	prefs.load_preferences()
 	prefs.toggles_chat ^= CHAT_DEBUGLOGS
+	prefs.save_preferences()
 	if(prefs.toggles_chat & CHAT_DEBUGLOGS)
 		to_chat(usr, "<span class='boldnotice'>You will now get debug log messages.</span>")
 	else
@@ -884,15 +860,16 @@ var/list/admin_verbs_mentor = list(
 
 	if(!holder)	return
 	if(config)
-		if(config.remove_gun_restrictions)
+		if(CONFIG_GET(flag/remove_gun_restrictions))
+			CONFIG_SET(flag/remove_gun_restrictions, FALSE)
 			to_chat(src, "<b>Enabled gun restrictions.</b>")
 			message_admins("Admin [key_name_admin(usr)] has enabled NT gun restrictions.", 1)
 			log_admin("[key_name(src)] enabled NT gun restrictions.")
 		else
+			CONFIG_SET(flag/remove_gun_restrictions, TRUE)
 			to_chat(src, "<b>Disabled gun restrictions.</b>")
 			message_admins("Admin [key_name_admin(usr)] has disabled NT gun restrictions.", 1)
 			log_admin("[key_name(src)] disabled NT gun restrictions.")
-		config.remove_gun_restrictions = !config.remove_gun_restrictions
 
 /client/proc/toggle_synthetic_restrictions()
 	set name = "Toggle Synthetic Gun Use"
@@ -901,15 +878,16 @@ var/list/admin_verbs_mentor = list(
 
 	if(!holder)	return
 	if(config)
-		if(config.allow_synthetic_gun_use)
+		if(CONFIG_GET(flag/allow_synthetic_gun_use))
+			CONFIG_SET(flag/allow_synthetic_gun_use, FALSE)
 			to_chat(src, "<b>Synthetic gun use disallowed.</b>")
 			message_admins("Admin [key_name_admin(usr)] has disabled synthetic gun use.", 1)
 			log_admin("[key_name(src)] disabled synthetic gun use.")
 		else
+			CONFIG_SET(flag/allow_synthetic_gun_use, TRUE)
 			to_chat(src, "<b>Synthetic gun use allowed.</b>")
 			message_admins("Admin [key_name_admin(usr)] has enabled synthetic gun use.", 1)
 			log_admin("[key_name(src)] allowed synthetic gun use.")
-		config.allow_synthetic_gun_use = !config.allow_synthetic_gun_use
 
 /client/proc/adjust_weapon_mult()
 	set name = "Adjust Weapon Multipliers"
@@ -921,10 +899,10 @@ var/list/admin_verbs_mentor = list(
 		var/acc = input("Select the new accuracy multiplier.","ACCURACY MULTIPLIER", 1) as num
 		var/dam = input("Select the new damage multiplier.","DAMAGE MULTIPLIER", 1) as num
 		if(acc && dam)
-			config.proj_base_accuracy_mult = acc * 0.01
-			config.proj_base_damage_mult = dam * 0.01
+			CONFIG_SET(number/combat_define/proj_base_accuracy_mult, (acc * 0.01))
+			CONFIG_SET(number/combat_define/proj_base_damage_mult, (dam * 0.01))
 			log_admin("Admin [key_name_admin(usr)] changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.", 1)
-			log_debug("<b>[key_name(src)]</b> changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.")
+			log_game("<b>[key_name(src)]</b> changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.")
 
 /client/proc/set_away_timer()
 	set name = "Set Xeno Away Timer in View"
@@ -940,3 +918,7 @@ var/list/admin_verbs_mentor = list(
 
 	log_admin("Admin [key_name_admin(usr)] set the away_timer of nearby clientless Xenos to 300.", 1)
 	message_admins("<b>[key_name(src)]</b> set the away_timer of nearby clientless Xenos to 300.", 1)
+
+/client/proc/findStealthKey() //TEMPORARY
+	if(holder)
+		return holder.owner.key
