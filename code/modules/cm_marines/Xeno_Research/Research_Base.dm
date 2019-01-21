@@ -92,9 +92,11 @@
 	possible_design -= design
 	known_design += design
 
-/datum/marineResearch/proc/ForcedToKnown(datum/marineTech/tech)				//When we need it to be researched NOW
+/datum/marineResearch/proc/ToKnown(datum/marineTech/tech, forced = FALSE)				//Handles everything, what now will be researched. Forced used for disks
 	switch(Check_tech(tech.id))
 		if(UNKNOWN_TECH)								//Unknown tech
+			if(!forced)
+				return									//Not from disk
 			possible_tech -= tech
 			known_tech += tech
 			CheckDesigns()
@@ -104,11 +106,6 @@
 			available_tech -= tech
 			known_tech += tech
 			CheckDesigns()
-
-/datum/marineResearch/proc/AvailToKnown(datum/marineTech/researched)			//Haphazardous
-	available_tech -= researched
-	known_tech += researched
-	CheckDesigns()
 
 /datum/marineTech
 	var/name = "name"					//Name of the technology.

@@ -205,7 +205,7 @@
 				res_in_prog = TRUE
 				spawn(10*avail.time)
 					errored = TRUE
-					files.AvailToKnown(avail)
+					files.ToKnown(avail)
 					res_in_prog = FALSE
 					screen = 1.0
 					errored = FALSE
@@ -218,22 +218,23 @@
 			screen = 1.0
 			updateUsrDialog()
 			return
+
+		var/fl = FALSE
 		for(var/tech in inserted_disk.teches)
-			switch(files.Check_tech(tech))
-				if(1)						//Already known
+			fl = FALSE
+			for(var/datum/marineTech/avail in files.available_tech)
+				if(avail.id != tech)
 					continue
-				if(2)
-					for(var/datum/marineTech/avail in files.available_tech)
-						if(avail.id != tech)
-							continue
-						files.AvailToKnown(avail)
-						break
-				if(0)
-					for(var/datum/marineTech/possible in files.possible_tech)
-						if(possible.id != tech)
-							continue
-						files.ForcedToKnown(possible)
-						break
+				files.ToKnown(avail, TRUE)
+				fl = TRUE
+				break
+			if(fl)
+				continue
+			for(var/datum/marineTech/possible in files.possible_tech)
+				if(possible.id != tech)
+					continue
+				files.ToKnown(possible, TRUE)
+				break
 		inserted_disk.loc = src.loc
 		inserted_disk = null
 		screen = 1.0
