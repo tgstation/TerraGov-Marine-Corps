@@ -29,6 +29,7 @@ Currently only has the tank hardpoints
 
 	var/list/backup_clips = list()
 	var/max_clips = 1 //1 so they can reload their backups and actually reload once
+	var/buyable = TRUE
 
 //Called on attaching, for weapons sets the actual cooldowns
 /obj/item/hardpoint/proc/apply_buff()
@@ -74,7 +75,7 @@ Currently only has the tank hardpoints
 		to_chat(user, "<span class='warning'>Something interrupted you while reloading [owner].</span>")
 		return FALSE
 
-	user.temp_drop_inv_item(A, 0)
+	user.temporarilyRemoveItemFromInventory(A, 0)
 	to_chat(user, "<span class='notice'>You install \the [A] in \the [owner].</span>")
 	backup_clips += A
 	return TRUE
@@ -156,6 +157,7 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/primary/cannon/broken
 	health = 0
+	buyable = FALSE
 
 /obj/item/hardpoint/primary/cannon/apply_buff()
 	owner.cooldowns["primary"] = 200
@@ -375,6 +377,7 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/secondary/m56cupola/broken
 	health = 0
+	buyable = FALSE
 
 /obj/item/hardpoint/secondary/m56cupola/apply_buff()
 	owner.cooldowns["secondary"] = 5
@@ -475,6 +478,7 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/support/smoke_launcher/broken
 	health = 0
+	buyable = FALSE
 
 /obj/item/hardpoint/support/smoke_launcher/apply_buff()
 	owner.cooldowns["support"] = 30
@@ -660,6 +664,7 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/armor/ballistic/broken
 	health = 0
+	buyable = FALSE
 
 /obj/item/hardpoint/armor/ballistic/apply_buff()
 	owner.dmg_multipliers["bullet"] = 0.5
@@ -792,6 +797,7 @@ Currently only has the tank hardpoints
 
 /obj/item/hardpoint/treads/standard/broken
 	health = 0
+	buyable = FALSE
 
 /obj/item/hardpoint/treads/standard/get_icon_image(var/x_offset, var/y_offset, var/new_dir)
 	return null //Handled in update_icon()

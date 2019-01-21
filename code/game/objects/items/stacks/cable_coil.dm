@@ -15,7 +15,7 @@
 	throw_speed = 2
 	throw_range = 5
 	matter = list("metal" = 50, "glass" = 20)
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	item_state = "coil"
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	stack_id = "cable coil"
@@ -109,7 +109,7 @@
 	..()
 
 /obj/item/stack/cable_coil/attack_hand(mob/user as mob)
-	if (user.get_inactive_hand() == src)
+	if (user.get_inactive_held_item() == src)
 		var/obj/item/stack/cable_coil/F = new /obj/item/stack/cable_coil(user, 1, color)
 		F.copy_evidences(src)
 		user.put_in_hands(F)

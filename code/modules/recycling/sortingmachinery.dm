@@ -315,7 +315,7 @@
 	w_class = 2
 	item_state = "electronic"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 
 	proc/openwindow(mob/user as mob)
 		var/dat = "<tt><center><h1><b>TagMaster 2.3</b></h1></center>"

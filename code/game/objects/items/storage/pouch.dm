@@ -4,7 +4,7 @@
 	icon_state = "small_drop"
 	w_class = 4 //does not fit in backpack
 	max_w_class = 2
-	flags_equip_slot = SLOT_STORE
+	flags_equip_slot = ITEM_SLOT_POCKET
 	storage_slots = 1
 	draw_mode = 0
 	allow_drawing_method = TRUE
@@ -17,7 +17,7 @@
 
 
 /obj/item/storage/pouch/equipped(mob/user, slot)
-	if(slot == WEAR_L_STORE || slot == WEAR_R_STORE)
+	if(slot == SLOT_L_STORE || slot == SLOT_R_STORE)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
 	..()
 
@@ -355,7 +355,7 @@
 		if(M.contents.len)
 			if(contents.len < storage_slots)
 				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC)) 
+				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
 					return
 				for(var/obj/item/I in M)
 					if(contents.len < storage_slots)
@@ -498,7 +498,7 @@
 		if(M.current_rounds)
 			if(contents.len < storage_slots)
 				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC)) 
+				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
 					return
 				var/cont
 				for(var/x = 1 to storage_slots)

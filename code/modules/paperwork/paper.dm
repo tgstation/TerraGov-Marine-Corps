@@ -13,7 +13,7 @@
 	w_class = 1.0
 	throw_range = 1
 	throw_speed = 1
-	flags_equip_slot = SLOT_HEAD
+	flags_equip_slot = ITEM_SLOT_HEAD
 	flags_armor_protection = HEAD
 	attack_verb = list("bapped")
 
@@ -296,12 +296,12 @@
 		"[class]You hold \the [P] up to \the [src], burning it slowly.")
 
 		spawn(20)
-			if(get_dist(src, user) < 2 && user.get_active_hand() == P && P.heat_source)
+			if(get_dist(src, user) < 2 && user.get_active_held_item() == P && P.heat_source)
 				user.visible_message("[class][user] burns right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.", \
 				"[class]You burn right through \the [src], turning it to ash. It flutters through the air before settling on the floor in a heap.")
 
-				if(user.get_inactive_hand() == src)
-					user.drop_inv_item_on_ground(src)
+				if(user.get_inactive_held_item() == src)
+					user.dropItemToGround(src)
 
 				new /obj/effect/decal/cleanable/ash(src.loc)
 				qdel(src)
@@ -321,7 +321,7 @@
 		var/shortened_t = copytext(t,1,100)
 		log_admin("PAPER: [usr] ([usr.ckey]) tried to write something. First 100 characters: [shortened_t]")
 
-		var/obj/item/i = usr.get_active_hand() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
+		var/obj/item/i = usr.get_active_held_item() // Check to see if he still got that darn pen, also check if he's using a crayon or pen.
 		var/iscrayon = 0
 		if(!istype(i, /obj/item/tool/pen))
 			if(!istype(i, /obj/item/toy/crayon))
@@ -366,8 +366,8 @@
 			B.name = name
 		else if (P.name != "paper" && P.name != "photo")
 			B.name = P.name
-		user.drop_inv_item_on_ground(P)
-		user.drop_inv_item_on_ground(src)
+		user.dropItemToGround(P)
+		user.dropItemToGround(src)
 		to_chat(user, "<span class='notice'>You clip the [P.name] to [(src.name == "paper") ? "the paper" : src.name].</span>")
 		B.attach_doc(src, user, TRUE)
 		B.attach_doc(P, user, TRUE)
@@ -382,7 +382,7 @@
 		return
 
 	else if(istype(P, /obj/item/tool/stamp))
-		if((!in_range(src, usr) && loc != user && !( istype(loc, /obj/item/clipboard) ) && loc.loc != user && user.get_active_hand() != P))
+		if((!in_range(src, usr) && loc != user && !( istype(loc, /obj/item/clipboard) ) && loc.loc != user && user.get_active_held_item() != P))
 			return
 
 		stamps += (stamps=="" ? "<HR>" : "<BR>") + "<i>This paper has been stamped with the [P.name].</i>"

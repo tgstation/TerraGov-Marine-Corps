@@ -581,7 +581,7 @@
 				if(BURST)
 					if(user)
 						visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")
-						user.temp_drop_inv_item(F)
+						user.temporarilyRemoveItemFromInventory(F)
 					else
 						visible_message("<span class='xenowarning'>[F] crawls back into [src]!</span>") //Not sure how, but let's roll with it for now.
 					status = GROWN

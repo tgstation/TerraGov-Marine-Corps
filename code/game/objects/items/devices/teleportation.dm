@@ -154,7 +154,7 @@ Frequency:
 	if(turfs.len)
 		L["None (Dangerous)"] = pick(turfs)
 	var/t1 = input(user, "Please select a teleporter to lock in on.", "Hand Teleporter") in L
-	if ((user.get_active_hand() != src || user.stat || user.is_mob_restrained()))
+	if ((user.get_active_held_item() != src || user.stat || user.is_mob_restrained()))
 		return
 	var/count = 0	//num of portals from this teleport in the world
 	for(var/obj/effect/portal/PO in effect_list)

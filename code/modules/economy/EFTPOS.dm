@@ -205,14 +205,14 @@
 					to_chat(usr, "[bicon(src)]<span class='warning'>No account connected to send transactions to.</span>")
 			if("scan_card")
 				if(linked_account)
-					var/obj/item/I = usr.get_active_hand()
+					var/obj/item/I = usr.get_active_held_item()
 					if (istype(I, /obj/item/card))
 						scan_card(I)
 				else
 					to_chat(usr, "[bicon(src)]<span class='warning'>Unable to link accounts.</span>")
 			if("reset")
 				//reset the access code - requires HoP/captain access
-				var/obj/item/I = usr.get_active_hand()
+				var/obj/item/I = usr.get_active_held_item()
 				if (istype(I, /obj/item/card))
 					var/obj/item/card/id/C = I
 					if(ACCESS_MARINE_LOGISTICS in C.access)

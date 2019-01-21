@@ -181,7 +181,7 @@
 				icon_state = "M56D_e"
 			else
 				icon_state = "M56D" // otherwise we're a empty gun on a mount.
-			user.temp_drop_inv_item(MG)
+			user.temporarilyRemoveItemFromInventory(MG)
 			qdel(MG)
 		return
 
@@ -316,7 +316,7 @@
 			D.current_rounds = rounds
 		rounds = min(rounds + M.current_rounds, rounds_max)
 		update_icon()
-		user.temp_drop_inv_item(O)
+		user.temporarilyRemoveItemFromInventory(O)
 		qdel(O)
 		return
 	return ..()
@@ -452,7 +452,7 @@
 	if(user.lying || !Adjacent(user) || user.is_mob_incapacitated())
 		user.unset_interaction()
 		return FALSE
-	if(user.get_active_hand())
+	if(user.get_active_held_item())
 		to_chat(usr, "<span class='warning'>You need a free hand to shoot the [src].</span>")
 		return FALSE
 	target = A
@@ -528,10 +528,10 @@
 			if(user.interactee) //Make sure we're not manning two guns at once, tentacle arms.
 				to_chat(user, "You're already manning something!")
 				return
-			if(isSynth(user) && !config.allow_synthetic_gun_use)
+			if(isSynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 				to_chat(user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
 				return
-			if(user.get_active_hand() != null)
+			if(user.get_active_held_item() != null)
 				to_chat(user, "<span class='warning'>You need a free hand to man the [src].</span>")
 			else
 				visible_message("[bicon(src)] <span class='notice'>[user] mans the M56D!</span>")

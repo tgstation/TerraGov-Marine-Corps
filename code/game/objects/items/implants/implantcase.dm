@@ -22,7 +22,7 @@
 	..()
 	if (istype(I, /obj/item/tool/pen))
 		var/t = stripped_input(user, "What would you like the label to be?", text("[]", src.name), null)
-		if (user.get_active_hand() != I)
+		if (user.get_active_held_item() != I)
 			return
 		if((!in_range(src, usr) && src.loc != user))
 			return

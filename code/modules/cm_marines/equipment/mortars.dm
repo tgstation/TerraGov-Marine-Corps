@@ -118,7 +118,7 @@
 			"<span class='notice'>You fumble around figuring out how to fire [src].</span>")
 			var/fumbling_time = 30 * ( SKILL_ENGINEER_ENGI - user.mind.cm_skills.engineer )
 			if(!do_after(user, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-		if(isSynth(user) && !config.allow_synthetic_gun_use)
+		if(isSynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 			to_chat(user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
 			return
 		if(busy)
@@ -147,7 +147,7 @@
 			user.visible_message("<span class='notice'>[user] loads \a [mortar_shell.name] into [src].</span>",
 			"<span class='notice'>You load \a [mortar_shell.name] into [src].</span>")
 			visible_message("[bicon(src)] <span class='danger'>The [name] fires!</span>")
-			user.drop_inv_item_to_loc(mortar_shell, src)
+			user.transferItemToLoc(mortar_shell, src)
 			playsound(loc, 'sound/weapons/gun_mortar_fire.ogg', 50, 1)
 			busy = 0
 			firing = 1

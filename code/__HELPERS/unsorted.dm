@@ -685,72 +685,6 @@ Turf and target are seperate in case you want to teleport some distance from a t
 	if(M < 0)
 		return -M
 
-
-/proc/key_name(var/whom, var/include_link = null, var/include_name = 1, var/highlight_special_characters = 1)
-	var/mob/M
-	var/client/C
-	var/key
-
-	if(!whom)	return "*null*"
-	if(istype(whom, /client))
-		C = whom
-		M = C.mob
-		key = C.key
-	else if(ismob(whom))
-		M = whom
-		C = M.client
-		key = M.key
-	else // Catch-all cases if none of the types above match
-		var/swhom = null
-
-		if(istype(whom, /atom))
-			var/atom/A = whom
-			swhom = "[A.name]"
-		else if(istype(whom, /datum))
-			swhom = "[whom]"
-
-		if(!swhom)
-			swhom = "*invalid*"
-
-		return "\[[swhom]\]"
-
-	. = ""
-
-	if(key)
-		if(include_link && C)
-			. += "<a href='?priv_msg=\ref[C]'>"
-
-		if(C && C.holder && C.holder.fakekey && !include_name)
-			. += "Administrator"
-		else
-			. += key
-
-		if(include_link)
-			if(C)	. += "</a>"
-			else	. += " (DC)"
-	else
-		. += "*no key*"
-
-	if(include_name && M)
-		var/name
-
-		if(M.real_name)
-			name = M.real_name
-		else if(M.name)
-			name = M.name
-
-
-		if(include_link && is_special_character(M) && highlight_special_characters)
-			. += "/(<font color='#FFA500'>[name]</font>)" //Orange
-		else
-			. += "/([name])"
-
-	return .
-
-/proc/key_name_admin(var/whom, var/include_name = 1)
-	return key_name(whom, 1, include_name)
-
-
 // returns the turf located at the map edge in the specified direction relative to A
 // used for mass driver
 /proc/get_edge_target_turf(var/atom/A, var/direction)
@@ -964,7 +898,7 @@ var/global/image/busy_indicator_hostile
 	var/user_loc = user.loc
 	var/target_loc = target.loc
 	var/delayfraction = round(time/5)
-	var/holding = user.get_active_hand()
+	var/holding = user.get_active_held_item()
 
 	. = TRUE
 	for(var/i = 0 to 5)
@@ -975,7 +909,7 @@ var/global/image/busy_indicator_hostile
 		if(user.loc != user_loc || target.loc != target_loc)
 			. = FALSE
 			break
-		if(user.get_active_hand() != holding)
+		if(user.get_active_held_item() != holding)
 			. = FALSE
 			break
 		if(user.is_mob_incapacitated(TRUE) || user.lying)
@@ -1019,22 +953,22 @@ var/global/image/busy_indicator_hostile
 	var/delayfraction = round(delay/numticks)
 	var/original_loc = user.loc
 	var/original_turf = get_turf(user)
-	var/obj/holding = user.get_active_hand()
+	var/obj/holding = user.get_active_held_item()
 	. = TRUE
 	for(var/i = 0 to numticks)
 		sleep(delayfraction)
 		if(!user || user.loc != original_loc || get_turf(user) != original_turf || user.stat || user.knocked_down || user.stunned)
 			. = FALSE
 			break
-		if(L && L.health < config.health_threshold_crit)
+		if(L && L.health < CONFIG_GET(number/health_threshold_crit))
 			. = FALSE //catching mobs below crit level but haven't had their stat var updated
 			break
 		if(needhand)
 			if(holding)
-				if(!holding.loc || user.get_active_hand() != holding) //no longer holding the required item
+				if(!holding.loc || user.get_active_held_item() != holding) //no longer holding the required item
 					. = FALSE
 					break
-			else if(user.get_active_hand()) //something in active hand when we need it to stay empty
+			else if(user.get_active_held_item()) //something in active hand when we need it to stay empty
 				. = FALSE
 				break
 
@@ -1814,3 +1748,27 @@ var/list/WALLITEMS = list(
 	else
 		. = CB.Invoke()
 	usr = temp
+
+#define UNTIL(X) while(!(X)) stoplag()
+
+
+//returns a GUID like identifier (using a mostly made up record format)
+//guids are not on their own suitable for access or security tokens, as most of their bits are predictable.
+//	(But may make a nice salt to one)
+/proc/GUID()
+	var/const/GUID_VERSION = "b"
+	var/const/GUID_VARIANT = "d"
+	var/node_id = copytext(md5("[rand()*rand(1,9999999)][world.name][world.hub][world.hub_password][world.internet_address][world.address][world.contents.len][world.status][world.port][rand()*rand(1,9999999)]"), 1, 13)
+
+	var/time_high = "[num2hex(text2num(time2text(world.realtime,"YYYY")), 2)][num2hex(world.realtime, 6)]"
+
+	var/time_mid = num2hex(world.timeofday, 4)
+
+	var/time_low = num2hex(world.time, 3)
+
+	var/time_clock = num2hex(TICK_DELTA_TO_MS(world.tick_usage), 3)
+
+	return "{[time_high]-[time_mid]-[GUID_VERSION][time_low]-[GUID_VARIANT][time_clock]-[node_id]}"
+
+/proc/pass()
+	return

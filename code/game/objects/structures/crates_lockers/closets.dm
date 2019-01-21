@@ -220,7 +220,7 @@
 
 		if(isrobot(user))
 			return
-		user.drop_inv_item_to_loc(W,loc)
+		user.transferItemToLoc(W,loc)
 
 	else if(istype(W, /obj/item/packageWrap))
 		return
