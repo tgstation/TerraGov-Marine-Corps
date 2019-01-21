@@ -2129,13 +2129,16 @@
 
 	visible_message("<span class='xenodanger'>[src] emits a noxious gas!</span>", \
 	"<span class='xenodanger'>You emit neurogas!</span>")
-	dispense_gas(3)
+	dispense_gas()
 
-/mob/living/carbon/Xenomorph/Defiler/proc/dispense_gas(count = 0)
+/mob/living/carbon/Xenomorph/Defiler/proc/dispense_gas(count = 3)
 	set waitfor = FALSE
 	while(count)
 		if(stagger) //If we got staggered, return
 			to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
+			return
+		if(stunned || knocked_down)
+			to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are disabled!</span>")
 			return
 		playsound(loc, 'sound/effects/smoke.ogg', 25)
 		var/turf/T = get_turf(src)
