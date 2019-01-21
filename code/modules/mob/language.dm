@@ -248,7 +248,7 @@
 // Language handling.
 /mob/proc/add_language(var/language)
 
-	var/datum/language/new_language = all_languages[language]
+	var/datum/language/new_language = GLOB.all_languages[language]
 
 	if(!istype(new_language) || new_language in languages)
 		return 0
@@ -258,7 +258,7 @@
 
 /mob/proc/remove_language(var/rem_language)
 
-	languages.Remove(all_languages[rem_language])
+	languages.Remove(GLOB.all_languages[rem_language])
 
 	return 0
 

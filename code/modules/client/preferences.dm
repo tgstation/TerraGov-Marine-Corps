@@ -1095,8 +1095,8 @@ datum/preferences
 					var/datum/species/S = all_species[species]
 
 					if(CONFIG_GET(flag/usealienwhitelist))
-						for(var/L in all_languages)
-							var/datum/language/lang = all_languages[L]
+						for(var/L in GLOB.all_languages)
+							var/datum/language/lang = GLOB.all_languages[L]
 							if((!(lang.flags & RESTRICTED)) && (is_alien_whitelisted(L)||(!( lang.flags & WHITELISTED ))||(S && (L in S.secondary_langs))))
 								new_languages += lang
 
@@ -1105,8 +1105,8 @@ datum/preferences
 						if(!(languages_available))
 							alert(user, "There are not currently any available secondary languages.")
 					else
-						for(var/L in all_languages)
-							var/datum/language/lang = all_languages[L]
+						for(var/L in GLOB.all_languages)
+							var/datum/language/lang = GLOB.all_languages[L]
 							if(!(lang.flags & RESTRICTED))
 								new_languages += lang.name
 

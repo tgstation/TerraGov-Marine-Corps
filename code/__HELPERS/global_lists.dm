@@ -57,7 +57,6 @@ var/global/world_qdel_log
 
 //Languages/species/whitelist.
 var/global/list/all_species[0]
-var/global/list/all_languages[0]
 var/global/list/language_keys[0]					//table of say codes for all languages
 var/global/list/synth_types = list("Synthetic","Early Synthetic")
 
@@ -148,10 +147,10 @@ var/global/list/moth_wings_list = list()
 	// Languages
 	for(var/T in subtypesof(/datum/language))
 		var/datum/language/L = new T
-		all_languages[L.name] = L
+		GLOB.all_languages[L.name] = L
 
-	for(var/language_name in all_languages)
-		var/datum/language/L = all_languages[language_name]
+	for(var/language_name in GLOB.all_languages)
+		var/datum/language/L = GLOB.all_languages[language_name]
 		language_keys[":[lowertext(L.key)]"] = L
 		language_keys[".[lowertext(L.key)]"] = L
 		language_keys["#[lowertext(L.key)]"] = L
