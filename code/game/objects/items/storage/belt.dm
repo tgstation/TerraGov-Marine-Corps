@@ -374,7 +374,7 @@
 	can_hold = list("/obj/item/explosive/grenade")
 
 
-/obj/item/storage/belt/grenade/New()
+/obj/item/storage/belt/grenade/standard/New()
 	..()
 	spawn(1)
 		new /obj/item/explosive/grenade/incendiary(src)
@@ -390,7 +390,7 @@
 	w_class = 4
 	storage_slots = 16
 	max_w_class = 3
-	max_storage_space = 32
+	max_storage_space = 48
 	can_hold = list("/obj/item/explosive/grenade")
 
 /obj/item/storage/belt/grenade/b18/New()
