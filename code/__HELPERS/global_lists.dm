@@ -1,4 +1,3 @@
-var/list/directory = list()							//list of all ckeys with associated client
 var/list/unansweredAhelps = list()			//This feels inefficient, but I can't think of a better way. Stores the message indexed by CID
 var/list/unansweredMhelps = list()
 var/list/CLFaxes = list()								//List of all CL faxes sent this round

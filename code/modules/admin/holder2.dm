@@ -134,7 +134,7 @@ you will have to do something like if(client.holder.rights & R_ADMIN) yourself.
 		var/datum/admins/D = new /datum/admins(rank, rights, target)
 
 		//find the client for a ckey if they are connected and associate them with the new admin datum
-		D.associate(directory[target])
+		D.associate(GLOB.directory[target])
 
 /proc/IsAdminAdvancedProcCall()
 #ifdef TESTING

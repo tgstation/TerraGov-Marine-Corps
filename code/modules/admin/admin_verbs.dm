@@ -504,7 +504,7 @@ var/list/admin_verbs_mentor = list(
 		return
 
 	var/datum/preferences/D
-	var/client/C = directory[warned_ckey]
+	var/client/C = GLOB.directory[warned_ckey]
 	if(C)	D = C.prefs
 	else	D = preferences_datums[warned_ckey]
 

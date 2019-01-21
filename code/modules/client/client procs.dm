@@ -109,7 +109,7 @@
 
 
 	GLOB.clients += src
-	directory[ckey] = src
+	GLOB.directory[ckey] = src
 
 	//Admin Authorisation
 	holder = admin_datums[ckey]
@@ -181,7 +181,7 @@
 	if(holder)
 		holder.owner = null
 		GLOB.admins -= src
-	directory -= ckey
+	GLOB.directory -= ckey
 	GLOB.clients -= src
 	return ..()
 

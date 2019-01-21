@@ -141,7 +141,7 @@
 			else
 				D = new /datum/admins(new_rank, rights, adm_ckey)
 
-			var/client/C = directory[adm_ckey]						//find the client with the specified ckey (if they are logged in)
+			var/client/C = GLOB.directory[adm_ckey]						//find the client with the specified ckey (if they are logged in)
 			D.associate(C)											//link up with the client and add verbs
 
 			message_admins("[key_name_admin(usr)] edited the admin rank of [adm_ckey] to [new_rank]")
