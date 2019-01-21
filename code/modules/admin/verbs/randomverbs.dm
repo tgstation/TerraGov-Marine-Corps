@@ -558,7 +558,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 	if(!customname)
 		customname = "TGMC Update"
-	for (var/obj/machinery/computer/communications/C in machines)
+	for (var/obj/machinery/computer/communications/C in GLOB.machines)
 		if(! (C.stat & (BROKEN|NOPOWER) ) )
 			var/obj/item/paper/P = new /obj/item/paper( C.loc )
 			P.name = "'[command_name()] Update.'"
@@ -587,7 +587,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	if(!input) return FALSE
 	if(ai_system.Announce(input))
 
-		for (var/obj/machinery/computer/communications/C in machines)
+		for (var/obj/machinery/computer/communications/C in GLOB.machines)
 			if(! (C.stat & (BROKEN|NOPOWER) ) )
 				var/obj/item/paper/P = new /obj/item/paper( C.loc )
 				P.name = "'[MAIN_AI_SYSTEM] Update.'"

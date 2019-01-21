@@ -301,7 +301,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 
 /obj/machinery/self_destruct/Destroy()
 	. = ..()
-	machines -= src
+	GLOB.machines -= src
 	operator = null
 
 /obj/machinery/self_destruct/ex_act(severity)

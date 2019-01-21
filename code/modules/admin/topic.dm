@@ -1643,7 +1643,7 @@
 
 		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
 
-		for(var/obj/machinery/faxmachine/F in machines)
+		for(var/obj/machinery/faxmachine/F in GLOB.machines)
 			if(F == fax)
 				if(! (F.stat & (BROKEN|NOPOWER) ) )
 
@@ -1711,7 +1711,7 @@
 
 		var/customname = input(src.owner, "Pick a title for the report", "Title") as text|null
 
-		for(var/obj/machinery/faxmachine/F in machines)
+		for(var/obj/machinery/faxmachine/F in GLOB.machines)
 			if(F == fax)
 				if(! (F.stat & (BROKEN|NOPOWER) ) )
 
@@ -2023,7 +2023,7 @@
 			if("whiteout")
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","WO")
-				for(var/obj/machinery/light/L in machines)
+				for(var/obj/machinery/light/L in GLOB.machines)
 					L.fix()
 				message_admins("[key_name_admin(usr)] fixed all lights", 1)
 			if("ionstorm")

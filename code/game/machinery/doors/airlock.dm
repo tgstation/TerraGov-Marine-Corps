@@ -1219,7 +1219,7 @@ About the new airlock wires panel:
 
 	if(src.closeOtherId != null)
 		spawn (5)
-			for (var/obj/machinery/door/airlock/A in machines)
+			for (var/obj/machinery/door/airlock/A in GLOB.machines)
 				if(A.closeOtherId == src.closeOtherId && A != src)
 					src.closeOther = A
 					break

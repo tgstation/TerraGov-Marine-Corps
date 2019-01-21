@@ -420,7 +420,7 @@ var/global/list/holodeck_programs = list(
 				return
 			M.forceMove(loc)
 			M.KnockDown(5)
-			for(var/obj/machinery/scoreboard/X in machines)
+			for(var/obj/machinery/scoreboard/X in GLOB.machines)
 				if(X.id == id)
 					X.score(side, 3)// 3 points for dunking a mob
 					// no break, to update multiple scoreboards
@@ -428,7 +428,7 @@ var/global/list/holodeck_programs = list(
 		return
 	else if (istype(W, /obj/item) && get_dist(src,user)<2)
 		user.transferItemToLoc(W, loc)
-		for(var/obj/machinery/scoreboard/X in machines)
+		for(var/obj/machinery/scoreboard/X in GLOB.machines)
 			if(X.id == id)
 				X.score(side)
 				// no break, to update multiple scoreboards
@@ -442,7 +442,7 @@ var/global/list/holodeck_programs = list(
 			return
 		if(prob(50))
 			I.loc = src.loc
-			for(var/obj/machinery/scoreboard/X in machines)
+			for(var/obj/machinery/scoreboard/X in GLOB.machines)
 				if(X.id == id)
 					X.score(side)
 					// no break, to update multiple scoreboards

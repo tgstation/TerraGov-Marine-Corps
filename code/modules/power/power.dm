@@ -117,7 +117,7 @@
 		if(!C.powernet)	continue
 		C.powernet.cables += C
 
-	for(var/obj/machinery/power/M in machines)
+	for(var/obj/machinery/power/M in GLOB.machines)
 		M.connect_to_network()
 
 	return 1

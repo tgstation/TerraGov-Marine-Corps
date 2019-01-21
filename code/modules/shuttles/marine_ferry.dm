@@ -109,17 +109,17 @@
 		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
 			ship_id = "sh_dropship2"
 
-		for(var/obj/machinery/door/airlock/dropship_hatch/D in machines)
+		for(var/obj/machinery/door/airlock/dropship_hatch/D in GLOB.machines)
 			if(D.id == ship_id)
 				D.unlock()
 
 		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
 		switch(ship_id)
 			if("sh_dropship1")
-				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in machines)
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in GLOB.machines)
 					reardoor = D
 			if("sh_dropship2")
-				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in machines)
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in GLOB.machines)
 					reardoor = D
 
 		reardoor.unlock()
@@ -444,7 +444,7 @@
 
 	shake_cameras(turfs_int) //shake for 1.5 seconds before crash, 0.5 after
 
-	for(var/obj/machinery/power/apc/A in machines) //break APCs
+	for(var/obj/machinery/power/apc/A in GLOB.machines) //break APCs
 		if(A.z != T_trg.z) continue
 		if(prob(A.crash_break_probability))
 			A.overload_lighting()
@@ -497,10 +497,10 @@
 	open_doors_crashed(turfs_trg) //And now open the doors
 
 	//Stolen from events.dm. WARNING: This code is old as hell
-	for (var/obj/machinery/power/apc/APC in machines)
+	for (var/obj/machinery/power/apc/APC in GLOB.machines)
 		if(APC.z == MAIN_SHIP_Z_LEVEL || APC.z == LOW_ORBIT_Z_LEVEL)
 			APC.ion_act()
-	for (var/obj/machinery/power/smes/SMES in machines)
+	for (var/obj/machinery/power/smes/SMES in GLOB.machines)
 		if(SMES.z == MAIN_SHIP_Z_LEVEL || SMES.z == LOW_ORBIT_Z_LEVEL)
 			SMES.ion_act()
 

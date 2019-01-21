@@ -29,7 +29,6 @@ var/global/list/joblist = list()					//List of all jobstypes, minus borg and AI
 var/global/list/structure_list = list()				//List of all /obj/structure as they are created, to fetch generic structures with a lot less lag
 var/global/list/active_areas = list()
 var/global/list/all_areas = list()
-var/global/list/machines = list()
 var/global/list/processing_machines = list()
 var/global/list/turfs = list()
 var/global/list/object_list = list()

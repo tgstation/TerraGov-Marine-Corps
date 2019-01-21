@@ -573,27 +573,27 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if(!(A.type in areas_all))
 			areas_all.Add(A.type)
 
-	for(var/obj/machinery/power/apc/APC in machines)
+	for(var/obj/machinery/power/apc/APC in GLOB.machines)
 		var/area/A = get_area(APC)
 		if(!(A.type in areas_with_APC))
 			areas_with_APC.Add(A.type)
 
-	for(var/obj/machinery/alarm/alarm in machines)
+	for(var/obj/machinery/alarm/alarm in GLOB.machines)
 		var/area/A = get_area(alarm)
 		if(!(A.type in areas_with_air_alarm))
 			areas_with_air_alarm.Add(A.type)
 
-	for(var/obj/machinery/requests_console/RC in machines)
+	for(var/obj/machinery/requests_console/RC in GLOB.machines)
 		var/area/A = get_area(RC)
 		if(!(A.type in areas_with_RC))
 			areas_with_RC.Add(A.type)
 
-	for(var/obj/machinery/light/L in machines)
+	for(var/obj/machinery/light/L in GLOB.machines)
 		var/area/A = get_area(L)
 		if(!(A.type in areas_with_light))
 			areas_with_light.Add(A.type)
 
-	for(var/obj/machinery/light_switch/LS in machines)
+	for(var/obj/machinery/light_switch/LS in GLOB.machines)
 		var/area/A = get_area(LS)
 		if(!(A.type in areas_with_LS))
 			areas_with_LS.Add(A.type)
@@ -603,7 +603,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if(!(A.type in areas_with_intercom))
 			areas_with_intercom.Add(A.type)
 
-	for(var/obj/machinery/camera/C in machines)
+	for(var/obj/machinery/camera/C in GLOB.machines)
 		var/area/A = get_area(C)
 		if(!(A.type in areas_with_camera))
 			areas_with_camera.Add(A.type)
@@ -653,15 +653,15 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	if(alert("Are you sure? This will start up the engine. Should only be used during debug!",,"Yes","No") != "Yes")
 		return
 
-	for(var/obj/machinery/power/emitter/E in machines)
+	for(var/obj/machinery/power/emitter/E in GLOB.machines)
 		if(E.anchored)
 			E.active = 1
 
-	for(var/obj/machinery/field_generator/F in machines)
+	for(var/obj/machinery/field_generator/F in GLOB.machines)
 		if(F.anchored)
 			F.Varedit_start = 1
 	spawn(30)
-		for(var/obj/machinery/the_singularitygen/G in machines)
+		for(var/obj/machinery/the_singularitygen/G in GLOB.machines)
 			if(G.anchored)
 				var/obj/machinery/singularity/S = new /obj/machinery/singularity(get_turf(G), 50)
 				spawn(0)
@@ -675,7 +675,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				S.grav_pull = 0
 				S.dissipate = 0
 
-	for(var/obj/machinery/power/rad_collector/Rad in machines)
+	for(var/obj/machinery/power/rad_collector/Rad in GLOB.machines)
 		if(Rad.anchored)
 			if(!Rad.P)
 				var/obj/item/tank/phoron/Phoron = new/obj/item/tank/phoron(Rad)
@@ -688,7 +688,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			if(!Rad.active)
 				Rad.toggle_power()
 
-	for(var/obj/machinery/power/smes/SMES in machines)
+	for(var/obj/machinery/power/smes/SMES in GLOB.machines)
 		if(SMES.anchored)
 			SMES.chargemode = 1
 
@@ -707,7 +707,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	var/found_the_pump = 0
 	var/obj/machinery/power/supermatter/SM
 
-	for(var/obj/machinery/M in machines)
+	for(var/obj/machinery/M in GLOB.machines)
 		if(!M)
 			continue
 		if(!M.loc)

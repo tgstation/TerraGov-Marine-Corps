@@ -255,7 +255,7 @@
 	if(mode==43 || mode==433)
 		var/pMonData[0]
 		var/apcData[0]
-		for(var/obj/machinery/power/monitor/pMon in machines)
+		for(var/obj/machinery/power/monitor/pMon in GLOB.machines)
 			if(!(pMon.stat & (NOPOWER|BROKEN)) )
 				var/turf/monitorturf = locate(pMon.x,pMon.y,pMon.z)
 				var/area/monitorarea = monitorturf.loc
@@ -477,7 +477,7 @@
 			BucketData[++BucketData.len] = list("x" = 0, "y" = 0, dir=null, status = null)
 
 		var/CbotData[0]
-		for(var/obj/machinery/bot/cleanbot/B in machines)
+		for(var/obj/machinery/bot/cleanbot/B in GLOB.machines)
 			var/turf/bl = get_turf(B)
 			if(bl)
 				if(bl.z != cl.z)
