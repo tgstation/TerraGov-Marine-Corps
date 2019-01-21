@@ -939,9 +939,9 @@
 		load_into_chamber()
 
 /obj/item/weapon/gun/shotgun/merc/scout/set_gun_config_values()
-	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 4 //one shot per 2 secs
+	fire_delay = CONFIG_GET(number/combat_define/scoutshottie_fire_delay)
 	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
-	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay) * 0.1 //basically instantaneous two shots
+	burst_delay = CONFIG_GET(number/combat_define/no_fire_delay) //basically instantaneous two shots
 	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
 	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
