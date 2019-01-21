@@ -1,11 +1,13 @@
-/datum/admins/proc/togglebuildmodeself()
+/*/datum/admins/proc/togglebuildmodeself()
 	set name = "Toggle Build Mode"
 	set category = "Fun"
 
 	if(!check_rights(R_FUN))
 		return
 
-	if(M.client)
+	if(!usr?.client?.mob)
+		return
+
 		if(M.client.buildmode)
 			log_admin("[key_name(usr)] has left build mode.")
 			M.client.buildmode = 0
@@ -37,7 +39,7 @@
 			M.client.screen += C
 			M.client.screen += D
 			H.cl = M.client
-
+*/
 
 /obj/effect/bmode
 	density = TRUE
@@ -116,7 +118,7 @@
 
 
 /obj/effect/bmode/buildquit/clicked()
-	togglebuildmode(master.cl.mob)
+	//togglebuildmode(master.cl.mob)
 	return TRUE
 
 
@@ -258,7 +260,7 @@
 				holder.buildmode.objholder = text2path("[object.type]")
 				to_chat(usr, "Selected: [object.type]")
 			else if(mods["right"])
-				if(isobj(object)) 
+				if(isobj(object))
 					qdel(object)
 
 		if(3)

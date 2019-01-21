@@ -315,6 +315,9 @@
 	usr << browse(dat, "window=players;size=600x480")
 
 /client/proc/player_panel_extended()
+	set name = "Player Panel"
+	set category = "Admin"
+	
 	if(!check_rights(R_ADMIN))
 		return
 

@@ -37,13 +37,13 @@
 	set category = "Fun"
 	set name = "Gib"
 
-	if(!check_rights(R_FUN))	
+	if(!check_rights(R_FUN))
 		return
 
 	if(alert(src, "You sure?", "Confirm", "Yes", "No") != "Yes")
 		return
 
-	if(!M)	
+	if(!M)
 		return
 
 	M.gib()
@@ -56,15 +56,15 @@
 	set category = "Fun"
 	set name = "EM Pulse"
 
-	if(!check_rights(R_FUN))	
+	if(!check_rights(R_FUN))
 		return
 
 	var/heavy = input("Range of heavy pulse.", text("Input")) as num|null
-	if(isnull(heavy)) 
+	if(isnull(heavy))
 		return
 
 	var/light = input("Range of light pulse.", text("Input")) as num|null
-	if(isnull(light)) 
+	if(isnull(light))
 		return
 
 	if(!heavy || !light)
@@ -79,7 +79,7 @@
 	set category = "Fun"
 	set name = "Explosion"
 
-	if(!check_rights(R_DEBUG|R_FUN))	
+	if(!check_rights(R_DEBUG|R_FUN))
 		return
 
 	var/devastation = input("Range of total devastation. -1 to none", text("Input"))  as num|null
@@ -197,7 +197,7 @@
 	set category = "Fun"
 	set name = "Respawn Character"
 	set desc = "Respawn a person that has been gibbed/dusted/killed. They must be a ghost for this to work and preferably should not have a body to go back into."
-	
+
 	if(!holder)
 		to_chat(src, "Only administrators may use this command.")
 		return
@@ -421,7 +421,7 @@
 	set category = "Fun"
 	set name = "Round Statistics"
 
-	if(!check_rights(R_FUN)	
+	if(!check_rights(R_FUN))
 		return
 
 	debug_variables(round_statistics)
@@ -431,7 +431,7 @@
 	set category = "Fun"
 	set name = "Award a Medal"
 
-	if(!check_rights(R_FUN))	
+	if(!check_rights(R_FUN))
 		return
 
 	give_medal_award()
@@ -523,7 +523,7 @@
 	set name = "Play Imported Sound"
 	set desc = "Play a sound imported from anywhere on your computer."
 
-	if(!check_rights(R_SOUND))	
+	if(!check_rights(R_SOUND))
 		return
 
 	if(midi_playing)
@@ -665,14 +665,14 @@
 	set name = "Force ERT Shuttle"
 	set desc = "Force Launch the ERT Shuttle."
 
-	if(!check_rights(R_ADMIN))	
+	if(!check_rights(R_ADMIN))
 		return
 
-	if(!ticker?.mode) 
+	if(!ticker?.mode)
 		return
 
 	var/tag = input("Which ERT shuttle should be force launched?", "Select an ERT Shuttle:") as null|anything in list("Distress", "Distress_PMC", "Distress_UPP", "Distress_Big")
-	if(!tag) 
+	if(!tag)
 		return
 
 	var/datum/shuttle/ferry/ert/shuttle = shuttle_controller.shuttles[tag]
@@ -790,7 +790,7 @@
 	set name = "Edit Appearance"
 	set category = "Fun"
 
-	if(!check_rights(R_FUN))	
+	if(!check_rights(R_FUN))
 		return
 
 	if(!istype(M, /mob/living/carbon/human))

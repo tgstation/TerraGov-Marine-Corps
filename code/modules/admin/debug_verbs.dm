@@ -1,6 +1,6 @@
 GLOBAL_VAR(AdminProcCaller)
 GLOBAL_PROTECT(AdminProcCaller)
-GLOBAL_VAR_INIT(AdminProcCallCount, 0)
+GLOBAL_VAR_INIT(AdminProcCallCount, FALSE)
 GLOBAL_PROTECT(AdminProcCallCount)
 GLOBAL_VAR(LastAdminCalledTargetRef)
 GLOBAL_PROTECT(LastAdminCalledTargetRef)
@@ -10,6 +10,7 @@ GLOBAL_VAR(LastAdminCalledProc)
 GLOBAL_PROTECT(LastAdminCalledProc)
 GLOBAL_LIST_EMPTY(AdminProcCallSpamPrevention)
 GLOBAL_PROTECT(AdminProcCallSpamPrevention)
+
 
 /datum/admins/proc/proccall_advanced()
 	set category = "Debug"
@@ -128,8 +129,6 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		returnval = call(procname)(arglist(lst)) // Pass the lst as an argument list to the proc
 
 	to_chat(usr, "<font color='blue'>[procname] returned: [returnval ? returnval : "null"]</font>")
-	feedback_add_details("admin_verb","APC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 
 
 /datum/admins/proc/proccall_atom(atom/A)
@@ -166,34 +165,25 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		switch(class)
 			if("CANCEL")
 				return
-
 			if("text")
 				lst[i] = input("Enter new text:","Text",null) as text
-
 			if("num")
 				lst[i] = input("Enter new number:","Num",0) as num
-
 			if("type")
 				lst[i] = input("Enter type:","Type") in typesof(/obj,/mob,/area,/turf)
-
 			if("reference")
 				lst[i] = input("Select reference:","Reference",src) as mob|obj|turf|area in world
-
 			if("mob reference")
 				lst[i] = input("Select reference:","Reference",usr) as mob in mob_list
-
 			if("file")
 				lst[i] = input("Pick file:","File") as file
-
 			if("icon")
 				lst[i] = input("Pick icon:","Icon") as icon
-
 			if("client")
 				var/list/keys = list()
 				for(var/mob/M in player_list)
 					keys += M.client
 				lst[i] = input("Please, select a player!", "Selection", null, null) as null|anything in keys
-
 			if("mob's area")
 				var/mob/temp = input("Select mob", "Selection", usr) as mob in mob_list
 				lst[i] = temp.loc
@@ -202,7 +192,6 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("<span class='notice'> [key_name_admin(src)] called [A]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].</span>")
 	returnval = call(A,procname)(arglist(lst)) // Pass the lst as an argument list to the proc
 	to_chat(usr, "<font color='blue'>[procname] returned: [returnval ? returnval : "null"]</font>")
-	feedback_add_details("admin_verb","AAPC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
 /datum/admins/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in mob_list)
@@ -213,14 +202,13 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	if(!istype(X))
-		to_chat(usr, "<span class='warning'>This can only be done to instances of type /mob/living/carbon/Xenomorph.</span>")
+	if(!X || !istype(X))
 		return
 
 	var/hivenumber_status = X.hivenumber
 
 	var/list/namelist = list()
-	for(var/datum/hive_status/H in hive_datum) // global hive datum list
+	for(var/datum/hive_status/H in hive_datum)
 		namelist += H.name
 
 	var/newhive = input(src, "Select a hive.", null, null) in namelist
@@ -243,12 +231,12 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		else
 			return
 
-	if(!X || X.gc_destroyed || !ticker || X.hivenumber != hivenumber_status)
+	if(!X || !istype(X) || X.gc_destroyed || !ticker || X.hivenumber != hivenumber_status)
 		return
 
+	X.set_hive_number(newhivenumber)
 	log_admin("[key_name(src)] changed hivenumber of [X] to [newhive].")
 	message_admins("[key_name(src)] changed hivenumber of [X] to [newhive].")
-	X.set_hive_number(newhivenumber)
 
 
 /datum/admins/proc/delete_all()
@@ -279,7 +267,6 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 						message_admins("[key_name_admin(src)] has deleted all instances of [hsbitem] ([del_amt]).", 0)
 		else
 			to_chat(usr, "<span class = 'warning'>Not a valid type path.</span>")
-	feedback_add_details("admin_verb","DELA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
 /datum/admins/proc/generate_powernets()
@@ -294,87 +281,6 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	log_admin("[key_name(src)] has remade the powernets.")
 	message_admins("[key_name_admin(src)] has remade the powernets.")
-
-
-/datum/admins/proc/change_squad(var/mob/living/carbon/human/H in mob_list)
-	set category = "Admin"
-	set name = "Change Squad"
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	if(!istype(H) || !ticker || !H.mind?.assigned_role)
-		return
-
-	if(!(H.mind.assigned_role in list("Squad Marine", "Squad Engineer", "Squad Medic", "Squad Smartgunner", "Squad Specialist", "Squad Leader")))
-		return
-
-	H.set_everything(H.mind.assigned_role)
-
-	H.assigned_squad?.remove_marine_from_squad(H)
-
-	var/datum/squad/S = input(usr, "Choose the marine's new squad") as null|anything in RoleAuthority.squads
-
-	if(!S)
-		return
-
-	S.put_marine_in_squad(H)
-
-	for(var/datum/data/record/t in data_core.general) //we update the crew manifest
-		if(t.fields["name"] == H.real_name)
-			t.fields["squad"] = S.name
-			break
-
-	var/obj/item/card/id/ID = H.wear_id
-	ID.assigned_fireteam = 0 //reset fireteam assignment
-
-	//Changes headset frequency to match new squad
-	if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))
-		var/obj/item/device/radio/headset/almayer/marine/E = H.wear_ear
-		E.set_frequency(S.radio_freq)
-	else
-		if(H.wear_ear)
-			qdel(H.wear_ear)
-			H.update_icons()
-		H.wear_ear = new /obj/item/device/radio/headset/almayer/marine
-		var/obj/item/device/radio/headset/almayer/marine/E = H.wear_ear
-		E.set_frequency(S.radio_freq)
-		H.update_icons()
-
-	H.hud_set_squad()
-
-	log_admin("[key_name(src)] has changed the squad of [key_name(H)] to [S].")
-	message_admins("[key_name_admin(usr)] has changed the squad of [key_name_admin(H)] to [S].")
-
-
-/datum/admins/proc/direct_control(var/mob/M in mob_list)
-	set category = "Admin"
-	set name = "Take Over"
-	set desc = "Rohesie's verb."
-
-	if(!check_rights(R_ADMIN))
-		return
-
-	if(M.gc_destroyed)
-		return
-
-	if(M.ckey)
-		if(alert("This mob is being controlled by [M.ckey]. Are you sure you wish to assume control of it? [M.ckey] will be made a ghost.",,"Yes","No") != "Yes")
-			return
-		else
-			M.ghostize()
-
-	var/mob/adminmob = src.mob
-	M.ckey = src.ckey
-
-	if(M.client)
-		M.client.change_view(world.view)
-
-	if(isobserver(adminmob))
-		qdel(adminmob)
-
-	log_admin("[key_name(usr)] assumed direct control of [key_name(M)].")
-	message_admins("[key_name_admin(usr)] took over of [key_name_admin(M)].")
 
 
 /datum/admins/proc/debug_mob_lists()

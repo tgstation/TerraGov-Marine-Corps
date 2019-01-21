@@ -8,6 +8,7 @@ GLOBAL_PROTECT(href_token)
 
 var/list/admin_datums = list()
 
+
 /datum/admins
 	var/rank			= "Temporary Admin"
 	var/client/owner	= null
@@ -17,6 +18,7 @@ var/list/admin_datums = list()
 	var/datum/marked_datum
 
 	var/href_token
+
 
 /datum/admins/New(initial_rank = "Temporary Admin", initial_rights = 0, ckey)
 	if(!ckey)
@@ -29,12 +31,14 @@ var/list/admin_datums = list()
 		world.SetConfig("APP/admin", ckey, "role=admin")
 	admin_datums[ckey] = src
 
+
 /datum/admins/proc/associate(client/C)
 	if(istype(C))
 		owner = C
 		owner.holder = src
 		owner.add_admin_verbs()
 		admins |= C
+
 
 /datum/admins/proc/disassociate()
 	if(owner)
@@ -51,23 +55,28 @@ if rights_required == 0, then it simply checks if they are an admin.
 NOTE: it checks usr! not src! So if you're checking somebody's rank in a proc which they did not call
 you will have to do something like if(client.holder.rights & R_ADMIN) yourself.
 */
-/proc/check_rights(rights_required, show_msg=1)
-	if(usr?.client)
-		if(rights_required)
-			if(usr.client.holder)
-				if(rights_required & usr.client.holder.rights)
-					return TRUE
-				else
-					if(show_msg)
-						to_chat(usr, "<span class='warning'>Error: You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</span>")
-		else
-			if(usr.client.holder)
+/proc/check_rights(rights_required, show_msg = TRUE)
+	if(!usr?.client)
+		return FALSE
+
+	if(rights_required)
+		if(usr.client.holder)
+			if(rights_required & usr.client.holder.rights)
 				return TRUE
-			else if(show_msg)
-					to_chat(usr, "<font color='red'>Error: You are not a holder.</font>")
+			else
+				if(show_msg)
+					to_chat(usr, "<span class='warning'>Error: You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</span>")
+	else
+		if(usr.client.holder)
+			return TRUE
+		else if(show_msg)
+			to_chat(usr, "<font color='red'>Error: You are not a holder.</font>")
 	return FALSE
 
-//probably a bit iffy - will hopefully figure out a better solution
+/proc/check_other_rights(rights_required, client/other, show_msg = TRUE)
+
+
+
 /proc/check_if_greater_rights_than(client/other)
 	if(usr && usr.client)
 		if(usr.client.holder)
@@ -79,6 +88,7 @@ you will have to do something like if(client.holder.rights & R_ADMIN) yourself.
 		to_chat(usr, "<font color='red'>Error: Cannot proceed. They have more or equal rights to us.</font>")
 	return 0
 
+
 /client/proc/deadmin()
 	admin_datums -= ckey
 	if(holder)
@@ -87,8 +97,8 @@ you will have to do something like if(client.holder.rights & R_ADMIN) yourself.
 		holder = null
 	return TRUE
 
+
 /client/proc/readmin()
-	//load text from file
 	var/list/Lines = file2list("config/admins.txt")
 
 	//process each line seperately
@@ -124,13 +134,16 @@ you will have to do something like if(client.holder.rights & R_ADMIN) yourself.
 		//find the client for a ckey if they are connected and associate them with the new admin datum
 		D.associate(directory[target])
 
+
 /proc/IsAdminAdvancedProcCall()
 	return usr?.client && GLOB.AdminProcCaller == usr.client.ckey
+
 
 /proc/GenerateToken()
 	. = ""
 	for(var/I in 1 to 32)
 		. += "[rand(10)]"
+
 
 /proc/RawHrefToken(forceGlobal = FALSE)
 	var/tok = GLOB.href_token
@@ -143,8 +156,10 @@ you will have to do something like if(client.holder.rights & R_ADMIN) yourself.
 			tok = holder.href_token
 	return tok
 
+
 /proc/HrefToken(forceGlobal = FALSE)
 	return "admin_token=[RawHrefToken(forceGlobal)]"
+
 
 /proc/HrefTokenFormField(forceGlobal = FALSE)
 	return "<input type='hidden' name='admin_token' value='[RawHrefToken(forceGlobal)]'>"
@@ -180,7 +195,7 @@ var/list/admin_verbs_mentor = list(
 /client/proc/add_admin_verbs()
 	if(holder)
 		verbs += admin_verbs_default
-		if(holder.rights & R_ASAY)		verbs += /client/proc/togglebuildmodeself
+		if(holder.rights & R_ASAY)		verbs += admin_verbs_admin
 		if(holder.rights & R_ADMIN)			verbs += admin_verbs_admin
 		if(holder.rights & R_BAN)			verbs += admin_verbs_ban
 		if(holder.rights & R_FUN)			verbs += admin_verbs_fun
@@ -195,82 +210,18 @@ var/list/admin_verbs_mentor = list(
 /client/proc/remove_admin_verbs()
 	verbs.Remove(
 		admin_verbs_default,
-		/client/proc/togglebuildmodeself,
+		admin_verbs_admin,
 		admin_verbs_admin,
 		admin_verbs_ban,
 		admin_verbs_fun,
 		admin_verbs_server,
 		admin_verbs_debug,
 		admin_verbs_permissions,
-		/client/proc/stealth_mode,
+		admin_verbs_admin,
 		admin_verbs_color,
 		admin_verbs_sound,
 		admin_verbs_spawn,
-		debug_verbs
 		)
-
-
-/datum/admins/proc/hide_most_verbs()//Allows you to keep some functionality while hiding some verbs
-	set name = "Adminverbs - Hide Most"
-	set category = "Admin"
-
-	verbs.Remove(/client/proc/hide_most_verbs, admin_verbs_hideable)
-	verbs += /client/proc/show_verbs
-
-	to_chat(src, "<span class='interface'>Most of your adminverbs have been hidden.</span>")
-	feedback_add_details("admin_verb","HMV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
-
-
-/datum/admins/proc/hide_verbs()
-	set name = "Adminverbs - Hide All"
-	set category = "Admin"
-
-	remove_admin_verbs()
-	verbs += /client/proc/show_verbs
-
-	to_chat(src, "<span class='interface'>Almost all of your adminverbs have been hidden.</span>")
-	feedback_add_details("admin_verb","TAVVH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
-
-
-/datum/admins/proc/show_verbs()
-	set name = "Adminverbs - Show"
-	set category = "Admin"
-
-	verbs -= /client/proc/show_verbs
-	add_admin_verbs()
-
-	to_chat(src, "<span class='interface'>All of your adminverbs are now visible.</span>")
-	feedback_add_details("admin_verb","TAVVS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-
-
-var/list/debug_verbs = list(
-		)
-
-
-/datum/admins/proc/enable_debug_verbs()
-	set category = "Debug"
-	set name = "*Debug Verbs - Show*"
-
-	if(!check_rights(R_DEBUG)) return
-
-	verbs += debug_verbs
-	verbs -= /client/proc/enable_debug_verbs
-
-	feedback_add_details("admin_verb","mDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-/datum/admins/proc/hide_debug_verbs()
-	set category = "Debug"
-	set name = "*Debug Verbs - Hide*"
-
-	if(!check_rights(R_DEBUG)) return
-
-	verbs -= debug_verbs
-	verbs += /client/proc/enable_debug_verbs
-
-	feedback_add_details("admin_verb","hDV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
 /proc/is_mentor(client/C)
@@ -278,9 +229,11 @@ var/list/debug_verbs = list(
 		return FALSE
 	if(!C?.holder?.rights)
 		return FALSE
-	if(C.holder.rights & (R_MENTOR) && !(C.holder.rights & (R_ADMIN)))
-		return TRUE
-	return FALSE
+	if(C.holder.rights & R_ADMIN)
+		return FALSE
+	if(!(C.holder.rights & R_MENTOR))
+		return FALSE
+	return TRUE
 
 
 /proc/message_admins(var/msg)
@@ -292,8 +245,8 @@ var/list/debug_verbs = list(
 
 
 /proc/message_staff(var/msg)
-	msg = "<span class='admin'><span class=''prefix'>STAFF LOG:</span> <span class='message'>[msg]</span></span>"
 	log_admin_private(msg)
+	msg = "<span class='admin'><span class=''prefix'>STAFF LOG:</span> <span class='message'>[msg]</span></span>"
 	for(var/client/C in admins)
 		if(C.holder.rights)
 			to_chat(C, msg)

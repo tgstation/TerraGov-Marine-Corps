@@ -1,3 +1,4 @@
+/*
 /datum/admins/Topic(href, href_list)
 	. = ..()
 
@@ -169,7 +170,7 @@
 		href_list["secretsadmin"] = "check_antagonist"
 
 	else if(href_list["delay_round_end"])
-		if(!check_rights(R_SERVER))	
+		if(!check_rights(R_SERVER))
 			return
 
 		ticker.delay_end = !ticker.delay_end
@@ -250,7 +251,7 @@
 		var/key = Banlist["key"]
 		if(alert(usr, "Are you sure you want to unban [key]?", "Confirmation", "Yes", "No") == "Yes")
 			if((Banlist["minutes"] - CMinutes) > 10080)
-				if(!check_rights(R_BAN|R_ADMIN)) 
+				if(!check_rights(R_BAN|R_ADMIN))
 					return
 				log_admin("[key_name(usr)] removed [key]'s permaban.")
 				ban_unban_log_save("[key_name(usr)] removed [key]'s permaban.")
@@ -339,7 +340,7 @@
 		unbanpanel()
 
 	else if(href_list["jobban2"])
-		if(!check_rights(R_BAN))	
+		if(!check_rights(R_BAN))
 			return
 
 		var/mob/M = locate(href_list["jobban2"])
@@ -1315,48 +1316,8 @@
 			return
 
 		var/block=text2num(href_list["block"])
-		//testing("togmutate([href_list["block"]] -> [block])")
 		usr.client.cmd_admin_toggle_block(H,block)
 		show_player_panel(H)
-		//H.regenerate_icons()
-
-/***************** BEFORE**************
-
-	if (href_list["l_players"])
-		var/dat = "<B>Name/Real Name/Key/IP:</B><HR>"
-		for(var/mob/M in mob_list)
-			var/foo = ""
-			if (ismob(M) && M.client)
-				if(!M.client.authenticated && !M.client.authenticating)
-					foo += text("\[ <A HREF='?src=\ref[];adminauth=\ref[]'>Authorize</A>|", src, M)
-				else
-					foo += text("\[ <B>Authorized</B>|")
-				if(M.start)
-					if(!istype(M, /mob/living/carbon/monkey))
-						foo += text("<A HREF='?src=\ref[];monkeyone=\ref[]'>Monkeyize</A>|", src, M)
-					else
-						foo += text("<B>Monkeyized</B>|")
-					if(istype(M, /mob/living/silicon/ai))
-						foo += text("<B>Is an AI</B>|")
-					else
-						foo += text("<A HREF='?src=\ref[];makeai=\ref[]'>Make AI</A>|", src, M)
-					if(M.z != 2)
-						foo += text("<A HREF='?src=\ref[];sendtoprison=\ref[]'>Prison</A>|", src, M)
-						foo += text("<A HREF='?src=\ref[];sendtomaze=\ref[]'>Maze</A>|", src, M)
-					else
-						foo += text("<B>On Z = 2</B>|")
-				else
-					foo += text("<B>Hasn't Entered Game</B>|")
-				foo += text("<A HREF='?src=\ref[];revive=\ref[]'>Heal/Revive</A>|", src, M)
-
-				foo += text("<A HREF='?src=\ref[];forcespeech=\ref[]'>Say</A> \]", src, M)
-			dat += text("N: [] R: [] (K: []) (IP: []) []<BR>", M.name, M.real_name, (M.client ? M.client : "No client"), M.lastKnownIP, foo)
-
-		usr << browse(dat, "window=players;size=900x480")
-
-*****************AFTER******************/
-
-// Now isn't that much better? IT IS NOW A PROC, i.e. kinda like a big panel like unstable
 
 	else if(href_list["adminplayeropts"])
 		var/mob/M = locate(href_list["adminplayeropts"])
@@ -2370,3 +2331,4 @@
 		ticker.mode.activate_distress()
 		log_game("[key_name_admin(usr)] has sent a randomized distress beacon early, requested by [key_name_admin(ref_person)]")
 		message_admins("[key_name_admin(usr)] has sent a randomized distress beacon early, requested by [key_name_admin(ref_person)]", 1)
+*/

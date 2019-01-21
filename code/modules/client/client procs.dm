@@ -165,7 +165,7 @@
 	for(var/line in lines)
 		if(src.ckey == line)
 			src.donator = 1
-			verbs += /client/proc/set_ooc_color_self
+			verbs += admin_verbs_admin
 
 	if(all_player_details[ckey])
 		player_details = all_player_details[ckey]
