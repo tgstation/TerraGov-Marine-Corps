@@ -4,7 +4,7 @@
 	. = ..(gibbed,msg)
 	if(!.) return //If they're already dead, it will return.
 
-	living_xeno_list -= src
+	GLOB.living_xeno_list -= src
 
 	if(is_zoomed)
 		zoom_out()

@@ -80,7 +80,7 @@
 	create_reagents(1000)
 	gender = NEUTER
 
-	living_xeno_list += src
+	GLOB.living_xeno_list += src
 	round_statistics.total_xenos_created++
 
 	spawn(6) //Mind has to be transferred! Hopefully this will give it enough time to do so.
@@ -191,7 +191,7 @@
 	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
 	if(is_zoomed) zoom_out()
 
-	living_xeno_list -= src
+	GLOB.living_xeno_list -= src
 
 	if(hivenumber && hivenumber <= hive_datum.len)
 		var/datum/hive_status/hive = hive_datum[hivenumber]

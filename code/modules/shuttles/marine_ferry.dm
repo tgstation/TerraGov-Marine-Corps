@@ -409,7 +409,7 @@
 	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
 	var/list/left_behind = list()
 	var/list/with_queen = list()
-	for(var/mob/living/carbon/Xenomorph/xeno in living_xeno_list)
+	for(var/mob/living/carbon/Xenomorph/xeno in GLOB.living_xeno_list)
 		if(xeno.hivenumber != XENO_HIVE_NORMAL) continue
 		if(xeno.loc.z == hive.living_xeno_queen.loc.z || xeno.loc.z in MAIN_SHIP_AND_DROPSHIPS_Z_LEVELS) // yes loc because of vent crawling, xeno must be with queen or on round end Z levels
 			with_queen += xeno
