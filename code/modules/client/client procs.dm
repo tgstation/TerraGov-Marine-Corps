@@ -53,7 +53,7 @@
 		if("holder")	hsrc = holder
 		if("usr")		hsrc = mob
 		if("prefs")		return prefs.process_link(usr,href_list)
-		if("vars")		return view_var_Topic(href,href_list,hsrc)
+		if("vars")		return holder.view_var_Topic(href,href_list,hsrc)
 
 	..()	//redirect to hsrc.Topic()
 

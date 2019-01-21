@@ -1558,7 +1558,7 @@ var/list/forbidden_varedit_object_types = list(
 
 // reference: /client/proc/modify_variables(var/atom/O, var/param_var_name = null, var/autodetect_class = 0)
 
-/datum/admins/proc/vv_edit_var(var_name, var_value) //called whenever a var is edited
+/datum/proc/vv_edit_var(var_name, var_value) //called whenever a var is edited
 	if(var_name == NAMEOF(src, vars))
 		return FALSE
 	vars[var_name] = var_value
