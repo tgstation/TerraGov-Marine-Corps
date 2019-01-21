@@ -53,7 +53,7 @@
 
 		var/close = trange(world.view + round(devastation_range, 1), epicenter)
 		//To all distanced mobs play a different sound
-		for(var/mob/M in mob_list)
+		for(var/mob/M in GLOB.mob_list)
 			if(M.z == epicenter.z)
 				if(!(M in close))
 					// check if the mob can hear

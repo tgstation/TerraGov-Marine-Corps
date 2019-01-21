@@ -85,7 +85,7 @@
 			else
 				var/f2 = text2path(f)
 				if(text_starts_with(f, "/mob"))
-					for(var/mob/m in mob_list)
+					for(var/mob/m in GLOB.mob_list)
 						if(istype(m, f2))
 							from_objs += m
 

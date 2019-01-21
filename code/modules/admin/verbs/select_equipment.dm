@@ -1,4 +1,4 @@
-/client/proc/cmd_admin_select_mob_rank(var/mob/living/carbon/human/H in mob_list)
+/client/proc/cmd_admin_select_mob_rank(var/mob/living/carbon/human/H in GLOB.mob_list)
 	set category = null
 	set name = "Select Rank"
 
@@ -65,7 +65,7 @@
 			H.mind.set_cm_skills(J.skills_type)
 
 
-/client/proc/cmd_admin_dress(var/mob/living/carbon/human/M in mob_list)
+/client/proc/cmd_admin_dress(var/mob/living/carbon/human/M in GLOB.mob_list)
 	set category = null
 	set name = "Select Equipment"
 

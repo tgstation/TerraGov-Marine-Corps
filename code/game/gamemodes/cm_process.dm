@@ -218,7 +218,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		to_chat(world, "<br><br><h1><span class='warning'>End of Round Deathmatch initialization failed, please do not grief.</span></h1><br><br>")
 		return
 
-	for(var/x in mob_list)
+	for(var/x in GLOB.mob_list)
 		if(!istype(x, /mob/living/carbon/human))
 			continue
 

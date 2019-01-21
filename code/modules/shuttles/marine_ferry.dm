@@ -461,7 +461,7 @@
 	var/datum/shuttle/ferry/hangar/hangarelevator = shuttle_controller.shuttles["Hangar"]
 	hangarelevator.process_state = FORCE_CRASH
 
-	for(var/mob/living/carbon/M in mob_list) //knock down mobs
+	for(var/mob/living/carbon/M in GLOB.mob_list) //knock down mobs
 		if(M.z != T_trg.z) continue
 		if(M.buckled)
 			to_chat(M, "<span class='warning'>You are jolted against [M.buckled]!</span>")

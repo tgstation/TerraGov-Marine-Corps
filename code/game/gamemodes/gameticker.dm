@@ -269,7 +269,7 @@ var/global/datum/controller/gameticker/ticker
 
 
 /datum/controller/gameticker/proc/declare_completion()
-	for(var/mob/living/silicon/ai/aiPlayer in mob_list)
+	for(var/mob/living/silicon/ai/aiPlayer in GLOB.mob_list)
 		if(aiPlayer.stat != DEAD)
 			to_chat(world, "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>")
 		else
@@ -284,7 +284,7 @@ var/global/datum/controller/gameticker/ticker
 
 	var/dronecount = 0
 
-	for(var/mob/living/silicon/robot/robo in mob_list)
+	for(var/mob/living/silicon/robot/robo in GLOB.mob_list)
 		if(istype(robo, /mob/living/silicon/robot/drone))
 			dronecount++
 			continue

@@ -1364,7 +1364,7 @@
 
 	if (href_list["l_players"])
 		var/dat = "<B>Name/Real Name/Key/IP:</B><HR>"
-		for(var/mob/M in mob_list)
+		for(var/mob/M in GLOB.mob_list)
 			var/foo = ""
 			if (ismob(M) && M.client)
 				if(!M.client.authenticated && !M.client.authenticating)
@@ -1780,7 +1780,7 @@
 		if(!check_rights(R_ADMIN|R_MOD))
 			return
 
-		var/mob/M = locate(href_list["individuallog"]) in mob_list
+		var/mob/M = locate(href_list["individuallog"]) in GLOB.mob_list
 		if(!ismob(M))
 			to_chat(usr, "This can only be used on instances of type /mob.")
 			return
@@ -2122,7 +2122,7 @@
 			if("manifest")
 				var/dat = "<B>Showing Crew Manifest.</B><HR>"
 				dat += "<table cellspacing=5><tr><th>Name</th><th>Position</th><th>Paygrade</th></tr>"
-				for(var/mob/living/carbon/human/H in mob_list)
+				for(var/mob/living/carbon/human/H in GLOB.mob_list)
 					if(H.ckey)
 						dat += text("<tr><td>[]</td><td>[]</td><td>[]</td></tr>", H.name, H.get_assignment(), H.get_paygrade(0))
 				dat += "</table>"
@@ -2132,7 +2132,7 @@
 			if("DNA")
 				var/dat = "<B>Showing DNA from blood.</B><HR>"
 				dat += "<table cellspacing=5><tr><th>Name</th><th>DNA</th><th>Blood Type</th></tr>"
-				for(var/mob/living/carbon/human/H in mob_list)
+				for(var/mob/living/carbon/human/H in GLOB.mob_list)
 					if(H.dna && H.ckey)
 						dat += "<tr><td>[H]</td><td>[H.dna.unique_enzymes]</td><td>[H.b_type]</td></tr>"
 				dat += "</table>"
@@ -2140,7 +2140,7 @@
 			if("fingerprints")
 				var/dat = "<B>Showing Fingerprints.</B><HR>"
 				dat += "<table cellspacing=5><tr><th>Name</th><th>Fingerprints</th></tr>"
-				for(var/mob/living/carbon/human/H in mob_list)
+				for(var/mob/living/carbon/human/H in GLOB.mob_list)
 					if(H.ckey)
 						if(H.dna && H.dna.uni_identity)
 							dat += "<tr><td>[H]</td><td>[md5(H.dna.uni_identity)]</td></tr>"

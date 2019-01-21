@@ -16,7 +16,7 @@
 	anchored = 1	//  don't get pushed around
 
 	New()
-		mob_list += src
+		GLOB.mob_list += src
 
 	proc/version_check()
 		if(client.byond_version < world.byond_version)

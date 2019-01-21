@@ -176,7 +176,7 @@ var/waiting_for_drop_votes = 0
 
 /datum/game_mode/huntergames/post_setup()
 	var/mob/M
-	for(M in mob_list)
+	for(M in GLOB.mob_list)
 		if(M.client && istype(M, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = M
 			spawn_contestant(H)

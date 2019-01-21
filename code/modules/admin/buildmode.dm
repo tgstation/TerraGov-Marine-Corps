@@ -168,7 +168,7 @@
 					if("number")
 						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value", 123) as num
 					if("mob-reference")
-						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as mob in mob_list
+						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as mob in GLOB.mob_list
 					if("obj-reference")
 						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as obj in object_list
 					if("turf-reference")

@@ -110,7 +110,7 @@
 			var/mob/dead/observer/A = usr
 			A.reenter_corpse()
 	if(href_list["track"])
-		var/mob/target = locate(href_list["track"]) in mob_list
+		var/mob/target = locate(href_list["track"]) in GLOB.mob_list
 		if(target)
 			ManualFollow(target)
 

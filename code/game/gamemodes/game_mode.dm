@@ -288,7 +288,7 @@
 
 /datum/game_mode/proc/get_living_heads()
 	var/list/heads = list()
-	for(var/mob/living/carbon/human/player in mob_list)
+	for(var/mob/living/carbon/human/player in GLOB.mob_list)
 		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in ROLES_COMMAND))
 			heads += player.mind
 	return heads
@@ -296,7 +296,7 @@
 
 /datum/game_mode/proc/get_all_heads()
 	var/list/heads = list()
-	for(var/mob/player in mob_list)
+	for(var/mob/player in GLOB.mob_list)
 		if(player.mind && (player.mind.assigned_role in ROLES_COMMAND ))
 			heads += player.mind
 	return heads
@@ -313,7 +313,7 @@
 
 /datum/game_mode/proc/display_roundstart_logout_report()
 	var/msg = "<span class='notice'><b>Roundstart logout report</b></span>"
-	for(var/mob/living/L in mob_list)
+	for(var/mob/living/L in GLOB.mob_list)
 
 		if(L.ckey)
 			var/found = 0
@@ -341,7 +341,7 @@
 					continue //Dead
 
 			continue //Happy connected client
-		for(var/mob/dead/observer/D in mob_list)
+		for(var/mob/dead/observer/D in GLOB.mob_list)
 			if(D.mind && (D.mind.original == L || D.mind.current == L))
 				if(L.stat == DEAD)
 					if(L.suiciding)	//Suicider
@@ -360,7 +360,7 @@
 
 
 
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if(M.client && M.client.holder)
 			to_chat(M, msg)
 

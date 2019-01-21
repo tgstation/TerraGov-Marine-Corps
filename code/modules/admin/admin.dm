@@ -47,7 +47,7 @@ var/global/respawntime = 15
 
 ///////////////////////////////////////////////////////////////////////////////////////////////Panels
 
-/datum/admins/proc/show_player_panel(var/mob/M in mob_list)
+/datum/admins/proc/show_player_panel(var/mob/M in GLOB.mob_list)
 	set category = null
 	set name = "Show Player Panel"
 	set desc="Edit player (respawn, ban, heal, etc)"
@@ -1005,7 +1005,7 @@ var/global/respawntime = 15
 
 	world.Reboot()
 
-/datum/admins/proc/unprison(var/mob/M in mob_list)
+/datum/admins/proc/unprison(var/mob/M in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Unprison"
 	if (M.z == 2)
@@ -1066,7 +1066,7 @@ var/global/respawntime = 15
 	feedback_add_details("admin_verb","SA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/datum/admins/proc/show_traitor_panel(var/mob/M in mob_list)
+/datum/admins/proc/show_traitor_panel(var/mob/M in GLOB.mob_list)
 	set category = "Admin"
 	set desc = "Edit mobs's memory and role"
 	set name = "Show Traitor Panel"
@@ -1096,7 +1096,7 @@ var/global/respawntime = 15
 
 /datum/admins/proc/output_ai_laws()
 	var/ai_number = 0
-	for(var/mob/living/silicon/S in mob_list)
+	for(var/mob/living/silicon/S in GLOB.mob_list)
 		ai_number++
 		if(isAI(S))
 			to_chat(usr, "<b>AI [key_name(S, usr)]'s laws:</b>")
@@ -1154,7 +1154,7 @@ var/global/respawntime = 15
 		return 1
 	return 0
 
-/datum/admins/proc/togglesleep(var/mob/living/M as mob in mob_list)
+/datum/admins/proc/togglesleep(var/mob/living/M as mob in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Toggle Sleeping"
 

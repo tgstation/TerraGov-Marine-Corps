@@ -61,7 +61,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				if("Obj")
 					target = input("Enter target:","Target",usr) as obj in object_list
 				if("Mob")
-					target = input("Enter target:","Target",usr) as mob in mob_list
+					target = input("Enter target:","Target",usr) as mob in GLOB.mob_list
 				if("Area or Turf")
 					target = input("Enter target:","Target",usr.loc) as area|turf in world
 				if("Client")
@@ -108,7 +108,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				lst[i] = input("Select reference:","Reference",src) as mob|obj|turf|area in world
 
 			if("mob reference")
-				lst[i] = input("Select reference:","Reference",usr) as mob in mob_list
+				lst[i] = input("Select reference:","Reference",usr) as mob in GLOB.mob_list
 
 			if("file")
 				lst[i] = input("Pick file:","File") as file
@@ -123,7 +123,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				lst[i] = input("Please, select a player!", "Selection", null, null) as null|anything in keys
 
 			if("mob's area")
-				var/mob/temp = input("Select mob", "Selection", usr) as mob in mob_list
+				var/mob/temp = input("Select mob", "Selection", usr) as mob in GLOB.mob_list
 				lst[i] = temp.loc
 
 	if(targetselected)
@@ -205,7 +205,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				lst[i] = input("Select reference:","Reference",src) as mob|obj|turf|area in world
 
 			if("mob reference")
-				lst[i] = input("Select reference:","Reference",usr) as mob in mob_list
+				lst[i] = input("Select reference:","Reference",usr) as mob in GLOB.mob_list
 
 			if("file")
 				lst[i] = input("Pick file:","File") as file
@@ -220,7 +220,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				lst[i] = input("Please, select a player!", "Selection", null, null) as null|anything in keys
 
 			if("mob's area")
-				var/mob/temp = input("Select mob", "Selection", usr) as mob in mob_list
+				var/mob/temp = input("Select mob", "Selection", usr) as mob in GLOB.mob_list
 				lst[i] = temp.loc
 
 	log_admin("[key_name(src)] called [A]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
@@ -252,7 +252,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	usr.show_message(t, 1)
 	feedback_add_details("admin_verb","ASL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_robotize(var/mob/M in mob_list)
+/client/proc/cmd_admin_robotize(var/mob/M in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Make Robot"
 
@@ -272,7 +272,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	else
 		alert("Invalid mob")
 
-/client/proc/cmd_admin_animalize(var/mob/M in mob_list)
+/client/proc/cmd_admin_animalize(var/mob/M in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Make Simple Animal"
 
@@ -292,7 +292,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	spawn(10)
 		M.Animalize()
 
-/client/proc/cmd_admin_alienize(var/mob/M in mob_list)
+/client/proc/cmd_admin_alienize(var/mob/M in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Make Alien"
 
@@ -314,7 +314,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	else
 		alert("Invalid mob")
 
-/client/proc/cmd_admin_change_hivenumber(mob/living/carbon/Xenomorph/X in mob_list)
+/client/proc/cmd_admin_change_hivenumber(mob/living/carbon/Xenomorph/X in GLOB.mob_list)
 	set category = "Debug"
 	set name = "Change Hivenumber"
 
@@ -420,7 +420,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	message_admins("[key_name_admin(src)] has turned aliens [aliens_allowed ? "on" : "off"].", 0)
 	feedback_add_details("admin_verb","TAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_grantfullaccess(var/mob/M in mob_list)
+/client/proc/cmd_admin_grantfullaccess(var/mob/M in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Grant Full Access"
 
@@ -451,7 +451,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	log_admin("[key_name(src)] has granted [M.key] full access.")
 	message_admins("<span class='notice'> [key_name_admin(usr)] has granted [M.key] full access.</span>", 1)
 
-/client/proc/cmd_admin_grantallskills(var/mob/M in mob_list)
+/client/proc/cmd_admin_grantallskills(var/mob/M in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Grant All Skills"
 
@@ -466,7 +466,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	log_admin("[key_name(src)] has granted [M.key] all skills.")
 	message_admins("<span class='notice'> [key_name_admin(usr)] has granted [M.key] all skills.</span>", 1)
 
-/client/proc/cmd_admin_changesquad(var/mob/living/carbon/human/H in mob_list)
+/client/proc/cmd_admin_changesquad(var/mob/living/carbon/human/H in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Change Squad"
 
@@ -528,7 +528,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	log_admin("[key_name(src)] has changed the squad of [H.key] to [S].")
 	message_admins("<span class='boldnotice'>[key_name_admin(usr)] has changed the squad of [H.key] to [S].</span>", 1)
 
-/client/proc/cmd_assume_direct_control(var/mob/M in mob_list)
+/client/proc/cmd_assume_direct_control(var/mob/M in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Assume direct control"
 	set desc = "Direct intervention"
@@ -772,7 +772,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		if("Admins")
 			to_chat(usr, list2text(GLOB.admins,","))
 		if("Mobs")
-			to_chat(usr, list2text(mob_list,","))
+			to_chat(usr, list2text(GLOB.mob_list,","))
 		if("Living Mobs")
 			to_chat(usr, list2text(GLOB.alive_mob_list,","))
 		if("Dead Mobs")

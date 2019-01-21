@@ -33,7 +33,7 @@
 	announcement_type = "Automated Announcement"
 
 /datum/announcement/priority/command/warning/Announce(message, new_sound)
-	for(var/mob/living/silicon/decoy/ship_ai/AI in mob_list)
+	for(var/mob/living/silicon/decoy/ship_ai/AI in GLOB.mob_list)
 		return AI.say(message, new_sound)
 
 /datum/announcement/priority/security/New(var/do_log = 1, var/new_sound = sound('sound/misc/notice2.ogg'), var/do_newscast = 0)

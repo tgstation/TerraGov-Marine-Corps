@@ -1213,7 +1213,7 @@
 
 	proc/display_camera(var/mob/user as mob)
 		var/list/L = list()
-		for(var/mob/living/carbon/hellhound/H in mob_list)
+		for(var/mob/living/carbon/hellhound/H in GLOB.mob_list)
 			L += H.real_name
 		L["Cancel"] = "Cancel"
 
@@ -1223,7 +1223,7 @@
 			to_chat(user, "Stopping camera feed.")
 			return
 
-		for(var/mob/living/carbon/hellhound/Q in mob_list)
+		for(var/mob/living/carbon/hellhound/Q in GLOB.mob_list)
 			if(Q.real_name == choice)
 				current = Q.camera
 				break

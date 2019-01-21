@@ -116,7 +116,7 @@
 	if(!nicknumber)
 		var/tempnumber = rand(1, 999)
 		var/list/numberlist = list()
-		for(var/mob/living/carbon/Xenomorph/X in mob_list)
+		for(var/mob/living/carbon/Xenomorph/X in GLOB.mob_list)
 			numberlist += X.nicknumber
 
 		while(tempnumber in numberlist)

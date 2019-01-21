@@ -102,7 +102,7 @@
 
 	CONFIG_SET(flag/remove_gun_restrictions, TRUE)
 
-	for(M in mob_list)
+	for(M in GLOB.mob_list)
 		if(M.client && istype(M,/mob/living/carbon/human))
 			players += M
 			spawn_player(M)
