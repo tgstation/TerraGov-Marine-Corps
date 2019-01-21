@@ -151,7 +151,7 @@
 			itemname = P.name
 			info = P.notehtml
 		to_chat(U, "You hold \a [itemname] up to the camera ...")
-		for(var/mob/living/silicon/ai/O in living_mob_list)
+		for(var/mob/living/silicon/ai/O in GLOB.alive_mob_list)
 			if(!O.client)
 				continue
 			if(U.name == "Unknown")

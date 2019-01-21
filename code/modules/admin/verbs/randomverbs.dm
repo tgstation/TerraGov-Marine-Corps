@@ -664,7 +664,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 			if(J.flags_startup_parameters & ROLE_ADD_TO_MODE) to_chat(src, "[J.title]: [J.get_total_positions(1)] / [J.current_positions]")
 	feedback_add_details("admin_verb","LFS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
-/client/proc/cmd_admin_changekey(mob/O in living_mob_list)
+/client/proc/cmd_admin_changekey(mob/O in GLOB.alive_mob_list)
 	set category = "Admin"
 	set name = "Change CKey"
 	var/new_ckey = null

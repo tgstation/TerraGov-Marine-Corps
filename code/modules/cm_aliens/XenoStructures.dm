@@ -207,7 +207,7 @@
 							"<span class='danger'>You trip on [src]!</span>")
 			L.KnockDown(1)
 			if(carrier_number)
-				for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
+				for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_mob_list)
 					if(X.nicknumber == carrier_number)
 						if(!X.stat)
 							var/area/A = get_area(src)

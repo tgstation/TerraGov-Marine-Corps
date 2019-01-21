@@ -10,7 +10,7 @@ SUBSYSTEM_DEF(mobs)
 	var/static/list/cubemonkeys = list()
 
 /datum/controller/subsystem/mobs/stat_entry()
-	..("P:[living_mob_list.len]")
+	..("P:[mob_list.len]")
 
 /datum/controller/subsystem/mobs/proc/MaxZChanged()
 	if (!islist(clients_by_zlevel))

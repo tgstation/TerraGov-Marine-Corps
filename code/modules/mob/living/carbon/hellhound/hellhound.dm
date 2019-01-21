@@ -274,7 +274,7 @@
 		if(radio_prefix == ":" || radio_prefix == ";") //Hellhounds do not actually get to talk on the radios, only listen.
 			message = trim(copytext(message,2))
 			if(!message) return
-			for(var/mob/living/carbon/hellhound/M in living_mob_list)
+			for(var/mob/living/carbon/hellhound/M in GLOB.alive_mob_list)
 				to_chat(M, "<span class='boldnotice'>\[RADIO\]: [src.name] [verb_used], '[message]'.</span>")
 			return
 
