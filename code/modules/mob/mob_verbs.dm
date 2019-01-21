@@ -84,7 +84,7 @@
 	if(client.holder && (client.holder.rights & R_ADMIN))
 		is_admin = 1
 
-	if (!( abandon_allowed ) && !is_admin)
+	if (!respawn_allowed && check_rights(R_ADMIN))
 		to_chat(usr, "<span class='notice'>Respawn is disabled.</span>")
 		return
 	if ((stat != 2 || !( ticker )))

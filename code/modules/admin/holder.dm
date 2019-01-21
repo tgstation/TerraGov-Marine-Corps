@@ -47,46 +47,53 @@ var/list/admin_datums = list()
 		owner.holder = null
 		owner = null
 
-/*
-checks if usr is an admin with at least ONE of the flags in rights_required. (Note, they don't need all the flags)
-if rights_required == 0, then it simply checks if they are an admin.
 
-
-NOTE: it checks usr! not src! So if you're checking somebody's rank in a proc which they did not call
-you will have to do something like if(client.holder.rights & R_ADMIN) yourself.
-*/
 /proc/check_rights(rights_required, show_msg = TRUE)
 	if(!usr?.client)
 		return FALSE
 
 	if(rights_required)
-		if(usr.client.holder)
-			if(rights_required & usr.client.holder.rights)
-				return TRUE
-			else
-				if(show_msg)
-					to_chat(usr, "<span class='warning'>Error: You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</span>")
+		if(usr.client.holder && (usr.client.holder.rights & rights_required))
+			return TRUE
+		else if(show_msg)
+			to_chat(usr, "<span class='warning'>You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</span>")
 	else
 		if(usr.client.holder)
 			return TRUE
 		else if(show_msg)
-			to_chat(usr, "<font color='red'>Error: You are not a holder.</font>")
+			to_chat(usr, "<span class='warning'>You are not a holder.</span>")
 	return FALSE
 
-/proc/check_other_rights(rights_required, client/other, show_msg = TRUE)
 
+/proc/check_other_rights(client/other, rights_required, show_msg = TRUE)
+	if(!other)
+		return FALSE
+
+	if(rights_required && other.holder)
+		if(rights_required & other.holder.rights)
+			return TRUE
+		else if(show_msg)
+			to_chat(usr, "<span class='warning'>You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</span>")
+	else
+		if(other.holder)
+			return TRUE
+		else if(show_msg)
+			to_chat(usr, "<span class='warning'>You are not a holder.</span>")
+	return FALSE
 
 
 /proc/check_if_greater_rights_than(client/other)
-	if(usr && usr.client)
-		if(usr.client.holder)
-			if(!other || !other.holder)
-				return 1
-			if(usr.client.holder.rights != other.holder.rights)
-				if( (usr.client.holder.rights & other.holder.rights) == other.holder.rights )
-					return 1	//we have all the rights they have and more
-		to_chat(usr, "<font color='red'>Error: Cannot proceed. They have more or equal rights to us.</font>")
-	return 0
+	if(!usr?.client)
+		return FALSE
+
+	if(usr.client.holder)
+		if(!other?.holder)
+			return TRUE
+		if(usr.client.holder.rights != other.holder.rights && ((usr.client.holder.rights & other.holder.rights) == other.holder.rights))
+			return TRUE
+
+	to_chat(usr, "<span class='warning'>Cannot proceed. They have more or equal rights to us.</span>")
+	return FALSE
 
 
 /client/proc/deadmin()
@@ -98,40 +105,27 @@ you will have to do something like if(client.holder.rights & R_ADMIN) yourself.
 	return TRUE
 
 
-/client/proc/readmin()
+/client/proc/readmin() //Basically load_admins but only takes the client's ckey.
 	var/list/Lines = file2list("config/admins.txt")
 
-	//process each line seperately
 	for(var/line in Lines)
 		if(!length(line))
 			continue
 		if(copytext(line,1,2) == "#")
 			continue
-
-		//Split the line at every "-"
 		var/list/List = text2list(line, "-")
 		if(!List.len)
 			continue
-
-		//ckey is before the first "-"
 		var/target = ckey(List[1])
 		if(!target)
 			continue
 		if(target != ckey)
 			continue
-
-		//rank follows the first "-"
 		var/rank = ""
 		if(List.len >= 2)
 			rank = ckeyEx(List[2])
-
-		//load permissions associated with this rank
 		var/rights = admin_ranks[rank]
-
-		//create the admin datum and store it for later use
 		var/datum/admins/D = new /datum/admins(rank, rights, target)
-
-		//find the client for a ckey if they are connected and associate them with the new admin datum
 		D.associate(directory[target])
 
 
@@ -237,41 +231,39 @@ var/list/admin_verbs_mentor = list(
 
 
 /proc/message_admins(var/msg)
-	log_admin_private("ADMIN LOG:[msg]")
+	log_admin_private_asay(msg)
 	msg = "<span class='admin'><span class='prefix'>ADMIN LOG:</span> <span class='message'>[msg]</span></span>"
 	for(var/client/C in admins)
-		if(C.holder?.rights && (C.holder.rights & R_ADMIN))
+		if(check_other_rights(C, R_ADMIN))
 			to_chat(C, msg)
 
 
 /proc/message_staff(var/msg)
-	log_admin_private(msg)
-	msg = "<span class='admin'><span class=''prefix'>STAFF LOG:</span> <span class='message'>[msg]</span></span>"
+	log_admin_private_msay(msg)
+	msg = "<span class='admin prefix'><span class=''prefix'>STAFF LOG:</span> <span class='message'>[msg]</span></span>"
 	for(var/client/C in admins)
-		if(C.holder.rights)
+		if(C.holder)
 			to_chat(C, msg)
 
 
-/proc/msg_admin_attack(var/text)
-	log_attack(text)
-	var/rendered = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='message'>[text]</span></span>"
+/proc/msg_admin_attack(var/msg)
+	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='message'>[msg]</span></span>"
 	for(var/client/C in admins)
-		if(R_ADMIN & C.holder.rights)
-			if((C.prefs.toggles_chat & CHAT_ATTACKLOGS) && !((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
-				var/msg = rendered
-				to_chat(C, msg)
+		if(!check_other_rights(C, R_ADMIN))
+			continue
+		if((C.prefs.toggles_chat & CHAT_ATTACKLOGS) || ((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
+			to_chat(C, msg)
 
 
-/proc/msg_admin_ff(var/text)
-	log_attack(text) //Do everything normally BUT IN GREEN SO THEY KNOW
-	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ATTACK:</span> <font color=#00ff00><b>[text]</b></font></span>" //I used <font> because I never learned html correctly, fix this if you want
+/proc/msg_admin_ff(var/msg)
+	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='green'>[msg]</span></span>"
 	for(var/client/C in admins)
-		if(R_ADMIN & C.holder.rights)
-			if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) && !((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
-				var/msg = rendered
-				to_chat(C, msg)
+		if(!check_other_rights(C, R_ADMIN))
+			continue
+		if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) || ((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
+			to_chat(C, msg)
 
 
-/client/proc/findStealthKey() //TEMPORARY
-	if(holder)
-		return holder.owner.key
+/proc/find_stealth_key() //TEMPORARY
+	if(usr?.client?.holder)
+		return usr.client.holder.owner.key

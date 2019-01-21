@@ -6,10 +6,10 @@
 	if(!check_rights(R_ADMIN) || !is_mentor())
 		return
 
-	if(!usr?.mob)
+	if(!owner?.mob)
 		return
 
-	var/mob/M = usr.mob
+	var/mob/M = owner.mob
 
 	if(istype(M, /mob/new_player))
 		return
@@ -19,13 +19,14 @@
 		ghost.can_reenter_corpse = TRUE
 		ghost.reenter_corpse()
 	else
-		message_admins("[key_name(usr)] admin ghosted.")
-		log_admin("[key_name(usr)] admin ghosted.")
 		M.ghostize(TRUE)
 		if(M && !M.key)
 			M.key = "@[usr.key]"
 			if(M.client)
 				M.client.change_view(world.view)
+
+		message_admins("[key_name(usr)] admin ghosted.")
+		log_admin("[key_name(usr)] admin ghosted.")
 
 
 /datum/admins/proc/invisimin()
@@ -36,10 +37,10 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!usr?.mob)
+	if(!owner?.mob)
 		return
 
-	var/mob/M = usr.mob
+	var/mob/M = owner.mob
 
 	if(M.invisibility == INVISIBILITY_OBSERVER)
 		M.invisibility = initial(M.invisibility)
@@ -50,8 +51,8 @@
 		M.alpha = max(M.alpha - 100, 0)
 		M.remove_from_all_mob_huds()
 
-	log_admin("[key_name(usr)] has turned invisimin [(M.invisibility == INVISIBILITY_OBSERVER) ? "on" : "off"].")
-	message_admins("[key_name_admin(usr)] has turned invisimin [(M.invisibility == INVISIBILITY_OBSERVER) ? "on" : "off"].")
+	log_admin("[key_name(usr)] has [(M.invisibility == INVISIBILITY_OBSERVER) ? "enabled" : "disabled"] invisimin.")
+	message_admins("[key_name_admin(usr)] has [(M.invisibility == INVISIBILITY_OBSERVER) ? "enabled" : "disabled"] invisimin.")
 
 
 /datum/admins/proc/stealth_mode()
@@ -65,15 +66,15 @@
 	if(fakekey)
 		fakekey = null
 	else
-		var/new_key = ckeyEx(input("Enter your desired display name.",, key) as text|null)
+		var/new_key = ckeyEx(input("Enter your desired display name.",, owner.key) as text|null)
 		if(!new_key)
 			return
 		if(length(new_key) >= 26)
 			new_key = copytext(new_key, 1, 26)
-		holder.fakekey = new_key
+		fakekey = new_key
 
-	log_admin("[key_name(usr)] has turned stealth mode [holder.fakekey ? "on" : "off"].")
-	message_admins("[key_name_admin(usr)] has turned stealth mode [holder.fakekey ? "on" : "off"]")
+	log_admin("[key_name(usr)] has turned stealth mode [fakekey ? "on" : "off"].")
+	message_admins("[key_name_admin(usr)] has turned stealth mode [fakekey ? "on" : "off"]")
 
 
 /datum/admins/proc/deadmin_self()
@@ -81,15 +82,11 @@
 	set category = "Admin"
 	set desc = "Temporarily removes your admin powers."
 
-	if(!holder)
-		return
-
 	if(alert("Do you really want to de-admin temporarily?", , "Yes", "No") == "No")
 		return
 
-	verbs += /client/proc/readmin_self
-	deadmin()
-	to_chat(usr, "<span class='centerbold'>You can readmin at any time using the 'Re-admin Self' verb in your Admin panel.</span>")
+	verbs += /datum/admins/proc/readmin_self
+	deadmin_self()
 
 	log_admin("[key_name(usr)] deadmined themselves.")
 	message_admins("[key_name_admin(usr)] deadmined themselves.")
@@ -100,8 +97,8 @@
 	set category = "Admin"
 	set desc = "Gives you your powers back."
 
-	verbs -= /client/proc/readmin_self
-	readmin()
+	verbs -= /datum/admins/proc/readmin_self
+	readmin_self()
 
 	log_admin("[key_name(usr)] readmined themselves.")
 	message_admins("[key_name_admin(usr)] readmined themselves.")
@@ -302,8 +299,8 @@
 		else
 			return
 
-	var/mob/adminmob = src.mob
-	M.ckey = src.ckey
+	var/mob/adminmob = owner.mob
+	M.ckey = owner.ckey
 
 	if(M.client)
 		M.client.change_view(world.view)

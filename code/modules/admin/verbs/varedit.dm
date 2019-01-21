@@ -1,4 +1,4 @@
-/client/proc/cmd_mass_modify_object_variables(atom/A, var/var_name)
+/datum/admins/proc/cmd_mass_modify_object_variables(atom/A, var/var_name)
 	set category = "Debug"
 	set name = "Mass Edit Variables"
 	set desc="(target) Edit all instances of a target item's variables"
@@ -23,7 +23,7 @@
 	feedback_add_details("admin_verb","MEV") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 
-/client/proc/massmodify_variables(var/atom/O, var/var_name = "", var/method = 0)
+/datum/admins/proc/massmodify_variables(var/atom/O, var/var_name = "", var/method = 0)
 	if(!check_rights(R_VAREDIT))	return
 
 	var/list/locked = list("vars", "key", "ckey", "client")
@@ -380,12 +380,12 @@ var/list/forbidden_varedit_object_types = list(
 									)
 
 
-/client/proc/mod_list_add_ass() //haha
+/datum/admins/proc/mod_list_add_ass() //haha
 
 	var/class = "text"
-	if(src.holder && src.holder.marked_datum)
+	if(marked_datum)
 		class = input("What kind of variable?","Variable Type") as null|anything in list("text",
-			"num","type","reference","mob reference", "icon","file","list","edit referenced object","restore to default","marked datum ([holder.marked_datum.type])")
+			"num","type","reference","mob reference", "icon","file","list","edit referenced object","restore to default","marked datum ([marked_datum.type])")
 	else
 		class = input("What kind of variable?","Variable Type") as null|anything in list("text",
 			"num","type","reference","mob reference", "icon","file","list","edit referenced object","restore to default")
@@ -393,7 +393,7 @@ var/list/forbidden_varedit_object_types = list(
 	if(!class)
 		return
 
-	if(holder.marked_datum && class == "marked datum ([holder.marked_datum.type])")
+	if(marked_datum && class == "marked datum ([marked_datum.type])")
 		class = "marked datum"
 
 	var/var_value = null
@@ -422,19 +422,19 @@ var/list/forbidden_varedit_object_types = list(
 			var_value = input("Pick icon:","Icon") as null|icon
 
 		if("marked datum")
-			var_value = holder.marked_datum
+			var_value = marked_datum
 
 	if(!var_value) return
 
 	return var_value
 
 
-/client/proc/mod_list_add(var/list/L)
+/datum/admins/proc/mod_list_add(var/list/L)
 
 	var/class = "text"
-	if(src.holder && src.holder.marked_datum)
+	if(marked_datum)
 		class = input("What kind of variable?","Variable Type") as null|anything in list("text",
-			"num","type","reference","mob reference", "icon","file","list","edit referenced object","restore to default","marked datum ([holder.marked_datum.type])")
+			"num","type","reference","mob reference", "icon","file","list","edit referenced object","restore to default","marked datum ([marked_datum.type])")
 	else
 		class = input("What kind of variable?","Variable Type") as null|anything in list("text",
 			"num","type","reference","mob reference", "icon","file","list","edit referenced object","restore to default")
@@ -442,7 +442,7 @@ var/list/forbidden_varedit_object_types = list(
 	if(!class)
 		return
 
-	if(holder.marked_datum && class == "marked datum ([holder.marked_datum.type])")
+	if(marked_datum && class == "marked datum ([marked_datum.type])")
 		class = "marked datum"
 
 	var/var_value = null
@@ -471,7 +471,7 @@ var/list/forbidden_varedit_object_types = list(
 			var_value = input("Pick icon:","Icon") as icon
 
 		if("marked datum")
-			var_value = holder.marked_datum
+			var_value = marked_datum
 
 	if(!var_value) return
 
@@ -482,7 +482,7 @@ var/list/forbidden_varedit_object_types = list(
 		if("No")
 			L += var_value
 
-/client/proc/mod_list(var/list/L)
+/datum/admins/proc/mod_list(var/list/L)
 	if(!check_rights(R_VAREDIT))	return
 
 	if(!istype(L,/list)) to_chat(src, "Not a List.")
@@ -570,8 +570,8 @@ var/list/forbidden_varedit_object_types = list(
 
 	var/class = "text"
 	var/list/choices = list("text","num","type","reference","mob reference", "icon","file","list","edit referenced object","restore to default")
-	if(src.holder && src.holder.marked_datum)
-		choices += "marked datum ([holder.marked_datum.type])"
+	if(marked_datum)
+		choices += "marked datum ([marked_datum.type])"
 	if(!isnull(default) && default != "num")
 		choices += "edit associated variable"
 	choices += "DELETE FROM LIST"
@@ -581,7 +581,7 @@ var/list/forbidden_varedit_object_types = list(
 	if(!class)
 		return
 
-	if(holder.marked_datum && class == "marked datum ([holder.marked_datum.type])")
+	if(marked_datum && class == "marked datum ([marked_datum.type])")
 		class = "marked datum"
 
 	switch(class) //Spits a runtime error if you try to modify an entry in the contents list. Dunno how to fix it, yet.
@@ -621,7 +621,7 @@ var/list/forbidden_varedit_object_types = list(
 			L[L.Find(variable)] = input("Pick icon:","Icon") as icon
 
 		if("marked datum")
-			L[L.Find(variable)] = holder.marked_datum
+			L[L.Find(variable)] = marked_datum
 
 		if("edit associated variable")
 			var/temp_var = mod_list_add_ass()
@@ -629,7 +629,7 @@ var/list/forbidden_varedit_object_types = list(
 				L[variable] = temp_var
 
 
-/client/proc/modify_variables(var/atom/O, var/param_var_name = null, var/autodetect_class = 0)
+/datum/admins/proc/modify_variables(var/atom/O, var/param_var_name = null, var/autodetect_class = 0)
 	if(!check_rights(R_VAREDIT))	return
 
 	var/list/locked = list("vars", "key", "ckey", "client", "firemut", "ishulk", "telekinesis", "xray", "virus", "cuffed", "ka", "last_eaten", "icon", "icon_state", "mutantrace")
@@ -663,7 +663,6 @@ var/list/forbidden_varedit_object_types = list(
 			else if(isnum(var_value))
 				to_chat(usr, "Variable appears to be <b>NUM</b>.")
 				class = "num"
-				dir = 1
 
 			else if(istext(var_value))
 				to_chat(usr, "Variable appears to be <b>TEXT</b>.")
@@ -774,9 +773,9 @@ var/list/forbidden_varedit_object_types = list(
 			if(dir)
 				to_chat(usr, "If a direction, direction is: [dir]")
 
-		if(src.holder && src.holder.marked_datum)
+		if(marked_datum)
 			class = input("What kind of variable?","Variable Type",default) as null|anything in list("text",
-				"num","type","reference","mob reference", "icon","file","list","edit referenced object","restore to default","marked datum ([holder.marked_datum.type])")
+				"num","type","reference","mob reference", "icon","file","list","edit referenced object","restore to default","marked datum ([marked_datum.type])")
 		else
 			class = input("What kind of variable?","Variable Type",default) as null|anything in list("text",
 				"num","type","reference","mob reference", "icon","file","list","edit referenced object","restore to default")
@@ -791,7 +790,7 @@ var/list/forbidden_varedit_object_types = list(
 	else
 		original_name = O:name
 
-	if(holder.marked_datum && class == "marked datum ([holder.marked_datum.type])")
+	if(marked_datum && class == "marked datum ([marked_datum.type])")
 		class = "marked datum"
 
 	switch(class)
@@ -857,16 +856,16 @@ var/list/forbidden_varedit_object_types = list(
 			O.vars[variable] = var_new
 
 		if("marked datum")
-			O.vars[variable] = holder.marked_datum
+			O.vars[variable] = marked_datum
 
 	log_world("### VarEdit by [key_name(src)]: [O.type] '[variable]': [var_value] => [html_encode("[O.vars[variable]]")]")
 	log_admin("[key_name(src)] modified [original_name]'s '[variable]': [html_encode("[var_value]")] => [O.vars[variable]]")
 	message_admins("[key_name_admin(src)] modified [original_name]'s '[variable]': [var_value] => [O.vars[variable]]", 1)
 
 
-/client/proc/view_var_Topic(href, href_list, hsrc)
+/datum/admins/proc/view_var_Topic(href, href_list, hsrc)
 	//This should all be moved over to datum/admins/Topic() or something ~Carn
-	if( (usr.client != src) || !src.holder )
+	if( (usr.client != src))
 		return
 	if(href_list["Vars"])
 		debug_variables(locate(href_list["Vars"]))
@@ -925,7 +924,6 @@ var/list/forbidden_varedit_object_types = list(
 			to_chat(usr, "This can only be used on instances of type /mob")
 			return
 
-		src.holder.show_player_panel(M)
 		href_list["datumrefresh"] = href_list["mob_player_panel"]
 
 	else if(href_list["give_spell"])
@@ -936,7 +934,6 @@ var/list/forbidden_varedit_object_types = list(
 			to_chat(usr, "This can only be used on instances of type /mob")
 			return
 
-		src.give_spell(M)
 		href_list["datumrefresh"] = href_list["give_spell"]
 
 	else if(href_list["give_disease"])
@@ -947,7 +944,6 @@ var/list/forbidden_varedit_object_types = list(
 			to_chat(usr, "This can only be used on instances of type /mob")
 			return
 
-		src.give_disease(M)
 		href_list["datumrefresh"] = href_list["give_spell"]
 
 	else if(href_list["godmode"])
@@ -958,7 +954,6 @@ var/list/forbidden_varedit_object_types = list(
 			to_chat(usr, "This can only be used on instances of type /mob")
 			return
 
-		src.cmd_admin_godmode(M)
 		href_list["datumrefresh"] = href_list["godmode"]
 
 	else if(href_list["gib"])
@@ -969,7 +964,7 @@ var/list/forbidden_varedit_object_types = list(
 			to_chat(usr, "This can only be used on instances of type /mob")
 			return
 
-		src.cmd_admin_gib(M)
+		gib(M)
 
 	else if(href_list["drop_everything"])
 		if(!check_rights(R_DEBUG|R_ADMIN))	return
@@ -980,7 +975,7 @@ var/list/forbidden_varedit_object_types = list(
 			return
 
 		if(usr.client)
-			usr.client.cmd_admin_drop_everything(M)
+			drop_everything(M)
 
 	else if(href_list["direct_control"])
 		if(!check_rights(0))	return
@@ -991,7 +986,7 @@ var/list/forbidden_varedit_object_types = list(
 			return
 
 		if(usr.client)
-			usr.client.direct_control(M)
+			direct_control(M)
 
 	else if(href_list["make_skeleton"])
 		if(!check_rights(R_FUN))	return
@@ -1055,7 +1050,6 @@ var/list/forbidden_varedit_object_types = list(
 			to_chat(usr, "This can only be done to instances of type /obj, /mob and /turf")
 			return
 
-		src.cmd_admin_explosion(A)
 		href_list["datumrefresh"] = href_list["explode"]
 
 	else if(href_list["emp"])
@@ -1066,7 +1060,6 @@ var/list/forbidden_varedit_object_types = list(
 			to_chat(usr, "This can only be done to instances of type /obj, /mob and /turf")
 			return
 
-		src.cmd_admin_emp(A)
 		href_list["datumrefresh"] = href_list["emp"]
 
 	else if(href_list["mark_object"])
@@ -1077,7 +1070,7 @@ var/list/forbidden_varedit_object_types = list(
 			to_chat(usr, "This can only be done to instances of type /datum")
 			return
 
-		src.holder.marked_datum = D
+		marked_datum = D
 		href_list["datumrefresh"] = href_list["mark_object"]
 
 	else if(href_list["rotatedatum"])
@@ -1105,7 +1098,7 @@ var/list/forbidden_varedit_object_types = list(
 		if(!H)
 			to_chat(usr, "Mob doesn't exist anymore")
 			return
-		holder.Topic(href, list("monkeyone"=href_list["makemonkey"]))
+		Topic(href, list("monkeyone"=href_list["makemonkey"]))
 
 	else if(href_list["makerobot"])
 		if(!check_rights(R_SPAWN))	return
@@ -1119,7 +1112,7 @@ var/list/forbidden_varedit_object_types = list(
 		if(!H)
 			to_chat(usr, "Mob doesn't exist anymore")
 			return
-		holder.Topic(href, list("makerobot"=href_list["makerobot"]))
+		Topic(href, list("makerobot"=href_list["makerobot"]))
 
 	else if(href_list["makealien"])
 		if(!check_rights(R_SPAWN))	return
@@ -1133,7 +1126,7 @@ var/list/forbidden_varedit_object_types = list(
 		if(!H)
 			to_chat(usr, "Mob doesn't exist anymore")
 			return
-		holder.Topic(href, list("makealien"=href_list["makealien"]))
+		Topic(href, list("makealien"=href_list["makealien"]))
 
 	else if(href_list["makeai"])
 		if(!check_rights(R_SPAWN))	return
@@ -1147,7 +1140,7 @@ var/list/forbidden_varedit_object_types = list(
 		if(!H)
 			to_chat(usr, "Mob doesn't exist anymore")
 			return
-		holder.Topic(href, list("makeai"=href_list["makeai"]))
+		Topic(href, list("makeai"=href_list["makeai"]))
 
 	else if(href_list["setmutantrace"])
 		if(!check_rights(R_SPAWN))	return
@@ -1565,405 +1558,405 @@ var/list/forbidden_varedit_object_types = list(
 
 // reference: /client/proc/modify_variables(var/atom/O, var/param_var_name = null, var/autodetect_class = 0)
 
-/datum/proc/vv_edit_var(var_name, var_value) //called whenever a var is edited
+/datum/admins/proc/vv_edit_var(var_name, var_value) //called whenever a var is edited
 	if(var_name == NAMEOF(src, vars))
 		return FALSE
 	vars[var_name] = var_value
 	datum_flags |= DF_VAR_EDITED
 	return TRUE
 
-client
-	proc/debug_variables(datum/D in world)
-		set category = "Debug"
-		set name = "View Variables"
 
-		if(!usr.client || !usr.client.holder || !(usr.client.holder.rights & R_ADMIN))
-			to_chat(usr, "<span class='warning'>You need to be a moderator or higher to access this.</span>")
-			return
+/datum/admins/proc/debug_variables(datum/D in world)
+	set category = "Debug"
+	set name = "View Variables"
 
-		if(!D)	return
-
-		var/title = ""
-		var/body = ""
-
-		//Sort of a temporary solution for right now.
-		if(!check_rights(R_EVERYTHING)) //Prevents non-hosts from changing their own permissions.
-			to_chat(usr, "<span class='warning'>You need host permission to access this.</span>")
-			return
-
-		if((istype(D,/datum/ammo) || istype(D,/mob/living/carbon/Xenomorph/Predalien)) && !(usr.client.holder.rights & R_DEBUG))
-			to_chat(usr, "<span class='warning'>You need debugging permission to access this.</span>")
-			return
-
-		if(istype(D, /atom))
-			var/atom/A = D
-			title = "[A.name] (\ref[A]) = [A.type]"
-
-			#ifdef VARSICON
-			if (A.icon)
-				body += debug_variable("icon", new/icon(A.icon, A.icon_state, A.dir), 0)
-			#endif
-
-		var/icon/sprite
-
-		if(istype(D,/atom))
-			var/atom/AT = D
-			if(AT.icon && AT.icon_state)
-				sprite = new /icon(AT.icon, AT.icon_state)
-				usr << browse_rsc(sprite, "view_vars_sprite.png")
-
-		title = "[D] (\ref[D]) = [D.type]"
-
-		body += {"<script type="text/javascript">
-
-					function updateSearch(){
-						var filter_text = document.getElementById('filter');
-						var filter = filter_text.value.toLowerCase();
-
-						if(event.keyCode == 13){	//Enter / return
-							var vars_ol = document.getElementById('vars');
-							var lis = vars_ol.getElementsByTagName("li");
-							for ( var i = 0; i < lis.length; ++i )
-							{
-								try{
-									var li = lis\[i\];
-									if ( li.style.backgroundColor == "#ffee88" )
-									{
-										alist = lis\[i\].getElementsByTagName("a")
-										if(alist.length > 0){
-											location.href=alist\[0\].href;
-										}
-									}
-								}catch(err) {   }
-							}
-							return
-						}
-
-						if(event.keyCode == 38){	//Up arrow
-							var vars_ol = document.getElementById('vars');
-							var lis = vars_ol.getElementsByTagName("li");
-							for ( var i = 0; i < lis.length; ++i )
-							{
-								try{
-									var li = lis\[i\];
-									if ( li.style.backgroundColor == "#ffee88" )
-									{
-										if( (i-1) >= 0){
-											var li_new = lis\[i-1\];
-											li.style.backgroundColor = "white";
-											li_new.style.backgroundColor = "#ffee88";
-											return
-										}
-									}
-								}catch(err) {  }
-							}
-							return
-						}
-
-						if(event.keyCode == 40){	//Down arrow
-							var vars_ol = document.getElementById('vars');
-							var lis = vars_ol.getElementsByTagName("li");
-							for ( var i = 0; i < lis.length; ++i )
-							{
-								try{
-									var li = lis\[i\];
-									if ( li.style.backgroundColor == "#ffee88" )
-									{
-										if( (i+1) < lis.length){
-											var li_new = lis\[i+1\];
-											li.style.backgroundColor = "white";
-											li_new.style.backgroundColor = "#ffee88";
-											return
-										}
-									}
-								}catch(err) {  }
-							}
-							return
-						}
-
-						//This part here resets everything to how it was at the start so the filter is applied to the complete list. Screw efficiency, it's client-side anyway and it only looks through 200 or so variables at maximum anyway (mobs).
-						if(complete_list != null && complete_list != ""){
-							var vars_ol1 = document.getElementById("vars");
-							vars_ol1.innerHTML = complete_list
-						}
-
-						if(filter.value == ""){
-							return;
-						}else{
-							var vars_ol = document.getElementById('vars');
-							var lis = vars_ol.getElementsByTagName("li");
-
-							for ( var i = 0; i < lis.length; ++i )
-							{
-								try{
-									var li = lis\[i\];
-									if ( li.innerText.toLowerCase().indexOf(filter) == -1 )
-									{
-										vars_ol.removeChild(li);
-										i--;
-									}
-								}catch(err) {   }
-							}
-						}
-						var lis_new = vars_ol.getElementsByTagName("li");
-						for ( var j = 0; j < lis_new.length; ++j )
-						{
-							var li1 = lis\[j\];
-							if (j == 0){
-								li1.style.backgroundColor = "#ffee88";
-							}else{
-								li1.style.backgroundColor = "white";
-							}
-						}
-					}
-
-
-
-					function selectTextField(){
-						var filter_text = document.getElementById('filter');
-						filter_text.focus();
-						filter_text.select();
-
-					}
-
-					function loadPage(list) {
-
-						if(list.options\[list.selectedIndex\].value == ""){
-							return;
-						}
-
-						location.href=list.options\[list.selectedIndex\].value;
-
-					}
-				</script> "}
-
-		body += "<body onload='selectTextField(); updateSearch()' onkeyup='updateSearch()'>"
-
-		body += "<div align='center'><table width='100%'><tr><td width='50%'>"
-
-		if(sprite)
-			body += "<table align='center' width='100%'><tr><td><img src='view_vars_sprite.png'></td><td>"
-		else
-			body += "<table align='center' width='100%'><tr><td>"
-
-		body += "<div align='center'>"
-
-		if(istype(D,/atom))
-			var/atom/A = D
-			if(isliving(A))
-				body += "<a href='?_src_=vars;rename=\ref[D]'><b>[D]</b></a>"
-				if(A.dir)
-					body += "<br><font size='1'><a href='?_src_=vars;rotatedatum=\ref[D];rotatedir=left'><<</a> <a href='?_src_=vars;datumedit=\ref[D];varnameedit=dir'>[dir2text(A.dir)]</a> <a href='?_src_=vars;rotatedatum=\ref[D];rotatedir=right'>>></a></font>"
-				var/mob/living/M = A
-				body += "<br><font size='1'><a href='?_src_=vars;datumedit=\ref[D];varnameedit=ckey'>[M.ckey ? M.ckey : "No ckey"]</a> / <a href='?_src_=vars;datumedit=\ref[D];varnameedit=real_name'>[M.real_name ? M.real_name : "No real name"]</a></font>"
-				body += {"
-				<br><font size='1'>
-				BRUTE:<font size='1'><a href='?_src_=vars;mobToDamage=\ref[D];adjustDamage=brute'>[M.getBruteLoss()]</a>
-				FIRE:<font size='1'><a href='?_src_=vars;mobToDamage=\ref[D];adjustDamage=fire'>[M.getFireLoss()]</a>
-				TOXIN:<font size='1'><a href='?_src_=vars;mobToDamage=\ref[D];adjustDamage=toxin'>[M.getToxLoss()]</a>
-				OXY:<font size='1'><a href='?_src_=vars;mobToDamage=\ref[D];adjustDamage=oxygen'>[M.getOxyLoss()]</a>
-				CLONE:<font size='1'><a href='?_src_=vars;mobToDamage=\ref[D];adjustDamage=clone'>[M.getCloneLoss()]</a>
-				BRAIN:<font size='1'><a href='?_src_=vars;mobToDamage=\ref[D];adjustDamage=brain'>[M.getBrainLoss()]</a>
-				</font>
-
-
-				"}
-			else
-				body += "<a href='?_src_=vars;datumedit=\ref[D];varnameedit=name'><b>[D]</b></a>"
-				if(A.dir)
-					body += "<br><font size='1'><a href='?_src_=vars;rotatedatum=\ref[D];rotatedir=left'><<</a> <a href='?_src_=vars;datumedit=\ref[D];varnameedit=dir'>[dir2text(A.dir)]</a> <a href='?_src_=vars;rotatedatum=\ref[D];rotatedir=right'>>></a></font>"
-		else
-			body += "<b>[D]</b>"
-
-		body += "</div>"
-
-		body += "</tr></td></table>"
-
-		var/formatted_type = text("[D.type]")
-		if(length(formatted_type) > 25)
-			var/middle_point = length(formatted_type) / 2
-			var/splitpoint = findtext(formatted_type,"/",middle_point)
-			if(splitpoint)
-				formatted_type = "[copytext(formatted_type,1,splitpoint)]<br>[copytext(formatted_type,splitpoint)]"
-			else
-				formatted_type = "Type too long" //No suitable splitpoint (/) found.
-
-		body += "<div align='center'><b><font size='1'>[formatted_type]</font></b>"
-
-		if(src.holder && src.holder.marked_datum && src.holder.marked_datum == D)
-			body += "<br><font size='1' color='red'><b>Marked Object</b></font>"
-
-		body += "</div>"
-
-		body += "</div></td>"
-
-		body += "<td width='50%'><div align='center'><a href='?_src_=vars;datumrefresh=\ref[D]'>Refresh</a>"
-
-		//if(ismob(D))
-		//	body += "<br><a href='?_src_=vars;mob_player_panel=\ref[D]'>Show player panel</a></div></td></tr></table></div><hr>"
-
-		body += {"	<form>
-					<select name="file" size="1"
-					onchange="loadPage(this.form.elements\[0\])"
-					target="_parent._top"
-					onmouseclick="this.focus()"
-					style="background-color:#ffffff">
-				"}
-
-		body += {"	<option value>Select option</option>
-  					<option value> </option>
-				"}
-
-
-		body += "<option value='?_src_=vars;mark_object=\ref[D]'>Mark Object</option>"
-		if(ismob(D))
-			body += "<option value='?_src_=vars;mob_player_panel=\ref[D]'>Show player panel</option>"
-
-		body += "<option value>---</option>"
-
-		if(ismob(D))
-			body += "<option value='?_src_=vars;give_spell=\ref[D]'>Give Spell</option>"
-			body += "<option value='?_src_=vars;give_disease=\ref[D]'>Give TG-style Disease</option>"
-			body += "<option value='?_src_=vars;godmode=\ref[D]'>Toggle Godmode</option>"
-			body += "<option value='?_src_=vars;build_mode=\ref[D]'>Toggle Build Mode</option>"
-
-			body += "<option value='?_src_=vars;ninja=\ref[D]'>Make Space Ninja</option>"
-			body += "<option value='?_src_=vars;make_skeleton=\ref[D]'>Make 2spooky</option>"
-
-			body += "<option value='?_src_=vars;direct_control=\ref[D]'>Assume Direct Control</option>"
-			body += "<option value='?_src_=vars;drop_everything=\ref[D]'>Drop Everything</option>"
-
-			body += "<option value='?_src_=vars;regenerateicons=\ref[D]'>Regenerate Icons</option>"
-			body += "<option value='?_src_=vars;addlanguage=\ref[D]'>Add Language</option>"
-			body += "<option value='?_src_=vars;remlanguage=\ref[D]'>Remove Language</option>"
-			body += "<option value='?_src_=vars;addorgan=\ref[D]'>Add Organ</option>"
-			body += "<option value='?_src_=vars;remorgan=\ref[D]'>Remove Organ</option>"
-			body += "<option value='?_src_=vars;addlimb=\ref[D]'>Add Limb</option>"
-			body += "<option value='?_src_=vars;remlimb=\ref[D]'>Remove Limb</option>"
-
-			body += "<option value='?_src_=vars;fix_nano=\ref[D]'>Fix NanoUI</option>"
-
-			body += "<option value='?_src_=vars;addverb=\ref[D]'>Add Verb</option>"
-			body += "<option value='?_src_=vars;remverb=\ref[D]'>Remove Verb</option>"
-			if(ishuman(D))
-				body += "<option value>---</option>"
-				body += "<option value='?_src_=vars;edit_skill=\ref[D]'>Edit Skills</option>"
-				body += "<option value='?_src_=vars;setmutantrace=\ref[D]'>Set Mutantrace</option>"
-				body += "<option value='?_src_=vars;setspecies=\ref[D]'>Set Species</option>"
-				body += "<option value='?_src_=vars;makeai=\ref[D]'>Make AI</option>"
-				body += "<option value='?_src_=vars;makerobot=\ref[D]'>Make cyborg</option>"
-				body += "<option value='?_src_=vars;makemonkey=\ref[D]'>Make monkey</option>"
-				body += "<option value='?_src_=vars;makealien=\ref[D]'>Make alien</option>"
-			body += "<option value>---</option>"
-			body += "<option value='?_src_=vars;gib=\ref[D]'>Gib</option>"
-		if(isobj(D))
-			body += "<option value='?_src_=vars;delall=\ref[D]'>Delete all of type</option>"
-		if(isobj(D) || ismob(D) || isturf(D))
-			body += "<option value='?_src_=vars;explode=\ref[D]'>Trigger explosion</option>"
-			body += "<option value='?_src_=vars;emp=\ref[D]'>Trigger EM pulse</option>"
-
-		body += "</select></form>"
-
-		body += "</div></td></tr></table></div><hr>"
-
-		body += "<font size='1'><b>E</b> - Edit, tries to determine the variable type by itself.<br>"
-		body += "<b>C</b> - Change, asks you for the var type first.<br>"
-		body += "<b>M</b> - Mass modify: changes this variable for all objects of this type.</font><br>"
-
-		body += "<hr><table width='100%'><tr><td width='20%'><div align='center'><b>Search:</b></div></td><td width='80%'><input type='text' id='filter' name='filter_text' value='' style='width:100%;'></td></tr></table><hr>"
-
-		body += "<ol id='vars'>"
-
-		var/list/names = list()
-		for (var/V in D.vars)
-			names += V
-
-		names = sortList(names)
-
-		for (var/V in names)
-			body += debug_variable(V, D.vars[V], 0, D)
-
-		body += "</ol>"
-
-		var/html = "<html><head>"
-		if (title)
-			html += "<title>[title]</title>"
-		html += {"<style>
-	body
-	{
-		font-family: Verdana, sans-serif;
-		font-size: 9pt;
-	}
-	.value
-	{
-		font-family: "Courier New", monospace;
-		font-size: 8pt;
-	}
-	</style>"}
-		html += "</head><body>"
-		html += body
-
-		html += {"
-			<script type='text/javascript'>
-				var vars_ol = document.getElementById("vars");
-				var complete_list = vars_ol.innerHTML;
-			</script>
-		"}
-
-		html += "</body></html>"
-
-		usr << browse(html, "window=variables\ref[D];size=475x650")
-
+	if(!usr.client || !usr.client.holder || !(usr.client.holder.rights & R_ADMIN))
+		to_chat(usr, "<span class='warning'>You need to be a moderator or higher to access this.</span>")
 		return
 
-	proc/debug_variable(name, value, level, var/datum/DA = null)
-		var/html = ""
+	if(!D)	return
 
-		if(DA)
-			html += "<li style='backgroundColor:white'>(<a href='?_src_=vars;datumedit=\ref[DA];varnameedit=[name]'>E</a>) (<a href='?_src_=vars;datumchange=\ref[DA];varnamechange=[name]'>C</a>) (<a href='?_src_=vars;datummass=\ref[DA];varnamemass=[name]'>M</a>) "
+	var/title = ""
+	var/body = ""
+
+	//Sort of a temporary solution for right now.
+	if(!check_rights(R_EVERYTHING)) //Prevents non-hosts from changing their own permissions.
+		to_chat(usr, "<span class='warning'>You need host permission to access this.</span>")
+		return
+
+	if((istype(D,/datum/ammo) || istype(D,/mob/living/carbon/Xenomorph/Predalien)) && !(usr.client.holder.rights & R_DEBUG))
+		to_chat(usr, "<span class='warning'>You need debugging permission to access this.</span>")
+		return
+
+	if(istype(D, /atom))
+		var/atom/A = D
+		title = "[A.name] (\ref[A]) = [A.type]"
+
+		#ifdef VARSICON
+		if (A.icon)
+			body += debug_variable("icon", new/icon(A.icon, A.icon_state, A.dir), 0)
+		#endif
+
+	var/icon/sprite
+
+	if(istype(D,/atom))
+		var/atom/AT = D
+		if(AT.icon && AT.icon_state)
+			sprite = new /icon(AT.icon, AT.icon_state)
+			usr << browse_rsc(sprite, "view_vars_sprite.png")
+
+	title = "[D] (\ref[D]) = [D.type]"
+
+	body += {"<script type="text/javascript">
+
+				function updateSearch(){
+					var filter_text = document.getElementById('filter');
+					var filter = filter_text.value.toLowerCase();
+
+					if(event.keyCode == 13){	//Enter / return
+						var vars_ol = document.getElementById('vars');
+						var lis = vars_ol.getElementsByTagName("li");
+						for ( var i = 0; i < lis.length; ++i )
+						{
+							try{
+								var li = lis\[i\];
+								if ( li.style.backgroundColor == "#ffee88" )
+								{
+									alist = lis\[i\].getElementsByTagName("a")
+									if(alist.length > 0){
+										location.href=alist\[0\].href;
+									}
+								}
+							}catch(err) {   }
+						}
+						return
+					}
+
+					if(event.keyCode == 38){	//Up arrow
+						var vars_ol = document.getElementById('vars');
+						var lis = vars_ol.getElementsByTagName("li");
+						for ( var i = 0; i < lis.length; ++i )
+						{
+							try{
+								var li = lis\[i\];
+								if ( li.style.backgroundColor == "#ffee88" )
+								{
+									if( (i-1) >= 0){
+										var li_new = lis\[i-1\];
+										li.style.backgroundColor = "white";
+										li_new.style.backgroundColor = "#ffee88";
+										return
+									}
+								}
+							}catch(err) {  }
+						}
+						return
+					}
+
+					if(event.keyCode == 40){	//Down arrow
+						var vars_ol = document.getElementById('vars');
+						var lis = vars_ol.getElementsByTagName("li");
+						for ( var i = 0; i < lis.length; ++i )
+						{
+							try{
+								var li = lis\[i\];
+								if ( li.style.backgroundColor == "#ffee88" )
+								{
+									if( (i+1) < lis.length){
+										var li_new = lis\[i+1\];
+										li.style.backgroundColor = "white";
+										li_new.style.backgroundColor = "#ffee88";
+										return
+									}
+								}
+							}catch(err) {  }
+						}
+						return
+					}
+
+					//This part here resets everything to how it was at the start so the filter is applied to the complete list. Screw efficiency, it's client-side anyway and it only looks through 200 or so variables at maximum anyway (mobs).
+					if(complete_list != null && complete_list != ""){
+						var vars_ol1 = document.getElementById("vars");
+						vars_ol1.innerHTML = complete_list
+					}
+
+					if(filter.value == ""){
+						return;
+					}else{
+						var vars_ol = document.getElementById('vars');
+						var lis = vars_ol.getElementsByTagName("li");
+
+						for ( var i = 0; i < lis.length; ++i )
+						{
+							try{
+								var li = lis\[i\];
+								if ( li.innerText.toLowerCase().indexOf(filter) == -1 )
+								{
+									vars_ol.removeChild(li);
+									i--;
+								}
+							}catch(err) {   }
+						}
+					}
+					var lis_new = vars_ol.getElementsByTagName("li");
+					for ( var j = 0; j < lis_new.length; ++j )
+					{
+						var li1 = lis\[j\];
+						if (j == 0){
+							li1.style.backgroundColor = "#ffee88";
+						}else{
+							li1.style.backgroundColor = "white";
+						}
+					}
+				}
+
+
+
+				function selectTextField(){
+					var filter_text = document.getElementById('filter');
+					filter_text.focus();
+					filter_text.select();
+
+				}
+
+				function loadPage(list) {
+
+					if(list.options\[list.selectedIndex\].value == ""){
+						return;
+					}
+
+					location.href=list.options\[list.selectedIndex\].value;
+
+				}
+			</script> "}
+
+	body += "<body onload='selectTextField(); updateSearch()' onkeyup='updateSearch()'>"
+
+	body += "<div align='center'><table width='100%'><tr><td width='50%'>"
+
+	if(sprite)
+		body += "<table align='center' width='100%'><tr><td><img src='view_vars_sprite.png'></td><td>"
+	else
+		body += "<table align='center' width='100%'><tr><td>"
+
+	body += "<div align='center'>"
+
+	if(istype(D,/atom))
+		var/atom/A = D
+		if(isliving(A))
+			body += "<a href='?_src_=vars;rename=\ref[D]'><b>[D]</b></a>"
+			if(A.dir)
+				body += "<br><font size='1'><a href='?_src_=vars;rotatedatum=\ref[D];rotatedir=left'><<</a> <a href='?_src_=vars;datumedit=\ref[D];varnameedit=dir'>[dir2text(A.dir)]</a> <a href='?_src_=vars;rotatedatum=\ref[D];rotatedir=right'>>></a></font>"
+			var/mob/living/M = A
+			body += "<br><font size='1'><a href='?_src_=vars;datumedit=\ref[D];varnameedit=ckey'>[M.ckey ? M.ckey : "No ckey"]</a> / <a href='?_src_=vars;datumedit=\ref[D];varnameedit=real_name'>[M.real_name ? M.real_name : "No real name"]</a></font>"
+			body += {"
+			<br><font size='1'>
+			BRUTE:<font size='1'><a href='?_src_=vars;mobToDamage=\ref[D];adjustDamage=brute'>[M.getBruteLoss()]</a>
+			FIRE:<font size='1'><a href='?_src_=vars;mobToDamage=\ref[D];adjustDamage=fire'>[M.getFireLoss()]</a>
+			TOXIN:<font size='1'><a href='?_src_=vars;mobToDamage=\ref[D];adjustDamage=toxin'>[M.getToxLoss()]</a>
+			OXY:<font size='1'><a href='?_src_=vars;mobToDamage=\ref[D];adjustDamage=oxygen'>[M.getOxyLoss()]</a>
+			CLONE:<font size='1'><a href='?_src_=vars;mobToDamage=\ref[D];adjustDamage=clone'>[M.getCloneLoss()]</a>
+			BRAIN:<font size='1'><a href='?_src_=vars;mobToDamage=\ref[D];adjustDamage=brain'>[M.getBrainLoss()]</a>
+			</font>
+
+
+			"}
 		else
-			html += "<li>"
+			body += "<a href='?_src_=vars;datumedit=\ref[D];varnameedit=name'><b>[D]</b></a>"
+			if(A.dir)
+				body += "<br><font size='1'><a href='?_src_=vars;rotatedatum=\ref[D];rotatedir=left'><<</a> <a href='?_src_=vars;datumedit=\ref[D];varnameedit=dir'>[dir2text(A.dir)]</a> <a href='?_src_=vars;rotatedatum=\ref[D];rotatedir=right'>>></a></font>"
+	else
+		body += "<b>[D]</b>"
 
-		if (isnull(value))
-			html += "[name] = <span class='value'>null</span>"
+	body += "</div>"
 
-		else if (istext(value))
-			html += "[name] = <span class='value'>\"[value]\"</span>"
+	body += "</tr></td></table>"
 
-		else if (isfile(value))
-			html += "[name] = <span class='value'>'[value]'</span>"
-
-		else if (istype(value, /datum))
-			var/datum/D = value
-			html += "<a href='?_src_=vars;Vars=\ref[value]'>[name] \ref[value]</a> = [D.type]"
-
-		else if (istype(value, /client))
-			var/client/C = value
-			html += "<a href='?_src_=vars;Vars=\ref[value]'>[name] \ref[value]</a> = [C] [C.type]"
-		else if (istype(value, /list))
-			var/list/L = value
-			html += "[name] = /list ([L.len])"
-
-			if (L.len > 0 && !(name == "underlays" || name == "overlays" || name == "vars" || L.len > 500))
-				// not sure if this is completely right...
-				if(0)   //(L.vars.len > 0)
-					html += "<ol>"
-					html += "</ol>"
-				else
-					html += "<ul>"
-					var/index = 1
-					for (var/entry in L)
-						if(istext(entry))
-							html += debug_variable(entry, L[entry], level + 1)
-						//html += debug_variable("[index]", L[index], level + 1)
-						else
-							html += debug_variable(index, L[index], level + 1)
-						index++
-					html += "</ul>"
-
+	var/formatted_type = text("[D.type]")
+	if(length(formatted_type) > 25)
+		var/middle_point = length(formatted_type) / 2
+		var/splitpoint = findtext(formatted_type,"/",middle_point)
+		if(splitpoint)
+			formatted_type = "[copytext(formatted_type,1,splitpoint)]<br>[copytext(formatted_type,splitpoint)]"
 		else
-			html += "[name] = <span class='value'>[value]</span>"
+			formatted_type = "Type too long" //No suitable splitpoint (/) found.
 
-		html += "</li>"
+	body += "<div align='center'><b><font size='1'>[formatted_type]</font></b>"
 
-		return html
+	if(marked_datum && marked_datum == D)
+		body += "<br><font size='1' color='red'><b>Marked Object</b></font>"
+
+	body += "</div>"
+
+	body += "</div></td>"
+
+	body += "<td width='50%'><div align='center'><a href='?_src_=vars;datumrefresh=\ref[D]'>Refresh</a>"
+
+	//if(ismob(D))
+	//	body += "<br><a href='?_src_=vars;mob_player_panel=\ref[D]'>Show player panel</a></div></td></tr></table></div><hr>"
+
+	body += {"	<form>
+				<select name="file" size="1"
+				onchange="loadPage(this.form.elements\[0\])"
+				target="_parent._top"
+				onmouseclick="this.focus()"
+				style="background-color:#ffffff">
+			"}
+
+	body += {"	<option value>Select option</option>
+					<option value> </option>
+			"}
+
+
+	body += "<option value='?_src_=vars;mark_object=\ref[D]'>Mark Object</option>"
+	if(ismob(D))
+		body += "<option value='?_src_=vars;mob_player_panel=\ref[D]'>Show player panel</option>"
+
+	body += "<option value>---</option>"
+
+	if(ismob(D))
+		body += "<option value='?_src_=vars;give_spell=\ref[D]'>Give Spell</option>"
+		body += "<option value='?_src_=vars;give_disease=\ref[D]'>Give TG-style Disease</option>"
+		body += "<option value='?_src_=vars;godmode=\ref[D]'>Toggle Godmode</option>"
+		body += "<option value='?_src_=vars;build_mode=\ref[D]'>Toggle Build Mode</option>"
+
+		body += "<option value='?_src_=vars;ninja=\ref[D]'>Make Space Ninja</option>"
+		body += "<option value='?_src_=vars;make_skeleton=\ref[D]'>Make 2spooky</option>"
+
+		body += "<option value='?_src_=vars;direct_control=\ref[D]'>Assume Direct Control</option>"
+		body += "<option value='?_src_=vars;drop_everything=\ref[D]'>Drop Everything</option>"
+
+		body += "<option value='?_src_=vars;regenerateicons=\ref[D]'>Regenerate Icons</option>"
+		body += "<option value='?_src_=vars;addlanguage=\ref[D]'>Add Language</option>"
+		body += "<option value='?_src_=vars;remlanguage=\ref[D]'>Remove Language</option>"
+		body += "<option value='?_src_=vars;addorgan=\ref[D]'>Add Organ</option>"
+		body += "<option value='?_src_=vars;remorgan=\ref[D]'>Remove Organ</option>"
+		body += "<option value='?_src_=vars;addlimb=\ref[D]'>Add Limb</option>"
+		body += "<option value='?_src_=vars;remlimb=\ref[D]'>Remove Limb</option>"
+
+		body += "<option value='?_src_=vars;fix_nano=\ref[D]'>Fix NanoUI</option>"
+
+		body += "<option value='?_src_=vars;addverb=\ref[D]'>Add Verb</option>"
+		body += "<option value='?_src_=vars;remverb=\ref[D]'>Remove Verb</option>"
+		if(ishuman(D))
+			body += "<option value>---</option>"
+			body += "<option value='?_src_=vars;edit_skill=\ref[D]'>Edit Skills</option>"
+			body += "<option value='?_src_=vars;setmutantrace=\ref[D]'>Set Mutantrace</option>"
+			body += "<option value='?_src_=vars;setspecies=\ref[D]'>Set Species</option>"
+			body += "<option value='?_src_=vars;makeai=\ref[D]'>Make AI</option>"
+			body += "<option value='?_src_=vars;makerobot=\ref[D]'>Make cyborg</option>"
+			body += "<option value='?_src_=vars;makemonkey=\ref[D]'>Make monkey</option>"
+			body += "<option value='?_src_=vars;makealien=\ref[D]'>Make alien</option>"
+		body += "<option value>---</option>"
+		body += "<option value='?_src_=vars;gib=\ref[D]'>Gib</option>"
+	if(isobj(D))
+		body += "<option value='?_src_=vars;delall=\ref[D]'>Delete all of type</option>"
+	if(isobj(D) || ismob(D) || isturf(D))
+		body += "<option value='?_src_=vars;explode=\ref[D]'>Trigger explosion</option>"
+		body += "<option value='?_src_=vars;emp=\ref[D]'>Trigger EM pulse</option>"
+
+	body += "</select></form>"
+
+	body += "</div></td></tr></table></div><hr>"
+
+	body += "<font size='1'><b>E</b> - Edit, tries to determine the variable type by itself.<br>"
+	body += "<b>C</b> - Change, asks you for the var type first.<br>"
+	body += "<b>M</b> - Mass modify: changes this variable for all objects of this type.</font><br>"
+
+	body += "<hr><table width='100%'><tr><td width='20%'><div align='center'><b>Search:</b></div></td><td width='80%'><input type='text' id='filter' name='filter_text' value='' style='width:100%;'></td></tr></table><hr>"
+
+	body += "<ol id='vars'>"
+
+	var/list/names = list()
+	for (var/V in D.vars)
+		names += V
+
+	names = sortList(names)
+
+	for (var/V in names)
+		body += debug_variable(V, D.vars[V], 0, D)
+
+	body += "</ol>"
+
+	var/html = "<html><head>"
+	if (title)
+		html += "<title>[title]</title>"
+	html += {"<style>
+body
+{
+	font-family: Verdana, sans-serif;
+	font-size: 9pt;
+}
+.value
+{
+	font-family: "Courier New", monospace;
+	font-size: 8pt;
+}
+</style>"}
+	html += "</head><body>"
+	html += body
+
+	html += {"
+		<script type='text/javascript'>
+			var vars_ol = document.getElementById("vars");
+			var complete_list = vars_ol.innerHTML;
+		</script>
+	"}
+
+	html += "</body></html>"
+
+	usr << browse(html, "window=variables\ref[D];size=475x650")
+
+	return
+
+proc/debug_variable(name, value, level, var/datum/DA = null)
+	var/html = ""
+
+	if(DA)
+		html += "<li style='backgroundColor:white'>(<a href='?_src_=vars;datumedit=\ref[DA];varnameedit=[name]'>E</a>) (<a href='?_src_=vars;datumchange=\ref[DA];varnamechange=[name]'>C</a>) (<a href='?_src_=vars;datummass=\ref[DA];varnamemass=[name]'>M</a>) "
+	else
+		html += "<li>"
+
+	if (isnull(value))
+		html += "[name] = <span class='value'>null</span>"
+
+	else if (istext(value))
+		html += "[name] = <span class='value'>\"[value]\"</span>"
+
+	else if (isfile(value))
+		html += "[name] = <span class='value'>'[value]'</span>"
+
+	else if (istype(value, /datum))
+		var/datum/D = value
+		html += "<a href='?_src_=vars;Vars=\ref[value]'>[name] \ref[value]</a> = [D.type]"
+
+	else if (istype(value, /client))
+		var/client/C = value
+		html += "<a href='?_src_=vars;Vars=\ref[value]'>[name] \ref[value]</a> = [C] [C.type]"
+	else if (istype(value, /list))
+		var/list/L = value
+		html += "[name] = /list ([L.len])"
+
+		if (L.len > 0 && !(name == "underlays" || name == "overlays" || name == "vars" || L.len > 500))
+			// not sure if this is completely right...
+			if(0)   //(L.vars.len > 0)
+				html += "<ol>"
+				html += "</ol>"
+			else
+				html += "<ul>"
+				var/index = 1
+				for (var/entry in L)
+					if(istext(entry))
+						html += debug_variable(entry, L[entry], level + 1)
+					//html += debug_variable("[index]", L[index], level + 1)
+					else
+						html += debug_variable(index, L[index], level + 1)
+					index++
+				html += "</ul>"
+
+	else
+		html += "[name] = <span class='value'>[value]</span>"
+
+	html += "</li>"
+
+	return html

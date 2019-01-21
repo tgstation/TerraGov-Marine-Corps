@@ -76,7 +76,7 @@ world/IsBanned(key,address,computer_id)
 
 
 /datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/rounds = 0, var/banckey = null)
-	if(!check_rights(R_BAN))	
+	if(!check_rights(R_BAN))
 		return
 
 	establish_db_connection()
@@ -102,7 +102,7 @@ world/IsBanned(key,address,computer_id)
 			bantype_str = "JOB_TEMPBAN"
 			bantype_pass = 1
 
-	if(!bantype_pass) 
+	if(!bantype_pass)
 		return
 	if(!istext(reason))
 		return
@@ -165,7 +165,7 @@ world/IsBanned(key,address,computer_id)
 
 
 /datum/admins/proc/DB_ban_unban(var/ckey, var/bantype, var/job = "")
-	if(!check_rights(R_BAN))	
+	if(!check_rights(R_BAN))
 		return
 
 	var/bantype_str
@@ -229,7 +229,7 @@ world/IsBanned(key,address,computer_id)
 	DB_ban_unban_by_id(ban_id)
 
 /datum/admins/proc/DB_ban_edit(var/banid = null, var/param = null)
-	if(!check_rights(R_BAN))	
+	if(!check_rights(R_BAN))
 		return
 
 	if(!isnum(banid) || !istext(param))
@@ -289,7 +289,7 @@ world/IsBanned(key,address,computer_id)
 			return
 
 /datum/admins/proc/DB_ban_unban_by_id(var/id)
-	if(!check_rights(R_BAN))	
+	if(!check_rights(R_BAN))
 		return
 
 	var/sql = "SELECT ckey FROM erro_ban WHERE id = [id]"
@@ -330,7 +330,7 @@ world/IsBanned(key,address,computer_id)
 
 
 /client/proc/DB_ban_panel(var/playerckey = null, var/adminckey = null)
-	if(!check_rights(R_BAN))	
+	if(!check_rights(R_BAN))
 		return
 
 	establish_db_connection()
@@ -546,7 +546,6 @@ var/savefile/Banlist
 	return 1
 
 /proc/ClearTempbans()
-	UpdateTime()
 
 	Banlist.cd = "/base"
 	for (var/A in Banlist.dir)
@@ -568,7 +567,6 @@ var/savefile/Banlist
 	var/bantimestamp
 
 	if (temp)
-		UpdateTime()
 		bantimestamp = (world.realtime / 10) / 60 + minutes
 
 	Banlist.cd = "/base"
@@ -618,7 +616,6 @@ var/savefile/Banlist
 	return 1
 
 /proc/GetExp(minutes as num)
-	UpdateTime()
 	var/exp = minutes - (world.realtime / 10) / 60
 	if (exp <= 0)
 		return 0
@@ -766,4 +763,4 @@ var/jobban_keylist[0]		//to store the keys & ranks
 		if(CONFIG_GET(flag/ban_legacy_system))
 			holder.unbanpanel()
 		else
-			holder.DB_ban_panel()
+			DB_ban_panel()
