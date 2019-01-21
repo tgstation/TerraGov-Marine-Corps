@@ -1113,7 +1113,7 @@ var/global/respawntime = 15
 	if(!ai_number)
 		to_chat(usr, "<b>No AIs located</b>")
 
-/datum/admins/proc/show_skills(var/mob/living/carbon/human/M as mob in player_list)
+/datum/admins/proc/show_skills(var/mob/living/carbon/human/M as mob in GLOB.player_list)
 	set category = "Admin"
 	set name = "Show Skills"
 

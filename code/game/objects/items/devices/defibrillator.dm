@@ -72,7 +72,7 @@
 
 /mob/living/carbon/human/proc/get_ghost()
 	if(mind && !client) //Let's call up the correct ghost! Also, bodies with clients only, thank you.
-		for(var/mob/dead/observer/G in player_list)
+		for(var/mob/dead/observer/G in GLOB.player_list)
 			if(G.mind == mind)
 				var/mob/dead/observer/ghost = G
 				if(ghost && ghost.client && ghost.can_reenter_corpse)

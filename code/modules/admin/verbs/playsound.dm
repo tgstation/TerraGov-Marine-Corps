@@ -14,7 +14,7 @@
 
 	switch( alert("Play sound globally or locally?", "Sound", "Global", "Local", "Cancel") )
 		if("Global")
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				if(M.client.prefs.toggles_sound & SOUND_MIDI)
 					M << uploaded_sound
 					heard_midi++

@@ -118,7 +118,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 			if("client")
 				var/list/keys = list()
-				for(var/mob/M in player_list)
+				for(var/mob/M in GLOB.player_list)
 					keys += M.client
 				lst[i] = input("Please, select a player!", "Selection", null, null) as null|anything in keys
 
@@ -215,7 +215,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 			if("client")
 				var/list/keys = list()
-				for(var/mob/M in player_list)
+				for(var/mob/M in GLOB.player_list)
 					keys += M.client
 				lst[i] = input("Please, select a player!", "Selection", null, null) as null|anything in keys
 
@@ -768,7 +768,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	switch(input("Which list?") in list("Players","Admins","Mobs","Living Mobs","Dead Mobs", "Clients"))
 		if("Players")
-			to_chat(usr, list2text(player_list,","))
+			to_chat(usr, list2text(GLOB.player_list,","))
 		if("Admins")
 			to_chat(usr, list2text(GLOB.admins,","))
 		if("Mobs")

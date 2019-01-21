@@ -18,7 +18,7 @@
 
 	speaker.log_talk(message, LOG_SAY)
 
-	for(var/mob/player in player_list)
+	for(var/mob/player in GLOB.player_list)
 
 		var/understood = 0
 

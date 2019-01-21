@@ -60,7 +60,7 @@
 
 		var/mob/playermob
 
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(M.ckey == banckey)
 				playermob = M
 				break
@@ -1962,7 +1962,7 @@
 					return
 				feedback_inc("admin_secrets_fun_used",1)
 				feedback_add_details("admin_secrets_fun_used","TA([objective])")
-				for(var/mob/living/carbon/human/H in player_list)
+				for(var/mob/living/carbon/human/H in GLOB.player_list)
 					if(H.stat == 2 || !H.client || !H.mind) continue
 					if(is_special_character(H)) continue
 					//traitorize(H, objective, 0)
@@ -1975,7 +1975,7 @@
 					ticker.mode.greet_traitor(H.mind)
 					//ticker.mode.forge_traitor_objectives(H.mind)
 					ticker.mode.finalize_traitor(H.mind)
-				for(var/mob/living/silicon/A in player_list)
+				for(var/mob/living/silicon/A in GLOB.player_list)
 					ticker.mode.traitors += A.mind
 					A.mind.special_role = "traitor"
 					var/datum/objective/new_objective = new

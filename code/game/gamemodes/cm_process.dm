@@ -74,7 +74,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 "<span class='round_body'>You lead your hive, and you have survived. Your influence will grow in time.</span>"
 "<span class='round_body'>You have served the hive.</span>"
 
-	for(var/mob/m in player_list)
+	for(var/mob/m in GLOB.player_list)
 		if(m.mind)
 			if(m.stat == DEAD) "<span class='round_body'>You met your demise during the events of [upper_text(name)].</span>"
 			else
@@ -201,7 +201,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	if(round_statistics.carrier_traps)
 		dat += "[round_statistics.carrier_traps] hidey holes for huggers were made."
 	var/output = jointext(dat, "<br>")
-	for(var/mob/player in player_list)
+	for(var/mob/player in GLOB.player_list)
 		if(player?.client?.prefs?.toggles_chat & CHAT_STATISTICS)
 			to_chat(player, output)
 
@@ -297,7 +297,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 	var/numLarvaPlanet  = 0
 	var/numLarvaShip    = 0
 
-	for(var/mob/M in player_list) //Scan through and detect Xenos and Hosts, but only those with clients.
+	for(var/mob/M in GLOB.player_list) //Scan through and detect Xenos and Hosts, but only those with clients.
 		if(M.stat != DEAD)
 			var/area/A = get_area(M)
 			if(isXeno(M))
@@ -385,7 +385,7 @@ Only checks living mobs with a client attached.
 	var/num_humans = 0
 	var/num_xenos = 0
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.z && (M.z in z_levels) && M.stat != DEAD && !istype(M.loc, /turf/open/space)) //If they have a z var, they are on a turf.
 			if(ishuman(M) && !(M.status_flags & XENO_HOST) && !iszombie(M))
 				var/mob/living/carbon/human/H = M
@@ -403,7 +403,7 @@ Only checks living mobs with a client attached.
 	var/num_marines = 0
 	var/num_pmcs = 0
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.z && (M.z in z_levels) && M.stat != DEAD && !istype(M.loc, /turf/open/space))
 			if(ishuman(M) && !isYautja(M))
 				if(M.mind && M.mind.special_role == "PMC") 	num_pmcs++

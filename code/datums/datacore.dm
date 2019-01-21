@@ -50,7 +50,7 @@
 
 		if(OOC)
 			var/active = 0
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				if(M.real_name == name && M.client && M.client.inactivity <= 10 * 60 * 10)
 					active = 1
 					break
@@ -186,7 +186,7 @@ var/global/list/PDA_Manifest = list()
 	spawn()
 		if(!nosleep)
 			sleep(40)
-		for(var/mob/living/carbon/human/H in player_list)
+		for(var/mob/living/carbon/human/H in GLOB.player_list)
 			if(H.species && H.species.name == "Yautja") continue
 			manifest_inject(H)
 		return

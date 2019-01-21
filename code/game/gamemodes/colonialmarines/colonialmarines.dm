@@ -85,7 +85,7 @@
 
 	if(monkey_amount)
 		var/playerC = 0
-		for(var/mob/new_player/player in player_list)
+		for(var/mob/new_player/player in GLOB.player_list)
 			if(player.client && player.ready)
 				playerC++
 		var/scale = max((playerC / MARINE_GEAR_SCALING_NORMAL), 1)
@@ -238,8 +238,8 @@
 
 	var/dat = ""
 	//if(flags_round_type & MODE_INFESTATION)
-		//var/living_player_list[] = count_humans_and_xenos()
-		//dat = "\nXenomorphs remaining: [living_player_list[2]]. Humans remaining: [living_player_list[1]]."
+		//var/living_GLOB.player_list[] = count_humans_and_xenos()
+		//dat = "\nXenomorphs remaining: [living_GLOB.player_list[2]]. Humans remaining: [living_GLOB.player_list[1]]."
 	log_game("[round_finished][dat]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [GLOB.clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal Preds spawned: [predators.len]\nTotal humans spawned: [round_statistics.total_humans_created]")
 
 	to_chat(world, dat)

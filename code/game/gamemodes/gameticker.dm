@@ -167,7 +167,7 @@ var/global/datum/controller/gameticker/ticker
 
 
 /datum/controller/gameticker/proc/create_characters()
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOB.player_list)
 		if(!player?.ready || !player.mind?.assigned_role)
 			continue
 		player.create_character()
@@ -175,7 +175,7 @@ var/global/datum/controller/gameticker/ticker
 
 
 /datum/controller/gameticker/proc/collect_minds()
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(player.mind)
 			ticker.minds += player.mind
 
@@ -186,7 +186,7 @@ var/global/datum/controller/gameticker/ticker
 	if(mode && istype(mode, /datum/game_mode/huntergames))
 		return
 
-	for(var/player in player_list)
+	for(var/player in GLOB.player_list)
 		var/mob/living/carbon/human/H = player
 		if(istype(H) && H.mind?.assigned_role)
 			if(H.mind.assigned_role == "Commander")
@@ -197,7 +197,7 @@ var/global/datum/controller/gameticker/ticker
 				EquipCustomItems(H)
 
 	if(captainless)
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(!istype(M, /mob/new_player))
 				to_chat(M, "Marine commander position not forced on anyone.")
 

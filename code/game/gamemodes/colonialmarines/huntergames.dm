@@ -166,7 +166,7 @@ var/waiting_for_drop_votes = 0
 	for(var/obj/item/ammo_magazine/M in item_list)
 		qdel(M)
 
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOB.player_list)
 		if(player && player.ready)
 			if(!player.mind && player.client)
 				player.mind = new /datum/mind(player.key)

@@ -34,7 +34,7 @@
 		far_dist += heavy_impact_range * 5
 		far_dist += devastation_range * 20
 		var/frequency = GET_RANDOM_FREQ
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			// Double check for client
 			if(M && M.client)
 				var/turf/M_turf = get_turf(M)

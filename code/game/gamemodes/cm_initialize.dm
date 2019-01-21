@@ -156,7 +156,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	var/players[] = new
 
 	var/mob/new_player/new_pred
-	for(var/mob/player in player_list)
+	for(var/mob/player in GLOB.player_list)
 		if(!player.client) continue //No client. DCed.
 		if(isYautja(player)) continue //Already a predator. Might be dead, who knows.
 		if(readied) //Ready check for new players.
@@ -854,7 +854,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	//This might count players who ready up but get kicked back to the lobby
 	var/marine_pop_size = 0
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.stat != DEAD && M.mind && !M.mind.special_role)
 			marine_pop_size++
 

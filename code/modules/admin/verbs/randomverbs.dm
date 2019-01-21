@@ -362,7 +362,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 		return
 
 	var/mob/dead/observer/G_found
-	for(var/mob/dead/observer/G in player_list)
+	for(var/mob/dead/observer/G in GLOB.player_list)
 		if(G.ckey == input)
 			G_found = G
 			break
@@ -627,7 +627,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	var/data = "<h1>[customname]</h1><br><br><br><span class='warning'>[input]<br><br></span>"
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(isXeno(M) || isobserver(M))
 			to_chat(M, data)
 
@@ -783,7 +783,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	switch(alert("How would you like to ban someone today?", "Manual Ban", "Key List", "Enter Manually", "Cancel"))
 		if("Key List")
 			var/list/keys = list()
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				keys += M.client
 			var/selection = input("Please, select a player!", "Admin Jumping", null, null) as null|anything in keys
 			if(!selection)

@@ -410,7 +410,7 @@
 				to_chat(X, "[queensWord]")
 
 	spawn(0)
-		for(var/mob/dead/observer/G in player_list)
+		for(var/mob/dead/observer/G in GLOB.player_list)
 			G << sound(get_sfx("queen"),wait = 0,volume = 50)
 			to_chat(G, "[queensWord]")
 

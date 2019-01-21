@@ -1,4 +1,4 @@
-/proc/togglebuildmode(mob/M as mob in player_list)
+/proc/togglebuildmode(mob/M as mob in GLOB.player_list)
 	set name = "Toggle Build Mode"
 	set category = "Special Verbs"
 	if(M.client)

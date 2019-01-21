@@ -22,7 +22,7 @@
 		if(istype(commboard.loc,/turf) || istype(commboard.loc,/obj/item/storage))
 			break
 
-	for(var/mob/living/silicon/ai/shuttlecaller in player_list)
+	for(var/mob/living/silicon/ai/shuttlecaller in GLOB.player_list)
 		if(shuttlecaller.z == 2)
 			continue
 		if(!shuttlecaller.stat && shuttlecaller.client && istype(shuttlecaller.loc,/turf))
