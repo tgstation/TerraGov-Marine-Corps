@@ -33,7 +33,7 @@
 	var/mutantrace                // Safeguard due to old code.
 	var/list/speech_sounds        // A list of sounds to potentially play when speaking.
 	var/list/speech_chance
-	var/has_fine_manipulation = 1 // Can use small items.
+	var/has_fine_manipulation = TRUE // Can use small items.
 	var/insulated                 // Immune to electrocution and glass shards to the feet.
 	var/show_paygrade = FALSE
 	var/count_human = FALSE // Does this count as a human?
@@ -59,7 +59,7 @@
 	var/heat_level_2 = 400  // Heat damage level 2 above this point.
 	var/heat_level_3 = 1000 // Heat damage level 2 above this point.
 
-	var/body_temperature = 310.15	//non-IS_SYNTHETIC species will try to stabilize at this temperature. (also affects temperature processing)
+	var/body_temperature = BODYTEMP_NORMAL 	//non-IS_SYNTHETIC species will try to stabilize at this temperature. (also affects temperature processing)
 	var/reagent_tag                 //Used for metabolizing reagents.
 
 	var/darksight = 2
@@ -76,6 +76,7 @@
 	var/list/abilities = list()	// For species-derived or admin-given powers
 	var/list/preferences = list()
 	var/list/screams = list()
+	var/list/paincries = list()
 
 	var/blood_color = "#A10808" //Red.
 	var/flesh_color = "#FFC896" //Pink.
@@ -256,6 +257,7 @@
 	count_human = TRUE
 
 	screams = list("male" = "male_scream", "female" = "female_scream")
+	paincries = list("male" = "male_pain", "female" = "female_pain")
 
 	//If you wanted to add a species-level ability:
 	/*abilities = list(/client/proc/test_ability)*/
@@ -295,7 +297,7 @@
 	darksight = 8
 	slowdown = 0.3
 	insulated = 1
-	has_fine_manipulation = 0
+	has_fine_manipulation = FALSE
 
 	heat_level_1 = 1000
 	heat_level_2 = 1500
@@ -396,7 +398,9 @@
 
 	flags = HAS_LIPS|HAS_NO_HAIR
 	preferences = list("moth_wings" = "Wings")
+
 	screams = list("neuter" = 'sound/voice/moth_scream.ogg')
+	paincries = list("neuter" = 'sound/voice/human_male_pain_3.ogg')
 
 	flesh_color = "#E5CD99"
 
@@ -661,24 +665,24 @@
 
 /datum/species/zombie/handle_post_spawn(var/mob/living/carbon/human/H)
 	if(H.hud_used)
-		cdel(H.hud_used)
+		qdel(H.hud_used)
 		H.hud_used = null
 //		H.create_mob_hud()
 		if(H.hud_used)
 			H.hud_used.show_hud(H.hud_used.hud_version)
-	if(H.l_hand) H.drop_inv_item_on_ground(H.l_hand, FALSE, TRUE)
-	if(H.r_hand) H.drop_inv_item_on_ground(H.r_hand, FALSE, TRUE)
-	if(H.wear_id) cdel(H.wear_id)
-	if(H.gloves) cdel(H.gloves)
-	if(H.head) cdel(H.head)
-	if(H.glasses) cdel(H.glasses)
-	if(H.wear_mask) cdel(H.wear_mask)
+	if(H.l_hand) H.dropItemToGround(H.l_hand, FALSE, TRUE)
+	if(H.r_hand) H.dropItemToGround(H.r_hand, FALSE, TRUE)
+	if(H.wear_id) qdel(H.wear_id)
+	if(H.gloves) qdel(H.gloves)
+	if(H.head) qdel(H.head)
+	if(H.glasses) qdel(H.glasses)
+	if(H.wear_mask) qdel(H.wear_mask)
 	var/obj/item/weapon/zombie_claws/ZC = new()
 	ZC.icon_state = "claw_r"
-	H.equip_to_slot_or_del(ZC, WEAR_R_HAND, TRUE)
-	H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claws, WEAR_L_HAND, TRUE)
-	H.equip_to_slot(new /obj/item/clothing/glasses/zombie_eyes, WEAR_EYES, TRUE)
-	H.equip_to_slot(new /obj/item/clothing/mask/rebreather/scarf/zombie, WEAR_FACE, TRUE)
+	H.equip_to_slot_or_del(ZC, SLOT_R_HAND, TRUE)
+	H.equip_to_slot_or_del(new /obj/item/weapon/zombie_claws, SLOT_L_HAND, TRUE)
+	H.equip_to_slot(new /obj/item/clothing/glasses/zombie_eyes, SLOT_GLASSES, TRUE)
+	H.equip_to_slot(new /obj/item/clothing/mask/rebreather/scarf/zombie, SLOT_WEAR_MASK, TRUE)
 	return ..()
 
 
@@ -694,19 +698,19 @@
 	if(!H.regenZ) return  //Also in each check, in case they are hit with the stuff to stop the regenerating during timers.
 	sleep(5)
 	if(H && H.loc && H.stat == DEAD && H.regenZ)
-		to_chat(H, "\green You fall... but your body is slowly regenerating itself.")
+		to_chat(H, "<span class='green'> You fall... but your body is slowly regenerating itself.</span>")
 	sleep(1200)
 	if(H && H.loc && H.stat == DEAD && H.regenZ)
-		to_chat(H, "\green Your body is half regenerated...")
+		to_chat(H, "<span class='green'> Your body is half regenerated...</span>")
 	sleep(1200)
 
 	if(H && H.loc && H.stat == DEAD && H.regenZ)
 		H.revive(TRUE)
 		H.stunned = 4
 		H.Jitter(500)
-		H.visible_message("<span class = 'warning'>[H] rises!", "\green YOU RISE AGAIN!")
-		H.equip_to_slot(new /obj/item/clothing/glasses/zombie_eyes, WEAR_EYES, TRUE)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine, WEAR_FEET, TRUE)
+		H.visible_message("<span class = 'warning'>[H] rises!", "<span class='green'> YOU RISE AGAIN!</span>")
+		H.equip_to_slot(new /obj/item/clothing/glasses/zombie_eyes, SLOT_GLASSES, TRUE)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine, SLOT_SHOES, TRUE)
 
 		spawn(30)
 			H.jitteriness = 0
@@ -775,11 +779,11 @@
 
 /datum/species/yautja/handle_post_spawn(var/mob/living/carbon/human/H)
 	//Spawn them some equipment
-	H.equip_to_slot_or_del(new /obj/item/clothing/under/chainshirt(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yautja(H), WEAR_HANDS)
-	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/yautja(H), WEAR_EAR)
-	H.equip_to_slot_or_del(new /obj/item/weapon/yautja_knife(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/device/yautja_teleporter(H),WEAR_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/clothing/under/chainshirt(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yautja(H), SLOT_GLOVES)
+	H.equip_to_slot_or_del(new /obj/item/device/radio/headset/yautja(H), SLOT_EARS)
+	H.equip_to_slot_or_del(new /obj/item/weapon/yautja_knife(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/device/yautja_teleporter(H),SLOT_L_STORE)
 
 	H.universal_understand = 1
 
@@ -889,20 +893,20 @@
 	// to be drawn for the mob. This is fairly delicate, try to avoid messing with it
 	// unless you know exactly what it does.
 	var/list/gear = list(
-		"i_clothing" =   list("loc" = ui_iclothing, "slot" = WEAR_BODY, "state" = "center", "toggle" = 1, "dir" = SOUTH),
-		"o_clothing" =   list("loc" = ui_oclothing, "slot" = WEAR_JACKET, "state" = "equip",  "toggle" = 1,  "dir" = SOUTH),
-		"mask" =         list("loc" = ui_mask,      "slot" = WEAR_FACE, "state" = "equip",  "toggle" = 1,  "dir" = NORTH),
-		"gloves" =       list("loc" = ui_gloves,    "slot" = WEAR_HANDS,    "state" = "gloves", "toggle" = 1),
-		"eyes" =         list("loc" = ui_glasses,   "slot" = WEAR_EYES,   "state" = "glasses","toggle" = 1),
-		"wear_ear" =     list("loc" = ui_wear_ear,  "slot" = WEAR_EAR,     "state" = "ears",   "toggle" = 1),
-		"head" =         list("loc" = ui_head,      "slot" = WEAR_HEAD,      "state" = "hair",   "toggle" = 1),
-		"shoes" =        list("loc" = ui_shoes,     "slot" = WEAR_FEET,     "state" = "shoes",  "toggle" = 1),
-		"suit storage" = list("loc" = ui_sstore1,   "slot" = WEAR_J_STORE,   "state" = "belt",   "dir" = 8),
-		"back" =         list("loc" = ui_back,      "slot" = WEAR_BACK,      "state" = "back",   "dir" = NORTH),
-		"id" =           list("loc" = ui_id,        "slot" = WEAR_ID,   "state" = "id",     "dir" = NORTH),
-		"storage1" =     list("loc" = ui_storage1,  "slot" = WEAR_L_STORE,   "state" = "pocket"),
-		"storage2" =     list("loc" = ui_storage2,  "slot" = WEAR_R_STORE,   "state" = "pocket"),
-		"belt" =         list("loc" = ui_belt,      "slot" = WEAR_WAIST,      "state" = "belt")
+		"i_clothing" =   list("loc" = ui_iclothing, "slot" = SLOT_W_UNIFORM, "state" = "center", "toggle" = 1, "dir" = SOUTH),
+		"o_clothing" =   list("loc" = ui_oclothing, "slot" = SLOT_WEAR_SUIT, "state" = "equip",  "toggle" = 1,  "dir" = SOUTH),
+		"mask" =         list("loc" = ui_mask,      "slot" = SLOT_WEAR_MASK, "state" = "equip",  "toggle" = 1,  "dir" = NORTH),
+		"gloves" =       list("loc" = ui_gloves,    "slot" = SLOT_GLOVES,    "state" = "gloves", "toggle" = 1),
+		"eyes" =         list("loc" = ui_glasses,   "slot" = SLOT_GLASSES,   "state" = "glasses","toggle" = 1),
+		"wear_ear" =     list("loc" = ui_wear_ear,  "slot" = SLOT_EARS,     "state" = "ears",   "toggle" = 1),
+		"head" =         list("loc" = ui_head,      "slot" = SLOT_HEAD,      "state" = "hair",   "toggle" = 1),
+		"shoes" =        list("loc" = ui_shoes,     "slot" = SLOT_SHOES,     "state" = "shoes",  "toggle" = 1),
+		"suit storage" = list("loc" = ui_sstore1,   "slot" = SLOT_S_STORE,   "state" = "belt",   "dir" = 8),
+		"back" =         list("loc" = ui_back,      "slot" = SLOT_BACK,      "state" = "back",   "dir" = NORTH),
+		"id" =           list("loc" = ui_id,        "slot" = SLOT_WEAR_ID,   "state" = "id",     "dir" = NORTH),
+		"storage1" =     list("loc" = ui_storage1,  "slot" = SLOT_L_STORE,   "state" = "pocket"),
+		"storage2" =     list("loc" = ui_storage2,  "slot" = SLOT_R_STORE,   "state" = "pocket"),
+		"belt" =         list("loc" = ui_belt,      "slot" = SLOT_BELT,      "state" = "belt")
 		)
 
 /datum/hud_data/New()
@@ -911,22 +915,22 @@
 		equip_slots |= gear[slot]["slot"]
 
 	if(has_hands)
-		equip_slots |= WEAR_L_HAND
-		equip_slots |= WEAR_R_HAND
-		equip_slots |= WEAR_HANDCUFFS
+		equip_slots |= SLOT_L_HAND
+		equip_slots |= SLOT_R_HAND
+		equip_slots |= SLOT_HANDCUFFED
 
-	if(WEAR_BACK in equip_slots)
-		equip_slots |= WEAR_IN_BACK
-		equip_slots |= WEAR_IN_B_HOLSTER	
-	if(WEAR_WAIST in equip_slots)
-		equip_slots |= WEAR_IN_HOLSTER
-	if(WEAR_JACKET in equip_slots)
-		equip_slots |= WEAR_IN_J_HOLSTER
-	if(WEAR_FEET in equip_slots)
-		equip_slots |= WEAR_LEGCUFFS
-		equip_slots |= EQUIP_IN_BOOT
-	if(WEAR_BODY in equip_slots)
-		equip_slots |= EQUIP_IN_STORAGE
-		equip_slots |= EQUIP_IN_L_POUCH
-		equip_slots |= EQUIP_IN_R_POUCH
-		equip_slots |= WEAR_ACCESSORY
+	if(SLOT_BACK in equip_slots)
+		equip_slots |= SLOT_IN_BACKPACK
+		equip_slots |= SLOT_IN_B_HOLSTER
+	if(SLOT_BELT in equip_slots)
+		equip_slots |= SLOT_IN_HOLSTER
+	if(SLOT_WEAR_SUIT in equip_slots)
+		equip_slots |= SLOT_IN_S_HOLSTER
+	if(SLOT_SHOES in equip_slots)
+		equip_slots |= SLOT_LEGCUFFED
+		equip_slots |= SLOT_IN_BOOT
+	if(SLOT_W_UNIFORM in equip_slots)
+		equip_slots |= SLOT_IN_STORAGE
+		equip_slots |= SLOT_IN_L_POUCH
+		equip_slots |= SLOT_IN_R_POUCH
+		equip_slots |= SLOT_ACCESSORY

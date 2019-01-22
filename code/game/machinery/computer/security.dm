@@ -32,7 +32,7 @@
 	if(scan)
 		to_chat(usr, "You remove \the [scan] from \the [src].")
 		scan.loc = get_turf(src)
-		if(!usr.get_active_hand() && istype(usr,/mob/living/carbon/human))
+		if(!usr.get_active_held_item() && istype(usr,/mob/living/carbon/human))
 			usr.put_in_hands(scan)
 		scan = null
 	else
@@ -58,7 +58,7 @@
 	if(..())
 		return
 	if (src.z > 6)
-		to_chat(user, "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!")
+		to_chat(user, "<span class='danger'>Unable to establish a connection: You're too far away from the station!</span>")
 		return
 	var/dat
 
@@ -238,13 +238,13 @@ What a mess.*/
 
 			if("Confirm Identity")
 				if (scan)
-					if(istype(usr,/mob/living/carbon/human) && !usr.get_active_hand())
+					if(istype(usr,/mob/living/carbon/human) && !usr.get_active_held_item())
 						usr.put_in_hands(scan)
 					else
 						scan.loc = get_turf(src)
 					scan = null
 				else
-					var/obj/item/I = usr.get_active_hand()
+					var/obj/item/I = usr.get_active_held_item()
 					if (istype(I, /obj/item/card/id))
 						if(usr.drop_held_item())
 							I.forceMove(src)
@@ -377,7 +377,7 @@ What a mess.*/
 			if ("Purge All Records")
 				for(var/datum/data/record/R in data_core.security)
 					data_core.security -= R
-					cdel(R)
+					qdel(R)
 				temp = "All Security records deleted."
 
 			if ("Add Entry")
@@ -547,7 +547,7 @@ What a mess.*/
 
 					if ("Delete Record (Security) Execute")
 						if (active2)
-							cdel(active2)
+							qdel(active2)
 							active2 = null
 
 					if ("Delete Record (ALL) Execute")
@@ -555,12 +555,12 @@ What a mess.*/
 							for(var/datum/data/record/R in data_core.medical)
 								if ((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
 									data_core.medical -= R
-									cdel(R)
+									qdel(R)
 								else
-							cdel(active1)
+							qdel(active1)
 							active1 = null
 						if (active2)
-							cdel(active2)
+							qdel(active2)
 							active2 = null
 					else
 						temp = "This function does not appear to be working at the moment. Our apologies."
@@ -573,8 +573,8 @@ What a mess.*/
 	return !src.authenticated || user.stat || user.is_mob_restrained() || (!in_range(src, user) && (!istype(user, /mob/living/silicon)))
 
 /obj/machinery/computer/secure_data/proc/get_photo(var/mob/user)
-	if(istype(user.get_active_hand(), /obj/item/photo))
-		var/obj/item/photo/photo = user.get_active_hand()
+	if(istype(user.get_active_held_item(), /obj/item/photo))
+		var/obj/item/photo/photo = user.get_active_held_item()
 		return photo.img
 	if(istype(user, /mob/living/silicon))
 		var/mob/living/silicon/tempAI = usr
@@ -608,7 +608,7 @@ What a mess.*/
 
 		else if(prob(1))
 			data_core.security -= R
-			cdel(R)
+			qdel(R)
 			continue
 
 	..(severity)

@@ -242,8 +242,8 @@ proc/check_panel(mob/M)
 	attackby(var/obj/item/P as obj, mob/user as mob)
 		step_away(src,my_target,2)
 		for(var/mob/M in oviewers(world.view,my_target))
-			to_chat(M, "\red <B>[my_target] flails around wildly.</B>")
-		my_target.show_message("\red <B>[src] has been attacked by [my_target] </B>", 1) //Lazy.
+			to_chat(M, "<span class='danger'>[my_target] flails around wildly.</span>")
+		my_target.show_message("<span class='danger'>[src] has been attacked by [my_target] </span>", 1) //Lazy.
 
 		src.health -= P.force
 
@@ -255,52 +255,52 @@ proc/check_panel(mob/M)
 			step_away(src,my_target,2)
 			if(prob(30))
 				for(var/mob/O in oviewers(world.view , my_target))
-					to_chat(O, "\red <B>[my_target] stumbles around.</B>")
+					to_chat(O, "<span class='danger'>[my_target] stumbles around.</span>")
 
 	New()
 		..()
 		spawn(300)
 			if(my_target)
 				my_target.hallucinations -= src
-			cdel(src)
+			qdel(src)
 		step_away(src,my_target,2)
 		spawn attack_loop()
 
-	Dispose()
+	Destroy()
 		if(my_target)
 			my_target.hallucinations -= src
 			my_target = null
 		weap = null
 		if(currentimage)
-			cdel(currentimage)
+			qdel(currentimage)
 			currentimage = null
 		if(left)
-			cdel(left)
+			qdel(left)
 			left = null
 		if(right)
-			cdel(right)
+			qdel(right)
 			right = null
 		if(up)
-			cdel(up)
+			qdel(up)
 			up = null
 		if(down)
-			cdel(down)
+			qdel(down)
 			down = null
 		. = ..()
 
 	proc/updateimage()
 
 		if(src.dir == NORTH)
-			cdel(src.currentimage)
+			qdel(src.currentimage)
 			src.currentimage = new /image(up,src)
 		else if(src.dir == SOUTH)
-			cdel(src.currentimage)
+			qdel(src.currentimage)
 			src.currentimage = new /image(down,src)
 		else if(src.dir == EAST)
-			cdel(src.currentimage)
+			qdel(src.currentimage)
 			src.currentimage = new /image(right,src)
 		else if(src.dir == WEST)
-			cdel(src.currentimage)
+			qdel(src.currentimage)
 			src.currentimage = new /image(left,src)
 		to_chat(my_target, currentimage)
 
@@ -319,7 +319,7 @@ proc/check_panel(mob/M)
 				if(prob(15))
 					if(weapon_name)
 						my_target << sound(pick('sound/weapons/genhit1.ogg', 'sound/weapons/genhit2.ogg', 'sound/weapons/genhit3.ogg'))
-						my_target.show_message("\red <B>[my_target] has been attacked with [weapon_name] by [src.name] </B>", 1)
+						my_target.show_message("<span class='danger'>[my_target] has been attacked with [weapon_name] by [src.name] </span>", 1)
 						my_target.halloss += 8
 						if(prob(20)) my_target.adjust_blurriness(3)
 						if(prob(33))
@@ -327,7 +327,7 @@ proc/check_panel(mob/M)
 								fake_blood(my_target)
 					else
 						my_target << sound(pick('sound/weapons/punch1.ogg','sound/weapons/punch2.ogg','sound/weapons/punch3.ogg','sound/weapons/punch4.ogg'))
-						my_target.show_message("\red <B>[src.name] has punched [my_target]!</B>", 1)
+						my_target.show_message("<span class='danger'>[src.name] has punched [my_target]!</span>", 1)
 						my_target.halloss += 4
 						if(prob(33))
 							if(!locate(/obj/effect/overlay) in my_target.loc)
@@ -346,7 +346,7 @@ proc/check_panel(mob/M)
 	var/image/I = image('icons/effects/blood.dmi',O,"floor[rand(1,7)]",O.dir,1)
 	to_chat(target, I)
 	spawn(300)
-		cdel(O)
+		qdel(O)
 	return
 
 var/list/non_fakeattack_weapons = list(/obj/item/device/aicard,\

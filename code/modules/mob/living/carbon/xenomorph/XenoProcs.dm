@@ -38,7 +38,7 @@
 			stat(null, "Upgrade Progress (FINISHED)")
 
 		if(xeno_caste.plasma_max > 0)
-			if(xeno_caste.caste_flags & CASTE_IS_ROBOTIC)
+			if(isXenoSilicon(src))
 				stat(null, "Charge: [plasma_stored]/[xeno_caste.plasma_max]")
 			else
 				stat(null, "Plasma: [plasma_stored]/[xeno_caste.plasma_max]")
@@ -104,8 +104,8 @@
 
 	if(value)
 		if(plasma_stored < value)
-			if(xeno_caste.caste_flags & CASTE_IS_ROBOTIC)
-				to_chat(src, "<span class='warning'>Beep. You do not have enough plasma to do this. You require [value] plasma but have only [plasma_stored] stored.</span>")
+			if(isXenoSilicon(src))
+				to_chat(src, "<span class='warning'>Beep. You do not have enough charge to do this. You require [value] charge but have only [plasma_stored] stored.</span>")
 			else
 				to_chat(src, "<span class='warning'>You do not have enough plasma to do this. You require [value] plasma but have only [plasma_stored] stored.</span>")
 			return 0
@@ -176,7 +176,7 @@
 		alpha = HUNTER_STEALTH_RUN_ALPHA //50% invisible
 		return
 	//Stationary stealth
-	else if(last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 3 seconds we become almost completely invisible
+	else if(last_move_intent < world.time - HUNTER_STEALTH_STEALTH_DELAY) //If we're standing still for 4 seconds we become almost completely invisible
 		alpha = HUNTER_STEALTH_STILL_ALPHA //95% invisible
 	//Walking stealth
 	else if(m_intent == MOVE_INTENT_WALK)
@@ -247,7 +247,7 @@
 				if(istype(O, /obj/structure/table) || istype(O, /obj/structure/rack))
 					var/obj/structure/S = O
 					visible_message("<span class='danger'>[src] plows straight through [S]!</span>", null, null, 5)
-					S.destroy() //We want to continue moving, so we do not reset throwing.
+					S.destroy_structure() //We want to continue moving, so we do not reset throwing.
 				else O.hitby(src, speed) //This resets throwing.
 		return TRUE
 
@@ -293,7 +293,7 @@
 					frozen = TRUE
 					if(xeno_caste.charge_type == 2)
 						M.attack_alien(src, null, "disarm") //Hunters get a free throttle in exchange for lower initial stun.
-					if(!(xeno_caste.caste_flags & CASTE_IS_ROBOTIC)) 
+					if(!isXenoSilicon(src))
 						playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
 					spawn(xeno_caste.charge_type == 1 ? 5 : 15)
 						frozen = FALSE
@@ -410,7 +410,7 @@
 	return 1
 
 /mob/living/carbon/Xenomorph/drop_held_item()
-	var/obj/item/clothing/mask/facehugger/F = get_active_hand()
+	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	if(istype(F))
 		if(locate(/turf/closed/wall/resin) in loc)
 			to_chat(src, "<span class='warning'>You decide not to drop [F] after all.</span>")
@@ -557,3 +557,23 @@
 		rage = 0
 	else
 		rage *= 0.5 //Halve rage instead of 0ing it out if we miss.
+
+/mob/living/carbon/Xenomorph/proc/set_hive_number(var/newhivenumber)
+	if(!newhivenumber)
+		return
+
+	hivenumber = newhivenumber
+
+	if(isXenoLarva(src))
+		var/mob/living/carbon/Xenomorph/Larva/L = src
+		L.update_icons() // larva renaming done differently
+	else
+		generate_name()
+		update_living_queens()
+		
+
+//////////// XENO CASTE PROCS //////////////////
+
+/datum/xeno_caste/proc/handle_decay(mob/living/carbon/Xenomorph/X)
+	if(prob(7+(3*tier)+(3*upgrade))) // higher level xenos decay faster, higher plasma storage.
+		X.use_plasma(min(rand(1,2), X.plasma_stored))

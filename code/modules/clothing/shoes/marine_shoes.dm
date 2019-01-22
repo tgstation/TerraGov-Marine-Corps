@@ -15,9 +15,9 @@
 	var/obj/item/knife
 	var/armor_stage = 0
 
-/obj/item/clothing/shoes/marine/Dispose()
+/obj/item/clothing/shoes/marine/Destroy()
 	if(knife)
-		cdel(knife)
+		qdel(knife)
 		knife = null
 	. = ..()
 
@@ -63,6 +63,9 @@
 	name = "commander shoes"
 	desc = "Has special soles for better trampling those underneath."
 
+/obj/item/clothing/shoes/marinechief/sa
+	name = "spatial agent's shoes"
+	desc = "Shoes worn by a spatial agent."
 
 /obj/item/clothing/shoes/veteran
 

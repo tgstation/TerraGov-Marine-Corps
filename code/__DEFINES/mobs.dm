@@ -319,6 +319,11 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define HIVEMIND 16         // Broadcast to all mobs with this language.
 //=================================================
 
+
+#define EMOTE_VISIBLE  1
+#define EMOTE_AUDIBLE  2
+
+
 //Species flags.
 #define NO_BLOOD 1
 #define NO_BREATHE 2
@@ -415,6 +420,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define REST_HALLOSS_RECOVERY_RATE -32
 
 // Human Overlay Indexes
+#define LASER_LAYER				27		//For sniper targeting laser
 #define MOTH_WINGS_LAYER		26
 #define MUTANTRACE_LAYER		25
 #define MUTATIONS_LAYER			24
@@ -442,7 +448,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define TARGETED_LAYER			2	//for target sprites when held at gun point, and holo cards.
 #define FIRE_LAYER				1		//If you're on fire		//BS12: Layer for the target overlay from weapon targeting system
 
-#define TOTAL_LAYERS			26
+#define TOTAL_LAYERS			27
 
 #define MOTH_WINGS_BEHIND_LAYER	1
 
@@ -455,7 +461,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define HUNTER_STEALTH_WALK_PLASMADRAIN			2
 #define HUNTER_STEALTH_RUN_PLASMADRAIN			5
 #define HUNTER_STEALTH_STILL_ALPHA				13 //95% transparency
-#define HUNTER_STEALTH_WALK_ALPHA				51 //80% transparency
+#define HUNTER_STEALTH_WALK_ALPHA				38 //85% transparency
 #define HUNTER_STEALTH_RUN_ALPHA				128 //50% transparency
 #define HUNTER_STEALTH_STEALTH_DELAY			40 //4 seconds before 95% stealth
 #define HUNTER_STEALTH_INITIAL_DELAY			20 //2 seconds before we can increase stealth
@@ -466,7 +472,7 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 // xeno defines
 
-#define CRUSHER_STOMP_COOLDOWN 200
+
 #define XENO_SLOWDOWN_REGEN 0.4
 #define XENO_HALOSS_REGEN 3
 #define QUEEN_DEATH_TIMER 300 // 5 minutes
@@ -476,6 +482,9 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define WARRIOR_AGILITY_ARMOR 30
 #define XENO_DEADHUMAN_DRAG_SLOWDOWN 2
 
+#define PLASMA_TRANSFER_AMOUNT 50
+#define PLASMA_SALVAGE_AMOUNT 40
+#define PLASMA_SALVAGE_MULTIPLIER 0.5 // I'd not reccomend setting this higher than one.
 
 #define CRITICAL_HIT_DELAY 25
 
@@ -492,14 +501,39 @@ var/list/global_mutations = list() // list of hidden mutation things
 
 //defender defines
 
-#define DEFENDER_HEADBUTT_COST			20
-#define DEFENDER_TAILSWIPE_COST			30
+#define DEFENDER_HEADBUTT_COST			25
+#define DEFENDER_TAILSWIPE_COST			35
+#define DEFENDER_HEADBUTT_COOLDOWN		6 SECONDS
+#define DEFENDER_TAILSWIPE_COOLDOWN		12 SECONDS
+#define DEFENDER_FORTIFY_COOLDOWN		1 SECONDS
+#define DEFENDER_CREST_DEFENSE_COOLDOWN	1 SECONDS
+
+//crusher defines
+#define CRUSHER_CRESTTOSS_COST			40
+#define CRUSHER_CRESTTOSS_COOLDOWN		6 SECONDS
+#define CRUSHER_STOMP_COST				80
+#define CRUSHER_STOMP_COOLDOWN 			20 SECONDS
 
 //carrier defines
 
 #define CARRIER_SPAWN_HUGGER_COST 100
 #define CARRIER_HUGGER_THROW_SPEED 2
 #define CARRIER_HUGGER_THROW_DISTANCE 5
+
+//Warrior defines
+
+#define WARRIOR_LUNGE_COOLDOWN 10 SECONDS
+#define WARRIOR_PUNCH_COOLDOWN 6 SECONDS
+#define WARRIOR_FLING_COOLDOWN 6 SECONDS
+#define WARRIOR_AGILITY_COOLDOWN 0.5 SECONDS
+
+
+//sentinel defines
+
+#define NEUROTOXIN_STING_COOLDOWN				30 SECONDS
+#define NEUROTOXIN_STING_INJECT_DELAY			1.5 SECONDS
+#define NEUROTOXIN_STING_AMOUNT_INITIAL			15
+#define NEUROTOXIN_STING_AMOUNT_RECURRING		10
 
 #define CANNOT_HOLD_EGGS 0
 #define CAN_HOLD_TWO_HANDS 1
@@ -514,3 +548,4 @@ var/list/global_mutations = list() // list of hidden mutation things
 #define CASTE_EVOLUTION_ALLOWED		(1<<6)
 #define CASTE_IS_INTELLIGENT		(1<<7)
 #define CASTE_IS_ROBOTIC			(1<<8)
+#define CASTE_DECAY_PROOF			(1<<9)

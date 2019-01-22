@@ -22,9 +22,8 @@
 	component_parts += new /obj/item/stack/cable_coil(src)
 	component_parts += new /obj/item/stack/cable_coil(src)
 	RefreshParts()
-	src.initialize(); //Agouri
 
-/obj/machinery/r_n_d/server/Dispose()
+/obj/machinery/r_n_d/server/Destroy()
 	griefProtection()
 	. = ..()
 
@@ -34,7 +33,8 @@
 		tot_rating += SP.rating
 	idle_power_usage /= max(1, tot_rating)
 
-/obj/machinery/r_n_d/server/initialize()
+/obj/machinery/r_n_d/server/Initialize()
+	. = ..()
 	if(!files) files = new /datum/research(src)
 	var/list/temp_list
 	if(!id_with_upload.len)
@@ -119,7 +119,7 @@
 				if(I.reliability != 100 && crit_fail)
 					I.crit_fail = 1
 				I.loc = src.loc
-			cdel(src)
+			qdel(src)
 			return 1
 
 /obj/machinery/r_n_d/server/attack_hand(mob/user as mob)
@@ -136,8 +136,8 @@
 	name = "Centcom Central R&D Database"
 	server_id = -1
 
-/obj/machinery/r_n_d/server/centcom/initialize()
-	..()
+/obj/machinery/r_n_d/server/centcom/Initialize()
+	. = ..()
 	var/list/no_id_servers = list()
 	var/list/server_ids = list()
 	for(var/obj/machinery/r_n_d/server/S in machines)
@@ -180,7 +180,7 @@
 	add_fingerprint(usr)
 	usr.set_interaction(src)
 	if(!src.allowed(usr) && !emagged)
-		to_chat(usr, "\red You do not have the required access level")
+		to_chat(usr, "<span class='warning'>You do not have the required access level</span>")
 		return
 
 	if(href_list["main"])
@@ -309,7 +309,7 @@
 	if(istype(D, /obj/item/card/emag) && !emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
 		emagged = 1
-		to_chat(user, "\blue You you disable the security protocols")
+		to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
 	src.updateUsrDialog()
 	return ..()
 

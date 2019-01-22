@@ -26,11 +26,11 @@
 				if(input_obj)
 					if(isturf(input_obj.loc))
 						input_plate = input_obj.loc
-						cdel(input_obj)
+						qdel(input_obj)
 						break
 
 			if(!input_plate)
-				log_misc("a [src] didn't find an input plate.")
+				log_runtime("a [src] didn't find an input plate.")
 				return
 
 	Bumped(var/atom/A)
@@ -74,7 +74,7 @@
 	if(stat & (NOPOWER|BROKEN))
 		return
 	if(operating)
-		to_chat(user, "\red It's locked and running")
+		to_chat(user, "<span class='warning'>It's locked and running</span>")
 		return
 	else
 		src.startgibbing(user)
@@ -137,10 +137,10 @@
 	if(src.operating)
 		return
 	if(!src.occupant)
-		visible_message("\red You hear a loud metallic grinding sound.")
+		visible_message("<span class='warning'> You hear a loud metallic grinding sound.</span>")
 		return
 	use_power(1000)
-	visible_message("\red You hear a loud squelchy grinding sound.")
+	visible_message("<span class='warning'> You hear a loud squelchy grinding sound.</span>")
 	src.operating = 1
 	update_icon()
 
@@ -203,7 +203,7 @@
 		occupant.death(1)
 		occupant.ghostize()
 
-	cdel(occupant)
+	qdel(occupant)
 	occupant = null
 
 	spawn(src.gibtime)

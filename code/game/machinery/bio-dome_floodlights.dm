@@ -91,7 +91,7 @@
 	var/obj/machinery/hydro_floodlight_switch/fswitch = null //Reverse lookup for power grabbing in area
 	var/lum_value = 7
 
-	Dispose()
+	Destroy()
 		SetLuminosity(0)
 		. = ..()
 
@@ -141,7 +141,7 @@
 		else
 			if(isXenoLarva(user))
 				return //Larvae can't do shit
-			if(user.get_active_hand())
+			if(user.get_active_held_item())
 				to_chat(user, "<span class='warning'>You need your claws empty for this!</span>")
 				return FALSE
 			user.visible_message("<span class='danger'>[user] starts to slash and claw away at [src]!</span>",

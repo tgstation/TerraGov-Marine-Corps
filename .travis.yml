@@ -27,5 +27,5 @@ before_script:
   - tools/travis/before_build_byond.sh
 
 script:
-  - tools/travis/check_filedirs.sh ColonialMarinesALPHA.dme
+  - tools/travis/check_filedirs.sh tgmc.dme
   - tools/travis/build_byond.sh

@@ -127,11 +127,11 @@
 				new /obj/item/stack/sheet/animalhide/human(T.loc)
 				new /obj/effect/decal/remains/human(T.loc)
 			if(T.legcuffed)
-				T.drop_inv_item_on_ground(T.legcuffed)
+				T.dropItemToGround(T.legcuffed)
 			T.butchery_progress = 5 //Won't really matter.
 			playsound(loc, 'sound/weapons/slice.ogg', 25)
-			to_chat(src, "\blue You finish butchering!")
-			cdel(T)
+			to_chat(src, "<span class='notice'>You finish butchering!</span>")
+			qdel(T)
 		else
 			to_chat(src, "You pause your butchering for later.")
 

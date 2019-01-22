@@ -189,7 +189,7 @@
 		return 1
 	else if(istype(M, /mob/living/carbon/human))
 		var/mob/living/carbon/human/H = M
-		for(var/ID in list(H.get_active_hand(), H.wear_id, H.belt))
+		for(var/ID in list(H.get_active_held_item(), H.wear_id, H.belt))
 			if(src.check_access(ID))
 				return 1
 	to_chat(M, "<font color='red'>You don't have required permissions to use [src]</font>")
@@ -251,7 +251,7 @@
 	if(!istype(apart)) return 0
 	for(var/obj/O in part_set)
 		if(O.type == apart.type)
-			cdel(apart)
+			qdel(apart)
 			return 0
 	part_set[++part_set.len] = apart
 	return 1
@@ -725,7 +725,7 @@
 		res.Move(src.loc)
 		result = res.amount
 	else
-		cdel(res)
+		qdel(res)
 	return result
 
 
@@ -771,10 +771,10 @@
 			if(src.resources["diamond"] >= 2000)
 				var/obj/item/stack/sheet/mineral/diamond/G = new /obj/item/stack/sheet/mineral/diamond(src.loc)
 				G.amount = round(src.resources["diamond"] / G.perunit)
-			cdel(src)
+			qdel(src)
 			return 1
 		else
-			to_chat(user, "\red You can't load the [src.name] while it's opened.")
+			to_chat(user, "<span class='warning'>You can't load the [src.name] while it's opened.</span>")
 			return 1
 
 	if(istype(W, /obj/item/card/emag))

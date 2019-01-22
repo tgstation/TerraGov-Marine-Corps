@@ -65,9 +65,10 @@
 	if (!id_tag)
 		assign_uid()
 		id_tag = num2text(uid)
-	if(ticker && ticker.current_state == 3)//if the game is running
-		src.initialize()
-		src.broadcast_status()
+
+/obj/machinery/atmospherics/unary/vent_pump/Initialize()
+	. = ..()
+	broadcast_status()
 
 /obj/machinery/atmospherics/unary/vent_pump/high_volume
 	name = "Large Air Vent"
@@ -342,7 +343,7 @@
 		user.visible_message("<span class='notice'>[user] unfastens [src].</span>",
 		"<span class='notice'>You unfasten [src].</span>")
 		new /obj/item/pipe(loc, make_from = src)
-		cdel(src)
+		qdel(src)
 
 /obj/machinery/atmospherics/unary/vent_pump/examine(mob/user)
 	..()
@@ -359,7 +360,7 @@
 	if(old_stat != stat)
 		update_icon()
 
-/obj/machinery/atmospherics/unary/vent_pump/Dispose()
+/obj/machinery/atmospherics/unary/vent_pump/Destroy()
 	if(initial_loc)
 		initial_loc.air_vent_info -= id_tag
 		initial_loc.air_vent_names -= id_tag

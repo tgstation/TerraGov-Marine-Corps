@@ -22,7 +22,7 @@
 		for(var/obj/item/W in (H.contents-implants))
 			if (W==H.w_uniform) // will be teared
 				continue
-			H.drop_inv_item_on_ground(W)
+			H.dropItemToGround(W)
 		M.monkeyizing = 1
 		M.canmove = 0
 		M.icon = null
@@ -33,7 +33,7 @@
 		animation.master = src
 		flick("h2monkey", animation)
 		sleep(48)
-		cdel(animation)
+		qdel(animation)
 
 
 	var/mob/living/carbon/monkey/O = null
@@ -60,7 +60,7 @@
 
 
 	for(var/obj/T in (M.contents-implants))
-		cdel(T)
+		qdel(T)
 
 	O.loc = M.loc
 
@@ -82,7 +82,7 @@
 		I.loc = O
 		I.implanted = O
 //		O.update_icon = 1	//queue a full icon update at next life() call
-	cdel(M)
+	qdel(M)
 	return
 
 /datum/dna/gene/monkey/deactivate(var/mob/living/M, var/connected, var/flags)
@@ -97,7 +97,7 @@
 		W.loc = null
 	if(!connected)
 		for(var/obj/item/W in (Mo.contents-implants))
-			Mo.drop_inv_item_on_ground(W)
+			Mo.dropItemToGround(W)
 		M.monkeyizing = 1
 		M.canmove = 0
 		M.icon = null
@@ -108,7 +108,7 @@
 		animation.master = src
 		flick("monkey2h", animation)
 		sleep(48)
-		cdel(animation)
+		qdel(animation)
 
 	var/mob/living/carbon/human/O
 	if(Mo.greaterform)
@@ -136,7 +136,7 @@
 		M.viruses -= D
 
 	//for(var/obj/T in M)
-	//	cdel(T)
+	//	qdel(T)
 
 	O.loc = M.loc
 
@@ -171,5 +171,5 @@
 		I.loc = O
 		I.implanted = O
 //		O.update_icon = 1	//queue a full icon update at next life() call
-	cdel(M)
+	qdel(M)
 	return

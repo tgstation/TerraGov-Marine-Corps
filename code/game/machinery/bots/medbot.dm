@@ -202,7 +202,7 @@
 			to_chat(user, "<span class='notice'>There is already a beaker loaded.</span>")
 			return
 
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			reagent_glass = W
 			to_chat(user, "<span class='notice'>You insert [W].</span>")
 			src.updateUsrDialog()
@@ -219,7 +219,7 @@
 		if(user) to_chat(user, "<span class='warning'>You short out [src]'s reagent synthesis circuits.</span>")
 		spawn(0)
 			for(var/mob/O in hearers(src, null))
-				O.show_message("\red <B>[src] buzzes oddly!</B>", 1)
+				O.show_message("<span class='danger'>[src] buzzes oddly!</span>", 1)
 		flick("medibot_spark", src)
 		src.patient = null
 		if(user) src.oldpatient = user
@@ -438,7 +438,7 @@
 		return
 	else
 		src.icon_state = "medibots"
-		visible_message("\red <B>[src] is trying to inject [src.patient]!</B>")
+		visible_message("<span class='danger'>[src] is trying to inject [src.patient]!</span>")
 		spawn(30)
 			if ((get_dist(src, src.patient) <= 1) && (src.on))
 				if(reagent_id == "internal_beaker" && reagent_glass && reagent_glass.reagents.total_volume)
@@ -446,7 +446,7 @@
 					src.reagent_glass.reagents.reaction(src.patient, 2)
 				else
 					src.patient.reagents.add_reagent(reagent_id,src.injection_amount)
-				visible_message("\red <B>[src] injects [src.patient] with the syringe!</B>")
+				visible_message("<span class='danger'>[src] injects [src.patient] with the syringe!</span>")
 
 			src.icon_state = "medibot[src.on]"
 			src.currently_healing = 0
@@ -465,7 +465,7 @@
 
 /obj/machinery/bot/medbot/explode()
 	src.on = 0
-	visible_message("\red <B>[src] blows apart!</B>", 1)
+	visible_message("<span class='danger'>[src] blows apart!</span>", 1)
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/storage/firstaid(Tsec)
@@ -484,7 +484,7 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	cdel(src)
+	qdel(src)
 	return
 
 /obj/machinery/bot/medbot/Bump(M as mob|obj) //Leave no door unopened!
@@ -531,8 +531,8 @@
 	else if(istype(src,/obj/item/storage/firstaid/o2))
 		A.skin = "o2"
 
-	cdel(S)
+	qdel(S)
 	user.put_in_hands(A)
 	to_chat(user, "<span class='notice'>You add the robot arm to the first aid kit.</span>")
-	user.temp_drop_inv_item(src)
-	cdel(src)
+	user.temporarilyRemoveItemFromInventory(src)
+	qdel(src)

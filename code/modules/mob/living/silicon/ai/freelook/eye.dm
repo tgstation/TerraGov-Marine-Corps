@@ -60,25 +60,24 @@
 // The AI's "eye". Described on the top of the page.
 
 /mob/living/silicon/ai
-	var/mob/aiEye/eyeobj = new()
+	var/mob/aiEye/eyeobj
 	var/sprint = 10
 	var/cooldown = 0
 	var/acceleration = 1
 	var/obj/machinery/hologram/holopad/holo = null
 
 // Intiliaze the eye by assigning it's "ai" variable to us. Then set it's loc to us.
-/mob/living/silicon/ai/New()
-	..()
+/mob/living/silicon/ai/Initialize()
+	. = ..()
+	eyeobj = new()
 	eyeobj.ai = src
 	eyeobj.name = "[src.name] (AI Eye)" // Give it a name
-	spawn(5)
-		if(eyeobj)
-			eyeobj.loc = src.loc
+	eyeobj.loc = src.loc
 
-/mob/living/silicon/ai/Dispose()
+/mob/living/silicon/ai/Destroy()
 	if(eyeobj)
 		eyeobj.ai = null
-		cdel(eyeobj) // No AI, no Eye
+		qdel(eyeobj) // No AI, no Eye
 		eyeobj = null
 	. = ..()
 

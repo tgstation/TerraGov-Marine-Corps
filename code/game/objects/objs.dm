@@ -1,4 +1,5 @@
 /obj
+	var/list/list_reagents = null
 	//Used to store information about the contents of the object.
 	var/list/matter
 
@@ -15,20 +16,25 @@
 	var/can_buckle = FALSE
 
 	var/explosion_resistance = 0
+	var/can_supply_drop = FALSE
 
 /obj/New()
 	..()
 	object_list += src
 
-/obj/Dispose()
+/obj/Destroy()
 	. = ..()
 	object_list -= src
 
+/obj/proc/add_initial_reagents()
+	if(reagents && list_reagents)
+		reagents.add_reagent_list(list_reagents)
 
 /obj/item/proc/is_used_on(obj/O, mob/user)
+	return
 
-/obj/proc/process()
-	processing_objects.Remove(src)
+/obj/process()
+	STOP_PROCESSING(SSobj, src)
 	return 0
 
 
@@ -94,7 +100,7 @@
 /obj/proc/hear_talk(mob/M, text)
 	return
 
-/obj/Dispose()
+/obj/Destroy()
 	if(buckled_mob) unbuckle()
 	. = ..()
 

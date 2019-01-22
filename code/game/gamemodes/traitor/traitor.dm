@@ -29,7 +29,7 @@
 
 /datum/game_mode/traitor/pre_setup()
 
-	if(config.protect_roles_from_antagonist)
+	if(CONFIG_GET(flag/protect_roles_from_antagonist))
 		restricted_jobs += protected_jobs
 
 	var/list/possible_traitors = get_players_for_role(BE_TRAITOR)
@@ -40,10 +40,10 @@
 
 	var/num_traitors = 1
 
-	if(config.traitor_scaling)
-		num_traitors = max(1, round((num_players())/(traitor_scaling_coeff)))
+	if(CONFIG_GET(flag/traitor_scaling))
+		num_traitors = max(1, round((ready_players())/(traitor_scaling_coeff)))
 	else
-		num_traitors = max(1, min(num_players(), traitors_possible))
+		num_traitors = max(1, min(ready_players(), traitors_possible))
 
 	for(var/datum/mind/player in possible_traitors)
 		for(var/job in restricted_jobs)
@@ -65,7 +65,7 @@
 
 /datum/game_mode/traitor/post_setup()
 	for(var/datum/mind/traitor in traitors)
-		if (!config.objectives_disabled)
+		if(!CONFIG_GET(flag/objectives_disabled))
 			forge_traitor_objectives(traitor)
 		spawn(rand(10,100))
 			finalize_traitor(traitor)
@@ -78,7 +78,7 @@
 
 
 /datum/game_mode/proc/forge_traitor_objectives(var/datum/mind/traitor)
-	if (config.objectives_disabled)
+	if(CONFIG_GET(flag/objectives_disabled))
 		return
 
 	if(istype(traitor.current, /mob/living/silicon))
@@ -181,7 +181,7 @@
 				special_role_text = lowertext(traitor.special_role)
 			else
 				special_role_text = "antagonist"
-			if(!config.objectives_disabled)
+			if(!CONFIG_GET(flag/objectives_disabled))
 				if(traitorwin)
 					text += "<br><font color='green'><B>The [special_role_text] was successful!</B></font>"
 					feedback_add_details("traitor_success","SUCCESS")

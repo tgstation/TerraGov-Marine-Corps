@@ -73,12 +73,12 @@
 		if(1)
 			if(prob(50))
 				dump_everything() //So suits dont survive all the time
-			cdel(src)
+			qdel(src)
 
 		if(2)
 			if(prob(50))
 				dump_everything()
-				cdel(src)
+				qdel(src)
 
 
 
@@ -220,7 +220,7 @@
 
 	sleep(150)
 
-	if(disposed)
+	if(gc_destroyed)
 		return
 	if(inserted_helmet)
 		inserted_helmet.clean_blood()
@@ -248,7 +248,7 @@
 				if(inserted_suit)
 					to_chat(user, "<span class='warning'>The unit already contains a suit.</span>")
 					return
-				if(user.drop_inv_item_to_loc(S, src))
+				if(user.transferItemToLoc(S, src))
 					to_chat(user, "<span class='notice'>You load the [S.name] into the storage compartment.</span>")
 					inserted_suit = S
 					update_icon()
@@ -261,7 +261,7 @@
 					to_chat(user, "<span class='warning'>The unit already contains a helmet.</span>")
 					return
 				to_chat(user, "<span class='notice'>You load the [H.name] into the storage compartment.</span>")
-				if(user.drop_inv_item_to_loc(H, src))
+				if(user.transferItemToLoc(H, src))
 					inserted_helmet = H
 					update_icon()
 					updateUsrDialog()
@@ -273,7 +273,7 @@
 					to_chat(user, "<span class='warning'>The unit already contains a mask.</span>")
 					return
 				to_chat(user, "<span class='notice'>You load the [M.name] into the storage compartment.</span>")
-				if(user.drop_inv_item_to_loc(M, src))
+				if(user.transferItemToLoc(M, src))
 					inserted_mask = M
 					update_icon()
 					updateUsrDialog()
@@ -285,7 +285,7 @@
 					to_chat(user, "<span class='warning'>The unit already contains a tank.</span>")
 					return
 				to_chat(user, "<span class='notice'>You load the [T.name] into the storage compartment.</span>")
-				if(user.drop_inv_item_to_loc(T, src))
+				if(user.transferItemToLoc(T, src))
 					inserted_tank = T
 					update_icon()
 					updateUsrDialog()

@@ -27,7 +27,7 @@
 /obj/item/proc/wield(var/mob/user)
 	if( !(flags_item & TWOHANDED) || flags_item & WIELDED ) return
 
-	if(user.get_inactive_hand())
+	if(user.get_inactive_held_item())
 		to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
 		return
 
@@ -55,7 +55,7 @@
 
 /obj/item/proc/place_offhand(var/mob/user,item_name)
 	to_chat(user, "<span class='notice'>You grab [item_name] with both hands.</span>")
-	var/obj/item/weapon/twohanded/offhand/offhand = rnew(/obj/item/weapon/twohanded/offhand, user)
+	var/obj/item/weapon/twohanded/offhand/offhand = new /obj/item/weapon/twohanded/offhand(user)
 	offhand.name = "[item_name] - offhand"
 	offhand.desc = "Your second grip on the [item_name]."
 	offhand.flags_item |= WIELDED
@@ -65,7 +65,7 @@
 
 /obj/item/proc/remove_offhand(var/mob/user)
 	to_chat(user, "<span class='notice'>You are now carrying [name] with one hand.</span>")
-	var/obj/item/weapon/twohanded/offhand/offhand = user.get_inactive_hand()
+	var/obj/item/weapon/twohanded/offhand/offhand = user.get_inactive_held_item()
 	if(istype(offhand)) offhand.unwield(user)
 	user.update_inv_l_hand(0)
 	user.update_inv_r_hand()
@@ -101,25 +101,21 @@
 	unwield(var/mob/user)
 		if(flags_item & WIELDED)
 			flags_item &= ~WIELDED
-			user.temp_drop_inv_item(src)
-			cdel(src)
+			user.temporarilyRemoveItemFromInventory(src)
+			qdel(src)
 
 	wield()
-		cdel(src) //This shouldn't even happen.
+		qdel(src) //This shouldn't even happen.
 
-	Dispose()
+	Destroy()
 		..()
 		return TA_REVIVE_ME //So we can recycle this garbage.
-
-	Recycle()
-		var/blacklist[] = list("name","w_class","desc","flags","icon_state")
-		. = ..() + blacklist
 
 	dropped(mob/user)
 		..()
 		//This hand should be holding the main weapon. If everything worked correctly, it should not be wielded.
 		//If it is, looks like we got our hand torn off or something.
-		var/obj/item/main_hand = user.get_active_hand()
+		var/obj/item/main_hand = user.get_active_held_item()
 		if(main_hand) main_hand.unwield(user)
 
 /*
@@ -134,7 +130,7 @@
 	sharp = IS_SHARP_ITEM_BIG
 	edge = 1
 	w_class = 4.0
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	flags_atom = CONDUCT
 	flags_item = TWOHANDED
 	force_wielded = 45
@@ -154,7 +150,7 @@
 	if(!proximity) return
 	..()
 	if(A && (flags_item & WIELDED) && istype(A,/obj/structure/grille)) //destroys grilles in one hit
-		cdel(A)
+		qdel(A)
 
 /*
  * Double-Bladed Energy Swords - Cheridan
@@ -211,7 +207,7 @@
 	item_state = "spearglass"
 	force = 14
 	w_class = 4.0
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	force_wielded = 24
 	throwforce = 30
 	throw_speed = 3
@@ -231,7 +227,7 @@
 	desc = "A huge, powerful blade on a metallic pole. Mysterious writing is carved into the weapon."
 	force = 28
 	w_class = 4.0
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	force_wielded = 60
 	throwforce = 50
 	throw_speed = 3

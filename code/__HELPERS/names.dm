@@ -97,8 +97,8 @@ var/religion_name = null
 			station_name += pick("13","XIII","Thirteen")
 
 
-	if (config && config.server_name)
-		world.name = "[config.server_name]: [name]"
+	if(CONFIG_GET(string/server_name))
+		world.name = "[CONFIG_GET(string/server_name)]: [name]"
 	else
 		world.name = station_name
 
@@ -108,8 +108,8 @@ var/religion_name = null
 
 	station_name = name
 
-	if (config && config.server_name)
-		world.name = "[config.server_name]: [name]"
+	if(CONFIG_GET(string/server_name))
+		world.name = "[CONFIG_GET(string/server_name)]: [name]"
 	else
 		world.name = name
 
@@ -236,7 +236,7 @@ var/syndicate_code_response//Code response for traitors.
 	set name = "Generate Code Phrase"
 	set category = "Debug"
 
-	to_chat(world, "\red Code Phrase is: \black [generate_code_phrase()]")
+	to_chat(world, "<span class='warning'>Code Phrase is: \black [generate_code_phrase()]</span>")
 	return
 
 

@@ -79,7 +79,7 @@
 					C.anchored = 1
 					C.density = 1
 					C.update()
-					cdel(src)
+					qdel(src)
 			else
 				to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			return
@@ -113,7 +113,7 @@
 	if(!I)
 		return
 
-	if(user.drop_inv_item_to_loc(I, src))
+	if(user.transferItemToLoc(I, src))
 		user.visible_message("<span class='notice'>[user] places [I] into [src].</span>",
 		"<span class='notice'>You place [I] into [src].</span>")
 	update()
@@ -191,7 +191,7 @@
 //Human interact with machine
 /obj/machinery/disposal/attack_hand(mob/user as mob)
 	if(user && user.loc == src)
-		to_chat(usr, "\red You cannot reach the controls from inside.")
+		to_chat(usr, "<span class='warning'>You cannot reach the controls from inside.</span>")
 		return
 
 	interact(user, 0)
@@ -286,17 +286,17 @@
 /obj/machinery/disposal/ex_act(severity)
 	switch(severity)
 		if(1)
-			cdel(src)
+			qdel(src)
 			return
 		if(2)
 			if(prob(60))
-				cdel(src)
+				qdel(src)
 			return
 		if(3)
 			if(prob(25))
-				cdel(src)
+				qdel(src)
 
-/obj/machinery/disposal/Dispose()
+/obj/machinery/disposal/Destroy()
 	if(contents.len)
 		eject()
 	. = ..()
@@ -419,7 +419,7 @@
 				spawn(1)
 					if(AM)
 						AM.throw_at(target, 5, 1)
-		cdel(H)
+		qdel(H)
 
 /obj/machinery/disposal/CanPass(atom/movable/mover, turf/target)
 	if(istype(mover, /obj/item) && mover.throwing)
@@ -449,7 +449,7 @@
 
 	var/partialTag = "" //Set by a partial tagger the first time round, then put in destinationTag if it goes through again.
 
-/obj/structure/disposalholder/Dispose()
+/obj/structure/disposalholder/Destroy()
 		active = 0
 		. = ..()
 
@@ -559,7 +559,7 @@
 
 	if(other.has_fat_guy)
 		has_fat_guy = 1
-	cdel(other)
+	qdel(other)
 
 /obj/structure/disposalholder/proc/settag(var/new_tag)
 	destinationTag = new_tag
@@ -612,7 +612,7 @@
 
 //Pipe is deleted
 //Ensure if holder is present, it is expelled
-/obj/structure/disposalpipe/Dispose()
+/obj/structure/disposalpipe/Destroy()
 	var/obj/structure/disposalholder/H = locate() in src
 	if(H)
 		//Holder was present
@@ -624,7 +624,7 @@
 			for(var/atom/movable/AM in H)
 				AM.loc = T
 				AM.pipe_eject(0)
-			cdel(H)
+			qdel(H)
 			..()
 			return
 
@@ -702,7 +702,7 @@
 				spawn(1)
 					if(AM)
 						AM.throw_at(target, 100, 1)
-			cdel(H)
+			qdel(H)
 
 	else //No specified direction, so throw in random direction
 
@@ -717,7 +717,7 @@
 					if(AM)
 						AM.throw_at(target, 5, 1)
 
-			cdel(H)
+			qdel(H)
 
 //Call to break the pipe, will expel any holder inside at the time then delete the pipe
 //Remains : set to leave broken pipe pieces in place
@@ -740,7 +740,7 @@
 			for(var/atom/movable/AM in H)
 				AM.loc = T
 				AM.pipe_eject(0)
-			cdel(H)
+			qdel(H)
 			return
 
 		//Otherwise, do normal expel from turf
@@ -748,7 +748,7 @@
 			expel(H, T, 0)
 
 	spawn(2) //Delete pipe after 2 ticks to ensure expel proc finished
-		cdel(src)
+		qdel(src)
 
 //Pipe affected by explosion
 /obj/structure/disposalpipe/ex_act(severity)
@@ -835,7 +835,7 @@
 	C.density = 0
 	C.anchored = 1
 	C.update()
-	cdel(src)
+	qdel(src)
 
 //A straight or bent segment
 /obj/structure/disposalpipe/segment
@@ -1297,7 +1297,7 @@
 
 //Called when welded, for broken pipe, remove and turn into scrap
 /obj/structure/disposalpipe/broken/welded()
-	cdel(src)
+	qdel(src)
 
 //The disposal outlet machine
 /obj/structure/disposaloutlet
@@ -1335,7 +1335,7 @@
 			if(!istype(AM, /mob/living/silicon/robot/drone)) //Drones keep smashing windows from being fired out of chutes. Bad for the station. ~Z
 				spawn(5)
 					AM.throw_at(target, 3, 1)
-		cdel(H)
+		qdel(H)
 
 /obj/structure/disposaloutlet/attackby(var/obj/item/I, var/mob/user)
 	if(!I || !user)
@@ -1364,7 +1364,7 @@
 				C.update()
 				C.anchored = 1
 				C.density = 1
-				cdel(src)
+				qdel(src)
 		else
 			to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 

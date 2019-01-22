@@ -18,14 +18,14 @@
 
 /obj/effect/decal/cleanable/ash/attack_hand(mob/user as mob)
 	to_chat(user, "<span class='notice'>[src] sifts through your fingers.</span>")
-	cdel(src)
+	qdel(src)
 
 /obj/effect/decal/cleanable/greenglow
 
 	New()
 		..()
 		spawn(1200)// 2 minutes
-			cdel(src)
+			qdel(src)
 
 /obj/effect/decal/cleanable/dirt
 	name = "dirt"
@@ -59,7 +59,7 @@
 	icon = 'icons/effects/effects.dmi'
 	icon_state = "greenglow"
 
-/obj/effect/decal/cleanable/greenglow/Dispose()
+/obj/effect/decal/cleanable/greenglow/Destroy()
 	SetLuminosity(0)
 	. = ..()
 
@@ -103,7 +103,7 @@
 	random_icon_states = list("vomit_1", "vomit_2", "vomit_3", "vomit_4")
 	var/list/viruses = list()
 
-	Dispose()
+	Destroy()
 		for(var/datum/disease/D in viruses)
 			D.cure(0)
 		. = ..()

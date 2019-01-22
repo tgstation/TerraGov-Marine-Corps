@@ -38,15 +38,15 @@
 			var/mob/M = C
 			C = M.client
 		if(!C) return //Outdated links to logged players generate runtimes
-		if(unansweredMhelps[C.computer_id]) 
+		if(unansweredMhelps[C.computer_id])
 			unansweredMhelps.Remove(C.computer_id)
-		if(unansweredAhelps[C.computer_id]) 
+		if(unansweredAhelps[C.computer_id])
 			unansweredAhelps.Remove(C.computer_id)
 		cmd_admin_pm(C,null)
 		return
 
 	//Logs all hrefs
-	if(config && config.log_hrefs)
+	if(CONFIG_GET(flag/log_hrefs))
 		log_href("[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr]) || [hsrc ? "[hsrc] " : ""][href]")
 
 	switch(href_list["_src_"])
@@ -58,14 +58,14 @@
 	..()	//redirect to hsrc.Topic()
 
 /client/proc/handle_spam_prevention(var/message, var/mute_type)
-	if(config.automute_on && !holder && src.last_message == message)
+	if(CONFIG_GET(flag/automute_on) && !holder && src.last_message == message)
 		src.last_message_count++
 		if(src.last_message_count >= SPAM_TRIGGER_AUTOMUTE)
-			to_chat(src, "\red You have exceeded the spam filter limit for identical messages. An auto-mute was applied.")
+			to_chat(src, "<span class='warning'>You have exceeded the spam filter limit for identical messages. An auto-mute was applied.</span>")
 			cmd_admin_mute(src.mob, mute_type, 1)
 			return 1
 		if(src.last_message_count >= SPAM_TRIGGER_WARNING)
-			to_chat(src, "\red You are nearing the spam filter limit for identical messages.")
+			to_chat(src, "<span class='warning'>You are nearing the spam filter limit for identical messages.</span>")
 			return 0
 	else
 		last_message = message
@@ -100,15 +100,12 @@
 
 	if(!guests_allowed && IsGuestKey(key))
 		alert(src,"This server doesn't allow guest accounts to play. Please go to http://www.byond.com/ and register for a key.","Guest","OK")
-		cdel(src)
+		qdel(src)
 		return
 
-	// Change the way they should download resources.
-	if(config.resource_urls)
-		src.preload_rsc = pick(config.resource_urls)
-	else src.preload_rsc = 1 // If config.resource_urls is not set, preload like normal.
+	preload_rsc = TRUE // If config.resource_urls is not set, preload like normal.
 
-	to_chat(src, "\red If the title screen is black, resources are still downloading. Please be patient until the title screen appears.")
+	to_chat(src, "<span class='warning'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</span>")
 
 
 	clients += src

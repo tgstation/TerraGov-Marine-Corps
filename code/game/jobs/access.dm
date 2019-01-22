@@ -17,10 +17,10 @@
 	if(check_access(I))
 		return TRUE
 
-/obj/item/proc/GetAccess() 
+/obj/item/proc/GetAccess()
 	return list()
 
-/obj/item/proc/GetID() 
+/obj/item/proc/GetID()
 	return
 
 /obj/proc/check_access(obj/item/I)
@@ -181,32 +181,32 @@
 	return all_jobs_titles
 
 
-/proc/get_all_centcom_jobs() 
+/proc/get_all_centcom_jobs()
 	return list()
 
 
 //gets the actual job rank (ignoring alt titles)
 //this is used solely for sechuds
 /obj/proc/GetJobRealName()
-	if (!istype(src,/obj/item/card/id)) 
+	if (!istype(src,/obj/item/card/id))
 		return
 	var/obj/item/card/id/I = src
-	if(I.rank in joblist) 
+	if(I.rank in joblist)
 		return I.rank
-	if(I.assignment in joblist) 
+	if(I.assignment in joblist)
 		return I.assignment
 	return "Unknown"
 
 proc/FindNameFromID(mob/living/carbon/human/H)
 	ASSERT(istype(H))
 	var/obj/item/card/id/I = H.wear_id
-	if(istype(I)) 
+	if(istype(I))
 		return I.registered_name
-	I = H.get_active_hand()
-	if(istype(I)) 
+	I = H.get_active_held_item()
+	if(istype(I))
 		return I.registered_name
 
-proc/get_all_job_icons() 
+proc/get_all_job_icons()
 	return joblist + list("Prisoner")//For all existing HUD icons
 
 /obj/proc/GetJobName() //Used in secHUD icon generation
@@ -214,13 +214,13 @@ proc/get_all_job_icons()
 	if(istype(I))
 		var/job_icons = get_all_job_icons()
 		var/centcom = get_all_centcom_jobs()
-		if(I.assignment	in job_icons) 	
+		if(I.assignment	in job_icons)
 			return I.assignment//Check if the job has a hud icon
-		if(I.rank in job_icons) 		
+		if(I.rank in job_icons)
 			return I.rank
-		if(I.assignment	in centcom) 	
+		if(I.assignment	in centcom)
 			return "Centcom"//Return with the NT logo if it is a Centcom job
-		if(I.rank in centcom) 			
+		if(I.rank in centcom)
 			return "Centcom"
 	return "Unknown" //Return unknown if none of the above apply
 
@@ -251,7 +251,7 @@ proc/get_all_job_icons()
 				)
 
 /proc/get_paygrades(paygrade, size, gender)
-	if(!paygrade) 
+	if(!paygrade)
 		return
 	switch(paygrade)
 		if("C") . = size ? "" : "Civilian"
@@ -303,6 +303,12 @@ proc/get_all_job_icons()
 		if("FRE1") . = size ? "FRE " : "Freelancer Standard"
 		if("FRE2") . = size ? "FRE " : "Freelancer Medic"
 		if("FRE3") . = size ? "FRE " : "Freelancer Leader"
+		if("CLF1") . = size ? "CLF " : "CLF Standard"
+		if("CLF2") . = size ? "CLF " : "CLF Medic"
+		if("CLF3") . = size ? "CLF " : "CLF Leader"
+		if("MRC1") . = size ? "MERC " : "MERC Heavy"
+		if("MRC2") . = size ? "MERC " : "MERC Miner"
+		if("MRC3") . = size ? "MERC " : "MERC Engineer"
 		else . = paygrade + " " //custom paygrade
 
 #define PAYGRADES_MARINE list("C","E1","E2","E3","E4","E5","E6","E6E","E7","E8","E8E","E9","E9E","O1","O2","O3","O4", "WO")

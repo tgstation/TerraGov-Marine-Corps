@@ -51,7 +51,7 @@
 			user.visible_message("[user.name] deconstructs [src].", \
 				"You deconstruct [src].", "You hear a noise.")
 			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-			cdel(src)
+			qdel(src)
 		if (src.stage == 2)
 			to_chat(usr, "You have to remove the wires first.")
 			return
@@ -111,7 +111,7 @@
 
 			newlight.dir = src.dir
 			src.transfer_fingerprints_to(newlight)
-			cdel(src)
+			qdel(src)
 			return
 	..()
 
@@ -202,7 +202,7 @@
 		if(8)
 			pixel_x = -10
 
-/obj/machinery/light/Dispose()
+/obj/machinery/light/Destroy()
 	var/area/A = get_area(src)
 	if(A)
 		on = FALSE
@@ -314,8 +314,8 @@
 				on = has_power()
 				update()
 
-				if(user.temp_drop_inv_item(L))
-					cdel(L)
+				if(user.temporarilyRemoveItemFromInventory(L))
+					qdel(L)
 
 					if(on && rigged)
 
@@ -369,7 +369,7 @@
 			newlight.fingerprints = src.fingerprints
 			newlight.fingerprintshidden = src.fingerprintshidden
 			newlight.fingerprintslast = src.fingerprintslast
-			cdel(src)
+			qdel(src)
 			return
 
 		to_chat(user, "You stick \the [W] into the light socket!")
@@ -414,11 +414,11 @@
 	if(M.melee_damage_upper == 0)
 		return
 	if(status == LIGHT_EMPTY||status == LIGHT_BROKEN)
-		to_chat(M, "\red That object is useless to you.")
+		to_chat(M, "<span class='warning'>That object is useless to you.</span>")
 		return
 	else if (status == LIGHT_OK||status == LIGHT_BURNED)
 		for(var/mob/O in viewers(src))
-			O.show_message("\red [M.name] smashed the light!", 3, "You hear a tinkle of breaking glass", 2)
+			O.show_message("<span class='warning'> [M.name] smashed the light!</span>", 3, "You hear a tinkle of breaking glass", 2)
 		broken()
 	return
 
@@ -446,7 +446,7 @@
 		var/mob/living/carbon/human/H = user
 		if(H.species.can_shred(H))
 			for(var/mob/M in viewers(src))
-				M.show_message("\red [user.name] smashed the light!", 3, "You hear a tinkle of breaking glass", 2)
+				M.show_message("<span class='warning'> [user.name] smashed the light!</span>", 3, "You hear a tinkle of breaking glass", 2)
 			broken()
 			return
 
@@ -549,7 +549,7 @@
 /obj/machinery/light/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(75))
@@ -592,7 +592,7 @@
 		sleep(2)
 		explosion(T, 0, 0, 2, 2)
 		sleep(1)
-		cdel(src)
+		qdel(src)
 
 // the light item
 // can be tube or bulb subtypes
@@ -708,7 +708,7 @@
 
 /obj/item/light_bulb/proc/shatter()
 	if(status == LIGHT_OK || status == LIGHT_BURNED)
-		src.visible_message("\red [name] shatters.","\red You hear a small glass object shatter.")
+		src.visible_message("<span class='warning'> [name] shatters.</span>","<span class='warning'> You hear a small glass object shatter.</span>")
 		status = LIGHT_BROKEN
 		force = 5
 		sharp = IS_SHARP_ITEM_SIMPLE
@@ -742,10 +742,10 @@
 	SetLuminosity(0)
 
 /obj/machinery/landinglight/ds1
-	id = "USS Almayer Dropship 1" // ID for landing zone
+	id = "TGS Theseus Dropship 1" // ID for landing zone
 
 /obj/machinery/landinglight/ds2
-	id = "USS Almayer Dropship 2" // ID for landing zone
+	id = "TGS Theseus Dropship 2" // ID for landing zone
 
 /obj/machinery/landinglight/proc/turn_on()
 	icon_state = "landingstripe0"

@@ -41,7 +41,7 @@
 	if(..())
 		return
 	if (src.z > 6)
-		to_chat(user, "\red <b>Unable to establish a connection</b>: \black You're too far away from the station!")
+		to_chat(user, "<span class='danger'>Unable to establish a connection: You're too far away from the station!</span>")
 		return
 	var/dat
 
@@ -179,13 +179,13 @@ What a mess.*/
 
 			if("Confirm Identity")
 				if (scan)
-					if(istype(usr,/mob/living/carbon/human) && !usr.get_active_hand())
+					if(istype(usr,/mob/living/carbon/human) && !usr.get_active_held_item())
 						usr.put_in_hands(scan)
 					else
 						scan.loc = get_turf(src)
 					scan = null
 				else
-					var/obj/item/I = usr.get_active_hand()
+					var/obj/item/I = usr.get_active_held_item()
 					if (istype(I, /obj/item/card/id))
 						if(usr.drop_held_item())
 							I.forceMove(src)
@@ -295,7 +295,7 @@ What a mess.*/
 					PDA_Manifest.Cut()
 				for(var/datum/data/record/R in data_core.security)
 					data_core.security -= R
-					cdel(R)
+					qdel(R)
 				temp = "All Employment records deleted."
 
 			if ("Delete Record (ALL)")
@@ -380,9 +380,9 @@ What a mess.*/
 							for(var/datum/data/record/R in data_core.medical)
 								if ((R.fields["name"] == active1.fields["name"] || R.fields["id"] == active1.fields["id"]))
 									data_core.medical -= R
-									cdel(R)
+									qdel(R)
 								else
-							cdel(active1)
+							qdel(active1)
 							active1 = null
 					else
 						temp = "This function does not appear to be working at the moment. Our apologies."
@@ -417,7 +417,7 @@ What a mess.*/
 
 		else if(prob(1))
 			data_core.security -= R
-			cdel(R)
+			qdel(R)
 			continue
 
 	..(severity)

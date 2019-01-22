@@ -27,8 +27,8 @@
 	faction = "cult"
 	var/list/construct_spells = list()
 
-/mob/living/simple_animal/construct/New()
-	..()
+/mob/living/simple_animal/construct/Initialize()
+	. = ..()
 	name = text("[initial(name)] ([rand(1, 1000)])")
 	real_name = name
 	for(var/spell in construct_spells)
@@ -38,7 +38,7 @@
 	new /obj/item/ectoplasm (src.loc)
 	. = ..(null,"collapses in a shattered heap.")
 	ghostize()
-	cdel(src)
+	qdel(src)
 
 /mob/living/simple_animal/construct/examine(mob/user)
 	var/msg = "<span cass='info'>*---------*\nThis is \icon[src] \a <EM>[src]</EM>!\n"
@@ -79,12 +79,12 @@
 		adjustBruteLoss(damage)
 		for(var/mob/M in viewers(src, null))
 			if ((M.client && !is_blind(M)))
-				M.show_message("\red \b [src] has been attacked with [O] by [user]. ")
+				M.show_message("<span class='danger'> [src] has been attacked with [O] by [user]. </span>")
 	else
-		to_chat(usr, "\red This weapon is ineffective, it does no damage.")
+		to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 		for(var/mob/M in viewers(src, null))
 			if ((M.client && !is_blind(M)))
-				M.show_message("\red [user] gently taps [src] with [O]. ")
+				M.show_message("<span class='warning'> [user] gently taps [src] with [O]. </span>")
 
 
 
@@ -121,16 +121,16 @@
 			adjustBruteLoss(damage)
 			for(var/mob/M in viewers(src, null))
 				if ((M.client && !is_blind(M)))
-					M.show_message("\red \b [src] has been attacked with [O] by [user]. ")
+					M.show_message("<span class='danger'> [src] has been attacked with [O] by [user]. </span>")
 		else
 			for(var/mob/M in viewers(src, null))
 				if ((M.client && !is_blind(M)))
-					M.show_message("\red \b [O] bounces harmlessly off of [src]. ")
+					M.show_message("<span class='danger'> [O] bounces harmlessly off of [src]. </span>")
 	else
-		to_chat(usr, "\red This weapon is ineffective, it does no damage.")
+		to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 		for(var/mob/M in viewers(src, null))
 			if ((M.client && !is_blind(M)))
-				M.show_message("\red [user] gently taps [src] with [O]. ")
+				M.show_message("<span class='warning'> [user] gently taps [src] with [O]. </span>")
 
 
 /mob/living/simple_animal/construct/armoured/Life()
@@ -247,16 +247,16 @@
 			adjustBruteLoss(damage)
 			for(var/mob/M in viewers(src, null))
 				if ((M.client && !is_blind(M)))
-					M.show_message("\red \b [src] has been attacked with [O] by [user]. ")
+					M.show_message("<span class='danger'> [src] has been attacked with [O] by [user]. </span>")
 		else
 			for(var/mob/M in viewers(src, null))
 				if ((M.client && !is_blind(M)))
-					M.show_message("\red \b [O] bounces harmlessly off of [src]. ")
+					M.show_message("<span class='danger'> [O] bounces harmlessly off of [src]. </span>")
 	else
-		to_chat(usr, "\red This weapon is ineffective, it does no damage.")
+		to_chat(usr, "<span class='warning'>This weapon is ineffective, it does no damage.</span>")
 		for(var/mob/M in viewers(src, null))
 			if ((M.client && !is_blind(M)))
-				M.show_message("\red [user] gently taps [src] with [O]. ")
+				M.show_message("<span class='warning'> [user] gently taps [src] with [O]. </span>")
 
 
 
@@ -271,7 +271,7 @@
 	if (istype(usr,/mob/living/simple_animal/constructbehemoth))
 
 		if(usr.energy<300)
-			to_chat(usr, "\red You do not have enough power stored!")
+			to_chat(usr, "<span class='warning'>You do not have enough power stored!</span>")
 			return
 
 		if(usr.stat)

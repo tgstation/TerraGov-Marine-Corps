@@ -60,9 +60,9 @@
 	H.update_body()
 	uses--
 	if(!uses)
-		user.temp_drop_inv_item(src)
+		user.temporarilyRemoveItemFromInventory(src)
 		user.update_inv_l_hand(0)
 		user.update_inv_r_hand()
-		cdel(src)
+		qdel(src)
 
 //you can wipe off lipstick with paper! see code/modules/paperwork/paper.dm, paper/attack()

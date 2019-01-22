@@ -11,6 +11,7 @@
 	climb_delay = 20 //Doesn't need as long to climb over a crate
 	anchored = 0
 	store_mobs = FALSE
+	can_supply_drop = TRUE
 	var/rigged = 0
 
 /obj/structure/closet/crate/can_open()
@@ -87,7 +88,7 @@
 	if(opened)
 		if(isrobot(user))
 			return
-		user.drop_inv_item_to_loc(W, loc)
+		user.transferItemToLoc(W, loc)
 	else if(istype(W, /obj/item/packageWrap))
 		return
 	else if(istype(W, /obj/item/stack/cable_coil))
@@ -117,18 +118,18 @@
 	switch(severity)
 		if(1.0)
 			for(var/obj/O in src.contents)
-				cdel(O)
-			cdel(src)
+				qdel(O)
+			qdel(src)
 			return
 		if(2.0)
 			for(var/obj/O in src.contents)
 				if(prob(50))
-					cdel(O)
-			cdel(src)
+					qdel(O)
+			qdel(src)
 			return
 		if(3.0)
 			if (prob(50))
-				cdel(src)
+				qdel(src)
 			return
 		else
 	return

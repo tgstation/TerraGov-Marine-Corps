@@ -126,17 +126,17 @@ DEFINES in setup.dm, referenced here.
 
 
 /obj/item/weapon/gun/attack_hand(mob/user)
-	var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
+	var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()
 	if(in_hand == src && (flags_item & TWOHANDED))
 		unload(user)//It has to be held if it's a two hander.
-	else 
+	else
 		return ..()
 
 
 /obj/item/weapon/gun/throw_at(atom/target, range, speed, thrower)
 	if( harness_check(thrower) )
 		to_chat(usr, "<span class='warning'>\The [src] clanks on the ground.</span>")
-	else 
+	else
 		return ..()
 
 /*
@@ -175,7 +175,7 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 
 
 /obj/item/weapon/gun/proc/police_allowed_check(mob/living/carbon/human/user)
-	if(config && config.remove_gun_restrictions)
+	if(CONFIG_GET(flag/remove_gun_restrictions))
 		return TRUE //Not if the config removed it.
 
 	if(user.mind)
@@ -205,21 +205,21 @@ As sniper rifles have both and weapon mods can change them as well. ..() deals w
 	user.overlays += busy_icon
 	user.action_busy = TRUE
 	var/delayfraction = round(delay/5)
-	var/obj/holding = user.get_active_hand()
+	var/obj/holding = user.get_active_held_item()
 	. = TRUE
 	for(var/i = 1 to 5)
 		sleep(delayfraction)
 		if(!user || user.stat || user.knocked_down || user.stunned)
 			. = FALSE
 			break
-		if(L && L.health < config.health_threshold_crit)
+		if(L && L.health < CONFIG_GET(number/health_threshold_crit))
 			. = FALSE
 			break
 		if(holding)
-			if(!holding.loc || user.get_active_hand() != holding)
+			if(!holding.loc || user.get_active_held_item() != holding)
 				. = FALSE
 				break
-		else if(user.get_active_hand())
+		else if(user.get_active_held_item())
 			. = FALSE
 			break
 		if(world.time > wield_time)
@@ -252,8 +252,8 @@ should be alright.
 	if(loc && user)
 		if(isnull(user.s_store) && isturf(loc))
 			var/obj/item/I = user.wear_suit
-			user.equip_to_slot_if_possible(src,WEAR_J_STORE)
-			if(user.s_store == src) 
+			user.equip_to_slot_if_possible(src,SLOT_S_STORE)
+			if(user.s_store == src)
 				to_chat(user, "<span class='warning'>[src] snaps into place on [I].</span>")
 			user.update_inv_s_store()
 
@@ -348,7 +348,7 @@ should be alright.
 
 /obj/item/weapon/gun/proc/check_inactive_hand(mob/user)
 	if(user)
-		var/obj/item/weapon/gun/in_hand = user.get_inactive_hand()
+		var/obj/item/weapon/gun/in_hand = user.get_inactive_held_item()
 		if( in_hand != src ) //It has to be held.
 			to_chat(user, "<span class='warning'>You have to hold [src] to do that!</span>")
 			return
@@ -418,7 +418,7 @@ should be alright.
 		if(attachment && attachment.loc)
 			user.visible_message("<span class='notice'>[user] attaches [attachment] to [src].</span>",
 			"<span class='notice'>You attach [attachment] to [src].</span>", null, 4)
-			user.temp_drop_inv_item(attachment)
+			user.temporarilyRemoveItemFromInventory(attachment)
 			attachment.Attach(src)
 			update_attachable(attachment.slot)
 			playsound(user, 'sound/machines/click.ogg', 15, 1, 4)
@@ -443,14 +443,14 @@ should be alright.
 
 
 /obj/item/weapon/gun/proc/update_overlays(obj/item/attachable/A, slot)
-	var/image/reusable/I = attachable_overlays[slot]
+	var/image/I = attachable_overlays[slot]
 	overlays -= I
-	cdel(I)
+	qdel(I)
 	if(A) //Only updates if the attachment exists for that slot.
 		var/item_icon = A.icon_state
 		if(A.attach_icon)
 			item_icon = A.attach_icon
-		I = rnew(/image/reusable, list(A.icon,src, item_icon))
+		I = image(A.icon,src, item_icon)
 		I.pixel_x = attachable_offset["[slot]_x"] - A.pixel_shift_x
 		I.pixel_y = attachable_offset["[slot]_y"] - A.pixel_shift_y
 		attachable_overlays[slot] = I
@@ -460,11 +460,11 @@ should be alright.
 
 
 /obj/item/weapon/gun/proc/update_mag_overlay()
-	var/image/reusable/I = attachable_overlays["mag"]
+	var/image/I = attachable_overlays["mag"]
 	overlays -= I
-	cdel(I)
+	qdel(I)
 	if(current_mag && current_mag.bonus_overlay)
-		I = rnew(/image/reusable, list(current_mag.icon,src,current_mag.bonus_overlay))
+		I = image(current_mag.icon,src,current_mag.bonus_overlay)
 		attachable_overlays["mag"] = I
 		overlays += I
 	else
@@ -473,8 +473,8 @@ should be alright.
 
 /obj/item/weapon/gun/proc/update_special_overlay(new_icon_state)
 	overlays -= attachable_overlays["special"]
-	cdel(attachable_overlays["special"])
-	var/image/reusable/I = rnew(/image/reusable, list(icon,src,new_icon_state))
+	qdel(attachable_overlays["special"])
+	var/image/I = image(icon,src,new_icon_state)
 	attachable_overlays["special"] = I
 	overlays += I
 
@@ -750,10 +750,36 @@ should be alright.
 	rail?.activate_attachment(src, usr)
 
 
+/obj/item/weapon/gun/verb/toggle_ammo_hud()
+	set category = "Weapons"
+	set name = "Toggle Ammo HUD"
+	set desc = "Toggles the Ammo HUD for this weapon."
+
+	if(!usr)
+		return
+
+	hud_enabled = !hud_enabled
+	var/obj/screen/ammo/A = usr.hud_used.ammo
+	hud_enabled ? A.add_hud(usr) : A.remove_hud(usr)
+	A.update_hud(usr)
+	to_chat(usr, "<span class='notice'>[hud_enabled ? "You enable the Ammo HUD for this weapon." : "You disable the Ammo HUD for this weapon."]</span>")
+
+
 /obj/item/weapon/gun/item_action_slot_check(mob/user, slot)
-	if(slot != WEAR_L_HAND && slot != WEAR_R_HAND)
+	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
 		return FALSE
 	return TRUE
+
+
+/obj/item/weapon/gun/proc/has_ammo_counter()
+	return FALSE
+
+/obj/item/weapon/gun/proc/get_ammo_type()
+	return FALSE
+
+/obj/item/weapon/gun/proc/get_ammo_count()
+	return FALSE
+
 
 
 //----------------------------------------------------------

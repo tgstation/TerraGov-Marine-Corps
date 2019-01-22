@@ -29,7 +29,7 @@
 
 
 	new/obj/effect/particle_effect/smoke/flashbang(T)
-	cdel(src)
+	qdel(src)
 	return
 
 /obj/item/explosive/grenade/flashbang/proc/bang(var/turf/T , var/mob/living/carbon/M)						// Added a new proc called 'bang' that takes a location and a person to be banged.
@@ -38,7 +38,7 @@
 			S.active = 0										// -- Polymorph
 			S.icon_state = "shield0"
 
-	to_chat(M, "\red <B>BANG</B>")
+	to_chat(M, "<span class='danger'>BANG</span>")
 	playsound(src.loc, 'sound/effects/bang.ogg', 50, 1)
 
 //Checking for protections
@@ -90,19 +90,19 @@
 		var/mob/living/carbon/human/H = M
 		var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 		if (E && E.damage >= E.min_bruised_damage)
-			to_chat(M, "\red Your eyes start to burn badly!")
+			to_chat(M, "<span class='warning'>Your eyes start to burn badly!</span>")
 			if(!banglet && !(istype(src , /obj/item/explosive/grenade/flashbang/clusterbang)))
 				if (E.damage >= E.min_broken_damage)
-					to_chat(M, "\red You can't see anything!")
+					to_chat(M, "<span class='warning'>You can't see anything!</span>")
 	if (M.ear_damage >= 15)
-		to_chat(M, "\red Your ears start to ring badly!")
+		to_chat(M, "<span class='warning'>Your ears start to ring badly!</span>")
 		if(!banglet && !(istype(src , /obj/item/explosive/grenade/flashbang/clusterbang)))
 			if (prob(M.ear_damage - 10 + 5))
-				to_chat(M, "\red You can't hear anything!")
+				to_chat(M, "<span class='warning'>You can't hear anything!</span>")
 				M.sdisabilities |= DEAF
 	else
 		if (M.ear_damage >= 5)
-			to_chat(M, "\red Your ears start to ring!")
+			to_chat(M, "<span class='warning'>Your ears start to ring!</span>")
 
 
 /obj/item/explosive/grenade/flashbang/clusterbang//Created by Polymorph, fixed by Sieve
@@ -128,7 +128,7 @@
 			new /obj/item/explosive/grenade/flashbang/clusterbang/segment(src.loc)//Creates a 'segment' that launches a few more flashbangs
 			playsound(src.loc, 'sound/weapons/armbomb.ogg', 25, 1, 6)
 	spawn(0)
-		cdel(src)
+		qdel(src)
 		return
 
 /obj/item/explosive/grenade/flashbang/clusterbang/segment
@@ -159,7 +159,7 @@
 			new /obj/item/explosive/grenade/flashbang/cluster(src.loc)
 			playsound(src.loc, 'sound/weapons/armbomb.ogg', 25, 1, 6)
 	spawn(0)
-		cdel(src)
+		qdel(src)
 		return
 
 /obj/item/explosive/grenade/flashbang/cluster/New()//Same concept as the segments, so that all of the parts don't become reliant on the clusterbang

@@ -18,10 +18,10 @@
 	..()
 	connected = new tray_path(src)
 
-/obj/structure/morgue/Dispose()
+/obj/structure/morgue/Destroy()
 	. = ..()
 	if(connected)
-		cdel(connected)
+		qdel(connected)
 		connected = null
 
 /obj/structure/morgue/update_icon()
@@ -44,7 +44,7 @@
 	for(var/atom/movable/A in src)
 		A.forceMove(loc)
 		ex_act(severity)
-	cdel(src)
+	qdel(src)
 
 /obj/structure/morgue/attack_paw(mob/user)
 	toggle_morgue(user)
@@ -79,7 +79,7 @@
 		return
 	else if (istype(P, /obj/item/tool/pen))
 		var/t = copytext(stripped_input(user, "What would you like the label to be?", name, null),1,MAX_MESSAGE_LEN)
-		if (user.get_active_hand() != P)
+		if (user.get_active_held_item() != P)
 			return
 		if ((!in_range(src, user) && src.loc != user))
 			return
@@ -117,7 +117,7 @@
 		linked_morgue = morgue_source
 	..()
 
-/obj/structure/morgue_tray/Dispose()
+/obj/structure/morgue_tray/Destroy()
 	. = ..()
 	linked_morgue = null
 
@@ -139,7 +139,7 @@
 	O.forceMove(loc)
 	if (user != O)
 		for(var/mob/B in viewers(user, 3))
-			B.show_message("\red [user] stuffs [O] into [src]!", 1)
+			B.show_message("<span class='warning'> [user] stuffs [O] into [src]!</span>", 1)
 
 
 
@@ -183,9 +183,9 @@
 		return
 
 	if(contents.len <= 1) //1 because the tray is inside.
-		visible_message("\red You hear a hollow crackle.")
+		visible_message("<span class='warning'> You hear a hollow crackle.</span>")
 	else
-		visible_message("\red You hear a roar as the crematorium activates.")
+		visible_message("<span class='warning'> You hear a roar as the crematorium activates.</span>")
 
 		cremating = 1
 
@@ -203,11 +203,11 @@
 			log_combat(user, M, "creamated", src)
 			M.death(1)
 			M.ghostize()
-			cdel(M)
+			qdel(M)
 
 		for(var/obj/O in contents)
 			if(istype(O, /obj/structure/morgue_tray)) continue
-			cdel(O)
+			qdel(O)
 
 		new /obj/effect/decal/cleanable/ash(src)
 		sleep(30)
@@ -237,7 +237,7 @@
 				if(!C.cremating)
 					C.cremate(user)
 	else
-		to_chat(user, "\red Access denied.")
+		to_chat(user, "<span class='warning'>Access denied.</span>")
 
 
 

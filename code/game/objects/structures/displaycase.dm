@@ -16,7 +16,7 @@
 			new /obj/item/shard( src.loc )
 			if (occupied)
 				occupied = 0
-			cdel(src)
+			qdel(src)
 		if (2)
 			if (prob(50))
 				src.health -= 15
@@ -70,10 +70,10 @@
 		update_icon()
 		return
 	else
-		to_chat(usr, text("\blue You kick the display case."))
+		to_chat(usr, text("<span class='notice'> You kick the display case.</span>"))
 		for(var/mob/O in oviewers())
 			if ((O.client && !( is_blind(O) )))
-				to_chat(O, text("\red [] kicks the display case.", usr))
+				to_chat(O, text("<span class='warning'> [] kicks the display case.</span>", usr))
 		src.health -= 2
 		healthcheck()
 		return

@@ -58,7 +58,7 @@
 	fullscreen_vision = null //Nulled out due to general dislike for the overlay.
 
 /obj/item/clothing/glasses/night/m56_goggles/mob_can_equip(mob/user, slot)
-	if(slot == WEAR_EYES)
+	if(slot == SLOT_GLASSES)
 		if(ishuman(user))
 			var/mob/living/carbon/human/H = user
 			if(!istype(H.back, /obj/item/smartgun_powerpack))
@@ -79,11 +79,7 @@
 	fullscreen_vision = null
 
 
-/obj/item/clothing/glasses/night/yautja/Dispose()
+/obj/item/clothing/glasses/night/yautja/Destroy()
 	..()
 	return TA_REVIVE_ME
-
-/obj/item/clothing/glasses/night/yautja/Recycle()
-	var/blacklist[] = list("overlay","icon_state","item_state","name","desc","darkness_view","can_remove")
-	. = ..() + blacklist
 

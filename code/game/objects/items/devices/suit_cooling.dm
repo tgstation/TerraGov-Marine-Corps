@@ -3,7 +3,7 @@
 	desc = "A portable heat sink and liquid cooled radiator that can be hooked up to a space suit's existing temperature controls to provide industrial levels of cooling."
 	w_class = 4
 	icon_state = "suitcooler0"
-	flags_equip_slot = SLOT_BACK	//you can carry it on your back if you want, but it won't do anything unless attached to suit storage
+	flags_equip_slot = ITEM_SLOT_BACK	//you can carry it on your back if you want, but it won't do anything unless attached to suit storage
 
 	//copied from tank.dm
 	flags_atom = CONDUCT
@@ -24,7 +24,7 @@
 	//TODO: make it heat up the surroundings when not in space
 
 /obj/item/device/suit_cooling_unit/New()
-	processing_objects |= src
+	START_PROCESSING(SSobj, src)
 
 	cell = new/obj/item/cell()	//comes with the crappy default power cell - high-capacity ones shouldn't be hard to find
 	cell.loc = src
@@ -50,7 +50,7 @@
 
 	var/charge_usage = (temp_adj/max_cooling)*charge_consumption
 
-	H.bodytemperature -= temp_adj*efficiency
+	H.adjust_bodytemperature(-temp_adj*efficiency)
 
 	cell.use(charge_usage)
 

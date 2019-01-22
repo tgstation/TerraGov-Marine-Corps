@@ -274,7 +274,7 @@ Buildable meters
 /obj/item/pipe/afterattack(turf/open/floor/target, mob/user, proximity)
 	if(!proximity) return
 	if(istype(target))
-		user.drop_inv_item_to_loc(src, target)
+		user.transferItemToLoc(src, target)
 	else
 		return ..()
 
@@ -410,11 +410,11 @@ Buildable meters
 
 	for(var/obj/machinery/atmospherics/M in src.loc)
 		if((M.initialize_directions & pipe_dir) && M.check_connect_types_construction(M,src))	// matches at least one direction on either type of pipe & same connection type
-			to_chat(user, "\red There is already a pipe of the same type at this location.")
+			to_chat(user, "<span class='warning'>There is already a pipe of the same type at this location.</span>")
 			return 1
 	// no conflicts found
 
-	var/pipefailtext = "\red There's nothing to connect this pipe section to!" //(with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
+	var/pipefailtext = "<span class='warning'> There's nothing to connect this pipe section to!</span>" //(with how the pipe code works, at least one end needs to be connected to something, otherwise the game deletes the segment)"
 
 	//TODO: Move all of this stuff into the various pipe constructors.
 	switch(pipe_type)
@@ -979,9 +979,9 @@ Buildable meters
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 	user.visible_message( \
 		"[user] fastens the [src].", \
-		"\blue You have fastened the [src].", \
+		"<span class='notice'> You have fastened the [src].</span>", \
 		"You hear ratchet.")
-	cdel(src)	// remove the pipe item
+	qdel(src)	// remove the pipe item
 
 	return
 	 //TODO: DEFERRED
@@ -1005,12 +1005,12 @@ Buildable meters
 	if (!istype(W, /obj/item/tool/wrench))
 		return ..()
 	if(!locate(/obj/machinery/atmospherics/pipe, src.loc))
-		to_chat(user, "\red You need to fasten it to a pipe")
+		to_chat(user, "<span class='warning'>You need to fasten it to a pipe</span>")
 		return 1
 	new/obj/machinery/meter( src.loc )
 	playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-	to_chat(user, "\blue You have fastened the meter to the pipe")
-	cdel(src)
+	to_chat(user, "<span class='notice'>You have fastened the meter to the pipe</span>")
+	qdel(src)
 //not sure why these are necessary
 #undef PIPE_SIMPLE_STRAIGHT
 #undef PIPE_SIMPLE_BENT

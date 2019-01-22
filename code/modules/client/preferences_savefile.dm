@@ -22,7 +22,7 @@
 
 	if(savefile_version < 16) //we've split toggles into toggles_sound and toggles_chat
 //		if(S["toggles"])
-//			cdel(S["toggles"])
+//			qdel(S["toggles"])
 
 		S["ghost_medhud"]		<< 1
 		S["ghost_sechud"] 		<< 0

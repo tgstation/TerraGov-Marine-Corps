@@ -109,9 +109,6 @@ Data storage vars:
 				CRASH("The global_iterator loop \ref[src] failed to terminate in designated timeframe. This may be caused by server lagging.")
 		return 1
 
-	proc/process()
-		return
-
 	proc/active()
 		return control_switch
 
@@ -139,7 +136,7 @@ Data storage vars:
 			arg_list = arguments
 			return 1
 		else
-//			to_chat(world, "\red Invalid arguments supplied for [src.type], ref = \ref[src]")
+//			to_chat(world, "<span class='warning'>Invalid arguments supplied for [src.type], ref = \ref[src]</span>")
 			return 0
 
 	proc/toggle_null_checks()

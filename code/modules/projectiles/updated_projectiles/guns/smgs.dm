@@ -1,4 +1,3 @@
-
 /obj/item/weapon/gun/smg
 	reload_sound = 'sound/weapons/gun_rifle_reload.ogg' //Could use a unique sound.
 	cocked_sound = 'sound/weapons/gun_cocked2.ogg'
@@ -18,13 +17,28 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
 	gun_skill_category = GUN_SKILL_SMGS
 
-	New()
-		..()
-		if(current_mag && current_mag.current_rounds > 0) load_into_chamber()
+/obj/item/weapon/gun/smg/Initialize()
+	. = ..()
+	if(current_mag && current_mag.current_rounds > 0)
+		load_into_chamber()
 
-	unique_action(mob/user)
-		cock(user)
+/obj/item/weapon/gun/smg/unique_action(mob/user)
+	cock(user)
 
+/obj/item/weapon/gun/smg/has_ammo_counter()
+	return TRUE
+
+/obj/item/weapon/gun/smg/get_ammo_type()
+	if(!ammo)
+		return list("unknown", "unknown")
+	else
+		return list(ammo.hud_state, ammo.hud_state_empty)
+
+/obj/item/weapon/gun/smg/get_ammo_count()
+	if(!current_mag)
+		return in_chamber ? 1 : 0
+	else
+		return in_chamber ? (current_mag.current_rounds + 1) : current_mag.current_rounds
 
 //-------------------------------------------------------
 //M39 SMG
@@ -53,22 +67,18 @@
 						/obj/item/attachable/gyro)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
-
-/obj/item/weapon/gun/smg/m39/New()
-	select_gamemode_skin(/obj/item/weapon/gun/smg/m39, list(MAP_ICE_COLONY = "m39b2") )
-	..()
 	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 20,"rail_x" = 14, "rail_y" = 22, "under_x" = 24, "under_y" = 16, "stock_x" = 24, "stock_y" = 16)
 
 /obj/item/weapon/gun/smg/m39/set_gun_config_values()
-	fire_delay = config.low_fire_delay
-	burst_delay = config.min_fire_delay
-	burst_amount = config.med_burst_value
-	accuracy_mult = config.base_hit_accuracy_mult + config.low_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.mlow_hit_accuracy_mult
-	scatter = config.low_scatter_value
-	scatter_unwielded = config.high_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	recoil_unwielded = config.min_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
+	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/low_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/mlow_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/high_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
 
 
 
@@ -86,15 +96,15 @@
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_AMMO_COUNTER
 
 /obj/item/weapon/gun/smg/m39/elite/set_gun_config_values()
-	fire_delay = config.low_fire_delay
-	burst_delay = config.min_fire_delay
-	burst_amount = config.high_burst_value
-	accuracy_mult = config.base_hit_accuracy_mult + config.med_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.min_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.max_scatter_value
-	damage_mult = config.base_hit_damage_mult + config.low_hit_damage_mult
-	recoil_unwielded = config.min_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
+	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/low_hit_damage_mult)
+	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
 
 
 
@@ -117,23 +127,19 @@
 						/obj/item/attachable/scope)
 
 	flags_gun_features = GUN_CAN_POINTBLANK
-
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
-
+	attachable_offset = list("muzzle_x" = 30, "muzzle_y" = 19,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
 
 /obj/item/weapon/gun/smg/mp5/set_gun_config_values()
-	fire_delay = config.mlow_fire_delay
-	burst_delay = config.mlow_fire_delay
-	burst_amount = config.high_burst_value
+	fire_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
 
-	accuracy_mult = config.base_hit_accuracy_mult + config.min_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.min_hit_accuracy_mult - config.hmed_hit_accuracy_mult
-	scatter = config.high_scatter_value
-	scatter_unwielded = config.max_scatter_value
-	damage_mult = config.base_hit_damage_mult + config.med_hit_damage_mult
-	recoil_unwielded = config.min_recoil_value
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/high_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/med_hit_damage_mult)
+	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
 
 
 //-------------------------------------------------------
@@ -155,23 +161,19 @@
 						/obj/item/attachable/scope)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
-
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
-
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 21, "under_x" = 28, "under_y" = 17, "stock_x" = 28, "stock_y" = 17)
 
 /obj/item/weapon/gun/smg/mp7/set_gun_config_values()
-	fire_delay = config.med_fire_delay
-	burst_delay = config.mlow_fire_delay
-	burst_amount = config.high_burst_value
+	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
+	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
 
-	accuracy_mult = config.base_hit_accuracy_mult + config.min_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.min_hit_accuracy_mult - config.hmed_hit_accuracy_mult
-	scatter = config.med_scatter_value + config.low_scatter_value
-	scatter_unwielded = config.med_scatter_value + config.high_scatter_value
-	damage_mult = config.base_hit_damage_mult + config.high_hit_damage_mult
-	recoil_unwielded = config.min_recoil_value
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/low_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/high_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/high_hit_damage_mult)
+	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
 
 //-------------------------------------------------------
 //SKORPION //Based on the same thing.
@@ -185,22 +187,19 @@
 	fire_sound = 'sound/weapons/gun_skorpion.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/skorpion
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
-
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
+	attachable_offset = list("muzzle_x" = 29, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 22, "under_x" = 23, "under_y" = 15, "stock_x" = 23, "stock_y" = 15)
 
 /obj/item/weapon/gun/smg/skorpion/set_gun_config_values()
-	fire_delay = config.low_fire_delay
-	burst_delay = config.mlow_fire_delay
-	burst_amount = config.med_burst_value
+	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
+	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
 
-	accuracy_mult = config.base_hit_accuracy_mult + config.min_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.min_hit_accuracy_mult - config.hmed_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.max_scatter_value
-	damage_mult = config.base_hit_damage_mult + config.hmed_hit_damage_mult
-	recoil_unwielded = config.min_recoil_value
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/min_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/hmed_hit_damage_mult)
+	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
 
 
 /obj/item/weapon/gun/smg/skorpion/upp
@@ -222,23 +221,19 @@
 						/obj/item/attachable/flashlight)
 
 	flags_gun_features = GUN_CAN_POINTBLANK
-
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 26, "under_y" = 15, "stock_x" = 26, "stock_y" = 15)
-
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 17,"rail_x" = 15, "rail_y" = 19, "under_x" = 26, "under_y" = 15, "stock_x" = 26, "stock_y" = 15)
 
 /obj/item/weapon/gun/smg/ppsh/set_gun_config_values()
-	fire_delay = config.min_fire_delay
-	burst_delay = config.min_fire_delay
-	burst_amount = config.max_burst_value
+	fire_delay = CONFIG_GET(number/combat_define/min_fire_delay)
+	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/max_burst_value)
 
-	accuracy_mult = config.base_hit_accuracy_mult - config.min_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.min_hit_accuracy_mult - config.hmed_hit_accuracy_mult
-	scatter = config.med_scatter_value + config.low_scatter_value
-	scatter_unwielded = config.max_scatter_value + config.low_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	recoil_unwielded = config.min_recoil_value
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/min_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/low_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value) + CONFIG_GET(number/combat_define/low_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
 
 
 
@@ -254,23 +249,19 @@
 	fire_sound = 'sound/weapons/uzi.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/uzi
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
-
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 19,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
-
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 19,"rail_x" = 11, "rail_y" = 22, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
 /obj/item/weapon/gun/smg/uzi/set_gun_config_values()
-	fire_delay = config.med_fire_delay
-	burst_delay = config.min_fire_delay
-	burst_amount = config.high_burst_value
+	fire_delay = CONFIG_GET(number/combat_define/med_fire_delay)
+	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/high_burst_value)
 
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult - config.hmed_hit_accuracy_mult
-	scatter = config.med_scatter_value + config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value + config.med_scatter_value + config.max_scatter_value
-	damage_mult = config.base_hit_damage_mult - config.min_hit_damage_mult
-	recoil_unwielded = config.min_recoil_value
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) - CONFIG_GET(number/combat_define/min_hit_damage_mult)
+	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
 
 
 //-------------------------------------------------------
@@ -284,29 +275,24 @@
 	origin_tech = "combat=5;materials=4"
 	fire_sound = 'sound/weapons/gun_p90.ogg'
 	current_mag = /obj/item/ammo_magazine/smg/p90
-
 	attachable_allowed = list(
 						/obj/item/attachable/suppressor,
 						/obj/item/attachable/lasersight,
 						/obj/item/attachable/scope)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK
-
-	New()
-		..()
-		attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 20, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
-
+	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 19,"rail_x" = 18, "rail_y" = 20, "under_x" = 22, "under_y" = 16, "stock_x" = 22, "stock_y" = 16)
 
 /obj/item/weapon/gun/smg/p90/set_gun_config_values()
-	fire_delay = config.high_fire_delay
-	burst_delay = config.mlow_fire_delay
-	burst_amount = config.med_burst_value
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
+	burst_delay = CONFIG_GET(number/combat_define/mlow_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/med_burst_value)
 
-	accuracy_mult = config.base_hit_accuracy_mult + config.high_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult + config.high_hit_accuracy_mult - config.hmed_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value + config.max_scatter_value
-	damage_mult = config.base_hit_damage_mult + config.low_hit_damage_mult
-	recoil_unwielded = config.min_recoil_value
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/high_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/high_hit_accuracy_mult) - CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value) + CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/low_hit_damage_mult)
+	recoil_unwielded = CONFIG_GET(number/combat_define/min_recoil_value)
 
 //-------------------------------------------------------

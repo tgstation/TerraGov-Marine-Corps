@@ -158,7 +158,7 @@
 						playsound(loc, "alien_claw_metal", 25, 1)
 						M.visible_message("<span class='danger'>The [M] smashes off [src]'s [wear_mask.name]!</span>", \
 						"<span class='danger'>You smash off [src]'s [wear_mask.name]!</span>", null, 5)
-						drop_inv_item_on_ground(wear_mask)
+						dropItemToGround(wear_mask)
 						emote("roar")
 						return TRUE
 
@@ -230,7 +230,7 @@
 			apply_damage(tackle_pain, HALLOSS, "chest", armor_block * 0.5) //Only half armour applies vs tackle
 			updatehealth()
 			updateshock()
-			var/throttle_message = "<span class='danger'>The [M] throttles [src]!</span>"
+			var/throttle_message = "<span class='danger'>\The [M] throttles [src]!</span>"
 			var/throttle_message2 = "<span class='danger'>You throttle [src]!</span>"
 			if(tackle_pain > 40)
 				throttle_message = "<span class='danger'>\The [M] badly throttles [src]!</span>"

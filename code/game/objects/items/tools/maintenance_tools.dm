@@ -20,7 +20,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "wrench"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 5.0
 	throwforce = 7.0
 	w_class = 2.0
@@ -38,7 +38,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "screwdriver"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 5.0
 	w_class = 1.0
 	throwforce = 5.0
@@ -48,8 +48,8 @@
 	attack_verb = list("stabbed")
 
 	suicide_act(mob/user)
-		viewers(user) << pick("\red <b>[user] is stabbing the [src.name] into \his temple! It looks like \he's trying to commit suicide.</b>", \
-							"\red <b>[user] is stabbing the [src.name] into \his heart! It looks like \he's trying to commit suicide.</b>")
+		user.visible_message(pick("<span class='danger'>[user] is stabbing the [src.name] into \his temple! It looks like \he's trying to commit suicide.</span>", \
+							"<span class='danger'>[user] is stabbing the [src.name] into \his heart! It looks like \he's trying to commit suicide.</span>"))
 		return(BRUTELOSS)
 
 /obj/item/tool/screwdriver/New()
@@ -97,7 +97,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "cutters"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 6.0
 	throw_speed = 2
 	throw_range = 9
@@ -132,7 +132,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "welder"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 
 	//Amount of OUCH when it's thrown
 	force = 3.0
@@ -160,13 +160,13 @@
 	return
 
 
-/obj/item/tool/weldingtool/Dispose()
+/obj/item/tool/weldingtool/Destroy()
 	if(welding)
 		if(ismob(loc))
 			loc.SetLuminosity(-2)
 		else
 			SetLuminosity(0)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 	. = ..()
 
 /obj/item/tool/weldingtool/examine(mob/user)
@@ -176,8 +176,8 @@
 
 
 /obj/item/tool/weldingtool/process()
-	if(disposed)
-		processing_objects.Remove(src)
+	if(gc_destroyed)
+		STOP_PROCESSING(SSobj, src)
 		return
 	if(welding)
 		if(++weld_tick >= 20)
@@ -202,7 +202,7 @@
 		if(!(S.status & LIMB_ROBOT) || user.a_intent != "help")
 			return ..()
 
-		if(H.species.flags & IS_SYNTHETIC)
+		if(isSynth(H))
 			if(M == user)
 				to_chat(user, "<span class='warning'>You can't repair damage to your own body - it's against OH&S.</span>")
 				return
@@ -225,20 +225,6 @@
 		return
 	if(!status && O.is_refillable())
 		reagents.trans_to(O, reagents.total_volume)
-	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && get_dist(src,O) <= 1)
-		if(!welding)
-			O.reagents.trans_to(src, max_fuel)
-			weld_tick = 0
-			user.visible_message("<span class='notice'>[user] refills [src].</span>", \
-			"<span class='notice'>You refill [src].</span>")
-			playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
-		else
-			message_admins("[key_name_admin(user)] triggered a fueltank explosion with a blowtorch.")
-			log_game("[key_name(user)] triggered a fueltank explosion with a blowtorch.")
-			to_chat(user, "<span class='danger'>You begin welding on the fueltank, and in a last moment of lucidity realize this might not have been the smartest thing you've ever done.</span>")
-			var/obj/structure/reagent_dispensers/fueltank/tank = O
-			tank.explode()
-		return
 	if (welding)
 		remove_fuel(1)
 
@@ -307,7 +293,7 @@
 			icon_state = "welder1"
 			w_class = 4
 			heat_source = 3800
-			processing_objects.Add(src)
+			START_PROCESSING(SSobj, src)
 		else
 			if(M)
 				to_chat(M, "<span class='warning'>[src] needs more fuel!</span>")
@@ -332,7 +318,7 @@
 				M.update_inv_l_hand()
 		else
 			SetLuminosity(0)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 
 /obj/item/tool/weldingtool/proc/flamethrower_screwdriver(obj/item/I, mob/user)
 	if(welding)
@@ -398,7 +384,7 @@
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "crowbar"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 5.0
 	throwforce = 7.0
 	item_state = "crowbar"
@@ -424,7 +410,7 @@
 /obj/item/tool/weldpack
 	name = "Welding kit"
 	desc = "A heavy-duty, portable welding fluid carrier."
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "welderpack"
 	w_class = 4.0
@@ -442,19 +428,19 @@
 		if(T.welding & prob(50))
 			message_admins("[key_name_admin(user)] triggered a fueltank explosion.")
 			log_game("[key_name(user)] triggered a fueltank explosion.")
-			to_chat(user, "\red That was stupid of you.")
+			to_chat(user, "<span class='warning'>That was stupid of you.</span>")
 			explosion(get_turf(src),-1,0,2)
 			if(src)
-				cdel(src)
+				qdel(src)
 			return
 		else
 			if(T.welding)
-				to_chat(user, "\red That was close!")
+				to_chat(user, "<span class='warning'>That was close!</span>")
 			src.reagents.trans_to(W, T.max_fuel)
-			to_chat(user, "\blue Welder refilled!")
+			to_chat(user, "<span class='notice'>Welder refilled!</span>")
 			playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 			return
-	to_chat(user, "\blue The tank scoffs at your insolence.  It only provides services to welders.")
+	to_chat(user, "<span class='notice'>The tank scoffs at your insolence.  It only provides services to welders.</span>")
 	return
 
 /obj/item/tool/weldpack/afterattack(obj/O as obj, mob/user as mob, proximity)
@@ -462,11 +448,11 @@
 		return
 	if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume < max_fuel)
 		O.reagents.trans_to(src, max_fuel)
-		to_chat(user, "\blue You crack the cap off the top of the pack and fill it back up again from the tank.")
+		to_chat(user, "<span class='notice'>You crack the cap off the top of the pack and fill it back up again from the tank.</span>")
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 	else if (istype(O, /obj/structure/reagent_dispensers/fueltank) && src.reagents.total_volume == max_fuel)
-		to_chat(user, "\blue The pack is already full!")
+		to_chat(user, "<span class='notice'>The pack is already full!</span>")
 		return
 
 /obj/item/tool/weldpack/examine(mob/user)

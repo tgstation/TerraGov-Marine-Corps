@@ -24,7 +24,7 @@
 			Direct Download (Windows Installer): http://www.byond.com/download/build/[world.byond_version]/[world.byond_version].[world.byond_build]_byond.exe <br> \
 			Other versions (search for [world.byond_build] or higher): http://www.byond.com/download/build/[world.byond_version]</span>")
 
-			cdel(client)
+			del(client)
 
 	verb/new_player_panel()
 		set src = usr
@@ -143,7 +143,7 @@
 	//					observer.verbs -= /mob/dead/observer/verb/toggle_antagHUD        // Poor guys, don't know what they are missing!
 					observer.key = key
 					if(observer.client) observer.client.change_view(world.view)
-					cdel(src)
+					qdel(src)
 
 					return 1
 
@@ -158,7 +158,7 @@
 					return
 
 				if(client.prefs.species != "Human")
-					if(!is_alien_whitelisted(client.prefs.species) && config.usealienwhitelist)
+					if(!is_alien_whitelisted(client.prefs.species) && CONFIG_GET(flag/usealienwhitelist))
 						to_chat(src, alert("You are currently not whitelisted to play [client.prefs.species]."))
 						return
 
@@ -206,7 +206,7 @@
 					return
 
 				if(client.prefs.species != "Human")
-					if(!is_alien_whitelisted(client.prefs.species) && config.usealienwhitelist)
+					if(!is_alien_whitelisted(client.prefs.species) && CONFIG_GET(flag/usealienwhitelist))
 						to_chat(src, alert("You are currently not whitelisted to play [client.prefs.species]."))
 						return 0
 
@@ -358,14 +358,14 @@
 			ticker.mode.latejoin_tally -= ticker.mode.latejoin_larva_drop
 			ticker.mode.stored_larva++
 
-		cdel(src)
+		qdel(src)
 
 	proc/AnnounceArrival(var/mob/living/carbon/human/character, var/rank, var/join_message)
 		if (ticker.current_state == GAME_STATE_PLAYING)
 			var/obj/item/device/radio/intercom/a = new /obj/item/device/radio/intercom(null)// BS12 EDIT Arrivals Announcement Computer, rather than the AI.
 			if(character.mind.role_alt_title) rank = character.mind.role_alt_title
 			a.autosay("[character.real_name],[rank ? " [rank]," : " visitor," ] [join_message ? join_message : "has arrived on the station"].", "Arrivals Announcement Computer")
-			cdel(a)
+			qdel(a)
 
 	proc/LateChoices()
 		var/mills = world.time // 1/10 of a second, not real milliseconds but whatever
@@ -421,7 +421,7 @@
 		if(client.prefs.language)
 			chosen_language = all_languages["[client.prefs.language]"]
 		if(chosen_language)
-			if(is_alien_whitelisted(client.prefs.language) || !config.usealienwhitelist || !(chosen_language.flags & WHITELISTED) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
+			if(is_alien_whitelisted(client.prefs.language) || !CONFIG_GET(flag/usealienwhitelist) || !(chosen_language.flags & WHITELISTED) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 				new_character.add_language("[client.prefs.language]")
 
 		if(ticker.random_players)

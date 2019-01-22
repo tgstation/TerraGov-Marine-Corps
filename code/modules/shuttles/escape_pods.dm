@@ -15,8 +15,8 @@ with the original.*/
 /datum/shuttle/ferry/marine/evacuation_pod
 	location = 0
 	warmup_time = 5
-	shuttle_tag = "Almayer Evac"
-	info_tag = "Almayer Evac"
+	shuttle_tag = "TGS Theseus Evac"
+	info_tag = "TGS Theseus Evac"
 	sound_target = 18
 	sound_misc = 'sound/effects/escape_pod_launch.ogg'
 	var/static/passengers = 0 //How many living escape on the shuttle. Does not count simple animals.
@@ -68,7 +68,7 @@ suffice.
 	var/datum/coords/C = info_datums[1] //Grab a coord for random turf.
 	var/turf/T = locate(ref.x + C.x_pos, ref.y + C.y_pos, ref.z) //Get a turf from the coordinates.
 	if(!istype(T))
-		log_debug("ERROR CODE EV0: unable to find the first turf of [shuttle_tag].")
+		log_runtime("ERROR CODE EV0: unable to find the first turf of [shuttle_tag].")
 		to_chat(world, "<span class='debuginfo'>ERROR CODE EV0: unable to find the first turf of [shuttle_tag].</span>")
 		return FALSE
 
@@ -77,7 +77,7 @@ suffice.
 
 	D = locate() in staging_area
 	if(!D)
-		log_debug("ERROR CODE EV1.5: could not find door in [shuttle_tag].")
+		log_runtime("ERROR CODE EV1.5: could not find door in [shuttle_tag].")
 		to_chat(world, "<span class='debuginfo'>ERROR CODE EV1: could not find door in [shuttle_tag].</span>")
 		return FALSE
 	D.id_tag = shuttle_tag //So that the door can be operated via controller later.
@@ -85,7 +85,7 @@ suffice.
 
 	var/obj/machinery/embedded_controller/radio/simple_docking_controller/escape_pod/R = locate() in staging_area //Grab the controller.
 	if(!R)
-		log_debug("ERROR CODE EV1.5: could not find controller in [shuttle_tag].")
+		log_runtime("ERROR CODE EV1.5: could not find controller in [shuttle_tag].")
 		to_chat(world, "<span class='debuginfo'>ERROR CODE EV1: could not find controller in [shuttle_tag].</span>")
 		return FALSE
 
@@ -102,7 +102,7 @@ suffice.
 		cryo_cells += E
 		E.evacuation_program = evacuation_program
 	if(!cryo_cells.len)
-		log_debug("ERROR CODE EV2: could not find cryo pods in [shuttle_tag].")
+		log_runtime("ERROR CODE EV2: could not find cryo pods in [shuttle_tag].")
 		to_chat(world, "<span class='debuginfo'>ERROR CODE EV2: could not find cryo pods in [shuttle_tag].</span>")
 		return FALSE
 

@@ -161,13 +161,12 @@
 
 /obj/item/clothing/head/helmet/marine
 	name = "\improper M10 pattern marine helmet"
-	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'. Contains a small built-in camera."
+	desc = "A standard M10 Pattern Helmet. It reads on the label, 'The difference between an open-casket and closed-casket funeral. Wear on head for best results.'."
 	icon = 'icons/obj/clothing/cm_hats.dmi'
 	sprite_sheet_id = 1
 	icon_state = "helmet"
 	armor = list(melee = 65, bullet = 35, laser = 30, energy = 20, bomb = 25, bio = 0, rad = 0)
 	health = 5
-	var/obj/machinery/camera/camera
 	var/helmet_overlays[]
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS
@@ -204,9 +203,6 @@
 	pockets.bypass_w_limit = list("/obj/item/clothing/glasses", "/obj/item/reagent_container/food/drinks/flask")
 	pockets.max_storage_space = 3
 
-	camera = new /obj/machinery/camera(src)
-	camera.network = list("LEADER")
-
 /obj/item/clothing/head/helmet/marine/attack_hand(mob/user)
 	if (pockets.handle_attack_hand(user))
 		..()
@@ -228,38 +224,28 @@
 /obj/item/clothing/head/helmet/marine/update_icon()
 	if(pockets.contents.len && (flags_marine_helmet & HELMET_GARB_OVERLAY))
 		if(!helmet_overlays["band"])
-			var/image/reusable/I = rnew(/image/reusable, list('icons/obj/clothing/cm_hats.dmi', src, "helmet_band"))
+			var/image/I = image('icons/obj/clothing/cm_hats.dmi', src, "helmet_band")
 			helmet_overlays["band"] = I
 
 		if(!helmet_overlays["item"])
 			var/obj/O = pockets.contents[1]
 			if(O.type in allowed_helmet_items)
-				var/image/reusable/I = rnew(/image/reusable, list('icons/obj/clothing/cm_hats.dmi', src, "[allowed_helmet_items[O.type]][O.type == /obj/item/tool/lighter/random ? O:clr : ""]"))
+				var/image/I = image('icons/obj/clothing/cm_hats.dmi', src, "[allowed_helmet_items[O.type]][O.type == /obj/item/tool/lighter/random ? O:clr : ""]")
 				helmet_overlays["item"] = I
 
 	else
 		if(helmet_overlays["item"])
-			var/image/reusable/RI = helmet_overlays["item"]
+			var/image/RI = helmet_overlays["item"]
 			helmet_overlays["item"] = null
-			cdel(RI)
+			qdel(RI)
 		if(helmet_overlays["band"])
-			var/image/reusable/J = helmet_overlays["band"]
+			var/image/J = helmet_overlays["band"]
 			helmet_overlays["band"] = null
-			cdel(J)
+			qdel(J)
 
 	if(ismob(loc))
 		var/mob/M = loc
 		M.update_inv_head()
-
-/obj/item/clothing/head/helmet/marine/equipped(var/mob/living/carbon/human/mob, slot)
-	if(camera)
-		camera.c_tag = mob.name
-	..()
-
-/obj/item/clothing/head/helmet/marine/dropped(var/mob/living/carbon/human/mob)
-	if(camera)
-		camera.c_tag = "Unknown"
-	..()
 
 
 /obj/item/clothing/head/helmet/marine/proc/add_hugger_damage() //This is called in XenoFacehuggers.dm to first add the overlay and set the var.
@@ -290,7 +276,7 @@
 
 /obj/item/clothing/head/helmet/marine/leader
 	name = "\improper M11 pattern leader helmet"
-	desc = "A slightly fancier helmet for marine leaders. This one contains a small built-in camera and has cushioning to project your fragile brain."
+	desc = "A slightly fancier helmet for marine leaders. This one has cushioning to project your fragile brain."
 	armor = list(melee = 75, bullet = 45, laser = 40, energy = 40, bomb = 35, bio = 10, rad = 10)
 
 /obj/item/clothing/head/helmet/marine/leader/New(loc,expected_type 		= type,

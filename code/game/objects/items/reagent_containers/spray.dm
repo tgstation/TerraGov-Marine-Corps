@@ -6,7 +6,7 @@
 	item_state = "cleaner"
 	container_type = OPENCONTAINER_NOUNIT
 	flags_item = NOBLUDGEON
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 3
 	w_class = 2.0
 	throw_speed = 2
@@ -84,7 +84,7 @@
 					D.reagents.reaction(A_turf)
 				sleep(2)
 			sleep(3)
-		cdel(D)
+		qdel(D)
 
 
 /obj/item/reagent_container/spray/attack_self(var/mob/user)
@@ -199,7 +199,7 @@
 				for(var/atom/t in get_turf(D))
 					D.reagents.reaction(t, VAPOR)
 				sleep(2)
-			cdel(D)
+			qdel(D)
 
 	return
 

@@ -222,7 +222,7 @@
 			return 0
 		if(is_secure_fridge)
 			if(!allowed(usr) && !emagged && locked != -1)
-				to_chat(usr, "\red Access denied.")
+				to_chat(usr, "<span class='warning'>Access denied.</span>")
 				return 0
 		var/index = text2num(href_list["vend"])
 		var/amount = text2num(href_list["amount"])
@@ -245,7 +245,7 @@
 
 	if (panel_open)
 		if (href_list["cutwire"])
-			if (!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
+			if (!( istype(usr.get_active_held_item(), /obj/item/tool/wirecutters) ))
 				to_chat(user, "You need wirecutters!")
 				return 1
 
@@ -257,7 +257,7 @@
 			return 1
 
 		if (href_list["pulsewire"])
-			if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			if (!istype(usr.get_active_held_item(), /obj/item/device/multitool))
 				to_chat(usr, "You need a multitool!")
 				return 1
 
@@ -339,7 +339,7 @@
 		return 0
 	spawn(0)
 		throw_item.throw_at(target,16,3,src)
-	src.visible_message("\red <b>[src] launches [throw_item.name] at [target.name]!</b>")
+	src.visible_message("<span class='danger'>[src] launches [throw_item.name] at [target.name]!</span>")
 	return 1
 
 

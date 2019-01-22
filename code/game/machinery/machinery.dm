@@ -49,7 +49,7 @@ Class Variables:
 Class Procs:
    New()                     'game/machinery/machine.dm'
 
-   Dispose()                     'game/machinery/machine.dm'
+   Destroy()                     'game/machinery/machine.dm'
 
    auto_use_power()            'game/machinery/machine.dm'
       This proc determines how power mode power is deducted by the machine.
@@ -104,6 +104,8 @@ Class Procs:
 		//2 = run auto, use active
 	var/idle_power_usage = 0
 	var/active_power_usage = 0
+	var/machine_current_charge = 0 //Does it have an integrated, unremovable capacitor? Normally 10k if so.
+	var/machine_max_charge = 0
 	var/power_channel = EQUIP
 	var/mob/living/carbon/human/operator = null //Had no idea where to put this so I put this here. Used for operating machines with RELAY_CLICK
 		//EQUIP,ENVIRON or LIGHT
@@ -122,7 +124,7 @@ Class Procs:
 			return
 		if(do_after(user, P.calc_delay(user) * PLASMACUTTER_LOW_MOD, TRUE, 5, BUSY_ICON_HOSTILE) && P)
 			P.cut_apart(user, name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_LOW_MOD)
-			cdel()
+			qdel()
 		return
 
 /obj/machinery/New()
@@ -132,7 +134,7 @@ Class Procs:
 	if(A)
 		A.master.area_machines += src
 
-/obj/machinery/Dispose()
+/obj/machinery/Destroy()
 	machines -= src
 	processing_machines -= src
 	var/area/A = get_area(src)
@@ -163,15 +165,15 @@ Class Procs:
 /obj/machinery/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(50))
-				cdel(src)
+				qdel(src)
 				return
 		if(3.0)
 			if (prob(25))
-				cdel(src)
+				qdel(src)
 				return
 		else
 	return
@@ -191,14 +193,41 @@ Class Procs:
 	if(A && A.master)
 		A.master.powerupdate = 1
 
+/obj/machinery/power_change()
+	if(!powered(power_channel) && (machine_current_charge <= 0))
+		stat |= NOPOWER
+	else
+		stat &= ~NOPOWER
+
 /obj/machinery/proc/auto_use_power()
 	if(!powered(power_channel))
-		return 0
-	if(src.use_power == 1)
-		use_power(idle_power_usage,power_channel, 1)
-	else if(src.use_power >= 2)
-		use_power(active_power_usage,power_channel, 1)
-	return 1
+		if(use_power && (machine_current_charge > idle_power_usage)) //Does it have an integrated battery/reserve power to tap into?
+			machine_current_charge -= min(machine_current_charge, idle_power_usage) //Sterilize with min; no negatives allowed.
+			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Idle Power Usage: [idle_power_usage] Machine Current Charge: [machine_current_charge].</span>")
+			update_icon()
+			return TRUE
+		else if(machine_current_charge > active_power_usage)
+			machine_current_charge -= min(machine_current_charge, active_power_usage)
+			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Active Power Usage: [active_power_usage] Machine Current Charge: [machine_current_charge].</span>")
+			update_icon()
+			return TRUE
+		else
+			return FALSE
+
+	if(use_power)
+		if((machine_current_charge < machine_max_charge) && anchored) //here we handle recharging the internal battery of machines
+			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Machine Current Charge: [machine_current_charge] .</span>")
+			var/power_usage = (min(500,max(0,machine_max_charge - machine_current_charge)))
+			machine_current_charge += power_usage //recharge internal cell at max rate of 500
+			use_power(power_usage,power_channel, TRUE)
+			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Power Usage: [power_usage] Machine Current Charge: [machine_current_charge].</span>")
+			update_icon()
+		else
+			use_power(idle_power_usage,power_channel, TRUE)
+
+	else if(use_power >= 2)
+		use_power(active_power_usage,power_channel, TRUE)
+	return TRUE
 
 /obj/machinery/proc/operable(var/additional_flags = 0)
 	return !inoperable(additional_flags)
@@ -216,7 +245,7 @@ Class Procs:
 			istype(usr, /mob/living/silicon) || \
 			istype(usr, /mob/living/carbon/Xenomorph) || \
 			istype(usr, /mob/living/carbon/monkey)) )
-		to_chat(usr, "\red You don't have the dexterity to do this!")
+		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 
 	var/norange = 0
@@ -264,7 +293,7 @@ Class Procs:
 			istype(usr, /mob/living/silicon) || \
 			istype(usr, /mob/living/carbon/Xenomorph) || \
 			istype(usr, /mob/living/carbon/monkey)) )
-		to_chat(usr, "\red You don't have the dexterity to do this!")
+		to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 1
 /*
 	//distance checks are made by atom/proc/clicked()
@@ -274,10 +303,10 @@ Class Procs:
 	if (ishuman(user))
 		var/mob/living/carbon/human/H = user
 		if(H.getBrainLoss() >= 60)
-			visible_message("\red [H] stares cluelessly at [src] and drools.")
+			visible_message("<span class='warning'> [H] stares cluelessly at [src] and drools.</span>")
 			return 1
 		else if(prob(H.getBrainLoss()))
-			to_chat(user, "\red You momentarily forget how to use [src].")
+			to_chat(user, "<span class='warning'>You momentarily forget how to use [src].</span>")
 			return 1
 
 	src.add_fingerprint(user)
@@ -328,7 +357,7 @@ Class Procs:
 		if(I.reliability != 100 && crit_fail)
 			I.crit_fail = 1
 		I.loc = loc
-	cdel(src)
+	qdel(src)
 	return 1
 
 obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_implants)
@@ -488,7 +517,7 @@ obj/machinery/proc/med_scan(mob/living/carbon/human/H, dat, var/list/known_impla
 					unknown_body++
 		if(e.hidden)
 			unknown_body++
-		if(e.body_part == UPPER_TORSO) //embryo in chest?
+		if(e.body_part == CHEST) //embryo in chest?
 			if(locate(/obj/item/alien_embryo) in H)
 				imp += "Larva present; extract immediately:<br>"
 		if(unknown_body)

@@ -49,7 +49,7 @@
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	cdel(src)
+	qdel(src)
 	return
 
 /mob/living/simple_animal/hostile/hivebot/tele//this still needs work
@@ -77,12 +77,12 @@
 		var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread()
 		smoke.set_up(2, 0, src.loc)
 		smoke.start()
-		visible_message("\red <B>The [src] warps in!</B>")
+		visible_message("<span class='danger'>The [src] warps in!</span>")
 		playsound(src.loc, 'sound/effects/EMPulse.ogg', 25, 1)
 
 	warpbots()
 		icon_state = "def_radar"
-		visible_message("\red The [src] turns on!")
+		visible_message("<span class='warning'> The [src] turns on!</span>")
 		while(bot_amt > 0)
 			bot_amt--
 			switch(bot_type)
@@ -93,7 +93,7 @@
 				if("rapid")
 					new /mob/living/simple_animal/hostile/hivebot/rapid(get_turf(src))
 		spawn(100)
-			cdel(src)
+			qdel(src)
 		return
 
 

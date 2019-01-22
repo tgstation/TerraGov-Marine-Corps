@@ -85,14 +85,14 @@
 		user.visible_message("<span class='notice'>[user] unfastens [src].</span>",
 		"<span class='notice'>You unfasten [src].</span>")
 		new /obj/item/pipe(loc, make_from = src)
-		cdel(src)
+		qdel(src)
 
 /obj/machinery/atmospherics/trinary/mixer/attack_hand(user as mob)
 	if(..())
 		return
 	src.add_fingerprint(usr)
 	if(!src.allowed(user))
-		to_chat(user, "\red Access denied.")
+		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
 	usr.set_interaction(src)
 	var/dat = {"<b>Power: </b><a href='?src=\ref[src];power=1'>[on?"On":"Off"]</a><br>

@@ -114,7 +114,7 @@
 		A.bullet_act(src)
 		src.life -= 10
 		if(life <= 0)
-			cdel(src)
+			qdel(src)
 		return
 */
 /obj/item/mecha_parts/mecha_equipment/weapon/energy/taser
@@ -170,7 +170,7 @@
 				var/mob/living/carbon/human/H = M
 				if(isobj(H.shoes))
 					var/thingy = H.shoes
-					H.drop_inv_item_on_ground(H.shoes)
+					H.dropItemToGround(H.shoes)
 					walk_away(thingy,chassis,15,2)
 					spawn(20)
 						if(thingy)

@@ -198,8 +198,7 @@
 		for(var/obj/O in T)
 			if(istype(O, /obj/effect/landmark))
 				continue
-			cdel(O)
-		cdel(T)
+			qdel(O)
 
 	for(var/mob/living/carbon/bug in destination)
 		bug.gib()
@@ -213,10 +212,10 @@
 		if(M.client)
 			spawn(0)
 				if(M.buckled && !iselevator)
-					to_chat(M, "\red Sudden acceleration presses you into [M.buckled]!")
+					to_chat(M, "<span class='warning'>Sudden acceleration presses you into [M.buckled]!</span>")
 					shake_camera(M, 3, 1)
 				else if (!M.buckled)
-					to_chat(M, "\red The floor lurches beneath you!")
+					to_chat(M, "<span class='warning'>The floor lurches beneath you!</span>")
 					shake_camera(M, iselevator? 2 : 10, 1)
 		if(istype(M, /mob/living/carbon) && !iselevator)
 			if(!M.buckled)
@@ -226,11 +225,11 @@
 		if(iselevator)
 			if(istype(T,/turf/open/space))
 				if(T.z == 3)
-					new /turf/open/floor/almayer/empty(T)
+					T.ChangeTurf(/turf/open/floor/almayer/empty)
 				else
-					new /turf/open/gm/empty(T)
+					T.ChangeTurf(/turf/open/gm/empty)
 		else if(istype(T,/turf/open/space))
-			new /turf/open/floor/plating(T)
+			T.ChangeTurf(/turf/open/floor/plating)
 
 	return
 

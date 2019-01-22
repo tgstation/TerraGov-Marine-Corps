@@ -10,7 +10,7 @@
 	var/tmp/atom/BeamSource
 	New()
 		..()
-		spawn(10) cdel(src)
+		spawn(10) qdel(src)
 
 /obj/effect/overlay/palmtree_r
 	name = "Palm tree"
@@ -53,7 +53,7 @@
 /obj/effect/overlay/temp/proc/start_countdown()
 	set waitfor = 0
 	sleep(effect_duration)
-	cdel(src)
+	qdel(src)
 
 /obj/effect/overlay/temp/point
 	name = "arrow"
@@ -78,7 +78,7 @@
 	effect_duration = 600
 	var/obj/item/device/binoculars/tactical/source_binoc
 
-/obj/effect/overlay/temp/laser_coordinate/Dispose()
+/obj/effect/overlay/temp/laser_coordinate/Destroy()
 	if(source_binoc)
 		source_binoc.laser_cooldown = world.time + source_binoc.cooldown_duration
 		source_binoc.coord = null
@@ -110,7 +110,7 @@
 		squad.squad_laser_targets += src
 	linked_cam = new(loc, name)
 
-/obj/effect/overlay/temp/laser_target/Dispose()
+/obj/effect/overlay/temp/laser_target/Destroy()
 	active_laser_targets -= src
 	if(squad)
 		squad.squad_laser_targets -= src
@@ -120,7 +120,7 @@
 		source_binoc.laser = null
 		source_binoc = null
 	if(linked_cam)
-		cdel(linked_cam)
+		qdel(linked_cam)
 		linked_cam = null
 	SetLuminosity(0)
 	. = ..()
@@ -144,9 +144,20 @@
 	icon = 'icons/obj/items/projectiles.dmi'
 	icon_state = "laser_target3"
 
-/obj/effect/overlay/temp/blinking_laser/Dispose()
+/obj/effect/overlay/temp/blinking_laser/Destroy()
 	SetLuminosity(0)
 	. = ..()
+
+/obj/effect/overlay/temp/sniper_laser
+	name = "laser"
+	mouse_opacity = 0
+	luminosity = 2
+	icon = 'icons/obj/items/projectiles.dmi'
+	icon_state = "sniper_laser"
+
+/obj/effect/overlay/temp/blinking_laser/Destroy()
+	SetLuminosity(0)
+	return ..()
 
 /obj/effect/overlay/temp/emp_sparks
 	icon = 'icons/effects/effects.dmi'
@@ -208,4 +219,4 @@
 	pixel_x = source_mob.pixel_x
 	pixel_y = source_mob.pixel_y
 	icon_state = gib_icon
-	..()
+	return ..()

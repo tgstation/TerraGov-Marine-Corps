@@ -1,13 +1,13 @@
 /obj/item/clothing/suit/equipped(mob/living/carbon/human/user, slot)
 	. = ..()
-	if(slot == WEAR_JACKET)
+	if(slot == SLOT_WEAR_SUIT)
 		check_limb_support(TRUE, user)
 
 /obj/item/clothing/suit/dropped(mob/living/carbon/human/user)
 	. = ..()
 	check_limb_support(FALSE, user)
 
-/obj/item/clothing/suit/Dispose(mob/living/carbon/human/user)
+/obj/item/clothing/suit/Destroy(mob/living/carbon/human/user)
 	check_limb_support(FALSE, user)
 	return ..()
 

@@ -13,7 +13,7 @@
 	var/perapc_excess = 0
 	var/netexcess = 0
 
-/datum/powernet/proc/process()
+/datum/powernet/process()
 	load = newload
 	newload = 0
 	avail = newavail
@@ -50,7 +50,7 @@
 				if(S.powernet == src)
 					S.restore()				// and restore some of the power that was used
 				else
-					error("[S.name] (\ref[S]) had a [S.powernet ? "different (\ref[S.powernet])" : "null"] powernet to our powernet (\ref[src]).")
+					stack_trace("[S.name] (\ref[S]) had a [S.powernet ? "different (\ref[S.powernet])" : "null"] powernet to our powernet (\ref[src]).")
 					nodes.Remove(S)
 
 

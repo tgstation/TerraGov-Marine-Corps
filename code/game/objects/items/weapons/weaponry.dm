@@ -5,7 +5,7 @@
 	name = "banhammer"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "toyhammer"
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 0
 	w_class = 2.0
 	throw_speed = 7
@@ -13,7 +13,7 @@
 	attack_verb = list("banned")
 
 	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is hitting \himself with the [src.name]! It looks like \he's trying to ban \himself from life.</b>"
+		user.visible_message("<span class='danger'>[user] is hitting \himself with the [src.name]! It looks like \he's trying to ban \himself from life.</span>")
 		return (BRUTELOSS|FIRELOSS|TOXLOSS|OXYLOSS)
 
 /obj/item/weapon/nullrod
@@ -21,7 +21,7 @@
 	desc = "A rod of pure obsidian, its very presence disrupts and dampens the powers of paranormal phenomenae."
 	icon_state = "nullrod"
 	item_state = "nullrod"
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 15
 	throw_speed = 1
 	throw_range = 4
@@ -29,7 +29,7 @@
 	w_class = 2
 
 	suicide_act(mob/user)
-		viewers(user) << "\red <b>[user] is impaling \himself with the [src.name]! It looks like \he's trying to commit suicide.</b>"
+		user.visible_message("<span class='danger'>[user] is impaling \himself with the [src.name]! It looks like \he's trying to commit suicide.</span>")
 		return (BRUTELOSS|FIRELOSS)
 
 /obj/item/weapon/harpoon
@@ -145,8 +145,8 @@
 
 		user.put_in_hands(S)
 		to_chat(user, "<span class='notice'>You fasten the glass shard to the top of the rod with the cable.</span>")
-		cdel(I)
-		cdel(src)
+		qdel(I)
+		qdel(src)
 		update_icon(user)
 
 	else if(istype(I, /obj/item/tool/wirecutters))
@@ -154,7 +154,7 @@
 
 		user.put_in_hands(P)
 		to_chat(user, "<span class='notice'>You fasten the wirecutters to the top of the rod with the cable, prongs outward.</span>")
-		cdel(I)
-		cdel(src)
+		qdel(I)
+		qdel(src)
 		update_icon(user)
 	update_icon(user)

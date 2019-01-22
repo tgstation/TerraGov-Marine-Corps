@@ -1,13 +1,20 @@
 
 // reference: /client/proc/modify_variables(var/atom/O, var/param_var_name = null, var/autodetect_class = 0)
 
+/datum/proc/vv_edit_var(var_name, var_value) //called whenever a var is edited
+	if(var_name == NAMEOF(src, vars))
+		return FALSE
+	vars[var_name] = var_value
+	datum_flags |= DF_VAR_EDITED
+	return TRUE
+
 client
 	proc/debug_variables(datum/D in world)
 		set category = "Debug"
 		set name = "View Variables"
 
 		if(!usr.client || !usr.client.holder || !(usr.client.holder.rights & R_MOD))
-			to_chat(usr, "\red You need to be a moderator or higher to access this.")
+			to_chat(usr, "<span class='warning'>You need to be a moderator or higher to access this.</span>")
 			return
 
 		if(!D)	return
@@ -283,8 +290,6 @@ client
 				body += "<option value='?_src_=vars;makerobot=\ref[D]'>Make cyborg</option>"
 				body += "<option value='?_src_=vars;makemonkey=\ref[D]'>Make monkey</option>"
 				body += "<option value='?_src_=vars;makealien=\ref[D]'>Make alien</option>"
-			if(isXeno(D))
-				body += "<option value='?_src_=vars;changehivenumber=\ref[D]'>Change Hivenumber</option>"
 			body += "<option value>---</option>"
 			body += "<option value='?_src_=vars;gib=\ref[D]'>Gib</option>"
 		if(isobj(D))
@@ -587,23 +592,23 @@ client
 				for(var/obj/Obj in object_list)
 					if(Obj.type == O_type)
 						i++
-						cdel(Obj)
+						qdel(Obj)
 				if(!i)
 					to_chat(usr, "No objects of this type exist")
 					return
 				log_admin("[key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
-				message_admins("\blue [key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) ")
+				message_admins("<span class='notice'> [key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) </span>")
 			if("Type and subtypes")
 				var/i = 0
 				for(var/obj/Obj in object_list)
 					if(istype(Obj,O_type))
 						i++
-						cdel(Obj)
+						qdel(Obj)
 				if(!i)
 					to_chat(usr, "No objects of this type exist")
 					return
 				log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
-				message_admins("\blue [key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
+				message_admins("<span class='notice'> [key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) </span>")
 
 	else if(href_list["explode"])
 		if(!check_rights(R_DEBUG|R_FUN))	return
@@ -692,39 +697,6 @@ client
 			to_chat(usr, "Mob doesn't exist anymore")
 			return
 		holder.Topic(href, list("makealien"=href_list["makealien"]))
-
-	else if(href_list["changehivenumber"])
-		if(!check_rights(R_DEBUG|R_ADMIN))	return
-
-		var/mob/living/carbon/Xenomorph/X = locate(href_list["changehivenumber"])
-		if(!istype(X))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/Xenomorph")
-			return
-		var/hivenumber_status = X.hivenumber
-		var/list/namelist = list("Normal","Corrupted","Alpha","Beta","Zeta")
-
-		var/newhive = input(src,"Select a hive.", null, null) in namelist
-
-		if(!X)
-			to_chat(usr, "This xeno no longer exists")
-			return
-		var/newhivenumber
-		switch(newhive)
-			if("Normal")
-				newhivenumber = XENO_HIVE_NORMAL
-			if("Corrupted")
-				newhivenumber = XENO_HIVE_CORRUPTED
-			if("Alpha")
-				newhivenumber = XENO_HIVE_ALPHA
-			if("Beta")
-				newhivenumber = XENO_HIVE_BETA
-			if("Zeta")
-				newhivenumber = XENO_HIVE_ZETA
-		if(X.hivenumber != hivenumber_status)
-			to_chat(usr, "Someone else changed this xeno while you were deciding")
-			return
-
-		holder.Topic(href, list("changehivenumber"=href_list["changehivenumber"],"newhivenumber"=newhivenumber))
 
 	else if(href_list["makeai"])
 		if(!check_rights(R_SPAWN))	return
@@ -994,13 +966,13 @@ client
 				if(I.removed_type)
 					var/obj/item/organ/O = new I.removed_type()
 					organ_slot = O.organ_tag
-					cdel(O)
+					qdel(O)
 				else
 					organ_slot = "unknown organ"
 
 			if(H.internal_organs_by_name[organ_slot])
 				to_chat(usr, "[H] already has an organ in that slot.")
-				cdel(I)
+				qdel(I)
 				return
 
 			H.internal_organs_by_name[organ_slot] = I
@@ -1028,7 +1000,7 @@ client
 			return
 
 		to_chat(usr, "Removed [rem_organ] from [M].")
-		cdel(rem_organ)
+		qdel(rem_organ)
 
 
 	else if(href_list["addlimb"])
@@ -1136,7 +1108,7 @@ client
 
 		if(amount != 0)
 			log_admin("[key_name(usr)] dealt [amount] amount of [Text] damage to [L] ")
-			message_admins("\blue [key_name(usr)] dealt [amount] amount of [Text] damage to [L] ")
+			message_admins("<span class='notice'> [key_name(usr)] dealt [amount] amount of [Text] damage to [L] </span>")
 			href_list["datumrefresh"] = href_list["mobToDamage"]
 
 	if(href_list["datumrefresh"])
@@ -1146,3 +1118,9 @@ client
 		src.debug_variables(DAT)
 
 	return
+
+/datum/proc/CanProcCall(procname)
+	return TRUE
+
+/datum/proc/can_vv_get(var_name)
+	return TRUE

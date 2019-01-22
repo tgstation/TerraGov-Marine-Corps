@@ -64,10 +64,10 @@
 		if(!usr.is_mob_restrained() && !usr.stat)
 			switch(over_object.name)
 				if("r_hand")
-					usr.drop_inv_item_on_ground(src)
+					usr.dropItemToGround(src)
 					usr.put_in_r_hand(src)
 				if("l_hand")
-					usr.drop_inv_item_on_ground(src)
+					usr.dropItemToGround(src)
 					usr.put_in_l_hand(src)
 			add_fingerprint(usr)
 
@@ -259,7 +259,7 @@
 	// Placing something in the storage screen
 	if(master)
 		var/obj/item/storage/S = master
-		var/obj/item/I = user.get_active_hand()
+		var/obj/item/I = user.get_active_held_item()
 		if(I)
 			if (master.attackby(I, user))
 				user.next_move = world.time + 2
@@ -288,11 +288,11 @@
 
 	New(obj/item/sample)
 		if(!istype(sample))
-			cdel(src)
+			qdel(src)
 		sample_object = sample
 		number = 1
 
-	Dispose()
+	Destroy()
 		sample_object = null
 		. = ..()
 
@@ -395,7 +395,7 @@
 /obj/item/storage/proc/handle_item_insertion(obj/item/W, prevent_warning = 0, mob/user)
 	if(!istype(W)) return 0
 	if(user && W.loc == user)
-		if(!user.drop_inv_item_to_loc(W, src))
+		if(!user.transferItemToLoc(W, src))
 			return 0
 	else
 		W.forceMove(src)
@@ -450,7 +450,7 @@
 	..()
 
 	if(isrobot(user))
-		to_chat(user, "\blue You're a robot. No.")
+		to_chat(user, "<span class='notice'>You're a robot. No.</span>")
 		return //Robots can't interact with storage items.
 
 	if(!can_be_inserted(W))
@@ -460,14 +460,14 @@
 		var/obj/item/tool/kitchen/tray/T = W
 		if(T.calc_carry() > 0)
 			if(prob(85))
-				to_chat(user, "\red The tray won't fit in [src].")
+				to_chat(user, "<span class='warning'>The tray won't fit in [src].</span>")
 				return
 			else
 				W.loc = user.loc
 				if ((user.client && user.s_active != src))
 					user.client.screen -= W
 				W.dropped(user)
-				to_chat(user, "\red God damnit!")
+				to_chat(user, "<span class='warning'>God damnit!</span>")
 
 	W.add_fingerprint(user)
 	return handle_item_insertion(W, FALSE, user)
@@ -568,34 +568,34 @@
 	closer = new
 	closer.master = src
 
-/obj/item/storage/Dispose()
+/obj/item/storage/Destroy()
 	for(var/atom/movable/I in contents)
-		cdel(I)
+		qdel(I)
 	for(var/mob/M in content_watchers)
 		hide_from(M)
 	if(boxes)
-		cdel(boxes)
+		qdel(boxes)
 		boxes = null
 	if(storage_start)
-		cdel(storage_start)
+		qdel(storage_start)
 		storage_start = null
 	if(storage_continue)
-		cdel(storage_continue)
+		qdel(storage_continue)
 		storage_continue = null
 	if(storage_end)
-		cdel(storage_end)
+		qdel(storage_end)
 		storage_end = null
 	if(stored_start)
-		cdel(stored_start)
+		qdel(stored_start)
 		stored_start = null
 	if(src.stored_continue)
-		cdel(src.stored_continue)
+		qdel(src.stored_continue)
 		src.stored_continue = null
 	if(stored_end)
-		cdel(stored_end)
+		qdel(stored_end)
 		stored_end = null
 	if(closer)
-		cdel(closer)
+		qdel(closer)
 		closer = null
 	. = ..()
 
@@ -628,7 +628,7 @@
 	// Now make the cardboard
 	to_chat(user, "<span class='notice'>You fold [src] flat.</span>")
 	new foldable(get_turf(src))
-	cdel(src)
+	qdel(src)
 //BubbleWrap END
 
 /obj/item/storage/hear_talk(mob/M as mob, text)

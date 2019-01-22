@@ -17,7 +17,7 @@
 /obj/item/device/flash/proc/clown_check(var/mob/user)
 	if(user && (CLUMSY in user.mutations) && prob(50))
 		if(user.drop_held_item())
-			to_chat(user, "\red \The [src] slips out of your hand.")
+			to_chat(user, "<span class='warning'>\The [src] slips out of your hand.</span>")
 		return 0
 	return 1
 
@@ -89,7 +89,7 @@
 			animation.master = user
 			flick("blspell", animation)
 			sleep(5)
-			cdel(animation)
+			qdel(animation)
 
 	if(!flashfail)
 	//	flick("flash2", src)
@@ -146,7 +146,7 @@
 			animation.master = user
 			flick("blspell", animation)
 			sleep(5)
-			cdel(animation)
+			qdel(animation)
 
 	for(var/mob/living/carbon/human/M in oviewers(3, null))
 		if(prob(50))
@@ -187,12 +187,12 @@
 	..()
 	if(!broken)
 		broken = 1
-		to_chat(user, "\red The bulb has burnt out!")
+		to_chat(user, "<span class='warning'>The bulb has burnt out!</span>")
 		icon_state = "flashburnt"
 
 /obj/item/device/flash/synthetic/attack_self(mob/living/carbon/user as mob, flag = 0, emp = 0)
 	..()
 	if(!broken)
 		broken = 1
-		to_chat(user, "\red The bulb has burnt out!")
+		to_chat(user, "<span class='warning'>The bulb has burnt out!</span>")
 		icon_state = "flashburnt"

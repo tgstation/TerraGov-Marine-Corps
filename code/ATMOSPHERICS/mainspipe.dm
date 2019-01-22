@@ -72,7 +72,7 @@ obj/machinery/atmospherics/mains_pipe
 		for(var/obj/machinery/atmospherics/pipe/mains_component/node in nodes)
 			node.disconnect()
 
-	Dispose()
+	Destroy()
 		disconnect()
 		. = ..()
 
@@ -125,7 +125,7 @@ obj/machinery/atmospherics/mains_pipe/simple
 
 		else
 			if(!nodes[1]&&!nodes[2])
-				cdel(src) //TODO: silent deleting looks weird
+				qdel(src) //TODO: silent deleting looks weird
 			var/have_node1 = nodes[1]?1:0
 			var/have_node2 = nodes[2]?1:0
 			icon_state = "exposed[have_node1][have_node2][invisibility ? "-f" : "" ]"
@@ -622,7 +622,7 @@ obj/machinery/atmospherics/mains_pipe/valve
 
 		attack_hand(mob/user as mob)
 			if(!src.allowed(user))
-				to_chat(user, "\red Access denied.")
+				to_chat(user, "<span class='warning'>Access denied.</span>")
 				return
 			..()
 

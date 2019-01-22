@@ -77,7 +77,7 @@
 
 	if(!new_caste_type)
 		to_chat(src, "EVO8: Something went wrong with evolving")
-		return 
+		return
 
 	if(!isturf(loc)) //cdel'd or inside something
 		return
@@ -195,7 +195,7 @@
 		//Something went horribly wrong!
 		to_chat(usr, "<span class='warning'>Something went terribly wrong here. Your new xeno is null! Tell a coder immediately!</span>")
 		if(new_xeno)
-			cdel(new_xeno)
+			qdel(new_xeno)
 		return
 
 	if(mind)
@@ -224,7 +224,7 @@
 	update_spits() //Update spits to new/better ones
 
 	for(var/obj/item/W in contents) //Drop stuff
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 
 	empty_gut()
 	new_xeno.visible_message("<span class='xenodanger'>A [new_xeno.xeno_caste.caste_name] emerges from the husk of \the [src].</span>", \
@@ -232,7 +232,7 @@
 
 	round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 
-	if(queen_chosen_lead && new_caste_type == /mob/living/carbon/Xenomorph/Queen) // xeno leader is removed by Dispose()
+	if(queen_chosen_lead && new_caste_type == /mob/living/carbon/Xenomorph/Queen) // xeno leader is removed by Destroy()
 		new_xeno.queen_chosen_lead = TRUE
 		hive.xeno_leader_list += new_xeno
 		new_xeno.hud_set_queen_overwatch()
@@ -241,6 +241,6 @@
 
 	if(hive.living_xeno_queen && hive.living_xeno_queen.observed_xeno == src)
 		hive.living_xeno_queen.set_queen_overwatch(new_xeno)
-	cdel(src)
+	qdel(src)
 	spawn(0)
 		new_xeno.do_jitter_animation(1000)

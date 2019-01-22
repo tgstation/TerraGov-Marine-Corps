@@ -53,7 +53,7 @@ obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
 		playsound(loc, 'sound/items/Wirecutter.ogg', 25, 1)
 		if(ruined)
 			to_chat(user, "<span class='notice'>You remove the remnants of the poster.</span>")
-			cdel(src)
+			qdel(src)
 		else
 			to_chat(user, "<span class='notice'>You carefully remove the poster from the wall.</span>")
 			roll_and_drop(user.loc)
@@ -82,14 +82,14 @@ obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
 	var/obj/item/contraband/poster/P = new(src, serial_number)
 	P.loc = newloc
 	src.loc = P
-	cdel(src)
+	qdel(src)
 
 
 //separated to reduce code duplication. Moved here for ease of reference and to unclutter r_wall/attackby()
 /turf/closed/wall/proc/place_poster(var/obj/item/contraband/poster/P, var/mob/user)
 
 	if(!istype(src,/turf/closed/wall))
-		to_chat(user, "\red You can't place this here!")
+		to_chat(user, "<span class='warning'>You can't place this here!</span>")
 		return
 
 	var/stuff_on_wall = 0
@@ -110,7 +110,7 @@ obj/structure/sign/poster/attackby(obj/item/W as obj, mob/user as mob)
 	var/temp_loc = user.loc
 	flick("poster_being_set",D)
 	D.loc = src
-	cdel(P)	//delete it now to cut down on sanity checks afterwards. Agouri's code supports rerolling it anyway
+	qdel(P)	//delete it now to cut down on sanity checks afterwards. Agouri's code supports rerolling it anyway
 	playsound(D.loc, 'sound/items/poster_being_created.ogg', 25, 1)
 
 	sleep(17)

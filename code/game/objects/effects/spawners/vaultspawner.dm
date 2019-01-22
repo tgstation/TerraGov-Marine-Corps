@@ -23,4 +23,4 @@
 			else
 				new /turf/open/floor/vault(locate(i,j,z),type)
 
-	cdel(src)
+	qdel(src)

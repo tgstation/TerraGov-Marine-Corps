@@ -64,19 +64,19 @@
 		if(nutrition >= 2) //If we are very, very cold we'll use up quite a bit of nutriment to heat us up.
 			nutrition -= 2
 		var/recovery_amt = max((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), BODYTEMP_AUTORECOVERY_MINIMUM)
-		bodytemperature += recovery_amt
+		adjust_bodytemperature(recovery_amt)
 
 	else if(species.cold_level_1 <= bodytemperature && bodytemperature <= species.heat_level_1)
 		var/recovery_amt = body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR
-		bodytemperature += recovery_amt
+		adjust_bodytemperature(recovery_amt)
 
 	else if(bodytemperature > species.heat_level_1) //360.15 is 310.15 + 50, the temperature where you start to feel effects.
 		//We totally need a sweat system cause it totally makes sense...~
 		var/recovery_amt = min((body_temperature_difference / BODYTEMP_AUTORECOVERY_DIVISOR), -BODYTEMP_AUTORECOVERY_MINIMUM) //We're dealing with negative numbers
-		bodytemperature += recovery_amt
+		adjust_bodytemperature(recovery_amt)
 
 
-//This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, UPPER_TORSO, LOWER_TORSO, etc. See setup.dm for the full list)
+//This proc returns a number made up of the flags for body parts which you are protected on. (such as HEAD, CHEST, GROIN, etc. See setup.dm for the full list)
 /mob/living/carbon/human/proc/get_flags_heat_protection_flags(temperature) //Temperature is the temperature you're being exposed to.
 
 	var/thermal_protection_flags = 0
@@ -110,9 +110,9 @@
 	if(thermal_protection_flags)
 		if(thermal_protection_flags & HEAD)
 			thermal_protection += THERMAL_PROTECTION_HEAD
-		if(thermal_protection_flags & UPPER_TORSO)
+		if(thermal_protection_flags & CHEST)
 			thermal_protection += THERMAL_PROTECTION_UPPER_TORSO
-		if(thermal_protection_flags & LOWER_TORSO)
+		if(thermal_protection_flags & GROIN)
 			thermal_protection += THERMAL_PROTECTION_LOWER_TORSO
 		if(thermal_protection_flags & LEG_LEFT)
 			thermal_protection += THERMAL_PROTECTION_LEG_LEFT
@@ -180,9 +180,9 @@
 	if(thermal_protection_flags)
 		if(thermal_protection_flags & HEAD)
 			thermal_protection += THERMAL_PROTECTION_HEAD
-		if(thermal_protection_flags & UPPER_TORSO)
+		if(thermal_protection_flags & CHEST)
 			thermal_protection += THERMAL_PROTECTION_UPPER_TORSO
-		if(thermal_protection_flags & LOWER_TORSO)
+		if(thermal_protection_flags & GROIN)
 			thermal_protection += THERMAL_PROTECTION_LOWER_TORSO
 		if(thermal_protection_flags & LEG_LEFT)
 			thermal_protection += THERMAL_PROTECTION_LEG_LEFT

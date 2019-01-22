@@ -4,13 +4,13 @@
 	required_players 		= 0
 	recommended_enemies 	= 0 //Leaving this relic code incase we want to do some extra things with it in the future.
 	xeno_bypass_timer 		= 1
-	role_instruction		= 1
-	roles_for_mode = list(/datum/job/marine/standard/equipped,
-					/datum/job/marine/medic/equipped,
-					/datum/job/marine/engineer/equipped,
-					/datum/job/marine/specialist/equipped,
-					/datum/job/marine/smartgunner/equipped,
-					/datum/job/marine/leader/equipped,
+	role_instruction		= ROLE_MODE_REPLACE
+	roles_for_mode = list(/datum/job/marine/standard,
+					/datum/job/marine/medic,
+					/datum/job/marine/engineer,
+					/datum/job/marine/specialist,
+					/datum/job/marine/smartgunner,
+					/datum/job/marine/leader,
 					/datum/job/medical/doctor,
 					/datum/job/command/commander,
 					/datum/job/logistics/tech/maint,
@@ -100,7 +100,7 @@
 	lobby_time = world.time
 	var/mob/M
 
-	if(config) config.remove_gun_restrictions = 1
+	CONFIG_SET(flag/remove_gun_restrictions, TRUE)
 
 	for(M in mob_list)
 		if(M.client && istype(M,/mob/living/carbon/human))
@@ -109,7 +109,7 @@
 
 	sleep(10)
 	to_chat(world, "<span class='round_header'>The current game mode is - WHISKEY OUTPOST!</span>")
-	to_chat(world, "<span class='round_body'>It is the year 2181 on the planet LV-624, five years before the arrival of the USS Almayer and the 7th 'Falling Falcons' Battalion in the sector</span>")
+	to_chat(world, "<span class='round_body'>It is the year 2181 on the planet LV-624, five years before the arrival of the [MAIN_SHIP_NAME] and the 7th 'Falling Falcons' Battalion in the sector</span>")
 	to_chat(world, "<span class='round_body'>The 3rd 'Dust Raiders' Battalion is charged with establishing a TGMC prescence in the Tychon's Rift sector</span>")
 	to_chat(world, "<span class='round_body'>[map_tag], one of the Dust Raider bases being established in the sector, has come under attack from unrecognized alien forces</span>")
 	to_chat(world, "<span class='round_body'>With casualties mounting and supplies running thin, the Dust Raiders at [map_tag] must survive for an hour to alert the rest of their battalion in the sector</span>")
@@ -141,18 +141,18 @@
 			if("Doctor") //Only get rid of some of the stuff
 				for(var/I in H.contents)
 					if(istype(I,/obj/item/device/pda/medical))
-						cdel(I)
+						qdel(I)
 					if(istype(I,/obj/item/clothing/shoes/laceup))
-						cdel(I)
+						qdel(I)
 			if("Executive Officer") //Wipe their stuff clean. Reequip them later
 				for(var/I in H.contents)
-					cdel(I)
+					qdel(I)
 			if("Military Police")
 				for(var/I in H.contents)
-					cdel(I)
+					qdel(I)
 			if("Maintenance Tech")
 				for(var/I in H.contents)
-					cdel(I)
+					qdel(I)
 		H.loc = picked
 	else //Else if we spawned as doctor or commander
 		H = new(picked)
@@ -173,20 +173,20 @@
 	switch(H.mind.assigned_role)
 		if("Commander")
 			custom_message = 1
-			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/command(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/MP/RO(H), WEAR_JACKET)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/commander(H), WEAR_FEET)
-			H.equip_to_slot_or_del(new /obj/item/clothing/head/cmberet/tan(H), WEAR_HEAD)
-			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/techofficer/commander(H), WEAR_HANDS)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
-			H.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword/commander(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/command(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/MP/RO(H), SLOT_WEAR_SUIT)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marinechief/commander(H), SLOT_SHOES)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/cmberet/tan(H), SLOT_HEAD)
+			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/techofficer/commander(H), SLOT_GLOVES)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
+			H.equip_to_slot_or_del(new /obj/item/weapon/claymore/mercsword/commander(H), SLOT_R_HAND)
 
-			H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/mateba/full(H), WEAR_WAIST)
-			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/mateba/full(H), SLOT_BELT)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/pistol/heavy(H), SLOT_IN_BACKPACK)
 
 			var/obj/item/card/id/gold/W = new(H)
 			W.name = "[M.real_name]'s ID Card (Ground Commander)"
@@ -194,7 +194,7 @@
 			W.assignment = "Ground Commander"
 			W.paygrade = "O3"
 			W.registered_name = M.real_name
-			H.equip_to_slot_or_del(W, WEAR_ID)
+			H.equip_to_slot_or_del(W, SLOT_WEAR_ID)
 
 			sleep(40)
 			if(H)
@@ -216,24 +216,24 @@
 		//HONOR GUARD
 		if("Military Police")
 			custom_message = 1
-			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK)
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/bridge(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/leader(H), WEAR_JACKET)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
-			H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/marine/logisticsofficer(H), WEAR_HEAD)
-			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), WEAR_BACK) // Make sure we get a backpack now.
+			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/officer/bridge(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/leader(H), SLOT_WEAR_SUIT)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/beret/marine/logisticsofficer(H), SLOT_HEAD)
+			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), SLOT_GLOVES)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/satchel(H), SLOT_BACK) // Make sure we get a backpack now.
 
-			H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m44/full(H), WEAR_WAIST)
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/combat(H), WEAR_R_HAND)
-			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/storage/belt/gun/m44/full(H), SLOT_BELT)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/combat(H), SLOT_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(H), SLOT_IN_BACKPACK)
 
 			var/obj/item/card/id/silver/W = new(H)
 			W.name = "[M.real_name]'s ID Card (Honor Guard)"
@@ -241,7 +241,7 @@
 			W.assignment = "Honor Guard"
 			W.paygrade = "E9"
 			W.registered_name = M.real_name
-			H.equip_to_slot_or_del(W, WEAR_ID)
+			H.equip_to_slot_or_del(W, SLOT_WEAR_ID)
 
 			sleep(40)
 			if(H)
@@ -267,22 +267,22 @@
 			MET2.amount = 50
 			var/obj/item/stack/sheet/metal/MET3 = new /obj/item/stack/sheet/metal(H)
 			MET3.amount = 50
-			H.equip_to_slot_or_del(PLAS, WEAR_IN_BACK)
-			H.equip_to_slot_or_del(PLAS2, WEAR_IN_BACK)
-			H.equip_to_slot_or_del(PLAS3, WEAR_IN_BACK)
-			H.equip_to_slot_or_del(MET, WEAR_IN_BACK)
-			H.equip_to_slot_or_del(MET2, WEAR_IN_BACK)
-			H.equip_to_slot_or_del(MET3, WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/storage/box/m94(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(PLAS, SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(PLAS2, SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(PLAS3, SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(MET, SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(MET2, SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(MET3, SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/storage/box/m94(H), SLOT_IN_BACKPACK)
 
-			H.equip_to_slot_or_del(new /obj/item/storage/box/m94(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/storage/box/m94(H), SLOT_R_HAND)
 			var/obj/item/card/id/W = new(H)
 			W.name = "[M.real_name]'s ID Card (Outpost Synthetic)"
 			W.access = get_all_accesses()
 			W.assignment = "Outpost Synthetic"
 			W.paygrade = "E6E"
 			W.registered_name = M.real_name
-			H.equip_to_slot_or_del(W, WEAR_ID)
+			H.equip_to_slot_or_del(W, SLOT_WEAR_ID)
 			sleep(40)
 			if(H)
 				to_chat(H, "________________________")
@@ -293,14 +293,14 @@
 
 		if("Maintenance Tech")
 			custom_message = 1
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/engineer(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/tech(H), WEAR_HEAD)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
-			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), WEAR_EAR)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/tech(H), WEAR_BACK)
-			H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(H), WEAR_WAIST)
-			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), WEAR_EYES)
-			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/engineer(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/tech(H), SLOT_HEAD)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), SLOT_WEAR_SUIT)
+			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/mcom(H), SLOT_EARS)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/marine/tech(H), SLOT_BACK)
+			H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(H), SLOT_BELT)
+			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), SLOT_GLASSES)
+			H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), SLOT_GLOVES)
 
 			//Give this man a bone.
 			var/obj/item/stack/sheet/metal/MET = new /obj/item/stack/sheet/metal(H)
@@ -315,15 +315,15 @@
 			MET2.amount = 50
 			var/obj/item/stack/sheet/metal/MET3 = new /obj/item/stack/sheet/metal(H)
 			MET3.amount = 50
-			H.equip_to_slot_or_del(PLAS, WEAR_IN_BACK)
-			H.equip_to_slot_or_del(PLAS2, WEAR_IN_BACK)
-			H.equip_to_slot_or_del(PLAS3, WEAR_IN_BACK)
-			H.equip_to_slot_or_del(MET, WEAR_IN_BACK)
-			H.equip_to_slot_or_del(MET2, WEAR_IN_BACK)
-			H.equip_to_slot_or_del(MET3, WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/storage/box/m94(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(PLAS, SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(PLAS2, SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(PLAS3, SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(MET, SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(MET2, SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(MET3, SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/storage/box/m94(H), SLOT_IN_BACKPACK)
 
-			H.equip_to_slot_or_del(new /obj/item/storage/box/m94(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/storage/box/m94(H), SLOT_R_HAND)
 
 			var/obj/item/card/id/W = new(H)
 			W.name = "[M.real_name]'s ID Card (Outpost Engineer)"
@@ -331,7 +331,7 @@
 			W.assignment = "Outpost Engineer"
 			W.paygrade = "E6E"
 			W.registered_name = M.real_name
-			H.equip_to_slot_or_del(W, WEAR_ID)
+			H.equip_to_slot_or_del(W, SLOT_WEAR_ID)
 
 			sleep(40)
 			if(H)
@@ -345,22 +345,22 @@
 
 		//SQUAD LEADER
 		if("Squad Leader")
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/leader(H), WEAR_HEAD)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/leader(H), WEAR_JACKET)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/leader(H), SLOT_HEAD)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/leader(H), SLOT_WEAR_SUIT)
 
 			//SPESHUL EQUIPMENT
 			//Give them the Mk1 since they're getting ammo drop supplies and will need the increased ammo.
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41aMK1(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41aMK1(H), SLOT_R_HAND)
 
 			//Laser Designator, Supply beacons, and the map in backpack
-			H.equip_to_slot_or_del(new /obj/item/device/whiskey_supply_beacon(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/device/whiskey_supply_beacon(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/device/whiskey_supply_beacon(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/device/whiskey_supply_beacon(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/device/whiskey_supply_beacon(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/map/whiskey_outpost_map(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/device/laz_designator(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/device/whiskey_supply_beacon(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/device/whiskey_supply_beacon(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/device/whiskey_supply_beacon(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/device/whiskey_supply_beacon(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/device/whiskey_supply_beacon(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/map/whiskey_outpost_map(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/device/laz_designator(H), SLOT_IN_BACKPACK)
 
 			//Belt and grenades
 			var/obj/item/storage/belt/marine/B = new/obj/item/storage/belt/marine(H)
@@ -370,25 +370,25 @@
 			new /obj/item/ammo_magazine/rifle/m41aMK1(B)
 			new /obj/item/explosive/grenade/incendiary(B)
 			new /obj/item/explosive/grenade/incendiary(B)
-			H.equip_to_slot_or_del(B, WEAR_WAIST)
+			H.equip_to_slot_or_del(B, SLOT_BELT)
 
 		//DOCTORS
 		if("Doctor") //Then, the doctors
 			custom_message = 1
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), WEAR_JACKET)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), WEAR_FEET)
-			H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), WEAR_J_STORE)
-			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/doc(H), WEAR_EAR)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), SLOT_WEAR_SUIT)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/white(H), SLOT_SHOES)
+			H.equip_to_slot_or_del(new /obj/item/device/flashlight/pen(H), SLOT_S_STORE)
+			H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/doc(H), SLOT_EARS)
 
 		//HUD GLASSES (NEEDED)
-			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES) // added for doctors to see.
+			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), SLOT_GLASSES) // added for doctors to see.
 
 		//Combat Lifesaver belt
-			H.equip_to_slot_or_del(new /obj/item/storage/belt/combatLifesaver(H), WEAR_WAIST)
+			H.equip_to_slot_or_del(new /obj/item/storage/belt/combatLifesaver(H), SLOT_BELT)
 
 		//Advanced Meds
-			H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/peridaxon(H), WEAR_L_STORE)
-			H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/peridaxon(H), WEAR_R_STORE)
+			H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/peridaxon(H), SLOT_L_STORE)
+			H.equip_to_slot_or_del(new /obj/item/storage/pill_bottle/peridaxon(H), SLOT_R_STORE)
 
 		//Give them some information
 			sleep(40)
@@ -407,121 +407,121 @@
 
 		//SQUAD ENGINEER
 		if("Squad Engineer")
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/engineer(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/tech(H), WEAR_HEAD)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/engineer(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/tech(H), SLOT_HEAD)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), SLOT_WEAR_SUIT)
 
 			//SPESHUL EQUIPMENT
 			//Metal, webbing, grenades in backpack
 			var/obj/item/stack/sheet/metal/MET = new /obj/item/stack/sheet/metal(H)
 			MET.amount = 50
-			H.equip_to_slot_or_del(MET, WEAR_IN_BACK)
+			H.equip_to_slot_or_del(MET, SLOT_IN_BACKPACK)
 			var/obj/item/stack/sheet/plasteel/PLAS = new /obj/item/stack/sheet/plasteel(H)
 			PLAS.amount = 50
-			H.equip_to_slot_or_del(PLAS, WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/storage/box/m94(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(PLAS, SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/storage/box/m94(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/explosive/grenade/incendiary(H), SLOT_IN_BACKPACK)
 
 			//Utility Belt
-			H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(H), WEAR_WAIST)
+			H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(H), SLOT_BELT)
 
 			//Welding Glasses
-			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), WEAR_EYES)
+			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/welding(H), SLOT_GLASSES)
 
 			switch(rand_wep) // Armaments, base sorta on lore. But also on what logical loadouts people take.
 				if(0 to 5) //SMG
-					H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), WEAR_R_HAND)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), SLOT_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), SLOT_IN_BACKPACK)
 				if(6 to 7) //Shotgun
-					H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/pump(H), WEAR_R_HAND)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/pump(H), SLOT_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), SLOT_IN_BACKPACK)
 				if(8 to 10) //M41A
-					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), WEAR_R_HAND)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), SLOT_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
 
 		//SQUAD MEDIC
 		if("Squad Medic")
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/medic(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/medic(H), WEAR_HEAD)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine/medic(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/medic(H), SLOT_HEAD)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), SLOT_WEAR_SUIT)
 
 			//SPESHUL EQUIPMENT
 			//Defibs, first aid, adv aid in backpack
-			H.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/device/defibrillator(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/device/defibrillator(H), SLOT_IN_BACKPACK)
 
 			//Medical encryption key
-			H.equip_to_slot_or_del(new /obj/item/device/encryptionkey/med(H), WEAR_L_HAND)
+			H.equip_to_slot_or_del(new /obj/item/device/encryptionkey/med(H), SLOT_L_HAND)
 
 			//Combat Lifesaver belt
-			H.equip_to_slot_or_del(new /obj/item/storage/belt/combatLifesaver(H), WEAR_WAIST)
+			H.equip_to_slot_or_del(new /obj/item/storage/belt/combatLifesaver(H), SLOT_BELT)
 
 			//Med Hud
-			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), WEAR_EYES)
+			H.equip_to_slot_or_del(new /obj/item/clothing/glasses/hud/health(H), SLOT_GLASSES)
 
 			switch(rand_wep) // Armaments, base sorta on lore. But also on what logical loadouts people take.
 				if(0 to 5) //SMG
-					H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), WEAR_R_HAND)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/m39(H), SLOT_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), SLOT_IN_BACKPACK)
 				if(6 to 10) //M41A
-					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), WEAR_R_HAND)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), SLOT_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
 		//SQUAD SMARTGUNNER
 		if("Squad Smartgunner")
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), SLOT_IN_BACKPACK)
 
 			//Backup SMG Weapon
-			H.equip_to_slot_or_del(new /obj/item/storage/large_holster/m39/full(H), WEAR_WAIST)
-			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/storage/box/m56_system, WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/storage/large_holster/m39/full(H), SLOT_BELT)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/storage/box/m56_system, SLOT_R_HAND)
 
 		//SQUAD SPECIALIST
 		if("Squad Specialist")
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/tie/storage/webbing(H), SLOT_IN_BACKPACK)
 
 			//Backup SMG Weapon
-			H.equip_to_slot_or_del(new /obj/item/storage/large_holster/m39/full(H), WEAR_WAIST)
-			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/spec_kit, WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/storage/large_holster/m39/full(H), SLOT_BELT)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/smg/m39(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/spec_kit, SLOT_R_HAND)
 
 		//SQUAD MARINE
 		else
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), WEAR_HEAD)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), WEAR_JACKET)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/marine(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine(H), SLOT_HEAD)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), SLOT_WEAR_SUIT)
 
 			switch(rand_wep) // Armaments, base sorta on lore. But also on what logical loadouts people take.
 				if(0 to 5) //M41A
-					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), WEAR_R_HAND)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), SLOT_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
 
 					var/obj/item/storage/belt/marine/C = new/obj/item/storage/belt/marine(H)
 					new /obj/item/ammo_magazine/rifle(C)
@@ -530,17 +530,17 @@
 					new /obj/item/ammo_magazine/rifle(C)
 					new /obj/item/ammo_magazine/rifle(C)
 					new /obj/item/ammo_magazine/rifle(C)
-					H.equip_to_slot_or_del(C, WEAR_WAIST)
+					H.equip_to_slot_or_del(C, SLOT_BELT)
 
 				if(6) //Grenadier
-					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), WEAR_R_HAND)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/rifle/m41a(H), SLOT_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/rifle(H), SLOT_IN_BACKPACK)
 
 					var/obj/item/storage/belt/marine/D = new/obj/item/storage/belt/marine(H)
 					new /obj/item/explosive/grenade/frag(D)
@@ -549,29 +549,29 @@
 					new /obj/item/explosive/grenade/frag(D)
 					new /obj/item/explosive/grenade/incendiary(D)
 					new /obj/item/explosive/grenade/incendiary(D)
-					H.equip_to_slot_or_del(D, WEAR_WAIST)
+					H.equip_to_slot_or_del(D, SLOT_BELT)
 
 				if(7 to 10) //CQC
-					H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/pump(H), WEAR_R_HAND)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), WEAR_IN_BACK)
-					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), WEAR_IN_BACK)
+					H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/pump(H), SLOT_R_HAND)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), SLOT_IN_BACKPACK)
+					H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), SLOT_IN_BACKPACK)
 
 					//Grenades for this standard, which might be a horrible idea, but we'll find out.
 					var/obj/item/storage/belt/marine/D = new/obj/item/storage/belt/marine(H)
 					new /obj/item/storage/box/m94(D)
 					new /obj/item/storage/box/m94(D)
 					new /obj/item/storage/box/m94(D)
-					H.equip_to_slot_or_del(D, WEAR_WAIST)
+					H.equip_to_slot_or_del(D, SLOT_BELT)
 
 		//Every Squad Starts with this:
-	H.equip_to_slot_or_del(new /obj/item/storage/box/m94(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
+	H.equip_to_slot_or_del(new /obj/item/storage/box/m94(H), SLOT_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/weapon/combat_knife(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
 
 		//Find their squad
 	if(H.assigned_squad)
@@ -583,50 +583,50 @@
 			if(1)//Alpha
 					//Radio
 				if(leader)
-					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/alpha/lead(H), WEAR_EAR)
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/alpha/lead(H), SLOT_EARS)
 				else
-					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/alpha(H), WEAR_EAR)
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/alpha(H), SLOT_EARS)
 					//Gloves
 				if(H.mind.assigned_role != "Squad Engineer")
-					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/alpha(H), WEAR_HANDS)
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/alpha(H), SLOT_GLOVES)
 				else
-					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), SLOT_GLOVES)
 
 			if(2)//Bravo
 					//Radio
 				if(leader)
-					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/bravo/lead(H), WEAR_EAR)
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/bravo/lead(H), SLOT_EARS)
 				else
-					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/bravo(H), WEAR_EAR)
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/bravo(H), SLOT_EARS)
 					//Gloves
 				if(H.mind.assigned_role != "Squad Engineer")
-					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/bravo(H), WEAR_HANDS)
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/bravo(H), SLOT_GLOVES)
 				else
-					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), SLOT_GLOVES)
 
 			if(3)//Charlie
 					//Radio
 				if(leader)
-					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/charlie/lead(H), WEAR_EAR)
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/charlie/lead(H), SLOT_EARS)
 				else
-					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/charlie(H), WEAR_EAR)
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/charlie(H), SLOT_EARS)
 					//Gloves
 				if(H.mind.assigned_role != "Squad Engineer")
-					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/charlie(H), WEAR_HANDS)
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/charlie(H), SLOT_GLOVES)
 				else
-					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), SLOT_GLOVES)
 
 			if(4)//Delta
 				//Radio
 				if(leader)
-					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/delta/lead(H), WEAR_EAR)
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/delta/lead(H), SLOT_EARS)
 				else
-					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/delta(H), WEAR_EAR)
+					H.equip_to_slot_or_del(new /obj/item/device/radio/headset/almayer/marine/delta(H), SLOT_EARS)
 					//Gloves
 				if(H.mind.assigned_role != "Squad Engineer")
-					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/delta(H), WEAR_HANDS)
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/delta(H), SLOT_GLOVES)
 				else
-					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), WEAR_HANDS)
+					H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), SLOT_GLOVES)
 
 		//Give them some information
 	sleep(40)
@@ -655,7 +655,7 @@
 			to_chat(world, "<br><br>")
 			to_chat(world, "<span class='notice'>*___________________________________*</span>")
 			to_chat(world, "<span class='boldnotice'>***Whiskey Outpost Controller***</span>")
-			to_chat(world, "\blue <b>Wave:</b> [xeno_wave][wave_times_delayed?"|\red Times delayed: [wave_times_delayed]":""]")
+			to_chat(world, "<span class='notice'><b>Wave:</b> [xeno_wave][wave_times_delayed?"|<span class='warning'> Times delayed: [wave_times_delayed]</span>":""]</span>")
 			to_chat(world, "<span class='notice'>*___________________________________*</span>")
 			to_chat(world, "<br><br>")
 			to_chat(world, "<br><br>")
@@ -1013,7 +1013,7 @@
 	if(xeno_count)
 		to_chat(world, "<span class='notice'>*___________________________________*</span>")
 		to_chat(world, "<span class='boldnotice'>***Whiskey Outpost Controller***</span>")
-		to_chat(world, "\blue Moved [xeno_count] Xeno remains to trash.")
+		to_chat(world, "<span class='notice'>Moved [xeno_count] Xeno remains to trash.</span>")
 		to_chat(world, "<span class='notice'>*___________________________________*</span>")
 
 
@@ -1035,7 +1035,7 @@
 		feedback_set_details("round_end_result","Xenos won")
 		to_chat(world, "<span class='round_header'>The Xenos have succesfully defended their hive from colonization.</span>")
 		to_chat(world, "<span class='round_body'>Well done, you've secured LV-624 for the hive!</span>")
-		to_chat(world, "<span class='round_body'>It will be another five years before the TGMC returns to the Tychon's Rift sector, with the arrival of the 7th 'Falling Falcons' Battalion and the USS Almayer.</span>")
+		to_chat(world, "<span class='round_body'>It will be another five years before the TGMC returns to the Tychon's Rift sector, with the arrival of the 7th 'Falling Falcons' Battalion and the [MAIN_SHIP_NAME].</span>")
 		to_chat(world, "<span class='round_body'>The xenomorph hive on LV-624 remains unthreatened until then..</span>")
 		world << sound('sound/misc/Game_Over_Man.ogg')
 
@@ -1046,7 +1046,7 @@
 		to_chat(world, "<span class='round_header'>Against the onslaught, the marines have survived.</span>")
 		to_chat(world, "<span class='round_body'>The signal rings out to the USS Alistoun, and Dust Raiders stationed elsewhere in Tychon's Rift begin to converge on LV-624.</span>")
 		to_chat(world, "<span class='round_body'>Eventually, the Dust Raiders secure LV-624 and the entire Tychon's Rift sector in 2182, pacifiying it and establishing peace in the sector for decades to come.</span>")
-		to_chat(world, "<span class='round_body'>The USS Almayer and the 7th 'Falling Falcons' Battalion are never sent to the sector and are spared their fate in 2186.</span>")
+		to_chat(world, "<span class='round_body'>The [MAIN_SHIP_NAME] and the 7th 'Falling Falcons' Battalion are never sent to the sector and are spared their fate in 2186.</span>")
 		world << sound('sound/misc/hell_march.ogg')
 
 		log_game("Marines remaining: [count_humans()]\nRound time: [duration2text()]")
@@ -1276,23 +1276,23 @@
 		if(istype(usr, /mob/living/silicon) || \
 			istype(usr, /mob/living/carbon/Xenomorph) || \
 			istype(usr, /mob/living/carbon/monkey))
-			to_chat(usr, "\red You don't have the dexterity to do this!")
+			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 		if(working)
-			to_chat(user, "\red Wait for it to recharge first.")
+			to_chat(user, "<span class='warning'>Wait for it to recharge first.</span>")
 			return
 
 		var/remove_max = 10
 		var/turf/T = src.loc
 		if(T)
-			to_chat(user, "\red You turn on the recycler.")
+			to_chat(user, "<span class='warning'>You turn on the recycler.</span>")
 			var/removed = 0
 			for(var/i, i < remove_max, i++)
 				for(var/obj/O in T)
 					if(istype(O,/obj/structure/closet/crate))
 						var/obj/structure/closet/crate/C = O
 						if(C.contents.len)
-							to_chat(user, "\red [O] must be emptied before it can be recycled")
+							to_chat(user, "<span class='warning'>[O] must be emptied before it can be recycled</span>")
 							continue
 						new /obj/item/stack/sheet/metal(get_step(src,dir))
 						O.loc = get_turf(locate(84,237,2)) //z.2
@@ -1495,7 +1495,7 @@
 		flame_radius(3,target_4)
 		explosion(target_4,  -1, 2, 3, 5)
 		sleep(1)
-		cdel(lasertarget)
+		qdel(lasertarget)
 		lazing = 0
 		laz_r = 1
 		sleep(6000)
@@ -1523,7 +1523,7 @@
 		var/turf/target_2 = locate(T.x + rand(-2,2),T.y + rand(-2,2),T.z)
 		var/turf/target_3 = locate(T.x + rand(-2,2),T.y + rand(-2,2),T.z)
 		if(target && istype(target))
-			cdel(lasertarget)
+			qdel(lasertarget)
 			explosion(target, -1, HE_power, con_power, con_power) //Kaboom!
 			sleep(rand(15,30)) //This is all better done in a for loop, but I am mad lazy
 			explosion(target_2, -1, HE_power, con_power, con_power)
@@ -1588,7 +1588,7 @@
 	var/turf/T = get_turf(src) //Make sure we get the turf we're tossing this on.
 	drop_supplies(T, supply_drop)
 	playsound(src,'sound/effects/bamf.ogg', 50, 1)
-	cdel(src)
+	qdel(src)
 	return
 
 /obj/item/device/whiskey_supply_beacon/verb/switch_supplies()
@@ -1726,7 +1726,7 @@
 		num ++
 	sleep(5)
 	message_admins("[num] [src]\s were spawned in at [loc.loc.name] ([loc.x],[loc.y],[loc.z]). (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>)")
-	cdel()
+	qdel()
 
 /obj/effect/landmark/wo_spawners/marines
 	name = "marine spawner"

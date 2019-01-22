@@ -117,7 +117,7 @@
 /datum/reagent/toxin/cyanide/on_mob_life(mob/living/M)
 	M.adjustOxyLoss(4*REM)
 	if(current_cycle > 10)
-		M.sleeping += 2
+		M.Sleeping(2)
 	..()
 
 /datum/reagent/toxin/minttoxin
@@ -187,7 +187,7 @@
 
 /datum/reagent/toxin/mindbreaker/overdose_crit_process(mob/living/M, alien)
 	M.adjustToxLoss(1)
-	M.adjustBrainLoss(1)
+	M.adjustBrainLoss(1, TRUE)
 	M.Jitter(5)
 	if(prob(10) && !M.stat)
 		M.KnockOut(5)
@@ -227,9 +227,9 @@
 		alien_weeds.health -= rand(15,35) // Kills alien weeds pretty fast
 		alien_weeds.healthcheck()
 	else if(istype(O,/obj/effect/glowshroom)) //even a small amount is enough to kill it
-		cdel(O)
+		qdel(O)
 	else if(istype(O,/obj/effect/plantsegment))
-		if(prob(50)) cdel(O) //Kills kudzu too.
+		if(prob(50)) qdel(O) //Kills kudzu too.
 	else if(istype(O,/obj/machinery/portable_atmospherics/hydroponics))
 		var/obj/machinery/portable_atmospherics/hydroponics/tray = O
 
@@ -396,7 +396,7 @@
 			if(H.head)
 				if(prob(meltprob) && !H.head.unacidable)
 					to_chat(H, "<span class='danger'>Your headgear melts away but protects you from the acid!</span>")
-					cdel(H.head)
+					qdel(H.head)
 					H.update_inv_head(0)
 					H.update_hair(0)
 				else
@@ -406,7 +406,7 @@
 			if(H.wear_mask)
 				if(prob(meltprob) && !H.wear_mask.unacidable)
 					to_chat(H, "<span class='danger'>Your mask melts away but protects you from the acid!</span>")
-					cdel(H.wear_mask)
+					qdel(H.wear_mask)
 					H.update_inv_wear_mask(0)
 					H.update_hair(0)
 				else
@@ -416,7 +416,7 @@
 			if(H.glasses) //Doesn't protect you from the acid but can melt anyways!
 				if(prob(meltprob) && !H.glasses.unacidable)
 					to_chat(H, "<span class='danger'>Your glasses melts away!</span>")
-					cdel(H.glasses)
+					qdel(H.glasses)
 					H.update_inv_glasses(0)
 
 		else if(ismonkey(M))
@@ -424,7 +424,7 @@
 			if(MK.wear_mask)
 				if(!MK.wear_mask.unacidable)
 					to_chat(MK, "<span class='danger'>Your mask melts away but protects you from the acid!</span>")
-					cdel(MK.wear_mask)
+					qdel(MK.wear_mask)
 					MK.update_inv_wear_mask(0)
 				else
 					to_chat(MK, "<span class='warning'>Your mask protects you from the acid.</span>")
@@ -454,8 +454,8 @@
 			var/obj/effect/decal/cleanable/molten_item/I = new/obj/effect/decal/cleanable/molten_item(O.loc)
 			I.desc = "Looks like this was \an [O] some time ago."
 			for(var/mob/M in viewers(5, O))
-				to_chat(M, "\red \the [O] melts.")
-				cdel(O)
+				to_chat(M, "<span class='warning'>\the [O] melts.</span>")
+				qdel(O)
 
 /datum/reagent/toxin/acid/polyacid
 	name = "Polytrinic acid"

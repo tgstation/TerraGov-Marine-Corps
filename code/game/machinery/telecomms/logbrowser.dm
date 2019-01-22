@@ -94,7 +94,7 @@
 							race = "<i>Unidentifiable</i>"
 							language = race
 
-						cdel(M)
+						qdel(M)
 
 						// -- If the orator is a human, or universal translate is active, OR mob has universal speech on --
 
@@ -177,7 +177,7 @@
 		if(href_list["delete"])
 
 			if(!src.allowed(usr) && !emagged)
-				to_chat(usr, "\red ACCESS DENIED.")
+				to_chat(usr, "<span class='warning'>ACCESS DENIED.</span>")
 				return
 
 			if(SelectedServer)
@@ -187,7 +187,7 @@
 				temp = "<font color = #336699>- DELETED ENTRY: [D.name] -</font color>"
 
 				SelectedServer.log_entries.Remove(D)
-				cdel(D)
+				qdel(D)
 
 			else
 				temp = "<font color = #D70B00>- FAILED: NO SELECTED MACHINE -</font color>"
@@ -215,7 +215,7 @@
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			if(do_after(user, 20, TRUE, 5, BUSY_ICON_BUILD))
 				if (src.stat & BROKEN)
-					to_chat(user, "\blue The broken glass falls out.")
+					to_chat(user, "<span class='notice'>The broken glass falls out.</span>")
 					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 					new /obj/item/shard( src.loc )
 					var/obj/item/circuitboard/computer/comm_server/M = new /obj/item/circuitboard/computer/comm_server( A )
@@ -225,9 +225,9 @@
 					A.state = 3
 					A.icon_state = "3"
 					A.anchored = 1
-					cdel(src)
+					qdel(src)
 				else
-					to_chat(user, "\blue You disconnect the monitor.")
+					to_chat(user, "<span class='notice'>You disconnect the monitor.</span>")
 					var/obj/structure/computerframe/A = new /obj/structure/computerframe( src.loc )
 					var/obj/item/circuitboard/computer/comm_server/M = new /obj/item/circuitboard/computer/comm_server( A )
 					for (var/obj/C in src)
@@ -236,10 +236,10 @@
 					A.state = 4
 					A.icon_state = "4"
 					A.anchored = 1
-					cdel(src)
+					qdel(src)
 		else if(istype(D, /obj/item/card/emag) && !emagged)
 			playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
 			emagged = 1
-			to_chat(user, "\blue You you disable the security protocols")
+			to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
 		src.updateUsrDialog()
 		return

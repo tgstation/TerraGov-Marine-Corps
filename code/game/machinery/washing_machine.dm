@@ -47,7 +47,7 @@
 	for(var/obj/item/stack/sheet/hairlesshide/HH in contents)
 		var/obj/item/stack/sheet/wetleather/WL = new(src)
 		WL.amount = HH.amount
-		cdel(HH)
+		qdel(HH)
 
 
 	if( locate(/mob,contents) )
@@ -73,11 +73,11 @@
 /obj/machinery/washing_machine/attackby(obj/item/W as obj, mob/user as mob)
 	/*if(istype(W,/obj/item/tool/screwdriver))
 		panel = !panel
-		to_chat(user, "\blue you [panel ? "open" : "close"] the [src]'s maintenance panel")*/
+		to_chat(user, "<span class='notice'>you [panel ? "open" : "close"] the [src]'s maintenance panel</span>")*/
 	if(istype(W,/obj/item/toy/crayon) ||istype(W,/obj/item/tool/stamp))
 		if( state in list(	1, 3, 6 ) )
 			if(!crayon)
-				if(user.drop_inv_item_to_loc(crayon, src))
+				if(user.transferItemToLoc(crayon, src))
 					crayon = W
 			else
 				..()
@@ -133,12 +133,12 @@
 
 		if(contents.len < 5)
 			if ( state in list(1, 3) )
-				if(user.drop_inv_item_to_loc(W, src))
+				if(user.transferItemToLoc(W, src))
 					state = 3
 			else
-				to_chat(user, "\blue You can't put the item in right now.")
+				to_chat(user, "<span class='notice'>You can't put the item in right now.</span>")
 		else
-			to_chat(user, "\blue The washing machine is full.")
+			to_chat(user, "<span class='notice'>The washing machine is full.</span>")
 	else
 		..()
 	update_icon()
@@ -160,7 +160,7 @@
 			crayon = null
 			state = 1
 		if(5)
-			to_chat(user, "\red The [src] is busy.")
+			to_chat(user, "<span class='warning'>The [src] is busy.</span>")
 		if(6)
 			state = 7
 		if(7)

@@ -31,14 +31,14 @@
 
 	proc/Gib(atom/location, var/list/viruses = list(), var/datum/dna/MobDNA = null)
 		if(gibtypes.len != gibamounts.len || gibamounts.len != gibdirections.len)
-			to_chat(world, "\red Gib list length mismatch!")
+			to_chat(world, "<span class='warning'>Gib list length mismatch!</span>")
 			return
 
 		var/obj/effect/decal/cleanable/blood/gibs/gib = null
 		for(var/datum/disease/D in viruses)
 			if(D.spread_type == SPECIAL)
 				viruses -= D
-				cdel(D)
+				qdel(D)
 
 		if(sparks)
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
@@ -77,7 +77,7 @@
 					if(directions.len)
 						gib.streak(directions)
 
-		cdel(src)
+		qdel(src)
 
 
 

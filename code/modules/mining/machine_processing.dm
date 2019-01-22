@@ -18,7 +18,7 @@
 		if (machine)
 			machine.console = src
 		else
-			cdel(src)
+			qdel(src)
 
 /obj/machinery/mineral/processing_unit_console/attack_hand(mob/user)
 	add_fingerprint(user)
@@ -30,7 +30,7 @@
 		return
 
 	if(!allowed(user))
-		to_chat(user, "\red Access denied.")
+		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
 
 	user.set_interaction(src)
@@ -234,6 +234,6 @@
 
 	console.updateUsrDialog()
 
-/obj/machinery/mineral/processing_unit/Dispose()
+/obj/machinery/mineral/processing_unit/Destroy()
 	SetLuminosity(0)
 	. = ..()

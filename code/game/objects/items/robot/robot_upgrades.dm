@@ -14,7 +14,7 @@
 
 /obj/item/robot/upgrade/proc/action(var/mob/living/silicon/robot/R)
 	if(R.stat == DEAD)
-		to_chat(usr, "\red The [src] will not function on a deceased robot.")
+		to_chat(usr, "<span class='warning'>The [src] will not function on a deceased robot.</span>")
 		return 1
 	return 0
 
@@ -30,7 +30,7 @@
 	R.uneq_all()
 	R.hands.icon_state = "nomod"
 	R.icon_state = "robot"
-	cdel(R.module)
+	qdel(R.module)
 	R.module = null
 	R.camera.network.Remove(list("Engineering","Medical","MINE"))
 	R.updatename("Default")

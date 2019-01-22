@@ -21,22 +21,22 @@
 	ex_act(severity)
 		switch(severity)
 			if(1.0)
-				cdel(src)
+				qdel(src)
 			if(2.0)
 				if (prob(50))
-					cdel(src)
+					qdel(src)
 			if(3.0)
 				if (prob(5))
-					cdel(src)
+					qdel(src)
 
-	Dispose()
+	Destroy()
 		if(hologram)
 			clear_holo()
 		. = ..()
 
 /obj/machinery/hologram/proc/clear_holo()
 	if(hologram)
-		cdel(hologram)
+		qdel(hologram)
 		hologram = null
 
 
@@ -110,9 +110,9 @@ var/const/HOLOPAD_MODE = 0
 			create_holo(user)//Create one.
 			src.visible_message("A holographic image of [user] flicks to life right before your eyes!")
 		else
-			to_chat(user, "\red ERROR: \black Image feed in progress.")
+			to_chat(user, "<span class='alert'>ERROR: Image feed in progress.</span>")
 	else
-		to_chat(user, "\red ERROR: \black Unable to project hologram.")
+		to_chat(user, "<span class='alert'>ERROR: Unable to project hologram.</span>")
 	return
 
 /*This is the proc for special two-way communication between AI and holopad/people talking near holopad.
@@ -145,7 +145,7 @@ For the other part of the code, check silicon say.dm. Particularly robot talk.*/
 /obj/machinery/hologram/holopad/clear_holo()
 //	hologram.SetLuminosity(0)//Clear lighting.	//handled by the lighting controller when its ower is deleted
 	if(hologram)
-		cdel(hologram)//Get rid of hologram.
+		qdel(hologram)//Get rid of hologram.
 		hologram = null
 	if(master.holo == src)
 		master.holo = null

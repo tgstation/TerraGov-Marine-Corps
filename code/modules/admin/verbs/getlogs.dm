@@ -127,7 +127,7 @@
 	set desc = "View/retrieve logfiles for the current round."
 	set category = "Admin"
 
-	browseserverlogs("[log_directory]/")
+	browseserverlogs("[GLOB.log_directory]/")
 
 /client/proc/browseserverlogs(path = "data/logs/")
 	path = browse_files(path)
@@ -149,3 +149,66 @@
 			return
 	to_chat(src, "Attempting to send [path], this may take a fair few minutes if the file is very large.")
 	return
+
+
+/client/proc/getfolderlogs()
+	set name = "Get Server Logs Folder"
+	set desc = "Please use responsibly."
+	set category = "Admin"
+
+	var/choice = alert(src, "Due to the way BYOND handles files, you WILL need a click macro. This function is also recurive and prone to fucking up, especially if you select the wrong folder. Are you absolutely sure you want to proceed?", "WARNING", "Yes", "No")
+	if(choice != "Yes")
+		return
+
+	var/path = "data/logs/"
+	path = browse_folders(path)
+
+	if(path)
+		recursive_download(path)
+
+
+
+/client/proc/recursive_download(var/folder)
+	var/files = flist(folder)
+	for(var/next in files)
+		if(copytext(next, -1, 0) == "/")
+			to_chat(src, "Going deeper [folder][next]")
+			recursive_download(folder + next)
+		else
+			to_chat(src, "Downloading [folder][next]")
+			var/fil = replacetext("[folder][next]", "/", "_")
+			sleep(5)
+			src << ftp(file(folder + next), fil)
+
+
+
+/client/proc/browse_folders(root = "data/logs/", max_iterations = 100)
+	var/path = root
+
+	for(var/i = 0, i < max_iterations, i++)
+		var/list/choices = flist(path)
+		if(path != root)
+			choices.Insert(1, "/")
+
+		var/choice = input(src, "Choose a folder to access:", "Download", null) as null|anything in choices
+		switch(choice)
+			if(null)
+				return FALSE
+			if("/")
+				path = root
+				continue
+
+		path += choice
+
+
+		if(copytext(path, -1, 0) != "/")		//didn't choose a directory, no need to iterate again
+			continue
+		else
+			var/choice2 = alert(src, "Is this the folder you want to download?:",, "Yes", "No")
+			switch(choice2)
+				if("Yes")
+					break
+				if("No")
+					continue
+
+	return path

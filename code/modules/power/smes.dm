@@ -255,7 +255,7 @@
 					user.visible_message(\
 						"<span class='notice'>[user.name] cut the cables and dismantled the power terminal.</span>",\
 						"<span class='notice'>You cut the cables and dismantle the power terminal.</span>")
-					cdel(terminal)
+					qdel(terminal)
 					terminal = null
 		building_terminal = 0
 		return FALSE
@@ -300,7 +300,7 @@
 		return
 	if (!(istype(usr, /mob/living/carbon/human) || ticker) && ticker.mode.name != "monkey")
 		if(!istype(usr, /mob/living/silicon/ai))
-			to_chat(usr, "\red You don't have the dexterity to do this!")
+			to_chat(usr, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 
 //to_chat(world, "[href] ; [href_list[href]]")
@@ -350,14 +350,14 @@
 	if(src.z == 1)
 		if(prob(1)) //explosion
 			for(var/mob/M in viewers(src))
-				M.show_message("\red The [src.name] is making strange noises!", 3, "\red You hear sizzling electronics.", 2)
+				M.show_message("<span class='warning'> The [src.name] is making strange noises!</span>", 3, "<span class='warning'> You hear sizzling electronics.</span>", 2)
 			sleep(10*pick(4,5,6,7,10,14))
 			var/datum/effect_system/smoke_spread/smoke = new /datum/effect_system/smoke_spread()
 			smoke.set_up(1, 0, src.loc)
 			smoke.attach(src)
 			smoke.start()
 			explosion(src.loc, -1, 0, 1, 3, 1, 0)
-			cdel(src)
+			qdel(src)
 			return
 		if(prob(15)) //Power drain
 			var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread

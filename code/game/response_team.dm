@@ -13,16 +13,16 @@ var/can_call_ert
 	set desc = "Send an emergency response team to the station"
 
 	if(!holder)
-		to_chat(usr, "\red Only administrators may use this command.")
+		to_chat(usr, "<span class='warning'>Only administrators may use this command.</span>")
 		return
 	if(!ticker)
-		to_chat(usr, "\red The game hasn't started yet!")
+		to_chat(usr, "<span class='warning'>The game hasn't started yet!</span>")
 		return
 	if(ticker.current_state == 1)
-		to_chat(usr, "\red The round hasn't started yet!")
+		to_chat(usr, "<span class='warning'>The round hasn't started yet!</span>")
 		return
 	if(send_emergency_team)
-		to_chat(usr, "\red Central Command has already dispatched an emergency response team!")
+		to_chat(usr, "<span class='warning'>Central Command has already dispatched an emergency response team!</span>")
 		return
 	if(alert("Do you want to dispatch an Emergency Response Team?",,"Yes","No") != "Yes")
 		return
@@ -31,7 +31,7 @@ var/can_call_ert
 			if("No")
 				return
 	if(send_emergency_team)
-		to_chat(usr, "\red Looks like somebody beat you to it!")
+		to_chat(usr, "<span class='warning'>Looks like somebody beat you to it!</span>")
 		return
 
 	message_admins("[key_name_admin(usr)] is dispatching an Emergency Response Team.", 1)
@@ -64,11 +64,11 @@ client/verb/JoinResponseTeam()
 				return
 			var/leader_selected = isemptylist(response_team_members)
 			var/mob/living/carbon/human/new_commando = create_response_team(L.loc, leader_selected, new_name)
-			cdel(L)
+			qdel(L)
 			new_commando.mind.key = usr.key
 			new_commando.key = usr.key
 
-			to_chat(new_commando, "\blue You are [!leader_selected?"a member":"the <B>LEADER</B>"] of an Emergency Response Team, a type of military division, under CentComm's service. There is a code red alert on [station_name()], you are tasked to go and fix the problem.")
+			to_chat(new_commando, "<span class='notice'>You are [!leader_selected?"a member":"the <B>LEADER</B>"] of an Emergency Response Team, a type of military division, under CentComm's service. There is a code red alert on [station_name()], you are tasked to go and fix the problem.</span>")
 			to_chat(new_commando, "<b>You should first gear up and discuss a plan with your team. More members may be joining, don't move out before you're ready.")
 			if(!leader_selected)
 				to_chat(new_commando, "<b>As member of the Emergency Response Team, you answer only to your leader and CentComm officials.</b>")
@@ -147,7 +147,7 @@ proc/trigger_armed_response_team(var/force = 0)
 
 /client/proc/create_response_team(obj/spawn_location, leader_selected = 0, commando_name)
 
-	//to_chat(usr, "\red ERT has been temporarily disabled. Talk to a coder.")
+	//to_chat(usr, "<span class='warning'>ERT has been temporarily disabled. Talk to a coder.</span>")
 	//return
 
 	var/mob/living/carbon/human/M = new(null)
@@ -182,7 +182,7 @@ proc/trigger_armed_response_team(var/force = 0)
 	for(var/x in all_hairs)
 		var/datum/sprite_accessory/hair/H = new x // create new hair datum based on type x
 		hairs.Add(H.name) // add hair name to hairs
-		cdel(H) // delete the hair after it's all done
+		qdel(H) // delete the hair after it's all done
 
 //	var/new_style = input("Please select hair style", "Character Generation")  as null|anything in hairs
 //hair
@@ -228,38 +228,38 @@ proc/trigger_armed_response_team(var/force = 0)
 /mob/living/carbon/human/proc/equip_strike_team(leader_selected = 0)
 
 	//Special radio setup
-	equip_to_slot_or_del(new /obj/item/device/radio/headset/ert(src), WEAR_EAR)
+	equip_to_slot_or_del(new /obj/item/device/radio/headset/ert(src), SLOT_EARS)
 
 	//Replaced with new ERT uniform
-	equip_to_slot_or_del(new /obj/item/clothing/under/ert(src), WEAR_BODY)
-	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), WEAR_FEET)
-	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), WEAR_HANDS)
-	equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(src), WEAR_EYES)
+	equip_to_slot_or_del(new /obj/item/clothing/under/ert(src), SLOT_W_UNIFORM)
+	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), SLOT_SHOES)
+	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), SLOT_GLOVES)
+	equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses(src), SLOT_GLASSES)
 /*
 
 	//Old ERT Uniform
 	//Basic Uniform
-	equip_to_slot_or_del(new /obj/item/clothing/under/syndicate/tacticool(src), WEAR_BODY)
-	equip_to_slot_or_del(new /obj/item/device/flashlight(src), WEAR_L_STORE)
-	equip_to_slot_or_del(new /obj/item/clipboard(src), WEAR_R_STORE)
-	equip_to_slot_or_del(new /obj/item/weapon/gun/energy/gun(src), WEAR_WAIST)
-	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/swat(src), WEAR_FACE)
+	equip_to_slot_or_del(new /obj/item/clothing/under/syndicate/tacticool(src), SLOT_W_UNIFORM)
+	equip_to_slot_or_del(new /obj/item/device/flashlight(src), SLOT_L_STORE)
+	equip_to_slot_or_del(new /obj/item/clipboard(src), SLOT_R_STORE)
+	equip_to_slot_or_del(new /obj/item/weapon/gun/energy/gun(src), SLOT_BELT)
+	equip_to_slot_or_del(new /obj/item/clothing/mask/gas/swat(src), SLOT_WEAR_MASK)
 
 	//Glasses
-	equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(src), WEAR_EYES)
+	equip_to_slot_or_del(new /obj/item/clothing/glasses/sunglasses/sechud(src), SLOT_GLASSES)
 
 	//Shoes & gloves
-	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), WEAR_FEET)
-	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), WEAR_HANDS)
+	equip_to_slot_or_del(new /obj/item/clothing/shoes/swat(src), SLOT_SHOES)
+	equip_to_slot_or_del(new /obj/item/clothing/gloves/swat(src), SLOT_GLOVES)
 
 	//Removed
-//	equip_to_slot_or_del(new /obj/item/clothing/suit/armor/swat(src), WEAR_JACKET)
-//	equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/deathsquad(src), WEAR_HEAD)
+//	equip_to_slot_or_del(new /obj/item/clothing/suit/armor/swat(src), SLOT_WEAR_SUIT)
+//	equip_to_slot_or_del(new /obj/item/clothing/head/helmet/space/deathsquad(src), SLOT_HEAD)
 
 	//Backpack
-	equip_to_slot_or_del(new /obj/item/storage/backpack/security(src), WEAR_BACK)
-	equip_to_slot_or_del(new /obj/item/storage/box/engineer(src), WEAR_IN_BACK)
-	equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(src), WEAR_IN_BACK)
+	equip_to_slot_or_del(new /obj/item/storage/backpack/security(src), SLOT_BACK)
+	equip_to_slot_or_del(new /obj/item/storage/box/engineer(src), SLOT_IN_BACKPACK)
+	equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(src), SLOT_IN_BACKPACK)
 */
 	var/obj/item/card/id/W = new(src)
 	W.assignment = "Emergency Response Team[leader_selected ? " Leader" : ""]"
@@ -268,7 +268,7 @@ proc/trigger_armed_response_team(var/force = 0)
 	W.icon_state = "centcom"
 	W.access = get_all_accesses()
 	W.access += get_all_centcom_access()
-	equip_to_slot_or_del(W, WEAR_ID)
+	equip_to_slot_or_del(W, SLOT_WEAR_ID)
 
 	return 1
 

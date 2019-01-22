@@ -231,14 +231,14 @@
 				modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")
 				if(ishuman(usr))
 					modify.loc = usr.loc
-					if(!usr.get_active_hand())
+					if(!usr.get_active_held_item())
 						usr.put_in_hands(modify)
 					modify = null
 				else
 					modify.loc = loc
 					modify = null
 			else
-				var/obj/item/I = usr.get_active_hand()
+				var/obj/item/I = usr.get_active_held_item()
 				if (istype(I, /obj/item/card/id))
 					usr.drop_held_item()
 					I.loc = src
@@ -248,14 +248,14 @@
 			if (scan)
 				if(ishuman(usr))
 					scan.loc = usr.loc
-					if(!usr.get_active_hand())
+					if(!usr.get_active_held_item())
 						usr.put_in_hands(scan)
 					scan = null
 				else
 					scan.loc = src.loc
 					scan = null
 			else
-				var/obj/item/I = usr.get_active_hand()
+				var/obj/item/I = usr.get_active_held_item()
 				if (istype(I, /obj/item/card/id))
 					usr.drop_held_item()
 					I.loc = src
@@ -295,11 +295,11 @@
 							break
 
 					if(!jobdatum)
-						to_chat(usr, "\red No log exists for this job.")
+						to_chat(usr, "<span class='warning'>No log exists for this job.</span>")
 						return
 
 					if(!modify)
-						to_chat(usr, "\red No card to modify!")
+						to_chat(usr, "<span class='warning'>No card to modify!</span>")
 						return
 
 					modify.access = jobdatum.get_access()
@@ -438,11 +438,11 @@
 		if(href_list["card"])
 			if(modify)
 				modify.loc = src.loc
-				if(!usr.get_active_hand() && istype(usr,/mob/living/carbon/human))
+				if(!usr.get_active_held_item() && istype(usr,/mob/living/carbon/human))
 					usr.put_in_hands(modify)
 				modify = null
 			else
-				var/obj/item/I = usr.get_active_hand()
+				var/obj/item/I = usr.get_active_held_item()
 				if (istype(I, /obj/item/card/id))
 					usr.drop_held_item()
 					I.loc = src
@@ -450,15 +450,10 @@
 		else if(href_list["squad"])
 			if(allowed(usr))
 				if(modify && istype(modify))
-					var/list/squad_list = list()
-					for(var/datum/squad/S in RoleAuthority.squads)
-						if(S.usable)
-							squad_list += S.name
-
-					var/name_sel = input("Which squad would you like to put the person in?") as null|anything in squad_list
-					if(!name_sel)
+					var/squad_name = input("Which squad would you like to put the person in?") as null|anything in RoleAuthority.squads_names
+					if(!squad_name)
 						return
-					var/datum/squad/selected = get_squad_by_name(name_sel)
+					var/datum/squad/selected = RoleAuthority.squads[RoleAuthority.squads_names.Find(squad_name)]
 
 					//First, remove any existing squad access and clear the card.
 					for(var/datum/squad/Q in RoleAuthority.squads)

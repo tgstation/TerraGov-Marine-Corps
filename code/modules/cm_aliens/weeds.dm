@@ -12,6 +12,11 @@
 	unacidable = 1
 	health = 1
 
+/obj/effect/alien/weeds/healthcheck()
+    if(health <= 0)
+        round_statistics.weeds_destroyed++
+        qdel(src)
+
 /obj/effect/alien/weeds/New(pos, obj/effect/alien/weeds/node/node)
 	..()
 
@@ -23,7 +28,7 @@
 				weed_expand(node)
 
 
-/obj/effect/alien/weeds/Dispose()
+/obj/effect/alien/weeds/Destroy()
 	var/oldloc = loc
 	. = ..()
 	update_neighbours(oldloc)
@@ -122,13 +127,13 @@
 /obj/effect/alien/weeds/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 		if(2.0)
 			if(prob(70))
-				cdel(src)
+				qdel(src)
 		if(3.0)
 			if(prob(50))
-				cdel(src)
+				qdel(src)
 
 /obj/effect/alien/weeds/attackby(obj/item/W, mob/living/user)
 	if(!W || !user || isnull(W) || (W.flags_item & NOBLUDGEON))
@@ -174,9 +179,9 @@
 	return
 
 /obj/effect/alien/weeds/fire_act()
-	if(!disposed)
+	if(!gc_destroyed)
 		spawn(rand(100,175))
-			cdel(src)
+			qdel(src)
 
 
 /obj/effect/alien/weeds/weedwall
@@ -224,7 +229,7 @@
 /obj/effect/alien/weeds/node/New(loc, obj/effect/alien/weeds/node/node, mob/living/carbon/Xenomorph/X)
 	for(var/obj/effect/alien/weeds/W in loc)
 		if(W != src)
-			cdel(W) //replaces the previous weed
+			qdel(W) //replaces the previous weed
 			break
 
 	overlays += "weednode"

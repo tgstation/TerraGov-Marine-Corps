@@ -24,12 +24,12 @@
 	switch(severity)
 		if(1.0)
 			//SN src = null
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(50))
 				//SN src = null
-				cdel(src)
+				qdel(src)
 				return
 		else
 	return
@@ -195,10 +195,10 @@
 		return
 	return
 
-/obj/machinery/sleeper/Dispose()
+/obj/machinery/sleeper/Destroy()
 	occupant.in_stasis = FALSE //clean up; end stasis; remove from processing
 	occupant = null
-	processing_objects.Remove(src)
+	STOP_PROCESSING(SSobj, src)
 	stop_processing()
 	return ..()
 
@@ -278,7 +278,7 @@
 /obj/machinery/sleeper/attackby(var/obj/item/W, var/mob/living/user)
 	if(istype(W, /obj/item/reagent_container/glass))
 		if(!beaker)
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				beaker = W
 				user.visible_message("[user] adds \a [W] to \the [src]!", "You add \a [W] to \the [src]!")
 				updateUsrDialog()
@@ -325,13 +325,13 @@
 		toggle_filter()
 	switch(severity)
 		if(1)
-			cdel(src)
+			qdel(src)
 		if(2)
 			if(prob(50))
-				cdel(src)
+				qdel(src)
 		if(3)
 			if(prob(25))
-				cdel(src)
+				qdel(src)
 
 
 /obj/machinery/sleeper/emp_act(severity)
@@ -395,7 +395,7 @@
 
 /obj/machinery/sleeper/proc/check(mob/living/user)
 	if(occupant)
-		to_chat(user, text("\blue <B>Occupant ([]) Statistics:</B>", occupant))
+		to_chat(user, text("<span class='boldnotice'>Occupant ([]) Statistics:</span>", occupant))
 		var/t1
 		switch(occupant.stat)
 			if(0)
@@ -405,20 +405,20 @@
 			if(2)
 				t1 = "*dead*"
 			else
-		to_chat(user, text("[]\t Health %: [] ([])", (occupant.health > 50 ? "\blue " : "\red "), occupant.health, t1))
+		to_chat(user, text("[]\t Health %: [] ([])</span>", (occupant.health > 50 ? "<span class='notice'> " : "<span class='warning'> "), occupant.health, t1))
 		to_chat(user, text("[]\t -Core Temperature: []&deg;C ([]&deg;F)</FONT><BR>", (occupant.bodytemperature > 50 ? "<font color='blue'>" : "<font color='red'>"), occupant.bodytemperature-T0C, occupant.bodytemperature*1.8-459.67))
-		to_chat(user, text("[]\t -Brute Damage %: []", (occupant.getBruteLoss() < 60 ? "\blue " : "\red "), occupant.getBruteLoss()))
-		to_chat(user, text("[]\t -Respiratory Damage %: []", (occupant.getOxyLoss() < 60 ? "\blue " : "\red "), occupant.getOxyLoss()))
-		to_chat(user, text("[]\t -Toxin Content %: []", (occupant.getToxLoss() < 60 ? "\blue " : "\red "), occupant.getToxLoss()))
-		to_chat(user, text("[]\t -Burn Severity %: []", (occupant.getFireLoss() < 60 ? "\blue " : "\red "), occupant.getFireLoss()))
-		to_chat(user, "\blue Expected time till occupant can safely awake: (note: If health is below 20% these times are inaccurate)")
-		to_chat(user, "\blue \t [occupant.knocked_out / 5] second\s (if around 1 or 2 the sleeper is keeping them asleep.)")
+		to_chat(user, text("[]\t -Brute Damage %: []</span>", (occupant.getBruteLoss() < 60 ? "<span class='notice'> " : "<span class='warning'> "), occupant.getBruteLoss()))
+		to_chat(user, text("[]\t -Respiratory Damage %: []</span>", (occupant.getOxyLoss() < 60 ? "<span class='notice'> " : "<span class='warning'> "), occupant.getOxyLoss()))
+		to_chat(user, text("[]\t -Toxin Content %: []</span>", (occupant.getToxLoss() < 60 ? "<span class='notice'> " : "<span class='warning'> "), occupant.getToxLoss()))
+		to_chat(user, text("[]\t -Burn Severity %: []</span>", (occupant.getFireLoss() < 60 ? "<span class='notice'> " : "<span class='warning'> "), occupant.getFireLoss()))
+		to_chat(user, "<span class='notice'>Expected time till occupant can safely awake: (note: If health is below 20% these times are inaccurate)</span>")
+		to_chat(user, "<span class='notice'>\t [occupant.knocked_out / 5] second\s (if around 1 or 2 the sleeper is keeping them asleep.)</span>")
 		if(beaker)
-			to_chat(user, "\blue \t Dialysis Output Beaker has [beaker.reagents.maximum_volume - beaker.reagents.total_volume] of free space remaining.")
+			to_chat(user, "<span class='notice'>\t Dialysis Output Beaker has [beaker.reagents.maximum_volume - beaker.reagents.total_volume] of free space remaining.</span>")
 		else
-			to_chat(user, "\blue No Dialysis Output Beaker loaded.")
+			to_chat(user, "<span class='notice'>No Dialysis Output Beaker loaded.</span>")
 	else
-		to_chat(user, "\blue There is no one inside!")
+		to_chat(user, "<span class='notice'>There is no one inside!</span>")
 	return
 
 
@@ -478,5 +478,5 @@
 		icon_state = "sleeper_1-r"
 
 	for(var/obj/O in src)
-		cdel(O)
+		qdel(O)
 	add_fingerprint(usr)

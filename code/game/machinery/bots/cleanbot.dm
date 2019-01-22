@@ -286,21 +286,21 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 /obj/machinery/bot/cleanbot/proc/clean(var/obj/effect/decal/cleanable/target)
 	anchored = 1
 	icon_state = "cleanbot-c"
-	visible_message("\red [src] begins to clean up the [target]")
+	visible_message("<span class='warning'> [src] begins to clean up the [target]</span>")
 	cleaning = 1
 	var/cleantime = 50
 	if(istype(target,/obj/effect/decal/cleanable/dirt))		// Clean Dirt much faster
 		cleantime = 10
 	spawn(cleantime)
 		cleaning = 0
-		cdel(target)
+		qdel(target)
 		icon_state = "cleanbot[on]"
 		anchored = 0
 		target = null
 
 /obj/machinery/bot/cleanbot/explode()
 	src.on = 0
-	src.visible_message("\red <B>[src] blows apart!</B>", 1)
+	src.visible_message("<span class='danger'>[src] blows apart!</span>", 1)
 	var/turf/Tsec = get_turf(src)
 
 	new /obj/item/reagent_container/glass/bucket(Tsec)
@@ -313,5 +313,5 @@ text("<A href='?src=\ref[src];operation=oddbutton'>[src.oddbutton ? "Yes" : "No"
 	var/datum/effect_system/spark_spread/s = new /datum/effect_system/spark_spread
 	s.set_up(3, 1, src)
 	s.start()
-	cdel(src)
+	qdel(src)
 	return

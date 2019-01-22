@@ -13,7 +13,7 @@
 /obj/item/frame/light_fixture/attackby(obj/item/W as obj, mob/user as mob)
 	if (istype(W, /obj/item/tool/wrench))
 		new /obj/item/stack/sheet/metal( get_turf(src.loc), sheets_refunded )
-		cdel(src)
+		qdel(src)
 		return
 	..()
 
@@ -25,7 +25,7 @@
 		return
 	var/turf/loc = get_turf(usr)
 	if (!istype(loc, /turf/open/floor))
-		to_chat(usr, "\red [src.name] cannot be placed on this spot.")
+		to_chat(usr, "<span class='warning'>[src.name] cannot be placed on this spot.</span>")
 		return
 	to_chat(usr, "Attaching [src] to the wall.")
 	playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
@@ -45,7 +45,7 @@
 
 	usr.visible_message("[usr.name] attaches [src] to the wall.", \
 		"You attach [src] to the wall.")
-	cdel(src)
+	qdel(src)
 
 /obj/item/frame/light_fixture/small
 	name = "small light fixture frame"

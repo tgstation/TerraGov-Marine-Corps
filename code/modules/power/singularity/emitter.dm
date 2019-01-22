@@ -30,7 +30,7 @@
 		ammo = ammo_list[ammo]
 		start_processing()
 
-	Dispose()
+	Destroy()
 		ammo = null
 		. = ..()
 
@@ -46,13 +46,13 @@
 	src.dir = turn(src.dir, 90)
 	return 1
 
-/obj/machinery/power/emitter/initialize()
+/obj/machinery/power/emitter/Initialize()
 	..()
 	if(state == 2 && anchored)
 		connect_to_network()
 		src.directwired = 1
 
-/obj/machinery/power/emitter/Dispose()
+/obj/machinery/power/emitter/Destroy()
 	message_admins("Emitter deleted at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
 	log_game("Emitter deleted at ([x],[y],[z])")
 	investigate_log("<font color='red'>deleted</font> at ([x],[y],[z])","singulo")
@@ -90,9 +90,9 @@
 				investigate_log("turned <font color='green'>on</font> by [user.key]","singulo")
 			update_icon()
 		else
-			to_chat(user, "\red The controls are locked!")
+			to_chat(user, "<span class='warning'>The controls are locked!</span>")
 	else
-		to_chat(user, "\red The [src] needs to be firmly secured to the floor first.")
+		to_chat(user, "<span class='warning'>The [src] needs to be firmly secured to the floor first.</span>")
 		return 1
 
 
@@ -131,7 +131,7 @@
 		//need to calculate the power per shot as the emitter doesn't fire continuously.
 		var/burst_time = (min_burst_delay + max_burst_delay)/2 + 2*(burst_shots-1)
 		var/power_per_shot = active_power_usage * (burst_time/10) / burst_shots
-		var/obj/item/projectile/A = rnew(/obj/item/projectile, loc)
+		var/obj/item/projectile/A = new /obj/item/projectile(loc)
 		A.generate_bullet(ammo, round(power_per_shot/EMITTER_DAMAGE_POWER_TRANSFER))
 
 		playsound(src.loc, 'sound/weapons/emitter.ogg', 25, 1)
@@ -146,7 +146,7 @@
 			else 		target = locate(T.x,T.y+3,T.z)
 
 		if(!target) //Off the edge of the map somehow.
-			cdel(A)
+			qdel(A)
 			return
 
 		A.fire_at(target,src,src,A.ammo.max_range,A.ammo.shell_speed) //Range, speed. Emitter shots are slow.
@@ -173,7 +173,7 @@
 					"You hear a ratchet")
 				src.anchored = 0
 			if(2)
-				to_chat(user, "\red The [src.name] needs to be unwelded from the floor.")
+				to_chat(user, "<span class='warning'>The [src.name] needs to be unwelded from the floor.</span>")
 		return
 
 	if(istype(W, /obj/item/tool/weldingtool))
@@ -183,7 +183,7 @@
 			return
 		switch(state)
 			if(0)
-				to_chat(user, "\red The [src.name] needs to be wrenched to the floor.")
+				to_chat(user, "<span class='warning'>The [src.name] needs to be wrenched to the floor.</span>")
 			if(1)
 				if (WT.remove_fuel(0,user))
 					playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
@@ -197,7 +197,7 @@
 						connect_to_network()
 						src.directwired = 1
 				else
-					to_chat(user, "\red You need more welding fuel to complete this task.")
+					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 			if(2)
 				if (WT.remove_fuel(0,user))
 					playsound(src.loc, 'sound/items/Welder2.ogg', 25, 1)
@@ -211,12 +211,12 @@
 						disconnect_from_network()
 						src.directwired = 0
 				else
-					to_chat(user, "\red You need more welding fuel to complete this task.")
+					to_chat(user, "<span class='warning'>You need more welding fuel to complete this task.</span>")
 		return
 
 	if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda))
 		if(emagged)
-			to_chat(user, "\red The lock seems to be broken")
+			to_chat(user, "<span class='warning'>The lock seems to be broken</span>")
 			return
 		if(src.allowed(user))
 			if(active)
@@ -224,16 +224,16 @@
 				to_chat(user, "The controls are now [src.locked ? "locked." : "unlocked."]")
 			else
 				src.locked = 0 //just in case it somehow gets locked
-				to_chat(user, "\red The controls can only be locked when the [src] is online")
+				to_chat(user, "<span class='warning'>The controls can only be locked when the [src] is online</span>")
 		else
-			to_chat(user, "\red Access denied.")
+			to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
 
 
 	if(istype(W, /obj/item/card/emag) && !emagged)
 		locked = 0
 		emagged = 1
-		user.visible_message("[user.name] emags the [src.name].","\red You short out the lock.")
+		user.visible_message("[user.name] emags the [src.name].","<span class='warning'> You short out the lock.</span>")
 		return
 
 	..()

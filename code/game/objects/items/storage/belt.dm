@@ -6,7 +6,7 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
 	item_state = "utility"
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
 	w_class = 4
 	allow_drawing_method = TRUE
@@ -14,7 +14,7 @@
 
 
 /obj/item/storage/belt/equipped(mob/user, slot)
-	if(slot == WEAR_WAIST)
+	if(slot == SLOT_BELT)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
 	..()
 
@@ -264,6 +264,7 @@
 		"/obj/item/weapon/combat_knife",
 		"/obj/item/device/flashlight/flare",
 		"/obj/item/ammo_magazine/rifle",
+		"/obj/item/cell/lasgun",
 		"/obj/item/ammo_magazine/smg",
 		"/obj/item/ammo_magazine/pistol",
 		"/obj/item/ammo_magazine/revolver",
@@ -320,7 +321,7 @@
 		if(M.current_rounds)
 			if(contents.len < storage_slots)
 				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
-				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC)) 
+				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
 					return
 				var/cont
 				for(var/x = 1 to storage_slots)
@@ -373,7 +374,7 @@
 	can_hold = list("/obj/item/explosive/grenade")
 
 
-/obj/item/storage/belt/grenade/New()
+/obj/item/storage/belt/grenade/standard/New()
 	..()
 	spawn(1)
 		new /obj/item/explosive/grenade/incendiary(src)
@@ -389,7 +390,7 @@
 	w_class = 4
 	storage_slots = 16
 	max_w_class = 3
-	max_storage_space = 32
+	max_storage_space = 48
 	can_hold = list("/obj/item/explosive/grenade")
 
 /obj/item/storage/belt/grenade/b18/New()
@@ -440,7 +441,7 @@
 	var/holds_guns_now = 0 //Generic variable to determine if the holster already holds a gun.
 	var/holds_guns_max = 1 //How many guns can it hold? I think this can be any thing from 1 to whatever. Should calculate properly.
 	var/obj/item/weapon/gun/current_gun //The gun it holds, used for referencing later so we can update the icon.
-	var/image/reusable/gun_underlay //The underlay we will use.
+	var/image/gun_underlay //The underlay we will use.
 	var/sheatheSound = 'sound/weapons/gun_pistol_sheathe.ogg'
 	var/drawSound = 'sound/weapons/gun_pistol_draw.ogg'
 	can_hold = list(
@@ -448,12 +449,12 @@
 		"/obj/item/ammo_magazine/pistol"
 		)
 
-/obj/item/storage/belt/gun/Dispose()
+/obj/item/storage/belt/gun/Destroy()
 	if(gun_underlay)
-		cdel(gun_underlay)
+		qdel(gun_underlay)
 		gun_underlay = null
 	if(current_gun)
-		cdel(current_gun)
+		qdel(current_gun)
 		current_gun = null
 	. = ..()
 
@@ -476,7 +477,7 @@
 		sure that we don't have to do any extra calculations.
 		*/
 		playsound(src,drawSound, 15, 1)
-		gun_underlay = rnew(/image/reusable,list(icon, src, current_gun.icon_state))
+		gun_underlay = image(icon, src, current_gun.icon_state)
 		icon_state += "_g"
 		item_state = icon_state
 		underlays += gun_underlay
@@ -485,7 +486,7 @@
 		underlays -= gun_underlay
 		icon_state = copytext(icon_state,1,-2)
 		item_state = icon_state
-		cdel(gun_underlay)
+		qdel(gun_underlay)
 		gun_underlay = null
 	if(istype(user)) user.update_inv_belt()
 	if(istype(user)) user.update_inv_s_store()

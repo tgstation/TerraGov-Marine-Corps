@@ -113,7 +113,7 @@ var/global/list/holodeck_programs = list(
 	if(istype(D, /obj/item/card/emag) && !emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
 		emagged = 1
-		to_chat(user, "\blue You vastly increase projector power and override the safety and security protocols.")
+		to_chat(user, "<span class='notice'>You vastly increase projector power and override the safety and security protocols.</span>")
 		to_chat(user, "Warning.  Automatic shutoff and derezing protocols have been corrupted.  Please call Nanotrasen maintenance and do not use the simulator.")
 		log_game("[key_name(usr)] emagged the Holodeck Control Computer")
 	src.updateUsrDialog()
@@ -128,7 +128,7 @@ var/global/list/holodeck_programs = list(
 	//		loadProgram(target)
 
 //This could all be done better, but it works for now.
-/obj/machinery/computer/HolodeckControl/Dispose()
+/obj/machinery/computer/HolodeckControl/Destroy()
 	emergencyShutdown()
 	. = ..()
 
@@ -177,12 +177,12 @@ var/global/list/holodeck_programs = list(
 	if(isobj(obj))
 		var/mob/M = obj.loc
 		if(ismob(M))
-			M.temp_drop_inv_item(obj)
+			M.temporarilyRemoveItemFromInventory(obj)
 
 	if(!silent)
 		var/obj/oldobj = obj
 		visible_message("The [oldobj.name] fades away!")
-	cdel(obj)
+	qdel(obj)
 
 /obj/machinery/computer/HolodeckControl/proc/checkInteg(var/area/A)
 	for(var/turf/T in A)
@@ -236,11 +236,11 @@ var/global/list/holodeck_programs = list(
 
 	for(var/obj/effect/decal/cleanable/blood/B in linkedholodeck)
 		linkedholodeck -= B
-		cdel(B)
+		qdel(B)
 
 	for(var/mob/living/simple_animal/hostile/carp/C in linkedholodeck)
 		linkedholodeck -= C
-		cdel(C)
+		qdel(C)
 
 	holographic_items = A.copy_contents_to(linkedholodeck , 1)
 
@@ -427,7 +427,7 @@ var/global/list/holodeck_programs = list(
 			visible_message("<span class='danger'>[user] dunks [M] into the [src]!</span>")
 		return
 	else if (istype(W, /obj/item) && get_dist(src,user)<2)
-		user.drop_inv_item_to_loc(W, loc)
+		user.transferItemToLoc(W, loc)
 		for(var/obj/machinery/scoreboard/X in machines)
 			if(X.id == id)
 				X.score(side)
@@ -446,9 +446,9 @@ var/global/list/holodeck_programs = list(
 				if(X.id == id)
 					X.score(side)
 					// no break, to update multiple scoreboards
-			visible_message("\blue Swish! \the [I] lands in \the [src].", 3)
+			visible_message("<span class='notice'> Swish! \the [I] lands in \the [src].</span>", 3)
 		else
-			visible_message("\red \the [I] bounces off of \the [src]'s rim!", 3)
+			visible_message("<span class='warning'> \the [I] bounces off of \the [src]'s rim!</span>", 3)
 		return 0
 	else
 		return ..()
@@ -491,7 +491,7 @@ var/global/list/holodeck_programs = list(
 
 	currentarea = get_area(src.loc)
 	if(!currentarea)
-		cdel(src)
+		qdel(src)
 
 	if(eventstarted)
 		to_chat(usr, "The event has already begun!")
@@ -523,7 +523,7 @@ var/global/list/holodeck_programs = list(
 
 	for(var/obj/structure/holowindow/W in currentarea)
 		currentarea -= W
-		cdel(W)
+		qdel(W)
 
 	for(var/mob/M in currentarea)
 		to_chat(M, "FIGHT!")

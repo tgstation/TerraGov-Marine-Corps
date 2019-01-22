@@ -120,7 +120,7 @@ var/traitor_scaling = 1
 var/dna_ident = 1
 var/abandon_allowed = 1
 var/enter_allowed = 1
-var/guests_allowed = 1
+var/guests_allowed = 0
 var/shuttle_frozen = 0
 var/shuttle_left = 0
 var/midi_playing = 0
@@ -160,6 +160,7 @@ var/list/surv_spawn = list()//Survivors spawn at these
 var/list/pred_spawn = list()//Predators spawn at these
 var/list/pred_elder_spawn = list() //For elder preds.
 var/list/yautja_teleport_loc = list() //Yautja teleporter target location.
+var/list/deathmatch = list()
 //	list/mazewarp = list()
 var/list/tdome1 = list()
 var/list/tdome2 = list()
@@ -175,10 +176,10 @@ var/list/alldirs = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAS
 var/list/reverse_dir = list(2, 1, 3, 8, 10, 9, 11, 4, 6, 5, 7, 12, 14, 13, 15, 32, 34, 33, 35, 40, 42, 41, 43, 36, 38, 37, 39, 44, 46, 45, 47, 16, 18, 17, 19, 24, 26, 25, 27, 20, 22, 21, 23, 28, 30, 29, 31, 48, 50, 49, 51, 56, 58, 57, 59, 52, 54, 53, 55, 60, 62, 61, 63)
 
 var/datum/station_state/start_state = null
-var/datum/configuration/config = null
 var/datum/sun/sun = null
 
 //Logging
+/*
 var/log_directory
 var/world_game_log
 var/world_attack_log
@@ -188,6 +189,7 @@ var/world_pda_log
 var/world_href_log
 var/sql_error_log
 var/config_error_log
+*/
 
 var/list/all_player_details = list()  // [ckey] = /datum/player_details
 

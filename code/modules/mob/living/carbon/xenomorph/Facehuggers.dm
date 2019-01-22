@@ -36,11 +36,11 @@
 	..()
 	GoActive()
 
-/obj/item/clothing/mask/facehugger/Dispose()
+/obj/item/clothing/mask/facehugger/Destroy()
 	. = ..()
 	if(iscarbon(loc))
 		var/mob/living/carbon/M = loc
-		M.temp_drop_inv_item(src)
+		M.temporarilyRemoveItemFromInventory(src)
 
 /obj/item/clothing/mask/facehugger/ex_act(severity)
 	Die()
@@ -54,7 +54,7 @@
 		if(F.stat == CONSCIOUS) count++
 		if(count > 2) //Was 5, our rules got much tighter
 			visible_message("<span class='xenowarning'>The facehugger is furiously cannibalized by the nearby horde of other ones!</span>")
-			cdel(src)
+			qdel(src)
 			return
 	if(stat == CONSCIOUS && loc) //Make sure we're conscious and not idle or dead.
 		if(check_lifecycle())
@@ -241,7 +241,7 @@
 
 	if(isXeno(loc)) //Being carried? Drop it
 		var/mob/living/carbon/Xenomorph/X = loc
-		X.drop_inv_item_on_ground(src)
+		X.dropItemToGround(src)
 		X.update_icons()
 
 	if(isturf(M.loc))
@@ -261,8 +261,8 @@
 			if(H.dir == reverse_dir[dir]) catch_chance += 20
 			if(H.lying) catch_chance -= 50
 			catch_chance -= ((H.maxHealth - H.health) / 3)
-			if(H.get_active_hand()) catch_chance  -= 25
-			if(H.get_inactive_hand()) catch_chance  -= 25
+			if(H.get_active_held_item()) catch_chance  -= 25
+			if(H.get_inactive_held_item()) catch_chance  -= 25
 
 			if(!H.stat && H.dir != dir && prob(catch_chance)) //Not facing away
 				H.visible_message("<span class='notice'>[H] snatches [src] out of the air and squashes it!")
@@ -307,7 +307,14 @@
 					cannot_infect = 1
 				else
 					target.visible_message("<span class='danger'>[src] smashes against [target]'s [W.name] and rips it off!</span>")
-					target.drop_inv_item_on_ground(W)
+					target.dropItemToGround(W)
+					if(ishuman(M)) //Check for camera; if we have one, turn it off.
+						var/mob/living/carbon/human/H = M
+						if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))
+							var/obj/item/device/radio/headset/almayer/marine/R = H.wear_ear
+							if(R.camera.status)
+								R.camera.status = FALSE //Turn camera off.
+								to_chat(H, "<span class='danger'>Your headset camera flickers off; you'll need to reactivate it by rebooting your headset HUD!<span>")
 				if(W.anti_hug && prob(15)) //15% chance the hugger will go idle after ripping off a helmet. Otherwise it will keep going.
 					W.anti_hug = max(0, --W.anti_hug)
 					GoIdle()
@@ -317,7 +324,7 @@
 		if(!cannot_infect)
 			loc = target
 			icon_state = initial(icon_state)
-			target.equip_to_slot(src, WEAR_FACE)
+			target.equip_to_slot(src, SLOT_WEAR_MASK)
 			target.contents += src //Monkey sanity check - Snapshot
 			target.update_inv_wear_mask()
 
@@ -342,6 +349,7 @@
 
 	sleep(rand(MIN_IMPREGNATION_TIME,MAX_IMPREGNATION_TIME))
 	Impregnate(M)
+	round_statistics.now_pregnant++
 
 	return TRUE
 
@@ -378,14 +386,14 @@
 				E.status = GROWN
 				E.icon_state = "Egg"
 				E.deploy_egg_triggers()
-				cdel(src)
+				qdel(src)
 				return
 			var/obj/effect/alien/resin/trap/T = locate() in loc
 			if(T && !T.hugger)
 				visible_message("<span class='xenowarning'>[src] crawls into [T]!</span>")
 				T.hugger = TRUE
 				T.icon_state = "trap1"
-				cdel(src)
+				qdel(src)
 				return
 		Die()
 	else if(!attached || !ishuman(loc)) //doesn't age while attached
@@ -433,13 +441,13 @@
 
 	if(ismob(loc)) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
 		var/mob/M = loc
-		M.drop_inv_item_on_ground(src)
+		M.dropItemToGround(src)
 
 	layer = BELOW_MOB_LAYER //so dead hugger appears below live hugger if stacked on same tile.
 
 	sleep(1800) //3 minute timer for it to decay
 	visible_message("\icon[src] <span class='danger'>\The [src] decays into a mass of acid and chitin.</span>")
-	cdel(src)
+	qdel(src)
 
 /proc/CanHug(mob/living/carbon/M)
 

@@ -12,9 +12,9 @@
 		var/spell_to_add = text2path(spell)
 		new spell_to_add(src) //should result in adding to contents, needs testing
 
-/obj/effect/proc_holder/spell/targeted/trigger/Dispose()
+/obj/effect/proc_holder/spell/targeted/trigger/Destroy()
 	for(var/spell in contents)
-		cdel(spell)
+		qdel(spell)
 	. = ..()
 
 /obj/effect/proc_holder/spell/targeted/trigger/cast(list/targets)

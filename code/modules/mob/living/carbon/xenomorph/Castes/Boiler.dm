@@ -183,18 +183,18 @@
 		/datum/action/xeno_action/activable/spray_acid,
 		)
 
-/mob/living/carbon/Xenomorph/Boiler/New()
-	..()
+/mob/living/carbon/Xenomorph/Boiler/Initialize()
+	. = ..()
 	SetLuminosity(3)
 	smoke = new /datum/effect_system/smoke_spread/xeno_acid
 	smoke.attach(src)
 	see_in_dark = 20
 	ammo = ammo_list[/datum/ammo/xeno/boiler_gas]
 
-/mob/living/carbon/Xenomorph/Boiler/Dispose()
+/mob/living/carbon/Xenomorph/Boiler/Destroy()
 	SetLuminosity(0)
 	if(smoke)
-		cdel(smoke)
+		qdel(smoke)
 		smoke = null
 	return ..()
 
@@ -261,7 +261,7 @@
 		visible_message("<span class='xenowarning'>\The [src] launches a huge glob of acid hurling into the distance!</span>", \
 		"<span class='xenowarning'>You launch a huge glob of acid hurling into the distance!</span>", null, 5)
 
-		var/obj/item/projectile/P = rnew(/obj/item/projectile, loc)
+		var/obj/item/projectile/P = new /obj/item/projectile(loc)
 		P.generate_bullet(ammo)
 		P.fire_at(target, src, null, ammo.max_range, ammo.shell_speed)
 		playsound(src, 'sound/effects/blobattack.ogg', 25, 1)

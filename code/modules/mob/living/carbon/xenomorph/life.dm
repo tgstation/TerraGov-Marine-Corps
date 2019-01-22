@@ -10,7 +10,9 @@
 
 	..()
 
-	if(stat == DEAD) //Dead, nothing else to do.
+	if(stat == DEAD) //Dead, nothing else to do but this.
+		if(plasma_stored && !(xeno_caste.caste_flags & CASTE_DECAY_PROOF))
+			xeno_caste.handle_decay(src)
 		return
 	if(stat == UNCONSCIOUS)
 		if(is_zoomed)
@@ -465,6 +467,7 @@
 	health = maxHealth - getFireLoss() - getBruteLoss() //Xenos can only take brute and fire damage.
 	med_hud_set_health()
 	update_stat()
+	update_wounds()
 
 
 

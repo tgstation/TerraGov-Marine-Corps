@@ -30,11 +30,11 @@
 	toggle_secure()
 		secured = !secured
 		if(secured)
-			processing_objects.Add(src)
+			START_PROCESSING(SSobj, src)
 		else
 			scanning = 0
 			timing = 0
-			processing_objects.Remove(src)
+			STOP_PROCESSING(SSobj, src)
 		update_icon()
 		return secured
 
@@ -114,7 +114,7 @@
 
 	interact(mob/user as mob)//TODO: Change this to the wires thingy
 		if(!secured)
-			user.show_message("\red The [name] is unsecured!")
+			user.show_message("<span class='warning'> The [name] is unsecured!</span>")
 			return 0
 		var/second = time % 60
 		var/minute = (time - second) / 60

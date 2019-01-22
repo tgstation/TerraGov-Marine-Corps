@@ -67,13 +67,13 @@ var/list/mechtoys = list(
 /obj/structure/plasticflaps/ex_act(severity)
 	switch(severity)
 		if (1)
-			cdel(src)
+			qdel(src)
 		if (2)
 			if (prob(50))
-				cdel(src)
+				qdel(src)
 		if (3)
 			if (prob(5))
-				cdel(src)
+				qdel(src)
 
 /obj/structure/plasticflaps/mining //A specific type for mining that doesn't allow airflow because of them damn crates
 	name = "\improper Airtight plastic flaps"
@@ -143,7 +143,7 @@ var/list/mechtoys = list(
 
 
 	//Supply shuttle ticker - handles supply point regenertion and shuttle travelling between centcomm and the station
-	proc/process()
+	process()
 		for(var/typepath in subtypesof(/datum/supply_packs))
 			var/datum/supply_packs/P = new typepath()
 			supply_packs[P.name] = P
@@ -227,7 +227,7 @@ var/list/mechtoys = list(
 				points += cost
 
 
-			cdel(MA)
+			qdel(MA)
 
 		if(phoron_count)
 			points += phoron_count * points_per_phoron
@@ -436,7 +436,7 @@ var/list/mechtoys = list(
 
 /obj/machinery/computer/supplycomp/attack_hand(var/mob/user as mob)
 	if(!allowed(user))
-		to_chat(user, "\red Access Denied.")
+		to_chat(user, "<span class='warning'>Access Denied.</span>")
 		return
 
 	if(..())
@@ -495,7 +495,7 @@ var/list/mechtoys = list(
 
 /obj/machinery/computer/supplycomp/attackby(I as obj, user as mob)
 	if(istype(I,/obj/item/card/emag) && !hacked)
-		to_chat(user, "\blue Special supplies unlocked.")
+		to_chat(user, "<span class='notice'>Special supplies unlocked.</span>")
 		hacked = 1
 		return
 	else
@@ -627,7 +627,7 @@ var/list/mechtoys = list(
 		temp += "<BR><A href='?src=\ref[src];order=[last_viewed_group]'>Back</A>|<A href='?src=\ref[src];mainmenu=1'>Main Menu</A>"
 
 		if(supply_controller.shoppinglist.len > 20)
-			to_chat(usr, "\red Current retrieval load has reached maximum capacity.")
+			to_chat(usr, "<span class='warning'>Current retrieval load has reached maximum capacity.</span>")
 			return
 
 		for(var/i=1, i<=supply_controller.requestlist.len, i++)

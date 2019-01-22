@@ -85,20 +85,20 @@
 		is_admin = 1
 
 	if (!( abandon_allowed ) && !is_admin)
-		to_chat(usr, "\blue Respawn is disabled.")
+		to_chat(usr, "<span class='notice'>Respawn is disabled.</span>")
 		return
 	if ((stat != 2 || !( ticker )))
-		to_chat(usr, "\blue <B>You must be dead to use this!</B>")
+		to_chat(usr, "<span class='boldnotice'>You must be dead to use this!</span>")
 		return
 	if (ticker.mode.name == "meteor" || ticker.mode.name == "epidemic") //BS12 EDIT
-		to_chat(usr, "\blue Respawn is disabled for this roundtype.")
+		to_chat(usr, "<span class='notice'>Respawn is disabled for this roundtype.</span>")
 		return
 	else
 		var/deathtime = world.time - src.timeofdeath
 //		if(istype(src,/mob/dead/observer))
 //			var/mob/dead/observer/G = src
 //			if(G.has_enabled_antagHUD == 1 && config.antag_hud_restricted)
-//				to_chat(usr, "\blue <B>Upon using the antagHUD you forfeighted the ability to join the round.</B>")
+//				to_chat(usr, "<span class='boldnotice'>Upon using the antagHUD you forfeighted the ability to join the round.</span>")
 //				return
 		var/deathtimeminutes = round(deathtime / 600)
 		var/pluralcheck = "minute"
@@ -119,7 +119,7 @@
 
 	log_game("[usr.name]/[usr.key] used abandon mob.")
 
-	to_chat(usr, "\blue <B>Make sure to play a different character, and please roleplay correctly!</B>")
+	to_chat(usr, "<span class='boldnotice'>Make sure to play a different character, and please roleplay correctly!</span>")
 
 	if(!client)
 		log_game("[usr.key] AM failed due to disconnect.")
@@ -132,7 +132,7 @@
 	var/mob/new_player/M = new /mob/new_player()
 	if(!client)
 		log_game("[usr.key] AM failed due to disconnect.")
-		cdel(M)
+		qdel(M)
 		return
 
 	M.key = key
@@ -184,9 +184,9 @@
 		if(hud_used && hud_used.pull_icon)
 			hud_used.pull_icon.icon_state = "pull0"
 		if(istype(r_hand, /obj/item/grab))
-			temp_drop_inv_item(r_hand)
+			temporarilyRemoveItemFromInventory(r_hand)
 		else if(istype(l_hand, /obj/item/grab))
-			temp_drop_inv_item(l_hand)
+			temporarilyRemoveItemFromInventory(l_hand)
 		if(istype(M))
 			if(M.client)
 				//resist_grab uses long movement cooldown durations to prevent message spam
@@ -199,10 +199,12 @@
 	set name = "View Admin Remarks"
 	set category = "OOC"
 
-	var/key = usr.ckey
+	var/key = usr.key
 
 	var/dat = "<html><head><title>Info on [key]</title></head>"
 	dat += "<body>"
+
+	key = ckey(key)
 
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos

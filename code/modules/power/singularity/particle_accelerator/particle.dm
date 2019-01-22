@@ -52,7 +52,7 @@
 
 
 /obj/effect/accelerated_particle/ex_act(severity)
-	cdel(src)
+	qdel(src)
 	return
 
 
@@ -67,7 +67,7 @@
 			radiation = round(radiation/2,1)*/
 	M.apply_effect((radiation*3),IRRADIATE,0)
 	M.updatehealth()
-	//to_chat(M, "\red You feel odd.")
+	//to_chat(M, "<span class='warning'>You feel odd.</span>")
 	return
 
 
@@ -86,7 +86,7 @@
 			src.loc = get_step(src,dir)
 	movement_range--
 	if(movement_range <= 0)
-		cdel(src)
+		qdel(src)
 	else
 		sleep(lag)
 		move(lag)

@@ -46,6 +46,10 @@
 	// *** Queen Abilities *** //
 	queen_leader_limit = 1 //Amount of leaders allowed
 
+/datum/xeno_caste/queen/handle_decay(mob/living/carbon/Xenomorph/X)
+	if(prob(20+abs(3*upgrade)))
+		X.use_plasma(min(rand(1,2), X.plasma_stored))
+
 /datum/xeno_caste/queen/mature
 	caste_desc = "The biggest and baddest xeno. The Queen controls the hive and plants eggs"
 
@@ -219,6 +223,7 @@
 		/datum/action/xeno_action/psychic_whisper,
 		/datum/action/xeno_action/shift_spits,
 		/datum/action/xeno_action/activable/xeno_spit,
+		/datum/action/xeno_action/activable/larva_growth,
 		)
 	inherent_verbs = list(
 		/mob/living/carbon/Xenomorph/proc/claw_toggle,
@@ -238,8 +243,8 @@
 /mob/living/carbon/Xenomorph/Queen/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/Xenomorph/Queen/New()
-	..()
+/mob/living/carbon/Xenomorph/Queen/Initialize()
+	. = ..()
 	if(z != ADMIN_Z_LEVEL)//so admins can safely spawn Queens in Thunderdome for tests.
 		if(hivenumber && hivenumber <= hive_datum.len)
 			var/datum/hive_status/hive = hive_datum[hivenumber]
@@ -248,7 +253,7 @@
 			xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3,hivenumber)
 	playsound(loc, 'sound/voice/alien_queen_command.ogg', 75, 0)
 
-/mob/living/carbon/Xenomorph/Queen/Dispose()
+/mob/living/carbon/Xenomorph/Queen/Destroy()
 	. = ..()
 	if(observed_xeno)
 		set_queen_overwatch(observed_xeno, TRUE)
@@ -266,7 +271,7 @@
 			breathing_counter = 0 //Reset the counter
 
 		if(observed_xeno)
-			if(observed_xeno.stat == DEAD || observed_xeno.disposed)
+			if(observed_xeno.stat == DEAD || observed_xeno.gc_destroyed)
 				set_queen_overwatch(observed_xeno, TRUE)
 
 		if(ovipositor && !is_mob_incapacitated(TRUE))
@@ -310,7 +315,7 @@
 								visible_message("<span class='xenodanger'>[L] quickly burrows into the ground.</span>")
 								ticker.mode.stored_larva++
 								round_statistics.total_xenos_created-- // keep stats sane
-								cdel(L)
+								qdel(L)
 
 
 //Custom bump for crushers. This overwrites normal bumpcode from carbon.dm
@@ -342,7 +347,7 @@
 /mob/living/carbon/Xenomorph/Queen/proc/delimb(var/mob/living/carbon/human/H, var/datum/limb/O)
 	if (prob(20))
 		O = H.get_limb(check_zone(zone_selected))
-		if (O.body_part != UPPER_TORSO && O.body_part != LOWER_TORSO && O.body_part != HEAD) //Only limbs.
+		if (O.body_part != CHEST && O.body_part != GROIN && O.body_part != HEAD) //Only limbs.
 			visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
 			O.droplimb()
 			return 1
@@ -488,6 +493,7 @@
 			A.update_button_icon()
 	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
 	visible_message("<span class='xenohighdanger'>\The [src] emits an ear-splitting guttural roar!</span>")
+	round_statistics.queen_screech++
 	create_shriekwave() //Adds the visual effect. Wom wom wom
 	//stop_momentum(charge_dir) //Screech kills a charge
 
@@ -582,7 +588,7 @@
 	ovipositor = TRUE
 
 	for(var/datum/action/A in actions)
-		cdel(A)
+		qdel(A)
 
 	var/list/immobile_abilities = list(\
 		/datum/action/xeno_action/regurgitate,\
@@ -637,7 +643,7 @@
 		zoom_out()
 
 		for(var/datum/action/A in actions)
-			cdel(A)
+			qdel(A)
 
 		var/list/mobile_abilities = list(
 			/datum/action/xeno_action/xeno_resting,
@@ -651,8 +657,9 @@
 			/datum/action/xeno_action/emit_pheromones,
 			/datum/action/xeno_action/activable/gut,
 			/datum/action/xeno_action/psychic_whisper,
-		  /datum/action/xeno_action/shift_spits,
+		 	/datum/action/xeno_action/shift_spits,
 			/datum/action/xeno_action/activable/xeno_spit,
+			/datum/action/xeno_action/activable/larva_growth,
 			)
 
 		for(var/path in mobile_abilities)
@@ -721,6 +728,7 @@
 			icon_state = "Queen Walking"
 
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
+	update_wounds()
 
 /mob/living/carbon/Xenomorph/Queen/Topic(href, href_list)
 
@@ -762,7 +770,7 @@
 		observed_xeno = target
 		if(old_xeno)
 			old_xeno.hud_set_queen_overwatch()
-	if(!target.disposed) //not cdel'd
+	if(!target.gc_destroyed) //not cdel'd
 		target.hud_set_queen_overwatch()
 	reset_view()
 

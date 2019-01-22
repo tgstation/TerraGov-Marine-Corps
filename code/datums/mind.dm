@@ -40,6 +40,7 @@ datum/mind
 
 	var/assigned_role
 	var/special_role
+	var/assigned_squad
 
 	var/datum/skills/cm_skills //the knowledge you have about certain abilities and actions (e.g. do you how to do surgery?)
 								//see skills.dm in #define folder and code/datums/skills.dm for more info
@@ -312,7 +313,7 @@ datum/mind
 						ticker.mode.traitors -= src
 						special_role = null
 						current.hud_set_special_role()
-						to_chat(current, "\red <FONT size = 3><B>You have been brainwashed! You are no longer a traitor!</B></FONT>")
+						to_chat(current, "<span class='warning'><FONT size = 3><B>You have been brainwashed! You are no longer a traitor!</B></FONT></span>")
 						log_admin("[key_name_admin(usr)] has de-traitor'ed [current].")
 						if(isAI(current))
 							var/mob/living/silicon/ai/A = current
@@ -324,7 +325,7 @@ datum/mind
 						ticker.mode.traitors += src
 						special_role = "traitor"
 						current.hud_set_special_role()
-						to_chat(current, "<B>\red You are a traitor!</B>")
+						to_chat(current, "<span class='danger'> You are a traitor!</span>")
 						log_admin("[key_name_admin(usr)] has traitor'ed [current].")
 						show_objectives()
 
@@ -334,15 +335,15 @@ datum/mind
 							A.show_laws()
 
 				if("autoobjectives")
-					if (!config.objectives_disabled)
+					if(!CONFIG_GET(flag/objectives_disabled))
 						ticker.mode.forge_traitor_objectives(src)
-						to_chat(usr, "\blue The objectives for traitor [key] have been generated. You can edit them and anounce manually.")
+						to_chat(usr, "<span class='notice'>The objectives for traitor [key] have been generated. You can edit them and anounce manually.</span>")
 
 		else if (href_list["common"])
 			switch(href_list["common"])
 				if("undress")
 					for(var/obj/item/W in current)
-						current.drop_inv_item_on_ground(W)
+						current.dropItemToGround(W)
 				if("takeuplink")
 					take_uplink()
 					memory = null//Remove any memory they may have had.
@@ -358,11 +359,11 @@ datum/mind
 								suplink.uses = crystals
 				if("uplink")
 					if (!ticker.mode.equip_traitor(current, !(src in ticker.mode.traitors)))
-						to_chat(usr, "\red Equipping a syndicate failed!")
+						to_chat(usr, "<span class='warning'>Equipping a syndicate failed!</span>")
 
 		else if (href_list["obj_announce"])
 			var/obj_count = 1
-			to_chat(current, "\blue Your current objectives:")
+			to_chat(current, "<span class='notice'>Your current objectives:</span>")
 			for(var/datum/objective/objective in objectives)
 				to_chat(current, "<B>Objective #[obj_count]</B>: [objective.explanation_text]")
 				obj_count++
@@ -379,13 +380,13 @@ datum/mind
 	proc/take_uplink()
 		var/obj/item/device/uplink/hidden/H = find_syndicate_uplink()
 		if(H)
-			cdel(H)
+			qdel(H)
 
 	proc/make_Traitor()
 		if(!(src in ticker.mode.traitors))
 			ticker.mode.traitors += src
 			special_role = "traitor"
-			if (!config.objectives_disabled)
+			if(!CONFIG_GET(flag/objectives_disabled))
 				ticker.mode.forge_traitor_objectives(src)
 			ticker.mode.finalize_traitor(src)
 			ticker.mode.greet_traitor(src)
@@ -422,36 +423,52 @@ datum/mind
 
 /datum/mind/proc/set_cm_skills(skills_path)
 	if(cm_skills)
-		cdel(cm_skills)
+		qdel(cm_skills)
 	cm_skills = new skills_path()
 
-/mob/living/proc/reset_cm_skills(new_job)
+/mob/proc/reset_cm_skills(new_job)
 	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
 	if(J)
 		mind?.set_cm_skills(J.skills_type) //give new role's job_knowledge to us.
 
-/mob/living/proc/reset_comm_title(new_job)
+/mob/proc/reset_comm_title(new_job)
 	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
 	if(J && mind)
 		mind.role_comm_title = J.comm_title
 
-/mob/living/proc/reset_alt_title(new_job)
+/mob/proc/reset_alt_title(new_job)
 	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
 	if(J && mind)
 		mind.role_alt_title = J.get_alternative_title(src)
 
-/mob/living/proc/reset_special_role(new_job)
+/mob/proc/reset_special_role(new_job)
 	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
 	if(J && mind)
 		mind.special_role = J.special_role
 
 
-/mob/living/proc/reset_role(new_job)
+/mob/proc/reset_role(new_job)
 	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
 	if(J && mind)
 		mind.assigned_role = J.title
 
-/mob/living/proc/set_everything(var/mob/living/carbon/human/H, var/new_role)
+/mob/proc/set_ID(new_job)
+	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
+	if(new_job && ishuman(src))
+		var/mob/living/carbon/human/H = src
+		if(H.wear_id)
+			var/obj/item/card/id/I = H.wear_id.GetID()
+			if(I)
+				var/title_alt = J.get_alternative_title(H)
+				I.access = J.get_access()
+				I.rank = J.title
+				I.assignment = title_alt ? title_alt :  J.disp_title
+				I.name = "[I.registered_name]'s ID Card ([I.assignment])"
+				I.paygrade = J.paygrade
+		else
+			J.equip_identification(H, J)
+
+/mob/proc/set_everything(var/mob/living/carbon/human/H, var/new_role)
 	H.reset_cm_skills(new_role)
 	H.reset_special_role(new_role)
 	H.reset_comm_title(new_role)
@@ -489,7 +506,7 @@ datum/mind
 	if(!mind.assigned_role)
 		mind.assigned_role = "Squad Marine"	//default
 		if(mind.cm_skills)
-			cdel(mind.cm_skills)
+			qdel(mind.cm_skills)
 		mind.cm_skills = null //no restriction on what we can do.
 
 //MONKEY

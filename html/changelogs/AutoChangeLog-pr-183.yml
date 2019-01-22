@@ -1,0 +1,4 @@
+author: "Alterist"
+delete-after: True
+changes: 
+  - spellcheck: "fixes area names, no more \"abandoned   Thunderdome\""

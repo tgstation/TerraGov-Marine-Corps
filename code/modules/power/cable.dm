@@ -81,7 +81,7 @@
 	update_icon()
 
 
-/obj/structure/cable/Dispose()					// called when a cable is deleted
+/obj/structure/cable/Destroy()					// called when a cable is deleted
 	if(!defer_powernet_rebuild)					// set if network will be rebuilt manually
 		if(powernet)
 			powernet.cut_cable(src)				// update the powernets
@@ -128,7 +128,7 @@
 ///// Z-Level Stuff
 
 		if(breaker_box)
-			to_chat(user, "\red This cable is connected to nearby breaker box. Use breaker box to interact with it.")
+			to_chat(user, "<span class='warning'>This cable is connected to nearby breaker box. Use breaker box to interact with it.</span>")
 			return
 
 		if (shock(user, 50))
@@ -144,7 +144,7 @@
 		log_admin("[key_name(user)] cut a wire at ([x],[y],[z])")
 		message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) cut a wire at ([x],[y],[z])")
 
-		cdel(src)
+		qdel(src)
 
 		return	// not needed, but for clarity
 
@@ -196,16 +196,16 @@
 
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 		if(2.0)
 			if (prob(50))
 				new/obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, color)
-				cdel(src)
+				qdel(src)
 
 		if(3.0)
 			if (prob(25))
 				new/obj/item/stack/cable_coil(src.loc, src.d1 ? 2 : 1, color)
-				cdel(src)
+				qdel(src)
 	return
 
 

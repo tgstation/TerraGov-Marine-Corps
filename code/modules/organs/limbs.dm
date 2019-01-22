@@ -32,7 +32,7 @@
 	// Internal organs of this body part
 	var/list/datum/internal_organ/internal_organs
 
-	var/damage_msg = "\red You feel an intense pain"
+	var/damage_msg = "<span class='warning'> You feel an intense pain</span>"
 	var/broken_description
 
 	var/surgery_open_stage = 0
@@ -75,7 +75,7 @@
 	return icon('icons/mob/human.dmi',"blank")
 */
 
-/datum/limb/proc/process()
+/datum/limb/process()
 		return 0
 
 //Germs
@@ -182,7 +182,7 @@
 
 	var/can_cut = (prob(brute*2) || sharp) && !(status & LIMB_ROBOT)
 	// If the limbs can break, make sure we don't exceed the maximum damage a limb can take before breaking
-	if((brute_dam + burn_dam + brute + burn) < max_damage || !config.limbs_can_break)
+	if((brute_dam + burn_dam + brute + burn) < max_damage || !CONFIG_GET(flag/limbs_can_break))
 		if(brute)
 			if(can_cut)
 				createwound(CUT, brute)
@@ -193,7 +193,7 @@
 	else
 		//If we can't inflict the full amount of damage, spread the damage in other ways
 		//How much damage can we actually cause?
-		var/can_inflict = max_damage * config.organ_health_multiplier - (brute_dam + burn_dam)
+		var/can_inflict = max_damage * CONFIG_GET(number/organ_health_multiplier) - (brute_dam + burn_dam)
 		var/remain_brute = brute
 		var/remain_burn = burn
 		if(can_inflict)
@@ -236,14 +236,14 @@
 
 	//If limb took enough damage, try to cut or tear it off
 
-	if(body_part == UPPER_TORSO || body_part == LOWER_TORSO || no_limb_loss)
+	if(body_part == CHEST || body_part == GROIN || no_limb_loss)
 		owner.updatehealth()
 		return update_icon()
 	var/obj/item/clothing/worn_helmet = owner.head
 	if(body_part == HEAD && istype(worn_helmet, /obj/item/clothing/head/helmet) && !(owner.species.flags & IS_SYNTHETIC) ) //Early return if the body part is a head but target is wearing a helmet and is not a synth
 		owner.updatehealth()
 		return update_icon()
-	if(config.limbs_can_break && brute_dam >= max_damage * config.organ_health_multiplier)
+	if(CONFIG_GET(flag/limbs_can_break) && brute_dam >= max_damage * CONFIG_GET(number/organ_health_multiplier))
 		var/cut_prob = brute/max_damage * 10
 		if(prob(cut_prob))
 			droplimb()
@@ -395,7 +395,7 @@ This function completely restores a damaged organ to perfect condition.
 				trace_chemicals.Remove(chemID)
 
 	//Bone fracurtes
-	if(config.bones_can_break && brute_dam > min_broken_damage * config.organ_health_multiplier && !(status & LIMB_ROBOT))
+	if(CONFIG_GET(flag/bones_can_break) && brute_dam > min_broken_damage * CONFIG_GET(number/organ_health_multiplier) && !(status & LIMB_ROBOT))
 		fracture()
 	if(!(status & LIMB_BROKEN))
 		perma_injury = 0
@@ -462,8 +462,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 		//having an infection raises your body temperature
 		var/fever_temperature = (owner.species.heat_level_1 - owner.species.body_temperature - 5)* min(germ_level/INFECTION_LEVEL_TWO, 1) + owner.species.body_temperature
 		//need to make sure we raise temperature fast enough to get around environmental cooling preventing us from reaching fever_temperature
-		owner.bodytemperature += between(0, (fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, fever_temperature - owner.bodytemperature)
-
+		owner.adjust_bodytemperature((fever_temperature - T20C)/BODYTEMP_COLD_DIVISOR + 1, 0, fever_temperature - owner.bodytemperature)
 		if(prob(round(germ_level/10)))
 			if (antibiotics < MIN_ANTIBIOTICS)
 				germ_level++
@@ -568,7 +567,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			//we only update wounds once in [wound_update_accuracy] ticks so have to emulate realtime
 			heal_amt = heal_amt * wound_update_accuracy
 			//configurable regen speed woo, no-regen hardcore or instaheal hugbox, choose your destiny
-			heal_amt = heal_amt * config.organ_regeneration_multiplier
+			heal_amt = heal_amt * CONFIG_GET(number/organ_regeneration_multiplier)
 			// amount of healing is spread over all the wounds
 			heal_amt = heal_amt / (wounds.len + 1)
 			// making it look prettier on scanners
@@ -681,7 +680,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if(status & LIMB_DESTROYED)
 		return
 	else
-		if(body_part == UPPER_TORSO)
+		if(body_part == CHEST)
 			return
 
 		if(status & LIMB_ROBOT)
@@ -690,7 +689,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 			status = LIMB_DESTROYED
 		for(var/i in implants)
 			implants -= i
-			cdel(i)
+			qdel(i)
 
 		germ_level = 0
 		if(hidden)
@@ -721,10 +720,10 @@ Note that amputating the affected organ does in fact remove the infection from t
 					organ= new /obj/item/limb/head/synth(owner.loc, owner)
 				else
 					organ= new /obj/item/limb/head(owner.loc, owner)
-				owner.drop_inv_item_on_ground(owner.glasses, null, TRUE)
-				owner.drop_inv_item_on_ground(owner.head, null, TRUE)
-				owner.drop_inv_item_on_ground(owner.wear_ear, null, TRUE)
-				owner.drop_inv_item_on_ground(owner.wear_mask, null, TRUE)
+				owner.dropItemToGround(owner.glasses, null, TRUE)
+				owner.dropItemToGround(owner.head, null, TRUE)
+				owner.dropItemToGround(owner.wear_ear, null, TRUE)
+				owner.dropItemToGround(owner.wear_mask, null, TRUE)
 			if(ARM_RIGHT)
 				if(status & LIMB_ROBOT) 	organ = new /obj/item/robot_parts/r_arm(owner.loc)
 				else 						organ = new /obj/item/limb/r_arm(owner.loc, owner)
@@ -739,21 +738,21 @@ Note that amputating the affected organ does in fact remove the infection from t
 				else 						organ = new /obj/item/limb/l_leg(owner.loc, owner)
 			if(HAND_RIGHT)
 				if(!(status & LIMB_ROBOT)) organ= new /obj/item/limb/r_hand(owner.loc, owner)
-				owner.drop_inv_item_on_ground(owner.gloves, null, TRUE)
-				owner.drop_inv_item_on_ground(owner.r_hand, null, TRUE)
+				owner.dropItemToGround(owner.gloves, null, TRUE)
+				owner.dropItemToGround(owner.r_hand, null, TRUE)
 			if(HAND_LEFT)
 				if(!(status & LIMB_ROBOT)) organ= new /obj/item/limb/l_hand(owner.loc, owner)
-				owner.drop_inv_item_on_ground(owner.gloves, null, TRUE)
-				owner.drop_inv_item_on_ground(owner.l_hand, null, TRUE)
+				owner.dropItemToGround(owner.gloves, null, TRUE)
+				owner.dropItemToGround(owner.l_hand, null, TRUE)
 			if(FOOT_RIGHT)
 				if(!(status & LIMB_ROBOT)) organ= new /obj/item/limb/r_foot/(owner.loc, owner)
-				owner.drop_inv_item_on_ground(owner.shoes, null, TRUE)
+				owner.dropItemToGround(owner.shoes, null, TRUE)
 			if(FOOT_LEFT)
 				if(!(status & LIMB_ROBOT)) organ = new /obj/item/limb/l_foot(owner.loc, owner)
-				owner.drop_inv_item_on_ground(owner.shoes, null, TRUE)
+				owner.dropItemToGround(owner.shoes, null, TRUE)
 
 		if(delete_limb)
-			cdel(organ)
+			qdel(organ)
 		else
 			owner.visible_message("<span class='warning'>[owner.name]'s [display_name] flies off in an arc!</span>",
 			"<span class='highdanger'><b>Your [display_name] goes flying off!</b></span>",
@@ -781,14 +780,14 @@ Note that amputating the affected organ does in fact remove the infection from t
 			"\The [owner.handcuffed.name] falls off of [owner.name].",\
 			"\The [owner.handcuffed.name] falls off you.")
 
-		owner.drop_inv_item_on_ground(owner.handcuffed)
+		owner.dropItemToGround(owner.handcuffed)
 
 	if (owner.legcuffed && body_part in list(FOOT_LEFT, FOOT_RIGHT, LEG_LEFT, LEG_RIGHT))
 		owner.visible_message(\
 			"\The [owner.legcuffed.name] falls off of [owner.name].",\
 			"\The [owner.legcuffed.name] falls off you.")
 
-		owner.drop_inv_item_on_ground(owner.legcuffed)
+		owner.dropItemToGround(owner.legcuffed)
 
 /datum/limb/proc/bandage()
 	var/rval = 0
@@ -845,7 +844,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 /datum/limb/proc/is_salved()
 	if(!(surgery_open_stage == 0))
 		return 1
-	var/rval = 1
+	var/rval = FALSE
 	for(var/datum/wound/W in wounds)
 		rval |= !W.salved
 	return rval
@@ -968,23 +967,23 @@ Note that amputating the affected organ does in fact remove the infection from t
 
 	if(is_broken())
 		if(prob(15))
-			owner.drop_inv_item_on_ground(c_hand)
+			owner.dropItemToGround(c_hand)
 			var/emote_scream = pick("screams in pain and", "lets out a sharp cry and", "cries out and")
 			owner.emote("me", 1, "[(owner.species && owner.species.flags & NO_PAIN) ? "" : emote_scream ] drops what they were holding in their [hand_name]!")
 	if(is_malfunctioning())
 		if(prob(10))
-			owner.drop_inv_item_on_ground(c_hand)
+			owner.dropItemToGround(c_hand)
 			owner.emote("me", 1, "drops what they were holding, their [hand_name] malfunctioning!")
 			var/datum/effect_system/spark_spread/spark_system = new /datum/effect_system/spark_spread()
 			spark_system.set_up(5, 0, owner)
 			spark_system.attach(owner)
 			spark_system.start()
 			spawn(10)
-				cdel(spark_system)
+				qdel(spark_system)
 				spark_system = null
 
 /datum/limb/proc/embed(var/obj/item/W, var/silent = 0)
-	if(!W || W.disposed || (W.flags_item & (NODROP|DELONDROP)))
+	if(!W || W.gc_destroyed || (W.flags_item & (NODROP|DELONDROP)))
 		return
 	if(!silent)
 		owner.visible_message("<span class='danger'>\The [W] sticks in the wound!</span>")
@@ -1056,7 +1055,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	display_name = "chest"
 	max_damage = 200
 	min_broken_damage = 40
-	body_part = UPPER_TORSO
+	body_part = CHEST
 	vital = 1
 	encased = "ribcage"
 
@@ -1066,7 +1065,7 @@ Note that amputating the affected organ does in fact remove the infection from t
 	display_name = "groin"
 	max_damage = 200
 	min_broken_damage = 40
-	body_part = LOWER_TORSO
+	body_part = GROIN
 	vital = 1
 
 /datum/limb/l_arm
@@ -1190,13 +1189,13 @@ Note that amputating the affected organ does in fact remove the infection from t
 	if (disfigured)
 		return
 	if(type == "brute")
-		owner.visible_message("\red You hear a sickening cracking sound coming from \the [owner]'s face.",	\
-		"\red <b>Your face becomes unrecognizible mangled mess!</b>",	\
-		"\red You hear a sickening crack.")
+		owner.visible_message("<span class='warning'> You hear a sickening cracking sound coming from \the [owner]'s face.</span>",	\
+		"<span class='danger'>Your face becomes unrecognizible mangled mess!</span>",	\
+		"<span class='warning'> You hear a sickening crack.</span>")
 	else
-		owner.visible_message("\red [owner]'s face melts away, turning into mangled mess!",	\
-		"\red <b>Your face melts off!</b>",	\
-		"\red You hear a sickening sizzle.")
+		owner.visible_message("<span class='warning'> [owner]'s face melts away, turning into mangled mess!</span>",	\
+		"<span class='danger'>Your face melts off!</span>",	\
+		"<span class='warning'> You hear a sickening sizzle.</span>")
 	disfigured = 1
 	owner.name = owner.get_visible_name()
 

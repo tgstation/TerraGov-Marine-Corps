@@ -92,7 +92,7 @@
 		if(owner && !owner.hand)	//This being 0 or null means the right hand is in use
 			inv_box.icon_state = "hand_active"
 		inv_box.screen_loc = ui_rhand
-		inv_box.slot_id = WEAR_R_HAND
+		inv_box.slot_id = SLOT_R_HAND
 		inv_box.layer = HUD_LAYER
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
@@ -107,7 +107,7 @@
 		if(owner && owner.hand)	//This being 1 means the left hand is in use
 			inv_box.icon_state = "hand_active"
 		inv_box.screen_loc = ui_lhand
-		inv_box.slot_id = WEAR_L_HAND
+		inv_box.slot_id = SLOT_L_HAND
 		inv_box.layer = HUD_LAYER
 		inv_box.color = ui_color
 		inv_box.alpha = ui_alpha
@@ -260,6 +260,7 @@
 	zone_sel.update_icon(owner)
 	static_inventory += zone_sel
 
+	ammo = new /obj/screen/ammo()
 
 
 /mob/living/carbon/human/verb/toggle_hotkey_verbs()

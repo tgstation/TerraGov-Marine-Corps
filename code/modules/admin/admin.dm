@@ -6,21 +6,21 @@ var/global/respawntime = 15
 ////////////////////////////////
 /proc/message_admins(var/msg) // +ADMIN and above
 	msg = "<span class=\"admin\"><span class=\"prefix\">ADMIN LOG:</span> <span class=\"message\">[msg]</span></span>"
-	log_adminwarn(msg)
+	log_admin_private(msg)
 	for(var/client/C in admins)
 		if(R_ADMIN & C.holder.rights)
 			to_chat(C, msg)
 
 /proc/message_mods(var/msg) // +MOD and above (not Mentors)
 	msg = "<span class=\"admin\"><span class=\"prefix\">MOD LOG:</span> <span class=\"message\">[msg]</span></span>"
-	log_adminwarn(msg)
+	log_admin_private(msg)
 	for(var/client/C in admins)
 		if(R_MOD & C.holder.rights)
 			to_chat(C, msg)
 
 /proc/message_staff(var/msg) // ALL staff - including Mentors
 	msg = "<span class=\"admin\"><span class=\"prefix\">STAFF LOG:</span> <span class=\"message\">[msg]</span></span>"
-	log_adminwarn(msg)
+	log_admin_private(msg)
 	for(var/client/C in admins)
 		if(C.holder.rights)
 			to_chat(C, msg)
@@ -37,7 +37,7 @@ var/global/respawntime = 15
 /proc/msg_admin_ff(var/text)
 	log_attack(text) //Do everything normally BUT IN GREEN SO THEY KNOW
 	var/rendered = "<span class=\"admin\"><span class=\"prefix\">ATTACK:</span> <font color=#00ff00><b>[text]</b></font></span>" //I used <font> because I never learned html correctly, fix this if you want
-		
+
 	for(var/client/C in admins)
 		if(R_MOD & C.holder.rights)
 			if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) && !((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
@@ -58,7 +58,7 @@ var/global/respawntime = 15
 		to_chat(usr, "Error: you are not an admin!")
 		return
 
-	if(M.disposed)
+	if(M.gc_destroyed)
 		to_chat(usr, "That mob doesn't seem to exist, close the panel and try again.")
 		return
 
@@ -222,16 +222,19 @@ var/global/respawntime = 15
 /datum/admins/proc/player_notes_list()
 	set category = "Admin"
 	set name = "Player Notes List"
-	if (!istype(src,/datum/admins))
+
+	if(!istype(src,/datum/admins))
 		src = usr.client.holder
-	if (!istype(src,/datum/admins))
+
+	if(!istype(src,/datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
+
 	PlayerNotesPage(1)
 
 /datum/admins/proc/PlayerNotesPage(page)
 	var/dat = "<B>Player notes</B><HR>"
-	var/savefile/S=new("data/player_notes.sav")
+	var/savefile/S = new("data/player_notes.sav")
 	var/list/note_keys
 	S >> note_keys
 	if(!note_keys)
@@ -280,13 +283,18 @@ var/global/respawntime = 15
 /datum/admins/proc/player_notes_show(var/key as text)
 	set category = "Admin"
 	set name = "Player Notes Show"
-	if (!istype(src,/datum/admins))
+
+	if(!istype(src, /datum/admins))
 		src = usr.client.holder
-	if (!istype(src,/datum/admins))
+
+	if(!istype(src, /datum/admins))
 		to_chat(usr, "Error: you are not an admin!")
 		return
+
 	var/dat = "<html><head><title>Info on [key]</title></head>"
 	dat += "<body>"
+
+	key = ckey(key)
 
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
 	var/list/infos
@@ -698,7 +706,7 @@ var/global/respawntime = 15
 			<BR>
 			<B>Mass-Rejuvenate</B><BR>
 			<BR>
-			<A href='?src=\ref[src];secretsfun=rejuvall'>Rejuv ALL living, cliented mobs</A><BR>
+			<A href='?src=\ref[src];secretsfun=rejuvall'>Rejuv ALL cliented mobs</A><BR>
 			"}
 
 	if(check_rights(R_DEBUG,0))
@@ -727,7 +735,7 @@ var/global/respawntime = 15
 	if(confirm == "Cancel")
 		return
 	if(confirm == "Yes")
-		to_chat(world, "\red <b>Restarting world!</b> \blue Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!")
+		to_chat(world, "<span class='danger'>Restarting world!</span> <span class='notice'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!</span>")
 		log_admin("[key_name(usr)] initiated a reboot.")
 
 		feedback_set_details("end_error","admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]")
@@ -745,7 +753,7 @@ var/global/respawntime = 15
 	set name = "Announce"
 	set desc= "Announce your desires to the world."
 
-	if(!check_rights(0))	
+	if(!check_rights(0))
 		return
 
 	var/message = input("Global message to send:", "Admin Announce") as message|null
@@ -756,7 +764,7 @@ var/global/respawntime = 15
 	if(!check_rights(R_SERVER,0))
 		message = adminscrub(message,500)
 
-	to_chat(world, "\blue <b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b>\n \t [message]")
+	to_chat(world, "<span class='notice'> <b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b>\n \t [message]</span>")
 	log_admin("Announce: [key_name(usr)] : [message]")
 	feedback_add_details("admin_verb","A") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -832,7 +840,7 @@ var/global/respawntime = 15
 	else
 		to_chat(world, "<B>New players may now join the game.</B>")
 	log_admin("[key_name(usr)] toggled new player game joining.")
-	message_admins("\blue [key_name_admin(usr)] toggled new player game joining.", 1)
+	message_admins("<span class='notice'> [key_name_admin(usr)] toggled new player game joining.</span>", 1)
 	world.update_status()
 	feedback_add_details("admin_verb","TE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -840,12 +848,13 @@ var/global/respawntime = 15
 	set category = "Server"
 	set desc="People can't be AI"
 	set name="Toggle AI"
-	config.allow_ai = !( config.allow_ai )
-	if (!( config.allow_ai ))
+	if(CONFIG_GET(flag/allow_ai))
+		CONFIG_SET(flag/allow_ai, FALSE)
 		to_chat(world, "<B>The AI job is no longer chooseable.</B>")
 	else
+		CONFIG_SET(flag/allow_ai, TRUE)
 		to_chat(world, "<B>The AI job is chooseable now.</B>")
-	log_admin("[key_name(usr)] toggled AI allowed.")
+	log_admin("[key_name(usr)] toggled the AI job.")
 	world.update_status()
 	feedback_add_details("admin_verb","TAI") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
@@ -858,7 +867,7 @@ var/global/respawntime = 15
 		to_chat(world, "<B>You may now respawn.</B>")
 	else
 		to_chat(world, "<B>You may no longer respawn :(</B>")
-	message_admins("\blue [key_name_admin(usr)] toggled respawn to [abandon_allowed ? "On" : "Off"].", 1)
+	message_admins("<span class='notice'> [key_name_admin(usr)] toggled respawn to [abandon_allowed ? "On" : "Off"].</span>", 1)
 	log_admin("[key_name(usr)] toggled respawn to [abandon_allowed ? "On" : "Off"].")
 	world.update_status()
 	feedback_add_details("admin_verb","TR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -871,7 +880,7 @@ var/global/respawntime = 15
 		respawntime = time
 	else
 		to_chat(usr, "The respawn time cannot be a negative number!")
-	message_admins("\blue [key_name_admin(usr)] set the respawn time to [respawntime] minutes.", 1)
+	message_admins("<span class='notice'> [key_name_admin(usr)] set the respawn time to [respawntime] minutes.</span>", 1)
 	log_admin("[key_name(usr)] set the respawn time to [respawntime] minutes.")
 	world.update_status()
 	feedback_add_details("admin_verb","TRT") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -887,7 +896,7 @@ var/global/respawntime = 15
 		if(confirm != "Yes") return
 		ticker.mode.round_finished = MODE_INFESTATION_DRAW_DEATH
 		log_admin("[key_name(usr)] has made the round end early.")
-		message_admins("\blue [key_name(usr)] has made the round end early.", 1)
+		message_admins("<span class='notice'> [key_name(usr)] has made the round end early.</span>", 1)
 		for(var/client/C in admins)
 			to_chat(C, "<hr>")
 			to_chat(C, "<span class='centerbold'>Staff-Only Alert: <EM>[usr.key]</EM> has made the round end early")
@@ -922,7 +931,7 @@ var/global/respawntime = 15
 	if (!ticker || ticker.current_state != GAME_STATE_PREGAME)
 		ticker.delay_end = !ticker.delay_end
 		log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].")
-		message_admins("\blue [key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].", 1)
+		message_admins("<span class='notice'> [key_name(usr)] [ticker.delay_end ? "delayed the round end" : "has made the round end normally"].</span>", 1)
 		for(var/client/C in admins)
 			to_chat(C, "<hr>")
 			to_chat(C, "<span class='centerbold'>Staff-Only Alert: <EM>[usr.key]</EM> [ticker.delay_end ? "delayed the round end" : "has made the round end normally"]")
@@ -946,25 +955,37 @@ var/global/respawntime = 15
 	set category = "Server"
 	set desc="Toggle admin jumping"
 	set name="Toggle Jump"
-	config.allow_admin_jump = !(config.allow_admin_jump)
-	message_admins("\blue Toggled admin jumping to [config.allow_admin_jump].")
-	feedback_add_details("admin_verb","TJ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+	if(CONFIG_GET(flag/allow_admin_jump))
+		CONFIG_SET(flag/allow_admin_jump, FALSE)
+		message_admins("<span class='notice'>Disabled admin jumping.</span>")
+	else
+		CONFIG_SET(flag/allow_admin_jump, TRUE)
+		message_admins("<span class='notice'>Enabled admin jumping.</span>")
 
 /datum/admins/proc/adspawn()
 	set category = "Server"
 	set desc="Toggle admin spawning"
 	set name="Toggle Spawn"
-	config.allow_admin_spawning = !(config.allow_admin_spawning)
-	message_admins("\blue Toggled admin item spawning to [config.allow_admin_spawning].")
-	feedback_add_details("admin_verb","TAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+	if(CONFIG_GET(flag/allow_admin_spawning))
+		CONFIG_SET(flag/allow_admin_spawning, FALSE)
+		message_admins("<span class='notice'>Disabled item spawning.</span>")
+	else
+		CONFIG_SET(flag/allow_admin_spawning, TRUE)
+		message_admins("<span class='notice'>Enabled item spawning.</span>")
 
 /datum/admins/proc/adrev()
 	set category = "Server"
 	set desc="Toggle admin revives"
 	set name="Toggle Revive"
-	config.allow_admin_rev = !(config.allow_admin_rev)
-	message_admins("\blue Toggled reviving to [config.allow_admin_rev].")
-	feedback_add_details("admin_verb","TAR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+	if(CONFIG_GET(flag/allow_admin_rev))
+		CONFIG_SET(flag/allow_admin_rev, FALSE)
+		message_admins("<span class='notice'>Disabled reviving.</span>")
+	else
+		CONFIG_SET(flag/allow_admin_rev, TRUE)
+		message_admins("<span class='notice'>Enabled reviving.</span>")
 
 /datum/admins/proc/immreboot()
 	set category = "Server"
@@ -973,7 +994,7 @@ var/global/respawntime = 15
 	if(!usr.client.holder)	return
 	if( alert("Reboot server?",,"Yes","No") == "No")
 		return
-	to_chat(world, "\red <b>Rebooting world!</b> \blue Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!")
+	to_chat(world, "<span class='danger'>Rebooting world!</span><span class='notice'>Initiated by [usr.client.holder.fakekey ? "Admin" : usr.key]!</span>")
 	log_admin("[key_name(usr)] initiated an immediate reboot.")
 
 	feedback_set_details("end_error","immediate admin reboot - by [usr.key] [usr.client.holder.fakekey ? "(stealth)" : ""]")
@@ -988,7 +1009,7 @@ var/global/respawntime = 15
 	set category = "Admin"
 	set name = "Unprison"
 	if (M.z == 2)
-		if (config.allow_admin_jump)
+		if(CONFIG_GET(flag/allow_admin_jump))
 			M.loc = pick(latejoin)
 			message_admins("[key_name_admin(usr)] has unprisoned [key_name_admin(M)]", 1)
 			log_admin("[key_name(usr)] has unprisoned [key_name(M)]")
@@ -1070,7 +1091,7 @@ var/global/respawntime = 15
 	else
 		to_chat(world, "<B>Guests may now enter the game.</B>")
 	log_admin("[key_name(usr)] toggled guests game entering [guests_allowed?"":"dis"]allowed.")
-	message_admins("\blue [key_name_admin(usr)] toggled guests game entering [guests_allowed?"":"dis"]allowed.", 1)
+	message_admins("<span class='notice'> [key_name_admin(usr)] toggled guests game entering [guests_allowed?"":"dis"]allowed.</span>", 1)
 	feedback_add_details("admin_verb","TGU") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /datum/admins/proc/output_ai_laws()
@@ -1192,30 +1213,33 @@ var/global/respawntime = 15
 	set desc = "Call a distress beacon. This should not be done if the shuttle's already been called."
 
 	if(!ticker?.mode)
+		to_chat(src, "<span class='warning'>Please wait for the round to begin first.</span>")
 		return
 
-	if(!check_rights(R_ADMIN))	
+	if(!check_rights(R_ADMIN))
+		to_chat(src, "<span class='warning'>Insufficient permissions.</span>")
+		return
+
+	if(ticker.mode.waiting_for_candidates)
+		to_chat(src, "<span class='warning'>Please wait for the current beacon to be finalized.</span>")
 		return
 
 	if(ticker.mode.picked_call)
-		var/confirm = alert(src, "There's already been a distress call sent. Are you sure you want to send another one? This will probably break things.", "Send a distress call?", "Yes", "No")
-		if(confirm != "Yes") return
-
-		//Reset the distress call
 		ticker.mode.picked_call.members = list()
 		ticker.mode.picked_call.candidates = list()
 		ticker.mode.waiting_for_candidates = FALSE
 		ticker.mode.on_distress_cooldown = FALSE
 		ticker.mode.picked_call = null
 
+
 	var/list/list_of_calls = list()
 	for(var/datum/emergency_call/L in ticker.mode.all_calls)
-		if(L && L.name != "name")
+		if(L?.name)
 			list_of_calls += L.name
 
 	list_of_calls += "Randomize"
 
-	var/choice = input("Which distress call?") as null|anything in list_of_calls
+	var/choice = input("Which distress do you want to call?") as null|anything in list_of_calls
 	if(!choice)
 		return
 
@@ -1223,13 +1247,12 @@ var/global/respawntime = 15
 		ticker.mode.picked_call	= ticker.mode.get_random_call()
 	else
 		for(var/datum/emergency_call/C in ticker.mode.all_calls)
-			if(C && C.name == choice)
+			if(C?.name == choice)
 				ticker.mode.picked_call = C
 				break
 
 	if(!istype(ticker.mode.picked_call))
 		return
-
 
 	var/is_announcing = TRUE
 	var/announce = alert(src, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No")
@@ -1240,7 +1263,8 @@ var/global/respawntime = 15
 
 	feedback_add_details("admin_verb","DISTR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] admin-called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]")
-	message_admins("\blue [key_name_admin(usr)] admin-called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]", 1)
+	message_admins("<span class='notice'> [key_name_admin(usr)] admin-called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]</span>", 1)
+
 
 /datum/admins/proc/admin_force_ERT_shuttle()
 	set category = "Admin"
@@ -1293,6 +1317,6 @@ var/global/respawntime = 15
 
 	feedback_add_details("admin_verb","LNCHERTSHTL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] force launched a distress shuttle ([tag])")
-	message_admins("\blue [key_name_admin(usr)] force launched a distress shuttle ([tag])", 1)
+	message_admins("<span class='notice'> [key_name_admin(usr)] force launched a distress shuttle ([tag])</span>", 1)
 
 

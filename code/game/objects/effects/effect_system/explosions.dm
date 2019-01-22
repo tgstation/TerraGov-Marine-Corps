@@ -26,10 +26,10 @@
 			s.start()
 
 			for(var/mob/M in viewers(5, location))
-				to_chat(M, "\red The solution violently explodes.")
+				to_chat(M, "<span class='warning'>The solution violently explodes.</span>")
 			for(var/mob/M in viewers(1, location))
 				if (prob (50 * amount))
-					to_chat(M, "\red The explosion knocks you down.")
+					to_chat(M, "<span class='warning'>The explosion knocks you down.</span>")
 					M.KnockDown(rand(1,5))
 			return
 		else
@@ -40,7 +40,7 @@
 			if (flash && flashing_factor) flash = light + 1
 
 			for(var/mob/M in viewers(8, location))
-				to_chat(M, "\red The solution violently explodes.")
+				to_chat(M, "<span class='warning'>The solution violently explodes.</span>")
 
 			explosion(location, -1, -1, light, flash)
 			if(light > 0) return TRUE
@@ -77,7 +77,7 @@
 /obj/effect/particle_effect/expl_particles/New()
 	..()
 	spawn(15)
-		cdel(src)
+		qdel(src)
 
 /datum/effect_system/expl_particles
 	number = 10
@@ -114,7 +114,7 @@
 /obj/effect/particle_effect/explosion/New()
 	..()
 	spawn(10)
-		cdel(src)
+		qdel(src)
 
 
 
@@ -134,5 +134,5 @@
 	P.start()
 	spawn(5)
 		var/datum/effect_system/smoke_spread/S = new/datum/effect_system/smoke_spread()
-		S.set_up(3,0,location,null, 2)
+		S.set_up(rand(0,3),0,location,null, rand(0,2))
 		S.start()

@@ -94,7 +94,7 @@
 						dat += "<A href='?src=\ref[src];operation=change_lead'>\[CHANGE SQUAD LEADER\]</a><BR><BR>"
 					else
 						dat += "<B>Squad Leader:</B> <font color=red>NONE</font> <A href='?src=\ref[src];operation=change_lead'>\[ASSIGN SQUAD LEADER\]</a><BR><BR>"
-		
+
 					dat += "<B>Primary Objective:</B> "
 					if(current_squad.primary_objective)
 						dat += "[current_squad.primary_objective] <a href='?src=\ref[src];operation=set_primary'>\[Set\]</a><br>"
@@ -143,7 +143,7 @@
 						dat += "<span class='warning'>None</span><br>"
 						selected_target = null
 					else
-						dat += "<font color='green'>[selected_target.name]</font><br>"		
+						dat += "<font color='green'>[selected_target.name]</font><br>"
 					dat += "<A href='?src=\ref[src];operation=shootrailgun'>\[FIRE!\]</a><br>"
 					dat += "----------------------<br></body>"
 					dat += "<br><br><a href='?src=\ref[src];operation=refresh'>{Refresh}</a></body>"
@@ -161,7 +161,9 @@
 					else
 						dat += "<font color='green'>Ready!</font><br>"
 					dat += "<B>Launch Pad Status:</b> "
-					var/obj/structure/closet/crate/C = locate() in current_squad.drop_pad.loc
+					var/obj/C = locate() in current_squad.drop_pad.loc //This thing should ALWAYS exist.
+					if(!C.can_supply_drop) //Can only send supply droppable items
+						C = null
 					if(C)
 						dat += "<font color='green'>Supply crate loaded</font><BR>"
 					else
@@ -259,18 +261,18 @@
 				if(current_squad)
 					to_chat(usr, "<span class='warning'>\icon[src] You are already selecting a squad.</span>")
 				else
-					var/list/squad_list = list()
+					var/list/squad_choices = list()
 					for(var/datum/squad/S in RoleAuthority.squads)
-						if(S.usable && !S.overwatch_officer)
-							squad_list += S.name
+						if(!S.overwatch_officer)
+							squad_choices += S.name
 
-					var/name_sel = input("Which squad would you like to claim for Overwatch?") as null|anything in squad_list
-					if(!name_sel || operator != usr)
+					var/squad_name = input("Which squad would you like to claim for Overwatch?") as null|anything in squad_choices
+					if(!squad_name || operator != usr)
 						return
 					if(current_squad)
 						to_chat(usr, "<span class='warning'>\icon[src] You are already selecting a squad.</span>")
 						return
-					var/datum/squad/selected = get_squad_by_name(name_sel)
+					var/datum/squad/selected = RoleAuthority.squads[RoleAuthority.squads_names.Find(squad_name)]
 					if(selected)
 						selected.overwatch_officer = usr //Link everything together, squad, console, and officer
 						current_squad = selected
@@ -338,7 +340,7 @@
 			switch(z_hidden)
 				if(0)
 					z_hidden = MAIN_SHIP_Z_LEVEL
-					to_chat(usr, "\icon[src] <span class='notice'>Marines on the Almayer are now hidden.</span>")
+					to_chat(usr, "\icon[src] <span class='notice'>Marines on the [MAIN_SHIP_NAME] are now hidden.</span>")
 				if(MAIN_SHIP_Z_LEVEL)
 					z_hidden = 1
 					to_chat(usr, "\icon[src] <span class='notice'>Marines on the ground are now hidden.</span>")
@@ -396,7 +398,7 @@
 	if(.)  //Checks for power outages
 		return
 	if(!allowed(user))
-		to_chat(user, "\red You don't have access.")
+		to_chat(user, "<span class='warning'>You don't have access.</span>")
 		return
 	if(!squads.len)
 		for(var/datum/squad/S in RoleAuthority.squads)
@@ -456,7 +458,7 @@
 					dat += "<span class='warning'>None</span><br>"
 					selected_target = null
 				else
-					dat += "<font color='green'>[selected_target.name]</font><br>"		
+					dat += "<font color='green'>[selected_target.name]</font><br>"
 				dat += "<A href='?src=\ref[src];operation=dropbomb'>\[FIRE!\]</a><br>"
 				dat += "----------------------<BR></Body>"
 				dat += "<A href='?src=\ref[src];operation=refresh'>{Refresh}</a></Body>"
@@ -478,13 +480,13 @@
 	cam = null
 	user.reset_view(null)
 
-//returns the helmet camera the human is wearing
+//returns the headset camera the human is wearing
 /obj/machinery/computer/overwatch/proc/get_camera_from_target(cam_target)
 	if(!cam_target)
 		return
 	var/mob/living/carbon/human/H = cam_target
 	if(istype(H) && current_squad)
-		var/obj/item/clothing/head/helmet/marine/helm = H.head
+		var/obj/item/device/radio/headset/almayer/helm = H.wear_ear
 		return helm?.camera
 	var/obj/effect/overlay/temp/laser_target/LT = cam_target
 	if(istype(LT))
@@ -557,8 +559,8 @@
 	send_to_squads("Calibrating trajectory window...")
 	sleep(11)
 	for(var/mob/living/carbon/H in living_mob_list)
-		if(H.z == MAIN_SHIP_Z_LEVEL && !H.stat) //USS Almayer decks.
-			to_chat(H, "<span class='warning'>The deck of the USS Almayer shudders as the orbital cannons open fire on the colony.</span>")
+		if(H.z == MAIN_SHIP_Z_LEVEL && !H.stat) //TGS Theseus decks.
+			to_chat(H, "<span class='warning'>The deck of the [MAIN_SHIP_NAME] shudders as the orbital cannons open fire on the colony.</span>")
 			if(H.client)
 				shake_camera(H, 10, 1)
 	state("<span class='boldnotice'>Orbital bombardment has fired! Impact imminent!</span>")
@@ -752,7 +754,10 @@
 		to_chat(usr, "\icon[src] <span class='warning'>No supply beacon detected!</span>")
 		return
 
-	var/obj/structure/closet/crate/C = locate() in current_squad.drop_pad.loc //This thing should ALWAYS exist.
+	var/obj/C = locate() in current_squad.drop_pad.loc //This thing should ALWAYS exist.
+	if(!C.can_supply_drop) //Can only send vendors and crates
+		C = null
+
 	if(!istype(C))
 		to_chat(usr, "\icon[src] <span class='warning'>No crate was detected on the drop pad. Get Requisitions on the line!</span>")
 		return
@@ -797,7 +802,7 @@
 		S.supply_cooldown = world.time
 
 		if(S.sbeacon)
-			cdel(S.sbeacon) //Wipe the beacon. It's only good for one use.
+			qdel(S.sbeacon) //Wipe the beacon. It's only good for one use.
 			S.sbeacon = null
 		playsound(C.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehh
 		C.anchored = FALSE
@@ -819,36 +824,36 @@
 	density = 0
 	unacidable = 1
 	layer = ABOVE_TURF_LAYER
-	var/squad = "Alpha"
+	var/squad_name = "Alpha"
 	var/sending_package = 0
 
-	New() //Link a squad to a drop pad
-		..()
-		spawn(10)
-			force_link()
+/obj/structure/supply_drop/New() //Link a squad to a drop pad
+	. = ..()
+	spawn(10)
+		force_link()
 
-	proc/force_link() //Somehow, it didn't get set properly on the new proc. Force it again,
-		var/datum/squad/S = get_squad_by_name(squad)
-		if(S)
-			S.drop_pad = src
-		else
-			to_chat(world, "Alert! Supply drop pads did not initialize properly.")
+/obj/structure/supply_drop/proc/force_link() //Somehow, it didn't get set properly on the new proc. Force it again,
+	var/datum/squad/S = RoleAuthority.squads[RoleAuthority.squads_names.Find(squad_name)]
+	if(S)
+		S.drop_pad = src
+	else
+		to_chat(world, "Alert! Supply drop pads did not initialize properly.")
 
 /obj/structure/supply_drop/alpha
 	icon_state = "alphadrop"
-	squad = "Alpha"
+	squad_name = "Alpha"
 
 /obj/structure/supply_drop/bravo
 	icon_state = "bravodrop"
-	squad = "Bravo"
+	squad_name = "Bravo"
 
 /obj/structure/supply_drop/charlie
 	icon_state = "charliedrop"
-	squad = "Charlie"
+	squad_name = "Charlie"
 
 /obj/structure/supply_drop/delta
 	icon_state = "deltadrop"
-	squad = "Delta"
+	squad_name = "Delta"
 
 /obj/item/device/squad_beacon
 	name = "squad supply beacon"
@@ -861,7 +866,7 @@
 	var/icon_activated = "motion2"
 	var/obj/machinery/camera/beacon_cam = null
 
-/obj/item/device/squad_beacon/Dispose()
+/obj/item/device/squad_beacon/Destroy()
 	if(src in active_orbital_beacons)
 		active_orbital_beacons -= src
 	if(squad)
@@ -871,7 +876,7 @@
 			squad.squad_orbital_beacons -= src
 		squad = null
 	if(beacon_cam)
-		cdel(beacon_cam)
+		qdel(beacon_cam)
 		beacon_cam = null
 	SetLuminosity(0)
 	return ..()
@@ -910,7 +915,7 @@
 	if(do_after(user, delay, TRUE, 5, BUSY_ICON_FRIENDLY))
 
 		squad.sbeacon = src
-		user.drop_inv_item_to_loc(src, user.loc)
+		user.transferItemToLoc(src, user.loc)
 		activated = 1
 		anchored = 1
 		w_class = 10
@@ -973,7 +978,7 @@
 		var/n = active_orbital_beacons.Find(src)
 		cam_name += " [n]"
 		var/obj/machinery/camera/beacon_cam/BC = new(src, cam_name)
-		H.drop_inv_item_to_loc(src, H.loc)
+		H.transferItemToLoc(src, H.loc)
 		beacon_cam = BC
 		activated = TRUE
 		anchored = TRUE
@@ -998,7 +1003,7 @@
 			squad = null
 		if(src in active_orbital_beacons)
 			active_orbital_beacons -= src
-		cdel(beacon_cam)
+		qdel(beacon_cam)
 		beacon_cam = null
 		activated = FALSE
 		anchored = FALSE
@@ -1011,7 +1016,7 @@
 		H.visible_message("[H] deactivates [src]",
 		"You deactivate [src]")
 		H.put_in_active_hand(src)
-	
+
 
 //This is perhaps one of the weirdest places imaginable to put it, but it's a leadership skill, so
 
@@ -1037,7 +1042,7 @@
 		if(choice == "help")
 			to_chat(src, "<span class='notice'><br>Orders give a buff to nearby soldiers for a short period of time, followed by a cooldown, as follows:<br><B>Move</B> - Increased mobility and chance to dodge projectiles.<br><B>Hold</B> - Increased resistance to pain and combat wounds.<br><B>Focus</B> - Increased gun accuracy and effective range.<br></span>")
 			return
-		if(choice == "cancel") 
+		if(choice == "cancel")
 			return
 		command_aura = choice
 	else
@@ -1049,12 +1054,24 @@
 		if("move")
 			message = pick(";GET MOVING!", ";GO, GO, GO!", ";WE ARE ON THE MOVE!", ";MOVE IT!", ";DOUBLE TIME!")
 			say(message)
+			var/image/move = image('icons/mob/talk.dmi', icon_state = "order_move")
+			overlays += move
+			spawn(5 SECONDS)
+				overlays -= move
 		if("hold")
 			message = pick(";DUCK AND COVER!", ";HOLD THE LINE!", ";HOLD POSITION!", ";STAND YOUR GROUND!", ";STAND AND FIGHT!")
 			say(message)
+			var/image/hold = image('icons/mob/talk.dmi', icon_state = "order_hold")
+			overlays += hold
+			spawn(5 SECONDS)
+				overlays -= hold
 		if("focus")
 			message = pick(";FOCUS FIRE!", ";PICK YOUR TARGETS!", ";CENTER MASS!", ";CONTROLLED BURSTS!", ";AIM YOUR SHOTS!")
 			say(message)
+			var/image/focus = image('icons/mob/talk.dmi', icon_state = "order_focus")
+			overlays += focus
+			spawn(5 SECONDS)
+				overlays -= focus
 	update_action_buttons()
 
 
@@ -1081,7 +1098,7 @@
 	else
 		button.color = rgb(255,255,255,255)
 
-/mob/living/carbon/human/New()
+/mob/living/carbon/human/Initialize()
 	..()
 	var/datum/action/skill/issue_order/issue_order_action = new
 	issue_order_action.give_action(src)
@@ -1254,7 +1271,7 @@
 		dat += "<b><font color=red>NONE!</font></b><br>"
 	dat += get_squad_info_ending()
 	return dat
-	
+
 /obj/machinery/computer/overwatch/proc/get_squad_info_ending()
 	var/dat = ""
 	dat += "----------------------<br>"

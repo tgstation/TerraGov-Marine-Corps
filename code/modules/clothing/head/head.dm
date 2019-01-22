@@ -2,7 +2,7 @@
 	name = "head"
 	icon = 'icons/obj/clothing/hats.dmi'
 	flags_armor_protection = HEAD
-	flags_equip_slot = SLOT_HEAD
+	flags_equip_slot = ITEM_SLOT_HEAD
 	w_class = 2.0
 	var/anti_hug = 0
 
@@ -172,6 +172,10 @@
 	desc = "A beret with the lieutenant-commander insignia emblazoned on it. It emits a dark aura and may corrupt the soul."
 	icon_state = "hosberet"
 
+/obj/item/clothing/head/beret/marine/chiefofficer/sa
+	name = "spatial agent's beret"
+	desc = "A beret with the Spatial Agent insignia on it."
+
 /obj/item/clothing/head/beret/marine/techofficer
 	name = "technical officer beret"
 	desc = "A beret with the lieutenant insignia emblazoned on it. There's something inexplicably efficient about it..."
@@ -214,9 +218,9 @@
 	icon_state = "bearpelt"
 	siemens_coefficient = 2.0
 	anti_hug = 4
-	flags_armor_protection = HEAD|UPPER_TORSO|ARMS
+	flags_armor_protection = HEAD|CHEST|ARMS
 	armor = list(melee = 90, bullet = 70, laser = 45, energy = 55, bomb = 45, bio = 10, rad = 10)
-	flags_cold_protection = HEAD|UPPER_TORSO|ARMS
+	flags_cold_protection = HEAD|CHEST|ARMS
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature
 	flags_inventory = BLOCKSHARPOBJ
 	flags_inv_hide = HIDEEARS|HIDETOPHAIR
@@ -266,7 +270,7 @@
 	sprite_sheet_id = 1
 	icon_state = "rebel_hood"
 	siemens_coefficient = 2.0
-	flags_armor_protection = HEAD|UPPER_TORSO
+	flags_armor_protection = HEAD|CHEST
 	armor = list(melee = 30, bullet = 30, laser = 45, energy = 35, bomb = 45, bio = 20, rad = 30)
 	flags_cold_protection = HEAD
 	min_cold_protection_temperature = ICE_PLANET_min_cold_protection_temperature

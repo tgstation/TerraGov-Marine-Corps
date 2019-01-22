@@ -14,7 +14,7 @@
 		evil_tree.icon_living = evil_tree.icon_state
 		evil_tree.icon_dead = evil_tree.icon_state
 		evil_tree.icon_gib = evil_tree.icon_state
-		cdel(xmas)
+		qdel(xmas)
 
 /obj/item/toy/xmas_cracker
 	name = "xmas cracker"
@@ -27,7 +27,7 @@
 	..()
 
 /obj/item/toy/xmas_cracker/attack(mob/target, mob/user)
-	if( !cracked && istype(target,/mob/living/carbon/human) && (target.stat == CONSCIOUS) && !target.get_active_hand() )
+	if( !cracked && istype(target,/mob/living/carbon/human) && (target.stat == CONSCIOUS) && !target.get_active_held_item() )
 		target.visible_message("<span class='notice'>[user] and [target] pop \an [src]! *pop*</span>", "<span class='notice'>You pull \an [src] with [target]! *pop*</span>", "<span class='notice'>You hear a *pop*.</span>")
 		var/obj/item/paper/Joke = new /obj/item/paper(user.loc)
 		Joke.name = "[pick("awful","terrible","unfunny")] joke"
@@ -40,7 +40,7 @@
 			"What do you get from eating tree decorations?\n\n<i>Tinsilitis!</i>",
 			"What do snowmen wear on their heads?\n\n<i>Ice caps!</i>",
 			"Why is Christmas just like life on ss13?\n\n<i>You do all the work and the fat guy gets all the credit.</i>",
-			"Why doesn’t Santa have any children?\n\n<i>Because he only comes down the chimney.</i>")
+			"Why doesnï¿½t Santa have any children?\n\n<i>Because he only comes down the chimney.</i>")
 		new /obj/item/clothing/head/festive(target.loc)
 		cracked = 1
 		icon_state = "cracker1"

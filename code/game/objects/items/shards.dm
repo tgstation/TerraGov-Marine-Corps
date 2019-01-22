@@ -17,7 +17,7 @@
 	var/shardsize
 
 /obj/item/shard/suicide_act(mob/user)
-	user.visible_message("\red <b>[user] is slitting \his [prob(50) ? "wrists" :"throat"] with [src]! It looks like \he's trying to commit suicide.</b>")
+	user.visible_message("<span class='danger'>[user] is slitting \his [prob(50) ? "wrists" :"throat"] with [src]! It looks like \he's trying to commit suicide.</span>")
 	return (BRUTELOSS)
 
 /obj/item/shard/attack(mob/living/carbon/M, mob/living/carbon/user)
@@ -56,7 +56,7 @@
 						continue
 					G.attackby(NG, user)
 					to_chat(user, "You add the newly-formed glass to the stack. It now contains [NG.amount] sheets.")
-				cdel(src)
+				qdel(src)
 				return
 	return ..()
 
@@ -65,7 +65,7 @@
 		var/mob/M = AM
 		playsound(src.loc, 'sound/effects/glass_step.ogg', 25, 1) // not sure how to handle metal shards with sounds
 		if(!M.buckled)
-			to_chat(M, "\red <B>You step on \the [src]!</B>")
+			to_chat(M, "<span class='danger'>You step on \the [src]!</span>")
 			if(ishuman(M))
 				var/mob/living/carbon/human/H = M
 

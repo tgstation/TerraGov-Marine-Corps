@@ -128,7 +128,7 @@ Airlock index -> wire color are { 9, 4, 6, 7, 5, 8, 1, 2, 3 }.
 	else if(ishuman(user) && user.hallucination > 50 && prob(10) && !operating)
 		var/mob/living/carbon/human/H = user
 		if(H.gloves)
-			to_chat(H, "\red <B>You feel a powerful shock course through your body!</B>")
+			to_chat(H, "<span class='danger'>You feel a powerful shock course through your body!</span>")
 			var/obj/item/clothing/gloves/G = H.gloves
 			if(G.siemens_coefficient)//not insulated
 				H.halloss += 10
@@ -743,7 +743,7 @@ About the new airlock wires panel:
 			if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
 		if(href_list["wires"])
 			var/t1 = text2num(href_list["wires"])
-			if(!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
+			if(!( istype(usr.get_active_held_item(), /obj/item/tool/wirecutters) ))
 				to_chat(usr, "You need wirecutters!")
 				return
 			if(src.isWireColorCut(t1))
@@ -752,7 +752,7 @@ About the new airlock wires panel:
 				src.cut(t1)
 		else if(href_list["pulse"])
 			var/t1 = text2num(href_list["pulse"])
-			if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			if(!istype(usr.get_active_held_item(), /obj/item/device/multitool))
 				to_chat(usr, "You need a multitool!")
 				return
 			if(src.isWireColorCut(t1))
@@ -762,13 +762,13 @@ About the new airlock wires panel:
 				src.pulse(t1)
 		else if(href_list["signaler"])
 			var/wirenum = text2num(href_list["signaler"])
-			if(!istype(usr.get_active_hand(), /obj/item/device/assembly/signaler))
+			if(!istype(usr.get_active_held_item(), /obj/item/device/assembly/signaler))
 				to_chat(usr, "You need a signaller!")
 				return
 			if(src.isWireColorCut(wirenum))
 				to_chat(usr, "You can't attach a signaller to a cut wire.")
 				return
-			var/obj/item/device/assembly/signaler/R = usr.get_active_hand()
+			var/obj/item/device/assembly/signaler/R = usr.get_active_held_item()
 			if(R.secured)
 				to_chat(usr, "This radio can't be attached!")
 				return
@@ -1008,7 +1008,7 @@ About the new airlock wires panel:
 			if(do_after(user, P.calc_delay(user), TRUE, 5, BUSY_ICON_HOSTILE) && P)
 				P.cut_apart(user, src.name, src) //Airlocks cost as much as a wall to fully cut apart.
 				P.debris(loc, 1, 1, 0, 3) //Metal sheet, some rods and wires.
-				cdel(src)
+				qdel(src)
 			return
 
 		if(!(P.start_cut(user, src.name, src, PLASMACUTTER_BASE_COST * PLASMACUTTER_VLOW_MOD)))
@@ -1066,7 +1066,7 @@ About the new airlock wires panel:
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			user.visible_message("[user] starts removing the electronics from the airlock assembly.", "You start removing electronics from the airlock assembly.")
 			if(do_after(user,40, TRUE, 5, BUSY_ICON_BUILD))
-				to_chat(user, "\blue You removed the airlock electronics!")
+				to_chat(user, "<span class='notice'>You removed the airlock electronics!</span>")
 
 				var/obj/structure/door_assembly/da = new assembly_type(src.loc)
 				if (istype(da, /obj/structure/door_assembly/multi_tile))
@@ -1094,13 +1094,15 @@ About the new airlock wires panel:
 						ae.one_access = 1
 				else
 					ae = electronics
+					if(electronics.is_general_board)
+						ae.set_general()
 					electronics = null
 					ae.loc = src.loc
 				if(operating == -1)
 					ae.icon_state = "door_electronics_smoked"
 					operating = 0
 
-				cdel(src)
+				qdel(src)
 				return
 
 		else if(arePowerSystemsOn() && C.pry_capable != IS_PRY_CAPABLE_FORCE)

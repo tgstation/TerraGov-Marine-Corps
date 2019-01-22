@@ -28,13 +28,13 @@
 	SetLuminosity(0)
 
 /obj/machinery/bot/proc/explode()
-	cdel(src)
+	qdel(src)
 
 /obj/machinery/bot/proc/healthcheck()
 	if(health <= 0)
 		explode()
 
-/obj/machinery/bot/Dispose()
+/obj/machinery/bot/Destroy()
 	SetLuminosity(0)
 	. = ..()
 
@@ -60,7 +60,7 @@
 	if(M.melee_damage_upper == 0)
 		return
 	health -= M.melee_damage_upper
-	visible_message("\red <B>[M] has [M.attacktext] [src]!</B>")
+	visible_message("<span class='danger'>[M] has [M.attacktext] [src]!</span>")
 	log_combat(M, src, "attacked")
 	if(prob(10))
 		new /obj/effect/decal/cleanable/blood/oil(src.loc)
@@ -89,7 +89,7 @@
 		if(health < maxhealth)
 			if(open)
 				health = min(maxhealth, health+10)
-				user.visible_message("\red [user] repairs [src]!","\blue You repair [src]!")
+				user.visible_message("<span class='warning'> [user] repairs [src]!</span>","<span class='notice'> You repair [src]!</span>")
 			else
 				to_chat(user, "<span class='notice'>Unable to repair with the maintenance panel closed.</span>")
 		else

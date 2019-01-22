@@ -14,7 +14,7 @@
 	var/list/air_info
 
 	// HACK NEED CHANGING LATER
-	if(health < config.health_threshold_crit && !reagents.has_reagent("inaprovaline"))
+	if(health < CONFIG_GET(number/health_threshold_crit) && !reagents.has_reagent("inaprovaline"))
 		losebreath++
 
 	if(losebreath > 0) //Suffocating so do not take a breath
@@ -105,7 +105,7 @@
 			failed_last_breath = 1
 			oxygen_alert = max(oxygen_alert, 1)
 			return 0
-		if(health > config.health_threshold_crit)
+		if(health > CONFIG_GET(number/health_threshold_crit))
 			adjustOxyLoss(HUMAN_MAX_OXYLOSS)
 			failed_last_breath = 1
 		else
@@ -239,6 +239,6 @@
 			temp_adj = BODYTEMP_HEATING_MAX
 		if(temp_adj < BODYTEMP_COOLING_MAX)
 			temp_adj = BODYTEMP_COOLING_MAX
-		bodytemperature += temp_adj
+		adjust_bodytemperature(temp_adj)
 
 	return 1

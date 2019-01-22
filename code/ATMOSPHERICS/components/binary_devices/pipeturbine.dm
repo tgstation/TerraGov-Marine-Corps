@@ -34,7 +34,7 @@
 			if(WEST)
 				initialize_directions = NORTH|SOUTH
 
-	Dispose()
+	Destroy()
 		if(node1)
 			node1.disconnect(src)
 			del(network1)
@@ -64,7 +64,7 @@
 	attackby(obj/item/W as obj, mob/user as mob)
 		if(istype(W, /obj/item/tool/wrench))
 			anchored = !anchored
-			to_chat(user, "\blue You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.")
+			to_chat(user, "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.</span>")
 
 			if(anchored)
 				if(dir & (NORTH|SOUTH))
@@ -230,7 +230,7 @@
 		if(istype(W, /obj/item/tool/wrench))
 			anchored = !anchored
 			turbine = null
-			to_chat(user, "\blue You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.")
+			to_chat(user, "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.</span>")
 			updateConnection()
 		else
 			..()

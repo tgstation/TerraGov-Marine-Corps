@@ -109,7 +109,7 @@
 			var/mob/GM = G.grabbed_thing
 			step(GM, get_dir(GM, src))
 			return
-	user.drop_inv_item_to_loc(I, loc)
+	user.transferItemToLoc(I, loc)
 
 // attack with hand, move pulled object onto conveyor
 /obj/machinery/conveyor/attack_hand(mob/user as mob)
@@ -160,7 +160,7 @@
 		C.set_operable(stepdir, id, op)
 
 /*
-/obj/machinery/conveyor/verb/destroy()
+/obj/machinery/conveyor/verb/destroy_belt()
 	set src in view()
 	src.broken()
 */

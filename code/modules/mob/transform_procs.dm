@@ -4,7 +4,7 @@
 	for(var/obj/item/W in src)
 		if (W==w_uniform) // will be torn
 			continue
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -12,7 +12,7 @@
 	icon = null
 	invisibility = 101
 	for(var/t in limbs)
-		cdel(t)
+		qdel(t)
 	var/atom/movable/overlay/animation = new /atom/movable/overlay( loc )
 	animation.icon_state = "blank"
 	animation.icon = 'icons/mob/mob.dmi'
@@ -49,8 +49,8 @@
 	to_chat(O, "<B>You are now [O]. </B>")
 
 	spawn(0)//To prevent the proc from returning null.
-		cdel(src)
-	cdel(animation)
+		qdel(src)
+	qdel(animation)
 
 	return O
 
@@ -62,7 +62,7 @@
 	if (monkeyizing)
 		return
 	for(var/t in limbs)
-		cdel(t)
+		qdel(t)
 
 	return ..()
 
@@ -70,7 +70,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	monkeyizing = 1
 	canmove = 0
 	icon = null
@@ -127,7 +127,7 @@
 
 	O.rename_self("ai",1)
 	. = O
-	cdel(src)
+	qdel(src)
 
 
 //human -> robot
@@ -135,14 +135,14 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
 	icon = null
 	invisibility = 101
 	for(var/t in limbs)
-		cdel(t)
+		qdel(t)
 
 	var/mob/living/silicon/robot/O = new /mob/living/silicon/robot( loc )
 
@@ -181,7 +181,7 @@
 	O.Namepick()
 
 	spawn(0)//To prevent the proc from returning null.
-		cdel(src)
+		qdel(src)
 	return O
 
 //human -> alien
@@ -189,14 +189,14 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
 	icon = null
 	invisibility = 101
 	for(var/t in limbs)
-		cdel(t)
+		qdel(t)
 
 //	var/alien_caste = "larva"
 	var/mob/living/carbon/Xenomorph/Larva/new_xeno = new /mob/living/carbon/Xenomorph/Larva(loc)
@@ -207,7 +207,7 @@
 
 	to_chat(new_xeno, "<B>You are now an alien.</B>")
 	spawn(0)//To prevent the proc from returning null.
-		cdel(src)
+		qdel(src)
 	return
 
 //human -> alien drone
@@ -215,14 +215,14 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
 	icon = null
 	invisibility = 101
 	for(var/t in limbs)
-		cdel(t)
+		qdel(t)
 
 //	var/alien_caste = "Drone"
 	var/mob/living/carbon/Xenomorph/Drone/new_xeno = new /mob/living/carbon/Xenomorph/Drone(loc)
@@ -234,21 +234,21 @@
 	to_chat(new_xeno, "<b>You are an alien!</b>")
 	to_chat(new_xeno, "<b>Use Say \":a message\" to communicate with other aliens.</b>")
 	spawn(0)//To prevent the proc from returning null.
-		cdel(src)
+		qdel(src)
 	return
 
 /mob/living/carbon/human/proc/corgize()
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
 	icon = null
 	invisibility = 101
 	for(var/t in limbs)	//this really should not be necessary
-		cdel(t)
+		qdel(t)
 
 	var/mob/living/simple_animal/corgi/new_corgi = new /mob/living/simple_animal/corgi (loc)
 	new_corgi.a_intent = "hurt"
@@ -257,7 +257,7 @@
 
 	to_chat(new_corgi, "<B>You are now a Corgi. Yap Yap!</B>")
 	spawn(0)//To prevent the proc from returning null.
-		cdel(src)
+		qdel(src)
 	return
 
 /mob/living/carbon/human/Animalize()
@@ -266,13 +266,13 @@
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
 	if(!safe_animal(mobpath))
-		to_chat(usr, "\red Sorry but this mob type is currently unavailable.")
+		to_chat(usr, "<span class='warning'>Sorry but this mob type is currently unavailable.</span>")
 		return
 
 	if(monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 
 	regenerate_icons()
 	monkeyizing = 1
@@ -281,7 +281,7 @@
 	invisibility = 101
 
 	for(var/t in limbs)
-		cdel(t)
+		qdel(t)
 
 	var/mob/new_mob = new mobpath(src.loc)
 
@@ -292,7 +292,7 @@
 
 	to_chat(new_mob, "You suddenly feel more... animalistic.")
 	spawn()
-		cdel(src)
+		qdel(src)
 	return
 
 /mob/proc/Animalize()
@@ -301,7 +301,7 @@
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
 	if(!safe_animal(mobpath))
-		to_chat(usr, "\red Sorry but this mob type is currently unavailable.")
+		to_chat(usr, "<span class='warning'>Sorry but this mob type is currently unavailable.</span>")
 		return
 
 	var/mob/new_mob = new mobpath(src.loc)
@@ -311,7 +311,7 @@
 	new_mob.a_intent = "hurt"
 	to_chat(new_mob, "You feel more... animalistic")
 
-	cdel(src)
+	qdel(src)
 
 /* Certain mob types have problems and should not be allowed to be controlled by players.
  *

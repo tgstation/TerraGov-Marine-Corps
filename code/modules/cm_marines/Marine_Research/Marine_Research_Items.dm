@@ -57,8 +57,8 @@
 		return
 	to_chat(usr, "You reinforce the Helmet...")
 	A.anti_hug++
-	user.temp_drop_inv_item(src)
-	cdel(src)
+	user.temporarilyRemoveItemFromInventory(src)
+	qdel(src)
 	..()
 	return
 
@@ -79,8 +79,8 @@
 	A.armor = list(melee = 70, bullet = 90, laser = 7, energy = 40, bomb = 50, bio = 40, rad = 20)
 	A.slowdown++
 	A.flags_marine_armor |= ARMOR_IS_REINFORCED
-	user.temp_drop_inv_item(src)
-	cdel(src)
+	user.temporarilyRemoveItemFromInventory(src)
+	qdel(src)
 	..()
 	return
 
@@ -104,8 +104,8 @@
 		return
 	to_chat(usr, "You spray [A] with the Anti-Acid spray making it unacidable...")
 	A.unacidable = 1
-	user.temp_drop_inv_item(src)
-	cdel(src)
+	user.temporarilyRemoveItemFromInventory(src)
+	qdel(src)
 	..()
 	return
 

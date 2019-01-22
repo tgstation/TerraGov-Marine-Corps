@@ -13,6 +13,7 @@ var/list/admin_verbs_admin = list(
 	/client/proc/admin_ghost,			/*allows us to ghost/reenter body at will*/
 	/client/proc/toggle_view_range,		/*changes how far we can see*/
 	/client/proc/getserverlogs,		/*for accessing server logs*/
+	/client/proc/getfolderlogs,
 	/client/proc/getcurrentlogs,		/*for accessing server logs for the current round*/
 	/client/proc/cmd_admin_pm_context,	/*right-click adminPM interface*/
 	/client/proc/cmd_admin_pm_panel,	/*admin-pm list*/
@@ -54,8 +55,6 @@ var/list/admin_verbs_admin = list(
 	/client/proc/cmd_admin_rejuvenate,
 	/client/proc/toggleattacklogs,
 	/client/proc/toggledebuglogs,
-	// /client/proc/toggleghostwriters,
-	/client/proc/toggledrones,
 	/client/proc/change_security_level, /* Changes alert levels*/
 	/client/proc/toggle_gun_restrictions,
 	/client/proc/toggle_synthetic_restrictions,
@@ -80,6 +79,7 @@ var/list/admin_verbs_admin = list(
 	/datum/admins/proc/show_player_panel,	/*shows an interface for individual players, with various links (links require additional flags*/
 	/datum/admins/proc/viewUnheardMhelps,
 	/datum/admins/proc/viewUnheardAhelps,
+	/client/proc/cmd_admin_changesquad
 )
 var/list/admin_verbs_ban = list(
 	/client/proc/unban_panel
@@ -145,12 +145,8 @@ var/list/admin_verbs_debug = list(
 	/client/proc/callproc,
 	/client/proc/callatomproc,
 	/client/proc/toggledebuglogs,
-	/datum/proc/ta_diagnose,
-	/datum/proc/ra_diagnose,
-	/datum/proc/ta_purge,
-	/datum/proc/ra_purge,
-	/client/proc/scheduler,
-	/client/proc/cmd_admin_change_hivenumber
+	/client/proc/cmd_admin_change_hivenumber,
+	/client/proc/spatialagent
 	)
 
 var/list/admin_verbs_paranoid_debug = list(
@@ -290,7 +286,7 @@ var/list/admin_verbs_mentor = list(
 		if(holder.rights & R_SERVER)		verbs += admin_verbs_server
 		if(holder.rights & R_DEBUG)
 			verbs += admin_verbs_debug
-			if(config.debugparanoid && !check_rights(R_ADMIN))
+			if(CONFIG_GET(flag/debugparanoid) && !check_rights(R_ADMIN))
 				verbs.Remove(admin_verbs_paranoid_debug)			//Right now it's just callproc but we can easily add others later on.
 		if(holder.rights & R_POSSESS)		verbs += admin_verbs_possess
 		if(holder.rights & R_PERMISSIONS)	verbs += admin_verbs_permissions
@@ -394,12 +390,12 @@ var/list/admin_verbs_mentor = list(
 	if(holder && mob)
 		if(mob.invisibility == INVISIBILITY_OBSERVER)
 			mob.invisibility = initial(mob.invisibility)
-			to_chat(mob, "\red <b>Invisimin off. Invisibility reset.</b>")
+			to_chat(mob, "<span class='danger'>Invisimin off. Invisibility reset.</span>")
 			mob.alpha = max(mob.alpha + 100, 255)
 			mob.add_to_all_mob_huds()
 		else
 			mob.invisibility = INVISIBILITY_OBSERVER
-			to_chat(mob, "\blue <b>Invisimin on. You are now as invisible as a ghost.</b>")
+			to_chat(mob, "<span class='boldnotice'>Invisimin on. You are now as invisible as a ghost.</span>")
 			mob.alpha = max(mob.alpha - 100, 0)
 			mob.remove_from_all_mob_huds()
 
@@ -435,7 +431,7 @@ var/list/admin_verbs_mentor = list(
 	set name = "Display Job Bans"
 	set category = "Admin"
 	if(holder)
-		if(config.ban_legacy_system)
+		if(CONFIG_GET(flag/ban_legacy_system))
 			holder.Jobbans()
 		else
 			holder.DB_ban_panel()
@@ -446,7 +442,7 @@ var/list/admin_verbs_mentor = list(
 	set name = "Unban Panel"
 	set category = "Admin"
 	if(holder)
-		if(config.ban_legacy_system)
+		if(CONFIG_GET(flag/ban_legacy_system))
 			holder.unbanpanel()
 		else
 			holder.DB_ban_panel()
@@ -521,7 +517,7 @@ var/list/admin_verbs_mentor = list(
 		if(C)
 			message_admins("[key_name_admin(src)] has warned [key_name_admin(C)] resulting in a [AUTOBANTIME] minute ban.")
 			to_chat(C, "<font color='red'><BIG><B>You have been autobanned due to a warning by [ckey].</B></BIG><br>This is a temporary ban, it will be removed in [AUTOBANTIME] minutes.")
-			cdel(C)
+			qdel(C)
 		else
 			message_admins("[key_name_admin(src)] has warned [warned_ckey] resulting in a [AUTOBANTIME] minute ban.")
 		AddBan(warned_ckey, D.last_id, "Autobanning due to too many formal warnings", ckey, 1, AUTOBANTIME)
@@ -561,7 +557,7 @@ var/list/admin_verbs_mentor = list(
 			var/light_impact_range = input("Light impact range (in tiles):") as num
 			var/flash_range = input("Flash range (in tiles):") as num
 			explosion(epicenter, devastation_range, heavy_impact_range, light_impact_range, flash_range)
-	message_admins("\blue [ckey] used 'Drop Bomb' at [epicenter.loc].")
+	message_admins("<span class='notice'> [ckey] used 'Drop Bomb' at [epicenter.loc].</span>")
 	feedback_add_details("admin_verb","DB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/give_spell(mob/T as mob in mob_list) // -- Urist
@@ -578,7 +574,7 @@ var/list/admin_verbs_mentor = list(
 	T.spell_list += new path
 	feedback_add_details("admin_verb","GS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] gave [key_name(T)] the spell [S].")
-	message_admins("\blue [key_name_admin(usr)] gave [key_name(T)] the spell [S].", 1)
+	message_admins("<span class='notice'> [key_name_admin(usr)] gave [key_name(T)] the spell [S].</span>", 1)
 
 /client/proc/give_disease(mob/T as mob in mob_list) // -- Giacom
 	set category = "Fun"
@@ -594,7 +590,7 @@ var/list/admin_verbs_mentor = list(
 	T.contract_disease(new path, 1)
 	feedback_add_details("admin_verb","GD") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] gave [key_name(T)] the disease [D].")
-	message_admins("\blue [key_name_admin(usr)] gave [key_name(T)] the disease [D].", 1)
+	message_admins("<span class='notice'> [key_name_admin(usr)] gave [key_name(T)] the disease [D].</span>", 1)
 
 /client/proc/make_sound(var/obj/O in object_list) // -- TLE
 	set category = "Special Verbs"
@@ -607,7 +603,7 @@ var/list/admin_verbs_mentor = list(
 		for (var/mob/V in hearers(O))
 			V.show_message(message, 2)
 		log_admin("[key_name(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound")
-		message_admins("\blue [key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound", 1)
+		message_admins("<span class='notice'> [key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound</span>", 1)
 		feedback_add_details("admin_verb","MS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/togglebuildmodeself()
@@ -641,7 +637,7 @@ var/list/admin_verbs_mentor = list(
 		to_chat(usr, "<b>Disabled air processing.</b>")
 	feedback_add_details("admin_verb","KA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(usr)] used 'kill air'.")
-	message_admins("\blue [key_name_admin(usr)] used 'kill air'.", 1)
+	message_admins("<span class='notice'> [key_name_admin(usr)] used 'kill air'.</span>", 1)
 */
 
 /client/proc/deadmin_self()
@@ -673,11 +669,11 @@ var/list/admin_verbs_mentor = list(
 	set category = "Server"
 	if(!holder)	return
 	if(config)
-		if(config.log_hrefs)
-			config.log_hrefs = 0
+		if(CONFIG_GET(flag/log_hrefs))
+			CONFIG_SET(flag/log_hrefs, FALSE)
 			to_chat(src, "<b>Stopped logging hrefs</b>")
 		else
-			config.log_hrefs = 1
+			CONFIG_SET(flag/log_hrefs, TRUE)
 			to_chat(src, "<b>Started logging hrefs</b>")
 
 /client/proc/check_ai_laws()
@@ -704,7 +700,7 @@ var/list/admin_verbs_mentor = list(
 	if(!check_rights(R_FUN))	return
 
 	if(!istype(M, /mob/living/carbon/human))
-		to_chat(usr, "\red You can only do this to humans!")
+		to_chat(usr, "<span class='warning'>You can only do this to humans!</span>")
 		return
 	switch(alert("Are you sure you wish to edit this mob's appearance? Skrell, Unathi, Vox and Tajaran can result in unintended consequences.",,"Yes","No"))
 		if("No")
@@ -806,39 +802,16 @@ var/list/admin_verbs_mentor = list(
 	else
 		to_chat(usr, "<span class='boldnotice'>You will no longer get end-round attack log messages.</span>")
 
-/client/proc/toggleghostwriters()
-	set name = "Toggle Ghost Blood Writing"
-	set category = "Server"
-	if(!holder)	return
-	if(config)
-		if(config.cult_ghostwriter)
-			config.cult_ghostwriter = 0
-			to_chat(src, "<b>Disallowed ghost writers.</b>")
-			message_admins("Admin [key_name_admin(usr)] has disabled ghost writers.", 1)
-		else
-			config.cult_ghostwriter = 1
-			to_chat(src, "<b>Enabled ghost writers.</b>")
-			message_admins("Admin [key_name_admin(usr)] has enabled ghost writers.", 1)
-
-/client/proc/toggledrones()
-	set name = "Toggle Maintenance Drones"
-	set category = "Server"
-	if(!holder)	return
-	if(config)
-		if(config.allow_drone_spawn)
-			config.allow_drone_spawn = 0
-			to_chat(src, "<b>Disallowed maint drones.</b>")
-			message_admins("Admin [key_name_admin(usr)] has disabled maint drones.", 1)
-		else
-			config.allow_drone_spawn = 1
-			to_chat(src, "<b>Enabled maint drones.</b>")
-			message_admins("Admin [key_name_admin(usr)] has enabled maint drones.", 1)
-
 /client/proc/toggledebuglogs()
 	set name = "Toggle Debug Log Messages"
 	set category = "Preferences"
 
+	if(!prefs)
+		return
+
+	prefs.load_preferences()
 	prefs.toggles_chat ^= CHAT_DEBUGLOGS
+	prefs.save_preferences()
 	if(prefs.toggles_chat & CHAT_DEBUGLOGS)
 		to_chat(usr, "<span class='boldnotice'>You will now get debug log messages.</span>")
 	else
@@ -854,7 +827,7 @@ var/list/admin_verbs_mentor = list(
 	to_chat(T, "<span class='notice'>Move on.</span>")
 
 	log_admin("[key_name(usr)] told [key_name(T)] to man up and deal with it.")
-	message_admins("\blue [key_name_admin(usr)] told [key_name(T)] to man up and deal with it.", 1)
+	message_admins("<span class='notice'> [key_name_admin(usr)] told [key_name(T)] to man up and deal with it.</span>", 1)
 
 /client/proc/global_man_up()
 	set category = "Fun"
@@ -866,7 +839,7 @@ var/list/admin_verbs_mentor = list(
 		T << 'sound/voice/ManUp1.ogg'
 
 	log_admin("[key_name(usr)] told everyone to man up and deal with it.")
-	message_admins("\blue [key_name_admin(usr)] told everyone to man up and deal with it.", 1)
+	message_admins("<span class='notice'> [key_name_admin(usr)] told everyone to man up and deal with it.</span>", 1)
 */
 
 /client/proc/change_security_level()
@@ -887,15 +860,16 @@ var/list/admin_verbs_mentor = list(
 
 	if(!holder)	return
 	if(config)
-		if(config.remove_gun_restrictions)
+		if(CONFIG_GET(flag/remove_gun_restrictions))
+			CONFIG_SET(flag/remove_gun_restrictions, FALSE)
 			to_chat(src, "<b>Enabled gun restrictions.</b>")
 			message_admins("Admin [key_name_admin(usr)] has enabled NT gun restrictions.", 1)
 			log_admin("[key_name(src)] enabled NT gun restrictions.")
 		else
+			CONFIG_SET(flag/remove_gun_restrictions, TRUE)
 			to_chat(src, "<b>Disabled gun restrictions.</b>")
 			message_admins("Admin [key_name_admin(usr)] has disabled NT gun restrictions.", 1)
 			log_admin("[key_name(src)] disabled NT gun restrictions.")
-		config.remove_gun_restrictions = !config.remove_gun_restrictions
 
 /client/proc/toggle_synthetic_restrictions()
 	set name = "Toggle Synthetic Gun Use"
@@ -904,15 +878,16 @@ var/list/admin_verbs_mentor = list(
 
 	if(!holder)	return
 	if(config)
-		if(config.allow_synthetic_gun_use)
-			to_chat(src, "<b>Synthetic gun use allowed.</b>")
+		if(CONFIG_GET(flag/allow_synthetic_gun_use))
+			CONFIG_SET(flag/allow_synthetic_gun_use, FALSE)
+			to_chat(src, "<b>Synthetic gun use disallowed.</b>")
 			message_admins("Admin [key_name_admin(usr)] has disabled synthetic gun use.", 1)
 			log_admin("[key_name(src)] disabled synthetic gun use.")
 		else
-			to_chat(src, "<b>Synthetic gun use disallowed.</b>")
-			message_admins("Admin [key_name_admin(usr)] has synthetic gun use.", 1)
+			CONFIG_SET(flag/allow_synthetic_gun_use, TRUE)
+			to_chat(src, "<b>Synthetic gun use allowed.</b>")
+			message_admins("Admin [key_name_admin(usr)] has enabled synthetic gun use.", 1)
 			log_admin("[key_name(src)] allowed synthetic gun use.")
-		config.allow_synthetic_gun_use = !config.allow_synthetic_gun_use
 
 /client/proc/adjust_weapon_mult()
 	set name = "Adjust Weapon Multipliers"
@@ -924,10 +899,10 @@ var/list/admin_verbs_mentor = list(
 		var/acc = input("Select the new accuracy multiplier.","ACCURACY MULTIPLIER", 1) as num
 		var/dam = input("Select the new damage multiplier.","DAMAGE MULTIPLIER", 1) as num
 		if(acc && dam)
-			config.proj_base_accuracy_mult = acc * 0.01
-			config.proj_base_damage_mult = dam * 0.01
+			CONFIG_SET(number/combat_define/proj_base_accuracy_mult, (acc * 0.01))
+			CONFIG_SET(number/combat_define/proj_base_damage_mult, (dam * 0.01))
 			log_admin("Admin [key_name_admin(usr)] changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.", 1)
-			log_debug("<b>[key_name(src)]</b> changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.")
+			log_game("<b>[key_name(src)]</b> changed global accuracy to <b>[acc]</b> and global damage to <b>[dam]</b>.")
 
 /client/proc/set_away_timer()
 	set name = "Set Xeno Away Timer in View"
@@ -943,3 +918,7 @@ var/list/admin_verbs_mentor = list(
 
 	log_admin("Admin [key_name_admin(usr)] set the away_timer of nearby clientless Xenos to 300.", 1)
 	message_admins("<b>[key_name(src)]</b> set the away_timer of nearby clientless Xenos to 300.", 1)
+
+/client/proc/findStealthKey() //TEMPORARY
+	if(holder)
+		return holder.owner.key

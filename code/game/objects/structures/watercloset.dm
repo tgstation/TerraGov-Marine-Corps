@@ -185,7 +185,7 @@
 /obj/machinery/shower/update_icon()	//this is terribly unreadable, but basically it makes the shower mist up
 	overlays.Cut()					//once it's been on for a while, in addition to handling the water overlay.
 	if(mymist)
-		cdel(mymist)
+		qdel(mymist)
 		mymist = null
 
 	if(on)
@@ -205,7 +205,7 @@
 		mymist = new /obj/effect/mist(loc)
 		spawn(250)
 			if(src && !on)
-				cdel(mymist)
+				qdel(mymist)
 				mymist = null
 				ismist = 0
 
@@ -304,7 +304,7 @@
 		loc.clean_blood()
 		for(var/obj/effect/E in tile)
 			if(istype(E,/obj/effect/rune) || istype(E,/obj/effect/decal/cleanable) || istype(E,/obj/effect/overlay))
-				cdel(E)
+				qdel(E)
 
 /obj/machinery/shower/process()
 	if(!on) return
@@ -329,12 +329,11 @@
 		var/mob/living/carbon/C = M
 
 		if(watertemp == "freezing")
-			C.bodytemperature = max(80, C.bodytemperature - 80)
+			C.adjust_bodytemperature(C.bodytemperature - 80, 80)
 			to_chat(C, "<span class='warning'>The water is freezing!</span>")
 			return
 		if(watertemp == "boiling")
-			C.bodytemperature = min(500, C.bodytemperature + 35)
-			C.adjustFireLoss(5)
+			C.adjust_bodytemperature(C.bodytemperature + 35, 0, 500)
 			to_chat(C, "<span class='danger'>The water is searing!</span>")
 			return
 
@@ -365,10 +364,10 @@
 		return
 
 	if(busy)
-		to_chat(user, "\red Someone's already washing here.")
+		to_chat(user, "<span class='warning'>Someone's already washing here.</span>")
 		return
 
-	to_chat(usr, "\blue You start washing your hands.")
+	to_chat(usr, "<span class='notice'>You start washing your hands.</span>")
 
 	busy = 1
 	sleep(40)
@@ -380,18 +379,18 @@
 	if(ishuman(user))
 		user:update_inv_gloves()
 	for(var/mob/V in viewers(src, null))
-		V.show_message("\blue [user] washes their hands using \the [src].")
+		V.show_message("<span class='notice'> [user] washes their hands using \the [src].</span>")
 
 
 /obj/structure/sink/attackby(obj/item/O as obj, mob/living/user as mob)
 	if(busy)
-		to_chat(user, "\red Someone's already washing here.")
+		to_chat(user, "<span class='warning'>Someone's already washing here.</span>")
 		return
 
 	var/obj/item/reagent_container/RG = O
 	if (istype(RG) && RG.is_open_container())
 		RG.reagents.add_reagent("water", min(RG.volume - RG.reagents.total_volume, RG.amount_per_transfer_from_this))
-		user.visible_message("\blue [user] fills \the [RG] using \the [src].","\blue You fill \the [RG] using \the [src].")
+		user.visible_message("<span class='notice'> [user] fills \the [RG] using \the [src].</span>","<span class='notice'> You fill \the [RG] using \the [src].</span>")
 		return
 
 	else if (istype(O, /obj/item/weapon/baton))
@@ -418,7 +417,7 @@
 	var/obj/item/I = O
 	if(!I || !istype(I,/obj/item)) return
 
-	to_chat(usr, "\blue You start washing \the [I].")
+	to_chat(usr, "<span class='notice'>You start washing \the [I].</span>")
 
 	busy = 1
 	sleep(40)
@@ -426,12 +425,12 @@
 
 	if(user.loc != location) return				//User has moved
 	if(!I) return 								//Item's been destroyed while washing
-	if(user.get_active_hand() != I) return		//Person has switched hands or the item in their hands
+	if(user.get_active_held_item() != I) return		//Person has switched hands or the item in their hands
 
 	O.clean_blood()
 	user.visible_message( \
-		"\blue [user] washes \a [I] using \the [src].", \
-		"\blue You wash \a [I] using \the [src].")
+		"<span class='notice'> [user] washes \a [I] using \the [src].</span>", \
+		"<span class='notice'> You wash \a [I] using \the [src].</span>")
 
 
 /obj/structure/sink/kitchen

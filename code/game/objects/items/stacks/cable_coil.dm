@@ -15,13 +15,13 @@
 	throw_speed = 2
 	throw_range = 5
 	matter = list("metal" = 50, "glass" = 20)
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	item_state = "coil"
 	attack_verb = list("whipped", "lashed", "disciplined", "flogged")
 	stack_id = "cable coil"
 
 	suicide_act(mob/user)
-		viewers(user) << "<span class='warning'><b>[user] is strangling \himself with the [src.name]! It looks like \he's trying to commit suicide.</b></span>"
+		user.visible_message("<span class='warning'><b>[user] is strangling \himself with the [src.name]! It looks like \he's trying to commit suicide.</b></span>")
 		return(OXYLOSS)
 
 
@@ -77,7 +77,7 @@
 		to_chat(usr, "<span class='notice'>You wind some cable together to make some restraints.</span>")
 		src.use(15)
 	else
-		to_chat(usr, "<span class='notice'>\blue You cannot do that.</span>")
+		to_chat(usr, "<span class='notice'><span class='notice'> You cannot do that.</span>")
 	..()
 
 /obj/item/stack/cable_coil/attackby(obj/item/W, mob/user)
@@ -109,7 +109,7 @@
 	..()
 
 /obj/item/stack/cable_coil/attack_hand(mob/user as mob)
-	if (user.get_inactive_hand() == src)
+	if (user.get_inactive_held_item() == src)
 		var/obj/item/stack/cable_coil/F = new /obj/item/stack/cable_coil(user, 1, color)
 		F.copy_evidences(src)
 		user.put_in_hands(F)
@@ -186,7 +186,7 @@
 		if (C.shock(user, 50))
 			if (prob(50)) //fail
 				new/obj/item/stack/cable_coil(C.loc, 1, C.color)
-				cdel(C)
+				qdel(C)
 		//src.laying = 1
 		//last = C
 
@@ -246,7 +246,7 @@
 			if (NC.shock(user, 50))
 				if (prob(50)) //fail
 					new/obj/item/stack/cable_coil(NC.loc, 1, NC.color)
-					cdel(NC)
+					qdel(NC)
 
 			return
 	else if(C.d1 == 0)		// exisiting cable doesn't point at our position, so see if it's a stub
@@ -285,7 +285,7 @@
 		if (C.shock(user, 50))
 			if (prob(50)) //fail
 				new/obj/item/stack/cable_coil(C.loc, 2, C.color)
-				cdel(C)
+				qdel(C)
 
 
 
@@ -336,12 +336,12 @@
 			var/mob/living/carbon/human/H = M
 			if(H.species.flags & IS_SYNTHETIC)
 				if(M == user)
-					to_chat(user, "\red You can't repair damage to your own body - it's against OH&S.")
+					to_chat(user, "<span class='warning'>You can't repair damage to your own body - it's against OH&S.</span>")
 					return
 
 		if(S.burn_dam > 0 && use(1))
 			S.heal_damage(0,15,0,1)
-			user.visible_message("\red \The [user] repairs some burn damage on \the [M]'s [S.display_name] with \the [src].")
+			user.visible_message("<span class='warning'> \The [user] repairs some burn damage on \the [M]'s [S.display_name] with \the [src].</span>")
 			return
 		else
 			to_chat(user, "Nothing to fix!")

@@ -86,7 +86,7 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/proc/remove_ai_verbs()
 	src.verbs -= ai_verbs_default
 
-/mob/living/silicon/ai/New(loc, var/datum/ai_laws/L, var/obj/item/device/mmi/B, var/safety = 0)
+/mob/living/silicon/ai/Initialize(loc, var/datum/ai_laws/L, var/obj/item/device/mmi/B, var/safety = 0)
 	announcement = new()
 	announcement.title = "A.I. Announcement"
 	announcement.announcement_type = "A.I. Announcement"
@@ -138,7 +138,7 @@ var/list/ai_verbs_default = list(
 	if(!safety)//Only used by AIize() to successfully spawn an AI.
 		if (!B)//If there is no player/brain inside.
 			new/obj/structure/AIcore/deactivated(loc)//New empty terminal.
-			cdel(src)//Delete AI.
+			qdel(src)//Delete AI.
 			return
 		else
 			if (B.brainmob.mind)
@@ -158,10 +158,9 @@ var/list/ai_verbs_default = list(
 		new /obj/machinery/ai_powersupply(src)
 
 	ai_list += src
-	..()
-	return
+	return ..()
 
-/mob/living/silicon/ai/Dispose()
+/mob/living/silicon/ai/Destroy()
 	ai_list -= src
 	. = ..()
 
@@ -193,7 +192,7 @@ var/list/ai_verbs_default = list(
 /obj/machinery/ai_powersupply/New(var/mob/living/silicon/ai/ai=null)
 	powered_ai = ai
 	if(isnull(powered_ai))
-		cdel(src)
+		qdel(src)
 		return
 	loc = powered_ai.loc
 	use_power(1) // Just incase we need to wake up the power system.
@@ -202,7 +201,7 @@ var/list/ai_verbs_default = list(
 
 /obj/machinery/ai_powersupply/process()
 	if(!powered_ai || powered_ai.stat & DEAD)
-		cdel(src)
+		qdel(src)
 		return
 	if(!powered_ai.anchored)
 		loc = powered_ai.loc
@@ -367,7 +366,7 @@ var/list/ai_verbs_default = list(
 		if(target && (!istype(target, /mob/living/carbon/human) || html_decode(href_list["trackname"]) == target:get_face_name()))
 			ai_actual_track(target)
 		else
-			to_chat(src, "\red System error. Cannot locate [html_decode(href_list["trackname"])].")
+			to_chat(src, "<span class='warning'>System error. Cannot locate [html_decode(href_list["trackname"])].</span>")
 		return
 
 	return
@@ -378,8 +377,7 @@ var/list/ai_verbs_default = list(
 	else
 		if(M.attack_sound)
 			playsound(loc, M.attack_sound, 25, 1)
-		for(var/mob/O in viewers(src, null))
-			O.show_message("\red <B>[M]</B> [M.attacktext] [src]!", 1)
+		visible_message("<span class='danger'>[M] [M.attacktext] [src]!</span>")
 		log_combat(M, src, "attacked")
 		var/damage = rand(M.melee_damage_lower, M.melee_damage_upper)
 		adjustBruteLoss(damage)
@@ -478,7 +476,7 @@ var/list/ai_verbs_default = list(
 			if(network in C.network)
 				U.eyeobj.setLoc(get_turf(C))
 				break
-	to_chat(src, "\blue Switched to [network] camera network.")
+	to_chat(src, "<span class='notice'>Switched to [network] camera network.</span>")
 //End of code by Mord_Sith
 
 /mob/living/silicon/ai/proc/ai_statuschange()
@@ -525,7 +523,7 @@ var/list/ai_verbs_default = list(
 			input = input("Select a crew member:") as null|anything in personnel_list
 			var/icon/character_icon = personnel_list[input]
 			if(character_icon)
-				cdel(holo_icon)//Clear old icon so we're not storing it in memory.
+				qdel(holo_icon)//Clear old icon so we're not storing it in memory.
 				holo_icon = getHologramIcon(icon(character_icon))
 		else
 			alert("No suitable records found. Aborting.")
@@ -538,7 +536,7 @@ var/list/ai_verbs_default = list(
 		)
 		input = input("Please select a hologram:") as null|anything in icon_list
 		if(input)
-			cdel(holo_icon)
+			qdel(holo_icon)
 			holo_icon = null
 			switch(input)
 				if("default")
@@ -555,7 +553,7 @@ var/list/ai_verbs_default = list(
 
 	var/obj/machinery/power/apc/apc = src.loc
 	if(!istype(apc))
-		to_chat(src, "\blue You are already in your Main Core.")
+		to_chat(src, "<span class='notice'>You are already in your Main Core.</span>")
 		return
 	apc.malfvacate()*/
 
@@ -607,19 +605,19 @@ var/list/ai_verbs_default = list(
 /mob/living/silicon/ai/attackby(obj/item/W as obj, mob/user as mob)
 	if(istype(W, /obj/item/tool/wrench))
 		if(anchored)
-			user.visible_message("\blue \The [user] starts to unbolt \the [src] from the plating...")
+			user.visible_message("<span class='notice'> \The [user] starts to unbolt \the [src] from the plating...</span>")
 			if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-				user.visible_message("\blue \The [user] decides not to unbolt \the [src].")
+				user.visible_message("<span class='notice'> \The [user] decides not to unbolt \the [src].</span>")
 				return
-			user.visible_message("\blue \The [user] finishes unfastening \the [src]!")
+			user.visible_message("<span class='notice'> \The [user] finishes unfastening \the [src]!</span>")
 			anchored = 0
 			return
 		else
-			user.visible_message("\blue \The [user] starts to bolt \the [src] to the plating...")
+			user.visible_message("<span class='notice'> \The [user] starts to bolt \the [src] to the plating...</span>")
 			if(!do_after(user, 40, TRUE, 5, BUSY_ICON_BUILD))
-				user.visible_message("\blue \The [user] decides not to bolt \the [src].")
+				user.visible_message("<span class='notice'> \The [user] decides not to bolt \the [src].</span>")
 				return
-			user.visible_message("\blue \The [user] finishes fastening down \the [src]!")
+			user.visible_message("<span class='notice'> \The [user] finishes fastening down \the [src]!</span>")
 			anchored = 1
 			return
 	else
@@ -645,14 +643,14 @@ var/list/ai_verbs_default = list(
 
 /mob/living/silicon/ai/proc/check_unable(var/flags = 0)
 	if(stat == DEAD)
-		to_chat(usr, "\red You are dead!")
+		to_chat(usr, "<span class='warning'>You are dead!</span>")
 		return 1
 
 	if((flags & AI_CHECK_WIRELESS) && src.control_disabled)
-		to_chat(usr, "\red Wireless control is disabled!")
+		to_chat(usr, "<span class='warning'>Wireless control is disabled!</span>")
 		return 1
 	if((flags & AI_CHECK_RADIO) && src.aiRadio.disabledAi)
-		to_chat(src, "\red System Error - Transceiver Disabled!")
+		to_chat(src, "<span class='warning'>System Error - Transceiver Disabled!</span>")
 		return 1
 	return 0
 

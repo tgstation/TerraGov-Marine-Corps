@@ -1,51 +1,52 @@
 /*
 How this works:
-jobs.dm contains the job defines that work on that level only. Things like equipping a character, creating IDs, and so forth, are handled there.
-Role Authority handles the creation and assignment of roles. Roles can be things like regular marines, PMC response teams, aliens, and so forth.
-Role Authority creates two master lists on New(), one for every role defined in the game, by path, and one only for roles that should appear
-at round start, by name. The title of a role is important and is a unique identifier. Two roles can share the same title, but it's really
+Role Authority handles the creation and assignment of roles. What is a role? Currently all roles are handled through job datums. If a gamemode requires
+non-human roles to be spawned, it implements a separate logic that handles minds differently so they are not affected by this.
+Role Authority creates some master lists on New() depending on what we want to use them for.
+The title of a role is important and is a unique identifier. Two roles can share the same title, but it's really
 the same role, just with different equipment, spawn conditions, or something along those lines. The title is there to tell the job ban system
 which roles to ban, and it does so through the roles_by_name master list.
 
 When a round starts, the roles are assigned based on the round, from another list. This is done to make sure that both the master list of roles
 by name can be kept for things like job bans, while the round may add or remove roles as needed.If you need to equip a mob for a job, always
-use roles_by_path as it is an accurate account of every specific role path (with specific equipment).
+use roles_by_equipment or roles_by_equipment_paths as it is an accurate account of every specific role path (with specific equipment).
 */
 var/global/datum/authority/branch/role/RoleAuthority
 
+
 #define GET_RANDOM_JOB 0
-#define BE_ASSISTANT 1
+#define BE_MARINE 1
 #define RETURN_TO_LOBBY 2
+
 
 /datum/authority/branch/role
 	name = "Role Authority"
 
-	var/list/roles_by_path //Master list generated when role aithority is created, listing every role by path, including variable roles. Great for manually equipping with.
-	var/list/roles_by_name //Master list generated when role authority is created, listing every default role by name, including those that may not be regularly selected.
-	var/list/roles_by_name_paths
-	var/list/roles_by_equipment
-	var/list/roles_by_equipment_paths
-	var/list/roles_for_mode //Derived list of roles only for the game mode, generated when the round starts.
-	var/list/roles_whitelist //Associated list of lists, by ckey. Checks to see if a person is whitelisted for a specific role.
+	var/list/roles_by_path = list() //ALL roles by their path.
+	var/list/roles_by_name = list() //ALL roles by their name.
+	var/list/roles_by_name_paths = list() //Same index as above, useful for easily picking from it.
+	var/list/roles_by_equipment = list() //Only those roles that contain equipment. Defined by the job datum `equipment` variable.
+	var/list/roles_by_equipment_paths = list() //Same index as above, useful for easily picking from it.
+	var/list/roles_for_mode = list() //Derived list of roles only for the game mode, generated when the round starts.
+	var/list/roles_whitelist = list() //Associated list of lists, by ckey. Checks to see if a person is whitelisted for a specific role.
 
-	var/list/unassigned_players
-	var/list/squads
+	var/list/unassigned_players = list()
+	var/list/squads = list() //The squads themselves.
+	var/list/squads_names = list() //Same index as above, useful for searching and picking.
 
- //#define FACTION_TO_JOIN "Marines"
 
-	//Whenever the controller is created, we want to set up the basic role lists.
 /datum/authority/branch/role/New()
 	var/list/roles_all = subtypesof(/datum/job)
 	var/list/squads_all = subtypesof(/datum/squad)
 
-	if(!roles_all.len)
-		to_chat(world, "<span class='debug'>Error setting up jobs, no job datums found.</span>")
-		log_debug("Error setting up jobs, no job datums found.")
-		return //No real reason this should be length zero, so we'll just return instead.
+	if(!length(roles_all))
+		log_game("ERROR: No job datums found.")
+		message_admins("ERROR: No job datums found.")
+		return
 
-	if(!squads_all.len)
-		to_chat(world, "<span class='debug'>Error setting up squads, no squad datums found.</span>")
-		log_debug("Error setting up squads, no squad datums found.")
+	if(!length(squads_all))
+		log_game("ERROR: No squad datums found.")
+		message_admins("ERROR: No squad datums found.")
 		return
 
 	roles_by_path 	         = new
@@ -56,6 +57,7 @@ var/global/datum/authority/branch/role/RoleAuthority
 	roles_for_mode           = new
 	roles_whitelist          = new
 	squads 			         = new
+	squads_names             = new
 
 	var/list/L = new
 	var/datum/job/J
@@ -68,6 +70,11 @@ var/global/datum/authority/branch/role/RoleAuthority
 			continue
 
 		roles_by_path[J.type] = J
+
+
+		if(J.flags_startup_parameters & ROLE_ADD_TO_MODE)
+			roles_for_mode[J.title] = J
+
 		if(J.flags_startup_parameters & ROLE_ADD_TO_DEFAULT)
 			if(J.title)
 				roles_by_name[J.title] = J
@@ -75,25 +82,29 @@ var/global/datum/authority/branch/role/RoleAuthority
 			if(J.equipment)
 				roles_by_equipment[J.title] = J
 				roles_by_equipment_paths[J.type] = J
-		else
-			continue
-		if(J.flags_startup_parameters & ROLE_ADD_TO_DEFAULT)
-			roles_for_mode[J.title] = J
 
-	//	if(J.faction == FACTION_TO_JOIN)  //TODO Initialize non-faction jobs? //TODO Do we really need this?
 
-	//TODO Come up with some dynamic method of doing this.
-	for(var/i in ROLES_REGULAR_ALL) //We're going to re-arrange the list for mode to look better, starting with the officers.
+/*
+Unless a gamemode re-defines the jobs for that specific mode, this assures the preference menu will only contain the "default" roles, also
+sorts them out by their department.
+*/
+
+	for(var/i in ROLES_REGULAR_ALL)
 		J = roles_for_mode[i]
-		if(J)
-			L[J.title] = J
+		if(!J)
+			continue
+		L[J.title] = J
+
 	roles_for_mode = L
+
 
 	for(var/i in squads_all) //Setting up our squads.
 		S = new i()
 		squads += S
+		squads_names[S.name] = S
 
 	load_whitelist()
+
 
 /datum/authority/branch/role/proc/load_whitelist(filename = "config/role_whitelist.txt")
 	var/L[] = file2list(filename)
@@ -105,13 +116,17 @@ var/global/datum/authority/branch/role/RoleAuthority
 	var/ckey
 	var/role
 	for(i in L)
-		if(!i)	continue
+		if(!i)
+			continue
 		i = trim(i)
-		if(!length(i)) continue
-		else if (copytext(i, 1, 2) == "#") continue
+		if(!length(i))
+			continue
+		else if(copytext(i, 1, 2) == "#")
+			continue
 
 		P = text2list(i, "+")
-		if(!P.len) continue
+		if(!P.len)
+			continue
 		ckey = ckey(P[1]) //Converting their key to canonical form. ckey() does this by stripping all spaces, underscores and converting to lower case.
 
 		role = NOFLAGS
@@ -131,35 +146,26 @@ var/global/datum/authority/branch/role/RoleAuthority
 
 	roles_whitelist = W
 
-//#undef FACTION_TO_JOIN
-
- /*
- Consolidated into a better collection of procs. It was also calling too many loops, and I tried to fix that as well.
- I hope it's easier to tell what the heck this proc is even doing, unlike previously.
- */
-
 
 /datum/authority/branch/role/proc/setup_candidates_and_roles()
-	//===============================================================\\
-	//PART I: Initializing starting lists and such.
-
-	if(!roles_for_mode || !roles_for_mode.len)
-		return //Can't start if this doesn't exist.
+	if(!roles_for_mode || !length(roles_for_mode))
+		return
 
 	var/datum/job/J
-	//var/roles_special[]	= new   //TODO Make this a reality.
 	var/datum/game_mode/G = ticker.mode
+
+	//Each gamemode can define what to do with their roles if anything special is necessary.
 	switch(G.role_instruction)
-		if(1) //Replacing the entire list.
+		if(ROLE_MODE_REPLACE)
 			roles_for_mode = new
 			for(var/i in G.roles_for_mode)
 				J = roles_by_path[i]
 				roles_for_mode[J.title] = J
-		if(2) //Adding a role, or multiple roles, to the list.
+		if(ROLE_MODE_ADD)
 			for(var/i in G.roles_for_mode)
 				J = roles_by_path[i]
 				roles_for_mode[J.title] = J
-		if(3) //Subtracting from the list.
+		if(ROLE_MODE_SUBTRACT)
 			for(var/i in G.roles_for_mode)
 				J = roles_by_path[i]
 				roles_for_mode -= J.title
@@ -170,72 +176,25 @@ var/global/datum/authority/branch/role/RoleAuthority
 	if(length(roles))
 		roles = shuffle(roles, 1) //Shuffle our job lists for when we begin the loop.
 
-	//In the future, any regular role that has infinite spawn slots should be removed as well.
 
-	/*===============================================================*/
 
-	//===============================================================\\
-	//PART II: Setting up our player variables and lists, to see if we have anyone to destribute.
-
+	//Setting up our player variables and lists, to see if we have anyone to distribute.
 	unassigned_players = new
 	var/mob/new_player/M
 
 	for(var/i in player_list) //Get all players who are ready.
 		M = i
 		if(istype(M) && M.ready && M.mind && !M.mind.assigned_role)
-			//TODO, check if mobs are already spawned as human before this triggers.
 			unassigned_players += M
 
-	if(!unassigned_players.len) //If we don't have any players, the round can't start.
+	if(!length(unassigned_players)) //If we don't have any players, the round can't start.
 		unassigned_players = null
 		return
 
 	unassigned_players = shuffle(unassigned_players, 1) //Shuffle the players.
 
-	/*===============================================================*/
 
-/*
-	//===============================================================\\
-	Gathering feedback about the roles chosen.
-
-	var/level1 = 0 //high
-	var/level2 = 0 //medium
-	var/level3 = 0 //low
-	var/level4 = 0 //never
-	var/level5 = 0 //banned
-	var/level6 = 0 //account too young
-	var/feedback
-	var/l = 0
-
-	for(i in occupations_by_name)
-		J = occupations_by_name[i]
-		feedback = "|[J.title]|"
-
-		for(m in unassigned_players)
-			M = m
-			if(jobban_isbanned(M, J.title))
-				level5++
-				continue
-			if(!J.player_old_enough(M.client))
-				level6++
-				continue
-			if(player.client.prefs.GetJobDepartment(job, 1) & J.flag) level1++
-			else if(player.client.prefs.GetJobDepartment(job, 2) & J.flag) level2++
-			else if(player.client.prefs.GetJobDepartment(job, 3) & J.flag) level3++
-			else level4++ //not selected
-
-		feedback += "HIGH=[level1]|MEDIUM=[level2]|LOW=[level3]|NEVER=[level4]|BANNED=[level5]|YOUNG=[level6]|-"
-		feedback_add_details("job_preferences",feedback)
-
-
-*/
-
-	//===============================================================\\
-	//PART III: Here we're doing the main body of the loop and assigning everyone.
-
-	var/l = 0 //levels
-
-	while(++l < 4) //Three macro loops, from high to low.
+	for(var/l = 1 to 3) //Here we're doing the main body of the loop and assigning everyone. This is done on three macro levels.
 		roles = assign_initial_roles(l, roles)
 
 	for(var/i in unassigned_players)
@@ -243,113 +202,120 @@ var/global/datum/authority/branch/role/RoleAuthority
 		switch(M.client.prefs.alternate_option)
 			if(GET_RANDOM_JOB)
 				roles = assign_random_role(M, roles) //We want to keep the list between assignments.
-			if(BE_ASSISTANT)
-				assign_role(M, roles_for_mode["Squad Marine"]) //Should always be available, in all game modes, as a candidate. Even if it may not be a marine.
+			if(BE_MARINE)
+				assign_role(M, roles_by_name["Squad Marine"])
 			if(RETURN_TO_LOBBY)
 				M.ready = 0
 		unassigned_players -= M
-	if(unassigned_players.len)
-		to_chat(world, "<span class='debug'>Error setting up jobs, unassigned_players still has players left. Length of: [unassigned_players.len].</span>")
-		log_debug("Error setting up jobs, unassigned_players still has players left. Length of: [unassigned_players.len].")
+
+	if(length(unassigned_players))
+		log_game("ERROR: unassigned_players still has players left. Length: [length(unassigned_players)].")
+		message_admins("ERROR: unassigned_players still has players left. Length: [length(unassigned_players)].")
 
 	unassigned_players = null
 
-	/*===============================================================*/
+	for(var/datum/squad/S in squads)
+		S.num_engineers = initial(S.num_engineers)
+		S.num_medics = initial(S.num_medics)
+		S.num_smartgun = initial(S.num_smartgun)
+		S.num_specialists = initial(S.num_specialists)
+		S.num_leaders = initial(S.num_leaders)
 
-/*
-It is possible that after looping through everyone, no one is assigned a command position
-despite having it selected. This is going to be rare, but it can still happen.
-After much thought, I believe this is intended behavior, because even if a player
-wants to play a command position, but their character doesn't fit the guidelines, more suited
-candidates should have a better shot at it first. Should that fail, they can still late join.
-More or less the point of this system, and it will safeguard new players from getting command
-roles willy nilly.
-
-^ Preserving this comment so code historians can laugh at it.
-*/
 
 /datum/authority/branch/role/proc/assign_initial_roles(l, list/roles_to_iterate)
 	. = roles_to_iterate
-	if(roles_to_iterate.len && unassigned_players.len)
+
+	if(length(roles_to_iterate) && length(unassigned_players))
 		var/j
 		var/m
 		var/datum/job/J
 		var/mob/new_player/M
-		//var/P
 
 		for(j in roles_to_iterate)
 			J = roles_to_iterate[j]
-			if(!istype(J)) //Shouldn't happen, but who knows.
-				to_chat(world, "<span class='debug'>Error setting up jobs, no job datum set for: [j].</span>")
-				log_debug("Error setting up jobs, no job datum set for: [j].")
+			if(!istype(J))
+				log_game("ERROR: No job datum found for [J] while assigning initial roles.")
+				message_admins("ERROR: No job datum found for [J] while assigning initial roles.")
 				continue
 
 			for(m in unassigned_players)
 				M = m
-				if(!(M.client.prefs.GetJobDepartment(J, l) & J.flag)) 
-					continue //If they don't want the job. //TODO Change the name of the prefs proc?
+				if(!(M.client.prefs.GetJobDepartment(J, l) & J.flag)) //Check if they want this job.
+					continue
+
 				if(assign_role(M, J))
 					unassigned_players -= M
 					if(J.current_positions >= J.spawn_positions)
 						roles_to_iterate -= j //Remove the position, since we no longer need it.
-						break //Maximum position is reached?
-			if(!unassigned_players.len) 
-				break //No players left to assign? Break.
+						break
+
+			if(!length(unassigned_players))
+				break
 
 /datum/authority/branch/role/proc/assign_random_role(mob/new_player/M, list/roles_to_iterate) //In case we want to pass on a list.
 	. = roles_to_iterate
 	if(roles_to_iterate.len)
 		var/datum/job/J
-		var/i = 0
 		var/j
-		while(++i < 3) //Get two passes.
-			if(!roles_to_iterate.len) 
-				break
-			j = pick(roles_to_iterate)
-			J = roles_to_iterate[j]
 
-			if(!istype(J))
-				to_chat(world, "<span class='debug'>Error setting up jobs, no job datum set for: [j].</span>")
-				log_debug("Error setting up jobs, no job datum set for: [j].")
-				continue
-
-			if(assign_role(M, J)) //Check to see if they can actually get it.
-				if(J.current_positions >= J.spawn_positions) 
-					roles_to_iterate -= j
+		if(!length(roles_to_iterate)) //No more free roles, make them a marine.
+			if(assign_role(M, roles_by_name["Squad Marine"]))
 				return roles_to_iterate
 
-	//If they fail the two passes, or no regular roles are available, they become a marine regardless.
-	assign_role(M,roles_for_mode["Squad Marine"])
+		j = pick(roles_to_iterate)
+		J = roles_to_iterate[j]
 
-/datum/authority/branch/role/proc/assign_role(mob/new_player/M, datum/job/J, latejoin=0)
-	if(ismob(M) && M.mind && istype(J))
-		if(check_role_entry(M, J, latejoin))
-			M.mind.assigned_role 		= J.title
-			M.mind.set_cm_skills(J.skills_type)
-			M.mind.special_role 		= J.special_role
-			M.mind.role_alt_title 		= J.get_alternative_title(M)
-			M.mind.role_comm_title 		= J.comm_title
-			J.current_positions++
-			//to_chat(world, "[J.title]: [J.current_positions] current positions filled.")
-			return TRUE
+		if(!istype(J))
+			log_game("ERROR: No job datum found for [J] while assigning random role.")
+			message_admins("ERROR: No job datum found for [J] while assigning random role.")
+			if(assign_role(M, roles_by_name["Squad Marine"]))
+				return roles_to_iterate
 
-/datum/authority/branch/role/proc/check_role_entry(mob/new_player/M, datum/job/J, latejoin=0)
-	if(jobban_isbanned(M, J.title)) 
-		return //TODO standardize this
-	if(!J.player_old_enough(M.client)) 
-		return
-	if(J.flags_startup_parameters & ROLE_WHITELISTED && !(roles_whitelist[M.ckey] & J.flags_whitelist)) 
-		return
-	if(J.total_positions != -1 && J.get_total_positions(latejoin) <= J.current_positions) 
-		return
+		if(assign_role(M, J)) //Check to see if they can actually get it.
+			if(J.current_positions >= J.spawn_positions)
+				roles_to_iterate -= j
+			return roles_to_iterate
+		else if(assign_role(M, roles_by_name["Squad Marine"]))
+			return roles_to_iterate
+		else
+			log_game("ERROR: Failed to assign random role to [M].")
+			message_admins("ERROR: Failed to assign random role to [M].")
+			return roles_to_iterate
+	
+
+
+/datum/authority/branch/role/proc/assign_role(mob/new_player/M, datum/job/J, latejoin = 0)
+	if(!ismob(M) || !M.mind || !istype(J))
+		return FALSE
+
+	if(check_role_entry(M, J, latejoin))
+		M.set_everything(M, J.title)
+		if(J.flags_startup_parameters & ROLE_ADD_TO_SQUAD) //Handle their squad preferences.
+			if(!handle_squad(M))
+				return FALSE
+		J.current_positions++
+		return TRUE
+
+
+/datum/authority/branch/role/proc/check_role_entry(mob/new_player/M, datum/job/J, latejoin = 0)
+	if(jobban_isbanned(M, J.title))
+		return FALSE
+	if(!J.player_old_enough(M.client))
+		return FALSE
+	if(J.flags_startup_parameters & ROLE_WHITELISTED && !(roles_whitelist[M.ckey] & J.flags_whitelist))
+		return FALSE
+	if(J.total_positions != -1 && J.get_total_positions(latejoin) <= J.current_positions)
+		return FALSE
 	return TRUE
 
-/datum/authority/branch/role/proc/free_role(datum/job/J, latejoin = 1) //Want to make sure it's a job, and nothing like a MODE or special role.
+
+/datum/authority/branch/role/proc/free_role(datum/job/J, latejoin = 1)
 	if(istype(J) && J.total_positions != -1 && J.get_total_positions(latejoin) <= J.current_positions)
 		J.current_positions--
 		return TRUE
 
-//I'm not entirely sure why this proc exists. //TODO Figure this out.
+
+//This proc exists if a start of the round fails so everything can be reset before new rolls are made.
 /datum/authority/branch/role/proc/reset_roles()
 	var/mob/new_player/M
 	var/i
@@ -358,71 +324,39 @@ roles willy nilly.
 		if(istype(M) && M.mind)
 			M.mind.assigned_role = null
 			M.mind.special_role = null
-	//setup_roles() //TODO Why is this here?
 
-
-
-/*
-	proc/FillAIPosition()
-		var/ai_selected = 0
-		var/datum/job/job = GetJob("AI")
-		if(!job)	return 0
-		if((job.title == "AI") && (config) && (!config.allow_ai))	return 0
-
-		for(var/i = job.total_positions, i > 0, i--)
-			for(var/level = 1 to 3)
-				var/list/candidates = list()
-				if(ticker.mode.name == "AI malfunction")//Make sure they want to malf if its malf
-//					candidates = FindOccupationCandidates(job, level, BE_MALF)
-				else
-					candidates = FindOccupationCandidates(job, level)
-				if(candidates.len)
-					var/mob/new_player/candidate = pick(candidates)
-					if(AssignRole(candidate, "AI"))
-						ai_selected++
-						break
-			//Malf NEEDS an AI so force one if we didn't get a player who wanted it
-			if((ticker.mode.name == "AI malfunction")&&(!ai_selected))
-				unassigned_players = shuffle(unassigned_players)
-				for(var/mob/new_player/player in unassigned_players)
-					if(jobban_isbanned(player, "AI"))	continue
-					if(AssignRole(player, "AI"))
-						ai_selected++
-						break
-			if(ai_selected)	return 1
-			return 0
-*/
 
 /datum/authority/branch/role/proc/equip_role(mob/living/M, datum/job/J, turf/late_join)
-	if(!istype(M) || !istype(J)) 
+	if(!istype(M) || !istype(J))
 		return
 
-	J.generate_equipment(M) //Equip them with the base job gear.
+	//Sets their equipment to the equivalent job datum.
+	J.generate_equipment(M)
 
-	//If they didn't join late, we want to move them to the start position for their role.
-	if(late_join) 
-		M.loc = late_join //If they late joined, we passed on the location from the parent proc.
-	else //If they didn't, we need to find a suitable spawn location for them.
-		var/i
+	if(late_join) //If they late joined, we put them in cryo.
+		M.loc = late_join
+	else
 		var/obj/effect/landmark/L //To iterate.
 		var/obj/effect/landmark/S //Starting mark.
-		for(i in landmarks_list)
+		for(var/i in landmarks_list) // This whole thing is fucking awful
+			if(!i)
+				stack_trace("null landmark in roleauthority landmarks_list iterator.")
+				continue
 			L = i
 			if(L.name == J.title && !locate(/mob/living) in L.loc)
 				S = L
 				break
-		if(!S) 
-			S = locate("start*[J.title]") //Old type spawn.
-		if(istype(S) && istype(S.loc, /turf)) 
+		if(!S)
+			S = locate("start*[J.title]") //Converts old spawns into new ones.
+		if(istype(S) && istype(S.loc, /turf))
 			M.loc = S.loc
 		else
-			to_chat(world, "<span class='debug'>Error setting up character. No spawn location could be found.</span>")
-			log_debug("Error setting up character. No spawn location could be found.")
+			log_game("ERROR: No spawn location found for player [M], job [J].")
+			message_admins("ERROR: No spawn location found for player [M], job [J].")
 
 	if(ishuman(M))
-		var/mob/living/carbon/H = M
-		J.equip_preference_gear(H) //After we move them, we want to equip anything else they should have.
-		H.job = J.title //TODO Why is this a mob variable at all?
+		var/mob/living/carbon/human/H = M
+		J.equip_preference_gear(H) //After we move them, we want to equip their special gear.
 
 		//Give them an account in the database.
 		var/datum/money_account/A = create_account(H.real_name, rand(50,500)*10, null)
@@ -432,22 +366,17 @@ roles willy nilly.
 			remembered_info += "<b>Your account pin is:</b> [A.remote_access_pin]<br>"
 			remembered_info += "<b>Your account funds are:</b> $[A.money]<br>"
 
-			if(A.transaction_log.len)
+			if(length(A.transaction_log))
 				var/datum/transaction/T = A.transaction_log[1]
 				remembered_info += "<b>Your account was created:</b> [T.time], [T.date] at [T.source_terminal]<br>"
 			H.mind.store_memory(remembered_info)
 			H.mind.initial_account = A
 
-
-		/*var/alt_title
-		if(H.mind)
-			H.mind.assigned_role = J.title
-			alt_title = H.mind.role_alt_title*/ //TODO What is this for again?
-
 		J.equip_identification(H, J)
 
-		if(J.flags_startup_parameters & ROLE_ADD_TO_SQUAD) //Are we a muhreen? Randomize our squad. This should go AFTER IDs. //TODO Robust this later.
-			randomize_squad(H)
+		if(J.flags_startup_parameters & ROLE_ADD_TO_SQUAD) //Add them to their chosen squad.
+			var/datum/squad/S = H.mind.assigned_squad
+			S.put_marine_in_squad(H)
 
 		J.announce_entry_message(H, A) //Tell them their spawn info.
 		J.generate_entry_conditions(H) //Do any other thing that relates to their spawn.
@@ -459,160 +388,145 @@ roles willy nilly.
 
 	return TRUE
 
-//Find which squad has the least population. If all 4 squads are equal it should just use a random one
-/datum/authority/branch/role/proc/get_lowest_squad(mob/living/carbon/human/H)
-	if(!squads.len) //Something went wrong, our squads aren't set up.
-		to_chat(world, "Warning, something messed up in get_lowest_squad(). No squads set up!")
-		return null
 
+/datum/authority/branch/role/proc/handle_squad(var/mob/new_player/M)
+	if(!M?.mind)
+		return FALSE
 
-	//we make a list of squad that is randomized so alpha isn't always lowest squad.
-	var/list/squads_copy = squads.Copy()
-	var/list/mixed_squads = list()
-	for(var/i= 1 to squads_copy.len)
-		mixed_squads += pick_n_take(squads_copy)
+	var/datum/squad/R = squads_names[pick(squads_names)]
+	var/datum/squad/P
+	var/strict = FALSE
 
-	var/datum/squad/lowest = pick(squads)
+	if(M.client?.prefs?.preferred_squad && M.client.prefs.preferred_squad != "None")
+		P = squads_names[M.client.prefs.preferred_squad]
 
-	var/datum/pref_squad_name
-	if(H?.client?.prefs.preferred_squad && H.client.prefs.preferred_squad != "None")
-		pref_squad_name = H.client.prefs.preferred_squad
+	if(M.client?.prefs?.be_special & BE_SQUAD_STRICT)
+		strict = TRUE
 
-	for(var/datum/squad/L in squads)
-		if(L.usable)
-			if(pref_squad_name && L.name == pref_squad_name)
-				lowest = L
-				break
+	switch(M.mind.assigned_role)
+		if("Squad Marine") //Always put squad marines in their preferred squad if possible.
+			if(P)
+				M.mind.assigned_squad = P
+			else
+				M.mind.assigned_squad = R
+			return TRUE
 
+		if("Squad Engineer")
+			for(var/datum/squad/S in shuffle(squads))
+				if(S.num_engineers >= S.max_engineers)
+					continue
 
-	if(!lowest)
-		to_chat(world, "Warning! Bug in get_random_squad()!")
-		return null
+				if(P && P == S)
+					M.mind.assigned_squad = P
+					S.num_engineers++
+					return TRUE
 
-	var/lowest_count = lowest.count
-	var/current_count = 0
+			if(strict)
+				return FALSE
+					
+			for(var/datum/squad/S in shuffle(squads))
+				if(S.num_engineers >= S.max_engineers)
+					continue
 
-	if(!pref_squad_name)
-		//Loop through squads.
-		for(var/datum/squad/S in mixed_squads)
-			if(!S)
-				to_chat(world, "Warning: Null squad in get_lowest_squad. Call a coder!")
-				break //null squad somehow, let's just abort
-			current_count = S.count //Grab our current squad's #
-			if(current_count >= (lowest_count - 2)) //Current squad count is not much lower than the chosen one. Skip it.
-				continue
-			lowest_count = current_count //We found a winner! This squad is much lower than our default. Make it the new default.
-			lowest = S //'Select' this squad.
+				else
+					M.mind.assigned_squad = S
+					S.num_engineers++
+					return TRUE
 
-	return lowest //Return whichever squad won the competition.
+			return FALSE
 
-//This proc is a bit of a misnomer, since there's no actual randomization going on.
-/datum/authority/branch/role/proc/randomize_squad(var/mob/living/carbon/human/H)
-	if(!H?.mind) return
+		if("Squad Medic")
+			for(var/datum/squad/S in shuffle(squads))
+				if(S.num_medics >= S.max_medics)
+					continue
 
-	if(!squads.len)
-		to_chat(H, "Something went wrong with your squad randomizer! Tell a coder!")
-		return //Shit, where's our squad data
+				if(P && P == S)
+					M.mind.assigned_squad = P
+					S.num_medics++
+					return TRUE
 
-	if(H.assigned_squad) //Wait, we already have a squad. Get outta here!
-		return
+			if(strict)
+				return FALSE
+					
+			for(var/datum/squad/S in shuffle(squads))
+				if(S.num_medics >= S.max_medics)
+					continue
+				else
+					M.mind.assigned_squad = S
+					S.num_medics++
+					return TRUE
+						
+			return FALSE
 
-	//we make a list of squad that is randomized so alpha isn't always lowest squad.
-	var/list/squads_copy = squads.Copy()
-	var/list/mixed_squads = list()
-	for(var/i= 1 to squads_copy.len)
-		mixed_squads += pick_n_take(squads_copy)
+		if("Squad Smartgunner")
+			for(var/datum/squad/S in shuffle(squads))
+				if(S.num_smartgun >= S.max_smartgun)
+					continue
 
-	//Deal with non-standards first.
-	//Non-standards are distributed regardless of squad population.
-	//If the number of available positions for the job are more than max_whatever, it will break.
-	//Ie. 8 squad medic jobs should be available, and total medics in squads should be 8.
-	if(H.mind.assigned_role != "Squad Marine")
-		var/pref_squad_name
-		if(H?.client?.prefs.preferred_squad && H.client.prefs.preferred_squad != "None")
-			pref_squad_name = H.client.prefs.preferred_squad
+				if(P && P == S)
+					M.mind.assigned_squad = P
+					S.num_smartgun++
+					return TRUE
 
-		var/datum/squad/lowest
+			if(strict)
+				return FALSE
+					
+			for(var/datum/squad/S in shuffle(squads))
+				if(S.num_smartgun >= S.max_smartgun)
+					continue
+				else
+					M.mind.assigned_squad = S
+					S.num_smartgun++
+					return TRUE
+						
+			return FALSE
 
-		switch(H.mind.assigned_role)
-			if("Squad Engineer")
-				for(var/datum/squad/S in mixed_squads)
-					if(S.usable)
-						if(S.num_engineers >= S.max_engineers) 
-							continue
-						if(pref_squad_name && S.name == pref_squad_name)
-							S.put_marine_in_squad(H) //fav squad has a spot for us, no more searching needed.
-							return
+		if("Squad Specialist")
+			for(var/datum/squad/S in shuffle(squads))
+				if(S.num_specialists >= S.max_specialists)
+					continue
 
-						if(!lowest)
-							lowest = S
-						else if(S.num_engineers < lowest.num_engineers)
-							lowest = S
+				if(P && P == S)
+					M.mind.assigned_squad = P
+					S.num_specialists++
+					return TRUE
 
-			if("Squad Medic")
-				for(var/datum/squad/S in mixed_squads)
-					if(S.usable)
-						if(S.num_medics >= S.max_medics) 
-							continue
-						if(pref_squad_name && S.name == pref_squad_name)
-							S.put_marine_in_squad(H) //fav squad has a spot for us.
-							return
+			if(strict)
+				return FALSE
+					
+			for(var/datum/squad/S in shuffle(squads))
+				if(S.num_specialists >= S.max_specialists)
+					continue
+				else
+					M.mind.assigned_squad = S
+					S.num_specialists++
+					return TRUE
+						
+			return FALSE
 
-						if(!lowest)
-							lowest = S
-						else if(S.num_medics < lowest.num_medics)
-							lowest = S
+		if("Squad Leader")
+			for(var/datum/squad/S in shuffle(squads))
+				if(S.num_leaders >= S.max_leaders)
+					continue
 
-			if("Squad Leader")
-				for(var/datum/squad/S in mixed_squads)
-					if(S.usable)
-						if(S.num_leaders >= S.max_leaders) 
-							continue
-						if(pref_squad_name && S.name == pref_squad_name)
-							S.put_marine_in_squad(H) //fav squad has a spot for us.
-							return
+				if(P && P == S)
+					M.mind.assigned_squad = P
+					S.num_leaders++
+					return TRUE
 
-						if(!lowest)
-							lowest = S
-						else if(S.num_leaders < lowest.num_leaders)
-							lowest = S
+			if(strict)
+				return FALSE
+					
+			for(var/datum/squad/S in shuffle(squads))
+				if(S.num_leaders >= S.max_leaders)
+					continue
+				else
+					M.mind.assigned_squad = S
+					S.num_leaders++
+					return TRUE
+						
+			return FALSE
 
-			if("Squad Specialist")
-				for(var/datum/squad/S in mixed_squads)
-					if(S.usable)
-						if(S.num_specialists >= S.max_specialists) continue
-						if(pref_squad_name && S.name == pref_squad_name)
-							S.put_marine_in_squad(H) //fav squad has a spot for us.
-							return
-
-						if(!lowest)
-							lowest = S
-						else if(S.num_specialists < lowest.num_specialists)
-							lowest = S
-
-			if("Squad Smartgunner")
-				for(var/datum/squad/S in mixed_squads)
-					if(S.usable)
-						if(S.num_smartgun >= S.max_smartgun) 
-							continue
-						if(pref_squad_name && S.name == pref_squad_name)
-							S.put_marine_in_squad(H) //fav squad has a spot for us.
-							return
-
-						if(!lowest)
-							lowest = S
-						else if(S.num_smartgun < lowest.num_smartgun)
-							lowest = S
-
-		if(lowest)
-			lowest.put_marine_in_squad(H)
-		else
-			to_chat(H, "Something went badly with randomize_squad()! Tell a coder!")
-
-	else
-		//Deal with marines. They get distributed to the lowest populated squad.
-		var/datum/squad/given_squad = get_lowest_squad(H)
-		if(!given_squad || !istype(given_squad)) //Something went horribly wrong!
-			to_chat(H, "Something went wrong with randomize_squad()! Tell a coder!")
-			return
-		given_squad.put_marine_in_squad(H) //Found one, finish up
+	log_game("ERROR: Could not assign squad for [M].")
+	message_admins("ERROR: Could not assign squad for [M].")
+	return FALSE

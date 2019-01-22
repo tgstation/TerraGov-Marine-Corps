@@ -1,3 +1,11 @@
+GLOBAL_LIST_EMPTY(admin_datums)
+GLOBAL_PROTECT(admin_datums)
+GLOBAL_LIST_EMPTY(protected_admins)
+GLOBAL_PROTECT(protected_admins)
+
+GLOBAL_VAR_INIT(href_token, GenerateToken())
+GLOBAL_PROTECT(href_token)
+
 var/list/admin_datums = list()
 
 /datum/admins
@@ -8,6 +16,8 @@ var/list/admin_datums = list()
 
 	var/datum/marked_datum
 
+	var/href_token
+
 	var/admincaster_screen = 0	//See newscaster.dm under machinery for a full description
 	var/datum/feed_message/admincaster_feed_message = new /datum/feed_message   //These two will act as holders.
 	var/datum/feed_channel/admincaster_feed_channel = new /datum/feed_channel
@@ -15,8 +25,8 @@ var/list/admin_datums = list()
 
 /datum/admins/New(initial_rank = "Temporary Admin", initial_rights = 0, ckey)
 	if(!ckey)
-		error("Admin datum created without a ckey argument. Datum has been deleted")
-		cdel(src)
+		stack_trace("Admin datum created without a ckey argument. Datum has been deleted")
+		qdel(src)
 		return
 	admincaster_signature = "Nanotrasen Officer #[rand(0,9)][rand(0,9)][rand(0,9)]"
 	rank = initial_rank
@@ -85,7 +95,7 @@ you will have to do something like if(client.holder.rights & R_ADMIN) yourself.
 	admin_datums -= ckey
 	if(holder)
 		holder.disassociate()
-		cdel(holder)
+		qdel(holder)
 		holder = null
 	return 1
 
@@ -95,19 +105,19 @@ you will have to do something like if(client.holder.rights & R_ADMIN) yourself.
 
 	//process each line seperately
 	for(var/line in Lines)
-		if(!length(line))				
+		if(!length(line))
 			continue
-		if(copytext(line,1,2) == "#")	
+		if(copytext(line,1,2) == "#")
 			continue
 
 		//Split the line at every "-"
 		var/list/List = text2list(line, "-")
-		if(!List.len)					
+		if(!List.len)
 			continue
 
 		//ckey is before the first "-"
 		var/target = ckey(List[1])
-		if(!target)						
+		if(!target)
 			continue
 		if(target != ckey)
 			continue
@@ -125,3 +135,32 @@ you will have to do something like if(client.holder.rights & R_ADMIN) yourself.
 
 		//find the client for a ckey if they are connected and associate them with the new admin datum
 		D.associate(directory[target])
+
+/proc/IsAdminAdvancedProcCall()
+#ifdef TESTING
+	return FALSE
+#else
+	return usr?.client && GLOB.AdminProcCaller == usr.client.ckey
+#endif
+
+/proc/GenerateToken()
+	. = ""
+	for(var/I in 1 to 32)
+		. += "[rand(10)]"
+
+/proc/RawHrefToken(forceGlobal = FALSE)
+	var/tok = GLOB.href_token
+	if(!forceGlobal && usr)
+		var/client/C = usr.client
+		if(!C)
+			CRASH("No client for HrefToken()!")
+		var/datum/admins/holder = C.holder
+		if(holder)
+			tok = holder.href_token
+	return tok
+
+/proc/HrefToken(forceGlobal = FALSE)
+	return "admin_token=[RawHrefToken(forceGlobal)]"
+
+/proc/HrefTokenFormField(forceGlobal = FALSE)
+	return "<input type='hidden' name='admin_token' value='[RawHrefToken(forceGlobal)]'>"

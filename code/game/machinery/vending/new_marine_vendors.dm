@@ -234,7 +234,7 @@
 				//if(istype(ticker.mode, /datum/game_mode/ice_colony))//drop a coif with the uniform on ice colony
 				if(map_tag == MAP_ICE_COLONY)
 					new /obj/item/clothing/mask/rebreather/scarf(loc)
-					
+
 
 			if(bitf == MARINE_CAN_BUY_ESSENTIALS)
 				if(vendor_role == "Squad Specialist" && H.mind && H.mind.assigned_role == "Squad Specialist")
@@ -589,7 +589,6 @@
 							list("Medium general pouch", 0, /obj/item/storage/pouch/general/medium, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
 							list("Flare pouch", 0, /obj/item/storage/pouch/flare/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
 							list("Firstaid pouch", 0, /obj/item/storage/pouch/firstaid/full, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
-							list("Explosive pouch", 0, /obj/item/storage/pouch/explosive, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
 							list("Large pistol magazine pouch", 0, /obj/item/storage/pouch/magazine/pistol/large, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
 							list("Pistol pouch", 0, /obj/item/storage/pouch/pistol, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
 							list("Explosive pouch", 0, /obj/item/storage/pouch/explosive, (MARINE_CAN_BUY_R_POUCH|MARINE_CAN_BUY_L_POUCH), "black"),
@@ -824,8 +823,7 @@
 							list("M20 mine box", 18, /obj/item/storage/box/explosive_mines, null, "black"),
 							list("Incendiary grenade", 6, /obj/item/explosive/grenade/incendiary, null, "black"),
 							list("Multitool", 1, /obj/item/device/multitool, null, "black"),
-							list("Power control module", 1, /obj/item/circuitboard/apc, null, "black"),
-							list("Airlock electronics", 1, /obj/item/circuitboard/airlock, null, "black"),
+							list("General circuit board", 1, /obj/item/circuitboard/general, null, "black"),
 							list("Signaler (for detpacks)", 1, /obj/item/device/assembly/signaler, null, "black"),
 
 							list("SPECIAL AMMUNITION", 0, null, null, null),
@@ -982,6 +980,7 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 							list("Motion detector", 5, /obj/item/device/motiondetector, null, "black"),
 							list("Advanced firstaid kit", 10, /obj/item/storage/firstaid/adv, null, "orange"),
 							list("Ziptie box", 5, /obj/item/storage/box/zipcuffs, null, "black"),
+							list("V1 thermal-dampening tarp", 5, /obj/structure/closet/bodybag/tarp, null, "black"),
 
 							list("SPECIAL AMMUNITION", 0, null, null, null),
 							list("HP M4A3 magazine", 5, /obj/item/ammo_magazine/pistol/hp, null, "black"),
@@ -1016,13 +1015,13 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 	var/list/spawned_gear_list
 
 /obj/effect/essentials_set/New(loc)
-	..()
+	. = ..()
 	for(var/typepath in spawned_gear_list)
 		if(spawned_gear_list[typepath])
 			new typepath(loc, spawned_gear_list[typepath])
 		else
 			new typepath(loc)
-	cdel(src)
+	qdel(src)
 
 
 /obj/effect/essentials_set/basic
@@ -1090,7 +1089,7 @@ var/list/available_specialist_sets = list("Scout Set", "Sniper Set", "Demolition
 						/obj/item/cell/high,
 						/obj/item/tool/shovel/etool,
 						/obj/item/device/lightreplacer,
-						/obj/item/circuitboard/apc
+						/obj/item/circuitboard/general,
 						)
 
 

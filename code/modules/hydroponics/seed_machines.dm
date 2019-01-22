@@ -100,7 +100,7 @@
 
 	if(istype(W,/obj/item/tool/screwdriver))
 		open = !open
-		to_chat(user, "\blue You [open ? "open" : "close"] the maintenance panel.")
+		to_chat(user, "<span class='notice'>You [open ? "open" : "close"] the maintenance panel.</span>")
 		return
 
 	if(open)
@@ -229,7 +229,7 @@
 			genetics = seed.seed
 			degradation = 0
 
-		cdel(seed)
+		qdel(seed)
 		seed = null
 
 	if(href_list["get_gene"])

@@ -7,11 +7,11 @@
 
 /obj/item/inflatable/attack_self(mob/user)
 	playsound(loc, 'sound/items/zip.ogg', 25, 1)
-	to_chat(user, "\blue You inflate [src].")
+	to_chat(user, "<span class='notice'>You inflate [src].</span>")
 	var/obj/structure/inflatable/R = new /obj/structure/inflatable(user.loc)
 	src.transfer_fingerprints_to(R)
 	R.add_fingerprint(user)
-	cdel(src)
+	qdel(src)
 
 
 
@@ -23,11 +23,11 @@
 
 	attack_self(mob/user)
 		playsound(loc, 'sound/items/zip.ogg', 25, 1)
-		to_chat(user, "\blue You inflate [src].")
+		to_chat(user, "<span class='notice'>You inflate [src].</span>")
 		var/obj/structure/inflatable/door/R = new /obj/structure/inflatable/door(user.loc)
 		src.transfer_fingerprints_to(R)
 		R.add_fingerprint(user)
-		cdel(src)
+		qdel(src)
 
 
 
@@ -62,7 +62,7 @@
 /obj/structure/inflatable/ex_act(severity)
 	switch(severity)
 		if(1)
-			cdel(src)
+			qdel(src)
 		if(2)
 			deflate(1)
 
@@ -99,7 +99,7 @@
 	if(!istype(W)) return
 
 	if (can_puncture(W))
-		visible_message("\red <b>[user] pierces [src] with [W]!</b>")
+		visible_message("<span class='danger'>[user] pierces [src] with [W]!</span>")
 		deflate(1)
 	if(W.damtype == BRUTE || W.damtype == BURN)
 		hit(W.force)
@@ -127,15 +127,15 @@
 		new /obj/structure/inflatable/popped(loc)
 		//var/obj/item/inflatable/torn/R = new /obj/item/inflatable/torn(loc)
 		//src.transfer_fingerprints_to(R)
-		cdel(src)
+		qdel(src)
 	else
-		//to_chat(user, "\blue You slowly deflate the inflatable wall.")
+		//to_chat(user, "<span class='notice'>You slowly deflate the inflatable wall.</span>")
 		visible_message("[src] slowly deflates.")
 		flick("wall_deflating", src)
 		spawn(50)
 			var/obj/item/inflatable/R = new /obj/item/inflatable(loc)
 			src.transfer_fingerprints_to(R)
-			cdel(src)
+			qdel(src)
 
 /obj/structure/inflatable/verb/hand_deflate()
 	set name = "Deflate"
@@ -275,15 +275,15 @@
 		new /obj/structure/inflatable/popped/door(loc)
 		//var/obj/item/inflatable/door/torn/R = new /obj/item/inflatable/door/torn(loc)
 		//src.transfer_fingerprints_to(R)
-		cdel(src)
+		qdel(src)
 	else
-		//to_chat(user, "\blue You slowly deflate the inflatable wall.")
+		//to_chat(user, "<span class='notice'>You slowly deflate the inflatable wall.</span>")
 		visible_message("[src] slowly deflates.")
 		flick("door_deflating", src)
 		spawn(50)
 			var/obj/item/inflatable/door/R = new /obj/item/inflatable/door(loc)
 			src.transfer_fingerprints_to(R)
-			cdel(src)
+			qdel(src)
 
 
 

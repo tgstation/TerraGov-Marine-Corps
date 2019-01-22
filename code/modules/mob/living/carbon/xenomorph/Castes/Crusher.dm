@@ -41,7 +41,6 @@
 	armor_deflection = 80
 
 	// *** Crusher Abilities *** //
-	cresttoss_cooldown = 6 SECONDS
 
 /datum/xeno_caste/crusher/mature
 	upgrade_name = "Mature"
@@ -151,6 +150,7 @@
 	drag_delay = 6 //pulling a big dead xeno is hard
 	xeno_explosion_resistance = 3 //no stuns from explosions, ignore damages except devastation range.
 	mob_size = MOB_SIZE_BIG
+	wound_type = "crusher" //used to match appropriate wound overlays
 
 	is_charging = 1 //Crushers start with charging enabled
 
@@ -245,6 +245,23 @@
 			stop_momentum(charge_dir)
 			return FALSE
 
+	//Razorwire collision
+	if(istype(target, /obj/structure/razorwire))
+		var/obj/structure/razorwire/B = target
+		if(charge_speed >= charge_speed_max) //plows right through
+			flags_pass = 0
+			update_icons()
+			return TRUE
+		else if(charge_speed > charge_speed_buildup * charge_turfs_to_charge)
+			visible_message("<span class='danger'>[src] rams into [B] and skids to a halt!</span>",
+			"<span class='xenowarning'>You ram into [B] and skid to a halt!</span>")
+			flags_pass = 0
+			update_icons()
+			return TRUE
+		else
+			stop_momentum(charge_dir)
+			return FALSE
+
 	if(istype(target, /obj/vehicle/multitile/hitbox))
 		var/obj/vehicle/multitile/hitbox/H = target
 		if(charge_speed > charge_speed_buildup * charge_turfs_to_charge)
@@ -280,7 +297,7 @@
 				if(contents.len) //Hopefully won't auto-delete things inside crushed stuff.
 					var/turf/T = get_turf(src)
 					for(var/atom/movable/S in contents) S.loc = T
-				cdel(src)
+				qdel(src)
 				X.charge_speed -= X.charge_speed_buildup * 3 //Lose three turfs worth of speed
 		else
 			if(X.charge_speed > X.charge_speed_buildup * X.charge_turfs_to_charge)
@@ -505,3 +522,4 @@
 			icon_state = "Crusher Walking"
 
 	update_fire() //the fire overlay depends on the xeno's stance, so we must update it.
+	update_wounds()

@@ -32,7 +32,7 @@
 
 /obj/machinery/power/supermatter
 	name = "Supermatter"
-	desc = "A strangely translucent and iridescent crystal. \red You get headaches just from looking at it."
+	desc = "A strangely translucent and iridescent crystal. <span class='warning'> You get headaches just from looking at it.</span>"
 	icon = 'icons/obj/engine.dmi'
 	icon_state = "darkmatter"
 	density = 1
@@ -83,7 +83,7 @@
 
 	shard //Small subtype, less efficient and more sensitive, but less boom.
 		name = "Supermatter Shard"
-		desc = "A strangely translucent and iridescent crystal that looks like it used to be part of a larger structure. \red You get headaches just from looking at it."
+		desc = "A strangely translucent and iridescent crystal that looks like it used to be part of a larger structure. <span class='warning'> You get headaches just from looking at it.</span>"
 		icon_state = "darkmatter_shard"
 		base_icon_state = "darkmatter_shard"
 
@@ -103,8 +103,8 @@
 	start_processing()
 
 
-/obj/machinery/power/supermatter/Dispose()
-	cdel(radio)
+/obj/machinery/power/supermatter/Destroy()
+	qdel(radio)
 	radio = null
 	SetLuminosity(0)
 	. = ..()
@@ -114,7 +114,7 @@
 	grav_pulling = 1
 	spawn(200) // Breaking apart and sucking everything in before the final explosion. Increasing this might decrease lag since the explosion doesn't need to destroy as much
 		explosion(get_turf(src), explosion_power, explosion_power * 2, explosion_power * 3, explosion_power * 4, 1)
-		cdel(src)
+		qdel(src)
 		return
 
 //Changes color and luminosity of the light to these values if they were not already set
@@ -286,7 +286,7 @@
 		"<span class=\"danger\">You touch \the [W] to \the [src] when everything suddenly goes silent.\"</span>\n<span class=\"notice\">\The [W] flashes into dust as you flinch away from \the [src].</span>",\
 		"<span class=\"warning\">Everything suddenly goes silent.</span>")
 
-	user.drop_inv_item_on_ground(W)
+	user.dropItemToGround(W)
 	Consume(W)
 
 	user.apply_effect(150, IRRADIATE)
@@ -309,7 +309,7 @@
 		user.dust()
 		power += 200
 	else
-		cdel(user)
+		qdel(user)
 
 	power += 200
 

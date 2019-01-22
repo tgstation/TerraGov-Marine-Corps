@@ -20,7 +20,7 @@
 	if(newrank != "Custom")
 		H.set_everything(H, newrank)
 	else
-		var/newcommtitle = input("Write the custom title appearing on comms chat (e.g. Spc)", "Comms title") as null|text
+		var/newcommtitle = input("Write the custom title appearing on the comms themselves, for example: \[Command (Title)]", "Comms title") as null|text
 
 		if(!newcommtitle)
 			return
@@ -33,25 +33,21 @@
 		if(!istype(I) || I != H.wear_id)
 			to_chat(usr, "The mob has no id card, unable to modify ID and chat title.")
 		else
-			var/newchattitle = input("Write the custom title appearing in chat (e.g. SGT)", "Chat title") as null|text
-			
-			if(!newchattitle)
-				return
+			var/newchattitle = input("Write the custom title appearing in all chats: Title Jane Doe says", "Chat title") as null|text
+
 			if(!H || I != H.wear_id)
 				return
 
 			I.paygrade = newchattitle
 
-			var/IDtitle = input("Write the custom title on your ID (e.g. Squad Specialist)", "ID title") as null|text
+			var/IDtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID title") as null|text
 
-			if(!IDtitle)
-				return
 			if(!H || I != H.wear_id)
 				return
 
 			I.rank = IDtitle
 			I.assignment = IDtitle
-			I.name = "[I.registered_name]'s ID Card ([I.assignment])"
+			I.name = "[I.registered_name]'s ID Card[IDtitle ? " ([I.assignment])" : ""]"
 
 		if(!H.mind)
 			to_chat(usr, "The mob has no mind, unable to modify skills.")
@@ -91,31 +87,12 @@
 	for(var/obj/item/I in M)
 		if(istype(I, /obj/item/implant) || istype(I, /obj/item/card/id))
 			continue
-		cdel(I)
+		qdel(I)
 
 	var/datum/job/J = new path
 	J.generate_equipment(M)
 	M.regenerate_icons()
 
 	log_admin("[key_name(usr)] changed the equipment of [key_name(M)] to [dresscode].")
-	message_admins("\blue [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode].", 1)
+	message_admins("<span class='notice'> [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode].</span>", 1)
 	return
-
-
-/mob/living/proc/set_ID(new_job)
-	return
-
-/mob/living/carbon/human/set_ID(new_job)
-	var/datum/job/J = RoleAuthority.roles_by_name[new_job]
-	if(new_job)
-		if(wear_id)
-			var/obj/item/card/id/I = wear_id.GetID()
-			if(I)
-				var/title_alt = J.get_alternative_title(src)
-				I.access = J.get_access()
-				I.rank = J.title
-				I.assignment = title_alt ? title_alt :  J.disp_title
-				I.name = "[I.registered_name]'s ID Card ([I.assignment])"
-				I.paygrade = J.paygrade
-		else
-			J.equip_identification(src, J)

@@ -1,19 +1,19 @@
-//-----USS Almayer Machinery file -----//
+//-----TGS Theseus Machinery file -----//
 // Put any new machines in here before map is released and everything moved to their proper positions.
 
 
 
-//-----USS Almayer Props -----//
+//-----TGS Theseus Props -----//
 //Put any props that don't function properly, they could function in the future but for now are for looks. This system could be expanded for other maps too. ~Art
 
 /obj/item/prop/almayer
-	name = "GENERIC USS ALMAYER PROP"
+	name = "GENERIC THESEUS PROP"
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P03' IF SEEN IN ROUND WITH LOCATION"
 	icon = 'icons/Marine/almayer_props.dmi'
 	icon_state = "hangarbox"
 
 /obj/machinery/prop/almayer
-	name = "GENERIC USS ALMAYER PROP"
+	name = "GENERIC THESEUS PROP"
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P01' IF SEEN IN ROUND WITH LOCATION"
 
 /obj/machinery/prop/almayer/hangar/dropship_part_fabricator
@@ -38,11 +38,11 @@
 /obj/machinery/prop/almayer/computer/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			cdel(src)
+			qdel(src)
 			return
 		if(2.0)
 			if (prob(25))
-				cdel(src)
+				qdel(src)
 				return
 			if (prob(50))
 				set_broken()
@@ -84,7 +84,7 @@
 //Nonpower using props
 
 /obj/structure/prop/almayer
-	name = "GENERIC USS ALMAYER PROP"
+	name = "GENERIC THESEUS PROP"
 	desc = "THIS SHOULDN'T BE VISIBLE, AHELP 'ART-P02' IF SEEN IN ROUND WITH LOCATION"
 	density = 1
 	anchored = 1
@@ -154,7 +154,7 @@
 			if(!fallen_list)
 				fallen_list = list()
 			fallen_list += D.fallen_names
-			cdel(D)
+			qdel(D)
 		return TRUE
 	else
 		. = ..()
@@ -252,8 +252,8 @@
 		if(W.name == "used stasis bag") //possiblity for abuse, but fairly low considering its near impossible to rename something without VV
 			var/obj/item/bodybag/cryobag/R = new /obj/item/bodybag/cryobag //lets give them the bag considering having it unfolded would be a pain in the ass.
 			R.add_fingerprint(user)
-			user.temp_drop_inv_item(W)
-			cdel(W)
+			user.temporarilyRemoveItemFromInventory(W)
+			qdel(W)
 			user.put_in_hands(R)
 			return TRUE
 	..()

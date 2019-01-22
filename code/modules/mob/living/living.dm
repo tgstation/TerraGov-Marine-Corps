@@ -95,13 +95,13 @@
 /mob/living/update_stat()
 	update_cloak()
 
-/mob/living/New()
+/mob/living/Initialize()
 	..()
 	attack_icon = image("icon" = 'icons/effects/attacks.dmi',"icon_state" = "", "layer" = 0)
 
-/mob/living/Dispose()
+/mob/living/Destroy()
 	if(attack_icon)
-		cdel(attack_icon)
+		qdel(attack_icon)
 		attack_icon = null
 	. = ..()
 
@@ -228,7 +228,7 @@
 	set category = "OOC"
 	set src in view()
 
-	if(config.allow_Metadata)
+	if(CONFIG_GET(flag/allow_metadata))
 		if(client)
 			to_chat(usr, "[src]'s Metainfo:<br>[client.prefs.metadata]")
 		else
@@ -372,7 +372,7 @@
 
 			if(HULK in L.mutations)
 				if(prob(70))
-					to_chat(usr, "\red <B>You fail to push [L]'s fat ass out of the way.</B>")
+					to_chat(usr, "<span class='danger'>You fail to push [L]'s fat ass out of the way.</span>")
 					now_pushing = 0
 					return
 			if(!(L.status_flags & CANPUSH))

@@ -61,7 +61,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		check_tech = new T()
 		if(check_tech.id == ID)
 			return_name = check_tech.name
-			cdel(check_tech)
+			qdel(check_tech)
 			check_tech = null
 			break
 
@@ -93,7 +93,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 			temp_reagent = new R()
 			if(temp_reagent.id == ID)
 				return_name = temp_reagent.name
-				cdel(temp_reagent)
+				qdel(temp_reagent)
 				temp_reagent = null
 				break
 	return return_name
@@ -129,12 +129,9 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 /obj/machinery/computer/rdconsole/New()
 	..()
 	files = new /datum/research(src) //Setup the research data holder.
-	if(!id)
-		for(var/obj/machinery/r_n_d/server/centcom/S in machines)
-			S.initialize()
-			break
 
-/obj/machinery/computer/rdconsole/initialize()
+/obj/machinery/computer/rdconsole/Initialize()
+	. = ..()
 	SyncRDevices()
 
 /*	Instead of calling this every tick, it is only being called when needed
@@ -152,14 +149,14 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		if(istype(D, /obj/item/disk/tech_disk)) t_disk = D
 		else if (istype(D, /obj/item/disk/design_disk)) d_disk = D
 		else
-			to_chat(user, "\red Machine cannot accept disks in that format.")
+			to_chat(user, "<span class='warning'>Machine cannot accept disks in that format.</span>")
 			return
-		user.drop_inv_item_to_loc(D, src)
-		to_chat(user, "\blue You add the disk to the machine!")
+		user.transferItemToLoc(D, src)
+		to_chat(user, "<span class='notice'>You add the disk to the machine!</span>")
 	else if(istype(D, /obj/item/card/emag) && !emagged)
 		playsound(src.loc, 'sound/effects/sparks4.ogg', 25, 1)
 		emagged = 1
-		to_chat(user, "\blue You you disable the security protocols")
+		to_chat(user, "<span class='notice'>You you disable the security protocols</span>")
 	else
 		//The construction/deconstruction of the console code.
 		..()
@@ -236,7 +233,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(href_list["eject_item"]) //Eject the item inside the destructive analyzer.
 		if(linked_destroy)
 			if(linked_destroy.busy)
-				to_chat(usr, "\red The destructive analyzer is busy at the moment.")
+				to_chat(usr, "<span class='warning'>The destructive analyzer is busy at the moment.</span>")
 
 			else if(linked_destroy.loaded_item)
 				linked_destroy.loaded_item.loc = linked_destroy.loc
@@ -247,7 +244,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(href_list["deconstruct"]) //Deconstruct the item in the destructive analyzer and update the research holder.
 		if(linked_destroy)
 			if(linked_destroy.busy)
-				to_chat(usr, "\red The destructive analyzer is busy at the moment.")
+				to_chat(usr, "<span class='warning'>The destructive analyzer is busy at the moment.</span>")
 			else
 				var/choice = input("Proceeding will destroy loaded item.") in list("Proceed", "Cancel")
 				if(choice == "Cancel" || !linked_destroy) return
@@ -260,7 +257,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 						linked_destroy.busy = 0
 						if(!linked_destroy.hacked)
 							if(!linked_destroy.loaded_item)
-								to_chat(usr, "\red The destructive analyzer appears to be empty.")
+								to_chat(usr, "<span class='warning'>The destructive analyzer appears to be empty.</span>")
 								screen = 1.0
 								return
 							if(linked_destroy.loaded_item.reliability >= 90)
@@ -282,11 +279,11 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 									S.use(1)
 									linked_destroy.loaded_item = S
 								else
-									cdel(S)
+									qdel(S)
 									linked_destroy.icon_state = "d_analyzer"
 							else
 								if(!(I in linked_destroy.component_parts))
-									cdel(I)
+									qdel(I)
 									linked_destroy.icon_state = "d_analyzer"
 						use_power(linked_destroy.active_power_usage)
 						screen = 1.0
@@ -301,7 +298,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 	else if(href_list["sync"]) //Sync the research holder with all the R&D consoles in the game that aren't sync protected.
 		screen = 0.0
 		if(!sync)
-			to_chat(usr, "\red You must connect to the network first!")
+			to_chat(usr, "<span class='warning'>You must connect to the network first!</span>")
 		else
 			griefProtection() //Putting this here because I dont trust the sync process
 			spawn(30)
@@ -472,7 +469,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				sheet.amount = min(available_num_sheets, desired_num_sheets)
 				linked_lathe.vars[res_amount] = max(0, (linked_lathe.vars[res_amount]-sheet.amount * sheet.perunit))
 			else
-				cdel(sheet)
+				qdel(sheet)
 	else if(href_list["imprinter_ejectsheet"] && linked_imprinter) //Causes the protolathe to eject a sheet of material
 		var/desired_num_sheets = text2num(href_list["imprinter_ejectsheet_amt"])
 		var/res_amount, type
@@ -496,7 +493,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 				sheet.amount = min(available_num_sheets, desired_num_sheets)
 				linked_imprinter.vars[res_amount] = max(0, (linked_imprinter.vars[res_amount]-sheet.amount * sheet.perunit))
 			else
-				cdel(sheet)
+				qdel(sheet)
 
 	else if(href_list["find_device"]) //The R&D console looks for devices nearby to link up with.
 		screen = 0.0
@@ -522,7 +519,7 @@ won't update every console in existence) but it's more of a hassle to do. Also, 
 		var/choice = alert("R&D Console Database Reset", "Are you sure you want to reset the R&D console's database? Data lost cannot be recovered.", "Continue", "Cancel")
 		if(choice == "Continue")
 			screen = 0.0
-			cdel(files)
+			qdel(files)
 			files = new /datum/research(src)
 			spawn(20)
 				screen = 1.6

@@ -92,11 +92,11 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	icon = 'icons/obj/vehicles.dmi'
 	icon_state = "cargo_engine"
 
-/obj/vehicle/multitile/root/cm_armored/Dispose()
+/obj/vehicle/multitile/root/cm_armored/Destroy()
 	for(var/i in linked_objs)
 		var/obj/O = linked_objs[i]
 		if(O == src) continue
-		cdel(O, 1) //Delete all of the hitboxes etc
+		qdel(O, 1) //Delete all of the hitboxes etc
 
 	. = ..()
 
@@ -359,7 +359,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //If it's an admin, they want to disable this
 //If it's the shuttle, it should do damage
 //If fully repaired and moves at least once, the broken hitboxes will respawn according to multitile.dm
-/obj/vehicle/multitile/hitbox/cm_armored/Dispose()
+/obj/vehicle/multitile/hitbox/cm_armored/Destroy()
 	var/obj/vehicle/multitile/root/cm_armored/C = root
 	if(C) C.take_damage_type(1000000, "abstract")
 	..()
@@ -416,15 +416,15 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	else if(istype(A, /obj/structure/table))
 		var/obj/structure/table/T = A
 		T.visible_message("<span class='danger'>[root] crushes [T]!</span>")
-		T.destroy(TRUE)
+		T.destroy_structure(TRUE)
 	else if(istype(A, /obj/structure/showcase))
 		var/obj/structure/showcase/S = A
 		S.visible_message("<span class='danger'>[root] bulldozes over [S]!</span>")
-		S.destroy(TRUE)
+		S.destroy_structure(TRUE)
 	else if(istype(A, /obj/structure/rack))
 		var/obj/structure/rack/R = A
 		R.visible_message("<span class='danger'>[root] smashes through the [R]!</span>")
-		R.destroy(TRUE)
+		R.destroy_structure(TRUE)
 	else if(istype(A, /obj/structure/window/framed))
 		var/obj/structure/window/framed/W = A
 		W.visible_message("<span class='danger'>[root] crashes through the [W]!</span>")
@@ -432,7 +432,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	else if(istype(A, /obj/structure/window_frame))
 		var/obj/structure/window_frame/WF = A
 		WF.visible_message("<span class='danger'>[root] runs over the [WF]!</span>")
-		WF.Dispose()
+		WF.Destroy()
 	else if(istype(A, /obj/structure/girder))
 		var/obj/structure/girder/G = A
 		G.dismantle()
@@ -778,9 +778,11 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	user.visible_message("<span class='notice'>[user] installs \the [HP] on the [src].</span>", "<span class='notice'>You install \the [HP] on [src].</span>")
 
-	user.temp_drop_inv_item(HP, 0)
+	user.temporarilyRemoveItemFromInventory(HP, 0)
 
 	add_hardpoint(HP, user)
+
+	update_icon()
 
 //User-orientated proc for taking of hardpoints
 //Again, similar to the above ones
@@ -823,14 +825,14 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 //General proc for putting on hardpoints
 //ALWAYS CALL THIS WHEN ATTACHING HARDPOINTS
 /obj/vehicle/multitile/root/cm_armored/proc/add_hardpoint(var/obj/item/hardpoint/HP, var/mob/user)
-
+	if(!istype(HP))
+		return
 	HP.owner = src
-	HP.apply_buff()
+	if(HP.health > 0)
+		HP.apply_buff()
 	HP.loc = src
 
 	hardpoints[HP.slot] = HP
-
-	update_icon()
 
 //General proc for taking off hardpoints
 //ALWAYS CALL THIS WHEN REMOVING HARDPOINTS
@@ -841,7 +843,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 		old.loc = entrance.loc
 	old.remove_buff()
 	if(old.health <= 0)
-		cdel(old)
+		qdel(old)
 
 	hardpoints[old.slot] = null
 	update_icon()

@@ -13,7 +13,7 @@
 #define EVACUATION_STATUS_COMPLETE 3
 
 #define COOLDOWN_COMM_REQUEST 5 MINUTES
-#define COOLDOWN_COMM_MESSAGE 1 MINUTE
+#define COOLDOWN_COMM_MESSAGE 1 MINUTES
 #define COOLDOWN_COMM_CENTRAL 30 SECONDS
 
 #define NUKE_EXPLOSION_INACTIVE 0
@@ -25,42 +25,47 @@
 #define FLAGS_SELF_DESTRUCT_DENY 2
 //=================================================
 
+#define ROLE_MODE_DEFAULT   0
+#define ROLE_MODE_REPLACE   1
+#define ROLE_MODE_ADD		2
+#define ROLE_MODE_SUBTRACT	3
+
 
 #define IS_MODE_COMPILED(MODE) (ispath(text2path("/datum/game_mode/"+(MODE))))
 
-#define MODE_INFESTATION		1
-#define MODE_PREDATOR			2
-#define MODE_NO_LATEJOIN		4
-#define MODE_HAS_FINISHED		8
-#define MODE_FOG_ACTIVATED 		16
-#define MODE_INFECTION			32
-#define MODE_HUMAN_ANTAGS		64
+#define MODE_INFESTATION		(1 << 0)
+#define MODE_PREDATOR			(1 << 1)
+#define MODE_NO_LATEJOIN		(1 << 2)
+#define MODE_HAS_FINISHED		(1 << 3)
+#define MODE_FOG_ACTIVATED 		(1 << 4)
+#define MODE_INFECTION			(1 << 5)
+#define MODE_HUMAN_ANTAGS		(1 << 6)
 
-#define BE_ALIEN		1
-#define BE_QUEEN		2
-#define BE_SURVIVOR		4
-#define BE_RESPONDER	8
-#define BE_PREDATOR		16
+#define BE_ALIEN		(1 << 0)
+#define BE_QUEEN		(1 << 1)
+#define BE_SURVIVOR		(1 << 2)
+#define BE_DEATHMATCH	(1 << 3)
+#define BE_PREDATOR		(1 << 4)
 
 
-#define BE_REV        32
-#define BE_TRAITOR    64
-#define BE_OPERATIVE  128
-#define BE_CULTIST    256
-#define BE_MONKEY     512
-#define BE_NINJA      1024
-#define BE_RAIDER     2048
-#define BE_PLANT      4096
-#define BE_MUTINEER   8192
-#define BE_CHANGELING 16384
+#define BE_REV        (1 << 5)
+#define BE_TRAITOR    (1 << 6)
+#define BE_OPERATIVE  (1 << 7)
+#define BE_CULTIST    (1 << 8)
+#define BE_MONKEY     (1 << 9)
+#define BE_NINJA      (1 << 10)
+#define BE_RAIDER     (1 << 11)
+#define BE_PLANT      (1 << 12)
+#define BE_MUTINEER   (1 << 13)
+#define BE_CHANGELING (1 << 14)
 
-#define BE_WO_COM 32768
+#define BE_SQUAD_STRICT (1 << 15)
 //=================================================
 
 var/list/be_special_flags = list(
 	"Xenomorph" = BE_ALIEN,
 	"Survivor" = BE_SURVIVOR,
-	"Responder" = BE_RESPONDER,
+	"End of Round Deathmatch" = BE_DEATHMATCH,
 	"Predator" = BE_PREDATOR,
 	"Queen" = BE_QUEEN
 

@@ -11,7 +11,7 @@
 	icon_state = "shovel"
 	item_state = "shovel"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 8
 	throwforce = 4
 	w_class = 3
@@ -27,7 +27,7 @@
 
 
 /obj/item/tool/shovel/update_icon()
-	var/image/reusable/I = rnew(/image/reusable, list(icon,src,dirt_overlay))
+	var/image/I = image(icon,src,dirt_overlay)
 	switch(dirt_type) // We can actually shape the color for what enviroment we dig up our dirt in.
 		if(DIRT_TYPE_GROUND) I.color = "#512A09"
 		if(DIRT_TYPE_MARS) I.color = "#FF5500"
@@ -36,7 +36,7 @@
 	if(dirt_amt)
 		overlays += I
 	else
-		cdel(I)
+		qdel(I)
 
 
 

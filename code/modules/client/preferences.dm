@@ -6,9 +6,9 @@ var/global/list/special_roles = list(
 	"Xenomorph" = 1,
 	"Xenomorph Queen" = 1,
 	"Survivor" = 1,
-	"Responder" = 1,
+	"End of Round Deathmatch" = 1,
 	"Predator" = 1,
-	"WO Commander" = 1
+	"Prefer Squad over Role" = 1
 
 	// "wizard" = IS_MODE_COMPILED("wizard"),               // 3
 	// "malf AI" = IS_MODE_COMPILED("malfunction"),         // 4
@@ -329,29 +329,26 @@ datum/preferences
 
 	var/n = 0
 
-	for (var/i in special_roles)
+	for(var/i in special_roles)
 		var/ban_check_name
 
-		switch (special_roles[i])
-			if ("Xenomorph")
+		switch(special_roles[i])
+			if("Xenomorph")
 				ban_check_name = "Alien"
 
-			if ("Xenomorph Queen")
+			if("Xenomorph Queen")
 				ban_check_name = "Queen"
 
-			if ("Survivor")
+			if("Survivor")
 				ban_check_name = "Survivor"
 
-			if ("Predator")
+			if("Predator")
 				ban_check_name = "Predator"
 
-			if ("WO Commander")
-				ban_check_name = "WO Commander"
-
 		if(jobban_isbanned(user, ban_check_name))
-			dat += "<b>Be [i]:</b> <font color=red><b> \[BANNED]</b></font><br>"
+			dat += "<font color=red><b> \[BANNED]</b></font><br>"
 		else
-			dat += "<b>Be [i]:</b> <a href='?_src_=prefs;preference=be_special;num=[n]'><b>[src.be_special&(1<<n) ? "Yes" : "No"]</b></a><br>"
+			dat += "<b>[i]:</b> <a href='?_src_=prefs;preference=be_special;num=[n]'><b>[be_special & (1 << n) ? "Yes" : "No"]</b></a><br>"
 		n++
 
 	dat += "\t<a href='?_src_=prefs;preference=job;task=menu'><b>Set Marine Role Preferences</b></a><br>"
@@ -436,7 +433,7 @@ datum/preferences
 	dat += "<b>Ghost Radio:</b> <a href='?_src_=prefs;preference=ghost_radio'><b>[(toggles_chat & CHAT_GHOSTRADIO) ? "All Chatter" : "Nearest Speakers"]</b></a><br>"
 	dat += "<b>Ghost Hivemind:</b> <a href='?_src_=prefs;preference=ghost_hivemind'><b>[(toggles_chat & CHAT_GHOSTHIVEMIND) ? "Show Hivemind" : "Hide Hivemind"]</b></a><br>"
 
-	if(config.allow_Metadata)
+	if(CONFIG_GET(flag/allow_metadata))
 		dat += "<b>OOC Notes:</b> <a href='?_src_=prefs;preference=metadata;task=input'> Edit </a><br>"
 
 	dat += "<br>"
@@ -527,7 +524,7 @@ datum/preferences
 	if(user.client.prefs) //Just makin sure
 		if(user.client.prefs.alternate_option == GET_RANDOM_JOB)
 			HTML += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=green>Get random job if preferences unavailable</font></a></u></center><br>"
-		if(user.client.prefs.alternate_option == BE_ASSISTANT)
+		if(user.client.prefs.alternate_option == BE_MARINE)
 			HTML += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=red>Be marine if preference unavailable</font></a></u></center><br>"
 		if(user.client.prefs.alternate_option == RETURN_TO_LOBBY)
 			HTML += "<center><br><u><a href='?_src_=prefs;preference=job;task=random'><font color=purple>Return to lobby if preference unavailable</font></a></u></center><br>"
@@ -818,7 +815,7 @@ datum/preferences
 					ResetJobs()
 					SetChoices(user)
 				if("random")
-					if(alternate_option == GET_RANDOM_JOB || alternate_option == BE_ASSISTANT)
+					if(alternate_option == GET_RANDOM_JOB || alternate_option == BE_MARINE)
 						alternate_option += 1
 					else if(alternate_option == RETURN_TO_LOBBY)
 						alternate_option = 0
@@ -1097,7 +1094,7 @@ datum/preferences
 					var/list/new_languages = list("None")
 					var/datum/species/S = all_species[species]
 
-					if(config.usealienwhitelist)
+					if(CONFIG_GET(flag/usealienwhitelist))
 						for(var/L in all_languages)
 							var/datum/language/lang = all_languages[L]
 							if((!(lang.flags & RESTRICTED)) && (is_alien_whitelisted(L)||(!( lang.flags & WHITELISTED ))||(S && (L in S.secondary_langs))))
@@ -1481,7 +1478,7 @@ datum/preferences
 		var/datum/species/S = all_species[species]
 		real_name = S.random_name(gender)
 
-	if(config.humans_need_surnames && species == "Human")
+	if(CONFIG_GET(flag/humans_need_surnames) && species == "Human")
 		var/firstspace = findtext(real_name, " ")
 		var/name_length = length(real_name)
 		if(!firstspace)	//we need a surname

@@ -20,7 +20,7 @@
 		PC.linked_powerloader = src
 
 /obj/vehicle/powerloader/relaymove(mob/user, direction)
-	if(user.is_mob_incapacitated()) 
+	if(user.is_mob_incapacitated())
 		return
 	if(world.time > l_move_time + move_delay)
 		if(dir != direction)
@@ -69,7 +69,7 @@
 		if(!cell)
 			var/obj/item/cell/C = W
 			cell = C
-			cdel(C)
+			qdel(C)
 			visible_message("[user] puts a new power cell in the [src].")
 			to_chat(user, "You put a new cell in the [src] containing [cell.charge] charge.")
 			playsound(src,'sound/machines/click.ogg', 25, 1)
@@ -96,20 +96,20 @@
 			move_delay = max(4, move_delay - M.mind.cm_skills.powerloader)
 		var/clamp_equipped = 0
 		for(var/obj/item/powerloader_clamp/PC in contents)
-			if(!M.put_in_hands(PC)) 
+			if(!M.put_in_hands(PC))
 				PC.forceMove(src)
-			else 
+			else
 				clamp_equipped++
 		if(clamp_equipped != 2) unbuckle() //can't use the powerloader without both clamps equipped
 	else
 		move_delay = initial(move_delay)
 		icon_state = "powerloader_open"
-		M.drop_held_items() //drop the clamp when unbuckling
+		M.drop_all_held_items() //drop the clamp when unbuckling
 
 /obj/vehicle/powerloader/buckle_mob(mob/M, mob/user)
-	if(M != user) 
+	if(M != user)
 		return
-	if(!ishuman(M))	
+	if(!ishuman(M))
 		return
 	var/mob/living/carbon/human/H = M
 	if(H.r_hand || H.l_hand)
@@ -148,7 +148,7 @@
 		forceMove(linked_powerloader)
 		if(linked_powerloader.buckled_mob && linked_powerloader.buckled_mob == user)
 			linked_powerloader.unbuckle() //drop a clamp, you auto unbuckle from the powerloader.
-	else cdel(src)
+	else qdel(src)
 
 
 /obj/item/powerloader_clamp/attack(mob/living/M, mob/living/user, def_zone)
@@ -237,9 +237,9 @@
 			to_chat(user, "<span class='warning'>Can't grab [loaded].</span>")
 
 /obj/item/powerloader_clamp/update_icon()
-	if(loaded) 
+	if(loaded)
 		icon_state = "loader_clamp_full"
-	else 
+	else
 		icon_state = "loader_clamp"
 
 /obj/item/powerloader_clamp/attack_self(mob/user)

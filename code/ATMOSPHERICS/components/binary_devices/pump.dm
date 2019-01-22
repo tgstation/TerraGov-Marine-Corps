@@ -155,7 +155,7 @@ node2, network2 correspond to output
 		return
 	src.add_fingerprint(usr)
 	if(!src.allowed(user))
-		to_chat(user, "\red Access denied.")
+		to_chat(user, "<span class='warning'>Access denied.</span>")
 		return
 	usr.set_interaction(src)
 	ui_interact(user)
@@ -202,4 +202,4 @@ node2, network2 correspond to output
 		user.visible_message("<span class='notice'>[user] unfastens [src].</span>",
 		"<span class='notice'>You unfasten [src].</span>")
 		new /obj/item/pipe(loc, make_from = src)
-		cdel(src)
+		qdel(src)

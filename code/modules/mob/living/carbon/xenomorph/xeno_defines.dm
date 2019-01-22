@@ -71,19 +71,15 @@
 	var/acid_spray_range = 0
 	var/acid_spray_cooldown = 0
 
-	// *** Pheromones *** //	
+	// *** Pheromones *** //
 	var/aura_strength = 0 //The strength of our aura. Zero means we can't emit one
 	var/aura_allowed = list("frenzy", "warding", "recovery") //"Evolving" removed for the time being
 
 	// *** Warrior Abilities *** //
 	var/agility_speed_increase = 0 // this opens up possibilities for balancing
-	var/lunge_cooldown = 0
-	var/fling_cooldown = 0
-	var/punch_cooldown = 0
-	var/toggle_agility_cooldown = 0
 
 	// *** Boiler Abilities *** //
-	var/bomb_strength = 0 
+	var/bomb_strength = 0
 	var/acid_delay = 0
 	var/bomb_delay = 0
 
@@ -93,13 +89,8 @@
 	var/eggs_max = 0
 
 	// *** Defender Abilities *** //
-	var/headbutt_cooldown = 0
-	var/tail_sweep_cooldown = 0
-	var/crest_defense_cooldown = 0
-	var/fortify_cooldown = 0
 	var/crest_defense_armor = 0
 	var/fortify_armor = 0
-	var/cresttoss_cooldown = 0
 
 	// *** Queen Abilities *** //
 	var/queen_leader_limit = 0 //Amount of leaders allowed
@@ -238,13 +229,19 @@
 	//Acid spray
 	var/last_spray_used
 
+	//Larva Growth
+	var/larva_growth_used = 0
+
 	//Notification spam controls
 	var/recent_notice = 0
 	var/notice_delay = 20 //2 second between notices
 
 	var/cresttoss_used = FALSE
 
+	var/wound_type = "ravager" //used to match appropriate wound overlays
+
 /datum/hive_status
+	var/name = "Normal"
 	var/hivenumber = XENO_HIVE_NORMAL
 	var/mob/living/carbon/Xenomorph/Queen/living_xeno_queen
 	var/slashing_allowed = 1 //This initial var allows the queen to turn on or off slashing. Slashing off means harm intent does much less damage.
@@ -256,21 +253,25 @@
 	var/list/xeno_leader_list = list()
 
 /datum/hive_status/corrupted
+	name = "Corrupted"
 	hivenumber = XENO_HIVE_CORRUPTED
 	prefix = "Corrupted "
 	color = "#00ff80"
 
 /datum/hive_status/alpha
+	name = "Alpha"
 	hivenumber = XENO_HIVE_ALPHA
 	prefix = "Alpha "
 	color = "#cccc00"
 
 /datum/hive_status/beta
+	name = "Beta"
 	hivenumber = XENO_HIVE_BETA
 	prefix = "Beta "
 	color = "#9999ff"
 
 /datum/hive_status/zeta
+	name = "Zeta"
 	hivenumber = XENO_HIVE_ZETA
 	prefix = "Zeta "
 	color = "#606060"

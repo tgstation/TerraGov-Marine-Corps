@@ -16,32 +16,32 @@
 	if(istype(loc, /mob/living))
 		affected_mob = loc
 		affected_mob.status_flags |= XENO_HOST
-		processing_objects.Add(src)
+		START_PROCESSING(SSobj, src)
 		if(iscarbon(affected_mob))
 			var/mob/living/carbon/C = affected_mob
 			C.med_hud_set_status()
 	else
-		cdel(src)
+		qdel(src)
 
-/obj/item/alien_embryo/Dispose()
+/obj/item/alien_embryo/Destroy()
 	if(affected_mob)
 		affected_mob.status_flags &= ~(XENO_HOST)
 		if(iscarbon(affected_mob))
 			var/mob/living/carbon/C = affected_mob
 			C.med_hud_set_status()
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		affected_mob = null
 	. = ..()
 
 /obj/item/alien_embryo/process()
 	if(!affected_mob) //The mob we were gestating in is straight up gone, we shouldn't be here
-		processing_objects.Remove(src)
-		cdel(src)
+		STOP_PROCESSING(SSobj, src)
+		qdel(src)
 		return FALSE
 
 	if(loc != affected_mob) //Our location is not the host
 		affected_mob.status_flags &= ~(XENO_HOST)
-		processing_objects.Remove(src)
+		STOP_PROCESSING(SSobj, src)
 		if(iscarbon(affected_mob))
 			var/mob/living/carbon/C = affected_mob
 			C.med_hud_set_status()
@@ -55,13 +55,13 @@
 				var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
 				if(L)
 					L.chest_burst(affected_mob)
-				processing_objects.Remove(src)
+				STOP_PROCESSING(SSobj, src)
 				return FALSE
 		else
 			var/mob/living/carbon/Xenomorph/Larva/L = locate() in affected_mob
 			if(L)
 				L.chest_burst(affected_mob)
-			processing_objects.Remove(src)
+			STOP_PROCESSING(SSobj, src)
 			return FALSE
 
 	if(affected_mob.in_stasis == STASIS_IN_CRYO_CELL)
@@ -194,7 +194,7 @@
 	round_statistics.total_larva_burst++
 	var/obj/item/alien_embryo/AE = locate() in victim
 	if(AE)
-		cdel(AE)
+		qdel(AE)
 	if(ishuman(victim))
 		var/mob/living/carbon/human/H = victim
 		var/datum/internal_organ/O
@@ -212,4 +212,4 @@
 		visible_message("<span class='xenodanger'>[src] quickly burrows into the ground.</span>")
 		round_statistics.total_xenos_created-- // keep stats sane
 		ticker.mode.stored_larva++
-		cdel(src)
+		qdel(src)

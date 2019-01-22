@@ -212,6 +212,13 @@ proc/isXenoPredalien(A)
 		return TRUE
 	return FALSE
 
+/proc/isXenoSilicon(A)
+	if(isXeno(A))
+		var/mob/living/carbon/Xenomorph/X = A
+		if(X.xeno_caste.caste_flags & CASTE_IS_ROBOTIC)
+			return TRUE
+	return FALSE
+
 proc/isYautja(A)
 	if(isHellhound(A))
 		return TRUE //They are always considered Yautja.
@@ -602,6 +609,9 @@ var/list/intents = list("help","disarm","grab","hurt")
 
 /mob/proc/get_eye_protection()
 	return 0
+
+mob/proc/get_standard_bodytemperature()
+	return BODYTEMP_NORMAL
 
 /mob/log_message(message, message_type, color=null, log_globally = TRUE)
 	if(!length(message))

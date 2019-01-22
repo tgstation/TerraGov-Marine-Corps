@@ -1,4 +1,5 @@
 //Monkey Overlays Indexes////////
+#define M_LASER_LAYER			9
 #define M_MASK_LAYER			8
 #define M_BACK_LAYER			7
 #define M_HANDCUFF_LAYER		6
@@ -7,7 +8,7 @@
 #define M_TARGETED_LAYER		3
 #define M_FIRE_LAYER			2
 #define M_BURST_LAYER			1
-#define M_TOTAL_LAYERS			8
+#define M_TOTAL_LAYERS			9
 /////////////////////////////////
 
 /mob/living/carbon/monkey
@@ -102,7 +103,7 @@
 	if (targeted_by && target_locked)
 		overlays_standing[M_TARGETED_LAYER]	= image("icon"=target_locked, "layer" =-M_TARGETED_LAYER)
 	else if (!targeted_by && target_locked)
-		cdel(target_locked)
+		qdel(target_locked)
 		target_locked = null
 	apply_overlay(M_TARGETED_LAYER)
 
