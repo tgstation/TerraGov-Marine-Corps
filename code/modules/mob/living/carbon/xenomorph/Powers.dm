@@ -36,15 +36,19 @@
 	flags_pass = PASSTABLE
 	use_plasma(10)
 	throw_at(T, 6, 2, src) //Victim, distance, speed
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/xenomorph_reset_flags_pass, src), 6)
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/xenomorph_pounce_delay, src), xeno_caste.pounce_delay)
+	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/xenomorph_reset_flags_pass), 6)
+	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/xenomorph_pounce_delay), xeno_caste.pounce_delay)
 
 	return TRUE
 
 /mob/living/carbon/Xenomorph/proc/xenomorph_pounce_delay()
-	usedPounce = 0
+	usedPounce = FALSE
 	to_chat(src, "<span class='notice'>You get ready to pounce again.</span>")
 	update_action_button_icons()
+
+/mob/living/carbon/Xenomorph/Hunter/xenomorph_pounce_delay()
+	. = ..()
+	playsound(src, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
 
 /mob/living/carbon/Xenomorph/proc/xenomorph_reset_flags_pass()
 	if(!xeno_caste.hardcore)
@@ -88,17 +92,8 @@
 	flags_pass = PASSTABLE
 	use_plasma(20)
 	throw_at(T, 7, 2, src) //Victim, distance, speed
-	spawn(6)
-		if(!xeno_caste.hardcore)
-			flags_pass = initial(flags_pass) //Reset the passtable.
-		else
-			flags_pass = 0 //Reset the passtable.
-
-	spawn(xeno_caste.pounce_delay)
-		usedPounce = 0
-		to_chat(src, "<span class='xenowarning'><b>You are ready to pounce again.</b></span>")
-		playsound(src, 'sound/effects/xeno_newlarva.ogg', 50, 0, 1)
-		update_action_button_icons()
+	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/xenomorph_reset_flags_pass), 6)
+	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/Hunter/xenomorph_pounce_delay), xeno_caste.pounce_delay)
 
 	if(stealth && can_sneak_attack) //If we're stealthed and could sneak attack, add a cooldown to sneak attack
 		to_chat(src, "<span class='xenodanger'>Your pounce has left you off-balance; you'll need to wait [HUNTER_POUNCE_SNEAKATTACK_DELAY*0.1] seconds before you can Sneak Attack again.</span>")
@@ -156,12 +151,15 @@
 
 	speed += 2
 	do_acid_spray_cone(target)
-	spawn(rand(20,30))
-		speed -= 2
+	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/speed_increase, 2), rand(20,30))
+	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/acid_spray_cooldown_finished), xeno_caste.acid_spray_cooldown)
 
-	spawn(xeno_caste.acid_spray_cooldown)
-		used_acid_spray = FALSE
-		to_chat(src, "<span class='notice'>You have produced enough acid to spray again.</span>")
+/mob/living/carbon/Xenomorph/proc/speed_increase(var/amount)
+	speed -= amount
+
+/mob/living/carbon/Xenomorph/proc/acid_spray_cooldown_finished()
+	used_acid_spray = FALSE
+	to_chat(src, "<span class='notice'>You have produced enough acid to spray again.</span>")
 
 /mob/living/carbon/Xenomorph/proc/do_acid_spray_cone(var/turf/T)
 	set waitfor = 0
