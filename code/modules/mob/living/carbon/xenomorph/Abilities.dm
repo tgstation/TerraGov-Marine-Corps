@@ -1042,7 +1042,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		to_chat(X, "<span class='xenowarning'>[T] can't be deevolved.</span>")
 		return
 
-	var/datum/xeno_caste/new_caste = xeno_caste_datums[T.xeno_caste.deevolves_to][1]
+	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[T.xeno_caste.deevolves_to][1]
 
 	var/confirm = alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", , "Yes", "No")
 	if(confirm == "No")

@@ -93,11 +93,11 @@
 /mob/living/carbon/Xenomorph/proc/set_datum()
 	if(!caste_base_type)
 		CRASH("xeno spawned without a caste_base_type set")
-	if(!xeno_caste_datums[caste_base_type])
+	if(!GLOB.xeno_caste_datums[caste_base_type])
 		CRASH("error finding base type")
-	if(!xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)])
+	if(!GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)])
 		CRASH("error finding datum")
-	var/datum/xeno_caste/X = xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
+	var/datum/xeno_caste/X = GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
 	if(!istype(X))
 		CRASH("error with caste datum")
 	xeno_caste = X

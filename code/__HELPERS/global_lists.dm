@@ -28,8 +28,6 @@ var/global/list/all_species[0]
 var/global/list/language_keys[0]					//table of say codes for all languages
 var/global/list/synth_types = list("Synthetic","Early Synthetic")
 
-var/global/list/xeno_caste_datums = list()
-
 // Posters
 var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 //Preferences stuff
@@ -118,10 +116,10 @@ var/global/list/moth_wings_list = list()
 
 	for(var/X in subtypesof(/datum/xeno_caste))
 		var/datum/xeno_caste/C = new X
-		if(!(C.caste_type_path in xeno_caste_datums))
-			xeno_caste_datums[C.caste_type_path] = list(1,2,3,4)
+		if(!(C.caste_type_path in GLOB.xeno_caste_datums))
+			GLOB.xeno_caste_datums[C.caste_type_path] = list(1,2,3,4)
 		var/upgrade_level = CLAMP(C.upgrade + 1, 1, 4)
-		xeno_caste_datums[C.caste_type_path][upgrade_level] = C
+		GLOB.xeno_caste_datums[C.caste_type_path][upgrade_level] = C
 
 	return 1
 
