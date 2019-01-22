@@ -227,7 +227,7 @@
 
 /mob/living/carbon/Xenomorph/Sentinel/proc/neurotoxin_recurring_injection(var/mob/living/H)
 	if(!Adjacent(H))
-		to_chat(src, "<span class='xenowarning'>You try to continue your sting are too far away from the target!</span>")
+		to_chat(src, "<span class='xenowarning'>You try to continue your sting but are too far away from the target!</span>")
 		return
 	if(stagger)
 		to_chat(src, "<span class='xenowarning'>You try to continue your sting but are too disoriented!</span>")
