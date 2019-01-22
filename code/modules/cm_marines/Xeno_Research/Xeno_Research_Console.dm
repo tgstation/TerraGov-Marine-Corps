@@ -1,5 +1,27 @@
 /* Xeno RnD console from polion1232 */
 
+//Screen defines
+#define MARINE_RESEARCH_MENU_DATABASE_UPDATE 0.0
+#define MARINE_RESEARCH_MENU_DISSECTING 0.1
+#define MARINE_RESEARCH_MENU_LOCKED 0.2
+#define MARINE_RESEARCH_MENU_MODIFYING 0.3
+#define MARINE_RESEARCH_MENU_IMPRINTING 0.4
+#define MARINE_RESEARCH_MENU_ANALYSIS 0.5
+#define MARINE_RESEARCH_MENU_CONSTRUCTING 0.6
+
+#define MARINE_RESEARCH_MENU_MAIN 1.0
+#define MARINE_RESEARCH_MENU_TOPICS 1.1
+#define MARINE_RESEARCH_MENU_RESEARCH_LEVEL 1.2
+#define MARINE_RESEARCH_MENU_LINKAGE 1.3
+#define MARINE_RESEARCH_MENU_DISK 1.6
+
+#define MARINE_RESEARCH_MENU_DISSECTOR_NOLINK 2.0
+#define MARINE_RESEARCH_MENU_DISSECTOR_NOITEM 2.1
+#define MARINE_RESEARCH_MENU_DISSECTOR 2.2
+
+#define MARINE_RESEARCH_MENU_PROTOLATHE_NOLINK 4.0
+#define MARINE_RESEARCH_MENU_PROTOLATHE 4.1
+
 //Circuits
 /obj/item/circuitboard/computer/XenoRnD
 	name = "Circuit board (RnD)"
@@ -41,7 +63,7 @@
 	var/obj/machinery/Research_Machinery/dissector/linked_dissector = null      //linked Organic Dissector
 	var/obj/machinery/Research_Machinery/marineprotolathe/linked_lathe = null 		//linked marine protolathe
 
-	var/screen = 1.0	//Which screen is currently showing.
+	var/screen = MARINE_RESEARCH_MENU_MAIN	//Which screen is currently showing.
 	var/errored = FALSE		//Errored during item construction.
 	var/res_in_prog = FALSE //Science takes time
 
@@ -122,13 +144,13 @@
 	else if(href_list["reset"])
 		warning("RnD console has errored during protolathe operation. Resetting.")
 		errored = FALSE
-		screen = 1.0
+		screen = MARINE_RESEARCH_MENU_MAIN
 		updateUsrDialog()
 
 	else if(href_list["eject"])
 		inserted_disk.loc = src.loc
 		inserted_disk = null
-		screen = 1.0
+		screen = MARINE_RESEARCH_MENU_MAIN
 		updateUsrDialog()
 
 	else if(href_list["eject_item"]) //Eject the item inside the destructive analyzer
@@ -156,7 +178,7 @@
 				var/choice = input("Proceeding will destroy loaded item.") in list("Proceed", "Cancel")
 				if(choice == "Cancel" || !linked_dissector) return
 				linked_dissector.busy = TRUE
-				screen = 0.1
+				screen = MARINE_RESEARCH_MENU_DISSECTING
 				updateUsrDialog()
 				flick("d_analyzer_process", linked_dissector)
 				spawn(24)
@@ -164,13 +186,13 @@
 						linked_dissector.busy = TRUE
 						if(!linked_dissector.loaded_item)
 							to_chat(usr, "\red The organic dissector appears to be empty.")
-							screen = 1.0
+							screen = MARINE_RESEARCH_MENU_MAIN
 							return
 						linked_dissector.icon_state = "d_analyzer"
 						files.AddToAvail(linked_dissector.loaded_item)
 						linked_dissector.loaded_item = null
 						use_power(linked_dissector.active_power_usage)
-						screen = 1.0
+						screen = MARINE_RESEARCH_MENU_MAIN
 						updateUsrDialog()
 
 	else if(href_list["lock"]) //Lock the console from use by anyone without tox access.
@@ -180,10 +202,10 @@
 			to_chat(usr, "Unauthorized Access.")
 
 	else if(href_list["find_device"]) //The R&D console looks for devices nearby to link up with.
-		screen = 0.0
+		screen = MARINE_RESEARCH_MENU_DATABASE_UPDATE
 		spawn(20)
 			SyncRDevices()
-			screen = 1.0
+			screen = MARINE_RESEARCH_MENU_MAIN
 			updateUsrDialog()
 
 	else if(href_list["disconnect"]) //The R&D console disconnects with a specific device.
@@ -201,13 +223,13 @@
 			if(avail.id == topic)
 				var/reser = input("Start research [avail.name]?") in list("Proceed", "Cancel")
 				if(reser == "Cancel") return
-				screen = 0.5
+				screen = MARINE_RESEARCH_MENU_ANALYSIS
 				res_in_prog = TRUE
 				spawn(10*avail.time)
 					errored = TRUE
 					files.ToKnown(avail)
 					res_in_prog = FALSE
-					screen = 1.0
+					screen = MARINE_RESEARCH_MENU_MAIN
 					errored = FALSE
 					files.CheckAvail()
 					updateUsrDialog()
@@ -215,7 +237,7 @@
 
 	else if(href_list["download"])
 		if(!inserted_disk)
-			screen = 1.0
+			screen = MARINE_RESEARCH_MENU_MAIN
 			updateUsrDialog()
 			return
 
@@ -237,19 +259,19 @@
 				break
 		inserted_disk.loc = src.loc
 		inserted_disk = null
-		screen = 1.0
+		screen = MARINE_RESEARCH_MENU_MAIN
 		updateUsrDialog()
 
 	else if(href_list["install"])
 		if(!inserted_disk)
-			screen = 1.0
+			screen = MARINE_RESEARCH_MENU_MAIN
 			updateUsrDialog()
 			return
 		for(var/datum/marineTech/tech in files.known_tech)
 			inserted_disk.teches += tech
 		inserted_disk.loc = src.loc
 		inserted_disk = null
-		screen = 1.0
+		screen = MARINE_RESEARCH_MENU_MAIN
 		updateUsrDialog()
 
 	else if(href_list["create"])
@@ -262,7 +284,7 @@
 			if(design.build_path)
 				flick("protolathe_n", linked_lathe)
 				errored = FALSE
-				screen = 0.6
+				screen = MARINE_RESEARCH_MENU_CONSTRUCTING
 				linked_lathe.material_storage["metal"] -= design.materials["metal"]
 				linked_lathe.material_storage["glass"] -= design.materials["glass"]
 				linked_lathe.material_storage["biomass"] -= design.materials["biomass"]
@@ -292,16 +314,16 @@
 	switch(screen) //A quick check to make sure you get the right screen when a device is disconnected. 3.X will be used by modifyer
 		if(2 to 2.9)
 			if(linked_dissector == null)
-				screen = 2.0
+				screen = MARINE_RESEARCH_MENU_DISSECTOR_NOLINK
 			else if(linked_dissector.loaded_item == null)
-				screen = 2.1
+				screen = MARINE_RESEARCH_MENU_DISSECTOR_NOITEM
 			else
-				screen = 2.2
+				screen = MARINE_RESEARCH_MENU_DISSECTOR
 		if(4 to 4.9)
 			if(linked_lathe == null)
-				screen = 4.0
+				screen = MARINE_RESEARCH_MENU_PROTOLATHE_NOLINK
 			else
-				screen = 4.1
+				screen = MARINE_RESEARCH_MENU_PROTOLATHE
 
 	if(errored)
 		dat += "An error has occured when constructing prototype. Try refreshing the console."
@@ -311,27 +333,27 @@
 	switch(screen)
 
 		//////////////////////R&D CONSOLE SCREENS//////////////////
-		if(0.0) dat += "Updating Database...."
+		if(MARINE_RESEARCH_MENU_DATABASE_UPDATE) dat += "Updating Database...."
 
-		if(0.1) dat += "Dissecting in progress..."
+		if(MARINE_RESEARCH_MENU_DISSECTING) dat += "Dissecting in progress..."
 
-		if(0.2)
+		if(MARINE_RESEARCH_MENU_LOCKED)
 			dat += "SYSTEM LOCKED<BR><BR>"
 			dat += "<A href='?src=\ref[src];lock=1.3'>Unlock</A>"
 
-		if(0.3)
+		if(MARINE_RESEARCH_MENU_MODIFYING)
 			dat += "Modification in progress. Please Wait..."
 
-		if(0.4)
+		if(MARINE_RESEARCH_MENU_IMPRINTING)
 			dat += "Imprinting Circuit. Please Wait..."
 
-		if(0.5)
+		if(MARINE_RESEARCH_MENU_ANALYSIS)
 			dat += "Analysis in prosess. Please Wait..."
 
-		if(0.6)
+		if(MARINE_RESEARCH_MENU_CONSTRUCTING)
 			dat += "Constructing equipment. Please, Stand-By..."
 
-		if(1.0) //Main Menu
+		if(MARINE_RESEARCH_MENU_MAIN) //Main Menu
 			dat += "Main Menu:<BR><BR>"
 			dat += "<A href='?src=\ref[src];menu=1.1'>Current Available Research</A><BR>"
 			dat += "<A href='?src=\ref[src];menu=1.2'>Current Research Level</A><BR>"
@@ -354,14 +376,14 @@
 			else
 				dat += "NO EMU LINKED<BR>"
 */
-		if(1.1)
+		if(MARINE_RESEARCH_MENU_TOPICS )
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A><BR><BR>"
 			dat += "Active Topics:<BR><BR>"
 			for(var/datum/marineTech/avail in files.available_tech)
 				dat += "Topic: <A href='?src=\ref[src];research=[num2text(avail.id)]'>[CallTechName(avail.id)]</A><BR>"
 				dat += "Description: [avail.desc]<BR><BR>"
 
-		if(1.2)
+		if(MARINE_RESEARCH_MENU_RESEARCH_LEVEL)
 			dat += "Current Research Level:<HR><HR>"
 			for(var/datum/marineTech/known in files.known_tech)
 				dat += "Name: [known.name]<BR>"
@@ -369,7 +391,7 @@
 				dat += "<A href='?src=\ref[src];print=[num2text(known.id)]'>PRINT</A><HR>"
 			dat += "<HR><A href='?src=\ref[src];menu=1.0'>Main Menu</A>"
 
-		if(1.3) //R&D device linkage
+		if(MARINE_RESEARCH_MENU_LINKAGE) //R&D device linkage
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
 			dat += "R&D Console Device Linkage Menu:<BR><BR>"
 			dat += "<A href='?src=\ref[src];find_device=1'>Re-sync with Nearby Devices</A><BR>"
@@ -385,7 +407,7 @@
 
 		// 1.5 will be used for modifyer
 
-		if(1.6)
+		if(MARINE_RESEARCH_MENU_DISK)
 			if(!inserted_disk)
 				dat += "No Disk Inserted.<HR>"
 				dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A>"
@@ -399,15 +421,15 @@
 				dat += "<A href='?src=\ref[src];download=1'>Download technologies.</A> || <A href='?src=\ref[src];install=1'>Install technologies.</A> || <A href='?src=\ref[src];eject=1'>Eject disk.</A>"
 
 		//////////////////////Dissector Screens//////////////////
-		if(2.0)
+		if(MARINE_RESEARCH_MENU_DISSECTOR_NOLINK)
 			dat += "NO ORGANIC DISSECTOR LINKED TO CONSOLE<BR><BR>"
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A>"
 
-		if(2.1)
+		if(MARINE_RESEARCH_MENU_DISSECTOR_NOITEM)
 			dat += "No Organic Item Loaded. Standing-by...<BR><HR>"
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A>"
 
-		if(2.2)
+		if(MARINE_RESEARCH_MENU_DISSECTOR)
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
 			dat += "Dissection Menu<HR>"
 			dat += "Name: [linked_dissector.loaded_item.name]<BR>"
@@ -421,11 +443,11 @@
 		// 3.X will be used by modifyer
 
 		//////////////////////Protolate Screens//////////////////
-		if(4.0)
+		if(MARINE_RESEARCH_MENU_PROTOLATHE_NOLINK)
 			dat += "NO ARMORY PROTOLATE LINKED TO CONSOLE<BR><BR>"
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A>"
 
-		if(4.1)
+		if(MARINE_RESEARCH_MENU_PROTOLATHE)
 			dat += "<A href='?src=\ref[src];menu=1.0'>Main Menu</A><HR>"
 			dat += "Current Material Amount: [linked_lathe.TotalMaterials()] units total.<BR>"
 			dat += "Material Amount per resource:<BR>"
@@ -440,3 +462,24 @@
 
 	user << browse("<TITLE>Research and Development Console</TITLE><HR>[dat]", "window=rdconsole;size=575x400")
 	onclose(user, "rdconsole")
+
+#undef MARINE_RESEARCH_MENU_DATABASE_UPDATE
+#undef MARINE_RESEARCH_MENU_DISSECTING
+#undef MARINE_RESEARCH_MENU_LOCKED
+#undef MARINE_RESEARCH_MENU_MODIFYING
+#undef MARINE_RESEARCH_MENU_IMPRINTING
+#undef MARINE_RESEARCH_MENU_ANALYSIS
+#undef MARINE_RESEARCH_MENU_CONSTRUCTING
+
+#undef MARINE_RESEARCH_MENU_MAIN
+#undef MARINE_RESEARCH_MENU_TOPICS
+#undef MARINE_RESEARCH_MENU_RESEARCH_LEVEL
+#undef MARINE_RESEARCH_MENU_LINKAGE
+#undef MARINE_RESEARCH_MENU_DISK
+
+#undef MARINE_RESEARCH_MENU_DISSECTOR_NOLINK
+#undef MARINE_RESEARCH_MENU_DISSECTOR_NOITEM
+#undef MARINE_RESEARCH_MENU_DISSECTOR
+
+#undef MARINE_RESEARCH_MENU_PROTOLATHE_NOLINK
+#undef MARINE_RESEARCH_MENU_PROTOLATHE
