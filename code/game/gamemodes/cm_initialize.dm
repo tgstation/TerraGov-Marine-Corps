@@ -902,7 +902,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		//Rebuild the vendor's inventory to make our changes apply
 		A.build_inventory(A.products)
 
-	for(var/X in cargo_ammo_vendors)
+	for(var/X in GLOB.cargo_ammo_vendors)
 		var/obj/machinery/vending/marine/cargo_ammo/CA = X
 
 		//Forcefully reset the product list

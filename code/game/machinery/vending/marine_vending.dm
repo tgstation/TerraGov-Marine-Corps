@@ -236,12 +236,12 @@
 
 /obj/machinery/vending/marine/cargo_ammo/New()
 	..()
-	cargo_ammo_vendors.Add(src)
+	GLOB.cargo_ammo_vendors.Add(src)
 	marine_vendors.Remove(src)
 
 /obj/machinery/vending/marine/cargo_ammo/Destroy()
 	. = ..()
-	cargo_ammo_vendors.Remove(src)
+	GLOB.cargo_ammo_vendors.Remove(src)
 
 /obj/machinery/vending/lasgun
 	name = "ColMarTech Lasgun Field Charger"

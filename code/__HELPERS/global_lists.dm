@@ -14,7 +14,6 @@ var/global/list/all_areas = list()
 var/global/list/processing_machines = list()
 var/global/list/attachment_vendors = list() //Used by our gamemode code
 var/global/list/marine_vendors = list() //Used by our gamemode code
-var/global/list/cargo_ammo_vendors = list() //Used by our gamemode code
 var/global/list/cargo_guns_vendors = list() //Used by our gamemode code
 var/global/list/active_diseases = list()
 var/global/list/events = list()
