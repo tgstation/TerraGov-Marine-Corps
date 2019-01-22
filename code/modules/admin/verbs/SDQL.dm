@@ -90,22 +90,22 @@
 							from_objs += m
 
 				else if(text_starts_with(f, "/turf/open/space"))
-					for(var/turf/open/space/m in turfs)
+					for(var/turf/open/space/m in GLOB.turfs)
 						if(istype(m, f2))
 							from_objs += m
 
 				else if(text_starts_with(f, "/turf/closed"))
-					for(var/turf/closed/m in turfs)
+					for(var/turf/closed/m in GLOB.turfs)
 						if(istype(m, f2))
 							from_objs += m
 
 				else if(text_starts_with(f, "/turf/open"))
-					for(var/turf/open/m in turfs)
+					for(var/turf/open/m in GLOB.turfs)
 						if(istype(m, f2))
 							from_objs += m
 
 				else if(text_starts_with(f, "/turf"))
-					for(var/turf/m in turfs)
+					for(var/turf/m in GLOB.turfs)
 						if(istype(m, f2))
 							from_objs += m
 

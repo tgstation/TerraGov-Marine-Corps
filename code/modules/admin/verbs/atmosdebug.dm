@@ -47,7 +47,7 @@
 
 	to_chat(usr, "Checking for overlapping pipes...")
 	next_turf:
-		for(var/turf/T in turfs)
+		for(var/turf/T in GLOB.turfs)
 			for(var/dir in cardinal)
 				var/check = 0
 				var/scrubber = 0

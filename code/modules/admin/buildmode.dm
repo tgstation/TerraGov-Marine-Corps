@@ -172,7 +172,7 @@
 					if("obj-reference")
 						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as obj in GLOB.object_list
 					if("turf-reference")
-						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as turf in turfs
+						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as turf in GLOB.turfs
     return 1
 
 /proc/build_click(var/mob/user, buildmode, var/list/mods, var/obj/object)
