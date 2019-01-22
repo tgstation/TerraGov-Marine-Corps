@@ -374,7 +374,7 @@
 	can_hold = list("/obj/item/explosive/grenade")
 
 
-/obj/item/storage/belt/grenade/Initialize()
+/obj/item/storage/belt/grenade/standard/Initialize()
 	. = ..()
 	new /obj/item/explosive/grenade/incendiary(src)
 	new /obj/item/explosive/grenade/incendiary(src)
@@ -389,7 +389,7 @@
 	w_class = 4
 	storage_slots = 16
 	max_w_class = 3
-	max_storage_space = 32
+	max_storage_space = 48
 	can_hold = list("/obj/item/explosive/grenade")
 
 /obj/item/storage/belt/grenade/b18/Initialize()

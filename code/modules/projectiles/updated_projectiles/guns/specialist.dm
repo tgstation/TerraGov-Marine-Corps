@@ -723,7 +723,7 @@
 	item_state = "m5"
 	origin_tech = "combat=6;materials=5"
 	matter = list("metal" = 10000)
-	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket
+	current_mag = /obj/item/ammo_magazine/rocket
 	flags_equip_slot = NOFLAGS
 	w_class = 5
 	force = 15
@@ -733,9 +733,11 @@
 						/obj/item/attachable/magnetic_harness,
 						/obj/item/attachable/scope/mini)
 
-	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_SPEC
+	reload_sound = 'sound/weapons/gun_mortar_reload.ogg'
 	var/datum/effect_system/smoke_spread/smoke
+	unload_sound = 'sound/weapons/gun_mortar_reload.ogg'
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 6, "rail_y" = 19, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 
 /obj/item/weapon/gun/launcher/rocket/Initialize()
@@ -755,11 +757,19 @@
 	if(user.mind?.cm_skills && user.mind.cm_skills.spec_weapons < 0)
 		delay += 6
 
-	if(!do_after(user, delay, TRUE, 3, BUSY_ICON_HOSTILE)) //slight wind up
+	if(!do_after(user, delay, TRUE, 3, BUSY_ICON_HOSTILE, null, TRUE)) //slight wind up
 		return
 
-	return ..()
+	playsound(loc,'sound/weapons/gun_mortar_fire.ogg', 50, 1)
+	. = ..()
 
+
+	//loaded_rocket.current_rounds = max(loaded_rocket.current_rounds - 1, 0)
+
+	if(!current_mag.current_rounds)
+		current_mag.loc = get_turf(src)
+		current_mag.update_icon()
+		current_mag = null
 
 /obj/item/weapon/gun/launcher/rocket/wield(mob/living/user)
 	. = ..()
@@ -799,52 +809,26 @@
 		current_mag.current_rounds++
 	return TRUE
 
-
-/obj/item/weapon/gun/launcher/rocket/reload(mob/user, obj/item/ammo_magazine/rocket)
-	if(flags_gun_features & GUN_BURST_FIRING)
-		return
-
-	if(!rocket || !istype(rocket) || rocket.caliber != current_mag.caliber)
-		to_chat(user, "<span class='warning'>That's not going to fit!</span>")
-		return
-
-	if(current_mag.current_rounds > 0)
-		to_chat(user, "<span class='warning'>[src] is already loaded!</span>")
-		return
-
-	if(rocket.current_rounds <= 0)
-		to_chat(user, "<span class='warning'>That frame is empty!</span>")
-		return
-
-	if(user)
-		to_chat(user, "<span class='notice'>You begin reloading [src]. Hold still...</span>")
-		if(do_after(user,current_mag.reload_delay, TRUE, 5, BUSY_ICON_FRIENDLY))
-			user.dropItemToGround(rocket)
-			replace_ammo(user,rocket)
-			current_mag.current_rounds = current_mag.max_rounds
-			rocket.current_rounds = 0
-			to_chat(user, "<span class='notice'>You load [rocket] into [src].</span>")
-			if(reload_sound)
-				playsound(user, reload_sound, 25, 1)
-			else
-				playsound(user,'sound/machines/click.ogg', 25, 1)
-		else
-			to_chat(user, "<span class='warning'>Your reload was interrupted!</span>")
-			return
-	else
-		rocket.loc = get_turf(src)
-		replace_ammo(,rocket)
-		current_mag.current_rounds = current_mag.max_rounds
-		rocket.current_rounds = 0
-	rocket.update_icon()
-	return TRUE
-
 /obj/item/weapon/gun/launcher/rocket/unload(mob/user)
-	if(user)
-		if(!current_mag.current_rounds)
-			to_chat(user, "<span class='warning'>[src] is already empty!</span>")
-		else
-			to_chat(user, "<span class='warning'>It would be too much trouble to unload [src] now. Should have thought ahead!</span>")
+	if(!user)
+		return
+	if(!current_mag || current_mag.loc != src)
+		to_chat(user, "<span class='warning'>[src] is already empty!</span>")
+		return
+	to_chat(user, "<span class='notice'>You begin unloading [src].</span>")
+	if(!do_after(user,current_mag.reload_delay * 0.5, TRUE, 5, BUSY_ICON_FRIENDLY))
+		to_chat(user, "<span class='warning'>Your unloading was interrupted!</span>")
+		return
+	if(!user) //If we want to drop it on the ground or there's no user.
+		current_mag.loc = get_turf(src) //Drop it on the ground.
+	else
+		user.put_in_hands(current_mag)
+
+	playsound(user, unload_sound, 25, 1, 5)
+	user.visible_message("<span class='notice'>[user] unloads [current_mag] from [src].</span>",
+	"<span class='notice'>You unload [current_mag] from [src].</span>", null, 4)
+	current_mag.update_icon()
+	current_mag = null
 
 //Adding in the rocket backblast. The tile behind the specialist gets blasted hard enough to down and slightly wound anyone
 /obj/item/weapon/gun/launcher/rocket/apply_bullet_effects(obj/item/projectile/projectile_to_fire, mob/user, i = 1, reflex = 0)
@@ -884,10 +868,10 @@
 	icon_state = "m57a4"
 	item_state = "m57a4"
 	origin_tech = "combat=7;materials=5"
-	current_mag = /obj/item/ammo_magazine/internal/launcher/rocket/m57a4
+	current_mag = /obj/item/ammo_magazine/rocket/m57a4
 	aim_slowdown = SLOWDOWN_ADS_SUPERWEAPON
 	attachable_allowed = list()
-	flags_gun_features = GUN_INTERNAL_MAG|GUN_WIELDED_FIRING_ONLY
+	flags_gun_features = GUN_WIELDED_FIRING_ONLY
 
 
 /obj/item/weapon/gun/launcher/rocket/m57a4/set_gun_config_values()
