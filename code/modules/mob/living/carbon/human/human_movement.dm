@@ -99,10 +99,10 @@
 	var/obj/screen/SL_dir = hud_used.SL_locator
 
 	if(!H)
-		SL_dir.icon_state = "SL_locator_null"
+		SL_dir.icon_state = "SL_locator_off"
 		return
 	if(H.z != src.z || get_dist(src,H) < 1 || src == H)
-		SL_dir.icon_state = "SL_locator_null"
+		SL_dir.icon_state = "SL_locator_near"
 	else
 		SL_dir.icon_state = "SL_locator"
 		SL_dir.transform = 0 //Reset and 0 out
