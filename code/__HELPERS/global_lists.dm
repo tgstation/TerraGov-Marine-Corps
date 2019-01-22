@@ -19,9 +19,7 @@ var/global/list/events = list()
 var/global/list/active_laser_targets = list()
 
 //used by the main overwatch console
-var/global/list/active_orbital_beacons = list()
-
-var/global/world_qdel_log				
+var/global/list/active_orbital_beacons = list()		
 
 #define SYNTH_TYPES list("Synthetic","Early Synthetic")
 
