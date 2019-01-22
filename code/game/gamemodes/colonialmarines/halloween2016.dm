@@ -134,7 +134,7 @@
 
 	to_chat(world, "<span class='round_setup'>Generating spawn locations...</span>")
 	//Set up landmarks.
-	for(L in landmarks_list)
+	for(L in GLOB.landmarks_list)
 		switch(L.name)
 			if("marine start") marine_spawns += L.loc
 			if("pmc start") pmc_spawns += L.loc

@@ -338,7 +338,7 @@ sorts them out by their department.
 	else
 		var/obj/effect/landmark/L //To iterate.
 		var/obj/effect/landmark/S //Starting mark.
-		for(var/i in landmarks_list) // This whole thing is fucking awful
+		for(var/i in GLOB.landmarks_list) // This whole thing is fucking awful
 			if(!i)
 				stack_trace("null landmark in roleauthority landmarks_list iterator.")
 				continue

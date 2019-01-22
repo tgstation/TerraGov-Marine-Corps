@@ -208,7 +208,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 /datum/game_mode/proc/end_of_round_deathmatch()
 	var/list/spawns = list()
 
-	for(var/obj/effect/landmark/L in landmarks_list)
+	for(var/obj/effect/landmark/L in GLOB.landmarks_list)
 		if(L.name == "deathmatch")
 			spawns += L.loc
 
@@ -232,7 +232,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 			picked = pick(spawns)
 			spawns -= picked
 		else
-			for(var/obj/effect/landmark/L in landmarks_list)
+			for(var/obj/effect/landmark/L in GLOB.landmarks_list)
 				switch(L.name)
 					if("deathmatch")
 						spawns += L.loc

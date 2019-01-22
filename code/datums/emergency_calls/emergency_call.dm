@@ -229,7 +229,7 @@
 /datum/emergency_call/proc/get_spawn_point(is_for_items)
 	var/list/spawn_list = list()
 
-	for(var/obj/effect/landmark/L in landmarks_list)
+	for(var/obj/effect/landmark/L in GLOB.landmarks_list)
 		if(is_for_items && L.name == "[name_of_spawn]Item")
 			spawn_list += L
 		else

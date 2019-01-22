@@ -150,7 +150,7 @@ var/global/datum/controller/gameticker/ticker
 	spawn(0)
 		mode.post_setup()
 
-		for(var/obj/effect/landmark/start/S in landmarks_list)
+		for(var/obj/effect/landmark/start/S in GLOB.landmarks_list)
 			if(S.name != "AI")
 				qdel(S)
 

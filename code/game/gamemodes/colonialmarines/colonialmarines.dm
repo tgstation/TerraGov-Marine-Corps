@@ -48,7 +48,7 @@
 	var/monkey_spawns[] = new
 	var/map_items[] = new
 	var/obj/effect/blocker/fog/F
-	for(var/obj/effect/landmark/L in landmarks_list)
+	for(var/obj/effect/landmark/L in GLOB.landmarks_list)
 		switch(L.name)
 			if("hunter_primary")
 				qdel(L)

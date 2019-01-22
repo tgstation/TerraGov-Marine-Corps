@@ -144,7 +144,7 @@ var/waiting_for_drop_votes = 0
 	secondary_spawns = list()
 	supply_votes = list()
 
-	for(var/obj/effect/landmark/L in landmarks_list)
+	for(var/obj/effect/landmark/L in GLOB.landmarks_list)
 		switch(L.name)
 			if("hunter_primary")
 				primary_spawns += L.loc
@@ -361,7 +361,7 @@ var/waiting_for_drop_votes = 0
 	new item(T)
 
 /datum/game_mode/huntergames/proc/regenerate_spawns()
-	for(var/obj/effect/landmark/L in landmarks_list)
+	for(var/obj/effect/landmark/L in GLOB.landmarks_list)
 		switch(L.name)
 			if("hunter_primary")
 				primary_spawns += L.loc
