@@ -1134,12 +1134,12 @@ datum/preferences
 
 				if("h_style")
 					var/list/valid_hairstyles = list()
-					for(var/hairstyle in hair_styles_list)
-						var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
+					for(var/hairstyle in GLOB.hair_styles_list)
+						var/datum/sprite_accessory/S = GLOB.hair_styles_list[hairstyle]
 						if( !(species in S.species_allowed))
 							continue
 
-						valid_hairstyles[hairstyle] = hair_styles_list[hairstyle]
+						valid_hairstyles[hairstyle] = GLOB.hair_styles_list[hairstyle]
 
 					var/new_h_style = input(user, "Choose your character's hair style:", "Character Preference")  as null|anything in valid_hairstyles
 					if(new_h_style)

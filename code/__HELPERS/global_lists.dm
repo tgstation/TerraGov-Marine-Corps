@@ -36,7 +36,6 @@ var/global/list/ethnicities_list = list()			// Stores /datum/ethnicity indexed b
 	// Body Types
 var/global/list/body_types_list = list()			// Stores /datum/body_type indexed by name
 	//Hairstyles
-var/global/list/hair_styles_list = list()			//stores /datum/sprite_accessory/hair indexed by name
 var/global/list/facial_hair_styles_list = list()	//stores /datum/sprite_accessory/facial_hair indexed by name
 
 	//Underwear
@@ -57,7 +56,7 @@ var/global/list/moth_wings_list = list()
 	// Hair - Initialise all /datum/sprite_accessory/hair into an list indexed by hair-style name
 	for(var/path in subtypesof(/datum/sprite_accessory/hair))
 		var/datum/sprite_accessory/hair/H = new path()
-		hair_styles_list[H.name] = H
+		GLOB.hair_styles_list[H.name] = H
  	// Facial Hair - Initialise all /datum/sprite_accessory/facial_hair into an list indexed by facialhair-style name
 	for(var/path in subtypesof(/datum/sprite_accessory/facial_hair))
 		var/datum/sprite_accessory/facial_hair/H = new path()

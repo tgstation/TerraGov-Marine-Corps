@@ -345,7 +345,7 @@ var/global/list/damage_icon_parts = list()
 			face_standing.Blend(facial_s, ICON_OVERLAY)
 
 	if(h_style && !(head && (head.flags_inv_hide & HIDETOPHAIR)))
-		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
+		var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[h_style]
 		if(hair_style && src.species.name in hair_style.species_allowed)
 			var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 			if(hair_style.do_colouration)
@@ -896,7 +896,7 @@ var/global/list/damage_icon_parts = list()
 			face_lying.Blend(facial_l, ICON_OVERLAY)
 
 	if(h_style)
-		var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
+		var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[h_style]
 		if(hair_style)
 			var/icon/hair_l = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_l")
 			hair_l.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)

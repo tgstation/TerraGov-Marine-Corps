@@ -8,15 +8,15 @@ proc/random_hair_style(gender, species = "Human")
 	var/h_style = "Crewcut"
 
 	var/list/valid_hairstyles = list()
-	for(var/hairstyle in hair_styles_list)
-		var/datum/sprite_accessory/S = hair_styles_list[hairstyle]
+	for(var/hairstyle in GLOB.hair_styles_list)
+		var/datum/sprite_accessory/S = GLOB.hair_styles_list[hairstyle]
 		if(gender == MALE && S.gender == FEMALE)
 			continue
 		if(gender == FEMALE && S.gender == MALE)
 			continue
 		if( !(species in S.species_allowed))
 			continue
-		valid_hairstyles[hairstyle] = hair_styles_list[hairstyle]
+		valid_hairstyles[hairstyle] = GLOB.hair_styles_list[hairstyle]
 
 	if(valid_hairstyles.len)
 		h_style = pick(valid_hairstyles)

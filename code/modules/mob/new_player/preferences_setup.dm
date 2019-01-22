@@ -245,7 +245,7 @@ datum/preferences
 		eyes_s.Blend(rgb(r_eyes, g_eyes, b_eyes), ICON_ADD)
 
 		if(!(current_species.flags & HAS_NO_HAIR))
-			var/datum/sprite_accessory/hair_style = hair_styles_list[h_style]
+			var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[h_style]
 			if(hair_style)
 				var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 				hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)

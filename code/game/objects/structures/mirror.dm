@@ -53,12 +53,12 @@
 		//handle normal hair
 		var/list/species_hair = list()
 		if(H.species)
-			for(var/i in hair_styles_list)
-				var/datum/sprite_accessory/hair/tmp_hair = hair_styles_list[i]
+			for(var/i in GLOB.hair_styles_list)
+				var/datum/sprite_accessory/hair/tmp_hair = GLOB.hair_styles_list[i]
 				if(H.species.name in tmp_hair.species_allowed)
 					species_hair += i
 		else
-			species_hair = hair_styles_list
+			species_hair = GLOB.hair_styles_list
 
 		var/new_style = input(user, "Select a hair style", "Grooming")  as null|anything in species_hair
 		if(userloc != H.loc)

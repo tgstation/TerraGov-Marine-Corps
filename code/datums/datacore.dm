@@ -365,7 +365,7 @@ proc/get_id_photo(var/mob/living/carbon/human/H)
 
 	eyes_s.Blend(rgb(H.r_eyes, H.g_eyes, H.b_eyes), ICON_ADD)
 
-	var/datum/sprite_accessory/hair_style = hair_styles_list[H.h_style]
+	var/datum/sprite_accessory/hair_style = GLOB.hair_styles_list[H.h_style]
 	if(hair_style)
 		var/icon/hair_s = new/icon("icon" = hair_style.icon, "icon_state" = "[hair_style.icon_state]_s")
 		hair_s.Blend(rgb(H.r_hair, H.g_hair, H.b_hair), ICON_ADD)
