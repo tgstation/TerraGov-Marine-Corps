@@ -70,7 +70,7 @@
 
 /datum/shuttle/ferry/marine/announce_preflight_failure()
 	for(var/obj/machinery/computer/shuttle_control/control in controls)
-		playsound(control, 'sound/effects/adminhelp-error.ogg', 20) //Arbitrary notification sound
+		playsound(control, 'sound/effects/adminhelp.ogg', 20) //Arbitrary notification sound
 		control.visible_message(fail_flavortext)
 		return //Kill it so as not to repeat
 
@@ -787,6 +787,6 @@
 
 /datum/shuttle/ferry/elevator/announce_preflight_failure()
 	for(var/obj/machinery/computer/shuttle_control/control in controls)
-		playsound(control, 'sound/effects/adminhelp-error.ogg', 20) //Arbitrary notification sound
+		playsound(control, 'sound/effects/adminhelp.ogg', 20) //Arbitrary notification sound
 		control.visible_message(fail_flavortext)
 		return //Kill it so as not to repeat

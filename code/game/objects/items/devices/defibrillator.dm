@@ -134,7 +134,7 @@
 
 	var/mob/dead/observer/G = H.get_ghost()
 	if(istype(G))
-		G << 'sound/effects/adminhelp_new.ogg'
+		G << 'sound/effects/adminhelp.ogg'
 		var/msg = "<span class='interface'><font size=3><span class='bold'>Someone is trying to revive your body. Return to it if you want to be resurrected!</span> \
 		(Verbs -> Ghost -> Re-enter corpse, or <a href='?src=\ref[G];reentercorpse=1'>click here!</a>)</font></span>"
 		to_chat(G, msg)
