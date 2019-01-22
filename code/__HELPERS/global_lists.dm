@@ -8,7 +8,6 @@ var/global/list/chemical_reactions_list				//List of all /datum/chemical_reactio
 var/global/list/chemical_reagents_list				//List of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
 var/global/list/surgery_steps = list()				//List of all surgery steps  |BS12
 var/global/list/side_effects = list()				//List of all medical sideeffects types by thier names |BS12
-var/global/list/mechas_list = list()				//List of all mechs. Used by hostile mobs target tracking.
 var/global/list/ammo_list = list()					//List of all ammo types. Used by guns to tell the projectile how to act.
 var/global/list/joblist = list()					//List of all jobstypes, minus borg and AI
 
