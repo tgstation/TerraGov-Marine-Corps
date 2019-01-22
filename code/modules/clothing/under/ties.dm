@@ -428,12 +428,17 @@
 		I.attack_hand(user)
 		return
 
-	if (has_suit)    //if we are part of a suit
-		hold.open(user)
-		return
+	if(has_suit)
+		if(has_suit.loc == user && hold.draw_mode && hold.contents.len)
+			var/obj/item/I = hold.contents[hold.contents.len]
+			I.attack_hand(user)
+			return
+		else
+			hold.open(user)
+			return
 
-	if (hold.handle_attack_hand(user))	//otherwise interact as a regular storage item
-		..(user)
+	else if(hold.handle_attack_hand(user))
+		return ..()
 
 /obj/item/clothing/tie/storage/MouseDrop(obj/over_object as obj)
 	if (has_suit)
