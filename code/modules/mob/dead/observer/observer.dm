@@ -691,7 +691,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			//so their body isn't stolen by another player.
 			var/datum/limb/head/h = A.get_limb("head")
 			if(h && (h.status & LIMB_DESTROYED))
-				for (var/obj/item/limb/head/HD in item_list)
+				for (var/obj/item/limb/head/HD in GLOB.item_list)
 					if(HD.brainmob)
 						if(HD.brainmob.real_name == A.real_name)
 							if(HD.brainmob.client)
@@ -725,7 +725,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 			var/datum/limb/head/h = Z.get_limb("head")
 			if(h && (h.status & LIMB_DESTROYED))
-				for (var/obj/item/limb/head/HD in item_list)
+				for (var/obj/item/limb/head/HD in GLOB.item_list)
 					if(HD.brainmob)
 						if(HD.brainmob.real_name == Z.real_name)
 							if(HD.brainmob.client)

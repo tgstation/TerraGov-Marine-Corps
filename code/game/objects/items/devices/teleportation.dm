@@ -59,7 +59,7 @@ Frequency:
 			if (sr)
 				src.temp += "<B>Located Beacons:</B><BR>"
 
-				for(var/obj/item/device/radio/beacon/W in item_list)
+				for(var/obj/item/device/radio/beacon/W in GLOB.item_list)
 					if (W.frequency == src.frequency)
 						var/turf/tr = get_turf(W)
 						if (tr.z == sr.z && tr)
@@ -77,7 +77,7 @@ Frequency:
 							src.temp += "[W.code]-[dir2text(get_dir(sr, tr))]-[direct]<BR>"
 
 				src.temp += "<B>Extranneous Signals:</B><BR>"
-				for (var/obj/item/implant/tracking/W in item_list)
+				for (var/obj/item/implant/tracking/W in GLOB.item_list)
 					if (!W.implanted || !(istype(W.loc,/datum/limb) || ismob(W.loc)))
 						continue
 					else

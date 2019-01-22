@@ -452,7 +452,7 @@
 		else
 			JaniData["user_loc"] = list("x" = 0, "y" = 0)
 		var/MopData[0]
-		for(var/obj/item/tool/mop/M in item_list)
+		for(var/obj/item/tool/mop/M in GLOB.item_list)
 			var/turf/ml = get_turf(M)
 			if(ml)
 				if(ml.z != cl.z)

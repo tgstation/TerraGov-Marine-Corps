@@ -161,9 +161,9 @@ var/waiting_for_drop_votes = 0
 			if("xeno tunnel")
 				qdel(L)
 
-	for(var/obj/item/weapon/gun/G in item_list)
+	for(var/obj/item/weapon/gun/G in GLOB.item_list)
 		qdel(G) //No guns or ammo allowed.
-	for(var/obj/item/ammo_magazine/M in item_list)
+	for(var/obj/item/ammo_magazine/M in GLOB.item_list)
 		qdel(M)
 
 	for(var/mob/new_player/player in GLOB.player_list)

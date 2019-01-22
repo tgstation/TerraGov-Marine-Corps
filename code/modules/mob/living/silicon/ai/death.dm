@@ -16,7 +16,7 @@
 		if(istype(commconsole.loc,/turf))
 			break
 
-	for(var/obj/item/circuitboard/computer/communications/commboard in item_list)
+	for(var/obj/item/circuitboard/computer/communications/commboard in GLOB.item_list)
 		if(commboard.z == 2)
 			continue
 		if(istype(commboard.loc,/turf) || istype(commboard.loc,/obj/item/storage))

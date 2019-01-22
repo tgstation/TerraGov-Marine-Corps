@@ -281,7 +281,7 @@
 						state("<span class='boldnotice'>Tactical data for squad '[current_squad]' loaded. All tactical functions initialized.</span>")
 						attack_hand(usr)
 						if(!current_squad.drop_pad) //Why the hell did this not link?
-							for(var/obj/structure/supply_drop/S in item_list)
+							for(var/obj/structure/supply_drop/S in GLOB.item_list)
 								S.force_link() //LINK THEM ALL!
 
 					else

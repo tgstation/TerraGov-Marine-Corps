@@ -28,7 +28,6 @@ var/global/list/joblist = list()					//List of all jobstypes, minus borg and AI
 var/global/list/active_areas = list()
 var/global/list/all_areas = list()
 var/global/list/processing_machines = list()
-var/global/list/item_list = list()
 var/global/list/effect_list = list()
 var/global/list/attachment_vendors = list() //Used by our gamemode code
 var/global/list/marine_vendors = list() //Used by our gamemode code
