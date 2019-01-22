@@ -153,6 +153,9 @@
 	if(over_object == user && in_range(src, user))
 		to_chat(user, "<span class='notice'>You fold [src].</span>")
 		var/obj/item/device/m56d_post/P = new(loc)
+		if(gun_mounted)
+			var/obj/item/device/m56d_gun/HMG = new(loc)
+			HMG.rounds = gun_rounds
 		user.put_in_hands(P)
 		qdel(src)
 
@@ -171,14 +174,14 @@
 		to_chat(user, "You begin mounting [MG]..")
 		if(do_after(user,30, TRUE, 5, BUSY_ICON_BUILD) && !gun_mounted && anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
-			user.visible_message("\blue [user] installs [MG] into place.","\blue You install [MG] into place.")
+			user.visible_message("<span class='notice'> [user] installs [MG] into place.</span>","<span class='notice'> You install [MG] into place.</span>")
 			gun_mounted = TRUE
 			gun_rounds = MG.rounds
 			if(!gun_rounds)
 				icon_state = "M56D_e"
 			else
 				icon_state = "M56D" // otherwise we're a empty gun on a mount.
-			user.temp_drop_inv_item(MG)
+			user.temporarilyRemoveItemFromInventory(MG)
 			qdel(MG)
 		return
 
@@ -189,7 +192,7 @@
 		to_chat(user, "You begin dismounting [src]'s gun..")
 		if(do_after(user,30, TRUE, 5, BUSY_ICON_BUILD) && gun_mounted)
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
-			user.visible_message("\blue [user] removes [src]'s gun.","\blue You remove [src]'s gun.")
+			user.visible_message("<span class='notice'> [user] removes [src]'s gun.</span>","<span class='notice'> You remove [src]'s gun.</span>")
 			new /obj/item/device/m56d_gun(loc)
 			gun_mounted = FALSE
 			gun_rounds = 0
@@ -201,7 +204,7 @@
 			to_chat(user, "You're securing the M56D into place")
 			if(do_after(user,30, TRUE, 5, BUSY_ICON_BUILD))
 				playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
-				user.visible_message("\blue [user] screws the M56D into the mount.","\blue You finalize the M56D mounted smartgun system.")
+				user.visible_message("<span class='notice'> [user] screws the M56D into the mount.</span>","<span class='notice'> You finalize the M56D mounted smartgun system.</span>")
 				var/obj/machinery/m56d_hmg/G = new(src.loc) //Here comes our new turret.
 				G.visible_message("\icon[G] <B>[G] is now complete!</B>") //finished it for everyone to
 				G.dir = src.dir //make sure we face the right direction
@@ -313,7 +316,7 @@
 			D.current_rounds = rounds
 		rounds = min(rounds + M.current_rounds, rounds_max)
 		update_icon()
-		user.temp_drop_inv_item(O)
+		user.temporarilyRemoveItemFromInventory(O)
 		qdel(O)
 		return
 	return ..()
@@ -449,7 +452,7 @@
 	if(user.lying || !Adjacent(user) || user.is_mob_incapacitated())
 		user.unset_interaction()
 		return FALSE
-	if(user.get_active_hand())
+	if(user.get_active_held_item())
 		to_chat(usr, "<span class='warning'>You need a free hand to shoot the [src].</span>")
 		return FALSE
 	target = A
@@ -525,10 +528,10 @@
 			if(user.interactee) //Make sure we're not manning two guns at once, tentacle arms.
 				to_chat(user, "You're already manning something!")
 				return
-			if(isSynth(user) && !config.allow_synthetic_gun_use)
+			if(isSynth(user) && !CONFIG_GET(flag/allow_synthetic_gun_use))
 				to_chat(user, "<span class='warning'>Your programming restricts operating heavy weaponry.</span>")
 				return
-			if(user.get_active_hand() != null)
+			if(user.get_active_held_item() != null)
 				to_chat(user, "<span class='warning'>You need a free hand to man the [src].</span>")
 			else
 				visible_message("\icon[src] <span class='notice'>[user] mans the M56D!</span>")

@@ -7,7 +7,7 @@
 	item_state = "electronic"
 	flags_atom = CONDUCT
 	flags_item = NOBLUDGEON
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 
 /obj/item/device/detective_scanner/attack(mob/living/carbon/human/M as mob, mob/user as mob)
 	if (!ishuman(M))
@@ -60,7 +60,7 @@
 				to_chat(user, "<span class='notice'>Blood detected. Analysing...</span>")
 				spawn(15)
 					for(var/blood in B.blood_DNA)
-						to_chat(user, "Blood type: \red [B.blood_DNA[blood]] \t \black DNA: \red [blood]")
+						to_chat(user, "Blood type: <span class='warning'> [B.blood_DNA[blood]] \t \black DNA: <span class='warning'> [blood]</span>")
 					if(add_data(B))
 						to_chat(user, "<span class='notice'>Object already in internal memory. Consolidating data...</span>")
 						flick("forensic2",src)
@@ -103,7 +103,7 @@
 		to_chat(user, "<span class='notice'>Blood detected. Analysing...</span>")
 		spawn(15)
 			for(var/blood in A.blood_DNA)
-				to_chat(user, "Blood type: \red [A.blood_DNA[blood]] \t \black DNA: \red [blood]")
+				to_chat(user, "Blood type: <span class='warning'> [A.blood_DNA[blood]] \t \black DNA: <span class='warning'> [blood]</span>")
 
 	user.visible_message("\The [user] scans \the [A] with \a [src], the air around [user.gender == MALE ? "him" : "her"] humming[prob(70) ? " gently." : "."]" ,\
 	"<span class='notice'>You finish scanning \the [A].</span>",\

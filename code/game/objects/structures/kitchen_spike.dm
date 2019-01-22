@@ -32,9 +32,9 @@
 				qdel(G)
 
 			else
-				to_chat(user, "\red The spike already has something on it, finish collecting its meat first!")
+				to_chat(user, "<span class='warning'>The spike already has something on it, finish collecting its meat first!</span>")
 		else
-			to_chat(user, "\red They are too big for the spike, try something smaller!")
+			to_chat(user, "<span class='warning'>They are too big for the spike, try something smaller!</span>")
 			return
 
 //	MouseDrop_T(var/atom/movable/C, mob/user)

@@ -181,8 +181,7 @@ var/waiting_for_drop_votes = 0
 			var/mob/living/carbon/human/H = M
 			spawn_contestant(H)
 
-	if(config)
-		config.remove_gun_restrictions = 1 //This will allow anyone to use cool guns.
+	CONFIG_SET(flag/remove_gun_restrictions, TRUE) //This will allow anyone to use cool guns.
 
 	world << sound('sound/effects/siren.ogg')
 
@@ -223,11 +222,11 @@ var/waiting_for_drop_votes = 0
 	var/hunter_body = pick(HUNTER_BODY)
 	var/hunter_feet = pick(HUNTER_FEET)
 
-	H.equip_to_slot_or_del(new hunter_body(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new hunter_feet(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar(H), EQUIP_IN_R_POUCH)
+	H.equip_to_slot_or_del(new hunter_body(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new hunter_feet(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), SLOT_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar(H), SLOT_IN_R_POUCH)
 
 	to_chat(H, "<h2>Kill everyone. Become the last man standing.</h2>")
 	to_chat(H, "<h4>Use the flare in your pocket to light the way!</h4>")
@@ -324,18 +323,18 @@ var/waiting_for_drop_votes = 0
 
 	if(round_finished == 1 && !isnull(winner) && istype(winner))
 		feedback_set_details("round_end_result","single winner")
-		to_chat(world, "\red <FONT size = 4><B>We have a winner! >> [winner.real_name] << defeated all enemies!</B></FONT>")
+		to_chat(world, "<span class='round_header'>We have a winner! >> [winner.real_name] << defeated all enemies!</span>")
 		to_chat(world, "<FONT size = 3><B>Well done, your tale of survival will live on in legend!</B></FONT>")
 		log_game("Humans remaining: [count_humans()]\nRound time: [duration2text()]\nBig Winner: [winner.real_name]")
 	else if(round_finished == 2)
 		feedback_set_details("round_end_result","no winners")
-		to_chat(world, "\red <FONT size = 4><B>NOBODY WON!?</B></FONT>")
+		to_chat(world, "<span class='round_header'>NOBODY WON!?</span>")
 		to_chat(world, "<FONT size = 3><B>'Somehow you stupid humans managed to even fuck up killing yourselves. Well done.'</B></FONT>")
 		world << 'sound/misc/sadtrombone.ogg'
 		log_game("Humans remaining: [count_humans()]\nRound time: [duration2text()]")
 	else
 		feedback_set_details("round_end_result","no winners")
-		to_chat(world, "\red <FONT size = 4><B>NOBODY WON!</B></FONT>")
+		to_chat(world, "<span class='round_header'>NOBODY WON!</span>")
 		to_chat(world, "<FONT size = 3><B>There was a winner, but they died before they could receive the prize!! Bummer.</B></FONT>")
 		world << 'sound/misc/sadtrombone.ogg'
 		log_game("Humans remaining: [count_humans()]\nRound time: [duration2text()]")

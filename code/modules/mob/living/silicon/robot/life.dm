@@ -22,7 +22,7 @@
 	if(status_flags & GODMODE)
 		return
 	if(stat != DEAD)
-		var/dead_threshold = ismaintdrone(src) ? 0 : config.health_threshold_dead
+		var/dead_threshold = ismaintdrone(src) ? 0 : CONFIG_GET(number/health_threshold_dead)
 		if(health <= dead_threshold)
 			death()
 			return
@@ -68,7 +68,7 @@
 		has_power = 1
 	else
 		if (has_power)
-			to_chat(src, "\red You are now running on emergency backup power.")
+			to_chat(src, "<span class='warning'> You are now running on emergency backup power.</span>")
 		has_power = 0
 		if(lights_on) // Light is on but there is no power!
 			lights_on = 0
@@ -213,7 +213,7 @@
 		killswitch_time --
 		if(killswitch_time <= 0)
 			if(client)
-				to_chat(src, "\red <B>Killswitch Activated")
+				to_chat(src, "<span class='danger'>Killswitch Activated</span>")
 			killswitch = 0
 			spawn(5)
 				gib()
@@ -224,7 +224,7 @@
 		weaponlock_time --
 		if(weaponlock_time <= 0)
 			if(src.client)
-				to_chat(src, "\red <B>Weapon Lock Timed Out!")
+				to_chat(src, "<span class='danger'>Weapon Lock Timed Out!</span>")
 			weapon_lock = 0
 			weaponlock_time = 120
 

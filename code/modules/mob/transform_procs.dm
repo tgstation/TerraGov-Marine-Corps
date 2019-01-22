@@ -4,7 +4,7 @@
 	for(var/obj/item/W in src)
 		if (W==w_uniform) // will be torn
 			continue
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -70,7 +70,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	monkeyizing = 1
 	canmove = 0
 	icon = null
@@ -135,7 +135,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -189,7 +189,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -215,7 +215,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -241,7 +241,7 @@
 	if (monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 	regenerate_icons()
 	monkeyizing = 1
 	canmove = 0
@@ -266,13 +266,13 @@
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
 	if(!safe_animal(mobpath))
-		to_chat(usr, "\red Sorry but this mob type is currently unavailable.")
+		to_chat(usr, "<span class='warning'>Sorry but this mob type is currently unavailable.</span>")
 		return
 
 	if(monkeyizing)
 		return
 	for(var/obj/item/W in src)
-		drop_inv_item_on_ground(W)
+		dropItemToGround(W)
 
 	regenerate_icons()
 	monkeyizing = 1
@@ -301,7 +301,7 @@
 	var/mobpath = input("Which type of mob should [src] turn into?", "Choose a type") in mobtypes
 
 	if(!safe_animal(mobpath))
-		to_chat(usr, "\red Sorry but this mob type is currently unavailable.")
+		to_chat(usr, "<span class='warning'>Sorry but this mob type is currently unavailable.</span>")
 		return
 
 	var/mob/new_mob = new mobpath(src.loc)

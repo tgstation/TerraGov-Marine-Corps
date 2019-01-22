@@ -18,7 +18,7 @@
 
 /obj/item/weapon/gun/flare/examine(mob/user)
 	. = ..()
-	fire_delay = config.low_fire_delay*3
+	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay) * 3
 	if(num_flares)
 		to_chat(user, "<span class='warning'>It has a flare loaded!</span>")
 
@@ -52,7 +52,7 @@
 			to_chat(user, "It's already full.")
 			return
 		num_flares++
-		user.temp_drop_inv_item(flare)
+		user.temporarilyRemoveItemFromInventory(flare)
 		sleep(-1)
 		qdel(flare)
 		to_chat(user, "<span class='notice'>You insert the flare.</span>")
@@ -91,21 +91,21 @@
 	force = 20
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_CAN_POINTBLANK|GUN_BURST_ON|GUN_WIELDED_FIRING_ONLY
 
-/obj/item/weapon/gun/minigun/New(loc, spawn_empty)
+/obj/item/weapon/gun/minigun/Initialize(loc, spawn_empty)
 	. = ..()
 	if(current_mag && current_mag.current_rounds > 0)
 		load_into_chamber()
 
 /obj/item/weapon/gun/minigun/set_gun_config_values()
-	fire_delay = config.low_fire_delay
-	burst_amount = config.max_burst_value
-	burst_delay = config.min_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	recoil = config.med_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/max_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/med_recoil_value)
 
 /obj/item/weapon/gun/minigun/toggle_burst()
 	to_chat(usr, "<span class='warning'>This weapon can only fire in bursts!</span>")
@@ -148,7 +148,7 @@
 	unacidable = 1
 	fire_sound = 'sound/effects/woodhit.ogg' // TODO: Decent THWOK noise.
 	ammo = /datum/ammo/alloy_spike
-	flags_equip_slot = SLOT_WAIST|SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BELT|ITEM_SLOT_BACK
 	w_class = 3 //Fits in yautja bags.
 	var/spikes = 12
 	var/max_spikes = 12
@@ -165,7 +165,7 @@
 		last_regen = world.time
 		update_icon()
 
-/obj/item/weapon/gun/launcher/spike/New()
+/obj/item/weapon/gun/launcher/spike/Initialize()
 	. = ..()
 	START_PROCESSING(SSobj, src)
 	last_regen = world.time
@@ -176,12 +176,12 @@
 	verbs -= /obj/item/weapon/gun/verb/use_unique_action
 
 /obj/item/weapon/gun/launcher/spike/set_gun_config_values()
-	fire_delay = config.high_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 
 /obj/item/weapon/gun/launcher/spike/examine(mob/user)
@@ -237,22 +237,22 @@
 /obj/item/weapon/gun/syringe/examine(mob/user)
 	..()
 	if(user != loc) return
-	to_chat(user, "\blue [syringes.len] / [max_syringes] syringes.")
+	to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
 
 /obj/item/weapon/gun/syringe/attackby(obj/item/I as obj, mob/user as mob)
 	if(istype(I, /obj/item/reagent_container/syringe))
 		var/obj/item/reagent_container/syringe/S = I
 		if(S.mode != 2)//SYRINGE_BROKEN in syringes.dm
 			if(syringes.len < max_syringes)
-				user.drop_inv_item_to_loc(I, src)
+				user.transferItemToLoc(I, src)
 				syringes += I
 				update_icon()
-				to_chat(user, "\blue You put the syringe in [src].")
-				to_chat(user, "\blue [syringes.len] / [max_syringes] syringes.")
+				to_chat(user, "<span class='notice'>You put the syringe in [src].</span>")
+				to_chat(user, "<span class='notice'>[syringes.len] / [max_syringes] syringes.</span>")
 			else
-				to_chat(usr, "\red [src] cannot hold more syringes.")
+				to_chat(usr, "<span class='warning'>[src] cannot hold more syringes.</span>")
 		else
-			to_chat(usr, "\red This syringe is broken!")
+			to_chat(usr, "<span class='warning'>This syringe is broken!</span>")
 
 
 /obj/item/weapon/gun/syringe/afterattack(obj/target, mob/user , flag)
@@ -270,7 +270,7 @@
 	if(syringes.len)
 		spawn(0) fire_syringe(target,user)
 	else
-		to_chat(usr, "\red [src] is empty.")
+		to_chat(usr, "<span class='warning'>[src] is empty.</span>")
 
 /obj/item/weapon/gun/syringe/proc/fire_syringe(atom/target, mob/user)
 	if (locate (/obj/structure/table, src.loc))
@@ -348,6 +348,6 @@
 	anchored = 1
 	density = 0
 
-/obj/effect/syringe_gun_dummy/New()
+/obj/effect/syringe_gun_dummy/Initialize()
 	create_reagents(15)
 	return ..()

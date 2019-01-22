@@ -445,7 +445,7 @@
 	icon_state = "matchbox"
 	item_state = "zippo"
 	w_class = 1
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	can_hold = list("/obj/item/tool/match")
 
 	New()

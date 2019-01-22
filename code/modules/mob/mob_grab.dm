@@ -114,6 +114,14 @@
 				//Then, we place the mob where it ought to be
 				X.stomach_contents.Add(pulled)
 				pulled.forceMove(X)
+				if(ishuman(pulled)) //Check for camera; if we have one, turn it off.
+					var/mob/living/carbon/human/H = pulled
+					if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))
+						var/obj/item/device/radio/headset/almayer/marine/R = H.wear_ear
+						if(R.camera.status)
+							R.camera.status = FALSE //Turn camera off.
+							to_chat(H, "<span class='danger'>Your headset camera flickers off as you are devoured; you'll need to reactivate it by rebooting your headset HUD!<span>")
+
 				return 1
 		if(!(pulled in X.stomach_contents))
 			to_chat(X, "<span class='warning'>You stop devouring \the [pulled]. \He probably tasted gross anyways.</span>")

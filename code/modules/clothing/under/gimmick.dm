@@ -28,16 +28,16 @@
 	name = "combat pants"
 	desc = "The only thing a man needs when he's up agains the world."
 	icon_state = "rambo_suit"
-	flags_armor_protection = LEGS|LOWER_TORSO
-	flags_cold_protection = LEGS|LOWER_TORSO
-	flags_heat_protection = LEGS|LOWER_TORSO
+	flags_armor_protection = LEGS|GROIN
+	flags_cold_protection = LEGS|GROIN
+	flags_heat_protection = LEGS|GROIN
 
 /obj/item/clothing/suit/gimmick/rambo
 	name = "pendant"
 	desc = "It's a precious stone and something of a talisman of protection."
-	flags_armor_protection = UPPER_TORSO
-	flags_cold_protection = UPPER_TORSO
-	flags_heat_protection = UPPER_TORSO
+	flags_armor_protection = CHEST
+	flags_cold_protection = CHEST
+	flags_heat_protection = CHEST
 	icon_state = "rambo_pendant"
 
 //MCCLANE
@@ -45,26 +45,26 @@
 	name = "holiday attire"
 	desc = "The perfect outfit for a Christmas holiday with family. Shoes not included."
 	icon_state = "mcclane_suit"
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|LEGS
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|LEGS
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|LEGS
+	flags_armor_protection = CHEST|GROIN|LEGS
+	flags_cold_protection = CHEST|GROIN|LEGS
+	flags_heat_protection = CHEST|GROIN|LEGS
 
 //DUTCH
 /obj/item/clothing/under/gimmick/dutch
 	name = "combat fatigues"
 	desc = "Just another pair of military fatigues for a grueling tour in a jungle."
 	icon_state = "dutch_suit"
-	flags_armor_protection = LEGS|LOWER_TORSO
-	flags_cold_protection = LEGS|LOWER_TORSO
-	flags_heat_protection = LEGS|LOWER_TORSO
+	flags_armor_protection = LEGS|GROIN
+	flags_cold_protection = LEGS|GROIN
+	flags_heat_protection = LEGS|GROIN
 
 /obj/item/clothing/suit/armor/gimmick/dutch
 	name = "armored jacket"
 	desc = "It's hot in the jungle. Sometimes it's hot and heavy, and sometimes it's hell on earth."
 	icon_state = "dutch_armor"
-	flags_armor_protection = UPPER_TORSO
-	flags_cold_protection = UPPER_TORSO
-	flags_heat_protection = UPPER_TORSO
+	flags_armor_protection = CHEST
+	flags_cold_protection = CHEST
+	flags_heat_protection = CHEST
 	armor = list(melee = 45, bullet = 45, laser = 35, energy = 25, bomb = 25, bio = 0, rad = 0)
 	allowed = list(
 			/obj/item/weapon/gun,
@@ -117,9 +117,9 @@
 	slowdown = 1
 	flags_atom = CONDUCT
 	flags_inventory = BLOCKSHARPOBJ
-	flags_armor_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	flags_cold_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
-	flags_heat_protection = UPPER_TORSO|LOWER_TORSO|ARMS|LEGS
+	flags_armor_protection = CHEST|GROIN|ARMS|LEGS
+	flags_cold_protection = CHEST|GROIN|ARMS|LEGS
+	flags_heat_protection = CHEST|GROIN|ARMS|LEGS
 	allowed = list(/obj/item/weapon/gun/pistol/auto9)
 	armor = list(melee = 87, bullet = 87, laser = 87, energy = 87, bomb = 87, bio = 50, rad = 50)
 

@@ -1,3 +1,16 @@
+GLOBAL_VAR(AdminProcCaller)
+GLOBAL_PROTECT(AdminProcCaller)
+GLOBAL_VAR_INIT(AdminProcCallCount, 0)
+GLOBAL_PROTECT(AdminProcCallCount)
+GLOBAL_VAR(LastAdminCalledTargetRef)
+GLOBAL_PROTECT(LastAdminCalledTargetRef)
+GLOBAL_VAR(LastAdminCalledTarget)
+GLOBAL_PROTECT(LastAdminCalledTarget)
+GLOBAL_VAR(LastAdminCalledProc)
+GLOBAL_PROTECT(LastAdminCalledProc)
+GLOBAL_LIST_EMPTY(AdminProcCallSpamPrevention)
+GLOBAL_PROTECT(AdminProcCallSpamPrevention)
+
 /client/proc/Debug2()
 	set category = "Debug"
 	set name = "Debugging Mode"
@@ -31,7 +44,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set waitfor = 0
 
 	if(!check_rights(R_DEBUG)) return
-	if(config.debugparanoid && !check_rights(R_ADMIN)) return
+	if(CONFIG_GET(flag/debugparanoid) && !check_rights(R_ADMIN)) return
 
 	var/target = null
 	var/targetselected = 0
@@ -150,7 +163,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 	set waitfor = 0
 
 	if(!check_rights(R_DEBUG)) return
-	if(config.debugparanoid && !check_rights(R_ADMIN)) return
+	if(CONFIG_GET(flag/debugparanoid) && !check_rights(R_ADMIN)) return
 
 	var/lst[] // List reference
 	lst = new/list() // Make the list
@@ -211,7 +224,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				lst[i] = temp.loc
 
 	log_admin("[key_name(src)] called [A]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
-	message_admins("\blue [key_name_admin(src)] called [A]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
+	message_admins("<span class='notice'> [key_name_admin(src)] called [A]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].</span>")
 	returnval = call(A,procname)(arglist(lst)) // Pass the lst as an argument list to the proc
 	to_chat(usr, "<font color='blue'>[procname] returned: [returnval ? returnval : "null"]</font>")
 	feedback_add_details("admin_verb","AAPC") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -231,10 +244,10 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 
 	var/list/air_info = T.return_air()
 
-	var/t = "\blue Coordinates: [T.x],[T.y],[T.z]\n"
-	t += "\red Temperature: [air_info[2]]\n"
-	t += "\red Pressure: [air_info[3]]kPa\n"
-	t += "\blue Gas Type: [air_info[1]]\n"
+	var/t = "<span class='notice'> Coordinates: [T.x],[T.y],[T.z]\n</span>"
+	t += "<span class='warning'> Temperature: [air_info[2]]\n</span>"
+	t += "<span class='warning'> Pressure: [air_info[3]]kPa\n</span>"
+	t += "<span class='notice'> Gas Type: [air_info[1]]\n</span>"
 
 	usr.show_message(t, 1)
 	feedback_add_details("admin_verb","ASL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
@@ -297,37 +310,66 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			M:Alienize()
 			feedback_add_details("admin_verb","MKAL") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 		log_admin("[key_name(usr)] made [key_name(M)] into an alien.")
-		message_admins("\blue [key_name_admin(usr)] made [key_name(M)] into an alien.", 1)
+		message_admins("<span class='notice'> [key_name_admin(usr)] made [key_name(M)] into an alien.</span>", 1)
 	else
 		alert("Invalid mob")
 
-/client/proc/cmd_admin_change_hivenumber(mob/living/carbon/Xenomorph/M in mob_list, var/hivenumber = XENO_HIVE_NORMAL)
+/client/proc/cmd_admin_change_hivenumber(mob/living/carbon/Xenomorph/X in mob_list)
 	set category = "Debug"
 	set name = "Change Hivenumber"
+
+	if(!check_rights(R_DEBUG|R_ADMIN))
+		return
+
+	if(!istype(X))
+		to_chat(usr, "This can only be done to instances of type /mob/living/carbon/Xenomorph")
+		return
+
+	var/hivenumber_status = X.hivenumber
+
+	var/list/namelist = list()
+	for(var/datum/hive_status/H in hive_datum) // global hive datum list
+		namelist += H.name
+
+	var/newhive = input(src, "Select a hive.", null, null) in namelist
+
+	if(!X || !istype(X))
+		return
+
+	var/newhivenumber
+	switch(newhive)
+		if("Normal")
+			newhivenumber = XENO_HIVE_NORMAL
+		if("Corrupted")
+			newhivenumber = XENO_HIVE_CORRUPTED
+		if("Alpha")
+			newhivenumber = XENO_HIVE_ALPHA
+		if("Beta")
+			newhivenumber = XENO_HIVE_BETA
+		if("Zeta")
+			newhivenumber = XENO_HIVE_ZETA
+		else
+			return
+
+	if(X.hivenumber != hivenumber_status)
+		to_chat(usr, "Someone else changed this xeno while you were deciding")
+		return
 
 	if(!ticker)
 		alert("Wait until the game starts")
 		return
 
-	if(M.gc_destroyed)
+	if(!X || X.gc_destroyed)
 		alert("That mob doesn't seem to exist, close the panel and try again.")
 		return
 
-	if(isXeno(M))
-		log_admin("[key_name(src)] changed hivenumber of [M] to [M.hivenumber].")
-		M.hivenumber = hivenumber
-		if(istype(M, /mob/living/carbon/Xenomorph/Larva))
-			var/mob/living/carbon/Xenomorph/Larva/L = M
-			L.update_icons() // larva renaming done differently
-		else
-			M.generate_name()
-		if(istype(M, /mob/living/carbon/Xenomorph/Queen))
-			update_living_queens()
-		to_chat(usr, "Hivenumber set to [M.hivenumber]")
-		feedback_add_details("admin_verb","CHHN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-		message_admins("\blue [key_name(src)] changed hivenumber of [M] to [M.hivenumber].", 1)
-	else
-		alert("Invalid mob")
+	log_admin("[key_name(src)] changed hivenumber of [X] to [newhive].")
+	message_admins("<span class='boldnotice'>[key_name(src)] changed hivenumber of [X] to [newhive].</span>", 1)
+
+	X.set_hive_number(newhivenumber)
+
+	feedback_add_details("admin_verb","CHHN") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
 
 //TODO: merge the vievars version into this or something maybe mayhaps
 /client/proc/cmd_debug_del_all()
@@ -401,13 +443,13 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			id.registered_name = H.real_name
 			id.assignment = "Captain"
 			id.name = "[id.registered_name]'s ID Card ([id.assignment])"
-			H.equip_to_slot_or_del(id, WEAR_ID)
+			H.equip_to_slot_or_del(id, SLOT_WEAR_ID)
 			H.update_inv_wear_id()
 	else
 		alert("Invalid mob")
 	feedback_add_details("admin_verb","GFA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(src)] has granted [M.key] full access.")
-	message_admins("\blue [key_name_admin(usr)] has granted [M.key] full access.", 1)
+	message_admins("<span class='notice'> [key_name_admin(usr)] has granted [M.key] full access.</span>", 1)
 
 /client/proc/cmd_admin_grantallskills(var/mob/M in mob_list)
 	set category = "Admin"
@@ -422,7 +464,69 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 		alert("Invalid mob")
 	feedback_add_details("admin_verb","GAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 	log_admin("[key_name(src)] has granted [M.key] all skills.")
-	message_admins("\blue [key_name_admin(usr)] has granted [M.key] all skills.", 1)
+	message_admins("<span class='notice'> [key_name_admin(usr)] has granted [M.key] all skills.</span>", 1)
+
+/client/proc/cmd_admin_changesquad(var/mob/living/carbon/human/H in mob_list)
+	set category = "Admin"
+	set name = "Change Squad"
+
+	if(!check_rights(R_DEBUG|R_ADMIN))
+		alert("Insufficient permissions.")
+		return
+
+	if(!ticker)
+		alert("Wait until the game starts.")
+		return
+
+	if(!istype(H))
+		alert("Invalid mob.")
+		return
+
+	if(!H.mind?.assigned_role)
+		alert("Mob has no mind or role.")
+		return
+
+	switch(H.mind.assigned_role)
+		if(!("Squad Marine" || "Squad Engineer" || "Squad Medic" || "Squad Smartgunner" || "Squad Specialist" || "Squad Leader"))
+			alert("Invalid role")
+			return
+
+	H.set_everything(H.mind.assigned_role)
+
+	H.assigned_squad?.remove_marine_from_squad(H)
+
+	var/datum/squad/S = input(usr, "Choose the marine's new squad") as null|anything in RoleAuthority.squads
+	if(!S)
+		return
+
+	S.put_marine_in_squad(H)
+
+	for(var/datum/data/record/t in data_core.general) //we update the crew manifest
+		if(t.fields["name"] == H.real_name)
+			t.fields["squad"] = S.name
+			break
+
+	var/obj/item/card/id/ID = H.wear_id
+	ID.assigned_fireteam = 0 //reset fireteam assignment
+
+	//Changes headset frequency to match new squad
+	if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))
+		var/obj/item/device/radio/headset/almayer/marine/E = H.wear_ear
+		E.set_frequency(S.radio_freq)
+	else
+		if(H.wear_ear)
+			qdel(H.wear_ear)
+			H.update_icons()
+		H.wear_ear = new /obj/item/device/radio/headset/almayer/marine
+		var/obj/item/device/radio/headset/almayer/marine/E = H.wear_ear
+		E.set_frequency(S.radio_freq)
+		H.update_icons()
+
+	H.hud_set_squad()
+
+	feedback_add_details("admin_verb","CSQ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+	log_admin("[key_name(src)] has changed the squad of [H.key] to [S].")
+	message_admins("<span class='boldnotice'>[key_name_admin(usr)] has changed the squad of [H.key] to [S].</span>", 1)
 
 /client/proc/cmd_assume_direct_control(var/mob/M in mob_list)
 	set category = "Admin"
@@ -438,7 +542,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			var/mob/dead/observer/ghost = new/mob/dead/observer(M,1)
 			ghost.ckey = M.ckey
 			if(ghost.client) ghost.client.change_view(world.view)
-	message_admins("\blue [key_name_admin(usr)] assumed direct control of [M].", 1)
+	message_admins("<span class='notice'> [key_name_admin(usr)] assumed direct control of [M].</span>", 1)
 	log_admin("[key_name(usr)] assumed direct control of [M].")
 	var/mob/adminmob = src.mob
 	M.ckey = src.ckey
@@ -647,12 +751,12 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 				SMES.output = 75000
 
 	if(!found_the_pump && response == "Setup Completely")
-		to_chat(src, "\red Unable to locate air supply to fill up with coolant, adding some coolant around the supermatter")
+		to_chat(src, "<span class='warning'>Unable to locate air supply to fill up with coolant, adding some coolant around the supermatter</span>")
 
 
 
 	log_admin("[key_name(usr)] setup the supermatter engine [response == "Setup except coolant" ? "without coolant" : ""]")
-	message_admins("\blue [key_name_admin(usr)] setup the supermatter engine  [response == "Setup except coolant" ? "without coolant": ""]", 1)
+	message_admins("<span class='notice'> [key_name_admin(usr)] setup the supermatter engine  [response == "Setup except coolant" ? "without coolant": ""]</span>", 1)
 	return
 
 

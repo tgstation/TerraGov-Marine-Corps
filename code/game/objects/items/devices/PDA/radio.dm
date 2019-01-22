@@ -211,12 +211,7 @@
 	var/last_transmission
 	var/datum/radio_frequency/radio_connection
 
-	New()
-		..()
-		if(radio_controller)
-			initialize()
-
-	initialize()
+	Initialize()
 		if (src.frequency < 1441 || src.frequency > 1489)
 			src.frequency = sanitize_frequency(src.frequency)
 

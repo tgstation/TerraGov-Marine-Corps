@@ -23,7 +23,7 @@
 	var/maxf = 1499
 //			"Example" = FREQ_LISTENING|FREQ_BROADCASTING
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	throw_speed = 2
 	throw_range = 9
 	w_class = 2
@@ -46,14 +46,10 @@
 		frequency = new_frequency
 		radio_connection = radio_controller.add_object(src, frequency, RADIO_CHAT)
 
-/obj/item/device/radio/New()
-	..()
-	if(radio_controller)
-		initialize()
-
-
-/obj/item/device/radio/initialize()
-
+/obj/item/device/radio/Initialize()
+	. = ..()
+	if(!radio_controller)
+		return
 	if(freerange)
 		if(frequency < 1200 || frequency > 1600)
 			frequency = sanitize_frequency(frequency, maxf)
@@ -158,7 +154,7 @@
 				channels[chan_name] |= FREQ_LISTENING
 	else if (href_list["wires"])
 		var/t1 = text2num(href_list["wires"])
-		if (!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
+		if (!( istype(usr.get_active_held_item(), /obj/item/tool/wirecutters) ))
 			return
 		if (wires & t1)
 			wires &= ~t1
@@ -472,9 +468,9 @@
 	..()
 	if ((in_range(src, user) || loc == user))
 		if (b_stat)
-			to_chat(user, "\blue [src] can be attached and modified!")
+			to_chat(user, "<span class='notice'>[src] can be attached and modified!</span>")
 		else
-			to_chat(user, "\blue [src] can not be modified or attached!")
+			to_chat(user, "<span class='notice'>[src] can not be modified or attached!</span>")
 
 
 /obj/item/device/radio/attackby(obj/item/W as obj, mob/user as mob)
@@ -485,9 +481,9 @@
 	b_stat = !( b_stat )
 	if(!istype(src, /obj/item/device/radio/beacon))
 		if (b_stat)
-			user.show_message("\blue The radio can now be attached and modified!")
+			user.show_message("<span class='notice'> The radio can now be attached and modified!</span>")
 		else
-			user.show_message("\blue The radio can no longer be modified or attached!")
+			user.show_message("<span class='notice'> The radio can no longer be modified or attached!</span>")
 		updateDialog()
 			//Foreach goto(83)
 		add_fingerprint(user)

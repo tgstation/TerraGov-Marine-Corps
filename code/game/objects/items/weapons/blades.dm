@@ -4,7 +4,7 @@
 	icon_state = "claymore"
 	item_state = "claymore"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 40
 	throwforce = 10
 	sharp = IS_SHARP_ITEM_BIG
@@ -98,7 +98,7 @@
 					var/obj/item/storage/S = loc
 					S.remove_from_storage(src)
 				if(loc == user)
-					user.temp_drop_inv_item(src)
+					user.temporarilyRemoveItemFromInventory(src)
 				var/obj/item/attachable/bayonet/F = new(src.loc)
 				user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 				if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
@@ -141,7 +141,7 @@
 	throw_range = 7
 	hitsound = 'sound/weapons/slash.ogg'
 	attack_verb = list("slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
-	flags_equip_slot = SLOT_STORE
+	flags_equip_slot = ITEM_SLOT_POCKET
 
 
 

@@ -5,7 +5,7 @@
 	name = "banhammer"
 	icon = 'icons/obj/items/items.dmi'
 	icon_state = "toyhammer"
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 0
 	w_class = 2.0
 	throw_speed = 7
@@ -21,7 +21,7 @@
 	desc = "A rod of pure obsidian, its very presence disrupts and dampens the powers of paranormal phenomenae."
 	icon_state = "nullrod"
 	item_state = "nullrod"
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 15
 	throw_speed = 1
 	throw_range = 4

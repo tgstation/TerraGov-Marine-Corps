@@ -34,7 +34,7 @@
 			to_chat(src, "You can't commit suicide whilst restrained! ((You can type Ghost instead however.))")
 			return
 		suiciding = 1
-		var/obj/item/held_item = get_active_hand()
+		var/obj/item/held_item = get_active_held_item()
 		if(held_item)
 			var/damagetype = held_item.suicide_act(src)
 			if(damagetype)
@@ -104,7 +104,7 @@
 
 	if(confirm == "Yes")
 		suiciding = 1
-		viewers(loc) << "\red <b>[src]'s brain is growing dull and lifeless. It looks like it's lost the will to live.</b>"
+		viewers(loc) << "<span class='danger'>[src]'s brain is growing dull and lifeless. It looks like it's lost the will to live.</span>"
 		spawn(50)
 			death(0)
 			suiciding = 0

@@ -47,11 +47,11 @@
 		reagents.trans_to(M, reagents.total_volume)
 		if(M == user)
 			for(var/mob/O in viewers(M, null))
-				O.show_message(text("\blue [] eats some [] from \the [].", user, loaded, src), 1)
+				O.show_message(text("<span class='notice'> [] eats some [] from \the [].</span>", user, loaded, src), 1)
 				M.reagents.add_reagent("nutriment", 1)
 		else
 			for(var/mob/O in viewers(M, null))
-				O.show_message(text("\blue [] feeds [] some [] from \the []", user, M, loaded, src), 1)
+				O.show_message(text("<span class='notice'> [] feeds [] some [] from \the []</span>", user, M, loaded, src), 1)
 				M.reagents.add_reagent("nutriment", 1)
 		playsound(M.loc,'sound/items/eatfood.ogg', 15, 1)
 		overlays.Cut()
@@ -101,7 +101,7 @@
 
 /obj/item/tool/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "\red You accidentally cut yourself with the [src].")
+		to_chat(user, "<span class='warning'>You accidentally cut yourself with the [src].</span>")
 		user.take_limb_damage(20)
 		return
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, 5)
@@ -116,7 +116,7 @@
 
 /obj/item/tool/kitchen/utensil/knife/attack(target as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "\red You somehow managed to cut yourself with the [src].")
+		to_chat(user, "<span class='warning'>You somehow managed to cut yourself with the [src].</span>")
 		user.take_limb_damage(20)
 		return
 	playsound(loc, 'sound/weapons/bladeslice.ogg', 25, 1, 5)
@@ -193,7 +193,7 @@
 
 /obj/item/tool/kitchen/rollingpin/attack(mob/living/M as mob, mob/living/user as mob)
 	if ((CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "\red The [src] slips out of your hand and hits your head.")
+		to_chat(user, "<span class='warning'>The [src] slips out of your hand and hits your head.</span>")
 		user.take_limb_damage(10)
 		user.KnockOut(2)
 		return
@@ -210,7 +210,7 @@
 			if (H.stat < 2 && H.health < 50 && prob(90))
 				// ******* Check
 				if (istype(head_protection) && head_protection.flags_inventory & BLOCKSHARPOBJ  && prob(80))
-					to_chat(H, "\red The helmet protects you from being hit hard in the head!")
+					to_chat(H, "<span class='warning'>The helmet protects you from being hit hard in the head!</span>")
 					return
 				var/time = rand(2, 6)
 				if (prob(75))
@@ -218,10 +218,10 @@
 				else
 					H.Stun(time)
 				if(H.stat != 2)	H.stat = 1
-				user.visible_message("\red <B>[H] has been knocked unconscious!</B>", "\red <B>You knock [H] unconscious!</B>")
+				user.visible_message("<span class='danger'>[H] has been knocked unconscious!</span>", "<span class='danger'>You knock [H] unconscious!</span>")
 				return
 			else
-				H.visible_message("\red [user] tried to knock [H] unconscious!", "\red [user] tried to knock you unconscious!")
+				H.visible_message("<span class='warning'> [user] tried to knock [H] unconscious!</span>", "<span class='warning'> [user] tried to knock you unconscious!</span>")
 				H.blur_eyes(3)
 	return ..()
 
@@ -276,7 +276,7 @@
 
 
 	if((CLUMSY in user.mutations) && prob(50))              //What if he's a clown?
-		to_chat(M, "\red You accidentally slam yourself with the [src]!")
+		to_chat(M, "<span class='warning'>You accidentally slam yourself with the [src]!</span>")
 		M.KnockDown(1)
 		user.take_limb_damage(2)
 		if(prob(50))
@@ -308,19 +308,19 @@
 		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 25, 1)
 			for(var/mob/O in viewers(M, null))
-				O.show_message(text("\red <B>[] slams [] with the tray!</B>", user, M), 1)
+				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), 1)
 			return
 		else
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //we applied the damage, we played the sound, we showed the appropriate messages. Time to return and stop the proc
 			for(var/mob/O in viewers(M, null))
-				O.show_message(text("\red <B>[] slams [] with the tray!</B>", user, M), 1)
+				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), 1)
 			return
 
 
 
 
 	if(istype(M, /mob/living/carbon/human) && ((H.head && (H.head.flags_inventory & COVEREYES) ) || (H.wear_mask && (H.wear_mask.flags_inventory & COVEREYES) ) || (H.glasses && (H.glasses.flags_inventory & COVEREYES) )))
-		to_chat(M, "\red You get slammed in the face with the tray, against your mask!")
+		to_chat(M, "<span class='warning'>You get slammed in the face with the tray, against your mask!</span>")
 		if(prob(33))
 			src.add_mob_blood(H)
 			if (H.wear_mask)
@@ -336,11 +336,11 @@
 		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 25, 1)
 			for(var/mob/O in viewers(M, null))
-				O.show_message(text("\red <B>[] slams [] with the tray!</B>", user, M), 1)
+				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), 1)
 		else
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin'
 			for(var/mob/O in viewers(M, null))
-				O.show_message(text("\red <B>[] slams [] with the tray!</B>", user, M), 1)
+				O.show_message(text("<span class='danger'>[] slams [] with the tray!</span>", user, M), 1)
 		if(prob(10))
 			M.Stun(rand(1,3))
 			M.take_limb_damage(3)
@@ -350,7 +350,7 @@
 			return
 
 	else //No eye or head protection, tough luck!
-		to_chat(M, "\red You get slammed in the face with the tray!")
+		to_chat(M, "<span class='warning'>You get slammed in the face with the tray!</span>")
 		if(prob(33))
 			src.add_mob_blood(M)
 			var/turf/location = H.loc
@@ -360,11 +360,11 @@
 		if(prob(50))
 			playsound(M, 'sound/items/trayhit1.ogg', 25, 1)
 			for(var/mob/O in viewers(M, null))
-				O.show_message(text("\red <B>[] slams [] in the face with the tray!</B>", user, M), 1)
+				O.show_message(text("<span class='danger'>[] slams [] in the face with the tray!</span>", user, M), 1)
 		else
 			playsound(M, 'sound/items/trayhit2.ogg', 25, 1)  //sound playin' again
 			for(var/mob/O in viewers(M, null))
-				O.show_message(text("\red <B>[] slams [] in the face with the tray!</B>", user, M), 1)
+				O.show_message(text("<span class='danger'>[] slams [] in the face with the tray!</span>", user, M), 1)
 		if(prob(30))
 			M.Stun(rand(2,4))
 			M.take_limb_damage(4)

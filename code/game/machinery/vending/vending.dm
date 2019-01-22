@@ -18,6 +18,7 @@
 	anchored = 1
 	density = 1
 	layer = BELOW_OBJ_LAYER
+	can_supply_drop = TRUE
 
 	use_power = 1
 	idle_power_usage = 10
@@ -232,9 +233,9 @@
 			to_chat(user, "<span class='warning'>[src] doesn't have a coin slot.</span>")
 			return
 		if(C.flags_token & tokensupport)
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				coin = W
-				to_chat(user, "\blue You insert the [W] into the [src]")
+				to_chat(user, "<span class='notice'>You insert the [W] into the [src]</span>")
 		else
 			to_chat(user, "<span class='warning'>\The [src] rejects the [W].</span>")
 			return
@@ -244,9 +245,9 @@
 		scan_card(I)
 		return
 	else if (istype(W, /obj/item/spacecash/ewallet))
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			ewallet = W
-			to_chat(user, "\blue You insert the [W] into the [src]")
+			to_chat(user, "<span class='notice'>You insert the [W] into the [src]</span>")
 		return
 
 	else if(istype(W, /obj/item/tool/wrench))
@@ -349,9 +350,9 @@
 /obj/machinery/vending/attack_hand(mob/user as mob)
 	if(tipped_level == 2)
 		tipped_level = 1
-		user.visible_message("\blue [user] begins to heave the vending machine back into place!","\blue You start heaving the vending machine back into place..")
+		user.visible_message("<span class='notice'> [user] begins to heave the vending machine back into place!</span>","<span class='notice'> You start heaving the vending machine back into place..</span>")
 		if(do_after(user,80, FALSE, 5, BUSY_ICON_FRIENDLY))
-			user.visible_message("\blue [user] rights the [src]!","\blue You right the [src]!")
+			user.visible_message("<span class='notice'> [user] rights the [src]!</span>","<span class='notice'> You right the [src]!</span>")
 			flip_back()
 			return
 		else
@@ -453,9 +454,9 @@
 			return
 
 		coin.loc = src.loc
-		if(!usr.get_active_hand())
+		if(!usr.get_active_held_item())
 			usr.put_in_hands(coin)
-		to_chat(usr, "\blue You remove the [coin] from the [src]")
+		to_chat(usr, "<span class='notice'>You remove the [coin] from the [src]</span>")
 		coin = null
 
 	if(href_list["remove_ewallet"] && !istype(usr,/mob/living/silicon))
@@ -463,9 +464,9 @@
 			to_chat(usr, "There is no charge card in this machine.")
 			return
 		ewallet.loc = src.loc
-		if(!usr.get_active_hand())
+		if(!usr.get_active_held_item())
 			usr.put_in_hands(ewallet)
-		to_chat(usr, "\blue You remove the [ewallet] from the [src]")
+		to_chat(usr, "<span class='notice'>You remove the [ewallet] from the [src]</span>")
 		ewallet = null
 
 	if ((usr.contents.Find(src) || (in_range(src, usr) && istype(src.loc, /turf))))
@@ -492,7 +493,7 @@
 						ewallet.worth -= R.price
 						src.vend(R, usr)
 					else
-						to_chat(usr, "\red The ewallet doesn't have enough money to pay for that.")
+						to_chat(usr, "<span class='warning'>The ewallet doesn't have enough money to pay for that.</span>")
 						src.currently_vending = R
 						src.updateUsrDialog()
 				else
@@ -512,7 +513,7 @@
 				"<span class='notice'>You fumble around figuring out the wiring.</span>")
 				var/fumbling_time = 20 * ( SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer )
 				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-			if (!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
+			if (!( istype(usr.get_active_held_item(), /obj/item/tool/wirecutters) ))
 				to_chat(usr, "You need wirecutters!")
 				return
 			if (src.isWireColorCut(twire))
@@ -527,7 +528,7 @@
 				"<span class='notice'>You fumble around figuring out the wiring.</span>")
 				var/fumbling_time = 20 * ( SKILL_ENGINEER_ENGI - usr.mind.cm_skills.engineer )
 				if(!do_after(usr, fumbling_time, TRUE, 5, BUSY_ICON_BUILD)) return
-			if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			if (!istype(usr.get_active_held_item(), /obj/item/device/multitool))
 				to_chat(usr, "You need a multitool!")
 				return
 			if (src.isWireColorCut(twire))
@@ -554,13 +555,13 @@
 
 	if (R in coin_records)
 		if(!coin)
-			to_chat(user, "\blue You need to insert a coin to get this item.")
+			to_chat(user, "<span class='notice'>You need to insert a coin to get this item.</span>")
 			return
 		if(coin.string_attached)
 			if(prob(50))
-				to_chat(user, "\blue You successfully pull the coin out before the [src] could swallow it.")
+				to_chat(user, "<span class='notice'>You successfully pull the coin out before the [src] could swallow it.</span>")
 			else
-				to_chat(user, "\blue You weren't able to pull the coin out fast enough, the machine ate it, string and all.")
+				to_chat(user, "<span class='notice'>You weren't able to pull the coin out fast enough, the machine ate it, string and all.</span>")
 				qdel(coin)
 				coin = null
 		else
@@ -583,11 +584,24 @@
 /obj/machinery/vending/proc/release_item(datum/data/vending_product/R, delay_vending = 0, dump_product = 0)
 	set waitfor = 0
 	if(delay_vending)
-		use_power(vend_power_usage)	//actuators and stuff
-		if (icon_vend) flick(icon_vend,src) //Show the vending animation if needed
-		sleep(delay_vending)
-	if(ispath(R.product_path,/obj/item/weapon/gun)) . = new R.product_path(get_turf(src),1)
-	else . = new R.product_path(get_turf(src))
+		if(powered(power_channel))
+			use_power(vend_power_usage)	//actuators and stuff
+			if (icon_vend)
+				flick(icon_vend,src) //Show the vending animation if needed
+			sleep(delay_vending)
+		else if(machine_current_charge > vend_power_usage) //if no power, use the machine's battery.
+			machine_current_charge -= min(machine_current_charge, vend_power_usage) //Sterilize with min; no negatives allowed.
+			//to_chat(world, "<span class='warning'>DEBUG: Machine Auto_Use_Power: Vend Power Usage: [vend_power_usage] Machine Current Charge: [machine_current_charge].</span>")
+			if (icon_vend)
+				flick(icon_vend,src) //Show the vending animation if needed
+			sleep(delay_vending)
+		else
+			return
+	if(ispath(R.product_path,/obj/item/weapon/gun))
+		return new R.product_path(get_turf(src),1)
+	else
+		return new R.product_path(get_turf(src))
+
 
 /obj/machinery/vending/MouseDrop_T(var/atom/movable/A, mob/user)
 
@@ -604,7 +618,7 @@
 		var/obj/item/I = A
 		stock(I, user)
 
-/obj/machinery/vending/proc/stock(obj/item/item_to_stock, mob/user)
+/obj/machinery/vending/proc/stock(obj/item/item_to_stock, mob/user, recharge = FALSE)
 	var/datum/data/vending_product/R //Let's try with a new datum.
 	 //More accurate comparison between absolute paths.
 	for(R in (product_records + hidden_records + coin_records))
@@ -635,15 +649,16 @@
 			if(item_to_stock.loc == user) //Inside the mob's inventory
 				if(item_to_stock.flags_item & WIELDED)
 					item_to_stock.unwield(user)
-				user.temp_drop_inv_item(item_to_stock)
+				user.temporarilyRemoveItemFromInventory(item_to_stock)
 
 			if(istype(item_to_stock.loc, /obj/item/storage)) //inside a storage item
 				var/obj/item/storage/S = item_to_stock.loc
 				S.remove_from_storage(item_to_stock, user.loc)
 
 			qdel(item_to_stock)
-			user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
-			"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
+			if(!recharge)
+				user.visible_message("<span class='notice'>[user] stocks [src] with \a [R.product_name].</span>",
+				"<span class='notice'>You stock [src] with \a [R.product_name].</span>")
 			R.amount++
 			updateUsrDialog()
 			return //We found our item, no reason to go on.

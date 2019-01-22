@@ -25,7 +25,7 @@
 	icon = 'icons/obj/items/storage/storage.dmi'
 	icon_state = "powerpack"
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 5.0
 	var/obj/item/cell/pcell = null
 	var/rounds_remaining = 500
@@ -42,7 +42,7 @@
 	if(!ishuman(user) || user.stat)
 		return FALSE
 
-	var/obj/item/weapon/gun/smartgun/mygun = user.get_active_hand()
+	var/obj/item/weapon/gun/smartgun/mygun = user.get_active_held_item()
 
 	if(isnull(mygun) || !mygun || !istype(mygun))
 		to_chat(user, "You must be holding an M56 Smartgun to begin the reload process.")
@@ -92,7 +92,7 @@
 	return TRUE
 
 /obj/item/smartgun_powerpack/attack_hand()
-	if(usr.get_inactive_hand() == src && pcell)
+	if(usr.get_inactive_held_item() == src && pcell)
 		usr.put_in_hands(pcell)
 		playsound(src,'sound/machines/click.ogg', 25, 1)
 		to_chat(usr, "You take out the [pcell] out of the [src].")
@@ -152,7 +152,7 @@
 		if(!user)
 			. = FALSE
 			break
-		if(!(L.s_store == mygun) && !(user.get_active_hand() == mygun) && !(user.get_inactive_hand() == mygun) || !(L.back == powerpack)) //power pack and gun aren't where they should be.
+		if(!(L.s_store == mygun) && !(user.get_active_held_item() == mygun) && !(user.get_inactive_held_item() == mygun) || !(L.back == powerpack)) //power pack and gun aren't where they should be.
 			. = FALSE
 			break
 
@@ -197,17 +197,17 @@
 		..()
 		spawn(1)
 			new /obj/item/clothing/suit/storage/marine/sniper(src)
-			new /obj/item/clothing/glasses/m42_goggles(src)
+			new /obj/item/clothing/glasses/night/m42_night_goggles(src)
 			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/flak(src)
-			new /obj/item/device/binoculars(src)
+			new /obj/item/device/binoculars/tactical(src)
 			new /obj/item/storage/backpack/marine/smock(src)
 			new /obj/item/weapon/gun/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
-
+			new /obj/item/bodybag/tarp(src)
 
 	open(var/mob/user as mob) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
@@ -313,7 +313,7 @@
 	icon_state = "rocket_case"
 	spec_set = "demolitionist"
 	w_class = 5
-	storage_slots = 15
+	storage_slots = 16
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -329,10 +329,11 @@
 			new /obj/item/ammo_magazine/rocket/ap(src)
 			new /obj/item/ammo_magazine/rocket/ap(src)
 			new /obj/item/ammo_magazine/rocket/wp(src)
+			new /obj/item/ammo_magazine/rocket/wp(src)
 			new /obj/item/explosive/mine(src)
 			new /obj/item/explosive/mine(src)
-			new /obj/item/explosive/plastique(src)
-			new /obj/item/explosive/plastique(src)
+			new /obj/item/device/radio/detpack(src)
+			new /obj/item/device/radio/detpack(src)
 			new /obj/item/device/radio/detpack(src)
 			new /obj/item/device/radio/detpack(src)
 			new /obj/item/device/assembly/signaler(src)
@@ -345,7 +346,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
 	w_class = 5
-	storage_slots = 11
+	storage_slots = 15
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -359,12 +360,16 @@
 			new /obj/item/ammo_magazine/sniper(src)
 			new /obj/item/ammo_magazine/sniper/incendiary(src)
 			new /obj/item/ammo_magazine/sniper/flak(src)
-			new /obj/item/device/binoculars(src)
-			new /obj/item/storage/backpack/marine/smock(src)
+			new /obj/item/device/binoculars/tactical(src)
 			new /obj/item/weapon/gun/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
+			new /obj/item/storage/backpack/marine/satchel/scout_cloak/sniper(src)
 			new /obj/item/weapon/gun/rifle/sniper/M42A(src)
+			new /obj/item/explosive/grenade/cloakbomb(src)
+			new /obj/item/explosive/grenade/cloakbomb(src)
+			new /obj/item/explosive/grenade/cloakbomb(src)
+			new /obj/item/bodybag/tarp(src)
 
 	open(mob/user) //A ton of runtimes were caused by ticker being null, so now we do the special items when its first opened
 		if(!opened) //First time opening it, so add the round-specific items
@@ -383,7 +388,7 @@
 	icon = 'icons/Marine/marine-weapons.dmi'
 	icon_state = "sniper_case"
 	w_class = 5
-	storage_slots = 21
+	storage_slots = 22
 	slowdown = 1
 	can_hold = list() //Nada. Once you take the stuff out it doesn't fit back in.
 	foldable = null
@@ -408,11 +413,12 @@
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/ammo_magazine/pistol/vp70(src)
 			new /obj/item/weapon/gun/rifle/m4ra(src)
-			new /obj/item/storage/backpack/marine/satchel/scout_cloak(src)
+			new /obj/item/storage/backpack/marine/satchel/scout_cloak/scout(src)
 			new /obj/item/device/motiondetector/scout(src)
 			new /obj/item/explosive/grenade/cloakbomb(src)
 			new /obj/item/explosive/grenade/cloakbomb(src)
 			new /obj/item/explosive/grenade/cloakbomb(src)
+			new /obj/item/bodybag/tarp(src)
 
 
 

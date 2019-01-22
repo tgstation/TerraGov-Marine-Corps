@@ -23,7 +23,7 @@
 	return
 
 /obj/item/map/proc/initialize_map()
-	var/wikiurl = config.wikiurl
+	var/wikiurl = CONFIG_GET(string/wikiurl)
 	if(wikiurl)
 		dat = {"
 

@@ -91,7 +91,7 @@
 				continue //Is the role allowed?
 			if(G.whitelisted && !is_alien_whitelisted(G.whitelisted))
 				continue //is the role whitelisted? //TODO Remove this.
-			H.equip_to_slot_or_del(new G.path(H), G.slot ? G.slot : WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new G.path(H), G.slot ? G.slot : SLOT_IN_BACKPACK)
 
 	//Give humans wheelchairs, if they need them.
 	var/datum/limb/l_foot = H.get_limb("l_foot")
@@ -108,7 +108,7 @@
 	if(H.disabilities & NEARSIGHTED)
 		var/obj/item/clothing/glasses/regular/P = new (H)
 		P.prescription = 1
-		H.equip_to_slot_or_del(P, WEAR_EYES)
+		H.equip_to_slot_or_del(P, SLOT_GLASSES)
 
 /datum/job/proc/equip_identification(mob/living/carbon/human/H)
 	if(!istype(H))
@@ -128,11 +128,11 @@
 	//put the player's account number onto the ID
 	if(H.mind?.initial_account)
 		C.associated_account_number = H.mind.initial_account.account_number
-	H.equip_to_slot_or_del(C, WEAR_ID)
+	H.equip_to_slot_or_del(C, SLOT_WEAR_ID)
 	return TRUE
 
 /datum/job/proc/get_access()
-	if(!config || config.jobs_have_minimal_access)
+	if(CONFIG_GET(flag/jobs_have_minimal_access))
 		return minimal_access.Copy() //Need to copy, because we want a new list here. Not the datum's list.
 	return access.Copy()
 
@@ -143,7 +143,7 @@
 
 /datum/job/proc/available_in_days(client/C)
 	//Checking the player's age is only possible through a db connection, so if there isn't one, player age will be a text string instead.
-	if(!istype(C) || !config.use_age_restriction_for_jobs || !isnum(C.player_age) || !isnum(minimal_player_age))
+	if(!istype(C) || !CONFIG_GET(flag/use_age_restriction_for_jobs) || !isnum(C.player_age) || !isnum(minimal_player_age))
 		return FALSE //One of the few times when returning 0 is the proper behavior.
 	return max(0, minimal_player_age - C.player_age)
 

@@ -40,7 +40,7 @@
 /obj/machinery/floodlight/attack_hand(mob/user as mob)
 	if(open && cell)
 		if(ishuman(user))
-			if(!user.get_active_hand())
+			if(!user.get_active_held_item())
 				user.put_in_hands(cell)
 				cell.loc = user.loc
 		else
@@ -56,7 +56,7 @@
 
 	if(on)
 		on = 0
-		to_chat(user, "\blue You turn off the light.")
+		to_chat(user, "<span class='notice'>You turn off the light.</span>")
 		SetLuminosity(0)
 		unacidable = 1
 	else
@@ -65,7 +65,7 @@
 		if(cell.charge <= 0)
 			return
 		on = 1
-		to_chat(user, "\blue You turn on the light.")
+		to_chat(user, "<span class='notice'>You turn on the light.</span>")
 		SetLuminosity(brightness_on)
 		unacidable = 0
 
@@ -109,7 +109,7 @@
 			if(cell)
 				to_chat(user, "There is a power cell already installed.")
 			else
-				if(user.drop_inv_item_to_loc(W, src))
+				if(user.transferItemToLoc(W, src))
 					cell = W
 					to_chat(user, "You insert the power cell.")
 	updateicon()

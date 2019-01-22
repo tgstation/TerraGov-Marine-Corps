@@ -6,7 +6,7 @@
 	icon = 'icons/obj/clothing/belts.dmi'
 	icon_state = "utilitybelt"
 	item_state = "utility"
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	attack_verb = list("whipped", "lashed", "disciplined")
 	w_class = 4
 	allow_drawing_method = TRUE
@@ -14,7 +14,7 @@
 
 
 /obj/item/storage/belt/equipped(mob/user, slot)
-	if(slot == WEAR_WAIST)
+	if(slot == SLOT_BELT)
 		mouse_opacity = 2 //so it's easier to click when properly equipped.
 	..()
 
@@ -264,6 +264,7 @@
 		"/obj/item/weapon/combat_knife",
 		"/obj/item/device/flashlight/flare",
 		"/obj/item/ammo_magazine/rifle",
+		"/obj/item/cell/lasgun",
 		"/obj/item/ammo_magazine/smg",
 		"/obj/item/ammo_magazine/pistol",
 		"/obj/item/ammo_magazine/revolver",
@@ -373,7 +374,7 @@
 	can_hold = list("/obj/item/explosive/grenade")
 
 
-/obj/item/storage/belt/grenade/New()
+/obj/item/storage/belt/grenade/standard/New()
 	..()
 	spawn(1)
 		new /obj/item/explosive/grenade/incendiary(src)
@@ -389,7 +390,7 @@
 	w_class = 4
 	storage_slots = 16
 	max_w_class = 3
-	max_storage_space = 32
+	max_storage_space = 48
 	can_hold = list("/obj/item/explosive/grenade")
 
 /obj/item/storage/belt/grenade/b18/New()

@@ -53,15 +53,15 @@
 	var/barricade_clear_distance	= 1			// How far the bullet can travel before incurring a chance of hitting barricades; normally 1.
 
 	New()
-		accuracy 			= config.min_hit_accuracy 	// This is added to the bullet's base accuracy.
-		accuracy_var_low	= config.min_proj_variance 	// How much the accuracy varies when fired.
-		accuracy_var_high	= config.min_proj_variance
-		accurate_range 		= config.close_shell_range 	// For most guns, this is where the bullet dramatically looses accuracy. Not for snipers though.
-		max_range 			= config.norm_shell_range 	// This will de-increment a counter on the bullet.
-		damage_var_low		= config.min_proj_variance 	// Same as with accuracy variance.
-		damage_var_high		= config.min_proj_variance
-		damage_falloff 		= config.reg_damage_falloff 	// How much damage the bullet loses per turf traveled.
-		shell_speed 		= config.slow_shell_speed 	// How fast the projectile moves.
+		accuracy 			= CONFIG_GET(number/combat_define/min_hit_accuracy) 	// This is added to the bullet's base accuracy.
+		accuracy_var_low	= CONFIG_GET(number/combat_define/min_proj_variance) 	// How much the accuracy varies when fired.
+		accuracy_var_high	= CONFIG_GET(number/combat_define/min_proj_variance)
+		accurate_range 		= CONFIG_GET(number/combat_define/close_shell_range) 	// For most guns, this is where the bullet dramatically looses accuracy. Not for snipers though.
+		max_range 			= CONFIG_GET(number/combat_define/norm_shell_range) 	// This will de-increment a counter on the bullet.
+		damage_var_low		= CONFIG_GET(number/combat_define/min_proj_variance) 	// Same as with accuracy variance.
+		damage_var_high		= CONFIG_GET(number/combat_define/min_proj_variance)
+		damage_falloff 		= CONFIG_GET(number/combat_define/reg_damage_falloff) 	// How much damage the bullet loses per turf traveled.
+		shell_speed 		= CONFIG_GET(number/combat_define/slow_shell_speed) 	// How fast the projectile moves.
 
 	var/flags_ammo_behavior = NOFLAGS
 
@@ -184,6 +184,9 @@
 			var/obj/item/projectile/P = new /obj/item/projectile(original_P.shot_from)
 			P.generate_bullet(ammo_list[bonus_projectiles_type]) //No bonus damage or anything.
 			var/turf/new_target = null
+
+			P.scatter = round(P.scatter - (initial(original_P.scatter) - original_P.scatter) ) //if the gun changes the scatter of the main projectile, it also affects the bonus ones.
+
 			if(prob(P.scatter))
 				var/scatter_x = rand(-1,1)
 				var/scatter_y = rand(-1,1)
@@ -191,7 +194,9 @@
 				if(!istype(new_target) || isnull(new_target))
 					continue	//If we didn't find anything, make another pass.
 				P.original = new_target
+
 			P.accuracy = round(P.accuracy * original_P.accuracy/initial(original_P.accuracy)) //if the gun changes the accuracy of the main projectile, it also affects the bonus ones.
+
 			if(!new_target)
 				new_target = original_P.target_turf
 			P.fire_at(new_target,original_P.firer,original_P.shot_from,P.ammo.max_range,P.ammo.shell_speed) //Fire!
@@ -241,9 +246,9 @@
 
 /datum/ammo/bullet/New()
 	..()
-	damage = config.base_hit_damage
-	shrapnel_chance = config.low_shrapnel_chance
-	shell_speed = config.super_shell_speed
+	damage = CONFIG_GET(number/combat_define/base_hit_damage)
+	shrapnel_chance = CONFIG_GET(number/combat_define/low_shrapnel_chance)
+	shell_speed = CONFIG_GET(number/combat_define/super_shell_speed)
 
 /*
 //================================================
@@ -258,8 +263,8 @@
 
 /datum/ammo/bullet/pistol/New()
 	..()
-	damage = config.low_hit_damage
-	accuracy = -config.low_hit_accuracy
+	damage = CONFIG_GET(number/combat_define/low_hit_damage)
+	accuracy = -CONFIG_GET(number/combat_define/low_hit_accuracy)
 
 /datum/ammo/bullet/pistol/tiny
 	name = "light pistol bullet"
@@ -277,11 +282,11 @@
 
 /datum/ammo/bullet/pistol/hollow/New()
 	..()
-	accuracy = -config.med_hit_accuracy
-	shrapnel_chance = config.high_shrapnel_chance
+	accuracy = -CONFIG_GET(number/combat_define/med_hit_accuracy)
+	shrapnel_chance = CONFIG_GET(number/combat_define/high_shrapnel_chance)
 
 /datum/ammo/bullet/pistol/hollow/on_hit_mob(mob/M,obj/item/projectile/P)
-	staggerstun(M, P, config.close_shell_range, 0, 0, 1, 0.5, 0)
+	staggerstun(M, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 0, 1, 0.5, 0)
 
 /datum/ammo/bullet/pistol/ap
 	name = "armor-piercing pistol bullet"
@@ -289,10 +294,10 @@
 
 /datum/ammo/bullet/pistol/ap/New()
 	..()
-	damage = config.mlow_hit_damage
-	accuracy = config.low_hit_accuracy
-	penetration= config.med_armor_penetration
-	shrapnel_chance = config.med_shrapnel_chance
+	damage = CONFIG_GET(number/combat_define/mlow_hit_damage)
+	accuracy = CONFIG_GET(number/combat_define/low_hit_accuracy)
+	penetration= CONFIG_GET(number/combat_define/med_armor_penetration)
+	shrapnel_chance = CONFIG_GET(number/combat_define/med_shrapnel_chance)
 
 /datum/ammo/bullet/pistol/heavy
 	name = "heavy pistol bullet"
@@ -300,11 +305,11 @@
 
 /datum/ammo/bullet/pistol/heavy/New()
 	..()
-	accuracy = -config.med_hit_accuracy
-	accuracy_var_low = config.med_proj_variance
-	damage = config.lmed_hit_damage
-	penetration= config.min_armor_penetration
-	shrapnel_chance = config.med_shrapnel_chance
+	accuracy = -CONFIG_GET(number/combat_define/low_hit_accuracy)
+	accuracy_var_low = CONFIG_GET(number/combat_define/med_proj_variance)
+	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
+	penetration= CONFIG_GET(number/combat_define/min_armor_penetration)
+	shrapnel_chance = CONFIG_GET(number/combat_define/med_shrapnel_chance)
 
 /datum/ammo/bullet/pistol/incendiary
 	name = "incendiary pistol bullet"
@@ -315,8 +320,8 @@
 
 /datum/ammo/bullet/pistol/incendiary/New()
 	..()
-	accuracy = config.med_hit_accuracy
-	damage = config.llow_hit_damage
+	accuracy = CONFIG_GET(number/combat_define/med_hit_accuracy)
+	damage = CONFIG_GET(number/combat_define/llow_hit_damage)
 
 /datum/ammo/bullet/pistol/squash
 	name = "squash-head pistol bullet"
@@ -325,10 +330,10 @@
 
 /datum/ammo/bullet/pistol/squash/New()
 	..()
-	accuracy = config.med_hit_accuracy
-	damage = config.med_hit_damage
-	penetration= config.low_armor_penetration
-	shrapnel_chance = config.med_shrapnel_chance
+	accuracy = CONFIG_GET(number/combat_define/med_hit_accuracy)
+	damage = CONFIG_GET(number/combat_define/hlow_hit_damage)
+	penetration= CONFIG_GET(number/combat_define/mlow_armor_penetration)
+	shrapnel_chance = CONFIG_GET(number/combat_define/med_shrapnel_chance)
 
 /datum/ammo/bullet/pistol/mankey
 	name = "live monkey"
@@ -342,9 +347,9 @@
 
 /datum/ammo/bullet/pistol/mankey/New()
 	..()
-	damage = config.min_hit_damage
-	damage_var_high = config.high_proj_variance
-	shell_speed = config.reg_shell_speed
+	damage = CONFIG_GET(number/combat_define/min_hit_damage)
+	damage_var_high = CONFIG_GET(number/combat_define/high_proj_variance)
+	shell_speed = CONFIG_GET(number/combat_define/reg_shell_speed)
 
 /datum/ammo/bullet/pistol/mankey/on_hit_mob(mob/M,obj/item/projectile/P)
 	if(P && P.loc && !M.stat && !istype(M,/mob/living/carbon/monkey))
@@ -364,10 +369,10 @@
 
 /datum/ammo/bullet/revolver/New()
 	..()
-	damage = config.hlow_hit_damage
+	damage = CONFIG_GET(number/combat_define/hlow_hit_damage)
 
 /datum/ammo/bullet/revolver/on_hit_mob(mob/M,obj/item/projectile/P)
-	staggerstun(M, P, config.close_shell_range, 0, 0, 1, 0.5, 0)
+	staggerstun(M, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 0, 1, 0.5, 0)
 
 /datum/ammo/bullet/revolver/small
 	name = "small revolver bullet"
@@ -375,7 +380,7 @@
 
 /datum/ammo/bullet/revolver/small/New()
 	..()
-	damage = config.low_hit_damage
+	damage = CONFIG_GET(number/combat_define/low_hit_damage)
 
 /datum/ammo/bullet/revolver/marksman
 	name = "slimline revolver bullet"
@@ -385,11 +390,11 @@
 
 /datum/ammo/bullet/revolver/marksman/New()
 	..()
-	accuracy = config.med_hit_accuracy
-	accurate_range = config.short_shell_range
-	scatter = -config.low_scatter_value
-	damage = config.low_hit_damage
-	penetration = config.mlow_armor_penetration
+	accuracy = CONFIG_GET(number/combat_define/med_hit_accuracy)
+	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
+	scatter = -CONFIG_GET(number/combat_define/low_scatter_value)
+	damage = CONFIG_GET(number/combat_define/low_hit_damage)
+	penetration = CONFIG_GET(number/combat_define/mlow_armor_penetration)
 
 /datum/ammo/bullet/revolver/heavy
 	name = "heavy revolver bullet"
@@ -397,12 +402,12 @@
 
 /datum/ammo/bullet/revolver/heavy/New()
 	..()
-	damage = config.med_hit_damage
-	penetration= config.min_armor_penetration
-	accuracy = -config.med_hit_accuracy
+	damage = CONFIG_GET(number/combat_define/med_hit_damage)
+	penetration= CONFIG_GET(number/combat_define/min_armor_penetration)
+	accuracy = -CONFIG_GET(number/combat_define/med_hit_accuracy)
 
 /datum/ammo/bullet/revolver/heavy/on_hit_mob(mob/M,obj/item/projectile/P)
-	staggerstun(M, P, config.close_shell_range, 0, 0, 1, 0.5, 0)
+	staggerstun(M, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 0, 1, 0.5, 0)
 
 /datum/ammo/bullet/revolver/highimpact
 	name = "high-impact revolver bullet"
@@ -410,14 +415,14 @@
 
 /datum/ammo/bullet/revolver/highimpact/New()
 	..()
-	accuracy_var_high = config.max_proj_variance
-	damage = config.hmed_hit_damage
-	damage_var_low = config.low_proj_variance
-	damage_var_high = config.med_proj_variance
-	penetration= config.mlow_armor_penetration
+	accuracy_var_high = CONFIG_GET(number/combat_define/max_proj_variance)
+	damage = CONFIG_GET(number/combat_define/hmed_hit_damage)
+	damage_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
+	damage_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
+	penetration= CONFIG_GET(number/combat_define/mlow_armor_penetration)
 
 /datum/ammo/bullet/revolver/highimpact/on_hit_mob(mob/M,obj/item/projectile/P)
-	staggerstun(M, P, config.close_shell_range, 0, 1, 2, 2)
+	staggerstun(M, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 1, 2, 2)
 
 /*
 //================================================
@@ -432,13 +437,13 @@
 
 /datum/ammo/bullet/smg/New()
 	..()
-	accuracy_var_low = config.med_proj_variance
-	accuracy_var_high = config.med_proj_variance
-	damage = config.low_hit_damage
-	damage_var_low = config.med_proj_variance
-	damage_var_high = config.high_proj_variance
-	accurate_range = config.close_shell_range
-	damage_falloff = config.reg_damage_falloff
+	accuracy_var_low = CONFIG_GET(number/combat_define/med_proj_variance)
+	accuracy_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
+	damage = CONFIG_GET(number/combat_define/low_hit_damage)
+	damage_var_low = CONFIG_GET(number/combat_define/med_proj_variance)
+	damage_var_high = CONFIG_GET(number/combat_define/high_proj_variance)
+	accurate_range = CONFIG_GET(number/combat_define/close_shell_range)
+	damage_falloff = CONFIG_GET(number/combat_define/reg_damage_falloff)
 
 /datum/ammo/bullet/smg/ap
 	name = "armor-piercing submachinegun bullet"
@@ -446,8 +451,8 @@
 
 /datum/ammo/bullet/smg/ap/New()
 	..()
-	damage = config.llow_hit_damage
-	penetration= config.hmed_armor_penetration //40 AP
+	damage = CONFIG_GET(number/combat_define/llow_hit_damage)
+	penetration= CONFIG_GET(number/combat_define/hmed_armor_penetration) //40 AP
 
 /datum/ammo/bullet/smg/ppsh
 	name = "submachinegun light bullet"
@@ -455,9 +460,9 @@
 
 /datum/ammo/bullet/smg/ppsh/New()
 	..()
-	damage = config.low_hit_damage
-	penetration= -config.min_armor_penetration
-	accuracy = -config.low_hit_accuracy
+	damage = CONFIG_GET(number/combat_define/low_hit_damage)
+	penetration= -CONFIG_GET(number/combat_define/min_armor_penetration)
+	accuracy = -CONFIG_GET(number/combat_define/low_hit_accuracy)
 
 /*
 //================================================
@@ -472,9 +477,9 @@
 
 /datum/ammo/bullet/rifle/New()
 	..()
-	accurate_range = config.short_shell_range
-	damage = config.lmed_hit_damage
-	penetration = config.mlow_armor_penetration
+	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
+	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
+	penetration = CONFIG_GET(number/combat_define/mlow_armor_penetration)
 
 /datum/ammo/bullet/rifle/ap
 	name = "armor-piercing rifle bullet"
@@ -482,8 +487,8 @@
 
 /datum/ammo/bullet/rifle/ap/New()
 	..()
-	damage = config.low_hit_damage
-	penetration = config.high_armor_penetration
+	damage = CONFIG_GET(number/combat_define/low_hit_damage)
+	penetration = CONFIG_GET(number/combat_define/high_armor_penetration)
 
 /datum/ammo/bullet/rifle/incendiary
 	name = "incendiary rifle bullet"
@@ -494,7 +499,7 @@
 
 /datum/ammo/bullet/rifle/incendiary/New()
 	..()
-	accuracy = -config.low_hit_accuracy
+	accuracy = -CONFIG_GET(number/combat_define/low_hit_accuracy)
 
 /datum/ammo/bullet/rifle/m4ra
 	name = "A19 high velocity bullet"
@@ -507,10 +512,10 @@
 
 /datum/ammo/bullet/rifle/m4ra/New()
 	..()
-	damage = config.hmed_hit_damage
-	scatter = -config.low_scatter_value
-	penetration= config.med_armor_penetration
-	shell_speed = config.fast_shell_speed
+	damage = CONFIG_GET(number/combat_define/hmed_hit_damage)
+	scatter = -CONFIG_GET(number/combat_define/low_scatter_value)
+	penetration= CONFIG_GET(number/combat_define/med_armor_penetration)
+	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
 
 /datum/ammo/bullet/rifle/m4ra/incendiary
 	name = "A19 high velocity incendiary bullet"
@@ -519,11 +524,11 @@
 
 /datum/ammo/bullet/rifle/m4ra/incendiary/New()
 	..()
-	damage = config.hmed_hit_damage
-	accuracy = config.hmed_hit_accuracy
-	scatter = -config.low_scatter_value
-	penetration= config.low_armor_penetration
-	shell_speed = config.fast_shell_speed
+	damage = CONFIG_GET(number/combat_define/hmed_hit_damage)
+	accuracy = CONFIG_GET(number/combat_define/hmed_hit_accuracy)
+	scatter = -CONFIG_GET(number/combat_define/low_scatter_value)
+	penetration= CONFIG_GET(number/combat_define/low_armor_penetration)
+	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
 
 /datum/ammo/bullet/rifle/m4ra/impact
 	name = "A19 high velocity impact bullet"
@@ -532,14 +537,14 @@
 
 /datum/ammo/bullet/rifle/m4ra/impact/New()
 	..()
-	damage = config.med_hit_damage
-	accuracy = -config.low_hit_accuracy
-	scatter = -config.low_scatter_value
-	penetration= config.low_armor_penetration
-	shell_speed = config.fast_shell_speed
+	damage = CONFIG_GET(number/combat_define/med_hit_damage)
+	accuracy = -CONFIG_GET(number/combat_define/low_hit_accuracy)
+	scatter = -CONFIG_GET(number/combat_define/low_scatter_value)
+	penetration= CONFIG_GET(number/combat_define/low_armor_penetration)
+	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
 
 /datum/ammo/bullet/rifle/m4ra/impact/on_hit_mob(mob/M, obj/item/projectile/P)
-	staggerstun(M, P, config.max_shell_range, 0, 1, 1)
+	staggerstun(M, P, CONFIG_GET(number/combat_define/max_shell_range), 0, 1, 1)
 
 /datum/ammo/bullet/rifle/mar40
 	name = "heavy rifle bullet"
@@ -547,9 +552,9 @@
 
 /datum/ammo/bullet/rifle/mar40/New()
 	..()
-	accuracy = -config.low_hit_accuracy
-	damage = config.med_hit_damage
-	penetration= -config.mlow_armor_penetration
+	accuracy = -CONFIG_GET(number/combat_define/low_hit_accuracy)
+	damage = CONFIG_GET(number/combat_define/med_hit_damage)
+	penetration= -CONFIG_GET(number/combat_define/mlow_armor_penetration)
 
 /*
 //================================================
@@ -566,12 +571,12 @@
 
 /datum/ammo/bullet/shotgun/slug/New()
 	..()
-	max_range = config.short_shell_range
-	damage = config.high_hit_damage
-	penetration= config.low_armor_penetration
+	max_range = CONFIG_GET(number/combat_define/short_shell_range)
+	damage = CONFIG_GET(number/combat_define/high_hit_damage)
+	penetration= CONFIG_GET(number/combat_define/low_armor_penetration)
 
 /datum/ammo/bullet/shotgun/slug/on_hit_mob(mob/M,obj/item/projectile/P)
-	staggerstun(M, P, config.close_shell_range, 0, 1, 2, 4)
+	staggerstun(M, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 1, 2, 4)
 
 
 /datum/ammo/bullet/shotgun/beanbag
@@ -582,10 +587,10 @@
 
 /datum/ammo/bullet/shotgun/beanbag/New()
 	..()
-	max_range = config.short_shell_range
+	max_range = CONFIG_GET(number/combat_define/short_shell_range)
 	shrapnel_chance = 0
-	accuracy = config.med_hit_accuracy
-	shell_speed = config.fast_shell_speed
+	accuracy = CONFIG_GET(number/combat_define/med_hit_accuracy)
+	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
 
 /datum/ammo/bullet/shotgun/beanbag/on_hit_mob(mob/M, obj/item/projectile/P)
 	if(!M || M == P.firer)
@@ -607,10 +612,10 @@
 
 /datum/ammo/bullet/shotgun/incendiary/New()
 	..()
-	accuracy = -config.low_hit_accuracy
-	max_range = config.short_shell_range
-	damage = config.med_hit_damage
-	penetration= config.min_armor_penetration
+	accuracy = -CONFIG_GET(number/combat_define/low_hit_accuracy)
+	max_range = CONFIG_GET(number/combat_define/short_shell_range)
+	damage = CONFIG_GET(number/combat_define/med_hit_damage)
+	penetration= CONFIG_GET(number/combat_define/min_armor_penetration)
 
 /datum/ammo/bullet/shotgun/incendiary/on_hit_mob(mob/M,obj/item/projectile/P)
 	burst(get_turf(M),P,damage_type)
@@ -631,15 +636,15 @@
 
 /datum/ammo/bullet/shotgun/flechette/New()
 	..()
-	accuracy_var_low = config.med_proj_variance
-	accuracy_var_high = config.med_proj_variance
-	max_range = config.short_shell_range
-	damage = config.med_hit_damage
-	damage_var_low = -config.low_proj_variance
-	damage_var_high = config.low_proj_variance
+	accuracy_var_low = CONFIG_GET(number/combat_define/med_proj_variance)
+	accuracy_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
+	max_range = CONFIG_GET(number/combat_define/short_shell_range)
+	damage = CONFIG_GET(number/combat_define/med_hit_damage)
+	damage_var_low = -CONFIG_GET(number/combat_define/low_proj_variance)
+	damage_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_falloff *= 0.5
-	penetration	= config.high_armor_penetration
-	bonus_projectiles_amount = config.low_proj_extra
+	penetration	= CONFIG_GET(number/combat_define/high_armor_penetration)
+	bonus_projectiles_amount = CONFIG_GET(number/combat_define/low_proj_extra)
 
 /datum/ammo/bullet/shotgun/flechette_spread
 	name = "additional flechette"
@@ -647,15 +652,15 @@
 
 /datum/ammo/bullet/shotgun/flechette_spread/New()
 	..()
-	accuracy_var_low = config.med_proj_variance
-	accuracy_var_high = config.med_proj_variance
-	max_range = config.short_shell_range
-	damage = config.lmed_hit_damage
-	damage_var_low = -config.low_proj_variance
-	damage_var_high = config.low_proj_variance
+	accuracy_var_low = CONFIG_GET(number/combat_define/med_proj_variance)
+	accuracy_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
+	max_range = CONFIG_GET(number/combat_define/short_shell_range)
+	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
+	damage_var_low = -CONFIG_GET(number/combat_define/low_proj_variance)
+	damage_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 	damage_falloff *= 0.5
-	penetration	= config.high_armor_penetration
-	scatter = config.max_scatter_value //bonus projectiles run their own scatter chance
+	penetration	= CONFIG_GET(number/combat_define/high_armor_penetration)
+	scatter = CONFIG_GET(number/combat_define/thirty_scatter_value) //bonus projectiles run their own scatter chance
 
 /datum/ammo/bullet/shotgun/buckshot
 	name = "shotgun buckshot shell"
@@ -665,17 +670,17 @@
 
 /datum/ammo/bullet/shotgun/buckshot/New()
 	..()
-	accuracy_var_low = config.high_proj_variance
-	accuracy_var_high = config.high_proj_variance
-	accurate_range = config.min_shell_range
-	max_range = config.close_shell_range
-	damage = config.max_hit_damage
-	damage_var_low = -config.med_proj_variance
-	damage_var_high = config.med_proj_variance
-	damage_falloff = config.buckshot_damage_falloff
-	penetration	= -config.mlow_armor_penetration
-	bonus_projectiles_amount = config.low_proj_extra
-	shell_speed = config.reg_shell_speed
+	accuracy_var_low = CONFIG_GET(number/combat_define/high_proj_variance)
+	accuracy_var_high = CONFIG_GET(number/combat_define/high_proj_variance)
+	accurate_range = CONFIG_GET(number/combat_define/min_shell_range)
+	max_range = CONFIG_GET(number/combat_define/near_shell_range)
+	damage = CONFIG_GET(number/combat_define/max_hit_damage)
+	damage_var_low = -CONFIG_GET(number/combat_define/med_proj_variance)
+	damage_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
+	damage_falloff = CONFIG_GET(number/combat_define/buckshot_damage_falloff)
+	penetration	= -CONFIG_GET(number/combat_define/mlow_armor_penetration)
+	bonus_projectiles_amount = CONFIG_GET(number/combat_define/low_proj_extra)
+	shell_speed = CONFIG_GET(number/combat_define/reg_shell_speed)
 
 /datum/ammo/bullet/shotgun/buckshot/on_hit_mob(mob/M,obj/item/projectile/P)
 	knockback(M,P)
@@ -686,7 +691,7 @@
 
 /datum/ammo/bullet/shotgun/buckshot/masterkey/New()
 	..()
-	damage = config.high_hit_damage
+	damage = CONFIG_GET(number/combat_define/high_hit_damage)
 
 /datum/ammo/bullet/shotgun/spread
 	name = "additional buckshot"
@@ -694,21 +699,21 @@
 
 /datum/ammo/bullet/shotgun/spread/New()
 	..()
-	accuracy_var_low = config.high_proj_variance
-	accuracy_var_high = config.high_proj_variance
-	accurate_range = config.min_shell_range
-	max_range = config.close_shell_range
-	damage = config.med_hit_damage
-	damage_var_low = -config.med_proj_variance
-	damage_var_high = config.med_proj_variance
-	damage_falloff = config.buckshot_damage_falloff
-	penetration	= -config.mlow_armor_penetration
-	shell_speed = config.reg_shell_speed
-	scatter = config.max_scatter_value*4 //bonus projectiles run their own scatter chance
+	accuracy_var_low = CONFIG_GET(number/combat_define/high_proj_variance)
+	accuracy_var_high = CONFIG_GET(number/combat_define/high_proj_variance)
+	accurate_range = CONFIG_GET(number/combat_define/min_shell_range)
+	max_range = CONFIG_GET(number/combat_define/near_shell_range)
+	damage = CONFIG_GET(number/combat_define/med_hit_damage)
+	damage_var_low = -CONFIG_GET(number/combat_define/med_proj_variance)
+	damage_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
+	damage_falloff = CONFIG_GET(number/combat_define/buckshot_damage_falloff)
+	penetration	= -CONFIG_GET(number/combat_define/mlow_armor_penetration)
+	shell_speed = CONFIG_GET(number/combat_define/reg_shell_speed)
+	scatter = CONFIG_GET(number/combat_define/max_scatter_value)*1.5 //bonus projectiles run their own scatter chance
 
 /datum/ammo/bullet/shotgun/spread/masterkey/New()
 	..()
-	damage = config.low_hit_damage
+	damage = CONFIG_GET(number/combat_define/low_hit_damage)
 
 
 /*
@@ -728,12 +733,12 @@
 
 /datum/ammo/bullet/sniper/New()
 	..()
-	accurate_range = config.min_shell_range
-	max_range = config.max_shell_range
-	scatter = -config.med_scatter_value
-	damage = config.mhigh_hit_damage
-	penetration= config.mhigh_armor_penetration
-	shell_speed = config.ultra_shell_speed
+	accurate_range = CONFIG_GET(number/combat_define/long_shell_range)
+	max_range = CONFIG_GET(number/combat_define/max_shell_range)
+	scatter = -CONFIG_GET(number/combat_define/med_scatter_value)
+	damage = CONFIG_GET(number/combat_define/mhigh_hit_damage)
+	penetration= CONFIG_GET(number/combat_define/mhigh_armor_penetration)
+	shell_speed = CONFIG_GET(number/combat_define/ultra_shell_speed)
 
 /datum/ammo/bullet/sniper/incendiary
 	name = "incendiary sniper bullet"
@@ -745,11 +750,11 @@
 
 /datum/ammo/bullet/sniper/incendiary/New()
 	..()
-	accuracy_var_high = config.med_proj_variance
-	max_range = config.norm_shell_range
-	scatter = config.low_scatter_value
-	damage = config.hmed_hit_damage
-	penetration= config.low_armor_penetration
+	accuracy_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
+	max_range = CONFIG_GET(number/combat_define/norm_shell_range)
+	scatter = CONFIG_GET(number/combat_define/low_scatter_value)
+	damage = CONFIG_GET(number/combat_define/hmed_hit_damage)
+	penetration= CONFIG_GET(number/combat_define/low_armor_penetration)
 
 /datum/ammo/bullet/sniper/flak
 	name = "flak sniper bullet"
@@ -758,9 +763,9 @@
 
 /datum/ammo/bullet/sniper/flak/New()
 	..()
-	damage = config.max_hit_damage
-	damage_var_high = config.low_proj_variance
-	penetration= -config.mlow_armor_penetration
+	damage = CONFIG_GET(number/combat_define/max_hit_damage)
+	damage_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
+	penetration= -CONFIG_GET(number/combat_define/mlow_armor_penetration)
 
 /datum/ammo/bullet/sniper/flak/on_hit_mob(mob/M,obj/item/projectile/P)
 	burst(get_turf(M),P,damage_type)
@@ -777,9 +782,9 @@
 
 /datum/ammo/bullet/sniper/elite/New()
 	..()
-	accuracy = config.max_hit_accuracy
-	damage = config.super_hit_damage
-	shell_speed = config.ultra_shell_speed + 1
+	accuracy = CONFIG_GET(number/combat_define/max_hit_accuracy)
+	damage = CONFIG_GET(number/combat_define/super_hit_damage)
+	shell_speed = CONFIG_GET(number/combat_define/ultra_shell_speed) + 1
 
 /*
 //================================================
@@ -797,9 +802,9 @@
 
 /datum/ammo/bullet/smartgun/New()
 	..()
-	accurate_range = config.short_shell_range
-	damage = config.low_hit_damage
-	penetration = config.low_armor_penetration
+	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
+	damage = CONFIG_GET(number/combat_define/low_hit_damage)
+	penetration = CONFIG_GET(number/combat_define/low_armor_penetration)
 
 /datum/ammo/bullet/smartgun/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -807,8 +812,8 @@
 
 /datum/ammo/bullet/smartgun/lethal/New()
 	..()
-	damage = config.low_hit_damage
-	penetration = config.mlow_armor_penetration
+	damage = CONFIG_GET(number/combat_define/low_hit_damage)
+	penetration = CONFIG_GET(number/combat_define/mlow_armor_penetration)
 
 /datum/ammo/bullet/smartgun/dirty
 	name = "irradiated smartgun bullet"
@@ -818,7 +823,7 @@
 
 /datum/ammo/bullet/smartgun/dirty/New()
 	..()
-	shrapnel_chance = config.max_shrapnel_chance
+	shrapnel_chance = CONFIG_GET(number/combat_define/max_shrapnel_chance)
 
 /datum/ammo/bullet/smartgun/dirty/lethal
 	flags_ammo_behavior = AMMO_BALLISTIC
@@ -826,8 +831,8 @@
 
 /datum/ammo/bullet/smartgun/dirty/lethal/New()
 	..()
-	damage = config.lmed_hit_damage
-	penetration= config.med_armor_penetration
+	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
+	penetration= CONFIG_GET(number/combat_define/med_armor_penetration)
 
 /datum/ammo/bullet/turret
 	name = "autocannon bullet"
@@ -837,11 +842,11 @@
 
 /datum/ammo/bullet/turret/New()
 	..()
-	accurate_range = config.short_shell_range
-	accuracy_var_low = config.low_proj_variance
-	accuracy_var_high = config.low_proj_variance
-	damage = config.lmed_hit_damage
-	penetration= config.low_armor_penetration
+	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
+	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
+	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
+	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
+	penetration= CONFIG_GET(number/combat_define/low_armor_penetration)
 	damage_falloff *= 0.5 //forgot to add this
 
 /datum/ammo/bullet/turret/dumb
@@ -853,16 +858,16 @@
 
 /datum/ammo/bullet/turret/gauss/New()
 	. = ..()
-	damage = config.med_hit_damage
-	penetration= config.mhigh_armor_penetration
+	damage = CONFIG_GET(number/combat_define/med_hit_damage)
+	penetration= CONFIG_GET(number/combat_define/mhigh_armor_penetration)
 
 /datum/ammo/bullet/turret/mini
 	name = "UA-580 10x20mm armor piercing bullet"
 
 /datum/ammo/bullet/turret/mini/New()
 	. = ..()
-	damage = config.mlow_hit_damage //25
-	penetration= config.hmed_armor_penetration //40
+	damage = CONFIG_GET(number/combat_define/mlow_hit_damage) //25
+	penetration= CONFIG_GET(number/combat_define/hmed_armor_penetration) //40
 
 
 /datum/ammo/bullet/machinegun //Adding this for the MG Nests (~Art)
@@ -871,10 +876,10 @@
 
 /datum/ammo/bullet/machinegun/New()
 	..()
-	accurate_range = config.short_shell_range
-	damage = config.med_hit_damage
-	penetration= config.mhigh_armor_penetration //Bumped the penetration to serve a different role from sentries, MGs are a bit more offensive
-	accuracy = config.med_hit_accuracy
+	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
+	damage = CONFIG_GET(number/combat_define/med_hit_damage)
+	penetration= CONFIG_GET(number/combat_define/mhigh_armor_penetration) //Bumped the penetration to serve a different role from sentries, MGs are a bit more offensive
+	accuracy = CONFIG_GET(number/combat_define/med_hit_accuracy)
 	barricade_clear_distance = 2
 
 /datum/ammo/bullet/minigun
@@ -883,13 +888,13 @@
 
 /datum/ammo/bullet/minigun/New()
 	..()
-	accuracy = -config.low_hit_accuracy
-	accuracy_var_low = config.low_proj_variance
-	accuracy_var_high = config.low_proj_variance
-	accurate_range = config.short_shell_range
-	damage = config.med_hit_damage
-	penetration= config.low_armor_penetration
-	shrapnel_chance = config.med_shrapnel_chance
+	accuracy = -CONFIG_GET(number/combat_define/low_hit_accuracy)
+	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
+	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
+	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
+	damage = CONFIG_GET(number/combat_define/med_hit_damage)
+	penetration= CONFIG_GET(number/combat_define/low_armor_penetration)
+	shrapnel_chance = CONFIG_GET(number/combat_define/med_shrapnel_chance)
 
 /*
 //================================================
@@ -911,12 +916,12 @@
 /datum/ammo/rocket/New()
 	. = ..()
 	smoke = new()
-	accuracy = config.max_hit_accuracy
-	accurate_range = config.norm_shell_range
-	max_range = config.long_shell_range
-	damage = config.med_hit_damage
-	penetration = config.max_armor_penetration
-	shell_speed = config.slow_shell_speed
+	accuracy = CONFIG_GET(number/combat_define/max_hit_accuracy)
+	accurate_range = CONFIG_GET(number/combat_define/norm_shell_range)
+	max_range = CONFIG_GET(number/combat_define/long_shell_range)
+	damage = CONFIG_GET(number/combat_define/med_hit_damage)
+	penetration = CONFIG_GET(number/combat_define/max_armor_penetration)
+	shell_speed = CONFIG_GET(number/combat_define/slow_shell_speed)
 
 /datum/ammo/rocket/Destroy()
 	qdel(smoke)
@@ -950,9 +955,9 @@
 
 /datum/ammo/rocket/ap/New()
 	. = ..()
-	accurate_range = config.short_shell_range
-	penetration = config.aprocket_armor_penetration
-	damage = config.aprocket_hit_damage
+	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
+	penetration = CONFIG_GET(number/combat_define/aprocket_armor_penetration)
+	damage = CONFIG_GET(number/combat_define/aprocket_hit_damage)
 
 /datum/ammo/rocket/ap/on_hit_mob(mob/M, obj/item/projectile/P)
 	explosion(get_turf(M), -1, -1, 2, 5)
@@ -981,12 +986,12 @@
 
 /datum/ammo/rocket/ltb/New()
 	. = ..()
-	accuracy = config.max_hit_accuracy
-	accurate_range = config.short_shell_range
-	max_range = config.max_shell_range
-	penetration = config.ltb_armor_penetration
-	damage = config.ltb_hit_damage
-	shell_speed = config.fast_shell_speed
+	accuracy = CONFIG_GET(number/combat_define/max_hit_accuracy)
+	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
+	max_range = CONFIG_GET(number/combat_define/max_shell_range)
+	penetration = CONFIG_GET(number/combat_define/ltb_armor_penetration)
+	damage = CONFIG_GET(number/combat_define/ltb_hit_damage)
+	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
 
 /datum/ammo/rocket/ltb/on_hit_mob(mob/M, obj/item/projectile/P)
 	explosion(get_turf(M), -1, 3, 5, 6)
@@ -1007,10 +1012,10 @@
 	damage_type = BURN
 /datum/ammo/rocket/wp/New()
 	..()
-	accuracy_var_low = config.med_proj_variance
-	accurate_range = config.short_shell_range
-	damage = config.super_hit_damage
-	max_range = config.norm_shell_range
+	accuracy_var_low = CONFIG_GET(number/combat_define/med_proj_variance)
+	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
+	damage = CONFIG_GET(number/combat_define/super_hit_damage)
+	max_range = CONFIG_GET(number/combat_define/norm_shell_range)
 
 /datum/ammo/rocket/wp/drop_flame(radius = 3, turf/T) //~Art updated fire.
 	if(!T || !isturf(T))
@@ -1022,16 +1027,16 @@
 
 
 /datum/ammo/rocket/wp/on_hit_mob(mob/M,obj/item/projectile/P)
-	drop_flame(get_turf(M))
+	drop_flame(3, get_turf(M))
 
 /datum/ammo/rocket/wp/on_hit_obj(obj/O,obj/item/projectile/P)
-	drop_flame(get_turf(O))
+	drop_flame(3, get_turf(O))
 
 /datum/ammo/rocket/wp/on_hit_turf(turf/T,obj/item/projectile/P)
-	drop_flame(T)
+	drop_flame(3, T)
 
 /datum/ammo/rocket/wp/do_at_max_range(obj/item/projectile/P)
-	drop_flame(get_turf(P))
+	drop_flame(3, get_turf(P))
 
 /datum/ammo/rocket/wp/quad
 	name = "thermobaric rocket"
@@ -1039,8 +1044,8 @@
 	flags_ammo_behavior = AMMO_ROCKET
 /datum/ammo/rocket/wp/quad/New()
 	..()
-	damage = config.ultra_hit_damage
-	max_range = config.long_shell_range
+	damage = CONFIG_GET(number/combat_define/ultra_hit_damage)
+	max_range = CONFIG_GET(number/combat_define/long_shell_range)
 
 /datum/ammo/rocket/wp/quad/on_hit_mob(mob/M,obj/item/projectile/P)
 	drop_flame(get_turf(M))
@@ -1065,7 +1070,7 @@
 */
 
 /datum/ammo/energy
-	ping = null //no bounce off. We can have one later.
+	ping = "ping_s"
 	sound_hit 	 	= "energy_hit"
 	sound_miss		= "energy_miss"
 	sound_bounce	= "energy_bounce"
@@ -1075,7 +1080,7 @@
 
 /datum/ammo/energy/New()
 	..()
-	accuracy = config.hmed_hit_accuracy
+	accuracy = CONFIG_GET(number/combat_define/hmed_hit_accuracy)
 
 /datum/ammo/energy/emitter //Damage is determined in emitter.dm
 	name = "emitter bolt"
@@ -1084,8 +1089,8 @@
 
 /datum/ammo/energy/emitter/New()
 	..()
-	accurate_range 	= config.near_shell_range
-	max_range 		= config.near_shell_range
+	accurate_range 	= CONFIG_GET(number/combat_define/near_shell_range)
+	max_range 		= CONFIG_GET(number/combat_define/near_shell_range)
 
 /datum/ammo/energy/taser
 	name = "taser bolt"
@@ -1095,6 +1100,11 @@
 	damage_type = OXY
 	flags_ammo_behavior = AMMO_ENERGY|AMMO_IGNORE_RESIST //Not that ignoring will do much right now.
 
+/datum/ammo/energy/taser/New()
+	. = ..()
+	max_range = CONFIG_GET(number/combat_define/short_shell_range)
+	accurate_range 	= CONFIG_GET(number/combat_define/near_shell_range)
+
 /datum/ammo/energy/taser/on_hit_mob(mob/M, obj/item/projectile/P)
 	stun_living(M,P)
 
@@ -1103,8 +1113,8 @@
 
 /datum/ammo/energy/yautja/New()
 	..()
-	accurate_range = config.short_shell_range
-	shell_speed = config.fast_shell_speed
+	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
+	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
 
 
 /datum/ammo/energy/yautja/pistol
@@ -1114,8 +1124,8 @@
 	flags_ammo_behavior = AMMO_ENERGY
 /datum/ammo/energy/yautja/pistol/New()
 	..()
-	damage = config.lmed_hit_damage
-	shell_speed = config.reg_shell_speed
+	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
+	shell_speed = CONFIG_GET(number/combat_define/reg_shell_speed)
 
 /datum/ammo/energy/yautja/caster/bolt
 	name = "plasma bolt"
@@ -1126,7 +1136,7 @@
 
 /datum/ammo/energy/yautja/caster/bolt/New()
 	..()
-	damage = config.base_hit_damage
+	damage = CONFIG_GET(number/combat_define/base_hit_damage)
 
 /datum/ammo/energy/yautja/caster/blast
 	name = "plasma blast"
@@ -1135,8 +1145,8 @@
 
 /datum/ammo/energy/yautja/caster/blast/New()
 	..()
-	damage = config.low_hit_damage
-	shell_speed = config.ultra_shell_speed
+	damage = CONFIG_GET(number/combat_define/low_hit_damage)
+	shell_speed = CONFIG_GET(number/combat_define/ultra_shell_speed)
 
 /datum/ammo/energy/yautja/caster/sphere
 	name = "plasma eradication sphere"
@@ -1146,8 +1156,8 @@
 
 /datum/ammo/energy/yautja/caster/sphere/New()
 	..()
-	damage = config.lmed_hit_damage
-	shell_speed = config.super_shell_speed
+	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
+	shell_speed = CONFIG_GET(number/combat_define/super_shell_speed)
 
 /datum/ammo/energy/yautja/caster/sphere/on_hit_mob(mob/M,obj/item/projectile/P)
 	explosion(get_turf(P.loc), -1, -1, 2, 2)
@@ -1162,7 +1172,7 @@
 
 /datum/ammo/energy/yautja/rifle/New()
 	..()
-	damage = config.base_hit_damage
+	damage = CONFIG_GET(number/combat_define/base_hit_damage)
 
 /datum/ammo/energy/yautja/rifle/on_hit_mob(mob/M,obj/item/projectile/P)
 	if(P.damage > 25)
@@ -1191,7 +1201,43 @@
 
 /datum/ammo/energy/yautja/rifle/blast/New()
 	..()
-	shell_speed = config.super_shell_speed
+	shell_speed = CONFIG_GET(number/combat_define/super_shell_speed)
+
+/datum/ammo/energy/lasgun
+	name = "laser bolt"
+	icon_state = "laser"
+	hud_state = "laser"
+
+/datum/ammo/energy/lasgun/New()
+	. = ..()
+	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
+	damage = CONFIG_GET(number/combat_define/mlow_hit_damage)
+	penetration = CONFIG_GET(number/combat_define/mlow_armor_penetration)
+	max_range = CONFIG_GET(number/combat_define/long_shell_range)
+	shell_speed = CONFIG_GET(number/combat_define/ultra_shell_speed)
+	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
+	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
+	damage_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
+	damage_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
+
+/datum/ammo/energy/lasgun/M43
+	name = "M43 laser bolt"
+	hud_state = "laser"
+
+/datum/ammo/energy/lasgun/M43/New()
+	. = ..()
+	penetration = CONFIG_GET(number/combat_define/med_armor_penetration)
+
+/datum/ammo/energy/lasgun/M43/overcharge
+	name = "M43 overcharged laser bolt"
+	icon_state = "heavylaser"
+	hud_state = "laser_overcharge"
+
+/datum/ammo/energy/lasgun/M43/overcharge/New()
+	. = ..()
+	damage = CONFIG_GET(number/combat_define/hmed_hit_damage)
+	max_range = CONFIG_GET(number/combat_define/max_shell_range)
+	penetration = CONFIG_GET(number/combat_define/mhigh_armor_penetration)
 
 /*
 //================================================
@@ -1208,19 +1254,28 @@
 
 /datum/ammo/xeno/New()
 	. = ..()
-	accuracy = config.max_hit_accuracy
-	accurate_range = config.short_shell_range
-	shell_speed = config.reg_shell_speed
-	max_range = config.short_shell_range
-	accuracy_var_low = config.low_proj_variance
-	accuracy_var_high = config.low_proj_variance
+	accuracy = CONFIG_GET(number/combat_define/max_hit_accuracy)
+	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
+	shell_speed = CONFIG_GET(number/combat_define/reg_shell_speed)
+	max_range = CONFIG_GET(number/combat_define/short_shell_range)
+	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
+	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
-	ammo_reagents = list("xeno_toxin" = 5)
+	ammo_reagents = list("xeno_toxin" = 6)
 	debilitate = list(0.5,0.5,0,0,0,0,0,0)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_IGNORE_RESIST
 	spit_cost = 50
+	added_spit_delay = 5
+
+/datum/ammo/xeno/toxin/New()
+	accuracy = CONFIG_GET(number/combat_define/max_hit_accuracy)
+	shell_speed = CONFIG_GET(number/combat_define/reg_shell_speed)
+	accurate_range = CONFIG_GET(number/combat_define/close_shell_range)
+	max_range = CONFIG_GET(number/combat_define/near_shell_range)
+	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
+	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/M, obj/item/projectile/P)
 	if(!istype(M))
@@ -1232,44 +1287,44 @@
 
 /datum/ammo/xeno/toxin/upgrade1
 	name = "neurotoxic spit"
-	ammo_reagents = list("xeno_toxin" = 5.75)
+	ammo_reagents = list("xeno_toxin" = 7.2)
 
 /datum/ammo/xeno/toxin/upgrade2
-	ammo_reagents = list("xeno_toxin" = 6.5)
+	ammo_reagents = list("xeno_toxin" = 7.8)
 
 /datum/ammo/xeno/toxin/upgrade3
-	ammo_reagents = list("xeno_toxin" = 7.25)
+	ammo_reagents = list("xeno_toxin" = 8.1)
 
 
-/datum/ammo/xeno/toxin/medium //Spitter
+/datum/ammo/xeno/toxin/medium //Queen
 	name = "neurotoxic spatter"
-	ammo_reagents = list("xeno_toxin" = 8)
-	added_spit_delay = 5
+	ammo_reagents = list("xeno_toxin" = 8.5)
+	added_spit_delay = 10
 	spit_cost = 75
 
 /datum/ammo/xeno/toxin/medium/upgrade1
-	ammo_reagents = list("xeno_toxin" = 9.2)
+	ammo_reagents = list("xeno_toxin" = 10.2)
 
 /datum/ammo/xeno/toxin/medium/upgrade2
-	ammo_reagents = list("xeno_toxin" = 10.4)
+	ammo_reagents = list("xeno_toxin" = 11.1)
 
 /datum/ammo/xeno/toxin/medium/upgrade3
-	ammo_reagents = list("xeno_toxin" = 11.6)
+	ammo_reagents = list("xeno_toxin" = 11.48)
 
 /datum/ammo/xeno/toxin/heavy //Praetorian
 	name = "neurotoxic splash"
-	ammo_reagents = list("xeno_toxin" = 10)
-	added_spit_delay = 8
+	ammo_reagents = list("xeno_toxin" = 11)
+	added_spit_delay = 15
 	spit_cost = 100
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
-	ammo_reagents = list("xeno_toxin" = 11.5)
+	ammo_reagents = list("xeno_toxin" = 13.2)
 
 /datum/ammo/xeno/toxin/heavy/upgrade2
-	ammo_reagents = list("xeno_toxin" = 13)
+	ammo_reagents = list("xeno_toxin" = 14.3)
 
 /datum/ammo/xeno/toxin/heavy/upgrade3
-	ammo_reagents = list("xeno_toxin" = 14.5)
+	ammo_reagents = list("xeno_toxin" = 14.85)
 
 /datum/ammo/xeno/sticky
 	name = "sticky resin spit"
@@ -1280,9 +1335,9 @@
 
 /datum/ammo/xeno/sticky/New()
 	..()
-	shell_speed = config.fast_shell_speed
-	accuracy_var_high = config.max_proj_variance
-	max_range = config.max_shell_range
+	shell_speed = CONFIG_GET(number/combat_define/fast_shell_speed)
+	accuracy_var_high = CONFIG_GET(number/combat_define/max_proj_variance)
+	max_range = CONFIG_GET(number/combat_define/max_shell_range)
 
 /datum/ammo/xeno/sticky/on_hit_mob(mob/M,obj/item/projectile/P)
 	drop_resin(get_turf(P))
@@ -1321,9 +1376,9 @@
 
 /datum/ammo/xeno/acid/New()
 	. = ..()
-	damage = config.llow_hit_damage
-	damage_var_low = config.low_proj_variance
-	damage_var_high = config.med_proj_variance
+	damage = CONFIG_GET(number/combat_define/llow_hit_damage)
+	damage_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
+	damage_var_high = CONFIG_GET(number/combat_define/med_proj_variance)
 
 /datum/ammo/xeno/acid/on_shield_block(mob/M, obj/item/projectile/P)
 	burst(M,P,damage_type)
@@ -1340,7 +1395,7 @@
 
 /datum/ammo/xeno/acid/medium/New()
 	. = ..()
-	damage = config.mlow_hit_damage
+	damage = CONFIG_GET(number/combat_define/mlow_hit_damage)
 
 /datum/ammo/xeno/acid/heavy
 	name = "acid splash"
@@ -1350,13 +1405,13 @@
 
 /datum/ammo/xeno/acid/heavy/New()
 	. = ..()
-	damage = config.low_hit_damage
+	damage = CONFIG_GET(number/combat_define/low_hit_damage)
 
 /datum/ammo/xeno/acid/heavy/on_hit_mob(mob/M,obj/item/projectile/P)
 	drop_acid(get_turf(M))
 	if(istype(M,/mob/living/carbon))
 		var/mob/living/carbon/C = M
-		C.acid_process_cooldown = 2
+		C.acid_process_cooldown = world.time
 
 /datum/ammo/xeno/acid/heavy/on_hit_obj(obj/O,obj/item/projectile/P)
 	drop_acid(get_turf(P))
@@ -1383,8 +1438,8 @@
 /datum/ammo/xeno/boiler_gas/New()
 	..()
 	set_xeno_smoke()
-	accuracy_var_high = config.max_proj_variance
-	max_range = config.long_shell_range
+	accuracy_var_high = CONFIG_GET(number/combat_define/max_proj_variance)
+	max_range = CONFIG_GET(number/combat_define/long_shell_range)
 
 /datum/ammo/xeno/boiler_gas/Destroy()
 	qdel(smoke_system)
@@ -1440,8 +1495,8 @@
 
 /datum/ammo/xeno/boiler_gas/corrosive/New()
 	..()
-	damage = config.med_hit_damage
-	damage_var_high = config.max_proj_variance
+	damage = CONFIG_GET(number/combat_define/med_hit_damage)
+	damage_var_high = CONFIG_GET(number/combat_define/max_proj_variance)
 	damage_type = BURN
 
 /datum/ammo/xeno/boiler_gas/on_shield_block(mob/M, obj/item/projectile/P)
@@ -1471,12 +1526,12 @@
 
 /datum/ammo/alloy_spike/New()
 	..()
-	accuracy = config.max_hit_accuracy
-	accurate_range = config.short_shell_range
-	max_range = config.short_shell_range
-	damage = config.lmed_hit_damage
-	penetration= config.high_armor_penetration
-	shrapnel_chance = config.max_shrapnel_chance
+	accuracy = CONFIG_GET(number/combat_define/max_hit_accuracy)
+	accurate_range = CONFIG_GET(number/combat_define/short_shell_range)
+	max_range = CONFIG_GET(number/combat_define/short_shell_range)
+	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
+	penetration= CONFIG_GET(number/combat_define/high_armor_penetration)
+	shrapnel_chance = CONFIG_GET(number/combat_define/max_shrapnel_chance)
 
 /datum/ammo/flamethrower
 	name = "flame"
@@ -1488,8 +1543,8 @@
 
 /datum/ammo/flamethrower/New()
 	..()
-	max_range = config.close_shell_range
-	damage = config.med_hit_damage
+	max_range = CONFIG_GET(number/combat_define/close_shell_range)
+	damage = CONFIG_GET(number/combat_define/med_hit_damage)
 
 /datum/ammo/flamethrower/on_hit_mob(mob/M,obj/item/projectile/P)
 	drop_flame(get_turf(P))
@@ -1526,9 +1581,9 @@
 
 /datum/ammo/flare/New()
 	..()
-	damage = config.min_hit_damage
-	accuracy = config.med_hit_accuracy
-	max_range = config.short_shell_range
+	damage = CONFIG_GET(number/combat_define/min_hit_damage)
+	accuracy = CONFIG_GET(number/combat_define/med_hit_accuracy)
+	max_range = CONFIG_GET(number/combat_define/short_shell_range)
 
 /datum/ammo/flare/on_hit_mob(mob/M,obj/item/projectile/P)
 	drop_nade(get_turf(P))
@@ -1576,9 +1631,9 @@
 
 /datum/ammo/grenade_container/New()
 	..()
-	damage = config.min_hit_damage
-	accuracy = config.med_hit_accuracy
-	max_range = config.near_shell_range
+	damage = CONFIG_GET(number/combat_define/min_hit_damage)
+	accuracy = CONFIG_GET(number/combat_define/med_hit_accuracy)
+	max_range = CONFIG_GET(number/combat_define/near_shell_range)
 
 /datum/ammo/grenade_container/on_hit_mob(mob/M,obj/item/projectile/P)
 	drop_nade(get_turf(P))

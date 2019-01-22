@@ -3,7 +3,7 @@
 	desc = "A specialised prod designed for incapacitating xenomorphic lifeforms with."
 	icon_state = "stunbaton"
 	item_state = "baton"
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	force = 12
 	throwforce = 7
 	w_class = 3
@@ -25,7 +25,7 @@
 
 /obj/item/weapon/stunprod/attack_self(mob/user as mob)
 	if(status && (CLUMSY in user.mutations) && prob(50))
-		to_chat(user, "\red You grab the [src] on the wrong side.")
+		to_chat(user, "<span class='warning'>You grab the [src] on the wrong side.</span>")
 		user.KnockDown(30)
 		charges--
 		if(charges < 1)

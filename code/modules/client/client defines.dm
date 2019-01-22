@@ -1,8 +1,5 @@
 /client
-		//////////////////////
-		//BLACK MAGIC THINGS//
-		//////////////////////
-	parent_type = /datum
+	parent_type = /datum // black magic
 		////////////////
 		//ADMIN THINGS//
 		////////////////

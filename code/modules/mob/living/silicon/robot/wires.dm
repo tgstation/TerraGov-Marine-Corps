@@ -118,7 +118,7 @@
 		usr.set_interaction(src)
 		if (href_list["borgwires"])
 			var/t1 = text2num(href_list["borgwires"])
-			if (!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
+			if (!( istype(usr.get_active_held_item(), /obj/item/tool/wirecutters) ))
 				to_chat(usr, "You need wirecutters!")
 				return
 			if (src.isWireColorCut(t1))
@@ -127,7 +127,7 @@
 				src.cut(t1)
 		else if (href_list["pulse"])
 			var/t1 = text2num(href_list["pulse"])
-			if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			if (!istype(usr.get_active_held_item(), /obj/item/device/multitool))
 				to_chat(usr, "You need a multitool!")
 				return
 			if (src.isWireColorCut(t1))
