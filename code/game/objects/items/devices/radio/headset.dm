@@ -231,7 +231,7 @@
 	camera.network = list("LEADER")
 
 /obj/item/device/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
-	if(slot == WEAR_EAR)
+	if(slot == ITEM_SLOT_EARS)
 		wearer = user
 		squadhud = huds[MOB_HUD_SQUAD]
 		headset_hud_on = FALSE //So we always activate on equip.
