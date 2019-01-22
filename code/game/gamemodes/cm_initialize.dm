@@ -1044,7 +1044,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 
 
-	for(var/obj/machinery/vending/marine/M in marine_vendors)
+	for(var/obj/machinery/vending/marine/M in GLOB.marine_vendors)
 
 		//Forcefully reset the product list
 		M.product_records = list()
