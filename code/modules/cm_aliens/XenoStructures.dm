@@ -688,7 +688,7 @@ TUNNEL
 		..()
 		spawn(5)
 			if(id && !other)
-				for(var/obj/structure/tunnel/T in structure_list)
+				for(var/obj/structure/tunnel/T in GLOB.structure_list)
 					if(T.id == id && T != src && T.other == null) //Found a matching tunnel
 						T.other = src
 						other = T //Link them!

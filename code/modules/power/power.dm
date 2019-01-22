@@ -175,7 +175,7 @@
 				. += power_list(T, src, d1, 1)
 		else if (d1 == 11 || d1 == 12)
 			if(id)
-				for(var/obj/structure/cable/C in structure_list)
+				for(var/obj/structure/cable/C in GLOB.cable_list)
 					if(C == src)
 						continue // not ourself
 					if(id == C.id)
@@ -196,7 +196,7 @@
 ///// Z-Level Stuff
 	if(d2 == 11 || d2 == 12)
 		if(id)
-			for(var/obj/structure/cable/C in structure_list)
+			for(var/obj/structure/cable/C in GLOB.cable_list)
 				if(C == src)
 					continue // not ourself
 				if(id == C.id)

@@ -465,7 +465,7 @@
 
 
 		var/BucketData[0]
-		for(var/obj/structure/mopbucket/B in structure_list)
+		for(var/obj/structure/mopbucket/B in GLOB.structure_list)
 			var/turf/bl = get_turf(B)
 			if(bl)
 				if(bl.z != cl.z)
@@ -489,7 +489,7 @@
 		if(!CbotData.len)
 			CbotData[++CbotData.len] = list("x" = 0, "y" = 0, dir=null, status = null)
 		var/CartData[0]
-		for(var/obj/structure/janitorialcart/B in structure_list)
+		for(var/obj/structure/janitorialcart/B in GLOB.structure_list)
 			var/turf/bl = get_turf(B)
 			if(bl)
 				if(bl.z != cl.z)

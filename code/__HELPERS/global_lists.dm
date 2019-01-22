@@ -26,7 +26,6 @@ var/global/list/mechas_list = list()				//List of all mechs. Used by hostile mob
 var/global/list/ammo_list = list()					//List of all ammo types. Used by guns to tell the projectile how to act.
 var/global/list/joblist = list()					//List of all jobstypes, minus borg and AI
 
-var/global/list/structure_list = list()				//List of all /obj/structure as they are created, to fetch generic structures with a lot less lag
 var/global/list/active_areas = list()
 var/global/list/all_areas = list()
 var/global/list/processing_machines = list()

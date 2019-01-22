@@ -39,7 +39,7 @@
 			if(F.id == src.id)
 				targets += F
 
-		for(var/obj/structure/closet/secure_closet/brig/C in structure_list)
+		for(var/obj/structure/closet/secure_closet/brig/C in GLOB.structure_list)
 			if(C.id == src.id)
 				targets += C
 

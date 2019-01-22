@@ -1,6 +1,7 @@
 GLOBAL_LIST_EMPTY(cable_list)					    //Index for all cables, so that powernets don't have to look through the entire world all the time
 GLOBAL_LIST_EMPTY(object_list)						//list of all /obj
 GLOBAL_LIST_EMPTY(turfs)							//list of all /turf
+GLOBAL_LIST_EMPTY(structure_list)					//list of all /obj/structure
 
 GLOBAL_LIST_EMPTY(portals)					        //list of all /obj/effect/portal
 GLOBAL_LIST_EMPTY(airlocks)					        //list of all airlocks
