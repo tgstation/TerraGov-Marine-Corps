@@ -52,6 +52,8 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	//if(TEST_RUN_PARAMETER in params)
 		//HandleTestRun()
+
+	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
 /*
 // EVERYTHING BELOW IS LEGACY
 */
@@ -244,7 +246,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		while(1)
 			sleep(INACTIVITY_KICK)
 			for(var/client/C in clients)
-				if(C.holder && C.holder.rights & R_ADMIN) //Skip admins.
+				if(check_other_rights(C, R_ADMIN)).
 					continue
 				if(C.is_afk(INACTIVITY_KICK))
 					if(!istype(C.mob, /mob/dead))

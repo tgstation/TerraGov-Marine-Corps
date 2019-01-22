@@ -253,3 +253,5 @@ Legacy - work on reworking/removing these.
 /datum/config_entry/flag/use_loyalty_implants
 
 /datum/config_entry/flag/usealienwhitelist
+
+/datum/config_entry/flag/load_legacy_ranks_only

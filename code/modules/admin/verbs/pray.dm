@@ -39,10 +39,10 @@
 		to_chat(usr, "Your prayers have been received by the gods.")
 
 
-/datum/admins/proc/Centcomm_announce(var/text , var/mob/Sender , var/iamessage)
+/proc/Centcomm_announce(var/text , var/mob/Sender , var/iamessage)
 	var/msg = copytext(sanitize(text), 1, MAX_MESSAGE_LEN)
 	msg = "<span class='notice'> <b><font color=orange>TGMC[iamessage ? " IA" : ""]:</font>[key_name(Sender, 1)] (<A HREF='?_src_=holder;ccmark=\ref[Sender]'>Mark</A>) (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[Sender]'>FLW</a>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<A HREF='?_src_=holder;BlueSpaceArtillery=\ref[Sender]'>BSA</A>) (<A HREF='?_src_=holder;CentcommReply=\ref[Sender]'>RPLY</A>):</b> [msg]</span>"
 	for(var/client/C in admins)
-		if((R_ADMIN) & C.holder.rights)
+		if(check_other_rights(C, R_ADMIN))
 			to_chat(C, msg)
 			C << 'sound/effects/sos-morse-code.ogg'

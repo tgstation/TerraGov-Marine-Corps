@@ -2331,4 +2331,19 @@
 		ticker.mode.activate_distress()
 		log_game("[key_name_admin(usr)] has sent a randomized distress beacon early, requested by [key_name_admin(ref_person)]")
 		message_admins("[key_name_admin(usr)] has sent a randomized distress beacon early, requested by [key_name_admin(ref_person)]", 1)
+
+		
+	//Admin PM //Why is this not in /datums/admin/Topic()
+	if(href_list["priv_msg"])
+		var/client/C = locate(href_list["priv_msg"])
+		if(ismob(C)) 		//Old stuff can feed-in mobs instead of clients
+			var/mob/M = C
+			C = M.client
+		if(!C) return //Outdated links to logged players generate runtimes
+		if(unansweredMhelps[C.computer_id])
+			unansweredMhelps.Remove(C.computer_id)
+		if(unansweredAhelps[C.computer_id])
+			unansweredAhelps.Remove(C.computer_id)
+		admin_pm(C,null)
+		return
 */

@@ -374,7 +374,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		var/deathtime = world.time - xeno_candidate.timeofdeath
 		var/deathtimeminutes = round(deathtime / 600)
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-		if(deathtime < 3000 && ( !xeno_candidate.client.holder || !(xeno_candidate.client.holder.rights & R_ADMIN)) )
+		if(deathtime < 3000 && ( !xeno_candidate.client.holder || !check_rights(xeno_candidate, R_ADMIN)))
 			to_chat(xeno_candidate, "<span class='warning'>You have been dead for [deathtimeminutes >= 1 ? "[deathtimeminutes] minute\s and " : ""][deathtimeseconds] second\s.</span>")
 			to_chat(xeno_candidate, "<span class='warning'>You must wait 5 minutes before rejoining the game!</span>")
 			return FALSE
@@ -437,7 +437,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 			deathtime = 3000 //so new players don't have to wait to latejoin as xeno in the round's first 5 mins.
 		var/deathtimeminutes = round(deathtime / 600)
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-		if(deathtime < 3000 && ( !xeno_candidate.client.holder || !(xeno_candidate.client.holder.rights & R_ADMIN)) )
+		if(deathtime < 3000 && !check_other_rights(xeno_candidate, R_ADMIN))
 			to_chat(xeno_candidate, "<span class='warning'>You have been dead for [deathtimeminutes >= 1 ? "[deathtimeminutes] minute\s and " : ""][deathtimeseconds] second\s.</span>")
 			to_chat(xeno_candidate, "<span class='warning'>You must wait 5 minutes before rejoining the game!</span>")
 			return FALSE

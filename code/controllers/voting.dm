@@ -233,9 +233,9 @@ datum/controller/vote
 		var/admin = 0
 		var/trialmin = 0
 		if(C.holder)
-			if(C.holder.rights & R_ADMIN)
-				admin = 1
-				trialmin = 1 // don't know why we use both of these it's really weird, but I'm 2 lasy to refactor this all to use just admin.
+			if(check_other_rights(C, R_ADMIN))
+				admin = TRUE
+				trialmin = TRUE // don't know why we use both of these it's really weird, but I'm 2 lasy to refactor this all to use just admin.
 		voting |= C
 
 		. = "<html><head><title>Voting Panel</title></head><body>"

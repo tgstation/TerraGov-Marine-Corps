@@ -207,7 +207,7 @@
 					return FALSE
 
 				for(var/client/C in admins)
-					if((R_ADMIN) & C.holder.rights)
+					if(check_other_rights(C, R_ADMIN))
 						C << 'sound/effects/sos-morse-code.ogg'
 				message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) has called a Distress Beacon. It will be sent in 60 seconds unless denied or sent early. (<A HREF='?_src_=holder;ccmark=\ref[usr]'>Mark</A>) (<A HREF='?_src_=holder;distress=\ref[usr]'>SEND</A>) (<A HREF='?_src_=holder;ccdeny=\ref[usr]'>DENY</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) (<A HREF='?_src_=holder;CentcommReply=\ref[usr]'>RPLY</A>)")
 				to_chat(usr, "<span class='notice'>A distress beacon will launch in 60 seconds unless High Command responds otherwise.</span>")

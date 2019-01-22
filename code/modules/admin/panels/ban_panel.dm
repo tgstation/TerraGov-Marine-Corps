@@ -1,9 +1,4 @@
-#ifndef OVERRIDE_BAN_SYSTEM
-//Blocks an attempt to connect before even creating our client datum thing.
 world/IsBanned(key,address,computer_id)
-	if(ckey(key) in admin_datums)
-		return ..()
-
 	//Guest Checking
 	if(!guests_allowed && IsGuestKey(key))
 		log_access("Failed Login: [key] - Guests not allowed")
@@ -71,8 +66,6 @@ world/IsBanned(key,address,computer_id)
 		if (failedip)
 			message_admins("[key] has logged in with a blank ip in the ban check.")
 		return ..()	//default pager ban stuff
-#endif
-
 
 
 /datum/admins/proc/DB_ban_record(var/bantype, var/mob/banned_mob, var/duration = -1, var/reason, var/job = "", var/rounds = 0, var/banckey = null)

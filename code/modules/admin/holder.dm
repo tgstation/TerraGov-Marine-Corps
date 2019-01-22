@@ -6,131 +6,164 @@ GLOBAL_PROTECT(protected_admins)
 GLOBAL_VAR_INIT(href_token, GenerateToken())
 GLOBAL_PROTECT(href_token)
 
-var/list/admin_datums = list()
-
 
 /datum/admins
-	var/rank			= "Temporary Admin"
+	var/datum/admin_rank/rank
+
+	var/target
+	var/name = "nobody's admin datum (no rank)"
 	var/client/owner	= null
-	var/rights = 0
 	var/fakekey			= null
 
 	var/datum/marked_datum
 
+	var/spamcooldown = 0
+
 	var/href_token
 
+	var/deadmined
 
-/datum/admins/New(initial_rank = "Temporary Admin", initial_rights = 0, ckey)
-	if(!ckey)
-		stack_trace("Admin datum created without a ckey argument. Datum has been deleted")
-		qdel(src)
+
+/datum/admins/New(datum/admin_rank/R, ckey, protected)
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		if(!target) //only del if this is a true creation (and not just a New() proc call), other wise trialmins/coders could abuse this to deadmin other admins
+			QDEL_IN(src, 0)
+			CRASH("Admin proc call creation of admin datum.")
 		return
-	rank = initial_rank
-	rights = initial_rights
-	if(rights & R_DEBUG) //grant profile access
+	if(!ckey)
+		QDEL_IN(src, 0)
+		throw EXCEPTION("Admin datum created without a ckey.")
+		return
+	if(!istype(R))
+		QDEL_IN(src, 0)
+		throw EXCEPTION("Admin datum created without a rank.")
+		return
+	target = ckey
+	name = "[ckey]'s admin datum ([R])"
+	rank = R
+	href_token = GenerateToken()
+	if(R.rights & R_DEBUG) //grant profile access
 		world.SetConfig("APP/admin", ckey, "role=admin")
-	admin_datums[ckey] = src
+	//only admins with +ADMIN start admined
+	if(protected)
+		GLOB.protected_admins[target] = src
+
+	activate()
+
+
+/datum/admins/Destroy()
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return QDEL_HINT_LETMELIVE
+	. = ..()
+
+
+/datum/admins/proc/activate()
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
+	GLOB.deadmins -= target
+	GLOB.admin_datums[target] = src
+	deadmined = FALSE
+	if (GLOB.directory[target])
+		associate(GLOB.directory[target])	//find the client for a ckey if they are connected and associate them with us
+
+
+/datum/admins/proc/deactivate()
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
+	GLOB.deadmins[target] = src
+	GLOB.admin_datums -= target
+	deadmined = TRUE
+	var/client/C
+	if ((C = owner) || (C = GLOB.directory[target]))
+		disassociate()
+		C.verbs += /client/proc/readmin
 
 
 /datum/admins/proc/associate(client/C)
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
+
 	if(istype(C))
+		if(C.ckey != target)
+			var/msg = " has attempted to associate with [target]'s admin datum"
+			message_admins("[key_name_admin(C)][msg]")
+			log_admin("[key_name(C)][msg]")
+			return
+		if (deadmined)
+			activate()
 		owner = C
 		owner.holder = src
-		owner.add_admin_verbs()
-		admins |= C
+		owner.add_admin_verbs()	//TODO <--- todo what? the proc clearly exists and works since its the backbone to our entire admin system
+		owner.verbs -= /client/proc/readmin
+		GLOB.admins |= C
 
 
 /datum/admins/proc/disassociate()
+	if(IsAdminAdvancedProcCall())
+		var/msg = " has tried to elevate permissions!"
+		message_admins("[key_name_admin(usr)][msg]")
+		log_admin("[key_name(usr)][msg]")
+		return
 	if(owner)
-		admins -= owner
+		GLOB.admins -= owner
 		owner.remove_admin_verbs()
 		owner.holder = null
 		owner = null
 
 
-/proc/check_rights(rights_required, show_msg = TRUE)
-	if(!usr?.client)
-		return FALSE
+/client/proc/readmin()
+	set name = "Readmin"
+	set category = "Admin"
+	set desc = "Regain your admin powers."
 
-	if(rights_required)
-		if(usr.client.holder && (usr.client.holder.rights & rights_required))
-			return TRUE
-		else if(show_msg)
-			to_chat(usr, "<span class='warning'>You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</span>")
-	else
-		if(usr.client.holder)
-			return TRUE
-		else if(show_msg)
-			to_chat(usr, "<span class='warning'>You are not a holder.</span>")
-	return FALSE
+	var/datum/admins/A = GLOB.deadmins[ckey]
 
+	if(!A)
+		A = GLOB.admin_datums[ckey]
+		if (!A)
+			var/msg = " is trying to readmin but they have no deadmin entry"
+			message_admins("[key_name_admin(src)][msg]")
+			log_admin_private("[key_name(src)][msg]")
+			return
 
-/proc/check_other_rights(client/other, rights_required, show_msg = TRUE)
-	if(!other)
-		return FALSE
+	A.associate(src)
 
-	if(rights_required && other.holder)
-		if(rights_required & other.holder.rights)
-			return TRUE
-		else if(show_msg)
-			to_chat(usr, "<span class='warning'>You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</span>")
-	else
-		if(other.holder)
-			return TRUE
-		else if(show_msg)
-			to_chat(usr, "<span class='warning'>You are not a holder.</span>")
-	return FALSE
+	if (!holder)
+		return //This can happen if an admin attempts to vv themself into somebody elses's deadmin datum by getting ref via brute force
 
-
-/proc/check_if_greater_rights_than(client/other)
-	if(!usr?.client)
-		return FALSE
-
-	if(usr.client.holder)
-		if(!other?.holder)
-			return TRUE
-		if(usr.client.holder.rights != other.holder.rights && ((usr.client.holder.rights & other.holder.rights) == other.holder.rights))
-			return TRUE
-
-	to_chat(usr, "<span class='warning'>Cannot proceed. They have more or equal rights to us.</span>")
-	return FALSE
+	to_chat(src, "<span class='interface'>You are now an admin.</span>")
+	message_admins("[src] re-adminned themselves.")
+	log_admin("[src] re-adminned themselves.")
 
 
 /client/proc/deadmin()
-	admin_datums -= ckey
-	if(holder)
-		holder.disassociate()
-		qdel(holder)
-		holder = null
-	return TRUE
+	set name = "Deadmin"
+	set category = "Admin"
+	set desc = "Shed your admin powers."
 
+	if(!holder)
+		return
 
-/client/proc/readmin() //Basically load_admins but only takes the client's ckey.
-	var/list/Lines = file2list("config/admins.txt")
+	holder.deactivate()
 
-	for(var/line in Lines)
-		if(!length(line))
-			continue
-		if(copytext(line,1,2) == "#")
-			continue
-		var/list/List = text2list(line, "-")
-		if(!List.len)
-			continue
-		var/target = ckey(List[1])
-		if(!target)
-			continue
-		if(target != ckey)
-			continue
-		var/rank = ""
-		if(List.len >= 2)
-			rank = ckeyEx(List[2])
-		var/rights = admin_ranks[rank]
-		var/datum/admins/D = new /datum/admins(rank, rights, target)
-		D.associate(directory[target])
-
-
-/proc/IsAdminAdvancedProcCall()
-	return usr?.client && GLOB.AdminProcCaller == usr.client.ckey
+	to_chat(src, "<span class='interface'>You are now a normal player.</span>")
+	log_admin("[src] deadmined themself.")
+	message_admins("[src] deadmined themself.")
 
 
 /proc/GenerateToken()
@@ -157,6 +190,54 @@ var/list/admin_datums = list()
 
 /proc/HrefTokenFormField(forceGlobal = FALSE)
 	return "<input type='hidden' name='admin_token' value='[RawHrefToken(forceGlobal)]'>"
+
+
+/proc/check_rights(rights_required, show_msg = TRUE)
+	if(!usr?.client)
+		return FALSE
+
+	if(rights_required)
+		if(usr.client.holder?.rank && (usr.client.holder.rank.rights & rights_required))
+			return TRUE
+		else if(show_msg)
+			to_chat(usr, "<span class='warning'>You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</span>")
+	else
+		if(usr.client.holder)
+			return TRUE
+		else if(show_msg)
+			to_chat(usr, "<span class='warning'>You are not a holder.</span>")
+	return FALSE
+
+
+/proc/check_other_rights(client/other, rights_required, show_msg = TRUE)
+	if(!other)
+		return FALSE
+
+	if(rights_required && other.holder.rank.rights)
+		if(rights_required & other.holder.rank.rights)
+			return TRUE
+		else if(show_msg)
+			to_chat(usr, "<span class='warning'>You do not have sufficient rights to do that. You require one of the following flags:[rights2text(rights_required," ")].</span>")
+	else
+		if(other.holder)
+			return TRUE
+		else if(show_msg)
+			to_chat(usr, "<span class='warning'>You are not a holder.</span>")
+	return FALSE
+
+
+/proc/check_if_greater_rights_than(client/other)
+	if(!usr?.client)
+		return FALSE
+
+	if(usr.client.holder)
+		if(!other?.holder?.rank)
+			return TRUE
+		if(usr.client.holder.rank.rights != other.holder.rank.rights && ((usr.client.holder.rank.rights & other.holder.rank.rights) == other.holder.rank.rights))
+			return TRUE
+
+	to_chat(usr, "<span class='warning'>Cannot proceed. They have more or equal rights to us.</span>")
+	return FALSE
 
 
 var/list/admin_verbs_default = list(
@@ -187,19 +268,19 @@ var/list/admin_verbs_mentor = list(
 )
 
 /client/proc/add_admin_verbs()
-	if(holder)
+	if(holder.rank)
 		verbs += admin_verbs_default
-		if(holder.rights & R_ASAY)		verbs += admin_verbs_admin
-		if(holder.rights & R_ADMIN)			verbs += admin_verbs_admin
-		if(holder.rights & R_BAN)			verbs += admin_verbs_ban
-		if(holder.rights & R_FUN)			verbs += admin_verbs_fun
-		if(holder.rights & R_SERVER)		verbs += admin_verbs_server
-		if(holder.rights & R_DEBUG)			verbs += admin_verbs_debug
-		if(holder.rights & R_PERMISSIONS)	verbs += admin_verbs_permissions
-		if(holder.rights & R_COLOR)			verbs += admin_verbs_color
-		if(holder.rights & R_SOUND)		verbs += admin_verbs_sound
-		if(holder.rights & R_SPAWN)			verbs += admin_verbs_spawn
-		if(holder.rights & R_MENTOR)		verbs += admin_verbs_mentor
+		if(holder.rank.rights & R_ASAY)		verbs += admin_verbs_admin
+		if(holder.rank.rights & R_ADMIN)			verbs += admin_verbs_admin
+		if(holder.rank.rights & R_BAN)			verbs += admin_verbs_ban
+		if(holder.rank.rights & R_FUN)			verbs += admin_verbs_fun
+		if(holder.rank.rights & R_SERVER)		verbs += admin_verbs_server
+		if(holder.rank.rights & R_DEBUG)			verbs += admin_verbs_debug
+		if(holder.rank.rights & R_PERMISSIONS)	verbs += admin_verbs_permissions
+		if(holder.rank.rights & R_COLOR)			verbs += admin_verbs_color
+		if(holder.rank.rights & R_SOUND)		verbs += admin_verbs_sound
+		if(holder.rank.rights & R_SPAWN)			verbs += admin_verbs_spawn
+		if(holder.rank.rights & R_MENTOR)		verbs += admin_verbs_mentor
 
 /client/proc/remove_admin_verbs()
 	verbs.Remove(
@@ -221,11 +302,11 @@ var/list/admin_verbs_mentor = list(
 /proc/is_mentor(client/C)
 	if(!istype(C))
 		return FALSE
-	if(!C?.holder?.rights)
+	if(!C?.holder?.rank?.rights)
 		return FALSE
-	if(C.holder.rights & R_ADMIN)
+	if(C.holder.rank.rights & R_ADMIN)
 		return FALSE
-	if(!(C.holder.rights & R_MENTOR))
+	if(!(C.holder.rank.rights & R_MENTOR))
 		return FALSE
 	return TRUE
 
@@ -267,3 +348,43 @@ var/list/admin_verbs_mentor = list(
 /proc/find_stealth_key() //TEMPORARY
 	if(usr?.client?.holder)
 		return usr.client.holder.owner.key
+
+
+/proc/WrapAdminProcCall(datum/target, procname, list/arguments)
+	if(target && procname == "Del")
+		to_chat(usr, "Calling Del() is not allowed")
+		return
+
+	if(target != GLOBAL_PROC && !target.CanProcCall(procname))
+		to_chat(usr, "Proccall on [target.type]/proc/[procname] is disallowed!")
+		return
+	var/current_caller = GLOB.AdminProcCaller
+	var/ckey = usr ? usr.client.ckey : GLOB.AdminProcCaller
+	if(!ckey)
+		CRASH("WrapAdminProcCall with no ckey: [target] [procname] [english_list(arguments)]")
+	if(current_caller && current_caller != ckey)
+		if(!GLOB.AdminProcCallSpamPrevention[ckey])
+			to_chat(usr, "<span class='adminnotice'>Another set of admin called procs are still running, your proc will be run after theirs finish.</span>")
+			GLOB.AdminProcCallSpamPrevention[ckey] = TRUE
+			UNTIL(!GLOB.AdminProcCaller)
+			to_chat(usr, "<span class='adminnotice'>Running your proc</span>")
+			GLOB.AdminProcCallSpamPrevention -= ckey
+		else
+			UNTIL(!GLOB.AdminProcCaller)
+	GLOB.LastAdminCalledProc = procname
+	if(target != GLOBAL_PROC)
+		GLOB.LastAdminCalledTargetRef = "[REF(target)]"
+	GLOB.AdminProcCaller = ckey	//if this runtimes, too bad for you
+	++GLOB.AdminProcCallCount
+	. = world.WrapAdminProcCall(target, procname, arguments)
+	if(--GLOB.AdminProcCallCount == 0)
+		GLOB.AdminProcCaller = null
+
+//adv proc call this, ya nerds
+/world/proc/WrapAdminProcCall(datum/target, procname, list/arguments)
+	if(target == GLOBAL_PROC)
+		return call(procname)(arglist(arguments))
+	else if(target != world)
+		return call(target, procname)(arglist(arguments))
+	else
+		log_admin_private("[key_name(usr)] attempted to call world/proc/[procname] with arguments: [english_list(arguments)]")

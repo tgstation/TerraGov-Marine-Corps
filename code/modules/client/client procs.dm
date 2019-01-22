@@ -31,20 +31,6 @@
 		//del(usr)
 		return
 
-	//Admin PM //Why is this not in /datums/admin/Topic()
-	if(href_list["priv_msg"])
-		var/client/C = locate(href_list["priv_msg"])
-		if(ismob(C)) 		//Old stuff can feed-in mobs instead of clients
-			var/mob/M = C
-			C = M.client
-		if(!C) return //Outdated links to logged players generate runtimes
-		if(unansweredMhelps[C.computer_id])
-			unansweredMhelps.Remove(C.computer_id)
-		if(unansweredAhelps[C.computer_id])
-			unansweredAhelps.Remove(C.computer_id)
-		cmd_admin_pm(C,null)
-		return
-
 	//Logs all hrefs
 	if(CONFIG_GET(flag/log_hrefs))
 		log_href("[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr]) || [hsrc ? "[hsrc] " : ""][href]")
@@ -111,18 +97,12 @@
 	clients += src
 	directory[ckey] = src
 
-	//Admin Authorisation
-	holder = admin_datums[ckey]
-	if(holder)
+	var/static/list/localhost_addresses = list("127.0.0.1", "::1")
+	if(isnull(address) || (address in localhost_addresses))
+		var/datum/admins/rank = new("!localhost!", ALL, ckey)
+		holder = rank
 		admins += src
-		holder.owner = src
-	else // If it matters put a config check for this feature on this line
-		var/static/list/localhost_addresses = list("127.0.0.1", "::1")
-		if(isnull(address) || (address in localhost_addresses))
-			var/datum/admins/rank = new("!localhost!", ALL, ckey)
-			holder = rank
-			admins += src
-			rank.owner = src
+		rank.owner = src
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = preferences_datums[ckey]

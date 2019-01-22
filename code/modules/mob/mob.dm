@@ -43,7 +43,7 @@
 			stat("Operation Time: [worldtime2text()]")
 		client.stat_force_fast_update = TRUE
 
-	if(client?.holder?.rights && client.holder.rights & (R_ADMIN|R_DEBUG))
+	if(client?.holder?.rank?.rights && client.holder.rank.rights & (R_ADMIN|R_DEBUG))
 		if(statpanel("MC"))
 			stat("CPU:", "[world.cpu]")
 			stat("Instances:", "[num2text(world.contents.len, 10)]")

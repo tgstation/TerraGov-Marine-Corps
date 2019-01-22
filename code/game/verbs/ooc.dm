@@ -5,10 +5,6 @@ var/global/normal_ooc_colour = "#002eb8"
 	set name = "OOC" //Gave this shit a shorter name so you only have to time out "ooc" rather than "ooc message" to use it --NeoFite
 	set category = "OOC"
 
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
-		return
-
 	if(!mob)
 		return
 	if(IsGuestKey(key))
@@ -73,7 +69,7 @@ var/global/normal_ooc_colour = "#002eb8"
 			else
 				display_colour = "#643200"	//brown, mostly /tg/ folks
 
-		if(holder.rights & R_COLOR)
+		if(check_rights(R_COLOR))
 			if(CONFIG_GET(flag/allow_admin_ooccolor))
 				display_colour = src.prefs.ooccolor
 

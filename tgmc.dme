@@ -69,6 +69,7 @@
 #include "code\__HELPERS\sorts\TimSort.dm"
 #include "code\_globalvars\configuration.dm"
 #include "code\_globalvars\logging.dm"
+#include "code\_globalvars\misc.dm"
 #include "code\_globalvars\mobs.dm"
 #include "code\_onclick\adjacent.dm"
 #include "code\_onclick\ai.dm"

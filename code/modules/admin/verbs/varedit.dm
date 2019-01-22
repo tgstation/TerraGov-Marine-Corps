@@ -1,3 +1,6 @@
+/proc/IsAdminAdvancedProcCall()
+	return usr && usr.client && GLOB.AdminProcCaller == usr.client.ckey
+
 /datum/admins/proc/cmd_mass_modify_object_variables(atom/A, var/var_name)
 	set category = "Debug"
 	set name = "Mass Edit Variables"
@@ -1570,8 +1573,7 @@ var/list/forbidden_varedit_object_types = list(
 	set category = "Debug"
 	set name = "View Variables"
 
-	if(!usr.client || !usr.client.holder || !(usr.client.holder.rights & R_ADMIN))
-		to_chat(usr, "<span class='warning'>You need to be a moderator or higher to access this.</span>")
+	if(!check_rights(R_ADMIN))
 		return
 
 	if(!D)	return
@@ -1584,7 +1586,7 @@ var/list/forbidden_varedit_object_types = list(
 		to_chat(usr, "<span class='warning'>You need host permission to access this.</span>")
 		return
 
-	if((istype(D,/datum/ammo) || istype(D,/mob/living/carbon/Xenomorph/Predalien)) && !(usr.client.holder.rights & R_DEBUG))
+	if((istype(D,/datum/ammo) || istype(D,/mob/living/carbon/Xenomorph/Predalien)) && !check_rights(R_DEBUG))
 		to_chat(usr, "<span class='warning'>You need debugging permission to access this.</span>")
 		return
 

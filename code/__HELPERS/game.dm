@@ -299,6 +299,11 @@ proc/isInSight(var/atom/A, var/atom/B)
 		if(!O.client?.prefs || !(O.client.prefs.be_special & BE_ALIEN) || jobban_isbanned(O, "Alien"))
 			continue
 
+		// copied from join as xeno
+		var/deathtime = world.time - O.timeofdeath
+		if(deathtime < 3000 && !check_rights(R_ADMIN))
+			continue
+
 		//AFK players cannot be drafted
 		if(O.client.inactivity / 600 > ALIEN_SELECT_AFK_BUFFER + 5)
 			continue
