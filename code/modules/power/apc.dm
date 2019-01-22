@@ -111,6 +111,7 @@
 	var/global/list/status_overlays_equipment
 	var/global/list/status_overlays_lighting
 	var/global/list/status_overlays_environ
+	var/obj/item/circuitboard/apc/electronics = null
 
 /proc/RandomAPCWires()
 	//To make this not randomize the wires, just set index to 1 and increment it in the flag for loop (after doing everything else).
@@ -434,7 +435,14 @@
 				else
 					user.visible_message("<span class='notice'>[user] removes [src]'s power control board.</span>",
 					"<span class='notice'>You remove [src]'s power control board.</span>")
-					new /obj/item/circuitboard/apc(loc)
+					var/obj/item/circuitboard/apc/circuit
+					if(!electronics)
+						circuit = new/obj/item/circuitboard/apc( src.loc )
+					else
+						circuit = new electronics( src.loc )
+						if(electronics.is_general_board)
+							circuit.set_general()
+				electronics = null
 		else if(opened != 2) //Cover isn't removed
 			opened = 0
 			update_icon()
@@ -458,7 +466,7 @@
 			if(stat & MAINT)
 				to_chat(user, "<span class='warning'>There is no connector for your power cell.</span>")
 				return
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				cell = W
 				user.visible_message("<span class='notice'>[user] inserts [W] into [src]!",
 				"<span class='notice'>You insert [W] into [src]!")
@@ -603,6 +611,7 @@
 			has_electronics = 1
 			user.visible_message("<span class='notice'>[user] inserts the power control board into [src].</span>",
 			"<span class='notice'>You insert the power control board into [src].</span>")
+			electronics = W
 			qdel(W)
 	else if(istype(W, /obj/item/circuitboard/apc) && opened && has_electronics == 0 && (stat & BROKEN))
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_ENGI)
@@ -1006,7 +1015,7 @@
 
 	if(href_list["apcwires"])
 		var/t1 = text2num(href_list["apcwires"])
-		if(!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
+		if(!( istype(usr.get_active_held_item(), /obj/item/tool/wirecutters) ))
 			to_chat(usr, "<span class='warning'>You need wirecutters!</span>")
 			return 0
 		if(isWireColorCut(t1))
@@ -1015,7 +1024,7 @@
 			cut(t1)
 	else if(href_list["pulse"])
 		var/t1 = text2num(href_list["pulse"])
-		if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
+		if(!istype(usr.get_active_held_item(), /obj/item/device/multitool))
 			to_chat(usr, "<span class='warning'>You need a multitool!</span>")
 			return 0
 		if(isWireColorCut(t1))
@@ -1144,10 +1153,10 @@
 		perapc = terminal.powernet.perapc
 
 	if(debug)
-		log_debug( "Status: [main_status] - Excess: [excess] - Last Equip: [lastused_equip] - Last Light: [lastused_light]")
+		log_runtime( "Status: [main_status] - Excess: [excess] - Last Equip: [lastused_equip] - Last Light: [lastused_light]")
 
 		if(area.powerupdate)
-			log_debug("power update in [area.name] / [name]")
+			log_runtime("power update in [area.name] / [name]")
 
 	if(cell && !shorted)
 		var/cell_maxcharge = cell.maxcharge

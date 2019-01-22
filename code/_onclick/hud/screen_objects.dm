@@ -637,7 +637,7 @@
 	if(!user?.client)
 		return
 
-	var/obj/item/weapon/gun/G = user.get_active_hand()
+	var/obj/item/weapon/gun/G = user.get_active_held_item()
 
 	if(!G || !G.has_ammo_counter() || !G.hud_enabled)
 		return
@@ -651,7 +651,7 @@
 	if(!user?.client?.screen.Find(src))
 		return
 
-	var/obj/item/weapon/gun/G = user.get_active_hand()
+	var/obj/item/weapon/gun/G = user.get_active_held_item()
 
 	if(!G || !istype(G) || !G.has_ammo_counter() || !G.hud_enabled || !G.get_ammo_type() || isnull(G.get_ammo_count()))
 		remove_hud()

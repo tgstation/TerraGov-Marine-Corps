@@ -28,7 +28,7 @@
 	evolution_threshold = 200
 	upgrade_threshold = 200
 
-	evolves_to = list(/mob/living/carbon/Xenomorph/Praetorian, /mob/living/carbon/Xenomorph/Crusher)
+	evolves_to = list(/mob/living/carbon/Xenomorph/Crusher)
 	deevolves_to = /mob/living/carbon/Xenomorph/Defender
 
 	// *** Flags *** //
@@ -214,7 +214,7 @@
 		if(!isXeno(L) && !isYautja(L))
 			round_statistics.warrior_grabs++
 			grab_level = GRAB_NECK
-			L.drop_held_items()
+			L.drop_all_held_items()
 			L.KnockDown(3)
 			visible_message("<span class='xenowarning'>\The [src] grabs [L] by the throat!</span>", \
 			"<span class='xenowarning'>You grab [L] by the throat!</span>")

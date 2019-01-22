@@ -277,9 +277,9 @@
 	for(var/obj/item/I in get_equipped_items())
 		if(I.body_parts_covered & HANDS)
 			prot["hands"] = max(1 - I.permeability_coefficient, prot["hands"])
-		if(I.body_parts_covered & UPPER_TORSO)
+		if(I.body_parts_covered & CHEST)
 			prot["chest"] = max(1 - I.permeability_coefficient, prot["chest"])
-		if(I.body_parts_covered & LOWER_TORSO)
+		if(I.body_parts_covered & GROIN)
 			prot["groin"] = max(1 - I.permeability_coefficient, prot["groin"])
 		if(I.body_parts_covered & LEGS)
 			prot["legs"] = max(1 - I.permeability_coefficient, prot["legs"])
@@ -310,12 +310,12 @@ mob/living/carbon/human/get_standard_bodytemperature()
 		if(SCOUT_CLOAK_OFF_ATTACK)
 			to_chat(src, "<span class='danger'>Your cloak shimmers from your actions!</span>")
 			S.camo_last_shimmer = world.time //Reduces transparency to 50%
-			alpha = SCOUT_CLOAK_RUN_ALPHA
+			alpha = max(alpha,S.shimmer_alpha)
 		if(SCOUT_CLOAK_OFF_DAMAGE)
 			if(damage >= 15)
 				to_chat(src, "<span class='danger'>Your cloak shimmers from the damage!</span>")
 				S.camo_last_shimmer = world.time //Reduces transparency to 50%
-				alpha = SCOUT_CLOAK_RUN_ALPHA
+				alpha = max(alpha,S.shimmer_alpha)
 
 
 /mob/living/carbon/human/throw_item(atom/target)

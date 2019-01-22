@@ -56,17 +56,9 @@
 	stop_automated_movement = 1
 	wander = 0
 	var/attempt_open = 0
-/*
-	New()
-		set waitfor = 0
-		..()
-		sleep(10) //Make sure everything is spawned in.
-		for(var/obj/item/I in loc)
-			I.loc = src
-	*/
 
-	initialize()
-		..()
+	Initialize()
+		. = ..()
 		for(var/obj/item/I in loc)
 			I.loc = src
 
@@ -129,8 +121,8 @@ var/global/list/protected_objects = list(/obj/structure/table, /obj/structure/ca
 	var/destroy_objects = 0
 	var/knockdown_people = 0
 
-/mob/living/simple_animal/hostile/mimic/copy/New(loc, var/obj/copy, var/mob/living/creator)
-	..(loc)
+/mob/living/simple_animal/hostile/mimic/copy/Initialize(loc, var/obj/copy, var/mob/living/creator)
+	. = ..(loc)
 	CopyObject(copy, creator)
 
 /mob/living/simple_animal/hostile/mimic/copy/death()

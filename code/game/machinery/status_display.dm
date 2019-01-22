@@ -45,12 +45,6 @@
 	set_picture("default")
 	start_processing()
 
-// register for radio system
-/obj/machinery/status_display/initialize()
-	..()
-	/*if(radio_controller)
-		radio_controller.add_object(src, frequency)*/
-
 // timed process
 /obj/machinery/status_display/process()
 	if(stat & NOPOWER)

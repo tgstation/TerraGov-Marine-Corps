@@ -21,7 +21,7 @@
 		if (contents.len >= max_butts)
 			to_chat(user, "This ashtray is full.")
 			return
-		user.drop_inv_item_to_loc(W, src)
+		user.transferItemToLoc(W, src)
 
 		if (istype(W,/obj/item/clothing/mask/cigarette))
 			var/obj/item/clothing/mask/cigarette/cig = W
@@ -59,14 +59,14 @@
 			die()
 			return
 		if (contents.len)
-			src.visible_message("\red [src] slams into [hit_atom] spilling its contents!")
+			src.visible_message("<span class='warning'> [src] slams into [hit_atom] spilling its contents!</span>")
 		for (var/obj/item/clothing/mask/cigarette/O in contents)
 			O.loc = src.loc
 		icon_state = icon_empty
 	return ..()
 
 /obj/item/ashtray/proc/die()
-	src.visible_message("\red [src] shatters spilling its contents!")
+	src.visible_message("<span class='warning'> [src] shatters spilling its contents!</span>")
 	for (var/obj/item/clothing/mask/cigarette/O in contents)
 		O.loc = src.loc
 	icon_state = icon_broken

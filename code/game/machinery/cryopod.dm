@@ -198,7 +198,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 
 			//Drop all items into the pod.
 			for(var/obj/item/W in occupant)
-				occupant.drop_inv_item_to_loc(W, src)
+				occupant.transferItemToLoc(W, src)
 
 			//Delete all items not on the preservation list.
 
@@ -453,7 +453,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 			//Book keeping!
 			var/turf/location = get_turf(src)
 			log_admin("[key_name_admin(M)] has entered a stasis pod. (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[location.x];Y=[location.y];Z=[location.z]'>JMP</a>)")
-			message_admins("\blue [key_name_admin(M)] has entered a stasis pod.")
+			message_admins("<span class='notice'> [key_name_admin(M)] has entered a stasis pod.</span>")
 
 			//Despawning occurs when process() is called with an occupant without a client.
 			add_fingerprint(M)

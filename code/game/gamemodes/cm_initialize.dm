@@ -119,7 +119,7 @@ datum/game_mode/proc/initialize_special_clamps()
 
 	if(!ticker || !ticker.mode)
 		to_chat(src, "<span class='warning'>The game hasn't started yet!</span?")
-		return
+		return FALSE
 
 	ticker.mode.pred_maximum_num = input(src,"What is the new maximum number of predators?","Input:",4) as num|null
 	ticker.mode.pred_current_num = input(src,"What is the new current number of predators?","Input:",0) as num|null
@@ -178,7 +178,8 @@ datum/game_mode/proc/initialize_special_clamps()
 
 /datum/game_mode/proc/attempt_to_join_as_predator(mob/pred_candidate)
 	var/mob/living/carbon/human/new_predator = transform_predator(pred_candidate) //Initialized and ready.
-	if(!new_predator) return
+	if(!new_predator)
+		return FALSE
 
 	log_admin("[new_predator.key], became a new Yautja, [new_predator.real_name].")
 	message_admins("([new_predator.key]) joined as Yautja, [new_predator.real_name].")
@@ -189,28 +190,28 @@ datum/game_mode/proc/initialize_special_clamps()
 
 	if(!(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_PREDATOR))
 		if(show_warning) to_chat(pred_candidate, "<span class='warning'>You are not whitelisted! You may apply on the forums to be whitelisted as a predator.</span>")
-		return
+		return FALSE
 
 	if(!(flags_round_type & MODE_PREDATOR))
 		if(show_warning) to_chat(pred_candidate, "<span class='warning'>There is no Hunt this round! Maybe the next one.</span>")
-		return
+		return FALSE
 
 	if(pred_candidate.ckey in pred_keys)
 		if(show_warning) to_chat(pred_candidate, "<span class='warning'>You already were a Yautja! Give someone else a chance.</span>")
-		return
+		return FALSE
 
 	if(!(RoleAuthority.roles_whitelist[pred_candidate.ckey] & WHITELIST_YAUTJA_ELDER))
 		if(pred_current_num >= pred_maximum_num)
 			if(show_warning) to_chat(pred_candidate, "<span class='warning'>Only [pred_maximum_num] predators may spawn per round, but Elders are excluded.</span>")
-			return
+			return FALSE
 
-	return 1
+	return TRUE
 
 /datum/game_mode/proc/transform_predator(mob/pred_candidate)
 	if(!pred_candidate.client) //Something went wrong.
 		message_admins("<span class='warning'><b>Warning</b>: null client in transform_predator.</span>")
-		log_debug("Null client in transform_predator.")
-		return
+		log_runtime("Null client in transform_predator.")
+		return FALSE
 
 	var/mob/living/carbon/human/new_predator
 
@@ -239,12 +240,12 @@ datum/game_mode/proc/initialize_special_clamps()
 	var/boot_number = new_predator.client.prefs.predator_boot_type
 	var/mask_number = new_predator.client.prefs.predator_mask_type
 
-	new_predator.equip_to_slot_or_del(new /obj/item/clothing/shoes/yautja(new_predator, boot_number), WEAR_FEET)
+	new_predator.equip_to_slot_or_del(new /obj/item/clothing/shoes/yautja(new_predator, boot_number), SLOT_SHOES)
 	if(RoleAuthority.roles_whitelist[new_predator.ckey] & WHITELIST_YAUTJA_ELDER)
 		new_predator.real_name = "Elder [new_predator.real_name]"
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(new_predator, armor_number, 1), WEAR_JACKET)
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/yautja(new_predator, mask_number, 1), WEAR_FACE)
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/cape/eldercape(new_predator, armor_number), WEAR_BACK)
+		new_predator.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(new_predator, armor_number, 1), SLOT_WEAR_SUIT)
+		new_predator.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/yautja(new_predator, mask_number, 1), SLOT_WEAR_MASK)
+		new_predator.equip_to_slot_or_del(new /obj/item/clothing/cape/eldercape(new_predator, armor_number), SLOT_BACK)
 
 		spawn(10)
 			to_chat(new_predator, "<span class='notice'><B> Welcome Elder!</B></span>")
@@ -252,8 +253,8 @@ datum/game_mode/proc/initialize_special_clamps()
 			to_chat(new_predator, "<span class='notice'>That does not mean you can't go out and show the youngsters how it's done.</span>")
 			to_chat(new_predator, "<span class='notice'>You come equipped as an Elder should, with a bonus glaive and heavy armor.</span>")
 	else
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(new_predator, armor_number), WEAR_JACKET)
-		new_predator.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/yautja(new_predator, mask_number), WEAR_FACE)
+		new_predator.equip_to_slot_or_del(new /obj/item/clothing/suit/armor/yautja(new_predator, armor_number), SLOT_WEAR_SUIT)
+		new_predator.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/yautja(new_predator, mask_number), SLOT_WEAR_MASK)
 
 		spawn(12)
 			to_chat(new_predator, "<span class='notice'>You are <B>Yautja</b>, a great and noble predator!</span>")
@@ -279,7 +280,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	var/list/datum/mind/possible_xenomorphs = get_players_for_role(BE_ALIEN)
 	if(possible_xenomorphs.len < xeno_required_num) //We don't have enough aliens.
 		to_chat(world, "<h2 style=\"color:red\">Not enough players have chosen to be a xenomorph in their character setup. <b>Aborting</b>.</h2>")
-		return
+		return FALSE
 
 	//Minds are not transferred at this point, so we have to clean out those who may be already picked to play.
 	for(var/datum/mind/A in possible_xenomorphs)
@@ -309,7 +310,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	*/
 	if(xenomorphs.len < xeno_required_num)
 		to_chat(world, "<h2 style=\"color:red\">Could not find any candidates after initial alien list pass. <b>Aborting</b>.</h2>")
-		return
+		return FALSE
 
 	return TRUE
 
@@ -346,13 +347,13 @@ datum/game_mode/proc/initialize_special_clamps()
 
 datum/game_mode/proc/initialize_post_queen_list()
 	if(!queen)
-		return
+		return FALSE
 	transform_queen(queen)
 
 /datum/game_mode/proc/check_xeno_late_join(mob/xeno_candidate)
 	if(jobban_isbanned(xeno_candidate, "Alien")) // User is jobbanned
 		to_chat(xeno_candidate, "<span class='warning'>You are banned from playing aliens and cannot spawn as a xenomorph.</span>")
-		return
+		return FALSE
 	return TRUE
 
 /datum/game_mode/proc/attempt_to_join_as_larva(mob/xeno_candidate)
@@ -496,7 +497,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	if(!hive.living_xeno_queen && original?.client?.prefs && (original.client.prefs.be_special & BE_QUEEN) && !jobban_isbanned(original, "Queen"))
 		new_queen = new /mob/living/carbon/Xenomorph/Queen (pick(xeno_spawn))
 	else
-		return
+		return FALSE
 	ghost_mind.transfer_to(new_queen)
 	ghost_mind.name = ghost_mind.current.name
 
@@ -572,126 +573,126 @@ datum/game_mode/proc/initialize_post_queen_list()
 	switch(randjob)
 		if("Scientist") //Scientist
 			id_assignment = "Scientist"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), SLOT_W_UNIFORM)
 			if(map_tag != MAP_ICE_COLONY)
-				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), WEAR_JACKET)
-				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/tox(H), WEAR_BACK)
+				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), SLOT_WEAR_SUIT)
+				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/tox(H), SLOT_BACK)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor/scientist)
 		if("Doctor") //Doctor
 			id_assignment = "Doctor"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/medical(H), SLOT_W_UNIFORM)
 			if(map_tag != MAP_ICE_COLONY)
-				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), WEAR_JACKET)
-				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
-			H.equip_to_slot_or_del(new /obj/item/storage/belt/medical(H), WEAR_L_HAND)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/med(H), WEAR_BACK)
-			H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(H.back), WEAR_IN_BACK)
+				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/labcoat(H), SLOT_WEAR_SUIT)
+				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
+			H.equip_to_slot_or_del(new /obj/item/storage/belt/medical(H), SLOT_L_HAND)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/med(H), SLOT_BACK)
+			H.equip_to_slot_or_del(new /obj/item/storage/firstaid/adv(H.back), SLOT_IN_BACKPACK)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor/doctor)
 		if("Corporate") //Corporate guy
 			id_assignment = "Corporate Liaison"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), WEAR_BACK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor)
 		if("Security") //Security
 			id_assignment = "Security"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/corp(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/security/corp(H), SLOT_W_UNIFORM)
 			if(map_tag != MAP_ICE_COLONY)
-				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), WEAR_FEET)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/sec(H), WEAR_BACK)
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(H), WEAR_L_HAND)
+				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine(H), SLOT_SHOES)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/sec(H), SLOT_BACK)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(H), SLOT_L_HAND)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor/marshall)
 		if("Prisoner") //Prisoner
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(H), WEAR_FEET)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/color/orange(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/orange(H), SLOT_SHOES)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor/prisoner)
 		if("Assistant")
 			id_assignment = "Assistant"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), WEAR_BACK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor)
 		if("Civilian")
 			id_assignment = "Civilian"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), WEAR_BACK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/pj/red(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor)
 		if("Chef")
 			id_assignment = "Chef"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(H), WEAR_JACKET)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), WEAR_BACK)
-			H.equip_to_slot_or_del(new /obj/item/tool/kitchen/rollingpin(H), WEAR_L_HAND)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/chef(H), SLOT_WEAR_SUIT)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
+			H.equip_to_slot_or_del(new /obj/item/tool/kitchen/rollingpin(H), SLOT_L_HAND)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor/chef)
 		if("Botanist")
 			id_assignment = "Botanist"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), WEAR_JACKET)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
-			H.equip_to_slot_or_del(new /obj/item/tool/hatchet(H), WEAR_L_HAND)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/apron(H), SLOT_WEAR_SUIT)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
+			H.equip_to_slot_or_del(new /obj/item/tool/hatchet(H), SLOT_L_HAND)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor)
 		if("Atmos Tech")
 			id_assignment = "Atmos Tech"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
-			H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/atmostech(H), WEAR_L_HAND)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/eng(H), WEAR_BACK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/colonist(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
+			H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/atmostech(H), SLOT_L_HAND)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/eng(H), SLOT_BACK)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor/atmos)
 
 		if("Chaplain") //Chaplain
 			id_assignment = "Chaplain"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), WEAR_BACK)
-			H.equip_to_slot_or_del(new /obj/item/storage/bible/booze(H.back), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/double/sawn(H), WEAR_WAIST)
-			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), WEAR_L_HAND)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/chaplain(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
+			H.equip_to_slot_or_del(new /obj/item/storage/bible/booze(H.back), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/shotgun/double/sawn(H), SLOT_BELT)
+			H.equip_to_slot_or_del(new /obj/item/ammo_magazine/shotgun/buckshot(H), SLOT_L_HAND)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor)
 
 		if("Miner") //Miner
 			id_assignment = "Miner"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/tool/pickaxe(H), WEAR_L_HAND)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), WEAR_BACK)
-			H.equip_to_slot_or_del(new /obj/item/device/flashlight/lantern(H.back), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/miner(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/tool/pickaxe(H), SLOT_L_HAND)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/norm(H), SLOT_BACK)
+			H.equip_to_slot_or_del(new /obj/item/device/flashlight/lantern(H.back), SLOT_IN_BACKPACK)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor/miner)
 		if("Salesman") //Corporate guy
 			id_assignment = "Salesman"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), WEAR_BODY)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/liaison_suit(H), SLOT_W_UNIFORM)
 			if(map_tag != MAP_ICE_COLONY)
-				H.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(H), WEAR_JACKET)
-				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), WEAR_FEET)
-			H.equip_to_slot_or_del(new /obj/item/storage/briefcase(H), WEAR_L_HAND)
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(H), WEAR_WAIST)
+				H.equip_to_slot_or_del(new /obj/item/clothing/suit/wcoat(H), SLOT_WEAR_SUIT)
+				H.equip_to_slot_or_del(new /obj/item/clothing/shoes/black(H), SLOT_SHOES)
+			H.equip_to_slot_or_del(new /obj/item/storage/briefcase(H), SLOT_L_HAND)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/vp70(H), SLOT_BELT)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor)
 		if("Colonial Marshall") //Colonial Marshal
 			id_assignment = "Colonial Marshall"
-			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/CMB(H), WEAR_JACKET)
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/CM_uniform(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), WEAR_FEET)
-			H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(H), WEAR_L_HAND)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/sec(H), WEAR_BACK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/CMB(H), SLOT_WEAR_SUIT)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/CM_uniform(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/jackboots(H), SLOT_SHOES)
+			H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/cmb(H), SLOT_L_HAND)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/satchel/sec(H), SLOT_BACK)
 			ghost.set_cm_skills(/datum/skills/civilian/survivor/marshall)
 		if("Clown")//HONK
 			id_assignment = "Clown"
-			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/clown(H), WEAR_BODY)
-			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/clown_shoes(H), WEAR_FEET)
-			H.equip_to_slot_or_del(new /obj/item/storage/backpack/clown(H), WEAR_BACK)
-			H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/clown_hat(H), WEAR_FACE)
-			H.equip_to_slot_or_del(new /obj/item/tool/stamp/clown(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/spray/waterflower(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), WEAR_IN_BACK) //The clown needs a number of bananas to be prepared for the xenomorphs
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), WEAR_IN_BACK)
-			H.equip_to_slot_or_del(new /obj/item/toy/bikehorn(H), WEAR_IN_BACK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/under/rank/clown(H), SLOT_W_UNIFORM)
+			H.equip_to_slot_or_del(new /obj/item/clothing/shoes/clown_shoes(H), SLOT_SHOES)
+			H.equip_to_slot_or_del(new /obj/item/storage/backpack/clown(H), SLOT_BACK)
+			H.equip_to_slot_or_del(new /obj/item/clothing/mask/gas/clown_hat(H), SLOT_WEAR_MASK)
+			H.equip_to_slot_or_del(new /obj/item/tool/stamp/clown(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/reagent_container/spray/waterflower(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK) //The clown needs a number of bananas to be prepared for the xenomorphs
+			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/grown/banana(H), SLOT_IN_BACKPACK)
+			H.equip_to_slot_or_del(new /obj/item/toy/bikehorn(H), SLOT_IN_BACKPACK)
 			H.fully_replace_character_name(H.real_name, pick(clown_names))
 			var/datum/dna/gene/disability/clumsy/G = new /datum/dna/gene/disability/clumsy
 			G.activate(H)
@@ -699,11 +700,11 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 
 	if(map_tag == MAP_ICE_COLONY)
-		H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), WEAR_HEAD)
-		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), WEAR_JACKET)
-		H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), WEAR_FACE)
-		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(H), WEAR_FEET)
-		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), WEAR_HANDS)
+		H.equip_to_slot_or_del(new /obj/item/clothing/head/ushanka(H), SLOT_HEAD)
+		H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/snow_suit(H), SLOT_WEAR_SUIT)
+		H.equip_to_slot_or_del(new /obj/item/clothing/mask/rebreather(H), SLOT_WEAR_MASK)
+		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/snow(H), SLOT_SHOES)
+		H.equip_to_slot_or_del(new /obj/item/clothing/gloves/black(H), SLOT_GLOVES)
 
 	if(id_assignment)
 		var/obj/item/card/id/W = new(H)
@@ -711,7 +712,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		W.assignment = id_assignment
 		W.paygrade = "C"
 		W.registered_name = H.real_name
-		H.equip_to_slot_or_del(W, WEAR_ID)
+		H.equip_to_slot_or_del(W, SLOT_WEAR_ID)
 
 	H.name = H.get_visible_name()
 
@@ -719,43 +720,43 @@ datum/game_mode/proc/initialize_post_queen_list()
 		var/random_weap = rand(0,4)
 		switch(random_weap)
 			if(0)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/holdout(H), WEAR_WAIST)
+				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/holdout(H), SLOT_BELT)
 			if(1)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/b92fs(H), WEAR_WAIST)
+				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/b92fs(H), SLOT_BELT)
 			if(2)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/kt42(H), WEAR_WAIST)
+				H.equip_to_slot_or_del(new /obj/item/weapon/gun/pistol/kt42(H), SLOT_BELT)
 			if(3)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/uzi(H), WEAR_WAIST)
+				H.equip_to_slot_or_del(new /obj/item/weapon/gun/smg/uzi(H), SLOT_BELT)
 			if(4)
-				H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/small(H), WEAR_WAIST)
+				H.equip_to_slot_or_del(new /obj/item/weapon/gun/revolver/small(H), SLOT_BELT)
 
 	var/random_gear = rand(0,20)
 	switch(random_gear)
 		if(0)
-			H.equip_to_slot_or_del(new /obj/item/device/camera/oldcamera(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/device/camera/oldcamera(H), SLOT_R_HAND)
 		if(1)
-			H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), SLOT_R_HAND)
 		if(2)
-			H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), SLOT_R_HAND)
 		if(3)
-			H.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/storage/firstaid/regular(H), SLOT_R_HAND)
 		if(4)
-			H.equip_to_slot_or_del(new /obj/item/tool/surgery/surgicaldrill(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/tool/surgery/surgicaldrill(H), SLOT_R_HAND)
 		if(5)
-			H.equip_to_slot_or_del(new /obj/item/stack/medical/bruise_pack(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/stack/medical/bruise_pack(H), SLOT_R_HAND)
 		if(6)
-			H.equip_to_slot_or_del(new /obj/item/weapon/butterfly/switchblade(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/weapon/butterfly/switchblade(H), SLOT_R_HAND)
 		if(7)
-			H.equip_to_slot_or_del(new /obj/item/tool/kitchen/knife(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/tool/kitchen/knife(H), SLOT_R_HAND)
 		if(8)
-			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/lemoncakeslice(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/reagent_container/food/snacks/lemoncakeslice(H), SLOT_R_HAND)
 		if(9)
-			H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/dblue(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/clothing/head/hardhat/dblue(H), SLOT_R_HAND)
 		if(10)
-			H.equip_to_slot_or_del(new /obj/item/tool/weldingtool/largetank(H), WEAR_R_HAND)
+			H.equip_to_slot_or_del(new /obj/item/tool/weldingtool/largetank(H), SLOT_R_HAND)
 
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), WEAR_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/tools/full(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/survival/full(H), SLOT_L_STORE)
 
 
 	//Give them some information
@@ -763,13 +764,14 @@ datum/game_mode/proc/initialize_post_queen_list()
 		to_chat(H, "<h2>You are a survivor!</h2>")
 		switch(map_tag)
 			if(MAP_PRISON_STATION)
-				to_chat(H, "\blue You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now.")
+				to_chat(H, "<span class='notice'>You are a survivor of the attack on Fiorina Orbital Penitentiary. You worked or lived on the prison station, and managed to avoid the alien attacks.. until now.</span>")
 			if(MAP_ICE_COLONY)
-				to_chat(H, "\blue You are a survivor of the attack on the ice habitat. You worked or lived on the colony, and managed to avoid the alien attacks.. until now.")
+				to_chat(H, "<span class='notice'>You are a survivor of the attack on the ice habitat. You worked or lived on the colony, and managed to avoid the alien attacks.. until now.</span>")
 			else
-				to_chat(H, "\blue You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now.")
-		to_chat(H, "\blue You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit.")
-	return 1
+
+				to_chat(H, "<span class='notice'> You are a survivor of the attack on the colony. You worked or lived in the archaeology colony, and managed to avoid the alien attacks...until now.</span>")
+		to_chat(H, "<span class='notice'> You are fully aware of the xenomorph threat and are able to use this knowledge as you see fit.</span>")
+	return TRUE
 
 /datum/game_mode/proc/tell_survivor_story()
 	var/list/survivor_story = list(
@@ -837,7 +839,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 					to_chat(survivor.current, temp_story)
 					survivor.memory += temp_story
 		current_survivors -= survivor
-	return 1
+	return TRUE
 
 //===================================================\\
 
@@ -936,6 +938,8 @@ datum/game_mode/proc/initialize_post_queen_list()
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
 						/obj/item/ammo_magazine/shotgunbox/flechette = round(scale * 3),
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 15),
+						/obj/item/cell/lasgun/M43 = round(scale * 30),
+						/obj/item/cell/lasgun/M43/highcap = round(scale * 5),
 						/obj/item/smartgun_powerpack = round(scale * 2)
 						)
 
@@ -1001,6 +1005,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 						/obj/item/weapon/gun/rifle/m41a = round(scale * 20),
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 10),
 						// /obj/item/weapon/gun/shotgun/combat = round(scale * 1),
+						/obj/item/weapon/gun/energy/lasgun/M43 = round(scale * 10),
 						/obj/item/explosive/mine = round(scale * 2),
 						/obj/item/storage/box/nade_box = round(scale * 2),
 						/obj/item/explosive/grenade/frag/m15 = round(scale * 2),
@@ -1050,6 +1055,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 						/obj/item/weapon/gun/smg/m39 = round(scale * 30),
 						/obj/item/weapon/gun/rifle/m41a = round(scale * 30),
 						/obj/item/weapon/gun/shotgun/pump = round(scale * 15),
+						/obj/item/weapon/gun/energy/lasgun/M43 = round(scale * 15),
 
 						/obj/item/ammo_magazine/pistol = round(scale * 30),
 						/obj/item/ammo_magazine/revolver = round(scale * 20),
@@ -1059,6 +1065,8 @@ datum/game_mode/proc/initialize_post_queen_list()
 						/obj/item/ammo_magazine/shotgun = round(scale * 10),
 						/obj/item/ammo_magazine/shotgun/buckshot = round(scale * 10),
 						/obj/item/ammo_magazine/shotgun/flechette = round(scale * 10),
+						/obj/item/cell/lasgun/M43 = round(scale * 25),
+						/obj/item/cell/lasgun/M43/highcap = 0,
 
 						/obj/item/weapon/combat_knife = round(scale * 30),
 						/obj/item/weapon/throwing_knife = round(scale * 10),

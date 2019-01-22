@@ -24,10 +24,10 @@
 		return
 	var/T = user.loc
 	if (!( istype(T, /turf) ))
-		to_chat(user, "\red You must be on the ground!")
+		to_chat(user, "<span class='warning'>You must be on the ground!</span>")
 		return
 	if (!( istype(T, /turf/open/space) ))
-		to_chat(user, "\red You cannot build on or repair this turf!")
+		to_chat(user, "<span class='warning'>You cannot build on or repair this turf!</span>")
 		return
 	src.build(T)
 	src.add_fingerprint(user)

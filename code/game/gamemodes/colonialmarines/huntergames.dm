@@ -59,7 +59,7 @@
 								50; /obj/item/storage/firstaid/fire, \
 								25; /obj/item/explosive/grenade/flashbang, \
 								25; /obj/item/legcuffs/yautja)
-								
+
 #define HUNTER_OKAY_ITEM  pick(\
 								400; /obj/item/weapon/twohanded/spear, \
 								300; /obj/item/tool/crowbar, \
@@ -130,7 +130,7 @@ var/waiting_for_drop_votes = 0
 	var/supply_votes[]
 
 /obj/effect/step_trigger/hell_hound_blocker/Trigger(mob/living/carbon/hellhound/H)
-	if(istype(H)) 
+	if(istype(H))
 		H.gib() //No mercy.
 
 /datum/game_mode/huntergames/announce()
@@ -161,9 +161,9 @@ var/waiting_for_drop_votes = 0
 			if("xeno tunnel")
 				qdel(L)
 
-	for(var/obj/item/weapon/gun/G in item_list) 
+	for(var/obj/item/weapon/gun/G in item_list)
 		qdel(G) //No guns or ammo allowed.
-	for(var/obj/item/ammo_magazine/M in item_list) 
+	for(var/obj/item/ammo_magazine/M in item_list)
 		qdel(M)
 
 	for(var/mob/new_player/player in player_list)
@@ -171,7 +171,7 @@ var/waiting_for_drop_votes = 0
 			if(!player.mind && player.client)
 				player.mind = new /datum/mind(player.key)
 			player.mind.assigned_role = "ROLE"
-				
+
 	return TRUE
 
 /datum/game_mode/huntergames/post_setup()
@@ -181,8 +181,7 @@ var/waiting_for_drop_votes = 0
 			var/mob/living/carbon/human/H = M
 			spawn_contestant(H)
 
-	if(config) 
-		config.remove_gun_restrictions = 1 //This will allow anyone to use cool guns.
+	CONFIG_SET(flag/remove_gun_restrictions, TRUE) //This will allow anyone to use cool guns.
 
 	world << sound('sound/effects/siren.ogg')
 
@@ -210,7 +209,7 @@ var/waiting_for_drop_votes = 0
 	H.loc = picked
 
 	if(H.client)
-		H.name = H.client.prefs.real_name 
+		H.name = H.client.prefs.real_name
 		H.client.change_view(world.view)
 
 	if(!H.mind)
@@ -223,11 +222,11 @@ var/waiting_for_drop_votes = 0
 	var/hunter_body = pick(HUNTER_BODY)
 	var/hunter_feet = pick(HUNTER_FEET)
 
-	H.equip_to_slot_or_del(new hunter_body(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new hunter_feet(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar(H), EQUIP_IN_R_POUCH)
+	H.equip_to_slot_or_del(new hunter_body(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new hunter_feet(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), SLOT_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar(H), SLOT_IN_R_POUCH)
 
 	to_chat(H, "<h2>Kill everyone. Become the last man standing.</h2>")
 	to_chat(H, "<h4>Use the flare in your pocket to light the way!</h4>")
@@ -324,18 +323,18 @@ var/waiting_for_drop_votes = 0
 
 	if(round_finished == 1 && !isnull(winner) && istype(winner))
 		feedback_set_details("round_end_result","single winner")
-		to_chat(world, "\red <FONT size = 4><B>We have a winner! >> [winner.real_name] << defeated all enemies!</B></FONT>")
+		to_chat(world, "<span class='round_header'>We have a winner! >> [winner.real_name] << defeated all enemies!</span>")
 		to_chat(world, "<FONT size = 3><B>Well done, your tale of survival will live on in legend!</B></FONT>")
 		log_game("Humans remaining: [count_humans()]\nRound time: [duration2text()]\nBig Winner: [winner.real_name]")
 	else if(round_finished == 2)
 		feedback_set_details("round_end_result","no winners")
-		to_chat(world, "\red <FONT size = 4><B>NOBODY WON!?</B></FONT>")
+		to_chat(world, "<span class='round_header'>NOBODY WON!?</span>")
 		to_chat(world, "<FONT size = 3><B>'Somehow you stupid humans managed to even fuck up killing yourselves. Well done.'</B></FONT>")
 		world << 'sound/misc/sadtrombone.ogg'
 		log_game("Humans remaining: [count_humans()]\nRound time: [duration2text()]")
 	else
 		feedback_set_details("round_end_result","no winners")
-		to_chat(world, "\red <FONT size = 4><B>NOBODY WON!</B></FONT>")
+		to_chat(world, "<span class='round_header'>NOBODY WON!</span>")
 		to_chat(world, "<FONT size = 3><B>There was a winner, but they died before they could receive the prize!! Bummer.</B></FONT>")
 		world << 'sound/misc/sadtrombone.ogg'
 		log_game("Humans remaining: [count_humans()]\nRound time: [duration2text()]")
@@ -346,7 +345,7 @@ var/waiting_for_drop_votes = 0
 	return FALSE
 
 /datum/game_mode/huntergames/proc/place_lootbox(turf/T)
-	if(!istype(T)) 
+	if(!istype(T))
 		return FALSE
 
 	var/atom/location = new /obj/structure/closet/crate(T)
@@ -356,7 +355,7 @@ var/waiting_for_drop_votes = 0
 		new item(location)
 
 /datum/game_mode/huntergames/proc/place_initial_item(turf/T, item)
-	if(!istype(T)) 
+	if(!istype(T))
 		return FALSE
 
 	new item(T)

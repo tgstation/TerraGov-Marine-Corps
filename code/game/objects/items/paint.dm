@@ -19,8 +19,7 @@ var/global/list/cached_icons = list()
 	afterattack(turf/target, mob/user, proximity)
 		if(!proximity) return
 		if(istype(target) && reagents.total_volume > 5)
-			for(var/mob/O in viewers(user))
-				O.show_message("\red \The [target] has been splashed with something by [user]!", 1)
+			user.visible_message("<span class='warning'> \The [target] has been splashed with something by [user]!</span>")
 			spawn(5)
 				reagents.reaction(target, TOUCH)
 				reagents.remove_any(5)
@@ -124,7 +123,7 @@ var/global/list/cached_icons = list()
 
 	attack_self(mob/user as mob)
 		var/t1 = input(user, "Please select a color:", "Locking Computer", null) in list( "red", "blue", "green", "yellow", "black", "white")
-		if ((user.get_active_hand() != src || user.stat || user.is_mob_restrained()))
+		if ((user.get_active_held_item() != src || user.stat || user.is_mob_restrained()))
 			return
 		switch(t1)
 			if("red")

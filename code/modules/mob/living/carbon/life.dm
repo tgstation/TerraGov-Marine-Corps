@@ -10,8 +10,6 @@
 
 	handle_fire() //Check if we're on fire
 
-	handle_special() //Handle special stuff like the acid_process_cooldown
-
 /mob/living/carbon/handle_regular_hud_updates()
 	. = ..()
 	if(.)
@@ -47,11 +45,11 @@
 	if(stat == DEAD)
 		return
 
-	if(health <= config.health_threshold_dead)
+	if(health <= CONFIG_GET(number/health_threshold_dead))
 		death()
 		return
 
-	var/crit_threshold = ishuman(src) ? config.health_threshold_crit : 0
+	var/crit_threshold = ishuman(src) ? CONFIG_GET(number/health_threshold_crit) : 0
 	if(knocked_out || sleeping || getOxyLoss() > 50 || health < crit_threshold)
 		if(stat != UNCONSCIOUS)
 			blind_eyes(1)
@@ -162,7 +160,7 @@
 				drowsyness += 5
 
 		if(drunkenness >= 91)
-			adjustBrainLoss(0.2)
+			adjustBrainLoss(0.2, TRUE)
 			if(prob(15 && !stat))
 				to_chat(src, "<span class='warning'>Just a quick nap...</span>")
 				Sleeping(40)

@@ -60,7 +60,13 @@
 	//Burst fire.
 	var/burst_amount 	= 1						//How many shots can the weapon shoot in burst? Anything less than 2 and you cannot toggle burst.
 	var/burst_delay 	= 1						//The delay in between shots. Lower = less delay = faster.
-	var/extra_delay 	= 0						//When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
+	var/extra_delay		= 0						//When burst-firing, this number is extra time before the weapon can fire again. Depends on number of rounds fired.
+
+	//Energy Weapons
+	var/ammo_per_shot	= 1						//How much ammo consumed per shot; normally 1.
+	var/overcharge		= 0						//In overcharge mode?
+
+	var/shell_speed_mod	= 0						//Modifies the speed of projectiles fired.
 
 	//Targeting.
 	var/tmp/list/mob/living/target				//List of who yer targeting.
@@ -70,6 +76,7 @@
 	var/tmp/told_cant_shoot = 0					//So that it doesn't spam them with the fact they cannot hit them.
 	var/firerate 			= 0					//0 for keep shooting until aim is lowered
 												//1 for one bullet after target moves and aim is lowered
+
 	//Attachments.
 	var/attachable_overlays[] 		= null		//List of overlays so we can switch them in an out, instead of using Cut() on overlays.
 	var/attachable_offset[] 		= null		//Is a list, see examples of from the other files. Initiated on New() because lists don't initial() properly.
@@ -97,7 +104,7 @@
 				//					\\
 //----------------------------------------------------------
 
-/obj/item/weapon/gun/New(loc, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
+/obj/item/weapon/gun/Initialize(loc, spawn_empty) //You can pass on spawn_empty to make the sure the gun has no bullets or mag or anything when created.
 	. = ..()					//This only affects guns you can get from vendors for now. Special guns spawn with their own things regardless.
 	base_gun_icon = icon_state
 	attachable_overlays = list("muzzle", "rail", "under", "stock", "mag", "special")
@@ -121,12 +128,12 @@
 //amounts to get specific values in each gun subtype's New().
 //This makes reading each gun's values MUCH easier.
 /obj/item/weapon/gun/proc/set_gun_config_values()
-	fire_delay = config.mhigh_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
+	fire_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 
 
@@ -169,7 +176,7 @@
 		O.emp_act(severity)
 
 /obj/item/weapon/gun/equipped(mob/user, slot)
-	if(slot != WEAR_L_HAND && slot != WEAR_R_HAND)
+	if(slot != SLOT_L_HAND && slot != SLOT_R_HAND)
 		stop_aim()
 		if (user.client)
 			user.update_gun_icons()
@@ -186,8 +193,8 @@
 	update_mag_overlay()
 
 /obj/item/weapon/gun/examine(mob/user)
-	..()
-	var/dat = ""
+	. = ..()
+	var/list/dat = list()
 	if(flags_gun_features & GUN_TRIGGER_SAFETY)
 		dat += "The safety's on!<br>"
 	else
@@ -212,19 +219,19 @@
 		else
 			dat += "It's unloaded[in_chamber?" but has a round chambered":""].<br>"
 	if(dat)
-		to_chat(user, dat)
+		to_chat(user, "[dat.Join(" ")]")
 
 /obj/item/weapon/gun/wield(var/mob/user)
 	if(!(flags_item & TWOHANDED) || flags_item & WIELDED)
 		return
 
-	var/obj/item/offhand = user.get_inactive_hand()
+	var/obj/item/offhand = user.get_inactive_held_item()
 	if(offhand)
 		if(offhand == user.r_hand)
 			user.drop_r_hand()
 		else if(offhand == user.l_hand)
 			user.drop_l_hand()
-		if(user.get_inactive_hand()) //Failsafe; if there's somehow still something in the off-hand (undroppable), bail.
+		if(user.get_inactive_held_item()) //Failsafe; if there's somehow still something in the off-hand (undroppable), bail.
 			to_chat(user, "<span class='warning'>You need your other hand to be empty!</span>")
 			return
 
@@ -287,13 +294,13 @@
 	A.remove_hud(user)
 
 	return TRUE
-	
+
 /obj/item/weapon/gun/proc/update_slowdown()
 	if(flags_item & WIELDED)
 		slowdown = initial(slowdown) + aim_slowdown
 	else
 		slowdown = initial(slowdown)
-	
+
 
 //----------------------------------------------------------
 			//							        \\
@@ -305,10 +312,11 @@
 /obj/item/weapon/gun/proc/replace_ammo(mob/user = null, var/obj/item/ammo_magazine/magazine)
 	if(!magazine.default_ammo)
 		to_chat(user, "Something went horribly wrong. Ahelp the following: ERROR CODE A1: null ammo while reloading.")
-		log_debug("ERROR CODE A1: null ammo while reloading. User: <b>[user]</b>")
+		log_runtime("ERROR CODE A1: null ammo while reloading. User: <b>[user]</b>")
 		ammo = ammo_list[/datum/ammo/bullet] //Looks like we're defaulting it.
 	else
-		ammo = ammo_list[magazine.default_ammo]
+		ammo = ammo_list[overcharge? magazine.overcharge_ammo : magazine.default_ammo]
+		//to_chat(user, "DEBUG: REPLACE AMMO. Ammo: [ammo]")
 
 //Hardcoded and horrible
 /obj/item/weapon/gun/proc/cock_gun(mob/user)
@@ -366,20 +374,22 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 		if(!in_chamber)
 			load_into_chamber()
 
-	update_icon()
+	update_icon(user)
 	return TRUE
 
 /obj/item/weapon/gun/proc/replace_magazine(mob/user, obj/item/ammo_magazine/magazine)
-	user.drop_inv_item_to_loc(magazine, src) //Click!
+	user.transferItemToLoc(magazine, src) //Click!
 	current_mag = magazine
 	replace_ammo(user,magazine)
 	if(!in_chamber)
-		ready_in_chamber()
-		cock_gun(user)
+		ready_in_chamber(user)
+		if(!flags_gun_features & GUN_ENERGY)
+			cock_gun(user)
 	user.visible_message("<span class='notice'>[user] loads [magazine] into [src]!</span>",
 	"<span class='notice'>You load [magazine] into [src]!</span>", null, 3)
 	if(reload_sound)
 		playsound(user, reload_sound, 25, 1, 5)
+	update_icon()
 
 
 //Drop out the magazine. Keep the ammo type for next time so we don't need to replace it every time.
@@ -388,7 +398,7 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	if(!reload_override && (flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG)))
 		return
 
-	if(!current_mag || isnull(current_mag) || current_mag.loc != src)
+	if(!current_mag || isnull(current_mag) || current_mag.loc != src || !flags_gun_features & GUN_ENERGY)
 		cock(user)
 		return
 
@@ -403,13 +413,13 @@ User can be passed as null, (a gun reloading itself for instance), so we need to
 	current_mag.update_icon()
 	current_mag = null
 
-	update_icon()
+	update_icon(user)
 
 //Manually cock the gun
-//This only works on weapons NOT marked with UNUSUAL_DESIGN or INTERNAL_MAG
+//This only works on weapons NOT marked with UNUSUAL_DESIGN or INTERNAL_MAG or ENERGY
 /obj/item/weapon/gun/proc/cock(mob/user)
 
-	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG))
+	if(flags_gun_features & (GUN_BURST_FIRING|GUN_UNUSUAL_DESIGN|GUN_INTERNAL_MAG|GUN_ENERGY))
 		return
 	if(cock_cooldown > world.time)
 		return
@@ -512,7 +522,7 @@ and you're good to go.
 /obj/item/weapon/gun/proc/create_bullet(datum/ammo/chambered)
 	if(!chambered)
 		to_chat(usr, "Something has gone horribly wrong. Ahelp the following: ERROR CODE I2: null ammo while create_bullet()")
-		log_debug("ERROR CODE I2: null ammo while create_bullet(). User: <b>[usr]</b>")
+		log_runtime("ERROR CODE I2: null ammo while create_bullet(). User: <b>[usr]</b>")
 		chambered = ammo_list[/datum/ammo/bullet] //Slap on a default bullet if somehow ammo wasn't passed.
 
 	var/obj/item/projectile/P = new /obj/item/projectile(src)
@@ -534,7 +544,7 @@ and you're good to go.
 
 	if(!active_attachable) //We don't need to check for the mag if an attachment was used to shoot.
 		if(current_mag) //If there is no mag, we can't reload.
-			ready_in_chamber()
+			ready_in_chamber(user)
 			if(current_mag.current_rounds <= 0 && flags_gun_features & GUN_AUTO_EJECTOR) // This is where the magazine is auto-ejected.
 				unload(user,1,1) // We want to quickly autoeject the magazine. This proc does the rest based on magazine type. User can be passed as null.
 				playsound(src, empty_sound, 25, 1)
@@ -545,7 +555,7 @@ and you're good to go.
 	if(active_attachable) //Attachables don't chamber rounds, so we want to delete it right away.
 		qdel(projectile_to_fire) //Getting rid of it. Attachables only use ammo after the cycle is over.
 		if(refund)
-			active_attachable.current_rounds++ //Refund the bullet.
+			active_attachable.current_rounds += ammo_per_shot //Refund the bullet.
 		return TRUE
 
 /obj/item/weapon/gun/proc/clear_jam(var/obj/item/projectile/projectile_to_fire, mob/user as mob) //Guns jamming, great.
@@ -627,7 +637,7 @@ and you're good to go.
 		//checking for a gun in other hand to fire akimbo
 		if(i == 1 && !reflex && !dual_wield)
 			if(user)
-				var/obj/item/IH = user.get_inactive_hand()
+				var/obj/item/IH = user.get_inactive_held_item()
 				if(istype(IH, /obj/item/weapon/gun))
 					var/obj/item/weapon/gun/OG = IH
 					if(!(OG.flags_gun_features & GUN_WIELDED_FIRING_ONLY) && OG.gun_skill_category == gun_skill_category)
@@ -645,12 +655,12 @@ and you're good to go.
 		if(flags_item & WIELDED && user && under?.bipod_deployed) //Let's get to work on the bipod. I'm not really concerned if they are the same person as the previous user. It doesn't matter.
 			if(under.check_bipod_support(src, user))
 				//Passive accuracy and recoil buff, but only when firing in position.
-				projectile_to_fire.accuracy *= config.base_hit_accuracy_mult + config.hmed_hit_accuracy_mult //More accuracy.
+				projectile_to_fire.accuracy *= CONFIG_GET(number/combat_define/base_hit_accuracy_mult) + CONFIG_GET(number/combat_define/hmed_hit_accuracy_mult) //More accuracy.
 				recoil_comp-- //Less recoil.
-				scatter_chance_mod -= config.med_scatter_value
+				scatter_chance_mod -= CONFIG_GET(number/combat_define/med_scatter_value)
 				burst_scatter_chance_mod = -3
 				if(prob(30))
-					projectile_to_fire.damage *= config.base_hit_damage_mult + config.low_hit_damage_mult//Lower chance of a damage buff.
+					projectile_to_fire.damage *= CONFIG_GET(number/combat_define/base_hit_damage_mult) + CONFIG_GET(number/combat_define/low_hit_damage_mult) //Lower chance of a damage buff.
 				if(i == 1)
 					to_chat(user, "<span class='notice'>Your bipod keeps [src] steady!</span>")
 		//End of bipods.
@@ -668,7 +678,7 @@ and you're good to go.
 		//Finally, make with the pew pew!
 		if(!projectile_to_fire || !istype(projectile_to_fire,/obj))
 			to_chat(user, "Your gun is malfunctioning. Ahelp the following: ERROR CODE I1: projectile malfunctioned while firing.")
-			log_debug("ERROR CODE I1: projectile malfunctioned while firing. User: <b>[user]</b>")
+			log_runtime("ERROR CODE I1: projectile malfunctioned while firing. User: <b>[user]</b>")
 			flags_gun_features &= ~GUN_BURST_FIRING
 			return
 
@@ -801,9 +811,11 @@ and you're good to go.
 						if(!delete_bullet(projectile_to_fire))
 							qdel(projectile_to_fire)
 						reload_into_chamber(user) //Reload into the chamber if the gun supports it.
+						if(user) //Update dat HUD
+							var/obj/screen/ammo/A = user.hud_used.ammo //The ammo HUD
+							A.update_hud(user)
 						return TRUE
-					else
-						return FALSE
+
 	return ..() //Pistolwhippin'
 
 //----------------------------------------------------------
@@ -825,7 +837,7 @@ and you're good to go.
 			to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 			return
 
-		if(!config.allow_synthetic_gun_use)
+		if(!CONFIG_GET(flag/allow_synthetic_gun_use))
 			if(isSynth(user))
 				to_chat(user, "<span class='warning'>Your program does not allow you to use firearms.</span>")
 				return
@@ -851,7 +863,7 @@ and you're good to go.
 		else
 			if(user?.mind?.cm_skills)
 				if(user.mind.cm_skills.firearms == 0) //no training in any firearms
-					added_delay += config.low_fire_delay //untrained humans fire more slowly.
+					added_delay += CONFIG_GET(number/combat_define/low_fire_delay) //untrained humans fire more slowly.
 				else
 					switch(gun_skill_category)
 						if(GUN_SKILL_HEAVY_WEAPONS)
@@ -894,8 +906,8 @@ and you're good to go.
 
 	else if(user && world.time - user.l_move_time < 5) //moved during the last half second
 		//accuracy and scatter penalty if the user fires unwielded right after moving
-		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * config.low_hit_accuracy_mult))
-		gun_scatter += max(0, movement_acc_penalty_mult * config.min_scatter_value)
+		gun_accuracy_mult = max(0.1, gun_accuracy_mult - max(0,movement_acc_penalty_mult * CONFIG_GET(number/combat_define/low_hit_accuracy_mult)))
+		gun_scatter += max(0, movement_acc_penalty_mult * CONFIG_GET(number/combat_define/min_scatter_value))
 
 
 	if(dual_wield) //akimbo firing gives terrible accuracy
@@ -928,12 +940,12 @@ and you're good to go.
 				if(GUN_SKILL_SPEC)
 					skill_accuracy = user.mind.cm_skills.spec_weapons
 		if(skill_accuracy)
-			gun_accuracy_mult += skill_accuracy * config.low_hit_accuracy_mult // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
+			gun_accuracy_mult += skill_accuracy * CONFIG_GET(number/combat_define/low_hit_accuracy_mult) // Accuracy mult increase/decrease per level is equal to attaching/removing a red dot sight
 
 	projectile_to_fire.accuracy = round(projectile_to_fire.accuracy * gun_accuracy_mult) // Apply gun accuracy multiplier to projectile accuracy
 	projectile_to_fire.damage = round(projectile_to_fire.damage * damage_mult) 		// Apply gun damage multiplier to projectile damage
 	projectile_to_fire.damage_falloff	= round(projectile_to_fire.damage_falloff * damage_falloff_mult) 	// Apply gun damage bleed multiplier to projectile damage bleed
-
+	projectile_to_fire.projectile_speed += shell_speed_mod
 	projectile_to_fire.shot_from = src
 	projectile_to_fire.scatter += gun_scatter					//Add gun scatter value to projectile's scatter value
 
@@ -958,13 +970,13 @@ and you're good to go.
 				if(bullets_fired == 1)
 					user.visible_message(
 					"<span class='danger'>[user] fires [src][reflex ? " by reflex":""]!</span>", \
-					"<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]" : ""]</span>", \
+					"<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[max(0,current_mag.current_rounds - ammo_per_shot)]</b>/[current_mag.max_rounds]" : ""]</span>", \
 					"<span class='warning'>You hear a [istype(projectile_to_fire.ammo, /datum/ammo/bullet) ? "gunshot" : "blast"]!</span>", 4
 					)
 			else
 				playsound(user, actual_sound, 25)
 				if(bullets_fired == 1)
-					to_chat(user, "<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[current_mag.current_rounds-1]</b>/[current_mag.max_rounds]" : ""]</span>")
+					to_chat(user, "<span class='warning'>You fire [src][reflex ? "by reflex":""]! [flags_gun_features & GUN_AMMO_COUNTER && current_mag ? "<B>[max(0,current_mag.current_rounds - ammo_per_shot)]</b>/[current_mag.max_rounds]" : ""]</span>")
 	return TRUE
 
 /obj/item/weapon/gun/proc/simulate_scatter(obj/item/projectile/projectile_to_fire, atom/target, turf/targloc, total_scatter_chance = 0, mob/user, burst_scatter_bonus = 0)
@@ -987,7 +999,7 @@ and you're good to go.
 		if(user && user.mind && user.mind.cm_skills)
 
 			if(user.mind.cm_skills.firearms == 0) //no training in any firearms
-				total_scatter_chance += config.low_scatter_value
+				total_scatter_chance += CONFIG_GET(number/combat_define/low_scatter_value)
 			else
 				var/scatter_tweak = 0
 				switch(gun_skill_category)
@@ -1006,7 +1018,7 @@ and you're good to go.
 					if(GUN_SKILL_SPEC)
 						scatter_tweak = user.mind.cm_skills.spec_weapons
 				if(scatter_tweak)
-					total_scatter_chance -= scatter_tweak*config.low_scatter_value
+					total_scatter_chance -= scatter_tweak * CONFIG_GET(number/combat_define/low_scatter_value)
 
 		if(prob(total_scatter_chance)) //Scattered!
 			var/scatter_x = rand(-1,1)
@@ -1030,7 +1042,7 @@ and you're good to go.
 	if(user && user.mind && user.mind.cm_skills)
 
 		if(user.mind.cm_skills.firearms == 0) //no training in any firearms
-			total_recoil += config.min_recoil_value
+			total_recoil += CONFIG_GET(number/combat_define/min_recoil_value)
 		else
 			var/recoil_tweak
 			switch(gun_skill_category)
@@ -1049,7 +1061,7 @@ and you're good to go.
 				if(GUN_SKILL_SPEC)
 					recoil_tweak = user.mind.cm_skills.spec_weapons
 			if(recoil_tweak)
-				total_recoil -= recoil_tweak*config.min_recoil_value
+				total_recoil -= recoil_tweak * CONFIG_GET(number/combat_define/min_recoil_value)
 	if(total_recoil > 0 && ishuman(user))
 		shake_camera(user, total_recoil + 1, total_recoil)
 		return TRUE

@@ -88,7 +88,7 @@
 	var/recently_unbuckled = 0
 
 	//Emotes
-	var/recent_audio_emote = 0
+	var/audio_emote_time = 1
 
 	//Life variables
 	var/oxygen_alert = 0
@@ -128,3 +128,4 @@
 	var/sl_headset_active = null
 	var/sl_direction_active = null
 	var/image/SL_directional = null
+	var/cloaking = FALSE

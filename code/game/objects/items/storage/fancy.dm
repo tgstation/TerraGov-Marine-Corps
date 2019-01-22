@@ -70,7 +70,7 @@
 	item_state = "candlebox5"
 	storage_slots = 5
 	throwforce = 2
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 
 
 /obj/item/storage/fancy/candle_box/New()
@@ -133,7 +133,7 @@
 	item_state = "cigpacket"
 	w_class = 1
 	throwforce = 2
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	storage_slots = 6
 	can_hold = list("/obj/item/clothing/mask/cigarette", "/obj/item/tool/lighter")
 	icon_type = "cigarette"
@@ -160,7 +160,7 @@
 		var/obj/item/clothing/mask/cigarette/C = locate() in src
 		if(C)
 			remove_from_storage(C, get_turf(user))
-			user.equip_to_slot_if_possible(C, WEAR_FACE)
+			user.equip_to_slot_if_possible(C, SLOT_WEAR_MASK)
 			to_chat(user, "<span class='notice'>You take a cigarette out of the pack.</span>")
 			update_icon()
 	else
@@ -199,7 +199,7 @@
 	w_class = 1
 	throwforce = 2
 	w_class = 2
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	storage_slots = 7
 	can_hold = list("/obj/item/clothing/mask/cigarette/cigar")
 	icon_type = "cigar"
@@ -221,7 +221,7 @@
 		var/obj/item/clothing/mask/cigarette/cigar/C = locate() in src
 		if(C)
 			remove_from_storage(C, get_turf(user))
-			user.equip_to_slot_if_possible(C, WEAR_FACE)
+			user.equip_to_slot_if_possible(C, SLOT_WEAR_MASK)
 			to_chat(user, "<span class='notice'>You take a cigar out of the case.</span>")
 			update_icon()
 	else

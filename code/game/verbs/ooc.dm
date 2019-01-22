@@ -6,7 +6,7 @@ var/global/normal_ooc_colour = "#002eb8"
 	set category = "OOC"
 
 	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "\red Speech is currently admin-disabled.")
+		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
 		return
 
 	if(!mob)
@@ -20,18 +20,18 @@ var/global/normal_ooc_colour = "#002eb8"
 		return
 
 	if(!(prefs.toggles_chat & CHAT_OOC))
-		to_chat(src, "\red You have OOC muted.")
+		to_chat(src, "<span class='warning'>You have OOC muted.</span>")
 		return
 
 	if(!holder)
 		if(!ooc_allowed)
-			to_chat(src, "\red OOC is globally muted")
+			to_chat(src, "<span class='warning'>OOC is globally muted</span>")
 			return
 		if(!dooc_allowed && (mob.stat == DEAD))
-			to_chat(usr, "\red OOC for dead mobs has been turned off.")
+			to_chat(usr, "<span class='warning'>OOC for dead mobs has been turned off.</span>")
 			return
 		if(prefs.muted & MUTE_OOC)
-			to_chat(src, "\red You cannot use OOC (muted).")
+			to_chat(src, "<span class='warning'>You cannot use OOC (muted).</span>")
 			return
 		if(handle_spam_prevention(msg,MUTE_OOC))
 			return
@@ -74,7 +74,7 @@ var/global/normal_ooc_colour = "#002eb8"
 				display_colour = "#643200"	//brown, mostly /tg/ folks
 
 		if(holder.rights & R_COLOR)
-			if(config.allow_admin_ooccolor)
+			if(CONFIG_GET(flag/allow_admin_ooccolor))
 				display_colour = src.prefs.ooccolor
 
 	for(var/client/C in clients)
@@ -128,7 +128,7 @@ var/global/normal_ooc_colour = "#002eb8"
 	if( join_motd )
 		to_chat(src, "<span class='motd'>[join_motd]</span>")
 	else
-		to_chat(src, "\red The motd is not set in the server configuration.")
+		to_chat(src, "<span class='warning'>The motd is not set in the server configuration.</span>")
 	return
 
 /client/verb/stop_sounds()

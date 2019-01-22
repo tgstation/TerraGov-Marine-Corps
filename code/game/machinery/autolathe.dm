@@ -169,7 +169,7 @@
 		mass_per_sheet += eating.matter[material]
 
 	if(!filltype)
-		to_chat(user, "\red \The [src] is full. Please remove material from the autolathe in order to insert more.")
+		to_chat(user, "<span class='warning'>\The [src] is full. Please remove material from the autolathe in order to insert more.</span>")
 		return
 	else if(filltype == 1)
 		to_chat(user, "You fill \the [src] to capacity with \the [eating].")
@@ -182,7 +182,7 @@
 		var/obj/item/stack/stack = eating
 		stack.use(max(1,round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
 	else
-		if(user.temp_drop_inv_item(O))
+		if(user.temporarilyRemoveItemFromInventory(O))
 			qdel(O)
 
 	updateUsrDialog()
@@ -204,7 +204,7 @@
 	add_fingerprint(usr)
 
 	if(busy)
-		to_chat(usr, "\red The autolathe is busy. Please wait for completion of previous operation.")
+		to_chat(usr, "<span class='warning'>The autolathe is busy. Please wait for completion of previous operation.</span>")
 		return
 
 	if(href_list["change_category"])
@@ -270,7 +270,7 @@
 		var/temp_wire = href_list["wire"]
 		if(href_list["act"] == "pulse")
 
-			if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			if (!istype(usr.get_active_held_item(), /obj/item/device/multitool))
 				to_chat(usr, "You need a multitool!")
 				return
 
@@ -300,7 +300,7 @@
 
 		else if(href_list["act"] == "wire")
 
-			if (!istype(usr.get_active_hand(), /obj/item/tool/wirecutters))
+			if (!istype(usr.get_active_held_item(), /obj/item/tool/wirecutters))
 				to_chat(usr, "You need wirecutters!")
 				return
 

@@ -6,7 +6,7 @@
 	origin_tech = "combat=4;materials=3"
 	icon_state = "m240"
 	item_state = "m240"
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 4
 	force = 15
 	fire_sound = 'sound/weapons/gun_flamethrower2.ogg'
@@ -20,11 +20,10 @@
 						/obj/item/attachable/magnetic_harness)
 	flags_gun_features = GUN_UNUSUAL_DESIGN|GUN_WIELDED_FIRING_ONLY
 	gun_skill_category = GUN_SKILL_HEAVY_WEAPONS
-
-/obj/item/weapon/gun/flamer/New()
-	. = ..()
-	fire_delay = config.max_fire_delay * 5
 	attachable_offset = list("rail_x" = 12, "rail_y" = 23)
+
+/obj/item/weapon/gun/flamer/set_gun_config_values()
+	fire_delay = CONFIG_GET(number/combat_define/max_fire_delay) * 5
 
 /obj/item/weapon/gun/flamer/unique_action(mob/user)
 	toggle_flame(user)
@@ -390,7 +389,7 @@
 	to_chat(user, "<span class='notice'>Its hydro cannon contains [M240T_WATER_AMOUNT]/[max_water] units of water!</span>")
 
 
-/obj/item/weapon/gun/flamer/M240T/New()
+/obj/item/weapon/gun/flamer/M240T/Initialize()
 	. = ..()
 	var/datum/reagents/R = new/datum/reagents(max_water)
 	reagents = R
@@ -419,7 +418,7 @@
 	if(istype(target, /obj/structure/reagent_dispensers/watertank) && get_dist(user,target) <= 1)
 		var/obj/o = target
 		o.reagents.trans_to(src, max_water)
-		to_chat(user, "\blue \The [src]'s hydro cannon is refilled with water.")
+		to_chat(user, "<span class='notice'>\The [src]'s hydro cannon is refilled with water.</span>")
 		playsound(src.loc, 'sound/effects/refill.ogg', 25, 1, 3)
 		return
 
