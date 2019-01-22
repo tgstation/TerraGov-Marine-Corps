@@ -59,7 +59,7 @@ But you can call procs that are of type /mob/living/carbon/human/proc/ for that 
 			class = input("Proc owned by...","Owner",null) as null|anything in list("Obj","Mob","Area or Turf","Client")
 			switch(class)
 				if("Obj")
-					target = input("Enter target:","Target",usr) as obj in object_list
+					target = input("Enter target:","Target",usr) as obj in GLOB.object_list
 				if("Mob")
 					target = input("Enter target:","Target",usr) as mob in GLOB.mob_list
 				if("Area or Turf")

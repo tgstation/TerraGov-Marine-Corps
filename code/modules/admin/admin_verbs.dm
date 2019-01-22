@@ -592,7 +592,7 @@ var/list/admin_verbs_mentor = list(
 	log_admin("[key_name(usr)] gave [key_name(T)] the disease [D].")
 	message_admins("<span class='notice'> [key_name_admin(usr)] gave [key_name(T)] the disease [D].</span>", 1)
 
-/client/proc/make_sound(var/obj/O in object_list) // -- TLE
+/client/proc/make_sound(var/obj/O in GLOB.object_list) // -- TLE
 	set category = "Special Verbs"
 	set name = "Make Sound"
 	set desc = "Display a message to everyone who can hear the target"

@@ -589,7 +589,7 @@ client
 		switch(action_type)
 			if("Strict type")
 				var/i = 0
-				for(var/obj/Obj in object_list)
+				for(var/obj/Obj in GLOB.object_list)
 					if(Obj.type == O_type)
 						i++
 						qdel(Obj)
@@ -600,7 +600,7 @@ client
 				message_admins("<span class='notice'> [key_name(usr)] deleted all objects of type [O_type] ([i] objects deleted) </span>")
 			if("Type and subtypes")
 				var/i = 0
-				for(var/obj/Obj in object_list)
+				for(var/obj/Obj in GLOB.object_list)
 					if(istype(Obj,O_type))
 						i++
 						qdel(Obj)

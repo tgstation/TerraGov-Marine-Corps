@@ -125,7 +125,7 @@
 							from_objs += m
 
 				else if(text_starts_with(f, "/obj"))
-					for(var/obj/m in object_list)
+					for(var/obj/m in GLOB.object_list)
 						if(istype(m, f2))
 							from_objs += m
 
