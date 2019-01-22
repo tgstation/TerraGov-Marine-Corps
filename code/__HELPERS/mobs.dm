@@ -56,7 +56,7 @@ proc/random_skin_tone()
 
 /proc/get_playable_species()
 	var/list/playable_species = list()
-	for(var/species in all_species)
+	for(var/species in GLOB.all_species)
 		if(is_alien_whitelisted(species))
 			playable_species += species
 	return playable_species

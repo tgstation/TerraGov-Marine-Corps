@@ -21,11 +21,7 @@ var/global/list/active_laser_targets = list()
 //used by the main overwatch console
 var/global/list/active_orbital_beacons = list()
 
-var/global/world_qdel_log
-
-//Languages/species/whitelist.
-var/global/list/all_species[0]
-var/global/list/language_keys[0]					//table of say codes for all languages
+var/global/world_qdel_log				
 
 #define SYNTH_TYPES list("Synthetic","Early Synthetic")
 
@@ -79,9 +75,9 @@ var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 
 	for(var/language_name in GLOB.all_languages)
 		var/datum/language/L = GLOB.all_languages[language_name]
-		language_keys[":[lowertext(L.key)]"] = L
-		language_keys[".[lowertext(L.key)]"] = L
-		language_keys["#[lowertext(L.key)]"] = L
+		GLOB.language_keys[":[lowertext(L.key)]"] = L
+		GLOB.language_keys[".[lowertext(L.key)]"] = L
+		GLOB.language_keys["#[lowertext(L.key)]"] = L
 	var/rkey = 0
 
 	// Species
@@ -89,7 +85,7 @@ var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
 		rkey++
 		var/datum/species/S = new T
 		S.race_key = rkey //Used in mob icon caching.
-		all_species[S.name] = S
+		GLOB.all_species[S.name] = S
 
 	// Our ammo stuff is initialized here.
 	var/blacklist = list(/datum/ammo/energy, /datum/ammo/energy/yautja, /datum/ammo/energy/yautja/rifle, /datum/ammo/bullet/shotgun, /datum/ammo/xeno)

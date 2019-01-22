@@ -133,7 +133,7 @@
 					observer.icon = client.prefs.preview_icon
 					observer.alpha = 127
 
-					var/datum/species/species = all_species[client.prefs.species] || all_species[DEFAULT_SPECIES]
+					var/datum/species/species = GLOB.all_species[client.prefs.species] || GLOB.all_species[DEFAULT_SPECIES]
 
 					if(client.prefs.be_random_name)
 						client.prefs.real_name = species.random_name(client.prefs.gender)
@@ -406,7 +406,7 @@
 
 		var/datum/species/chosen_species
 		if(client.prefs.species)
-			chosen_species = all_species[client.prefs.species]
+			chosen_species = GLOB.all_species[client.prefs.species]
 		if(chosen_species)
 			// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
 			if(is_alien_whitelisted(client.prefs.species))
@@ -473,7 +473,7 @@
 /mob/new_player/get_species()
 	var/datum/species/chosen_species
 	if(client.prefs.species)
-		chosen_species = all_species[client.prefs.species]
+		chosen_species = GLOB.all_species[client.prefs.species]
 	if(!chosen_species)
 		return "Human"
 

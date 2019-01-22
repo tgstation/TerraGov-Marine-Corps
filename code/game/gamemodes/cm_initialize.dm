@@ -812,7 +812,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 			continue //Not a mind? How did this happen?
 
 		var/mob/living/carbon/human/current = survivor.current
-		var/datum/species/species = istype(current) ? current.species : all_species[DEFAULT_SPECIES]
+		var/datum/species/species = istype(current) ? current.species : GLOB.all_species[DEFAULT_SPECIES]
 		random_name = species.random_name(pick(MALE, FEMALE))
 
 		if(current_survivors.len > 1) //If we have another survivor to pick from.

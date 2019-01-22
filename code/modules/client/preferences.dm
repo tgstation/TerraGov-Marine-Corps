@@ -163,7 +163,7 @@ datum/preferences
 				if(load_character())
 					return
 	gender = pick(MALE, FEMALE)
-	var/datum/species/S = all_species[species]
+	var/datum/species/S = GLOB.all_species[species]
 	real_name = S.random_name(gender)
 	gear = list()
 	age = rand(18,23)
@@ -318,7 +318,7 @@ datum/preferences
 	dat += "<b>Poor Eyesight:</b> <a href='?_src_=prefs;preference=disabilities'><b>[disabilities == 0 ? "No" : "Yes"]</b></a><br>"
 	dat += "<br>"
 
-	var/datum/species/current_species = all_species[species]
+	var/datum/species/current_species = GLOB.all_species[species]
 	if(current_species.preferences)
 		for(var/preference_id in current_species.preferences)
 			dat += "<b>[current_species.preferences[preference_id]]:</b> <a href='?_src_=prefs;preference=[preference_id];task=input'><b>[vars[preference_id]]</b></a><br>"
@@ -999,7 +999,7 @@ datum/preferences
 		if ("random")
 			switch (href_list["preference"])
 				if ("name")
-					var/datum/species/S = all_species[species]
+					var/datum/species/S = GLOB.all_species[species]
 					real_name = S.random_name(gender)
 				if ("age")
 					age = rand(AGE_MIN, AGE_MAX)
@@ -1092,7 +1092,7 @@ datum/preferences
 				if("language")
 					var/languages_available
 					var/list/new_languages = list("None")
-					var/datum/species/S = all_species[species]
+					var/datum/species/S = GLOB.all_species[species]
 
 					if(CONFIG_GET(flag/usealienwhitelist))
 						for(var/L in GLOB.all_languages)
@@ -1475,7 +1475,7 @@ datum/preferences
 
 /datum/preferences/proc/copy_to(mob/living/carbon/human/character, safety = 0)
 	if(be_random_name)
-		var/datum/species/S = all_species[species]
+		var/datum/species/S = GLOB.all_species[species]
 		real_name = S.random_name(gender)
 
 	if(CONFIG_GET(flag/humans_need_surnames) && species == "Human")

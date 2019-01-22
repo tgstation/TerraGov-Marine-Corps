@@ -156,7 +156,7 @@
 /mob/proc/parse_language(var/message)
 	if(length(message) >= 2)
 		var/language_prefix = lowertext(copytext(message, 1 ,3))
-		var/datum/language/L = language_keys[language_prefix]
+		var/datum/language/L = GLOB.language_keys[language_prefix]
 		if(can_speak(L))
 			return L
 

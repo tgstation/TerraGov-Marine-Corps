@@ -251,7 +251,7 @@
 	age				= sanitize_integer(age, AGE_MIN, AGE_MAX, initial(age))
 	ethnicity		= sanitize_ethnicity(ethnicity)
 	body_type		= sanitize_body_type(body_type)
-	species			= (species in all_species) ? species : DEFAULT_SPECIES
+	species			= (species in GLOB.all_species) ? species : DEFAULT_SPECIES
 	r_hair			= sanitize_integer(r_hair, 0, 255, initial(r_hair))
 	g_hair			= sanitize_integer(g_hair, 0, 255, initial(g_hair))
 	b_hair			= sanitize_integer(b_hair, 0, 255, initial(b_hair))
@@ -291,7 +291,7 @@
 	job_marines_low = sanitize_integer(job_marines_low, 0, 65535, initial(job_marines_low))
 
 	if(!real_name)
-		var/datum/species/Species = all_species[species]
+		var/datum/species/Species = GLOB.all_species[species]
 		real_name = Species.random_name(gender)
 	if(!skills) skills = list()
 	if(!used_skillpoints) used_skillpoints= 0
