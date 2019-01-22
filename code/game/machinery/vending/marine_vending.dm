@@ -682,11 +682,11 @@
 
 /obj/machinery/vending/attachments/New()
 	..()
-	attachment_vendors.Add(src)
+	GLOB.attachment_vendors.Add(src)
 
 /obj/machinery/vending/attachments/Destroy()
 	. = ..()
-	attachment_vendors.Remove(src)
+	GLOB.attachment_vendors.Remove(src)
 
 
 
