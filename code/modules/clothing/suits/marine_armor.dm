@@ -50,7 +50,7 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	name = "\improper M3 pattern marine armor"
 	desc = "A standard TerraGov Marine Corps M3 Pattern Chestplate. Protects the chest from ballistic rounds, bladed objects and accidents. It has a small leather pouch strapped to it for limited storage."
 	icon = 'icons/obj/clothing/cm_suits.dmi'
-	icon_state = "6"
+	icon_state = "3"
 	item_state = "armor"
 	sprite_sheet_id = 1
 	flags_atom = CONDUCT
@@ -196,13 +196,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "A standard Marine M3 Light Build Pattern Chestplate. Lesser encumbrance and protection."
 	icon_state = "2"
 	armor = list(melee = 30, bullet = 20, laser = 35, energy = 20, bomb = 15, bio = 0, rad = 0)
-	slowdown = SLOWDOWN_ARMOR_LIGHT
-
-/obj/item/clothing/suit/storage/marine/M3P
-	name = "\improper M3-P pattern marine armor"
-	desc = "A standard Marine M3 Padded Pattern Chestplate. Better protection against bullets and explosions, but worse against melee."
-	icon_state = "3"
-	armor = list(melee = 30, bullet = 60, laser = 35, energy = 20, bomb = 60, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/marine/M3IS
 	name = "\improper M3-IS pattern marine armor"
@@ -225,6 +218,13 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	desc = "A standard Marine M3 Edge Pattern Chestplate. High protection against cuts and slashes, but very little padding against bullets or explosions."
 	icon_state = "5"
 	armor = list(melee = 70, bullet = 20, laser = 35, energy = 20, bomb = 15, bio = 0, rad = 0)
+	slowdown = SLOWDOWN_ARMOR_LIGHT
+
+/obj/item/clothing/suit/storage/marine/M3P
+	name = "\improper M3-P pattern marine armor"
+	desc = "A standard Marine M3 Padded Pattern Chestplate. Better protection against bullets and explosions, but worse against melee."
+	icon_state = "6"
+	armor = list(melee = 30, bullet = 70, laser = 35, energy = 20, bomb = 60, bio = 0, rad = 0)
 
 /obj/item/clothing/suit/storage/marine/MP
 	name = "\improper M2 pattern MP armor"
