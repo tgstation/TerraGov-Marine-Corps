@@ -1,4 +1,4 @@
-/proc/generate_templated_fax(var/show_nt_logo,var/fax_header,var/fax_subject,var/addressed_to,var/message_body,var/sent_by,var/sent_title,var/sent_department)
+/proc/generate_templated_fax(var/show_nt_logo, var/fax_header, var/fax_subject, var/addressed_to, var/message_body, var/sent_by, var/sent_title, var/sent_department)
 	var/dat = ""
 	dat += "<style>"
 	dat += "body {"
@@ -94,11 +94,10 @@
 	return dat
 
 
-//By popular request
 /datum/admins/proc/viewCLFaxes()
+	set category = "Admin"
 	set name = "View CL Faxes"
 	set desc = "View all faxes from the CL this round"
-	set category = "Admin"
 
 	var/body = "<html><head><title>Faxes from the CL</title></head>"
 	body += "<body><B>Faxes:</B>"
@@ -111,11 +110,11 @@
 	body += "<br><br></body></html>"
 	src << browse(body, "window=clfaxviewer;size=300x600")
 
-//While I'm at it
+
 /datum/admins/proc/viewTGMCFaxes()
+	set category = "Admin"
 	set name = "View TGMC Faxes"
 	set desc = "View all faxes to TGMC this round"
-	set category = "Admin"
 
 	var/body = "<html><head><title>Faxes</title></head>"
 	body += "<body><B>Faxes:</B>"

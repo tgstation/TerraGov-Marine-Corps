@@ -39,7 +39,7 @@
 			M.client.screen += C
 			M.client.screen += D
 			H.cl = M.client
-*/
+
 
 /obj/effect/bmode
 	density = TRUE
@@ -284,3 +284,4 @@
 			if(mods["right"])
 				if(holder.throw_atom)
 					holder.throw_atom.throw_at(object, 10, 1)
+*/

@@ -1,78 +1,555 @@
+/client/var/adminhelptimerid = 0	//a timer id for returning the ahelp verb
+/client/var/datum/admin_help/current_ticket	//the current ticket the (usually) not-admin client is dealing with
+
+GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 
-//This is a list of words which are ignored by the parser when comparing message contents for names. MUST BE IN LOWER CASE!
-var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","alien","as")
+/datum/admin_help_tickets
+	var/list/active_tickets = list()
+	var/list/closed_tickets = list()
+	var/list/resolved_tickets = list()
 
-/client/verb/adminhelp()
+	var/obj/effect/statclick/ticket_list/astatclick = new(null, null, AHELP_ACTIVE)
+	var/obj/effect/statclick/ticket_list/cstatclick = new(null, null, AHELP_CLOSED)
+	var/obj/effect/statclick/ticket_list/rstatclick = new(null, null, AHELP_RESOLVED)
+
+
+/datum/admin_help_tickets/Destroy()
+	QDEL_LIST(active_tickets)
+	QDEL_LIST(closed_tickets)
+	QDEL_LIST(resolved_tickets)
+	QDEL_NULL(astatclick)
+	QDEL_NULL(cstatclick)
+	QDEL_NULL(rstatclick)
+	return ..()
+
+
+/datum/admin_help_tickets/proc/TicketByID(id)
+	var/list/lists = list(active_tickets, closed_tickets, resolved_tickets)
+	for(var/I in lists)
+		for(var/J in I)
+			var/datum/admin_help/AH = J
+			if(AH.id == id)
+				return J
+
+
+/datum/admin_help_tickets/proc/TicketsByCKey(ckey)
+	. = list()
+	var/list/lists = list(active_tickets, closed_tickets, resolved_tickets)
+	for(var/I in lists)
+		for(var/J in I)
+			var/datum/admin_help/AH = J
+			if(AH.initiator_ckey == ckey)
+				. += AH
+
+
+//private
+/datum/admin_help_tickets/proc/ListInsert(datum/admin_help/new_ticket)
+	var/list/ticket_list
+	switch(new_ticket.state)
+		if(AHELP_ACTIVE)
+			ticket_list = active_tickets
+		if(AHELP_CLOSED)
+			ticket_list = closed_tickets
+		if(AHELP_RESOLVED)
+			ticket_list = resolved_tickets
+		else
+			CRASH("Invalid ticket state: [new_ticket.state]")
+	var/num_closed = ticket_list.len
+	if(num_closed)
+		for(var/I in 1 to num_closed)
+			var/datum/admin_help/AH = ticket_list[I]
+			if(AH.id > new_ticket.id)
+				ticket_list.Insert(I, new_ticket)
+				return
+	ticket_list += new_ticket
+
+
+//opens the ticket listings for one of the 3 states
+/datum/admin_help_tickets/proc/BrowseTickets(state)
+	var/list/l2b
+	var/title
+	switch(state)
+		if(AHELP_ACTIVE)
+			l2b = active_tickets
+			title = "Active Tickets"
+		if(AHELP_CLOSED)
+			l2b = closed_tickets
+			title = "Closed Tickets"
+		if(AHELP_RESOLVED)
+			l2b = resolved_tickets
+			title = "Resolved Tickets"
+	if(!l2b)
+		return
+	var/list/dat = list("<html><head><title>[title]</title></head>")
+	dat += "<A href='?_src_=holder;[HrefToken()];ahelp_tickets=[state]'>Refresh</A><br><br>"
+	for(var/I in l2b)
+		var/datum/admin_help/AH = I
+		dat += "<span class='adminnotice'><span class='adminhelp'>Ticket #[AH.id]</span>: <A href='?_src_=holder;[HrefToken()];ahelp=[REF(AH)];ahelp_action=ticket'>[AH.initiator_key_name]: [AH.name]</A></span><br>"
+
+	usr << browse(dat.Join(), "window=ahelp_list[state];size=600x480")
+
+
+//Tickets statpanel
+/datum/admin_help_tickets/proc/stat_entry()
+	var/num_disconnected = 0
+	stat("Active Tickets:", astatclick.update("[active_tickets.len]"))
+	for(var/I in active_tickets)
+		var/datum/admin_help/AH = I
+		if(AH.initiator)
+			stat("#[AH.id]. [AH.initiator_key_name]:", AH.statclick.update())
+		else
+			++num_disconnected
+	if(num_disconnected)
+		stat("Disconnected:", astatclick.update("[num_disconnected]"))
+	stat("Closed Tickets:", cstatclick.update("[closed_tickets.len]"))
+	stat("Resolved Tickets:", rstatclick.update("[resolved_tickets.len]"))
+
+
+//Reassociate still open ticket if one exists
+/datum/admin_help_tickets/proc/ClientLogin(client/C)
+	C.current_ticket = CKey2ActiveTicket(C.ckey)
+	if(C.current_ticket)
+		C.current_ticket.initiator = C
+		C.current_ticket.AddInteraction("Client reconnected.")
+
+
+//Dissasociate ticket
+/datum/admin_help_tickets/proc/ClientLogout(client/C)
+	if(C.current_ticket)
+		C.current_ticket.AddInteraction("Client disconnected.")
+		C.current_ticket.initiator = null
+		C.current_ticket = null
+
+
+//Get a ticket given a ckey
+/datum/admin_help_tickets/proc/CKey2ActiveTicket(ckey)
+	for(var/I in active_tickets)
+		var/datum/admin_help/AH = I
+		if(AH.initiator_ckey == ckey)
+			return AH
+
+
+/obj/effect/statclick/ticket_list
+	var/current_state
+
+
+/obj/effect/statclick/ticket_list/New(loc, name, state)
+	current_state = state
+	..()
+
+/obj/effect/statclick/ticket_list/Click()
+	GLOB.ahelp_tickets.BrowseTickets(current_state)
+
+
+/datum/admin_help
+	var/id
+	var/name
+	var/state = AHELP_ACTIVE
+
+	var/opened_at
+	var/closed_at
+
+	var/client/initiator	//the person who ahelped/was bwoinked
+	var/initiator_ckey
+	var/initiator_key_name
+	var/heard_by_no_admins = FALSE
+
+	var/list/_interactions	//use AddInteraction() or, preferably, admin_ticket_log()
+
+	var/obj/effect/statclick/ahelp/statclick
+
+	var/static/ticket_counter = 0
+
+
+//call this on its own to create a ticket, don't manually assign current_ticket
+//msg is the title of the ticket: usually the ahelp text
+//is_bwoink is TRUE if this ticket was started by an admin PM
+/datum/admin_help/New(msg, client/C, is_bwoink)
+	//clean the input msg
+	msg = sanitize(copytext(msg,1,MAX_MESSAGE_LEN))
+	if(!msg || !C || !C.mob)
+		qdel(src)
+		return
+
+	id = ++ticket_counter
+	opened_at = world.time
+
+	name = msg
+
+	initiator = C
+	initiator_ckey = initiator.ckey
+	initiator_key_name = key_name(initiator, FALSE, TRUE)
+	if(initiator.current_ticket)	//This is a bug
+		stack_trace("Multiple ahelp current_tickets.")
+		initiator.current_ticket.AddInteraction("Ticket erroneously left open by code.")
+		initiator.current_ticket.Close()
+	initiator.current_ticket = src
+
+	TimeoutVerb()
+
+	statclick = new(null, src)
+	_interactions = list()
+
+	if(is_bwoink)
+		AddInteraction("<font color='blue'>[key_name_admin(usr)] PM'd [LinkedReplyName()]</font>")
+		message_admins("<font color='blue'>Ticket [TicketHref("#[id]")] created</font>")
+	else
+		MessageNoRecipient(msg)
+		log_admin_private("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins.")
+
+	GLOB.ahelp_tickets.active_tickets += src
+
+
+/datum/admin_help/Destroy()
+	RemoveActive()
+	GLOB.ahelp_tickets.closed_tickets -= src
+	GLOB.ahelp_tickets.resolved_tickets -= src
+	return ..()
+
+
+/datum/admin_help/proc/AddInteraction(formatted_message)
+	if(heard_by_no_admins && usr && usr.ckey != initiator_ckey)
+		heard_by_no_admins = FALSEfsen
+	_interactions += "[time_stamp()]: [formatted_message]"
+
+
+//Removes the ahelp verb and returns it after 2 minutes
+/datum/admin_help/proc/TimeoutVerb()
+	initiator.verbs -= /client/verb/adminhelp
+	initiator.adminhelptimerid = addtimer(CALLBACK(initiator, /client/proc/giveadminhelpverb), 1200, TIMER_STOPPABLE) //2 minute cooldown of admin helps
+
+
+//private
+/datum/admin_help/proc/FullMonty(ref_src)
+	if(!ref_src)
+		ref_src = "[REF(src)]"
+	. = ADMIN_FULLMONTY_NONAME(initiator.mob)
+	if(state == AHELP_ACTIVE)
+		. += ClosureLinks(ref_src)
+
+
+//private
+/datum/admin_help/proc/ClosureLinks(ref_src)
+	if(!ref_src)
+		ref_src = "[REF(src)]"
+	. = " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=reject'>REJECT</A>)"
+	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=icissue'>IC</A>)"
+	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=close'>CLOSE</A>)"
+	. += " (<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=resolve'>RESOLVE</A>)"
+
+
+//private
+/datum/admin_help/proc/LinkedReplyName(ref_src)
+	if(!ref_src)
+		ref_src = "[REF(src)]"
+	return "<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=reply'>[initiator_key_name]</A>"
+
+
+//private
+/datum/admin_help/proc/TicketHref(msg, ref_src, action = "ticket")
+	if(!ref_src)
+		ref_src = "[REF(src)]"
+	return "<A HREF='?_src_=holder;[HrefToken(TRUE)];ahelp=[ref_src];ahelp_action=[action]'>[msg]</A>"
+
+
+//message from the initiator without a target, all admins will see this
+/datum/admin_help/proc/MessageNoRecipient(msg)
+	var/ref_src = "[REF(src)]"
+	//Message to be sent to all admins
+	var/admin_msg = "<span class='adminnotice'><span class='adminhelp'>Ticket [TicketHref("#[id]", ref_src)]</span><b>: [LinkedReplyName(ref_src)] [FullMonty(ref_src)]:</b> <span class='linkify'>[keywords_lookup(msg)]</span></span>"
+
+	AddInteraction("<font color='red'>[LinkedReplyName(ref_src)]: [msg]</font>")
+
+	//send this msg to all admins
+	for(var/client/X in GLOB.admins)
+		if(X.prefs.toggles & SOUND_ADMINHELP)
+			SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
+		window_flash(X, ignorepref = TRUE)
+		to_chat(X, admin_msg)
+
+	//show it to the person adminhelping too
+	to_chat(initiator, "<span class='adminnotice'>PM to-<b>Admins</b>: <span class='linkify'>[msg]</span></span>")
+
+
+//Reopen a closed ticket
+/datum/admin_help/proc/Reopen()
+	if(state == AHELP_ACTIVE)
+		to_chat(usr, "<span class='warning'>This ticket is already open.</span>")
+		return
+
+	if(GLOB.ahelp_tickets.CKey2ActiveTicket(initiator_ckey))
+		to_chat(usr, "<span class='warning'>This user already has an active ticket, cannot reopen this one.</span>")
+		return
+
+	statclick = new(null, src)
+	GLOB.ahelp_tickets.active_tickets += src
+	GLOB.ahelp_tickets.closed_tickets -= src
+	GLOB.ahelp_tickets.resolved_tickets -= src
+	state = AHELP_ACTIVE
+	closed_at = null
+	if(initiator)
+		initiator.current_ticket = src
+
+	AddInteraction("<font color='purple'>Reopened by [key_name_admin(usr)]</font>")
+	var/msg = "<span class='adminhelp'>Ticket [TicketHref("#[id]")] reopened by [key_name_admin(usr)].</span>"
+	message_admins(msg)
+	log_admin_private(msg)
+	TicketPanel()	//can only be done from here, so refresh it
+
+
+//private
+/datum/admin_help/proc/RemoveActive()
+	if(state != AHELP_ACTIVE)
+		return
+	closed_at = world.time
+	QDEL_NULL(statclick)
+	GLOB.ahelp_tickets.active_tickets -= src
+	if(initiator && initiator.current_ticket == src)
+		initiator.current_ticket = null
+
+
+//Mark open ticket as closed/meme
+/datum/admin_help/proc/Close(key_name = key_name_admin(usr), silent = FALSE)
+	if(state != AHELP_ACTIVE)
+		return
+	RemoveActive()
+	state = AHELP_CLOSED
+	GLOB.ahelp_tickets.ListInsert(src)
+	AddInteraction("<font color='red'>Closed by [key_name].</font>")
+	if(!silent)
+		var/msg = "Ticket [TicketHref("#[id]")] closed by [key_name]."
+		message_admins(msg)
+		log_admin_private(msg)
+
+
+//Mark open ticket as resolved/legitimate, returns ahelp verb
+/datum/admin_help/proc/Resolve(key_name = key_name_admin(usr), silent = FALSE)
+	if(state != AHELP_ACTIVE)
+		return
+	RemoveActive()
+	state = AHELP_RESOLVED
+	GLOB.ahelp_tickets.ListInsert(src)
+
+	addtimer(CALLBACK(initiator, /client/proc/giveadminhelpverb), 50)
+
+	AddInteraction("<font color='green'>Resolved by [key_name].</font>")
+	to_chat(initiator, "<span class='adminhelp'>Your ticket has been resolved by an admin. The Adminhelp verb will be returned to you shortly.</span>")
+	if(!silent)
+		var/msg = "Ticket [TicketHref("#[id]")] resolved by [key_name]"
+		message_admins(msg)
+		log_admin_private(msg)
+
+
+//Close and return ahelp verb, use if ticket is incoherent
+/datum/admin_help/proc/Reject(key_name = key_name_admin(usr))
+	if(state != AHELP_ACTIVE)
+		return
+
+	if(initiator)
+		initiator.giveadminhelpverb()
+
+		SEND_SOUND(initiator, sound('sound/effects/adminhelp.ogg'))
+
+		to_chat(initiator, "<font color='red' size='4'><b>- AdminHelp Rejected! -</b></font>")
+		to_chat(initiator, "<font color='red'><b>Your admin help was rejected.</b> The adminhelp verb has been returned to you so that you may try again.</font>")
+		to_chat(initiator, "Please try to be calm, clear, and descriptive in admin helps, do not assume the admin has seen any related events, and clearly state the names of anybody you are reporting.")
+
+	var/msg = "Ticket [TicketHref("#[id]")] rejected by [key_name]"
+	message_admins(msg)
+	log_admin_private(msg)
+	AddInteraction("Rejected by [key_name].")
+	Close(silent = TRUE)
+
+
+//Resolve ticket with IC Issue message
+/datum/admin_help/proc/ICIssue(key_name = key_name_admin(usr))
+	if(state != AHELP_ACTIVE)
+		return
+
+	var/msg = "<font color='red' size='4'><b>- AdminHelp marked as IC issue! -</b></font><br>"
+	msg += "<font color='red'><b>Losing is part of the game!</b></font><br>"
+	msg += "<font color='red'>Your character will frequently die, sometimes without even a possibility of avoiding it. Events will often be out of your control. No matter how good or prepared you are, sometimes you just lose.</font>"
+
+	if(initiator)
+		to_chat(initiator, msg)
+
+	msg = "Ticket [TicketHref("#[id]")] marked as IC by [key_name]"
+	message_admins(msg)
+	log_admin_private(msg)
+	AddInteraction("Marked as IC issue by [key_name]")
+	Resolve(silent = TRUE)
+
+
+//Show the ticket panel
+/datum/admin_help/proc/TicketPanel()
+	var/list/dat = list("<html><head><title>Ticket #[id]</title></head>")
+	var/ref_src = "[REF(src)]"
+	dat += "<h4>Admin Help Ticket #[id]: [LinkedReplyName(ref_src)]</h4>"
+	dat += "<b>State: "
+	switch(state)
+		if(AHELP_ACTIVE)
+			dat += "<font color='red'>OPEN</font>"
+		if(AHELP_RESOLVED)
+			dat += "<font color='green'>RESOLVED</font>"
+		if(AHELP_CLOSED)
+			dat += "CLOSED"
+		else
+			dat += "UNKNOWN"
+	dat += "</b>[GLOB.TAB][TicketHref("Refresh", ref_src)][GLOB.TAB][TicketHref("Re-Title", ref_src, "retitle")]"
+	if(state != AHELP_ACTIVE)
+		dat += "[GLOB.TAB][TicketHref("Reopen", ref_src, "reopen")]"
+	dat += "<br><br>Opened at: [gameTimestamp(wtime = opened_at)] (Approx [DisplayTimeText(world.time - opened_at)] ago)"
+	if(closed_at)
+		dat += "<br>Closed at: [gameTimestamp(wtime = closed_at)] (Approx [DisplayTimeText(world.time - closed_at)] ago)"
+	dat += "<br><br>"
+	if(initiator)
+		dat += "<b>Actions:</b> [FullMonty(ref_src)]<br>"
+	else
+		dat += "<b>DISCONNECTED</b>[GLOB.TAB][ClosureLinks(ref_src)]<br>"
+	dat += "<br><b>Log:</b><br><br>"
+	for(var/I in _interactions)
+		dat += "[I]<br>"
+
+	usr << browse(dat.Join(), "window=ahelp[id];size=620x480")
+
+
+/datum/admin_help/proc/Retitle()
+	var/new_title = input(usr, "Enter a title for the ticket", "Rename Ticket", name) as text|null
+	if(new_title)
+		name = new_title
+		//not saying the original name cause it could be a long ass message
+		var/msg = "Ticket [TicketHref("#[id]")] titled [name] by [key_name_admin(usr)]"
+		message_admins(msg)
+		log_admin_private(msg)
+	TicketPanel()	//we have to be here to do this
+
+
+//Forwarded action from admin/Topic
+/datum/admin_help/proc/Action(action)
+	testing("Ahelp action: [action]")
+	switch(action)
+		if("ticket")
+			TicketPanel()
+		if("retitle")
+			Retitle()
+		if("reject")
+			Reject()
+		if("reply")
+			usr.client.cmd_ahelp_reply(initiator)
+		if("icissue")
+			ICIssue()
+		if("close")
+			Close()
+		if("resolve")
+			Resolve()
+		if("reopen")
+			Reopen()
+
+
+/obj/effect/statclick/ahelp
+	var/datum/admin_help/ahelp_datum
+
+
+/obj/effect/statclick/ahelp/Initialize(mapload, datum/admin_help/AH)
+	ahelp_datum = AH
+	. = ..()
+
+
+/obj/effect/statclick/ahelp/update()
+	return ..(ahelp_datum.name)
+
+
+/obj/effect/statclick/ahelp/Click()
+	ahelp_datum.TicketPanel()
+
+
+/obj/effect/statclick/ahelp/Destroy()
+	ahelp_datum = null
+	return ..()
+
+
+/client/proc/giveadminhelpverb()
+	src.verbs |= /client/verb/adminhelp
+	deltimer(adminhelptimerid)
+	adminhelptimerid = 0
+
+
+// Used for methods where input via arg doesn't work
+/client/proc/get_adminhelp()
+	var/msg = input(src, "Please describe your problem concisely and an admin will help as soon as they're able.", "Adminhelp contents") as text
+	adminhelp(msg)
+
+
+/client/verb/adminhelp(msg as text)
 	set category = "Admin"
 	set name = "Adminhelp"
 
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
-		return
-
-	//handle muting and automuting
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(src, "<font color='red'>Error: Admin-PM: You cannot send adminhelps (Muted).</font>")
+		to_chat(src, "<span class='danger'>Error: Admin-PM: You cannot send adminhelps (Muted).</span>")
+		return
+		
+	if(handle_spam_prevention(msg,MUTE_ADMINHELP))
 		return
 
+	msg = trim(msg)
 
-	adminhelped = 1 //Determines if they get the message to reply by clicking the name.
-
-	var/msg
-	var/list/type = list ("Mentorhelp", "Adminhelp", "Suggestion / Bug Report")
-	var/selected_type = input("Pick a category.", "Admin Help", null, null) as null|anything in type
-	switch(selected_type)
-		if("Mentorhelp")
-			msg = input("Please enter your message:", "Admin Help", null, null) as message|null
-		if("Adminhelp")
-			msg = input("Please enter your message:", "Admin Help", null, null) as message|null
-		if("Suggestion / Bug Report")
-			switch(alert("Adminhelps are not for suggestions or bug reports - issues should be posted on our GitHub or on our Discord in #coding, and suggestions on our Discord in #suggestions. If you want something done, feel free to code it yourself.",,"Go to GitHub","Go to Discord","Go to Forums","Cancel"))
-				if("Go to Discord")
-					if(CONFIG_GET(string/discordurl))
-						src << link(CONFIG_GET(string/discordurl))
-					else
-						to_chat(src, "<span class='warning'>The chat URL is not set in the server configuration.</span>")
-				if("Go to GitHub")
-					if(CONFIG_GET(string/githuburl))
-						src << link(CONFIG_GET(string/githuburl))
-					else
-						to_chat(src, "<span class='warning'>The bug tracker URL is not set in the server configuration.</span>")
-				if("Go to Forums")
-					if(CONFIG_GET(string/forumurl))
-						src << link(CONFIG_GET(string/forumurl))
-					else
-						to_chat(src, "<span class='warning'>The forum URL is not set in the server configuration.</span>")
-
-
-	var/selected_upper = uppertext(selected_type)
-
-	if(src.handle_spam_prevention(msg,MUTE_ADMINHELP))
+	if(!msg)
 		return
 
+	if(current_ticket)
+		if(alert(usr, "You already have a ticket open. Is this for the same issue?",,"Yes","No") != "No")
+			if(current_ticket)
+				current_ticket.MessageNoRecipient(msg)
+				current_ticket.TimeoutVerb()
+				return
+			else
+				to_chat(usr, "<span class='warning'>Ticket not found, creating new one...</span>")
+		else
+			current_ticket.AddInteraction("[key_name_admin(usr)] opened a new ticket.")
+			current_ticket.Close()
 
-	//clean the input msg
-	if(!msg)	return
-	msg = sanitize(copytext(msg,1,MAX_MESSAGE_LEN))
-	if(!msg)	return
-	var/original_msg = msg
+	new /datum/admin_help(msg, src, FALSE)
 
 
+//Use this proc when an admin takes action that may be related to an open ticket on what
+//what can be a client, ckey, or mob
+/proc/admin_ticket_log(what, message)
+	var/client/C
+	var/mob/Mob = what
+	if(istype(Mob))
+		C = Mob.client
+	else
+		C = what
+	if(istype(C) && C.current_ticket)
+		C.current_ticket.AddInteraction(message)
+		return C.current_ticket
+	if(istext(what))	//ckey
+		var/datum/admin_help/AH = GLOB.ahelp_tickets.CKey2ActiveTicket(what)
+		if(AH)
+			AH.AddInteraction(message)
+			return AH
+
+
+/proc/keywords_lookup(msg,irc)
+	//This is a list of words which are ignored by the parser when comparing message contents for names. MUST BE IN LOWER CASE!
+	var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","alien","as", "i")
 
 	//explode the input msg into a list
-	var/list/msglist = text2list(msg, " ")
+	var/list/msglist = splittext(msg, " ")
 
 	//generate keywords lookup
 	var/list/surnames = list()
 	var/list/forenames = list()
 	var/list/ckeys = list()
-	for(var/mob/M in mob_list)
+	var/founds = ""
+	for(var/mob/M in GLOB.mob_list)
 		var/list/indexing = list(M.real_name, M.name)
-		if(M.mind)	indexing += M.mind.name
+		if(M.mind)
+			indexing += M.mind.name
 
 		for(var/string in indexing)
-			var/list/L = text2list(string, " ")
+			var/list/L = splittext(string, " ")
 			var/surname_found = 0
 			//surnames
 			for(var/i=L.len, i>=1, i--)
@@ -109,180 +586,17 @@ var/list/adminhelp_ignored_words = list("unknown","the","a","an","of","monkey","
 							mobs_found += found
 							if(!ai_found && isAI(found))
 								ai_found = 1
-							msg += "<b><font color='black'>[original_word] (<A HREF='?_src_=holder;adminmoreinfo=\ref[found]'>?</A>)</font></b> "
+							var/is_antag = 0
+							if(found.mind && found.mind.special_role)
+								is_antag = 1
+							founds += "Name: [found.name]([found.real_name]) Key: [found.key] Ckey: [found.ckey] [is_antag ? "(Antag)" : null] "
+							msg += "[original_word]<font size='1' color='[is_antag ? "red" : "black"]'>(<A HREF='?_src_=holder;[HrefToken(TRUE)];adminmoreinfo=[REF(found)]'>?</A>|<A HREF='?_src_=holder;[HrefToken(TRUE)];adminplayerobservefollow=[REF(found)]'>F</A>)</font> "
 							continue
-			msg += "[original_word] "
-
-	if(!mob)
-		return
-
-	var/mentor_msg = "<br><br><font color='#009900'><b>[selected_upper]: [get_options_bar(mob, 4, 1, 1, 0)]:</b></font> <br><font color='#DA6200'><b>[msg]</font></b><br>"
-	msg = "<br><br><font color='#009900'><b>[selected_upper]: [get_options_bar(mob, 2, 1, 1, 1)]:</b></font> <br><font color='#DA6200'><b>[msg]</font></b><br>"
-
-	var/admin_number_afk = 0
-
-	var/list/mentorholders = list()
-	var/list/adminholders = list()
-	for(var/client/X in admins)
-		if((R_MENTOR & X.holder.rights) && !((R_ADMIN & X.holder.rights))) // we don't want to count admins twice. This list should be JUST mentors
-			mentorholders += X
-		if((R_ADMIN & X.holder.rights)) // just admins here please
-			adminholders += X
-			if(X.is_afk())
-				admin_number_afk++
-
-	switch(selected_type)
-		if("Mentorhelp")
-			if(mentorholders.len)
-				for(var/client/X in mentorholders) // Mentors get a reduced message
-					if(X.prefs.toggles_sound & SOUND_ADMINHELP)
-						X << 'sound/effects/adminhelp_new.ogg'
-					to_chat(X, mentor_msg)
-			if(adminholders.len)
-				for(var/client/X in adminholders) // Admins get the full monty
-					if(X.prefs.toggles_sound & SOUND_ADMINHELP)
-						X << 'sound/effects/adminhelp_new.ogg'
-					to_chat(X, msg)
-		if("Adminhelp")
-			if(adminholders.len && (admin_number_afk != adminholders.len))
-				for(var/client/X in adminholders) // Admins get the full monty
-					if(X.prefs.toggles_sound & SOUND_ADMINHELP)
-						X << 'sound/effects/adminhelp_new.ogg'
-					to_chat(X, msg)
-			else
-				if(mentorholders.len)
-					for(var/client/X in mentorholders) // Mentors get a reduced message
-						if(X.prefs.toggles_sound & SOUND_ADMINHELP)
-							X << 'sound/effects/adminhelp_new.ogg'
-						to_chat(X, mentor_msg)
-
-	//show it to the person adminhelping too
-	to_chat(src, "<br><font color='#009900'><b>PM to Staff ([selected_type]): <font color='#DA6200'>[original_msg]</b></font><br>")
-
-	// Adminhelp cooldown
-	verbs -= /client/verb/adminhelp
-	spawn(1200)
-		verbs += /client/verb/adminhelp
-
-	var/admin_number_present = admins.len - admin_number_afk
-	log_admin("HELP: [key_name(src)]: [original_msg] - heard by [admin_number_present] non-AFK admins.")
-//	if(admin_number_present <= 0)
-//		if(!admin_number_afk)
-//			send2adminirc("[selected_upper] from [key_name(src)]: [html_decode(original_msg)] - !!No admins online!!")
-//		else
-//			send2adminirc("[selected_upper] from [key_name(src)]: [html_decode(original_msg)] - !!All admins AFK ([admin_number_afk])!!")
-//	else
-//		send2adminirc("[selected_upper] from [key_name(src)]: [html_decode(original_msg)]")
-	feedback_add_details("admin_verb","AH") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
-	switch(selected_type)
-		if("Mentorhelp")
-			unansweredMhelps["[src.computer_id]"] = mentor_msg
-		if("Adminhelp")
-			unansweredAhelps["[src.computer_id]"] = msg
-
-	return
-
-/proc/get_options_bar(whom, detail = 2, name = 0, link = 1, highlight_special = 1)
-	if(!whom)
-		return "<b>(*null*)</b>"
-	var/mob/M
-	var/client/C
-	if(istype(whom, /client))
-		C = whom
-		M = C.mob
-	else if(istype(whom, /mob))
-		M = whom
-		C = M.client
-	else
-		return "<b>(*not a mob*)</b>"
-
-	var/ref_mob = "\ref[M]"
-	switch(detail)
-		if(0)
-			return "<b>[key_name(C, link, name, highlight_special)]</b>"
-		if(1)
-			return "<b>[key_name(C, link, name, highlight_special)] \
-			(<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>)</b>"
-		if(2)
-			return "<b>[key_name(C, link, name, highlight_special)] \
-			(<A HREF='?_src_=holder;mark=[ref_mob]'>Mark</A>) \
-			(<A HREF='?_src_=holder;noresponse=[ref_mob]'>NR</A>) \
-			(<A HREF='?_src_=holder;warning=[ref_mob]'>Warn</A>) \
-			(<A HREF='?_src_=holder;autoresponse=[ref_mob]'>AutoResponse...</A>) \
-			(<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>) \
-			(<A HREF='?_src_=holder;adminplayeropts=[ref_mob]'>PP</A>) \
-			(<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) \
-			(<A HREF='?_src_=holder;subtlemessage=[ref_mob]'>SM</A>) \
-			(<A HREF='?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>) \
-			(<A HREF='?_src_=holder;adminplayerfollow=[ref_mob]'>FLW</a>) \
-			(<A HREF='?_src_=holder;check_antagonist=1'>CA</A>)</b>"
-		if(3)
-			return "<b>[key_name(C, link, name, highlight_special)] \
-			(<A HREF='?_src_=vars;Vars=[ref_mob]'>VV</A>) \
-			(<A HREF='?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>) \
-			(<A HREF='?_src_=holder;adminplayerfollow=[ref_mob]'>FLW</a>)</b>"
-		if(4)
-			return "<b>[key_name(C, link, name, highlight_special)] \
-			(<A HREF='?_src_=holder;mark=[ref_mob]'>Mark</A>) \
-			(<A HREF='?_src_=holder;noresponse=[ref_mob]'>NR</A>) \
-			(<A HREF='?_src_=holder;autoresponse=[ref_mob]'>AutoResponse...</A>) \
-			(<A HREF='?_src_=holder;adminmoreinfo=[ref_mob]'>?</A>) \
-			(<A HREF='?_src_=holder;adminplayerobservejump=[ref_mob]'>JMP</A>) \
-			(<A HREF='?_src_=holder;adminplayerfollow=[ref_mob]'>FLW</a>)</b>"
-
-
-
-/datum/admins/proc/viewUnheardAhelps()
-	set name = "View Unheard Ahelps"
-	set desc = "View any Ahelps that went unanswered"
-	set category = "Admin"
-
-
-	var/body = "<html><head><title>Unheard Ahelps</title></head>" //DISCLAMER: I suck at HTML
-	body += "<body><B>Unheard Ahelps</B>"
-	body += "<br>"
-
-	var/admin_number_afk = 0
-	var/list/adminholders = list()
-	for(var/client/X in admins)
-		if((R_ADMIN & X.holder.rights)) // just admins here please
-			adminholders += X
-			if(X.is_afk())
-				admin_number_afk++
-
-	if(adminholders.len && (admin_number_afk != adminholders.len))
-		if((R_ADMIN & usr.client.holder.rights))
-			for(var/CID in unansweredAhelps)
-				body += "[unansweredAhelps[CID]]" //If I have done these correctly, it should have the options bar as well a mark and noresponse
-			body += "<br><br></body></html>"
-			src << browse(body, "window=ahelps;size=800x300")
-			return
+		msg += "[original_word] "
+	if(irc)
+		if(founds == "")
+			return "Search Failed"
 		else
-			body += "<br><br></body></html>"
-			src << browse(body, "window=ahelps;size=800x300")
-			return
-	else
-		for(var/CID in unansweredAhelps)
-			body += "[unansweredAhelps[CID]]" //If I have done these correctly, it should have the options bar as well a mark and noresponse
-		body += "<br><br></body></html>"
-		src << browse(body, "window=ahelps;size=800x300")
-		return
+			return founds
 
-
-
-/datum/admins/proc/viewUnheardMhelps()
-	set name = "View Unheard Mhelps"
-	set desc = "View any Mhelps that went unanswered"
-	set category = "Admin"
-
-	var/body = "<html><head><title>Unheard Mhelps</title></head>" //DISCLAMER: I suck at HTML
-	body += "<body><B>Unheard Mhelps</B>"
-	body += "<br>"
-
-	for(var/CID in unansweredMhelps)
-		body += "[unansweredMhelps[CID]]" //If I have done these correctly, it should have the options bar as well a mark and noresponse
-
-	body += "<br><br></body></html>"
-
-	src << browse(body, "window=ahelps;size=800x300")
+	return msg

@@ -581,3 +581,147 @@
 
 	log_admin("[key_name(usr)] changed the security level to code [sec_level].")
 	message_admins("[key_name_admin(usr)] changed the security level to code [sec_level].")
+
+
+/datum/admins/proc/select_rank(var/mob/living/carbon/human/H in mob_list)
+	set category = "Fun"
+	set name = "Select Rank"
+
+	if(!istype(H))
+		return
+
+	var/rank_list = list("Custom") + RoleAuthority.roles_by_name
+
+	var/newrank = input("Select new rank for [H]", "Change the mob's rank and skills") as null|anything in rank_list
+
+	if(!newrank)
+		return
+
+	if(!H?.mind)
+		return
+
+	if(newrank != "Custom")
+		H.set_everything(H, newrank)
+	else
+		var/newcommtitle = input("Write the custom title appearing on the comms themselves, for example: \[Command (Title)]", "Comms title") as null|text
+
+		if(!newcommtitle)
+			return
+		if(!H?.mind)
+			return
+
+		H.mind.role_comm_title = newcommtitle
+		var/obj/item/card/id/I = H.wear_id
+
+		if(!istype(I) || I != H.wear_id)
+			to_chat(usr, "The mob has no id card, unable to modify ID and chat title.")
+		else
+			var/newchattitle = input("Write the custom title appearing in all chats: Title Jane Doe says", "Chat title") as null|text
+
+			if(!H || I != H.wear_id)
+				return
+
+			I.paygrade = newchattitle
+
+			var/IDtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID title") as null|text
+
+			if(!H || I != H.wear_id)
+				return
+
+			I.rank = IDtitle
+			I.assignment = IDtitle
+			I.name = "[I.registered_name]'s ID Card[IDtitle ? " ([I.assignment])" : ""]"
+
+		if(!H.mind)
+			to_chat(usr, "The mob has no mind, unable to modify skills.")
+
+		else
+			var/newskillset = input("Select a skillset", "Skill Set") as null|anything in RoleAuthority.roles_by_name
+
+			if(!newskillset)
+				return
+
+			if(!H?.mind)
+				return
+
+			var/datum/job/J = RoleAuthority.roles_by_name[newskillset]
+			H.mind.set_cm_skills(J.skills_type)
+
+
+/datum/admins/proc/select_equipment(var/mob/living/carbon/human/M in mob_list)
+	set category = "Fun"
+	set name = "Select Equipment"
+
+	if(!ishuman(M))
+		return
+
+	var/list/dresspacks = list("Strip") + RoleAuthority.roles_by_equipment
+	var/list/paths = list("Strip") + RoleAuthority.roles_by_equipment_paths
+
+	var/dresscode = input("Choose equipment for [M]", "Select Equipment") as null|anything in dresspacks
+
+	if(!dresscode)
+		return
+
+	var/path = paths[dresspacks.Find(dresscode)]
+
+	feedback_add_details("admin_verb","SEQ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
+
+	for(var/obj/item/I in M)
+		if(istype(I, /obj/item/implant) || istype(I, /obj/item/card/id))
+			continue
+		qdel(I)
+
+	var/datum/job/J = new path
+	J.generate_equipment(M)
+	M.regenerate_icons()
+
+	log_admin("[key_name(usr)] changed the equipment of [key_name(M)] to [dresscode].")
+	message_admins("<span class='notice'> [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode].</span>", 1)
+
+
+/datum/admins/proc/possess(obj/O as obj in object_list)
+	set category = "Object"
+	set name = "Possess Obj"
+
+	if(!check_rights(R_FUN))
+		return
+
+	var/mob/M = owner.mob
+	var/turf/T = get_turf(O)
+
+	if(!M.control_object)
+		M.name_archive = M.real_name
+
+	M.loc = O
+	M.real_name = O.name
+	M.name = O.name
+	M.control_object = O
+	owner.eye = O
+
+	log_admin("[key_name(usr)] has possessed [O] ([O.type]) at ([T.x], [T.y], [T.z])")
+	message_admins("[key_name(usr)] has possessed [O] ([O.type]) at ([T.x], [T.y], [T.z])")
+
+
+/datum/admins/proc/release(obj/O as obj in object_list)
+	set category = "Object"
+	set name = "Release Obj"
+
+	if(!check_rights(R_FUN))
+		return
+
+	var/mob/M = owner.mob
+
+	if(!M.control_object || !M.name_archive)
+		return
+
+	M.real_name = M.name_archive
+	M.name = M.real_name
+
+	if(ishuman(M))
+		var/mob/living/carbon/human/H = M
+		H.name = H.get_visible_name()
+
+	M.loc = O.loc
+	M.control_object = null
+	owner.eye = M

@@ -74,6 +74,7 @@
 
 	qdel(info)
 
+
 /proc/notes_hide(var/key, var/index)
 	key = ckey(key)
 	var/savefile/info = new("data/player_saves/[copytext(key, 1, 2)]/[key]/info.sav")
@@ -91,6 +92,7 @@
 	log_admin("[key_name_admin(usr)] has hidden one of [key]'s notes.")
 
 	qdel(info)
+
 
 /proc/notes_unhide(var/key, var/index)
 	key = ckey(key)
