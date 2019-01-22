@@ -326,8 +326,8 @@ proc/get_id_photo(var/mob/living/carbon/human/H)
 	var/icon/icobase = H.species.icobase
 	var/icon/temp
 
-	var/datum/ethnicity/ET = ethnicities_list[H.ethnicity]
-	var/datum/body_type/B = body_types_list[H.body_type]
+	var/datum/ethnicity/ET = GLOB.ethnicities_list[H.ethnicity]
+	var/datum/body_type/B = GLOB.body_types_list[H.body_type]
 
 	var/e_icon
 	var/b_icon
@@ -371,7 +371,7 @@ proc/get_id_photo(var/mob/living/carbon/human/H)
 		hair_s.Blend(rgb(H.r_hair, H.g_hair, H.b_hair), ICON_ADD)
 		eyes_s.Blend(hair_s, ICON_OVERLAY)
 
-	var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[H.f_style]
+	var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[H.f_style]
 	if(facial_hair_style)
 		var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 		facial_s.Blend(rgb(H.r_facial, H.g_facial, H.b_facial), ICON_ADD)

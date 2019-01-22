@@ -141,8 +141,8 @@
 				return null
 
 /mob/living/carbon/human/proc/set_limb_icons()
-	var/datum/ethnicity/E = ethnicities_list[ethnicity]
-	var/datum/body_type/B = body_types_list[body_type]
+	var/datum/ethnicity/E = GLOB.ethnicities_list[ethnicity]
+	var/datum/body_type/B = GLOB.body_types_list[body_type]
 
 	var/e_icon
 	var/b_icon

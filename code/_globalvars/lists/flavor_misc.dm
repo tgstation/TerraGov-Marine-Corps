@@ -1,19 +1,15 @@
 //Preferences stuff
+GLOBAL_LIST_EMPTY(ethnicities_list)
+GLOBAL_LIST_EMPTY(body_types_list)
 	//Hairstyles
 GLOBAL_LIST_EMPTY(hair_styles_list)			//stores /datum/sprite_accessory/hair indexed by name
-GLOBAL_LIST_EMPTY(hair_styles_male_list)		//stores only hair names
-GLOBAL_LIST_EMPTY(hair_styles_female_list)	//stores only hair names
 GLOBAL_LIST_EMPTY(facial_hair_styles_list)	//stores /datum/sprite_accessory/facial_hair indexed by name
-GLOBAL_LIST_EMPTY(facial_hair_styles_male_list)	//stores only hair names
-GLOBAL_LIST_EMPTY(facial_hair_styles_female_list)	//stores only hair names
 	//Underwear
 GLOBAL_LIST_EMPTY(underwear_list)		//stores /datum/sprite_accessory/underwear indexed by name
-GLOBAL_LIST_EMPTY(underwear_m)	//stores only underwear name
-GLOBAL_LIST_EMPTY(underwear_f)	//stores only underwear name
+GLOBAL_LIST_INIT(underwear_m, list("Briefs")) //Curse whoever made male/female underwear diffrent colours
+GLOBAL_LIST_INIT(underwear_f, list("Briefs", "Panties"))
 	//Undershirts
-GLOBAL_LIST_EMPTY(undershirt_list) 	//stores /datum/sprite_accessory/undershirt indexed by name
-GLOBAL_LIST_EMPTY(undershirt_m)	 //stores only undershirt name
-GLOBAL_LIST_EMPTY(undershirt_f)	 //stores only undershirt name
+GLOBAL_LIST_INIT(undershirt_t, list("None","Undershirt(Sleeveless)", "Undershirt(Sleeved)", "Rolled Undershirt(Sleeveless)", "Rolled Undershirt(Sleeved)"))
 	//Socks
 GLOBAL_LIST_EMPTY(socks_list)		//stores /datum/sprite_accessory/socks indexed by name
 	//Lizard Bits (all datum lists indexed by name)
@@ -87,14 +83,7 @@ GLOBAL_LIST_INIT(ai_core_display_screens, list(
 		return "ai-[lowertext(input)]"
 
 	//Backpacks
-#define GBACKPACK "Grey Backpack"
-#define GSATCHEL "Grey Satchel"
-#define GDUFFELBAG "Grey Duffel Bag"
-#define LSATCHEL "Leather Satchel"
-#define DBACKPACK "Department Backpack"
-#define DSATCHEL "Department Satchel"
-#define DDUFFELBAG "Department Duffel Bag"
-GLOBAL_LIST_INIT(backbaglist, list(DBACKPACK, DSATCHEL, DDUFFELBAG, GBACKPACK, GSATCHEL, GDUFFELBAG, LSATCHEL))
+GLOBAL_LIST_INIT(backbaglist, list("Nothing", "Backpack", "Satchel"))
 
 //Uplink spawn loc
 #define UPLINK_PDA		"PDA"

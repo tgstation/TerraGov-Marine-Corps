@@ -30,23 +30,6 @@ var/global/list/synth_types = list("Synthetic","Early Synthetic")
 
 // Posters
 var/global/list/datum/poster/poster_designs = subtypesof(/datum/poster)
-//Preferences stuff
-	// Ethnicities
-var/global/list/ethnicities_list = list()			// Stores /datum/ethnicity indexed by name
-	// Body Types
-var/global/list/body_types_list = list()			// Stores /datum/body_type indexed by name
-	//Hairstyles
-var/global/list/facial_hair_styles_list = list()	//stores /datum/sprite_accessory/facial_hair indexed by name
-
-	//Underwear
-var/global/list/underwear_m = list("Briefs") //Curse whoever made male/female underwear diffrent colours
-var/global/list/underwear_f = list("Briefs", "Panties")
-	//undershirt
-var/global/list/undershirt_t = list("None","Undershirt(Sleeveless)", "Undershirt(Sleeved)", "Rolled Undershirt(Sleeveless)", "Rolled Undershirt(Sleeved)")
-	//Backpacks
-var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel")
-	// Species specific
-var/global/list/moth_wings_list = list()
 
 //////////////////////////
 /////Initial Building/////
@@ -60,22 +43,22 @@ var/global/list/moth_wings_list = list()
  	// Facial Hair - Initialise all /datum/sprite_accessory/facial_hair into an list indexed by facialhair-style name
 	for(var/path in subtypesof(/datum/sprite_accessory/facial_hair))
 		var/datum/sprite_accessory/facial_hair/H = new path()
-		facial_hair_styles_list[H.name] = H
+		GLOB.facial_hair_styles_list[H.name] = H
 
 	// Species specific
 	for(var/path in subtypesof(/datum/sprite_accessory/moth_wings))
 		var/datum/sprite_accessory/moth_wings/wings = new path()
-		moth_wings_list[wings.name] = wings
+		GLOB.moth_wings_list[wings.name] = wings
 
 	// Ethnicity - Initialise all /datum/ethnicity into a list indexed by ethnicity name
 	for(var/path in subtypesof(/datum/ethnicity))
 		var/datum/ethnicity/E = new path()
-		ethnicities_list[E.name] = E
+		GLOB.ethnicities_list[E.name] = E
 
 	// Body Type - Initialise all /datum/body_type into a list indexed by body_type name
 	for(var/path in subtypesof(/datum/body_type))
 		var/datum/body_type/B = new path()
-		body_types_list[B.name] = B
+		GLOB.body_types_list[B.name] = B
 
 	// Surgery Steps - Initialize all /datum/surgery_step into a list
 	for(var/T in subtypesof(/datum/surgery_step))

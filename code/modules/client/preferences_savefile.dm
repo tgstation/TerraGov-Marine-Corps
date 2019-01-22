@@ -262,19 +262,19 @@
 	g_skin			= sanitize_integer(g_skin, 0, 255, initial(g_skin))
 	b_skin			= sanitize_integer(b_skin, 0, 255, initial(b_skin))
 	h_style			= sanitize_inlist(h_style, GLOB.hair_styles_list, initial(h_style))
-	f_style			= sanitize_inlist(f_style, facial_hair_styles_list, initial(f_style))
+	f_style			= sanitize_inlist(f_style, GLOB.facial_hair_styles_list, initial(f_style))
 	r_eyes			= sanitize_integer(r_eyes, 0, 255, initial(r_eyes))
 	g_eyes			= sanitize_integer(g_eyes, 0, 255, initial(g_eyes))
 	b_eyes			= sanitize_integer(b_eyes, 0, 255, initial(b_eyes))
 	if(gender == MALE)
-		underwear		= sanitize_integer(underwear, 1, underwear_m.len, initial(underwear))
+		underwear		= sanitize_integer(underwear, 1, GLOB.underwear_m.len, initial(underwear))
 	else
-		underwear		= sanitize_integer(underwear, 1, underwear_f.len, initial(underwear))
-	undershirt		= sanitize_integer(undershirt, 1, undershirt_t.len, initial(undershirt))
-	backbag			= sanitize_integer(backbag, 1, backbaglist.len, initial(backbag))
+		underwear		= sanitize_integer(underwear, 1, GLOB.underwear_f.len, initial(underwear))
+	undershirt		= sanitize_integer(undershirt, 1, GLOB.undershirt_t.len, initial(undershirt))
+	backbag			= sanitize_integer(backbag, 1, GLOB.backbaglist.len, initial(backbag))
 	//b_type			= sanitize_text(b_type, initial(b_type))
 
-	moth_wings		= (moth_wings in moth_wings_list) ? moth_wings : "Plain" // Dear CM coders, why do you have sanitize functions that are the equivalent of a ternary?
+	moth_wings		= (moth_wings in GLOB.moth_wings_list) ? moth_wings : "Plain" // Dear CM coders, why do you have sanitize functions that are the equivalent of a ternary?
 
 	alternate_option = sanitize_integer(alternate_option, 0, 2, initial(alternate_option))
 	job_command_high = sanitize_integer(job_command_high, 0, 65535, initial(job_command_high))

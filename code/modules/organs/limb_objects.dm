@@ -22,8 +22,8 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 
 
 	icon = base
-	var/datum/ethnicity/E = ethnicities_list[H.ethnicity]
-	var/datum/body_type/B = body_types_list[H.body_type]
+	var/datum/ethnicity/E = GLOB.ethnicities_list[H.ethnicity]
+	var/datum/body_type/B = GLOB.body_types_list[H.body_type]
 
 	var/e_icon
 	var/b_icon
@@ -86,7 +86,7 @@ obj/item/limb/New(loc, mob/living/carbon/human/H)
 		return
 	//Add (facial) hair.
 	if(H.f_style)
-		var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[H.f_style]
+		var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[H.f_style]
 		if(facial_hair_style)
 			var/icon/facial = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 			if(facial_hair_style.do_colouration)

@@ -17,8 +17,8 @@ datum/preferences
 		randomize_eyes_color()
 		randomize_skin_color()
 		randomize_species_specific()
-		underwear = rand(1,underwear_m.len)
-		undershirt = rand(1,undershirt_t.len)
+		underwear = rand(1,GLOB.underwear_m.len)
+		undershirt = rand(1,GLOB.undershirt_t.len)
 		backbag = 2
 		age = rand(AGE_MIN,AGE_MAX)
 		if(H)
@@ -200,8 +200,8 @@ datum/preferences
 		else
 			icobase = 'icons/mob/human_races/r_human.dmi'
 
-		var/datum/ethnicity/E = ethnicities_list[ethnicity]
-		var/datum/body_type/B = body_types_list[body_type]
+		var/datum/ethnicity/E = GLOB.ethnicities_list[ethnicity]
+		var/datum/body_type/B = GLOB.body_types_list[body_type]
 
 		var/e_icon
 		var/b_icon
@@ -235,7 +235,7 @@ datum/preferences
 			preview_icon.Blend(temp, ICON_OVERLAY)
 		
 		if(current_species && (current_species.name == "Moth"))
-			var/datum/sprite_accessory/moth_wings/wings = moth_wings_list[moth_wings]
+			var/datum/sprite_accessory/moth_wings/wings = GLOB.moth_wings_list[moth_wings]
 			var/icon/behind = new/icon("icon" = wings.icon, "icon_state" = "m_moth_wings_[wings.icon_state]_BEHIND")
 			var/icon/front = new/icon("icon" = wings.icon, "icon_state" = "m_moth_wings_[wings.icon_state]_FRONT")
 			preview_icon.Blend(behind, ICON_OVERLAY)
@@ -251,7 +251,7 @@ datum/preferences
 				hair_s.Blend(rgb(r_hair, g_hair, b_hair), ICON_ADD)
 				eyes_s.Blend(hair_s, ICON_OVERLAY)
 
-			var/datum/sprite_accessory/facial_hair_style = facial_hair_styles_list[f_style]
+			var/datum/sprite_accessory/facial_hair_style = GLOB.facial_hair_styles_list[f_style]
 			if(facial_hair_style)
 				var/icon/facial_s = new/icon("icon" = facial_hair_style.icon, "icon_state" = "[facial_hair_style.icon_state]_s")
 				facial_s.Blend(rgb(r_facial, g_facial, b_facial), ICON_ADD)
@@ -595,4 +595,4 @@ datum/preferences
 		updating_icon = 0
 
 /datum/preferences/proc/randomize_species_specific()
-	moth_wings = pick(moth_wings_list - "Burnt Off")
+	moth_wings = pick(GLOB.moth_wings_list - "Burnt Off")
