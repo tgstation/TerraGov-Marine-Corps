@@ -3,19 +3,6 @@ var/list/unansweredMhelps = list()
 var/list/CLFaxes = list()								//List of all CL faxes sent this round
 var/list/fax_contents = list() 					//List of fax contents to maintain it even if source paper is deleted
 var/list/TGMCFaxes = list()							//List of all TGMC faxes sent this round
-var/list/active_tracking_beacons = list()			//List of all active squad tracking beacons
-
-//Names of maps that can be compiled on
-var/list/DEFAULT_NEXT_MAP_CANDIDATES = list("LV-624", "Ice Colony", "Big-Red", "Prison Station")
-var/list/NEXT_MAP_CANDIDATES = DEFAULT_NEXT_MAP_CANDIDATES.Copy()
-
-//List of player votes. Name of the map from NEXT_MAP_CANDIADATES indexed by ckey
-var/list/player_votes = list()
-
-//Since it didn't really belong in any other category, I'm putting this here
-//This is for procs to replace all the goddamn 'in world's that are chilling around the code
-
-
 
 var/global/list/chemical_reactions_list				//List of all /datum/chemical_reaction datums. Used during chemical reactions
 var/global/list/chemical_reagents_list				//List of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
@@ -41,12 +28,8 @@ var/global/list/active_laser_targets = list()
 
 //used by the main overwatch console
 var/global/list/active_orbital_beacons = list()
-var/global/list/active_supply_beacons = list()
 
 var/global/world_qdel_log
-
-//Used by Queen overwatch
-//var/global/list/xeno_leader_list = list() - moved to hive_datum
 
 //Languages/species/whitelist.
 var/global/list/all_species[0]
@@ -64,12 +47,8 @@ var/global/list/ethnicities_list = list()			// Stores /datum/ethnicity indexed b
 var/global/list/body_types_list = list()			// Stores /datum/body_type indexed by name
 	//Hairstyles
 var/global/list/hair_styles_list = list()			//stores /datum/sprite_accessory/hair indexed by name
-var/global/list/hair_styles_male_list = list()
-var/global/list/hair_styles_female_list = list()
 var/global/list/facial_hair_styles_list = list()	//stores /datum/sprite_accessory/facial_hair indexed by name
-var/global/list/facial_hair_styles_male_list = list()
-var/global/list/facial_hair_styles_female_list = list()
-var/global/list/skin_styles_female_list = list()		//unused
+
 	//Underwear
 var/global/list/underwear_m = list("Briefs") //Curse whoever made male/female underwear diffrent colours
 var/global/list/underwear_f = list("Briefs", "Panties")
@@ -79,7 +58,6 @@ var/global/list/undershirt_t = list("None","Undershirt(Sleeveless)", "Undershirt
 var/global/list/backbaglist = list("Nothing", "Backpack", "Satchel")
 	// Species specific
 var/global/list/moth_wings_list = list()
-// var/global/list/exclude_jobs = list(/datum/job/ai,/datum/job/cyborg)
 
 //////////////////////////
 /////Initial Building/////
@@ -90,26 +68,10 @@ var/global/list/moth_wings_list = list()
 	for(var/path in subtypesof(/datum/sprite_accessory/hair))
 		var/datum/sprite_accessory/hair/H = new path()
 		hair_styles_list[H.name] = H
-		switch(H.gender)
-			if(MALE)
-				hair_styles_male_list += H.name
-			if(FEMALE)
-				hair_styles_female_list += H.name
-			else
-				hair_styles_male_list += H.name
-				hair_styles_female_list += H.name
  	// Facial Hair - Initialise all /datum/sprite_accessory/facial_hair into an list indexed by facialhair-style name
 	for(var/path in subtypesof(/datum/sprite_accessory/facial_hair))
 		var/datum/sprite_accessory/facial_hair/H = new path()
 		facial_hair_styles_list[H.name] = H
-		switch(H.gender)
-			if(MALE)
-				facial_hair_styles_male_list += H.name
-			if(FEMALE)
-				facial_hair_styles_female_list += H.name
-			else
-				facial_hair_styles_male_list += H.name
-				facial_hair_styles_female_list += H.name
 
 	// Species specific
 	for(var/path in subtypesof(/datum/sprite_accessory/moth_wings))
@@ -191,7 +153,7 @@ var/global/list/moth_wings_list = list()
 	hair
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/hair, GLOB.hair_styles_list, GLOB.hair_styles_male_list, GLOB.hair_styles_female_list)
 	facial hair
-	init_sprite_accessory_subtypes(/datum/sprite_accessory/facial_hair, GLOB.facial_hair_styles_list, GLOB.facial_hair_styles_male_list, GLOB.facial_hair_styles_female_list)
+	init_sprite_accessory_subtypes(/datum/sprite_accessory/facial_hair, GLOB.facial_hair_styles_list, GLOB.facial_hair_styles_male_list)
 	underwear
 	init_sprite_accessory_subtypes(/datum/sprite_accessory/underwear, GLOB.underwear_list, GLOB.underwear_m, GLOB.underwear_f)
 	undershirt
