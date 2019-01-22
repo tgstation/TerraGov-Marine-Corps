@@ -148,7 +148,7 @@
 		connected.toggle_stasis()
 	if (href_list["ejectify"])
 		connected.eject()
-	attack_hand(usr)
+	attack_hand(user)
 	add_fingerprint(usr)
 	return
 
