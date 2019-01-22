@@ -157,7 +157,7 @@ Frequency:
 	if ((user.get_active_held_item() != src || user.stat || user.is_mob_restrained()))
 		return
 	var/count = 0	//num of portals from this teleport in the world
-	for(var/obj/effect/portal/PO in effect_list)
+	for(var/obj/effect/portal/PO in GLOB.effect_list)
 		if(PO.creator == src)	count++
 	if(count >= 3)
 		user.show_message("<span class='notice'>\The [src] is recharging!</span>")

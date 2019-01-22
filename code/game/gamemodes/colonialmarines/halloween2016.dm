@@ -130,7 +130,7 @@
 
 	to_chat(world, "<span class='round_setup'>Setting up the mist...</span>")
 	//Get all the fog effects in the world.
-	for(F in effect_list) fog_blockers += F
+	for(F in GLOB.effect_list) fog_blockers += F
 
 	to_chat(world, "<span class='round_setup'>Generating spawn locations...</span>")
 	//Set up landmarks.

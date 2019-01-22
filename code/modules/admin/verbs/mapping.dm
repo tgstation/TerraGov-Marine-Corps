@@ -54,7 +54,7 @@ var/intercom_range_display_status = 0
 
 
 
-	for(var/obj/effect/debugging/camera_range/C in effect_list)
+	for(var/obj/effect/debugging/camera_range/C in GLOB.effect_list)
 		qdel(C)
 
 	if(camera_range_display_status)
@@ -109,7 +109,7 @@ var/intercom_range_display_status = 0
 	else
 		intercom_range_display_status = 1
 
-	for(var/obj/effect/debugging/marker/M in effect_list)
+	for(var/obj/effect/debugging/marker/M in GLOB.effect_list)
 		qdel(M)
 
 	if(intercom_range_display_status)
