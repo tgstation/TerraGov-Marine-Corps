@@ -36,21 +36,21 @@
 	flags_pass = PASSTABLE
 	use_plasma(10)
 	throw_at(T, 6, 2, src) //Victim, distance, speed
-	addtimer(CALLBACK(GLOBAL_PROC, /proc/xenomorph_reset_flags_pass, src), 6, null)
-	addtimer(CALLBACK(GLOBAL_PROC, /proc/xenomorph_pounce_delay, src), xeno_caste.pounce_delay, null)
+	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/xenomorph_reset_flags_pass, src), 6)
+	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/xenomorph_pounce_delay, src), xeno_caste.pounce_delay)
 
 	return TRUE
 
-/proc/xenomorph_pounce_delay(var/mob/living/carbon/Xenomorph/X)
-	X.usedPounce = 0
-	to_chat(X, "<span class='notice'>You get ready to pounce again.</span>")
-	X.update_action_button_icons()
+/mob/living/carbon/Xenomorph/proc/xenomorph_pounce_delay()
+	usedPounce = 0
+	to_chat(src, "<span class='notice'>You get ready to pounce again.</span>")
+	update_action_button_icons()
 
-/proc/xenomorph_reset_flags_pass(var/mob/living/carbon/Xenomorph/X)
-	if(!X.xeno_caste.hardcore)
-		X.flags_pass = initial(X.flags_pass) //Reset the passtable.
+/mob/living/carbon/Xenomorph/proc/xenomorph_reset_flags_pass()
+	if(!xeno_caste.hardcore)
+		flags_pass = initial(flags_pass) //Reset the passtable.
 	else
-		X.flags_pass = 0 //Reset the passtable.
+		flags_pass = 0 //Reset the passtable.
 
 /mob/living/carbon/Xenomorph/Hunter/Pounce(atom/T)
 
