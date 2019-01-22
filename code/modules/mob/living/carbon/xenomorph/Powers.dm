@@ -404,10 +404,12 @@
 
 	H.throw_at(T, fling_distance, 1, src, 1)
 
-	spawn(WARRIOR_FLING_COOLDOWN)
-		used_fling = FALSE
-		to_chat(src, "<span class='notice'>You gather enough strength to fling something again.</span>")
-		update_action_button_icons()
+	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/fling_reset), WARRIOR_FLING_COOLDOWN)
+
+/mob/living/carbon/Xenomorph/proc/fling_reset()
+	used_fling = FALSE
+	to_chat(src, "<span class='notice'>You gather enough strength to fling something again.</span>")
+	update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/proc/punch(var/mob/living/M)
 
@@ -486,10 +488,12 @@
 	shake_camera(M, 2, 1)
 	step_away(M, src, 2)
 
-	spawn(WARRIOR_PUNCH_COOLDOWN)
-		used_punch = FALSE
-		to_chat(src, "<span class='notice'>You gather enough strength to punch again.</span>")
-		update_action_button_icons()
+	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/punch_reset), WARRIOR_PUNCH_COOLDOWN)
+
+/mob/living/carbon/Xenomorph/proc/punch_reset()
+	used_punch = FALSE
+	to_chat(src, "<span class='notice'>You gather enough strength to punch again.</span>")
+	update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/proc/lunge(atom/A)
 
