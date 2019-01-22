@@ -3,7 +3,7 @@
 	set name = "Aghost"
 	set desc = "Allows you to ghost and re-enter body at will."
 
-	if(!check_rights(R_ADMIN) || !is_mentor())
+	if(!check_rights(R_ADMIN) && !is_mentor(owner))
 		return
 
 	if(!owner?.mob)
@@ -13,20 +13,19 @@
 
 	if(istype(M, /mob/new_player))
 		return
-
-	if(istype(M, /mob/dead/observer))
+	else if(istype(M, /mob/dead/observer))
 		var/mob/dead/observer/ghost = M
 		ghost.can_reenter_corpse = TRUE
 		ghost.reenter_corpse()
 	else
 		M.ghostize(TRUE)
+		owner.change_view(world.view)
 		if(M && !M.key)
-			M.key = "@[usr.key]"
-			if(M.client)
-				M.client.change_view(world.view)
+			M.key = "@[owner.key]"
 
-		message_admins("[key_name(usr)] admin ghosted.")
+
 		log_admin("[key_name(usr)] admin ghosted.")
+		message_admins("[ADMIN_TPMONTY(usr)] admin ghosted.")
 
 
 /datum/admins/proc/invisimin()
@@ -52,7 +51,7 @@
 		M.remove_from_all_mob_huds()
 
 	log_admin("[key_name(usr)] has [(M.invisibility == INVISIBILITY_OBSERVER) ? "enabled" : "disabled"] invisimin.")
-	message_admins("[key_name_admin(usr)] has [(M.invisibility == INVISIBILITY_OBSERVER) ? "enabled" : "disabled"] invisimin.")
+	message_admins("[ADMIN_TPMONTY(usr)] has [(M.invisibility == INVISIBILITY_OBSERVER) ? "enabled" : "disabled"] invisimin.")
 
 
 /datum/admins/proc/stealth_mode()
@@ -74,34 +73,7 @@
 		fakekey = new_key
 
 	log_admin("[key_name(usr)] has turned stealth mode [fakekey ? "on" : "off"].")
-	message_admins("[key_name_admin(usr)] has turned stealth mode [fakekey ? "on" : "off"]")
-
-
-/datum/admins/proc/deadmin_self()
-	set name = "De-Admin Self"
-	set category = "Admin"
-	set desc = "Temporarily removes your admin powers."
-
-	if(alert("Do you really want to de-admin temporarily?", , "Yes", "No") == "No")
-		return
-
-	verbs += /datum/admins/proc/readmin_self
-	deadmin_self()
-
-	log_admin("[key_name(usr)] deadmined themselves.")
-	message_admins("[key_name_admin(usr)] deadmined themselves.")
-
-
-/datum/admins/proc/readmin_self()
-	set name = "Re-admin Self"
-	set category = "Admin"
-	set desc = "Gives you your powers back."
-
-	verbs -= /datum/admins/proc/readmin_self
-	readmin_self()
-
-	log_admin("[key_name(usr)] readmined themselves.")
-	message_admins("[key_name_admin(usr)] readmined themselves.")
+	message_admins("[ADMIN_TPMONTY(usr)] has turned stealth mode [fakekey ? "on" : "off"].")
 
 
 /datum/admins/proc/jobs_free()
@@ -127,7 +99,7 @@
 	RoleAuthority.free_role(RoleAuthority.roles_for_mode[role])
 
 	log_admin("[key_name(usr)] has made a [role] slot free.")
-	message_admins("[key_name_admin(usr)] has made a [role] slot free.")
+	message_admins("[ADMIN_TPMONTY(usr)] has made a [role] slot free.")
 
 
 /datum/admins/proc/jobs_list()
@@ -149,7 +121,7 @@
 			to_chat(src, "[J.title]: [J.get_total_positions(1)] / [J.current_positions]")
 
 	log_admin("[key_name(usr)] checked job slots.")
-	message_admins("[key_name_admin(usr)] checked job slots.")
+	message_admins("[ADMIN_TPMONTY(usr)] checked job slots.")
 
 
 /datum/admins/proc/change_key(mob/M in living_mob_list)
@@ -174,7 +146,7 @@
 		M.client.change_view(world.view)
 
 	log_admin("[key_name(usr)] changed [M.name] ckey to [new_ckey].")
-	message_admins("[key_name_admin(usr)] changed [M.name] ckey to [new_ckey].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed [ADMIN_TPMONTY(M)] ckey to [new_ckey].")
 
 
 /datum/admins/proc/rejuvenate(mob/living/M as mob in mob_list)
@@ -191,7 +163,7 @@
 	M.revive()
 
 	log_admin("[key_name(usr)] revived [key_name(M)].")
-	message_admins("[key_name_admin(usr)] revived [key_name_admin(M)].")
+	message_admins("[ADMIN_TPMONTY(usr)] revived [key_name_admin(M)].")
 
 
 /datum/admins/proc/toggle_sleep(var/mob/living/M as mob in mob_list)
@@ -206,8 +178,8 @@
 	else
 		M.sleeping = 9999999
 
-	log_admin("[key_name(usr)] toggled sleeping on [key_name(M)].")
-	message_admins("[key_name_admin(usr)] toggled sleeping on [key_name_admin(M)].")
+	log_admin("[key_name(usr)] has [M.sleeping ? "enabled" : "disabled"] sleeping on [key_name(M)].")
+	message_admins("[ADMIN_TPMONTY(usr)] has [M.sleeping ? "enabled" : "disabled"] sleeping on [ADMIN_TPMONTY(M)].")
 
 
 /datum/admins/proc/toggle_sleep_area()
@@ -227,7 +199,7 @@
 			for(var/mob/living/M in view())
 				M.sleeping = 0
 			log_admin("[key_name(usr)] has unslept everyone in view.")
-			message_admins("[key_name_admin(usr)] has unslept everyone in view.")
+			message_admins("[ADMIN_TPMONTY(usr)]has unslept everyone in view.")
 
 
 /datum/admins/proc/change_squad(var/mob/living/carbon/human/H in mob_list)
@@ -279,7 +251,7 @@
 	H.hud_set_squad()
 
 	log_admin("[key_name(src)] has changed the squad of [key_name(H)] to [S.name].")
-	message_admins("[key_name_admin(usr)] has changed the squad of [key_name_admin(H)] to [S.name].")
+	message_admins("[ADMIN_TPMONTY(usr)] has changed the squad of [ADMIN_TPMONTY(H)] to [S.name].")
 
 
 /datum/admins/proc/direct_control(var/mob/M in mob_list)
@@ -290,12 +262,11 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(M.gc_destroyed)
-		return
-
+	var/replaced = FALSE
 	if(M.ckey)
 		if(alert("This mob is being controlled by [M.ckey], they will be made a ghost. Are you sure?",,"Yes","No") == "Yes")
 			M.ghostize()
+			replaced = TRUE
 		else
 			return
 
@@ -308,11 +279,11 @@
 	if(isobserver(adminmob))
 		qdel(adminmob)
 
-	log_admin("[key_name(usr)] took over [key_name(M)].")
-	message_admins("[key_name_admin(usr)] took over [key_name_admin(M)].")
+	log_admin("[key_name(usr)] took over [M.name][replaced ? " replacing the previous owner" : ""].")
+	message_admins("[ADMIN_TPMONTY(usr)] took over [M.name][replaced ? " replacing the previous owner" : ""]..")
 
 
-/datum/admins/proc/getserverlogs()
+/datum/admins/proc/logs_server()
 	set category = "Admin"
 	set name = "Get Server Logs"
 
@@ -322,7 +293,7 @@
 	browseserverlogs()
 
 
-/datum/admins/proc/getcurrentlogs()
+/datum/admins/proc/logs_current()
 	set category = "Admin"
 	set name = "Get Current Logs"
 	set desc = "View/retrieve logfiles for the current round."
@@ -333,7 +304,7 @@
 	browseserverlogs("[GLOB.log_directory]/")
 
 
-/datum/admins/proc/getfolderlogs()
+/datum/admins/proc/logs_folder()
 	set name = "Get Server Logs Folder"
 	set desc = "Please use responsibly."
 	set category = "Admin"
@@ -360,40 +331,40 @@
 	if(!path)
 		return
 
-	message_admins("[key_name_admin(src)] accessed file: [path]")
-	switch(alert("View (in game), Open (in your system's text editor), or Download?", path, "View", "Open", "Download"))
-		if ("View")
+	switch(alert("View (in game), Open (in your system's text editor), Download", path, "View", "Open", "Download"))
+		if("View")
 			src << browse("<pre style='word-wrap: break-word;'>[html_encode(file2text(file(path)))]</pre>", list2params(list("window" = "viewfile.[path]")))
-		if ("Open")
+		if("Open")
 			src << run(file(path))
-		if ("Download")
+		if("Download")
 			src << ftp(file(path))
-		else
-			return
-	to_chat(src, "Attempting to send [path], this may take a fair few minutes if the file is very large.")
+
+	log_admin("[key_name(usr)] accessed file: [path].")
+	message_admins("[ADMIN_TPMONTY(usr)] accessed file: [path].")
 
 
 /datum/admins/proc/recursive_download(var/folder)
+	if(!check_rights(R_ADMIN))
+		return
+
 	var/files = flist(folder)
 	for(var/next in files)
 		if(copytext(next, -1, 0) == "/")
-			to_chat(src, "Going deeper [folder][next]")
+			to_chat(src, "Going deeper: [folder][next]")
 			recursive_download(folder + next)
 		else
-			to_chat(src, "Downloading [folder][next]")
+			to_chat(src, "Downloading: [folder][next]")
 			var/fil = replacetext("[folder][next]", "/", "_")
-			sleep(5)
-			src << ftp(file(folder + next), fil)
+			spawn(5)
+				src << ftp(file(folder + next), fil)
 
 
 /datum/admins/proc/browse_folders(root = "data/logs/", max_iterations = 100)
 	var/path = root
-
 	for(var/i = 0, i < max_iterations, i++)
 		var/list/choices = flist(path)
 		if(path != root)
 			choices.Insert(1, "/")
-
 		var/choice = input(src, "Choose a folder to access:", "Download", null) as null|anything in choices
 		switch(choice)
 			if(null)
@@ -401,10 +372,7 @@
 			if("/")
 				path = root
 				continue
-
 		path += choice
-
-
 		if(copytext(path, -1, 0) != "/")
 			continue
 		else
@@ -414,11 +382,10 @@
 					break
 				if("No")
 					continue
-
 	return path
 
 
-/proc/show_individual_logging_panel(mob/M, source = LOGSRC_CLIENT, type = INDIVIDUAL_ATTACK_LOG)
+/datum/admins/proc/show_individual_logging_panel(mob/M, source = LOGSRC_CLIENT, type = INDIVIDUAL_ATTACK_LOG)
 	if(!M || !ismob(M))
 		return
 
@@ -479,7 +446,7 @@
 	usr << browse(dat, "window=invidual_logging_[key_name(M)];size=600x480")
 
 
-/proc/individual_logging_panel_link(mob/M, log_type, log_src, label, selected_src, selected_type)
+/datum/admins/proc/individual_logging_panel_link(mob/M, log_type, log_src, label, selected_src, selected_type)
 	var/slabel = label
 	if(selected_type == log_type && selected_src == log_src)
 		slabel = "<b>\[[label]\]</b>"
@@ -506,8 +473,8 @@
 
 	if(check_rights(R_ADMIN))
 		msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> [ADMIN_TPMONTY(usr)]: <span class='message'>[msg]</span></span>"
-		for(var/client/C in admins)
-			if(check_rights(R_ASAY))
+		for(var/client/C in GLOB.admins)
+			if(check_other_rights(C, R_ASAY))
 				to_chat(C, msg)
 
 
@@ -516,7 +483,7 @@
 	set name = "msay"
 	set hidden = TRUE
 
-	if(!check_rights(R_ADMIN) && !is_mentor())
+	if(!check_rights(R_ADMIN) && !is_mentor(owner))
 		return
 
 	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
@@ -532,13 +499,13 @@
 	else if(check_rights(R_ADMIN))
 		color = "adminmod"
 
-	for(var/client/C in admins)
-		if(check_rights(R_ADMIN))
-			to_chat(C, "<span class='[color]'><span class='prefix'>[rank]</span> [key_name_admin(C)] [ADMIN_TPMONTY(C.mob)]: <span class='message'>[msg]</span></span>")
-		else if(is_mentor() && owner.mob.stat == DEAD)
-			to_chat(C, "<span class='[color]'><span class='prefix'>[rank]</span> [key_name_admin(src, TRUE, TRUE, FALSE)] [ADMIN_JMP(C.mob)] [ADMIN_FLW(C.mob)]: <span class='message'>[msg]</span></span>")
+	for(var/client/C in GLOB.admins)
+		if(check_other_rights(C, R_ADMIN))
+			to_chat(C, "<span class='[color]'><span class='prefix'>[rank]</span> [ADMIN_TPMONTY(C.mob)]: <span class='message'>[msg]</span></span>")
+		else if(is_mentor(C) && owner.mob.stat == DEAD)
+			to_chat(C, "<span class='[color]'><span class='prefix'>[rank]</span> [key_name_admin(C, TRUE, TRUE, FALSE)] [ADMIN_JMP(C.mob)] [ADMIN_FLW(C.mob)]: <span class='message'>[msg]</span></span>")
 		else
-			to_chat(C, "<span class='[color]'><span class='prefix'>[rank]</span> [key_name_admin(src, TRUE, FALSE, FALSE)] [ADMIN_JMP(C.mob)] [ADMIN_FLW(C.mob)]: <span class='message'>[msg]</span></span>")
+			to_chat(C, "<span class='[color]'><span class='prefix'>[rank]</span> [key_name_admin(C, TRUE, FALSE, FALSE)] [ADMIN_JMP(C.mob)] [ADMIN_FLW(C.mob)]: <span class='message'>[msg]</span></span>")
 
 
 /datum/admins/proc/dsay(msg as text)
@@ -546,11 +513,11 @@
 	set name = "dsay"
 	set hidden = TRUE
 
-	if(!check_rights(R_ADMIN) && !is_mentor())
+	if(!check_rights(R_ADMIN) && !is_mentor(owner))
 		return
 
-	if(is_mentor() && owner.mob.stat != DEAD)
-		to_chat(usr, "You must be an observer to use dsay.")
+	if(is_mentor(owner) && owner.mob.stat != DEAD)
+		to_chat(usr, "<span class='warning'>You must be an observer to use dsay.</span>")
 		return
 
 	if(owner.prefs.muted & MUTE_DEADCHAT)
@@ -570,18 +537,17 @@
 		return
 
 	log_dsay("[key_name(usr)]: [msg]")
-
-	var/rendered = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>([rank]) [owner.key]</span> says, <span class='message'>\"[msg]\"</span></span>"
+	msg = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>([rank]) [fakekey ? fakekey : owner.key]</span> says, <span class='message'>[msg]</span></span>"
 
 	for(var/client/C in clients)
 		if(istype(C.mob, /mob/new_player))
 			continue
 
 		if(check_other_rights(C, R_ADMIN) && (C.prefs.toggles_chat & CHAT_DEAD))
-			to_chat(C, rendered)
+			to_chat(C, msg)
 
 		else if(C.mob.stat == DEAD && (C.prefs.toggles_chat & CHAT_DEAD))
-			to_chat(C, rendered)
+			to_chat(C, msg)
 
 
 /mob/proc/on_mob_jump()
@@ -604,7 +570,7 @@
 	M.forceMove(pick(get_area_turfs(A)))
 
 	log_admin("[key_name(usr)] jumped to [AREACOORD(A)].")
-	if(!istype(usr, /mob/dead/observer))
+	if(!istype(M, /mob/dead/observer))
 		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_VERBOSEJMP(A)].")
 
 
@@ -619,9 +585,9 @@
 	M.on_mob_jump()
 	M.forceMove(T)
 
-	log_admin("[key_name(usr)] jumped to [AREACOORD(M.loc)].")
+	log_admin("[key_name(usr)] jumped to area [AREACOORD(M.loc)].")
 	if(!istype(M, /mob/dead/observer))
-		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_VERBOSEJMP(M.loc)].")
+		message_admins("[ADMIN_TPMONTY(usr)] jumped to area [ADMIN_VERBOSEJMP(M.loc)].")
 
 
 /datum/admins/proc/jump_coord(tx as num, ty as num, tz as num)
@@ -638,9 +604,9 @@
 	M.z = tz
 	M.forceMove(M.loc)
 
-	log_admin("[key_name(usr)] jumped to [AREACOORD(M.loc)].")
+	log_admin("[key_name(usr)] jumped to coordinate [AREACOORD(M.loc)].")
 	if(!istype(usr, /mob/dead/observer))
-		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_VERBOSEJMP(M.loc)].")
+		message_admins("[ADMIN_TPMONTY(usr)] jumped to coordinate [ADMIN_VERBOSEJMP(M.loc)].")
 
 
 /datum/admins/proc/jump_mob(var/mob/M in mob_list)
@@ -658,7 +624,7 @@
 
 	log_admin("[key_name(usr)] jumped to [key_name(M)]'s mob [AREACOORD(M.loc)]")
 	if(!istype(N, /mob/dead/observer))
-		message_admins("[key_name_admin(usr)] jumped to [ADMIN_TPMONTY(M)].")
+		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_TPMONTY(M)].")
 
 
 /datum/admins/proc/jump_key()
@@ -747,18 +713,16 @@
 
 
 #define IRCREPLYCOUNT 2
-
-
-//allows right clicking mobs to send an admin PM to their client, forwards the selected mob's client to cmd_admin_pm
 /client/proc/cmd_admin_pm_context(mob/M in GLOB.mob_list)
 	set category = null
 	set name = "Admin PM Mob"
-	if(!holder)
-		to_chat(src, "<font color='red'>Error: Admin-PM-Context: Only administrators may use this command.</font>")
+
+	if(!check_rights(R_ADMIN) && !is_mentor(src))
 		return
-	if( !ismob(M) || !M.client )
+
+	if(!ismob(M) || !M.client )
 		return
-	cmd_admin_pm(M.client,null)
+	cmd_admin_pm(M.client, null)
 
 //shows a list of clients we could send PMs to, then forwards our choice to cmd_admin_pm
 /client/proc/cmd_admin_pm_panel()
@@ -780,6 +744,7 @@
 			targets["(No Mob) - [T]"] = T
 	var/target = input(src,"To whom shall we send a message?","Admin PM",null) as null|anything in sortList(targets)
 	cmd_admin_pm(targets[target],null)
+
 
 /client/proc/cmd_ahelp_reply(whom)
 	if(prefs.muted & MUTE_ADMINHELP)
@@ -859,7 +824,7 @@
 				current_ticket.MessageNoRecipient(msg)
 			return
 
-	if (src.handle_spam_prevention(msg,MUTE_ADMINHELP))
+	if(handle_spam_prevention(msg,MUTE_ADMINHELP))
 		return
 
 	//clean the message if it's not sent by a high-rank admin

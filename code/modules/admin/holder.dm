@@ -127,7 +127,7 @@ GLOBAL_PROTECT(href_token)
 
 
 /client/proc/readmin()
-	set name = "Readmin"
+	set name = "Re-Admin"
 	set category = "Admin"
 	set desc = "Regain your admin powers."
 
@@ -135,35 +135,32 @@ GLOBAL_PROTECT(href_token)
 
 	if(!A)
 		A = GLOB.admin_datums[ckey]
-		if (!A)
-			var/msg = " is trying to readmin but they have no deadmin entry"
-			message_admins("[key_name_admin(src)][msg]")
-			log_admin_private("[key_name(src)][msg]")
+		if(!A)
+			log_admin_private("[key_name(src)] is trying to readmin but they have no deadmin entry.")
+			message_admins("[key_name_admin(src)] is trying to readmin but they have no deadmin entry.")
 			return
 
-	A.associate(src)
+	A.associate()
 
-	if (!holder)
-		return //This can happen if an admin attempts to vv themself into somebody elses's deadmin datum by getting ref via brute force
+	if(!holder)//This can happen if an admin attempts to vv themself into somebody elses's deadmin datum by getting ref via brute force
+		return
 
-	to_chat(src, "<span class='interface'>You are now an admin.</span>")
-	message_admins("[src] re-adminned themselves.")
-	log_admin("[src] re-adminned themselves.")
+	message_admins("[key_name(usr)] re-adminned themselves.")
+	log_admin("[ADMIN_TPMONTY(usr)] re-adminned themselves.")
 
 
 /client/proc/deadmin()
-	set name = "Deadmin"
+	set name = "De-Admin"
 	set category = "Admin"
-	set desc = "Shed your admin powers."
+	set desc = "Temporarily remove your admin powers."
 
 	if(!holder)
 		return
 
 	holder.deactivate()
 
-	to_chat(src, "<span class='interface'>You are now a normal player.</span>")
-	log_admin("[src] deadmined themself.")
-	message_admins("[src] deadmined themself.")
+	log_admin("[key_name(usr)] de-adminned themselves.")
+	message_admins("[ADMIN_TPMONTY(usr)] de-adminned themselves.")
 
 
 /proc/GenerateToken()
@@ -212,7 +209,6 @@ GLOBAL_PROTECT(href_token)
 /proc/check_other_rights(client/other, rights_required, show_msg = TRUE)
 	if(!other)
 		return FALSE
-
 	if(rights_required && other.holder.rank.rights)
 		if(rights_required & other.holder.rank.rights)
 			return TRUE
@@ -229,73 +225,150 @@ GLOBAL_PROTECT(href_token)
 /proc/check_if_greater_rights_than(client/other)
 	if(!usr?.client)
 		return FALSE
-
 	if(usr.client.holder)
 		if(!other?.holder?.rank)
 			return TRUE
 		if(usr.client.holder.rank.rights != other.holder.rank.rights && ((usr.client.holder.rank.rights & other.holder.rank.rights) == other.holder.rank.rights))
 			return TRUE
-
-	to_chat(usr, "<span class='warning'>Cannot proceed. They have more or equal rights to us.</span>")
+	to_chat(usr, "<span class='warning'>Cannot proceed. They have more or equal rights than us.</span>")
 	return FALSE
 
 
-var/list/admin_verbs_default = list(
+GLOBAL_PROTECT(admin_verbs_default)
+GLOBAL_LIST_INIT(admin_verbs_default, world.AVdefault())
+/world/proc/AVdefault()
+	return list(
+	/client/proc/deadmin,
 	)
-var/list/admin_verbs_admin = list(
+GLOBAL_PROTECT(admin_verbs_admin)
+GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
+/world/proc/AVadmin()
+	return list(
+	/datum/admins/proc/admin_ghost,
+	/datum/admins/proc/invisimin,
+	/datum/admins/proc/stealth_mode,
+	/datum/admins/proc/jobs_free,
+	/datum/admins/proc/jobs_list,
+	/datum/admins/proc/change_key,
+	/datum/admins/proc/rejuvenate,
+	/datum/admins/proc/toggle_sleep,
+	/datum/admins/proc/toggle_sleep_area,
+	/datum/admins/proc/change_squad,
+	/datum/admins/proc/direct_control,
+	/datum/admins/proc/logs_server,
+	/datum/admins/proc/logs_current,
+	/datum/admins/proc/logs_folder,
+	/datum/admins/proc/jump_area,
+	/datum/admins/proc/jump_turf,
+	/datum/admins/proc/jump_coord,
+	/datum/admins/proc/jump_mob,
+	/datum/admins/proc/jump_key,
+	/datum/admins/proc/get_mob,
+	/datum/admins/proc/get_key,
+	/datum/admins/proc/send_mob,
+	/client/proc/cmd_admin_pm_panel, //REWORK THIS ONE
 )
-var/list/admin_verbs_ban = list(
+GLOBAL_PROTECT(admin_verbs_ban)
+GLOBAL_LIST_INIT(admin_verbs_ban, world.AVban())
+/world/proc/AVban()
+	return list(
+
 	)
-var/list/admin_verbs_sound = list(
+GLOBAL_PROTECT(admin_verbs_asay)
+GLOBAL_LIST_INIT(admin_verbs_asay, world.AVasay())
+/world/proc/AVasay()
+	return list(
+	/datum/admins/proc/asay
 	)
-var/list/admin_verbs_fun = list(
+GLOBAL_PROTECT(admin_verbs_fun)
+GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
+/world/proc/AVfun()
+	return list(
+
 	)
-var/list/admin_verbs_spawn = list(
-	)
-var/list/admin_verbs_server = list(
-	)
-var/list/admin_verbs_debug = list(
-	)
-var/list/admin_verbs_permissions = list(
-	)
-var/list/admin_verbs_color = list(
+GLOBAL_PROTECT(admin_verbs_spawn)
+GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
+/world/proc/AVspawn()
+	return list(
 	)
 
-var/list/admin_verbs_hideable = list(
+GLOBAL_PROTECT(admin_verbs_sound)
+GLOBAL_LIST_INIT(admin_verbs_sound, world.AVsound())
+/world/proc/AVsound()
+	return list(
 	)
+GLOBAL_PROTECT(admin_verbs_server)
+GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
+/world/proc/AVserver()
+	return list(
 
-var/list/admin_verbs_mentor = list(
+	)
+GLOBAL_PROTECT(admin_verbs_debug)
+GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
+/world/proc/AVdebug()
+	return list(
+
+	)
+GLOBAL_PROTECT(admin_verbs_permissions)
+GLOBAL_LIST_INIT(admin_verbs_permissions, world.AVpermissions())
+/world/proc/AVpermissions()
+	return list(
+
+	)
+GLOBAL_PROTECT(admin_verbs_color)
+GLOBAL_LIST_INIT(admin_verbs_color, world.AVcolor())
+/world/proc/AVcolor()
+	return list(
+
+	)
+GLOBAL_PROTECT(admin_verbs_mentor)
+GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
+/world/proc/AVmentor()
+	return list(
+	/datum/admins/proc/msay,
+	/datum/admins/proc/dsay
 )
+
 
 /client/proc/add_admin_verbs()
-	if(holder.rank)
-		verbs += admin_verbs_default
-		if(holder.rank.rights & R_ASAY)		verbs += admin_verbs_admin
-		if(holder.rank.rights & R_ADMIN)			verbs += admin_verbs_admin
-		if(holder.rank.rights & R_BAN)			verbs += admin_verbs_ban
-		if(holder.rank.rights & R_FUN)			verbs += admin_verbs_fun
-		if(holder.rank.rights & R_SERVER)		verbs += admin_verbs_server
-		if(holder.rank.rights & R_DEBUG)			verbs += admin_verbs_debug
-		if(holder.rank.rights & R_PERMISSIONS)	verbs += admin_verbs_permissions
-		if(holder.rank.rights & R_COLOR)			verbs += admin_verbs_color
-		if(holder.rank.rights & R_SOUND)		verbs += admin_verbs_sound
-		if(holder.rank.rights & R_SPAWN)			verbs += admin_verbs_spawn
-		if(holder.rank.rights & R_MENTOR)		verbs += admin_verbs_mentor
+	if(holder)
+		var/rights = holder.rank.rights
+		verbs += GLOB.admin_verbs_default
+		if(rights & R_ADMIN)
+			verbs += GLOB.admin_verbs_admin
+		if(rights & R_MENTOR)
+			verbs += GLOB.admin_verbs_mentor
+		if(rights & R_BAN)
+			verbs += GLOB.admin_verbs_ban
+		if(rights & R_ASAY)
+			verbs += GLOB.admin_verbs_asay
+		if(rights & R_FUN)
+			verbs += GLOB.admin_verbs_fun
+		if(rights & R_SERVER)
+			verbs += GLOB.admin_verbs_server
+		if(rights & R_DEBUG)
+			verbs += GLOB.admin_verbs_debug
+		if(rights & R_PERMISSIONS)
+			verbs += GLOB.admin_verbs_permissions
+		if(rights & R_SOUND)
+			verbs += GLOB.admin_verbs_sound
+		if(rights & R_SPAWN)
+			verbs += GLOB.admin_verbs_spawn
+
 
 /client/proc/remove_admin_verbs()
 	verbs.Remove(
-		admin_verbs_default,
-		admin_verbs_admin,
-		admin_verbs_admin,
-		admin_verbs_ban,
-		admin_verbs_fun,
-		admin_verbs_server,
-		admin_verbs_debug,
-		admin_verbs_permissions,
-		admin_verbs_admin,
-		admin_verbs_color,
-		admin_verbs_sound,
-		admin_verbs_spawn,
+		GLOB.admin_verbs_default,
+		GLOB.admin_verbs_admin,
+		GLOB.admin_verbs_mentor,
+		GLOB.admin_verbs_ban,
+		GLOB.admin_verbs_asay,
+		GLOB.admin_verbs_fun,
+		GLOB.admin_verbs_server,
+		GLOB.admin_verbs_debug,
+		GLOB.admin_verbs_permissions,
+		GLOB.admin_verbs_sound,
+		GLOB.admin_verbs_spawn,
 		)
 
 
@@ -345,9 +418,13 @@ var/list/admin_verbs_mentor = list(
 			to_chat(C, msg)
 
 
-/proc/find_stealth_key() //TEMPORARY
-	if(usr?.client?.holder)
-		return usr.client.holder.owner.key
+/client/proc/find_stealth_key(txt)
+	if(txt)
+		for(var/P in GLOB.stealthminID)
+			if(GLOB.stealthminID[P] == txt)
+				return P
+	txt = GLOB.stealthminID[ckey]
+	return txt
 
 
 /proc/WrapAdminProcCall(datum/target, procname, list/arguments)
@@ -380,7 +457,7 @@ var/list/admin_verbs_mentor = list(
 	if(--GLOB.AdminProcCallCount == 0)
 		GLOB.AdminProcCaller = null
 
-//adv proc call this, ya nerds
+
 /world/proc/WrapAdminProcCall(datum/target, procname, list/arguments)
 	if(target == GLOBAL_PROC)
 		return call(procname)(arglist(arguments))

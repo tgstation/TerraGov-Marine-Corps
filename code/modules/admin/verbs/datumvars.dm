@@ -2,6 +2,61 @@
 #define VV_MSG_EDITED "<br><font size='1' color='red'><b>Var Edited</b></font>"
 #define VV_MSG_DELETED "<br><font size='1' color='red'><b>Deleted</b></font>"
 
+/proc/get_fancy_list_of_atom_types()
+	var/static/list/pre_generated_list
+	if (!pre_generated_list) //init
+		pre_generated_list = make_types_fancy(typesof(/atom))
+	return pre_generated_list
+
+
+/proc/get_fancy_list_of_datum_types()
+	var/static/list/pre_generated_list
+	if (!pre_generated_list) //init
+		pre_generated_list = make_types_fancy(sortList(typesof(/datum) - typesof(/atom)))
+	return pre_generated_list
+
+
+/proc/filter_fancy_list(list/L, filter as text)
+	var/list/matches = new
+	for(var/key in L)
+		var/value = L[key]
+		if(findtext("[key]", filter) || findtext("[value]", filter))
+			matches[key] = value
+	return matches
+
+/proc/make_types_fancy(var/list/types)
+	if (ispath(types))
+		types = list(types)
+	. = list()
+	for(var/type in types)
+		var/typename = "[type]"
+		var/static/list/TYPES_SHORTCUTS = list(
+			/obj/effect/decal/cleanable = "CLEANABLE",
+			/obj/item/clothing/head/helmet/space = "SPESSHELMET",
+			/obj/item/book/manual = "MANUAL",
+			/obj/machinery/atmospherics = "ATMOS_MECH",
+			/obj/machinery/portable_atmospherics = "PORT_ATMOS",
+			/obj/item/mecha_parts/mecha_equipment = "MECHA_EQUIP",
+			/obj/item/organ = "ORGAN",
+			/obj/item = "ITEM",
+			/obj/machinery = "MACHINERY",
+			/obj/effect = "EFFECT",
+			/obj = "O",
+			/datum = "D",
+			/turf/open = "OPEN",
+			/turf/closed = "CLOSED",
+			/turf = "T",
+			/mob/living/carbon = "CARBON",
+			/mob/living/simple_animal = "SIMPLE",
+			/mob/living = "LIVING",
+			/mob = "M"
+		)
+		for (var/tn in TYPES_SHORTCUTS)
+			if (copytext(typename,1, length("[tn]/")+1)=="[tn]/" /*findtextEx(typename,"[tn]/",1,2)*/ )
+				typename = TYPES_SHORTCUTS[tn]+copytext(typename,length("[tn]/"))
+				break
+		.[typename] = type
+
 /datum/proc/CanProcCall(procname)
 	return TRUE
 
@@ -18,8 +73,8 @@
 /datum/proc/vv_get_var(var_name)
 	switch(var_name)
 		if ("vars")
-			return debug_variable(var_name, list(), 0, src)
-	return debug_variable(var_name, vars[var_name], 0, src)
+			return debug_variables(var_name, list(), 0, src)
+	return debug_variables(var_name, vars[var_name], 0, src)
 
 //please call . = ..() first and append to the result, that way parent items are always at the top and child items are further down
 //add separaters by doing . += "---"
@@ -32,7 +87,7 @@
 	.["Show VV To Player"] = "?_src_=vars;[HrefToken(TRUE)];expose=[REF(src)]"
 
 
-/datum/admins/proc/debug_variables(datum/D in world)
+/datum/proc/debug_variables(datum/D in world)
 	set category = "Debug"
 	set name = "View Variables"
 	//set src in world
@@ -91,7 +146,6 @@
 					OXY:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=oxygen' id='oxygen'>[M.getOxyLoss()]</a>
 					CLONE:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=clone' id='clone'>[M.getCloneLoss()]</a>
 					BRAIN:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=brain' id='brain'>[M.getBrainLoss()]</a>
-					STAMINA:<font size='1'><a href='?_src_=vars;[HrefToken()];mobToDamage=[refid];adjustDamage=stamina' id='stamina'>[M.getStaminaLoss()]</a>
 				</font>
 			"}
 		else
@@ -104,7 +158,7 @@
 		formatted_type = null
 
 	var/marked
-	if(holder && holder.marked_datum && holder.marked_datum == D)
+	if(usr.client.holder.marked_datum && usr.client.holder.marked_datum == D)
 		marked = VV_MSG_MARKED
 	var/varedited_line = ""
 	if(!islist && (D.datum_flags & DF_VAR_EDITED))
@@ -149,7 +203,7 @@
 			var/value
 			if (IS_NORMAL_LIST(L) && !isnum(key))
 				value = L[key]
-			variable_html += debug_variable(i, value, 0, D)
+			variable_html += debug_variables(i, value, 0, D)
 	else
 
 		names = sortList(names)
@@ -392,12 +446,12 @@
 	src << browse(html, "window=variables[refid];size=475x650")
 
 
-/client/proc/vv_update_display(datum/D, span, content)
+/datum/admins/proc/vv_update_display(datum/D, span, content)
 	src << output("[span]:[content]", "variables[REF(D)].browser:replace_span")
 
 
 #define VV_HTML_ENCODE(thing) ( sanitize ? html_encode(thing) : thing )
-/datum/admins/debug_variable(name, value, level, datum/DA = null, sanitize = TRUE)
+/datum/admins/proc/debug_variable(name, value, level, datum/DA = null, sanitize = TRUE)
 	var/header
 	if(DA)
 		if (islist(DA))
@@ -460,12 +514,6 @@
 		else
 			item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([L.len])</a>"
 
-	else if (name in GLOB.bitfields)
-		var/list/flags = list()
-		for (var/i in GLOB.bitfields[name])
-			if (value & GLOB.bitfields[name][i])
-				flags += i
-			item = "[VV_HTML_ENCODE(name)] = [VV_HTML_ENCODE(jointext(flags, ", "))]"
 	else
 		item = "[VV_HTML_ENCODE(name)] = <span class='value'>[VV_HTML_ENCODE(value)]</span>"
 

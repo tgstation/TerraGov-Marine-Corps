@@ -39,7 +39,7 @@
 		if("holder")	hsrc = holder
 		if("usr")		hsrc = mob
 		if("prefs")		return prefs.process_link(usr,href_list)
-		if("vars")		return holder.view_var_Topic(href,href_list,hsrc)
+	//	if("vars")		return holder.view_var_Topic(href,href_list,hsrc)
 
 	..()	//redirect to hsrc.Topic()
 
@@ -124,8 +124,15 @@
 		host = key
 		world.update_status()
 
+
+	GLOB.ahelp_tickets.ClientLogin(src)
+	//Admin Authorisation
+	holder = GLOB.admin_datums[ckey]
 	if(holder)
-		add_admin_verbs()
+		GLOB.admins |= src
+		holder.owner = src
+	else if(GLOB.deadmins[ckey])
+		verbs += /client/proc/readmin
 
 	log_client_to_db()
 
@@ -139,14 +146,6 @@
 		winset(src, "rpane.changelog", "background-color=#ED9F9B;font-style=bold")
 
 
-	var/file = file2text("config/donators.txt")
-	var/lines = text2list(file, "\n")
-
-	for(var/line in lines)
-		if(src.ckey == line)
-			src.donator = 1
-			verbs += admin_verbs_admin
-
 	if(all_player_details[ckey])
 		player_details = all_player_details[ckey]
 	else
@@ -158,8 +157,11 @@
 	//////////////
 /client/Del()
 	if(holder)
+		message_admins("Admin logout: [key_name(src)]")
 		holder.owner = null
-		admins -= src
+		GLOB.admins -= src
+
+	GLOB.ahelp_tickets.ClientLogout(src)
 	directory -= ckey
 	clients -= src
 	return ..()

@@ -14,7 +14,7 @@
 		owner.change_view(world.view)
 
 	log_admin("[key_name(usr)] changed their view range to [owner.view].")
-	message_admins("[key_name_admin(usr)] changed their view range to [owner.view].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed their view range to [owner.view].")
 
 
 /datum/admins/proc/gib_self()
@@ -27,13 +27,16 @@
 	if(!owner.mob || istype(owner.mob, /mob/dead/observer))
 		return
 
-	if(alert(src, "Are you sure?",, "Yes", "No") != "Yes")
+	if(alert(usr, "Are you sure?",, "Yes", "No") != "Yes")
+		return
+
+	if(!owner.mob || istype(owner.mob, /mob/dead/observer))
 		return
 
 	owner.mob.gib()
 
 	log_admin("[key_name(usr)] has gibbed themselves.")
-	message_admins("[key_name_admin(usr)] has gibbed themselves.")
+	message_admins("[ADMIN_TPMONTY(usr)] has gibbed themselves.")
 
 
 /datum/admins/proc/gib(mob/living/M as mob in mob_list)
@@ -51,58 +54,55 @@
 
 	M.gib()
 
-	log_admin("[key_name(usr)] has gibbed [key_name(M)]")
-	message_admins("[key_name_admin(usr)] has gibbed [key_name_admin(M)]")
+	log_admin("[key_name(usr)] has gibbed [key_name(M)].")
+	message_admins("[ADMIN_TPMONTY(usr)] has gibbed [ADMIN_TPMONTY(M)].")
 
 
-/datum/admins/proc/emp(atom/A as obj|mob|turf in world)
+/datum/admins/proc/emp()
 	set category = "Fun"
-	set name = "EMP"
+	set name = "EM Pulse"
 
 	if(!check_rights(R_FUN))
 		return
 
 	var/heavy = input("Range of heavy pulse.", text("Input")) as num|null
-	if(isnull(heavy))
+	if(heavy < 0)
 		return
 
 	var/light = input("Range of light pulse.", text("Input")) as num|null
-	if(isnull(light))
+	if(light < 0)
 		return
 
-	if(!heavy || !light)
-		return
+	empulse(owner.mob, heavy, light)
 
-	empulse(A, heavy, light)
-
-	log_admin("[key_name(usr)] created an EM Pulse ([heavy], [light]) at ([A.x], [A.y], [A.z]) ([get_area(usr)]).")
-	message_admins("[key_name_admin(usr)] created an EM PUlse ([heavy], [light]) at ([A.x], [A.y], [A.z]) ([get_area(usr)]).")
+	log_admin("[key_name(usr)] created an EM Pulse ([heavy], [light]) at [AREACOORD(owner.mob.loc)].")
+	message_admins("[ADMIN_TPMONTY(usr)] created an EM Pulse ([heavy], [light]) at [ADMIN_VERBOSEJMP(owner.mob.loc)].")
 
 
-/datum/admins/proc/cmd_admin_xeno_report()
+/datum/admins/proc/queen_report()
 	set category = "Fun"
 	set name = "Queen Mother Report"
 
 	if(!check_rights(R_FUN))
 		return
 
-	var/input = input(usr, "This should be a message from the ruler of the Xenomorph race.", "What?", "") as message|null
-	var/customname = "Queen Mother Psychic Directive"
+	var/input = input(usr, "This should be a message from the ruler of the Xenomorph race.",, "") as message|null
+	var/customname = input(usr, "What do you want it to be called?.",, "Queen Mother Psychic Directive") as message|null
 
-	if(!input)
+	if(!input || !customname)
 		return FALSE
 
-	var/data = "<h1>[customname]</h1><br><br><br><span class='warning'>[input]<br><br></span>"
+	var/msg = "<h1>[customname]</h1><br><br><br><span class='warning'>[input]<br><br></span>"
 
 	for(var/mob/M in player_list)
 		if(isXeno(M) || isobserver(M))
-			to_chat(M, data)
+			to_chat(M, msg)
 
-	log_admin("[key_name(src)] has created a Queen Mother report: [input]")
-	message_admins("[key_name_admin(src)] has created a Queen Mother report.")
+	log_admin("[key_name(src)] created a Queen Mother report: [input]")
+	message_admins("[ADMIN_TPMONTY(usr)] created a Queen Mother report.")
 
 
-/datum/admins/proc/show_hive_status()
+/datum/admins/proc/hive_status()
 	set category = "Fun"
 	set name = "Show Hive Status"
 	set desc = "Check the status of the hive."
@@ -112,41 +112,40 @@
 
 	check_hive_status()
 
-	log_admin("[key_name(src)] has checked the hive status.")
-	message_admins("[key_name_admin(src)] has checked the hive status.")
+	log_admin("[key_name(src)] checked the hive status.")
+	message_admins("[ADMIN_TPMONTY(usr)] checked the hive status.")
 
 
-/datum/admins/proc/cmd_admin_create_AI_report()
+/datum/admins/proc/ai_report()
 	set category = "Fun"
-	set name = "Create AI Report"
+	set name = "AI Report"
 
 	if(!check_rights(R_FUN))
 		return
 
-	var/input = input(usr, "This should be a message from the ship's AI.  Check with online staff before you send this. Do not use html.", "What?", "") as message|null
+	var/input = input(usr, "This should be a message from the ship's AI.",, "") as message|null
 	if(!input)
 		return
 
-	if(ai_system.Announce(input))
-		for(var/obj/machinery/computer/communications/C in machines)
-			if(!(C.stat & (BROKEN|NOPOWER)))
-				var/obj/item/paper/P = new /obj/item/paper(C.loc)
-				P.name = "'[MAIN_AI_SYSTEM] Update.'"
-				P.info = input
-				P.update_icon()
-				C.messagetitle.Add("[MAIN_AI_SYSTEM] Update")
-				C.messagetext.Add(P.info)
+	if(!ai_system.Announce(input))
+		return
 
-		log_admin("[key_name(src)] has created an AI report: [input]")
-		message_admins("[key_name_admin(src)] has created an AI report: [input]", 1)
-		feedback_add_details("admin_verb","CCR") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	else
-		to_chat(usr, "<span class='warning'>[MAIN_AI_SYSTEM] is not responding. It may be offline or destroyed.</span>")
+	for(var/obj/machinery/computer/communications/C in machines)
+		if(!(C.stat & (BROKEN|NOPOWER)))
+			var/obj/item/paper/P = new /obj/item/paper(C.loc)
+			P.name = "'[MAIN_AI_SYSTEM] Update.'"
+			P.info = input
+			P.update_icon()
+			C.messagetitle.Add("[MAIN_AI_SYSTEM] Update")
+			C.messagetext.Add(P.info)
+
+	log_admin("[key_name(src)] has created an AI report: [input]")
+	message_admins("[ADMIN_TPMONTY(usr)] has created an AI report: [input]")
 
 
-/datum/admins/proc/cmd_admin_create_centcom_report()
+/datum/admins/proc/command_report()
 	set category = "Fun"
-	set name = "Create Command Report"
+	set name = "Command Report"
 
 	if(!check_rights(R_FUN))
 		return
@@ -176,7 +175,7 @@
 			command_announcement.Announce("<span class='warning'> New update available at all communication consoles.</span>", customname, new_sound = 'sound/AI/commandreport.ogg')
 
 	log_admin("[key_name(src)] has created a command report: [input]")
-	message_admins("[key_name_admin(src)] has created a command report.")
+	message_admins("[ADMIN_TPMONTY(usr)] has created a command report.")
 
 
 /datum/admins/proc/narrate_global()
@@ -194,7 +193,7 @@
 	to_chat(world, "[msg]")
 
 	log_admin("[key_name(usr)] used Global Narrate: [msg]")
-	message_admins("[key_name_admin(usr)] used Global Narrate: [msg]")
+	message_admins("[ADMIN_TPMONTY(usr)] used Global Narrate: [msg]")
 
 
 /datum/admins/proc/narage_direct(var/mob/M)
@@ -207,17 +206,15 @@
 	if(!M)
 		M = input("Direct narrate to who?", "Active Players") as null|anything in get_mob_with_client_list()
 
-	if(!M)
-		return
-
 	var/msg = input("Message:", text("Enter the text you wish to appear to your target:")) as text
 
-	if( !msg )
+	if(!msg || !M)
 		return
 
 	to_chat(M, msg)
-	log_admin("DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]): [msg]")
-	message_admins("<span class='boldnotice'> DirectNarrate: [key_name(usr)] to ([M.name]/[M.key]): [msg]<BR></span>", 1)
+
+	log_admin("DirectNarrate: [key_name(usr)] to [key_name(M)]: [msg]")
+	message_admins("[ADMIN_TPMONTY(usr)] used Direct Narrate on [ADMIN_TPMONTY(M)]: [msg]")
 
 
 /datum/admins/proc/subtle_message(mob/M as mob in mob_list)
@@ -234,8 +231,8 @@
 
 	to_chat(M, "You hear a voice in your head... [msg]")
 
-	log_admin("SubtleMessage: [key_name(usr)] -> [key_name(M)] : [msg]")
-	message_admins("SubtleMessage: [key_name_admin(usr)] -> [key_name_admin(M)] : [msg]")
+	log_admin("SubtleMessage: [key_name(usr)] to [key_name(M)]: [msg]")
+	message_admins("[ADMIN_TPMONTY(usr)] used Subtle Message on [ADMIN_TPMONTY(M)]: [msg]")
 
 
 /datum/admins/proc/drop_everything(mob/M as mob in mob_list)
@@ -254,7 +251,7 @@
 		M.dropItemToGround(W)
 
 	log_admin("[key_name(usr)] made [key_name(M)] drop everything.")
-	message_admins("[key_name_admin(usr)] made [key_name_admin(M)] drop everything.")
+	message_admins("[ADMIN_TPMONTY(usr)] made [ADMIN_TPMONTY(M)] drop everything.")
 
 
 /datum/admins/proc/award_medal()
@@ -267,47 +264,41 @@
 	give_medal_award()
 
 
-/datum/admins/proc/cmd_admin_change_custom_event()
+/datum/admins/proc/custom_info()
 	set category = "Fun"
 	set name = "Change Custom Event"
 
 	if(!check_rights(R_FUN))
 		return
 
-	var/input = input(usr, "Enter the description of the custom event. Be descriptive. To cancel the event, make this blank or hit cancel.", "Custom Event", custom_event_msg) as message|null
-	if(!input || input == "")
-		custom_event_msg = null
-		log_admin("[usr.key] has cleared the custom event text.")
-		message_admins("[key_name_admin(usr)] has cleared the custom event text.")
-		return
+	switch(input(usr, "Do you want to change or clear the custom event info?",, "Change", "Clear", "Cancel"))
+		if("Change")
+			custom_event_msg = input(usr, "Set the custom information players get on joining or via the OOC tab.",, custom_event_msg) as message|null
 
-	log_admin("[usr.key] has changed the custom event text.")
-	message_admins("[key_name_admin(usr)] has changed the custom event text.")
+			to_chat(world, "<h1 class='alert'>Custom Information</h1>")
+			to_chat(world, "<span class='alert'>[custom_event_msg]</span>")
 
-	custom_event_msg = input
-
-	to_chat(world, "<h1 class='alert'>Custom Event</h1>")
-	to_chat(world, "<h2 class='alert'>A custom event is starting. OOC Info:</h2>")
-	to_chat(world, "<span class='alert'>[html_encode(custom_event_msg)]</span>")
-	to_chat(world, "<br>")
+			log_admin("[key_name(usr)] has changed the custom event text: [custom_event_msg]")
+			message_admins("[ADMIN_TPMONTY(usr)] has changed the custom event text.")
+		if("Clear")
+			custom_event_msg = null
+			log_admin("[key_name(usr)] has cleared the custom info.")
+			message_admins("[ADMIN_TPMONTY(usr)] has cleared the custom info.")
 
 
-/client/verb/cmd_view_custom_event()
+/client/verb/custom_info()
 	set category = "OOC"
-	set name = "Custom Event Info"
+	set name = "Custom Info"
 
 	if(!custom_event_msg || custom_event_msg == "")
-		to_chat(src, "There currently is no known custom event taking place.")
-		to_chat(src, "Keep in mind: it is possible that an admin has not properly set this.")
+		to_chat(src, "<span class='notice'>There currently is no known custom information set.</span>")
 		return
 
-	to_chat(src, "<h1 class='alert'>Custom Event</h1>")
-	to_chat(src, "<h2 class='alert'>A custom event is taking place. OOC Info:</h2>")
-	to_chat(src, "<span class='alert'>[html_encode(custom_event_msg)]</span>")
-	to_chat(src, "<br>")
+	to_chat(src, "<h1 class='alert'>Custom Information</h1>")
+	to_chat(src, "<span class='alert'>[custom_event_msg]</span>")
 
 
-/datum/admins/proc/play_imported_sound(S as sound)
+/datum/admins/proc/sound_file(S as sound)
 	set category = "Fun"
 	set name = "Play Imported Sound"
 	set desc = "Play a sound imported from anywhere on your computer."
@@ -339,11 +330,10 @@
 
 	log_admin("[key_name(src)] played sound `[S]` for [heard_midi] player(s). [clients.len - heard_midi] player(s) have disabled admin midis.")
 	message_admins("[key_name_admin(src)] played sound `[S]` for [heard_midi] player(s). [clients.len - heard_midi] player(s) have disabled admin midis.", 1)
-	feedback_add_details("admin_verb","PCS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 	// A 30 sec timer used to show Admins how many players are silencing the sound after it starts - see preferences_toggles.dm
 	var/midi_playing_timer = 300 // Should match with the midi_silenced spawn() in preferences_toggles.dm
-	midi_playing = 1
+	midi_playing = TRUE
 	spawn(midi_playing_timer)
 		midi_playing = 0
 		if(heard_midi == 0)
@@ -358,7 +348,7 @@
 
 
 
-/datum/admins/proc/play_sound_from_list()
+/datum/admins/proc/sound_list()
 	set category = "Fun"
 	set name = "Play Sound From List"
 	set desc = "Play a sound already in the project from a pre-made list."
@@ -374,7 +364,7 @@
 	if(melody == "--CANCEL--")
 		return
 
-	play_imported_sound(melody)
+	sound_file(melody)
 
 
 /datum/admins/proc/announce()
@@ -390,11 +380,11 @@
 	if(!message)
 		return
 
-	to_chat(world, "<span class='notice'> <b>[usr.client.holder.fakekey ? "Administrator" : usr.key] Announces:</b>\n \t [message]</span>")
+	to_chat(world, "<span class='notice'> <b>[fakekey ? "Administrator" : owner.key] Announces:</b>\n [message]</span>")
 	log_admin("Announce: [key_name(usr)] : [message]")
 
 
-/datum/admins/proc/admin_force_distress()
+/datum/admins/proc/force_distress()
 	set category = "Fun"
 	set name = "Distress Beacon"
 	set desc = "Call a distress beacon manually."
@@ -449,7 +439,7 @@
 	message_admins("<span class='notice'> [key_name_admin(usr)] admin-called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]</span>", 1)
 
 
-/datum/admins/proc/admin_force_ERT_shuttle()
+/datum/admins/proc/force_ert_shuttle()
 	set category = "Fun"
 	set name = "Force ERT Shuttle"
 	set desc = "Force Launch the ERT Shuttle."
@@ -562,8 +552,8 @@
 			var/flash_range = input("Flash range (in tiles):") as num
 			explosion(M.loc, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 
-	log_admin("[key_name(usr)] dropped a bomb at ([M.x], [M.y], [M.z]) ([get_area(M.loc)]).")
-	message_admins("[key_name_admin(usr)] dropped a bomb at ([M.x], [M.y], [M.z]) ([get_area(M.loc)]).")
+	log_admin("[key_name(usr)] dropped a bomb at [AREACOORD(M.loc)].")
+	message_admins("[ADMIN_TPMONTY(usr)] dropped a bomb at [ADMIN_VERBOSEJMP(M.loc)].")
 
 
 /datum/admins/proc/change_security_level()
@@ -580,7 +570,7 @@
 	set_security_level(sec_level)
 
 	log_admin("[key_name(usr)] changed the security level to code [sec_level].")
-	message_admins("[key_name_admin(usr)] changed the security level to code [sec_level].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed the security level to code [sec_level].")
 
 
 /datum/admins/proc/select_rank(var/mob/living/carbon/human/H in mob_list)
@@ -665,8 +655,6 @@
 
 	var/path = paths[dresspacks.Find(dresscode)]
 
-	feedback_add_details("admin_verb","SEQ") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
 	for(var/obj/item/I in M)
 		if(istype(I, /obj/item/implant) || istype(I, /obj/item/card/id))
 			continue
@@ -677,7 +665,7 @@
 	M.regenerate_icons()
 
 	log_admin("[key_name(usr)] changed the equipment of [key_name(M)] to [dresscode].")
-	message_admins("<span class='notice'> [key_name_admin(usr)] changed the equipment of [key_name_admin(M)] to [dresscode].</span>", 1)
+	message_admins("[ADMIN_TPMONTY(usr)] changed the equipment of [ADMIN_TPMONTY(M)] to [dresscode].")
 
 
 /datum/admins/proc/possess(obj/O as obj in object_list)
@@ -699,8 +687,8 @@
 	M.control_object = O
 	owner.eye = O
 
-	log_admin("[key_name(usr)] has possessed [O] ([O.type]) at ([T.x], [T.y], [T.z])")
-	message_admins("[key_name(usr)] has possessed [O] ([O.type]) at ([T.x], [T.y], [T.z])")
+	log_admin("[key_name(usr)] has possessed [O] ([O.type]) at [AREACOORD(T)].")
+	message_admins("[ADMIN_TPMONTY(usr)] has possessed [O] ([O.type]) at [ADMIN_VERBOSEJMP(T)].")
 
 
 /datum/admins/proc/release(obj/O as obj in object_list)
@@ -725,3 +713,6 @@
 	M.loc = O.loc
 	M.control_object = null
 	owner.eye = M
+
+	log_admin("[key_name(usr)] has released [O] ([O.type]).")
+	message_admins("[ADMIN_TPMONTY(usr)] has released [O] ([O.type]).")

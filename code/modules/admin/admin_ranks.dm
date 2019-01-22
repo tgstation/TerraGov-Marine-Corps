@@ -1,7 +1,7 @@
-GLOBAL_LIST_EMPTY(admin_ranks)								//list of all admin_rank datums
+GLOBAL_LIST_EMPTY(admin_ranks)
 GLOBAL_PROTECT(admin_ranks)
 
-GLOBAL_LIST_EMPTY(protected_ranks)								//admin ranks loaded from txt
+GLOBAL_LIST_EMPTY(protected_ranks)
 GLOBAL_PROTECT(protected_ranks)
 
 
@@ -15,10 +15,9 @@ GLOBAL_PROTECT(protected_ranks)
 
 /datum/admin_rank/New(init_name, init_rights, init_exclude_rights, init_edit_rights)
 	if(IsAdminAdvancedProcCall())
-		var/msg = " has tried to elevate permissions!"
-		message_admins("[key_name_admin(usr)][msg]")
-		log_admin("[key_name(usr)][msg]")
-		if (name == "NoRank") //only del if this is a true creation (and not just a New() proc call), other wise trialmins/coders could abuse this to deadmin other admins
+		log_admin("[key_name(usr)] has tried to elevate permissions!")
+		message_admins("[key_name_admin(usr)] has tried to elevate permissions!")
+		if(name == "NoRank") //only del if this is a true creation (and not just a New() proc call), other wise trialmins/coders could abuse this to deadmin other admins
 			QDEL_IN(src, 0)
 			CRASH("Admin proc call creation of admin datum")
 		return
@@ -39,9 +38,8 @@ GLOBAL_PROTECT(protected_ranks)
 
 /datum/admin_rank/Destroy()
 	if(IsAdminAdvancedProcCall())
-		var/msg = " has tried to elevate permissions!"
-		message_admins("[key_name_admin(usr)][msg]")
-		log_admin("[key_name(usr)][msg]")
+		message_admins("[key_name_admin(usr)] has tried to elevate permissions!")
+		log_admin("[key_name(usr)] has tried to elevate permissions!")
 		return QDEL_HINT_LETMELIVE
 	. = ..()
 
@@ -50,13 +48,15 @@ GLOBAL_PROTECT(protected_ranks)
 	return FALSE
 
 
-/proc/admin_keyword_to_flag(word, previous_rights=0)
+/proc/admin_keyword_to_flag(word, previous_rights = 0)
 	var/flag = 0
 	switch(ckey(word))
-		if("asay", "adminsay")
-			flag = R_ASAY
 		if("admin")
 			flag = R_ADMIN
+		if("mentor")
+			flag = R_MENTOR
+		if("asay", "adminsay")
+			flag = R_ASAY
 		if("ban")
 			flag = R_BAN
 		if("fun")
@@ -65,18 +65,18 @@ GLOBAL_PROTECT(protected_ranks)
 			flag = R_SERVER
 		if("debug")
 			flag = R_DEBUG
-		if("permissions","rights")
+		if("permissions", "rights")
 			flag = R_PERMISSIONS
+		if("color", "colour")
+			flag = R_COLOR
 		if("varedit")
 			flag = R_VAREDIT
-		if("everything","host","all")
-			flag = R_EVERYTHING
 		if("sound", "sounds")
 			flag = R_SOUND
 		if("spawn")
 			flag = R_SPAWN
-		if("mentor")
-			flag = R_MENTOR
+		if("everything","host","all")
+			flag = R_EVERYTHING
 		if("@", "prev")
 			flag = previous_rights
 	return flag
@@ -85,24 +85,23 @@ GLOBAL_PROTECT(protected_ranks)
 // Adds/removes rights to this admin_rank
 /datum/admin_rank/proc/process_keyword(word, previous_rights=0)
 	if(IsAdminAdvancedProcCall())
-		var/msg = " has tried to elevate permissions!"
-		message_admins("[key_name_admin(usr)][msg]")
-		log_admin("[key_name(usr)][msg]")
+		message_admins("[key_name_admin(usr)] has tried to elevate permissions!")
+		log_admin("[key_name(usr)] has tried to elevate permissions!")
 		return
 	var/flag = admin_keyword_to_flag(word, previous_rights)
 	if(flag)
-		switch(text2ascii(word,1))
-			if(43)
-				rights |= flag	//+
+		switch(text2ascii(word, 1))
+			if(43)	//+
+				rights |= flag
 				include_rights	|= flag
-			if(45)
-				rights &= ~flag	//-
+			if(45)	//-
+				rights &= ~flag
 				exclude_rights	|= flag
-			if(42)
-				can_edit_rights |= flag	//*
+			if(42)	//*
+				can_edit_rights |= flag
 
 
-// Checks for (keyword-formatted) rights on this admin
+//Checks for (keyword-formatted) rights on this admin
 /datum/admins/proc/check_keyword(word)
 	var/flag = admin_keyword_to_flag(word)
 	if(flag)
@@ -113,7 +112,8 @@ GLOBAL_PROTECT(protected_ranks)
 	set waitfor = FALSE
 
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, "<span class='admin prefix'>Admin rank DB Sync blocked: Advanced ProcCall detected.</span>")
+		message_admins("[key_name_admin(usr)] has tried to elevate permissions!")
+		log_admin("[key_name(usr)] has tried to elevate permissions!")
 		return
 
 	var/list/sql_ranks = list()
@@ -129,14 +129,15 @@ GLOBAL_PROTECT(protected_ranks)
 //load our rank - > rights associations
 /proc/load_admin_ranks(dbfail, no_update)
 	if(IsAdminAdvancedProcCall())
-		to_chat(usr, "<span class='admin prefix'>Admin Reload blocked: Advanced ProcCall detected.</span>")
+		message_admins("[key_name_admin(usr)] has tried to elevate permissions!")
+		log_admin("[key_name(usr)] has tried to elevate permissions!")
 		return
 	GLOB.admin_ranks.Cut()
 	GLOB.protected_ranks.Cut()
 	var/previous_rights = 0
 	//load text from file and process each line separately
 	for(var/line in world.file2list("[global.config.directory]/admin_ranks.txt"))
-		if(!line || findtextEx(line,"#",1,2))
+		if(!line || findtextEx(line, "#", 1, 2))
 			continue
 		var/next = findtext(line, "=")
 		var/datum/admin_rank/R = new(ckeyEx(copytext(line, 1, next)))
@@ -159,14 +160,14 @@ GLOBAL_PROTECT(protected_ranks)
 			if(!query_load_admin_ranks.Execute())
 				message_admins("Error loading admin ranks from database. Loading from backup.")
 				log_sql("Error loading admin ranks from database. Loading from backup.")
-				dbfail = 1
+				dbfail = TRUE
 			else
 				while(query_load_admin_ranks.NextRow())
 					var/skip
 					var/rank_name = ckeyEx(query_load_admin_ranks.item[1])
 					for(var/datum/admin_rank/R in GLOB.admin_ranks)
 						if(R.name == rank_name) //this rank was already loaded from txt override
-							skip = 1
+							skip = TRUE
 							break
 					if(!skip)
 						var/rank_flags = text2num(query_load_admin_ranks.item[2])
@@ -196,23 +197,14 @@ GLOBAL_PROTECT(protected_ranks)
 				continue
 			GLOB.admin_ranks += R
 		return json
-	#ifdef TESTING
-	var/msg = "Permission Sets Built:\n"
-	for(var/datum/admin_rank/R in GLOB.admin_ranks)
-		msg += "\t[R.name]"
-		var/rights = rights2text(R.rights,"\n\t\t")
-		if(rights)
-			msg += "\t\t[rights]\n"
-	testing(msg)
-	#endif
 
 
 /proc/load_admins(no_update)
 	var/dbfail
 	if(!CONFIG_GET(flag/admin_legacy_system) && !SSdbcore.Connect())
-		message_admins("Failed to connect to database while loading admins. Loading from backup.")
 		log_sql("Failed to connect to database while loading admins. Loading from backup.")
-		dbfail = 1
+		message_admins("Failed to connect to database while loading admins. Loading from backup.")
+		dbfail = TRUE
 	//clear the datums references
 	GLOB.admin_datums.Cut()
 	for(var/client/C in GLOB.admins)
@@ -245,9 +237,9 @@ GLOBAL_PROTECT(protected_ranks)
 	if(!CONFIG_GET(flag/admin_legacy_system) || dbfail)
 		var/datum/DBQuery/query_load_admins = SSdbcore.NewQuery("SELECT ckey, rank FROM [format_table_name("admin")] ORDER BY rank")
 		if(!query_load_admins.Execute())
-			message_admins("Error loading admins from database. Loading from backup.")
 			log_sql("Error loading admins from database. Loading from backup.")
-			dbfail = 1
+			message_admins("Error loading admins from database. Loading from backup.")
+			dbfail = TRUE
 		else
 			while(query_load_admins.NextRow())
 				var/admin_ckey = ckey(query_load_admins.item[1])
@@ -255,9 +247,9 @@ GLOBAL_PROTECT(protected_ranks)
 				var/skip
 				if(rank_names[admin_rank] == null)
 					message_admins("[admin_ckey] loaded with invalid admin rank [admin_rank].")
-					skip = 1
+					skip = TRUE
 				if(GLOB.admin_datums[admin_ckey] || GLOB.deadmins[admin_ckey])
-					skip = 1
+					skip = TRUE
 				if(!skip)
 					new /datum/admins(rank_names[admin_rank], admin_ckey)
 		qdel(query_load_admins)
@@ -265,7 +257,6 @@ GLOBAL_PROTECT(protected_ranks)
 	if(dbfail)
 		if(!backup_file_json)
 			if(backup_file_json != null)
-				//already tried
 				return
 			var/backup_file = file2text("data/admins_backup.json")
 			if(backup_file == null)

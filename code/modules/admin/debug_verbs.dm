@@ -57,13 +57,10 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!argnum && (argnum != 0))
 		return
 
-	lst.len = argnum // Expand to right length
-	//TODO: make a list to store whether each argument was initialised as null.
-	//Reason: So we can abort the proccall if say, one of our arguments was a mob which no longer exists
-	//this will protect us from a fair few errors ~Carn
+	lst.len = argnum
 
 	var/i
-	for(i=1, i<argnum+1, i++) // Lists indexed from 1 forwards in byond
+	for(i = 1, i<argnum+1, i++) // Lists indexed from 1 forwards in byond
 
 		// Make a list with each index containing one variable, to be given to the proc
 		class = input("What kind of variable?","Variable Type") in list("text","num","type","reference","mob reference","icon","file","client","mob's area","CANCEL")

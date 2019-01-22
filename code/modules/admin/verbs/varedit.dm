@@ -13,10 +13,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 		. = VV_NULL
 
 	else if (isnum(var_value))
-		if (var_name in GLOB.bitfields)
-			. = VV_BITFIELD
-		else
-			. = VV_NUM
+		. = VV_NUM
 
 	else if (istext(var_value))
 		if (findtext(var_value, "\n"))
@@ -55,7 +52,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 	else
 		. = VV_NULL
 
-/proc/vv_get_value(class, default_class, current_value, list/restricted_classes, list/extra_classes, list/classes, var_name)
+/datum/admins/proc/vv_get_value(class, default_class, current_value, list/restricted_classes, list/extra_classes, list/classes, var_name)
 	. = list("class" = class, "value" = null)
 	if (!class)
 		if (!classes)
@@ -80,8 +77,8 @@ GLOBAL_PROTECT(VVpixelmovement)
 				VV_RESTORE_DEFAULT
 				)
 
-		if(holder && holder.marked_datum && !(VV_MARKED_DATUM in restricted_classes))
-			classes += "[VV_MARKED_DATUM] ([holder.marked_datum.type])"
+		if(marked_datum && !(VV_MARKED_DATUM in restricted_classes))
+			classes += "[VV_MARKED_DATUM] ([marked_datum.type])"
 		if (restricted_classes)
 			classes -= restricted_classes
 
@@ -89,7 +86,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 			classes += extra_classes
 
 		.["class"] = input(src, "What kind of data?", "Variable Type", default_class) as null|anything in classes
-		if (holder && holder.marked_datum && .["class"] == "[VV_MARKED_DATUM] ([holder.marked_datum.type])")
+		if (marked_datum && .["class"] == "[VV_MARKED_DATUM] ([marked_datum.type])")
 			.["class"] = VV_MARKED_DATUM
 
 
@@ -108,12 +105,6 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 		if (VV_NUM)
 			.["value"] = input("Enter new number:", "Num", current_value) as null|num
-			if (.["value"] == null)
-				.["class"] = null
-				return
-
-		if (VV_BITFIELD)
-			.["value"] = input_bitfield(usr, "Editing bitfield: [var_name]", var_name, current_value)
 			if (.["value"] == null)
 				.["class"] = null
 				return
@@ -209,7 +200,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 
 		if (VV_MARKED_DATUM)
-			.["value"] = holder.marked_datum
+			.["value"] = marked_datum
 			if (.["value"] == null)
 				.["class"] = null
 				return
@@ -567,10 +558,6 @@ GLOBAL_PROTECT(VVpixelmovement)
 	var_value = O.vars[variable]
 	if(!vv_varname_lockcheck(variable))
 		return
-	if(istype(O, /datum/armor))
-		var/prompt = alert(src, "Editing this var changes this value on potentially thousands of items that share the same combination of armor values. If you want to edit the armor of just one item, use the \"Modify armor values\" dropdown item", "DANGER", "ABORT ", "Continue", " ABORT")
-		if (prompt != "Continue")
-			return
 
 
 	var/default = vv_get_class(variable, var_value)
@@ -635,7 +622,6 @@ GLOBAL_PROTECT(VVpixelmovement)
 		to_chat(src, "Your edit was rejected by the object.")
 		return
 	vv_update_display(O, "varedited", VV_MSG_EDITED)
-	SEND_GLOBAL_SIGNAL(COMSIG_GLOB_VAR_EDIT, args)
 	log_world("### VarEdit by [key_name(src)]: [O.type] [variable]=[var_value] => [var_new]")
 	log_admin("[key_name(src)] modified [original_name]'s [variable] from [html_encode("[var_value]")] to [html_encode("[var_new]")]")
 	var/msg = "[key_name_admin(src)] modified [original_name]'s [variable] from [var_value] to [var_new]"
@@ -850,18 +836,6 @@ GLOBAL_PROTECT(VVpixelmovement)
 	. = list()
 	if (ispath(T, /mob))
 		for(var/mob/thing in GLOB.mob_list)
-			if (typecache[thing.type])
-				. += thing
-			CHECK_TICK
-
-	else if (ispath(T, /obj/machinery/door))
-		for(var/obj/machinery/door/thing in GLOB.airlocks)
-			if (typecache[thing.type])
-				. += thing
-			CHECK_TICK
-
-	else if (ispath(T, /obj/machinery))
-		for(var/obj/machinery/thing in GLOB.machines)
 			if (typecache[thing.type])
 				. += thing
 			CHECK_TICK

@@ -579,3 +579,8 @@ datum/proc/dd_SortValue()
 	}
 
 
+//Return a list with no duplicate entries
+/proc/uniqueList(list/L)
+	. = list()
+	for(var/i in L)
+		. |= i
