@@ -969,7 +969,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		CA.build_inventory(CA.products)
 
 
-	for(var/X in cargo_guns_vendors)
+	for(var/X in GLOB.cargo_guns_vendors)
 		var/obj/machinery/vending/marine/cargo_guns/CG = X
 
 		//Forcefully reset the product list

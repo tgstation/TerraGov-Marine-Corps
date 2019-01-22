@@ -154,12 +154,12 @@
 
 /obj/machinery/vending/marine/cargo_guns/New()
 	..()
-	cargo_guns_vendors.Add(src)
+	GLOB.cargo_guns_vendors.Add(src)
 	marine_vendors.Remove(src)
 
 /obj/machinery/vending/marine/cargo_guns/Destroy()
 	. = ..()
-	cargo_guns_vendors.Remove(src)
+	GLOB.cargo_guns_vendors.Remove(src)
 
 
 
