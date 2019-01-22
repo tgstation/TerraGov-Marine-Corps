@@ -75,7 +75,7 @@
 
 
 	if(xeno_caste.spit_types?.len)
-		ammo = ammo_list[xeno_caste.spit_types[1]]
+		ammo = GLOB.ammo_list[xeno_caste.spit_types[1]]
 
 	create_reagents(1000)
 	gender = NEUTER

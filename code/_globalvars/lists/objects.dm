@@ -3,6 +3,7 @@ GLOBAL_LIST_EMPTY(object_list)						//list of all /obj
 GLOBAL_LIST_EMPTY(turfs)							//list of all /turf
 GLOBAL_LIST_EMPTY(structure_list)					//list of all /obj/structure
 GLOBAL_LIST_EMPTY(item_list)					    //list of all /obj/item
+GLOBAL_LIST_EMPTY(ammo_list)						//List of all ammo types. Used by guns to tell the projectile how to act.
 
 GLOBAL_LIST_EMPTY(portals)					        //list of all /obj/effect/portal
 GLOBAL_LIST_EMPTY(airlocks)					        //list of all airlocks

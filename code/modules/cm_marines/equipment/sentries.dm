@@ -288,7 +288,7 @@
 	spawn(2)
 		stat = 0
 	//START_PROCESSING(SSobj, src)
-	ammo = ammo_list[ammo]
+	ammo = GLOB.ammo_list[ammo]
 	update_icon()
 
 
@@ -1158,7 +1158,7 @@
 	camera.c_tag = "[src.name] ([rand(0,1000)])"
 	spawn(2)
 		stat = 0
-	ammo = ammo_list[ammo]
+	ammo = GLOB.ammo_list[ammo]
 	update_icon()
 
 /obj/machinery/marine_turret/premade/dumb

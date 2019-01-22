@@ -7,7 +7,6 @@ var/list/TGMCFaxes = list()							//List of all TGMC faxes sent this round
 var/global/list/chemical_reactions_list				//List of all /datum/chemical_reaction datums. Used during chemical reactions
 var/global/list/chemical_reagents_list				//List of all /datum/reagent datums indexed by reagent id. Used by chemistry stuff
 var/global/list/surgery_steps = list()				//List of all surgery steps  |BS12
-var/global/list/ammo_list = list()					//List of all ammo types. Used by guns to tell the projectile how to act.
 var/global/list/joblist = list()					//List of all jobstypes, minus borg and AI
 
 var/global/list/active_areas = list()
@@ -120,7 +119,7 @@ var/global/list/moth_wings_list = list()
 	var/blacklist = list(/datum/ammo/energy, /datum/ammo/energy/yautja, /datum/ammo/energy/yautja/rifle, /datum/ammo/bullet/shotgun, /datum/ammo/xeno)
 	for(var/t in subtypesof(/datum/ammo) - blacklist)
 		var/datum/ammo/A = new t
-		ammo_list[A.type] = A
+		GLOB.ammo_list[A.type] = A
 
 	for(var/X in subtypesof(/datum/xeno_caste))
 		var/datum/xeno_caste/C = new X

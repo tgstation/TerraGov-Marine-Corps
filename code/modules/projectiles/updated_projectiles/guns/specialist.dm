@@ -344,7 +344,7 @@
 
 /obj/item/weapon/gun/smartgun/Initialize()
 	. = ..()
-	ammo_secondary = ammo_list[ammo_secondary]
+	ammo_secondary = GLOB.ammo_list[ammo_secondary]
 
 /obj/item/weapon/gun/smartgun/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)

@@ -62,11 +62,11 @@
 	if(!X.check_state())
 		return
 	for(var/i in 1 to X.xeno_caste.spit_types.len)
-		if(X.ammo == ammo_list[X.xeno_caste.spit_types[i]])
+		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
 			if(i == X.xeno_caste.spit_types.len)
-				X.ammo = ammo_list[X.xeno_caste.spit_types[1]]
+				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[1]]
 			else
-				X.ammo = ammo_list[X.xeno_caste.spit_types[i+1]]
+				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
 			break
 	to_chat(X, "<span class='notice'>You will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma).</span>")
 	button.overlays.Cut()
@@ -472,10 +472,10 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	to_chat(X, "<span class='notice'>You will now fire [X.ammo.type == /datum/ammo/xeno/boiler_gas ? "corrosive acid. This is lethal!" : "neurotoxic gas. This is nonlethal."]</span>")
 	button.overlays.Cut()
 	if(X.ammo.type == /datum/ammo/xeno/boiler_gas)
-		X.ammo = ammo_list[/datum/ammo/xeno/boiler_gas/corrosive]
+		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas/corrosive]
 		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb1")
 	else
-		X.ammo = ammo_list[/datum/ammo/xeno/boiler_gas]
+		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
 		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb0")
 
 /datum/action/xeno_action/bombard
