@@ -24,6 +24,7 @@
 	zoomdevicename = "scope"
 	attachable_offset = list("muzzle_x" = 33, "muzzle_y" = 18,"rail_x" = 12, "rail_y" = 20, "under_x" = 19, "under_y" = 14, "stock_x" = 19, "stock_y" = 14)
 	var/targetlaser_on = FALSE
+	var/targetlaser_primed = FALSE
 	var/mob/living/carbon/laser_target = null
 	var/image/LT = null
 	attachable_allowed = list(
@@ -50,14 +51,14 @@
 /obj/item/weapon/gun/rifle/sniper/M42A/Fire(atom/target, mob/living/user, params, reflex = 0, dual_wield)
 	if(!able_to_fire(user))
 		return
-	if(targetlaser_on)
+	if(targetlaser_primed)
 		if(!iscarbon(target))
 			return
 		if(laser_target)
 			laser_target.remove_laser()
 		laser_target = target
 		to_chat(user, "<span class='danger'>You focus your targeting laser on [target]!</span>")
-		targetlaser_on = FALSE
+		targetlaser_primed = FALSE
 		laser_target.apply_laser()
 		STOP_PROCESSING(SSobj, src) //So we don't accumulate additional processing.
 		START_PROCESSING(SSobj, src)
@@ -141,26 +142,28 @@
 		return TRUE
 
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_on(mob/user, silent = FALSE)
-	if(targetlaser_on)
-		return
-	if(!zoom)
+	if(!zoom) //Can only use and prime the laser targeter when zoomed.
 		if(!silent)
 			to_chat(user, "<span class='warning'>You must be zoomed in to use your targeting laser!</span>")
 		return
-	targetlaser_on = TRUE
-	accuracy_mult += CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We get a big accuracy bonus vs the lasered target
+	targetlaser_primed = TRUE //We prime the target laser
 	if(!silent && user)
 		to_chat(user, "<span class='notice'><b>You activate your targeting laser and take careful aim.</b></span>")
 		playsound(user,'sound/machines/click.ogg', 25, 1)
+	if(targetlaser_on) //if the laser is already on, we don't double dip.
+		return
+	targetlaser_on = TRUE
+	accuracy_mult += CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We get a big accuracy bonus vs the lasered target
+
 
 /obj/item/weapon/gun/rifle/sniper/M42A/proc/laser_off(mob/user, toggle_off = TRUE, silent = FALSE)
 	if(laser_target)
 		laser_target.remove_laser()
 	laser_target = null
-	accuracy_mult -= CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We lose a big accuracy bonus vs the now unlasered target
 	STOP_PROCESSING(SSobj, src)
-	if(toggle_off)
+	if(toggle_off && targetlaser_on) //sanity check
 		targetlaser_on = FALSE
+		accuracy_mult -= CONFIG_GET(number/combat_define/max_hit_accuracy_mult) //We lose a big accuracy bonus vs the now unlasered target
 		if(!silent && user)
 			to_chat(user, "<span class='notice'><b>You deactivate your targeting laser.</b></span>")
 			playsound(user,'sound/machines/click.ogg', 25, 1)

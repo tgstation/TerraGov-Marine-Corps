@@ -475,7 +475,7 @@
 									occupant.visible_message("<span class='warning'> [src] defty extracts a wriggling parasite from [occupant]'s ribcage!</span>");
 									var/mob/living/carbon/Xenomorph/Larva/L = locate() in occupant //the larva was fully grown, ready to burst.
 									if(L)
-										L.forceMove(occupant.loc)
+										L.forceMove(get_turf(src))
 									else
 										A.forceMove(occupant.loc)
 										occupant.status_flags &= ~XENO_HOST

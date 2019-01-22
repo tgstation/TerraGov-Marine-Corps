@@ -66,6 +66,7 @@
 		dat += "<font color='blue'><B>Occupant Statistics:</B></FONT><BR>"
 		if (occupant)
 			var/t1
+			dat += text("<B>Name: [occupant.name]</B><BR>")
 			switch(occupant.stat)
 				if(0)
 					t1 = "Conscious"
@@ -97,9 +98,9 @@
 						dat += "<HR><A href='?src=\ref[src];togglefilter=1'>Start Dialysis</A><BR>"
 						dat += "Output Beaker has [connected.beaker.reagents.maximum_volume - connected.beaker.reagents.total_volume] units of free space remaining<BR><HR>"
 					if(connected.stasis)
-						dat += "<A href='?src=\ref[src];togglestasis=1'>Deactivate Cryostasis</A><BR>"
+						dat += "<HR><A href='?src=\ref[src];togglestasis=1'>Deactivate Cryostasis</A><BR><HR>"
 					else
-						dat += "<A href='?src=\ref[src];togglestasis=1'>Activate Cryostasis</A><BR>"
+						dat += "<HR><A href='?src=\ref[src];togglestasis=1'>Activate Cryostasis</A><BR><HR>"
 				else
 					dat += "<HR>Dialysis Disabled - Non-human present.<BR><HR>"
 
@@ -115,15 +116,19 @@
 		else
 			dat += "The sleeper is empty."
 	dat += text("<BR><BR><A href='?src=\ref[];mach_close=sleeper'>Close</A>", user)
-	user << browse(dat, "window=sleeper;size=400x500")
+	user << browse(dat, "window=sleeper;size=400x1000")
 	onclose(user, "sleeper")
 	return
 
 /obj/machinery/sleep_console/Topic(href, href_list)
 	if(..())
 		return FALSE
+	if(!usr)
+		return FALSE
+	if(usr.is_mob_incapacitated() || !usr.IsAdvancedToolUser())
+		return FALSE
 	var/mob/living/carbon/human/user = usr
-	if(!user.contents.Find(src) || get_dist(src, user) > 1)
+	if(get_dist(src, user) > 1)
 		return FALSE
 	user.set_interaction(src)
 	if(href_list["chemical"] && connected && connected.occupant)
@@ -135,21 +140,15 @@
 			var/amount = text2num(href_list["amount"])
 			if(amount == 5 || amount == 10)
 				connected.inject_chemical(user,href_list["chemical"],amount)
-		updateUsrDialog()
-	if (href_list["refresh"])
-		updateUsrDialog()
 	if (href_list["removebeaker"])
 		connected.remove_beaker()
-		updateUsrDialog()
 	if (href_list["togglefilter"])
 		connected.toggle_filter()
-		updateUsrDialog()
 	if (href_list["togglestasis"])
 		connected.toggle_stasis()
-		updateUsrDialog()
 	if (href_list["ejectify"])
 		connected.eject()
-		updateUsrDialog()
+	attack_hand(user)
 	add_fingerprint(usr)
 	return
 
@@ -308,7 +307,7 @@
 		var/mob/M = G.grabbed_thing
 		if(!M.forceMove(src))
 			return
-		visible_message("[user] puts [G.grabbed_thing] into the sleeper.", 3)
+		visible_message("[user] puts [M.name] into the sleeper.", 3)
 		update_use_power(2)
 		occupant = M
 		start_processing()
