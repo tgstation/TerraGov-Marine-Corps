@@ -388,3 +388,7 @@ var/list/admin_verbs_mentor = list(
 		return call(target, procname)(arglist(arguments))
 	else
 		log_admin_private("[key_name(usr)] attempted to call world/proc/[procname] with arguments: [english_list(arguments)]")
+
+
+/proc/IsAdminAdvancedProcCall()
+	return usr && usr.client && GLOB.AdminProcCaller == usr.client.ckey
