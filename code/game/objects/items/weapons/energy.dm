@@ -2,10 +2,10 @@
 	var/active = 0
 	flags_atom = NOBLOODY
 
-	suicide_act(mob/user)
-		user.visible_message(pick("<span class='danger'>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</span>", \
-							"<span class='danger'>[user] is falling on the [src.name]! It looks like \he's trying to commit suicide.</span>"))
-		return (BRUTELOSS|FIRELOSS)
+/obj/item/weapon/energy/suicide_act(mob/user)
+	user.visible_message(pick("<span class='danger'>[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.</span>", \
+						"<span class='danger'>[user] is falling on the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>"))
+	return (BRUTELOSS|FIRELOSS)
 
 
 
@@ -26,7 +26,7 @@
 	edge = 1
 
 /obj/item/weapon/energy/axe/suicide_act(mob/user)
-	user.visible_message("<span class='danger'>[user] swings the [src.name] towards /his head! It looks like \he's trying to commit suicide.</span>")
+	user.visible_message("<span class='danger'>[user] swings the [name] towards [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 	return (BRUTELOSS|FIRELOSS)
 
 /obj/item/weapon/energy/axe/attack_self(mob/user)

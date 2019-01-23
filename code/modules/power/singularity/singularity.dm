@@ -34,15 +34,15 @@ var/global/list/uneatable = list(
 	var/teleport_del = 0
 	var/last_warning
 
-/obj/machinery/singularity/New(loc, var/starting_energy = 50, var/temp = 0)
+/obj/machinery/singularity/Initialize(loc, var/starting_energy = 50, var/temp = 0)
 	//CARN: admin-alert for chuckle-fuckery.
 	admin_investigate_setup()
 
 	src.energy = starting_energy
+	. = ..()
 	if(temp)
-		spawn(temp)
-			qdel(src)
-	..()
+		return INITIALIZE_HINT_QDEL
+
 	start_processing()
 
 /obj/machinery/singularity/attack_hand(mob/user as mob)

@@ -194,7 +194,7 @@
 <A href='byond://?src=\ref[src];code=1'>+</A>
 <A href='byond://?src=\ref[src];code=5'>+</A><BR>
 
-<B>Timer (Max 300 seconds, Min 10 seconds):</B><BR>
+<B>Timer (Max 300 seconds, Min 5 seconds):</B><BR>
 <A href='byond://?src=\ref[src];timer=-50'>-</A>
 <A href='byond://?src=\ref[src];timer=-10'>-</A>
 <A href='byond://?src=\ref[src];timer=-5'>-</A>
@@ -270,7 +270,7 @@
 	process_count = 0
 	if(plant_target == null || !plant_target.loc) //need a target to be attached to
 		STOP_PROCESSING(SSfastprocess, src)
-		if(timer < DETPACK_TIMER_MIN) //reset to minimum 10 seconds; no 'cooking' with aborted detonations.
+		if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
 			timer = DETPACK_TIMER_MIN
 		nullvars()
 		return

@@ -187,7 +187,6 @@
 
 
 
-
 /mob/living/carbon/human/wear_mask_update(obj/item/I, equipping)
 	//equipping arg to differentiate when we equip/unequip a mask
 	if(!equipping && istype(I,/obj/item/clothing/mask/facehugger))

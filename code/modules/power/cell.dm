@@ -2,12 +2,11 @@
 // charge from 0 to 100%
 // fits in APC to provide backup power
 
-/obj/item/cell/New()
-	..()
+/obj/item/cell/Initialize()
+	. = ..()
 	charge = maxcharge
 
-	spawn(5)
-		updateicon()
+	updateicon()
 
 /obj/item/cell/proc/updateicon()
 	overlays.Cut()

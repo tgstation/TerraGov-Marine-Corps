@@ -599,8 +599,8 @@
 	if(L.status & LIMB_DESTROYED)
 		return FALSE
 
-	visible_message("<span class='xenowarning'>\The [src] rips [M]'s [L.display_name] away from \his body!</span>", \
-	"<span class='xenowarning'>\The [M]'s [L.display_name] rips away from \his body!</span>")
+	visible_message("<span class='xenowarning'>\The [src] rips [M]'s [L.display_name] away from [M.p_their()] body!</span>", \
+	"<span class='xenowarning'>\The [M]'s [L.display_name] rips away from [M.p_their()] body!</span>")
 	log_message(src, M, "ripped the [L.display_name] off", addition="2/2 progress")
 
 	L.droplimb()
@@ -885,6 +885,7 @@
 	armor_bonus -= xeno_caste.fortify_armor
 	xeno_explosion_resistance = 0
 	frozen = FALSE
+	fortify = FALSE
 	anchored = FALSE
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, 1)
 	update_canmove()
@@ -1939,10 +1940,12 @@
 
 	second_wind_used = TRUE
 
-	second_wind_delay = world.time + (RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.015) )
+	var/cooldown = (RAV_SECOND_WIND_COOLDOWN * round((1 - (current_rage * 0.015) ),0.01) )
+
+	second_wind_delay = world.time + cooldown
 
 	// since this is always 60 seconds or more, do not turn this into a callback.
-	spawn(RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.015) ) //4 minute cooldown, minus 0.75 seconds per rage to minimum 60 seconds.
+	spawn(cooldown) //4 minute cooldown, minus 0.75 seconds per rage to minimum 60 seconds.
 		second_wind_used = FALSE
 		to_chat(src, "<span class='xenodanger'>You gather enough strength to use Second Wind again.</span>")
 		playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)

@@ -377,7 +377,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			T = temp
 			T = get_step(T, pick(cardinal))
 			M.throw_at(T, 2, 1, src, 0)
-			M.visible_message("<span class='danger'>[src] bumps into [M] pushing them away!</span>", "<span class='danger'>[src] bumps into you!</span>")
+			M.visible_message("<span class='danger'>[src] bumps into [M], pushing [M.p_them()] away!</span>", "<span class='danger'>[src] bumps into you!</span>")
 			return
 		if(M.lying==0 && !isXenoLarva(M))
 			temp = get_step(T, facing)
@@ -389,7 +389,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 				M.throw_at(T, 2, 1, src, 1)
 			M.KnockDown(1)
 			M.apply_damage(10 + rand(0, 5), BRUTE)
-			M.visible_message("<span class='danger'>[src] bumps into [M] throwing them away!</span>", "<span class='danger'>[src] bumps into you!</span>")
+			M.visible_message("<span class='danger'>[src] bumps into [M], throwing [M.p_them()] away!</span>", "<span class='danger'>[src] violently bumps into you!</span>")
 		var/obj/vehicle/multitile/root/cm_armored/CA = root
 		var/list/slots = CA.get_activatable_hardpoints()
 		for(var/slot in slots)

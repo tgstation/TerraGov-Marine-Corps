@@ -143,14 +143,14 @@
 				if(H.canmove && H.r_hand && !H.is_mob_restrained())
 					message = "<B>[comm_paygrade][src]</B> shakes hands with [H]."
 				else
-					message = "<B>[comm_paygrade][src]</B> holds out \his hand to [H]."
+					message = "<B>[comm_paygrade][src]</B> holds out [p_their()] hand to [H]."
 
 		if("hug")
 			if(!is_mob_restrained())
 				if(param)
 					message = "<B>[comm_paygrade][src]</B> hugs [H]."
 				else
-					message = "<B>[comm_paygrade][src]</B> hugs \himself."
+					message = "<B>[comm_paygrade][src]</B> hugs [p_them()]self."
 
 		if("laugh")
 			m_type = EMOTE_AUDIBLE
@@ -234,7 +234,7 @@
 				overlays -= scream
 
 		if("shakehead")
-			message = "<B>[comm_paygrade][src]</B> shakes \his head."
+			message = "<B>[comm_paygrade][src]</B> shakes [p_their()] head."
 
 		if("shiver")
 			message = "<B>[comm_paygrade][src]</B> shivers."
