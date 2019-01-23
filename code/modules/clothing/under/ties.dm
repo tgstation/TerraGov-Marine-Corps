@@ -145,7 +145,7 @@
 				on_attached(U, user)
 				H.update_inv_w_uniform()
 				if(user == H)
-					user.visible_message("<span class='notice'>[user] pins [src] to \his [U.name].</span>",
+					user.visible_message("<span class='notice'>[user] pins [src] to [user.p_their()] [U.name].</span>",
 					"<span class='notice'>You pin [src] to your [U.name].</span>")
 				else
 					user.visible_message("[user] pins [src] on [H]'s [U.name].", \
