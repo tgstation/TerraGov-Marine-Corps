@@ -51,20 +51,19 @@
 
 
 
-/obj/machinery/bot/medbot/New()
-	..()
+/obj/machinery/bot/medbot/Initialize()
+	. = ..()
 	src.icon_state = "medibot[src.on]"
 
-	spawn(4)
-		if(src.skin)
-			src.overlays += image('icons/obj/aibots.dmi', "medskin_[src.skin]")
+	if(src.skin)
+		src.overlays += image('icons/obj/aibots.dmi', "medskin_[src.skin]")
 
-		src.botcard = new /obj/item/card/id(src)
-		if(isnull(src.botcard_access) || (src.botcard_access.len < 1))
-			var/datum/job/J = RoleAuthority ? RoleAuthority.roles_by_path[/datum/job/medical/doctor] : new /datum/job/medical/doctor
-			botcard.access = J.get_access()
-		else
-			src.botcard.access = src.botcard_access
+	src.botcard = new /obj/item/card/id(src)
+	if(isnull(src.botcard_access) || (src.botcard_access.len < 1))
+		var/datum/job/J = RoleAuthority ? RoleAuthority.roles_by_path[/datum/job/medical/doctor] : new /datum/job/medical/doctor
+		botcard.access = J.get_access()
+	else
+		src.botcard.access = src.botcard_access
 	start_processing()
 
 /obj/machinery/bot/medbot/turn_on()

@@ -815,11 +815,10 @@
 	use_power = 1
 	idle_power_usage = 40
 
-/obj/machinery/autodoc_console/New()
-	..()
-	spawn(5)
-		connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
-		connected.connected = src
+/obj/machinery/autodoc_console/Initialize()
+	. = ..()
+	connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
+	connected.connected = src
 
 /obj/machinery/autodoc_console/power_change(var/area/master_area = null)
 	..()
