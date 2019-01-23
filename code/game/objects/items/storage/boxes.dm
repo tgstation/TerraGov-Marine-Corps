@@ -617,6 +617,8 @@
 	name = "\improper M15 grenade box"
 	desc = "A secure box holding M15 fragmentation grenades."
 	icon_state = "M15_nade_placeholder"
+	storage_slots = 15
+	max_storage_space = 30
 	grenade_type = /obj/item/explosive/grenade/frag/m15
 	can_hold = list(
 		"/obj/item/explosive/grenade/frag/m15"
