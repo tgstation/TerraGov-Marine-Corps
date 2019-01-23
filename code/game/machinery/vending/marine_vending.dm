@@ -123,7 +123,9 @@
 					/obj/item/clothing/mask/gas = 10
 					)
 
-	contraband = list(
+	contraband = list(								
+					/obj/item/storage/box/nade_box/HIDP = 1,
+					/obj/item/storage/box/nade_box/M15 = 1,																																																																										
 					/obj/item/weapon/gun/smg/ppsh = 4,
 					/obj/item/weapon/gun/shotgun/double = 2,
 					/obj/item/weapon/gun/smg/m39/elite = 0,
