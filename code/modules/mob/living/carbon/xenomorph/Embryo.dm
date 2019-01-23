@@ -86,7 +86,7 @@
 	if(isliving(affected_mob) && !stasis) //Cold temperatures and stasis prevent the growth toxin from having an effect.
 		var/mob/living/L = affected_mob
 		if(L.reagents.get_reagent_amount("xeno_growthtoxin"))
-			counter += 5 //Dramatically accelerates larval growth. You don't want this stuff in your body. Larva hits Stage 5 in just over 3 minutes, assuming the victim has growth toxin for the full duration.
+			counter += 4 //Dramatically accelerates larval growth. You don't want this stuff in your body. Larva hits Stage 5 in just over 3 minutes, assuming the victim has growth toxin for the full duration.
 
 	if(stage < 5 && counter >= 120)
 		counter = 0
