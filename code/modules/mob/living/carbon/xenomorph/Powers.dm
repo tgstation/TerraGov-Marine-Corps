@@ -2090,7 +2090,8 @@
 //Defiler abilities
 /mob/living/carbon/Xenomorph/Defiler/proc/emit_neurogas()
 
-	if(!check_state()) return
+	if(!check_state())
+		return
 
 	if(world.time < last_emit_neurogas + DEFILER_GAS_COOLDOWN) //Sure, let's use this.
 		to_chat(src, "<span class='xenodanger'>You are not ready to emit neurogas again. This ability will be ready in [(last_emit_neurogas + DEFILER_GAS_COOLDOWN - world.time) * 0.1] seconds.</span>")
@@ -2165,7 +2166,7 @@
 		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
 		return
 
-	if(!istype(H) || isXeno(H) || isrobot(H))
+	if(!istype(H) || isXeno(H) || isrobot(H) || isSynth(H) || H.stat == DEAD)
 		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
 		return
 

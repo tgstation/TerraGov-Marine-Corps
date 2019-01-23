@@ -103,7 +103,7 @@
 					)
 
 /obj/item/storage/pouch/firstaid/full
-	desc = "Contains a painkiller autoinjector, first-aid autoinjector, hypervene autoinjector, splints, some ointment, and some bandages."
+	desc = "Contains a painkiller autoinjector, first-aid autoinjector, splints, some ointment, and some bandages."
 
 /obj/item/storage/pouch/firstaid/full/New()
 	..()
