@@ -59,7 +59,8 @@
 
 	var/melody = input("Select a sound to play", "Sound list", "--CANCEL--") in sounds
 
-	if(melody == "--CANCEL--")	return
+	if(melody == "--CANCEL--")
+		return
 
 	play_imported_sound(melody)
 	feedback_add_details("admin_verb","PDS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
