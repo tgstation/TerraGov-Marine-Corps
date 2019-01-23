@@ -16,7 +16,6 @@
 SUBSYSTEM_DEF(direction)
 	name = "Direction"
 	priority = FIRE_PRIORITY_DIRECTION
-	flags = SS_NO_INIT
 	runlevels = RUNLEVEL_GAME | RUNLEVEL_POSTGAME
 
 	// this is a map of defines to mob references, eg; list(CHARLIE_SL = <mob ref>, XENO_NORMAL_QUEEN = <mob ref>)
@@ -33,6 +32,13 @@ SUBSYSTEM_DEF(direction)
 
 	var/list/currentrun
 
+/datum/controller/subsystem/direction/Initialize(start_timeofday)
+	leader_mapping = list(TRACK_ALPHA_SQUAD,TRACK_BRAVO_SQUAD,TRACK_CHARLIE_SQUAD,TRACK_DELTA_SQUAD)
+	for(var/a in leader_mapping)
+		processing.Add(a)
+		processing[a] = list()
+	return ..()
+
 /datum/controller/subsystem/direction/stat_entry()
 	var/mobs = 0
 	for(var/L in processing)
@@ -44,6 +50,8 @@ SUBSYSTEM_DEF(direction)
 		currentrun = processing.Copy()
 
 	for(var/L in currentrun)
+		if(!currentrun[L])
+			continue
 		var/mob/living/carbon/human/H
 		if(iscarbon(leader_mapping[L]))
 			var/mob/living/carbon/C = leader_mapping[L]

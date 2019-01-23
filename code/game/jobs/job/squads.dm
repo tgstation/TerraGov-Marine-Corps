@@ -39,11 +39,6 @@
 	var/list/squad_orbital_beacons = list()
 	var/list/squad_laser_targets = list()
 
-/datum/squad/New()
-	. = ..()
-	if(tracking_id)
-		SETUP_LEADER_MAP(tracking_id)
-
 /datum/squad/alpha
 	name = "Alpha"
 	id = ALPHA_SQUAD

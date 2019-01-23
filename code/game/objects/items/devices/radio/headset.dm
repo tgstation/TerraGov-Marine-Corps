@@ -260,7 +260,7 @@
 			wearer.SL_directional = null
 			//wearer.sl_headset_active = null
 			if(wearer.assigned_squad)
-				STOP_TRACK_LEADER(wearer.assigned_squad.tracking_id, src)
+				STOP_TRACK_LEADER(wearer.assigned_squad.tracking_id, wearer)
 			//wearer.sl_direction_active = null
 			wearer = null
 	squadhud = null
@@ -296,7 +296,7 @@
 	if(sl_direction)
 		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
 			user.hud_used.SL_locator.alpha = 0
-			STOP_TRACK_LEADER(user.assigned_squad.tracking_id, src)
+			STOP_TRACK_LEADER(user.assigned_squad.tracking_id, user)
 			//user.sl_direction_active = FALSE
 		sl_direction = FALSE
 		to_chat(user, "<span class='notice'>You toggle the SL directional display off.</span>")
@@ -304,7 +304,8 @@
 	else
 		if(user.mind && user.assigned_squad && user.hud_used?.SL_locator)
 			user.hud_used.SL_locator.alpha = 128
-			START_TRACK_LEADER(user.assigned_squad.tracking_id, src)
+			to_chat(world,user.assigned_squad.tracking_id)
+			START_TRACK_LEADER(user.assigned_squad.tracking_id, user)
 			//user.sl_direction_active = TRUE
 			//user.Process_SL_Locator()
 		sl_direction = TRUE
