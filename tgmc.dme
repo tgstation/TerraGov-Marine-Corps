@@ -47,6 +47,7 @@
 #include "code\__DEFINES\tgs.config.dm"
 #include "code\__DEFINES\tgs.dm"
 #include "code\__DEFINES\time.dm"
+#include "code\__DEFINES\turf_flags.dm"
 #include "code\__DEFINES\typeids.dm"
 #include "code\__DEFINES\vv.dm"
 #include "code\__HELPERS\_logging.dm"
