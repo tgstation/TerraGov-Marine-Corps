@@ -139,21 +139,6 @@
 	if(!W || !user || isnull(W) || (W.flags_item & NOBLUDGEON))
 		return 0
 
-	if(istype(W, /obj/item/sampler))
-		var/obj/item/sampler/samp = W
-		if(samp.filled)
-			return TRUE
-		health--
-		healthcheck()
-		samp.filled = TRUE
-		if(istype(src, /obj/effect/alien/weeds/node))
-			samp.sample = new /obj/item/marineResearch/xenomorph/weed/sack()
-			samp.update_icon()
-			return TRUE
-		samp.sample = new /obj/item/marineResearch/xenomorph/weed()
-		samp.update_icon()
-		return TRUE
-
 	var/damage = W.force
 	if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
 		damage *= 0.25
