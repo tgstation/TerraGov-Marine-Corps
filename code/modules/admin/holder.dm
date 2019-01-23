@@ -72,7 +72,7 @@ GLOBAL_PROTECT(href_token)
 	GLOB.deadmins -= target
 	GLOB.admin_datums[target] = src
 	deadmined = FALSE
-	if (GLOB.directory[target])
+	if(GLOB.directory[target])
 		associate(GLOB.directory[target])	//find the client for a ckey if they are connected and associate them with us
 
 
@@ -86,38 +86,35 @@ GLOBAL_PROTECT(href_token)
 	GLOB.admin_datums -= target
 	deadmined = TRUE
 	var/client/C
-	if ((C = owner) || (C = GLOB.directory[target]))
+	if((C = owner) || (C = GLOB.directory[target]))
 		disassociate()
 		C.verbs += /client/proc/readmin
 
 
 /datum/admins/proc/associate(client/C)
 	if(IsAdminAdvancedProcCall())
-		var/msg = " has tried to elevate permissions!"
-		message_admins("[key_name_admin(usr)][msg]")
-		log_admin("[key_name(usr)][msg]")
+		log_admin("[key_name(usr)] has tried to elevate permissions!")
+		message_admins("[key_name_admin(usr)] has tried to elevate permissions!")
 		return
 
 	if(istype(C))
 		if(C.ckey != target)
-			var/msg = " has attempted to associate with [target]'s admin datum"
-			message_admins("[key_name_admin(C)][msg]")
-			log_admin("[key_name(C)][msg]")
+			log_admin("[key_name(C)] has attempted to associate with [target]'s admin datum.")
+			message_admins("[key_name_admin(C)] has attempted to associate with [target]'s admin datum.")
 			return
-		if (deadmined)
+		if(deadmined)
 			activate()
 		owner = C
 		owner.holder = src
-		owner.add_admin_verbs()	//TODO <--- todo what? the proc clearly exists and works since its the backbone to our entire admin system
+		owner.add_admin_verbs()
 		owner.verbs -= /client/proc/readmin
 		GLOB.admins |= C
 
 
 /datum/admins/proc/disassociate()
 	if(IsAdminAdvancedProcCall())
-		var/msg = " has tried to elevate permissions!"
-		message_admins("[key_name_admin(usr)][msg]")
-		log_admin("[key_name(usr)][msg]")
+		log_admin("[key_name(usr)] has tried to elevate permissions!")
+		message_admins("[key_name_admin(usr)] has tried to elevate permissions!")
 		return
 	if(owner)
 		GLOB.admins -= owner
@@ -140,7 +137,7 @@ GLOBAL_PROTECT(href_token)
 			message_admins("[key_name_admin(src)] is trying to readmin but they have no deadmin entry.")
 			return
 
-	A.associate()
+	A.associate(src)
 
 	if(!holder)//This can happen if an admin attempts to vv themself into somebody elses's deadmin datum by getting ref via brute force
 		return
@@ -385,24 +382,22 @@ GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
 
 
 /proc/message_admins(var/msg)
-	log_admin_private_asay(msg)
 	msg = "<span class='admin'><span class='prefix'>ADMIN LOG:</span> <span class='message'>[msg]</span></span>"
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN))
 			to_chat(C, msg)
 
 
 /proc/message_staff(var/msg)
-	log_admin_private_msay(msg)
 	msg = "<span class='admin prefix'><span class=''prefix'>STAFF LOG:</span> <span class='message'>[msg]</span></span>"
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(C.holder)
 			to_chat(C, msg)
 
 
 /proc/msg_admin_attack(var/msg)
 	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='message'>[msg]</span></span>"
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN))
 			continue
 		if((C.prefs.toggles_chat & CHAT_ATTACKLOGS) || ((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
@@ -411,7 +406,7 @@ GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
 
 /proc/msg_admin_ff(var/msg)
 	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='green'>[msg]</span></span>"
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(!check_other_rights(C, R_ADMIN))
 			continue
 		if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) || ((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))

@@ -99,10 +99,9 @@
 
 	var/static/list/localhost_addresses = list("127.0.0.1", "::1")
 	if(isnull(address) || (address in localhost_addresses))
-		var/datum/admins/rank = new("!localhost!", ALL, ckey)
-		holder = rank
-		admins += src
-		rank.owner = src
+		var/datum/admin_rank/rank = new("!Localhost!", R_EVERYTHING)
+		var/datum/admins/admin = new(rank, ckey, TRUE)
+		admin.associate(src)
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = preferences_datums[ckey]
@@ -157,7 +156,7 @@
 	//////////////
 /client/Del()
 	if(holder)
-		message_admins("Admin logout: [key_name(src)]")
+		message_admins("Admin logout: [key_name(src)].")
 		holder.owner = null
 		GLOB.admins -= src
 
