@@ -290,6 +290,7 @@
 			if("spitter")			M.change_mob_type( /mob/living/carbon/Xenomorph/Spitter, location, null, delmob )
 			if("boiler")			M.change_mob_type( /mob/living/carbon/Xenomorph/Boiler, location, null, delmob )
 			if("crusher")			M.change_mob_type( /mob/living/carbon/Xenomorph/Crusher, location, null, delmob )
+			if("defiler")			M.change_mob_type( /mob/living/carbon/Xenomorph/Defiler, location, null, delmob )
 			if("queen")				M.change_mob_type( /mob/living/carbon/Xenomorph/Queen, location, null, delmob )
 			if("human")				M.change_mob_type( /mob/living/carbon/human, location, null, delmob, href_list["species"])
 			if("monkey")			M.change_mob_type( /mob/living/carbon/monkey, location, null, delmob )
