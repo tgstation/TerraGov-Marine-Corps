@@ -245,7 +245,7 @@
 						/obj/item/attachable/scope/slavic)
 
 	flags_gun_features = GUN_AUTO_EJECTOR|GUN_WIELDED_FIRING_ONLY
-	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 24, "stock_y" = 13)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 13, "rail_y" = 19, "under_x" = 24, "under_y" = 13, "stock_x" = 20, "stock_y" = 14)
 
 /obj/item/weapon/gun/rifle/sniper/svd/Initialize()
 	. = ..()
@@ -885,3 +885,54 @@
 	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
 	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 	recoil = CONFIG_GET(number/combat_define/med_recoil_value)
+
+//-------------------------------------------------------
+
+//-------------------------------------------------------
+//SCOUT SHOTGUN
+
+/obj/item/weapon/gun/shotgun/merc/scout
+	name = "\improper ZX-76 assault shotgun"
+	desc = "The MIC ZX-76 Assault Shotgun, a dobule barreled semi-automatic combat shotgun with a twin shot mode. Has a 9 round internal magazine."
+	icon_state = "zx-76"
+	item_state = "zx-76"
+	origin_tech = "combat=5;materials=4"
+	fire_sound = 'sound/weapons/gun_shotgun_automatic.ogg'
+	current_mag = /obj/item/ammo_magazine/internal/shotgun/scout
+	attachable_allowed = list(
+						/obj/item/attachable/bayonet,
+						/obj/item/attachable/reddot,
+						/obj/item/attachable/verticalgrip,
+						/obj/item/attachable/angledgrip,
+						/obj/item/attachable/gyro,
+						/obj/item/attachable/flashlight,
+						/obj/item/attachable/extended_barrel,
+						/obj/item/attachable/compensator,
+						/obj/item/attachable/magnetic_harness,
+						/obj/item/attachable/lasersight,
+						/obj/item/attachable/attached_gun/flamer,
+						/obj/item/attachable/attached_gun/shotgun,
+						/obj/item/attachable/attached_gun/grenade)
+	attachable_offset = list("muzzle_x" = 32, "muzzle_y" = 17,"rail_x" = 8, "rail_y" = 18, "under_x" = 24, "under_y" = 12, "stock_x" = 13, "stock_y" = 15)
+
+/obj/item/weapon/gun/shotgun/merc/scout/New()
+	. = ..()
+	var/obj/item/attachable/stock/scout/G = new(src)
+	G.flags_attach_features &= ~ATTACH_REMOVABLE
+	G.Attach(src)
+	update_attachable(G.slot)
+	G.icon_state = initial(G.icon_state)
+	if(current_mag && current_mag.current_rounds > 0)
+		load_into_chamber()
+
+/obj/item/weapon/gun/shotgun/merc/scout/set_gun_config_values()
+	fire_delay = CONFIG_GET(number/combat_define/scoutshottie_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/low_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/no_fire_delay) //basically instantaneous two shots
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/max_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/max_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/low_recoil_value)
+	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
