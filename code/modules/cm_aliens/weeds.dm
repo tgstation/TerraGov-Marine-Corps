@@ -148,9 +148,8 @@
 		samp.filled = TRUE
 		if(istype(src, /obj/effect/alien/weeds/node))
 			samp.sample = new /obj/item/marineResearch/xenomorph/weed/sack()
-			samp.update_icon()
-			return TRUE
-		samp.sample = new /obj/item/marineResearch/xenomorph/weed()
+		else
+			samp.sample = new /obj/item/marineResearch/xenomorph/weed()
 		samp.update_icon()
 		return TRUE
 

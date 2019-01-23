@@ -308,17 +308,14 @@
 /obj/item/weapon/gun/energy/tesla/able_to_fire(mob/living/user)
 	. = ..()
 	if(.)
-		if(isSynth(user))
-			to_chat(user, "Your programm forbids you use of this weapon")
-			return FALSE
-		if(!ishuman(user)) return FALSE
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.smartgun < SKILL_SMART_USE)
 			to_chat(user, "<span class='warning'>You don't seem to know how to use [src]...</span>")
 			return FALSE
 	return TRUE
 
 /obj/item/weapon/gun/energy/tesla/load_into_chamber()
-	if(charge - charge_cost < 0) return
+	if(charge - charge_cost < 0)
+		return
 
 	charge -= charge_cost
 	in_chamber = create_bullet(ammo)
