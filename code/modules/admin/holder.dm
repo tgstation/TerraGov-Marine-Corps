@@ -17,8 +17,6 @@ GLOBAL_PROTECT(href_token)
 
 	var/datum/marked_datum
 
-	var/spamcooldown = 0
-
 	var/href_token
 
 	var/deadmined
@@ -26,9 +24,8 @@ GLOBAL_PROTECT(href_token)
 
 /datum/admins/New(datum/admin_rank/R, ckey, protected)
 	if(IsAdminAdvancedProcCall())
-		var/msg = " has tried to elevate permissions!"
-		message_admins("[key_name_admin(usr)][msg]")
-		log_admin("[key_name(usr)][msg]")
+		log_admin("[key_name(usr)] has tried to elevate permissions!")
+		message_admins("[ADMIN_TPMONTY(usr)] has tried to elevate permissions!")
 		if(!target) //only del if this is a true creation (and not just a New() proc call), other wise trialmins/coders could abuse this to deadmin other admins
 			QDEL_IN(src, 0)
 			CRASH("Admin proc call creation of admin datum.")
@@ -56,18 +53,16 @@ GLOBAL_PROTECT(href_token)
 
 /datum/admins/Destroy()
 	if(IsAdminAdvancedProcCall())
-		var/msg = " has tried to elevate permissions!"
-		message_admins("[key_name_admin(usr)][msg]")
-		log_admin("[key_name(usr)][msg]")
+		log_admin("[key_name(usr)] has tried to elevate permissions!")
+		message_admins("[ADMIN_TPMONTY(usr)] has tried to elevate permissions!")
 		return QDEL_HINT_LETMELIVE
-	. = ..()
+	return ..()
 
 
 /datum/admins/proc/activate()
 	if(IsAdminAdvancedProcCall())
-		var/msg = " has tried to elevate permissions!"
-		message_admins("[key_name_admin(usr)][msg]")
-		log_admin("[key_name(usr)][msg]")
+		log_admin("[key_name(usr)] has tried to elevate permissions!")
+		message_admins("[ADMIN_TPMONTY(usr)] has tried to elevate permissions!")
 		return
 	GLOB.deadmins -= target
 	GLOB.admin_datums[target] = src
@@ -78,9 +73,8 @@ GLOBAL_PROTECT(href_token)
 
 /datum/admins/proc/deactivate()
 	if(IsAdminAdvancedProcCall())
-		var/msg = " has tried to elevate permissions!"
-		message_admins("[key_name_admin(usr)][msg]")
-		log_admin("[key_name(usr)][msg]")
+		log_admin("[key_name(usr)] has tried to elevate permissions!")
+		message_admins("[ADMIN_TPMONTY(usr)] has tried to elevate permissions!")
 		return
 	GLOB.deadmins[target] = src
 	GLOB.admin_datums -= target
@@ -92,29 +86,32 @@ GLOBAL_PROTECT(href_token)
 
 
 /datum/admins/proc/associate(client/C)
+	log_admin("Associating with [C]")
 	if(IsAdminAdvancedProcCall())
 		log_admin("[key_name(usr)] has tried to elevate permissions!")
-		message_admins("[key_name_admin(usr)] has tried to elevate permissions!")
+		message_admins("[ADMIN_TPMONTY(usr)] has tried to elevate permissions!")
 		return
 
-	if(istype(C))
-		if(C.ckey != target)
-			log_admin("[key_name(C)] has attempted to associate with [target]'s admin datum.")
-			message_admins("[key_name_admin(C)] has attempted to associate with [target]'s admin datum.")
-			return
-		if(deadmined)
-			activate()
-		owner = C
-		owner.holder = src
-		owner.add_admin_verbs()
-		owner.verbs -= /client/proc/readmin
-		GLOB.admins |= C
+	if(!istype(C))
+		return
+
+	if(C.ckey != target)
+		log_admin("[key_name(C)] has attempted to associate with [target]'s admin datum.")
+		message_admins("[ADMIN_TPMONTY(C.mob)]has attempted to associate with [target]'s admin datum.")
+		return
+	if(deadmined)
+		activate()
+	owner = C
+	owner.holder = src
+	owner.add_admin_verbs()
+	owner.verbs -= /client/proc/readmin
+	GLOB.admins |= C
 
 
 /datum/admins/proc/disassociate()
 	if(IsAdminAdvancedProcCall())
 		log_admin("[key_name(usr)] has tried to elevate permissions!")
-		message_admins("[key_name_admin(usr)] has tried to elevate permissions!")
+		message_admins("[ADMIN_TPMONTY(usr)] has tried to elevate permissions!")
 		return
 	if(owner)
 		GLOB.admins -= owner
@@ -133,8 +130,8 @@ GLOBAL_PROTECT(href_token)
 	if(!A)
 		A = GLOB.admin_datums[ckey]
 		if(!A)
-			log_admin_private("[key_name(src)] is trying to readmin but they have no deadmin entry.")
-			message_admins("[key_name_admin(src)] is trying to readmin but they have no deadmin entry.")
+			log_admin_private("[key_name(src)] is trying to re-admin but they have no de-admin entry.")
+			message_admins("[ADMIN_TPMONTY(usr)]is trying to re-admin but they have no de-admin entry.")
 			return
 
 	A.associate(src)
@@ -235,8 +232,9 @@ GLOBAL_PROTECT(admin_verbs_default)
 GLOBAL_LIST_INIT(admin_verbs_default, world.AVdefault())
 /world/proc/AVdefault()
 	return list(
-	/client/proc/deadmin,
+	/client/proc/deadmin
 	)
+
 GLOBAL_PROTECT(admin_verbs_admin)
 GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 /world/proc/AVadmin()
@@ -263,68 +261,143 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/get_mob,
 	/datum/admins/proc/get_key,
 	/datum/admins/proc/send_mob,
-	/client/proc/cmd_admin_pm_panel, //REWORK THIS ONE
-)
-GLOBAL_PROTECT(admin_verbs_ban)
-GLOBAL_LIST_INIT(admin_verbs_ban, world.AVban())
-/world/proc/AVban()
-	return list(
-
-	)
-GLOBAL_PROTECT(admin_verbs_asay)
-GLOBAL_LIST_INIT(admin_verbs_asay, world.AVasay())
-/world/proc/AVasay()
-	return list(
-	/datum/admins/proc/asay
-	)
-GLOBAL_PROTECT(admin_verbs_fun)
-GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
-/world/proc/AVfun()
-	return list(
-
-	)
-GLOBAL_PROTECT(admin_verbs_spawn)
-GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
-/world/proc/AVspawn()
-	return list(
+	/datum/admins/proc/msay,
+	/datum/admins/proc/pref_attack_logs,
+	/datum/admins/proc/pref_ff_attack_logs,
+	/datum/admins/proc/pref_end_attack_logs,
+	/datum/admins/proc/pref_debug_logs,
+	/datum/admins/proc/set_ooc_color_self,
+	/client/proc/cmd_admin_pm_panel, //REWORK THIS
+	/client/proc/cmd_admin_pm_context //REWORK THIS
 	)
 
-GLOBAL_PROTECT(admin_verbs_sound)
-GLOBAL_LIST_INIT(admin_verbs_sound, world.AVsound())
-/world/proc/AVsound()
-	return list(
-	)
-GLOBAL_PROTECT(admin_verbs_server)
-GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
-/world/proc/AVserver()
-	return list(
-
-	)
-GLOBAL_PROTECT(admin_verbs_debug)
-GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
-/world/proc/AVdebug()
-	return list(
-
-	)
-GLOBAL_PROTECT(admin_verbs_permissions)
-GLOBAL_LIST_INIT(admin_verbs_permissions, world.AVpermissions())
-/world/proc/AVpermissions()
-	return list(
-
-	)
-GLOBAL_PROTECT(admin_verbs_color)
-GLOBAL_LIST_INIT(admin_verbs_color, world.AVcolor())
-/world/proc/AVcolor()
-	return list(
-
-	)
 GLOBAL_PROTECT(admin_verbs_mentor)
 GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
 /world/proc/AVmentor()
 	return list(
 	/datum/admins/proc/msay,
 	/datum/admins/proc/dsay
-)
+	)
+
+GLOBAL_PROTECT(admin_verbs_ban)
+GLOBAL_LIST_INIT(admin_verbs_ban, world.AVban())
+/world/proc/AVban()
+	return list(
+
+	)
+
+GLOBAL_PROTECT(admin_verbs_asay)
+GLOBAL_LIST_INIT(admin_verbs_asay, world.AVasay())
+/world/proc/AVasay()
+	return list(
+	/datum/admins/proc/asay
+	)
+
+GLOBAL_PROTECT(admin_verbs_fun)
+GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
+/world/proc/AVfun()
+	return list(
+	/datum/admins/proc/set_view_range,
+	/datum/admins/proc/gib_self,
+	/datum/admins/proc/gib,
+	/datum/admins/proc/emp,
+	/datum/admins/proc/queen_report,
+	/datum/admins/proc/hive_status,
+	/datum/admins/proc/ai_report,
+	/datum/admins/proc/command_report,
+	/datum/admins/proc/narrate_global,
+	/datum/admins/proc/narage_direct,
+	/datum/admins/proc/subtle_message,
+	/datum/admins/proc/drop_everything,
+	/datum/admins/proc/award_medal,
+	/datum/admins/proc/custom_info,
+	/datum/admins/proc/announce,
+	/datum/admins/proc/force_distress,
+	/datum/admins/proc/force_ert_shuttle,
+	/datum/admins/proc/object_sound,
+	/datum/admins/proc/object_talk,
+	/datum/admins/proc/drop_bomb,
+	/datum/admins/proc/change_security_level,
+	/datum/admins/proc/select_rank,
+	/datum/admins/proc/select_equipment,
+	/datum/admins/proc/possess,
+	/datum/admins/proc/release
+	)
+
+GLOBAL_PROTECT(admin_verbs_server)
+GLOBAL_LIST_INIT(admin_verbs_server, world.AVserver())
+/world/proc/AVserver()
+	return list(
+	/datum/admins/proc/restart,
+	/datum/admins/proc/toggle_ooc,
+	/datum/admins/proc/toggle_deadchat,
+	/datum/admins/proc/toggle_deadooc,
+	/datum/admins/proc/start,
+	/datum/admins/proc/toggle_join,
+	/datum/admins/proc/toggle_respawn,
+	/datum/admins/proc/set_respawn_time,
+	/datum/admins/proc/end_round,
+	/datum/admins/proc/delay,
+	/datum/admins/proc/toggle_gun_restrictions,
+	/datum/admins/proc/toggle_synthetic_restrictions,
+	/datum/admins/proc/adjust_weapon_mult,
+	/datum/admins/proc/reload_admins,
+	/datum/admins/proc/reload_whitelist
+	)
+
+GLOBAL_PROTECT(admin_verbs_debug)
+GLOBAL_LIST_INIT(admin_verbs_debug, world.AVdebug())
+/world/proc/AVdebug()
+	return list(
+	/datum/admins/proc/proccall_advanced,
+	/datum/admins/proc/proccall_atom,
+	/datum/admins/proc/change_hivenumber,
+	/datum/admins/proc/delete_all,
+	/datum/admins/proc/generate_powernets,
+	/datum/admins/proc/debug_mob_lists,
+	/datum/admins/proc/delete_atom,
+	/datum/admins/proc/fix_next_move,
+	/datum/admins/proc/restart_controller,
+	/datum/admins/proc/debug_controller,
+	/datum/admins/proc/check_contents,
+	/datum/admins/proc/update_mob_sprite
+	)
+
+GLOBAL_PROTECT(admin_verbs_permissions)
+GLOBAL_LIST_INIT(admin_verbs_permissions, world.AVpermissions())
+/world/proc/AVpermissions()
+	return list(
+
+	)
+
+GLOBAL_PROTECT(admin_verbs_color)
+GLOBAL_LIST_INIT(admin_verbs_color, world.AVcolor())
+/world/proc/AVcolor()
+	return list(
+
+	)
+
+GLOBAL_PROTECT(admin_verbs_varedit)
+GLOBAL_LIST_INIT(admin_verbs_varedit, world.AVvaredit())
+/world/proc/AVvaredit()
+	return list(
+
+	)
+
+GLOBAL_PROTECT(admin_verbs_sound)
+GLOBAL_LIST_INIT(admin_verbs_sound, world.AVsound())
+/world/proc/AVsound()
+	return list(
+	/datum/admins/proc/sound_file,
+	/datum/admins/proc/sound_list
+	)
+
+GLOBAL_PROTECT(admin_verbs_spawn)
+GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
+/world/proc/AVspawn()
+	return list(
+	/datum/admins/proc/spawn_atom
+	)
 
 
 /client/proc/add_admin_verbs()
@@ -349,6 +422,10 @@ GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
 			verbs += GLOB.admin_verbs_permissions
 		if(rights & R_SOUND)
 			verbs += GLOB.admin_verbs_sound
+		if(rights & R_COLOR)
+			verbs += GLOB.admin_verbs_color
+		if(rights & R_VAREDIT)
+			verbs += GLOB.admin_verbs_varedit
 		if(rights & R_SPAWN)
 			verbs += GLOB.admin_verbs_spawn
 
@@ -365,7 +442,9 @@ GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
 		GLOB.admin_verbs_debug,
 		GLOB.admin_verbs_permissions,
 		GLOB.admin_verbs_sound,
-		GLOB.admin_verbs_spawn,
+		GLOB.admin_verbs_color,
+		GLOB.admin_verbs_varedit,
+		GLOB.admin_verbs_spawn
 		)
 
 
@@ -374,9 +453,9 @@ GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
 		return FALSE
 	if(!C?.holder?.rank?.rights)
 		return FALSE
-	if(C.holder.rank.rights & R_ADMIN)
+	if(check_other_rights(C, R_ADMIN))
 		return FALSE
-	if(!(C.holder.rank.rights & R_MENTOR))
+	if(!check_other_rights(C, R_MENTOR))
 		return FALSE
 	return TRUE
 
@@ -391,7 +470,7 @@ GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
 /proc/message_staff(var/msg)
 	msg = "<span class='admin prefix'><span class=''prefix'>STAFF LOG:</span> <span class='message'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
-		if(C.holder)
+		if(check_other_rights(C, R_ADMIN) || is_mentor(C))
 			to_chat(C, msg)
 
 

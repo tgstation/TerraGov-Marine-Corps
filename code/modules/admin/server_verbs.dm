@@ -1,4 +1,4 @@
-/client/proc/restart()
+/datum/admins/proc/restart()
 	set category = "Server"
 	set name = "Restart"
 	set desc = "Restarts the server after a short pause."
@@ -12,13 +12,13 @@
 	to_chat(world, "<span class='danger'>Restarting world!</span><br><span class='notice'>Initiated by: [usr.key]</span>")
 
 	log_admin("[key_name(usr)] initiated a restart.")
-	message_admins("[key_name_admin(usr)] initiated a restart.")
+	message_admins("[ADMIN_TPMONTY(usr)] initiated a restart.")
 
 	spawn(50)
 		world.Reboot()
 
 
-/client/proc/toggle_ooc()
+/datum/admins/proc/toggle_ooc()
 	set category = "Server"
 	set name = "Toggle OOC"
 	set desc = "Toggles OOC for non-admins."
@@ -34,10 +34,10 @@
 		to_chat(world, "<span class='boldnotice'>The OOC channel has been globally disabled!</span>")
 
 	log_admin("[key_name(usr)] [ooc_allowed ? "enabled" : "disabled"] OOC.")
-	message_admins("[key_name_admin(usr)] [ooc_allowed ? "enabled" : "disabled"] OOC.")
+	message_admins("[ADMIN_TPMONTY(usr)] [ooc_allowed ? "enabled" : "disabled"] OOC.")
 
 
-/client/proc/toggle_deadchat()
+/datum/admins/proc/toggle_deadchat()
 	set category = "Server"
 	set name = "Toggle Deadchat"
 	set desc = "Toggles deadchat for non-admins."
@@ -53,7 +53,7 @@
 		to_chat(world, "<span class='boldnotice'>Deadchat has been globally disabled!</span>")
 
 	log_admin("[key_name(usr)] [dsay_allowed ? "enabled" : "disabled"] deadchat.")
-	message_admins("[key_name_admin(usr)] [dsay_allowed ? "enabled" : "disabled"] deadchat.")
+	message_admins("[ADMIN_TPMONTY(usr)] [dsay_allowed ? "enabled" : "disabled"] deadchat.")
 
 
 /datum/admins/proc/toggle_deadooc()
@@ -72,7 +72,7 @@
 		to_chat(world, "<span class='boldnotice'>Dead player OOC has been globally disabled!</span>")
 
 	log_admin("[key_name(usr)] [dooc_allowed ? "enabled" : "disabled"] dead player OOC.")
-	message_admins("[key_name_admin(usr)] [dooc_allowed ? "enabled" : "disabled"] dead player OOC.")
+	message_admins("[ADMIN_TPMONTY(usr)] [dooc_allowed ? "enabled" : "disabled"] dead player OOC.")
 
 
 /datum/admins/proc/start()
@@ -86,10 +86,13 @@
 	if(!ticker || ticker.current_state != GAME_STATE_PREGAME)
 		return
 
+	if(alert("Are you sure you want to start the round early?",,"Yes","No") != "Yes")
+		return
+
 	ticker.current_state = GAME_STATE_SETTING_UP
 
-	log_admin("[key_name(usr)] has started the game.")
-	message_admins("[key_name_admin(usr)] has started the game.")
+	log_admin("[key_name(usr)] has started the game early.")
+	message_admins("[ADMIN_TPMONTY(usr)] has started the game early.")
 
 
 /datum/admins/proc/toggle_join()
@@ -108,7 +111,7 @@
 		to_chat(world, "<span class='boldnotice'>New players may no longer join the game.</span>")
 
 	log_admin("[key_name(usr)] [enter_allowed ? "enabled" : "disabled"] new player joining.")
-	message_admins("[key_name_admin(usr)] [enter_allowed ? "enabled" : "disabled"] new player joining.")
+	message_admins("[ADMIN_TPMONTY(usr)] [enter_allowed ? "enabled" : "disabled"] new player joining.")
 
 
 /datum/admins/proc/toggle_respawn()
@@ -127,7 +130,7 @@
 		to_chat(world, "<span class='boldnotice'>You may no longer respawn.</span>")
 
 	log_admin("[key_name(usr)] [respawn_allowed ? "enabled" : "disabled"] respawning.")
-	message_admins("[key_name_admin(usr)] [respawn_allowed ? "enabled" : "disabled"] respawning.")
+	message_admins("[ADMIN_TPMONTY(usr)] [respawn_allowed ? "enabled" : "disabled"] respawning.")
 
 
 /datum/admins/proc/set_respawn_time(time as num)
@@ -144,7 +147,7 @@
 	respawntime = time
 
 	log_admin("[key_name(usr)] set the respawn time to [respawntime] minutes.")
-	message_admins("[key_name_admin(usr)] set the respawn time to [respawntime] minutes.")
+	message_admins("[ADMIN_TPMONTY(usr)] set the respawn time to [respawntime] minutes.")
 
 
 /datum/admins/proc/end_round()
@@ -155,16 +158,16 @@
 	if(!check_rights(R_SERVER))
 		return
 
-	if(!ticker)
+	if(!ticker?.mode)
 		return
 
-	if(input("Are you sure you want to end the round?",,"Yes","No") != "Yes")
+	if(alert("Are you sure you want to end the round?",,"Yes","No") != "Yes")
 		return
 
 	ticker.mode.round_finished = MODE_INFESTATION_M_MINOR
 
 	log_admin("[key_name(usr)] has made the round end early.")
-	message_admins("[key_name_admin(usr)] has made the round end early.")
+	message_admins("[ADMIN_TPMONTY(usr)] has made the round end early.")
 
 
 /datum/admins/proc/delay()
@@ -185,8 +188,8 @@
 
 	going = !going
 
-	log_admin("[key_name(usr)] [ticker.delay_end ? "delayed the round start/end" : "made the round start/end normally"].")
-	message_admins("[key_name_admin(usr)] [ticker.delay_end ? "delayed the round start/end" : "made the round start/end normally"].")
+	log_admin("[key_name(usr)] [going ? "delayed the round start/end" : "made the round start/end normally"].")
+	message_admins("[ADMIN_TPMONTY(usr)] [going ? "delayed the round start/end" : "made the round start/end normally"].")
 
 
 /datum/admins/proc/toggle_gun_restrictions()
@@ -206,7 +209,7 @@
 		CONFIG_SET(flag/remove_gun_restrictions, TRUE)
 
 	log_admin("[key_name(usr)] has [CONFIG_GET(flag/remove_gun_restrictions) ? "enabled" : "disabled"] gun restrictions.")
-	message_admins("[key_name_admin(usr)] has [CONFIG_GET(flag/remove_gun_restrictions) ? "enabled" : "disabled"] gun restrictions.")
+	message_admins("[ADMIN_TPMONTY(usr)] has [CONFIG_GET(flag/remove_gun_restrictions) ? "enabled" : "disabled"] gun restrictions.")
 
 
 /datum/admins/proc/toggle_synthetic_restrictions()
@@ -226,7 +229,7 @@
 		CONFIG_SET(flag/allow_synthetic_gun_use, TRUE)
 
 	log_admin("[key_name(src)] has [CONFIG_GET(flag/allow_synthetic_gun_use) ? "enabled" : "disabled"] synthetic weapon use.")
-	message_admins("[key_name_admin(usr)] has [CONFIG_GET(flag/allow_synthetic_gun_use) ? "enabled" : "disabled"] synthetic weapon use.")
+	message_admins("[ADMIN_TPMONTY(usr)] has [CONFIG_GET(flag/allow_synthetic_gun_use) ? "enabled" : "disabled"] synthetic weapon use.")
 
 
 /datum/admins/proc/adjust_weapon_mult()
@@ -249,8 +252,8 @@
 	CONFIG_SET(number/combat_define/proj_base_accuracy_mult, accuracy)
 	CONFIG_SET(number/combat_define/proj_base_damage_mult, damage)
 
-	log_admin("[key_name(usr)] changed global accuracy to [accuracy] and global damage to [damage].")
-	message_admins("[key_name_admin(src)] changed global accuracy to [accuracy] and global damage to [damage].")
+	log_admin("[key_name(usr)] changed global accuracy multiplier to [accuracy] and global damage multiplier to [damage].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed global accuracy multiplier to [accuracy] and global damage multiplier to [damage].")
 
 
 /datum/admins/proc/reload_admins()
@@ -264,7 +267,7 @@
 	load_admins()
 
 	log_admin("[key_name(src)] manually reloaded admins.")
-	message_admins("[key_name_admin(usr)] manually reloaded admins.")
+	message_admins("[ADMIN_TPMONTY(usr)] manually reloaded admins.")
 
 
 /datum/admins/proc/reload_whitelist()
@@ -281,4 +284,4 @@
 	RoleAuthority.load_whitelist()
 
 	log_admin("[key_name(usr)] manually reloaded the role whitelist.")
-	message_admins("[key_name_admin(usr)] manually reloaded the role whitelist.")
+	message_admins("[ADMIN_TPMONTY(usr)] manually reloaded the role whitelist.")

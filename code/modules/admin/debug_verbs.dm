@@ -15,7 +15,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 /datum/admins/proc/proccall_advanced()
 	set category = "Debug"
 	set name = "Advanced ProcCall"
-	set waitfor = 0
+	set waitfor = FALSE
 
 	if(!check_rights(R_DEBUG))
 		return
@@ -30,14 +30,14 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	switch(alert("Proc owned by something?",,"Yes","No"))
 		if("Yes")
 			targetselected = TRUE
-			class = input("Proc owned by...","Owner",null) as null|anything in list("Obj","Mob","Area or Turf","Client")
+			class = input("Proc owned by...","Owner",null) as null|anything in list("Obj", "Mob", "Area or Turf", "Client")
 			switch(class)
 				if("Obj")
-					target = input("Enter target:","Target",usr) as obj in object_list
+					target = input("Enter target:", "Target", usr) as obj in object_list
 				if("Mob")
-					target = input("Enter target:","Target",usr) as mob in mob_list
+					target = input("Enter target:", "Target", usr) as mob in mob_list
 				if("Area or Turf")
-					target = input("Enter target:","Target",usr.loc) as area|turf in world
+					target = input("Enter target:", "Target", usr.loc) as area|turf in world
 				if("Client")
 					var/list/keys = list()
 					for(var/client/C)
@@ -47,7 +47,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 					return
 		if("No")
 			target = null
-			targetselected = 0
+			targetselected = FALSE
 
 	var/procname = input("Proc path, eg: /proc/fake_blood","Path:", null) as text|null
 	if(!procname)
@@ -60,48 +60,42 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	lst.len = argnum
 
 	var/i
-	for(i = 1, i<argnum+1, i++) // Lists indexed from 1 forwards in byond
+	for(i = 1, i < argnum + 1, i++) // Lists indexed from 1 forwards in byond
 
 		// Make a list with each index containing one variable, to be given to the proc
-		class = input("What kind of variable?","Variable Type") in list("text","num","type","reference","mob reference","icon","file","client","mob's area","CANCEL")
+		class = input("What kind of variable?","Variable Type") in list("text", "num", "type", "reference", "mob reference", "icon", "file", "client", "mob's loc", "mob's area", "CANCEL")
 		switch(class)
 			if("CANCEL")
 				return
-
 			if("text")
-				lst[i] = input("Enter new text:","Text",null) as text
-
+				lst[i] = input("Enter new text:", "Text", null) as text
 			if("num")
-				lst[i] = input("Enter new number:","Num",0) as num
-
+				lst[i] = input("Enter new number:", "Num", 0) as num
 			if("type")
-				lst[i] = input("Enter type:","Type") in typesof(/obj, /mob, /area, /turf)
-
+				lst[i] = input("Enter type:", "Type") in typesof(/obj, /mob, /area, /turf)
 			if("reference")
-				lst[i] = input("Select reference:","Reference",src) as mob|obj|turf|area in world
-
+				lst[i] = input("Select reference:", "Reference", src) as mob|obj|turf|area in world
 			if("mob reference")
-				lst[i] = input("Select reference:","Reference",usr) as mob in mob_list
-
+				lst[i] = input("Select reference:", "Reference", usr) as mob in mob_list
 			if("file")
-				lst[i] = input("Pick file:","File") as file
-
+				lst[i] = input("Pick file:", "File") as file
 			if("icon")
-				lst[i] = input("Pick icon:","Icon") as icon
-
+				lst[i] = input("Pick icon:", "Icon") as icon
 			if("client")
 				var/list/keys = list()
 				for(var/mob/M in player_list)
 					keys += M.client
 				lst[i] = input("Please, select a player!", "Selection", null, null) as null|anything in keys
-
-			if("mob's area")
+			if("mob's loc")
 				var/mob/temp = input("Select mob", "Selection", usr) as mob in mob_list
 				lst[i] = temp.loc
+			if("mob's area")
+				var/mob/temp = input("Select mob", "Selection", usr) as mob in mob_list
+				lst[i] = get_area(temp.loc)
 
 	if(targetselected)
 		if(!target)
-			to_chat(usr, "<font color='red'>Error: callproc(): owner of proc no longer exists.</font>")
+			to_chat(usr, "<span class='warning'>Error: callproc(): owner of proc no longer exists.</span>")
 			return
 
 		var/actual_name = procname
@@ -116,22 +110,25 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		actual_name = replacetext(actual_name, "()", "")
 
 		if(!hascall(target,actual_name))
-			to_chat(usr, "<font color='red'>Error: callproc(): target has no such call [procname].</font>")
+			to_chat(usr, "<span class='warning'>Error: callproc(): target has no such call [procname].</span>")
 			return
-		log_admin("[key_name(src)] called [target]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
+		log_admin("[key_name(usr)] called [target]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
+		message_admins("[ADMIN_TPMONTY(usr)] called [target]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
 		returnval = call(target,actual_name)(arglist(lst)) // Pass the lst as an argument list to the proc
 	else
 		//this currently has no hascall protection. wasn't able to get it working.
-		log_admin("[key_name(src)] called [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
+		log_admin("[key_name(usr)] called [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
+		message_admins("[ADMIN_TPMONTY(usr)] called [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
 		returnval = call(procname)(arglist(lst)) // Pass the lst as an argument list to the proc
 
-	to_chat(usr, "<font color='blue'>[procname] returned: [returnval ? returnval : "null"]</font>")
+	log_admin("[procname] returned: [isnull(returnval) ? "null" : returnval].")
+	message_admins("[procname] returned: [isnull(returnval) ? "null" : returnval].")
 
 
 /datum/admins/proc/proccall_atom(atom/A)
 	set category = "Debug"
 	set name = "Atom ProcCall"
-	set waitfor = 0
+	set waitfor = FALSE
 
 	if(!check_rights(R_DEBUG))
 		return
@@ -150,45 +147,51 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		return
 
 	var/argnum = input("Number of arguments","Number:",0) as num|null
-	if(!argnum && (argnum!=0))	return
+	if(!argnum && (argnum!=0))
+		return
 
 	lst.len = argnum
 
 	var/i
-	for(i=1, i<argnum+1, i++) // Lists indexed from 1 forwards in byond
-
+	for(i = 1, i < argnum + 1, i++)
 		// Make a list with each index containing one variable, to be given to the proc
-		class = input("What kind of variable?","Variable Type") in list("text","num","type","reference","mob reference","icon","file","client","mob's area","CANCEL")
+		class = input("What kind of variable?","Variable Type") in list("text", "num", "type", "reference", "mob reference", "icon", "file", "client", "mob's loc", "mob's area", "CANCEL")
 		switch(class)
 			if("CANCEL")
 				return
 			if("text")
-				lst[i] = input("Enter new text:","Text",null) as text
+				lst[i] = input("Enter new text:", "Text", null) as text
 			if("num")
-				lst[i] = input("Enter new number:","Num",0) as num
+				lst[i] = input("Enter new number:", "Num", 0) as num
 			if("type")
-				lst[i] = input("Enter type:","Type") in typesof(/obj,/mob,/area,/turf)
+				lst[i] = input("Enter type:","Type") as text
 			if("reference")
-				lst[i] = input("Select reference:","Reference",src) as mob|obj|turf|area in world
+				lst[i] = input("Select reference:", "Reference", src) as mob|obj|turf|area in world
 			if("mob reference")
-				lst[i] = input("Select reference:","Reference",usr) as mob in mob_list
+				lst[i] = input("Select reference:", "Reference", usr) as mob in mob_list
 			if("file")
-				lst[i] = input("Pick file:","File") as file
+				lst[i] = input("Pick file:", "File") as file
 			if("icon")
-				lst[i] = input("Pick icon:","Icon") as icon
+				lst[i] = input("Pick icon:", "Icon") as icon
 			if("client")
 				var/list/keys = list()
 				for(var/mob/M in player_list)
 					keys += M.client
 				lst[i] = input("Please, select a player!", "Selection", null, null) as null|anything in keys
-			if("mob's area")
+			if("mob's loc")
 				var/mob/temp = input("Select mob", "Selection", usr) as mob in mob_list
 				lst[i] = temp.loc
+			if("mob's area")
+				var/mob/temp = input("Select mob", "Selection", usr) as mob in mob_list
+				lst[i] = get_area(temp.loc)
 
-	log_admin("[key_name(src)] called [A]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
-	message_admins("<span class='notice'> [key_name_admin(src)] called [A]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].</span>")
+	log_admin("[key_name(src)] called [A]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]" : "no arguments"].")
+	message_admins("[ADMIN_TPMONTY(usr)] called [A]'s [procname]() with [lst.len ? "the arguments [list2params(lst)]" : "no arguments"].")
+
 	returnval = call(A,procname)(arglist(lst)) // Pass the lst as an argument list to the proc
-	to_chat(usr, "<font color='blue'>[procname] returned: [returnval ? returnval : "null"]</font>")
+
+	log_admin("[procname] returned: [isnull(returnval) ? "null" : returnval].")
+	message_admins("[procname] returned: [isnull(returnval) ? "null" : returnval].")
 
 
 /datum/admins/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in mob_list)
@@ -232,38 +235,49 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		return
 
 	X.set_hive_number(newhivenumber)
+
 	log_admin("[key_name(src)] changed hivenumber of [X] to [newhive].")
-	message_admins("[key_name(src)] changed hivenumber of [X] to [newhive].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed hivenumber of [ADMIN_TPMONTY(X)] to [newhive].")
 
 
 /datum/admins/proc/delete_all()
 	set category = "Debug"
-	set name = "Delete Instance"
+	set name = "Delete Instances"
 
 	var/blocked = list(/obj, /obj/item, /obj/effect, /obj/mecha, /obj/machinery, /mob, /mob/living, /mob/living/carbon, /mob/living/carbon/Xenomorph, /mob/living/carbon/human, /mob/dead, /mob/dead/observer, /mob/living/silicon, /mob/living/silicon/robot, /mob/living/silicon/ai)
 	var/chosen_deletion = input(usr, "Type the path of the object you want to delete", "Delete:") as null|text
-	if(chosen_deletion)
-		chosen_deletion = text2path(chosen_deletion)
-		if(ispath(chosen_deletion))
-			if(!ispath(/mob) && !ispath(/obj))
-				to_chat(usr, "<span class = 'warning'>Only works for types of /obj or /mob.</span>")
-			else
-				var/hsbitem = input(usr, "Choose an object to delete.", "Delete:") as null|anything in typesof(chosen_deletion)
-				if(hsbitem)
-					var/do_delete = TRUE
-					if(hsbitem in blocked)
-						if(alert("Are you REALLY sure you wish to delete all instances of [hsbitem]? This will lead to catastrophic results!",,"Yes","No") != "Yes")
-							do_delete = FALSE
-					var/del_amt = 0
-					if(do_delete)
-						for(var/atom/O in world)
-							if(istype(O, hsbitem))
-								del_amt++
-								qdel(O)
-						log_admin("[key_name(src)] has deleted all instances of [hsbitem] ([del_amt]).")
-						message_admins("[key_name_admin(src)] has deleted all instances of [hsbitem] ([del_amt]).", 0)
-		else
-			to_chat(usr, "<span class = 'warning'>Not a valid type path.</span>")
+
+	if(!chosen_deletion)
+		return
+
+	chosen_deletion = text2path(chosen_deletion)
+	if(!ispath(chosen_deletion))
+		return
+
+	if(!ispath(/mob) && !ispath(/obj))
+		to_chat(usr, "<span class = 'warning'>Only works for types of /obj or /mob.</span>")
+		return
+
+	var/hsbitem = input(usr, "Choose an object to delete.", "Delete:") as null|anything in typesof(chosen_deletion)
+	if(!hsbitem)
+		return
+
+	var/do_delete = TRUE
+	if(hsbitem in blocked)
+		if(alert("Are you REALLY sure you wish to delete all instances of [hsbitem]? This will lead to catastrophic results!",,"Yes","No") != "Yes")
+			do_delete = FALSE
+
+	var/del_amt = 0
+	if(!do_delete)
+		return
+
+	for(var/atom/O in world)
+		if(istype(O, hsbitem))
+			del_amt++
+			qdel(O)
+
+	log_admin("[key_name(src)] deleted all instances of [hsbitem] ([del_amt]).")
+	message_admins("[ADMIN_TPMONTY(usr)] deleted all instances of [hsbitem] ([del_amt]).")
 
 
 /datum/admins/proc/generate_powernets()
@@ -277,15 +291,14 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	makepowernets()
 
 	log_admin("[key_name(src)] has remade the powernets.")
-	message_admins("[key_name_admin(src)] has remade the powernets.")
+	message_admins("[ADMIN_TPMONTY(usr)] has remade the powernets.")
 
 
 /datum/admins/proc/debug_mob_lists()
 	set category = "Debug"
 	set name = "Debug Mob Lists"
-	set desc = "For when you just gotta know"
 
-	switch(input("Which list?") in list("Players","Admins","Mobs","Living Mobs","Dead Mobs", "Clients"))
+	switch(input("Which list?") in list("Players", "Admins", "Mobs", "Living Mobs", "Dead Mobs", "Clients"))
 		if("Players")
 			to_chat(usr, list2text(player_list,","))
 		if("Admins")
@@ -299,29 +312,19 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		if("Clients")
 			to_chat(usr, list2text(clients,","))
 
-
-/datum/admins/proc/dna_toggle_block(var/mob/M,var/block)
-	if(!ticker)
-		alert("Wait until the game starts")
-		return
-	if(istype(M, /mob/living/carbon))
-		M.dna.SetSEState(block,!M.dna.GetSEState(block))
-		domutcheck(M,null,MUTCHK_FORCED)
-		M.update_mutations()
-		var/state="[M.dna.GetSEState(block)?"on":"off"]"
-		var/blockname=assigned_blocks[block]
-		message_admins("[key_name_admin(src)] has toggled [M.key]'s [blockname] block [state]!")
-		log_admin("[key_name(src)] has toggled [M.key]'s [blockname] block [state]!")
-	else
-		alert("Invalid mob")
+	log_admin("[key_name(usr)] is debugging mob lists.")
+	message_admins("[ADMIN_TPMONTY(usr)] is debugging mob lists.")
 
 
 /datum/admins/proc/spawn_atom(var/object as text)
-	set name = "Spawn"
 	set category = "Debug"
+	set name = "Spawn"
 	set desc = "Spawn an atom."
 
 	if(!check_rights(R_SPAWN))
+		return
+
+	if(!object)
 		return
 
 	var/list/types = typesof(/atom)
@@ -348,8 +351,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	else
 		new chosen(usr.loc)
 
-	log_admin("[key_name(usr)] spawned [chosen] at ([usr.x],[usr.y],[usr.z]) ([get_area(usr)]).")
-	message_admins("[key_name_admin(usr)] spawned [chosen] at ([usr.x],[usr.y],[usr.z]) ([get_area(usr)]).")
+	log_admin("[key_name(usr)] spawned [chosen] at [AREACOORD(usr.loc)].")
+	message_admins("[ADMIN_TPMONTY(usr)] spawned [chosen] at [ADMIN_VERBOSEJMP(usr.loc)].")
 
 
 /datum/admins/proc/delete_atom(atom/O as obj|mob|turf in world)
@@ -360,18 +363,19 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	if(alert(src, "Are you sure you want to delete: [O]?",, "Yes", "No") == "No")
+	if(alert(src, "Are you sure you want to delete: [O]?",, "Yes", "No") != "Yes")
 		return
 
 	qdel(O)
 
-	log_admin("[key_name(usr)] deleted [O] at ([O.x],[O.y],[O.z]) ([get_area(src)]).")
-	message_admins("[key_name_admin(usr)] deleted [O] at ([O.x],[O.y],[O.z]) ([get_area(src)]).")
+	log_admin("[key_name(usr)] deleted [O] at [AREACOORD(get_turf(O)].")
+	message_admins("[ADMIN_TPMONTY(usr)] deleted [O] at [ADMIN_VERBOSEJMP(get_turf(O)].")
 
 
 /datum/admins/proc/fix_next_move()
 	set category = "Debug"
-	set name = "Unfreeze Everyone"
+	set name = "Fix Next Move"
+
 	var/largest_move_time = 0
 	var/largest_click_time = 0
 	var/mob/largest_move_mob = null
@@ -391,14 +395,13 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 				largest_click_time = M.next_click - world.time
 			else
 				largest_click_time = 0
-		log_admin("DEBUG: [key_name(M)]  next_move = [M.next_move]  next_click = [M.next_click]  world.time = [world.time]")
 		M.next_move = 1
 		M.next_click = 0
-	message_admins("[key_name_admin(largest_move_mob)] had the largest move delay with [largest_move_time] frames / [largest_move_time/10] seconds!", 1)
-	message_admins("[key_name_admin(largest_click_mob)] had the largest click delay with [largest_click_time] frames / [largest_click_time/10] seconds!", 1)
-	message_admins("world.time = [world.time]", 1)
-	feedback_add_details("admin_verb","UFE") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-	return
+
+	log_admin("[key_name(usr)] tried to fix next move: largest_next_move = [largest_move_time] | mob = [largest_move_mob] | next_click = [largest_click_time] | largest_click_mob = [largest_click_mob] | world.time = [world.time].")
+	message_admins("[ADMIN_TPMONTY(largest_move_mob)] had the largest move delay with [largest_move_time] frames / [largest_move_time / 10] seconds.")
+	message_admins("[ADMIN_TPMONTY(largest_click_mob)] had the largest click delay with [largest_click_time] frames / [largest_click_time / 10] seconds.")
+	message_admins("world.time = [world.time].")
 
 
 /datum/admins/proc/restart_controller(controller in list("Master", "Failsafe"))
@@ -416,7 +419,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			new /datum/controller/failsafe()
 
 	log_admin("[key_name(usr)] has restarted the [controller] controller.")
-	message_admins("[key_name_admin(usr)] has restarted the [controller] controller.")
+	message_admins("[ADMIN_TPMONTY(usr)] has restarted the [controller] controller.")
 
 
 /datum/admins/proc/debug_controller(controller in list("Master","Ticker","Lighting","Jobs","Sun","Radio","Supply","Shuttles","Configuration","Cameras", "Transfer Controller", "Gas Data"))
@@ -450,7 +453,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 			debug_variables(cameranet)
 
 	log_admin("[key_name(usr)] is debugging the [controller] controller.")
-	message_admins("[key_name_admin(usr)] is debugging the [controller] controller.")
+	message_admins("[ADMIN_TPMONTY(usr)] is debugging the [controller] controller.")
 
 
 /datum/admins/proc/check_contents(mob/living/M as mob in mob_list)
@@ -464,8 +467,8 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	for(var/t in L)
 		to_chat(usr, "[t]")
 
-	log_admin("[key_name(usr)] checked the contents of [M.name].")
-	message_admins("[key_name_admin(usr)] checked the contents of [M.name].")
+	log_admin("[key_name(usr)] checked the contents of [key_name(M)].")
+	message_admins("[ADMIN_TPMONTY(usr)] checked the contents of [ADMIN_TPMONTY(M)].")
 
 
 /datum/admins/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
@@ -482,4 +485,4 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	H.regenerate_icons()
 
 	log_admin("[key_name(usr)] updated the mob sprite of [key_name(H)].")
-	message_admins("[key_name_admin(usr)] updated the mob sprite of [key_name_admin(H)].")
+	message_admins("[ADMIN_TPMONTY(usr)] updated the mob sprite of [ADMIN_TPMONTY(H)].")

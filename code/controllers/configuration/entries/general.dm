@@ -11,6 +11,11 @@ Basics, the most important.
 
 /datum/config_entry/string/hostedby // Sets the hosted by name on unix platforms.
 
+/datum/config_entry/string/resource_url
+
+/datum/config_entry/string/hubpassword
+	config_entry_value = "kMZy3U5jJHSiBQjr"
+
 /datum/config_entry/string/wikiurl
 	config_entry_value = "https://tgstation13.org/wiki/TGMC"
 
@@ -32,16 +37,22 @@ Basics, the most important.
 /datum/config_entry/string/donationurl
 
 /datum/config_entry/string/shipurl
-
-/datum/config_entry/string/icecolonyurl
+	config_entry_value = "https://affectedarc07.github.io/SS13WebMap/TGMC/Almayer/index.html"
 
 /datum/config_entry/string/lv624url
+	config_entry_value = "https://affectedarc07.github.io/SS13WebMap/TGMC/LV624/index.html"
+
+/datum/config_entry/string/icecolonyurl
+	config_entry_value = "https://affectedarc07.github.io/SS13WebMap/TGMC/IceColony/index.html"
 
 /datum/config_entry/string/bigredurl
+	config_entry_value = "https://affectedarc07.github.io/SS13WebMap/TGMC/BigRed/index.html"
 
 /datum/config_entry/string/prisonstationurl
+	config_entry_value = "https://affectedarc07.github.io/SS13WebMap/TGMC/PrisonStation/index.html"
 
 /datum/config_entry/string/whiskeyoutposturl
+	config_entry_value = "https://affectedarc07.github.io/SS13WebMap/TGMC/WhiskeyOutpost/index.html"
 
 /datum/config_entry/string/python_path
 
@@ -52,7 +63,10 @@ Basics, the most important.
 /*
 Administrative related.
 */
+/datum/config_entry/flag/localhost_rank
+
 /datum/config_entry/flag/ban_legacy_system
+	protection = CONFIG_ENTRY_LOCKED
 
 /datum/config_entry/flag/admin_legacy_system	//Defines whether the server uses the legacy admin system with admins.txt or the SQL system
 	protection = CONFIG_ENTRY_LOCKED
@@ -78,11 +92,7 @@ Administrative related.
 
 /datum/config_entry/flag/log_prayer
 
-/datum/config_entry/flag/log_law
-
 /datum/config_entry/flag/log_game
-
-/datum/config_entry/flag/log_mecha
 
 /datum/config_entry/flag/log_vote
 
@@ -92,35 +102,17 @@ Administrative related.
 
 /datum/config_entry/flag/log_emote
 
-/datum/config_entry/flag/log_pda
-
-/datum/config_entry/flag/log_telecomms
-
 /datum/config_entry/flag/log_world_topic
 
 /datum/config_entry/flag/log_manifest
-
-/datum/config_entry/flag/log_job_debug
 
 /datum/config_entry/flag/allow_admin_ooccolor // Allows admins to customize their OOC color.
 
 /datum/config_entry/flag/popup_admin_pm	// adminPMs to non-admins show in a pop-up 'reply' window when set
 
-/datum/config_entry/flag/allow_admin_jump
-
-/datum/config_entry/flag/allow_admin_rev
-
-/datum/config_entry/flag/allow_admin_spawning
-
 /datum/config_entry/flag/admin_irc
 
-/datum/config_entry/flag/show_mods
-
-/datum/config_entry/flag/show_mentors
-
 /datum/config_entry/flag/guest_jobban
-
-/datum/config_entry/flag/forbid_singulo_possession
 
 /datum/config_entry/flag/usewhitelist
 
@@ -129,8 +121,6 @@ Administrative related.
 /datum/config_entry/flag/kick_inactive	//force disconnect for inactive players
 
 /datum/config_entry/flag/automute_on	//enables automuting/spam prevention
-
-/datum/config_entry/flag/debugparanoid
 
 /datum/config_entry/flag/autooocmute
 
@@ -207,7 +197,7 @@ Master controller and performance related.
 /datum/config_entry/number/ticklag/New()	//ticklag weirdly just mirrors fps
 	var/datum/config_entry/CE = /datum/config_entry/number/fps
 	config_entry_value = 10 / initial(CE.config_entry_value)
-	..()
+	return ..()
 
 /datum/config_entry/number/ticklag/ValidateAndSet(str_val)
 	. = text2num(str_val) > 0 && ..()
@@ -244,13 +234,9 @@ Legacy - work on reworking/removing these.
 */
 /datum/config_entry/number/max_maint_drones
 
-/datum/config_entry/flag/ert_admin_call_only
-
 /datum/config_entry/flag/allow_drone_spawn
 
 /datum/config_entry/number/drone_build_time
-
-/datum/config_entry/flag/use_loyalty_implants
 
 /datum/config_entry/flag/usealienwhitelist
 

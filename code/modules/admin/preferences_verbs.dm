@@ -5,11 +5,11 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	owner.prefs.load_preferences()
-	owner.prefs.toggles_chat ^= CHAT_ATTACKLOGS
-	owner.prefs.save_preferences()
+	usr.client.prefs.load_preferences()
+	usr.client.prefs.toggles_chat ^= CHAT_ATTACKLOGS
+	usr.client.prefs.save_preferences()
 
-	if(owner.prefs.toggles_chat & CHAT_ATTACKLOGS)
+	if(usr.client.prefs.toggles_chat & CHAT_ATTACKLOGS)
 		to_chat(usr, "<span class='boldnotice'>You will now get attack log messages.</span>")
 	else
 		to_chat(usr, "<span class='boldnotice'>You will no longer get attack log messages.</span>")
@@ -22,14 +22,11 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!owner?.prefs)
-		return
+	usr.client.prefs.load_preferences()
+	usr.client.prefs.toggles_chat ^= CHAT_FFATTACKLOGS
+	usr.client.prefs.save_preferences()
 
-	owner.prefs.load_preferences()
-	owner.prefs.toggles_chat ^= CHAT_FFATTACKLOGS
-	owner.prefs.save_preferences()
-
-	if(owner.prefs.toggles_chat & CHAT_FFATTACKLOGS)
+	if(usr.client.prefs.toggles_chat & CHAT_FFATTACKLOGS)
 		to_chat(usr, "<span class='boldnotice'>You will now get friendly fire attack log messages.</span>")
 	else
 		to_chat(usr, "<span class='boldnotice'>You will no longer get friendly fire attack log messages.</span>")
@@ -42,14 +39,11 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!owner?.prefs)
-		return
+	usr.client.prefs.load_preferences()
+	usr.client.prefs.toggles_chat ^= CHAT_ENDROUNDLOGS
+	usr.client.prefs.save_preferences()
 
-	owner.prefs.load_preferences()
-	owner.prefs.toggles_chat ^= CHAT_ENDROUNDLOGS
-	owner.prefs.save_preferences()
-
-	if(owner.prefs.toggles_chat & CHAT_ENDROUNDLOGS)
+	if(usr.client.prefs.toggles_chat & CHAT_ENDROUNDLOGS)
 		to_chat(usr, "<span class='boldnotice'>You will now get end-round attack log messages.</span>")
 	else
 		to_chat(usr, "<span class='boldnotice'>You will no longer get end-round attack log messages.</span>")
@@ -62,14 +56,11 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!owner?.prefs)
-		return
+	usr.client.prefs.load_preferences()
+	usr.client.prefs.toggles_chat ^= CHAT_DEBUGLOGS
+	usr.client.prefs.save_preferences()
 
-	owner.prefs.load_preferences()
-	owner.prefs.toggles_chat ^= CHAT_DEBUGLOGS
-	owner.prefs.save_preferences()
-
-	if(owner.prefs.toggles_chat & CHAT_DEBUGLOGS)
+	if(usr.client.prefs.toggles_chat & CHAT_DEBUGLOGS)
 		to_chat(usr, "<span class='boldnotice'>You will now get debug log messages.</span>")
 	else
 		to_chat(usr, "<span class='boldnotice'>You will no longer get debug log messages.</span>")
@@ -83,9 +74,9 @@
 		return
 
 	var/new_ooccolor = input(src, "Please select your OOC colour", "OOC colour") as color|null
-	if(!new_ooccolor || !owner?.prefs)
+	if(!new_ooccolor)
 		return
 
-	owner.prefs.load_preferences()
-	owner.prefs.ooccolor = new_ooccolor
-	owner.prefs.save_preferences()
+	usr.client.prefs.load_preferences()
+	usr.client.prefs.ooccolor = new_ooccolor
+	usr.client.prefs.save_preferences()

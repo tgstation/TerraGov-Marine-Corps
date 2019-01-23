@@ -97,11 +97,15 @@
 	clients += src
 	directory[ckey] = src
 
-	var/static/list/localhost_addresses = list("127.0.0.1", "::1")
-	if(isnull(address) || (address in localhost_addresses))
-		var/datum/admin_rank/rank = new("!Localhost!", R_EVERYTHING)
-		var/datum/admins/admin = new(rank, ckey, TRUE)
-		admin.associate(src)
+	GLOB.clients += src
+	GLOB.directory[ckey] = src
+
+	if(CONFIG_GET(flag/localhost_rank))
+		var/static/list/localhost_addresses = list("127.0.0.1", "::1")
+		if(isnull(address) || (address in localhost_addresses))
+			var/datum/admin_rank/rank = new("!Localhost!", R_EVERYTHING)
+			var/datum/admins/admin = new(rank, ckey, TRUE)
+			admin.associate(src)
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = preferences_datums[ckey]
@@ -163,6 +167,8 @@
 	GLOB.ahelp_tickets.ClientLogout(src)
 	directory -= ckey
 	clients -= src
+	GLOB.directory -= ckey
+	GLOB.clients -= src
 	return ..()
 
 
@@ -241,39 +247,12 @@
 	if(inactivity > duration)	return inactivity
 	return 0
 
+GLOBAL_LIST_EMPTY(external_rsc_url)
 //send resources to the client. It's here in its own proc so we can move it around easiliy if need be
 /client/proc/send_resources()
-
-	getFiles(
-		'html/search.js',
-		'html/panels.css',
-		'html/loading.gif',
-		'icons/pda_icons/pda_atmos.png',
-		'icons/pda_icons/pda_back.png',
-		'icons/pda_icons/pda_bell.png',
-		'icons/pda_icons/pda_blank.png',
-		'icons/pda_icons/pda_boom.png',
-		'icons/pda_icons/pda_bucket.png',
-		'icons/pda_icons/pda_crate.png',
-		'icons/pda_icons/pda_cuffs.png',
-		'icons/pda_icons/pda_eject.png',
-		'icons/pda_icons/pda_exit.png',
-		'icons/pda_icons/pda_flashlight.png',
-		'icons/pda_icons/pda_honk.png',
-		'icons/pda_icons/pda_mail.png',
-		'icons/pda_icons/pda_medical.png',
-		'icons/pda_icons/pda_menu.png',
-		'icons/pda_icons/pda_mule.png',
-		'icons/pda_icons/pda_notes.png',
-		'icons/pda_icons/pda_power.png',
-		'icons/pda_icons/pda_rdoor.png',
-		'icons/pda_icons/pda_reagent.png',
-		'icons/pda_icons/pda_refresh.png',
-		'icons/pda_icons/pda_scanner.png',
-		'icons/pda_icons/pda_signaler.png',
-		'icons/pda_icons/pda_status.png',
-		'html/images/wylogo.png'
-		)
+	if(!CONFIG_GET(string/resource_url))
+		return
+	preload_rsc = GLOB.external_rsc_url
 
 /client/Stat()
 	// We just did a short sleep because of a change, do another to render quickly, but flip the flag back.

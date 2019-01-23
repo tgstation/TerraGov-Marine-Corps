@@ -1,20 +1,19 @@
-/datum/admins/proc/toggle_view_range()
+/datum/admins/proc/set_view_range()
 	set category = "Fun"
-	set name = "Change View Range"
-	set desc = "Switches between 1x and custom views."
+	set name = "Set View Range"
 
 	if(!check_rights(R_FUN))
 		return
 
-	if(owner.view == world.view)
-		var/newview = input("Select view range:", "Change View Range", 7) in list(1,2,3,4,5,6,7,8,9,10,11,12,13,14,21,28,35,50,128)
+	if(usr.client.view == world.view)
+		var/newview = input("Select view range:", "Change View Range", 7) as null|num
 		if(newview && newview != owner.view)
-			owner.change_view(newview)
+			usr.client.change_view(newview)
 	else
-		owner.change_view(world.view)
+		usr.client.change_view(world.view)
 
-	log_admin("[key_name(usr)] changed their view range to [owner.view].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed their view range to [owner.view].")
+	log_admin("[key_name(usr)] changed their view range to [usr.client.view].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed their view range to [usr.client.view].")
 
 
 /datum/admins/proc/gib_self()
@@ -73,10 +72,10 @@
 	if(light < 0)
 		return
 
-	empulse(owner.mob, heavy, light)
+	empulse(usr, heavy, light)
 
-	log_admin("[key_name(usr)] created an EM Pulse ([heavy], [light]) at [AREACOORD(owner.mob.loc)].")
-	message_admins("[ADMIN_TPMONTY(usr)] created an EM Pulse ([heavy], [light]) at [ADMIN_VERBOSEJMP(owner.mob.loc)].")
+	log_admin("[key_name(usr)] created an EM Pulse ([heavy], [light]) at [AREACOORD(usr.loc)].")
+	message_admins("[ADMIN_TPMONTY(usr)] created an EM Pulse ([heavy], [light]) at [ADMIN_VERBOSEJMP(usr.loc)].")
 
 
 /datum/admins/proc/queen_report()
@@ -98,7 +97,7 @@
 		if(isXeno(M) || isobserver(M))
 			to_chat(M, msg)
 
-	log_admin("[key_name(src)] created a Queen Mother report: [input]")
+	log_admin("[key_name(usr)] created a Queen Mother report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] created a Queen Mother report.")
 
 
@@ -112,7 +111,7 @@
 
 	check_hive_status()
 
-	log_admin("[key_name(src)] checked the hive status.")
+	log_admin("[key_name(usr)] checked the hive status.")
 	message_admins("[ADMIN_TPMONTY(usr)] checked the hive status.")
 
 
@@ -139,7 +138,7 @@
 			C.messagetitle.Add("[MAIN_AI_SYSTEM] Update")
 			C.messagetext.Add(P.info)
 
-	log_admin("[key_name(src)] has created an AI report: [input]")
+	log_admin("[key_name(usr)] has created an AI report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] has created an AI report: [input]")
 
 
@@ -174,7 +173,7 @@
 		if("No")
 			command_announcement.Announce("<span class='warning'> New update available at all communication consoles.</span>", customname, new_sound = 'sound/AI/commandreport.ogg')
 
-	log_admin("[key_name(src)] has created a command report: [input]")
+	log_admin("[key_name(usr)] has created a command report: [input]")
 	message_admins("[ADMIN_TPMONTY(usr)] has created a command report.")
 
 
@@ -221,12 +220,12 @@
 	set category = "Fun"
 	set name = "Subtle Message"
 
-	if(!check_rights(R_FUN) && !is_mentor())
+	if(!check_rights(R_FUN|R_MENTOR))
 		return
 
 	var/msg = input("Message:", text("Subtle PM to [M.key]")) as text
 
-	if(!M || !M.client || !msg)
+	if(!M?.client || !msg)
 		return
 
 	to_chat(M, "You hear a voice in your head... [msg]")
@@ -309,13 +308,13 @@
 	var/midi_warning = ""
 
 	if(midi_playing)
-		to_chat(usr, "No. An Admin already played a midi recently.")
+		to_chat(usr, "<span class='warning'>A sound was played recently. Please wait.</span>")
 		return
 
 	var/sound/uploaded_sound = sound(S, repeat = 0, wait = 1, channel = 777)
 	uploaded_sound.priority = 250
 
-	switch( alert("Play sound globally or locally?", "Sound", "Global", "Local", "Cancel") )
+	switch(alert("Play sound globally or locally?", "Sound", "Global", "Local", "Cancel"))
 		if("Global")
 			for(var/mob/M in player_list)
 				if(M.client.prefs.toggles_sound & SOUND_MIDI)
@@ -328,8 +327,8 @@
 		if("Cancel")
 			return
 
-	log_admin("[key_name(src)] played sound `[S]` for [heard_midi] player(s). [clients.len - heard_midi] player(s) have disabled admin midis.")
-	message_admins("[key_name_admin(src)] played sound `[S]` for [heard_midi] player(s). [clients.len - heard_midi] player(s) have disabled admin midis.", 1)
+	log_admin("[key_name(usr)] played sound '[S]' for [heard_midi] player(s). [clients.len - heard_midi] player(s) have disabled admin midis.")
+	message_admins("[ADMIN_TPMONTY(usr)] played sound '[S]' for [heard_midi] player(s). [clients.len - heard_midi] player(s) have disabled admin midis.")
 
 	// A 30 sec timer used to show Admins how many players are silencing the sound after it starts - see preferences_toggles.dm
 	var/midi_playing_timer = 300 // Should match with the midi_silenced spawn() in preferences_toggles.dm
@@ -341,11 +340,10 @@
 			total_silenced = 0
 			return
 		if((total_silenced / heard_midi) != 0)
-			midi_warning = " <span style='color: red'>[round((total_silenced / heard_midi) * 100)]% of players don't want to hear it, and likely more if the midi is longer than 30 seconds.</span>"
-		message_admins("'Silence Current Midi' usage reporting 30-sec timer has expired. [total_silenced] player(s) silenced the midi in the first 30 seconds out of [heard_midi] total player(s) that have 'Play Admin Midis' enabled.[midi_warning]")
+			midi_warning = "[round((total_silenced / heard_midi) * 100)]% of players don't want to hear it, and likely more if the midi is longer than 30 seconds."
+		message_admins("'Silence Current Midi' usage reporting 30-sec timer has expired. [total_silenced] player(s) silenced the midi in the first 30 seconds out of [heard_midi] total player(s) that have 'Play Admin Midis' enabled. [midi_warning]")
 		heard_midi = 0
 		total_silenced = 0
-
 
 
 /datum/admins/proc/sound_list()
@@ -364,7 +362,7 @@
 	if(melody == "--CANCEL--")
 		return
 
-	sound_file(melody)
+	usr.client.holder.sound_file(melody)
 
 
 /datum/admins/proc/announce()
@@ -380,8 +378,9 @@
 	if(!message)
 		return
 
-	to_chat(world, "<span class='notice'> <b>[fakekey ? "Administrator" : owner.key] Announces:</b>\n [message]</span>")
-	log_admin("Announce: [key_name(usr)] : [message]")
+	log_admin("AdminAnnounce: [key_name(usr)] : [message]")
+	message_admins("[ADMIN_TPMONTY(usr)] Announces:")
+	to_chat(world, "<span class='notice'><b>[fakekey ? "Administrator" : owner.key] ([rank]) Announces:</b>\n [message]</span>")
 
 
 /datum/admins/proc/force_distress()
@@ -389,7 +388,7 @@
 	set name = "Distress Beacon"
 	set desc = "Call a distress beacon manually."
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_FUN))
 		return
 
 	if(!ticker?.mode)
@@ -429,14 +428,13 @@
 		return
 
 	var/is_announcing = TRUE
-	var/announce = alert(src, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No")
-	if(announce == "No")
+	if(alert(src, "Would you like to announce the distress beacon to the server population? This will reveal the distress beacon to all players.", "Announce distress beacon?", "Yes", "No") != "Yes")
 		is_announcing = FALSE
 
 	ticker.mode.picked_call.activate(is_announcing)
 
-	log_admin("[key_name(usr)] admin-called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]")
-	message_admins("<span class='notice'> [key_name_admin(usr)] admin-called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]</span>", 1)
+	log_admin("[key_name(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]")
+	message_admins("[ADMIN_TPMONTY(usr)] called a [choice == "Randomize" ? "randomized ":""]distress beacon: [ticker.mode.picked_call.name]")
 
 
 /datum/admins/proc/force_ert_shuttle()
@@ -444,7 +442,7 @@
 	set name = "Force ERT Shuttle"
 	set desc = "Force Launch the ERT Shuttle."
 
-	if(!check_rights(R_ADMIN))
+	if(!check_rights(R_FUN))
 		return
 
 	if(!ticker?.mode)
@@ -456,69 +454,98 @@
 
 	var/datum/shuttle/ferry/ert/shuttle = shuttle_controller.shuttles[tag]
 	if(!shuttle || !istype(shuttle))
-		message_admins("Warning: Distress shuttle not found. Aborting.")
 		return
 
-	if(shuttle.location)
-		var/dock_id
-		var/dock_list = list("Port", "Starboard", "Aft")
-		if(shuttle.use_umbilical)
-			dock_list = list("Port Hangar", "Starboard Hangar")
-		var/dock_name = input("Where on the [MAIN_SHIP_NAME] should the shuttle dock?", "Select a docking zone:") as null|anything in dock_list
-		switch(dock_name)
-			if("Port") dock_id = /area/shuttle/distress/arrive_2
-			if("Starboard") dock_id = /area/shuttle/distress/arrive_1
-			if("Aft") dock_id = /area/shuttle/distress/arrive_3
-			if("Port Hangar") dock_id = /area/shuttle/distress/arrive_s_hangar
-			if("Starboard Hangar") dock_id = /area/shuttle/distress/arrive_n_hangar
-			else return
-		for(var/datum/shuttle/ferry/ert/F in shuttle_controller.process_shuttles)
-			if(F != shuttle)
-				if(!F.location || F.moving_status != SHUTTLE_IDLE)
-					if(F.area_station.type == dock_id)
-						message_admins("Warning: That docking zone is already taken by another shuttle. Aborting.")
-						return
+	if(!shuttle.location)
+		return
 
-		for(var/area/A in all_areas)
-			if(A.type == dock_id)
-				shuttle.area_station = A
-				break
+	var/dock_id
+	var/dock_list = list("Port", "Starboard", "Aft")
+	if(shuttle.use_umbilical)
+		dock_list = list("Port Hangar", "Starboard Hangar")
+	var/dock_name = input("Where on the [MAIN_SHIP_NAME] should the shuttle dock?", "Select a docking zone:") as null|anything in dock_list
+	switch(dock_name)
+		if("Port")
+			dock_id = /area/shuttle/distress/arrive_2
+		if("Starboard")
+			dock_id = /area/shuttle/distress/arrive_1
+		if("Aft")
+			dock_id = /area/shuttle/distress/arrive_3
+		if("Port Hangar")
+			dock_id = /area/shuttle/distress/arrive_s_hangar
+		if("Starboard Hangar")
+			dock_id = /area/shuttle/distress/arrive_n_hangar
+		else
+			return
+
+	for(var/datum/shuttle/ferry/ert/F in shuttle_controller.process_shuttles)
+		if(F != shuttle)
+			if(!F.location || F.moving_status != SHUTTLE_IDLE)
+				if(F.area_station.type == dock_id)
+					to_chat(usr, "<span class='warning'>That docking zone is already taken by another shuttle. Aborting.</span>")
+					return
+
+	for(var/area/A in all_areas)
+		if(A.type == dock_id)
+			shuttle.area_station = A
+			break
 
 
 	if(!shuttle.can_launch())
-		message_admins("Warning: Unable to launch this Distress shuttle at this moment. Aborting.")
+		to_chat(usr, "<span class='warning'>Unable to launch this Distress shuttle at this moment. Aborting.</span>")
 		return
 
 	shuttle.launch()
 
-	log_admin("[key_name(usr)] force launched a distress shuttle ([tag])")
-	message_admins("<span class='notice'> [key_name_admin(usr)] force launched a distress shuttle ([tag])</span>", 1)
+	log_admin("[key_name(usr)] force launched a distress shuttle: [tag] to [dock_name].")
+	message_admins("[ADMIN_TPMONTY(usr)] force launched a distress shuttle: [tag] to: [dock_name].")
 
 
-/datum/admins/proc/make_sound(var/obj/O in object_list)
+/datum/admins/proc/object_sound(var/obj/O in object_list)
 	set category = "Fun"
-	set name = "Make Sound"
+	set name = "Object Sound"
 	set desc = "Display a message to everyone who can hear the target"
-	if(O)
-		var/message = input("What do you want the message to be?", "Make Sound") as text|null
-		if(!message)
-			return
-		for (var/mob/V in hearers(O))
-			V.show_message(message, 2)
-		log_admin("[key_name(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound")
-		message_admins("<span class='notice'> [key_name_admin(usr)] made [O] at [O.x], [O.y], [O.z]. make a sound</span>", 1)
+
+	if(!check_rights(R_FUN))
+		return
+
+	if(!O)
+		return
+
+	var/message = input("What do you want the message to be?") as text|null
+	if(!message)
+		return
+
+	var/method = input("What do you want the verb to be? Make sure to include s.") as text|null
+	if(!method)
+		return
+
+	for(var/mob/V in hearers(O))
+		V.show_message("<b>[O.name]</b> [method]: [message]", 2)
+
+	log_admin("[key_name(usr)] forced [O] ([O.type]) to: [method] [message]")
+	message_admins("[ADMIN_TPMONTY(usr)] forced [O] ([O.type]) to: [method] [message]")
 
 
 /datum/admins/proc/object_talk(var/msg as text)
 	set category = "Fun"
 	set name = "Object Say"
-	set desc = "Display a message to everyone who can hear the target"
+	set desc = "Use this to talk as an object you control."
 
-	if(owner.mob.control_object)
-		if(!msg)
-			return
-		for (var/mob/V in hearers(owner.mob.control_object))
-			V.show_message("<b>[owner.mob.control_object.name]</b> says: \"" + msg + "\"", 2)
+	if(!check_rights(R_FUN))
+		return
+
+	if(!usr.control_object)
+		return
+
+	if(!msg)
+		return
+
+	for(var/mob/V in hearers(usr.control_object))
+		V.show_message("<b>[usr.control_object.name]</b> says: [msg]", 2)
+
+	log_admin("[key_name(usr)] used [usr.control_object] ([usr.control_object.type]) to say: [msg]")
+	message_admins("[ADMIN_TPMONTY(usr)] used [usr.control_object] ([usr.control_object.type]) to say: [msg]")
 
 
 /datum/admins/proc/drop_bomb()
@@ -675,8 +702,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/mob/M = owner.mob
-	var/turf/T = get_turf(O)
+	var/mob/M = usr
 
 	if(!M.control_object)
 		M.name_archive = M.real_name
@@ -685,10 +711,10 @@
 	M.real_name = O.name
 	M.name = O.name
 	M.control_object = O
-	owner.eye = O
+	M.client.eye = O
 
-	log_admin("[key_name(usr)] has possessed [O] ([O.type]) at [AREACOORD(T)].")
-	message_admins("[ADMIN_TPMONTY(usr)] has possessed [O] ([O.type]) at [ADMIN_VERBOSEJMP(T)].")
+	log_admin("[key_name(usr)] has possessed [O] ([O.type]).")
+	message_admins("[ADMIN_TPMONTY(usr)] has possessed [O] ([O.type]).")
 
 
 /datum/admins/proc/release(obj/O as obj in object_list)
@@ -698,7 +724,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/mob/M = owner.mob
+	var/mob/M = usr
 
 	if(!M.control_object || !M.name_archive)
 		return
@@ -712,7 +738,7 @@
 
 	M.loc = O.loc
 	M.control_object = null
-	owner.eye = M
+	M.client.eye = M
 
 	log_admin("[key_name(usr)] has released [O] ([O.type]).")
 	message_admins("[ADMIN_TPMONTY(usr)] has released [O] ([O.type]).")

@@ -4,21 +4,22 @@
 	var/directory = "config"
 
 	var/warned_deprecated_configs = FALSE
-	var/hiding_entries_by_type = TRUE	//Set for readability, admins can set this to FALSE if they want to debug it
+	var/hiding_entries_by_type = TRUE //Set for readability, admins can set this to FALSE if they want to debug it
 	var/list/entries
 	var/list/entries_by_type
 
 	var/list/maplist
 	var/datum/map_config/defaultmap
 
-	var/list/modes			// allowed modes
+	var/list/modes // allowed modes
 	var/list/gamemode_cache
-	var/list/votable_modes		// votable modes
+	var/list/votable_modes // votable modes
 	var/list/mode_names
 	var/list/mode_reports
 	var/list/mode_false_report_weight
 
 	var/motd
+
 
 /datum/controller/configuration/proc/admin_reload()
 	if(IsAdminAdvancedProcCall())
@@ -28,8 +29,9 @@
 	full_wipe()
 	Load(world.params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
+
 /datum/controller/configuration/proc/Load(_directory)
-	if(IsAdminAdvancedProcCall())		//If admin proccall is detected down the line it will horribly break everything.
+	if(IsAdminAdvancedProcCall()) //If admin proccall is detected down the line it will horribly break everything.
 		return
 	if(_directory)
 		directory = _directory
@@ -48,6 +50,7 @@
 	loadmaplist(CONFIG_MAPS_FILE)
 	LoadMOTD()
 
+
 /datum/controller/configuration/proc/full_wipe()
 	if(IsAdminAdvancedProcCall())
 		return
@@ -60,11 +63,13 @@
 	QDEL_NULL(defaultmap)
 	*/
 
+
 /datum/controller/configuration/Destroy()
 	full_wipe()
 	config = null
 
 	return ..()
+
 
 /datum/controller/configuration/proc/InitEntries()
 	var/list/_entries = list()
@@ -86,9 +91,11 @@
 		_entries[esname] = E
 		_entries_by_type[I] = E
 
+
 /datum/controller/configuration/proc/RemoveEntry(datum/config_entry/CE)
 	entries -= CE.name
 	entries_by_type -= CE.type
+
 
 /datum/controller/configuration/proc/LoadEntries(filename, list/stack = list())
 	if(IsAdminAdvancedProcCall())
@@ -173,17 +180,21 @@
 
 	++.
 
+
 /datum/controller/configuration/can_vv_get(var_name)
 	return (var_name != NAMEOF(src, entries_by_type) || !hiding_entries_by_type) && ..()
+
 
 /datum/controller/configuration/vv_edit_var(var_name, var_value)
 	var/list/banned_edits = list(NAMEOF(src, entries_by_type), NAMEOF(src, entries), NAMEOF(src, directory))
 	return !(var_name in banned_edits) && ..()
 
+
 /datum/controller/configuration/stat_entry()
 	if(!statclick)
 		statclick = new/obj/effect/statclick/debug(null, "Edit", src)
 	stat("[name]:", statclick)
+
 
 /datum/controller/configuration/proc/Get(entry_type)
 	var/datum/config_entry/E = entry_type
@@ -198,6 +209,7 @@
 		return
 	return E.config_entry_value
 
+
 /datum/controller/configuration/proc/Set(entry_type, new_val)
 	var/datum/config_entry/E = entry_type
 	var/entry_is_abstract = initial(E.abstract_type) == entry_type
@@ -211,6 +223,7 @@
 		return
 	return E.ValidateAndSet("[new_val]")
 
+
 /datum/controller/configuration/proc/LoadModes()
 	gamemode_cache = typecacheof(/datum/game_mode, TRUE)
 	modes = list()
@@ -223,12 +236,13 @@
 		// their information, but it is the only way (at least that I know of).
 		var/datum/game_mode/M = new T()
 		if(M.config_tag)
-			if(!(M.config_tag in modes))		// ensure each mode is added only once
+			if(!(M.config_tag in modes)) //Ensure each mode is added only once
 				modes += M.config_tag
 				mode_names[M.config_tag] = M.name
 				if(M.votable)
 					votable_modes += M.config_tag
 		qdel(M)
+
 
 /datum/controller/configuration/proc/LoadMOTD()
 	motd = file2text("[directory]/motd.txt")
@@ -237,6 +251,7 @@
 	if(motd || tm_info)
 		motd = motd ? "[motd]<br>[tm_info]" : tm_info
 	*/
+
 
 /datum/controller/configuration/proc/loadmaplist(filename)
 	return
@@ -308,6 +323,7 @@
 			return new T
 	return new /datum/game_mode/extended()
 
+
 /datum/controller/configuration/proc/get_runnable_modes()
 	return
 /*
@@ -341,6 +357,7 @@
 			runnable_modes[M] = final_weight
 	return runnable_modes
 */
+
 
 /datum/controller/configuration/proc/get_runnable_midround_modes(crew)
 	return

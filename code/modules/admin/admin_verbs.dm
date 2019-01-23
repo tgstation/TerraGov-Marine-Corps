@@ -3,13 +3,10 @@
 	set name = "Aghost"
 	set desc = "Allows you to ghost and re-enter body at will."
 
-	if(!check_rights(R_ADMIN) && !is_mentor(owner))
+	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
 
-	if(!owner?.mob)
-		return
-
-	var/mob/M = owner.mob
+	var/mob/M = usr
 
 	if(istype(M, /mob/new_player))
 		return
@@ -19,10 +16,9 @@
 		ghost.reenter_corpse()
 	else
 		M.ghostize(TRUE)
-		owner.change_view(world.view)
+		usr.client.change_view(world.view)
 		if(M && !M.key)
-			M.key = "@[owner.key]"
-
+			M.key = "@[usr.client.key]"
 
 		log_admin("[key_name(usr)] admin ghosted.")
 		message_admins("[ADMIN_TPMONTY(usr)] admin ghosted.")
@@ -36,10 +32,10 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!owner?.mob)
-		return
+	var/mob/M = usr
 
-	var/mob/M = owner.mob
+	if(isobserver(M))
+		return
 
 	if(M.invisibility == INVISIBILITY_OBSERVER)
 		M.invisibility = initial(M.invisibility)
@@ -62,18 +58,18 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(fakekey)
-		fakekey = null
+	if(usr.client.holder.fakekey)
+		usr.client.holder.fakekey = null
 	else
-		var/new_key = ckeyEx(input("Enter your desired display name.",, owner.key) as text|null)
+		var/new_key = ckeyEx(input("Enter your desired display name.",, usr.client.key) as text|null)
 		if(!new_key)
 			return
 		if(length(new_key) >= 26)
 			new_key = copytext(new_key, 1, 26)
-		fakekey = new_key
+		usr.client.holder.fakekey = new_key
 
-	log_admin("[key_name(usr)] has turned stealth mode [fakekey ? "on" : "off"].")
-	message_admins("[ADMIN_TPMONTY(usr)] has turned stealth mode [fakekey ? "on" : "off"].")
+	log_admin("[key_name(usr)] has turned stealth mode [usr.client.holder.fakekey ? "on - [usr.client.holder.fakekey]" : "off"].")
+	message_admins("[ADMIN_TPMONTY(usr)] has turned stealth mode [usr.client.holder.fakekey ? "on - [usr.client.holder.fakekey]" : "off"].")
 
 
 /datum/admins/proc/jobs_free()
@@ -88,10 +84,10 @@
 	var/datum/job/J
 	for(var/r in RoleAuthority.roles_for_mode) //All the roles in the game.
 		J = RoleAuthority.roles_for_mode[r]
-		if(J.total_positions != -1 && J.get_total_positions(1) <= J.current_positions)
+		if(J.total_positions != -1 && J.get_total_positions(TRUE) <= J.current_positions)
 			roles += r
 
-	if(!roles.len)
+	if(!length(roles))
 		to_chat(usr, "<span class='warning'>There are no fully staffed roles.</span>")
 		return
 
@@ -194,12 +190,12 @@
 			for(var/mob/living/M in view())
 				M.sleeping = 9999999
 			log_admin("[key_name(usr)] has slept everyone in view.")
-			message_admins("[key_name_admin(usr)] has slept everyone in view.")
+			message_admins("[ADMIN_TPMONTY(usr)] has slept everyone in view.")
 		if("Unsleep")
 			for(var/mob/living/M in view())
 				M.sleeping = 0
 			log_admin("[key_name(usr)] has unslept everyone in view.")
-			message_admins("[ADMIN_TPMONTY(usr)]has unslept everyone in view.")
+			message_admins("[ADMIN_TPMONTY(usr)] has unslept everyone in view.")
 
 
 /datum/admins/proc/change_squad(var/mob/living/carbon/human/H in mob_list)
@@ -263,24 +259,19 @@
 		return
 
 	var/replaced = FALSE
-	if(M.ckey)
-		if(alert("This mob is being controlled by [M.ckey], they will be made a ghost. Are you sure?",,"Yes","No") == "Yes")
+	if(M.key)
+		if(alert("This mob is being controlled by [M.key], they will be made a ghost. Are you sure?",,"Yes","No") == "Yes")
 			M.ghostize()
 			replaced = TRUE
 		else
 			return
 
-	var/mob/adminmob = owner.mob
-	M.ckey = owner.ckey
+	M.key = usr.client.key
 
-	if(M.client)
-		M.client.change_view(world.view)
-
-	if(isobserver(adminmob))
-		qdel(adminmob)
+	M.client.change_view(world.view)
 
 	log_admin("[key_name(usr)] took over [M.name][replaced ? " replacing the previous owner" : ""].")
-	message_admins("[ADMIN_TPMONTY(usr)] took over [M.name][replaced ? " replacing the previous owner" : ""]..")
+	message_admins("[ADMIN_TPMONTY(usr)] took over [M.name][replaced ? " replacing the previous owner" : ""].")
 
 
 /datum/admins/proc/logs_server()
@@ -290,7 +281,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	browseserverlogs()
+	usr.client.holder.browse_server_logs()
 
 
 /datum/admins/proc/logs_current()
@@ -301,7 +292,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	browseserverlogs("[GLOB.log_directory]/")
+	usr.client.holder.browse_server_logs("[GLOB.log_directory]/")
 
 
 /datum/admins/proc/logs_folder()
@@ -312,32 +303,32 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/choice = alert(src, "Due to the way BYOND handles files, you WILL need a click macro. This function is also recurive and prone to fucking up, especially if you select the wrong folder. Are you absolutely sure you want to proceed?", "WARNING", "Yes", "No")
+	var/choice = alert(usr, "Due to the way BYOND handles files, you WILL need a click macro. This function is also recurive and prone to fucking up, especially if you select the wrong folder. Are you absolutely sure you want to proceed?", "WARNING", "Yes", "No")
 	if(choice != "Yes")
 		return
 
 	var/path = "data/logs/"
-	path = browse_folders(path)
+	path = usr.client.holder.browse_folders(path)
 
 	if(path)
-		recursive_download(path)
+		usr.client.holder.recursive_download(path)
 
 
-/datum/admins/proc/browseserverlogs(path = "data/logs/")
+/datum/admins/proc/browse_server_logs(path = "data/logs/")
 	if(!check_rights(R_ADMIN))
 		return
 
-	path = browse_folders(path)
+	path = browse_files(path)
 	if(!path)
 		return
 
 	switch(alert("View (in game), Open (in your system's text editor), Download", path, "View", "Open", "Download"))
 		if("View")
-			src << browse("<pre style='word-wrap: break-word;'>[html_encode(file2text(file(path)))]</pre>", list2params(list("window" = "viewfile.[path]")))
+			usr << browse("<pre style='word-wrap: break-word;'>[html_encode(file2text(file(path)))]</pre>", list2params(list("window" = "viewfile.[path]")))
 		if("Open")
-			src << run(file(path))
+			usr << run(file(path))
 		if("Download")
-			src << ftp(file(path))
+			usr << ftp(file(path))
 
 	log_admin("[key_name(usr)] accessed file: [path].")
 	message_admins("[ADMIN_TPMONTY(usr)] accessed file: [path].")
@@ -350,22 +341,25 @@
 	var/files = flist(folder)
 	for(var/next in files)
 		if(copytext(next, -1, 0) == "/")
-			to_chat(src, "Going deeper: [folder][next]")
-			recursive_download(folder + next)
+			to_chat(usr, "Going deeper: [folder][next]")
+			usr.client.holder.recursive_download(folder + next)
 		else
-			to_chat(src, "Downloading: [folder][next]")
+			to_chat(usr, "Downloading: [folder][next]")
 			var/fil = replacetext("[folder][next]", "/", "_")
 			spawn(5)
-				src << ftp(file(folder + next), fil)
+				usr << ftp(file(folder + next), fil)
 
 
 /datum/admins/proc/browse_folders(root = "data/logs/", max_iterations = 100)
+	if(!check_rights(R_ADMIN))
+		return
+
 	var/path = root
 	for(var/i = 0, i < max_iterations, i++)
 		var/list/choices = flist(path)
 		if(path != root)
 			choices.Insert(1, "/")
-		var/choice = input(src, "Choose a folder to access:", "Download", null) as null|anything in choices
+		var/choice = input(usr, "Choose a folder to access:", "Download", null) as null|anything in choices
 		switch(choice)
 			if(null)
 				return FALSE
@@ -373,10 +367,11 @@
 				path = root
 				continue
 		path += choice
-		if(copytext(path, -1, 0) != "/")
-			continue
+
+		if(copytext(path, -1, 0) != "/")		//didn't choose a directory, no need to iterate again
+			return FALSE
 		else
-			var/choice2 = alert(src, "Is this the folder you want to download?:",, "Yes", "No")
+			var/choice2 = alert(usr, "Is this the folder you want to download?:",, "Yes", "No")
 			switch(choice2)
 				if("Yes")
 					break
@@ -385,7 +380,41 @@
 	return path
 
 
+/datum/admins/proc/browse_files(root="data/logs/", max_iterations = 20 , list/valid_extensions = list("txt","log","htm", "html"))
+	if(!check_rights(R_ADMIN))
+		return
+
+	var/path = root
+	for(var/i = 0, i < max_iterations, i++)
+		var/list/choices = flist(path)
+		if(path != root)
+			choices.Insert(1, "/")
+		var/choice = input(usr, "Choose a file to access:", "Download", null) as null|anything in choices
+		switch(choice)
+			if(null)
+				return
+			if("/")
+				path = root
+				continue
+		path += choice
+		if(copytext(path, -1, 0) != "/")		//didn't choose a directory, no need to iterate again
+			break
+	var/extensions
+	for(var/i in valid_extensions)
+		if(extensions)
+			extensions += "|"
+		extensions += "[i]"
+	var/regex/valid_ext = new("\\.([extensions])$", "i")
+	if(!fexists(path) || !(valid_ext.Find(path)))
+		return FALSE
+
+	return path
+
+
 /datum/admins/proc/show_individual_logging_panel(mob/M, source = LOGSRC_CLIENT, type = INDIVIDUAL_ATTACK_LOG)
+	if(!check_rights(R_ADMIN))
+		return
+
 	if(!M || !ismob(M))
 		return
 
@@ -447,6 +476,9 @@
 
 
 /datum/admins/proc/individual_logging_panel_link(mob/M, log_type, log_src, label, selected_src, selected_type)
+	if(!check_rights(R_ADMIN))
+		return
+
 	var/slabel = label
 	if(selected_type == log_type && selected_src == log_src)
 		slabel = "<b>\[[label]\]</b>"
@@ -483,7 +515,7 @@
 	set name = "msay"
 	set hidden = TRUE
 
-	if(!check_rights(R_ADMIN) && !is_mentor(owner))
+	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
 
 	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
@@ -513,22 +545,22 @@
 	set name = "dsay"
 	set hidden = TRUE
 
-	if(!check_rights(R_ADMIN) && !is_mentor(owner))
+	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
 
-	if(is_mentor(owner) && owner.mob.stat != DEAD)
+	if(is_mentor(src) && usr.stat != DEAD)
 		to_chat(usr, "<span class='warning'>You must be an observer to use dsay.</span>")
 		return
 
-	if(owner.prefs.muted & MUTE_DEADCHAT)
+	if(usr.client.prefs.muted & MUTE_DEADCHAT)
 		to_chat(usr, "<span class='warning'>You cannot send DSAY messages (muted).</span>")
 		return
 
-	if(!(owner.prefs.toggles_chat & CHAT_DEAD))
+	if(!(usr.client.prefs.toggles_chat & CHAT_DEAD))
 		to_chat(usr, "<span class='warning'>You have deadchat muted.</span>")
 		return
 
-	if(owner.handle_spam_prevention(msg, MUTE_DEADCHAT))
+	if(usr.client.handle_spam_prevention(msg, MUTE_DEADCHAT))
 		return
 
 	msg = copytext(sanitize(msg), 1, MAX_MESSAGE_LEN)
@@ -537,9 +569,9 @@
 		return
 
 	log_dsay("[key_name(usr)]: [msg]")
-	msg = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>([rank]) [fakekey ? fakekey : owner.key]</span> says, <span class='message'>[msg]</span></span>"
+	msg = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>([rank]) [usr.client.holder.fakekey ? "Administrator" : usr.key]</span> says, <span class='message'>[msg]</span></span>"
 
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		if(istype(C.mob, /mob/new_player))
 			continue
 
@@ -565,13 +597,13 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/mob/M = owner.mob
+	var/mob/M = usr
 	M.on_mob_jump()
 	M.forceMove(pick(get_area_turfs(A)))
 
-	log_admin("[key_name(usr)] jumped to [AREACOORD(A)].")
+	log_admin("[key_name(usr)] jumped to [AREACOORD(usr.loc)].")
 	if(!istype(M, /mob/dead/observer))
-		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_VERBOSEJMP(A)].")
+		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_VERBOSEJMP(usr.loc)].")
 
 
 /datum/admins/proc/jump_turf(var/turf/T in turfs)
@@ -581,7 +613,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/mob/M = owner.mob
+	var/mob/M = usr
 	M.on_mob_jump()
 	M.forceMove(T)
 
@@ -597,7 +629,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/mob/M = owner.mob
+	var/mob/M = usr
 	M.on_mob_jump()
 	M.x = tx
 	M.y = ty
@@ -616,7 +648,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/mob/N = owner.mob
+	var/mob/N = usr
 	var/turf/T = get_turf(M)
 
 	N.on_mob_jump()
@@ -643,7 +675,7 @@
 		return
 
 	var/mob/M = selection:mob
-	var/mob/N = owner.mob
+	var/mob/N = usr
 
 	N.on_mob_jump()
 	N.loc = M.loc
@@ -713,15 +745,17 @@
 
 
 #define IRCREPLYCOUNT 2
-/client/proc/cmd_admin_pm_context(mob/M in GLOB.mob_list)
-	set category = null
+/client/proc/cmd_admin_pm_context(mob/M in mob_list)
+	set category = "Admin"
 	set name = "Admin PM Mob"
+	set hidden = TRUE
 
-	if(!check_rights(R_ADMIN) && !is_mentor(src))
+	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
 
 	if(!ismob(M) || !M.client )
 		return
+
 	cmd_admin_pm(M.client, null)
 
 //shows a list of clients we could send PMs to, then forwards our choice to cmd_admin_pm
@@ -771,6 +805,7 @@
 		message_admins("[key_name_admin(src)] has cancelled their reply to [key_name_admin(C, 0, 0)]'s admin help.")
 		return
 	cmd_admin_pm(whom, msg)
+
 
 //takes input from cmd_admin_pm_context, cmd_admin_pm_panel or /client/Topic and sends them a PM.
 //Fetching a message if needed. src is the sender and C is the target client
@@ -907,7 +942,6 @@
 				to_chat(X, "<font color='blue'><B>PM: [key_name(src, X, 0)]-&gt;[key_name(recipient, X, 0)]:</B> [keywordparsedmsg]</font>" )
 
 
-
 #define IRC_AHELP_USAGE "Usage: ticket <close|resolve|icissue|reject|reopen \[ticket #\]|list>"
 /proc/IrcPm(target,msg,sender)
 	target = ckey(target)
@@ -995,6 +1029,7 @@
 	SEND_SOUND(C, 'sound/effects/adminhelp.ogg')
 
 	return "Message Successful"
+
 
 /proc/GenIrcStealthKey()
 	var/num = (rand(0,1000))

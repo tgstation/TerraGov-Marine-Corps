@@ -1,8 +1,10 @@
 #define RESTART_COUNTER_PATH "data/round_counter.txt"
 
+
 GLOBAL_VAR(restart_counter)
 //TODO: Replace INFINITY with the version that fixes http://www.byond.com/forum/?post=2407430
 GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_build < INFINITY)
+
 
 //This happens after the Master subsystem new(s) (it's a global datum)
 //So subsystems globals exist, but are not initialised
@@ -11,13 +13,13 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	log_world("World loaded at [time_stamp()]!")
 
-	SetupExternalRSC()
-
 	GLOB.config_error_log = GLOB.world_manifest_log = GLOB.sql_error_log = GLOB.world_href_log = GLOB.world_runtime_log = GLOB.world_attack_log = GLOB.world_game_log = "data/logs/config_error.[GUID()].log" //temporary file used to record errors with loading config, moved to log directory once logging is set
 
 	config.Load(params[OVERRIDE_CONFIG_DIRECTORY_PARAMETER])
 
-	//make_datum_references_lists()	//initialises global lists for referencing frequently used datums (so that we only ever do it once)
+	SetupExternalRSC()
+
+	//make_datum_references_lists()	//Port this from /tg/
 	makeDatumRefLists() //Legacy
 
 	TgsNew(new /datum/tgs_event_handler/tg, minimum_required_security_level = TGS_SECURITY_TRUSTED)
@@ -30,14 +32,12 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	SSdbcore.SetRoundID()
 	SetupLogs()
 
-	world.log = file("[GLOB.log_directory]/dd.log")
+	world.log = file("[GLOB.log_directory]/runtime.log")
 
 	load_admins()
-	//LoadVerbs(/datum/verbs/menu)
+
 	if(CONFIG_GET(flag/usewhitelist))
 		load_whitelist()
-
-	//GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
 
 	if(fexists(RESTART_COUNTER_PATH))
 		GLOB.restart_counter = text2num(trim(file2text(RESTART_COUNTER_PATH)))
@@ -48,13 +48,8 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	Master.Initialize(10, FALSE, TRUE)
 
-	//if(TEST_RUN_PARAMETER in params)
-		//HandleTestRun()
-
 	GLOB.timezoneOffset = text2num(time2text(0,"hh")) * 36000
-/*
-// EVERYTHING BELOW IS LEGACY
-*/
+
 	initialize_marine_armor()
 
 	callHook("startup")
@@ -67,8 +62,6 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 
 	update_status()
 
-	. = ..()
-
 	// Set up roundstart seed list. This is here because vendors were
 	// bugging out and not populating with the correct packet names
 	// due to this list not being instantiated.
@@ -78,19 +71,17 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 		RoleAuthority = new /datum/authority/branch/role()
 		to_chat(world, "<span class='danger'>Job setup complete</span>")
 
-	if(!syndicate_code_phrase)		syndicate_code_phrase	= generate_code_phrase()
-	if(!syndicate_code_response)	syndicate_code_response	= generate_code_phrase()
-	if(!EvacuationAuthority)		EvacuationAuthority = new
+	if(!EvacuationAuthority)		
+		EvacuationAuthority = new
 
 	world.tick_lag = CONFIG_GET(number/ticklag)
 
-	spawn(3000)		//so we aren't adding to the round-start lag
+	spawn(3000)
 		if(CONFIG_GET(flag/kick_inactive))
 			KickInactiveClients()
 
-#undef RECOMMENDED_VERSION
+	return ..()
 
-	return
 
 /world/proc/SetupLogs()
 	var/override_dir = params[OVERRIDE_LOG_DIRECTORY_PARAMETER]
@@ -143,19 +134,9 @@ GLOBAL_VAR_INIT(bypass_tgs_reboot, world.system_type == UNIX && world.byond_buil
 	log_runtime(GLOB.revdata.get_log_message())
 
 
-//world/Topic(href, href_list[])
-//		to_chat(world, "Received a Topic() call!")
-//		to_chat(world, "[href]")
-//		for(var/a in href_list)
-//			to_chat(world, "[a]")
-//		if(href_list["hello"])
-//			to_chat(world, "Hello world!")
-//			return "Hello world!"
-//		to_chat(world, "End of Topic() call.")
-//		..()
-
 var/world_topic_spam_protect_ip = "0.0.0.0"
 var/world_topic_spam_protect_time = world.timeofday
+
 
 /world/Topic(T, addr, master, key)
 	TGS_TOPIC
@@ -183,7 +164,6 @@ var/world_topic_spam_protect_time = world.timeofday
 		s["respawn"] = config ? respawn_allowed : 0
 		s["enter"] = enter_allowed
 		s["vote"] = CONFIG_GET(flag/allow_vote_mode)
-		s["ai"] = CONFIG_GET(flag/allow_ai)
 		s["host"] = host ? host : null
 		s["players"] = list()
 		s["stationtime"] = duration2text()
@@ -203,7 +183,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		return list2params(s)
 
-	else if(copytext(T,1,6) == "notes")
+	else if(copytext(T, 1, 6) == "notes")
 		/*
 			We got a request for notes from the IRC Bot
 			expected output:
@@ -213,7 +193,6 @@ var/world_topic_spam_protect_time = world.timeofday
 		var/input[] = params2list(T)
 		if(input["key"] != CONFIG_GET(string/comms_password))
 			if(world_topic_spam_protect_ip == addr && abs(world_topic_spam_protect_time - world.time) < 50)
-
 				spawn(50)
 					world_topic_spam_protect_time = world.time
 					return "Bad Key (Throttled)"
@@ -226,21 +205,17 @@ var/world_topic_spam_protect_time = world.timeofday
 
 
 /world/Reboot(var/reason)
-	/*spawn(0)
-		world << sound(pick('sound/AI/newroundsexy.ogg','sound/misc/apcdestroyed.ogg','sound/misc/bangindonk.ogg')) // random end sounds!! - LastyBatsy
-		*/
 	TgsReboot()
 	for(var/client/C in clients)
-		if(CONFIG_GET(string/server))	//if you set a server location in config.txt, it sends you there instead of trying to reconnect to the same world address. -- NeoFite
+		if(CONFIG_GET(string/server))
 			C << link("byond://[CONFIG_GET(string/server)]")
-
-	..(reason)
+	return ..()
 
 
 #define INACTIVITY_KICK	6000	//10 minutes in ticks (approx.)
 /world/proc/KickInactiveClients()
 	spawn(-1)
-		set background = 1
+		set background = TRUE
 		while(1)
 			sleep(INACTIVITY_KICK)
 			for(var/client/C in clients)
@@ -248,7 +223,7 @@ var/world_topic_spam_protect_time = world.timeofday
 					continue
 				if(C.is_afk(INACTIVITY_KICK))
 					if(!istype(C.mob, /mob/dead))
-						log_access("AFK: [key_name(C)]")
+						log_access("AFK: [key_name(C)].")
 						to_chat(C, "<span class='warning'>You have been inactive for more than 10 minutes and have been disconnected.</span>")
 						qdel(C)
 #undef INACTIVITY_KICK
@@ -256,7 +231,8 @@ var/world_topic_spam_protect_time = world.timeofday
 
 /hook/startup/proc/loadMode()
 	world.load_mode()
-	return 1
+	return TRUE
+
 
 /world/proc/load_mode()
 	var/list/Lines = file2list("data/mode.txt")
@@ -265,29 +241,11 @@ var/world_topic_spam_protect_time = world.timeofday
 			master_mode = Lines[1]
 			log_config("Saved mode is '[master_mode]'")
 
+
 /world/proc/save_mode(var/the_mode)
 	var/F = file("data/mode.txt")
 	fdel(F)
 	to_chat(F, the_mode)
-
-/hook/startup/proc/loadMOTD()
-	world.load_motd()
-	return 1
-
-/world/proc/load_motd()
-	join_motd = file2text("config/motd.txt")
-
-/*
-/proc/load_configuration()
-	config = new /datum/configuration()
-	config.load("config/config.txt")
-	config.load("config/game_options.txt","game_options")
-	config.load("config/combat_defines.txt","combat_defines")
-	config.loadsql("config/dbconfig.txt")
-	config.loadforumsql("config/forumdbconfig.txt")
-	// apply some settings from config..
-	abandon_allowed = config.respawn
-*/
 
 
 /world/proc/update_status()
@@ -322,22 +280,15 @@ var/world_topic_spam_protect_time = world.timeofday
 
 		status = s
 
+
 #define FAILED_DB_CONNECTION_CUTOFF 1
 var/failed_db_connections = 0
 var/failed_old_db_connections = 0
 
-// /hook/startup/proc/connectDB()
-// 	if(!setup_database_connection())
-// 		log_world("Your server failed to establish a connection with the feedback database.")
-// 	else
-// 		log_world("Feedback database connection established.")
-// 	return 1
 
-proc/setup_database_connection()
-
+/proc/setup_database_connection()
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
-		return 0
-
+		return FALSE
 	if(!dbcon)
 		dbcon = new()
 
@@ -349,7 +300,7 @@ proc/setup_database_connection()
 
 	dbcon.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
 	. = dbcon.IsConnected()
-	if ( . )
+	if (.)
 		failed_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
 	else
 		failed_db_connections++		//If it failed, increase the failed connections counter.
@@ -358,68 +309,16 @@ proc/setup_database_connection()
 	return .
 
 //This proc ensures that the connection to the feedback database (global variable dbcon) is established
-proc/establish_db_connection()
+/proc/establish_db_connection()
 	if(failed_db_connections > FAILED_DB_CONNECTION_CUTOFF)
-		return 0
-
+		return FALSE
 	if(!dbcon || !dbcon.IsConnected())
 		return setup_database_connection()
 	else
-		return 1
-
-
-// /hook/startup/proc/connectOldDB()
-// 	if(!setup_old_database_connection())
-// 		log_world("Your server failed to establish a connection with the SQL database.")
-// 	else
-// 		log_world("SQL database connection established.")
-// 	return 1
-
-//These two procs are for the old database, while it's being phased out. See the tgstation.sql file in the SQL folder for more information.
-proc/setup_old_database_connection()
-
-	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)	//If it failed to establish a connection more than 5 times in a row, don't bother attempting to conenct anymore.
-		return 0
-
-	if(!dbcon_old)
-		dbcon_old = new()
-
-	var/user = sqllogin
-	var/pass = sqlpass
-	var/db = sqldb
-	var/address = sqladdress
-	var/port = sqlport
-
-	dbcon_old.Connect("dbi:mysql:[db]:[address]:[port]","[user]","[pass]")
-	. = dbcon_old.IsConnected()
-	if ( . )
-		failed_old_db_connections = 0	//If this connection succeeded, reset the failed connections counter.
-	else
-		failed_old_db_connections++		//If it failed, increase the failed connections counter.
-		log_sql(dbcon.ErrorMsg())
-
-	return .
-
-//This proc ensures that the connection to the feedback database (global variable dbcon) is established
-proc/establish_old_db_connection()
-	if(failed_old_db_connections > FAILED_DB_CONNECTION_CUTOFF)
-		return 0
-
-	if(!dbcon_old || !dbcon_old.IsConnected())
-		return setup_old_database_connection()
-	else
-		return 1
-
-#undef FAILED_DB_CONNECTION_CUTOFF
+		return TRUE
 
 
 /world/proc/SetupExternalRSC()
-#ifdef PRELOAD_RSC
-	GLOB.external_rsc_urls = world.file2list("[global.config.directory]/external_rsc_urls.txt","\n")
-	var/i=1
-	while(i<=GLOB.external_rsc_urls.len)
-		if(GLOB.external_rsc_urls[i])
-			i++
-		else
-			GLOB.external_rsc_urls.Cut(i,i+1)
-#endif
+	if(!CONFIG_GET(string/resource_url))
+		return
+	GLOB.external_rsc_url = CONFIG_GET(string/resource_url)

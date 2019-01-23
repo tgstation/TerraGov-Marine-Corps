@@ -44,6 +44,7 @@
 	if(CONFIG_GET(flag/log_adminchat))
 		WRITE_LOG(GLOB.world_game_log, "ADMINPRIVATE: MSAY: [text]")
 
+
 /proc/log_dsay(text)
 	if(CONFIG_GET(flag/log_adminchat))
 		WRITE_LOG(GLOB.world_game_log, "ADMIN: DSAY: [text]")
@@ -147,7 +148,7 @@
 /proc/shutdown_logging()
 	rustg_log_close_all()
 
-/*
+
 /* Helper procs for building detailed log lines */
 /proc/key_name(whom, include_link = null, include_name = TRUE)
 	var/mob/M
@@ -206,7 +207,7 @@
 	if(key)
 		if(C?.holder?.fakekey && !include_name)
 			if(include_link)
-				. += "<a href='?priv_msg=[C.findStealthKey()]'>"
+				. += "<a href='?priv_msg=[C.find_stealth_key()]'>"
 			. += "Administrator"
 		else
 			if(include_link)
@@ -231,9 +232,11 @@
 
 	return .
 
+
 /proc/key_name_admin(whom, include_name = TRUE)
 	return key_name(whom, TRUE, include_name)
-*/
+
+
 /proc/loc_name(atom/A)
 	if(!istype(A))
 		return "(INVALID LOCATION)"
@@ -246,67 +249,3 @@
 		return "([AREACOORD(T)])"
 	else if(A.loc)
 		return "(UNKNOWN (?, ?, ?))"
-
-
-/proc/key_name(var/whom, var/include_link = FALSE, var/include_name = TRUE, var/highlight_special_characters = TRUE)
-	var/mob/M
-	var/client/C
-	var/key
-
-	if(!whom)
-		return "*null*"
-
-	if(istype(whom, /client))
-		C = whom
-		M = C.mob
-		key = C.key
-	else if(ismob(whom))
-		M = whom
-		C = M.client
-		key = M.key
-	else // Catch-all cases if none of the types above match
-		var/swhom = null
-
-		if(istype(whom, /atom))
-			var/atom/A = whom
-			swhom = "[A.name]"
-		else if(istype(whom, /datum))
-			swhom = "[whom]"
-
-		if(!swhom)
-			swhom = "*invalid*"
-
-		return "\[[swhom]\]"
-
-	. = ""
-
-	if(key)
-		if(include_link && C)
-			. += "<a href='?priv_msg=\ref[C]'>"
-
-		if(C && C.holder && C.holder.fakekey && !include_name)
-			. += "Administrator"
-		else
-			. += key
-
-		if(include_link)
-			if(C)	. += "</a>"
-			else	. += " (DC)"
-	else
-		. += "*no key*"
-
-	if(include_name && M)
-		var/name
-
-		if(M.real_name)
-			name = M.real_name
-		else if(M.name)
-			name = M.name
-
-		. += "/([name])"
-
-	return .
-
-
-/proc/key_name_admin(var/whom, var/include_name = TRUE)
-	return key_name(whom, TRUE, include_name)

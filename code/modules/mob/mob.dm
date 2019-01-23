@@ -43,24 +43,28 @@
 			stat("Operation Time: [worldtime2text()]")
 		client.stat_force_fast_update = TRUE
 
-	if(client?.holder?.rank?.rights && client.holder.rank.rights & (R_ADMIN|R_DEBUG))
-		if(statpanel("MC"))
-			stat("CPU:", "[world.cpu]")
-			stat("Instances:", "[num2text(world.contents.len, 10)]")
-			stat("World Time:", "[world.time]")
-			stat(null)
-			if(Master)
-				Master.stat_entry()
-			else
-				stat("Master Controller:", "ERROR")
-			if(Failsafe)
-				Failsafe.stat_entry()
-			else
-				stat("Failsafe Controller:", "ERROR")
-			if(Master)
+	if(client?.holder?.rank?.rights)
+		if(client.holder.rank.rights & (R_ADMIN|R_DEBUG))
+			if(statpanel("MC"))
+				stat("CPU:", "[world.cpu]")
+				stat("Instances:", "[num2text(world.contents.len, 10)]")
+				stat("World Time:", "[world.time]")
 				stat(null)
-				for(var/datum/controller/subsystem/SS in Master.subsystems)
-					SS.stat_entry()
+				if(Master)
+					Master.stat_entry()
+				else
+					stat("Master Controller:", "ERROR")
+				if(Failsafe)
+					Failsafe.stat_entry()
+				else
+					stat("Failsafe Controller:", "ERROR")
+				if(Master)
+					stat(null)
+					for(var/datum/controller/subsystem/SS in Master.subsystems)
+						SS.stat_entry()
+		if(client.holder.rank.rights & (R_ADMIN|R_MENTOR))
+			if(statpanel("Tickets"))
+				GLOB.ahelp_tickets.stat_entry()
 
 	if(statpanel("Stats") || client.statpanel != "Stats")
 		return TRUE

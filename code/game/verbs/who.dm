@@ -25,12 +25,12 @@
 
 	if(holder)
 		for(var/client/C in admins)
-			if(check_rights(R_ADMIN))
+			if(check_other_rights(C, R_ADMIN))
 				msg += "[C] is a [C.holder.rank]"
 
 				if(isobserver(C.mob))
 					msg += " - Observing"
-				else if(istype(C.mob,/mob/new_player))
+				else if(istype(C.mob, /mob/new_player))
 					msg += " - Lobby"
 				else
 					msg += " - Playing"
@@ -40,11 +40,11 @@
 				msg += "\n"
 				num_admins_online++
 
-			else if(is_mentor())
+			else if(is_mentor(C))
 				mentmsg += "[C] is a [C.holder.rank]"
 				if(isobserver(C.mob))
 					mentmsg += " - Observing"
-				else if(istype(C.mob,/mob/new_player))
+				else if(istype(C.mob, /mob/new_player))
 					mentmsg += " - Lobby"
 				else
 					mentmsg += " - Playing"
@@ -53,6 +53,7 @@
 					mentmsg += " (AFK)"
 				mentmsg += "\n"
 				num_mentors_online++
+
 	else
 		for(var/client/C in admins)
 			if(check_other_rights(C, R_ADMIN))
@@ -62,6 +63,5 @@
 				mentmsg += "\t[C] is a [C.holder.rank]\n"
 				num_mentors_online++
 
-		msg += "\n<b> Current Mentors ([num_mentors_online]):</b>\n" + mentmsg
-
 	to_chat(src, "\n<b> Current Admins ([num_admins_online]):</b>\n[msg]")
+	to_chat(src, "\n<b> Current Mentors ([num_mentors_online]):</b>\n[mentmsg]")
