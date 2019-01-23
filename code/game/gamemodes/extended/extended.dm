@@ -2,7 +2,6 @@
 	name = "extended"
 	config_tag = "extended"
 	required_players = 0
-	latejoin_larva_drop = 0
 
 	uplink_welcome = "Syndicate Uplink Console:"
 	uplink_uses = 10

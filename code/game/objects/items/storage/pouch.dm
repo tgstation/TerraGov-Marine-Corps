@@ -68,23 +68,25 @@
 	name = "survival pouch"
 	desc = "It can contain flashlights, a pill, a crowbar, metal sheets, and some bandages."
 	icon_state = "survival"
-	storage_slots = 5
+	storage_slots = 6
 	max_w_class = 3
 	can_hold = list(
 					"/obj/item/device/flashlight",
-					"/obj/item/tool/crowbar",
 					"/obj/item/reagent_container/pill",
 					"/obj/item/stack/medical/bruise_pack",
-					"/obj/item/stack/sheet/metal"
+					"/obj/item/stack/sheet/metal",
+					"/obj/item/stack/sheet/plasteel",
+					"/obj/item/tool/weldingtool"
 					)
 
 /obj/item/storage/pouch/survival/full/New()
-	..()
-	new /obj/item/device/flashlight (src)
-	new /obj/item/tool/crowbar/red (src)
-	new /obj/item/reagent_container/pill/tramadol (src)
-	new /obj/item/stack/medical/bruise_pack (src, 3)
-	new /obj/item/stack/sheet/metal(src, 20)
+	. = ..()
+	new /obj/item/device/flashlight(src)
+	new /obj/item/reagent_container/pill/tramadol(src)
+	new /obj/item/stack/medical/bruise_pack(src, 3)
+	new /obj/item/stack/sheet/metal(src, 40)
+	new /obj/item/stack/sheet/plasteel(src, 15)
+	new /obj/item/tool/weldingtool(src)
 
 
 
@@ -103,7 +105,7 @@
 					)
 
 /obj/item/storage/pouch/firstaid/full
-	desc = "Contains a painkiller autoinjector, first-aid autoinjector, some ointment, and some bandages."
+	desc = "Contains a painkiller autoinjector, first-aid autoinjector, splints, some ointment, and some bandages."
 
 /obj/item/storage/pouch/firstaid/full/New()
 	..()

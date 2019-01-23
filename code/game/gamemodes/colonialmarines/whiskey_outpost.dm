@@ -19,7 +19,6 @@
 					)
 
 	flags_round_type	= MODE_NO_LATEJOIN
-	latejoin_larva_drop = 0 //You never know
 
 	//var/mob/living/carbon/human/Commander //If there is no Commander, marines wont get any supplies
 	//No longer relevant to the game mode, since supply drops are getting changed.

@@ -1,4 +1,5 @@
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
+#define DEATHTIME_XENO_REQUIREMENT 3000
 
 /proc/dopage(src,target)
 	var/href_list
@@ -305,27 +306,24 @@ proc/isInSight(var/atom/A, var/atom/B)
 /proc/get_alien_candidates()
 	var/list/candidates = list()
 
-	for (var/mob/dead/observer/O in player_list)
-		// Jobban check
-		if (!O.client || !O.client.prefs || !(O.client.prefs.be_special & BE_ALIEN) || jobban_isbanned(O, "Alien"))
-			continue
-
-		// copied from join as xeno
-		var/deathtime = world.time - O.timeofdeath
-		if(deathtime < 3000 && ( !O.client.holder || !(O.client.holder.rights & R_ADMIN)) )
+	for(var/mob/dead/observer/O in dead_mob_list)
+		//Players without preferences or jobbaned players cannot be drafted.
+		if(!O.client?.prefs || !(O.client.prefs.be_special & BE_ALIEN) || jobban_isbanned(O, "Alien"))
 			continue
 
 		//AFK players cannot be drafted
 		if(O.client.inactivity / 600 > ALIEN_SELECT_AFK_BUFFER + 5)
 			continue
 
-		if(O.client.holder)
-			switch(alert("You have been drafted for xenomorph, do you wish to proceed?",,"Yes","No"))
-				if("Yes")
-					candidates += O.key
-					continue
-				if("No")
-					continue
+		//Admins get to skip the deathtime check
+		if(O.client?.holder?.rights && (O.client.holder.rights & R_ADMIN))
+			candidates += O.key
+			continue
+
+		//Recently dead non-admins cannot be drafted.
+		var/deathtime = world.time - O.timeofdeath
+		if(deathtime < DEATHTIME_XENO_REQUIREMENT)
+			continue
 
 		candidates += O.key
 

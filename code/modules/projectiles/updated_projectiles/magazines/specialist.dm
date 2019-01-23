@@ -109,6 +109,7 @@
 	default_ammo = /datum/ammo/rocket
 	gun_type = /obj/item/weapon/gun/launcher/rocket
 	flags_magazine = NOFLAGS
+	reload_delay = 60
 
 	attack_self(mob/user)
 		if(current_rounds <= 0)
@@ -147,6 +148,7 @@
 	caliber = "rocket"
 	default_ammo = /datum/ammo/rocket
 	max_rounds = 1
+	current_rounds = 0
 	reload_delay = 60
 
 

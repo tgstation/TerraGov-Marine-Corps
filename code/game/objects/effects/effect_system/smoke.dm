@@ -335,8 +335,8 @@
 		C.emote("gasp")
 
 /obj/effect/particle_effect/smoke/xeno/neuro/effect_contact(mob/living/carbon/C)
-	var/reagent_amount = rand(4,10) + rand(4,10) //Gaussian. Target number 7.
-	var/gas_protect = (C.internal || C.has_smoke_protection()) ? 0.5 : 1
+	var/reagent_amount = rand(7,9)
+	var/gas_protect = (C.internal || C.has_smoke_protection()) ? 0.25 : 1
 	C.reagents.add_reagent("xeno_toxin", reagent_amount * gas_protect)
 	//Topical damage (neurotoxin on exposed skin)
 	var/protection = min(C.get_permeability_protection(), 0.75)

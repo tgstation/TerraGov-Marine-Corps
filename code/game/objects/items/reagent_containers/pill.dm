@@ -301,7 +301,7 @@ var/global/list/randomized_pill_icons
 	icon_state = randomized_pill_icons[9]
 
 /obj/item/reagent_container/pill/hypervene
-	pill_desc = "A hypervene pill. A purge medication used to treat overdoses. Causes pain and vomiting."
+	pill_desc = "A hypervene pill. A purge medication used to treat overdoses and rapidly remove toxins. Causes pain and vomiting."
 	list_reagents = list("hypervene" = 3)
 
 /obj/item/reagent_container/pill/hypervene/New()

@@ -138,8 +138,8 @@
 		return
 	..()
 
-/obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0)
-	..()
+/obj/machinery/power/apc/Initialize(turf/loc, var/ndir, var/building=0)
+	. = ..()
 	apcs_list += src
 	//Offset 24 pixels in direction of dir
 	//This allows the APC to be embedded in a wall, yet still inside an area
@@ -160,8 +160,7 @@
 		name = "\improper [area.name] APC"
 		stat |= MAINT
 		update_icon()
-		spawn(5)
-			update()
+		update()
 	start_processing()
 	sleep(0) //Break few ACPs on the colony
 	if(!start_charge && z == 1 && prob(10))
