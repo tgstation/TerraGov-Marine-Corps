@@ -114,6 +114,7 @@
 			if(squad_leader && (!squad_leader.mind || squad_leader.mind.assigned_role != "Squad Leader")) //field promoted SL
 				demote_squad_leader() //replaced by the real one
 			squad_leader = H
+			SET_TRACK_LEADER(tracking_id, H)
 			if(H.mind.assigned_role == "Squad Leader") //field promoted SL don't count as real ones
 				num_leaders++
 
@@ -155,6 +156,7 @@
 			demote_squad_leader()
 		else
 			H.assigned_squad.squad_leader = null
+			CLEAR_TRACK_LEADER(tracking_id)
 
 	H.assigned_squad = null
 
@@ -182,6 +184,7 @@
 		gibbed_marines_list[H.name] = role
 	if(squad_leader == src)
 		squad_leader = null
+		CLEAR_TRACK_LEADER(tracking_id)
 	H.assigned_squad = null
 	return TRUE
 
@@ -189,6 +192,7 @@
 /datum/squad/proc/demote_squad_leader(leader_killed)
 	var/mob/living/carbon/human/old_lead = squad_leader
 	squad_leader = null
+	CLEAR_TRACK_LEADER(tracking_id)
 	if(old_lead.mind.assigned_role)
 		old_lead.reset_comm_title(old_lead.mind.assigned_role)
 		if(old_lead.mind.cm_skills)
