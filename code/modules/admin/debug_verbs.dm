@@ -366,10 +366,12 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(alert(src, "Are you sure you want to delete: [O]?",, "Yes", "No") != "Yes")
 		return
 
+	var/turf/T = get_turf(O)
+
 	qdel(O)
 
-	log_admin("[key_name(usr)] deleted [O] at [AREACOORD(get_turf(O)].")
-	message_admins("[ADMIN_TPMONTY(usr)] deleted [O] at [ADMIN_VERBOSEJMP(get_turf(O)].")
+	log_admin("[key_name(usr)] deleted [O] at [AREACOORD(T)].")
+	message_admins("[ADMIN_TPMONTY(usr)] deleted [O] at [ADMIN_VERBOSEJMP(T)].")
 
 
 /datum/admins/proc/fix_next_move()

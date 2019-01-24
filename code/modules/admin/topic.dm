@@ -1,6 +1,32 @@
-/*
+/datum/admins/proc/CheckAdminHref(href, href_list)
+	var/auth = href_list["admin_token"]
+	. = auth && (auth == href_token || auth == GLOB.href_token)
+	if(.)
+		return
+	var/msg = !auth ? "no" : "a bad"
+	log_admin_private("[key_name(usr)] clicked an href with [msg] authorization key! [href]")
+	message_admins("[ADMIN_TPMONTY(usr)] clicked an href with [msg] authorization key.")
+
+
+
 /datum/admins/Topic(href, href_list)
 	. = ..()
+
+	if(usr.client != src.owner || !check_rights(0))
+		log_admin("[key_name(usr)] tried to use the admin panel without authorization.")
+		message_admins("[ADMIN_TPMONTY(usr)] has attempted to override the admin panel!")
+		return
+
+	if(!CheckAdminHref(href, href_list))
+		return
+
+	if(href_list["ahelp"])
+		if(!check_rights(R_ADMIN, TRUE))
+			return
+
+
+
+
 
 	if(usr.client != src.owner || !check_rights(R_ADMIN))
 		log_admin("[key_name(usr)] tried to use the admin panel without authorization.")
@@ -2346,4 +2372,3 @@
 			unansweredAhelps.Remove(C.computer_id)
 		admin_pm(C,null)
 		return
-*/
