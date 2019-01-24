@@ -69,6 +69,7 @@
 #include "code\__HELPERS\sorts\InsertSort.dm"
 #include "code\__HELPERS\sorts\MergeSort.dm"
 #include "code\__HELPERS\sorts\TimSort.dm"
+#include "code\_globalvars\bitfields.dm"
 #include "code\_globalvars\configuration.dm"
 #include "code\_globalvars\logging.dm"
 #include "code\_globalvars\misc.dm"

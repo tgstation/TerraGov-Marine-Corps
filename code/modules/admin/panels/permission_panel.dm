@@ -1,5 +1,4 @@
-/*
-/datum/admins/proc/edit_admin_permissions(action, target, operation, page)
+/datum/admins/proc/permissions_panel()
 	set category = "Admin"
 	set name = "Permissions Panel"
 	set desc = "Edit admin permissions"
@@ -7,6 +6,12 @@
 	if(!check_rights(R_PERMISSIONS))
 		return
 
+	usr.client.holder.permissions_edit()
+
+
+/datum/admins/proc/permissions_edit(action, target, operation, page)
+	if(!check_rights(R_PERMISSIONS))
+		return
 	var/list/output = list("<link rel='stylesheet' type='text/css' href='panels.css'><a href='?_src_=holder;[HrefToken()];editrightsbrowser=1'>\[Permissions\]</a>")
 	if(action)
 		output += " | <a href='?_src_=holder;[HrefToken()];editrightsbrowserlog=1;editrightspage=0'>\[Log\]</a> | <a href='?_src_=holder;[HrefToken()];editrightsbrowsermanage=1'>\[Management\]</a><hr style='background:#000000; border:0; height:3px'>"
@@ -81,9 +86,45 @@
 			<hr style='background:#000000; border:0; height:1px'>"}
 		qdel(query_check_unused_rank)
 	else if(!action)
-		output += {"<head>
-		<title>Permissions Panel</title>
-		<script type='text/javascript' src='search.js'></script>
+		output += {"
+<head>
+<title>Permissions Panel</title>
+<script type='text/javascript'>
+function selectTextField(){
+	var filter_text = document.getElementById('filter');
+	filter_text.focus();
+	filter_text.select();
+}
+function updateSearch(){
+	var input_form = document.getElementById('filter');
+	var filter = input_form.value.toLowerCase();
+	input_form.value = filter;
+	var table = document.getElementById('searchable');
+	var alt_style = 'norm';
+	for(var i = 0; i < table.rows.length; i++){
+		try{
+			var row = table.rows\[i\];
+			if(row.className == 'title') continue;
+			var found=0;
+			for(var j = 0; j < row.cells.length; j++){
+				var cell = row.cells\[j\];
+				if(cell.innerText.toLowerCase().indexOf(filter) != -1){
+					found=1;
+					break;
+				}
+			}
+			if(found == 0) row.style.display='none';
+			else{
+				row.style.display='block';
+				row.className = alt_style;
+				if(alt_style == 'alt') alt_style = 'norm';
+				else alt_style = 'alt';
+			}
+		}catch(err) { }
+	}
+}</script>
+"}
+		output += {"
 		</head>
 		<body onload='selectTextField();updateSearch();'>
 		<div id='main'><table id='searchable' cellspacing='0'>
@@ -120,6 +161,7 @@
 		return
 	usr << browse("<!DOCTYPE html><html>[jointext(output, "")]</html>","window=editrights;size=1000x650")
 
+
 /datum/admins/proc/edit_rights_topic(list/href_list)
 	if(!check_rights(R_PERMISSIONS))
 		message_admins("[key_name_admin(usr)] attempted to edit admin permissions without sufficient rights.")
@@ -128,8 +170,6 @@
 	if(IsAdminAdvancedProcCall())
 		to_chat(usr, "<span class='admin prefix'>Admin Edit blocked: Advanced ProcCall detected.</span>")
 		return
-	var/datum/asset/permissions_assets = get_asset_datum(/datum/asset/simple/permissions)
-	permissions_assets.send(src)
 	var/admin_key = href_list["key"]
 	var/admin_ckey = ckey(admin_key)
 	var/datum/admins/D = GLOB.admin_datums[admin_ckey]
@@ -139,43 +179,36 @@
 	var/legacy_only
 	if(task == "activate" || task == "deactivate" || task == "sync")
 		skip = TRUE
-	if(!CONFIG_GET(flag/admin_legacy_system) && CONFIG_GET(flag/protect_legacy_admins) && task == "rank")
-		if(admin_ckey in GLOB.protected_admins)
-			to_chat(usr, "<span class='admin prefix'>Editing the rank of this admin is blocked by server configuration.</span>")
-			return
-	if(!CONFIG_GET(flag/admin_legacy_system) && CONFIG_GET(flag/protect_legacy_ranks) && task == "permissions")
-		if(D.rank in GLOB.protected_ranks)
-			to_chat(usr, "<span class='admin prefix'>Editing the flags of this rank is blocked by server configuration.</span>")
-			return
 	if(CONFIG_GET(flag/load_legacy_ranks_only) && (task == "add" || task == "rank" || task == "permissions"))
 		to_chat(usr, "<span class='admin prefix'>Database rank loading is disabled, only temporary changes can be made to a rank's permissions and permanently creating a new rank is blocked.</span>")
 		legacy_only = TRUE
-	if(check_rights(R_DBRANKS, FALSE))
-		if(!skip)
-			if(!SSdbcore.Connect())
-				to_chat(usr, "<span class='danger'>Unable to connect to database, changes are temporary only.</span>")
-				use_db = FALSE
-			else
-				use_db = alert("Permanent changes are saved to the database for future rounds, temporary changes will affect only the current round", "Permanent or Temporary?", "Permanent", "Temporary", "Cancel")
-				if(use_db == "Cancel")
-					return
-				if(use_db == "Permanent")
-					use_db = TRUE
-					admin_ckey = sanitizeSQL(admin_ckey)
-				else
-					use_db = FALSE
-			if(QDELETED(usr))
+	if(!skip)
+		if(!SSdbcore.Connect())
+			to_chat(usr, "<span class='danger'>Unable to connect to database, changes are temporary only.</span>")
+			use_db = FALSE
+		else
+			use_db = alert("Permanent changes are saved to the database for future rounds, temporary changes will affect only the current round", "Permanent or Temporary?", "Permanent", "Temporary", "Cancel")
+			if(use_db == "Cancel")
 				return
+			if(use_db == "Permanent")
+				use_db = TRUE
+				admin_ckey = sanitizeSQL(admin_ckey)
+			else
+				use_db = FALSE
+		if(QDELETED(usr))
+			return
 	if(task != "add")
 		D = GLOB.admin_datums[admin_ckey]
 		if(!D)
 			D = GLOB.deadmins[admin_ckey]
 		if(!D)
 			return
-		if((task != "sync") && !check_if_greater_rights_than_holder(D))
+/*
+		if((task != "sync") && !check_if_greater_rights_than(D))
 			message_admins("[key_name_admin(usr)] attempted to change the rank of [admin_key] without sufficient rights.")
 			log_admin("[key_name(usr)] attempted to change the rank of [admin_key] without sufficient rights.")
 			return
+*/
 	switch(task)
 		if("add")
 			admin_ckey = add_admin(admin_ckey, admin_key, use_db)
@@ -194,7 +227,7 @@
 			force_deadmin(admin_key, D)
 		if("sync")
 			sync_lastadminrank(admin_ckey, admin_key, D)
-	edit_admin_permissions()
+	permissions_edit()
 
 /datum/admins/proc/add_admin(admin_ckey, admin_key, use_db)
 	if(admin_ckey)
@@ -416,9 +449,6 @@
 		if(R.name == admin_rank && (!(R.rights & usr.client.holder.rank.can_edit_rights) == R.rights))
 			to_chat(usr, "<span class='admin prefix'>You don't have edit rights to all the rights this rank has, rank deletion not permitted.</span>")
 			return
-	if(!CONFIG_GET(flag/admin_legacy_system) && CONFIG_GET(flag/protect_legacy_ranks) && (admin_rank in GLOB.protected_ranks))
-		to_chat(usr, "<span class='admin prefix'>Deletion of protected ranks is not permitted, it must be removed from admin_ranks.txt.</span>")
-		return
 	if(CONFIG_GET(flag/load_legacy_ranks_only))
 		to_chat(usr, "<span class='admin prefix'>Rank deletion not permitted while database rank loading is disabled.</span>")
 		return
@@ -459,4 +489,3 @@
 		return
 	qdel(query_sync_lastadminrank)
 	to_chat(usr, "<span class='admin'>Sync of [admin_key] successful.</span>")
-*/

@@ -107,7 +107,7 @@
 	if(CONFIG_GET(flag/localhost_rank))
 		var/static/list/localhost_addresses = list("127.0.0.1", "::1")
 		if(isnull(address) || (address in localhost_addresses))
-			var/datum/admin_rank/rank = new("!Localhost!", R_EVERYTHING)
+			var/datum/admin_rank/rank = new("!localhost!", R_EVERYTHING, , R_EVERYTHING)
 			var/datum/admins/admin = new(rank, ckey, TRUE)
 			admin.associate(src)
 

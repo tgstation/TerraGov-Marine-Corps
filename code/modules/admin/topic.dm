@@ -561,6 +561,105 @@
 
 
 
-	else if(href_list["simplemake"])
+	else if(href_list["transform"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/mob/M = locate(href_list["mob"])
+
+		if(!ismob(M) || M.gc_destroyed)
+			return
+
+		var/delmob = FALSE
+		switch(alert("Delete old mob?","Message","Yes","No","Cancel"))
+			if("Cancel")
+				return
+			if("Yes")
+				delmob = TRUE
+
+		var/turf/location
+		switch(alert("Teleport to your location?","Message","Yes","No","Cancel"))
+			if("Cancel")
+				return
+			if("Yes")
+				location = get_turf(usr)
+
+		log_admin("[key_name(usr)] has transformed [key_name(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
+		message_admins("[ADMIN_TPMONTY(usr)] has transformed [ADMIN_TPMONTY(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
+
+		switch(href_list["transform"])
+			if("observer")			
+				M.change_mob_type(/mob/dead/observer, location, null, delmob)
+			if("larva")				
+				M.change_mob_type(/mob/living/carbon/Xenomorph/Larva, location, null, delmob)
+			if("defender")			
+				M.change_mob_type(/mob/living/carbon/Xenomorph/Defender, location, null, delmob)
+			if("warrior")			
+				M.change_mob_type(/mob/living/carbon/Xenomorph/Warrior, location, null, delmob)
+			if("runner")			
+				M.change_mob_type(/mob/living/carbon/Xenomorph/Runner, location, null, delmob)
+			if("drone")				
+				M.change_mob_type(/mob/living/carbon/Xenomorph/Drone, location, null, delmob)
+			if("sentinel")			
+				M.change_mob_type(/mob/living/carbon/Xenomorph/Sentinel, location, null, delmob)
+			if("hunter")			
+				M.change_mob_type(/mob/living/carbon/Xenomorph/Hunter, location, null, delmob)
+			if("carrier")			
+				M.change_mob_type(/mob/living/carbon/Xenomorph/Carrier, location, null, delmob)
+			if("hivelord")			
+				M.change_mob_type(/mob/living/carbon/Xenomorph/Hivelord, location, null, delmob)
+			if("praetorian")		
+				M.change_mob_type(/mob/living/carbon/Xenomorph/Praetorian, location, null, delmob)
+			if("ravager")			
+				M.change_mob_type(/mob/living/carbon/Xenomorph/Ravager, location, null, delmob)
+			if("spitter")			
+				M.change_mob_type(/mob/living/carbon/Xenomorph/Spitter, location, null, delmob)
+			if("boiler")			
+				M.change_mob_type(/mob/living/carbon/Xenomorph/Boiler, location, null, delmob)
+			if("crusher")			
+				M.change_mob_type(/mob/living/carbon/Xenomorph/Crusher, location, null, delmob)
+			if("defiler")			
+				M.change_mob_type(/mob/living/carbon/Xenomorph/Defiler, location, null, delmob)
+			if("queen")				
+				M.change_mob_type(/mob/living/carbon/Xenomorph/Queen, location, null, delmob)
+			if("human")				
+				M.change_mob_type(/mob/living/carbon/human, location, null, delmob,)
+			if("monkey")				
+				M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob,)
+
+
+	else if(href_list["revive"])
 		if(!check_rights(R_ADMIN))	
 			return
+
+		var/mob/living/L = locate(href_list["revive"])
+
+		if(!istype(L))
+			return
+
+		L.revive()
+		log_admin("[key_name(usr)] revived [key_name(L)].")
+		message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(L)].")
+
+
+
+	else if(href_list["editrightsbrowser"])
+		permissions_edit(0)
+
+
+	else if(href_list["editrightsbrowserlog"])
+		permissions_edit(1, href_list["editrightstarget"], href_list["editrightsoperation"], href_list["editrightspage"])
+
+
+	else if(href_list["editrightsbrowsermanage"])
+		if(href_list["editrightschange"])
+			change_admin_rank(ckey(href_list["editrightschange"]), href_list["editrightschange"], TRUE)
+		else if(href_list["editrightsremove"])
+			remove_admin(ckey(href_list["editrightsremove"]), href_list["editrightsremove"], TRUE)
+		else if(href_list["editrightsremoverank"])
+			remove_rank(href_list["editrightsremoverank"])
+		permissions_edit(2)
+
+
+	else if(href_list["editrights"])
+		edit_rights_topic(href_list)

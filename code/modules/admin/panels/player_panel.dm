@@ -421,29 +421,29 @@
 		if(!istype(M, /mob/new_player))
 			body += {"<br><br>
 				<b>Transformation:</b><br>
-				\[ Observer: <a href='?src=[ref];simplemake=observer;mob=[REF(M)]'>Observer</a> \]
-				<br>\[ Humanoid: <a href='?src=[ref];simplemake=human;mob=[REF(M)]'>Human</a> |
-				<a href='?src=[ref];simplemake=monkey;mob=[REF(M)]'>Monkey</a> \]
+				\[ Observer: <a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a> \]
+				<br>\[ Humanoid: <a href='?src=[ref];transform=human;mob=[REF(M)]'>Human</a> |
+				<a href='?src=[ref];transform=monkey;mob=[REF(M)]'>Monkey</a> \]
 				<br>\[ Alien Tier 0:
-				<a href='?src=[ref];simplemake=larva;mob=[REF(M)]'>Larva</a> \]
+				<a href='?src=[ref];transform=larva;mob=[REF(M)]'>Larva</a> \]
 				<br>\[ Alien Tier 1:
-				<a href='?src=[ref];simplemake=runner;mob=[REF(M)]'>Runner</a> |
-				<a href='?src=[ref];simplemake=drone;mob=[REF(M)]'>Drone</a> |
-				<a href='?src=[ref];simplemake=sentinel;mob=[REF(M)]'>Sentinel</a> |
-				<a href='?src=[ref];simplemake=defender;mob=[REF(M)]'>Defender</a> \]
+				<a href='?src=[ref];transform=runner;mob=[REF(M)]'>Runner</a> |
+				<a href='?src=[ref];transform=drone;mob=[REF(M)]'>Drone</a> |
+				<a href='?src=[ref];transform=sentinel;mob=[REF(M)]'>Sentinel</a> |
+				<a href='?src=[ref];transform=defender;mob=[REF(M)]'>Defender</a> \]
 				<br>\[ Alien Tier 2:
-				<a href='?src=[ref];simplemake=hunter;mob=[REF(M)]'>Hunter</a> |
-				<a href='?src=[ref];simplemake=warrior;mob=[REF(M)]'>Warrior</a> |
-				<a href='?src=[ref];simplemake=spitter;mob=[REF(M)]'>Spitter</a> |
-				<a href='?src=[ref];simplemake=hivelord;mob=[REF(M)]'>Hivelord</a> |
-				<a href='?src=[ref];simplemake=carrier;mob=[REF(M)]'>Carrier</a> \]
+				<a href='?src=[ref];transform=hunter;mob=[REF(M)]'>Hunter</a> |
+				<a href='?src=[ref];transform=warrior;mob=[REF(M)]'>Warrior</a> |
+				<a href='?src=[ref];transform=spitter;mob=[REF(M)]'>Spitter</a> |
+				<a href='?src=[ref];transform=hivelord;mob=[REF(M)]'>Hivelord</a> |
+				<a href='?src=[ref];transform=carrier;mob=[REF(M)]'>Carrier</a> \]
 				<br>\[ Alien Tier 3:
-				<a href='?src=[ref];simplemake=ravager;mob=[REF(M)]'>Ravager</a> |
-				<a href='?src=[ref];simplemake=praetorian;mob=[REF(M)]'>Praetorian</a> |
-				<a href='?src=[ref];simplemake=boiler;mob=[REF(M)]'>Boiler</a> |
-				<a href='?src=[ref];simplemake=crusher;mob=[REF(M)]'>Crusher</a> \]
+				<a href='?src=[ref];transform=ravager;mob=[REF(M)]'>Ravager</a> |
+				<a href='?src=[ref];transform=praetorian;mob=[REF(M)]'>Praetorian</a> |
+				<a href='?src=[ref];transform=boiler;mob=[REF(M)]'>Boiler</a> |
+				<a href='?src=[ref];transform=crusher;mob=[REF(M)]'>Crusher</a> \]
 				<br>\[ Alien Tier 4:
-				<a href='?src=[ref];simplemake=queen;mob=[REF(M)]'>Queen</a> \]
+				<a href='?src=[ref];transform=queen;mob=[REF(M)]'>Queen</a> \]
 				<br>
 			"}
 

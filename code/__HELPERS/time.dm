@@ -74,3 +74,8 @@ GLOBAL_VAR_INIT(rollovercheck_last_timeofday, 0)
 	if(!wtime)
 		wtime = world.time
 	return time2text(wtime - GLOB.timezoneOffset, format)
+
+
+//returns timestamp in a sql and a not-quite-compliant ISO 8601 friendly format
+/proc/SQLtime(timevar)
+	return time2text(timevar || world.timeofday, "YYYY-MM-DD hh:mm:ss")
