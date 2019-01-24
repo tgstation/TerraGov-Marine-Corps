@@ -423,11 +423,6 @@
 
 
 /obj/item/clothing/tie/storage/attack_hand(mob/user)
-	if(hold.draw_mode && ishuman(user) && hold.contents.len)
-		var/obj/item/I = hold.contents[hold.contents.len]
-		I.attack_hand(user)
-		return
-
 	if(has_suit)
 		if(has_suit.loc == user && hold.draw_mode && hold.contents.len)
 			var/obj/item/I = hold.contents[hold.contents.len]
