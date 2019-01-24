@@ -485,6 +485,9 @@
 			clear_fullscreen("flash", 20)
 		return 1
 
+/mob/living/proc/disable_lights(armor = TRUE, guns = TRUE, flares = TRUE, misc = TRUE, sparks = FALSE, silent = FALSE)
+	return FALSE
+
 /mob/living/proc/smokecloak_on()
 
 	if(smokecloaked)
