@@ -1425,7 +1425,7 @@
 			var/obj/item/I = O
 			I.current_acid = A
 
-	A.name = name + " (on [src])" //Identify what the acid is on
+	A.name = A.name + " (on [O.name])" //Identify what the acid is on
 	A.add_hiddenprint(src)
 
 	if(!isturf(O))
