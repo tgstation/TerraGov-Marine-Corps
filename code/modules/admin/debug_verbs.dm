@@ -26,7 +26,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!hascall(A,procname))
 		to_chat(usr, "<font color='red'>Error: callproc_datum(): type [A.type] has no proc named [procname].</font>")
 		return
-	var/list/lst = get_callproc_args()
+	var/list/lst = usr.client.holder.get_callproc_args()
 	if(!lst)
 		return
 
@@ -39,7 +39,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	admin_ticket_log(A, msg)
 
 	var/returnval = WrapAdminProcCall(A, procname, lst) // Pass the lst as an argument list to the proc
-	. = get_callproc_returnval(returnval,procname)
+	. = usr.client.holder.get_callproc_returnval(returnval,procname)
 	if(.)
 		to_chat(usr, .)
 
@@ -92,7 +92,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		if (!procpath)
 			to_chat(usr, "<font color='red'>Error: callproc(): proc [procname] does not exist. (Did you forget the /proc/ part?)</font>")
 			return
-	var/list/lst = get_callproc_args()
+	var/list/lst = usr.client.holder.get_callproc_args()
 	if(!lst)
 		return
 
@@ -110,7 +110,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		log_admin("[key_name(src)] called [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
 		message_admins("[key_name(src)] called [procname]() with [lst.len ? "the arguments [list2params(lst)]":"no arguments"].")
 		returnval = WrapAdminProcCall(GLOBAL_PROC, procname, lst) // Pass the lst as an argument list to the proc
-	. = get_callproc_returnval(returnval, procname)
+	. = usr.client.holder.get_callproc_returnval(returnval, procname)
 	if(.)
 		to_chat(usr, .)
 
