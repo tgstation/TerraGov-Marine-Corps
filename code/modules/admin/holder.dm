@@ -224,7 +224,7 @@ GLOBAL_PROTECT(href_token)
 			return TRUE
 		if(usr.client.holder.rank.rights != other.holder.rank.rights && ((usr.client.holder.rank.rights & other.holder.rank.rights) == other.holder.rank.rights))
 			return TRUE
-	to_chat(usr, "<span class='warning'>Cannot proceed. They have more or equal rights than us.</span>")
+	to_chat(usr, "<span class='warning'>They have more or equal rights than you.</span>")
 	return FALSE
 
 
@@ -268,6 +268,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/pref_debug_logs,
 	/datum/admins/proc/set_ooc_color_self,
 	/datum/admins/proc/player_panel,
+	/datum/admins/proc/show_player_panel,
 	/datum/admins/proc/player_panel_extended,
 	/datum/admins/proc/secrets_panel,
 	/client/proc/cmd_admin_pm_panel, //REWORK THIS
@@ -286,7 +287,9 @@ GLOBAL_PROTECT(admin_verbs_ban)
 GLOBAL_LIST_INIT(admin_verbs_ban, world.AVban())
 /world/proc/AVban()
 	return list(
-
+	/datum/admins/proc/unban_panel,
+	/datum/admins/proc/player_notes_show,
+	/datum/admins/proc/player_notes_list
 	)
 
 GLOBAL_PROTECT(admin_verbs_asay)

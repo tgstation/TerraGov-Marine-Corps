@@ -5,14 +5,14 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/dat = "<html><head><title>Admin Player Panel</title></head>"
+	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
+	var/dat = "<html><head><title>admin Player Panel</title></head>"
 
 	dat += {"
-
 		<head>
 			<script type='text/javascript'>
 
-				var locked_tabs = new Array();
+				var locked_tabs = new array();
 
 				function updateSearch(){
 
@@ -35,7 +35,7 @@
 						{
 							try{
 								var tr = ltr\[i\];
-								if(tr.getAttribute("id").indexOf("data") != 0){
+								if(tr.getattribute("id").indexOf("data") != 0){
 									continue;
 								}
 								var ltd = tr.getElementsByTagName("td");
@@ -59,13 +59,13 @@
 					var index = -1;
 					var debug = document.getElementById("debug");
 
-					locked_tabs = new Array();
+					locked_tabs = new array();
 
 				}
 
 				function expand(id,job,name,real_name,image,key,ip,antagonist,ref){
 
-					clearAll();
+					clearall();
 
 					var span = document.getElementById(id);
 
@@ -77,31 +77,27 @@
 
 					body += "</td><td align='center'>";
 
-					body += "<a href='?src=\ref[src];adminplayeropts="+ref+"'>PP</a> - "
-					body += "<a href='?src=\ref[src];playerpanelextended="+ref+"'>PPE</a> - "
-					body += "<a href='?src=\ref[src];notes=show;mob="+ref+"'>N</a> - "
-					body += "<a href='?_src_=vars;Vars="+ref+"'>VV</a> - "
-					body += "<a href='?src=\ref[src];traitor="+ref+"'>TP</a> - "
-					body += "<a href='?src=\ref[usr];priv_msg=\ref"+ref+"'>PM</a> - "
-					body += "<a href='?src=\ref[src];subtlemessage="+ref+"'>SM</a> - "
-					body += "<a href='?src=\ref[src];adminplayerobservejump="+ref+"'>JMP</a> - "
-					body += "<a href='?src=\ref[src];adminplayerfollow="+ref+"'>FLW</a><br>"
-					body += "<a href='?src=\ref[src];individuallog="+ref+"'>LOGS</a><br>"
-					if(antagonist > 0)
-						body += "<font size='2'><a href='?src=\ref[src];check_antagonist=1'><font color='red'><b>Antagonist</b></font></a></font>";
-
+					body += "<a href='?src=[ref];playerpanel="+ref+"'>PP</a> - "
+					body += "<a href='?src=[ref];playerpanelextended="+ref+"'>PPE</a> - "
+					body += "<a href='?src=[ref];notes=show;mob="+ref+"'>NOTES</a> - "
+					body += "<a href='?_src_=vars;vars="+ref+"'>VV</a> - "
+					body += "<a href='?priv_msg="+ref+"'>PM</a> - "
+					body += "<a href='?src=[ref];subtlemessage="+ref+"'>SM</a> - "
+					body += "<a href='?src=[ref];observejump="+ref+"'>JMP</a> - "
+					body += "<a href='?src=[ref];observefollow="+ref+"'>FLW</a><br>"
+					body += "<a href='?src=[ref];individuallog="+ref+"'>LOGS</a><br>"
 					body += "</td></tr></table>";
 
 
 					span.innerHTML = body
 				}
 
-				function clearAll(){
+				function clearall(){
 					var spans = document.getElementsByTagName('span');
 					for(var i = 0; i < spans.length; i++){
 						var span = spans\[i\];
 
-						var id = span.getAttribute("id");
+						var id = span.getattribute("id");
 
 						if(!(id.indexOf("item")==0))
 							continue;
@@ -127,11 +123,11 @@
 
 				function addToLocked(id,link_id,notice_span_id){
 					var link = document.getElementById(link_id);
-					var decision = link.getAttribute("name");
+					var decision = link.getattribute("name");
 					if(decision == "1"){
-						link.setAttribute("name","2");
+						link.setattribute("name","2");
 					}else{
-						link.setAttribute("name","1");
+						link.setattribute("name","1");
 						removeFromLocked(id,link_id,notice_span_id);
 						return;
 					}
@@ -148,9 +144,9 @@
 					locked_tabs.push(id);
 					var notice_span = document.getElementById(notice_span_id);
 					notice_span.innerHTML = "<font color='red'>Locked</font> ";
-					//link.setAttribute("onClick","attempt('"+id+"','"+link_id+"','"+notice_span_id+"');");
+					//link.setattribute("onClick","attempt('"+id+"','"+link_id+"','"+notice_span_id+"');");
 					//document.write("removeFromLocked('"+id+"','"+link_id+"','"+notice_span_id+"')");
-					//document.write("aa - "+link.getAttribute("onClick"));
+					//document.write("aa - "+link.getattribute("onClick"));
 				}
 
 				function attempt(ab){
@@ -174,7 +170,7 @@
 					var notice_span = document.getElementById(notice_span_id);
 					notice_span.innerHTML = "";
 					//var link = document.getElementById(link_id);
-					//link.setAttribute("onClick","addToLocked('"+id+"','"+link_id+"','"+notice_span_id+"')");
+					//link.setattribute("onClick","addToLocked('"+id+"','"+link_id+"','"+notice_span_id+"')");
 				}
 
 				function selectTextField(){
@@ -199,7 +195,7 @@
 			<tr id='title_tr'>
 				<td align='center'>
 					<font size='5'><b>Player panel</b></font><br>
-					Hover over a line to see more information - <a href='?src=\ref[src];check_antagonist=1'>Check antagonists</a>
+					Hover over a line to see more information.
 					<p>
 				</td>
 			</tr>
@@ -223,7 +219,7 @@
 		if(M.ckey)
 
 			var/color = "#e6e6e6"
-			if(i%2 == 0)
+			if(i % 2 == 0)
 				color = "#f2f2f2"
 			var/is_antagonist = is_special_character(M)
 
@@ -237,13 +233,13 @@
 					else if(ismonkey(M))
 						M_job = "Monkey"
 					else if(isXeno(M))
-						M_job = "Alien"
+						M_job = "alien"
 					else
 						M_job = "Carbon-based"
 
 				else if(issilicon(M)) //silicon
 					if(isAI(M))
-						M_job = "AI"
+						M_job = "aI"
 					else if(isrobot(M))
 						M_job = "Cyborg"
 					else
@@ -253,7 +249,7 @@
 					if(iscorgi(M))
 						M_job = "Corgi"
 					else
-						M_job = "Animal"
+						M_job = "animal"
 
 				else
 					M_job = "Living"
@@ -317,23 +313,24 @@
 
 /datum/admins/proc/player_panel_extended()
 	set category = "Admin"
-	set name = "Player Panel"
-	
+	set name = "Player Panel Extended"
+
 	if(!check_rights(R_ADMIN))
 		return
 
+	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
 	var/dat = "<html><head><title>Player Menu</title></head>"
-	dat += "<body><table border=1 cellspacing=5><B><tr><th>Key</th><th>Name</th><th>Real Name</th><th>PP</th><th>CID</th><th>IP</th><th>JMP</th><th>FLW</th><th>Notes</th></tr></B>"
+	dat += "<body><table border=1 cellspacing=5><B><tr><th>Key</th><th>Name</th><th>Type</th><th>PP</th><th>CID</th><th>IP</th><th>JMP</th><th>FLW</th><th>Notes</th></tr></B>"
 	var/list/mobs = sortmobs()
 
 	for(var/mob/M in mobs)
-		if(!M.ckey) 
+		if(!M.ckey)
 			continue
 
 		dat += "<tr><td>[(M.client ? "[M.client]" : "No client")]</td>"
-		dat += "<td><a href='?src=\ref[usr];priv_msg=\ref[M]'>[M.name]</a></td>"
+		dat += "<td><a href='?priv_msg=[M.ckey]'>[M.name]</a></td>"
 		if(isAI(M))
-			dat += "<td>AI</td>"
+			dat += "<td>aI</td>"
 		else if(isrobot(M))
 			dat += "<td>Cyborg</td>"
 		else if(ishuman(M))
@@ -345,17 +342,17 @@
 		else if(ismonkey(M))
 			dat += "<td>Monkey</td>"
 		else if(isXeno(M))
-			dat += "<td>Alien</td>"
+			dat += "<td>alien</td>"
 		else
 			dat += "<td>Unknown</td>"
 
 
-		dat += {"<td align=center><a HREF='?src=\ref[src];adminplayeropts=\ref[M]'>X</a></td>
+		dat += {"<td align=center><a href='?src=[ref];playerpanel=[REF(M)]'>PP</a></td>
 		<td>[M.computer_id]</td>
 		<td>[M.lastKnownIP]</td>
-		<td><a href='?src=\ref[src];adminplayerobservejump=\ref[M]'>JMP</a></td>
-		<td><A HREF='?_src_=\ref[src];adminplayerfollow=\ref[M]'>FLW</a></td>
-		<td><a href='?src=\ref[src];notes=show;mob=\ref[M]'>Notes</a></td>
+		<td><a href='?src=[ref];observejump=[REF(M)]'>JMP</a></td>
+		<td><a href='?src=[ref];observefollow=[REF(M)]'>FLW</a></td>
+		<td><a href='?src=[ref];notes=show;mob=[REF(M)]'>Notes</a></td>
 		"}
 
 
@@ -364,36 +361,104 @@
 	usr << browse(dat, "window=players;size=640x480")
 
 
-/proc/check_role_table(name, list/members, admins, show_objectives=1)
-	var/txt = "<br><table cellspacing=5><tr><td><b>[name]</b></td><td></td></tr>"
-	for(var/datum/mind/M in members)
-		txt += check_role_table_row(M.current, admins, show_objectives)
-	txt += "</table>"
-	return txt
+/datum/admins/proc/show_player_panel(var/mob/M in mob_list)
+	set category = null
+	set name = "Show Player Panel"
 
+	if(!check_rights(R_ADMIN))
+		return
 
-/proc/check_role_table_row(mob/M, admins=src, show_objectives)
-	if (!istype(M))
-		return "<tr><td><i>Not found!</i></td></tr>"
+	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
+	var/body = "<html><head><title>Player Panel: [key_name(M)]</title></head>"
 
-	var/txt = {"
-		<tr>
-			<td>
-				<a href='?src=\ref[admins];adminplayeropts=\ref[M]'>[M.real_name]</a>
-				[M.client ? "" : " <i>(logged out)</i>"]
-				[M.is_dead() ? " <b><font color='red'>(DEAD)</font></b>" : ""]
-			</td>
-			<td>
-				<a href='?src=\ref[usr];priv_msg=\ref[M]'>PM</a>
-			</td>
+	body += "[M.name]"
+
+	if(M.client)
+		body += " played by <b>[M.client]</b> "
+		body += "\[<a href='?src=[ref];permissionspanel=show'>[M.client.holder ? M.client.holder.rank : "Player"]</a>\]"
+
+	if(istype(M, /mob/new_player))
+		body += " <B>Hasn't Entered Game</B> "
+	else
+		body += " \[<a href='?src=[ref];revive=[REF(M)]'>Heal</a>\] "
+
+	body += {"
+		<br><br>\[
+		<a href='?priv_msg=[M.ckey]'>PM</a> -
+		<a href='?src=[ref];subtlemessage=[REF(M)]'>SM</a> -
+		<a href='?_src_=vars;Vars=[REF(M)]'>VV</a> -
+		<a href='?src=[ref];adminplayerobservejump=[REF(M)]'>JMP</a> -
+		<a href='?src=[ref];adminplayerfollow=[REF(M)]'>FLW</a> -
+		<a href='?src=[ref];individuallog=[REF(M)]'>LOGS</a> \]</b><br>
+		<b>Mob type</b> = [M.type]<br><br>
+		<a href='?src=[ref];kick=[REF(M)]'>Kick</a> |
+		<a href='?src=[ref];ban=[REF(M)]'>Ban</a> |
+		<a href='?src=[ref];jobban=[REF(M)]'>Jobban</a> |
+		<a href='?src=[ref];notes=show;mob=[REF(M)]'>Notes</a> |
 	"}
 
-	if (show_objectives)
-		txt += {"
-			<td>
-				<a href='?src=\ref[admins];traitor=\ref[M]'>Show Objective</a>
-			</td>
+	if(M.client)
+		body += "\ <a href='?_src_=[ref];lobby=[REF(M)]'> Send back to Lobby</a>"
+		var/muted = M.client.prefs.muted
+		body += {"<br><b>Mute: </b>
+			\[<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC)?"red":"blue"]'>IC</font></a> |
+			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_OOC]'><font color='[(muted & MUTE_OOC)?"red":"blue"]'>OOC</font></a> |
+			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_PRAY]'><font color='[(muted & MUTE_PRAY)?"red":"blue"]'>PRAY</font></a> |
+			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_ADMINHELP]'><font color='[(muted & MUTE_ADMINHELP)?"red":"blue"]'>ADMINHELP</font></a> |
+			<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_DEADCHAT]'><font color='[(muted & MUTE_DEADCHAT)?"red":"blue"]'>DEADCHAT</font></a>\]
+			(<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_ALL]'><font color='[(muted & MUTE_ALL)?"red":"blue"]'>toggle all</font></a>)
 		"}
 
-	txt += "</tr>"
-	return txt
+	body += {"
+		<br><br>
+		<a href='?src=[ref];jumpto=[REF(M)]'>Jump To</a> |
+		<a href='?src=[ref];getmob=[REF(M)]'>Get Mob</a> |
+		<a href='?src=[ref];sendmob=[REF(M)]'>Send Mob</a>
+		<br><br>
+	"}
+
+	if(M.client)
+		if(!istype(M, /mob/new_player))
+			body += {"<br><br>
+				<b>Transformation:</b><br>
+				\[ Observer: <a href='?src=[ref];simplemake=observer;mob=[REF(M)]'>Observer</a> \]
+				<br>\[ Humanoid: <a href='?src=[ref];simplemake=human;mob=[REF(M)]'>Human</a> |
+				<a href='?src=[ref];simplemake=monkey;mob=[REF(M)]'>Monkey</a> \]
+				<br>\[ Alien Tier 0:
+				<a href='?src=[ref];simplemake=larva;mob=[REF(M)]'>Larva</a> \]
+				<br>\[ Alien Tier 1:
+				<a href='?src=[ref];simplemake=runner;mob=[REF(M)]'>Runner</a> |
+				<a href='?src=[ref];simplemake=drone;mob=[REF(M)]'>Drone</a> |
+				<a href='?src=[ref];simplemake=sentinel;mob=[REF(M)]'>Sentinel</a> |
+				<a href='?src=[ref];simplemake=defender;mob=[REF(M)]'>Defender</a> \]
+				<br>\[ Alien Tier 2:
+				<a href='?src=[ref];simplemake=hunter;mob=[REF(M)]'>Hunter</a> |
+				<a href='?src=[ref];simplemake=warrior;mob=[REF(M)]'>Warrior</a> |
+				<a href='?src=[ref];simplemake=spitter;mob=[REF(M)]'>Spitter</a> |
+				<a href='?src=[ref];simplemake=hivelord;mob=[REF(M)]'>Hivelord</a> |
+				<a href='?src=[ref];simplemake=carrier;mob=[REF(M)]'>Carrier</a> \]
+				<br>\[ Alien Tier 3:
+				<a href='?src=[ref];simplemake=ravager;mob=[REF(M)]'>Ravager</a> |
+				<a href='?src=[ref];simplemake=praetorian;mob=[REF(M)]'>Praetorian</a> |
+				<a href='?src=[ref];simplemake=boiler;mob=[REF(M)]'>Boiler</a> |
+				<a href='?src=[ref];simplemake=crusher;mob=[REF(M)]'>Crusher</a> \]
+				<br>\[ Alien Tier 4:
+				<a href='?src=[ref];simplemake=queen;mob=[REF(M)]'>Queen</a> \]
+				<br>
+			"}
+
+	if(M.client)
+		body += {"<br><br>
+			<b>Other actions:</b>
+			<br>
+			<a href='?src=[ref];forcesay=[REF(M)]'>Forcesay</a> |
+			<a href='?src=[ref];thunderdome=[REF(M)]'>Thunderdome</a> |
+			<a href='?src=[ref];thunderdome=[REF(M)]'>Gib</a>
+		"}
+
+	body += {"
+	<br>
+	</body></html>
+	"}
+
+	usr << browse(body, "window=adminplayeropts;size=550x515")

@@ -458,22 +458,32 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[ADMIN_TPMONTY(usr)] is debugging the [controller] controller.")
 
 
-/datum/admins/proc/check_contents(mob/living/M as mob in mob_list)
+/datum/admins/proc/check_contents()
 	set category = "Debug"
 	set name = "Check Contents"
 
 	if(!check_rights(R_DEBUG))
 		return
 
+	var/selection = input("Please, select a mob!", "Check Contents", null, null) as null|anything in sortmobs(mob_list)
+	if(!selection)
+		return
+
+	var/mob/M = selection
+	var/dat = "<b>Contents of [key_name(M)]:</b><hr>"
+
+
 	var/list/L = M.get_contents()
 	for(var/t in L)
-		to_chat(usr, "[t]")
+		dat += "[t]"
+
+	usr << browse(dat, "window=contents")
 
 	log_admin("[key_name(usr)] checked the contents of [key_name(M)].")
 	message_admins("[ADMIN_TPMONTY(usr)] checked the contents of [ADMIN_TPMONTY(M)].")
 
 
-/datum/admins/proc/update_mob_sprite(mob/living/carbon/human/H)
+/datum/admins/proc/update_mob_sprite()
 	set category = "Debug"
 	set name = "Update Mob Sprite"
 	set desc = "Should fix any mob sprite errors."
@@ -481,8 +491,15 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	if(!istype(H))
+	var/list/humans = list()
+	for(var/mob/living/carbon/human/H in mob_list)
+		humans += H
+
+	var/selection = input("Please, select a human!", "Update Mob Sprite", null, null) as null|anything in sortmobs(humans)
+	if(!selection)
 		return
+
+	var/mob/living/carbon/human/H = selection
 
 	H.regenerate_icons()
 

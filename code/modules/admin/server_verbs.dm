@@ -86,7 +86,7 @@
 	if(!ticker || ticker.current_state != GAME_STATE_PREGAME)
 		return
 
-	if(alert("Are you sure you want to start the round early?",,"Yes","No") != "Yes")
+	if(alert("Are you sure you want to start the round early?", "Confirmation","Yes","No") != "Yes")
 		return
 
 	ticker.current_state = GAME_STATE_SETTING_UP
@@ -161,7 +161,7 @@
 	if(!ticker?.mode)
 		return
 
-	if(alert("Are you sure you want to end the round?",,"Yes","No") != "Yes")
+	if(alert("Are you sure you want to end the round?", "Confirmation", "Yes","No") != "Yes")
 		return
 
 	ticker.mode.round_finished = MODE_INFESTATION_M_MINOR

@@ -16,7 +16,7 @@
 		ghost.reenter_corpse()
 	else
 		M.ghostize(TRUE)
-		usr.client.change_view(world.view)
+		M.client.change_view(world.view)
 		if(M && !M.key)
 			M.key = "@[usr.client.key]"
 
@@ -128,13 +128,12 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(M.gc_destroyed)
-		return
-
 	var/new_ckey = input("Enter new ckey:","CKey") as null|text
 
 	if(!new_ckey)
 		return
+
+	var/old = "[ADMIN_TPMONTY(M)]"
 
 	M.ghostize(FALSE)
 	M.ckey = new_ckey
@@ -142,7 +141,7 @@
 		M.client.change_view(world.view)
 
 	log_admin("[key_name(usr)] changed [M.name] ckey to [new_ckey].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed [ADMIN_TPMONTY(M)] ckey to [new_ckey].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed [old] ckey to [new_ckey].")
 
 
 /datum/admins/proc/rejuvenate(mob/living/M as mob in mob_list)
@@ -211,7 +210,7 @@
 	if(!(H.mind.assigned_role in list("Squad Marine", "Squad Engineer", "Squad Medic", "Squad Smartgunner", "Squad Specialist", "Squad Leader")))
 		return
 
-	var/datum/squad/S = input(usr, "Choose the marine's new squad") as null|anything in RoleAuthority.squads
+	var/datum/squad/S = input("Choose the marine's new squad") as null|anything in RoleAuthority.squads
 
 	if(!S)
 		return
@@ -303,7 +302,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/choice = alert(usr, "Due to the way BYOND handles files, you WILL need a click macro. This function is also recurive and prone to fucking up, especially if you select the wrong folder. Are you absolutely sure you want to proceed?", "WARNING", "Yes", "No")
+	var/choice = alert("Due to the way BYOND handles files, you WILL need a click macro. This function is also recurive and prone to fucking up, especially if you select the wrong folder. Are you absolutely sure you want to proceed?", "WARNING", "Yes", "No")
 	if(choice != "Yes")
 		return
 
@@ -359,7 +358,7 @@
 		var/list/choices = flist(path)
 		if(path != root)
 			choices.Insert(1, "/")
-		var/choice = input(usr, "Choose a folder to access:", "Download", null) as null|anything in choices
+		var/choice = input("Choose a folder to access:", "Download", null) as null|anything in choices
 		switch(choice)
 			if(null)
 				return FALSE
@@ -371,7 +370,7 @@
 		if(copytext(path, -1, 0) != "/")		//didn't choose a directory, no need to iterate again
 			return FALSE
 		else
-			var/choice2 = alert(usr, "Is this the folder you want to download?:",, "Yes", "No")
+			var/choice2 = alert("Is this the folder you want to download?:",, "Yes", "No")
 			switch(choice2)
 				if("Yes")
 					break
@@ -389,7 +388,7 @@
 		var/list/choices = flist(path)
 		if(path != root)
 			choices.Insert(1, "/")
-		var/choice = input(usr, "Choose a file to access:", "Download", null) as null|anything in choices
+		var/choice = input("Choose a file to access:", "Download", null) as null|anything in choices
 		switch(choice)
 			if(null)
 				return
@@ -483,7 +482,7 @@
 	if(selected_type == log_type && selected_src == log_src)
 		slabel = "<b>\[[label]\]</b>"
 
-	return "<a href='?_src_=holder;individuallog=\ref[M];log_type=[log_type];log_src=[log_src]'>[slabel]</a>"
+	return "<a href='?src=[REF(usr.client.holder)];[HrefToken()];individuallog=[REF(M)];log_type=[log_type];log_src=[log_src]'>[slabel]</a>"
 
 
 /datum/admins/proc/asay(msg as text)
@@ -606,20 +605,26 @@
 		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_VERBOSEJMP(usr.loc)].")
 
 
-/datum/admins/proc/jump_turf(var/turf/T in turfs)
+/datum/admins/proc/jump_turf()
 	set category = "Admin"
 	set name = "Jump to Turf"
 
 	if(!check_rights(R_ADMIN))
 		return
 
+	var/selection = input("Please, select a turf!", "Jump to turf", null, null) as null|anything in turfs
+	if(!selection)
+		return
+
+	var/turf/T = selection
+
 	var/mob/M = usr
 	M.on_mob_jump()
 	M.forceMove(T)
 
-	log_admin("[key_name(usr)] jumped to area [AREACOORD(M.loc)].")
+	log_admin("[key_name(usr)] jumped to turf [AREACOORD(M.loc)].")
 	if(!istype(M, /mob/dead/observer))
-		message_admins("[ADMIN_TPMONTY(usr)] jumped to area [ADMIN_VERBOSEJMP(M.loc)].")
+		message_admins("[ADMIN_TPMONTY(usr)] jumped to turf [ADMIN_VERBOSEJMP(M.loc)].")
 
 
 /datum/admins/proc/jump_coord(tx as num, ty as num, tz as num)
@@ -641,16 +646,18 @@
 		message_admins("[ADMIN_TPMONTY(usr)] jumped to coordinate [ADMIN_VERBOSEJMP(M.loc)].")
 
 
-/datum/admins/proc/jump_mob(var/mob/M)
+/datum/admins/proc/jump_mob()
 	set category = "Admin"
 	set name = "Jump to Mob"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!istype(M))
+	var/selection = input("Please, select a mob!", "Jump to Mob", null, null) as null|anything in sortmobs(mob_list)
+	if(!selection)
 		return
 
+	var/mob/M = selection
 	var/mob/N = usr
 	var/turf/T = get_turf(M)
 
@@ -673,30 +680,39 @@
 	for(var/mob/M in player_list)
 		keys += M.client
 
-	var/selection = input("Please, select a player!", "Admin Jumping", null, null) as null|anything in sortKey(keys)
+	var/selection = input("Please, select a key!", "Jump to Key", null, null) as null|anything in sortKey(keys)
 	if(!selection)
 		return
 
 	var/mob/M = selection:mob
 	var/mob/N = usr
+	var/turf/T = get_turf(M)
 
 	N.on_mob_jump()
-	N.loc = M.loc
+	N.forceMove(T)
 
 	log_admin("[key_name(usr)] jumped to [key_name(M)]'s key [AREACOORD(M.loc)].")
 	if(!istype(N, /mob/dead/observer))
 		message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_TPMONTY(M)]")
 
 
-/datum/admins/proc/get_mob(var/mob/M in mob_list)
+/datum/admins/proc/get_mob()
 	set category = "Admin"
 	set name = "Get Mob"
 
 	if(!check_rights(R_ADMIN))
 		return
 
+	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(mob_list)
+	if(!selection)
+		return
+
+	var/mob/M = selection
+	var/mob/N = usr
+	var/turf/T = get_turf(N)
+
 	M.on_mob_jump()
-	M.loc = get_turf(usr)
+	M.forceMove(T)
 
 	log_admin("[key_name(usr)] teleported [key_name(M)]'s mob to themselves [AREACOORD(M.loc)].")
 	message_admins("[ADMIN_TPMONTY(usr)] teleported [ADMIN_TPMONTY(M)]'s mob to themselves.")
@@ -714,13 +730,11 @@
 	for(var/mob/M in player_list)
 		keys += M.client
 
-	var/selection = input("Please, select a player!", "Admin Jumping", null, null) as null|anything in sortKey(keys)
+	var/selection = input("Please, select a key!", "Get Key", null, null) as null|anything in sortKey(keys)
 	if(!selection)
 		return
 
 	var/mob/M = selection:mob
-	if(!M)
-		return
 
 	M.on_mob_jump()
 	M.loc = get_turf(usr)
@@ -729,14 +743,21 @@
 	message_admins("[ADMIN_TPMONTY(usr)] teleported [ADMIN_TPMONTY(M)]'s key to themselves.")
 
 
-/datum/admins/proc/send_mob(var/mob/M in sortmobs())
+/datum/admins/proc/send_mob()
 	set category = "Admin"
 	set name = "Send Mob"
 
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/area/A = input(usr, "Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
+	var/selection = input("Please, select a mob!", "Send Mob", null, null) as null|anything in sortmobs(mob_list)
+	if(!selection)
+		return
+
+	var/mob/M = selection
+
+
+	var/area/A = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
 	if(!A || !M)
 		return
 
@@ -748,15 +769,14 @@
 
 
 #define IRCREPLYCOUNT 2
-/client/proc/cmd_admin_pm_context(mob/M in mob_list)
-	set category = "Admin"
+/client/proc/cmd_admin_pm_context(var/mob/M in mob_list)
+	set category = null
 	set name = "Admin PM Mob"
-	set hidden = TRUE
 
 	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
 
-	if(!ismob(M) || !M.client )
+	if(!istype(M))
 		return
 
 	cmd_admin_pm(M.client, null)
@@ -765,9 +785,10 @@
 /client/proc/cmd_admin_pm_panel()
 	set category = "Admin"
 	set name = "Admin PM"
-	if(!holder)
-		to_chat(src, "<font color='red'>Error: Admin-PM-Panel: Only administrators may use this command.</font>")
+
+	if(!check_rights(R_ADMIN|R_MENTOR))
 		return
+
 	var/list/client/targets[0]
 	for(var/client/T)
 		if(T.mob)
@@ -779,8 +800,10 @@
 				targets["[T.mob.real_name](as [T.mob.name]) - [T]"] = T
 		else
 			targets["(No Mob) - [T]"] = T
-	var/target = input(src,"To whom shall we send a message?","Admin PM",null) as null|anything in sortList(targets)
-	cmd_admin_pm(targets[target],null)
+	var/target = input("Who do you want to PM?", "Admin PM" ,null) as null|anything in sortList(targets)
+	if(!target)
+		return
+	cmd_admin_pm(targets[target], null)
 
 
 /client/proc/cmd_ahelp_reply(whom)
@@ -803,8 +826,8 @@
 
 	if(AH)
 		message_admins("[key_name_admin(src)] has started replying to [key_name_admin(C, 0, 0)]'s admin help.")
-	var/msg = input(src,"Message:", "Private message to [key_name(C, 0, 0)]") as message|null
-	if (!msg)
+	var/msg = input("Message:", "Private message to [key_name(C, 0, 0)]") as message|null
+	if(!msg)
 		message_admins("[key_name_admin(src)] has cancelled their reply to [key_name_admin(C, 0, 0)]'s admin help.")
 		return
 	cmd_admin_pm(whom, msg)
@@ -814,10 +837,10 @@
 //Fetching a message if needed. src is the sender and C is the target client
 /client/proc/cmd_admin_pm(whom, msg)
 	if(prefs.muted & MUTE_ADMINHELP)
-		to_chat(src, "<font color='red'>Error: Admin-PM: You are unable to use admin PM-s (muted).</font>")
+		to_chat(src, "<span class='warning'>You are unable to use admin PMs (muted).</span>")
 		return
 
-	if(!holder && !current_ticket)	//no ticket? https://www.youtube.com/watch?v=iHSPf6x1Fdo
+	if(!holder && !current_ticket)
 		to_chat(src, "<font color='red'>You can no longer reply to this ticket, please open another one by using the Adminhelp verb if need be.</font>")
 		to_chat(src, "<font color='blue'>Message: [msg]</font>")
 		return
@@ -825,10 +848,10 @@
 	var/client/recipient
 	var/irc = 0
 	if(istext(whom))
-		if(cmptext(copytext(whom,1,2),"@"))
+		if(cmptext(copytext(whom, 1, 2),"@"))
 			whom = find_stealth_key(whom)
 		if(whom == "IRCKEY")
-			irc = 1
+			irc = TRUE
 		else
 			recipient = GLOB.directory[whom]
 	else if(istype(whom, /client))
@@ -846,7 +869,7 @@
 
 	//get message text, limit it's length.and clean/escape html
 	if(!msg)
-		msg = input(src,"Message:", "Private message to [key_name(recipient, 0, 0)]") as message|null
+		msg = input("Message:", "Private message to [key_name(recipient, 0, 0)]") as message|null
 		msg = trim(msg)
 		if(!msg)
 			return
@@ -1048,3 +1071,46 @@
 	return	stealth
 
 #undef IRCREPLYCOUNT
+
+
+/datum/admins/proc/get_all_humans()
+	if(!check_rights(R_ADMIN))
+		return
+
+	for(var/client/C in clients)
+		if(isobserver(C.mob) || C.mob.stat == DEAD)
+			continue
+		if(ishuman(C.mob))
+			C.mob.loc = get_turf(usr)
+
+
+/datum/admins/proc/get_all_xenos()
+	if(!check_rights(R_ADMIN))
+		return
+
+	for(var/client/C in clients)
+		if(isobserver(C.mob) || C.mob.stat == DEAD)
+			continue
+		if(isXeno(C.mob))
+			C.mob.loc = get_turf(usr)
+
+
+/datum/admins/proc/get_all()
+	if(!check_rights(R_ADMIN))
+		return
+
+	for(var/client/C in clients)
+		if(isobserver(C.mob) || C.mob.stat == DEAD)
+			continue
+		C.mob.loc = get_turf(usr)
+
+
+/datum/admins/proc/rejuv_all()
+	if(!check_rights(R_ADMIN))
+		return
+
+	for(var/client/C in clients)
+		if(!isliving(C.mob))
+			continue
+		var/mob/living/M = C.mob
+		M.revive()

@@ -26,7 +26,7 @@
 	if(!owner.mob || istype(owner.mob, /mob/dead/observer))
 		return
 
-	if(alert(usr, "Are you sure?",, "Yes", "No") != "Yes")
+	if(alert(usr, "Are you sure you want to gib yourself?", "Warning" , "Yes", "No") != "Yes")
 		return
 
 	if(!owner.mob || istype(owner.mob, /mob/dead/observer))
@@ -38,23 +38,30 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has gibbed themselves.")
 
 
-/datum/admins/proc/gib(mob/living/M as mob in mob_list)
+/datum/admins/proc/gib()
 	set category = "Fun"
 	set name = "Gib"
 
 	if(!check_rights(R_FUN))
 		return
 
-	if(alert(src, "Are you sure?",, "Yes", "No") != "Yes")
+	var/list/mobs = list()
+	for(var/mob/living/M in mob_list)
+		mobs += M
+
+	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(mobs)
+	if(!selection)
 		return
 
-	if(!M)
+	var/mob/living/M = selection
+
+	if(alert(usr, "Are you sure you want to gib [M]?", "Warning", "Yes", "No") != "Yes")
 		return
 
 	M.gib()
 
 	log_admin("[key_name(usr)] has gibbed [key_name(M)].")
-	message_admins("[ADMIN_TPMONTY(usr)] has gibbed [ADMIN_TPMONTY(M)].")
+	message_admins("[ADMIN_TPMONTY(usr)] has gibbed [key_name(M)].")
 
 
 /datum/admins/proc/emp()
@@ -184,14 +191,14 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/msg = input("Message:", text("Enter the text you wish to appear to everyone:")) as text
+	var/msg = input("Enter the text you wish to appear to everyone.", "Global Narrate") as text
 
 	if(!msg)
 		return
 
 	to_chat(world, "[msg]")
 
-	log_admin("[key_name(usr)] used Global Narrate: [msg]")
+	log_admin("GlobalNarrate: [key_name(usr)] : [msg]")
 	message_admins("[ADMIN_TPMONTY(usr)] used Global Narrate: [msg]")
 
 
@@ -202,21 +209,17 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(!M)
-		M = input("Direct narrate to who?", "Active Players") as null|anything in get_mob_with_client_list()
-
-	var/msg = input("Message:", text("Enter the text you wish to appear to your target:")) as text
-
-	if(!msg || !M)
+	var/msg = input("Enter the text you wish to appear to your target.", "Direct Narrate") as text
+	if(!msg)
 		return
 
-	to_chat(M, msg)
+	to_chat(M, "[msg]")
 
 	log_admin("DirectNarrate: [key_name(usr)] to [key_name(M)]: [msg]")
 	message_admins("[ADMIN_TPMONTY(usr)] used Direct Narrate on [ADMIN_TPMONTY(M)]: [msg]")
 
 
-/datum/admins/proc/subtle_message(mob/M as mob in mob_list)
+/datum/admins/proc/subtle_message(var/mob/M in mob_list)
 	set category = "Fun"
 	set name = "Subtle Message"
 
@@ -234,23 +237,33 @@
 	message_admins("[ADMIN_TPMONTY(usr)] used Subtle Message on [ADMIN_TPMONTY(M)]: [msg]")
 
 
-/datum/admins/proc/drop_everything(mob/M as mob in mob_list)
+/datum/admins/proc/drop_everything()
 	set category = "Fun"
 	set name = "Drop Everything"
 
 	if(!check_rights(R_FUN))
 		return
 
-	if(alert(src, "Make [M] drop everything?", "Message", "Yes", "No") != "Yes")
+	var/list/humans = list()
+	for(var/mob/living/carbon/human/H in mob_list)
+		humans += H
+
+	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(humans)
+	if(!selection)
 		return
 
-	for(var/obj/item/W in M)
+	var/mob/living/carbon/human/H
+
+	if(alert(usr, "Make [H] drop everything?", "Warning", "Yes", "No") != "Yes")
+		return
+
+	for(var/obj/item/W in H)
 		if(istype(W, /obj/item/alien_embryo))
 			continue
-		M.dropItemToGround(W)
+		H.dropItemToGround(W)
 
-	log_admin("[key_name(usr)] made [key_name(M)] drop everything.")
-	message_admins("[ADMIN_TPMONTY(usr)] made [ADMIN_TPMONTY(M)] drop everything.")
+	log_admin("[key_name(usr)] made [key_name(H)] drop everything.")
+	message_admins("[ADMIN_TPMONTY(usr)] made [ADMIN_TPMONTY(H)] drop everything.")
 
 
 /datum/admins/proc/award_medal()
