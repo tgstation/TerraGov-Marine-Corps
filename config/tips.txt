@@ -7,6 +7,7 @@ Mothpeople are real and the government is covering them up.
 Tips machine is broken, insert more tips.
 PFC Jim did not make it.
 PFC Jim made it out ok.
+I'm being held prisoner, forced to write these tips for eternity. Send help.
 As a doctor, the cryotubes are excellent at dealing with basic damage.
 As a doctor, the cryotubes heal internal bleeding and organ damage, although slowly.
 As a doctor, surgery time from fastest to slowest is: by hand, Autodoc manual, Autodoc automatic.
@@ -30,10 +31,13 @@ As a human, you can do almost anything if you put your mind to it, it just takes
 As a PFC, you can take two guns, one in the suit slot and one on your back.
 As a PFC, you can help out your squad by bringing extra ammunition and food to share.
 As a PFC, you can usually get two attachments of your choice from Requisitions.
+Hypervene is useful. Use it to purge deadly neurotoxins and larva boosting growth hormones.
 As the RO, things get more expensive the more often you buy it.
 While medics and doctors are best, any human can use a Defibrillator.
 Any human can make razorwire with four metal rods and barbedwire from metal sheets.
-Using a multitool on a lasgun cell will turn it into an improvised explosive with a random timer.
+Using a multitool on a lasgun batteries will turn it into an improvised explosive with a random timer.
+In a pinch, you can use lasgun batteries to power APCs and sentry guns.
+Lasgun batteries can be recharged in APCs and power cell rechargers.
 As a marine, if you are not a PFC, then you have a special room in prep with special gear vendors.
 AP bullets are not always better, they do less damage than normal but penetrate more armor.
 Did you know, that pistols are not complete garbage?
@@ -41,6 +45,8 @@ There is no "best" loadout. Experiment and find what works for you.
 Dying is part of the game.
 Almost every specialist has been reworked.
 You can select locations on the doll by using the numberpad.
+Anything can be a weapon if you put your mind to it.
+You can check your wounds to see if they have been bandaged or slaved.
 As a ravager, anytime you take damage you get even more angry, and thus resist more damage.
 As the Queen, you contain the hivemind of all the xenos.
 As a boiler, you have the most powerful corrosive acid for melting things.
