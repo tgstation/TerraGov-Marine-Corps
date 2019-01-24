@@ -267,6 +267,9 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/pref_end_attack_logs,
 	/datum/admins/proc/pref_debug_logs,
 	/datum/admins/proc/set_ooc_color_self,
+	/datum/admins/proc/player_panel,
+	/datum/admins/proc/player_panel_extended,
+	/datum/admins/proc/secrets_panel,
 	/client/proc/cmd_admin_pm_panel, //REWORK THIS
 	/client/proc/cmd_admin_pm_context //REWORK THIS
 	)

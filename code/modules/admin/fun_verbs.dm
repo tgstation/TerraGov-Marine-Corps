@@ -228,7 +228,7 @@
 	if(!M?.client || !msg)
 		return
 
-	to_chat(M, "You hear a voice in your head... [msg]")
+	to_chat(M, "<b>You hear a voice in your head... [msg]</b>")
 
 	log_admin("SubtleMessage: [key_name(usr)] to [key_name(M)]: [msg]")
 	message_admins("[ADMIN_TPMONTY(usr)] used Subtle Message on [ADMIN_TPMONTY(M)]: [msg]")

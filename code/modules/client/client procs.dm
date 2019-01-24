@@ -23,9 +23,8 @@
 	if(!usr || usr != mob)	//stops us calling Topic for somebody else's client. Also helps prevent usr=null
 		return
 
-
 	//search the href for script injection
-	if( findtext(href,"<script",1,0) )
+	if(findtext(href,"<script", 1, 0))
 		log_world("Attempted use of scripts within a topic call, by [src]")
 		message_admins("Attempted use of scripts within a topic call, by [src]")
 		//del(usr)
@@ -35,13 +34,18 @@
 	if(CONFIG_GET(flag/log_hrefs))
 		log_href("[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr]) || [hsrc ? "[hsrc] " : ""][href]")
 
+	// Admin PM
+	if(href_list["priv_msg"])
+		cmd_admin_pm(href_list["priv_msg"], null)
+		return
+
 	switch(href_list["_src_"])
 		if("holder")	hsrc = holder
 		if("usr")		hsrc = mob
 		if("prefs")		return prefs.process_link(usr,href_list)
 	//	if("vars")		return holder.view_var_Topic(href,href_list,hsrc)
 
-	..()	//redirect to hsrc.Topic()
+	return ..()	//redirect to hsrc.Topic()
 
 /client/proc/handle_spam_prevention(var/message, var/mute_type)
 	if(CONFIG_GET(flag/automute_on) && !holder && src.last_message == message)

@@ -473,7 +473,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	message_admins("[ADMIN_TPMONTY(usr)] checked the contents of [ADMIN_TPMONTY(M)].")
 
 
-/datum/admins/proc/update_mob_sprite(mob/living/carbon/human/H as mob)
+/datum/admins/proc/update_mob_sprite(mob/living/carbon/human/H)
 	set category = "Debug"
 	set name = "Update Mob Sprite"
 	set desc = "Should fix any mob sprite errors."
@@ -481,7 +481,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	if(!H || !istype(H))
+	if(!istype(H))
 		return
 
 	H.regenerate_icons()

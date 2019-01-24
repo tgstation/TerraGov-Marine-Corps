@@ -1,6 +1,6 @@
-/client/proc/player_panel_new()
-	set name = "Player Panel"
+/datum/admins/proc/player_panel()
 	set category = "Admin"
+	set name = "Player Panel"
 
 	if(!check_rights(R_ADMIN))
 		return
@@ -314,9 +314,10 @@
 
 	usr << browse(dat, "window=players;size=600x480")
 
-/client/proc/player_panel_extended()
-	set name = "Player Panel"
+
+/datum/admins/proc/player_panel_extended()
 	set category = "Admin"
+	set name = "Player Panel"
 	
 	if(!check_rights(R_ADMIN))
 		return
@@ -369,6 +370,7 @@
 		txt += check_role_table_row(M.current, admins, show_objectives)
 	txt += "</table>"
 	return txt
+
 
 /proc/check_role_table_row(mob/M, admins=src, show_objectives)
 	if (!istype(M))

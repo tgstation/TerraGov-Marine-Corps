@@ -641,11 +641,14 @@
 		message_admins("[ADMIN_TPMONTY(usr)] jumped to coordinate [ADMIN_VERBOSEJMP(M.loc)].")
 
 
-/datum/admins/proc/jump_mob(var/mob/M in mob_list)
+/datum/admins/proc/jump_mob(var/mob/M)
 	set category = "Admin"
 	set name = "Jump to Mob"
 
 	if(!check_rights(R_ADMIN))
+		return
+
+	if(!istype(M))
 		return
 
 	var/mob/N = usr
