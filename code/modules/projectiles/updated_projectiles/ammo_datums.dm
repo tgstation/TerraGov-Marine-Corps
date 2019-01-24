@@ -1338,7 +1338,7 @@
 	added_spit_delay = 15
 	spit_cost = 100
 
-/datum/ammo/xeno/toxin/medium/New()
+/datum/ammo/xeno/toxin/heavy/New()
 	. = ..()
 	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
 
