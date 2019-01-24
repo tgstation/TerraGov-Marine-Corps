@@ -371,7 +371,7 @@
 	else
 		var/bio_vulnerability = CLAMP(1 - M.run_armor_check("chest", "bio"),0,1) //Your bio resist matters now if you have a gas mask
 		if(bio_vulnerability > 0) //Less than perfect resistance means there will be skin absorption
-			M.reagents.add_reagent("xeno_toxin", reagent_amount * 0.25 * bio_vulnerability)
+			M.reagents.add_reagent("xeno_toxin", reagent_amount * 0.3 * bio_vulnerability)
 			//Topical damage (neurotoxin on exposed skin)
 			to_chat(M, "<span class='danger'>Your body goes numb where the gas touches it!</span>")
 
