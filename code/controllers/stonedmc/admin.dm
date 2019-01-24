@@ -17,7 +17,7 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 /obj/effect/statclick/debug
 	var/class
 
-/obj/effect/statclick/debug/Click()
+/obj/effect/statclick/debug/clicked()
 	if(!usr.client.holder || !target)
 		return
 	if(!class)
@@ -31,4 +31,6 @@ INITIALIZE_IMMEDIATE(/obj/effect/statclick)
 			class = "unknown"
 
 	usr.client.debug_variables(target)
-	message_admins("Admin [key_name_admin(usr)] is debugging the [target] [class].")
+	
+	log_admin("[key_name(usr)] is debugging the [target] [class].")
+	message_admins("[ADMIN_TPMONTY(usr)] is debugging the [target] [class].")
