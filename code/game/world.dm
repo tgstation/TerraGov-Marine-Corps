@@ -290,6 +290,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 /world/proc/load_motd()
 	join_motd = file2text("config/motd.txt")
+	join_motd += "<br><br><span class='tip'>[pick(file2list('config/tips.txt'))]<br></span>"
 
 /*
 /proc/load_configuration()
