@@ -139,8 +139,9 @@ RCD
 							return 1
 					return 0
 
-				if(isfloorturf(A) && !isplatingturf(A))
-					if(checkResource(5, user))
+				if(isfloorturf(A))
+					var/turf/open/floor/F = A
+					if(checkResource(5, user) && !F.is_plating())
 						to_chat(user, "Deconstructing Floor...")
 						playsound(src.loc, 'sound/machines/click.ogg', 15, 1)
 						if(do_after(user, 50, TRUE, 5, BUSY_ICON_BUILD))

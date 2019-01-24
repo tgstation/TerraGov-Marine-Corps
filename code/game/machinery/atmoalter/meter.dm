@@ -87,7 +87,7 @@
 		return 1
 
 /obj/machinery/meter/attackby(var/obj/item/W as obj, var/mob/user as mob)
-	if (!istype(W, /obj/item/tool/wrench))
+	if (!iswrench(W))
 		return ..()
 	playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 	user.visible_message("<span class='notice'>[user] begins to unfasten [src].</span>",

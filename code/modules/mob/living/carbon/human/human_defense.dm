@@ -21,7 +21,7 @@ Contains most of the procs that are called when a mob is attacked by something
 			if(c_hand && (stun_amount || agony_amount > 10))
 				msg_admin_attack("[src.name] ([src.ckey]) was disarmed by a stun effect")
 
-				drop_inv_item_on_ground(c_hand)
+				dropItemToGround(c_hand)
 				if (affected.status & LIMB_ROBOT)
 					emote("me", 1, "drops what they were holding, their [affected.display_name] malfunctioning!")
 				else
@@ -223,7 +223,7 @@ Contains most of the procs that are called when a mob is attacked by something
 	if(istype(AM,/obj/))
 		var/obj/O = AM
 
-		if(in_throw_mode && !get_active_hand() && speed <= 5)	//empty active hand and we're in throw mode
+		if(in_throw_mode && !get_active_held_item() && speed <= 5)	//empty active hand and we're in throw mode
 			if(!is_mob_incapacitated())
 				if(isturf(O.loc))
 					if(put_in_active_hand(O))
@@ -347,7 +347,7 @@ Contains most of the procs that are called when a mob is attacked by something
 /mob/living/carbon/human/proc/get_target_lock(unique_access)
 	//Streamlined for faster processing. Needs a unique access, otherwise it will just hit everything.
 	var/obj/item/card/id/C = wear_id
-	if(!istype(C)) C = get_active_hand()
+	if(!istype(C)) C = get_active_held_item()
 	if(!istype(C)) return
 	if(!(unique_access in C.access)) return
 	return 1

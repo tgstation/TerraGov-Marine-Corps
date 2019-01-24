@@ -245,7 +245,7 @@
 				scanning = null
 			else
 				var/mob/M = usr
-				var/obj/item/I = M.get_active_hand()
+				var/obj/item/I = M.get_active_held_item()
 				if(I && istype(I))
 					if(istype(I, /obj/item/evidencebag))
 						scanning = I.contents[1]
@@ -267,7 +267,7 @@
 			scan_progress = -1
 		if("card")
 			var/mob/M = usr
-			var/obj/item/I = M.get_active_hand()
+			var/obj/item/I = M.get_active_held_item()
 			if(istype(I, /obj/item/f_card))
 				if(process_card(I))
 					M.drop_held_item()

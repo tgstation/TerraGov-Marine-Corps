@@ -25,18 +25,17 @@
 	var/disposal_pressure = 0
 
 //Create a new disposal, find the attached trunk (if present) and init gas resvr.
-/obj/machinery/disposal/New()
-	..()
-	spawn(5)
-		trunk = locate() in loc
-		if(!trunk)
-			mode = 0
-			flush = 0
-		else
-			trunk.linked = src	//Link the pipe trunk to self
+/obj/machinery/disposal/Initialize()
+	. = ..()
+	trunk = locate() in loc
+	if(!trunk)
+		mode = 0
+		flush = 0
+	else
+		trunk.linked = src	//Link the pipe trunk to self
 
-		update()
-		start_processing()
+	update()
+	start_processing()
 
 //Attack by item places it in to disposal
 /obj/machinery/disposal/attackby(var/obj/item/I, var/mob/user)
@@ -48,7 +47,7 @@
 
 	add_fingerprint(user)
 	if(mode <= 0) //It's off
-		if(istype(I, /obj/item/tool/screwdriver))
+		if(isscrewdriver(I))
 			if(contents.len > 0)
 				to_chat(user, "<span class='warning'>Eject the contents first!</span>")
 				return
@@ -62,7 +61,7 @@
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 				to_chat(user, "<span class='notice'>You attach the screws around the power connection.</span>")
 				return
-		else if(istype(I, /obj/item/tool/weldingtool) && mode == -1)
+		else if(iswelder(I) && mode == -1)
 			if(contents.len > 0)
 				to_chat(user, "<span class='warning'>Eject the contents first!</span>")
 				return
@@ -113,7 +112,7 @@
 	if(!I)
 		return
 
-	if(user.drop_inv_item_to_loc(I, src))
+	if(user.transferItemToLoc(I, src))
 		user.visible_message("<span class='notice'>[user] places [I] into [src].</span>",
 		"<span class='notice'>You place [I] into [src].</span>")
 	update()
@@ -780,7 +779,7 @@
 	if(T.intact_tile)
 		return //Prevent interaction with T-scanner revealed pipes
 	add_fingerprint(user)
-	if(istype(I, /obj/item/tool/weldingtool))
+	if(iswelder(I))
 		var/obj/item/tool/weldingtool/W = I
 
 		if(W.remove_fuel(0, user))
@@ -1242,7 +1241,7 @@
 	if(T.intact_tile)
 		return //Prevent interaction with T-scanner revealed pipes
 	add_fingerprint(user)
-	if(istype(I, /obj/item/tool/weldingtool))
+	if(iswelder(I))
 		var/obj/item/tool/weldingtool/W = I
 		if(W.remove_fuel(0, user))
 			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)
@@ -1341,7 +1340,7 @@
 	if(!I || !user)
 		return
 	add_fingerprint(user)
-	if(istype(I, /obj/item/tool/screwdriver))
+	if(isscrewdriver(I))
 		if(mode == 0)
 			mode = 1
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
@@ -1350,7 +1349,7 @@
 			mode = 0
 			playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			to_chat(user, "<span class='notice'>You attach the screws around the power connection.</span>")
-	else if(istype(I, /obj/item/tool/weldingtool) && mode == 1)
+	else if(iswelder(I) && mode == 1)
 		var/obj/item/tool/weldingtool/W = I
 		if(W.remove_fuel(0, user))
 			playsound(loc, 'sound/items/Welder2.ogg', 25, 1)

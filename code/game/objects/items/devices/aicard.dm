@@ -5,7 +5,7 @@
 	item_state = "electronic"
 	w_class = 2.0
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	var/flush = null
 	origin_tech = "programming=4;materials=4"
 

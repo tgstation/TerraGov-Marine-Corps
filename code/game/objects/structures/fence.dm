@@ -164,7 +164,7 @@
 	if(W.flags_item & NOBLUDGEON)
 		return
 
-	if(istype(W, /obj/item/tool/wirecutters))
+	if(iswirecutter(W))
 		user.visible_message("<span class='notice'>[user] starts cutting through [src] with [W].</span>",
 		"<span class='notice'>You start cutting through [src] with [W]")
 		playsound(src.loc, 'sound/items/Wirecutter.ogg', 25, 1)

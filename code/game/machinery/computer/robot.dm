@@ -114,7 +114,7 @@
 			<A href='?src=\ref[src];temp=1'>Cancel</A>"}
 
 		else if (href_list["eject2"])
-			var/obj/item/card/id/I = usr.get_active_hand()
+			var/obj/item/card/id/I = usr.get_active_held_item()
 			if (istype(I, /obj/item/device/pda))
 				var/obj/item/device/pda/pda = I
 				I = pda.id

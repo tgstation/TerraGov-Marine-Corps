@@ -13,7 +13,7 @@
 	volume = 60
 	possible_transfer_amounts = null
 	container_type = OPENCONTAINER
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	flags_item = NOBLUDGEON
 	w_class = 2.0
 	var/skilllock = 1

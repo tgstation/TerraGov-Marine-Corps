@@ -274,7 +274,7 @@ Buildable meters
 /obj/item/pipe/afterattack(turf/open/floor/target, mob/user, proximity)
 	if(!proximity) return
 	if(istype(target))
-		user.drop_inv_item_to_loc(src, target)
+		user.transferItemToLoc(src, target)
 	else
 		return ..()
 
@@ -392,7 +392,7 @@ Buildable meters
 /obj/item/pipe/attackby(obj/item/W, mob/user)
 	..()
 	//*
-	if (!istype(W, /obj/item/tool/wrench))
+	if (!iswrench(W))
 		return ..()
 	if (!isturf(loc))
 		return 1
@@ -1002,7 +1002,7 @@ Buildable meters
 /obj/item/pipe_meter/attackby(var/obj/item/W as obj, var/mob/user as mob)
 	..()
 
-	if (!istype(W, /obj/item/tool/wrench))
+	if (!iswrench(W))
 		return ..()
 	if(!locate(/obj/machinery/atmospherics/pipe, src.loc))
 		to_chat(user, "<span class='warning'>You need to fasten it to a pipe</span>")

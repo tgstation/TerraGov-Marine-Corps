@@ -143,7 +143,7 @@
 	if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
 		damage *= 0.25
 
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 
 		if(WT.remove_fuel(0))

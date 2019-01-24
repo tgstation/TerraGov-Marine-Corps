@@ -581,7 +581,7 @@
 				if(BURST)
 					if(user)
 						visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")
-						user.temp_drop_inv_item(F)
+						user.temporarilyRemoveItemFromInventory(F)
 					else
 						visible_message("<span class='xenowarning'>[F] crawls back into [src]!</span>") //Not sure how, but let's roll with it for now.
 					status = GROWN
@@ -604,7 +604,7 @@
 	var/damage = W.force
 	if(W.w_class < 4 || !W.sharp || W.force < 20) //only big strong sharp weapon are adequate
 		damage /= 4
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 
 		if(WT.remove_fuel(0, user))

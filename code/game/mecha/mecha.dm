@@ -652,7 +652,7 @@
 				to_chat(user, "<span class='warning'>Invalid ID: Access denied.</span>")
 		else
 			to_chat(user, "<span class='warning'>Maintenance protocols disabled by operator.</span>")
-	else if(istype(W, /obj/item/tool/wrench))
+	else if(iswrench(W))
 		if(state==1)
 			state = 2
 			to_chat(user, "You undo the securing bolts.")
@@ -660,7 +660,7 @@
 			state = 1
 			to_chat(user, "You tighten the securing bolts.")
 		return
-	else if(istype(W, /obj/item/tool/crowbar))
+	else if(iscrowbar(W))
 		if(state==2)
 			state = 3
 			to_chat(user, "You open the hatch to the power unit")
@@ -668,7 +668,7 @@
 			state=2
 			to_chat(user, "You close the hatch to the power unit")
 		return
-	else if(istype(W, /obj/item/stack/cable_coil))
+	else if(iscablecoil(W))
 		if(state == 3 && hasInternalDamage(MECHA_INT_SHORT_CIRCUIT))
 			var/obj/item/stack/cable_coil/CC = W
 			if(CC.use(2))
@@ -677,7 +677,7 @@
 			else
 				to_chat(user, "There's not enough wire to finish the task.")
 		return
-	else if(istype(W, /obj/item/tool/screwdriver))
+	else if(isscrewdriver(W))
 		if(state==3 && src.cell)
 			src.cell.forceMove(src.loc)
 			src.cell = null
@@ -701,7 +701,7 @@
 				to_chat(user, "There's already a powercell installed.")
 		return
 
-	else if(istype(W, /obj/item/tool/weldingtool) && user.a_intent != "hurt")
+	else if(iswelder(W) && user.a_intent != "hurt")
 		var/obj/item/tool/weldingtool/WT = W
 		if (!WT.remove_fuel(0,user))
 			return
@@ -713,7 +713,7 @@
 		return
 
 	else if(istype(W, /obj/item/mecha_parts/mecha_tracking))
-		user.drop_inv_item_to_loc(W, src)
+		user.transferItemToLoc(W, src)
 		user.visible_message("[user] attaches [W] to [src].", "You attach [W] to [src]")
 		return
 
@@ -1008,7 +1008,7 @@
 		else if(mmi_as_oc.brainmob.stat)
 			to_chat(user, "Beta-rhythm below acceptable level.")
 			return 0
-		user.temp_drop_inv_item(mmi_as_oc)
+		user.temporarilyRemoveItemFromInventory(mmi_as_oc)
 		var/mob/brainmob = mmi_as_oc.brainmob
 		brainmob.reset_view(src)
 	/*
@@ -1101,14 +1101,14 @@
 /////////////////////////
 
 /obj/mecha/proc/operation_allowed(mob/living/carbon/human/H)
-	for(var/ID in list(H.get_active_hand(), H.wear_id, H.belt))
+	for(var/ID in list(H.get_active_held_item(), H.wear_id, H.belt))
 		if(src.check_access(ID,src.operation_req_access))
 			return 1
 	return 0
 
 
 /obj/mecha/proc/internals_access_allowed(mob/living/carbon/human/H)
-	for(var/atom/ID in list(H.get_active_hand(), H.wear_id, H.belt))
+	for(var/atom/ID in list(H.get_active_held_item(), H.wear_id, H.belt))
 		if(src.check_access(ID,src.internals_req_access))
 			return 1
 	return 0

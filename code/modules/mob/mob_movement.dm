@@ -57,7 +57,7 @@
 /client/Northwest()
 	if(iscarbon(usr))
 		var/mob/living/carbon/C = usr
-		if(!C.get_active_hand())
+		if(!C.get_active_held_item())
 			to_chat(usr, "<span class='warning'>You have nothing to drop in your hand.</span>")
 			return
 		C.drop_held_item()
@@ -181,9 +181,9 @@
 		mob.last_move_intent = world.time + 10
 		switch(mob.m_intent)
 			if(MOVE_INTENT_RUN)
-				move_delay = 2 + config.run_speed
+				move_delay = 2 + CONFIG_GET(number/movedelay/run_delay)
 			if(MOVE_INTENT_WALK)
-				move_delay = 7 + config.walk_speed
+				move_delay = 7 + CONFIG_GET(number/movedelay/walk_delay)
 		move_delay += mob.movement_delay()
 		//We are now going to move
 		moving = 1

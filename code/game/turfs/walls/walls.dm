@@ -345,7 +345,7 @@
 			if(hull)
 				to_chat(user, "<span class='warning'>[src] is much too tough for you to do anything to it with [W]</span>.")
 			else
-				if(istype(W, /obj/item/tool/weldingtool))
+				if(iswelder(W))
 					var/obj/item/tool/weldingtool/WT = W
 					WT.remove_fuel(0,user)
 				thermitemelt(user)
@@ -394,7 +394,7 @@
 			dismantle_wall()
 		return
 
-	if(damage && istype(W, /obj/item/tool/weldingtool))
+	if(damage && iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			user.visible_message("<span class='notice'>[user] starts repairing the damage to [src].</span>",
@@ -412,7 +412,7 @@
 	//DECONSTRUCTION
 	switch(d_state)
 		if(0)
-			if(istype(W, /obj/item/tool/weldingtool))
+			if(iswelder(W))
 
 				var/obj/item/tool/weldingtool/WT = W
 				playsound(src, 'sound/items/Welder.ogg', 25, 1)
@@ -430,7 +430,7 @@
 				return
 
 		if(1)
-			if(istype(W, /obj/item/tool/screwdriver))
+			if(isscrewdriver(W))
 
 				user.visible_message("<span class='notice'>[user] begins removing the support lines.</span>",
 				"<span class='notice'>You begin removing the support lines.</span>")
@@ -447,7 +447,7 @@
 				return
 
 		if(2)
-			if(istype(W, /obj/item/tool/weldingtool))
+			if(iswelder(W))
 
 				var/obj/item/tool/weldingtool/WT = W
 				user.visible_message("<span class='notice'>[user] begins slicing through the metal cover.</span>",
@@ -465,7 +465,7 @@
 				return
 
 		if(3)
-			if(istype(W, /obj/item/tool/crowbar))
+			if(iscrowbar(W))
 
 				user.visible_message("<span class='notice'>[user] struggles to pry off the cover.</span>",
 				"<span class='notice'>You struggle to pry off the cover.</span>")
@@ -482,7 +482,7 @@
 				return
 
 		if(4)
-			if(istype(W, /obj/item/tool/wrench))
+			if(iswrench(W))
 
 				user.visible_message("<span class='notice'>[user] starts loosening the anchoring bolts securing the support rods.</span>",
 				"<span class='notice'>You start loosening the anchoring bolts securing the support rods.</span>")
@@ -499,7 +499,7 @@
 				return
 
 		if(5)
-			if(istype(W, /obj/item/tool/wirecutters))
+			if(iswirecutter(W))
 
 				user.visible_message("<span class='notice'>[user] begins uncrimping the hydraulic lines.</span>",
 				"<span class='notice'>You begin uncrimping the hydraulic lines.</span>")
@@ -516,7 +516,7 @@
 				return
 
 		if(6)
-			if(istype(W, /obj/item/tool/crowbar))
+			if(iscrowbar(W))
 
 				user.visible_message("<span class='notice'>[user] struggles to pry off the inner sheath.</span>",
 				"<span class='notice'>You struggle to pry off the inner sheath.</span>")
@@ -533,7 +533,7 @@
 				return
 
 		if(7)
-			if(istype(W, /obj/item/tool/weldingtool))
+			if(iswelder(W))
 
 				var/obj/item/tool/weldingtool/WT = W
 				user.visible_message("<span class='notice'>[user] begins slicing through the final layer.</span>",

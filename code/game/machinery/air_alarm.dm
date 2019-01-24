@@ -148,7 +148,7 @@
 
 	if (!master_is_operating())
 		elect_master()
-	
+
 	switch(dir)
 		if(NORTH) pixel_y = 25
 		if(SOUTH) pixel_y = -25
@@ -956,7 +956,7 @@ table tr:first-child th:first-child { border: none;}
 
 		if (href_list["AAlarmwires"])
 			var/t1 = text2num(href_list["AAlarmwires"])
-			if (!( istype(usr.get_held_item(), /obj/item/tool/wirecutters) ))
+			if (!iswirecutter(usr.get_held_item()))
 				to_chat(usr, "You need wirecutters!")
 				return
 			if (isWireColorCut(t1))
@@ -971,7 +971,7 @@ table tr:first-child th:first-child { border: none;}
 
 		else if (href_list["pulse"])
 			var/t1 = text2num(href_list["pulse"])
-			if (!istype(usr.get_held_item(), /obj/item/device/multitool))
+			if (!ismultitool(usr.get_held_item()))
 				to_chat(usr, "You need a multitool!")
 				return
 			if (isWireColorCut(t1))
@@ -984,7 +984,7 @@ table tr:first-child th:first-child { border: none;}
 
 
 /obj/machinery/alarm/attackby(obj/item/W as obj, mob/user as mob)
-/*	if (istype(W, /obj/item/tool/wirecutters))
+/*	if (iswirecutter(W))
 		stat ^= BROKEN
 		add_fingerprint(user)
 		for(var/mob/O in viewers(user, null))
@@ -1003,7 +1003,7 @@ table tr:first-child th:first-child { border: none;}
 				update_icon()
 				return
 
-			if(wiresexposed && ((istype(W, /obj/item/device/multitool) || istype(W, /obj/item/tool/wirecutters))))
+			if(wiresexposed && (ismultitool(W) || iswirecutter(W)))
 				return attack_hand(user)
 
 			if(istype(W, /obj/item/card/id) || istype(W, /obj/item/device/pda))// trying to unlock the interface with an ID card
@@ -1020,7 +1020,7 @@ table tr:first-child th:first-child { border: none;}
 			return
 
 		if(1)
-			if(iscoil(W))
+			if(iscablecoil(W))
 				var/obj/item/stack/cable_coil/C = W
 				if(C.use(5))
 					to_chat(user, "<span class='notice'>You wire \the [src].</span>")

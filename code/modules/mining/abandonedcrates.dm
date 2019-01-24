@@ -95,7 +95,7 @@
 		if (istype(W, /obj/item/card/emag))
 			to_chat(user, "<span class='notice'>The crate unlocks!</span>")
 			locked = 0
-		if (istype(W, /obj/item/device/multitool))
+		if (ismultitool(W))
 			to_chat(user, "<span class='notice'>DECA-CODE LOCK REPORT:</span>")
 			if (attempts == 1)
 				to_chat(user, "<span class='warning'>* Anti-Tamper Bomb will activate on next failed access attempt.</span>")

@@ -61,7 +61,7 @@
 			unbuckle() //clicking the powerloader with its own clamp unbuckles the pilot.
 			playsound(loc, 'sound/mecha/powerloader_unbuckle.ogg', 25)
 			return TRUE
-	else if(istype(W, /obj/item/tool/screwdriver))
+	else if(isscrewdriver(W))
 		to_chat(user, "<span class='notice'>You screw the panel [panel_open ? "closed" : "open"].</span>")
 		playsound(loc, 'sound/items/Screwdriver.ogg', 25, 1)
 		panel_open = !panel_open
@@ -104,7 +104,7 @@
 	else
 		move_delay = initial(move_delay)
 		icon_state = "powerloader_open"
-		M.drop_held_items() //drop the clamp when unbuckling
+		M.drop_all_held_items() //drop the clamp when unbuckling
 
 /obj/vehicle/powerloader/buckle_mob(mob/M, mob/user)
 	if(M != user)

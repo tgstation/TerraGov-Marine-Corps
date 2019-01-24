@@ -122,7 +122,6 @@ var/waiting_for_drop_votes = 0
 	config_tag = "Hunter Games"
 	required_players = 1
 	flags_round_type = MODE_NO_LATEJOIN
-	latejoin_larva_drop = 0 //You never know
 
 	var/last_count
 	var/primary_spawns[]
@@ -181,8 +180,7 @@ var/waiting_for_drop_votes = 0
 			var/mob/living/carbon/human/H = M
 			spawn_contestant(H)
 
-	if(config)
-		config.remove_gun_restrictions = 1 //This will allow anyone to use cool guns.
+	CONFIG_SET(flag/remove_gun_restrictions, TRUE) //This will allow anyone to use cool guns.
 
 	world << sound('sound/effects/siren.ogg')
 
@@ -223,11 +221,11 @@ var/waiting_for_drop_votes = 0
 	var/hunter_body = pick(HUNTER_BODY)
 	var/hunter_feet = pick(HUNTER_FEET)
 
-	H.equip_to_slot_or_del(new hunter_body(H), WEAR_BODY)
-	H.equip_to_slot_or_del(new hunter_feet(H), WEAR_FEET)
-	H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), WEAR_L_STORE)
-	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general(H), WEAR_R_STORE)
-	H.equip_to_slot_or_del(new /obj/item/tool/crowbar(H), EQUIP_IN_R_POUCH)
+	H.equip_to_slot_or_del(new hunter_body(H), SLOT_W_UNIFORM)
+	H.equip_to_slot_or_del(new hunter_feet(H), SLOT_SHOES)
+	H.equip_to_slot_or_del(new /obj/item/device/flashlight/flare(H), SLOT_L_STORE)
+	H.equip_to_slot_or_del(new /obj/item/storage/pouch/general(H), SLOT_R_STORE)
+	H.equip_to_slot_or_del(new /obj/item/tool/crowbar(H), SLOT_IN_R_POUCH)
 
 	to_chat(H, "<h2>Kill everyone. Become the last man standing.</h2>")
 	to_chat(H, "<h4>Use the flare in your pocket to light the way!</h4>")

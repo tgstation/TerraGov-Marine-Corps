@@ -191,7 +191,7 @@
 					break
 		if((!src.target || src.target == null ) && src.improvefloors)
 			for (var/turf/open/floor/F in view(7,src))
-				if(!(F in floorbottargets) && F != src.oldtarget && F.icon_state == "Floor1" && !isplatingturf(F))
+				if(!(F in floorbottargets) && F != src.oldtarget && F.icon_state == "Floor1" && !F.is_plating())
 					src.oldtarget = F
 					src.target = F
 					break
@@ -381,7 +381,7 @@
 		var/obj/item/frame/toolbox_tiles/B = new /obj/item/frame/toolbox_tiles
 		user.put_in_hands(B)
 		to_chat(user, "<span class='notice'>You add the tiles into the empty toolbox. They protrude from the top.</span>")
-		user.temp_drop_inv_item(src)
+		user.temporarilyRemoveItemFromInventory(src)
 		qdel(src)
 	else
 		to_chat(user, "<span class='warning'>You need 10 floortiles for a floorbot.</span>")

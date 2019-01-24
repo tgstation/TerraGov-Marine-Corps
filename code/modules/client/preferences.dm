@@ -433,7 +433,7 @@ datum/preferences
 	dat += "<b>Ghost Radio:</b> <a href='?_src_=prefs;preference=ghost_radio'><b>[(toggles_chat & CHAT_GHOSTRADIO) ? "All Chatter" : "Nearest Speakers"]</b></a><br>"
 	dat += "<b>Ghost Hivemind:</b> <a href='?_src_=prefs;preference=ghost_hivemind'><b>[(toggles_chat & CHAT_GHOSTHIVEMIND) ? "Show Hivemind" : "Hide Hivemind"]</b></a><br>"
 
-	if(config.allow_Metadata)
+	if(CONFIG_GET(flag/allow_metadata))
 		dat += "<b>OOC Notes:</b> <a href='?_src_=prefs;preference=metadata;task=input'> Edit </a><br>"
 
 	dat += "<br>"
@@ -1095,7 +1095,7 @@ datum/preferences
 					var/list/new_languages = list("None")
 					var/datum/species/S = all_species[species]
 
-					if(config.usealienwhitelist)
+					if(CONFIG_GET(flag/usealienwhitelist))
 						for(var/L in all_languages)
 							var/datum/language/lang = all_languages[L]
 							if((!(lang.flags & RESTRICTED)) && (is_alien_whitelisted(L)||(!( lang.flags & WHITELISTED ))||(S && (L in S.secondary_langs))))
@@ -1479,7 +1479,7 @@ datum/preferences
 		var/datum/species/S = all_species[species]
 		real_name = S.random_name(gender)
 
-	if(config.humans_need_surnames && species == "Human")
+	if(CONFIG_GET(flag/humans_need_surnames) && species == "Human")
 		var/firstspace = findtext(real_name, " ")
 		var/name_length = length(real_name)
 		if(!firstspace)	//we need a surname

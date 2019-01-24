@@ -134,7 +134,7 @@
 
 /obj/machinery/power/am_control_unit/attackby(obj/item/W, mob/user)
 	if(!istype(W) || !user) return
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		if(!anchored)
 			playsound(src.loc, 'sound/items/Ratchet.ogg', 25, 1)
 			user.visible_message("[user.name] secures the [src.name] to the floor.", \
@@ -157,7 +157,7 @@
 		if(fueljar)
 			to_chat(user, "<span class='warning'>There is already a [fueljar] inside!</span>")
 			return
-		if(user.drop_inv_item_to_loc(W, src))
+		if(user.transferItemToLoc(W, src))
 			fueljar = W
 			user.visible_message("[user.name] loads an [W.name] into the [src.name].", \
 					"You load an [W.name].", \

@@ -64,7 +64,7 @@
 
 /obj/machinery/door_control/attackby(obj/item/W, mob/user as mob)
 	/* For later implementation
-	if (istype(W, /obj/item/tool/screwdriver))
+	if (isscrewdriver(W))
 	{
 		if(wiresexposed)
 			icon_state = "doorctrl0"

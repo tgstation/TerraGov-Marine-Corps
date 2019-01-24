@@ -7,7 +7,7 @@
 	subspace_transmission = 1
 	canhear_range = 0 // can't hear headsets from very far away
 
-	flags_equip_slot = SLOT_EAR
+	flags_equip_slot = ITEM_SLOT_EARS
 	var/translate_binary = 0
 	var/translate_hive = 0
 	var/obj/item/device/encryptionkey/keyslot1 = null
@@ -43,10 +43,10 @@
 /obj/item/device/radio/headset/attackby(obj/item/W as obj, mob/user as mob)
 //	..()
 	user.set_interaction(src)
-	if (!( istype(W, /obj/item/tool/screwdriver) || (istype(W, /obj/item/device/encryptionkey/ ))))
+	if (!( isscrewdriver(W) || (istype(W, /obj/item/device/encryptionkey/ ))))
 		return
 
-	if(istype(W, /obj/item/tool/screwdriver))
+	if(isscrewdriver(W))
 		if(keyslot1 || keyslot2 || keyslot3)
 
 
@@ -228,7 +228,7 @@
 	camera.network = list("LEADER")
 
 /obj/item/device/radio/headset/almayer/equipped(mob/living/carbon/human/user, slot)
-	if(slot == WEAR_EAR)
+	if(slot == SLOT_EARS)
 		if(headset_hud_on)
 			var/datum/mob_hud/H = huds[MOB_HUD_SQUAD]
 			H.add_hud_to(user)

@@ -221,7 +221,7 @@
 				healthcheck(0, 0, 1)
 				return
 
-	else if(istype(W, /obj/item/tool/screwdriver) && deconstructable)
+	else if(isscrewdriver(W) && deconstructable)
 		dismantle = TRUE
 		if(reinf && state >= 1)
 			state = 3 - state
@@ -239,7 +239,7 @@
 			to_chat(user, (anchored ? "<span class='notice'>You have fastened the window to the floor.</span>" : "<span class='notice'>You have unfastened the window.</span>"))
 		else if(static_frame && state == 0)
 			disassemble_window()
-	else if(istype(W, /obj/item/tool/crowbar) && reinf && state <= 1 && deconstructable)
+	else if(iscrowbar(W) && reinf && state <= 1 && deconstructable)
 		dismantle = TRUE
 		state = 1 - state
 		playsound(loc, 'sound/items/Crowbar.ogg', 25, 1)
@@ -307,8 +307,8 @@
 	dir = turn(dir, 270)
 
 
-/obj/structure/window/New(Loc, start_dir = null, constructed = 0)
-	..()
+/obj/structure/window/Initialize(Loc, start_dir = null, constructed = 0)
+	. = ..()
 
 	//player-constructed windows
 	if(constructed)
@@ -411,8 +411,8 @@
 	health = 300
 	reinf = TRUE
 
-/obj/structure/window/New(Loc, constructed = 0)
-	..()
+/obj/structure/window/Initialize(Loc, constructed = 0)
+	. = ..()
 
 	//player-constructed windows
 	if(constructed)
@@ -450,6 +450,7 @@
 	name = "theoretical window"
 	layer = TABLE_LAYER
 	static_frame = TRUE
+	flags_atom = NOFLAGS //This is not a border object; it takes up the entire tile.
 	var/window_frame //For perspective windows,so the window frame doesn't magically dissapear
 	var/list/tiles_special = list(/obj/machinery/door/airlock,
 		/obj/structure/window/framed,
@@ -458,11 +459,10 @@
 	tiles_with = list(
 		/turf/closed/wall)
 
-/obj/structure/window/framed/New()
-	spawn(0)
-		relativewall()
-		relativewall_neighbours()
-	..()
+/obj/structure/window/framed/Initialize()
+	relativewall()
+	relativewall_neighbours()
+	. = ..()
 
 /obj/structure/window/framed/Destroy()
 	for(var/obj/effect/alien/weeds/weedwall/window/WW in loc)

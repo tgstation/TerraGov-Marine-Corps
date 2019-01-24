@@ -12,16 +12,11 @@
 	var/title = "Mass Driver Controls"
 
 
-/obj/machinery/computer/pod/New()
-	..()
-	spawn( 5 )
-		for(var/obj/machinery/mass_driver/M in machines)
-			if(M.id == id)
-				connected = M
-			else
-		return
-	return
-
+/obj/machinery/computer/pod/Initialize()
+	. = ..()
+	for(var/obj/machinery/mass_driver/M in machines)
+		if(M.id == id)
+			connected = M
 
 /obj/machinery/computer/pod/proc/alarm()
 	if(stat & (NOPOWER|BROKEN))
@@ -51,7 +46,7 @@
 
 /*
 /obj/machinery/computer/pod/attackby(I as obj, user as mob)
-	if(istype(I, /obj/item/tool/screwdriver))
+	if(isscrewdriver(I))
 		playsound(loc, 'sound/items/Screwdriver.ogg', 50, 1)
 		if(do_after(user, 20))
 			if(stat & BROKEN)

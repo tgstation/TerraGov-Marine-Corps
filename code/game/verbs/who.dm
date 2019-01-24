@@ -189,14 +189,14 @@
 				mentmsg += "\t[C] is a [C.holder.rank]\n"
 				num_mentors_online++
 
-	if(config.admin_irc)
+	if(CONFIG_GET(flag/admin_irc))
 		to_chat(src, "<span class='info'>Adminhelps are also sent to IRC. If no admins are available in game try anyway and an admin on IRC may see it and respond.</span>")
 	msg = "<b>Current Admins ([num_admins_online]):</b>\n" + msg
 
-	if(config.show_mods)
+	if(CONFIG_GET(flag/show_mods))
 		msg += "\n<b> Current Moderators ([num_mods_online]):</b>\n" + modmsg
 
-	if(config.show_mentors)
+	if(CONFIG_GET(flag/show_mentors))
 		msg += "\n<b> Current Mentors ([num_mentors_online]):</b>\n" + mentmsg
 
 	to_chat(src, msg)

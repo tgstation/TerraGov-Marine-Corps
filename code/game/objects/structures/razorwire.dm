@@ -123,7 +123,7 @@
 				"<span class='danger'>You throw [M] on [src].</span>")
 		return
 
-	if(istype(W, /obj/item/tool/wirecutters))
+	if(iswirecutter(W))
 		user.visible_message("<span class='notice'>[user] starts disassembling [src].</span>",
 		"<span class='notice'>You start disassembling [src].</span>")
 		var/delay_disassembly = SKILL_TASK_AVERAGE
@@ -136,7 +136,7 @@
 			destroyed(TRUE)
 		return
 
-	if(istype(W, /obj/item/tool/weldingtool))
+	if(iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0, user))
 			var/delay = SKILL_TASK_TOUGH

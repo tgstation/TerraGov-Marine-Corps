@@ -89,7 +89,7 @@
 
 
 /obj/machinery/computer/attackby(obj/item/I, mob/user)
-	if(istype(I, /obj/item/tool/screwdriver) && circuit)
+	if(isscrewdriver(I) && circuit)
 		if(user.mind && user.mind.cm_skills && user.mind.cm_skills.engineer < SKILL_ENGINEER_MT)
 			user.visible_message("<span class='notice'>[user] fumbles around figuring out how to deconstruct [src].</span>",
 			"<span class='notice'>You fumble around figuring out how to deconstruct [src].</span>")

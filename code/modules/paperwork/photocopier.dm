@@ -139,7 +139,7 @@
 	attackby(obj/item/O as obj, mob/user as mob)
 		if(istype(O, /obj/item/paper))
 			if(!copy && !photocopy && !bundle)
-				if(user.drop_inv_item_to_loc(O, src))
+				if(user.transferItemToLoc(O, src))
 					copy = O
 					to_chat(user, "<span class='notice'>You insert the paper into \the [src].</span>")
 					flick("bigscanner1", src)
@@ -148,7 +148,7 @@
 				to_chat(user, "<span class='notice'>There is already something in \the [src].</span>")
 		else if(istype(O, /obj/item/photo))
 			if(!copy && !photocopy && !bundle)
-				if(user.drop_inv_item_to_loc(O, src))
+				if(user.transferItemToLoc(O, src))
 					photocopy = O
 					to_chat(user, "<span class='notice'>You insert the photo into \the [src].</span>")
 					flick("bigscanner1", src)
@@ -157,21 +157,21 @@
 				to_chat(user, "<span class='notice'>There is already something in \the [src].</span>")
 		else if(istype(O, /obj/item/paper_bundle))
 			if(!copy && !photocopy && !bundle)
-				if(user.drop_inv_item_to_loc(O, src))
+				if(user.transferItemToLoc(O, src))
 					bundle = O
 					to_chat(user, "<span class='notice'>You insert the bundle into \the [src].</span>")
 					flick("bigscanner1", src)
 					updateUsrDialog()
 		else if(istype(O, /obj/item/device/toner))
 			if(toner == 0)
-				if(user.temp_drop_inv_item(O))
+				if(user.temporarilyRemoveItemFromInventory(O))
 					qdel(O)
 					toner = 30
 					to_chat(user, "<span class='notice'>You insert the toner cartridge into \the [src].</span>")
 					updateUsrDialog()
 			else
 				to_chat(user, "<span class='notice'>This cartridge is not yet ready for replacement! Use up the rest of the toner.</span>")
-		else if(istype(O, /obj/item/tool/wrench))
+		else if(iswrench(O))
 			playsound(loc, 'sound/items/Ratchet.ogg', 25, 1)
 			anchored = !anchored
 			to_chat(user, "<span class='notice'>You [anchored ? "wrench" : "unwrench"] \the [src].</span>")

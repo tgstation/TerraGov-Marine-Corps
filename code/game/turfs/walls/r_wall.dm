@@ -40,7 +40,7 @@
 			if(hull)
 				to_chat(user, "<span class='warning'>[src] is much too tough for you to do anything to it with [W]</span>.")
 			else
-				if(istype(W, /obj/item/tool/weldingtool))
+				if(iswelder(W))
 					var/obj/item/tool/weldingtool/WT = W
 					WT.remove_fuel(0,user)
 				thermitemelt(user)
@@ -55,7 +55,7 @@
 			dismantle_wall()
 		return
 
-	if(damage && istype(W, /obj/item/tool/weldingtool))
+	if(damage && iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(WT.remove_fuel(0,user))
 			to_chat(user, "<span class='notice'>You start repairing the damage to [src].</span>")
@@ -72,7 +72,7 @@
 	//DECONSTRUCTION
 	switch(d_state)
 		if(0)
-			if (istype(W, /obj/item/tool/wirecutters))
+			if (iswirecutter(W))
 				playsound(src, 'sound/items/Wirecutter.ogg', 25, 1)
 				src.d_state = 1
 				new /obj/item/stack/rods( src )
@@ -80,7 +80,7 @@
 				return
 
 		if(1)
-			if (istype(W, /obj/item/tool/screwdriver))
+			if (isscrewdriver(W))
 				to_chat(user, "<span class='notice'>You begin removing the support lines.</span>")
 				playsound(src, 'sound/items/Screwdriver.ogg', 25, 1)
 
@@ -105,7 +105,7 @@
 				return
 
 		if(2)
-			if( istype(W, /obj/item/tool/weldingtool) )
+			if(iswelder(W))
 				var/obj/item/tool/weldingtool/WT = W
 				if( WT.remove_fuel(0,user) )
 
@@ -139,7 +139,7 @@
 				return
 
 		if(3)
-			if (istype(W, /obj/item/tool/crowbar))
+			if (iscrowbar(W))
 
 				to_chat(user, "<span class='notice'>You struggle to pry off the cover.</span>")
 				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
@@ -153,7 +153,7 @@
 				return
 
 		if(4)
-			if (istype(W, /obj/item/tool/wrench))
+			if (iswrench(W))
 
 				to_chat(user, "<span class='notice'>You start loosening the anchoring bolts which secure the support rods to their frame.</span>")
 				playsound(src, 'sound/items/Ratchet.ogg', 25, 1)
@@ -168,7 +168,7 @@
 				return
 
 		if(5)
-			if(istype(W, /obj/item/tool/wirecutters))
+			if(iswirecutter(W))
 
 				user.visible_message("<span class='notice'>[user] begins uncrimping the hydraulic lines.</span>",
 				"<span class='notice'>You begin uncrimping the hydraulic lines.</span>")
@@ -185,7 +185,7 @@
 				return
 
 		if(6)
-			if( istype(W, /obj/item/tool/crowbar) )
+			if(iscrowbar(W))
 
 				to_chat(user, "<span class='notice'>You struggle to pry off the outer sheath.</span>")
 				playsound(src, 'sound/items/Crowbar.ogg', 25, 1)

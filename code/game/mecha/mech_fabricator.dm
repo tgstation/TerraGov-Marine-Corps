@@ -189,7 +189,7 @@
 		return 1
 	else if(ishuman(M))
 		var/mob/living/carbon/human/H = M
-		for(var/ID in list(H.get_active_hand(), H.wear_id, H.belt))
+		for(var/ID in list(H.get_active_held_item(), H.wear_id, H.belt))
 			if(src.check_access(ID))
 				return 1
 	to_chat(M, "<font color='red'>You don't have required permissions to use [src]</font>")
@@ -741,7 +741,7 @@
 			to_chat(user, "You close the maintenance hatch of [src].")
 		return
 	if (opened)
-		if(istype(W, /obj/item/tool/crowbar))
+		if(iscrowbar(W))
 			playsound(src.loc, 'sound/items/Crowbar.ogg', 25, 1)
 			var/obj/machinery/constructable_frame/machine_frame/M = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			M.state = 2

@@ -5,7 +5,7 @@
 	item_state = "electropack"
 	frequency = 1457
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_BACK
+	flags_equip_slot = ITEM_SLOT_BACK
 	w_class = 5.0
 
 	matter = list("metal" = 10000,"glass" = 2500)

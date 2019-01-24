@@ -226,7 +226,7 @@ display round(lastgen) and phorontank amount
 		emp_act(1)
 	else if(!active)
 
-		if(istype(O, /obj/item/tool/wrench))
+		if(iswrench(O))
 
 			if(!anchored)
 				connect_to_network()
@@ -238,14 +238,14 @@ display round(lastgen) and phorontank amount
 			playsound(src.loc, 'sound/items/Deconstruct.ogg', 25, 1)
 			anchored = !anchored
 
-		else if(istype(O, /obj/item/tool/screwdriver))
+		else if(isscrewdriver(O))
 			open = !open
 			playsound(src.loc, 'sound/items/Screwdriver.ogg', 25, 1)
 			if(open)
 				to_chat(user, "<span class='notice'>You open the access panel.</span>")
 			else
 				to_chat(user, "<span class='notice'>You close the access panel.</span>")
-		else if(istype(O, /obj/item/tool/crowbar) && open)
+		else if(iscrowbar(O) && open)
 			var/obj/machinery/constructable_frame/machine_frame/new_frame = new /obj/machinery/constructable_frame/machine_frame(src.loc)
 			for(var/obj/item/I in component_parts)
 				if(I.reliability < 100)

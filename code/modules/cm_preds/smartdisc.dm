@@ -58,7 +58,7 @@
 			if(H.put_in_hands(src))
 				hit_atom.visible_message("[hit_atom] expertly catches [src] out of the air.","You catch [src] easily.")
 				return
-			//if(isnull(H.get_active_hand()))
+			//if(isnull(H.get_active_held_item()))
 			//
 			//	H.put_in_active_hand(src)
 			//	return

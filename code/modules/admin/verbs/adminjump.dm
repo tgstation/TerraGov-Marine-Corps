@@ -12,7 +12,7 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(flag/allow_admin_jump))
 		usr.on_mob_jump()
 		usr.forceMove(pick(get_area_turfs(A)))
 		log_admin("[key_name(usr)] jumped to [A]")
@@ -28,7 +28,7 @@
 	if(!src.holder)
 		to_chat(src, "Only administrators may use this command.")
 		return
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(flag/allow_admin_jump))
 		usr.on_mob_jump()
 		usr.forceMove(T)
 		log_admin("[key_name(usr)] jumped to [T.x],[T.y],[T.z] in [T.loc]")
@@ -47,7 +47,7 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(flag/allow_admin_jump))
 		if(src.mob)
 			var/mob/A = src.mob
 			var/turf/T = get_turf(M)
@@ -71,7 +71,7 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	if (config.allow_admin_jump)
+	if(CONFIG_GET(flag/allow_admin_jump))
 		if(src.mob)
 			var/mob/A = src.mob
 			A.on_mob_jump()
@@ -97,7 +97,7 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(flag/allow_admin_jump))
 		var/list/keys = list()
 		for(var/mob/M in player_list)
 			keys += M.client
@@ -122,7 +122,7 @@
 	if(!src.holder)
 		to_chat(src, "Only administrators may use this command.")
 		return
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(flag/allow_admin_jump))
 		M.on_mob_jump()
 		M.loc = get_turf(usr)
 		log_admin("[key_name(usr)] teleported [key_name(M)]")
@@ -140,7 +140,7 @@
 		to_chat(src, "Only administrators may use this command.")
 		return
 
-	if(config.allow_admin_jump)
+	if(CONFIG_GET(flag/allow_admin_jump))
 		var/list/keys = list()
 		for(var/mob/M in player_list)
 			keys += M.client
@@ -167,7 +167,7 @@
 		return
 	var/area/A = input(usr, "Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
 	if(A)
-		if(config.allow_admin_jump)
+		if(CONFIG_GET(flag/allow_admin_jump))
 			M.on_mob_jump()
 			M.loc = pick(get_area_turfs(A))
 			feedback_add_details("admin_verb","SMOB") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!

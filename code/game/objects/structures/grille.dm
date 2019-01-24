@@ -265,10 +265,10 @@
 		/obj/machinery/door/airlock,
 		/obj/structure/grille/almayer)
 
-/obj/structure/grille/almayer/New()
-	spawn(0)
-		relativewall()
-		relativewall_neighbours()
+/obj/structure/grille/almayer/Initialize()
+	. = ..()
+	relativewall()
+	relativewall_neighbours()
 
 /obj/structure/grille/almayer/update_icon()
 	relativewall()

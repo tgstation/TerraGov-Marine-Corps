@@ -74,7 +74,7 @@ var/list/robot_verbs_default = list(
 	var/scrambledcodes = 0 // Used to determine if a borg shows up on the robotics console.  Setting to one hides them.
 	var/braintype = "Cyborg"
 
-/mob/living/silicon/robot/New(loc,var/syndie = 0,var/unfinished = 0)
+/mob/living/silicon/robot/Initialize(loc,var/syndie = 0,var/unfinished = 0)
 	spark_system = new /datum/effect_system/spark_spread()
 	spark_system.set_up(5, 0, src)
 	spark_system.attach(src)
@@ -121,7 +121,7 @@ var/list/robot_verbs_default = list(
 		cell.maxcharge = 25000
 		cell.charge = 25000
 
-	..()
+	. = ..()
 
 	if(cell)
 		var/datum/robot_component/cell_component = components["power cell"]
@@ -466,7 +466,7 @@ var/list/robot_verbs_default = list(
 
 				return
 
-	if (istype(W, /obj/item/tool/weldingtool))
+	if (iswelder(W))
 		if (src == user)
 			to_chat(user, "<span class='warning'>You lack the reach to be able to repair yourself.</span>")
 			return
@@ -485,7 +485,7 @@ var/list/robot_verbs_default = list(
 			to_chat(user, "Need more welding fuel!")
 			return
 
-	else if(istype(W, /obj/item/stack/cable_coil) && (wiresexposed || istype(src,/mob/living/silicon/robot/drone)))
+	else if(iscablecoil(W) && (wiresexposed || ismaintdrone(src)))
 		if (!getFireLoss())
 			to_chat(user, "Nothing to fix here!")
 			return
@@ -496,7 +496,7 @@ var/list/robot_verbs_default = list(
 			for(var/mob/O in viewers(user, null))
 				O.show_message(text("<span class='warning'> [user] has fixed some of the burnt wires on [src]!</span>"), 1)
 
-	else if (istype(W, /obj/item/tool/crowbar))	// crowbar means open or close the cover
+	else if(iscrowbar(W))	// crowbar means open or close the cover
 		if(opened)
 			if(cell)
 				to_chat(user, "You close the cover.")
@@ -559,7 +559,7 @@ var/list/robot_verbs_default = list(
 		else if(cell)
 			to_chat(user, "There is a power cell already installed.")
 		else
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				cell = W
 				to_chat(user, "You insert the power cell.")
 
@@ -570,18 +570,18 @@ var/list/robot_verbs_default = list(
 			C.brute_damage = 0
 			C.electronics_damage = 0
 
-	else if (istype(W, /obj/item/tool/wirecutters) || istype(W, /obj/item/device/multitool))
+	else if (iswirecutter(W) || ismultitool(W))
 		if (wiresexposed)
 			interact(user)
 		else
 			to_chat(user, "You can't reach the wiring.")
 
-	else if(istype(W, /obj/item/tool/screwdriver) && opened && !cell)	// haxing
+	else if(isscrewdriver(W) && opened && !cell)	// haxing
 		wiresexposed = !wiresexposed
 		to_chat(user, "The wires have been [wiresexposed ? "exposed" : "unexposed"]")
 		update_icons()
 
-	else if(istype(W, /obj/item/tool/screwdriver) && opened && cell)	// radio
+	else if(isscrewdriver(W) && opened && cell)	// radio
 		if(radio)
 			radio.attackby(W,user)//Push it to the radio to let it handle everything
 		else
@@ -740,12 +740,12 @@ var/list/robot_verbs_default = list(
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		//if they are holding or wearing a card that has access, that works
-		if(check_access(H.get_active_hand()) || check_access(H.wear_id))
+		if(check_access(H.get_active_held_item()) || check_access(H.wear_id))
 			return 1
 	else if(ismonkey(M))
 		var/mob/living/carbon/monkey/george = M
 		//they can only hold things :(
-		if(george.get_active_hand() && istype(george.get_active_hand(), /obj/item/card/id) && check_access(george.get_active_hand()))
+		if(george.get_active_held_item() && istype(george.get_active_held_item(), /obj/item/card/id) && check_access(george.get_active_held_item()))
 			return 1
 	return 0
 
@@ -995,7 +995,7 @@ var/list/robot_verbs_default = list(
 	set category = "IC"
 	set src = usr
 
-	var/obj/item/W = get_active_hand()
+	var/obj/item/W = get_active_held_item()
 	if (W)
 		W.attack_self(src)
 

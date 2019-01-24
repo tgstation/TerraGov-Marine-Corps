@@ -33,7 +33,7 @@
 
 
 	attackby(obj/item/W as obj, mob/user as mob)
-		if (istype(W, /obj/item/tool/weldingtool))
+		if (iswelder(W))
 			var/obj/item/tool/weldingtool/WT = W
 			if(WT.remove_fuel(0, user))
 				overlays.Cut()
@@ -57,7 +57,7 @@
 
 				loc = user.loc
 				if(ishuman(user))
-					if(!user.get_active_hand())
+					if(!user.get_active_held_item())
 						user.put_in_hands(src)
 						to_chat(user, "You take the target out of the stake.")
 				else

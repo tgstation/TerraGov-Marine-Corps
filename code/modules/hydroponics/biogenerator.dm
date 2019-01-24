@@ -36,7 +36,7 @@
 		if(beaker)
 			to_chat(user, "<span class='warning'>The biogenerator is already loaded.</span>")
 		else
-			user.drop_inv_item_to_loc(O, src)
+			user.transferItemToLoc(O, src)
 			beaker = O
 			updateUsrDialog()
 	else if(processing)
@@ -67,7 +67,7 @@
 		if(i >= 10)
 			to_chat(user, "<span class='warning'>The biogenerator is full! Activate it.</span>")
 		else
-			if(user.drop_inv_item_to_loc(O, src))
+			if(user.transferItemToLoc(O, src))
 				to_chat(user, "<span class='notice'>You put [O.name] in [src.name]</span>")
 	update_icon()
 

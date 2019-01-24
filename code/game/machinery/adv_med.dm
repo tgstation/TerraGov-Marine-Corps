@@ -180,12 +180,9 @@
 	anchored = 1
 
 
-/obj/machinery/body_scanconsole/New()
-	..()
-	spawn( 5 )
-		src.connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST))
-		return
-	return
+/obj/machinery/body_scanconsole/Initialize()
+	. = ..()
+	connected = locate(/obj/machinery/bodyscanner, get_step(src, WEST))
 
 /*
 

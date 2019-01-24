@@ -77,7 +77,7 @@
 
 //Disarming
 /obj/item/explosive/mine/attackby(obj/item/W, mob/user)
-	if(istype(W, /obj/item/device/multitool))
+	if(ismultitool(W))
 		if(anchored)
 			user.visible_message("<span class='notice'>[user] starts disarming [src].</span>", \
 			"<span class='notice'>You start disarming [src].</span>")

@@ -214,7 +214,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 
 	if(length(spawns) < 1)
 		message_admins("DEBUG: Failed to find any End of Round Deathmatch landmarks.")
-		log_debug("DEBUG: Failed to find any End of Round Deathmatch landmarks.")
+		log_runtime("DEBUG: Failed to find any End of Round Deathmatch landmarks.")
 		to_chat(world, "<br><br><h1><span class='warning'>End of Round Deathmatch initialization failed, please do not grief.</span></h1><br><br>")
 		return
 
@@ -239,7 +239,7 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 
 			if(length(spawns) < 1)
 				message_admins("DEBUG: Failed to regenerate End of Round Deathmatch landmarks.")
-				log_debug("DEBUG: Failed to regenerate End of Round Deathmatch landmarks.")
+				log_runtime("DEBUG: Failed to regenerate End of Round Deathmatch landmarks.")
 
 			else
 				picked = pick(spawns)

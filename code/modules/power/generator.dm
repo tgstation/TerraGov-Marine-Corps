@@ -15,11 +15,10 @@
 	var/lastgen = 0
 	var/lastgenlev = -1
 
-/obj/machinery/power/generator/New()
-	..()
+/obj/machinery/power/generator/Initialize()
+	. = ..()
 
-	spawn(1)
-		reconnect()
+	reconnect()
 	start_processing()
 
 //generators connect in dir and reverse_dir(dir) directions
@@ -82,7 +81,7 @@
 	interact(user)
 
 /obj/machinery/power/generator/attackby(obj/item/W as obj, mob/user as mob)
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		anchored = !anchored
 		to_chat(user, "<span class='notice'>You [anchored ? "secure" : "unsecure"] the bolts holding [src] to the floor.</span>")
 		use_power = anchored

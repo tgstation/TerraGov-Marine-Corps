@@ -177,7 +177,7 @@ var/global/list/holodeck_programs = list(
 	if(isobj(obj))
 		var/mob/M = obj.loc
 		if(ismob(M))
-			M.temp_drop_inv_item(obj)
+			M.temporarilyRemoveItemFromInventory(obj)
 
 	if(!silent)
 		var/obj/oldobj = obj
@@ -348,7 +348,7 @@ var/global/list/holodeck_programs = list(
 			user.visible_message("<span class='danger'>[user] puts [M] on the table.</span>")
 		return
 
-	if (istype(W, /obj/item/tool/wrench))
+	if (iswrench(W))
 		to_chat(user, "It's a holotable!  There are no bolts!")
 		return
 
@@ -427,7 +427,7 @@ var/global/list/holodeck_programs = list(
 			visible_message("<span class='danger'>[user] dunks [M] into the [src]!</span>")
 		return
 	else if (istype(W, /obj/item) && get_dist(src,user)<2)
-		user.drop_inv_item_to_loc(W, loc)
+		user.transferItemToLoc(W, loc)
 		for(var/obj/machinery/scoreboard/X in machines)
 			if(X.id == id)
 				X.score(side)
@@ -540,6 +540,6 @@ var/global/list/holodeck_programs = list(
 	return
 
 /obj/structure/rack/holorack/attackby(obj/item/W as obj, mob/user as mob)
-	if (istype(W, /obj/item/tool/wrench))
+	if (iswrench(W))
 		to_chat(user, "It's a holorack!  You can't unwrench it!")
 		return

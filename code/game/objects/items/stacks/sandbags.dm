@@ -30,7 +30,7 @@
 			new_bags.add(max(0,dirt_transfer-1))
 			new_bags.add_to_stacks(user)
 			var/obj/item/stack/sandbags_empty/E = src
-			var/replace = (user.get_inactive_hand() == E)
+			var/replace = (user.get_inactive_held_item() == E)
 			playsound(user.loc, "rustle", 30, 1, 6)
 			if(!E && replace)
 				user.put_in_hands(new_bags)

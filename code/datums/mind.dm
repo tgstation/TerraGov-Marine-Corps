@@ -335,7 +335,7 @@ datum/mind
 							A.show_laws()
 
 				if("autoobjectives")
-					if (!config.objectives_disabled)
+					if(!CONFIG_GET(flag/objectives_disabled))
 						ticker.mode.forge_traitor_objectives(src)
 						to_chat(usr, "<span class='notice'>The objectives for traitor [key] have been generated. You can edit them and anounce manually.</span>")
 
@@ -343,7 +343,7 @@ datum/mind
 			switch(href_list["common"])
 				if("undress")
 					for(var/obj/item/W in current)
-						current.drop_inv_item_on_ground(W)
+						current.dropItemToGround(W)
 				if("takeuplink")
 					take_uplink()
 					memory = null//Remove any memory they may have had.
@@ -386,7 +386,7 @@ datum/mind
 		if(!(src in ticker.mode.traitors))
 			ticker.mode.traitors += src
 			special_role = "traitor"
-			if (!config.objectives_disabled)
+			if(!CONFIG_GET(flag/objectives_disabled))
 				ticker.mode.forge_traitor_objectives(src)
 			ticker.mode.finalize_traitor(src)
 			ticker.mode.greet_traitor(src)

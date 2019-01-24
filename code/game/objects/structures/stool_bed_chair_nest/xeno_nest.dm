@@ -120,7 +120,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 		if(!H.lying) //Don't ask me why is has to be
-			to_chat(user, "<span class='warning'>[M] is resisting, ground them.</span>")
+			to_chat(user, "<span class='warning'>[M] is resisting, ground [M.p_them()].</span>")
 			return
 
 	user.visible_message("<span class='warning'>[user] pins [M] into [src], preparing the securing resin.</span>",
@@ -134,7 +134,7 @@
 		if(ishuman(M)) //Improperly stunned Marines won't be nested
 			var/mob/living/carbon/human/H = M
 			if(!H.lying) //Don't ask me why is has to be
-				to_chat(user, "<span class='warning'>[M] is resisting, ground them.</span>")
+				to_chat(user, "<span class='warning'>[M] is resisting, ground [M.p_them()].</span>")
 				return
 		do_buckle(M, user)
 

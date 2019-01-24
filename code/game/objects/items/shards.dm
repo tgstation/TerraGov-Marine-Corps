@@ -17,7 +17,7 @@
 	var/shardsize
 
 /obj/item/shard/suicide_act(mob/user)
-	user.visible_message("<span class='danger'>[user] is slitting \his [prob(50) ? "wrists" :"throat"] with [src]! It looks like \he's trying to commit suicide.</span>")
+	user.visible_message("<span class='danger'>[user] is slitting [user.p_their()] [pick("wrists", "throat")] with [src]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
 	return (BRUTELOSS)
 
 /obj/item/shard/attack(mob/living/carbon/M, mob/living/carbon/user)
@@ -42,7 +42,7 @@
 
 
 /obj/item/shard/attackby(obj/item/W, mob/user)
-	if ( istype(W, /obj/item/tool/weldingtool))
+	if (iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 		if(source_sheet_type) //can be melted into something
 			if(WT.remove_fuel(0, user))

@@ -26,7 +26,7 @@
 		var/obj/structure/razorwire/M = new/obj/item/stack/razorwire(user.loc, 1)
 		to_chat(user, "<span class='notice'>You combine the rods and barbed wire into [M]!</span>")
 
-	if (istype(W, /obj/item/tool/weldingtool))
+	if (iswelder(W))
 		var/obj/item/tool/weldingtool/WT = W
 
 		if(amount < 4)
@@ -40,7 +40,7 @@
 				M.show_message("<span class='warning'> [src] is shaped into metal by [user.name] with the weldingtool.</span>", 3, "<span class='warning'> You hear welding.</span>", 2)
 			var/obj/item/stack/rods/R = src
 			src = null
-			var/replace = (user.get_inactive_hand()==R)
+			var/replace = (user.get_inactive_held_item()==R)
 			R.use(4)
 			if (!R && replace)
 				user.put_in_hands(new_item)

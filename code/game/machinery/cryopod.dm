@@ -198,7 +198,7 @@ var/global/list/frozen_items = list("Alpha"=list(),"Bravo"=list(),"Charlie"=list
 
 			//Drop all items into the pod.
 			for(var/obj/item/W in occupant)
-				occupant.drop_inv_item_to_loc(W, src)
+				occupant.transferItemToLoc(W, src)
 
 			//Delete all items not on the preservation list.
 

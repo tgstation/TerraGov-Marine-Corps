@@ -64,7 +64,7 @@
 
 /obj/machinery/portable_atmospherics/attackby(obj/item/W, mob/user)
 	var/obj/icon = src
-	if (istype(W, /obj/item/tool/wrench))
+	if (iswrench(W))
 		if(connected_port)
 			disconnect()
 			to_chat(user, "<span class='notice'>You disconnect [name] from the port.</span>")
@@ -111,13 +111,13 @@
 
 		var/obj/item/cell/C = I
 
-		if(user.drop_inv_item_to_loc(C, src))
+		if(user.transferItemToLoc(C, src))
 			C.add_fingerprint(user)
 			cell = C
 			user.visible_message("<span class='notice'> [user] opens the panel on [src] and inserts [C].</span>", "<span class='notice'> You open the panel on [src] and insert [C].</span>")
 		return
 
-	if(istype(I, /obj/item/tool/screwdriver))
+	if(isscrewdriver(I))
 		if(!cell)
 			to_chat(user, "<span class='warning'>There is no power cell installed.</span>")
 			return

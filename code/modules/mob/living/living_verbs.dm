@@ -18,7 +18,7 @@
 		var/mob/M = H.loc                      //Get our mob holder (if any).
 
 		if(istype(M))
-			M.drop_inv_item_on_ground(H)
+			M.dropItemToGround(H)
 			to_chat(M, "[H] wriggles out of your grip!")
 			to_chat(src, "You wriggle out of [M]'s grip!")
 		else if(istype(H.loc,/obj/item))
@@ -222,7 +222,7 @@
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
 							O.show_message("<span class='danger'>[CM] manages to remove the handcuffs!</span>", 1)
 						to_chat(CM, "<span class='notice'>You successfully remove \the [CM.handcuffed].</span>")
-						CM.drop_inv_item_on_ground(CM.handcuffed)
+						CM.dropItemToGround(CM.handcuffed)
 						return*/ //Commented by Apop
 
 
@@ -238,7 +238,7 @@
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
 							O.show_message("<span class='danger'>[CM] manages to remove [HC]!</span>", 1)
 						to_chat(CM, "<span class='notice'>You successfully remove [HC].</span>")
-						CM.drop_inv_item_on_ground(CM.handcuffed)
+						CM.dropItemToGround(CM.handcuffed)
 		else if(CM.legcuffed && CM.canmove && (CM.last_special <= world.time))
 			var/obj/item/legcuffs/LC = CM.legcuffed
 
@@ -265,7 +265,7 @@
 							O.show_message(text("<span class='danger'>[] manages to break [LC]!</span>", CM), 1)
 						to_chat(CM, "<span class='warning'>You successfully break your legcuffs.</span>")
 						CM.say(pick(";RAAAAAAAARGH!", ";HNNNNNNNNNGGGGGGH!", ";GWAAAAAAAARRRHHH!", "NNNNNNNNGGGGGGGGHH!", ";AAAAAAARRRGH!" ))
-						CM.temp_drop_inv_item(CM.legcuffed)
+						CM.temporarilyRemoveItemFromInventory(CM.legcuffed)
 						qdel(CM.legcuffed)
 						CM.legcuffed = null
 			else
@@ -284,7 +284,7 @@
 						for(var/mob/O in viewers(CM))//                                         lags so hard that 40s isn't lenient enough - Quarxink
 							O.show_message("<span class='danger'>[CM] manages to remove the legcuffs!</span>", 1)
 						to_chat(CM, "<span class='notice'>You successfully remove \the [CM.legcuffed].</span>")
-						CM.drop_inv_item_on_ground(CM.legcuffed)
+						CM.dropItemToGround(CM.legcuffed)
 
 /mob/living/proc/lay_down()
 	set name = "Rest"

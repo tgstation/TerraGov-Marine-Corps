@@ -23,8 +23,6 @@
 
 #define ismineralturf(A) (istype(A, /turf/closed/mineral))
 
-#define isplatingturf(A) (istype(A, /turf/open/floor/plating))
-
 
 //Mobs
 #define isliving(A) (istype(A, /mob/living))
@@ -37,28 +35,28 @@
 #define ishuman(A) (istype(A, /mob/living/carbon/human))
 
 //Human sub-species
-#define iszombie(A) (is_species(A, /datum/species/zombie))
-#define ishorror(A) (is_species(A, datum/species/spook))
-#define isunathi(A) (is_species(A, /datum/species/unathi))
-#define istajaran(A) (is_species(A, /datum/species/tajaran))
-#define isskrell(A) (is_species(A, /datum/species/skrell))
-#define isvox(A) (is_species(A, /datum/species/vox))
-#define isvoxarmalis(A) (is_species(A, /datum/species/vox/armalis))
-#define isIPC(A) (is_species(A, /datum/species/machine))
-#define issynth(A) (is_species(A, /datum/species/synthetic) || is_species(A, /datum/species/early_synthetic))
-#define isyautja(A) (is_species(A, /datum/species/yautja) || ishellhound(A))
-#define isyautjastrict(A) (is_species(A, /datum/species/yautja))
-#define ismoth(A) (is_species(A, /datum/species/moth))
-#define ishumanbasic(A) (is_species(A, /datum/species/human))
+#define iszombie(H) (is_species(H, /datum/species/zombie))
+#define ishorror(H) (is_species(H, datum/species/spook))
+#define isunathi(H) (is_species(H, /datum/species/unathi))
+#define istajaran(H) (is_species(H, /datum/species/tajaran))
+#define isskrell(H) (is_species(H, /datum/species/skrell))
+#define isvox(H) (is_species(H, /datum/species/vox))
+#define isvoxarmalis(H) (is_species(H, /datum/species/vox/armalis))
+#define isIPC(H) (is_species(H, /datum/species/machine))
+#define issynth(H) (is_species(H, /datum/species/synthetic) || is_species(H, /datum/species/early_synthetic))
+#define isyautja(H) (is_species(H, /datum/species/yautja) || ishellhound(H))
+#define isyautjastrict(H) (is_species(H, /datum/species/yautja))
+#define ismoth(H) (is_species(H, /datum/species/moth))
+#define ishumanbasic(H) (is_species(H, /datum/species/human))
 
 //more carbon mobs
 #define ismonkey(A) (istype(A, /mob/living/carbon/monkey))
 
 //Monkey sub-species
-#define ismonkeytajaran(A) (istype(A, /mob/living/carbon/monkey/tajara))
-#define ismonkeyskrell(A) (istype(A, /mob/living/carbon/monkey/skrell))
-#define ismonkeyunathi(A) (istype(A, /mob/living/carbon/monkey/unathi))
-#define ismonkeyyiren(A) (istype(A, /mob/living/carbon/monkey/yiren))
+#define ismonkeytajaran(M) (istype(M, /mob/living/carbon/monkey/tajara))
+#define ismonkeyskrell(M) (istype(M, /mob/living/carbon/monkey/skrell))
+#define ismonkeyunathi(M) (istype(M, /mob/living/carbon/monkey/unathi))
+#define ismonkeyyiren(M) (istype(M, /mob/living/carbon/monkey/yiren))
 
 #define ishellhound(A) (istype(A, /mob/living/carbon/hellhound))
 
@@ -128,6 +126,20 @@
 #define isobj(A) istype(A, /obj) //override the byond proc because it returns true on children of /atom/movable that aren't objs
 
 #define isitem(A) (istype(A, /obj/item))
+
+#define iswrench(I) (istype(I, /obj/item/tool/wrench))
+
+#define iswelder(I) (istype(I, /obj/item/tool/weldingtool))
+
+#define iscablecoil(I) (istype(I, /obj/item/stack/cable_coil))
+
+#define iswirecutter(I) (istype(I, /obj/item/tool/wirecutters))
+
+#define isscrewdriver(I) (istype(I, /obj/item/tool/screwdriver))
+
+#define ismultitool(I) (istype(I, /obj/item/device/multitool))
+
+#define iscrowbar(I) (istype(I, /obj/item/tool/crowbar))
 
 #define isstructure(A) (istype(A, /obj/structure))
 

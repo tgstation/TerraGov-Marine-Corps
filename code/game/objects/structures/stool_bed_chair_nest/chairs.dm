@@ -9,13 +9,11 @@
 	buckle_lying = FALSE
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
-/obj/structure/bed/chair/New()
+/obj/structure/bed/chair/Initialize()
 	if(anchored)
 		src.verbs -= /atom/movable/verb/pull
-	..()
-	spawn(3) //Sorry. i don't think there's a better way to do this.
-		handle_rotation()
-	return
+	. = ..()
+	handle_rotation()
 
 /obj/structure/bed/chair/attack_tk(mob/user as mob)
 	if(buckled_mob)
@@ -37,7 +35,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(config.ghost_interaction)
+	if(CONFIG_GET(flag/ghost_interaction))
 		src.dir = turn(src.dir, 90)
 		handle_rotation()
 		return
@@ -215,7 +213,7 @@
 		fold_down(1)
 
 /obj/structure/bed/chair/dropship/passenger/attackby(obj/item/W, mob/living/user)
-	if(istype(W, /obj/item/tool/wrench))
+	if(iswrench(W))
 		switch(chair_state)
 			if(DROPSHIP_CHAIR_UNFOLDED)
 				user.visible_message("<span class='warning'>[user] begins loosening the bolts on \the [src].</span>",
@@ -238,7 +236,7 @@
 			if(DROPSHIP_CHAIR_BROKEN)
 				to_chat(user, "<span class='warning'>\The [src] appears to be broken and needs welding.</span>")
 				return
-	else if((istype(W, /obj/item/tool/weldingtool) && chair_state == DROPSHIP_CHAIR_BROKEN))
+	else if(iswelder(W) && chair_state == DROPSHIP_CHAIR_BROKEN)
 		var/obj/item/tool/weldingtool/C = W
 		if(C.remove_fuel(0,user))
 			playsound(src.loc, 'sound/items/weldingtool_weld.ogg', 25)

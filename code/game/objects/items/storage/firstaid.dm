@@ -211,7 +211,7 @@
 			new pill_type_to_fill(src)
 
 /obj/item/storage/pill_bottle/attack_self(mob/living/user)
-	if(user.get_inactive_hand())
+	if(user.get_inactive_held_item())
 		to_chat(user, "<span class='warning'>You need an empty hand to take out a pill.</span>")
 		return
 	if(contents.len)
@@ -224,7 +224,7 @@
 				var/mob/living/carbon/C = user
 				C.swap_hand()
 		else
-			user.drop_inv_item_on_ground(I)
+			user.dropItemToGround(I)
 			to_chat(user, "<span class='notice'>You fumble around with \the [src] and drop a pill on the floor.</span>")
 		return
 	else
@@ -300,6 +300,7 @@
 
 /obj/item/storage/pill_bottle/hypervene
 	name = "hypervene pill bottle"
+	desc = "A purge medication used to treat overdoses and rapidly remove toxins. Causes pain and vomiting."
 	icon_state = "pill_canister7"
 	pill_type_to_fill = /obj/item/reagent_container/pill/hypervene
 

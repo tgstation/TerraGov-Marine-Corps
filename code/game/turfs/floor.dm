@@ -401,7 +401,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 			else
 				to_chat(user, "<span class='notice'>The lightbulb seems fine, no need to replace it.</span>")
 
-	if(istype(C, /obj/item/tool/crowbar) && (!(is_plating())))
+	if(iscrowbar(C) && !is_plating())
 		if(broken || burnt)
 			to_chat(user, "<span class='warning'>You remove the broken plating.</span>")
 		else
@@ -415,7 +415,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 		playsound(src, 'sound/items/Crowbar.ogg', 25, 1)
 		return
 
-	if(istype(C, /obj/item/tool/screwdriver) && is_wood_floor())
+	if(isscrewdriver(C) && is_wood_floor())
 		if(broken || burnt)
 			return
 		else
@@ -476,7 +476,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 				to_chat(user, "<span class='notice'>This section is too damaged to support a tile. Use a welder to fix the damage.</span>")
 
 
-	if(istype(C, /obj/item/stack/cable_coil))
+	if(iscablecoil(C))
 		if(is_plating())
 			var/obj/item/stack/cable_coil/coil = C
 			coil.turf_place(src, user)
@@ -492,7 +492,7 @@ var/list/wood_icons = list("wood", "wood-broken")
 		else
 			to_chat(user, "<span class='warning'>You cannot shovel this.</span>")
 
-	if(istype(C, /obj/item/tool/weldingtool))
+	if(iswelder(C))
 		var/obj/item/tool/weldingtool/welder = C
 		if(welder.isOn() && (is_plating()))
 			if(broken || burnt)

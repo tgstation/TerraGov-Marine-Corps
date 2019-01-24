@@ -62,7 +62,7 @@
 
 		if("login")
 			var/mob/living/carbon/human/C = usr
-			var/obj/item/card/id/I = C.get_active_hand()
+			var/obj/item/card/id/I = C.get_active_held_item()
 			if(istype(I))
 				if(check_access(I))
 					authenticated = 1
@@ -83,7 +83,7 @@
 
 		if("swipeidseclevel")
 			var/mob/M = usr
-			var/obj/item/card/id/I = M.get_active_hand()
+			var/obj/item/card/id/I = M.get_active_held_item()
 			if(istype(I))
 				if(ACCESS_MARINE_COMMANDER in I.access || ACCESS_MARINE_BRIDGE in I.access) //Let heads change the alert level.
 					switch(tmp_alertlevel)

@@ -243,8 +243,8 @@
 /mob/living/carbon/Xenomorph/Queen/Zeta
 	hivenumber = XENO_HIVE_ZETA
 
-/mob/living/carbon/Xenomorph/Queen/New()
-	..()
+/mob/living/carbon/Xenomorph/Queen/Initialize()
+	. = ..()
 	if(z != ADMIN_Z_LEVEL)//so admins can safely spawn Queens in Thunderdome for tests.
 		if(hivenumber && hivenumber <= hive_datum.len)
 			var/datum/hive_status/hive = hive_datum[hivenumber]
@@ -347,7 +347,7 @@
 /mob/living/carbon/Xenomorph/Queen/proc/delimb(var/mob/living/carbon/human/H, var/datum/limb/O)
 	if (prob(20))
 		O = H.get_limb(check_zone(zone_selected))
-		if (O.body_part != UPPER_TORSO && O.body_part != LOWER_TORSO && O.body_part != HEAD) //Only limbs.
+		if (O.body_part != CHEST && O.body_part != GROIN && O.body_part != HEAD) //Only limbs.
 			visible_message("<span class='danger'>The limb is sliced clean off!</span>","<span class='danger'>You slice off a limb!</span>")
 			O.droplimb()
 			return 1
@@ -577,7 +577,7 @@
 		if(victim.loc != cur_loc)
 			return
 		visible_message("<span class='xenodanger'>\The [src] viciously smashes and wrenches \the [victim] apart!</span>", \
-		"<span class='xenodanger'>You suddenly unleash pure anger on \the [victim], instantly wrenching \him apart!</span>")
+		"<span class='xenodanger'>You suddenly unleash pure anger on \the [victim], instantly wrenching [victim.p_them()] apart!</span>")
 		emote("roar")
 		log_combat(victim, src, "gibbed")
 		victim.gib() //Splut

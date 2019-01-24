@@ -69,7 +69,7 @@
 			locked = -1
 			to_chat(user, "You short out the product lock on [src].")
 		return
-	if(istype(O, /obj/item/tool/screwdriver))
+	if(isscrewdriver(O))
 		panel_open = !panel_open
 		to_chat(user, "You [panel_open ? "open" : "close"] the maintenance panel.")
 		overlays.Cut()
@@ -78,7 +78,7 @@
 		nanomanager.update_uis(src)
 		return
 
-	if(istype(O, /obj/item/device/multitool)||istype(O, /obj/item/tool/wirecutters))
+	if(ismultitool(O) || iswirecutter(O))
 		if(panel_open)
 			attack_hand(user)
 		return
@@ -245,7 +245,7 @@
 
 	if (panel_open)
 		if (href_list["cutwire"])
-			if (!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
+			if (!iswirecutter(usr.get_active_held_item()))
 				to_chat(user, "You need wirecutters!")
 				return 1
 
@@ -257,7 +257,7 @@
 			return 1
 
 		if (href_list["pulsewire"])
-			if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			if (!ismultitool(usr.get_active_held_item()))
 				to_chat(usr, "You need a multitool!")
 				return 1
 

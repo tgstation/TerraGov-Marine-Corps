@@ -18,7 +18,7 @@
 
 /obj/item/frame/apc/attackby(obj/item/W as obj, mob/user as mob)
 	..()
-	if (istype(W, /obj/item/tool/wrench))
+	if (iswrench(W))
 		new /obj/item/stack/sheet/metal( get_turf(src.loc), 2 )
 		qdel(src)
 

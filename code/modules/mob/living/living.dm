@@ -95,7 +95,7 @@
 /mob/living/update_stat()
 	update_cloak()
 
-/mob/living/New()
+/mob/living/Initialize()
 	..()
 	attack_icon = image("icon" = 'icons/effects/attacks.dmi',"icon_state" = "", "layer" = 0)
 
@@ -228,7 +228,7 @@
 	set category = "OOC"
 	set src in view()
 
-	if(config.allow_Metadata)
+	if(CONFIG_GET(flag/allow_metadata))
 		if(client)
 			to_chat(usr, "[src]'s Metainfo:<br>[client.prefs.metadata]")
 		else

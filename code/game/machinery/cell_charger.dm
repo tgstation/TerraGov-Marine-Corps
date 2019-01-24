@@ -50,13 +50,13 @@
 				to_chat(user, "<span class='warning'>The [name] blinks red as you try to insert the cell!</span>")
 				return
 
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				charging = W
 				user.visible_message("[user] inserts a cell into the charger.", "You insert a cell into the charger.")
 				chargelevel = -1
 				start_processing()
 		updateicon()
-	else if(istype(W, /obj/item/tool/wrench))
+	else if(iswrench(W))
 		if(charging)
 			to_chat(user, "<span class='warning'>Remove the cell first!</span>")
 			return

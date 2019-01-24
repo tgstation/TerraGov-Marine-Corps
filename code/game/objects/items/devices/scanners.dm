@@ -14,7 +14,7 @@ REAGENT SCANNER
 	icon_state = "t-ray0"
 	var/on = 0
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	w_class = 2
 	item_state = "electronic"
 
@@ -70,7 +70,7 @@ REAGENT SCANNER
 	item_state = "analyzer"
 	desc = "A hand-held body scanner able to distinguish vital signs of the subject. The front panel is able to provide the basic readout of the subject's status."
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 3
 	w_class = 2.0
 	throw_speed = 5
@@ -268,7 +268,7 @@ REAGENT SCANNER
 						unknown_body++
 			if(e.hidden)
 				unknown_body++
-			if(e.body_part == UPPER_TORSO) //embryo in chest?
+			if(e.body_part == CHEST) //embryo in chest?
 				if(locate(/obj/item/alien_embryo) in H)
 					unknown_body++
 
@@ -348,7 +348,7 @@ REAGENT SCANNER
 				//Check for whether there's an appropriate ghost
 				if(H.client)
 					//Calculate revival status/time left
-					var/revive_timer = round((H.timeofdeath + config.revive_grace_period - world.time) * 0.1)
+					var/revive_timer = round((H.timeofdeath + CONFIG_GET(number/revive_grace_period) - world.time) * 0.1)
 					if(revive_timer < 60) //Almost out of time; urgency required.
 						death_message = "<b>CRITICAL: Brain death imminent.</b> Reduce total injury value to sub-200 and administer defibrillator to unarmoured chest <b>immediately</b>."
 					else if(revive_timer < 120) //Running out of time; increase urgency of message.
@@ -522,7 +522,7 @@ REAGENT SCANNER
 	item_state = "analyzer"
 	w_class = 2.0
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 20
@@ -567,7 +567,7 @@ REAGENT SCANNER
 	w_class = 2
 	flags_atom = CONDUCT
 	container_type = OPENCONTAINER
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 20
@@ -642,7 +642,7 @@ REAGENT SCANNER
 	item_state = "analyzer"
 	w_class = 2.0
 	flags_atom = CONDUCT
-	flags_equip_slot = SLOT_WAIST
+	flags_equip_slot = ITEM_SLOT_BELT
 	throwforce = 5
 	throw_speed = 4
 	throw_range = 20

@@ -219,12 +219,6 @@
 		/obj/structure/window/framed/almayer,
 		/obj/machinery/door/airlock)
 
-	New()
-		spawn(10) // No fucken idea but this somehow makes it work. What the actual fuck.
-			relativewall_neighbours()
-		..()
-
-
 /obj/machinery/door/airlock/almayer/security
 	name = "\improper Security Airlock"
 	icon = 'icons/obj/doors/almayer/secdoor.dmi'
