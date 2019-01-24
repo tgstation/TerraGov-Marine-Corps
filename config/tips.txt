@@ -1,17 +1,19 @@
 Tip: shoot the xeno until it dies.
 Tip: winners don't do drugs.
+Xenos are underpowered, prove them wrong.
+Marines are underpowered, prove them wrong.
 Mothpeople are a myth and do not exist.
 Mothpeople are real and the government is covering them up.
 Tips machine is broken, insert more tips.
-PFC. Jim did not make it.
-PFC. Jim made it out ok.
+PFC Jim did not make it.
+PFC Jim made it out ok.
 As a doctor, the cryotubes are excellent at dealing with basic damage.
 As a doctor, the cryotubes heal internal bleeding and organ damage, although slowly.
 As a doctor, surgery time from fastest to slowest is: by hand, Autodoc manual, Autodoc automatic.
 As a doctor, the white vest fits on your scrubs and can hold surgical tools.
 As a doctor, wear the surgical apron to help prevent infection while on the ground.
 As a doctor, you've got access to the chemistry machine, experiment to find the best medications.
-As a doctor, Hygiene is important! keep yourself clean to prevent infections.
+As a doctor, hygiene is important! keep yourself clean to prevent infections.
 As an engineer, you can take sandbag barricades apart with your entrenching tool.
 As an engineer, you can repair barricades with a welder.
 As an engineer, C4 is cheaper but det packs are more versitile.

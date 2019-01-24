@@ -1523,6 +1523,30 @@
 		feedback_inc("admin_cookies_spawned",1)
 		to_chat(H, "<span class='notice'>Your prayers have been answered!! You received the <b>best cookie</b>!</span>")
 
+	else if(href_list["adminspawnfortunecookie"])
+		if(!check_rights(R_ADMIN|R_FUN))	return
+
+		var/mob/living/carbon/human/H = locate(href_list["adminspawnfortunecookie"])
+		if(!ishuman(H))
+			to_chat(usr, "This can only be used on instances of type /mob/living/carbon/human")
+			return
+
+		H.equip_to_slot_or_del( new /obj/item/reagent_container/food/snacks/fortunecookie(H), SLOT_L_HAND )
+		if(!(istype(H.l_hand,/obj/item/reagent_container/food/snacks/fortunecookie)))
+			H.equip_to_slot_or_del( new /obj/item/reagent_container/food/snacks/fortunecookie(H), SLOT_R_HAND )
+			if(!(istype(H.r_hand,/obj/item/reagent_container/food/snacks/fortunecookie)))
+				log_admin("[key_name(H)] has their hands full, so they did not receive their fortune cookie, spawned by [key_name(src.owner)].")
+				message_admins("[key_name(H)] has their hands full, so they did not receive their fortune cookie, spawned by [key_name(src.owner)].")
+				return
+			else
+				H.update_inv_r_hand()//To ensure the icon appears in the HUD
+		else
+			H.update_inv_l_hand()
+		log_admin("[key_name(H)] got their fortune cookie, spawned by [key_name(src.owner)]")
+		message_admins("[key_name(H)] got their fortune cookie, spawned by [key_name(src.owner)]")
+		feedback_inc("admin_fortune_cookies_spawned",1)
+		to_chat(H, "<span class='notice'>Your prayers have been answered!! You received the <b>fortune cookie</b>!</span>")
+
 	else if(href_list["BlueSpaceArtillery"])
 		if(!check_rights(R_ADMIN|R_FUN))	return
 
