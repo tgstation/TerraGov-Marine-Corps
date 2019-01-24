@@ -8,12 +8,15 @@ GLOBAL_LIST_INIT(VVpixelmovement, list("step_x", "step_y", "bound_height", "boun
 GLOBAL_PROTECT(VVpixelmovement)
 
 
-/proc/vv_get_class(var/var_name, var/var_value)
+/client/proc/vv_get_class(var/var_name, var/var_value)
 	if(isnull(var_value))
 		. = VV_NULL
 
 	else if (isnum(var_value))
-		. = VV_NUM
+		if (var_name in GLOB.bitfields)
+			. = VV_BITFIELD
+		else
+			. = VV_NUM
 
 	else if (istext(var_value))
 		if (findtext(var_value, "\n"))
@@ -52,7 +55,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 	else
 		. = VV_NULL
 
-/datum/admins/proc/vv_get_value(class, default_class, current_value, list/restricted_classes, list/extra_classes, list/classes, var_name)
+/client/proc/vv_get_value(class, default_class, current_value, list/restricted_classes, list/extra_classes, list/classes, var_name)
 	. = list("class" = class, "value" = null)
 	if (!class)
 		if (!classes)
@@ -77,8 +80,8 @@ GLOBAL_PROTECT(VVpixelmovement)
 				VV_RESTORE_DEFAULT
 				)
 
-		if(marked_datum && !(VV_MARKED_DATUM in restricted_classes))
-			classes += "[VV_MARKED_DATUM] ([marked_datum.type])"
+		if(holder && holder.marked_datum && !(VV_MARKED_DATUM in restricted_classes))
+			classes += "[VV_MARKED_DATUM] ([holder.marked_datum.type])"
 		if (restricted_classes)
 			classes -= restricted_classes
 
@@ -86,7 +89,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 			classes += extra_classes
 
 		.["class"] = input(src, "What kind of data?", "Variable Type", default_class) as null|anything in classes
-		if (marked_datum && .["class"] == "[VV_MARKED_DATUM] ([marked_datum.type])")
+		if (holder && holder.marked_datum && .["class"] == "[VV_MARKED_DATUM] ([holder.marked_datum.type])")
 			.["class"] = VV_MARKED_DATUM
 
 
@@ -105,6 +108,12 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 		if (VV_NUM)
 			.["value"] = input("Enter new number:", "Num", current_value) as null|num
+			if (.["value"] == null)
+				.["class"] = null
+				return
+
+		if (VV_BITFIELD)
+			.["value"] = input_bitfield(usr, "Editing bitfield: [var_name]", var_name, current_value)
 			if (.["value"] == null)
 				.["class"] = null
 				return
@@ -200,7 +209,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 
 		if (VV_MARKED_DATUM)
-			.["value"] = marked_datum
+			.["value"] = holder.marked_datum
 			if (.["value"] == null)
 				.["class"] = null
 				return
@@ -250,7 +259,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 			.["value"] = list()
 			.["type"] = /list
 
-/proc/vv_parse_text(O, new_var)
+/client/proc/vv_parse_text(O, new_var)
 	if(O && findtext(new_var,"\["))
 		var/process_vars = alert(usr,"\[] detected in string, process as variables?","Process Variables?","Yes","No")
 		if(process_vars == "Yes")
@@ -260,7 +269,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 //FALSE = no subtypes, strict exact type pathing (or the type doesn't have subtypes)
 //TRUE = Yes subtypes
 //NULL = User cancelled at the prompt or invalid type given
-/proc/vv_subtype_prompt(var/type)
+/client/proc/vv_subtype_prompt(var/type)
 	if (!ispath(type))
 		return
 	var/list/subtypes = subtypesof(type)
@@ -275,7 +284,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 			else
 				return
 
-/proc/vv_reference_list(type, subtypes)
+/client/proc/vv_reference_list(type, subtypes)
 	. = list()
 	var/list/types = list(type)
 	if (subtypes)
@@ -307,7 +316,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 
 		.["[D]([shorttype])[REF(D)]#[i]"] = D
 
-/datum/admins/proc/mod_list_add_ass(atom/O)
+/client/proc/mod_list_add_ass(atom/O) //hehe
 
 	var/list/L = vv_get_value(restricted_classes = list(VV_RESTORE_DEFAULT))
 	var/class = L["class"]
@@ -323,7 +332,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 	return var_value
 
 
-/datum/admins/proc/mod_list_add(list/L, atom/O, original_name, objectvar)
+/client/proc/mod_list_add(list/L, atom/O, original_name, objectvar)
 	var/list/LL = vv_get_value(restricted_classes = list(VV_RESTORE_DEFAULT))
 	var/class = LL["class"]
 	if (!class)
@@ -351,7 +360,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 	log_admin("[key_name(src)] modified [original_name]'s [objectvar]: ADDED=[var_value]")
 	message_admins("[key_name_admin(src)] modified [original_name]'s [objectvar]: ADDED=[var_value]")
 
-/datum/admins/proc/mod_list(list/L, atom/O, original_name, objectvar, index, autodetect_class = FALSE)
+/client/proc/mod_list(list/L, atom/O, original_name, objectvar, index, autodetect_class = FALSE)
 	if(!check_rights(R_VAREDIT))
 		return
 	if(!istype(L, /list))
@@ -527,7 +536,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 	return TRUE
 
 
-/datum/admins/proc/modify_variables(atom/O, param_var_name = null, autodetect_class = 0)
+/client/proc/modify_variables(atom/O, param_var_name = null, autodetect_class = 0)
 	if(!check_rights(R_VAREDIT))
 		return
 
@@ -558,7 +567,6 @@ GLOBAL_PROTECT(VVpixelmovement)
 	var_value = O.vars[variable]
 	if(!vv_varname_lockcheck(variable))
 		return
-
 
 	var/default = vv_get_class(variable, var_value)
 
@@ -629,7 +637,9 @@ GLOBAL_PROTECT(VVpixelmovement)
 	admin_ticket_log(O, msg)
 	return TRUE
 
-/datum/admins/proc/cmd_mass_modify_object_variables(atom/A, var_name)
+
+
+/client/proc/mass_modify(atom/A, var_name)
 	set category = "Debug"
 	set name = "Mass Edit Variables"
 	set desc="(target) Edit all instances of a target item's variables"
@@ -642,9 +652,10 @@ GLOBAL_PROTECT(VVpixelmovement)
 	if(A && A.type)
 		method = vv_subtype_prompt(A.type)
 
-	src.massmodify_variables(A, var_name, method)
+	usr.client.massmodify_variables(A, var_name, method)
 
-/datum/admins/proc/massmodify_variables(datum/O, var_name = "", method = 0)
+
+/client/proc/massmodify_variables(datum/O, var_name = "", method = 0)
 	if(!check_rights(R_VAREDIT))
 		return
 	if(!istype(O))
@@ -826,58 +837,3 @@ GLOBAL_PROTECT(VVpixelmovement)
 	log_world("### MassVarEdit by [src]: [O.type] (A/R [accepted]/[rejected]) [variable]=[html_encode("[O.vars[variable]]")]([list2params(value)])")
 	log_admin("[key_name(src)] mass modified [original_name]'s [variable] to [O.vars[variable]] ([accepted] objects modified)")
 	message_admins("[key_name_admin(src)] mass modified [original_name]'s [variable] to [O.vars[variable]] ([accepted] objects modified)")
-
-
-/proc/get_all_of_type(var/T, subtypes = TRUE)
-	var/list/typecache = list()
-	typecache[T] = 1
-	if (subtypes)
-		typecache = typecacheof(typecache)
-	. = list()
-	if (ispath(T, /mob))
-		for(var/mob/thing in GLOB.mob_list)
-			if (typecache[thing.type])
-				. += thing
-			CHECK_TICK
-
-	else if (ispath(T, /obj))
-		for(var/obj/thing in world)
-			if (typecache[thing.type])
-				. += thing
-			CHECK_TICK
-
-	else if (ispath(T, /atom/movable))
-		for(var/atom/movable/thing in world)
-			if (typecache[thing.type])
-				. += thing
-			CHECK_TICK
-
-	else if (ispath(T, /turf))
-		for(var/turf/thing in world)
-			if (typecache[thing.type])
-				. += thing
-			CHECK_TICK
-
-	else if (ispath(T, /atom))
-		for(var/atom/thing in world)
-			if (typecache[thing.type])
-				. += thing
-			CHECK_TICK
-
-	else if (ispath(T, /client))
-		for(var/client/thing in GLOB.clients)
-			if (typecache[thing.type])
-				. += thing
-			CHECK_TICK
-
-	else if (ispath(T, /datum))
-		for(var/datum/thing)
-			if (typecache[thing.type])
-				. += thing
-			CHECK_TICK
-
-	else
-		for(var/datum/thing in world)
-			if (typecache[thing.type])
-				. += thing
-			CHECK_TICK

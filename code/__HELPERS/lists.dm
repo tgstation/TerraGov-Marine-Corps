@@ -584,3 +584,23 @@ datum/proc/dd_SortValue()
 	. = list()
 	for(var/i in L)
 		. |= i
+
+
+//same, but returns nothing and acts on list in place
+/proc/shuffle_inplace(list/L)
+	if(!L)
+		return
+
+	for(var/i=1, i<L.len, ++i)
+		L.Swap(i,rand(i,L.len))
+
+
+//same, but returns nothing and acts on list in place (also handles associated values properly)
+/proc/uniqueList_inplace(list/L)
+	var/temp = L.Copy()
+	L.len = 0
+	for(var/key in temp)
+		if (isnum(key))
+			L |= key
+		else
+			L[key] = temp[key]

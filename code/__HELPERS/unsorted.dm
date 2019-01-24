@@ -1797,3 +1797,9 @@ proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
 			return
 	chosen = matches[chosen]
 	return chosen
+
+
+/proc/IsValidSrc(datum/D)
+	if(istype(D))
+		return !QDELETED(D)
+	return FALSE

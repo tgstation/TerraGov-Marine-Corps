@@ -2,27 +2,94 @@
 #define VV_MSG_EDITED "<br><font size='1' color='red'><b>Var Edited</b></font>"
 #define VV_MSG_DELETED "<br><font size='1' color='red'><b>Deleted</b></font>"
 
-/proc/get_fancy_list_of_atom_types()
-	var/static/list/pre_generated_list
-	if (!pre_generated_list) //init
-		pre_generated_list = make_types_fancy(typesof(/atom))
-	return pre_generated_list
+#define isatom(A) (isloc(A))
+
+/datum/proc/CanProcCall(procname)
+	return TRUE
+
+/datum/proc/can_vv_get(var_name)
+	return TRUE
+
+/datum/proc/vv_edit_var(var_name, var_value) //called whenever a var is edited
+	if(var_name == NAMEOF(src, vars))
+		return FALSE
+	vars[var_name] = var_value
+	datum_flags |= DF_VAR_EDITED
+	return TRUE
+
+/datum/proc/vv_get_var(var_name)
+	switch(var_name)
+		if ("vars")
+			return debug_variable(var_name, list(), 0, src)
+	return debug_variable(var_name, vars[var_name], 0, src)
 
 
-/proc/get_fancy_list_of_datum_types()
-	var/static/list/pre_generated_list
-	if (!pre_generated_list) //init
-		pre_generated_list = make_types_fancy(sortList(typesof(/datum) - typesof(/atom)))
-	return pre_generated_list
+/proc/get_all_of_type(var/T, subtypes = TRUE)
+	var/list/typecache = list()
+	typecache[T] = 1
+	if (subtypes)
+		typecache = typecacheof(typecache)
+	. = list()
+	if (ispath(T, /mob))
+		for(var/mob/thing in GLOB.mob_list)
+			if (typecache[thing.type])
+				. += thing
+			CHECK_TICK
 
+	else if (ispath(T, /obj/machinery/door))
+		for(var/obj/machinery/door/thing in machines)
+			if (typecache[thing.type])
+				. += thing
+			CHECK_TICK
 
-/proc/filter_fancy_list(list/L, filter as text)
-	var/list/matches = new
-	for(var/key in L)
-		var/value = L[key]
-		if(findtext("[key]", filter) || findtext("[value]", filter))
-			matches[key] = value
-	return matches
+	else if (ispath(T, /obj/machinery))
+		for(var/obj/machinery/thing in machines)
+			if (typecache[thing.type])
+				. += thing
+			CHECK_TICK
+
+	else if (ispath(T, /obj))
+		for(var/obj/thing in world)
+			if (typecache[thing.type])
+				. += thing
+			CHECK_TICK
+
+	else if (ispath(T, /atom/movable))
+		for(var/atom/movable/thing in world)
+			if (typecache[thing.type])
+				. += thing
+			CHECK_TICK
+
+	else if (ispath(T, /turf))
+		for(var/turf/thing in world)
+			if (typecache[thing.type])
+				. += thing
+			CHECK_TICK
+
+	else if (ispath(T, /atom))
+		for(var/atom/thing in world)
+			if (typecache[thing.type])
+				. += thing
+			CHECK_TICK
+
+	else if (ispath(T, /client))
+		for(var/client/thing in GLOB.clients)
+			if (typecache[thing.type])
+				. += thing
+			CHECK_TICK
+
+	else if (ispath(T, /datum))
+		for(var/datum/thing)
+			if (typecache[thing.type])
+				. += thing
+			CHECK_TICK
+
+	else
+		for(var/datum/thing in world)
+			if (typecache[thing.type])
+				. += thing
+			CHECK_TICK
+
 
 /proc/make_types_fancy(var/list/types)
 	if (ispath(types))
@@ -57,24 +124,28 @@
 				break
 		.[typename] = type
 
-/datum/proc/CanProcCall(procname)
-	return TRUE
+/proc/get_fancy_list_of_atom_types()
+	var/static/list/pre_generated_list
+	if (!pre_generated_list) //init
+		pre_generated_list = make_types_fancy(typesof(/atom))
+	return pre_generated_list
 
-/datum/proc/can_vv_get(var_name)
-	return TRUE
 
-/datum/proc/vv_edit_var(var_name, var_value) //called whenever a var is edited
-	if(var_name == NAMEOF(src, vars))
-		return FALSE
-	vars[var_name] = var_value
-	datum_flags |= DF_VAR_EDITED
-	return TRUE
+/proc/get_fancy_list_of_datum_types()
+	var/static/list/pre_generated_list
+	if (!pre_generated_list) //init
+		pre_generated_list = make_types_fancy(sortList(typesof(/datum) - typesof(/atom)))
+	return pre_generated_list
 
-/datum/proc/vv_get_var(var_name)
-	switch(var_name)
-		if ("vars")
-			return debug_variables(var_name, list(), 0, src)
-	return debug_variables(var_name, vars[var_name], 0, src)
+
+/proc/filter_fancy_list(list/L, filter as text)
+	var/list/matches = new
+	for(var/key in L)
+		var/value = L[key]
+		if(findtext("[key]", filter) || findtext("[value]", filter))
+			matches[key] = value
+	return matches
+
 
 //please call . = ..() first and append to the result, that way parent items are always at the top and child items are further down
 //add separaters by doing . += "---"
@@ -87,15 +158,15 @@
 	.["Show VV To Player"] = "?_src_=vars;[HrefToken(TRUE)];expose=[REF(src)]"
 
 
-/datum/proc/debug_variables(datum/D in world)
+/client/proc/debug_variables(datum/D in world)
 	set category = "Debug"
 	set name = "View Variables"
-	//set src in world
+
+	if(!check_rights(R_VAREDIT))
+		return
+
 	var/static/cookieoffset = rand(1, 9999) //to force cookies to reset after the round.
 
-	if(!usr.client || !usr.client.holder) //The usr vs src abuse in this proc is intentional and must not be changed
-		to_chat(usr, "<span class='danger'>You need to be an administrator to access this.</span>")
-		return
 
 	if(!D)
 		return
@@ -158,7 +229,7 @@
 		formatted_type = null
 
 	var/marked
-	if(usr.client.holder.marked_datum && usr.client.holder.marked_datum == D)
+	if(holder && holder.marked_datum && holder.marked_datum == D)
 		marked = VV_MSG_MARKED
 	var/varedited_line = ""
 	if(!islist && (D.datum_flags & DF_VAR_EDITED))
@@ -203,7 +274,7 @@
 			var/value
 			if (IS_NORMAL_LIST(L) && !isnum(key))
 				value = L[key]
-			variable_html += debug_variables(i, value, 0, D)
+			variable_html += debug_variable(i, value, 0, D)
 	else
 
 		names = sortList(names)
@@ -446,12 +517,12 @@
 	src << browse(html, "window=variables[refid];size=475x650")
 
 
-/datum/admins/proc/vv_update_display(datum/D, span, content)
+/client/proc/vv_update_display(datum/D, span, content)
 	src << output("[span]:[content]", "variables[REF(D)].browser:replace_span")
 
 
 #define VV_HTML_ENCODE(thing) ( sanitize ? html_encode(thing) : thing )
-/datum/admins/proc/debug_variable(name, value, level, datum/DA = null, sanitize = TRUE)
+/proc/debug_variable(name, value, level, datum/DA = null, sanitize = TRUE)
 	var/header
 	if(DA)
 		if (islist(DA))
@@ -514,18 +585,24 @@
 		else
 			item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([L.len])</a>"
 
+	else if (name in GLOB.bitfields)
+		var/list/flags = list()
+		for (var/i in GLOB.bitfields[name])
+			if (value & GLOB.bitfields[name][i])
+				flags += i
+			item = "[VV_HTML_ENCODE(name)] = [VV_HTML_ENCODE(jointext(flags, ", "))]"
 	else
 		item = "[VV_HTML_ENCODE(name)] = <span class='value'>[VV_HTML_ENCODE(value)]</span>"
 
 	return "[header][item]</li>"
 
 #undef VV_HTML_ENCODE
-/*
-/datum/admins/view_var_Topic(href, href_list, hsrc)
+
+/client/proc/view_var_Topic(href, href_list, hsrc)
 	if( (usr.client != src) || !src.holder || !holder.CheckAdminHref(href, href_list))
 		return
-	if(href_list["Vars"])
-		debug_variables(locate(href_list["Vars"]))
+	if(href_list["vars"])
+		debug_variables(locate(href_list["vars"]))
 
 	else if(href_list["datumrefresh"])
 		var/datum/DAT = locate(href_list["datumrefresh"])
@@ -543,17 +620,6 @@
 			return
 
 		src.holder.show_player_panel(M)
-
-	else if(href_list["godmode"])
-		if(!check_rights(R_ADMIN))
-			return
-
-		var/mob/M = locate(href_list["godmode"]) in GLOB.mob_list
-		if(!istype(M))
-			to_chat(usr, "This can only be used on instances of type /mob")
-			return
-
-		src.cmd_admin_godmode(M)
 
 	else if(href_list["mark_object"])
 		if(!check_rights(NONE))
@@ -576,7 +642,7 @@
 		var/T = locate(href_list["proc_call"])
 
 		if(T)
-			callproc_datum(T)
+			usr.client.holder.proccall_atom(T)
 
 	else if(href_list["delete"])
 		if(!check_rights(R_DEBUG, 0))
@@ -585,14 +651,10 @@
 		var/datum/D = locate(href_list["delete"])
 		if(!istype(D))
 			to_chat(usr, "Unable to locate item!")
-		delete(D)
+		usr.client.holder.delete_atom(D)
 		if (isturf(D))  // show the turf that took its place
 			debug_variables(D)
 
-	else if(href_list["osay"])
-		if(!check_rights(R_FUN, 0))
-			return
-		usr.client.object_say(locate(href_list["osay"]))
 
 	else if(href_list["regenerateicons"])
 		if(!check_rights(NONE))
@@ -694,7 +756,7 @@
 				to_chat(usr, "This can only be used on instances of type /datum")
 				return
 
-			cmd_mass_modify_object_variables(D, href_list["varnamemass"])
+			mass_modify(D, href_list["varnamemass"])
 
 		else if(href_list["listedit"] && href_list["index"])
 			var/index = text2num(href_list["index"])
@@ -794,61 +856,6 @@
 			log_admin("[key_name(src)] modified list's contents: SHUFFLE")
 			message_admins("[key_name_admin(src)] modified list's contents: SHUFFLE")
 
-		else if(href_list["give_spell"])
-			if(!check_rights(NONE))
-				return
-
-			var/mob/M = locate(href_list["give_spell"]) in GLOB.mob_list
-			if(!istype(M))
-				to_chat(usr, "This can only be used on instances of type /mob")
-				return
-
-			src.give_spell(M)
-
-		else if(href_list["give_disease"])
-			if(!check_rights(NONE))
-				return
-
-			var/mob/M = locate(href_list["give_disease"]) in GLOB.mob_list
-			if(!istype(M))
-				to_chat(usr, "This can only be used on instances of type /mob")
-				return
-
-			src.give_disease(M)
-
-		else if(href_list["gib"])
-			if(!check_rights(R_FUN))
-				return
-
-			var/mob/M = locate(href_list["gib"]) in GLOB.mob_list
-			if(!istype(M))
-				to_chat(usr, "This can only be used on instances of type /mob")
-				return
-
-			src.cmd_admin_gib(M)
-
-		else if(href_list["build_mode"])
-			if(!check_rights(R_BUILD))
-				return
-
-			var/mob/M = locate(href_list["build_mode"]) in GLOB.mob_list
-			if(!istype(M))
-				to_chat(usr, "This can only be used on instances of type /mob")
-				return
-
-			togglebuildmode(M)
-
-		else if(href_list["drop_everything"])
-			if(!check_rights(NONE))
-				return
-
-			var/mob/M = locate(href_list["drop_everything"]) in GLOB.mob_list
-			if(!istype(M))
-				to_chat(usr, "This can only be used on instances of type /mob")
-				return
-
-			if(usr.client)
-				usr.client.cmd_admin_drop_everything(M)
 
 		else if(href_list["direct_control"])
 			if(!check_rights(NONE))
@@ -860,17 +867,7 @@
 				return
 
 			if(usr.client)
-				usr.client.cmd_assume_direct_control(M)
-
-		else if(href_list["offer_control"])
-			if(!check_rights(NONE))
-				return
-
-			var/mob/M = locate(href_list["offer_control"]) in GLOB.mob_list
-			if(!istype(M))
-				to_chat(usr, "This can only be used on instances of type /mob")
-				return
-			offer_control(M)
+				usr.client.holder.direct_control(M)
 
 
 		else if(href_list["delall"])
@@ -932,7 +929,7 @@
 
 			if(A.reagents)
 				var/chosen_id
-				var/list/reagent_options = sortList(GLOB.chemical_reagents_list)
+				var/list/reagent_options = sortList(chemical_reagents_list)
 				switch(alert(usr, "Choose a method.", "Add Reagents", "Enter ID", "Choose ID"))
 					if("Enter ID")
 						var/valid_id
@@ -953,28 +950,6 @@
 						A.reagents.add_reagent(chosen_id, amount)
 						log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]")
 						message_admins("<span class='notice'>[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]</span>")
-
-		else if(href_list["explode"])
-			if(!check_rights(R_FUN))
-				return
-
-			var/atom/A = locate(href_list["explode"])
-			if(!isobj(A) && !ismob(A) && !isturf(A))
-				to_chat(usr, "This can only be done to instances of type /obj, /mob and /turf")
-				return
-
-			src.cmd_admin_explosion(A)
-
-		else if(href_list["emp"])
-			if(!check_rights(R_FUN))
-				return
-
-			var/atom/A = locate(href_list["emp"])
-			if(!isobj(A) && !ismob(A) && !isturf(A))
-				to_chat(usr, "This can only be done to instances of type /obj, /mob and /turf")
-				return
-
-			src.cmd_admin_emp(A)
 
 		else if(href_list["modtransform"])
 			if(!check_rights(R_DEBUG))
@@ -1002,92 +977,6 @@
 					var/angle = input(usr, "Choose angle to rotate","Transform Mod") as null|num
 					if(!isnull(angle))
 						A.transform = M.Turn(angle)
-
-		else if(href_list["rotatedatum"])
-			if(!check_rights(NONE))
-				return
-
-			var/atom/A = locate(href_list["rotatedatum"])
-			if(!istype(A))
-				to_chat(usr, "This can only be done to instances of type /atom")
-				return
-
-			switch(href_list["rotatedir"])
-				if("right")
-					A.setDir(turn(A.dir, -45))
-				if("left")
-					A.setDir(turn(A.dir, 45))
-			vv_update_display(A, "dir", dir2text(A.dir))
-
-		else if(href_list["editorgans"])
-			if(!check_rights(NONE))
-				return
-
-			var/mob/living/carbon/C = locate(href_list["editorgans"]) in GLOB.mob_list
-			if(!istype(C))
-				to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
-				return
-
-			manipulate_organs(C)
-
-
-		else if(href_list["givetrauma"])
-			if(!check_rights(NONE))
-				return
-
-			var/mob/living/carbon/C = locate(href_list["givetrauma"]) in GLOB.mob_list
-			if(!istype(C))
-				to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
-				return
-
-			var/list/traumas = subtypesof(/datum/brain_trauma)
-			var/result = input(usr, "Choose the brain trauma to apply","Traumatize") as null|anything in traumas
-			if(!usr)
-				return
-			if(QDELETED(C))
-				to_chat(usr, "Mob doesn't exist anymore")
-				return
-
-			if(!result)
-				return
-
-			var/datum/brain_trauma/BT = C.gain_trauma(result)
-			if(BT)
-				log_admin("[key_name(usr)] has traumatized [key_name(C)] with [BT.name]")
-				message_admins("<span class='notice'>[key_name_admin(usr)] has traumatized [key_name_admin(C)] with [BT.name].</span>")
-
-		else if(href_list["curetraumas"])
-			if(!check_rights(NONE))
-				return
-
-			var/mob/living/carbon/C = locate(href_list["curetraumas"]) in GLOB.mob_list
-			if(!istype(C))
-				to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
-				return
-
-			C.cure_all_traumas(TRAUMA_RESILIENCE_ABSOLUTE)
-			log_admin("[key_name(usr)] has cured all traumas from [key_name(C)].")
-			message_admins("<span class='notice'>[key_name_admin(usr)] has cured all traumas from [key_name_admin(C)].</span>")
-
-		else if(href_list["hallucinate"])
-			if(!check_rights(NONE))
-				return
-
-			var/mob/living/carbon/C = locate(href_list["hallucinate"]) in GLOB.mob_list
-			if(!istype(C))
-				to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
-				return
-
-			var/list/hallucinations = subtypesof(/datum/hallucination)
-			var/result = input(usr, "Choose the hallucination to apply","Send Hallucination") as null|anything in hallucinations
-			if(!usr)
-				return
-			if(QDELETED(C))
-				to_chat(usr, "Mob doesn't exist anymore")
-				return
-
-			if(result)
-				new result(C, TRUE)
 
 		else if(href_list["makehuman"])
 			if(!check_rights(R_SPAWN))
@@ -1194,93 +1083,17 @@
 				to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
 				return
 
-			var/result = input(usr, "Please choose a new species","Species") as null|anything in GLOB.species_list
+			var/result = input(usr, "Please choose a new species","Species") as null|anything in all_species
 
 			if(!H)
 				to_chat(usr, "Mob doesn't exist anymore")
 				return
 
 			if(result)
-				var/newtype = GLOB.species_list[result]
+				var/newtype = all_species[result]
 				admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [H] to [result]")
 				H.set_species(newtype)
 
-		else if(href_list["editbodypart"])
-			if(!check_rights(R_SPAWN))
-				return
-
-			var/mob/living/carbon/C = locate(href_list["editbodypart"]) in GLOB.mob_list
-			if(!istype(C))
-				to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
-				return
-
-			var/edit_action = input(usr, "What would you like to do?","Modify Body Part") as null|anything in list("add","remove", "augment")
-			if(!edit_action)
-				return
-			var/list/limb_list = list(BODY_ZONE_HEAD, BODY_ZONE_L_ARM, BODY_ZONE_R_ARM, BODY_ZONE_L_LEG, BODY_ZONE_R_LEG)
-			if(edit_action == "augment")
-				limb_list += BODY_ZONE_CHEST
-			var/result = input(usr, "Please choose which body part to [edit_action]","[capitalize(edit_action)] Body Part") as null|anything in limb_list
-
-			if(!C)
-				to_chat(usr, "Mob doesn't exist anymore")
-				return
-
-			if(result)
-				var/obj/item/bodypart/BP = C.get_bodypart(result)
-				switch(edit_action)
-					if("remove")
-						if(BP)
-							BP.drop_limb()
-						else
-							to_chat(usr, "[C] doesn't have such bodypart.")
-					if("add")
-						if(BP)
-							to_chat(usr, "[C] already has such bodypart.")
-						else
-							if(!C.regenerate_limb(result))
-								to_chat(usr, "[C] cannot have such bodypart.")
-					if("augment")
-						if(ishuman(C))
-							if(BP)
-								BP.change_bodypart_status(BODYPART_ROBOTIC, TRUE, TRUE)
-							else
-								to_chat(usr, "[C] doesn't have such bodypart.")
-						else
-							to_chat(usr, "Only humans can be augmented.")
-			admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [C]")
-
-
-		else if(href_list["purrbation"])
-			if(!check_rights(R_SPAWN))
-				return
-
-			var/mob/living/carbon/human/H = locate(href_list["purrbation"]) in GLOB.mob_list
-			if(!istype(H))
-				to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
-				return
-			if(!ishumanbasic(H))
-				to_chat(usr, "This can only be done to the basic human species at the moment.")
-				return
-
-			if(!H)
-				to_chat(usr, "Mob doesn't exist anymore")
-				return
-
-			var/success = purrbation_toggle(H)
-			if(success)
-				to_chat(usr, "Put [H] on purrbation.")
-				log_admin("[key_name(usr)] has put [key_name(H)] on purrbation.")
-				var/msg = "<span class='notice'>[key_name_admin(usr)] has put [key_name(H)] on purrbation.</span>"
-				message_admins(msg)
-				admin_ticket_log(H, msg)
-
-			else
-				to_chat(usr, "Removed [H] from purrbation.")
-				log_admin("[key_name(usr)] has removed [key_name(H)] from purrbation.")
-				var/msg = "<span class='notice'>[key_name_admin(usr)] has removed [key_name(H)] from purrbation.</span>"
-				message_admins(msg)
-				admin_ticket_log(H, msg)
 
 		else if(href_list["adjustDamage"] && href_list["mobToDamage"])
 			if(!check_rights(NONE))
@@ -1318,9 +1131,6 @@
 				if("clone")
 					L.adjustCloneLoss(amount)
 					newamt = L.getCloneLoss()
-				if("stamina")
-					L.adjustStaminaLoss(amount)
-					newamt = L.getStaminaLoss()
 				else
 					to_chat(usr, "You caused an error. DEBUG: Text:[Text] Mob:[L]")
 					return
@@ -1331,10 +1141,3 @@
 				log_admin(log_msg)
 				admin_ticket_log(L, "<span class='notice'>[log_msg]</span>")
 				vv_update_display(L, Text, "[newamt]")
-		else if(href_list["copyoutfit"])
-			if(!check_rights(R_SPAWN))
-				return
-			var/mob/living/carbon/human/H = locate(href_list["copyoutfit"]) in GLOB.carbon_list
-			if(istype(H))
-				H.copy_outfit()
-*/

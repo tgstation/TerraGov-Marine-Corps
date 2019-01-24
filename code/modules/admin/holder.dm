@@ -271,6 +271,8 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/show_player_panel,
 	/datum/admins/proc/player_panel_extended,
 	/datum/admins/proc/secrets_panel,
+	/datum/admins/proc/view_cl_faxes,
+	/datum/admins/proc/view_tgmc_faxes,
 	/client/proc/cmd_admin_pm_panel, //REWORK THIS
 	/client/proc/cmd_admin_pm_context //REWORK THIS
 	)
@@ -280,7 +282,11 @@ GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
 /world/proc/AVmentor()
 	return list(
 	/datum/admins/proc/msay,
-	/datum/admins/proc/dsay
+	/datum/admins/proc/dsay,
+	/datum/admins/proc/view_cl_faxes,
+	/datum/admins/proc/view_tgmc_faxes,
+	/client/proc/cmd_admin_pm_panel, //REWORK THIS
+	/client/proc/cmd_admin_pm_context //REWORK THIS
 	)
 
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -387,7 +393,8 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 GLOBAL_LIST_INIT(admin_verbs_varedit, world.AVvaredit())
 /world/proc/AVvaredit()
 	return list(
-
+	/client/proc/debug_variables,
+	/client/proc/mass_modify,
 	)
 
 GLOBAL_PROTECT(admin_verbs_sound)

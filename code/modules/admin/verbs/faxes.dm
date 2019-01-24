@@ -94,7 +94,7 @@
 	return dat
 
 
-/datum/admins/proc/viewCLFaxes()
+/datum/admins/proc/view_cl_faxes()
 	set category = "Admin"
 	set name = "View CL Faxes"
 	set desc = "View all faxes from the CL this round"
@@ -111,7 +111,7 @@
 	src << browse(body, "window=clfaxviewer;size=300x600")
 
 
-/datum/admins/proc/viewTGMCFaxes()
+/datum/admins/proc/view_tgmc_faxes()
 	set category = "Admin"
 	set name = "View TGMC Faxes"
 	set desc = "View all faxes to TGMC this round"

@@ -137,6 +137,11 @@
 	prev_gender = gender // Debug for plural genders
 
 
+/mob/living/carbon/human/vv_get_dropdown()
+	. = ..()
+	. += "---"
+	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
+
 
 /mob/living/carbon/human/prepare_huds()
 	..()
