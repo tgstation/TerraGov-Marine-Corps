@@ -44,6 +44,263 @@
 	usr << browse(dat_header, "window=unbanp;size=875x400")
 
 
+/datum/admins/proc/jobban_panel(var/mob/M)
+	if(!check_rights(R_BAN))
+		return
+
+	if(!check_if_greater_rights_than(M.client))
+		return
+
+	if(!ismob(M))
+		return
+
+	if(!M.ckey)
+		return
+
+	if(!RoleAuthority)
+		return
+
+	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
+	var/dat = ""
+	var/header = "<head><title>Job-Ban Panel: [key_name(M)]</title></head>"
+	var/body
+	var/jobs = ""
+
+	var/counter = 0
+
+//Command (Blue)
+	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
+	jobs += "<tr align='center' bgcolor='ccccff'><th colspan='[length(ROLES_COMMAND)]'><a href='?src=[ref];jobban=commanddept;mob=[REF(M)]'>Command Positions</a></th></tr><tr align='center'>"
+	for(var/jobPos in ROLES_COMMAND)
+		if(!jobPos)	
+			continue
+		var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
+		if(!job) 
+			continue
+
+		if(jobban_isbanned(M, job.title))
+			jobs += "<td width='20%'><a href='?src=[ref];jobban=[job.title];mob=[REF(M)]'><font color=red>[oldreplacetext(job.title, " ", "&nbsp")]</font></a></td>"
+			counter++
+		else
+			jobs += "<td width='20%'><a href='?src=[ref];jobban=[job.title];mob=[REF(M)]'>[oldreplacetext(job.title, " ", "&nbsp")]</a></td>"
+			counter++
+
+		if(counter >= 6)
+			jobs += "</tr><tr>"
+			counter = 0
+	jobs += "</tr></table>"
+
+
+//Police (Red)
+	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
+	jobs += "<tr align='center' bgcolor='ffbab7'><th colspan='[length(ROLES_POLICE)]'><a href='?src=[ref];jobban=policedept;mob=[REF(M)]'>Police Positions</a></th></tr><tr align='center'>"
+	for(var/jobPos in ROLES_POLICE)
+		if(!jobPos)	
+			continue
+		var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
+		if(!job) 
+			continue
+
+		if(jobban_isbanned(M, job.title))
+			jobs += "<td width='20%'><a href='?src=[ref];jobban=[job.title];mob=[REF(M)]'><font color=red>[oldreplacetext(job.title, " ", "&nbsp")]</font></a></td>"
+			counter++
+		else
+			jobs += "<td width='20%'><a href='?src=[ref];jobban=[job.title];mob=[REF(M)]'>[oldreplacetext(job.title, " ", "&nbsp")]</a></td>"
+			counter++
+
+		if(counter >= 6)
+			jobs += "</tr><tr>"
+			counter = 0
+	jobs += "</tr></table>"
+
+
+//Engineering (Yellow)
+	counter = 0
+	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
+	jobs += "<tr bgcolor='fff5cc'><th colspan='[length(ROLES_ENGINEERING)]'><a href='?src=[ref];jobban=engineeringdept;mob=[REF(M)]'>Engineering Positions</a></th></tr><tr align='center'>"
+	for(var/jobPos in ROLES_ENGINEERING)
+		if(!jobPos)	
+			continue
+		var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
+
+		if(!job) 
+			continue
+
+		if(jobban_isbanned(M, job.title))
+			jobs += "<td width='20%'><a href='?src=[ref];jobban=[job.title];mob=[REF(M)]'><font color=red>[oldreplacetext(job.title, " ", "&nbsp")]</font></a></td>"
+			counter++
+		else
+			jobs += "<td width='20%'><a href='?src=[ref];jobban=[job.title];mob=[REF(M)]'>[oldreplacetext(job.title, " ", "&nbsp")]</a></td>"
+			counter++
+
+		if(counter >= 6)
+			jobs += "</tr><tr align='center'>"
+			counter = 0
+	jobs += "</tr></table>"
+
+//Cargo (Yellow)
+	counter = 0
+	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
+	jobs += "<tr bgcolor='fff5cc'><th colspan='[length(ROLES_REQUISITION)]'><a href='?src=[ref];jobban=cargodept;mob=[REF(M)]'>Requisition Positions</a></th></tr><tr align='center'>"
+	for(var/jobPos in ROLES_REQUISITION)
+		if(!jobPos)	
+			continue
+		var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
+		if(!job) 
+			continue
+
+		if(jobban_isbanned(M, job.title))
+			jobs += "<td width='20%'><a href='?src=[ref];jobban=[job.title];mob=[REF(M)]'><font color=red>[oldreplacetext(job.title, " ", "&nbsp")]</font></a></td>"
+			counter++
+		else
+			jobs += "<td width='20%'><a href='?src=[ref];jobban=[job.title];mob=[REF(M)]'>[oldreplacetext(job.title, " ", "&nbsp")]</a></td>"
+			counter++
+
+		if(counter >= 6)
+			jobs += "</tr><tr align='center'>"
+			counter = 0
+	jobs += "</tr></table>"
+
+//Medical (White)
+	counter = 0
+	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
+	jobs += "<tr bgcolor='ffeef0'><th colspan='[length(ROLES_MEDICAL)]'><a href='?src=[ref];jobban=medicaldept;mob=[REF(M)]'>Medical Positions</a></th></tr><tr align='center'>"
+	for(var/jobPos in ROLES_MEDICAL)
+		if(!jobPos)	
+			continue
+		var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
+		if(!job) 
+			continue
+
+		if(jobban_isbanned(M, job.title))
+			jobs += "<td width='20%'><a href='?src=[ref];jobban=[job.title];mob=[REF(M)]'><font color=red>[oldreplacetext(job.title, " ", "&nbsp")]</font></a></td>"
+			counter++
+		else
+			jobs += "<td width='20%'><a href='?src=[ref];jobban=[job.title];mob=[REF(M)]'>[oldreplacetext(job.title, " ", "&nbsp")]</a></td>"
+			counter++
+
+		if(counter >= 6)
+			jobs += "</tr><tr align='center'>"
+			counter = 0
+	jobs += "</tr></table>"
+
+//Marines
+	counter = 0
+	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
+	jobs += "<tr bgcolor='fff5cc'><th colspan='[length(ROLES_MARINES)]'><a href='?src=[ref];jobban=marinedept;mob=[REF(M)]'>Marine Positions</a></th></tr><tr align='center'>"
+	for(var/jobPos in ROLES_MARINES)
+		if(!jobPos)	
+			continue
+		var/datum/job/job = RoleAuthority.roles_by_name[jobPos]
+		if(!job) 
+			continue
+
+		if(jobban_isbanned(M, job.title))
+			jobs += "<td width='20%'><a href='?src=[ref];jobban=[job.title];mob=[REF(M)]'><font color=red>[oldreplacetext(job.title, " ", "&nbsp")]</font></a></td>"
+			counter++
+		else
+			jobs += "<td width='20%'><a href='?src=[ref];jobban=[job.title];mob=[REF(M)]'>[oldreplacetext(job.title, " ", "&nbsp")]</a></td>"
+			counter++
+
+		if(counter >= 6)
+			jobs += "</tr><tr align='center'>"
+			counter = 0
+	jobs += "</tr></table>"
+
+//Antagonist (Orange)
+	var/isbanned_dept = jobban_isbanned(M, "Syndicate")
+	jobs += "<table cellpadding='1' cellspacing='0' width='100%'>"
+	jobs += "<tr bgcolor='ffeeaa'><th colspan='10'><a href='?src=[ref];jobban=Syndicate;mob=[REF(M)]'>Misc Positions</a></th></tr><tr align='center'>"
+
+	//ERT
+	if(jobban_isbanned(M, "Emergency Response Team") || isbanned_dept)
+		jobs += "<td width='20%'><a href='?src=[ref];jobban=Emergency Response Team;mob=[REF(M)]'><font color=red>Emergency Response Team</font></a></td>"
+	else
+		jobs += "<td width='20%'><a href='?src=[ref];jobban=Emergency Response Team;mob=[REF(M)]'>Emergency Response Team</a></td>"
+
+	//Xenos
+	if(jobban_isbanned(M, "Alien") || isbanned_dept)
+		jobs += "<td width='20%'><a href='?src=[ref];jobban=Alien;mob=[REF(M)]'><font color=red>Alien</font></a></td>"
+	else
+		jobs += "<td width='20%'><a href='?src=[ref];jobban=Alien;mob=[REF(M)]'>Alien</a></td>"
+
+	//Queen
+	if(jobban_isbanned(M, "Queen") || isbanned_dept)
+		jobs += "<td width='20%'><a href='?src=[ref];jobban=Queen;mob=[REF(M)]'><font color=red>Queen</font></a></td>"
+	else
+		jobs += "<td width='20%'><a href='?src=[ref];jobban=Queen;mob=[REF(M)]'>Queen</a></td>"
+
+	jobs += "</tr><tr align='center'>"
+
+	//Survivor
+	if(jobban_isbanned(M, "Survivor") || isbanned_dept)
+		jobs += "<td width='20%'><a href='?src=[ref];jobban=Survivor;mob=[REF(M)]'><font color=red>Survivor</font></a></td>"
+	else
+		jobs += "<td width='20%'><a href='?src=[ref];jobban=Survivor;mob=[REF(M)]'>Survivor</a></td>"
+
+	//Synthetic
+	if(jobban_isbanned(M, "Synthetic") || isbanned_dept)
+		jobs += "<td width='20%'><a href='?src=[ref];jobban=Synthetic;mob=[REF(M)]'><font color=red>Synthetic</font></a></td>"
+	else
+		jobs += "<td width='20%'><a href='?src=[ref];jobban=Synthetic;mob=[REF(M)]'>Synthetic</a></td>"
+
+	//Predator
+	if(jobban_isbanned(M, "Predator") || isbanned_dept)
+		jobs += "<td width='20%'><a href='?src=[ref];jobban=Predator;mob=[REF(M)]'><font color=red>Predator</font></a></td>"
+	else
+		jobs += "<td width='20%'><a href='?src=[ref];jobban=Predator;mob=[REF(M)]'>Predator</a></td>"
+
+
+	jobs += "</tr></table>"
+
+	body = "<body>[jobs]</body>"
+	dat = "<tt>[header][body]</tt>"
+	usr << browse(dat, "window=jobban;size=800x490")
+
+
+/datum/admins/proc/mute(var/mob/M, mute_type)
+	if(!check_rights(R_BAN))
+		return
+
+	if(!M?.client?.prefs || !check_if_greater_rights_than(M.client))
+		return
+
+	var/muteunmute
+	var/mute_string
+
+	switch(mute_type)
+		if(MUTE_IC)			
+			mute_string = "IC"
+		if(MUTE_OOC)		
+			mute_string = "OOC"
+		if(MUTE_PRAY)		
+			mute_string = "pray"
+		if(MUTE_ADMINHELP)	
+			mute_string = "adminhelps and PMs"
+		if(MUTE_DEADCHAT)	
+			mute_string = "deadchat"
+		if(MUTE_ALL)		
+			mute_string = "everything"
+		else				
+			return
+
+	M.client.prefs.load_preferences()
+
+	if(M.client.prefs.muted & mute_type)
+		muteunmute = "unmuted"
+		M.client.prefs.muted &= ~mute_type
+	else
+		muteunmute = "muted"
+		M.client.prefs.muted |= mute_type
+
+	M.client.prefs.save_preferences()
+
+	to_chat(M, "<span clas='danger'>You have been [muteunmute] from [mute_string].</span>")
+
+	log_admin_private("[key_name(usr)] has [muteunmute] [key_name(M)] from [mute_string].")
+	message_admins("[ADMIN_TPMONTY(usr)] has [muteunmute] [ADMIN_TPMONTY(M)] from [mute_string].")
+
+
 /world/IsBanned(key,address,computer_id)
 	//Guest Checking
 	if(!guests_allowed && IsGuestKey(key))

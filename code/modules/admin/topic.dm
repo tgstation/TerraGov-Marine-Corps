@@ -120,9 +120,9 @@
 		var/z = text2num(href_list["Z"])
 
 		if(!isobserver(usr))
-			admin_ghost()
+			usr.client.holder.admin_ghost()
 
-		jump_coord(x,y,z)
+		usr.client.holder.jump_coord(x,y,z)
 
 
 	else if(href_list["observefollow"])
@@ -316,7 +316,7 @@
 		var/mob_id = M.computer_id
 		var/mob_ip = M.lastKnownIP
 		var/client/mob_client = M.client
-		if(check_other_rights(mob_client, (R_ADMIN|R_BAN)))
+		if(!check_if_greater_rights_than(mob_client))
 			return
 		var/mins = input("How long (in minutes)? \n 1440 = 1 day \n 4320 = 3 days \n 10080 = 7 days", "Ban time", 1440) as num|null
 		if(!mins)
@@ -341,20 +341,20 @@
 		message_admins("[ADMIN_TPMONTY(usr)] has banned [ADMIN_TPMONTY(M)] | Duration: [mins] minutes| Reason: [sanitize(reason)]")
 
 
-	if(href_list["notes_add"])
+	else if(href_list["notes_add"])
 		if(!check_rights(R_BAN))
 			return
 
 		var/key = href_list["notes_add"]
 		var/add = input("Add Player Info") as null|message
-		if(!add) 
+		if(!add)
 			return
 
 		notes_add(key, add, usr)
 		player_notes_show(key)
 
 
-	if(href_list["notes_remove"])
+	else if(href_list["notes_remove"])
 		if(!check_rights(R_BAN))
 			return
 
@@ -365,7 +365,7 @@
 		player_notes_show(key)
 
 
-	if(href_list["notes_hide"])
+	else if(href_list["notes_hide"])
 		if(!check_rights(R_BAN))
 			return
 
@@ -376,7 +376,7 @@
 		player_notes_show(key)
 
 
-	if(href_list["notes_unhide"])
+	else if(href_list["notes_unhide"])
 		if(!check_rights(R_BAN))
 			return
 
@@ -387,7 +387,7 @@
 		player_notes_show(key)
 
 
-	if(href_list["notes"])
+	else if(href_list["notes"])
 		if(!check_rights(R_BAN))
 			return
 
@@ -404,9 +404,163 @@
 				PlayerNotesPage(text2num(href_list["index"]))
 
 
-	if(href_list["notes_copy"])
+	else if(href_list["notes_copy"])
 		if(!check_rights(R_BAN))
 			return
 
 		var/key = href_list["notes_copy"]
 		player_notes_copy(key)
+
+
+	else if(href_list["jobbanpanel"])
+		if(!check_rights(R_BAN))
+			return
+
+		var/mob/M = locate(href_list["jobbanpanel"])
+		if(!ismob(M))
+			return
+
+		jobban_panel(M)
+
+
+	else if(href_list["jobban"])
+		if(!check_rights(R_BAN))
+			return
+
+		var/mob/M = locate(href_list["mob"])
+		if(!ismob(M))
+			return
+
+		if(!check_if_greater_rights_than(M.client))
+			return
+
+		if(!M.ckey)
+			return
+
+		if(!RoleAuthority)
+			return
+
+		var/list/joblist = list()
+		switch(href_list["jobban"])
+			if("commanddept")
+				for(var/jobPos in ROLES_COMMAND)
+					if(!jobPos)
+						continue
+					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					if(!temp)
+						continue
+					joblist += temp.title
+			if("policedept")
+				for(var/jobPos in ROLES_POLICE)
+					if(!jobPos)
+						continue
+					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					if(!temp)
+						continue
+					joblist += temp.title
+			if("engineeringdept")
+				for(var/jobPos in ROLES_ENGINEERING)
+					if(!jobPos)
+						continue
+					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					if(!temp)
+						continue
+					joblist += temp.title
+			if("cargodept")
+				for(var/jobPos in ROLES_REQUISITION)
+					if(!jobPos)
+						continue
+					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					if(!temp)
+						continue
+					joblist += temp.title
+			if("medicaldept")
+				for(var/jobPos in ROLES_MEDICAL)
+					if(!jobPos)
+						continue
+					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					if(!temp)
+						continue
+					joblist += temp.title
+			if("marinedept")
+				for(var/jobPos in ROLES_MARINES)
+					if(!jobPos)
+						continue
+					var/datum/job/temp = RoleAuthority.roles_by_name[jobPos]
+					if(!temp)
+						continue
+					joblist += temp.title
+			else
+				joblist += href_list["jobban"]
+
+		//Create a list of unbanned jobs within joblist
+		var/list/notbannedlist = list()
+		for(var/job in joblist)
+			if(!jobban_isbanned(M, job))
+				notbannedlist += job
+
+		if(length(notbannedlist))
+			var/reason = input("Please state the reason for the jobban.", "Reason", "") as text|null
+			if(reason)
+				var/msg
+				for(var/job in notbannedlist)
+					log_admin_private("[key_name(usr)] jobbanned [key_name(M)] from [job] for [reason].")
+					jobban_fullban(M, job, "[reason]; By [usr.client.ckey] on [time2text(world.realtime)]")
+					if(!msg)
+						msg = job
+					else
+						msg += ", [job]"
+				notes_add(M.ckey, "Banned  from [msg] - [reason]", usr)
+				message_admins("[ADMIN_TPMONTY(usr)] banned [ADMIN_TPMONTY(M)] from [msg] for [reason].")
+				to_chat(M, "<span class='danger'>You have been jobbanned by [usr.client.ckey] from: [msg].</span>")
+				to_chat(M, "<span class='warning'>The reason is: [reason]</span>")
+				jobban_savebanfile()
+			return
+
+		if(length(joblist))
+			var/msg
+			for(var/job in joblist)
+				var/reason = jobban_isbanned(M, job)
+				if(!reason)
+					continue
+				if(alert("Job: '[job]' Reason: '[reason]' Un-jobban?","Please Confirm","Yes","No") != "Yes")
+					continue
+				log_admin_private("[key_name(usr)] un-jobbanned [key_name(M)] from [job].")
+				jobban_unban(M, job)
+				if(!msg)
+					msg = job
+				else
+					msg += ", [job]"
+			if(msg)
+				message_admins("[ADMIN_TPMONTY(usr)] un-jobbanned [ADMIN_TPMONTY(M)] from [msg].")
+				to_chat(M, "<span class='danger'>You have been un-jobbanned by [usr.client.ckey] from [msg].</span>")
+			jobban_savebanfile()
+
+
+	else if(href_list["mute"])
+		if(!check_rights(R_BAN))
+			return
+
+		var/mob/M = locate(href_list["mute"])
+
+		if(!ismob(M))
+			return
+
+		if(!M.client || !check_if_greater_rights_than(M.client))
+			return
+
+		var/mute_type = href_list["mute_type"]
+
+		if(istext(mute_type))
+			mute_type = text2num(mute_type)
+
+		if(!isnum(mute_type))
+			return
+
+		mute(M, mute_type)
+
+
+
+	else if(href_list["simplemake"])
+		if(!check_rights(R_ADMIN))	
+			return

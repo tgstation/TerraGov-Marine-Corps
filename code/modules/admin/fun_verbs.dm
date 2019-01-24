@@ -226,7 +226,7 @@
 	if(!check_rights(R_FUN|R_MENTOR))
 		return
 
-	var/msg = input("Message:", text("Subtle PM to [M.key]")) as text
+	var/msg = input("Subtle PM to [key_name(M)]:", "Subtle Message", "", "Cancel") as text
 
 	if(!M?.client || !msg)
 		return

@@ -393,11 +393,11 @@
 		<b>Mob type</b> = [M.type]<br><br>
 		<a href='?src=[ref];kick=[REF(M)]'>Kick</a> |
 		<a href='?src=[ref];ban=[REF(M)]'>Ban</a> |
-		<a href='?src=[ref];jobban=[REF(M)]'>Jobban</a> |
+		<a href='?src=[ref];jobbanpanel=[REF(M)]'>Jobban</a> |
 		<a href='?src=[ref];notes=show;mob=[REF(M)]'>Notes</a> |
 	"}
 
-	if(M.client)
+	if(M.client?.prefs)
 		body += "\ <a href='?_src_=[ref];lobby=[REF(M)]'> Send back to Lobby</a>"
 		var/muted = M.client.prefs.muted
 		body += {"<br><b>Mute: </b>
