@@ -537,14 +537,8 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	//Run armor check. We won't bother if there is no damage being done.
 	if( damage > 0 && !(P.ammo.flags_ammo_behavior & AMMO_IGNORE_ARMOR) )
 		var/armor //Damage types don't correspond to armor types. We are thus merging them.
-		if(P.armor_type) //If the projectile is meant to test a specific armor type, we use that.
-			armor = getarmor_organ(organ, P.armor_type)
-		else
-			switch(P.ammo.damage_type)
-				if(BRUTE) armor = P.ammo.flags_ammo_behavior & AMMO_ROCKET ? getarmor_organ(organ, "bomb") : getarmor_organ(organ, "bullet")
-				if(BURN) armor = P.ammo.flags_ammo_behavior & AMMO_ENERGY ? getarmor_organ(organ, "energy") : getarmor_organ(organ, "laser")
-				if(TOX, OXY, CLONE) armor = getarmor_organ(organ, "bio")
-				else armor = getarmor_organ(organ, "energy") //Won't be used, but just in case.
+		armor = getarmor_organ(organ, P.armor_type) //Should always have a type; this defaults to bullet if nothing else.
+
 		#if DEBUG_HUMAN_DEFENSE
 		to_chat(world, "<span class='debuginfo'>Initial armor is: <b>[armor]</b></span>")
 		#endif

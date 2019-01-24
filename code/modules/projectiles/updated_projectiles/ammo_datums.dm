@@ -51,7 +51,7 @@
 	var/debilitate[]				= null 		// Stun,knockdown,knockout,irradiate,stutter,eyeblur,drowsy,agony
 	var/list/ammo_reagents			= null		// Type of reagent transmitted by the projectile on hit.
 	var/barricade_clear_distance	= 1			// How far the bullet can travel before incurring a chance of hitting barricades; normally 1.
-	var/armor_type					= ""		// Does this have an override for the armor type the ammo should test?
+	var/armor_type					= "bullet"	// Does this have an override for the armor type the ammo should test? Bullet by default
 
 
 	New()
@@ -918,6 +918,7 @@
 	sound_bounce	= "rocket_bounce"
 	damage_falloff = 0
 	flags_ammo_behavior = AMMO_EXPLOSIVE|AMMO_ROCKET
+	armor_type = "bomb"
 	var/datum/effect_system/smoke_spread/smoke
 
 /datum/ammo/rocket/New()
@@ -1084,6 +1085,7 @@
 
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_ENERGY
+	armor_type = "energy"
 
 /datum/ammo/energy/New()
 	..()
@@ -1214,6 +1216,7 @@
 	name = "laser bolt"
 	icon_state = "laser"
 	hud_state = "laser"
+	armor_type = "laser"
 
 /datum/ammo/energy/lasgun/New()
 	. = ..()
@@ -1258,6 +1261,7 @@
 	flags_ammo_behavior = AMMO_XENO_ACID
 	var/added_spit_delay = 0 //used to make cooldown of the different spits vary.
 	var/spit_cost
+	armor_type = "bio"
 
 /datum/ammo/xeno/New()
 	. = ..()
@@ -1285,9 +1289,9 @@
 	max_range = CONFIG_GET(number/combat_define/near_shell_range)
 	accuracy_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
 	accuracy_var_high = CONFIG_GET(number/combat_define/low_proj_variance)
-	damage = config.low_hit_damage
-	damage_var_low = config.low_proj_variance
-	damage_var_high = config.med_proj_variance
+	damage = CONFIG_GET(number/combat_define/low_hit_damage)
+	damage_var_low = CONFIG_GET(number/combat_define/low_proj_variance)
+	damage_var_high = CONFIG_GET(number/combat_define/mlow_proj_variance)
 
 /datum/ammo/xeno/toxin/on_hit_mob(mob/living/carbon/M, obj/item/projectile/P)
 	if(!istype(M))
@@ -1295,7 +1299,7 @@
 	var/mob/living/carbon/C = M
 	if(C.status_flags & XENO_HOST && istype(C.buckled, /obj/structure/bed/nest) || C.stat == DEAD)
 		return
-	staggerstun(C, P, config.close_shell_range, 0, 0, 1, 1) //Staggers and slows down briefly
+	staggerstun(C, P, CONFIG_GET(number/combat_define/close_shell_range), 0, 0, 1, 1) //Staggers and slows down briefly
 	return ..()
 
 /datum/ammo/xeno/toxin/upgrade1
@@ -1317,7 +1321,7 @@
 
 /datum/ammo/xeno/toxin/medium/New()
 	. = ..()
-	damage = config.hlow_hit_damage
+	damage = CONFIG_GET(number/combat_define/hlow_hit_damage)
 
 /datum/ammo/xeno/toxin/medium/upgrade1
 	ammo_reagents = list("xeno_toxin" = 10.2)
@@ -1336,7 +1340,7 @@
 
 /datum/ammo/xeno/toxin/medium/New()
 	. = ..()
-	damage = config.lmed_hit_damage
+	damage = CONFIG_GET(number/combat_define/lmed_hit_damage)
 
 /datum/ammo/xeno/toxin/heavy/upgrade1
 	ammo_reagents = list("xeno_toxin" = 13.2)
@@ -1394,6 +1398,7 @@
 	damage_type = BURN
 	added_spit_delay = 5
 	spit_cost = 75
+	armor_type = "energy"
 
 /datum/ammo/xeno/acid/New()
 	. = ..()
@@ -1455,6 +1460,7 @@
 	debilitate = list(19,21,0,0,11,12,0,0)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_RESIST
 	var/datum/effect_system/smoke_spread/smoke_system
+	armor_type = "bio"
 
 /datum/ammo/xeno/boiler_gas/New()
 	..()
@@ -1513,6 +1519,7 @@
 	sound_bounce	= "acid_bounce"
 	debilitate = list(1,1,0,0,1,1,0,0)
 	flags_ammo_behavior = AMMO_XENO_ACID|AMMO_SKIPS_ALIENS|AMMO_EXPLOSIVE|AMMO_IGNORE_ARMOR
+	armor_type = "energy"
 
 /datum/ammo/xeno/boiler_gas/corrosive/New()
 	..()
@@ -1544,6 +1551,7 @@
 	sound_hit 	 	= "alloy_hit"
 	sound_armor	 	= "alloy_armor"
 	sound_bounce	= "alloy_bounce"
+	armor_type = "bullet"
 
 /datum/ammo/alloy_spike/New()
 	..()
@@ -1561,6 +1569,7 @@
 	hud_state_empty = "flame_empty"
 	damage_type = BURN
 	flags_ammo_behavior = AMMO_INCENDIARY|AMMO_IGNORE_ARMOR
+	armor_type = "energy"
 
 /datum/ammo/flamethrower/New()
 	..()
@@ -1649,6 +1658,7 @@
 	damage_type = BRUTE
 	var/nade_type = /obj/item/explosive/grenade/frag
 	icon_state = "grenade"
+	armor_type = "bomb"
 
 /datum/ammo/grenade_container/New()
 	..()
