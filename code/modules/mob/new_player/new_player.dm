@@ -158,7 +158,7 @@
 					return
 
 				if(client.prefs.species != "Human")
-					if(!is_alien_whitelisted(client.prefs.species) && config.usealienwhitelist)
+					if(!is_alien_whitelisted(client.prefs.species) && CONFIG_GET(flag/usealienwhitelist))
 						to_chat(src, alert("You are currently not whitelisted to play [client.prefs.species]."))
 						return
 
@@ -206,7 +206,7 @@
 					return
 
 				if(client.prefs.species != "Human")
-					if(!is_alien_whitelisted(client.prefs.species) && config.usealienwhitelist)
+					if(!is_alien_whitelisted(client.prefs.species) && CONFIG_GET(flag/usealienwhitelist))
 						to_chat(src, alert("You are currently not whitelisted to play [client.prefs.species]."))
 						return 0
 
@@ -421,7 +421,7 @@
 		if(client.prefs.language)
 			chosen_language = all_languages["[client.prefs.language]"]
 		if(chosen_language)
-			if(is_alien_whitelisted(client.prefs.language) || !config.usealienwhitelist || !(chosen_language.flags & WHITELISTED) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
+			if(is_alien_whitelisted(client.prefs.language) || !CONFIG_GET(flag/usealienwhitelist) || !(chosen_language.flags & WHITELISTED) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 				new_character.add_language("[client.prefs.language]")
 
 		if(ticker.random_players)

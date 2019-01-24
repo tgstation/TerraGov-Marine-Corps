@@ -45,7 +45,7 @@
 	usr << browse(output,"window=editrights;size=600x500")
 
 /datum/admins/proc/log_admin_rank_modification(var/adm_ckey, var/new_rank)
-	if(config.admin_legacy_system)	return
+	if(CONFIG_GET(flag/admin_legacy_system))	return
 
 	if(!usr.client)
 		return
@@ -95,7 +95,7 @@
 			to_chat(usr, "<span class='notice'>Admin rank changed.</span>")
 
 /datum/admins/proc/log_admin_permission_modification(var/adm_ckey, var/new_permission)
-	if(config.admin_legacy_system)	return
+	if(CONFIG_GET(flag/admin_legacy_system))	return
 
 	if(!usr.client)
 		return

@@ -475,7 +475,7 @@
 									occupant.visible_message("<span class='warning'> [src] defty extracts a wriggling parasite from [occupant]'s ribcage!</span>");
 									var/mob/living/carbon/Xenomorph/Larva/L = locate() in occupant //the larva was fully grown, ready to burst.
 									if(L)
-										L.forceMove(occupant.loc)
+										L.forceMove(get_turf(src))
 									else
 										A.forceMove(occupant.loc)
 										occupant.status_flags &= ~XENO_HOST
@@ -815,11 +815,10 @@
 	use_power = 1
 	idle_power_usage = 40
 
-/obj/machinery/autodoc_console/New()
-	..()
-	spawn(5)
-		connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
-		connected.connected = src
+/obj/machinery/autodoc_console/Initialize()
+	. = ..()
+	connected = locate(/obj/machinery/autodoc, get_step(src, WEST))
+	connected.connected = src
 
 /obj/machinery/autodoc_console/power_change(var/area/master_area = null)
 	..()

@@ -9,13 +9,11 @@
 	buckle_lying = FALSE
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
-/obj/structure/bed/chair/New()
+/obj/structure/bed/chair/Initialize()
 	if(anchored)
 		src.verbs -= /atom/movable/verb/pull
-	..()
-	spawn(3) //Sorry. i don't think there's a better way to do this.
-		handle_rotation()
-	return
+	. = ..()
+	handle_rotation()
 
 /obj/structure/bed/chair/attack_tk(mob/user as mob)
 	if(buckled_mob)
@@ -37,7 +35,7 @@
 	set category = "Object"
 	set src in oview(1)
 
-	if(config.ghost_interaction)
+	if(CONFIG_GET(flag/ghost_interaction))
 		src.dir = turn(src.dir, 90)
 		handle_rotation()
 		return

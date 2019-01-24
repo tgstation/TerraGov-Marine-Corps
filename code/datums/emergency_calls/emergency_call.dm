@@ -39,31 +39,30 @@
 
 	for(var/x in total_calls)
 		var/datum/emergency_call/D = new x()
-		if(!D?.name) 
+		if(!D?.name)
 			continue //The default parent, don't add it
 		all_calls += D
 
 
 //Randomizes and chooses a call datum.
 /datum/game_mode/proc/get_random_call()
-	var/datum/emergency_call/chosen_call
-	var/list/valid_calls
+    var/datum/emergency_call/chosen_call
+    var/list/valid_calls = list()
 
-	for(var/datum/emergency_call/E in all_calls) //Loop through all potential candidates
-		if(probability < 1) //Those that are meant to be admin-only
-			continue
+    for(var/datum/emergency_call/E in all_calls) //Loop through all potential candidates
+        if(E.probability < 1) //Those that are meant to be admin-only
+            continue
 
-		valid_calls += E
+        valid_calls.Add(E)
 
-		if(prob(E.probability))
-			chosen_call = E
-			break
+        if(prob(E.probability))
+            chosen_call = E
+            break
 
-	if(!istype(chosen_call))
-		chosen_call = pick(valid_calls)
-		
-	return chosen_call
+    if(!istype(chosen_call))
+        chosen_call = pick(valid_calls)
 
+    return chosen_call
 
 /datum/emergency_call/proc/show_join_message()
 	if(!mob_max || !ticker?.mode) //Not a joinable distress call.

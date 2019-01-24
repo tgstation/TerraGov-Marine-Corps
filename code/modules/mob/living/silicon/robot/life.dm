@@ -22,7 +22,7 @@
 	if(status_flags & GODMODE)
 		return
 	if(stat != DEAD)
-		var/dead_threshold = ismaintdrone(src) ? 0 : config.health_threshold_dead
+		var/dead_threshold = ismaintdrone(src) ? 0 : CONFIG_GET(number/health_threshold_dead)
 		if(health <= dead_threshold)
 			death()
 			return

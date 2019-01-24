@@ -2,7 +2,7 @@
 
 /mob/living/carbon/proc/handle_grabbed()
 	if(pulledby.grab_level >= GRAB_AGGRESSIVE)
-		drop_held_items()
+		drop_all_held_items()
 
 	/*if(pulledby.grab_level >= GRAB_NECK)
 		Stun(5)

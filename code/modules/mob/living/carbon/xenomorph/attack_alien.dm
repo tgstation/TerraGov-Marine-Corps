@@ -158,7 +158,7 @@
 						playsound(loc, "alien_claw_metal", 25, 1)
 						M.visible_message("<span class='danger'>The [M] smashes off [src]'s [wear_mask.name]!</span>", \
 						"<span class='danger'>You smash off [src]'s [wear_mask.name]!</span>", null, 5)
-						drop_inv_item_on_ground(wear_mask)
+						dropItemToGround(wear_mask)
 						emote("roar")
 						return TRUE
 
@@ -184,6 +184,8 @@
 					M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
 					"<span class='danger'>You strike [src] with vicious precision!</span>")
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+
+			M.neuroclaw_router(src) //if we have neuroclaws...
 
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
 			updatehealth()
@@ -225,6 +227,7 @@
 					M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
 					"<span class='danger'>You strike [src] with vicious precision!</span>")
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+			M.neuroclaw_router(src) //if we have neuroclaws...
 			if(dam_bonus)
 				tackle_pain += dam_bonus
 			apply_damage(tackle_pain, HALLOSS, "chest", armor_block * 0.5) //Only half armour applies vs tackle

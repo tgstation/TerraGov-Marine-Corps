@@ -138,8 +138,8 @@
 		return
 	..()
 
-/obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0)
-	..()
+/obj/machinery/power/apc/Initialize(turf/loc, var/ndir, var/building=0)
+	. = ..()
 	apcs_list += src
 	//Offset 24 pixels in direction of dir
 	//This allows the APC to be embedded in a wall, yet still inside an area
@@ -160,8 +160,7 @@
 		name = "\improper [area.name] APC"
 		stat |= MAINT
 		update_icon()
-		spawn(5)
-			update()
+		update()
 	start_processing()
 	sleep(0) //Break few ACPs on the colony
 	if(!start_charge && z == 1 && prob(10))
@@ -466,7 +465,7 @@
 			if(stat & MAINT)
 				to_chat(user, "<span class='warning'>There is no connector for your power cell.</span>")
 				return
-			if(user.drop_inv_item_to_loc(W, src))
+			if(user.transferItemToLoc(W, src))
 				cell = W
 				user.visible_message("<span class='notice'>[user] inserts [W] into [src]!",
 				"<span class='notice'>You insert [W] into [src]!")
@@ -1015,7 +1014,7 @@
 
 	if(href_list["apcwires"])
 		var/t1 = text2num(href_list["apcwires"])
-		if(!( istype(usr.get_active_hand(), /obj/item/tool/wirecutters) ))
+		if(!( istype(usr.get_active_held_item(), /obj/item/tool/wirecutters) ))
 			to_chat(usr, "<span class='warning'>You need wirecutters!</span>")
 			return 0
 		if(isWireColorCut(t1))
@@ -1024,7 +1023,7 @@
 			cut(t1)
 	else if(href_list["pulse"])
 		var/t1 = text2num(href_list["pulse"])
-		if(!istype(usr.get_active_hand(), /obj/item/device/multitool))
+		if(!istype(usr.get_active_held_item(), /obj/item/device/multitool))
 			to_chat(usr, "<span class='warning'>You need a multitool!</span>")
 			return 0
 		if(isWireColorCut(t1))
@@ -1153,10 +1152,10 @@
 		perapc = terminal.powernet.perapc
 
 	if(debug)
-		log_debug( "Status: [main_status] - Excess: [excess] - Last Equip: [lastused_equip] - Last Light: [lastused_light]")
+		log_runtime( "Status: [main_status] - Excess: [excess] - Last Equip: [lastused_equip] - Last Light: [lastused_light]")
 
 		if(area.powerupdate)
-			log_debug("power update in [area.name] / [name]")
+			log_runtime("power update in [area.name] / [name]")
 
 	if(cell && !shorted)
 		var/cell_maxcharge = cell.maxcharge
