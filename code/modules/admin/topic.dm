@@ -1116,7 +1116,7 @@
 				if(!EvacuationAuthority.initiate_self_destruct(1))
 					to_chat(usr, "<span class='warning'>You are unable to trigger the self-destruct right now!</span>")
 					return
-				if(alert("Are you sure you want to destroy the Almayer right now?",, "Yes", "No") != "Yes") 
+				if(alert("Are you sure you want to destroy the Almayer right now?",, "Yes", "No") != "Yes")
 					return
 
 				log_admin("[key_name(usr)] forced the self-destruct system, destroying the [MAIN_SHIP_NAME].")
@@ -1126,3 +1126,112 @@
 				EvacuationAuthority.flags_scuttle ^= FLAGS_SELF_DESTRUCT_DENY
 				log_admin("[key_name(src)] has [EvacuationAuthority.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
 				message_admins("[ADMIN_TPMONTY(usr)] has [EvacuationAuthority.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
+
+
+	else if(href_list["object_list"])
+		if(!check_rights(R_SPAWN))
+			return
+
+		var/atom/loc = usr.loc
+
+		var/dirty_paths
+		if(istext(href_list["object_list"]))
+			dirty_paths = list(href_list["object_list"])
+		else if(istype(href_list["object_list"], /list))
+			dirty_paths = href_list["object_list"]
+
+		var/paths = list()
+
+		for(var/dirty_path in dirty_paths)
+			var/path = text2path(dirty_path)
+			if(!path)
+				continue
+			else if(!ispath(path, /obj) && !ispath(path, /turf) && !ispath(path, /mob))
+				continue
+			paths += path
+
+		if(!paths)
+			alert("The path list you sent is empty.")
+			return
+		if(length(paths) > 5)
+			alert("Select fewer object types, (max 5).")
+			return
+
+		var/list/offset = splittext(href_list["offset"],",")
+		var/number = CLAMP(text2num(href_list["object_count"]), 1, 100)
+		var/X = offset.len > 0 ? text2num(offset[1]) : 0
+		var/Y = offset.len > 1 ? text2num(offset[2]) : 0
+		var/Z = offset.len > 2 ? text2num(offset[3]) : 0
+		var/obj_dir = text2num(href_list["object_dir"])
+		if(obj_dir && !(obj_dir in list(1,2,4,8,5,6,9,10)))
+			obj_dir = null
+		var/obj_name = sanitize(href_list["object_name"])
+
+
+		var/atom/target
+		var/where = href_list["object_where"]
+		if(!( where in list("onfloor","frompod","inhand","inmarked")))
+			where = "onfloor"
+
+
+		switch(where)
+			if("inhand")
+				if(!iscarbon(usr))
+					to_chat(usr, "Can only spawn in hand when you're a carbon mob or cyborg.")
+					where = "onfloor"
+				target = usr
+
+			if("onfloor", "frompod")
+				switch(href_list["offset_type"])
+					if("absolute")
+						target = locate(0 + X,0 + Y,0 + Z)
+					if("relative")
+						target = locate(loc.x + X,loc.y + Y,loc.z + Z)
+			if("inmarked")
+				if(!marked_datum)
+					to_chat(usr, "You don't have any object marked. Abandoning spawn.")
+					return
+				else if(!istype(marked_datum, /atom))
+					to_chat(usr, "The object you have marked cannot be used as a target. Target must be of type /atom. Abandoning spawn.")
+					return
+				else
+					target = marked_datum
+
+		if(target)
+			for(var/path in paths)
+				for (var/i = 0; i < number; i++)
+					if(path in typesof(/turf))
+						var/turf/O = target
+						var/turf/N = O.ChangeTurf(path)
+						if(N && obj_name)
+							N.name = obj_name
+					else
+						var/atom/O
+						O = new path(target)
+
+						if(!QDELETED(O))
+							if(obj_dir)
+								O.dir = obj_dir
+							if(obj_name)
+								O.name = obj_name
+								if(ismob(O))
+									var/mob/M = O
+									M.real_name = obj_name
+							if(where == "inhand" && isliving(usr) && isitem(O))
+								var/mob/living/L = usr
+								var/obj/item/I = O
+								L.put_in_hands(I)
+
+
+		if(number == 1)
+			log_admin("[key_name(usr)] created a [english_list(paths)].")
+			for(var/path in paths)
+				if(ispath(path, /mob))
+					message_admins("[ADMIN_TPMONTY(usr)] created a [english_list(paths)].")
+					break
+		else
+			log_admin("[key_name(usr)] created [number]ea [english_list(paths)].")
+			for(var/path in paths)
+				if(ispath(path, /mob))
+					message_admins("[ADMIN_TPMONTY(usr)] created [number]ea [english_list(paths)].")
+					break
