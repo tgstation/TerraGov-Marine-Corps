@@ -361,7 +361,7 @@
 	var/temp = 0								//see setup.dm:694
 	switch(src.pulse)
 		if(PULSE_NONE)
-			return "0"
+			return PULSE_NONE
 		if(PULSE_SLOW)
 			temp = rand(40, 60)
 			return num2text(method ? temp : temp + rand(-10, 10))
