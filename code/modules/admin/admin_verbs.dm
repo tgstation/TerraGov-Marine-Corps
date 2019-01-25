@@ -268,12 +268,14 @@
 		else
 			return
 
+	var/old2 = "[key_name(usr)]"
+	var/old = "[ADMIN_TPMONTY(usr)]"
 	M.key = usr.client.key
 
 	M.client.change_view(world.view)
 
-	log_admin("[key_name(usr)] took over [M.name][replaced ? " replacing the previous owner" : ""].")
-	message_admins("[ADMIN_TPMONTY(usr)] took over [M.name][replaced ? " replacing the previous owner" : ""].")
+	log_admin("[old2] took over [M.name][replaced ? " replacing the previous owner" : ""].")
+	message_admins("[old] took over [M.name][replaced ? " replacing the previous owner" : ""].")
 
 
 /datum/admins/proc/logs_server()

@@ -32,7 +32,7 @@
 
 	if(check_rights(R_ADMIN|R_MENTOR, FALSE))
 		for(var/client/C in GLOB.admins)
-			if(check_other_rights(C, R_ADMIN))
+			if(check_other_rights(C, R_ADMIN, FALSE))
 				if(is_mentor(src) && C.holder.fakekey)
 					continue
 				msg += "[C] is a [C.holder.rank]"
@@ -65,7 +65,7 @@
 
 	else
 		for(var/client/C in GLOB.admins)
-			if(check_other_rights(C, R_ADMIN) && !C.holder.fakekey)
+			if(check_other_rights(C, R_ADMIN, FALSE) && !C.holder.fakekey)
 				msg += "[C] is a [C.holder.rank]\n"
 				num_admins_online++
 			else if(is_mentor(C))

@@ -651,7 +651,7 @@
 			if("monkey")
 				M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob,)
 			if("moth")
-				M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob, "Moth")
+				M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Moth")
 
 		var/mob/target = M
 
@@ -1011,3 +1011,119 @@
 		var/info = locate(href_list["faxview"])
 
 		usr << browse("<HTML><HEAD><TITLE>Fax Message</TITLE></HEAD><BODY>[info]</BODY></HTML>", "window=Fax Message")
+
+
+	else if(href_list["create_object"])
+		if(!check_rights(R_SPAWN))
+			return
+		return usr.client.holder.create_object(usr)
+
+
+	else if(href_list["quick_create_object"])
+		if(!check_rights(R_SPAWN))
+			return
+		return usr.client.holder.quick_create_object(usr)
+
+
+	else if(href_list["create_turf"])
+		if(!check_rights(R_SPAWN))
+			return
+		return usr.client.holder.create_turf(usr)
+
+
+	else if(href_list["create_mob"])
+		if(!check_rights(R_SPAWN))
+			return
+		return usr.client.holder.create_mob(usr)
+
+
+	else if(href_list["modemenu"])
+		if(!check_rights(R_SERVER))
+			return
+
+		if(ticker && ticker.mode)
+			return alert("The game has already started.")
+
+		var/dat = {"<B>What mode do you wish to play?</B><HR>"}
+		for(var/mode in config.modes)
+			dat += {"<A href='?src=[REF(usr.client.holder)];[HrefToken()];changemode=[mode]'>[config.mode_names[mode]]</A><br>"}
+		dat += {"Now: [master_mode]"}
+		usr << browse(dat, "window=c_mode")
+
+
+	else if(href_list["changemode"])
+		if(!check_rights(R_SERVER))
+			return
+
+		if(ticker?.mode)
+			return alert("The game has already started.")
+
+		master_mode = href_list["changemode"]
+
+		log_admin("[key_name(usr)] set the mode as [master_mode].")
+		message_admins("[ADMIN_TPMONTY(usr)] set the mode as [master_mode].")
+		to_chat(world, "<span class='boldnotice'>The mode is now: [master_mode].</span>")
+		usr.client.holder.game_panel()
+		world.save_mode(master_mode)
+
+
+	if(href_list["evac_authority"])
+		switch(href_list["evac_authority"])
+			if("init_evac")
+				if(!EvacuationAuthority.initiate_evacuation())
+					to_chat(usr, "<span class='warning'>You are unable to initiate an evacuation right now!</span>")
+				else
+					log_admin("[key_name(usr)] called an evacuation.")
+					message_admins("[ADMIN_TPMONTY(usr)] called an evacuation.")
+
+			if("cancel_evac")
+				if(!EvacuationAuthority.cancel_evacuation())
+					to_chat(usr, "<span class='warning'>You are unable to cancel an evacuation right now!</span>")
+				else
+					log_admin("[key_name(usr)] canceled an evacuation.")
+					message_admins("[ADMIN_TPMONTY(usr)] canceled an evacuation.")
+
+			if("toggle_evac")
+				EvacuationAuthority.flags_scuttle ^= FLAGS_EVACUATION_DENY
+				log_admin("[key_name(src)] has [EvacuationAuthority.flags_scuttle & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
+				message_admins("[ADMIN_TPMONTY(usr)] has [EvacuationAuthority.flags_scuttle & FLAGS_EVACUATION_DENY ? "forbidden" : "allowed"] ship-wide evacuation.")
+
+			if("force_evac")
+				if(!EvacuationAuthority.begin_launch())
+					to_chat(usr, "<span class='warning'>You are unable to launch the pods directly right now!</span>")
+				else
+					log_admin("[key_name(usr)] force-launched the escape pods.")
+					message_admins("[ADMIN_TPMONTY(usr)] force-launched the escape pods.")
+
+			if("init_dest")
+				if(!EvacuationAuthority.enable_self_destruct())
+					to_chat(usr, "<span class='warning'>You are unable to authorize the self-destruct right now!</span>")
+				else
+					log_admin("[key_name(usr)] force-enabled the self-destruct system.")
+					message_admins("[ADMIN_TPMONTY(usr)] force-enabled the self-destruct system.")
+
+			if("cancel_dest")
+				if(!EvacuationAuthority.cancel_self_destruct(1))
+					to_chat(usr, "<span class='warning'>You are unable to cancel the self-destruct right now!</span>")
+				else
+					log_admin("[key_name(usr)] canceled the self-destruct system.")
+					message_admins("[ADMIN_TPMONTY(usr)] canceled the self-destruct system.")
+
+			if("use_dest")
+				var/confirm = alert("Are you sure you want to self-destruct the Almayer?", "Self-Destruct", "Yes", "Cancel")
+				if(confirm != "Yes")
+					return
+
+				if(!EvacuationAuthority.initiate_self_destruct(1))
+					to_chat(usr, "<span class='warning'>You are unable to trigger the self-destruct right now!</span>")
+					return
+				if(alert("Are you sure you want to destroy the Almayer right now?",, "Yes", "No") != "Yes") 
+					return
+
+				log_admin("[key_name(usr)] forced the self-destruct system, destroying the [MAIN_SHIP_NAME].")
+				message_admins("[ADMIN_TPMONTY(usr)] forced the self-destrust system, destroying the [MAIN_SHIP_NAME].")
+
+			if("toggle_dest")
+				EvacuationAuthority.flags_scuttle ^= FLAGS_SELF_DESTRUCT_DENY
+				log_admin("[key_name(src)] has [EvacuationAuthority.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")
+				message_admins("[ADMIN_TPMONTY(usr)] has [EvacuationAuthority.flags_scuttle & FLAGS_SELF_DESTRUCT_DENY ? "forbidden" : "allowed"] the self-destruct system.")

@@ -19,6 +19,7 @@
 		return
 
 	var/dat
+	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
 
 	dat += "<html><head><title>Round Status</title></head>"
 	dat += "<body><h1><b>Round Status</b></h1>"
@@ -35,10 +36,10 @@
 			dat += "COMPLETE"
 	dat += "<br>"
 
-	dat += "<a href='?src=[REF(src)];[HrefToken()];evac_authority=init_evac'>Initiate Evacuation</a><br>"
-	dat += "<a href='?src=[REF(src)];[HrefToken()];evac_authority=cancel_evac'>Cancel Evacuation</a><br>"
-	dat += "<a href='?src=[REF(src)];[HrefToken()];evac_authority=toggle_evac'>Toggle Evacuation Permission</a><br>"
-	dat += "<a href='?src=[REF(src)];[HrefToken()];evac_authority=force_evac'>Force Evacuation Now</a><br>"
+	dat += "<a href='?src=[ref];evac_authority=init_evac'>Initiate Evacuation</a><br>"
+	dat += "<a href='?src=[ref];evac_authority=cancel_evac'>Cancel Evacuation</a><br>"
+	dat += "<a href='?src=[ref];evac_authority=toggle_evac'>Toggle Evacuation Permission</a><br>"
+	dat += "<a href='?src=[ref];evac_authority=force_evac'>Force Evacuation Now</a><br>"
 
 	dat += "<b>Self Destruct:</b> "
 	switch(EvacuationAuthority.dest_status)
@@ -52,10 +53,10 @@
 			dat += "FINISHED"
 	dat += "<br>"
 
-	dat += "<a href='?src=[REF(src)];[HrefToken()];evac_authority=init_dest'>Unlock Self Destruct control panel for humans</a><br>"
-	dat += "<a href='?src=[REF(src)];[HrefToken()];evac_authority=cancel_dest'>Lock Self Destruct control panel for humans</a><br>"
-	dat += "<a href='?src=[REF(src)];[HrefToken()];evac_authority=use_dest'>Destruct the [MAIN_SHIP_NAME] NOW</a><br>"
-	dat += "<a href='?src=[REF(src)];[HrefToken()];evac_authority=toggle_dest'>Toggle Self Destruct Permission (does not affect evac in progress)</a><br>"
+	dat += "<a href='?src=[ref];evac_authority=init_dest'>Unlock Self Destruct control panel for humans</a><br>"
+	dat += "<a href='?src=[ref];evac_authority=cancel_dest'>Lock Self Destruct control panel for humans</a><br>"
+	dat += "<a href='?src=[ref];evac_authority=use_dest'>Destruct the [MAIN_SHIP_NAME] NOW</a><br>"
+	dat += "<a href='?src=[ref];evac_authority=toggle_dest'>Toggle Self Destruct Permission (does not affect evac in progress)</a><br>"
 
 	if(ticker.mode.xenomorphs.len)
 		dat += "<br><table cellspacing=5><tr><td><B>Aliens</B></td><td></td><td></td></tr>"
@@ -63,9 +64,9 @@
 			var/mob/M = L.current
 			var/location = get_area(M.loc)
 			if(M)
-				dat += "<tr><td><a href='?src=[REF(src)];[HrefToken()];priv_msg=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+				dat += "<tr><td><a href='?priv_msg=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 				dat += "<td>[location]</td>"
-				dat += "<td><a href='?src=[REF(src)];[HrefToken()];adminplayeropts=\ref[M]'>PP</A></td></TR>"
+				dat += "<td><a href='?src=[ref];adminplayeropts=[REF(M)]'>PP</A></td></TR>"
 		dat += "</table>"
 
 	if(ticker.liaison)
@@ -73,9 +74,9 @@
 		var/mob/M = ticker.liaison.current
 		var/location = get_area(M.loc)
 		if(M)
-			dat += "<tr><td><a href='?src=[REF(src)];[HrefToken()];priv_msg=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+			dat += "<tr><td><a href='?priv_msg=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 			dat += "<td>[location]</td>"
-			dat += "<td><a href='?src=[REF(src)];[HrefToken()];adminplayeropts=\ref[M]'>PP</A></td></TR>"
+			dat += "<td><a href='?src=[ref];adminplayeropts=[REF(M)]'>PP</A></td></TR>"
 		dat += "</table>"
 
 	if(ticker.mode.survivors.len)
@@ -84,9 +85,9 @@
 			var/mob/M = L.current
 			var/location = get_area(M.loc)
 			if(M)
-				dat += "<tr><td><a href='?src=[REF(src)];[HrefToken()];priv_msg=\ref[M]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
+				dat += "<tr><td><a href='?priv_msg=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == 2 ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 				dat += "<td>[location]</td>"
-				dat += "<td><a href='?src=[REF(src)];[HrefToken()];adminplayeropts=\ref[M]'>PP</A></td></TR>"
+				dat += "<td><a href='?src=[ref];adminplayeropts=[REF(M)]'>PP</A></td></TR>"
 		dat += "</table>"
 
 	dat += "</body></html>"

@@ -1,26 +1,32 @@
-/client/proc/game_panel()
+/datum/admins/proc/game_panel()
 	set name = "Game Panel"
 	set category = "Admin"
 
 	if(!check_rights(R_ADMIN))	
 		return
 
+	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
 	var/dat = {"
 		<center><B>Game Panel</B></center><hr>\n
-		<A href='?src=\ref[src];c_mode=1'>Change Game Mode</A><br>
+		<A href='?src=[ref];modemenu=1'>Change Game Mode</A><br>
 		<BR>
-		<A href='?src=\ref[src];create_object=1'>Create Object</A><br>
-		<A href='?src=\ref[src];quick_create_object=1'>Quick Create Object</A><br>
-		<A href='?src=\ref[src];create_turf=1'>Create Turf</A><br>
-		<A href='?src=\ref[src];create_mob=1'>Create Mob</A><br>
+		<A href='?src=[ref];create_object=1'>Create Object</A><br>
+		<A href='?src=[ref];quick_create_object=1'>Quick Create Object</A><br>
+		<A href='?src=[ref];create_turf=1'>Create Turf</A><br>
+		<A href='?src=[ref];create_mob=1'>Create Mob</A><br>
 		"}
 
 	usr << browse(dat, "window=admin2;size=210x280")
 	return
 
+
+
 /var/create_mob_html = null
 
-/client/proc/create_mob(var/mob/user)
+/datum/admins/proc/create_mob(var/mob/user)
+	if(!check_rights(R_SPAWN))
+		return
+
 	if(!create_mob_html)
 		var/mobjs = null
 		mobjs = list2text(typesof(/mob), ";")
@@ -30,9 +36,13 @@
 	user << browse(oldreplacetext(create_mob_html, "/* ref src */", "\ref[src]"), "window=create_mob;size=425x475")
 
 
+
 /var/create_object_html = null
 
-/client/proc/create_object(var/mob/user)
+/datum/admins/proc/create_object(var/mob/user)
+	if(!check_rights(R_SPAWN))
+		return
+
 	if(!create_object_html)
 		var/objectjs = null
 		objectjs = list2text(typesof(/obj), ";")
@@ -42,7 +52,10 @@
 	user << browse(oldreplacetext(create_object_html, "/* ref src */", "\ref[src]"), "window=create_object;size=425x475")
 
 
-/client/proc/quick_create_object(var/mob/user)
+
+/datum/admins/proc/quick_create_object(var/mob/user)
+	if(!check_rights(R_SPAWN))
+		return
 
 	var/quick_create_object_html = null
 	var/pathtext = null
@@ -61,9 +74,13 @@
 	user << browse(oldreplacetext(quick_create_object_html, "/* ref src */", "\ref[src]"), "window=quick_create_object;size=425x475")
 
 
+
 /var/create_turf_html = null
 
-/client/proc/create_turf(var/mob/user)
+/datum/admins/proc/create_turf(var/mob/user)
+	if(!check_rights(R_SPAWN))
+		return
+
 	if(!create_turf_html)
 		var/turfjs = null
 		turfjs = list2text(typesof(/turf), ";")
