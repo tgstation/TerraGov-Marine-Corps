@@ -1256,7 +1256,7 @@
 		if(SENTRY_ALERT_AMMO)
 			notice = "<b>ALERT! [src]'s ammo depleted at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
 		if(SENTRY_ALERT_HOSTILE)
-			notice = "<b>ALERT! Hostile/unknown: [M] Detected at: [get_area(M)]. Coordinates: (X: [M.x], Y: [M.y]).</b>"
+			notice = "<b>ALERT! [src] detected Hostile/Unknown: [M.name] at: [get_area(M)]. Coordinates: (X: [M.x], Y: [M.y]).</b>"
 		if(SENTRY_ALERT_FALLEN)
 			notice = "<b>ALERT! [src] has been knocked over at: [get_area(src)]. Coordinates: (X: [x], Y: [y]).</b>"
 		if(SENTRY_ALERT_DAMAGE)
