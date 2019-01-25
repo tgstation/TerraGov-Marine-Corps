@@ -49,10 +49,14 @@ var/global/list/cargo_ammo_vendors = list() //Used by our gamemode code
 var/global/list/cargo_guns_vendors = list() //Used by our gamemode code
 var/global/list/active_diseases = list()
 var/global/list/events = list()
-var/global/list/alltips = marinetips += xenotips += joketips
+
+//tips
+var/global/list/alltips = file2list('config/marinetips.txt') + file2list('config/joketips.txt') + file2list('config/xenotips.txt')
 var/global/list/marinetips = file2list('config/marinetips.txt')
-var/global/list/xenotips = file2list('confit/xenotips.txt')
-var/global/list/joketips = file2list('confit/joketips.txt')
+var/global/list/xenotips = file2list('config/xenotips.txt')
+var/global/list/joketips = file2list('config/joketips.txt')
+
+
 
 //used by binoculars for dropship bombardment
 var/global/list/active_laser_targets = list()
