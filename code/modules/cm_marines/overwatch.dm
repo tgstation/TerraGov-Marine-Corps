@@ -23,6 +23,7 @@
 	var/datum/squad/current_squad = null //Squad being currently overseen
 	var/list/squads = list() //All the squads available
 	var/obj/selected_target //Selected target for bombarding
+	var/list/supply = list()
 //	var/console_locked = 0
 
 /obj/machinery/computer/overwatch/main
@@ -754,12 +755,16 @@
 		to_chat(usr, "\icon[src] <span class='warning'>No supply beacon detected!</span>")
 		return
 
-	var/obj/C = locate() in current_squad.drop_pad.loc //This thing should ALWAYS exist.
-	if(!C.can_supply_drop) //Can only send vendors and crates
-		C = null
+	var/obj/C = null
+	for(C in current_squad.drop_pad.loc) //This thing should ALWAYS exist.
+		if(!C.can_supply_drop)
+			C = null
+			continue
+		else
+			break
 
 	if(!istype(C))
-		to_chat(usr, "\icon[src] <span class='warning'>No crate was detected on the drop pad. Get Requisitions on the line!</span>")
+		to_chat(usr, "\icon[src] <span class='warning'>No deployable object was detected on the drop pad. Get Requisitions on the line!</span>")
 		return
 
 	if(!isturf(current_squad.sbeacon.loc))
