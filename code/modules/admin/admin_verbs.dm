@@ -530,9 +530,9 @@
 	log_admin_private_msay("[key_name(usr)]: [msg]")
 
 	var/color = "mod"
-	if(check_rights(R_EVERYTHING, TRUE))
+	if(check_rights(R_EVERYTHING, FALSE))
 		color = "headminmod"
-	else if(check_rights(R_ADMIN, TRUE))
+	else if(check_rights(R_ADMIN, FALSE))
 		color = "adminmod"
 
 	for(var/client/C in GLOB.admins)
