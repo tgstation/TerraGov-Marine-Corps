@@ -261,9 +261,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 	//send this msg to all admins
 	for(var/client/X in GLOB.admins)
-		if(X.prefs.toggles_sound & SOUND_ADMINHELP)
+		if((check_other_rights(X, R_ADMIN, FALSE) || is_mentor(X)) && X.prefs.toggles_sound & SOUND_ADMINHELP)
 			SEND_SOUND(X, sound('sound/effects/adminhelp.ogg'))
-		if(check_other_rights(X, R_ADMIN, FALSE) || is_mentor(X))
 			to_chat(X, admin_msg)
 
 	//show it to the person adminhelping too
