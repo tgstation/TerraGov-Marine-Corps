@@ -949,8 +949,8 @@
 					var/amount = input(usr, "Choose the amount to add.", "Choose the amount.", A.reagents.maximum_volume) as num
 					if(amount)
 						A.reagents.add_reagent(chosen_id, amount)
-						log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]")
-						message_admins("<span class='notice'>[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]</span>")
+						log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to \the [A].")
+						message_admins("[ADMIN_TPMONTY(usr)] has added [amount] units of [chosen_id] to \the [A].")
 
 
 		else if(href_list["modtransform"])
@@ -984,7 +984,7 @@
 			if(!check_rights(R_SPAWN))
 				return
 
-			var/mob/living/carbon/human/H = locate(href_list["setspecies"]) in GLOB.mob_list
+			var/mob/living/carbon/human/H = locate(href_list["setspecies"]) in mob_list
 			if(!istype(H))
 				to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
 				return
@@ -1005,7 +1005,7 @@
 			if(!check_rights(NONE))
 				return
 
-			var/mob/living/L = locate(href_list["mobToDamage"]) in GLOB.mob_list
+			var/mob/living/L = locate(href_list["mobToDamage"]) in mob_list
 			if(!istype(L))
 				return
 
@@ -1043,7 +1043,7 @@
 
 			if(amount != 0)
 				var/log_msg = "[key_name(usr)] dealt [amount] amount of [Text] damage to [key_name(L)]"
-				message_admins("[key_name(usr)] dealt [amount] amount of [Text] damage to [ADMIN_LOOKUPFLW(L)]")
+				message_admins("[ADMIN_TPMONTY(usr)] dealt [amount] amount of [Text] damage to [ADMIN_TPMONTY(L)]")
 				log_admin(log_msg)
 				admin_ticket_log(L, "<span class='notice'>[log_msg]</span>")
 				vv_update_display(L, Text, "[newamt]")

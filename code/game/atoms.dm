@@ -626,3 +626,10 @@ Proc for attack log creation, because really why not
 //called if Initialize returns INITIALIZE_HINT_LATELOAD
 /atom/proc/LateInitialize()
 	return
+
+
+/atom/vv_get_dropdown()
+	. = ..()
+	. += "---"
+	.["Modify Transform"] = "?_src_=vars;[HrefToken()];modtransform=[REF(src)]"
+	.["Add reagent"] = "?_src_=vars;[HrefToken()];addreagent=[REF(src)]"
