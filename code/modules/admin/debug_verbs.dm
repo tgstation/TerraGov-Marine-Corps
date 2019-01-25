@@ -368,7 +368,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	log_admin("[key_name(usr)] tried to fix next move: largest_next_move = [largest_move_time] | mob = [largest_move_mob] | next_click = [largest_click_time] | largest_click_mob = [largest_click_mob] | world.time = [world.time].")
 	message_admins("[ADMIN_TPMONTY(largest_move_mob)] had the largest move delay with [largest_move_time] frames / [largest_move_time / 10] seconds.")
 	message_admins("[ADMIN_TPMONTY(largest_click_mob)] had the largest click delay with [largest_click_time] frames / [largest_click_time / 10] seconds.")
-	message_admins("world.time = [world.time].")
+	message_admins("[ADMIN_TPMONTY(usr)] tried to unfreeze everyone at: world.time = [world.time].")
 
 
 /datum/admins/proc/restart_controller(controller in list("Master", "Failsafe"))

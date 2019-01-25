@@ -207,7 +207,7 @@
 	if(!istype(H) || !ticker || !H.mind?.assigned_role)
 		return
 
-	if(!(H.mind.assigned_role in list("Squad Marine", "Squad Engineer", "Squad Medic", "Squad Smartgunner", "Squad Specialist", "Squad Leader")))
+	if(!(H.mind.assigned_role in ROLES_MARINES))
 		return
 
 	var/datum/squad/S = input("Choose the marine's new squad") as null|anything in RoleAuthority.squads

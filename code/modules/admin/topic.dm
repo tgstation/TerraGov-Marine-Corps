@@ -603,6 +603,8 @@
 			if("Yes")
 				location = get_turf(usr)
 
+		var/mob/user = usr
+
 		switch(href_list["transform"])
 			if("observer")
 				M.change_mob_type(/mob/dead/observer, location, null, delmob)
@@ -642,9 +644,13 @@
 				M.change_mob_type(/mob/living/carbon/human, location, null, delmob,)
 			if("monkey")
 				M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob,)
+			if("moth")
+				M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob, "Moth")
 
-		log_admin("[key_name(usr)] has transformed [key_name(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
-		message_admins("[ADMIN_TPMONTY(usr)] has transformed [ADMIN_TPMONTY(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
+		var/mob/target = M
+
+		log_admin("[key_name(user)] has transformed [key_name(target)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
+		message_admins("[ADMIN_TPMONTY(user)] has transformed [ADMIN_TPMONTY(target)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
 
 
 	else if(href_list["revive"])
@@ -699,6 +705,9 @@
 			else
 				new /obj/item/reagent_container/food/snacks/cookie(T)
 		else
+			if(isobserver(M))
+				if(alert("Are you sure you want to spawn the cookie at observer location [AREACOORD(M.loc)]?", "Confirmation", "Yes", "No") != "Yes")
+					return
 			var/turf/T = get_turf(M)
 			new /obj/item/reagent_container/food/snacks/cookie(T)
 
@@ -810,6 +819,8 @@
 
 		var/mob/M = locate(href_list["lobby"])
 
+		if(istype(M, /mob/new_player))
+			return
 
 		if(!M.client)
 			to_chat(usr, "<span class='warning'>[M] doesn't seem to have an active client.</span>")
