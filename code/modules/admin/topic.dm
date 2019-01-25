@@ -1514,10 +1514,6 @@
 				log_admin("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				message_admins("[key_name(H)] has their hands full, so they did not receive their cookie, spawned by [key_name(src.owner)].")
 				return
-			else
-				H.update_inv_r_hand()//To ensure the icon appears in the HUD
-		else
-			H.update_inv_l_hand()
 		log_admin("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
 		message_admins("[key_name(H)] got their cookie, spawned by [key_name(src.owner)]")
 		feedback_inc("admin_cookies_spawned",1)
@@ -1538,10 +1534,6 @@
 				log_admin("[key_name(H)] has their hands full, so they did not receive their fortune cookie, spawned by [key_name(src.owner)].")
 				message_admins("[key_name(H)] has their hands full, so they did not receive their fortune cookie, spawned by [key_name(src.owner)].")
 				return
-			else
-				H.update_inv_r_hand()//To ensure the icon appears in the HUD
-		else
-			H.update_inv_l_hand()
 		log_admin("[key_name(H)] got their fortune cookie, spawned by [key_name(src.owner)]")
 		message_admins("[key_name(H)] got their fortune cookie, spawned by [key_name(src.owner)]")
 		feedback_inc("admin_fortune_cookies_spawned",1)

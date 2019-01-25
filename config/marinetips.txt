@@ -37,9 +37,3 @@ Almost every specialist has been reworked.
 You can select locations on the doll by using the numberpad.
 Anything can be a weapon if you put your mind to it.
 You can check your wounds to see if they have been bandaged or slaved.
-As a ravager, anytime you take damage you get even more angry, and thus resist more damage.
-As the Queen, you contain the hivemind of all the xenos.
-As a boiler, you have the most powerful corrosive acid for melting things.
-As a hunter, you have almost perfect stealth if you stand still.
-As a drone, your corrosive acid is very weak, but it's better than nothing.
-As a larva, ask your queen what you should evolve into.
