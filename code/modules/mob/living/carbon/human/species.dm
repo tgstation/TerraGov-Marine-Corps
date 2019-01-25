@@ -705,9 +705,10 @@
 		H.equip_to_slot(new /obj/item/clothing/glasses/zombie_eyes, SLOT_GLASSES, TRUE)
 		H.equip_to_slot_or_del(new /obj/item/clothing/shoes/marine, SLOT_SHOES, TRUE)
 
-		spawn(30)
-			H.jitteriness = 0
+		addtimer(CALLBACK(H, /mob/living/carbon/human/proc/reset_jitteriness), 30)
 
+/mob/living/carbon/human/proc/reset_jitteriness()
+	jitteriness = 0
 
 /datum/hud_data/zombie
 	has_a_intent = 1

@@ -71,7 +71,7 @@ var/list/department_radio_keys = list(
 
 		if (speaking.flags & SIGNLANG)
 			say_signlang(message, pick(speaking.signlang_verb), speaking)
-			return 1
+			return TRUE
 
 	var/list/listening = list()
 	var/list/listening_obj = list()
@@ -121,13 +121,7 @@ var/list/department_radio_keys = list(
 			to_chat(M, speech_bubble)
 		M.hear_say(message, verb, speaking, alt_name, italics, src, speech_sound, sound_vol)
 
-	spawn(30)
-		if(client) client.images -= speech_bubble
-		if(not_dead_speaker)
-			for(var/mob/M in listening)
-				if(M.client) M.client.images -= speech_bubble
-		qdel(speech_bubble)
-
+	addtimer(CALLBACK(src, .proc/remove_speech_bubble, client, speech_bubble, (not_dead_speaker?listening : null)), 30)
 
 	for(var/obj/O in listening_obj)
 		spawn(0)
@@ -135,7 +129,16 @@ var/list/department_radio_keys = list(
 				O.hear_talk(src, message, verb, speaking, italics)
 
 	src.log_talk(message, LOG_SAY)
-	return 1
+	return TRUE
+
+/mob/living/proc/remove_speech_bubble(var/client/C, var/image/speech_bubble, var/list/listening)
+	if(C)
+		C.images -= speech_bubble
+	if(listening)
+		for(var/mob/M in listening)
+			if(M.client)
+				M.client.images -= speech_bubble
+	qdel(speech_bubble)
 
 /mob/living/proc/say_signlang(var/message, var/verb="gestures", var/datum/language/language)
 	for (var/mob/O in viewers(src, null))

@@ -514,8 +514,8 @@
 			H.apply_damage(halloss_damage, HALLOSS)
 			if(!H.ear_deaf)
 				H.ear_deaf += stun_duration * 20  //Deafens them temporarily
-			spawn(31)
-				shake_camera(H, stun_duration * 10, 0.75) //Perception distorting effects of the psychic scream
+			//Perception distorting effects of the psychic scream
+			addtimer(CALLBACK(GLOBAL_PROC, /proc/shake_camera, H, stun_duration * 10, 0.75), 31)
 
 /mob/living/carbon/Xenomorph/Queen/proc/screech_cooldown()
 	has_screeched = FALSE
