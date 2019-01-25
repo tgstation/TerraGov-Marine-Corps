@@ -35,7 +35,7 @@
 			if(check_other_rights(C, R_ADMIN, FALSE))
 				if(is_mentor(src) && C.holder.fakekey)
 					continue
-				msg += "[C] is a [C.holder.rank]"
+				msg += "[C] is [C.holder.rank]"
 
 				if(isobserver(C.mob))
 					msg += " - Observing"
