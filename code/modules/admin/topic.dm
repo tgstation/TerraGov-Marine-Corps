@@ -895,7 +895,7 @@
 				var/mob/N = input("Pick an area.", "Pick an area") as null|anything in sortmobs(mob_list)
 				if(!N || !M)
 					return
-				target = N
+				target = N.loc
 
 		M.on_mob_jump()
 		M.forceMove(target)
