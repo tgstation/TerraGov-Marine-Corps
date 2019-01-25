@@ -22,9 +22,6 @@
 
 
 	if(href_list["ahelp"])
-		if(!check_rights(R_ADMIN))
-			return
-
 		var/ahelp_ref = href_list["ahelp"]
 		var/datum/admin_help/AH = locate(ahelp_ref)
 		if(AH)
@@ -34,9 +31,6 @@
 
 
 	else if(href_list["ahelp_tickets"])
-		if(!check_rights(R_ADMIN))
-			return
-
 		GLOB.ahelp_tickets.BrowseTickets(text2num(href_list["ahelp_tickets"]))
 
 
