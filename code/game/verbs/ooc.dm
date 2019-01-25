@@ -40,8 +40,8 @@ var/global/normal_ooc_colour = "#002eb8"
 	mob.log_talk(msg, LOG_OOC)
 
 	var/display_colour = normal_ooc_colour
-	if(holder && !holder.fakekey)
-		switch(holder.rank)
+	if(holder?.rank && !holder.fakekey)
+		switch(holder.rank.name)
 			if("Host")
 				display_colour = "#000000"	//black
 			if("Manager")
@@ -77,8 +77,8 @@ var/global/normal_ooc_colour = "#002eb8"
 		if(C.prefs.toggles_chat & CHAT_OOC)
 			var/display_name = key
 			if(holder?.fakekey)
-				if(C.holder)
-					display_name = "[holder.fakekey]/([src.key])"
+				if(check_other_rights(C, R_ADMIN))
+					display_name = "[holder.fakekey]/([key])"
 				else
 					display_name = holder.fakekey
 			to_chat(C, "<font color='[display_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>")

@@ -137,11 +137,11 @@
 
 
 	GLOB.ahelp_tickets.ClientLogin(src)
-	//Admin Authorisation
 	holder = GLOB.admin_datums[ckey]
 	if(holder)
 		GLOB.admins |= src
 		holder.owner = src
+		holder.activate()
 	else if(GLOB.deadmins[ckey])
 		verbs += /client/proc/readmin
 

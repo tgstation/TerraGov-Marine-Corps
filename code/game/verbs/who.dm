@@ -4,12 +4,16 @@
 
 	var/msg = "<b>Current Players:</b>\n"
 
-	var/list/Lines = list()
+	var/list/keys = list()
 
-	for(var/client/C in clients)
-		Lines += "[C.key]\n"
+	for(var/client/C in GLOB.clients)
+		if(C.holder?.fakekey && !check_rights(R_ADMIN))
+			continue
+		keys += "[C.key]\n"
 
-	msg += "<b>Total Players: [length(Lines)]</b>"
+	msg += list2text(sortKey(keys))
+
+	msg += "<b>Total Players: [length(GLOB.clients)]</b>"
 
 	to_chat(src, msg)
 
@@ -23,9 +27,11 @@
 	var/num_admins_online = 0
 	var/num_mentors_online = 0
 
-	if(holder)
+	if(check_rights(R_ADMIN|R_MENTOR))
 		for(var/client/C in GLOB.admins)
 			if(check_other_rights(C, R_ADMIN))
+				if(is_mentor(src) && C.holder.fakekey)
+					continue
 				msg += "[C] is a [C.holder.rank]"
 
 				if(isobserver(C.mob))
@@ -56,7 +62,7 @@
 
 	else
 		for(var/client/C in GLOB.admins)
-			if(check_other_rights(C, R_ADMIN))
+			if(check_other_rights(C, R_ADMIN) && !C.holder.fakekey)
 				msg += "[C] is a [C.holder.rank]\n"
 				num_admins_online++
 			else if(is_mentor(C))

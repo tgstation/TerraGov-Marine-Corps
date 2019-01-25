@@ -86,7 +86,6 @@ GLOBAL_PROTECT(href_token)
 
 
 /datum/admins/proc/associate(client/C)
-	log_admin("Associating with [C]")
 	if(IsAdminAdvancedProcCall())
 		log_admin("[key_name(usr)] has tried to elevate permissions!")
 		message_admins("[ADMIN_TPMONTY(usr)] has tried to elevate permissions!")
