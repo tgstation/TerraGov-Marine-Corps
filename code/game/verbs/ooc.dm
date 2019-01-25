@@ -44,7 +44,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		switch(holder.rank.name)
 			if("Host")
 				display_colour = "#000000"	//black
-			if("Manager")
+			if("Project Lead")
 				display_colour = "#800080"	//dark purple
 			if("Headcoder")
 				display_colour = "#800080"	//dark blue
