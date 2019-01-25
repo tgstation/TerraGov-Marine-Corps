@@ -279,9 +279,10 @@
 					<td align='center' bgcolor='[color]'>
 						<span id='notice_span[i]'></span>
 						<a id='link[i]'
-						onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","--unused--","[M_key]","[M.lastKnownIP]",[is_antagonist],"\ref[M]")'
+						onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[M_key]","[M.lastKnownIP]",[is_antagonist],"[REF(M)]")'
 						>
 						<b id='search[i]'>[M_name] - [M_rname] - [M_key] ([M_job])</b>
+						<span hidden class='filter_data'>[M_name] [M_rname] [M_key] [M_job]</span>
 						</a>
 						<br><span id='item[i]'></span>
 					</td>
@@ -291,6 +292,8 @@
 
 			i++
 
+
+	//player table ending
 	dat += {"
 		</table>
 		</span>
@@ -303,6 +306,7 @@
 	"}
 
 	usr << browse(dat, "window=players;size=600x480")
+
 
 
 /datum/admins/proc/player_panel_extended()

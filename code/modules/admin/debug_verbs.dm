@@ -333,10 +333,10 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	var/turf/T = get_turf(O)
 
-	qdel(O)
-
 	log_admin("[key_name(usr)] deleted [O] at [AREACOORD(T)].")
 	message_admins("[ADMIN_TPMONTY(usr)] deleted [O] at [ADMIN_VERBOSEJMP(T)].")
+
+	qdel(O)
 
 
 /datum/admins/proc/fix_next_move()
