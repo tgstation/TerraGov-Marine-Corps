@@ -106,8 +106,7 @@
 				attack_message2 = "<span class='danger'>You viciously rend \the [src] with your teeth!</span>"
 				log = "bit"
 				M.critical_proc = TRUE
-				spawn(CRITICAL_HIT_DELAY)
-					M.critical_proc = FALSE
+				addtimer(CALLBACK(M, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), CRITICAL_HIT_DELAY)
 
 			//Check for a special bite attack
 			if(prob(M.xeno_caste.bite_chance) && !M.critical_proc && !no_crit && !M.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
@@ -118,8 +117,7 @@
 				attack_message2 = "<span class='danger'>You violently impale \the [src] with your tail!</span>"
 				log = "tail-stabbed"
 				M.critical_proc = TRUE
-				spawn(CRITICAL_HIT_DELAY)
-					M.critical_proc = FALSE
+				addtimer(CALLBACK(M, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), CRITICAL_HIT_DELAY)
 
 			//Somehow we will deal no damage on this attack
 			if(!damage)
@@ -243,6 +241,9 @@
 			return TRUE
 
 	return TRUE
+
+/mob/living/carbon/Xenomorph/proc/reset_critical_hit()
+	critical_proc = FALSE
 
 /mob/living/carbon/Xenomorph/proc/process_rage_attack()
 	return FALSE

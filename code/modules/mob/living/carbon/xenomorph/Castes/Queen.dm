@@ -436,10 +436,9 @@
 		to_chat(src, "<span class='warning'>You must wait a bit before you can toggle this again.</span>")
 		return
 
-	spawn(300)
-		pslash_delay = 0
+	addtimer(CALLBACK(src, .slash_toggle_delay), 300)
 
-	pslash_delay = 1
+	pslash_delay = TRUE
 
 	var/datum/hive_status/hive
 	if(hivenumber && hivenumber <= hive_datum.len)
@@ -460,6 +459,9 @@
 		to_chat(src, "<span class='xenonotice'>You forbid slashing entirely.</span>")
 		xeno_message("The Queen has <b>forbidden</b> the harming of hosts. You can no longer slash your enemies.")
 		hive.slashing_allowed = 0
+
+/mob/living/carbon/Xenomorph/proc/slash_toggle_delay()
+	pslash_delay = FALSE
 
 /mob/living/carbon/Xenomorph/Queen/proc/queen_screech()
 	if(!check_state())
@@ -483,14 +485,9 @@
 		if(FH.stat != DEAD)
 			FH.Die()
 
-	has_screeched = 1
+	has_screeched = TRUE
 	use_plasma(250)
-	spawn(500)
-		has_screeched = 0
-		to_chat(src, "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>")
-		for(var/Z in actions)
-			var/datum/action/A = Z
-			A.update_button_icon()
+	addtimer(CALLBACK(src, .screech_cooldown), 500)
 	playsound(loc, 'sound/voice/alien_queen_screech.ogg', 75, 0)
 	visible_message("<span class='xenohighdanger'>\The [src] emits an ear-splitting guttural roar!</span>")
 	round_statistics.queen_screech++
@@ -519,6 +516,11 @@
 				H.ear_deaf += stun_duration * 20  //Deafens them temporarily
 			spawn(31)
 				shake_camera(H, stun_duration * 10, 0.75) //Perception distorting effects of the psychic scream
+
+/mob/living/carbon/Xenomorph/Queen/proc/screech_cooldown()
+	has_screeched = FALSE
+	to_chat(src, "<span class='warning'>You feel your throat muscles vibrate. You are ready to screech again.</span>")
+	update_action_buttons()
 
 /mob/living/carbon/Xenomorph/Queen/proc/queen_gut(atom/A)
 
