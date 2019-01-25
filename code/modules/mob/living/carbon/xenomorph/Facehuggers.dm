@@ -23,7 +23,7 @@
 	var/stat = CONSCIOUS //UNCONSCIOUS is the idle state in this case
 	var/sterile = FALSE
 	var/attached = FALSE
-	var/lifecycle = 30 //How long the hugger will survive outside of the egg, or carrier.
+	var/lifecycle = 15 //How long the hugger will survive outside of the egg, or carrier.
 	var/leaping = FALSE //Is actually attacking someone?
 	var/hivenumber = XENO_HIVE_NORMAL
 
@@ -35,7 +35,7 @@
 	Die()
 
 /obj/item/clothing/mask/facehugger/proc/update_stat(new_stat)
-	if(new_stat && stat != new_stat)
+	if(stat != new_stat)
 		stat = new_stat
 		update_icon()
 		if(stat == CONSCIOUS)
@@ -96,7 +96,7 @@
 	user.visible_message("<span class='warning'>\ [user] attempts to plant [src] on [M]'s face!</span>", \
 	"<span class='warning'>You attempt to plant [src] on [M]'s face!</span>")
 	if(M.client && !M.stat) //Delay for conscious cliented mobs, who should be resisting.
-		if(!do_after(user, 5, TRUE, 5, BUSY_ICON_HOSTILE))
+		if(!do_after(user, 10, TRUE, 5, BUSY_ICON_HOSTILE))
 			return
 	Attach(M)
 	user.update_icons()
@@ -148,8 +148,11 @@
 	if(stasis)
 		lifecycle = initial(lifecycle)
 	else if(!attached)
-		addtimer(CALLBACK(src, .proc/update_stat, CONSCIOUS), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
+		addtimer(CALLBACK(src, .proc/GoActive), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
 
+/obj/item/clothing/mask/facehugger/proc/GoActive()
+	if(stat == UNCONSCIOUS)
+		update_stat(CONSCIOUS)
 
 /obj/item/clothing/mask/facehugger/proc/check_lifecycle()
 	if(throwing)
@@ -409,7 +412,6 @@
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/carbon/target)
 	var/as_planned = target?.wear_mask == src ? TRUE : FALSE
-	var/falling = "jumps off"
 	if(CanHug(target, FALSE, FALSE) && !sterile) //double check for changes
 		var/embryos = 0
 		for(var/obj/item/alien_embryo/embryo in target) // already got one, stops doubling up
@@ -419,15 +421,18 @@
 			embryo.hivenumber = hivenumber
 			round_statistics.now_pregnant++
 			sterile = TRUE
-		falling = "falls limp"
 		Die()
 	else
 		reset_attach_status(as_planned)
-		playsound(src.loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
-		addtimer(CALLBACK(src, .proc/update_stat, CONSCIOUS), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
+		playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
+		addtimer(CALLBACK(src, .proc/GoActive), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
 
 	if(as_planned)
-		target.visible_message("<span class='danger'>[src] [falling] after violating [target]'s face!</span>")
+		if(sterile || target.status_flags & XENO_HOST)
+			target.visible_message("<span class='danger'>[src] falls limp after violating [target]'s face!</span>")
+		else //Huggered but not impregnated, deal damage.
+			target.visible_message("<span class='danger'>[src] frantically claws at [target]'s face before falling down!</span>","<span class='danger'>[src] frantically claws at your face before falling down! Auugh!</span>")
+			target.apply_damage(25, BRUTE, "head")
 
 /obj/item/clothing/mask/facehugger/proc/Die(update_icon = TRUE)
 	reset_attach_status()
@@ -438,7 +443,7 @@
 	update_stat(DEAD)
 
 	visible_message("\icon[src] <span class='danger'>\The [src] curls up into a ball!</span>")
-	playsound(src.loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
+	playsound(loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
 
 	layer = BELOW_MOB_LAYER //so dead hugger appears below live hugger if stacked on same tile.
 

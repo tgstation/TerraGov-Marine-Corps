@@ -209,6 +209,7 @@
 			if(prob(chance))
 				F.forceMove(loc)
 				step_away(F,src,1)
+				F.GoActive()
 			else
 				qdel(F)
 			chance -= 30
@@ -225,9 +226,9 @@
 /mob/living/carbon/Xenomorph/Carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F, message = TRUE)
 	if(huggers.len < xeno_caste.huggers_max)
 		if(F.stat == CONSCIOUS)
-			huggers.Add(F)
-			F.forceMove(src)
+			transferItemToLoc(F, src)
 			F.GoIdle(TRUE)
+			huggers.Add(F)
 			if(message)
 				to_chat(src, "<span class='notice'>You store the facehugger and carry it for safekeeping. Now sheltering: [huggers.len] / [xeno_caste.huggers_max].</span>")
 		else if(message)
@@ -262,6 +263,7 @@
 			return
 		F = pick_n_take(huggers)
 		put_in_active_hand(F)
+		F.GoActive()
 		to_chat(src, "<span class='xenonotice'>You grab one of the facehugger in your storage. Now sheltering: [huggers.len] / [xeno_caste.huggers_max].</span>")
 		return
 
@@ -273,7 +275,6 @@
 		threw_a_hugger = TRUE
 		update_action_button_icons()
 		dropItemToGround(F)
-		F.update_stat(CONSCIOUS)
 		F.throw_at(T, CARRIER_HUGGER_THROW_DISTANCE, CARRIER_HUGGER_THROW_SPEED)
 		visible_message("<span class='xenowarning'>\The [src] throws something towards \the [T]!</span>", \
 		"<span class='xenowarning'>You throw a facehugger towards \the [T]!</span>")

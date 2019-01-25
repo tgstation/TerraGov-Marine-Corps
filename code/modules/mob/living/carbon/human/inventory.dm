@@ -188,12 +188,6 @@
 
 
 /mob/living/carbon/human/wear_mask_update(obj/item/I, equipping)
-	//equipping arg to differentiate when we equip/unequip a mask
-	if(!equipping && istype(I,/obj/item/clothing/mask/facehugger))
-		var/obj/item/clothing/mask/facehugger/F = I
-		if(F.stat != DEAD && !F.sterile && !(status_flags & XENO_HOST)) //Huggered but not impregnated, deal damage.
-			visible_message("<span class='danger'>[F] frantically claws at [src]'s face!</span>","<span class='danger'>[F] frantically claws at your face! Auugh!</span>")
-			adjustBruteLossByPart(25,"head")
 	name = get_visible_name() // doing this without a check, still cheaper than doing it every Life() tick -spookydonut
 	if(I.flags_inv_hide & (HIDEALLHAIR|HIDETOPHAIR|HIDELOWHAIR))
 		update_hair()	//rebuild hair

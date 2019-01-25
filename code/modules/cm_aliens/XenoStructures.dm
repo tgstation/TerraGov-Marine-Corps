@@ -200,25 +200,24 @@
 	return ..()
 
 /obj/effect/alien/resin/trap/HasProximity(atom/movable/AM)
-	if(hugger)
-		if(hugger.CanHug(AM) && !isYautja(AM))
-			var/mob/living/L = AM
-			L.visible_message("<span class='warning'>[L] trips on [src]!</span>",\
-							"<span class='danger'>You trip on [src]!</span>")
-			L.KnockDown(1)
-			if(carrier_number)
-				for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
-					if(X.nicknumber == carrier_number)
-						if(!X.stat)
-							var/area/A = get_area(src)
-							if(A)
-								to_chat(X, "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>")
-						break
-			drop_hugger()
+	if(hugger?.CanHug(AM) && !isYautja(AM))
+		var/mob/living/L = AM
+		L.visible_message("<span class='warning'>[L] trips on [src]!</span>",\
+						"<span class='danger'>You trip on [src]!</span>")
+		L.KnockDown(1)
+		if(carrier_number)
+			for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
+				if(X.nicknumber == carrier_number)
+					if(!X.stat)
+						var/area/A = get_area(src)
+						if(A)
+							to_chat(X, "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>")
+					break
+		drop_hugger()
 
 /obj/effect/alien/resin/trap/proc/drop_hugger()
 	hugger.forceMove(loc)
-	addtimer(CALLBACK(hugger, /obj/item/clothing/mask/facehugger/proc/update_stat, CONSCIOUS), 1.5 SECONDS)
+	addtimer(CALLBACK(hugger, /obj/item/clothing/mask/facehugger.proc/GoActive), 0.5 SECONDS)
 	icon_state = "trap0"
 	visible_message("<span class='warning'>[hugger] gets out of [src]!</span>")
 	hugger = null
@@ -242,7 +241,8 @@
 		if(FH.stat == DEAD)
 			to_chat(user, "<span class='warning'>You can't put a dead facehugger in [src].</span>")
 		else
-			FH.forceMove(src)
+			user.transferItemToLoc(FH, src)
+			FH.GoIdle(TRUE)
 			hugger = FH
 			icon_state = "trap1"
 			to_chat(user, "<span class='xenonotice'>You place a facehugger in [src].</span>")
@@ -250,7 +250,7 @@
 		return ..()
 
 /obj/effect/alien/resin/trap/Crossed(atom/A)
-	if(ismob(A))
+	if(iscarbon(A))
 		HasProximity(A)
 
 /obj/effect/alien/resin/trap/Destroy()
@@ -461,12 +461,13 @@
 	if(hugger_type)
 		hugger = new hugger_type(src)
 		hugger.hivenumber = hivenumber
+		hugger.GoIdle(TRUE)
 	create_egg_triggers()
 	addtimer(CALLBACK(src, .proc/Grow), rand(MIN_GROWTH_TIME,MAX_GROWTH_TIME))
 
 /obj/effect/alien/egg/Destroy()
+	QDEL_LIST(egg_triggers)
 	. = ..()
-	delete_egg_triggers()
 
 /obj/effect/alien/egg/proc/Grow()
 	if(status == GROWING)
@@ -489,24 +490,19 @@
 			ET.loc = target_turf
 			i++
 
-/obj/effect/alien/egg/proc/delete_egg_triggers()
-	for(var/atom/trigger in egg_triggers)
-		egg_triggers -= trigger
-		qdel(trigger)
-
 /obj/effect/alien/egg/ex_act(severity)
 	Burst(TRUE)//any explosion destroys the egg.
 
 /obj/effect/alien/egg/attack_alien(mob/living/carbon/Xenomorph/M)
+
+	if(!istype(M))
+		return attack_hand(M)
 
 	if(M.hivenumber != hivenumber)
 		M.animation_attack_on(src)
 		M.visible_message("<span class='xenowarning'>[M] crushes \the [src]","<span class='xenowarning'>You crush \the [src]")
 		Burst(TRUE)
 		return
-
-	if(!istype(M))
-		return attack_hand(M)
 
 	switch(status)
 		if(BURST, DESTROYED)
@@ -529,14 +525,14 @@
 	if(kill)
 		if(status != DESTROYED)
 			QDEL_NULL(hugger)
-			delete_egg_triggers()
+			QDEL_LIST(egg_triggers)
 			update_status(DESTROYED)
 			flick("Egg Exploding", src)
 			playsound(src.loc, "sound/effects/alien_egg_burst.ogg", 25)
 	else
 		if(status == GROWN || status == GROWING)
 			update_status(BURSTING)
-			delete_egg_triggers()
+			QDEL_LIST(egg_triggers)
 			flick("Egg Opening", src)
 			playsound(src.loc, "sound/effects/alien_egg_move.ogg", 25)
 			addtimer(CALLBACK(src, .proc/unleash_hugger), 1 SECONDS)
@@ -590,13 +586,10 @@
 				if(DESTROYED)
 					to_chat(user, "<span class='xenowarning'>This egg is no longer usable.</span>")
 				else if(!hugger)
-					if(user)
-						visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")
-						user.temporarilyRemoveItemFromInventory(F)
-					else
-						visible_message("<span class='xenowarning'>[F] crawls back into [src]!</span>") //Not sure how, but let's roll with it for now.
+					visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")
+					user.transferItemToLoc(F, src)
 					update_status(GROWN)
-					F.forceMove(src)
+					F.GoIdle(TRUE)
 					hugger = F
 				else
 					to_chat(user, "<span class='xenowarning'>This one is occupied with a child.</span>")
@@ -638,9 +631,9 @@
 /obj/effect/alien/egg/fire_act()
 	Burst(TRUE)
 
-/obj/effect/alien/egg/HasProximity(atom/movable/AM as mob|obj)
-	if(status == GROWN && hugger)
-		if(!hugger.CanHug(AM) || isYautja(AM)) //Predators are too stealthy to trigger eggs to burst. Maybe the huggers are afraid of them.
+/obj/effect/alien/egg/HasProximity(atom/movable/AM)
+	if(status == GROWN)
+		if(!hugger?.CanHug(AM) || isYautja(AM)) //Predators are too stealthy to trigger eggs to burst. Maybe the huggers are afraid of them.
 			return
 		Burst(FALSE)
 
