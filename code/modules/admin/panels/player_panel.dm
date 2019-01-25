@@ -40,11 +40,15 @@
 								}
 								var ltd = tr.getElementsByTagName("td");
 								var td = ltd\[0\];
-								var lsearch = td.getElementsByClassName("filter_data");
+								var lsearch = td.getElementsByTagName("b");
 								var search = lsearch\[0\];
+								//var inner_span = li.getElementsByTagName("span")\[1\] //Should only ever contain one element.
+								//document.write("<p>"+search.innerText+"<br>"+filter+"<br>"+search.innerText.indexOf(filter))
 								if ( search.innerText.toLowerCase().indexOf(filter) == -1 )
 								{
-									tr.innerHTML = "";
+									//document.write("a");
+									//ltr.removeChild(tr);
+									td.innerHTML = "";
 									i--;
 								}
 							}catch(err) {   }
@@ -56,9 +60,10 @@
 					var debug = document.getElementById("debug");
 
 					locked_tabs = new Array();
+
 				}
 
-				function expand(id,job,name,real_name,old_names,key,ip,antagonist,ref){
+				function expand(id,job,name,real_name,image,key,ip,antagonist,ref){
 
 					clearAll();
 
@@ -69,22 +74,16 @@
 
 					body += "</td><td align='center'>";
 
-					body += "<font size='2'><b>"+job+" "+name+"</b><br><b>Real name "+real_name+"</b><br><b>Played by "+key+" ("+ip+")</b><br><b>Old names :"+old_names+"</b></font>";
+					body += "<font size='2'><b>"+job+" "+name+"</b><br><b>Real name "+real_name+"</b><br><b>Played by "+key+" ("+ip+")</b></font>"
 
 					body += "</td><td align='center'>";
 
 					body += "<a href='?_src_=holder;[HrefToken()];playerpanel="+ref+"'>PP</a> - "
 					body += "<a href='?_src_=vars;[HrefToken()];vars="+ref+"'>VV</a> - "
-					if (job == "Cyborg")
-						body += "<a href='?_src_=holder;[HrefToken()];borgpanel="+ref+"'>BP</a> - "
 					body += "<a href='?priv_msg="+ckey+"'>PM</a> - "
 					body += "<a href='?_src_=holder;[HrefToken()];subtlemessage="+ref+"'>SM</a> - "
-					body += "<a href='?_src_=holder;[HrefToken()];observejump="+ref+"'>JMP</a> - "
 					body += "<a href='?_src_=holder;[HrefToken()];observefollow="+ref+"'>FLW</a> - "
 					body += "<a href='?_src_=holder;[HrefToken()];individuallog="+ref+"'>LOGS</a><br>"
-					if(antagonist > 0)
-						body += "<font size='2'><a href='?_src_=holder;[HrefToken()];secrets=check_antagonist'><font color='red'><b>Antagonist</b></font></a></font>";
-
 					body += "</td></tr></table>";
 
 
@@ -98,7 +97,7 @@
 
 						var id = span.getAttribute("id");
 
-						if(!id || !(id.indexOf("item")==0))
+						if(!(id.indexOf("item")==0))
 							continue;
 
 						var pass = 1;
@@ -143,6 +142,9 @@
 					locked_tabs.push(id);
 					var notice_span = document.getElementById(notice_span_id);
 					notice_span.innerHTML = "<font color='red'>Locked</font> ";
+					//link.setAttribute("onClick","attempt('"+id+"','"+link_id+"','"+notice_span_id+"');");
+					//document.write("removeFromLocked('"+id+"','"+link_id+"','"+notice_span_id+"')");
+					//document.write("aa - "+link.getAttribute("onClick"));
 				}
 
 				function attempt(ab){
@@ -165,6 +167,8 @@
 					locked_tabs\[index\] = "";
 					var notice_span = document.getElementById(notice_span_id);
 					notice_span.innerHTML = "";
+					//var link = document.getElementById(link_id);
+					//link.setAttribute("onClick","addToLocked('"+id+"','"+link_id+"','"+notice_span_id+"')");
 				}
 
 				function selectTextField(){
@@ -279,10 +283,9 @@
 					<td align='center' bgcolor='[color]'>
 						<span id='notice_span[i]'></span>
 						<a id='link[i]'
-						onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","[M_key]","[M.lastKnownIP]",[is_antagonist],"[REF(M)]")'
+						onmouseover='expand("item[i]","[M_job]","[M_name]","[M_rname]","--unused--","[M_key]","[M.lastKnownIP]",[is_antagonist],"\ref[M]")'
 						>
 						<b id='search[i]'>[M_name] - [M_rname] - [M_key] ([M_job])</b>
-						<span hidden class='filter_data'>[M_name] [M_rname] [M_key] [M_job]</span>
 						</a>
 						<br><span id='item[i]'></span>
 					</td>
