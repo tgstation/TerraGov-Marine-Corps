@@ -184,7 +184,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		var/turf/location = get_turf(src)
 		log_game("[key_name(usr)] has ghosted.")
 		if(location) //to avoid runtime when a mob ends up in nullspace
-			message_admins("[key_name(usr)] has ghosted (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[usr]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>)")
+			message_admins("[ADMIN_TPMONTY(usr)] has ghosted.")
 		var/mob/dead/observer/ghost = ghostize(0)						//0 parameter is so we can never re-enter our body, "Charlie, you can never come baaaack~" :3
 		if(ghost) //Could be null if no key
 			ghost.timeofdeath = world.time // Because the living mob won't have a time of death and we want the respawn timer to work properly.

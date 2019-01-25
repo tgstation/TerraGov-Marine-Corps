@@ -695,7 +695,7 @@
 		if(!istype(H))
 			return
 
-		var/input = input("Please enter a message to reply to [key_name(H)].", "Outgoing message from TGMC", "")
+		var/input = input("Please enter a message to reply to [key_name(H)].", "Outgoing message from TGMC", "") as message|null
 		if(!input)
 			return
 
@@ -859,3 +859,119 @@
 
 		log_admin("[key_name(usr)] has sent [key_name(M)]'s mob to [key_name(N)].")
 		message_admins("[ADMIN_TPMONTY(usr)] has sent [ADMIN_TPMONTY(M)]'s mob to [ADMIN_TPMONTY(N)].")
+
+
+
+	else if(href_list["faxreply"])
+		var/mob/living/carbon/human/H = locate(href_list["faxreply"])
+		var/obj/machinery/faxmachine/fax = locate(href_list["originfax"])
+
+		var/template_choice = input("Which template do you want to use?") in list("TGMC High Command", "TGMC Provost General", "Corporate Liaison", "Custom")
+		var/fax_message = ""
+		switch(template_choice)
+			if("Custom")
+				var/input = input("Please enter a message to reply to [key_name(H)] via secure connection.", "Outgoing message", "") as text|null
+				if(!input)	
+					return
+				fax_message = "[input]"
+
+			if("TGMC High Command", "TGMC Provost General")
+				var/subject = input("Enter subject line", "Outgoing message", "") as text|null
+				if(!subject) 
+					return
+				var/addressed_to = ""
+				var/address_option = input("Address it to the sender or custom?") in list("Sender", "Custom")
+				if(address_option == "Sender")
+					addressed_to = "[H.real_name]"
+				else if(address_option == "Custom")
+					addressed_to = input("Who is it addressed to?", "Outgoing message", "") as text|null
+					if(!addressed_to) 
+						return
+				else
+					return
+				var/message_body = input("Enter Message Body, use <p></p> for paragraphs", "Outgoing message", "") as message|null
+				if(!message_body) 
+					return
+				var/sent_by = input("Enter the name and rank you are sending from.", "Outgoing message from USCM", "") as text|null
+				if(!sent_by) 
+					return
+
+				var/sent_title = template_choice
+
+
+				fax_message = generate_templated_fax(FALSE, "TGMC CENTRAL COMMAND", subject, addressed_to, message_body, sent_by, sent_title, "TerraGov Marine Corps")
+		
+
+				usr << browse(fax_message, "window=tgmcfaxpreview;size=600x600")
+
+				if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")
+					return
+
+				fax_contents += fax_message
+
+				TGMCFaxes.Add("<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxview=[REF(fax_message)]'> view reply at [world.timeofday]</a>")
+
+
+			if("Corporate Liaison")
+				var/subject = input("Enter subject line", "Outgoing message", "") as text|null
+				if(!subject) 
+					return
+				var/addressed_to = ""
+				var/address_option = input("Address it to the sender or custom?") in list("Sender", "Custom")
+				if(address_option == "Sender")
+					addressed_to = "[H.real_name]"
+				else if(address_option == "Custom")
+					addressed_to = input("Who do you want to address it to?", "Outgoing message", "") as text|null
+					if(!addressed_to) 
+						return
+				else
+					return
+				var/message_body = input("Enter Message Body, use <p></p> for paragraphs", "Outgoing message", "") as message|null
+				if(!message_body) 
+					return
+				var/sent_by = input("Enter the name you are sending this from", "Outgoing message", "") as text|null
+				if(!sent_by) 
+					return
+
+				fax_message = generate_templated_fax(TRUE, "NANOTRASEN CORPORATE AFFAIRS - TGS THESEUS", subject, addressed_to, message_body, sent_by, "Corporate Affairs Director", "Nanotrasen")
+				
+				usr << browse(fax_message, "window=clfaxpreview;size=600x600")
+
+				if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")
+					return
+
+				fax_contents += fax_message
+
+				CLFaxes.Add("<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxview=[REF(fax_message)]'> view reply at [world.timeofday]</a>")
+
+		var/customname = input("Pick a title for the report", "Title") as text|null
+
+		for(var/obj/machinery/faxmachine/F in machines)
+			if(F == fax)
+				if(!(F.stat & (BROKEN|NOPOWER)))
+					flick("faxreceive", F)
+
+					spawn(20)
+						var/obj/item/paper/P = new /obj/item/paper( F.loc )
+						P.name = "USCM High Command - [customname]"
+						P.info = fax_message
+						P.update_icon()
+
+						playsound(F.loc, "sound/machines/fax.ogg", 15)
+
+						var/image/stampoverlay = image('icons/obj/items/paper.dmi')
+						stampoverlay.icon_state = "paper_stamp-uscm"
+						if(!P.stamped)
+							P.stamped = new
+						P.stamped += /obj/item/tool/stamp
+						P.overlays += stampoverlay
+						P.stamps += "<HR><i>This paper has been stamped by the High Command Quantum Relay.</i>"
+
+				log_admin("[key_name(usr)] replied to a fax message from [key_name(H)]: [fax_message]")
+				message_admins("[ADMIN_TPMONTY(usr)] replied to a fax message from [ADMIN_TPMONTY(H)].")
+
+
+	else if(href_list["faxview"])
+		var/info = locate(href_list["faxview"])
+
+		usr << browse("<HTML><HEAD><TITLE>Fax Message</TITLE></HEAD><BODY>[info]</BODY></HTML>", "window=Fax Message")

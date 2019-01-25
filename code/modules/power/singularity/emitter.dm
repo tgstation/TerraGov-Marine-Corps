@@ -53,7 +53,7 @@
 		src.directwired = 1
 
 /obj/machinery/power/emitter/Destroy()
-	log_game("Emitter deleted at [AREACOORD(src.loc)].")	
+	log_game("Emitter deleted at [AREACOORD(src.loc)].")
 	message_admins("Emitter deleted at [ADMIN_VERBOSEJMP(src.loc)].")
 	. = ..()
 
@@ -76,15 +76,15 @@
 			if(src.active==1)
 				src.active = 0
 				to_chat(user, "You turn off the [src].")
-				message_admins("Emitter turned off by [key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) in ([x],[y],[z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
-				log_game("Emitter turned off by [user.ckey]([user]) in ([x],[y],[z])")
+				message_admins("Emitter turned off by [ADMIN_TPMONTY(user)].")
+				log_game("Emitter turned off by [key_name(user)] in [AREACOORD(user.loc)].")
 			else
 				src.active = 1
 				to_chat(user, "You turn on the [src].")
 				src.shot_number = 0
 				src.fire_delay = 100
-				message_admins("Emitter turned on by [key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) in ([x],[y],[z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
-				log_game("Emitter turned on by [user.ckey]([user]) in ([x],[y],[z])")
+				message_admins("Emitter turned on by [ADMIN_TPMONTY(usr)].")
+				log_game("Emitter turned on by [key_name(user)] in [AREACOORD(user.loc)].")
 			update_icon()
 		else
 			to_chat(user, "<span class='warning'>The controls are locked!</span>")
