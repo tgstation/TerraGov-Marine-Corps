@@ -534,9 +534,9 @@
 
 				else
 					if(r_store || l_store)
-						if(r_store && !(r_store.flags_item & NODROP) && !(r_store.flags_inventory & CANTSTRIP))
+						if(r_store && !(r_store.flags_item & NODROP))
 							dropItemToGround(r_store)
-						if(l_store && !(l_store.flags_item & NODROP) && !(l_store.flags_inventory & CANTSTRIP))
+						if(l_store && !(l_store.flags_item & NODROP))
 							dropItemToGround(l_store)
 					else
 						to_chat(usr, "<span class='notice'>[src]'s pockets are empty.</span>")
