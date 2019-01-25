@@ -172,8 +172,8 @@ datum/game_mode/proc/initialize_special_clamps()
 	if(!new_predator)
 		return FALSE
 
-	log_admin("[new_predator.key], became a new Yautja, [new_predator.real_name].")
-	message_admins("([new_predator.key]) joined as Yautja, [new_predator.real_name].")
+	log_admin("[key_name(new_predator)] joined as Yautja.")
+	message_admins("[ADMIN_TPMONTY(new_predator)] joined as Yautja.")
 
 	if(pred_candidate) pred_candidate.loc = null //Nullspace it for garbage collection later.
 
@@ -200,7 +200,6 @@ datum/game_mode/proc/initialize_special_clamps()
 
 /datum/game_mode/proc/transform_predator(mob/pred_candidate)
 	if(!pred_candidate.client) //Something went wrong.
-		message_admins("<span class='warning'><b>Warning</b>: null client in transform_predator.</span>")
 		log_runtime("Null client in transform_predator.")
 		return FALSE
 
@@ -457,8 +456,8 @@ datum/game_mode/proc/initialize_post_queen_list()
 	new_xeno.ghostize(0) //Make sure they're not getting a free respawn.
 	new_xeno.key = xeno_candidate.key
 	if(new_xeno.client) new_xeno.client.change_view(world.view)
-	message_admins("[new_xeno.key] has joined as [new_xeno].")
-	log_admin("[new_xeno.key] has joined as [new_xeno].")
+	message_admins("[key_name(new_xeno)] has joined as [new_xeno].")
+	log_admin("[ADMIN_TPMONTY(new_xeno)] has joined as [new_xeno].")
 	if(isXeno(new_xeno)) //Dear lord
 		var/mob/living/carbon/Xenomorph/X = new_xeno
 		if(X.is_ventcrawling) X.add_ventcrawl(X.loc) //If we are in a vent, fetch a fresh vent map

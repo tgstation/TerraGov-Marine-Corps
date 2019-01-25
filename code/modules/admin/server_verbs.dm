@@ -184,12 +184,12 @@
 	if(ticker.current_state != GAME_STATE_PREGAME)
 		ticker.delay_end = !ticker.delay_end
 	else
-		to_chat(world, "<hr><span class='centerbold'>The game [going ? "game will start soon" : "start has been delayed"].</span><hr>")
+		to_chat(world, "<hr><span class='centerbold'>The game [!going ? "game will start soon" : "start has been delayed"].</span><hr>")
 
 	going = !going
 
-	log_admin("[key_name(usr)] [going ? "delayed the round start/end" : "made the round start/end normally"].")
-	message_admins("[ADMIN_TPMONTY(usr)] [going ? "delayed the round start/end" : "made the round start/end normally"].")
+	log_admin("[key_name(usr)] [!going ? "delayed the round start/end" : "made the round start/end normally"].")
+	message_admins("[ADMIN_TPMONTY(usr)] [!going ? "delayed the round start/end" : "made the round start/end normally"].")
 
 
 /datum/admins/proc/toggle_gun_restrictions()

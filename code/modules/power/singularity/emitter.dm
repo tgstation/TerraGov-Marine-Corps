@@ -53,8 +53,8 @@
 		src.directwired = 1
 
 /obj/machinery/power/emitter/Destroy()
-	message_admins("Emitter deleted at ([x],[y],[z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
-	log_game("Emitter deleted at ([x],[y],[z])")
+	log_game("Emitter deleted at [AREACOORD(src.loc)].")	
+	message_admins("Emitter deleted at [ADMIN_VERBOSEJMP(src.loc)].")
 	. = ..()
 
 /obj/machinery/power/emitter/update_icon()

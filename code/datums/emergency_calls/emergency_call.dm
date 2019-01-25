@@ -136,7 +136,7 @@
 		ticker.mode.waiting_for_candidates = TRUE
 
 	show_join_message() //Show our potential candidates the message to let them join.
-	message_admins("Distress beacon: '[name]' activated. Looking for candidates.", 1)
+	message_admins("Distress beacon: '[name]' activated. Looking for candidates.")
 
 	if(announce)
 		command_announcement.Announce("A distress beacon has been launched from the [MAIN_SHIP_NAME].", "Priority Alert", new_sound='sound/AI/distressbeacon.ogg')
@@ -145,7 +145,7 @@
 
 	spawn(1 MINUTES)
 		if(length(candidates) < mob_min)
-			message_admins("Aborting distress beacon [name], not enough candidates. Found [length(candidates)].", 1)
+			message_admins("Aborting distress beacon [name], not enough candidates. Found [length(candidates)].")
 			ticker.mode.waiting_for_candidates = FALSE
 			members = list() //Empty the members list.
 			candidates = list()
@@ -183,7 +183,7 @@
 			if(announce)
 				command_announcement.Announce(dispatch_message, "Distress Beacon", new_sound='sound/AI/distressreceived.ogg') //Announcement that the Distress Beacon has been answered, does not hint towards the chosen ERT
 
-			message_admins("Distress beacon: [name] finalized, setting up candidates.", 1)
+			message_admins("Distress beacon: [name] finalized, setting up candidates.")
 			var/datum/shuttle/ferry/shuttle = shuttle_controller.shuttles[shuttle_id]
 
 			if(!shuttle || !istype(shuttle))

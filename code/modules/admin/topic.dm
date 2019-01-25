@@ -663,3 +663,63 @@
 
 	else if(href_list["editrights"])
 		edit_rights_topic(href_list)
+
+
+	else if(href_list["spawncookie"])
+		if(!check_rights(R_ADMIN|R_FUN))	
+			return
+
+		var/mob/M = locate(href_list["spawncookie"])
+		var/obj/item/reagent_container/food/snacks/cookie(M) = new(M)
+
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			var/turf/T = get_turf(H)
+			if(H.put_in_hands(cookie))
+				H.update_inv_hands()
+			else
+			var/obj/item/reagent_container/food/snacks/cookie(T) = new(T)
+		else
+			var/turf/T = get_turf(M)
+			var/obj/item/reagent_container/food/snacks/cookie(T) = new(T)
+
+		to_chat(H, "<span class='boldnotice'>Your prayers have been answered!! You received the best cookie!</span>")
+
+		log_admin("[key_name(H)] got their cookie, spawned by [key_name(usr)]")
+		message_admins("[ADMIN_TPMONTY(H)] got their cookie, spawned by [ADMIN_TPMONTY(usr)].")
+
+
+	else if(href_list["reply"])
+		var/mob/living/carbon/human/H = locate(href_list["reply"])
+
+		if(!istype(H))
+			return
+
+		var/input = input("Please enter a message to reply to [key_name(H)].", "Outgoing message from TGMC", "") as txt
+		if(!input)	
+			return
+
+		to_chat(H, "<span class='boldnotice'>Please stand by for a message from TGMC:[input]</span>")
+
+		log_admin("[ADMIN_TPMONTY(usr)] replied to [ADMIN_TPMONTY(H)]'s TGMC message with: [input].")
+		message_admins("[ADMIN_TPMONTY(usr)] replied to [ADMIN_TPMONTY(H)]'s' TGMC message with: [input]")
+
+
+	if(href_list["deny"])
+		var/mob/M = locate(href_list["deny"])
+		distress_cancel = TRUE
+		command_announcement.Announce("The distress signal has been blocked, the launch tubes are now recalibrating.", "Distress Beacon")
+		log_game("[key_name(usr)] has denied a distress beacon, requested by [key_name(M)]")
+		message_admins("[ADMIN_TPMONTY(usr)] has denied a distress beacon, requested by [ADMIN_TPMONTY(M)]")
+
+
+	if(href_list["distress"])
+		var/mob/ref_person = locate(href_list["distress"])
+
+		if(ticker?.mode?.waiting_for_candidates)
+			return
+
+		ticker.mode.activate_distress()
+
+		log_game("[key_name(usr)] has sent a randomized distress beacon early, requested by [key_name(M)]")
+		message_admins("[ADMIN_TPMONTY(usr)] has sent a randomized distress beacon early, requested by [ADMIN_TPMONTY(M)]")

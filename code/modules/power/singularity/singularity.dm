@@ -88,7 +88,9 @@ var/global/list/uneatable = list(
 /obj/machinery/singularity/proc/admin_investigate_setup()
 	last_warning = world.time
 	var/count = locate(/obj/machinery/containment_field) in orange(30, src)
-	if(!count)	message_admins("A singulo has been created without containment fields active ([x],[y],[z])",1)
+	if(!count)	
+		log_admin("A singulo has been created without containment fields active [AREACOORD(src.loc)].")
+		message_admins("A singulo has been created without containment fields active [ADMIN_VERBOSEJMP(src.loc)].")
 
 /obj/machinery/singularity/proc/dissipate()
 	if(!dissipate)

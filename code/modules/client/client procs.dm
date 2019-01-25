@@ -25,8 +25,8 @@
 
 	//search the href for script injection
 	if(findtext(href,"<script", 1, 0))
-		log_world("Attempted use of scripts within a topic call, by [src]")
-		message_admins("Attempted use of scripts within a topic call, by [src]")
+		log_world("[key_name(src)] attempted use of scripts within a topic call.")
+		message_admins("[ADMIN_TPMONTY(src)] attempted use of scripts within a topic call.")
 		//del(usr)
 		return
 

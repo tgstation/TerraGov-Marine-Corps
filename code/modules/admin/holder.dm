@@ -273,6 +273,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/secrets_panel,
 	/datum/admins/proc/view_cl_faxes,
 	/datum/admins/proc/view_tgmc_faxes,
+	/datum/admins/proc/remove_from_tank,
 	/client/proc/cmd_admin_pm_panel, //REWORK THIS
 	/client/proc/cmd_admin_pm_context //REWORK THIS
 	)

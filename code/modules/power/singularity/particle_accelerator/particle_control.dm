@@ -81,9 +81,9 @@
 		return
 	if(href_list["togglep"])
 		src.toggle_power()
-		if (active)
-			message_admins("PA Control Computer turned ON by [key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) in ([x],[y],[z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
-			log_game("PA Control Computer turned ON by [usr.ckey]([usr]) in ([x],[y],[z])")
+		if(active)
+			log_game("[key_name(usr)] turned on a PA computer in [AREACOORD(src.loc)].")			
+			message_admins("[ADMIN_TPMONTY(usr)] turned on a PA computer.")
 	else if(href_list["scan"])
 		src.part_scan()
 	else if(href_list["strengthup"])
@@ -92,8 +92,8 @@
 		if(strength > 2)
 			strength = 2
 		else
-			message_admins("PA Control Computer increased to [strength] by [key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) in ([x],[y],[z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[x];Y=[y];Z=[z]'>JMP</a>)",0,1)
-			log_game("PA Control Computer increased to [strength] by [usr.ckey]([usr]) in ([x],[y],[z])")
+			log_game("[key_name(usr)] increased PA computer to [strength] in [AREACOORD(src.loc)].")			
+			message_admins("[ADMIN_TPMONTY(usr)] increased PA computer to [strength].")
 		for(var/obj/structure/particle_accelerator/part in connected_parts)
 			part.strength = strength
 			part.update_icon()

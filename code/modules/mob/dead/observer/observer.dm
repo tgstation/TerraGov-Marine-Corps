@@ -739,8 +739,8 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			if(Z.client) //so players don't keep their ghost zoom view.
 				Z.client.change_view(world.view)
 
-			message_admins("[ckey] has joined as a [Z].")
-			log_admin("[ckey] has joined as a [Z].")
+			log_admin("[key_name(Z)] has joined as a zombie.")
+			message_admins("[ADMIN_TPMONTY(Z)] has joined as a zombie.")
 
 			if(isobserver(ghostmob) )
 				qdel(ghostmob)

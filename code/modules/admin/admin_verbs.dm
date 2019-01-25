@@ -16,7 +16,7 @@
 		ghost.reenter_corpse()
 	else
 		M.ghostize(TRUE)
-		M.client.change_view(world.view)
+		usr.client.change_view(world.view)
 		if(M && !M.key)
 			M.key = "@[usr.client.key]"
 
@@ -1114,3 +1114,17 @@
 			continue
 		var/mob/living/M = C.mob
 		M.revive()
+
+
+/datum/admins/remove_from_tank()
+	set category = "Admin"
+	set name = "Remove All From Tank"
+
+	if(!check_rights(R_ADMIN))
+		return
+
+	for(var/obj/vehicle/multitile/root/cm_armored/CA in view())
+		CA.remove_all_players()
+
+		log_admin("[key_name(usr)] forcibly removed all players from [CA].")
+		message_admins("[ADMIN_TPMONTY(usr)] forcibly removed all players from [CA].")

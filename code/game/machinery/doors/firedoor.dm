@@ -304,8 +304,8 @@
 		else
 			use_power(360)
 	else
-		log_admin("[usr]([usr.ckey]) has forced open an emergency shutter.")
-		message_admins("[usr]([usr.ckey]) has forced open an emergency shutter.")
+		log_admin("[key_name(usr)] has forced open an emergency shutter at [AREACOORD(usr.loc)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has forced open an emergency shutter.")
 	latetoggle()
 	return ..()
 

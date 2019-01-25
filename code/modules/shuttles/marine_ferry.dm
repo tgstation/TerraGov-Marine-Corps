@@ -76,8 +76,8 @@
 
 /datum/shuttle/ferry/marine/proc/load_datums()
 	if(!(info_tag in s_info))
-		message_admins("<span class=warning>Error with shuttles: Shuttle tag does not exist. Code: MSD10.\n WARNING: DROPSHIP LAUNCH WILL PROBABLY FAIL</span>")
-		log_admin("Error with shuttles: Shuttle tag does not exist. Code: MSD10.")
+		log_admin("ERROR: Shuttle tag does not exist.")
+		message_admins("ERROR: Shuttle tag does not exist.")
 
 	var/list/L = s_info[info_tag]
 	info_datums = L.Copy()
@@ -197,8 +197,8 @@
 		trg_rot = src_rot
 
 	if(!istype(T_src) || !istype(T_int) || !istype(T_trg))
-		message_admins("<span class=warning>Error with shuttles: Reference turfs not correctly instantiated. Code: MSD02.\n <font size=10>WARNING: DROPSHIP LAUNCH WILL FAIL</font></span>")
-		log_admin("Error with shuttles: Reference turfs not correctly instantiated. Code: MSD02.")
+		log_admin("ERROR: Shuttle reference turfs not correctly instantiated.")
+		message_admins("ERROR: Shuttle reference turfs not correctly instantiated.")
 
 	//Switch the landmarks, to swap docking and landing locs, so we can move back and forth.
 	if(!transit_gun_mission) //gun mission makes you land back where you started. no need to swap dock and land turfs.
@@ -351,13 +351,15 @@
 			for(var/turf/TU in shuttle_controller.locs_crash)
 				if(istype(get_area(TU), /area/almayer/hallways/hangar))
 					crash_turfs += TU
-			if(crash_turfs.len) T_trg = pick(crash_turfs)
-			else message_admins("<span class='notice'> no crash turf found in [MAIN_SHIP_NAME] Hangar, contact coders.</span>")
+			if(crash_turfs.len) 
+				T_trg = pick(crash_turfs)
+			else 
+				message_admins("ERROR: No crash turf found in [MAIN_SHIP_NAME] Hangar.")
 			break
 
 	if(!istype(T_src) || !istype(T_int) || !istype(T_trg))
-		message_admins("<span class=warning>Error with shuttles: Reference turfs not correctly instantiated. Code: MSD04.\n WARNING: DROPSHIP LAUNCH WILL FAIL</span>")
-		log_admin("Error with shuttles: Reference turfs not correctly instantiated. Code: MSD04.")
+		log_admin("ERROR: Shuttle reference turfs not correctly instantiated.")		
+		message_admins("ERROR: Shuttle reference turfs not correctly instantiated.")
 
 	shuttle_controller.locs_crash -= T_trg
 
@@ -526,8 +528,8 @@
 
 	//Switch the landmarks so we can do this again
 	if(!istype(T_src) || !istype(T_trg))
-		message_admins("<span class=warning>Error with shuttles: Ref turfs are null. Code: MSD15.\n WARNING: DROPSHIPS MAY NO LONGER BE OPERABLE</span>")
-		log_admin("Error with shuttles: Ref turfs are null. Code: MSD15.")
+		log_admin("ERROR: Shuttles ref turfs are null.")
+		message_admins("ERROR: Shuttle ref turfs are null.")		
 		return FALSE
 
 	locs_dock -= T_src

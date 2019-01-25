@@ -567,8 +567,9 @@
 	send_to_squads("<span class='danger'>WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!</span>")
 	spawn(25)
 		if(A)
-			message_admins("ALERT: [key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) fired an orbital bombardment in [A.name] for squad '[current_squad]' (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)")
-			log_attack("[key_name(usr)] fired an orbital bombardment in [A.name] for squad '[current_squad]'")
+			log_attack("[key_name(usr)] fired an orbital bombardment in for squad [current_squad] in [AREACOORD(T)].")			
+			message_admins("[ADMIN_TPMONTY(usr)] fired an orbital bombardment for squad [current_squad] in [ADMIN_VERBOSEJMP(T)].")
+
 		busy = FALSE
 		var/x_offset = rand(-2,2) //Little bit of randomness.
 		var/y_offset = rand(-2,2)
@@ -965,7 +966,7 @@
 	H.visible_message("<span class='notice'>[H] starts setting up [src] on the ground.</span>",
 	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
 	if(do_after(H, delay, TRUE, 5, BUSY_ICON_HOSTILE))
-		message_admins("[H] [key_name(usr)] set up an orbital strike beacon. (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>)")
+		message_admins("[ADMIN_TPMONTY(usr)] set up an orbital strike beacon.")
 		name = "transmitting orbital beacon"
 		active_orbital_beacons += src
 		var/cam_name = ""
@@ -997,7 +998,7 @@
 	H.visible_message("<span class='notice'>[H] starts removing [src] from the ground.</span>",
 	"<span class='notice'>You start removing [src] from the ground, deactivating it.</span>")
 	if(do_after(H, delay, TRUE, 5, BUSY_ICON_HOSTILE))
-		message_admins("[H] [key_name(usr)] removed an orbital strike beacon. (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>)")
+		message_admins("[ADMIN_TPMONTY(usr)] removed an orbital strike beacon.")
 		if(squad)
 			squad.squad_orbital_beacons -= src
 			squad = null

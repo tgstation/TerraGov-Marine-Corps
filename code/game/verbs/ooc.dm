@@ -34,7 +34,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		if(findtext(msg, "byond://"))
 			to_chat(src, "<B>Advertising other servers is not allowed.</B>")
 			log_admin("[key_name(src)] has attempted to advertise in OOC: [msg]")
-			message_admins("[key_name_admin(src)] has attempted to advertise in OOC: [msg]")
+			message_admins("[ADMIN_TPMONTY(src)] has attempted to advertise in OOC: [msg]")
 			return
 
 	mob.log_talk(msg, LOG_OOC)
@@ -71,7 +71,7 @@ var/global/normal_ooc_colour = "#002eb8"
 
 		if(check_rights(R_COLOR))
 			if(CONFIG_GET(flag/allow_admin_ooccolor))
-				display_colour = src.prefs.ooccolor
+				display_colour = prefs.ooccolor
 
 	for(var/client/C in clients)
 		if(C.prefs.toggles_chat & CHAT_OOC)
@@ -81,7 +81,7 @@ var/global/normal_ooc_colour = "#002eb8"
 					display_name = "[holder.fakekey]/([src.key])"
 				else
 					display_name = holder.fakekey
-			to_chat(C, "<font color='[display_colour]'><span class='ooc'>[src.donator ? "\[D\] " : ""]<span class='prefix'>OOC:</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>")
+			to_chat(C, "<font color='[display_colour]'><span class='ooc'><span class='prefix'>OOC:</span> <EM>[display_name]:</EM> <span class='message'>[msg]</span></span></font>")
 			/*
 			if(holder)
 				if(!holder.fakekey || C.holder)

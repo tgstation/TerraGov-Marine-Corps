@@ -21,8 +21,8 @@
 /client/proc/SDQL2_query(query_text as message)
 	set category = "Debug"
 	if(!check_rights(R_DEBUG))  //Shouldn't happen... but just to be safe.
-		message_admins("<span class='danger'>ERROR: Non-admin [key_name(usr)] attempted to execute a SDQL query!</span>")
-		log_admin("Non-admin [key_name(usr)] attempted to execute a SDQL query!")
+		log_admin("Non-admin [key_name(usr)] attempted to execute a SDQL query!")	
+		message_admins("Non-admin [ADMIN_TPMONTY(usr)] attempted to execute a SDQL query!")
 		return FALSE
 	var/list/results = world.SDQL2_query(query_text, key_name_admin(usr), "[key_name(usr)]")
 	for(var/I in 1 to 3)

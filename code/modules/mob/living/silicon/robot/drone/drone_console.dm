@@ -89,8 +89,8 @@
 
 		if(D.stat != 2)
 			to_chat(usr, "<span class='warning'>You issue a kill command for the unfortunate drone.</span>")
-			message_admins("[key_name_admin(usr)] issued kill order for drone [key_name_admin(D)] from control console.")
-			log_game("[key_name(usr)] issued kill order for [key_name(src)] from control console.")
+			log_game("[key_name(usr)] issued kill order for [key_name(D)] from control console.")
+			message_admins("[ADMIN_TPMONTY(usr)] issued kill order for drone [ADMIN_TPMONTY(D)] from control console.")
 			D.shut_down()
 
 	else if (href_list["search_fab"])
