@@ -7,7 +7,7 @@
 
 	if(usr.client.view == world.view)
 		var/newview = input("Select view range:", "Change View Range", 7) as null|num
-		if(newview && newview != owner.view)
+		if(newview && newview != usr.client.view)
 			usr.client.change_view(newview)
 	else
 		usr.client.change_view(world.view)
@@ -58,10 +58,10 @@
 	if(alert(usr, "Are you sure you want to gib [M]?", "Warning", "Yes", "No") != "Yes")
 		return
 
-	M.gib()
-
 	log_admin("[key_name(usr)] has gibbed [key_name(M)].")
-	message_admins("[ADMIN_TPMONTY(usr)] has gibbed [key_name(M)].")
+	message_admins("[ADMIN_TPMONTY(usr)] has gibbed [ADMIN_TPMONTY(M)].")
+
+	M.gib()
 
 
 /datum/admins/proc/emp()
@@ -92,8 +92,8 @@
 	if(!check_rights(R_FUN))
 		return
 
-	var/input = input(usr, "This should be a message from the ruler of the Xenomorph race.",, "") as message|null
-	var/customname = input(usr, "What do you want it to be called?.",, "Queen Mother Psychic Directive") as message|null
+	var/input = input("This should be a message from the ruler of the Xenomorph race.",, "") as message|null
+	var/customname = input("What do you want it to be called?.",, "Queen Mother Psychic Directive")
 
 	if(!input || !customname)
 		return FALSE
@@ -110,10 +110,13 @@
 
 /datum/admins/proc/hive_status()
 	set category = "Fun"
-	set name = "Show Hive Status"
+	set name = "Check Hive Status"
 	set desc = "Check the status of the hive."
 
 	if(!check_rights(R_FUN))
+		return
+
+	if(!ticker)
 		return
 
 	check_hive_status()
@@ -226,7 +229,7 @@
 	if(!check_rights(R_FUN|R_MENTOR))
 		return
 
-	var/msg = input("Subtle PM to [key_name(M)]:", "Subtle Message", "", "Cancel") as text
+	var/msg = input("Subtle PM to [key_name(M)]:", "Subtle Message", "") as text
 
 	if(!M?.client || !msg)
 		return
@@ -252,7 +255,7 @@
 	if(!selection)
 		return
 
-	var/mob/living/carbon/human/H
+	var/mob/living/carbon/human/H = selection
 
 	if(alert(usr, "Make [H] drop everything?", "Warning", "Yes", "No") != "Yes")
 		return
@@ -283,7 +286,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	switch(input(usr, "Do you want to change or clear the custom event info?",, "Change", "Clear", "Cancel"))
+	switch(input("Do you want to change or clear the custom event info?",, "Change", "Clear", "Cancel"))
 		if("Change")
 			custom_event_msg = input(usr, "Set the custom information players get on joining or via the OOC tab.",, custom_event_msg) as message|null
 
@@ -393,7 +396,7 @@
 
 	log_admin("AdminAnnounce: [key_name(usr)] : [message]")
 	message_admins("[ADMIN_TPMONTY(usr)] Announces:")
-	to_chat(world, "<span class='notice'><b>[fakekey ? "Administrator" : owner.key] ([rank]) Announces:</b>\n [message]</span>")
+	to_chat(world, "<span class='notice'><b>[usr.client.holder.fakekey ? "Administrator" : "[usr.client.key] ([usr.client.holder.rank])"] Announces:</b>\n [message]</span>")
 
 
 /datum/admins/proc/force_distress()
@@ -534,7 +537,8 @@
 		return
 
 	for(var/mob/V in hearers(O))
-		V.show_message("<b>[O.name]</b> [method]: [message]", 2)
+		V.show_message("<b>[O.name]</b> [method], \"[message]\"", 2)
+	usr.show_message("<b>[O.name]</b> [method], \"[message]\"", 2)
 
 	log_admin("[key_name(usr)] forced [O] ([O.type]) to: [method] [message]")
 	message_admins("[ADMIN_TPMONTY(usr)] forced [O] ([O.type]) to: [method] [message]")
@@ -555,7 +559,8 @@
 		return
 
 	for(var/mob/V in hearers(usr.control_object))
-		V.show_message("<b>[usr.control_object.name]</b> says: [msg]", 2)
+		V.show_message("<b>[usr.control_object.name]</b> says, \"[msg]\"", 2)
+	usr.show_message("<b>[usr.control_object.name]</b> says: \"[msg]\"", 2)
 
 	log_admin("[key_name(usr)] used [usr.control_object] ([usr.control_object.type]) to say: [msg]")
 	message_admins("[ADMIN_TPMONTY(usr)] used [usr.control_object] ([usr.control_object.type]) to say: [msg]")
@@ -569,10 +574,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(!owner.mob)
-		return
-
-	var/mob/M = owner.mob
+	var/mob/M = usr
 
 	var/list/choices = list("CANCEL", "Small Bomb", "Medium Bomb", "Big Bomb", "Custom Bomb")
 	var/choice = input("What size explosion would you like to produce?") in choices

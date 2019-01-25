@@ -440,7 +440,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	var/list/L = M.get_contents()
 	for(var/t in L)
-		dat += "[t]"
+		dat += "[t]\n"
 
 	usr << browse(dat, "window=contents")
 

@@ -15,13 +15,13 @@
 		ghost.can_reenter_corpse = TRUE
 		ghost.reenter_corpse()
 	else
-		M.ghostize(TRUE)
 		usr.client.change_view(world.view)
-		if(M && !M.key)
-			M.key = "@[usr.client.key]"
-
+		var/msg = usr.client.key
 		log_admin("[key_name(usr)] admin ghosted.")
 		message_admins("[ADMIN_TPMONTY(usr)] admin ghosted.")
+		M.ghostize(TRUE)
+		if(M && !M.key)
+			M.key = "@[msg]"
 
 
 /datum/admins/proc/invisimin()
@@ -158,7 +158,7 @@
 	M.revive()
 
 	log_admin("[key_name(usr)] revived [key_name(M)].")
-	message_admins("[ADMIN_TPMONTY(usr)] revived [key_name_admin(M)].")
+	message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(M)].")
 
 
 /datum/admins/proc/toggle_sleep(var/mob/living/M as mob in mob_list)

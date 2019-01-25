@@ -28,7 +28,7 @@
 		mentor_msg = "<b><font color=purple>PRAY:</font> <span class='notice'>[ADMIN_TPMONTY(usr)]:</b> [mentor_msg]</span>"
 
 	for(var/client/C in admins)
-		if(check_rights(R_ADMIN) && (C.prefs.toggles_chat & CHAT_PRAYER))
+		if(check_other_rights(C, R_ADMIN) && (C.prefs.toggles_chat & CHAT_PRAYER))
 			to_chat(C, msg)
 		else if(C.mob.stat == DEAD && (C.prefs.toggles_chat & CHAT_PRAYER))
 			to_chat(C, mentor_msg)

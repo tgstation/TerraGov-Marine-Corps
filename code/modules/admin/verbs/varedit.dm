@@ -650,7 +650,7 @@ GLOBAL_PROTECT(VVpixelmovement)
 		return
 
 	if(A && A.type)
-		method = vv_subtype_prompt(A.type)
+		method = usr.client.vv_subtype_prompt(A.type)
 
 	usr.client.massmodify_variables(A, var_name, method)
 

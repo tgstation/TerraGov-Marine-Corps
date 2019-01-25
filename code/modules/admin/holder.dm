@@ -139,8 +139,8 @@ GLOBAL_PROTECT(href_token)
 	if(!holder)//This can happen if an admin attempts to vv themself into somebody elses's deadmin datum by getting ref via brute force
 		return
 
-	message_admins("[key_name(usr)] re-adminned themselves.")
-	log_admin("[ADMIN_TPMONTY(usr)] re-adminned themselves.")
+	log_admin("[key_name(usr)] re-adminned themselves.")
+	message_admins("[ADMIN_TPMONTY(usr)] re-adminned themselves.")
 
 
 /client/proc/deadmin()
@@ -394,8 +394,7 @@ GLOBAL_PROTECT(admin_verbs_varedit)
 GLOBAL_LIST_INIT(admin_verbs_varedit, world.AVvaredit())
 /world/proc/AVvaredit()
 	return list(
-	/client/proc/debug_variables,
-	/client/proc/mass_modify,
+	/client/proc/debug_variables
 	)
 
 GLOBAL_PROTECT(admin_verbs_sound)

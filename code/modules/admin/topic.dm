@@ -723,3 +723,139 @@
 
 		log_game("[key_name(usr)] has sent a randomized distress beacon early, requested by [key_name(M)]")
 		message_admins("[ADMIN_TPMONTY(usr)] has sent a randomized distress beacon early, requested by [ADMIN_TPMONTY(M)]")
+
+
+	else if(href_list["forcesay"])
+		if(!check_rights(R_ADMIN))	
+			return
+
+		var/mob/M = locate(href_list["forcesay"])
+		if(!ismob(M))
+			return
+
+		var/speech = input("What will [key_name(M)] say?", "Force say", "")
+		if(!speech)
+			return
+		M.say(speech)
+
+		log_admin("[key_name(usr)] forced [key_name(M)] to say: [speech]")
+		message_admins("[ADMIN_TPMONTY(usr)] forced [ADMIN_TPMONTY(M)] to say: [speech]")
+
+
+	else if(href_list["thunderdome"])
+		if(!check_rights(R_ADMIN))	
+			return
+
+		var/mob/M = locate(href_list["thunderdome"])
+		if(!ismob(M))
+			return
+
+		if(alert("Do you want to send [key_name(M)] to the Thunderdome?", "Confirmation", "Yes", "No") != "Yes")
+			return
+
+		if(ishuman(M))
+			var/mob/living/carbon/human/H = M
+			for(var/obj/item/W in H)
+				if(istype(W, /obj/item/alien_embryo))
+					continue
+				H.dropItemToGround(W)
+
+		M.forceMove(pick(tdome1))
+
+		to_chat(M, "<span class='boldnotice'>You have been sent to the Thunderdome!</span>")
+
+		log_admin("[key_name(usr)] has sent [key_name(M)] to the thunderdome.")
+		message_admins("[ADMIN_TPMONTY(usr)] has sent [ADMIN_TPMONTY(M)] to the thunderdome.")
+
+
+	else if(href_list["gib"])
+		if(!check_rights(R_ADMIN))	
+			return
+
+		var/mob/M = locate(href_list["gib"])
+		if(!ismob(M) || isobserver(M))
+			return
+
+		if(alert("Are you sure you want to gib [M]?", "Warning", "Yes", "No") != "Yes")
+			return
+
+		log_admin("[key_name(usr)] has gibbed [key_name(M)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has gibbed [ADMIN_TPMONTY(M)].")
+
+		M.gib()
+
+
+	else if(href_list["lobby"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/mob/M = locate(href_list["lobby"])
+
+
+		if(!M.client)
+			to_chat(usr, "<span class='warning'>[M] doesn't seem to have an active client.</span>")
+			return
+
+		if(alert("Send [key_name(M)] back to Lobby?", "Confirmation", "Yes", "No") != "Yes")
+			return
+
+		log_admin("[key_name(usr)] has sent [key_name(M)] back to the lobby.")
+		message_admins("[ADMIN_TPMONTY(usr)] has sent [key_name_admin(M)] back to the lobby.")
+
+		var/mob/new_player/NP = new()
+		NP.ckey = M.ckey
+		if(NP.client) 
+			NP.client.change_view(world.view)
+		if(isobserver(M))
+			qdel(M)
+		else
+			M.ghostize()
+
+
+	else if(href_list["jumpto"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/mob/M = locate(href_list["jumpto"])
+		if(!ismob(M) || isobserver(M))
+			return
+
+		usr.forceMove(M.loc)
+
+		log_admin("[key_name(usr)] has jumped to [key_name(M)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has jumped to [ADMIN_TPMONTY(M)].")
+
+
+	else if(href_list["getmob"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/mob/M = locate(href_list["getmob"])
+		if(!ismob(M) || isobserver(M))
+			return
+
+		M.forceMove(usr.loc)
+
+		log_admin("[key_name(usr)] has sent [key_name(M)]'s mob to themselves.")
+		message_admins("[ADMIN_TPMONTY(usr)] has sent [ADMIN_TPMONTY(M)]'s mob to themselves.")
+
+
+	else if(href_list["sendmob"])
+		if(!check_rights(R_ADMIN))
+			return
+
+		var/mob/M = locate(href_list["sendmob"])
+		if(!ismob(M) || isobserver(M))
+			return
+
+		var/selection = input("Please, select a mob!", "Jump to Mob", null, null) as null|anything in sortmobs(mob_list)
+		if(!selection)
+			return
+
+		var/mob/N = selection
+
+		M.on_mob_jump()
+		M.forceMove(N.loc)
+
+		log_admin("[key_name(usr)] has sent [key_name(M)]'s mob to [key_name(N)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has sent [ADMIN_TPMONTY(M)]'s mob to [ADMIN_TPMONTY(N)].")

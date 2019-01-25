@@ -5,14 +5,14 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
-	var/dat = "<html><head><title>admin Player Panel</title></head>"
+	var/dat = "<html><head><title>Player Panel</title></head>"
 
 	dat += {"
+
 		<head>
 			<script type='text/javascript'>
 
-				var locked_tabs = new array();
+				var locked_tabs = new Array();
 
 				function updateSearch(){
 
@@ -35,20 +35,16 @@
 						{
 							try{
 								var tr = ltr\[i\];
-								if(tr.getattribute("id").indexOf("data") != 0){
+								if(tr.getAttribute("id").indexOf("data") != 0){
 									continue;
 								}
 								var ltd = tr.getElementsByTagName("td");
 								var td = ltd\[0\];
-								var lsearch = td.getElementsByTagName("b");
+								var lsearch = td.getElementsByClassName("filter_data");
 								var search = lsearch\[0\];
-								//var inner_span = li.getElementsByTagName("span")\[1\] //Should only ever contain one element.
-								//document.write("<p>"+search.innerText+"<br>"+filter+"<br>"+search.innerText.indexOf(filter))
 								if ( search.innerText.toLowerCase().indexOf(filter) == -1 )
 								{
-									//document.write("a");
-									//ltr.removeChild(tr);
-									td.innerHTML = "";
+									tr.innerHTML = "";
 									i--;
 								}
 							}catch(err) {   }
@@ -59,47 +55,51 @@
 					var index = -1;
 					var debug = document.getElementById("debug");
 
-					locked_tabs = new array();
-
+					locked_tabs = new Array();
 				}
 
-				function expand(id,job,name,real_name,image,key,ip,antagonist,ref){
+				function expand(id,job,name,real_name,old_names,key,ip,antagonist,ref){
 
-					clearall();
+					clearAll();
 
 					var span = document.getElementById(id);
+					var ckey = key.toLowerCase().replace(/\[^a-z@0-9\]+/g,"");
 
 					body = "<table><tr><td>";
 
 					body += "</td><td align='center'>";
 
-					body += "<font size='2'><b>"+job+" "+name+"</b><br><b>Real name "+real_name+"</b><br><b>Played by "+key+" ("+ip+")</b></font>"
+					body += "<font size='2'><b>"+job+" "+name+"</b><br><b>Real name "+real_name+"</b><br><b>Played by "+key+" ("+ip+")</b><br><b>Old names :"+old_names+"</b></font>";
 
 					body += "</td><td align='center'>";
 
-					body += "<a href='?src=[ref];playerpanel="+ref+"'>PP</a> - "
-					body += "<a href='?src=[ref];playerpanelextended="+ref+"'>PPE</a> - "
-					body += "<a href='?src=[ref];notes=show;mob="+ref+"'>NOTES</a> - "
-					body += "<a href='?_src_=vars;vars="+ref+"'>VV</a> - "
-					body += "<a href='?priv_msg="+ref+"'>PM</a> - "
-					body += "<a href='?src=[ref];subtlemessage="+ref+"'>SM</a> - "
-					body += "<a href='?src=[ref];observejump="+ref+"'>JMP</a> - "
-					body += "<a href='?src=[ref];observefollow="+ref+"'>FLW</a><br>"
-					body += "<a href='?src=[ref];individuallog="+ref+"'>LOGS</a><br>"
+					body += "<a href='?_src_=holder;[HrefToken()];playerpanel="+ref+"'>PP</a> - "
+					body += "<a href='?_src_=holder;[HrefToken()];showmessageckey="+ckey+"'>N</a> - "
+					body += "<a href='?_src_=vars;[HrefToken()];vars="+ref+"'>VV</a> - "
+					if (job == "Cyborg")
+						body += "<a href='?_src_=holder;[HrefToken()];borgpanel="+ref+"'>BP</a> - "
+					body += "<a href='?priv_msg="+ckey+"'>PM</a> - "
+					body += "<a href='?_src_=holder;[HrefToken()];subtlemessage="+ref+"'>SM</a> - "
+					body += "<a href='?_src_=holder;[HrefToken()];observejump="+ref+"'>JMP</a> - "
+					body += "<a href='?_src_=holder;[HrefToken()];observefollow="+ref+"'>FLW</a> - "
+					body += "<a href='?_src_=holder;[HrefToken()];individuallog="+ref+"'>LOGS</a><br>"
+					if(antagonist > 0)
+						body += "<font size='2'><a href='?_src_=holder;[HrefToken()];secrets=check_antagonist'><font color='red'><b>Antagonist</b></font></a></font>";
+
 					body += "</td></tr></table>";
 
 
 					span.innerHTML = body
 				}
 
-				function clearall(){
+				function clearAll(){
 					var spans = document.getElementsByTagName('span');
 					for(var i = 0; i < spans.length; i++){
 						var span = spans\[i\];
 
-						var id = span.getattribute("id");
+						var id = span.getAttribute("id");
 
-						if(!(id.indexOf("item")==0))
+						if(!id || !(id.indexOf("item")==0))
 							continue;
 
 						var pass = 1;
@@ -123,11 +123,11 @@
 
 				function addToLocked(id,link_id,notice_span_id){
 					var link = document.getElementById(link_id);
-					var decision = link.getattribute("name");
+					var decision = link.getAttribute("name");
 					if(decision == "1"){
-						link.setattribute("name","2");
+						link.setAttribute("name","2");
 					}else{
-						link.setattribute("name","1");
+						link.setAttribute("name","1");
 						removeFromLocked(id,link_id,notice_span_id);
 						return;
 					}
@@ -144,9 +144,6 @@
 					locked_tabs.push(id);
 					var notice_span = document.getElementById(notice_span_id);
 					notice_span.innerHTML = "<font color='red'>Locked</font> ";
-					//link.setattribute("onClick","attempt('"+id+"','"+link_id+"','"+notice_span_id+"');");
-					//document.write("removeFromLocked('"+id+"','"+link_id+"','"+notice_span_id+"')");
-					//document.write("aa - "+link.getattribute("onClick"));
 				}
 
 				function attempt(ab){
@@ -169,8 +166,6 @@
 					locked_tabs\[index\] = "";
 					var notice_span = document.getElementById(notice_span_id);
 					notice_span.innerHTML = "";
-					//var link = document.getElementById(link_id);
-					//link.setattribute("onClick","addToLocked('"+id+"','"+link_id+"','"+notice_span_id+"')");
 				}
 
 				function selectTextField(){
@@ -375,7 +370,7 @@
 
 	if(M.client)
 		body += " played by <b>[M.client]</b> "
-		body += "\[<a href='?src=[ref];permissionspanel=show'>[M.client.holder ? M.client.holder.rank : "Player"]</a>\]"
+		body += "\[<a href='?src=[ref];editrights=[(GLOB.admin_datums[M.client.ckey] || GLOB.deadmins[M.client.ckey]) ? "rank" : "add"];key=[M.key]'>[M.client.holder ? M.client.holder.rank : "Player"]</A>\]"
 
 	if(istype(M, /mob/new_player))
 		body += " <B>Hasn't Entered Game</B> "
@@ -386,7 +381,7 @@
 		<br><br>\[
 		<a href='?priv_msg=[M.ckey]'>PM</a> -
 		<a href='?src=[ref];subtlemessage=[REF(M)]'>SM</a> -
-		<a href='?_src_=vars;Vars=[REF(M)]'>VV</a> -
+		<a href='?_src_=vars;[HrefToken()];vars=[REF(M)]'>VV</a> -
 		<a href='?src=[ref];adminplayerobservejump=[REF(M)]'>JMP</a> -
 		<a href='?src=[ref];adminplayerfollow=[REF(M)]'>FLW</a> -
 		<a href='?src=[ref];individuallog=[REF(M)]'>LOGS</a> \]</b><br>
@@ -414,12 +409,12 @@
 		<a href='?src=[ref];jumpto=[REF(M)]'>Jump To</a> |
 		<a href='?src=[ref];getmob=[REF(M)]'>Get Mob</a> |
 		<a href='?src=[ref];sendmob=[REF(M)]'>Send Mob</a>
-		<br><br>
+		<br>
 	"}
 
 	if(M.client)
 		if(!istype(M, /mob/new_player))
-			body += {"<br><br>
+			body += {"<br>
 				<b>Transformation:</b><br>
 				\[ Observer: <a href='?src=[ref];transform=observer;mob=[REF(M)]'>Observer</a> \]
 				<br>\[ Humanoid: <a href='?src=[ref];transform=human;mob=[REF(M)]'>Human</a> |
@@ -453,7 +448,7 @@
 			<br>
 			<a href='?src=[ref];forcesay=[REF(M)]'>Forcesay</a> |
 			<a href='?src=[ref];thunderdome=[REF(M)]'>Thunderdome</a> |
-			<a href='?src=[ref];thunderdome=[REF(M)]'>Gib</a>
+			<a href='?src=[ref];gib=[REF(M)]'>Gib</a>
 		"}
 
 	body += {"

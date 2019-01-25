@@ -561,9 +561,9 @@
 	else if (istype(value, /datum))
 		var/datum/D = value
 		if ("[D]" != "[D.type]") //if the thing as a name var, lets use it.
-			item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = [D] [D.type]"
+			item = "<a href='?_src_=vars;[HrefToken()];vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = [D] [D.type]"
 		else
-			item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = [D.type]"
+			item = "<a href='?_src_=vars;[HrefToken()];vars=[REF(value)]'>[VV_HTML_ENCODE(name)] [REF(value)]</a> = [D.type]"
 
 	else if (islist(value))
 		var/list/L = value
@@ -581,9 +581,9 @@
 
 				items += debug_variable(key, val, level + 1, sanitize = sanitize)
 
-			item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([L.len])</a><ul>[items.Join()]</ul>"
+			item = "<a href='?_src_=vars;[HrefToken()];vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([L.len])</a><ul>[items.Join()]</ul>"
 		else
-			item = "<a href='?_src_=vars;[HrefToken()];Vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([L.len])</a>"
+			item = "<a href='?_src_=vars;[HrefToken()];vars=[REF(value)]'>[VV_HTML_ENCODE(name)] = /list ([L.len])</a>"
 
 	else if (name in GLOB.bitfields)
 		var/list/flags = list()
@@ -916,6 +916,7 @@
 					log_admin("[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) ")
 					message_admins("<span class='notice'>[key_name(usr)] deleted all objects of type or subtype of [O_type] ([i] objects deleted) </span>")
 
+
 		else if(href_list["addreagent"])
 			if(!check_rights(NONE))
 				return
@@ -951,6 +952,7 @@
 						log_admin("[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]")
 						message_admins("<span class='notice'>[key_name(usr)] has added [amount] units of [chosen_id] to \the [A]</span>")
 
+
 		else if(href_list["modtransform"])
 			if(!check_rights(R_DEBUG))
 				return
@@ -977,102 +979,6 @@
 					var/angle = input(usr, "Choose angle to rotate","Transform Mod") as null|num
 					if(!isnull(angle))
 						A.transform = M.Turn(angle)
-
-		else if(href_list["makehuman"])
-			if(!check_rights(R_SPAWN))
-				return
-
-			var/mob/living/carbon/monkey/Mo = locate(href_list["makehuman"]) in GLOB.mob_list
-			if(!istype(Mo))
-				to_chat(usr, "This can only be done to instances of type /mob/living/carbon/monkey")
-				return
-
-			if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
-				return
-			if(!Mo)
-				to_chat(usr, "Mob doesn't exist anymore")
-				return
-			holder.Topic(href, list("humanone"=href_list["makehuman"]))
-
-		else if(href_list["makemonkey"])
-			if(!check_rights(R_SPAWN))
-				return
-
-			var/mob/living/carbon/human/H = locate(href_list["makemonkey"]) in GLOB.mob_list
-			if(!istype(H))
-				to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
-				return
-
-			if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
-				return
-			if(!H)
-				to_chat(usr, "Mob doesn't exist anymore")
-				return
-			holder.Topic(href, list("monkeyone"=href_list["makemonkey"]))
-
-		else if(href_list["makerobot"])
-			if(!check_rights(R_SPAWN))
-				return
-
-			var/mob/living/carbon/human/H = locate(href_list["makerobot"]) in GLOB.mob_list
-			if(!istype(H))
-				to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
-				return
-
-			if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
-				return
-			if(!H)
-				to_chat(usr, "Mob doesn't exist anymore")
-				return
-			holder.Topic(href, list("makerobot"=href_list["makerobot"]))
-
-		else if(href_list["makealien"])
-			if(!check_rights(R_SPAWN))
-				return
-
-			var/mob/living/carbon/human/H = locate(href_list["makealien"]) in GLOB.mob_list
-			if(!istype(H))
-				to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
-				return
-
-			if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
-				return
-			if(!H)
-				to_chat(usr, "Mob doesn't exist anymore")
-				return
-			holder.Topic(href, list("makealien"=href_list["makealien"]))
-
-		else if(href_list["makeslime"])
-			if(!check_rights(R_SPAWN))
-				return
-
-			var/mob/living/carbon/human/H = locate(href_list["makeslime"]) in GLOB.mob_list
-			if(!istype(H))
-				to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
-				return
-
-			if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
-				return
-			if(!H)
-				to_chat(usr, "Mob doesn't exist anymore")
-				return
-			holder.Topic(href, list("makeslime"=href_list["makeslime"]))
-
-		else if(href_list["makeai"])
-			if(!check_rights(R_SPAWN))
-				return
-
-			var/mob/living/carbon/H = locate(href_list["makeai"]) in GLOB.mob_list
-			if(!istype(H))
-				to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
-				return
-
-			if(alert("Confirm mob type change?",,"Transform","Cancel") != "Transform")
-				return
-			if(!H)
-				to_chat(usr, "Mob doesn't exist anymore")
-				return
-			holder.Topic(href, list("makeai"=href_list["makeai"]))
 
 		else if(href_list["setspecies"])
 			if(!check_rights(R_SPAWN))
