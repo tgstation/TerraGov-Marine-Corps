@@ -613,11 +613,14 @@
 
 	if(newrank != "Custom")
 		H.set_everything(H, newrank)
+		log_admin("[key_name(usr)] has set the rank of [key_name(H)] to [newrank].")
+		message_admins("[ADMIN_TPMONTY(usr)] has set the rank of [ADMIN_TPMONTY(H)] to [newrank].")
 	else
 		var/newcommtitle = input("Write the custom title appearing on the comms themselves, for example: \[Command (Title)]", "Comms title") as null|text
 
 		if(!newcommtitle)
 			return
+
 		if(!H?.mind)
 			return
 
@@ -626,37 +629,43 @@
 
 		if(!istype(I) || I != H.wear_id)
 			to_chat(usr, "The mob has no id card, unable to modify ID and chat title.")
-		else
-			var/newchattitle = input("Write the custom title appearing in all chats: Title Jane Doe says", "Chat title") as null|text
+			return
 
-			if(!H || I != H.wear_id)
-				return
+		var/newchattitle = input("Write the custom title appearing in all chats: Title Jane Doe says", "Chat title") as null|text
 
-			I.paygrade = newchattitle
+		if(!H || I != H.wear_id)
+			return
 
-			var/IDtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID title") as null|text
+		I.paygrade = newchattitle
 
-			if(!H || I != H.wear_id)
-				return
+		var/IDtitle = input("Write the custom title appearing on the ID itself: Jane Doe's ID Card (Title)", "ID title") as null|text
 
-			I.rank = IDtitle
-			I.assignment = IDtitle
-			I.name = "[I.registered_name]'s ID Card[IDtitle ? " ([I.assignment])" : ""]"
+		if(!H || I != H.wear_id)
+			return
+
+		I.rank = IDtitle
+		I.assignment = IDtitle
+		I.name = "[I.registered_name]'s ID Card[IDtitle ? " ([I.assignment])" : ""]"
 
 		if(!H.mind)
 			to_chat(usr, "The mob has no mind, unable to modify skills.")
+			return
 
-		else
-			var/newskillset = input("Select a skillset", "Skill Set") as null|anything in RoleAuthority.roles_by_name
+		var/newskillset = input("Select a skillset", "Skill Set") as null|anything in RoleAuthority.roles_by_name
 
-			if(!newskillset)
-				return
+		if(!newskillset)
+			return
 
-			if(!H?.mind)
-				return
+		if(!H?.mind)
+			return
 
-			var/datum/job/J = RoleAuthority.roles_by_name[newskillset]
-			H.mind.set_cm_skills(J.skills_type)
+		var/datum/job/J = RoleAuthority.roles_by_name[newskillset]
+		H.mind.set_cm_skills(J.skills_type)
+
+		log_admin("[key_name(usr)] has made a custom rank for [key_name(H)] : [IDtitle] ([newcommtitle]) [newchattitle] [newskillset].")
+		message_admins("[ADMIN_TPMONTY(usr)] has made a custom rank for [ADMIN_TPMONTY(H)] : [IDtitle] ([newcommtitle]) [newchattitle]  [newskillset].")
+
+
 
 
 /datum/admins/proc/select_equipment(var/mob/living/carbon/human/M in mob_list)

@@ -40,9 +40,8 @@
 
 
 /proc/Centcomm_announce(var/text , var/mob/sender , var/iamessage)
-	var/msg = copytext(sanitize(text), 1, MAX_MESSAGE_LEN)
-	msg = "<span class='notice'><b><font color=orange>TGMC:</font>[ADMIN_FULLMONTY(usr)] (<a HREF='?src=[REF(usr.client.holder)];[HrefToken()];reply=[REF(sender)]'>REPLY</a>):</b> [msg]</span>"
+	text = copytext(sanitize(text), 1, MAX_MESSAGE_LEN)
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
-			to_chat(C, msg)
+			to_chat(C, "<span class='notice'><b><font color=orange>TGMC:</font>[ADMIN_FULLMONTY(usr)] (<a HREF='?src=[REF(usr.client.holder)];[HrefToken()];reply=[REF(sender)]'>REPLY</a>):</b> [text]</span>")
 			C << 'sound/effects/sos-morse-code.ogg'
