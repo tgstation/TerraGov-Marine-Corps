@@ -1,8 +1,8 @@
 
 //Some debug variables. Toggle them to 1 in order to see the related debug messages. Helpful when testing out formulas.
-#define DEBUG_HIT_CHANCE	0
-#define DEBUG_HUMAN_DEFENSE	0
-#define DEBUG_XENO_DEFENSE	0
+#define DEBUG_HIT_CHANCE	1
+#define DEBUG_HUMAN_DEFENSE	1
+#define DEBUG_XENO_DEFENSE	1
 #define DEBUG_CREST_DEFENSE	0
 
 //The actual bullet objects.
@@ -251,13 +251,19 @@
 					#if DEBUG_HIT_CHANCE
 					to_chat(world, "DEBUG: Hit Chance 1: [hit_chance], Hit Roll: [hit_roll]")
 					#endif
-					if(hit_roll < 25 && !shot_from.sniper_target(A)) //Sniper targets more likely to hit
-						def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
-					if(!shot_from.sniper_target(A))
-						hit_chance -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
-						#if DEBUG_HIT_CHANCE
-						to_chat(world, "Hit Chance 2: [hit_chance]")
-						#endif
+					if(hit_roll < 25) //Sniper targets more likely to hit
+						if(shot_from) //Avoid sentry run times
+							if(!shot_from.sniper_target(A))
+								def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
+						else
+							def_zone = pick(base_miss_chance)	// Still hit but now we might hit the wrong body part
+
+					if(shot_from) //Avoid sentry run times
+						if(!shot_from.sniper_target(A))
+							hit_chance -= base_miss_chance[def_zone] // Reduce accuracy based on spot.
+							#if DEBUG_HIT_CHANCE
+							to_chat(world, "Hit Chance 2: [hit_chance]")
+							#endif
 
 					switch(i)
 						if(1)
