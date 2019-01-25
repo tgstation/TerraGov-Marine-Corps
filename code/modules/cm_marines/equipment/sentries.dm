@@ -1160,6 +1160,7 @@
 	stat = 0
 	rounds = 50000
 	ammo = ammo_list[ammo]
+	rounds = 50000
 	update_icon()
 
 
@@ -1224,6 +1225,7 @@
 /obj/machinery/marine_turret/premade/dropship
 	name = "UA-577 Gauss Dropship Turret"
 	density = FALSE
+	ammo = /datum/ammo/bullet/turret/gauss //This is a gauss cannon; it will be significantly deadlier
 	safety_off = TRUE
 	burst_size = 10
 	burst_delay = 15
