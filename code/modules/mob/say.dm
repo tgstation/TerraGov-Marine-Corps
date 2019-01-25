@@ -58,7 +58,7 @@
 		if(M.client && M.stat == DEAD && (M.client.prefs.toggles_chat & CHAT_DEAD))
 			to_chat(M, rendered)
 
-		else if(check_other_rights(M.client, R_ADMIN) && (M.client.prefs.toggles_chat & CHAT_DEAD)) // Show the message to admins/mods with deadchat toggled on
+		else if(check_other_rights(M.client, R_ADMIN, FALSE) && (M.client.prefs.toggles_chat & CHAT_DEAD)) // Show the message to admins/mods with deadchat toggled on
 			to_chat(M, rendered)
 
 

@@ -77,7 +77,7 @@ var/global/normal_ooc_colour = "#002eb8"
 		if(C.prefs.toggles_chat & CHAT_OOC)
 			var/display_name = key
 			if(holder?.fakekey)
-				if(check_other_rights(C, R_ADMIN))
+				if(check_other_rights(C, R_ADMIN, FALSE))
 					display_name = "[holder.fakekey]/([key])"
 				else
 					display_name = holder.fakekey

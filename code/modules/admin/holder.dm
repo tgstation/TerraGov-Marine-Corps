@@ -469,9 +469,9 @@ GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 		return FALSE
 	if(!C?.holder?.rank?.rights)
 		return FALSE
-	if(check_other_rights(C, R_ADMIN))
+	if(check_other_rights(C, R_ADMIN, FALSE))
 		return FALSE
-	if(!check_other_rights(C, R_MENTOR))
+	if(!check_other_rights(C, R_MENTOR, FALSE))
 		return FALSE
 	return TRUE
 
@@ -479,21 +479,21 @@ GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 /proc/message_admins(var/msg)
 	msg = "<span class='admin'><span class='prefix'>ADMIN LOG:</span> <span class='message'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
-		if(check_other_rights(C, R_ADMIN))
+		if(check_other_rights(C, R_ADMIN, FALSE))
 			to_chat(C, msg)
 
 
 /proc/message_staff(var/msg)
 	msg = "<span class='admin prefix'><span class=''prefix'>STAFF LOG:</span> <span class='message'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
-		if(check_other_rights(C, R_ADMIN) || is_mentor(C))
+		if(check_other_rights(C, R_ADMIN, FALSE) || is_mentor(C))
 			to_chat(C, msg)
 
 
 /proc/msg_admin_attack(var/msg)
 	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='message'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
-		if(!check_other_rights(C, R_ADMIN))
+		if(!check_other_rights(C, R_ADMIN, FALSE))
 			continue
 		if((C.prefs.toggles_chat & CHAT_ATTACKLOGS) || ((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
 			to_chat(C, msg)
@@ -502,7 +502,7 @@ GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 /proc/msg_admin_ff(var/msg)
 	msg = "<span class='admin'><span class='prefix'>ATTACK:</span> <span class='green'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
-		if(!check_other_rights(C, R_ADMIN))
+		if(!check_other_rights(C, R_ADMIN, FALSE))
 			continue
 		if((C.prefs.toggles_chat & CHAT_FFATTACKLOGS) || ((ticker.current_state == GAME_STATE_FINISHED) && (C.prefs.toggles_chat & CHAT_ENDROUNDLOGS)))
 			to_chat(C, msg)

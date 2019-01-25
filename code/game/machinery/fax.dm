@@ -190,7 +190,7 @@ var/list/alldepartments = list()
 	var/mentor_msg = "<span class='notice'><b><font color='#1F66A0'>TGMC FAX: </font>[key_name(sender)] (<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?src=[REF(usr.client.holder)];[HrefToken()];faxview=[REF(faxcontents)]'>view message</a></span>"
 	TGMCFaxes.Add("<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxview=[REF(faxcontents)]'> view message at [world.timeofday]</a> <a href='?src=[REF(usr.client.holder)];[HrefToken()];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>")
 	for(var/client/C in GLOB.admins)
-		if(check_other_rights(C,R_ADMIN))
+		if(check_other_rights(C, R_ADMIN, FALSE))
 			to_chat(C, msg)
 		else
 			to_chat(C, mentor_msg)
@@ -204,7 +204,7 @@ var/list/alldepartments = list()
 	var/mentor_msg = "<span class='notice'><b><font color='#1F66A0'>NANOTRASEN FAX: </font>[key_name(sender)] (<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?src=[REF(usr.client.holder)];[HrefToken()];faxview=[REF(faxcontents)]'>view message</a></span>"
 	CLFaxes.Add("<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxview=[REF(faxcontents)]'>view message at [world.timeofday]</a> <a href='?src=[REF(usr.client.holder)];[HrefToken()];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>")
 	for(var/client/C in GLOB.admins)
-		if(check_other_rights(C, R_ADMIN))
+		if(check_other_rights(C, R_ADMIN, FALSE))
 			to_chat(C, msg)
 		else
 			to_chat(C, mentor_msg)

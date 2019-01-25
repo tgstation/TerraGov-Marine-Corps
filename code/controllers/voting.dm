@@ -233,7 +233,7 @@ datum/controller/vote
 		var/admin = 0
 		var/trialmin = 0
 		if(C.holder)
-			if(check_other_rights(C, R_ADMIN))
+			if(check_other_rights(C, R_ADMIN, FALSE))
 				admin = TRUE
 				trialmin = TRUE // don't know why we use both of these it's really weird, but I'm 2 lasy to refactor this all to use just admin.
 		voting |= C

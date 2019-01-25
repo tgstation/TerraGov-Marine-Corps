@@ -510,7 +510,7 @@
 
 	msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> [ADMIN_TPMONTY(usr)]: <span class='message'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
-		if(check_other_rights(C, R_ASAY))
+		if(check_other_rights(C, R_ASAY, FALSE))
 			to_chat(C, msg)
 
 
@@ -530,15 +530,15 @@
 	log_admin_private_msay("[key_name(usr)]: [msg]")
 
 	var/color = "mod"
-	if(check_rights(R_EVERYTHING))
+	if(check_rights(R_EVERYTHING, TRUE))
 		color = "headminmod"
-	else if(check_rights(R_ADMIN))
+	else if(check_rights(R_ADMIN, TRUE))
 		color = "adminmod"
 
 	for(var/client/C in GLOB.admins)
-		if(check_other_rights(C, R_ADMIN))
+		if(check_other_rights(C, R_ADMIN, FALSE))
 			to_chat(C, "<span class='[color]'><span class='prefix'>[usr.client.holder.rank.name]:</span> [ADMIN_TPMONTY(C.mob)]: <span class='message'>[msg]</span></span>")
-		else if(is_mentor(C) && owner.mob.stat == DEAD)
+		else if(is_mentor(C) && usr.stat == DEAD)
 			to_chat(C, "<span class='[color]'><span class='prefix'>[usr.client.holder.rank.name]:</span> [key_name_admin(C, TRUE, TRUE, FALSE)] [ADMIN_JMP(C.mob)] [ADMIN_FLW(C.mob)]: <span class='message'>[msg]</span></span>")
 		else
 			to_chat(C, "<span class='[color]'><span class='prefix'>[usr.client.holder.rank.name]:</span> [key_name_admin(C, TRUE, FALSE, FALSE)] [ADMIN_JMP(C.mob)] [ADMIN_FLW(C.mob)]: <span class='message'>[msg]</span></span>")
@@ -579,7 +579,7 @@
 		if(istype(C.mob, /mob/new_player))
 			continue
 
-		if(check_other_rights(C, R_ADMIN) && (C.prefs.toggles_chat & CHAT_DEAD))
+		if(check_other_rights(C, R_ADMIN, FALSE) && (C.prefs.toggles_chat & CHAT_DEAD))
 			to_chat(C, msg)
 
 		else if(C.mob.stat == DEAD && (C.prefs.toggles_chat & CHAT_DEAD))

@@ -81,7 +81,7 @@
 			if(istype(C.mob, /mob/new_player))
 				continue
 
-			if(check_other_rights(C, R_ADMIN) && (C.prefs.toggles_chat & CHAT_DEAD))
+			if(check_other_rights(C, R_ADMIN, FALSE) && (C.prefs.toggles_chat & CHAT_DEAD))
 				to_chat(C, message)
 
 			else if(C.mob.stat == DEAD && (C.prefs.toggles_chat & CHAT_DEAD)) // Show the emote to regular ghosts with deadchat toggled on
