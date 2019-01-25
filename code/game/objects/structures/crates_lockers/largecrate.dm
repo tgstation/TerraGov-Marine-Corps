@@ -95,7 +95,8 @@
 /obj/structure/largecrate/random
 	name = "supply crate"
 	var/num_things = 0
-	var/list/stuff = list(/obj/item/cell/high,
+	var/list/stuff = list(
+						/obj/item/cell/high,
 						/obj/item/storage/belt/utility/full,
 						/obj/item/device/multitool,
 						/obj/item/tool/crowbar,
@@ -108,7 +109,8 @@
 						/obj/item/tool/wirecutters,
 						/obj/item/device/analyzer,
 						/obj/item/clothing/under/marine,
-						/obj/item/clothing/shoes/marine)
+						/obj/item/clothing/shoes/marine
+						)
 
 /obj/structure/largecrate/random/New()
 	..()
@@ -211,7 +213,6 @@
 		icon_state = "secure_crate"
 		strapped = 0
 
-
 /obj/structure/largecrate/guns
 	name = "\improper TGMC firearms crate (x3)"
 	var/num_guns = 3
@@ -224,8 +225,14 @@
 					/obj/item/weapon/gun/rifle/m41a = /obj/item/ammo_magazine/rifle,
 					/obj/item/weapon/gun/shotgun/pump = /obj/item/ammo_magazine/shotgun,
 					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39,
-					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39
-				)
+					/obj/item/weapon/gun/smg/m39 = /obj/item/ammo_magazine/smg/m39,
+					/obj/item/weapon/gun/flamer = /obj/item/ammo_magazine/flamer_tank,
+					/obj/item/weapon/gun/pistol/m4a3/custom = /obj/item/ammo_magazine/pistol/ap,
+					/obj/item/weapon/gun/rifle/m41aMK1 = /obj/item/ammo_magazine/rifle/m41aMK1,
+					/obj/item/weapon/gun/rifle/lmg = /obj/item/ammo_magazine/rifle/lmg,
+					/obj/item/weapon/gun/shotgun/combat = /obj/item/ammo_magazine/shotgun/beanbag,
+					/obj/item/weapon/gun/launcher/m81 = /obj/item/explosive/grenade/phosphorus
+					)
 
 /obj/structure/largecrate/guns/New()
 	..()
@@ -249,7 +256,9 @@
 					/obj/item/weapon/gun/rifle/mar40 = /obj/item/ammo_magazine/rifle/mar40,
 					/obj/item/weapon/gun/rifle/mar40/carbine = /obj/item/ammo_magazine/rifle/mar40/extended,
 					/obj/item/weapon/gun/rifle/sniper/svd = /obj/item/ammo_magazine/sniper/svd,
-					/obj/item/weapon/gun/smg/ppsh = /obj/item/ammo_magazine/smg/ppsh
+					/obj/item/weapon/gun/smg/ppsh = /obj/item/ammo_magazine/smg/ppsh,
+					/obj/item/weapon/gun/rifle/type71 = /obj/item/ammo_magazine/rifle/type71,
+					/obj/item/weapon/gun/rifle/sniper/svd = /obj/item/ammo_magazine/sniper/svd
 				)
 
 /obj/structure/largecrate/guns/merc
@@ -263,13 +272,14 @@
 					/obj/item/weapon/gun/pistol/heavy = /obj/item/ammo_magazine/pistol/heavy,
 					/obj/item/weapon/gun/revolver/small = /obj/item/ammo_magazine/revolver/small,
 					/obj/item/weapon/gun/revolver/cmb = /obj/item/ammo_magazine/revolver/cmb,
-					/obj/item/weapon/gun/shotgun/merc = /obj/item/ammo_magazine/shotgun,
+					/obj/item/weapon/gun/shotgun/merc = /obj/item/ammo_magazine/shotgun/flechette,
 					/obj/item/weapon/gun/shotgun/pump/cmb = /obj/item/ammo_magazine/shotgun/incendiary,
 					/obj/item/weapon/gun/shotgun/double = /obj/item/ammo_magazine/shotgun/buckshot,
 					/obj/item/weapon/gun/smg/mp7 = /obj/item/ammo_magazine/smg/mp7,
 					/obj/item/weapon/gun/smg/skorpion = /obj/item/ammo_magazine/smg/skorpion,
 					/obj/item/weapon/gun/smg/uzi = /obj/item/ammo_magazine/smg/uzi,
-					/obj/item/weapon/gun/smg/p90 = /obj/item/ammo_magazine/smg/p90
+					/obj/item/weapon/gun/smg/p90 = /obj/item/ammo_magazine/smg/p90,
+					/obj/item/weapon/gun/rifle/m16 = /obj/item/ammo_magazine/rifle/m16
 				)
 
 
