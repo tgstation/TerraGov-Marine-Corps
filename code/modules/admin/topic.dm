@@ -697,12 +697,9 @@
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
-			var/turf/T = get_turf(H)
-			if(H.put_in_hands(new /obj/item/reagent_container/food/snacks/cookie(M)))
-				H.update_inv_r_hand()
-				H.update_inv_l_hand()
-			else
-				new /obj/item/reagent_container/food/snacks/cookie(T)
+			H.put_in_hands(new /obj/item/reagent_container/food/snacks/cookie(M))
+			H.update_inv_r_hand()
+			H.update_inv_l_hand()
 		else
 			if(isobserver(M))
 				if(alert("Are you sure you want to spawn the cookie at observer location [AREACOORD(M.loc)]?", "Confirmation", "Yes", "No") != "Yes")

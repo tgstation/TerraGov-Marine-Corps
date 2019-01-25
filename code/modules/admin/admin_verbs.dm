@@ -530,9 +530,9 @@
 	log_admin_private_msay("[key_name(usr)]: [msg]")
 
 	var/color = "mod"
-	if(check_rights(R_EVERYTHING, FALSE))
+	if(check_other_rights(usr.client, R_EVERYTHING, FALSE))
 		color = "headminmod"
-	else if(check_rights(R_ADMIN, FALSE))
+	else if(check_other_rights(usr.client, R_ADMIN, FALSE))
 		color = "adminmod"
 
 	for(var/client/C in GLOB.admins)
@@ -839,10 +839,10 @@
 	var/datum/admin_help/AH = C.current_ticket
 
 	if(AH)
-		message_admins("[key_name_admin(src)] has started replying to [key_name_admin(C, 0, 0)]'s admin help.")
+		message_staff("[key_name_admin(src)] has started replying to [key_name_admin(C, 0, 0)]'s admin help.")
 	var/msg = input("Message:", "Private message to [key_name(C, 0, 0)]") as message|null
 	if(!msg)
-		message_admins("[key_name_admin(src)] has cancelled their reply to [key_name_admin(C, 0, 0)]'s admin help.")
+		message_staff("[key_name_admin(src)] has cancelled their reply to [key_name_admin(C, 0, 0)]'s admin help.")
 		return
 	cmd_admin_pm(whom, msg)
 
