@@ -1149,31 +1149,26 @@
 	icon_state = "sentry_base"
 
 /obj/machinery/marine_turret/premade/Initialize()
-	spark_system = new /datum/effect_system/spark_spread
-	spark_system.set_up(5, 0, src)
-	spark_system.attach(src)
+	. = ..()
+	qdel(cell)
+	cell = null
 	var/obj/item/cell/super/H = new(src) //Better cells in these ones.
 	cell = H
-	camera = new (src)
-	camera.network = list("military")
-	camera.c_tag = "[src.name] ([rand(0,1000)])"
-	stat = 0
 	rounds = 50000
-	ammo = ammo_list[ammo]
-	rounds = 50000
-	update_icon()
 
 
 
 /obj/machinery/marine_turret/premade/dumb
-	name = "Modified UA-577 Gauss Sentry"
-	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an armor penetrating MIC Gauss Cannon and a high-capacity drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
+	name = "\improper Modified UA 571-C sentry gun"
+	desc = "A deployable, semi-automated turret with AI targeting capabilities. Armed with an M30 Autocannon and a 500-round drum magazine. This one's IFF system has been disabled, and it will open fire on any targets within range."
 	iff_signal = 0
 	ammo = /datum/ammo/bullet/turret/dumb
 	magazine_type = /obj/item/ammo_magazine/sentry/premade/dumb
+	rounds_max = 500
 
 /obj/machinery/marine_turret/premade/dumb/Initialize()
 	. = ..()
+	rounds = 500
 	camera = null
 	camera.network = null
 	camera.c_tag = null
@@ -1210,22 +1205,21 @@
 		update_icon()
 
 /obj/item/ammo_magazine/sentry/premade/dumb
-	name = "UA-577 box magazine (12x40mm Gauss Slugs)"
-	desc = "A box of 50000 12x40mm gauss slugs for the UA-577 Gauss Turret. Just feed it into the turret's ammo port when its ammo is depleted."
+	name = "M30 box magazine (10x28mm Caseless)"
+	desc = "A box of 500 10x28mm caseless rounds for the UA 571-C Sentry Gun. Just feed it into the sentry gun's ammo port when its ammo is depleted."
 	w_class = 4
 	icon = 'icons/Marine/new_sentry_alt.dmi'
 	icon_state = "ammo_can"
 	flags_magazine = NOFLAGS //can't be refilled or emptied by hand
-	caliber = "12x40mm"
+	caliber = "10x28mm"
+	max_rounds = 500
 	default_ammo = /datum/ammo/bullet/turret/dumb
 	gun_type = null
-	max_rounds = 50000
 
 //the turret inside the sentry deployment system
 /obj/machinery/marine_turret/premade/dropship
 	name = "UA-577 Gauss Dropship Turret"
 	density = FALSE
-	ammo = /datum/ammo/bullet/turret/gauss //This is a gauss cannon; it will be significantly deadlier
 	safety_off = TRUE
 	burst_size = 10
 	burst_delay = 15
