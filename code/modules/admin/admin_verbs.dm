@@ -760,14 +760,23 @@
 		return
 
 	var/mob/M = selection
+	var/atom/target
 
 
-	var/area/A = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
-	if(!A || !M)
-		return
+	switch(input("To an area or to a mob?", "Send Mob", null, null) as null|anything in list("Area", "Mob"))
+		if("Area")
+			var/area/A = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
+			if(!A || !M)
+				return
+			target = pick(get_area_turfs(A))
+		if("Mob")
+			var/mob/N = input("Pick an area.", "Pick an area") as null|anything in sortmobs(mob_list)
+			if(!N || !M)
+				return
+			target = N
 
 	M.on_mob_jump()
-	M.loc = pick(get_area_turfs(A))
+	M.forceMove(target)
 
 	log_admin("[key_name(usr)] teleported [key_name(M)] to [AREACOORD(M.loc)].")
 	message_admins("[ADMIN_TPMONTY(usr)] teleported [ADMIN_TPMONTY(M)] to [ADMIN_VERBOSEJMP(M.loc)].")

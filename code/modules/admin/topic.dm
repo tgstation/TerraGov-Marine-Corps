@@ -610,6 +610,7 @@
 				location = get_turf(usr)
 
 		var/mob/user = "[ADMIN_TPMONTY(usr)]"
+		var/mob/target = "[ADMIN_TPMONTY(M)]"
 
 		switch(href_list["transform"])
 			if("observer")
@@ -653,10 +654,8 @@
 			if("moth")
 				M.change_mob_type(/mob/living/carbon/human, location, null, delmob, "Moth")
 
-		var/mob/target = M
-
 		log_admin("[key_name(usr)] has transformed [key_name(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
-		message_admins("[user] has transformed [ADMIN_TPMONTY(target)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
+		message_admins("[user] has transformed [target] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
 
 
 	else if(href_list["revive"])
@@ -882,19 +881,27 @@
 
 		var/mob/M = locate(href_list["sendmob"])
 		if(!ismob(M) || isobserver(M))
-			return
 
-		var/selection = input("Please, select a mob!", "Jump to Mob", null, null) as null|anything in sortmobs(mob_list)
-		if(!selection)
 			return
+		var/atom/target
 
-		var/mob/N = selection
+		switch(input("To an area or to a mob?", "Send Mob", null, null) as null|anything in list("Area", "Mob"))
+			if("Area")
+				var/area/A = input("Pick an area.", "Pick an area") as null|anything in return_sorted_areas()
+				if(!A || !M)
+					return
+				target = pick(get_area_turfs(A))
+			if("Mob")
+				var/mob/N = input("Pick an area.", "Pick an area") as null|anything in sortmobs(mob_list)
+				if(!N || !M)
+					return
+				target = N
 
 		M.on_mob_jump()
-		M.forceMove(N.loc)
+		M.forceMove(target)
 
-		log_admin("[key_name(usr)] has sent [key_name(M)]'s mob to [key_name(N)].")
-		message_admins("[ADMIN_TPMONTY(usr)] has sent [ADMIN_TPMONTY(M)]'s mob to [ADMIN_TPMONTY(N)].")
+		log_admin("[key_name(usr)] has sent [key_name(M)]'s mob to [target].")
+		message_admins("[ADMIN_TPMONTY(usr)] has sent [ADMIN_TPMONTY(M)]'s mob to [target].")
 
 
 
