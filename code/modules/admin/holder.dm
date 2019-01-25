@@ -202,7 +202,7 @@ GLOBAL_PROTECT(href_token)
 /proc/check_other_rights(client/other, rights_required, show_msg = TRUE)
 	if(!other)
 		return FALSE
-	if(rights_required && other.holder.rank.rights)
+	if(rights_required && other.holder?.rank?.rights)
 		if(rights_required & other.holder.rank.rights)
 			return TRUE
 		else if(show_msg)
