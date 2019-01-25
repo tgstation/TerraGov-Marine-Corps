@@ -1063,7 +1063,6 @@
 		log_admin("[key_name(usr)] set the mode as [master_mode].")
 		message_admins("[ADMIN_TPMONTY(usr)] set the mode as [master_mode].")
 		to_chat(world, "<span class='boldnotice'>The mode is now: [master_mode].</span>")
-		usr.client.holder.game_panel()
 		world.save_mode(master_mode)
 
 

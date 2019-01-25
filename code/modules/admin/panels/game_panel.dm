@@ -2,7 +2,7 @@
 	set name = "Game Panel"
 	set category = "Admin"
 
-	if(!check_rights(R_ADMIN))	
+	if(!check_rights(R_ADMIN))
 		return
 
 	var/ref = "[REF(usr.client.holder)];[HrefToken()]"
@@ -21,70 +21,68 @@
 
 
 
-/var/create_mob_html = null
-
-/datum/admins/proc/create_mob(var/mob/user)
-	if(!check_rights(R_SPAWN))
-		return
-
+/datum/admins/proc/create_mob(mob/user)
+	var/static/create_mob_html
 	if(!create_mob_html)
 		var/mobjs = null
-		mobjs = list2text(typesof(/mob), ";")
+		mobjs = jointext(typesof(/mob), ";")
 		create_mob_html = file2text('html/create_object.html')
-		create_mob_html = oldreplacetext(create_mob_html, "null /* object types */", "\"[mobjs]\"")
+		create_mob_html = replacetext(create_mob_html, "Create Object", "Create Mob")
+		create_mob_html = replacetext(create_mob_html, "null /* object types */", "\"[mobjs]\"")
 
-	user << browse(oldreplacetext(create_mob_html, "/* ref src */", "\ref[src]"), "window=create_mob;size=425x475")
+	user << browse(create_panel_helper(create_mob_html), "window=create_mob;size=425x475")
 
 
-
-/var/create_object_html = null
-
-/datum/admins/proc/create_object(var/mob/user)
+/datum/admins/proc/create_panel_helper(template)
 	if(!check_rights(R_SPAWN))
 		return
 
+	var/final_html = replacetext(template, "/* ref src */", "[REF(src)];[HrefToken()]")
+	final_html = replacetext(final_html,"/* hreftokenfield */","[HrefTokenFormField()]")
+	return final_html
+
+
+/datum/admins/proc/create_object(mob/user)
+	if(!check_rights(R_SPAWN))
+		return
+
+	var/static/create_object_html = null
 	if(!create_object_html)
 		var/objectjs = null
-		objectjs = list2text(typesof(/obj), ";")
+		objectjs = jointext(typesof(/obj), ";")
 		create_object_html = file2text('html/create_object.html')
-		create_object_html = oldreplacetext(create_object_html, "null /* object types */", "\"[objectjs]\"")
+		create_object_html = replacetext(create_object_html, "null /* object types */", "\"[objectjs]\"")
 
-	user << browse(oldreplacetext(create_object_html, "/* ref src */", "\ref[src]"), "window=create_object;size=425x475")
+	user << browse(create_panel_helper(create_object_html), "window=create_object;size=425x475")
 
 
-
-/datum/admins/proc/quick_create_object(var/mob/user)
+/datum/admins/proc/quick_create_object(mob/user)
 	if(!check_rights(R_SPAWN))
 		return
 
-	var/quick_create_object_html = null
-	var/pathtext = null
+	var/static/list/create_object_forms = list(
+	/obj, /obj/structure, /obj/machinery, /obj/effect, /obj/item, /obj/item/clothing, /obj/item/stack, /obj/item, /obj/item/weapon)
 
-	pathtext = input("Select the path of the object you wish to create.", "Path", "/obj") as null|anything in list("/obj","/obj/structure","/obj/machinery","/obj/mecha","/obj/item","/obj/item/weapon","/obj/item/ammo_magazine","/obj/item/clothing","/obj/item/storage")
-	if(!pathtext)
-		return
-	var path = text2path(pathtext)
+	var/path = input("Select the path of the object you wish to create.", "Path", /obj) in create_object_forms
+	var/html_form = create_object_forms[path]
 
-	if(!quick_create_object_html)
-		var/objectjs = null
-		objectjs = list2text(typesof(path), ";")
-		quick_create_object_html = file2text('html/create_object.html')
-		quick_create_object_html = oldreplacetext(quick_create_object_html, "null /* object types */", "\"[objectjs]\"")
+	if(!html_form)
+		var/objectjs = jointext(typesof(path), ";")
+		html_form = file2text('html/create_object.html')
+		html_form = replacetext(html_form, "Create Object", "Create [path]")
+		html_form = replacetext(html_form, "null /* object types */", "\"[objectjs]\"")
+		create_object_forms[path] = html_form
 
-	user << browse(oldreplacetext(quick_create_object_html, "/* ref src */", "\ref[src]"), "window=quick_create_object;size=425x475")
-
+	user << browse(create_panel_helper(html_form), "window=qco[path];size=425x475")
 
 
-/var/create_turf_html = null
-
-/datum/admins/proc/create_turf(var/mob/user)
-	if(!check_rights(R_SPAWN))
-		return
-
+/datum/admins/proc/create_turf(mob/user)
+	var/static/create_turf_html
 	if(!create_turf_html)
 		var/turfjs = null
-		turfjs = list2text(typesof(/turf), ";")
+		turfjs = jointext(typesof(/turf), ";")
 		create_turf_html = file2text('html/create_object.html')
-		create_turf_html = oldreplacetext(create_turf_html, "null /* object types */", "\"[turfjs]\"")
+		create_turf_html = replacetext(create_turf_html, "Create Object", "Create Turf")
+		create_turf_html = replacetext(create_turf_html, "null /* object types */", "\"[turfjs]\"")
 
-	user << browse(oldreplacetext(create_turf_html, "/* ref src */", "\ref[src]"), "window=create_turf;size=425x475")
+	user << browse(create_panel_helper(create_turf_html), "window=create_turf;size=425x475")

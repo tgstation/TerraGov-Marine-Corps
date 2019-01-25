@@ -15,7 +15,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	if(!ticker || !ticker.current_state < GAME_STATE_PLAYING)
+	if(!ticker || !ticker.current_state > GAME_STATE_PLAYING)
 		return
 
 	var/dat
@@ -23,7 +23,7 @@
 
 	dat += "<html><head><title>Round Status</title></head>"
 	dat += "<body><h1><b>Round Status</b></h1>"
-	dat += "Current Game Mode: <B>[ticker.mode.name]</B><BR>"
+	dat += "Current Game Mode: <B>[ticker.mode?.name]</B><BR>"
 	dat += "Round Duration: <B>[round(world.time / 36000)]:[add_zero(world.time / 600 % 60, 2)]:[world.time / 100 % 6][world.time / 100 % 10]</B><BR>"
 
 	dat += "<b>Evacuation:</b> "
