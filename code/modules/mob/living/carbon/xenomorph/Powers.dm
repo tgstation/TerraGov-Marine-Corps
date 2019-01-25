@@ -36,8 +36,8 @@
 	flags_pass = PASSTABLE
 	use_plasma(10)
 	throw_at(T, 6, 2, src) //Victim, distance, speed
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/reset_flags_pass), 6)
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/reset_pounce_delay), xeno_caste.pounce_delay)
+	addtimer(CALLBACK(src, .reset_flags_pass), 6)
+	addtimer(CALLBACK(src, .reset_pounce_delay), xeno_caste.pounce_delay)
 
 	return TRUE
 
@@ -54,7 +54,7 @@
 	if(!xeno_caste.hardcore)
 		flags_pass = initial(flags_pass) //Reset the passtable.
 	else
-		flags_pass = 0 //Reset the passtable.
+		flags_pass = NOFLAGS //Reset the passtable.
 
 /mob/living/carbon/Xenomorph/Hunter/Pounce(atom/T)
 
@@ -92,13 +92,13 @@
 	flags_pass = PASSTABLE
 	use_plasma(20)
 	throw_at(T, 7, 2, src) //Victim, distance, speed
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/reset_flags_pass), 6)
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/Hunter/reset_pounce_delay), xeno_caste.pounce_delay)
+	addtimer(CALLBACK(src, .proc/reset_flags_pass), 6)
+	addtimer(CALLBACK(src, .reset_pounce_delay), xeno_caste.pounce_delay)
 
 	if(stealth && can_sneak_attack) //If we're stealthed and could sneak attack, add a cooldown to sneak attack
 		to_chat(src, "<span class='xenodanger'>Your pounce has left you off-balance; you'll need to wait [HUNTER_POUNCE_SNEAKATTACK_DELAY*0.1] seconds before you can Sneak Attack again.</span>")
 		can_sneak_attack = FALSE
-		addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/Hunter/proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY)
+		addtimer(CALLBACK(src, .proc/sneak_attack_cooldown), HUNTER_POUNCE_SNEAKATTACK_DELAY)
 
 	return TRUE
 
@@ -157,8 +157,8 @@
 
 	speed += 2
 	do_acid_spray_cone(target)
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/speed_increase, 2), rand(20,30))
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/acid_spray_cooldown_finished), xeno_caste.acid_spray_cooldown)
+	addtimer(CALLBACK(src, .speed_increase, 2), rand(20,30))
+	addtimer(CALLBACK(src, .acid_spray_cooldown_finished), xeno_caste.acid_spray_cooldown)
 
 /mob/living/carbon/Xenomorph/proc/speed_increase(var/amount)
 	speed -= amount
@@ -410,7 +410,7 @@
 
 	H.throw_at(T, fling_distance, 1, src, 1)
 
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/fling_reset), WARRIOR_FLING_COOLDOWN)
+	addtimer(CALLBACK(src, .fling_reset), WARRIOR_FLING_COOLDOWN)
 
 /mob/living/carbon/Xenomorph/proc/fling_reset()
 	used_fling = FALSE
@@ -494,7 +494,7 @@
 	shake_camera(M, 2, 1)
 	step_away(M, src, 2)
 
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/punch_reset), WARRIOR_PUNCH_COOLDOWN)
+	addtimer(CALLBACK(src, .punch_reset), WARRIOR_PUNCH_COOLDOWN)
 
 /mob/living/carbon/Xenomorph/proc/punch_reset()
 	used_punch = FALSE
@@ -532,7 +532,7 @@
 	if (Adjacent(H))
 		start_pulling(H,1)
 
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/lunge_reset), WARRIOR_LUNGE_COOLDOWN)
+	addtimer(CALLBACK(src, .lunge_reset), WARRIOR_LUNGE_COOLDOWN)
 
 	return TRUE
 
@@ -625,14 +625,14 @@
 		armor_bonus -= WARRIOR_AGILITY_ARMOR
 
 		update_icons()
-		addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/agility_cooldown), WARRIOR_AGILITY_COOLDOWN)
+		addtimer(CALLBACK(src, .agility_cooldown), WARRIOR_AGILITY_COOLDOWN)
 		return
 
 	to_chat(src, "<span class='xenowarning'>You raise yourself to stand on two feet, hard scales setting back into place.</span>")
 	speed_modifier++
 	armor_bonus += WARRIOR_AGILITY_ARMOR
 	update_icons()
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/agility_cooldown), WARRIOR_AGILITY_COOLDOWN)
+	addtimer(CALLBACK(src, .agility_cooldown), WARRIOR_AGILITY_COOLDOWN)
 
 /mob/living/carbon/Xenomorph/proc/agility_cooldown()
 	used_toggle_agility = FALSE
@@ -725,7 +725,7 @@
 	H.throw_at(T, headbutt_distance, 1, src)
 	H.KnockDown(1, 1)
 	playsound(H,'sound/weapons/alien_claw_block.ogg', 50, 1)
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/headbutt_cooldown), DEFENDER_HEADBUTT_COOLDOWN)
+	addtimer(CALLBACK(src, .headbutt_cooldown), DEFENDER_HEADBUTT_COOLDOWN)
 
 /mob/living/carbon/Xenomorph/proc/headbutt_cooldown()
 	used_headbutt = FALSE
@@ -788,7 +788,7 @@
 	else
 		use_plasma(DEFENDER_TAILSWIPE_COST)
 
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/tailswipe_cooldown), DEFENDER_TAILSWIPE_COOLDOWN)
+	addtimer(CALLBACK(src, .tailswipe_cooldown), DEFENDER_TAILSWIPE_COOLDOWN)
 
 /mob/living/carbon/Xenomorph/proc/tailswipe_cooldown()
 	used_tail_sweep = FALSE
@@ -826,7 +826,7 @@
 		xeno_explosion_resistance = 2
 		speed_modifier += DEFENDER_CRESTDEFENSE_SLOWDOWN	// This is actually a slowdown but speed is dumb
 		update_icons()
-		addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/crest_defense_cooldown), DEFENDER_CREST_DEFENSE_COOLDOWN)
+		addtimer(CALLBACK(src, .crest_defense_cooldown), DEFENDER_CREST_DEFENSE_COOLDOWN)
 		return
 
 	round_statistics.defender_crest_raises++
@@ -835,7 +835,7 @@
 	xeno_explosion_resistance = 0
 	speed_modifier -= DEFENDER_CRESTDEFENSE_SLOWDOWN
 	update_icons()
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/crest_defense_cooldown), DEFENDER_CREST_DEFENSE_COOLDOWN)
+	addtimer(CALLBACK(src, .crest_defense_cooldown), DEFENDER_CREST_DEFENSE_COOLDOWN)
 
 /mob/living/carbon/Xenomorph/proc/crest_defense_cooldown()
 	used_crest_defense = FALSE
@@ -873,12 +873,12 @@
 		anchored = TRUE
 		update_canmove()
 		update_icons()
-		addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/fortify_cooldown), DEFENDER_FORTIFY_COOLDOWN)
+		addtimer(CALLBACK(src, .fortify_cooldown), DEFENDER_FORTIFY_COOLDOWN)
 		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, 1)
 		return
 
 	fortify_off()
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/fortify_cooldown), DEFENDER_FORTIFY_COOLDOWN)
+	addtimer(CALLBACK(src, .fortify_cooldown), DEFENDER_FORTIFY_COOLDOWN)
 
 /mob/living/carbon/Xenomorph/proc/fortify_off()
 	to_chat(src, "<span class='xenowarning'>You resume your normal stance.</span>")
@@ -1649,7 +1649,7 @@
 	M.attack_alien(src,  extra_dam, FALSE, TRUE, TRUE, TRUE) //Inflict a free attack on pounce that deals +1 extra damage per 4 plasma stored, up to 35 or twice the max damage of an Ancient Runner attack.
 	use_plasma(extra_dam * 5) //Expend plasma equal to 4 times the extra damage.
 	savage_used = TRUE
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/savage_cooldown), xeno_caste.savage_cooldown)
+	addtimer(CALLBACK(src, .savage_cooldown), xeno_caste.savage_cooldown)
 
 	return TRUE
 
@@ -1746,8 +1746,8 @@
 		playsound(M,pick('sound/weapons/alien_claw_block.ogg','sound/weapons/alien_bite2.ogg'), 50, 1)
 		M.KnockDown(1, 1)
 
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/cresttoss_cooldown), CRUSHER_CRESTTOSS_COOLDOWN)
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/reset_intent_icon_state), 3)
+	addtimer(CALLBACK(src, .cresttoss_cooldown), CRUSHER_CRESTTOSS_COOLDOWN)
+	addtimer(CALLBACK(src, .reset_intent_icon_state), 3)
 
 /mob/living/carbon/Xenomorph/proc/reset_intent_icon_state()
 	if(m_intent == MOVE_INTENT_RUN)
@@ -1786,7 +1786,7 @@
 	last_spawn_facehugger = world.time
 	used_spawn_facehugger = TRUE
 	use_plasma(CARRIER_SPAWN_HUGGER_COST)
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/Carrier/proc/hugger_spawn_cooldown), cooldown_spawn_facehugger)
+	addtimer(CALLBACK(src, .hugger_spawn_cooldown), cooldown_spawn_facehugger)
 
 /mob/living/carbon/Xenomorph/Carrier/proc/hugger_spawn_cooldown()
 	if(!used_spawn_facehugger)//sanity check/safeguard
@@ -1825,7 +1825,7 @@
 			last_stealth = world.time
 			stealth = TRUE
 			handle_stealth()
-			addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/Hunter/proc/stealth_cooldown), HUNTER_STEALTH_COOLDOWN)
+			addtimer(CALLBACK(src, .stealth_cooldown), HUNTER_STEALTH_COOLDOWN)
 	else
 		cancel_stealth()
 
@@ -1846,7 +1846,7 @@
 	can_sneak_attack = FALSE
 	alpha = 255 //no transparency/translucency
 	stealth_delay = world.time + HUNTER_STEALTH_COOLDOWN
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/Hunter/proc/stealth_cooldown), HUNTER_STEALTH_COOLDOWN)
+	addtimer(CALLBACK(src, .stealth_cooldown), HUNTER_STEALTH_COOLDOWN)
 
 /mob/living/carbon/Xenomorph/Ravager/proc/Ravage(atom/A)
 	if (!check_state())
@@ -1908,7 +1908,7 @@
 	ravage_delay = world.time + (RAV_RAVAGE_COOLDOWN - (victims * 30))
 
 	//10 second cooldown base, minus 2 per victim
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/Ravager/proc/ravage_cooldown), CLAMP(RAV_RAVAGE_COOLDOWN - (victims * 30),10,100))
+	addtimer(CALLBACK(src, .ravage_cooldown), CLAMP(RAV_RAVAGE_COOLDOWN - (victims * 30),10,100))
 
 /mob/living/carbon/Xenomorph/Ravager/proc/ravage_cooldown()
 	ravage_used = FALSE
@@ -1950,14 +1950,15 @@
 
 	second_wind_delay = world.time + cooldown
 
-	// since this is always 60 seconds or more, do not turn this into a callback.
-	spawn(cooldown) //4 minute cooldown, minus 0.75 seconds per rage to minimum 60 seconds.
-		second_wind_used = FALSE
-		to_chat(src, "<span class='xenodanger'>You gather enough strength to use Second Wind again.</span>")
-		playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
-		update_action_button_icons()
+	addtimer(CALLBACK(src, .second_wind_cooldown), cooldown) //4 minute cooldown, minus 0.75 seconds per rage to minimum 60 seconds.
 
 	rage = 0
+
+/mob/living/carbon/Xenomorph/Ravager/proc/second_wind_cooldown()
+	second_wind_used = FALSE
+	to_chat(src, "<span class='xenodanger'>You gather enough strength to use Second Wind again.</span>")
+	playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
+	update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/proc/spray_turfs(list/turflist)
 	set waitfor = 0
@@ -2071,7 +2072,7 @@
 	var/turflist = getline(src, target)
 	spray_turfs(turflist)
 
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/proc/acid_cooldown_end), acid_d)
+	addtimer(CALLBACK(src, .acid_cooldown_end), acid_d)
 
 /mob/living/carbon/Xenomorph/proc/acid_cooldown_end()
 	acid_cooldown = FALSE
@@ -2103,7 +2104,7 @@
 	visible_message("<span class='danger'>Tufts of smoke begin to billow from [src]!</span>", \
 	"<span class='xenodanger'>Your dorsal vents widen, preparing to emit neurogas. Keep still!</span>")
 
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/Defiler/proc/defiler_gas_cooldown), DEFILER_GAS_COOLDOWN)
+	addtimer(CALLBACK(src, .defiler_gas_cooldown), DEFILER_GAS_COOLDOWN)
 
 	emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
 	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
@@ -2190,7 +2191,7 @@
 	playsound(H, 'sound/effects/spray3.ogg', 15, 1)
 	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 
-	addtimer(CALLBACK(src, /mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting_cooldown), DEFILER_STING_COOLDOWN)
+	addtimer(CALLBACK(src, .defiler_sting_cooldown), DEFILER_STING_COOLDOWN)
 
 	defiler_recurring_injection(H)
 
