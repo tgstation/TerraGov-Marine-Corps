@@ -1,6 +1,10 @@
 As a ravager, anytime you take damage you get even more angry, and thus resist more damage.
 As the Queen, you contain the hivemind of all the xenos.
+As the Queen, use hive status to quickly swap between alien ‘cameras’.
 As a boiler, you have the most powerful corrosive acid for melting things.
 As a hunter, you have almost perfect stealth if you stand still.
 As a drone, your corrosive acid is very weak, but it's better than nothing.
+As a drone, spread weed as much as you can, especially to the front line fighters.
 As a larva, ask your queen what you should evolve into.
+As a runner, plasma gain is halted when you hide.
+As a xeno, check hive status often.
