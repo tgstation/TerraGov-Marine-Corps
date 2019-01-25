@@ -55,7 +55,7 @@
 		icon_state = "[initial(icon_state)]_[fertility]"
 	else if(stat == UNCONSCIOUS && !attached)
 		icon_state = "[initial(icon_state)]_inactive"
-	else if(throwing || leaping)
+	else if(throwing)
 		icon_state = "[initial(icon_state)]_throwing"
 	else
 		icon_state = "[initial(icon_state)]"
@@ -91,6 +91,8 @@
 	return FALSE // Else you can't pick.
 
 /obj/item/clothing/mask/facehugger/attack(mob/M, mob/user)
+	if(!(ishuman(M) || ismonkey(M)))
+		return ..()
 	user.visible_message("<span class='warning'>\ [user] attempts to plant [src] on [M]'s face!</span>", \
 	"<span class='warning'>You attempt to plant [src] on [M]'s face!</span>")
 	if(M.client && !M.stat) //Delay for conscious cliented mobs, who should be resisting.
@@ -102,7 +104,6 @@
 /obj/item/clothing/mask/facehugger/attack_self(mob/user)
 	if(isXenoCarrier(user))
 		var/mob/living/carbon/Xenomorph/Carrier/C = user
-		hivenumber = C.hivenumber
 		C.store_hugger(src)
 
 /obj/item/clothing/mask/facehugger/examine(mob/user)
@@ -151,7 +152,7 @@
 
 
 /obj/item/clothing/mask/facehugger/proc/check_lifecycle()
-	if(attached || throwing)
+	if(throwing)
 		return FALSE
 	if(sterile)
 		return TRUE
@@ -199,14 +200,14 @@
 	HasProximity(target)
 
 /obj/item/clothing/mask/facehugger/on_found(mob/finder)
-	if(stat == CONSCIOUS)
-		HasProximity(finder)
-		return TRUE
-	return FALSE
+	return HasProximity(finder)
 
 /obj/item/clothing/mask/facehugger/HasProximity(atom/movable/AM)
-	if(CanHug(AM) && stat == CONSCIOUS)
-		Attach(AM)
+	if(CanHug(AM))
+		if(stat == CONSCIOUS)
+			Attach(AM)
+		return TRUE
+	return FALSE
 
 /obj/item/clothing/mask/facehugger/proc/leap_at_nearest_target()
 	if(isturf(loc))
@@ -311,10 +312,8 @@
 		X.dropItemToGround(src)
 		X.update_icons()
 
-	var/mob/living/carbon/target = M
-
 	var/blocked = null //To determine if the hugger just rips off the protection or can infect.
-	if(ishuman(target))
+	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 
 		if(!H.has_limb("head"))
@@ -322,7 +321,7 @@
 			GoIdle()
 			return
 
-		if(isYautja(M) && !self_done)
+		if(isYautja(H) && !self_done)
 			var/catch_chance = 50
 			if(H.dir == reverse_dir[dir])
 				catch_chance += 20
@@ -356,8 +355,8 @@
 						m_helmet.add_hugger_damage()
 					H.update_inv_head()
 
-	if(target.wear_mask)
-		var/obj/item/clothing/mask/W = target.wear_mask
+	if(M.wear_mask)
+		var/obj/item/clothing/mask/W = M.wear_mask
 		if(istype(W))
 
 			if(istype(W, /obj/item/clothing/mask/facehugger))
@@ -369,13 +368,13 @@
 				blocked = null ? W : blocked
 				W.anti_hug = max(0, --W.anti_hug)
 				if(prob(60 + 10 * W.anti_hug))
-					target.visible_message("<span class='danger'>[src] smashes against [target]'s [blocked]!</span>")
+					M.visible_message("<span class='danger'>[src] smashes against [M]'s [blocked]!</span>")
 					GoIdle()
 					return FALSE
 
 			if(!blocked)
-				target.visible_message("<span class='danger'>[src] smashes against [target]'s [W.name] and rips it off!</span>")
-				target.dropItemToGround(W)
+				M.visible_message("<span class='danger'>[src] smashes against [M]'s [W.name] and rips it off!</span>")
+				M.dropItemToGround(W)
 			if(ishuman(M)) //Check for camera; if we have one, turn it off.
 				var/mob/living/carbon/human/H = M
 				if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))
@@ -385,10 +384,10 @@
 						to_chat(H, "<span class='danger'>Your headset camera flickers off; you'll need to reactivate it by rebooting your headset HUD!<span>")
 
 	if(blocked)
-		target.visible_message("<span class='danger'>[src] smashes against [target]'s [blocked]!</span>")
+		M.visible_message("<span class='danger'>[src] smashes against [M]'s [blocked]!</span>")
 		return FALSE
 
-	target.equip_to_slot(src, SLOT_WEAR_MASK)
+	M.equip_to_slot(src, SLOT_WEAR_MASK)
 	return TRUE
 
 /obj/item/clothing/mask/facehugger/equipped(mob/living/user, slot)

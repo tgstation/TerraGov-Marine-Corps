@@ -224,7 +224,7 @@
 
 /mob/living/carbon/Xenomorph/Carrier/proc/store_hugger(obj/item/clothing/mask/facehugger/F, message = TRUE)
 	if(huggers.len < xeno_caste.huggers_max)
-		if(F.stat == CONSCIOUS && !F.sterile)
+		if(F.stat == CONSCIOUS)
 			huggers.Add(F)
 			F.forceMove(src)
 			F.GoIdle(TRUE)
