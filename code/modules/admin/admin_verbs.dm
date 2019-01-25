@@ -257,6 +257,9 @@
 	if(!check_rights(R_ADMIN))
 		return
 
+	if(istype(usr, /mob/new_player))
+		return
+
 	var/replaced = FALSE
 	if(M.key)
 		if(alert("This mob is being controlled by [M.key], they will be made a ghost. Are you sure?",,"Yes","No") == "Yes")

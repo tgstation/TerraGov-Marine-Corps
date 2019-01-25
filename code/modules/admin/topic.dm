@@ -803,7 +803,7 @@
 		message_admins("[ADMIN_TPMONTY(usr)] has sent [key_name_admin(M)] back to the lobby.")
 
 		var/mob/new_player/NP = new()
-		NP.ckey = M.ckey
+		NP.key = M.key
 		if(NP.client) 
 			NP.client.change_view(world.view)
 		if(isobserver(M))

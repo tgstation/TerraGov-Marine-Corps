@@ -60,7 +60,7 @@ GLOBAL_PROTECT(protected_ranks)
 			if("ADMIN")
 				flag = R_ADMIN
 			if("MENTOR")
-				flag = R_ADMIN
+				flag = R_MENTOR
 			if("ASAY")
 				flag = R_ASAY
 			if("BAN")

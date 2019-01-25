@@ -286,19 +286,22 @@ function updateSearch(){
 		message_admins(m1)
 		log_admin(m2)
 
+
 /datum/admins/proc/force_readmin(admin_key, datum/admins/D)
 	if(!D || !D.deadmined)
 		return
 	D.activate()
-	message_admins("[key_name_admin(usr)] forcefully readmined [admin_key]")
+	message_admins("[ADMIN_TPMONTY(usr)] forcefully readmined [admin_key]")
 	log_admin("[key_name(usr)] forcefully readmined [admin_key]")
+
 
 /datum/admins/proc/force_deadmin(admin_key, datum/admins/D)
 	if(!D || D.deadmined)
 		return
-	message_admins("[key_name_admin(usr)] forcefully deadmined [admin_key]")
+	message_admins("[ADMIN_TPMONTY(usr)] forcefully deadmined [admin_key]")
 	log_admin("[key_name(usr)] forcefully deadmined [admin_key]")
 	D.deactivate() //after logs so the deadmined admin can see the message.
+
 
 /datum/admins/proc/change_admin_rank(admin_ckey, admin_key, use_db, datum/admins/D, legacy_only)
 	var/datum/admin_rank/R
@@ -320,7 +323,7 @@ function updateSearch(){
 		else
 			R = new(new_rank) //blank new admin_rank
 		GLOB.admin_ranks += R
-	var/m1 = "[key_name_admin(usr)] edited the admin rank of [admin_key] to [new_rank] [use_db ? "permanently" : "temporarily"]"
+	var/m1 = "[ADMIN_TPMONTY(usr)] edited the admin rank of [admin_key] to [new_rank] [use_db ? "permanently" : "temporarily"]"
 	var/m2 = "[key_name(usr)] edited the admin rank of [admin_key] to [new_rank] [use_db ? "permanently" : "temporarily"]"
 	if(use_db)
 		new_rank = sanitizeSQL(new_rank)

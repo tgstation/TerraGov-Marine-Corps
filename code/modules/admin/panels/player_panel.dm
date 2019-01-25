@@ -392,7 +392,7 @@
 	"}
 
 	if(M.client?.prefs)
-		body += "\ <a href='?_src_=[ref];lobby=[REF(M)]'> Send back to Lobby</a>"
+		body += "\ <a href='?src=[ref];lobby=[REF(M)]'> Send back to Lobby</a>"
 		var/muted = M.client.prefs.muted
 		body += {"<br><b>Mute: </b>
 			\[<a href='?src=[ref];mute=[REF(M)];mute_type=[MUTE_IC]'><font color='[(muted & MUTE_IC)?"red":"blue"]'>IC</font></a> |

@@ -7,13 +7,16 @@
 	var/list/keys = list()
 
 	for(var/client/C in GLOB.clients)
-		if(C.holder?.fakekey && !check_rights(R_ADMIN))
+		if(C.holder?.fakekey && !check_rights(R_ADMIN, FALSE))
 			continue
-		keys += "[C.key]\n"
+		if(check_rights(R_ADMIN, FALSE))
+			keys += "[ADMIN_TPMONTY(C.mob)]\n"
+		else
+			keys += "[C.key]\n"
 
 	msg += list2text(sortKey(keys))
 
-	msg += "<b>Total Players: [length(GLOB.clients)]</b>"
+	msg += "<b>Total Players: [length(keys)]</b>"
 
 	to_chat(src, msg)
 
@@ -27,7 +30,7 @@
 	var/num_admins_online = 0
 	var/num_mentors_online = 0
 
-	if(check_rights(R_ADMIN|R_MENTOR))
+	if(check_rights(R_ADMIN|R_MENTOR, FALSE))
 		for(var/client/C in GLOB.admins)
 			if(check_other_rights(C, R_ADMIN))
 				if(is_mentor(src) && C.holder.fakekey)
