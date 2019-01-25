@@ -115,7 +115,7 @@
 		to_chat(user, "<span class='warning'>It looks like the proboscis has been removed.</span>")
 
 /obj/item/clothing/mask/facehugger/attackby(obj/item/W, mob/user)
-	if(W.flags_item & NOBLUDGEON)
+	if(W.flags_item & NOBLUDGEON || attached)
 		return
 	Die()
 

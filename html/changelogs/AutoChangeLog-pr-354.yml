@@ -1,0 +1,4 @@
+author: "Surrealistik"
+delete-after: True
+changes: 
+  - bugfix: "Should fix issues with dropship turrets not having ammo."

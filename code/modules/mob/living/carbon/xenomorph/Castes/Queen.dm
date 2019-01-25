@@ -577,7 +577,7 @@
 		if(victim.loc != cur_loc)
 			return
 		visible_message("<span class='xenodanger'>\The [src] viciously smashes and wrenches \the [victim] apart!</span>", \
-		"<span class='xenodanger'>You suddenly unleash pure anger on \the [victim], instantly wrenching \him apart!</span>")
+		"<span class='xenodanger'>You suddenly unleash pure anger on \the [victim], instantly wrenching [victim.p_them()] apart!</span>")
 		emote("roar")
 		log_combat(victim, src, "gibbed")
 		victim.gib() //Splut

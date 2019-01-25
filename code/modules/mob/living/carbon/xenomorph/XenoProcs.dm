@@ -543,6 +543,16 @@
 			else
 				return FALSE
 
+/mob/living/carbon/Xenomorph/proc/neuroclaw_router()
+	return
+
+/mob/living/carbon/Xenomorph/Defiler/neuroclaw_router(mob/living/carbon/human/H)
+	if(!check_plasma(50) || !neuro_claws || !H)
+		return
+	use_plasma(50)
+	H.reagents.add_reagent("xeno_toxin", neuro_claws_dose)
+	to_chat(src, "<span class='xenowarning'>Your claw spines inject your victim with neurotoxin!</span>")
+
 /mob/living/carbon/Xenomorph/proc/process_ravager_charge(hit = TRUE, mob/living/carbon/M = null)
 	return FALSE
 
