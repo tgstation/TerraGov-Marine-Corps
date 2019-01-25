@@ -1,7 +1,3 @@
-//This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:32
-
-//TODO: Make these simple_animals
-
 #define FACEHUGGER_KNOCKOUT 10
 
 #define MIN_IMPREGNATION_TIME 10 SECONDS //Time it takes to impregnate someone
@@ -26,23 +22,32 @@
 
 	var/stat = CONSCIOUS //UNCONSCIOUS is the idle state in this case
 	var/sterile = FALSE
-	var/strength = 5
 	var/attached = FALSE
-	var/lifecycle = 300 //How long the hugger will survive outside of the egg, or carrier.
+	var/lifecycle = 30 //How long the hugger will survive outside of the egg, or carrier.
 	var/leaping = FALSE //Is actually attacking someone?
 	var/hivenumber = XENO_HIVE_NORMAL
 
 /obj/item/clothing/mask/facehugger/New()
 	..()
-	GoActive()
+	START_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/facehugger/ex_act(severity)
 	Die()
 
 /obj/item/clothing/mask/facehugger/proc/update_stat(new_stat)
-	if(new_stat)
+	if(new_stat && stat != new_stat)
 		stat = new_stat
 		update_icon()
+		if(stat == CONSCIOUS)
+			START_PROCESSING(SSobj, src)
+		else
+			STOP_PROCESSING(SSobj, src)
+
+/obj/item/clothing/mask/facehugger/process()
+	if(stat == DEAD)
+		return
+	update_stat(CONSCIOUS)
+	monitor_surrounding()
 
 /obj/item/clothing/mask/facehugger/update_icon()
 	if(stat == DEAD)
@@ -130,17 +135,10 @@
 /obj/item/clothing/mask/facehugger/flamer_fire_act()
 	Die()
 
-/obj/item/clothing/mask/facehugger/proc/GoActive(delay = 5 SECONDS)
-	if(stat == DEAD)
-		return
-	update_stat(CONSCIOUS)
-	addtimer(CALLBACK(src, .proc/monitor_surrounding), delay)
-
 /obj/item/clothing/mask/facehugger/proc/monitor_surrounding()
 	if(stat == CONSCIOUS && loc) //Make sure we're conscious and not idle or dead.
 		if(check_lifecycle())
 			leap_at_nearest_target()
-			.()
 
 /obj/item/clothing/mask/facehugger/proc/GoIdle(stasis = FALSE) //Idle state does not count toward the death timer.
 	if(stat != CONSCIOUS)
@@ -149,17 +147,18 @@
 	if(stasis)
 		lifecycle = initial(lifecycle)
 	else if(!attached)
-		addtimer(CALLBACK(src, .proc/GoActive), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
+		addtimer(CALLBACK(src, .proc/update_stat, CONSCIOUS), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
+
 
 /obj/item/clothing/mask/facehugger/proc/check_lifecycle()
-	if(attached)
+	if(attached || throwing)
 		return FALSE
 	if(sterile)
 		return TRUE
 	if(isturf(loc))
 		if(check_neighbours())
 			return FALSE
-	if(lifecycle - 50 <= 0)
+	if(lifecycle - 2 <= 0)
 		if(isturf(loc))
 			var/obj/effect/alien/egg/E = locate() in loc
 			if(E?.status == BURST)
@@ -181,7 +180,7 @@
 		Die()
 		return FALSE
 
-	lifecycle -= 50
+	lifecycle -= 2
 	return TRUE
 
 /obj/item/clothing/mask/facehugger/proc/check_neighbours()
@@ -206,39 +205,11 @@
 	return FALSE
 
 /obj/item/clothing/mask/facehugger/HasProximity(atom/movable/AM)
-	if(CanHug(AM))
+	if(CanHug(AM) && stat == CONSCIOUS)
 		Attach(AM)
 
-/obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed)
-	. = ..()
-	if(stat == CONSCIOUS)
-		update_icon()
-		addtimer(CALLBACK(src, .proc/reset_thrown_icon), range * 3 + 1)
-		if(range < 2)
-			GoIdle() //To prevent throwing huggers, then having them leap out.
-
-/obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
-	if(stat == DEAD)
-		return
-	if(ismob(hit_atom))
-		if(stat == CONSCIOUS)
-			if(leaping) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
-				Attach(hit_atom)
-			else if(hit_atom.density) //We hit something, cool.
-				update_stat(UNCONSCIOUS) //Giving it some brief downtime before jumping on someone via movement.
-				step(src, turn(dir, 180)) //We want the hugger to bounce off if it hits a mob.
-				addtimer(CALLBACK(src, .proc/GoActive, 0.5 SECONDS), 0.5 SECONDS)
-		throwing = FALSE
-		return
-	else
-		..()
-
-/obj/item/clothing/mask/facehugger/proc/reset_thrown_icon(range)
-	leaping = FALSE
-	update_icon()
-
 /obj/item/clothing/mask/facehugger/proc/leap_at_nearest_target()
-	if(isturf(loc) && stat == CONSCIOUS)
+	if(isturf(loc))
 		var/mob/living/M
 		var/i = 10//So if we have a pile of dead bodies around, it doesn't scan everything, just ten iterations.
 		for(M in view(4,src))
@@ -260,6 +231,36 @@
 					Attach(M)
 					break
 				i--
+
+/obj/item/clothing/mask/facehugger/throw_at(atom/target, range, speed)
+	. = ..()
+	if(stat == CONSCIOUS)
+		update_icon()
+		addtimer(CALLBACK(src, .proc/reset_thrown_icon), range * 3 + 1)
+
+/obj/item/clothing/mask/facehugger/throw_impact(atom/hit_atom, speed)
+	if(stat == DEAD)
+		return
+	if(ismob(hit_atom))
+		if(stat == CONSCIOUS)
+			if(leaping) //Standard leaping behaviour, not attributable to being _thrown_ such as by a Carrier.
+				Attach(hit_atom)
+			else if(hit_atom.density) //We hit something, cool.
+				update_stat(UNCONSCIOUS) //Giving it some brief downtime before jumping on someone via movement.
+				step(src, turn(dir, 180)) //We want the hugger to bounce off if it hits a mob.
+				addtimer(CALLBACK(src, .proc/fast_activate), 1 SECONDS)
+				throwing = FALSE
+		return
+	else
+		..()
+
+/obj/item/clothing/mask/facehugger/proc/fast_activate()
+	update_stat(CONSCIOUS)
+	monitor_surrounding()
+
+/obj/item/clothing/mask/facehugger/proc/reset_thrown_icon(range)
+	leaping = FALSE
+	update_icon()
 
 /obj/item/clothing/mask/facehugger/proc/CanHug(mob/living/carbon/M, check_death = TRUE, check_mask = TRUE)
 	if(!istype(M) || stat == DEAD)
@@ -301,8 +302,9 @@
 		return FALSE
 	if(!self_done)
 		M.visible_message("<span class='danger'>[src] leaps at [M]'s face!</span>")
-	if(throwing)
-		throwing = FALSE
+
+	throwing = FALSE
+	update_icon()
 
 	if(isXeno(loc)) //Being carried? Drop it
 		var/mob/living/carbon/Xenomorph/X = loc
@@ -391,7 +393,8 @@
 
 /obj/item/clothing/mask/facehugger/equipped(mob/living/user, slot)
 	. = ..()
-	if(slot != SLOT_WEAR_MASK)
+	if(slot != SLOT_WEAR_MASK || stat != CONSCIOUS)
+		reset_attach_status(FALSE)
 		return
 	if(ishuman(user))
 		playsound(loc, (user.gender == MALE ?'sound/misc/facehugged_male.ogg' : 'sound/misc/facehugged_female.ogg') , 25, 0)
@@ -406,7 +409,7 @@
 	addtimer(CALLBACK(src, .proc/Impregnate, user), rand(MIN_IMPREGNATION_TIME, MAX_IMPREGNATION_TIME))
 
 /obj/item/clothing/mask/facehugger/proc/Impregnate(mob/living/carbon/target)
-	var/message = target?.wear_mask == src ? TRUE : FALSE
+	var/as_planned = target?.wear_mask == src ? TRUE : FALSE
 	var/falling = "jumps off"
 	if(CanHug(target, FALSE, FALSE) && !sterile) //double check for changes
 		var/embryos = 0
@@ -420,12 +423,11 @@
 		falling = "falls limp"
 		Die()
 	else
-		reset_attach_status()
-		update_icon()
-		if(stat != DEAD)
-			addtimer(CALLBACK(src, .proc/GoActive), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
+		reset_attach_status(as_planned)
+		playsound(src.loc, 'sound/voice/alien_facehugger_dies.ogg', 25, 1)
+		addtimer(CALLBACK(src, .proc/update_stat, CONSCIOUS), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
 
-	if(message)
+	if(as_planned)
 		target.visible_message("<span class='danger'>[src] [falling] after violating [target]'s face!</span>")
 
 /obj/item/clothing/mask/facehugger/proc/Die(update_icon = TRUE)
@@ -443,13 +445,20 @@
 
 	addtimer(CALLBACK(src, .proc/melt_away), 3 MINUTES)
 
-/obj/item/clothing/mask/facehugger/proc/reset_attach_status()
+/obj/item/clothing/mask/facehugger/proc/reset_attach_status(forcedrop = TRUE)
 	flags_item &= ~NODROP
 	attached = FALSE
-	if(ismob(loc)) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
+	if(ismob(loc) && forcedrop) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
 		var/mob/M = loc
 		M.dropItemToGround(src)
+	update_icon()
 
 /obj/item/clothing/mask/facehugger/proc/melt_away()
 	visible_message("\icon[src] <span class='danger'>\The [src] decays into a mass of acid and chitin.</span>")
 	qdel(src)
+
+#undef FACEHUGGER_KNOCKOUT
+#undef MIN_IMPREGNATION_TIME
+#undef MAX_IMPREGNATION_TIME
+#undef MIN_ACTIVE_TIME
+#undef MAX_ACTIVE_TIME
