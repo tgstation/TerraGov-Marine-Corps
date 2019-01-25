@@ -3,6 +3,8 @@
 #define APC_WIRE_MAIN_POWER2 3
 #define APC_WIRE_AI_CONTROL 4
 
+#define APC_RESET_EMP 5
+
 //update_state
 #define UPSTATE_CELL_IN 1
 #define UPSTATE_OPENED1 2
@@ -138,33 +140,36 @@
 		return
 	..()
 
-/obj/machinery/power/apc/Initialize(turf/loc, var/ndir, var/building=0)
+/obj/machinery/power/apc/New(turf/loc, var/ndir, var/building=0)
 	. = ..()
 	apcs_list += src
-	//Offset 24 pixels in direction of dir
-	//This allows the APC to be embedded in a wall, yet still inside an area
-	if(building)
+
+	// offset 24 pixels in direction of dir
+	// this allows the APC to be embedded in a wall, yet still inside an area
+	if (building)
 		dir = ndir
-	tdir = dir //To fix Vars bug
+	src.tdir = dir		// to fix Vars bug
 	dir = SOUTH
 
-	pixel_x = (tdir & 3) ? 0 : (tdir == 4 ? 24 : -24)
-	pixel_y = (tdir & 3) ? (tdir == 1 ? 24 : -24) : 0
-	if(building == 0)
-		init()
-	else
-		area = loc.loc:master
-		area.apc |= src
+	name = "\improper [get_area(src)] APC"
+
+	switch(tdir)
+		if(NORTH)
+			pixel_y = 23
+		if(SOUTH)
+			pixel_y = -23
+		if(EAST)
+			pixel_x = 24
+		if(WEST)
+			pixel_x = -25
+	if (building)
+		area = get_area(src)
 		opened = 1
-		operating = 0
-		name = "\improper [area.name] APC"
+		operating = FALSE
+		name = "[area.name] APC"
 		stat |= MAINT
-		update_icon()
-		update()
-	start_processing()
-	sleep(0) //Break few ACPs on the colony
-	if(!start_charge && z == 1 && prob(10))
-		set_broken()
+		src.update_icon()
+		addtimer(CALLBACK(src, .proc/update), 5)
 
 // the very fact that i have to override this screams to me that apcs shouldnt be under machinery - spookydonut
 /obj/machinery/power/apc/power_change()
@@ -177,7 +182,8 @@
 	terminal.dir = tdir
 	terminal.master = src
 
-/obj/machinery/power/apc/proc/init()
+/obj/machinery/power/apc/Initialize()
+	. = ..()
 	has_electronics = 2 //Installed and secured
 	//Is starting with a power cell installed, create it and set its charge level
 	if(cell_type)
@@ -197,8 +203,7 @@
 	update_icon()
 	make_terminal()
 
-	spawn(5)
-		update()
+	addtimer(CALLBACK(src, .proc/update), 5)
 
 /obj/machinery/power/apc/examine(mob/user)
 	to_chat(user, desc)
@@ -374,13 +379,7 @@
 	return results
 
 /obj/machinery/power/apc/proc/queue_icon_update()
-
-	if(!updating_icon)
-		updating_icon = 1
-		//Start the update
-		spawn(APC_UPDATE_ICON_COOLDOWN)
-			update_icon()
-			updating_icon = 0
+	updating_icon = TRUE
 
 /obj/machinery/power/apc/attack_alien(mob/living/carbon/Xenomorph/M)
 	M.animation_attack_on(src)
@@ -935,31 +934,38 @@
 	switch(wireIndex)
 		if(APC_WIRE_IDSCAN) //Unlocks the APC for 30 seconds, if you have a better way to hack an APC I'm all ears
 			locked = 0
-			spawn(300)
-				locked = 1
-				updateDialog()
+			addtimer(CALLBACK(src, .reset, wireIndex), 300)
 		if(APC_WIRE_MAIN_POWER1)
 			if(shorted == 0)
 				shorted = 1
-			spawn(1200)
-				if(shorted == 1)
-					shorted = 0
-				updateDialog()
+			addtimer(CALLBACK(src, .reset, wireIndex), 1200)
 		if(APC_WIRE_MAIN_POWER2)
 			if(shorted == 0)
 				shorted = 1
-			spawn(1200)
-				if(shorted == 1)
-					shorted = 0
-				updateDialog()
+			addtimer(CALLBACK(src, .reset, wireIndex), 1200)
 		if(APC_WIRE_AI_CONTROL)
 			if(aidisabled == 0)
 				aidisabled = 1
 			updateDialog()
-			spawn(10)
-				if(aidisabled == 1)
-					aidisabled = 0
-				updateDialog()
+			addtimer(CALLBACK(src, .reset, wireIndex), 10)
+
+/obj/machinery/power/apc/proc/reset(var/wire)
+	switch(wire)
+		if(APC_WIRE_IDSCAN) 
+			locked = TRUE
+		if(APC_WIRE_MAIN_POWER1)
+			if(shorted == TRUE)
+				shorted = FALSE
+		if(APC_WIRE_MAIN_POWER2)
+			if(shorted == TRUE)
+				shorted = FALSE
+		if(APC_WIRE_AI_CONTROL)
+			if(aidisabled == TRUE)
+				aidisabled = FALSE
+		if(APC_RESET_EMP)
+			equipment = 3
+			environ = 3			
+	updateDialog()
 
 /obj/machinery/power/apc/proc/can_use(mob/user as mob, var/loud = 0) //used by attack_hand() and Topic()
 	if(user.stat)
@@ -1127,7 +1133,8 @@
 		return 0
 
 /obj/machinery/power/apc/process()
-
+	if(updating_icon)
+		update_icon()
 	if(stat & (BROKEN|MAINT))
 		return
 	if(!area.requires_power)
@@ -1312,9 +1319,7 @@
 	lighting = 0
 	equipment = 0
 	environ = 0
-	spawn(600)
-		equipment = 3
-		environ = 3
+	addtimer(CALLBACK(src, .proc/reset, APC_RESET_EMP), 60 SECONDS)
 	..()
 
 /obj/machinery/power/apc/ex_act(severity)
@@ -1340,12 +1345,14 @@
 
 	//Aesthetically much better!
 	visible_message("<span class='warning'>[src]'s screen flickers with warnings briefly!</span>")
-	spawn(rand(2, 5))
-		visible_message("<span class='danger'>[src]'s screen suddenly explodes in rain of sparks and small debris!</span>")
-		stat |= BROKEN
-		operating = 0
-		update_icon()
-		update()
+	addtimer(CALLBACK(src, .do_break), rand(2, 5))
+
+/obj/machinery/power/apc/proc/do_break()
+	visible_message("<span class='danger'>[src]'s screen suddenly explodes in rain of sparks and small debris!</span>")
+	stat |= BROKEN
+	operating = FALSE
+	update_icon()
+	update()
 
 //Overload all the lights in this APC area
 /obj/machinery/power/apc/proc/overload_lighting()
@@ -1353,12 +1360,14 @@
 		return
 	if(cell && cell.charge >= 20)
 		cell.use(20)
-		spawn(0)
-			for(var/area/A in area.related)
-				for(var/obj/machinery/light/L in A)
-					L.on = 1
-					L.broken()
-					sleep(1)
+		INVOKE_ASYNC(src, .proc/break_lights)
+
+/obj/machinery/power/apc/proc/break_lights()
+	for(var/obj/machinery/light/L in area.related)
+		L.on = TRUE
+		L.broken()
+		L.on = FALSE
+		stoplag()
 
 /obj/machinery/power/apc/Destroy()
 	area.power_light = 0
