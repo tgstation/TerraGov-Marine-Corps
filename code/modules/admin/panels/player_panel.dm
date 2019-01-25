@@ -210,7 +210,7 @@
 	var/list/mobs = sortmobs()
 	var/i = 1
 	for(var/mob/M in mobs)
-		if(M.ckey)
+		if(M.ckey && M.client)
 
 			var/color = "#e6e6e6"
 			if(i % 2 == 0)
