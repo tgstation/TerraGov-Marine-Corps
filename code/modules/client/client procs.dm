@@ -142,6 +142,7 @@
 		GLOB.admins |= src
 		holder.owner = src
 		holder.activate()
+		message_admins("Admin login: [key_name(src)].")
 	else if(GLOB.deadmins[ckey])
 		verbs += /client/proc/readmin
 

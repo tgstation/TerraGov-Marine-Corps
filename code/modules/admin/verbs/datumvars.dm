@@ -955,15 +955,24 @@
 				if("Scale")
 					var/x = input(usr, "Choose x mod","Transform Mod") as null|num
 					var/y = input(usr, "Choose y mod","Transform Mod") as null|num
+					if(x == 0 || y == 0)
+						if(alert("You've entered 0 as one of the values, are you sure?", "Warning", "Yes", "No") != "Yes")
+							return
 					if(!isnull(x) && !isnull(y))
 						A.transform = M.Scale(x,y)
 				if("Translate")
 					var/x = input(usr, "Choose x mod","Transform Mod") as null|num
 					var/y = input(usr, "Choose y mod","Transform Mod") as null|num
+					if(x == 0 || y == 0)
+						if(alert("You've entered 0 as one of the values, are you sure?", "Warning", "Yes", "No") != "Yes")
+							return
 					if(!isnull(x) && !isnull(y))
 						A.transform = M.Translate(x,y)
 				if("Rotate")
 					var/angle = input(usr, "Choose angle to rotate","Transform Mod") as null|num
+					if(angle == 0)
+						if(alert("You've entered 0 as one of the values, are you sure?", "Warning", "Yes", "No") != "Yes")
+							return
 					if(!isnull(angle))
 						A.transform = M.Turn(angle)
 
@@ -1100,7 +1109,13 @@
 			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
 			return
 
-		if(H.head)
-			H.dropItemToGround(H.head)
+		H.dropItemToGround(H.head)
 
-		H.head = new/obj/item/clothing/head/kitty(H)
+		if(istype(H.head, /obj/item/clothing/head/kitty))
+			H.head = null
+			log_admin("[key_name(usr)] has removed purrbation [key_name(H)].")
+			message_admins("[ADMIN_TPMONTY(usr)] has removed purrbation from [ADMIN_TPMONTY(H)].")
+		else
+			H.head = new /obj/item/clothing/head/kitty(H)
+			log_admin("[key_name(usr)] has purbated [key_name(H)].")
+			message_admins("[ADMIN_TPMONTY(usr)] has purbated [ADMIN_TPMONTY(H)].")

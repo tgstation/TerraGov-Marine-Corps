@@ -42,15 +42,14 @@
 	// Don't allow any other clicks while dragging something
 	if (mods["drag"])
 		return
-/*
+
 	if(client.buildmode)
-		if (istype(A, /obj/effect/bmode))
+		if(istype(A, /obj/effect/bmode))
 			A.clicked(src, mods)
 			return
 
 		build_click(src, client.buildmode, mods, A)
 		return
-*/
 
 	var/click_handled = 0
 	// Click handled elsewhere. (These clicks are not affected by the next_move cooldown)

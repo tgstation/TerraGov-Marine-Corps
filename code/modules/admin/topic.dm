@@ -123,11 +123,11 @@
 		var/z = text2num(href_list["Z"])
 
 		if(!isobserver(usr))
-			usr.client.holder.admin_ghost()
+			admin_ghost()
 			log_admin("[key_name(usr)] jumped to coordinates ([x], [y], [z]).")
-			message_admins("[ADMIN_TPMONTY(usr)] broke all lights ([x], [y], [z]).")
+			message_admins("[ADMIN_TPMONTY(usr)] jumped to coordinates ([x], [y], [z]).")
 
-		usr.client.holder.jump_coord(x,y,z)
+		jump_coord(x,y,z)
 
 
 	else if(href_list["observefollow"])
@@ -609,7 +609,7 @@
 			if("Yes")
 				location = get_turf(usr)
 
-		var/mob/user = usr
+		var/mob/user = "[ADMIN_TPMONTY(usr)]"
 
 		switch(href_list["transform"])
 			if("observer")
@@ -655,8 +655,8 @@
 
 		var/mob/target = M
 
-		log_admin("[key_name(user)] has transformed [key_name(target)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
-		message_admins("[ADMIN_TPMONTY(user)] has transformed [ADMIN_TPMONTY(target)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
+		log_admin("[key_name(usr)] has transformed [key_name(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
+		message_admins("[user] has transformed [ADMIN_TPMONTY(target)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
 
 
 	else if(href_list["revive"])

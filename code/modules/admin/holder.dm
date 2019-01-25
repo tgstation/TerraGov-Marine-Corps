@@ -334,7 +334,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 	/datum/admins/proc/select_equipment,
 	/datum/admins/proc/possess,
 	/datum/admins/proc/release,
-	/datum/admins/proc/build_mode
+	/client/proc/build_mode
 	)
 
 GLOBAL_PROTECT(admin_verbs_server)
