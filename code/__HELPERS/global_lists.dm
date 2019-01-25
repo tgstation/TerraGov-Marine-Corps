@@ -51,12 +51,10 @@ var/global/list/active_diseases = list()
 var/global/list/events = list()
 
 //tips
-var/global/list/alltips = file2list('config/marinetips.txt') + file2list('config/joketips.txt') + file2list('config/xenotips.txt')
 var/global/list/marinetips = file2list('config/marinetips.txt')
 var/global/list/xenotips = file2list('config/xenotips.txt')
 var/global/list/joketips = file2list('config/joketips.txt')
-
-
+var/global/list/alltips = marinetips + xenotips + joketips
 
 //used by binoculars for dropship bombardment
 var/global/list/active_laser_targets = list()
