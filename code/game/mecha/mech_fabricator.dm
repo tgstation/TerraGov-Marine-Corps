@@ -598,7 +598,6 @@
 
 	if( !(locate(Part, src.contents)) || !(Part.vars.Find("construction_time")) || !(Part.vars.Find("construction_cost")) ) // these 3 are the current requirements for an object being buildable by the mech_fabricator
 
-		var/turf/LOC = get_turf(user)
 		message_admins("[ADMIN_TPMONTY(user)] tried to exploit an Exosuit Fabricator to [desc_exploit ? "get the desc of" : "duplicate"] [Part].")
 		log_admin("[key_name(user)] tried to exploit an Exosuit Fabricator to [desc_exploit ? "get the desc of" : "duplicate"] [Part].")
 		return TRUE

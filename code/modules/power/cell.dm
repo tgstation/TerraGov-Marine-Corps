@@ -174,8 +174,8 @@
 		return
 	//explosion(T, 0, 1, 2, 2)
 
-	log_admin("Rigged power cell explosion at [AREACOORD(src.loc)], last touched by [ADMIN_TPMONTY(fingerprintslast)].")
-	message_admins("Rigged power cell explosion at [ADMIN_VERBOSEJMP(src.loc), last touched by [ADMIN_TPMONTY(fingerprintslast)].")
+	log_admin("Rigged power cell explosion at [AREACOORD(src.loc)], last touched by [key_name(fingerprintslast)].")
+	message_admins("Rigged power cell explosion at [ADMIN_VERBOSEJMP(src.loc)], last touched by [key_name_admin(fingerprintslast)].")
 
 	explosion(T, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 

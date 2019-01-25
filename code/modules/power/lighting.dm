@@ -242,7 +242,7 @@
 				if(status == LIGHT_OK && trigger)
 
 					log_admin("Rigged light explosion, last touched by [key_name(fingerprintslast)].")
-					message_admins("Rigged light explosion, last touched by [ADMIN_TPMONTY(fingerprintslast)].")
+					message_admins("Rigged light explosion, last touched by [key_name_admin(fingerprintslast)].")
 
 					explode()
 			else if( prob( min(60, switchcount*switchcount*0.01) ) )
@@ -320,7 +320,7 @@
 					if(on && rigged)
 
 						log_admin("Rigged light explosion, last touched by [key_name(fingerprintslast)].")
-						message_admins("Rigged light explosion, last touched by [ADMIN_TPMONTY(fingerprintslast)].")
+						message_admins("Rigged light explosion, last touched by [key_name_admin(fingerprintslast)].")
 
 						explode()
 			else

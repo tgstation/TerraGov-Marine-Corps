@@ -25,8 +25,8 @@
 
 	//search the href for script injection
 	if(findtext(href,"<script", 1, 0))
-		log_world("[key_name(src)] attempted use of scripts within a topic call.")
-		message_admins("[ADMIN_TPMONTY(src)] attempted use of scripts within a topic call.")
+		log_world("[key_name(usr)] attempted use of scripts within a topic call.")
+		message_admins("[ADMIN_TPMONTY(usr)] attempted use of scripts within a topic call.")
 		//del(usr)
 		return
 
@@ -40,13 +40,13 @@
 		return
 
 	switch(href_list["_src_"])
-		if("holder")	
+		if("holder")
 			hsrc = holder
-		if("usr")		
+		if("usr")
 			hsrc = mob
-		if("prefs")		
+		if("prefs")
 			return prefs.process_link(usr,href_list)
-		if("vars")		
+		if("vars")
 			return view_var_Topic(href, href_list, hsrc)
 
 	return ..()	//redirect to hsrc.Topic()

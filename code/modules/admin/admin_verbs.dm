@@ -1116,7 +1116,7 @@
 		M.revive()
 
 
-/datum/admins/remove_from_tank()
+/datum/admins/proc/remove_from_tank()
 	set category = "Admin"
 	set name = "Remove All From Tank"
 

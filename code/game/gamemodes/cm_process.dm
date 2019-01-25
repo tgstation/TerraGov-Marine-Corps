@@ -244,9 +244,9 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 		if(picked)
 			M.forceMove(picked)
 			M.revive()
-			to_chat(H, "<br><br><h1><span class='danger'>Fight for your life!</span></h1><br><br>")
+			to_chat(M, "<br><br><h1><span class='danger'>Fight for your life!</span></h1><br><br>")
 		else
-			to_chat(H, "<br><br><h1><span class='danger'>Failed to find a valid location for End of Round Deathmatch. Please do not grief.</span></h1><br><br>")
+			to_chat(M, "<br><br><h1><span class='danger'>Failed to find a valid location for End of Round Deathmatch. Please do not grief.</span></h1><br><br>")
 
 
 

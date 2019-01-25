@@ -134,8 +134,8 @@ var/global/Holiday = null
 	world.update_status()
 	Holiday_Game_Start()
 
-	log_admin("[key_name(src)] force-set Holiday to [Holiday].")
-	message_admins("[ADMIN_TPMONTY(src)] force-set Holiday to [Holiday].")
+	log_admin("[key_name(usr)] force-set Holiday to [Holiday].")
+	message_admins("[ADMIN_TPMONTY(usr)] force-set Holiday to [Holiday].")
 
 
 //Run at the  start of a round

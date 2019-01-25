@@ -588,48 +588,48 @@
 		message_admins("[ADMIN_TPMONTY(usr)] has transformed [ADMIN_TPMONTY(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
 
 		switch(href_list["transform"])
-			if("observer")			
+			if("observer")
 				M.change_mob_type(/mob/dead/observer, location, null, delmob)
-			if("larva")				
+			if("larva")
 				M.change_mob_type(/mob/living/carbon/Xenomorph/Larva, location, null, delmob)
-			if("defender")			
+			if("defender")
 				M.change_mob_type(/mob/living/carbon/Xenomorph/Defender, location, null, delmob)
-			if("warrior")			
+			if("warrior")
 				M.change_mob_type(/mob/living/carbon/Xenomorph/Warrior, location, null, delmob)
-			if("runner")			
+			if("runner")
 				M.change_mob_type(/mob/living/carbon/Xenomorph/Runner, location, null, delmob)
-			if("drone")				
+			if("drone")
 				M.change_mob_type(/mob/living/carbon/Xenomorph/Drone, location, null, delmob)
-			if("sentinel")			
+			if("sentinel")
 				M.change_mob_type(/mob/living/carbon/Xenomorph/Sentinel, location, null, delmob)
-			if("hunter")			
+			if("hunter")
 				M.change_mob_type(/mob/living/carbon/Xenomorph/Hunter, location, null, delmob)
-			if("carrier")			
+			if("carrier")
 				M.change_mob_type(/mob/living/carbon/Xenomorph/Carrier, location, null, delmob)
-			if("hivelord")			
+			if("hivelord")
 				M.change_mob_type(/mob/living/carbon/Xenomorph/Hivelord, location, null, delmob)
-			if("praetorian")		
+			if("praetorian")
 				M.change_mob_type(/mob/living/carbon/Xenomorph/Praetorian, location, null, delmob)
-			if("ravager")			
+			if("ravager")
 				M.change_mob_type(/mob/living/carbon/Xenomorph/Ravager, location, null, delmob)
-			if("spitter")			
+			if("spitter")
 				M.change_mob_type(/mob/living/carbon/Xenomorph/Spitter, location, null, delmob)
-			if("boiler")			
+			if("boiler")
 				M.change_mob_type(/mob/living/carbon/Xenomorph/Boiler, location, null, delmob)
-			if("crusher")			
+			if("crusher")
 				M.change_mob_type(/mob/living/carbon/Xenomorph/Crusher, location, null, delmob)
-			if("defiler")			
+			if("defiler")
 				M.change_mob_type(/mob/living/carbon/Xenomorph/Defiler, location, null, delmob)
-			if("queen")				
+			if("queen")
 				M.change_mob_type(/mob/living/carbon/Xenomorph/Queen, location, null, delmob)
-			if("human")				
+			if("human")
 				M.change_mob_type(/mob/living/carbon/human, location, null, delmob,)
-			if("monkey")				
+			if("monkey")
 				M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob,)
 
 
 	else if(href_list["revive"])
-		if(!check_rights(R_ADMIN))	
+		if(!check_rights(R_ADMIN))
 			return
 
 		var/mob/living/L = locate(href_list["revive"])
@@ -666,27 +666,27 @@
 
 
 	else if(href_list["spawncookie"])
-		if(!check_rights(R_ADMIN|R_FUN))	
+		if(!check_rights(R_ADMIN|R_FUN))
 			return
 
 		var/mob/M = locate(href_list["spawncookie"])
-		var/obj/item/reagent_container/food/snacks/cookie(M) = new(M)
 
 		if(ishuman(M))
 			var/mob/living/carbon/human/H = M
 			var/turf/T = get_turf(H)
-			if(H.put_in_hands(cookie))
-				H.update_inv_hands()
+			if(H.put_in_hands(new /obj/item/reagent_container/food/snacks/cookie(M)))
+				H.update_inv_r_hand()
+				H.update_inv_l_hand()
 			else
-			var/obj/item/reagent_container/food/snacks/cookie(T) = new(T)
+				new /obj/item/reagent_container/food/snacks/cookie(T)
 		else
 			var/turf/T = get_turf(M)
-			var/obj/item/reagent_container/food/snacks/cookie(T) = new(T)
+			new /obj/item/reagent_container/food/snacks/cookie(T)
 
-		to_chat(H, "<span class='boldnotice'>Your prayers have been answered!! You received the best cookie!</span>")
+		to_chat(M, "<span class='boldnotice'>Your prayers have been answered!! You received the best cookie!</span>")
 
-		log_admin("[key_name(H)] got their cookie, spawned by [key_name(usr)]")
-		message_admins("[ADMIN_TPMONTY(H)] got their cookie, spawned by [ADMIN_TPMONTY(usr)].")
+		log_admin("[key_name(M)] got their cookie, spawned by [key_name(usr)]")
+		message_admins("[ADMIN_TPMONTY(M)] got their cookie, spawned by [ADMIN_TPMONTY(usr)].")
 
 
 	else if(href_list["reply"])
@@ -695,8 +695,8 @@
 		if(!istype(H))
 			return
 
-		var/input = input("Please enter a message to reply to [key_name(H)].", "Outgoing message from TGMC", "") as txt
-		if(!input)	
+		var/input = input("Please enter a message to reply to [key_name(H)].", "Outgoing message from TGMC", "")
+		if(!input)
 			return
 
 		to_chat(H, "<span class='boldnotice'>Please stand by for a message from TGMC:[input]</span>")
@@ -714,7 +714,7 @@
 
 
 	if(href_list["distress"])
-		var/mob/ref_person = locate(href_list["distress"])
+		var/mob/M = locate(href_list["distress"])
 
 		if(ticker?.mode?.waiting_for_candidates)
 			return
