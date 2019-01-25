@@ -140,7 +140,7 @@
 
 
 	else if(href_list["observejump"])
-		var/atom/movable/AM = locate(href_list["observefollow"])
+		var/atom/movable/AM = locate(href_list["observejump"])
 
 		if(istype(usr, /mob/new_player) || istype(AM, /mob/new_player))
 			return
