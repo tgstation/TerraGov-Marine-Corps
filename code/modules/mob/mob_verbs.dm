@@ -80,7 +80,7 @@
 	set name = "Respawn"
 	set category = "OOC"
 
-	if(!respawn_allowed && check_rights(R_ADMIN))
+	if(!respawn_allowed && !check_rights(R_ADMIN, FALSE))
 		to_chat(usr, "<span class='notice'>Respawn is disabled.</span>")
 		return
 	if((stat != DEAD || !( ticker )))
@@ -102,7 +102,7 @@
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
 		to_chat(usr, "You have been dead for[pluralcheck] [deathtimeseconds] seconds.")
 
-		if(deathtime < (respawntime * 600) && !check_rights(R_ADMIN))
+		if(deathtime < (respawntime * 600) && !check_rights(R_ADMIN, FALSE))
 			to_chat(usr, "You must wait [respawntime] minutes to respawn!")
 			return
 		else
