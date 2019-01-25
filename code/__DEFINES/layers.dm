@@ -88,6 +88,9 @@
 
 #define AREAS_LAYER 10 //for areas, so they appear above everything else on map file.
 
+#define ABOVE_LIGHTING_PLANE 16
+#define ABOVE_LIGHTING_LAYER 16
+
 #define BELOW_FULLSCREEN_LAYER 16.9 //blip from motion detector
 #define FULLSCREEN_LAYER 17
 #define FULLSCREEN_IMPAIRED_LAYER 17.02 //visual impairment from wearing welding helmet, etc

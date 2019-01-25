@@ -261,6 +261,7 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/get_key,
 	/datum/admins/proc/send_mob,
 	/datum/admins/proc/msay,
+	/datum/admins/proc/dsay,
 	/datum/admins/proc/pref_attack_logs,
 	/datum/admins/proc/pref_ff_attack_logs,
 	/datum/admins/proc/pref_end_attack_logs,
@@ -332,7 +333,8 @@ GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 	/datum/admins/proc/select_rank,
 	/datum/admins/proc/select_equipment,
 	/datum/admins/proc/possess,
-	/datum/admins/proc/release
+	/datum/admins/proc/release,
+	/datum/admins/proc/build_mode
 	)
 
 GLOBAL_PROTECT(admin_verbs_server)

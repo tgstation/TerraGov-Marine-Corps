@@ -141,6 +141,7 @@
 	. = ..()
 	. += "---"
 	.["Set Species"] = "?_src_=vars;[HrefToken()];setspecies=[REF(src)]"
+	.["Purrbation"] = "?_src_=vars;[HrefToken()];purrbation=[REF(src)]"
 
 
 /mob/living/carbon/human/prepare_huds()

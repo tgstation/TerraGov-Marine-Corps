@@ -23,16 +23,16 @@
 	if(!check_rights(R_FUN))
 		return
 
-	if(!owner.mob || istype(owner.mob, /mob/dead/observer))
+	if(istype(usr, /mob/dead/observer))
 		return
 
 	if(alert(usr, "Are you sure you want to gib yourself?", "Warning" , "Yes", "No") != "Yes")
 		return
 
-	if(!owner.mob || istype(owner.mob, /mob/dead/observer))
+	if(!usr || istype(usr, /mob/dead/observer))
 		return
 
-	owner.mob.gib()
+	usr.gib()
 
 	log_admin("[key_name(usr)] has gibbed themselves.")
 	message_admins("[ADMIN_TPMONTY(usr)] has gibbed themselves.")
@@ -337,7 +337,7 @@
 					M << uploaded_sound
 					heard_midi++
 		if("Local")
-			playsound(get_turf(owner.mob), uploaded_sound, 50, 0)
+			playsound(get_turf(usr), uploaded_sound, 50, 0)
 			for(var/mob/M in view())
 				heard_midi++
 		if("Cancel")

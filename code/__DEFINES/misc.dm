@@ -45,3 +45,13 @@ Will print: "/mob/living/carbon/human/death" (you can optionally embed it in a s
 
 //Run the world with this parameter to enable a single run though of the game setup and tear down process with unit tests in between
 #define TEST_RUN_PARAMETER "test-run"
+
+
+#define AREASELECT_CORNERA "corner A"
+#define AREASELECT_CORNERB "corner B"
+
+#define CHANGETURF_DEFER_CHANGE		1
+#define CHANGETURF_IGNORE_AIR		2 // This flag prevents changeturf from gathering air from nearby turfs to fill the new turf with an approximation of local air
+#define CHANGETURF_FORCEOP			4
+#define CHANGETURF_SKIP				8 // A flag for PlaceOnTop to just instance the new turf instead of calling ChangeTurf. Used for uninitialized turfs NOTHING ELSE
+#define CHANGETURF_INHERIT_AIR 16 // Inherit air from previous turf. Implies CHANGETURF_IGNORE_AIR

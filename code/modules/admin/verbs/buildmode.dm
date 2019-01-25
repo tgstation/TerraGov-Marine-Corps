@@ -1,44 +1,42 @@
-/*/datum/admins/proc/togglebuildmodeself()
+/datum/admins/proc/build_mode()
 	set name = "Toggle Build Mode"
 	set category = "Fun"
 
 	if(!check_rights(R_FUN))
 		return
 
-	if(!usr?.client?.mob)
-		return
 
-		if(M.client.buildmode)
-			log_admin("[key_name(usr)] has left build mode.")
-			M.client.buildmode = 0
-			M.client.show_popup_menus = 1
-			for(var/obj/effect/bmode/buildholder/H)
-				if(H.cl == M.client)
-					del(H)
-		else
-			log_admin("[key_name(usr)] has entered build mode.")
-			M.client.buildmode = 1
-			M.client.show_popup_menus = 0
+	if(usr.client.buildmode)
+		log_admin("[key_name(usr)] has left build mode.")
+		usr.client.buildmode = FALSE
+		usr.client.show_popup_menus = TRUE
+		for(var/obj/effect/bmode/buildholder/H)
+			if(H.cl == usr.client)
+				del(H)
+	else
+		log_admin("[key_name(usr)] has entered build mode.")
+		usr.client.buildmode = TRUE
+		usr.client.show_popup_menus = FALSE
 
-			var/obj/effect/bmode/buildholder/H = new/obj/effect/bmode/buildholder()
-			var/obj/effect/bmode/builddir/A = new/obj/effect/bmode/builddir(H)
-			A.master = H
-			var/obj/effect/bmode/buildhelp/B = new/obj/effect/bmode/buildhelp(H)
-			B.master = H
-			var/obj/effect/bmode/buildmode/C = new/obj/effect/bmode/buildmode(H)
-			C.master = H
-			var/obj/effect/bmode/buildquit/D = new/obj/effect/bmode/buildquit(H)
-			D.master = H
+		var/obj/effect/bmode/buildholder/H = new/obj/effect/bmode/buildholder()
+		var/obj/effect/bmode/builddir/A = new/obj/effect/bmode/builddir(H)
+		A.master = H
+		var/obj/effect/bmode/buildhelp/B = new/obj/effect/bmode/buildhelp(H)
+		B.master = H
+		var/obj/effect/bmode/buildmode/C = new/obj/effect/bmode/buildmode(H)
+		C.master = H
+		var/obj/effect/bmode/buildquit/D = new/obj/effect/bmode/buildquit(H)
+		D.master = H
 
-			H.builddir = A
-			H.buildhelp = B
-			H.buildmode = C
-			H.buildquit = D
-			M.client.screen += A
-			M.client.screen += B
-			M.client.screen += C
-			M.client.screen += D
-			H.cl = M.client
+		H.builddir = A
+		H.buildhelp = B
+		H.buildmode = C
+		H.buildquit = D
+		usr.client.screen += A
+		usr.client.screen += B
+		usr.client.screen += C
+		usr.client.screen += D
+		H.cl = usr.client
 
 
 /obj/effect/bmode
@@ -284,4 +282,3 @@
 			if(mods["right"])
 				if(holder.throw_atom)
 					holder.throw_atom.throw_at(object, 10, 1)
-*/

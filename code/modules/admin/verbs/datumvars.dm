@@ -31,7 +31,7 @@
 		typecache = typecacheof(typecache)
 	. = list()
 	if (ispath(T, /mob))
-		for(var/mob/thing in GLOB.mob_list)
+		for(var/mob/thing in mob_list)
 			if (typecache[thing.type])
 				. += thing
 			CHECK_TICK
@@ -614,7 +614,7 @@
 		if(!check_rights(NONE))
 			return
 
-		var/mob/M = locate(href_list["mob_player_panel"]) in GLOB.mob_list
+		var/mob/M = locate(href_list["mob_player_panel"]) in mob_list
 		if(!istype(M))
 			to_chat(usr, "This can only be used on instances of type /mob")
 			return
@@ -660,7 +660,7 @@
 		if(!check_rights(NONE))
 			return
 
-		var/mob/M = locate(href_list["regenerateicons"]) in GLOB.mob_list
+		var/mob/M = locate(href_list["regenerateicons"]) in mob_list
 		if(!ismob(M))
 			to_chat(usr, "This can only be done to instances of type /mob")
 			return
@@ -697,7 +697,7 @@
 			if(!check_rights(NONE))
 				return
 
-			var/mob/M = locate(href_list["rename"]) in GLOB.mob_list
+			var/mob/M = locate(href_list["rename"]) in mob_list
 			if(!istype(M))
 				to_chat(usr, "This can only be used on instances of type /mob")
 				return
@@ -857,19 +857,6 @@
 			message_admins("[key_name_admin(src)] modified list's contents: SHUFFLE")
 
 
-		else if(href_list["direct_control"])
-			if(!check_rights(NONE))
-				return
-
-			var/mob/M = locate(href_list["direct_control"]) in GLOB.mob_list
-			if(!istype(M))
-				to_chat(usr, "This can only be used on instances of type /mob")
-				return
-
-			if(usr.client)
-				usr.client.holder.direct_control(M)
-
-
 		else if(href_list["delall"])
 			if(!check_rights(R_DEBUG|R_SERVER))
 				return
@@ -981,7 +968,7 @@
 						A.transform = M.Turn(angle)
 
 		else if(href_list["setspecies"])
-			if(!check_rights(R_SPAWN))
+			if(!check_rights(R_FUN))
 				return
 
 			var/mob/living/carbon/human/H = locate(href_list["setspecies"]) in mob_list
@@ -1005,7 +992,7 @@
 
 
 		else if(href_list["adjustDamage"] && href_list["mobToDamage"])
-			if(!check_rights(NONE))
+			if(!check_rights(R_FUN))
 				return
 
 			var/mob/living/L = locate(href_list["mobToDamage"]) in mob_list
@@ -1050,3 +1037,70 @@
 				log_admin(log_msg)
 				admin_ticket_log(L, "<span class='notice'>[log_msg]</span>")
 				vv_update_display(L, Text, "[newamt]")
+
+
+	else if(href_list["addlanguage"])
+		if(!check_rights(R_FUN))	
+			return
+
+		var/mob/living/carbon/M = locate(href_list["addlanguage"])
+		if(!istype(M))
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
+			return
+
+		var/new_language = input("Please choose a language to add.", "Language", null) as null|anything in all_languages
+
+		if(!new_language)
+			return
+
+		if(!M)
+			to_chat(usr, "Mob doesn't exist anymore")
+			return
+
+		if(M.add_language(new_language))
+			to_chat(usr, "Added [new_language] to [M].")
+		else
+			to_chat(usr, "Mob already knows that language.")
+
+
+	else if(href_list["remlanguage"])
+		if(!check_rights(R_FUN))	
+			return
+
+		var/mob/living/carbon/M = locate(href_list["remlanguage"])
+		if(!istype(M))
+
+			return
+
+		if(!length(M.languages))
+			to_chat(usr, "This mob knows no languages.")
+			return
+
+		var/datum/language/rem_language = input("Please choose a language to remove.", "Language", null) as null|anything in M.languages
+
+		if(!rem_language)
+			return
+
+		if(!M)
+			to_chat(usr, "Mob doesn't exist anymore")
+			return
+
+		if(M.remove_language(rem_language.name))
+			to_chat(usr, "Removed [rem_language] from [M].")
+		else
+			to_chat(usr, "Mob doesn't know that language.")
+
+
+	else if(href_list["purrbation"])
+		if(!check_rights(R_FUN))	
+			return
+
+		var/mob/living/carbon/human/H = locate(href_list["purrbation"])
+		if(!istype(H))
+			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+			return
+
+		if(H.head)
+			H.dropItemToGround(H.head)
+
+		H.head = new/obj/item/clothing/head/kitty(H)

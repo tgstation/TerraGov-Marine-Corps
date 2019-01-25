@@ -418,3 +418,10 @@
 			if(AM == X)
 				stomach_contents -= AM
 				break
+
+
+/mob/living/carbon/vv_get_dropdown()
+	. = ..()
+	. += "---"
+	.["Add Language"] = "?_src_=vars;[HrefToken()];addlanguage=[REF(src)]"
+	.["Remove Language"] = "?_src_=vars;[HrefToken()];remlanguage=[REF(src)]"

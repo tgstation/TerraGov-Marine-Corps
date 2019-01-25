@@ -124,6 +124,8 @@
 
 		if(!isobserver(usr))
 			usr.client.holder.admin_ghost()
+			log_admin("[key_name(usr)] jumped to coordinates ([x], [y], [z]).")
+			message_admins("[ADMIN_TPMONTY(usr)] broke all lights ([x], [y], [z]).")
 
 		usr.client.holder.jump_coord(x,y,z)
 
@@ -136,6 +138,8 @@
 
 		if(!isobserver(usr))
 			admin_ghost()
+			log_admin("[key_name(usr)] jumped to follow [key_name(AM)].")
+			message_admins("[ADMIN_TPMONTY(usr)] jumped to follow [ADMIN_TPMONTY(AM)].")
 
 		var/mob/dead/observer/A = usr
 		A.ManualFollow(AM)
@@ -149,6 +153,8 @@
 
 		if(!isobserver(usr))
 			admin_ghost()
+			log_admin("[key_name(usr)] jumped to [key_name(AM)].")
+			message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_TPMONTY(AM)].")
 
 		var/mob/dead/observer/A = usr
 		A.forceMove(AM.loc)

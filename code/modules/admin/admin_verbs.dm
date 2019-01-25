@@ -570,7 +570,7 @@
 		return
 
 	log_dsay("[key_name(usr)]: [msg]")
-	msg = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>([rank]) [usr.client.holder.fakekey ? "Administrator" : usr.key]</span> says, <span class='message'>[msg]</span></span>"
+	msg = "<span class='game deadsay'><span class='prefix'>DEAD:</span> <span class='name'>([usr.client.holder.rank.name]) [usr.client.holder.fakekey ? "Administrator" : usr.key]</span> says, <span class='message'>[msg]</span></span>"
 
 	for(var/client/C in GLOB.clients)
 		if(istype(C.mob, /mob/new_player))
