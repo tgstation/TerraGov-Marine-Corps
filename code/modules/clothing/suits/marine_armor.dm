@@ -186,9 +186,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 /obj/item/clothing/suit/storage/marine/M3HB
 	name = "\improper M3-H pattern marine armor"
-	desc = "A standard Marine M3 Heavy Build Pattern Chestplate. Increased protection at the cost of a slowdown."
+	desc = "A standard Marine M3 Heavy Build Pattern Chestplate. Increased protection at the cost of slowdown."
 	icon_state = "1"
-	armor = list(melee = 60, bullet = 70, laser = 45, energy = 30, bomb = 50, bio = 20, rad = 20)
+	armor = list(melee = 60, bullet = 70, laser = 45, energy = 30, bomb = 60, bio = 20, rad = 20)
 	slowdown = SLOWDOWN_ARMOR_HEAVY
 
 /obj/item/clothing/suit/storage/marine/M3LB
@@ -197,12 +197,6 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 	icon_state = "2"
 	armor = list(melee = 30, bullet = 20, laser = 25, energy = 10, bomb = 15, bio = 0, rad = 0)
 	slowdown = SLOWDOWN_ARMOR_LIGHT
-
-/obj/item/clothing/suit/storage/marine/M3P
-	name = "\improper M3-P pattern marine armor"
-	desc = "A standard Marine M3 Padded Pattern Chestplate. Better protection against bullets and explosions, with thermal shielding against energy weapons, but worse against melee."
-	icon_state = "3"
-	armor = list(melee = 30, bullet = 60, laser = 45, energy = 30, bomb = 60, bio = 10, rad = 10)
 
 /obj/item/clothing/suit/storage/marine/M3IS
 	name = "\improper M3-IS pattern marine armor"
@@ -228,9 +222,9 @@ var/list/squad_colors = list(rgb(230,25,25), rgb(255,195,45), rgb(200,100,200), 
 
 /obj/item/clothing/suit/storage/marine/M3P
 	name = "\improper M3-P pattern marine armor"
-	desc = "A standard Marine M3 Padded Pattern Chestplate. Better protection against bullets and explosions, but worse against melee."
+	desc = "A standard Marine M3 Padded Pattern Chestplate. Better protection against bullets and explosions, with limited thermal shielding against energy weapons, but worse against melee."
 	icon_state = "6"
-	armor = list(melee = 30, bullet = 70, laser = 35, energy = 20, bomb = 60, bio = 0, rad = 0)
+	armor = list(melee = 30, bullet = 70, laser = 45, energy = 30, bomb = 60, bio = 10, rad = 10)
 
 /obj/item/clothing/suit/storage/marine/MP
 	name = "\improper M2 pattern MP armor"
