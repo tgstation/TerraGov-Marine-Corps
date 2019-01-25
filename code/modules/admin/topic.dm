@@ -946,7 +946,7 @@
 
 				fax_contents += fax_message
 
-				TGMCFaxes.Add("<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxview=[REF(fax_message)]'> view reply at [world.timeofday]</a>")
+				TGMCFaxes.Add("<a href='?src=[REF(src)];[HrefToken()];faxview=[REF(fax_message)]'> view reply at [world.timeofday]</a>")
 
 
 			if("Corporate Liaison")
@@ -979,7 +979,7 @@
 
 				fax_contents += fax_message
 
-				CLFaxes.Add("<a href='?src=[REF(usr.client.holder)];[HrefToken()];faxview=[REF(fax_message)]'> view reply at [world.timeofday]</a>")
+				CLFaxes.Add("<a href='?src=[REF(src)];[HrefToken()];faxview=[REF(fax_message)]'> view reply at [world.timeofday]</a>")
 
 		var/customname = input("Pick a title for the report", "Title") as text|null
 
