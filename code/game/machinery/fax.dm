@@ -186,29 +186,27 @@ var/list/alldepartments = list()
 /proc/Centcomm_fax(var/originfax, var/sent, var/sentname, var/mob/sender)
 	var/faxcontents = "[sent]"
 	fax_contents += faxcontents
-	var/msg = "<span class='notice'><b><font color='#1F66A0'>TGMC FAX: </font>[ADMIN_FULLMONTY(sender)] (<a href='?src=[REF(src)];[HrefToken()];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?src=[REF(src)];[HrefToken()];faxview=[REF(faxcontents)]'>view message</a></span>"
-	var/mentor_msg = "<span class='notice'><b><font color='#1F66A0'>TGMC FAX: </font>[key_name(sender)] (<a href='?src=[REF(src)];[HrefToken()];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?src=[REF(src)];[HrefToken()];faxview=[REF(faxcontents)]'>view message</a></span>"
-	TGMCFaxes.Add("<a href='?src=[REF(src)];[HrefToken()];faxview=[REF(faxcontents)]'> view message at [world.timeofday]</a> <a href='?src=[REF(src)];[HrefToken()];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>")
+	TGMCFaxes.Add("<a href='?src=[REF(usr.client.holder)];[HrefToken(TRUE)];faxview=[REF(faxcontents)]'> view message at [world.timeofday]</a> <a href='?src=[REF(usr.client.holder)];[HrefToken(TRUE)];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>")
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
-			to_chat(C, msg)
+			to_chat(C, "<span class='notice'><b><font color='#1F66A0'>TGMC FAX: </font>[ADMIN_FULLMONTY(sender)] (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxview=[REF(faxcontents)]'>view message</a></span>")
+			C << 'sound/effects/sos-morse-code.ogg'
 		else
-			to_chat(C, mentor_msg)
-		C << 'sound/effects/sos-morse-code.ogg'
+			to_chat(C, "<span class='notice'><b><font color='#1F66A0'>TGMC FAX: </font>[key_name(sender)] (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxview=[REF(faxcontents)]'>view message</a></span>")
+			C << 'sound/effects/sos-morse-code.ogg'
 
 
 /proc/Solgov_fax(var/originfax, var/sent, var/sentname, var/mob/sender)
 	var/faxcontents = "[sent]"
 	fax_contents += faxcontents
-	var/msg = "<span class='notice'><b><font color='#1F66A0'>NANOTRASEN FAX: </font>[ADMIN_FULLMONTY(sender)] (<a href='?src=[REF(src)];[HrefToken()];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?src=[REF(src)];[HrefToken()];faxview=[REF(faxcontents)]'>view message</a></span>"
-	var/mentor_msg = "<span class='notice'><b><font color='#1F66A0'>NANOTRASEN FAX: </font>[key_name(sender)] (<a href='?src=[REF(src)];[HrefToken()];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?src=[REF(src)];[HrefToken()];faxview=[REF(faxcontents)]'>view message</a></span>"
-	CLFaxes.Add("<a href='?src=[REF(src)];[HrefToken()];faxview=[REF(faxcontents)]'>view message at [world.timeofday]</a> <a href='?src=[REF(src)];[HrefToken()];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>")
+	CLFaxes.Add("<a href='?src=[REF(usr.client.holder)];[HrefToken(TRUE)];faxview=[REF(faxcontents)]'>view message at [world.timeofday]</a> <a href='?src=[REF(usr.client.holder)];[HrefToken(TRUE)];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>")
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE))
-			to_chat(C, msg)
+			to_chat(C, "<span class='notice'><b><font color='#1F66A0'>NANOTRASEN FAX: </font>[ADMIN_FULLMONTY(sender)] (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxview=[REF(faxcontents)]'>view message</a></span>")
+			C << 'sound/effects/sos-morse-code.ogg'
 		else
-			to_chat(C, mentor_msg)
-		C << 'sound/effects/sos-morse-code.ogg'
+			to_chat(C, "<span class='notice'><b><font color='#1F66A0'>NANOTRASEN FAX: </font>[key_name(sender)] (<a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxreply=[REF(sender)];originfax=[REF(originfax)]'>REPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?src=[REF(C.holder)];[HrefToken(TRUE)];faxview=[REF(faxcontents)]'>view message</a></span>")
+			C << 'sound/effects/sos-morse-code.ogg'
 
 
 /proc/SendFax(var/sent, var/sentname, var/mob/Sender, var/dpt)
