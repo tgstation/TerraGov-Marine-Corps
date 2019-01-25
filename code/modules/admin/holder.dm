@@ -288,6 +288,7 @@ GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
 	/datum/admins/proc/dsay,
 	/datum/admins/proc/view_cl_faxes,
 	/datum/admins/proc/view_tgmc_faxes,
+	/datum/admins/proc/admin_ghost,
 	/client/proc/cmd_admin_pm_panel, //REWORK THIS
 	/client/proc/cmd_admin_pm_context //REWORK THIS
 	)
