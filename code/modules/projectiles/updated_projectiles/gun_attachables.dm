@@ -599,6 +599,18 @@ Defined in conflicts.dm of the #defines folder.
 	scatter_mod = -CONFIG_GET(number/combat_define/med_scatter_value)
 	movement_acc_penalty_mod = CONFIG_GET(number/combat_define/min_movement_acc_penalty)
 
+/obj/item/attachable/stock/scout
+	name = "\improper ZX-76 tactical stock"
+	desc = "A standard polymer stock for the ZX-76 assault shotgun. Designed for maximum ease of use in close quarters."
+	icon_state = "zx_stock"
+	wield_delay_mod = 0
+
+/obj/item/attachable/stock/scout/New()
+	. = ..()
+	accuracy_mod = CONFIG_GET(number/combat_define/min_hit_accuracy_mult)
+	recoil_mod = -CONFIG_GET(number/combat_define/min_recoil_value)
+	scatter_mod = -CONFIG_GET(number/combat_define/min_scatter_value)
+
 /obj/item/attachable/stock/slavic
 	name = "wooden stock"
 	desc = "A non-standard heavy wooden stock for Slavic firearms."

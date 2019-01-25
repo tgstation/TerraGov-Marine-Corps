@@ -25,18 +25,17 @@
 	var/disposal_pressure = 0
 
 //Create a new disposal, find the attached trunk (if present) and init gas resvr.
-/obj/machinery/disposal/New()
-	..()
-	spawn(5)
-		trunk = locate() in loc
-		if(!trunk)
-			mode = 0
-			flush = 0
-		else
-			trunk.linked = src	//Link the pipe trunk to self
+/obj/machinery/disposal/Initialize()
+	. = ..()
+	trunk = locate() in loc
+	if(!trunk)
+		mode = 0
+		flush = 0
+	else
+		trunk.linked = src	//Link the pipe trunk to self
 
-		update()
-		start_processing()
+	update()
+	start_processing()
 
 //Attack by item places it in to disposal
 /obj/machinery/disposal/attackby(var/obj/item/I, var/mob/user)

@@ -588,8 +588,8 @@
 	if(L.status & LIMB_DESTROYED)
 		return FALSE
 
-	visible_message("<span class='xenowarning'>\The [src] rips [M]'s [L.display_name] away from \his body!</span>", \
-	"<span class='xenowarning'>\The [M]'s [L.display_name] rips away from \his body!</span>")
+	visible_message("<span class='xenowarning'>\The [src] rips [M]'s [L.display_name] away from [M.p_their()] body!</span>", \
+	"<span class='xenowarning'>\The [M]'s [L.display_name] rips away from [M.p_their()] body!</span>")
 	log_message(src, M, "ripped the [L.display_name] off", addition="2/2 progress")
 
 	L.droplimb()
@@ -878,6 +878,7 @@
 	armor_bonus -= xeno_caste.fortify_armor
 	xeno_explosion_resistance = 0
 	frozen = FALSE
+	fortify = FALSE
 	anchored = FALSE
 	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 30, 1)
 	update_canmove()
@@ -1482,6 +1483,8 @@
 	var/sentinel_count = 0
 	var/defender_list = ""
 	var/defender_count = 0
+	var/defiler_list = ""
+	var/defiler_count = 0
 	var/larva_list = ""
 	var/larva_count = 0
 	var/stored_larva_count = ticker.mode.stored_larva
@@ -1564,6 +1567,10 @@
 				if (leader == "")
 					defender_list += xenoinfo
 				defender_count++
+			if ("Defiler")
+				if (leader == "")
+					defiler_list += xenoinfo
+				defiler_count++
 			if("Bloody Larva") // all larva are caste = blood larva
 				if(leader == "") larva_list += xenoinfo
 				larva_count++
@@ -1571,7 +1578,7 @@
 	dat += "<b>Total Living Sisters: [count]</b><BR>"
 	//if(exotic_count != 0) //Exotic Xenos in the Hive like Predalien or Xenoborg
 		//dat += "<b>Ultimate Tier:</b> [exotic_count] Sisters</b><BR>"
-	dat += "<b>Tier 3: [boiler_count + crusher_count + praetorian_count + ravager_count] Sisters</b> | Boilers: [boiler_count] | Crushers: [crusher_count] | Praetorians: [praetorian_count] | Ravagers: [ravager_count]<BR>"
+	dat += "<b>Tier 3: [boiler_count + crusher_count + praetorian_count + ravager_count] Sisters</b> | Boilers: [boiler_count] | Crushers: [crusher_count] | Praetorians: [praetorian_count] | Ravagers: [ravager_count] | Defilers: [defiler_count]<BR>"
 	dat += "<b>Tier 2: [carrier_count + hivelord_count + hunter_count + spitter_count + warrior_count] Sisters</b> | Carriers: [carrier_count] | Hivelords: [hivelord_count] | Warriors: [warrior_count] | Hunters: [hunter_count] | Spitters: [spitter_count]<BR>"
 	dat += "<b>Tier 1: [drone_count + runner_count + sentinel_count + defender_count] Sisters</b> | Drones: [drone_count] | Runners: [runner_count] | Sentinels: [sentinel_count] | Defenders: [defender_count]<BR>"
 	dat += "<b>Larvas: [larva_count] Sisters<BR>"
@@ -1579,7 +1586,7 @@
 		if(user.hivenumber == XENO_HIVE_NORMAL)
 			dat += "<b>Burrowed Larva: [stored_larva_count] Sisters<BR>"
 	dat += "<table cellspacing=4>"
-	dat += queen_list + leader_list + boiler_list + crusher_list + praetorian_list + ravager_list + carrier_list + hivelord_list + warrior_list + hunter_list + spitter_list + drone_list + runner_list + sentinel_list + defender_list + larva_list
+	dat += queen_list + leader_list + boiler_list + crusher_list + praetorian_list + ravager_list + carrier_list + hivelord_list + warrior_list + hunter_list + spitter_list + drone_list + runner_list + sentinel_list + defender_list + defiler_list + larva_list
 	dat += "</table></body>"
 	usr << browse(dat, "window=roundstatus;size=500x500")
 
@@ -1949,9 +1956,11 @@
 
 	second_wind_used = TRUE
 
-	second_wind_delay = world.time + (RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.015) )
+	var/cooldown = (RAV_SECOND_WIND_COOLDOWN * round((1 - (current_rage * 0.015) ),0.01) )
 
-	spawn(RAV_SECOND_WIND_COOLDOWN * round(1 - current_rage * 0.015) ) //4 minute cooldown, minus 0.75 seconds per rage to minimum 60 seconds.
+	second_wind_delay = world.time + cooldown
+
+	spawn(cooldown) //4 minute cooldown, minus 0.75 seconds per rage to minimum 60 seconds.
 		second_wind_used = FALSE
 		to_chat(src, "<span class='xenodanger'>You gather enough strength to use Second Wind again.</span>")
 		playsound(src, "sound/effects/xeno_newlarva.ogg", 50, 0, 1)
@@ -2078,3 +2087,162 @@
 		for(var/X in actions)
 			var/datum/action/A = X
 			A.update_button_icon()
+
+
+
+//Defiler abilities
+/mob/living/carbon/Xenomorph/Defiler/proc/emit_neurogas()
+
+	if(!check_state())
+		return
+
+	if(world.time < last_emit_neurogas + DEFILER_GAS_COOLDOWN) //Sure, let's use this.
+		to_chat(src, "<span class='xenodanger'>You are not ready to emit neurogas again. This ability will be ready in [(last_emit_neurogas + DEFILER_GAS_COOLDOWN - world.time) * 0.1] seconds.</span>")
+		return FALSE
+
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
+		return
+
+	if(!check_plasma(200))
+		return
+
+	last_emit_neurogas = world.time
+	use_plasma(200)
+
+	//give them fair warning
+	visible_message("<span class='danger'>Tufts of smoke begin to billow from [src]!</span>", \
+	"<span class='xenodanger'>Your dorsal vents widen, preparing to emit neurogas. Keep still!</span>")
+
+	spawn(DEFILER_GAS_COOLDOWN)
+		playsound(loc, 'sound/effects/xeno_newlarva.ogg', 50, 0)
+		to_chat(src, "<span class='xenodanger'>You feel your dorsal vents bristle with neurotoxic gas. You can use Emit Neurogas again.</span>")
+		update_action_button_icons()
+
+	emitting_gas = TRUE //We gain bump movement immunity while we're emitting gas.
+	if(!do_after(src, DEFILER_GAS_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
+		emitting_gas = FALSE
+		return
+	emitting_gas = FALSE
+
+	if(stagger) //If we got staggered, return
+		to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
+		return
+
+	round_statistics.defiler_neurogas_uses++
+
+	visible_message("<span class='xenodanger'>[src] emits a noxious gas!</span>", \
+	"<span class='xenodanger'>You emit neurogas!</span>")
+	dispense_gas()
+
+/mob/living/carbon/Xenomorph/Defiler/proc/dispense_gas(count = 3)
+	set waitfor = FALSE
+	while(count)
+		if(stagger) //If we got staggered, return
+			to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are staggered!</span>")
+			return
+		if(stunned || knocked_down)
+			to_chat(src, "<span class='xenowarning'>You try to emit neurogas but are disabled!</span>")
+			return
+		playsound(loc, 'sound/effects/smoke.ogg', 25)
+		var/turf/T = get_turf(src)
+		smoke_system = new /datum/effect_system/smoke_spread/xeno_weaken()
+		smoke_system.amount = 2
+		smoke_system.set_up(2, 0, T)
+		smoke_system.start()
+		T.visible_message("<span class='danger'>Noxious smoke billows from the hulking xenomorph!</span>")
+		count = max(0,count - 1)
+		sleep(DEFILER_GAS_DELAY)
+
+
+
+/mob/living/carbon/Xenomorph/Defiler/proc/defiler_sting(mob/living/H)
+
+	if(!check_state())
+		return
+
+	if(world.time < last_defiler_sting + DEFILER_STING_COOLDOWN) //Sure, let's use this.
+		to_chat(src, "<span class='xenodanger'>You are not ready to Defile again. It will be ready in [(last_defiler_sting + DEFILER_STING_COOLDOWN - world.time) * 0.1] seconds.</span>")
+		return
+
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>You try to sting but are too disoriented!</span>")
+		return
+
+	if(!istype(H) || isXeno(H) || isrobot(H) || isSynth(H) || H.stat == DEAD)
+		to_chat(src, "<span class='xenowarning'>Your sting won't affect this target!</span>")
+		return
+
+	if(!Adjacent(H))
+		if(world.time > (recent_notice + notice_delay)) //anti-notice spam
+			to_chat(src, "<span class='xenowarning'>You can't reach this target!</span>")
+			recent_notice = world.time //anti-notice spam
+		return
+
+	if ((H.status_flags & XENO_HOST) && istype(H.buckled, /obj/structure/bed/nest))
+		to_chat(src, "<span class='xenowarning'>Ashamed, you reconsider bullying the poor, nested host with your stinger.</span>")
+		return
+
+	if(!check_plasma(150))
+		return
+	last_defiler_sting = world.time
+	use_plasma(150)
+
+	round_statistics.defiler_defiler_stings++
+
+	face_atom(H)
+	animation_attack_on(H)
+	H.reagents.add_reagent("xeno_toxin", DEFILER_STING_AMOUNT_INITIAL) //15 units transferred initially.
+	H.reagents.add_reagent("xeno_growthtoxin", DEFILER_STING_AMOUNT_INITIAL) //15 units transferred initially.
+	to_chat(H, "<span class='danger'>You feel a tiny prick.</span>")
+	to_chat(src, "<span class='xenowarning'>Your stinger injects your victim with neurotoxin and larval growth serum!</span>")
+	playsound(H, 'sound/effects/spray3.ogg', 15, 1)
+	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+
+	spawn(DEFILER_STING_COOLDOWN)
+		playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 0)
+		to_chat(src, "<span class='xenodanger'>You feel your toxin glands refill, another young one ready for implantation. You can use Defile again.</span>")
+		update_action_button_icons()
+
+	defiler_recurring_injection(H)
+
+
+/mob/living/carbon/Xenomorph/Defiler/proc/defiler_recurring_injection(mob/living/H, count = 2)
+	//set waitfor = FALSE
+	while(count)
+		if(!Adjacent(H) || stagger)
+			return FALSE
+		face_atom(H)
+		if(!do_after(src, DEFILER_STING_CHANNEL_TIME, TRUE, 5, BUSY_ICON_HOSTILE))
+			return
+		animation_attack_on(H)
+		playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
+		H.reagents.add_reagent("xeno_toxin", DEFILER_STING_AMOUNT_RECURRING) //10 units transferred.
+		H.reagents.add_reagent("xeno_growthtoxin", DEFILER_STING_AMOUNT_RECURRING)
+		overdose_check(H)
+		overdose_check(H, "xeno_growthtoxin")
+
+		if(count < 2)
+			//It's infection time!
+			if(!CanHug(H))
+				return
+
+			var/embryos = 0
+			for(var/obj/item/alien_embryo/embryo in H) // already got one, stops doubling up
+				embryos++
+			if(!embryos)
+				var/obj/item/alien_embryo/embryo = new /obj/item/alien_embryo(H)
+				embryo.hivenumber = hivenumber
+				round_statistics.now_pregnant++
+				to_chat(src, "<span class='xenodanger'>Your stinger successfully implants a larva into the host.</span>")
+		count--
+		//sleep(DEFILER_STING_CHANNEL_TIME)
+	return
+
+/mob/living/carbon/Xenomorph/proc/overdose_check(mob/living/L, toxin = "xeno_toxin")
+	if(!iscarbon(L))
+		return
+	var/mob/living/carbon/C = L
+	var/datum/reagent/xeno_tox = C.reagents.get_reagent("[toxin]")
+	if(xeno_tox.overdosed)
+		to_chat(src, "<span class='xenodanger'>You sense this host is overdosed on [xeno_tox.name].</span>")

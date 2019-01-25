@@ -3,7 +3,6 @@
 	config_tag = "Distress Signal"
 	required_players = 1 //Need at least one player, but really we need 2.
 	xeno_required_num = 1 //Need at least one xeno.
-	monkey_amount = 5
 	flags_round_type = MODE_INFESTATION|MODE_FOG_ACTIVATED
 
 ////////////////////////////////////////////////////////////////////////////////////////
@@ -18,6 +17,7 @@
 	if(!found_queen && !found_xenos)
 		return FALSE
 	initialize_starting_survivor_list()
+	latejoin_larva_drop = CONFIG_GET(number/latejoin_larva_required_num)
 	return TRUE
 
 /datum/game_mode/colonialmarines/announce()
@@ -45,7 +45,6 @@
 /datum/game_mode/colonialmarines/pre_setup()
 	round_fog = new
 	var/xeno_tunnels[] = new
-	var/monkey_spawns[] = new
 	var/map_items[] = new
 	var/obj/effect/blocker/fog/F
 	for(var/obj/effect/landmark/L in GLOB.landmarks_list)
@@ -67,9 +66,6 @@
 			if("xeno tunnel")
 				xeno_tunnels += L.loc
 				qdel(L)
-			if("monkey_spawn")
-				monkey_spawns += L.loc
-				qdel(L)
 			if("map item")
 				map_items += L.loc
 				qdel(L)
@@ -82,29 +78,6 @@
 			if(MAP_ICE_COLONY) new /obj/item/map/ice_colony_map(T)
 			if(MAP_BIG_RED) new /obj/item/map/big_red_map(T)
 			if(MAP_PRISON_STATION) new /obj/item/map/FOP_map(T)
-
-	if(monkey_amount)
-		var/playerC = 0
-		for(var/mob/new_player/player in GLOB.player_list)
-			if(player.client && player.ready)
-				playerC++
-		var/scale = max((playerC / MARINE_GEAR_SCALING_NORMAL), 1)
-		monkey_amount = round(scale * monkey_amount)
-		//var/debug_tally = 0
-		switch(map_tag)
-			if(MAP_LV_624) monkey_types = list(/mob/living/carbon/monkey, /mob/living/carbon/monkey/tajara, /mob/living/carbon/monkey/unathi, /mob/living/carbon/monkey/skrell)
-			if(MAP_ICE_COLONY) monkey_types = list(/mob/living/carbon/monkey/yiren)
-			if(MAP_BIG_RED) monkey_types = list(/mob/living/carbon/monkey)
-			if(MAP_PRISON_STATION) monkey_types = list(/mob/living/carbon/monkey)
-		if(monkey_types.len)
-			for(var/i = monkey_amount, i > 0, i--)
-				var/turf/T = pick(monkey_spawns)
-				monkey_spawns -= T
-				var/monkey_to_spawn = pick(monkey_types)
-				new monkey_to_spawn(T)
-				//debug_tally++
-
-		//message_admins("SPAWNED [debug_tally] MONKEYS") //DO NOT LEAVE THIS UNCOMMENTED, THIS IS DEV INFO ONLY
 
 	if(!round_fog.len) round_fog = null //No blockers?
 	else

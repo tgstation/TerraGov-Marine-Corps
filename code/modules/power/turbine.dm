@@ -40,22 +40,21 @@
 
 // the inlet stage of the gas turbine electricity generator
 
-/obj/machinery/compressor/New()
-	..()
+/obj/machinery/compressor/Initialize()
+	. = ..()
 
 	inturf = get_step(src, dir)
 
-	spawn(5)
-		for(var/dr in cardinal)
-			turbine = locate() in get_step(src,dr)
-			if(turbine)
-				break
+	for(var/dr in cardinal)
+		turbine = locate() in get_step(src,dr)
+		if(turbine)
+			break
 
-		if(!turbine)
-			stat |= BROKEN
-		else
-			turbine.stat &= ~BROKEN
-			turbine.compressor = src
+	if(!turbine)
+		stat |= BROKEN
+	else
+		turbine.stat &= ~BROKEN
+		turbine.compressor = src
 
 
 #define COMPFRICTION 5e5
@@ -95,22 +94,21 @@
 		overlays += image('icons/obj/pipes.dmi', "comp-o1", FLY_LAYER)
 	 //TODO: DEFERRED
 
-/obj/machinery/power/turbine/New()
-	..()
+/obj/machinery/power/turbine/Initialize()
+	. = ..()
 
 	outturf = get_step(src, dir)
 
-	spawn(5)
-		for(var/dr in cardinal)
-			compressor = locate() in get_step(src,dr)
-			if(compressor)
-				break
+	for(var/dr in cardinal)
+		compressor = locate() in get_step(src,dr)
+		if(compressor)
+			break
 
-		if(!compressor)
-			stat |= BROKEN
-		else
-			compressor.stat &= ~BROKEN
-			compressor.turbine = src
+	if(!compressor)
+		stat |= BROKEN
+	else
+		compressor.stat &= ~BROKEN
+		compressor.turbine = src
 
 
 #define TURBPRES 9000000
@@ -204,15 +202,14 @@
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-/obj/machinery/computer/turbine_computer/New()
-	..()
-	spawn(5)
-		for(var/obj/machinery/compressor/C in GLOB.machines)
-			if(id == C.comp_id)
-				compressors += C
-		for(var/obj/machinery/door/poddoor/P in GLOB.machines)
-			if(P.id == id)
-				doors += P
+/obj/machinery/computer/turbine_computer/Initialize()
+	. = ..()
+	for(var/obj/machinery/compressor/C in GLOB.machines)
+		if(id == C.comp_id)
+			compressors += C
+	for(var/obj/machinery/door/poddoor/P in GLOB.machines)
+		if(P.id == id)
+			doors += P
 
 /*
 /obj/machinery/computer/turbine_computer/attackby(I as obj, user as mob)

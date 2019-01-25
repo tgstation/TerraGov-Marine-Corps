@@ -66,22 +66,25 @@ var/global/datum/authority/branch/role/RoleAuthority
 	for(var/i in roles_all) //Setting up our roles.
 		J = new i
 
-		if(!J.title) //In case you forget to subtract one of those variable holder jobs
-			continue
-
 		roles_by_path[J.type] = J
 
 
 		if(J.flags_startup_parameters & ROLE_ADD_TO_MODE)
-			roles_for_mode[J.title] = J
+			if(J.title)
+				roles_for_mode[J.title] = J
 
 		if(J.flags_startup_parameters & ROLE_ADD_TO_DEFAULT)
 			if(J.title)
 				roles_by_name[J.title] = J
 				roles_by_name_paths[J.type] = J
 			if(J.equipment)
-				roles_by_equipment[J.title] = J
-				roles_by_equipment_paths[J.type] = J
+				if(J.title)
+					roles_by_equipment[J.title] = J
+					roles_by_equipment_paths[J.type] = J
+				else if(J.disp_title)
+					roles_by_equipment[J.disp_title] = J
+					roles_by_equipment_paths[J.type] = J
+				
 
 
 /*

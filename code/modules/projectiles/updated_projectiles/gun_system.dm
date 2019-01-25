@@ -141,10 +141,6 @@
 
 //Hotfix for attachment offsets being set AFTER the core New() proc. Causes a small graphical artifact when spawning, hopefully works even with lag
 /obj/item/weapon/gun/proc/handle_starting_attachment()
-
-	set waitfor = 0
-
-	sleep(1) //Give a moment to the rest of the proc to work out
 	if(starting_attachment_types && starting_attachment_types.len)
 		for(var/path in starting_attachment_types)
 			var/obj/item/attachable/A = new path(src)

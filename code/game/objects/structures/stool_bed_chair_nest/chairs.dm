@@ -9,13 +9,11 @@
 	buckle_lying = FALSE
 	var/propelled = 0 //Check for fire-extinguisher-driven chairs
 
-/obj/structure/bed/chair/New()
+/obj/structure/bed/chair/Initialize()
 	if(anchored)
 		src.verbs -= /atom/movable/verb/pull
-	..()
-	spawn(3) //Sorry. i don't think there's a better way to do this.
-		handle_rotation()
-	return
+	. = ..()
+	handle_rotation()
 
 /obj/structure/bed/chair/attack_tk(mob/user as mob)
 	if(buckled_mob)

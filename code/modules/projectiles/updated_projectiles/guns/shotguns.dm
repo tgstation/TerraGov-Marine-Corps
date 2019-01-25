@@ -526,4 +526,3 @@ can cause issues with ammo types getting mixed up during the burst.
 	recoil_unwielded = CONFIG_GET(number/combat_define/high_recoil_value)
 	pump_delay = CONFIG_GET(number/combat_define/mhigh_fire_delay) * 2
 
-//-------------------------------------------------------

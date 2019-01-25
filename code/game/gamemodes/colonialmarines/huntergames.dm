@@ -122,7 +122,6 @@ var/waiting_for_drop_votes = 0
 	config_tag = "Hunter Games"
 	required_players = 1
 	flags_round_type = MODE_NO_LATEJOIN
-	latejoin_larva_drop = 0 //You never know
 
 	var/last_count
 	var/primary_spawns[]

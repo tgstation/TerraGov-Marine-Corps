@@ -226,8 +226,15 @@
 
 
 /mob/living/carbon/Xenomorph/Sentinel/proc/neurotoxin_recurring_injection(var/mob/living/H)
+	if(!Adjacent(H))
+		to_chat(src, "<span class='xenowarning'>You try to continue your sting but are too far away from the target!</span>")
+		return
+	if(stagger)
+		to_chat(src, "<span class='xenowarning'>You try to continue your sting but are too disoriented!</span>")
+		return
 	face_atom(H)
 	animation_attack_on(H)
 	playsound(H, pick('sound/voice/alien_drool1.ogg', 'sound/voice/alien_drool2.ogg'), 15, 1)
 	H.reagents.add_reagent("xeno_toxin", NEUROTOXIN_STING_AMOUNT_RECURRING) //10 units transferred.
+	overdose_check(H)
 	return TRUE
