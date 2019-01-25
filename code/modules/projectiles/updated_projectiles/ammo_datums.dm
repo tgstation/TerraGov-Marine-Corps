@@ -1275,7 +1275,6 @@
 /datum/ammo/xeno/toxin
 	name = "neurotoxic spit"
 	ammo_reagents = list("xeno_toxin" = 6)
-	debilitate = list(0.5,0.5,0,0,0,0,0,0)
 	flags_ammo_behavior = AMMO_XENO_TOX|AMMO_IGNORE_RESIST
 	spit_cost = 50
 	added_spit_delay = 5
