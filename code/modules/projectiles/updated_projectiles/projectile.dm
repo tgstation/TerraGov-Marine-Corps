@@ -811,7 +811,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 	if(ismob(P.firer))
 		var/mob/firingMob = P.firer
 		var/area/A = get_area(firingMob)
-		if(ishuman(firingMob) && ishuman(src) && firingMob.mind && !firingMob.mind.special_role && mind && !mind.special_role && firingMob.z != 2) //One human shot another, be worried about it but do everything basically the same //special_role should be null or an empty string if done correctly
+		if(ishuman(firingMob) && ishuman(src) && firingMob.mind && !firingMob.mind.special_role && mind && !mind.special_role) //One human shot another, be worried about it but do everything basically the same //special_role should be null or an empty string if done correctly
 			log_combat(firingMob, src, "shot", P)
 			msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with \a [P] in [ADMIN_VERBOSEJMP(A)].")
 			round_statistics.total_bullet_hits_on_marines++

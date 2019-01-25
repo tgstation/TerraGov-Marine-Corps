@@ -242,6 +242,8 @@ dat += " You failed to evacuate \the [MAIN_SHIP_NAME]"
 
 
 		if(picked)
+			if(M.mind)
+				M.mind.special_role = "Deathmatch"
 			M.forceMove(picked)
 			M.revive()
 			to_chat(M, "<br><br><h1><span class='danger'>Fight for your life!</span></h1><br><br>")
