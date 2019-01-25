@@ -27,7 +27,7 @@
 		msg = "<b><font color=purple>PRAY:</font> <span class='notice'>[ADMIN_FULLMONTY(usr)] [ADMIN_SC(usr)]:</b> [msg]</span>"
 		mentor_msg = "<b><font color=purple>PRAY:</font> <span class='notice'>[ADMIN_TPMONTY(usr)]:</b> [mentor_msg]</span>"
 
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN) && (C.prefs.toggles_chat & CHAT_PRAYER))
 			to_chat(C, msg)
 		else if(C.mob.stat == DEAD && (C.prefs.toggles_chat & CHAT_PRAYER))
@@ -42,7 +42,7 @@
 /proc/Centcomm_announce(var/text , var/mob/sender , var/iamessage)
 	var/msg = copytext(sanitize(text), 1, MAX_MESSAGE_LEN)
 	msg = "<span class='notice'><b><font color=orange>TGMC:</font>[ADMIN_FULLMONTY(usr)] (<a HREF='?src=[REF(usr.client.holder)];[HrefToken()];reply=[REF(sender)]'>REPLY</a>):</b> [msg]</span>"
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN))
 			to_chat(C, msg)
 			C << 'sound/effects/sos-morse-code.ogg'

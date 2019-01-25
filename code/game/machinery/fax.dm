@@ -187,7 +187,7 @@ var/list/alldepartments = list()
 	fax_contents += faxcontents
 	var/msg = "<span class='notice'> <b><font color='#006100'>TGMC FAX: </font>[key_name(Sender, 1)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[Sender]'>?</A>) (<A HREF='?_src_=holder;mark=\ref[src]'>Mark</A>) (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[Sender]'>FLW</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='?_src_=holder;TGMCFaxReply=\ref[Sender];originfax=\ref[originfax]'>RPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>view message</a></span>"
 	TGMCFaxes.Add("<a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>\[view message at [world.timeofday]\]</a> <a href='?_src_=holder;TGMCFaxReply=\ref[Sender];originfax=\ref[originfax]'>REPLY</a>")
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		to_chat(C, msg)
 
 /proc/Solgov_fax(var/originfax, var/sent, var/sentname, var/mob/Sender)
@@ -195,7 +195,7 @@ var/list/alldepartments = list()
 	fax_contents += faxcontents
 	var/msg = "<span class='notice'> <b><font color='#1F66A0'>NANOTRASEN FAX: </font>[key_name(Sender, 1)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[Sender]'>?</A>) (<A HREF='?_src_=holder;ccmark=\ref[Sender]'>Mark</A>) (<A HREF='?_src_=holder;adminplayeropts=\ref[Sender]'>PP</A>) (<A HREF='?_src_=vars;Vars=\ref[Sender]'>VV</A>) (<A HREF='?_src_=holder;subtlemessage=\ref[Sender]'>SM</A>) (<A HREF='?_src_=holder;adminplayerobservejump=\ref[Sender]'>JMP</A>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[Sender]'>FLW</A>) (<A HREF='?_src_=holder;secretsadmin=check_antagonist'>CA</A>) (<a href='?_src_=holder;CLFaxReply=\ref[Sender];originfax=\ref[originfax]'>RPLY</a>)</b>: Receiving '[sentname]' via secure connection ... <a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>view message</a></span>"
 	CLFaxes.Add("<a href='?_src_=holder;CentcommFaxView=\ref[faxcontents]'>\[view message at [world.timeofday]\]</a> <a href='?_src_=holder;CLFaxReply=\ref[Sender];originfax=\ref[originfax]'>REPLY</a>")
-	for(var/client/C in admins)
+	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN))
 			to_chat(C, msg)
 			C << 'sound/effects/sos-morse-code.ogg'

@@ -560,7 +560,7 @@
 
 	for(var/mob/V in hearers(usr.control_object))
 		V.show_message("<b>[usr.control_object.name]</b> says, \"[msg]\"", 2)
-	usr.show_message("<b>[usr.control_object.name]</b> says: \"[msg]\"", 2)
+	usr.show_message("<b>[usr.control_object.name]</b> says, \"[msg]\"", 2)
 
 	log_admin("[key_name(usr)] used [usr.control_object] ([usr.control_object.type]) to say: [msg]")
 	message_admins("[ADMIN_TPMONTY(usr)] used [usr.control_object] ([usr.control_object.type]) to say: [msg]")
