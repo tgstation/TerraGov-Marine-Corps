@@ -54,15 +54,15 @@ var/global/normal_ooc_colour = "#002eb8"
 				display_colour = "#004100"	//dark green
 			if("Admin")
 				display_colour = "#b4001e"	//red
-			if("TrialAdmin")
+			if("Trial Admin")
 				display_colour = "#f03200"	//darker orange
-			if("AdminCandidate")
+			if("Admin Candidate")
 				display_colour = "#ff5a1e"	//lighter orange
-			if("RetiredAdmin")
-				display_colour = "#aa5050"	//light red
 			if("Mentor")
 				display_colour = "#008000"	//green
 			if("Maintainer")
+				display_colour = "#0064ff"	//different light blue
+			if("Debugger")
 				display_colour = "#0064ff"	//different light blue
 			if("Contributor")
 				display_colour = "#1e4cd6"	//VERY slightly different light blue
