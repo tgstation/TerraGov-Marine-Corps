@@ -151,7 +151,9 @@
 	if(stat != CONSCIOUS)
 		return
 	update_stat(UNCONSCIOUS)
-	if(!attached || !stasis)
+	if(stasis)
+		lifecycle = initial(lifecycle)
+	else if(!attached)
 		addtimer(CALLBACK(src, .proc/GoActive), rand(MIN_ACTIVE_TIME,MAX_ACTIVE_TIME))
 
 /obj/item/clothing/mask/facehugger/proc/check_lifecycle()
