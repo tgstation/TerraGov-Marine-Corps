@@ -736,3 +736,63 @@
 
 	log_admin("[key_name(usr)] has released [O] ([O.type]).")
 	message_admins("[ADMIN_TPMONTY(usr)] has released [O] ([O.type]).")
+
+
+/datum/admins/proc/edit_appearance(mob/living/carbon/human/H in mob_list)
+	set category = "Fun"
+	set name = "Edit Appearance"
+
+	if(!check_rights(R_FUN))
+		return
+
+	if(!istype(H))
+		return
+
+	if(alert("Are you sure you wish to edit this mob's appearance?", "Confirmation", "Yes", "No") != "Yes")
+		return
+
+	var/new_facial = input("Please select facial hair color.", "Character Generation") as color
+	if(new_facial)
+		H.r_facial = hex2num(copytext(new_facial, 2, 4))
+		H.g_facial = hex2num(copytext(new_facial, 4, 6))
+		H.b_facial = hex2num(copytext(new_facial, 6, 8))
+
+	var/new_hair = input("Please select hair color.", "Character Generation") as color
+	if(new_facial)
+		H.r_hair = hex2num(copytext(new_hair, 2, 4))
+		H.g_hair = hex2num(copytext(new_hair, 4, 6))
+		H.b_hair = hex2num(copytext(new_hair, 6, 8))
+
+	var/new_eyes = input("Please select eye color.", "Character Generation") as color
+	if(new_eyes)
+		H.r_eyes = hex2num(copytext(new_eyes, 2, 4))
+		H.g_eyes = hex2num(copytext(new_eyes, 4, 6))
+		H.b_eyes = hex2num(copytext(new_eyes, 6, 8))
+
+	var/new_skin = input("Please select body color. This is for Tajaran, Unathi, and Skrell only!", "Character Generation") as color
+	if(new_skin)
+		H.r_skin = hex2num(copytext(new_skin, 2, 4))
+		H.g_skin = hex2num(copytext(new_skin, 4, 6))
+		H.b_skin = hex2num(copytext(new_skin, 6, 8))
+
+
+	// hair
+	var/new_hstyle = input("Select a hair style")  as null|anything in hair_styles_list
+	if(new_hstyle)
+		H.h_style = new_hstyle
+
+	// facial hair
+	var/new_fstyle = input("Select a facial hair style")  as null|anything in facial_hair_styles_list
+	if(new_fstyle)
+		H.f_style = new_fstyle
+
+	var/new_gender = alert("Please select gender.",, "Male", "Female")
+	if(new_gender)
+		if(new_gender == "Male")
+			H.gender = MALE
+		else
+			H.gender = FEMALE
+
+	H.update_hair()
+	H.update_body()
+	H.check_dna(H)

@@ -1048,74 +1048,79 @@
 				vv_update_display(L, Text, "[newamt]")
 
 
-	else if(href_list["addlanguage"])
-		if(!check_rights(R_FUN))	
-			return
+		else if(href_list["addlanguage"])
+			if(!check_rights(R_FUN))
+				return
 
-		var/mob/living/carbon/M = locate(href_list["addlanguage"])
-		if(!istype(M))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
-			return
+			var/mob/living/carbon/M = locate(href_list["addlanguage"])
+			if(!istype(M))
+				to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
+				return
 
-		var/new_language = input("Please choose a language to add.", "Language", null) as null|anything in all_languages
+			var/new_language = input("Please choose a language to add.", "Language", null) as null|anything in all_languages
 
-		if(!new_language)
-			return
+			if(!new_language)
+				return
 
-		if(!M)
-			to_chat(usr, "Mob doesn't exist anymore")
-			return
+			if(!M)
+				to_chat(usr, "Mob doesn't exist anymore")
+				return
 
-		if(M.add_language(new_language))
-			to_chat(usr, "Added [new_language] to [M].")
-		else
-			to_chat(usr, "Mob already knows that language.")
-
-
-	else if(href_list["remlanguage"])
-		if(!check_rights(R_FUN))	
-			return
-
-		var/mob/living/carbon/M = locate(href_list["remlanguage"])
-		if(!istype(M))
-
-			return
-
-		if(!length(M.languages))
-			to_chat(usr, "This mob knows no languages.")
-			return
-
-		var/datum/language/rem_language = input("Please choose a language to remove.", "Language", null) as null|anything in M.languages
-
-		if(!rem_language)
-			return
-
-		if(!M)
-			to_chat(usr, "Mob doesn't exist anymore")
-			return
-
-		if(M.remove_language(rem_language.name))
-			to_chat(usr, "Removed [rem_language] from [M].")
-		else
-			to_chat(usr, "Mob doesn't know that language.")
+			if(M.add_language(new_language))
+				log_admin("[key_name(usr)] has added [new_language] to [key_name(M)].")
+				message_admins("[ADMIN_TPMONTY(usr)] has added [new_language] to [ADMIN_TPMONTY(M)].")
+			else
+				to_chat(usr, "Mob already knows that language.")
 
 
-	else if(href_list["purrbation"])
-		if(!check_rights(R_FUN))	
-			return
+		else if(href_list["remlanguage"])
+			if(!check_rights(R_FUN))
+				return
 
-		var/mob/living/carbon/human/H = locate(href_list["purrbation"])
-		if(!istype(H))
-			to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
-			return
+			var/mob/living/carbon/M = locate(href_list["remlanguage"])
+			if(!istype(M))
 
-		H.dropItemToGround(H.head)
+				return
 
-		if(istype(H.head, /obj/item/clothing/head/kitty))
-			H.head = null
-			log_admin("[key_name(usr)] has removed purrbation [key_name(H)].")
-			message_admins("[ADMIN_TPMONTY(usr)] has removed purrbation from [ADMIN_TPMONTY(H)].")
-		else
-			H.head = new /obj/item/clothing/head/kitty(H)
-			log_admin("[key_name(usr)] has purbated [key_name(H)].")
-			message_admins("[ADMIN_TPMONTY(usr)] has purbated [ADMIN_TPMONTY(H)].")
+			if(!length(M.languages))
+				to_chat(usr, "This mob knows no languages.")
+				return
+
+			var/datum/language/rem_language = input("Please choose a language to remove.", "Language", null) as null|anything in M.languages
+
+			if(!rem_language)
+				return
+
+			if(!M)
+				to_chat(usr, "Mob doesn't exist anymore")
+				return
+
+			if(M.remove_language(rem_language.name))
+				to_chat(usr, "Removed [rem_language] from [M].")
+				log_admin("[key_name(usr)] has removed [rem_language] from [key_name(M)].")
+				message_admins("[ADMIN_TPMONTY(usr)] has removed [rem_language] from [ADMIN_TPMONTY(M)].")
+			else
+				to_chat(usr, "Mob doesn't know that language.")
+
+
+		else if(href_list["purrbation"])
+			if(!check_rights(R_FUN))
+				return
+
+			var/mob/living/carbon/human/H = locate(href_list["purrbation"])
+			if(!istype(H))
+				to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
+				return
+
+			if(istype(H.head, /obj/item/clothing/head/kitty))
+				qdel(H.head)
+				H.regenerate_icons()
+				log_admin("[key_name(usr)] has removed purrbation [key_name(H)].")
+				message_admins("[ADMIN_TPMONTY(usr)] has removed purrbation from [ADMIN_TPMONTY(H)].")
+			else
+				H.dropItemToGround(H.head)
+				H.head = new /obj/item/clothing/head/kitty(H)
+				H.regenerate_icons()
+				H.head.update_icon()
+				log_admin("[key_name(usr)] has purrbated [key_name(H)].")
+				message_admins("[ADMIN_TPMONTY(usr)] has purrbated [ADMIN_TPMONTY(H)].")

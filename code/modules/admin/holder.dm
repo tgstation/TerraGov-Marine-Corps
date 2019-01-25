@@ -334,6 +334,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 	/datum/admins/proc/select_equipment,
 	/datum/admins/proc/possess,
 	/datum/admins/proc/release,
+	/datum/admins/proc/edit_appearance,
 	/client/proc/build_mode
 	)
 
