@@ -995,10 +995,13 @@
 				to_chat(usr, "Mob doesn't exist anymore")
 				return
 
-			if(result)
-				var/newtype = all_species[result]
-				admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [H] to [result]")
-				H.set_species(newtype)
+			if(!result)
+				return
+
+			H.set_species(result)
+			message_admins("[ADMIN_TPMONTY(usr)] set the species of [ADMIN_TPMONTY(H)] to [result].")
+			admin_ticket_log("[key_name_admin(usr)] has modified the bodyparts of [H] to [result].")
+
 
 
 		else if(href_list["adjustDamage"] && href_list["mobToDamage"])

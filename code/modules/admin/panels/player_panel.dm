@@ -381,8 +381,8 @@
 		<a href='?priv_msg=[M.ckey]'>PM</a> -
 		<a href='?src=[ref];subtlemessage=[REF(M)]'>SM</a> -
 		<a href='?_src_=vars;[HrefToken()];vars=[REF(M)]'>VV</a> -
-		<a href='?src=[ref];adminplayerobservejump=[REF(M)]'>JMP</a> -
-		<a href='?src=[ref];adminplayerfollow=[REF(M)]'>FLW</a> -
+		<a href='?src=[ref];observejump=[REF(M)]'>JMP</a> -
+		<a href='?src=[ref];observefollow=[REF(M)]'>FLW</a> -
 		<a href='?src=[ref];individuallog=[REF(M)]'>LOGS</a> \]</b><br>
 		<b>Mob type</b> = [M.type]<br><br>
 		<a href='?src=[ref];kick=[REF(M)]'>Kick</a> |
@@ -435,6 +435,7 @@
 				<a href='?src=[ref];transform=ravager;mob=[REF(M)]'>Ravager</a> |
 				<a href='?src=[ref];transform=praetorian;mob=[REF(M)]'>Praetorian</a> |
 				<a href='?src=[ref];transform=boiler;mob=[REF(M)]'>Boiler</a> |
+				<a href='?src=[ref];transform=defiler;mob=[REF(M)]'>Defiler</a> |
 				<a href='?src=[ref];transform=crusher;mob=[REF(M)]'>Crusher</a> \]
 				<br>\[ Alien Tier 4:
 				<a href='?src=[ref];transform=queen;mob=[REF(M)]'>Queen</a> \]

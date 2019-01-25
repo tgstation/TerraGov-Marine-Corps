@@ -197,7 +197,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 
 		//send it to irc if nobody is on and tell us how many were on
 		var/admin_number_present = send2irc_adminless_only(initiator_ckey, "Ticket #[id]: [name]")
-		log_admin_private("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK admins who have +BAN.")
+		log_admin_private("Ticket #[id]: [key_name(initiator)]: [name] - heard by [admin_number_present] non-AFK staff.")
 		if(admin_number_present <= 0)
 			to_chat(C, "<span class='notice'>No active admins are online, your adminhelp was sent to the admin irc.</span>")
 			heard_by_no_admins = TRUE
@@ -288,9 +288,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		initiator.current_ticket = src
 
 	AddInteraction("<font color='purple'>Reopened by [key_name_admin(usr)]</font>")
-	var/msg = "<span class='adminhelp'>Ticket [TicketHref("#[id]")] reopened by [key_name_admin(usr)].</span>"
-	message_admins(msg)
-	log_admin_private(msg)
+	message_admins("Ticket [TicketHref("#[id]")] reopened by [ADMIN_TPMONTY(usr)].")
+	log_admin_private("Ticket (#[id]) reopened by [key_name(usr)].")
 	TicketPanel()	//can only be done from here, so refresh it
 
 //private
@@ -312,9 +311,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	GLOB.ahelp_tickets.ListInsert(src)
 	AddInteraction("<font color='red'>Closed by [key_name].</font>")
 	if(!silent)
-		var/msg = "Ticket [TicketHref("#[id]")] closed by [key_name]."
-		message_admins(msg)
-		log_admin_private(msg)
+		message_admins("Ticket [TicketHref("#[id]")] closed by [ADMIN_TPMONTY(usr)].")
+		log_admin_private("Ticket (#[id]) closed by [key_name(usr)].")
 
 //Mark open ticket as resolved/legitimate, returns ahelp verb
 /datum/admin_help/proc/Resolve(key_name = key_name_admin(usr), silent = FALSE)
@@ -329,9 +327,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	AddInteraction("<font color='green'>Resolved by [key_name].</font>")
 	to_chat(initiator, "<span class='adminhelp'>Your ticket has been resolved by an admin. The Adminhelp verb will be returned to you shortly.</span>")
 	if(!silent)
-		var/msg = "Ticket [TicketHref("#[id]")] resolved by [key_name]"
-		message_admins(msg)
-		log_admin_private(msg)
+		message_admins("Ticket [TicketHref("#[id]")] resolved by [ADMIN_TPMONTY(usr)].")
+		log_admin_private("Ticket (#[id]) resolved by [key_name(usr)].")
 
 //Close and return ahelp verb, use if ticket is incoherent
 /datum/admin_help/proc/Reject(key_name = key_name_admin(usr))
@@ -347,9 +344,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 		to_chat(initiator, "<font color='red'><b>Your admin help was rejected.</b> The adminhelp verb has been returned to you so that you may try again.</font>")
 		to_chat(initiator, "Please try to be calm, clear, and descriptive in admin helps, do not assume the admin has seen any related events, and clearly state the names of anybody you are reporting.")
 
-	var/msg = "Ticket [TicketHref("#[id]")] rejected by [key_name]"
-	message_admins(msg)
-	log_admin_private(msg)
+	message_admins("Ticket [TicketHref("#[id]")] rejected by [ADMIN_TPMONTY(usr)].")
+	log_admin_private("Ticket (#[id]) rejected by [key_name(usr)].")
 	AddInteraction("Rejected by [key_name].")
 	Close(silent = TRUE)
 
@@ -365,9 +361,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(initiator)
 		to_chat(initiator, msg)
 
-	msg = "Ticket [TicketHref("#[id]")] marked as IC by [key_name]"
-	message_admins(msg)
-	log_admin_private(msg)
+	message_admins("Ticket [TicketHref("#[id]")] marked as IC by [ADMIN_TPMONTY(usr)].")
+	log_admin_private("Ticket (#[id]) marked as IC by [key_name(usr)].")
 	AddInteraction("Marked as IC issue by [key_name]")
 	Resolve(silent = TRUE)
 
@@ -408,9 +403,8 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	if(new_title)
 		name = new_title
 		//not saying the original name cause it could be a long ass message
-		var/msg = "Ticket [TicketHref("#[id]")] titled [name] by [key_name_admin(usr)]"
-		message_admins(msg)
-		log_admin_private(msg)
+		message_admins("Ticket [TicketHref("#[id]")] titled [name] by [ADMIN_TPMONTY(usr)].")
+		log_admin_private("Ticket (#[id]) titled [name] by [key_name(usr)].")
 	TicketPanel()	//we have to be here to do this
 
 //Forwarded action from admin/Topic

@@ -115,6 +115,9 @@
 
 
 	else if(href_list["observecoodjump"])
+		if(istype(usr, /mob/new_player))
+			return
+
 		var/x = text2num(href_list["X"])
 		var/y = text2num(href_list["Y"])
 		var/z = text2num(href_list["Z"])
@@ -128,11 +131,27 @@
 	else if(href_list["observefollow"])
 		var/atom/movable/AM = locate(href_list["observefollow"])
 
+		if(istype(usr, /mob/new_player) || istype(AM, /mob/new_player))
+			return
+
 		if(!isobserver(usr))
 			admin_ghost()
 
 		var/mob/dead/observer/A = usr
 		A.ManualFollow(AM)
+
+
+	else if(href_list["observejump"])
+		var/atom/movable/AM = locate(href_list["observefollow"])
+
+		if(istype(usr, /mob/new_player) || istype(AM, /mob/new_player))
+			return
+
+		if(!isobserver(usr))
+			admin_ghost()
+
+		var/mob/dead/observer/A = usr
+		A.forceMove(AM.loc)
 
 
 	else if(href_list["secrets"])
@@ -584,9 +603,6 @@
 			if("Yes")
 				location = get_turf(usr)
 
-		log_admin("[key_name(usr)] has transformed [key_name(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
-		message_admins("[ADMIN_TPMONTY(usr)] has transformed [ADMIN_TPMONTY(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
-
 		switch(href_list["transform"])
 			if("observer")
 				M.change_mob_type(/mob/dead/observer, location, null, delmob)
@@ -626,6 +642,9 @@
 				M.change_mob_type(/mob/living/carbon/human, location, null, delmob,)
 			if("monkey")
 				M.change_mob_type(/mob/living/carbon/monkey, location, null, delmob,)
+
+		log_admin("[key_name(usr)] has transformed [key_name(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to [AREACOORD(location)]" : ""]")
+		message_admins("[ADMIN_TPMONTY(usr)] has transformed [ADMIN_TPMONTY(M)] into [href_list["transform"]].[delmob ? " Old mob deleted." : ""][location ? " Teleported to new location." : ""]")
 
 
 	else if(href_list["revive"])
@@ -726,7 +745,7 @@
 
 
 	else if(href_list["forcesay"])
-		if(!check_rights(R_ADMIN))	
+		if(!check_rights(R_ADMIN))
 			return
 
 		var/mob/M = locate(href_list["forcesay"])
@@ -743,7 +762,7 @@
 
 
 	else if(href_list["thunderdome"])
-		if(!check_rights(R_ADMIN))	
+		if(!check_rights(R_ADMIN))
 			return
 
 		var/mob/M = locate(href_list["thunderdome"])
@@ -769,7 +788,7 @@
 
 
 	else if(href_list["gib"])
-		if(!check_rights(R_ADMIN))	
+		if(!check_rights(R_ADMIN))
 			return
 
 		var/mob/M = locate(href_list["gib"])
@@ -804,7 +823,7 @@
 
 		var/mob/new_player/NP = new()
 		NP.key = M.key
-		if(NP.client) 
+		if(NP.client)
 			NP.client.change_view(world.view)
 		if(isobserver(M))
 			qdel(M)
@@ -871,13 +890,13 @@
 		switch(template_choice)
 			if("Custom")
 				var/input = input("Please enter a message to reply to [key_name(H)] via secure connection.", "Outgoing message", "") as text|null
-				if(!input)	
+				if(!input)
 					return
 				fax_message = "[input]"
 
 			if("TGMC High Command", "TGMC Provost General")
 				var/subject = input("Enter subject line", "Outgoing message", "") as text|null
-				if(!subject) 
+				if(!subject)
 					return
 				var/addressed_to = ""
 				var/address_option = input("Address it to the sender or custom?") in list("Sender", "Custom")
@@ -885,22 +904,22 @@
 					addressed_to = "[H.real_name]"
 				else if(address_option == "Custom")
 					addressed_to = input("Who is it addressed to?", "Outgoing message", "") as text|null
-					if(!addressed_to) 
+					if(!addressed_to)
 						return
 				else
 					return
 				var/message_body = input("Enter Message Body, use <p></p> for paragraphs", "Outgoing message", "") as message|null
-				if(!message_body) 
+				if(!message_body)
 					return
 				var/sent_by = input("Enter the name and rank you are sending from.", "Outgoing message from USCM", "") as text|null
-				if(!sent_by) 
+				if(!sent_by)
 					return
 
 				var/sent_title = template_choice
 
 
 				fax_message = generate_templated_fax(FALSE, "TGMC CENTRAL COMMAND", subject, addressed_to, message_body, sent_by, sent_title, "TerraGov Marine Corps")
-		
+
 
 				usr << browse(fax_message, "window=tgmcfaxpreview;size=600x600")
 
@@ -914,7 +933,7 @@
 
 			if("Corporate Liaison")
 				var/subject = input("Enter subject line", "Outgoing message", "") as text|null
-				if(!subject) 
+				if(!subject)
 					return
 				var/addressed_to = ""
 				var/address_option = input("Address it to the sender or custom?") in list("Sender", "Custom")
@@ -922,19 +941,19 @@
 					addressed_to = "[H.real_name]"
 				else if(address_option == "Custom")
 					addressed_to = input("Who do you want to address it to?", "Outgoing message", "") as text|null
-					if(!addressed_to) 
+					if(!addressed_to)
 						return
 				else
 					return
 				var/message_body = input("Enter Message Body, use <p></p> for paragraphs", "Outgoing message", "") as message|null
-				if(!message_body) 
+				if(!message_body)
 					return
 				var/sent_by = input("Enter the name you are sending this from", "Outgoing message", "") as text|null
-				if(!sent_by) 
+				if(!sent_by)
 					return
 
 				fax_message = generate_templated_fax(TRUE, "NANOTRASEN CORPORATE AFFAIRS - TGS THESEUS", subject, addressed_to, message_body, sent_by, "Corporate Affairs Director", "Nanotrasen")
-				
+
 				usr << browse(fax_message, "window=clfaxpreview;size=600x600")
 
 				if(alert("Send this fax?", "Confirmation", "Yes", "No") != "Yes")

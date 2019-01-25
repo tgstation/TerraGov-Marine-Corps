@@ -327,7 +327,6 @@ GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 	/datum/admins/proc/force_distress,
 	/datum/admins/proc/force_ert_shuttle,
 	/datum/admins/proc/object_sound,
-	/datum/admins/proc/object_talk,
 	/datum/admins/proc/drop_bomb,
 	/datum/admins/proc/change_security_level,
 	/datum/admins/proc/select_rank,
