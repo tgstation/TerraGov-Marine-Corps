@@ -21,6 +21,7 @@
 	layer = MOB_LAYER
 
 	var/stat = CONSCIOUS //UNCONSCIOUS is the idle state in this case
+	var/hugger_tick = 0
 	var/sterile = FALSE
 	var/attached = FALSE
 	var/lifecycle = 15 //How long the hugger will survive outside of the egg, or carrier.
@@ -41,13 +42,13 @@
 		if(stat == CONSCIOUS)
 			START_PROCESSING(SSobj, src)
 		else
+			hugger_tick = 0
 			STOP_PROCESSING(SSobj, src)
 
 /obj/item/clothing/mask/facehugger/process()
-	if(stat == DEAD)
-		return
-	update_stat(CONSCIOUS)
-	monitor_surrounding()
+	hugger_tick++
+	if(hugger_tick % 2 == 0)
+		monitor_surrounding()
 
 /obj/item/clothing/mask/facehugger/update_icon()
 	if(stat == DEAD)
@@ -162,7 +163,7 @@
 	if(isturf(loc))
 		if(check_neighbours())
 			return FALSE
-	if(lifecycle - 2 <= 0)
+	if(lifecycle - 4 <= 0)
 		if(isturf(loc))
 			var/obj/effect/alien/egg/E = locate() in loc
 			if(E?.status == BURST)
@@ -184,7 +185,7 @@
 		Die()
 		return FALSE
 
-	lifecycle -= 2
+	lifecycle -= 4
 	return TRUE
 
 /obj/item/clothing/mask/facehugger/proc/check_neighbours()
@@ -361,14 +362,14 @@
 	if(M.wear_mask)
 		var/obj/item/clothing/mask/W = M.wear_mask
 		if(istype(W))
-
 			if(istype(W, /obj/item/clothing/mask/facehugger))
 				var/obj/item/clothing/mask/facehugger/hugger = W
 				if(hugger.stat != DEAD)
 					return
 
 			if(W.anti_hug > 0 || W.flags_item & NODROP)
-				blocked = null ? W : blocked
+				if(!blocked)
+					blocked = W
 				W.anti_hug = max(0, --W.anti_hug)
 				if(prob(60 + 10 * W.anti_hug))
 					M.visible_message("<span class='danger'>[src] smashes against [M]'s [blocked]!</span>")
