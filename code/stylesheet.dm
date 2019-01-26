@@ -87,9 +87,9 @@ h1.alert, h2.alert		{color: #000000;}
 
 .centerbold				{				 	text-align: center; font-weight: bold;}
 
-.mod					{color: #735638;	font-weight: bold;}
+.mod					{color: #775c40;	font-weight: bold;}
 .modooc					{color: #184880;	font-weight: bold;}
-.adminmod				{color: #825429;	font-weight: bold;}
+.adminmod				{color: #66411e;	font-weight: bold;}
 .headminmod				{color: #402A14;	font-weight: bold;}
 .tajaran				{color: #803B56;}
 .tajaran_signlang		{color: #941C1C;}
