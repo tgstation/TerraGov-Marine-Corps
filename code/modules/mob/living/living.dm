@@ -96,7 +96,7 @@
 	update_cloak()
 
 /mob/living/Initialize()
-	..()
+	. = ..()
 	attack_icon = image("icon" = 'icons/effects/attacks.dmi',"icon_state" = "", "layer" = 0)
 
 /mob/living/Destroy()
