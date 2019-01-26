@@ -304,7 +304,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 			continue
 
 		//Admins get to skip the deathtime check
-		if(O.client?.holder?.rights && (O.client.holder.rights & R_ADMIN))
+		if(check_other_rights(O.client, R_ADMIN, TRUE))
 			candidates += O.key
 			continue
 

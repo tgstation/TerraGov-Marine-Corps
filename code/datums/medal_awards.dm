@@ -55,7 +55,7 @@ var/global/list/medal_awards = list()
 		MD.recipient_name = chosen_recipient
 		MD.medal_citation = citation
 		MD.recipient_rank = recipient_rank
-	message_admins("[key_name_admin(usr)] awarded a [medal_type] to [chosen_recipient] for: \'[citation]\'.")
-	log_admin("[key_name_admin(usr)] awarded a [medal_type] to [chosen_recipient] for: \'[citation]\'.")
-
+		
+	log_admin("[key_name(usr)] awarded a [medal_type] to [chosen_recipient] for: '[citation]'.")
+	message_admins("[ADMIN_TPMONTY(usr)] awarded a [medal_type] to [chosen_recipient] for: '[citation]'.")
 	return TRUE

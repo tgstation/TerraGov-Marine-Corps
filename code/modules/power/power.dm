@@ -65,7 +65,6 @@
 		chan = power_channel
 	A.master.use_power(amount, chan)
 	if(!autocalled)
-		log_power_update_request(A.master, src)
 		A.master.powerupdate = 2	// Decremented by 2 each GC tick, since it's not auto power change we're going to update power twice.
 	return 1
 
@@ -81,7 +80,7 @@
 
 	if(has_power)
 		if(machine_processing)
-			if(stat & NOPOWER) 
+			if(stat & NOPOWER)
 				processing_machines += src // power interupted us, start processing again
 		stat &= ~NOPOWER
 

@@ -184,8 +184,8 @@
 				if(z == 1)
 					shuttle.transit_gun_mission = FALSE //remote launch always do transport flight.
 				shuttle.launch(src)
-			log_admin("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] from [src]")
-			message_admins("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] using [src].")
+			log_admin("[key_name(usr)] launched a [shuttle.iselevator ? "elevator" : "shuttle"] from [src].")
+			message_admins("[ADMIN_TPMONTY(usr)] launched a [shuttle.iselevator ? "elevator" : "shuttle"] using [src].")
 
 	if(href_list["optimize"])
 		if(shuttle.transit_optimized)

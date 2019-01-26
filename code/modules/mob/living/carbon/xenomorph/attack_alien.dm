@@ -167,12 +167,12 @@
 			M.visible_message("[attack_message1]", \
 			"[attack_message2]")
 
-			//Logging, including anti-rulebreak logging
-			if(src.status_flags & XENO_HOST && src.stat != DEAD)
-				if(istype(src.buckled, /obj/structure/bed/nest)) //Host was buckled to nest while infected, this is a rule break
+			if(status_flags & XENO_HOST && stat != DEAD)
+				if(istype(buckled, /obj/structure/bed/nest))
+					var/area/A = get_area(M)
 					log_combat(M, src, log, addition="while they were infected and nested")
-					msg_admin_ff("[key_name(M)] slashed [key_name(src)] while they were infected and nested.") //This is a blatant rulebreak, so warn the admins
-				else //Host might be rogue, needs further investigation
+					msg_admin_ff("[ADMIN_TPMONTY(M)] slashed [ADMIN_TPMONTY(src)] while they were infected and nested in [ADMIN_VERBOSEJMP(A)].")
+				else
 					log_combat(M, src, log, addition="while they were infected")
 			else //Normal xenomorph friendship with benefits
 				log_combat(M, src, log)

@@ -1456,6 +1456,8 @@
 
 
 /proc/check_hive_status(mob/living/carbon/Xenomorph/user, var/anchored = FALSE)
+	if(!ticker)
+		return
 	var/dat = "<html><head><title>Hive Status</title></head><body>"
 
 	var/count = 0
