@@ -67,6 +67,7 @@
 		if(length(new_key) >= 26)
 			new_key = copytext(new_key, 1, 26)
 		usr.client.holder.fakekey = new_key
+		create_stealth_key()
 
 	log_admin("[key_name(usr)] has turned stealth mode [usr.client.holder.fakekey ? "on - [usr.client.holder.fakekey]" : "off"].")
 	message_admins("[ADMIN_TPMONTY(usr)] has turned stealth mode [usr.client.holder.fakekey ? "on - [usr.client.holder.fakekey]" : "off"].")

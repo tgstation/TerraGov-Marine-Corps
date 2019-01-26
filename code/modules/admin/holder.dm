@@ -520,6 +520,18 @@ GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 	return txt
 
 
+/client/proc/create_stealth_key()
+	var/num = (rand(0,1000))
+	var/i = 0
+	while(i == 0)
+		i = 1
+		for(var/P in GLOB.stealthminID)
+			if(num == GLOB.stealthminID[P])
+				num++
+				i = 0
+	GLOB.stealthminID["[ckey]"] = "@[num2text(num)]"
+
+
 /proc/WrapAdminProcCall(datum/target, procname, list/arguments)
 	if(target && procname == "Del")
 		to_chat(usr, "Calling Del() is not allowed")
