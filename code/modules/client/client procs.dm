@@ -27,9 +27,9 @@
 		return chatOutput.Topic(href, href_list)
 
 	//search the href for script injection
-	if( findtext(href,"<script",1,0) )
-		log_world("Attempted use of scripts within a topic call, by [src]")
-		message_admins("Attempted use of scripts within a topic call, by [src]")
+	if(findtext(href,"<script", 1, 0))
+		log_world("[key_name(usr)] attempted use of scripts within a topic call.")
+		message_admins("[ADMIN_TPMONTY(usr)] attempted use of scripts within a topic call.")
 		//del(usr)
 		return
 /*
@@ -38,23 +38,14 @@
 		log_href("[src] (usr:[usr]\[[AREACOORD(usr)]\]) : [hsrc ? "[hsrc] " : ""][href]")*/
 
 
-	//Admin PM //Why is this not in /datums/admin/Topic()
-	if(href_list["priv_msg"])
-		var/client/C = locate(href_list["priv_msg"])
-		if(ismob(C)) 		//Old stuff can feed-in mobs instead of clients
-			var/mob/M = C
-			C = M.client
-		if(!C) return //Outdated links to logged players generate runtimes
-		if(unansweredMhelps[C.computer_id])
-			unansweredMhelps.Remove(C.computer_id)
-		if(unansweredAhelps[C.computer_id])
-			unansweredAhelps.Remove(C.computer_id)
-		cmd_admin_pm(C,null)
-		return
-
 	//Logs all hrefs
 	if(CONFIG_GET(flag/log_hrefs))
 		log_href("[time2text(world.timeofday,"hh:mm")] [src] (usr:[usr]) || [hsrc ? "[hsrc] " : ""][href]")
+
+	// Admin PM
+	if(href_list["priv_msg"])
+		cmd_admin_pm(href_list["priv_msg"], null)
+		return
 
 	switch(href_list["_src_"])
 		if("holder")	
@@ -62,20 +53,20 @@
 		if("usr")		
 			hsrc = mob
 		if("prefs")		
-			return prefs.process_link(usr,href_list)
+			return prefs.process_link(usr, href_list)
 		if("vars")		
-			return view_var_Topic(href,href_list,hsrc)
+			return view_var_Topic(href, href_list, hsrc)
 		if("chat")
 			return chatOutput.Topic(href, href_list)
 
-	..()	//redirect to hsrc.Topic()
+	return ..()	//redirect to hsrc.Topic()
 
 /client/proc/handle_spam_prevention(var/message, var/mute_type)
 	if(CONFIG_GET(flag/automute_on) && !holder && src.last_message == message)
 		src.last_message_count++
 		if(src.last_message_count >= SPAM_TRIGGER_AUTOMUTE)
 			to_chat(src, "<span class='warning'>You have exceeded the spam filter limit for identical messages. An auto-mute was applied.</span>")
-			cmd_admin_mute(src.mob, mute_type, 1)
+			//cmd_admin_mute(src.mob, mute_type, 1)
 			return 1
 		if(src.last_message_count >= SPAM_TRIGGER_WARNING)
 			to_chat(src, "<span class='warning'>You are nearing the spam filter limit for identical messages.</span>")
@@ -122,21 +113,18 @@
 	to_chat(src, "<span class='warning'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</span>")
 
 
-	clients += src
-	directory[ckey] = src
+	GLOB.clients += src
+	GLOB.directory[ckey] = src
 
-	//Admin Authorisation
-	holder = admin_datums[ckey]
-	if(holder)
-		admins += src
-		holder.owner = src
-	else // If it matters put a config check for this feature on this line
+	GLOB.clients += src
+	GLOB.directory[ckey] = src
+
+	if(CONFIG_GET(flag/localhost_rank))
 		var/static/list/localhost_addresses = list("127.0.0.1", "::1")
 		if(isnull(address) || (address in localhost_addresses))
-			var/datum/admins/rank = new("!localhost!", ALL, ckey)
-			holder = rank
-			admins += src
-			rank.owner = src
+			var/datum/admin_rank/rank = new("!localhost!", R_EVERYTHING, , R_EVERYTHING)
+			var/datum/admins/admin = new(rank, ckey, TRUE)
+			admin.associate(src)
 
 	//preferences datum - also holds some persistant data for the client (because we may as well keep these datums to a minimum)
 	prefs = preferences_datums[ckey]
@@ -159,9 +147,16 @@
 		host = key
 		world.update_status()
 
+
+	GLOB.ahelp_tickets.ClientLogin(src)
+	holder = GLOB.admin_datums[ckey]
 	if(holder)
-		add_admin_verbs()
-		admin_memo_show()
+		GLOB.admins |= src
+		holder.owner = src
+		holder.activate()
+		message_admins("Admin login: [key_name(src)].")
+	else if(GLOB.deadmins[ckey])
+		verbs += /client/proc/readmin
 
 	log_client_to_db()
 
@@ -175,14 +170,6 @@
 		winset(src, "rpane.changelog", "background-color=#ED9F9B;font-style=bold")
 
 
-	var/file = file2text("config/donators.txt")
-	var/lines = text2list(file, "\n")
-
-	for(var/line in lines)
-		if(src.ckey == line)
-			src.donator = 1
-			verbs += /client/proc/set_ooc_color_self
-
 	if(all_player_details[ckey])
 		player_details = all_player_details[ckey]
 	else
@@ -194,10 +181,15 @@
 	//////////////
 /client/Del()
 	if(holder)
+		message_admins("Admin logout: [key_name(src)].")
 		holder.owner = null
-		admins -= src
-	directory -= ckey
-	clients -= src
+		GLOB.admins -= src
+
+	GLOB.ahelp_tickets.ClientLogout(src)
+	GLOB.directory -= ckey
+	GLOB.clients -= src
+	GLOB.directory -= ckey
+	GLOB.clients -= src
 	return ..()
 
 
@@ -276,39 +268,12 @@
 	if(inactivity > duration)	return inactivity
 	return 0
 
+GLOBAL_LIST_EMPTY(external_rsc_url)
 //send resources to the client. It's here in its own proc so we can move it around easiliy if need be
 /client/proc/send_resources()
-
-	getFiles(
-		'html/search.js',
-		'html/panels.css',
-		'html/loading.gif',
-		'icons/pda_icons/pda_atmos.png',
-		'icons/pda_icons/pda_back.png',
-		'icons/pda_icons/pda_bell.png',
-		'icons/pda_icons/pda_blank.png',
-		'icons/pda_icons/pda_boom.png',
-		'icons/pda_icons/pda_bucket.png',
-		'icons/pda_icons/pda_crate.png',
-		'icons/pda_icons/pda_cuffs.png',
-		'icons/pda_icons/pda_eject.png',
-		'icons/pda_icons/pda_exit.png',
-		'icons/pda_icons/pda_flashlight.png',
-		'icons/pda_icons/pda_honk.png',
-		'icons/pda_icons/pda_mail.png',
-		'icons/pda_icons/pda_medical.png',
-		'icons/pda_icons/pda_menu.png',
-		'icons/pda_icons/pda_mule.png',
-		'icons/pda_icons/pda_notes.png',
-		'icons/pda_icons/pda_power.png',
-		'icons/pda_icons/pda_rdoor.png',
-		'icons/pda_icons/pda_reagent.png',
-		'icons/pda_icons/pda_refresh.png',
-		'icons/pda_icons/pda_scanner.png',
-		'icons/pda_icons/pda_signaler.png',
-		'icons/pda_icons/pda_status.png',
-		'html/images/wylogo.png'
-		)
+	if(!CONFIG_GET(string/resource_url))
+		return
+	preload_rsc = GLOB.external_rsc_url
 
 /client/Stat()
 	// We just did a short sleep because of a change, do another to render quickly, but flip the flag back.

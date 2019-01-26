@@ -247,21 +247,21 @@
 			fire_delay = CONFIG_GET(number/combat_define/med_fire_delay) * 4
 			fire_sound = 'sound/weapons/emitter2.ogg'
 			to_chat(user, "<span class='notice'>[src] is now set to fire medium plasma blasts.</span>")
-			ammo = ammo_list[/datum/ammo/energy/yautja/caster/blast]
+			ammo = GLOB.ammo_list[/datum/ammo/energy/yautja/caster/blast]
 		if(1)
 			mode = 2
 			charge_cost = 300
 			fire_delay = CONFIG_GET(number/combat_define/high_fire_delay) * 20
 			fire_sound = 'sound/weapons/pulse.ogg'
 			to_chat(user, "<span class='notice'>[src] is now set to fire heavy plasma spheres.</span>")
-			ammo = ammo_list[/datum/ammo/energy/yautja/caster/sphere]
+			ammo = GLOB.ammo_list[/datum/ammo/energy/yautja/caster/sphere]
 		if(2)
 			mode = 0
 			charge_cost = 30
 			fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
 			fire_sound = 'sound/weapons/pred_lasercannon.ogg'
 			to_chat(user, "<span class='notice'>[src] is now set to fire light plasma bolts.</span>")
-			ammo = ammo_list[/datum/ammo/energy/yautja/caster/bolt]
+			ammo = GLOB.ammo_list[/datum/ammo/energy/yautja/caster/bolt]
 
 /obj/item/weapon/gun/energy/plasma_caster/dropped(mob/living/carbon/human/M)
 	playsound(M,'sound/weapons/pred_plasmacaster_off.ogg', 15, 1)
@@ -377,7 +377,7 @@
 		//While overcharge is active, double ammo consumption, and
 		playsound(user, 'sound/weapons/emitter.ogg', 15, 0, 2)
 		charge_cost = M37_OVERCHARGE_AMMO_COST
-		ammo = ammo_list[/datum/ammo/energy/lasgun/M43/overcharge]
+		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43/overcharge]
 		fire_delay = M37_OVERCHARGE_FIRE_DELAY // 1 shot per second fire rate
 		fire_sound = 'sound/weapons/Laser3.ogg'
 		to_chat(user, "[bicon(src)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")
@@ -385,7 +385,7 @@
 	else
 		playsound(user, 'sound/weapons/emitter2.ogg', 15, 0, 2)
 		charge_cost = M37_STANDARD_AMMO_COST
-		ammo = ammo_list[/datum/ammo/energy/lasgun/M43]
+		ammo = GLOB.ammo_list[/datum/ammo/energy/lasgun/M43]
 		fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
 		fire_sound = 'sound/weapons/Laser.ogg'
 		to_chat(user, "[bicon(src)] You [overcharge? "<B>disable</b>" : "<B>enable</b>" ] [src]'s overcharge mode.")

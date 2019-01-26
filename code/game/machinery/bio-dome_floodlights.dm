@@ -11,12 +11,11 @@
 	unacidable = 1
 	var/list/floodlist = list() // This will save our list of floodlights on the map
 
-/obj/machinery/hydro_floodlight_switch/New() //Populate our list of floodlights so we don't need to scan for them ever again
-	sleep(5) //let's make sure it exists first..
-	for(var/obj/machinery/hydro_floodlight/F in machines)
+/obj/machinery/hydro_floodlight_switch/Initialize() //Populate our list of floodlights so we don't need to scan for them ever again
+	for(var/obj/machinery/hydro_floodlight/F in GLOB.machines)
 		floodlist += F
 		F.fswitch = src
-	..()
+	. = ..()
 	start_processing()
 
 /obj/machinery/hydro_floodlight_switch/process()

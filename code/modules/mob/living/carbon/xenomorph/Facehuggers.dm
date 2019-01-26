@@ -118,7 +118,7 @@
 		to_chat(user, "<span class='danger'>It looks like the proboscis has been removed.</span>")
 
 /obj/item/clothing/mask/facehugger/attackby(obj/item/W, mob/user)
-	if(W.flags_item & NOBLUDGEON)
+	if(W.flags_item & NOBLUDGEON || attached)
 		return
 	Die()
 
@@ -251,7 +251,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 
-		if(!H.has_limb("head"))
+		if(!H.has_limb(HEAD))
 			visible_message("<span class='warning'>[src] looks for a face to hug on [H], but finds none!</span>")
 			GoIdle()
 			return

@@ -519,10 +519,10 @@
 	if(!ammo || !xeno_caste.spit_types.len) //Only update xenos with ammo and spit types.
 		return
 	for(var/i in 1 to xeno_caste.spit_types.len)
-		if(ammo.icon_state == ammo_list[xeno_caste.spit_types[i]].icon_state)
-			ammo = ammo_list[xeno_caste.spit_types[i]]
+		if(ammo.icon_state == GLOB.ammo_list[xeno_caste.spit_types[i]].icon_state)
+			ammo = GLOB.ammo_list[xeno_caste.spit_types[i]]
 			return
-	ammo = ammo_list[xeno_caste.spit_types[1]] //No matching projectile time; default to first spit type
+	ammo = GLOB.ammo_list[xeno_caste.spit_types[1]] //No matching projectile time; default to first spit type
 	return
 
 /mob/living/carbon/Xenomorph/proc/stealth_router(code = 0)
@@ -542,6 +542,16 @@
 				return TRUE
 			else
 				return FALSE
+
+/mob/living/carbon/Xenomorph/proc/neuroclaw_router()
+	return
+
+/mob/living/carbon/Xenomorph/Defiler/neuroclaw_router(mob/living/carbon/human/H)
+	if(!check_plasma(50) || !neuro_claws || !H)
+		return
+	use_plasma(50)
+	H.reagents.add_reagent("xeno_toxin", neuro_claws_dose)
+	to_chat(src, "<span class='xenowarning'>Your claw spines inject your victim with neurotoxin!</span>")
 
 /mob/living/carbon/Xenomorph/proc/process_ravager_charge(hit = TRUE, mob/living/carbon/M = null)
 	return FALSE

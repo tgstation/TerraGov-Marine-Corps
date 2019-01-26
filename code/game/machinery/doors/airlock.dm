@@ -1205,8 +1205,8 @@ About the new airlock wires panel:
 		return 1
 	return 0
 
-/obj/machinery/door/airlock/New()
-	..()
+/obj/machinery/door/airlock/Initialize()
+	. = ..()
 
 	//wires
 	if (!secured_wires)
@@ -1217,15 +1217,14 @@ About the new airlock wires panel:
 	else
 		randomize_wires()
 
-	if(src.closeOtherId != null)
-		spawn (5)
-			for (var/obj/machinery/door/airlock/A in machines)
-				if(A.closeOtherId == src.closeOtherId && A != src)
-					src.closeOther = A
-					break
+	if(closeOtherId != null)
+		for (var/obj/machinery/door/airlock/A in GLOB.machines)
+			if(A.closeOtherId == src.closeOtherId && A != src)
+				src.closeOther = A
+				break
+				
 	// fix smoothing
-	spawn(10)
-		relativewall_neighbours()
+	relativewall_neighbours()
 
 /obj/machinery/door/airlock/proc/randomize_wires()
 	var/wire_assignments = CreateRandomAirlockWires()

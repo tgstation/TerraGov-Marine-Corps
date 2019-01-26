@@ -24,15 +24,6 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	HDPT_ARMOR = "0,0",
 	HDPT_TREADS = "0,0")*/
 
-/client/proc/remove_players_from_vic()
-	set name = "Remove All From Tank"
-	set category = "Admin"
-
-	for(var/obj/vehicle/multitile/root/cm_armored/CA in view())
-		CA.remove_all_players()
-		log_admin("[src] forcibly removed all players from [CA]")
-		message_admins("[src] forcibly removed all players from [CA]")
-
 //The main object, should be an abstract class
 /obj/vehicle/multitile/root/cm_armored
 	name = "Armored Vehicle"
@@ -377,7 +368,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 			T = temp
 			T = get_step(T, pick(cardinal))
 			M.throw_at(T, 2, 1, src, 0)
-			M.visible_message("<span class='danger'>[src] bumps into [M] pushing them away!</span>", "<span class='danger'>[src] bumps into you!</span>")
+			M.visible_message("<span class='danger'>[src] bumps into [M], pushing [M.p_them()] away!</span>", "<span class='danger'>[src] bumps into you!</span>")
 			return
 		if(M.lying==0 && !isXenoLarva(M))
 			temp = get_step(T, facing)
@@ -389,7 +380,7 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 				M.throw_at(T, 2, 1, src, 1)
 			M.KnockDown(1)
 			M.apply_damage(10 + rand(0, 5), BRUTE)
-			M.visible_message("<span class='danger'>[src] bumps into [M] throwing them away!</span>", "<span class='danger'>[src] bumps into you!</span>")
+			M.visible_message("<span class='danger'>[src] bumps into [M], throwing [M.p_them()] away!</span>", "<span class='danger'>[src] violently bumps into you!</span>")
 		var/obj/vehicle/multitile/root/cm_armored/CA = root
 		var/list/slots = CA.get_activatable_hardpoints()
 		for(var/slot in slots)

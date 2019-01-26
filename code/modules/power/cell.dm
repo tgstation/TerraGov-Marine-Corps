@@ -2,12 +2,11 @@
 // charge from 0 to 100%
 // fits in APC to provide backup power
 
-/obj/item/cell/New()
-	..()
+/obj/item/cell/Initialize()
+	. = ..()
 	charge = maxcharge
 
-	spawn(5)
-		updateicon()
+	updateicon()
 
 /obj/item/cell/proc/updateicon()
 	overlays.Cut()
@@ -105,8 +104,8 @@
 
 			rigged = 1
 
-			log_admin("LOG: [user.name] ([user.ckey]) injected a power cell with phoron, rigging it to explode.")
-			message_admins("LOG: [user.name] ([user.ckey]) injected a power cell with phoron, rigging it to explode.")
+			log_admin("[key_name(usr)] injected a power cell with phoron, rigging it to explode.")
+			message_admins("[ADMIN_TPMONTY(usr)] injected a power cell with phoron, rigging it to explode.")
 
 		S.reagents.clear_reagents()
 	else if(istype(W, /obj/item/device/multitool))
@@ -175,8 +174,8 @@
 		return
 	//explosion(T, 0, 1, 2, 2)
 
-	log_admin("LOG: Rigged power cell explosion, last touched by [fingerprintslast]")
-	message_admins("LOG: Rigged power cell explosion, last touched by [fingerprintslast]")
+	log_admin("Rigged power cell explosion at [AREACOORD(src.loc)], last touched by [key_name(fingerprintslast)].")
+	message_admins("Rigged power cell explosion at [ADMIN_VERBOSEJMP(src.loc)], last touched by [key_name_admin(fingerprintslast)].")
 
 	explosion(T, devastation_range, heavy_impact_range, light_impact_range, flash_range)
 

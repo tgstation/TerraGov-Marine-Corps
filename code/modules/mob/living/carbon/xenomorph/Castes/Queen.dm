@@ -170,7 +170,7 @@
 			if(hive.living_xeno_queen)
 				if(hive.living_xeno_queen.hivenumber == hive.hivenumber)
 					continue
-			for(var/mob/living/carbon/Xenomorph/Queen/Q in living_mob_list)
+			for(var/mob/living/carbon/Xenomorph/Queen/Q in GLOB.alive_mob_list)
 				if(Q.hivenumber == hive.hivenumber)
 					hive.living_xeno_queen = Q
 					xeno_message("<span class='xenoannounce'>A new Queen has risen to lead the Hive! Rejoice!</span>",3,hive.hivenumber)
@@ -410,13 +410,12 @@
 				to_chat(X, "[queensWord]")
 
 	spawn(0)
-		for(var/mob/dead/observer/G in player_list)
+		for(var/mob/dead/observer/G in GLOB.player_list)
 			G << sound(get_sfx("queen"),wait = 0,volume = 50)
 			to_chat(G, "[queensWord]")
 
-	log_admin("[key_name(src)] has created a Word of the Queen report:")
-	log_admin("[queensWord]")
-	message_admins("[key_name_admin(src)] has created a Word of the Queen report.", 1)
+	log_admin("[key_name(src)] has created a Word of the Queen report: [queensWord]")
+	message_admins("[ADMIN_TPMONTY(src)] has created a Word of the Queen report.")
 
 
 /mob/living/carbon/Xenomorph/proc/claw_toggle()
@@ -577,7 +576,7 @@
 		if(victim.loc != cur_loc)
 			return
 		visible_message("<span class='xenodanger'>\The [src] viciously smashes and wrenches \the [victim] apart!</span>", \
-		"<span class='xenodanger'>You suddenly unleash pure anger on \the [victim], instantly wrenching \him apart!</span>")
+		"<span class='xenodanger'>You suddenly unleash pure anger on \the [victim], instantly wrenching [victim.p_them()] apart!</span>")
 		emote("roar")
 		log_combat(victim, src, "gibbed")
 		victim.gib() //Splut
@@ -737,7 +736,7 @@
 			return
 		if(!ovipositor)
 			return
-		var/mob/living/carbon/Xenomorph/target = locate(href_list["queentrack"]) in living_mob_list
+		var/mob/living/carbon/Xenomorph/target = locate(href_list["queentrack"]) in GLOB.alive_mob_list
 		if(!istype(target))
 			return
 		if(target.stat == DEAD || target.z == ADMIN_Z_LEVEL)
@@ -751,7 +750,7 @@
 		if(!check_state())
 			return
 		var/xeno_num = text2num(href_list["watch_xeno_number"])
-		for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
+		for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_mob_list)
 			if(X.z != ADMIN_Z_LEVEL && X.nicknumber == xeno_num)
 				if(observed_xeno == X)
 					set_queen_overwatch(X, TRUE)

@@ -62,11 +62,11 @@
 	if(!X.check_state())
 		return
 	for(var/i in 1 to X.xeno_caste.spit_types.len)
-		if(X.ammo == ammo_list[X.xeno_caste.spit_types[i]])
+		if(X.ammo == GLOB.ammo_list[X.xeno_caste.spit_types[i]])
 			if(i == X.xeno_caste.spit_types.len)
-				X.ammo = ammo_list[X.xeno_caste.spit_types[1]]
+				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[1]]
 			else
-				X.ammo = ammo_list[X.xeno_caste.spit_types[i+1]]
+				X.ammo = GLOB.ammo_list[X.xeno_caste.spit_types[i+1]]
 			break
 	to_chat(X, "<span class='notice'>You will now spit [X.ammo.name] ([X.ammo.spit_cost] plasma).</span>")
 	button.overlays.Cut()
@@ -472,10 +472,10 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	to_chat(X, "<span class='notice'>You will now fire [X.ammo.type == /datum/ammo/xeno/boiler_gas ? "corrosive acid. This is lethal!" : "neurotoxic gas. This is nonlethal."]</span>")
 	button.overlays.Cut()
 	if(X.ammo.type == /datum/ammo/xeno/boiler_gas)
-		X.ammo = ammo_list[/datum/ammo/xeno/boiler_gas/corrosive]
+		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas/corrosive]
 		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb1")
 	else
-		X.ammo = ammo_list[/datum/ammo/xeno/boiler_gas]
+		X.ammo = GLOB.ammo_list[/datum/ammo/xeno/boiler_gas]
 		button.overlays += image('icons/mob/actions.dmi', button, "toggle_bomb0")
 
 /datum/action/xeno_action/bombard
@@ -844,7 +844,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	if(!X.check_state())
 		return
 	var/list/possible_xenos = list()
-	for(var/mob/living/carbon/Xenomorph/T in living_mob_list)
+	for(var/mob/living/carbon/Xenomorph/T in GLOB.alive_mob_list)
 		if(T.z != ADMIN_Z_LEVEL && !isXenoQueen(T) && X.hivenumber == T.hivenumber)
 			possible_xenos += T
 
@@ -1003,8 +1003,8 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 				if(target.client)
 					X.use_plasma(100)
 					to_chat(target, "[queen_order]")
-					log_admin("[queen_order]")
-					message_admins("[key_name_admin(X)] has given the following Queen order to [target]: \"[input]\"", 1)
+					log_admin("[key_name(X)] has given the following Queen order to [key_name(target)]: [input]")
+					message_admins("[ADMIN_TPMONTY(X)] has given the following Queen order to [ADMIN_TPMONTY(target)]: [input]")
 
 	else
 		to_chat(X, "<span class='warning'>You must overwatch the Xenomorph you want to give orders to.</span>")
@@ -1042,7 +1042,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		to_chat(X, "<span class='xenowarning'>[T] can't be deevolved.</span>")
 		return
 
-	var/datum/xeno_caste/new_caste = xeno_caste_datums[T.xeno_caste.deevolves_to][1]
+	var/datum/xeno_caste/new_caste = GLOB.xeno_caste_datums[T.xeno_caste.deevolves_to][1]
 
 	var/confirm = alert(X, "Are you sure you want to deevolve [T] from [T.xeno_caste.caste_name] to [new_caste.caste_name]?", , "Yes", "No")
 	if(confirm == "No")
@@ -1118,8 +1118,8 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	// this sets the right datum
 	new_xeno.upgrade_xeno(min(T.upgrade+1,3)) //a young Crusher de-evolves into a MATURE Hunter
 
-	message_admins("[key_name_admin(X)] has deevolved [key_name_admin(T)]. Reason: [reason]")
-	log_admin("[key_name_admin(X)] has deevolved [key_name_admin(T)]. Reason: [reason]")
+	log_admin("[key_name(X)] has deevolved [key_name(T)]. Reason: [reason]")
+	message_admins("[ADMIN_TPMONTY(X)] has deevolved [ADMIN_TPMONTY(T)]. Reason: [reason]")
 
 	round_statistics.total_xenos_created-- //so an evolved xeno doesn't count as two.
 	qdel(T)
@@ -1165,7 +1165,7 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 		"<span class='xenowarning'>You start to advance larval growth inside of [H].</span>")
 		if(!do_after(X, 50, TRUE, 20, BUSY_ICON_FRIENDLY) && X.check_plasma(300))
 			return
-		if(!X.check_state()) 
+		if(!X.check_state())
 			return
 		X.use_plasma(300)
 		X.visible_message("<span class='xenowarning'>\The [E] inside of [H] grows a little!</span>", \
@@ -1318,6 +1318,68 @@ datum/action/xeno_action/activable/salvage_plasma/improved
 	var/mob/living/carbon/Xenomorph/Sentinel/X = owner
 	if(world.time >= X.last_neurotoxin_sting + NEUROTOXIN_STING_COOLDOWN)
 		return TRUE
+
+//Defiler abilities
+
+/datum/action/xeno_action/neuroclaws
+	name = "Toggle Neuroinjectors"
+	action_icon_state = "neuroclaws_off"
+
+/datum/action/xeno_action/neuroclaws/action_activate()
+	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+
+	if(!X.check_state())
+		return
+
+	if(world.time < X.last_use_neuroclaws + DEFILER_CLAWS_COOLDOWN)
+		return
+
+	X.neuro_claws = !X.neuro_claws
+	X.last_use_neuroclaws = world.time
+	to_chat(X, "<span class='notice'>You [X.neuro_claws ? "extend" : "retract"] your claws' neuro spines.</span>")
+	button.overlays.Cut()
+	if(X.neuro_claws)
+		playsound(X, 'sound/weapons/slash.ogg', 15, 1)
+		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_on")
+	else
+		playsound(X, 'sound/weapons/slashmiss.ogg', 15, 1)
+		button.overlays += image('icons/mob/actions.dmi', button, "neuroclaws_off")
+
+/datum/action/xeno_action/emit_neurogas/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	if(world.time >= X.last_use_neuroclaws + DEFILER_CLAWS_COOLDOWN)
+		return TRUE
+
+//Defiler's Sting
+/datum/action/xeno_action/activable/defiler_sting
+	name = "Defile"
+	action_icon_state = "defiler_sting"
+	ability_name = "defiler sting"
+
+/datum/action/xeno_action/activable/defiler_sting/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	X.defiler_sting(A)
+
+/datum/action/xeno_action/activable/defiler_sting/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	if(world.time >= X.last_defiler_sting + DEFILER_STING_COOLDOWN)
+		return TRUE
+
+//Defiler Neurogas
+/datum/action/xeno_action/activable/emit_neurogas
+	name = "Emit Neurogas"
+	action_icon_state = "emit_neurogas"
+	ability_name = "emit neurogas"
+
+/datum/action/xeno_action/activable/emit_neurogas/action_cooldown_check()
+	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	if(world.time >= X.last_emit_neurogas + DEFILER_GAS_COOLDOWN)
+		return TRUE
+
+/datum/action/xeno_action/activable/emit_neurogas/use_ability(atom/A)
+	var/mob/living/carbon/Xenomorph/Defiler/X = owner
+	X.emit_neurogas()
+
 
 /////////////////////////////////////////////////////////////////////////////////////////////
 

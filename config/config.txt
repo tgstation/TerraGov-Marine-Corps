@@ -8,16 +8,18 @@
 #HOSTEDBY yournamehere
 
 ## Password to make your server appear on the hub.
-#HUBPASSWORD asdf
+HUBPASSWORD kMZy3U5jJHSiBQjr
 
 ## Optional URL for faster resource downloading.
-#RESOURCE_URLS url
+#RESOURCE_URL url
 
 ## Add a # infront of this if you want to use the SQL based admin system, the legacy system uses admins.txt. You need to set up your database to use the SQL based system.
 ADMIN_LEGACY_SYSTEM
 
 ## Add a # infront of this if you want to use the SQL based banning system. The legacy systems use the files in the data folder. You need to set up your database to use the SQL based system.
 BAN_LEGACY_SYSTEM
+
+LOCALHOST_RANK
 
 FORUMURL https://tgstation13.org/phpBB/viewforum.php?f=64
 WIKIURL https://tgstation13.org/wiki/TGMC
@@ -28,9 +30,9 @@ GITHUBURL https://github.com/tgstation/TerraGov-Marine-Corps/
 BANAPPEALS https://tgstation13.org/phpBB/viewforum.php?f=70
 
 SHIPURL https://affectedarc07.github.io/SS13WebMap/TGMC/Almayer/index.html
+LV624URL https://affectedarc07.github.io/SS13WebMap/TGMC/LV624/index.html
 BIGREDURL https://affectedarc07.github.io/SS13WebMap/TGMC/BigRed/index.html
 ICECOLONYURL https://affectedarc07.github.io/SS13WebMap/TGMC/IceColony/index.html
-LV624URL https://affectedarc07.github.io/SS13WebMap/TGMC/LV624/index.html
 PRISONSTATIONURL https://affectedarc07.github.io/SS13WebMap/TGMC/PrisonStation/index.html
 WHISKEYOUTPOSTURL https://affectedarc07.github.io/SS13WebMap/TGMC/WhiskeyOutpost/index.html
 
@@ -46,11 +48,8 @@ LOG_VOTE
 LOG_WHISPER
 LOG_EMOTE
 LOG_ATTACK
-LOG_PDA
 LOG_HREFS
 LOG_RUNTIME
-
-SHOW_MENTORS
 
 ALLOW_VOTE_RESTART
 
@@ -70,16 +69,14 @@ ALLOW_METADATA
 
 USEALIENWHITELIST
 
-ALLOW_ADMIN_JUMP
-
-ALLOW_ADMIN_REV
-
-ALLOW_ADMIN_SPAWNING
-
 
 ##################
 ## Game Options ##
 ##################
+
+XENO_COEFFICIENT 5
+SURVIVOR_COEFFICIENT 15
+LATEJOIN_LARVA_REQUIRED_NUM 6
 
 ALLOW_AI
 
@@ -91,8 +88,8 @@ HEALTH_THRESHOLD_DEAD -100
 BONES_CAN_BREAK 1
 LIMBS_CAN_BREAK 1
 
-ORGAN_HEALTH_MULTIPLIER 100
-ORGAN_REGENERATION_MULTIPLIER 75
+ORGAN_HEALTH_MULTIPLIER 1
+ORGAN_REGENERATION_MULTIPLIER 1
 
 REVIVAL_BRAIN_LIFE -1
 
@@ -189,6 +186,7 @@ HIGH_BURST_VALUE 4
 MHIGH_BURST_VALUE 5
 MAX_BURST_VALUE 6
 
+NO_FIRE_DELAY 0.1
 MIN_FIRE_DELAY 1
 MLOW_FIRE_DELAY 2
 LOW_FIRE_DELAY 3
@@ -197,6 +195,7 @@ HIGH_FIRE_DELAY 5
 MHIGH_FIRE_DELAY 6
 MAX_FIRE_DELAY 7
 TACSHOTTIE_FIRE_DELAY 15
+SCOUTSHOTTIE_FIRE_DELAY 20
 
 MIN_SCATTER_VALUE 5
 MLOW_SCATTER_VALUE 10

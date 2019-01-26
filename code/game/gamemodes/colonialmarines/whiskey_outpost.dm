@@ -19,7 +19,6 @@
 					)
 
 	flags_round_type	= MODE_NO_LATEJOIN
-	latejoin_larva_drop = 0 //You never know
 
 	//var/mob/living/carbon/human/Commander //If there is no Commander, marines wont get any supplies
 	//No longer relevant to the game mode, since supply drops are getting changed.
@@ -67,7 +66,7 @@
 /datum/game_mode/whiskey_outpost/pre_setup()
 	var/obj/effect/landmark/L
 
-	for(L in landmarks_list)
+	for(L in GLOB.landmarks_list)
 		switch(L.name)
 			if("whiskey_outpost_marine")
 				marine_spawns += L.loc
@@ -102,7 +101,7 @@
 
 	CONFIG_SET(flag/remove_gun_restrictions, TRUE)
 
-	for(M in mob_list)
+	for(M in GLOB.mob_list)
 		if(M.client && istype(M,/mob/living/carbon/human))
 			players += M
 			spawn_player(M)
@@ -132,7 +131,7 @@
 		message_admins("There were no spawn points available for a player...")
 
 	if(!picked || isnull(picked)) //???
-		message_admins("Warning, null picked spawn in spawn_player")
+		message_admins("Warning, null picked spawn in spawn_player.")
 		return 0
 
 	if(istype(M,/mob/living/carbon/human)) //If We started on Sulaco as squad marine
@@ -986,7 +985,7 @@
 /datum/game_mode/whiskey_outpost/proc/count_humans()
 	var/human_count = 0
 
-	for(var/mob/living/carbon/human/H in living_mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.alive_mob_list)
 		if(H.client && istype(H) && H.stat == 0 && !istype(get_area(H.loc),/area/centcom) && !istype(get_area(H.loc),/area/tdome))
 			if(H.species != "Yautja") // Preds don't count in round end.
 				human_count += 1 //Add them to the amount of people who're alive.
@@ -995,7 +994,7 @@
 
 /datum/game_mode/whiskey_outpost/proc/count_xenos()//Counts braindead too
 	var/xeno_count = 0
-	for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
+	for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_mob_list)
 		if(X) //Prevent any runtime errors
 			if(istype(X) && X.stat != DEAD && X.z != 0 && !istype(X.loc,/turf/open/space)) // If they're connected/unghosted and alive and not debrained
 				xeno_count += 1 //Add them to the amount of people who're alive.
@@ -1004,7 +1003,7 @@
 
 /datum/game_mode/whiskey_outpost/proc/CleanXenos()//moves dead xenos to space
 	var/xeno_count = 0
-	for(var/mob/living/carbon/Xenomorph/X in dead_mob_list)
+	for(var/mob/living/carbon/Xenomorph/X in GLOB.dead_mob_list)
 		if(X) //Prevent any runtime errors
 			if(istype(X) && X.stat == DEAD && X.z != 2)
 				X.loc = get_turf(locate(84,237,2)) //z.2
@@ -1463,7 +1462,7 @@
 		return 0
 
 	to_chat(user, "<span class='boldnotice'> You start lasing the target area.</span>")
-	message_admins("ALERT: [key_name(usr)]  (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) IS CURRENTLY LAZING A TARGET: CURRENT MODE [laz_mode], at ([T.x],[T.y],[T.z]) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>).") // Alert all the admins to this asshole. Added the jmp command from the explosion code.
+	message_admins("[ADMIN_TPMONTY(usr)] is currently lazing a target - [laz_mode], at [ADMIN_VERBOSEJMP(T)]")
 	var/obj/effect/las_target/lasertarget = new(T.loc)
 	if(laz_mode == 1 && !laz_r) // Heres our IR bomb code.
 		lazing = 1
@@ -1725,7 +1724,7 @@
 		new Landmark(O)
 		num ++
 	sleep(5)
-	message_admins("[num] [src]\s were spawned in at [loc.loc.name] ([loc.x],[loc.y],[loc.z]). (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[loc.x];Y=[loc.y];Z=[loc.z]'>JMP</a>)")
+	message_admins("[num] [src]\s were spawned in at [ADMIN_VERBOSEJMP(loc)].")
 	qdel()
 
 /obj/effect/landmark/wo_spawners/marines

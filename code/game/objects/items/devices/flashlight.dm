@@ -100,7 +100,7 @@
 
 		if(M == user)	//they're using it on themselves
 			M.flash_eyes()
-			M.visible_message("<span class='notice'>[M] directs [src] to \his eyes.</span>", \
+			M.visible_message("<span class='notice'>[M] directs [src] to [M.p_their()] eyes.</span>", \
 									 "<span class='notice'>You wave the light in front of your eyes! Trippy!</span>")
 			return
 

@@ -19,9 +19,9 @@
 	desc = "A trap used to catch bears and other legged creatures."
 	var/armed = 0
 
-	suicide_act(mob/user)
-		user.visible_message("<span class='danger'>[user] is putting the [src.name] on \his head! It looks like \he's trying to commit suicide.</span>")
-		return (BRUTELOSS)
+/obj/item/legcuffs/beartrap/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is putting the [name] on [user.p_their()] head! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	return (BRUTELOSS)
 
 /obj/item/legcuffs/beartrap/attack_self(mob/user as mob)
 	..()
