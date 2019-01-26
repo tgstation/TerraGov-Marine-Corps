@@ -347,7 +347,7 @@
 
 /obj/item/weapon/gun/smartgun/Initialize()
 	. = ..()
-	ammo_secondary = ammo_list[ammo_secondary]
+	ammo_secondary = GLOB.ammo_list[ammo_secondary]
 
 /obj/item/weapon/gun/smartgun/set_gun_config_values()
 	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
@@ -564,8 +564,8 @@
 	F.throw_range = 20
 	F.throw_at(target, 20, 2, user)
 	if(F && F.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
-		message_admins("[key_name_admin(user)] fired a grenade ([F.name]) from \a ([name]).")
-		log_game("[key_name_admin(user)] used a grenade ([name]).")
+		log_game("[key_name(user)] fired a grenade [F.name] from \a [name] at [AREACOORD(user.loc)].")		
+		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F.name] from \a [name].")
 		F.icon_state = initial(F.icon_state) + "_active"
 		F.active = 1
 		F.updateicon()
@@ -694,8 +694,8 @@
 	F.throw_range = 20
 	F.throw_at(target, 20, 2, user)
 	if(F && F.loc) //Apparently it can get deleted before the next thing takes place, so it runtimes.
-		message_admins("[key_name_admin(user)] fired a grenade ([F.name]) from \a ([name]).")
-		log_game("[key_name_admin(user)] used a grenade ([name]).")
+		log_game("[key_name(user)] fired a grenade [F.name] from \a [name] at [AREACOORD(user.loc)].")		
+		message_admins("[ADMIN_TPMONTY(user)] fired a grenade [F.name] from \a [name].")
 		F.icon_state = initial(F.icon_state) + "_active"
 		F.active = 1
 		F.updateicon()

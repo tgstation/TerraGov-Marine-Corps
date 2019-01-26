@@ -62,13 +62,12 @@
 
 			reagents.reaction(M, TOUCH, amount_per_transfer_from_this)
 
-			var/R
-			if(reagents)
-				for(var/datum/reagent/A in src.reagents.reagent_list)
-					R += A.id + " ("
-					R += num2text(A.volume/volume * amount_per_transfer_from_this) + "),"
-			log_combat(user, M, "squirted", R)
-			msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) squirted [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with [src.name]. Reagents: [R] (INTENT: [uppertext(user.a_intent)])")
+			var/list/injected = list()
+			for(var/datum/reagent/R in src.reagents.reagent_list)
+				injected += R.name
+			var/contained = english_list(injected)
+			log_combat(user, M, "squirted", src, "Reagents: [contained]")
+			msg_admin_attack("[ADMIN_TPMONTY(usr)] squirted [ADMIN_TPMONTY(M)] with [src.name]. Reagents: [contained] (INTENT: [uppertext(user.a_intent)]).")
 
 			user.visible_message("<span class='danger'>[user] squirts something [eyes ? "into [target]'s eyes" : "on [target]'s face"]!</span>", \
 								"<span class='danger'>[user] squirts something [eyes ? "into your eyes" : "on your face"]!</span>")

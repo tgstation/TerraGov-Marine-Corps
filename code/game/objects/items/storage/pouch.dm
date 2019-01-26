@@ -502,12 +502,10 @@
 				to_chat(user, "<span class='notice'>You start refilling [src] with [M].</span>")
 				if(!do_after(user, 15, TRUE, 5, BUSY_ICON_GENERIC))
 					return
-				var/cont
-				for(var/x = 1 to storage_slots)
-					cont = handle_item_insertion(M.create_handful(), 1, user)
+				for(var/x = 1 to (storage_slots - contents.len))
+					var/cont = handle_item_insertion(M.create_handful(), 1, user)
 					if(!cont)
 						break
-				M.update_icon()
 				playsound(user.loc, "rustle", 15, 1, 6)
 				to_chat(user, "<span class='notice'>You refill [src] with [M].</span>")
 			else

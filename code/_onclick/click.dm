@@ -44,7 +44,7 @@
 		return
 
 	if(client.buildmode)
-		if (istype(A, /obj/effect/bmode))
+		if(istype(A, /obj/effect/bmode))
 			A.clicked(src, mods)
 			return
 

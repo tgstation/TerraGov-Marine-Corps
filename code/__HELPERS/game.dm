@@ -213,8 +213,8 @@
 
 
 	// Try to find all the players who can hear the message
-	for(var/i = 1; i <= player_list.len; i++)
-		var/mob/M = player_list[i]
+	for(var/i = 1; i <= GLOB.player_list.len; i++)
+		var/mob/M = GLOB.player_list[i]
 		if(M)
 			var/turf/ear = get_turf(M)
 			if(ear)
@@ -283,7 +283,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 			return get_step(start, EAST)
 
 /proc/get_mob_by_key(var/key)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if(M.ckey == lowertext(key))
 			return M
 	return null
@@ -295,7 +295,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 	var/list/candidates = list() //List of candidate KEYS to assume control of the new larva ~Carn
 	var/i = 0
 	while(candidates.len <= 0 && i < 5)
-		for(var/mob/dead/observer/G in player_list)
+		for(var/mob/dead/observer/G in GLOB.player_list)
 			if(((G.client.inactivity/10)/60) <= buffer + i) // the most active players are more likely to become an alien
 				if(!(G.mind && G.mind.current && G.mind.current.stat != DEAD))
 					candidates += G.key
@@ -306,7 +306,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 /proc/get_alien_candidates()
 	var/list/candidates = list()
 
-	for(var/mob/dead/observer/O in dead_mob_list)
+	for(var/mob/dead/observer/O in GLOB.dead_mob_list)
 		//Players without preferences or jobbaned players cannot be drafted.
 		if(!O.client?.prefs || !(O.client.prefs.be_special & BE_ALIEN) || jobban_isbanned(O, "Alien"))
 			continue
@@ -316,7 +316,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 			continue
 
 		//Admins get to skip the deathtime check
-		if(O.client?.holder?.rights && (O.client.holder.rights & R_ADMIN))
+		if(check_other_rights(O.client, R_ADMIN, TRUE))
 			candidates += O.key
 			continue
 
@@ -339,7 +339,7 @@ proc/isInSight(var/atom/A, var/atom/B)
 
 /proc/Show2Group4Delay(obj/O, list/group, delay=0)
 	if(!isobj(O))	return
-	if(!group)	group = clients
+	if(!group)	group = GLOB.clients
 	for(var/client/C in group)
 		C.screen += O
 	if(delay)

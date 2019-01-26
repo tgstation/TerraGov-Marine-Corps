@@ -1,7 +1,7 @@
 /datum/event/communications_blackout/announce()
 	var/alert = "Ionic radiation flare detected from nearby star. Imminent telecommunication failu*3mga;b4;'1v�-BZZZT"
 
-	for(var/mob/living/silicon/ai/A in player_list)	//AIs are always aware of communication blackouts.
+	for(var/mob/living/silicon/ai/A in GLOB.player_list)	//AIs are always aware of communication blackouts.
 		to_chat(A, "<br>")
 		to_chat(A, "<span class='warning'><b>[alert]</b></span>")
 		to_chat(A, "<br>")

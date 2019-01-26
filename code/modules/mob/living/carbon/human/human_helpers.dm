@@ -73,7 +73,6 @@
 				return "[ethnicity]_left_foot"
 
 			else
-				message_admins("DEBUG: Something called get_limb_icon_name() incorrectly, they use the name [limb_name]")
 				return null
 	else
 		switch(limb_name)
@@ -137,12 +136,11 @@
 			if ("left foot")
 				return "l_foot"
 			else
-				message_admins("DEBUG: Something called get_limb_icon_name() incorrectly, they use the name [limb_name]")
 				return null
 
 /mob/living/carbon/human/proc/set_limb_icons()
-	var/datum/ethnicity/E = ethnicities_list[ethnicity]
-	var/datum/body_type/B = body_types_list[body_type]
+	var/datum/ethnicity/E = GLOB.ethnicities_list[ethnicity]
+	var/datum/body_type/B = GLOB.body_types_list[body_type]
 
 	var/e_icon
 	var/b_icon
@@ -233,9 +231,9 @@
 
 /mob/living/carbon/human/has_legs()
 	. = 0
-	if(has_limb("r_foot") && has_limb("r_leg"))
+	if(has_limb(FOOT_RIGHT) && has_limb(LEG_RIGHT))
 		.++
-	if(has_limb("l_foot") && has_limb("l_leg"))
+	if(has_limb(FOOT_LEFT) && has_limb(LEG_LEFT))
 		.++
 
 /mob/living/carbon/human/proc/disable_lights(var/armor = 1, var/guns = 1, var/flares = 1, var/misc = 1)
