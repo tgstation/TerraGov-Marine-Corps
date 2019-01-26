@@ -98,11 +98,11 @@ var/global/list/holodeck_programs = list(
 				if(!issilicon(usr))	return
 				emagged = !emagged
 				if(emagged)
-					message_admins("[key_name_admin(usr)] overrode the holodeck's safeties")
-					log_game("[key_name(usr)] overrided the holodeck's safeties")
+					log_game("[key_name(usr)] overrode the holodeck's safeties.")
+					message_admins("[ADMIN_TPMONTY(usr)] overrode the holodeck's safeties.")
 				else
-					message_admins("[key_name_admin(usr)] restored the holodeck's safeties")
-					log_game("[key_name(usr)] restored the holodeck's safeties")
+					log_game("[key_name(usr)] restored the holodeck's safeties.")				
+					message_admins("[ADMIN_TPMONTY(usr)] restored the holodeck's safeties.")
 
 			src.add_fingerprint(usr)
 		src.updateUsrDialog()
@@ -177,7 +177,7 @@ var/global/list/holodeck_programs = list(
 	if(isobj(obj))
 		var/mob/M = obj.loc
 		if(ismob(M))
-			M.temp_drop_inv_item(obj)
+			M.temporarilyRemoveItemFromInventory(obj)
 
 	if(!silent)
 		var/obj/oldobj = obj
@@ -420,15 +420,15 @@ var/global/list/holodeck_programs = list(
 				return
 			M.forceMove(loc)
 			M.KnockDown(5)
-			for(var/obj/machinery/scoreboard/X in machines)
+			for(var/obj/machinery/scoreboard/X in GLOB.machines)
 				if(X.id == id)
 					X.score(side, 3)// 3 points for dunking a mob
 					// no break, to update multiple scoreboards
 			visible_message("<span class='danger'>[user] dunks [M] into the [src]!</span>")
 		return
 	else if (istype(W, /obj/item) && get_dist(src,user)<2)
-		user.drop_inv_item_to_loc(W, loc)
-		for(var/obj/machinery/scoreboard/X in machines)
+		user.transferItemToLoc(W, loc)
+		for(var/obj/machinery/scoreboard/X in GLOB.machines)
 			if(X.id == id)
 				X.score(side)
 				// no break, to update multiple scoreboards
@@ -442,7 +442,7 @@ var/global/list/holodeck_programs = list(
 			return
 		if(prob(50))
 			I.loc = src.loc
-			for(var/obj/machinery/scoreboard/X in machines)
+			for(var/obj/machinery/scoreboard/X in GLOB.machines)
 				if(X.id == id)
 					X.score(side)
 					// no break, to update multiple scoreboards

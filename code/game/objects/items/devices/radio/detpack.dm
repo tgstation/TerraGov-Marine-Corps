@@ -194,7 +194,7 @@
 <A href='byond://?src=\ref[src];code=1'>+</A>
 <A href='byond://?src=\ref[src];code=5'>+</A><BR>
 
-<B>Timer (Max 300 seconds, Min 10 seconds):</B><BR>
+<B>Timer (Max 300 seconds, Min 5 seconds):</B><BR>
 <A href='byond://?src=\ref[src];timer=-50'>-</A>
 <A href='byond://?src=\ref[src];timer=-10'>-</A>
 <A href='byond://?src=\ref[src];timer=-5'>-</A>
@@ -247,8 +247,8 @@
 		location = target
 		forceMove(location)
 
-		message_admins("[key_name(user, user.client)](<A HREF='?_src_=holder;adminmoreinfo=\ref[user]'>?</A>) planted [src.name] on [target.name] at ([target.x],[target.y],[target.z] - <A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) with [timer] second fuse",0,1)
-		log_game("[key_name(user)] planted [src.name] on [target.name] at ([target.x],[target.y],[target.z]) with [timer] second fuse")
+		log_game("[key_name(user)] planted [src.name] on [target.name] at [AREACOORD(target.loc)] with [timer] second fuse.")
+		message_admins("[ADMIN_TPMONTY(user)] planted [src.name] on [target.name] at [ADMIN_VERBOSEJMP(target.loc)] with [timer] second fuse.")
 
 		//target.overlays += image('icons/obj/items/assemblies.dmi', "plastic-explosive2")
 		user.visible_message("<span class='warning'>[user] plants [name] on [target]!</span>",
@@ -270,7 +270,7 @@
 	process_count = 0
 	if(plant_target == null || !plant_target.loc) //need a target to be attached to
 		STOP_PROCESSING(SSfastprocess, src)
-		if(timer < DETPACK_TIMER_MIN) //reset to minimum 10 seconds; no 'cooking' with aborted detonations.
+		if(timer < DETPACK_TIMER_MIN) //reset to minimum 5 seconds; no 'cooking' with aborted detonations.
 			timer = DETPACK_TIMER_MIN
 		nullvars()
 		return

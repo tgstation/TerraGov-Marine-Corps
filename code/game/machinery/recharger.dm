@@ -34,7 +34,7 @@ obj/machinery/recharger/attackby(obj/item/G as obj, mob/user as mob)
 			if(D.ready)
 				to_chat(user, "<span class='warning'>It won't fit, put the paddles back into [D] first!</span>")
 				return
-		if(user.drop_inv_item_to_loc(G, src))
+		if(user.transferItemToLoc(G, src))
 			charging = G
 			start_processing()
 			update_icon()

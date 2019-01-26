@@ -26,13 +26,10 @@ proc/cardinalrange(var/center)
 	var/efficiency = 1//How many cores this core counts for when doing power processing, phoron in the air and stability could affect this
 
 
-/obj/machinery/am_shielding/New(loc)
-	..(loc)
-	spawn(10)
-		controllerscan()
-		start_processing()
-	return
-
+/obj/machinery/am_shielding/Initialize()
+	. = ..()
+	controllerscan()
+	start_processing()
 
 /obj/machinery/am_shielding/proc/controllerscan(var/priorscan = 0)
 	//Make sure we are the only one here
@@ -148,7 +145,7 @@ proc/cardinalrange(var/center)
 
 /obj/machinery/am_shielding/proc/setup_core()
 	processing = 1
-	machines.Add(src)
+	GLOB.machines.Add(src)
 	if(!control_unit)	return
 	control_unit.linked_cores.Add(src)
 	control_unit.reported_core_efficiency += efficiency

@@ -34,7 +34,7 @@
 		to_chat(user, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return
 
-	if(isSynth(user) && dangerous && !config.allow_synthetic_gun_use)
+	if(isSynth(user) && dangerous && !CONFIG_GET(flag/allow_synthetic_gun_use))
 		to_chat(user, "<span class='warning'>Your programming prevents you from operating this device!</span>")
 		return
 
@@ -63,7 +63,7 @@
 		return
 
 	if(user)
-		msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) primed \a [src].")
+		msg_admin_attack("[ADMIN_TPMONTY(usr)] primed \a [src].")
 
 	icon_state = initial(icon_state) + "_active"
 	active = 1

@@ -1,35 +1,6 @@
 //#define TESTING
 //This file was auto-corrected by findeclaration.exe on 25.5.2012 20:42:31
 #define MAIN_SHIP_NAME "TGS Theseus"
-//=================================================
-//Please don't edit these values without speaking to Errorage first	~Carn
-//Admin Permissions
-#define R_BUILDMODE		1
-#define R_ADMIN			2
-#define R_BAN			4
-#define R_FUN			8
-#define R_SERVER		16
-#define R_DEBUG			32
-#define R_POSSESS		64
-#define R_PERMISSIONS	128
-#define R_STEALTH		256
-#define R_REJUVINATE	512
-#define R_COLOR			1024
-#define R_VAREDIT		2048
-#define R_SOUNDS		4096
-#define R_SPAWN			8192
-#define R_MOD			16384
-#define R_MENTOR		32768
-#define R_HOST			65536
-// 512.1430 increases maximum bit flags from 16 to 24, so the following flags should be available for future changes:
-// #define R_PERMISSION	131072
-// #define R_PERMISSION	262144
-// #define R_PERMISSION	524288
-// #define R_PERMISSION	1048576
-// #define R_PERMISSION	2097152
-// #define R_PERMISSION	4194304
-//=================================================
-
 
 var/global/obj/effect/datacore/data_core = null
 
@@ -118,14 +89,15 @@ var/dlooc_allowed = 0
 var/traitor_scaling = 1
 //var/goonsay_allowed = 0
 var/dna_ident = 1
-var/abandon_allowed = 1
+var/respawn_allowed = 0
 var/enter_allowed = 1
-var/guests_allowed = 1
+var/guests_allowed = 0
 var/shuttle_frozen = 0
 var/shuttle_left = 0
 var/midi_playing = 0
 var/heard_midi = 0
 var/total_silenced = 0
+var/respawntime = 15
 
 var/list/jobMax = list()
 var/list/bombers = list(  )
@@ -176,10 +148,10 @@ var/list/alldirs = list(NORTH, SOUTH, EAST, WEST, NORTHEAST, NORTHWEST, SOUTHEAS
 var/list/reverse_dir = list(2, 1, 3, 8, 10, 9, 11, 4, 6, 5, 7, 12, 14, 13, 15, 32, 34, 33, 35, 40, 42, 41, 43, 36, 38, 37, 39, 44, 46, 45, 47, 16, 18, 17, 19, 24, 26, 25, 27, 20, 22, 21, 23, 28, 30, 29, 31, 48, 50, 49, 51, 56, 58, 57, 59, 52, 54, 53, 55, 60, 62, 61, 63)
 
 var/datum/station_state/start_state = null
-var/datum/configuration/config = null
 var/datum/sun/sun = null
 
 //Logging
+/*
 var/log_directory
 var/world_game_log
 var/world_attack_log
@@ -189,6 +161,7 @@ var/world_pda_log
 var/world_href_log
 var/sql_error_log
 var/config_error_log
+*/
 
 var/list/all_player_details = list()  // [ckey] = /datum/player_details
 

@@ -12,9 +12,9 @@
 	w_class = 3
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-	suicide_act(mob/user)
-		user.visible_message("<span class='danger'>[user] is falling on the [src.name]! It looks like \he's trying to commit suicide.</span>")
-		return(BRUTELOSS)
+/obj/item/weapon/claymore/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is falling on the [src.name]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	return(BRUTELOSS)
 
 /obj/item/weapon/claymore/mercsword
 	name = "combat sword"
@@ -55,9 +55,9 @@
 	w_class = 3
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 
-	suicide_act(mob/user)
-		user.visible_message("<span class='danger'>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</span>")
-		return(BRUTELOSS)
+/obj/item/weapon/katana/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.</span>")
+	return(BRUTELOSS)
 
 //To do: replace the toys.
 /obj/item/weapon/katana/replica
@@ -98,7 +98,7 @@
 					var/obj/item/storage/S = loc
 					S.remove_from_storage(src)
 				if(loc == user)
-					user.temp_drop_inv_item(src)
+					user.temporarilyRemoveItemFromInventory(src)
 				var/obj/item/attachable/bayonet/F = new(src.loc)
 				user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 				if(F.loc != user) //It ended up on the floor, put it whereever the old flashlight is.
@@ -110,11 +110,11 @@
 		else
 			..()
 
-	suicide_act(mob/user)
-		user.visible_message(pick("<span class='danger'>[user] is slitting \his wrists with the [src.name]! It looks like \he's trying to commit suicide.</span>", \
-							"<span class='danger'>[user] is slitting \his throat with the [src.name]! It looks like \he's trying to commit suicide.</span>", \
-							"<span class='danger'>[user] is slitting \his stomach open with the [src.name]! It looks like \he's trying to commit seppuku.</span>"))
-		return (BRUTELOSS)
+/obj/item/weapon/combat_knife/suicide_act(mob/user)
+	user.visible_message(pick("<span class='danger'>[user] is slitting [user.p_their()] wrists with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
+							"<span class='danger'>[user] is slitting [user.p_their()] throat with the [name]! It looks like [user.p_theyre()] trying to commit suicide.</span>", \
+							"<span class='danger'>[user] is slitting [user.p_their()] stomach open with the [name]! It looks like [user.p_theyre()] trying to commit seppuku.</span>"))
+	return (BRUTELOSS)
 
 /obj/item/weapon/combat_knife/upp
 	name = "\improper Type 30 survival knife"

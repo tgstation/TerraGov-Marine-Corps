@@ -24,12 +24,12 @@
 				var/obj/item/W = source.handcuffed
 				source.handcuffed = null
 				source.handcuff_update()
-				source.drop_inv_item_on_ground(W)
+				source.dropItemToGround(W)
 			if (source.legcuffed)
 				var/obj/item/W = source.legcuffed
 				source.legcuffed = null
 				source.update_inv_legcuffed()
-				source.drop_inv_item_on_ground(W)
+				source.dropItemToGround(W)
 		return
 
 

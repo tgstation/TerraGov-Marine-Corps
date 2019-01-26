@@ -28,7 +28,7 @@
 /mob/living/silicon/drop_held_item()
 	return
 
-/mob/living/silicon/drop_held_items()
+/mob/living/silicon/drop_all_held_items()
 	return
 
 /mob/living/simple_animal/update_transform()
@@ -147,7 +147,7 @@
 
 /mob/living/silicon/add_language(var/language, var/can_speak=1)
 	if (..(language) && can_speak)
-		speech_synthesizer_langs.Add(all_languages[language])
+		speech_synthesizer_langs.Add(GLOB.all_languages[language])
 		return 1
 
 /mob/living/silicon/remove_language(var/rem_language)

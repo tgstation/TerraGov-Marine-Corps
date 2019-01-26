@@ -7,6 +7,3 @@
 	hub = "Exadv1.spacestation13"
 
 #define RECOMMENDED_VERSION 511
-
-//Force the log directory to be something specific in the data/logs folder
-#define OVERRIDE_LOG_DIRECTORY_PARAMETER "log-directory"

@@ -45,13 +45,11 @@
 		"cold"
 	)
 
-/obj/machinery/door/firedoor/New()
+/obj/machinery/door/firedoor/Initialize()
 	. = ..()
 	for(var/obj/machinery/door/firedoor/F in loc)
 		if(F != src)
-			spawn(1)
-				qdel(src)
-			return .
+			return INITIALIZE_HINT_QDEL
 	var/area/A = get_area(src)
 	ASSERT(istype(A))
 
@@ -306,8 +304,8 @@
 		else
 			use_power(360)
 	else
-		log_admin("[usr]([usr.ckey]) has forced open an emergency shutter.")
-		message_admins("[usr]([usr.ckey]) has forced open an emergency shutter.")
+		log_admin("[key_name(usr)] has forced open an emergency shutter at [AREACOORD(usr.loc)].")
+		message_admins("[ADMIN_TPMONTY(usr)] has forced open an emergency shutter.")
 	latetoggle()
 	return ..()
 

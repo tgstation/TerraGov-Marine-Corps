@@ -64,14 +64,14 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	. = ..()
 	dest_master = locate()
 	if(!dest_master)
-		log_debug("ERROR CODE SD1: could not find master self-destruct console")
+		log_runtime("ERROR CODE SD1: could not find master self-destruct console")
 		to_chat(world, "<span class='debuginfo'>ERROR CODE SD1: could not find master self-destruct console</span>")
 		return FALSE
 	dest_rods = new
-	for(var/obj/machinery/self_destruct/rod/I in dest_master.loc.loc) 
+	for(var/obj/machinery/self_destruct/rod/I in dest_master.loc.loc)
 		dest_rods += I
 	if(!dest_rods.len)
-		log_debug("ERROR CODE SD2: could not find any self destruct rods")
+		log_runtime("ERROR CODE SD2: could not find any self destruct rods")
 		to_chat(world, "<span class='debuginfo'>ERROR CODE SD2: could not find any self destruct rods</span>")
 		qdel(dest_master)
 		dest_master = null
@@ -141,7 +141,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	set background = 1
 
 	spawn while(evac_status == EVACUATION_STATUS_INITIATING) //If it's not departing, no need to process.
-		if(world.time >= evac_time + EVACUATION_AUTOMATIC_DEPARTURE) 
+		if(world.time >= evac_time + EVACUATION_AUTOMATIC_DEPARTURE)
 			begin_launch()
 		sleep(10) //One second.
 
@@ -150,7 +150,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		if(EVACUATION_STATUS_INITIATING)
 			var/eta = EVACUATION_ESTIMATE_DEPARTURE
 			. = "[(eta / 60) % 60]:[add_zero(num2text(eta % 60), 2)]"
-		if(EVACUATION_STATUS_IN_PROGRESS) 
+		if(EVACUATION_STATUS_IN_PROGRESS)
 			. = "NOW"
 
 //=========================================================================================
@@ -228,8 +228,8 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 		var/L2[] = new //Everyone who only needs to see the cinematic.
 		var/mob/M
 		var/turf/T
-		for(M in player_list) //This only does something cool for the people about to die, but should prove pretty interesting.
-			if(!M?.loc) 
+		for(M in GLOB.player_list) //This only does something cool for the people about to die, but should prove pretty interesting.
+			if(!M?.loc)
 				continue //In case something changes when we sleep().
 			T = get_turf(M)
 			if(T.z in z_levels)
@@ -301,14 +301,14 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 
 /obj/machinery/self_destruct/Destroy()
 	. = ..()
-	machines -= src
+	GLOB.machines -= src
 	operator = null
 
 /obj/machinery/self_destruct/ex_act(severity)
 	return FALSE
 
 /obj/machinery/self_destruct/attack_hand()
-	if(..() || in_progress) 
+	if(..() || in_progress)
 		return FALSE //This check is backward, ugh.
 	return TRUE
 
@@ -339,12 +339,12 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 	//TODO: Add sounds.
 /obj/machinery/self_destruct/console/attack_hand(mob/user)
 	. = ..()
-	if(.) 
+	if(.)
 		ui_interact(user)
 
 /obj/machinery/self_destruct/console/Topic(href, href_list)
 	. = ..()
-	if(.) 
+	if(.)
 		return TRUE
 	switch(href_list["command"])
 		if("dest_start")
@@ -359,7 +359,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 			nanomanager.try_update_ui(usr, src, "main",, data)
 
 		if("dest_trigger")
-			if(EvacuationAuthority.initiate_self_destruct()) 
+			if(EvacuationAuthority.initiate_self_destruct())
 				nanomanager.close_user_uis(usr, src, "main")
 
 		if("dest_cancel")
@@ -367,7 +367,7 @@ var/global/datum/authority/branch/evacuation/EvacuationAuthority //This is initi
 			if(!usr.mind || !allowed_officers.Find(usr.mind.assigned_role))
 				to_chat(usr, "<span class='notice'>You don't have the necessary clearance to cancel the emergency destruct system.</span>")
 				return
-			if(EvacuationAuthority.cancel_self_destruct()) 
+			if(EvacuationAuthority.cancel_self_destruct())
 				nanomanager.close_user_uis(usr, src, "main")
 
 /obj/machinery/self_destruct/console/ui_interact(mob/user, ui_key = "main", datum/nanoui/ui = null, force_open = 1)

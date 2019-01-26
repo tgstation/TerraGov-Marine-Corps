@@ -17,8 +17,7 @@
 	soundin = get_sfx(soundin) // same sound for everyone
 
 	if(isarea(source))
-		error("[source] is an area and is trying to make the sound: [soundin]")
-		return
+		CRASH("[source] is an area and is trying to make the sound: [soundin]")
 
 	var/frequency = GET_RANDOM_FREQ // Same frequency for everybody
 	var/turf/turf_source = get_turf(source)
@@ -26,7 +25,7 @@
  	// Looping through the player list has the added bonus of working for mobs inside containers
 	var/mob/M
 	var/turf/T
-	for(var/i in player_list)
+	for(var/i in GLOB.player_list)
 		M = i
 		if(!istype(M) || !M.client) continue
 		if(get_dist(M, turf_source) <= sound_range)
@@ -109,7 +108,7 @@
 /proc/playsound_z(atom/z, soundin, volume) // Play sound for all online mobs on a given Z-level. Good for ambient sounds.
 	soundin = get_sfx(soundin)
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if (M.z)
 			M << sound(soundin, volume)
 

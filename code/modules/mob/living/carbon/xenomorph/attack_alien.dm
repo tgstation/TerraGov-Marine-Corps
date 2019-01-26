@@ -106,8 +106,7 @@
 				attack_message2 = "<span class='danger'>You viciously rend \the [src] with your teeth!</span>"
 				log = "bit"
 				M.critical_proc = TRUE
-				spawn(CRITICAL_HIT_DELAY)
-					M.critical_proc = FALSE
+				addtimer(CALLBACK(M, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), CRITICAL_HIT_DELAY)
 
 			//Check for a special bite attack
 			if(prob(M.xeno_caste.bite_chance) && !M.critical_proc && !no_crit && !M.stealth_router(HANDLE_STEALTH_CHECK)) //Can't crit if we already crit in the past 3 seconds; stealthed ironically can't crit because weeoo das a lotta damage
@@ -118,8 +117,7 @@
 				attack_message2 = "<span class='danger'>You violently impale \the [src] with your tail!</span>"
 				log = "tail-stabbed"
 				M.critical_proc = TRUE
-				spawn(CRITICAL_HIT_DELAY)
-					M.critical_proc = FALSE
+				addtimer(CALLBACK(M, /mob/living/carbon/Xenomorph/proc/reset_critical_hit), CRITICAL_HIT_DELAY)
 
 			//Somehow we will deal no damage on this attack
 			if(!damage)
@@ -158,7 +156,7 @@
 						playsound(loc, "alien_claw_metal", 25, 1)
 						M.visible_message("<span class='danger'>The [M] smashes off [src]'s [wear_mask.name]!</span>", \
 						"<span class='danger'>You smash off [src]'s [wear_mask.name]!</span>", null, 5)
-						drop_inv_item_on_ground(wear_mask)
+						dropItemToGround(wear_mask)
 						emote("roar")
 						return TRUE
 
@@ -167,12 +165,12 @@
 			M.visible_message("[attack_message1]", \
 			"[attack_message2]")
 
-			//Logging, including anti-rulebreak logging
-			if(src.status_flags & XENO_HOST && src.stat != DEAD)
-				if(istype(src.buckled, /obj/structure/bed/nest)) //Host was buckled to nest while infected, this is a rule break
+			if(status_flags & XENO_HOST && stat != DEAD)
+				if(istype(buckled, /obj/structure/bed/nest))
+					var/area/A = get_area(M)
 					log_combat(M, src, log, addition="while they were infected and nested")
-					msg_admin_ff("[key_name(M)] slashed [key_name(src)] while they were infected and nested.") //This is a blatant rulebreak, so warn the admins
-				else //Host might be rogue, needs further investigation
+					msg_admin_ff("[ADMIN_TPMONTY(M)] slashed [ADMIN_TPMONTY(src)] while they were infected and nested in [ADMIN_VERBOSEJMP(A)].")
+				else
 					log_combat(M, src, log, addition="while they were infected")
 			else //Normal xenomorph friendship with benefits
 				log_combat(M, src, log)
@@ -184,6 +182,8 @@
 					M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
 					"<span class='danger'>You strike [src] with vicious precision!</span>")
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+
+			M.neuroclaw_router(src) //if we have neuroclaws...
 
 			apply_damage(damage, BRUTE, affecting, armor_block, sharp = 1, edge = 1) //This should slicey dicey
 			updatehealth()
@@ -225,6 +225,7 @@
 					M.visible_message("<span class='danger'>\The [M] strikes [src] with vicious precision!</span>", \
 					"<span class='danger'>You strike [src] with vicious precision!</span>")
 				M.stealth_router(HANDLE_STEALTH_CODE_CANCEL)
+			M.neuroclaw_router(src) //if we have neuroclaws...
 			if(dam_bonus)
 				tackle_pain += dam_bonus
 			apply_damage(tackle_pain, HALLOSS, "chest", armor_block * 0.5) //Only half armour applies vs tackle
@@ -240,6 +241,9 @@
 			return TRUE
 
 	return TRUE
+
+/mob/living/carbon/Xenomorph/proc/reset_critical_hit()
+	critical_proc = FALSE
 
 /mob/living/carbon/Xenomorph/proc/process_rage_attack()
 	return FALSE

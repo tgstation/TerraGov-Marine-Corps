@@ -1,19 +1,19 @@
 
 /mob/Destroy()//This makes sure that mobs with clients/keys are not just deleted from the game.
-	mob_list -= src
-	dead_mob_list -= src
-	living_mob_list -= src
+	GLOB.mob_list -= src
+	GLOB.dead_mob_list -= src
+	GLOB.alive_mob_list -= src
 	ghostize()
 	clear_fullscreens()
 	. = ..()
 	return TA_PURGE_ME_NOW
 
 /mob/Initialize()
-	mob_list += src
+	GLOB.mob_list += src
 	if(stat == DEAD)
-		dead_mob_list += src
+		GLOB.dead_mob_list += src
 	else
-		living_mob_list += src
+		GLOB.alive_mob_list += src
 	prepare_huds()
 	return ..()
 
@@ -43,26 +43,30 @@
 			stat("Operation Time: [worldtime2text()]")
 		client.stat_force_fast_update = TRUE
 
-	if(client?.holder?.rights && client.holder.rights & (R_ADMIN|R_DEBUG))
-		if(statpanel("MC"))
-			stat("CPU:", "[world.cpu]")
-			stat("Instances:", "[num2text(world.contents.len, 10)]")
-			stat("World Time:", "[world.time]")
-			stat(null)
-			if(Master)
-				Master.stat_entry()
-			else
-				stat("Master Controller:", "ERROR")
-			if(Failsafe)
-				Failsafe.stat_entry()
-			else
-				stat("Failsafe Controller:", "ERROR")
-			if(Master)
+	if(client?.holder?.rank?.rights)
+		if(client.holder.rank.rights & (R_ADMIN|R_DEBUG))
+			if(statpanel("MC"))
+				stat("CPU:", "[world.cpu]")
+				stat("Instances:", "[num2text(world.contents.len, 10)]")
+				stat("World Time:", "[world.time]")
 				stat(null)
-				for(var/datum/controller/subsystem/SS in Master.subsystems)
-					SS.stat_entry()
-					
-	if(statpanel("Stats") || client.statpanel != "Stats")	
+				if(Master)
+					Master.stat_entry()
+				else
+					stat("Master Controller:", "ERROR")
+				if(Failsafe)
+					Failsafe.stat_entry()
+				else
+					stat("Failsafe Controller:", "ERROR")
+				if(Master)
+					stat(null)
+					for(var/datum/controller/subsystem/SS in Master.subsystems)
+						SS.stat_entry()
+		if(client.holder.rank.rights & (R_ADMIN|R_MENTOR))
+			if(statpanel("Tickets"))
+				GLOB.ahelp_tickets.stat_entry()
+
+	if(statpanel("Stats") || client.statpanel != "Stats")
 		return TRUE
 	else
 		return FALSE
@@ -125,7 +129,7 @@
 
 
 /mob/proc/findname(msg)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if (M.real_name == text("[]", msg))
 			return M
 	return 0
@@ -143,7 +147,7 @@
 
 //This proc is called whenever someone clicks an inventory ui slot.
 /mob/proc/attack_ui(slot)
-	var/obj/item/W = get_active_hand()
+	var/obj/item/W = get_active_held_item()
 	if(istype(W))
 		equip_to_slot_if_possible(W, slot, 0) // equiphere
 
@@ -178,7 +182,7 @@
 				if(permanent)
 					W.flags_inventory |= CANTSTRIP
 					W.flags_item |= NODROP
-				if(W.loc == start_loc && get_active_hand() != W)
+				if(W.loc == start_loc && get_active_held_item() != W)
 					//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
 					if(W.zoom)
 						W.zoom(src)
@@ -190,7 +194,7 @@
 		if(permanent)
 			W.flags_inventory |= CANTSTRIP
 			W.flags_item |= NODROP
-		if(W.loc == start_loc && get_active_hand() != W)
+		if(W.loc == start_loc && get_active_held_item() != W)
 			//They moved it from hands to an inv slot or vice versa. This will unzoom and unwield items -without- triggering lights.
 			if(W.zoom)
 				W.zoom(src)
@@ -265,10 +269,10 @@ var/list/slot_equipment_priority = list( \
 	var/dat = {"
 	<B><HR><FONT size=3>[name]</FONT></B>
 	<BR><HR>
-	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=mask'>[(wear_mask ? wear_mask : "Nothing")]</A>
-	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=l_hand'>[(l_hand ? l_hand  : "Nothing")]</A>
-	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=r_hand'>[(r_hand ? r_hand : "Nothing")]</A>
-	<BR><B>Back:</B> <A href='?src=\ref[src];item=back'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
+	<BR><B>Head(Mask):</B> <A href='?src=\ref[src];item=[SLOT_WEAR_MASK]'>[(wear_mask ? wear_mask : "Nothing")]</A>
+	<BR><B>Left Hand:</B> <A href='?src=\ref[src];item=[SLOT_L_HAND]'>[(l_hand ? l_hand  : "Nothing")]</A>
+	<BR><B>Right Hand:</B> <A href='?src=\ref[src];item=[SLOT_R_HAND]'>[(r_hand ? r_hand : "Nothing")]</A>
+	<BR><B>Back:</B> <A href='?src=\ref[src];item=[SLOT_BACK]'>[(back ? back : "Nothing")]</A> [((istype(wear_mask, /obj/item/clothing/mask) && istype(back, /obj/item/tank) && !( internal )) ? text(" <A href='?src=\ref[];item=internal'>Set Internal</A>", src) : "")]
 	<BR>[(internal ? text("<A href='?src=\ref[src];item=internal'>Remove Internal</A>") : "")]
 	<BR><A href='?src=\ref[src];item=pockets'>Empty Pockets</A>
 	<BR><A href='?src=\ref[user];refresh=1'>Refresh</A>
@@ -342,7 +346,11 @@ var/list/slot_equipment_priority = list( \
 		'html/chevron-expand.png',
 		'html/changelog.css',
 		'html/changelog.js',
-		'html/changelog.html'
+		'html/changelog.html',
+		'html/chrome-wrench.png',
+		'html/ban.png',
+		'html/coding.png',
+		'html/scales.png'
 		)
 	src << browse('html/changelog.html', "window=changes;size=675x650")
 	if(prefs.lastchangelog != changelog_hash)
@@ -598,12 +606,12 @@ mob/proc/yank_out_object()
 	var/obj/item/selection = input("What do you want to yank out?", "Embedded objects") in valid_objects
 
 	if(self)
-		if(get_active_hand())
+		if(get_active_held_item())
 			to_chat(src, "<span class='warning'>You need an empty hand for this!</span>")
 			return FALSE
 		to_chat(src, "<span class='warning'>You attempt to get a good grip on [selection] in your body.</span>")
 	else
-		if(get_active_hand())
+		if(get_active_held_item())
 			to_chat(U, "<span class='warning'>You need an empty hand for this!</span>")
 			return FALSE
 		to_chat(U, "<span class='warning'>You attempt to get a good grip on [selection] in [S]'s body.</span>")
@@ -668,7 +676,7 @@ mob/proc/yank_out_object()
 
 /mob/on_stored_atom_del(atom/movable/AM)
 	if(istype(AM, /obj/item))
-		temp_drop_inv_item(AM, TRUE) //unequip before deletion to clear possible item references on the mob.
+		temporarilyRemoveItemFromInventory(AM, TRUE) //unequip before deletion to clear possible item references on the mob.
 
 /mob/forceMove(atom/destination)
 	stop_pulling()

@@ -40,13 +40,13 @@
 	if(scan)
 		to_chat(usr, "You remove \the [scan] from \the [src].")
 		scan.loc = get_turf(src)
-		if(!usr.get_active_hand() && istype(usr,/mob/living/carbon/human))
+		if(!usr.get_active_held_item() && istype(usr,/mob/living/carbon/human))
 			usr.put_in_hands(scan)
 		scan = null
 	else if(modify)
 		to_chat(usr, "You remove \the [modify] from \the [src].")
 		modify.loc = get_turf(src)
-		if(!usr.get_active_hand() && istype(usr,/mob/living/carbon/human))
+		if(!usr.get_active_held_item() && istype(usr,/mob/living/carbon/human))
 			usr.put_in_hands(modify)
 		modify = null
 	else
@@ -152,14 +152,14 @@
 				modify.name = text("[modify.registered_name]'s ID Card ([modify.assignment])")
 				if(ishuman(usr))
 					modify.loc = usr.loc
-					if(!usr.get_active_hand())
+					if(!usr.get_active_held_item())
 						usr.put_in_hands(modify)
 					modify = null
 				else
 					modify.loc = loc
 					modify = null
 			else
-				var/obj/item/I = usr.get_active_hand()
+				var/obj/item/I = usr.get_active_held_item()
 				if (istype(I, /obj/item/card/id))
 					if(usr.drop_held_item())
 						I.forceMove(src)
@@ -169,14 +169,14 @@
 			if (scan)
 				if(ishuman(usr))
 					scan.loc = usr.loc
-					if(!usr.get_active_hand())
+					if(!usr.get_active_held_item())
 						usr.put_in_hands(scan)
 					scan = null
 				else
 					scan.loc = src.loc
 					scan = null
 			else
-				var/obj/item/I = usr.get_active_hand()
+				var/obj/item/I = usr.get_active_held_item()
 				if (istype(I, /obj/item/card/id))
 					if(usr.drop_held_item())
 						I.forceMove(src)
@@ -200,8 +200,9 @@
 					//let custom jobs function as an impromptu alt title, mainly for sechuds
 					if(temp_t && modify)
 						modify.assignment = temp_t
-						message_admins("[key_name_admin(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
-						log_admin("[key_name_admin(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
+						log_admin("[key_name(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
+						message_admins("[ADMIN_TPMONTY(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
+
 				else
 					var/list/access = list()
 					if(is_centcom())
@@ -222,8 +223,9 @@
 					modify.access = access
 					modify.assignment = t1
 					modify.rank = t1
-					message_admins("[key_name_admin(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
-					log_admin("[key_name_admin(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
+					log_admin("[key_name(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
+					message_admins("[ADMIN_TPMONTY(usr)] gave the ID of [modify.registered_name] the assignment [modify.assignment].")
+
 
 				callHook("reassign_employee", list(modify))
 
@@ -282,9 +284,9 @@
 			if (is_authenticated())
 				modify.assignment = "Terminated"
 				modify.access = list()
-				message_admins("[key_name_admin(usr)] terminated the ID of [modify.registered_name].")
-				log_admin("[key_name_admin(usr)] terminated the ID of [modify.registered_name].")
-
+				log_admin("[key_name(usr)] terminated the ID of [modify.registered_name].")
+				message_admins("[ADMIN_TPMONTY(usr)] terminated the ID of [modify.registered_name].")
+				
 				callHook("terminate_employee", list(modify))
 
 	if (modify)

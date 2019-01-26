@@ -3,7 +3,6 @@
 	name = "Infection"
 	config_tag = "Infection"
 	required_players = 0 //otherwise... no zambies
-	latejoin_larva_drop = 0
 	flags_round_type = MODE_INFECTION //Apparently without this, the game mode checker ignores this as a potential legit game mode.
 
 	uplink_welcome = "IF YOU SEE THIS, SHIT A BRICK AND AHELP"
@@ -67,9 +66,9 @@
 
 	var/dat = ""
 	//if(flags_round_type & MODE_INFESTATION)
-		//var/living_player_list[] = count_humans_and_xenos()
-		//dat = "\nXenomorphs remaining: [living_player_list[2]]. Humans remaining: [living_player_list[1]]."
-	log_game("[round_finished][dat]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal Preds spawned: [predators.len]\nTotal humans spawned: [round_statistics.total_humans_created]")
+		//var/living_GLOB.player_list[] = count_humans_and_xenos()
+		//dat = "\nXenomorphs remaining: [living_GLOB.player_list[2]]. Humans remaining: [living_GLOB.player_list[1]]."
+	log_game("[round_finished][dat]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [GLOB.clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal Preds spawned: [predators.len]\nTotal humans spawned: [round_statistics.total_humans_created]")
 
 	to_chat(world, dat)
 

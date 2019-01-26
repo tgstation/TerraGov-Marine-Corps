@@ -19,12 +19,12 @@
 	var/defib_cooldown = 0 //Cooldown for toggling the defib
 	origin_tech = "biotech=3"
 
-	suicide_act(mob/user)
-		user.visible_message("<span class='danger'>[user] is putting the live paddles on \his chest! It looks like \he's trying to commit suicide.</span>")
-		return (FIRELOSS)
+/obj/item/device/defibrillator/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is putting the live paddles on [user.p_their()] chest! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	return (FIRELOSS)
 
 /mob/living/carbon/human/proc/check_tod()
-	if(!undefibbable && world.time <= timeofdeath + config.revive_grace_period)
+	if(!undefibbable && world.time <= timeofdeath + CONFIG_GET(number/revive_grace_period))
 		return TRUE
 	return FALSE
 
@@ -72,7 +72,7 @@
 
 /mob/living/carbon/human/proc/get_ghost()
 	if(mind && !client) //Let's call up the correct ghost! Also, bodies with clients only, thank you.
-		for(var/mob/dead/observer/G in player_list)
+		for(var/mob/dead/observer/G in GLOB.player_list)
 			if(G.mind == mind)
 				var/mob/dead/observer/ghost = G
 				if(ghost && ghost.client && ghost.can_reenter_corpse)
@@ -134,7 +134,7 @@
 
 	var/mob/dead/observer/G = H.get_ghost()
 	if(istype(G))
-		G << 'sound/effects/adminhelp_new.ogg'
+		G << 'sound/effects/adminhelp.ogg'
 		var/msg = "<span class='interface'><font size=3><span class='bold'>Someone is trying to revive your body. Return to it if you want to be resurrected!</span> \
 		(Verbs -> Ghost -> Re-enter corpse, or <a href='?src=\ref[G];reentercorpse=1'>click here!</a>)</font></span>"
 		to_chat(G, msg)
@@ -165,7 +165,7 @@
 
 		var/datum/internal_organ/heart/heart = H.internal_organs_by_name["heart"]
 		if(heart && prob(25))
-			heart.damage += 5 //Allow the defibrilator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
+			heart.take_damage(5) //Allow the defibrilator to possibly worsen heart damage. Still rare enough to just be the "clone damage" of the defib
 
 		if(!H.is_revivable())
 			user.visible_message("<span class='warning'>\icon[src] \The [src] buzzes: Defibrillation failed. Patient's general condition does not allow reviving.</span>")
@@ -199,10 +199,10 @@
 		H.adjustCloneLoss(-defib_heal_amt)
 		H.adjustOxyLoss(-H.getOxyLoss())
 		H.updatehealth() //Needed for the check to register properly
-		if(H.health > config.health_threshold_dead)
+		if(H.health > CONFIG_GET(number/health_threshold_dead))
 			user.visible_message("<span class='notice'>\icon[src] \The [src] beeps: Defibrillation successful.</span>")
-			living_mob_list.Add(H)
-			dead_mob_list.Remove(H)
+			GLOB.alive_mob_list.Add(H)
+			GLOB.dead_mob_list.Remove(H)
 			H.timeofdeath = 0
 			H.tod = null
 			H.stat = UNCONSCIOUS

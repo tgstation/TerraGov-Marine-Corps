@@ -31,7 +31,7 @@
 			return
 
 		if(user)
-			msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) primed \a [src]")
+			msg_admin_attack("[ADMIN_TPMONTY(usr)] primed \a [src].")
 
 		icon_state = initial(icon_state) + "_active"
 		active = 1
@@ -58,7 +58,7 @@
 			if(H.put_in_hands(src))
 				hit_atom.visible_message("[hit_atom] expertly catches [src] out of the air.","You catch [src] easily.")
 				return
-			//if(isnull(H.get_active_hand()))
+			//if(isnull(H.get_active_held_item()))
 			//
 			//	H.put_in_active_hand(src)
 			//	return

@@ -161,7 +161,7 @@
 //Reboot procs.
 
 /mob/living/silicon/robot/drone/proc/request_player()
-	for(var/mob/dead/observer/O in player_list)
+	for(var/mob/dead/observer/O in GLOB.player_list)
 		if(jobban_isbanned(O, "Cyborg"))
 			continue
 
@@ -238,7 +238,7 @@
 		if(custom_name)
 			return 0
 
-		for (var/mob/living/silicon/robot/drone/A in mob_list)
+		for (var/mob/living/silicon/robot/drone/A in GLOB.mob_list)
 			if(newname == A.nicknumber)
 				to_chat(src, "<span class='warning'>That identifier is taken, pick again.</span>")
 				return 0

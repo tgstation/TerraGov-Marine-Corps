@@ -88,8 +88,8 @@
 	damage 		= ammo.damage + bonus_damage //Mainly for emitters.
 	scatter		= ammo.scatter
 	accuracy   += ammo.accuracy
-	accuracy   *= rand(config.proj_variance_low-ammo.accuracy_var_low, config.proj_variance_high+ammo.accuracy_var_high) * config.proj_base_accuracy_mult//Rand only works with integers.
-	damage     *= rand(config.proj_variance_low-ammo.damage_var_low, config.proj_variance_high+ammo.damage_var_high) * config.proj_base_damage_mult
+	accuracy   *= rand(CONFIG_GET(number/combat_define/proj_variance_low)-ammo.accuracy_var_low, CONFIG_GET(number/combat_define/proj_variance_high)+ammo.accuracy_var_high) * CONFIG_GET(number/combat_define/proj_base_accuracy_mult)//Rand only works with integers.
+	damage     *= rand(CONFIG_GET(number/combat_define/proj_variance_low)-ammo.damage_var_low, CONFIG_GET(number/combat_define/proj_variance_high)+ammo.damage_var_high) * CONFIG_GET(number/combat_define/proj_base_damage_mult)
 	damage_falloff = ammo.damage_falloff
 	list_reagents = ammo.ammo_reagents
 
@@ -244,7 +244,7 @@
 				var/mob/living/L = A
 
 				var/hit_roll
-				var/critical_miss = rand(config.critical_chance_low, config.critical_chance_high)
+				var/critical_miss = rand(CONFIG_GET(number/combat_define/critical_chance_low), CONFIG_GET(number/combat_define/critical_chance_high))
 				var/i = 0
 				while(++i <= 2 && hit_chance > 0) // This runs twice if necessary
 					hit_roll 					= rand(0, 99) //Our randomly generated roll
@@ -357,9 +357,9 @@
 	return prob(hitchance)
 
 /obj/structure/window/get_projectile_hit_chance(obj/item/projectile/P)
-	if(P.ammo.flags_ammo_behavior & AMMO_ENERGY)
+	if(P.ammo.flags_ammo_behavior & AMMO_ENERGY || ( (flags_atom & ON_BORDER) && P.dir != dir && P.dir != reverse_direction(dir) ) )
 		return FALSE
-	else if(!(flags_atom & ON_BORDER) || (P.dir & dir) || (P.dir & reverse_direction(dir)))
+	else
 		return TRUE
 
 /obj/machinery/door/poddoor/railing/get_projectile_hit_chance(obj/item/projectile/P)
@@ -554,9 +554,9 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			 /*Automatic damage soak due to armor. Greater difference between armor and damage, the more damage
 			 soaked. Small caliber firearms aren't really effective against combat armor.*/
 			var/armor_soak	 = round( ( armor / damage ) * 10 )//Setting up for next action.
-			var/critical_hit = rand(config.critical_chance_low,config.critical_chance_high)
+			var/critical_hit = rand(CONFIG_GET(number/combat_define/critical_chance_low),CONFIG_GET(number/combat_define/critical_chance_high))
 			damage 			-= prob(critical_hit) ? 0 : armor_soak //Chance that you won't soak the initial amount.
-			armor			-= round(armor_soak * config.base_armor_resist_low) //If you still have armor left over, you generally should, we subtract the soak.
+			armor			-= round(armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_low)) //If you still have armor left over, you generally should, we subtract the soak.
 											  		   //This gives smaller calibers a chance to actually deal damage.
 			#if DEBUG_HUMAN_DEFENSE
 			to_chat(world, "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
@@ -566,7 +566,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 				while(armor > 0 && i < 2) //Going twice. Armor has to exist to continue. Post increment.
 					if(prob(armor))
 						armor_soak 	 = round(damage * 0.5)  //Cut it in half.
-						armor 		-= armor_soak * config.base_armor_resist_high
+						armor 		-= armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_high)
 						damage 		-= armor_soak
 						#if DEBUG_HUMAN_DEFENSE
 						to_chat(world, "<span class='debuginfo'>Currently soaked: <b>[armor_soak]</b>. Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
@@ -644,13 +644,13 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			#endif
 			if(P.dir == charger.dir)
 				if(isXenoQueen(src))
-					armor = max(0, armor - (xeno_caste.armor_deflection * config.xeno_armor_resist_low)) //Both facing same way -- ie. shooting from behind; armour reduced by 50% of base.
+					armor = max(0, armor - (xeno_caste.armor_deflection * CONFIG_GET(number/combat_define/xeno_armor_resist_low))) //Both facing same way -- ie. shooting from behind; armour reduced by 50% of base.
 				else
-					armor = max(0, armor - (xeno_caste.armor_deflection * config.xeno_armor_resist_lmed)) //Both facing same way -- ie. shooting from behind; armour reduced by 75% of base.
+					armor = max(0, armor - (xeno_caste.armor_deflection * CONFIG_GET(number/combat_define/xeno_armor_resist_lmed))) //Both facing same way -- ie. shooting from behind; armour reduced by 75% of base.
 			else if(P.dir == reverse_direction(charger.dir))
-				armor += round(xeno_caste.armor_deflection * config.xeno_armor_resist_low) //We are facing the bullet.
+				armor += round(xeno_caste.armor_deflection * CONFIG_GET(number/combat_define/xeno_armor_resist_low)) //We are facing the bullet.
 			else if(isXenoCrusher(src))
-				armor = max(0, armor - (xeno_caste.armor_deflection * config.xeno_armor_resist_vlow)) //side armour eats a bit of shit if we're a Crusher
+				armor = max(0, armor - (xeno_caste.armor_deflection * CONFIG_GET(number/combat_define/xeno_armor_resist_vlow))) //side armour eats a bit of shit if we're a Crusher
 			//Otherwise use the standard armor deflection for crushers.
 			#if DEBUG_XENO_DEFENSE
 			to_chat(world, "<span class='debuginfo'>Adjusted crest armor is: <b>[armor]</b></span>")
@@ -670,9 +670,9 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 			 /*Automatic damage soak due to armor. Greater difference between armor and damage, the more damage
 			 soaked. Small caliber firearms aren't really effective against combat armor.*/
 			var/armor_soak	 = round( ( armor / damage ) * 10 )//Setting up for next action.
-			var/critical_hit = rand(config.critical_chance_low,config.critical_chance_high)
+			var/critical_hit = rand(CONFIG_GET(number/combat_define/critical_chance_low),CONFIG_GET(number/combat_define/critical_chance_high))
 			damage 			-= prob(critical_hit) ? 0 : armor_soak //Chance that you won't soak the initial amount.
-			armor			-= round(armor_soak * config.base_armor_resist_low) //If you still have armor left over, you generally should, we subtract the soak.
+			armor			-= round(armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_low)) //If you still have armor left over, you generally should, we subtract the soak.
 											  		   //This gives smaller calibers a chance to actually deal damage.
 			#if DEBUG_XENO_DEFENSE
 			to_chat(world, "<span class='debuginfo'>Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
@@ -682,7 +682,7 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 				while(armor > 0 && i < 2) //Going twice. Armor has to exist to continue. Post increment.
 					if(prob(armor))
 						armor_soak 	 = round(damage * 0.5)
-						armor 		-= armor_soak * config.base_armor_resist_high
+						armor 		-= armor_soak * CONFIG_GET(number/combat_define/base_armor_resist_high)
 						damage 		-= armor_soak
 						#if DEBUG_XENO_DEFENSE
 						to_chat(world, "<span class='debuginfo'>Currently soaked: <b>[armor_soak]</b>. Adjusted damage is: <b>[damage]</b>. Adjusted armor is: <b>[armor]</b></span>")
@@ -810,21 +810,22 @@ Normal range for a defender's bullet resist should be something around 30-50. ~N
 
 	if(ismob(P.firer))
 		var/mob/firingMob = P.firer
+		var/area/A = get_area(firingMob)
 		if(ishuman(firingMob) && ishuman(src) && firingMob.mind && !firingMob.mind.special_role && mind && !mind.special_role) //One human shot another, be worried about it but do everything basically the same //special_role should be null or an empty string if done correctly
 			log_combat(firingMob, src, "shot", P)
-			msg_admin_ff("[key_name(firingMob)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[firingMob]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[firingMob.x];Y=[firingMob.y];Z=[firingMob.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[firingMob]'>FLW</a>) shot [key_name(src)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[src]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[src]'>FLW</a>) with \a [P] in [get_area(firingMob)]")
+			msg_admin_ff("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with \a [P] in [ADMIN_VERBOSEJMP(A)].")
 			round_statistics.total_bullet_hits_on_marines++
 		else
 			log_combat(firingMob, src, "shot", P)
-			msg_admin_attack("[key_name(firingMob)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[firingMob]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[firingMob.x];Y=[firingMob.y];Z=[firingMob.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[firingMob]'>FLW</a>) shot [key_name(src)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[src]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[src]'>FLW</a>) with \a [P] in [get_area(firingMob)]")
+			msg_admin_attack("[ADMIN_TPMONTY(firingMob)] shot [ADMIN_TPMONTY(src)] with \a [P] in [ADMIN_VERBOSEJMP(A)].")
 		return
 
 	if(P.firer)
 		log_combat(P.firer, src, "shot", P)
-		msg_admin_attack("[key_name(P.firer)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[P.firer]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[P.firer.x];Y=[P.firer.y];Z=[P.firer.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[P.firer]'>FLW</a>) shot [key_name(src)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[src]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[src]'>FLW</a>) with a [P]")
+		msg_admin_attack("[ADMIN_TPMONTY(P.firer)] shot [ADMIN_TPMONTY(src)] with a [P]")
 	else
-		log_message("<b>SOMETHING??</b> shot <b>[key_name(src)]</b> with a <b>[P]</b>", LOG_ATTACK)
-		msg_admin_attack("SOMETHING?? shot [key_name(src)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[src]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.x];Y=[src.y];Z=[src.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[src]'>FLW</a>) with a [P])")
+		log_message("SOMETHING?? shot [key_name(src)] with a [P]", LOG_ATTACK)
+		msg_admin_attack("SOMETHING?? shot [ADMIN_TPMONTY(src)] with a [P])")
 
 //Abby -- Just check if they're 1 tile horizontal or vertical, no diagonals
 /proc/get_adj_simple(atom/Loc1,atom/Loc2)

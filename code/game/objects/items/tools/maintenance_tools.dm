@@ -47,10 +47,9 @@
 	matter = list("metal" = 75)
 	attack_verb = list("stabbed")
 
-	suicide_act(mob/user)
-		user.visible_message(pick("<span class='danger'>[user] is stabbing the [src.name] into \his temple! It looks like \he's trying to commit suicide.</span>", \
-							"<span class='danger'>[user] is stabbing the [src.name] into \his heart! It looks like \he's trying to commit suicide.</span>"))
-		return(BRUTELOSS)
+/obj/item/tool/screwdriver/suicide_act(mob/user)
+	user.visible_message("<span class='danger'>[user] is stabbing the [name] into [user.p_their()] [pick("temple","heart")]! It looks like [user.p_theyre()] trying to commit suicide.</span>")
+	return(BRUTELOSS)
 
 /obj/item/tool/screwdriver/New()
 	switch(pick("red","blue","purple","brown","green","cyan","yellow"))
@@ -426,8 +425,8 @@
 	if(istype(W, /obj/item/tool/weldingtool))
 		var/obj/item/tool/weldingtool/T = W
 		if(T.welding & prob(50))
-			message_admins("[key_name_admin(user)] triggered a fueltank explosion.")
-			log_game("[key_name(user)] triggered a fueltank explosion.")
+			message_admins("[ADMIN_TPMONTY(user)] triggered a fueltank explosion at [ADMIN_VERBOSEJMP(src.loc)].")
+			log_game("[key_name(user)] triggered a fueltank explosion at [AREACOORD(src.loc)].")
 			to_chat(user, "<span class='warning'>That was stupid of you.</span>")
 			explosion(get_turf(src),-1,0,2)
 			if(src)

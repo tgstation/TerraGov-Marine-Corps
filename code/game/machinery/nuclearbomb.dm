@@ -89,7 +89,7 @@ var/bomb_set
 
 	if (extended)
 		if (istype(O, /obj/item/disk/nuclear))
-			if(user.drop_inv_item_to_loc(O, src))
+			if(user.transferItemToLoc(O, src))
 				auth = O
 				add_fingerprint(user)
 			return
@@ -247,7 +247,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 		if(href_list["act"])
 			var/temp_wire = href_list["wire"]
 			if(href_list["act"] == "pulse")
-				if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
+				if (!istype(usr.get_active_held_item(), /obj/item/device/multitool))
 					to_chat(usr, "You need a multitool!")
 				else
 					if(src.wires[temp_wire])
@@ -270,7 +270,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 							else
 								visible_message("<span class='notice'> The [src] emits a quiet whirling noise!</span>")
 			if(href_list["act"] == "wire")
-				if (!istype(usr.get_active_hand(), /obj/item/tool/wirecutters))
+				if (!istype(usr.get_active_held_item(), /obj/item/tool/wirecutters))
 					to_chat(usr, "You need wirecutters!")
 				else
 					wires[temp_wire] = !wires[temp_wire]
@@ -293,7 +293,7 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 				src.yes_code = 0
 				src.auth = null
 			else
-				var/obj/item/I = usr.get_active_hand()
+				var/obj/item/I = usr.get_active_held_item()
 				if (istype(I, /obj/item/disk/nuclear))
 					if(usr.drop_held_item())
 						I.forceMove(src)
@@ -385,6 +385,6 @@ obj/machinery/nuclearbomb/proc/nukehack_win(mob/user as mob)
 /obj/item/disk/nuclear/Destroy()
 	if(blobstart.len > 0)
 		var/obj/D = new /obj/item/disk/nuclear(pick(blobstart))
-		message_admins("[src] has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
-		log_game("[src] has been destroyed. Spawning [D] at ([D.x], [D.y], [D.z]).")
+		message_admins("[src] has been destroyed. Spawning [D] at [AREACOORD(D.loc)].")
+		log_game("[src] has been destroyed. Spawning [D] at [ADMIN_VERBOSEJMP(D.loc)].")
 	. = ..()

@@ -80,7 +80,7 @@
 
 /obj/item/New(loc)
 	..()
-	item_list += src
+	GLOB.item_list += src
 	for(var/path in actions_types)
 		new path(src)
 	if(w_class <= 3) //pulling small items doesn't slow you down much
@@ -94,7 +94,7 @@
 		actions -= X
 		qdel(X)
 	master = null
-	item_list -= src
+	GLOB.item_list -= src
 	. = ..()
 
 
@@ -175,7 +175,7 @@ cases. Override_icon_state should be a list.*/
 	throwing = FALSE
 
 	if(loc == user)
-		if(!user.drop_inv_item_on_ground(src))
+		if(!user.dropItemToGround(src))
 			return
 	else
 		user.next_move = max(user.next_move+2,world.time + 2)
@@ -590,7 +590,7 @@ cases. Override_icon_state should be a list.*/
 	set name = "Show Held Item"
 	set category = "Object"
 
-	var/obj/item/I = get_active_hand()
+	var/obj/item/I = get_active_held_item()
 	if(I && !(I.flags_item & ITEM_ABSTRACT))
 		I.showoff(src)
 
@@ -617,7 +617,7 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 		to_chat(user, "<span class='warning'>You are unable to focus through \the [zoom_device].</span>")
 	else if(!zoom && user.client && H.tinttotal >= 3)
 		to_chat(user, "<span class='warning'>Your welding equipment gets in the way of you looking through \the [zoom_device].</span>")
-	else if(!zoom && user.get_active_hand() != src)
+	else if(!zoom && user.get_active_held_item() != src)
 		to_chat(user, "<span class='warning'>You need to hold \the [zoom_device] to look through it.</span>")
 	else if(zoom) //If we are zoomed out, reset that parameter.
 		user.visible_message("<span class='notice'>[user] looks up from [zoom_device].</span>",
@@ -672,12 +672,12 @@ modules/mob/living/carbon/human/life.dm if you die, you will be zoomed out.
 	var/datum/internal_organ/eyes/E = H.internal_organs_by_name["eyes"]
 	switch(safety)
 		if(1)
-			E.damage += rand(1, 2)
+			E.take_damage(rand(1, 2), TRUE)
 		if(0)
-			E.damage += rand(2, 4)
+			E.take_damage(rand(2, 4), TRUE)
 		if(-1)
 			H.blur_eyes(rand(12,20))
-			E.damage += rand(12, 16)
+			E.take_damage(rand(12, 16), TRUE)
 	if(safety<2)
 		if(E.damage >= E.min_broken_damage)
 			to_chat(H, "<span class='danger'>You can't see anything!</span>")

@@ -143,14 +143,14 @@
 				if(H.canmove && H.r_hand && !H.is_mob_restrained())
 					message = "<B>[comm_paygrade][src]</B> shakes hands with [H]."
 				else
-					message = "<B>[comm_paygrade][src]</B> holds out \his hand to [H]."
+					message = "<B>[comm_paygrade][src]</B> holds out [p_their()] hand to [H]."
 
 		if("hug")
 			if(!is_mob_restrained())
 				if(param)
 					message = "<B>[comm_paygrade][src]</B> hugs [H]."
 				else
-					message = "<B>[comm_paygrade][src]</B> hugs \himself."
+					message = "<B>[comm_paygrade][src]</B> hugs [p_them()]self."
 
 		if("laugh")
 			m_type = EMOTE_AUDIBLE
@@ -179,8 +179,7 @@
 					playsound(loc, 'sound/voice/human_male_medic2.ogg', 25, 0)
 			else
 				playsound(loc, 'sound/voice/human_female_medic.ogg', 25, 0)
-			spawn(TYPING_INDICATOR_LIFETIME)
-				overlays -= medic
+			addtimer(CALLBACK(src, .proc/remove_emote_overlay, medic), TYPING_INDICATOR_LIFETIME)
 
 		if("moan")
 			m_type = EMOTE_AUDIBLE
@@ -205,8 +204,7 @@
 					playsound(loc, species.paincries[gender], 50)
 				else if(species.screams[NEUTER])
 					playsound(loc, species.paincries[NEUTER], 50)
-			spawn(TYPING_INDICATOR_LIFETIME)
-				overlays -= pain
+			addtimer(CALLBACK(src, .proc/remove_emote_overlay, pain), TYPING_INDICATOR_LIFETIME)
 
 		if("salute")
 			m_type = EMOTE_AUDIBLE
@@ -230,11 +228,10 @@
 					playsound(loc, species.screams[gender], 50)
 				else if(species.screams[NEUTER])
 					playsound(loc, species.screams[NEUTER], 50)
-			spawn(TYPING_INDICATOR_LIFETIME)
-				overlays -= scream
+			addtimer(CALLBACK(src, .proc/remove_emote_overlay, scream), TYPING_INDICATOR_LIFETIME)
 
 		if("shakehead")
-			message = "<B>[comm_paygrade][src]</B> shakes \his head."
+			message = "<B>[comm_paygrade][src]</B> shakes [p_their()] head."
 
 		if("shiver")
 			message = "<B>[comm_paygrade][src]</B> shivers."
@@ -394,7 +391,7 @@ scream, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, star
 	if(message)
 		log_message(message, LOG_EMOTE)
 
-		for(var/mob/M in dead_mob_list)
+		for(var/mob/M in GLOB.dead_mob_list)
 			if(!M.client || istype(M, /mob/new_player))
 				continue
 			if(M.stat == DEAD && M.client.prefs && (M.client.prefs.toggles_chat & CHAT_GHOSTSIGHT) && !(M in viewers(src,null)))
@@ -407,6 +404,8 @@ scream, shakehead, shiver, shrug, sigh, signal-#1-10, smile, sneeze, snore, star
 			for(var/mob/O in hearers(loc, null))
 				O.show_message(message, m_type)
 
+/mob/living/carbon/human/proc/remove_emote_overlay(var/image/overlay_to_remove)
+	overlays -= overlay_to_remove
 
 /mob/living/carbon/human/proc/audio_emote_cooldown(player_caused)
 	if(player_caused)

@@ -40,7 +40,7 @@
 	. = ..()
 	if(iscarbon(loc))
 		var/mob/living/carbon/M = loc
-		M.temp_drop_inv_item(src)
+		M.temporarilyRemoveItemFromInventory(src)
 
 /obj/item/clothing/mask/facehugger/ex_act(severity)
 	Die()
@@ -118,7 +118,7 @@
 		to_chat(user, "<span class='danger'>It looks like the proboscis has been removed.</span>")
 
 /obj/item/clothing/mask/facehugger/attackby(obj/item/W, mob/user)
-	if(W.flags_item & NOBLUDGEON)
+	if(W.flags_item & NOBLUDGEON || attached)
 		return
 	Die()
 
@@ -241,7 +241,7 @@
 
 	if(isXeno(loc)) //Being carried? Drop it
 		var/mob/living/carbon/Xenomorph/X = loc
-		X.drop_inv_item_on_ground(src)
+		X.dropItemToGround(src)
 		X.update_icons()
 
 	if(isturf(M.loc))
@@ -251,7 +251,7 @@
 	if(ishuman(M))
 		var/mob/living/carbon/human/H = M
 
-		if(!H.has_limb("head"))
+		if(!H.has_limb(HEAD))
 			visible_message("<span class='warning'>[src] looks for a face to hug on [H], but finds none!</span>")
 			GoIdle()
 			return
@@ -261,8 +261,8 @@
 			if(H.dir == reverse_dir[dir]) catch_chance += 20
 			if(H.lying) catch_chance -= 50
 			catch_chance -= ((H.maxHealth - H.health) / 3)
-			if(H.get_active_hand()) catch_chance  -= 25
-			if(H.get_inactive_hand()) catch_chance  -= 25
+			if(H.get_active_held_item()) catch_chance  -= 25
+			if(H.get_inactive_held_item()) catch_chance  -= 25
 
 			if(!H.stat && H.dir != dir && prob(catch_chance)) //Not facing away
 				H.visible_message("<span class='notice'>[H] snatches [src] out of the air and squashes it!")
@@ -307,7 +307,7 @@
 					cannot_infect = 1
 				else
 					target.visible_message("<span class='danger'>[src] smashes against [target]'s [W.name] and rips it off!</span>")
-					target.drop_inv_item_on_ground(W)
+					target.dropItemToGround(W)
 					if(ishuman(M)) //Check for camera; if we have one, turn it off.
 						var/mob/living/carbon/human/H = M
 						if(istype(H.wear_ear, /obj/item/device/radio/headset/almayer/marine))
@@ -441,7 +441,7 @@
 
 	if(ismob(loc)) //Make it fall off the person so we can update their icons. Won't update if they're in containers thou
 		var/mob/M = loc
-		M.drop_inv_item_on_ground(src)
+		M.dropItemToGround(src)
 
 	layer = BELOW_MOB_LAYER //so dead hugger appears below live hugger if stacked on same tile.
 

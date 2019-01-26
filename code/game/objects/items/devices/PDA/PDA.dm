@@ -662,7 +662,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 		if("Toggle Door")
 			if(cartridge && cartridge.access_remote_door)
-				for(var/obj/machinery/door/poddoor/M in machines)
+				for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 					if(M.id == cartridge.remote_door_id)
 						if(M.density)
 							M.open()
@@ -822,7 +822,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 /obj/item/device/pda/proc/create_message(var/mob/living/U = usr, var/obj/item/device/pda/P, var/tap = 1)
 	if(tap)
-		U.visible_message("<span class='notice'>[U] taps on \his PDA's screen.</span>")
+		U.visible_message("<span class='notice'>[U] taps on [U.p_their()] PDA's screen.</span>")
 	U.last_target_click = world.time
 	var/t = input(U, "Please enter message", name, null) as text
 	t = copytext(sanitize(t), 1, MAX_MESSAGE_LEN)
@@ -876,7 +876,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 
 		tnote.Add(list(list("sent" = 1, "owner" = "[P.owner]", "job" = "[P.ownjob]", "message" = "[t]", "target" = "\ref[P]")))
 		P.tnote.Add(list(list("sent" = 0, "owner" = "[owner]", "job" = "[ownjob]", "message" = "[t]", "target" = "\ref[src]")))
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(M.stat == DEAD && M.client && (M.client.prefs.toggles_chat & CHAT_GHOSTEARS)) // src.client is so that ghosts don't have to listen to mice
 				if(istype(M, /mob/new_player))
 					continue
@@ -892,7 +892,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 			var/who = src.owner
 			if(prob(50))
 				who = P.owner
-			for(var/mob/living/silicon/ai/ai in mob_list)
+			for(var/mob/living/silicon/ai/ai in GLOB.mob_list)
 				// Allows other AIs to intercept the message but the AI won't intercept their own message.
 				if(ai.aiPDA != P && ai.aiPDA != src)
 					ai.show_message("<i>Intercepted message from <b>[who]</b>: [t]</i>")
@@ -951,7 +951,7 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		if(O)
 			if (istype(loc, /mob))
 				var/mob/M = loc
-				if(M.get_active_hand() == null)
+				if(M.get_active_held_item() == null)
 					M.put_in_hands(O)
 					to_chat(usr, "<span class='notice'>You remove \the [O] from \the [src].</span>")
 					return
@@ -967,13 +967,13 @@ var/global/list/obj/item/device/pda/PDAs = list()
 		if (id)
 			remove_id()
 		else
-			var/obj/item/I = user.get_active_hand()
+			var/obj/item/I = user.get_active_held_item()
 			if (istype(I, /obj/item/card/id))
 				if(user.drop_held_item())
 					I.forceMove(src)
 					id = I
 	else
-		var/obj/item/card/I = user.get_active_hand()
+		var/obj/item/card/I = user.get_active_held_item()
 		if (istype(I, /obj/item/card/id) && I:registered_name)
 			var/obj/old_id = id
 			if(user.drop_held_item())

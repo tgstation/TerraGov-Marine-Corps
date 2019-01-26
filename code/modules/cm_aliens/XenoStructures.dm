@@ -207,7 +207,7 @@
 							"<span class='danger'>You trip on [src]!</span>")
 			L.KnockDown(1)
 			if(carrier_number)
-				for(var/mob/living/carbon/Xenomorph/X in living_mob_list)
+				for(var/mob/living/carbon/Xenomorph/X in GLOB.alive_mob_list)
 					if(X.nicknumber == carrier_number)
 						if(!X.stat)
 							var/area/A = get_area(src)
@@ -581,7 +581,7 @@
 				if(BURST)
 					if(user)
 						visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")
-						user.temp_drop_inv_item(F)
+						user.temporarilyRemoveItemFromInventory(F)
 					else
 						visible_message("<span class='xenowarning'>[F] crawls back into [src]!</span>") //Not sure how, but let's roll with it for now.
 					status = GROWN
@@ -688,7 +688,7 @@ TUNNEL
 		..()
 		spawn(5)
 			if(id && !other)
-				for(var/obj/structure/tunnel/T in structure_list)
+				for(var/obj/structure/tunnel/T in GLOB.structure_list)
 					if(T.id == id && T != src && T.other == null) //Found a matching tunnel
 						T.other = src
 						other = T //Link them!

@@ -18,7 +18,7 @@
 
 /obj/item/weapon/gun/flare/examine(mob/user)
 	. = ..()
-	fire_delay = config.low_fire_delay*3
+	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay) * 3
 	if(num_flares)
 		to_chat(user, "<span class='warning'>It has a flare loaded!</span>")
 
@@ -52,7 +52,7 @@
 			to_chat(user, "It's already full.")
 			return
 		num_flares++
-		user.temp_drop_inv_item(flare)
+		user.temporarilyRemoveItemFromInventory(flare)
 		sleep(-1)
 		qdel(flare)
 		to_chat(user, "<span class='notice'>You insert the flare.</span>")
@@ -97,15 +97,15 @@
 		load_into_chamber()
 
 /obj/item/weapon/gun/minigun/set_gun_config_values()
-	fire_delay = config.low_fire_delay
-	burst_amount = config.max_burst_value
-	burst_delay = config.min_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult - config.med_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
-	recoil = config.med_recoil_value
+	fire_delay = CONFIG_GET(number/combat_define/low_fire_delay)
+	burst_amount = CONFIG_GET(number/combat_define/max_burst_value)
+	burst_delay = CONFIG_GET(number/combat_define/min_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult) - CONFIG_GET(number/combat_define/med_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
+	recoil = CONFIG_GET(number/combat_define/med_recoil_value)
 
 /obj/item/weapon/gun/minigun/toggle_burst()
 	to_chat(usr, "<span class='warning'>This weapon can only fire in bursts!</span>")
@@ -176,12 +176,12 @@
 	verbs -= /obj/item/weapon/gun/verb/use_unique_action
 
 /obj/item/weapon/gun/launcher/spike/set_gun_config_values()
-	fire_delay = config.high_fire_delay
-	accuracy_mult = config.base_hit_accuracy_mult
-	accuracy_mult_unwielded = config.base_hit_accuracy_mult
-	scatter = config.med_scatter_value
-	scatter_unwielded = config.med_scatter_value
-	damage_mult = config.base_hit_damage_mult
+	fire_delay = CONFIG_GET(number/combat_define/high_fire_delay)
+	accuracy_mult = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	accuracy_mult_unwielded = CONFIG_GET(number/combat_define/base_hit_accuracy_mult)
+	scatter = CONFIG_GET(number/combat_define/med_scatter_value)
+	scatter_unwielded = CONFIG_GET(number/combat_define/med_scatter_value)
+	damage_mult = CONFIG_GET(number/combat_define/base_hit_damage_mult)
 
 
 /obj/item/weapon/gun/launcher/spike/examine(mob/user)
@@ -244,7 +244,7 @@
 		var/obj/item/reagent_container/syringe/S = I
 		if(S.mode != 2)//SYRINGE_BROKEN in syringes.dm
 			if(syringes.len < max_syringes)
-				user.drop_inv_item_to_loc(I, src)
+				user.transferItemToLoc(I, src)
 				syringes += I
 				update_icon()
 				to_chat(user, "<span class='notice'>You put the syringe in [src].</span>")
@@ -305,11 +305,11 @@
 							R += num2text(A.volume) + "),"
 					if (istype(M, /mob))
 						log_combat(user, M, "shot", src, "Reagents: ([R])")
-						msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) shot [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with a syringegun ([R])")
+						msg_admin_attack("[ADMIN_TPMONTY(usr)] shot [ADMIN_TPMONTY(M)] with a syringegun ([R]).")
 
 					else
 						M.log_message("<b>UNKNOWN SUBJECT (No longer exists)</b> shot <b>[key_name(M)]</b> with a <b>[src]</b> Reagents: ([R])", LOG_ATTACK)
-						msg_admin_attack("UNKNOWN shot [key_name(M)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[M]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[M.x];Y=[M.y];Z=[M.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[M]'>FLW</a>) with a <b>syringegun</b> ([R])")
+						msg_admin_attack("UNKNOWN shot [ADMIN_TPMONTY(M)] with a syringegun ([R]).")
 
 					M.visible_message("<span class='danger'>[M] is hit by the syringe!</span>")
 

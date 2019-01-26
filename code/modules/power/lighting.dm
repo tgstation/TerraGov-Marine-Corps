@@ -241,8 +241,8 @@
 			if(rigged)
 				if(status == LIGHT_OK && trigger)
 
-					log_admin("LOG: Rigged light explosion, last touched by [fingerprintslast]")
-					message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
+					log_admin("Rigged light explosion, last touched by [key_name(fingerprintslast)].")
+					message_admins("Rigged light explosion, last touched by [key_name_admin(fingerprintslast)].")
 
 					explode()
 			else if( prob( min(60, switchcount*switchcount*0.01) ) )
@@ -314,13 +314,13 @@
 				on = has_power()
 				update()
 
-				if(user.temp_drop_inv_item(L))
+				if(user.temporarilyRemoveItemFromInventory(L))
 					qdel(L)
 
 					if(on && rigged)
 
-						log_admin("LOG: Rigged light explosion, last touched by [fingerprintslast]")
-						message_admins("LOG: Rigged light explosion, last touched by [fingerprintslast]")
+						log_admin("Rigged light explosion, last touched by [key_name(fingerprintslast)].")
+						message_admins("Rigged light explosion, last touched by [key_name_admin(fingerprintslast)].")
 
 						explode()
 			else
@@ -682,8 +682,8 @@
 
 		if(S.reagents.has_reagent("phoron", 5))
 
-			log_admin("LOG: [user.name] ([user.ckey]) injected a light with phoron, rigging it to explode.")
-			message_admins("LOG: [user.name] ([user.ckey]) injected a light with phoron, rigging it to explode.")
+			log_admin("[key_name(user)] injected a light with phoron, rigging it to explode.")
+			message_admins("[ADMIN_TPMONTY(user)] injected a light with phoron, rigging it to explode.")
 
 			rigged = TRUE
 

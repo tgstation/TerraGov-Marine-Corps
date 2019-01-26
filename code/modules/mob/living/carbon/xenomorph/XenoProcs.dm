@@ -295,9 +295,7 @@
 						M.attack_alien(src, null, "disarm") //Hunters get a free throttle in exchange for lower initial stun.
 					if(!isXenoSilicon(src))
 						playsound(loc, rand(0, 100) < 95 ? 'sound/voice/alien_pounce.ogg' : 'sound/voice/alien_pounce2.ogg', 25, 1)
-					spawn(xeno_caste.charge_type == 1 ? 5 : 15)
-						frozen = FALSE
-						update_canmove()
+					addtimer(CALLBACK(src, .proc/reset_movement), xeno_caste.charge_type == 1 ? 5 : 15)	
 					stealth_router(HANDLE_STEALTH_CODE_CANCEL)
 
 				if(RAV_CHARGE_TYPE) //Ravagers get a free attack if they charge into someone.
@@ -310,6 +308,10 @@
 		return TRUE
 	process_ravager_charge(FALSE)
 	return ..() //Do the parent otherwise, for turfs.
+
+/mob/living/carbon/Xenomorph/proc/reset_movement()
+	frozen = FALSE
+	update_canmove()
 
 //Bleuugh
 /mob/living/carbon/Xenomorph/proc/empty_gut()
@@ -410,7 +412,7 @@
 	return 1
 
 /mob/living/carbon/Xenomorph/drop_held_item()
-	var/obj/item/clothing/mask/facehugger/F = get_active_hand()
+	var/obj/item/clothing/mask/facehugger/F = get_active_held_item()
 	if(istype(F))
 		if(locate(/turf/closed/wall/resin) in loc)
 			to_chat(src, "<span class='warning'>You decide not to drop [F] after all.</span>")
@@ -519,10 +521,10 @@
 	if(!ammo || !xeno_caste.spit_types.len) //Only update xenos with ammo and spit types.
 		return
 	for(var/i in 1 to xeno_caste.spit_types.len)
-		if(ammo.icon_state == ammo_list[xeno_caste.spit_types[i]].icon_state)
-			ammo = ammo_list[xeno_caste.spit_types[i]]
+		if(ammo.icon_state == GLOB.ammo_list[xeno_caste.spit_types[i]].icon_state)
+			ammo = GLOB.ammo_list[xeno_caste.spit_types[i]]
 			return
-	ammo = ammo_list[xeno_caste.spit_types[1]] //No matching projectile time; default to first spit type
+	ammo = GLOB.ammo_list[xeno_caste.spit_types[1]] //No matching projectile time; default to first spit type
 	return
 
 /mob/living/carbon/Xenomorph/proc/stealth_router(code = 0)
@@ -542,6 +544,16 @@
 				return TRUE
 			else
 				return FALSE
+
+/mob/living/carbon/Xenomorph/proc/neuroclaw_router()
+	return
+
+/mob/living/carbon/Xenomorph/Defiler/neuroclaw_router(mob/living/carbon/human/H)
+	if(!check_plasma(50) || !neuro_claws || !H)
+		return
+	use_plasma(50)
+	H.reagents.add_reagent("xeno_toxin", neuro_claws_dose)
+	to_chat(src, "<span class='xenowarning'>Your claw spines inject your victim with neurotoxin!</span>")
 
 /mob/living/carbon/Xenomorph/proc/process_ravager_charge(hit = TRUE, mob/living/carbon/M = null)
 	return FALSE

@@ -46,7 +46,6 @@
 	name = "Nightmare on LV-624"
 	config_tag = "Nightmare on LV-624"
 	required_players 		= 2 //Need at least one player, but really we need 2.
-	latejoin_larva_drop		= 0
 	flags_round_type		= MODE_PREDATOR|MODE_NO_LATEJOIN
 	role_instruction		= ROLE_MODE_REPLACE
 	roles_for_mode = list(/datum/job/marine/standard,
@@ -130,11 +129,11 @@
 
 	to_chat(world, "<span class='round_setup'>Setting up the mist...</span>")
 	//Get all the fog effects in the world.
-	for(F in effect_list) fog_blockers += F
+	for(F in GLOB.effect_list) fog_blockers += F
 
 	to_chat(world, "<span class='round_setup'>Generating spawn locations...</span>")
 	//Set up landmarks.
-	for(L in landmarks_list)
+	for(L in GLOB.landmarks_list)
 		switch(L.name)
 			if("marine start") marine_spawns += L.loc
 			if("pmc start") pmc_spawns += L.loc
@@ -194,7 +193,7 @@
 	to_chat(world, "<span class='round_setup'>Shuffling playable parties...</span>")
 	var/mob/M
 	var/temp_player_list[] = new
-	for(var/i in player_list) temp_player_list += i
+	for(var/i in GLOB.player_list) temp_player_list += i
 	while(temp_player_list.len)
 		M = pick(temp_player_list) //We randomzie it a bit.
 		temp_player_list -= M
@@ -490,11 +489,11 @@
 	var/random_primary = 1
 
 	I = H.wear_id
-	if(I) H.drop_inv_item_on_ground(I) //Remove it for now, so it doesn't get deleted.
+	if(I) H.dropItemToGround(I) //Remove it for now, so it doesn't get deleted.
 	if(H.contents.len) //We want to get rid of all their items. Everything is generated on the fly during the game mode.
 		for(var/i in H.contents)
 			if(istype(i,/obj/item))
-				H.temp_drop_inv_item(i)
+				H.temporarilyRemoveItemFromInventory(i)
 				qdel(i)
 	if(I) H.equip_to_slot_or_del(ID, SLOT_WEAR_ID) //Put it back on.
 
@@ -702,7 +701,7 @@
 				H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/tech(H), SLOT_HEAD)
 				H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine(H), SLOT_WEAR_SUIT)
 				I = H.gloves
-				H.temp_drop_inv_item(I)
+				H.temporarilyRemoveItemFromInventory(I)
 				qdel(I)
 				H.equip_to_slot_or_del(new /obj/item/clothing/gloves/yellow(H), SLOT_GLOVES)
 				H.equip_to_slot_or_del(new /obj/item/storage/belt/utility/full(H), SLOT_BELT)
@@ -810,7 +809,7 @@
 						H.equip_to_slot_or_del(new /obj/item/clothing/head/helmet/marine/specialist(H), SLOT_HEAD)
 						H.equip_to_slot_or_del(new /obj/item/clothing/suit/storage/marine/specialist(H), SLOT_WEAR_SUIT)
 						I = H.gloves
-						H.temp_drop_inv_item(I)
+						H.temporarilyRemoveItemFromInventory(I)
 						qdel(I)
 						H.equip_to_slot_or_del(new /obj/item/clothing/gloves/marine/specialist(H), SLOT_GLOVES)
 						H.equip_to_slot_or_del(new /obj/item/storage/large_holster/machete/full(H), SLOT_BACK)
@@ -916,7 +915,7 @@
 
 	switch(shuffle1)
 		if(1 to 10)
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				if(prob(23) && M.stat != DEAD && ishuman(M) && !isYautja(M) && M.mind && (!M.mind.special_role || M.mind.special_role == "PMC"))
 					switch(shuffle2)
 						if(1 to 11)
@@ -1193,7 +1192,7 @@
 	var/horror_key
 	var/mob/candidate_mob
 	var/candidates[] = new	//list of candidate keys
-	for(var/mob/dead/observer/G in player_list)
+	for(var/mob/dead/observer/G in GLOB.player_list)
 		if(G.client && !G.client.is_afk() && G.client.prefs.be_special & special_role)
 			if(!G.can_reenter_corpse || !(G.mind && G.mind.current && G.mind.current.stat != DEAD)) candidates += G
 
@@ -1564,7 +1563,7 @@
 	var/i = 1
 	var/mob/living/carbon/human/H
 	while(++i < 4)
-		H = pick(player_list)
+		H = pick(GLOB.player_list)
 		if(istype(H) && H.stat != DEAD && H.species != "Horror")
 			teleport(get_turf(H))
 			return 1

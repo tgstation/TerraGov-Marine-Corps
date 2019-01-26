@@ -44,7 +44,7 @@
 		return
 
 	if(client.buildmode)
-		if (istype(A, /obj/effect/bmode))
+		if(istype(A, /obj/effect/bmode))
 			A.clicked(src, mods)
 			return
 
@@ -76,7 +76,7 @@
 		throw_item(A)
 		return
 
-	var/obj/item/W = get_active_hand()
+	var/obj/item/W = get_active_held_item()
 
 	// Special gun mode stuff.
 	if(W == A)

@@ -25,18 +25,17 @@
 	var/disposal_pressure = 0
 
 //Create a new disposal, find the attached trunk (if present) and init gas resvr.
-/obj/machinery/disposal/New()
-	..()
-	spawn(5)
-		trunk = locate() in loc
-		if(!trunk)
-			mode = 0
-			flush = 0
-		else
-			trunk.linked = src	//Link the pipe trunk to self
+/obj/machinery/disposal/Initialize()
+	. = ..()
+	trunk = locate() in loc
+	if(!trunk)
+		mode = 0
+		flush = 0
+	else
+		trunk.linked = src	//Link the pipe trunk to self
 
-		update()
-		start_processing()
+	update()
+	start_processing()
 
 //Attack by item places it in to disposal
 /obj/machinery/disposal/attackby(var/obj/item/I, var/mob/user)
@@ -104,7 +103,7 @@
 				user.visible_message("<span class='warning'>[user] puts [GM] into [src].</span>",
 				"<span class='warning'>[user] puts [GM] into [src].</span>")
 				log_combat(user, GM, "placed", addition="into disposals")
-				message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) placed [key_name(GM)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[GM]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[GM.x];Y=[GM.y];Z=[GM.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[GM]'>FLW</a>) in a disposals unit.")
+				message_admins("[ADMIN_TPMONTY(usr)] placed [ADMIN_TPMONTY(GM)] in a disposals unit.")
 				flush()
 		return
 
@@ -113,7 +112,7 @@
 	if(!I)
 		return
 
-	if(user.drop_inv_item_to_loc(I, src))
+	if(user.transferItemToLoc(I, src))
 		user.visible_message("<span class='notice'>[user] places [I] into [src].</span>",
 		"<span class='notice'>You place [I] into [src].</span>")
 	update()
@@ -145,7 +144,7 @@
 		"<span class ='warning'>You stuff [target] into [src]!</span>")
 
 		log_combat(user, target, "placed", addition="into disposals")
-		message_admins("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) placed [key_name(target)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[target]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[target.x];Y=[target.y];Z=[target.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[target]'>FLW</a>) in a disposals unit")
+		message_admins("[ADMIN_TPMONTY(usr)] placed [ADMIN_TPMONTY(target)] in a disposals unit.")
 
 	target.forceMove(src)
 	flush()
@@ -952,7 +951,7 @@
 	var/obj/structure/disposalpipe/P
 
 	if(nextdir == 12)
-		for(var/obj/structure/disposalpipe/down/almayer/F in structure_list)
+		for(var/obj/structure/disposalpipe/down/almayer/F in GLOB.structure_list)
 			if(id == F.id)
 				P = F
 				break // stop at first found match
@@ -980,7 +979,7 @@
 	var/obj/structure/disposalpipe/P
 
 	if(nextdir == 11)
-		for(var/obj/structure/disposalpipe/up/almayer/F in structure_list)
+		for(var/obj/structure/disposalpipe/up/almayer/F in GLOB.structure_list)
 			if(id == F.id)
 				P = F
 				break // stop at first found match

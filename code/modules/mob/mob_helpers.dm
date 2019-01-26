@@ -486,38 +486,24 @@ It's fairly easy to fix if dealing with single letters but not so much with comp
 
 
 /proc/shake_camera(mob/M, duration, strength=1)
-	if(!M || !M.client || M.shakecamera)
+	if(!M || !M.client || duration < 1)
 		return
-	M.shakecamera = 1
-	spawn(1)
-		if(!M.client)
-			return
+	var/client/C = M.client
+	var/oldx = C.pixel_x
+	var/oldy = C.pixel_y
+	var/max = strength*world.icon_size
+	var/min = -(strength*world.icon_size)
 
-		var/atom/oldeye=M.client.eye
-		var/aiEyeFlag = 0
-		if(istype(oldeye, /mob/aiEye))
-			aiEyeFlag = 1
-
-		var/x
-		for(x=0; x<duration, x++)
-			if(!M) return //Might have died/logged out before it ended
-
-			if(!M.client)
-				M.shakecamera = 0
-				return
-
-			if(aiEyeFlag)
-				M.client.eye = locate(dd_range(1,oldeye.loc.x+rand(-strength,strength),world.maxx),dd_range(1,oldeye.loc.y+rand(-strength,strength),world.maxy),oldeye.loc.z)
-			else
-				M.client.eye = locate(dd_range(1,M.loc.x+rand(-strength,strength),world.maxx),dd_range(1,M.loc.y+rand(-strength,strength),world.maxy),M.loc.z)
-			sleep(1)
-		if(M.client)
-			M.client.eye=oldeye //Mighta disconnected
-		M.shakecamera = 0
+	for(var/i in 0 to duration-1)
+		if (i == 0)
+			animate(C, pixel_x=rand(min,max), pixel_y=rand(min,max), time=1)
+		else
+			animate(pixel_x=rand(min,max), pixel_y=rand(min,max), time=1)
+	animate(pixel_x=oldx, pixel_y=oldy, time=1)
 
 
 /proc/findname(msg)
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if (M.real_name == text("[msg]"))
 			return TRUE
 	return FALSE

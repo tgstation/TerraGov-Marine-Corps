@@ -179,18 +179,18 @@ REAGENT SCANNER
 				infection_present = 10
 			var/org_incision = (open_incision?" <span class='scanner'>Open surgical incision</span>":"")
 			var/org_advice = ""
-			switch(org.name)
-				if("head")
+			switch(org.body_part)
+				if(HEAD)
 					fracture_info = ""
 					if(org.brute_dam > 40 || M.getBrainLoss() >= 20)
 						org_advice = " Possible Skull Fracture."
 						show_limb = 1
-				if("chest")
+				if(CHEST)
 					fracture_info = ""
 					if(org.brute_dam > 40 || M.getOxyLoss() > 50)
 						org_advice = " Possible Chest Fracture."
 						show_limb = 1
-				if("groin")
+				if(GROIN)
 					fracture_info = ""
 					if(org.brute_dam > 40 || M.getToxLoss() > 50)
 						org_advice = " Possible Groin Fracture."
@@ -243,7 +243,7 @@ REAGENT SCANNER
 				if(W.internal)
 					internal_bleed_detected = TRUE
 					break
-			if((e.name == "l_arm") || (e.name == "r_arm") || (e.name == "l_leg") || (e.name == "r_leg") || (e.name == "l_hand") || (e.name == "r_hand") || (e.name == "l_foot") || (e.name == "r_foot"))
+			if(e.body_part != CHEST && e.body_part != GROIN && e.body_part != HEAD)
 				can_amputate = "or amputation"
 				if((e.status & LIMB_BROKEN) && !(e.status & LIMB_SPLINTED) && !(e.status & LIMB_STABILIZED))
 					if(!fracture_detected)
@@ -348,7 +348,7 @@ REAGENT SCANNER
 				//Check for whether there's an appropriate ghost
 				if(H.client)
 					//Calculate revival status/time left
-					var/revive_timer = round((H.timeofdeath + config.revive_grace_period - world.time) * 0.1)
+					var/revive_timer = round((H.timeofdeath + CONFIG_GET(number/revive_grace_period) - world.time) * 0.1)
 					if(revive_timer < 60) //Almost out of time; urgency required.
 						death_message = "<b>CRITICAL: Brain death imminent.</b> Reduce total injury value to sub-200 and administer defibrillator to unarmoured chest <b>immediately</b>."
 					else if(revive_timer < 120) //Running out of time; increase urgency of message.

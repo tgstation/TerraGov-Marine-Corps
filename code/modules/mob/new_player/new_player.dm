@@ -16,7 +16,7 @@
 	anchored = 1	//  don't get pushed around
 
 	New()
-		mob_list += src
+		GLOB.mob_list += src
 
 	proc/version_check()
 		if(client.byond_version < world.byond_version)
@@ -87,7 +87,7 @@
 			stat("Players: [totalPlayers]", "Players Ready: [totalPlayersReady]")
 			totalPlayers = 0
 			totalPlayersReady = 0
-			for(var/mob/new_player/player in player_list)
+			for(var/mob/new_player/player in GLOB.player_list)
 				stat("[player.key]", (player.ready)?("(Playing)"):(null))
 				totalPlayers++
 				if(player.ready)totalPlayersReady++
@@ -133,7 +133,7 @@
 					observer.icon = client.prefs.preview_icon
 					observer.alpha = 127
 
-					var/datum/species/species = all_species[client.prefs.species] || all_species[DEFAULT_SPECIES]
+					var/datum/species/species = GLOB.all_species[client.prefs.species] || GLOB.all_species[DEFAULT_SPECIES]
 
 					if(client.prefs.be_random_name)
 						client.prefs.real_name = species.random_name(client.prefs.gender)
@@ -158,7 +158,7 @@
 					return
 
 				if(client.prefs.species != "Human")
-					if(!is_alien_whitelisted(client.prefs.species) && config.usealienwhitelist)
+					if(!is_alien_whitelisted(client.prefs.species) && CONFIG_GET(flag/usealienwhitelist))
 						to_chat(src, alert("You are currently not whitelisted to play [client.prefs.species]."))
 						return
 
@@ -206,7 +206,7 @@
 					return
 
 				if(client.prefs.species != "Human")
-					if(!is_alien_whitelisted(client.prefs.species) && config.usealienwhitelist)
+					if(!is_alien_whitelisted(client.prefs.species) && CONFIG_GET(flag/usealienwhitelist))
 						to_chat(src, alert("You are currently not whitelisted to play [client.prefs.species]."))
 						return 0
 
@@ -351,8 +351,8 @@
 
 		for(var/datum/squad/sq in RoleAuthority.squads)
 			if(sq)
-				sq.max_engineers = engi_slot_formula(clients.len)
-				sq.max_medics = medic_slot_formula(clients.len)
+				sq.max_engineers = engi_slot_formula(GLOB.clients.len)
+				sq.max_medics = medic_slot_formula(GLOB.clients.len)
 
 		if(ticker.mode.latejoin_larva_drop && ticker.mode.latejoin_tally >= ticker.mode.latejoin_larva_drop)
 			ticker.mode.latejoin_tally -= ticker.mode.latejoin_larva_drop
@@ -389,7 +389,7 @@
 			if(!RoleAuthority.check_role_entry(src, J, 1)) continue
 			var/active = 0
 			// Only players with the job assigned and AFK for less than 10 minutes count as active
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				if(M.mind && M.client && M.mind.assigned_role == J.title && M.client.inactivity <= 10 * 60 * 10)
 					active++
 			dat += "<a href='byond://?src=\ref[src];lobby_choice=SelectedJob;job_selected=[J.title]'>[J.disp_title] ([J.current_positions]) (Active: [active])</a><br>"
@@ -406,7 +406,7 @@
 
 		var/datum/species/chosen_species
 		if(client.prefs.species)
-			chosen_species = all_species[client.prefs.species]
+			chosen_species = GLOB.all_species[client.prefs.species]
 		if(chosen_species)
 			// Have to recheck admin due to no usr at roundstart. Latejoins are fine though.
 			if(is_alien_whitelisted(client.prefs.species))
@@ -419,9 +419,9 @@
 
 		var/datum/language/chosen_language
 		if(client.prefs.language)
-			chosen_language = all_languages["[client.prefs.language]"]
+			chosen_language = GLOB.all_languages["[client.prefs.language]"]
 		if(chosen_language)
-			if(is_alien_whitelisted(client.prefs.language) || !config.usealienwhitelist || !(chosen_language.flags & WHITELISTED) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
+			if(is_alien_whitelisted(client.prefs.language) || !CONFIG_GET(flag/usealienwhitelist) || !(chosen_language.flags & WHITELISTED) || (new_character.species && (chosen_language.name in new_character.species.secondary_langs)))
 				new_character.add_language("[client.prefs.language]")
 
 		if(ticker.random_players)
@@ -473,7 +473,7 @@
 /mob/new_player/get_species()
 	var/datum/species/chosen_species
 	if(client.prefs.species)
-		chosen_species = all_species[client.prefs.species]
+		chosen_species = GLOB.all_species[client.prefs.species]
 	if(!chosen_species)
 		return "Human"
 

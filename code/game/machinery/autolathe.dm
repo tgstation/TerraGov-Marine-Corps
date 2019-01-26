@@ -182,7 +182,7 @@
 		var/obj/item/stack/stack = eating
 		stack.use(max(1,round(total_used/mass_per_sheet))) // Always use at least 1 to prevent infinite materials.
 	else
-		if(user.temp_drop_inv_item(O))
+		if(user.temporarilyRemoveItemFromInventory(O))
 			qdel(O)
 
 	updateUsrDialog()
@@ -225,9 +225,8 @@
 
 		//Exploit detection, not sure if necessary after rewrite.
 		if(!making || multiplier < 0 || multiplier > 100)
-			var/turf/exploit_loc = get_turf(usr)
-			message_admins("[key_name_admin(usr)] tried to exploit an autolathe to duplicate an item! ([exploit_loc ? "<a href='?_src_=holder;adminplayerobservecoodjump=1;X=[exploit_loc.x];Y=[exploit_loc.y];Z=[exploit_loc.z]'>JMP</a>" : "null"])", 0)
-			log_admin("EXPLOIT : [key_name(usr)] tried to exploit an autolathe to duplicate an item!")
+			log_admin("[key_name(usr)] tried to exploit an autolathe to duplicate an item!")
+			message_admins("[ADMIN_TPMONTY(usr)] tried to exploit an autolathe to duplicate an item!")
 			return
 
 		//This needs some work.
@@ -270,7 +269,7 @@
 		var/temp_wire = href_list["wire"]
 		if(href_list["act"] == "pulse")
 
-			if (!istype(usr.get_active_hand(), /obj/item/device/multitool))
+			if (!istype(usr.get_active_held_item(), /obj/item/device/multitool))
 				to_chat(usr, "You need a multitool!")
 				return
 
@@ -300,7 +299,7 @@
 
 		else if(href_list["act"] == "wire")
 
-			if (!istype(usr.get_active_hand(), /obj/item/tool/wirecutters))
+			if (!istype(usr.get_active_held_item(), /obj/item/tool/wirecutters))
 				to_chat(usr, "You need wirecutters!")
 				return
 

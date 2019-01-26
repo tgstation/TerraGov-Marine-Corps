@@ -72,7 +72,7 @@
 			var/obj/item/storage/S = loc
 			S.remove_from_storage(src)
 		if(loc == user)
-			user.drop_inv_item_on_ground(src) //This part is important to make sure our light sources update, as it calls dropped()
+			user.dropItemToGround(src) //This part is important to make sure our light sources update, as it calls dropped()
 		var/obj/item/attachable/flashlight/F = new(src.loc)
 		user.put_in_hands(F) //This proc tries right, left, then drops it all-in-one.
 		to_chat(user, "<span class='notice'>You modify [src]. It can now be mounted on a weapon.</span>")
@@ -100,7 +100,7 @@
 
 		if(M == user)	//they're using it on themselves
 			M.flash_eyes()
-			M.visible_message("<span class='notice'>[M] directs [src] to \his eyes.</span>", \
+			M.visible_message("<span class='notice'>[M] directs [src] to [M.p_their()] eyes.</span>", \
 									 "<span class='notice'>You wave the light in front of your eyes! Trippy!</span>")
 			return
 

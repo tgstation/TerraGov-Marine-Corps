@@ -43,10 +43,10 @@
 		if(!usr.is_mob_restrained() && !usr.stat && usr.wear_mask == src)
 			switch(over_object.name)
 				if("r_hand")
-					usr.drop_inv_item_on_ground(src)
+					usr.dropItemToGround(src)
 					usr.put_in_r_hand(src)
 				if("l_hand")
-					usr.drop_inv_item_on_ground(src)
+					usr.dropItemToGround(src)
 					usr.put_in_l_hand(src)
 			add_fingerprint(usr)
 

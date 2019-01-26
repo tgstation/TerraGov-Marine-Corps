@@ -55,7 +55,7 @@
 		if(!B.brainmob.key)
 			var/ghost_can_reenter = 0
 			if(B.brainmob.mind)
-				for(var/mob/dead/observer/G in player_list)
+				for(var/mob/dead/observer/G in GLOB.player_list)
 					if(G.can_reenter_corpse && G.mind == B.brainmob.mind)
 						ghost_can_reenter = 1
 						break
@@ -73,7 +73,7 @@
 
 
 
-		user.drop_inv_item_to_loc(O, src)
+		user.transferItemToLoc(O, src)
 		to_chat(user, "<span class='notice'>You install [O] in [src]!</span>")
 		mmi = O
 		transfer_personality(O)
@@ -198,8 +198,8 @@
 
 /mob/living/simple_animal/spiderbot/death()
 
-	living_mob_list -= src
-	dead_mob_list += src
+	GLOB.alive_mob_list -= src
+	GLOB.dead_mob_list += src
 
 	if(camera)
 		camera.status = 0
