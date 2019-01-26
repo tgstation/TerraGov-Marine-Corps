@@ -568,7 +568,7 @@
 		if(DESTROYED)
 			icon_state = "Egg Exploded"
 			return
-		if(BURSTING|BURST)
+		if(BURSTING || BURST)
 			icon_state = "Egg Opened"
 		if(GROWING)
 			icon_state = "Egg Growing"
