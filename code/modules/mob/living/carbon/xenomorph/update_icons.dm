@@ -106,15 +106,11 @@
 
 /mob/living/carbon/Xenomorph/proc/create_shriekwave()
 	overlays_standing[X_SUIT_LAYER] = image("icon"='icons/Xeno/2x2_Xenos.dmi', "icon_state" = "shriek_waves") //Ehh, suit layer's not being used.
-	apply_overlay(X_SUIT_LAYER)
-	spawn(30)
-		remove_overlay(X_SUIT_LAYER)
+	apply_temp_overlay(X_SUIT_LAYER, 3 SECONDS)
 
 /mob/living/carbon/Xenomorph/proc/create_stomp()
 	overlays_standing[X_SUIT_LAYER] = image("icon"='icons/Xeno/2x2_Xenos.dmi', "icon_state" = "stomp") //Ehh, suit layer's not being used.
-	apply_overlay(X_SUIT_LAYER)
-	spawn(12)
-		remove_overlay(X_SUIT_LAYER)
+	apply_temp_overlay(X_SUIT_LAYER, 1.2 SECONDS)
 
 /mob/living/carbon/Xenomorph/update_fire()
 	remove_overlay(X_FIRE_LAYER)

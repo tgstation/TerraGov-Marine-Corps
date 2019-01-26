@@ -122,7 +122,7 @@ can cause issues with ammo types getting mixed up during the burst.
 
 /obj/item/weapon/gun/shotgun/proc/ready_shotgun_tube()
 	if(current_mag.current_rounds > 0)
-		ammo = ammo_list[current_mag.chamber_contents[current_mag.chamber_position]]
+		ammo = GLOB.ammo_list[current_mag.chamber_contents[current_mag.chamber_position]]
 		in_chamber = create_bullet(ammo)
 		current_mag.current_rounds--
 		current_mag.chamber_contents[current_mag.chamber_position] = "empty"
@@ -333,7 +333,7 @@ can cause issues with ammo types getting mixed up during the burst.
 	//This doesn't chamber, creates a bullet on the go.
 
 	if(current_mag.current_rounds > 0)
-		ammo = ammo_list[current_mag.chamber_contents[current_mag.chamber_position]]
+		ammo = GLOB.ammo_list[current_mag.chamber_contents[current_mag.chamber_position]]
 		in_chamber = create_bullet(ammo)
 		current_mag.current_rounds--
 		return in_chamber

@@ -26,25 +26,26 @@
 <body>
 	<form name="spawner" action="byond://?src=/* ref src */" method="get">
 		<input type="hidden" name="src" value="/* ref src */">
-		
-		Type <input type="text" name="filter" value="" onkeypress="submitFirst(event)" style="width:350px"> <input type = "button" value = "Search" onclick = "updateSearch()" /><br>
+		/* hreftokenfield */
+
+		Type <input type="text" name="filter" value="" onkeypress="submitFirst(event)" style="width:280px;height:25"> <input type = "button" value = "Search" onclick = "updateSearch()" /><br>
 		Offset: <input type="text" name="offset" value="x,y,z" style="width:250px">
 		
 		A <input type="radio" name="offset_type" value="absolute">
 		R <input type="radio" name="offset_type" value="relative" checked="checked"><br>
 		
 		Number: <input type="text" name="object_count" value="1" style="width:30px">
-		Dir: <input type="text" name="object_dir" value="2" style="width:30px">
+		Dir: <input type="text" name="object_dir" value="" style="width:30px">
 		Name: <input type="text" name="object_name" value="" style="width:180px"><br>
 		Where: 
 			<select name='object_where' style="width:320px">
 				<option value='onfloor'>On floor below own mob</option>
-				<!-- <option value='inhand'>In own mob's hand</option> -->
+				<option value='inhand'>In own mob's hand</option>
 				<option value='inmarked'>In marked object</option>
 			</select>
 		<br><br>
 		<select name="object_list" id="object_list" size="18" multiple style="width:98%"></select><br>
-		<input type="submit" value="Spawn">
+		<input type="submit" value="spawn">
 	</form>
 	
 	<script language="JavaScript">
@@ -54,7 +55,6 @@
 		var objects = object_paths == null ? new Array() : object_paths.split(";");
 		
 		document.spawner.filter.focus();
-		populateList(objects);
 		
 		function populateList(from_list)
 		{
@@ -72,12 +72,15 @@
 		
 		function updateSearch()
 		{
-			old_search = document.spawner.filter.value;
+			old_search = document.spawner.filter.value.toLowerCase();
+			
 			
 			var filtered = new Array();
-			for(var i in objects)
+			var i;
+			for (i in objects)
 			{
-				if(objects[i].indexOf(old_search) < 0)
+				var caseInsensitiveObject = objects[i].toLowerCase();
+				if(caseInsensitiveObject.search(old_search) < 0)
 				{
 					continue;
 				}

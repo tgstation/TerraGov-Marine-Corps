@@ -1,3 +1,7 @@
+/mob/proc/overlay_fullscreen_timer(var/duration, var/animated, category, type, severity)
+	overlay_fullscreen(category, type, severity)
+	addtimer(CALLBACK(src, .clear_fullscreen, category, animated), duration)
+
 /mob/proc/overlay_fullscreen(category, type, severity)
 	var/obj/screen/fullscreen/FS
 	if(fullscreens[category])

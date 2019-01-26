@@ -23,7 +23,7 @@ SUBSYSTEM_DEF(dbcore)
 		if(1)
 			message_admins("Database schema ([db_major].[db_minor]) doesn't match the latest schema version ([DB_MAJOR_VERSION].[DB_MINOR_VERSION]), this may lead to undefined behaviour or errors")
 		if(2)
-			message_admins("Could not get schema version from database")
+			message_admins("Could not get schema version from database.")
 
 	return ..()
 
@@ -176,8 +176,8 @@ SUBSYSTEM_DEF(dbcore)
 
 /datum/controller/subsystem/dbcore/proc/NewQuery(sql_query)
 	if(IsAdminAdvancedProcCall())
-		log_admin_private("ERROR: Advanced admin proc call led to sql query: [sql_query]. Query has been blocked")
-		message_admins("ERROR: Advanced admin proc call led to sql query. Query has been blocked")
+		log_admin_private("ERROR: Advanced admin proccall has lead to a sql query: [sql_query]. Query has been blocked.")
+		message_admins("ERROR: Advanced admin proccall has lead to a sql query: [sql_query]. Query has been blocked.")
 		return FALSE
 	return new /datum/DBQuery(sql_query, connection)
 
@@ -320,14 +320,16 @@ Delayed insert mode was removed in mysql 7 and only works with MyISAM type table
 	if(!. && log_error)
 		log_sql("[error] | Query used: [sql]")
 	if(!async && timed_out)
-		log_query_debug("Query execution started at [start_time]")
-		log_query_debug("Query execution ended at [REALTIMEOFDAY]")
-		log_query_debug("Slow query timeout detected.")
-		log_query_debug("Query used: [sql]")
+		log_sql("Query execution started at [start_time]")
+		log_sql("Query execution ended at [REALTIMEOFDAY]")
+		log_sql("Slow query timeout detected.")
+		log_sql("Query used: [sql]")
 		slow_query_check()
 
+
 /datum/DBQuery/proc/slow_query_check()
-	message_admins("HEY! A database query timed out. Did the server just hang? <a href='?_src_=holder;[HrefToken()];slowquery=yes'>\[YES\]</a>|<a href='?_src_=holder;[HrefToken()];slowquery=no'>\[NO\]</a>")
+	message_admins("A database query timed out. Did the server just hang? (UNIMPLEMENTED)")
+
 
 /datum/DBQuery/proc/NextRow(async = TRUE)
 	Activity("NextRow")

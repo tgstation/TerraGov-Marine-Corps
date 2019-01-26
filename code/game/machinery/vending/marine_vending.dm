@@ -58,11 +58,11 @@
 
 /obj/machinery/vending/marine/New()
 	..()
-	marine_vendors.Add(src)
+	GLOB.marine_vendors.Add(src)
 
 /obj/machinery/vending/marine/Destroy()
 	. = ..()
-	marine_vendors.Remove(src)
+	GLOB.marine_vendors.Remove(src)
 
 /obj/machinery/vending/marine/attackby(obj/item/W, mob/user)
 	if(istype(W, /obj/item/weapon/gun))
@@ -156,12 +156,12 @@
 
 /obj/machinery/vending/marine/cargo_guns/New()
 	..()
-	cargo_guns_vendors.Add(src)
-	marine_vendors.Remove(src)
+	GLOB.cargo_guns_vendors.Add(src)
+	GLOB.marine_vendors.Remove(src)
 
 /obj/machinery/vending/marine/cargo_guns/Destroy()
 	. = ..()
-	cargo_guns_vendors.Remove(src)
+	GLOB.cargo_guns_vendors.Remove(src)
 
 
 
@@ -238,12 +238,12 @@
 
 /obj/machinery/vending/marine/cargo_ammo/New()
 	..()
-	cargo_ammo_vendors.Add(src)
-	marine_vendors.Remove(src)
+	GLOB.cargo_ammo_vendors.Add(src)
+	GLOB.marine_vendors.Remove(src)
 
 /obj/machinery/vending/marine/cargo_ammo/Destroy()
 	. = ..()
-	cargo_ammo_vendors.Remove(src)
+	GLOB.cargo_ammo_vendors.Remove(src)
 
 /obj/machinery/vending/lasgun
 	name = "ColMarTech Lasgun Field Charger"
@@ -685,11 +685,11 @@
 
 /obj/machinery/vending/attachments/New()
 	..()
-	attachment_vendors.Add(src)
+	GLOB.attachment_vendors.Add(src)
 
 /obj/machinery/vending/attachments/Destroy()
 	. = ..()
-	attachment_vendors.Remove(src)
+	GLOB.attachment_vendors.Remove(src)
 
 
 
@@ -781,11 +781,11 @@
 		products2 = list(/obj/item/device/radio/headset/almayer = 10,
 						/obj/item/clothing/gloves/marine = 10)
 	build_inventory(products2)
-	marine_vendors.Add(src)
+	GLOB.marine_vendors.Add(src)
 
 
 /obj/machinery/vending/uniform_supply/Destroy()
 	. = ..()
-	marine_vendors.Remove(src)
+	GLOB.marine_vendors.Remove(src)
 
 
