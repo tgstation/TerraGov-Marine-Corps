@@ -790,9 +790,9 @@ GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
 	var/y_offset = y_offset_s
 	x_offset = round(x_offset)
 	y_offset = round(y_offset)
-	if(x_offset < -5 || x_offset > 5)
+	if(!x_offset in -5 to 5)
 		x_offset = 0
-	if(y_offset < -5 || y_offset > 5)
+	if(!y_offset in -5 to 5)
 		y_offset = 0
 	x_offset += rand(-2,2) //Randomize the drop zone a little bit.
 	y_offset += rand(-2,2)
