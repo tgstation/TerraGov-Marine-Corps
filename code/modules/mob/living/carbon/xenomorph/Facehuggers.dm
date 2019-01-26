@@ -166,11 +166,11 @@
 	if(lifecycle - 4 <= 0)
 		if(isturf(loc))
 			var/obj/effect/alien/egg/E = locate() in loc
-			if(E?.status == BURST)
+			if(E?.status == EGG_BURST)
 				visible_message("<span class='xenowarning'>[src] crawls back into [E]!</span>")
 				forceMove(E)
 				E.hugger = src
-				E.update_status(GROWN)
+				E.update_status(EGG_GROWN)
 				E.deploy_egg_triggers()
 				GoIdle(TRUE)
 				return FALSE

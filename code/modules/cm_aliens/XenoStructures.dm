@@ -430,15 +430,15 @@
 /*
  * Egg
  */
-/var/const //for the status var
-	BURST = 0
-	BURSTING = 1
-	GROWING = 2
-	GROWN = 3
-	DESTROYED = 4
 
-	MIN_GROWTH_TIME = 100 //time it takes for the egg to mature once planted
-	MAX_GROWTH_TIME = 150
+#define EGG_BURST 0
+#define EGG_BURSTING 0
+#define EGG_GROWING 0
+#define EGG_GROWN 0
+#define EGG_DESTROYED 0
+
+#define EGG_MIN_GROWTH_TIME 100 //time it takes for the egg to mature once planted
+#define EGG_MAX_GROWTH_TIME 150
 
 /obj/effect/alien/egg
 	desc = "It looks like a weird egg"
@@ -450,7 +450,7 @@
 	var/obj/item/clothing/mask/facehugger/hugger = null
 	var/hugger_type = /obj/item/clothing/mask/facehugger
 	var/list/egg_triggers = list()
-	var/status = GROWING //can be GROWING, GROWN or BURST; all mutually exclusive
+	var/status = EGG_GROWING
 	var/hivenumber = XENO_HIVE_NORMAL
 
 /obj/effect/alien/egg/New()
@@ -460,15 +460,15 @@
 		hugger.hivenumber = hivenumber
 		hugger.GoIdle(TRUE)
 	create_egg_triggers()
-	addtimer(CALLBACK(src, .proc/Grow), rand(MIN_GROWTH_TIME,MAX_GROWTH_TIME))
+	addtimer(CALLBACK(src, .proc/Grow), rand(EGG_MIN_GROWTH_TIME, EGG_MAX_GROWTH_TIME))
 
 /obj/effect/alien/egg/Destroy()
 	QDEL_LIST(egg_triggers)
 	. = ..()
 
 /obj/effect/alien/egg/proc/Grow()
-	if(status == GROWING)
-		update_status(GROWN)
+	if(status == EGG_GROWING)
+		update_status(EGG_GROWN)
 		deploy_egg_triggers()
 
 /obj/effect/alien/egg/proc/create_egg_triggers()
@@ -502,16 +502,16 @@
 		return
 
 	switch(status)
-		if(BURST, DESTROYED)
+		if(EGG_BURST, EGG_DESTROYED)
 			if(M.xeno_caste.can_hold_eggs)
 				M.visible_message("<span class='xenonotice'>\The [M] clears the hatched egg.</span>", \
 				"<span class='xenonotice'>You clear the hatched egg.</span>")
 				playsound(src.loc, "alien_resin_break", 25)
 				M.plasma_stored++
 				qdel(src)
-		if(GROWING)
+		if(EGG_GROWING)
 			to_chat(M, "<span class='xenowarning'>The child is not developed yet.</span>")
-		if(GROWN)
+		if(EGG_GROWN)
 			if(isXenoLarva(M))
 				to_chat(M, "<span class='xenowarning'>You nudge the egg, but nothing happens.</span>")
 				return
@@ -520,23 +520,23 @@
 
 /obj/effect/alien/egg/proc/Burst(kill = TRUE) //drops and kills the hugger if any is remaining
 	if(kill)
-		if(status != DESTROYED)
+		if(status != EGG_DESTROYED)
 			QDEL_NULL(hugger)
 			QDEL_LIST(egg_triggers)
-			update_status(DESTROYED)
+			update_status(EGG_DESTROYED)
 			flick("Egg Exploding", src)
 			playsound(src.loc, "sound/effects/alien_egg_burst.ogg", 25)
 	else
-		if(status == GROWN || status == GROWING)
-			update_status(BURSTING)
+		if(status in list(EGG_GROWN, EGG_GROWING))
+			update_status(EGG_BURSTING)
 			QDEL_LIST(egg_triggers)
 			flick("Egg Opening", src)
 			playsound(src.loc, "sound/effects/alien_egg_move.ogg", 25)
 			addtimer(CALLBACK(src, .proc/unleash_hugger), 1 SECONDS)
 
 /obj/effect/alien/egg/proc/unleash_hugger()
-	if(status != DESTROYED && hugger)
-		status = BURST
+	if(status != EGG_DESTROYED && hugger)
+		status = EGG_BURST
 		hugger.forceMove(loc)
 		hugger.update_stat(CONSCIOUS)
 		hugger = null
@@ -562,14 +562,14 @@
 		if(hive.color)
 			color = hive.color
 	switch(status)
-		if(DESTROYED)
+		if(EGG_DESTROYED)
 			icon_state = "Egg Exploded"
 			return
-		if(BURSTING || BURST)
+		if(EGG_BURSTING || EGG_BURST)
 			icon_state = "Egg Opened"
-		if(GROWING)
+		if(EGG_GROWING)
 			icon_state = "Egg Growing"
-		if(GROWN)
+		if(EGG_GROWN)
 			icon_state = "Egg"
 	if(on_fire)
 		overlays += "alienegg_fire"
@@ -580,12 +580,12 @@
 		var/obj/item/clothing/mask/facehugger/F = W
 		if(F.stat != DEAD)
 			switch(status)
-				if(DESTROYED)
+				if(EGG_DESTROYED)
 					to_chat(user, "<span class='xenowarning'>This egg is no longer usable.</span>")
 				else if(!hugger)
 					visible_message("<span class='xenowarning'>[user] slides [F] back into [src].</span>","<span class='xenonotice'>You place the child back in to [src].</span>")
 					user.transferItemToLoc(F, src)
-					update_status(GROWN)
+					update_status(EGG_GROWN)
 					F.GoIdle(TRUE)
 					hugger = F
 				else
@@ -629,7 +629,7 @@
 	Burst(TRUE)
 
 /obj/effect/alien/egg/HasProximity(atom/movable/AM)
-	if(status == GROWN)
+	if(status == EGG_GROWN)
 		if(!hugger?.CanHug(AM) || isYautja(AM)) //Predators are too stealthy to trigger eggs to burst. Maybe the huggers are afraid of them.
 			return
 		Burst(FALSE)
@@ -792,4 +792,3 @@ TUNNEL
 			to_chat(M, "<span class='warning'>\The [src] ended unexpectedly, so you return back up.</span>")
 	else
 		to_chat(M, "<span class='warning'>Your crawling was interrupted!</span>")
-

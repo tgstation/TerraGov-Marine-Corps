@@ -199,7 +199,8 @@
 		)
 
 /mob/living/carbon/Xenomorph/Carrier/death(gibbed)
-	if(..() && !gibbed && huggers.len)
+	. = ..()
+	if(. && !gibbed && length(huggers))
 		var/chance = 75
 		visible_message("<span class='xenowarning'>The chittering mass of tiny aliens is trying to escape [src]!</span>")
 		for(var/i in 1 to 3)
