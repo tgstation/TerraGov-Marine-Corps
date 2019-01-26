@@ -1100,7 +1100,7 @@
 		button.color = rgb(255,255,255,255)
 
 /mob/living/carbon/human/Initialize()
-	..()
+	. = ..()
 	var/datum/action/skill/issue_order/issue_order_action = new
 	issue_order_action.give_action(src)
 

@@ -9,6 +9,7 @@
 	var/read_only = 0 //Well,it's still a floppy disk
 
 /obj/item/disk/data/Initialize()
+	. = ..()
 	buf = new
 	buf.dna=new
 
