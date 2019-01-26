@@ -245,7 +245,7 @@
 
 
 /datum/controller/configuration/proc/LoadMOTD()
-	motd = file2text("[directory]/motd.txt")
+	join_motd = file2text("[directory]/motd.txt")
 	/*
 	var/tm_info = GLOB.revdata.GetTestMergeInfo()
 	if(motd || tm_info)

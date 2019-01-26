@@ -36,7 +36,7 @@
 
 	// Admin PM
 	if(href_list["priv_msg"])
-		cmd_admin_pm(href_list["priv_msg"], null)
+		private_message(href_list["priv_msg"], null)
 		return
 
 	switch(href_list["_src_"])
@@ -101,9 +101,6 @@
 
 	to_chat(src, "<span class='warning'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</span>")
 
-
-	GLOB.clients += src
-	GLOB.directory[ckey] = src
 
 	GLOB.clients += src
 	GLOB.directory[ckey] = src

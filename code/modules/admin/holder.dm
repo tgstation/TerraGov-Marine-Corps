@@ -276,8 +276,8 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/remove_from_tank,
 	/datum/admins/proc/game_panel,
 	/datum/admins/proc/gamemode_panel,
-	/client/proc/cmd_admin_pm_panel, //REWORK THIS
-	/client/proc/cmd_admin_pm_context //REWORK THIS
+	/client/proc/private_message_panel,
+	/client/proc/private_message_context
 	)
 
 GLOBAL_PROTECT(admin_verbs_mentor)
@@ -290,8 +290,8 @@ GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
 	/datum/admins/proc/view_tgmc_faxes,
 	/datum/admins/proc/admin_ghost,
 	/datum/admins/proc/subtle_message,
-	/client/proc/cmd_admin_pm_panel, //REWORK THIS
-	/client/proc/cmd_admin_pm_context //REWORK THIS
+	/client/proc/private_message_panel,
+	/client/proc/private_message_context
 	)
 
 GLOBAL_PROTECT(admin_verbs_ban)
@@ -330,6 +330,7 @@ GLOBAL_LIST_INIT(admin_verbs_fun, world.AVfun())
 	/datum/admins/proc/custom_info,
 	/datum/admins/proc/announce,
 	/datum/admins/proc/force_distress,
+	/datum/admins/proc/force_dropship,
 	/datum/admins/proc/force_ert_shuttle,
 	/datum/admins/proc/object_sound,
 	/datum/admins/proc/drop_bomb,

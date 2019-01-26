@@ -105,7 +105,7 @@ var/global/normal_ooc_colour = "#002eb8"
 	normal_ooc_colour = newColor
 
 /client/verb/round_info()
-	set name = "round_info"
+	set name = "Round Info"
 	set desc = "Information about the current round"
 	set category = "OOC"
 	to_chat(usr, "The current map is [map_tag]")
@@ -121,11 +121,10 @@ var/global/normal_ooc_colour = "#002eb8"
 	set category = "OOC"
 	set desc ="Check the Message of the Day"
 	var/join_motd = file2text("config/motd.txt")
-	if( join_motd )
+	if(join_motd)
 		to_chat(src, "<span class='motd'>[join_motd]</span>")
 	else
 		to_chat(src, "<span class='warning'>The motd is not set in the server configuration.</span>")
-	return
 
 /client/verb/stop_sounds()
 	set name = "Stop Sounds"
