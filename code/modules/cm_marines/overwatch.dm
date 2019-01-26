@@ -2,6 +2,10 @@
 #define OW_MONITOR 1
 #define OW_SUPPLIES 2
 
+GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
+	/obj/structure/closet/crate,
+	/obj/machinery/vending)))
+
 /obj/machinery/computer/overwatch
 	name = "Overwatch Console"
 	desc = "State of the art machinery for giving orders to a squad."
@@ -161,10 +165,12 @@
 					else
 						dat += "<font color='green'>Ready!</font><br>"
 					dat += "<B>Launch Pad Status:</b> "
-					var/obj/C = locate() in current_squad.drop_pad.loc //This thing should ALWAYS exist.
-					if(!C.can_supply_drop) //Can only send supply droppable items
-						C = null
-					if(C)
+					var/can_supply = FALSE
+					for(var/obj/C in current_squad.drop_pad.loc) //This thing should ALWAYS exist.
+						if(C in GLOB.supply_drops && !C.anchored) //Can only send supply droppable items
+							can_supply = TRUE
+							break
+					if(can_supply)
 						dat += "<font color='green'>Supply crate loaded</font><BR>"
 					else
 						dat += "Empty<BR>"
@@ -356,7 +362,7 @@
 			transfer_squad()
 		if("dropsupply")
 			if(current_squad)
-				if((current_squad.supply_cooldown + 5000) > world.time)
+				if((current_squad.supply_cooldown + 5 MINUTES) > world.time)
 					to_chat(usr, "\icon[src] <span class='warning'>Supply drop not yet available!</span>")
 				else
 					handle_supplydrop()
@@ -756,15 +762,11 @@
 
 	var/list/supplies = list()
 	for(var/obj/C in current_squad.drop_pad.loc) //This thing should ALWAYS exist.
-		if(C.can_supply_drop && !C.anchored) //Can only send vendors and crates
+		if(C in GLOB.supply_drops && !C.anchored) //Can only send vendors and crates
 			supplies.Add(C)
 
 	if(!supplies.len)
-		to_chat(usr, "\icon[src] <span class='warning'>No crate was detected on the drop pad. Get Requisitions on the line!</span>")
-		return
-
-	if(!isturf(current_squad.sbeacon.loc))
-		to_chat(usr, "\icon[src] <span class='warning'>The [current_squad.sbeacon.name] was not detected on the ground.</span>")
+		to_chat(usr, "\icon[src] <span class='warning'>No deployable object was detected on the drop pad. Get Requisitions on the line!</span>")
 		return
 
 	var/area/A = get_area(current_squad.sbeacon)
@@ -774,6 +776,10 @@
 
 	var/turf/T = get_turf(current_squad.sbeacon)
 
+	if(!istype(T))
+		to_chat(usr, "\icon[src] <span class='warning'>The [current_squad.sbeacon.name] was not detected on the ground.</span>")
+		return
+
 	if(istype(T, /turf/open/space) || T.density)
 		to_chat(usr, "\icon[src] <span class='warning'>The [current_squad.sbeacon.name]'s landing zone appears to be obstructed or out of bounds.</span>")
 		return
@@ -782,22 +788,26 @@
 	var/y_offset = y_offset_s
 	x_offset = round(x_offset)
 	y_offset = round(y_offset)
-	if(x_offset < -5 || x_offset > 5) x_offset = 0
-	if(y_offset < -5 || y_offset > 5) y_offset = 0
+	if(x_offset < -5 || x_offset > 5)
+		x_offset = 0
+	if(y_offset < -5 || y_offset > 5)
+		y_offset = 0
 	x_offset += rand(-2,2) //Randomize the drop zone a little bit.
 	y_offset += rand(-2,2)
 
 	busy = TRUE
 
 	state("<span class='boldnotice'>The supply drop is now loading into the launch tube! Stand by!</span>")
-	current_squad.drop_pad.visible_message("<span class='warning'>\The [current_squad.drop_pad] whirrs as it beings to load the supplies into a launch tube. Stand clear!</span>")
+	current_squad.drop_pad.visible_message("<span class='warning'>\The [current_squad.drop_pad] whirrs as it beings to load the supply drop into a launch tube. Stand clear!</span>")
 	for(var/obj/C in supplies)
 		C.anchored = TRUE //to avoid accidental pushes
 	send_to_squad("Supply Drop Incoming!")
-	current_squad.sbeacon.visible_message("\icon[src] <span class='boldnotice'>The [current_squad.sbeacon.name] begins to beep!</span>")
-	addtimer(CALLBACK(src, .proc/fire_supplydrop, current_squad, supplies), 10 SECONDS)
+	var/turf/TB = get_turf(current_squad.sbeacon)
+	playsound(TB,'sound/effects/bamf.ogg', 50, 1)  //Ehhhhhhhhh.
+	TB.visible_message("\icon[current_squad.sbeacon] <span class='boldnotice'>The [current_squad.sbeacon.name] begins to beep!</span>")
+	addtimer(CALLBACK(src, .proc/fire_supplydrop, current_squad, TB, supplies, x_offset, y_offset), 10 SECONDS)
 
-/obj/machinery/computer/overwatch/proc/fire_supplydrop(datum/squad/S, list/supplies)
+/obj/machinery/computer/overwatch/proc/fire_supplydrop(datum/squad/S, turf/TB, list/supplies, x_offset, y_offset)
 	var/list/loaded_supplies
 	for(var/obj/C in supplies)
 		if(QDELETED(C))
@@ -808,29 +818,29 @@
 			continue
 		loaded_supplies.Add(C)
 	if(!loaded_supplies.len)
-		to_chat(usr, "\icon[src] <span class='warning'>Launch aborted! No crate detected on the drop pad.</span>")
+		to_chat(usr, "\icon[src] <span class='warning'>Launch aborted! No deployable object detected on the drop pad.</span>")
 		busy = FALSE
 		return
 
 	S.supply_cooldown = world.time
 
-	S.sbeacon.visible_message("<span class='boldnotice'>A supply drop falls from the sky!</span>")
-	playsound(S.sbeacon.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehhhhhhhhh.
 	QDEL_NULL(S.sbeacon) //Wipe the beacon. It's only good for one use.
+	TB.visible_message("<span class='boldnotice'>A supply drop falls from the sky!</span>")
+	playsound(TB,'sound/effects/bamf.ogg', 50, 1)  //Ehhhhhhhhh.
 	playsound(S.drop_pad.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehh
 	for(var/obj/C in loaded_supplies)
 		C.anchored = FALSE
-		C.z = T.z
-		C.x = T.x + x_offset
-		C.y = T.y + x_offset
+		C.z = TB.z
+		C.x = TB.x + x_offset
+		C.y = TB.y + x_offset
 		var/turf/TC = get_turf(C)
-		TC.ceiling_debris_check(3)
-	visible_message("\icon[src] <span class='boldnotice'>'[C.name]' supply drop launched! Another launch will be available in five minutes.</span>")
+		TC.ceiling_debris_check(2)
+	visible_message("\icon[src] <span class='boldnotice'>Supply drop launched! Another launch will be available in five minutes.</span>")
 	busy = FALSE
 
 /obj/structure/supply_drop
 	name = "Supply Drop Pad"
-	desc = "Place a crate on here to allow bridge Overwatch officers to drop them on people's heads."
+	desc = "Place unanchored supplies on here to allow bridge Overwatch officers to drop them on people's heads."
 	icon = 'icons/effects/warning_stripes.dmi'
 	anchored = 1
 	density = 0
