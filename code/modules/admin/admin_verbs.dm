@@ -505,7 +505,7 @@
 	log_admin_private_asay("[key_name(usr)]: [msg]")
 
 	var/color = "adminsay"
-	if(check_rights(R_PERMISSIONS))
+	if(check_rights(R_PERMISSIONS, FALSE))
 		color = "headminsay"
 
 	msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> [ADMIN_TPMONTY(usr)]: <span class='message'>[msg]</span></span>"
