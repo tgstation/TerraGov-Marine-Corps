@@ -30,17 +30,6 @@ These are used with cdel (clean delete). For example, qdel(atom, TA_REVIVE_ME) w
 #define TA_IGNORE_ME	5 //Ignore this atom, don't do anything with it. In case the atom will die on its own or something.
 					 	  //Shouldn't usually use this as garbage collection is far better.
 
-//Number of identical messages required to get the spam-prevention automute thing to trigger warnings and automutes
-#define SPAM_TRIGGER_WARNING 5
-#define SPAM_TRIGGER_AUTOMUTE 10
-
-//Some constants for DB_Ban
-#define BANTYPE_PERMA		1
-#define BANTYPE_TEMP		2
-#define BANTYPE_JOB_PERMA	3
-#define BANTYPE_JOB_TEMP	4
-#define BANTYPE_ANY_FULLBAN	5 //used to locate stuff to unban.
-
 #define SEE_INVISIBLE_MINIMUM 5
 
 #define SEE_INVISIBLE_OBSERVER_NOLIGHTING 15
@@ -150,11 +139,6 @@ These are used with cdel (clean delete). For example, qdel(atom, TA_REVIVE_ME) w
 #define HOSTILE_STANCE_ATTACK 3
 #define HOSTILE_STANCE_ATTACKING 4
 #define HOSTILE_STANCE_TIRED 5
-//=================================================
-
-#define ROUNDSTART_LOGOUT_REPORT_TIME 6000 //Amount of time (in deciseconds) after the rounds starts, that the player disconnect report is issued.
-
-
 //=================================================
 
 //computer3 error codes, move lower in the file when it passes dev -Sayu
