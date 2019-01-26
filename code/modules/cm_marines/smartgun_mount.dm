@@ -245,7 +245,7 @@
 	var/view_tiles = 7		//this is amount of tiles we want person to see in each direction (7 by default)
 
 	New()
-		ammo = ammo_list[ammo] //dunno how this works but just sliding this in from sentry-code.
+		ammo = GLOB.ammo_list[ammo] //dunno how this works but just sliding this in from sentry-code.
 		update_icon()
 
 	Destroy() //Make sure we pick up our trash.

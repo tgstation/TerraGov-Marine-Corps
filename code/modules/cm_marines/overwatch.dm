@@ -281,7 +281,7 @@
 						state("<span class='boldnotice'>Tactical data for squad '[current_squad]' loaded. All tactical functions initialized.</span>")
 						attack_hand(usr)
 						if(!current_squad.drop_pad) //Why the hell did this not link?
-							for(var/obj/structure/supply_drop/S in item_list)
+							for(var/obj/structure/supply_drop/S in GLOB.item_list)
 								S.force_link() //LINK THEM ALL!
 
 					else
@@ -558,7 +558,7 @@
 	sleep(15)
 	send_to_squads("Calibrating trajectory window...")
 	sleep(11)
-	for(var/mob/living/carbon/H in living_mob_list)
+	for(var/mob/living/carbon/H in GLOB.alive_mob_list)
 		if(H.z == MAIN_SHIP_Z_LEVEL && !H.stat) //TGS Theseus decks.
 			to_chat(H, "<span class='warning'>The deck of the [MAIN_SHIP_NAME] shudders as the orbital cannons open fire on the colony.</span>")
 			if(H.client)
@@ -567,8 +567,9 @@
 	send_to_squads("<span class='danger'>WARNING! Ballistic trans-atmospheric launch detected! Get outside of Danger Close!</span>")
 	spawn(25)
 		if(A)
-			message_mods("ALERT: [key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) fired an orbital bombardment in [A.name] for squad '[current_squad]' (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[T.x];Y=[T.y];Z=[T.z]'>JMP</a>)")
-			log_attack("[key_name(usr)] fired an orbital bombardment in [A.name] for squad '[current_squad]'")
+			log_attack("[key_name(usr)] fired an orbital bombardment in for squad [current_squad] in [AREACOORD(T)].")			
+			message_admins("[ADMIN_TPMONTY(usr)] fired an orbital bombardment for squad [current_squad] in [ADMIN_VERBOSEJMP(T)].")
+
 		busy = FALSE
 		var/x_offset = rand(-2,2) //Little bit of randomness.
 		var/y_offset = rand(-2,2)
@@ -965,7 +966,7 @@
 	H.visible_message("<span class='notice'>[H] starts setting up [src] on the ground.</span>",
 	"<span class='notice'>You start setting up [src] on the ground and inputting all the data it needs.</span>")
 	if(do_after(H, delay, TRUE, 5, BUSY_ICON_HOSTILE))
-		message_admins("[H] [key_name(usr)] set up an orbital strike beacon. (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>)")
+		message_admins("[ADMIN_TPMONTY(usr)] set up an orbital strike beacon.")
 		name = "transmitting orbital beacon"
 		active_orbital_beacons += src
 		var/cam_name = ""
@@ -997,7 +998,7 @@
 	H.visible_message("<span class='notice'>[H] starts removing [src] from the ground.</span>",
 	"<span class='notice'>You start removing [src] from the ground, deactivating it.</span>")
 	if(do_after(H, delay, TRUE, 5, BUSY_ICON_HOSTILE))
-		message_admins("[H] [key_name(usr)] removed an orbital strike beacon. (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>)")
+		message_admins("[ADMIN_TPMONTY(usr)] removed an orbital strike beacon.")
 		if(squad)
 			squad.squad_orbital_beacons -= src
 			squad = null
@@ -1099,7 +1100,7 @@
 		button.color = rgb(255,255,255,255)
 
 /mob/living/carbon/human/Initialize()
-	..()
+	. = ..()
 	var/datum/action/skill/issue_order/issue_order_action = new
 	issue_order_action.give_action(src)
 

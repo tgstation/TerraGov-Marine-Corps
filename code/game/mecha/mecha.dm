@@ -81,17 +81,12 @@
 	removeVerb(/atom/movable/verb/pull)
 	log_message("[src.name] created.")
 	loc.Entered(src)
-	mechas_list += src //global mech list
+	GLOB.mechas_list += src //global mech list
 	return
 
 /obj/mecha/Destroy()
 	go_out()
-	mechas_list -= src //global mech list
-	SetLuminosity(0)
-
-/obj/mecha/Destroy()
-	go_out()
-	mechas_list -= src //global mech list
+	GLOB.mechas_list -= src //global mech list
 	SetLuminosity(0)
 	if(cell)
 		qdel(cell)

@@ -14,7 +14,7 @@
 
 /obj/machinery/computer/pod/Initialize()
 	. = ..()
-	for(var/obj/machinery/mass_driver/M in machines)
+	for(var/obj/machinery/mass_driver/M in GLOB.machines)
 		if(M.id == id)
 			connected = M
 
@@ -26,19 +26,19 @@
 		viewers(null, null) << "Cannot locate mass driver connector. Cancelling firing sequence!"
 		return
 
-	for(var/obj/machinery/door/poddoor/M in machines)
+	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == id)
 			M.open()
 
 	sleep(20)
 
-	for(var/obj/machinery/mass_driver/M in machines)
+	for(var/obj/machinery/mass_driver/M in GLOB.machines)
 		if(M.id == id)
 			M.power = connected.power
 			M.drive()
 
 	sleep(50)
-	for(var/obj/machinery/door/poddoor/M in machines)
+	for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 		if(M.id == id)
 			M.close()
 			return
@@ -169,7 +169,7 @@
 		if(href_list["alarm"])
 			alarm()
 		if(href_list["drive"])
-			for(var/obj/machinery/mass_driver/M in machines)
+			for(var/obj/machinery/mass_driver/M in GLOB.machines)
 				if(M.id == id)
 					M.power = connected.power
 					M.drive()
@@ -181,7 +181,7 @@
 			time += tp
 			time = min(max(round(time), 0), 120)
 		if(href_list["door"])
-			for(var/obj/machinery/door/poddoor/M in machines)
+			for(var/obj/machinery/door/poddoor/M in GLOB.machines)
 				if(M.id == id)
 					if(M.density)
 						M.open()

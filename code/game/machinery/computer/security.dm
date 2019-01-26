@@ -542,7 +542,7 @@ What a mess.*/
 								if("released")
 									active2.fields["criminal"] = "Released"
 
-							for(var/mob/living/carbon/human/H in mob_list)
+							for(var/mob/living/carbon/human/H in GLOB.mob_list)
 								H.sec_hud_set_security_status()
 
 					if ("Delete Record (Security) Execute")

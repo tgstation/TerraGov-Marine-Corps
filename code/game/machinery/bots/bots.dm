@@ -43,10 +43,12 @@
 		locked = FALSE
 		emagged = 1
 		to_chat(user, "<span class='warning'>You short out [src]'s maintenance hatch lock.</span>")
-		log_and_message_admins("emagged [src]'s maintenance hatch lock")
+		log_admin("[key_name(user)] emagged [src]'s maintenance hatch lock.")
+		message_admins("[ADMIN_TPMONTY(user)] emagged [src]'s maintenance hatch lock.")
 	if(!locked && open)
 		emagged = 2
-		log_and_message_admins("emagged [src]'s inner circuits")
+		log_admin("[key_name(user)] emagged [src]'s inner circuits.")
+		message_admins("[ADMIN_TPMONTY(user)] emagged [src]'s inner circuits.")
 
 /obj/machinery/bot/examine(mob/user)
 	..()

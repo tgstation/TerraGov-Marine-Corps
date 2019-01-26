@@ -38,7 +38,7 @@
 	see_invisible = SEE_INVISIBLE_MINIMUM
 	see_in_dark = 8
 
-	for(var/mob/dead/observer/M in player_list)
+	for(var/mob/dead/observer/M in GLOB.player_list)
 		to_chat(M, "<span class='danger'>A hellhound is now available to play! Please be sure you can follow the rules.</span>")
 		to_chat(M, "<span class='warning'> Click 'Join as hellhound' in the ghost panel to become one. First come first serve!</span>")
 		to_chat(M, "<span class='warning'> If you need help during play, click adminhelp and ask.</span>")
@@ -274,7 +274,7 @@
 		if(radio_prefix == ":" || radio_prefix == ";") //Hellhounds do not actually get to talk on the radios, only listen.
 			message = trim(copytext(message,2))
 			if(!message) return
-			for(var/mob/living/carbon/hellhound/M in living_mob_list)
+			for(var/mob/living/carbon/hellhound/M in GLOB.alive_mob_list)
 				to_chat(M, "<span class='boldnotice'>\[RADIO\]: [src.name] [verb_used], '[message]'.</span>")
 			return
 

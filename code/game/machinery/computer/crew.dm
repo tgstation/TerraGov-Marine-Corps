@@ -123,7 +123,7 @@
 
 
 /obj/machinery/computer/crew/proc/scan()
-	for(var/mob/living/carbon/human/H in mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.mob_list)
 		if(!H || !istype(H)) continue
 		if(isyautja(H)) continue
 		var/obj/item/clothing/under/C = H.w_uniform

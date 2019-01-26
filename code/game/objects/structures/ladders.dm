@@ -19,7 +19,7 @@
 	cam.network = list("LADDER")
 	cam.c_tag = name
 
-	for(var/obj/structure/ladder/L in structure_list)
+	for(var/obj/structure/ladder/L in GLOB.structure_list)
 		if(L.id == id)
 			if(L.height == (height - 1))
 				down = L

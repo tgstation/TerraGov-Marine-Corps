@@ -218,12 +218,12 @@
 				return
 			to_chat(src, "<span class='xenowarning'>Your stinger retracts as it finishes discharging the neurotoxin.</span>")
 
+	addtimer(CALLBACK(src, .neurotoxin_sting_cooldown), NEUROTOXIN_STING_COOLDOWN)
 
-	spawn(NEUROTOXIN_STING_COOLDOWN)
-		playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
-		to_chat(src, "<span class='xenodanger'>You feel your neurotoxin glands refill. You can use your neurotoxin sting again.</span>")
-		update_action_button_icons()
-
+/mob/living/carbon/Xenomorph/Sentinel/proc/neurotoxin_sting_cooldown()
+	playsound(loc, 'sound/voice/alien_drool1.ogg', 50, 1)
+	to_chat(src, "<span class='xenodanger'>You feel your neurotoxin glands refill. You can use your neurotoxin sting again.</span>")
+	update_action_button_icons()
 
 /mob/living/carbon/Xenomorph/Sentinel/proc/neurotoxin_recurring_injection(var/mob/living/H)
 	if(!Adjacent(H))

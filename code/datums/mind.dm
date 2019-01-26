@@ -347,16 +347,6 @@ datum/mind
 				if("takeuplink")
 					take_uplink()
 					memory = null//Remove any memory they may have had.
-				if("crystals")
-					if (usr.client.holder.rights & R_FUN)
-						var/obj/item/device/uplink/hidden/suplink = find_syndicate_uplink()
-						var/crystals
-						if (suplink)
-							crystals = suplink.uses
-						crystals = input("Amount of telecrystals for [key]","Syndicate uplink", crystals) as null|num
-						if (!isnull(crystals))
-							if (suplink)
-								suplink.uses = crystals
 				if("uplink")
 					if (!ticker.mode.equip_traitor(current, !(src in ticker.mode.traitors)))
 						to_chat(usr, "<span class='warning'>Equipping a syndicate failed!</span>")

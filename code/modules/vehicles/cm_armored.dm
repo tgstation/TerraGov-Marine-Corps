@@ -24,15 +24,6 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	HDPT_ARMOR = "0,0",
 	HDPT_TREADS = "0,0")*/
 
-/client/proc/remove_players_from_vic()
-	set name = "Remove All From Tank"
-	set category = "Admin"
-
-	for(var/obj/vehicle/multitile/root/cm_armored/CA in view())
-		CA.remove_all_players()
-		log_admin("[src] forcibly removed all players from [CA]")
-		message_admins("[src] forcibly removed all players from [CA]")
-
 //The main object, should be an abstract class
 /obj/vehicle/multitile/root/cm_armored
 	name = "Armored Vehicle"

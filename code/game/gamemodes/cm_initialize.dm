@@ -116,22 +116,6 @@ datum/game_mode/proc/initialize_special_clamps()
 
 //===================================================\\
 
-#define DEBUG_PREDATOR_INITIALIZE 0
-
-#if DEBUG_PREDATOR_INITIALIZE
-/mob/verb/adjust_predator_round()
-	set name = "Adjust Predator Round"
-	set category = "Debug"
-	set desc = "Adjust the number of predators present in a predator round."
-
-	if(!ticker || !ticker.mode)
-		to_chat(src, "<span class='warning'>The game hasn't started yet!</span?")
-		return FALSE
-
-	ticker.mode.pred_maximum_num = input(src,"What is the new maximum number of predators?","Input:",4) as num|null
-	ticker.mode.pred_current_num = input(src,"What is the new current number of predators?","Input:",0) as num|null
-#endif
-
 /datum/game_mode/proc/initialize_predator(mob/living/carbon/human/new_predator)
 	predators += new_predator.mind //Add them to the proper list.
 	pred_keys += new_predator.ckey //Add their key.
@@ -163,7 +147,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	var/players[] = new
 
 	var/mob/new_player/new_pred
-	for(var/mob/player in player_list)
+	for(var/mob/player in GLOB.player_list)
 		if(!player.client) continue //No client. DCed.
 		if(isyautja(player)) continue //Already a predator. Might be dead, who knows.
 		if(readied) //Ready check for new players.
@@ -188,8 +172,8 @@ datum/game_mode/proc/initialize_special_clamps()
 	if(!new_predator)
 		return FALSE
 
-	log_admin("[new_predator.key], became a new Yautja, [new_predator.real_name].")
-	message_admins("([new_predator.key]) joined as Yautja, [new_predator.real_name].")
+	log_admin("[key_name(new_predator)] joined as Yautja.")
+	message_admins("[ADMIN_TPMONTY(new_predator)] joined as Yautja.")
 
 	if(pred_candidate) pred_candidate.loc = null //Nullspace it for garbage collection later.
 
@@ -216,7 +200,6 @@ datum/game_mode/proc/initialize_special_clamps()
 
 /datum/game_mode/proc/transform_predator(mob/pred_candidate)
 	if(!pred_candidate.client) //Something went wrong.
-		message_admins("<span class='warning'><b>Warning</b>: null client in transform_predator.</span>")
 		log_runtime("Null client in transform_predator.")
 		return FALSE
 
@@ -368,7 +351,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		to_chat(xeno_candidate, "<span class='warning'>There are no burrowed larvas.</span>")
 		return FALSE
 	var/available_queens[] = list()
-	for(var/mob/A in living_mob_list)
+	for(var/mob/A in GLOB.alive_mob_list)
 		if(!isxenoqueen(A) || A.z == ADMIN_Z_LEVEL)
 			continue
 		var/mob/living/carbon/Xenomorph/Queen/Q = A
@@ -390,7 +373,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		var/deathtime = world.time - xeno_candidate.timeofdeath
 		var/deathtimeminutes = round(deathtime / 600)
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-		if(deathtime < 3000 && ( !xeno_candidate.client.holder || !(xeno_candidate.client.holder.rights & R_ADMIN)) )
+		if(deathtime < 3000 && ( !xeno_candidate.client.holder || !check_rights(xeno_candidate, R_ADMIN)))
 			to_chat(xeno_candidate, "<span class='warning'>You have been dead for [deathtimeminutes >= 1 ? "[deathtimeminutes] minute\s and " : ""][deathtimeseconds] second\s.</span>")
 			to_chat(xeno_candidate, "<span class='warning'>You must wait 5 minutes before rejoining the game!</span>")
 			return FALSE
@@ -419,7 +402,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/available_xenos[] = list()
 	var/available_xenos_non_ssd[] = list()
 
-	for(var/mob/A in living_mob_list)
+	for(var/mob/A in GLOB.alive_mob_list)
 		if(A.z == ADMIN_Z_LEVEL)
 			continue //xenos on admin z level don't count
 		if(isxeno(A) && !A.client)
@@ -439,7 +422,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	if(!istype(new_xeno) || !xeno_candidate?.client)
 		return FALSE
 
-	if(!(new_xeno in living_mob_list) || new_xeno.stat == DEAD)
+	if(!(new_xeno in GLOB.alive_mob_list) || new_xeno.stat == DEAD)
 		to_chat(xeno_candidate, "<span class='warning'>You cannot join if the xenomorph is dead.</span>")
 		return FALSE
 
@@ -453,7 +436,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 			deathtime = 3000 //so new players don't have to wait to latejoin as xeno in the round's first 5 mins.
 		var/deathtimeminutes = round(deathtime / 600)
 		var/deathtimeseconds = round((deathtime - deathtimeminutes * 600) / 10,1)
-		if(deathtime < 3000 && ( !xeno_candidate.client.holder || !(xeno_candidate.client.holder.rights & R_ADMIN)) )
+		if(deathtime < 3000 && !check_other_rights(xeno_candidate, R_ADMIN, FALSE))
 			to_chat(xeno_candidate, "<span class='warning'>You have been dead for [deathtimeminutes >= 1 ? "[deathtimeminutes] minute\s and " : ""][deathtimeseconds] second\s.</span>")
 			to_chat(xeno_candidate, "<span class='warning'>You must wait 5 minutes before rejoining the game!</span>")
 			return FALSE
@@ -462,7 +445,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 			return FALSE
 
 	if(alert(xeno_candidate, "Everything checks out. Are you sure you want to transfer yourself into [new_xeno]?", "Confirm Transfer", "Yes", "No") == "Yes")
-		if(new_xeno.client || !(new_xeno in living_mob_list) || new_xeno.stat == DEAD || !xeno_candidate) // Do it again, just in case
+		if(new_xeno.client || !(new_xeno in GLOB.alive_mob_list) || new_xeno.stat == DEAD || !xeno_candidate) // Do it again, just in case
 			to_chat(xeno_candidate, "<span class='warning'>That xenomorph can no longer be controlled. Please try another.</span>")
 			return FALSE
 		return new_xeno
@@ -473,8 +456,8 @@ datum/game_mode/proc/initialize_post_queen_list()
 	new_xeno.ghostize(0) //Make sure they're not getting a free respawn.
 	new_xeno.key = xeno_candidate.key
 	if(new_xeno.client) new_xeno.client.change_view(world.view)
-	message_admins("[new_xeno.key] has joined as [new_xeno].")
-	log_admin("[new_xeno.key] has joined as [new_xeno].")
+	message_admins("[key_name(new_xeno)] has joined as [new_xeno].")
+	log_admin("[ADMIN_TPMONTY(new_xeno)] has joined as [new_xeno].")
 	if(isxeno(new_xeno)) //Dear lord
 		var/mob/living/carbon/Xenomorph/X = new_xeno
 		if(X.is_ventcrawling) X.add_ventcrawl(X.loc) //If we are in a vent, fetch a fresh vent map
@@ -543,7 +526,6 @@ datum/game_mode/proc/initialize_post_queen_list()
 				new_survivor.assigned_role = "MODE"
 				new_survivor.special_role = "Survivor"
 				possible_survivors -= new_survivor
-				survivors += new_survivor
 				i--
 
 /datum/game_mode/proc/initialize_post_survivor_list()
@@ -555,6 +537,8 @@ datum/game_mode/proc/initialize_post_queen_list()
 //No need to transfer their mind as they begin as a human.
 /datum/game_mode/proc/transform_survivor(var/datum/mind/ghost)
 	var/mob/living/carbon/human/H = ghost.current
+
+	survivors += H
 
 	H.loc = pick(surv_spawn)
 
@@ -638,7 +622,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 			continue //Not a mind? How did this happen?
 
 		var/mob/living/carbon/human/current = survivor.current
-		var/datum/species/species = istype(current) ? current.species : all_species[DEFAULT_SPECIES]
+		var/datum/species/species = istype(current) ? current.species : GLOB.all_species[DEFAULT_SPECIES]
 		random_name = species.random_name(pick(MALE, FEMALE))
 
 		if(current_survivors.len > 1) //If we have another survivor to pick from.
@@ -680,14 +664,14 @@ datum/game_mode/proc/initialize_post_queen_list()
 	//This might count players who ready up but get kicked back to the lobby
 	var/marine_pop_size = 0
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.stat != DEAD && M.mind && !M.mind.special_role)
 			marine_pop_size++
 
 	var/scale = max(marine_pop_size / MARINE_GEAR_SCALING_NORMAL, 1) //This gives a decimal value representing a scaling multiplier. Cannot go below 1
 
 	//Set up attachment vendor contents related to Marine count
-	for(var/X in attachment_vendors)
+	for(var/X in GLOB.attachment_vendors)
 		var/obj/machinery/vending/attachments/A = X
 
 		//Forcefully reset the product list
@@ -728,7 +712,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		//Rebuild the vendor's inventory to make our changes apply
 		A.build_inventory(A.products)
 
-	for(var/X in cargo_ammo_vendors)
+	for(var/X in GLOB.cargo_ammo_vendors)
 		var/obj/machinery/vending/marine/cargo_ammo/CA = X
 
 		//Forcefully reset the product list
@@ -795,7 +779,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		CA.build_inventory(CA.products)
 
 
-	for(var/X in cargo_guns_vendors)
+	for(var/X in GLOB.cargo_guns_vendors)
 		var/obj/machinery/vending/marine/cargo_guns/CG = X
 
 		//Forcefully reset the product list
@@ -870,7 +854,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 
 
-	for(var/obj/machinery/vending/marine/M in marine_vendors)
+	for(var/obj/machinery/vending/marine/M in GLOB.marine_vendors)
 
 		//Forcefully reset the product list
 		M.product_records = list()

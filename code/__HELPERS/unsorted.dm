@@ -387,7 +387,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 				return	//took too long
 			newname = reject_bad_name(newname,allow_numbers)	//returns null if the name doesn't meet some basic requirements. Tidies up a few other things like bad-characters.
 
-			for(var/mob/living/M in player_list)
+			for(var/mob/living/M in GLOB.player_list)
 				if(M == src)
 					continue
 				if(!newname || M.real_name == newname)
@@ -422,7 +422,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 /proc/freeborg()
 	var/select = null
 	var/list/borgs = list()
-	for (var/mob/living/silicon/robot/A in player_list)
+	for (var/mob/living/silicon/robot/A in GLOB.player_list)
 		if (A.stat == 2 || A.connected_ai || A.scrambledcodes)
 			continue
 		var/name = "[A.real_name] ([A.modtype] [A.braintype])"
@@ -435,7 +435,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //When a borg is activated, it can choose which AI it wants to be slaved to
 /proc/active_ais()
 	. = list()
-	for(var/mob/living/silicon/ai/A in living_mob_list)
+	for(var/mob/living/silicon/ai/A in GLOB.alive_mob_list)
 		if(A.stat == DEAD)
 			continue
 		if(A.control_disabled == 1)
@@ -618,7 +618,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 //Orders mobs by type then by name
 /proc/sortmobs()
 	var/list/moblist = list()
-	var/list/sortmob = sortNames(mob_list)
+	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/silicon/ai/M in sortmob)
 		moblist.Add(M)
 	for(var/mob/living/silicon/robot/M in sortmob)
@@ -643,7 +643,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 /proc/sortxenos()
 	var/list/xenolist = list()
-	var/list/sortmob = sortNames(mob_list)
+	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/carbon/Xenomorph/M in sortmob)
 		if(!M.client)
 			continue
@@ -652,7 +652,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 /proc/sortpreds()
 	var/list/predlist = list()
-	var/list/sortmob = sortNames(mob_list)
+	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/carbon/human/M in sortmob)
 		if(!M.client || !isyautjastrict(M))
 			continue
@@ -661,7 +661,7 @@ Turf and target are seperate in case you want to teleport some distance from a t
 
 /proc/sorthumans()
 	var/list/humanlist = list()
-	var/list/sortmob = sortNames(mob_list)
+	var/list/sortmob = sortNames(GLOB.mob_list)
 	for(var/mob/living/carbon/human/M in sortmob)
 		if(!M.client || isyautjastrict(M))
 			continue
@@ -1352,7 +1352,7 @@ proc/oview_or_orange(distance = world.view , center = usr , type)
 
 proc/get_mob_with_client_list()
 	var/list/mobs = list()
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if (M.client)
 			mobs += M
 	return mobs
@@ -1736,3 +1736,34 @@ var/list/WALLITEMS = list(
 
 /proc/pass()
 	return
+
+proc/pick_closest_path(value, list/matches = get_fancy_list_of_atom_types())
+	if (value == FALSE) //nothing should be calling us with a number, so this is safe
+		value = input("Enter type to find (blank for all, cancel to cancel)", "Search for type") as null|text
+		if (isnull(value))
+			return
+	value = trim(value)
+	if(!isnull(value) && value != "")
+		matches = filter_fancy_list(matches, value)
+
+	if(matches.len==0)
+		return
+
+	var/chosen
+	if(matches.len==1)
+		chosen = matches[1]
+	else
+		chosen = input("Select a type", "Pick Type", matches[1]) as null|anything in matches
+		if(!chosen)
+			return
+	chosen = matches[chosen]
+	return chosen
+
+
+/proc/IsValidSrc(datum/D)
+	if(istype(D))
+		return !QDELETED(D)
+	return FALSE
+
+
+#define isitem(A) (istype(A, /obj/item))

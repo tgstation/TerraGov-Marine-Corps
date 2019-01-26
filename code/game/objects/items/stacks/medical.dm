@@ -26,7 +26,7 @@
 		to_chat(user, "<span class='warning'>[H] has no [parse_zone(user.zone_selected)]!</span>")
 		return 1
 
-	if(affecting.display_name == "head")
+	if(affecting.body_part == HEAD)
 		if(H.head && istype(H.head,/obj/item/clothing/head/helmet/space))
 			to_chat(user, "<span class='warning'>You can't apply [src] through [H.head]!</span>")
 			return 1
@@ -280,7 +280,7 @@
 			user.visible_message("<span class='warning'>[user] starts to apply [src] to [M]'s [limb].</span>",
 			"<span class='notice'>You start to apply [src] to [M]'s [limb], hold still.</span>")
 		else
-			if((!user.hand && affecting.name == "r_arm") || (user.hand && affecting.name == "l_arm"))
+			if((!user.hand && affecting.body_part == ARM_RIGHT) || (user.hand && affecting.body_part == ARM_LEFT))
 				to_chat(user, "<span class='warning'>You can't apply a splint to the arm you're using!</span>")
 				return
 			user.visible_message("<span class='warning'>[user] starts to apply [src] to their [limb].</span>",

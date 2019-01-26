@@ -246,7 +246,7 @@ its easier to just keep the beam vertical.
 
 /atom/proc/examine(mob/user)
 
-	if(!istype(src, /obj/item))
+	if(!istype(src, /obj/item) && !istype(src, /obj/effect/statclick))
 		to_chat(user, "\icon[src] That's \a [src].")
 
 	else // No component signaling, dropping it here.
@@ -534,8 +534,6 @@ its easier to just keep the beam vertical.
 			log_emote(log_text)
 		if(LOG_DSAY)
 			log_dsay(log_text)
-		if(LOG_PDA)
-			log_pda(log_text)
 		if(LOG_OOC)
 			log_ooc(log_text)
 		if(LOG_ADMIN)
@@ -543,7 +541,7 @@ its easier to just keep the beam vertical.
 		if(LOG_ADMIN_PRIVATE)
 			log_admin_private(log_text)
 		if(LOG_ASAY)
-			log_adminsay(log_text)
+			log_admin_private_asay(log_text)
 		if(LOG_OWNERSHIP)
 			log_game(log_text)
 		if(LOG_GAME)
@@ -628,3 +626,10 @@ Proc for attack log creation, because really why not
 //called if Initialize returns INITIALIZE_HINT_LATELOAD
 /atom/proc/LateInitialize()
 	return
+
+
+/atom/vv_get_dropdown()
+	. = ..()
+	. += "---"
+	.["Modify Transform"] = "?_src_=vars;[HrefToken()];modtransform=[REF(src)]"
+	.["Add reagent"] = "?_src_=vars;[HrefToken()];addreagent=[REF(src)]"

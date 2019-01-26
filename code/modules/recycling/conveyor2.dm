@@ -196,7 +196,7 @@
 
 	spawn(5)		// allow map load
 		conveyors = list()
-		for(var/obj/machinery/conveyor/C in machines)
+		for(var/obj/machinery/conveyor/C in GLOB.machines)
 			if(C.id == id)
 				conveyors += C
 	start_processing()
@@ -245,7 +245,7 @@
 	update()
 
 	// find any switches with same id as this one, and set their positions to match us
-	for(var/obj/machinery/conveyor_switch/S in machines)
+	for(var/obj/machinery/conveyor_switch/S in GLOB.machines)
 		if(S.id == src.id)
 			S.position = position
 			S.update()
@@ -265,7 +265,7 @@
 	update()
 
 	// find any switches with same id as this one, and set their positions to match us
-	for(var/obj/machinery/conveyor_switch/S in machines)
+	for(var/obj/machinery/conveyor_switch/S in GLOB.machines)
 		if(S.id == src.id)
 			S.position = position
 			S.update()

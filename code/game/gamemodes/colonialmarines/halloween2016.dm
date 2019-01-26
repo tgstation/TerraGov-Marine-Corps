@@ -129,11 +129,11 @@
 
 	to_chat(world, "<span class='round_setup'>Setting up the mist...</span>")
 	//Get all the fog effects in the world.
-	for(F in effect_list) fog_blockers += F
+	for(F in GLOB.effect_list) fog_blockers += F
 
 	to_chat(world, "<span class='round_setup'>Generating spawn locations...</span>")
 	//Set up landmarks.
-	for(L in landmarks_list)
+	for(L in GLOB.landmarks_list)
 		switch(L.name)
 			if("marine start") marine_spawns += L.loc
 			if("pmc start") pmc_spawns += L.loc
@@ -193,7 +193,7 @@
 	to_chat(world, "<span class='round_setup'>Shuffling playable parties...</span>")
 	var/mob/M
 	var/temp_player_list[] = new
-	for(var/i in player_list) temp_player_list += i
+	for(var/i in GLOB.player_list) temp_player_list += i
 	while(temp_player_list.len)
 		M = pick(temp_player_list) //We randomzie it a bit.
 		temp_player_list -= M
@@ -915,7 +915,7 @@
 
 	switch(shuffle1)
 		if(1 to 10)
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				if(prob(23) && M.stat != DEAD && ishuman(M) && !isyautja(M) && M.mind && (!M.mind.special_role || M.mind.special_role == "PMC"))
 					switch(shuffle2)
 						if(1 to 11)
@@ -1192,7 +1192,7 @@
 	var/horror_key
 	var/mob/candidate_mob
 	var/candidates[] = new	//list of candidate keys
-	for(var/mob/dead/observer/G in player_list)
+	for(var/mob/dead/observer/G in GLOB.player_list)
 		if(G.client && !G.client.is_afk() && G.client.prefs.be_special & special_role)
 			if(!G.can_reenter_corpse || !(G.mind && G.mind.current && G.mind.current.stat != DEAD)) candidates += G
 
@@ -1563,7 +1563,7 @@
 	var/i = 1
 	var/mob/living/carbon/human/H
 	while(++i < 4)
-		H = pick(player_list)
+		H = pick(GLOB.player_list)
 		if(istype(H) && H.stat != DEAD && H.species != "Horror")
 			teleport(get_turf(H))
 			return 1

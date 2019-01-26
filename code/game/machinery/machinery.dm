@@ -129,13 +129,13 @@ Class Procs:
 
 /obj/machinery/New()
 	. = ..()
-	machines += src
+	GLOB.machines += src
 	var/area/A = get_area(src)
 	if(A)
 		A.master.area_machines += src
 
 /obj/machinery/Destroy()
-	machines -= src
+	GLOB.machines -= src
 	processing_machines -= src
 	var/area/A = get_area(src)
 	if(A)

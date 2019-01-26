@@ -150,7 +150,7 @@ var/global/datum/controller/gameticker/ticker
 	spawn(0)
 		mode.post_setup()
 
-		for(var/obj/effect/landmark/start/S in landmarks_list)
+		for(var/obj/effect/landmark/start/S in GLOB.landmarks_list)
 			if(S.name != "AI")
 				qdel(S)
 
@@ -167,7 +167,7 @@ var/global/datum/controller/gameticker/ticker
 
 
 /datum/controller/gameticker/proc/create_characters()
-	for(var/mob/new_player/player in player_list)
+	for(var/mob/new_player/player in GLOB.player_list)
 		if(!player?.ready || !player.mind?.assigned_role)
 			continue
 		player.create_character()
@@ -175,7 +175,7 @@ var/global/datum/controller/gameticker/ticker
 
 
 /datum/controller/gameticker/proc/collect_minds()
-	for(var/mob/living/player in player_list)
+	for(var/mob/living/player in GLOB.player_list)
 		if(player.mind)
 			ticker.minds += player.mind
 
@@ -186,7 +186,7 @@ var/global/datum/controller/gameticker/ticker
 	if(mode && istype(mode, /datum/game_mode/huntergames))
 		return
 
-	for(var/player in player_list)
+	for(var/player in GLOB.player_list)
 		var/mob/living/carbon/human/H = player
 		if(istype(H) && H.mind?.assigned_role)
 			if(H.mind.assigned_role == "Commander")
@@ -197,7 +197,7 @@ var/global/datum/controller/gameticker/ticker
 				EquipCustomItems(H)
 
 	if(captainless)
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(!isnewplayer(M))
 				to_chat(M, "Marine commander position not forced on anyone.")
 
@@ -269,7 +269,7 @@ var/global/datum/controller/gameticker/ticker
 
 
 /datum/controller/gameticker/proc/declare_completion()
-	for(var/mob/living/silicon/ai/aiPlayer in mob_list)
+	for(var/mob/living/silicon/ai/aiPlayer in GLOB.mob_list)
 		if(aiPlayer.stat != DEAD)
 			to_chat(world, "<b>[aiPlayer.name] (Played by: [aiPlayer.key])'s laws at the end of the round were:</b>")
 		else
@@ -284,7 +284,7 @@ var/global/datum/controller/gameticker/ticker
 
 	var/dronecount = 0
 
-	for(var/mob/living/silicon/robot/robo in mob_list)
+	for(var/mob/living/silicon/robot/robo in GLOB.mob_list)
 		if(ismaintdrone(robo))
 			dronecount++
 			continue

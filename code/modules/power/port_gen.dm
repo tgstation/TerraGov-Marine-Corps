@@ -115,12 +115,7 @@ display round(lastgen) and phorontank amount
 	drag_delay = 1 //They got them rollers
 
 /obj/machinery/power/port_gen/pacman/Initialize()
-	..()
-	if(anchored)
-		connect_to_network()
-
-/obj/machinery/power/port_gen/pacman/New()
-	..()
+	. = ..()
 	component_parts = list()
 	component_parts += new /obj/item/stock_parts/matter_bin(src)
 	component_parts += new /obj/item/stock_parts/micro_laser(src)
@@ -131,6 +126,8 @@ display round(lastgen) and phorontank amount
 	var/obj/sheet = new sheet_path(null)
 	sheet_name = sheet.name
 	RefreshParts()
+	if(anchored)
+		connect_to_network()
 
 /obj/machinery/power/port_gen/pacman/Destroy()
 	DropFuel()

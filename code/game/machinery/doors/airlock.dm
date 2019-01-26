@@ -1218,7 +1218,7 @@ About the new airlock wires panel:
 		randomize_wires()
 
 	if(closeOtherId != null)
-		for (var/obj/machinery/door/airlock/A in machines)
+		for (var/obj/machinery/door/airlock/A in GLOB.machines)
 			if(A.closeOtherId == src.closeOtherId && A != src)
 				src.closeOther = A
 				break

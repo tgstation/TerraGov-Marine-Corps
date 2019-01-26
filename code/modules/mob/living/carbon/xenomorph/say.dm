@@ -99,7 +99,7 @@
 	log_talk(message, LOG_HIVEMIND)
 	var/track = ""
 	var/ghostrend
-	for (var/mob/S in player_list)
+	for (var/mob/S in GLOB.player_list)
 		if(isnull(S) || (!isxeno(S) && S.stat != DEAD) || istype(S,/mob/new_player))
 			continue
 		if(istype(S,/mob/dead/observer))

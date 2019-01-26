@@ -41,7 +41,7 @@
 			dat += "<A href='?src=\ref[src];screen=1'>1. Cyborg Status</A><BR>"
 			dat += "<A href='?src=\ref[src];screen=2'>2. Emergency Full Destruct</A><BR>"
 		if(screen == 1)
-			for(var/mob/living/silicon/robot/R in mob_list)
+			for(var/mob/living/silicon/robot/R in GLOB.mob_list)
 				if(ismaintdrone(R))
 					continue //There's a specific console for drones.
 				if(isAI(user))
@@ -121,8 +121,8 @@
 			if (istype(I))
 				if(src.check_access(I))
 					if (!status)
-						message_admins("<span class='notice'> [key_name_admin(usr)] has initiated the global cyborg killswitch!</span>")
-						log_game("<span class='notice'> [key_name(usr)] has initiated the global cyborg killswitch!</span>")
+						log_game("[key_name(usr)] has initiated the global cyborg killswitch.")
+						message_admins("[ADMIN_TPMONTY(usr)] has initiated the global cyborg killswitch.")
 						src.status = 1
 						src.start_sequence()
 						src.temp = null
@@ -224,7 +224,7 @@
 		sleep(10)
 	while(src.timeleft)
 
-	for(var/mob/living/silicon/robot/R in mob_list)
+	for(var/mob/living/silicon/robot/R in GLOB.mob_list)
 		if(!R.scrambledcodes && !ismaintdrone(R))
 			R.self_destruct()
 
