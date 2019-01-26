@@ -212,9 +212,9 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	to_chat(usr, "<span class='notice'>You begin reloading the [slot] module.</span>")
 
-	addtimer(CALLBACK(src, .proc/finish_reloading_hp, usr), 2 SECONDS)
+	addtimer(CALLBACK(src, .proc/finish_reloading_hp, usr, HP, A, slot), 2 SECONDS)
 
-/obj/vehicle/multitile/root/cm_armored/proc/reload_hp(mob/living/user)
+/obj/vehicle/multitile/root/cm_armored/proc/finish_reloading_hp(mob/living/user, obj/item/hardpoint/HP, obj/item/ammo_magazine/A, slot)
 	if(!can_use_hp(usr))
 		return
 

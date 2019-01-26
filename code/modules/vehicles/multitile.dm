@@ -127,7 +127,7 @@ Vehicles are placed on the map by a spawner or admin verb
 	return
 
 /obj/vehicle/multitile/root/proc/handle_player_entrance(var/mob/M)
-	if(resting || M.buckled || M.is_mob_incapacitated())
+	if(M.resting || M.buckled || M.is_mob_incapacitated())
 		return FALSE
 
 /obj/vehicle/multitile/root/proc/handle_harm_attack(var/mob/M)

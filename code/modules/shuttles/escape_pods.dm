@@ -170,7 +170,7 @@ This can probably be done a lot more elegantly either way, but it'll suffice for
 	//Hardcoded typecast, which should be changed into some weight system of some kind eventually.
 	var/area/A = msg ? evacuation_program.master.loc.loc : staging_area //Before or after launch.
 	for(var/i in A)
-		if(istype(i, /obj/mecha) || istype(user.loc, /obj/vehicle/multitile)) . = FALSE //Manned or unmanned, these are too big. It won't launch at all.
+		if(istype(i, /obj/mecha) || istype(i, /obj/vehicle/multitile)) . = FALSE //Manned or unmanned, these are too big. It won't launch at all.
 		else if(istype(i, /obj/structure/closet))
 			M = locate(/mob/living/carbon/human) in i
 			if(M)

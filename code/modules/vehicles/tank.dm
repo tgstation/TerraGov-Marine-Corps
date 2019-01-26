@@ -121,7 +121,7 @@
 
 /obj/vehicle/multitile/root/cm_armored/tank/proc/seat_switched(new_role, mob/living/user)
 
-	var/our_dude = (neighbour == gunner) ? driver : gunner
+	var/our_dude = (new_role == gunner) ? driver : gunner
 	if(QDELETED(user) || user.is_mob_incapacitated() || our_dude != user)
 		return
 
