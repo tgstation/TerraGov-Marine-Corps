@@ -505,7 +505,7 @@
 	log_admin_private_asay("[key_name(usr)]: [msg]")
 
 	var/color = "adminsay"
-	if(check_rights(R_EVERYTHING))
+	if(check_rights(R_PERMISSIONS))
 		color = "headminsay"
 
 	msg = "<span class='[color]'><span class='prefix'>ADMIN:</span> [ADMIN_TPMONTY(usr)]: <span class='message'>[msg]</span></span>"
@@ -530,9 +530,9 @@
 	log_admin_private_msay("[key_name(usr)]: [msg]")
 
 	var/color = "mod"
-	if(check_other_rights(usr.client, R_EVERYTHING, FALSE))
+	if(check_rights(R_PERMISSIONS, FALSE))
 		color = "headminmod"
-	else if(check_other_rights(usr.client, R_ADMIN, FALSE))
+	else if(check_rights(R_ADMIN, FALSE))
 		color = "adminmod"
 
 	for(var/client/C in GLOB.admins)
