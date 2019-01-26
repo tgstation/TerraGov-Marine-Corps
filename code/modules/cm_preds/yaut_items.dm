@@ -701,7 +701,7 @@
 			to_chat(M, "<span class='warning'>You try to talk into the headset, but just get a horrible shrieking in your ears!</span>")
 			return
 
-		for(var/mob/living/carbon/hellhound/H in player_list)
+		for(var/mob/living/carbon/hellhound/H in GLOB.player_list)
 			if(istype(H) && !H.stat)
 				to_chat(H, "\[Radio\]: [M.real_name] [verb], '<B>[message]</b>'.")
 		..()
@@ -1213,7 +1213,7 @@
 
 	proc/display_camera(var/mob/user as mob)
 		var/list/L = list()
-		for(var/mob/living/carbon/hellhound/H in mob_list)
+		for(var/mob/living/carbon/hellhound/H in GLOB.mob_list)
 			L += H.real_name
 		L["Cancel"] = "Cancel"
 
@@ -1223,7 +1223,7 @@
 			to_chat(user, "Stopping camera feed.")
 			return
 
-		for(var/mob/living/carbon/hellhound/Q in mob_list)
+		for(var/mob/living/carbon/hellhound/Q in GLOB.mob_list)
 			if(Q.real_name == choice)
 				current = Q.camera
 				break

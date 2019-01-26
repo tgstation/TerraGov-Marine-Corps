@@ -12,6 +12,7 @@ GLOBAL_LIST_EMPTY(stealthminID)						//reference list with IDs that store ckeys,
 GLOBAL_LIST_EMPTY(player_list)				//all mobs **with clients attached**.
 GLOBAL_LIST_EMPTY(mob_list)					//all mobs, including clientless
 GLOBAL_LIST_EMPTY(mob_directory)			//mob_id -> mob
+GLOBAL_LIST_EMPTY(living_xeno_list)
 GLOBAL_LIST_EMPTY(alive_mob_list)			//all alive mobs, including clientless. Excludes /mob/dead/new_player
 GLOBAL_LIST_EMPTY(suicided_mob_list)		//contains a list of all mobs that suicided, including their associated ghosts.
 GLOBAL_LIST_EMPTY(drones_list)
@@ -31,6 +32,11 @@ GLOBAL_LIST_EMPTY(aiEyes)
 
 GLOBAL_LIST_EMPTY(language_datum_instances)
 GLOBAL_LIST_EMPTY(all_languages)
+
+GLOBAL_LIST_EMPTY(all_species)
+GLOBAL_LIST_EMPTY(language_keys)	//table of say codes for all languages
+
+GLOBAL_LIST_EMPTY(xeno_caste_datums)
 
 GLOBAL_LIST_EMPTY(sentient_disease_instances)
 

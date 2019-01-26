@@ -47,7 +47,7 @@
 	var/xeno_tunnels[] = new
 	var/map_items[] = new
 	var/obj/effect/blocker/fog/F
-	for(var/obj/effect/landmark/L in landmarks_list)
+	for(var/obj/effect/landmark/L in GLOB.landmarks_list)
 		switch(L.name)
 			if("hunter_primary")
 				qdel(L)
@@ -211,9 +211,9 @@
 
 	var/dat = ""
 	//if(flags_round_type & MODE_INFESTATION)
-		//var/living_player_list[] = count_humans_and_xenos()
-		//dat = "\nXenomorphs remaining: [living_player_list[2]]. Humans remaining: [living_player_list[1]]."
-	log_game("[round_finished][dat]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal Preds spawned: [predators.len]\nTotal humans spawned: [round_statistics.total_humans_created]")
+		//var/living_GLOB.player_list[] = count_humans_and_xenos()
+		//dat = "\nXenomorphs remaining: [living_GLOB.player_list[2]]. Humans remaining: [living_GLOB.player_list[1]]."
+	log_game("[round_finished][dat]\nGame mode: [name]\nRound time: [duration2text()]\nEnd round player population: [GLOB.clients.len]\nTotal xenos spawned: [round_statistics.total_xenos_created]\nTotal Preds spawned: [predators.len]\nTotal humans spawned: [round_statistics.total_humans_created]")
 
 	to_chat(world, dat)
 

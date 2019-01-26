@@ -33,7 +33,7 @@
 	announcement_type = "Automated Announcement"
 
 /datum/announcement/priority/command/warning/Announce(message, new_sound)
-	for(var/mob/living/silicon/decoy/ship_ai/AI in mob_list)
+	for(var/mob/living/silicon/decoy/ship_ai/AI in GLOB.mob_list)
 		return AI.say(message, new_sound)
 
 /datum/announcement/priority/security/New(var/do_log = 1, var/new_sound = sound('sound/misc/notice2.ogg'), var/do_newscast = 0)
@@ -57,7 +57,7 @@
 	Log(message, message_title)
 
 /datum/announcement/proc/Message(message as text, message_title as text, var/to_xenos = 0)
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(!to_xenos)
 			if(isXeno(M) || has_species(M, "Zombie")) //we reuse to_xenos arg for zombies
 				continue
@@ -72,7 +72,7 @@
 				to_chat(M, "<span class='alert'> -[html_encode(announcer)]</span>")
 
 /datum/announcement/minor/Message(message as text, message_title as text, var/to_xenos = 0)
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(!to_xenos)
 			if(isXeno(M) || has_species(M, "Zombie")) //we reuse to_xenos arg for zombies
 				continue
@@ -98,7 +98,7 @@
 
 	command += "<br><span class='alert'>[message]</span><br>"
 	command += "<br>"
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(istype(M,/mob/living/carbon/Xenomorph))
 			continue
 		if(!istype(M,/mob/new_player) && !isdeaf(M) && !isYautja(M))
@@ -123,7 +123,7 @@
 /datum/announcement/proc/PlaySound(var/message_sound, var/to_xenos = 0)
 	if(!message_sound)
 		return
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(isXeno(M) && !to_xenos)
 			continue
 		if(!istype(M, /mob/new_player) && !isdeaf(M))

@@ -109,17 +109,17 @@
 		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
 			ship_id = "sh_dropship2"
 
-		for(var/obj/machinery/door/airlock/dropship_hatch/D in machines)
+		for(var/obj/machinery/door/airlock/dropship_hatch/D in GLOB.machines)
 			if(D.id == ship_id)
 				D.unlock()
 
 		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
 		switch(ship_id)
 			if("sh_dropship1")
-				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in machines)
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in GLOB.machines)
 					reardoor = D
 			if("sh_dropship2")
-				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in machines)
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in GLOB.machines)
 					reardoor = D
 
 		reardoor.unlock()
@@ -411,7 +411,7 @@
 	var/datum/hive_status/hive = hive_datum[XENO_HIVE_NORMAL]
 	var/list/left_behind = list()
 	var/list/with_queen = list()
-	for(var/mob/living/carbon/Xenomorph/xeno in living_xeno_list)
+	for(var/mob/living/carbon/Xenomorph/xeno in GLOB.living_xeno_list)
 		if(xeno.hivenumber != XENO_HIVE_NORMAL) continue
 		if(xeno.loc.z == hive.living_xeno_queen.loc.z || xeno.loc.z in MAIN_SHIP_AND_DROPSHIPS_Z_LEVELS) // yes loc because of vent crawling, xeno must be with queen or on round end Z levels
 			with_queen += xeno
@@ -422,7 +422,7 @@
 		for(var/mob/living/carbon/Xenomorph/about_to_die in left_behind)
 			to_chat(about_to_die, "<span class='xenoannounce'>The Queen has left without you, you quickly find a hiding place to enter hibernation as you lose touch with the hive mind.</span>")
 			qdel(about_to_die) // just delete them
-	for(var/mob/living/carbon/potential_host in living_mob_list)
+	for(var/mob/living/carbon/potential_host in GLOB.alive_mob_list)
 		if(potential_host.loc.z != 1) continue // ground level
 		if(potential_host.status_flags & XENO_HOST) // a host
 			for(var/obj/item/alien_embryo/embryo in potential_host)
@@ -446,7 +446,7 @@
 
 	shake_cameras(turfs_int) //shake for 1.5 seconds before crash, 0.5 after
 
-	for(var/obj/machinery/power/apc/A in machines) //break APCs
+	for(var/obj/machinery/power/apc/A in GLOB.machines) //break APCs
 		if(A.z != T_trg.z) continue
 		if(prob(A.crash_break_probability))
 			A.overload_lighting()
@@ -463,7 +463,7 @@
 	var/datum/shuttle/ferry/hangar/hangarelevator = shuttle_controller.shuttles["Hangar"]
 	hangarelevator.process_state = FORCE_CRASH
 
-	for(var/mob/living/carbon/M in mob_list) //knock down mobs
+	for(var/mob/living/carbon/M in GLOB.mob_list) //knock down mobs
 		if(M.z != T_trg.z) continue
 		if(M.buckled)
 			to_chat(M, "<span class='warning'>You are jolted against [M.buckled]!</span>")
@@ -499,10 +499,10 @@
 	open_doors_crashed(turfs_trg) //And now open the doors
 
 	//Stolen from events.dm. WARNING: This code is old as hell
-	for (var/obj/machinery/power/apc/APC in machines)
+	for (var/obj/machinery/power/apc/APC in GLOB.machines)
 		if(APC.z == MAIN_SHIP_Z_LEVEL || APC.z == LOW_ORBIT_Z_LEVEL)
 			APC.ion_act()
-	for (var/obj/machinery/power/smes/SMES in machines)
+	for (var/obj/machinery/power/smes/SMES in GLOB.machines)
 		if(SMES.z == MAIN_SHIP_Z_LEVEL || SMES.z == LOW_ORBIT_Z_LEVEL)
 			SMES.ion_act()
 

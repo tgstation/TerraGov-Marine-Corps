@@ -10,7 +10,6 @@
 	var/count_aliens = 0
 	var/count_preds = 0
 
-
 	for(var/client/C in GLOB.clients)
 		if(isobserver(C.mob))
 			count_observers++

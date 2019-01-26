@@ -110,7 +110,7 @@
 			var/mob/dead/observer/A = usr
 			A.reenter_corpse()
 	if(href_list["track"])
-		var/mob/target = locate(href_list["track"]) in mob_list
+		var/mob/target = locate(href_list["track"]) in GLOB.mob_list
 		if(target)
 			ManualFollow(target)
 
@@ -683,7 +683,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/list/zombie_list = list()
 
-	for(var/mob/living/carbon/human/A in living_mob_list)
+	for(var/mob/living/carbon/human/A in GLOB.alive_mob_list)
 		if(iszombie(A) && !A.client && A.regenZ)
 			var/player_in_decap_head
 			//when decapitated the human mob is clientless,
@@ -691,7 +691,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 			//so their body isn't stolen by another player.
 			var/datum/limb/head/h = A.get_limb("head")
 			if(h && (h.status & LIMB_DESTROYED))
-				for (var/obj/item/limb/head/HD in item_list)
+				for (var/obj/item/limb/head/HD in GLOB.item_list)
 					if(HD.brainmob)
 						if(HD.brainmob.real_name == A.real_name)
 							if(HD.brainmob.client)
@@ -712,7 +712,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if(!client)
 		return
 
-	for(var/mob/living/carbon/human/Z in living_mob_list)
+	for(var/mob/living/carbon/human/Z in GLOB.alive_mob_list)
 		if(choice == Z.real_name)
 			if(Z.gc_destroyed) //should never occur,just to be sure.
 				return
@@ -725,7 +725,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 			var/datum/limb/head/h = Z.get_limb("head")
 			if(h && (h.status & LIMB_DESTROYED))
-				for (var/obj/item/limb/head/HD in item_list)
+				for (var/obj/item/limb/head/HD in GLOB.item_list)
 					if(HD.brainmob)
 						if(HD.brainmob.real_name == Z.real_name)
 							if(HD.brainmob.client)
@@ -775,7 +775,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 
 	var/list/hellhound_list = list()
 
-	for(var/mob/living/carbon/hellhound/A in living_mob_list)
+	for(var/mob/living/carbon/hellhound/A in GLOB.alive_mob_list)
 		if(istype(A) && !A.client)
 			hellhound_list += A.real_name
 
@@ -787,7 +787,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	if (isnull(choice) || choice == "Cancel")
 		return
 
-	for(var/mob/living/carbon/hellhound/X in living_mob_list)
+	for(var/mob/living/carbon/hellhound/X in GLOB.alive_mob_list)
 		if(choice == X.real_name)
 			L = X
 			break
@@ -872,7 +872,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 		to_chat(usr, "You voted for this one already. Only one please!")
 		return
 
-	var/list/mobs = living_mob_list
+	var/list/mobs = GLOB.alive_mob_list
 	var/target = null
 
 	for(var/mob/living/M in mobs)

@@ -73,7 +73,7 @@ var/global/normal_ooc_colour = "#002eb8"
 			if(CONFIG_GET(flag/allow_admin_ooccolor))
 				display_colour = prefs.ooccolor
 
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		if(C.prefs.toggles_chat & CHAT_OOC)
 			var/display_name = key
 			if(holder?.fakekey)

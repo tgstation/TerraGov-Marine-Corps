@@ -362,7 +362,7 @@
 	usr << browse(dat, "window=players;size=640x480")
 
 
-/datum/admins/proc/show_player_panel(var/mob/M in mob_list)
+/datum/admins/proc/show_player_panel(var/mob/M in GLOB.mob_list)
 	set category = null
 	set name = "Show Player Panel"
 

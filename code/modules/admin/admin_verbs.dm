@@ -120,7 +120,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] checked job slots.")
 
 
-/datum/admins/proc/change_key(mob/M in living_mob_list)
+/datum/admins/proc/change_key(mob/M in GLOB.alive_mob_list)
 	set category = "Admin"
 	set name = "Change CKey"
 	set desc = "Allows you to properly change the ckey of a mob."
@@ -144,7 +144,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed [old] ckey to [new_ckey].")
 
 
-/datum/admins/proc/rejuvenate(mob/living/M as mob in mob_list)
+/datum/admins/proc/rejuvenate(mob/living/M as mob in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Rejuvenate"
 	set desc = "Revives a mob."
@@ -161,7 +161,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] revived [ADMIN_TPMONTY(M)].")
 
 
-/datum/admins/proc/toggle_sleep(var/mob/living/M as mob in mob_list)
+/datum/admins/proc/toggle_sleep(var/mob/living/M as mob in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Toggle Sleeping"
 
@@ -197,7 +197,7 @@
 			message_admins("[ADMIN_TPMONTY(usr)] has unslept everyone in view.")
 
 
-/datum/admins/proc/change_squad(var/mob/living/carbon/human/H in mob_list)
+/datum/admins/proc/change_squad(var/mob/living/carbon/human/H in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Change Squad"
 
@@ -249,7 +249,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has changed the squad of [ADMIN_TPMONTY(H)] to [S.name].")
 
 
-/datum/admins/proc/direct_control(var/mob/M in mob_list)
+/datum/admins/proc/direct_control(var/mob/M in GLOB.mob_list)
 	set category = "Admin"
 	set name = "Take Over"
 	set desc = "Rohesie's verb."
@@ -617,7 +617,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/selection = input("Please, select a turf!", "Jump to turf", null, null) as null|anything in turfs
+	var/selection = input("Please, select a turf!", "Jump to turf", null, null) as null|anything in GLOB.turfs
 	if(!selection)
 		return
 
@@ -658,7 +658,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/selection = input("Please, select a mob!", "Jump to Mob", null, null) as null|anything in sortmobs(mob_list)
+	var/selection = input("Please, select a mob!", "Jump to Mob", null, null) as null|anything in sortmobs(GLOB.mob_list)
 	if(!selection)
 		return
 
@@ -682,7 +682,7 @@
 		return
 
 	var/list/keys = list()
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		keys += M.client
 
 	var/selection = input("Please, select a key!", "Jump to Key", null, null) as null|anything in sortKey(keys)
@@ -708,7 +708,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(mob_list)
+	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(GLOB.mob_list)
 	if(!selection)
 		return
 
@@ -732,7 +732,7 @@
 		return
 
 	var/list/keys = list()
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		keys += M.client
 
 	var/selection = input("Please, select a key!", "Get Key", null, null) as null|anything in sortKey(keys)
@@ -755,7 +755,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	var/selection = input("Please, select a mob!", "Send Mob", null, null) as null|anything in sortmobs(mob_list)
+	var/selection = input("Please, select a mob!", "Send Mob", null, null) as null|anything in sortmobs(GLOB.mob_list)
 	if(!selection)
 		return
 
@@ -770,7 +770,7 @@
 				return
 			target = pick(get_area_turfs(A))
 		if("Mob")
-			var/mob/N = input("Pick an area.", "Pick an area") as null|anything in sortmobs(mob_list)
+			var/mob/N = input("Pick an area.", "Pick an area") as null|anything in sortmobs(GLOB.mob_list)
 			if(!N || !M)
 				return
 			target = N.loc
@@ -783,7 +783,7 @@
 
 
 #define IRCREPLYCOUNT 2
-/client/proc/cmd_admin_pm_context(var/mob/M in mob_list)
+/client/proc/cmd_admin_pm_context(var/mob/M in GLOB.mob_list)
 	set category = null
 	set name = "Admin PM Mob"
 
@@ -1092,7 +1092,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		if(isobserver(C.mob) || C.mob.stat == DEAD)
 			continue
 		if(ishuman(C.mob))
@@ -1103,7 +1103,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		if(isobserver(C.mob) || C.mob.stat == DEAD)
 			continue
 		if(isXeno(C.mob))
@@ -1114,7 +1114,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		if(isobserver(C.mob) || C.mob.stat == DEAD)
 			continue
 		C.mob.loc = get_turf(usr)
@@ -1124,7 +1124,7 @@
 	if(!check_rights(R_ADMIN))
 		return
 
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		if(!isliving(C.mob))
 			continue
 		var/mob/living/M = C.mob

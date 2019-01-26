@@ -102,8 +102,8 @@
 	to_chat(src, "<span class='warning'>If the title screen is black, resources are still downloading. Please be patient until the title screen appears.</span>")
 
 
-	clients += src
-	directory[ckey] = src
+	GLOB.clients += src
+	GLOB.directory[ckey] = src
 
 	GLOB.clients += src
 	GLOB.directory[ckey] = src
@@ -174,8 +174,8 @@
 		GLOB.admins -= src
 
 	GLOB.ahelp_tickets.ClientLogout(src)
-	directory -= ckey
-	clients -= src
+	GLOB.directory -= ckey
+	GLOB.clients -= src
 	GLOB.directory -= ckey
 	GLOB.clients -= src
 	return ..()

@@ -206,7 +206,7 @@
 					to_chat(usr, "<span class='warning'>The sensors aren't picking up enough of a threat to warrant a distress beacon.</span>")
 					return FALSE
 
-				for(var/client/C in admins)
+				for(var/client/C in GLOB.admins)
 					if(check_other_rights(C, R_ADMIN, FALSE))
 						C << 'sound/effects/sos-morse-code.ogg'
 				message_admins("[ADMIN_TPMONTY(usr)] has called a Distress Beacon. It will be sent in 60 seconds unless denied or sent early. (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];distress=[REF(usr)]'>SEND</A>) (<A HREF='?src=[REF(usr.client.holder)];[HrefToken()];;deny=[REF(usr)]'>DENY</A>) (<a href='?src=[REF(usr.client.holder)];[HrefToken()];;reply=[REF(usr)]'>REPLY</a>).")

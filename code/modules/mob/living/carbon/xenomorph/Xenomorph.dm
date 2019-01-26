@@ -56,12 +56,12 @@
 
 
 	if(xeno_caste.spit_types?.len)
-		ammo = ammo_list[xeno_caste.spit_types[1]]
+		ammo = GLOB.ammo_list[xeno_caste.spit_types[1]]
 
 	create_reagents(1000)
 	gender = NEUTER
 
-	living_xeno_list += src
+	GLOB.living_xeno_list += src
 	round_statistics.total_xenos_created++
 
 	spawn(6) //Mind has to be transferred! Hopefully this will give it enough time to do so.
@@ -74,11 +74,11 @@
 /mob/living/carbon/Xenomorph/proc/set_datum()
 	if(!caste_base_type)
 		CRASH("xeno spawned without a caste_base_type set")
-	if(!xeno_caste_datums[caste_base_type])
+	if(!GLOB.xeno_caste_datums[caste_base_type])
 		CRASH("error finding base type")
-	if(!xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)])
+	if(!GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)])
 		CRASH("error finding datum")
-	var/datum/xeno_caste/X = xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
+	var/datum/xeno_caste/X = GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
 	if(!istype(X))
 		CRASH("error with caste datum")
 	xeno_caste = X
@@ -90,7 +90,7 @@
 
 /mob/living/carbon/Xenomorph/Defiler/set_datum()
 	. = ..()
-	var/datum/xeno_caste/defiler/neuro_upgrade = xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
+	var/datum/xeno_caste/defiler/neuro_upgrade = GLOB.xeno_caste_datums[caste_base_type][CLAMP(upgrade + 1, 1, 4)]
 	neuro_claws_dose = neuro_upgrade.neuro_claws_amount
 
 //Off-load this proc so it can be called freely
@@ -102,7 +102,7 @@
 	if(!nicknumber)
 		var/tempnumber = rand(1, 999)
 		var/list/numberlist = list()
-		for(var/mob/living/carbon/Xenomorph/X in mob_list)
+		for(var/mob/living/carbon/Xenomorph/X in GLOB.mob_list)
 			numberlist += X.nicknumber
 
 		while(tempnumber in numberlist)
@@ -177,7 +177,7 @@
 	if(mind) mind.name = name //Grabs the name when the xeno is getting deleted, to reference through hive status later.
 	if(is_zoomed) zoom_out()
 
-	living_xeno_list -= src
+	GLOB.living_xeno_list -= src
 
 	if(hivenumber && hivenumber <= hive_datum.len)
 		var/datum/hive_status/hive = hive_datum[hivenumber]

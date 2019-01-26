@@ -68,7 +68,7 @@
 	if(!mob_max || !ticker?.mode) //Not a joinable distress call.
 		return
 
-	for(var/mob/dead/observer/M in player_list)
+	for(var/mob/dead/observer/M in GLOB.player_list)
 		if(M.client)
 			to_chat(M, "<br><font size='3'><span class='attack'>An emergency beacon has been activated. Use the <B>Ghost > Join Response Team</b> verb to join!</span><br>")
 			to_chat(M, "<span class='attack'>You cannot join if you have Ghosted before this message.</span><br>")
@@ -228,7 +228,7 @@
 /datum/emergency_call/proc/get_spawn_point(is_for_items)
 	var/list/spawn_list = list()
 
-	for(var/obj/effect/landmark/L in landmarks_list)
+	for(var/obj/effect/landmark/L in GLOB.landmarks_list)
 		if(is_for_items && L.name == "[name_of_spawn]Item")
 			spawn_list += L
 		else

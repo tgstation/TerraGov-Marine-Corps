@@ -83,7 +83,7 @@
 			if(D.client && istype(D,src.type))
 				to_chat(D, "<b>[src]</b> transmits, \"[message]\"")
 
-		for (var/mob/M in player_list)
+		for (var/mob/M in GLOB.player_list)
 			if (istype(M, /mob/new_player))
 				continue
 			else if(M.stat == 2 &&  M.client.prefs.toggles_chat & CHAT_GHOSTEARS)

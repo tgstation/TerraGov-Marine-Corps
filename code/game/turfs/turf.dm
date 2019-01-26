@@ -36,7 +36,7 @@
 
 /turf/New()
 	..()
-	turfs += src
+	GLOB.turfs += src
 	for(var/atom/movable/AM as mob|obj in src)
 		spawn(0)
 			Entered(AM)

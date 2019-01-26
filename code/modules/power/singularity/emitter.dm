@@ -27,7 +27,7 @@
 
 	New()
 		..()
-		ammo = ammo_list[ammo]
+		ammo = GLOB.ammo_list[ammo]
 		start_processing()
 
 	Destroy()

@@ -281,7 +281,7 @@
 						state("<span class='boldnotice'>Tactical data for squad '[current_squad]' loaded. All tactical functions initialized.</span>")
 						attack_hand(usr)
 						if(!current_squad.drop_pad) //Why the hell did this not link?
-							for(var/obj/structure/supply_drop/S in item_list)
+							for(var/obj/structure/supply_drop/S in GLOB.item_list)
 								S.force_link() //LINK THEM ALL!
 
 					else
@@ -558,7 +558,7 @@
 	sleep(15)
 	send_to_squads("Calibrating trajectory window...")
 	sleep(11)
-	for(var/mob/living/carbon/H in living_mob_list)
+	for(var/mob/living/carbon/H in GLOB.alive_mob_list)
 		if(H.z == MAIN_SHIP_Z_LEVEL && !H.stat) //TGS Theseus decks.
 			to_chat(H, "<span class='warning'>The deck of the [MAIN_SHIP_NAME] shudders as the orbital cannons open fire on the colony.</span>")
 			if(H.client)

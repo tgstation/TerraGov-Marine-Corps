@@ -159,7 +159,7 @@
 				message_admins("[src] [alert_msg].")
 
 		if(damage > explosion_point)
-			for(var/mob/living/mob in living_mob_list)
+			for(var/mob/living/mob in GLOB.alive_mob_list)
 				if( (src.loc && mob.loc) && ( loc.z == mob.loc.z ))
 					if(istype(mob, /mob/living/carbon/human))
 						//Hilariously enough, running into a closet should make you get hit the hardest.

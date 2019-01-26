@@ -9,11 +9,11 @@
 
 /obj/structure/New()
 	..()
-	structure_list += src
+	GLOB.structure_list += src
 
 /obj/structure/Destroy()
 	. = ..()
-	structure_list -= src
+	GLOB.structure_list -= src
 
 /obj/structure/proc/destroy_structure(deconstruct)
 	if(parts)

@@ -159,7 +159,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		. += named_args
 
 
-/datum/admins/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in mob_list)
+/datum/admins/proc/change_hivenumber(mob/living/carbon/Xenomorph/X in GLOB.mob_list)
 	set category = "Debug"
 	set name = "Change Hivenumber"
 	set desc = "Set the hivenumber of a xenomorph."
@@ -265,15 +265,15 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 
 	switch(input("Which list?") in list("Players", "Admins", "Mobs", "Living Mobs", "Dead Mobs", "Clients"))
 		if("Players")
-			to_chat(usr, list2text(player_list,","))
+			to_chat(usr, list2text(GLOB.player_list,","))
 		if("Admins")
 			to_chat(usr, list2text(GLOB.admins,","))
 		if("Mobs")
-			to_chat(usr, list2text(mob_list,","))
+			to_chat(usr, list2text(GLOB.mob_list,","))
 		if("Living Mobs")
-			to_chat(usr, list2text(living_mob_list,","))
+			to_chat(usr, list2text(GLOB.alive_mob_list,","))
 		if("Dead Mobs")
-			to_chat(usr, list2text(dead_mob_list,","))
+			to_chat(usr, list2text(GLOB.dead_mob_list,","))
 		if("Clients")
 			to_chat(usr, list2text(GLOB.clients,","))
 
@@ -347,7 +347,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	var/largest_click_time = 0
 	var/mob/largest_move_mob = null
 	var/mob/largest_click_mob = null
-	for(var/mob/M in mob_list)
+	for(var/mob/M in GLOB.mob_list)
 		if(!M.client)
 			continue
 		if(M.next_move >= largest_move_time)
@@ -430,7 +430,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 	if(!check_rights(R_DEBUG))
 		return
 
-	var/selection = input("Please, select a mob!", "Check Contents", null, null) as null|anything in sortmobs(mob_list)
+	var/selection = input("Please, select a mob!", "Check Contents", null, null) as null|anything in sortmobs(GLOB.mob_list)
 	if(!selection)
 		return
 
@@ -457,7 +457,7 @@ GLOBAL_PROTECT(AdminProcCallSpamPrevention)
 		return
 
 	var/list/humans = list()
-	for(var/mob/living/carbon/human/H in mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.mob_list)
 		humans += H
 
 	var/selection = input("Please, select a human!", "Update Mob Sprite", null, null) as null|anything in sortmobs(humans)

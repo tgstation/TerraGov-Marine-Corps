@@ -31,19 +31,19 @@
 		typecache = typecacheof(typecache)
 	. = list()
 	if (ispath(T, /mob))
-		for(var/mob/thing in mob_list)
+		for(var/mob/thing in GLOB.mob_list)
 			if (typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
 	else if (ispath(T, /obj/machinery/door))
-		for(var/obj/machinery/door/thing in machines)
+		for(var/obj/machinery/door/thing in GLOB.machines)
 			if (typecache[thing.type])
 				. += thing
 			CHECK_TICK
 
 	else if (ispath(T, /obj/machinery))
-		for(var/obj/machinery/thing in machines)
+		for(var/obj/machinery/thing in GLOB.machines)
 			if (typecache[thing.type])
 				. += thing
 			CHECK_TICK
@@ -614,7 +614,7 @@
 		if(!check_rights(NONE))
 			return
 
-		var/mob/M = locate(href_list["mob_player_panel"]) in mob_list
+		var/mob/M = locate(href_list["mob_player_panel"]) in GLOB.mob_list
 		if(!istype(M))
 			to_chat(usr, "This can only be used on instances of type /mob")
 			return
@@ -660,7 +660,7 @@
 		if(!check_rights(NONE))
 			return
 
-		var/mob/M = locate(href_list["regenerateicons"]) in mob_list
+		var/mob/M = locate(href_list["regenerateicons"]) in GLOB.mob_list
 		if(!ismob(M))
 			to_chat(usr, "This can only be done to instances of type /mob")
 			return
@@ -697,7 +697,7 @@
 			if(!check_rights(NONE))
 				return
 
-			var/mob/M = locate(href_list["rename"]) in mob_list
+			var/mob/M = locate(href_list["rename"]) in GLOB.mob_list
 			if(!istype(M))
 				to_chat(usr, "This can only be used on instances of type /mob")
 				return
@@ -980,12 +980,12 @@
 			if(!check_rights(R_FUN))
 				return
 
-			var/mob/living/carbon/human/H = locate(href_list["setspecies"]) in mob_list
+			var/mob/living/carbon/human/H = locate(href_list["setspecies"]) in GLOB.mob_list
 			if(!istype(H))
 				to_chat(usr, "This can only be done to instances of type /mob/living/carbon/human")
 				return
 
-			var/result = input(usr, "Please choose a new species","Species") as null|anything in all_species
+			var/result = input(usr, "Please choose a new species","Species") as null|anything in GLOB.all_species
 
 			if(!H)
 				to_chat(usr, "Mob doesn't exist anymore")
@@ -1004,7 +1004,7 @@
 			if(!check_rights(R_FUN))
 				return
 
-			var/mob/living/L = locate(href_list["mobToDamage"]) in mob_list
+			var/mob/living/L = locate(href_list["mobToDamage"]) in GLOB.mob_list
 			if(!istype(L))
 				return
 
@@ -1057,7 +1057,7 @@
 				to_chat(usr, "This can only be done to instances of type /mob/living/carbon")
 				return
 
-			var/new_language = input("Please choose a language to add.", "Language", null) as null|anything in all_languages
+			var/new_language = input("Please choose a language to add.", "Language", null) as null|anything in GLOB.all_languages
 
 			if(!new_language)
 				return

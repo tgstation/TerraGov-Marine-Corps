@@ -147,7 +147,7 @@ datum/game_mode/proc/initialize_special_clamps()
 	var/players[] = new
 
 	var/mob/new_player/new_pred
-	for(var/mob/player in player_list)
+	for(var/mob/player in GLOB.player_list)
 		if(!player.client) continue //No client. DCed.
 		if(isYautja(player)) continue //Already a predator. Might be dead, who knows.
 		if(readied) //Ready check for new players.
@@ -351,7 +351,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		to_chat(xeno_candidate, "<span class='warning'>There are no burrowed larvas.</span>")
 		return FALSE
 	var/available_queens[] = list()
-	for(var/mob/A in living_mob_list)
+	for(var/mob/A in GLOB.alive_mob_list)
 		if(!isXenoQueen(A) || A.z == ADMIN_Z_LEVEL)
 			continue
 		var/mob/living/carbon/Xenomorph/Queen/Q = A
@@ -402,7 +402,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	var/available_xenos[] = list()
 	var/available_xenos_non_ssd[] = list()
 
-	for(var/mob/A in living_mob_list)
+	for(var/mob/A in GLOB.alive_mob_list)
 		if(A.z == ADMIN_Z_LEVEL)
 			continue //xenos on admin z level don't count
 		if(isXeno(A) && !A.client)
@@ -422,7 +422,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 	if(!istype(new_xeno) || !xeno_candidate?.client)
 		return FALSE
 
-	if(!(new_xeno in living_mob_list) || new_xeno.stat == DEAD)
+	if(!(new_xeno in GLOB.alive_mob_list) || new_xeno.stat == DEAD)
 		to_chat(xeno_candidate, "<span class='warning'>You cannot join if the xenomorph is dead.</span>")
 		return FALSE
 
@@ -445,7 +445,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 			return FALSE
 
 	if(alert(xeno_candidate, "Everything checks out. Are you sure you want to transfer yourself into [new_xeno]?", "Confirm Transfer", "Yes", "No") == "Yes")
-		if(new_xeno.client || !(new_xeno in living_mob_list) || new_xeno.stat == DEAD || !xeno_candidate) // Do it again, just in case
+		if(new_xeno.client || !(new_xeno in GLOB.alive_mob_list) || new_xeno.stat == DEAD || !xeno_candidate) // Do it again, just in case
 			to_chat(xeno_candidate, "<span class='warning'>That xenomorph can no longer be controlled. Please try another.</span>")
 			return FALSE
 		return new_xeno
@@ -622,7 +622,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 			continue //Not a mind? How did this happen?
 
 		var/mob/living/carbon/human/current = survivor.current
-		var/datum/species/species = istype(current) ? current.species : all_species[DEFAULT_SPECIES]
+		var/datum/species/species = istype(current) ? current.species : GLOB.all_species[DEFAULT_SPECIES]
 		random_name = species.random_name(pick(MALE, FEMALE))
 
 		if(current_survivors.len > 1) //If we have another survivor to pick from.
@@ -664,14 +664,14 @@ datum/game_mode/proc/initialize_post_queen_list()
 	//This might count players who ready up but get kicked back to the lobby
 	var/marine_pop_size = 0
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(M.stat != DEAD && M.mind && !M.mind.special_role)
 			marine_pop_size++
 
 	var/scale = max(marine_pop_size / MARINE_GEAR_SCALING_NORMAL, 1) //This gives a decimal value representing a scaling multiplier. Cannot go below 1
 
 	//Set up attachment vendor contents related to Marine count
-	for(var/X in attachment_vendors)
+	for(var/X in GLOB.attachment_vendors)
 		var/obj/machinery/vending/attachments/A = X
 
 		//Forcefully reset the product list
@@ -712,7 +712,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		//Rebuild the vendor's inventory to make our changes apply
 		A.build_inventory(A.products)
 
-	for(var/X in cargo_ammo_vendors)
+	for(var/X in GLOB.cargo_ammo_vendors)
 		var/obj/machinery/vending/marine/cargo_ammo/CA = X
 
 		//Forcefully reset the product list
@@ -779,7 +779,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 		CA.build_inventory(CA.products)
 
 
-	for(var/X in cargo_guns_vendors)
+	for(var/X in GLOB.cargo_guns_vendors)
 		var/obj/machinery/vending/marine/cargo_guns/CG = X
 
 		//Forcefully reset the product list
@@ -854,7 +854,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 
 
 
-	for(var/obj/machinery/vending/marine/M in marine_vendors)
+	for(var/obj/machinery/vending/marine/M in GLOB.marine_vendors)
 
 		//Forcefully reset the product list
 		M.product_records = list()

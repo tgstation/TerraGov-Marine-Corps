@@ -38,7 +38,7 @@
 		if(!check_rights(R_ADMIN))
 			return
 
-		var/mob/M = locate(href_list["moreinfo"]) in mob_list
+		var/mob/M = locate(href_list["moreinfo"]) in GLOB.mob_list
 
 		if(!ismob(M))
 			return
@@ -174,7 +174,7 @@
 			if("whiteout")
 				log_admin("[key_name(usr)] fixed all lights.")
 				message_admins("[ADMIN_TPMONTY(usr)] fixed all lights.")
-				for(var/obj/machinery/light/L in machines)
+				for(var/obj/machinery/light/L in GLOB.machines)
 					L.fix()
 			if("power")
 				log_admin("[key_name(usr)] powered all SMESs and APCs")
@@ -894,7 +894,7 @@
 					return
 				target = pick(get_area_turfs(A))
 			if("Mob")
-				var/mob/N = input("Pick an area.", "Pick an area") as null|anything in sortmobs(mob_list)
+				var/mob/N = input("Pick an area.", "Pick an area") as null|anything in sortmobs(GLOB.mob_list)
 				if(!N || !M)
 					return
 				target = N.loc
@@ -991,7 +991,7 @@
 
 		var/customname = input("Pick a title for the report", "Title") as text|null
 
-		for(var/obj/machinery/faxmachine/F in machines)
+		for(var/obj/machinery/faxmachine/F in GLOB.machines)
 			if(F == fax)
 				if(!(F.stat & (BROKEN|NOPOWER)))
 					flick("faxreceive", F)

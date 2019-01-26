@@ -8,7 +8,7 @@
 	togglebuildmode(usr)
 
 
-/proc/togglebuildmode(mob/M as mob in player_list)
+/proc/togglebuildmode(mob/M as mob in GLOB.player_list)
 	set name = "Toggle Build Mode"
 	set category = "Special Verbs"
 
@@ -186,11 +186,11 @@
 					if("number")
 						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value", 123) as num
 					if("mob-reference")
-						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as mob in mob_list
+						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as mob in GLOB.mob_list
 					if("obj-reference")
-						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as obj in object_list
+						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as obj in GLOB.object_list
 					if("turf-reference")
-						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as turf in turfs
+						master.buildmode.valueholder = input(usr,"Enter variable value:" ,"Value") as turf in GLOB.turfs
     return TRUE
 
 /proc/build_click(var/mob/user, buildmode, var/list/mods, var/obj/object)

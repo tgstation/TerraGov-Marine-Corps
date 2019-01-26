@@ -185,7 +185,7 @@ sorts them out by their department.
 	unassigned_players = new
 	var/mob/new_player/M
 
-	for(var/i in player_list) //Get all players who are ready.
+	for(var/i in GLOB.player_list) //Get all players who are ready.
 		M = i
 		if(istype(M) && M.ready && M.mind && !M.mind.assigned_role)
 			unassigned_players += M
@@ -322,7 +322,7 @@ sorts them out by their department.
 /datum/authority/branch/role/proc/reset_roles()
 	var/mob/new_player/M
 	var/i
-	for(i in player_list)
+	for(i in GLOB.player_list)
 		M = i
 		if(istype(M) && M.mind)
 			M.mind.assigned_role = null
@@ -341,7 +341,7 @@ sorts them out by their department.
 	else
 		var/obj/effect/landmark/L //To iterate.
 		var/obj/effect/landmark/S //Starting mark.
-		for(var/i in landmarks_list) // This whole thing is fucking awful
+		for(var/i in GLOB.landmarks_list) // This whole thing is fucking awful
 			if(!i)
 				stack_trace("null landmark in roleauthority landmarks_list iterator.")
 				continue

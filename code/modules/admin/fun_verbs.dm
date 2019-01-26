@@ -46,7 +46,7 @@
 		return
 
 	var/list/mobs = list()
-	for(var/mob/living/M in mob_list)
+	for(var/mob/living/M in GLOB.mob_list)
 		mobs += M
 
 	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(mobs)
@@ -100,7 +100,7 @@
 
 	var/msg = "<h1>[customname]</h1><br><br><br><span class='warning'>[input]<br><br></span>"
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(isXeno(M) || isobserver(M))
 			to_chat(M, msg)
 
@@ -139,7 +139,7 @@
 	if(!ai_system.Announce(input))
 		return
 
-	for(var/obj/machinery/computer/communications/C in machines)
+	for(var/obj/machinery/computer/communications/C in GLOB.machines)
 		if(!(C.stat & (BROKEN|NOPOWER)))
 			var/obj/item/paper/P = new /obj/item/paper(C.loc)
 			P.name = "'[MAIN_AI_SYSTEM] Update.'"
@@ -168,7 +168,7 @@
 	if(!customname)
 		customname = "TGMC Update"
 
-	for(var/obj/machinery/computer/communications/C in machines)
+	for(var/obj/machinery/computer/communications/C in GLOB.machines)
 		if(!(C.stat & (BROKEN|NOPOWER)))
 			var/obj/item/paper/P = new /obj/item/paper( C.loc )
 			P.name = "'[command_name()] Update.'"
@@ -222,7 +222,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] used Direct Narrate on [ADMIN_TPMONTY(M)]: [msg]")
 
 
-/datum/admins/proc/subtle_message(var/mob/M in mob_list)
+/datum/admins/proc/subtle_message(var/mob/M in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Subtle Message"
 
@@ -248,7 +248,7 @@
 		return
 
 	var/list/humans = list()
-	for(var/mob/living/carbon/human/H in mob_list)
+	for(var/mob/living/carbon/human/H in GLOB.mob_list)
 		humans += H
 
 	var/selection = input("Please, select a mob!", "Get Mob", null, null) as null|anything in sortmobs(humans)
@@ -332,7 +332,7 @@
 
 	switch(alert("Play sound globally or locally?", "Sound", "Global", "Local", "Cancel"))
 		if("Global")
-			for(var/mob/M in player_list)
+			for(var/mob/M in GLOB.player_list)
 				if(M.client.prefs.toggles_sound & SOUND_MIDI)
 					M << uploaded_sound
 					heard_midi++
@@ -343,8 +343,8 @@
 		if("Cancel")
 			return
 
-	log_admin("[key_name(usr)] played sound '[S]' for [heard_midi] player(s). [clients.len - heard_midi] player(s) have disabled admin midis.")
-	message_admins("[ADMIN_TPMONTY(usr)] played sound '[S]' for [heard_midi] player(s). [clients.len - heard_midi] player(s) have disabled admin midis.")
+	log_admin("[key_name(usr)] played sound '[S]' for [heard_midi] player(s). [GLOB.clients.len - heard_midi] player(s) have disabled admin midis.")
+	message_admins("[ADMIN_TPMONTY(usr)] played sound '[S]' for [heard_midi] player(s). [GLOB.clients.len - heard_midi] player(s) have disabled admin midis.")
 
 	// A 30 sec timer used to show Admins how many players are silencing the sound after it starts - see preferences_toggles.dm
 	var/midi_playing_timer = 300 // Should match with the midi_silenced spawn() in preferences_toggles.dm
@@ -594,7 +594,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed the security level to code [sec_level].")
 
 
-/datum/admins/proc/select_rank(var/mob/living/carbon/human/H in mob_list)
+/datum/admins/proc/select_rank(var/mob/living/carbon/human/H in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Select Rank"
 
@@ -668,7 +668,7 @@
 
 
 
-/datum/admins/proc/select_equipment(var/mob/living/carbon/human/M in mob_list)
+/datum/admins/proc/select_equipment(var/mob/living/carbon/human/M in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Select Equipment"
 
@@ -698,7 +698,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] changed the equipment of [ADMIN_TPMONTY(M)] to [dresscode].")
 
 
-/datum/admins/proc/possess(obj/O as obj in object_list)
+/datum/admins/proc/possess(obj/O as obj in GLOB.object_list)
 	set category = "Object"
 	set name = "Possess Obj"
 
@@ -720,7 +720,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has possessed [O] ([O.type]).")
 
 
-/datum/admins/proc/release(obj/O as obj in object_list)
+/datum/admins/proc/release(obj/O as obj in GLOB.object_list)
 	set category = "Object"
 	set name = "Release Obj"
 
@@ -747,7 +747,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] has released [O] ([O.type]).")
 
 
-/datum/admins/proc/edit_appearance(mob/living/carbon/human/H in mob_list)
+/datum/admins/proc/edit_appearance(mob/living/carbon/human/H in GLOB.mob_list)
 	set category = "Fun"
 	set name = "Edit Appearance"
 
@@ -786,12 +786,12 @@
 
 
 	// hair
-	var/new_hstyle = input("Select a hair style")  as null|anything in hair_styles_list
+	var/new_hstyle = input("Select a hair style")  as null|anything in GLOB.hair_styles_list
 	if(new_hstyle)
 		H.h_style = new_hstyle
 
 	// facial hair
-	var/new_fstyle = input("Select a facial hair style")  as null|anything in facial_hair_styles_list
+	var/new_fstyle = input("Select a facial hair style")  as null|anything in GLOB.facial_hair_styles_list
 	if(new_fstyle)
 		H.f_style = new_fstyle
 

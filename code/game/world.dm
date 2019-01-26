@@ -152,7 +152,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 	else if(T == "players")
 		var/n = 0
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(M.client)
 				n++
 		return n
@@ -170,7 +170,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		var/n = 0
 		var/admins = 0
 
-		for(var/client/C in clients)
+		for(var/client/C in GLOB.clients)
 			if(C.holder)
 				if(C.holder.fakekey)
 					continue	//so stealthmins aren't revealed by the hub
@@ -186,7 +186,7 @@ var/world_topic_spam_protect_time = world.timeofday
 
 /world/Reboot(var/reason)
 	TgsReboot()
-	for(var/client/C in clients)
+	for(var/client/C in GLOB.clients)
 		if(CONFIG_GET(string/server))
 			C << link("byond://[CONFIG_GET(string/server)]")
 	return ..()
@@ -198,7 +198,7 @@ var/world_topic_spam_protect_time = world.timeofday
 		set background = TRUE
 		while(1)
 			sleep(INACTIVITY_KICK)
-			for(var/client/C in clients)
+			for(var/client/C in GLOB.clients)
 				if(check_other_rights(C, R_ADMIN, FALSE)).
 					continue
 				if(C.is_afk(INACTIVITY_KICK))

@@ -103,7 +103,7 @@
 		del(PN) //not cdel on purpose, powernet is still using del.
 	powernets.Cut()
 
-	for(var/obj/structure/cable/PC in cable_list)
+	for(var/obj/structure/cable/PC in GLOB.cable_list)
 		if(!PC.powernet)
 			PC.powernet = new()
 			powernets += PC.powernet
@@ -112,11 +112,11 @@
 
 //	if(Debug) log_world("[powernets.len] powernets found")
 
-	for(var/obj/structure/cable/C in cable_list)
+	for(var/obj/structure/cable/C in GLOB.cable_list)
 		if(!C.powernet)	continue
 		C.powernet.cables += C
 
-	for(var/obj/machinery/power/M in machines)
+	for(var/obj/machinery/power/M in GLOB.machines)
 		M.connect_to_network()
 
 	return 1
@@ -174,7 +174,7 @@
 				. += power_list(T, src, d1, 1)
 		else if (d1 == 11 || d1 == 12)
 			if(id)
-				for(var/obj/structure/cable/C in structure_list)
+				for(var/obj/structure/cable/C in GLOB.cable_list)
 					if(C == src)
 						continue // not ourself
 					if(id == C.id)
@@ -195,7 +195,7 @@
 ///// Z-Level Stuff
 	if(d2 == 11 || d2 == 12)
 		if(id)
-			for(var/obj/structure/cable/C in structure_list)
+			for(var/obj/structure/cable/C in GLOB.cable_list)
 				if(C == src)
 					continue // not ourself
 				if(id == C.id)

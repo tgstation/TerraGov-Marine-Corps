@@ -31,7 +31,7 @@
 		log_message(message, LOG_EMOTE)
 
 
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if (!M.client)
 				continue //skip monkeys and leavers
 			if (istype(M, /mob/new_player))
@@ -77,7 +77,7 @@
 	if(message)
 		log_message(message, LOG_EMOTE)
 
-		for(var/client/C in clients)
+		for(var/client/C in GLOB.clients)
 			if(istype(C.mob, /mob/new_player))
 				continue
 

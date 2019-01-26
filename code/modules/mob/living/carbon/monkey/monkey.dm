@@ -63,7 +63,7 @@
 	reagents = R
 	R.my_atom = src
 
-	species = all_species[greaterform]
+	species = GLOB.all_species[greaterform]
 	add_language(species.language)
 
 	if(name == initial(name)) //To stop Pun-Pun becoming generic.
