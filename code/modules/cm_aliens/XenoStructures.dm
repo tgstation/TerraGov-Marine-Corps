@@ -475,7 +475,7 @@
 		deploy_egg_triggers()
 
 /obj/effect/alien/egg/proc/create_egg_triggers()
-	for(var/i=1, i<=8, i++)
+	for(var/i = 1 to 8)
 		egg_triggers += new /obj/effect/egg_trigger(src, src)
 
 /obj/effect/alien/egg/proc/deploy_egg_triggers()
