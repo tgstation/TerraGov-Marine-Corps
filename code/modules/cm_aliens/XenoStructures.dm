@@ -160,11 +160,11 @@
 	health = 5
 	layer = RESIN_STRUCTURE_LAYER
 	var/obj/item/clothing/mask/facehugger/hugger = null
-	var/carrier_number //the nicknumber of the carrier that placed us.
+	var/mob/living/linked_carrier //The carrier that placed us.
 
-/obj/effect/alien/resin/trap/New(loc, mob/living/carbon/Xenomorph/Carrier/C)
-	if(C)
-		carrier_number = C.nicknumber
+/obj/effect/alien/resin/trap/New(loc, mob/living/builder)
+	if(builder)
+		linked_carrier = builder
 	..()
 
 /obj/effect/alien/resin/trap/examine(mob/user)
@@ -205,14 +205,11 @@
 		L.visible_message("<span class='warning'>[L] trips on [src]!</span>",\
 						"<span class='danger'>You trip on [src]!</span>")
 		L.KnockDown(1)
-		if(carrier_number)
-			for(var/mob/living/carbon/Xenomorph/Carrier/X in living_mob_list)
-				if(X.nicknumber == carrier_number)
-					if(!X.stat)
-						var/area/A = get_area(src)
-						if(A)
-							to_chat(X, "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>")
-					break
+		if(!QDELETED(linked_carrier))
+			if(!linked_carrier.stat && linked_carrier.z == z)
+				var/area/A = get_area(src)
+				if(A)
+					to_chat(linked_carrier, "<span class='xenoannounce'>You sense one of your traps at [A.name] has been triggered!</span>")
 		drop_hugger()
 
 /obj/effect/alien/resin/trap/proc/drop_hugger()
