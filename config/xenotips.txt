@@ -1,10 +1,21 @@
 As a ravager, anytime you take damage you get even more angry, and thus resist more damage.
+As a ravager, you gain more fire resistance the more rage you acquire.
+As a ravager, targeting hands or feet is better to inflict a lot of damage while lunging.
 As the Queen, you contain the hivemind of all the xenos.
 As the Queen, use hive status to quickly swap between alien ‘cameras’.
 As a boiler, you have the most powerful corrosive acid for melting things.
 As a hunter, you have almost perfect stealth if you stand still.
 As a drone, your corrosive acid is very weak, but it's better than nothing.
-As a drone, spread weed as much as you can, especially to the front line fighters.
+As a drone, spread weeds as much as you can, especially to the front line fighters.
+As a drone, you’ve got pheromones that can help the hive.
 As a larva, ask your queen what you should evolve into.
+As a larva, you can slide under unbolted and unwelded doors by clicking on the door.
 As a runner, plasma gain is halted when you hide.
+As a defiler, your growth accelerator can make more xenos during the crash phase.
 As a xeno, check hive status often.
+As a xeno, you can pounce past window frames and barricades without barbed wires.
+As a xeno, pouncing into a barricade with barbed wire stuns you.
+As a xeno, aging from young to mature gives you the most benefit, further aging has diminishing returns.
+As a xeno, keep resisting to put out fires if you are currently on fire.
+As a xeno, you can melee other xenos on fire on ‘help’ intent to try to extinguish their fires.
+As a xeno, it’s not a good idea to kill hosts during the crash phase if they can be captured instead.
