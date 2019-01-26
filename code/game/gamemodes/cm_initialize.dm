@@ -525,6 +525,7 @@ datum/game_mode/proc/initialize_post_queen_list()
 					break  //We ran out of survivors!
 				new_survivor.assigned_role = "MODE"
 				new_survivor.special_role = "Survivor"
+				survivors += new_survivor
 				possible_survivors -= new_survivor
 				i--
 
@@ -537,8 +538,6 @@ datum/game_mode/proc/initialize_post_queen_list()
 //No need to transfer their mind as they begin as a human.
 /datum/game_mode/proc/transform_survivor(var/datum/mind/ghost)
 	var/mob/living/carbon/human/H = ghost.current
-
-	survivors += H
 
 	H.loc = pick(surv_spawn)
 
