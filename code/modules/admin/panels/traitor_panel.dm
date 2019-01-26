@@ -68,8 +68,9 @@
 		dat += "<br><table cellspacing=5><tr><td><B>Aliens</B></td><td></td><td></td></tr>"
 		for(var/datum/mind/L in ticker.mode.xenomorphs)
 			var/mob/M = L.current
-			var/location = get_area(M.loc)
+			var/location = ""
 			if(M)
+				location = get_area(M.loc)
 				dat += "<tr><td><a href='?priv_msg=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 				dat += "<td>[location]</td>"
 				dat += "<td><a href='?src=[ref];playerpanel=[REF(M)]'>PP</A></td></TR>"
@@ -78,8 +79,9 @@
 	if(ticker.liaison)
 		dat += "<br><table cellspacing=5><tr><td><B>Corporate Liaison</B></td><td></td><td></td></tr>"
 		var/mob/M = ticker.liaison.current
-		var/location = get_area(M.loc)
+		var/location = ""
 		if(M)
+			location = get_area(M.loc)
 			dat += "<tr><td><a href='?priv_msg=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 			dat += "<td>[location]</td>"
 			dat += "<td><a href='?src=[ref];playerpanel=[REF(M)]'>PP</A></td></TR>"
@@ -89,8 +91,9 @@
 		dat += "<br><table cellspacing=5><tr><td><B>Survivors</B></td><td></td><td></td></tr>"
 		for(var/datum/mind/L in ticker.mode.survivors)
 			var/mob/M = L.current
-			var/location = get_area(M.loc)
+			var/location = ""
 			if(M)
+				location = get_area(M.loc)
 				dat += "<tr><td><a href='?priv_msg=[REF(M)]'>[M.real_name]</a>[M.client ? "" : " <i>(logged out)</i>"][M.stat == DEAD ? " <b><font color=red>(DEAD)</font></b>" : ""]</td>"
 				dat += "<td>[location]</td>"
 				dat += "<td><a href='?src=[ref];playerpanel=[REF(M)]'>PP</A></td></TR>"
