@@ -271,8 +271,6 @@ GLOBAL_LIST_INIT(admin_verbs_admin, world.AVadmin())
 	/datum/admins/proc/show_player_panel,
 	/datum/admins/proc/player_panel_extended,
 	/datum/admins/proc/secrets_panel,
-	/datum/admins/proc/view_cl_faxes,
-	/datum/admins/proc/view_tgmc_faxes,
 	/datum/admins/proc/remove_from_tank,
 	/datum/admins/proc/game_panel,
 	/datum/admins/proc/gamemode_panel,
@@ -286,8 +284,6 @@ GLOBAL_LIST_INIT(admin_verbs_mentor, world.AVmentor())
 	return list(
 	/datum/admins/proc/msay,
 	/datum/admins/proc/dsay,
-	/datum/admins/proc/view_cl_faxes,
-	/datum/admins/proc/view_tgmc_faxes,
 	/datum/admins/proc/admin_ghost,
 	/datum/admins/proc/subtle_message,
 	/client/proc/private_message_panel,
