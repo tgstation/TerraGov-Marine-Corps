@@ -1817,3 +1817,14 @@ var/list/WALLITEMS = list(
 	else
 		. = CB.Invoke()
 	usr = temp
+
+/proc/is_the_opposite_dir(hol_dir, hit_dir)
+	if(hol_dir == NORTH && (hit_dir in list(SOUTH, SOUTHEAST, SOUTHWEST)))
+		return TRUE
+	else if(hol_dir == SOUTH && (hit_dir in list(NORTH, NORTHEAST, NORTHWEST)))
+		return TRUE
+	else if(hol_dir == EAST && (hit_dir in list(WEST, NORTHWEST, SOUTHWEST)))
+		return TRUE
+	else if(hol_dir == WEST && (hit_dir in list(EAST, NORTHEAST, SOUTHEAST)))
+		return TRUE
+	return FALSE

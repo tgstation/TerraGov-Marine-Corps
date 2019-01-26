@@ -79,7 +79,7 @@
 							to_chat(M, "<span class='warning'>You should not harm this host! It has a sister inside.</span>")
 							return FALSE
 
-			if(check_shields(0, M.name) && prob(66)) //Bit of a bonus
+			if(check_shields(0, M.name) && prob(80)) //Bit of a bonus
 				M.visible_message("<span class='danger'>\The [M]'s slash is blocked by [src]'s shield!</span>", \
 				"<span class='danger'>Your slash is blocked by [src]'s shield!</span>", null, 5)
 				return FALSE
@@ -198,7 +198,7 @@
 				to_chat(M, "<span class='xenodanger'>You reconsider your mean-spirited bullying of the pregnant, secured host.</span>")
 				return FALSE
 			M.animation_attack_on(src)
-			if(check_shields(0, M.name) && prob(66)) //Bit of a bonus
+			if(check_shields(0, M.name) && prob(80)) //Bit of a bonus
 				M.visible_message("<span class='danger'>\The [M]'s tackle is blocked by [src]'s shield!</span>", \
 				"<span class='danger'>Your tackle is blocked by [src]'s shield!</span>", null, 5)
 				return FALSE
