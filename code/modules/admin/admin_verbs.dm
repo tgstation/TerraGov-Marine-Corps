@@ -134,15 +134,13 @@
 	if(!new_ckey)
 		return
 
-	var/old = "[ADMIN_TPMONTY(M)]"
-
 	M.ghostize(FALSE)
 	M.ckey = new_ckey
 	if(M.client)
 		M.client.change_view(world.view)
 
 	log_admin("[key_name(usr)] changed [M.name] ckey to [new_ckey].")
-	message_admins("[ADMIN_TPMONTY(usr)] changed [old] ckey to [new_ckey].")
+	message_admins("[ADMIN_TPMONTY(usr)] changed [M.name] ckey to [new_ckey].")
 
 
 /datum/admins/proc/rejuvenate(mob/living/M as mob in GLOB.mob_list)
