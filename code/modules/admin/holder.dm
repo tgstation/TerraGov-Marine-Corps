@@ -486,7 +486,7 @@ GLOBAL_LIST_INIT(admin_verbs_spawn, world.AVspawn())
 
 
 /proc/message_staff(var/msg)
-	msg = "<span class='admin prefix'><span class='prefix'>STAFF LOG:</span> <span class='message'>[msg]</span></span>"
+	msg = "<span class='admin'><span class='prefix'>STAFF LOG:</span> <span class='message'>[msg]</span></span>"
 	for(var/client/C in GLOB.admins)
 		if(check_other_rights(C, R_ADMIN, FALSE) || is_mentor(C))
 			to_chat(C, msg)
