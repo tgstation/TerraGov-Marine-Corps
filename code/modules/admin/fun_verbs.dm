@@ -286,7 +286,7 @@
 	if(!check_rights(R_FUN))
 		return
 
-	switch(input("Do you want to change or clear the custom event info?") as null|anything in list("Change", "Clear", "Cancel"))
+	switch(input("Do you want to change or clear the custom event info?") as null|anything in list("Change", "Clear"))
 		if("Change")
 			custom_event_msg = input(usr, "Set the custom information players get on joining or via the OOC tab.",, custom_event_msg) as message|null
 
@@ -459,16 +459,16 @@
 	set desc = "Force a dropship to launch"
 
 	var/tag = input("Which dropship should be force launched?", "Select a dropship:") as null|anything in list("Dropship 1", "Dropship 2")
-	if(!tag) 
+	if(!tag)
 		return
 
 	var/crash = FALSE
 	switch(alert("Would you like to force a crash?", , "Yes", "No", "Cancel"))
-		if("Yes") 
+		if("Yes")
 			crash = TRUE
-		if("No") 
+		if("No")
 			crash = FALSE
-		else 
+		else
 			return
 
 	var/datum/shuttle/ferry/marine/dropship = shuttle_controller.shuttles[MAIN_SHIP_NAME + " " + tag]
@@ -795,51 +795,60 @@
 	if(!istype(H))
 		return
 
-	if(alert("Are you sure you wish to edit this mob's appearance?", "Confirmation", "Yes", "No") != "Yes")
-		return
-
-	var/new_facial = input("Please select facial hair color.", "Character Generation") as color
-	if(new_facial)
-		H.r_facial = hex2num(copytext(new_facial, 2, 4))
-		H.g_facial = hex2num(copytext(new_facial, 4, 6))
-		H.b_facial = hex2num(copytext(new_facial, 6, 8))
-
-	var/new_hair = input("Please select hair color.", "Character Generation") as color
-	if(new_facial)
-		H.r_hair = hex2num(copytext(new_hair, 2, 4))
-		H.g_hair = hex2num(copytext(new_hair, 4, 6))
-		H.b_hair = hex2num(copytext(new_hair, 6, 8))
-
-	var/new_eyes = input("Please select eye color.", "Character Generation") as color
-	if(new_eyes)
-		H.r_eyes = hex2num(copytext(new_eyes, 2, 4))
-		H.g_eyes = hex2num(copytext(new_eyes, 4, 6))
-		H.b_eyes = hex2num(copytext(new_eyes, 6, 8))
-
-	var/new_skin = input("Please select body color. This is for Tajaran, Unathi, and Skrell only!", "Character Generation") as color
-	if(new_skin)
-		H.r_skin = hex2num(copytext(new_skin, 2, 4))
-		H.g_skin = hex2num(copytext(new_skin, 4, 6))
-		H.b_skin = hex2num(copytext(new_skin, 6, 8))
-
-
-	// hair
-	var/new_hstyle = input("Select a hair style")  as null|anything in GLOB.hair_styles_list
-	if(new_hstyle)
-		H.h_style = new_hstyle
-
-	// facial hair
-	var/new_fstyle = input("Select a facial hair style")  as null|anything in GLOB.facial_hair_styles_list
-	if(new_fstyle)
-		H.f_style = new_fstyle
-
-	var/new_gender = alert("Please select gender.",, "Male", "Female")
-	if(new_gender)
-		if(new_gender == "Male")
-			H.gender = MALE
+	switch(input("What do you want to edit?") as null|anything in list("Hair Style", "Hair Color", "Facial Hair Style", "Facial Hair Color", "Eye Color", "Body Color", "Gender", "Ethnicity"))
+		if("Hair Style")
+			var/new_hstyle = input("Select a hair style") as null|anything in GLOB.hair_styles_list
+			if(!new_hstyle || !istype(H))
+				return
+			H.h_style = new_hstyle
+		if("Hair Color")
+			var/new_hair = input("Select hair color.") as color
+			if(!new_hair || !istype(H))
+				return
+			H.r_hair = hex2num(copytext(new_hair, 2, 4))
+			H.g_hair = hex2num(copytext(new_hair, 4, 6))
+			H.b_hair = hex2num(copytext(new_hair, 6, 8))
+		if("Facial Hair Style")
+			var/new_fstyle = input("Select a facial hair style")  as null|anything in GLOB.facial_hair_styles_list
+			if(!new_fstyle || !istype(H))
+				return
+			H.f_style = new_fstyle
+		if("Facial Hair Color")
+			var/new_facial = input("Please select facial hair color.") as color
+			if(!new_facial || !istype(H))
+				return
+			H.r_facial = hex2num(copytext(new_facial, 2, 4))
+			H.g_facial = hex2num(copytext(new_facial, 4, 6))
+			H.b_facial = hex2num(copytext(new_facial, 6, 8))
+		if("Eye Color")
+			var/new_eyes = input("Please select eye color.", "Character Generation") as color
+			if(!new_eyes || !istype(H))
+				return
+			H.r_eyes = hex2num(copytext(new_eyes, 2, 4))
+			H.g_eyes = hex2num(copytext(new_eyes, 4, 6))
+			H.b_eyes = hex2num(copytext(new_eyes, 6, 8))
+		if("Body Color")
+			var/new_skin = input("Please select body color. This is for Tajaran, Unathi, and Skrell only!", "Character Generation") as color
+			if(!new_skin || !istype(H))
+				return
+			H.r_skin = hex2num(copytext(new_skin, 2, 4))
+			H.g_skin = hex2num(copytext(new_skin, 4, 6))
+			H.b_skin = hex2num(copytext(new_skin, 6, 8))
+		if("Gender")
+			var/new_gender = alert("Please select gender.",, "Male", "Female")
+			if(!new_gender || !istype(H))
+				return
+			if(new_gender == "Male")
+				H.gender = MALE
+			else
+				H.gender = FEMALE
 		else
-			H.gender = FEMALE
+			return
 
 	H.update_hair()
 	H.update_body()
+	H.regenerate_icons()
 	H.check_dna(H)
+
+	log_admin("[key_name(usr)] updated the appearance of [key_name(H)].")
+	message_admins("[ADMIN_TPMONTY(usr)] updated the appearance of [ADMIN_TPMONTY(H)].")

@@ -42,7 +42,7 @@
 	dat += "<a href='?src=[ref];evac_authority=toggle_evac'>Toggle Evacuation Permission</a><br>"
 	dat += "<a href='?src=[ref];evac_authority=force_evac'>Force Evacuation Now</a><br>"
 
-	dat += "<br><br>"
+	dat += "<br>"
 
 	dat += "<b>Self Destruct:</b> "
 	switch(EvacuationAuthority.dest_status)
@@ -65,7 +65,7 @@
 	dat += "<br><br>"
 
 	if(length(ticker.mode.xenomorphs))
-		dat += "<br><table cellspacing=5><tr><td><B>Aliens</B></td><td></td><td></td></tr>"
+		dat += "<table cellspacing=5><tr><td><B>Aliens</B></td><td></td><td></td></tr>"
 		for(var/datum/mind/L in ticker.mode.xenomorphs)
 			var/mob/M = L.current
 			var/location = ""
