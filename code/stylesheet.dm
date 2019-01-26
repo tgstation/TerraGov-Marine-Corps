@@ -103,5 +103,31 @@ h1.alert, h2.alert		{color: #000000;}
 .rough					{font-family: trebuchet-ms, cursive, sans-serif;}
 .say_quote				{font-family: Georgia, Verdana, sans-serif;}
 
+
+.green					{color: #03ff39;}
+.nicegreen				{color: #14a833;}
+.shadowling				{color: #3b2769;}
+.cult					{color: #960000;}
+.cultlarge				{color: #960000; font-weight: bold; font-size: 3;}
+.narsie					{color: #960000; font-weight: bold; font-size: 15;}
+.narsiesmall			{color: #960000; font-weight: bold; font-size: 6;}
+.colossus				{color: #7F282A; font-size: 5;}
+.hierophant				{color: #660099; font-weight: bold; font-style: italic;}
+.hierophant_warning		{color: #660099; font-style: italic;}
+.purple					{color: #5e2d79;}
+.holoparasite			{color: #35333a;}
+
+.revennotice			{color: #1d2953;}
+.revenboldnotice		{color: #1d2953;	font-weight: bold;}
+.revenbignotice			{color: #1d2953;	font-weight: bold; font-size: 3;}
+.revenminor				{color: #823abb}
+.revenwarning			{color: #760fbb;	font-style: italic;}
+.revendanger			{color: #760fbb;	font-weight: bold; font-size: 3;}
+.umbra					{color: #5000A0;}
+.umbra_emphasis			{color: #5000A0;	font-weight: bold;	font-style: italic;}
+.umbra_large			{color: #5000A0; font-size: 3; font-weight: bold; font-style: italic;}
+
+.deconversion_message	{color: #5000A0; font-size: 3; font-style: italic;}
+
 .interface				{color: #330033;}
 </style>"}
