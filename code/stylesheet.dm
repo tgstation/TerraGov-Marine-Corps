@@ -21,10 +21,6 @@ em						{font-style: normal;	font-weight: bold;}
 .admin					{color: #386aff;	font-weight: bold;}
 .adminsay				{color: #9611D4;	font-weight: bold;}
 .headminsay				{color: #5A0A7F;	font-weight: bold;}
-.headminmod				{color: #402A14;	font-weight: bold;}
-.adminnotice			{color: #0000ff;}
-.adminhelp              {color: #ff0000;    font-weight: bold;}
-.green					{color: #37ba54;}
 
 .adminnotice			{color: #0000ff;}
 .adminhelp              {color: #ff0000;    font-weight: bold;}
