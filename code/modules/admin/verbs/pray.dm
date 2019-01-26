@@ -22,10 +22,10 @@
 
 	if(liaison)
 
-		msg = "<b><font color=purple>LIAISON PRAY:</font> <span class='notice'>[ADMIN_FULLMONTY(usr)] [ADMIN_SC(usr)]:</b> [msg]</span>"
+		msg = "<b><font color=purple>LIAISON PRAY:</font> <span class='notice'>[ADMIN_FULLMONTY(usr)] [ADMIN_SC(usr)] [ADMIN_SFC(usr)]:</b> [msg]</span>"
 		mentor_msg = "<b><font color=purple>LIAISON PRAY:</font> <span class='notice'>[ADMIN_TPMONTY(usr)]:</b> [mentor_msg]</span>"
 	else
-		msg = "<b><font color=purple>PRAY:</font> <span class='notice'>[ADMIN_FULLMONTY(usr)] [ADMIN_SC(usr)]:</b> [msg]</span>"
+		msg = "<b><font color=purple>PRAY:</font> <span class='notice'>[ADMIN_FULLMONTY(usr)] [ADMIN_SC(usr)] [ADMIN_SFC(usr)]:</b> [msg]</span>"
 		mentor_msg = "<b><font color=purple>PRAY:</font> <span class='notice'>[ADMIN_TPMONTY(usr)]:</b> [mentor_msg]</span>"
 
 
