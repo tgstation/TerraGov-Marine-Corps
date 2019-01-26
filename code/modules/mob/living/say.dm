@@ -105,7 +105,7 @@ var/list/department_radio_keys = list(
 				listening_obj |= O
 
 
-		for(var/mob/M in player_list)
+		for(var/mob/M in GLOB.player_list)
 			if(M.stat == DEAD && M.client && M.client.prefs && (M.client.prefs.toggles_chat & CHAT_GHOSTEARS))
 				listening |= M
 				continue

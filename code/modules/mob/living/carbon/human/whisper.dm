@@ -2,10 +2,6 @@
 /mob/living/carbon/human/whisper(message as text)
 	var/alt_name = ""
 
-	if(say_disabled)	//This is here to try to identify lag problems
-		to_chat(usr, "<span class='warning'>Speech is currently admin-disabled.</span>")
-		return
-
 	log_talk(message, LOG_WHISPER)
 
 	if (src.client)
@@ -88,7 +84,7 @@
 	listening |= src
 
 	//ghosts
-	for (var/mob/M in dead_mob_list)	//does this include players who joined as observers as well?
+	for (var/mob/M in GLOB.dead_mob_list)	//does this include players who joined as observers as well?
 		if (!(M.client))
 			continue
 		if(M.stat == DEAD && M.client && (M.client.prefs.toggles_chat & CHAT_GHOSTEARS))

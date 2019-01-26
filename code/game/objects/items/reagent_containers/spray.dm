@@ -60,8 +60,8 @@
 	for(var/X in reagents.reagent_list)
 		var/datum/reagent/R = X
 		if(R.spray_warning)
-			message_admins("[key_name_admin(user)] fired [R.name] from \a [src].")
-			log_game("[key_name(user)] fired [R.name] from \a [src].")
+			log_game("[key_name(user)] fired [R.name] from \a [src] in [AREACOORD(src.loc)].")
+			message_admins("[ADMIN_TPMONTY(user)] sprayed [R.name] from \a [src].")
 
 /obj/item/reagent_container/spray/proc/Spray_at(atom/A)
 	var/obj/effect/decal/chempuff/D = new/obj/effect/decal/chempuff(get_turf(src))

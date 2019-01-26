@@ -634,8 +634,8 @@ var/list/robot_verbs_default = list(
 					lawupdate = 0
 					connected_ai = null
 					to_chat(user, "You emag [src]'s interface.")
-					message_admins("[key_name_admin(user)] emagged cyborg [key_name_admin(src)].  Laws overridden.")
-					log_game("[key_name(user)] emagged cyborg [key_name(src)].  Laws overridden.")
+					log_game("[key_name(user)] emagged cyborg [key_name(src)]. Laws overridden.")
+					message_admins("[ADMIN_TPMONTY(user)] emagged cyborg [ADMIN_TPMONTY(src)]. Laws overridden.")					
 					clear_supplied_laws()
 					clear_inherent_laws()
 					laws = new /datum/ai_laws/syndicate_override
