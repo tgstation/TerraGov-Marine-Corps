@@ -754,11 +754,12 @@
 		to_chat(usr, "\icon[src] <span class='warning'>No supply beacon detected!</span>")
 		return
 
-	var/obj/C = locate() in current_squad.drop_pad.loc //This thing should ALWAYS exist.
-	if(!C.can_supply_drop) //Can only send vendors and crates
-		C = null
+	var/list/supplies = list()
+	for(var/obj/C in current_squad.drop_pad.loc) //This thing should ALWAYS exist.
+		if(C.can_supply_drop && !C.anchored) //Can only send vendors and crates
+			supplies.Add(C)
 
-	if(!istype(C))
+	if(!supplies.len)
 		to_chat(usr, "\icon[src] <span class='warning'>No crate was detected on the drop pad. Get Requisitions on the line!</span>")
 		return
 
@@ -786,35 +787,46 @@
 	x_offset += rand(-2,2) //Randomize the drop zone a little bit.
 	y_offset += rand(-2,2)
 
-	busy = 1
+	busy = TRUE
 
-	state("<span class='boldnotice'>'[C.name]' supply drop is now loading into the launch tube! Stand by!</span>")
-	C.visible_message("<span class='warning'>\The [C] begins to load into a launch tube. Stand clear!</span>")
-	C.anchored = TRUE //to avoid accidental pushes
+	state("<span class='boldnotice'>The supply drop is now loading into the launch tube! Stand by!</span>")
+	current_squad.drop_pad.visible_message("<span class='warning'>\The [current_squad.drop_pad] whirrs as it beings to load the supplies into a launch tube. Stand clear!</span>")
+	for(var/obj/C in supplies)
+		C.anchored = TRUE //to avoid accidental pushes
 	send_to_squad("Supply Drop Incoming!")
 	current_squad.sbeacon.visible_message("\icon[src] <span class='boldnotice'>The [current_squad.sbeacon.name] begins to beep!</span>")
-	var/datum/squad/S = current_squad //in case the operator changes the overwatched squad mid-drop
-	spawn(100)
-		if(!C || C.loc != S.drop_pad.loc) //Crate no longer on pad somehow, abort.
-			if(C) C.anchored = FALSE
-			to_chat(usr, "\icon[src] <span class='warning'>Launch aborted! No crate detected on the drop pad.</span>")
-			return
-		S.supply_cooldown = world.time
+	addtimer(CALLBACK(src, .proc/fire_supplydrop, current_squad, supplies), 10 SECONDS)
 
-		if(S.sbeacon)
-			qdel(S.sbeacon) //Wipe the beacon. It's only good for one use.
-			S.sbeacon = null
-		playsound(C.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehh
+/obj/machinery/computer/overwatch/proc/fire_supplydrop(datum/squad/S, list/supplies)
+	var/list/loaded_supplies
+	for(var/obj/C in supplies)
+		if(QDELETED(C))
+			supplies.Remove(C)
+			continue
+		if(C.loc != S.drop_pad.loc) //Crate no longer on pad somehow, abort.
+			C.anchored = FALSE
+			continue
+		loaded_supplies.Add(C)
+	if(!loaded_supplies.len)
+		to_chat(usr, "\icon[src] <span class='warning'>Launch aborted! No crate detected on the drop pad.</span>")
+		busy = FALSE
+		return
+
+	S.supply_cooldown = world.time
+
+	S.sbeacon.visible_message("<span class='boldnotice'>A supply drop falls from the sky!</span>")
+	playsound(S.sbeacon.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehhhhhhhhh.
+	QDEL_NULL(S.sbeacon) //Wipe the beacon. It's only good for one use.
+	playsound(S.drop_pad.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehh
+	for(var/obj/C in loaded_supplies)
 		C.anchored = FALSE
 		C.z = T.z
 		C.x = T.x + x_offset
 		C.y = T.y + x_offset
 		var/turf/TC = get_turf(C)
 		TC.ceiling_debris_check(3)
-		playsound(C.loc,'sound/effects/bamf.ogg', 50, 1)  //Ehhhhhhhhh.
-		C.visible_message("\icon[C] <span class='boldnotice'>The [C.name] falls from the sky!</span>")
-		visible_message("\icon[src] <span class='boldnotice'>'[C.name]' supply drop launched! Another launch will be available in five minutes.</span>")
-		busy = 0
+	visible_message("\icon[src] <span class='boldnotice'>'[C.name]' supply drop launched! Another launch will be available in five minutes.</span>")
+	busy = FALSE
 
 /obj/structure/supply_drop
 	name = "Supply Drop Pad"
