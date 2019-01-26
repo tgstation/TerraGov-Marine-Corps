@@ -428,9 +428,12 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	GLOB.ahelp_tickets.ListInsert(src)
 	AddInteraction("<font color='red'>Closed by [key_name].</font>")
 	if(!silent)
-		message_admins("Ticket [TicketHref("#[id]")] closed by [ADMIN_TPMONTY(usr)].")
 		log_admin_private("Ticket (#[id]) closed by [key_name(usr)].")
-
+		if(tier == TICKET_MENTOR)
+			message_staff("Ticket [TicketHref("#[id]")] closed by [ADMIN_TPMONTY(usr)].")
+		else if(tier == TICKET_ADMIN)
+			message_admins("Ticket [TicketHref("#[id]")] closed by [ADMIN_TPMONTY(usr)].")
+		
 
 //Mark open ticket as resolved/legitimate, returns ahelp verb
 /datum/admin_help/proc/Resolve(key_name = key_name_admin(usr), silent = FALSE)
@@ -445,8 +448,11 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	AddInteraction("<font color='green'>Resolved by [key_name].</font>")
 	to_chat(initiator, "<span class='adminhelp'>Your ticket has been resolved by an admin. The Adminhelp verb will be returned to you shortly.</span>")
 	if(!silent)
-		message_admins("Ticket [TicketHref("#[id]")] resolved by [ADMIN_TPMONTY(usr)].")
 		log_admin_private("Ticket (#[id]) resolved by [key_name(usr)].")
+		if(tier == TICKET_MENTOR)
+			message_staff("Ticket [TicketHref("#[id]")] resolved by [ADMIN_TPMONTY(usr)].")
+		else if(tier == TICKET_ADMIN)
+			message_admins("Ticket [TicketHref("#[id]")] resolved by [ADMIN_TPMONTY(usr)].")
 
 
 //Close and return ahelp verb, use if ticket is incoherent
