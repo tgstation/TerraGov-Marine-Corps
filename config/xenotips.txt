@@ -19,3 +19,4 @@ As a xeno, aging from young to mature gives you the most benefit, further aging 
 As a xeno, keep resisting to put out fires if you are currently on fire.
 As a xeno, you can melee other xenos on fire on ‘help’ intent to try to extinguish their fires.
 As a xeno, it’s not a good idea to kill hosts during the crash phase if they can be captured instead.
+As a xeno, the best way of getting kills is by hunting in packs.

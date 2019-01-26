@@ -38,6 +38,7 @@ Dying is part of the game.
 Almost every specialist has been reworked.
 You can select locations on the doll by using the number pad.
 Anything can be a weapon if you put your mind to it.
+The best way of not dieing is having frinds nearby, as meatshields or as extra guns!
 As a human, you can check your wounds to see if they have been bandaged or slaved.
 As a human, use ‘resist’ to stop drop and roll when on fire.
 As a human, melee a person on fire with help intent to put the fire out.
