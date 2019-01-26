@@ -53,7 +53,7 @@
 	log = FALSE
 
 /datum/world_topic/playing/Run(list/input)
-	return GLOB.GLOB.player_list.len
+	return GLOB.player_list.len
 
 /datum/world_topic/pr_announce
 	keyword = "announce"
@@ -102,7 +102,7 @@
 
 /datum/world_topic/server_hop/Run(list/input)
 	var/expected_key = input[keyword]
-	for(var/mob/dead/observer/O in GLOB.GLOB.player_list)
+	for(var/mob/dead/observer/O in GLOB.player_list)
 		if(O.key == expected_key)
 			if(O.client)
 				new /obj/screen/splash(O.client, TRUE)
