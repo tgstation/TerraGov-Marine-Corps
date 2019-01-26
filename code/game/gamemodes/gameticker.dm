@@ -41,7 +41,7 @@ var/global/datum/controller/gameticker/ticker
 	'sound/music/SpaceHero.ogg',
 	'sound/music/ManOfWar.ogg',
 	'sound/music/PraiseTheLord.ogg',
-	'sound/music/PraiseTheLord.ogg',
+	'sound/music/BloodUponTheRisers.ogg',
 	'sound/music/DawsonChristian.ogg')
 
 	do
