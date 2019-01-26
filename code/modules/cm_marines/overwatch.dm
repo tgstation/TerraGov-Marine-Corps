@@ -6,6 +6,8 @@ GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
 	/obj/structure/closet/crate,
 	/obj/machinery/vending)))
 
+#define MAX_SUPPLY_DROPS 4
+
 /obj/machinery/computer/overwatch
 	name = "Overwatch Console"
 	desc = "State of the art machinery for giving orders to a squad."
@@ -764,7 +766,7 @@ GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
 	for(var/obj/C in current_squad.drop_pad.loc) //This thing should ALWAYS exist.
 		if(C in GLOB.supply_drops && !C.anchored) //Can only send vendors and crates
 			supplies.Add(C)
-		if(supplies.len > 4)
+		if(supplies.len > MAX_SUPPLY_DROPS)
 			break
 
 	if(!supplies.len)
@@ -1309,3 +1311,4 @@ GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
 #undef OW_MAIN
 #undef OW_MONITOR
 #undef OW_SUPPLIES
+#undef MAX_SUPPLY_DROPS
