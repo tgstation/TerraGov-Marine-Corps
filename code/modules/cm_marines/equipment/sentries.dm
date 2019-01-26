@@ -286,7 +286,7 @@
 	camera = new (src)
 	camera.network = list("military")
 	camera.c_tag = "[name] ([rand(0, 1000)])"
-	stat = 0
+	stat = NOFLAGS
 	//START_PROCESSING(SSobj, src)
 	ammo = ammo_list[ammo]
 	update_icon()
