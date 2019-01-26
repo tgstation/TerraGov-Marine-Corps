@@ -31,7 +31,7 @@
 		if(user.lying) //Can't use your inventory when lying
 			return
 
-		if(istype(user.loc, /obj/mecha)) //Stops inventory actions in a mech
+		if(istype(user.loc, /obj/mecha) || istype(user.loc, /obj/vehicle/multitile/root/cm_armored)) //Stops inventory actions in a mech/tank
 			return 0
 
 		if(over_object == user && Adjacent(user)) //This must come before the screen objects only block

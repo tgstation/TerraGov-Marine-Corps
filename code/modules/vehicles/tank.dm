@@ -17,7 +17,7 @@
 	var/mob/gunner
 	var/mob/driver
 
-	var/occupant_exiting = 0
+	var/occupant_exiting = null
 	var/next_sound_play = 0
 
 	luminosity = 7
@@ -108,49 +108,43 @@
 	set category = "Object"
 	set src in view(0)
 
-	//A little icky, but functional
-	//Using a list of mobs for driver and gunner might make this code look better
-	//But all of the other code about those two would look like shit
-	if(usr == gunner)
-		if(driver)
-			to_chat(usr, "<span class='notice'>There's already someone in the other seat.</span>")
-			return
+	if(usr.is_mob_incapacitated())
+		return
 
-		to_chat(usr, "<span class='notice'>You start getting into the other seat.</span>")
+	var/neighbour = (usr == gunner) ? driver : gunner
+	if(neighbour)
+		to_chat(usr, "<span class='notice'>There's already someone in the other seat.</span>")
+		return
 
-		sleep(30)
+	to_chat(usr, "<span class='notice'>You start getting into the other seat.</span>")
+	addtimer(CALLBACK(src, .proc/seat_switched, neighbour, usr), 3 SECONDS)
 
-		if(driver)
+/obj/vehicle/multitile/root/cm_armored/tank/proc/seat_switched(new_role, mob/living/user)
+
+	var/our_dude = (neighbour == gunner) ? driver : gunner
+	if(QDELETED(user) || user.is_mob_incapacitated() || our_dude != user)
+		return
+
+	if(new_role)
+		if(new_role != user)
 			to_chat(usr, "<span class='notice'>Someone beat you to the other seat!</span>")
-			return
+		return
 
-		to_chat(usr, "<span class='notice'>You switch seats.</span>")
+	to_chat(usr, "<span class='notice'>You switch seats.</span>")
 
+	if(our_dude == gunner)
 		deactivate_all_hardpoints()
 
-		driver = gunner
-		gunner = null
+	new_role = our_dude
+	our_dude = null
 
-	else if(usr == driver)
-		if(gunner)
-			to_chat(usr, "<span class='notice'>There's already someone in the other seat.</span>")
-			return
-
-		to_chat(usr, "<span class='notice'>You start getting into the other seat.</span>")
-
-		sleep(30)
-
-		if(gunner)
-			to_chat(usr, "<span class='notice'>Someone beat you to the other seat!</span>")
-			return
-
-		to_chat(usr, "<span class='notice'>You switch seats.</span>")
-
-		gunner = driver
-		driver = null
-
-/obj/vehicle/multitile/root/cm_armored/tank/can_use_hp(var/mob/M)
-	return (M == gunner)
+/obj/vehicle/multitile/root/cm_armored/tank/can_use_hp(mob/M)
+	if(!M || M != gunner)
+		return FALSE
+	if(!M.IsAdvancedToolUser())
+		to_chat(M, "<span class='warning'>You don't have the dexterity to do this!</span>")
+		return FALSE
+	return M.is_mob_incapacitated()
 
 /obj/vehicle/multitile/root/cm_armored/tank/handle_harm_attack(var/mob/M)
 
@@ -190,11 +184,14 @@
 
 //Two seats, gunner and driver
 //Must have the skills to do so
-/obj/vehicle/multitile/root/cm_armored/tank/handle_player_entrance(var/mob/M)
+/obj/vehicle/multitile/root/cm_armored/tank/handle_player_entrance(mob/living/carbon/M)
+	if(!(..()))
+		return
+
+	if(!istype(M) || M.client == null || !M.IsAdvancedToolUser() || isXeno(M))
+		return
 
 	var/slot = input("Select a seat") in list("Driver", "Gunner")
-
-	if(!M || M.client == null) return
 
 	if(!allowed(M))
 		to_chat(M, "<span class='notice'>Access denied.</span>")
@@ -268,21 +265,26 @@
 			return
 
 //Deposits you onto the exit marker
-//TODO: Sometimes when the entrance marker is on the wall or somewhere you can't move to, it still deposits you there
-//Fix that bug at somepoint ^^
-/obj/vehicle/multitile/root/cm_armored/tank/handle_player_exit(var/mob/M)
+/obj/vehicle/multitile/root/cm_armored/tank/handle_player_exit(mob/M)
 
-	if(M != gunner && M != driver) return
-
-	if(occupant_exiting)
-		to_chat(M, "<span class='notice'>Someone is already getting out of the vehicle.</span>")
+	if(M in list(gunner, driver))
 		return
 
-	to_chat(M, "<span class='notice'>You start climbing out of [src].</span>")
+	if(occupant_exiting != M)
+		if(occupant_exiting)
+			to_chat(M, "<span class='notice'>Someone is already getting out of the vehicle.</span>")
+			return
 
-	occupant_exiting = 1
-	sleep(50)
-	occupant_exiting = 0
+		to_chat(M, "<span class='notice'>You start climbing out of [src].</span>")
+		occupant_exiting = M
+
+	addtimer(CALLBACK(src, .proc/exit_tank, M), 5 SECONDS)
+
+/obj/vehicle/multitile/root/cm_armored/tank/proc/exit_tank(mob/M)
+	occupant_exiting = null
+
+	if(!M || M.is_mob_incapacitated() || (M in list(gunner, driver)))
+		return
 
 	if(!M.Move(entrance.loc))
 		to_chat(M, "<span class='notice'>Something is blocking you from exiting.</span>")

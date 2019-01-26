@@ -188,7 +188,8 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 	set category = "Object"
 	set src in view(0)
 
-	if(!can_use_hp(usr)) return
+	if(!can_use_hp(usr))
+		return
 
 	//TODO: make this a proc so I don't keep repeating this code
 	var/list/slots = get_activatable_hardpoints()
@@ -211,7 +212,11 @@ var/list/TANK_HARDPOINT_OFFSETS = list(
 
 	to_chat(usr, "<span class='notice'>You begin reloading the [slot] module.</span>")
 
-	sleep(20)
+	addtimer(CALLBACK(src, .proc/finish_reloading_hp, usr), 2 SECONDS)
+
+/obj/vehicle/multitile/root/cm_armored/proc/reload_hp(mob/living/user)
+	if(!can_use_hp(usr))
+		return
 
 	HP.ammo.Move(entrance.loc)
 	HP.ammo.update_icon()
