@@ -163,7 +163,7 @@
 
 
 		log_combat(user, src.occupant, "gibbed") //One shall not simply gib a mob unnoticed!
-		msg_admin_attack("[key_name(usr)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[usr]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[usr.x];Y=[usr.y];Z=[usr.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[usr]'>FLW</a>) gibbed [key_name(src.occupant)] (<A HREF='?_src_=holder;adminmoreinfo=\ref[src.occupant]'>?</A>) (<A HREF='?_src_=holder;adminplayerobservecoodjump=1;X=[src.occupant.x];Y=[src.occupant.y];Z=[src.occupant.z]'>JMP</a>) (<A HREF='?_src_=holder;adminplayerfollow=\ref[src.occupant]'>FLW</a>)")
+		msg_admin_attack("[ADMIN_TPMONTY(usr)] gibbed [ADMIN_TPMONTY(src.occupant)].")
 
 		src.occupant.death(1)
 		src.occupant.ghostize()
@@ -197,7 +197,7 @@
 
 		if(occupant.client) // Gibbed a cow with a client in it? log that shit
 			log_combat(occupant, user, "gibbed")
-			msg_admin_attack("\[[time_stamp()]\] <b>[key_name(user)]</b> gibbed <b>[key_name(src.occupant)]</b>")
+			msg_admin_attack("[ADMIN_TPMONTY(user)] gibbed [ADMIN_TPMONTY(src.occupant)].")
 
 		occupant.death(1)
 		occupant.ghostize()

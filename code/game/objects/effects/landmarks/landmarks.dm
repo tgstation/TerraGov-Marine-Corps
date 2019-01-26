@@ -95,10 +95,10 @@
 			qdel(src)
 
 
-	landmarks_list += src
+	GLOB.landmarks_list += src
 
 /obj/effect/landmark/Destroy()
-	landmarks_list -= src
+	GLOB.landmarks_list -= src
 	return ..()
 
 /obj/effect/landmark/start

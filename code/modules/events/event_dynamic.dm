@@ -22,10 +22,10 @@ var/list/event_last_fired = list()
 	possibleEvents[/datum/event/trivial_news] = 400
 	possibleEvents[/datum/event/mundane_news] = 300
 
-	possibleEvents[/datum/event/pda_spam] = max(min(25, player_list.len) * 4, 200)
-	possibleEvents[/datum/event/money_lotto] = max(min(5, player_list.len), 50)
+	possibleEvents[/datum/event/pda_spam] = max(min(25, GLOB.player_list.len) * 4, 200)
+	possibleEvents[/datum/event/money_lotto] = max(min(5, GLOB.player_list.len), 50)
 	if(account_hack_attempted)
-		possibleEvents[/datum/event/money_hacker] = max(min(25, player_list.len) * 4, 200)
+		possibleEvents[/datum/event/money_hacker] = max(min(25, GLOB.player_list.len) * 4, 200)
 
 
 	possibleEvents[/datum/event/carp_migration] = 20 + 10 * active_with_role["Engineer"]
@@ -86,7 +86,7 @@ var/list/event_last_fired = list()
 	active_with_role["AI"] = 0
 	active_with_role["Cyborg"] = 0
 
-	for(var/mob/M in player_list)
+	for(var/mob/M in GLOB.player_list)
 		if(!M.mind || !M.client || M.client.inactivity > 10 * 10 * 60) //Longer than 10 minutes AFK counts them as inactive
 			continue
 

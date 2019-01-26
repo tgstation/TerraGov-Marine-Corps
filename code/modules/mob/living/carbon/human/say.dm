@@ -35,7 +35,7 @@
 	if(speaking)
 		message = copytext(message,3)
 	else if(species.default_language)
-		speaking = all_languages[species.default_language]
+		speaking = GLOB.all_languages[species.default_language]
 
 	var/ending = copytext(message, length(message))
 	if (speaking)

@@ -184,8 +184,8 @@
 				if(z == 1)
 					shuttle.transit_gun_mission = FALSE //remote launch always do transport flight.
 				shuttle.launch(src)
-			log_admin("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] from [src]")
-			message_admins("[usr] ([usr.key]) launched a [shuttle.iselevator? "elevator" : "shuttle"] using [src].")
+			log_admin("[key_name(usr)] launched a [shuttle.iselevator ? "elevator" : "shuttle"] from [src].")
+			message_admins("[ADMIN_TPMONTY(usr)] launched a [shuttle.iselevator ? "elevator" : "shuttle"] using [src].")
 
 	if(href_list["optimize"])
 		if(shuttle.transit_optimized)
@@ -225,7 +225,7 @@
 		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
 			ship_id = "sh_dropship2"
 
-		for(var/obj/machinery/door/airlock/dropship_hatch/M in machines)
+		for(var/obj/machinery/door/airlock/dropship_hatch/M in GLOB.machines)
 			if(M.id == ship_id)
 				if(M.locked && M.density)
 					continue // jobs done
@@ -238,10 +238,10 @@
 		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
 		switch(ship_id)
 			if("sh_dropship1")
-				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in machines)
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in GLOB.machines)
 					reardoor = D
 			if("sh_dropship2")
-				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in machines)
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in GLOB.machines)
 					reardoor = D
 
 		if(!reardoor.locked && reardoor.density)
@@ -264,7 +264,7 @@
 		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
 			ship_id = "sh_dropship2"
 
-		for(var/obj/machinery/door/airlock/dropship_hatch/M in machines)
+		for(var/obj/machinery/door/airlock/dropship_hatch/M in GLOB.machines)
 			if(M.id == ship_id)
 				if(M.z != 4)
 					M.unlock()
@@ -272,10 +272,10 @@
 		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
 		switch(ship_id)
 			if("sh_dropship1")
-				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in machines)
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in GLOB.machines)
 					reardoor = D
 			if("sh_dropship2")
-				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in machines)
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in GLOB.machines)
 					reardoor = D
 		if(reardoor.z != 4)
 			reardoor.unlock()
@@ -288,7 +288,7 @@
 		if(shuttle_tag == "[MAIN_SHIP_NAME] Dropship 2")
 			ship_id = "sh_dropship2"
 
-		for(var/obj/machinery/door/airlock/dropship_hatch/M in machines)
+		for(var/obj/machinery/door/airlock/dropship_hatch/M in GLOB.machines)
 			if(M.id == ship_id)
 				var/is_right_side = text2num(href_list["right side"])
 				if(is_right_side)
@@ -315,10 +315,10 @@
 		var/obj/machinery/door/airlock/multi_tile/almayer/reardoor
 		switch(ship_id)
 			if("sh_dropship1")
-				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in machines)
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds1/D in GLOB.machines)
 					reardoor = D
 			if("sh_dropship2")
-				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in machines)
+				for(var/obj/machinery/door/airlock/multi_tile/almayer/dropshiprear/ds2/D in GLOB.machines)
 					reardoor = D
 		if(reardoor)
 			if(reardoor.locked)
