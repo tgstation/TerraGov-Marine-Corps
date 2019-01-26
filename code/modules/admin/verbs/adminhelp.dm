@@ -518,6 +518,7 @@ GLOBAL_DATUM_INIT(ahelp_tickets, /datum/admin_help_tickets, new)
 	dat += "<br><br>Opened at: [gameTimestamp(wtime = opened_at)] (Approx [DisplayTimeText(world.time - opened_at)] ago)"
 	if(closed_at)
 		dat += "<br>Closed at: [gameTimestamp(wtime = closed_at)] (Approx [DisplayTimeText(world.time - closed_at)] ago)"
+	dat += "<br>Current time: [gameTimestamp()]"
 	dat += "<br><br>"
 	if(initiator)
 		if(check_rights(R_ADMIN, FALSE))
