@@ -245,8 +245,8 @@
 
 
 /datum/controller/configuration/proc/LoadMOTD()
-	motd = file2text("[directory]/motd.txt")
-	motd += "<br><br><span class='tip'>[pick(alltips)]<br></span>"
+	join_motd = file2text("[directory]/motd.txt")
+	join_motd += "<br><br><span class='tip'>[pick(alltips)]<br></span>"
 	/*
 	var/tm_info = GLOB.revdata.GetTestMergeInfo()
 	if(motd || tm_info)
