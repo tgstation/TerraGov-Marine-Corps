@@ -218,9 +218,9 @@
 
 /mob/living/carbon/human/has_legs()
 	. = 0
-	if(has_limb("r_foot") && has_limb("r_leg"))
+	if(has_limb(FOOT_RIGHT) && has_limb(LEG_RIGHT))
 		.++
-	if(has_limb("l_foot") && has_limb("l_leg"))
+	if(has_limb(FOOT_LEFT) && has_limb(LEG_LEFT))
 		.++
 
 /mob/living/carbon/human/proc/disable_lights(var/armor = 1, var/guns = 1, var/flares = 1, var/misc = 1)
