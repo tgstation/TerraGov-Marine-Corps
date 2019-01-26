@@ -22,6 +22,9 @@ em						{font-style: normal;	font-weight: bold;}
 .adminsay				{color: #9611D4;	font-weight: bold;}
 .headminsay				{color: #5A0A7F;	font-weight: bold;}
 
+.adminnotice			{color: #0000ff;}
+.adminhelp              {color: #ff0000;    font-weight: bold;}
+
 .name					{					font-weight: bold;}
 
 .say					{}
