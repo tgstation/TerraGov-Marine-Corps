@@ -325,7 +325,7 @@
 				to_chat(usr, "<span class='warning'>Error: [M] no longer has a client!</span>")
 				return
 			to_chat(M, "<span class='danger'>You have been kicked from the server by [usr.client.holder.fakekey ? "an Administrator" : "[usr.client.key]"].</span>")
-			qdel(M.client)
+			del(M.client)
 
 			log_admin_private("[key_name(usr)] kicked [key_name(M)].")
 			message_admins("[ADMIN_TPMONTY(usr)] kicked [ADMIN_TPMONTY(M)].")
