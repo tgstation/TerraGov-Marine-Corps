@@ -2,10 +2,6 @@
 #define OW_MONITOR 1
 #define OW_SUPPLIES 2
 
-GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
-	/obj/structure/closet/crate,
-	/obj/machinery/vending)))
-
 #define MAX_SUPPLY_DROPS 4
 
 /obj/machinery/computer/overwatch
