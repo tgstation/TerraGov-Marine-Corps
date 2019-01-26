@@ -492,7 +492,7 @@
 			var/mob/living/carbon/Xenomorph/X = M
 			if(X.fire_immune)
 				return
-			fire_mod = X.fire_resist
+			fire_mod = X.fire_resist - X.fire_resist_modifier //If it's a ravager it can become purely immune
 		M.adjust_fire_stacks(burnlevel) //Make it possible to light them on fire later.
 		if (prob(firelevel + 2*M.fire_stacks)) //the more soaked in fire you are, the likelier to be ignited
 			M.IgniteMob()

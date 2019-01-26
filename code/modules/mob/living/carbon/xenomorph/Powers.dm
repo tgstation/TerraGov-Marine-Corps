@@ -1884,7 +1884,8 @@
 
 	face_atom(A)
 	if(dist > 1) //Lunge towards the target turf
-		step_towards(src,A,2)
+		throw_at(get_turf(A), RAV_CHARGEDISTANCE, RAV_CHARGESPEED, A) //Throw at the target and not Move(), as that can be used to bypass cades with vertical movement
+
 
 	var/sweep_range = 1
 	var/list/L = orange(sweep_range)		// Not actually the fruit

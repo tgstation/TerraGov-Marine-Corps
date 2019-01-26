@@ -40,8 +40,8 @@
 		adjust_slowdown( round(-rage * 0.1,0.01) ) //Recover 0.1 more stagger stacks per unit of rage; min 0.1, max 5
 		adjust_stagger( round(-rage * 0.1,0.01) ) //Recover 0.1 more stagger stacks per unit of rage; min 0.1, max 5
 		rage_resist = CLAMP(1-round(rage * 0.014,0.01),0.3,1) //+1.4% damage resist per point of rage, max 70%
-		fire_resist_modifier = -round(rage * 0.01,0.01) //+1% fire resistance per stack of rage, max +50%; initial resist is 50%
-		attack_delay = initial(attack_delay) - round(rage * 0.05,0.01) //-0.05 attack delay to a maximum reduction of -2.5
+		fire_resist_modifier = CLAMP(round(rage * 0.01,0.01), 0.00, 0.50) * -1 //+1% fire resistance per stack of rage, max +50%; initial resist is 50%
+		attack_delay = initial(attack_delay) - (round(CLAMP(rage, 0, 50) * 0.05,0.01)) //-0.05 attack delay to a maximum reduction of -2.5
 	return ..()
 
 /mob/living/carbon/Xenomorph/update_stat()
