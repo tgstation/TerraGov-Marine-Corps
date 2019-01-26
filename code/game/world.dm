@@ -466,4 +466,26 @@ proc/establish_old_db_connection()
 	else
 		return 1
 
+proc/MapDaemonHandleRestart()
+	set waitfor = 0
+
+	sleep(300)
+
+	if(ticker.delay_end) return
+
+	to_chat(world, "\red <b>Restarting world!</b> \blue Initiated by MapDaemon.exe!")
+	log_admin("World/Topic() call (likely MapDaemon.exe) initiated a reboot.")
+
+	if(blackbox)
+		blackbox.save_all_data_to_sql() //wtf does this even do?
+
+	sleep(30)
+	world.Reboot() //Whatever this is the important part
+
+proc/send_map_info(next_map)
+	var/http[] = world.Export("http://127.0.0.1:4739?" + next_map)
+	if(!http)
+		message_admins("Failed to connect.")
+		return 0
+
 #undef FAILED_DB_CONNECTION_CUTOFF

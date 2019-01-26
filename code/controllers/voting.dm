@@ -481,19 +481,3 @@ var/kill_map_daemon = 0
 	if(world.system_type != MS_WINDOWS) return 0 //Don't know if it'll work for non-Windows, so let's just abort
 
 	shell("run_mapdaemon.bat")
-
-/proc/MapDaemonHandleRestart()
-	set waitfor = 0
-
-	sleep(300)
-
-	if(ticker.delay_end) return
-
-	to_chat(world, "\red <b>Restarting world!</b> \blue Initiated by MapDaemon.exe!")
-	log_admin("World/Topic() call (likely MapDaemon.exe) initiated a reboot.")
-
-	if(blackbox)
-		blackbox.save_all_data_to_sql() //wtf does this even do?
-
-	sleep(30)
-	world.Reboot() //Whatever this is the important part
