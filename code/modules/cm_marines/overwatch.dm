@@ -764,6 +764,8 @@ GLOBAL_LIST_INIT(supply_drops, typecacheof(list(
 	for(var/obj/C in current_squad.drop_pad.loc) //This thing should ALWAYS exist.
 		if(C in GLOB.supply_drops && !C.anchored) //Can only send vendors and crates
 			supplies.Add(C)
+		if(supplies.len > 4)
+			break
 
 	if(!supplies.len)
 		to_chat(usr, "\icon[src] <span class='warning'>No deployable object was detected on the drop pad. Get Requisitions on the line!</span>")
