@@ -116,12 +116,20 @@
 		var/y = text2num(href_list["Y"])
 		var/z = text2num(href_list["Z"])
 
+		var/client/C = usr.client
+
 		if(!isobserver(usr))
 			admin_ghost()
 			log_admin("[key_name(usr)] jumped to coordinates ([x], [y], [z]).")
 			message_admins("[ADMIN_TPMONTY(usr)] jumped to coordinates ([x], [y], [z]).")
 
-		jump_coord(x,y,z)
+		var/mob/dead/observer/M = C.mob
+
+		M.on_mob_jump()
+		M.x = x
+		M.y = y
+		M.z = z
+		M.forceMove(M.loc)
 
 
 	else if(href_list["observefollow"])
@@ -130,13 +138,15 @@
 		if(istype(usr, /mob/new_player) || istype(AM, /mob/new_player))
 			return
 
+		var/client/C = usr.client
+
 		if(!isobserver(usr))
 			admin_ghost()
 			log_admin("[key_name(usr)] jumped to follow [key_name(AM)].")
 			message_admins("[ADMIN_TPMONTY(usr)] jumped to follow [ADMIN_TPMONTY(AM)].")
 
-		var/mob/dead/observer/A = usr
-		A.ManualFollow(AM)
+		var/mob/dead/observer/ghost = C.mob
+		ghost.ManualFollow(AM)
 
 
 	else if(href_list["observejump"])
@@ -145,13 +155,14 @@
 		if(istype(usr, /mob/new_player) || istype(AM, /mob/new_player))
 			return
 
+		var/client/C = usr.client
+
 		if(!isobserver(usr))
 			admin_ghost()
 			log_admin("[key_name(usr)] jumped to [key_name(AM)].")
 			message_admins("[ADMIN_TPMONTY(usr)] jumped to [ADMIN_TPMONTY(AM)].")
 
-		var/mob/dead/observer/A = usr
-		A.forceMove(AM.loc)
+		C.mob.forceMove(AM.loc)
 
 
 	else if(href_list["secrets"])
