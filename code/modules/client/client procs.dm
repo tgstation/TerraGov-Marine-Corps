@@ -139,7 +139,10 @@
 		GLOB.admins |= src
 		holder.owner = src
 		holder.activate()
-		message_admins("Admin login: [key_name(src)].")
+		if(check_rights(R_ADMIN, FALSE))
+			message_admins("Admin login: [key_name_admin(src)].")
+		else if(check_rights(R_MENTOR, FALSE))
+			message_staff("Mentor login: [key_name_admin(src)].")
 	else if(GLOB.deadmins[ckey])
 		verbs += /client/proc/readmin
 
@@ -166,7 +169,10 @@
 	//////////////
 /client/Del()
 	if(holder)
-		message_admins("Admin logout: [key_name(src)].")
+		if(check_rights(R_ADMIN, FALSE))
+			message_admins("Admin logout: [key_name(src)].")
+		else if(check_rights(R_MENTOR, FALSE))
+			message_staff("Mentor logout: [key_name(src)].")
 		holder.owner = null
 		GLOB.admins -= src
 
