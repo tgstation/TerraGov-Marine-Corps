@@ -77,7 +77,7 @@
 	for(var/obj/item/photo/Ph in src)
 		dat += "<A href='?src=\ref[src];remove=\ref[Ph]'>Remove</A> - <A href='?src=\ref[src];look=\ref[Ph]'>[Ph.name]</A><BR>"
 
-	user << browse(dat, "window=clipboard")
+	user << browse(sanitize_local(dat, SANITIZE_BROWSER), "window=clipboard")
 	onclose(user, "clipboard")
 	add_fingerprint(usr)
 	return
@@ -136,10 +136,10 @@
 			if(P && (P.loc == src) && istype(P, /obj/item/paper) )
 
 				if(!(istype(usr, /mob/living/carbon/human) || istype(usr, /mob/dead/observer) || istype(usr, /mob/living/silicon)))
-					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", "window=[P.name]")
+					usr << browse(sanitize_local("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[stars(P.info)][P.stamps]</BODY></HTML>", SANITIZE_BROWSER), "window=[P.name]")
 					onclose(usr, "[P.name]")
 				else
-					usr << browse("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>", "window=[P.name]")
+					usr << browse(sanitize_local("<HTML><HEAD><TITLE>[P.name]</TITLE></HEAD><BODY>[P.info][P.stamps]</BODY></HTML>", SANITIZE_BROWSER), "window=[P.name]")
 					onclose(usr, "[P.name]")
 
 		else if(href_list["look"])
