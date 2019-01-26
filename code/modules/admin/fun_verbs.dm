@@ -517,7 +517,7 @@
 	message_admins("[ADMIN_TPMONTY(usr)] force launched a distress shuttle: [tag] to: [dock_name].")
 
 
-/datum/admins/proc/object_sound(var/obj/O in object_list)
+/datum/admins/proc/object_sound(atom/O as obj in world)
 	set category = "Fun"
 	set name = "Object Sound"
 	set desc = "Display a message to everyone who can hear the target"
