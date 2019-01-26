@@ -13,4 +13,12 @@ GLOBAL_LIST_INIT(bitfields, list(
 		"SOUND" = R_SOUND,
 		"SPAWN" = R_SPAWN
 		),
+	"stat" = list(
+		"BROKEN" = BROKEN,
+		"NOPOWER" = NOPOWER,
+		"POWEROFF" = POWEROFF,
+		"MAINT" = MAINT,
+		"EMPED" = EMPED,
+		"MACHINE_DO_NOT_PROCESS" = MACHINE_DO_NOT_PROCESS
+		),
 	))
